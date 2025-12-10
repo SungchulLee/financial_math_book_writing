@@ -21,8 +21,8 @@ nav:
       - 1.3 Mathematical Backups:
           - Martingale Representation Theorem: ch01/math_backups/martingale_representation_theorem.md
           - Girsanov Theorem: ch01/math_backups/girsanov_theorem.md
-          - Fundamental Theorem of Asset Pricing: ch01/fundamental_theorem_of_asset_pricing.md
-          - Separating Hyperplane Theorem: ch01/separating_hyperplane_theorem.md
+          - Fundamental Theorem of Asset Pricing: ch01/math_backups/fundamental_theorem_of_asset_pricing.md
+          - Separating Hyperplane Theorem: ch01/math_backups/separating_hyperplane_theorem.md
 
   - Chapter 2:
       - 2.1 Overview: ch02/index.md
