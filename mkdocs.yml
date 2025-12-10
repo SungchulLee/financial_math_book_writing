@@ -8,21 +8,39 @@ nav:
       - 1.1 Overview: ch01/index.md
       - 1.2 BS PDE Derivation:
           - Delta Hedging: ch01/bs_pde_derivation/delta_hedging.md
-          - Martingale Representation via Infinitesimal Generator: ch01/bs_pde_derivation/martingale.md
-          - Consumption-Based Asset Pricing (Equilibrium Approach): ch01/bs_pde_derivation/equilbrium.md
-          - Change of Numeraire (Genuine Alternative): ch01/bs_pde_derivation/change_of_numeraire.md
+          - Martingale: ch01/bs_pde_derivation/martingale.md
+          - Equilibrium: ch01/bs_pde_derivation/equilbrium.md
+          - Change of Numeraire: ch01/bs_pde_derivation/change_of_numeraire.md
       - 1.3 BS PDE Solution:
           - Feynman-Kac Formula: ch01/bs_pde_solution/feynman_kac.md
           - Heat Equation: ch01/bs_pde_solution/heat_equation.md
           - Green Function: ch01/bs_pde_solution/green_function.md
-          - Fourier, Mellin, and Laplace Transforms: ch01/bs_pde_solution/fourier_mellin_laplace_transforms.md
+          - Various Transforms: ch01/bs_pde_solution/fourier_mellin_laplace_transforms.md
           - Change of Numeraire: ch01/bs_pde_solution/change_of_numeraire.md
           - Viscosity Solutions: ch01/bs_pde_solution/viscosity_solutions.md
       - 1.3 Mathematical Backups:
+          - Martingale Representation Theorem: ch01/math_backups/martingale_representation_theorem.md
           - Girsanov Theorem: ch01/math_backups/girsanov_theorem.md
+          - Fundamental Theorem of Asset Pricing: ch01/fundamental_theorem_of_asset_pricing.md
+          - Separating Hyperplane Theorem: ch01/separating_hyperplane_theorem.md
 
   - Chapter 2:
       - 2.1 Overview: ch02/index.md
 
 plugins:
   - search
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+  - admonition
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+
+
