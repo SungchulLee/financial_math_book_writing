@@ -16,27 +16,32 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  - Chapter 1 Black Scholes Model:
-      - 1.1 BS PDE Derivation:
-          - Delta Hedging: ch01/bs_pde_derivation/delta_hedging.md
-          - Martingale: ch01/bs_pde_derivation/martingale.md
-          - Equilibrium: ch01/bs_pde_derivation/equilbrium.md
-          - Change of Numeraire: ch01/bs_pde_derivation/change_of_numeraire.md
-      - 1.2 BS PDE Solution:
-          - Feynman-Kac Formula: ch01/bs_pde_solution/feynman_kac.md
-          - Heat Equation: ch01/bs_pde_solution/heat_equation.md
-          - Green Function: ch01/bs_pde_solution/green_function.md
-          - Various Transforms: ch01/bs_pde_solution/fourier_mellin_laplace_transforms.md
-          - Change of Numeraire: ch01/bs_pde_solution/change_of_numeraire.md
-          - Viscosity Solutions: ch01/bs_pde_solution/viscosity_solutions.md
-      - 1.3 Mathematical Backups:
-          - Martingale Representation Theorem: ch01/math_backups/martingale_representation_theorem.md
-          - Girsanov Theorem: ch01/math_backups/girsanov_theorem.md
-          - Fundamental Theorem of Asset Pricing: ch01/math_backups/fundamental_theorem_of_asset_pricing.md
-          - Separating Hyperplane Theorem: ch01/math_backups/separating_hyperplane_theorem.md
+  - Chapter 1 Diffusion Process:
+      - 1.1 Diffusion Process:
+          - Delta Hedging: 
+      - 1.2 Ito Lemma:
+      - 1.3 Martingale:
+          - Martingale Representation Theorem: ch01/martingale/martingale_representation_theorem.md
+  - Chapter 2 Black Scholes Model:
+      - 2.1 BS PDE Derivation:
+          - Delta Hedging: ch02/bs_pde_derivation/delta_hedging.md
+          - Martingale: ch02/bs_pde_derivation/martingale.md
+          - Equilibrium: ch02/bs_pde_derivation/equilbrium.md
+          - Change of Numeraire: ch02/bs_pde_derivation/change_of_numeraire.md
+      - 2.2 BS PDE Solution:
+          - Feynman-Kac Formula: ch02/bs_pde_solution/feynman_kac.md
+          - Heat Equation: ch02/bs_pde_solution/heat_equation.md
+          - Green Function: ch02/bs_pde_solution/green_function.md
+          - Various Transforms: ch02/bs_pde_solution/fourier_mellin_laplace_transforms.md
+          - Change of Numeraire: ch02/bs_pde_solution/change_of_numeraire.md
+          - Viscosity Solutions: ch02/bs_pde_solution/viscosity_solutions.md
+      - 2.3 Mathematical Backups:
+          - Martingale Representation Theorem: ch02/math_backups/martingale_representation_theorem.md
+          - Girsanov Theorem: ch02/math_backups/girsanov_theorem.md
+          - Fundamental Theorem of Asset Pricing: ch02/math_backups/fundamental_theorem_of_asset_pricing.md
+          - Separating Hyperplane Theorem: ch02/math_backups/separating_hyperplane_theorem.md
 
-  - Chapter 2:
-      - 2.1 Overview: ch02/index.md
+
 
 plugins:
   - search
