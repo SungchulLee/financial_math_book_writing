@@ -120,11 +120,15 @@ $$d\tilde{V}_t = e^{-rt}\left[\frac{\partial V}{\partial t}dt + \frac{\partial V
 
 With $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$:
 
-$$d\tilde{V}_t = e^{-rt}\left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV\right]dt + e^{-rt}\sigma S \frac{\partial V}{\partial S}dW_t^{\mathbb{Q}}$$
+$$
+d\tilde{V}_t 
+= 
+e^{-rt}\left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV\right]dt + e^{-rt}\sigma S \frac{\partial V}{\partial S}dW_t^{\mathbb{Q}}
+$$
 
 For $\tilde{V}_t$ to be a martingale, the $dt$ term must vanish:
 
-$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0$$
+$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0$$
 
 This is the **Black-Scholes PDE**!
 
