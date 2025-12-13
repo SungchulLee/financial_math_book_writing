@@ -55,28 +55,88 @@ nav:
           - Martingale Representation Theorem: ch01/change_of_measure/martingale_representation_theorem.md
           - Martingale Representation Theorem in Depth: ch01/change_of_measure/martingale_representation_theorem_in_depth.md
           - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
-
-
   - Chapter 2 Black Scholes Model:
       - 2.1 Fundamental Theorem of Asset Pricing:
           - Fundamental Theorem of Asset Pricing: ch02/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
           - Separating Hyperplane Theorem: ch02/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
       - 2.2 BS PDE Derivation:
           - Delta Hedging: ch02/bs_pde_derivation/delta_hedging.md
-          - Martingale: ch02/bs_pde_derivation/martingale.md
-          - Equilibrium: ch02/bs_pde_derivation/equilbrium.md
+          - Risk-Neutral Martingale Measure: ch02/bs_pde_derivation/risk_neutral_martingale_measure.md
           - Change of Numeraire: ch02/bs_pde_derivation/change_of_numeraire.md
-      - 2.3 BS PDE Solution:
-          - Heat Equation: ch02/bs_pde_solution/heat_equation.md
-          - Green Function: ch02/bs_pde_solution/green_function.md
-          - Separation of Variables: ch02/bs_pde_solution/separation_of_variables.md
-          - Similarity Solutions: ch02/bs_pde_solution/similarity_solutions.md
-          - Fourier Transform: ch02/bs_pde_solution/fourier_transform.md
-          - Mellin Transform: ch02/bs_pde_solution/mellin_transform.md
-          - Laplace Transform (in time): ch02/bs_pde_solution/laplace_transform_in_time.md
-          - Feynman-Kac Formula: ch02/bs_pde_solution/feynman_kac.md
-          - Change of Numeraire: ch02/bs_pde_solution/change_of_numeraire.md
-          - Viscosity Solutions: ch02/bs_pde_solution/viscosity_solutions.md
+          - Equilibrium: ch02/bs_pde_derivation/equilibrium.md
+      - 2.3 BS PDE Analytic Solution:
+          - Heat Equation: ch02/bs_pde_analytic_solution/heat_equation.md
+          - Green Function: ch02/bs_pde_analytic_solution/green_function.md
+          - Separation of Variables: ch02/bs_pde_analytic_solution/separation_of_variables.md
+          - Similarity Solutions: ch02/bs_pde_analytic_solution/similarity_solutions.md
+          - Fourier Transform: ch02/bs_pde_analytic_solution/fourier_transform.md
+          - Mellin Transform: ch02/bs_pde_analytic_solution/mellin_transform.md
+          - Laplace Transform (in Time): ch02/bs_pde_analytic_solution/laplace_transform_in_time.md
+          - Feynman-Kac Formula: ch02/bs_pde_analytic_solution/feynman_kac.md
+          - Change of Numeraire: ch02/bs_pde_analytic_solution/change_of_numeraire.md
+          - Viscosity Solutions: ch02/bs_pde_analytic_solution/viscosity_solutions.md
+      - 2.4 BS PDE Numerical Solution:
+          - Finite Difference Methods: ch02/bs_pde_numerical_solution/finite_difference_methods.md
+          - Explicit, Implicit, and Crank–Nicolson Schemes: ch02/bs_pde_numerical_solution/explicit_implicit_crank_nicolson_schemes.md
+          - Stability, Consistency, and Convergence: ch02/bs_pde_numerical_solution/stability_consistency_convergence.md
+          - Boundary and Terminal Conditions: ch02/bs_pde_numerical_solution/boundary_and_terminal_conditions.md
+          - Free Boundary Problems (American Options): ch02/bs_pde_numerical_solution/free_boundary_problems_american_options.md
+          - Monotone Schemes and Viscosity Solutions: ch02/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
+      - 2.5 Extensions of the Black–Scholes Model:
+          - Local Volatility Models: ch02/extensions_black_scholes/local_volatility_models.md
+          - Stochastic Volatility Models: ch02/extensions_black_scholes/stochastic_volatility_models.md
+          - Jump-Diffusion Models: ch02/extensions_black_scholes/jump_diffusion_models.md
+          - Incomplete Markets and Pricing Bounds: ch02/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md
+  - Chapter 3 Greeks, Sensitivities, and Asymptotics:
+      - 3.1 Definition and Mathematical Meaning of Greeks:
+          - Delta, Gamma, Vega, Theta, Rho: ch03/greeks_meaning/delta_gamma_vega_theta_rho.md
+          - Greeks as Derivatives of the Pricing Operator: ch03/greeks_meaning/greeks_as_derivatives_of_pricing_operator.md
+          - Greeks via the Infinitesimal Generator: ch03/greeks_meaning/greeks_via_infinitesimal_generator.md
+          - Greeks and Martingale Representation: ch03/greeks_meaning/greeks_and_martingale_representation.md
+      - 3.2 PDE Characterization of Greeks:
+          - Differentiating the Black–Scholes PDE: ch03/pde_greeks/differentiating_black_scholes_pde.md
+          - PDEs Satisfied by Greeks: ch03/pde_greeks/pdes_satisfied_by_greeks.md
+          - Boundary and Terminal Behavior of Greeks: ch03/pde_greeks/boundary_and_terminal_behavior_of_greeks.md
+          - Smoothness and Regularity Issues: ch03/pde_greeks/smoothness_and_regularity_issues.md
+      - 3.3 Probabilistic Representation of Greeks:
+          - Greeks via Feynman–Kac: ch03/probabilistic_greeks/greeks_via_feynman_kac.md
+          - Pathwise Differentiation: ch03/probabilistic_greeks/pathwise_differentiation.md
+          - Likelihood Ratio (Malliavin) Methods: ch03/probabilistic_greeks/likelihood_ratio_malliavin_methods.md
+          - Sensitivities as Conditional Expectations: ch03/probabilistic_greeks/sensitivities_as_conditional_expectations.md
+      - 3.4 Asymptotic Regimes in Option Pricing:
+          - Short-Maturity Asymptotics: ch03/asymptotic_regimes/short_maturity_asymptotics.md
+          - Large-Strike and Small-Strike Asymptotics: ch03/asymptotic_regimes/large_strike_and_small_strike_asymptotics.md
+          - Small-Volatility Asymptotics: ch03/asymptotic_regimes/small_volatility_asymptotics.md
+          - Large-Time Behavior and Ergodicity: ch03/asymptotic_regimes/large_time_behavior_and_ergodicity.md
+      - 3.5 Asymptotics of Greeks:
+          - Blow-Up of Gamma Near Expiry: ch03/asymptotics_of_greeks/blow_up_of_gamma_near_expiry.md
+          - Vega Asymptotics and Smile Sensitivity: ch03/asymptotics_of_greeks/vega_asymptotics_and_smile_sensitivity.md
+          - Delta Behavior Near the Money: ch03/asymptotics_of_greeks/delta_behavior_near_the_money.md
+          - Scaling Laws for Greeks: ch03/asymptotics_of_greeks/scaling_laws_for_greeks.md
+      - 3.6 Hedging Errors and Second-Order Effects:
+          - Discrete-Time Hedging Error: ch03/hedging_errors/discrete_time_hedging_error.md
+          - Gamma Risk and Convexity Effects: ch03/hedging_errors/gamma_risk_and_convexity_effects.md
+          - Impact of Volatility Misspecification: ch03/hedging_errors/impact_of_volatility_misspecification.md
+          - Asymptotic Hedging Error Expansions: ch03/hedging_errors/asymptotic_hedging_error_expansions.md
+      - 3.7 Trading Strategies Based on Greeks:
+          - Delta-Neutral Strategies: ch03/trading_strategies/delta_neutral_strategies.md
+          - Gamma Scalping: ch03/trading_strategies/gamma_scalping.md
+          - Vega Trading and Volatility Bets: ch03/trading_strategies/vega_trading_and_volatility_bets.md
+          - Theta Decay and Carry Trades: ch03/trading_strategies/theta_decay_and_carry_trades.md
+          - Static vs Dynamic Hedging: ch03/trading_strategies/static_vs_dynamic_hedging.md
+      - 3.8 Asymptotic Trading Strategies:
+          - Short-Time Gamma Exploitation: ch03/asymptotic_trading/short_time_gamma_exploitation.md
+          - Volatility Arbitrage via Vega Asymptotics: ch03/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
+          - Smile Trading and Skew Bets: ch03/asymptotic_trading/smile_trading_and_skew_bets.md
+          - Regime-Based Strategy Design: ch03/asymptotic_trading/regime_based_strategy_design.md
+      - 3.9 Model Risk and Practical Limitations:
+          - Instability of Higher-Order Greeks: ch03/model_risk/instability_of_higher_order_greeks.md
+          - Transaction Costs and Liquidity Effects: ch03/model_risk/transaction_costs_and_liquidity_effects.md
+          - Breakdown of Continuous-Time Hedging: ch03/model_risk/breakdown_of_continuous_time_hedging.md
+          - Robustness vs Optimality: ch03/model_risk/robustness_vs_optimality.md
+
+
+
 
 
 
