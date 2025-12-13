@@ -17,20 +17,40 @@ extra_javascript:
 nav:
   - Home: index.md
   - Chapter 1 Diffusion Process:
-      - 1.1 Martingale:
-          - Martingale Representation Theorem: ch01/martingale/martingale_representation_theorem.md
-          - Local Martingale: ch01/martingale/local_martingale.md
-          - Martingale Representation Theorem in Depth: ch01/martingale/martingale_representation_theorem_in_depth.md
-          - Stochastic Exponential: ch01/martingale/stochastic_exponential.md 
-      - 1.2 Change of Measure:
-          - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
-      - 1.3  Infinitesimal Generator:
+      - 1.1 Brownian Motion:
+          - Brownian Motion Overview: ch01/brownian_motion/brownian_motion_overview.md
+          - Scaling and Time Change
+      - 1.2 Filtration and Martingales:
+          - Filtration and Adapted Processes
+          - Stopping Times
+          - Martingales and Submartingales
+          - Optional Sampling Theorem
+      - 1.3 Stochastic Integration:
+          - Quadratic Variation
+          - Stochastic Integration: ch01/stochastic_integration/stochastic_integration.md
+      - 1.4 Ito Formula and Calculus:
+          - Ito Lemma: ch01/ito_lemma/ito_lemma.md
+          - Ito Lemma (Multidimensional Version): ch01/ito_lemma/ito_lemma_multidimensional_version.md
+          - Ito Product Rule: ch01/ito_lemma/ito_product_rule.md 
+          - Ito Quotient Rule: ch01/ito_lemma/ito_quotient_rule.md 
+      - 1.5 Diffusion Processes:
+          - Diffusion Process Overview: ch01/diffusion_process/diffusion_process_overview.md
+          - Existence and Uniqueness of SDEs
+      - 1.6  Infinitesimal Generator:
           - Infinitesimal Generator: ch01/infinitesimal_generator/infinitesimal_generator.md
           - Infinitesimal Generator and Martingale: ch01/infinitesimal_generator/infinitesimal_generator_and_martingale.md
-      - 1.4 Connection to PDE:
+      - 1.7 Connection to PDE:
           - Kolmogorov Equation: ch01/connection_to_pde/kolmogorov_equation.md
           - Kolmogorov Equation on Expectation: ch01/connection_to_pde/kolmogorov_equation_on_expectation.md
           - Feynman-Kac Formula: ch01/connection_to_pde/feynman_kac_formula.md 
+      - 1.8 Change of Measure:
+          - Local Martingale: ch01/change_of_measure/local_martingale.md
+          - Stochastic Exponential: ch01/change_of_measure/stochastic_exponential.md 
+          - Martingale Representation Theorem: ch01/change_of_measure/martingale_representation_theorem.md
+          - Martingale Representation Theorem in Depth: ch01/change_of_measure/martingale_representation_theorem_in_depth.md
+          - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
+
+
   - Chapter 2 Black Scholes Model:
       - 2.1 Fundamental Theorem of Asset Pricing:
           - Fundamental Theorem of Asset Pricing: ch02/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
