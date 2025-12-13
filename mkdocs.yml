@@ -19,23 +19,23 @@ nav:
   - Chapter 1 Diffusion Process:
       - 1.1 Brownian Motion:
           - Brownian Motion Overview: ch01/brownian_motion/brownian_motion_overview.md
-          - Scaling and Time Change
-      - 1.2 Filtration and Martingales:
-          - Filtration and Adapted Processes
-          - Stopping Times
-          - Martingales and Submartingales
-          - Optional Sampling Theorem
-      - 1.3 Stochastic Integration:
-          - Quadratic Variation
-          - Stochastic Integration: ch01/stochastic_integration/stochastic_integration.md
-      - 1.4 Ito Formula and Calculus:
+          - Scaling and Time Change: ch01/brownian_motion/scaling_and_time_change.md
+      - 1.2 Martingale:
+          - Filtration and Adapted Processes: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
+          - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
+          - Martingales and Submartingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
+          - Optional Sampling Theorem: ch01/filtration_and_martingales/optional_sampling_theorem.md
+      - 1.3 Stochastic Integral:
+          - Quadratic Variation: ch01/stochastic_integral/quadratic_variation.md
+          - Stochastic Integration: ch01/stochastic_integral/stochastic_integration.md
+      - 1.4 Ito Calculus:
           - Ito Lemma: ch01/ito_lemma/ito_lemma.md
           - Ito Lemma (Multidimensional Version): ch01/ito_lemma/ito_lemma_multidimensional_version.md
           - Ito Product Rule: ch01/ito_lemma/ito_product_rule.md 
           - Ito Quotient Rule: ch01/ito_lemma/ito_quotient_rule.md 
       - 1.5 Diffusion Processes:
           - Diffusion Process Overview: ch01/diffusion_process/diffusion_process_overview.md
-          - Existence and Uniqueness of SDEs
+          - Existence and Uniqueness of SDEs: ch01/diffusion_process/existence_and_uniqueness_of_sdes.md
       - 1.6  Infinitesimal Generator:
           - Infinitesimal Generator: ch01/infinitesimal_generator/infinitesimal_generator.md
           - Infinitesimal Generator and Martingale: ch01/infinitesimal_generator/infinitesimal_generator_and_martingale.md
