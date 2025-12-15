@@ -55,6 +55,7 @@ nav:
           - Martingale Representation Theorem: ch01/change_of_measure/martingale_representation_theorem.md
           - Martingale Representation Theorem in Depth: ch01/change_of_measure/martingale_representation_theorem_in_depth.md
           - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
+  
   - Chapter 2 Black Scholes Model:
       - 2.1 Fundamental Theorem of Asset Pricing:
           - Fundamental Theorem of Asset Pricing: ch02/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
@@ -87,6 +88,7 @@ nav:
           - Stochastic Volatility Models: ch02/extensions_black_scholes/stochastic_volatility_models.md
           - Jump-Diffusion Models: ch02/extensions_black_scholes/jump_diffusion_models.md
           - Incomplete Markets and Pricing Bounds: ch02/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md
+  
   - Chapter 3 Greeks, Sensitivities, and Asymptotics:
       - 3.1 Definition and Mathematical Meaning of Greeks:
           - Delta, Gamma, Vega, Theta, Rho: ch03/greeks_meaning/delta_gamma_vega_theta_rho.md
@@ -134,248 +136,255 @@ nav:
           - Transaction Costs and Liquidity Effects: ch03/model_risk/transaction_costs_and_liquidity_effects.md
           - Breakdown of Continuous-Time Hedging: ch03/model_risk/breakdown_of_continuous_time_hedging.md
           - Robustness vs Optimality: ch03/model_risk/robustness_vs_optimality.md
+ 
   - Chapter 4 Implied Volatility and Smile:
       - 4.1 Definition of Implied Volatility:
-          - Implied Volatility as Inverse Pricing Map
-          - Existence and Uniqueness
-          - Arbitrage Constraints
-      - 4.2 Implied Volatility Surface:
-          - Term Structure
-          - Skew and Smile
-          - No-Static-Arbitrage Conditions
-      - 4.3 Asymptotics of Implied Volatility:
-          - Short-Maturity Smile Asymptotics
-          - Large-Strike (Wing) Asymptotics
-          - ATM Expansions
-      - 4.4 Implied Volatility Sensitivities:
-          - Vega and Implied Volatility Sensitivity
-          - Sticky Strike vs Sticky Delta
-          - Smile Dynamics and Hedging
-      - 4.5 Model-Free Results:
-          - Breeden–Litzenberger Formula
-          - Implied Volatility and Risk-Neutral Density
+          - Implied Volatility as Inverse Pricing Map: ch04/definition_of_implied_volatility/implied_volatility_as_inverse_pricing_map.md
+          - Existence and Uniqueness: ch04/definition_of_implied_volatility/existence_and_uniqueness.md
+          - Arbitrage Constraints: ch04/definition_of_implied_volatility/arbitrage_constraints.md
+      - 4.2 Model-Free Results:
+          - Breeden–Litzenberger Formula: ch04/model_free_results/breeden_litzenberger_formula.md
+          - Dupire's Formula and Local Volatility Surface: ch04/model_free_results/dupire_formula_and_local_volatility_surface.md
+          - Implied Volatility and Risk-Neutral Density: ch04/model_free_results/implied_volatility_and_risk_neutral_density.md
+      - 4.3 Implied Volatility Surface:
+          - Term Structure: ch04/implied_volatility_surface/term_structure.md
+          - Skew and Smile: ch04/implied_volatility_surface/skew_and_smile.md
+          - No-Static-Arbitrage Conditions: ch04/implied_volatility_surface/no_static_arbitrage_conditions.md
+      - 4.4 Asymptotics of Implied Volatility:
+          - Short-Maturity Smile Asymptotics: ch04/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
+          - Large-Strike (Wing) Asymptotics: ch04/asymptotics_of_implied_volatility/large_strike_wing_asymptotics.md
+          - ATM Expansions: ch04/asymptotics_of_implied_volatility/atm_expansions.md
+      - 4.5 Implied Volatility Sensitivities:
+          - Vega and Implied Volatility Sensitivity: ch04/implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md
+          - Sticky Strike vs Sticky Delta: ch04/implied_volatility_sensitivities/sticky_strike_vs_sticky_delta.md
+          - Smile Dynamics and Hedging: ch04/implied_volatility_sensitivities/smile_dynamics_and_hedging.md
       - 4.6 Smile Dynamics:
-          - Forward Smile
-          - Dynamic Consistency
-          - Empirical Stylized Facts
+          - Forward Smile: ch04/smile_dynamics/forward_smile.md
+          - Dynamic Consistency: ch04/smile_dynamics/dynamic_consistency.md
+          - Empirical Stylized Facts: ch04/smile_dynamics/empirical_stylized_facts.md
+  
   - Chapter 5 Calibration and Inverse Problems:
       - 5.1 Calibration as an Inverse Problem:
-          - Forward Pricing Map vs Inverse Calibration Map
-          - Ill-Posedness and Non-Uniqueness
-          - Identifiability of Model Parameters
+          - Forward Pricing Map vs Inverse Calibration Map: ch05/calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md
+          - Ill-Posedness and Non-Uniqueness: ch05/calibration_as_inverse_problem/ill_posedness_and_non_uniqueness.md
+          - Identifiability of Model Parameters: ch05/calibration_as_inverse_problem/identifiability_of_model_parameters.md
       - 5.2 Static Calibration to Vanilla Options:
-          - Calibration to Implied Volatility Surface
-          - Choice of Objective Function
-          - Weighting and Market Liquidity
+          - Calibration to Implied Volatility Surface: ch05/static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md
+          - Choice of Objective Function: ch05/static_calibration_to_vanilla_options/choice_of_objective_function.md
+          - Weighting and Market Liquidity: ch05/static_calibration_to_vanilla_options/weighting_and_market_liquidity.md
       - 5.3 Regularization and Stability:
-          - Tikhonov Regularization
-          - Penalization and Smoothness Constraints
-          - Trade-Off Between Fit and Robustness
+          - Tikhonov Regularization: ch05/regularization_and_stability/tikhonov_regularization.md
+          - Penalization and Smoothness Constraints: ch05/regularization_and_stability/penalization_and_smoothness_constraints.md
+          - Trade-Off Between Fit and Robustness: ch05/regularization_and_stability/trade_off_between_fit_and_robustness.md
       - 5.4 Calibration of Local Volatility:
-          - Dupire Equation as an Inverse Problem
-          - Noise Amplification and Smoothing
-          - Stability Issues
+          - Dupire Equation as an Inverse Problem: ch05/calibration_of_local_volatility/dupire_equation_as_inverse_problem.md
+          - Noise Amplification and Smoothing: ch05/calibration_of_local_volatility/noise_amplification_and_smoothing.md
+          - Stability Issues: ch05/calibration_of_local_volatility/stability_issues.md
       - 5.5 Calibration of Stochastic Volatility Models:
-          - Parameter Identifiability (Heston Case)
-          - Volatility Risk Premium
-          - Joint Calibration Across Maturities
+          - Parameter Identifiability (Heston Case): ch05/calibration_of_stochastic_volatility_models/parameter_identifiability_heston_case.md
+          - Volatility Risk Premium: ch05/calibration_of_stochastic_volatility_models/volatility_risk_premium.md
+          - Joint Calibration Across Strikes and Maturities: ch05/calibration_of_stochastic_volatility_models/joint_calibration_across_strikes_and_maturities.md
       - 5.6 Dynamic Calibration and Time Consistency:
-          - Recalibration Problem
-          - Forward Consistency
-          - Model Drift vs Parameter Drift
+          - Recalibration Problem: ch05/dynamic_calibration_and_time_consistency/recalibration_problem.md
+          - Forward Consistency: ch05/dynamic_calibration_and_time_consistency/forward_consistency.md
+          - Model Drift vs Parameter Drift: ch05/dynamic_calibration_and_time_consistency/model_drift_vs_parameter_drift.md
       - 5.7 Model Risk from Calibration:
-          - Sensitivity of Prices to Calibration Error
-          - Impact on Greeks and Hedging
-          - Robust Calibration Criteria
+          - Sensitivity of Prices to Calibration Error: ch05/model_risk_from_calibration/sensitivity_of_prices_to_calibration_error.md
+          - Impact on Greeks and Hedging: ch05/model_risk_from_calibration/impact_on_greeks_and_hedging.md
+          - Robust Calibration Criteria: ch05/model_risk_from_calibration/robust_calibration_criteria.md
+  
   - Chapter 6 Stochastic Volatility and Advanced Diffusion Models:
       - 6.1 Motivation Beyond Black–Scholes:
-          - Empirical Failures of Constant Volatility
-          - Smile and Term Structure Revisited
-          - Incompleteness of Equity Markets
+          - Empirical Failures of Constant Volatility: ch06/motivation_beyond_black_scholes/empirical_failures_of_constant_volatility.md
+          - Smile and Term Structure Revisited: ch06/motivation_beyond_black_scholes/smile_and_term_structure_revisited.md
+          - Incompleteness of Equity Markets: ch06/motivation_beyond_black_scholes/incompleteness_of_equity_markets.md
       - 6.2 General Stochastic Volatility Framework:
-          - Two-Factor Diffusion Models
-          - Correlation and Leverage Effect
-          - Risk-Neutral vs Physical Measure
+          - Two-Factor Diffusion Models: ch06/general_stochastic_volatility_framework/two_factor_diffusion_models.md
+          - Correlation and Leverage Effect: ch06/general_stochastic_volatility_framework/correlation_and_leverage_effect.md
+          - Risk-Neutral vs Physical Measure: ch06/general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md
       - 6.3 The Heston Model:
-          - Model Definition
-          - Feller Condition and Boundary Behavior
-          - Affine Structure
+          - Model Definition: ch06/the_heston_model/model_definition.md
+          - Feller Condition and Boundary Behavior: ch06/the_heston_model/feller_condition_and_boundary_behavior.md
+          - Affine Structure: ch06/the_heston_model/affine_structure.md
       - 6.4 Pricing Under Stochastic Volatility:
-          - Characteristic Functions
-          - Fourier Pricing Methods
-          - PDE Formulation
+          - Characteristic Functions: ch06/pricing_under_stochastic_volatility/characteristic_functions.md
+          - Fourier Pricing Methods: ch06/pricing_under_stochastic_volatility/fourier_pricing_methods.md
+          - PDE Formulation: ch06/pricing_under_stochastic_volatility/pde_formulation.md
       - 6.5 Calibration of Stochastic Volatility Models:
-          - Identifiability Issues
-          - Volatility Risk Premium
-          - Stability of Calibration
+          - Identifiability Issues: ch06/calibration_of_stochastic_volatility_models/identifiability_issues.md
+          - Volatility Risk Premium: ch06/calibration_of_stochastic_volatility_models/volatility_risk_premium.md
+          - Stability of Calibration: ch06/calibration_of_stochastic_volatility_models/stability_of_calibration.md
       - 6.6 Hedging and Greeks Under Stochastic Volatility:
-          - Vega Risk and Vol-of-Vol
-          - Incomplete Market Hedging
-          - Optimal Hedging Criteria
+          - Vega Risk and Vol-of-Vol: ch06/hedging_and_greeks_under_stochastic_volatility/vega_risk_and_vol_of_vol.md
+          - Incomplete Market Hedging: ch06/hedging_and_greeks_under_stochastic_volatility/incomplete_market_hedging.md
+          - Optimal Hedging Criteria: ch06/hedging_and_greeks_under_stochastic_volatility/optimal_hedging_criteria.md
       - 6.7 Extensions and Variants:
-          - SABR Model
-          - Rough Volatility (Overview)
-          - Multi-Factor Volatility Models
+          - SABR Model: ch06/extensions_and_variants/sabr_model.md
+          - Rough Volatility (Overview): ch06/extensions_and_variants/rough_volatility_overview.md
+          - Multi-Factor Volatility Models: ch06/extensions_and_variants/multi_factor_volatility_models.md
+  
   - Chapter 7 Interest Rate Models and Term Structure Theory:
       - 7.1 Zero-Coupon Bonds and Yield Curves:
-          - Discount Factors and Zero Rates
-          - Forward Rates and Term Structures
-          - No-Arbitrage Relations
+          - Discount Factors and Zero Rates: ch07/zero_coupon_bonds_and_yield_curves/discount_factors_and_zero_rates.md
+          - Forward Rates and Term Structures: ch07/zero_coupon_bonds_and_yield_curves/forward_rates_and_term_structures.md
+          - No-Arbitrage Relations: ch07/zero_coupon_bonds_and_yield_curves/no_arbitrage_relations.md
       - 7.2 Short-Rate Models:
-          - General Short-Rate Framework
-          - Vasicek Model
-          - CIR Model
-          - Affine Term Structure
+          - General Short-Rate Framework: ch07/short_rate_models/general_short_rate_framework.md
+          - Vasicek Model: ch07/short_rate_models/vasicek_model.md
+          - CIR Model: ch07/short_rate_models/cir_model.md
+          - Affine Term Structure: ch07/short_rate_models/affine_term_structure.md
       - 7.3 Pricing Interest Rate Derivatives:
-          - Bond Pricing via PDEs
-          - Bond Pricing via Feynman–Kac
-          - Yield Curve Dynamics
+          - Bond Pricing via PDEs: ch07/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
+          - Bond Pricing via Feynman–Kac: ch07/pricing_interest_rate_derivatives/bond_pricing_via_feynman_kac.md
+          - Yield Curve Dynamics: ch07/pricing_interest_rate_derivatives/yield_curve_dynamics.md
       - 7.4 Heath–Jarrow–Morton (HJM) Framework:
-          - Forward Rate Dynamics
-          - No-Arbitrage Drift Condition
-          - Infinite-Dimensional SDEs
+          - Forward Rate Dynamics: ch07/heath_jarrow_morton_hjm_framework/forward_rate_dynamics.md
+          - No-Arbitrage Drift Condition: ch07/heath_jarrow_morton_hjm_framework/no_arbitrage_drift_condition.md
+          - Infinite-Dimensional SDEs: ch07/heath_jarrow_morton_hjm_framework/infinite_dimensional_sdes.md
       - 7.5 Change of Measure and Forward Measures:
-          - Risk-Neutral Measure
-          - T-Forward Measures
-          - Numéraire Techniques
+          - Risk-Neutral Measure: ch07/change_of_measure_and_forward_measures/risk_neutral_measure.md
+          - T-Forward Measures: ch07/change_of_measure_and_forward_measures/t_forward_measures.md
+          - Numéraire Techniques: ch07/change_of_measure_and_forward_measures/numeraire_techniques.md
       - 7.6 Calibration of Interest Rate Models:
-          - Fitting Initial Yield Curves
-          - Volatility Structure Calibration
-          - Stability and Identifiability
+          - Fitting Initial Yield Curves: ch07/calibration_of_interest_rate_models/fitting_initial_yield_curves.md
+          - Volatility Structure Calibration: ch07/calibration_of_interest_rate_models/volatility_structure_calibration.md
+          - Stability and Identifiability: ch07/calibration_of_interest_rate_models/stability_and_identifiability.md
       - 7.7 Interest Rate Model Risk:
-          - Negative Rates and Model Breakdown
-          - Multi-Curve Issues
-          - Practical Limitations
+          - Negative Rates and Model Breakdown: ch07/interest_rate_model_risk/negative_rates_and_model_breakdown.md
+          - Multi-Curve Issues: ch07/interest_rate_model_risk/multi_curve_issues.md
+          - Practical Limitations: ch07/interest_rate_model_risk/practical_limitations.md
+   
   - Chapter 8 Credit Risk and Default Modeling:
       - 8.1 Default as a Random Time:
-          - Stopping Times and Enlargement of Filtration
-          - Progressive vs Initial Enlargement
-          - Immersion (H-Hypothesis)
+          - Stopping Times and Enlargement of Filtration: ch08/default_as_a_random_time/stopping_times_and_enlargement_of_filtration.md
+          - Progressive vs Initial Enlargement: ch08/default_as_a_random_time/progressive_vs_initial_enlargement.md
+          - Immersion (H-Hypothesis): ch08/default_as_a_random_time/immersion_h_hypothesis.md
       - 8.2 Structural Credit Risk Models:
-          - Firm Value Models (Merton)
-          - First-Passage Models
-          - Equity–Credit Connection
+          - Firm Value Models (Merton): ch08/structural_credit_risk_models/firm_value_models_merton.md
+          - First-Passage Models: ch08/structural_credit_risk_models/first_passage_models.md
+          - Equity–Credit Connection: ch08/structural_credit_risk_models/equity_credit_connection.md
       - 8.3 Reduced-Form (Intensity-Based) Models:
-          - Default Intensity and Hazard Rates
-          - Survival Probability
-          - Compensators and Martingales
+          - Default Intensity and Hazard Rates: ch08/reduced_form_intensity_based_models/default_intensity_and_hazard_rates.md
+          - Survival Probability: ch08/reduced_form_intensity_based_models/survival_probability.md
+          - Compensators and Martingales: ch08/reduced_form_intensity_based_models/compensators_and_martingales.md
       - 8.4 Pricing with Default Risk:
-          - Defaultable Bonds
-          - Recovery Schemes
-          - Pricing under Intensity Models
+          - Defaultable Bonds: ch08/pricing_with_default_risk/defaultable_bonds.md
+          - Recovery Schemes: ch08/pricing_with_default_risk/recovery_schemes.md
+          - Pricing under Intensity Models: ch08/pricing_with_default_risk/pricing_under_intensity_models.md
       - 8.5 Credit Derivatives:
-          - Credit Default Swaps (CDS)
-          - CDS Spreads and Hazard Rates
-          - Valuation Adjustments
+          - Credit Default Swaps (CDS): ch08/credit_derivatives/credit_default_swaps_cds.md
+          - CDS Spreads and Hazard Rates: ch08/credit_derivatives/cds_spreads_and_hazard_rates.md
+          - Valuation Adjustments: ch08/credit_derivatives/valuation_adjustments.md
       - 8.6 Change of Measure and Credit Risk:
-          - Risk-Neutral vs Physical Intensities
-          - Measure Changes with Default
-          - Girsanov for Jump Processes
+          - Risk-Neutral vs Physical Intensities: ch08/change_of_measure_and_credit_risk/risk_neutral_vs_physical_intensities.md
+          - Measure Changes with Default: ch08/change_of_measure_and_credit_risk/measure_changes_with_default.md
+          - Girsanov for Jump Processes: ch08/change_of_measure_and_credit_risk/girsanov_for_jump_processes.md
       - 8.7 Credit Risk Calibration:
-          - Bootstrapping Hazard Rates
-          - Calibration to CDS and Bonds
-          - Identifiability Issues
+          - Bootstrapping Hazard Rates: ch08/credit_risk_calibration/bootstrapping_hazard_rates.md
+          - Calibration to CDS and Bonds: ch08/credit_risk_calibration/calibration_to_cds_and_bonds.md
+          - Identifiability Issues: ch08/credit_risk_calibration/identifiability_issues.md
       - 8.8 Model Risk in Credit Markets:
-          - Wrong-Way Risk
-          - Correlation and Systemic Risk
-          - Stress and Crisis Behavior
+          - Wrong-Way Risk: ch08/model_risk_in_credit_markets/wrong_way_risk.md
+          - Correlation and Systemic Risk: ch08/model_risk_in_credit_markets/correlation_and_systemic_risk.md
+          - Stress and Crisis Behavior: ch08/model_risk_in_credit_markets/stress_and_crisis_behavior.md
+
   - Chapter 9 Risk Management, XVA, and Systemic Risk:
       - 9.1 Market Risk Measures:
-          - Value-at-Risk (VaR)
-          - Expected Shortfall (ES)
-          - Coherent Risk Measures
+          - Value-at-Risk (VaR): ch09/market_risk_measures/value_at_risk_var.md
+          - Expected Shortfall (ES): ch09/market_risk_measures/expected_shortfall_es.md
+          - Coherent Risk Measures: ch09/market_risk_measures/coherent_risk_measures.md
       - 9.2 Dynamic Risk Measures:
-          - Time-Consistency
-          - Conditional Risk Measures
-          - BSDE-Based Risk Measures
+          - Time-Consistency: ch09/dynamic_risk_measures/time_consistency.md
+          - Conditional Risk Measures: ch09/dynamic_risk_measures/conditional_risk_measures.md
+          - BSDE-Based Risk Measures: ch09/dynamic_risk_measures/bsde_based_risk_measures.md
       - 9.3 Stress Testing and Scenario Analysis:
-          - Stress vs Historical Simulation
-          - Extreme Scenarios
-          - Reverse Stress Testing
+          - Stress vs Historical Simulation: ch09/stress_testing_and_scenario_analysis/stress_vs_historical_simulation.md
+          - Extreme Scenarios: ch09/stress_testing_and_scenario_analysis/extreme_scenarios.md
+          - Reverse Stress Testing: ch09/stress_testing_and_scenario_analysis/reverse_stress_testing.md
       - 9.4 Counterparty Credit Risk:
-          - Exposure Profiles
-          - Potential Future Exposure (PFE)
-          - Wrong-Way Risk
+          - Exposure Profiles: ch09/counterparty_credit_risk/exposure_profiles.md
+          - Potential Future Exposure (PFE): ch09/counterparty_credit_risk/potential_future_exposure_pfe.md
+          - Wrong-Way Risk: ch09/counterparty_credit_risk/wrong_way_risk.md
       - 9.5 Valuation Adjustments (XVA):
-          - CVA, DVA
-          - FVA, KVA
-          - Pricing with XVAs
+          - CVA, DVA: ch09/valuation_adjustments_xva/cva_dva.md
+          - FVA, KVA: ch09/valuation_adjustments_xva/fva_kva.md
+          - Pricing with XVAs: ch09/valuation_adjustments_xva/pricing_with_xvas.md
       - 9.6 Funding and Liquidity Risk:
-          - Funding Constraints
-          - Liquidity Premia
-          - Market Impact
+          - Funding Constraints: ch09/funding_and_liquidity_risk/funding_constraints.md
+          - Liquidity Premia: ch09/funding_and_liquidity_risk/liquidity_premia.md
+          - Market Impact: ch09/funding_and_liquidity_risk/market_impact.md
       - 9.7 Systemic Risk and Network Effects:
-          - Interconnected Balance Sheets
-          - Contagion Models
-          - Clearing and Central Counterparties
+          - Interconnected Balance Sheets: ch09/systemic_risk_and_network_effects/interconnected_balance_sheets.md
+          - Contagion Models: ch09/systemic_risk_and_network_effects/contagion_models.md
+          - Clearing and Central Counterparties: ch09/systemic_risk_and_network_effects/clearing_and_central_counterparties.md
       - 9.8 Model Risk and Governance:
-          - Model Validation
-          - Backtesting and Limits
-          - Robust Risk Frameworks
+          - Model Validation: ch09/model_risk_and_governance/model_validation.md
+          - Backtesting and Limits: ch09/model_risk_and_governance/backtesting_and_limits.md
+          - Robust Risk Frameworks: ch09/model_risk_and_governance/robust_risk_frameworks.md
+
   - Chapter 10 Robust Pricing, Model Uncertainty, and Decision Theory:
       - 10.1 Model Uncertainty and Ambiguity:
-          - Knightian Uncertainty
-          - Sets of Probability Measures
-          - Misspecification vs Estimation Error
+          - Knightian Uncertainty: ch10/model_uncertainty_and_ambiguity/knightian_uncertainty.md
+          - Sets of Probability Measures: ch10/model_uncertainty_and_ambiguity/sets_of_probability_measures.md
+          - Misspecification vs Estimation Error: ch10/model_uncertainty_and_ambiguity/misspecification_vs_estimation_error.md
       - 10.2 Robust No-Arbitrage Pricing:
-          - Model-Free Bounds
-          - Superhedging Duality
-          - Martingale Optimal Transport
+          - Model-Free Bounds: ch10/robust_no_arbitrage_pricing/model_free_bounds.md
+          - Superhedging Duality: ch10/robust_no_arbitrage_pricing/superhedging_duality.md
+          - Martingale Optimal Transport: ch10/robust_no_arbitrage_pricing/martingale_optimal_transport.md
       - 10.3 Robust Hedging:
-          - Pathwise Hedging
-          - Semi-Static Hedging
-          - Robust Delta–Gamma Hedging
+          - Pathwise Hedging: ch10/robust_hedging/pathwise_hedging.md
+          - Semi-Static Hedging: ch10/robust_hedging/semi_static_hedging.md
+          - Robust Delta–Gamma Hedging: ch10/robust_hedging/robust_delta_gamma_hedging.md
       - 10.4 Second-Order BSDEs and Nonlinear Expectations:
-          - g-Expectations
-          - 2BSDEs
-          - Uncertain Volatility Models
+          - g-Expectations: ch10/second_order_bsdes_and_nonlinear_expectations/g_expectations.md
+          - 2BSDEs: ch10/second_order_bsdes_and_nonlinear_expectations/2bsdes.md
+          - Uncertain Volatility Models: ch10/second_order_bsdes_and_nonlinear_expectations/uncertain_volatility_models.md
       - 10.5 Ambiguity-Averse Preferences:
-          - Max–Min Expected Utility
-          - Entropy Penalization
-          - Risk-Sensitive Control
+          - Max–Min Expected Utility: ch10/ambiguity_averse_preferences/max_min_expected_utility.md
+          - Entropy Penalization: ch10/ambiguity_averse_preferences/entropy_penalization.md
+          - Risk-Sensitive Control: ch10/ambiguity_averse_preferences/risk_sensitive_control.md
       - 10.6 Decision Making Under Uncertainty:
-          - Robust Portfolio Optimization
-          - Model Uncertainty in Asset Allocation
-          - Dynamic Consistency
+          - Robust Portfolio Optimization: ch10/decision_making_under_uncertainty/robust_portfolio_optimization.md
+          - Model Uncertainty in Asset Allocation: ch10/decision_making_under_uncertainty/model_uncertainty_in_asset_allocation.md
+          - Dynamic Consistency: ch10/decision_making_under_uncertainty/dynamic_consistency.md
       - 10.7 Robust Calibration:
-          - Confidence Sets for Models
-          - Worst-Case Calibration
-          - Stability vs Fit Trade-Off
+          - Confidence Sets for Models: ch10/robust_calibration/confidence_sets_for_models.md
+          - Worst-Case Calibration: ch10/robust_calibration/worst_case_calibration.md
+          - Stability vs Fit Trade-Off: ch10/robust_calibration/stability_vs_fit_trade_off.md
       - 10.8 Limits of Quantitative Modeling:
-          - When Models Fail
-          - Human Judgment vs Automation
-          - Open Problems in Financial Mathematics
+          - When Models Fail: ch10/limits_of_quantitative_modeling/when_models_fail.md
+          - Human Judgment vs Automation: ch10/limits_of_quantitative_modeling/human_judgment_vs_automation.md
+          - Open Problems in Financial Mathematics: ch10/limits_of_quantitative_modeling/open_problems_in_financial_mathematics.md
+  
   - Chapter 11 Data, Learning, and Adaptive Quantitative Finance:
       - 11.1 Statistical Learning in Financial Models:
-          - Parametric vs Nonparametric Learning
-          - Bias–Variance Trade-Off
-          - Curse of Dimensionality
+          - Parametric vs Nonparametric Learning: ch11/statistical_learning_in_financial_models/parametric_vs_nonparametric_learning.md
+          - Bias–Variance Trade-Off: ch11/statistical_learning_in_financial_models/bias_variance_trade_off.md
+          - Curse of Dimensionality: ch11/statistical_learning_in_financial_models/curse_of_dimensionality.md
       - 11.2 Online Learning and Adaptive Calibration:
-          - Sequential Parameter Estimation
-          - Filtering and Bayesian Updating
-          - Model Drift vs Market Regimes
+          - Sequential Parameter Estimation: ch11/online_learning_and_adaptive_calibration/sequential_parameter_estimation.md
+          - Filtering and Bayesian Updating: ch11/online_learning_and_adaptive_calibration/filtering_and_bayesian_updating.md
+          - Model Drift vs Market Regimes: ch11/online_learning_and_adaptive_calibration/model_drift_vs_market_regimes.md
       - 11.3 Reinforcement Learning and Control:
-          - Markov Decision Processes
-          - Exploration vs Exploitation
-          - Connection to Stochastic Control
+          - Markov Decision Processes: ch11/reinforcement_learning_and_control/markov_decision_processes.md
+          - Exploration vs Exploitation: ch11/reinforcement_learning_and_control/exploration_vs_exploitation.md
+          - Connection to Stochastic Control: ch11/reinforcement_learning_and_control/connection_to_stochastic_control.md
       - 11.4 Learning Under Model Uncertainty:
-          - Robust Learning
-          - Adversarial Environments
-          - Regret Bounds
+          - Robust Learning: ch11/learning_under_model_uncertainty/robust_learning.md
+          - Adversarial Environments: ch11/learning_under_model_uncertainty/adversarial_environments.md
+          - Regret Bounds: ch11/learning_under_model_uncertainty/regret_bounds.md
       - 11.5 Market Impact and Feedback Effects:
-          - Endogenous Price Dynamics
-          - Learning-Induced Instability
-          - Reflexivity in Markets
+          - Endogenous Price Dynamics: ch11/market_impact_and_feedback_effects/endogenous_price_dynamics.md
+          - Learning-Induced Instability: ch11/market_impact_and_feedback_effects/learning_induced_instability.md
+          - Reflexivity in Markets: ch11/market_impact_and_feedback_effects/reflexivity_in_markets.md
       - 11.6 Explainability and Constraints:
-          - Interpretability vs Performance
-          - No-Arbitrage Constraints in Learning
-          - Hybrid Model-Based / Data-Driven Approaches
+          - Interpretability vs Performance: ch11/explainability_and_constraints/interpretability_vs_performance.md
+          - No-Arbitrage Constraints in Learning: ch11/explainability_and_constraints/no_arbitrage_constraints_in_learning.md
+          - Hybrid Model-Based / Data-Driven Approaches: ch11/explainability_and_constraints/hybrid_model_based_data_driven_approaches.md
       - 11.7 Limits of Learning in Finance:
-          - Non-Stationarity
-          - Overfitting and False Discovery
-          - Theoretical Impossibility Results
-
-
+          - Non-Stationarity: ch11/limits_of_learning_in_finance/non_stationarity.md
+          - Overfitting and False Discovery: ch11/limits_of_learning_in_finance/overfitting_and_false_discovery.md
+          - Theoretical Impossibility Results: ch11/limits_of_learning_in_finance/theoretical_impossibility_results.md
 
 
 
