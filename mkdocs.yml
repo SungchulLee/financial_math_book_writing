@@ -22,8 +22,10 @@ nav:
           - Donsker's Theorem: ch01/brownian_motion/donsker_theorem.md                
           - Random Walk Simulations: ch01/brownian_motion/random_walk_simulations.md                       
           - Brownian Motion: ch01/brownian_motion/brownian_motion_foundations.md
-          - Brownian Motion Simulations: ch01/brownian_motion/brownian_motion_simulations.md
           - Scaling and Time Change: ch01/brownian_motion/scaling_and_time_change.md
+          - Moments of Brownian Motion: ch01/brownian_motion/moments_of_brownian_motion.md  
+          - Reflection Principle: ch01/brownian_motion/reflection_principle_of_brownian_motion.md  
+          - Brownian Motion Simulations: ch01/brownian_motion/brownian_motion_simulations.md
       - 1.2 Martingale:
           - Filtration and Adapted Processes: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
           - Stopping Times: ch01/filtration_and_martingales/stopping_times.md

@@ -1,4 +1,4 @@
-# Brownian Motion Overview
+# Brownian Motion Foundations
 
 ## Introduction
 
@@ -19,7 +19,7 @@ This uniqueness makes it the fundamental building block for continuous-time stoc
 
 ## Intuitive Construction: Paper and Pencil Brownian Motion
 
-Before giving the formal definition, we develop intuition through discrete approximations.
+Before giving the formal definition, we develop intuition through discrete approximations that can be performed "by hand."
 
 ### Construction via Standard Normal Coin Flips
 
@@ -63,6 +63,12 @@ More generally, for any i.i.d. sequence $\{X_k\}$ with $\mathbb{E}[X_k] = \mu$ a
 | Cumulative standardized coin flips up to time $t$ | $\displaystyle \sum_{k=1}^{nt}\frac{X_k-\mu}{\sigma}$ |
 | **Normalized cumulative sum** | $\displaystyle B_t= \frac{1}{\sqrt{n}}\sum_{k=1}^{nt}\frac{X_k-\mu}{\sigma}$ |
 
+where
+
+$$\mathbb{E}[X_k]=\mu, \quad \text{Var}(X_k)=\sigma^2$$
+
+
+
 By Donsker's invariance principle, all three constructions yield the same limit: **Brownian motion**.
 
 ### Example: Concrete Path Construction
@@ -83,6 +89,22 @@ Construct a Brownian motion sample path up to time $t = 1$.
 | Conversion | — | $1$ | $1$ | $-1$ | $1$ | $-1$ | $-1$ | $1$ | $1$ | $1$ | $-1$ |
 | Cum sum | $0$ | $1$ | $2$ | $1$ | $2$ | $1$ | $0$ | $1$ | $2$ | $3$ | $2$ |
 | $B_t$ | $0$ | $\frac{1}{\sqrt{10}}$ | $\frac{2}{\sqrt{10}}$ | $\frac{1}{\sqrt{10}}$ | $\frac{2}{\sqrt{10}}$ | $\frac{1}{\sqrt{10}}$ | $0$ | $\frac{1}{\sqrt{10}}$ | $\frac{2}{\sqrt{10}}$ | $\frac{3}{\sqrt{10}}$ | $\frac{2}{\sqrt{10}}$ |
+
+Numerically:
+
+| Time | $B_t$ (approx) |
+|------|----------------|
+| 0.0 | 0.000 |
+| 0.1 | 0.316 |
+| 0.2 | 0.632 |
+| 0.3 | 0.316 |
+| 0.4 | 0.632 |
+| 0.5 | 0.316 |
+| 0.6 | 0.000 |
+| 0.7 | 0.316 |
+| 0.8 | 0.632 |
+| 0.9 | 0.949 |
+| 1.0 | 0.632 |
 
 This piecewise linear path is an approximation to a true Brownian path. As $n \to \infty$, such approximations converge to continuous Brownian motion.
 
@@ -190,6 +212,8 @@ $$\mathbb{E}[W_{t_i} W_{t_j}] = \mathbb{E}\left[\left(\sum_{k=1}^i \Delta W_k\ri
 
 
 
+where $\Delta W_k = W_{t_k} - W_{t_{k-1}}$ and $\Delta t_k = t_k - t_{k-1}$.
+
 **Corollary 1.3.3**
 
 In particular:
@@ -262,7 +286,7 @@ $$\mathbb{E}[W_s W_t] = \mathbb{E}[W_s^2] = s = \min(s,t) \quad \square$$
 
 1. **Non-differentiability**: If $W_t$ were differentiable, then $\text{Cov}(W_s, W_t) \sim st$, not $\min(s,t)$
 2. **Long-range correlation**: $W_s$ and $W_t$ are correlated for all $s, t$ (not just nearby times)
-3. **Self-similarity**: The $\min$ structure is scale-invariant (see Section 7)
+3. **Self-similarity**: The $\min$ structure is scale-invariant (see Scaling Property below)
 
 ## Construction via Kolmogorov Extension Theorem
 
@@ -280,15 +304,18 @@ $$(W_{t_1}, \ldots, W_{t_n}) \sim \mathcal{N}(0, \Sigma), \quad \Sigma_{ij} = \m
 
 **Kolmogorov consistency conditions:** For any permutation and any subcollection of times, the marginal distributions must agree.
 
-This follows from the properties of the Gaussian distribution and the $\min$ covariance structure.
+**Verification:** This follows from the properties of the Gaussian distribution and the $\min$ covariance structure. Specifically:
+
+- **Symmetry**: Permuting indices doesn't change the $\min$ structure
+- **Marginalization**: Integrating out variables preserves the Gaussian $\min$ covariance structure
 
 ### Step 3: Apply Kolmogorov Extension Theorem
 
 **Theorem 1.3.6** (Kolmogorov Extension)
 
-If the finite-dimensional distributions are consistent, there exists a stochastic process $\{W_t\}_{t \ge 0}$ with these distributions.
+If the finite-dimensional distributions $\{\mu_{t_1,\ldots,t_n}\}$ are consistent, there exists a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and a stochastic process $\{W_t\}_{t \ge 0}$ with these distributions.
 
-**Proof:** See any text on measure-theoretic probability (e.g., Billingsley, Kallenberg). $\square$
+**Proof:** See Billingsley (1995), Kallenberg (2002). $\square$
 
 ### Step 4: Ensure Continuity
 
@@ -305,12 +332,12 @@ for all $s, t$, then $W$ has a continuous modification.
 
 **Verification for Brownian motion:**
 
-For $\alpha = 4$:
+For $\alpha = 4$, since $W_t - W_s \sim \mathcal{N}(0, t-s)$:
 
 $$\mathbb{E}[|W_t - W_s|^4] = \mathbb{E}[(W_t - W_s)^4] = 3(t-s)^2$$
 
 
-using the fourth moment of a Gaussian $\mathcal{N}(0, t-s)$.
+using the fourth moment formula for Gaussian random variables: $\mathbb{E}[X^4] = 3\sigma^4$ when $X \sim \mathcal{N}(0, \sigma^2)$.
 
 Thus, we can take $\beta = 1$ and $C = 3$, satisfying the criterion with $\alpha = 4 > 1$. $\square$
 
@@ -336,11 +363,21 @@ Both sides are Gaussian with mean zero. For the variance:
 - Left side: $\mathbb{E}[W_{ct}^2] = ct$
 - Right side: $\mathbb{E}[(\sqrt{c} W_t)^2] = c \mathbb{E}[W_t^2] = c \cdot t$
 
+For the finite-dimensional distributions, consider times $t_1, \ldots, t_n$:
+
+$$\text{Cov}(W_{ct_i}, W_{ct_j}) = \min(ct_i, ct_j) = c\min(t_i, t_j) = \text{Cov}(\sqrt{c}W_{t_i}, \sqrt{c}W_{t_j})$$
+
+
+
 Since they have the same finite-dimensional distributions, they are equal in distribution. $\square$
 
 **Interpretation:** Brownian motion has **no intrinsic time scale**. Zooming in by a factor $c$ in time is equivalent to zooming in by $\sqrt{c}$ in space.
 
 **Hurst exponent:** The exponent $H = 1/2$ characterizes Brownian motion. Processes with $H \neq 1/2$ are called **fractional Brownian motions**.
+
+**Alternative formulations:**
+1. **Time inversion**: $tW_{1/t} \overset{d}{=} W_t$ for $t > 0$
+2. **Time reversal**: If $W$ is Brownian motion, so is $W_t - W_T$ on $[0,T]$
 
 ## Nowhere Differentiability
 
@@ -435,7 +472,13 @@ $$\text{Var}(Q_n) = \sum_{i=0}^{n-1} 2(t_{i+1} - t_i)^2 \le 2|\Pi_n| \sum_{i=0}^
 
 
 
-By Chebyshev's inequality, $Q_n \xrightarrow{\mathbb{P}} T$. $\square$
+By Chebyshev's inequality:
+
+$$\mathbb{P}(|Q_n - T| \ge \epsilon) \le \frac{\text{Var}(Q_n)}{\epsilon^2} \to 0$$
+
+
+
+Therefore, $Q_n \xrightarrow{\mathbb{P}} T$. $\square$
 
 **Notation:** We write:
 
@@ -444,6 +487,12 @@ $$\langle W \rangle_T = T \quad \text{or} \quad d\langle W \rangle_t = dt$$
 
 
 **This is the foundation for Itô's formula.** When computing $(dW_t)^2$, we get $dt$, not 0.
+
+**Remark:** This distinguishes Brownian motion from smooth functions. For a differentiable $f$:
+
+$$\sum_{i=0}^{n-1} (f(t_{i+1}) - f(t_i))^2 = O(|\Pi_n|) \to 0$$
+
+
 
 ## Martingale Property
 
@@ -482,8 +531,11 @@ $$\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 - s$$
 **Proof:**
 
 
-$$\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = \mathbb{E}[(W_s + (W_t - W_s))^2 \mid \mathcal{F}_s]
-= W_s^2 + 2W_s\mathbb{E}[W_t - W_s] + \mathbb{E}[(W_t - W_s)^2]$$
+$$\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = \mathbb{E}[(W_s + (W_t - W_s))^2 \mid \mathcal{F}_s]$$
+
+
+
+$$= W_s^2 + 2W_s\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] + \mathbb{E}[(W_t - W_s)^2 \mid \mathcal{F}_s]$$
 
 
 
@@ -497,7 +549,10 @@ $$\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + t - s - t = W_s^2 - s \quad
 
 
 
-This martingale property is essential for stochastic integration and the Itô isometry.
+This martingale property is essential for:
+- Stochastic integration (Itô integral)
+- Itô isometry
+- Option pricing theory
 
 ## Strong Markov Property
 
@@ -510,6 +565,15 @@ A random variable $\tau: \Omega \to [0, \infty]$ is a **stopping time** with res
 $$\{\tau \le t\} \in \mathcal{F}_t \quad \text{for all } t \ge 0$$
 
 
+
+**Intuition:** At any time $t$, we can determine whether the event $\{\tau \le t\}$ has occurred using only information up to time $t$.
+
+**Examples:**
+- First passage time: $\tau_a = \inf\{t \ge 0 : W_t = a\}$
+- First exit from interval: $\tau = \inf\{t \ge 0 : W_t \notin (a,b)\}$
+
+**Non-examples:**
+- Last passage time before time 1: $\sup\{t \le 1 : W_t = 0\}$ (not a stopping time!)
 
 **Theorem 1.3.14** (Strong Markov Property)
 
@@ -528,6 +592,7 @@ and has the same distribution as $W_t$ (i.e., $\mathcal{N}(0, t)$).
 - First passage time analysis
 - Optimal stopping problems
 - Reflected Brownian motion
+- Barrier options in finance
 
 ## Connection to the Heat Equation
 
@@ -567,7 +632,7 @@ $$u(x, t+h) = \mathbb{E}[\mathbb{E}[f(x + W_{t+h}) \mid \mathcal{F}_t]]
 
 
 
-For small $h$, expand using Taylor series and $\mathbb{E}[W_h] = 0$, $\mathbb{E}[W_h^2] = h$:
+For small $h$, expand $u$ using Taylor series:
 
 $$u(x + W_t, h) \approx u(x + W_t, 0) + h \frac{\partial u}{\partial t} + W_t \frac{\partial u}{\partial x} + \frac{1}{2}W_t^2 \frac{\partial^2 u}{\partial x^2}$$
 
@@ -580,6 +645,13 @@ $$\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \
 
 
 **Remark:** This connection shows that Brownian motion is the **probabilistic representation** of solutions to the heat equation. This is the foundation of the **Feynman-Kac formula** studied in Section 1.7.
+
+**Generalization:** For the general PDE
+
+$$\frac{\partial u}{\partial t} = Lu$$
+
+
+where $L$ is a differential operator, the corresponding stochastic process is a **diffusion process** (Chapter 1.6).
 
 ## First Passage Times and Reflection Principle
 
@@ -615,7 +687,7 @@ $$\mathbb{E}[\tau_a] = \infty \quad \text{for all } a \neq 0$$
 
 **Proof:**
 
-For $a > 0$, by the optional stopping theorem (which requires justification), if $\mathbb{E}[\tau_a] < \infty$:
+For $a > 0$, suppose $\mathbb{E}[\tau_a] < \infty$. By the optional stopping theorem (which requires justification for unbounded stopping times):
 
 $$\mathbb{E}[W_{\tau_a}] = \mathbb{E}[W_0] = 0$$
 
@@ -623,7 +695,11 @@ $$\mathbb{E}[W_{\tau_a}] = \mathbb{E}[W_0] = 0$$
 
 But $W_{\tau_a} = a$ by definition, giving $a = 0$, a contradiction. $\square$
 
-**Reflection Principle:**
+**Remark:** This shows the difference between recurrence (certain to occur) and positive recurrence (finite expected time).
+
+### Reflection Principle
+
+**Theorem 1.3.19** (Reflection Principle)
 
 For $a > 0$:
 
@@ -631,95 +707,71 @@ $$\mathbb{P}\left(\max_{0 \le s \le t} W_s \ge a\right) = 2\mathbb{P}(W_t \ge a)
 
 
 
-This symmetry is derived from reflecting the Brownian path after it first hits level $a$.
+**Proof:**
 
-## Computational Illustration
+Define the stopped process:
 
-*Note: This simulation code can also be placed in a separate "Brownian Motion Simulations" file following the segregated approach.*
+$$\tilde{W}_s = \begin{cases}
+W_s & \text{if } s < \tau_a \\
+2a - W_s & \text{if } s \ge \tau_a
+\end{cases}$$
 
-### Python Implementation
 
-```python
-import matplotlib.pyplot as plt
-import numpy as np
-import scipy.stats as stats
 
-# Simulation parameters
-num_paths = 10_000   # Number of Brownian motion paths
-num_steps = 1_000    # Number of time steps
-maturity_time = 2    # Maturity time for Brownian motion (T = 2)
+This is the path "reflected" about level $a$ after time $\tau_a$. By the strong Markov property and symmetry, $\tilde{W}_t \overset{d}{=} W_t$.
 
-# Set random seed for reproducibility
-np.random.seed(0)
+Now:
 
-# Generate time discretization
-dt = maturity_time / num_steps
-time_steps = np.linspace(0, maturity_time, num_steps + 1)
+$$\{\max_{0 \le s \le t} W_s \ge a\} = \{\tau_a \le t\}$$
 
-# Generate Brownian motion paths
-# Each increment is N(0, dt), cumsum gives Brownian motion
-dW = np.random.normal(0, np.sqrt(dt), size=(num_paths, num_steps))
-brownian_paths = np.cumsum(np.hstack([np.zeros((num_paths, 1)), dW]), axis=1)
 
-# Create figure with two subplots
-fig, (ax_paths, ax_distribution) = plt.subplots(1, 2, figsize=(12, 4))
 
-# Plot 10 sample paths
-ax_paths.set_title(f'Ten Sample Paths of $W_t$')
-for i in range(10):
-    ax_paths.plot(time_steps, brownian_paths[i, :], alpha=0.7)
-ax_paths.set_xlabel('Time $t$')
-ax_paths.set_ylabel('$W_t$')
-ax_paths.grid(alpha=0.3)
+On the event $\{\tau_a \le t\}$:
 
-# Plot distribution at maturity
-ax_distribution.set_title(f'Distribution of $W_{{{maturity_time}}}$')
-_, bin_locations, _ = ax_distribution.hist(
-    brownian_paths[:, -1], 
-    bins=100, 
-    density=True, 
-    alpha=0.6, 
-    label=f"$W_{{{maturity_time}}}$ Samples"
-)
+$$\{W_t \ge a\} \cup \{W_t < a\} = \Omega$$
 
-# Overlay theoretical N(0, T) density
-x_values = bin_locations
-y_values = stats.norm(loc=0, scale=np.sqrt(maturity_time)).pdf(x_values)
-ax_distribution.plot(x_values, y_values, '--r', linewidth=2, 
-                     label=f"$\mathcal{{N}}(0,{maturity_time})$ PDF")
-ax_distribution.set_xlabel('$W_T$')
-ax_distribution.set_ylabel('Density')
-ax_distribution.legend()
-ax_distribution.grid(alpha=0.3)
 
-plt.tight_layout()
-plt.show()
 
-# Verify mean and variance
-print(f"Sample mean of W_{maturity_time}: {np.mean(brownian_paths[:, -1]):.4f} (theoretical: 0)")
-print(f"Sample variance of W_{maturity_time}: {np.var(brownian_paths[:, -1]):.4f} (theoretical: {maturity_time})")
-```
+By reflection:
 
-**Output interpretation:**
-- Left plot shows the characteristic "wiggly" continuous paths
-- Right plot confirms $W_T \sim \mathcal{N}(0, T)$
-- Sample statistics match theoretical values closely
+$$\mathbb{P}(\tau_a \le t, W_t < a) = \mathbb{P}(\tau_a \le t, \tilde{W}_t > a) = \mathbb{P}(\tau_a \le t, W_t > a)$$
+
+
+
+Therefore:
+
+$$\mathbb{P}(\tau_a \le t) = \mathbb{P}(\tau_a \le t, W_t \ge a) + \mathbb{P}(\tau_a \le t, W_t < a) = 2\mathbb{P}(\tau_a \le t, W_t \ge a) \le 2\mathbb{P}(W_t \ge a)$$
+
+
+
+The reverse inequality follows similarly. $\square$
+
+**Application:** This principle is used in:
+- Pricing barrier options
+- Computing distribution of maximum
+- Analysis of hitting times
 
 ## Summary
 
 Brownian motion is uniquely characterized by:
+
 1. **Continuous paths** (nowhere differentiable, infinite variation)
 2. **Gaussian increments** with variance equal to time elapsed
 3. **Independent increments** (Markov property and strong Markov property)
 4. **Quadratic variation** $\langle W \rangle_t = t$ (foundation for Itô calculus)
 5. **Martingale property** (essential for stochastic integration)
-6. **Connection to PDEs** (probabilistic representation of heat equation solutions)
+6. **Self-similarity** with Hurst exponent $H = 1/2$
+7. **Connection to PDEs** (probabilistic representation of heat equation solutions)
 
 These properties make Brownian motion the fundamental building block for:
 - Stochastic differential equations (Chapter 1.6)
 - Itô calculus (Chapter 1.4)
 - Option pricing via Black-Scholes (later chapters)
 - Interest rate models, volatility models, and beyond
+
+The rigorous construction via Kolmogorov extension theorem shows that such a process exists and is unique (up to modification). The paper-and-pencil examples show how it emerges naturally as the scaling limit of discrete random walks.
+
+For computational verification of these properties, see the accompanying section on **Brownian Motion Simulations**.
 
 ## References
 
