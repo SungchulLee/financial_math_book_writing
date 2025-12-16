@@ -1,7 +1,4 @@
-Excellent choice.
-We will start **from first principles**, and build Brownian motion **purely mathematically**, with **full LaTeX**, **no code**, and with attention to rigor and structure.
 
----
 
 # 1. Motivation: What Is Brownian Motion?
 
@@ -23,8 +20,8 @@ It is the **only** process that is simultaneously:
 
 # 2. Definition (Wiener Process)
 
-A **standard Brownian motion** ({W_t}_{t \ge 0}) on a probability space
-((\Omega,\mathcal{F},\mathbb{P})) is a stochastic process satisfying:
+A **standard Brownian motion** \(\{W_t\}_{t \ge 0}\) on a probability space
+\((\Omega,\mathcal{F},\mathbb{P})\) is a stochastic process satisfying:
 
 ### (i) Initial condition
 
@@ -60,7 +57,7 @@ t \mapsto W_t(\omega) \quad \text{is continuous for almost every } \omega
 
 # 3. Finite-Dimensional Distributions
 
-For any (0 \le t_1 < \cdots < t_n),
+For any \(0 \le t_1 < \cdots < t_n\),
 
 \[
 (W_{t_1},\ldots,W_{t_n})
@@ -84,7 +81,7 @@ In particular,
 
 # 4. Characteristic Function
 
-For (0 \le s < t),
+For \(0 \le s < t\),
 
 \[
 \boxed{
@@ -100,7 +97,7 @@ This uniquely characterizes the Gaussian increment structure.
 
 # 5. Covariance Structure
 
-For all (s,t \ge 0),
+For all \(s,t \ge 0\),
 
 \[
 \boxed{
@@ -141,13 +138,12 @@ Continuity is then guaranteed by **Kolmogorov’s continuity theorem**.
 
 # 7. Scaling Property (Self-Similarity)
 
-For any (c > 0),
+For any \(c > 0,\ t \ge 0\),
 
 \[
 \boxed{
-{W_{ct}}*{t \ge 0}
-;\overset{d}{=};
-{\sqrt{c},W_t}*{t \ge 0}
+W_{ct} \overset{d}{=} 
+\sqrt{c}\ W_t
 }
 \]
 
@@ -158,6 +154,7 @@ This implies Brownian motion has **no intrinsic time scale**.
 # 8. Nowhere Differentiability
 
 Almost surely,
+
 \[
 \boxed{
 \limsup_{h \to 0}
@@ -174,6 +171,7 @@ More precisely, Brownian paths are:
 * Of infinite total variation
 
 Yet:
+
 \[
 \mathbb{E}\left[(W_{t+h}-W_t)^2\right] = h
 \]
@@ -188,12 +186,12 @@ For any partition
 \Pi_n = {0 = t_0 < t_1 < \cdots < t_n = t}
 \]
 
-with mesh (|\Pi_n| \to 0),
+with mesh \(|\Pi_n| \to 0\),
 
 \[
 \boxed{
 \sum_{k=1}^n (W_{t_k}-W_{t_{k-1}})^2
-;\xrightarrow{\mathbb{P}};
+\ \xrightarrow{\mathbb{P}}\ 
 t
 }
 \]
@@ -206,31 +204,33 @@ This property **distinguishes Brownian motion** from smooth functions.
 
 Brownian motion is a martingale:
 
-[
+\[
 \boxed{
 \mathbb{E}[W_t \mid \mathcal{F}_s] = W_s,
 \quad s \le t
 }
-]
+\]
 
 and
-[
+
+\[
 W_t^2 - t
-]
+\]
+
 is also a martingale.
 
 ---
 
 # 11. Strong Markov Property
 
-For any stopping time (\tau),
+For any stopping time \(\tau\) 뭉 $t \ge 0$,
 
-[
+\[
 \boxed{
-{W_{\tau+t} - W_\tau}*{t \ge 0}
-;\text{is independent of }\mathcal{F}*\tau
+W_{\tau+t} - W_\tau
+\text{ is independent of }\mathcal{F}_\tau
 }
-]
+\]
 
 and has the same law as Brownian motion.
 
@@ -239,21 +239,21 @@ and has the same law as Brownian motion.
 # 12. Connection to the Heat Equation
 
 Define
-[
+
+\[
 u(x,t) = \mathbb{E}[f(x+W_t)]
-]
+\]
 
-Then (u) satisfies:
+Then \(u\) satisfies:
 
-[
+\[
 \boxed{
 \frac{\partial u}{\partial t}
-=============================
-
+=
 \frac{1}{2}
 \frac{\partial^2 u}{\partial x^2}
 }
-]
+\]
 
 This is the **analytic shadow** of Brownian motion.
 
@@ -262,33 +262,23 @@ This is the **analytic shadow** of Brownian motion.
 # 13. First Passage Times
 
 Define the hitting time:
-[
+
+\[
 \tau_a = \inf{t \ge 0 : W_t = a}
-]
+\]
 
 Then:
-[
+
+\[
 \mathbb{P}(\tau_a < \infty) = 1
 \quad \text{for all } a \in \mathbb{R}
-]
+\]
 
 But:
-[
+
+\[
 \mathbb{E}[\tau_a] = \infty
-]
+\]
 
----
 
-# 14. What Comes Next?
 
-From here, we can proceed in several **purely mathematical directions**:
-
-1. **Construction via random walks (Donsker’s theorem)**
-2. **Local time and Tanaka formula**
-3. **Stochastic integration**
-4. **Itô calculus**
-5. **Multi-dimensional Brownian motion**
-6. **Connection to harmonic functions**
-7. **Pathwise properties (law of iterated logarithm)**
-
-Tell me where you want to go next, and we’ll continue **slowly, rigorously, and with full mathematics**.
