@@ -3,6 +3,7 @@
 ## Setting
 
 Consider the \(d\)-dimensional SDE driven by an \(m\)-dimensional Brownian motion:
+
 \[
 \boxed{
 \mathrm{d}X_t^{i}
@@ -13,7 +14,10 @@ b^{i}(t,X_t)\,\mathrm{d}t
 \qquad X_0=x\in\mathbb{R}^d.
 }
 \]
+
+
 Equivalently,
+
 \[
 X_t^{i}
 =
@@ -24,6 +28,8 @@ x^{i}
 \int_0^t \sigma^{i\alpha}(s,X_s)\,\mathrm{d}W_s^{\alpha}.
 \]
 
+
+
 ---
 
 ## Strong solution and pathwise uniqueness
@@ -33,12 +39,15 @@ A process \(X_t\) is a **strong solution** if it is adapted to the filtration ge
 
 ### Pathwise uniqueness
 We say **pathwise uniqueness** holds if whenever \(X_t\) and \(Y_t\) are two strong solutions on the same probability space with the same Brownian motion and same initial condition, then
+
 \[
 \boxed{
 \mathbb{P}\left(X_t=Y_t \text{ for all } t\in[0,T]\right)=1
 \quad \text{for all } T>0.
 }
 \]
+
+
 
 A classical theorem states: **existence of a strong solution + pathwise uniqueness** implies uniqueness in the strong sense.
 
@@ -50,19 +59,25 @@ A standard sufficient condition for existence and uniqueness is:
 
 ### (Lipschitz)
 There exists \(L>0\) such that for all \(t\ge 0\) and \(x,y\in\mathbb{R}^d\),
+
 \[
 \boxed{
 |b(t,x)-b(t,y)| + \|\sigma(t,x)-\sigma(t,y)\| \le L|x-y|.
 }
 \]
 
+
+
 ### (Linear growth)
 There exists \(K>0\) such that for all \(t\ge 0\) and \(x\in\mathbb{R}^d\),
+
 \[
 \boxed{
 |b(t,x)|^2 + \|\sigma(t,x)\|^2 \le K(1+|x|^2).
 }
 \]
+
+
 
 Here \(\|\cdot\|\) is any matrix norm compatible with the Euclidean norm.
 
@@ -77,9 +92,13 @@ Assume the Lipschitz and linear growth conditions. Then for each initial conditi
 ## Proof idea (Picard iteration + Itô isometry)
 
 One constructs successive approximations:
+
 \[
 X_t^{(0)} := x,
 \]
+
+
+
 \[
 X_t^{(n+1)}
 :=
@@ -89,14 +108,22 @@ x
 +
 \int_0^t \sigma(s,X_s^{(n)})\,\mathrm{d}W_s.
 \]
+
+
 Using the Lipschitz condition, one estimates
+
 \[
 \mathbb{E}\left[\sup_{0\le s\le t}|X_s^{(n+1)}-X_s^{(n)}|^2\right]
 \]
+
+
 by a constant times an integral of
+
 \[
 \mathbb{E}\left[\sup_{0\le u\le s}|X_u^{(n)}-X_u^{(n-1)}|^2\right],
 \]
+
+
 and applies Grönwall-type arguments to show \(\{X^{(n)}\}\) is Cauchy in an appropriate space (typically \(L^2(\Omega;C([0,T];\mathbb{R}^d))\)). The limit is the strong solution. Pathwise uniqueness follows from a similar estimate applied to two solutions.
 
 ---
@@ -104,11 +131,14 @@ and applies Grönwall-type arguments to show \(\{X^{(n)}\}\) is Cauchy in an app
 ## Local existence and explosion times
 
 If coefficients are only locally Lipschitz (not globally), one typically obtains a solution up to an explosion time \(\zeta\):
+
 \[
 \zeta := \lim_{n\to\infty} \tau_n,
 \qquad
 \tau_n := \inf\{t\ge 0: |X_t|\ge n\}.
 \]
+
+
 The solution exists on \([0,\zeta)\). Additional conditions (Lyapunov functions, dissipativity, etc.) can ensure \(\zeta=\infty\) almost surely (non-explosion).
 
 ---

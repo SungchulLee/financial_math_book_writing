@@ -22,9 +22,12 @@ The contract references:
 ## 2. Protection leg
 
 If default occurs at time \(\tau \le T\), the protection seller pays
+
 \[
 (1 - R) \times \text{Notional},
 \]
+
+
 where \(R\) is the recovery rate.
 
 Settlement can be:
@@ -36,9 +39,12 @@ Settlement can be:
 ## 3. Premium leg
 
 The protection buyer pays a fixed **CDS spread** \(s\) on scheduled dates until default or maturity:
+
 \[
 \sum_i s \, \Delta_i \, \mathbf{1}_{\{\tau > t_i\}},
 \]
+
+
 where \(\Delta_i\) are accrual fractions.
 
 Accrued premium is paid if default occurs between payment dates.
@@ -48,9 +54,12 @@ Accrued premium is paid if default occurs between payment dates.
 ## 4. Pricing principle
 
 At inception, the CDS spread is set so that:
+
 \[
 \text{PV(premium leg)} = \text{PV(protection leg)}.
 \]
+
+
 
 This no-arbitrage condition determines the fair CDS spread.
 

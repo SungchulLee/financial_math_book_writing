@@ -14,9 +14,12 @@ Geometric Brownian motion has no stationary distribution in \(S\). Long-horizon 
 
 In multi-factor models, mean-reverting factors (e.g. variance in Heston-type models) may be ergodic with invariant measure \(\pi\), and for suitable \(f\),
 
+
 \[
 \frac{1}{T}\int_0^T f(X_s)\,\mathrm{d}s \to \int f\,\mathrm{d}\pi.
 \]
+
+
 
 ---
 

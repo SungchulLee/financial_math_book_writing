@@ -7,9 +7,12 @@
 ## 1. Concept
 
 Instead of minimizing average error, worst-case calibration solves:
+
 \[
 \min_{\theta} \; \max_{m \in \mathcal{M}} \text{Error}(\theta, m),
 \]
+
+
 where \(\mathcal{M}\) represents admissible market perturbations.
 
 This emphasizes robustness over best fit.

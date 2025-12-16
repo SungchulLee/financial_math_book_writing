@@ -12,6 +12,7 @@ Typical diffusion increments are \(\mathcal{O}(\sqrt{\tau})\), so near-the-money
 
 ## Black–Scholes log return
 
+
 \[
 \log\frac{S_T}{S_t}
 =
@@ -19,15 +20,20 @@ Typical diffusion increments are \(\mathcal{O}(\sqrt{\tau})\), so near-the-money
 \qquad Z\sim\mathcal{N}(0,1).
 \]
 
+
+
 ---
 
 ## Far OTM is exponentially small
 
 For strikes far from \(S\), short-time prices often scale like
 
+
 \[
 V(t,S;K)\approx \exp\!\left(-\frac{I(S,K)}{\tau}\right),
 \]
+
+
 
 where \(I\) is a rate function (large deviations).
 

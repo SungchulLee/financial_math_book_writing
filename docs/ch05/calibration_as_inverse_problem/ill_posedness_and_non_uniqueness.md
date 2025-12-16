@@ -42,9 +42,12 @@ Let the true data be \(y^\star\) and observed data \(y = y^\star + \varepsilon\)
 ### 2.3 Model misspecification
 
 Even with perfect data, the model may be unable to fit all instruments:
+
 \[
 y \notin \mathrm{Range}(F).
 \]
+
+
 Then the optimization problem has a best-fit solution but no exact inverse.
 
 ---
@@ -54,9 +57,12 @@ Then the optimization problem has a best-fit solution but no exact inverse.
 ### 3.1 Flat directions (parameter degeneracy)
 
 If the loss surface has valleys, many \(\theta\) yield nearly identical fit:
+
 \[
 \mathcal{L}(F(\theta),y) \approx \text{constant along a curve/manifold}.
 \]
+
+
 
 This occurs when two parameters play similar roles (e.g., both affect overall variance level).
 
@@ -78,9 +84,12 @@ Constraints (positivity, Feller condition, no-arbitrage filters) can create mult
 ## 4. A linearized view: conditioning and singular values
 
 Around a reference \(\theta_0\), with \(F(\theta)\approx F(\theta_0)+J\Delta\theta\), least squares suggests
+
 \[
 \Delta\theta \approx (J^\top W J)^{-1}J^\top W (y - F(\theta_0)).
 \]
+
+
 
 If \(J^\top WJ\) is ill-conditioned (small eigenvalues), then:
 

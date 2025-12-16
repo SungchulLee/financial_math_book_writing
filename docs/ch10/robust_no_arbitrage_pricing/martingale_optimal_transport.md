@@ -18,45 +18,63 @@ The key insight is that observed option prices at different maturities constrain
 
 **Monge Problem** (1781): Given probability measures $\mu$ on $\mathbb{R}^d$ and $\nu$ on $\mathbb{R}^d$, find a transport map $T: \mathbb{R}^d \to \mathbb{R}^d$ such that $T_{\#}\mu = \nu$ (meaning $\nu(B) = \mu(T^{-1}(B))$ for all Borel sets $B$) that minimizes:
 
+
 $$
 \inf_{T: T_{\#}\mu = \nu} \int_{\mathbb{R}^d} c(x, T(x)) \, d\mu(x)
 $$
+
+
 
 where $c(x, y)$ is the cost of transporting mass from $x$ to $y$.
 
 **Kantorovich Relaxation** (1942): Instead of deterministic transport maps, optimize over couplings (joint distributions):
 
+
 $$
 \mathcal{W}_c(\mu, \nu) = \inf_{\pi \in \Pi(\mu, \nu)} \int_{\mathbb{R}^d \times \mathbb{R}^d} c(x, y) \, d\pi(x, y)
 $$
 
+
+
 where:
+
 
 $$
 \Pi(\mu, \nu) = \{ \pi \in \mathcal{P}(\mathbb{R}^d \times \mathbb{R}^d): \pi_1 = \mu, \, \pi_2 = \nu \}
 $$
 
+
+
 is the set of couplings with marginals $\mu$ and $\nu$.
 
 **Wasserstein Distance**: For $c(x, y) = |x - y|^p$, the optimal transport cost defines the $p$-Wasserstein distance:
+
 
 $$
 W_p(\mu, \nu) = \left( \mathcal{W}_{|\cdot|^p}(\mu, \nu) \right)^{1/p}
 $$
 
+
+
 ### Kantorovich Duality
 
 **Dual Problem**: 
+
 
 $$
 \mathcal{W}_c(\mu, \nu) = \sup_{(\phi, \psi) \in \Phi_c} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
 $$
 
+
+
 where:
+
 
 $$
 \Phi_c = \{ (\phi, \psi): \phi(x) + \psi(y) \leq c(x, y) \text{ for all } x, y \}
 $$
+
+
 
 **Interpretation**: 
 - $\phi(x)$: "Potential" at source location $x$
@@ -65,9 +83,12 @@ $$
 
 **c-Transform**: For optimal dual solutions:
 
+
 $$
 \psi(y) = \inf_x \{ c(x, y) - \phi(x) \} = -\phi^c(y)
 $$
+
+
 
 where $\phi^c$ is the $c$-transform of $\phi$.
 
@@ -81,33 +102,48 @@ where $\phi^c$ is the $c$-transform of $\phi$.
 
 **Martingale Constraint**: Seek joint distribution $\pi$ of $(S_0, S_T)$ such that:
 
+
 $$
 \mathbb{E}_{\pi}[S_T | S_0] = e^{rT} S_0 \quad \text{(martingale condition under risk-neutral measure)}
 $$
 
+
+
 For simplicity, assume $r = 0$ (or work with discounted prices):
+
 
 $$
 \mathbb{E}_{\pi}[S_T | S_0] = S_0
 $$
 
+
+
 **Martingale Coupling Set**: Define:
+
 
 $$
 \mathcal{M}(\mu, \nu) = \left\{ \pi \in \Pi(\mu, \nu): \int y \, d\pi(y | x) = x \text{ for } \mu\text{-a.e. } x \right\}
 $$
 
+
+
 **MOT Problem**: Optimize a cost functional over martingale couplings:
+
 
 $$
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}[c(S_0, S_T)] = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c(x, y) \, d\pi(x, y)
 $$
 
+
+
 **Dual Problem**: 
+
 
 $$
 \sup_{(\phi, \psi) \in \Phi_c^M} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
 $$
+
+
 
 where $\Phi_c^M$ incorporates both the cost constraint and martingale structure.
 
@@ -115,15 +151,21 @@ where $\Phi_c^M$ incorporates both the cost constraint and martingale structure.
 
 **Theorem** (Martingale Duality): Under appropriate conditions:
 
+
 $$
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c(x, y) \, d\pi = \sup_{\phi, \psi} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
 $$
 
+
+
 subject to:
+
 
 $$
 \phi(x) + \psi(y) \leq c(x, y) \quad \text{and} \quad \psi(y) \geq y \phi'(x) \text{ for all } x, y
 $$
+
+
 
 The second constraint reflects the martingale restriction.
 
@@ -133,15 +175,21 @@ The second constraint reflects the martingale restriction.
 
 **General Duality** (BHPS 2013): For one-dimensional marginals and martingale constraint:
 
+
 $$
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c \, d\pi = \sup_{\phi \in C(\mathbb{R})} \left\{ \int \phi \, d\mu + \int \phi^* \, d\nu \right\}
 $$
 
+
+
 where $\phi^*$ is the **convex minorant** of $\phi$ defined by:
+
 
 $$
 \phi^*(y) = \sup \{ a y + b: ax + b \leq \phi(x) \text{ for all } x \}
 $$
+
+
 
 **Key Insight**: The $c$-transform is replaced by convex minorant, reflecting the martingale constraint.
 
@@ -158,9 +206,12 @@ $$
 
 **Implied Marginals**: Via Breeden-Litzenberger:
 
+
 $$
 d\nu(y) = e^{rT} \frac{\partial^2 C}{\partial K^2}(y) \, dy
 $$
+
+
 
 ### Model-Free Upper Bound
 
@@ -168,15 +219,21 @@ $$
 
 **Upper Bound**:
 
+
 $$
 \overline{V}(g) = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
 $$
 
+
+
 **Dual Formulation**: By MOT duality:
+
 
 $$
 \overline{V}(g) = \inf_{\phi} \left\{ \int \phi(x) \, d\mu(x) + \int \phi^*(y) \, d\nu(y) \right\}
 $$
+
+
 
 subject to $\phi(x) + \phi^*(y) \geq g(x, y)$ for all $x, y$.
 
@@ -189,15 +246,21 @@ subject to $\phi(x) + \phi^*(y) \geq g(x, y)$ for all $x, y$.
 
 **Lower Bound**:
 
+
 $$
 \underline{V}(g) = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
 $$
 
+
+
 **Dual**: Replace $g$ with $-g$ in the upper bound problem:
+
 
 $$
 \underline{V}(g) = -\overline{V}(-g)
 $$
+
+
 
 ### Static Replication
 
@@ -210,9 +273,12 @@ $$
 
 such that:
 
+
 $$
 \theta_S S_T + \int_0^{\infty} \theta_C(K) (S_T - K)^+ dK + \theta_0 \geq g(S_0, S_T)
 $$
+
+
 
 ## Multi-Period MOT
 
@@ -228,17 +294,23 @@ $$
 
 **Optimization**:
 
+
 $$
 \inf_{\pi \in \mathcal{M}(\mu_0, \ldots, \mu_n)} \int c(s_0, s_1, \ldots, s_n) \, d\pi(s_0, \ldots, s_n)
 $$
+
+
 
 ### Weak vs Strong Duality
 
 **Weak Duality**: Always holds:
 
+
 $$
 \text{Primal} \geq \text{Dual}
 $$
+
+
 
 **Strong Duality**: Equality holds under regularity conditions.
 
@@ -261,6 +333,7 @@ $$
 
 **Linear Program**:
 
+
 $$
 \begin{aligned}
 \text{minimize} \quad & \sum_{i=1}^{N_0} \sum_{j=1}^{N_T} c(s_i^0, s_j^T) \pi_{ij} \\
@@ -271,6 +344,8 @@ $$
 \end{aligned}
 $$
 
+
+
 **Solver**: Use standard LP solvers (CPLEX, Gurobi) for moderate dimensions.
 
 **Refinement**: Adaptive grid refinement around regions where optimal coupling concentrates.
@@ -279,23 +354,32 @@ $$
 
 **Regularized Problem**: Add entropy term to stabilize and smooth:
 
+
 $$
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \left\{ \int c \, d\pi + \varepsilon D_{\text{KL}}(\pi \| \mu \otimes \nu) \right\}
 $$
 
+
+
 where:
+
 
 $$
 D_{\text{KL}}(\pi \| \mu \otimes \nu) = \int \log\left(\frac{d\pi}{d(\mu \otimes \nu)}\right) d\pi
 $$
 
+
+
 **Sinkhorn Algorithm**: Iterative algorithm for entropic regularization:
 
 1. Initialize $u^{(0)} = \mathbf{1}$, $v^{(0)} = \mathbf{1}$
 2. Iterate:
+
    $$
    u^{(k+1)}_i = \frac{\mu_i}{\sum_j K_{ij} v^{(k)}_j}, \quad v^{(k+1)}_j = \frac{\nu_j}{\sum_i K_{ij} u^{(k+1)}_i}
    $$
+
+
    where $K_{ij} = \exp(-c_{ij}/\varepsilon)$ is the kernel matrix.
 
 **Convergence**: Sinkhorn iterations converge exponentially fast to the entropic optimal transport solution.
@@ -308,9 +392,12 @@ $$
 
 **Training**: Minimize:
 
+
 $$
 \mathcal{L}(\phi, \psi) = -\left( \mathbb{E}_{\mu}[\phi(X)] + \mathbb{E}_{\nu}[\psi(Y)] \right) + \lambda \cdot \text{Penalty}(\phi, \psi)
 $$
+
+
 
 where Penalty enforces the constraints $\phi + \psi \leq c$ and martingale conditions.
 
@@ -325,6 +412,7 @@ where Penalty enforces the constraints $\phi + \psi \leq c$ and martingale condi
 
 **Dual LP**: Instead of optimizing over couplings, solve the dual problem:
 
+
 $$
 \begin{aligned}
 \text{maximize} \quad & \sum_{i=1}^{N_0} \phi_i \mu_i + \sum_{j=1}^{N_T} \psi_j \nu_j \\
@@ -332,6 +420,8 @@ $$
 & \psi_j \geq s_j^T \phi_i, \quad \forall i, j \quad \text{(martingale dual constraint)}
 \end{aligned}
 $$
+
+
 
 **Interpretation**: $\phi_i$ are "prices" at time 0, $\psi_j$ are "prices" at time $T$.
 
@@ -343,23 +433,32 @@ $$
 
 **Variance Swap Payoff**:
 
+
 $$
 g(S_0, S_T) = \log^2(S_T / S_0)
 $$
 
+
+
 **MOT Bounds**: Using marginals from call option prices:
+
 
 $$
 [\underline{V}, \overline{V}] = \left[ \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[\log^2(S_T / S_0)\right], \, \sup_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[\log^2(S_T / S_0)\right] \right]
 $$
 
+
+
 **Tightness**: For variance swaps, bounds are often tight because the payoff is close to "monotone" in a suitable sense.
 
 **Realized Variance**: Can be extended to realized variance:
 
+
 $$
 \text{RV} = \sum_{i=1}^n \log^2(S_{t_i} / S_{t_{i-1}})
 $$
+
+
 
 using multi-period MOT.
 
@@ -367,9 +466,12 @@ using multi-period MOT.
 
 **Payoff**: Option struck at-the-money at future time $T_1$, maturing at $T_2$:
 
+
 $$
 g = (S_{T_2} - S_{T_1})^+
 $$
+
+
 
 **Challenge**: Payoff depends on joint distribution of $(S_{T_1}, S_{T_2})$, not just marginals.
 
@@ -383,17 +485,23 @@ $$
 
 **Up-and-Out Call**: Payoff is:
 
+
 $$
 (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t < H\}}
 $$
+
+
 
 **MOT Bounds**: Using only marginal distributions:
 
 **Lower Bound**:
 
+
 $$
 \underline{V} = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[(S_T - K)^+ \mathbb{1}_{\{S_T < H\}}\right]
 $$
+
+
 
 This can be computed via MOT since the barrier event is approximated by terminal condition.
 
@@ -403,9 +511,12 @@ This can be computed via MOT since the barrier event is approximated by terminal
 
 **VIX Definition**: Model-free implied volatility:
 
+
 $$
 \text{VIX}^2 = \frac{2e^{rT}}{T} \left( \int_0^{F} \frac{P(K)}{K^2} dK + \int_F^{\infty} \frac{C(K)}{K^2} dK \right)
 $$
+
+
 
 **VIX Option Payoff**: $(VIX_T - K)^+$
 
@@ -420,9 +531,12 @@ $$
 
 **Basket Call**: Payoff is:
 
+
 $$
 \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
 $$
+
+
 
 **Given**: Marginal option prices for each asset $S^{(i)}$.
 
@@ -430,15 +544,21 @@ $$
 
 **MOT Generalization**: Optimize over multi-dimensional couplings:
 
+
 $$
 \sup_{\pi \in \mathcal{M}(\mu_1, \ldots, \mu_n)} \mathbb{E}_{\pi}\left[\left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+\right]
 $$
 
+
+
 **Fréchet-Hoeffding Bounds**: Provide initial bounds based purely on marginals:
+
 
 $$
 \max_i \{S_T^{(i)}\} \leq \sum_{i=1}^n w_i S_T^{(i)} \leq n \max_i \{S_T^{(i)}\}
 $$
+
+
 
 MOT tightens these bounds using martingale constraints.
 
@@ -448,9 +568,12 @@ MOT tightens these bounds using martingale constraints.
 
 **Strassen's Theorem**: A coupling $\pi \in \Pi(\mu, \nu)$ is a martingale coupling if and only if:
 
+
 $$
 \int f \, d\mu = \int f \, d\nu
 $$
+
+
 
 for all convex functions $f$ for which both integrals exist.
 
@@ -475,15 +598,21 @@ for all convex functions $f$ for which both integrals exist.
 
 **Definition**: A measure $\lambda$ on $\mathbb{R}$ is a **shadow measure** for $\mathcal{M}(\mu, \nu)$ if there exist left-monotone and right-monotone couplings $\pi_L, \pi_R \in \mathcal{M}(\mu, \nu)$ such that:
 
+
 $$
 \pi_L(A \times B) = \lambda(A \cap B), \quad \pi_R(A \times B) = \lambda(A \cup B) - \lambda(A) - \lambda(B) + \lambda(A \cap B)
 $$
 
+
+
 **Martingale Shadow**: When $\mu$ and $\nu$ are in convex order ($\mu \preceq_c \nu$), there exists a unique shadow measure $\lambda$ with:
+
 
 $$
 \lambda([a, b]) = \text{const} \cdot (b - a)
 $$
+
+
 
 **Application**: Shadow measures yield extremal martingale couplings, providing explicit constructions for optimal transport plans.
 
@@ -491,9 +620,12 @@ $$
 
 **Peacock** (PCOC - Processus Croissant pour l'Ordre Convexe): A process $(X_t)_{t \geq 0}$ is a peacock if:
 
+
 $$
 X_s \preceq_c X_t \quad \text{for all } s \leq t
 $$
+
+
 
 where $\preceq_c$ denotes convex order.
 
@@ -523,9 +655,12 @@ where $\preceq_c$ denotes convex order.
 
 **Dual Representation**: The dual potentials in MOT correspond to value functions in optimal stopping:
 
+
 $$
 V(x) = \sup_{\tau} \mathbb{E}_x[g(X_{\tau}, Y_{\tau})]
 $$
+
+
 
 where the supremum is over stopping times.
 
@@ -535,17 +670,23 @@ where the supremum is over stopping times.
 
 **Control Problem**: Equivalent formulation as:
 
+
 $$
 \inf_{\alpha} \mathbb{E}\left[\int_0^T c(X_t, \alpha_t) dt + h(X_T)\right]
 $$
+
+
 
 subject to $dX_t = \mu(X_t, \alpha_t) dt + \sigma(X_t) dW_t$.
 
 **Hamilton-Jacobi-Bellman**: The value function satisfies:
 
+
 $$
 V_t + \inf_{\alpha} \{ c(x, \alpha) + \mu(x, \alpha) V_x + \frac{1}{2} \sigma^2(x) V_{xx} \} = 0
 $$
+
+
 
 **MOT Correspondence**: Under specific cost structures, MOT duals correspond to HJB equations with martingale constraints.
 
@@ -568,9 +709,12 @@ $$
 
 **Marginal Extraction**:
 - Compute risk-neutral density using Breeden-Litzenberger:
+
   $$
   q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)
   $$
+
+
 - Interpolate/extrapolate to obtain continuous density
 - Regularize to ensure no-arbitrage (monotonicity, convexity)
 
@@ -630,9 +774,12 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 
 **MOT Bounds**: Compute via LP:
 
+
 $$
 [\underline{V}, \overline{V}] \approx [0.45, 0.55]
 $$
+
+
 
 **Interpretation**: Model-free bounds are tight for digital options when sufficient market data available.
 
@@ -644,9 +791,12 @@ $$
 
 **MOT Approach**: Use bounds:
 
+
 $$
 \overline{V} = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}[(S_T - S_0)^+]
 $$
+
+
 
 **Result**: Bounds may be wide due to limited information, suggesting need for multi-period MOT.
 
@@ -658,9 +808,12 @@ $$
 
 **MOT Bounds**: Optimize over 2D martingale couplings:
 
+
 $$
 \overline{V} = \sup_{\pi \in \mathcal{M}(\mu_1, \mu_2)} \mathbb{E}_{\pi}[(S_T^{(1)} - S_T^{(2)} - K)^+]
 $$
+
+
 
 **Extremal Correlations**: Optimal coupling typically corresponds to perfect positive or negative correlation.
 
@@ -683,9 +836,12 @@ $$
 
 **Fokker-Planck-MOT**: Combine Fokker-Planck equation with MOT constraints:
 
+
 $$
 \partial_t \rho + \nabla \cdot (\rho v) = 0
 $$
+
+
 
 with $\int x v \rho dx = 0$ (martingale).
 

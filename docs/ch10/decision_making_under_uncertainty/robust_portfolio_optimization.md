@@ -18,10 +18,13 @@ Robust optimization mitigates these weaknesses.
 ## 2. Robust formulation
 
 A typical robust portfolio problem takes the form
+
 \[
 \max_{w} \; \min_{\theta \in \Theta}
 \mathbb{E}_{\theta}[U(w)],
 \]
+
+
 where \(\Theta\) represents uncertainty in model parameters.
 
 The portfolio is optimized against worst-case inputs.

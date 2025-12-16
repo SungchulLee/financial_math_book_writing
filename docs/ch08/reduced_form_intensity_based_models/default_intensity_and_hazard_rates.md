@@ -7,9 +7,12 @@ Reduced-form (intensity-based) credit models treat default as an exogenous rando
 ## 1. Default time and intensity
 
 Let \(\tau\) denote the default time. An **intensity process** \((\lambda_t)_{t\ge0}\) is a non-negative, \(\mathcal{F}_t\)-adapted process such that default occurs with conditional probability
+
 \[
 \mathbb{Q}(t < \tau \le t+dt \mid \mathcal{F}_t, \tau>t) \approx \lambda_t\,dt.
 \]
+
+
 
 The intensity governs the instantaneous likelihood of default.
 

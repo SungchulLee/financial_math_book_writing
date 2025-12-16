@@ -7,9 +7,12 @@ Beyond simple parameter shrinkage, regularization can encode **structural belief
 ## 1. Penalization as constraint relaxation
 
 Hard constraints (e.g., exact smoothness or monotonicity) are often replaced by soft penalties:
+
 \[
 \min_{\theta} \; \mathcal{L}(\theta) + \lambda \mathcal{R}(\theta),
 \]
+
+
 where \(\mathcal{R}\) measures deviation from desired structure.
 
 This approach:
@@ -23,12 +26,15 @@ This approach:
 ### 2.1 Finite-difference penalties
 
 For discretized parameters \(\theta_i\):
+
 \[
 \mathcal{R}(\theta)
 = \sum_i (\theta_{i+1}-\theta_i)^2
 \quad \text{or} \quad
 \sum_i (\theta_{i+2}-2\theta_{i+1}+\theta_i)^2.
 \]
+
+
 
 These penalize:
 - large gradients (first differences),
@@ -37,11 +43,14 @@ These penalize:
 ### 2.2 Continuous formulations
 
 For a function \(f(x)\):
+
 \[
 \mathcal{R}(f) = \int |f'(x)|^2 dx
 \quad \text{or} \quad
 \int |f''(x)|^2 dx.
 \]
+
+
 
 Such penalties are common in spline-based volatility surfaces.
 

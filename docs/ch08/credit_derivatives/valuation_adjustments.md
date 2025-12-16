@@ -18,9 +18,12 @@ Real markets violate these assumptions.
 ## 2. Credit Valuation Adjustment (CVA)
 
 **CVA** accounts for counterparty default risk:
+
 \[
 \text{CVA} = \mathbb{E}[\text{Exposure} \times \text{Loss Given Default}].
 \]
+
+
 
 It reduces the value of a derivative due to counterparty credit risk.
 

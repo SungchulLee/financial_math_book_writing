@@ -9,20 +9,26 @@
 ### 1.1 Structural identifiability (noise-free, idealized)
 
 A model is **structurally identifiable** (with respect to chosen instruments) if
+
 \[
 F(\theta_1)=F(\theta_2) \;\Rightarrow\; \theta_1=\theta_2.
 \]
+
+
 
 This is a property of the model + instrument set, *not* of the optimizer.
 
 ### 1.2 Practical identifiability (finite, noisy data)
 
 In practice, we only need parameters to be distinguishable within noise:
+
 \[
 \|F(\theta_1)-F(\theta_2)\| \lesssim \text{noise level}
 \quad\Rightarrow\quad
 \theta_1,\theta_2 \text{ are practically indistinguishable.}
 \]
+
+
 
 Practical identifiability depends on:
 
@@ -36,9 +42,12 @@ Practical identifiability depends on:
 ## 2. Local identifiability via the Jacobian
 
 A standard local criterion: if the Jacobian
+
 \[
 J(\theta)=\nabla_\theta F(\theta)\in\mathbb{R}^{m\times d}
 \]
+
+
 has **full column rank** at \(\theta\), then the parameters are locally identifiable (in a smooth setting).
 
 Equivalently, if \(J^\top W J\) is nonsingular for a positive definite weight matrix \(W\), the (linearized) least-squares problem has a unique local solution.

@@ -18,13 +18,19 @@ This motivates models driven by fractional Brownian motion.
 ## 2. Basic rough volatility idea
 
 A prototypical rough volatility model takes the form
+
 \[
 \sigma_t = \sigma_0 + \int_0^t K(t-s)\,dW_s,
 \]
+
+
 where the kernel \(K\) behaves like
+
 \[
 K(t) \sim t^{H-\frac12}, \quad H \in (0,\tfrac12).
 \]
+
+
 
 Small Hurst parameter \(H\) implies rough paths.
 

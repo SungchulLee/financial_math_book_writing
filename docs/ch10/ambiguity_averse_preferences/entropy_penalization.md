@@ -18,12 +18,15 @@ Entropy penalties soften worst-case behavior.
 ## 2. Relative entropy
 
 The relative entropy (KL divergence) between \(\mathbb{Q}\) and \(\mathbb{P}\) is
+
 \[
 H(\mathbb{Q} \mid \mathbb{P})
 = \mathbb{E}_{\mathbb{Q}}\left[
 \log \frac{d\mathbb{Q}}{d\mathbb{P}}
 \right].
 \]
+
+
 
 It measures statistical distance between models.
 
@@ -32,6 +35,7 @@ It measures statistical distance between models.
 ## 3. Penalized objective
 
 Preferences are defined by
+
 \[
 \max_{\pi} \; \min_{\mathbb{Q}}
 \left\{
@@ -39,6 +43,8 @@ Preferences are defined by
 + \lambda H(\mathbb{Q} \mid \mathbb{P})
 \right\}.
 \]
+
+
 
 The parameter \(\lambda\) controls ambiguity aversion.
 

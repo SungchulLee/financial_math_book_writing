@@ -18,9 +18,12 @@ Sequential methods provide adaptability and computational efficiency.
 ## 2. Recursive estimation
 
 A generic recursive update takes the form
+
 \[
 \theta_{t+1} = \theta_t + K_t (y_{t+1} - f(x_{t+1}; \theta_t)),
 \]
+
+
 where \(K_t\) is a gain or learning rate.
 
 Examples include:

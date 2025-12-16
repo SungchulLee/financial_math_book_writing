@@ -9,10 +9,16 @@ Separation of variables is a **classical technique** for solving PDEs by reducin
 ### **The Method**
 
 For a PDE in two variables, assume the solution has the **product form**:
+
 $$\boxed{u(x,t) = X(x)T(t)}$$
 
+
+
 Substitute into the PDE and separate variables to obtain:
+
 $$\frac{\text{function of } t \text{ only}}{\text{function of } x \text{ only}} = \text{constant}$$
+
+
 
 This yields **two ODEs** that can be solved independently.
 
@@ -26,7 +32,10 @@ The constant $\lambda$ (separation constant) is determined by:
 ### **General Solution**
 
 The general solution is a **superposition** of separated solutions:
+
 $$\boxed{u(x,t) = \sum_{n=0}^{\infty} c_n X_n(x)T_n(t)}$$
+
+
 
 where coefficients $c_n$ are determined by initial/terminal conditions.
 
@@ -36,7 +45,10 @@ where coefficients $c_n$ are determined by initial/terminal conditions.
 
 ### **The Equation**
 
+
 $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0}$$
+
+
 
 Terminal condition: $V(S,T) = \Phi(S)$
 
@@ -61,30 +73,48 @@ For infinite domains, we get:
 ### **Change to Log-Price**
 
 Define $x = \ln S$ and $\tau = T - t$. The PDE becomes:
+
 $$\boxed{\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x} - rV}$$
+
+
 
 Domain: $x \in (-\infty, \infty)$ with initial condition $V(x,0) = \Phi(e^x)$.
 
 ### **Separation Ansatz**
 
 Try:
+
 $$V(x,\tau) = X(x)T(\tau)$$
 
+
+
 Substituting:
+
 $$X(x)T'(\tau) = \frac{\sigma^2}{2}X''(x)T(\tau) + \left(r - \frac{\sigma^2}{2}\right)X'(x)T(\tau) - rX(x)T(\tau)$$
 
+
+
 Divide by $X(x)T(\tau)$:
+
 $$\boxed{\frac{T'(\tau)}{T(\tau)} = \frac{\frac{\sigma^2}{2}X''(x) + (r-\frac{\sigma^2}{2})X'(x) - rX(x)}{X(x)} = -\lambda}$$
+
+
 
 ### **Two ODEs**
 
 **Time equation**:
+
 $$\boxed{T'(\tau) + \lambda T(\tau) = 0}$$
+
+
 
 Solution: $T(\tau) = C e^{-\lambda\tau}$
 
 **Space equation** (Sturm-Liouville form):
+
 $$\boxed{\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0}$$
+
+
 
 ---
 
@@ -93,34 +123,61 @@ $$\boxed{\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (
 ### **Standard Form**
 
 Rewrite as:
+
 $$\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0$$
+
+
 
 This is a **second-order linear ODE with constant coefficients**.
 
 ### **Characteristic Equation**
 
 Try $X(x) = e^{\mu x}$:
+
 $$\frac{\sigma^2}{2}\mu^2 + \left(r - \frac{\sigma^2}{2}\right)\mu + (\lambda - r) = 0$$
 
+
+
 Solve for $\mu$:
+
 $$\mu = \frac{-\left(r - \frac{\sigma^2}{2}\right) \pm \sqrt{\left(r-\frac{\sigma^2}{2}\right)^2 - 2\sigma^2(\lambda-r)}}{\sigma^2}$$
 
+
+
+
 $$\boxed{\mu_{\pm} = \frac{1}{\sigma^2}\left[-\left(r - \frac{\sigma^2}{2}\right) \pm \sqrt{\left(r-\frac{\sigma^2}{2}\right)^2 - 2\sigma^2(\lambda-r)}\right]}$$
+
+
 
 ### **Simplification**
 
 Let $k = \frac{2r}{\sigma^2}$ (as before). Then:
+
 $$\mu_{\pm} = \frac{1}{2}\left[-(k-1) \pm \sqrt{(k-1)^2 + 4(\lambda/\frac{\sigma^2}{2} - k)}\right]$$
+
+
+
 
 $$= \frac{1}{2}\left[-(k-1) \pm \sqrt{(k-1)^2 - 4k + 4\lambda/\frac{\sigma^2}{2}}\right]$$
 
+
+
+
 $$= \frac{1}{2}\left[-(k-1) \pm \sqrt{(k+1)^2 - 4(k+1) + 4\lambda/\frac{\sigma^2}{2}}\right]$$
 
+
+
 This is getting messy. Let's denote:
+
 $$\boxed{\Delta^2 = \left(r-\frac{\sigma^2}{2}\right)^2 - 2\sigma^2(\lambda-r)}$$
 
+
+
 Then:
+
 $$\mu_{\pm} = \frac{-\left(r-\frac{\sigma^2}{2}\right) \pm \Delta}{\sigma^2}$$
+
+
 
 ---
 
@@ -135,7 +192,10 @@ For $x \in (-\infty, \infty)$, we need:
 ### **Issue with Exponential Solutions**
 
 If $\lambda$ is such that $\Delta$ is **real**:
+
 $$X(x) = A e^{\mu_+ x} + B e^{\mu_- x}$$
+
+
 
 For boundedness:
 - If $\mu_+ > 0$: need $A = 0$ to avoid explosion as $x \to \infty$
@@ -169,25 +229,40 @@ In log-space: $x \in [x_B, x_{\max}]$ where $x_B = \ln B$.
 ### **Discrete Eigenvalues**
 
 Now the spatial ODE:
+
 $$\frac{\sigma^2}{2}X''(x) + \left(r - \frac{\sigma^2}{2}\right)X'(x) + (\lambda - r)X(x) = 0$$
+
+
 
 with $X(x_B) = X(x_{\max}) = 0$ has **discrete eigenvalues** $\lambda_n$.
 
 ### **Sturm-Liouville Problem**
 
 This is a **Sturm-Liouville problem**:
+
 $$\mathcal{L}X = \lambda X$$
 
+
+
 with the operator:
+
 $$\mathcal{L} = -\frac{\sigma^2}{2}\frac{d^2}{dx^2} - \left(r - \frac{\sigma^2}{2}\right)\frac{d}{dx} + r$$
+
+
 
 ### **Self-Adjoint Form**
 
 To make it self-adjoint, use the weight function:
+
 $$w(x) = \exp\left[\frac{2(r-\frac{\sigma^2}{2})}{\sigma^2}x\right] = \exp\left[\frac{2r - \sigma^2}{\sigma^2}x\right]$$
 
+
+
 The weighted inner product:
+
 $$\langle f, g \rangle = \int_{x_B}^{x_{\max}} f(x)g(x)w(x)dx$$
+
+
 
 makes $\mathcal{L}$ self-adjoint.
 
@@ -204,20 +279,32 @@ For the Sturm-Liouville problem with boundary conditions, we get:
 
 ### **General Solution**
 
+
 $$\boxed{V(x,\tau) = \sum_{n=1}^{\infty} c_n X_n(x)e^{-\lambda_n\tau}}$$
+
+
 
 ### **Determining Coefficients**
 
 At $\tau = 0$ (terminal condition):
+
 $$V(x,0) = \Phi(e^x) = \sum_{n=1}^{\infty} c_n X_n(x)$$
 
+
+
 By orthogonality:
+
 $$\boxed{c_n = \frac{\langle \Phi(e^x), X_n(x) \rangle}{\langle X_n, X_n \rangle} = \frac{\int_{x_B}^{x_{\max}} \Phi(e^x)X_n(x)w(x)dx}{\int_{x_B}^{x_{\max}} X_n^2(x)w(x)dx}}$$
+
+
 
 ### **Example: Symmetric Case**
 
 For $x \in [-L, L]$ with symmetric boundary conditions, eigenfunctions might be:
+
 $$X_n(x) \propto \sin\left(\frac{n\pi(x+L)}{2L}\right) \cdot \text{(weight factor)}$$
+
+
 
 or more complex depending on drift and boundary conditions.
 
@@ -228,37 +315,64 @@ or more complex depending on drift and boundary conditions.
 ### **No Drift, No Discount**
 
 Consider the simplified equation (for illustration):
+
 $$\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2}$$
+
+
 
 on $x \in [0, L]$ with $V(0,\tau) = V(L,\tau) = 0$.
 
 ### **Separation**
 
+
 $$V(x,\tau) = X(x)T(\tau)$$
 
+
+
 gives:
+
 $$\frac{T'}{\frac{\sigma^2}{2}T} = \frac{X''}{X} = -\lambda$$
+
+
 
 ### **Spatial Problem**
 
+
 $$X'' + \lambda X = 0, \quad X(0) = X(L) = 0$$
 
+
+
 Eigenvalues:
+
 $$\boxed{\lambda_n = \left(\frac{n\pi}{L}\right)^2, \quad n = 1,2,3,\ldots}$$
 
+
+
 Eigenfunctions:
+
 $$\boxed{X_n(x) = \sin\left(\frac{n\pi x}{L}\right)}$$
+
+
 
 ### **Temporal Solution**
 
+
 $$T_n(\tau) = e^{-\frac{\sigma^2}{2}\lambda_n\tau} = e^{-\frac{\sigma^2}{2}\left(\frac{n\pi}{L}\right)^2\tau}$$
+
+
 
 ### **General Solution**
 
+
 $$\boxed{V(x,\tau) = \sum_{n=1}^{\infty} c_n \sin\left(\frac{n\pi x}{L}\right)e^{-\frac{\sigma^2}{2}\left(\frac{n\pi}{L}\right)^2\tau}}$$
 
+
+
 with:
+
 $$c_n = \frac{2}{L}\int_0^L \Phi(e^x)\sin\left(\frac{n\pi x}{L}\right)dx$$
+
+
 
 ---
 
@@ -267,17 +381,29 @@ $$c_n = \frac{2}{L}\int_0^L \Phi(e^x)\sin\left(\frac{n\pi x}{L}\right)dx$$
 ### **Limit as Domain → ∞**
 
 As $L \to \infty$, the discrete spectrum becomes continuous:
+
 $$\lambda_n = \left(\frac{n\pi}{L}\right)^2 \to \omega^2 \quad (\text{continuous } \omega)$$
 
+
+
 The sum becomes an integral:
+
 $$\sum_{n=1}^{\infty} \to \int_{-\infty}^{\infty} d\omega$$
 
+
+
 The eigenfunctions become:
+
 $$\sin\left(\frac{n\pi x}{L}\right) \to e^{i\omega x} \quad \text{(complex exponentials)}$$
+
+
 
 ### **Fourier Transform Representation**
 
+
 $$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{V}(\omega,0)e^{-\frac{\sigma^2\omega^2\tau}{2}}e^{i\omega x}d\omega}$$
+
+
 
 This is exactly the **Fourier transform solution** we discussed earlier!
 
@@ -319,25 +445,40 @@ For most practical problems:
 ### **Two-Asset Option**
 
 For $V(S_1, S_2, t)$ satisfying:
+
 $$\frac{\partial V}{\partial t} + \mathcal{L}_1 V + \mathcal{L}_2 V + \rho\sigma_1\sigma_2 S_1 S_2\frac{\partial^2 V}{\partial S_1 \partial S_2} - rV = 0$$
+
+
 
 ### **Separation Ansatz**
 
 Try:
+
 $$V(S_1, S_2, t) = V_1(S_1)V_2(S_2)T(t)$$
+
+
 
 The **mixed derivative term** $\frac{\partial^2 V}{\partial S_1 \partial S_2}$ prevents simple separation unless $\rho = 0$ (uncorrelated assets).
 
 ### **Uncorrelated Case ($\rho = 0$)**
 
 With $\rho = 0$:
+
 $$\frac{T'}{T} + \frac{\mathcal{L}_1 V_1}{V_1} + \frac{\mathcal{L}_2 V_2}{V_2} - r = 0$$
 
+
+
 Can separate:
+
 $$\frac{\mathcal{L}_1 V_1}{V_1} = -\lambda_1, \quad \frac{\mathcal{L}_2 V_2}{V_2} = -\lambda_2, \quad \frac{T'}{T} = -(\lambda_1 + \lambda_2 - r)$$
 
+
+
 This gives:
+
 $$\boxed{V(S_1,S_2,t) = \sum_{m,n}c_{mn}X_m(S_1)Y_n(S_2)e^{-(\lambda_m + \lambda_n - r)(T-t)}}$$
+
+
 
 ### **Correlated Case ($\rho \neq 0$)**
 
@@ -352,14 +493,20 @@ Need to **diagonalize** the covariance matrix first via rotation/principal compo
 For time-dependent coefficients $r(t), \sigma(t)$, standard separation $V = X(S)T(t)$ fails.
 
 Try **generalized separation**:
+
 $$V(S,t) = \sum_{n=0}^{\infty}T_n(t)X_n(S)$$
+
+
 
 where $X_n$ are **fixed eigenfunctions** but $T_n(t)$ satisfy **coupled ODEs**.
 
 ### **WKB Approximation**
 
 For slowly varying coefficients, use **WKB (Wentzel-Kramers-Brillouin) method**:
+
 $$V(S,t) \sim e^{i\theta(S,t)/\epsilon}A(S,t)$$
+
+
 
 where $\theta$ satisfies the **eikonal equation** and $A$ satisfies a transport equation.
 
@@ -372,7 +519,10 @@ This is beyond standard separation but related in spirit.
 ### **Spectral Expansion**
 
 The separation of variables solution:
+
 $$V(x,\tau) = \sum_{n=1}^{\infty}c_n X_n(x)e^{-\lambda_n\tau}$$
+
+
 
 is a **spectral expansion** in the eigenfunctions of the spatial operator.
 
@@ -404,7 +554,10 @@ Excellent for **smooth problems** with **spectral accuracy** ($O(e^{-cN})$ error
 ### **Self-Similar Ansatz**
 
 For scale-invariant problems, try:
+
 $$V(S,t) = S^\alpha f(\xi), \quad \xi = \frac{\ln(S/K)}{\sigma\sqrt{T-t}}$$
+
+
 
 This reduces the PDE to an **ODE** in $\xi$.
 
@@ -415,20 +568,32 @@ Similarity solutions are a **special case** of separation where the separation c
 ### **Heat Equation Example**
 
 For $u_t = u_{xx}$:
+
 $$u(x,t) = t^{-1/2}f\left(\frac{x}{\sqrt{t}}\right)$$
 
+
+
 reduces to:
+
 $$f'' + \frac{\xi}{2}f' + \frac{1}{2}f = 0$$
+
+
 
 Solution: $f(\xi) = e^{-\xi^2/4}$ (Gaussian!)
 
 ### **Black-Scholes Similarity**
 
 The Black-Scholes formula has the similarity structure:
+
 $$C(S,K,T,r,\sigma) = S \cdot \Pi_1(d_1) - Ke^{-rT}\Pi_2(d_2)$$
 
+
+
 where $d_1, d_2$ depend only on:
+
 $$\frac{\ln(S/K)}{\sigma\sqrt{T}}, \quad r\sqrt{T}, \quad \sigma\sqrt{T}$$
+
+
 
 These are **dimensionless combinations** (similarity variables).
 
@@ -439,10 +604,16 @@ These are **dimensionless combinations** (similarity variables).
 ### **The Black-Scholes Operator**
 
 Define:
+
 $$\boxed{\mathcal{L} = \frac{\sigma^2}{2}\frac{\partial^2}{\partial x^2} + \left(r-\frac{\sigma^2}{2}\right)\frac{\partial}{\partial x} - r}$$
 
+
+
 The PDE is:
+
 $$\frac{\partial V}{\partial \tau} = \mathcal{L}V$$
+
+
 
 ### **Spectral Decomposition**
 
@@ -454,15 +625,24 @@ The operator $\mathcal{L}$ has:
 ### **Functional Calculus**
 
 The solution is:
+
 $$\boxed{V(\cdot, \tau) = e^{\tau\mathcal{L}}V(\cdot, 0)}$$
 
+
+
 For discrete spectrum:
+
 $$e^{\tau\mathcal{L}} = \sum_{n=1}^{\infty}e^{\tau\lambda_n}P_n$$
+
+
 
 where $P_n$ projects onto the $n$-th eigenspace.
 
 For continuous spectrum:
+
 $$e^{\tau\mathcal{L}} = \int_{\sigma(\mathcal{L})}e^{\tau\lambda}dE(\lambda)$$
+
+
 
 where $E(\lambda)$ is the **spectral measure** (Fourier transform).
 
@@ -488,19 +668,31 @@ Now $W$ satisfies a **homogeneous** boundary value problem.
 
 ### **Eigenfunction Expansion**
 
+
 $$W(S,t) = \sum_{n=1}^{\infty}c_n(t)\phi_n(S)$$
 
+
+
 where $\phi_n$ are eigenfunctions of:
+
 $$\mathcal{L}\phi_n = \lambda_n\phi_n$$
+
+
 
 with $\phi_n(S_L) = \phi_n(S_U) = 0$.
 
 ### **Time Evolution**
 
+
 $$c_n(t) = c_n(T)e^{-\lambda_n(T-t)}$$
 
+
+
 where $c_n(T)$ comes from projecting the payoff:
+
 $$c_n(T) = \frac{\int_{S_L}^{S_U}[\Phi(S) - A - \frac{B-A}{S_U-S_L}(S-S_L)]\phi_n(S)w(S)dS}{\int_{S_L}^{S_U}\phi_n^2(S)w(S)dS}$$
+
+
 
 ---
 
@@ -509,7 +701,10 @@ $$c_n(T) = \frac{\int_{S_L}^{S_U}[\Phi(S) - A - \frac{B-A}{S_U-S_L}(S-S_L)]\phi_
 ### **Computing Eigenvalues**
 
 For the Sturm-Liouville problem:
+
 $$-\frac{\sigma^2}{2}X'' - (r-\frac{\sigma^2}{2})X' + rX = \lambda X$$
+
+
 
 with boundary conditions, use:
 
@@ -527,17 +722,26 @@ with boundary conditions, use:
 ### **Computing Coefficients**
 
 The projection:
+
 $$c_n = \frac{\langle \Phi, \phi_n \rangle}{\langle \phi_n, \phi_n \rangle}$$
+
+
 
 requires **numerical integration** (Gaussian quadrature).
 
 ### **Series Truncation**
 
 In practice, truncate:
+
 $$V(x,\tau) \approx \sum_{n=1}^{N}c_n\phi_n(x)e^{-\lambda_n\tau}$$
 
+
+
 **Error estimate**:
+
 $$\left|V - V_N\right| \leq \sum_{n=N+1}^{\infty}|c_n|e^{-\lambda_n\tau} \leq Ce^{-\lambda_{N+1}\tau}$$
+
+
 
 The exponential decay in $\tau$ means **rapid convergence** away from $\tau = 0$.
 
@@ -562,7 +766,10 @@ Now standard separation applies.
 ### **Comparison with Method of Images**
 
 The **method of images** gives:
+
 $$V(S,t) = C_{\text{BS}}(S,t) - \left(\frac{B}{S}\right)^{2r/\sigma^2}C_{\text{BS}}\left(\frac{B^2}{S}, t\right)$$
+
+
 
 This is **exact** and more elegant than truncated eigenfunction expansion.
 
@@ -591,7 +798,10 @@ This changes the **type** of the equation (parabolic → first-order) and affect
 ### **Fractional Laplacian**
 
 For **Lévy processes** (jumps), the spatial operator is:
+
 $$\mathcal{L} = \int_{\mathbb{R}}[f(x+y) - f(x) - yf'(x)\mathbb{1}_{|y|<1}]\nu(dy)$$
+
+
 
 This is **non-local** (integral operator), so standard separation of variables doesn't directly apply.
 
@@ -654,6 +864,7 @@ dominate practical applications.
 
 All these methods are **related**:
 
+
 $$\begin{align}
 &\text{Separation (finite)} \longleftrightarrow \text{Fourier series} \\
 &\quad\downarrow \text{(limit } L \to \infty) \\
@@ -664,9 +875,12 @@ $$\begin{align}
 &\text{Transition density} \longleftrightarrow \text{Feynman-Kac}
 \end{align}$$
 
+
+
 They're all **different manifestations** of the spectral decomposition of the heat operator.
 
 ### **The Fundamental Insight**
+
 
 $$\boxed{e^{\tau\mathcal{L}}V_0 = \begin{cases}
 \sum_{n}e^{\tau\lambda_n}\langle V_0, \phi_n\rangle\phi_n & \text{(discrete)} \\
@@ -674,6 +888,8 @@ $$\boxed{e^{\tau\mathcal{L}}V_0 = \begin{cases}
 \int G(x,y,\tau)V_0(y)dy & \text{(Green's function)} \\
 \mathbb{E}[V_0(X_\tau)] & \text{(probabilistic)}
 \end{cases}}$$
+
+
 
 These are **four representations** of the **same solution operator**!
 

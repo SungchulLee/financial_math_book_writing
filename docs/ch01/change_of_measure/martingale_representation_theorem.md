@@ -12,7 +12,10 @@ Let $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}_{t \geq 0}, \mathbb{P})$ be a filte
 
 **Theorem**: If $M_t$ is a square-integrable $(\mathcal{F}_t, \mathbb{P})$-martingale, then there exists a unique **previsible process** $\phi_t$ with $\mathbb{E}\left[\int_0^T \phi_s^2 ds\right] < \infty$ such that:
 
+
 $$\boxed{M_t = M_0 + \int_0^t \phi_s dW_s}$$
+
+
 
 for all $t \in [0,T]$.
 
@@ -26,11 +29,17 @@ The process $\phi_t$ is **unique** (up to sets of measure zero in $dt \times d\m
 
 **Proof of uniqueness**: If $M_t = M_0 + \int_0^t \phi_s dW_s = M_0 + \int_0^t \psi_s dW_s$, then:
 
+
 $$\int_0^t (\phi_s - \psi_s)dW_s = 0$$
+
+
 
 By Itô isometry:
 
+
 $$\mathbb{E}\left[\int_0^t (\phi_s - \psi_s)^2 ds\right] = 0$$
+
+
 
 Therefore $\phi_t = \psi_t$ a.e.
 
@@ -42,7 +51,10 @@ Therefore $\phi_t = \psi_t$ a.e.
 
 First prove for **simple processes** of the form:
 
+
 $$M_t = \sum_{i=0}^{n-1} \xi_i (W_{t_{i+1} \wedge t} - W_{t_i \wedge t})$$
+
+
 
 where $\xi_i$ is $\mathcal{F}_{t_i}$-measurable.
 
@@ -54,17 +66,26 @@ Every $L^2$-martingale can be approximated by simple processes in the $L^2$ sens
 
 For a martingale $M_t$ with $\mathbb{E}[M_T^2] < \infty$, construct a sequence of simple martingales $M_t^n$ such that:
 
+
 $$\mathbb{E}[(M_T - M_T^n)^2] \to 0$$
+
+
 
 ### **Step 3: Isometry**
 
 Each $M_t^n$ has representation:
 
+
 $$M_t^n = M_0 + \int_0^t \phi_s^n dW_s$$
+
+
 
 By the **Itô isometry**:
 
+
 $$\mathbb{E}[(M_T^n - M_T^m)^2] = \mathbb{E}\left[\int_0^T (\phi_s^n - \phi_s^m)^2 ds\right]$$
+
+
 
 So $\{\phi^n\}$ is Cauchy in $L^2([0,T] \times \Omega)$.
 
@@ -72,7 +93,10 @@ So $\{\phi^n\}$ is Cauchy in $L^2([0,T] \times \Omega)$.
 
 The limit $\phi_t = \lim_{n \to \infty} \phi_t^n$ (in $L^2$) gives:
 
+
 $$M_t = M_0 + \int_0^t \phi_s dW_s$$
+
+
 
 by continuity of stochastic integration.
 
@@ -88,17 +112,26 @@ For general square-integrable martingales (not necessarily continuous), use **Do
 
 Under the risk-neutral measure $\mathbb{Q}$, the discounted option value:
 
+
 $$\tilde{V}_t = e^{-rt}V(S_t, t)$$
+
+
 
 is a $\mathbb{Q}$-martingale.
 
 **Proof**: By risk-neutral valuation:
 
+
 $$\tilde{V}_t = \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T \mid \mathcal{F}_t] = \mathbb{E}^{\mathbb{Q}}[e^{-rT}V(S_T,T) \mid \mathcal{F}_t]$$
+
+
 
 Taking conditional expectations:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[\tilde{V}_T \mid \mathcal{F}_t] = \tilde{V}_t$$
+
+
 
 So $\tilde{V}_t$ is a martingale.
 
@@ -106,19 +139,29 @@ So $\tilde{V}_t$ is a martingale.
 
 By the theorem, there exists $\phi_t$ such that:
 
+
 $$\boxed{d\tilde{V}_t = \phi_t dW_t^{\mathbb{Q}}}$$
+
+
 
 or equivalently:
 
+
 $$\boxed{e^{-rt}V(S_t,t) = V(S_0,0) + \int_0^t \phi_s dW_s^{\mathbb{Q}}}$$
+
+
 
 ### **Identifying the Integrand**
 
 Apply Itô's lemma to $\tilde{V}_t = e^{-rt}V(S_t,t)$:
 
+
 $$d\tilde{V}_t = e^{-rt}\left[\frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS_t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(dS_t)^2\right] - re^{-rt}V dt$$
 
+
+
 With $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$:
+
 
 $$
 d\tilde{V}_t 
@@ -126,15 +169,23 @@ d\tilde{V}_t
 e^{-rt}\left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV\right]dt + e^{-rt}\sigma S \frac{\partial V}{\partial S}dW_t^{\mathbb{Q}}
 $$
 
+
+
 For $\tilde{V}_t$ to be a martingale, the $dt$ term must vanish:
 
+
 $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0$$
+
+
 
 This is the **Black-Scholes PDE**!
 
 The integrand is:
 
+
 $$\boxed{\phi_t = e^{-rt}\sigma S_t \frac{\partial V}{\partial S}(S_t,t)}$$
+
+
 
 ---
 
@@ -152,19 +203,26 @@ The martingale representation tells us that the option can be replicated by hold
 
 Define the portfolio value:
 
+
 $$\Pi_t = \Delta_t S_t + B_t$$
+
+
 
 where $B_t$ is the cash account with $dB_t = rB_t dt$.
 
 **Self-financing condition**:
 
+
 $$d\Pi_t = \Delta_t dS_t + rB_t dt$$
+
+
 
 No external cash flows—gains/losses come only from asset price changes and interest.
 
 ### **Replication**
 
 Substituting $B_t = V_t - \Delta_t S_t$:
+
 
 $$\begin{array}{lll}
 d\Pi_t 
@@ -173,15 +231,23 @@ d\Pi_t
 &=&\displaystyle \Delta_t \sigma S_t dW_t^{\mathbb{Q}} + rV_t dt
 \end{array}$$
 
+
+
 But also, by Itô:
 
+
 $$dV_t = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS_t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(dS_t)^2$$
+
+
 
 For $d\Pi_t = dV_t$ (perfect replication), we need the **Black-Scholes PDE** to hold.
 
 ### **The Connection**
 
+
 $$\boxed{\text{Martingale representation} \iff \text{Existence of replicating portfolio}}$$
+
+
 
 The integrand $\phi_t$ **is the delta hedge**!
 
@@ -195,15 +261,24 @@ Let $W_t = (W_t^{(1)}, \ldots, W_t^{(d)})$ be a $d$-dimensional Brownian motion.
 
 **Theorem**: If $M_t$ is a square-integrable martingale in the filtration $\mathcal{F}_t = \sigma(W_s : s \leq t)$, then:
 
+
 $$\boxed{M_t = M_0 + \sum_{i=1}^d \int_0^t \phi_s^{(i)} dW_s^{(i)}}$$
+
+
 
 for unique previsible processes $\phi_t^{(1)}, \ldots, \phi_t^{(d)}$ with:
 
+
 $$\mathbb{E}\left[\int_0^T \sum_{i=1}^d (\phi_s^{(i)})^2 ds\right] < \infty$$
+
+
 
 ### **Vector Notation**
 
+
 $$\boxed{M_t = M_0 + \int_0^t \boldsymbol{\phi}_s \cdot d\mathbf{W}_s}$$
+
+
 
 where $\boldsymbol{\phi}_t \cdot d\mathbf{W}_t = \sum_{i=1}^d \phi_t^{(i)}dW_t^{(i)}$.
 
@@ -211,21 +286,33 @@ where $\boldsymbol{\phi}_t \cdot d\mathbf{W}_t = \sum_{i=1}^d \phi_t^{(i)}dW_t^{
 
 For $n$ stocks driven by $d$ Brownian motions ($d \leq n$):
 
+
 $$dS_t^{(i)} = r S_t^{(i)}dt + \sum_{j=1}^d \sigma_{ij}S_t^{(i)}dW_t^{(j)}$$
+
+
 
 An option $V(S_1, \ldots, S_n, t)$ has representation:
 
+
 $$d(e^{-rt}V) = \sum_{j=1}^d \phi_t^{(j)}dW_t^{(j)}$$
+
+
 
 ### **Computing the Integrands**
 
 Apply multi-dimensional Itô:
 
+
 $$dV = \frac{\partial V}{\partial t}dt + \sum_{i=1}^n \frac{\partial V}{\partial S_i}dS_i + \frac{1}{2}\sum_{i,k=1}^n \frac{\partial^2 V}{\partial S_i \partial S_k}d\langle S_i, S_k \rangle$$
+
+
 
 The coefficient of $dW_t^{(j)}$ gives:
 
+
 $$\boxed{\phi_t^{(j)} = e^{-rt}\sum_{i=1}^n \sigma_{ij}S_t^{(i)}\frac{\partial V}{\partial S_i}}$$
+
+
 
 ---
 
@@ -239,7 +326,10 @@ A market is **complete** if every contingent claim can be **replicated** by a se
 
 For a market with $d$ independent sources of randomness and $n$ tradable assets:
 
+
 $$\boxed{\text{Market is complete} \iff d \leq n \text{ and } \text{rank}(\sigma) = d}$$
+
+
 
 where $\sigma$ is the $n \times d$ volatility matrix.
 
@@ -303,27 +393,45 @@ These are the **admissible trading strategies**.
 
 For a self-financing portfolio with $\Delta_t$ shares and cash $B_t$:
 
+
 $$V_t = \Delta_t S_t + B_t$$
+
+
+
 
 $$dV_t = \Delta_t dS_t + rB_t dt$$
 
+
+
 Substituting $B_t = V_t - \Delta_t S_t$:
+
 
 $$dV_t = \Delta_t dS_t + r(V_t - \Delta_t S_t)dt$$
 
+
+
 With $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$:
 
+
 $$\boxed{dV_t = rV_t dt + \Delta_t \sigma S_t dW_t^{\mathbb{Q}}}$$
+
+
 
 ### **Discounted Value**
 
 Define $\tilde{V}_t = e^{-rt}V_t$:
 
+
 $$d\tilde{V}_t 
 = e^{-rt}dV_t - re^{-rt}V_t dt
 = e^{-rt}[rV_t dt + \Delta_t \sigma S_t dW_t^{\mathbb{Q}}] - re^{-rt}V_t dt$$
 
+
+
+
 $$\boxed{d\tilde{V}_t = e^{-rt}\Delta_t \sigma S_t dW_t^{\mathbb{Q}}}$$
+
+
 
 This is a **martingale** (no drift term)!
 
@@ -331,9 +439,15 @@ This is a **martingale** (no drift term)!
 
 Since $\tilde{V}_t$ is a martingale:
 
+
 $$\tilde{V}_0 = \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T]$$
 
+
+
+
 $$\boxed{V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[V_T]}$$
+
+
 
 This is the **risk-neutral pricing formula**.
 
@@ -345,7 +459,10 @@ This is the **risk-neutral pricing formula**.
 
 For a smooth functional $F = f(W_{t_1}, \ldots, W_{t_n})$, the **Malliavin derivative** is:
 
+
 $$D_t F = \lim_{h \to 0}\frac{F(W + h\mathbb{1}_{[0,t]}) - F(W)}{h}$$
+
+
 
 It measures sensitivity to perturbations of the Brownian path at time $t$.
 
@@ -353,7 +470,10 @@ It measures sensitivity to perturbations of the Brownian path at time $t$.
 
 For $F \in L^2(\mathcal{F}_T)$ that is Malliavin differentiable:
 
+
 $$\boxed{F = \mathbb{E}[F] + \int_0^T \mathbb{E}[D_t F \mid \mathcal{F}_t]dW_t}$$
+
+
 
 This gives an **explicit formula** for the integrand in the martingale representation!
 
@@ -361,15 +481,24 @@ This gives an **explicit formula** for the integrand in the martingale represent
 
 For $F = \Phi(S_T)$:
 
+
 $$D_t F = \Phi'(S_T) \cdot D_t S_T$$
+
+
 
 With $S_T = S_0 \exp\left[(r-\frac{\sigma^2}{2})T + \sigma W_T\right]$:
 
+
 $$D_t S_T = \sigma S_T \cdot \mathbb{1}_{t \leq T}$$
+
+
 
 Therefore:
 
+
 $$\mathbb{E}[D_t F \mid \mathcal{F}_t] = \mathbb{E}[\Phi'(S_T)\sigma S_T \mid \mathcal{F}_t]$$
+
+
 
 This relates to $\frac{\partial V}{\partial S}$ via the **Feynman-Kac formula**.
 
@@ -381,9 +510,15 @@ This relates to $\frac{\partial V}{\partial S}$ via the **Feynman-Kac formula**.
 
 Consider:
 
+
 $$dS_t = rS_t dt + \sigma_t S_t dW_t^{(1)}$$
 
+
+
+
 $$d\sigma_t = \mu(\sigma_t)dt + \xi(\sigma_t)dW_t^{(2)}$$
+
+
 
 with $d\langle W^{(1)}, W^{(2)} \rangle = \rho dt$.
 
@@ -397,11 +532,17 @@ The filtration is generated by **two** Brownian motions, but there's only **one*
 
 For the discounted option value:
 
+
 $$d(e^{-rt}V) = \phi_t^{(1)}dW_t^{(1)} + \phi_t^{(2)}dW_t^{(2)}$$
+
+
 
 But the stock only provides exposure to $W^{(1)}$:
 
+
 $$d(e^{-rt}S) = e^{-rt}\sigma S dW_t^{(1)}$$
+
+
 
 **Cannot replicate** $\phi_t^{(2)}dW_t^{(2)}$ with stock and bond!
 
@@ -409,7 +550,10 @@ $$d(e^{-rt}S) = e^{-rt}\sigma S dW_t^{(1)}$$
 
 There are **infinitely many** equivalent martingale measures, parametrized by the **market price of volatility risk** $\lambda_t$:
 
+
 $$dW_t^{(2),\mathbb{Q}^\lambda} = dW_t^{(2)} - \lambda_t dt$$
+
+
 
 Different $\lambda$ ⟹ different option prices.
 
@@ -433,7 +577,10 @@ Let $N_t$ be a Poisson process with intensity $\lambda$.
 
 The martingale $M_t = N_t - \lambda t$ has representation:
 
+
 $$M_t = \int_0^t dM_s$$
+
+
 
 But this is **not** a stochastic integral with respect to a Brownian motion!
 
@@ -441,7 +588,10 @@ But this is **not** a stochastic integral with respect to a Brownian motion!
 
 For a Poisson filtration $\mathcal{F}_t = \sigma(N_s : s \leq t)$, every martingale has the form:
 
+
 $$M_t = M_0 + \int_0^t \phi_s dM_s = M_0 + \int_0^t \phi_s (dN_s - \lambda ds)$$
+
+
 
 where $\phi_t$ is previsible.
 
@@ -449,11 +599,17 @@ where $\phi_t$ is previsible.
 
 For a process with both Brownian and jump components:
 
+
 $$dS_t = \mu S_t dt + \sigma S_t dW_t + S_t(e^J - 1)dN_t$$
+
+
 
 The martingale representation requires **both** types of integrals:
 
+
 $$M_t = M_0 + \int_0^t \phi_s dW_s + \int_0^t \psi_s d\tilde{N}_s$$
+
+
 
 where $\tilde{N}_t = N_t - \lambda t$ is the compensated Poisson process.
 
@@ -475,25 +631,40 @@ Jumps make the market **incomplete**:
 
 The Feynman-Kac formula states:
 
+
 $$V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$$
+
+
 
 Applying Itô to $V(S_t,t)$ and requiring it to be a local martingale gives the PDE:
 
+
 $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} = rV$$
+
+
 
 ### **The Integrand**
 
 The martingale representation:
 
+
 $$d(e^{-rt}V) = \phi_t dW_t^{\mathbb{Q}}$$
+
+
 
 gives:
 
+
 $$\phi_t = e^{-rt}\sigma S_t \frac{\partial V}{\partial S}$$
+
+
 
 So:
 
+
 $$\boxed{\frac{\partial V}{\partial S} = \frac{\phi_t}{e^{-rt}\sigma S_t}}$$
+
+
 
 The **PDE solution** and **martingale representation** are **dual perspectives** on the same object!
 
@@ -512,37 +683,58 @@ The martingale method often works even when classical PDE solutions don't exist 
 
 For the martingale:
 
+
 $$M_t = \int_0^t \phi_s dW_s$$
+
+
 
 The **quadratic variation** is:
 
+
 $$\boxed{\langle M \rangle_t = \int_0^t \phi_s^2 ds}$$
+
+
 
 This follows from the **Itô isometry**:
 
+
 $$\mathbb{E}[M_t^2] = \mathbb{E}\left[\int_0^t \phi_s^2 ds\right]$$
+
+
 
 ### **Covariation**
 
 For two martingales:
 
+
 $$M_t = \int_0^t \phi_s dW_s, \quad N_t = \int_0^t \psi_s dW_s$$
+
+
 
 The **covariation** is:
 
+
 $$\boxed{\langle M, N \rangle_t = \int_0^t \phi_s \psi_s ds}$$
+
+
 
 ### **Application: Delta Hedging**
 
 The discounted option value $\tilde{V}_t$ and discounted stock price $\tilde{S}_t$ have:
 
+
 $$d\langle \tilde{V}, \tilde{S} \rangle_t = e^{-2rt}\sigma^2 S_t^2 \frac{\partial V}{\partial S}dt$$
 
+
+
 The hedge ratio that **minimizes variance** is:
+
 
 $$\displaystyle 
 \Delta_t = \frac{d\langle \tilde{V}, \tilde{S} \rangle_t/dt}{d\langle \tilde{S} \rangle_t/dt} = \frac{e^{-2rt}\sigma^2 S_t^2 \frac{\partial V}{\partial S}}{e^{-2rt}\sigma^2 S_t^2} = \frac{\partial V}{\partial S}
 $$
+
+
 
 This is the **delta**!
 
@@ -554,7 +746,10 @@ This is the **delta**!
 
 For a martingale $M_t$ in a filtration generated by a process $X_t$, the **Kunita-Watanabe decomposition** states:
 
+
 $$\boxed{M_t = M_0 + \int_0^t \phi_s dX_s + L_t}$$
+
+
 
 where:
 
@@ -566,7 +761,10 @@ where:
 
 If the market is complete (e.g., Black-Scholes), then $L_t \equiv 0$, and:
 
+
 $$M_t = M_0 + \int_0^t \phi_s dX_s$$
+
+
 
 All risk is hedgeable!
 
@@ -586,11 +784,17 @@ The variance of $L_T$ measures the **hedging error**.
 
 In incomplete markets, find the strategy that **minimizes** the expected squared hedging error:
 
+
 $$\min_{\phi} \mathbb{E}\left[\left(V_T - \int_0^T \phi_s dS_s\right)^2\right]$$
+
+
 
 ### **The Decomposition**
 
+
 $$\boxed{V_T = V_0 + \int_0^T \phi_s^* dS_s + L_T}$$
+
+
 
 where:
 
@@ -602,7 +806,10 @@ where:
 
 ### **Computing $\phi^*$**
 
+
 $$\boxed{\phi_t^* = \frac{d\langle V, S \rangle_t/dt}{d\langle S \rangle_t/dt}}$$
+
+
 
 This generalizes the delta hedge to incomplete markets!
 
@@ -617,19 +824,28 @@ In practice, $\phi_t = \frac{\partial V}{\partial S}$ is computed:
 1. **Analytically**: For Black-Scholes, $\Delta = N(d_1)$
 2. **Numerically**: Finite difference or automatic differentiation
 3. **From simulations**: 
+
    $$\frac{\partial V}{\partial S} \approx \frac{V(S+\epsilon) - V(S-\epsilon)}{2\epsilon}$$
+
+
 
 ### **Discrete Hedging**
 
 In reality, hedging is done at discrete times $t_0, t_1, \ldots, t_n$:
 
+
 $$V_{t_i} \approx V_0 + \sum_{j=0}^{i-1}\Delta_{t_j}(S_{t_{j+1}} - S_{t_j})$$
+
+
 
 ### **Hedging Error**
 
 The error from discrete hedging is:
 
+
 $$\epsilon_n = V_T - V_0 - \sum_{j=0}^{n-1}\Delta_{t_j}(S_{t_{j+1}} - S_{t_j})$$
+
+
 
 As $n \to \infty$ (continuous hedging), $\epsilon_n \to 0$ in $L^2$.
 
@@ -637,7 +853,10 @@ As $n \to \infty$ (continuous hedging), $\epsilon_n \to 0$ in $L^2$.
 
 With transaction costs $c|dS|$, the problem becomes:
 
+
 $$\min_{\phi} \mathbb{E}\left[\text{Hedging Error}^2 + c\int_0^T |d\phi_s|\right]$$
+
+
 
 This leads to **utility-based pricing** and **optimal stopping** problems.
 
@@ -649,13 +868,19 @@ This leads to **utility-based pricing** and **optimal stopping** problems.
 
 Under the physical measure $\mathbb{P}$:
 
+
 $$dS_t = \mu S_t dt + \sigma S_t dW_t^{\mathbb{P}}$$
+
+
 
 The option value is **not** a $\mathbb{P}$-martingale.
 
 Under $\mathbb{Q}$:
 
+
 $$dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
+
+
 
 The discounted option value **is** a $\mathbb{Q}$-martingale, admitting the representation.
 
@@ -663,7 +888,10 @@ The discounted option value **is** a $\mathbb{Q}$-martingale, admitting the repr
 
 The change of measure:
 
+
 $$dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} - \frac{\mu - r}{\sigma}dt$$
+
+
 
 preserves the martingale representation property—just the driving Brownian motion changes.
 
@@ -671,7 +899,10 @@ preserves the martingale representation property—just the driving Brownian mot
 
 Under $\mathbb{Q}^S$:
 
+
 $$dS_t = (r+\sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}$$
+
+
 
 Normalized prices (by stock) are $\mathbb{Q}^S$-martingales.
 
@@ -689,7 +920,10 @@ In the Brownian case, $W_t$ is the **extremal martingale**—all others are buil
 
 In multi-dimensional cases, there is a **basis** of extremal martingales $M_1, \ldots, M_d$ such that:
 
+
 $$M_t = M_0 + \sum_{i=1}^d \int_0^t \phi_s^{(i)}dM_s^{(i)}$$
+
+
 
 ### **Lévy Processes**
 
@@ -720,7 +954,10 @@ where $N$ is the jump measure and $\tilde{N}$ is the compensated measure.
 
 ### **The Master Equation**
 
+
 $$\boxed{e^{-rt}V(S_t,t) = V(S_0,0) + \int_0^t e^{-rs}\sigma S_s\frac{\partial V}{\partial S}(S_s,s)dW_s^{\mathbb{Q}}}$$
+
+
 
 This **single equation** encodes:
 1. Risk-neutral valuation ($V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT}V_T]$)
@@ -763,13 +1000,19 @@ This is the **deep beauty** of mathematical finance!
 
 If $X_t$ satisfies an SDE of the form:
 
+
 $$dX_t = \sigma(X_t, t) \, dW_t \quad \text{(no } dt \text{ term)}$$
+
+
 
 then $X_t$ is a **local martingale**.
 
 If additionally $X_t$ satisfies:
 
+
 $$\mathbb{E}[|X_t|] < \infty \quad \text{for all } t$$
+
+
 
 and some **uniform integrability condition**, then $X_t$ is a **martingale**.
 
@@ -781,17 +1024,26 @@ and some **uniform integrability condition**, then $X_t$ is a **martingale**.
 
 Any Itô process can be written as:
 
+
 $$dX_t = \underbrace{\mu(X_t, t) \, dt}_{\text{drift/finite variation}} + \underbrace{\sigma(X_t, t) \, dW_t}_{\text{martingale part}}$$
 
+
+
 **Decomposition:**
+
 $$X_t = X_0 + \underbrace{\int_0^t \mu(X_s, s) \, ds}_{\text{finite variation}} + \underbrace{\int_0^t \sigma(X_s, s) \, dW_s}_{\text{local martingale}}$$
 
+
+
 ### Key Principle
+
 
 $$\boxed{\begin{align}
 \mu(x,t) \equiv 0 &\Longleftrightarrow X_t \text{ is a local martingale} \\[5pt]
 \mu(x,t) \equiv 0 \text{ and } \mathbb{E}[|X_t|] < \infty &\Longrightarrow X_t \text{ is a martingale}
 \end{align}}$$
+
+
 
 ---
 
@@ -811,7 +1063,10 @@ If $\sigma(x,t)$ is bounded and $\mathbb{E}[X_t^2] < \infty$, then the local mar
 
 If $|\sigma(x,t)| \leq C(1 + |x|)$ and $\mathbb{E}[X_0^2] < \infty$, then:
 
+
 $$\sup_{t \in [0,T]} \mathbb{E}[X_t^2] < \infty$$
+
+
 
 and the local martingale is a martingale on $[0,T]$.
 
@@ -823,11 +1078,17 @@ If the process $X_t$ does not explode in finite time almost surely, and satisfie
 
 For the stochastic exponential:
 
+
 $$\mathcal{E}(X)_t = \exp\left(\int_0^t \sigma_s \, dW_s - \frac{1}{2}\int_0^t \sigma_s^2 \, ds\right)$$
+
+
 
 if **Novikov's condition** holds:
 
+
 $$\mathbb{E}\left[\exp\left(\frac{1}{2}\int_0^T \sigma_s^2 \, ds\right)\right] < \infty$$
+
+
 
 then $\mathcal{E}(X)_t$ is a martingale (not just a local martingale).
 
@@ -837,7 +1098,10 @@ then $\mathcal{E}(X)_t$ is a martingale (not just a local martingale).
 
 ### Example 1: Simple Stochastic Integral (Martingale)
 
+
 $$X_t = \int_0^t dW_s = W_t$$
+
+
 
 - No $dt$ term ✓
 - $\mathbb{E}[|X_t|] = \mathbb{E}[|W_t|] = \sqrt{\frac{2t}{\pi}} < \infty$ ✓
@@ -845,10 +1109,16 @@ $$X_t = \int_0^t dW_s = W_t$$
 
 ### Example 2: Geometric Brownian Motion (Martingale)
 
+
 $$dX_t = \sigma X_t \, dW_t, \quad X_0 = 1$$
 
+
+
 Solution:
+
 $$X_t = \exp\left(\sigma W_t - \frac{\sigma^2 t}{2}\right)$$
+
+
 
 - No $dt$ term in the SDE ✓
 - $\mathbb{E}[X_t] = 1 < \infty$ ✓
@@ -856,7 +1126,10 @@ $$X_t = \exp\left(\sigma W_t - \frac{\sigma^2 t}{2}\right)$$
 
 ### Example 3: Explosion Case (Local Martingale Only)
 
+
 $$dX_t = X_t^2 \, dW_t, \quad X_0 = 1$$
+
+
 
 - No $dt$ term ✓
 - **But:** Process explodes to $+\infty$ in finite time with positive probability
@@ -867,10 +1140,16 @@ $$dX_t = X_t^2 \, dW_t, \quad X_0 = 1$$
 
 Let $R_t$ be a 3D Bessel process. Then:
 
+
 $$M_t = \frac{1}{R_t}$$
 
+
+
 satisfies:
+
 $$dM_t = -\frac{1}{R_t^2} \, dW_t$$
+
+
 
 - No $dt$ term ✓
 - **But:** $M_t$ can become arbitrarily large when $R_t \to 0$
@@ -879,7 +1158,10 @@ $$dM_t = -\frac{1}{R_t^2} \, dW_t$$
 
 ### Example 5: Adding Drift Destroys Martingale Property
 
+
 $$dX_t = \mu \, dt + \sigma \, dW_t$$
+
+
 
 - Has $dt$ term with $\mu \neq 0$ ✗
 - $X_t = X_0 + \mu t + \sigma W_t$
@@ -894,15 +1176,24 @@ $$dX_t = \mu \, dt + \sigma \, dW_t$$
 
 Given $Y_t = f(X_t, t)$ where $X_t$ follows:
 
+
 $$dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t$$
+
+
 
 Apply Itô's lemma:
 
+
 $$dY_t = \left[\frac{\partial f}{\partial t} + \mu \frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 f}{\partial x^2}\right] dt + \left[\sigma \frac{\partial f}{\partial x}\right] dW_t$$
+
+
 
 **For $Y_t$ to be a local martingale:**
 
+
 $$\boxed{\frac{\partial f}{\partial t} + \mu \frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 f}{\partial x^2} = 0}$$
+
+
 
 This is exactly $\frac{\partial f}{\partial t} + \mathcal{L}f = 0$ (the backward Kolmogorov equation)!
 
@@ -914,9 +1205,15 @@ This is exactly $\frac{\partial f}{\partial t} + \mathcal{L}f = 0$ (the backward
 
 If $f$ satisfies $\mathcal{L}f = 0$ (time-independent case), then:
 
+
 $$df(X_t) = \underbrace{\mathcal{L}f(X_t)}_{=0} \, dt + \sigma(X_t, t) \frac{\partial f}{\partial x}(X_t) \, dW_t$$
 
+
+
+
 $$= \sigma(X_t, t) \frac{\partial f}{\partial x}(X_t) \, dW_t$$
+
+
 
 No $dt$ term! Therefore $f(X_t)$ is a local martingale.
 
@@ -926,10 +1223,13 @@ Whether it's a true martingale depends on whether $\mathbb{E}[|f(X_t)|] < \infty
 
 ## Summary: The Golden Rule
 
+
 $$\boxed{\begin{array}{rcl}
 \text{No } dt \text{ term in } dX_t &\Longrightarrow& X_t \text{ is a local martingale} \\[8pt]
 \text{No } dt \text{ term} + \text{integrability} &\Longrightarrow& X_t \text{ is a martingale} \\[8pt]
 \text{Nonzero } dt \text{ term} &\Longrightarrow& X_t \text{ is NOT a local martingale}
 \end{array}}$$
+
+
 
 Your understanding is exactly right! The absence of a $dt$ term is the signature of a local martingale, and integrability upgrades it to a true martingale.

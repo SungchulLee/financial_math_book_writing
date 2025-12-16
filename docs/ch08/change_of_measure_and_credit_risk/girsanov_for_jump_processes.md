@@ -7,9 +7,12 @@ Girsanov’s theorem extends beyond diffusions to **jump processes**, providing 
 ## 1. Jumps and compensators
 
 Default is modeled as a jump process with compensator
+
 \[
 A_t = \int_0^{t \wedge \tau} \lambda_s ds.
 \]
+
+
 
 Under a measure change, both the compensator and intensity may change.
 

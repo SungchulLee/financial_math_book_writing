@@ -18,9 +18,12 @@ The two intensities generally differ due to risk premia.
 ## 2. Intensity decomposition
 
 A common representation is
+
 \[
 \lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \text{credit risk premium}.
 \]
+
+
 
 The premium compensates investors for bearing default risk.
 

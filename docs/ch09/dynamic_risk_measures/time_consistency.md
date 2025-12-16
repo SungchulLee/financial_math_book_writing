@@ -17,12 +17,15 @@ Time-consistency formalizes this requirement.
 
 Let \(\rho_t(\cdot)\) be a conditional risk measure at time \(t\).
 The family \((\rho_t)_{t \ge 0}\) is **time-consistent** if
+
 \[
 \rho_t(X) \le \rho_t(Y)
 \quad \Rightarrow \quad
 \rho_s(X) \le \rho_s(Y),
 \qquad s < t.
 \]
+
+
 
 Equivalently, preferences should not reverse over time.
 

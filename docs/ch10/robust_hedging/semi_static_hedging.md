@@ -30,9 +30,12 @@ The mathematical foundations draw from optimal control, PDE theory, and function
 
 **Portfolio Value**:
 
+
 $$
 V_t = \theta_t S_t + \sum_{i=1}^{N_C} n_i^C C_i(S_t, K_i, T_i-t) + \sum_{j=1}^{N_P} n_j^P P_j(S_t, K_j, T_j-t) + B_t
 $$
+
+
 
 where $n_i^C, n_j^P$ are (typically) fixed quantities of options.
 
@@ -42,9 +45,12 @@ where $n_i^C, n_j^P$ are (typically) fixed quantities of options.
 
 **Replication Goal**: Construct portfolio such that:
 
+
 $$
 V_T \approx \Phi \quad \text{or} \quad V_T \geq \Phi \text{ (super-replication)}
 $$
+
+
 
 with minimal adjustments to $\theta_t$.
 
@@ -65,9 +71,12 @@ with minimal adjustments to $\theta_t$.
 
 **Theorem** (Carr-Madan): Any twice-differentiable payoff $g(S_T)$ can be decomposed as:
 
+
 $$
 g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K) (K - S_T)^+ dK + \int_F^{\infty} g''(K) (S_T - K)^+ dK
 $$
+
+
 
 where $F = S_0 e^{rT}$ is the forward price.
 
@@ -88,21 +97,30 @@ where $F = S_0 e^{rT}$ is the forward price.
 
 **Risk-Neutral Density**: From call prices:
 
+
 $$
 q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K, T)
 $$
 
+
+
 **Static Replication**: To replicate any European payoff $g(S_T)$:
+
 
 $$
 V_0 = e^{-rT} \int_0^{\infty} g(K) q(K) dK = \int_0^{\infty} g(K) \frac{\partial^2 C}{\partial K^2}(K, T) dK
 $$
 
+
+
 **Implementation**: Discretize with available strikes:
+
 
 $$
 V_0 \approx \sum_{i=1}^n g(K_i) \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}
 $$
+
+
 
 ## Barrier Options
 
@@ -112,9 +130,12 @@ $$
 
 **Put-Call Symmetry**: Under Black-Scholes with constant volatility, there exists a static replication using:
 
+
 $$
 C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \left(\frac{H}{S_0}\right)^{2\mu} C\left(\frac{H^2}{S_0}, K\right)
 $$
+
+
 
 where $\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}$.
 
@@ -146,9 +167,12 @@ where $\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}$.
 
 **General Framework** (Carr-Lee 2010): For barrier options under local volatility:
 
+
 $$
 C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \int_0^T \mathbb{E}\left[ \mathbb{1}_{\{S_t = H\}} \cdot \text{Correction}(t, S_t) \right] dt
 $$
+
+
 
 **Semi-Static Implementation**:
 1. Hold static portfolio: Long call at $K$, short options as per formula
@@ -169,9 +193,12 @@ $$
 
 **Theorem** (GSG 1979): Under geometric Brownian motion, the lookback can be replicated using:
 
+
 $$
 \text{Lookback}(S_0, K) = \int_{K}^{\infty} \frac{C(S_0, L)}{L} \frac{\partial C}{\partial L}(S_0, L) dL + \text{additional terms}
 $$
+
+
 
 involving a continuum of vanilla calls.
 
@@ -201,9 +228,12 @@ involving a continuum of vanilla calls.
 
 **Payoff**: 
 
+
 $$
 \Phi = \left(\frac{1}{n} \sum_{i=1}^n S_{t_i} - K\right)^+
 $$
+
+
 
 for discrete monitoring dates $\{t_1, \ldots, t_n\}$.
 
@@ -211,9 +241,12 @@ for discrete monitoring dates $\{t_1, \ldots, t_n\}$.
 
 **Convexity**: By Jensen's inequality:
 
+
 $$
 \left(\frac{1}{n} \sum_{i=1}^n S_{t_i}\right)^+ \geq \frac{1}{n} \sum_{i=1}^n (S_{t_i} - nK)^+
 $$
+
+
 
 **Static Portfolio**: 
 - Long $1/n$ calls at each averaging date with strike $nK$
@@ -234,9 +267,12 @@ $$
 
 **Theorem** (Rogers-Shi 1995): For arithmetic Asian options, tight static bounds can be constructed using:
 
+
 $$
 \underline{V} \leq V^{\text{Asian}} \leq \overline{V}
 $$
+
+
 
 where bounds involve portfolios of standard calls.
 
@@ -254,9 +290,12 @@ where bounds involve portfolios of standard calls.
 
 **Dynamic Component**: Recursive hedging starting from final exercise date:
 
+
 $$
 V_{t_{i}} = \max\{g(S_{t_i}), \mathbb{E}[V_{t_{i+1}} | \mathcal{F}_{t_i}]\}
 $$
+
+
 
 **Semi-Static Implementation**:
 1. **Static Setup**: Hold options maturing at $\{t_1, \ldots, t_n\}$ approximating continuation values
@@ -290,21 +329,30 @@ $$
 
 **Payoff**: 
 
+
 $$
 \text{Payoff} = \text{Realized Variance} - K_{\text{var}}
 $$
 
+
+
 where:
+
 
 $$
 \text{RV} = \frac{252}{n} \sum_{i=1}^n \log^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)
 $$
 
+
+
 **Static Replication** (Carr-Madan): Using log-contract:
+
 
 $$
 \text{RV} \approx \frac{2}{T} \left[\int_0^{S_0} \frac{P(K)}{K^2} dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} dK\right] - \frac{1}{T}\log^2\left(\frac{S_T}{S_0}\right)
 $$
+
+
 
 **Purely Static**: Hold portfolio of puts and calls with weights $1/K^2$ across all strikes.
 
@@ -315,9 +363,12 @@ $$
 
 **Jump Correction**: If jumps occur, the replication error is:
 
+
 $$
 \text{Error} = \sum_{\text{jumps}} \left[\log\left(\frac{S_t}{S_{t-}}\right)\right]^2
 $$
+
+
 
 which is typically small.
 
@@ -339,9 +390,12 @@ which is typically small.
 
 **Payoff**: 
 
+
 $$
 \text{Payoff} = \text{Realized Vol} - K_{\text{vol}}
 $$
+
+
 
 where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 
@@ -350,9 +404,12 @@ where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 **Semi-Static Approximation**:
 1. **Static Component**: Variance swap (which can be replicated)
 2. **Adjustment**: Use convexity correction:
+
    $$
    \text{Vol} \approx \sqrt{\text{Var}} - \frac{1}{8} \frac{\text{Var}^{3/2}}{\sqrt{\mathbb{E}[\text{Var}]}} + \ldots
    $$
+
+
 3. **Rebalancing**: Adjust based on realized variance to date
 
 ## Transaction Cost Optimization
@@ -363,9 +420,12 @@ where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 
 **Objective**: Minimize total cost:
 
+
 $$
 \min_{\theta, \{t_i\}} \left\{ \mathbb{E}[(V_T - \Phi)^2] + \lambda \sum_{i=1}^M |\theta_{t_i} - \theta_{t_{i-1}}| S_{t_i} \right\}
 $$
+
+
 
 **Trade-off**: Hedging accuracy vs. transaction costs.
 
@@ -375,25 +435,34 @@ $$
 
 **Dynamic Programming**: Value function:
 
+
 $$
 J(t, S, V) = \inf_{\tau > t} \mathbb{E}\left[\text{Cost}(\tau, S_{\tau}, V_{\tau}) + J(\tau, S_{\tau}, V_{\tau})\right]
 $$
+
+
 
 where $\tau$ is the next trading time.
 
 **Threshold Policy**: Rebalance when:
 
+
 $$
 |\theta_{\text{optimal}}(S_t) - \theta_t| > \Delta^*
 $$
+
+
 
 for optimal threshold $\Delta^*$ balancing cost and risk.
 
 **Volatility Dependence**: Threshold typically increases with volatility:
 
+
 $$
 \Delta^*(t) = c \cdot \sigma(t) \cdot \sqrt{T - t}
 $$
+
+
 
 ### Option Rebalancing
 
@@ -407,9 +476,12 @@ $$
 
 **Optimal Policy**: Typically combines multiple criteria:
 
+
 $$
 \text{Rebalance if } \max\{|\Delta_t - \Delta^*|, |\Gamma_t - \Gamma^*|, |\mathcal{V}_t - \mathcal{V}^*|\} > \epsilon
 $$
+
+
 
 ## Robust Semi-Static Strategies
 
@@ -419,9 +491,12 @@ $$
 
 **Robust Objective**: Maximize worst-case performance:
 
+
 $$
 \max_{\{\theta_t, n_i, n_j\}} \min_{P \in \mathcal{M}} \mathbb{E}_P[V_T - \Phi]
 $$
+
+
 
 subject to transaction cost constraints.
 
@@ -565,9 +640,12 @@ subject to transaction cost constraints.
 
 **Basket Options**: Payoff depends on multiple underlyings:
 
+
 $$
 \Phi = \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
 $$
+
+
 
 **Challenge**: Correlation uncertainty.
 
@@ -593,9 +671,12 @@ $$
 
 **Model**: Volatility follows its own stochastic process:
 
+
 $$
 dS_t = \mu S_t dt + \sqrt{V_t} S_t dW_t^S, \quad dV_t = \kappa(\theta - V_t) dt + \xi \sqrt{V_t} dW_t^V
 $$
+
+
 
 **Semi-Static Approach**:
 1. **Vega Hedging**: Hold options at multiple strikes to hedge volatility risk
@@ -647,9 +728,12 @@ $$
 
 **Formulation**: 
 
+
 $$
 \min_{\theta, \{t_i\}} \max_{P \in \mathcal{P}} \mathbb{E}_P\left[(V_T - \Phi)^2 + \lambda \sum_{i=1}^M |\Delta \theta_i|\right]
 $$
+
+
 
 where $\mathcal{P}$ is a set of probability measures.
 

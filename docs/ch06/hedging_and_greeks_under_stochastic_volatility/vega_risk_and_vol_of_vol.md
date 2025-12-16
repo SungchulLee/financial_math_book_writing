@@ -7,9 +7,12 @@ Under stochastic volatility, option risk is no longer captured by delta alone. *
 ## 1. Vega in stochastic volatility models
 
 In Black–Scholes, vega measures sensitivity to a single volatility parameter:
+
 \[
 \text{Vega} = \partial_{\sigma} P.
 \]
+
+
 
 In stochastic volatility models, volatility itself is random, so vega represents sensitivity to:
 - the current variance level,

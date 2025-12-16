@@ -18,9 +18,12 @@ The foundations of pathwise hedging lie in rough path theory, functional analysi
 
 **Definition**: Let $\mathcal{C}([0,T], \mathbb{R})$ denote the space of continuous functions from $[0,T]$ to $\mathbb{R}$, equipped with the supremum norm:
 
+
 $$
 \|x\|_{\infty} = \sup_{t \in [0,T]} |x(t)|
 $$
+
+
 
 **Price Path**: A stock price trajectory is an element $S \in \mathcal{C}([0,T], \mathbb{R}_+)$.
 
@@ -30,9 +33,12 @@ $$
 
 **Functional Derivative**: For a functional $F: \mathcal{C}([0,T], \mathbb{R}_+) \to \mathbb{R}$, the **pathwise derivative** at time $t$ along path $S$ is:
 
+
 $$
 \frac{\delta F}{\delta S_t}(S) = \lim_{\varepsilon \to 0} \frac{F(S + \varepsilon \delta_t) - F(S)}{\varepsilon}
 $$
+
+
 
 where $\delta_t$ is a perturbation concentrated at time $t$.
 
@@ -44,9 +50,12 @@ where $\delta_t$ is a perturbation concentrated at time $t$.
 
 **Self-Financing**: The portfolio value $V_t$ satisfies:
 
+
 $$
 V_t = V_0 + \int_0^t \theta_s \, dS_s
 $$
+
+
 
 where the integral is understood pathwise (e.g., Riemann-Stieltjes or Young integral).
 
@@ -58,9 +67,12 @@ where the integral is understood pathwise (e.g., Riemann-Stieltjes or Young inte
 
 **Theorem** (Föllmer, 1981): For a twice continuously differentiable function $f: \mathbb{R} \to \mathbb{R}$ and a continuous path $S$ of finite quadratic variation $[S]_T$, we have:
 
+
 $$
 f(S_T) - f(S_0) = \int_0^T f'(S_t) \, dS_t + \frac{1}{2} \int_0^T f''(S_t) \, d[S]_t
 $$
+
+
 
 where:
 - The first integral is pathwise Riemann-Stieltjes (or Young if $S$ is rough)
@@ -78,9 +90,12 @@ where:
 
 **Outer Measure**: Define:
 
+
 $$
 \bar{P}(A) = \inf \left\{ V_0: \exists \theta \text{ s.t. } V_T \geq \mathbb{1}_A \text{ for all } S \right\}
 $$
+
+
 
 where $A \subseteq \mathcal{C}([0,T], \mathbb{R}_+)$ is an event.
 
@@ -95,9 +110,12 @@ where $A \subseteq \mathcal{C}([0,T], \mathbb{R}_+)$ is an event.
 
 **Classical Dupire Equation**: Under a diffusion model:
 
+
 $$
 \frac{\partial C}{\partial T} = \frac{1}{2} \sigma^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2} - r K \frac{\partial C}{\partial K} + rC
 $$
+
+
 
 where $C(K, T)$ is the call price as a function of strike and maturity.
 
@@ -105,17 +123,23 @@ where $C(K, T)$ is the call price as a function of strike and maturity.
 
 **Realized Variance**: For a given path $S$, define the **realized local variance** at time $t$:
 
+
 $$
 \sigma^2_{\text{realized}}(S_t, t) = \lim_{\Delta t \to 0} \frac{(S_{t+\Delta t} - S_t)^2}{\Delta t}
 $$
+
+
 
 assuming the limit exists.
 
 **Pathwise Dupire Formula**: The function $C(K, T)$ satisfies:
 
+
 $$
 \frac{\partial C}{\partial T}(K, T) = \frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}(K, T) \cdot \mathbb{E}[\sigma^2_{\text{realized}}(K, T)]
 $$
+
+
 
 where the expectation is with respect to paths conditional on $S_T = K$.
 
@@ -135,23 +159,32 @@ where the expectation is with respect to paths conditional on $S_T = K$.
 
 **Hedge**: Follow the delta-hedging strategy as if the path were $\tilde{S}$:
 
+
 $$
 \theta_t = \Phi'(\tilde{S}_t)
 $$
 
+
+
 **Accumulated Error**: The hedging error is:
+
 
 $$
 \text{Error} = \frac{1}{2} \int_0^T \Phi''(\tilde{S}_t) \left( d[S]_t - d[\tilde{S}]_t \right)
 $$
 
+
+
 ### Upper and Lower Hedging
 
 **Upper Hedge**: Construct portfolio that **dominates** the payoff for all paths:
 
+
 $$
 V_T^{\text{upper}} \geq \Phi(S_T) \quad \text{for all } S
 $$
+
+
 
 **Strategy**:
 1. Choose the "worst-case" tangent path $\tilde{S}^{\max}$
@@ -160,15 +193,21 @@ $$
 
 **Lower Hedge**: Construct portfolio that is **dominated** by the payoff:
 
+
 $$
 V_T^{\text{lower}} \leq \Phi(S_T) \quad \text{for all } S
 $$
 
+
+
 **Bid-Ask Spread**: The difference:
+
 
 $$
 V_0^{\text{upper}} - V_0^{\text{lower}} = \text{Model uncertainty premium}
 $$
+
+
 
 reflects the inherent ambiguity in pathwise hedging.
 
@@ -176,23 +215,32 @@ reflects the inherent ambiguity in pathwise hedging.
 
 **Volatility Uncertainty**: Assume only that:
 
+
 $$
 \underline{\sigma}^2 \leq \sigma^2_{\text{realized}}(S_t, t) \leq \overline{\sigma}^2
 $$
 
+
+
 **Robust Hedging Problem**: Find minimal initial capital $V_0$ such that:
+
 
 $$
 V_0 + \int_0^T \theta_t \, dS_t \geq \Phi(S_T)
 $$
 
+
+
 for all paths with quadratic variation satisfying the bound.
 
 **Solution**: Use HJB equation with volatility uncertainty:
 
+
 $$
 V_t + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 V_{SS} \right\} + rSV_S - rV = 0
 $$
+
+
 
 **Pathwise Implementation**:
 - Monitor realized quadratic variation
@@ -205,21 +253,30 @@ $$
 **Rough Path**: A pair $(X, \mathbb{X})$ where:
 - $X: [0,T] \to \mathbb{R}^d$ is a continuous path
 - $\mathbb{X}_{s,t}$ is the "second-order increment":
+
   $$
   \mathbb{X}_{s,t} \approx \int_s^t (X_r - X_s) \otimes dX_r
   $$
 
+
+
 **Hölder Continuity**: $X$ has Hölder exponent $\alpha \in (1/3, 1/2]$:
+
 
 $$
 |X_t - X_s| \leq C |t - s|^{\alpha}
 $$
 
+
+
 **Young Integral**: For $\alpha > 1/2$, the Riemann-Stieltjes integral:
+
 
 $$
 \int_0^T Y_t \, dX_t = \lim_{|\Pi| \to 0} \sum_i Y_{t_i} (X_{t_{i+1}} - X_{t_i})
 $$
+
+
 
 exists pathwise.
 
@@ -229,9 +286,12 @@ exists pathwise.
 
 **Definition**: A process $Y$ is **controlled** by rough path $X$ if:
 
+
 $$
 Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}
 $$
+
+
 
 where $R_{s,t} = o(|t-s|^{\alpha})$ is a remainder term.
 
@@ -239,9 +299,12 @@ where $R_{s,t} = o(|t-s|^{\alpha})$ is a remainder term.
 
 **Application to Finance**: Portfolio value $V_t$ controlled by stock price $S_t$:
 
+
 $$
 V_t - V_s = \theta_s (S_t - S_s) + R_{s,t}
 $$
+
+
 
 where $\theta_s$ is the delta position.
 
@@ -249,9 +312,12 @@ where $\theta_s$ is the delta position.
 
 **Rough Volatility Models**: Volatility exhibits Hölder regularity $H < 1/2$:
 
+
 $$
 \sigma_t = \sigma_0 + \int_0^t K(t-s) \, dW_s^H
 $$
+
+
 
 where $W^H$ is fractional Brownian motion with $H < 1/2$.
 
@@ -276,9 +342,12 @@ where $W^H$ is fractional Brownian motion with $H < 1/2$.
 
 **Forward Equation**: The local volatility surface satisfies:
 
+
 $$
 \sigma^2(K, T) = \frac{\frac{\partial C}{\partial T}(K, T) + rK \frac{\partial C}{\partial K}(K, T)}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}(K, T)}
 $$
+
+
 
 **Pathwise Interpretation**: 
 - This formula is **model-free** in the sense that it directly relates market observables
@@ -288,9 +357,12 @@ $$
 
 **Optimization Problem**: Find $\sigma(S, t)$ that minimizes:
 
+
 $$
 \sum_{i,j} \left( C^{\text{model}}(K_i, T_j; \sigma) - C^{\text{market}}(K_i, T_j) \right)^2
 $$
+
+
 
 subject to:
 1. $\sigma(S, t) > 0$ (positivity)
@@ -301,9 +373,12 @@ subject to:
 
 **Regularization**: Add penalty for roughness:
 
+
 $$
 + \lambda \int_0^T \int_0^{\infty} \left( \frac{\partial \sigma}{\partial S} \right)^2 dS \, dt
 $$
+
+
 
 to ensure smooth volatility surface amenable to pathwise analysis.
 
@@ -313,9 +388,12 @@ to ensure smooth volatility surface amenable to pathwise analysis.
 
 **Definition**: A derivative with payoff depending on entire path:
 
+
 $$
 \Phi = F((S_t)_{0 \leq t \leq T})
 $$
+
+
 
 **Examples**:
 - Asian options: $F(S) = \left(\frac{1}{T} \int_0^T S_t \, dt - K\right)^+$
@@ -326,15 +404,21 @@ $$
 
 **Definition** (Vertical Derivative): For a functional $F: \mathcal{C}([0,T], \mathbb{R}) \to \mathbb{R}$, the vertical derivative at time $t$ is:
 
+
 $$
 \partial_x F_t(S) = \lim_{\varepsilon \to 0} \frac{F(S + \varepsilon \mathbb{1}_{[t,T]}) - F(S)}{\varepsilon}
 $$
 
+
+
 **Horizontal Derivative**:
+
 
 $$
 \partial_t F_t(S) = \lim_{h \to 0} \frac{F(S^{t+h}) - F(S^t)}{h}
 $$
+
+
 
 where $S^t$ is the path stopped at time $t$.
 
@@ -342,17 +426,23 @@ where $S^t$ is the path stopped at time $t$.
 
 **Theorem** (Dupire, Cont-Fournié): For a path-dependent functional $F$ with sufficient regularity:
 
+
 $$
 F(S) = F(S_0) + \int_0^T \partial_x F_t(S) \, dS_t + \frac{1}{2} \int_0^T \partial_{xx} F_t(S) \, d[S]_t + \int_0^T \partial_t F_t(S) \, dt
 $$
+
+
 
 where all terms are defined pathwise.
 
 **Hedging Formula**: To replicate $F(S)$, hold:
 
+
 $$
 \theta_t = \partial_x F_t(S)
 $$
+
+
 
 shares at time $t$, accumulating gamma and theta costs.
 
@@ -364,9 +454,12 @@ shares at time $t$, accumulating gamma and theta costs.
 
 **Definition**: A functional $F: \mathcal{C}([0,T], \mathbb{R}) \to \mathbb{R}$ is **causal** (or **non-anticipating**) if:
 
+
 $$
 S_t = \tilde{S}_t \text{ for all } t \leq \tau \implies F(S)_{\tau} = F(\tilde{S})_{\tau}
 $$
+
+
 
 **Financial Interpretation**: The value at time $\tau$ depends only on the path up to $\tau$, not on future values.
 
@@ -374,39 +467,54 @@ $$
 
 For causal functionals, the vertical derivative simplifies:
 
+
 $$
 \partial_x F_t(S) = \lim_{\varepsilon \to 0} \frac{F(S + \varepsilon \delta_t) - F(S)}{\varepsilon}
 $$
+
+
 
 where $\delta_t$ is a spike at time $t$.
 
 **Example** (Asian Option): 
 
+
 $$
 F(S) = \left( \frac{1}{T} \int_0^T S_u \, du - K \right)^+
 $$
 
+
+
 has vertical derivative:
+
 
 $$
 \partial_x F_t(S) = \frac{1}{T} \left( \frac{1}{T} \int_0^T S_u \, du - K \right)_+
 $$
 
+
+
 ### Martingale Property (Pathwise)
 
 **Definition**: A causal functional $M$ is a **pathwise martingale** if:
+
 
 $$
 \int_0^t \partial_x M_s(S) \, dS_s = M_t(S) - M_0(S)
 $$
 
+
+
 for all paths $S$.
 
 **Characterization**: Pathwise martingales satisfy:
 
+
 $$
 \partial_t M_t(S) + \frac{1}{2} \sigma^2(S_t, t) \partial_{xx} M_t(S) = 0
 $$
+
+
 
 for any choice of local volatility $\sigma$.
 
@@ -416,25 +524,34 @@ for any choice of local volatility $\sigma$.
 
 **Payoff**: 
 
+
 $$
 \Phi = \left( \bar{S} - K \right)^+ \quad \text{where } \bar{S} = \frac{1}{T} \int_0^T S_t \, dt
 $$
+
+
 
 **State Variables**: $(S_t, A_t)$ where $A_t = \int_0^t S_u \, du$ is the accumulated average.
 
 **Functional Derivative**:
 
+
 $$
 \frac{\delta \Phi}{\delta S_t} = \frac{1}{T} (\bar{S} - K)_+' = \frac{1}{T} \mathbb{1}_{\{\bar{S} > K\}}
 $$
+
+
 
 **Pathwise Hedge**: Hold $\theta_t = \frac{1}{T} \mathbb{1}_{\{\bar{S} > K\}}$ shares, where the indicator is evaluated based on current running average.
 
 **Gamma Cost**: 
 
+
 $$
 \frac{1}{2} \int_0^T \frac{1}{T^2} \delta_{\bar{S} = K} \, d[S]_t
 $$
+
+
 
 where $\delta_{\bar{S} = K}$ is the Dirac delta at the boundary.
 
@@ -442,23 +559,32 @@ where $\delta_{\bar{S} = K}$ is the Dirac delta at the boundary.
 
 **Payoff**: 
 
+
 $$
 \Phi = M_T - K \quad \text{where } M_t = \max_{0 \leq s \leq t} S_s
 $$
+
+
 
 **State Variables**: $(S_t, M_t)$.
 
 **Functional Derivative**: When $S_t < M_t$:
 
+
 $$
 \frac{\delta \Phi}{\delta S_t} = 0
 $$
 
+
+
 When $S_t = M_t$ (at the running maximum):
+
 
 $$
 \frac{\delta \Phi}{\delta S_t} = 1
 $$
+
+
 
 **Pathwise Hedge**: 
 - Hold 0 shares when below running maximum
@@ -467,17 +593,23 @@ $$
 
 **Local Time**: The hedge accumulates a "local time" correction at the maximum:
 
+
 $$
 L_T = \text{time spent at running maximum}
 $$
+
+
 
 ### Barrier Options
 
 **Up-and-Out Call**: 
 
+
 $$
 \Phi = (S_T - K)^+ \mathbb{1}_{\{M_T < H\}}
 $$
+
+
 
 **Functional Derivative**: 
 - Below barrier ($S_t < H$): $\partial_x \Phi = (S_T - K)_+'$ standard delta
@@ -496,9 +628,12 @@ $$
 
 **Vega**: Sensitivity of option price to volatility:
 
+
 $$
 \mathcal{V} = \frac{\partial V}{\partial \sigma}
 $$
+
+
 
 **Pathwise Challenge**: Volatility is not a traded asset, so traditional delta-hedging logic doesn't apply.
 
@@ -506,23 +641,32 @@ $$
 
 **Variance Swap**: Contract paying:
 
+
 $$
 \text{Payoff} = \text{Realized Variance} - K_{\text{var}}
 $$
 
+
+
 **Pathwise Replication**: Using Carr-Madan:
+
 
 $$
 \text{RV} = \frac{2}{T} \left( \int_0^{S_0} \frac{P(K)}{K^2} dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} dK \right)
 $$
 
+
+
 **Hedging Vega**: Long variance swaps to hedge vega exposure pathwise.
 
 **Portfolio**: Hold $\theta_t^{\text{stock}}$ shares and $\theta_K^{\text{options}}$ options at each strike $K$ such that:
 
+
 $$
 \theta_t^{\text{stock}} dS_t + \int \theta_K^{\text{options}} dC(K, T) = dV
 $$
+
+
 
 for all paths.
 
@@ -530,15 +674,21 @@ for all paths.
 
 **Pathwise Identity**:
 
+
 $$
 \int_0^T \Gamma_t \, d[S]_t = \text{Total Gamma Cost}
 $$
 
+
+
 **Vega Decomposition**: 
+
 
 $$
 \mathcal{V} = \mathbb{E}\left[ \int_0^T \Gamma_t \frac{\partial \sigma_t^2}{\partial \sigma_0} dt \right]
 $$
+
+
 
 **Pathwise Interpretation**: Vega is the sensitivity of accumulated gamma costs to initial volatility, averaged over paths.
 
@@ -550,43 +700,61 @@ $$
 
 **Discrete Hedge**: At each $t_i$, hold:
 
+
 $$
 \theta_{t_i} = \partial_x F_{t_i}(S)
 $$
+
+
 
 shares.
 
 **Portfolio Value**:
 
+
 $$
 V_{t_{i+1}} = V_{t_i} + \theta_{t_i} (S_{t_{i+1}} - S_{t_i})
 $$
 
+
+
 **Convergence**: As $\max_i (t_{i+1} - t_i) \to 0$:
+
 
 $$
 V_{t_N} \to F(S) + \text{Second-order terms}
 $$
 
+
+
 ### Quadratic Variation Estimation
 
 **Realized Variance**:
+
 
 $$
 [S]^{\Pi}_T = \sum_{i=0}^{N-1} (S_{t_{i+1}} - S_{t_i})^2
 $$
 
+
+
 **Consistency**: As $|\Pi| \to 0$:
+
 
 $$
 [S]^{\Pi}_T \to [S]_T
 $$
 
+
+
 **Usage**: Monitor realized variance to assess hedging error:
+
 
 $$
 \text{Error} \approx \frac{1}{2} \Gamma [S]^{\Pi}_T
 $$
+
+
 
 ### Pathwise Simulation
 
@@ -615,9 +783,12 @@ $$
 
 **Robust Pricing**: Given marginal distributions (from market option prices), compute bounds:
 
+
 $$
 [\underline{P}, \overline{P}] = \text{arbitrage-free price range}
 $$
+
+
 
 **Pathwise Hedging**: The bounds are attained by pathwise super- and sub-replicating strategies.
 
@@ -629,15 +800,21 @@ $$
 
 **Path Dependence**: Hedging strategy depends on entire history, not just current state:
 
+
 $$
 \theta_t = \Theta((S_s)_{0 \leq s \leq t})
 $$
 
+
+
 **Example** (Variance-Dependent Hedge):
+
 
 $$
 \theta_t = \partial_x F_t(S) \cdot \left(1 + \beta \cdot \frac{[S]_t}{t}\right)
 $$
+
+
 
 adjusting for realized variance.
 
@@ -647,15 +824,21 @@ adjusting for realized variance.
 
 **Friction**: Each trade incurs cost proportional to transaction size:
 
+
 $$
 \text{Cost} = \lambda |\theta_{t_{i+1}} - \theta_{t_i}| S_{t_i}
 $$
 
+
+
 **Pathwise Problem**: Minimize hedging error subject to transaction cost penalty:
+
 
 $$
 \min_{\theta} \left\{ |V_T - F(S)| + \lambda \sum_{i=0}^{N-1} |\theta_{t_{i+1}} - \theta_{t_i}| S_{t_i} \right\}
 $$
+
+
 
 **Solution**: Leads to discrete adjustments (only rehedge when drift exceeds threshold).
 
@@ -665,9 +848,12 @@ $$
 
 **Model**: Fractional volatility with $H < 1/2$:
 
+
 $$
 dS_t = S_t \sqrt{V_t} \, dW_t, \quad V_t = \xi_t \mathcal{E}\left(\eta \int_0^t (t-s)^{H-1/2} dW_s^{\perp}\right)
 $$
+
+
 
 **Pathwise Interpretation**: 
 - Volatility path has roughness $H$
@@ -715,9 +901,12 @@ $$
 
 **Functional Derivative**:
 
+
 $$
 \theta_t = \frac{1}{T} \Phi'\left(\frac{A_t + S_t (T-t)}{T}\right)
 $$
+
+
 
 approximating remaining average.
 

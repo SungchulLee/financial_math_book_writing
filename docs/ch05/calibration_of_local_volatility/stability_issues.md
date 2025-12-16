@@ -7,11 +7,14 @@ Even with smoothing, local volatility calibration can be unstable. Instability c
 ## 1. Structural instability in the Dupire formula
 
 The Dupire expression
+
 \[
 \sigma_{\text{loc}}^2(T,K)
 = \frac{2\left(\partial_T C + (r-q)K\partial_K C - q C\right)}
 {K^2\,\partial_{KK} C}
 \]
+
+
 has two built-in amplifiers:
 
 1. **Differentiation amplifies noise** (numerator and denominator).
@@ -73,10 +76,13 @@ Stability improves when:
 ## 5. Regularized local vol (post-processing)
 
 A common practical approach is to compute a “raw” local vol estimate and then solve a *regularized reconstruction* problem:
+
 \[
 \min_{\sigma_{\text{loc}}} \; \|\text{Price}(\sigma_{\text{loc}}) - C^{\text{mkt}}\|^2
 + \lambda\,\mathcal{R}(\sigma_{\text{loc}}),
 \]
+
+
 where \(\mathcal{R}\) penalizes roughness in \(t\) and/or \(S\).
 
 This shifts the problem from direct differentiation (very unstable) to a PDE-constrained optimization (more stable but computationally heavier).

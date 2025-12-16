@@ -10,18 +10,24 @@ The spot implied volatility smile \(\sigma_{\text{impl}}(K,T)\) reflects the mar
 The forward smile captures the distribution of returns over \([T_1,T_2]\) conditional on information at time \(T_1\).
 
 Formally, it is linked to the law of
+
 \[
 \log\left(\frac{S_{T_2}}{S_{T_1}}\right) \mid \mathcal{F}_{T_1}.
 \]
+
+
 
 ---
 
 ## 2. Forward-start options
 
 Forward smiles can be accessed through **forward-start options**, whose payoff depends on future spot levels:
+
 \[
 (S_{T_2} - K S_{T_1})^+.
 \]
+
+
 
 Their implied volatility surface reveals how today’s model extrapolates smile dynamics into the future.
 

@@ -7,9 +7,12 @@ Implied volatility sensitivities play a central role in option risk management. 
 ## 1. Definition of vega
 
 For an option with price \(P\) and implied volatility \(\sigma_{\text{impl}}\), **vega** is defined as
+
 \[
 \text{Vega} = \frac{\partial P}{\partial \sigma_{\text{impl}}}.
 \]
+
+
 
 In the Black–Scholes model, vega has a closed-form expression and is:
 - positive for both calls and puts,
@@ -23,9 +26,12 @@ In the Black–Scholes model, vega has a closed-form expression and is:
 Because implied volatility is the market-quoted variable, vega measures sensitivity to **observable market moves** rather than model parameters.
 
 Small changes in implied volatility lead to price changes approximated by:
+
 \[
 \Delta P \approx \text{Vega} \cdot \Delta \sigma_{\text{impl}}.
 \]
+
+
 
 This linear approximation underlies most day-to-day volatility risk management.
 

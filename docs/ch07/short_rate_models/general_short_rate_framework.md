@@ -7,23 +7,32 @@ Short-rate models describe interest rates by modeling the **instantaneous short 
 ## 1. The short rate and money-market account
 
 The **short rate** \(r_t\) is the instantaneous continuously compounded risk-free rate. The money-market account (bank account) evolves as
+
 \[
 dB_t = r_t B_t\,dt,
 \qquad B_0 = 1,
 \]
+
+
 so
+
 \[
 B_t = \exp\left(\int_0^t r_s ds\right).
 \]
+
+
 
 ---
 
 ## 2. Pricing zero-coupon bonds
 
 A zero-coupon bond price at time \(t\) for maturity \(T\) is
+
 \[
 P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r_s ds\right)\middle|\mathcal{F}_t\right].
 \]
+
+
 
 Thus, the bond price is fully determined by the risk-neutral dynamics of \(r_t\).
 
@@ -32,9 +41,12 @@ Thus, the bond price is fully determined by the risk-neutral dynamics of \(r_t\)
 ## 3. Markov short-rate models
 
 In a Markov short-rate model,
+
 \[
 dr_t = \mu^{\mathbb{Q}}(t,r_t)\,dt + \sigma(t,r_t)\,dW_t^{\mathbb{Q}}.
 \]
+
+
 
 Then \(P(t,T)=P(t,T,r_t)\) is a function of \(t\), \(T\), and the current short rate.
 
@@ -43,9 +55,12 @@ Then \(P(t,T)=P(t,T,r_t)\) is a function of \(t\), \(T\), and the current short 
 ## 4. Bond pricing PDE
 
 Under sufficient regularity, \(P(t,T,r)\) satisfies the PDE
+
 \[
 \partial_t P + \mu^{\mathbb{Q}}(t,r)\partial_r P + \tfrac12\sigma(t,r)^2\partial_{rr}P - rP = 0,
 \]
+
+
 with terminal condition \(P(T,T,r)=1\).
 
 ---

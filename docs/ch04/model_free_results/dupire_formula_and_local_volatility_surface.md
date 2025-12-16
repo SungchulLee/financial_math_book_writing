@@ -10,9 +10,12 @@ Dupire's formula (1994) provides a fundamental model-free relationship between o
 
 The **local volatility model** assumes the underlying asset follows:
 
+
 $$
 dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
 $$
+
+
 
 where:
 - $\sigma_{\text{loc}}(S, t)$ is a deterministic function of spot and time
@@ -26,9 +29,12 @@ where:
 
 The probability density $p(S, t; S_0, 0)$ of $S_t$ given $S_0$ at time 0 satisfies the **forward Kolmogorov equation** (Fokker-Planck equation):
 
+
 $$
 \frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}\left[(r - q) S p\right] + \frac{1}{2} \frac{\partial^2}{\partial S^2}\left[\sigma_{\text{loc}}^2(S, t) S^2 p\right]
 $$
+
+
 
 This describes the evolution of the probability distribution forward in time.
 
@@ -36,9 +42,12 @@ This describes the evolution of the probability distribution forward in time.
 
 The call option price is:
 
+
 $$
 C(S_0, K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) p(S, T; S_0, 0) dS
 $$
+
+
 
 The key insight: if we know $C(K, T)$ for all strikes and maturities, we can invert this relationship to find $\sigma_{\text{loc}}(S, t)$.
 
@@ -49,15 +58,21 @@ The key insight: if we know $C(K, T)$ for all strikes and maturities, we can inv
 **Theorem 4.2.2** (Dupire's Formula)  
 The local volatility function can be extracted from the call price surface via:
 
+
 $$
 \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
 $$
 
+
+
 Equivalently, using forward price $F = S_0 e^{(r-q)T}$ and eliminating drift terms:
+
 
 $$
 \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
 $$
+
+
 
 when expressed in forward coordinates.
 
@@ -69,23 +84,32 @@ when expressed in forward coordinates.
 
 **Form 1** (Spot-based):
 
+
 $$
 \sigma_{\text{loc}}^2(S, t) = \frac{C_T + (r - q) S C_S + q C}{\frac{1}{2} S^2 C_{SS}}
 $$
+
+
 
 where subscripts denote partial derivatives.
 
 **Form 2** (Forward-based, most common):
 
+
 $$
 \sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}
 $$
 
+
+
 **Form 3** (In terms of implied volatility):
+
 
 $$
 \sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \frac{\partial \sigma_{\text{IV}}}{\partial T} + 2(r - q) K T \sigma_{\text{IV}} \frac{\partial \sigma_{\text{IV}}}{\partial K}}{\left(1 + K d_1 \sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2 + \sigma_{\text{IV}} K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
 $$
+
+
 
 where $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_{\text{IV}}^2/2)T}{\sigma_{\text{IV}}\sqrt{T}}$.
 
@@ -95,9 +119,12 @@ where $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_{\text{IV}}^2/2)T}{\sigma_{\text
 
 The call option price satisfies the backward Kolmogorov equation:
 
+
 $$
 \frac{\partial C}{\partial t} + (r - q) S \frac{\partial C}{\partial S} + \frac{1}{2} \sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 C}{\partial S^2} - r C = 0
 $$
+
+
 
 with terminal condition $C(S, T, T) = \max(S - K, 0)$.
 
@@ -105,9 +132,12 @@ with terminal condition $C(S, T, T) = \max(S - K, 0)$.
 
 Fix strike $K$ and differentiate the PDE with respect to $T$ (treating $T$ as a parameter):
 
+
 $$
 \frac{\partial}{\partial T}\left(\frac{\partial C}{\partial t}\right) + (r - q) S \frac{\partial}{\partial T}\left(\frac{\partial C}{\partial S}\right) + \frac{1}{2} \sigma_{\text{loc}}^2(S, T) S^2 \frac{\partial}{\partial T}\left(\frac{\partial^2 C}{\partial S^2}\right) - r \frac{\partial C}{\partial T} = 0
 $$
+
+
 
 ### Step 3: Evaluate at $S = K$, $t = T$
 
@@ -118,23 +148,32 @@ At expiry, the call payoff creates a kink at $S = K$:
 
 Using the **Dupire argument**: differentiate the option price with respect to maturity and evaluate at the money ($S = K$), giving:
 
+
 $$
 \frac{\partial C}{\partial T}\bigg|_{S=K} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}\bigg|_{S=K, t=T}
 $$
 
+
+
 Solving for $\sigma_{\text{loc}}^2$:
+
 
 $$
 \sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}
 $$
 
+
+
 ### Step 4: Include Drift Terms (Full Formula)
 
 For general $(S, t)$, the complete derivation includes drift corrections:
 
+
 $$
 \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
 $$
+
+
 
 The numerator adjusts for the fact that the underlying drifts at rate $r - q$ under the risk-neutral measure. □
 
@@ -144,27 +183,39 @@ The numerator adjusts for the fact that the underlying drifts at rate $r - q$ un
 
 Consider the **local time** $L_t^K$ of the process $S_t$ at level $K$. Tanaka's formula gives:
 
+
 $$
 (S_T - K)^+ = (S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t > K} dS_t + \frac{1}{2} L_T^K
 $$
 
+
+
 Taking expectations:
+
 
 $$
 C(S_0, K, T) = e^{-rT} \mathbb{E}\left[(S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t > K} (r - q) S_t dt + \frac{1}{2} L_T^K\right]
 $$
 
+
+
 The local time satisfies:
+
 
 $$
 \mathbb{E}[L_T^K] = \int_0^T \sigma_{\text{loc}}^2(K, t) K^2 p(K, t; S_0, 0) dt
 $$
 
+
+
 Differentiating with respect to $T$ and using Breeden-Litzenberger:
+
 
 $$
 \frac{\partial C}{\partial T} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \cdot e^{-rT} p(K, T) = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}
 $$
+
+
 
 This recovers Dupire's formula. □
 
@@ -175,9 +226,12 @@ This recovers Dupire's formula. □
 **Theorem 4.2.3** (Uniqueness of Local Volatility)  
 Given a complete arbitrage-free European call price surface $C(K, T)$ for all $K > 0$, $T > 0$, there exists a unique local volatility function $\sigma_{\text{loc}}(S, t)$ such that the diffusion:
 
+
 $$
 dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
 $$
+
+
 
 reproduces the entire call price surface.
 
@@ -196,9 +250,12 @@ This is in stark contrast to parametric models (e.g., Heston) which minimize pri
 
 The local volatility at strike $K$ and maturity $T$ is **not** equal to the implied volatility $\sigma_{\text{IV}}(K, T)$:
 
+
 $$
 \sigma_{\text{loc}}(K, T) \neq \sigma_{\text{IV}}(K, T)
 $$
+
+
 
 **Intuition:** 
 - **Implied volatility** is the constant volatility that, when plugged into Black-Scholes, matches the market price
@@ -219,19 +276,28 @@ In Black-Scholes, all options on the same underlying have the same implied volat
 
 On a discrete grid $(K_i, T_j)$, approximate derivatives using centered differences:
 
+
 $$
 \frac{\partial C}{\partial T}\bigg|_{K_i, T_j} \approx \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}}
 $$
+
+
+
 
 $$
 \frac{\partial^2 C}{\partial K^2}\bigg|_{K_i, T_j} \approx \frac{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2}
 $$
 
+
+
 Then:
+
 
 $$
 \sigma_{\text{loc}}^2(K_i, T_j) = \frac{2}{ K_i^2} \cdot \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}} \cdot \frac{(\Delta K)^2}{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}
 $$
+
+
 
 ### Stability Issues
 
@@ -275,9 +341,12 @@ Given the implied volatility surface $\sigma_{\text{IV}}(K, T)$, compute local v
 **Step 1:** Convert $\sigma_{\text{IV}}(K, T)$ to call prices using Black-Scholes formula
 
 **Step 2:** Compute derivatives:
+
 $$
 C_T, \quad C_K, \quad C_{KK}
 $$
+
+
 
 **Step 3:** Apply Dupire's formula
 
@@ -285,9 +354,12 @@ $$
 
 Gyöngy's formula provides a direct relationship:
 
+
 $$
 \sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \left(\frac{\partial \sigma_{\text{IV}}}{\partial T} + (r - q) K \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)}{1 + 2 d_1 K\sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K} + K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1^2 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
 $$
+
+
 
 This is computationally convenient when starting from implied volatility data.
 
@@ -295,9 +367,12 @@ This is computationally convenient when starting from implied volatility data.
 
 At-the-money ($K = F = S_0 e^{(r-q)T}$), a useful approximation:
 
+
 $$
 \sigma_{\text{loc}}^2(F, T) \approx \sigma_{\text{IV}}^2(F, T) + 2 T \sigma_{\text{IV}}(F, T) \frac{\partial \sigma_{\text{IV}}}{\partial T}\bigg|_{K=F}
 $$
+
+
 
 **Interpretation:** Local volatility at the forward is approximately the implied volatility plus a correction for the term structure slope.
 
@@ -307,17 +382,23 @@ $$
 
 The density $p(K, T)$ satisfies:
 
+
 $$
 \frac{\partial p}{\partial T} = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 p(K, T)\right]
 $$
+
+
 
 (assuming drift-free coordinates with $F = S_0 e^{(r-q)T}$).
 
 Using Breeden-Litzenberger $p(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}$:
 
+
 $$
 \frac{\partial}{\partial T}\left(e^{rT} \frac{\partial^2 C}{\partial K^2}\right) = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 e^{rT} \frac{\partial^2 C}{\partial K^2}\right]
 $$
+
+
 
 This is a PDE for $C$ in terms of $\sigma_{\text{loc}}$. Dupire's formula inverts this PDE to solve for $\sigma_{\text{loc}}$ given $C$.
 
@@ -382,9 +463,12 @@ To address limitations, practitioners use:
 
 Dupire's formula:
 
+
 $$
 \sigma_{\text{loc}}^2(K, T) = \frac{2 \frac{\partial C}{\partial T}}{K^2 \frac{\partial^2 C}{\partial K^2}}
 $$
+
+
 
 establishes a **model-free, one-to-one relationship** between:
 - Observable European call prices $C(K, T)$
@@ -399,8 +483,11 @@ establishes a **model-free, one-to-one relationship** between:
 
 **Practical workflow:**
 
+
 $$
 \text{Market Prices} \xrightarrow{\text{B-L}} \text{Risk-Neutral Density} \xrightarrow{\text{Dupire}} \text{Local Volatility Surface}
 $$
+
+
 
 Together, these model-free results allow complete characterization of the arbitrage-free price surface and the underlying dynamics without assuming a specific parametric model.

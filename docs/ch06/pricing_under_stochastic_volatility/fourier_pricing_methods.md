@@ -16,9 +16,12 @@ Option prices can be expressed via Fourier inversion of:
 ## 2. Fourier inversion for densities
 
 If \(f_{X_T}(x)\) is the density of \(X_T\), then
+
 \[
 f_{X_T}(x) = \frac{1}{2\pi}\int_{\mathbb{R}} e^{-iux}\varphi(u)\,du.
 \]
+
+
 
 In principle, one could compute prices by integrating payoff \(g(e^x)\) against this density, but direct density inversion can be numerically delicate.
 
@@ -27,9 +30,12 @@ In principle, one could compute prices by integrating payoff \(g(e^x)\) against 
 ## 3. Carr–Madan approach (damped payoff)
 
 A common practical method dampens the call payoff to ensure integrability:
+
 \[
 C(K) = e^{-rT}\,\mathbb{E}[(S_T-K)^+].
 \]
+
+
 
 Define \(k=\log K\). The Carr–Madan method prices calls using a Fourier transform of a damped call price:
 - introduce damping factor \(\alpha>0\),

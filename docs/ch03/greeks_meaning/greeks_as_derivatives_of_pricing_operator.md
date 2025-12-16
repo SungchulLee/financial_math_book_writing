@@ -8,17 +8,23 @@ A mathematically clean viewpoint is: pricing is an **operator** that maps a payo
 
 For a European payoff \(\Phi(S_T)\) under a risk-neutral model, define the pricing operator
 
+
 \[
 (\mathcal{P}\Phi)(t,S)
 :=
 \mathbb{E}^{t,S}\!\left[e^{-r(T-t)}\Phi(S_T)\right].
 \]
 
+
+
 Then the option price is
+
 
 \[
 V(t,S) = (\mathcal{P}\Phi)(t,S).
 \]
+
+
 
 ---
 
@@ -37,12 +43,15 @@ This separation matters because:
 
 Formally, for a parameter \(\theta\),
 
+
 \[
 \frac{\partial}{\partial \theta}(\mathcal{P}_\theta\Phi)
 =
 \frac{\partial}{\partial \theta}
 \mathbb{E}^{t,S}_\theta\!\left[e^{-r(T-t)}\Phi(S_T)\right].
 \]
+
+
 
 The derivative can be handled by:
 - differentiating the PDE satisfied by \(V\),
@@ -57,9 +66,12 @@ Each method leads to a distinct “representation formula” for Greeks.
 
 Think of \(\mathcal{P}\) as a linear map (for fixed model) acting on payoffs:
 
+
 \[
 \Phi \mapsto V(\cdot,\cdot).
 \]
+
+
 
 Greeks are then derivatives of \(\mathcal{P}\Phi\) with respect to:
 - the spatial variable \(S\),

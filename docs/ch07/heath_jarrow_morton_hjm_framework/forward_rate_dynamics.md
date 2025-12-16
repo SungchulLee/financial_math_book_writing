@@ -7,13 +7,19 @@ The Heath–Jarrow–Morton (HJM) framework models the **entire forward rate cur
 ## 1. Instantaneous forward rates
 
 Recall the instantaneous forward rate
+
 \[
 f(t,T) := -\partial_T \log P(t,T),
 \]
+
+
 so that
+
 \[
 P(t,T) = \exp\left(-\int_t^T f(t,u)\,du\right).
 \]
+
+
 
 In HJM, \(f(t,T)\) for all maturities \(T\ge t\) is the state variable.
 
@@ -22,9 +28,12 @@ In HJM, \(f(t,T)\) for all maturities \(T\ge t\) is the state variable.
 ## 2. Stochastic dynamics
 
 Under the risk-neutral measure, HJM postulates
+
 \[
 df(t,T) = \alpha(t,T)\,dt + \sum_{i=1}^n \sigma_i(t,T)\,dW_t^i,
 \]
+
+
 where:
 - \(\sigma_i(t,T)\) are volatility functions,
 - \(W^i\) are Brownian motions,

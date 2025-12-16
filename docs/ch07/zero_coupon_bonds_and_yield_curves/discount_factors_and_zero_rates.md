@@ -7,9 +7,12 @@ Yield curves summarize the time value of money and are foundational for pricing 
 ## 1. Discount factors
 
 A **discount factor** \(P(0,T)\) is the time-0 price of a zero-coupon bond paying 1 unit of currency at maturity \(T\):
+
 \[
 P(0,T) = \text{Price at }0\text{ of a claim paying }1\text{ at }T.
 \]
+
+
 
 Properties (in standard, positive-rate environments):
 - \(P(0,0)=1\),
@@ -23,11 +26,14 @@ In modern markets, negative rates can occur, but discount factors remain positiv
 ## 2. Zero (spot) rates
 
 The **continuously compounded zero rate** \(z(0,T)\) is defined by
+
 \[
 P(0,T) = e^{-z(0,T)\,T}
 \quad\Longleftrightarrow\quad
 z(0,T) = -\frac{1}{T}\log P(0,T).
 \]
+
+
 
 Alternative compounding conventions are common:
 
@@ -52,9 +58,12 @@ In practice, a full curve is built by **bootstrapping** from liquid market instr
 ## 4. Short rate intuition (optional)
 
 If \(r_t\) is the instantaneous short rate under the risk-neutral measure, then
+
 \[
 P(0,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s ds}\right].
 \]
+
+
 In deterministic-rate settings, this reduces to \(P(0,T)=e^{-\int_0^T r(s)ds}\).
 
 ---

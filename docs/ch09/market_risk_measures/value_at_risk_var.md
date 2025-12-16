@@ -8,10 +8,13 @@
 
 Let \(L\) denote the (random) loss of a portfolio over a given horizon.
 For a confidence level \(\alpha \in (0,1)\), the Value-at-Risk is defined as
+
 \[
 \text{VaR}_{\alpha}(L)
 = \inf\{x \in \mathbb{R} : \mathbb{P}(L \le x) \ge \alpha\}.
 \]
+
+
 
 It represents the smallest loss threshold that will not be exceeded with probability \(\alpha\).
 

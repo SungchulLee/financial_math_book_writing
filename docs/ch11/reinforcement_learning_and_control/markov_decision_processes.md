@@ -21,9 +21,12 @@ The system evolves according to the Markov property.
 
 A **policy** \(\pi(a\mid s)\) specifies how actions are chosen.
 The value function is
+
 \[
 V^{\pi}(s) = \mathbb{E}^{\pi}\left[ \sum_{t=0}^\infty \gamma^t r(s_t,a_t) \mid s_0=s \right].
 \]
+
+
 
 Optimal policies maximize expected cumulative reward.
 
@@ -32,9 +35,12 @@ Optimal policies maximize expected cumulative reward.
 ## 3. Bellman equations
 
 Optimal value functions satisfy the Bellman equation:
+
 \[
 V^*(s) = \max_a \left\{ r(s,a) + \gamma \sum_{s'} P(s'\mid s,a) V^*(s') \right\}.
 \]
+
+
 
 This recursion underlies dynamic programming and RL algorithms.
 

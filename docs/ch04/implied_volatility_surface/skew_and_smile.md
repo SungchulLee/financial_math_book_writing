@@ -10,9 +10,12 @@ The **volatility smile** and **volatility skew** describe how implied volatility
 
 A **volatility smile** refers to the U-shaped pattern where:
 
+
 $$
 \sigma_{\text{IV}}(K) > \sigma_{\text{IV}}(K_{\text{ATM}}) \quad \text{for } K \text{ far from } K_{\text{ATM}}
 $$
+
+
 
 Both deep in-the-money (ITM) and out-of-the-money (OTM) options have higher implied volatility than at-the-money (ATM) options.
 
@@ -24,20 +27,29 @@ Both deep in-the-money (ITM) and out-of-the-money (OTM) options have higher impl
 
 A **volatility skew** refers to a monotonic pattern where:
 
+
 $$
 \frac{\partial \sigma_{\text{IV}}}{\partial K} \neq 0
 $$
 
+
+
 **Downward skew (negative skew):**
+
 $$
 \frac{\partial \sigma_{\text{IV}}}{\partial K} < 0
 $$
+
+
 OTM puts (low strikes) have higher IV than OTM calls (high strikes).
 
 **Upward skew (positive skew):**
+
 $$
 \frac{\partial \sigma_{\text{IV}}}{\partial K} > 0
 $$
+
+
 Less common; sometimes seen in commodity markets.
 
 **Markets:** Equity indices exhibit strong downward skew
@@ -59,19 +71,28 @@ A **smirk** combines skew and smile:
 To compare across different spot levels and maturities, use **moneyness**:
 
 **Log-moneyness:**
+
 $$
 y = \ln\left(\frac{K}{F}\right) = \ln K - \ln S_0 - (r - q)T
 $$
 
+
+
 **Standardized moneyness:**
+
 $$
 m = \frac{K - F}{\sigma_{\text{ATM}} F \sqrt{T}}
 $$
 
+
+
 **Delta-moneyness:** Using Black-Scholes delta:
+
 $$
 \Delta_{\text{call}} = e^{-qT} \Phi(d_1)
 $$
+
+
 
 Common conventions: 25-delta, 10-delta for wings.
 
@@ -79,28 +100,40 @@ Common conventions: 25-delta, 10-delta for wings.
 
 Define the **smile function**:
 
+
 $$
 \sigma(y, T) := \sigma_{\text{IV}}(K = F e^y, T)
 $$
 
+
+
 where $y$ is log-moneyness and $F = S_0 e^{(r-q)T}$ is the forward.
 
 **Symmetry:** A symmetric smile satisfies:
+
 $$
 \sigma(y, T) = \sigma(-y, T)
 $$
 
+
+
 **Skew:** Measured by the first derivative:
+
 $$
 \mathcal{S}(T) := \frac{\partial \sigma}{\partial y}\bigg|_{y=0}
 $$
 
+
+
 Negative $\mathcal{S}$ indicates downward skew.
 
 **Curvature:** Measured by the second derivative:
+
 $$
 \mathcal{C}(T) := \frac{\partial^2 \sigma}{\partial y^2}\bigg|_{y=0}
 $$
+
+
 
 Positive $\mathcal{C}$ indicates convexity (smile).
 
@@ -108,9 +141,12 @@ Positive $\mathcal{C}$ indicates convexity (smile).
 
 For small $y$ (near ATM):
 
+
 $$
 \sigma(y, T) = \sigma_{\text{ATM}}(T) + \mathcal{S}(T) y + \frac{1}{2} \mathcal{C}(T) y^2 + O(y^3)
 $$
+
+
 
 **Interpretation:**
 - $\sigma_{\text{ATM}}$: Volatility level
@@ -124,21 +160,30 @@ $$
 From the Breeden-Litzenberger relationship, the smile encodes distributional properties:
 
 **Variance (second moment):**
+
 $$
 \text{Var}(S_T) \leftrightarrow \sigma_{\text{ATM}}^2 T
 $$
 
+
+
 **Skewness (third moment):**
+
 $$
 \text{Skew}(S_T) \propto -\mathcal{S}(T)
 $$
 
+
+
 Negative skew parameter $\mathcal{S} < 0$ → negative distributional skewness.
 
 **Kurtosis (fourth moment):**
+
 $$
 \text{Kurt}(S_T) - 3 \propto \mathcal{C}(T)
 $$
+
+
 
 Positive curvature $\mathcal{C} > 0$ → excess kurtosis (fat tails).
 
@@ -237,9 +282,12 @@ As stock price $S$ falls, debt-to-equity ratio $D/E$ increases, making equity ri
 **Mathematical formulation:**  
 If $\sigma = \sigma(S)$ with $\frac{\partial \sigma}{\partial S} < 0$, then:
 
+
 $$
 dS = \mu S dt + \sigma(S) S dW
 $$
+
+
 
 generates negative correlation between returns and volatility.
 
@@ -265,9 +313,12 @@ Discontinuous price movements (earnings, geopolitical shocks) add kurtosis to th
 
 **Mathematical model:** Jump-diffusion:
 
+
 $$
 dS = \mu S dt + \sigma S dW + S dJ
 $$
+
+
 
 where $J$ is a compound Poisson process.
 
@@ -286,9 +337,12 @@ Investors demand compensation for bearing volatility risk, leading to a wedge be
 **Mathematical formulation:**  
 Risk-neutral density $q(S)$ differs from physical density $p(S)$ by:
 
+
 $$
 q(S) = \frac{p(S) \cdot \xi(S)}{\int p(S') \xi(S') dS'}
 $$
+
+
 
 where $\xi(S)$ is the pricing kernel (marginal utility).
 
@@ -301,9 +355,12 @@ If $\xi(S)$ is decreasing and convex, generates both skew and smile.
 
 The **SVI parametrization** (Gatheral, 2004) models total variance:
 
+
 $$
 w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)
 $$
+
+
 
 where:
 - $y$: Log-moneyness
@@ -314,9 +371,12 @@ where:
 - $\sigma$: Smile width
 
 **Implied volatility:**
+
 $$
 \sigma_{\text{IV}}(y, T) = \sqrt{\frac{w(y)}{T}}
 $$
+
+
 
 **Advantages:**
 - Explicit formula
@@ -330,9 +390,12 @@ $$
 
 The **SSVI parametrization** (Gatheral-Jacquier, 2014) extends SVI to the entire surface:
 
+
 $$
 w(y, T) = \frac{T}{2} \left\{ 1 + \rho \varphi(T) y + \sqrt{(\varphi(T) y + \rho)^2 + (1 - \rho^2)} \right\}
 $$
+
+
 
 where $\varphi(T)$ controls the ATM curvature as a function of maturity.
 
@@ -345,6 +408,7 @@ where $\varphi(T)$ controls the ATM curvature as a function of maturity.
 
 The **SABR (Stochastic Alpha Beta Rho)** model:
 
+
 $$
 \begin{align}
 dF_t &= \sigma_t F_t^\beta dW_t^1 \\
@@ -353,11 +417,16 @@ d\langle W^1, W^2 \rangle_t &= \rho dt
 \end{align}
 $$
 
+
+
 generates an approximate implied volatility formula:
+
 
 $$
 \sigma_{\text{IV}}(K) \approx \frac{\alpha}{(FK)^{(1-\beta)/2}} \frac{z}{x(z)} \left\{ 1 + \left[ \frac{(1-\beta)^2}{24} \frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho \beta \nu \alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24} \nu^2 \right] T \right\}
 $$
+
+
 
 where $z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K)$ and $x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)$.
 
@@ -383,9 +452,12 @@ In FX markets, options are quoted by delta rather than strike:
 
 The **risk reversal (RR)** measures the skew:
 
+
 $$
 \text{RR}_{25} = \sigma_{\text{IV}}(\text{25-delta call}) - \sigma_{\text{IV}}(\text{25-delta put})
 $$
+
+
 
 **Interpretation:**
 - $\text{RR} < 0$: Downward skew (put IV > call IV)
@@ -400,9 +472,12 @@ $$
 
 The **butterfly (BF)** measures the curvature:
 
+
 $$
 \text{BF}_{25} = \frac{\sigma_{\text{IV}}(\text{25-delta call}) + \sigma_{\text{IV}}(\text{25-delta put})}{2} - \sigma_{\text{IV}}(\text{ATM})
 $$
+
+
 
 **Interpretation:**
 - $\text{BF} > 0$: Smile (wings elevated relative to ATM)
@@ -428,9 +503,12 @@ Different conventions give slightly different strikes and IVs. Market standard v
 
 **Definition:** Implied volatility remains constant for each fixed strike as spot moves:
 
+
 $$
 \sigma_{\text{IV}}(K, t) = \sigma_{\text{IV}}(K, 0) \quad \text{independent of } S_t
 $$
+
+
 
 **Consequence:** As spot moves, the smile shifts in moneyness space.
 
@@ -442,9 +520,12 @@ $$
 
 **Definition:** Implied volatility remains constant for each fixed delta as spot moves:
 
+
 $$
 \sigma_{\text{IV}}(\Delta, t) = \sigma_{\text{IV}}(\Delta, 0)
 $$
+
+
 
 **Consequence:** The smile moves with the spot in strike space, maintaining constant shape in delta coordinates.
 
@@ -456,9 +537,12 @@ $$
 
 **Definition:** Implied volatility depends only on moneyness $K/S$:
 
+
 $$
 \sigma_{\text{IV}}(K/S, t) = \sigma_{\text{IV}}(K/S, 0)
 $$
+
+
 
 **Intermediate case:** Smile shifts partially with spot.
 
@@ -470,9 +554,12 @@ $$
 
 For $T \to 0$, the smile is determined by the local volatility at the initial spot:
 
+
 $$
 \sigma_{\text{IV}}(K, T) \sim \sigma_{\text{loc}}(K, 0) \quad \text{as } T \to 0
 $$
+
+
 
 **Sharp smile:** If $\sigma_{\text{loc}}(K, 0)$ varies steeply with $K$, the short-dated smile is pronounced.
 
@@ -480,13 +567,19 @@ $$
 
 For $|y| = |\ln(K/F)| \to \infty$, **Lee's moment formula** gives:
 
+
 $$
 \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 p_-
 $$
 
+
+
+
 $$
 \lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 p_+
 $$
+
+
 
 where $p_\pm$ are related to the moments of the risk-neutral density.
 
@@ -499,14 +592,20 @@ The volatility smile and skew reveal:
 ### **Empirical patterns:**
 
 **Equity:** Downward skew (crashophobia, leverage effect)
+
 $$
 \sigma_{\text{IV}}(K) \text{ decreasing in } K
 $$
 
+
+
 **FX:** Symmetric smile (two-sided jump risk)
+
 $$
 \sigma_{\text{IV}}(y) = \sigma_{\text{IV}}(-y)
 $$
+
+
 
 **Commodities:** Variable (supply/demand asymmetries)
 

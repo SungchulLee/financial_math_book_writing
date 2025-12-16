@@ -10,17 +10,24 @@ Implied volatility represents one of the most fundamental concepts in modern opt
 
 Consider the Black-Scholes pricing functional for a European call option:
 
+
 $$
 \mathcal{C}: \mathbb{R}_+ \to \mathbb{R}_+, \quad \sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)
 $$
 
+
+
 where the Black-Scholes price is given explicitly by:
+
 
 $$
 C_{\text{BS}}(S, K, T, r, \sigma) = S \Phi(d_1) - K e^{-rT} \Phi(d_2)
 $$
 
+
+
 with
+
 
 $$
 \begin{align}
@@ -28,6 +35,8 @@ d_1 &= \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} \\
 d_2 &= d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}
 \end{align}
 $$
+
+
 
 and $\Phi(\cdot)$ denoting the standard normal cumulative distribution function.
 
@@ -38,22 +47,31 @@ The Black-Scholes call price $C_{\text{BS}}$ is strictly increasing in $\sigma$ 
 
 *Proof.* Computing the derivative with respect to volatility (vega):
 
+
 $$
 \frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} > 0
 $$
+
+
 
 where $\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$ is the standard normal density. Since $\phi(d_1) > 0$ for all $d_1 \in \mathbb{R}$, we have strict positivity. □
 
 **Proposition 4.1.2** (Range of the Pricing Map)  
 For fixed $(S, K, T, r)$, the pricing map $\sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)$ satisfies:
 
+
 $$
 \lim_{\sigma \to 0^+} C_{\text{BS}} = \max(S - Ke^{-rT}, 0) = C_{\text{intrinsic}}
 $$
 
+
+
+
 $$
 \lim_{\sigma \to \infty} C_{\text{BS}} = S
 $$
+
+
 
 *Proof.* For the lower limit, as $\sigma \to 0^+$:
 - If $S > Ke^{-rT}$: $d_1, d_2 \to +\infty$, so $\Phi(d_1), \Phi(d_2) \to 1$
@@ -69,15 +87,21 @@ For the upper limit, as $\sigma \to \infty$:
 
 The pricing map operates between specific spaces:
 
+
 $$
 \mathcal{C}: (0, \infty) \to (C_{\text{intrinsic}}, S)
 $$
 
+
+
 This characterizes the **image** of the Black-Scholes formula: any observable call price must satisfy the strict bounds:
+
 
 $$
 \max(S - Ke^{-rT}, 0) < C_{\text{market}} < S
 $$
+
+
 
 The strict inequalities reflect the time value of optionality.
 
@@ -87,15 +111,21 @@ The strict inequalities reflect the time value of optionality.
 
 Given an observed market price $C_{\text{market}}$ satisfying the no-arbitrage bounds, the **implied volatility** $\sigma_{\text{IV}}$ is defined as the unique solution to:
 
+
 $$
 C_{\text{market}} = C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}})
 $$
 
+
+
 Equivalently, we define the inverse pricing map:
+
 
 $$
 \sigma_{\text{IV}} = \mathcal{C}^{-1}(C_{\text{market}})
 $$
+
+
 
 where $\mathcal{C}^{-1}: (C_{\text{intrinsic}}, S) \to (0, \infty)$ is the functional inverse.
 
@@ -106,9 +136,12 @@ The existence and uniqueness of the inverse map follows from:
 **Theorem 4.1.1** (Invertibility of Black-Scholes Pricing)  
 For any market price $C_{\text{market}} \in (C_{\text{intrinsic}}, S)$, there exists a unique $\sigma_{\text{IV}} \in (0, \infty)$ such that:
 
+
 $$
 C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}}) = C_{\text{market}}
 $$
+
+
 
 *Proof.* This follows immediately from:
 1. **Monotonicity** (Proposition 4.1.1): $\partial C_{\text{BS}}/\partial \sigma > 0$ ensures injectivity
@@ -124,15 +157,21 @@ The implied volatility map $\mathcal{C}^{-1}$ is $C^\infty$ smooth on its domain
 
 *Proof.* By the Inverse Function Theorem, since:
 
+
 $$
 \frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} > 0
 $$
 
+
+
 is strictly positive and smooth in $\sigma$, the inverse function is $C^\infty$ with derivative:
+
 
 $$
 \frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\partial C_{\text{BS}}/\partial \sigma\big|_{\sigma=\sigma_{\text{IV}}}} = \frac{1}{S \phi(d_1(\sigma_{\text{IV}})) \sqrt{T}}
 $$
+
+
 
 Higher derivatives exist by repeated application. □
 
@@ -142,15 +181,21 @@ Higher derivatives exist by repeated application. □
 
 The Black-Scholes formula establishes a diffeomorphism:
 
+
 $$
 \Psi: (0, \infty) \to (C_{\text{intrinsic}}, S), \quad \sigma \mapsto C_{\text{BS}}(\sigma)
 $$
 
+
+
 with smooth inverse:
+
 
 $$
 \Psi^{-1}: (C_{\text{intrinsic}}, S) \to (0, \infty), \quad C \mapsto \sigma_{\text{IV}}
 $$
+
+
 
 This perspective reveals implied volatility as a **coordinate transformation**: rather than quoting option prices in dollars, we quote them in units of volatility.
 
@@ -193,17 +238,23 @@ From this perspective:
 
 The inversion concept extends beyond vanilla calls. For any path-independent payoff $\Psi(S_T)$, under Black-Scholes we have:
 
+
 $$
 V_{\text{BS}}(S, T, r, \sigma) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\Psi(S_T)]
 $$
+
+
 
 where $S_T = S e^{(r - \sigma^2/2)T + \sigma W_T}$ under the risk-neutral measure $\mathbb{Q}$.
 
 If $V_{\text{BS}}$ is strictly monotone in $\sigma$ (which requires $\Psi$ to be non-constant), we can define:
 
+
 $$
 \sigma_{\text{IV}}^{\Psi} = \text{solution to } V_{\text{market}} = V_{\text{BS}}(S, T, r, \sigma)
 $$
+
+
 
 ### Monotonicity Conditions for General Payoffs
 
@@ -212,9 +263,12 @@ The Black-Scholes price $V_{\text{BS}}$ is strictly increasing in $\sigma$ if an
 
 *Proof sketch.* The vega is:
 
+
 $$
 \frac{\partial V_{\text{BS}}}{\partial \sigma} = e^{-rT} \mathbb{E}^{\mathbb{Q}}\left[\Psi(S_T) \frac{\partial \ln S_T}{\partial \sigma}\right]
 $$
+
+
 
 Using $\partial \ln S_T / \partial \sigma = -\sigma T + W_T$, this becomes a covariance term. Non-linearity of $\Psi$ ensures non-degeneracy. □
 
@@ -224,9 +278,12 @@ Using $\partial \ln S_T / \partial \sigma = -\sigma T + W_T$, this becomes a cov
 
 In practice, $\sigma_{\text{IV}}$ is computed by solving:
 
+
 $$
 C_{\text{BS}}(\sigma) - C_{\text{market}} = 0
 $$
+
+
 
 Standard methods include:
 - **Newton-Raphson:** Fast convergence using vega as derivative
@@ -237,9 +294,12 @@ Standard methods include:
 
 Given current iterate $\sigma_n$:
 
+
 $$
 \sigma_{n+1} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{\partial C_{\text{BS}}/\partial \sigma\big|_{\sigma=\sigma_n}} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{S \phi(d_1) \sqrt{T}}
 $$
+
+
 
 **Convergence:** Quadratic convergence is guaranteed due to $C_{\text{BS}}$ being strictly convex in $\sigma$ (positive vega derivative, i.e., vomma $> 0$).
 
@@ -247,9 +307,12 @@ $$
 
 The implied volatility establishes a fundamental coordinate transformation:
 
+
 $$
 \text{Option Price Space} \xrightarrow{\mathcal{C}^{-1}} \text{Volatility Space}
 $$
+
+
 
 This transformation:
 - Is **well-defined** via monotonicity and continuity of Black-Scholes pricing

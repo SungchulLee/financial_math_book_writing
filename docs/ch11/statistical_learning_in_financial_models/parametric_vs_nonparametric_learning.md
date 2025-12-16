@@ -7,9 +7,12 @@ Statistical learning methods used in financial modeling can broadly be classifie
 ## 1. Parametric learning
 
 Parametric models assume a fixed functional form with a finite number of parameters:
+
 \[
 f(x; \theta), \quad \theta \in \mathbb{R}^d.
 \]
+
+
 
 Examples include:
 - linear and generalized linear models,

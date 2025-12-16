@@ -7,9 +7,12 @@ The martingale structure of default processes is formalized using **compensators
 ## 1. Default indicator process
 
 Define the default indicator
+
 \[
 H_t := \mathbf{1}_{\{\tau \le t\}}.
 \]
+
+
 
 This is an increasing jump process that jumps from 0 to 1 at default.
 
@@ -18,14 +21,20 @@ This is an increasing jump process that jumps from 0 to 1 at default.
 ## 2. Compensator of the default process
 
 Under intensity \(\lambda_t\), the **compensator** of \(H_t\) is
+
 \[
 A_t := \int_0^{t \wedge \tau} \lambda_s ds.
 \]
 
+
+
 The compensated process
+
 \[
 M_t := H_t - A_t
 \]
+
+
 is a \((\mathcal{G}_t, \mathbb{Q})\)-martingale.
 
 ---

@@ -22,29 +22,41 @@ The **superhedging price** is the minimum initial capital required to construct 
 
 **Price Process**: The discounted price process is:
 
+
 $$
 \tilde{S}_t = e^{-rt} S_t
 $$
+
+
 
 **Trading Strategy**: A predictable process $\theta_t = (\theta_t^0, \theta_t^1, \ldots, \theta_t^d)$ representing portfolio holdings.
 
 **Value Process**: The portfolio value is:
 
+
 $$
 V_t^{\theta} = \theta_t^0 S_t^0 + \sum_{i=1}^d \theta_t^i S_t^i
 $$
 
+
+
 **Self-Financing**: The strategy $\theta$ is self-financing if:
+
 
 $$
 dV_t^{\theta} = \theta_t^0 dS_t^0 + \sum_{i=1}^d \theta_t^i dS_t^i
 $$
 
+
+
 or equivalently:
+
 
 $$
 d\tilde{V}_t^{\theta} = \sum_{i=1}^d \theta_t^i d\tilde{S}_t^i
 $$
+
+
 
 ### Admissible Strategies
 
@@ -65,15 +77,21 @@ Denote the set of admissible strategies by $\mathcal{A}$.
 
 **Superhedging Strategy**: A strategy $\theta \in \mathcal{A}$ **superhedges** $\xi$ if:
 
+
 $$
 V_T^{\theta} \geq \xi \quad \mathbb{P}\text{-almost surely}
 $$
 
+
+
 **Superhedging Price** (Seller's Price): The minimum initial capital needed to superhedge:
+
 
 $$
 \pi^{\text{sup}}(\xi) = \inf \left\{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \geq \xi \, \mathbb{P}\text{-a.s.} \right\}
 $$
+
+
 
 **Interpretation**: 
 - $\pi^{\text{sup}}(\xi)$ is the minimum amount a seller needs to hedge the obligation to deliver $\xi$ at time $T$
@@ -84,15 +102,21 @@ $$
 
 **Sub-Replicating Strategy**: A strategy $\theta$ **sub-replicates** $\xi$ if:
 
+
 $$
 V_T^{\theta} \leq \xi \quad \mathbb{P}\text{-almost surely}
 $$
 
+
+
 **Sub-Replication Price** (Buyer's Price):
+
 
 $$
 \pi^{\text{sub}}(\xi) = \sup \left\{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \leq \xi \, \mathbb{P}\text{-a.s.} \right\}
 $$
+
+
 
 **Interpretation**:
 - $\pi^{\text{sub}}(\xi)$ is the maximum amount a buyer can guarantee from selling a portfolio that is dominated by $\xi$
@@ -102,9 +126,12 @@ $$
 
 **Proposition**: Under no-arbitrage:
 
+
 $$
 \pi^{\text{sub}}(\xi) \leq \pi^{\text{sup}}(\xi)
 $$
+
+
 
 **Proof**: Suppose $\pi^{\text{sub}}(\xi) > \pi^{\text{sup}}(\xi)$. Then:
 - Sell the sub-replicating portfolio for $\pi^{\text{sub}}(\xi)$
@@ -115,9 +142,12 @@ $$
 
 **Complete Markets**: When the market is complete:
 
+
 $$
 \pi^{\text{sub}}(\xi) = \pi^{\text{sup}}(\xi)
 $$
+
+
 
 and this common value is the unique arbitrage-free price.
 
@@ -130,15 +160,21 @@ and this common value is the unique arbitrage-free price.
 **Equivalent Martingale Measure** (EMM): A probability measure $\mathbb{Q}$ on $(\Omega, \mathcal{F}_T)$ is an EMM if:
 1. $\mathbb{Q} \sim \mathbb{P}$ (equivalent to the physical measure)
 2. The discounted price process $\tilde{S}_t$ is a $\mathbb{Q}$-martingale:
+
    $$
    \tilde{S}_t = \mathbb{E}_{\mathbb{Q}}[\tilde{S}_T | \mathcal{F}_t]
    $$
 
+
+
 **Set of EMMs**: Denote:
+
 
 $$
 \mathcal{M} = \{ \mathbb{Q}: \mathbb{Q} \text{ is an EMM} \}
 $$
+
+
 
 ### Fundamental Theorem of Asset Pricing
 
@@ -156,9 +192,12 @@ $$
 
 **Theorem** (Superhedging Duality): Under appropriate technical conditions:
 
+
 $$
 \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
 $$
+
+
 
 **Interpretation**: 
 - The minimum cost to superhedge equals the maximum expected discounted payoff over all martingale measures
@@ -170,15 +209,21 @@ $$
    
    For any superhedging strategy $\theta$ with $V_0^{\theta} = v$ and $V_T^{\theta} \geq \xi$:
    
+
    $$
    e^{-rT} V_T^{\theta} = \tilde{V}_T^{\theta} \geq e^{-rT} \xi
    $$
+
+
    
    For any $\mathbb{Q} \in \mathcal{M}$, since $\tilde{V}_t^{\theta}$ is a $\mathbb{Q}$-supermartingale (under self-financing):
    
+
    $$
    v = V_0^{\theta} = \tilde{V}_0^{\theta} \geq \mathbb{E}_{\mathbb{Q}}[\tilde{V}_T^{\theta}] \geq \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
    $$
+
+
    
    Taking infimum over all superhedging strategies yields the result.
 
@@ -206,9 +251,12 @@ For the duality to hold, we typically require:
 
 **Theorem**: Under similar conditions:
 
+
 $$
 \pi^{\text{sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
 $$
+
+
 
 **Proof**: Similar to superhedging case, with inequalities reversed.
 
@@ -216,15 +264,21 @@ $$
 
 **Arbitrage-Free Price Interval**:
 
+
 $$
 [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi], \, \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \right]
 $$
 
+
+
 **Width of Spread**: The spread reflects model uncertainty:
+
 
 $$
 \text{Spread}(\xi) = \pi^{\text{sup}}(\xi) - \pi^{\text{sub}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] - \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
 $$
+
+
 
 **Complete Markets**: Spread = 0 (unique price)
 
@@ -243,25 +297,34 @@ $$
 
 **EMM Characterization**: For $\mathbb{Q}$ to be a martingale measure:
 
+
 $$
 S_0 = \mathbb{E}_{\mathbb{Q}}[S_1] = 120 q + 90(1-q) = 100
 $$
+
+
 
 Solving: $q = 1/3$.
 
 Since the EMM is unique, the market is complete:
 
+
 $$
 \pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \mathbb{E}_{\mathbb{Q}}[\xi] = \frac{1}{3} \cdot 1 + \frac{2}{3} \cdot 0 = \frac{1}{3}
 $$
+
+
 
 ### Example 2: Incomplete Market with Volatility Uncertainty
 
 **Model**: Stock follows:
 
+
 $$
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
 $$
+
+
 
 where $\sigma_t \in [\sigma_{\min}, \sigma_{\max}]$ is uncertain.
 
@@ -271,31 +334,43 @@ where $\sigma_t \in [\sigma_{\min}, \sigma_{\max}]$ is uncertain.
 
 **Superhedging Price**: 
 
+
 $$
 \pi^{\text{sup}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS-Digital}(S_0, K, \sigma, T)
 $$
+
+
 
 where BS-Digital is the Black-Scholes digital call price.
 
 **Maximizing Volatility**: Since digital option value typically increases with volatility:
 
+
 $$
 \pi^{\text{sup}} = \text{BS-Digital}(S_0, K, \sigma_{\max}, T)
 $$
 
+
+
 **Sub-Replication Price**:
+
 
 $$
 \pi^{\text{sub}} = \text{BS-Digital}(S_0, K, \sigma_{\min}, T)
 $$
 
+
+
 ### Example 3: Barrier Option
 
 **Claim**: Up-and-out call with barrier $H > S_0$ and strike $K < H$:
 
+
 $$
 \xi = (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t < H\}}
 $$
+
+
 
 **Challenge**: Barrier options are strongly path-dependent; hedging requires continuous monitoring.
 
@@ -305,17 +380,23 @@ $$
 
 **Superhedging Price**: Can be computed using PDE methods:
 
+
 $$
 \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
 $$
+
+
 
 In Black-Scholes model, this reduces to the standard barrier option formula.
 
 **Model Uncertainty**: With volatility uncertainty $\sigma \in [\sigma_{\min}, \sigma_{\max}]$:
 
+
 $$
 \pi^{\text{sup}}(\xi) = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} C^{\text{UO}}(S_0, K, H, \sigma, T)
 $$
+
+
 
 where $C^{\text{UO}}$ is the up-and-out call price under constant volatility $\sigma$.
 
@@ -327,11 +408,15 @@ where $C^{\text{UO}}$ is the up-and-out call price under constant volatility $\s
 
 **Martingale Constraints**: For each time step and state:
 
+
 $$
 \tilde{S}_t(\omega) = \sum_{j: \omega_j \succ \omega} \mathbb{Q}(\omega_j | \omega) \tilde{S}_{t+1}(\omega_j)
 $$
 
+
+
 **LP Formulation**:
+
 
 $$
 \begin{aligned}
@@ -342,6 +427,8 @@ $$
 \end{aligned}
 $$
 
+
+
 **Dual Problem**: Corresponds to finding the superhedging strategy (portfolio weights).
 
 ### Monte Carlo with Linear Programming
@@ -350,9 +437,12 @@ $$
 
 **Martingale Constraints**: For each path $i$ and time $t_j$:
 
+
 $$
 S^{(i)}(t_j) = \sum_{k=1}^N p_{ik}(j) S^{(k)}(t_{j+1})
 $$
+
+
 
 where $p_{ik}(j)$ represents transition probabilities.
 
@@ -362,17 +452,23 @@ where $p_{ik}(j)$ represents transition probabilities.
 
 **Bellman Equation**: For Markovian models, the superhedging price satisfies:
 
+
 $$
 V(t, S) = \sup_{\theta} \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \left[ V(t+dt, S+dS) \right]
 $$
+
+
 
 where the supremum is over trading strategies and infimum over model parameters.
 
 **HJB Equation**: In continuous time:
 
+
 $$
 \frac{\partial V}{\partial t} + \sup_{\theta} \left\{ \theta \sigma S \frac{\partial^2 V}{\partial S^2} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right\} = 0
 $$
+
+
 
 with terminal condition $V(T, S) = \xi(S)$.
 
@@ -392,9 +488,12 @@ with terminal condition $V(T, S) = \xi(S)$.
 
 **Alternative Objective**: Instead of perfect replication, minimize expected squared hedging error:
 
+
 $$
 \min_{\theta} \mathbb{E}_{\mathbb{P}}\left[ (V_T^{\theta} - \xi)^2 \right]
 $$
+
+
 
 **Solution**: Involves projecting $\xi$ onto the space of attainable claims, leading to the **variance-optimal** hedging strategy.
 
@@ -404,9 +503,12 @@ $$
 
 **Fenchel-Rockafellar Duality**: The superhedging problem can be formulated as:
 
+
 $$
 \inf \{ c: (c, -\xi) \in \mathcal{C} \}
 $$
+
+
 
 where $\mathcal{C}$ is the cone of claims attainable with non-negative cost.
 
@@ -422,21 +524,30 @@ where $\mathcal{C}$ is the cone of claims attainable with non-negative cost.
 
 **Price**: 
 
+
 $$
 \pi^{\text{BS}}(\xi) = \mathbb{E}_{\mathbb{Q}^{\text{BS}}}[e^{-rT} \xi]
 $$
 
+
+
 **Relationship to Superhedging**: When $\mathcal{M} = \{\mathbb{Q}^{\text{BS}}\}$:
+
 
 $$
 \pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \pi^{\text{BS}}(\xi)
 $$
 
+
+
 **Model Uncertainty**: With volatility uncertainty:
+
 
 $$
 \pi^{\text{BS}}(\xi; \sigma) \in [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)]
 $$
+
+
 
 for $\sigma \in [\sigma_{\min}, \sigma_{\max}]$.
 
@@ -444,9 +555,12 @@ for $\sigma \in [\sigma_{\min}, \sigma_{\max}]$.
 
 **Indifference Price**: The price $p$ at which an agent is indifferent between trading and not trading:
 
+
 $$
 U(W) = \mathbb{E}[u(W_T^{p, \theta})]
 $$
+
+
 
 **Comparison**: 
 - Superhedging: Model-free, robust, but often conservative
@@ -458,19 +572,28 @@ $$
 
 **Setup**: Restrict EMMs to those satisfying additional constraints, e.g., Sharpe ratio bounds:
 
+
 $$
 \mathcal{M}_{\text{GD}} = \left\{ \mathbb{Q} \in \mathcal{M}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}} \right\| \leq K \right\}
 $$
 
+
+
 **Good-Deal Bounds**:
+
 
 $$
 \pi^{\text{GD, sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}_{\text{GD}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \geq \pi^{\text{sub}}(\xi)
 $$
 
+
+
+
 $$
 \pi^{\text{GD, sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}_{\text{GD}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \leq \pi^{\text{sup}}(\xi)
 $$
+
+
 
 **Interpretation**: Good-deal bounds tighten arbitrage-free bounds by excluding measures corresponding to "too good" investment opportunities.
 
@@ -482,17 +605,23 @@ $$
 
 **Shadow Price**: The superhedging price becomes:
 
+
 $$
 \pi^{\text{sup}}(\xi; \lambda, \mu) \geq \pi^{\text{sup}}(\xi; 0, 0)
 $$
+
+
 
 with strict inequality reflecting the cost of trading.
 
 **Asymptotics**: As $\lambda, \mu \to 0$:
 
+
 $$
 \pi^{\text{sup}}(\xi; \lambda, \mu) \approx \pi^{\text{sup}}(\xi; 0, 0) + O(\sqrt{\lambda + \mu})
 $$
+
+
 
 under regular conditions.
 
@@ -502,15 +631,21 @@ under regular conditions.
 
 **Superhedging Price**: 
 
+
 $$
 \pi^{\text{sup}}_{t_0, \ldots, t_N}(\xi) \geq \pi^{\text{sup}}_{\text{continuous}}(\xi)
 $$
 
+
+
 **Convergence**: As the mesh size $\max_i (t_{i+1} - t_i) \to 0$:
+
 
 $$
 \pi^{\text{sup}}_{t_0, \ldots, t_N}(\xi) \to \pi^{\text{sup}}_{\text{continuous}}(\xi)
 $$
+
+
 
 ### Multiple Assets
 
@@ -518,9 +653,12 @@ $$
 
 **Superhedging Price**: 
 
+
 $$
 \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
 $$
+
+
 
 remains valid.
 
@@ -530,17 +668,23 @@ remains valid.
 
 **General Path-Dependent Payoff**: 
 
+
 $$
 \xi = g((S_t)_{0 \leq t \leq T})
 $$
+
+
 
 **Superhedging**: Requires strategies adapted to the entire path, not just terminal value.
 
 **Example**: Lookback option:
 
+
 $$
 \xi = \max_{0 \leq t \leq T} S_t - K
 $$
+
+
 
 **Superhedging PDE**: For Markovian path functionals, solve HJB equation in augmented state space $(t, S, M)$ where $M = \max_{0 \leq s \leq t} S_s$.
 
@@ -560,9 +704,12 @@ $$
 
 **Robust Price**:
 
+
 $$
 [\pi^{\text{sub}}, \pi^{\text{sup}}] = \text{arbitrage-free price range}
 $$
+
+
 
 ### Case Study 2: Credit Default Swaps (CDS)
 
@@ -574,9 +721,12 @@ $$
 
 **Robust Pricing**:
 
+
 $$
 \pi^{\text{sup}} = \sup_{\lambda \in \Lambda} \mathbb{E}_{\mathbb{Q}^{\lambda}}\left[ e^{-rT} (1-R) \mathbb{1}_{\{\tau < T\}} \right]
 $$
+
+
 
 where $\tau$ is the default time.
 
@@ -633,14 +783,20 @@ Extract optimal hedging strategy from dual solution:
 ### Fundamental Results
 
 1. **Duality Principle**: Dynamic superhedging price equals static optimization over martingale measures:
+
    $$
    \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
    $$
 
+
+
 2. **No-Arbitrage Bounds**: The arbitrage-free price range is:
+
    $$
    [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi], \, \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \right]
    $$
+
+
 
 3. **Completeness**: Market completeness $\Leftrightarrow$ Unique EMM $\Leftrightarrow$ Zero bid-ask spread
 

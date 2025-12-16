@@ -6,16 +6,20 @@ Jump-diffusions incorporate discontinuous moves and generate heavy tails and sho
 
 ## 1. Merton-Type Model
 
+
 \[
 \boxed{
 \frac{\mathrm{d}S_t}{S_{t^-}}=(r-\lambda\kappa)\,\mathrm{d}t+\sigma\,\mathrm{d}W_t+\mathrm{d}J_t,
 }
 \]
+
+
 with Poisson intensity \(\lambda\), jump multiplier \(Y\), and \(\kappa=\mathbb{E}[Y-1]\) ensuring the discounted price is a martingale.
 
 ---
 
 ## 2. Pricing PIDE
+
 
 \[
 \boxed{
@@ -26,6 +30,8 @@ with Poisson intensity \(\lambda\), jump multiplier \(Y\), and \(\kappa=\mathbb{
 +\lambda\int_{\mathbb{R}_+}\bigl(V(t,Sy)-V(t,S)\bigr)\,\nu(\mathrm{d}y)=0.
 }
 \]
+
+
 
 ---
 

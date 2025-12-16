@@ -6,20 +6,26 @@ A numerical scheme is assessed by:
 - **Convergence**: approach to the true solution as the mesh refines.
 
 A guiding principle for linear well-posed problems is:
+
 \[
 \boxed{\text{Consistency}+\text{Stability}\Longrightarrow\text{Convergence}.}
 \]
+
+
 
 ---
 
 ## 1. Consistency
 
 For a smooth test function \(u\), a scheme is consistent if the local truncation error tends to zero:
+
 \[
 \boxed{
 \mathcal{D}_\Delta u = \mathcal{D}u + o(1)\quad (\Delta\to 0),
 }
 \]
+
+
 where \(\mathcal{D}u=0\) is the PDE.
 
 ---
@@ -27,9 +33,12 @@ where \(\mathcal{D}u=0\) is the PDE.
 ## 2. Stability
 
 For a linear recursion \(u^{n+1}=Bu^n+g^n\), stability requires a uniform bound
+
 \[
 \boxed{\|B^n\|\le C}
 \]
+
+
 in a suitable norm, uniformly as mesh sizes vanish.
 
 Explicit schemes often require CFL-type restrictions; implicit schemes are typically more stable.

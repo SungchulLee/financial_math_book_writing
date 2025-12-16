@@ -7,10 +7,13 @@ Calibration error affects not only prices but also **Greeks**, which are used fo
 ## 1. Greeks as model-dependent objects
 
 Greeks are computed under the calibrated model:
+
 \[
 \Delta = \partial_S P(\hat\theta), \quad
 \text{Vega} = \partial_\sigma P(\hat\theta), \; \text{etc.}
 \]
+
+
 
 If \(\hat\theta\) is unstable, Greeks inherit this instability.
 
@@ -19,11 +22,14 @@ If \(\hat\theta\) is unstable, Greeks inherit this instability.
 ## 2. Sensitivity of Greeks to parameters
 
 A second-order effect appears:
+
 \[
 \Delta_{\text{true}} - \Delta_{\text{model}}
 \approx
 \nabla_\theta(\partial_S P)^{\top}(\hat\theta-\theta^\star).
 \]
+
+
 
 Thus, even small parameter errors can materially distort hedge ratios.
 

@@ -7,9 +7,12 @@ Survival probabilities are central objects in reduced-form credit models. They d
 ## 1. Definition
 
 The **survival probability** up to time \(T\) is
+
 \[
 S(t,T) := \mathbb{Q}(\tau > T \mid \mathcal{F}_t).
 \]
+
+
 
 It is the complement of the cumulative default probability.
 
@@ -18,6 +21,7 @@ It is the complement of the cumulative default probability.
 ## 2. Relation to intensity
 
 Under standard regularity assumptions,
+
 \[
 S(t,T)
 = \mathbb{E}^{\mathbb{Q}}\left[
@@ -26,10 +30,15 @@ S(t,T)
 \right].
 \]
 
+
+
 If \(\lambda_t\) is deterministic,
+
 \[
 S(t,T) = \exp\left(-\int_t^T \lambda_s ds\right).
 \]
+
+
 
 ---
 

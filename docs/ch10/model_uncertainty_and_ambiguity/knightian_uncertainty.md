@@ -10,9 +10,12 @@ Knightian uncertainty, named after economist Frank Knight (1921), represents a f
 
 **Risk**: Situations where the probability distribution over outcomes is known or can be objectively estimated from data. This corresponds to the classical probabilistic framework where:
 
+
 $$
 \mathbb{E}[X] = \int_{\Omega} X(\omega) \, dP(\omega)
 $$
+
+
 
 for a known probability measure $P$.
 
@@ -35,9 +38,12 @@ Savage (1954) axiomatized decision-making under uncertainty using a unique subje
 
 **Savage's Axioms**: Lead to a representation:
 
+
 $$
 U(f) = \int_{\Omega} u(f(\omega)) \, dP(\omega)
 $$
+
+
 
 where $u$ is a utility function and $P$ is a unique subjective probability measure.
 
@@ -49,9 +55,12 @@ To capture Knightian uncertainty, we generalize from a single probability measur
 
 **Definition** (Set of Priors): Let $\mathcal{P}$ be a convex, closed set of probability measures on $(\Omega, \mathcal{F})$. The decision maker evaluates acts $f: \Omega \to \mathbb{R}$ using:
 
+
 $$
 V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]
 $$
+
+
 
 This is known as the **maxmin expected utility** representation (Gilboa-Schmeidler, 1989).
 
@@ -66,15 +75,21 @@ An alternative representation uses a penalty function for deviating from a refer
 
 **Variational Representation** (Maccheroni, Marinacci, Rustichini, 2006):
 
+
 $$
 V(f) = \min_{P \in \mathcal{P}} \left\{ \mathbb{E}_P[u(f)] + c(P \| P_0) \right\}
 $$
 
+
+
 where $c(P \| P_0)$ is a convex penalty function, often chosen as relative entropy:
+
 
 $$
 c(P \| P_0) = \theta \cdot D_{\text{KL}}(P \| P_0) = \theta \int_{\Omega} \log\left(\frac{dP}{dP_0}\right) \, dP
 $$
+
+
 
 with $\theta > 0$ measuring the degree of ambiguity aversion.
 
@@ -113,17 +128,23 @@ This contradiction demonstrates that people systematically avoid ambiguous situa
 
 Let $P_{\text{Urn 2}}$ denote the decision maker's beliefs about Urn 2. The observed preferences suggest:
 
+
 $$
 \inf_{P \in \mathcal{P}_2} P(\text{Red}) < 0.5 \quad \text{and} \quad \inf_{P \in \mathcal{P}_2} P(\text{Black}) < 0.5
 $$
+
+
 
 where $\mathcal{P}_2$ is the set of priors for Urn 2.
 
 This is consistent with maxmin preferences with:
 
+
 $$
 \mathcal{P}_2 = \left\{ P: P(\text{Red}) \in [a, 1-a] \text{ for some } a < 0.5 \right\}
 $$
+
+
 
 ## Applications to Quantitative Finance
 
@@ -137,9 +158,12 @@ In the Black-Scholes framework, the risk-neutral measure $\mathbb{Q}$ is uniquel
 
 **Robust Pricing**: Instead of a single risk-neutral measure $\mathbb{Q}$, consider:
 
+
 $$
 V_t = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-r(T-t)} \Phi(S_T) \, \bigg| \, \mathcal{F}_t \right]
 $$
+
+
 
 where $\mathcal{Q}$ is a set of equivalent martingale measures compatible with observed market prices.
 
@@ -149,29 +173,41 @@ Consider a European call option under model uncertainty about volatility.
 
 **Setup**: Stock price follows:
 
+
 $$
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
 $$
+
+
 
 where $\sigma_t \in [\sigma_{\min}, \sigma_{\max}]$ is uncertain.
 
 **Robust Price**: The buyer (who is ambiguity-averse) solves:
 
+
 $$
 V_{\text{buy}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)
 $$
 
+
+
 while the seller solves:
+
 
 $$
 V_{\text{sell}} = \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)
 $$
 
+
+
 This creates a **bid-ask spread** driven by Knightian uncertainty:
+
 
 $$
 V_{\text{sell}} < V_{\text{buy}}
 $$
+
+
 
 ### Portfolio Selection under Ambiguity
 
@@ -179,23 +215,32 @@ The classical Markowitz framework assumes known mean $\mu$ and covariance $\Sigm
 
 **Robust Portfolio Problem**:
 
+
 $$
 \max_{w \in \Delta^n} \min_{(\mu, \Sigma) \in \Theta} \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
 $$
+
+
 
 where $\Theta$ represents uncertainty about the joint distribution of returns.
 
 **Example**: Uncertainty about the mean return vector:
 
+
 $$
 \Theta = \left\{ (\mu, \Sigma): \|\mu - \hat{\mu}\|_{\Sigma^{-1}} \leq \delta \right\}
 $$
 
+
+
 leads to the robust portfolio:
+
 
 $$
 w^* = \frac{1}{\lambda(1 + \delta)} \Sigma^{-1} \hat{\mu}
 $$
+
+
 
 The ambiguity parameter $\delta$ effectively increases risk aversion, leading to more conservative positions.
 
@@ -205,17 +250,23 @@ The ambiguity parameter $\delta$ effectively increases risk aversion, leading to
 
 **Risk Aversion**: Preference for certain outcomes over risky lotteries with the same expected value:
 
+
 $$
 u(\mathbb{E}[X]) > \mathbb{E}[u(X)]
 $$
+
+
 
 characterized by concavity of $u$.
 
 **Ambiguity Aversion**: Preference for known probability distributions over ambiguous ones:
 
+
 $$
 \min_{P \in \mathcal{P}} \mathbb{E}_P[u(X)] < \mathbb{E}_{P_{\text{avg}}}[u(X)]
 $$
+
+
 
 where $P_{\text{avg}} = \int_{\mathcal{P}} P \, d\nu(P)$ for some averaging measure $\nu$.
 
@@ -231,9 +282,12 @@ A critical issue in multiple priors models is maintaining consistency across tim
 
 **Rectangularity** (Epstein-Schneider, 2003): A set of priors $\mathcal{P}$ is rectangular if:
 
+
 $$
 \mathcal{P} = \left\{ P: P(A|\mathcal{F}_t) \in [\underline{p}_t(A), \overline{p}_t(A)] \text{ for all } A \in \mathcal{F}_T, t \leq T \right\}
 $$
+
+
 
 **Dynamic Consistency**: Requires that optimal plans made at time $t=0$ remain optimal when reconsidered at intermediate times.
 
@@ -245,15 +299,21 @@ Knightian uncertainty has deep connections to robust control theory (Hansen-Sarg
 
 **Robust Control Problem**:
 
+
 $$
 \min_{u_t} \max_{w_t} \mathbb{E}\left[ \sum_{t=0}^T \left( x_t^\top Q x_t + u_t^\top R u_t - \theta w_t^\top w_t \right) \right]
 $$
 
+
+
 subject to:
+
 
 $$
 x_{t+1} = A x_t + B u_t + C w_t
 $$
+
+
 
 where:
 - $u_t$ is the control (decision variable)
@@ -264,9 +324,12 @@ where:
 
 **Risk-Sensitive Control**: Setting $\theta = -\beta$ and taking limits yields:
 
+
 $$
 V(x_0) = -\frac{1}{\beta} \log \mathbb{E}\left[ \exp\left(-\beta \sum_{t=0}^T r(x_t, u_t) \right) \right]
 $$
+
+
 
 which is equivalent to exponential utility preferences over random costs.
 
@@ -281,16 +344,22 @@ Gilboa and Schmeidler (1989) provided an axiomatic foundation for maxmin expecte
 2. **Continuity**: Standard topological continuity
 3. **Monotonicity**: If $f(\omega) \geq g(\omega)$ for all $\omega$, then $f \succeq g$
 4. **Uncertainty Aversion**: For any $f, g$ and $\alpha \in (0,1)$:
+
    $$
    f \sim g \implies \alpha f + (1-\alpha) g \succeq f
    $$
+
+
 5. **State Independence**: Constant acts are ranked by their payoff
 
 **Representation Theorem**: Preferences $\succeq$ satisfy axioms 1-5 if and only if there exists a unique set of priors $\mathcal{P}$ and a unique (up to positive affine transformation) utility function $u$ such that:
 
+
 $$
 f \succeq g \iff \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \mathcal{P}} \mathbb{E}_P[u(g)]
 $$
+
+
 
 **Key Axiom**: Uncertainty aversion (axiom 4) is the critical axiom distinguishing this from Savage's framework. It states that averaging over ambiguous acts is (weakly) preferred to the acts themselves.
 
@@ -300,15 +369,21 @@ MMR (2006) generalized this to variational preferences.
 
 **Axiom** (Certainty Independence): For any constant acts $x, y$ and any act $f$, and $\alpha \in (0,1)$:
 
+
 $$
 \alpha x + (1-\alpha) f \succeq \alpha y + (1-\alpha) f \iff x \succeq y
 $$
 
+
+
 **Representation Theorem**: Preferences satisfy the MMR axioms if and only if:
+
 
 $$
 V(f) = \min_{P \in \mathcal{M}(\Omega)} \left\{ \mathbb{E}_P[u(f)] + c(P) \right\}
 $$
+
+
 
 where $c: \mathcal{M}(\Omega) \to [0, \infty]$ is a convex, grounded ($\inf_P c(P) = 0$) function.
 
@@ -329,9 +404,12 @@ Several experimental and market-based approaches measure the degree of ambiguity
 
 **Ambiguity Premium**: The difference in certainty equivalents:
 
+
 $$
 \pi = CE(\text{known}) - CE(\text{unknown})
 $$
+
+
 
 **Empirical Findings**:
 - Most subjects exhibit $\pi > 0$ (ambiguity aversion)
@@ -342,9 +420,12 @@ $$
 
 **Equity Premium Puzzle**: Hansen-Sargent (2001) show that model uncertainty can help explain the historically high equity premium:
 
+
 $$
 \mathbb{E}[R_{\text{equity}}] - R_f = \gamma \sigma^2 + \text{ambiguity premium}
 $$
+
+
 
 **Options Market**: The implied volatility smile may partially reflect ambiguity aversion about the true volatility process.
 
@@ -356,9 +437,12 @@ $$
 
 The relative entropy (Kullback-Leibler divergence) provides a natural measure of model distance:
 
+
 $$
 D_{\text{KL}}(P \| Q) = \mathbb{E}_P\left[ \log \frac{dP}{dQ} \right] = \int_{\Omega} \log\left(\frac{dP}{dQ}\right) \, dP
 $$
+
+
 
 **Properties**:
 1. Non-negativity: $D_{\text{KL}}(P \| Q) \geq 0$ with equality iff $P = Q$
@@ -371,15 +455,21 @@ $$
 
 The entropic risk measure combines ambiguity and risk:
 
+
 $$
 \rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}\left[ e^{\beta X} \right]
 $$
 
+
+
 **Dual Representation**:
+
 
 $$
 \rho_{\beta}(X) = \sup_{\mathbb{Q} \ll \mathbb{P}} \left\{ \mathbb{E}_{\mathbb{Q}}[X] - \frac{1}{\beta} D_{\text{KL}}(\mathbb{Q} \| \mathbb{P}) \right\}
 $$
+
+
 
 This shows entropic risk as a variational preference with KL penalty.
 
@@ -394,17 +484,23 @@ This shows entropic risk as a variational preference with KL penalty.
 
 **Definition** (Second-Order Stochastic Dominance): Distribution $F$ second-order stochastically dominates $G$ (written $F \succeq_{\text{SSD}} G$) if:
 
+
 $$
 \int_{-\infty}^x F(t) \, dt \leq \int_{-\infty}^x G(t) \, dt \quad \text{for all } x \in \mathbb{R}
 $$
+
+
 
 **Theorem**: All risk-averse expected utility maximizers prefer $F$ to $G$ if and only if $F \succeq_{\text{SSD}} G$.
 
 **Extension to Ambiguity**: For multiple priors preferences:
 
+
 $$
 f \succeq_{\text{SSD}} g \implies \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \mathcal{P}} \mathbb{E}_P[u(g)]
 $$
+
+
 
 for all concave $u$ and convex $\mathcal{P}$.
 
@@ -412,9 +508,12 @@ for all concave $u$ and convex $\mathcal{P}$.
 
 Klibanoff, Marinacci, Mukerji (2005) introduced **smooth ambiguity preferences**:
 
+
 $$
 V(f) = \int_{\mathcal{P}} \phi\left( \int_{\Omega} u(f(\omega)) \, dP(\omega) \right) d\mu(P)
 $$
+
+
 
 where:
 - $u$ measures risk aversion
@@ -438,33 +537,48 @@ Another generalization uses non-additive measures (capacities).
 
 **Choquet Integral**:
 
+
 $$
 \int_{\Omega} f \, d\nu = \int_0^{\infty} \nu(\{\omega: f(\omega) \geq t\}) \, dt
 $$
 
+
+
 **Choquet Expected Utility**:
+
 
 $$
 V(f) = \int_{\Omega} u(f(\omega)) \, d\nu(\omega)
 $$
 
+
+
 **Connection to Ambiguity**: A capacity is **convex** if:
+
 
 $$
 \nu(A \cup B) + \nu(A \cap B) \geq \nu(A) + \nu(B)
 $$
 
+
+
 which implies ambiguity aversion through the **core** of the capacity:
+
 
 $$
 \text{core}(\nu) = \left\{ P: P(A) \geq \nu(A) \text{ for all } A \in \mathcal{F} \right\}
 $$
 
+
+
 and:
+
 
 $$
 \int_{\Omega} f \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[f]
 $$
+
+
 
 ## Summary and Key Takeaways
 

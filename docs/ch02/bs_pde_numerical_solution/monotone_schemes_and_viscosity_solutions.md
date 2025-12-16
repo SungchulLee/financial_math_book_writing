@@ -19,6 +19,7 @@ A scheme \(\mathcal{S}_\Delta\) is monotone if increasing input data cannot decr
 ## 3. Consistency + Stability + Monotonicity
 
 A foundational convergence principle (orientation) is that:
+
 \[
 \boxed{
 \text{consistent} + \text{stable} + \text{monotone}
@@ -26,6 +27,8 @@ A foundational convergence principle (orientation) is that:
 \text{convergence to the viscosity solution}
 }
 \]
+
+
 when a comparison principle holds.
 
 ---

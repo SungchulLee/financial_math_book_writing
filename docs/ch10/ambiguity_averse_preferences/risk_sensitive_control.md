@@ -7,14 +7,20 @@
 ## 1. Classical vs risk-sensitive control
 
 Classical control maximizes expected payoff:
+
 \[
 \max \mathbb{E}[X].
 \]
 
+
+
 Risk-sensitive control maximizes:
+
 \[
 \max \; \mathbb{E}\left[ -\exp(-\theta X) \right],
 \]
+
+
 or equivalent exponential criteria.
 
 ---

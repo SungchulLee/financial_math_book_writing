@@ -40,9 +40,12 @@ Still, some risks remain irreducible.
 ## 4. Hedging error as a random variable
 
 Hedging error should be viewed as:
+
 \[
 \text{P&L}_{\text{hedge}} = \text{model error} + \text{unhedgeable risk}.
 \]
+
+
 
 Risk management focuses on:
 - distribution of hedging error,

@@ -7,9 +7,12 @@ Delta-neutral portfolios eliminate first-order exposure to underlying price chan
 ## Condition
 
 For portfolio \(\Pi(t,S)\),
+
 \[
 \boxed{\frac{\partial \Pi}{\partial S}(t,S)=0.}
 \]
+
+
 
 ---
 

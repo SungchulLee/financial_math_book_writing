@@ -7,9 +7,12 @@ Many short-rate models (including Vasicek and CIR) belong to the **affine term s
 ## 1. Affine bond prices
 
 A term structure model is affine if zero-coupon bond prices can be written as
+
 \[
 P(t,T) = \exp\big(A(t,T) - B(t,T)^{\top}X_t\big),
 \]
+
+
 where:
 - \(X_t\) is a state vector (often including the short rate),
 - \(A\) and \(B\) are deterministic functions.

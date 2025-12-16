@@ -6,9 +6,12 @@ Vega trades aim to profit from changes in implied volatility or mispricing betwe
 
 ## Vega exposure
 
+
 \[
 \boxed{\nu_\Pi=\frac{\partial \Pi}{\partial \sigma}.}
 \]
+
+
 
 ---
 

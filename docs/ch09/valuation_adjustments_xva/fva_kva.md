@@ -7,9 +7,12 @@ Beyond credit risk, valuation must account for **funding** and **capital** costs
 ## 1. Funding Valuation Adjustment (FVA)
 
 FVA accounts for the cost of funding uncollateralized positions:
+
 \[
 \text{FVA} = \mathbb{E}[ \text{Funding Spread} \times \text{Funding Exposure} ].
 \]
+
+
 
 It reflects asymmetry between borrowing and lending rates.
 
@@ -18,9 +21,12 @@ It reflects asymmetry between borrowing and lending rates.
 ## 2. Capital Valuation Adjustment (KVA)
 
 KVA reflects the cost of holding regulatory capital:
+
 \[
 \text{KVA} = \mathbb{E}[ \text{Cost of Capital} \times \text{Required Capital} ].
 \]
+
+
 
 KVA is forward-looking and institution-specific.
 

@@ -10,9 +10,15 @@ This theorem is the bridge between **geometry** and **duality theory**, and it's
 
 **Theorem:** Let $C$ and $D$ be non-empty, disjoint convex sets in $\mathbb{R}^n$ (i.e., $C \cap D = \emptyset$). If at least one of them is **open**, then there exists a non-zero vector $p \in \mathbb{R}^n$ and a scalar $\alpha \in \mathbb{R}$ such that:
 
+
 $$p^T x \leq \alpha \quad \text{for all } x \in C$$
 
+
+
+
 $$p^T x \geq \alpha \quad \text{for all } x \in D$$
+
+
 
 The hyperplane $H = \{x \in \mathbb{R}^n : p^T x = \alpha\}$ **separates** $C$ and $D$.
 
@@ -20,7 +26,10 @@ The hyperplane $H = \{x \in \mathbb{R}^n : p^T x = \alpha\}$ **separates** $C$ a
 
 **Theorem:** If $C$ is a non-empty, **closed** convex set and $D$ is a non-empty, **compact** convex set with $C \cap D = \emptyset$, then there exists a **strict separation**: there exist $p \in \mathbb{R}^n$ and $\alpha, \beta \in \mathbb{R}$ with $\alpha < \beta$ such that:
 
+
 $$p^T x \leq \alpha < \beta \leq p^T y \quad \text{for all } x \in C, y \in D$$
+
+
 
 This is a **strong separation** with a "gap" between the sets.
 
@@ -28,7 +37,10 @@ This is a **strong separation** with a "gap" between the sets.
 
 **Theorem:** Let $C$ be a non-empty convex set in $\mathbb{R}^n$ and let $x_0 \in \partial C$ (boundary of $C$). Then there exists a non-zero vector $p \in \mathbb{R}^n$ such that:
 
+
 $$p^T x_0 = \sup_{x \in C} p^T x$$
+
+
 
 The hyperplane $H = \{x : p^T x = p^T x_0\}$ is called a **supporting hyperplane** at $x_0$.
 
@@ -40,7 +52,10 @@ I'll prove Version 1 in detail. The key is to reduce it to the case of separatin
 
 **Lemma:** Let $C \subset \mathbb{R}^n$ be a non-empty, closed convex set, and let $y \notin C$. Then there exists $p \in \mathbb{R}^n$ with $p \neq 0$ such that:
 
+
 $$p^T x < p^T y \quad \text{for all } x \in C$$
+
+
 
 **Proof of Lemma:**
 
@@ -48,7 +63,10 @@ $$p^T x < p^T y \quad \text{for all } x \in C$$
 
 Since $C$ is closed and convex, there exists a unique point $x_0 \in C$ such that:
 
+
 $$\|x_0 - y\| = \inf_{x \in C} \|x - y\| = d(y, C)$$
+
+
 
 This follows from the fact that the function $x \mapsto \|x - y\|^2$ is strictly convex and coercive on the closed convex set $C$.
 
@@ -60,15 +78,27 @@ Let $p = y - x_0$. Note that $p \neq 0$ since $y \notin C$.
 
 For any $x \in C$, we need to show:
 
+
 $$p^T x < p^T y$$
+
+
 
 Equivalently:
 
+
 $$(y - x_0)^T x < (y - x_0)^T y$$
+
+
+
 
 $$(y - x_0)^T (x - y) < 0$$
 
+
+
+
 $$(y - x_0)^T (x - x_0) < (y - x_0)^T (y - x_0)$$
+
+
 
 **Step 4:** Use the minimality of $x_0$.
 
@@ -76,47 +106,77 @@ Since $x_0$ minimizes $\|x - y\|$ over $C$, for any $x \in C$ and $\lambda \in [
 
 The function:
 
+
 $$f(\lambda) = \|x_0 + \lambda(x - x_0) - y\|^2 = \|x_0 - y + \lambda(x - x_0)\|^2$$
+
+
 
 achieves its minimum over $[0, 1]$ at $\lambda = 0$.
 
 Therefore, $f'(0) \geq 0$:
 
+
 $$f'(\lambda) = 2(x_0 - y + \lambda(x - x_0))^T(x - x_0)$$
+
+
+
 
 $$f'(0) = 2(x_0 - y)^T(x - x_0) \geq 0$$
 
+
+
+
 $$(y - x_0)^T(x - x_0) \leq 0$$
+
+
 
 **Step 5:** Show strict inequality.
 
 We have:
 
+
 $$\|x_\lambda - y\|^2 = \|x_0 - y\|^2 + 2\lambda(x_0 - y)^T(x - x_0) + \lambda^2\|x - x_0\|^2$$
+
+
 
 If $(y - x_0)^T(x - x_0) = 0$ for some $x \in C$ with $x \neq x_0$, then for small $\lambda > 0$:
 
+
 $$\|x_\lambda - y\|^2 = \|x_0 - y\|^2 + \lambda^2\|x - x_0\|^2 > \|x_0 - y\|^2$$
+
+
 
 Wait, this would contradict minimality only if we can choose $\lambda$ to decrease the distance. Let me reconsider.
 
 Actually, if $(y - x_0)^T(x - x_0) = 0$, we need to be more careful. But notice:
 
+
 $$\|x - y\|^2 = \|x - x_0 + x_0 - y\|^2 = \|x - x_0\|^2 + 2(x - x_0)^T(x_0 - y) + \|x_0 - y\|^2$$
+
+
 
 Since $(x - x_0)^T(x_0 - y) \geq 0$ (from our calculation), if $x \neq x_0$, then:
 
+
 $$\|x - y\|^2 \geq \|x_0\|^2 + \|x - x_0\|^2 > \|x_0 - y\|^2$$
+
+
 
 This uses the fact that if $(x - x_0)^T(x_0 - y) = 0$ and $x \neq x_0$, the vectors are orthogonal, so we get strict inequality.
 
 Therefore:
 
+
 $$(y - x_0)^T(x - x_0) < (y - x_0)^T(y - x_0)$$
+
+
 
 which gives us:
 
+
 $$p^T x < p^T y$$
+
+
 
 $\square$
 
@@ -128,13 +188,19 @@ Let $C$ and $D$ be disjoint convex sets with $D$ open.
 
 Define:
 
+
 $$E = C - D = \{c - d : c \in C, d \in D\}$$
+
+
 
 **Claim:** $E$ is convex, open, and $0 \notin E$.
 
 - **Convex:** If $e_1 = c_1 - d_1 \in E$ and $e_2 = c_2 - d_2 \in E$, then for $\lambda \in [0,1]$:
 
+
 $$\lambda e_1 + (1-\lambda)e_2 = [\lambda c_1 + (1-\lambda)c_2] - [\lambda d_1 + (1-\lambda)d_2] \in C - D = E$$
+
+
 
 - **Open:** Since $D$ is open and translation/scaling preserve openness, $C - D$ is open. (For any $c - d \in E$, there's a ball around $d$ in $D$, so a ball around $c - d$ in $E$.)
 
@@ -146,25 +212,40 @@ Let $\bar{E}$ be the closure of $E$. Then $\bar{E}$ is closed and convex, and $0
 
 By the lemma, there exists $p \neq 0$ such that:
 
+
 $$p^T e \leq 0 \quad \text{for all } e \in \bar{E}$$
+
+
 
 Actually, we need strict inequality for points in $E$. Since $E$ is open and $0 \notin E$, we can get:
 
+
 $$p^T e < p^T 0 = 0 \quad \text{for all } e \in E$$
+
+
 
 **Step 3:** Translate back to $C$ and $D$.
 
 For any $c \in C$ and $d \in D$, we have $c - d \in E$, so:
 
+
 $$p^T(c - d) < 0$$
 
+
+
+
 $$p^T c < p^T d$$
+
+
 
 This holds for all $c \in C$ and $d \in D$.
 
 Let:
 
+
 $$\alpha = \sup_{c \in C} p^T c, \quad \beta = \inf_{d \in D} p^T d$$
+
+
 
 We've shown $\alpha \leq \beta$. In fact, since $D$ is open, we can get $\alpha < \beta$ for strict separation, but the weak version $\alpha \leq \beta$ suffices for basic separation.
 
@@ -225,7 +306,10 @@ If $f: Y \to \mathbb{R}$ is a linear functional with $f(y) \leq p(y)$ for all $y
 
 1. If $C$ is open, there exists a continuous linear functional $\phi \in X^*$ and $\alpha \in \mathbb{R}$ such that:
 2. 
+
 $$\phi(c) < \alpha \leq \phi(d) \quad \text{for all } c \in C, d \in D$$
+
+
 
 2. If $C$ is closed and $D$ is compact, there exists **strict separation**.
 
@@ -248,16 +332,25 @@ Recall the finite state space model:
 **Key sets:**
 
 1. **Attainable payoffs** starting from zero wealth:
+
 $$\mathcal{C} = \{X\theta : \theta \in \mathbb{R}^d\} \subset \mathbb{R}^n$$
+
+
 This is the column space of $X$.
 
 1. **Positive orthant:**
 2. 
+
 $$\mathbb{R}^n_+ = \{v \in \mathbb{R}^n : v_i \geq 0 \text{ for all } i\}$$
+
+
 
 **No arbitrage condition:**
 
+
 $$\mathcal{C} \cap \mathbb{R}^n_+ = \{0\}$$
+
+
 
 (No portfolio with zero initial cost has non-negative payoff everywhere and positive payoff somewhere.)
 
@@ -265,29 +358,50 @@ $$\mathcal{C} \cap \mathbb{R}^n_+ = \{0\}$$
 
 Since $\mathcal{C}$ is a linear subspace (hence convex and closed) and $\mathbb{R}^n_{++} = \{v : v_i > 0\}$ is an open convex cone, and they're disjoint (by no-arbitrage), the separating hyperplane theorem gives us a vector $q \in \mathbb{R}^n$ with $q \neq 0$ such that:
 
+
 $$q^T (X\theta) \leq 0 \quad \text{for all } \theta \in \mathbb{R}^d$$
 
+
+
+
 $$q^T v > 0 \quad \text{for all } v \in \mathbb{R}^n_{++}$$
+
+
 
 The second condition implies $q_i > 0$ for all $i$ (take $v = e_i$, the $i$-th standard basis vector).
 
 The first condition, holding for all $\theta$, implies:
 
+
 $$X^T q = 0$$
+
+
 
 This means:
 
+
 $$\sum_{i=1}^n q_i X_{ij} = 0 \quad \text{for all } j$$
+
+
 
 Or equivalently:
 
+
 $$\sum_{i=1}^n q_i (S^j_1(\omega_i) - S^j_0) = 0$$
+
+
+
 
 $$\sum_{i=1}^n q_i S^j_1(\omega_i) = S^j_0 \sum_{i=1}^n q_i$$
 
+
+
 Normalizing $\mathbb{Q}(\omega_i) = q_i / \sum_k q_k$, we get:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[S^j_1] = S^j_0$$
+
+
 
 This is exactly the **equivalent martingale measure**!
 

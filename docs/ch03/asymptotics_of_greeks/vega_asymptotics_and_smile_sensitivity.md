@@ -7,13 +7,19 @@ Vega concentrates near the money and vanishes as maturity shrinks.
 ## Scaling
 
 In Black–Scholes,
+
 \[
 \nu(t,S)\approx S\sqrt{\tau}\,\varphi(d_1).
 \]
+
+
 So near the money,
+
 \[
 \boxed{\nu \sim \sqrt{\tau}.}
 \]
+
+
 
 ---
 

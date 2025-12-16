@@ -7,9 +7,12 @@ First-passage models extend Merton by allowing default to occur **at any time**,
 ## 1. Default as barrier crossing
 
 Default time is defined as
+
 \[
 \tau = \inf\{t \ge 0 : V_t \le B_t\},
 \]
+
+
 where:
 - \(V_t\) is firm value,
 - \(B_t\) is a default barrier.

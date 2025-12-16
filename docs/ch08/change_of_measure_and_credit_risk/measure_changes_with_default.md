@@ -16,9 +16,12 @@ The Radon–Nikodym derivative must account for:
 ## 2. Effect on intensities
 
 Under a change of measure, the default intensity transforms as
+
 \[
 \lambda_t^{\mathbb{Q}} = \lambda_t^{\mathbb{P}} + \theta_t,
 \]
+
+
 where \(\theta_t\) reflects the market price of default risk.
 
 This parallels drift changes in diffusion models.

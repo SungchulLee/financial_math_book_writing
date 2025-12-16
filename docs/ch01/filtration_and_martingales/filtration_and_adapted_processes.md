@@ -3,13 +3,25 @@
 ## Filtered probability spaces
 
 A **filtered probability space** is a quadruple
-\[
+
+
+$$
 (\Omega,\mathcal{F},(\mathcal{F}_t)_{t\ge 0},\mathbb{P}),
-\]
+$$
+
+
+
+
 where \((\Omega,\mathcal{F},\mathbb{P})\) is a probability space and \((\mathcal{F}_t)_{t\ge 0}\) is an increasing family of sub-\(\sigma\)-algebras:
-\[
+
+
+$$
 \mathcal{F}_s \subseteq \mathcal{F}_t \subseteq \mathcal{F}\quad \text{for } 0\le s\le t.
-\]
+$$
+
+
+
+
 Interpretation: \(\mathcal{F}_t\) represents the information available up to time \(t\).
 
 ---
@@ -31,16 +43,28 @@ Let \(X=\{X_t\}_{t\ge 0}\) be a process with values in \(\mathbb{R}^d\).
 
 ### Adaptedness
 \(X\) is **adapted** to \((\mathcal{F}_t)\) if, for each \(t\ge 0\),
-\[
+
+
+$$
 X_t \text{ is } \mathcal{F}_t\text{-measurable}.
-\]
+$$
+
+
+
+
 Interpretation: \(X_t\) is known at time \(t\).
 
 ### Progressively measurable
 \(X\) is **progressively measurable** if, for each \(t\ge 0\), the map
-\[
+
+
+$$
 (s,\omega)\mapsto X_s(\omega)\mathbf{1}_{[0,t]}(s)
-\]
+$$
+
+
+
+
 is measurable with respect to \(\mathcal{B}([0,t])\otimes\mathcal{F}_t\).
 
 This condition is natural for stochastic integration. In particular, adapted processes with suitable regularity (e.g. left-continuous with right limits) are progressively measurable.
@@ -53,19 +77,37 @@ A process is **predictable** if it is measurable with respect to the predictable
 ## Brownian motion and its natural filtration
 
 A standard Brownian motion \(\{W_t\}\) generates a natural filtration
-\[
+
+
+$$
 \mathcal{F}_t^W := \sigma(W_s:0\le s\le t).
-\]
+$$
+
+
+
+
 One often uses its augmentation (completion + right-continuity):
-\[
+
+
+$$
 \mathcal{F}_t := \bigcap_{u>t}\left(\mathcal{F}_u^W \vee \mathcal{N}\right),
-\]
+$$
+
+
+
+
 where \(\mathcal{N}\) is the collection of \(\mathbb{P}\)-null sets.
 
 With respect to this filtration, Brownian motion has the **independent increments** property in the conditional form:
-\[
+
+
+$$
 W_t-W_s \text{ is independent of } \mathcal{F}_s,\quad 0\le s<t.
-\]
+$$
+
+
+
+
 
 ---
 

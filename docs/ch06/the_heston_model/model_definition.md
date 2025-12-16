@@ -7,6 +7,7 @@ The Heston model is one of the most widely used **stochastic volatility models**
 ## 1. Dynamics under the risk-neutral measure
 
 Under the risk-neutral measure \(\mathbb{Q}\), the Heston model is defined by
+
 \[
 \begin{aligned}
 dS_t &= (r-q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S,\\
@@ -14,6 +15,8 @@ dV_t &= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V,\\
 d\langle W^S, W^V \rangle_t &= \rho\,dt,
 \end{aligned}
 \]
+
+
 where:
 - \(S_t\): asset price,
 - \(V_t\): instantaneous variance,

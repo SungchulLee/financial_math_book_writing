@@ -14,9 +14,12 @@ Alternatively, lend from 0 to \(T_1\) and then roll over from \(T_1\) to \(T_2\)
 - at \(T_1\), reinvest at the forward rate.
 
 No-arbitrage implies equality of terminal payoffs, yielding
+
 \[
 \frac{P(0,T_1)}{P(0,T_2)} = 1 + F(0;T_1,T_2)(T_2-T_1).
 \]
+
+
 
 ---
 
@@ -33,9 +36,12 @@ With negative rates, discount factors can still be decreasing but forwards/zeros
 ## 3. Coupon bond pricing by discounting
 
 A coupon bond with cashflows \(c_i\) at times \(T_i\) has price
+
 \[
 B_0 = \sum_i c_i\,P(0,T_i).
 \]
+
+
 
 This is a direct consequence of linearity and absence of arbitrage: each cashflow is discounted using the appropriate \(P(0,T_i)\).
 

@@ -7,9 +7,12 @@ Counterparty credit risk (CCR) arises from the possibility that a counterparty d
 ## 1. Definition of exposure
 
 For a portfolio value process \(V_t\), the exposure at time \(t\) is
+
 \[
 E_t = \max(V_t, 0).
 \]
+
+
 
 Exposure is stochastic and depends on future market states.
 
@@ -18,9 +21,12 @@ Exposure is stochastic and depends on future market states.
 ## 2. Expected Exposure (EE)
 
 The **Expected Exposure** at time \(t\) is
+
 \[
 \text{EE}(t) = \mathbb{E}[E_t].
 \]
+
+
 
 It summarizes average counterparty exposure and is used in CVA calculations.
 

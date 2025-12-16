@@ -10,9 +10,12 @@ The behavior of implied volatility as maturity approaches zero ($T \to 0$) revea
 
 As $T \to 0$, an option's value approaches its intrinsic value:
 
+
 $$
 \lim_{T \to 0} C(K, T) = \max(S_0 - K, 0)
 $$
+
+
 
 However, the **rate of approach** depends on how close $K$ is to the current spot $S_0$:
 
@@ -23,9 +26,12 @@ However, the **rate of approach** depends on how close $K$ is to the current spo
 
 For small $T$, the distribution of $S_T$ concentrates around $S_0$:
 
+
 $$
 S_T \approx S_0 + \int_0^T \sigma(S_t, t) S_t dW_t \approx S_0 + \sigma(S_0, 0) S_0 \int_0^T dW_t
 $$
+
+
 
 The limiting distribution as $T \to 0$ is determined by the **local volatility** at the initial spot.
 
@@ -35,15 +41,21 @@ The limiting distribution as $T \to 0$ is determined by the **local volatility**
 
 Consider the underlying asset following:
 
+
 $$
 dS_t = \mu(S_t, t) S_t dt + \sigma(S_t, t) S_t dW_t
 $$
 
+
+
 under the physical measure. Under the risk-neutral measure $\mathbb{Q}$:
+
 
 $$
 dS_t = (r - q) S_t dt + \sigma(S_t, t) S_t dW_t^\mathbb{Q}
 $$
+
+
 
 The implied volatility $\sigma_{\text{IV}}(K, T)$ is defined through the Black-Scholes formula.
 
@@ -51,9 +63,12 @@ The implied volatility $\sigma_{\text{IV}}(K, T)$ is defined through the Black-S
 
 We seek an expansion of the form:
 
+
 $$
 \sigma_{\text{IV}}(K, T) = \sigma_0(K) + \sigma_1(K) T + \sigma_2(K) T^2 + O(T^3) \quad \text{as } T \to 0
 $$
+
+
 
 The coefficients $\sigma_0, \sigma_1, \sigma_2$ depend on the local dynamics at the spot.
 
@@ -64,9 +79,12 @@ The coefficients $\sigma_0, \sigma_1, \sigma_2$ depend on the local dynamics at 
 **Theorem 4.4.1** (Leading-Order Asymptotics)  
 For a local volatility model with smooth $\sigma(S, t)$, as $T \to 0$:
 
+
 $$
 \sigma_{\text{IV}}(K, T) = \sigma(K, 0) + O(T)
 $$
+
+
 
 **Interpretation:** The short-maturity implied volatility at strike $K$ converges to the local volatility evaluated at that strike at the initial time.
 
@@ -74,15 +92,21 @@ $$
 
 The call option price can be written as:
 
+
 $$
 C(K, T) = e^{-rT} \mathbb{E}^\mathbb{Q}[\max(S_T - K, 0)]
 $$
 
+
+
 For small $T$, the density $p(S_T | S_0)$ concentrates around $S_0$. Near $K \approx S_0$:
+
 
 $$
 p(S_T | S_0) \approx \frac{1}{\sigma(K, 0) K \sqrt{2\pi T}} \exp\left(-\frac{(S_T - K)^2}{2\sigma^2(K, 0) K^2 T}\right)
 $$
+
+
 
 Computing the option price with this Gaussian approximation and matching to Black-Scholes gives $\sigma_{\text{IV}} \sim \sigma(K, 0)$. □
 
@@ -91,9 +115,12 @@ Computing the option price with this Gaussian approximation and matching to Blac
 **Corollary 4.4.1**  
 At-the-money ($K = S_0$):
 
+
 $$
 \lim_{T \to 0} \sigma_{\text{IV}}(S_0, T) = \sigma(S_0, 0) = \sigma_{\text{spot}}
 $$
+
+
 
 The ATM implied volatility converges to the **spot volatility**.
 
@@ -101,9 +128,12 @@ The ATM implied volatility converges to the **spot volatility**.
 
 For strikes $K \neq S_0$, the leading-order term still gives:
 
+
 $$
 \sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)
 $$
+
+
 
 **Implication:** The short-dated smile directly reveals the local volatility function $\sigma(K, 0)$ across strikes.
 
@@ -114,9 +144,12 @@ $$
 **Theorem 4.4.2** (First-Order Expansion)  
 For smooth local volatility $\sigma(S, t)$:
 
+
 $$
 \sigma_{\text{IV}}(K, T) = \sigma(K, 0) + T \cdot \frac{\partial \sigma}{\partial t}(K, 0) + O(T^2)
 $$
+
+
 
 **Proof sketch:** Expanding the SDE for $S_t$ to order $T$ and matching moments gives the time derivative correction. □
 
@@ -126,21 +159,28 @@ $$
 
 For non-constant local volatility in the spot direction, higher-order terms involve:
 
+
 $$
 \sigma_1(K) \sim \frac{\partial \sigma}{\partial S}(K, 0), \quad \frac{\partial^2 \sigma}{\partial S^2}(K, 0)
 $$
 
+
+
 **Full expansion (Hagan et al., 2002):**
+
 
 $$
 \sigma_{\text{IV}}(K, T) \approx \sigma(K, 0) \left\{1 + \frac{T}{24}\left[\frac{\sigma''(K, 0)}{\sigma(K, 0)} - \frac{(\sigma'(K, 0))^2}{4\sigma^2(K, 0)}\right] + \cdots \right\}
 $$
+
+
 
 ## Stochastic Volatility Models
 
 ### Heston Model
 
 The Heston model:
+
 
 $$
 \begin{align}
@@ -150,14 +190,19 @@ d\langle W^S, W^v \rangle_t &= \rho dt
 \end{align}
 $$
 
+
+
 ### Small-Time ATM Asymptotics (Heston)
 
 **Theorem 4.4.3** (Heston ATM Asymptotics)  
 For the Heston model, as $T \to 0$:
 
+
 $$
 \sigma_{\text{IV}}(S_0, T) = \sqrt{v_0} + \frac{T}{8\sqrt{v_0}} \left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] + O(T^2)
 $$
+
+
 
 **Interpretation:**
 - Leading term: $\sqrt{v_0}$ (current spot variance)
@@ -167,9 +212,12 @@ $$
 
 Using the moment-generating function for Heston:
 
+
 $$
 \mathbb{E}^\mathbb{Q}[e^{i\omega \ln S_T}] = \exp\left\{i\omega \ln S_0 + A(T; \omega) + B(T; \omega) v_0\right\}
 $$
+
+
 
 where $A(T; \omega)$ and $B(T; \omega)$ satisfy Riccati ODEs. Expanding in powers of $T$ and inverting gives the IV expansion.
 
@@ -179,9 +227,12 @@ Away from ATM, for log-moneyness $y = \ln(K/S_0)$:
 
 **Theorem 4.4.4** (Heston Smile Expansion)
 
+
 $$
 \sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho \xi}{4} y + \frac{1}{24\sqrt{v_0}}\left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] T + \cdots
 $$
+
+
 
 **Key features:**
 - Linear skew in $y$: coefficient is $\frac{\rho \xi}{4}$
@@ -196,6 +247,7 @@ $$
 
 The SABR model:
 
+
 $$
 \begin{align}
 dF_t &= \sigma_t F_t^\beta dW_t^1 \\
@@ -204,6 +256,8 @@ d\langle W^1, W^2 \rangle_t &= \rho dt
 \end{align}
 $$
 
+
+
 commonly used for interest rate options.
 
 ### Hagan's Asymptotic Formula
@@ -211,14 +265,20 @@ commonly used for interest rate options.
 **Theorem 4.4.5** (Hagan et al., 2002)  
 For SABR, the implied volatility admits the expansion:
 
+
 $$
 \sigma_{\text{IV}}(K) = \frac{\alpha}{(FK)^{(1-\beta)/2}} \frac{z}{x(z)} \left[1 + \left(\frac{(1-\beta)^2}{24} \frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho\beta\nu\alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T + O(T^2)\right]
 $$
 
+
+
 where:
+
 $$
 z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K), \quad x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)
 $$
+
+
 
 **Leading behavior:** The "backbone" $(FK)^{-\frac{1-\beta}{2}}$ controls the base smile shape.
 
@@ -237,15 +297,21 @@ For deep ITM or OTM options (large $|K - S_0|$) with small $T$:
 
 **Theorem 4.4.6** (Varadhan's Lemma Application)
 
+
 $$
 -\lim_{T \to 0} T \ln C(K, T) = \inf_{x: x > K} I(x)
 $$
 
+
+
 where $I(x)$ is the **rate function** from large deviation theory:
+
 
 $$
 I(x) = \inf_{\text{paths } \{S_t\}: S_T = x} \int_0^T \frac{(\dot{S}_t - \mu(S_t))^2}{2\sigma^2(S_t) S_t^2} dt
 $$
+
+
 
 **Interpretation:** The option price decays exponentially in $T$ at a rate determined by the "most likely path" from $S_0$ to the payoff region.
 
@@ -253,9 +319,12 @@ $$
 
 Taking logarithms and using $C \approx S_0 \Phi(d_1) \approx S_0 e^{-d_1^2/2}$ for deep OTM:
 
+
 $$
 \sigma_{\text{IV}}^2(K, T) T \sim 2 I(K) \quad \text{as } T \to 0, \, K \text{ far from } S_0
 $$
+
+
 
 **Result:** The implied variance $\sigma_{\text{IV}}^2 T$ grows with $|K - S_0|$ to overcome the exponential decay of the option price.
 
@@ -265,31 +334,41 @@ $$
 
 **Regime 1: ATM ($K \approx S_0$, $T \to 0$)**
 
+
 $$
 \sigma_{\text{IV}}(K, T) \sim \sigma(S_0, 0)
 $$
+
+
 
 Local volatility at the spot.
 
 **Regime 2: Finite moneyness ($K - S_0 = O(1)$, $T \to 0$)**
 
+
 $$
 \sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)
 $$
+
+
 
 Local volatility at the strike.
 
 **Regime 3: Scaling limit ($K - S_0 = O(\sqrt{T})$, $T \to 0$)**
 
+
 $$
 \sigma_{\text{IV}}\left(S_0 + y\sqrt{T}, T\right) \sim \sigma(S_0, 0) \left[1 + \frac{y^2}{2} \frac{\sigma'(S_0, 0)}{\sigma(S_0, 0)} + \cdots\right]
 $$
+
+
 
 This regime captures the transition from ATM to OTM, showing the parabolic smile shape.
 
 ### Matched Asymptotics
 
 The complete small-time picture requires **matching** these regimes:
+
 
 $$
 \sigma_{\text{IV}}(K, T) = \begin{cases}
@@ -298,15 +377,20 @@ $$
 \end{cases}
 $$
 
+
+
 ## Practical Implications
 
 ### Extracting Local Volatility from Short-Dated Options
 
 **Method 1: Direct approximation**
 
+
 $$
 \sigma_{\text{loc}}(K, 0) \approx \sigma_{\text{IV}}(K, T_{\text{short}})
 $$
+
+
 
 for small $T_{\text{short}}$ (e.g., 1 week).
 
@@ -384,15 +468,21 @@ For barrier options, Asian options with short monitoring periods:
 **Jumps:**  
 If the model includes jumps:
 
+
 $$
 dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t
 $$
 
+
+
 the leading-order behavior is **discontinuous** rather than diffusive. Small-time asymptotics give:
+
 
 $$
 \sigma_{\text{IV}}(K, T) \sim \infty \quad \text{as } T \to 0 \text{ for } K \neq S_0
 $$
+
+
 
 (Infinite IV to compensate for jump probability in arbitrarily short time.)
 
@@ -402,17 +492,23 @@ $$
 
 For **rough volatility models** (fractional Brownian motion):
 
+
 $$
 dv_t = -\lambda v_t dt + \xi v_t dB_t^H
 $$
+
+
 
 where $B_t^H$ is fractional Brownian motion with Hurst exponent $H < 1/2$.
 
 **Consequence:** Small-time smile exhibits **explosive behavior**:
 
+
 $$
 \sigma_{\text{IV}}(y, T) \sim T^{H - 1/2} |y|
 $$
+
+
 
 for $H < 1/2$, the smile becomes increasingly steep as $T \to 0$.
 
@@ -422,9 +518,12 @@ for $H < 1/2$, the smile becomes increasingly steep as $T \to 0$.
 
 For $|K - S_0| \gg \sigma S_0 \sqrt{T}$, the option is so deep ITM/OTM that:
 
+
 $$
 C(K, T) \approx \max(S_0 - K e^{-rT}, 0)
 $$
+
+
 
 Implied volatility becomes **ill-defined** (numerically unstable) as the price approaches intrinsic value.
 
@@ -436,25 +535,34 @@ Short-maturity asymptotics reveal:
 
 ### **Leading-order behavior:**
 
+
 $$
 \lim_{T \to 0} \sigma_{\text{IV}}(K, T) = \sigma_{\text{loc}}(K, 0)
 $$
+
+
 
 Implied volatility converges to local volatility.
 
 ### **Stochastic volatility corrections:**
 
 **Heston:**
+
 $$
 \sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho\xi}{4}y + O(T)
 $$
 
+
+
 Instantaneous linear skew.
 
 **SABR:**
+
 $$
 \sigma_{\text{IV}} \sim \frac{\alpha}{(FK)^{(1-\beta)/2}} [1 + O(T)]
 $$
+
+
 
 Backbone plus time-dependent corrections.
 
@@ -466,6 +574,7 @@ Backbone plus time-dependent corrections.
 
 ### **Asymptotic regimes:**
 
+
 $$
 \sigma_{\text{IV}}(K, T) \sim \begin{cases}
 \sigma(S_0, 0) & K = S_0 \\
@@ -473,5 +582,7 @@ $$
 \sqrt{\frac{2I(K)}{T}} & K \text{ far from } S_0
 \end{cases}
 $$
+
+
 
 The small-time limit provides a powerful lens for understanding the instantaneous structure of volatility and the geometry of the price process.

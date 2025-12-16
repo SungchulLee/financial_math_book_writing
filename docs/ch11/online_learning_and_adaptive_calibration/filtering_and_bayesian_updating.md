@@ -7,10 +7,13 @@
 ## 1. State-space models
 
 Consider a state-space model:
+
 \[
 x_{t+1} = g(x_t) + \varepsilon_t, \quad
 y_t = h(x_t) + \eta_t.
 \]
+
+
 
 The latent state \(x_t\) evolves over time and must be inferred from observations.
 
@@ -19,9 +22,12 @@ The latent state \(x_t\) evolves over time and must be inferred from observation
 ## 2. Bayesian updating
 
 Bayesian inference updates beliefs via
+
 \[
 p(x_t \mid y_{1:t}) \propto p(y_t \mid x_t) p(x_t \mid y_{1:t-1}).
 \]
+
+
 
 This recursion underlies all filtering methods.
 

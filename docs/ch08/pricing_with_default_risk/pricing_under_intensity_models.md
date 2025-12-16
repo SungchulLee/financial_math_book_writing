@@ -18,6 +18,7 @@ Pricing reduces to computing discounted expectations involving survival probabil
 ## 2. Defaultable zero-coupon bond
 
 Under recovery of treasury (RT), the price simplifies to
+
 \[
 P^d(t,T)
 = \mathbb{E}^{\mathbb{Q}}\left[
@@ -25,6 +26,8 @@ P^d(t,T)
 \middle| \mathcal{F}_t
 \right].
 \]
+
+
 
 Default risk acts like an additional discount rate.
 

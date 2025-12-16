@@ -7,14 +7,20 @@ In practice, *static* calibration to vanilla options is often performed not dire
 ## 1. From prices to implied volatility
 
 For a given maturity \(T\) and strike \(K\), a market quote is typically a bid/ask or mid option price
+
 \[
 C^{\text{mkt}}(K,T).
 \]
 
+
+
 The **Black–Scholes implied volatility** \(\sigma_{\text{impl}}(K,T)\) is defined as the unique \(\sigma\ge 0\) such that
+
 \[
 C^{\text{BS}}(K,T;\sigma) = C^{\text{mkt}}(K,T),
 \]
+
+
 where \(C^{\text{BS}}\) is the Black–Scholes call price (with the appropriate forward/discounting conventions).
 
 ### Why implied vols?
@@ -63,16 +69,22 @@ In practice, calibration is often done after (or together with) an **arbitrage-c
 ## 4. Calibrating a model to the surface
 
 Let the model depend on parameters \(\theta\). For each grid point \((K_i,T_i)\), we can compute model prices \(C^{\text{model}}(K_i,T_i;\theta)\) and then compute the corresponding implied vol
+
 \[
 \sigma^{\text{model}}_{\text{impl}}(K_i,T_i;\theta).
 \]
 
+
+
 Calibration “to the surface” means selecting \(\theta\) such that
+
 \[
 \sigma^{\text{model}}_{\text{impl}}(K_i,T_i;\theta)
 \approx
 \sigma^{\text{mkt}}_{\text{impl}}(K_i,T_i).
 \]
+
+
 
 This is usually posed as a weighted optimization problem (see next sections).
 

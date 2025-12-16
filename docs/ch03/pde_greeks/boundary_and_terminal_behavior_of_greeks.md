@@ -7,21 +7,30 @@ Greeks exhibit characteristic behavior near \(S\to 0\), \(S\to\infty\), and \(t\
 ## Far-field behavior (vanilla calls)
 
 As \(S\to\infty\), a call behaves like
+
 \[
 V(t,S)\sim S - K e^{-r(T-t)},
 \]
+
+
 so
+
 \[
 \Delta(t,S)\to 1,
 \qquad
 \Gamma(t,S)\to 0.
 \]
+
+
 As \(S\to 0\),
+
 \[
 V(t,S)\to 0,
 \qquad \Delta(t,S)\to 0,
 \qquad \Gamma(t,S)\to 0.
 \]
+
+
 
 ---
 

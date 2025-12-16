@@ -8,11 +8,17 @@ Girsanov's theorem is the fundamental tool for **changing probability measures**
 
 **Theorem (Girsanov):** Let $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}_{t \geq 0}, \mathbb{P})$ be a filtered probability space, and let $W_t$ be a $\mathbb{P}$-Brownian motion. Let $\theta_t$ be an $\{\mathcal{F}_t\}$-adapted process satisfying the **Novikov condition**:
 
+
 $$\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2 \, ds\right)\right] < \infty$$
+
+
 
 Define the process:
 
+
 $$Z_t = \exp\left(-\int_0^t \theta_s \, dW_s - \frac{1}{2}\int_0^t \theta_s^2 \, ds\right)$$
+
+
 
 Then:
 
@@ -20,11 +26,17 @@ Then:
 
 2. Define a new probability measure $\mathbb{Q}$ on $\mathcal{F}_T$ by:
 
+
 $$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T$$
+
+
 
 Under $\mathbb{Q}$, the process:
 
+
 $$\boxed{\tilde{W}_t = W_t + \int_0^t \theta_s \, ds}$$
+
+
 
 is a **$\mathbb{Q}$-Brownian motion**.
 
@@ -32,21 +44,33 @@ is a **$\mathbb{Q}$-Brownian motion**.
 
 The process $Z_t$ can be written using the **stochastic exponential** notation:
 
+
 $$Z_t = \mathcal{E}\left(-\int_0^{\cdot} \theta_s \, dW_s\right)_t$$
+
+
 
 where $\mathcal{E}(X)_t$ solves the SDE:
 
+
 $$d\mathcal{E}(X)_t = \mathcal{E}(X)_t \, dX_t$$
+
+
 
 For our case:
 
+
 $$dZ_t = -Z_t \theta_t \, dW_t$$
 
+
+
 with $Z_0 = 1$, where 
+
 
 $$
 X = -\int_0^{\cdot} \theta_s \, dW_s
 $$
+
+
 
 ## Proof of Girsanov's Theorem
 
@@ -59,43 +83,67 @@ The proof has three main steps:
 
 The process $Z_t$ satisfies the SDE:
 
+
 $$dZ_t = -Z_t \theta_t \, dW_t$$
+
+
 
 This is a **driftless** SDE, so by Itô's formula, $Z_t$ is a **local martingale**.
 
 To show it's a **true martingale**, we use the **Novikov condition**:
 
+
 $$\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2 \, ds\right)\right] < \infty$$
+
+
 
 This condition is **sufficient** (but not necessary) to ensure:
 
+
 $$\mathbb{E}^{\mathbb{P}}[Z_t] = Z_0 = 1 \quad \text{for all } t \in [0, T]$$
+
+
 
 **Proof of martingale property:**
 
 Define $M_t = \int_0^t \theta_s \, dW_s$. Then:
 
+
 $$Z_t = \exp\left(-M_t - \frac{1}{2}\langle M \rangle_t\right) = \exp\left(-M_t - \frac{1}{2}\int_0^t \theta_s^2 \, ds\right)$$
+
+
 
 By Itô's lemma for $f(M, t) = \exp(-M - \frac{1}{2}\int_0^t \theta_s^2 \, ds)$:
 
+
 $$dZ_t = Z_t \left[-dM_t - \frac{1}{2}\theta_t^2 \, dt + \frac{1}{2}(dM_t)^2\right]$$
+
+
 
 Since $dM_t = \theta_t \, dW_t$ and $(dM_t)^2 = \theta_t^2 \, dt$:
 
+
 $$dZ_t = Z_t \left[-\theta_t \, dW_t - \frac{1}{2}\theta_t^2 \, dt + \frac{1}{2}\theta_t^2 \, dt\right] = -Z_t \theta_t \, dW_t$$
+
+
 
 The **drift vanishes**, so $Z_t$ is a local martingale.
 
 Under Novikov's condition, we can show that $Z_t$ is **uniformly integrable**, hence a true martingale with:
 
+
 $$\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_t] = Z_t$$
+
+
 
 ### Step 2: $\mathbb{Q}$ is a Valid Probability Measure
 
 Define:
 
+
 $$\mathbb{Q}(A) = \int_A Z_T \, d\mathbb{P} \quad \text{for } A \in \mathcal{F}_T$$
+
+
 
 **Verification:**
 
@@ -112,7 +160,10 @@ So $\mathbb{Q}$ is an **equivalent probability measure**.
 
 Define:
 
+
 $$\tilde{W}_t = W_t + \int_0^t \theta_s \, ds$$
+
+
 
 We need to verify three properties:
 
@@ -130,17 +181,26 @@ This is the **key step**. We'll use the **martingale characterization of Brownia
 
 For $s < t$, we need:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[\tilde{W}_t | \mathcal{F}_s] = \tilde{W}_s$$
+
+
 
 By the definition of expectation under $\mathbb{Q}$:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[\tilde{W}_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[Z_T \tilde{W}_t | \mathcal{F}_s]}{\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s]} = \frac{\mathbb{E}^{\mathbb{P}}[Z_T \tilde{W}_t | \mathcal{F}_s]}{Z_s}$$
+
+
 
 We need to show this equals $\tilde{W}_s$.
 
 **Key computation:** Consider the process $Z_t \tilde{W}_t$. By Itô's product rule:
 
+
 $$d(Z_t \tilde{W}_t) = \tilde{W}_t \, dZ_t + Z_t \, d\tilde{W}_t + dZ_t \cdot d\tilde{W}_t$$
+
+
 
 We have:
 - $dZ_t = -Z_t \theta_t \, dW_t$
@@ -148,9 +208,13 @@ We have:
 
 Therefore:
 
+
 $$dZ_t \cdot d\tilde{W}_t = (-Z_t \theta_t \, dW_t) \cdot (dW_t + \theta_t \, dt) = -Z_t \theta_t \, dt$$
 
+
+
 So:
+
 
 $$\begin{array}{lll}
 \displaystyle d(Z_t \tilde{W}_t) 
@@ -159,21 +223,32 @@ $$\begin{array}{lll}
 &=&\displaystyle Z_t(1 - \tilde{W}_t \theta_t) \, dW_t
 \end{array}$$
 
+
+
 This is a **driftless** process! Therefore $Z_t \tilde{W}_t$ is a $\mathbb{P}$-martingale.
 
 Hence:
 
+
 $$\mathbb{E}^{\mathbb{P}}[Z_T \tilde{W}_T | \mathcal{F}_s] = Z_s \tilde{W}_s$$
+
+
 
 Dividing by $Z_s$:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[\tilde{W}_T | \mathcal{F}_s] = \tilde{W}_s$$
+
+
 
 So $\tilde{W}_t$ is a $\mathbb{Q}$-martingale. ✓
 
 **Quadratic variation:**
 
+
 $$\langle \tilde{W} \rangle_t = \langle W + \int_0^{\cdot} \theta_s \, ds \rangle_t = \langle W \rangle_t = t$$
+
+
 
 (since the bounded variation term contributes nothing to quadratic variation)
 
@@ -189,11 +264,17 @@ Girsanov's theorem allows us to **change the drift** of a diffusion process by c
 
 **Under $\mathbb{P}$:**
 
+
 $$dX_t = \mu_t \, dt + \sigma_t \, dW_t$$
+
+
 
 **Under $\mathbb{Q}$ (with $\theta_t = -\frac{\mu_t}{\sigma_t}$):**
 
+
 $$dX_t = 0 \, dt + \sigma_t \, d\tilde{W}_t = \sigma_t \, d\tilde{W}_t$$
+
+
 
 The process becomes **driftless** (a martingale) under the new measure!
 
@@ -201,7 +282,10 @@ The process becomes **driftless** (a martingale) under the new measure!
 
 The "cost" of changing measures is encoded in:
 
+
 $$Z_T = \exp\left(-\int_0^T \theta_s \, dW_s - \frac{1}{2}\int_0^T \theta_s^2 \, ds\right)$$
+
+
 
 **Interpretation:**
 - Events with $Z_T$ large → Higher probability under $\mathbb{Q}$
@@ -212,7 +296,10 @@ $$Z_T = \exp\left(-\int_0^T \theta_s \, dW_s - \frac{1}{2}\int_0^T \theta_s^2 \,
 
 This comes from **Itô's lemma**. When we write:
 
+
 $$\log Z_t = -\int_0^t \theta_s \, dW_s - \frac{1}{2}\int_0^t \theta_s^2 \, ds$$
+
+
 
 and apply Itô to get $dZ_t$, the $\frac{1}{2}\theta_t^2$ term exactly cancels the Itô correction from $(dW_t)^2 = dt$, leaving a **driftless** SDE.
 
@@ -226,7 +313,10 @@ Now let's apply Girsanov's theorem to derive the risk-neutral measure in the Bla
 
 The stock price follows:
 
+
 $$dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$$
+
+
 
 where:
 
@@ -238,9 +328,13 @@ where:
 
 The **discounted stock price** is:
 
+
 $$\tilde{S}_t = e^{-rt} S_t$$
 
+
+
 By Itô's lemma:
+
 
 $$\begin{array}{lll}
 \displaystyle d\tilde{S}_t 
@@ -250,13 +344,18 @@ $$\begin{array}{lll}
 \end{array}$$
 
 
+
+
 Under $\mathbb{P}$, the discounted price has **drift** $(\mu - r)$, so it's **not a martingale** (unless $\mu = r$, which is generally not true).
 
 ### Goal: Find $\mathbb{Q}$ Such That $\tilde{S}_t$ is a Martingale
 
 We want to find a measure $\mathbb{Q} \sim \mathbb{P}$ such that:
 
+
 $$d\tilde{S}_t = \tilde{S}_t \sigma \, d\tilde{W}_t$$
+
+
 
 (driftless, hence a martingale)
 
@@ -268,7 +367,10 @@ From $d\tilde{S}_t = \tilde{S}_t[(\mu - r) \, dt + \sigma \, dW_t]$, we want to 
 
 Define the **market price of risk** (also called **Sharpe ratio**):
 
+
 $$\boxed{\lambda = \frac{\mu - r}{\sigma}}$$
+
+
 
 **Economic interpretation:**
 
@@ -282,21 +384,31 @@ We want to apply Girsanov with constant $\theta_t = \lambda = \frac{\mu - r}{\si
 
 Define:
 
+
 $$Z_t = \exp\left(-\lambda W_t - \frac{\lambda^2 t}{2}\right) = \exp\left(-\frac{\mu - r}{\sigma} W_t - \frac{(\mu-r)^2}{2\sigma^2} t\right)$$
+
+
 
 By Girsanov's theorem, under the new measure $\mathbb{Q}$ defined by:
 
+
 $$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = Z_t$$
+
+
 
 the process:
 
+
 $$\boxed{W^{\mathbb{Q}}_t = W_t + \lambda t = W_t + \frac{\mu - r}{\sigma} t}$$
+
+
 
 is a $\mathbb{Q}$-Brownian motion.
 
 ### Step 3: Stock Dynamics Under $\mathbb{Q}$
 
 Substitute $W_t = W^{\mathbb{Q}}_t - \lambda t$ into the stock SDE:
+
 
 
 $$\begin{array}{lll}
@@ -308,13 +420,21 @@ dS_t
 &=&\displaystyle (\mu - \sigma \lambda) S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t
 \end{array}$$
 
+
+
 Now substitute $\lambda = \frac{\mu - r}{\sigma}$:
+
 
 $$\mu - \sigma \lambda = \mu - \sigma \cdot \frac{\mu - r}{\sigma} = \mu - (\mu - r) = r$$
 
+
+
 Therefore:
 
+
 $$\boxed{dS_t = r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t}$$
+
+
 
 **The drift has changed from $\mu$ to $r$!**
 
@@ -322,21 +442,33 @@ $$\boxed{dS_t = r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t}$$
 
 Under $\mathbb{Q}$, the discounted stock price satisfies:
 
+
 $$
 d\tilde{S}_t 
 = e^{-rt}[-rS_t \, dt + dS_t]
 = e^{-rt}[-rS_t + rS_t] \, dt + e^{-rt} \sigma S_t \, dW^{\mathbb{Q}}_t
 $$
 
+
+
+
 $$\boxed{d\tilde{S}_t = \tilde{S}_t \sigma \, dW^{\mathbb{Q}}_t}$$
+
+
 
 **No drift!** Therefore $\tilde{S}_t$ is a $\mathbb{Q}$-martingale:
 
+
 $$\tilde{S}_t = \mathbb{E}^{\mathbb{Q}}[\tilde{S}_T | \mathcal{F}_t]$$
+
+
 
 or equivalently:
 
+
 $$\boxed{S_t = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)} S_T | \mathcal{F}_t]}$$
+
+
 
 This is the **fundamental asset pricing formula** under the risk-neutral measure!
 
@@ -362,9 +494,13 @@ This is the **fundamental asset pricing formula** under the risk-neutral measure
 
 The measure change:
 
+
 $$dW^{\mathbb{Q}}_t = dW_t + \frac{\mu - r}{\sigma} dt$$
 
+
+
 adds a **deterministic drift** that exactly cancels the excess return $\mu - r$:
+
 
 $$\begin{array}{lll}
 dS_t 
@@ -373,11 +509,16 @@ dS_t
 &=&\displaystyle r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t
 \end{array}$$
 
+
+
 The transformation **absorbs the risk premium** into the measure change.
 
 ### The Radon-Nikodym Derivative
 
+
 $$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\left(-\frac{\mu-r}{\sigma}W_T - \frac{(\mu-r)^2}{2\sigma^2}T\right)$$
+
+
 
 **Interpretation:**
 - Paths where $W_T$ is large (stock goes up a lot) → Lower weight under $\mathbb{Q}$
@@ -405,15 +546,24 @@ This is the heart of **risk-neutral pricing theory**.
 
 If $\tilde{S}_t = e^{-rt}S_t$ is a $\mathbb{Q}$-martingale:
 
+
 $$e^{-rt}S_t = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T | \mathcal{F}_t]$$
+
+
 
 Therefore:
 
+
 $$\boxed{S_t = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}S_T | \mathcal{F}_t]}$$
+
+
 
 For a derivative with payoff $\Phi(S_T)$:
 
+
 $$\boxed{V(t, S_t) = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}\Phi(S_T) | \mathcal{F}_t]}$$
+
+
 
 **This is the cornerstone of derivative pricing!**
 
@@ -423,11 +573,17 @@ The martingale property under $\mathbb{Q}$ is **equivalent** to the existence of
 
 **Martingale approach:** 
 
+
 $$V_t = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}\Phi(S_T) | \mathcal{F}_t]$$
+
+
 
 **Hedging approach:** 
 
+
 $$V_t = \Delta_t S_t + \beta_t B_t$$
+
+
 
 where $\Delta_t = \frac{\partial V}{\partial S}$ is chosen to make the portfolio risk-free.
 
@@ -439,15 +595,24 @@ Both give the same price!
 
 Under $\mathbb{Q}$:
 
+
 $$C(t, S_t) = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}(S_T - K)^+ | \mathcal{F}_t]$$
+
+
 
 Since $dS_t = rS_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t$:
 
+
 $$S_T = S_t \exp\left[\left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma(W^{\mathbb{Q}}_T - W^{\mathbb{Q}}_t)\right]$$
+
+
 
 With $W^{\mathbb{Q}}_T - W^{\mathbb{Q}}_t \sim \mathcal{N}(0, T-t)$, we can compute:
 
+
 $$C = S_t \Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$$
+
+
 
 This is the **Black-Scholes formula**, derived purely from the risk-neutral expectation!
 
@@ -481,9 +646,15 @@ Purpose: describe reality       price derivatives
 
 ### The Transformation
 
+
 $$W^{\mathbb{Q}}_t = W_t + \underbrace{\frac{\mu - r}{\sigma}}_{\text{Sharpe ratio}} t$$
 
+
+
+
 $$\frac{d\mathbb{Q}}{d\mathbb{P}} = \exp\left(-\frac{\mu-r}{\sigma}W_T - \frac{(\mu-r)^2}{2\sigma^2}T\right)$$
+
+
 
 ### Why This Works
 

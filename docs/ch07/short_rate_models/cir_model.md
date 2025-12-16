@@ -7,9 +7,12 @@ The Cox–Ingersoll–Ross (CIR) model is a mean-reverting short-rate model with
 ## 1. Model dynamics
 
 Under the risk-neutral measure \(\mathbb{Q}\),
+
 \[
 dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t^{\mathbb{Q}},
 \]
+
+
 with parameters \(\kappa,\theta,\sigma>0\).
 
 ---
@@ -17,9 +20,12 @@ with parameters \(\kappa,\theta,\sigma>0\).
 ## 2. Positivity and the Feller condition
 
 The boundary behavior depends on the **Feller condition**:
+
 \[
 2\kappa\theta \ge \sigma^2.
 \]
+
+
 
 If satisfied, \(r_t\) stays strictly positive.
 If violated, \(r_t\) may hit zero but remains non-negative.
@@ -29,9 +35,12 @@ If violated, \(r_t\) may hit zero but remains non-negative.
 ## 3. Bond pricing (affine form)
 
 Like Vasicek, CIR yields an exponential-affine bond price:
+
 \[
 P(t,T) = A(t,T)\,e^{-B(t,T)r_t}.
 \]
+
+
 
 Here \(A\) and \(B\) again have closed forms (more complex than Vasicek), reflecting the square-root diffusion.
 

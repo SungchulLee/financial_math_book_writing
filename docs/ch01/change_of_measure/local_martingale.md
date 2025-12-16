@@ -26,7 +26,10 @@ Here $t \wedge \tau_n = \min(t, \tau_n)$ means we stop the process at time $\tau
 
 ## 2. Key Differences
 
+
 $$\boxed{\text{Every martingale is a local martingale, but NOT every local martingale is a martingale}}$$
+
+
 
 ### What Can Go Wrong?
 
@@ -46,57 +49,87 @@ Even though $M_{t \wedge \tau_n}$ is a martingale for each $n$, we cannot necess
 
 Consider Brownian motion $W_t$ and define:
 
+
 $$M_t = e^{2W_t - 2t}$$
+
+
 
 **Check if it's a local martingale:**
 
 By Itô's lemma:
+
 $$dM_t = 2M_t \, dW_t$$
+
+
 
 No drift term! So $M_t$ is a **local martingale**.
 
 **Check if it's a martingale:**
 
+
 $$\mathbb{E}[M_t] = \mathbb{E}[e^{2W_t - 2t}] = e^{-2t} \mathbb{E}[e^{2W_t}] = e^{-2t} \cdot e^{2t} = 1$$
+
+
 
 Wait, this IS a martingale! Let me use a better example.
 
 ### Example 1 (Corrected): Reciprocal of Exponential
 
 Consider:
+
 $$M_t = \frac{1}{1 + W_t}$$
+
+
 
 for $W_t$ starting from $W_0 = 0$ (so $M_0 = 1$).
 
 By Itô's lemma:
+
 $$dM_t = -\frac{1}{(1+W_t)^2} dW_t + \frac{1}{(1+W_t)^3} dt$$
+
+
 
 This has a drift, so it's not even a local martingale. Let me try again.
 
 ### Example 1 (Better): Geometric Brownian Motion Without Drift Correction
 
 Consider the process satisfying:
+
 $$dX_t = \sigma X_t \, dW_t, \quad X_0 = 1$$
 
+
+
 The solution is:
+
 $$X_t = \exp\left(\sigma W_t - \frac{\sigma^2 t}{2}\right)$$
+
+
 
 **This IS a martingale** because $\mathbb{E}[X_t] = 1$.
 
 But now consider:
+
 $$Y_t = \exp(\sigma W_t) = \exp\left(\sigma W_t + \frac{\sigma^2 t}{2}\right) \cdot \exp\left(-\frac{\sigma^2 t}{2}\right)$$
+
+
 
 No wait, let me use the canonical example.
 
 ### Example 1 (Canonical): Explosion Example
 
 Consider the SDE:
+
 $$dX_t = X_t^{3/2} \, dW_t, \quad X_0 = 1$$
+
+
 
 This process **explodes to infinity in finite time** with positive probability.
 
 Define stopping times:
+
 $$\tau_n = \inf\{t : |X_t| \geq n\}$$
+
+
 
 Then:
 - $X_{t \wedge \tau_n}$ is a **martingale** for each $n$ (stopped before explosion)
@@ -109,13 +142,19 @@ Then:
 Let $R_t$ be a 3-dimensional Bessel process (think: distance from origin in 3D Brownian motion).
 
 The process:
+
 $$M_t = \frac{1}{R_t}$$
+
+
 
 is a **local martingale** but **NOT a martingale**.
 
 **Why?** Define $\tau_n = \inf\{t : R_t \geq n\}$. Then $M_{t \wedge \tau_n}$ is a martingale, but:
 
+
 $$\mathbb{E}[M_t] = \mathbb{E}\left[\frac{1}{R_t}\right] > \frac{1}{R_0} = 1$$
+
+
 
 The expectation grows because $R_t$ can get very close to 0, making $1/R_t$ very large.
 
@@ -123,15 +162,24 @@ The expectation grows because $R_t$ can get very close to 0, making $1/R_t$ very
 
 Consider a gambler with fortune $X_t$ who bets a fraction proportional to wealth. The game is "locally fair" but:
 
+
 $$dX_t = X_t \, dW_t$$
 
+
+
 gives:
+
 $$X_t = X_0 e^{W_t - t/2}$$
+
+
 
 This IS a martingale with $\mathbb{E}[X_t] = X_0$.
 
 But if we modify to:
+
 $$dX_t = X_t^{1.5} \, dW_t$$
+
+
 
 the volatility grows superlinearly, allowing explosion, making it only a local martingale.
 
@@ -151,11 +199,17 @@ Consider a martingale betting strategy where you double your bet after each loss
 
 For a local martingale $M_t$:
 
+
 $$\mathbb{E}[M_{t \wedge \tau_n}] = M_0 \quad \text{for all } n$$
+
+
 
 But we **cannot** always take $n \to \infty$ to get:
 
+
 $$\mathbb{E}[M_t] = M_0$$
+
+
 
 **Why not?** We need **uniform integrability** to exchange limit and expectation.
 
@@ -167,7 +221,10 @@ $$\mathbb{E}[M_t] = M_0$$
 
 When $\mathcal{L}f(x) = 0$, Dynkin's formula gives:
 
+
 $$f(X_t) = f(X_0) + M_t$$
+
+
 
 where $M_t$ is a martingale. So $f(X_t)$ is at least a **local martingale**.
 
@@ -184,12 +241,18 @@ Without these conditions, $f(X_t)$ might only be a local martingale.
 Consider $X_t = e^{W_t}$ (note: this is NOT the solution to $dX_t = X_t dW_t$; I'm just defining $X_t$ this way).
 
 Then:
+
 $$f(x) = \log x$$
+
+
 
 satisfies (formally) the equation related to the generator, but $f(X_t) = W_t$ is a martingale.
 
 However, if we consider:
+
 $$g(x) = x \log x$$
+
+
 
 For the process $X_t = e^{W_t - t/2}$, we have $g(X_t) = e^{W_t - t/2}(W_t - t/2)$. This can fail to be a martingale even if $\mathcal{L}g = 0$ along paths, due to integrability issues.
 
@@ -210,10 +273,13 @@ For the process $X_t = e^{W_t - t/2}$, we have $g(X_t) = e^{W_t - t/2}(W_t - t/2
 
 ## 7. Precise Statement for $\mathcal{L}f = 0$
 
+
 $$\boxed{\begin{align}
 \mathcal{L}f(x) = 0 \text{ for all } x &\Longrightarrow f(X_t) \text{ is a local martingale} \\[5pt]
 \text{If additionally } \mathbb{E}[|f(X_t)|] < \infty &\Longrightarrow f(X_t) \text{ is a martingale}
 \end{align}}$$
+
+
 
 The integrability condition is crucial for the upgrade from local martingale to martingale!
 

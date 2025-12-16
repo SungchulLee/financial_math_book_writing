@@ -7,16 +7,22 @@ Likelihood ratio methods move derivatives from the payoff to the distribution, e
 ## Score identity
 
 If \(X^\theta\) has density \(p_\theta\),
+
 \[
 V(\theta)=\mathbb{E}_\theta[\Phi(X^\theta)]
 =\int \Phi(x)p_\theta(x)\,\mathrm{d}x,
 \]
+
+
 then
+
 \[
 \boxed{
 V'(\theta)=\mathbb{E}_\theta\!\left[\Phi(X^\theta)\frac{\partial}{\partial \theta}\log p_\theta(X^\theta)\right].
 }
 \]
+
+
 This avoids \(\Phi'\).
 
 ---
@@ -30,11 +36,14 @@ This avoids \(\Phi'\).
 ## Malliavin perspective (conceptual)
 
 For diffusions,
+
 \[
 \frac{\partial}{\partial x}\mathbb{E}[\Phi(X_T^x)]
 =
 \mathbb{E}[\Phi(X_T^x)\,H],
 \]
+
+
 where \(H\) is a weight built using Malliavin derivatives and covariance inverses.
 
 ---

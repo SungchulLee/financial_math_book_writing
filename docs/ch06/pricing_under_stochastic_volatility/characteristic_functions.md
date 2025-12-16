@@ -7,14 +7,20 @@ A major reason stochastic volatility models (especially affine models like Hesto
 ## 1. Definition
 
 For a random variable \(X\) (typically log-price), the **characteristic function** is
+
 \[
 \varphi_X(u) = \mathbb{E}\big[e^{iuX}\big], \qquad u\in\mathbb{R}.
 \]
 
+
+
 In a time-dependent setting, we often use the conditional characteristic function:
+
 \[
 \varphi(t,x;T,u) = \mathbb{E}\left[e^{iuX_T}\mid X_t=x\right].
 \]
+
+
 
 ---
 
@@ -33,11 +39,14 @@ Computationally, evaluating \(\varphi\) is often cheaper and more stable than si
 ## 3. Affine exponential form
 
 In many stochastic volatility models, \(\varphi\) has an exponential-affine structure:
+
 \[
 \mathbb{E}\left[e^{iuX_T}\mid \mathcal{F}_t\right]
 = \exp\Big(A(\tau,u) + B(\tau,u)V_t + iuX_t\Big),
 \qquad \tau=T-t,
 \]
+
+
 where \(A\) and \(B\) solve ODEs (often Riccati equations).
 
 Heston is the canonical example.
@@ -47,9 +56,12 @@ Heston is the canonical example.
 ## 4. Risk-neutral drift and discounting
 
 Under \(\mathbb{Q}\), discounted prices must be martingales:
+
 \[
 \mathbb{E}^{\mathbb{Q}}\left[e^{-r(T-t)}S_T\mid\mathcal{F}_t\right] = S_t e^{-q(T-t)}.
 \]
+
+
 
 This condition determines the drift of \(X_t\) (log-price) and must be consistent with the characteristic function used for pricing.
 

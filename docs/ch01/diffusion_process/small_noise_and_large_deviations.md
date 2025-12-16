@@ -1,6 +1,7 @@
 # Small Noise and Large Deviations
 
 Consider the small-noise diffusion on \([0,T]\):
+
 \[
 \boxed{
 \mathrm{d}X_t^\varepsilon
@@ -11,12 +12,17 @@ b(X_t^\varepsilon)\,\mathrm{d}t
 \qquad X_0^\varepsilon=x_0.
 }
 \]
+
+
 As \(\varepsilon\downarrow 0\), \(X^\varepsilon\) concentrates near the ODE solution
+
 \[
 \boxed{
 \dot{\bar{x}}(t)=b(\bar{x}(t)),\qquad \bar{x}(0)=x_0.
 }
 \]
+
+
 
 Large deviations quantify exponentially small probabilities of atypical paths.
 
@@ -25,6 +31,7 @@ Large deviations quantify exponentially small probabilities of atypical paths.
 ## Path-Space Rate Function (Freidlin–Wentzell)
 
 Let \(\phi\in C([0,T];\mathbb{R}^d)\). If \(\phi\) is absolutely continuous and \(\sigma(\phi(t))\) is invertible, define
+
 \[
 \boxed{
 I_{0,T}(\phi)
@@ -35,24 +42,33 @@ I_{0,T}(\phi)
 \right\|^2\,\mathrm{d}t,
 }
 \]
+
+
 and set \(I_{0,T}(\phi)=+\infty\) otherwise.
 
 Equivalently, using a control \(u\in L^2([0,T];\mathbb{R}^m)\) with
+
 \[
 \dot{\phi}(t)=b(\phi(t))+\sigma(\phi(t))u(t),
 \]
+
+
 we have
+
 \[
 \boxed{
 I_{0,T}(\phi)=\frac{1}{2}\int_0^T \|u(t)\|^2\,\mathrm{d}t.
 }
 \]
 
+
+
 ---
 
 ## LDP Heuristic
 
 For a set \(A\) of paths,
+
 \[
 \boxed{
 \mathbb{P}(X^\varepsilon \in A)
@@ -63,6 +79,8 @@ For a set \(A\) of paths,
 \quad (\varepsilon\downarrow 0).
 }
 \]
+
+
 Thus, rare events occur along paths minimizing \(I_{0,T}\) under constraints (“most likely path”).
 
 ---
@@ -70,13 +88,19 @@ Thus, rare events occur along paths minimizing \(I_{0,T}\) under constraints (�
 ## Hamilton–Jacobi Orientation
 
 With \(a(x)=\sigma(x)\sigma(x)^\top\), define the Hamiltonian
+
 \[
 H(x,p)=b(x)\cdot p+\frac{1}{2}p^\top a(x)p.
 \]
+
+
 Large deviations are closely tied to Hamilton–Jacobi equations of the form
+
 \[
 \frac{\partial V}{\partial t}+H(x,\nabla V)=0,
 \]
+
+
 in contrast to diffusion expectations, which satisfy linear Kolmogorov equations.
 
 ---

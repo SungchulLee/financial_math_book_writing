@@ -7,9 +7,12 @@ The **immersion property**, also called the **H-hypothesis**, is a key assumptio
 ## 1. Definition of the H-hypothesis
 
 Given filtrations \((\mathcal{F}_t)\subseteq(\mathcal{G}_t)\), immersion holds if:
+
 \[
 \text{every } (\mathcal{F}_t, \mathbb{Q})\text{-martingale is also a }(\mathcal{G}_t, \mathbb{Q})\text{-martingale}.
 \]
+
+
 
 This ensures consistency of martingale properties after enlargement.
 

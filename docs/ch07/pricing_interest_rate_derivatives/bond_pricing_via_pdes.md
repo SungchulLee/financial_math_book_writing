@@ -7,14 +7,20 @@ In short-rate models, zero-coupon bond prices can be characterized as solutions 
 ## 1. Setup
 
 Let \(r_t\) follow a risk-neutral short-rate diffusion
+
 \[
 dr_t = \mu^{\mathbb{Q}}(t,r_t)\,dt + \sigma(t,r_t)\,dW_t^{\mathbb{Q}}.
 \]
 
+
+
 Define the zero-coupon bond price
+
 \[
 P(t,T,r) = \text{price at }t\text{ of }1\text{ paid at }T,
 \]
+
+
 given \(r_t=r\).
 
 ---
@@ -22,16 +28,22 @@ given \(r_t=r\).
 ## 2. Pricing PDE
 
 By standard arbitrage arguments, \(P(t,T,r)\) satisfies
+
 \[
 \partial_t P
 + \mu^{\mathbb{Q}}(t,r)\,\partial_r P
 + \tfrac12 \sigma(t,r)^2\,\partial_{rr}P
 - rP = 0,
 \]
+
+
 with terminal condition
+
 \[
 P(T,T,r)=1.
 \]
+
+
 
 This PDE is backward in time.
 

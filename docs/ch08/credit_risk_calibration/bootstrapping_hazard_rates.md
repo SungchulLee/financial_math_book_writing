@@ -7,9 +7,12 @@ Calibration of reduced-form credit models typically starts by **bootstrapping ha
 ## 1. Credit curve construction
 
 Analogous to yield curve bootstrapping, the goal is to construct a **survival probability curve**
+
 \[
 S(0,T) = \mathbb{Q}(\tau > T),
 \]
+
+
 or equivalently a hazard rate curve \(\lambda(t)\).
 
 Market inputs:
@@ -22,9 +25,12 @@ Market inputs:
 ## 2. Piecewise-constant hazard rates
 
 A standard approach assumes
+
 \[
 \lambda(t) = \lambda_i, \quad t \in (T_{i-1}, T_i].
 \]
+
+
 
 Hazard rates are solved sequentially so that each CDS maturity is priced exactly.
 

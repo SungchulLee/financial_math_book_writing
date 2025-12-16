@@ -7,12 +7,15 @@ An alternative and often more intuitive approach to bond pricing uses the **Feyn
 ## 1. Risk-neutral valuation
 
 The fundamental pricing relation is
+
 \[
 P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[
 \exp\left(-\int_t^T r_s ds\right)
 \middle| \mathcal{F}_t
 \right].
 \]
+
+
 
 This holds for any arbitrage-free short-rate model under \(\mathbb{Q}\).
 
@@ -21,12 +24,15 @@ This holds for any arbitrage-free short-rate model under \(\mathbb{Q}\).
 ## 2. Feynman–Kac theorem
 
 The Feynman–Kac theorem states that the function
+
 \[
 u(t,r) = \mathbb{E}^{\mathbb{Q}}\left[
 \exp\left(-\int_t^T r_s ds\right)
 \middle| r_t=r
 \right]
 \]
+
+
 is the unique solution to the bond pricing PDE with terminal condition \(u(T,r)=1\).
 
 Thus:

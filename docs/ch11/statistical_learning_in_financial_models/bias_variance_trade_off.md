@@ -7,10 +7,13 @@ The **bias–variance trade-off** is a central concept in statistical learning, 
 ## 1. Decomposition of error
 
 For an estimator \(\hat f\), the expected prediction error can be decomposed as:
+
 \[
 \mathbb{E}[(Y - \hat f(X))^2]
 = \text{Bias}^2 + \text{Variance} + \text{Noise}.
 \]
+
+
 
 This decomposition highlights competing sources of error.
 

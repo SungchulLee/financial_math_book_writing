@@ -7,10 +7,13 @@
 ## 1. Definition
 
 For confidence level \(\alpha\), the Expected Shortfall of loss \(L\) is
+
 \[
 \text{ES}_{\alpha}(L)
 = \mathbb{E}[L \mid L \ge \text{VaR}_{\alpha}(L)].
 \]
+
+
 
 It measures the **average loss in the worst \((1-\alpha)\)% of scenarios**.
 

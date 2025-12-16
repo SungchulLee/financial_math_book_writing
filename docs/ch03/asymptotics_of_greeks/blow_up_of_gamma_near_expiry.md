@@ -7,14 +7,20 @@ For vanilla options, gamma becomes large near expiry around the strike.
 ## Scaling
 
 In Black–Scholes,
+
 \[
 \Gamma(t,S)\approx \frac{1}{S\sigma\sqrt{\tau}}\,\varphi(d_1),
 \qquad \tau=T-t.
 \]
+
+
 Thus near the money,
+
 \[
 \boxed{\Gamma \sim \tau^{-1/2}.}
 \]
+
+
 
 ---
 

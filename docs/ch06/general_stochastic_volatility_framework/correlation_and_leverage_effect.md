@@ -7,9 +7,12 @@ A defining feature of equity markets is the **leverage effect**: negative return
 ## 1. Correlated Brownian motions
 
 In two-factor models, we allow
+
 \[
 d\langle W^S, W^V \rangle_t = \rho\,dt,
 \]
+
+
 with correlation coefficient \(\rho \in [-1,1]\).
 
 This single parameter has a profound impact on option prices.

@@ -7,9 +7,12 @@ Ill-posed calibration problems are often stabilized by **regularization**, which
 ## 1. Motivation
 
 Recall a typical least-squares calibration problem:
+
 \[
 \min_{\theta \in \Theta} \; \frac12\|F(\theta) - y\|_W^2,
 \]
+
+
 where \(F\) is the forward pricing map and \(y\) denotes market data.
 
 If the Jacobian of \(F\) is ill-conditioned, small data noise can lead to large parameter fluctuations. Tikhonov regularization addresses this by penalizing undesirable parameter behavior.
@@ -19,11 +22,14 @@ If the Jacobian of \(F\) is ill-conditioned, small data noise can lead to large 
 ## 2. Basic Tikhonov formulation
 
 The Tikhonov-regularized problem is
+
 \[
 \min_{\theta \in \Theta} \;
 \frac12\|F(\theta) - y\|_W^2
 + \frac{\lambda}{2}\|L(\theta - \theta_0)\|^2.
 \]
+
+
 
 Components:
 - \(\lambda > 0\): regularization strength,
@@ -39,10 +45,13 @@ Special cases:
 ## 3. Linearized analysis
 
 For a linear forward map \(F(\theta) = A\theta\), the solution satisfies
+
 \[
 (A^\top W A + \lambda L^\top L)\theta
 = A^\top W y + \lambda L^\top L \theta_0.
 \]
+
+
 
 Key consequences:
 - the matrix becomes invertible even if \(A^\top W A\) is singular,

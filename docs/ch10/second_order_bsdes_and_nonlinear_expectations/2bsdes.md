@@ -17,25 +17,34 @@ The key innovation is that 2BSDEs account for uncertainty in the **quadratic var
 
 **Standard BSDE**: A pair $(Y_t, Z_t)$ satisfying:
 
+
 $$
 Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
 $$
+
+
 
 where $g$ is the generator (first-order in $z$).
 
 **Limitation**: Assumes fixed quadratic variation of the Brownian motion:
 
+
 $$
 d\langle W \rangle_t = dt
 $$
+
+
 
 ### Volatility Uncertainty
 
 **Setup**: Uncertain volatility matrix $\sigma_t$ with:
 
+
 $$
 \underline{a} \leq \sigma_t \sigma_t^\top \leq \overline{a}
 $$
+
+
 
 in the positive semidefinite ordering.
 
@@ -49,9 +58,12 @@ in the positive semidefinite ordering.
 
 A **second-order BSDE** is an equation of the form:
 
+
 $$
 Y_t = \xi + \int_t^T F(s, Y_s, Z_s, \Gamma_s) \, ds - \int_t^T Z_s \, dW_s - \int_t^T \text{tr}[\Gamma_s d\langle W \rangle_s]
 $$
+
+
 
 where:
 - $F$: Generator (nonlinear, second-order)
@@ -68,17 +80,23 @@ where:
 
 **Set of Priors**: Consider family $\mathcal{P}$ of probability measures on $\Omega$ such that:
 
+
 $$
 \mathcal{P} = \left\{ P: \frac{dP}{dP^0}\bigg|_{\mathcal{F}_t} = \mathcal{E}\left(\int_0^t \theta_s \, dW_s^0\right), \, \theta \in \Theta \right\}
 $$
+
+
 
 where $\Theta$ represents admissible drifts and volatilities.
 
 **2BSDE**: A triple $(Y, Z, \Gamma)$ of adapted processes satisfying:
 
+
 $$
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
 $$
+
+
 
 for appropriate generator $f$.
 
@@ -86,17 +104,23 @@ for appropriate generator $f$.
 
 **Viscosity Formulation**: The 2BSDE is defined through:
 
+
 $$
 Y_t = \sup_{\alpha \in \mathcal{A}} E^{\alpha}\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
 $$
+
+
 
 where the supremum is over admissible controls $\alpha$ affecting the quadratic variation.
 
 **Generator**: Nonlinear in second-order term:
 
+
 $$
 F(t, y, z, \gamma) = f(t, y, z) + G(t, y, z, \gamma)
 $$
+
+
 
 where $G$ captures the second-order nonlinearity.
 
@@ -123,9 +147,12 @@ There exists a unique solution $(Y, Z, \Gamma)$ to the 2BSDE.
 
 Then:
 
+
 $$
 Y_1^t \leq Y_2^t \quad P\text{-a.s. for all } t
 $$
+
+
 
 **Proof**: Uses viscosity solution theory and the comparison principle for fully nonlinear PDEs.
 
@@ -135,9 +162,12 @@ $$
 
 **Theorem** (Feynman-Kac for 2BSDEs): If $Y_t = u(t, X_t)$ where $X_t$ is a state process, then $u$ satisfies the **fully nonlinear PDE**:
 
+
 $$
 \frac{\partial u}{\partial t} + \sup_{\sigma \in \Sigma} \left\{ \frac{1}{2} \text{tr}[\sigma \sigma^\top D^2 u] + \mu \cdot \nabla u \right\} + f(t, u, \sigma^\top \nabla u) = 0
 $$
+
+
 
 with terminal condition $u(T, x) = \Phi(x)$.
 
@@ -147,14 +177,20 @@ with terminal condition $u(T, x) = \Phi(x)$.
 
 **Definition**: A function $u$ is a viscosity solution if it satisfies:
 - **Subsolution**: For any smooth test function $\phi$ with $u - \phi$ attaining a local maximum at $(t_0, x_0)$:
+
   $$
   \frac{\partial \phi}{\partial t} + F(t, u, D\phi, D^2\phi) \leq 0
   $$
 
+
+
 - **Supersolution**: For any smooth test function $\phi$ with $u - \phi$ attaining a local minimum at $(t_0, x_0)$:
+
   $$
   \frac{\partial \phi}{\partial t} + F(t, u, D\phi, D^2\phi) \geq 0
   $$
+
+
 
 **Theorem**: The value function $Y_t = u(t, X_t)$ from the 2BSDE is the unique viscosity solution to the associated fully nonlinear PDE.
 
@@ -162,23 +198,32 @@ with terminal condition $u(T, x) = \Phi(x)$.
 
 **Example 1** (Uncertain Volatility): For volatility $\sigma \in [\underline{\sigma}, \overline{\sigma}]$:
 
+
 $$
 \frac{\partial u}{\partial t} + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} \right\} + rS \frac{\partial u}{\partial S} - ru = 0
 $$
+
+
 
 **Solution**: Use $\sigma = \overline{\sigma}$ where $u_{SS} > 0$, and $\sigma = \underline{\sigma}$ where $u_{SS} < 0$.
 
 **Example 2** (G-Expectation): For G-Brownian motion with $\langle W \rangle_t \in [\underline{\sigma}^2 t, \overline{\sigma}^2 t]$:
 
+
 $$
 \frac{\partial u}{\partial t} + G\left(\frac{\partial^2 u}{\partial x^2}\right) = 0
 $$
 
+
+
 where:
+
 
 $$
 G(a) = \frac{1}{2}\overline{\sigma}^2 a^+ - \frac{1}{2}\underline{\sigma}^2 a^-
 $$
+
+
 
 ## G-Brownian Motion and G-Expectations
 
@@ -191,23 +236,32 @@ $$
 
 **Quadratic Variation**: For G-Brownian motion:
 
+
 $$
 \langle B \rangle_t \in [\underline{\sigma}^2 t, \overline{\sigma}^2 t]
 $$
+
+
 
 with exact value unknown (uncertain).
 
 **G-Function**: The mapping:
 
+
 $$
 G: \mathbb{R}^{d \times d} \to \mathbb{R}
 $$
 
+
+
 defined by:
+
 
 $$
 G(A) = \frac{1}{2} \sup_{\sigma \in \Sigma} \text{tr}[\sigma \sigma^\top A]
 $$
+
+
 
 characterizes the quadratic variation uncertainty.
 
@@ -215,15 +269,21 @@ characterizes the quadratic variation uncertainty.
 
 **Definition**: The **G-expectation** is defined as:
 
+
 $$
 \mathbb{E}^G[\xi] = Y_0
 $$
 
+
+
 where $Y_t$ solves the 2BSDE:
+
 
 $$
 Y_t = \sup_{P \in \mathcal{P}_G} E_P[\xi | \mathcal{F}_t]
 $$
+
+
 
 and $\mathcal{P}_G$ is the set of measures compatible with the G-Brownian motion.
 
@@ -235,31 +295,43 @@ and $\mathcal{P}_G$ is the set of measures compatible with the G-Brownian motion
 
 **Representation**: Via the 2BSDE with generator:
 
+
 $$
 F(t, y, z, \gamma) = G(\gamma)
 $$
+
+
 
 ### Peng's G-Framework
 
 **G-Itô Formula**: For $f \in C^{1,2}$ and G-Brownian motion $B_t$:
 
+
 $$
 df(t, B_t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dB_t + G\left(\frac{\partial^2 f}{\partial x^2}\right) d\langle B \rangle_t
 $$
+
+
 
 where $\langle B \rangle_t$ is the G-quadratic variation.
 
 **G-Martingale**: A process $M_t$ is a G-martingale if:
 
+
 $$
 \mathbb{E}^G[M_t | \mathcal{F}_s] = M_s \quad \text{for } s \leq t
 $$
 
+
+
 **Theorem**: Every G-martingale can be represented as:
+
 
 $$
 M_t = M_0 + \int_0^t Z_s \, dB_s
 $$
+
+
 
 for some adapted process $Z_t$.
 
@@ -269,27 +341,39 @@ for some adapted process $Z_t$.
 
 **Problem**: Find minimal initial capital $V_0$ such that there exists a hedging strategy with:
 
+
 $$
 V_T \geq \Phi(S_T) \quad P\text{-a.s. for all } P \in \mathcal{P}
 $$
 
+
+
 **Solution**: The super-replication price is:
+
 
 $$
 V_0 = Y_0
 $$
 
+
+
 where $Y_t$ solves the 2BSDE:
+
 
 $$
 Y_t = \sup_{P \in \mathcal{P}} E_P[\Phi(S_T) | \mathcal{F}_t]
 $$
 
+
+
 **Hedging Strategy**: The optimal hedge is:
+
 
 $$
 \Delta_t = Z_t / S_t
 $$
+
+
 
 where $Z_t$ comes from the 2BSDE solution.
 
@@ -297,21 +381,30 @@ where $Z_t$ comes from the 2BSDE solution.
 
 **Primal Problem**: 
 
+
 $$
 \inf_{(Y, Z): Y_T \geq \Phi} Y_0
 $$
 
+
+
 **Dual Problem**:
+
 
 $$
 \sup_{P \in \mathcal{P}} E_P[\Phi(S_T)]
 $$
 
+
+
 **Theorem** (Strong Duality): Under appropriate conditions:
+
 
 $$
 \inf_{(Y, Z): Y_T \geq \Phi} Y_0 = \sup_{P \in \mathcal{P}} E_P[\Phi(S_T)]
 $$
+
+
 
 **Proof**: Uses 2BSDE theory and viscosity solutions.
 
@@ -326,9 +419,12 @@ $$
 
 **Pricing Interval**: The arbitrage-free price range is:
 
+
 $$
 [\underline{V}, \overline{V}] = \left[\inf_{P \in \mathcal{P}} E_P[\Phi], \, \sup_{P \in \mathcal{P}} E_P[\Phi]\right]
 $$
+
+
 
 Both bounds obtained via 2BSDEs.
 
@@ -338,21 +434,30 @@ Both bounds obtained via 2BSDEs.
 
 **Problem**: Given terminal constraint $\Phi$, find initial value $y$ such that there exists a strategy making:
 
+
 $$
 Y_T^{y, \theta} \geq \Phi \quad P\text{-a.s. for all } P \in \mathcal{P}
 $$
 
+
+
 **Stochastic Target**: The set:
+
 
 $$
 \mathcal{V}_t = \{y: \exists \theta \text{ s.t. } Y_T^{y, \theta} \geq \Phi\}
 $$
 
+
+
 **Value Function**: Define:
+
 
 $$
 u(t, x) = \inf\{y: y \in \mathcal{V}_t(x)\}
 $$
+
+
 
 **Theorem**: The value function $u$ is a viscosity solution to a fully nonlinear PDE and can be characterized via 2BSDEs.
 
@@ -360,15 +465,21 @@ $$
 
 **Target Set**: Instead of terminal payoff, consider reaching a set $\mathcal{T} \subseteq \mathbb{R}^n$:
 
+
 $$
 \text{Find } y \text{ such that } (Y_T, X_T) \in \mathcal{T}
 $$
 
+
+
 **Characterization**: The reachable set is characterized by:
+
 
 $$
 Y_t = \sup_{P \in \mathcal{P}} \text{ess inf}\left\{\int_t^{\tau} f(s, Y_s, Z_s) \, ds + h(Y_{\tau}, X_{\tau}) \right\}
 $$
+
+
 
 where $\tau$ is a stopping time and $h$ is the target function.
 
@@ -378,15 +489,21 @@ where $\tau$ is a stopping time and $h$ is the target function.
 
 **Quadratic Growth**: A 2BSDE where the generator has quadratic growth in $z$:
 
+
 $$
 |F(t, y, z, \gamma)| \leq C(1 + |y| + |z|^2 + |\gamma|)
 $$
 
+
+
 **Example**: Exponential utility under volatility uncertainty:
+
 
 $$
 F(t, y, z, \gamma) = -\frac{\alpha}{2} |z|^2 + G(\gamma)
 $$
+
+
 
 ### Well-Posedness
 
@@ -408,9 +525,12 @@ $$
 
 **Mean-Field Interaction**: The generator depends on the law of the solution:
 
+
 $$
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\xi + \int_t^T F(s, Y_s, Z_s, \mathcal{L}(Y_s)) \, ds \bigg| \mathcal{F}_t\right]
 $$
+
+
 
 where $\mathcal{L}(Y_s)$ denotes the law of $Y_s$.
 
@@ -420,13 +540,19 @@ where $\mathcal{L}(Y_s)$ denotes the law of $Y_s$.
 
 **Coupling**: Forward-backward system:
 
+
 $$
 dX_t = b(t, X_t, \mathcal{L}(X_t)) \, dt + \sigma_t \, dW_t
 $$
 
+
+
+
 $$
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\Phi(X_T) + \int_t^T f(s, X_s, Y_s, \mathcal{L}(X_s, Y_s)) \, ds \bigg| \mathcal{F}_t\right]
 $$
+
+
 
 **Applications**:
 - Systemic risk under model uncertainty
@@ -439,15 +565,21 @@ $$
 
 **PDE Discretization**: For the associated fully nonlinear PDE:
 
+
 $$
 \frac{\partial u}{\partial t} + F(t, u, Du, D^2u) = 0
 $$
 
+
+
 **Scheme**: At each grid point $(t_i, x_j)$:
+
 
 $$
 \frac{u_j^{i+1} - u_j^i}{\Delta t} + F\left(t_i, u_j^i, \frac{u_{j+1}^i - u_{j-1}^i}{2\Delta x}, \frac{u_{j+1}^i - 2u_j^i + u_{j-1}^i}{(\Delta x)^2}\right) = 0
 $$
+
+
 
 **Monotone Schemes**: Ensure convergence to viscosity solution:
 - Use upwind discretization for first derivatives
@@ -473,15 +605,21 @@ $$
 
 **Neural Network Parameterization**: Represent solution as:
 
+
 $$
 Y_t = f_{\theta_Y}(t, X_t), \quad Z_t = f_{\theta_Z}(t, X_t), \quad \Gamma_t = f_{\theta_{\Gamma}}(t, X_t)
 $$
 
+
+
 **Training**: Minimize loss:
+
 
 $$
 \mathcal{L}(\theta) = E\left[\left|Y_T - \xi\right|^2 + \int_0^T \left|\frac{dY_t}{dt} + F(t, Y_t, Z_t, \Gamma_t)\right|^2 dt\right]
 $$
+
+
 
 **Optimization**: Use stochastic gradient descent with mini-batches of simulated paths.
 
@@ -506,9 +644,12 @@ $$
 
 **Theorem**: The 2BSDE solution admits representation:
 
+
 $$
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
 $$
+
+
 
 where $\mathcal{P}$ is characterized by the generator $F$.
 
@@ -518,9 +659,12 @@ where $\mathcal{P}$ is characterized by the generator $F$.
 
 **Control Problem**: The 2BSDE can be seen as:
 
+
 $$
 Y_t = \sup_{\alpha \in \mathcal{A}} \inf_{\beta \in \mathcal{B}} E^{\alpha, \beta}\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
 $$
+
+
 
 where:
 - $\alpha$: Player 1's control (optimizer)
@@ -544,15 +688,21 @@ where:
 
 **2BSDE Solution**: Option price $V_t$ satisfies:
 
+
 $$
 V_t = \sup_{P \in \mathcal{P}_{\sigma}} E_P[\Phi(S_T) | \mathcal{F}_t]
 $$
 
+
+
 **Hedging**: Optimal delta is:
+
 
 $$
 \Delta_t = \frac{Z_t}{S_t}
 $$
+
+
 
 **Gamma Exposure**: Second-order term $\Gamma_t$ captures residual gamma risk.
 
@@ -560,15 +710,21 @@ $$
 
 **Problem**: Maximize worst-case expected utility:
 
+
 $$
 \sup_{\pi} \inf_{P \in \mathcal{P}} E_P[U(X_T^{\pi})]
 $$
 
+
+
 **2BSDE Formulation**: Value function:
+
 
 $$
 V(t, x) = \sup_{\pi} \inf_{P \in \mathcal{P}} E_P[U(X_T^{\pi}) | X_t = x]
 $$
+
+
 
 satisfies a 2BSDE.
 
@@ -580,9 +736,12 @@ satisfies a 2BSDE.
 
 **2BSDE Framework**: CVA satisfies:
 
+
 $$
 \text{CVA}_t = \sup_{P \in \mathcal{P}} E_P\left[\int_t^T e^{-\int_t^s r_u du} dL_s \bigg| \mathcal{F}_t\right]
 $$
+
+
 
 where $L_t$ is the loss process.
 
@@ -592,9 +751,12 @@ where $L_t$ is the loss process.
 
 **Time-Consistent Risk**: For dynamic coherent risk measure $\rho_t$:
 
+
 $$
 \rho_t(X) = Y_t
 $$
+
+
 
 where $Y_t$ solves a 2BSDE with appropriate generator.
 

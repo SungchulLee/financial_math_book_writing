@@ -14,9 +14,12 @@ Equity and debt are interpreted as contingent claims on firm value.
 ## 2. Asset dynamics
 
 Under the risk-neutral measure,
+
 \[
 dV_t = (r - q)V_t\,dt + \sigma_V V_t\,dW_t,
 \]
+
+
 where:
 - \(V_t\): firm asset value,
 - \(\sigma_V\): asset volatility,

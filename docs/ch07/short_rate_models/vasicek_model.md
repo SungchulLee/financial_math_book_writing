@@ -7,9 +7,12 @@ The Vasicek model is a classic Gaussian short-rate model with mean reversion. It
 ## 1. Model dynamics
 
 Under the risk-neutral measure \(\mathbb{Q}\), Vasicek assumes
+
 \[
 dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}},
 \]
+
+
 where:
 - \(\kappa>0\): mean-reversion speed,
 - \(\theta\): long-run mean level,
@@ -30,14 +33,20 @@ This is an Ornstein–Uhlenbeck (OU) process.
 ## 3. Bond pricing (affine form)
 
 Vasicek implies an exponential-affine bond price:
+
 \[
 P(t,T) = A(t,T)\,e^{-B(t,T)r_t}.
 \]
 
+
+
 For \(\tau=T-t\),
+
 \[
 B(t,T)=\frac{1-e^{-\kappa\tau}}{\kappa}.
 \]
+
+
 
 The function \(A(t,T)\) has a closed form involving \(\kappa,\theta,\sigma\) (and can be derived via PDE or expectation).
 

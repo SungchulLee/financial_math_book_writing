@@ -7,12 +7,15 @@ Stochastic volatility models extend Black–Scholes by introducing **additional 
 ## 1. General structure
 
 A generic two-factor stochastic volatility model is written as
+
 \[
 \begin{aligned}
 dS_t &= \mu(S_t, V_t, t)\,dt + \sigma(S_t, V_t, t)\,dW_t^S,\\
 dV_t &= a(V_t, t)\,dt + b(V_t, t)\,dW_t^V,
 \end{aligned}
 \]
+
+
 where:
 - \(S_t\) is the asset price,
 - \(V_t\) is the variance or volatility factor,

@@ -7,9 +7,12 @@ Pathwise differentiation computes Greeks by differentiating sample paths with re
 ## Delta (Black–Scholes)
 
 Since \(\partial S_T/\partial S = S_T/S\),
+
 \[
 \Delta(t,S)=\mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi'(S_T)\frac{S_T}{S}\right]
 \]
+
+
 for smooth \(\Phi\).
 
 ---
@@ -17,19 +20,25 @@ for smooth \(\Phi\).
 ## Vega (Black–Scholes)
 
 Differentiate \(S_T\) with respect to \(\sigma\):
+
 \[
 \frac{\partial S_T}{\partial \sigma}
 =
 S_T\left(Z-\sigma\tau\right),
 \qquad Z=W_T-W_t.
 \]
+
+
 Thus, for smooth \(\Phi\),
+
 \[
 \boxed{
 \nu(t,S)=
 \mathbb{E}^{t,S}\!\left[e^{-r\tau}\Phi'(S_T)\,S_T\left(Z-\sigma\tau\right)\right].
 }
 \]
+
+
 
 ---
 

@@ -8,9 +8,12 @@ Calibration error translates directly into **model risk**: even small mis-estima
 
 Let \(\hat\theta\) be the calibrated parameter vector and \(\theta^\star\) the (unknown) true parameter.
 A first-order expansion yields
+
 \[
 \Delta P \approx \nabla_\theta P(\hat\theta)^{\top}(\hat\theta-\theta^\star).
 \]
+
+
 
 Thus, price sensitivity depends on:
 - the magnitude of parameter uncertainty,

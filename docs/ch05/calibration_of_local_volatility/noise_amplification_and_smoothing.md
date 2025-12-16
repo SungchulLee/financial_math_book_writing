@@ -7,14 +7,20 @@ Local volatility calibration is notoriously sensitive because the Dupire inversi
 ## 1. Why differentiation amplifies noise
 
 Suppose market call prices are observed with noise:
+
 \[
 C^{\text{obs}}(K,T) = C^{\star}(K,T) + \varepsilon(K,T).
 \]
 
+
+
 Finite differences approximate derivatives, e.g.
+
 \[
 \partial_{KK}C(K,T) \approx \frac{C(K+h,T)-2C(K,T)+C(K-h,T)}{h^2}.
 \]
+
+
 
 The division by \(h^2\) means:
 - as you refine the grid (smaller \(h\)),
@@ -39,9 +45,12 @@ Common smoothing approaches:
 - **SVI** or other parametric smiles
 - **Kernel regression / local polynomials**
 - **Penalized least squares** with roughness penalty:
+
   \[
   \min \sum_j w_j(\tilde C_j - C^{\text{obs}}_j)^2 + \lambda \int |\partial_{KK}\tilde C|^2
   \]
+
+
 
 ---
 
@@ -65,10 +74,13 @@ In practice:
 ## 4. Smoothing in total variance coordinates
 
 A common stabilization trick is to smooth **total implied variance**
+
 \[
 w(k,T) = T\sigma_{\text{impl}}^2(k,T),
 \quad k=\log(K/F_T),
 \]
+
+
 because \(w\) behaves more linearly across \(T\) and facilitates calendar-arbitrage checks.
 
 One can:

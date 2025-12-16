@@ -7,11 +7,14 @@
 ## 1. Definition of regret
 
 For a sequence of losses \(\ell_t\),
+
 \[
 \text{Regret}_T
 = \sum_{t=1}^T \ell_t(a_t)
 - \min_{a} \sum_{t=1}^T \ell_t(a).
 \]
+
+
 
 Low regret means the algorithm learns effectively.
 

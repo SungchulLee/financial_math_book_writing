@@ -7,9 +7,12 @@ The Black–Scholes model assumes that volatility is constant over time and acro
 ## 1. The constant volatility assumption
 
 In the Black–Scholes framework, the underlying asset follows
+
 \[
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t,
 \]
+
+
 where the volatility parameter \(\sigma\) is constant.
 
 This implies:

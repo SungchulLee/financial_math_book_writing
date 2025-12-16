@@ -8,18 +8,24 @@
 
 A **numéraire** is a strictly positive tradable asset \(N_t\) used to measure value.
 Prices expressed in units of \(N_t\) are
+
 \[
 \tilde S_t = \frac{S_t}{N_t}.
 \]
+
+
 
 ---
 
 ## 2. Fundamental theorem of numéraire change
 
 For any admissible numéraire \(N_t\), there exists a probability measure \(\mathbb{Q}^N\) such that
+
 \[
 \frac{S_t}{N_t} \text{ is a martingale under } \mathbb{Q}^N.
 \]
+
+
 
 This generalizes the risk-neutral measure concept.
 
@@ -39,11 +45,14 @@ Each choice simplifies pricing of specific products.
 ## 4. Pricing with numéraires
 
 If payoff \(V_T\) is measurable at \(T\),
+
 \[
 V_t = N_t\,\mathbb{E}^{\mathbb{Q}^N}\left[
 \frac{V_T}{N_T} \middle| \mathcal{F}_t
 \right].
 \]
+
+
 
 Choosing \(N_t\) wisely can remove discounting or complex drifts.
 

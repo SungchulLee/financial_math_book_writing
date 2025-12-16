@@ -7,6 +7,7 @@ The SABR model is a widely used **stochastic volatility model** designed to capt
 ## 1. Model definition
 
 Under the risk-neutral measure, the SABR model is defined by
+
 \[
 \begin{aligned}
 dF_t &= \sigma_t F_t^{\beta}\,dW_t^F,\\
@@ -14,6 +15,8 @@ d\sigma_t &= \nu\,\sigma_t\,dW_t^{\sigma},\\
 d\langle W^F, W^{\sigma} \rangle_t &= \rho\,dt,
 \end{aligned}
 \]
+
+
 where:
 - \(F_t\) is the forward price,
 - \(\sigma_t\) is stochastic volatility,

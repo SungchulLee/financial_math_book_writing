@@ -11,9 +11,12 @@ Under **sticky strike**:
 - when spot moves, the same strike retains the same implied vol.
 
 Formally:
+
 \[
 \sigma_{\text{impl}}(K, S) \approx \sigma_{\text{impl}}(K).
 \]
+
+
 
 This assumption is simple but often unrealistic for equities.
 
@@ -26,9 +29,12 @@ Under **sticky delta**:
 - when spot moves, the strike associated with a given delta shifts.
 
 Formally:
+
 \[
 \sigma_{\text{impl}}(\Delta, S) \approx \sigma_{\text{impl}}(\Delta).
 \]
+
+
 
 This behavior is commonly observed in FX markets.
 

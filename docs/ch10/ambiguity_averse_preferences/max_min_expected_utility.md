@@ -19,10 +19,13 @@ Max–min utility reflects a cautious, worst-case attitude.
 
 Let \(\mathcal{P}\) be a set of plausible probability measures.
 Preferences are defined by
+
 \[
 \max_{\pi} \; \min_{\mathbb{P} \in \mathcal{P}}
 \mathbb{E}_{\mathbb{P}}[U(X^{\pi})].
 \]
+
+
 
 The decision-maker optimizes against the worst-case model.
 

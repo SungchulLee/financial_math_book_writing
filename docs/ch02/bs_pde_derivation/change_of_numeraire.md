@@ -1,4 +1,3 @@
-
 # Change of Numeraire: Deep Dive
 
 You're right to be skeptical - let me show you why change of numeraire is actually a **genuinely profound alternative perspective** that reveals deep geometric structure in derivative pricing. It's not just another reformulation of no-arbitrage.
@@ -13,7 +12,10 @@ You're right to be skeptical - let me show you why change of numeraire is actual
 
 If $N_t$ is a numeraire, there exists a unique equivalent probability measure $\mathbb{Q}^N$ (the **$N$-forward measure**) such that for any tradable asset $X_t$:
 
+
 $$\frac{X_t}{N_t} \text{ is a } \mathbb{Q}^N\text{-martingale}$$
+
+
 
 **This is the key:** Different numeraires induce different probability measures, but all are related by the fundamental pricing formula.
 
@@ -23,11 +25,17 @@ $$\frac{X_t}{N_t} \text{ is a } \mathbb{Q}^N\text{-martingale}$$
 
 Given two numeraires $N_t$ and $M_t$ with associated measures $\mathbb{Q}^N$ and $\mathbb{Q}^M$:
 
+
 $$\boxed{\frac{d\mathbb{Q}^M}{d\mathbb{Q}^N}\Big|_{\mathcal{F}_T} = \frac{M_T/M_0}{N_T/N_0}}$$
+
+
 
 **Proof sketch:** Both $\frac{X_t}{N_t}$ and $\frac{X_t}{M_t}$ must give the same price $X_0$:
 
+
 $$X_0 = N_0 \mathbb{E}^{\mathbb{Q}^N}\left[\frac{X_T}{N_T}\right] = M_0 \mathbb{E}^{\mathbb{Q}^M}\left[\frac{X_T}{M_T}\right]$$
+
+
 
 This determines the relationship between measures. $\square$
 
@@ -35,7 +43,10 @@ This determines the relationship between measures. $\square$
 
 **Theorem:** For any claim with payoff $H$ at time $T$:
 
+
 $$\boxed{\frac{V_t}{N_t} = \mathbb{E}^{\mathbb{Q}^N}\left[\frac{H}{N_T} \Big| \mathcal{F}_t\right]}$$
+
+
 
 This holds for **any** numeraire $N_t$. Different choices of $N_t$ give different (but equivalent) computational approaches.
 
@@ -51,11 +62,17 @@ This holds for **any** numeraire $N_t$. Different choices of $N_t$ give differen
 
 **Pricing formula:**
 
+
 $$V_t = B_t \mathbb{E}^{\mathbb{Q}}\left[\frac{H}{B_T} \Big| \mathcal{F}_t\right] = \mathbb{E}^{\mathbb{Q}}\left[e^{-r(T-t)} H \Big| \mathcal{F}_t\right]$$
+
+
 
 **Stock dynamics under $\mathbb{Q}$:**
 
+
 $$dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
+
+
 
 ### 2.2 Stock Numeraire (Stock Measure)
 
@@ -65,11 +82,17 @@ $$dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
 
 **Pricing formula:**
 
+
 $$\boxed{\frac{V_t}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{H}{S_T} \Big| \mathcal{F}_t\right]}$$
+
+
 
 **Change of measure:** The Radon-Nikodym derivative is:
 
+
 $$\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T/S_0}{B_T/B_0} = \frac{S_T}{S_0} e^{-rT}$$
+
+
 
 ### 2.3 Zero-Coupon Bond Numeraire (Forward Measure)
 
@@ -79,7 +102,10 @@ $$\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T/S_0}{B_T/B_
 
 **Pricing formula:**
 
+
 $$\boxed{V_t = P(t,T) \mathbb{E}^{\mathbb{Q}^T}\left[H \Big| \mathcal{F}_t\right]}$$
+
+
 
 **Key property:** Under $\mathbb{Q}^T$, the forward price $F(t,T) = \frac{S_t}{P(t,T)}$ is a martingale.
 
@@ -91,17 +117,24 @@ $$\boxed{V_t = P(t,T) \mathbb{E}^{\mathbb{Q}^T}\left[H \Big| \mathcal{F}_t\right
 
 Under $\mathbb{Q}$, the stock follows:
 
+
 $$dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
+
+
 
 Define:
 
+
 $$Z_t = \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_t} = \frac{S_t e^{-rt}}{S_0}$$
+
+
 
 This is the **density process** for the measure change.
 
 ### 3.2 Dynamics of the Density Process
 
 Apply Itô's lemma to $Z_t = S_t e^{-rt}/S_0$:
+
 
 $$\begin{array}{lll}
 dZ_t 
@@ -110,9 +143,14 @@ dZ_t
 &=&\displaystyle \frac{S_t e^{-rt}}{S_0} \sigma dW_t^{\mathbb{Q}} = Z_t \sigma dW_t^{\mathbb{Q}}
 \end{array}$$
 
+
+
 So:
 
+
 $$\boxed{\frac{dZ_t}{Z_t} = \sigma dW_t^{\mathbb{Q}}}$$
+
+
 
 This is a **local martingale** (in fact, a true martingale since $\mathbb{E}[Z_T] = 1$).
 
@@ -120,13 +158,17 @@ This is a **local martingale** (in fact, a true martingale since $\mathbb{E}[Z_T
 
 By Girsanov's theorem, define:
 
+
 $$W_t^{\mathbb{Q}^S} = W_t^{\mathbb{Q}} - \int_0^t \sigma ds = W_t^{\mathbb{Q}} - \sigma t$$
+
+
 
 Then $W_t^{\mathbb{Q}^S}$ is a $\mathbb{Q}^S$-Brownian motion.
 
 ### 3.4 Stock Dynamics Under $\mathbb{Q}^S$
 
 Rewrite the stock dynamics:
+
 
 $$\begin{array}{lll}
 dS_t 
@@ -135,9 +177,14 @@ dS_t
 &=&\displaystyle (r + \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}
 \end{array}$$
 
+
+
 **Key result:**
 
+
 $$\boxed{dS_t = (r + \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}}$$
+
+
 
 The drift under the stock measure is $r + \sigma^2$ instead of $r$!
 
@@ -153,6 +200,7 @@ Under $\mathbb{Q}^S$, we need $\frac{B_t}{S_t}$ to be a martingale.
 
 ### 4.2 Apply Itô to $B_t/S_t$
 
+
 $$\begin{array}{lll}
 \displaystyle d\left(\frac{B_t}{S_t}\right) 
 &=&\displaystyle \frac{dB_t}{S_t} - \frac{B_t}{S_t^2}dS_t + \frac{B_t}{S_t^3}(dS_t)^2\\
@@ -160,6 +208,8 @@ $$\begin{array}{lll}
 &=&\displaystyle \frac{B_t}{S_t}\left[r dt - (r+\sigma^2)dt - \sigma dW_t^{\mathbb{Q}^S} + \sigma^2 dt\right]\\
 &=&\displaystyle \frac{B_t}{S_t}\left[-\sigma dW_t^{\mathbb{Q}^S}\right]
 \end{array}$$
+
+
 
 **Verification:** The drift vanishes, so $B_t/S_t$ is indeed a $\mathbb{Q}^S$-martingale! ✓
 
@@ -171,7 +221,10 @@ $$\begin{array}{lll}
 
 For a European option with payoff $h(S_T)$:
 
+
 $$V(S_t, t) = S_t \mathbb{E}^{\mathbb{Q}^S}\left[\frac{h(S_T)}{S_T} \Big| \mathcal{F}_t\right]$$
+
+
 
 ### 5.2 Example: Digital Option
 
@@ -179,17 +232,24 @@ Consider a **digital (binary) option** paying $\mathbf{1}_{\{S_T > K\}}$.
 
 **Under risk-neutral measure:**
 
+
 $$V_t = e^{-r(T-t)} \mathbb{Q}(S_T > K | \mathcal{F}_t)$$
+
+
 
 **Under stock measure:**
 
+
 $$V_t = S_t \mathbb{E}^{\mathbb{Q}^S}\left[\frac{\mathbf{1}_{\{S_T > K\}}}{S_T} \Big| \mathcal{F}_t\right]$$
+
+
 
 This simplifies in certain cases...
 
 ### 5.3 Connection to Black-Scholes Formula
 
 For a call option $h(S_T) = (S_T - K)^+$:
+
 
 $$\begin{array}{lll}
 C_t 
@@ -199,13 +259,21 @@ C_t
 &=&\displaystyle S_t \mathbb{Q}^S(S_T > K | \mathcal{F}_t) - K \mathbb{E}^{\mathbb{Q}^S}\left[\frac{\mathbf{1}_{\{S_T > K\}}}{S_T} \Big| \mathcal{F}_t\right]
 \end{array}$$
 
+
+
 The second term equals:
+
 
 $$\mathbb{E}^{\mathbb{Q}^S}\left[\frac{\mathbf{1}_{\{S_T > K\}}}{S_T} \Big| \mathcal{F}_t\right] = \frac{1}{S_t} e^{-r(T-t)} \mathbb{Q}(S_T > K | \mathcal{F}_t)$$
 
+
+
 Therefore:
 
+
 $$\boxed{C_t = S_t \mathbb{Q}^S(S_T > K | \mathcal{F}_t) - K e^{-r(T-t)} \mathbb{Q}(S_T > K | \mathcal{F}_t)}$$
+
+
 
 This is the **alternative representation** of Black-Scholes:
 - $\mathbb{Q}^S(S_T > K)$ is the probability under the stock measure (corresponds to $N(d_1)$)
@@ -221,7 +289,10 @@ Under $\mathbb{Q}^S$, the process $\frac{V(S_t, t)}{S_t}$ must be a martingale.
 
 Define:
 
+
 $$u(S, t) = \frac{V(S,t)}{S}$$
+
+
 
 Then $u(S_t, t)$ is a $\mathbb{Q}^S$-martingale.
 
@@ -229,55 +300,100 @@ Then $u(S_t, t)$ is a $\mathbb{Q}^S$-martingale.
 
 The stock follows under $\mathbb{Q}^S$:
 
+
 $$dS_t = (r+\sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}$$
+
+
 
 The infinitesimal generator is:
 
+
 $$\mathcal{L}^{\mathbb{Q}^S} f(S) = (r+\sigma^2)S \frac{\partial f}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 f}{\partial S^2}$$
+
+
 
 ### 6.3 Extended Generator for Time-Dependent Functions
 
 For $u(S,t)$ to be a martingale, its extended generator must vanish:
 
+
 $$\frac{\partial u}{\partial t} + \mathcal{L}^{\mathbb{Q}^S} u = 0$$
 
+
+
+
 $$\boxed{\frac{\partial u}{\partial t} + (r+\sigma^2)S \frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} = 0}$$
+
+
 
 ### 6.4 Transform Back to $V(S,t)$
 
 Since $V(S,t) = S \cdot u(S,t)$, we compute derivatives:
 
+
 $$\frac{\partial V}{\partial t} = S \frac{\partial u}{\partial t}$$
+
+
+
 
 $$\frac{\partial V}{\partial S} = u + S \frac{\partial u}{\partial S}$$
 
+
+
+
 $$\frac{\partial^2 V}{\partial S^2} = 2\frac{\partial u}{\partial S} + S \frac{\partial^2 u}{\partial S^2}$$
+
+
 
 Solving for derivatives of $u$:
 
+
 $$\frac{\partial u}{\partial t} = \frac{1}{S}\frac{\partial V}{\partial t}$$
+
+
+
 
 $$\frac{\partial u}{\partial S} = \frac{1}{S}\frac{\partial V}{\partial S} - \frac{V}{S^2}$$
 
+
+
+
 $$\frac{\partial^2 u}{\partial S^2} = \frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}$$
+
+
 
 ### 6.5 Substitute into PDE for $u$
 
+
 $$\frac{1}{S}\frac{\partial V}{\partial t} + (r+\sigma^2)S\left(\frac{1}{S}\frac{\partial V}{\partial S} - \frac{V}{S^2}\right) + \frac{1}{2}\sigma^2 S^2\left(\frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}\right) = 0$$
+
+
 
 Multiply through by $S$:
 
+
 $$\frac{\partial V}{\partial t} + (r+\sigma^2)\frac{\partial V}{\partial S} - (r+\sigma^2)\frac{V}{S} + \frac{1}{2}\sigma^2 S\frac{\partial^2 V}{\partial S^2} - \sigma^2 \frac{\partial V}{\partial S} + \sigma^2 \frac{V}{S} = 0$$
+
+
 
 Collect terms:
 
+
 $$\frac{\partial V}{\partial t} + \left[(r+\sigma^2) - \sigma^2\right]\frac{\partial V}{\partial S} + \left[-r - \sigma^2 + \sigma^2\right]\frac{V}{S} + \frac{1}{2}\sigma^2 S\frac{\partial^2 V}{\partial S^2} = 0$$
+
+
+
 
 $$\frac{\partial V}{\partial t} + r\frac{\partial V}{\partial S} - r\frac{V}{S} + \frac{1}{2}\sigma^2 S\frac{\partial^2 V}{\partial S^2} = 0$$
 
+
+
 Multiply by $S$:
 
+
 $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0}$$
+
+
 
 **We've recovered the Black-Scholes PDE!**
 
@@ -289,7 +405,10 @@ $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac
 
 Consider pricing in terms of the **forward price**:
 
+
 $$F(t,T) = \frac{S_t}{P(t,T)}$$
+
+
 
 where $P(t,T)$ is the zero-coupon bond price.
 
@@ -301,13 +420,19 @@ Under the $T$-forward measure $\mathbb{Q}^T$:
 
 **Pricing formula:**
 
+
 $$V(t) = P(t,T) \mathbb{E}^{\mathbb{Q}^T}[h(S_T) | \mathcal{F}_t]$$
+
+
 
 ### 7.3 Forward Price Dynamics
 
 The forward price satisfies:
 
+
 $$dF(t,T) = \sigma F(t,T) d\tilde{W}_t^T$$
+
+
 
 where $\tilde{W}_t^T$ is a $\mathbb{Q}^T$-Brownian motion.
 
@@ -317,15 +442,24 @@ where $\tilde{W}_t^T$ is a $\mathbb{Q}^T$-Brownian motion.
 
 For constant rates, $F(t,T) = S_t e^{r(T-t)}$, and the dynamics become:
 
+
 $$dF = \sigma F dW_t^{\mathbb{Q}^T}$$
+
+
 
 This leads directly to **Black's (1976) formula** for options on forwards:
 
+
 $$C_t = P(t,T)[F_t N(d_1) - K N(d_2)]$$
+
+
 
 where:
 
+
 $$d_1 = \frac{\ln(F_t/K) + \frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}$$
+
+
 
 ---
 
@@ -350,9 +484,15 @@ Change of numeraire exhibits a **gauge symmetry** analogous to electromagnetism:
 
 **Formal analogy:**
 
+
 $$\text{Electromagnetism: } A_\mu \to A_\mu + \partial_\mu \Lambda$$
 
+
+
+
 $$\text{Finance: } \mathbb{Q}^N \to \mathbb{Q}^M \text{ via } \frac{dQ^M}{dQ^N} = \frac{M_T/M_0}{N_T/N_0}$$
+
+
 
 ### 8.3 Why This Perspective Matters
 
@@ -394,7 +534,10 @@ With stochastic rates, $P(t,T)$ is random. The forward measure $\mathbb{Q}^T$ si
 
 Under $\mathbb{Q}^T$:
 
+
 $$dF(t,T,T^*) = \sigma(t,T^*) \cdot \int_t^T \sigma(t,s) ds \, dt + \sigma(t,T^*) \cdot dW_t^T$$
+
+
 
 The drift is **determined by no-arbitrage** and the choice of numeraire.
 
@@ -465,11 +608,17 @@ Different numeraires correspond to different **trivializations** of this bundle.
 
 The Radon-Nikodym derivative:
 
+
 $$\eta_t^{M,N} = \frac{d\mathbb{Q}^M}{d\mathbb{Q}^N}\Big|_{\mathcal{F}_t}$$
+
+
 
 acts like a **gauge field** connecting different trivializations:
 
+
 $$\eta_t^{M,N} \cdot \eta_t^{N,P} = \eta_t^{M,P}$$
+
+
 
 This is the **cocycle condition** from differential geometry!
 

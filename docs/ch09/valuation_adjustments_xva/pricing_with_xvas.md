@@ -7,9 +7,12 @@ Modern derivative pricing integrates **XVAs** directly into valuation, moving be
 ## 1. XVA-inclusive pricing equation
 
 Pricing with XVAs leads to nonlinear valuation equations:
+
 \[
 V = V_{\text{risk-free}} - \text{CVA} + \text{DVA} - \text{FVA} - \text{KVA}.
 \]
+
+
 
 This breaks linearity and additivity of prices.
 

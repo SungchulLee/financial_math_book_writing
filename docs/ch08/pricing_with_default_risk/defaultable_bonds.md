@@ -17,6 +17,7 @@ Thus, cashflows depend on the random default time.
 ## 2. Pricing principle
 
 Under the risk-neutral measure,
+
 \[
 P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[
 e^{-\int_t^T r_s ds}\, \mathbf{1}_{\{\tau > T\}}
@@ -24,6 +25,8 @@ e^{-\int_t^T r_s ds}\, \mathbf{1}_{\{\tau > T\}}
 \middle| \mathcal{F}_t
 \right],
 \]
+
+
 where \(R_{\tau}\) is the recovery payoff.
 
 ---

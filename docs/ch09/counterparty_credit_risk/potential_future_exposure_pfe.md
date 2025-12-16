@@ -7,10 +7,13 @@
 ## 1. Definition
 
 For confidence level \(\alpha\),
+
 \[
 \text{PFE}_{\alpha}(t)
 = \inf\{x : \mathbb{P}(E_t \le x) \ge \alpha\}.
 \]
+
+
 
 PFE is a quantile of the exposure distribution.
 

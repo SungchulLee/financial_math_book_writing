@@ -16,9 +16,12 @@ Introducing default requires expanding this information set.
 ## 2. Default time as a stopping time
 
 A random time \(\tau\) is a **stopping time** with respect to a filtration \((\mathcal{G}_t)\) if
+
 \[
 \{\tau \le t\} \in \mathcal{G}_t \quad \text{for all } t.
 \]
+
+
 
 Interpreting default as a stopping time ensures that the occurrence of default is observable when it happens.
 

@@ -9,9 +9,12 @@ There are two main ways to enlarge a filtration to include a default time: **pro
 In **progressive enlargement**, information about default is revealed only when it occurs.
 
 The enlarged filtration is
+
 \[
 \mathcal{G}_t = \mathcal{F}_t \vee \sigma(\tau \wedge t).
 \]
+
+
 
 Properties:
 - default time \(\tau\) becomes a stopping time,
@@ -23,9 +26,12 @@ Properties:
 ## 2. Initial enlargement
 
 In **initial enlargement**, the default time is known from time 0:
+
 \[
 \mathcal{G}_t = \mathcal{F}_t \vee \sigma(\tau).
 \]
+
+
 
 This is mathematically convenient but financially unrealistic for default modeling.
 

@@ -14,9 +14,12 @@ A conditional risk measure maps a future loss \(X\) to an \(\mathcal{F}_t\)-meas
 ## 2. Definition
 
 A conditional risk measure \(\rho_t(X)\) satisfies:
+
 \[
 Key properties analogous to static measures,
 \]
+
+
 but holds almost surely with respect to \(\mathcal{F}_t\).
 
 For example, conditional Expected Shortfall is defined via conditional expectations.

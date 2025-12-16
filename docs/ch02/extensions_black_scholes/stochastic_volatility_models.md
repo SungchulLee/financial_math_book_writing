@@ -6,6 +6,7 @@ Stochastic volatility introduces a second factor \(v_t\) (variance), capturing s
 
 ## 1. Generic Two-Factor Model
 
+
 \[
 \boxed{
 \begin{aligned}
@@ -16,15 +17,20 @@ Stochastic volatility introduces a second factor \(v_t\) (variance), capturing s
 }
 \]
 
+
+
 ---
 
 ## 2. Heston Example
+
 
 \[
 \boxed{
 \mathrm{d}v_t=\kappa(\theta-v_t)\,\mathrm{d}t+\xi\sqrt{v_t}\,\mathrm{d}W_t^{(2)}.
 }
 \]
+
+
 
 ---
 

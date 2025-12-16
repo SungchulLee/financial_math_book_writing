@@ -7,9 +7,12 @@ Higher-order Greeks can be unstable to estimate, especially near maturity and ne
 ## Noise amplification
 
 Second derivatives amplify noise:
+
 \[
 V_{SS}(S)\approx \frac{V(S+h)-2V(S)+V(S-h)}{h^2}.
 \]
+
+
 
 ---
 

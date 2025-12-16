@@ -7,6 +7,7 @@ A clean way to obtain PDEs for Greeks is to treat Greeks as solutions of **sensi
 ## Operator form
 
 Define the Black–Scholes operator
+
 \[
 \mathcal{A}V
 :=
@@ -15,6 +16,8 @@ Define the Black–Scholes operator
 +rS V_S
 -rV.
 \]
+
+
 Then \(V\) solves \(\mathcal{A}V=0\).
 
 ---
@@ -22,19 +25,26 @@ Then \(V\) solves \(\mathcal{A}V=0\).
 ## Vega
 
 Let \(\nu=V_\sigma\). Differentiate \(\mathcal{A}V=0\) in \(\sigma\):
+
 \[
 \mathcal{A}\nu = -\sigma S^2 V_{SS}.
 \]
+
+
 With payoff independent of \(\sigma\),
+
 \[
 \boxed{\nu(T,S)=0.}
 \]
+
+
 
 ---
 
 ## Rho
 
 Let \(\rho=V_r\). Differentiating in \(r\) yields
+
 \[
 \boxed{
 \frac{\partial \rho}{\partial t}
@@ -47,11 +57,14 @@ V - S V_S,
 }
 \]
 
+
+
 ---
 
 ## Theta identity
 
 From the PDE,
+
 \[
 \boxed{
 \Theta
@@ -61,6 +74,8 @@ From the PDE,
 -\frac{1}{2}\sigma^2 S^2 V_{SS} - rS V_S + rV.
 }
 \]
+
+
 
 ---
 

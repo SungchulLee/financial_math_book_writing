@@ -8,9 +8,12 @@ Pricing interest-rate derivatives requires understanding not only today’s yiel
 
 A static yield curve specifies \(P(0,T)\) or \(f(0,T)\).
 A dynamic model specifies how these quantities evolve:
+
 \[
 T \mapsto P(t,T), \quad t>0.
 \]
+
+
 
 Short-rate models induce dynamics for the full curve through the evolution of \(r_t\).
 
@@ -19,9 +22,12 @@ Short-rate models induce dynamics for the full curve through the evolution of \(
 ## 2. Curve dynamics under short-rate models
 
 Given \(r_t\), bond prices evolve as
+
 \[
 P(t,T) = P(t,T,r_t).
 \]
+
+
 
 Consequences:
 - the curve moves in a low-dimensional way,

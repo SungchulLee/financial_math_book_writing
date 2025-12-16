@@ -10,7 +10,10 @@ Excellent question! The infinitesimal generator $\mathcal{L}$ and its adjoint $\
 
 For a Markov process $\{X_t\}$ with transition semigroup $P_t$, the **infinitesimal generator** is:
 
+
 $$\mathcal{L}f(x) = \lim_{t \downarrow 0} \frac{\mathbb{E}[f(X_t) \mid X_0 = x] - f(x)}{t} = \lim_{t \downarrow 0} \frac{P_t f(x) - f(x)}{t}$$
+
+
 
 where $(P_t f)(x) = \mathbb{E}[f(X_t) \mid X_0 = x]$.
 
@@ -18,17 +21,26 @@ where $(P_t f)(x) = \mathbb{E}[f(X_t) \mid X_0 = x]$.
 
 **For diffusion processes:**
 
+
 $$dX_t = \mu(X_t, t) dt + \sigma(X_t, t) dW_t$$
+
+
 
 the generator is:
 
+
 $$\boxed{\mathcal{L} = \mu(x,t)\frac{\partial}{\partial x} + a(x,t)\frac{\partial^2}{\partial x^2}}$$
+
+
 
 where $a(x,t) = \frac{1}{2}\sigma^2(x,t)$.
 
 In multidimensions:
 
+
 $$\mathcal{L} = \sum_{i=1}^d \mu_i(x,t)\frac{\partial}{\partial x_i} + \sum_{i,j=1}^d a_{ij}(x,t)\frac{\partial^2}{\partial x_i \partial x_j}$$
+
+
 
 ### The Adjoint Operator $\mathcal{L}^*$
 
@@ -36,28 +48,46 @@ $$\mathcal{L} = \sum_{i=1}^d \mu_i(x,t)\frac{\partial}{\partial x_i} + \sum_{i,j
 
 The **adjoint operator** $\mathcal{L}^*$ is defined via the inner product:
 
+
 $$\langle \mathcal{L}^* \phi, \psi \rangle = \langle \phi, \mathcal{L}\psi \rangle$$
+
+
 
 for suitable test functions $\phi, \psi$, where the inner product is:
 
+
 $$\langle \phi, \psi \rangle = \int_{-\infty}^{\infty} \phi(x)\psi(x) \, dx$$
+
+
 
 **Derivation by integration by parts:**
 
 Starting with:
+
 $$\int \phi(x) \mathcal{L}\psi(x) \, dx = \int \phi(x) \left[\mu \psi' + a\psi''\right] dx$$
+
+
 
 Integrate by parts (assuming boundary terms vanish):
 
+
 $$= \int \left[-(\mu\phi)' + (a\phi)''\right] \psi(x) \, dx$$
+
+
 
 Therefore:
 
+
 $$\boxed{\mathcal{L}^* = -\frac{\partial}{\partial x}[\mu(x,t) \cdot] + \frac{\partial^2}{\partial x^2}[a(x,t) \cdot]}$$
+
+
 
 In multidimensions:
 
+
 $$\mathcal{L}^* = -\sum_{i=1}^d \frac{\partial}{\partial x_i}[\mu_i \cdot] + \sum_{i,j=1}^d \frac{\partial^2}{\partial x_i \partial x_j}[a_{ij} \cdot]$$
+
+
 
 ---
 
@@ -69,7 +99,10 @@ The infinitesimal generator is the "derivative at $t=0$" of the **transition sem
 
 **Backward semigroup** $\{P_t\}$: Acts on functions
 
+
 $$(P_t f)(x) = \mathbb{E}[f(X_t) \mid X_0 = x]$$
+
+
 
 Properties:
 - $P_0 = I$ (identity)
@@ -78,7 +111,10 @@ Properties:
 
 **Forward semigroup** $\{P_t^*\}$: Acts on measures/densities
 
+
 $$(P_t^* \rho)(x) = \int p(x, t \mid y, 0) \rho(y) \, dy$$
+
+
 
 Properties:
 - $P_0^* = I$
@@ -86,7 +122,10 @@ Properties:
 - $\frac{d}{dt}P_t^* \rho = \mathcal{L}^* P_t^* \rho = P_t^* \mathcal{L}^* \rho$
 
 **Duality:**
+
 $$\int (P_t f)(x) \rho(x) \, dx = \int f(x) (P_t^* \rho)(x) \, dx$$
+
+
 
 ---
 
@@ -96,9 +135,15 @@ $$\int (P_t f)(x) \rho(x) \, dx = \int f(x) (P_t^* \rho)(x) \, dx$$
 
 The generator captures the **infinitesimal moments** of the process:
 
+
 $$\mathbb{E}[X_{t+dt} - X_t \mid X_t = x] = \mu(x,t) dt + o(dt)$$
 
+
+
+
 $$\mathbb{E}[(X_{t+dt} - X_t)^2 \mid X_t = x] = 2a(x,t) dt + o(dt)$$
+
+
 
 **First-order term (drift):** $\mu(x,t) = \lim_{dt \to 0} \frac{\mathbb{E}[X_{t+dt} - x \mid X_t = x]}{dt}$
 
@@ -112,12 +157,18 @@ The operator $\mathcal{L}$ **encodes the local probabilistic structure** entirel
 
 For any $f \in \text{Domain}(\mathcal{L})$, the process:
 
+
 $$M_t = f(X_t) - f(X_0) - \int_0^t \mathcal{L}f(X_s) \, ds$$
+
+
 
 is a **martingale**.
 
 This means:
+
 $$\mathcal{L}f(x) = 0 \quad \Longleftrightarrow \quad f(X_t) \text{ is a martingale}$$
+
+
 
 **Example:** For Brownian motion with $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$:
 - $f(x) = x^2 - t$ satisfies $\mathcal{L}f + \frac{\partial f}{\partial t} = 0$, so $X_t^2 - t$ is a martingale
@@ -130,13 +181,19 @@ The generator $\mathcal{L}$ is an **unbounded operator** on suitable function sp
 1. **Equilibrium distributions:** The stationary distribution $\pi$ satisfies $\mathcal{L}^* \pi = 0$
 
 2. **Rate of convergence:** The spectral gap $\lambda_1$ (first non-zero eigenvalue) controls:
+
    $$\|P_t \rho - \pi\| \leq Ce^{-\lambda_1 t}$$
+
+
 
 3. **Metastability:** Small eigenvalues indicate slow modes and timescale separation
 
 **Example - Ornstein-Uhlenbeck:** 
 
+
 $$\mathcal{L} = -\theta x \frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}$$
+
+
 
 Stationary distribution: $\mathcal{L}^* \pi = 0$ gives $\pi(x) = \mathcal{N}(0, \sigma^2/(2\theta))$
 
@@ -145,7 +202,10 @@ Stationary distribution: $\mathcal{L}^* \pi = 0$ gives $\pi(x) = \mathcal{N}(0, 
 **Harmonic functions** satisfy $\mathcal{L}h = 0$.
 
 **Probabilistic interpretation:** 
+
 $$h(x) = \mathbb{E}[h(X_\tau) \mid X_0 = x]$$
+
+
 
 for any stopping time $\tau$. These are **invariant under the process** in expectation.
 
@@ -165,7 +225,10 @@ The relationship between $\mathcal{L}$ and $\mathcal{L}^*$ reveals a fundamental
 
 **Fundamental equation:**
 
+
 $$\frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}[\mathcal{L}f(X_t)]$$
+
+
 
 This can be viewed as either:
 - Evolution of $f$ forward in time (backward perspective)
@@ -175,15 +238,24 @@ This can be viewed as either:
 
 Adding a potential $V(x)$ or killing rate $r(x)$ gives a **modified generator**:
 
+
 $$\mathcal{L}_V = \mathcal{L} - V(x)$$
+
+
 
 The Feynman-Kac formula:
 
+
 $$v(x,t) = \mathbb{E}\left[e^{-\int_0^t V(X_s)ds} f(X_t) \mid X_0 = x\right]$$
+
+
 
 satisfies:
 
+
 $$\frac{\partial v}{\partial t} = \mathcal{L}v - Vv$$
+
+
 
 The potential $V$ **modifies the evolution** through killing/weighting.
 
@@ -193,13 +265,19 @@ If $\mathcal{L}$ is **symmetric** (self-adjoint): $\mathcal{L} = \mathcal{L}^*$,
 
 **Condition for reversibility:**
 
+
 $$\mu(x,t) = a'(x,t) - \frac{\partial \log \pi(x)}{\partial x} a(x,t)$$
+
+
 
 where $\pi$ is the stationary density.
 
 **Example:** Overdamped Langevin dynamics in a potential $U(x)$:
 
+
 $$dX_t = -\nabla U(X_t) dt + \sqrt{2} dW_t$$
+
+
 
 has $\mathcal{L} = -\nabla U \cdot \nabla + \Delta$, which is symmetric with respect to the Gibbs measure $\pi(x) \propto e^{-U(x)}$.
 
@@ -209,7 +287,10 @@ has $\mathcal{L} = -\nabla U \cdot \nabla + \Delta$, which is symmetric with res
 
 The generator $\mathcal{L}$ **completely characterizes** the Markov process:
 
+
 $$\text{Generator } \mathcal{L} \quad \longleftrightarrow \quad \text{Markov Process } \{X_t\}$$
+
+
 
 Everything about the process can be derived from $\mathcal{L}$:
 - Transition probabilities: $P_t = e^{t\mathcal{L}}$

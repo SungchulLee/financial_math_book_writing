@@ -17,9 +17,12 @@ The transition occurs when \(\log(S/K)=\mathcal{O}(\sqrt{\tau})\).
 ## Width of transition
 
 In log-moneyness \(x=\log(S/K)\),
+
 \[
 d_1\approx \frac{x}{\sigma\sqrt{\tau}}+\mathcal{O}(\sqrt{\tau}),
 \]
+
+
 so the transition width scales like \(\sigma\sqrt{\tau}\).
 
 ---

@@ -18,18 +18,27 @@ A **self-financing trading strategy** is a predictable process $\theta_t = (\the
 
 The **portfolio value** is:
 
+
 $$V_t(\theta) = \sum_{i=0}^d \theta^i_t S^i_t$$
+
+
 
 **Self-financing condition:**
 
+
 $$dV_t = \sum_{i=0}^d \theta^i_t \, dS^i_t$$
+
+
 
 No exogenous cash flows—all gains/losses come from price changes.
 
 **Discounted Prices:**
 Define discounted prices relative to the numéraire:
 
+
 $$\tilde{S}^i_t = \frac{S^i_t}{S^0_t}$$
+
+
 
 ## Key Definitions
 
@@ -51,7 +60,10 @@ A probability measure $\mathbb{Q}$ on $(\Omega, \mathcal{F})$ is an **equivalent
 
 2. The discounted price processes $\tilde{S}^i_t$ are $\mathbb{Q}$-martingales for all $i = 1, \ldots, d$:
 
+
 $$\tilde{S}^i_t = \mathbb{E}^{\mathbb{Q}}[\tilde{S}^i_T | \mathcal{F}_t]$$
+
+
 
 **Market Completeness:**
 A market is **complete** if every contingent claim can be replicated by a self-financing strategy.
@@ -64,13 +76,19 @@ The theorem comes in two parts:
 
 **Theorem 1:** The market admits **no arbitrage** if and only if there exists an **equivalent martingale measure** $\mathbb{Q}$.
 
+
 $$\text{No Arbitrage} \iff \exists \mathbb{Q} \sim \mathbb{P} \text{ such that } \tilde{S}^i_t \text{ is a } \mathbb{Q}\text{-martingale}$$
+
+
 
 ### FTAP (Second Version): Completeness and Uniqueness
 
 **Theorem 2:** The market is **complete and arbitrage-free** if and only if there exists a **unique** equivalent martingale measure.
 
+
 $$\text{Complete + No Arbitrage} \iff \exists! \mathbb{Q} \sim \mathbb{P} \text{ such that } \tilde{S}^i_t \text{ is a } \mathbb{Q}\text{-martingale}$$
+
+
 
 ## Proof (Finite State Space)
 
@@ -91,7 +109,10 @@ We have $d+1$ assets with:
 **Discounted payoff matrix:**
 Assume $S^0_t = 1$ for simplicity (or discount everything by $S^0_1$). Define the **payoff matrix**:
 
+
 $$X_{ij} = S^j_1(\omega_i) - S^j_0$$
+
+
 
 This is an $n \times d$ matrix where row $i$ represents state $\omega_i$ and column $j$ represents asset $j$.
 
@@ -101,31 +122,49 @@ This is an $n \times d$ matrix where row $i$ represents state $\omega_i$ and col
 
 We need to show there exist probabilities $q_i > 0$ (with $\sum_i q_i = 1$) such that:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[S^j_1] = S^j_0 \quad \text{for all } j = 1, \ldots, d$$
+
+
 
 Or equivalently:
 
+
 $$\sum_{i=1}^n q_i S^j_1(\omega_i) = S^j_0$$
+
+
 
 In matrix form, we seek $q \in \mathbb{R}^n$ with $q_i > 0$, $\sum_i q_i = 1$, such that:
 
+
 $$X^T q = 0$$
+
+
 
 where $X$ is the discounted payoff matrix (with $S^j_1$ replaced by $S^j_1 - S^j_0$).
 
 **By contradiction:** Suppose no such $q$ exists. By the **separating hyperplane theorem**, there exists a vector $\theta \in \mathbb{R}^d$ such that:
 
+
 $$X\theta \cdot q < 0 \quad \text{for all } q \text{ with } q_i > 0, \sum q_i = 1$$
+
+
 
 But this means:
 
+
 $$\sum_{i=1}^n q_i (X\theta)_i < 0$$
+
+
 
 for all probability distributions $q$ with $q_i > 0$.
 
 Taking $q = p$ (the physical measure), we get:
 
+
 $$\mathbb{E}^{\mathbb{P}}[X\theta] < 0$$
+
+
 
 But notice: $(X\theta)_i = \sum_{j=1}^d \theta^j X_{ij} = \sum_{j=1}^d \theta^j (S^j_1(\omega_i) - S^j_0)$ is the payoff in state $\omega_i$ of a portfolio with initial value $-\sum_j \theta^j S^j_0$.
 
@@ -149,15 +188,24 @@ Therefore, an EMM $\mathbb{Q}$ exists. $\square$
 
 Suppose $\mathbb{Q} \sim \mathbb{P}$ is an EMM, so:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[S^j_1] = S^j_0 \quad \text{for all } j$$
+
+
 
 Consider any self-financing strategy $\theta$ with $V_0 = 0$. Then:
 
+
 $$V_1 = \sum_{j=1}^d \theta^j (S^j_1 - S^j_0)$$
+
+
 
 Taking $\mathbb{Q}$-expectation:
 
+
 $$\mathbb{E}^{\mathbb{Q}}[V_1] = \sum_{j=1}^d \theta^j \mathbb{E}^{\mathbb{Q}}[S^j_1 - S^j_0] = \sum_{j=1}^d \theta^j (S^j_0 - S^j_0) = 0$$
+
+
 
 So if $V_1 \geq 0$ almost surely, then $\mathbb{E}^{\mathbb{Q}}[V_1] \geq 0$, which equals $0$.
 
@@ -211,7 +259,10 @@ If such a consensus exists, there's no "free lunch"—all assets are fairly pric
 
 Under $\mathbb{Q}$:
 
+
 $$S^i_t = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)} S^i_T | \mathcal{F}_t]$$
+
+
 
 Everyone is "risk-neutral" under this measure—they only care about expected values, not risk. This doesn't mean investors ARE risk-neutral; it means we can PRICE as if they were.
 
@@ -255,11 +306,14 @@ Multiple EMMs mean **price indeterminacy**—derivatives have a range of no-arbi
 
 The FTAP establishes a **duality**:
 
+
 $$\begin{array}{ccc}
 \text{Portfolio strategies } \theta & \leftrightarrow & \text{Probability measures } \mathbb{Q} \\
 \text{Arbitrage opportunities} & \leftrightarrow & \text{Non-existence of EMM} \\
 \text{Market completeness} & \leftrightarrow & \text{Unique EMM}
 \end{array}$$
+
+
 
 This is analogous to **duality in optimization**: primal feasibility $\leftrightarrow$ dual feasibility.
 
@@ -267,7 +321,10 @@ This is analogous to **duality in optimization**: primal feasibility $\leftright
 
 A martingale satisfies:
 
+
 $$\mathbb{E}[X_{t+1} | \mathcal{F}_t] = X_t$$
+
+
 
 This means "no predictable profit"—the best forecast of tomorrow's price is today's price.
 
@@ -291,11 +348,17 @@ This is the same principle behind **Lagrange multipliers** and **KKT conditions*
 
 In continuous time, the measure change is given by:
 
+
 $$\frac{d\mathbb{Q}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \lambda_s \, dW_s\right)$$
+
+
 
 where $\lambda_t$ is the **market price of risk** (Sharpe ratio), and $\mathcal{E}$ is the stochastic exponential:
 
+
 $$\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}\langle X \rangle_t\right)$$
+
+
 
 This connects to **Girsanov's theorem**: under $\mathbb{Q}$, the process $W^{\mathbb{Q}}_t = W_t + \int_0^t \lambda_s \, ds$ is a Brownian motion.
 
@@ -315,19 +378,31 @@ Think of the state space $\Omega$ as $\mathbb{R}^n$.
 
 In the Black-Scholes model:
 
+
 $$dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$$
+
+
 
 The **market price of risk** is:
 
+
 $$\lambda = \frac{\mu - r}{\sigma}$$
+
+
 
 The EMM is defined by:
 
+
 $$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\left(-\lambda W_T - \frac{\lambda^2 T}{2}\right)$$
+
+
 
 Under $\mathbb{Q}$:
 
+
 $$dS_t = r S_t \, dt + \sigma S_t \, dW^{\mathbb{Q}}_t$$
+
+
 
 The discounted stock price $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, satisfying the FTAP.
 
@@ -362,7 +437,10 @@ We want to show: **No Arbitrage** $\Rightarrow$ **EMM exists**
 
 In other words, if there's no arbitrage, then there exists $q \in \mathbb{R}^n$ with $q_i > 0$, $\sum_i q_i = 1$, such that:
 
+
 $$X^T q = 0$$
+
+
 
 where $X$ is the payoff matrix ($X_{ij} = S^j_1(\omega_i) - S^j_0$).
 
@@ -370,7 +448,10 @@ where $X$ is the payoff matrix ($X_{ij} = S^j_1(\omega_i) - S^j_0$).
 
 Define the **probability simplex**:
 
+
 $$\Delta^n = \left\{q \in \mathbb{R}^n : q_i > 0 \text{ for all } i, \sum_{i=1}^n q_i = 1\right\}$$
+
+
 
 We want to find $q \in \Delta^n$ such that $X^T q = 0 \in \mathbb{R}^d$.
 
@@ -382,7 +463,10 @@ Equivalently, we're asking: **Does $0 \in \mathbb{R}^d$ lie in the image of $\De
 
 Define the set:
 
+
 $$\mathcal{S} = \{X^T q : q \in \Delta^n\} \subset \mathbb{R}^d$$
+
+
 
 **Key observation:** $\mathcal{S}$ is:
 
@@ -396,11 +480,17 @@ $$\mathcal{S} = \{X^T q : q \in \Delta^n\} \subset \mathbb{R}^d$$
 
 Since $\mathcal{S}$ is a compact convex set and $\{0\}$ is a closed convex set, and they're disjoint, by the **strict separation** version of the separating hyperplane theorem, there exists $\theta \in \mathbb{R}^d$ (with $\theta \neq 0$) such that:
 
+
 $$\theta^T (X^T q) < \theta^T \cdot 0 = 0 \quad \text{for all } q \in \Delta^n$$
+
+
 
 Rewriting this (using $\theta^T (X^T q) = (\theta^T X^T) q = (X\theta)^T q = q^T (X\theta)$):
 
+
 $$\boxed{q^T (X\theta) < 0 \quad \text{for all } q \in \Delta^n}$$
+
+
 
 ### Step 4: What Does This Tell Us About $X\theta$?
 
@@ -408,25 +498,40 @@ Let me evaluate $q^T(X\theta)$ for specific probability vectors:
 
 **Take $q = e_1 = (1, 0, 0, \ldots, 0)$:**
 
+
 $$e_1^T(X\theta) = (X\theta)_1 < 0$$
+
+
 
 **Take $q = e_2 = (0, 1, 0, \ldots, 0)$:**
 
+
 $$e_2^T(X\theta) = (X\theta)_2 < 0$$
+
+
 
 **Continue for all basis vectors** $e_i$:
 
+
 $$(X\theta)_i < 0 \quad \text{for all } i = 1, \ldots, n$$
+
+
 
 Therefore:
 
+
 $$\boxed{X\theta < 0 \quad \text{(strictly negative in ALL components)}}$$
+
+
 
 ### Step 5: Construct an Arbitrage
 
 Now consider the strategy $-\theta$. Its payoff is:
 
+
 $$X(-\theta) = -X\theta > 0 \quad \text{(strictly positive in ALL states)}$$
+
+
 
 This means:
 
@@ -436,7 +541,10 @@ This means:
 
 But wait—we need to verify this is an arbitrage. In the setup where $X_{ij}$ represents the **change** in value, the strategy $-\theta$ costs:
 
+
 $$V_0(-\theta) = -\sum_{j=1}^d \theta^j S^j_0$$
+
+
 
 Hmm, this might not be zero. Let me reconsider the setup.
 
@@ -452,7 +560,10 @@ Actually, in the standard setup:
 
 So the condition $X\theta < 0$ means the strategy has strictly negative payoff in all states. Then $-\theta$ has strictly positive payoff:
 
+
 $$X(-\theta) > 0$$
+
+
 
 And since $X$ represents **excess returns** (discounted gains), a positive payoff vector with zero cost is an arbitrage.
 
@@ -466,11 +577,17 @@ But we've constructed $\theta$ with $X\theta < 0$ (all strict), which means $-\t
 
 We've shown:
 
+
 $$\text{If no EMM exists} \Rightarrow \text{Arbitrage exists}$$
+
+
 
 By contrapositive:
 
+
 $$\boxed{\text{No Arbitrage} \Rightarrow \text{EMM exists}}$$
+
+
 
 ## What Were the Two Sets Being Separated?
 
@@ -488,11 +605,17 @@ To directly answer your question:
 
 The separating condition says:
 
+
 $$\theta^T s < 0 < \theta^T \cdot 0 = 0 \quad \text{for all } s \in \mathcal{S}$$
+
+
 
 Wait, that's backwards. Let me reconsider. We have:
 
+
 $$\theta^T s < \theta^T \cdot 0 = 0 \quad \text{for all } s \in \mathcal{S}$$
+
+
 
 This means $\mathcal{S}$ lies entirely on one side of the hyperplane $\{x : \theta^T x = 0\}$, and that side is where $\theta^T x < 0$.
 
@@ -548,7 +671,10 @@ A. You're absolutely correct! This is an excellent observation that highlights a
 
 The **numéraire** need not be risk-free. The only mathematical requirement is:
 
+
 $$S^0_t > 0 \quad \text{almost surely for all } t$$
+
+
 
 (strictly positive to avoid division by zero)
 
@@ -568,11 +694,17 @@ $$S^0_t > 0 \quad \text{almost surely for all } t$$
 
 When you choose asset $S^0_t$ as numéraire, you work with **normalized prices**:
 
+
 $$\tilde{S}^i_t = \frac{S^i_t}{S^0_t}$$
+
+
 
 The FTAP states: Under the **numéraire-associated measure** $\mathbb{Q}^0$, the normalized processes $\tilde{S}^i_t$ are martingales:
 
+
 $$\tilde{S}^i_t = \mathbb{E}^{\mathbb{Q}^0}\left[\tilde{S}^i_T \mid \mathcal{F}_t\right]$$
+
+
 
 **Key insight:** Each choice of numéraire corresponds to a *different* equivalent martingale measure, but they all give the **same derivative prices** (numéraire-invariant pricing).
 
@@ -582,13 +714,19 @@ Suppose you choose WMT stock as numéraire: $S^0_t = S^{\text{WMT}}_t$.
 
 Under the **WMT-forward measure** $\mathbb{Q}^{\text{WMT}}$, we have:
 
+
 $$\frac{S^{\text{AAPL}}_t}{S^{\text{WMT}}_t} = \mathbb{E}^{\mathbb{Q}^{\text{WMT}}}\left[\frac{S^{\text{AAPL}}_T}{S^{\text{WMT}}_T} \bigg| \mathcal{F}_t\right]$$
+
+
 
 The relative price AAPL/WMT is a $\mathbb{Q}^{\text{WMT}}$-martingale.
 
 Similarly:
 
+
 $$\frac{S^{\text{Bond}}_t}{S^{\text{WMT}}_t} = \mathbb{E}^{\mathbb{Q}^{\text{WMT}}}\left[\frac{S^{\text{Bond}}_T}{S^{\text{WMT}}_T} \bigg| \mathcal{F}_t\right]$$
+
+
 
 Even the "risk-free" bond, when normalized by WMT, becomes a $\mathbb{Q}^{\text{WMT}}$-martingale!
 
@@ -612,13 +750,19 @@ This is formalized in the **Change of Numéraire Theorem**:
 
 **Theorem:** Let $N_t$ and $M_t$ be two numéraires (strictly positive traded assets). Let $\mathbb{Q}^N$ and $\mathbb{Q}^M$ be their associated EMMs. Then:
 
+
 $$\frac{d\mathbb{Q}^M}{d\mathbb{Q}^N}\bigg|_{\mathcal{F}_T} = \frac{M_T/M_0}{N_T/N_0}$$
+
+
 
 This Radon-Nikodym derivative relates the two measures.
 
 **Pricing invariance:** For any derivative with payoff $\Phi_T$:
 
+
 $$V_t = N_t \cdot \mathbb{E}^{\mathbb{Q}^N}\left[\frac{\Phi_T}{N_T} \bigg| \mathcal{F}_t\right] = M_t \cdot \mathbb{E}^{\mathbb{Q}^M}\left[\frac{\Phi_T}{M_T} \bigg| \mathcal{F}_t\right]$$
+
+
 
 Same price, different representations!
 
@@ -626,11 +770,17 @@ Same price, different representations!
 
 A powerful application uses a **zero-coupon bond** maturing at $T$ as numéraire:
 
+
 $$N_t = P(t,T) = \text{price at time } t \text{ of bond paying } \$1 \text{ at time } T$$
+
+
 
 Under the **$T$-forward measure** $\mathbb{Q}^T$:
 
+
 $$\frac{S_t}{P(t,T)} = \mathbb{E}^{\mathbb{Q}^T}\left[\frac{S_T}{P(T,T)} \bigg| \mathcal{F}_t\right] = \mathbb{E}^{\mathbb{Q}^T}[S_T | \mathcal{F}_t]$$
+
+
 
 (since $P(T,T) = 1$)
 
@@ -659,4 +809,3 @@ The FTAP **does not require** a risk-free asset. The statement should be:
 The risk-free bond is just the **most convenient** choice for many applications, but mathematically, **any positive traded asset works**. The fact that the document says "typically $S^0_t = e^{rt}$" is acknowledging this—it's a typical choice, not a requirement.
 
 This flexibility is what makes change of numéraire such a powerful technique in quantitative finance!
-

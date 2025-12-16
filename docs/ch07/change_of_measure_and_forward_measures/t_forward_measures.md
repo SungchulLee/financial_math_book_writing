@@ -10,9 +10,12 @@ Let \(P(t,T)\) be the zero-coupon bond maturing at \(T\).
 The **T-forward measure** \(\mathbb{Q}^T\) is defined by choosing \(P(t,T)\) as numéraire.
 
 Under \(\mathbb{Q}^T\),
+
 \[
 \frac{S_t}{P(t,T)} \text{ is a martingale}
 \]
+
+
 for any tradable asset \(S_t\) that pays off at or before \(T\).
 
 ---
@@ -20,9 +23,12 @@ for any tradable asset \(S_t\) that pays off at or before \(T\).
 ## 2. Pricing under the forward measure
 
 For a payoff \(V_T\) at time \(T\),
+
 \[
 V_t = P(t,T)\,\mathbb{E}^{\mathbb{Q}^T}[V_T \mid \mathcal{F}_t].
 \]
+
+
 
 Discounting disappears because the numéraire already matures at \(T\).
 

@@ -7,16 +7,22 @@ Forward rates describe **future borrowing/lending rates** implied by today’s y
 ## 1. Simple forward rates from discount factors
 
 Given discount factors \(P(0,T_1)\) and \(P(0,T_2)\) with \(0<T_1<T_2\), the **simple forward rate** over \([T_1,T_2]\) is defined by
+
 \[
 1 + F(0;T_1,T_2)\,(T_2-T_1)
 = \frac{P(0,T_1)}{P(0,T_2)}.
 \]
 
+
+
 Equivalently,
+
 \[
 F(0;T_1,T_2)
 = \frac{1}{T_2-T_1}\left(\frac{P(0,T_1)}{P(0,T_2)} - 1\right).
 \]
+
+
 
 This is the rate that makes a forward-starting loan have zero value at time 0 under no-arbitrage.
 
@@ -25,19 +31,28 @@ This is the rate that makes a forward-starting loan have zero value at time 0 un
 ## 2. Instantaneous forward rate curve
 
 The **instantaneous forward rate** \(f(0,T)\) is defined by
+
 \[
 f(0,T) := -\frac{\partial}{\partial T}\log P(0,T).
 \]
 
+
+
 It satisfies
+
 \[
 P(0,T) = \exp\left(-\int_0^T f(0,u)\,du\right).
 \]
 
+
+
 The relationship to the continuously compounded zero rate \(z(0,T)\) is:
+
 \[
 z(0,T) = \frac{1}{T}\int_0^T f(0,u)\,du.
 \]
+
+
 
 Thus:
 - zero rates are averages of forward rates,

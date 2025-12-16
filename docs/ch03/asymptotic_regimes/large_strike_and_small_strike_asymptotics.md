@@ -8,9 +8,12 @@ Extreme strikes probe the tail behavior of the risk-neutral distribution.
 
 For a call,
 
+
 \[
 C(t,S;K)=e^{-r\tau}\mathbb{E}[(S_T-K)^+],
 \]
+
+
 
 and for large \(K\) the main contribution is the tail \(\mathbb{P}(S_T>K)\). Similarly, deep OTM puts are controlled by \(\mathbb{P}(S_T<K)\).
 

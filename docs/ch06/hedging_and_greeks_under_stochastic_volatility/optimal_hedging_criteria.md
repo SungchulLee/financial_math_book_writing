@@ -7,9 +7,12 @@ In incomplete markets, hedging strategies depend on the **optimality criterion**
 ## 1. Mean–variance hedging
 
 A classical approach minimizes expected squared hedging error:
+
 \[
 \min_{\pi} \; \mathbb{E}\big[(H - V_T^{\pi})^2\big],
 \]
+
+
 where \(H\) is the payoff and \(V_T^{\pi}\) the hedged portfolio value.
 
 Pros:
@@ -25,9 +28,12 @@ Cons:
 ## 2. Utility-based hedging
 
 Alternatively, one may maximize expected utility:
+
 \[
 \max_{\pi} \; \mathbb{E}[U(V_T^{\pi})].
 \]
+
+
 
 This framework:
 - incorporates risk aversion,

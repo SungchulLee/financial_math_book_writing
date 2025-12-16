@@ -11,9 +11,12 @@ A model calibrated at time \(t\) is typically used to:
 - hedge positions over \([t, t+\Delta t]\).
 
 If the model is recalibrated at \(t+\Delta t\) to new data, the parameter shift
+
 \[
 \theta_t \longrightarrow \theta_{t+\Delta t}
 \]
+
+
 can introduce artificial P&L unrelated to market moves.
 
 ---

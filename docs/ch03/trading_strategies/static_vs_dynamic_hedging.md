@@ -7,9 +7,12 @@ Dynamic hedging rebalances continuously (ideal) or frequently (practical). Stati
 ## Static hedging idea
 
 Approximate \(H\) by a portfolio of vanilla payoffs:
+
 \[
 H \approx \sum_i a_i H_i.
 \]
+
+
 
 ---
 

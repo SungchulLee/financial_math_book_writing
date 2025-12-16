@@ -16,9 +16,12 @@ Option prices identify \(\mathbb{Q}\)-dynamics only.
 ## 2. Measure change and drifts
 
 A change of measure modifies drifts but not diffusion terms:
+
 \[
 dV_t^{\mathbb{Q}} = a^{\mathbb{Q}}(V_t)dt + b(V_t)dW_t^{V,\mathbb{Q}}.
 \]
+
+
 
 The difference between \(a^{\mathbb{P}}\) and \(a^{\mathbb{Q}}\) encodes **risk premia**.
 

@@ -8,9 +8,12 @@ Stochastic volatility models also admit a **partial differential equation (PDE)*
 
 Let \(V(t,s,v)\) be the price at time \(t\) when \(S_t=s\) and \(V_t=v\).
 Under standard regularity conditions and risk-neutral dynamics, \(V\) satisfies
+
 \[
 \partial_t V + \mathcal{L}V - rV = 0,
 \]
+
+
 with terminal condition \(V(T,s,v)=\Phi(s)\), where \(\Phi\) is the payoff.
 
 ---
@@ -18,6 +21,7 @@ with terminal condition \(V(T,s,v)=\Phi(s)\), where \(\Phi\) is the payoff.
 ## 2. Generator for a two-factor diffusion
 
 For a generic two-factor model
+
 \[
 \begin{aligned}
 dS_t &= (r-q)s\,dt + \sqrt{v}\,s\,dW_t^S,\\
@@ -25,7 +29,10 @@ dV_t &= a(v,t)\,dt + b(v,t)\,dW_t^V,\\
 d\langle W^S,W^V\rangle_t &= \rho\,dt,
 \end{aligned}
 \]
+
+
 the generator \(\mathcal{L}\) typically takes the form
+
 \[
 \mathcal{L}V =
 (r-q)s\,\partial_s V + a(v,t)\,\partial_v V
@@ -33,6 +40,8 @@ the generator \(\mathcal{L}\) typically takes the form
 + \tfrac12 b(v,t)^2\,\partial_{vv}V
 + \rho b(v,t) s\sqrt{v}\,\partial_{sv}V.
 \]
+
+
 
 (For Heston, \(a(v,t)=\kappa(\theta-v)\) and \(b(v,t)=\xi\sqrt{v}\).)
 

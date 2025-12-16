@@ -20,12 +20,15 @@ Joint calibration enforces:
 ## 2. Objective function across the surface
 
 A typical joint objective is
+
 \[
 \mathcal{L}(\theta)
 = \frac12\sum_{i,j} w_{ij}
 \big(\sigma^{\text{model}}_{\text{impl}}(k_i,T_j;\theta)
 - \sigma^{\text{mkt}}_{\text{impl}}(k_i,T_j)\big)^2.
 \]
+
+
 
 Key design choices:
 - maturity balancing (avoid one tenor dominating),

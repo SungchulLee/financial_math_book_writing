@@ -7,9 +7,14 @@ A defining feature of the HJM framework is that **no-arbitrage uniquely determin
 ## 1. Risk-neutral requirement
 
 Discounted bond prices must be martingales:
+
+
 \[
 \frac{P(t,T)}{B_t} \text{ is a martingale},
 \]
+
+
+
 where \(B_t\) is the money-market account.
 
 This constraint fixes the drift of \(f(t,T)\).
@@ -19,15 +24,24 @@ This constraint fixes the drift of \(f(t,T)\).
 ## 2. HJM drift condition
 
 If
+
+
 \[
 df(t,T) = \alpha(t,T)dt + \sum_{i=1}^n \sigma_i(t,T)dW_t^i,
 \]
+
+
+
 then no-arbitrage implies
+
+
 \[
 \alpha(t,T)
 = \sum_{i=1}^n \sigma_i(t,T)
 \int_t^T \sigma_i(t,u)du.
 \]
+
+
 
 Thus:
 - volatility is a modeling input,

@@ -7,10 +7,13 @@ Calibration is only as good as its treatment of **quote quality**. Two instrumen
 ## 1. Why weights matter
 
 Consider weighted least squares:
+
 \[
 \mathcal{L}(\theta)=\frac12\sum_{j=1}^m w_j\,r_j(\theta)^2,
 \qquad r_j(\theta)=f_j(\theta)-y_j.
 \]
+
+
 
 - Large \(w_j\): the optimizer will prioritize fitting instrument \(j\).
 - Small \(w_j\): instrument \(j\) is effectively down-weighted (treated as noisy/unreliable).
@@ -22,9 +25,12 @@ Without sensible weights, calibration may overfit illiquid points and produce un
 ## 2. Using bid/ask spreads as noise proxies
 
 A common heuristic is:
+
 \[
 w_j \propto \frac{1}{\text{(bid-ask)}_j^2}.
 \]
+
+
 
 Intuition:
 - wide spreads imply large uncertainty,
@@ -56,9 +62,12 @@ Therefore, practitioners often apply **region-dependent weights**:
 ## 4. Vega weighting and effective information content
 
 In vol-space calibration, the same vol error can imply very different price errors depending on Vega:
+
 \[
 \Delta C \approx \text{Vega}\,\Delta\sigma.
 \]
+
+
 
 Possible schemes:
 
@@ -88,9 +97,12 @@ Think of weights as *the last step* after basic data hygiene.
 
 - baseline: \(w_j = 1/\text{spread}_j^2\),
 - per-maturity normalization so each maturity contributes similarly:
+
   \[
   w_{j \in T} \leftarrow \frac{w_j}{\sum_{k\in T} w_k}.
   \]
+
+
 
 ### 6.2 Robust weighting
 
