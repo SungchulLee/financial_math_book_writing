@@ -24,9 +24,11 @@ Typical diffusion increments are \(\mathcal{O}(\sqrt{\tau})\), so near-the-money
 ## Far OTM is exponentially small
 
 For strikes far from \(S\), short-time prices often scale like
+
 \[
 V(t,S;K)\approx \exp\!\left(-\frac{I(S,K)}{\tau}\right),
 \]
+
 where \(I\) is a rate function (large deviations).
 
 ---

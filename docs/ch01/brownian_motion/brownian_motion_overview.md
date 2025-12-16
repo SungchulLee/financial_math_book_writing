@@ -28,33 +28,33 @@ A **standard Brownian motion** ({W_t}_{t \ge 0}) on a probability space
 
 ### (i) Initial condition
 
-[
+\[
 W_0 = 0 \quad \text{almost surely}
-]
+\]
 
 ### (ii) Independent increments
 
 For
-[
+\(
 0 \le t_0 < t_1 < \cdots < t_n,
-]
+\)
 the increments
-[
+\(
 W_{t_1}-W_{t_0},\ldots,W_{t_n}-W_{t_{n-1}}
-]
+\)
 are independent.
 
 ### (iii) Stationary increments
 
-[
+\[
 W_t - W_s \sim \mathcal{N}(0,t-s), \quad 0 \le s < t
-]
+\]
 
 ### (iv) Continuity of paths
 
-[
+\[
 t \mapsto W_t(\omega) \quad \text{is continuous for almost every } \omega
-]
+\]
 
 ---
 
@@ -62,21 +62,23 @@ t \mapsto W_t(\omega) \quad \text{is continuous for almost every } \omega
 
 For any (0 \le t_1 < \cdots < t_n),
 
-[
+\[
 (W_{t_1},\ldots,W_{t_n})
 \sim
 \mathcal{N}(0,\Sigma)
-]
+\]
 
 where
-[
+
+\[
 \Sigma_{ij} = \min(t_i,t_j)
-]
+\]
 
 In particular,
-[
+
+\[
 \mathbb{E}[W_t] = 0, \quad \mathbb{E}[W_t^2] = t
-]
+\]
 
 ---
 
@@ -84,14 +86,13 @@ In particular,
 
 For (0 \le s < t),
 
-[
+\[
 \boxed{
 \mathbb{E}\left[e^{i\lambda(W_t-W_s)}\right]
-============================================
-
+=
 \exp\left(-\frac{1}{2}\lambda^2(t-s)\right)
 }
-]
+\]
 
 This uniquely characterizes the Gaussian increment structure.
 
@@ -101,11 +102,11 @@ This uniquely characterizes the Gaussian increment structure.
 
 For all (s,t \ge 0),
 
-[
+\[
 \boxed{
 \mathbb{E}[W_s W_t] = \min(s,t)
 }
-]
+\]
 
 This identity implies:
 
@@ -119,13 +120,13 @@ This identity implies:
 
 Define finite-dimensional distributions by:
 
-[
+\[
 (W_{t_1},\ldots,W_{t_n})
 \sim
 \mathcal{N}(0,\Sigma),
 \quad
 \Sigma_{ij} = \min(t_i,t_j)
-]
+\]
 
 These distributions are:
 
@@ -142,13 +143,13 @@ Continuity is then guaranteed by **Kolmogorov’s continuity theorem**.
 
 For any (c > 0),
 
-[
+\[
 \boxed{
 {W_{ct}}*{t \ge 0}
 ;\overset{d}{=};
 {\sqrt{c},W_t}*{t \ge 0}
 }
-]
+\]
 
 This implies Brownian motion has **no intrinsic time scale**.
 
@@ -157,15 +158,14 @@ This implies Brownian motion has **no intrinsic time scale**.
 # 8. Nowhere Differentiability
 
 Almost surely,
-[
+\[
 \boxed{
 \limsup_{h \to 0}
 \frac{|W_{t+h}-W_t|}{|h|}
-=========================
-
+=
 \infty
 }
-]
+\]
 
 More precisely, Brownian paths are:
 
@@ -174,28 +174,29 @@ More precisely, Brownian paths are:
 * Of infinite total variation
 
 Yet:
-[
+\[
 \mathbb{E}\left[(W_{t+h}-W_t)^2\right] = h
-]
+\]
 
 ---
 
 # 9. Quadratic Variation
 
 For any partition
-[
+
+\[
 \Pi_n = {0 = t_0 < t_1 < \cdots < t_n = t}
-]
+\]
 
 with mesh (|\Pi_n| \to 0),
 
-[
+\[
 \boxed{
 \sum_{k=1}^n (W_{t_k}-W_{t_{k-1}})^2
 ;\xrightarrow{\mathbb{P}};
 t
 }
-]
+\]
 
 This property **distinguishes Brownian motion** from smooth functions.
 
