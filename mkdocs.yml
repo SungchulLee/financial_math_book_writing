@@ -26,6 +26,7 @@ nav:
           - Moments of Brownian Motion: ch01/brownian_motion/moments_of_brownian_motion.md  
           - Reflection Principle: ch01/brownian_motion/reflection_principle_of_brownian_motion.md  
           - Brownian Motion Simulations: ch01/brownian_motion/brownian_motion_simulations.md
+          - Exercise: ch01/brownian_motion/exercise.md  # NEW
       - 1.2 Martingale:
           - Filtration: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
           - Martingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
@@ -33,16 +34,23 @@ nav:
           - Doob–Meyer Decomposition: ch01/filtration_and_martingales/doob_meyer_decomposition.md
           - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
           - Optional Sampling Theorem: ch01/filtration_and_martingales/optional_sampling_theorem.md
+          - Exercise: ch01/filtration_and_martingales/exercise.md  # NEW
       - 1.3 Itô Integration:
-          - Quadratic Variation: ch01/stochastic_integral/quadratic_variation.md
-          - Lebesgue Integral (Intuitive): ch01/stochastic_integral/lebesgue_integration_intuitive.md  # NEW
-          - Itô Integral (Intuitive): ch01/stochastic_integral/ito_integration_intuitive.md  # NEW
-          - Construction of Itô Integral: ch01/stochastic_integral/ito_integral_construction.md # NEW
-          - Properties of Itô Integrals: ch01/stochastic_integral/ito_integral_properties.md # NEW
-          - Itô Processes: ch01/stochastic_integral/ito_processes.md  # New
+          - Quadratic Variation: ch01/ito_integral/quadratic_variation.md
+          - Lebesgue Integral (Intuitive): ch01/ito_integral/lebesgue_integration_intuitive.md  # NEW
+          - Itô Integral (Intuitive): ch01/ito_integral/ito_integration_intuitive.md  # NEW
+          - Construction of Itô Integral: ch01/ito_integral/ito_integral_construction.md # NEW
+          - Itô Isometry: ch01/ito_integral/ito_isometry.md # NEW
+          - Properties of Itô Integrals: ch01/ito_integral/ito_integral_properties.md # NEW
+          - Itô Processes: ch01/ito_integral/ito_processes.md  # New
+          - Stratonovich Integral: ch01/ito_integral/stratonovich_integration.md  # NEW
+          - Exercise: ch01/ito_integral/exercise.md  # NEW
       - 1.4 Itô Calculus:
+          - Taylor Expansion (Linear): ch01/ito_lemma/taylor_expansion_linear.md
+          - Taylor Expansion (Quadratic): ch01/ito_lemma/taylor_expansion_quadratic.md
+          - from Taylor to Itô: ch01/ito_lemma/from_taylor_to_ito.md
           - Itô Lemma: ch01/ito_lemma/ito_lemma.md
-          - Why Itô's Lemma Matters: ch01/ito_lemma/direct_computation_motivation.md  # NEW 
+          - Why Itô Lemma Matters: ch01/ito_lemma/ito_lemma_why_it_matters.md  # NEW 
           - Itô Lemma (Multi-Dim): ch01/ito_lemma/ito_lemma_multidimensional_version.md
           - Itô Product Rule: ch01/ito_lemma/ito_product_rule.md
           - Integration by Parts: ch01/ito_lemma/ito_integration_by_parts.md  # NEW
@@ -53,6 +61,7 @@ nav:
           - Connection to Martingale: ch01/infinitesimal_generator/infinitesimal_generator_and_martingale.md
       - 1.6 Diffusion Process:
           - Diffusion Process Overview: ch01/diffusion_process/diffusion_process_overview.md
+          - SDE: ch01/diffusion_process/stochastic_differential_equations.md
           - Existence and Uniqueness: ch01/diffusion_process/existence_and_uniqueness_of_sdes.md
           - Strong Markov Property: ch01/diffusion_process/strong_markov_property.md
           - Invariant Measures and Stationarity: ch01/diffusion_process/invariant_measures_and_stationarity.md
@@ -70,15 +79,25 @@ nav:
           - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
   
   - Chapter 2 BS Model:
-      - 2.1 FTAP:
+      - 2.1 Binomial Model: 
+          - Binomial Model: ch02/binomial_asset_pricing_model/binomial_asset_pricing_model.md
+          - No-Arbitrage: ch02/binomial_asset_pricing_model/one_period_no_arbitrage.md
+          - Replicating Portfolio: ch02/binomial_asset_pricing_model/replicating_portfolio_pricing.md
+          - Risk-Neutral Probability: ch02/binomial_asset_pricing_model/risk_neutral_probability.md
+          - Martingale Pricing: ch02/binomial_asset_pricing_model/martingale_pricing_view.md
+          - How to Build Tree: ch02/binomial_asset_pricing_model/binomial_tree_construction.md
+          - Multi-Period Binomial Tree: ch02/binomial_asset_pricing_model/multi_period_binomial_tree.md
+          - Binomial to Black–Scholes: ch02/binomial_asset_pricing_model/binomial_to_black_scholes_limit.md
+          - Exercise: ch02/binomial_asset_pricing_model/exercise.md
+      - 2.2 FTAP:
           - Fundamental Theorem of Asset Pricing: ch02/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
           - Separating Hyperplane Theorem: ch02/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
-      - 2.2 BS PDE Derivation:
+      - 2.3 BS PDE Derivation:
           - Delta Hedging: ch02/bs_pde_derivation/delta_hedging.md
           - Risk-Neutral Measure: ch02/bs_pde_derivation/risk_neutral_martingale_measure.md
           - Change of Numeraire: ch02/bs_pde_derivation/change_of_numeraire.md
           - Equilibrium: ch02/bs_pde_derivation/equilibrium.md
-      - 2.3 BS PDE Analytic Sol:
+      - 2.4 BS PDE Analytic Sol:
           - Heat Equation: ch02/bs_pde_analytic_solution/heat_equation.md
           - Green Function: ch02/bs_pde_analytic_solution/green_function.md
           - Separation of Variables: ch02/bs_pde_analytic_solution/separation_of_variables.md
@@ -89,14 +108,14 @@ nav:
           - Feynman-Kac Formula: ch02/bs_pde_analytic_solution/feynman_kac.md
           - Change of Numeraire: ch02/bs_pde_analytic_solution/change_of_numeraire.md
           - Viscosity Solutions: ch02/bs_pde_analytic_solution/viscosity_solutions.md
-      - 2.4 BS PDE Numerical Sol:
+      - 2.5 BS PDE Numerical Sol:
           - Finite Difference Methods: ch02/bs_pde_numerical_solution/finite_difference_methods.md
           - Explicit, Implicit, and Crank–Nicolson Schemes: ch02/bs_pde_numerical_solution/explicit_implicit_crank_nicolson_schemes.md
           - Stability, Consistency, and Convergence: ch02/bs_pde_numerical_solution/stability_consistency_convergence.md
           - Boundary and Terminal Conditions: ch02/bs_pde_numerical_solution/boundary_and_terminal_conditions.md
           - Free Boundary Problems (American Options): ch02/bs_pde_numerical_solution/free_boundary_problems_american_options.md
           - Monotone Schemes and Viscosity Solutions: ch02/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
-      - 2.5 Extensions of BS Model:
+      - 2.6 Extensions of BS Model:
           - Local Volatility Models: ch02/extensions_black_scholes/local_volatility_models.md
           - Stochastic Volatility Models: ch02/extensions_black_scholes/stochastic_volatility_models.md
           - Jump-Diffusion Models: ch02/extensions_black_scholes/jump_diffusion_models.md

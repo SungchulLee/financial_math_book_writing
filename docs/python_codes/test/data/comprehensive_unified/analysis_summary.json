@@ -1,0 +1,23 @@
+{
+  "summary_stats": {
+    "count": 6,
+    "mean": 0.8412489842420183,
+    "std": 0.07166937088415994,
+    "min": 0.7011840003041164,
+    "max": 0.8952145690457672,
+    "median": 0.8574221779325033,
+    "25th_percentile": 0.8468057309057391,
+    "75th_percentile": 0.8840935932384273
+  },
+  "risk_metrics": {
+    "mean_volatility": 0.8412489842420183,
+    "volatility_of_volatility": 0.07166937088415994,
+    "var_95": 0.8945093730333054,
+    "var_99": 0.8950735298432748,
+    "outlier_count": 0,
+    "outlier_pct": 0.0,
+    "min_volatility": 0.7011840003041164,
+    "max_volatility": 0.8952145690457672,
+    "total_observations": 6
+  }
+}
