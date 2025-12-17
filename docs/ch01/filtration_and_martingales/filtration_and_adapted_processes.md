@@ -1,8 +1,9 @@
-# Filtration and Adapted Processes
+# Filtration
 
 ## Filtered probability spaces
 
 A **filtered probability space** is a quadruple
+
 
 
 $$
@@ -12,12 +13,17 @@ $$
 
 
 
+
+
 where \((\Omega,\mathcal{F},\mathbb{P})\) is a probability space and \((\mathcal{F}_t)_{t\ge 0}\) is an increasing family of sub-\(\sigma\)-algebras:
+
 
 
 $$
 \mathcal{F}_s \subseteq \mathcal{F}_t \subseteq \mathcal{F}\quad \text{for } 0\le s\le t.
 $$
+
+
 
 
 
@@ -45,9 +51,12 @@ Let \(X=\{X_t\}_{t\ge 0}\) be a process with values in \(\mathbb{R}^d\).
 \(X\) is **adapted** to \((\mathcal{F}_t)\) if, for each \(t\ge 0\),
 
 
+
 $$
 X_t \text{ is } \mathcal{F}_t\text{-measurable}.
 $$
+
+
 
 
 
@@ -58,9 +67,12 @@ Interpretation: \(X_t\) is known at time \(t\).
 \(X\) is **progressively measurable** if, for each \(t\ge 0\), the map
 
 
+
 $$
 (s,\omega)\mapsto X_s(\omega)\mathbf{1}_{[0,t]}(s)
 $$
+
+
 
 
 
@@ -79,6 +91,7 @@ A process is **predictable** if it is measurable with respect to the predictable
 A standard Brownian motion \(\{W_t\}\) generates a natural filtration
 
 
+
 $$
 \mathcal{F}_t^W := \sigma(W_s:0\le s\le t).
 $$
@@ -86,7 +99,10 @@ $$
 
 
 
+
+
 One often uses its augmentation (completion + right-continuity):
+
 
 
 $$
@@ -96,9 +112,12 @@ $$
 
 
 
+
+
 where \(\mathcal{N}\) is the collection of \(\mathbb{P}\)-null sets.
 
 With respect to this filtration, Brownian motion has the **independent increments** property in the conditional form:
+
 
 
 $$
@@ -109,12 +128,17 @@ $$
 
 
 
+
+
 ---
+
 
 ## Why filtrations matter
 
 Stochastic calculus depends critically on information flow:
 
 - In Itô integration \(\int_0^t H_s\,\mathrm{d}W_s\), the integrand \(H_s\) must be determined by information available at time \(s\) (typically predictable).
-- Martingales formalize “fair game” behavior relative to \((\mathcal{F}_t)\).
-- Stopping times formalize random times that can be decided using current information.
+- **Martingales** formalize "fair game" behavior relative to \((\mathcal{F}_t)\). We explore the rich martingale structure of Brownian motion in the next section.
+- **Stopping times** formalize random times that can be decided using current information.
+
+The framework established here—filtered probability spaces, adapted processes, and information flow—forms the foundation for understanding martingales, stopping times, and ultimately stochastic integration.

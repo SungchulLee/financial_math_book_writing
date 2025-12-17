@@ -27,19 +27,27 @@ nav:
           - Reflection Principle: ch01/brownian_motion/reflection_principle_of_brownian_motion.md  
           - Brownian Motion Simulations: ch01/brownian_motion/brownian_motion_simulations.md
       - 1.2 Martingale:
-          - Filtration and Adapted Processes: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
-          - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
-          - Martingales and Submartingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
+          - Filtration: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
+          - Martingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
+          - Brownian Motion Martingales: ch01/filtration_and_martingales/brownian_motion_martingales.md  # ← NEW
           - Doob–Meyer Decomposition: ch01/filtration_and_martingales/doob_meyer_decomposition.md
+          - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
           - Optional Sampling Theorem: ch01/filtration_and_martingales/optional_sampling_theorem.md
-      - 1.3 Stochastic Integration:
+      - 1.3 Itô Integration:
           - Quadratic Variation: ch01/stochastic_integral/quadratic_variation.md
-          - Stochastic Integration: ch01/stochastic_integral/stochastic_integration.md
+          - Lebesgue Integral (Intuitive): ch01/stochastic_integral/lebesgue_integration_intuitive.md  # NEW
+          - Itô Integral (Intuitive): ch01/stochastic_integral/ito_integration_intuitive.md  # NEW
+          - Construction of Itô Integral: ch01/stochastic_integral/ito_integral_construction.md # NEW
+          - Properties of Itô Integrals: ch01/stochastic_integral/ito_integral_properties.md # NEW
+          - Itô Processes: ch01/stochastic_integral/ito_processes.md  # New
       - 1.4 Itô Calculus:
           - Itô Lemma: ch01/ito_lemma/ito_lemma.md
+          - Why Itô's Lemma Matters: ch01/ito_lemma/direct_computation_motivation.md  # NEW 
           - Itô Lemma (Multi-Dim): ch01/ito_lemma/ito_lemma_multidimensional_version.md
-          - Itô Product Rule: ch01/ito_lemma/ito_product_rule.md 
-          - Itô Quotient Rule: ch01/ito_lemma/ito_quotient_rule.md 
+          - Itô Product Rule: ch01/ito_lemma/ito_product_rule.md
+          - Integration by Parts: ch01/ito_lemma/ito_integration_by_parts.md  # NEW
+          - Itô Quotient Rule: ch01/ito_lemma/ito_quotient_rule.md
+          - Applications and Examples: ch01/ito_lemma/ito_calculus_applications.md  # NEW
       - 1.5  Infinitesimal Generator:
           - Infinitesimal Generator: ch01/infinitesimal_generator/infinitesimal_generator.md
           - Connection to Martingale: ch01/infinitesimal_generator/infinitesimal_generator_and_martingale.md
@@ -58,7 +66,7 @@ nav:
       - 1.8 Change of Measure:
           - Local Martingale: ch01/change_of_measure/local_martingale.md
           - Stochastic Exponential: ch01/change_of_measure/stochastic_exponential.md 
-          - Martingale Representation Theorem: ch01/change_of_measure/martingale_representation_theorem.md
+          - Martingale Repr Theorem: ch01/change_of_measure/martingale_representation_theorem.md
           - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
   
   - Chapter 2 BS Model:
@@ -67,7 +75,7 @@ nav:
           - Separating Hyperplane Theorem: ch02/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
       - 2.2 BS PDE Derivation:
           - Delta Hedging: ch02/bs_pde_derivation/delta_hedging.md
-          - Risk-Neutral Martingale Measure: ch02/bs_pde_derivation/risk_neutral_martingale_measure.md
+          - Risk-Neutral Measure: ch02/bs_pde_derivation/risk_neutral_martingale_measure.md
           - Change of Numeraire: ch02/bs_pde_derivation/change_of_numeraire.md
           - Equilibrium: ch02/bs_pde_derivation/equilibrium.md
       - 2.3 BS PDE Analytic Sol:

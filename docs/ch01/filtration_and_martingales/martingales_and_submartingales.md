@@ -1,4 +1,4 @@
-# Martingales and Submartingales
+# Martingales
 
 ## Conditional expectation (minimal recap)
 
