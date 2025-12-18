@@ -76,6 +76,7 @@ nav:
           - Local Martingale: ch01/change_of_measure/local_martingale.md
           - Stochastic Exponential: ch01/change_of_measure/stochastic_exponential.md 
           - Martingale Repr Theorem: ch01/change_of_measure/martingale_representation_theorem.md
+          - Girsanov Intuition: ch01/change_of_measure/girsanov_intuition.md
           - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
   
   - Chapter 2 BS Model:
