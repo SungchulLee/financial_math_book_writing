@@ -16,7 +16,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  
+
   - Chapter 1 Brownian Motion:
       - 1.1 Brownian Motion:
           - Random Walk: ch01/brownian_motion/random_walk_foundations.md  
@@ -85,6 +85,7 @@ nav:
           - FK Running Payoff: ch03/feynman_kac/feynman_kac_running_payoff.md
           - Feynman–Kac Applications: ch03/feynman_kac/feynman_kac_applications_and_duality.md
       - 3.3 Connection to Pricing PDEs:
+          - Local Martingale: ch03/change_of_measure/local_martingale.md # fake one
       - 3.4 Change of Measure:
           - Local Martingale: ch03/change_of_measure/local_martingale.md
           - Stochastic Exponential: ch03/change_of_measure/stochastic_exponential.md 
