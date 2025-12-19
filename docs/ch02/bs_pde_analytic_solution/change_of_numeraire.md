@@ -1,1018 +1,415 @@
-# Change of Numeraire: Complete Mathematical Treatment
+# Change of Numeraire: Alternative Derivation of Black-Scholes
 
-The change of numeraire technique is **profoundly elegant**—it reveals that option prices are invariant to the choice of "currency" we use to measure value, while the probability measure changes in a precise, calculable way.
+The **change of numeraire** technique provides an alternative derivation of option pricing formulas by **choosing different reference assets** for valuation. While the standard risk-neutral approach uses the money market account as numeraire, changing to alternative numeraires (e.g., the stock itself) can simplify certain pricing problems and provides deeper insight into measure theory in finance.
 
----
-
-## **1. Fundamental Theorem of Asset Pricing**
-
-### **Numeraire Definition**
-
-A **numeraire** is a strictly positive tradable asset $N_t > 0$ used as the unit of account. All other asset prices are expressed **relative** to this numeraire.
-
-### **Normalized Prices**
-
-For any asset with price $S_t$ and numeraire $N_t$:
-
-$$\boxed{\tilde{S}_t = \frac{S_t}{N_t}}$$
-
-
-
-is the **normalized price** (price in units of the numeraire).
-
-### **First Fundamental Theorem**
-
-A market is **arbitrage-free** if and only if there exists an **equivalent martingale measure** $\mathbb{Q}$ such that all normalized asset prices are martingales:
-
-
-$$\boxed{\mathbb{E}^{\mathbb{Q}}\left[\frac{S_T}{N_T} \mid \mathcal{F}_t\right] = \frac{S_t}{N_t}}$$
-
-
-
-### **Key Insight**
-
-The choice of numeraire $N$ determines the measure $\mathbb{Q}$. Different numeraires → different measures, but **same prices**!
+This section derives the Black-Scholes formula using numeraire changes and demonstrates applications to forward measures and foreign exchange options.
 
 ---
 
-## **2. Mathematical Foundations**
+## 1. Numeraire and Pricing Measures
+
+### **Definition of Numeraire**
+
+A **numeraire** $N_t$ is a strictly positive traded asset used as a unit of account. All asset prices are expressed **relative to the numeraire**:
+
+$$
+\text{Relative price} = \frac{S_t}{N_t}
+$$
+
+
+
+**Key property**: In an arbitrage-free market, there exists a probability measure (called the **numeraire measure** or **$N$-measure**) under which all asset prices relative to $N_t$ are martingales.
+
+### **Standard Risk-Neutral Measure**
+
+In the Black-Scholes framework, the standard numeraire is the **money market account**:
+
+$$
+B_t = e^{rt}
+$$
+
+
+
+Under the risk-neutral measure $\mathbb{Q}$:
+- The relative price $S_t/B_t = e^{-rt}S_t$ is a martingale
+- This gives the standard BS dynamics: $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$
+
+**Option pricing formula**:
+
+$$
+V_0 = \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T}\right] = e^{-rT}\mathbb{E}^{\mathbb{Q}}[V_T]
+$$
+
+
+
+---
+
+## 2. General Numeraire Change
+
+### **Fundamental Theorem**
+
+> **Numeraire Change Theorem**: Let $N_t$ be any numeraire (strictly positive traded asset). There exists a unique equivalent probability measure $\mathbb{Q}^N$ under which **all asset prices relative to $N_t$ are martingales**.
+
+Specifically, for any traded asset $S_t$:
+
+$$
+\frac{S_t}{N_t} = \mathbb{E}^{\mathbb{Q}^N}\left[\frac{S_T}{N_T} \Big| \mathcal{F}_t\right]
+$$
+
+
 
 ### **Radon-Nikodym Derivative**
 
-Given two equivalent probability measures $\mathbb{Q}$ and $\mathbb{Q}^N$ on $(\Omega, \mathcal{F})$:
+The measure $\mathbb{Q}^N$ is related to the standard risk-neutral measure $\mathbb{Q}$ via:
 
-
-$$\boxed{\frac{d\mathbb{Q}^N}{d\mathbb{Q}} = \eta_T}$$
-
-
-
-where $\eta_T$ is the **Radon-Nikodym derivative** (density process).
-
-### **Change of Measure Formula**
-
-For any $\mathcal{F}_T$-measurable random variable $X$:
-
-
-$$\boxed{\mathbb{E}^{\mathbb{Q}^N}[X \mid \mathcal{F}_t] = \frac{1}{\eta_t}\mathbb{E}^{\mathbb{Q}}[\eta_T X \mid \mathcal{F}_t]}$$
+$$
+\frac{d\mathbb{Q}^N}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{N_T/B_T}{\mathbb{E}^{\mathbb{Q}}[N_T/B_T]}
+$$
 
 
 
-where:
+**Intuition**: We reweight paths according to the terminal value of the numeraire (discounted).
 
-$$\eta_t = \mathbb{E}^{\mathbb{Q}}[\eta_T \mid \mathcal{F}_t]$$
+### **Girsanov Connection**
 
+The change of numeraire induces a **change of Brownian motion** via Girsanov's theorem. If under $\mathbb{Q}$:
 
-
-is the **density process** (a $\mathbb{Q}$-martingale).
-
-### **Girsanov Theorem**
-
-If $W_t^{\mathbb{Q}}$ is a Brownian motion under $\mathbb{Q}$ and:
-
-$$d\eta_t = \eta_t \gamma_t dW_t^{\mathbb{Q}}$$
+$$
+dN_t = \mu_N N_t dt + \sigma_N N_t dW_t^{\mathbb{Q}}
+$$
 
 
 
 then under $\mathbb{Q}^N$:
 
-$$\boxed{W_t^{\mathbb{Q}^N} = W_t^{\mathbb{Q}} - \int_0^t \gamma_s ds}$$
+$$
+dW_t^{\mathbb{Q}^N} = dW_t^{\mathbb{Q}} + \sigma_N dt
+$$
 
 
 
-is a Brownian motion.
-
-The **market price of risk** $\gamma_t$ determines the measure change.
-
----
-
-## **3. The Numeraire Change Theorem**
-
-### **Statement**
-
-Let $N_t$ be a numeraire with associated measure $\mathbb{Q}^N$. Then:
-
-1. **The density process is**:
-
-$$\boxed{\eta_t = \frac{N_0/B_t}{N_t/B_t} = \frac{N_0 B_T}{N_T B_t} \cdot \frac{B_t}{B_0}}$$
-
-
-
-   where $B_t = e^{\int_0^t r_s ds}$ is the money market account (bank account numeraire).
-
-   Simplifying:
-
-$$\boxed{\frac{d\mathbb{Q}^N}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{N_0}{N_T} \cdot \frac{B_T}{B_0}}$$
-
-
-
-2. **Asset prices under the new measure**:
-
-$$\boxed{V_t = N_t \mathbb{E}^{\mathbb{Q}^N}\left[\frac{V_T}{N_T} \mid \mathcal{F}_t\right]}$$
-
-
-
-3. **Normalized prices are martingales**:
-
-$$\boxed{\frac{V_t}{N_t} = \mathbb{E}^{\mathbb{Q}^N}\left[\frac{V_T}{N_T} \mid \mathcal{F}_t\right]}$$
-
-
-
-### **Proof Sketch**
-
-Under $\mathbb{Q}$, the discounted price $\frac{V_t}{B_t}$ is a martingale:
-
-$$\frac{V_t}{B_t} = \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T} \mid \mathcal{F}_t\right]$$
-
-
-
-Similarly, $\frac{N_t}{B_t}$ is a martingale:
-
-$$\frac{N_t}{B_t} = \mathbb{E}^{\mathbb{Q}}\left[\frac{N_T}{B_T} \mid \mathcal{F}_t\right]$$
-
-
-
-Define the density:
-
-$$\eta_T = \frac{N_T/B_T}{N_0/B_0}$$
-
-
-
-Then:
-
-$$V_t = B_t \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T} \mid \mathcal{F}_t\right]$$
-
-
-
-
-$$= B_t \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T} \cdot \frac{\eta_T}{\eta_t} \cdot \frac{\eta_t}{\eta_T} \mid \mathcal{F}_t\right]$$
-
-
-
-
-$$= B_t \frac{1}{\eta_t}\mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T} \eta_T \mid \mathcal{F}_t\right]$$
-
-
-
-Since $\eta_t = \frac{N_t/B_t}{N_0/B_0}$:
-
-
-$$= \frac{B_t N_0/B_0}{N_t/B_t}\mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T} \cdot \frac{N_T/B_T}{N_0/B_0} \mid \mathcal{F}_t\right]$$
-
-
-
-
-$$= N_t \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{N_T} \mid \mathcal{F}_t\right] \cdot \frac{N_0/B_0}{N_0/B_0}$$
-
-
-
-By change of measure formula:
-
-$$\boxed{V_t = N_t \mathbb{E}^{\mathbb{Q}^N}\left[\frac{V_T}{N_T} \mid \mathcal{F}_t\right]}$$
-
-
+The drift of the Brownian motion changes to reflect the numeraire's volatility.
 
 ---
 
-## **4. Classical Example: Risk-Neutral Measure**
+## 3. Stock Numeraire and Forward Measure
 
-### **Money Market Account as Numeraire**
+### **Setup: Stock as Numeraire**
 
+Choose $N_t = S_t$ (the underlying stock itself).
 
-$$B_t = e^{\int_0^t r_s ds}$$
+The associated measure $\mathbb{Q}^S$ is called the **stock measure** or **forward measure**.
 
+### **Relative Prices Under $\mathbb{Q}^S$**
 
+Under the stock measure, all assets relative to $S_t$ are martingales.
 
-For constant $r$: $B_t = e^{rt}$.
+**Money market account relative to stock**:
 
-### **The Risk-Neutral Measure $\mathbb{Q}$**
-
-Using $N_t = B_t$:
-
-$$V_t = B_t \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T} \mid \mathcal{F}_t\right]$$
-
-
-
-
-$$\boxed{V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[V_T \mid \mathcal{F}_t]}$$
+$$
+\frac{B_t}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{B_T}{S_T} \Big| \mathcal{F}_t\right]
+$$
 
 
 
-This is the **standard risk-neutral pricing formula**.
+**Strike relative to stock**:
 
-### **Stock Dynamics Under $\mathbb{Q}$**
-
-For a stock with physical dynamics:
-
-$$dS_t = \mu S_t dt + \sigma S_t dW_t^{\mathbb{P}}$$
+$$
+\frac{K}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{K}{S_T} \Big| \mathcal{F}_t\right]
+$$
 
 
-
-Under $\mathbb{Q}$:
-
-$$\boxed{dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}}$$
-
-
-
-The **drift equals the risk-free rate** (no arbitrage condition).
-
----
-
-## **5. Stock as Numeraire**
-
-### **The Stock Measure $\mathbb{Q}^S$**
-
-Choose $N_t = S_t$ (the stock itself as numeraire).
 
 ### **Radon-Nikodym Derivative**
 
+The stock measure is related to $\mathbb{Q}$ by:
 
-$$\boxed{\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}}$$
-
-
-
-With constant $r$:
-
-$$\boxed{\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{S_T}{S_0 e^{rT}}}$$
+$$
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}
+$$
 
 
 
-### **Stock Dynamics Under $\mathbb{Q}^S$**
+### **Brownian Motion Under $\mathbb{Q}^S$**
 
-Under $\mathbb{Q}$:
+If $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$ under $\mathbb{Q}$, then by Girsanov:
 
-$$dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
-
-
-
-The density process:
-
-$$\eta_t = \frac{S_t e^{-rt}}{S_0}$$
+$$
+dW_t^{\mathbb{Q}^S} = dW_t^{\mathbb{Q}} + \sigma dt
+$$
 
 
 
-By Itô's lemma:
+Substituting into the stock dynamics:
 
-$$d\eta_t = \eta_t \sigma dW_t^{\mathbb{Q}}$$
-
-
-
-So the market price of risk is $\gamma_t = \sigma$.
-
-By Girsanov:
-
-$$W_t^{\mathbb{Q}^S} = W_t^{\mathbb{Q}} - \sigma t$$
+$$
+dS_t = rS_t dt + \sigma S_t(dW_t^{\mathbb{Q}^S} - \sigma dt) = (r - \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}
+$$
 
 
 
-Therefore under $\mathbb{Q}^S$:
-
-$$dS_t = rS_t dt + \sigma S_t(dW_t^{\mathbb{Q}^S} + \sigma dt)$$
-
-
-
-
-$$\boxed{dS_t = (r + \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}}$$
-
-
-
-The drift increases by $\sigma^2$!
-
-### **Economic Interpretation**
-
-Under the stock measure, investors use **shares** as currency. The stock becomes the "risk-free" asset (with drift $0$ in normalized units), so other assets must have higher drifts.
+**Key simplification**: The ratio $K/S_t$ has no drift under $\mathbb{Q}^S$.
 
 ---
 
-## **6. Deriving Black-Scholes via Stock Numeraire**
+## 4. Black-Scholes via Stock Numeraire
 
-### **Call Option Value**
+### **Call Option Valuation**
 
+We want to price a European call with payoff $(S_T - K)^+$.
 
-$$C_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid \mathcal{F}_t]$$
+**Step 1: Express payoff in numeraire units**
 
+Divide by $S_T$:
 
+$$
+\frac{(S_T - K)^+}{S_T} = \left(1 - \frac{K}{S_T}\right)^+ = \left(1 - \frac{K}{S_T}\right)\mathbf{1}_{\{S_T > K\}}
+$$
 
-### **Splitting the Expectation**
 
 
-$$C_t = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[S_T \mathbb{1}_{S_T > K} \mid \mathcal{F}_t] - e^{-r\tau}K\mathbb{E}^{\mathbb{Q}}[\mathbb{1}_{S_T > K} \mid \mathcal{F}_t]$$
+**Step 2: Change to stock measure**
 
+By the numeraire change theorem:
 
+$$
+\frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{C_T}{S_T}\right] = \mathbb{E}^{\mathbb{Q}^S}\left[\left(1 - \frac{K}{S_T}\right)\mathbf{1}_{\{S_T > K\}}\right]
+$$
 
-where $\tau = T - t$.
 
-### **First Term: Using Stock Numeraire**
 
-For the first term, use the change of numeraire:
+**Step 3: Decompose expectation**
 
-$$\mathbb{E}^{\mathbb{Q}}[S_T \mathbb{1}_{S_T > K} \mid \mathcal{F}_t] = S_t \mathbb{E}^{\mathbb{Q}^S}[\mathbb{1}_{S_T > K} \mid \mathcal{F}_t]$$
 
+$$
+\frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}[\mathbf{1}_{\{S_T > K\}}] - K\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right]
+$$
 
 
-**Proof**:
 
-$$\mathbb{E}^{\mathbb{Q}}[S_T \mathbb{1}_{S_T > K} \mid \mathcal{F}_t] = \mathbb{E}^{\mathbb{Q}}\left[S_T \mathbb{1}_{S_T > K} \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} \cdot \frac{d\mathbb{Q}}{d\mathbb{Q}^S}\bigg|_{\mathcal{F}_T} \mid \mathcal{F}_t\right]$$
+### **First Term: $\mathbb{Q}^S(S_T > K)$**
 
+Under $\mathbb{Q}^S$, from Girsanov:
 
+$$
+S_T = S_0 \exp\left(\left(r - \sigma^2 + \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right) = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)
+$$
 
 
-$$= \mathbb{E}^{\mathbb{Q}}\left[S_T \mathbb{1}_{S_T > K} \frac{S_T e^{-rT}}{S_0} \cdot \frac{S_0 e^{rT}}{S_T} \mid \mathcal{F}_t\right]$$
 
+Wait, let me recalculate. Under $\mathbb{Q}$:
 
+$$
+S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}}\right)
+$$
 
-Wait, let me redo this more carefully.
 
-Using the change of measure:
 
-$$\mathbb{E}^{\mathbb{Q}}[S_T \mathbb{1}_{S_T > K} \mid \mathcal{F}_t] = \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T}{S_t} S_t \mathbb{1}_{S_T > K} \mid \mathcal{F}_t\right]$$
+Under $\mathbb{Q}^S$, using $W_T^{\mathbb{Q}} = W_T^{\mathbb{Q}^S} - \sigma T$:
 
+$$
+S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma(W_T^{\mathbb{Q}^S} - \sigma T)\right) = S_0 \exp\left(\left(r - \frac{3}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)
+$$
 
 
-The key is:
 
-$$\mathbb{E}^{\mathbb{Q}}\left[\frac{S_T}{S_t} \mathbb{1}_{S_T > K} \mid \mathcal{F}_t\right] = e^{r\tau}\mathbb{E}^{\mathbb{Q}^S}[\mathbb{1}_{S_T > K} \mid \mathcal{F}_t]$$
+Hmm, this doesn't look right. Let me reconsider.
 
+Actually, under $\mathbb{Q}^S$, the key is that $K/S_t$ is a martingale. We have:
 
-
-Actually, let me use a cleaner approach:
-
-
-$$\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{S_t/B_t}{S_0/B_0}$$
-
-
-
-So:
-
-$$\mathbb{E}^{\mathbb{Q}}[S_T \mathbb{1}_{S_T > K} \mid \mathcal{F}_t] = \mathbb{E}^{\mathbb{Q}}\left[S_T \mathbb{1}_{S_T > K} \cdot \frac{S_t B_0}{S_0 B_t} \cdot \frac{S_0 B_T}{S_T B_0} \mid \mathcal{F}_t\right]$$
-
-
-
-
-$$= \frac{S_t B_0}{S_0 B_t}\mathbb{E}^{\mathbb{Q}}\left[\frac{S_0 B_T}{B_0} \mathbb{1}_{S_T > K} \mid \mathcal{F}_t\right]$$
-
-
-
-
-$$= \frac{S_t}{B_t}\mathbb{E}^{\mathbb{Q}}\left[B_T \mathbb{1}_{S_T > K} \mid \mathcal{F}_t\right]$$
-
-
-
-
-$$= S_t e^{r\tau}\mathbb{E}^{\mathbb{Q}^S}[\mathbb{1}_{S_T > K} \mid \mathcal{F}_t]$$
-
-
-
-### **Computing Probabilities**
-
-Under $\mathbb{Q}^S$:
-
-$$\ln S_T = \ln S_t + \left(r + \frac{\sigma^2}{2}\right)\tau + \sigma W_\tau^{\mathbb{Q}^S}$$
-
-
-
-So:
-
-$$\mathbb{Q}^S(S_T > K \mid \mathcal{F}_t) = \mathbb{Q}^S\left(W_\tau^{\mathbb{Q}^S} > -\frac{\ln(S_t/K) + (r+\frac{\sigma^2}{2})\tau}{\sigma}\right)$$
-
-
-
-
-$$= N\left(\frac{\ln(S_t/K) + (r+\frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}\right) = N(d_1)$$
-
-
-
-Under $\mathbb{Q}$:
-
-$$\ln S_T = \ln S_t + \left(r - \frac{\sigma^2}{2}\right)\tau + \sigma W_\tau^{\mathbb{Q}}$$
-
-
-
-
-$$\mathbb{Q}(S_T > K \mid \mathcal{F}_t) = N\left(\frac{\ln(S_t/K) + (r-\frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}\right) = N(d_2)$$
-
-
-
-### **Black-Scholes Formula**
-
-
-$$C_t = e^{-r\tau}[S_t e^{r\tau}N(d_1) - K N(d_2)]$$
-
-
-
-
-$$\boxed{C_t = S_t N(d_1) - Ke^{-r\tau}N(d_2)}$$
-
-
-
-where:
-
-$$\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau}}$$
-
-
-
-### **Interpretation**
-
-- $N(d_2) = \mathbb{Q}(\text{ITM})$: probability of exercise under risk-neutral measure
-- $N(d_1) = \mathbb{Q}^S(\text{ITM})$: probability of exercise under stock measure
-- The $\sigma^2$ shift in drift explains why $d_1 = d_2 + \sigma\sqrt{\tau}$
-
----
-
-## **7. Zero-Coupon Bond as Numeraire (T-Forward Measure)**
-
-### **Setup**
-
-Let $P(t,T)$ be the price at time $t$ of a zero-coupon bond maturing at $T$.
-
-**Numeraire**: $N_t = P(t,T)$
-
-### **T-Forward Measure $\mathbb{Q}^T$**
-
-
-$$\boxed{\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{P(0,T)}{B_T}}$$
-
-
-
-At maturity: $P(T,T) = 1$.
-
-### **Asset Dynamics Under $\mathbb{Q}^T$**
-
-The normalized price:
-
-$$\tilde{S}_t = \frac{S_t}{P(t,T)}$$
-
-
-
-is a $\mathbb{Q}^T$-martingale.
-
-This is the **forward price**:
-
-$$\boxed{F(t,T) = \frac{S_t}{P(t,T)} = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]}$$
-
-
-
-Under $\mathbb{Q}^T$, forward prices are **driftless**:
-
-$$\boxed{dF(t,T) = \sigma F(t,T) dW_t^{\mathbb{Q}^T}}$$
-
-
-
-### **Black's Formula**
-
-For a call on the forward:
-
-$$C_t = P(t,T)\mathbb{E}^{\mathbb{Q}^T}[(S_T - K)^+ \mid \mathcal{F}_t]$$
-
-
-
-
-$$= P(t,T)\mathbb{E}^{\mathbb{Q}^T}[(F(T,T) - K)^+ \mid \mathcal{F}_t]$$
-
-
-
-Since $F(t,T)$ is lognormal under $\mathbb{Q}^T$:
-
-
-$$\boxed{C_t = P(t,T)[F(t,T)N(d_1) - KN(d_2)]}$$
-
-
-
-where:
-
-$$d_1 = \frac{\ln(F/K) + \frac{\sigma^2}{2}\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau}$$
-
-
-
-This is **Black's formula** for forward contracts!
-
----
-
-## **8. Applications to Exotic Options**
-
-### **Exchange Options (Margrabe Formula)**
-
-Payoff: $(S_T^{(1)} - S_T^{(2)})^+$
-
-**Use $S^{(2)}$ as numeraire**:
-
-$$V_t = S_t^{(2)}\mathbb{E}^{\mathbb{Q}^{S^{(2)}}}\left[\left(\frac{S_T^{(1)}}{S_T^{(2)}} - 1\right)^+ \mid \mathcal{F}_t\right]$$
-
-
-
-Define the **relative price**:
-
-$$X_t = \frac{S_t^{(1)}}{S_t^{(2)}}$$
-
-
-
-Under $\mathbb{Q}^{S^{(2)}}$, $X_t$ follows GBM with volatility:
-
-$$\sigma_X = \sqrt{\sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2}$$
-
-
-
-where $\rho = \text{corr}(dW_1, dW_2)$.
-
-The value is:
-
-$$\boxed{V_t = S_t^{(1)}N(d_1) - S_t^{(2)}N(d_2)}$$
-
-
-
-where:
-
-$$d_1 = \frac{\ln(S_t^{(1)}/S_t^{(2)}) + \frac{\sigma_X^2}{2}\tau}{\sigma_X\sqrt{\tau}}, \quad d_2 = d_1 - \sigma_X\sqrt{\tau}$$
-
-
-
-**No discounting needed!** The formula is symmetric in the two assets.
-
-### **Quanto Options**
-
-Option on foreign stock $S_t^f$ (in foreign currency) but payoff in domestic currency.
-
-**Dynamics**:
-- Foreign stock: $dS^f = r_f S^f dt + \sigma_S S^f dW_S$
-- Exchange rate: $dX = (r_d - r_f)X dt + \sigma_X X dW_X$
-- Correlation: $d\langle W_S, W_X \rangle = \rho dt$
-
-**Domestic value**: $S_t = X_t S_t^f$
-
-Under the domestic risk-neutral measure, the quanto forward price is:
-
-$$F_{\text{quanto}}(t,T) = S_t^f e^{(r_f - \rho\sigma_S\sigma_X)\tau}$$
-
-
-
-The **quanto adjustment** is $-\rho\sigma_S\sigma_X$.
-
-**Call price**:
-
-$$\boxed{C = e^{-r_d\tau}[F_{\text{quanto}}N(d_1) - KN(d_2)]}$$
-
-
-
-### **Asian Options**
-
-Payoff depends on the average:
-
-$$A_T = \frac{1}{T}\int_0^T S_t dt$$
-
-
-
-**No simple numeraire argument** gives a closed form (average of lognormals is not lognormal).
-
-However, for **discrete averaging**, moment-matching approximations work:
-
-$$A_T \approx \text{Lognormal}(m, v^2)$$
-
-
-
-where $m, v^2$ are computed from the forward curve.
-
----
-
-## **9. Multi-Asset Case**
-
-### **General Setup**
-
-$n$ assets $S_t^{(i)}$ with dynamics under $\mathbb{Q}$:
-
-$$dS_t^{(i)} = rS_t^{(i)}dt + \sigma_i S_t^{(i)}\sum_{j=1}^d \rho_{ij}dW_t^{(j)}$$
-
-
-
-where $\rho$ is the correlation matrix.
-
-### **Numeraire Choice**
-
-Choose $N_t = S_t^{(k)}$ for some asset $k$.
-
-### **Dynamics Under $\mathbb{Q}^{S^{(k)}}$**
-
-The relative prices:
-
-$$X_t^{(i)} = \frac{S_t^{(i)}}{S_t^{(k)}}$$
-
-
-
-satisfy:
-
-$$dX_t^{(i)} = \sigma_{ik}X_t^{(i)}dt + X_t^{(i)}\sum_{j=1}^d(\rho_{ij} - \rho_{kj})dW_t^{(j)}$$
-
-
-
-where:
-
-$$\sigma_{ik} = \sum_{j=1}^d\rho_{ij}\rho_{kj}$$
-
-
-
-is the **instantaneous covariance** between assets $i$ and $k$.
-
-### **Basket Options**
-
-For a basket with payoff:
-
-$$\left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+$$
-
-
-
-Use the basket itself as numeraire if it's tradable (e.g., via an ETF).
-
-Otherwise, use **moment-matching** or **Monte Carlo** under an appropriate measure.
-
----
-
-## **10. Change of Numeraire and PDEs**
-
-### **The PDE Under Different Numeraires**
-
-Under the risk-neutral measure ($B_t$ numeraire), the Black-Scholes PDE is:
-
-$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2} - rV = 0$$
-
-
-
-### **Under Stock Numeraire**
-
-Define $u(S,t) = \frac{V(S,t)}{S}$ (option value per share).
-
-Then $u$ satisfies:
-
-$$\frac{\partial u}{\partial t} + (r+\sigma^2)S\frac{\partial u}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 u}{\partial S^2} = 0$$
-
-
-
-The drift changes from $r$ to $r + \sigma^2$, matching our earlier result!
-
-### **Under T-Forward Measure**
-
-The forward price $F(t,T) = S_t/P(t,T)$ satisfies:
-
-$$\frac{\partial V_F}{\partial t} + \frac{\sigma^2}{2}F^2\frac{\partial^2 V_F}{\partial F^2} = 0$$
-
-
-
-**No drift term!** This is just the heat equation.
-
-### **General Pattern**
-
-Changing numeraire changes the **drift** but not the **diffusion coefficient**.
-
-
-$$\text{Drift under } \mathbb{Q}^N = \text{Drift under } \mathbb{Q} + \text{(covariance with numeraire)}$$
-
-
-
----
-
-## **11. Girsanov Theorem in Detail**
-
-### **For Stock Numeraire**
-
-Under $\mathbb{Q}$:
-
-$$dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
-
-
-
-The Radon-Nikodym density:
-
-$$\eta_t = \frac{S_t e^{-rt}}{S_0}$$
-
-
-
-By Itô's lemma:
-
-$$d\eta_t = -re^{-rt}\frac{S_t}{S_0}dt + e^{-rt}\frac{1}{S_0}dS_t$$
-
-
-
-
-$$= -r\eta_t dt + e^{-rt}\frac{1}{S_0}(rS_t dt + \sigma S_t dW_t^{\mathbb{Q}})$$
-
-
-
-
-$$= -r\eta_t dt + r\eta_t dt + \sigma\eta_t dW_t^{\mathbb{Q}}$$
-
-
-
-
-$$\boxed{d\eta_t = \sigma\eta_t dW_t^{\mathbb{Q}}}$$
-
-
-
-So $\eta_t$ is a $\mathbb{Q}$-martingale with:
-
-$$\eta_t = \exp\left(\sigma W_t^{\mathbb{Q}} - \frac{\sigma^2 t}{2}\right)$$
-
-
-
-By Girsanov:
-
-$$\boxed{dW_t^{\mathbb{Q}^S} = dW_t^{\mathbb{Q}} - \sigma dt}$$
+$$
+\frac{K}{S_T} = \frac{K}{S_0}\exp\left(-\left(r + \frac{1}{2}\sigma^2\right)T - \sigma W_T^{\mathbb{Q}^S}\right)
+$$
 
 
 
 Therefore:
 
-$$dS_t = rS_t dt + \sigma S_t(dW_t^{\mathbb{Q}^S} + \sigma dt)$$
+$$
+S_T > K \iff W_T^{\mathbb{Q}^S} > -\frac{1}{\sigma}\left[\ln(S_0/K) + \left(r + \frac{1}{2}\sigma^2\right)T\right] = -d_1\sqrt{T}
+$$
+
+
+
+where
+
+$$
+d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+$$
+
+
+
+Hence:
+
+$$
+\mathbb{Q}^S(S_T > K) = \mathcal{N}(d_1)
+$$
+
+
+
+### **Second Term: Change to $\mathbb{Q}$**
+
+For the second term, we use:
+
+$$
+\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right]
+$$
 
 
 
 
-$$\boxed{dS_t = (r + \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}}$$
+$$
+= \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \frac{e^{-rT}}{S_0}\mathbb{Q}(S_T > K)
+$$
 
 
 
-### **Market Price of Risk**
+Under $\mathbb{Q}$:
 
-The general formula:
+$$
+\mathbb{Q}(S_T > K) = \mathcal{N}(d_2)
+$$
 
-$$\boxed{\gamma_t = \sigma_N}$$
+
+
+where $d_2 = d_1 - \sigma\sqrt{T}$.
+
+### **Final Result**
+
+Combining:
+
+$$
+\frac{C_0}{S_0} = \mathcal{N}(d_1) - K \cdot \frac{e^{-rT}}{S_0}\mathcal{N}(d_2)
+$$
 
 
 
-where $\sigma_N$ is the volatility of the numeraire.
 
-For stock: $\sigma_N = \sigma$
-For bond: $\sigma_N = 0$ (deterministic)
-For forward: depends on the term structure model
+$$
+\boxed{C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)}
+$$
+
+
+
+This is the **Black-Scholes formula**, derived via stock numeraire.
+
+**Key insight**: The term $\mathcal{N}(d_1)$ arises naturally as the probability under the **stock measure**, not the risk-neutral measure.
 
 ---
 
-## **12. Stochastic Interest Rates**
+## 5. Foreign Exchange Options
 
-### **Setup**
+### **Setup: Quanto Options**
 
+Consider an option on foreign exchange rate $X_t$ (domestic per foreign).
 
-$$dS_t = rS_t dt + \sigma_S S_t dW_t^S$$
+**Two numeraires**:
+- Domestic money market: $B_t^d = e^{r_d t}$
+- Foreign money market: $B_t^f = e^{r_f t}$
 
+**Exchange rate dynamics** under domestic risk-neutral measure $\mathbb{Q}^d$:
 
-
-$$dr_t = a(b-r_t)dt + \sigma_r dW_t^r$$
-
-
-
-with $d\langle W^S, W^r \rangle = \rho dt$.
-
-### **T-Forward Measure**
-
-The bond price $P(t,T)$ satisfies:
-
-$$dP(t,T) = r_t P(t,T)dt - \sigma_P(t,T)P(t,T)dW_t^r$$
+$$
+dX_t = (r_d - r_f)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^d}
+$$
 
 
 
-where $\sigma_P(t,T)$ depends on the interest rate model.
+### **Foreign Numeraire Measure**
 
-Under $\mathbb{Q}^T$:
+Choose numeraire $N_t = X_t B_t^f = X_t e^{r_f t}$ (foreign money market converted to domestic).
 
-$$dS_t = S_t[r_t dt + \rho\sigma_S\sigma_P(t,T)dt + \sigma_S dW_t^{S,T}]$$
+The Radon-Nikodym derivative:
 
-
-
-The **quanto adjustment** now depends on correlation with bond volatility.
-
-### **LIBOR Market Model**
-
-Forward LIBOR rates are **lognormal** under their respective forward measures:
-
-$$dL_i(t) = \sigma_i L_i(t) dW_t^{T_i}$$
+$$
+\frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{r_f T - r_d T}}{X_0}
+$$
 
 
 
-This is the **natural measure** for LIBOR-based derivatives.
+Under $\mathbb{Q}^f$:
 
----
-
-## **13. American Options**
-
-### **Optimal Stopping**
-
-American option value:
-
-$$V_t = \sup_{\tau \in [t,T]}\mathbb{E}^{\mathbb{Q}}[e^{-r(\tau-t)}\Phi(S_\tau) \mid \mathcal{F}_t]$$
+$$
+dW_t^{\mathbb{Q}^f} = dW_t^{\mathbb{Q}^d} + \sigma dt
+$$
 
 
 
-### **Change of Numeraire**
+Exchange rate becomes:
 
-Using stock as numeraire:
-
-$$V_t = S_t \sup_{\tau \in [t,T]}\mathbb{E}^{\mathbb{Q}^S}\left[\frac{\Phi(S_\tau)}{S_\tau} \mid \mathcal{F}_t\right]$$
-
-
-
-For a put, $\Phi(S) = (K-S)^+$:
-
-$$V_t = S_t \sup_{\tau \in [t,T]}\mathbb{E}^{\mathbb{Q}^S}\left[\left(\frac{K}{S_\tau} - 1\right)^+ \mid \mathcal{F}_t\right]$$
+$$
+dX_t = (r_d - r_f - \sigma^2)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^f}
+$$
 
 
 
-This is a **call on the inverse** $1/S$!
+### **Call on FX Rate**
 
-### **Symmetry Relations**
+Using the foreign measure:
 
-For American puts and calls:
+$$
+C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - K e^{-r_d T}\mathcal{N}(d_2)
+$$
 
-$$P_{\text{Am}}(S,K,r,\sigma,T) = S \cdot C_{\text{Am}}\left(\frac{1}{S}, \frac{1}{K}, 0, \sigma, T\right)$$
+
+
+where
+
+$$
+d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+$$
 
 
 
-This **put-call symmetry** is a consequence of numeraire change.
+This is the **Garman-Kohlhagen formula** for FX options.
 
 ---
 
-## **14. Dividends and Dividend Yield**
+## 6. Summary: When to Use Each Numeraire
 
-### **Continuous Dividend Yield**
+| Numeraire | Measure | Application | Advantage |
+|-----------|---------|-------------|-----------|
+| Money market $B_t$ | Risk-neutral $\mathbb{Q}$ | Standard options | Familiar, drift = $r$ |
+| Stock $S_t$ | Stock measure $\mathbb{Q}^S$ | Forward contracts | $\mathcal{N}(d_1)$ as probability |
+| Zero-coupon bond $P(t,T)$ | Forward measure $\mathbb{Q}^T$ | Interest rate options | Simplifies swap pricing |
+| Foreign money market | Foreign measure $\mathbb{Q}^f$ | FX options | Symmetry between currencies |
 
-Stock pays continuous dividend at rate $q$:
-
-$$dS_t = (r-q)S_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
-
-
-
-The **tradable asset** is the **total return**:
-
-$$\tilde{S}_t = S_t e^{qt}$$
-
-
-
-with dynamics:
-
-$$d\tilde{S}_t = r\tilde{S}_t dt + \sigma\tilde{S}_t dW_t^{\mathbb{Q}}$$
-
-
-
-### **Stock Measure with Dividends**
-
-Using $\tilde{S}_t$ as numeraire:
-
-$$\frac{d\mathbb{Q}^{\tilde{S}}}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{\tilde{S}_T e^{-rT}}{\tilde{S}_0}$$
-
-
-
-Under $\mathbb{Q}^{\tilde{S}}$:
-
-$$d\tilde{S}_t = (r+\sigma^2)\tilde{S}_t dt + \sigma\tilde{S}_t dW_t^{\mathbb{Q}^{\tilde{S}}}$$
-
-
-
-For the actual stock:
-
-$$dS_t = (r - q + \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^{\tilde{S}}}$$
-
-
-
-### **Black-Scholes with Dividends**
-
-
-$$\boxed{C_t = Se^{-q\tau}N(d_1) - Ke^{-r\tau}N(d_2)}$$
-
-
-
-where:
-
-$$d_1 = \frac{\ln(S/K) + (r-q+\frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}$$
-
-
+**General principle**: Choose the numeraire that **eliminates drift** from the payoff-relevant dynamics.
 
 ---
 
-## **15. Connection to Characteristic Functions**
+## 7. Connection to Other Solution Methods
 
-### **Under Different Measures**
+In the context of solving the Black-Scholes PDE, change of numeraire is:
 
-The characteristic function of $\ln S_T$ depends on the measure:
+**Not a PDE technique** (like Fourier or separation of variables), but rather a **probabilistic reinterpretation** that:
+- Avoids solving PDEs entirely
+- Uses martingale representation instead
+- Provides intuition for why certain probabilities appear in formulas
 
-**Under $\mathbb{Q}$**:
-
-$$\phi^{\mathbb{Q}}(\omega) = \mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}] = \exp\left[i\omega\ln S_0 + i\omega(r-\frac{\sigma^2}{2})T - \frac{\sigma^2\omega^2 T}{2}\right]$$
-
-
-
-**Under $\mathbb{Q}^S$**:
-
-$$\phi^{\mathbb{Q}^S}(\omega) = \mathbb{E}^{\mathbb{Q}^S}[e^{i\omega \ln S_T}] = \exp\left[i\omega\ln S_0 + i\omega(r+\frac{\sigma^2}{2})T - \frac{\sigma^2\omega^2 T}{2}\right]$$
-
-
-
-**Relationship**:
-
-$$\phi^{\mathbb{Q}^S}(\omega) = \phi^{\mathbb{Q}}(\omega) \cdot e^{i\omega\sigma^2 T}$$
-
-
-
-The shift by $\sigma^2 T$ reflects the numeraire change!
+**Relation to Feynman-Kac**: Both express PDE solutions as expectations, but:
+- Feynman-Kac uses the **original measure** and discounting
+- Numeraire change uses **different measures** without explicit discounting
 
 ---
 
-## **16. Abstract Formulation**
+## Summary
 
-### **General Numeraire Change Formula**
+The change of numeraire technique provides an elegant alternative to standard risk-neutral pricing:
 
-For two numeraires $N_t^{(1)}$ and $N_t^{(2)}$ with measures $\mathbb{Q}^{(1)}$ and $\mathbb{Q}^{(2)}$:
+1. **Key idea**: Price assets relative to any traded numeraire, not just the money market
 
+2. **Mathematical tool**: Radon-Nikodym derivative relating different numeraire measures
 
-$$\boxed{\frac{d\mathbb{Q}^{(2)}}{d\mathbb{Q}^{(1)}}\bigg|_{\mathcal{F}_T} = \frac{N_T^{(2)}/N_0^{(2)}}{N_T^{(1)}/N_0^{(1)}}}$$
+3. **Girsanov connection**: Numeraire change induces Brownian motion drift change
 
+4. **Black-Scholes derivation**: Stock numeraire gives $\mathcal{N}(d_1)$ direct probabilistic interpretation
 
+5. **Advantages**: 
+   - Conceptual clarity (e.g., $d_1$ as stock-measure probability)
+   - Simplifies certain exotic options
+   - Natural framework for FX and interest rate derivatives
 
-### **Multi-Period Extension**
+6. **Limitation**: Requires understanding of measure theory; not always simpler than PDE methods
 
-For times $0 < t < T$:
-
-$$\boxed{\frac{d\mathbb{Q}^{(2)}}{d\mathbb{Q}^{(1)}}\bigg|_{\mathcal{F}_t} = \frac{N_t^{(2)}/N_0^{(2)}}{N_t^{(1)}/N_0^{(1)}}}$$
-
-
-
-This is the **conditional Radon-Nikodym derivative**.
-
-### **Invariance of Option Prices**
-
-
-$$V_t = N_t^{(1)}\mathbb{E}^{\mathbb{Q}^{(1)}}\left[\frac{V_T}{N_T^{(1)}} \mid \mathcal{F}_t\right] = N_t^{(2)}\mathbb{E}^{\mathbb{Q}^{(2)}}\left[\frac{V_T}{N_T^{(2)}} \mid \mathcal{F}_t\right]$$
-
-
-
-**Same price, different representations!**
-
----
-
-## **17. Practical Applications**
-
-### **Interest Rate Derivatives**
-
-For **caplets/floorlets**, use the T-forward measure corresponding to the payment date.
-
-For **swaptions**, use the **swap measure** where the numeraire is the annuity factor.
-
-### **Foreign Exchange**
-
-For quanto options, use domestic vs. foreign measures.
-
-The **Siegel paradox**: $\mathbb{E}[X_T] \neq 1/\mathbb{E}[1/X_T]$ due to convexity.
-
-### **Equity Derivatives**
-
-For **variance swaps**, use the stock measure to simplify replication arguments.
-
-For **quanto equity options**, adjust the drift using correlations.
-
----
-
-## **18. Summary: The Power of Numeraire Change**
-
-| **Aspect** | **Insight** |
-|------------|-------------|
-| **Conceptual** | Prices are invariant; measures change |
-| **Computational** | Choose numeraire to simplify expectations |
-| **Theoretical** | Reveals deep symmetries (e.g., put-call) |
-| **Practical** | Essential for multi-asset, FX, rates |
-| **Elegant** | Converts complex payoffs to simple probabilities |
-
-### **The Master Equations**
-
-
-$$\boxed{V_t = N_t \mathbb{E}^{\mathbb{Q}^N}\left[\frac{V_T}{N_T} \mid \mathcal{F}_t\right]}$$
-
-
-
-
-$$\boxed{\frac{d\mathbb{Q}^N}{d\mathbb{Q}} = \frac{N_T/B_T}{N_0/B_0}}$$
-
-
-
-
-$$\boxed{dW_t^{\mathbb{Q}^N} = dW_t^{\mathbb{Q}} - \sigma_N dt}$$
-
-
-
-These three formulas encode the **entire theory**!
-
----
-
-## **19. The Philosophy**
-
-Change of numeraire reveals that **there is no "true" probability measure** in finance. The physical measure $\mathbb{P}$ is inaccessible for pricing. Instead:
-
-- We have **infinitely many equivalent martingale measures**
-- Each corresponds to a choice of numeraire
-- All give the **same prices** (no-arbitrage)
-- We choose the most **convenient** for each problem
-
-This is the **fundamental flexibility** of modern derivative pricing!
-
----
-
-Would you like me to explore:
-- Detailed derivations for specific exotic options
-- Connection to term structure models (HJM, LMM)
-- Variance swaps and volatility derivatives
-- Multi-currency derivatives
-- The relationship to Feynman-Kac under different numeraires
-- Numerical implementation strategies for Monte Carlo under different measures?
+This completes the toolkit of analytical approaches to option pricing, complementing PDE-based methods with measure-theoretic perspectives.

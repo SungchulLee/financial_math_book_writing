@@ -17,6 +17,7 @@ Fix a time step \(\Delta t\). The binomial model assumes that over each step, th
 Let \(S_0\) be the initial stock price. Then after one step,
 
 
+
 \[
 S_1 =
 \begin{cases}
@@ -27,7 +28,10 @@ S_0 d & \text{down}.
 
 
 
+
+
 After two steps, the possible prices are
+
 
 
 \[
@@ -36,7 +40,10 @@ S_2 \in \{S_0 u^2,\; S_0 u d,\; S_0 d^2\}.
 
 
 
+
+
 More generally, after \(n\) steps, if the path has \(j\) up-moves and \(n-j\) down-moves, then
+
 
 
 \[
@@ -47,12 +54,17 @@ S_n = S_0 u^j d^{\,n-j}.
 
 
 
+
+
 If one assigns an **up probability** \(p\) (under some measure), the probability of exactly \(j\) up-moves in \(n\) steps is binomial:
+
 
 
 \[
 \mathbb{P}(\text{#up}=j) = {n\choose j} p^j (1-p)^{n-j}.
 \]
+
+
 
 
 
@@ -66,9 +78,12 @@ There are several common parameterizations. Let \(\sigma\) be volatility and \(\
 
 ### 2.1 Linear factors (Wilmott-style)
 
+
 \[
 u = 1 + \sigma\sqrt{\Delta t},\qquad d = 1 - \sigma\sqrt{\Delta t}.
 \]
+
+
 
 
 
@@ -83,11 +98,14 @@ u = 1 + \sigma\sqrt{\Delta t},\qquad d = 1 - \sigma\sqrt{\Delta t}.
 
 ### 2.2 Exponential factors (Cox–Ross–Rubinstein, CRR)
 
+
 \[
 \boxed{
 u = e^{\sigma\sqrt{\Delta t}},\qquad d = e^{-\sigma\sqrt{\Delta t}}.
 }
 \]
+
+
 
 
 
@@ -103,10 +121,13 @@ u = e^{\sigma\sqrt{\Delta t}},\qquad d = e^{-\sigma\sqrt{\Delta t}}.
 ### 2.3 Drift-adjusted exponential factors (Jarrow–Rudd / lognormal matching)
 One may incorporate a drift-like centering term:
 
+
 \[
 u = e^{(r - \tfrac12\sigma^2)\Delta t + \sigma\sqrt{\Delta t}},\qquad
 d = e^{(r - \tfrac12\sigma^2)\Delta t - \sigma\sqrt{\Delta t}}.
 \]
+
+
 
 
 
@@ -124,6 +145,7 @@ d = e^{(r - \tfrac12\sigma^2)\Delta t - \sigma\sqrt{\Delta t}}.
 
 Let the per-step risk-free growth factor be
 
+
 \[
 R := e^{r\Delta t}
 \quad\text{(or } R \approx 1+r\Delta t\text{ for small }\Delta t\text{)}.
@@ -131,7 +153,10 @@ R := e^{r\Delta t}
 
 
 
+
+
 **No-arbitrage** requires
+
 
 \[
 d < R < u.
@@ -139,7 +164,10 @@ d < R < u.
 
 
 
+
+
 Under this condition, define the **risk-neutral up probability** \(q\) by forcing the *expected* one-step growth of the stock to match the risk-free rate:
+
 
 
 \[
@@ -150,7 +178,10 @@ Under this condition, define the **risk-neutral up probability** \(q\) by forcin
 
 
 
+
+
 Solving for \(q\) gives:
+
 
 
 \[
@@ -161,12 +192,17 @@ q = \frac{R - d}{u-d} = \frac{e^{r\Delta t} - d}{u-d}.
 
 
 
+
+
 Then \(q\in(0,1)\), and discounted prices become martingales under \(\mathbb{Q}\):
+
 
 
 \[
 \mathbb{E}^{\mathbb{Q}}\left[\frac{S_{n+1}}{R} \mid \mathcal{F}_n\right] = S_n.
 \]
+
+
 
 
 
@@ -179,11 +215,14 @@ This is the discrete-time version of “risk-neutral pricing.”
 If \(V_{n+1}^{(u)}\) and \(V_{n+1}^{(d)}\) are the option values at the up/down children of a node, then:
 
 
+
 \[
 \boxed{
 V_n = e^{-r\Delta t}\Big(q V_{n+1}^{(u)} + (1-q) V_{n+1}^{(d)}\Big).
 }
 \]
+
+
 
 
 

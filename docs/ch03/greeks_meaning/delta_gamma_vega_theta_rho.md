@@ -11,7 +11,8 @@ V = V(t,S;\sigma,r,\dots),
 
 where \(t\in[0,T]\) is time, \(S>0\) is the underlying price, \(\sigma>0\) is volatility, and \(r\in\mathbb{R}\) is the short rate (constant in Black–Scholes).
 
-The **Greeks** are partial derivatives of \(V\) with respect to model inputs.
+The **Greeks** are partial derivatives of the pricing map \(V\) with respect to state variables and model parameters. They quantify first- and second-order sensitivities and form the basis of risk measurement and hedging, independently of any particular pricing model.
+
 
 ---
 
@@ -108,3 +109,7 @@ This is the conceptual basis for “Greek-based” risk decomposition and hedgin
 - Greeks are derivatives of a pricing map \(V(t,S;\theta)\) with respect to state and parameters.
 - Gamma is the curvature term that dominates short-time hedging error.
 - Theta conventions vary; define yours explicitly.
+- In the next section, these abstract definitions are specialized to the
+**Black–Scholes model**, where the Greeks can be computed explicitly in
+closed form.
+

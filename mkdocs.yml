@@ -1,4 +1,4 @@
-site_name: Financial Math Book
+site_name: Quant Finance with Python
 theme:
   name: material
 
@@ -56,10 +56,7 @@ nav:
           - Integration by Parts: ch01/ito_lemma/ito_integration_by_parts.md  # NEW
           - Itô Quotient Rule: ch01/ito_lemma/ito_quotient_rule.md
           - Applications and Examples: ch01/ito_lemma/ito_calculus_applications.md  # NEW
-      - 1.5  Infinitesimal Generator:
-          - Infinitesimal Generator: ch01/infinitesimal_generator/infinitesimal_generator.md
-          - Connection to Martingale: ch01/infinitesimal_generator/infinitesimal_generator_and_martingale.md
-      - 1.6 Diffusion Process:
+      - 1.5 Diffusion Process:
           - Diffusion Process Overview: ch01/diffusion_process/diffusion_process_overview.md
           - SDE: ch01/diffusion_process/stochastic_differential_equations.md
           - Existence and Uniqueness: ch01/diffusion_process/existence_and_uniqueness_of_sdes.md
@@ -68,15 +65,22 @@ nav:
           - Time Reversal of Diffusions: ch01/diffusion_process/time_reversal_of_diffusions.md
           - Stroock–Varadhan Problem: ch01/diffusion_process/martingale_problem_stroock_varadhan.md
           - Small Noise and Large Deviations: ch01/diffusion_process/small_noise_and_large_deviations.md
+      - 1.6  Infinitesimal Generator:
+          - Infinitesimal Generator: ch01/infinitesimal_generator/infinitesimal_generator.md
+          - Dynkin's Formula: ch01/infinitesimal_generator/dynkin_formula.md
+          - Generator and Martingale: ch01/infinitesimal_generator/generator_and_martingales.md
+          - Applications of Dynkin: ch01/infinitesimal_generator/applications_of_dynkin.md
       - 1.7 Connection to PDE:
-          - Kolmogorov Equation: ch01/connection_to_pde/kolmogorov_equation.md
-          - Kolmogorov on Expectation: ch01/connection_to_pde/kolmogorov_equation_on_expectation.md
-          - Feynman-Kac Formula: ch01/connection_to_pde/feynman_kac_formula.md 
+          - Kolmogorov Forward Eq: ch01/connection_to_pde/kolmogorov_forward_equation.md
+          - Kolmogorov Backward Eq: ch01/connection_to_pde/kolmogorov_backward_equation.md
+          - Feynman–Kac Overview: ch01/connection_to_pde/feynman_kac_overview.md
+          - FK Terminal Payoff: ch01/connection_to_pde/feynman_kac_discounted_terminal.md
+          - FK Running Payoff: ch01/connection_to_pde/feynman_kac_running_payoff.md
+          - Feynman–Kac Applications: ch01/connection_to_pde/feynman_kac_applications_and_duality.md
       - 1.8 Change of Measure:
           - Local Martingale: ch01/change_of_measure/local_martingale.md
           - Stochastic Exponential: ch01/change_of_measure/stochastic_exponential.md 
           - Martingale Repr Theorem: ch01/change_of_measure/martingale_representation_theorem.md
-          - Girsanov Intuition: ch01/change_of_measure/girsanov_intuition.md
           - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
   
   - Chapter 2 BS Model:
@@ -86,21 +90,36 @@ nav:
           - Replicating Portfolio: ch02/binomial_asset_pricing_model/replicating_portfolio_pricing.md
           - Risk-Neutral Probability: ch02/binomial_asset_pricing_model/risk_neutral_probability.md
           - Martingale Pricing: ch02/binomial_asset_pricing_model/martingale_pricing_view.md
+          - Arrow–Debreu State Prices: ch02/binomial_asset_pricing_model/arrow_debreu_state_prices.md
           - How to Build Tree: ch02/binomial_asset_pricing_model/binomial_tree_construction.md
+          - One-Period Option Pricing: ch02/binomial_asset_pricing_model/one_period_option_pricing.md  # NEW
           - Multi-Period Binomial Tree: ch02/binomial_asset_pricing_model/multi_period_binomial_tree.md
+          - Multi-Period Option Pricing: ch02/binomial_asset_pricing_model/multi_period_option_pricing.md  # NEW 
+          - Delta Hedging: ch02/binomial_asset_pricing_model/delta_hedging_in_binomial_model.md  # NEW
+          - Binary Decomposition: ch02/binomial_asset_pricing_model/binary_quanto_decomposition.md  # NEW 
           - Binomial to Black–Scholes: ch02/binomial_asset_pricing_model/binomial_to_black_scholes_limit.md
           - Exercise: ch02/binomial_asset_pricing_model/exercise.md
       - 2.2 FTAP:
-          - Fundamental Theorem of Asset Pricing: ch02/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
+          - FTAP: ch02/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
           - Separating Hyperplane Theorem: ch02/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
-      - 2.3 BS PDE Derivation:
+      - 2.3 Black-Scholes Model:  # NEW SECTION
+          - Introduction and Motivation: ch02/black_scholes_model/introduction.md
+          - Model Assumptions: ch02/black_scholes_model/assumptions.md
+          - Limitations and Extensions: ch02/black_scholes_model/limitations_extensions.md
+      - 2.4 BS PDE Derivation:
           - Delta Hedging: ch02/bs_pde_derivation/delta_hedging.md
           - Risk-Neutral Measure: ch02/bs_pde_derivation/risk_neutral_martingale_measure.md
           - Change of Numeraire: ch02/bs_pde_derivation/change_of_numeraire.md
           - Equilibrium: ch02/bs_pde_derivation/equilibrium.md
-      - 2.4 BS PDE Analytic Sol:
+      - 2.5 Black-Scholes Formula:
+          - The Formula: ch02/black_scholes_formula/bs_formula_statement.md
+          - Probabilistic Interpretation: ch02/black_scholes_formula/probabilistic_interpretation.md
+          - Put-Call Parity: ch02/black_scholes_formula/put_call_parity.md
+          - Asymptotic Behavior: ch02/black_scholes_formula/asymptotic_behavior.md
+          - Properties and Bounds: ch02/black_scholes_formula/properties_and_bounds.md
+          - Computational Examples: ch02/black_scholes_formula/computational_examples.md
+      - 2.6 BS PDE Analytic Sol:
           - Heat Equation: ch02/bs_pde_analytic_solution/heat_equation.md
-          - Green Function: ch02/bs_pde_analytic_solution/green_function.md
           - Separation of Variables: ch02/bs_pde_analytic_solution/separation_of_variables.md
           - Similarity Solutions: ch02/bs_pde_analytic_solution/similarity_solutions.md
           - Fourier Transform: ch02/bs_pde_analytic_solution/fourier_transform.md
@@ -109,14 +128,14 @@ nav:
           - Feynman-Kac Formula: ch02/bs_pde_analytic_solution/feynman_kac.md
           - Change of Numeraire: ch02/bs_pde_analytic_solution/change_of_numeraire.md
           - Viscosity Solutions: ch02/bs_pde_analytic_solution/viscosity_solutions.md
-      - 2.5 BS PDE Numerical Sol:
+      - 2.7 BS PDE Numerical Sol:
           - Finite Difference Methods: ch02/bs_pde_numerical_solution/finite_difference_methods.md
           - Explicit, Implicit, and Crank–Nicolson Schemes: ch02/bs_pde_numerical_solution/explicit_implicit_crank_nicolson_schemes.md
           - Stability, Consistency, and Convergence: ch02/bs_pde_numerical_solution/stability_consistency_convergence.md
           - Boundary and Terminal Conditions: ch02/bs_pde_numerical_solution/boundary_and_terminal_conditions.md
           - Free Boundary Problems (American Options): ch02/bs_pde_numerical_solution/free_boundary_problems_american_options.md
           - Monotone Schemes and Viscosity Solutions: ch02/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
-      - 2.6 Extensions of BS Model:
+      - 2.8 Extensions of BS Model:
           - Local Volatility Models: ch02/extensions_black_scholes/local_volatility_models.md
           - Stochastic Volatility Models: ch02/extensions_black_scholes/stochastic_volatility_models.md
           - Jump-Diffusion Models: ch02/extensions_black_scholes/jump_diffusion_models.md
@@ -124,10 +143,11 @@ nav:
   
   - Chapter 3 Greeks:
       - 3.1 Definition of Greeks:
-          - Delta, Gamma, Vega, Theta, Rho: ch03/greeks_meaning/delta_gamma_vega_theta_rho.md
+          - Greeks: ch03/greeks_meaning/delta_gamma_vega_theta_rho.md
           - Greeks as Derivatives of the Pricing Operator: ch03/greeks_meaning/greeks_as_derivatives_of_pricing_operator.md
           - Greeks via the Infinitesimal Generator: ch03/greeks_meaning/greeks_via_infinitesimal_generator.md
           - Greeks and Martingale Representation: ch03/greeks_meaning/greeks_and_martingale_representation.md
+          - Greeks in BS Model: ch03/greeks_meaning/greeks_in_black_scholes_model.md
       - 3.2 PDE Char of Greeks:
           - Differentiating the Black–Scholes PDE: ch03/pde_greeks/differentiating_black_scholes_pde.md
           - PDEs Satisfied by Greeks: ch03/pde_greeks/pdes_satisfied_by_greeks.md
@@ -182,6 +202,7 @@ nav:
       - 4.3 Im Vol Surface:
           - Term Structure: ch04/implied_volatility_surface/term_structure.md
           - Skew and Smile: ch04/implied_volatility_surface/skew_and_smile.md
+          - Empirical Smile (SPX Example): ch04/implied_volatility_surface/empirical_smile_spx.md
           - No-Static-Arbitrage Conditions: ch04/implied_volatility_surface/no_static_arbitrage_conditions.md
       - 4.4 Asymptotics of Im Vol:
           - Short-Maturity Smile Asymptotics: ch04/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
@@ -415,6 +436,8 @@ nav:
           - Non-Stationarity: ch11/limits_of_learning_in_finance/non_stationarity.md
           - Overfitting and False Discovery: ch11/limits_of_learning_in_finance/overfitting_and_false_discovery.md
           - Theoretical Impossibility Results: ch11/limits_of_learning_in_finance/theoretical_impossibility_results.md
+
+  - Appendix Python Codes:
 
 
 

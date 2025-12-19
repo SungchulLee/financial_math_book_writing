@@ -9,6 +9,7 @@ This implies that the no-arbitrage price is **unique**.
 
 Let the claim payoff be
 
+
 \[
 H =
 \begin{cases}
@@ -19,11 +20,17 @@ H_d := H(dS_0) & \text{down}.
 
 
 
+
+
 We seek \((\Delta,\beta)\) such that the portfolio payoff matches \(H\) in both states:
+
 
 \[
 \Delta (uS_0) + \beta(1+r) = H_u,
 \]
+
+
+
 
 
 
@@ -33,18 +40,24 @@ We seek \((\Delta,\beta)\) such that the portfolio payoff matches \(H\) in both 
 
 
 
+
+
 ---
 
 ## 2. Solve for the Hedge Ratio \(\Delta\)
 
 Subtract the equations:
 
+
 \[
 \Delta(u-d)S_0 = H_u - H_d,
 \]
 
 
+
+
 so
+
 
 \[
 \boxed{
@@ -54,18 +67,24 @@ so
 
 
 
+
+
 ---
 
 ## 3. Solve for the Bond Position \(\beta\)
 
 Plug \(\Delta\) into one equation:
 
+
 \[
 \beta(1+r) = H_u - \Delta uS_0,
 \]
 
 
+
+
 so
+
 
 \[
 \boxed{
@@ -75,11 +94,14 @@ so
 
 
 
+
+
 ---
 
 ## 4. The Replication Price
 
 The no-arbitrage price must equal the cost of the replicating portfolio:
+
 
 \[
 V_0 = \Delta S_0 + \beta.
@@ -87,13 +109,18 @@ V_0 = \Delta S_0 + \beta.
 
 
 
+
+
 Using algebra, this can be rewritten as:
+
 
 \[
 \boxed{
 V_0 = \frac{1}{1+r}\Big(qH_u + (1-q)H_d\Big),
 }
 \]
+
+
 
 
 where \(q\) is the risk-neutral probability.

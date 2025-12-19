@@ -2,9 +2,12 @@
 
 In the one-period binomial model, no-arbitrage is equivalent to a simple inequality:
 
+
 \[
 d < 1+r < u.
 \]
+
+
 
 
 This condition has a clear financial meaning and leads to existence of a **risk-neutral probability**.
@@ -14,11 +17,14 @@ This condition has a clear financial meaning and leads to existence of a **risk-
 ## 1. Setup
 
 
+
 \[
 B_0=1,\quad B_1=1+r,
 \qquad
 S_1 \in \{uS_0, dS_0\},\quad u>d>0.
 \]
+
+
 
 
 
@@ -40,9 +46,12 @@ No-arbitrage means **no such portfolio exists**.
 
 Consider the discounted stock:
 
+
 \[
 \tilde S_1 := \frac{S_1}{1+r}.
 \]
+
+
 
 
 
@@ -54,9 +63,12 @@ A trader could borrow money (short the bank) and buy the stock to lock a profit.
 
 Therefore, to avoid arbitrage we must have:
 
+
 \[
 d < 1+r < u.
 \]
+
+
 
 
 
@@ -66,17 +78,23 @@ d < 1+r < u.
 
 Under no-arbitrage,
 
+
 \[
 \frac{dS_0}{1+r} < S_0 < \frac{uS_0}{1+r}.
 \]
 
 
 
+
+
 Equivalently,
+
 
 \[
 S_0 \in \text{convex hull of } \left\{\frac{uS_0}{1+r}, \frac{dS_0}{1+r}\right\}.
 \]
+
+
 
 
 
@@ -88,16 +106,22 @@ This convex-combination viewpoint is exactly what produces the risk-neutral prob
 
 If \(d < 1+r < u\), define
 
+
 \[
 q := \frac{(1+r)-d}{u-d}.
 \]
 
 
+
+
 Then \(q\in(0,1)\), and
+
 
 \[
 S_0 = \frac{1}{1+r}\Big(q\,uS_0 + (1-q)\,dS_0\Big).
 \]
+
+
 
 
 

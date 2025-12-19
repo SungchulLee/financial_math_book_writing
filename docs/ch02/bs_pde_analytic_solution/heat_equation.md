@@ -1,748 +1,579 @@
-# Heat Equation Transformation: Complete Mathematical Treatment
+# Black-Scholes Formula via Heat Equation
 
-This is one of the most elegant approaches to solving the Black-Scholes PDE—transforming it into the standard heat equation through a sequence of clever variable changes.
+The Black-Scholes PDE can be transformed into the **heat equation**, one of the most studied partial differential equations in mathematical physics. This transformation allows us to leverage the well-known fundamental solution (Green's function) to derive the Black-Scholes formula analytically.
 
----
-
-## **1. The Black-Scholes PDE**
-
-Starting point for a European option $V(S,t)$:
-
-
-$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0$$
-
-
-
-**Terminal condition**: $V(S,T) = \Phi(S)$ (payoff function)
-
-**Goal**: Transform this into the heat equation:
-
-$$\frac{\partial u}{\partial \tau} = \frac{\partial^2 u}{\partial x^2}$$
-
-
+This approach reveals the deep connection between option pricing and diffusion processes, demonstrating how financial derivatives can be priced using classical PDE techniques.
 
 ---
 
-## **2. First Transformation: Logarithmic Variables**
+## 1. The Black-Scholes PDE
 
-### **Step 1: Change Independent Variables**
+### **Standard Form**
 
-Define:
+For a European option value $V(S,t)$:
 
-$$x = \ln\left(\frac{S}{K}\right), \quad \tau = \frac{\sigma^2}{2}(T - t)$$
+$$
+\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+$$
 
+**Terminal condition** (European call):
+$$
+V(S,T) = \max(S-K, 0)
+$$
 
+**Challenge**: The PDE has:
+- Variable coefficients ($S^2$ and $S$ terms)
+- A zero-order term ($-rV$)
+- Terminal condition (not initial)
 
-**Rationale**: 
-- $x$ transforms the multiplicative stock price to additive log-returns
-- $\tau$ is "time-to-expiry" scaled by variance
-- At expiry: $\tau = 0$, and as $t \to -\infty$, $\tau \to \infty$
-
-### **Step 2: Compute Partial Derivatives**
-
-Chain rule for $V(S,t) = V(S(x), t(\tau))$:
-
-
-$$\frac{\partial V}{\partial S} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial S} = \frac{1}{S}\frac{\partial V}{\partial x}$$
-
-
-
-
-$$\frac{\partial^2 V}{\partial S^2} = \frac{\partial}{\partial S}\left(\frac{1}{S}\frac{\partial V}{\partial x}\right) = -\frac{1}{S^2}\frac{\partial V}{\partial x} + \frac{1}{S}\frac{\partial}{\partial S}\left(\frac{\partial V}{\partial x}\right)$$
-
-
-
-
-$$= -\frac{1}{S^2}\frac{\partial V}{\partial x} + \frac{1}{S^2}\frac{\partial^2 V}{\partial x^2}$$
-
-
-
-For time:
-
-$$\frac{\partial V}{\partial t} = \frac{\partial V}{\partial \tau}\frac{\partial \tau}{\partial t} = -\frac{\sigma^2}{2}\frac{\partial V}{\partial \tau}$$
-
-
-
-### **Step 3: Substitute into PDE**
-
-
-$$-\frac{\sigma^2}{2}\frac{\partial V}{\partial \tau} + rS \cdot \frac{1}{S}\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 S^2 \left(\frac{1}{S^2}\frac{\partial^2 V}{\partial x^2} - \frac{1}{S^2}\frac{\partial V}{\partial x}\right) - rV = 0$$
-
-
-
-
-$$-\frac{\sigma^2}{2}\frac{\partial V}{\partial \tau} + r\frac{\partial V}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 V}{\partial x^2} - \frac{\sigma^2}{2}\frac{\partial V}{\partial x} - rV = 0$$
-
-
-
-Multiply by $-\frac{2}{\sigma^2}$:
-
-
-$$\frac{\partial V}{\partial \tau} = \frac{\partial^2 V}{\partial x^2} + \left(k-1\right)\frac{\partial V}{\partial x} - kV$$
-
-
-
-where we define:
-
-$$\boxed{k = \frac{2r}{\sigma^2}}$$
-
-
-
-### **Step 4: Dimensionless Form**
-
-To make $V$ dimensionless, set:
-
-$$u(x,\tau) = \frac{V(S,t)}{K}$$
-
-
-
-Then:
-
-$$\boxed{\frac{\partial u}{\partial \tau} = \frac{\partial^2 u}{\partial x^2} + (k-1)\frac{\partial u}{\partial x} - ku}$$
-
-
-
-**Terminal condition** ($\tau = 0$, i.e., $t = T$):
-
-$$u(x,0) = \frac{\Phi(Ke^x)}{K} = \phi(x)$$
-
-
-
-For a call: $\phi(x) = \max(e^x - 1, 0)$
+**Strategy**: Transform into the heat equation, which has constant coefficients and is thoroughly understood.
 
 ---
 
-## **3. Second Transformation: Eliminating First-Order Term**
+## 2. Change of Variables
 
-The equation still has drift and decay terms. We eliminate these through an exponential transformation.
+We apply three transformations to reduce the BS PDE to canonical heat equation form.
 
-### **Ansatz**
+### **Transformation 1: Time to Maturity**
 
-Seek a solution of the form:
+$$
+\boxed{\tau = T - t}
+$$
 
-$$u(x,\tau) = e^{\alpha x + \beta \tau}w(x,\tau)$$
+**Meaning**: Time remaining until option expiration.
 
+**Example**: If current time is $t = 0.5$ years and expiration is $T = 1$ year:
+$$
+\tau = 1 - 0.5 = 0.5 \text{ years (6 months remaining)}
+$$
 
+**Effect**: Converts terminal condition into initial condition and reverses time direction:
+$$
+\frac{\partial}{\partial t} = -\frac{\partial}{\partial \tau}
+$$
 
-where $\alpha, \beta$ are constants to be determined.
+### **Transformation 2: Expected Log-Price**
 
-### **Computing Derivatives**
+$$
+\boxed{x = \log S + \left(r - \frac{1}{2}\sigma^2\right)\tau}
+$$
 
+**Meaning**: This is the **expected log-price** at maturity under the risk-neutral measure.
 
-$$\frac{\partial u}{\partial \tau} = e^{\alpha x + \beta \tau}\left(\frac{\partial w}{\partial \tau} + \beta w\right)$$
+**Derivation**: Under geometric Brownian motion:
+$$
+S_T = S_t \exp\left(\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma W_\tau\right)
+$$
 
+Taking logarithm and expectation:
+$$
+\mathbb{E}^{\mathbb{Q}}[\log S_T | S_t] = \log S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau = x
+$$
 
+**Example**: For $S = 100$, $r = 5\%$, $\sigma = 20\%$, $\tau = 0.5$:
+$$
+\begin{aligned}
+x &= \log 100 + \left(0.05 - \frac{1}{2}(0.2)^2\right) \cdot 0.5 \\
+&= 4.605 + (0.05 - 0.02) \cdot 0.5 \\
+&= 4.605 + 0.015 = 4.620
+\end{aligned}
+$$
 
+**Effect**: Centers the process by removing drift, converting first-order terms to second-order.
 
-$$\frac{\partial u}{\partial x} = e^{\alpha x + \beta \tau}\left(\frac{\partial w}{\partial x} + \alpha w\right)$$
+### **Transformation 3: Forward Option Value**
 
+$$
+\boxed{F(x,\tau) = V(S,t) e^{r\tau}}
+$$
 
+**Meaning**: Option value **compounded forward** to expiration at the risk-free rate.
 
+**Intuition**: Under risk-neutral pricing:
+$$
+V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
+$$
 
-$$\frac{\partial^2 u}{\partial x^2} = e^{\alpha x + \beta \tau}\left(\frac{\partial^2 w}{\partial x^2} + 2\alpha \frac{\partial w}{\partial x} + \alpha^2 w\right)$$
+so
+$$
+F(x,\tau) = \mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
+$$
 
+is the **undiscounted expected payoff**.
 
+**Example**: If current option value is $V = 10$, $r = 5\%$, $\tau = 0.5$:
+$$
+F = 10 \cdot e^{0.05 \times 0.5} = 10 \cdot e^{0.025} \approx 10.25
+$$
 
-### **Substituting into the PDE**
-
-
-$$e^{\alpha x + \beta \tau}\left(\frac{\partial w}{\partial \tau} + \beta w\right) = e^{\alpha x + \beta \tau}\left[\frac{\partial^2 w}{\partial x^2} + 2\alpha \frac{\partial w}{\partial x} + \alpha^2 w + (k-1)\left(\frac{\partial w}{\partial x} + \alpha w\right) - kw\right]$$
-
-
-
-Divide by $e^{\alpha x + \beta \tau}$:
-
-
-$$\frac{\partial w}{\partial \tau} + \beta w = \frac{\partial^2 w}{\partial x^2} + [2\alpha + (k-1)]\frac{\partial w}{\partial x} + [\alpha^2 + (k-1)\alpha - k]w$$
-
-
-
-### **Choosing $\alpha$ and $\beta$**
-
-To obtain the standard heat equation, we need:
-
-1. **Coefficient of $\frac{\partial w}{\partial x}$ equals zero**:
-
-$$2\alpha + (k-1) = 0 \quad \Rightarrow \quad \boxed{\alpha = -\frac{k-1}{2}}$$
-
-
-
-2. **Coefficient of $w$ equals zero**:
-
-$$\beta = \alpha^2 + (k-1)\alpha - k$$
-
-
-
-Substituting $\alpha = -\frac{k-1}{2}$:
-
-$$\beta = \frac{(k-1)^2}{4} - \frac{(k-1)^2}{2} - k = -\frac{(k-1)^2}{4} - k$$
-
-
-
-
-$$= -\frac{(k-1)^2 + 4k}{4} = -\frac{k^2 - 2k + 1 + 4k}{4} = -\frac{k^2 + 2k + 1}{4}$$
-
-
-
-
-$$\boxed{\beta = -\frac{(k+1)^2}{4}}$$
-
-
-
-### **The Standard Heat Equation**
-
-With these choices:
-
-$$\boxed{\frac{\partial w}{\partial \tau} = \frac{\partial^2 w}{\partial x^2}}$$
-
-
-
-This is the **standard diffusion equation**!
-
-### **Transformation Summary**
-
-
-$$\boxed{u(x,\tau) = e^{-\frac{k-1}{2}x - \frac{(k+1)^2}{4}\tau}w(x,\tau)}$$
-
-
-
-or equivalently:
-
-
-$$\boxed{w(x,\tau) = e^{\frac{k-1}{2}x + \frac{(k+1)^2}{4}\tau}u(x,\tau)}$$
-
-
+**Effect**: Eliminates the $-rV$ term from the PDE.
 
 ---
 
-## **4. Initial/Terminal Condition for $w$**
+## 3. Transformation of Derivatives
 
-At $\tau = 0$ (expiry):
+### **Time Derivative**
 
-$$w(x,0) = e^{\frac{k-1}{2}x}u(x,0) = e^{\frac{k-1}{2}x}\phi(x)$$
+Using chain rule:
+$$
+\frac{\partial V}{\partial t} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial V}{\partial \tau}\frac{\partial \tau}{\partial t}
+$$
 
+Since:
+- $\frac{\partial x}{\partial t} = -\left(r - \frac{1}{2}\sigma^2\right)$ (from definition of $x$)
+- $\frac{\partial \tau}{\partial t} = -1$
 
+We get:
+$$
+\frac{\partial V}{\partial t} = -\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{\partial V}{\partial \tau}
+$$
 
-**For a call option**: $\phi(x) = (e^x - 1)^+$
+### **First Spatial Derivative**
 
+$$
+\frac{\partial V}{\partial S} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial S} = \frac{\partial V}{\partial x} \cdot \frac{1}{S}
+$$
 
-$$w(x,0) = \begin{cases}
-e^{\frac{k-1}{2}x}(e^x - 1) = e^{\frac{k+1}{2}x} - e^{\frac{k-1}{2}x} & \text{if } x > 0 \\
-0 & \text{if } x \leq 0
-\end{cases}$$
+### **Second Spatial Derivative**
 
+$$
+\begin{aligned}
+\frac{\partial^2 V}{\partial S^2} &= \frac{\partial}{\partial S}\left(\frac{1}{S}\frac{\partial V}{\partial x}\right) \\
+&= \frac{\partial}{\partial x}\left(\frac{1}{S}\frac{\partial V}{\partial x}\right)\frac{\partial x}{\partial S} \\
+&= \frac{1}{S}\left[\frac{\partial^2 V}{\partial x^2}\frac{1}{S} + \frac{\partial V}{\partial x}\frac{\partial}{\partial x}\left(\frac{1}{S}\right)\right]
+\end{aligned}
+$$
 
+**Key observation**: Since $S = e^{x - (r-\frac{1}{2}\sigma^2)\tau}$:
+$$
+\frac{\partial}{\partial x}\left(\frac{1}{S}\right) = -\frac{1}{S}
+$$
 
-**For a put option**: $\phi(x) = (1 - e^x)^+$
-
-
-$$w(x,0) = \begin{cases}
-e^{\frac{k-1}{2}x}(1 - e^x) = e^{\frac{k-1}{2}x} - e^{\frac{k+1}{2}x} & \text{if } x < 0 \\
-0 & \text{if } x \geq 0
-\end{cases}$$
-
-
+Therefore:
+$$
+\frac{\partial^2 V}{\partial S^2} = \frac{1}{S^2}\left[\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right]
+$$
 
 ---
 
-## **5. Solution of the Heat Equation**
+## 4. Derivation of the Heat Equation
 
-### **Fundamental Solution (Green's Function)**
+### **Step 1: Substitute into BS PDE**
 
-The heat equation $\frac{\partial w}{\partial \tau} = \frac{\partial^2 w}{\partial x^2}$ with initial condition $w(x,0) = f(x)$ has solution:
+Starting with:
+$$
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+$$
 
+Substitute transformed derivatives:
+$$
+\begin{aligned}
+&-\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{\partial V}{\partial \tau} \\
+&\quad + \frac{1}{2}\sigma^2\left[\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right] \\
+&\quad + r\frac{\partial V}{\partial x} - rV = 0
+\end{aligned}
+$$
 
-$$w(x,\tau) = \int_{-\infty}^{\infty} G(x-y,\tau)f(y)dy$$
+### **Step 2: Collect Terms**
 
+Grouping by derivative order:
 
+- **Second-order**: $\frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2}$
+- **First-order**: $-\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{1}{2}\sigma^2\frac{\partial V}{\partial x} + r\frac{\partial V}{\partial x} = 0$ (cancels!)
+- **Zero-order**: $-\frac{\partial V}{\partial \tau} - rV = 0$
 
-where the **fundamental solution** is:
+Result:
+$$
+-\frac{\partial V}{\partial \tau} + \frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - rV = 0
+$$
 
+### **Step 3: Eliminate $-rV$ Term**
 
-$$\boxed{G(x,\tau) = \frac{1}{\sqrt{4\pi\tau}}e^{-\frac{x^2}{4\tau}}}$$
+Since $V = Fe^{-r\tau}$, compute derivatives:
 
+$$
+\frac{\partial V}{\partial \tau} = \frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}
+$$
 
+$$
+\frac{\partial^2 V}{\partial x^2} = \frac{\partial^2 F}{\partial x^2}e^{-r\tau}
+$$
 
-This is the **heat kernel** or **Gaussian kernel**.
+Substitute into the PDE:
+$$
+-\left[\frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}\right] + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}e^{-r\tau} - rFe^{-r\tau} = 0
+$$
+
+Divide by $e^{-r\tau}$:
+$$
+-\frac{\partial F}{\partial \tau} + rF + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2} - rF = 0
+$$
+
+Simplify:
+$$
+\boxed{\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}}
+$$
+
+This is the **heat equation** with thermal diffusivity $\kappa = \frac{1}{2}\sigma^2$.
+
+---
+
+## 5. Initial Condition
+
+The terminal condition $V(S,T) = (S-K)^+$ becomes an **initial condition** for $F$.
+
+At $\tau = 0$ (maturity):
+- $x = \log S$ (since $\tau = 0$ in the definition of $x$)
+- $F(x,0) = V(S,T)e^{r \cdot 0} = V(S,T)$
+
+For a European call:
+$$
+\boxed{F(x,0) = \psi(x) = \max(e^x - K, 0) = (e^x - K)^+}
+$$
+
+This is a piecewise function:
+$$
+\psi(x) = \begin{cases}
+e^x - K & \text{if } x > \log K \\
+0 & \text{if } x \leq \log K
+\end{cases}
+$$
+
+**Summary**: We've transformed the **terminal-value problem** (BS PDE backward in time) into an **initial-value problem** (heat equation forward in time).
+
+---
+
+## 6. Green's Function (Fundamental Solution)
+
+### **Definition**
+
+The **fundamental solution** or **Green's function** of the heat equation is the solution to:
+$$
+\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}
+$$
+
+with initial condition:
+$$
+G(x,0; z) = \delta(x-z)
+$$
+
+where $\delta$ is the Dirac delta function (unit point source at $z$).
+
+**Physical interpretation**: $G(x,\tau; z)$ represents the temperature distribution at position $x$ and time $\tau$ resulting from an instantaneous unit heat source placed at position $z$ at time $0$.
+
+### **Explicit Form**
+
+The fundamental solution is:
+
+$$
+\boxed{G(x,\tau; z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)}
+$$
+
+This is a **Gaussian kernel** with:
+- Mean: $z$ (centered at source location)
+- Variance: $\sigma^2\tau$ (spreads with time)
+- Normalization: $\int_{-\infty}^\infty G(x,\tau; z) dx = 1$
 
 ### **Verification**
 
-We can verify $G$ satisfies the heat equation:
+**Property 1** (Satisfies heat equation):
 
+Direct calculation shows:
+$$
+\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}
+$$
 
-$$\frac{\partial G}{\partial \tau} = \frac{1}{\sqrt{4\pi}}\frac{\partial}{\partial \tau}\left(\tau^{-1/2}e^{-\frac{x^2}{4\tau}}\right)$$
+using standard Gaussian differentiation formulas.
 
+**Property 2** (Initial condition):
+$$
+\lim_{\tau \to 0^+} G(x,\tau; z) = \delta(x-z)
+$$
 
+As $\tau \to 0$, the Gaussian concentrates at $z$.
 
+**Property 3** (Probability conservation):
+$$
+\int_{-\infty}^\infty G(x,\tau; z) dx = 1 \quad \text{for all } \tau > 0
+$$
 
-$$= \frac{1}{\sqrt{4\pi}}\left[-\frac{1}{2}\tau^{-3/2}e^{-\frac{x^2}{4\tau}} + \tau^{-1/2}e^{-\frac{x^2}{4\tau}}\frac{x^2}{4\tau^2}\right]$$
+### **Intuition**
 
-
-
-
-$$= G\left[-\frac{1}{2\tau} + \frac{x^2}{4\tau^2}\right] = G\frac{x^2 - 2\tau}{4\tau^2}$$
-
-
-
-
-$$\frac{\partial^2 G}{\partial x^2} = \frac{\partial}{\partial x}\left(G \cdot \frac{-x}{2\tau}\right) = G\frac{x^2}{4\tau^2} - G\frac{1}{2\tau}$$
-
-
-
-Indeed: $\frac{\partial G}{\partial \tau} = \frac{\partial^2 G}{\partial x^2}$ ✓
-
-### **Initial Condition Property**
-
-
-$$\lim_{\tau \to 0^+}G(x-y,\tau) = \delta(x-y)$$
-
-
-
-where $\delta$ is the Dirac delta function. This gives:
-
-$$\lim_{\tau \to 0^+}w(x,\tau) = f(x)$$
-
-
+- At $\tau = 0$: All heat concentrated at point $z$
+- As $\tau$ increases: Heat diffuses according to Gaussian spread
+- As $\tau \to \infty$: Heat spreads everywhere uniformly
 
 ---
 
-## **6. Explicit Solution for Call Option**
+## 7. Solution via Superposition
+
+### **Duhamel's Principle**
+
+For any initial condition $\psi(x)$, the solution to the heat equation is obtained by **superposition** of fundamental solutions:
+
+$$
+\boxed{F(x,\tau) = \int_{-\infty}^\infty \psi(z) G(x,\tau; z) dz}
+$$
+
+Explicitly:
+$$
+F(x,\tau) = \int_{-\infty}^\infty \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+$$
+
+**Interpretation**:
+- Decompose initial condition $\psi(x)$ into point sources: $\psi(z)\delta(z)$
+- Each point source at $z$ evolves according to $G(x,\tau; z)$
+- The total solution is the **integral** (continuous sum) of all contributions
+
+**Probabilistic view**: If $X \sim \mathcal{N}(x, \sigma^2\tau)$, then:
+$$
+F(x,\tau) = \mathbb{E}[\psi(X)] = \int_{-\infty}^\infty \psi(z) \cdot \text{pdf}(z; x, \sigma^2\tau) dz
+$$
+
+This connects the PDE solution to **expectation under Brownian motion**.
+
+---
+
+## 8. Application to European Call
 
 ### **Setup**
 
-For the call, we need:
+For a call option with $\psi(x) = (e^x - K)^+$:
 
-$$w(x,\tau) = \int_0^{\infty}\left[e^{\frac{k+1}{2}y} - e^{\frac{k-1}{2}y}\right]G(x-y,\tau)dy$$
+$$
+F(x,\tau) = \int_{-\infty}^\infty (e^z - K)^+ \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+$$
 
+Since $(e^z - K)^+ = 0$ for $z \leq \log K$:
 
+$$
+F(x,\tau) = \int_{\log K}^\infty (e^z - K) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+$$
 
+### **Split into Two Integrals**
 
-$$= \int_0^{\infty}e^{\frac{k+1}{2}y}G(x-y,\tau)dy - \int_0^{\infty}e^{\frac{k-1}{2}y}G(x-y,\tau)dy$$
+$$
+F(x,\tau) = \underbrace{\int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}_{I_1} - K\underbrace{\int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}_{I_2}
+$$
 
+We evaluate each integral separately.
 
+---
+
+## 9. Evaluation of $I_2$ (Strike Term)
+
+$$
+I_2 = \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+$$
+
+This is a **Gaussian tail probability**. Define standard normal variable:
+$$
+Z = \frac{z - x}{\sigma\sqrt{\tau}} \sim \mathcal{N}(0,1)
+$$
+
+Then:
+$$
+\begin{aligned}
+I_2 &= \mathbb{P}(z \geq \log K) \\
+&= \mathbb{P}\left(\frac{z-x}{\sigma\sqrt{\tau}} \geq \frac{\log K - x}{\sigma\sqrt{\tau}}\right) \\
+&= \mathbb{P}\left(Z \geq \frac{\log K - x}{\sigma\sqrt{\tau}}\right) \\
+&= \mathbb{P}\left(Z \leq \frac{x - \log K}{\sigma\sqrt{\tau}}\right) \\
+&= \mathcal{N}\left(\frac{x - \log K}{\sigma\sqrt{\tau}}\right)
+\end{aligned}
+$$
 
 Define:
-
-$$I_n = \int_0^{\infty}e^{ny}G(x-y,\tau)dy = \int_0^{\infty}e^{ny}\frac{1}{\sqrt{4\pi\tau}}e^{-\frac{(x-y)^2}{4\tau}}dy$$
-
-
-
-### **Evaluating $I_n$**
-
-
-$$I_n = \frac{1}{\sqrt{4\pi\tau}}\int_0^{\infty}\exp\left[ny - \frac{(x-y)^2}{4\tau}\right]dy$$
-
-
-
-**Complete the square** in the exponent:
-
-$$ny - \frac{(x-y)^2}{4\tau} = -\frac{1}{4\tau}\left[(x-y)^2 - 4n\tau y\right]$$
-
-
-
-
-$$= -\frac{1}{4\tau}\left[y^2 - 2xy + x^2 - 4n\tau y\right]$$
-
-
-
-
-$$= -\frac{1}{4\tau}\left[y^2 - 2(x+2n\tau)y + x^2\right]$$
-
-
-
-
-$$= -\frac{1}{4\tau}\left[(y - (x+2n\tau))^2 - (x+2n\tau)^2 + x^2\right]$$
-
-
-
-
-$$= -\frac{(y - (x+2n\tau))^2}{4\tau} + \frac{2nx + 4n^2\tau}{4\tau}$$
-
-
-
-
-$$= -\frac{(y - (x+2n\tau))^2}{4\tau} + nx + n^2\tau$$
-
-
+$$
+\boxed{d_2 = \frac{x - \log K}{\sigma\sqrt{\tau}}}
+$$
 
 Therefore:
-
-$$I_n = \frac{e^{nx + n^2\tau}}{\sqrt{4\pi\tau}}\int_0^{\infty}\exp\left[-\frac{(y - (x+2n\tau))^2}{4\tau}\right]dy$$
-
-
-
-**Change of variables**: $z = \frac{y - (x+2n\tau)}{\sqrt{4\tau}}$
-
-When $y = 0$: $z = \frac{-(x+2n\tau)}{\sqrt{4\tau}} = -\frac{x+2n\tau}{2\sqrt{\tau}}$
-
-When $y \to \infty$: $z \to \infty$
-
-
-$$I_n = \frac{e^{nx + n^2\tau}}{\sqrt{\pi}}\int_{-\frac{x+2n\tau}{2\sqrt{\tau}}}^{\infty}e^{-z^2}dz$$
-
-
-
-Using $\int_{-a}^{\infty}e^{-z^2}dz = \sqrt{\pi}\left[\frac{1}{2} + \frac{1}{2}\text{erf}(a)\right] = \sqrt{\pi}N(a\sqrt{2})$:
-
-
-$$\boxed{I_n = e^{nx + n^2\tau}N\left(\frac{x+2n\tau}{2\sqrt{\tau}}\right)}$$
-
-
-
-where $N$ is the standard normal CDF.
-
-### **Computing $w(x,\tau)$**
-
-
-$$w(x,\tau) = I_{\frac{k+1}{2}} - I_{\frac{k-1}{2}}$$
-
-
-
-
-$$= e^{\frac{k+1}{2}x + \frac{(k+1)^2}{4}\tau}N\left(\frac{x+(k+1)\tau}{2\sqrt{\tau}}\right) - e^{\frac{k-1}{2}x + \frac{(k-1)^2}{4}\tau}N\left(\frac{x+(k-1)\tau}{2\sqrt{\tau}}\right)$$
-
-
+$$
+I_2 = \mathcal{N}(d_2)
+$$
 
 ---
 
-## **7. Back-Transformation to Get Black-Scholes Formula**
+## 10. Evaluation of $I_1$ (Stock Term)
 
-### **Recall the Transformations**
+$$
+I_1 = \int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+$$
 
+**Key technique**: Complete the square in the exponent.
 
-$$u(x,\tau) = e^{-\frac{k-1}{2}x - \frac{(k+1)^2}{4}\tau}w(x,\tau)$$
+### **Step 1: Combine Exponents**
 
+$$
+z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{1}{2\sigma^2\tau}\left[(x-z)^2 - 2\sigma^2\tau z\right]
+$$
 
+Expand:
+$$
+(x-z)^2 - 2\sigma^2\tau z = z^2 - 2zx + x^2 - 2\sigma^2\tau z = z^2 - 2z(x + \sigma^2\tau) + x^2
+$$
 
+Complete the square:
+$$
+\begin{aligned}
+&= [z - (x + \sigma^2\tau)]^2 - (x + \sigma^2\tau)^2 + x^2 \\
+&= [z - (x + \sigma^2\tau)]^2 - 2x\sigma^2\tau - \sigma^4\tau^2
+\end{aligned}
+$$
 
-$$V(S,t) = Ku(x,\tau)$$
+Therefore:
+$$
+z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau} + x + \frac{\sigma^2\tau}{2}
+$$
 
+### **Step 2: Factor Out Constant**
 
+$$
+I_1 = e^{x + \frac{\sigma^2\tau}{2}} \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz
+$$
 
+The integral is a Gaussian tail probability with **shifted mean** $x + \sigma^2\tau$:
 
-$$x = \ln(S/K), \quad \tau = \frac{\sigma^2}{2}(T-t)$$
+$$
+\int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz = \mathbb{P}(W \geq \log K)
+$$
 
+where $W \sim \mathcal{N}(x+\sigma^2\tau, \sigma^2\tau)$.
 
+### **Step 3: Standardize**
 
-### **Substitute**
-
-
-$$u(x,\tau) = e^{-\frac{k-1}{2}x - \frac{(k+1)^2}{4}\tau}\left[e^{\frac{k+1}{2}x + \frac{(k+1)^2}{4}\tau}N(d_1') - e^{\frac{k-1}{2}x + \frac{(k-1)^2}{4}\tau}N(d_2')\right]$$
-
-
-
-where:
-
-$$d_1' = \frac{x+(k+1)\tau}{2\sqrt{\tau}}, \quad d_2' = \frac{x+(k-1)\tau}{2\sqrt{\tau}}$$
-
-
-
-Simplifying:
-
-$$u(x,\tau) = e^{x}N(d_1') - e^{-k\tau}N(d_2')$$
-
-
-
-
-$$V(S,t) = K\left[e^{\ln(S/K)}N(d_1') - e^{-k\tau}N(d_2')\right]$$
-
-
-
-
-$$= S N(d_1') - Ke^{-k\tau}N(d_2')$$
-
-
-
-### **Converting $d_1'$ and $d_2'$**
-
-Recall $k = \frac{2r}{\sigma^2}$ and $\tau = \frac{\sigma^2}{2}(T-t)$:
-
-
-$$k\tau = \frac{2r}{\sigma^2} \cdot \frac{\sigma^2}{2}(T-t) = r(T-t)$$
-
-
-
-
-$$d_1' = \frac{\ln(S/K) + (k+1)\tau}{2\sqrt{\tau}} = \frac{\ln(S/K) + k\tau + \tau}{2\sqrt{\tau}}$$
-
-
-
-
-$$= \frac{\ln(S/K) + r(T-t) + \frac{\sigma^2}{2}(T-t)}{2\sqrt{\frac{\sigma^2}{2}(T-t)}} = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}$$
-
-
-
-
-$$d_2' = \frac{\ln(S/K) + (k-1)\tau}{2\sqrt{\tau}} = \frac{\ln(S/K) + r(T-t) - \frac{\sigma^2}{2}(T-t)}{\sigma\sqrt{T-t}}$$
-
-
-
-
-$$= d_1' - \sigma\sqrt{T-t}$$
-
-
-
-### **Black-Scholes Formula**
-
-
-$$\boxed{C(S,t) = SN(d_1) - Ke^{-r(T-t)}N(d_2)}$$
-
-
-
-where:
-
-$$\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}}$$
-
-
-
-**We've recovered the Black-Scholes formula through pure PDE methods!**
-
----
-
-## **8. Put Option via Heat Equation**
-
-For the put, the initial condition is:
-
-$$w(x,0) = \begin{cases}
-e^{\frac{k-1}{2}x} - e^{\frac{k+1}{2}x} & x < 0 \\
-0 & x \geq 0
-\end{cases}$$
-
-
-
-Following similar calculations:
-
-$$w(x,\tau) = \int_{-\infty}^0\left[e^{\frac{k-1}{2}y} - e^{\frac{k+1}{2}y}\right]G(x-y,\tau)dy$$
-
-
-
-This gives:
-
-$$\boxed{P(S,t) = Ke^{-r(T-t)}N(-d_2) - SN(-d_1)}$$
-
-
-
-Alternatively, use **put-call parity**:
-
-$$P = C - S + Ke^{-r(T-t)}$$
-
-
-
----
-
-## **9. Properties of the Heat Kernel**
-
-### **Self-Similarity**
-
-The heat kernel exhibits **scaling invariance**:
-
-$$G(x,\tau) = \frac{1}{\sqrt{\tau}}g\left(\frac{x}{\sqrt{\tau}}\right)$$
-
-
-
-where $g(\xi) = \frac{1}{\sqrt{4\pi}}e^{-\xi^2/4}$.
-
-This is why the solution depends on $\frac{x}{\sqrt{\tau}}$ — the **similarity variable**.
-
-### **Semigroup Property**
-
-
-$$\int_{-\infty}^{\infty}G(x-y,\tau_1)G(y-z,\tau_2)dy = G(x-z,\tau_1+\tau_2)$$
-
-
-
-The heat equation generates a **diffusion semigroup**.
-
-### **Maximum Principle**
-
-If $w(x,0) \geq 0$, then $w(x,\tau) \geq 0$ for all $\tau > 0$.
-
-This ensures option prices remain non-negative.
-
-### **Smoothing Property**
-
-Even if $w(x,0)$ is discontinuous (like the call payoff), $w(x,\tau)$ is **infinitely differentiable** for $\tau > 0$.
-
-This is why option values are smooth even though payoffs have kinks.
-
----
-
-## **10. Connection to Similarity Solutions**
-
-### **Similarity Variable**
+$$
+\begin{aligned}
+\mathbb{P}(W \geq \log K) &= \mathbb{P}\left(\frac{W - (x+\sigma^2\tau)}{\sigma\sqrt{\tau}} \geq \frac{\log K - (x+\sigma^2\tau)}{\sigma\sqrt{\tau}}\right) \\
+&= \mathbb{P}\left(Z \geq \frac{\log K - x - \sigma^2\tau}{\sigma\sqrt{\tau}}\right) \\
+&= \mathcal{N}\left(\frac{x + \sigma^2\tau - \log K}{\sigma\sqrt{\tau}}\right)
+\end{aligned}
+$$
 
 Define:
+$$
+\boxed{d_1 = \frac{x + \sigma^2\tau - \log K}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}}
+$$
 
-$$\xi = \frac{x}{\sqrt{4\tau}}$$
-
-
-
-The heat equation becomes an ODE:
-
-$$\frac{d^2 g}{d\xi^2} + 2\xi\frac{dg}{d\xi} = 0$$
-
-
-
-Integrating:
-
-$$\frac{dg}{d\xi} = Ce^{-\xi^2}$$
-
-
-
-
-$$g(\xi) = C_1\int_{-\infty}^{\xi}e^{-s^2}ds + C_2 = C_1\sqrt{\pi}\text{erf}(\xi) + C_2$$
-
-
-
-This connects to the error function structure in Black-Scholes!
-
-### **In Original Variables**
-
-With $\xi = \frac{\ln(S/K) + (r \pm \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}$, we get:
-
-
-$$C \propto \text{erf}(d_1) - \text{erf}(d_2) = N(d_1) - N(d_2)$$
-
-
-
-(up to normalizations and transformations).
+Therefore:
+$$
+I_1 = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1)
+$$
 
 ---
 
-## **11. Why This Transformation Works: Deep Insight**
+## 11. Synthesis: Black-Scholes Formula
 
-### **Geometric Brownian Motion → Arithmetic Brownian Motion**
+### **Forward Value**
 
-The logarithmic change $x = \ln(S/K)$ converts:
-- **GBM**: $dS = \mu S dt + \sigma S dW$
-- **ABM**: $dx = (\mu - \frac{\sigma^2}{2})dt + \sigma dW$
+Combining $I_1$ and $I_2$:
+$$
+F(x,\tau) = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1) - K\mathcal{N}(d_2)
+$$
 
-ABM has **constant coefficients**, making it amenable to Fourier/heat equation methods.
+### **Transform Back to Original Variables**
 
-### **Time Reversal**
+Recall:
+- $x = \log S + (r - \frac{1}{2}\sigma^2)\tau$
+- $e^x = Se^{(r - \frac{1}{2}\sigma^2)\tau}$
 
-The transformation $\tau = T - t$ reverses time, converting:
-- **Backward parabolic PDE** (initial value problem)
-- **Forward parabolic PDE** (Cauchy problem)
+Therefore:
+$$
+e^{x + \frac{\sigma^2\tau}{2}} = Se^{(r - \frac{1}{2}\sigma^2)\tau + \frac{\sigma^2\tau}{2}} = Se^{r\tau}
+$$
 
-Standard heat equation theory solves forward problems.
+Substituting:
+$$
+F(x,\tau) = Se^{r\tau}\mathcal{N}(d_1) - K\mathcal{N}(d_2)
+$$
 
-### **Exponential Transformation Removes Drift/Decay**
+### **Discount Back**
 
-The ansatz $u = e^{\alpha x + \beta \tau}w$ is a **similarity transformation** that:
-- Removes the first-order drift term (setting $\alpha$)
-- Removes the zeroth-order decay term (setting $\beta$)
+Since $V = Fe^{-r\tau}$:
+$$
+\boxed{V(S,t) = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}
+$$
 
-This is analogous to "changing to the moving frame" in wave equations.
+where $\tau = T - t$ and:
 
-### **Universal Heat Kernel**
+$$
+\boxed{d_1 = \frac{\log(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}
+$$
 
-All parabolic PDEs with constant coefficients reduce to the heat equation, which has a **universal solution** — the Gaussian kernel. This is why:
+$$
+\boxed{d_2 = d_1 - \sigma\sqrt{\tau} = \frac{\log(S/K) + (r - \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}
+$$
 
-
-$$\text{Option Pricing} \leftrightarrow \text{Gaussian Integrals}$$
-
-
-
----
-
-## **12. Extensions**
-
-### **Time-Dependent Volatility**
-
-If $\sigma = \sigma(t)$, define:
-
-$$\tau = \frac{1}{2}\int_t^T \sigma^2(s)ds$$
-
-
-
-The transformation still works with **integrated variance**.
-
-### **Dividends**
-
-Replace $r$ with $r - q$ throughout. The parameter becomes:
-
-$$k = \frac{2(r-q)}{\sigma^2}$$
-
-
-
-### **Barrier Options**
-
-For knock-out barriers, add **boundary conditions** to the heat equation:
-
-$$w(x_B, \tau) = 0$$
-
-
-
-Use the **method of images** or **eigenfunction expansion**.
-
-### **American Options**
-
-The **free boundary problem** becomes:
-
-$$\max\left\{\frac{\partial w}{\partial \tau} - \frac{\partial^2 w}{\partial x^2}, w - g(x,\tau)\right\} = 0$$
-
-
-
-This is a **Stefan problem** in heat equation theory.
+This is the **Black-Scholes formula** for a European call option.
 
 ---
 
-## **13. Numerical Advantages**
+## 12. Interpretation
 
-The heat equation transformation enables:
+### **Probabilistic Meaning**
 
-### **Finite Difference Schemes**
+$$
+C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+$$
 
-Discretize on uniform $(x, \tau)$ grid:
-- **Explicit**: $w_j^{n+1} = w_j^n + \lambda(w_{j+1}^n - 2w_j^n + w_{j-1}^n)$
-- **Implicit (Crank-Nicolson)**: More stable, unconditionally convergent
+**Term 1**: $S_0\mathcal{N}(d_1)$
+- Expected stock value **conditional on exercise** under the stock measure
+- $\mathcal{N}(d_1)$ is the probability of exercise under a measure where the stock is the numeraire
 
-### **Spectral Methods**
+**Term 2**: $Ke^{-rT}\mathcal{N}(d_2)$
+- Expected discounted strike payment
+- $\mathcal{N}(d_2)$ is the probability of exercise under the risk-neutral measure
 
-Expand in Hermite polynomials (natural basis for heat equation):
+### **Connection to Diffusion**
 
-$$w(x,\tau) = \sum_{n=0}^{\infty}c_n(\tau)H_n(x)e^{-x^2/2}$$
+The heat equation derivation reveals:
+- Option pricing ≡ Diffusion of payoff backward in time
+- Green's function = Transition density of log-price under Brownian motion
+- Black-Scholes formula = Weighted average of terminal payoffs over Gaussian distribution
 
-
-
-where $H_n$ are Hermite polynomials.
-
-### **Fast Fourier Transform**
-
-Since solution is a convolution with Gaussian kernel:
-
-$$w(x,\tau) = G * f$$
-
-
-
-Use FFT for $O(N\log N)$ computation instead of $O(N^2)$.
+**Physical analogy**: If the option payoff were a temperature distribution at maturity, the current value is how that temperature has "diffused backward in time."
 
 ---
 
-## **Summary: The Transformation Chain**
+## 13. Summary
 
+The heat equation approach provides a complete analytical derivation of the Black-Scholes formula:
 
-$$\begin{align}
-&\text{Black-Scholes PDE in } (S,t) \\
-&\quad\downarrow \quad x = \ln(S/K), \tau = \frac{\sigma^2}{2}(T-t) \\
-&\text{Modified heat equation with drift/decay} \\
-&\quad\downarrow \quad u = e^{\alpha x + \beta\tau}w \\
-&\text{Standard heat equation: } \frac{\partial w}{\partial \tau} = \frac{\partial^2 w}{\partial x^2} \\
-&\quad\downarrow \quad \text{Convolution with heat kernel} \\
-&w(x,\tau) = \int G(x-y,\tau)f(y)dy \\
-&\quad\downarrow \quad \text{Gaussian integrals} \\
-&w(x,\tau) = e^{\cdots}N(d_1) - e^{\cdots}N(d_2) \\
-&\quad\downarrow \quad \text{Reverse transformations} \\
-&\boxed{C(S,t) = SN(d_1) - Ke^{-r(T-t)}N(d_2)}
-\end{align}$$
+### **Key Steps**
 
+1. **Transform**: BS PDE → Heat equation via change of variables $(S,t) \to (x,\tau)$ and $V \to F$
 
+2. **Recognize**: Heat equation has known Green's function (Gaussian kernel)
 
-This method reveals that **Black-Scholes is fundamentally a heat diffusion problem** in logarithmic price space!
+3. **Apply superposition**: Solution is convolution of initial condition with Green's function
 
-Would you like me to explore:
-- Detailed finite difference implementation of the heat equation
-- Method of images for barrier options
-- Eigenfunction expansion for exotic payoffs
-- Connection to Fourier transforms and characteristic functions?
+4. **Evaluate integrals**: Use completing the square for Gaussian integrals
+
+5. **Transform back**: Return to original variables $(S,t)$ and discount
+
+### **Advantages**
+
+- **Explicit solution**: Closed-form formula obtained analytically
+- **Clear probabilistic interpretation**: Connection to Brownian motion apparent
+- **Classical PDE theory**: Connects to well-studied heat/diffusion equations
+- **Generalizable**: Extends to other parabolic PDEs and payoffs
+
+### **Limitations**
+
+- **European options only**: Requires fixed terminal condition
+- **Smooth payoffs work best**: Discontinuous payoffs require distribution theory
+- **Limited flexibility**: Less adaptable than numerical methods for exotics
+
+### **Theoretical Significance**
+
+This derivation reveals the fundamental triad in quantitative finance:
+
+```
+Stochastic Processes (Brownian motion)
+         ↕
+    PDE Theory (Heat equation)
+         ↕
+  Probability (Gaussian distributions)
+```
+
+The heat equation method demonstrates that these three perspectives are **mathematically equivalent**, each providing complementary insights into derivative pricing.
