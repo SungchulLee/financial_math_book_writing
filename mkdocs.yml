@@ -437,7 +437,12 @@ nav:
           - Overfitting and False Discovery: ch11/limits_of_learning_in_finance/overfitting_and_false_discovery.md
           - Theoretical Impossibility Results: ch11/limits_of_learning_in_finance/theoretical_impossibility_results.md
 
-  - Appendix Python Codes:
+  - Appendix Python Codes: 
+      - 1.4 Itô Calculus:
+          - Taylor Expansion (Linear, One Variable): python_codes/APPROXIMATE_ONE_VARIABLE_FUNCTION_LINEARLY.py
+          - Taylor Expansion (Linear, Two Variables): python_codes/APPROXIMATE_TWO_VARIABLE_FUNCTION_LINEARLY.py
+          - Taylor Expansion (Quadratic, One Variable): python_codes/APPROXIMATE_ONE_VARIABLE_FUNCTION_QUADRATICALLY.py
+          - Taylor Expansion (Quadratic, Two Variables): python_codes/APPROXIMATE_TWO_VARIABLE_FUNCTION_QUADRATICALLY.py
 
 
 
