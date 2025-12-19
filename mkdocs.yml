@@ -16,7 +16,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  - Chapter 1 Diffusion Process:
+  - Chapter 1 Brownian Motion:
       - 1.1 Brownian Motion:
           - Random Walk: ch01/brownian_motion/random_walk_foundations.md  
           - Donsker's Theorem: ch01/brownian_motion/donsker_theorem.md                
@@ -26,16 +26,18 @@ nav:
           - Moments of Brownian Motion: ch01/brownian_motion/moments_of_brownian_motion.md  
           - Reflection Principle: ch01/brownian_motion/reflection_principle_of_brownian_motion.md  
           - Brownian Motion Simulations: ch01/brownian_motion/brownian_motion_simulations.md
-          - Exercise: ch01/brownian_motion/exercise.md  # NEW
+          - Exercise: ch01/brownian_motion/exercise.md  
       - 1.2 Martingale:
           - Filtration: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
           - Martingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
-          - Brownian Motion Martingales: ch01/filtration_and_martingales/brownian_motion_martingales.md  # ← NEW
+          - Brownian Motion Martingales: ch01/filtration_and_martingales/brownian_motion_martingales.md  
           - Doob–Meyer Decomposition: ch01/filtration_and_martingales/doob_meyer_decomposition.md
           - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
           - Optional Sampling Theorem: ch01/filtration_and_martingales/optional_sampling_theorem.md
-          - Exercise: ch01/filtration_and_martingales/exercise.md  # NEW
-      - 1.3 Itô Integration:
+          - Exercise: ch01/filtration_and_martingales/exercise.md  
+
+  - Chapter 2 SDE:
+      - 2.1 Itô Integration:
           - Quadratic Variation: ch01/ito_integral/quadratic_variation.md
           - Lebesgue Integral (Intuitive): ch01/ito_integral/lebesgue_integration_intuitive.md  # NEW
           - Itô Integral (Intuitive): ch01/ito_integral/ito_integration_intuitive.md  # NEW
@@ -45,7 +47,7 @@ nav:
           - Itô Processes: ch01/ito_integral/ito_processes.md  # New
           - Stratonovich Integral: ch01/ito_integral/stratonovich_integration.md  # NEW
           - Exercise: ch01/ito_integral/exercise.md  # NEW
-      - 1.4 Itô Calculus:
+      - 2.2 Itô Formula:
           - Taylor Expansion (Linear): ch01/ito_lemma/taylor_expansion_linear.md
           - Taylor Expansion (Quadratic): ch01/ito_lemma/taylor_expansion_quadratic.md
           - from Taylor to Itô: ch01/ito_lemma/from_taylor_to_ito.md
@@ -56,386 +58,392 @@ nav:
           - Integration by Parts: ch01/ito_lemma/ito_integration_by_parts.md  # NEW
           - Itô Quotient Rule: ch01/ito_lemma/ito_quotient_rule.md
           - Applications and Examples: ch01/ito_lemma/ito_calculus_applications.md  # NEW
-      - 1.5 Diffusion Process:
+      - 2.3 Diffusion Process:
           - Diffusion Process Overview: ch01/diffusion_process/diffusion_process_overview.md
           - SDE: ch01/diffusion_process/stochastic_differential_equations.md
-          - Existence and Uniqueness: ch01/diffusion_process/existence_and_uniqueness_of_sdes.md
           - Strong Markov Property: ch01/diffusion_process/strong_markov_property.md
-          - Invariant Measures and Stationarity: ch01/diffusion_process/invariant_measures_and_stationarity.md
+          - Invariant Measures: ch01/diffusion_process/invariant_measures_and_stationarity.md
           - Time Reversal of Diffusions: ch01/diffusion_process/time_reversal_of_diffusions.md
           - Stroock–Varadhan Problem: ch01/diffusion_process/martingale_problem_stroock_varadhan.md
-          - Small Noise and Large Deviations: ch01/diffusion_process/small_noise_and_large_deviations.md
-      - 1.6  Infinitesimal Generator:
+          - Large Deviations: ch01/diffusion_process/small_noise_and_large_deviations.md
+      - 2.4 Existence & Uniqueness:
+          - Existence and Uniqueness: ch01/diffusion_process/existence_and_uniqueness_of_sdes.md
+      - 2.5 Infinitesimal Generator:
           - Infinitesimal Generator: ch01/infinitesimal_generator/infinitesimal_generator.md
           - Dynkin's Formula: ch01/infinitesimal_generator/dynkin_formula.md
           - Generator and Martingale: ch01/infinitesimal_generator/generator_and_martingales.md
           - Applications of Dynkin: ch01/infinitesimal_generator/applications_of_dynkin.md
-      - 1.7 Connection to PDE:
+  
+  - Chapter 3 PDEs and Change of Measure:
+      - 3.1 Kolmogorov Equation:
           - Kolmogorov Forward Eq: ch01/connection_to_pde/kolmogorov_forward_equation.md
           - Kolmogorov Backward Eq: ch01/connection_to_pde/kolmogorov_backward_equation.md
+      - 3.2 Feynman–Kac Formula:
           - Feynman–Kac Overview: ch01/connection_to_pde/feynman_kac_overview.md
           - FK Terminal Payoff: ch01/connection_to_pde/feynman_kac_discounted_terminal.md
           - FK Running Payoff: ch01/connection_to_pde/feynman_kac_running_payoff.md
           - Feynman–Kac Applications: ch01/connection_to_pde/feynman_kac_applications_and_duality.md
-      - 1.8 Change of Measure:
+      - 3.3 Connection to Pricing PDEs:
+      - 3.4 Change of Measure:
           - Local Martingale: ch01/change_of_measure/local_martingale.md
           - Stochastic Exponential: ch01/change_of_measure/stochastic_exponential.md 
           - Martingale Repr Theorem: ch01/change_of_measure/martingale_representation_theorem.md
           - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
   
-  - Chapter 2 BS Model:
-      - 2.1 Binomial Model: 
-          - Binomial Model: ch02/binomial_asset_pricing_model/binomial_asset_pricing_model.md
-          - No-Arbitrage: ch02/binomial_asset_pricing_model/one_period_no_arbitrage.md
-          - Replicating Portfolio: ch02/binomial_asset_pricing_model/replicating_portfolio_pricing.md
-          - Risk-Neutral Probability: ch02/binomial_asset_pricing_model/risk_neutral_probability.md
-          - Martingale Pricing: ch02/binomial_asset_pricing_model/martingale_pricing_view.md
-          - Arrow–Debreu State Prices: ch02/binomial_asset_pricing_model/arrow_debreu_state_prices.md
-          - How to Build Tree: ch02/binomial_asset_pricing_model/binomial_tree_construction.md
-          - One-Period Option Pricing: ch02/binomial_asset_pricing_model/one_period_option_pricing.md  # NEW
-          - Multi-Period Binomial Tree: ch02/binomial_asset_pricing_model/multi_period_binomial_tree.md
-          - Multi-Period Option Pricing: ch02/binomial_asset_pricing_model/multi_period_option_pricing.md  # NEW 
-          - Delta Hedging: ch02/binomial_asset_pricing_model/delta_hedging_in_binomial_model.md  # NEW
-          - Binary Decomposition: ch02/binomial_asset_pricing_model/binary_quanto_decomposition.md  # NEW 
-          - Binomial to Black–Scholes: ch02/binomial_asset_pricing_model/binomial_to_black_scholes_limit.md
-          - Exercise: ch02/binomial_asset_pricing_model/exercise.md
-      - 2.2 FTAP:
-          - FTAP: ch02/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
-          - Separating Hyperplane Theorem: ch02/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
-      - 2.3 Black-Scholes Model:  # NEW SECTION
-          - Introduction and Motivation: ch02/black_scholes_model/introduction.md
-          - Model Assumptions: ch02/black_scholes_model/assumptions.md
-          - Limitations and Extensions: ch02/black_scholes_model/limitations_extensions.md
-      - 2.4 BS PDE Derivation:
-          - Delta Hedging: ch02/bs_pde_derivation/delta_hedging.md
-          - Risk-Neutral Measure: ch02/bs_pde_derivation/risk_neutral_martingale_measure.md
-          - Change of Numeraire: ch02/bs_pde_derivation/change_of_numeraire.md
-          - Equilibrium: ch02/bs_pde_derivation/equilibrium.md
-      - 2.5 Black-Scholes Formula:
-          - The Formula: ch02/black_scholes_formula/bs_formula_statement.md
-          - Probabilistic Interpretation: ch02/black_scholes_formula/probabilistic_interpretation.md
-          - Put-Call Parity: ch02/black_scholes_formula/put_call_parity.md
-          - Asymptotic Behavior: ch02/black_scholes_formula/asymptotic_behavior.md
-          - Properties and Bounds: ch02/black_scholes_formula/properties_and_bounds.md
-          - Computational Examples: ch02/black_scholes_formula/computational_examples.md
-      - 2.6 BS PDE Analytic Sol:
-          - Heat Equation: ch02/bs_pde_analytic_solution/heat_equation.md
-          - Separation of Variables: ch02/bs_pde_analytic_solution/separation_of_variables.md
-          - Similarity Solutions: ch02/bs_pde_analytic_solution/similarity_solutions.md
-          - Fourier Transform: ch02/bs_pde_analytic_solution/fourier_transform.md
-          - Mellin Transform: ch02/bs_pde_analytic_solution/mellin_transform.md
-          - Laplace Transform (in Time): ch02/bs_pde_analytic_solution/laplace_transform_in_time.md
-          - Feynman-Kac Formula: ch02/bs_pde_analytic_solution/feynman_kac.md
-          - Change of Numeraire: ch02/bs_pde_analytic_solution/change_of_numeraire.md
-          - Viscosity Solutions: ch02/bs_pde_analytic_solution/viscosity_solutions.md
-      - 2.7 BS PDE Numerical Sol:
-          - Finite Difference Methods: ch02/bs_pde_numerical_solution/finite_difference_methods.md
-          - Explicit, Implicit, and Crank–Nicolson Schemes: ch02/bs_pde_numerical_solution/explicit_implicit_crank_nicolson_schemes.md
-          - Stability, Consistency, and Convergence: ch02/bs_pde_numerical_solution/stability_consistency_convergence.md
-          - Boundary and Terminal Conditions: ch02/bs_pde_numerical_solution/boundary_and_terminal_conditions.md
-          - Free Boundary Problems (American Options): ch02/bs_pde_numerical_solution/free_boundary_problems_american_options.md
-          - Monotone Schemes and Viscosity Solutions: ch02/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
-      - 2.8 Extensions of BS Model:
-          - Local Volatility Models: ch02/extensions_black_scholes/local_volatility_models.md
-          - Stochastic Volatility Models: ch02/extensions_black_scholes/stochastic_volatility_models.md
-          - Jump-Diffusion Models: ch02/extensions_black_scholes/jump_diffusion_models.md
-          - Incomplete Markets and Pricing Bounds: ch02/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md
+  - Chapter 4 BS Model:
+      - 4.1 Binomial Model: 
+          - Binomial Model: ch04/binomial_asset_pricing_model/binomial_asset_pricing_model.md
+          - No-Arbitrage: ch04/binomial_asset_pricing_model/one_period_no_arbitrage.md
+          - Replicating Portfolio: ch04/binomial_asset_pricing_model/replicating_portfolio_pricing.md
+          - Risk-Neutral Probability: ch04/binomial_asset_pricing_model/risk_neutral_probability.md
+          - Martingale Pricing: ch04/binomial_asset_pricing_model/martingale_pricing_view.md
+          - Arrow–Debreu State Prices: ch04/binomial_asset_pricing_model/arrow_debreu_state_prices.md
+          - How to Build Tree: ch04/binomial_asset_pricing_model/binomial_tree_construction.md
+          - One-Period Option Pricing: ch04/binomial_asset_pricing_model/one_period_option_pricing.md  # NEW
+          - Multi-Period Binomial Tree: ch04/binomial_asset_pricing_model/multi_period_binomial_tree.md
+          - Multi-Period Option Pricing: ch04/binomial_asset_pricing_model/multi_period_option_pricing.md  # NEW 
+          - Delta Hedging: ch04/binomial_asset_pricing_model/delta_hedging_in_binomial_model.md  # NEW
+          - Binary Decomposition: ch04/binomial_asset_pricing_model/binary_quanto_decomposition.md  # NEW 
+          - Binomial to Black–Scholes: ch04/binomial_asset_pricing_model/binomial_to_black_scholes_limit.md
+          - Exercise: ch04/binomial_asset_pricing_model/exercise.md
+      - 4.2 FTAP:
+          - FTAP: ch04/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
+          - Separating Hyperplane Theorem: ch04/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
+          - Numéraire and Change of Measure: ch04/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md
+      - 4.3 Black-Scholes Model:  
+          - Introduction and Motivation: ch04/black_scholes_model/introduction.md
+          - Model Assumptions: ch04/black_scholes_model/assumptions.md
+          - Limitations and Extensions: ch04/black_scholes_model/limitations_extensions.md
+      - 4.4 BS PDE Derivation:
+          - Delta Hedging: ch04/bs_pde_derivation/delta_hedging.md
+          - Risk-Neutral Measure: ch04/bs_pde_derivation/risk_neutral_martingale_measure.md
+          - Change of Numeraire: ch04/bs_pde_derivation/change_of_numeraire.md
+          - Equilibrium: ch04/bs_pde_derivation/equilibrium.md
+      - 4.5 Black-Scholes Formula:
+          - The Formula: ch04/black_scholes_formula/bs_formula_statement.md
+          - Probabilistic Interpretation: ch04/black_scholes_formula/probabilistic_interpretation.md
+          - Put-Call Parity: ch04/black_scholes_formula/put_call_parity.md
+          - Asymptotic Behavior: ch04/black_scholes_formula/asymptotic_behavior.md
+          - Properties and Bounds: ch04/black_scholes_formula/properties_and_bounds.md
+          - Computational Examples: ch04/black_scholes_formula/computational_examples.md
+      - 4.6 BS PDE Analytic Sol:
+          - Heat Equation: ch04/bs_pde_analytic_solution/heat_equation.md
+          - Separation of Variables: ch04/bs_pde_analytic_solution/separation_of_variables.md
+          - Similarity Solutions: ch04/bs_pde_analytic_solution/similarity_solutions.md
+          - Fourier Transform: ch04/bs_pde_analytic_solution/fourier_transform.md
+          - Mellin Transform: ch04/bs_pde_analytic_solution/mellin_transform.md
+          - Laplace Transform (in Time): ch04/bs_pde_analytic_solution/laplace_transform_in_time.md
+          - Feynman-Kac Formula: ch04/bs_pde_analytic_solution/feynman_kac.md
+          - Change of Numeraire: ch04/bs_pde_analytic_solution/change_of_numeraire.md
+          - Viscosity Solutions: ch04/bs_pde_analytic_solution/viscosity_solutions.md
+      - 4.7 BS PDE Numerical Sol:
+          - Finite Difference Methods: ch04/bs_pde_numerical_solution/finite_difference_methods.md
+          - Explicit, Implicit, and Crank–Nicolson Schemes: ch04/bs_pde_numerical_solution/explicit_implicit_crank_nicolson_schemes.md
+          - Stability, Consistency, and Convergence: ch04/bs_pde_numerical_solution/stability_consistency_convergence.md
+          - Boundary and Terminal Conditions: ch04/bs_pde_numerical_solution/boundary_and_terminal_conditions.md
+          - Free Boundary Problems (American Options): ch04/bs_pde_numerical_solution/free_boundary_problems_american_options.md
+          - Monotone Schemes and Viscosity Solutions: ch04/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
+      - 4.8 Extensions of BS Model:
+          - Local Volatility Models: ch04/extensions_black_scholes/local_volatility_models.md
+          - Stochastic Volatility Models: ch04/extensions_black_scholes/stochastic_volatility_models.md
+          - Jump-Diffusion Models: ch04/extensions_black_scholes/jump_diffusion_models.md
+          - Incomplete Markets and Pricing Bounds: ch04/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md
   
-  - Chapter 3 Greeks:
-      - 3.1 Definition of Greeks:
-          - Greeks: ch03/greeks_meaning/delta_gamma_vega_theta_rho.md
-          - Greeks as Derivatives of the Pricing Operator: ch03/greeks_meaning/greeks_as_derivatives_of_pricing_operator.md
-          - Greeks via the Infinitesimal Generator: ch03/greeks_meaning/greeks_via_infinitesimal_generator.md
-          - Greeks and Martingale Representation: ch03/greeks_meaning/greeks_and_martingale_representation.md
-          - Greeks in BS Model: ch03/greeks_meaning/greeks_in_black_scholes_model.md
-      - 3.2 PDE Char of Greeks:
-          - Differentiating the Black–Scholes PDE: ch03/pde_greeks/differentiating_black_scholes_pde.md
-          - PDEs Satisfied by Greeks: ch03/pde_greeks/pdes_satisfied_by_greeks.md
-          - Boundary and Terminal Behavior of Greeks: ch03/pde_greeks/boundary_and_terminal_behavior_of_greeks.md
-          - Smoothness and Regularity Issues: ch03/pde_greeks/smoothness_and_regularity_issues.md
-      - 3.3 Probab Repr of Greeks:
-          - Greeks via Feynman–Kac: ch03/probabilistic_greeks/greeks_via_feynman_kac.md
-          - Pathwise Differentiation: ch03/probabilistic_greeks/pathwise_differentiation.md
-          - Likelihood Ratio (Malliavin) Methods: ch03/probabilistic_greeks/likelihood_ratio_malliavin_methods.md
-          - Sensitivities as Conditional Expectations: ch03/probabilistic_greeks/sensitivities_as_conditional_expectations.md
-      - 3.4 Asymptotic Regimes in Option Pricing:
-          - Short-Maturity Asymptotics: ch03/asymptotic_regimes/short_maturity_asymptotics.md
-          - Large-Strike and Small-Strike Asymptotics: ch03/asymptotic_regimes/large_strike_and_small_strike_asymptotics.md
-          - Small-Volatility Asymptotics: ch03/asymptotic_regimes/small_volatility_asymptotics.md
-          - Large-Time Behavior and Ergodicity: ch03/asymptotic_regimes/large_time_behavior_and_ergodicity.md
-      - 3.5 Asymptotics of Greeks:
-          - Blow-Up of Gamma Near Expiry: ch03/asymptotics_of_greeks/blow_up_of_gamma_near_expiry.md
-          - Vega Asymptotics and Smile Sensitivity: ch03/asymptotics_of_greeks/vega_asymptotics_and_smile_sensitivity.md
-          - Delta Behavior Near the Money: ch03/asymptotics_of_greeks/delta_behavior_near_the_money.md
-          - Scaling Laws for Greeks: ch03/asymptotics_of_greeks/scaling_laws_for_greeks.md
-      - 3.6 Hedging Errors and Second-Order Effects:
-          - Discrete-Time Hedging Error: ch03/hedging_errors/discrete_time_hedging_error.md
-          - Gamma Risk and Convexity Effects: ch03/hedging_errors/gamma_risk_and_convexity_effects.md
-          - Impact of Volatility Misspecification: ch03/hedging_errors/impact_of_volatility_misspecification.md
-          - Asymptotic Hedging Error Expansions: ch03/hedging_errors/asymptotic_hedging_error_expansions.md
-      - 3.7 Trading Strategies Based on Greeks:
-          - Delta-Neutral Strategies: ch03/trading_strategies/delta_neutral_strategies.md
-          - Gamma Scalping: ch03/trading_strategies/gamma_scalping.md
-          - Vega Trading and Volatility Bets: ch03/trading_strategies/vega_trading_and_volatility_bets.md
-          - Theta Decay and Carry Trades: ch03/trading_strategies/theta_decay_and_carry_trades.md
-          - Static vs Dynamic Hedging: ch03/trading_strategies/static_vs_dynamic_hedging.md
-      - 3.8 Asymptotic Trading Strategies:
-          - Short-Time Gamma Exploitation: ch03/asymptotic_trading/short_time_gamma_exploitation.md
-          - Volatility Arbitrage via Vega Asymptotics: ch03/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
-          - Smile Trading and Skew Bets: ch03/asymptotic_trading/smile_trading_and_skew_bets.md
-          - Regime-Based Strategy Design: ch03/asymptotic_trading/regime_based_strategy_design.md
-      - 3.9 Model Risk and Practical Limitations:
-          - Instability of Higher-Order Greeks: ch03/model_risk/instability_of_higher_order_greeks.md
-          - Transaction Costs and Liquidity Effects: ch03/model_risk/transaction_costs_and_liquidity_effects.md
-          - Breakdown of Continuous-Time Hedging: ch03/model_risk/breakdown_of_continuous_time_hedging.md
-          - Robustness vs Optimality: ch03/model_risk/robustness_vs_optimality.md
+  - Chapter 5 Greeks:
+      - 5.1 Definition of Greeks:
+          - Greeks: ch05/greeks_meaning/delta_gamma_vega_theta_rho.md
+          - Greeks as Derivatives of the Pricing Operator: ch05/greeks_meaning/greeks_as_derivatives_of_pricing_operator.md
+          - Greeks via the Infinitesimal Generator: ch05/greeks_meaning/greeks_via_infinitesimal_generator.md
+          - Greeks and Martingale Representation: ch05/greeks_meaning/greeks_and_martingale_representation.md
+          - Greeks in BS Model: ch05/greeks_meaning/greeks_in_black_scholes_model.md
+      - 5.2 PDE Char of Greeks:
+          - Differentiating the Black–Scholes PDE: ch05/pde_greeks/differentiating_black_scholes_pde.md
+          - PDEs Satisfied by Greeks: ch05/pde_greeks/pdes_satisfied_by_greeks.md
+          - Boundary and Terminal Behavior of Greeks: ch05/pde_greeks/boundary_and_terminal_behavior_of_greeks.md
+          - Smoothness and Regularity Issues: ch05/pde_greeks/smoothness_and_regularity_issues.md
+      - 5.3 Probab Repr of Greeks:
+          - Greeks via Feynman–Kac: ch05/probabilistic_greeks/greeks_via_feynman_kac.md
+          - Pathwise Differentiation: ch05/probabilistic_greeks/pathwise_differentiation.md
+          - Likelihood Ratio (Malliavin) Methods: ch05/probabilistic_greeks/likelihood_ratio_malliavin_methods.md
+          - Sensitivities as Conditional Expectations: ch05/probabilistic_greeks/sensitivities_as_conditional_expectations.md
+      - 5.4 Asymptotic Regimes in Option Pricing:
+          - Short-Maturity Asymptotics: ch05/asymptotic_regimes/short_maturity_asymptotics.md
+          - Large-Strike and Small-Strike Asymptotics: ch05/asymptotic_regimes/large_strike_and_small_strike_asymptotics.md
+          - Small-Volatility Asymptotics: ch05/asymptotic_regimes/small_volatility_asymptotics.md
+          - Large-Time Behavior and Ergodicity: ch05/asymptotic_regimes/large_time_behavior_and_ergodicity.md
+      - 5.5 Asymptotics of Greeks:
+          - Blow-Up of Gamma Near Expiry: ch05/asymptotics_of_greeks/blow_up_of_gamma_near_expiry.md
+          - Vega Asymptotics and Smile Sensitivity: ch05/asymptotics_of_greeks/vega_asymptotics_and_smile_sensitivity.md
+          - Delta Behavior Near the Money: ch05/asymptotics_of_greeks/delta_behavior_near_the_money.md
+          - Scaling Laws for Greeks: ch05/asymptotics_of_greeks/scaling_laws_for_greeks.md
+      - 5.6 Hedging Errors and Second-Order Effects:
+          - Discrete-Time Hedging Error: ch05/hedging_errors/discrete_time_hedging_error.md
+          - Gamma Risk and Convexity Effects: ch05/hedging_errors/gamma_risk_and_convexity_effects.md
+          - Impact of Volatility Misspecification: ch05/hedging_errors/impact_of_volatility_misspecification.md
+          - Asymptotic Hedging Error Expansions: ch05/hedging_errors/asymptotic_hedging_error_expansions.md
+      - 5.7 Trading Strategies Based on Greeks:
+          - Delta-Neutral Strategies: ch05/trading_strategies/delta_neutral_strategies.md
+          - Gamma Scalping: ch05/trading_strategies/gamma_scalping.md
+          - Vega Trading and Volatility Bets: ch05/trading_strategies/vega_trading_and_volatility_bets.md
+          - Theta Decay and Carry Trades: ch05/trading_strategies/theta_decay_and_carry_trades.md
+          - Static vs Dynamic Hedging: ch05/trading_strategies/static_vs_dynamic_hedging.md
+      - 5.8 Asymptotic Trading Strategies:
+          - Short-Time Gamma Exploitation: ch05/asymptotic_trading/short_time_gamma_exploitation.md
+          - Volatility Arbitrage via Vega Asymptotics: ch05/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
+          - Smile Trading and Skew Bets: ch05/asymptotic_trading/smile_trading_and_skew_bets.md
+          - Regime-Based Strategy Design: ch05/asymptotic_trading/regime_based_strategy_design.md
+      - 5.9 Model Risk and Practical Limitations:
+          - Instability of Higher-Order Greeks: ch05/model_risk/instability_of_higher_order_greeks.md
+          - Transaction Costs and Liquidity Effects: ch05/model_risk/transaction_costs_and_liquidity_effects.md
+          - Breakdown of Continuous-Time Hedging: ch05/model_risk/breakdown_of_continuous_time_hedging.md
+          - Robustness vs Optimality: ch05/model_risk/robustness_vs_optimality.md
  
-  - Chapter 4 Implied Volatility:
-      - 4.1 Definition of Im Vol:
-          - Implied Volatility as Inverse Pricing Map: ch04/definition_of_implied_volatility/implied_volatility_as_inverse_pricing_map.md
-          - Existence and Uniqueness: ch04/definition_of_implied_volatility/existence_and_uniqueness.md
-          - Arbitrage Constraints: ch04/definition_of_implied_volatility/arbitrage_constraints.md
-      - 4.2 Model-Free Results:
-          - Breeden–Litzenberger Formula: ch04/model_free_results/breeden_litzenberger_formula.md
-          - Dupire's Formula and Local Volatility Surface: ch04/model_free_results/dupire_formula_and_local_volatility_surface.md
-          - Implied Volatility and Risk-Neutral Density: ch04/model_free_results/implied_volatility_and_risk_neutral_density.md
-      - 4.3 Im Vol Surface:
-          - Term Structure: ch04/implied_volatility_surface/term_structure.md
-          - Skew and Smile: ch04/implied_volatility_surface/skew_and_smile.md
-          - Empirical Smile (SPX Example): ch04/implied_volatility_surface/empirical_smile_spx.md
-          - No-Static-Arbitrage Conditions: ch04/implied_volatility_surface/no_static_arbitrage_conditions.md
-      - 4.4 Asymptotics of Im Vol:
-          - Short-Maturity Smile Asymptotics: ch04/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
-          - Large-Strike (Wing) Asymptotics: ch04/asymptotics_of_implied_volatility/large_strike_wing_asymptotics.md
-          - ATM Expansions: ch04/asymptotics_of_implied_volatility/atm_expansions.md
-      - 4.5 Im Vol Sensitivities:
-          - Vega and Implied Volatility Sensitivity: ch04/implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md
-          - Sticky Strike vs Sticky Delta: ch04/implied_volatility_sensitivities/sticky_strike_vs_sticky_delta.md
-          - Smile Dynamics and Hedging: ch04/implied_volatility_sensitivities/smile_dynamics_and_hedging.md
-      - 4.6 Smile Dynamics:
-          - Forward Smile: ch04/smile_dynamics/forward_smile.md
-          - Dynamic Consistency: ch04/smile_dynamics/dynamic_consistency.md
-          - Empirical Stylized Facts: ch04/smile_dynamics/empirical_stylized_facts.md
+  - Chapter 6 Implied Volatility:
+      - 6.1 Definition of Im Vol:
+          - Implied Volatility as Inverse Pricing Map: ch06/definition_of_implied_volatility/implied_volatility_as_inverse_pricing_map.md
+          - Existence and Uniqueness: ch06/definition_of_implied_volatility/existence_and_uniqueness.md
+          - Arbitrage Constraints: ch06/definition_of_implied_volatility/arbitrage_constraints.md
+      - 6.2 Model-Free Results:
+          - Breeden–Litzenberger Formula: ch06/model_free_results/breeden_litzenberger_formula.md
+          - Dupire's Formula and Local Volatility Surface: ch06/model_free_results/dupire_formula_and_local_volatility_surface.md
+          - Implied Volatility and Risk-Neutral Density: ch06/model_free_results/implied_volatility_and_risk_neutral_density.md
+      - 6.3 Im Vol Surface:
+          - Term Structure: ch06/implied_volatility_surface/term_structure.md
+          - Skew and Smile: ch06/implied_volatility_surface/skew_and_smile.md
+          - Empirical Smile (SPX Example): ch06/implied_volatility_surface/empirical_smile_spx.md
+          - No-Static-Arbitrage Conditions: ch06/implied_volatility_surface/no_static_arbitrage_conditions.md
+      - 6.4 Asymptotics of Im Vol:
+          - Short-Maturity Smile Asymptotics: ch06/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
+          - Large-Strike (Wing) Asymptotics: ch06/asymptotics_of_implied_volatility/large_strike_wing_asymptotics.md
+          - ATM Expansions: ch06/asymptotics_of_implied_volatility/atm_expansions.md
+      - 6.5 Im Vol Sensitivities:
+          - Vega and Implied Volatility Sensitivity: ch06/implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md
+          - Sticky Strike vs Sticky Delta: ch06/implied_volatility_sensitivities/sticky_strike_vs_sticky_delta.md
+          - Smile Dynamics and Hedging: ch06/implied_volatility_sensitivities/smile_dynamics_and_hedging.md
+      - 6.6 Smile Dynamics:
+          - Forward Smile: ch06/smile_dynamics/forward_smile.md
+          - Dynamic Consistency: ch06/smile_dynamics/dynamic_consistency.md
+          - Empirical Stylized Facts: ch06/smile_dynamics/empirical_stylized_facts.md
   
-  - Chapter 5 Calibration:
-      - 5.1 Calibration as an Inverse Problem:
-          - Forward Pricing Map vs Inverse Calibration Map: ch05/calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md
-          - Ill-Posedness and Non-Uniqueness: ch05/calibration_as_inverse_problem/ill_posedness_and_non_uniqueness.md
-          - Identifiability of Model Parameters: ch05/calibration_as_inverse_problem/identifiability_of_model_parameters.md
-      - 5.2 Static Calibration to Vanilla Options:
-          - Calibration to Implied Volatility Surface: ch05/static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md
-          - Choice of Objective Function: ch05/static_calibration_to_vanilla_options/choice_of_objective_function.md
-          - Weighting and Market Liquidity: ch05/static_calibration_to_vanilla_options/weighting_and_market_liquidity.md
-      - 5.3 Regularization and Stability:
-          - Tikhonov Regularization: ch05/regularization_and_stability/tikhonov_regularization.md
-          - Penalization and Smoothness Constraints: ch05/regularization_and_stability/penalization_and_smoothness_constraints.md
-          - Trade-Off Between Fit and Robustness: ch05/regularization_and_stability/trade_off_between_fit_and_robustness.md
-      - 5.4 Calibration of Local Volatility:
-          - Dupire Equation as an Inverse Problem: ch05/calibration_of_local_volatility/dupire_equation_as_inverse_problem.md
-          - Noise Amplification and Smoothing: ch05/calibration_of_local_volatility/noise_amplification_and_smoothing.md
-          - Stability Issues: ch05/calibration_of_local_volatility/stability_issues.md
-      - 5.5 Dynamic Calibration and Time Consistency:
-          - Recalibration Problem: ch05/dynamic_calibration_and_time_consistency/recalibration_problem.md
-          - Forward Consistency: ch05/dynamic_calibration_and_time_consistency/forward_consistency.md
-          - Model Drift vs Parameter Drift: ch05/dynamic_calibration_and_time_consistency/model_drift_vs_parameter_drift.md
-      - 5.6 Model Risk from Calibration:
-          - Sensitivity of Prices to Calibration Error: ch05/model_risk_from_calibration/sensitivity_of_prices_to_calibration_error.md
-          - Impact on Greeks and Hedging: ch05/model_risk_from_calibration/impact_on_greeks_and_hedging.md
-          - Robust Calibration Criteria: ch05/model_risk_from_calibration/robust_calibration_criteria.md
+  - Chapter 7 Calibration:
+      - 7.1 Calibration as an Inverse Problem:
+          - Forward Pricing Map vs Inverse Calibration Map: ch07/calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md
+          - Ill-Posedness and Non-Uniqueness: ch07/calibration_as_inverse_problem/ill_posedness_and_non_uniqueness.md
+          - Identifiability of Model Parameters: ch07/calibration_as_inverse_problem/identifiability_of_model_parameters.md
+      - 7.2 Static Calibration to Vanilla Options:
+          - Calibration to Implied Volatility Surface: ch07/static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md
+          - Choice of Objective Function: ch07/static_calibration_to_vanilla_options/choice_of_objective_function.md
+          - Weighting and Market Liquidity: ch07/static_calibration_to_vanilla_options/weighting_and_market_liquidity.md
+      - 7.3 Regularization and Stability:
+          - Tikhonov Regularization: ch07/regularization_and_stability/tikhonov_regularization.md
+          - Penalization and Smoothness Constraints: ch07/regularization_and_stability/penalization_and_smoothness_constraints.md
+          - Trade-Off Between Fit and Robustness: ch07/regularization_and_stability/trade_off_between_fit_and_robustness.md
+      - 7.4 Calibration of Local Volatility:
+          - Dupire Equation as an Inverse Problem: ch07/calibration_of_local_volatility/dupire_equation_as_inverse_problem.md
+          - Noise Amplification and Smoothing: ch07/calibration_of_local_volatility/noise_amplification_and_smoothing.md
+          - Stability Issues: ch07/calibration_of_local_volatility/stability_issues.md
+      - 7.5 Dynamic Calibration and Time Consistency:
+          - Recalibration Problem: ch07/dynamic_calibration_and_time_consistency/recalibration_problem.md
+          - Forward Consistency: ch07/dynamic_calibration_and_time_consistency/forward_consistency.md
+          - Model Drift vs Parameter Drift: ch07/dynamic_calibration_and_time_consistency/model_drift_vs_parameter_drift.md
+      - 7.6 Model Risk from Calibration:
+          - Sensitivity of Prices to Calibration Error: ch07/model_risk_from_calibration/sensitivity_of_prices_to_calibration_error.md
+          - Impact on Greeks and Hedging: ch07/model_risk_from_calibration/impact_on_greeks_and_hedging.md
+          - Robust Calibration Criteria: ch07/model_risk_from_calibration/robust_calibration_criteria.md
   
-  - Chapter 6 Stochastic Vol:
-      - 6.1 Motivation Beyond Black–Scholes:
-          - Empirical Failures of Constant Volatility: ch06/motivation_beyond_black_scholes/empirical_failures_of_constant_volatility.md
-          - Smile and Term Structure Revisited: ch06/motivation_beyond_black_scholes/smile_and_term_structure_revisited.md
-          - Incompleteness of Equity Markets: ch06/motivation_beyond_black_scholes/incompleteness_of_equity_markets.md
-      - 6.2 General Stochastic Volatility Framework:
-          - Two-Factor Diffusion Models: ch06/general_stochastic_volatility_framework/two_factor_diffusion_models.md
-          - Correlation and Leverage Effect: ch06/general_stochastic_volatility_framework/correlation_and_leverage_effect.md
-          - Risk-Neutral vs Physical Measure: ch06/general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md
-      - 6.3 The Heston Model:
-          - Model Definition: ch06/the_heston_model/model_definition.md
-          - Feller Condition and Boundary Behavior: ch06/the_heston_model/feller_condition_and_boundary_behavior.md
-          - Affine Structure: ch06/the_heston_model/affine_structure.md
-      - 6.4 Pricing Under Stochastic Volatility:
-          - Characteristic Functions: ch06/pricing_under_stochastic_volatility/characteristic_functions.md
-          - Fourier Pricing Methods: ch06/pricing_under_stochastic_volatility/fourier_pricing_methods.md
-          - PDE Formulation: ch06/pricing_under_stochastic_volatility/pde_formulation.md
-      - 6.5 Calibration of Stochastic Vol Models:
-          - Parameter Identifiability Identifiability Issues: ch06/calibration_of_stochastic_volatility_models/identifiability_issues.md
-          - Volatility Risk Premium: ch06/calibration_of_stochastic_volatility_models/volatility_risk_premium.md
-          - Stability of Calibration: ch06/calibration_of_stochastic_volatility_models/stability_of_calibration.md
-          - Joint Calibration Across Strikes and Maturities: ch05/calibration_of_stochastic_volatility_models/joint_calibration_across_strikes_and_maturities.md
-      - 6.6 Hedging and Greeks Under Stochastic Volatility:
-          - Vega Risk and Vol-of-Vol: ch06/hedging_and_greeks_under_stochastic_volatility/vega_risk_and_vol_of_vol.md
-          - Incomplete Market Hedging: ch06/hedging_and_greeks_under_stochastic_volatility/incomplete_market_hedging.md
-          - Optimal Hedging Criteria: ch06/hedging_and_greeks_under_stochastic_volatility/optimal_hedging_criteria.md
-      - 6.7 Extensions and Variants:
-          - SABR Model: ch06/extensions_and_variants/sabr_model.md
-          - Rough Volatility (Overview): ch06/extensions_and_variants/rough_volatility_overview.md
-          - Multi-Factor Volatility Models: ch06/extensions_and_variants/multi_factor_volatility_models.md
+  - Chapter 8 Stochastic Vol:
+      - 8.1 Motivation Beyond Black–Scholes:
+          - Empirical Failures of Constant Volatility: ch08/motivation_beyond_black_scholes/empirical_failures_of_constant_volatility.md
+          - Smile and Term Structure Revisited: ch08/motivation_beyond_black_scholes/smile_and_term_structure_revisited.md
+          - Incompleteness of Equity Markets: ch08/motivation_beyond_black_scholes/incompleteness_of_equity_markets.md
+      - 8.2 General Stochastic Volatility Framework:
+          - Two-Factor Diffusion Models: ch08/general_stochastic_volatility_framework/two_factor_diffusion_models.md
+          - Correlation and Leverage Effect: ch08/general_stochastic_volatility_framework/correlation_and_leverage_effect.md
+          - Risk-Neutral vs Physical Measure: ch08/general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md
+      - 8.3 The Heston Model:
+          - Model Definition: ch08/the_heston_model/model_definition.md
+          - Feller Condition and Boundary Behavior: ch08/the_heston_model/feller_condition_and_boundary_behavior.md
+          - Affine Structure: ch08/the_heston_model/affine_structure.md
+      - 8.4 Pricing Under Stochastic Volatility:
+          - Characteristic Functions: ch08/pricing_under_stochastic_volatility/characteristic_functions.md
+          - Fourier Pricing Methods: ch08/pricing_under_stochastic_volatility/fourier_pricing_methods.md
+          - PDE Formulation: ch08/pricing_under_stochastic_volatility/pde_formulation.md
+      - 8.5 Calibration of Stochastic Vol Models:
+          - Parameter Identifiability Identifiability Issues: ch08/calibration_of_stochastic_volatility_models/identifiability_issues.md
+          - Volatility Risk Premium: ch08/calibration_of_stochastic_volatility_models/volatility_risk_premium.md
+          - Stability of Calibration: ch08/calibration_of_stochastic_volatility_models/stability_of_calibration.md
+          - Joint Calibration Across Strikes and Maturities: ch08/calibration_of_stochastic_volatility_models/joint_calibration_across_strikes_and_maturities.md
+      - 8.6 Hedging and Greeks Under Stochastic Volatility:
+          - Vega Risk and Vol-of-Vol: ch08/hedging_and_greeks_under_stochastic_volatility/vega_risk_and_vol_of_vol.md
+          - Incomplete Market Hedging: ch08/hedging_and_greeks_under_stochastic_volatility/incomplete_market_hedging.md
+          - Optimal Hedging Criteria: ch08/hedging_and_greeks_under_stochastic_volatility/optimal_hedging_criteria.md
+      - 8.7 Extensions and Variants:
+          - SABR Model: ch08/extensions_and_variants/sabr_model.md
+          - Rough Volatility (Overview): ch08/extensions_and_variants/rough_volatility_overview.md
+          - Multi-Factor Volatility Models: ch08/extensions_and_variants/multi_factor_volatility_models.md
   
-  - Chapter 7 Term Structure:
-      - 7.1 Yield Curves:
-          - Discount Factors and Zero Rates: ch07/zero_coupon_bonds_and_yield_curves/discount_factors_and_zero_rates.md
-          - Forward Rates and Term Structures: ch07/zero_coupon_bonds_and_yield_curves/forward_rates_and_term_structures.md
-          - No-Arbitrage Relations: ch07/zero_coupon_bonds_and_yield_curves/no_arbitrage_relations.md
-      - 7.2 Short-Rate Models:
-          - General Short-Rate Framework: ch07/short_rate_models/general_short_rate_framework.md
-          - Vasicek Model: ch07/short_rate_models/vasicek_model.md
-          - CIR Model: ch07/short_rate_models/cir_model.md
-          - Affine Term Structure: ch07/short_rate_models/affine_term_structure.md
-      - 7.3 Pricing IR Derivatives:
-          - Bond Pricing via PDEs: ch07/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
-          - Bond Pricing via Feynman–Kac: ch07/pricing_interest_rate_derivatives/bond_pricing_via_feynman_kac.md
-          - Yield Curve Dynamics: ch07/pricing_interest_rate_derivatives/yield_curve_dynamics.md
-      - 7.4 HJM Framework:
-          - Forward Rate Dynamics: ch07/heath_jarrow_morton_hjm_framework/forward_rate_dynamics.md
-          - No-Arbitrage Drift Condition: ch07/heath_jarrow_morton_hjm_framework/no_arbitrage_drift_condition.md
-          - Infinite-Dimensional SDEs: ch07/heath_jarrow_morton_hjm_framework/infinite_dimensional_sdes.md
-      - 7.5 Forward Measures:
-          - Risk-Neutral Measure: ch07/change_of_measure_and_forward_measures/risk_neutral_measure.md
-          - T-Forward Measures: ch07/change_of_measure_and_forward_measures/t_forward_measures.md
-          - Numéraire Techniques: ch07/change_of_measure_and_forward_measures/numeraire_techniques.md
-      - 7.6 Calibration of IR Models:
-          - Fitting Initial Yield Curves: ch07/calibration_of_interest_rate_models/fitting_initial_yield_curves.md
-          - Volatility Structure Calibration: ch07/calibration_of_interest_rate_models/volatility_structure_calibration.md
-          - Stability and Identifiability: ch07/calibration_of_interest_rate_models/stability_and_identifiability.md
-      - 7.7 IR Model Risk:
-          - Negative Rates and Model Breakdown: ch07/interest_rate_model_risk/negative_rates_and_model_breakdown.md
-          - Multi-Curve Issues: ch07/interest_rate_model_risk/multi_curve_issues.md
-          - Practical Limitations: ch07/interest_rate_model_risk/practical_limitations.md
+  - Chapter 9 Term Structure:
+      - 9.1 Yield Curves:
+          - Discount Factors and Zero Rates: ch09/zero_coupon_bonds_and_yield_curves/discount_factors_and_zero_rates.md
+          - Forward Rates and Term Structures: ch09/zero_coupon_bonds_and_yield_curves/forward_rates_and_term_structures.md
+          - No-Arbitrage Relations: ch09/zero_coupon_bonds_and_yield_curves/no_arbitrage_relations.md
+      - 9.2 Short-Rate Models:
+          - General Short-Rate Framework: ch09/short_rate_models/general_short_rate_framework.md
+          - Vasicek Model: ch09/short_rate_models/vasicek_model.md
+          - CIR Model: ch09/short_rate_models/cir_model.md
+          - Affine Term Structure: ch09/short_rate_models/affine_term_structure.md
+      - 9.3 Pricing IR Derivatives:
+          - Bond Pricing via PDEs: ch09/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
+          - Bond Pricing via Feynman–Kac: ch09/pricing_interest_rate_derivatives/bond_pricing_via_feynman_kac.md
+          - Yield Curve Dynamics: ch09/pricing_interest_rate_derivatives/yield_curve_dynamics.md
+      - 9.4 HJM Framework:
+          - Forward Rate Dynamics: ch09/heath_jarrow_morton_hjm_framework/forward_rate_dynamics.md
+          - No-Arbitrage Drift Condition: ch09/heath_jarrow_morton_hjm_framework/no_arbitrage_drift_condition.md
+          - Infinite-Dimensional SDEs: ch09/heath_jarrow_morton_hjm_framework/infinite_dimensional_sdes.md
+      - 9.5 Forward Measures:
+          - Risk-Neutral Measure: ch09/change_of_measure_and_forward_measures/risk_neutral_measure.md
+          - T-Forward Measures: ch09/change_of_measure_and_forward_measures/t_forward_measures.md
+          - Numéraire Techniques: ch09/change_of_measure_and_forward_measures/numeraire_techniques.md
+      - 9.6 Calibration of IR Models:
+          - Fitting Initial Yield Curves: ch09/calibration_of_interest_rate_models/fitting_initial_yield_curves.md
+          - Volatility Structure Calibration: ch09/calibration_of_interest_rate_models/volatility_structure_calibration.md
+          - Stability and Identifiability: ch09/calibration_of_interest_rate_models/stability_and_identifiability.md
+      - 9.7 IR Model Risk:
+          - Negative Rates and Model Breakdown: ch09/interest_rate_model_risk/negative_rates_and_model_breakdown.md
+          - Multi-Curve Issues: ch09/interest_rate_model_risk/multi_curve_issues.md
+          - Practical Limitations: ch09/interest_rate_model_risk/practical_limitations.md
    
-  - Chapter 8 Credit Risk:
-      - 8.1 Default as a Random Time:
-          - Stopping Times and Enlargement of Filtration: ch08/default_as_a_random_time/stopping_times_and_enlargement_of_filtration.md
-          - Progressive vs Initial Enlargement: ch08/default_as_a_random_time/progressive_vs_initial_enlargement.md
-          - Immersion (H-Hypothesis): ch08/default_as_a_random_time/immersion_h_hypothesis.md
-      - 8.2 Structural Credit Risk Models:
-          - Firm Value Models (Merton): ch08/structural_credit_risk_models/firm_value_models_merton.md
-          - First-Passage Models: ch08/structural_credit_risk_models/first_passage_models.md
-          - Equity–Credit Connection: ch08/structural_credit_risk_models/equity_credit_connection.md
-      - 8.3 Reduced-Form (Intensity-Based) Models:
-          - Default Intensity and Hazard Rates: ch08/reduced_form_intensity_based_models/default_intensity_and_hazard_rates.md
-          - Survival Probability: ch08/reduced_form_intensity_based_models/survival_probability.md
-          - Compensators and Martingales: ch08/reduced_form_intensity_based_models/compensators_and_martingales.md
-      - 8.4 Pricing with Default Risk:
-          - Defaultable Bonds: ch08/pricing_with_default_risk/defaultable_bonds.md
-          - Recovery Schemes: ch08/pricing_with_default_risk/recovery_schemes.md
-          - Pricing under Intensity Models: ch08/pricing_with_default_risk/pricing_under_intensity_models.md
-      - 8.5 Credit Derivatives:
-          - Credit Default Swaps (CDS): ch08/credit_derivatives/credit_default_swaps_cds.md
-          - CDS Spreads and Hazard Rates: ch08/credit_derivatives/cds_spreads_and_hazard_rates.md
-          - Valuation Adjustments: ch08/credit_derivatives/valuation_adjustments.md
-      - 8.6 Change of Measure and Credit Risk:
-          - Risk-Neutral vs Physical Intensities: ch08/change_of_measure_and_credit_risk/risk_neutral_vs_physical_intensities.md
-          - Measure Changes with Default: ch08/change_of_measure_and_credit_risk/measure_changes_with_default.md
-          - Girsanov for Jump Processes: ch08/change_of_measure_and_credit_risk/girsanov_for_jump_processes.md
-      - 8.7 Credit Risk Calibration:
-          - Bootstrapping Hazard Rates: ch08/credit_risk_calibration/bootstrapping_hazard_rates.md
-          - Calibration to CDS and Bonds: ch08/credit_risk_calibration/calibration_to_cds_and_bonds.md
-          - Identifiability Issues: ch08/credit_risk_calibration/identifiability_issues.md
-      - 8.8 Model Risk in Credit Markets:
-          - Wrong-Way Risk: ch08/model_risk_in_credit_markets/wrong_way_risk.md
-          - Correlation and Systemic Risk: ch08/model_risk_in_credit_markets/correlation_and_systemic_risk.md
-          - Stress and Crisis Behavior: ch08/model_risk_in_credit_markets/stress_and_crisis_behavior.md
+  - Chapter 10 Credit Risk:
+      - 10.1 Default as a Random Time:
+          - Stopping Times and Enlargement of Filtration: ch10/default_as_a_random_time/stopping_times_and_enlargement_of_filtration.md
+          - Progressive vs Initial Enlargement: ch10/default_as_a_random_time/progressive_vs_initial_enlargement.md
+          - Immersion (H-Hypothesis): ch10/default_as_a_random_time/immersion_h_hypothesis.md
+      - 10.2 Structural Credit Risk Models:
+          - Firm Value Models (Merton): ch10/structural_credit_risk_models/firm_value_models_merton.md
+          - First-Passage Models: ch10/structural_credit_risk_models/first_passage_models.md
+          - Equity–Credit Connection: ch10/structural_credit_risk_models/equity_credit_connection.md
+      - 10.3 Reduced-Form (Intensity-Based) Models:
+          - Default Intensity and Hazard Rates: ch10/reduced_form_intensity_based_models/default_intensity_and_hazard_rates.md
+          - Survival Probability: ch10/reduced_form_intensity_based_models/survival_probability.md
+          - Compensators and Martingales: ch10/reduced_form_intensity_based_models/compensators_and_martingales.md
+      - 10.4 Pricing with Default Risk:
+          - Defaultable Bonds: ch10/pricing_with_default_risk/defaultable_bonds.md
+          - Recovery Schemes: ch10/pricing_with_default_risk/recovery_schemes.md
+          - Pricing under Intensity Models: ch10/pricing_with_default_risk/pricing_under_intensity_models.md
+      - 10.5 Credit Derivatives:
+          - Credit Default Swaps (CDS): ch10/credit_derivatives/credit_default_swaps_cds.md
+          - CDS Spreads and Hazard Rates: ch10/credit_derivatives/cds_spreads_and_hazard_rates.md
+          - Valuation Adjustments: ch10/credit_derivatives/valuation_adjustments.md
+      - 10.6 Change of Measure and Credit Risk:
+          - Risk-Neutral vs Physical Intensities: ch10/change_of_measure_and_credit_risk/risk_neutral_vs_physical_intensities.md
+          - Measure Changes with Default: ch10/change_of_measure_and_credit_risk/measure_changes_with_default.md
+          - Girsanov for Jump Processes: ch10/change_of_measure_and_credit_risk/girsanov_for_jump_processes.md
+      - 10.7 Credit Risk Calibration:
+          - Bootstrapping Hazard Rates: ch10/credit_risk_calibration/bootstrapping_hazard_rates.md
+          - Calibration to CDS and Bonds: ch10/credit_risk_calibration/calibration_to_cds_and_bonds.md
+          - Identifiability Issues: ch10/credit_risk_calibration/identifiability_issues.md
+      - 10.8 Model Risk in Credit Markets:
+          - Wrong-Way Risk: ch10/model_risk_in_credit_markets/wrong_way_risk.md
+          - Correlation and Systemic Risk: ch10/model_risk_in_credit_markets/correlation_and_systemic_risk.md
+          - Stress and Crisis Behavior: ch10/model_risk_in_credit_markets/stress_and_crisis_behavior.md
 
-  - Chapter 9 Risk Management:
-      - 9.1 Market Risk Measures:
-          - Value-at-Risk (VaR): ch09/market_risk_measures/value_at_risk_var.md
-          - Expected Shortfall (ES): ch09/market_risk_measures/expected_shortfall_es.md
-          - Coherent Risk Measures: ch09/market_risk_measures/coherent_risk_measures.md
-      - 9.2 Dynamic Risk Measures:
-          - Time-Consistency: ch09/dynamic_risk_measures/time_consistency.md
-          - Conditional Risk Measures: ch09/dynamic_risk_measures/conditional_risk_measures.md
-          - BSDE-Based Risk Measures: ch09/dynamic_risk_measures/bsde_based_risk_measures.md
-      - 9.3 Stress Testing and Scenario Analysis:
-          - Stress vs Historical Simulation: ch09/stress_testing_and_scenario_analysis/stress_vs_historical_simulation.md
-          - Extreme Scenarios: ch09/stress_testing_and_scenario_analysis/extreme_scenarios.md
-          - Reverse Stress Testing: ch09/stress_testing_and_scenario_analysis/reverse_stress_testing.md
-      - 9.4 Counterparty Credit Risk:
-          - Exposure Profiles: ch09/counterparty_credit_risk/exposure_profiles.md
-          - Potential Future Exposure (PFE): ch09/counterparty_credit_risk/potential_future_exposure_pfe.md
-          - Wrong-Way Risk: ch09/counterparty_credit_risk/wrong_way_risk.md
-      - 9.5 Valuation Adjustments (XVA):
-          - CVA, DVA: ch09/valuation_adjustments_xva/cva_dva.md
-          - FVA, KVA: ch09/valuation_adjustments_xva/fva_kva.md
-          - Pricing with XVAs: ch09/valuation_adjustments_xva/pricing_with_xvas.md
-      - 9.6 Funding and Liquidity Risk:
-          - Funding Constraints: ch09/funding_and_liquidity_risk/funding_constraints.md
-          - Liquidity Premia: ch09/funding_and_liquidity_risk/liquidity_premia.md
-          - Market Impact: ch09/funding_and_liquidity_risk/market_impact.md
-      - 9.7 Systemic Risk and Network Effects:
-          - Interconnected Balance Sheets: ch09/systemic_risk_and_network_effects/interconnected_balance_sheets.md
-          - Contagion Models: ch09/systemic_risk_and_network_effects/contagion_models.md
-          - Clearing and Central Counterparties: ch09/systemic_risk_and_network_effects/clearing_and_central_counterparties.md
-      - 9.8 Model Risk and Governance:
-          - Model Validation: ch09/model_risk_and_governance/model_validation.md
-          - Backtesting and Limits: ch09/model_risk_and_governance/backtesting_and_limits.md
-          - Robust Risk Frameworks: ch09/model_risk_and_governance/robust_risk_frameworks.md
+  - Chapter 11 Risk Management:
+      - 11.1 Market Risk Measures:
+          - Value-at-Risk (VaR): ch11/market_risk_measures/value_at_risk_var.md
+          - Expected Shortfall (ES): ch11/market_risk_measures/expected_shortfall_es.md
+          - Coherent Risk Measures: ch11/market_risk_measures/coherent_risk_measures.md
+      - 11.2 Dynamic Risk Measures:
+          - Time-Consistency: ch11/dynamic_risk_measures/time_consistency.md
+          - Conditional Risk Measures: ch11/dynamic_risk_measures/conditional_risk_measures.md
+          - BSDE-Based Risk Measures: ch11/dynamic_risk_measures/bsde_based_risk_measures.md
+      - 11.3 Stress Testing and Scenario Analysis:
+          - Stress vs Historical Simulation: ch11/stress_testing_and_scenario_analysis/stress_vs_historical_simulation.md
+          - Extreme Scenarios: ch11/stress_testing_and_scenario_analysis/extreme_scenarios.md
+          - Reverse Stress Testing: ch11/stress_testing_and_scenario_analysis/reverse_stress_testing.md
+      - 11.4 Counterparty Credit Risk:
+          - Exposure Profiles: ch11/counterparty_credit_risk/exposure_profiles.md
+          - Potential Future Exposure (PFE): ch11/counterparty_credit_risk/potential_future_exposure_pfe.md
+          - Wrong-Way Risk: ch11/counterparty_credit_risk/wrong_way_risk.md
+      - 11.5 Valuation Adjustments (XVA):
+          - CVA, DVA: ch11/valuation_adjustments_xva/cva_dva.md
+          - FVA, KVA: ch11/valuation_adjustments_xva/fva_kva.md
+          - Pricing with XVAs: ch11/valuation_adjustments_xva/pricing_with_xvas.md
+      - 11.6 Funding and Liquidity Risk:
+          - Funding Constraints: ch11/funding_and_liquidity_risk/funding_constraints.md
+          - Liquidity Premia: ch11/funding_and_liquidity_risk/liquidity_premia.md
+          - Market Impact: ch11/funding_and_liquidity_risk/market_impact.md
+      - 11.7 Systemic Risk and Network Effects:
+          - Interconnected Balance Sheets: ch11/systemic_risk_and_network_effects/interconnected_balance_sheets.md
+          - Contagion Models: ch11/systemic_risk_and_network_effects/contagion_models.md
+          - Clearing and Central Counterparties: ch11/systemic_risk_and_network_effects/clearing_and_central_counterparties.md
+      - 11.8 Model Risk and Governance:
+          - Model Validation: ch11/model_risk_and_governance/model_validation.md
+          - Backtesting and Limits: ch11/model_risk_and_governance/backtesting_and_limits.md
+          - Robust Risk Frameworks: ch11/model_risk_and_governance/robust_risk_frameworks.md
 
-  - Chapter 10 Robust Pricing:
-      - 10.1 Model Uncertainty and Ambiguity:
-          - Knightian Uncertainty: ch10/model_uncertainty_and_ambiguity/knightian_uncertainty.md
-          - Sets of Probability Measures: ch10/model_uncertainty_and_ambiguity/sets_of_probability_measures.md
-          - Misspecification vs Estimation Error: ch10/model_uncertainty_and_ambiguity/misspecification_vs_estimation_error.md
-      - 10.2 Robust Pricing:
-          - Model-Free Bounds: ch10/robust_no_arbitrage_pricing/model_free_bounds.md
-          - Superhedging Duality: ch10/robust_no_arbitrage_pricing/superhedging_duality.md
-          - Martingale Optimal Transport: ch10/robust_no_arbitrage_pricing/martingale_optimal_transport.md
-      - 10.3 Robust Hedging:
-          - Pathwise Hedging: ch10/robust_hedging/pathwise_hedging.md
-          - Semi-Static Hedging: ch10/robust_hedging/semi_static_hedging.md
-          - Robust Delta–Gamma Hedging: ch10/robust_hedging/robust_delta_gamma_hedging.md
-      - 10.4 Second-Order BSDEs and Nonlinear Expectations:
-          - g-Expectations: ch10/second_order_bsdes_and_nonlinear_expectations/g_expectations.md
-          - 2BSDEs: ch10/second_order_bsdes_and_nonlinear_expectations/2bsdes.md
-          - Uncertain Volatility Models: ch10/second_order_bsdes_and_nonlinear_expectations/uncertain_volatility_models.md
-      - 10.5 Ambiguity-Averse Preferences:
-          - Max–Min Expected Utility: ch10/ambiguity_averse_preferences/max_min_expected_utility.md
-          - Entropy Penalization: ch10/ambiguity_averse_preferences/entropy_penalization.md
-          - Risk-Sensitive Control: ch10/ambiguity_averse_preferences/risk_sensitive_control.md
-      - 10.6 Decision Making Under Uncertainty:
-          - Robust Portfolio Optimization: ch10/decision_making_under_uncertainty/robust_portfolio_optimization.md
-          - Model Uncertainty in Asset Allocation: ch10/decision_making_under_uncertainty/model_uncertainty_in_asset_allocation.md
-          - Dynamic Consistency: ch10/decision_making_under_uncertainty/dynamic_consistency.md
-      - 10.7 Robust Calibration:
-          - Confidence Sets for Models: ch10/robust_calibration/confidence_sets_for_models.md
-          - Worst-Case Calibration: ch10/robust_calibration/worst_case_calibration.md
-          - Stability vs Fit Trade-Off: ch10/robust_calibration/stability_vs_fit_trade_off.md
-      - 10.8 Limits of Quant Modeling:
-          - When Models Fail: ch10/limits_of_quantitative_modeling/when_models_fail.md
-          - Human Judgment vs Automation: ch10/limits_of_quantitative_modeling/human_judgment_vs_automation.md
-          - Open Problems in Financial Mathematics: ch10/limits_of_quantitative_modeling/open_problems_in_financial_mathematics.md
+  - Chapter 12 Robust Pricing:
+      - 12.1 Model Uncertainty and Ambiguity:
+          - Knightian Uncertainty: ch12/model_uncertainty_and_ambiguity/knightian_uncertainty.md
+          - Sets of Probability Measures: ch12/model_uncertainty_and_ambiguity/sets_of_probability_measures.md
+          - Misspecification vs Estimation Error: ch12/model_uncertainty_and_ambiguity/misspecification_vs_estimation_error.md
+      - 12.2 Robust Pricing:
+          - Model-Free Bounds: ch12/robust_no_arbitrage_pricing/model_free_bounds.md
+          - Superhedging Duality: ch12/robust_no_arbitrage_pricing/superhedging_duality.md
+          - Martingale Optimal Transport: ch12/robust_no_arbitrage_pricing/martingale_optimal_transport.md
+      - 12.3 Robust Hedging:
+          - Pathwise Hedging: ch12/robust_hedging/pathwise_hedging.md
+          - Semi-Static Hedging: ch12/robust_hedging/semi_static_hedging.md
+          - Robust Delta–Gamma Hedging: ch12/robust_hedging/robust_delta_gamma_hedging.md
+      - 12.4 Second-Order BSDEs and Nonlinear Expectations:
+          - g-Expectations: ch12/second_order_bsdes_and_nonlinear_expectations/g_expectations.md
+          - 2BSDEs: ch12/second_order_bsdes_and_nonlinear_expectations/2bsdes.md
+          - Uncertain Volatility Models: ch12/second_order_bsdes_and_nonlinear_expectations/uncertain_volatility_models.md
+      - 12.5 Ambiguity-Averse Preferences:
+          - Max–Min Expected Utility: ch12/ambiguity_averse_preferences/max_min_expected_utility.md
+          - Entropy Penalization: ch12/ambiguity_averse_preferences/entropy_penalization.md
+          - Risk-Sensitive Control: ch12/ambiguity_averse_preferences/risk_sensitive_control.md
+      - 12.6 Decision Making Under Uncertainty:
+          - Robust Portfolio Optimization: ch12/decision_making_under_uncertainty/robust_portfolio_optimization.md
+          - Model Uncertainty in Asset Allocation: ch12/decision_making_under_uncertainty/model_uncertainty_in_asset_allocation.md
+          - Dynamic Consistency: ch12/decision_making_under_uncertainty/dynamic_consistency.md
+      - 12.7 Robust Calibration:
+          - Confidence Sets for Models: ch12/robust_calibration/confidence_sets_for_models.md
+          - Worst-Case Calibration: ch12/robust_calibration/worst_case_calibration.md
+          - Stability vs Fit Trade-Off: ch12/robust_calibration/stability_vs_fit_trade_off.md
+      - 12.8 Limits of Quant Modeling:
+          - When Models Fail: ch12/limits_of_quantitative_modeling/when_models_fail.md
+          - Human Judgment vs Automation: ch12/limits_of_quantitative_modeling/human_judgment_vs_automation.md
+          - Open Problems in Financial Mathematics: ch12/limits_of_quantitative_modeling/open_problems_in_financial_mathematics.md
   
-  - Chapter 11 AI in Finance:
-      - 11.1 Statistical Learning in Financial Models:
-          - Parametric vs Nonparametric Learning: ch11/statistical_learning_in_financial_models/parametric_vs_nonparametric_learning.md
-          - Bias–Variance Trade-Off: ch11/statistical_learning_in_financial_models/bias_variance_trade_off.md
-          - Curse of Dimensionality: ch11/statistical_learning_in_financial_models/curse_of_dimensionality.md
-      - 11.2 Online Learning and Adaptive Calibration:
-          - Sequential Parameter Estimation: ch11/online_learning_and_adaptive_calibration/sequential_parameter_estimation.md
-          - Filtering and Bayesian Updating: ch11/online_learning_and_adaptive_calibration/filtering_and_bayesian_updating.md
-          - Model Drift vs Market Regimes: ch11/online_learning_and_adaptive_calibration/model_drift_vs_market_regimes.md
-      - 11.3 Reinforcement Learning and Control:
-          - Markov Decision Processes: ch11/reinforcement_learning_and_control/markov_decision_processes.md
-          - Exploration vs Exploitation: ch11/reinforcement_learning_and_control/exploration_vs_exploitation.md
-          - Connection to Stochastic Control: ch11/reinforcement_learning_and_control/connection_to_stochastic_control.md
-      - 11.4 Learning Under Model Uncertainty:
-          - Robust Learning: ch11/learning_under_model_uncertainty/robust_learning.md
-          - Adversarial Environments: ch11/learning_under_model_uncertainty/adversarial_environments.md
-          - Regret Bounds: ch11/learning_under_model_uncertainty/regret_bounds.md
-      - 11.5 Market Impact and Feedback Effects:
-          - Endogenous Price Dynamics: ch11/market_impact_and_feedback_effects/endogenous_price_dynamics.md
-          - Learning-Induced Instability: ch11/market_impact_and_feedback_effects/learning_induced_instability.md
-          - Reflexivity in Markets: ch11/market_impact_and_feedback_effects/reflexivity_in_markets.md
-      - 11.6 Explainability and Constraints:
-          - Interpretability vs Performance: ch11/explainability_and_constraints/interpretability_vs_performance.md
-          - No-Arbitrage Constraints in Learning: ch11/explainability_and_constraints/no_arbitrage_constraints_in_learning.md
-          - Hybrid Model-Based / Data-Driven Approaches: ch11/explainability_and_constraints/hybrid_model_based_data_driven_approaches.md
-      - 11.7 Limits of Learning in Finance:
-          - Non-Stationarity: ch11/limits_of_learning_in_finance/non_stationarity.md
-          - Overfitting and False Discovery: ch11/limits_of_learning_in_finance/overfitting_and_false_discovery.md
-          - Theoretical Impossibility Results: ch11/limits_of_learning_in_finance/theoretical_impossibility_results.md
+  - Chapter 13 AI in Finance:
+      - 13.1 Statistical Learning in Financial Models:
+          - Parametric vs Nonparametric Learning: ch13/statistical_learning_in_financial_models/parametric_vs_nonparametric_learning.md
+          - Bias–Variance Trade-Off: ch13/statistical_learning_in_financial_models/bias_variance_trade_off.md
+          - Curse of Dimensionality: ch13/statistical_learning_in_financial_models/curse_of_dimensionality.md
+      - 13.2 Online Learning and Adaptive Calibration:
+          - Sequential Parameter Estimation: ch13/online_learning_and_adaptive_calibration/sequential_parameter_estimation.md
+          - Filtering and Bayesian Updating: ch13/online_learning_and_adaptive_calibration/filtering_and_bayesian_updating.md
+          - Model Drift vs Market Regimes: ch13/online_learning_and_adaptive_calibration/model_drift_vs_market_regimes.md
+      - 13.3 Reinforcement Learning and Control:
+          - Markov Decision Processes: ch13/reinforcement_learning_and_control/markov_decision_processes.md
+          - Exploration vs Exploitation: ch13/reinforcement_learning_and_control/exploration_vs_exploitation.md
+          - Connection to Stochastic Control: ch13/reinforcement_learning_and_control/connection_to_stochastic_control.md
+      - 13.4 Learning Under Model Uncertainty:
+          - Robust Learning: ch13/learning_under_model_uncertainty/robust_learning.md
+          - Adversarial Environments: ch13/learning_under_model_uncertainty/adversarial_environments.md
+          - Regret Bounds: ch13/learning_under_model_uncertainty/regret_bounds.md
+      - 13.5 Market Impact and Feedback Effects:
+          - Endogenous Price Dynamics: ch13/market_impact_and_feedback_effects/endogenous_price_dynamics.md
+          - Learning-Induced Instability: ch13/market_impact_and_feedback_effects/learning_induced_instability.md
+          - Reflexivity in Markets: ch13/market_impact_and_feedback_effects/reflexivity_in_markets.md
+      - 13.6 Explainability and Constraints:
+          - Interpretability vs Performance: ch13/explainability_and_constraints/interpretability_vs_performance.md
+          - No-Arbitrage Constraints in Learning: ch13/explainability_and_constraints/no_arbitrage_constraints_in_learning.md
+          - Hybrid Model-Based / Data-Driven Approaches: ch13/explainability_and_constraints/hybrid_model_based_data_driven_approaches.md
+      - 13.7 Limits of Learning in Finance:
+          - Non-Stationarity: ch13/limits_of_learning_in_finance/non_stationarity.md
+          - Overfitting and False Discovery: ch13/limits_of_learning_in_finance/overfitting_and_false_discovery.md
+          - Theoretical Impossibility Results: ch13/limits_of_learning_in_finance/theoretical_impossibility_results.md
 
   - Appendix Python Codes: 
       - 1.4 Itô Calculus:
