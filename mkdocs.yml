@@ -16,6 +16,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  
   - Chapter 1 Brownian Motion:
       - 1.1 Brownian Motion:
           - Random Walk: ch01/brownian_motion/random_walk_foundations.md  
@@ -38,57 +39,57 @@ nav:
 
   - Chapter 2 SDE:
       - 2.1 Itô Integration:
-          - Quadratic Variation: ch01/ito_integral/quadratic_variation.md
-          - Lebesgue Integral (Intuitive): ch01/ito_integral/lebesgue_integration_intuitive.md  # NEW
-          - Itô Integral (Intuitive): ch01/ito_integral/ito_integration_intuitive.md  # NEW
-          - Construction of Itô Integral: ch01/ito_integral/ito_integral_construction.md # NEW
-          - Itô Isometry: ch01/ito_integral/ito_isometry.md # NEW
-          - Properties of Itô Integrals: ch01/ito_integral/ito_integral_properties.md # NEW
-          - Itô Processes: ch01/ito_integral/ito_processes.md  # New
-          - Stratonovich Integral: ch01/ito_integral/stratonovich_integration.md  # NEW
-          - Exercise: ch01/ito_integral/exercise.md  # NEW
+          - Quadratic Variation: ch02/ito_integral/quadratic_variation.md
+          - Lebesgue Integral (Intuitive): ch02/ito_integral/lebesgue_integration_intuitive.md  
+          - Itô Integral (Intuitive): ch02/ito_integral/ito_integration_intuitive.md  
+          - Construction of Itô Integral: ch02/ito_integral/ito_integral_construction.md 
+          - Itô Isometry: ch02/ito_integral/ito_isometry.md 
+          - Properties of Itô Integrals: ch02/ito_integral/ito_integral_properties.md 
+          - Itô Processes: ch02/ito_integral/ito_processes.md  
+          - Stratonovich Integral: ch02/ito_integral/stratonovich_integration.md  
+          - Exercise: ch02/ito_integral/exercise.md  
       - 2.2 Itô Formula:
-          - Taylor Expansion (Linear): ch01/ito_lemma/taylor_expansion_linear.md
-          - Taylor Expansion (Quadratic): ch01/ito_lemma/taylor_expansion_quadratic.md
-          - from Taylor to Itô: ch01/ito_lemma/from_taylor_to_ito.md
-          - Itô Lemma: ch01/ito_lemma/ito_lemma.md
-          - Why Itô Lemma Matters: ch01/ito_lemma/ito_lemma_why_it_matters.md  # NEW 
-          - Itô Lemma (Multi-Dim): ch01/ito_lemma/ito_lemma_multidimensional_version.md
-          - Itô Product Rule: ch01/ito_lemma/ito_product_rule.md
-          - Integration by Parts: ch01/ito_lemma/ito_integration_by_parts.md  # NEW
-          - Itô Quotient Rule: ch01/ito_lemma/ito_quotient_rule.md
-          - Applications and Examples: ch01/ito_lemma/ito_calculus_applications.md  # NEW
+          - Taylor Expansion (Linear): ch02/ito_lemma/taylor_expansion_linear.md
+          - Taylor Expansion (Quadratic): ch02/ito_lemma/taylor_expansion_quadratic.md
+          - from Taylor to Itô: ch02/ito_lemma/from_taylor_to_ito.md
+          - Itô Lemma: ch02/ito_lemma/ito_lemma.md
+          - Why Itô Lemma Matters: ch02/ito_lemma/ito_lemma_why_it_matters.md  
+          - Itô Lemma (Multi-Dim): ch02/ito_lemma/ito_lemma_multidimensional_version.md
+          - Itô Product Rule: ch02/ito_lemma/ito_product_rule.md
+          - Integration by Parts: ch02/ito_lemma/ito_integration_by_parts.md  
+          - Itô Quotient Rule: ch02/ito_lemma/ito_quotient_rule.md
+          - Applications and Examples: ch02/ito_lemma/ito_calculus_applications.md  
       - 2.3 Diffusion Process:
-          - Diffusion Process Overview: ch01/diffusion_process/diffusion_process_overview.md
-          - SDE: ch01/diffusion_process/stochastic_differential_equations.md
-          - Strong Markov Property: ch01/diffusion_process/strong_markov_property.md
-          - Invariant Measures: ch01/diffusion_process/invariant_measures_and_stationarity.md
-          - Time Reversal of Diffusions: ch01/diffusion_process/time_reversal_of_diffusions.md
-          - Stroock–Varadhan Problem: ch01/diffusion_process/martingale_problem_stroock_varadhan.md
-          - Large Deviations: ch01/diffusion_process/small_noise_and_large_deviations.md
+          - Diffusion Process Overview: ch02/diffusion_process/diffusion_process_overview.md
+          - SDE: ch02/diffusion_process/stochastic_differential_equations.md
+          - Strong Markov Property: ch02/diffusion_process/strong_markov_property.md
+          - Invariant Measures: ch02/diffusion_process/invariant_measures_and_stationarity.md
+          - Time Reversal of Diffusions: ch02/diffusion_process/time_reversal_of_diffusions.md
+          - Stroock–Varadhan Problem: ch02/diffusion_process/martingale_problem_stroock_varadhan.md
+          - Large Deviations: ch02/diffusion_process/small_noise_and_large_deviations.md
       - 2.4 Existence & Uniqueness:
-          - Existence and Uniqueness: ch01/diffusion_process/existence_and_uniqueness_of_sdes.md
+          - Existence and Uniqueness: ch02/diffusion_process/existence_and_uniqueness_of_sdes.md
       - 2.5 Infinitesimal Generator:
-          - Infinitesimal Generator: ch01/infinitesimal_generator/infinitesimal_generator.md
-          - Dynkin's Formula: ch01/infinitesimal_generator/dynkin_formula.md
-          - Generator and Martingale: ch01/infinitesimal_generator/generator_and_martingales.md
-          - Applications of Dynkin: ch01/infinitesimal_generator/applications_of_dynkin.md
+          - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
+          - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
+          - Generator and Martingale: ch02/infinitesimal_generator/generator_and_martingales.md
+          - Applications of Dynkin: ch02/infinitesimal_generator/applications_of_dynkin.md
   
   - Chapter 3 PDEs and Change of Measure:
       - 3.1 Kolmogorov Equation:
-          - Kolmogorov Forward Eq: ch01/connection_to_pde/kolmogorov_forward_equation.md
-          - Kolmogorov Backward Eq: ch01/connection_to_pde/kolmogorov_backward_equation.md
+          - Kolmogorov Forward Eq: ch03/kolmogorov_equation/kolmogorov_forward_equation.md
+          - Kolmogorov Backward Eq: ch03/kolmogorov_equation/kolmogorov_backward_equation.md
       - 3.2 Feynman–Kac Formula:
-          - Feynman–Kac Overview: ch01/connection_to_pde/feynman_kac_overview.md
-          - FK Terminal Payoff: ch01/connection_to_pde/feynman_kac_discounted_terminal.md
-          - FK Running Payoff: ch01/connection_to_pde/feynman_kac_running_payoff.md
-          - Feynman–Kac Applications: ch01/connection_to_pde/feynman_kac_applications_and_duality.md
+          - Feynman–Kac Overview: ch03/feynman_kac/feynman_kac_overview.md
+          - FK Terminal Payoff: ch03/feynman_kac/feynman_kac_discounted_terminal.md
+          - FK Running Payoff: ch03/feynman_kac/feynman_kac_running_payoff.md
+          - Feynman–Kac Applications: ch03/feynman_kac/feynman_kac_applications_and_duality.md
       - 3.3 Connection to Pricing PDEs:
       - 3.4 Change of Measure:
-          - Local Martingale: ch01/change_of_measure/local_martingale.md
-          - Stochastic Exponential: ch01/change_of_measure/stochastic_exponential.md 
-          - Martingale Repr Theorem: ch01/change_of_measure/martingale_representation_theorem.md
-          - Girsanov Theorem: ch01/change_of_measure/girsanov_theorem.md
+          - Local Martingale: ch03/change_of_measure/local_martingale.md
+          - Stochastic Exponential: ch03/change_of_measure/stochastic_exponential.md 
+          - Martingale Repr Theorem: ch03/change_of_measure/martingale_representation_theorem.md
+          - Girsanov Theorem: ch03/change_of_measure/girsanov_theorem.md
   
   - Chapter 4 BS Model:
       - 4.1 Binomial Model: 
@@ -99,11 +100,11 @@ nav:
           - Martingale Pricing: ch04/binomial_asset_pricing_model/martingale_pricing_view.md
           - Arrow–Debreu State Prices: ch04/binomial_asset_pricing_model/arrow_debreu_state_prices.md
           - How to Build Tree: ch04/binomial_asset_pricing_model/binomial_tree_construction.md
-          - One-Period Option Pricing: ch04/binomial_asset_pricing_model/one_period_option_pricing.md  # NEW
+          - One-Period Option Pricing: ch04/binomial_asset_pricing_model/one_period_option_pricing.md  
           - Multi-Period Binomial Tree: ch04/binomial_asset_pricing_model/multi_period_binomial_tree.md
-          - Multi-Period Option Pricing: ch04/binomial_asset_pricing_model/multi_period_option_pricing.md  # NEW 
-          - Delta Hedging: ch04/binomial_asset_pricing_model/delta_hedging_in_binomial_model.md  # NEW
-          - Binary Decomposition: ch04/binomial_asset_pricing_model/binary_quanto_decomposition.md  # NEW 
+          - Multi-Period Option Pricing: ch04/binomial_asset_pricing_model/multi_period_option_pricing.md  
+          - Delta Hedging: ch04/binomial_asset_pricing_model/delta_hedging_in_binomial_model.md  
+          - Binary Decomposition: ch04/binomial_asset_pricing_model/binary_quanto_decomposition.md  
           - Binomial to Black–Scholes: ch04/binomial_asset_pricing_model/binomial_to_black_scholes_limit.md
           - Exercise: ch04/binomial_asset_pricing_model/exercise.md
       - 4.2 FTAP:
