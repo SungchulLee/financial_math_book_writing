@@ -38,7 +38,12 @@ nav:
           - Exercise: ch01/filtration_and_martingales/exercise.md  
 
   - Chapter 2 SDE:
-      - 2.1 Itô Integration:
+      - 2.1 Empirical Motivation:  
+          - Real Stock Returns: ch02/empirical_motivation/stock_data_and_returns.md
+          - Stylized Facts: ch02/empirical_motivation/stylized_facts.md
+          - Why Deterministic Fails: ch02/empirical_motivation/why_deterministic_fails.md
+          - Bridge to SDEs: ch02/empirical_motivation/bridge_to_sdes.md
+      - 2.2 Itô Integration:
           - Quadratic Variation: ch02/ito_integral/quadratic_variation.md
           - Lebesgue Integral (Intuitive): ch02/ito_integral/lebesgue_integration_intuitive.md  
           - Itô Integral (Intuitive): ch02/ito_integral/ito_integration_intuitive.md  
@@ -48,7 +53,7 @@ nav:
           - Itô Processes: ch02/ito_integral/ito_processes.md  
           - Stratonovich Integral: ch02/ito_integral/stratonovich_integration.md  
           - Exercise: ch02/ito_integral/exercise.md  
-      - 2.2 Itô Formula:
+      - 2.3 Itô Formula:
           - Taylor Expansion (Linear): ch02/ito_lemma/taylor_expansion_linear.md
           - Taylor Expansion (Quadratic): ch02/ito_lemma/taylor_expansion_quadratic.md
           - from Taylor to Itô: ch02/ito_lemma/from_taylor_to_ito.md
@@ -58,39 +63,50 @@ nav:
           - Itô Product Rule: ch02/ito_lemma/ito_product_rule.md
           - Integration by Parts: ch02/ito_lemma/ito_integration_by_parts.md  
           - Itô Quotient Rule: ch02/ito_lemma/ito_quotient_rule.md
-          - Applications and Examples: ch02/ito_lemma/ito_calculus_applications.md  
-      - 2.3 Diffusion Process:
+          - Applications and Examples: ch02/ito_lemma/ito_calculus_applications.md 
+      - 2.4 SDE:
+          - SDE: ch02/sde/stochastic_differential_equations.md
+          - Examples: ch02/sde/sde_examples.md
+          - Verifying SDE Solution: ch02/sde/verifying_sde_solutions.md
+          - Solving SDE: ch02/sde/solving_sde.md
+          - SDE Simulation: ch02/sde/sde_simulation.md
+          - Moment Analysis: sde_moment_analysis.md
+      - 2.5 Diffusion Process:
           - Diffusion Process Overview: ch02/diffusion_process/diffusion_process_overview.md
-          - SDE: ch02/diffusion_process/stochastic_differential_equations.md
           - Strong Markov Property: ch02/diffusion_process/strong_markov_property.md
           - Invariant Measures: ch02/diffusion_process/invariant_measures_and_stationarity.md
           - Time Reversal of Diffusions: ch02/diffusion_process/time_reversal_of_diffusions.md
           - Stroock–Varadhan Problem: ch02/diffusion_process/martingale_problem_stroock_varadhan.md
           - Large Deviations: ch02/diffusion_process/small_noise_and_large_deviations.md
-      - 2.4 Existence & Uniqueness:
+      - 2.6 Existence & Uniqueness:
           - Existence and Uniqueness: ch02/diffusion_process/existence_and_uniqueness_of_sdes.md
-      - 2.5 Infinitesimal Generator:
+      - 2.7 Infinitesimal Generator:
           - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
           - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
           - Generator and Martingale: ch02/infinitesimal_generator/generator_and_martingales.md
           - Applications of Dynkin: ch02/infinitesimal_generator/applications_of_dynkin.md
   
   - Chapter 3 PDE:
-      - 3.1 Kolmogorov Equation:
-          - Kolmogorov Forward Eq: ch03/kolmogorov_equation/kolmogorov_forward_equation.md
-          - Kolmogorov Backward Eq: ch03/kolmogorov_equation/kolmogorov_backward_equation.md
-      - 3.2 Feynman–Kac Formula:
-          - Feynman–Kac Overview: ch03/feynman_kac/feynman_kac_overview.md
-          - FK Terminal Payoff: ch03/feynman_kac/feynman_kac_discounted_terminal.md
-          - FK Running Payoff: ch03/feynman_kac/feynman_kac_running_payoff.md
-          - Feynman–Kac Applications: ch03/feynman_kac/feynman_kac_applications_and_duality.md
-      - 3.3 SDE to PDE:
-          - Generator and Pricing PDE: ch03/pricing_pdes/infinitesimal_generator_and_pde.md
-          - Local Martingale and No-Arbitrage: ch03/pricing_pdes/local_martingale_and_no_arbitrage.md
-          - Discounting and Killing Term: ch03/pricing_pdes/discounting_and_killing_term.md
-          - Terminal vs Boundary Conditions: ch03/pricing_pdes/terminal_and_boundary_conditions.md
-          - From SDE to Black–Scholes PDE: ch03/pricing_pdes/black_scholes_pde_from_sde.md
-          - Risk-Neutral Valuation Principle: ch03/pricing_pdes/risk_neutral_valuation_principle.md
+    - 3.1 Heat Equation:
+        - Heat Equation Overview: ch03/heat_equation/heat_equation_overview.md
+        - Fundamental Solution: ch03/heat_equation/fundamental_solution.md
+        - Scaling and Invariance: ch03/heat_equation/scaling_and_invariance.md
+        - Heat Eq and Brownian Motion: ch03/heat_equation/heat_equation_and_brownian_motion.md
+    - 3.2 Kolmogorov Equation:
+        - Kolmogorov Forward Eq: ch03/kolmogorov_equation/kolmogorov_forward_equation.md
+        - Kolmogorov Backward Eq: ch03/kolmogorov_equation/kolmogorov_backward_equation.md
+    - 3.3 Feynman–Kac Formula:
+        - Feynman–Kac Overview: ch03/feynman_kac/feynman_kac_overview.md
+        - FK Terminal Payoff: ch03/feynman_kac/feynman_kac_discounted_terminal.md
+        - FK Running Payoff: ch03/feynman_kac/feynman_kac_running_payoff.md
+        - Feynman–Kac Applications: ch03/feynman_kac/feynman_kac_applications_and_duality.md
+    - 3.4 SDE to PDE:
+        - Generator and Pricing PDE: ch03/pricing_pdes/infinitesimal_generator_and_pde.md
+        - Local Martingale and No-Arbitrage: ch03/pricing_pdes/local_martingale_and_no_arbitrage.md
+        - Discounting and Killing Term: ch03/pricing_pdes/discounting_and_killing_term.md
+        - Terminal vs Boundary Conditions: ch03/pricing_pdes/terminal_and_boundary_conditions.md
+        - From SDE to Black–Scholes PDE: ch03/pricing_pdes/black_scholes_pde_from_sde.md
+        - Risk-Neutral Valuation Principle: ch03/pricing_pdes/risk_neutral_valuation_principle.md
 
   - Chapter 4 Measure Change:   
       - 4.1 Martingale Foundations:
@@ -464,7 +480,6 @@ nav:
           - Non-Stationarity: ch14/limits_of_learning_in_finance/non_stationarity.md
           - Overfitting and False Discovery: ch14/limits_of_learning_in_finance/overfitting_and_false_discovery.md
           - Theoretical Impossibility Results: ch14/limits_of_learning_in_finance/theoretical_impossibility_results.md
-
 
   - Appendix Python Codes: 
       - 1.4 Itô Calculus:
