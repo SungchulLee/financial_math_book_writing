@@ -252,7 +252,7 @@ nav:
           - Static Arbitrage Free Conditions: ch07/implied_volatility_surface/static_arbitrage_free_conditions.md
       - 7.4 Asymptotics of Im Vol:
           - Short-Maturity Smile Asymptotics: ch07/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
-          - Large-Strike (Wing) Asymptotics: ch07/asymptotics_of_implied_volatility/large_strike_wing_asymptotics.md
+          - Wing Asymptotics: ch07/asymptotics_of_implied_volatility/wing_asymptotics_and_moment_constraints.md
           - ATM Expansions: ch07/asymptotics_of_implied_volatility/atm_expansions.md
       - 7.5 Im Vol Sensitivities:
           - Vega and Implied Volatility Sensitivity: ch07/implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md
