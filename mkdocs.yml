@@ -114,15 +114,17 @@ nav:
           - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md 
           - Martingale Repr Theorem: ch04/martingale_foundations/martingale_representation_theorem.md
       - 4.2 Girsanov Theorem:
-          - Girsanov Theorem: ch04/girsanov/girsanov_theorem.md
-          - Proof Sketch and Intuition: ch04/girsanov/girsanov_proof.md
-          - Drift Adjustment: ch04/girsanov/girsanov_drift_adjustment.md
+          - Intuitive Introduction and Motivation: ch04/girsanov/girsanov_intuition.md
+          - Girsanov’s Theorem (Statement): ch04/girsanov/girsanov_theorem.md
+          - Proof Sketch and Key Ideas: ch04/girsanov/girsanov_proof.md
+          - Drift Adjustment and Financial Meaning: ch04/girsanov/girsanov_drift_adjustment.md
       - 4.3 Risk-Neutral Measure:
           - Construction of Risk-Neutral Measure: ch04/risk-neutral_measure/construction_of_risk-neutral_measure.md
           - Market Price of Risk: ch04/risk-neutral_measure/market_price_of_risk.md
           - Examples (Black–Scholes, Multi-Asset): ch04/risk-neutral_measure/example.md
+          - Numéraire and Change of Measure: ch04/risk-neutral_measure/numeraire_and_measure_change.md
       - 4.4 Financial Interpretation:
-          - Why Measure Change Removes Arbitrage: ch04/financial_interpretation/.md
+          - Why Measure Change Removes Arbitrage: ch04/financial_interpretation/why_measure_change_removes_arbitrage.md
           - Pricing vs Hedging: ch04/financial_interpretation/pricing_vs_hedging.md
           - Physical vs Risk-Neutral World: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
 
