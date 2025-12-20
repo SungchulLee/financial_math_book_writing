@@ -249,7 +249,7 @@ nav:
           - Term Structure: ch07/implied_volatility_surface/term_structure.md
           - Skew and Smile: ch07/implied_volatility_surface/skew_and_smile.md
           - Empirical Smile (SPX Example): ch07/implied_volatility_surface/empirical_smile_spx.md
-          - No-Static-Arbitrage Conditions: ch07/implied_volatility_surface/no_static_arbitrage_conditions.md
+          - Static Arbitrage Free Conditions: ch07/implied_volatility_surface/static_arbitrage_free_conditions.md
       - 7.4 Asymptotics of Im Vol:
           - Short-Maturity Smile Asymptotics: ch07/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
           - Large-Strike (Wing) Asymptotics: ch07/asymptotics_of_implied_volatility/large_strike_wing_asymptotics.md
