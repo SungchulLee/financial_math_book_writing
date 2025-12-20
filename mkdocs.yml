@@ -84,7 +84,7 @@ nav:
           - FK Terminal Payoff: ch03/feynman_kac/feynman_kac_discounted_terminal.md
           - FK Running Payoff: ch03/feynman_kac/feynman_kac_running_payoff.md
           - Feynman–Kac Applications: ch03/feynman_kac/feynman_kac_applications_and_duality.md
-      - 3.3 Connection to Pricing PDEs:
+      - 3.3 SDE to PDE:
           - Generator and Pricing PDE: ch03/pricing_pdes/infinitesimal_generator_and_pde.md
           - Local Martingale and No-Arbitrage: ch03/pricing_pdes/local_martingale_and_no_arbitrage.md
           - Discounting and Killing Term: ch03/pricing_pdes/discounting_and_killing_term.md
@@ -92,7 +92,7 @@ nav:
           - From SDE to Black–Scholes PDE: ch03/pricing_pdes/black_scholes_pde_from_sde.md
           - Risk-Neutral Valuation Principle: ch03/pricing_pdes/risk_neutral_valuation_principle.md
 
-  - Chapter 4 Change of Measure and Risk-Neutral Pricing:   
+  - Chapter 4 Measure Change:   
       - 4.1 Martingale Foundations:
           - Local Martingale: ch04/martingale_foundations/local_martingale.md
           - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md 
