@@ -10,12 +10,13 @@ The one-period model reveals the fundamental pricing logic, but realistic option
 
 Consider a binomial tree with $N$ periods: $t = 0, 1, 2, \ldots, N$.
 
-- **Risk-free asset**: $B_t = (1+r)^t$
+- **Risk-free asset**: $B_t = e^{rt}$
+
 - **Stock price**: At each node, $S_{t+1} \in \{uS_t, dS_t\}$
 
 ### **Tree Structure**
 
-Starting from $S_0$, the stock price at time $t$ can reach $2^t$ potential values (before recombination). With a **recombining tree** (where up-then-down = down-then-up), we have:
+Starting from $S_0$, the stock price at time $t$ can reach $2^t$ potential values (before recombination). With a **recombining tree** $where up-then-down = down-then-up$, we have:
 
 At time $t$, after $j$ up-moves (and $t-j$ down-moves):
 
@@ -23,14 +24,14 @@ $$
 S_t(j) = u^j d^{t-j} S_0, \quad j = 0, 1, \ldots, t
 $$
 
-
-
 ### **Risk-Neutral Dynamics**
 
 Under the risk-neutral measure $\mathbb{Q}$:
 
-- At each node, $\mathbb{Q}(\text{up}) = q$, $\mathbb{Q}(\text{down}) = 1-q$
-- where $q = \frac{1+r-d}{u-d}$ (same as one-period)
+- At each node, $\mathbb{Q}$\text{up}$ = q$, $\mathbb{Q}$\text{down}$ = 1-q$
+
+- where $q = \frac{e^r - d}{u-d}$ (same as one-period)
+
 - Transitions are independent across periods
 
 The number of paths to state $j$ at time $t$ is $\binom{t}{j}$.
@@ -41,26 +42,24 @@ The number of paths to state $j$ at time $t$ is $\binom{t}{j}$.
 
 ### **Backward Induction Algorithm**
 
-For a European option with payoff $H_N = h(S_N)$ at expiration:
+For a European option with payoff $H_N = h$S_N$$ at expiration:
 
 **Step 1** (Terminal payoff): At $t=N$,
 
 $$
-V_N(j) = h(S_N(j)) = h(u^j d^{N-j} S_0)
+V_N(j) = h(S_N(j)) = h$u^j d^{N-j} S_0$
 $$
-
-
 
 **Step 2** (Backward recursion): For $t = N-1, N-2, \ldots, 0$,
 
 $$
-\boxed{V_t(j) = \frac{1}{1+r}\left[q V_{t+1}(j+1) + (1-q)V_{t+1}(j)\right]}
+\boxed{V_t(j) = e^{-r}\left[q V_{t+1}(j+1) + (1-q)V_{t+1}(j)\right]}
 $$
 
-
-
 where:
+
 - $V_{t+1}(j+1)$ is the value one period later in the "up" state
+
 - $V_{t+1}(j)$ is the value one period later in the "down" state
 
 **Step 3** (Initial value): The option price is $V_0 = V_0(0)$.
@@ -70,10 +69,8 @@ where:
 Each step applies the one-period risk-neutral pricing formula:
 
 $$
-V_t = \frac{1}{1+r}\mathbb{E}_t^{\mathbb{Q}}[V_{t+1}]
+V_t = e^{-r}\mathbb{E}_t^{\mathbb{Q}}[V_{t+1}]
 $$
-
-
 
 This is the **martingale property** of discounted option values.
 
@@ -82,10 +79,8 @@ This is the **martingale property** of discounted option values.
 The backward recursion can be "unrolled" to give:
 
 $$
-\boxed{V_0 = \frac{1}{(1+r)^N}\sum_{j=0}^{N}\binom{N}{j}q^j(1-q)^{N-j}h(u^j d^{N-j}S_0)}
+\boxed{V_0 = \frac{1}{e^{rN}}\sum_{j=0}^{N}\binom{N}{j}q^j(1-q)^{N-j}h$u^j d^{N-j}S_0$}
 $$
-
-
 
 This is a **risk-neutral expectation** over all terminal paths.
 
@@ -99,15 +94,11 @@ $$
 S_0 = 100, \quad u = 1.1, \quad d = 0.95, \quad r = 0.02, \quad K = 105, \quad N = 3
 $$
 
-
-
 **Step 1**: Risk-neutral probability
 
 $$
 q = \frac{1.02 - 0.95}{1.1 - 0.95} = \frac{0.07}{0.15} \approx 0.4667
 $$
-
-
 
 **Step 2**: Terminal stock prices and call payoffs
 
@@ -130,8 +121,6 @@ V_2(2) &= \frac{1}{1.02}[0.4667 \cdot 10.05 + 0.5333 \cdot 28.10] \approx 19.33
 \end{aligned}
 $$
 
-
-
 At $t=1$:
 
 $$
@@ -141,15 +130,11 @@ V_1(1) &= \frac{1}{1.02}[0.4667 \cdot 5.26 + 0.5333 \cdot 19.33] \approx 12.52
 \end{aligned}
 $$
 
-
-
 At $t=0$:
 
 $$
 C_0 = V_0 = \frac{1}{1.02}[0.4667 \cdot 2.75 + 0.5333 \cdot 12.52] \approx 7.81
 $$
-
-
 
 **Alternative**: Direct formula
 
@@ -162,8 +147,6 @@ C_0 &= \frac{1}{1.02^3}\left[\binom{3}{0}(0.4667)^0(0.5333)^3 \cdot 0 + \binom{3
 \end{aligned}
 $$
 
-
-
 ---
 
 ## 4. American Options and Early Exercise
@@ -172,7 +155,8 @@ $$
 
 An **American option** can be exercised at any time $t \leq N$, not just at expiration. The holder must decide at each node whether to:
 
-- **Exercise immediately**: Receive intrinsic value $h(S_t)$
+- **Exercise immediately**: Receive intrinsic value $h$S_t$$
+
 - **Hold**: Retain continuation value $V_t^{\text{hold}}$
 
 ### **Modified Backward Induction**
@@ -183,25 +167,20 @@ $$
 V_N^{\text{Am}}(j) = h(S_N(j))
 $$
 
-
-
 **Step 2** (Backward recursion with exercise decision): For $t = N-1, \ldots, 0$,
 
 $$
-V_t^{\text{hold}}(j) = \frac{1}{1+r}\left[q V_{t+1}^{\text{Am}}(j+1) + (1-q)V_{t+1}^{\text{Am}}(j)\right]
+V_t^{\text{hold}}(j) = e^{-r}\left[q V_{t+1}^{\text{Am}}(j+1) + (1-q)V_{t+1}^{\text{Am}}(j)\right]
 $$
-
-
-
 
 $$
 \boxed{V_t^{\text{Am}}(j) = \max\left\{h(S_t(j)), V_t^{\text{hold}}(j)\right\}}
 $$
 
-
-
 **Interpretation**: At each node, choose the maximum of:
+
 - **Immediate exercise value**: $h(S_t(j))$
+
 - **Continuation value**: Discounted expected value of holding
 
 ### **Early Exercise Region**
@@ -211,8 +190,6 @@ Define the **early exercise region** as:
 $$
 \mathcal{E} = \{(t,j) : h(S_t(j)) > V_t^{\text{hold}}(j)\}
 $$
-
-
 
 At nodes in $\mathcal{E}$, immediate exercise is optimal.
 
@@ -247,8 +224,6 @@ V_2^{\text{hold}}(2) &= \frac{1}{1.02}[0.4667 \cdot 0 + 0.5333 \cdot 0] = 0
 \end{aligned}
 $$
 
-
-
 **Exercise decisions**:
 
 $$
@@ -258,8 +233,6 @@ V_2^{\text{Am}}(1) &= \max\{0.50, 2.62\} = 2.62 \quad \text{(hold)} \\
 V_2^{\text{Am}}(2) &= \max\{0, 0\} = 0
 \end{aligned}
 $$
-
-
 
 At $t=1$, stock prices: $S_1(0) = 95.00$, $S_1(1) = 110.00$
 
@@ -274,8 +247,6 @@ V_1^{\text{hold}}(1) &= \frac{1}{1.02}[0.4667 \cdot 2.62 + 0.5333 \cdot 0] \appr
 \end{aligned}
 $$
 
-
-
 **Exercise decisions**:
 
 $$
@@ -285,11 +256,9 @@ V_1^{\text{Am}}(1) &= \max\{0, 1.20\} = 1.20 \quad \text{(hold)}
 \end{aligned}
 $$
 
-
-
 At $t=0$:
 
-Intrinsic value: $h(S_0) = (105 - 100)^+ = 5.00$
+Intrinsic value: $h$S_0$ = (105 - 100)^+ = 5.00$
 
 Continuation value:
 
@@ -297,15 +266,11 @@ $$
 V_0^{\text{hold}} = \frac{1}{1.02}[0.4667 \cdot 10.00 + 0.5333 \cdot 1.20] \approx 5.20
 $$
 
-
-
 **Final decision**:
 
 $$
 P_0^{\text{Am}} = \max\{5.00, 5.20\} = 5.20 \quad \text{(hold)}
 $$
-
-
 
 ### **Comparison with European Put**
 
@@ -315,15 +280,11 @@ $$
 P_0^{\text{Eu}} = \frac{1}{1.02^3}\sum_{j=0}^3 \binom{3}{j}q^j(1-q)^{N-j}(105 - S_3(j))^+ \approx 4.89
 $$
 
-
-
 The **early exercise premium** is:
 
 $$
 P_0^{\text{Am}} - P_0^{\text{Eu}} = 5.20 - 4.89 = 0.31
 $$
-
-
 
 This premium compensates for the flexibility to exercise early when the put is deep in-the-money.
 
@@ -337,16 +298,16 @@ $$
 S_t^* = \sup\{S : (K-S)^+ > V_t^{\text{hold}}(S)\}
 $$
 
-
-
 **Characteristics**:
 
 1. $S_t^* < K$ (exercise only when in-the-money)
 2. $S_t^*$ is decreasing in $t$ (boundary moves up as expiration approaches)
-3. At expiration, $S_N^* = K$ (exercise if and only if $S_N < K$)
+3. At expiration, $S_N^* = K$ $exercise if and only if $S_N < K$$
 
 In our example at $t=2$:
+
 - Exercise at $S_2(0) = 90.25 < S_2^*$
+
 - Hold at $S_2(1) = 104.50 > S_2^*$
 
 This implies $90.25 < S_2^* < 104.50$.
@@ -357,18 +318,22 @@ This implies $90.25 < S_2^* < 104.50$.
 
 ### **European Options**
 
-- **Backward induction**: $O(N^2)$ operations (visit each node once)
-- **Closed-form formula**: $O(2^N)$ terms, but dominated by $O(N^2)$ using dynamic programming
+- **Backward induction**: $O$N^2$$ operations (visit each node once)
+
+- **Closed-form formula**: $O$2^N$$ terms, but dominated by $O$N^2$$ using dynamic programming
 
 ### **American Options**
 
-- **Backward induction**: $O(N^2)$ operations (same tree traversal, but with max comparison)
+- **Backward induction**: $O$N^2$$ operations (same tree traversal, but with max comparison)
+
 - **No closed form**: Must use backward induction due to path-dependent exercise decisions
 
 ### **Storage**
 
 For a recombining tree:
-- Need to store values at all nodes: $\sum_{t=0}^N (t+1) = O(N^2)$ space
+
+- Need to store values at all nodes: $\sum_{t=0}^N (t+1) = O$N^2$$ space
+
 - Can optimize to $O(N)$ by storing only two consecutive time slices
 
 ---
@@ -378,9 +343,10 @@ For a recombining tree:
 As $N \to \infty$ (with appropriate time-step scaling), the binomial model converges to continuous-time models:
 
 - **European options**: Converge to Black-Scholes formula
+
 - **American options**: Converge to solutions of the **free boundary problem**
 
-The convergence rate is typically $O(N^{-1/2})$, which can be improved to $O(N^{-1})$ with Richardson extrapolation.
+The convergence rate is typically $O$N^{-1/2}$$, which can be improved to $O$N^{-1}$$ with Richardson extrapolation.
 
 ---
 
@@ -394,15 +360,11 @@ $$
 \Delta_1 = \frac{V_1(1) - V_1(0)}{S_1(1) - S_1(0)}
 $$
 
-
-
 ### **Gamma** (convexity)
 
 $$
 \Gamma_2 = \frac{\Delta_2(1) - \Delta_2(0)}{0.5(S_2(2) - S_2(0))}
 $$
-
-
 
 where
 
@@ -410,15 +372,11 @@ $$
 \Delta_2(1) = \frac{V_2(2) - V_2(1)}{S_2(2) - S_2(1)}, \quad \Delta_2(0) = \frac{V_2(1) - V_2(0)}{S_2(1) - S_2(0)}
 $$
 
-
-
 ### **Theta** (time decay)
 
 $$
 \Theta = -\frac{V_1(0) - V_0}{\Delta t}
 $$
-
-
 
 where $\Delta t$ is the time step.
 
@@ -442,21 +400,21 @@ Multi-period option pricing via backward induction:
 
 1. **European options**: Simple recursive application of risk-neutral discounting
 
-   $$
-   V_t = \frac{1}{1+r}[qV_{t+1}^u + (1-q)V_{t+1}^d]
-   $$
+   
 
-
+$$
+V_t = e^{-r}[qV_{t+1}^u + (1-q)V_{t+1}^d]
+$$
 
 2. **American options**: Add early exercise comparison at each node
 
-   $$
-   V_t^{\text{Am}} = \max\{h(S_t), \frac{1}{1+r}[qV_{t+1}^{u,\text{Am}} + (1-q)V_{t+1}^{d,\text{Am}}]\}
-   $$
+   
 
+$$
+V_t^{\text{Am}} = \max\{h$S_t$, e^{-r}[qV_{t+1}^{u,\text{Am}} + (1-q)V_{t+1}^{d,\text{Am}}]\}
+$$
 
-
-3. **Computational efficiency**: $O(N^2)$ algorithm enables rapid pricing for moderate $N$
+3. **Computational efficiency**: $O$N^2$$ algorithm enables rapid pricing for moderate $N$
 
 4. **Convergence**: As $N \to \infty$, recover continuous-time pricing formulas
 

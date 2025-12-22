@@ -131,19 +131,13 @@ nav:
   - 5 BS Model:
       - 5.1 Binomial Model: 
           - Binomial Model: ch05/binomial_asset_pricing_model/binomial_asset_pricing_model.md
-          - No-Arbitrage: ch05/binomial_asset_pricing_model/one_period_no_arbitrage.md
           - Replicating Portfolio: ch05/binomial_asset_pricing_model/replicating_portfolio_pricing.md
-          - Arrow–Debreu State Prices: ch05/binomial_asset_pricing_model/arrow_debreu_state_prices.md
-          - Binary Decomposition: ch05/binomial_asset_pricing_model/binary_quanto_decomposition.md 
-          - Delta Hedging: ch05/binomial_asset_pricing_model/delta_hedging_in_binomial_model.md 
-          - Risk-Neutral Probability: ch05/binomial_asset_pricing_model/risk_neutral_probability.md
-          - Martingale Pricing: ch05/binomial_asset_pricing_model/martingale_pricing_view.md
-          - One-Period Option Pricing: ch05/binomial_asset_pricing_model/one_period_option_pricing.md 
+          - Delta Pricing: ch05/binomial_asset_pricing_model/delta_pricing.md
+          - Risk-Neutral Pricing: ch05/binomial_asset_pricing_model/risk_neutral_pricing.md
           - How to Build Tree: ch05/binomial_asset_pricing_model/binomial_tree_construction.md
-          - Multi-Period Binomial Tree: ch05/binomial_asset_pricing_model/multi_period_binomial_tree.md
-          - Multi-Period Option Pricing: ch05/binomial_asset_pricing_model/multi_period_option_pricing.md  
+          - Multi-Period Option Pricing: ch05/binomial_asset_pricing_model/multi_period_option_pricing.md 
+          - Delta Hedging: ch05/binomial_asset_pricing_model/delta_hedging.md 
           - Binomial to Black–Scholes: ch05/binomial_asset_pricing_model/binomial_to_black_scholes_limit.md
-          - Exercise: ch05/binomial_asset_pricing_model/exercise.md
       - 5.2 FTAP:
           - FTAP: ch05/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
           - Separating Hyperplane Theorem: ch05/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
