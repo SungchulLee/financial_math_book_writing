@@ -316,17 +316,17 @@ nav:
   
   - 10 Term Structure:
       - 10.1 Yield Curves:
-          - Discount Factors and Zero Rates: ch10/zero_coupon_bonds_and_yield_curves/discount_factors_and_zero_rates.md
-          - Forward Rates and Term Structures: ch10/zero_coupon_bonds_and_yield_curves/forward_rates_and_term_structures.md
+          - Zero Rates: ch10/zero_coupon_bonds_and_yield_curves/discount_factors_and_zero_rates.md
+          - Forward Rates: ch10/zero_coupon_bonds_and_yield_curves/forward_rates_and_term_structures.md
           - No-Arbitrage Relations: ch10/zero_coupon_bonds_and_yield_curves/no_arbitrage_relations.md
       - 10.2 Short-Rate Models:
-          - General Short-Rate Framework: ch10/short_rate_models/general_short_rate_framework.md
+          - Short-Rate Framework: ch10/short_rate_models/general_short_rate_framework.md
           - Vasicek Model: ch10/short_rate_models/vasicek_model.md
           - CIR Model: ch10/short_rate_models/cir_model.md
-          - Affine Term Structure: ch10/short_rate_models/affine_term_structure.md
+          - Affine Model: ch10/short_rate_models/affine_term_structure.md
       - 10.3 Pricing IR Derivatives:
-          - Bond Pricing via PDEs: ch10/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
-          - Bond Pricing via Feynman–Kac: ch10/pricing_interest_rate_derivatives/bond_pricing_via_feynman_kac.md
+          - Pricing via PDEs: ch10/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
+          - Pricing via Feynman–Kac: ch10/pricing_interest_rate_derivatives/bond_pricing_via_feynman_kac.md
           - Yield Curve Dynamics: ch10/pricing_interest_rate_derivatives/yield_curve_dynamics.md
       - 10.4 HJM Framework:
           - Forward Rate Dynamics: ch10/heath_jarrow_morton_hjm_framework/forward_rate_dynamics.md
@@ -341,7 +341,7 @@ nav:
           - Volatility Structure Calibration: ch10/calibration_of_interest_rate_models/volatility_structure_calibration.md
           - Stability and Identifiability: ch10/calibration_of_interest_rate_models/stability_and_identifiability.md
       - 10.7 IR Model Risk:
-          - Negative Rates and Model Breakdown: ch10/interest_rate_model_risk/negative_rates_and_model_breakdown.md
+          - Negative Rates Issues: ch10/interest_rate_model_risk/negative_rates_issues.md
           - Multi-Curve Issues: ch10/interest_rate_model_risk/multi_curve_issues.md
           - Practical Limitations: ch10/interest_rate_model_risk/practical_limitations.md
 
@@ -478,11 +478,125 @@ nav:
           - Theoretical Impossibility Results: ch14/limits_of_learning_in_finance/theoretical_impossibility_results.md
 
   - Appendix Python Codes: 
-      - 2.3 Itô Formula:
-          - Taylor Expansion (Linear, One Variable): python_codes/APPROXIMATE_ONE_VARIABLE_FUNCTION_LINEARLY.py
-          - Taylor Expansion (Linear, Two Variables): python_codes/APPROXIMATE_TWO_VARIABLE_FUNCTION_LINEARLY.py
-          - Taylor Expansion (Quadratic, One Variable): python_codes/APPROXIMATE_ONE_VARIABLE_FUNCTION_QUADRATICALLY.py
-          - Taylor Expansion (Quadratic, Two Variables): python_codes/APPROXIMATE_TWO_VARIABLE_FUNCTION_QUADRATICALLY.py
+      - 1 Stochastic Process:
+          - 1.1 Brownian Motion:
+              - Brownian Motion Simulation: python_codes/brownian_motion_BROWNIAN_MOTION.py
+              - Cumulative Sum of dB²: python_codes/brownian_motion_CUMSUM_OF_DB_SQUARE.py
+              - High School Integral: python_codes/brownian_motion_HIGH_SCHOOL_INTEGRAL.py
+              - Itô Integral: python_codes/brownian_motion_ITO_INTEGRAL.py
+              - Itô vs Stratonovich Integral: python_codes/brownian_motion_ITO_AND_STRATONOVICH_INTEGRAL.py
+              - Reflection Principle (Maximum): python_codes/brownian_motion_REFLECTION_PRINCIPLE_OF_BROWNIAN_MOTION_ON_MAXIMUM.py
+              - Reflection Principle (Max & Endpoint): python_codes/brownian_motion_REFLECTION_PRINCIPLE_OF_BROWNIAN_MOTION_ON_MAXIMUM_AND_ENDPOINT.py
+          - 1.2 Random Walk:
+              - Simple Random Walk (Fair Coin): python_codes/simple_random_walk_SIMPLE_RANDOM_WALK_FAIR_COIN.py
+              - Simple Random Walk (Normal Coin): python_codes/simple_random_walk_SIMPLE_RANDOM_WALK_NORMAL_COIN.py
+              - Coin Flip Paths (One Path): python_codes/coin_flip_COIN_FLIPS_PATHS_ONE_PATH.py
+              - Coin Flip Paths (Two Paths): python_codes/coin_flip_COIN_FLIPS_PATHS_TWO_PATHS.py
+      - 2 SDE:
+          - 2.3 Itô Formula:
+              - Taylor Expansion (Linear, One Variable): python_codes/APPROXIMATE_ONE_VARIABLE_FUNCTION_LINEARLY.py
+              - Taylor Expansion (Quadratic, One Variable): python_codes/APPROXIMATE_ONE_VARIABLE_FUNCTION_QUADRATICALLY.py
+              - Taylor Expansion (Linear, Two Variables): python_codes/APPROXIMATE_TWO_VARIABLE_FUNCTION_LINEARLY.py
+              - Taylor Expansion (Quadratic, Two Variables): python_codes/APPROXIMATE_TWO_VARIABLE_FUNCTION_QUADRATICALLY.py
+          - 2.4 Empirical Data:
+              - Stock Analysis (AAPL Single Stock): python_codes/stock_analysis_SINGLE_STOCK_AAPL_WITH_ANALYSIS.py
+              - Stock Analysis (WMT Comprehensive): python_codes/stock_analysis_COMPREHENSIVE_STOCK_ANALYSIS_WMT.py
+              - Stock Analysis (WMT Basic Statistics): python_codes/stock_analysis_COMPUTE_BASIC_STATISTICS_WMT.py
+              - Stock Analysis (WMT Histogram): python_codes/stock_analysis_HISTOGRAM_OF_DAILY_RETURN_WMT.py
+              - Stock Analysis (WMT Candlestick): python_codes/stock_analysis_CANDLESTICK_WITH_VOLUME_WMT.py
+              - Stock Analysis (WMT Continuous vs Discrete Return): python_codes/stock_analysis_CONTINUOUS_VS_DISCRETE_RETURN_WMT.py
+              - Stock Analysis (AAPL Daily Return Distribution): python_codes/stock_analysis_DAILY_RETURN_DISTRIBUTION_AAPL.py
+              - Stock Analysis (Daily vs Log Return): python_codes/stock_analysis_DAILY_RETURN_VS_DAILY_LOG_RETURN.py
+              - Stock Analysis (FAANG Comparison): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_FAANG_USING_COMPARE_STOCKS.py
+              - Stock Analysis (FAANG Comprehensive): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_FAANG_USING_PLOT_MULTIPLE_PRICES_COMPREHENSIVELY.py
+              - Stock Analysis (FAANG Manual): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_FAANG_USING_PLOT_MULTIPLE_PRICES_MANUALLY.py
+              - Stock Analysis (FAANG Rolling Volatility): python_codes/stock_analysis_1M_ROLLING_VOLATILITY_FAANG.py
+              - Stock Analysis (FAANG Correlation Heatmap): python_codes/stock_analysis_CORRELATION_HEAT_MAP_FAANG.py
+              - Stock Analysis (Crypto Comparison): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_AAPL_BTC_ETH_USING_COMPARE_STOCKS.py
+              - Stock Analysis (VIX): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_VIX_USING_COMPARE_STOCKS.py
+              - Stock Analysis (Korea Defense): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_DEFENCE_INDUSTRY_IN_KOREA.py
+              - Stock Analysis (Korea Shipbuilding): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_SHIP_BUILDING_COMPANIES_IN_KOREA.py
+              - Stock Analysis (Korea Semiconductors): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_SAMSUNG_AND_HYNIX.py
+              - Stock Analysis (Japan Stocks): python_codes/stock_analysis_NORMALIZED_ADJUST_CLOSE_TOYOTA_AND_SOFTBANK.py
+              - Stock Analysis (S&P 500 Basic Download): python_codes/stock_analysis_SP500_BASIC_DOWNLOAD.py
+              - Stock Analysis (S&P 500 Download): python_codes/stock_analysis_SP500_DOWNLOAD.py
+              - Stock Analysis (S&P 500 Download & Save): python_codes/stock_analysis_SP500_DOWNLOAD_AND_SAVE.py
+              - Stock Analysis (S&P 500 Load & Display): python_codes/stock_analysis_SP500_LOAD_AND_DISPLAY.py
+              - Stock Analysis (S&P 500 Correlation): python_codes/stock_analysis_CORRELATION_SP500.py
+              - Stock Analysis (MSFT Financial Data): python_codes/stock_analysis_SP500_DOWNLOAD_FINANTIAL_DATA_MSFT.py
+              - Stock Analysis (SPY Options): python_codes/stock_analysis_OPTION_DATA_SPY.py
+              - Stock Analysis (ETF Tracking Error): python_codes/stock_analysis_COMPARE_ETF_TRACKING_ERROR.py
+              - Stock Analysis (Sector Rotation): python_codes/stock_analysis_ACADEMIC_SECTOR_ROTATION_STUDY.py
+              - Stock Analysis (Crisis Exposure): python_codes/stock_analysis_CRISIS_EXPOSURE_ANALYSIS.py
+              - Stock Analysis (Defensive Strategy): python_codes/stock_analysis_DEVELOP_DEFENSIVE_STRATEGY.py
+              - Stock Analysis (Market Entry Timing): python_codes/stock_analysis_TIME_MARKET_ENTRY_STRATEGY.py
+              - Stock Analysis (Momentum Study): python_codes/stock_analysis_STUDY_MOMENTUM_WITH_HISTORICAL_ACCURACY.py
+              - Stock Analysis (Historical S&P 500 Portfolio): python_codes/stock_analysis_CREATE_HISTORICAL_SP500_PORTFOLIO.py
+              - Stock Analysis (Portfolio Compliance Validation): python_codes/stock_analysis_SP500_VALIDATE_HISTORICAL_PORTFOLIO_COMPLIANCE.py
+              - Stock Analysis (Survivorship Bias Study): python_codes/stock_analysis_CREATE_SURVIVORSHIP_BIAS_STUDY.py
+              - Stock Analysis (Backtest Without Bias): python_codes/stock_analysis_BACKTEST_STRATEGY_WITHOUT_SURVIVORSHIP_BIAS.py
+              - Stock Analysis (Financial History Lesson): python_codes/stock_analysis_FINANCIAL_HISTORY_LESSON.py
+              - Stock Analysis (Create Financial History): python_codes/stock_analysis_CREATE_FINANCIAL_HISTORY_LESSON.py
+              - Stock Analysis (Journalism Fact Check): python_codes/stock_analysis_MARKET_JOURNALISM_FACT_CHECKING.py
+      - 3 PDE:
+          - 3.1 Heat Equation:
+              - Heat Equation 1D (Fundamental Solution): python_codes/heat_equation_1d_FUNDAMENTAL_SOLUTION.py
+              - Heat Equation 1D (Eigenfunction Expansion): python_codes/heat_equation_1d_EIGENFUNCTION_EXPANSION.py
+              - Heat Equation 1D (FFT): python_codes/heat_equation_1d_FFT.py
+              - Heat Equation 1D (Run): python_codes/heat_equation_1d_RUN.py
+              - Heat Equation 2D (Basic): python_codes/heat_equation_2d_BASIC.py
+              - Heat Equation 2D (Modular): python_codes/heat_equation_2d_MODULAR.py
+          - 3.2 FFT:
+              - Visualize FFT: python_codes/VISUALIZE_FFT.py
+              - Visualize FFT Low Pass Filter: python_codes/VISUALIZE_FFT_LOW_PASS_FILTER.py
+      - 5 BS Model:
+          - 5.1 Geometric Brownian Motion:
+              - GBM Simulation: python_codes/black_scholes_GEOMETRIC_BROWNIAN_MOTION.py
+          - 5.6 Black-Scholes Formula:
+              - Option Prices (Comprehensive): python_codes/black_scholes_OPTION_PRICES.py
+              - Option Prices (Using Formula): python_codes/black_scholes_OPTION_PRICES_USING_FORMULA.py
+              - Option Prices (Using Monte Carlo): python_codes/black_scholes_OPTION_PRICES_USING_MONTE_CARLO.py
+              - Option Prices (Using Put-Call Parity): python_codes/black_scholes_OPTION_PRICES_USING_PUT_CALL_PARITY.py
+          - 5.7 BS PDE Numerical Solution:
+              - Finite Difference Grid Visualization: python_codes/black_scholes_FINITE_DIFFERENCE_GRID_VISUALIZATION.py
+              - Explicit Scheme (European Call): python_codes/black_scholes_RUN_EXPLICIT_SCHEME_FOR_EUROPEAN_CALL.py
+              - Explicit Scheme (European Put): python_codes/black_scholes_RUN_EXPLICIT_SCHEME_FOR_EUROPEAN_PUT.py
+              - Explicit Scheme (American Call): python_codes/black_scholes_RUN_EXPLICIT_SCHEME_FOR_AMERICAN_CALL.py
+              - Explicit Scheme (American Put): python_codes/black_scholes_RUN_EXPLICIT_SCHEME_FOR_AMERICAN_PUT.py
+              - Implicit Scheme (European Call): python_codes/black_scholes_RUN_IMPLICIT_SCHEME_FOR_EUROPEAN_CALL.py
+              - Implicit Scheme (European Put): python_codes/black_scholes_RUN_IMPLICIT_SCHEME_FOR_EUROPEAN_PUT.py
+              - Implicit Scheme (American Call): python_codes/black_scholes_RUN_IMPLICIT_SCHEME_FOR_AMERICAN_CALL.py
+              - Implicit Scheme (American Put): python_codes/black_scholes_RUN_IMPLICIT_SCHEME_FOR_AMERICAN_PUT.py
+              - Crank-Nicolson Scheme (European Call): python_codes/black_scholes_RUN_CN_SCHEME_FOR_EUROPEAN_CALL.py
+              - Crank-Nicolson Scheme (European Put): python_codes/black_scholes_RUN_CN_SCHEME_FOR_EUROPEAN_PUT.py
+              - Crank-Nicolson Scheme (American Call): python_codes/black_scholes_RUN_CN_SCHEME_FOR_AMERICAN_CALL.py
+              - Crank-Nicolson Scheme (American Put): python_codes/black_scholes_RUN_CN_SCHEME_FOR_AMERICAN_PUT.py
+              - Convergence Analysis (Space Grid): python_codes/black_scholes_RUN_CONVERGENCE_ANALYSIS_ON_SPACE_GRID_SIZE_OF_CN_SCHEME_FOR_EUROPEAN_CALL.py
+              - Convergence Analysis (Time Grid): python_codes/black_scholes_RUN_CONVERGENCE_ANALYSIS_ON_TIME_GRID_SIZE_OF_CN_SCHEME_FOR_EUROPEAN_CALL.py
+              - Convergence Analysis (General): python_codes/black_scholes_CONVERGENCE_ANALYSIS.py
+              - Comprehensive Summary: python_codes/black_scholes_COMPREHENSIVE_SUMMARY.py
+      - 6 Greeks:
+          - 6.1 Greeks Calculation:
+              - Greeks (Basic): python_codes/black_scholes_GREEKS.py
+              - Sensitivity Analysis: python_codes/black_scholes_SENSITIVITY_ANALYSIS.py
+              - Theta Income from Short Call: python_codes/black_scholes_THETA_INCOME_FROM_SHORT_CALL.py
+              - Time Decay of Option Values: python_codes/black_scholes_TIME_DECAY_OF_OPTION_VALUES.py
+      - 7 Implied Volatility:
+          - 7.1 Implied Vol Computation:
+              - Implied Volatility (Simulated Data): python_codes/black_scholes_IMPLIED_VOLATILITY_1_SIMULATED_DATA.py
+              - Implied Volatility (Single Option Analysis): python_codes/black_scholes_IMPLIED_VOLATILITY_2_SINGLE_OPTION_ANALYSIS.py
+              - Implied Volatility (Comprehensive Workflow): python_codes/black_scholes_IMPLIED_VOLATILITY_4_COMPREHENSIVE_WORKFLOW.py
+              - Implied Volatility (Custom Analysis): python_codes/black_scholes_IMPLIED_VOLATILITY_5_CUSTOM_ANALYSIS_AND_FILTERING.py
+              - Implied Volatility (Figures): python_codes/black_scholes_IMPLIED_VOLATILITY_6_FIGURES.py
+      - 10 Term Structure:
+          - 10.2 Vasicek Model:
+              - Vasicek Usage: python_codes/vasicek_USAGE.py
+          - 10.3 CIR Model:
+              - CIR Usage: python_codes/cir_USAGE.py
+      - Appendix:
+          - KRX Main: python_codes/krx_MAIN.py
+          - Debug Test: python_codes/debug_v110_test.py
+          - Detailed Plot Test: python_codes/detailed_plot_test.py
 
 
 
