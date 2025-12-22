@@ -111,7 +111,7 @@ nav:
   - 4 Measure Change:   
       - 4.1 Martingale Foundations:
           - Local Martingale: ch04/martingale_foundations/local_martingale.md
-          - Martingale and No-Arbitrage: ch04/martingale_foundations/no_arbitrage_and_measure_change.md
+          - Martingale and No-Arbitrage: ch04/martingale_foundations/martingale_and_no_arbitrage.md
           - Risk-Neutral Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
           - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md 
           - Martingale Repr Theorem: ch04/martingale_foundations/martingale_representation_theorem.md
