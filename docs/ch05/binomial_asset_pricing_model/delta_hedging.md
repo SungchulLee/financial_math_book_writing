@@ -6,9 +6,13 @@ This section introduces **delta hedging** as a **dynamic trading strategy** in a
 
 Here, delta is no longer a single number but a **process**:
 
+
+
 $$
 \{ \Delta_{n,j} \}_{n,j}
 $$
+
+
 
 ---
 
@@ -16,10 +20,14 @@ $$
 
 Let the stock evolve on a recombining binomial tree:
 
+
+
 $$
 S_{n+1,j+1} = u S_{n,j}, \qquad
-S_{n+1,j} = d S_{n,j}.
+S_{n+1,j} = d S_{n,j}
 $$
+
+
 
 Let the option value at node $(n,j)$ be $V_{n,j}$.
 
@@ -29,12 +37,16 @@ Let the option value at node $(n,j)$ be $V_{n,j}$.
 
 At each node, define
 
+
+
 $$
 \boxed{
 \Delta_{n,j}
 = \frac{V_{n+1,j+1} - V_{n+1,j}}{(u-d)S_{n,j}}
 }
 $$
+
+
 
 This is the **local hedge ratio** at that node.
 

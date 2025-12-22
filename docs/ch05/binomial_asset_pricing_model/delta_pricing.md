@@ -1,292 +1,221 @@
-# Delta as a Pricing Coefficient (Local Replication)
+# Binomial Option Pricing via Classical Hedging
 
-## Purpose of This Section
+## Purpose of This Chapter
 
-This section introduces **delta ($\Delta$)** as a **pricing coefficient** arising from *static replication* in a one-period binomial model.
+The goal of this chapter is to derive option prices using the following logic:
 
-> Delta here is **not** a hedging strategy over time.
-> It is the coefficient that captures how payoffs change across states and makes pricing possible.
+> **Hedging → risk-free portfolio → pricing**
 
-Dynamic hedging is intentionally deferred.
+We do **not** begin with probability measures or martingales.  
+Instead, prices are determined by constructing portfolios that eliminate risk and invoking the risk-free rate.
+
+Risk-neutral probabilities will appear **only as a convenient reformulation**, not as an assumption.
 
 ---
 
-## 1. One-Period Replication Setup
+## 1. Market Setup
 
-Let the stock price evolve as
+We consider a one-period market with times \(t=0,1\).
 
-$$
+### Risk-Free Asset
+
+The bank account evolves according to continuous compounding:
+
+\[
+B_0 = 1, \qquad B_1 = e^r
+\]
+
+---
+
+### Stock
+
+The stock price evolves as
+
+\[
 S_1 =
 \begin{cases}
-uS_0 & \text{up},\
-dS_0 & \text{down},
+u S_0 & \text{(up move)}, \\
+d S_0 & \text{(down move)},
 \end{cases}
-\qquad u>d>0.
-$$
+\qquad 0 < d < e^r < u
+\]
 
-Let a contingent claim have payoff
+The inequality \(d < e^r < u\) ensures that neither the stock nor the bank dominates the other, ruling out trivial arbitrage.
 
-$$
+---
+
+## 2. The Option Payoff
+
+Let an option have terminal payoff
+
+\[
 H =
 \begin{cases}
-H_u & \text{up},\
-H_d & \text{down}.
+H_u & \text{if the stock goes up} \\
+H_d & \text{if the stock goes down}
 \end{cases}
-$$
+\]
 
-We seek a portfolio ($\Delta,\beta$) such that
+We denote the option price at time 0 by \(V_0\).
 
-$$
-\Delta uS_0 + \beta e^r = H_u,
-\qquad
-\Delta dS_0 + \beta e^r = H_d.
-$$
+Our task is to determine \(V_0\).
 
 ---
 
-## 2. Delta from Replication
+## 3. Hedging Idea
 
-Subtracting the two equations eliminates $\beta$:
+The option payoff depends on the stock price and is therefore risky.
 
-$$
-\boxed{
-\Delta = \frac{H_u - H_d}{(u-d)S_0}.
-}
-$$
+To eliminate this risk, we combine the option with a position in the stock.  
+The idea is to choose the stock position so that **stock-price fluctuations cancel out**.
 
-This number is:
-
-* uniquely determined,
-
-* independent of probabilities,
-
-* a **slope in payoff space**.
-
-Once $\Delta$ is fixed, $\beta$ adjusts the level.
+This is the essence of **classical hedging**.
 
 ---
 
-## 3. Interpretation of Delta
+## 4. Construction of a Hedged Portfolio
 
-* Delta measures **how much the payoff changes** when the state changes
+Consider a portfolio consisting of:
 
-* It is a **linear pricing coefficient**
+* one **short** option,
+* \(\Delta\) shares of the stock.
 
-* It depends only on ($H_u,H_d$) and ($u,d,S_0$)
+The value of this portfolio at maturity is
 
-* No rebalancing, no dynamics, no expectations
-
-> **Delta exists because the payoff space is two-dimensional.**
-
----
-
-## 4. Example 1: European Call Option
-
-### Setup
-
-Let
-
-$$
-S_0 = 100, \quad u = 1.2, \quad d = 0.9, \quad r = 0.05, \quad K = 105.
-$$
-
-Payoffs:
-
-$$
-C_u = (120-105)^+ = 15,
-\qquad
-C_d = (90-105)^+ = 0.
-$$
-
----
-
-### Delta
-
-$$
-\boxed{
-\Delta_{\text{call}}
-= \frac{15-0}{(1.2-0.9)\cdot 100}
-= \frac{15}{30}
-= 0.5.
-}
-$$
-
-**Interpretation**:
-
-* the call payoff moves halfway with the stock between the two states.
-
----
-
-## 5. Example 2: European Put Option
-
-Payoffs:
-
-$$
-P_u = (105-120)^+ = 0,
-\qquad
-P_d = (105-90)^+ = 15.
-$$
-
----
-
-### Delta
-
-$$
-\boxed{
-\Delta_{\text{put}}
-= \frac{0-15}{(1.2-0.9)\cdot 100}
-= -0.5.
-}
-$$
-
-**Interpretation**:
-
-* the put payoff moves *oppositely* to the stock.
-
----
-
-## 6. Example 3: Digital (Binary) Option
-
-Consider a **digital call** paying
-
-$$
-H =
+\[
+\Pi_1 =
 \begin{cases}
-1 & \text{up},\
-0 & \text{down}.
+\Delta u S_0 - H_u & \text{(up)} \\
+\Delta d S_0 - H_d & \text{(down)}
 \end{cases}
-$$
+\]
 
 ---
 
-### Delta
+## 5. Elimination of Stock Risk
 
-$$
+We choose \(\Delta\) so that the portfolio has the **same value in both states**:
+
+\[
+\Delta u S_0 - H_u
+=
+\Delta d S_0 - H_d
+\]
+
+Solving for \(\Delta\),
+
+\[
 \boxed{
-\Delta_{\text{digital}}
-= \frac{1-0}{(u-d)S_0}.
+\Delta = \frac{H_u - H_d}{(u-d)S_0}
 }
-$$
+\]
 
-This is the **steepest possible slope** among bounded payoffs.
+With this choice, the terminal value of the portfolio becomes
 
-**Insight**:
+\[
+\Pi_1 = \frac{u H_d - d H_u}{u-d}
+\]
 
-* digitals isolate *state changes*,
+which is **deterministic**.
 
-* they are the “atoms” of payoff space.
-
----
-
-## 7. Example 4: Forward Contract
-
-A forward payoff is
-
-$$
-H = S_1 - K.
-$$
-
-Thus:
-
-$$
-H_u = uS_0 - K,
-\qquad
-H_d = dS_0 - K.
-$$
+The portfolio is therefore **risk-free**.
 
 ---
 
-### Delta
+## 6. Risk-Free Pricing Principle
 
-$$
+A fundamental economic principle is:
+
+> **Any risk-free portfolio must earn the risk-free rate.**
+
+Let \(\Pi_0\) denote the initial value of the hedged portfolio:
+
+\[
+\Pi_0 = \Delta S_0 - V_0
+\]
+
+Since the portfolio is risk-free,
+
+\[
+\Pi_0 = e^{-r} \Pi_1
+\]
+
+That is,
+
+\[
+\Delta S_0 - V_0
+=
+e^{-r}\frac{u H_d - d H_u}{u-d}
+\]
+
+---
+
+## 7. Option Pricing Formula
+
+Substituting the expression for \(\Delta\) and solving for \(V_0\), we obtain
+
+\[
 \boxed{
-\Delta_{\text{forward}}
-= \frac{(u-d)S_0}{(u-d)S_0}
-= 1.
+V_0
+=
+e^{-r}\left(
+\frac{e^r - d}{u-d} H_u
++
+\frac{u - e^r}{u-d} H_d
+\right)
 }
-$$
+\]
 
-**Interpretation**:
-
-* a forward moves one-for-one with the stock,
-
-* cash adjusts the level via $-Ke^{-r}$.
+This is the **arbitrage-free price** of the option.
 
 ---
 
-## 8. Example 5: Put–Call Parity via Delta
+## 8. Interpretation: Emergence of Risk-Neutral Probability
 
-Consider the payoff:
+Define
 
-$$
-C_1 - P_1 = S_1 - K.
-$$
+\[
+\boxed{
+q := \frac{e^r - d}{u-d}
+}
+\]
 
-Compute deltas:
+Then the pricing formula can be written compactly as
 
-$$
-\Delta_{\text{call}} - \Delta_{\text{put}} = 0.5 - (-0.5) = 1.
-$$
+\[
+V_0 = e^{-r}\big(q H_u + (1-q) H_d\big)
+\]
 
-This matches the forward’s delta.
-
-> **Put–call parity is a statement about identical deltas and levels**,
-> hence identical prices.
-
----
-
-## 9. Delta and Linearity
-
-If a payoff decomposes as
-
-$$
-H = \alpha H^{(1)} + \beta H^{(2)},
-$$
-
-then
-
-$$
-\Delta_H
-= \alpha \Delta_{H^{(1)}} + \beta \Delta_{H^{(2)}}.
-$$
-
-Thus:
-
-* delta is **linear in payoffs**,
-
-* pricing reduces to computing slopes and intercepts.
+The number \(q\) lies in \((0,1)\) and can be interpreted as a probability.
 
 ---
 
-## 10. What Delta Is (and Is Not)
+### Important Remark
 
-### Delta **is**
+The probability \(q\) is **not** a real-world probability and is **not assumed** in advance.
 
-* a pricing coefficient
+It arises naturally from the requirement that a hedged portfolio be risk-free and earn the risk-free rate.
 
-* a slope in payoff space
-
-* determined by replication
-
-* static and local
-
-### Delta **is not**
-
-* a probability
-
-* a belief
-
-* a trading rule over time
-
-* a risk measure
-
-Dynamic interpretation comes later.
+For this reason, \(q\) is called the **risk-neutral probability**.
 
 ---
 
-## Key Takeaway
+## 9. Key Takeaways
 
-> **Delta is the structural constant of the pricing problem.**
+* Hedging eliminates stock-price risk
+* Risk-free portfolios must earn the risk-free rate
+* Prices are determined by enforcing this principle
+* Probability enters only as a representation, not as an axiom
 
-It tells us *how much stock exposure* a payoff contains **at a single step**.
-Only after building a multi-period tree does delta become a **hedging process**.
+---
+
+## 10. Looking Ahead
+
+In multi-period models, the same hedging argument is applied **locally at each node**, leading to dynamic delta hedging.
+
+In the continuous-time limit, this logic yields the Black–Scholes equation.
+
+---
+
+> **Pricing is a consequence of hedging.  
+> Probability is a language, not a foundation.**

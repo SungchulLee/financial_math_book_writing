@@ -30,17 +30,25 @@ The answer is **yes**, and that measure is uniquely determined by no-arbitrage.
 
 In a one-period binomial model with
 
+
+
 $$
-S_1 \in {uS_0, dS_0}, \qquad B_1 = e^r,
+S_1 \in {uS_0, dS_0}, \qquad B_1 = e^r
 $$
+
+
 
 the **risk-neutral probability** is
 
+
+
 $$
 \boxed{
-q = \frac{e^r - d}{u - d}.
+q = \frac{e^r - d}{u - d}
 }
 $$
+
+
 
 ### Properties
 
@@ -56,19 +64,27 @@ $$
 
 Under the probability measure $\mathbb{Q}$ defined by
 
+
+
 $$
-\mathbb{Q}$\text{up}$ = q,
+\mathbb{Q}(\text{up}) = q,
 \qquad
-\mathbb{Q}$\text{down}$ = 1-q,
+\mathbb{Q}(\text{down}) = 1-q
 $$
+
+
 
 the discounted stock price satisfies
 
+
+
 $$
 \boxed{
-\mathbb{E}^{\mathbb{Q}}!\left[\frac{S_1}{e^r}\right] = S_0.
+\mathbb{E}^{\mathbb{Q}}\left[\frac{S_1}{e^r}\right] = S_0
 }
 $$
+
+
 
 That is, **discounted prices are martingales**.
 
@@ -80,13 +96,17 @@ This property extends to *all* attainable payoffs.
 
 For any one-period contingent claim with payoffs $H_u, H_d$,
 
+
+
 $$
 \boxed{
 V_0
 = e^{-r},\mathbb{E}^{\mathbb{Q}}[H]
-= e^{-r}\big(qH_u + (1-q)H_d\big).
+= e^{-r}\big(qH_u + (1-q)H_d\big)
 }
 $$
+
+
 
 This formula:
 
@@ -104,39 +124,55 @@ This formula:
 
 Let
 
+
+
 $$
 S_0 = 100, \quad
 u = 1.2, \quad
 d = 0.9, \quad
 r = 0.05, \quad
-K = 105.
+K = 105
 $$
 
+
+
 Payoffs:
+
+
 
 $$
 C_u = (120 - 105)^+ = 15,
 \qquad
-C_d = (90 - 105)^+ = 0.
+C_d = (90 - 105)^+ = 0
 $$
+
+
 
 ### Pricing
 
 First compute
 
+
+
 $$
-q = \frac{e^{0.05} - 0.9}{1.2 - 0.9} \approx 0.504.
+q = \frac{e^{0.05} - 0.9}{1.2 - 0.9} \approx 0.504
 $$
 
+
+
 Then
+
+
 
 $$
 \boxed{
 C_0
-= e^{-0.05}\big$0.504 \cdot 15 + 0.496 \cdot 0\big$
-\approx 7.14.
+= e^{-0.05}\big[0.504 \cdot 15 + 0.496 \cdot 0\big]
+\approx 7.14
 }
 $$
+
+
 
 **Interpretation**:
 
@@ -150,21 +186,29 @@ $$
 
 Payoffs:
 
+
+
 $$
 P_u = (105 - 120)^+ = 0,
 \qquad
-P_d = (105 - 90)^+ = 15.
+P_d = (105 - 90)^+ = 15
 $$
 
+
+
 ### Pricing
+
+
 
 $$
 \boxed{
 P_0
-= e^{-0.05}\big$0.504 \cdot 0 + 0.496 \cdot 15\big$
-\approx 7.14.
+= e^{-0.05}\big[0.504 \cdot 0 + 0.496 \cdot 15\big]
+\approx 7.14
 }
 $$
+
+
 
 ---
 
@@ -172,23 +216,31 @@ $$
 
 Consider a digital claim paying
 
+
+
 $$
 H =
 \begin{cases}
-1 & \text{up},\
-0 & \text{down}.
+1 & \text{up}\\
+0 & \text{down}
 \end{cases}
 $$
 
+
+
 ### Pricing
+
+
 
 $$
 \boxed{
 V_0
 = e^{-r}\mathbb{Q}$\text{up}$
-= e^{-r} q.
+= e^{-r} q
 }
 $$
+
+
 
 **Insight**:
 
@@ -202,20 +254,28 @@ $$
 
 A forward payoff is
 
+
+
 $$
-H = S_1 - K.
+H = S_1 - K
 $$
 
+
+
 ### Pricing
+
+
 
 $$
 \begin{aligned}
 V_0
-&= e^{-r}\mathbb{E}^{\mathbb{Q}}[S_1 - K] \
-&= e^{-r}\big$e^r S_0 - K\big$ \
-&= \boxed{S_0 - Ke^{-r}.}
+&= e^{-r}\mathbb{E}^{\mathbb{Q}}[S_1 - K] \\
+&= e^{-r}\big[e^r S_0 - K\big] \\
+&= \boxed{S_0 - Ke^{-r}}
 \end{aligned}
 $$
+
+
 
 This recovers the standard forward price directly from expectation.
 
@@ -225,19 +285,27 @@ This recovers the standard forward price directly from expectation.
 
 Using risk-neutral pricing,
 
+
+
 $$
 \begin{aligned}
 C_0 - P_0
-&= e^{-r}\mathbb{E}^{\mathbb{Q}}[S_1 - K] \
-&= S_0 - Ke^{-r}.
+&= e^{-r}\mathbb{E}^{\mathbb{Q}}[S_1 - K] \\
+&= S_0 - Ke^{-r}
 \end{aligned}
 $$
 
+
+
+
+
 $$
 \boxed{
-C_0 - P_0 = S_0 - Ke^{-r}.
+C_0 - P_0 = S_0 - Ke^{-r}
 }
 $$
+
+
 
 Put–call parity is therefore a **risk-neutral identity**, not a separate assumption.
 
@@ -247,10 +315,14 @@ Put–call parity is therefore a **risk-neutral identity**, not a separate assum
 
 For any payoffs $H_1, H_2$ and scalars $\alpha, \beta$,
 
+
+
 $$
-V_0$\alpha H_1 + \beta H_2$
-= \alpha V_0$H_1$ + \beta V_0$H_2$.
+V_0(\alpha H_1 + \beta H_2)
+= \alpha V_0(H_1) + \beta V_0(H_2)
 $$
+
+
 
 This linearity explains why:
 
@@ -288,15 +360,19 @@ This linearity explains why:
 
 In an (N)-period binomial tree,
 
+
+
 $$
 \boxed{
 V_0
 = e^{-rN}\mathbb{E}^{\mathbb{Q}}[H_N]
 = e^{-rN}
 \sum_{j=0}^N
-\binom{N}{j} q^j (1-q)^{N-j} H_j.
+\binom{N}{j} q^j (1-q)^{N-j} H_j
 }
 $$
+
+
 
 This leads directly to **backward induction** and tree-based pricing.
 

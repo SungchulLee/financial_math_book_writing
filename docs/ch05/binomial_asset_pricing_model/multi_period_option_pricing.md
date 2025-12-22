@@ -11,24 +11,28 @@ and the convergence to continuous-time models such as Black–Scholes.
 
 Let the current stock price be \( S_0 \). Over one time step \( \Delta t \),
 the stock price evolves according to
+
 \[
 S_1 =
 \begin{cases}
-u S_0, & \text{with up move}, \\
-d S_0, & \text{with down move},
+u S_0, & \text{with up move} \\
+d S_0, & \text{with down move}
 \end{cases}
 \]
+
 where \( u > 1 \) and \( 0 < d < 1 \).
 
 Let the risk-free interest rate be \( r \). The value of one unit of cash after
 one period is
+
 \[
-B_1 = (1+r) B_0 .
+B_1 = (1+r) B_0 
 \]
 
 No-arbitrage requires
+
 \[
-d < 1+r < u .
+d < 1+r < u 
 \]
 
 ---
@@ -38,8 +42,9 @@ d < 1+r < u .
 ### 2.1 Time Discretization
 
 Fix a maturity \( T \) and divide it into \( N \) equal periods:
+
 \[
-\Delta t = \frac{T}{N}.
+\Delta t = \frac{T}{N}
 \]
 
 At each time step, the stock price moves up by factor \( u \) or down by factor
@@ -51,8 +56,9 @@ At each time step, the stock price moves up by factor \( u \) or down by factor
 
 At time step \( n \), after \( k \) up moves and \( n-k \) down moves, the stock
 price is
+
 \[
-S_{n,k} = S_0 u^k d^{\,n-k}.
+S_{n,k} = S_0 u^k d^{n-k}
 \]
 
 The binomial tree is **recombining**, meaning that the order of up and down moves
@@ -65,15 +71,18 @@ does not matter.
 Typical choices of parameters include:
 
 - **Cox–Ross–Rubinstein (CRR) model**
+
 \[
 u = e^{\sigma \sqrt{\Delta t}}, \quad
-d = e^{-\sigma \sqrt{\Delta t}},
+d = e^{-\sigma \sqrt{\Delta t}}
 \]
+
 where \( \sigma \) is the volatility.
 
 - **Risk-free growth**
+
 \[
-1+r = e^{r \Delta t}.
+1+r = e^{r \Delta t}
 \]
 
 These choices ensure recombination and convergence to continuous-time limits.
@@ -83,6 +92,7 @@ These choices ensure recombination and convergence to continuous-time limits.
 ## 3. Risk-Neutral Probability
 
 Define the **risk-neutral probability** \( q \) by
+
 \[
 q = \frac{(1+r) - d}{u - d}.
 \]
@@ -106,13 +116,15 @@ Let \( V_{n,k} \) denote the value of an option at node \( (n,k) \).
 At maturity \( T \) (time step \( N \)), the option value is given by its payoff.
 
 - **European call option**
+
 \[
-V_{N,k} = \max(S_{N,k} - K, 0).
+V_{N,k} = \max(S_{N,k} - K, 0)
 \]
 
 - **European put option**
+
 \[
-V_{N,k} = \max(K - S_{N,k}, 0).
+V_{N,k} = \max(K - S_{N,k}, 0)
 \]
 
 ---
@@ -120,13 +132,14 @@ V_{N,k} = \max(K - S_{N,k}, 0).
 ### 4.2 Backward Induction
 
 For \( n = N-1, \dots, 0 \), the option value is computed recursively as
+
 \[
 V_{n,k}
 =
 \frac{1}{1+r}
 \left(
 q V_{n+1,k+1} + (1-q) V_{n+1,k}
-\right).
+\right)
 \]
 
 This backward induction corresponds to forming a locally risk-free replicating
@@ -146,6 +159,7 @@ The pricing formula shows that:
 ## 5. American Options (Optional Extension)
 
 For an **American option**, early exercise is allowed. The pricing rule becomes
+
 \[
 V_{n,k}
 =
@@ -156,7 +170,7 @@ V_{n,k}
 \left[
 q V_{n+1,k+1} + (1-q) V_{n+1,k}
 \right]
-\right).
+\right)
 \]
 
 Early exercise may be optimal for American puts but not for non-dividend-paying

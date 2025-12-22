@@ -1,6 +1,14 @@
 # Quantitative Finance with Python
 
-Welcome! This book is written in Markdown and published with MkDocs + Material.
+Welcome! This book is written in Markdown and published using MkDocs with the Material theme.
+
+The foundational content of this book originates from my conversations with AI assistants. 
+While I have reviewed and revised portions of the material, 
+time constraints have prevented a comprehensive review of all content. 
+I welcome your contributions in identifying and correcting errors through Git pull requests or email.
+
+Email: sungchul@yonsei.ac.kr  
+GitHub: https://github.com/SungchulLee/financial_math_book_writing
 
 To run the code examples in this course, install the following packages that are not included in the standard Anaconda distribution:
 ```python
@@ -13,8 +21,6 @@ Others require additional dependencies and must be executed from within the `pyt
 ---
 
 **Sungchul Lee**  
-Email: sungchul@yonsei.ac.kr  
-GitHub: https://github.com/SungchulLee  
 Department of Mathematics, College of Science  
 Yonsei University  
 Seoul, South Korea
