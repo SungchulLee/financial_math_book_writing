@@ -1,7 +1,7 @@
 # Greeks in the Black–Scholes Model
 
 In the previous sections, Greeks were defined abstractly as partial derivatives of a pricing operator
-\(V(t,S;\sigma,r,\dots)\). We now **specialize these definitions to the Black–Scholes model** and compute the Greeks explicitly from the closed-form European call/put formulas. :contentReference[oaicite:1]{index=1}
+\(V(t,S;\sigma,r,\dots)\). We now **specialize these definitions to the Black–Scholes model** and compute the Greeks explicitly from the closed-form European call/put formulas. 
 
 ---
 
@@ -20,17 +20,19 @@ Let
 - \(N'(x) = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2}\): standard normal PDF
 
 Define
+
 \[
 d_1 = \frac{\ln(S/K) + \left(r+\tfrac12\sigma^2\right)\tau}{\sigma\sqrt{\tau}},
 \qquad
-d_2 = d_1 - \sigma\sqrt{\tau}.
+d_2 = d_1 - \sigma\sqrt{\tau}
 \]
 
 The Black–Scholes prices are
+
 \[
 C = S N(d_1) - K e^{-r\tau}N(d_2),
 \qquad
-P = K e^{-r\tau}N(-d_2) - S N(-d_1).
+P = K e^{-r\tau}N(-d_2) - S N(-d_1)
 \]
 
 ---
@@ -38,17 +40,19 @@ P = K e^{-r\tau}N(-d_2) - S N(-d_1).
 ## Delta
 
 \[
-\Delta := \frac{\partial V}{\partial S}.
+\Delta := \frac{\partial V}{\partial S}
 \]
 
 - **Call**:
+- 
 \[
-\Delta_{\text{call}} = N(d_1).
+\Delta_{\text{call}} = N(d_1)
 \]
 
 - **Put**:
+- 
 \[
-\Delta_{\text{put}} = N(d_1)-1 = -N(-d_1).
+\Delta_{\text{put}} = N(d_1)-1 = -N(-d_1)
 \]
 
 Delta lies in \((0,1)\) for calls and \((-1,0)\) for puts.
@@ -58,12 +62,13 @@ Delta lies in \((0,1)\) for calls and \((-1,0)\) for puts.
 ## Gamma
 
 \[
-\Gamma := \frac{\partial^2 V}{\partial S^2}.
+\Gamma := \frac{\partial^2 V}{\partial S^2}
 \]
 
 For both calls and puts,
+
 \[
-\Gamma = \frac{N'(d_1)}{S\,\sigma\sqrt{\tau}}.
+\Gamma = \frac{N'(d_1)}{S\,\sigma\sqrt{\tau}}
 \]
 
 Gamma is always positive (convexity in \(S\)) and becomes large near maturity (small \(\tau\)).
@@ -73,12 +78,13 @@ Gamma is always positive (convexity in \(S\)) and becomes large near maturity (s
 ## Vega
 
 \[
-\nu := \frac{\partial V}{\partial \sigma}.
+\nu := \frac{\partial V}{\partial \sigma}
 \]
 
 For both calls and puts,
+
 \[
-\nu = S\sqrt{\tau}\,N'(d_1).
+\nu = S\sqrt{\tau}\,N'(d_1)
 \]
 
 Vega is typically largest near-the-money and for moderate maturities.
@@ -88,22 +94,24 @@ Vega is typically largest near-the-money and for moderate maturities.
 ## Theta
 
 \[
-\Theta := \frac{\partial V}{\partial t}.
+\Theta := \frac{\partial V}{\partial t}
 \]
 
 > **Convention.** Some texts define theta as \(-\partial_t V\).  
 > Here we use **calendar-time theta** \(\Theta=\partial_t V\); interpret signs accordingly.
 
 - **Call**:
+- 
 \[
 \Theta_{\text{call}}
-= -\frac{S\sigma N'(d_1)}{2\sqrt{\tau}} - rK e^{-r\tau}N(d_2).
+= -\frac{S\sigma N'(d_1)}{2\sqrt{\tau}} - rK e^{-r\tau}N(d_2)
 \]
 
 - **Put**:
+- 
 \[
 \Theta_{\text{put}}
-= -\frac{S\sigma N'(d_1)}{2\sqrt{\tau}} + rK e^{-r\tau}N(-d_2).
+= -\frac{S\sigma N'(d_1)}{2\sqrt{\tau}} + rK e^{-r\tau}N(-d_2)
 \]
 
 Theta is typically negative (time decay), with exceptions in certain regimes (e.g., deep ITM puts).
@@ -113,17 +121,19 @@ Theta is typically negative (time decay), with exceptions in certain regimes (e.
 ## Rho
 
 \[
-\rho := \frac{\partial V}{\partial r}.
+\rho := \frac{\partial V}{\partial r}
 \]
 
 - **Call**:
+- 
 \[
-\rho_{\text{call}} = K\tau e^{-r\tau}N(d_2).
+\rho_{\text{call}} = K\tau e^{-r\tau}N(d_2)
 \]
 
 - **Put**:
+- 
 \[
-\rho_{\text{put}} = -K\tau e^{-r\tau}N(-d_2).
+\rho_{\text{put}} = -K\tau e^{-r\tau}N(-d_2)
 \]
 
 Rho reflects the present-value effect of the strike and is usually small for short maturities.

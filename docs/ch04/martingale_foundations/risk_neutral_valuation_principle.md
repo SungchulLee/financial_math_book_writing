@@ -2,6 +2,7 @@
 
 ## 1. Central Pricing Principle
 In arbitrage-free markets:
+
 \[
 \boxed{
 V_t = \mathbb{E}^{\mathbb{Q}}
@@ -15,6 +16,7 @@ e^{-r(T-t)} \Phi(X_T)
 ---
 
 ## 2. Meaning of Risk Neutrality
+
 - Investors behave as if risk preferences do not matter
 - Expected returns equal the risk-free rate
 
@@ -22,8 +24,9 @@ e^{-r(T-t)} \Phi(X_T)
 
 ## 3. PDE Equivalence
 Risk-neutral valuation is equivalent to solving:
+
 \[
-\partial_t V + \mathcal{L}^{\mathbb{Q}} V - rV = 0.
+\partial_t V + \mathcal{L}^{\mathbb{Q}} V - rV = 0
 \]
 
 ---
@@ -35,6 +38,7 @@ Only volatility remains.
 ---
 
 ## 5. Financial Interpretation
+
 - Pricing independent of preferences
 - Market prices of risk absorbed into the measure
 

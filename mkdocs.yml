@@ -183,42 +183,45 @@ nav:
 
   - 6 Greeks:
       - 6.1 Definition of Greeks:
-          - Greeks: ch06/greeks_meaning/delta_gamma_vega_theta_rho.md
-          - Greeks as D of Pricing Op: ch06/greeks_meaning/greeks_as_derivatives_of_pricing_operator.md
-          - Greeks via Infinitesimal G: ch06/greeks_meaning/greeks_via_infinitesimal_generator.md
-          - Greeks and Martingale Repr: ch06/greeks_meaning/greeks_and_martingale_representation.md
-          - Greeks in BS Model: ch06/greeks_meaning/greeks_in_black_scholes_model.md
+          - Greeks: ch06/greeks/delta_gamma_vega_theta_rho.md
+          - Greeks as D of Pricing Op: ch06/greeks/greeks_as_derivatives_of_pricing_operator.md
+          - Greeks via Infinitesimal G: ch06/greeks/greeks_via_infinitesimal_generator.md
+          - Greeks and Martingale Repr: ch06/greeks/greeks_and_martingale_representation.md
+          - Greeks in BS Model: ch06/greeks/greeks_in_black_scholes_model.md
       - 6.2 PDE Char of Greeks:
-          - Differentiating BS PDE: ch06/pde_greeks/differentiating_black_scholes_pde.md
-          - PDEs Satisfied by Greeks: ch06/pde_greeks/pdes_satisfied_by_greeks.md
-          - G at Boundary and Maturity: ch06/pde_greeks/boundary_and_terminal_behavior_of_greeks.md
-          - Smooth and Regul Issues: ch06/pde_greeks/smoothness_and_regularity_issues.md
+          - Differentiating BS PDE: ch06/greeks_pde/differentiating_black_scholes_pde.md
+          - PDEs Satisfied by Greeks: ch06/greeks_pde/pdes_satisfied_by_greeks.md
+          - G at Boundary and Maturity: ch06/greeks_pde/boundary_and_terminal_behavior_of_greeks.md
+          - Smooth and Regul Issues: ch06/greeks_pde/smoothness_and_regularity_issues.md
       - 6.3 Probab Repr of Greeks:
-          - Greeks via Feynman–Kac: ch06/probabilistic_greeks/greeks_via_feynman_kac.md
-          - Pathwise Differentiation: ch06/probabilistic_greeks/pathwise_differentiation.md
-          - Likelihood Ratio Method: ch06/probabilistic_greeks/likelihood_ratio_malliavin_methods.md
-          - Sensitivities as Cond E: ch06/probabilistic_greeks/sensitivities_as_conditional_expectations.md
+          - Greeks via Feynman–Kac: ch06/greeks_probab/greeks_via_feynman_kac.md
+          - Pathwise Differentiation: ch06/greeks_probab/pathwise_differentiation.md
+          - Likelihood Ratio Method: ch06/greeks_probab/likelihood_ratio_malliavin_methods.md
+          - Sensitivities as Cond E: ch06/greeks_probab/sensitivities_as_conditional_expectations.md
       - 6.4 Option Pricing Asympt:
           - Short-Maturity Asymptotics: ch06/asymptotic_regimes/short_maturity_asymptotics.md
           - Strike Asymptotics: ch06/asymptotic_regimes/large_strike_and_small_strike_asymptotics.md
           - Small-Vol Asymptotics: ch06/asymptotic_regimes/small_volatility_asymptotics.md
           - Large-Time Asymptotics: ch06/asymptotic_regimes/large_time_behavior_and_ergodicity.md
       - 6.5 Asymptotics of Greeks:
-          - Gamma Near Expiry: ch06/asymptotics_of_greeks/blow_up_of_gamma_near_expiry.md
-          - Vega Asymptotics: ch06/asymptotics_of_greeks/vega_asymptotics_and_smile_sensitivity.md
-          - Delta Near ATM: ch06/asymptotics_of_greeks/delta_behavior_near_the_money.md
-          - Scaling Laws for Greeks: ch06/asymptotics_of_greeks/scaling_laws_for_greeks.md
+          - Gamma Near Expiry: ch06/greeks_asympt/blow_up_of_gamma_near_expiry.md
+          - Vega Asymptotics: ch06/greeks_asympt/vega_asymptotics_and_smile_sensitivity.md
+          - Delta Near ATM: ch06/greeks_asympt/delta_behavior_near_the_money.md
+          - Scaling Laws for Greeks: ch06/greeks_asympt/scaling_laws_for_greeks.md
       - 6.6 Hedging Errors:
           - Discrete-Time Hedging Error: ch06/hedging_errors/discrete_time_hedging_error.md
           - Gamma Risk and Convexity: ch06/hedging_errors/gamma_risk_and_convexity_effects.md
           - Vol Misspecification: ch06/hedging_errors/impact_of_volatility_misspecification.md
           - Hedging Error Expansion: ch06/hedging_errors/asymptotic_hedging_error_expansions.md
       - 6.7 Greeks Strategies:
-          - Delta-Neutral Strategies: ch06/trading_strategies/delta_neutral_strategies.md
+          - Delta Hedging: ch06/trading_strategies/delta_hedging.md
           - Gamma Scalping: ch06/trading_strategies/gamma_scalping.md
-          - Vega Trading and Vol Bets: ch06/trading_strategies/vega_trading_and_volatility_bets.md
+          - Vega Trading: ch06/trading_strategies/vega_trading.md
+          - Dispersion Trading: ch06/trading_strategies/dispersion_trading.md
+          - CB_Arbitrage: ch06/trading_strategies/convertible_bond_arbitrage.md
+          - Variance Swaps: ch06/trading_strategies/variance_swaps.md
           - Theta Decay and Carry Trades: ch06/trading_strategies/theta_decay_and_carry_trades.md
-          - Static vs Dynamic Hedging: ch06/trading_strategies/static_vs_dynamic_hedging.md
+          - Static Hedging: ch06/trading_strategies/static_hedging.md
       - 6.8 Asymptotics Strategies:
           - Near Expiry Gamma Exploit: ch06/asymptotic_trading/short_time_gamma_exploitation.md
           - Vega Asympt Vol Arbitrage: ch06/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md

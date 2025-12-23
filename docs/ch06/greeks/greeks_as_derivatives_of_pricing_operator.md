@@ -12,7 +12,7 @@ For a European payoff \(\Phi(S_T)\) under a risk-neutral model, define the prici
 \[
 (\mathcal{P}\Phi)(t,S)
 :=
-\mathbb{E}^{t,S}\!\left[e^{-r(T-t)}\Phi(S_T)\right].
+\mathbb{E}^{t,S}\!\left[e^{-r(T-t)}\Phi(S_T)\right]
 \]
 
 
@@ -21,7 +21,7 @@ Then the option price is
 
 
 \[
-V(t,S) = (\mathcal{P}\Phi)(t,S).
+V(t,S) = (\mathcal{P}\Phi)(t,S)
 \]
 
 
@@ -34,6 +34,7 @@ V(t,S) = (\mathcal{P}\Phi)(t,S).
 - **Parameter derivatives**: \(\partial_\sigma(\mathcal{P}\Phi)\), \(\partial_r(\mathcal{P}\Phi)\) correspond to vega and rho.
 
 This separation matters because:
+
 - state derivatives reflect geometry of \(V\) as a function of \(S\),
 - parameter derivatives reflect sensitivity of the law of \(S_T\) to parameter changes.
 
@@ -48,12 +49,13 @@ Formally, for a parameter \(\theta\),
 \frac{\partial}{\partial \theta}(\mathcal{P}_\theta\Phi)
 =
 \frac{\partial}{\partial \theta}
-\mathbb{E}^{t,S}_\theta\!\left[e^{-r(T-t)}\Phi(S_T)\right].
+\mathbb{E}^{t,S}_\theta\!\left[e^{-r(T-t)}\Phi(S_T)\right]
 \]
 
 
 
 The derivative can be handled by:
+
 - differentiating the PDE satisfied by \(V\),
 - differentiating the stochastic flow \(S_T^{\theta}\) (pathwise differentiation),
 - changing measure or using likelihood ratio (score) identities.
@@ -68,12 +70,13 @@ Think of \(\mathcal{P}\) as a linear map (for fixed model) acting on payoffs:
 
 
 \[
-\Phi \mapsto V(\cdot,\cdot).
+\Phi \mapsto V(\cdot,\cdot)
 \]
 
 
 
 Greeks are then derivatives of \(\mathcal{P}\Phi\) with respect to:
+
 - the spatial variable \(S\),
 - parameters of the operator \(\mathcal{P}\).
 

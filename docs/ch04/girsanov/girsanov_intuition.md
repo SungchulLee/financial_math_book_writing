@@ -15,6 +15,7 @@ The resolution lies in understanding the difference between **paths** and
 ## Paths vs Probability Measures
 
 A stochastic process such as Brownian motion generates random paths
+
 \[
 \omega : [0,T] \to \mathbb{R}.
 \]
@@ -23,6 +24,7 @@ A probability measure does not create new paths.
 Instead, it assigns **weights** to these paths.
 
 Changing the probability measure therefore:
+
 - does **not** alter which paths are possible,
 - but **does** change how likely each path is.
 
@@ -39,6 +41,7 @@ Under one probability measure, paths that trend upward may be more likely.
 Under another measure, those same paths may be downweighted.
 
 From the perspective of averages:
+
 - the first observer sees a **positive drift**,
 - the second observer sees **no drift**.
 
@@ -51,9 +54,11 @@ Only the probability weights have changed.
 
 Let \(W_t\) be Brownian motion under a measure \(\mathbb{P}\).
 The process
+
 \[
 Y_t = W_t + \theta t
 \]
+
 has drift \(\theta\) under \(\mathbb{P}\).
 
 Girsanov’s theorem answers the following question:
@@ -68,6 +73,7 @@ The drift can be absorbed into the probability measure.
 ## Why This Matters in Finance
 
 In financial markets:
+
 - under the **physical measure**, asset prices contain risk premia,
 - under the **pricing measure**, discounted prices must have no predictable trend.
 

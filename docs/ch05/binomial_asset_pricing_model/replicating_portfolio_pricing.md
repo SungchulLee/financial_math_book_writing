@@ -180,8 +180,8 @@ Consider a **digital call** paying:
 $$
 H =
 \begin{cases}
-1 & \text{if } S_{dt} = uS_0 \\
-0 & \text{if } S_{dt} = dS_0
+1 & \text{if } S_1 = uS_0 \\
+0 & \text{if } S_1 = dS_0
 \end{cases}
 $$
 
@@ -213,7 +213,7 @@ This example shows that **risk-neutral probability is literally the price of a d
 A forward payoff is
 
 $$
-H = S_{dt} - K
+H = S_1 - K
 $$
 
 Thus,

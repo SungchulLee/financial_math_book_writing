@@ -11,6 +11,7 @@ This section clarifies their respective roles.
 
 The physical (or real-world) measure describes how asset prices actually evolve.
 It reflects:
+
 - economic growth,
 - investor risk preferences,
 - empirical return distributions.
@@ -23,6 +24,7 @@ Under \(\mathbb{P}\), expected returns include risk premia.
 
 The risk-neutral measure is a **pricing tool**, not a description of reality.
 Under \(\mathbb{Q}\):
+
 - discounted asset prices are martingales,
 - expected excess returns vanish,
 - probabilities are adjusted for risk.
@@ -34,6 +36,7 @@ It is constructed mathematically via Girsanov’s theorem or numéraire techniqu
 ## Same Paths, Different Weights
 
 A crucial point is that \(\mathbb{P}\) and \(\mathbb{Q}\) are **equivalent measures**:
+
 - they assign positive probability to the same events,
 - but with different likelihoods.
 
@@ -45,6 +48,7 @@ only how they are weighted.
 ## Why \(\mathbb{Q}\) Is Not “Believed”
 
 The risk-neutral measure should not be interpreted as:
+
 - a forecast of future prices,
 - an investor’s belief,
 - a statistical model of returns.

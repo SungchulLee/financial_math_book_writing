@@ -20,7 +20,9 @@ A process $\{M_t\}$ is a **local martingale** if there exists a sequence of **st
 
 Here $t \wedge \tau_n = \min(t, \tau_n)$ means we stop the process at time $\tau_n$.
 
-**Interpretation:** The process is a martingale "up to any finite stopping time" - it's a martingale over any finite time window, but possibly not globally.
+**Interpretation:** The process is a martingale "up to any finite stopping time" 
+
+- It is a martingale over any finite time window, but possibly not globally.
 
 ---
 

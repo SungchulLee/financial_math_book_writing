@@ -4,7 +4,7 @@ Let an option price be written as a function
 
 
 \[
-V = V(t,S;\sigma,r,\dots),
+V = V(t,S;\sigma,r,\dots)
 \]
 
 
@@ -61,7 +61,7 @@ There are multiple sign conventions. Here we define **calendar-time theta**
 
 
 \[
-\boxed{\Theta(t,S) := \frac{\partial V}{\partial t}(t,S).}
+\boxed{\Theta(t,S) := \frac{\partial V}{\partial t}(t,S)}
 \]
 
 
@@ -95,7 +95,7 @@ V(t,S;\sigma,r)
 +\Delta\,\delta S
 +\nu\,\delta\sigma
 +\rho\,\delta r
-+\frac{1}{2}\Gamma\,(\delta S)^2.
++\frac{1}{2}\Gamma\,(\delta S)^2
 \]
 
 

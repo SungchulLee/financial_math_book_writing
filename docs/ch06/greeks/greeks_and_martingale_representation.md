@@ -12,7 +12,7 @@ In Black–Scholes under \(\mathbb{Q}\),
 \[
 \mathrm{d}S_t = rS_t\,\mathrm{d}t + \sigma S_t\,\mathrm{d}W_t,
 \qquad
-B_t = e^{rt}.
+B_t = e^{rt}
 \]
 
 
@@ -21,7 +21,7 @@ Define the discounted asset \(\widetilde{S}_t := B_t^{-1}S_t\). Then
 
 
 \[
-\mathrm{d}\widetilde{S}_t = \sigma \widetilde{S}_t\,\mathrm{d}W_t,
+\mathrm{d}\widetilde{S}_t = \sigma \widetilde{S}_t\,\mathrm{d}W_t
 \]
 
 
@@ -38,7 +38,7 @@ Let \(V(t,S_t)\) be the price process and define \(\widetilde{V}_t := B_t^{-1}V(
 \[
 \widetilde{V}_t
 =
-\mathbb{E}^{\mathbb{Q}}[\widetilde{V}_T\mid \mathcal{F}_t],
+\mathbb{E}^{\mathbb{Q}}[\widetilde{V}_T\mid \mathcal{F}_t]
 \]
 
 
@@ -72,7 +72,7 @@ By Itô’s formula and the PDE cancellation of drift,
 \[
 \mathrm{d}\widetilde{V}_t
 =
-B_t^{-1}\sigma S_t V_S(t,S_t)\,\mathrm{d}W_t.
+B_t^{-1}\sigma S_t V_S(t,S_t)\,\mathrm{d}W_t
 \]
 
 
@@ -83,7 +83,7 @@ Thus
 \[
 \boxed{
 Z_t = B_t^{-1}\sigma S_t\,\Delta(t,S_t),
-\qquad \Delta=V_S.
+\qquad \Delta=V_S
 }
 \]
 

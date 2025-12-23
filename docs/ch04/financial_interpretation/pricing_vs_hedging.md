@@ -12,12 +12,15 @@ Pricing asks the question:
 > *What is the fair value of a contingent claim today?*
 
 Under no-arbitrage, the price of a payoff \(X_T\) at time \(T\) is given by
+
 \[
-V_0 = \mathbb{E}^{\mathbb{Q}}\!\left[ e^{-\int_0^T r_s ds} X_T \right],
+V_0 = \mathbb{E}^{\mathbb{Q}}\!\left[ e^{-\int_0^T r_s ds} X_T \right]
 \]
+
 where \(\mathbb{Q}\) is a risk-neutral measure.
 
 Pricing depends only on:
+
 - the payoff structure,
 - the risk-free rate,
 - the risk-neutral dynamics.
@@ -32,6 +35,7 @@ Hedging asks a different question:
 
 Hedging strategies are constructed in the **physical market**, using observable
 asset prices and trading rules. They depend on:
+
 - market completeness,
 - available instruments,
 - trading constraints.
@@ -45,6 +49,7 @@ The risk-neutral measure incorporates risk preferences implicitly through the
 change of measure.
 
 Hedging, however, is **measure-invariant**:
+
 - A self-financing strategy remains self-financing under any equivalent measure.
 - Replication arguments do not depend on \(\mathbb{P}\) or \(\mathbb{Q}\).
 
