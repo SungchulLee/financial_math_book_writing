@@ -13,7 +13,7 @@ Let the current stock price be \( S_0 \). Over one time step \( \Delta t \),
 the stock price evolves according to
 
 \[
-S_1 =
+S_{dt} =
 \begin{cases}
 u S_0, & \text{with up move} \\
 d S_0, & \text{with down move}
@@ -26,13 +26,13 @@ Let the risk-free interest rate be \( r \). The value of one unit of cash after
 one period is
 
 \[
-B_1 = (1+r) B_0 
+B_1 = e^{r dt} B_0 
 \]
 
 No-arbitrage requires
 
 \[
-d < 1+r < u 
+d < e^{r dt} < u 
 \]
 
 ---
@@ -44,7 +44,7 @@ d < 1+r < u
 Fix a maturity \( T \) and divide it into \( N \) equal periods:
 
 \[
-\Delta t = \frac{T}{N}
+d t = \frac{T}{N}
 \]
 
 At each time step, the stock price moves up by factor \( u \) or down by factor
@@ -73,8 +73,8 @@ Typical choices of parameters include:
 - **Cox–Ross–Rubinstein (CRR) model**
 
 \[
-u = e^{\sigma \sqrt{\Delta t}}, \quad
-d = e^{-\sigma \sqrt{\Delta t}}
+u = e^{\sigma \sqrt{d t}}, \quad
+d = e^{-\sigma \sqrt{d t}}
 \]
 
 where \( \sigma \) is the volatility.
@@ -82,7 +82,7 @@ where \( \sigma \) is the volatility.
 - **Risk-free growth**
 
 \[
-1+r = e^{r \Delta t}
+e^{r dt} 
 \]
 
 These choices ensure recombination and convergence to continuous-time limits.
@@ -94,10 +94,10 @@ These choices ensure recombination and convergence to continuous-time limits.
 Define the **risk-neutral probability** \( q \) by
 
 \[
-q = \frac{(1+r) - d}{u - d}.
+q = \frac{e^{r dt} - d}{u - d}
 \]
 
-Under the no-arbitrage condition \( d < 1+r < u \), we have \( 0 < q < 1 \).
+Under the no-arbitrage condition \( d < e^{r dt} < u \), we have \( 0 < q < 1 \).
 
 Under the risk-neutral measure:
 - The expected growth rate of the stock equals the risk-free rate.
@@ -136,7 +136,7 @@ For \( n = N-1, \dots, 0 \), the option value is computed recursively as
 \[
 V_{n,k}
 =
-\frac{1}{1+r}
+\frac{1}{e^{r dt}}
 \left(
 q V_{n+1,k+1} + (1-q) V_{n+1,k}
 \right)
@@ -150,6 +150,7 @@ portfolio at each node.
 ### 4.3 Interpretation
 
 The pricing formula shows that:
+
 - Option pricing is independent of investors’ risk preferences.
 - Only the risk-free rate and volatility matter.
 - Dynamic hedging is implicit in the recursion.
@@ -166,7 +167,7 @@ V_{n,k}
 \max\left(
 \text{intrinsic value},
 \;
-\frac{1}{1+r}
+\frac{1}{e^{r dt}}
 \left[
 q V_{n+1,k+1} + (1-q) V_{n+1,k}
 \right]

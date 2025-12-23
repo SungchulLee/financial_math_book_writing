@@ -30,23 +30,23 @@ We proceed deliberately in this discrete framework to understand arbitrage-free 
 We begin with a **one-period market** on the time grid \(t = 0,1\).
 
 !!! note "Continuous Compounding Convention"
-    Throughout this chapter, we use **continuous compounding** for the risk-free rate. In a one-period model, the risk-free asset grows by the factor \(e^r\), ensuring consistency with the Black–Scholes framework and simplifying the limiting arguments.
+    Throughout this chapter, we use **continuous compounding** for the risk-free rate. In a one-period model, the risk-free asset grows by the factor \(e^{r dt}\), ensuring consistency with the Black–Scholes framework and simplifying the limiting arguments.
 
 ### Assets
 
 * **Risk-free asset (bank account)**: with \(B_0 = 1\)
 
 \[
-B_1 = e^r
+B_{dt} = e^{r dt}
 \]
 
-* **Risky asset (stock)**: with \(S_0 > 0\) and \(0 < d < e^r < u\)
+* **Risky asset (stock)**: with \(S_0 > 0\) and \(0 < d < e^{r dt} < u\)
 
 \[
-S_1 =
+S_{dt} =
 \begin{cases}
-u S_0 & \text{(up state)}, \\
-d S_0 & \text{(down state)}.
+u S_0 & \text{(up state)} \\
+d S_0 & \text{(down state)}
 \end{cases}
 \]
 
@@ -63,7 +63,7 @@ Its value satisfies:
 
 \[
 V_0 = \Delta S_0 + \beta B_0, \qquad
-V_1 = \Delta S_1 + \beta B_1
+V_{dt} = \Delta S_{dt} + \beta B_{dt}
 \]
 
 ---
@@ -73,7 +73,7 @@ V_1 = \Delta S_1 + \beta B_1
 A **contingent claim** (or derivative) is any payoff measurable with respect to the terminal stock price:
 
 \[
-H = H(S_1)
+H = H(S_{dt})
 \]
 
 The central question of asset pricing is:
@@ -95,8 +95,8 @@ We will answer this question through several equivalent perspectives:
 A portfolio \((\Delta, \beta)\) is an **arbitrage** if:
 
 1. \(V_0 \le 0\),
-2. \(V_1 \ge 0\) in all states,
-3. \(\mathbb P(V_1 > 0) > 0\).
+2. \(V_{dt} \ge 0\) in all states,
+3. \(\mathbb P(V_{dt} > 0) > 0\).
 
 A market is **arbitrage-free** if no such portfolio exists.
 
@@ -107,16 +107,16 @@ A market is **arbitrage-free** if no such portfolio exists.
 Consider the **discounted stock price**
 
 \[
-\tilde S_1 := \frac{S_1}{e^r}
+\tilde S_{dt} := \frac{S_{dt}}{e^{r dt}}
 \]
 
-* If \(e^r \ge u\), the bank dominates the stock even in the up state.
-* If \(e^r \le d\), the stock dominates the bank even in the down state.
+* If \(e^{r dt} \ge u\), the bank dominates the stock even in the up state.
+* If \(e^{r dt} \le d\), the stock dominates the bank even in the down state.
 
 Therefore, absence of arbitrage requires:
 
 \[
-\boxed{d < e^r < u}
+\boxed{d < e^{r dt} < u}
 \]
 
 ---
@@ -126,13 +126,13 @@ Therefore, absence of arbitrage requires:
 Under the no-arbitrage condition,
 
 \[
-\frac{d S_0}{e^r} < S_0 < \frac{u S_0}{e^r}
+\frac{d S_0}{e^{r dt}} < S_0 < \frac{u S_0}{e^{r dt}}
 \]
 
 Equivalently, the current stock price lies in the **convex hull** of its discounted future values:
 
 \[
-S_0 \in \left[ \frac{d S_0}{e^r}, \frac{u S_0}{e^r} \right]
+S_0 \in \left[ \frac{d S_0}{e^{r dt}}, \frac{u S_0}{e^{r dt}} \right]
 \]
 
 This convexity property is the key to everything that follows.
@@ -141,18 +141,18 @@ This convexity property is the key to everything that follows.
 
 ## 5. Preview: Risk-Neutral Probability
 
-When \(d < e^r < u\), there exists a unique number \(q \in (0,1)\) given by
+When \(d < e^{r dt} < u\), there exists a unique number \(q \in (0,1)\) given by
 
 \[
 \boxed{
-q := \frac{e^r - d}{u - d}
+q := \frac{e^{r dt} - d}{u - d}
 }
 \]
 
 such that
 
 \[
-S_0 = e^{-r}\big( q u S_0 + (1-q) d S_0 \big)
+S_0 = e^{-rdt}\big( q u S_0 + (1-q) d S_0 \big)
 \]
 
 ---
@@ -177,14 +177,14 @@ Under \(\mathbb Q\), the stock price satisfies
 
 \[
 \boxed{
-S_0 = e^{-r}\,\mathbb E^{\mathbb Q}[S_1]
+S_0 = e^{-rdt}\,\mathbb E^{\mathbb Q}[S_{dt}]
 }
 \]
 
 Equivalently, the **discounted stock price**
 
 \[
-\tilde S_t := e^{-rt} S_t
+\tilde S_{dt} := e^{-rdt} S_{dt}
 \]
 
 is a martingale under \(\mathbb Q\).

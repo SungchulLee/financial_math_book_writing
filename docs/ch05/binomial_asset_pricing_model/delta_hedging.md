@@ -76,7 +76,7 @@ The portfolio remains **self-financing**.
 
 ## Link to Continuous Time
 
-As $\Delta t \to 0$:
+As $d t \to 0$:
 
 - The tree converges to geometric Brownian motion
 

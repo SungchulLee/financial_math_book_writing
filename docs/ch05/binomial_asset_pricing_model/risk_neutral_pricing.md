@@ -30,33 +30,25 @@ The answer is **yes**, and that measure is uniquely determined by no-arbitrage.
 
 In a one-period binomial model with
 
-
-
 $$
-S_1 \in {uS_0, dS_0}, \qquad B_1 = e^r
+S_{dt} \in \{uS_0, dS_0\}, \qquad B_{dt} = e^{r dt}
 $$
-
-
 
 the **risk-neutral probability** is
 
-
-
 $$
 \boxed{
-q = \frac{e^r - d}{u - d}
+q = \frac{e^{r dt} - d}{u - d}
 }
 $$
 
-
-
 ### Properties
 
-* (0 < q < 1) if and only if $d < e^r < u$
+* \(0 < q < 1\) if and only if $d < e^{r dt} < u$
 
-* (q) depends **only** on ((u,d,r))
+* \(q\) depends **only** on \((u,d,r,dt)\)
 
-* (q) is independent of the payoff being priced
+* \(q\) is independent of the payoff being priced
 
 ---
 
@@ -64,27 +56,19 @@ $$
 
 Under the probability measure $\mathbb{Q}$ defined by
 
-
-
 $$
 \mathbb{Q}(\text{up}) = q,
 \qquad
 \mathbb{Q}(\text{down}) = 1-q
 $$
 
-
-
 the discounted stock price satisfies
-
-
 
 $$
 \boxed{
-\mathbb{E}^{\mathbb{Q}}\left[\frac{S_1}{e^r}\right] = S_0
+\mathbb{E}^{\mathbb{Q}}\left[\frac{S_{dt}}{e^{r dt}}\right] = S_0
 }
 $$
-
-
 
 That is, **discounted prices are martingales**.
 
@@ -96,17 +80,13 @@ This property extends to *all* attainable payoffs.
 
 For any one-period contingent claim with payoffs $H_u, H_d$,
 
-
-
 $$
 \boxed{
 V_0
-= e^{-r},\mathbb{E}^{\mathbb{Q}}[H]
-= e^{-r}\big(qH_u + (1-q)H_d\big)
+= e^{-r dt}\mathbb{E}^{\mathbb{Q}}[H]
+= e^{-r dt}\big(qH_u + (1-q)H_d\big)
 }
 $$
-
-
 
 This formula:
 
@@ -124,21 +104,18 @@ This formula:
 
 Let
 
-
-
 $$
 S_0 = 100, \quad
 u = 1.2, \quad
 d = 0.9, \quad
 r = 0.05, \quad
+dt = 1, \quad
 K = 105
 $$
 
-
+Then $e^{r dt} = e^{0.05} \approx 1.0513$.
 
 Payoffs:
-
-
 
 $$
 C_u = (120 - 105)^+ = 15,
@@ -146,23 +123,15 @@ C_u = (120 - 105)^+ = 15,
 C_d = (90 - 105)^+ = 0
 $$
 
-
-
 ### Pricing
 
 First compute
 
-
-
 $$
-q = \frac{e^{0.05} - 0.9}{1.2 - 0.9} \approx 0.504
+q = \frac{e^{0.05} - 0.9}{1.2 - 0.9} = \frac{1.0513 - 0.9}{0.3} \approx 0.504
 $$
-
-
 
 Then
-
-
 
 $$
 \boxed{
@@ -171,8 +140,6 @@ C_0
 \approx 7.14
 }
 $$
-
-
 
 **Interpretation**:
 
@@ -184,9 +151,20 @@ $$
 
 ## 6. Example 2: European Put Option
 
+### Setup
+
+Using the same parameters as Example 1:
+
+$$
+S_0 = 100, \quad
+u = 1.2, \quad
+d = 0.9, \quad
+r = 0.05, \quad
+dt = 1, \quad
+K = 105
+$$
+
 Payoffs:
-
-
 
 $$
 P_u = (105 - 120)^+ = 0,
@@ -194,11 +172,7 @@ P_u = (105 - 120)^+ = 0,
 P_d = (105 - 90)^+ = 15
 $$
 
-
-
 ### Pricing
-
-
 
 $$
 \boxed{
@@ -208,15 +182,11 @@ P_0
 }
 $$
 
-
-
 ---
 
 ## 7. Example 3: Digital (Binary) Option
 
 Consider a digital claim paying
-
-
 
 $$
 H =
@@ -226,21 +196,15 @@ H =
 \end{cases}
 $$
 
-
-
 ### Pricing
-
-
 
 $$
 \boxed{
 V_0
-= e^{-r}\mathbb{Q}$\text{up}$
-= e^{-r} q
+= e^{-r dt}\mathbb{Q}(\text{up})
+= e^{-r dt} q
 }
 $$
-
-
 
 **Insight**:
 
@@ -254,28 +218,20 @@ $$
 
 A forward payoff is
 
-
-
 $$
 H = S_1 - K
 $$
 
-
-
 ### Pricing
-
-
 
 $$
 \begin{aligned}
 V_0
-&= e^{-r}\mathbb{E}^{\mathbb{Q}}[S_1 - K] \\
-&= e^{-r}\big[e^r S_0 - K\big] \\
-&= \boxed{S_0 - Ke^{-r}}
+&= e^{-r dt}\mathbb{E}^{\mathbb{Q}}[S_{dt} - K] \\
+&= e^{-r dt}\big[e^{r dt} S_0 - K\big] \\
+&= \boxed{S_0 - Ke^{-r dt}}
 \end{aligned}
 $$
-
-
 
 This recovers the standard forward price directly from expectation.
 
@@ -285,27 +241,19 @@ This recovers the standard forward price directly from expectation.
 
 Using risk-neutral pricing,
 
-
-
 $$
 \begin{aligned}
 C_0 - P_0
-&= e^{-r}\mathbb{E}^{\mathbb{Q}}[S_1 - K] \\
-&= S_0 - Ke^{-r}
+&= e^{-r dt}\mathbb{E}^{\mathbb{Q}}[S_{dt} - K] \\
+&= S_0 - Ke^{-r dt}
 \end{aligned}
 $$
 
-
-
-
-
 $$
 \boxed{
-C_0 - P_0 = S_0 - Ke^{-r}
+C_0 - P_0 = S_0 - Ke^{-r dt}
 }
 $$
-
-
 
 Put–call parity is therefore a **risk-neutral identity**, not a separate assumption.
 
@@ -315,14 +263,10 @@ Put–call parity is therefore a **risk-neutral identity**, not a separate assum
 
 For any payoffs $H_1, H_2$ and scalars $\alpha, \beta$,
 
-
-
 $$
 V_0(\alpha H_1 + \beta H_2)
 = \alpha V_0(H_1) + \beta V_0(H_2)
 $$
-
-
 
 This linearity explains why:
 
@@ -358,21 +302,29 @@ This linearity explains why:
 
 ## 12. Multi-Period Preview
 
-In an (N)-period binomial tree,
+In an $N$-period binomial tree, let $H_{Ndt}$ denote the random payoff at time $Ndt$, and let $H_j$ denote the **specific payoff value** at the terminal node reached after exactly $j$ up moves:
 
+$$
+H_j = H(S_0 u^j d^{N-j})
+$$
 
+Then the risk-neutral pricing formula becomes:
 
 $$
 \boxed{
 V_0
-= e^{-rN}\mathbb{E}^{\mathbb{Q}}[H_N]
-= e^{-rN}
+= e^{-r N dt}\mathbb{E}^{\mathbb{Q}}[H_{Ndt}]
+= e^{-r N dt}
 \sum_{j=0}^N
 \binom{N}{j} q^j (1-q)^{N-j} H_j
 }
 $$
 
+Here:
 
+* $\mathbb{E}^{\mathbb{Q}}[H_{Ndt}]$ is the expectation of the **random payoff**,
+* $H_j$ are the $N+1$ **deterministic payoff values** at terminal nodes,
+* $\binom{N}{j} q^j (1-q)^{N-j}$ is the probability of reaching the $j$-th terminal node.
 
 This leads directly to **backward induction** and tree-based pricing.
 

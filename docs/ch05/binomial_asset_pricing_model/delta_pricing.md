@@ -15,14 +15,14 @@ Risk-neutral probabilities will appear **only as a convenient reformulation**, n
 
 ## 1. Market Setup
 
-We consider a one-period market with times \(t=0,1\).
+We consider a one-period market with times \(t=0,dt\).
 
 ### Risk-Free Asset
 
 The bank account evolves according to continuous compounding:
 
 \[
-B_0 = 1, \qquad B_1 = e^r
+B_0 = 1, \qquad B_{dt} = e^{r dt}
 \]
 
 ---
@@ -32,15 +32,15 @@ B_0 = 1, \qquad B_1 = e^r
 The stock price evolves as
 
 \[
-S_1 =
+S_{dt} =
 \begin{cases}
-u S_0 & \text{(up move)}, \\
-d S_0 & \text{(down move)},
+u S_0 & \text{(up move)} \\
+d S_0 & \text{(down move)}
 \end{cases}
-\qquad 0 < d < e^r < u
+\qquad 0 < d < e^{r dt} < u
 \]
 
-The inequality \(d < e^r < u\) ensures that neither the stock nor the bank dominates the other, ruling out trivial arbitrage.
+The inequality \(d < e^{r dt} < u\) ensures that neither the stock nor the bank dominates the other, ruling out trivial arbitrage.
 
 ---
 
@@ -83,7 +83,7 @@ Consider a portfolio consisting of:
 The value of this portfolio at maturity is
 
 \[
-\Pi_1 =
+\Pi_{dt} =
 \begin{cases}
 \Delta u S_0 - H_u & \text{(up)} \\
 \Delta d S_0 - H_d & \text{(down)}
@@ -113,7 +113,7 @@ Solving for \(\Delta\),
 With this choice, the terminal value of the portfolio becomes
 
 \[
-\Pi_1 = \frac{u H_d - d H_u}{u-d}
+\Pi_{dt} = \frac{u H_d - d H_u}{u-d}
 \]
 
 which is **deterministic**.
@@ -137,7 +137,7 @@ Let \(\Pi_0\) denote the initial value of the hedged portfolio:
 Since the portfolio is risk-free,
 
 \[
-\Pi_0 = e^{-r} \Pi_1
+\Pi_0 = e^{-rdt} \Pi_{dt}
 \]
 
 That is,
@@ -145,7 +145,7 @@ That is,
 \[
 \Delta S_0 - V_0
 =
-e^{-r}\frac{u H_d - d H_u}{u-d}
+e^{-rdt}\frac{u H_d - d H_u}{u-d}
 \]
 
 ---
@@ -159,9 +159,9 @@ Substituting the expression for \(\Delta\) and solving for \(V_0\), we obtain
 V_0
 =
 e^{-r}\left(
-\frac{e^r - d}{u-d} H_u
+\frac{e^{r dt} - d}{u-d} H_u
 +
-\frac{u - e^r}{u-d} H_d
+\frac{u - e^{r dt}}{u-d} H_d
 \right)
 }
 \]
@@ -176,7 +176,7 @@ Define
 
 \[
 \boxed{
-q := \frac{e^r - d}{u-d}
+q := \frac{e^{r dt} - d}{u-d}
 }
 \]
 
