@@ -174,7 +174,18 @@ nav:
           - Stability, Consistency, and Convergence: ch05/bs_pde_numerical_solution/stability_consistency_convergence.md
           - Free Boundary Problem: ch05/bs_pde_numerical_solution/free_boundary_problems_american_options.md
           - Monotone Scheme and Viscosity Solution: ch05/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
-      - 5.8 Extensions of BS Model:
+      - 5.8 Option Strategies:
+          - Long Calls and Puts: ch05/option_strategies/long_calls_and_puts.md
+          - Covered Calls and Cash-Secured Puts: ch05/option_strategies/covered_calls_and_cash_secured_puts.md
+          - Vertical Spreads: ch05/option_strategies/vertical_spreads.md
+          - Butterfly Spreads: ch05/option_strategies/butterfly_spreads.md
+          - Iron Condors and Iron Butterflies: ch05/option_strategies/iron_condor_and_iron_butterfly.md
+          - Protective Puts and Collars: ch05/option_strategies/protective_put_and_collar.md
+          - Ratio Spreads: ch05/option_strategies/ratio_spreads.md
+          - Calendar Spreads: ch05/option_strategies/calendar_spread.md
+          - Diagonal Spreads: ch05/option_strategies/diagonal_spread.md
+          - Synthetic Positions: ch05/option_strategies/synthetic_positions.md
+      - 5.9 Extensions of BS Model:
           - Limitations and Extensions: ch05/extensions_black_scholes/limitations_extensions.md
           - Local Volatility Model: ch05/extensions_black_scholes/local_volatility_models.md
           - Stochastic Volatility Model: ch05/extensions_black_scholes/stochastic_volatility_models.md
@@ -217,11 +228,14 @@ nav:
           - Delta Hedging: ch06/trading_strategies/delta_hedging.md
           - Gamma Scalping: ch06/trading_strategies/gamma_scalping.md
           - Vega Trading: ch06/trading_strategies/vega_trading.md
+          - Volatility Trading: ch06/trading_strategies/vol_smile_skew_trading.md
           - Dispersion Trading: ch06/trading_strategies/dispersion_trading.md
-          - CB_Arbitrage: ch06/trading_strategies/convertible_bond_arbitrage.md
+          - CB Arbitrage: ch06/trading_strategies/convertible_bond_arbitrage.md
           - Variance Swaps: ch06/trading_strategies/variance_swaps.md
-          - Theta Decay and Carry Trades: ch06/trading_strategies/theta_decay_and_carry_trades.md
+          - Straddle and Strangle: ch06/trading_strategies/straddle_strangle.md
+          - Theta and Carry: ch06/trading_strategies/theta_and_carry.md
           - Static Hedging: ch06/trading_strategies/static_hedging.md
+          - Strategies Comparison: ch06/trading_strategies/strategy_comparison_table.md
       - 6.8 Asymptotics Strategies:
           - Near Expiry Gamma Exploit: ch06/asymptotic_trading/short_time_gamma_exploitation.md
           - Vega Asympt Vol Arbitrage: ch06/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
