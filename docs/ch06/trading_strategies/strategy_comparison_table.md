@@ -18,7 +18,7 @@ This document helps you:
 - [Greek Profiles](#greek-profiles) - Theta, Vega, Gamma, Delta
 - [Complexity & Accessibility](#complexity-and-accessibility) - Who can trade each
 - [Market Conditions](#best-market-conditions) - When to use each
-- [Risk/Reward](#risk-reward-profiles) - Profit potential vs. risk
+- [Risk/Reward](#riskreward-profiles) - Profit potential vs. risk
 - [Capital & Time](#capital-and-time-requirements) - Resources needed
 - [Decision Framework](#decision-framework) - Which strategy to choose
 - [Quick Reference Matrix](#quick-reference-matrix) - At-a-glance comparison
@@ -32,11 +32,9 @@ This document helps you:
 | Strategy | Theta | Vega | Gamma | Delta | Hedging |
 |----------|-------|------|-------|-------|---------|
 | **Delta Hedging** | - | + | + | 0 | Constant |
-| **Straddles (Long)** | - - | + + | + + | 0 | None |
 | **Gamma Scalping** | - | + + | + + | 0 | Continuous |
 | **Vega Trading** | - | + + | + | 0 | Periodic |
 | **Smile/Skew** | - | ± | ± | 0 | Periodic |
-| **Calendar Spreads** | **+** | + | ± | 0 | Rare |
 | **Dispersion (Long)** | - | + | + | 0 | Continuous (all) |
 | **Convertible Arb** | ± | + | + | 0 | Constant |
 | **Variance Swaps** | **0** | **0** | **0** | 0 | **None** |
@@ -54,7 +52,6 @@ This document helps you:
 
 **Key Insights:**
 
-- **Calendar Spreads unique:** Only major strategy with positive theta AND positive vega
 - **Variance Swaps pure:** All Greeks hedged away (pure variance exposure)
 - **Theta/Carry opposite:** Positive theta but negative gamma (fundamental trade-off)
 - **Static Hedging philosophy:** Accept Greek drift, avoid rebalancing costs
@@ -68,11 +65,9 @@ This document helps you:
 | Strategy | Complexity | Retail Access | Institutional | Key Skills Required |
 |----------|-----------|---------------|---------------|---------------------|
 | **Delta Hedging** | Medium | Yes* | Yes | Hedging discipline, Greeks understanding |
-| **Straddles** | **Low** | **Yes** | Yes | Basic options, event timing |
 | **Gamma Scalping** | High | Difficult | Yes | Continuous hedging, cost management |
 | **Vega Trading** | Medium-High | Yes* | Yes | IV analysis, hedging, timing |
 | **Smile/Skew** | High | Difficult | Yes | Multi-leg options, Greeks across strikes |
-| **Calendar Spreads** | Medium | **Yes** | Yes | Term structure, time management |
 | **Dispersion** | Very High | No | Yes | Multiple assets, complex hedging |
 | **Convertible Arb** | Very High | No | Yes | Credit analysis, multi-factor risk |
 | **Variance Swaps** | Low (trading) | **No** | **Yes** | Access to dealers, institutional size |
@@ -83,17 +78,15 @@ This document helps you:
 
 **Accessibility Ranking (Easiest to Hardest):**
 
-1. **Straddles** - Buy call + put, hold (retail-friendly)
-2. **Calendar Spreads** - Two options, rare rebalancing
-3. **Delta Hedging** - Foundational skill for all others
-4. **Static Hedging** - Set once, forget (if know how to structure)
-5. **Vega Trading** - Single option + hedge
-6. **Theta/Carry** - Requires extreme discipline
-7. **Gamma Scalping** - Continuous rebalancing burden
-8. **Smile/Skew** - Multi-leg complexity
-9. **Convertible Arb** - Need bond access, credit skills
-10. **Dispersion** - Many positions simultaneously
-11. **Variance Swaps** - Institutional OTC only
+1. **Delta Hedging** - Foundational skill for all others
+2. **Static Hedging** - Set once, forget (if know how to structure)
+3. **Vega Trading** - Single option + hedge
+4. **Theta/Carry** - Requires extreme discipline
+5. **Gamma Scalping** - Continuous rebalancing burden
+6. **Smile/Skew** - Multi-leg complexity
+7. **Convertible Arb** - Need bond access, credit skills
+8. **Dispersion** - Many positions simultaneously
+9. **Variance Swaps** - Institutional OTC only
 
 ---
 
@@ -104,11 +97,9 @@ This document helps you:
 | Strategy | VIX Level | Market State | Time Horizon | Event Timing |
 |----------|-----------|--------------|--------------|--------------|
 | **Delta Hedging** | Any | Any | Any | Any (foundational) |
-| **Straddles (Long)** | Low (< 15) | Pre-event | Short (< 1 month) | **Before binary event** |
 | **Gamma Scalping** | Any | Volatile/Moving | Medium (1-3 months) | Avoid events |
 | **Vega Trading** | Any | IV expected to change | Short-Medium | Capture IV moves |
 | **Smile/Skew** | Extreme skew | Mean reversion | Short-Medium | Post-panic or pre-event |
-| **Calendar Spreads** | Normal (15-25) | **Range-bound** | Medium (2-3 months) | Between events |
 | **Dispersion (Long)** | High corr (> 70%) | Post-crisis | Medium | Correlation spike reverting |
 | **Convertible Arb** | High spreads | Dislocated | Long (6+ months) | Market stress |
 | **Variance Swaps** | Any | Any (if available) | Medium | Pure vol view |
@@ -121,25 +112,21 @@ This document helps you:
 
 - Theta/Carry (short vol from elevated levels) ✓✓
 - Dispersion (long - wait for correlation reversion)
-- Straddles (long - but IV expensive, wait for entry)
 
 **Normal VIX (15-25) - Steady State:**
 
-- Calendar Spreads ✓✓✓ (collect theta differential)
-- Gamma Scalping (steady vol trading)
+- Gamma Scalping (steady vol trading) ✓✓✓
 - Vega Trading (tactical IV plays)
 - Smile/Skew (relative value)
 
 **Low VIX (< 15) - Complacent:**
 
-- Straddles (long - options cheap) ✓✓✓
-- Variance Swaps (long - cheap entry)
+- Variance Swaps (long - cheap entry) ✓✓✓
 - Avoid short vol! (risk >> reward)
 
 **Range-Bound Markets:**
 
-- Calendar Spreads ✓✓✓
-- Theta/Carry (Iron Condors)
+- Theta/Carry (Iron Condors) ✓✓✓
 - Static Hedging (low rebalancing need)
 
 **Volatile/Trending Markets:**
@@ -156,11 +143,9 @@ This document helps you:
 | Strategy | Max Loss | Max Profit | Win Rate | Best/Worst | Risk/Reward |
 |----------|----------|------------|----------|------------|-------------|
 | **Delta Hedging** | Tracking error | N/A (hedged) | N/A | N/A | Risk mgmt tool |
-| **Straddles (Long)** | **Premium paid** | **Unlimited** | Low (30-40%) | Large moves / No move | Asymmetric (good) |
 | **Gamma Scalping** | Theta paid | Rebalancing profits | Medium (50-60%) | Volatile / Calm | Balanced |
 | **Vega Trading** | Theta + adverse IV | IV change profits | Medium (50-60%) | IV spike / IV stable | Balanced |
 | **Smile/Skew** | Net debit | Limited | Medium (50-60%) | Skew normalizes / Skew diverges | Moderate |
-| **Calendar Spreads** | **Net debit** | **Limited** | High (60-70%) | Stable / Large move | Moderate |
 | **Dispersion (Long)** | Net premium | Correlation profits | Medium (50%) | Low corr / High corr | Balanced |
 | **Convertible Arb** | Credit loss | Multiple sources | Medium (55-65%) | All factors work / Credit crisis | Moderate |
 | **Variance Swaps** | Unlimited (if short) | Unlimited (if long) | Depends | Realized ≠ implied / Correct forecast | Symmetric |
@@ -171,13 +156,11 @@ This document helps you:
 
 **Limited Risk, Limited Reward:**
 
-- Calendar Spreads
 - Smile/Skew (spreads)
 - Iron Condors (theta/carry variant)
 
 **Limited Risk, Unlimited Reward:**
 
-- Straddles (long)
 - Variance Swaps (long)
 - Gamma Scalping
 
@@ -201,11 +184,9 @@ This document helps you:
 | Strategy | Capital Need | Margin Need | Time Commitment | Monitoring |
 |----------|--------------|-------------|-----------------|------------|
 | **Delta Hedging** | Medium | Medium | Continuous | High (constant) |
-| **Straddles** | **Low** (premium) | Low | **Minimal** | Low (buy & hold) |
 | **Gamma Scalping** | High (hedge + option) | Medium-High | Continuous | Very High |
 | **Vega Trading** | Medium | Medium | Periodic | Medium |
 | **Smile/Skew** | Medium | Medium-High | Periodic | Medium |
-| **Calendar Spreads** | Low-Medium | Low | Periodic | Low-Medium |
 | **Dispersion** | **Very High** | **Very High** | Continuous | Very High |
 | **Convertible Arb** | **Very High** | **Very High** | Daily | High |
 | **Variance Swaps** | **Very High** ($1M+ min) | Medium | **None** | Minimal |
@@ -215,13 +196,11 @@ This document helps you:
 **Capital Efficiency (Best to Worst):**
 
 1. **Variance Swaps** - Pure exposure, no rebalancing
-2. **Straddles** - Just premium, no hedging
-3. **Calendar Spreads** - Small net debit
-4. **Static Hedging** - One-time deployment
-5. Vega Trading - Option + occasional hedge
-6. Gamma Scalping - Need hedge capital
-7. Dispersion - Many positions simultaneously
-8. Convertible Arb - Bonds + hedges + complexity
+2. **Static Hedging** - One-time deployment
+3. Vega Trading - Option + occasional hedge
+4. Gamma Scalping - Need hedge capital
+5. Dispersion - Many positions simultaneously
+6. Convertible Arb - Bonds + hedges + complexity
 
 **Time Commitment (Least to Most):**
 
@@ -671,16 +650,14 @@ START HERE
 **For each strategy, see the full chapter:**
 
 1. [Delta Hedging](delta_hedging.md) - Foundation for all strategies
-2. [Straddles and Strangles](straddles_strangles.md) - Simple volatility bets
-3. [Gamma Scalping](gamma_scalping.md) - Active volatility trading
-4. [Vega Trading](vega_trading.md) - Implied volatility speculation
-5. [Volatility Smile and Skew](vol_smile_skew_trading.md) - Cross-strike patterns
-6. [Calendar Spreads](calendar_spreads.md) - Term structure trading
-7. [Dispersion Trading](dispersion_trading.md) - Correlation strategies
-8. [Convertible Arbitrage](convertible_bond_arbitrage.md) - Multi-factor approaches
-9. [Variance Swaps](variance_swaps.md) - Pure variance exposure
-10. [Theta and Carry](theta_and_carry.md) - Time decay strategies
-11. [Static Hedging](static_hedging.md) - Alternative hedging approaches
+2. [Gamma Scalping](gamma_scalping.md) - Active volatility trading
+3. [Vega Trading](vega_trading.md) - Implied volatility speculation
+4. [Volatility Smile and Skew](vol_smile_skew_trading.md) - Cross-strike patterns
+5. [Dispersion Trading](dispersion_trading.md) - Correlation strategies
+6. [Convertible Arbitrage](convertible_bond_arbitrage.md) - Multi-factor approaches
+7. [Variance Swaps](variance_swaps.md) - Pure variance exposure
+8. [Theta and Carry](theta_and_carry.md) - Time decay strategies
+9. [Static Hedging](static_hedging.md) - Alternative hedging approaches
 
 ---
 
@@ -694,7 +671,6 @@ START HERE
 
 - Can't have positive theta AND positive gamma
 - Must choose: collect carry OR benefit from movement
-- Exception: Calendar Spreads (different maturities allow both!)
 
 **2. The Cost-Accuracy Trade-off**
 
@@ -725,14 +701,12 @@ START HERE
 
 **The Carry Family:**
 
-- Calendar Spreads (safe carry)
 - Iron Condors (defined risk)
 - Short Straddles (risky carry)
 - All about collecting theta
 
 **The Pure Exposure Family:**
 
-- Straddles (raw vol bet)
 - Variance Swaps (pure variance)
 - Gamma Scalping (refined vol bet)
 - All about volatility level
@@ -740,7 +714,6 @@ START HERE
 **The Relative Value Family:**
 
 - Smile/Skew (across strikes)
-- Calendar Spreads (across time)
 - Dispersion (across assets)
 - All about relationships
 
@@ -748,29 +721,29 @@ START HERE
 
 **Path 1: Volatility Buyer (Theta Payer)**
 
-- Start: Straddles
-- Advance: Gamma Scalping
+- Start: Gamma Scalping
+- Advance: Vega Trading
 - Master: Variance Swaps (long)
 - Profile: Pay theta, profit from movement
 
 **Path 2: Volatility Seller (Theta Collector)**
 
-- Start: Calendar Spreads
-- Advance: Iron Condors
+- Start: Iron Condors
+- Advance: Theta/Carry strategies
 - Expert: Systematic short vol programs
 - Profile: Collect theta, manage gamma risk
 
 **Path 3: Relative Value Trader**
 
-- Start: Calendar Spreads
-- Advance: Smile/Skew
+- Start: Smile/Skew
+- Advance: Vega Trading
 - Master: Dispersion
 - Profile: Trade relationships, not levels
 
 **Path 4: Multi-Strategy Professional**
 
 - Foundation: Delta Hedging + Gamma Scalping
-- Add: Vega + Calendars + Skew
+- Add: Vega + Skew
 - Master: Dispersion + Convertibles
 - Profile: Use right tool for each opportunity
 
@@ -784,9 +757,9 @@ START HERE
 
 **The progression:**
 
-1. Learn the basics (Straddles, Delta Hedging)
-2. Master one strategy deeply (Gamma Scalping or Calendars)
-3. Add complementary strategies (Vega, Skew)
+1. Learn the basics (Delta Hedging, Gamma Scalping)
+2. Master one strategy deeply (Vega Trading or Theta/Carry)
+3. Add complementary strategies (Skew, Dispersion)
 4. Build systematic approach (combinations)
 5. Never stop learning (markets evolve)
 
@@ -804,36 +777,35 @@ START HERE
 
 **"I want to..."**
 
-- **Make a simple vol bet** → Straddles
+- **Make a simple vol bet** → Variance Swaps or Gamma Scalping
 - **Trade volatility actively** → Gamma Scalping
 - **Get clean variance exposure** → Variance Swaps
-- **Collect steady income** → Calendar Spreads or Iron Condors
+- **Collect steady income** → Iron Condors or Theta/Carry
 - **Trade the skew** → Smile/Skew strategies
 - **Trade correlation** → Dispersion
 - **Get institutional access** → Variance Swaps or Convertibles
-- **Start with basics** → Straddles then Delta Hedging
+- **Start with basics** → Delta Hedging then Gamma Scalping
 - **Avoid rebalancing** → Static Hedging or Variance Swaps
-- **Trade term structure** → Calendar Spreads
 
 **"The market is..."**
 
-- **Pre-event** → Long Straddles
+- **Pre-event** → Gamma Scalping or Vega Trading
 - **Post-event** → Short vol (theta/carry)
-- **Range-bound** → Calendar Spreads
+- **Range-bound** → Iron Condors or Theta/Carry
 - **Volatile** → Gamma Scalping
-- **Low VIX** → Long Straddles, Long Variance
-- **High VIX** → Short vol, Calendars
+- **Low VIX** → Long Variance or Vega Trading
+- **High VIX** → Short vol or Theta/Carry
 - **Correlation spike** → Wait, then Long Dispersion
 - **Steep skew** → Skew flattening trades
 
 **"I am..."**
 
-- **A beginner** → Straddles, Calendars
+- **A beginner** → Delta Hedging, Static Hedging
 - **Intermediate** → Gamma Scalping, Vega Trading
 - **Advanced** → Dispersion, Convertibles
-- **Retail trader** → Straddles, Calendars, some Gamma
+- **Retail trader** → Delta Hedging, some Gamma Scalping
 - **Institution** → All strategies available
-- **Risk-averse** → Calendars, Iron Condors
+- **Risk-averse** → Iron Condors, Static Hedging
 - **Risk-seeking** → Dispersion, Convertibles (with skill!)
 
 ---
@@ -842,7 +814,7 @@ START HERE
 
 **You now have a complete toolkit:**
 
-✓ **11 strategies** covering all dimensions of volatility trading
+✓ **9 strategies** covering all dimensions of volatility trading
 
 ✓ **Complete comparison** across all relevant factors
 
