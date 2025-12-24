@@ -7,6 +7,7 @@
 ## The Core Insight
 
 **The fundamental idea:**
+
 - You expect stock to stay in a narrow range
 - Create a position that profits from stability
 - Use 3 strikes (wings + body) in specific ratio
@@ -14,11 +15,13 @@
 - Opposite of straddle (which wants movement)
 
 **The key equation:**
+
 $$
 \text{Butterfly} = \text{ITM Spread} - \text{OTM Spread}
 $$
 
 Or equivalently:
+
 $$
 \text{Buy 1 low strike} + \text{Sell 2 middle strikes} + \text{Buy 1 high strike}
 $$
@@ -34,12 +37,14 @@ $$
 ### The Structure
 
 **Long Call Butterfly (most common):**
+
 - Buy 1 ITM call (lower strike)
 - Sell 2 ATM calls (middle strike)  
 - Buy 1 OTM call (upper strike)
 - Strikes equally spaced
 
 **Example:**
+
 - Stock at $100
 - Buy 1 × $95 call
 - Sell 2 × $100 calls
@@ -47,6 +52,7 @@ $$
 - Net debit: $2.50 (small cost)
 
 **What you've created:**
+
 - Max profit at $100 (middle strike)
 - Max loss = debit paid ($2.50)
 - Breakevens: $97.50 and $102.50
@@ -70,6 +76,7 @@ $$
 ```
 
 **Looks like a butterfly!**
+
 - Wings at $95 and $105
 - Body at $100
 - Maximum "wingspan" = max profit
@@ -77,6 +84,7 @@ $$
 ### Why Use a Butterfly?
 
 **You use butterflies when:**
+
 1. **Neutral to slightly bullish/bearish**
 2. **Expect low volatility** (range-bound)
 3. **Target specific price** (pin at strike)
@@ -101,6 +109,7 @@ $$
 ### 1. Long Call Butterfly (Most Common)
 
 **Structure:**
+
 - Buy 1 ITM call
 - Sell 2 ATM calls
 - Buy 1 OTM call
@@ -108,6 +117,7 @@ $$
 **Debit strategy (pay to enter)**
 
 **Example:**
+
 - $95/$100/$105 call butterfly
 - Cost: $2.50
 - Max profit: $2.50 (strikes $5 apart, cost $2.50)
@@ -129,6 +139,7 @@ $$
 ### 2. Long Put Butterfly
 
 **Structure:**
+
 - Buy 1 OTM put (low strike)
 - Sell 2 ATM puts (middle)
 - Buy 1 ITM put (high strike)
@@ -136,11 +147,13 @@ $$
 **Debit strategy**
 
 **Example:**
+
 - $95/$100/$105 put butterfly
 - Identical payoff to call butterfly
 - Just uses puts instead
 
 **When to use:**
+
 - Same as call butterfly
 - Sometimes puts have better pricing
 - Tax considerations
@@ -150,6 +163,7 @@ $$
 ### 3. Iron Butterfly
 
 **Structure:**
+
 - Sell ATM call
 - Sell ATM put (same strike)
 - Buy OTM call (protection)
@@ -158,6 +172,7 @@ $$
 **Credit strategy (receive money)**
 
 **Example:**
+
 - Sell $100 call
 - Sell $100 put
 - Buy $105 call
@@ -165,11 +180,13 @@ $$
 - Net credit: $2.50
 
 **Comparison to long butterfly:**
+
 - Iron butterfly: receive credit, same payoff
 - Long butterfly: pay debit, same payoff
 - **Iron butterfly = short straddle with wings** (protection)
 
 **Why iron butterfly:**
+
 - Receive credit (positive carry)
 - Define risk (wings protect)
 - Same profit zone as long butterfly
@@ -178,16 +195,19 @@ $$
 ### 4. Broken Wing Butterfly
 
 **Structure:**
+
 - Unequal spacing of strikes
 - One wing farther than other
 
 **Example (bullish bias):**
+
 - Buy $95 call
 - Sell 2 × $100 calls
 - Buy $110 call (instead of $105)
 - Asymmetric
 
 **Characteristics:**
+
 - Directional bias (more profit one side)
 - Can be done for credit or lower debit
 - Advanced variation
@@ -195,17 +215,20 @@ $$
 ### 5. Reverse (Short) Butterfly
 
 **Structure:**
+
 - Opposite of long butterfly
 - Sell wings, buy body
 - **Profit from volatility**
 
 **Example:**
+
 - Sell $95 call
 - Buy 2 × $100 calls
 - Sell $105 call
 - **Opposite payoff: loses if stable, wins if volatile**
 
 **When to use:**
+
 - Rare (just use straddle instead)
 - Specific vega/gamma considerations
 
@@ -217,10 +240,10 @@ $$
 
 ### Setup
 
-**Stock:** SPY at $450
-**View:** Market will stay around $450 for next month (consolidation)
-**Volatility:** Moderate (VIX at 18)
-**Strategy:** 30-day call butterfly
+- **Stock:** SPY at $450
+- **View:** Market will stay around $450 for next month (consolidation)
+- **Volatility:** Moderate (VIX at 18)
+- **Strategy:** 30-day call butterfly
 
 **Available options:**
 
@@ -233,12 +256,14 @@ $$
 ### The Trade: $445/$450/$455 Call Butterfly
 
 **Execute:**
+
 - Buy 1 × $445 call @ $7.50
 - Sell 2 × $450 calls @ $4.50 each = $9.00 received
 - Buy 1 × $455 call @ $2.50
 - **Net debit: $7.50 + $2.50 - $9.00 = $1.00**
 
 **Position summary:**
+
 - Cost: $100 (1 contract)
 - Max profit: $400 ($5 spread - $1 cost = $4)
 - Max loss: $100 (debit)
@@ -250,46 +275,54 @@ $$
 **At each strike:**
 
 **Below $445:**
+
 - All calls worthless
 - Loss: -$100 (full debit)
 
 **At $445:**
+
 - $445 call: $0
 - $450 calls: $0
 - $455 call: $0
 - Loss: -$100
 
 **At $447:**
+
 - $445 call: $2 ($200 value)
 - $450 calls: $0
 - $455 call: $0
 - P&L: +$200 - $100 = **+$100**
 
 **At $450 (MAX PROFIT):**
+
 - $445 call: $5 ($500 value)
 - $450 calls: $0 (ATM, no value)
 - $455 call: $0
 - P&L: +$500 - $100 = **+$400 (400% ROI!)**
 
 **At $453:**
+
 - $445 call: $8 ($800)
 - $450 calls: -$6 ($-600, short 2)
 - $455 call: $0
 - P&L: $800 - $600 - $100 = **+$100**
 
 **At $455:**
+
 - $445 call: $10 ($1,000)
 - $450 calls: -$10 ($-1,000)
 - $455 call: $0
 - P&L: $0 - $100 = **-$100**
 
 **Above $455:**
+
 - All spreads offset
 - Loss: -$100 (full debit)
 
 ### Scenario 1: Perfect! SPY at $450 (Max Profit)
 
 **At expiration:**
+
 - SPY exactly at $450
 - Butterfly worth $4.00
 - Entry: $1.00
@@ -300,6 +333,7 @@ $$
 ### Scenario 2: Close but Not Perfect - SPY at $448
 
 **At expiration:**
+
 - SPY at $448
 - $445 call worth: $3
 - $450 calls: $0
@@ -312,6 +346,7 @@ $$
 ### Scenario 3: Outside Range - SPY at $460
 
 **At expiration:**
+
 - SPY at $460 (big move up)
 - All options ITM, spreads cancel
 - Net value: $0
@@ -323,6 +358,7 @@ $$
 ### Scenario 4: Outside Range - SPY at $440
 
 **At expiration:**
+
 - SPY at $440 (moved down)
 - All calls worthless
 - Net value: $0
@@ -334,6 +370,7 @@ $$
 ### Scenario 5: Early Exit on Volatility Spike
 
 **After 15 days:**
+
 - SPY still at $450
 - But VIX spikes to 25 (vol up)
 - Butterfly loses value (vega negative)
@@ -352,20 +389,24 @@ $$
 **Equal spacing required (for standard butterfly):**
 
 **Good examples:**
+
 - $95/$100/$105 (each $5 apart) ✓
 - $145/$150/$155 (each $5 apart) ✓
 - $48/$50/$52 (each $2 apart) ✓
 
 **Bad examples:**
+
 - $95/$100/$110 (unequal) ✗
 - $145/$150/$160 (unequal) ✗
 
 **Why equal spacing:**
+
 - Ensures payoff symmetry
 - Pricing works correctly
 - Standard contracts
 
 **Width choice:**
+
 - Wider spreads ($95/$105 instead of $95/$100/$105):
   - Cheaper
   - Lower probability
@@ -378,21 +419,25 @@ $$
 ### The Greeks
 
 **Delta:**
+
 - Near zero (neutral)
 - Slightly positive/negative depending on where stock is
 - Changes as stock moves
 
 **Gamma:**
+
 - Negative at wings
 - Positive at body
 - Net gamma typically negative
 
 **Theta:**
+
 - **Positive** (benefits from time decay)
 - Accelerates near expiration
 - Wants time to pass
 
 **Vega:**
+
 - **Negative** (hurt by volatility increase)
 - Wants IV to decrease
 - Opposite of straddle
@@ -407,12 +452,13 @@ $$
 
 ### Setup
 
-**Stock:** AAPL at $180
-**Strategy:** 45-day iron butterfly
+- **Stock:** AAPL at $180
+- **Strategy:** 45-day iron butterfly
 
 ### The Trade
 
 **Execute:**
+
 - Sell $180 call @ $5.50
 - Sell $180 put @ $5.50
 - Buy $190 call @ $2.00 (protection)
@@ -421,6 +467,7 @@ $$
 **Net credit: $11 - $4 = $7.00**
 
 **Position summary:**
+
 - Credit received: $700
 - Max profit: $700 (if at $180)
 - Max loss: $300 ($10 spread - $7 credit)
@@ -430,23 +477,27 @@ $$
 ### Payoff Analysis
 
 **At $180 (max profit):**
+
 - Both sold options expire worthless
 - Both bought options worthless
 - Keep entire credit: **+$700**
 
 **At $175:**
+
 - Short put ITM: -$5 ($-500)
 - Long put OTM: $0
 - Calls worthless
 - P&L: $700 - $500 = **+$200**
 
 **At $170 (breakeven):**
+
 - Short put: -$10 ($-1,000)
 - Long put: +$10 ($+1,000)
 - P&L: $700 - $1,000 + $1,000 = **+$700 net, but spread lost $300**
 - Net: $700 credit - $300 = **$0 (breakeven at $173)**
 
 **Below $170 or above $190:**
+
 - Spreads max out
 - Loss: $300 (max loss)
 
@@ -469,28 +520,33 @@ $$
 ### Favorable Conditions
 
 **1. Low volatility expected:**
+
 - VIX declining
 - Post-event (earnings passed)
 - Market consolidation
 - **Stock should stay put**
 
 **2. Specific target price:**
+
 - Technical level (support/resistance)
 - Round number ($100, $150, etc.)
 - Option pin expected
 - Historical mean
 
 **3. After volatile move:**
+
 - Stock spiked, now settling
 - IV crush expected
 - Profit from stabilization
 
 **4. Event play (after event):**
+
 - Earnings just reported
 - IV will collapse
 - Stock likely to drift
 
 **5. Cheap entry:**
+
 - Can establish butterfly for $1-2
 - High ROI potential (300-500%)
 - Low risk ($1-2 max loss)
@@ -498,22 +554,26 @@ $$
 ### Unfavorable Conditions
 
 **1. High volatility expected:**
+
 - Earnings coming
 - Binary events
 - Market uncertainty
 - **Stock will move**
 
 **2. Trending market:**
+
 - Strong directional bias
 - Momentum building
 - Will blow through butterfly
 
 **3. Wide bid-ask spreads:**
+
 - Illiquid options
 - Give up edge to spread
 - Better strategies available
 
 **4. Very short time:**
+
 - < 1 week to expiry
 - Gamma risk high
 - Hard to manage
@@ -536,10 +596,12 @@ $$
 | **Complexity** | Higher (4 legs) | Lower (2 legs) |
 
 **Perfect opposites:**
+
 - Butterfly profits if calm (collect theta, avoid vega)
 - Straddle profits if volatile (overcome theta with movement/vega)
 
 **Interesting strategy:**
+
 - Can hedge straddle with butterfly
 - Reduce cost, accept capped profit
 - Advanced combination
@@ -551,10 +613,12 @@ $$
 ### 1. Unbalanced Butterfly
 
 **Structure:**
+
 - Different ratios (not 1-2-1)
 - Example: 1-3-2 or 2-4-2
 
 **Use:**
+
 - Fine-tune risk/reward
 - Directional bias
 - Advanced traders
@@ -562,10 +626,12 @@ $$
 ### 2. Skip-Strike Butterfly
 
 **Structure:**
+
 - Skipped strikes in middle
 - Example: Buy $95, sell 2×$100, buy $110 (skipped $105)
 
 **Effect:**
+
 - Wider profit zone
 - Lower max profit
 - Different shape
@@ -573,10 +639,12 @@ $$
 ### 3. Double Butterfly
 
 **Structure:**
+
 - Two butterflies at different centers
 - Example: $95/$100/$105 + $100/$105/$110
 
 **Use:**
+
 - Wider profit zone
 - Multiple targets
 - Bimodal expectations
@@ -584,11 +652,13 @@ $$
 ### 4. Condor (Related Strategy)
 
 **Structure:**
+
 - Like butterfly but 4 different strikes
 - Example: Buy $95, sell $100, sell $105, buy $110
 - Wider body
 
 **Difference from butterfly:**
+
 - Butterfly: Pinpoint (one middle strike)
 - Condor: Range (two middle strikes)
 
@@ -599,16 +669,19 @@ $$
 ### Mistake 1: Expecting Perfect Pin
 
 ❌ **Wrong:**
+
 - Buy butterfly centered at $100
 - Expect stock EXACTLY at $100
 - Disappointed if at $99 or $101
 
 **Why unrealistic:**
+
 - Exact pin is rare
 - Need to profit in range
 - Not just one price
 
 ✅ **Better:**
+
 - Accept profit anywhere in range
 - Take profits at 50% of max
 - Don't wait for perfect
@@ -616,16 +689,19 @@ $$
 ### Mistake 2: Entering During High IV
 
 ❌ **Wrong:**
+
 - Buy butterfly before earnings
 - IV at 60% (very high)
 - Expensive to establish
 
 **Why it fails:**
+
 - Overpaying for volatility
 - Even if stable, IV crush hurts
 - Vega loss
 
 ✅ **Better:**
+
 - Enter AFTER event (IV declining)
 - Or use iron butterfly (credit)
 - Avoid high IV entry
@@ -633,17 +709,20 @@ $$
 ### Mistake 3: Too Many Legs, High Costs
 
 ❌ **Wrong:**
+
 - Pay $0.25 spread on each of 4 legs
 - Total: $1.00 in bid-ask
 - Butterfly only cost $1.50 net
 - **Gave away 67% to spread!**
 
 **Why it fails:**
+
 - Transaction costs eat edge
 - Need tight markets
 - Leakage is real
 
 ✅ **Better:**
+
 - Use liquid underlyings (SPY, QQQ)
 - Enter as single order (multi-leg)
 - Check net debit, not individual legs
@@ -651,10 +730,12 @@ $$
 ### Mistake 4: Wrong Expiration
 
 ❌ **Wrong:**
+
 - Too long (60+ days): expensive, theta slow
 - Too short (< 1 week): gamma risk, hard to manage
 
 ✅ **Better:**
+
 - 30-45 days ideal
 - Balance theta and gamma
 - Enough time to work
@@ -662,16 +743,19 @@ $$
 ### Mistake 5: Ignoring Assignment Risk
 
 ❌ **Wrong:**
+
 - Iron butterfly short legs deep ITM
 - Ignore early assignment risk
 - Surprised by assignment
 
 **Why it matters:**
+
 - Short ATM options can be assigned
 - Especially near dividends or earnings
 - Breaks the position
 
 ✅ **Better:**
+
 - Close if deep ITM
 - Roll if necessary
 - Monitor assignment risk
@@ -685,16 +769,19 @@ $$
 **Guidelines:**
 
 **At 50% of max profit:**
+
 - Target achieved
 - Take profit and redeploy
 - Don't be greedy
 
 **At 75% of max profit:**
+
 - Excellent result
 - Definitely close
 - Diminishing returns
 
 **Example:**
+
 - Butterfly max profit: $4
 - Current value: $2 (50% of max)
 - Cost: $1
@@ -706,27 +793,32 @@ $$
 **If stock moves outside range:**
 
 **Early in trade:**
+
 - Consider closing for small loss
 - Redeploy capital
 - Don't hope it comes back
 
 **Near expiration:**
+
 - Often worth holding to expiration
 - Max loss already defined
 - Small chance of recovery
 
 **Stop loss:**
+
 - 50% of debit paid
 - Or exit at 7-14 days before expiry
 
 ### Rolling
 
 **If stock drifts slightly:**
+
 - Can roll butterfly to follow
 - Close current, open new centered at new price
 - Costs commissions and spread
 
 **Example:**
+
 - Butterfly at $100, stock now $103
 - Roll to $103-centered butterfly
 - Continue the trade
@@ -751,11 +843,13 @@ $$
 ### The Structure
 
 **Standard ratios:**
+
 - 1-2-1 (long-short-short-long)
 - Equal strike spacing
 - Call or put (same payoff)
 
 **Iron butterfly:**
+
 - Credit version
 - Short straddle + long strangle
 - Same profit zone
@@ -763,6 +857,7 @@ $$
 ### The Greeks
 
 **Characteristics:**
+
 - **Theta:** Positive (time friend)
 - **Vega:** Negative (vol enemy)
 - **Delta:** Near zero (neutral)
@@ -773,6 +868,7 @@ $$
 ### When to Use
 
 **Best scenarios:**
+
 - Post-event (IV declining)
 - Consolidation expected
 - Specific target price
@@ -780,6 +876,7 @@ $$
 - High ROI opportunity
 
 **Avoid:**
+
 - Before events (high IV)
 - Trending markets
 - Very short time
@@ -788,6 +885,7 @@ $$
 ### Success Factors
 
 **What you need:**
+
 1. Accurate price target
 2. Low volatility
 3. Time for theta to work
@@ -797,12 +895,14 @@ $$
 ### Risk Profile
 
 **Favorable:**
+
 - Limited risk (small debit)
 - High ROI potential
 - Defined max loss
 - Positive theta
 
 **Unfavorable:**
+
 - Narrow profit zone
 - Low probability (specific price)
 - Complex (4 legs)
@@ -811,33 +911,40 @@ $$
 ### Butterfly vs. Similar Strategies
 
 **vs. Straddle:**
+
 - Opposite views (stable vs. volatile)
 - Opposite Greeks (theta/vega)
 
 **vs. Iron Condor:**
+
 - Butterflies: Pinpoint
 - Iron Condors: Range
 
 **vs. Calendar:**
+
 - Butterflies: Single expiration
 - Calendars: Multiple expirations
 
 ### The Math
 
 **Max profit:**
+
 $$
 \text{Max Profit} = \text{Strike Width} - \text{Net Debit}
 $$
 
 **Breakevens:**
+
 $$
 \text{Lower BE} = \text{Lower Strike} + \text{Net Debit}
 $$
+
 $$
 \text{Upper BE} = \text{Upper Strike} - \text{Net Debit}
 $$
 
 **Example:**
+
 - $95/$100/$105 butterfly
 - Cost: $1
 - Max profit: $5 - $1 = $4
@@ -846,6 +953,7 @@ $$
 ### Common Mistakes
 
 **Avoid:**
+
 1. Expecting perfect pin (unrealistic)
 2. Entering during high IV (expensive)
 3. Transaction costs eating edge (illiquid)
@@ -885,6 +993,7 @@ OPPOSITE:
 > "A butterfly is like a sniper rifle - you pick a specific target (price) and take your shot (enter position). Most of the time you miss (stock moves away). But when you hit (stock pins at your strike), the payoff is spectacular (300-500% ROI). The cost of ammunition (premium) is low, so you can afford to take many shots. But you need patience, accuracy, and discipline. Don't hold out for the perfect pin - take profits at 50% and live to trade another day."
 
 **The truth:**
+
 - Low probability (10-20% typically)
 - But high reward when right (300%+)
 - **Acceptable risk/reward for patient traders**

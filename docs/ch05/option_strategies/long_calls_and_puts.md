@@ -7,6 +7,7 @@
 ## The Core Insight
 
 **The fundamental idea:**
+
 - Stocks can go up or down (or sideways)
 - You want directional exposure (bullish or bearish)
 - But don't want unlimited downside risk
@@ -15,9 +16,11 @@
 - Profit can be unlimited (calls) or substantial (puts)
 
 **The key equation:**
+
 $$
 \text{Max Loss} = \text{Premium Paid} \quad (\text{limited, known upfront})
 $$
+
 $$
 \text{Max Profit} = \text{Unlimited (call)} \text{ or } \text{Strike - Premium (put)}
 $$
@@ -35,6 +38,7 @@ $$
 **Definition:** The right (not obligation) to BUY stock at strike price $K$ by expiration date $T$.
 
 **When you buy a call:**
+
 - You pay premium upfront
 - You control 100 shares per contract
 - You profit if stock goes UP above strike + premium
@@ -42,16 +46,19 @@ $$
 - Max profit = unlimited
 
 **Example:**
+
 - Stock at $100
 - Buy $100 call for $5
 - You now have the RIGHT to buy 100 shares at $100 anytime before expiration
 - Cost: $5 × 100 = $500
 
 **At expiration:**
+
 - Stock at $110 → Exercise, buy at $100, sell at $110 → Profit $5/share (after premium)
 - Stock at $95 → Don't exercise, lose $5 premium
 
 **Payoff diagram:**
+
 ```
 Profit
    ↑
@@ -70,6 +77,7 @@ Profit
 **Definition:** The right (not obligation) to SELL stock at strike price $K$ by expiration date $T$.
 
 **When you buy a put:**
+
 - You pay premium upfront
 - You control 100 shares per contract
 - You profit if stock goes DOWN below strike - premium
@@ -77,16 +85,19 @@ Profit
 - Max profit = strike - premium (stock can't go below $0)
 
 **Example:**
+
 - Stock at $100
 - Buy $100 put for $5
 - You now have the RIGHT to sell 100 shares at $100 anytime before expiration
 - Cost: $5 × 100 = $500
 
 **At expiration:**
+
 - Stock at $90 → Exercise, buy at $90, sell at $100 → Profit $5/share (after premium)
 - Stock at $105 → Don't exercise, lose $5 premium
 
 **Payoff diagram:**
+
 ```
 Profit
    ↑
@@ -104,32 +115,38 @@ Profit
 ## Key Terminology
 
 **Strike Price ($K$):**
+
 - The price at which you can buy (call) or sell (put)
 - Fixed at purchase
 - Determines if option is ITM, ATM, or OTM
 
 **Premium:**
+
 - Price you pay to buy the option
 - Your max loss
 - Paid upfront
 - Goes to option seller
 
 **Expiration Date:**
+
 - Last day option is valid
 - After this, option worthless if not exercised
 - Can be days, weeks, months, or years away
 
 **In-the-Money (ITM):**
+
 - Call: Stock price > Strike
 - Put: Stock price < Strike
 - Has intrinsic value
 
 **At-the-Money (ATM):**
+
 - Stock price ≈ Strike
 - Maximum time value
 - Most sensitive to Greeks
 
 **Out-of-the-Money (OTM):**
+
 - Call: Stock price < Strike
 - Put: Stock price > Strike
 - All time value, no intrinsic value
@@ -145,21 +162,25 @@ Profit
 **View:** "Stock will go up significantly"
 
 **Example:**
+
 - AAPL at $150
 - You think it'll hit $170 in 3 months
 - Buy $150 call for $8
 
 **Why call vs. stock:**
+
 - Stock: Need $15,000 for 100 shares
 - Call: Need $800 for 100-share exposure
 - **Leverage: 19x less capital for same upside**
 
 **If right (stock → $170):**
+
 - Stock profit: $2,000 on $15,000 (13.3%)
 - Call profit: $1,200 on $800 (150%)
 - **Call outperforms dramatically**
 
 **If wrong (stock → $140):**
+
 - Stock loss: $1,000 (6.7%)
 - Call loss: $800 (100%, but limited!)
 - **Call loses more % but limited absolute loss**
@@ -167,11 +188,13 @@ Profit
 ### 2. Leverage
 
 **Control more shares with less capital:**
+
 - $10,000 in stock: 67 shares at $150
 - $10,000 in calls: 12 contracts = 1,200 shares of exposure!
 - **18x leverage**
 
 **Trade-off:**
+
 - More upside potential
 - But options expire (time decay)
 - Need to be right on timing AND direction
@@ -179,6 +202,7 @@ Profit
 ### 3. Limited Downside
 
 **Protect against catastrophic loss:**
+
 - Stock can go to $0 → lose $15,000
 - Call can go to $0 → lose $800 only
 - **Predefined maximum loss**
@@ -186,6 +210,7 @@ Profit
 ### 4. Earnings/Event Play
 
 **Before binary events:**
+
 - Uncertain direction but expect big move
 - Risk defined (premium)
 - Can buy ATM or OTM calls if bullish lean
@@ -201,16 +226,19 @@ Profit
 **View:** "Stock will go down significantly"
 
 **Example:**
+
 - TSLA at $200
 - You think it'll drop to $160 in 2 months
 - Buy $200 put for $10
 
 **If right (stock → $160):**
+
 - Put value at expiration: $40 intrinsic
 - Profit: $40 - $10 = $30/share
 - Return: 300% on premium
 
 **If wrong (stock → $220):**
+
 - Put expires worthless
 - Loss: $10/share (100%)
 - Max loss capped
@@ -218,11 +246,13 @@ Profit
 ### 2. Portfolio Hedge (Insurance)
 
 **Protect stock portfolio from crash:**
+
 - Own $100,000 stock portfolio (SPY)
 - Worried about downturn
 - Buy OTM puts for $2,000 (2%)
 
 **If market crashes 20%:**
+
 - Portfolio value: $80,000 (-$20,000)
 - Puts gain: ~$18,000
 - **Net loss: $4,000 (4%) instead of 20%**
@@ -232,6 +262,7 @@ Profit
 ### 3. Cheaper Than Shorting
 
 **Bearish play without margin:**
+
 - Shorting requires margin account
 - Unlimited loss potential
 - Borrowing costs
@@ -240,6 +271,7 @@ Profit
 ### 4. Cannot Short (Hard-to-Borrow)
 
 **Some stocks hard to borrow:**
+
 - Heavily shorted already
 - Small cap with low float
 - Recent IPO
@@ -256,16 +288,19 @@ Profit
 **How much option price changes per $1 stock move:**
 
 **Calls:**
+
 - ATM call: Δ ≈ +0.50 (gains $0.50 per $1 stock rise)
 - ITM call: Δ → +1.00 (moves almost 1:1 with stock)
 - OTM call: Δ → 0 (barely moves)
 
 **Puts:**
+
 - ATM put: Δ ≈ -0.50 (gains $0.50 per $1 stock drop)
 - ITM put: Δ → -1.00
 - OTM put: Δ → 0
 
 **Example:**
+
 - Buy ATM call with Δ = 0.50
 - Stock rises $2
 - Call gains: 0.50 × $2 = $1 per share
@@ -275,16 +310,19 @@ Profit
 **How much option loses per day (all else equal):**
 
 **All long options have negative theta:**
+
 - You pay theta every day
 - Accelerates near expiration
 - ATM options have highest theta
 
 **Example:**
+
 - Buy call with Θ = -$0.10/day
 - After 10 days (stock unchanged): lost $1
 - Last 30 days: decay accelerates significantly
 
 **Time decay curve:**
+
 ```
 Value
   ↑
@@ -304,11 +342,13 @@ Value
 **How much option gains per 1% increase in implied volatility:**
 
 **All long options have positive vega:**
+
 - IV rises → option gains value
 - IV falls → option loses value
 - ATM options have highest vega
 
 **Example:**
+
 - Buy call with ν = $0.20
 - IV rises from 30% to 35% (+5%)
 - Call gains: $0.20 × 5 = $1 per share
@@ -318,6 +358,7 @@ Value
 ### Gamma (Γ): Delta Change Rate
 
 **How much delta changes per $1 stock move:**
+
 - High gamma near expiration
 - ATM options have highest gamma
 - Long options = positive gamma (delta increases with movement)
@@ -337,14 +378,17 @@ $$
 $$
 
 **At expiration:**
+
 $$
 \text{Value} = \max(S - K, 0)
 $$
+
 $$
 \text{P\&L} = \max(S - K, 0) - \text{Premium Paid}
 $$
 
 **Greeks:**
+
 - Delta: 0 to +1 (positive)
 - Theta: Negative (pay decay)
 - Vega: Positive (gain from IV rise)
@@ -357,14 +401,17 @@ $$
 $$
 
 **At expiration:**
+
 $$
 \text{Value} = \max(K - S, 0)
 $$
+
 $$
 \text{P\&L} = \max(K - S, 0) - \text{Premium Paid}
 $$
 
 **Greeks:**
+
 - Delta: -1 to 0 (negative)
 - Theta: Negative (pay decay)
 - Vega: Positive (gain from IV rise)
@@ -379,21 +426,25 @@ $$
 ### For Calls (Bullish)
 
 **ITM Calls (Stock > Strike):**
+
 - **Pros:** High delta (0.70-0.90), moves almost 1:1 with stock, less time decay risk
 - **Cons:** Expensive, less leverage, mostly intrinsic value
 - **Use when:** High conviction, want stock-like returns with less capital
 
 **ATM Calls (Stock ≈ Strike):**
+
 - **Pros:** Balanced delta (0.50), good leverage, not too expensive
 - **Cons:** Maximum theta decay, need significant move
 - **Use when:** Moderate conviction, standard bullish bet
 
 **OTM Calls (Stock < Strike):**
+
 - **Pros:** Cheap, maximum leverage, defined risk
 - **Cons:** Low delta (0.20-0.40), high probability of expiring worthless
 - **Use when:** Speculative, expect large move, lottery ticket
 
 **Example:**
+
 - Stock at $100, you're bullish
 
 | Strike | Type | Premium | Delta | Leverage | Risk |
@@ -407,14 +458,17 @@ $$
 **Same logic, reversed:**
 
 **ITM Puts (Stock < Strike):**
+
 - Expensive, high delta, stock-like downside capture
 - Use for high-conviction bearish bets
 
 **ATM Puts (Stock ≈ Strike):**
+
 - Balanced cost/delta
 - Standard bearish bet or portfolio hedge
 
 **OTM Puts (Stock > Strike):**
+
 - Cheap, lottery tickets, tail risk hedge
 - Low probability but cheap insurance
 
@@ -427,16 +481,19 @@ $$
 ### Short-Dated (< 1 month)
 
 **Pros:**
+
 - Cheaper (less time value)
 - High leverage
 - Quick resolution
 
 **Cons:**
+
 - High theta decay
 - Need to be right quickly
 - Less room for error
 
 **Use when:**
+
 - Specific near-term catalyst (earnings)
 - High conviction on timing
 - Speculative trades
@@ -444,15 +501,18 @@ $$
 ### Medium-Dated (1-3 months)
 
 **Pros:**
+
 - Balanced theta/cost
 - Time for thesis to play out
 - Reasonable premium
 
 **Cons:**
+
 - More capital required
 - Still significant decay
 
 **Use when:**
+
 - Standard directional trades
 - Event 1-2 months away
 - Most common choice
@@ -460,17 +520,20 @@ $$
 ### Long-Dated (3-6+ months, LEAPS)
 
 **Pros:**
+
 - Slow theta decay
 - Time for thesis to develop
 - Can weather volatility
 - LEAPS (1-2 years) like stock substitute
 
 **Cons:**
+
 - Expensive
 - Capital tied up longer
 - Less leverage
 
 **Use when:**
+
 - Long-term bullish/bearish
 - Major trend expected
 - Stock substitute strategy (LEAPS)
@@ -488,6 +551,7 @@ $$
 **The Trade:**
 
 **Buy 5 contracts of 3-month $500 calls**
+
 - Premium: $35 per share
 - Cost: $35 × 5 × 100 = **$17,500**
 - Delta: 0.52
@@ -495,12 +559,14 @@ $$
 - Breakeven: $535 at expiration
 
 **Alternative (stock):**
+
 - Buy 500 shares at $500 = $250,000
 - Huge capital requirement!
 
 **Scenario 1: Strong Rise (Stock → $600)**
 
 After 90 days:
+
 - Stock at $600
 - Call intrinsic value: $100
 - Profit: $100 - $35 = $65 per share
@@ -508,6 +574,7 @@ After 90 days:
 - **Return: 186%** on $17,500 investment
 
 Compare to stock:
+
 - Stock profit: $100 × 500 = $50,000
 - Return: 20% on $250,000
 - **Call massively outperforms on % basis!**
@@ -515,6 +582,7 @@ Compare to stock:
 **Scenario 2: Moderate Rise (Stock → $550)**
 
 After 90 days:
+
 - Stock at $550 (+10%)
 - Call intrinsic value: $50
 - Profit: $50 - $35 = $15 per share
@@ -524,6 +592,7 @@ After 90 days:
 **Scenario 3: Small Rise (Stock → $520)**
 
 After 90 days:
+
 - Stock at $520 (+4%)
 - Call intrinsic value: $20
 - Loss: $20 - $35 = -$15 per share
@@ -535,18 +604,21 @@ After 90 days:
 **Scenario 4: Decline (Stock → $450)**
 
 After 90 days:
+
 - Stock at $450 (-10%)
 - Calls expire worthless
 - **Total loss: -$17,500** (100%)
 - **Max loss achieved**
 
 Compare to stock:
+
 - Stock loss: -$50 × 500 = -$25,000
 - **Call loss smaller in absolute terms**
 
 **Scenario 5: Exit Early on IV Spike**
 
 After 30 days:
+
 - Stock still at $500 (no move)
 - But IV spikes from 40% to 55% (earnings approaching)
 - Vega: +$30 per contract
@@ -561,13 +633,14 @@ After 30 days:
 
 **Setup:**
 
-**Stock:** TSLA at $250
-**Your view:** Overvalued, expect correction to $200 in 2 months
-**Market conditions:** High volatility, recent run-up looks exhausted
+- **Stock:** TSLA at $250
+- **Your view:** Overvalued, expect correction to $200 in 2 months
+- **Market conditions:** High volatility, recent run-up looks exhausted
 
 **The Trade:**
 
 **Buy 3 contracts of 2-month $250 puts**
+
 - Premium: $18 per share
 - Cost: $18 × 3 × 100 = **$5,400**
 - Delta: -0.50
@@ -577,6 +650,7 @@ After 30 days:
 **Scenario 1: Strong Decline (Stock → $200)**
 
 After 60 days:
+
 - Stock at $200 (-20%)
 - Put intrinsic value: $50
 - Profit: $50 - $18 = $32 per share
@@ -588,6 +662,7 @@ After 60 days:
 **Scenario 2: Moderate Decline (Stock → $230)**
 
 After 60 days:
+
 - Stock at $230 (-8%)
 - Put intrinsic value: $20
 - Profit: $20 - $18 = $2 per share
@@ -599,6 +674,7 @@ After 60 days:
 **Scenario 3: Sideways (Stock → $250)**
 
 After 60 days:
+
 - Stock unchanged at $250
 - Puts expire worthless (ATM → OTM by expiry)
 - **Total loss: -$5,400** (100%)
@@ -608,12 +684,14 @@ After 60 days:
 **Scenario 4: Rise (Stock → $280)**
 
 After 60 days:
+
 - Stock at $280 (+12%)
 - Puts expire worthless
 - **Total loss: -$5,400** (100%)
 - **Max loss, but at least capped!**
 
 Compare to shorting:
+
 - Short 300 shares, now need to cover at $280
 - Loss: -$30 × 300 = -$9,000
 - **Put loss smaller**
@@ -637,6 +715,7 @@ Compare to shorting:
 | **Margin req** | None (cash paid) | 50% for margin | None (cash paid) | High (short sale) |
 
 **Use calls/puts when:**
+
 - Limited capital
 - Want leverage
 - Want defined risk
@@ -644,6 +723,7 @@ Compare to shorting:
 - Don't want to hold long-term
 
 **Use stock/shorting when:**
+
 - Long-term horizon
 - Want dividends/voting
 - Low theta decay tolerance
@@ -657,26 +737,31 @@ Compare to shorting:
 ### Long Calls - Advantages ✓
 
 **1. Leverage**
+
 - Control 100 shares for fraction of cost
 - 10-20x leverage common
 - Small capital, big exposure
 
 **2. Limited downside**
+
 - Max loss = premium paid
 - Known upfront
 - Can't lose more than invested
 
 **3. Unlimited upside**
+
 - Benefit from large moves
 - No cap on profits
 - Asymmetric payoff (good!)
 
 **4. No margin required**
+
 - Pay cash upfront
 - No margin calls
 - No borrowing costs
 
 **5. Flexibility**
+
 - Can sell anytime before expiration
 - Exit on IV spike
 - Roll to different strikes/dates
@@ -684,31 +769,37 @@ Compare to shorting:
 ### Long Calls - Disadvantages ✗
 
 **1. Time decay (theta)**
+
 - Lose value every day
 - Accelerates near expiration
 - Must overcome to profit
 
 **2. Need to be right on timing AND direction**
+
 - Stock can go up but too slowly → lose
 - Stock flat or down → lose
 - Higher bar than stock
 
 **3. Can lose 100%**
+
 - Options can expire worthless
 - Total loss of premium
 - High risk on % basis
 
 **4. Volatility crush risk**
+
 - After events, IV drops
 - Even if right on direction, can lose
 - Post-earnings vol crush common
 
 **5. No dividends**
+
 - Miss out on dividend income
 - Stock holders get paid
 - Especially matters for high-yield stocks
 
 **6. Psychological difficulty**
+
 - Watching theta decay daily
 - Temptation to panic sell
 - Requires discipline
@@ -716,11 +807,13 @@ Compare to shorting:
 ### Long Puts - Similar Pros/Cons
 
 **Additional Pros:**
+
 - Don't need margin (vs. shorting)
 - Cheaper than shorting for large positions
 - Good portfolio hedge (insurance)
 
 **Additional Cons:**
+
 - Limited upside (stock can't go below $0)
 - Pay theta while hedging (cost of insurance)
 
@@ -731,32 +824,38 @@ Compare to shorting:
 **Best scenarios:**
 
 **1. Strong bullish catalyst ahead**
+
 - Earnings expected to beat
 - Product launch
 - FDA approval pending
 - M&A rumors
 
 **2. Breakout from range**
+
 - Technical pattern forming
 - Consolidation ending
 - Volume increasing
 
 **3. Low IV environment**
+
 - Options cheap (VIX < 15)
 - Premium low
 - Good risk/reward
 
 **4. High conviction + Limited capital**
+
 - Want leveraged exposure
 - Can't afford full stock position
 - Defined risk appealing
 
 **5. Before news/event**
+
 - Buy when IV low
 - Before market prices in event
 - Can exit on IV spike (don't need directional move)
 
 **Avoid calls when:**
+
 - IV very high (expensive)
 - Stock already moved (late to party)
 - Uncertain timing (theta will kill you)
@@ -769,32 +868,38 @@ Compare to shorting:
 **Best scenarios:**
 
 **1. Strong bearish catalyst ahead**
+
 - Earnings expected to miss
 - Regulatory problems
 - Competitive threat
 - Macro downturn
 
 **2. Technical breakdown**
+
 - Support levels breaking
 - Trend reversal
 - Weakening momentum
 
 **3. Portfolio hedging**
+
 - Worried about market crash
 - Protect gains
 - Sleep better (insurance)
 
 **4. Cannot short (hard-to-borrow)**
+
 - Stock unavailable to short
 - Puts are alternative
 - Defined risk vs. short's unlimited loss
 
 **5. Overextended valuations**
+
 - Bubble territory
 - Unsustainable multiples
 - Expect mean reversion
 
 **Avoid puts when:**
+
 - IV very high (expensive hedging)
 - Stock already crashed (late)
 - Strong bull market (fighting trend)
@@ -808,63 +913,82 @@ Compare to shorting:
 
 ### 1. Buying OTM Lottery Tickets
 
-**Mistake:** Buy cheap OTM options hoping for home run
-**Why it fails:** Very low probability, usually expire worthless
-**Fix:** Focus on ATM or slightly OTM for better probability
+- **Mistake:** Buy cheap OTM options hoping for home run
+- **Why it fails:** Very low probability, usually expire worthless
+- **Fix:** Focus on ATM or slightly OTM for better probability
+- **Counter-Strategy:** **Sell OTM options** to collect premium from lottery ticket buyers (e.g., covered calls, cash-secured puts, or credit spreads on high-probability OTM strikes)
 
 ### 2. Holding Until Expiration
 
-**Mistake:** "I'll wait and see" → watch option decay to zero
-**Why it fails:** Theta accelerates, need huge move to profit
-**Fix:** Exit at 50% profit or cut loss early
+- **Mistake:** "I'll wait and see" → watch option decay to zero
+- **Why it fails:** Theta accelerates, need huge move to profit
+- **Fix:** Exit at 50% profit or cut loss early
+- **Counter-Strategy:** **Theta decay selling** - sell options to long-holders, especially in the final 30-45 days when time decay accelerates (short strangles, iron condors, or covered calls)
 
-### 3. Ignoring IV (Buying Before Earnings)
+### 3. Ignoring IV (Buying Right Before Earnings)
 
-**Mistake:** Buy call day before earnings because "stock will beat"
-**Why it fails:** IV crush post-earnings can negate stock gain
-**Fix:** Check IV percentile, consider buying weeks before
+- **Mistake:** Buying calls or puts the day before earnings based on a directional belief ("the stock will beat")
+- **Why it fails:** Post-earnings **IV crush** can offset or completely erase gains from the stock's move
+- **Fix:** Check **IV percentile** and look for opportunities when implied volatility is relatively low
+- **Counter-Strategy:** 
+    - **IV Expansion Strategy:** Buy calls or puts **weeks before earnings** to benefit from IV expansion, then **sell before the earnings announcement**
+    - **IV Crush Strategy:** Sell options (iron condors, strangles) 1-2 days before earnings to collect inflated premium, profit from post-earnings IV collapse
 
 ### 4. Fighting Theta Too Long
 
-**Mistake:** Stock hasn't moved yet, "I'll give it more time"
-**Why it fails:** Every day costs money, decay accelerates
-**Fix:** Use longer-dated options or accept losses early
+- **Mistake:** Stock hasn't moved yet, "I'll give it more time"
+- **Why it fails:** Every day costs money, decay accelerates
+- **Fix:** Use longer-dated options or accept losses early
 
 ### 5. Over-Leveraging
 
-**Mistake:** "Options are cheap, I'll buy 50 contracts!"
-**Why it fails:** High probability of total loss, blown account
-**Fix:** Position size: max 2-5% of portfolio per trade
+- **Mistake:** "Options are cheap, I'll buy 50 contracts!"
+- **Why it fails:** High probability of total loss, blown account
+- **Fix:** Position size: max 2-5% of portfolio per trade
 
 ### 6. Not Understanding Greeks
 
-**Mistake:** Ignore delta, theta, vega
-**Why it fails:** Surprised by behavior, don't know when to exit
-**Fix:** Learn Greeks before trading
+- **Mistake:** Ignore delta, theta, vega
+- **Why it fails:** Surprised by behavior, don't know when to exit
+- **Fix:** Learn Greeks before trading
 
 ### 7. Buying Illiquid Options
 
-**Mistake:** Trade options with wide bid-ask spreads
-**Why it fails:** Lose 10% on entry/exit just from spreads
-**Fix:** Only trade liquid strikes (volume > 100/day)
+- **Mistake:** Trade options with wide bid-ask spreads
+- **Why it fails:** Lose 10% on entry/exit just from spreads
+- **Fix:** Only trade liquid strikes (volume > 100/day)
 
 ### 8. Emotional Trading
 
-**Mistake:** Chase after stock already moved
-**Why it fails:** FOMO entry, buying tops
-**Fix:** Have thesis before trade, stick to plan
+- **Mistake:** Chase after stock already moved
+- **Why it fails:** FOMO entry, buying tops
+- **Fix:** Have thesis before trade, stick to plan
+- **Counter-Strategy:** **Fade the move** - sell options to panicking buyers after large moves (e.g., sell calls after parabolic rallies, sell puts after panic drops when IV spikes)
 
 ### 9. Confusing Probability
 
-**Mistake:** "I'm up 100%, this always works!"
-**Why it fails:** One big win doesn't mean skill, could be luck
-**Fix:** Track all trades, understand win rate needed
+- **Mistake:** "I'm up 100%, this always works!"
+- **Why it fails:** One big win doesn't mean skill, could be luck
+- **Fix:** Track all trades, understand win rate needed
 
 ### 10. No Exit Plan
 
-**Mistake:** Enter trade without profit target or stop loss
-**Why it fails:** Hold too long (theta) or panic sell bottoms
-**Fix:** Set targets: exit at 50% profit, -50% loss
+- **Mistake:** Enter trade without profit target or stop loss
+- **Why it fails:** Hold too long (theta) or panic sell bottoms
+- **Fix:** Set targets: exit at 50% profit, -50% loss
+
+---
+
+## Key Takeaway on Mistake Exploitation
+
+Many beginner mistakes create **systematic mispricing opportunities**:
+
+- Beginners buying OTM lottery tickets → **Sell OTM premium**
+- Beginners holding through expiration → **Sell theta in final weeks**
+- Beginners buying high IV before earnings → **Sell overpriced volatility**
+- Beginners panic-buying after moves → **Fade emotional extremes**
+
+**The pattern:** When many traders make the same mistake, option prices reflect that behavior. Position on the opposite side to capture the edge.
 
 ---
 
@@ -875,11 +999,13 @@ Compare to shorting:
 ### Position Sizing
 
 **Rule of thumb:**
+
 $$
 \text{Position Size} = \frac{\text{Risk Capital} \times 0.02}{\text{Option Premium}}
 $$
 
 **Example:**
+
 - $50,000 account
 - 2% risk per trade = $1,000
 - Option costs $5/share = $500/contract
@@ -888,6 +1014,7 @@ $$
 ### Diversification
 
 **Don't concentrate:**
+
 - Max 5-10% of portfolio in options
 - Max 2-5% per trade
 - Spread across multiple positions
@@ -896,6 +1023,7 @@ $$
 ### Exit Rules
 
 **Set upfront:**
+
 - **Take profit:** 50-100% gain
 - **Stop loss:** -50% loss (don't hold to zero)
 - **Time stop:** Exit if 50% of time passed with no move
@@ -916,15 +1044,18 @@ $$
 ### Example 1: AAPL iPhone Launch (Sept 2023)
 
 **Setup:**
+
 - AAPL at $175 pre-announcement
 - History: stock usually rallies on iPhone launch
 - IV at 25% (moderate)
 
 **Trade:** Buy $175 calls, 2 months out
+
 - Premium: $8
 - Cost: $800 per contract
 
 **Outcome:**
+
 - iPhone 15 announced, well-received
 - Stock rallied to $190 over next month
 - Calls at $15 intrinsic
@@ -935,15 +1066,18 @@ $$
 ### Example 2: TSLA Earnings Miss (Oct 2023)
 
 **Setup:**
+
 - TSLA at $240 before earnings
 - High valuation, deliveries disappointing
 - IV at 65% (elevated pre-earnings)
 
 **Trade:** Buy $240 puts, 1 month out
+
 - Premium: $15
 - Cost: $1,500 per contract
 
 **Outcome:**
+
 - Earnings miss, guidance weak
 - Stock dropped to $220 next day
 - But puts only worth $20 (IV crushed 65% → 40%)
@@ -954,15 +1088,18 @@ $$
 ### Example 3: COVID Crash Hedge (Feb 2020)
 
 **Setup:**
+
 - SPY at $340 (all-time high)
 - COVID spreading, uncertainty high
 - Bought OTM puts as hedge
 
 **Trade:** Buy $320 puts (5% OTM), 2 months
+
 - Premium: $3
 - Cost: $300 per contract (cheap insurance)
 
 **Outcome:**
+
 - Market crashed, SPY → $220
 - Puts worth $100 intrinsic
 - **Profit: $97 per share (3,233%!)**
@@ -972,6 +1109,7 @@ $$
 ### Example 4: Theta Decay Lesson (Small Cap Biotech)
 
 **Setup:**
+
 - Small biotech at $20
 - FDA decision expected "sometime in Q3"
 - Bought $20 calls, 3 months out
@@ -979,6 +1117,7 @@ $$
 **Trade:** Premium: $4 per share
 
 **Outcome:**
+
 - Stock stayed at $20 for 90 days (no FDA decision)
 - Calls expired worthless
 - **Loss: $4/share (100%)**
@@ -996,6 +1135,7 @@ $$
 $$
 \text{Long Call} = \text{Bullish bet with defined risk and unlimited profit}
 $$
+
 $$
 \text{Long Put} = \text{Bearish bet with defined risk and large profit potential}
 $$
@@ -1008,12 +1148,14 @@ $$
 ### The Setup
 
 **Long Call:**
+
 - Buy call option
 - Profit if stock rises above strike + premium
 - Leverage: control 100 shares for fraction of cost
 - Risk: lose 100% if wrong
 
 **Long Put:**
+
 - Buy put option
 - Profit if stock falls below strike - premium
 - Alternative to shorting (no margin, defined risk)
@@ -1022,6 +1164,7 @@ $$
 ### The Greeks
 
 **Critical to understand:**
+
 - **Delta:** 0.50 means $0.50 gain per $1 stock move (calls positive, puts negative)
 - **Theta:** -$0.10 means lose $0.10/day (always negative for long options)
 - **Vega:** +$0.30 means gain $0.30 per 1% IV rise (always positive for long options)
@@ -1030,6 +1173,7 @@ $$
 ### Strike Selection
 
 **Three choices:**
+
 - **ITM:** Expensive, high delta (0.70+), stock-like, lower leverage
 - **ATM:** Balanced cost/delta (0.50), standard choice
 - **OTM:** Cheap, low delta (0.20-0.40), lottery ticket, high risk
@@ -1039,6 +1183,7 @@ $$
 ### Time Selection
 
 **Three ranges:**
+
 - **Short (<1 month):** Cheap but high theta, need quick move
 - **Medium (1-3 months):** Balanced, most common
 - **Long (3+ months, LEAPS):** Expensive but time to work, stock substitute
@@ -1048,11 +1193,13 @@ $$
 ### Maximum Profit/Loss
 
 **Long Call:**
+
 - Max loss: Premium paid (100%)
 - Max profit: Unlimited (stock can go to infinity)
 - Breakeven: Strike + Premium
 
 **Long Put:**
+
 - Max loss: Premium paid (100%)
 - Max profit: Strike - Premium (stock to $0)
 - Breakeven: Strike - Premium
@@ -1060,18 +1207,21 @@ $$
 ### When to Use
 
 **Buy calls when:**
+
 - Bullish catalyst coming
 - Low IV (options cheap)
 - Want leverage
 - Limited capital
 
 **Buy puts when:**
+
 - Bearish catalyst coming
 - Portfolio hedge needed
 - Can't or won't short
 - Defined risk desired
 
 **Don't use when:**
+
 - Very high IV (expensive)
 - Long-term hold (use stock/LEAPS)
 - Unclear timing
@@ -1091,6 +1241,7 @@ $$
 ### Risk Management
 
 **Essential rules:**
+
 - Position size: Max 2-5% of portfolio per trade
 - Stop loss: Exit at -50% (don't hold to zero)
 - Profit target: Exit at +50-100%
@@ -1100,11 +1251,13 @@ $$
 ### Comparison to Stock
 
 **Advantages over stock:**
+
 - Massive leverage (10-20x)
 - Defined risk (can't lose more than premium)
 - Less capital required
 
 **Disadvantages vs. stock:**
+
 - Time decay (theta bleeds daily)
 - Can expire worthless (100% loss)
 - No dividends
@@ -1113,6 +1266,7 @@ $$
 ### Your Learning Path
 
 **Start here (long calls/puts), then:**
+
 1. Master single-leg basics (this chapter)
 2. Learn covered calls (income on stocks you own)
 3. Progress to spreads (vertical spreads reduce risk)
@@ -1125,6 +1279,7 @@ $$
 > "Long calls and puts are the simplest option strategies, but don't mistake simple for easy. They require you to be right on BOTH direction and timing, and theta decay is relentless. Use them for high-conviction, short-term directional bets with defined risk. Master these before attempting any complex strategies. If you can't make money with simple long options, you won't make money with complex spreads either."
 
 **Key to success:**
+
 - High-conviction trades only
 - Proper position sizing (2-5% max)
 - Exit discipline (take profits, cut losses)
