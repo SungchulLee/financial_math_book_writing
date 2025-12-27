@@ -7,6 +7,7 @@
 ## The Core Insight
 
 **The fundamental idea:**
+
 - You have a directional view (bullish or bearish)
 - But want to reduce cost (or receive credit)
 - Sell MORE options than you buy
@@ -14,6 +15,7 @@
 - Accept unlimited risk beyond a point for cheaper entry
 
 **The key equation:**
+
 $$
 \text{Ratio Spread} = \text{Buy N options} + \text{Sell M options (where M > N)}
 $$
@@ -31,28 +33,33 @@ Typical ratios: 1:2, 1:3, 2:3
 ### The Basic Structure
 
 **Call Ratio Spread (Bullish with cap):**
+
 - Buy 1 ITM or ATM call
 - Sell 2 (or more) OTM calls
 - Net debit or credit depending on strikes/ratio
 
 **Example:**
+
 - Stock at $100
 - Buy 1 × $100 call for $5
 - Sell 2 × $110 calls for $2 each (receive $4)
 - Net cost: $1 debit (or could be credit with different strikes)
 
 **What you've created:**
+
 - Profit if stock rises moderately (to $110)
 - Max profit at upper short strike ($110)
 - **Unlimited risk if stock goes way above** ($110+)
 - Cheaper than buying call alone
 
 **Put Ratio Spread (Bearish with cap):**
+
 - Buy 1 OTM or ATM put
 - Sell 2 (or more) OTM puts (lower strikes)
 - Net debit or credit
 
 **Example:**
+
 - Stock at $100
 - Buy 1 × $100 put for $5
 - Sell 2 × $90 puts for $2 each (receive $4)
@@ -64,10 +71,12 @@ Typical ratios: 1:2, 1:3, 2:3
 **Unbalanced = Unlimited Risk:**
 
 Unlike vertical spreads (1:1 ratio):
+
 - Vertical: Buy 1, sell 1 → defined risk both sides
 - Ratio: Buy 1, sell 2 → **UNCOVERED short options beyond a point**
 
 **This is the danger and opportunity:**
+
 - Cheaper entry (collect extra premium)
 - But naked short exposure at extremes
 - **Must manage actively**
@@ -81,10 +90,12 @@ Unlike vertical spreads (1:1 ratio):
 **Standard 1:2 call ratio spread:**
 
 **Position:**
+
 - Long 1 call at $K_1$ (lower strike)
 - Short 2 calls at $K_2$ (higher strike, where $K_2 > K_1$)
 
 **Example:**
+
 - Long 1 × $100 call @ $6
 - Short 2 × $110 calls @ $2.50 each
 - Net: $6 - $5 = **$1 debit**
@@ -92,30 +103,36 @@ Unlike vertical spreads (1:1 ratio):
 ### Payoff Analysis
 
 **Below $100:**
+
 - All calls worthless
 - Loss: $1 (net debit)
 
 **At $105:**
+
 - Long call: $5 value
 - Short calls: $0
 - P&L: $5 - $1 = **+$4 profit**
 
 **At $110 (MAX PROFIT):**
+
 - Long call: $10 value
 - Short calls: $0 (ATM, expire worthless)
 - P&L: $10 - $1 = **+$9 profit (900% ROI!)**
 
 **At $115:**
+
 - Long call: $15 value
 - Short calls: -$10 ($5 each × 2 = -$10)
 - P&L: $15 - $10 - $1 = **+$4 profit**
 
 **At $120 (Breakeven point):**
+
 - Long call: $20
 - Short calls: -$20 ($10 each × 2)
 - P&L: $20 - $20 - $1 = **-$1 (breakeven)**
 
 **Above $120:**
+
 - **UNLIMITED LOSS**
 - For every $1 stock rises, lose $1
 - No protection!
@@ -143,26 +160,31 @@ Unlike vertical spreads (1:1 ratio):
 ### The Math
 
 **Maximum profit:**
+
 $$
 \text{Max Profit} = (K_2 - K_1) - \text{Net Debit}
 $$
 
 Or if credit:
+
 $$
 \text{Max Profit} = (K_2 - K_1) + \text{Net Credit}
 $$
 
 **Upper breakeven:**
+
 $$
 \text{Upper BE} = K_2 + \frac{(K_2 - K_1) - \text{Net Debit}}{\text{Ratio} - 1}
 $$
 
 For 1:2 ratio:
+
 $$
 \text{Upper BE} = K_2 + (K_2 - K_1) - \text{Net Debit}
 $$
 
 **Example:**
+
 - Long $100, short 2 × $110, cost $1
 - Max profit: $10 - $1 = $9 (at $110)
 - Upper BE: $110 + $10 - $1 = $119
@@ -176,10 +198,12 @@ $$
 **Standard 1:2 put ratio spread:**
 
 **Position:**
+
 - Long 1 put at $K_1$ (higher strike)
 - Short 2 puts at $K_2$ (lower strike, where $K_2 < K_1$)
 
 **Example:**
+
 - Long 1 × $100 put @ $6
 - Short 2 × $90 puts @ $2.50 each
 - Net: $6 - $5 = **$1 debit**
@@ -187,30 +211,36 @@ $$
 ### Payoff Analysis
 
 **Above $100:**
+
 - All puts worthless
 - Loss: $1 (net debit)
 
 **At $95:**
+
 - Long put: $5 value
 - Short puts: $0
 - P&L: $5 - $1 = **+$4 profit**
 
 **At $90 (MAX PROFIT):**
+
 - Long put: $10 value
 - Short puts: $0 (ATM)
 - P&L: $10 - $1 = **+$9 profit**
 
 **At $85:**
+
 - Long put: $15 value
 - Short puts: -$10 ($5 each × 2)
 - P&L: $15 - $10 - $1 = **+$4 profit**
 
 **At $80 (Breakeven):**
+
 - Long put: $20
 - Short puts: -$20 ($10 each × 2)
 - P&L: $20 - $20 - $1 = **-$1 (breakeven)**
 
 **Below $80:**
+
 - **UNLIMITED LOSS** (stock can go to $0)
 - Very dangerous!
 
@@ -232,6 +262,7 @@ $$
 ```
 
 **Sweet spot:** Stock at $90 (lower short strike)
+
 **Danger zone:** Stock below $80 (lower breakeven)
 
 ---
@@ -241,6 +272,7 @@ $$
 ### 1. Standard Ratio (1:2)
 
 **Most common:**
+
 - Buy 1, sell 2
 - Moderate risk/reward
 - Typical use
@@ -248,6 +280,7 @@ $$
 ### 2. Aggressive Ratio (1:3 or higher)
 
 **Higher risk:**
+
 - Buy 1, sell 3 or more
 - **More naked exposure**
 - Cheaper or larger credit
@@ -255,6 +288,7 @@ $$
 - Much riskier
 
 **Example:**
+
 - Buy 1 × $100 call
 - Sell 3 × $110 calls
 - **Very dangerous if stock moons**
@@ -262,12 +296,14 @@ $$
 ### 3. Conservative Ratio (2:3)
 
 **Lower risk:**
+
 - Buy 2, sell 3
 - Less naked exposure (only 1 uncovered)
 - More expensive
 - Safer
 
 **Example:**
+
 - Buy 2 × $100 calls
 - Sell 3 × $110 calls
 - Only 1 call uncovered
@@ -275,6 +311,7 @@ $$
 ### 4. Ratio Call Spread (for credit)
 
 **Receive money upfront:**
+
 - Strikes chosen so net credit
 - Example: Buy $105, sell 2 × $115
 - Receive $1 credit
@@ -285,6 +322,7 @@ $$
 ### 5. Ratio Put Spread (for credit)
 
 **Receive money upfront:**
+
 - Buy $95 put, sell 2 × $85 puts
 - Receive credit
 - Free trade
@@ -298,10 +336,10 @@ $$
 
 ### Setup
 
-**Stock:** TSLA at $250
-**View:** Moderately bullish - expect rise to $270-280, but not $300+
-**Strategy:** 45-day call ratio spread
-**Implied Vol:** 50% (moderate)
+- **Stock:** TSLA at $250
+- **View:** Moderately bullish - expect rise to $270-280, but not $300+
+- **Strategy:** 45-day call ratio spread
+- **Implied Vol:** 50% (moderate)
 
 ### Available Options
 
@@ -314,11 +352,13 @@ $$
 ### The Trade: 1:2 Ratio at $250/$270
 
 **Execute:**
+
 - Buy 1 × $250 call @ $15.00
 - Sell 2 × $270 calls @ $7.00 each = $14.00 received
 - **Net debit: $1.00** ($100 total)
 
 **Position summary:**
+
 - Cost: $100
 - Max profit: $1,900 (at $270)
 - Max loss (downside): $100
@@ -328,6 +368,7 @@ $$
 ### Scenario 1: Perfect - TSLA at $270 (Max Profit)
 
 **At expiration:**
+
 - TSLA exactly at $270
 - $250 call worth: $20 ($2,000)
 - $270 calls worth: $0 (ATM, expire worthless)
@@ -338,6 +379,7 @@ $$
 ### Scenario 2: Good - TSLA at $265
 
 **At expiration:**
+
 - TSLA at $265
 - $250 call worth: $15 ($1,500)
 - $270 calls worth: $0
@@ -348,6 +390,7 @@ $$
 ### Scenario 3: Modest - TSLA at $260
 
 **At expiration:**
+
 - TSLA at $260
 - $250 call worth: $10 ($1,000)
 - $270 calls worth: $0
@@ -358,6 +401,7 @@ $$
 ### Scenario 4: Danger - TSLA at $300 (Way Up)
 
 **At expiration:**
+
 - TSLA at $300 (big rally)
 - $250 call worth: $50 ($5,000)
 - $270 calls worth: -$60 ($30 × 2 = -$6,000)
@@ -368,6 +412,7 @@ $$
 ### Scenario 5: Disaster - TSLA at $350
 
 **At expiration:**
+
 - TSLA at $350 (massive rally)
 - $250 call worth: $100 ($10,000)
 - $270 calls worth: -$160 ($80 × 2 = -$16,000)
@@ -380,12 +425,16 @@ $$
 ### Management Decision
 
 **After 20 days:**
+
 - TSLA now at $280 (moving up quickly)
 - Near danger zone
 - **Decision: Close the spread**
 - Exit for small profit/loss rather than risk unlimited loss
 
 **This is why active management is critical!**
+
+![concrete_example_ratio_spreads](https://github.com/SungchulLee/img/blob/main/concrete_example_ratio_spreads.png?raw=true)
+**Figure 1:** TSLA call ratio spread example showing all five scenarios from perfect (stock at $270) to disaster (stock at $350), illustrating the critical paradox of ratio spreads where being "too right" on direction leads to unlimited losses, demonstrating why strict risk management and active monitoring are essential.
 
 ---
 
@@ -394,21 +443,25 @@ $$
 ### Favorable Conditions
 
 **1. Moderately directional view:**
+
 - Think stock will move, but not too far
 - Have target in mind
 - Confident it won't go past breakeven
 
 **2. High implied volatility:**
+
 - Expensive options
 - Collect more premium on shorts
 - Can establish for credit
 
 **3. Reduce cost of directional bet:**
+
 - Want long call/put exposure
 - Can't afford full premium
 - Accept risk for cheaper entry
 
 **4. Range-bound conviction:**
+
 - Stock will rise/fall to certain level
 - Then stop or reverse
 - Sweet spot at your target
@@ -416,21 +469,25 @@ $$
 ### Unfavorable Conditions
 
 **1. Uncertain direction:**
+
 - If unsure, naked shorts are dangerous
 - Use defined-risk spreads instead
 
 **2. Potential for big moves:**
+
 - Earnings ahead
 - Binary events (FDA, etc.)
 - High chance of exceeding breakeven
 - **Very dangerous!**
 
 **3. Low volatility:**
+
 - Cheap options anyway
 - Not much premium to collect
 - Better to use straight call/put
 
 **4. Cannot monitor:**
+
 - Need active management
 - Can't set and forget
 - If busy, use defined-risk strategies
@@ -444,11 +501,13 @@ $$
 ### Rule 1: Position Sizing
 
 **Never more than 2-3% of account:**
+
 - Unlimited loss potential
 - One bad trade can destroy account
 - **Size very small**
 
 **Example:**
+
 - $50,000 account
 - Max risk per ratio spread: $1,000-1,500
 - Even though "max loss on downside" is $100, upside is unlimited!
@@ -456,11 +515,13 @@ $$
 ### Rule 2: Stop Loss (Upper Breakeven)
 
 **MUST have hard stop:**
+
 - If stock approaches upper breakeven → close!
 - Don't hope it comes back
 - Unlimited loss awaits
 
 **Example:**
+
 - Upper BE at $289
 - Stock hits $285 → **close immediately**
 - Accept small loss rather than catastrophe
@@ -468,6 +529,7 @@ $$
 ### Rule 3: Avoid Before Events
 
 **Never hold ratio spreads through:**
+
 - Earnings
 - FDA decisions
 - Acquisitions
@@ -477,6 +539,7 @@ $$
 ### Rule 4: Monitor Daily
 
 **Active management required:**
+
 - Check position daily
 - Watch for moves toward danger
 - Be ready to close
@@ -485,11 +548,13 @@ $$
 ### Rule 5: Close Early if Profit
 
 **Don't be greedy:**
+
 - If at 50% max profit → consider closing
 - Max profit at upper strike is rare
 - Take profits, redeploy
 
 **Example:**
+
 - Max profit: $1,900 at $270
 - Current profit: $1,000 at $265
 - **Close! Don't wait for $270**
@@ -497,6 +562,7 @@ $$
 ### Rule 6: Avoid in Volatile Stocks
 
 **Don't use ratio spreads on:**
+
 - Meme stocks (AMC, GME)
 - Biotech before FDA
 - Small caps with wild swings
@@ -518,6 +584,7 @@ $$
 **Key difference:**
 
 **Ratio spreads are ONLY strategy with:**
+
 - Unlimited risk on ONE side (not both)
 - Can be established for credit
 - Profit from moderate move but lose from large move
@@ -528,9 +595,35 @@ $$
 
 ## Advanced Variations
 
+### Synthetic Conversions and Ratio Spreads
+
+**Advanced traders may combine ratio spreads with synthetic positions to create complex risk-reward profiles:**
+
+![synthetic_long_stock_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_long_stock_ratio_spreads.png?raw=true)
+**Figure 2:** Synthetic long stock construction showing how long call plus short put at the same strike replicates long stock position, illustrating put-call parity and how synthetics can be combined with ratio spread strategies for capital efficiency.
+
+![synthetic_short_stock_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_short_stock_ratio_spreads.png?raw=true)
+**Figure 3:** Synthetic short stock construction demonstrating how short call plus long put creates a position equivalent to short stock, showing the mirror relationship to synthetic long positions and applications in ratio spread hedging.
+
+![synthetic_components_breakdown_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown_ratio_spreads.png?raw=true)
+**Figure 4:** Synthetic components breakdown showing how various option combinations decompose into equivalent positions, illustrating the building blocks used in advanced ratio spread variations and conversion strategies.
+
+![synthetic_vs_stock_comparison_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_vs_stock_comparison_ratio_spreads.png?raw=true)
+**Figure 5:** Comparison of synthetic positions versus actual stock holdings showing capital requirements, margin differences, and dividend considerations, demonstrating when synthetics offer advantages in ratio spread construction.
+
+![put_call_parity_ratio_spreads](https://github.com/SungchulLee/img/blob/main/put_call_parity_ratio_spreads.png?raw=true)
+**Figure 6:** Put-call parity relationship diagram showing the fundamental equation C - P = S - K×e^(-rT) that ensures no arbitrage between calls, puts, and stock, forming the theoretical foundation for synthetic position equivalence.
+
+![conversion_relationships_ratio_spreads](https://github.com/SungchulLee/img/blob/main/conversion_relationships_ratio_spreads.png?raw=true)
+**Figure 7:** Conversion and reversal relationships showing how to transform between equivalent positions (conversions: long stock + long put + short call, reversals: short stock + long call + short put), illustrating advanced arbitrage strategies that can be combined with ratio spreads.
+
+![strike_selection_synthetics_ratio_spreads](https://github.com/SungchulLee/img/blob/main/strike_selection_synthetics_ratio_spreads.png?raw=true)
+**Figure 8:** Strike selection for synthetic positions and ratio spreads showing how ATM synthetics replicate stock exactly while OTM synthetics create leverage or deductibles, demonstrating strategic strike choices when combining synthetics with ratio spread structures.
+
 ### 1. Ratio Backspread (Reverse Ratio)
 
 **Opposite structure:**
+
 - Sell fewer, buy more
 - Example: Sell 1 × $100 call, buy 2 × $110 calls
 - **Profit from big moves** (like straddle but cheaper)
@@ -538,6 +631,7 @@ $$
 - Unlimited profit one direction
 
 **Use when:**
+
 - Expect volatility
 - Want cheaper than straddle
 - Accept risk on one side
@@ -545,6 +639,7 @@ $$
 ### 2. Christmas Tree Spread
 
 **Multiple ratios:**
+
 - Buy 1 low
 - Sell 2 middle
 - Sell 1 high
@@ -555,6 +650,7 @@ $$
 ### 3. Ladder Spread
 
 **Progressive strikes:**
+
 - Buy 1 ATM
 - Sell 1 OTM
 - Sell 1 farther OTM
@@ -563,6 +659,7 @@ $$
 ### 4. Ratio Diagonal Spread
 
 **Different expirations:**
+
 - Buy longer-dated
 - Sell 2 shorter-dated (different strikes)
 - Combines ratio + calendar
@@ -576,18 +673,21 @@ $$
 ### Mistake 1: Underestimating Upside Risk
 
 ❌ **Wrong:**
+
 - "Stock at $250, won't go past $300"
 - Set up ratio spread
 - Stock gaps to $320 on news
 - **Catastrophic loss**
 
 **Why it fails:**
+
 - Stocks can always surprise
 - News happens
 - Gap risk is real
 - Unlimited loss is unlimited
 
 ✅ **Better:**
+
 - Always have stop at upper BE
 - Size tiny (2% max)
 - Never hold through events
@@ -596,18 +696,21 @@ $$
 ### Mistake 2: Holding Through Earnings
 
 ❌ **Wrong:**
+
 - Set up ratio spread before earnings
 - "Stock won't move more than 10%"
 - Stock moves 20% (common!)
 - **Disaster**
 
 **Why it fails:**
+
 - Earnings create gaps
 - 20-30% moves happen
 - Ratio spreads can't handle this
 - Unlimited loss triggered
 
 ✅ **Better:**
+
 - Close before earnings
 - Never hold through binary events
 - Use defined-risk strategies for events
@@ -615,6 +718,7 @@ $$
 ### Mistake 3: No Stop Loss
 
 ❌ **Wrong:**
+
 - Set up ratio spread, forget about it
 - Stock drifts toward danger
 - "It'll come back"
@@ -622,11 +726,13 @@ $$
 - **Account destroyed**
 
 **Why it fails:**
+
 - Unlimited loss doesn't care about hope
 - Need mechanical stops
 - Emotions kill you
 
 ✅ **Better:**
+
 - Hard stop at upper BE minus buffer
 - No exceptions
 - Mechanical exit
@@ -634,17 +740,20 @@ $$
 ### Mistake 4: Over-Sizing
 
 ❌ **Wrong:**
+
 - $25,000 account
 - Risk $5,000 on ratio spread (20%)
 - "Max loss is just my debit!"
 - Forgets about unlimited upside risk
 
 **Why it fails:**
+
 - One bad ratio spread = account blown
 - Max loss isn't really max (upside unlimited)
 - Overconfidence
 
 ✅ **Better:**
+
 - 2% max sizing
 - Assume worst case (loss thousands)
 - Never more than few contracts
@@ -652,16 +761,19 @@ $$
 ### Mistake 5: Wrong Strikes
 
 ❌ **Wrong:**
+
 - Strikes too close (short at $105, long at $100)
 - Very small profit zone
 - High chance of blowing through
 
 **Why it fails:**
+
 - Narrow sweet spot
 - Easy to overshoot
 - Risk >> reward
 
 ✅ **Better:**
+
 - Strikes at least $10 apart (for $100 stock)
 - Give room to work
 - Better risk/reward
@@ -687,10 +799,12 @@ $$
 ### The Structure
 
 **Call ratio spread:**
+
 - Bullish with upper cap
 - Unlimited risk if too bullish
 
 **Put ratio spread:**
+
 - Bearish with lower cap
 - Unlimited risk if too bearish
 
@@ -698,16 +812,18 @@ $$
 
 ### The Payoff
 
-**Sweet spot:** Stock at upper (call) or lower (put) short strike
-**Breakeven zones:** Two breakevens (one on each side)
-**Danger zone:** Beyond upper/lower breakeven = unlimited loss
+- **Sweet spot:** Stock at upper (call) or lower (put) short strike
+- **Breakeven zones:** Two breakevens (one on each side)
+- **Danger zone:** Beyond upper/lower breakeven = unlimited loss
 
 **Max profit:**
+
 $$
 \text{Max Profit} = \text{Strike Width} \pm \text{Net Debit/Credit}
 $$
 
 **Upper breakeven (calls):**
+
 $$
 \text{Upper BE} = \text{Short Strike} + \frac{\text{Max Profit}}{\text{Extra Shorts}}
 $$
@@ -715,6 +831,7 @@ $$
 ### The Risk Profile
 
 **Unique characteristics:**
+
 - Limited loss one side (debit paid)
 - **UNLIMITED loss other side** (naked shorts)
 - Can profit from being wrong
@@ -724,6 +841,7 @@ $$
 ### When to Use
 
 **Best scenarios:**
+
 - Moderate directional view (not extreme)
 - High IV (expensive options, collect premium)
 - Target price in mind
@@ -731,6 +849,7 @@ $$
 - Stable, large-cap stocks
 
 **Avoid:**
+
 - Before binary events
 - Volatile stocks
 - If can't monitor
@@ -740,6 +859,7 @@ $$
 ### Risk Management (CRITICAL!)
 
 **Non-negotiable rules:**
+
 1. **Size tiny** (2% max)
 2. **Stop at upper BE** (mechanical, no exceptions)
 3. **Never through events** (close before earnings)
@@ -752,6 +872,7 @@ $$
 ### Success Factors
 
 **What you need:**
+
 1. Accurate target price
 2. Confidence it won't overshoot
 3. High IV environment
@@ -762,6 +883,7 @@ $$
 ### Common Mistakes
 
 **Avoid:**
+
 1. Underestimating upside/downside risk
 2. Holding through earnings
 3. No stop loss
@@ -772,18 +894,22 @@ $$
 ### Comparison to Similar Strategies
 
 **vs. Vertical Spread:**
+
 - Ratio: Unlimited risk, cheaper
 - Vertical: Defined risk, more expensive
 
 **vs. Long Call/Put:**
+
 - Ratio: Cheaper, capped profit
 - Long: More expensive, unlimited profit
 
 **vs. Iron Condor:**
+
 - Ratio: Directional, unlimited one side
 - Iron Condor: Neutral, defined both sides
 
 **vs. Calendar:**
+
 - Ratio: Single expiration
 - Calendar: Multiple expirations
 
@@ -822,6 +948,7 @@ ADVANCED:
 > "Ratio spreads appeal to traders who want cheap directional exposure. You can get long exposure for pennies or even credits. But this 'free lunch' comes with a deadly cost: unlimited risk. You can be absolutely right on direction - stock rallies from $250 to $300 as predicted - and still lose thousands because it went 'too far.' Professional traders mostly avoid ratio spreads because one mistake, one gap, one unexpected move can destroy an account. If you must use them: tiny size, hard stops, never through events, and pray you're not unlucky. Most traders are better off with defined-risk vertical spreads and sleeping well at night."
 
 **The harsh truth:**
+
 - Ratio spreads are alluring (cheap/free!)
 - But they're dangerous (unlimited loss!)
 - Most blowups come from these

@@ -182,8 +182,6 @@ nav:
           - Iron Condors and Iron Butterflies: ch05/option_strategies/iron_condor_and_iron_butterfly.md
           - Protective Puts and Collars: ch05/option_strategies/protective_put_and_collar.md
           - Ratio Spreads: ch05/option_strategies/ratio_spreads.md
-          - Calendar Spreads: ch05/option_strategies/calendar_spread.md
-          - Diagonal Spreads: ch05/option_strategies/diagonal_spread.md
           - Synthetic Positions: ch05/option_strategies/synthetic_positions.md
       - 5.9 Extensions of BS Model:
           - Limitations and Extensions: ch05/extensions_black_scholes/limitations_extensions.md
@@ -273,6 +271,9 @@ nav:
           - Forward Smile: ch07/smile_dynamics/forward_smile.md
           - Dynamic Consistency: ch07/smile_dynamics/dynamic_consistency.md
           - Empirical Stylized Facts: ch07/smile_dynamics/empirical_stylized_facts.md
+      - 7.7 IV Strategies:
+          - Calendar Spreads: ch07/iv_strategies/calendar_spread.md
+          - Diagonal Spreads: ch07/iv_strategies/diagonal_spread.md
   
   - 8 Calibration:
       - 8.1 C as Inverse Problem:

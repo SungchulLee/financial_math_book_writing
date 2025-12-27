@@ -55,6 +55,9 @@ $$
 
 **Max loss:** $3 (debit paid)
 
+![Bull Call Spread](https://github.com/SungchulLee/img/blob/main/bull_call_spread.png?raw=true)
+**Figure 1:** Bull call spread profit/loss diagram showing the defined risk-reward profile of buying a lower strike call and selling a higher strike call, illustrating capped profit potential and limited downside.
+
 ### 2. Bear Put Spread (Debit Spread)
 
 **Bearish, pay net debit**
@@ -76,6 +79,9 @@ $$
 **Max profit:** $100 - $90 - $3 = $7
 
 **Max loss:** $3 (debit paid)
+
+![Bear Put Spread](https://github.com/SungchulLee/img/blob/main/bear_put_spread.png?raw=true)
+**Figure 2:** Bear put spread profit/loss diagram demonstrating the bearish strategy with defined risk, showing how buying a higher strike put and selling a lower strike put creates a capped profit structure.
 
 ### 3. Bull Put Spread (Credit Spread)
 
@@ -99,6 +105,9 @@ $$
 
 **Max loss:** $100 - $90 - $3 = $7
 
+![Bull Put Spread](https://github.com/SungchulLee/img/blob/main/bull_put_spread.png?raw=true)
+**Figure 3:** Bull put spread profit/loss diagram illustrating the credit spread structure where selling a higher strike put and buying a lower strike put generates immediate income with defined maximum loss.
+
 ### 4. Bear Call Spread (Credit Spread)
 
 **Bearish, receive net credit**
@@ -120,6 +129,9 @@ $$
 **Max profit:** $3 (credit received)
 
 **Max loss:** $110 - $100 - $3 = $7
+
+![Bear Call Spread](https://github.com/SungchulLee/img/blob/main/bear_call_spread.png?raw=true)
+**Figure 4:** Bear call spread profit/loss diagram showing the bearish credit spread payoff, demonstrating how selling a lower strike call and buying a higher strike call creates income with capped risk.
 
 ---
 
@@ -184,26 +196,14 @@ $$
 **At expiration:**
 
 $$
-\text{P\&L} = \begin{cases}
+\text{P&L} = \begin{cases}
 -\text{Debit} & S \leq K_1 \\
 (S - K_1) - \text{Debit} & K_1 < S < K_2 \\
 (K_2 - K_1) - \text{Debit} & S \geq K_2
 \end{cases}
 $$
 
-**Payoff diagram:**
 
-```
-Profit
-   ↑
-   |        ‾‾‾‾‾ (max = $7)
-   |       /
-   |      /
-───┼─────/────────→ Stock Price
-   |    /
-  -$3  /  (max loss)
-   K1=100  K2=110
-```
 
 ### Bear Put Spread
 
@@ -222,26 +222,14 @@ $$
 **At expiration:**
 
 $$
-\text{P\&L} = \begin{cases}
+\text{P&L} = \begin{cases}
 \text{Credit} & S \geq K_2 \\
 \text{Credit} - (K_2 - S) & K_1 < S < K_2 \\
 \text{Credit} - (K_2 - K_1) & S \leq K_1
 \end{cases}
 $$
 
-**Payoff diagram:**
 
-```
-Profit
-   ↑
-   |‾‾‾‾‾‾‾ (max = $3)
-   |\
-   | \
-───┼──\────────→ Stock Price
-   |   \
-   |    \______ (max loss = -$7)
-   K1=90  K2=100
-```
 
 ---
 
@@ -320,6 +308,9 @@ Profit
 - Max profit: $12 (R:R = 1.5:1)
 - Breakeven: $108 (harder to reach)
 
+![call_spread_width_comparison](https://github.com/SungchulLee/img/blob/main/call_spread_width_comparison.png?raw=true)
+**Figure 5:** Call spread width comparison showing how narrow spreads (5-point) versus wide spreads (20-point) affect capital requirements, profit potential, and risk-reward ratios for bull call spreads.
+
 ### Strike Positioning
 
 **For debit spreads:**
@@ -350,6 +341,9 @@ Profit
 - Higher credit
 - Lower probability
 - More aggressive
+
+![put_spread_aggressiveness_comparison](https://github.com/SungchulLee/img/blob/main/put_spread_aggressiveness_comparison.png?raw=true)
+**Figure 6:** Put spread aggressiveness comparison illustrating the trade-off between conservative (far OTM) and aggressive (ATM) strike selections for bull put credit spreads, showing impact on probability and premium collected.
 
 ---
 

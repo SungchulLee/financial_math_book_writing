@@ -7,6 +7,7 @@
 ## The Core Insight
 
 **The fundamental idea:**
+
 - Options with different expiration dates trade at different implied volatilities
 - Near-term options often have different IV than longer-term options
 - This creates a "volatility term structure"
@@ -14,6 +15,7 @@
 - Profit from relative mispricing between maturities
 
 **The key equation:**
+
 $$
 \text{IV}_{\text{front month}} \neq \text{IV}_{\text{back month}}
 $$
@@ -79,6 +81,7 @@ Plot IV vs. Time to Maturity → creates a curve
 ### Real Examples
 
 **Example 1: Normal Market (Upward Sloping)**
+
 - Stock at $100
 - 1-month ATM IV: 18%
 - 3-month ATM IV: 22%
@@ -86,6 +89,7 @@ Plot IV vs. Time to Maturity → creates a curve
 - **Front month cheaper than back month**
 
 **Example 2: Before Earnings (Humped)**
+
 - Stock at $100
 - 1-month (before earnings) IV: 40%
 - 3-month (after earnings) IV: 22%
@@ -93,6 +97,7 @@ Plot IV vs. Time to Maturity → creates a curve
 - **Front month elevated due to earnings**
 
 **Example 3: Crisis (Inverted)**
+
 - Stock at $100 (during market panic)
 - 1-month IV: 45%
 - 3-month IV: 35%
@@ -108,12 +113,14 @@ Plot IV vs. Time to Maturity → creates a curve
 ### Basic Structure
 
 **Long Calendar Spread (Most Common):**
+
 - **Sell** near-term option (front month)
 - **Buy** longer-term option (back month)
 - **Same strike** (typically ATM)
 - **Same type** (both calls or both puts)
 
 **Example:**
+
 - Stock at $100
 - Sell 1-month $100 call at IV=18%
 - Buy 3-month $100 call at IV=22%
@@ -122,17 +129,20 @@ Plot IV vs. Time to Maturity → creates a curve
 ### Why This Structure?
 
 **Time decay asymmetry:**
+
 - Front month decays faster (higher theta)
 - You collect theta from short front month
 - You pay less theta on long back month
 - Net positive theta (usually)
 
 **Volatility exposure:**
+
 - Net long vega (back month has more vega)
 - Profit if overall IV increases
 - Or if back month IV rises relative to front
 
 **The bet:**
+
 - "Front month will decay away while back month holds value"
 - Or: "Term structure will steepen (back month IV ↑ relative to front)"
 
@@ -147,18 +157,21 @@ $$
 $$
 
 where:
+
 - $V_{\text{front}}$ = Front month option (short)
 - $V_{\text{back}}$ = Back month option (long)
 - $t_1 < t_2$ (front expires before back)
 - $\sigma_1, \sigma_2$ = IVs at each maturity
 
 **Why this structure?**
+
 - Short front month: collect theta, short near-term vega
 - Long back month: pay less theta, long longer-term vega
 - Net: Usually positive theta, net long vega
 - Delta hedge: isolate term structure exposure
 
 **What you're exposed to:**
+
 - ✓ Term structure changes (your bet)
 - ✓ Net vega (usually long)
 - ✓ Gamma (positive from long back, negative from short front)
@@ -181,11 +194,13 @@ $$
 **Two components:**
 
 **A. Relative IV changes:**
+
 - If back month IV rises more than front → profit
 - If front month IV falls more than back → profit
 - **This is your term structure bet**
 
 **B. Time passage effect:**
+
 - As time passes, back month becomes front month
 - Roll-down effect on the curve
 - Can profit from curve shape even if IVs don't change
@@ -197,6 +212,7 @@ $$
 $$
 
 **Typically:**
+
 - $|\theta_{\text{front}}| > |\theta_{\text{back}}|$ (front decays faster)
 - Net theta positive (collect more than you pay)
 - **This is positive carry**
@@ -204,6 +220,7 @@ $$
 ### 3. Gamma P&L (Complex)
 
 **Mixed gamma:**
+
 - Long back month: $\Gamma_{\text{back}} > 0$
 - Short front month: $\Gamma_{\text{front}} < 0$
 - Net gamma can be positive or negative
@@ -216,17 +233,20 @@ $$
 ### 1. Standard Calendar (ATM)
 
 **Structure:**
+
 - Both options at-the-money
 - Most common
 - Maximum theta collection
 - Neutral directional view
 
 **Example:**
+
 - Stock at $100
 - Sell 1-month $100 call
 - Buy 3-month $100 call
 
 **Characteristics:**
+
 - Maximum profit if stock stays at $100
 - Positive theta
 - Net long vega
@@ -235,17 +255,20 @@ $$
 ### 2. Diagonal Calendar
 
 **Structure:**
+
 - Different strikes (not same strike)
 - Front month at one strike
 - Back month at different strike
 - Directional bias
 
 **Example (Bullish Diagonal):**
+
 - Stock at $100
 - Sell 1-month $100 call
 - Buy 3-month $105 call
 
 **Characteristics:**
+
 - Directional exposure (positive delta)
 - Still benefits from time decay
 - Combines calendar + vertical spread
@@ -253,16 +276,19 @@ $$
 ### 3. Double Calendar (Iron Calendar)
 
 **Structure:**
+
 - Calendar spread on calls
 - Calendar spread on puts
 - Same expiration pairs
 - Different strikes
 
 **Example:**
+
 - Sell 1-month $95 put + $105 call
 - Buy 3-month $95 put + $105 call
 
 **Characteristics:**
+
 - Defined risk
 - Profit range (between strikes)
 - Double theta collection
@@ -271,11 +297,13 @@ $$
 ### 4. Reverse Calendar
 
 **Structure:**
+
 - **Buy** front month
 - **Sell** back month
 - Opposite of standard calendar
 
 **When to use:**
+
 - Expect term structure to invert
 - Before major event (earnings)
 - Front month vol spike expected
@@ -288,12 +316,15 @@ $$
 **Setup:**
 
 **Stock:** Tech company at $100
+
 **Market conditions:**
+
 - 1-month ATM call IV: 20% (price: $3.00)
 - 3-month ATM call IV: 24% (price: $5.50)
 - Term structure: upward sloping (normal)
 
 **Your view:** 
+
 - "Stock will stay near $100 for next month"
 - "After front month expires, back month retains value"
 - "Or overall volatility will increase"
@@ -301,19 +332,21 @@ $$
 **The Trade:**
 
 **Positions:**
+
 - Sell 10 contracts 1-month $100 calls
-  - Receive: $3.00 × 10 × 100 = $3,000
-  - Vega: -0.25 per contract
-  - Theta: +$20 per day per contract
+      - Receive: $3.00 × 10 × 100 = $3,000
+      - Vega: -0.25 per contract
+      - Theta: +$20 per day per contract
 
 - Buy 10 contracts 3-month $100 calls
-  - Pay: $5.50 × 10 × 100 = $5,500
-  - Vega: +0.35 per contract
-  - Theta: -$10 per day per contract
+      - Pay: $5.50 × 10 × 100 = $5,500
+      - Vega: +0.35 per contract
+      - Theta: -$10 per day per contract
 
 **Net investment:** $5,500 - $3,000 = **$2,500**
 
 **Net Greeks:**
+
 - Delta: ≈ 0 (approximately neutral)
 - Vega: +0.35 - 0.25 = **+0.10 per contract** (net long vega)
 - Theta: +$20 - $10 = **+$10 per day per contract** (positive carry)
@@ -322,28 +355,33 @@ $$
 **Scenario 1: Stock Stays at $100 (Best Case)**
 
 After 30 days (front month expires):
+
 - Stock still at $100
 - Front month expires worthless (you keep $3,000)
 - Back month now has 60 days left
 - Back month value: approximately $4.20 (decayed from $5.50)
 
 **Your P&L:**
+
 - Front month: +$3,000 (kept premium)
 - Back month: -$1,300 (mark-to-market loss: $4.20 - $5.50)
 - **Net P&L: +$1,700** 
 
 **This is positive due to:**
+
 - Theta asymmetry (front decayed faster)
 - You can now sell the back month or hold
 
 **Scenario 2: Stock Moves to $105 (Moderate Loss)**
 
 After 30 days:
+
 - Stock moved from $100 to $105
 - Front month now worth $5.00 (ITM, intrinsic value)
 - Back month worth $7.50
 
 **Your P&L:**
+
 - Front month: -$2,000 (sold at $3, now worth $5)
 - Back month: +$2,000 (bought at $5.50, now worth $7.50)
 - **Net P&L: $0** (approximately break-even)
@@ -353,12 +391,14 @@ After 30 days:
 **Scenario 3: Volatility Spikes (Volatility Profit)**
 
 After 15 days (front month still alive):
+
 - Stock still at $100
 - Market event causes volatility spike
 - 1-month IV: 20% → 28% (+8%)
 - 3-month IV: 24% → 30% (+6%)
 
 **Your P&L:**
+
 - Front month: -$800 (10 × -0.25 × 8% × 100 = -$800)
 - Back month: +$2,100 (10 × 0.35 × 6% × 100 = +$2,100)
 - **Net P&L: +$1,300** (before time decay)
@@ -368,11 +408,13 @@ After 15 days (front month still alive):
 **Scenario 4: Stock Crashes to $90 (Large Loss)**
 
 After 30 days:
+
 - Stock crashed to $90
 - Front month expires worthless (good!)
 - Back month value: $2.00 (deep OTM)
 
 **Your P&L:**
+
 - Front month: +$3,000 (kept premium)
 - Back month: -$3,500 (bought at $5.50, now worth $2.00)
 - **Net P&L: -$500**
@@ -380,6 +422,7 @@ After 30 days:
 **Why:** Large directional move hurt more than theta helped
 
 **Risk profile summary:**
+
 - **Maximum profit:** Stock at $100 at front month expiry
 - **Breakeven:** Slightly above/below $100
 - **Maximum loss:** Stock moves far away (limited to net debit)
@@ -436,11 +479,13 @@ After 30 days:
 ### 1. Mean Reversion of Volatility
 
 **Volatility reverts to long-term average:**
+
 - Current high vol expected to decline
 - Current low vol expected to increase
 - Creates term structure slope
 
 **Example:**
+
 - Current vol: 35% (elevated)
 - Long-term average: 22%
 - Market expects reversion
@@ -450,12 +495,14 @@ After 30 days:
 ### 2. Events and Announcements
 
 **Known events create humps:**
+
 - Earnings in 1 month
 - Front month IV elevated (event uncertainty)
 - Back month IV normal
 - → Humped structure
 
 **After event:**
+
 - Event passes
 - Front month IV collapses
 - Term structure normalizes
@@ -463,6 +510,7 @@ After 30 days:
 ### 3. Supply and Demand
 
 **Hedging patterns:**
+
 - Portfolio managers hedge near-term risk more
 - Demand for front month puts
 - Less demand for long-dated
@@ -471,6 +519,7 @@ After 30 days:
 ### 4. Carry and Cost of Capital
 
 **Time value of money:**
+
 - Longer-dated options tie up capital longer
 - Premium for duration
 - → Upward sloping (typically)
@@ -478,6 +527,7 @@ After 30 days:
 ### 5. Uncertainty Resolution
 
 **Information arrival:**
+
 - Near-term: less time for new information
 - Long-term: more uncertainty
 - → Usually upward sloping
@@ -491,31 +541,37 @@ After 30 days:
 **Favorable conditions:**
 
 **1. Normal/upward sloping term structure**
+
 - Front month IV relatively lower
 - Back month IV higher
 - Collect theta while long vega
 
 **2. Stock near the strike (ATM)**
+
 - Maximum theta collection
 - Both options at-the-money
 - Symmetrical payoff
 
 **3. Expected stability in stock**
+
 - Stock will stay in range
 - Low realized vol expected near-term
 - Front month decays without being exercised
 
 **4. Implied vol likely to rise (or stay high)**
+
 - Protects back month value
 - Net long vega benefits
 - Volatility expansion expected
 
 **5. Before events (with care)**
+
 - Front month after event
 - Back month before next event
 - Capture vol crush on front
 
 **Example environments:**
+
 - Calm market, upward sloping term structure
 - After recent volatility spike (expect calm)
 - Stock trading in range
@@ -526,21 +582,25 @@ After 30 days:
 **Favorable conditions:**
 
 **1. Inverted term structure**
+
 - Front month IV higher than back
 - Unusual but happens
 - During crises or pre-events
 
 **2. Expected near-term vol spike**
+
 - Event in front month
 - Back month will stay calm
 - Capture front month IV expansion
 
 **3. Crisis fading**
+
 - Front elevated (panic)
 - Back more normal (expect calm)
 - Short the elevated front, long the normal back
 
 **Example:** 
+
 - Before earnings: front month IV = 45%, back month = 25%
 - Reverse calendar profits from this
 
@@ -551,43 +611,51 @@ After 30 days:
 ### Advantages ✓
 
 **1. Positive theta (usually)**
+
 - Collect time decay net
 - Unlike most long volatility strategies
 - Positive carry trade
 - **Time is on your side**
 
 **2. Limited risk**
+
 - Maximum loss = net debit paid
 - Defined risk (unlike naked short options)
 - No unlimited loss scenarios
 - Sleep better at night
 
 **3. Net long vega (usually)**
+
 - Benefit from volatility increases
 - While collecting theta
 - "Best of both worlds" potential
 
 **4. Benefits from stable prices**
+
 - Maximum profit if stock stays at strike
 - Don't need perfect prediction
 - Range-bound markets are good
 
 **5. Term structure exploitation**
+
 - Trade a different dimension (time)
 - Additional profit source beyond level/shape
 - Less crowded than ATM vega trades
 
 **6. Flexibility**
+
 - Can adjust as market moves
 - Roll front month when expires
 - Convert to other structures
 
 **7. Lower capital requirement than straddles**
+
 - Net debit smaller than outright long options
 - More efficient use of capital
 - Can do larger size
 
 **8. Natural hedge against theta**
+
 - Unlike gamma scalping (pays theta)
 - Net positive theta helps
 - Reduces bleed risk
@@ -595,52 +663,62 @@ After 30 days:
 ### Disadvantages ✗
 
 **1. Limited profit potential**
+
 - Maximum gain capped
 - Not unlimited like gamma scalping
 - Best case: stock at strike at expiry
 
 **2. Complexity**
+
 - Two expiration dates to manage
 - Different greeks for each leg
 - More mental overhead
 
 **3. Sensitive to large moves**
+
 - Stock moving far from strike hurts
 - Losses if stock gaps
 - Directional risk remains
 - **Not truly neutral to big moves**
 
 **4. Early assignment risk (American options)**
+
 - Short front month can be assigned
 - Complicates position
 - Need to manage early exercise
 
 **5. Multiple expiry management**
+
 - Front expires first
 - Need to decide: close, roll, or let it go
 - Timing decisions required
 
 **6. Bid-ask spreads multiply**
+
 - Two legs = two sets of spreads
 - Costs add up
 - Especially for less liquid strikes
 
 **7. Path dependent**
+
 - When stock moves matters
 - Move early vs. late very different
 - Hard to analyze ex-ante
 
 **8. Vega not purely long**
+
 - Mixed vega exposure (long back, short front)
 - If front month vol spikes more, can lose
 - Complex vega dynamics
 
 **9. Correlation between maturities**
+
 - Term structure can invert unexpectedly
 - Front and back correlated but not perfectly
 - Basis risk
 
 **10. Event risk**
+
 - Unexpected news can blow up position
 - Front month can spike if near event
 - Hard to fully hedge
@@ -652,6 +730,7 @@ After 30 days:
 ### 1. Ratio Calendar
 
 **Structure:**
+
 - Unequal number of contracts
 - Example: Sell 2 front month, Buy 1 back month
 - More theta collection
@@ -660,6 +739,7 @@ After 30 days:
 ### 2. Calendar with Skew
 
 **Combine time and strike dimensions:**
+
 - Trade both term structure AND smile
 - Example: Front month OTM, Back month ATM
 - Complex but powerful
@@ -667,6 +747,7 @@ After 30 days:
 ### 3. Multiple Expiry Calendars
 
 **Butterfly in time:**
+
 - Sell front month
 - Buy middle month
 - Sell far month
@@ -675,6 +756,7 @@ After 30 days:
 ### 4. Earnings Calendar
 
 **Specifically for earnings:**
+
 - Sell front month (just after earnings)
 - Buy back month (before next earnings)
 - Capture earnings vol crush
@@ -683,6 +765,7 @@ After 30 days:
 ### 5. Perpetual Calendar
 
 **Rolling strategy:**
+
 - Each month, roll the front
 - Always maintain calendar structure
 - Systematic theta collection
@@ -697,16 +780,19 @@ After 30 days:
 **Company earnings in 3 weeks:**
 
 **Before earnings:**
+
 - 1-month (includes earnings) IV: 50%
 - 3-month (after earnings) IV: 28%
 - Inverted structure
 
 **Trade:** Reverse calendar
+
 - Buy 1-month calls (high IV, event)
 - Sell 3-month calls (normal IV)
 - Bet: Front month IV stays high, back month stays low
 
 **After earnings:**
+
 - Stock moves 8% on earnings
 - 1-month IV: 50% → 30% (vol crush, but you're long!)
 - Actually, you profit from the initial high IV if you exit before event
@@ -715,32 +801,38 @@ After 30 days:
 ### Example 2: COVID-19 Volatility (March 2020)
 
 **During panic:**
+
 - Front month IV: 85% (extreme)
 - 3-month IV: 55% (elevated but less)
 - Inverted term structure
 
 **Trade:** Standard long calendar (brave!)
+
 - Sell front month (extreme IV)
 - Buy back month (less extreme)
 - Bet: Front month IV will collapse faster
 
 **Result:**
+
 - As markets stabilized, front collapsed harder
 - Calendar profitable despite high overall vol
 
 ### Example 3: Low Vol Grind (2017)
 
 **Extended low volatility:**
+
 - Front month IV: 10%
 - 3-month IV: 14%
 - Normal upward slope
 
 **Trade:** Standard calendar
+
 - Sell front month
 - Buy back month
 - Collect theta in range-bound market
 
 **Result:**
+
 - Stocks stayed in range for months
 - Theta collection + multiple rolls
 - Steady returns in boring market
@@ -752,12 +844,14 @@ After 30 days:
 ### 1. Screening for Opportunities
 
 **Look for:**
+
 - Unusual term structure (steep or inverted)
 - High percentile readings (extreme slopes)
 - Events creating dislocations
 - Stocks in defined ranges
 
 **Metrics:**
+
 - Front/back IV ratio
 - Term structure slope
 - Historical percentile
@@ -766,12 +860,14 @@ After 30 days:
 ### 2. Position Construction
 
 **Choose:**
+
 - **Strike:** ATM for standard, OTM for directional
 - **Maturities:** Typically 1:2 or 1:3 ratio (1 month vs. 2-3 months)
 - **Size:** Based on max loss tolerance
 - **Type:** Calls vs. puts (usually equivalent for ATM)
 
 **Standard recipe:**
+
 - Sell 1-month ATM
 - Buy 2 or 3-month ATM
 - Size so max loss = 1-2% of portfolio
@@ -779,12 +875,14 @@ After 30 days:
 ### 3. Management
 
 **Monitor:**
+
 - Stock price (relative to strike)
 - Term structure changes
 - Time decay progression
 - Delta drift
 
 **Adjustments:**
+
 - If stock moves: adjust strikes or close
 - If term structure normalizes: close early
 - As front expiry nears: roll or close
@@ -792,6 +890,7 @@ After 30 days:
 ### 4. Exit Strategies
 
 **Exit when:**
+
 - **Target profit:** Often 25-50% of max profit
 - **Front month expiry:** Decision point
 - **Stock moves too far:** Stop loss (10-20% from strike)
@@ -799,6 +898,7 @@ After 30 days:
 - **Better opportunity:** Redeployment
 
 **Roll or close at front expiry:**
+
 - **Close:** Take profit/loss, done
 - **Roll:** Sell new front month, keep back month
 - **Let expire:** Keep long back month only
@@ -833,6 +933,7 @@ Volatility Trading Dimensions:
 ```
 
 **Calendar spreads complete the volatility surface trading:**
+
 - Level: Vega trading
 - Shape: Smile/skew
 - Time: Calendar spreads
@@ -857,6 +958,7 @@ $$
 ### The Structure
 
 **Standard (long) calendar:**
+
 - Short front expiration
 - Long back expiration
 - Same strike (usually ATM)
@@ -867,11 +969,13 @@ $$
 ### Why It Works
 
 **Time decay asymmetry:**
+
 - Front month decays faster (more theta per day)
 - Back month decays slower
 - Collect more than you pay
 
 **Term structure opportunities:**
+
 - Mean reversion
 - Event-driven dislocations
 - Supply/demand imbalances
@@ -879,6 +983,7 @@ $$
 ### Maximum Profit
 
 **Best case:**
+
 - Stock stays exactly at strike
 - Front month expires worthless (keep premium)
 - Back month retains value
@@ -887,6 +992,7 @@ $$
 ### Risk Profile
 
 **Characteristics:**
+
 - Limited loss (max = net debit)
 - Limited profit (capped)
 - Benefits from stability
@@ -915,6 +1021,7 @@ $$
 | **Vol Time** | **Calendars** ✓ |
 
 **You can now trade:**
+
 - "Vol is too high/low" → Vega/Gamma
 - "Skew is too steep/flat" → Smile/Skew
 - "Term structure is too steep/flat" → Calendars
@@ -924,6 +1031,7 @@ $$
 ### Success Factors
 
 **What you need:**
+
 1. **View on term structure:** Will it steepen/flatten?
 2. **Stock range-bound:** Best if stays near strike
 3. **Time decay patience:** Let theta work for you
@@ -933,12 +1041,14 @@ $$
 ### The Deep Insight
 
 **Calendar spreads reveal:**
+
 - Time is a tradeable dimension
 - Not all maturities priced consistently
 - Theta can be your friend (not just enemy)
 - Volatility has a temporal structure
 
 **The pattern reflects:**
+
 - Expected mean reversion
 - Event timing
 - Uncertainty resolution over time
@@ -958,6 +1068,7 @@ $$
 8. **Variance Swaps** → Pure variance
 
 **Progressive complexity:**
+
 - Dimension 1: Level (vol high/low)
 - Dimension 2: Shape (skew)
 - Dimension 3: **Time (term structure)** ✓
@@ -979,6 +1090,7 @@ $$
 "Time is not just a cost (theta) but also an opportunity. Different maturities trade at different IVs, and this relationship can be exploited. You can collect theta while maintaining vol exposure—a unique combination."
 
 **This completes your volatility trading education:**
+
 - **Level:** ✓ (Gamma, Vega, Variance)
 - **Shape:** ✓ (Smile/Skew)
 - **Time:** ✓ (Calendars)

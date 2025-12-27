@@ -21,13 +21,15 @@ $$
 \text{Income} = \text{Premium Collected} - \text{Opportunity Cost}
 $$
 
-**You're essentially betting: "I'm willing to sell my stock at this price (or buy at this price) in exchange for immediate income."**
+**The essential trade-off:** Both strategies convert "patience" into income, in exchange for giving up extreme outcomes. You're essentially betting: "I'm willing to sell my stock at this price (or buy at this price) in exchange for immediate income."
 
 ---
 
 ## What Is a Covered Call?
 
 **Definition:** Sell call options against stock you already own.
+
+**Refined concept:** Sell at a target price you're happy with, and get paid while waiting.
 
 ### The Structure
 
@@ -77,26 +79,28 @@ $$
 - But still made $10/share capital gain + $2 premium = $12 total
 - **Capped upside**
 
-**Payoff diagram:**
+![covered_call_pnl](https://github.com/SungchulLee/img/blob/main/covered_call_pnl.png?raw=true)
+**Figure 1:** Covered call profit/loss diagram showing the combination of long stock and short call, illustrating capped upside at the strike price while maintaining downside risk (reduced only by premium collected).
 
-```
-Profit
-   ↑
-   |      ‾‾‾‾‾‾
-   |     /
-   |    /
-───┼───/────────→ Stock Price
-   | /
-   |/
-   Stock at $150
-   Cap at $162 ($160 + $2 premium)
-```
+**What's working in your favor:**
+
+- You're monetizing upside you're willing to give up
+- The premium is extra income on top of stock ownership
+- Works best in flat to mildly bullish markets
+
+**Important nuances:**
+
+- You are not selling "high" today—you're agreeing to sell higher later if price reaches the strike
+- Downside risk is almost the same as holding the stock (only reduced by premium amount)
+- Premium collected partially offsets potential losses
 
 ---
 
 ## What Is a Cash-Secured Put?
 
 **Definition:** Sell put options while holding cash to buy the stock if assigned.
+
+**Refined concept:** Get paid to place a limit order at a lower price.
 
 ### The Structure
 
@@ -148,19 +152,44 @@ Profit
 - Better than $150 original price!
 - **Acquired stock at discount**
 
-**Payoff diagram:**
+![cash_secured_put_pnl](https://github.com/SungchulLee/img/blob/main/cash_secured_put_pnl.png?raw=true)
+**Figure 2:** Cash-secured put profit/loss diagram showing the short put position with cash reserve, illustrating premium collection and the obligation to purchase stock if price falls below strike.
 
-```
-Profit
-   ↑
-   |\
-   | \‾‾‾‾‾‾‾
-   |  \
-───┼───\────────→ Stock Price
-   |    \
-   |     \
-   Floor at $142 ($145 - $3 premium)
-```
+**What's working in your favor:**
+
+- You're paid while waiting to buy at your target price
+- Strike reflects a price you want to own the stock
+- Best in flat to mildly bullish markets
+
+**Important nuances:**
+
+- You may be forced to buy during a sharp drop
+- Premium does not protect against big downside moves
+- Capital is fully tied up (must be cash-secured)
+
+---
+
+![cc_csp_framework](https://github.com/SungchulLee/img/blob/main/cc_csp_framework.png?raw=true)
+**Figure 3:** Framework comparing covered calls and cash-secured puts, showing the structural relationship between owning stock/cash and selling options to generate income with defined obligations.
+
+## The Symmetry: Mirror Image Strategies
+
+Covered calls and cash-secured puts are **mirror images** of each other. This is a fundamental concept in options theory.
+
+| Aspect | Covered Call | Cash-Secured Put |
+|--------|--------------|------------------|
+| **What you own** | Stock | Cash |
+| **Direction** | Willing to sell higher | Willing to buy lower |
+| **Outcome trade-off** | Upside capped | Downside obligation |
+| **Premium type** | Call premium | Put premium |
+| **Market view** | Neutral to mildly bullish | Neutral to mildly bullish |
+
+**Mathematical equivalence:** At the same strike and expiration, covered calls and cash-secured puts have approximately the same payoff profile (related through put-call parity).
+
+**Deep insight:** Both strategies convert "patience" into income. You're getting paid to wait—either to sell at a higher price or to buy at a lower price. The cost is giving up extreme outcomes (huge rallies or catching the absolute bottom).
+
+![covered_call_csp_symmetry](https://github.com/SungchulLee/img/blob/main/covered_call_csp_symmetry.png?raw=true)
+**Figure 4:** Symmetry between covered calls and cash-secured puts through put-call parity, demonstrating their equivalent risk-reward profiles and mirror-image payoff structures.
 
 ---
 
@@ -245,7 +274,7 @@ $$
 **At expiration:**
 
 $$
-\text{P\&L} = \begin{cases}
+\text{P&L} = \begin{cases}
 (S - S_0) + P & \text{if } S \leq K \\
 (K - S_0) + P & \text{if } S > K
 \end{cases}
@@ -275,7 +304,7 @@ $$
 **At expiration:**
 
 $$
-\text{P\&L} = \begin{cases}
+\text{P&L} = \begin{cases}
 P & \text{if } S \geq K \\
 P - (K - S) & \text{if } S < K
 \end{cases}
@@ -324,6 +353,9 @@ $$
 | $150 | ATM | $4.00 | Medium | 2.7% | Neutral |
 | $140 | ITM | $11.00 | Low | 7.3% | Want to sell |
 
+![covered_call_strike_selection](https://github.com/SungchulLee/img/blob/main/covered_call_strike_selection.png?raw=true)
+**Figure 5:** Covered call strike selection comparison showing the trade-off between premium income and probability of assignment across ITM, ATM, and OTM strikes.
+
 ### For Cash-Secured Puts
 
 **OTM (Stock > Strike):**
@@ -343,6 +375,9 @@ $$
 - Strike above current price
 - High premium, very likely assigned
 - Use when very bullish
+
+![csp_strike_selection](https://github.com/SungchulLee/img/blob/main/csp_strike_selection.png?raw=true)
+**Figure 6:** Cash-secured put strike selection comparison illustrating how different strikes (OTM, ATM, ITM) affect premium income and assignment probability for put sellers.
 
 ---
 
@@ -375,6 +410,45 @@ $$
 
 ---
 
+## The Role of Implied Volatility
+
+**Critical factor in premium collection:**
+
+Implied volatility (IV) directly determines the premium you collect. Understanding IV is essential for optimizing income.
+
+**High IV environment:**
+
+- Options expensive
+- Higher premiums
+- Better income generation
+- Ideal for selling
+
+**Low IV environment:**
+
+- Options cheap
+- Lower premiums
+- Reduced income
+- Less attractive for selling
+
+**Example comparison:**
+
+| IV Level | Stock Price | Strike | Premium | Monthly Income |
+|----------|-------------|--------|---------|----------------|
+| Low (20%) | $100 | $105 | $0.80 | 0.8% |
+| Medium (40%) | $100 | $105 | $2.00 | 2.0% |
+| High (60%) | $100 | $105 | $3.50 | 3.5% |
+
+![iv_impact_premiums](https://github.com/SungchulLee/img/blob/main/iv_impact_premiums.png?raw=true)
+**Figure 7:** Impact of implied volatility on option premiums, demonstrating how higher IV environments provide significantly better income opportunities for covered calls and cash-secured puts.
+
+**Strategy timing:**
+
+- **Best to sell:** When IV is elevated (high premiums)
+- **Be cautious:** When IV is at historical lows (poor risk/reward)
+- **Check IV percentile:** Aim for >50th percentile for optimal premium collection
+
+---
+
 ## Concrete Example 1: Covered Call Income
 
 **Setup:**
@@ -391,37 +465,57 @@ $$
 
 **Month 1:**
 
-- Sell 5 contracts of $360 calls (3% OTM)
+- Sell 5 contracts $360 call (OTM)
 - 30 days to expiration
-- Premium: $5/share = $500/contract
-- Total collected: $2,500
+- Collect $5/share premium
+- **Income: $2,500**
 
-**Outcome (Stock ends at $355):**
+**Stock ends at $355:**
 
-- Stock didn't reach $360
+- Not assigned
 - Keep stock
-- Keep $2,500 premium
-- **Return: 0.71% for the month (8.5% annualized)**
+- Keep $2,500
 
 **Month 2:**
 
-- Repeat: Sell $365 calls
-- Premium: $4.50/share
-- Collected: $2,250
+- Sell 5 contracts $365 call
+- Collect $4.50/share
+- **Income: $2,250**
 
-**Outcome (Stock ends at $370):**
+**Stock ends at $358:**
 
-- Stock above $365 → Assigned
-- Sell stock at $365
-- Total gain per share: ($365 - $300) + $5 + $4.50 = $74.50
-- **Total profit: $37,250 on $150,000 investment (24.8%)**
+- Not assigned
+- Keep stock
+- Keep $2,250
 
-**If never assigned (full year):**
+**Month 3:**
 
-- Collect average $4/share × 12 months = $48/share
-- Stock gains + premiums
-- Plus dividends
-- **Enhanced returns**
+- Sell 5 contracts $370 call
+- Collect $4/share
+- **Income: $2,000**
+
+**Stock rallies to $375:**
+
+- **Assigned at $370**
+- Sold all shares
+
+**Results:**
+
+| Item | Amount |
+|------|--------|
+| Original cost | $150,000 (500 × $300) |
+| Sale price | $185,000 (500 × $370) |
+| Capital gain | $35,000 |
+| Call premiums | $6,750 ($2,500 + $2,250 + $2,000) |
+| **Total profit** | **$41,750** |
+| **Return** | **27.8%** in 3 months |
+
+**What was sacrificed:**
+
+- Stock went to $375, could have made $37,500 capital gain
+- But premiums added $6,750
+- Trade-off: $4,250 in upside given up for $6,750 in premium income
+- **Net: Still made $2,500 more** than just holding
 
 ---
 
@@ -429,291 +523,215 @@ $$
 
 **Setup:**
 
-**Goal:** Want to own NVDA at $450 or below
-**Current price:** $480
-**Cash available:** $50,000
+**Position:**
 
-**Strategy:** Sell cash-secured puts until assigned
+- Have $40,000 cash
+- Want to own NVDA
+- Current price: $420
+- Too expensive, want to buy at $400
+- Willing to wait
+
+**Strategy:** Monthly cash-secured puts
 
 **Month 1:**
 
-- Sell 1 contract $450 put
+- Sell 1 contract $400 put
 - 30 days to expiration
-- Premium: $12/share = $1,200
-- Reserve $45,000 for potential purchase
+- Collect $12/share premium
+- Reserve $40,000
+- **Income: $1,200**
 
-**Outcome (Stock ends at $470):**
+**Stock ends at $425:**
 
-- Not assigned (stock above $450)
+- Not assigned
 - Keep $1,200
-- **Return: 2.7% on reserved capital**
+- Stock more expensive
 
 **Month 2:**
 
-- Sell $450 put again
-- Premium: $10/share = $1,000
+- Sell 1 contract $405 put (adjusted)
+- Collect $10/share
+- **Income: $1,000**
 
-**Outcome (Stock ends at $440):**
+**Stock ends at $415:**
 
-- **Assigned** - buy 100 shares at $450
-- Net cost: $450 - $12 - $10 = $428/share
-- Market price: $440
-- Already up $12/share (2.8%)
-- Now own stock at good entry
-- **Can now sell covered calls!**
+- Not assigned
+- Keep $1,000
+- Total collected: $2,200
+
+**Month 3:**
+
+- Sell 1 contract $400 put
+- Collect $14/share (IV higher)
+- **Income: $1,400**
+
+**Stock drops to $385:**
+
+- **Assigned at $400**
+- Buy 100 shares
+
+**Results:**
+
+| Item | Amount |
+|------|--------|
+| Assignment price | $40,000 (100 × $400) |
+| Premiums collected | $3,600 ($1,200 + $1,000 + $1,400) |
+| **Net cost** | **$36,400** |
+| **Effective price/share** | **$364** |
+| Original price avoided | $420 |
+| **Savings** | **$56/share** (13.3%) |
+
+**Current situation:**
+
+- Own 100 shares at net $364
+- Stock at $385
+- Up $2,100 unrealized
+- Collected $3,600 while waiting
+- **Now selling covered calls**
 
 ---
 
-## The "Wheel Strategy"
+![wheel_strategy_rotation](https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true)
+**Figure 8:** The Wheel Strategy rotation diagram showing the continuous cycle between cash-secured puts, stock ownership, covered calls, and back to cash, creating perpetual income generation.
 
-**Combining both strategies in a cycle:**
+## The Wheel Strategy
 
-### The Complete Cycle
+**The complete income cycle:**
 
-**Step 1: Sell Cash-Secured Puts**
+The wheel strategy combines covered calls and cash-secured puts into a continuous income-generating system.
 
-- Target stock you want to own
-- Collect premium
+**Stage 1: Cash-Secured Puts**
+
+- Start with cash
+- Sell puts at desired entry price
+- Collect premium monthly
 - Wait for assignment
 
-**Step 2: Get Assigned**
+**Stage 2: Assignment**
 
 - Buy stock at strike
-- Net cost reduced by premiums collected
+- Net cost = strike - premiums
+- Now own shares
 
-**Step 3: Sell Covered Calls**
+**Stage 3: Covered Calls**
 
-- Now own stock
-- Sell OTM calls
-- Collect premium
+- Sell calls against stock
+- Collect premium monthly
+- Wait for assignment
 
-**Step 4: Get Called Away**
+**Stage 4: Called Away**
 
-- Stock rises above strike
 - Sell stock at strike
-- Profit = (strike - original put strike) + all premiums
-
-**Step 5: Repeat**
-
+- Net sale = strike + premiums
 - Back to cash
-- Sell puts again
-- Cycle continues
 
-### Example: Full Wheel on AAPL
+**Stage 5: Repeat**
 
-**Starting capital:** $15,000
+- Start selling puts again
+- Continuous cycle
+- Income every month
 
-**Round 1:**
+**Example Wheel:**
 
-- Sell $145 put, collect $3 → $300
-- Assigned at $145 (net: $142)
+- Month 1-3: Sell $100 puts, collect $9
+- Month 4: Assigned, buy at $100 (net $91)
+- Month 5-8: Sell $105 calls, collect $12
+- Month 9: Called away, sell at $105 (net $117)
+- **Total: $26 profit on $100 stock = 26% in 9 months**
 
-**Round 2:**
+![wheel_strategy_diagram](https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true)
+**Figure 9:** Detailed Wheel Strategy flowchart illustrating decision points, timing considerations, and profit realization at each stage of the income-generating cycle.
 
-- Own 100 shares at $142
-- Sell $155 call, collect $2 → $200
-- Called away at $155
-
-**Profit:** 
-
-- Capital gain: ($155 - $142) × 100 = $1,300
-- Premiums: $300 + $200 = $500
-- **Total: $1,800 on $14,200 at risk (12.7%)**
-
-**Round 3:**
-
-- Back to cash
-- Sell $150 put, collect $3 → $300
-- Not assigned, keep premium
-
-**Cumulative:**
-
-- $1,800 + $300 = $2,100
-- Time: 3 months
-- **Return: ~56% annualized**
-
-**This is why the Wheel is popular!**
+**Annual potential: 20-40% returns**
 
 ---
 
-## Covered Calls vs. Other Strategies
+## When to Use Each Strategy
 
-| Strategy | Position | Income | Upside | Downside | Best For |
-|----------|----------|--------|--------|----------|----------|
-| **Buy & Hold** | Long stock | Dividends only | Unlimited | Unprotected | Long-term bulls |
-| **Covered Call** | Stock + short call | Premium + dividends | Capped | Unprotected | Income + modest gains |
-| **Protective Put** | Stock + long put | Dividends | Unlimited | Protected | Hedging |
-| **Collar** | Stock + short call + long put | Low/none | Capped | Protected | Conservative |
-| **Cash-Secured Put** | Cash + short put | Premium | N/A | Obligation to buy | Want to own stock |
+### Ideal Conditions for Covered Calls
 
----
+**Market environment:**
 
-## Pros and Cons
+**1. Sideways/Range-bound**
 
-### Covered Calls - Advantages ✓
+- Stock not trending
+- Oscillating in range
+- Premium income without assignment
 
-**1. Generate income**
+**2. Slow uptrend**
 
-- 1-3% monthly common
-- 12-36% annualized potential
-- Regular cash flow
+- Stock rising gradually
+- Not explosive
+- Can keep rolling up
 
-**2. Reduce cost basis**
+**3. Mild pullback**
 
-- Premium lowers effective purchase price
-- Downside cushion
-- Break-even improves
+- After strong rally
+- Taking profits
+- Generate income while waiting
 
-**3. Outperform in flat/down markets**
+**4. High IV environment**
 
-- Collect premium even if stock flat
-- Small losses offset by premium
+- Premiums elevated
+- Better income
+- IV will decay
 
-**4. Disciplined exits**
+**Personal situation:**
 
-- Forces sell at target price
-- Removes emotion
-- Can't "bag hold" forever
+**1. Own stock long-term**
 
-**5. Lower risk than naked calls**
+- Don't need to sell
+- Want extra income
+- Comfortable with cap
 
-- Covered by stock ownership
-- No margin required
-- Defined risk (stock can drop)
+**2. Have profit target**
 
-### Covered Calls - Disadvantages ✗
+- Would sell at $X anyway
+- Get paid to wait
+- Exit strategy in place
 
-**1. Cap upside**
+**3. Reduce cost basis**
 
-- Miss big runs above strike
-- Opportunity cost if stock moons
-
-**2. Downside still exists**
-
-- Premium only small cushion ($2-5 typical)
-- Stock can still drop 20-50%
-- Not true protection
-
-**3. Tax implications**
-
-- May trigger short-term capital gains
-- Complicated tax treatment
-- Consult tax advisor
-
-**4. Assignment risk**
-
-- Might be assigned early (dividends)
-- Forced to sell at inopportune time
-- Administrative hassle
-
-**5. Requires stock ownership**
-
-- Need capital for 100 shares
-- Concentrated position risk
-- No diversification
-
-### Cash-Secured Puts - Advantages ✓
-
-**1. Get paid to wait**
-
-- Income while waiting for entry
-- Better than limit orders
-- Win-win outcomes
-
-**2. Acquire at discount**
-
-- Net cost = strike - premiums collected
-- Often better than market buying
-- Dollar-cost average with premiums
-
-**3. Generate income on cash**
-
-- Better than savings accounts
-- 1-3% monthly potential
-- Active use of idle cash
-
-**4. No directional bet needed**
-
-- Don't need stock to go up NOW
-- Patient approach
-- Collect while waiting
-
-### Cash-Secured Puts - Disadvantages ✗
-
-**1. Tie up capital**
-
-- Cash reserved, can't use elsewhere
-- Opportunity cost
-- Less flexibility
-
-**2. Can be assigned in crash**
-
-- Buy stock as it's falling
-- Might continue dropping
-- Catch falling knife
-
-**3. Max profit limited**
-
-- Only keep premium
-- Miss big moves if not assigned
-- No leverage
-
-**4. Obligation to buy**
-
-- MUST have cash available
-- Can't change mind
-- Forced to deploy capital
-
----
-
-## When to Use Each
-
-### Covered Calls Work Best When:
-
-**1. Moderately bullish**
-
-- Expect slow grind up
-- Not explosive growth
-- Steady appreciation
-
-**2. Income priority**
-
-- Already have capital gains
-- Want regular income
-- Don't need maximum upside
-
-**3. Willing to sell**
-
-- Have profit target
-- Not married to stock
-- Happy to exit at strike
-
-**4. Flat/range-bound market**
-
-- Consolidation expected
-- No clear trend
-- Theta decay helps
-
-**5. After big run**
-
-- Stock up 50-100%
-- Taking some chips off table
-- But want to stay invested
+- Lower downside risk
+- Premium as cushion
+- Long-term holding
 
 **Avoid when:**
 
-- Expecting huge breakout
-- News catalyst pending (earnings, FDA, etc.)
-- Stock at critical support (might drop hard)
-- Very low IV (premium not worth it)
+- Strongly bullish (don't cap upside)
+- Before earnings (might gap up)
+- Dividend capture (might get assigned early)
+- Need flexibility to sell quickly
 
-### Cash-Secured Puts Work Best When:
+### Ideal Conditions for Cash-Secured Puts
+
+**Market environment:**
+
+**1. Mild pullback**
+
+- After uptrend
+- Finding support
+- Good entry zone
+
+**2. Consolidation**
+
+- Range-bound
+- Building base
+- Good risk/reward
+
+**3. High IV environment**
+
+- Options expensive
+- Better premium income
+- IV will decay
+
+**Personal situation:**
 
 **1. Want to own stock**
 
-- Identified good company
+- Researched company
+- Long-term bullish
 - Waiting for better entry
-- Patient approach
 
 **2. After pullback**
 
@@ -858,6 +876,9 @@ $$
 - Have follow-up strategy (covered calls?)
 - Don't panic if assigned
 
+![risk_return_comparison](https://github.com/SungchulLee/img/blob/main/risk_return_comparison.png?raw=true)
+**Figure 10:** Risk-return comparison across different option strategies, positioning covered calls and cash-secured puts as moderate-risk, moderate-return income strategies relative to other approaches.
+
 ---
 
 ## Real-World Examples
@@ -892,6 +913,9 @@ $$
 
 - Stock went to $280, missed $10/share = $2,000
 - But $4,200 premium more than compensated
+
+![tesla_covered_call_example](https://github.com/SungchulLee/img/blob/main/tesla_covered_call_example.png?raw=true)
+**Figure 11:** Tesla covered call example showing the progressive income collection over three months and the eventual assignment, illustrating the trade-off between capped upside and premium income.
 
 ### Example 2: Microsoft Cash-Secured Puts (2024)
 
@@ -931,6 +955,9 @@ $$
 - Acquired at $336 vs. $380 originally
 - $44/share discount (11.6%)
 
+![microsoft_csp_example](https://github.com/SungchulLee/img/blob/main/microsoft_csp_example.png?raw=true)
+**Figure 12:** Microsoft cash-secured put example demonstrating how patient premium collection leads to favorable stock acquisition below original market price with reduced net cost basis.
+
 ---
 
 ## What to Remember
@@ -951,6 +978,13 @@ $$
 - Net cost = strike - premiums
 - Get paid to place limit order
 
+**The Mirror Relationship:**
+
+- Both strategies monetize patience
+- Same risk/reward profile (put-call parity)
+- Trade extreme outcomes for steady income
+- Most conservative option strategies
+
 ### When to Use
 
 **Covered Calls:**
@@ -967,19 +1001,14 @@ $$
 - Cash sitting idle
 - Bullish but not urgently
 
-### The Wheel
+**The Wheel:**
 
-**Complete strategy cycle:**
+- Complete strategy cycle
+- Continuous income generation
+- 20-40% annualized potential
+- Combines both strategies
 
-1. Sell puts → collect premium
-2. Get assigned → buy stock
-3. Sell calls → collect premium
-4. Get called away → sell stock
-5. Repeat → continuous income
-
-**Can generate 20-40% annualized returns**
-
-### Risk Management
+### Risk Management Essentials
 
 **Both strategies:**
 
@@ -988,8 +1017,9 @@ $$
 - Check IV before selling
 - Have assignment plan
 - Don't overtrade
+- Accept assignments gracefully
 
-### Comparison
+### Strategic Comparison
 
 | Aspect | Covered Call | Cash-Secured Put |
 |--------|--------------|------------------|
@@ -999,6 +1029,9 @@ $$
 | **Goal** | Enhance returns | Acquire at discount |
 | **Bias** | Neutral/slightly bullish | Bullish |
 | **Assignment** | Sell stock | Buy stock |
+
+![strategy_comparison](https://github.com/SungchulLee/img/blob/main/strategy_comparison.png?raw=true)
+**Figure 13:** Comprehensive strategy comparison matrix showing how covered calls and cash-secured puts fit within the broader landscape of options strategies based on market outlook and risk tolerance.
 
 ### Final Wisdom
 
@@ -1013,4 +1046,4 @@ $$
 - Think long-term (income compounds)
 - Use wheel strategy for complete system
 
-**Most important:** These are INCOME strategies, not get-rich-quick schemes. Consistent 1-2% monthly adds up over time. 20-30% annual returns are excellent and achievable with discipline. 🎯💰
+**Most important:** These are INCOME strategies, not get-rich-quick schemes. Consistent 1-2% monthly income adds up significantly over time. Annual returns of 20-30% are excellent and achievable with discipline and patience. The key is converting your willingness to wait into tangible income while maintaining defined, manageable risk. 🎯💰
