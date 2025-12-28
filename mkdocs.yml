@@ -514,8 +514,6 @@ nav:
           - Dispersion Trading: ch16/greeks_strategies/dispersion_trading.md
       - 16.5 Cross-Asset: 
           - Convertible Bond Arbitrage: ch16/greeks_strategies/convertible_bond_arbitrage.md
-      - 16.6 Synthesis:
-          - Strategies Comparison: ch16/greeks_strategies/strategy_comparison_table.md
 
   - 17 IV-Based Strategies:
       - 17.1 Foundational IV Concepts:
