@@ -270,30 +270,6 @@ nav:
           - Forward Smile: ch07/smile_dynamics/forward_smile.md
           - Dynamic Consistency: ch07/smile_dynamics/dynamic_consistency.md
           - Empirical Stylized Facts: ch07/smile_dynamics/empirical_stylized_facts.md
-      - 7.7 IV Strategies:
-          # Foundational IV Concepts
-          - Horizontal vs Vertical IV: ch07/iv_strategies/horizontal_vs_vertical_iv.md
-          - Implied vs Realized Vol: ch07/iv_strategies/implied_vs_realized_vol_trading.md
-          # Measurement & Analysis Tools
-          - Volatility Cone Analysis: ch07/iv_strategies/volatility_cone_analysis.md
-          - Volatility Mean Reversion: ch07/iv_strategies/volatility_mean_reversion_strategies.md
-          - IV Rank Percentile Strategies: ch07/iv_strategies/iv_rank_percentile_strategies.md
-          # Calendar Family (same strike, different expirations)
-          - Calendar Spreads: ch07/iv_strategies/calendar_spread.md
-          - Double Calendars: ch07/iv_strategies/double_calendars.md
-          - Ratio Calendar Spreads: ch07/iv_strategies/ratio_calendar_spreads.md
-          - Event Calendar Spreads: ch07/iv_strategies/event_calendar_spreads.md
-          # Diagonal Family (different strikes AND expirations)
-          - Diagonal Spreads: ch07/iv_strategies/diagonal_spread.md
-          - Double Diagonals: ch07/iv_strategies/double_diagonals.md
-          # Event-Driven IV
-          - IV Crush Strategies: ch07/iv_strategies/earnings_iv_crush_strategies.md
-          # Strike-Dimension Trading
-          - Skew Trading Spreads: ch07/iv_strategies/skew_trading_spreads.md
-          - Risk Reversals: ch07/iv_strategies/risk_reversals.md
-          # Advanced Structures
-          - Vega Neutral Structures: ch07/iv_strategies/vega_neutral_structures.md
-          - Volatility Surface Arbitrage: ch07/iv_strategies/volatility_surface_arbitrage.md
   
   - 8 Calibration:
       - 8.1 C as Inverse Problem:
@@ -569,19 +545,19 @@ nav:
           - Volatility Cone Analysis: ch17/iv_strategies/volatility_cone_analysis.md
           - Volatility Mean Reversion: ch17/iv_strategies/volatility_mean_reversion_strategies.md
           - IV Rank Percentile Strategies: ch17/iv_strategies/iv_rank_percentile_strategies.md
-      - 17.3 Calendar Family (same strike, different expirations):
+      - 17.3 Event-Driven IV:
+          - Earnings IV Crush Strategies: ch17/iv_strategies/earnings_iv_crush_strategies.md
+      - 17.4 Calendar Family (same strike, different expirations):
           - Calendar Spreads: ch17/iv_strategies/calendar_spread.md
           - Double Calendars: ch17/iv_strategies/double_calendars.md
           - Ratio Calendar Spreads: ch17/iv_strategies/ratio_calendar_spreads.md
           - Event Calendar Spreads: ch17/iv_strategies/event_calendar_spreads.md
-      - 17.4 Event-Driven IV:
-          - Earnings IV Crush Strategies: ch17/iv_strategies/earnings_iv_crush_strategies.md
-      - 17.5 Diagonal Family (different strikes AND expirations):
-          - Diagonal Spreads: ch17/iv_strategies/diagonal_spread.md
-          - Double Diagonals: ch17/iv_strategies/double_diagonals.md
-      - 17.6 Strike-Dimension Trading:
+      - 17.5 Strike-Dimension Trading:
           - Skew Trading Spreads: ch17/iv_strategies/skew_trading_spreads.md
           - Risk Reversals: ch17/iv_strategies/risk_reversals.md
+      - 17.6 Diagonal Family (different strikes AND expirations):
+          - Diagonal Spreads: ch17/iv_strategies/diagonal_spread.md
+          - Double Diagonals: ch17/iv_strategies/double_diagonals.md
       - 17.7 Advanced Structures:
           - Vega Neutral Structures: ch17/iv_strategies/vega_neutral_structures.md
           - Volatility Surface Arbitrage: ch17/iv_strategies/volatility_surface_arbitrage.md
