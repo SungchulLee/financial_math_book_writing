@@ -28,7 +28,9 @@ S = C - P + K e^{-rT}
 
 This identity is the mathematical foundation of all synthetic positions.
 
-![put_call_parity_synthetic_positions](https://github.com/SungchulLee/img/blob/main/put_call_parity_synthetic_positions.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/put_call_parity_synthetic_positions.png?raw=true" alt="put_call_parity_synthetic_positions" width="700">
+</p>
 **Figure 1:** Put-call parity relationship diagram showing the fundamental no-arbitrage equation C - P = S - K×e^(-rT) that links call prices, put prices, stock price, and the present value of the strike, forming the theoretical foundation for all synthetic position construction and ensuring price consistency across options markets.
 
 ---
@@ -40,7 +42,9 @@ A **synthetic** is a position constructed from options that **replicates the pay
 **Key idea:**
 > If two portfolios have the same payoff in all states, they must have the same price (no-arbitrage).
 
-![synthetic_components_breakdown](https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown.png?raw=true" alt="synthetic_components_breakdown" width="700">
+</p>
 **Figure 2:** Synthetic components breakdown showing how various option combinations decompose into equivalent positions, illustrating the building blocks (long/short calls and puts) that create synthetic stock, synthetic forwards, and other replicated exposures through different combinations.
 
 ---
@@ -101,7 +105,9 @@ Linear, stock-like payoff.
 - Unlimited upside
 - Downside similar to owning stock (below strike)
 
-![synthetic_long_stock](https://github.com/SungchulLee/img/blob/main/synthetic_long_stock.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_long_stock.png?raw=true" alt="synthetic_long_stock" width="700">
+</p>
 **Figure 3:** Synthetic long stock profit/loss diagram showing how buying a call and selling a put at the same strike creates a linear payoff identical to owning stock, with unlimited upside and full downside exposure, demonstrating the fundamental replication of equity exposure using only options.
 
 ---
@@ -132,7 +138,9 @@ Linear, stock-like payoff.
 - Unlimited downside risk (like short stock)
 - Profits if stock falls
 
-![synthetic_short_stock](https://github.com/SungchulLee/img/blob/main/synthetic_short_stock.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_short_stock.png?raw=true" alt="synthetic_short_stock" width="700">
+</p>
 **Figure 4:** Synthetic short stock profit/loss diagram demonstrating how selling a call and buying a put at the same strike creates a linear payoff identical to shorting stock, with profits when stock falls and unlimited risk on the upside, showing the mirror image of synthetic long stock.
 
 ---
@@ -151,7 +159,9 @@ So:
 
 This is heavily used in institutional pricing.
 
-![conversion_relationships_synthetic_positions](https://github.com/SungchulLee/img/blob/main/conversion_relationships_synthetic_positions.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/conversion_relationships_synthetic_positions.png?raw=true" alt="conversion_relationships_synthetic_positions" width="700">
+</p>
 **Figure 5:** Conversion and reversal relationships showing how to transform between equivalent positions—conversions combine long stock with protective collars (long put + short call), while reversals use short stock with synthetic longs, illustrating advanced arbitrage strategies that exploit deviations from put-call parity.
 
 ---
@@ -230,7 +240,9 @@ Greeks mirror synthetic long stock with opposite signs.
 
 Identical to shorting stock from $100.
 
-![concrete_example_synthetic_positions](https://github.com/SungchulLee/img/blob/main/concrete_example_synthetic_positions.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/concrete_example_synthetic_positions.png?raw=true" alt="concrete_example_synthetic_positions" width="700">
+</p>
 **Figure 6:** Concrete examples of synthetic long and short stock positions showing detailed P&L tables and payoff diagrams at various stock prices, illustrating how the option combinations exactly replicate stock exposure with identical profit/loss outcomes at expiration across all price scenarios.
 
 ---
@@ -251,7 +263,9 @@ Identical to shorting stock from $100.
 - Delta deviates slightly from ±1
 - Used for fine-tuning exposure
 
-![strike_selection_synthetics](https://github.com/SungchulLee/img/blob/main/strike_selection_synthetics.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strike_selection_synthetics.png?raw=true" alt="strike_selection_synthetics" width="700">
+</p>
 **Figure 7:** Strike selection for synthetic positions showing how ATM synthetics (strike equals stock price) replicate stock most accurately with delta ≈ ±1, while ITM and OTM synthetics create leverage or deductibles with different capital requirements and delta profiles, demonstrating strategic strike choices for customized exposure.
 
 ---
@@ -284,7 +298,9 @@ Identical to shorting stock from $100.
 
 **Key insight:** synthetics replicate **price exposure**, not ownership benefits.
 
-![synthetic_vs_stock_comparison](https://github.com/SungchulLee/img/blob/main/synthetic_vs_stock_comparison.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_vs_stock_comparison.png?raw=true" alt="synthetic_vs_stock_comparison" width="700">
+</p>
 **Figure 8:** Comprehensive comparison of synthetic positions versus actual stock holdings showing key differences in capital requirements, dividend treatment, voting rights, margin obligations, and operational flexibility, illustrating when synthetics offer advantages (capital efficiency, shorting) versus when stock is preferable (dividends, voting, simplicity).
 
 ---

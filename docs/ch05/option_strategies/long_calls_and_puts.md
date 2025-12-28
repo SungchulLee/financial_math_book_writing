@@ -83,9 +83,175 @@ $$
 - Stock at $90 → Exercise, buy at $90, sell at $100 → Profit $5/share (after premium)
 - Stock at $105 → Don't exercise, lose $5 premium
 
-![long_call_vs_put](https://github.com/SungchulLee/img/blob/main/long_call_vs_put.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_vs_put.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 **Figure 1:** Profit/loss comparison between long calls and long puts, showing symmetric payoff structures with limited downside (premium paid) and unlimited (calls) or substantial (puts) upside potential.
 
+
+---
+
+## Economic Interpretation: Options as Financing Structures
+
+**Beyond the basic definition, understanding what options REALLY are economically:**
+
+### Call Option: Leveraged Stock Position with Limited Liability
+
+**The deep insight:**
+
+A call option is economically equivalent to a **leveraged stock purchase with automatic bankruptcy protection**. When you buy a call, you're essentially:
+
+1. **Borrowing money** to buy the stock (at strike $K$)
+2. **Buying the stock** with that borrowed money
+3. **Getting automatic exit** if the stock crashes (limited liability)
+4. **Selling at maturity** or whenever you choose
+
+**Formal decomposition:**
+
+$$
+\underbrace{\text{Long Call}}_{\text{Premium } C} \equiv \underbrace{\text{Stock}}_{\text{Current Price } S} + \underbrace{\text{Borrow}}_{\text{Strike } K} + \underbrace{\text{Put Protection}}_{\text{Downside Insurance}}
+$$
+
+**Why this matters:**
+
+**Traditional leverage (margin):**
+- Borrow $15,000, buy 100 shares at $150
+- If stock → $50, you lose $10,000 AND still owe the loan
+- **Potential for catastrophic loss beyond your capital**
+
+**Call option (leveraged with protection):**
+- Pay $800 premium for $150 call
+- If stock → $50, you simply walk away
+- **Maximum loss: $800 (the premium)**
+
+**The premium you pay ($8) is the cost of this "limited liability feature" - the automatic stop-loss built into the contract.**
+
+### Example: Breaking Down the AAPL Call
+
+**Setup:**
+- AAPL at $150
+- Buy $150 call for $8
+
+**What you're really doing:**
+
+$$
+\begin{align}
+\text{Economic Position} &= \text{Borrow \$15,000} \\
+&+ \text{Buy 100 shares at \$150} \\
+&+ \text{Automatic exit if stock < \$150} \\
+&+ \text{Sell at any time before expiration}
+\end{align}
+$$
+
+**Scenarios:**
+
+| Stock at Expiry | Regular Leverage | Call Option |
+|----------------|-----------------|-------------|
+| $170 | Gain: $2,000 - interest | Gain: $1,200 ($20 - $8) |
+| $150 | Breakeven - interest | Loss: $800 (premium) |
+| $130 | Loss: $2,000 + interest + loan still owed | Loss: $800 (walk away) |
+| $50 | **Loss: $10,000 + interest + loan still owed** | **Loss: $800 (automatic exit)** |
+
+**This "automatic exit" is the key difference!**
+
+### Put Option: Synthetic Short with Limited Risk
+
+**Similarly, a put option is:**
+
+$$
+\underbrace{\text{Long Put}}_{\text{Premium } P} \equiv \underbrace{\text{Short Stock}}_{\text{Sell at } K} + \underbrace{\text{Call Protection}}_{\text{Upside Insurance}}
+$$
+
+**Traditional shorting:**
+- Borrow stock, sell at $100
+- If stock → $200, you must buy back at $200
+- **Loss: $100 per share (unlimited potential)**
+
+**Put option:**
+- Pay $5 premium for $100 put
+- If stock → $200, you walk away
+- **Loss: $5 per share (premium only)**
+
+**The put premium is the cost of capping your upside risk when betting on downside.**
+
+### Put-Call Parity: The Fundamental Relationship
+
+**The most important equation in options:**
+
+$$
+C + Ke^{-rT} = S + P
+$$
+
+Where:
+- $C$ = Call premium
+- $K$ = Strike price
+- $r$ = Risk-free rate
+- $T$ = Time to expiration
+- $S$ = Stock price
+- $P$ = Put premium
+
+**Rearranging to see the financing structure:**
+
+$$
+C = S - Ke^{-rT} + P
+$$
+
+**Translation:**
+
+$$
+\text{Call} = \underbrace{\text{Stock}}_{\text{Long position}} - \underbrace{\text{Present Value of Strike}}_{\text{Borrowed money}} + \underbrace{\text{Put}}_{\text{Downside protection}}
+$$
+
+**This is EXACTLY the "borrow + buy stock + insurance" interpretation!**
+
+### Why This Perspective Matters
+
+**Understanding options as financing structures helps you:**
+
+1. **Compare to alternatives:**
+   - Should I buy stock on margin or buy calls?
+   - Should I short stock or buy puts?
+   - **Options = Leverage + Automatic Risk Control**
+
+2. **Understand premium pricing:**
+   - Premium = Cost of leverage + Cost of limited liability
+   - Higher strikes (more leverage) → Higher cost
+   - Longer time → More insurance cost
+
+3. **See synthetic positions:**
+   - Long stock + Long put = Long call (economically identical)
+   - Short stock + Long call = Long put (economically identical)
+
+4. **Recognize arbitrage opportunities:**
+   - If put-call parity violated → Free money!
+   - Market makers constantly monitor this
+
+### The Strategic Financing Advantage
+
+**Why traders prefer options over pure leverage:**
+
+**Scenario: Bullish on AAPL, want 100-share exposure**
+
+**Option A: Margin Trading**
+- Borrow $7,500 (50% margin)
+- Buy 100 shares at $150
+- Your capital: $7,500
+- Margin interest: ~8% annually
+- **Risk: Margin call if stock drops, potential loss exceeds capital**
+
+**Option B: Call Options**
+- Buy 1 ATM call for $8 ($800 total)
+- Your capital: $800
+- No margin interest
+- **Risk: Maximum loss = $800, cannot exceed**
+
+**The call option is like getting a non-recourse loan:**
+- If stock crashes, lender (option seller) bears the tail risk
+- You pay upfront premium instead of ongoing interest
+- No margin calls, no liquidation risk
+- **Predefined, capped maximum loss**
+
+**This is why sophisticated investors view options as "strategic financing vehicles with embedded risk management."**
 
 ---
 
@@ -162,7 +328,9 @@ $$
 - Call loss: $800 (100%, but limited!)
 - **Call loses more % but limited absolute loss**
 
-![long_call_aapl_example](https://github.com/SungchulLee/img/blob/main/long_call_aapl_example.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_aapl_example.png?raw=true" alt="long_call_aapl_example" width="700">
+</p>
 **Figure 2:** AAPL long call example showing profit/loss profile for a $150 strike call, illustrating the leveraged upside potential and limited downside risk characteristic of long call positions.
 
 ### 2. Leverage
@@ -223,7 +391,9 @@ $$
 - Loss: $10/share (100%)
 - Max loss capped
 
-![long_put_tsla_example](https://github.com/SungchulLee/img/blob/main/long_put_tsla_example.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_put_tsla_example.png?raw=true" alt="long_put_tsla_example" width="700">
+</p>
 **Figure 3:** TSLA long put example demonstrating the profit/loss profile for a $200 strike put, showing how puts profit from downward stock movement while maintaining defined risk.
 
 ### 2. Portfolio Hedge (Insurance)
@@ -242,7 +412,9 @@ $$
 
 **This is how pros hedge!**
 
-![long_put_portfolio_hedge](https://github.com/SungchulLee/img/blob/main/long_put_portfolio_hedge.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_put_portfolio_hedge.png?raw=true" alt="long_put_portfolio_hedge" width="700">
+</p>
 **Figure 4:** Portfolio hedge strategy using long puts, illustrating how protective puts act as insurance to limit downside risk during market corrections while preserving upside participation.
 
 ### 3. Cheaper Than Shorting
@@ -291,10 +463,14 @@ $$
 - Stock rises $2
 - Call gains: 0.50 × $2 = $1 per share
 
-![long_call_atm](https://github.com/SungchulLee/img/blob/main/long_call_atm.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_atm.png?raw=true" alt="long_call_atm" width="700">
+</p>
 **Figure 5:** At-the-money (ATM) long call payoff diagram showing the characteristic 0.50 delta and maximum time value at expiration, representing the balanced risk-reward profile of ATM options.
 
-![long_put_atm](https://github.com/SungchulLee/img/blob/main/long_put_atm.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_put_atm.png?raw=true" alt="long_put_atm" width="700">
+</p>
 **Figure 6:** At-the-money (ATM) long put payoff diagram with -0.50 delta, demonstrating the symmetric structure to ATM calls but with negative directional exposure.
 
 ### Theta (Θ): Time Decay
@@ -315,7 +491,9 @@ $$
 
 **Time decay curve:**
 
-![time_decay_curve](https://github.com/SungchulLee/img/blob/main/time_decay_curve.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/time_decay_curve.png?raw=true" alt="time_decay_curve" width="700">
+</p>
 
 **Key insight:** Theta accelerates as you approach expiration!
 
@@ -398,10 +576,14 @@ $$
 - Delta = 0.50
 - Stock to $110 → call to $10 (100% gain)
 
-![long_call_strike_comparison](https://github.com/SungchulLee/img/blob/main/long_call_strike_comparison.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_strike_comparison.png?raw=true" alt="long_call_strike_comparison" width="700">
+</p>
 **Figure 7:** Comparison of long call payoff profiles across different strikes (ITM, ATM, OTM), illustrating the trade-off between cost, leverage, and probability of profit.
 
-![long_put_strike_comparison](https://github.com/SungchulLee/img/blob/main/long_put_strike_comparison.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_put_strike_comparison.png?raw=true" alt="long_put_strike_comparison" width="700">
+</p>
 **Figure 8:** Comparison of long put payoff profiles across different strikes, showing how strike selection impacts the risk-reward profile and breakeven points for bearish positions.
 
 ### OTM (Out-of-the-Money) Calls/Puts
@@ -532,7 +714,9 @@ $$
 
 ### Long Call P&L
 
-![long_call_pnl](https://github.com/SungchulLee/img/blob/main/long_call_pnl.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_pnl.png?raw=true" alt="long_call_pnl" width="700">
+</p>
 
 **Key points:**
 
@@ -543,7 +727,9 @@ $$
 
 ### Long Put P&L
 
-![long_put_pnl](https://github.com/SungchulLee/img/blob/main/long_put_pnl.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_put_pnl.png?raw=true" alt="long_put_pnl" width="700">
+</p>
 
 **Key points:**
 

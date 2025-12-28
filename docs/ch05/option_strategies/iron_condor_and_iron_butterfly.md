@@ -144,7 +144,9 @@ Buy  110 call    ← call
 
 **Total credit: $6.00**
 
-![iron_butterfly](https://github.com/SungchulLee/img/blob/main/iron_butterfly.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_butterfly.png?raw=true" alt="iron_butterfly" width="700">
+</p>
 **Figure 1:** Iron butterfly profit/loss diagram showing the combination of ATM put and call spreads with wings for protection, illustrating the narrow profit zone centered at the ATM strike with defined maximum loss at the wing strikes.
 
 **Profit zone:** Narrow window around $100
@@ -392,7 +394,9 @@ But the **timing** of cash flows differs, creating practical advantages!
 
 **Remember:** Same destination (total P&L), different journey (cash flow timing)!
 
-![long_call_butterfly](https://github.com/SungchulLee/img/blob/main/long_call_butterfly.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_butterfly.png?raw=true" alt="long_call_butterfly" width="700">
+</p>
 **Figure 2:** Long call butterfly profit/loss diagram showing the classic debit butterfly structure using only call options, demonstrating how buying lower and higher strikes while selling two middle strikes creates a limited risk, limited reward profile with peak profit at the middle strike.
 
 ### Why Choose Iron Butterfly?
@@ -567,8 +571,80 @@ This is why sophisticated traders and institutions typically prefer:
 
 **Remember:** The P&L diagram shows only the final destination. The journey—how you get there and what you can do with your capital along the way—matters just as much!
 
-![long_vs_short_butterfly](https://github.com/SungchulLee/img/blob/main/long_vs_short_butterfly.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_vs_short_butterfly.png?raw=true" alt="long_vs_short_butterfly" width="700">
+</p>
 **Figure 3:** Comparison of long butterfly (debit) versus short butterfly (credit) strategies, illustrating how opposite structures create mirror-image terminal payoffs but identical total P&L profiles when combined with their respective initial cash flows.
+
+## Iron Butterfly − Regular Butterfly = Risk-Free Cash Position
+
+**Key insight (important):**
+
+> **Iron Butterfly − Regular Butterfly produces a positive upfront cash flow and zero terminal option payoff.**
+
+This does **not** represent arbitrage. Instead, it is **economically equivalent to a pure risk-free borrowing/lending position**.
+
+### What is really happening
+
+Because regular and iron butterflies have **identical terminal option payoffs**, subtracting one from the other removes all option risk:
+
+- All option payoffs cancel at expiration
+- The only remaining difference is the **initial cash flow**
+
+Mathematically:
+
+$$
+(\text{Iron Butterfly} - \text{Regular Butterfly})_T = 0
+$$
+
+but
+
+$$
+(\text{Iron Butterfly} - \text{Regular Butterfly})_0 > 0
+$$
+
+This is exactly the payoff profile of **borrowing (or lending) cash today and repaying it at maturity**.
+
+### Financing at the risk-free rate
+
+In a no-arbitrage framework, any positive upfront cash must be:
+
+- invested at the **risk-free rate** if received, or
+- financed at the **risk-free rate** if paid
+
+Thus, the correct self-financing P&L accounting is:
+
+$$
+\boxed{\text{PnL}_T = \text{Payoff}_T + \text{Initial Cash Flow} \cdot e^{rT}}
+$$
+
+Applying this to:
+
+$$
+\text{Iron Butterfly} - \text{Regular Butterfly}
+$$
+
+gives:
+
+$$
+\text{PnL}_T = 0
+$$
+
+### Why this is NOT arbitrage
+
+Arbitrage would require:
+
+1. Positive cash today ✔  
+2. **No future obligation** ✗  
+3. No risk ✗  
+
+Here, the future obligation is the **implicit repayment of the cash at the risk-free rate**.  
+The upfront gain is therefore **not free money**, but simply a cash position priced consistently by put–call parity.
+
+### One-line takeaway
+
+> **Iron butterfly minus regular butterfly equals cash today minus cash tomorrow — a risk-free funding position, not arbitrage.**
+
 
 ### Do Different Upfronts Violate No-Arbitrage?
 
@@ -753,7 +829,9 @@ These differences create preference for one structure over another, **without vi
 | **Beginner-friendly** | **Yes** | Less so |
 | **Win rate** | Higher | Lower |
 
-![butterfly_type_comparison](https://github.com/SungchulLee/img/blob/main/butterfly_type_comparison.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/butterfly_type_comparison.png?raw=true" alt="butterfly_type_comparison" width="700">
+</p>
 **Figure 4:** Comprehensive comparison of iron condor versus iron butterfly profit/loss diagrams, showing the trade-off between wider profit zones with lower premium (condor) versus narrower profit zones with higher premium (butterfly).
 
 **When to use which:**
@@ -910,7 +988,9 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 
 **Optimal:** Usually 5-10 points for most stocks
 
-![butterfly_wing_width_comparison](https://github.com/SungchulLee/img/blob/main/butterfly_wing_width_comparison.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/butterfly_wing_width_comparison.png?raw=true" alt="butterfly_wing_width_comparison" width="700">
+</p>
 **Figure 5:** Butterfly wing width comparison illustrating how narrow wings (5-point) versus wide wings (10-15 point) affect capital requirements, maximum loss, and the risk-reward profile of iron butterfly strategies.
 
 ---
@@ -1503,7 +1583,9 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 **Key lesson:** Size appropriately, one loss can hurt
 
-![realistic_butterfly_trade](https://github.com/SungchulLee/img/blob/main/realistic_butterfly_trade.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/realistic_butterfly_trade.png?raw=true" alt="realistic_butterfly_trade" width="700">
+</p>
 **Figure 6:** Realistic butterfly trade example showing actual market conditions, entry/exit points, and P&L evolution over time, demonstrating the practical application of iron butterfly strategy with real-world pricing and volatility dynamics.
 
 ---

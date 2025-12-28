@@ -96,7 +96,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 **Key feature:** Downside capped at put strike (minus premium paid)
 
-![protective_put_pnl](https://github.com/SungchulLee/img/blob/main/protective_put_pnl.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/protective_put_pnl.png?raw=true" alt="protective_put_pnl" width="700">
+</p>
 **Figure 1:** Protective put profit/loss diagram showing how combining long stock with a long put creates unlimited upside potential while limiting downside risk at the put strike, illustrating the insurance-like payoff structure with the premium paid representing the cost of protection.
 
 ---
@@ -200,7 +202,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 **Lesson:** If stock stays near strike, you pay premium but don't use insurance (like car insurance - you pay even if no accident)
 
-![protective_put_scenarios](https://github.com/SungchulLee/img/blob/main/protective_put_scenarios.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/protective_put_scenarios.png?raw=true" alt="protective_put_scenarios" width="700">
+</p>
 **Figure 2:** Protective put outcome scenarios showing four key cases: crash (protection works), stable (insurance cost), rally (insurance + upside), and near strike (premium paid without benefit), illustrating the complete range of possible outcomes and their P&L implications.
 
 ---
@@ -281,7 +285,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 **Range defined:** Max profit at $160, max loss at $145
 
-![collar_pnl](https://github.com/SungchulLee/img/blob/main/collar_pnl.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/collar_pnl.png?raw=true" alt="collar_pnl" width="700">
+</p>
 **Figure 3:** Collar profit/loss diagram showing the three-legged structure combining long stock, long put, and short call, creating a defined range with protection below and capping above, illustrating the zero-cost protection achieved by trading upside for downside insurance.
 
 ---
@@ -394,7 +400,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 - Can't participate fully if stock moons
 - **Accept this constraint**
 
-![collar_scenarios](https://github.com/SungchulLee/img/blob/main/collar_scenarios.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/collar_scenarios.png?raw=true" alt="collar_scenarios" width="700">
+</p>
 **Figure 4:** Collar outcome scenarios across different stock prices at expiration, showing crash protection, stable pricing, capped upside, and breakeven points, demonstrating how the zero-cost structure creates a defined range with balanced risk-reward trade-offs.
 
 ---
@@ -429,7 +437,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 **General rule:** 5-10% OTM is typical (balance cost vs. protection)
 
-![protective_put_strike_selection](https://github.com/SungchulLee/img/blob/main/protective_put_strike_selection.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/protective_put_strike_selection.png?raw=true" alt="protective_put_strike_selection" width="700">
+</p>
 **Figure 5:** Protective put strike selection comparison showing the trade-off between ITM (expensive, maximum protection), ATM (balanced), and OTM (economical, deductible) strikes, illustrating how strike choice affects both premium cost and protection level with typical 5-10% OTM being the optimal balance.
 
 ### For Collars
@@ -454,7 +464,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 - More protection
 - **Receive net credit** (call premium > put premium)
 
-![collar_variations](https://github.com/SungchulLee/img/blob/main/collar_variations.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/collar_variations.png?raw=true" alt="collar_variations" width="700">
+</p>
 **Figure 6:** Collar variations showing symmetric collars (balanced range), skewed collars with more upside (pay debit), and skewed collars with more protection (receive credit), demonstrating how adjusting strike distances allows customization of the risk-reward profile to match specific market outlooks and cost preferences.
 
 ---
@@ -528,7 +540,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 - Accept capped upside
 - Institutional constraints
 
-![protective_put_vs_collar](https://github.com/SungchulLee/img/blob/main/protective_put_vs_collar.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/protective_put_vs_collar.png?raw=true" alt="protective_put_vs_collar" width="700">
+</p>
 **Figure 7:** Direct comparison of protective put versus collar strategies showing the fundamental trade-off: protective puts maintain unlimited upside but require premium payment, while collars provide free (or low-cost) protection by capping upside potential, helping traders choose the appropriate hedging strategy based on their market outlook and cost tolerance.
 
 ---
@@ -741,7 +755,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 - Compare to just holding cash
 - Use longer-dated options (less frequent)
 
-![annualized_cost_analysis_protective_put_and_collar](https://github.com/SungchulLee/img/blob/main/annualized_cost_analysis_protective_put_and_collar.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/annualized_cost_analysis_protective_put_and_collar.png?raw=true" alt="annualized_cost_analysis_protective_put_and_collar" width="700">
+</p>
 **Figure 8:** Annualized cost analysis for protective puts and collars across different time frames, showing how premium costs compound when rolling protection frequently versus using longer-dated options, illustrating the critical importance of calculating total hedging costs relative to portfolio value to ensure insurance doesn't become prohibitively expensive.
 
 ### Mistake 5: Not Rolling Before Expiration
@@ -892,7 +908,9 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 ## Real-World Examples
 
-![real_world_examples_protective_put_and_collar](https://github.com/SungchulLee/img/blob/main/real_world_examples_protective_put_and_collar.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/real_world_examples_protective_put_and_collar.png?raw=true" alt="real_world_examples_protective_put_and_collar" width="700">
+</p>
 **Figure 9:** Real-world examples summary showing three practical applications: tech executive hedging RSU lockup with collar, retiree protecting concentrated AAPL position with puts, and startup employee using forward collar through IPO lockup, demonstrating how protective strategies solve actual portfolio risk management challenges.
 
 ### Example 1: Tech Executive with RSUs
@@ -1156,6 +1174,66 @@ ADVANCED:
 - **Calculate annualized cost** (is it worth it?)
 - **Tax considerations** (consult advisor)
 - **Peace of mind has value** (can't be measured in dollars)
+
+## Covered Calls vs. Protective Puts (Naming Symmetry)
+
+Both **protective puts** and **covered calls** start from the same base position:
+
+\[
+\text{Long Stock}
+\]
+
+The difference is **which option you add and why**.
+
+---
+
+### Protective Put — Buy Downside Protection
+
+> *“I own the stock and want to protect against downside risk.”*
+
+\[
+\text{Protective Put} = \text{Long Stock} + \text{Long Put}
+\]
+
+- Buy a put
+- Pay premium
+- Downside is protected below the put strike
+- Upside remains unlimited
+
+This is equivalent to buying insurance.
+
+---
+
+### Covered Call — Sell Upside for Income
+
+> *“I own the stock and want to generate upfront cash.”*
+
+\[
+\text{Covered Call} = \text{Long Stock} - \text{Short Call}
+\]
+
+- Sell a call
+- Receive premium upfront
+- Upside is capped at the call strike
+- Downside remains (partially offset by premium)
+
+The call is **covered** because the stock is already owned.
+
+---
+
+### Why the Names Are Symmetric
+
+| Strategy | Stock | Option Action | Economic Meaning |
+|--------|-------|---------------|------------------|
+| Protective **Put** | Long | Buy put | Buy downside insurance |
+| Covered **Call** | Long | Sell call | Sell upside for income |
+
+---
+
+### Key Takeaway
+
+> **Protective puts and covered calls are symmetric stock-plus-option strategies: one buys downside insurance, the other sells upside for cash.**
+
 
 ### Final Thought
 

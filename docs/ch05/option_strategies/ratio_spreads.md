@@ -433,7 +433,9 @@ $$
 
 **This is why active management is critical!**
 
-![concrete_example_ratio_spreads](https://github.com/SungchulLee/img/blob/main/concrete_example_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/concrete_example_ratio_spreads.png?raw=true" alt="concrete_example_ratio_spreads" width="700">
+</p>
 **Figure 1:** TSLA call ratio spread example showing all five scenarios from perfect (stock at $270) to disaster (stock at $350), illustrating the critical paradox of ratio spreads where being "too right" on direction leads to unlimited losses, demonstrating why strict risk management and active monitoring are essential.
 
 ---
@@ -599,25 +601,39 @@ $$
 
 **Advanced traders may combine ratio spreads with synthetic positions to create complex risk-reward profiles:**
 
-![synthetic_long_stock_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_long_stock_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_long_stock_ratio_spreads.png?raw=true" alt="synthetic_long_stock_ratio_spreads" width="700">
+</p>
 **Figure 2:** Synthetic long stock construction showing how long call plus short put at the same strike replicates long stock position, illustrating put-call parity and how synthetics can be combined with ratio spread strategies for capital efficiency.
 
-![synthetic_short_stock_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_short_stock_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_short_stock_ratio_spreads.png?raw=true" alt="synthetic_short_stock_ratio_spreads" width="700">
+</p>
 **Figure 3:** Synthetic short stock construction demonstrating how short call plus long put creates a position equivalent to short stock, showing the mirror relationship to synthetic long positions and applications in ratio spread hedging.
 
-![synthetic_components_breakdown_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown_ratio_spreads.png?raw=true" alt="synthetic_components_breakdown_ratio_spreads" width="700">
+</p>
 **Figure 4:** Synthetic components breakdown showing how various option combinations decompose into equivalent positions, illustrating the building blocks used in advanced ratio spread variations and conversion strategies.
 
-![synthetic_vs_stock_comparison_ratio_spreads](https://github.com/SungchulLee/img/blob/main/synthetic_vs_stock_comparison_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_vs_stock_comparison_ratio_spreads.png?raw=true" alt="synthetic_vs_stock_comparison_ratio_spreads" width="700">
+</p>
 **Figure 5:** Comparison of synthetic positions versus actual stock holdings showing capital requirements, margin differences, and dividend considerations, demonstrating when synthetics offer advantages in ratio spread construction.
 
-![put_call_parity_ratio_spreads](https://github.com/SungchulLee/img/blob/main/put_call_parity_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/put_call_parity_ratio_spreads.png?raw=true" alt="put_call_parity_ratio_spreads" width="700">
+</p>
 **Figure 6:** Put-call parity relationship diagram showing the fundamental equation C - P = S - K×e^(-rT) that ensures no arbitrage between calls, puts, and stock, forming the theoretical foundation for synthetic position equivalence.
 
-![conversion_relationships_ratio_spreads](https://github.com/SungchulLee/img/blob/main/conversion_relationships_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/conversion_relationships_ratio_spreads.png?raw=true" alt="conversion_relationships_ratio_spreads" width="700">
+</p>
 **Figure 7:** Conversion and reversal relationships showing how to transform between equivalent positions (conversions: long stock + long put + short call, reversals: short stock + long call + short put), illustrating advanced arbitrage strategies that can be combined with ratio spreads.
 
-![strike_selection_synthetics_ratio_spreads](https://github.com/SungchulLee/img/blob/main/strike_selection_synthetics_ratio_spreads.png?raw=true)
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strike_selection_synthetics_ratio_spreads.png?raw=true" alt="strike_selection_synthetics_ratio_spreads" width="700">
+</p>
 **Figure 8:** Strike selection for synthetic positions and ratio spreads showing how ATM synthetics replicate stock exactly while OTM synthetics create leverage or deductibles, demonstrating strategic strike choices when combining synthetics with ratio spread structures.
 
 ### 1. Ratio Backspread (Reverse Ratio)
