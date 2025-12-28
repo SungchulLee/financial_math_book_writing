@@ -182,8 +182,8 @@ nav:
           # Core Spreads (Defined Risk)
           - Vertical Spreads: ch05/option_strategies/vertical_spreads.md
           # Core Option Structures (Exposing Greeks)
-          - Straddle and Strangle: ch06/greeks_strategies/straddle_strangle.md
-          - Strips and Straps: ch06/greeks_strategies/strips_and_straps.md
+          - Straddle and Strangle: ch05/option_strategies/straddle_strangle.md
+          - Strips and Straps: ch05/option_strategies/strips_and_straps.md
           # Canonical Multi-Leg Structures (Defined Risk)
           - Butterflies: ch05/option_strategies/butterfly_spreads.md
           - Iron Butterflies: ch05/option_strategies/iron_condor_and_iron_butterfly.md
