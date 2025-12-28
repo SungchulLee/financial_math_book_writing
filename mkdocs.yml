@@ -484,8 +484,8 @@ nav:
       - 15.3 Defined Risk:
           - Vertical Spreads: ch15/option_strategies/vertical_spreads.md
           - Credit Spreads: ch15/option_strategies/credit_spreads.md
-      - 15.4 Multi-Leg Option Structures:  
-          - Butterflies: ch15/option_strategies/butterfly_spreads.md
+      - 15.4 Multi-Leg Structures:  
+          - Butterflies: ch15/option_strategies/butterfly.md
           - Iron Butterflies: ch15/option_strategies/iron_condor_and_iron_butterfly.md
           - Broken Wing Butterflies: ch15/option_strategies/broken_wing_butterflies.md
           - Condors: ch15/option_strategies/condors.md
