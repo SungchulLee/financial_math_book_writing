@@ -174,27 +174,7 @@ nav:
           - Stability, Consistency, and Convergence: ch05/bs_pde_numerical_solution/stability_consistency_convergence.md
           - Free Boundary Problem: ch05/bs_pde_numerical_solution/free_boundary_problems_american_options.md
           - Monotone Scheme and Viscosity Solution: ch05/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
-      - 5.8 Option Strategies:
-          # Directional & Basic Positions
-          - Long Calls and Puts: ch05/option_strategies/long_calls_and_puts.md
-          - Covered Calls & CSPs: ch05/option_strategies/covered_calls_and_cash_secured_puts.md
-          - Protective Puts & Collars: ch05/option_strategies/protective_put_and_collar.md
-          # Core Spreads (Defined Risk)
-          - Vertical Spreads: ch05/option_strategies/vertical_spreads.md
-          # Core Option Structures (Exposing Greeks)
-          - Straddle and Strangle: ch05/option_strategies/straddle_strangle.md
-          - Strips and Straps: ch05/option_strategies/strips_and_straps.md
-          # Canonical Multi-Leg Structures (Defined Risk)
-          - Butterflies: ch05/option_strategies/butterfly_spreads.md
-          - Iron Butterflies: ch05/option_strategies/iron_condor_and_iron_butterfly.md
-          - Broken Wing Butterflies: ch05/option_strategies/broken_wing_butterflies.md
-          - Condors: ch05/option_strategies/condors.md
-          # Advanced Variations (Asymmetric / Undefined Risk)
-          - Ratio Spreads: ch05/option_strategies/ratio_spreads.md
-          # Structural Equivalences
-          - Synthetic Positions: ch05/option_strategies/synthetic_positions.md
-          - Box Spreads: ch05/option_strategies/box_spreads.md
-      - 5.9 Extensions of BS Model:
+      - 5.8 Extensions of BS Model:
           - Limitations and Extensions: ch05/extensions_black_scholes/limitations_extensions.md
           - Local Volatility Model: ch05/extensions_black_scholes/local_volatility_models.md
           - Stochastic Volatility Model: ch05/extensions_black_scholes/stochastic_volatility_models.md
@@ -250,6 +230,7 @@ nav:
           # Cross-Asset / Hybrid Strategies
           - CB Arbitrage: ch06/greeks_strategies/convertible_bond_arbitrage.md
           - 0DTE Strategies: ch06/greeks_strategies/0DTE_strategies.md
+          - Higher Order Greeks: ch06/greeks_strategies/higher_order_greeks.md
           # Synthesis
           - Strategies Comparison: ch06/greeks_strategies/strategy_comparison_table.md
       - 6.8 Asymptotics Strategies:
@@ -534,6 +515,77 @@ nav:
           - Overfitting and False Discovery: ch14/limits_of_learning_in_finance/overfitting_and_false_discovery.md
           - Theoretical Impossibility Results: ch14/limits_of_learning_in_finance/theoretical_impossibility_results.md
 
+  - 15 Option Strategies:
+      - 15.1 Directional:
+          - Long Calls and Puts: ch15/option_strategies/long_calls_and_puts.md
+          - Covered Calls & CSPs: ch15/option_strategies/covered_calls_and_cash_secured_puts.md
+          - Protective Puts & Collars: ch15/option_strategies/protective_put_and_collar.md
+          - Wheel Strategy: ch15/option_strategies/wheel_strategy.md
+      - 15.2 Exposing Greeks:  
+          - Straddle and Strangle: ch15/option_strategies/straddle_strangle.md
+          - Short Strangles: ch15/option_strategies/short_strangles.md
+          - Strips and Straps: ch15/option_strategies/strips_and_straps.md
+      - 15.3 Defined Risk:
+          - Vertical Spreads: ch15/option_strategies/vertical_spreads.md
+      - 15.4 Multi-Leg Structures:  
+          - Butterflies: ch15/option_strategies/butterfly_spreads.md
+          - Iron Butterflies: ch15/option_strategies/iron_condor_and_iron_butterfly.md
+          - Broken Wing Butterflies: ch15/option_strategies/broken_wing_butterflies.md
+          - Condors: ch15/option_strategies/condors.md
+          - Iron Condors: ch15/option_strategies/iron_condors.md
+      - 15.5 Advanced Variations:  
+          - Ratio Spreads: ch15/option_strategies/ratio_spreads.md
+          - Back Spreads: ch15/option_strategies/backspreads.md
+          - Jade Lizard: ch15/option_strategies/jade_lizard.md
+      - 15.6 Equivalent Structures:  
+          - Synthetic Positions: ch15/option_strategies/synthetic_positions.md
+          - Box Spreads: ch15/option_strategies/box_spreads.md
+
+  - 16 Greek-Based Strategies:
+      - 16.1 Hedging Paradigms:  
+          - Delta Hedging: ch16/greeks_strategies/delta_hedging.md
+          - Static vs Dynamic Hedging: ch16/greeks_strategies/static_vs_dynamic_hedging.md
+      - 16.2 Dynamic Management:
+          - Gamma Scalping: ch16/greeks_strategies/gamma_scalping.md
+          - Theta and Carry: ch16/greeks_strategies/theta_and_carry.md
+          - Vega Trading: ch16/greeks_strategies/vega_trading.md
+      - 16.3 Higher-Order Greeks: 
+          - Higher-Order Greeks: ch16/greeks_strategies/higher_order_greeks.md
+          - 0DTE Option Strategies: ch16/greeks_strategies/0DTE_strategies.md
+      - 16.4 Vol Surface Trading:
+          - Volatility Smile & Skew: ch16/greeks_strategies/vol_smile_skew_trading.md
+          - Variance Swaps: ch16/greeks_strategies/variance_swaps.md
+          - Dispersion Trading: ch16/greeks_strategies/dispersion_trading.md
+      - 16.5 Cross-Asset: 
+          - Convertible Bond Arbitrage: ch16/greeks_strategies/convertible_bond_arbitrage.md
+      - 16.6 Synthesis:
+          - Strategies Comparison: ch16/greeks_strategies/strategy_comparison_table.md
+
+  - 17 IV-Based Strategies:
+      - 17.1 Foundational IV Concepts:
+          - Horizontal vs Vertical IV: ch17/iv_strategies/horizontal_vs_vertical_iv.md
+          - Implied vs Realized Vol: ch17/iv_strategies/implied_vs_realized_vol_trading.md
+      - 17.2 Measurement & Analysis Tools:
+          - Volatility Cone Analysis: ch17/iv_strategies/volatility_cone_analysis.md
+          - Volatility Mean Reversion: ch17/iv_strategies/volatility_mean_reversion_strategies.md
+          - IV Rank Percentile Strategies: ch17/iv_strategies/iv_rank_percentile_strategies.md
+      - 17.3 Calendar Family (same strike, different expirations):
+          - Calendar Spreads: ch17/iv_strategies/calendar_spread.md
+          - Double Calendars: ch17/iv_strategies/double_calendars.md
+          - Ratio Calendar Spreads: ch17/iv_strategies/ratio_calendar_spreads.md
+          - Event Calendar Spreads: ch17/iv_strategies/event_calendar_spreads.md
+      - 17.4 Event-Driven IV:
+          - Earnings IV Crush Strategies: ch17/iv_strategies/earnings_iv_crush_strategies.md
+      - 17.5 Diagonal Family (different strikes AND expirations):
+          - Diagonal Spreads: ch17/iv_strategies/diagonal_spread.md
+          - Double Diagonals: ch17/iv_strategies/double_diagonals.md
+      - 17.6 Strike-Dimension Trading:
+          - Skew Trading Spreads: ch17/iv_strategies/skew_trading_spreads.md
+          - Risk Reversals: ch17/iv_strategies/risk_reversals.md
+      - 17.7 Advanced Structures:
+          - Vega Neutral Structures: ch17/iv_strategies/vega_neutral_structures.md
+          - Volatility Surface Arbitrage: ch17/iv_strategies/volatility_surface_arbitrage.md
+
   - Appendix Python Codes: 
       - 1 Stochastic Process:
           - 1.1 Brownian Motion:
@@ -654,6 +706,8 @@ nav:
           - KRX Main: python_codes/krx_MAIN.py
           - Debug Test: python_codes/debug_v110_test.py
           - Detailed Plot Test: python_codes/detailed_plot_test.py
+
+
 
 
 
