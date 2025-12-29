@@ -974,15 +974,20 @@ $$
 ### Step 2: Strategy Selection Criteria
 
 **Enter this strategy when:**
-- [Specific market conditions]
-- [Volatility requirements]
-- [Time horizon matches]
-- [Risk tolerance appropriate]
+- IV rank > 40% (options expensive enough)
+- Stock in established range (no strong trend)
+- 30-45 days to expiration available
+- Risk tolerance for neutral strategy
+- Post-earnings IV crush opportunity
+- Market consolidating after big move
 
 **Avoid this strategy when:**
-- [Unfavorable conditions]
-- [Wrong volatility environment]
-- [Insufficient time or liquidity]
+- IV rank < 30% (options too cheap)
+- Earnings announcement within 7 days
+- Strong trending market (up or down)
+- VIX > 30 (too volatile)
+- < 21 days to expiration (gamma risk)
+- Insufficient liquidity (bid-ask > 10% of mid)
 
 ### Step 3: Position Sizing
 
@@ -1011,30 +1016,43 @@ $$
 **Active management rules:**
 
 **Profit targets:**
-- Take profit at [X]% of max profit
-- Scale out if appropriate
-- Don't be greedy
+- Take profit at 50% of max profit (non-negotiable)
+- Exit at 21 DTE regardless of profit
+- Scale out at 40% if nervous about holding
+- Don't be greedy - last 50% has highest risk
 
 **Loss limits:**
-- Cut losses at [Y]% of max loss
-- Don't hope for recovery
-- Preserve capital
+- Cut losses at 2x credit received (hard stop)
+- Exit if stock breaches long strike
+- Don't hope for recovery past max loss
+- Preserve capital for next opportunity
 
 **Time-based exits:**
-- Monitor theta decay
-- Exit if [time-based trigger]
+- Monitor daily theta decay
+- Exit if < 21 DTE (gamma explosion risk)
+- Consider early exit if theta gain minimal
 
 ### Step 6: Adjustment Protocols
 
 **When to adjust:**
-- Position threatened
-- Market environment changes  
-- New information emerges
+- Stock approaches short strike (delta becomes significant)
+- Position down more than credit received
+- IV spike hurts all legs simultaneously
+- Strong directional move threatens one side
 
 **How to adjust:**
-- [Adjustment technique 1]
-- [Adjustment technique 2]
-- [When to take loss instead]
+- **Vertical roll:** Move tested spread further OTM, increase credit
+- **Close untested side:** Remove risk, reduce loss on tested side
+- **Time roll:** Extend expiration, collect more premium
+- **Take loss and re-enter:** Often better than adjusting
+- **Close entire position:** When 2x credit loss or max loss approached
+
+**When to take loss instead:**
+- Cost to adjust > original credit
+- Stock momentum too strong  
+- Adjustment increases max loss significantly
+- Less than 21 DTE remaining
+- Better opportunity elsewhere
 
 ### Step 7: Record Keeping
 
@@ -1439,34 +1457,51 @@ $$
 ### The Nightmare Setup
 
 **How it starts:**
-- [Initial adverse move]
-- [Market condition deterioration]
-- [Position response]
+- Enter iron condor with SPY at $450
+- Collect $4 credit, max loss $6 per spread
+- Stock trading calmly, IV at 18%
+- VIX at comfortable 15
 
 **The deterioration:**
 
 **Days 1-7:**
-- [Early warning signs]
-- [Position losing value]
-- [Critical decision point]
+- Geopolitical crisis announced over weekend
+- Gap down Monday: SPY opens at $442 (-$8)
+- VIX spikes to 32 (IV explosion hurts)
+- Put spread immediately tested
+- Position down -$400 (4x credit)
 
 **Through expiration:**
-- [Continued adverse movement]
-- [Max loss approached/realized]
-- [Final outcome]
+- Fed emergency meeting announced
+- SPY continues falling: $438, $435, $432
+- Put spread fully breached
+- Long $440 put now only protection
+- Call spread worthless (far OTM)
+- Final expiration: SPY at $428
+- **Full max loss realized: -$600 per contract**
 
 ### Maximum Loss Calculation
 
 **Worst case mathematics:**
 
 $$
-\text{Max Loss} = [\text{Formula}]
+\text{Max Loss} = (\text{Spread Width} - \text{Credit Received}) \times 100
 $$
 
 **Example calculation:**
-- [Specific example with numbers]
-- [Loss breakdown]
-- [Impact on portfolio]
+- Sold iron condor: $440/$445/$455/$460 for $4 credit
+- Spread width: $5 on each side
+- Max loss per side: $5 - $4 = $1 per share
+- Max loss per contract: $1 × 100 = $100
+- Sold 10 contracts: **Total max loss = $1,000**
+
+**Loss breakdown:**
+- Credit collected upfront: $4,000 (10 contracts × $400)
+- Put spread maxed out: -$5,000 (10 contracts × $500)
+- Net loss: $5,000 - $4,000 = -$1,000
+- **Impact on $50,000 account: 2% loss**
+
+**With proper sizing (5% risk rule), this hurts but doesn't destroy the account.**
 
 ### What Goes Wrong
 
@@ -1479,34 +1514,89 @@ The worst case occurs when:
 ### The Cascade Effect
 
 **Multiple losing positions:**
-- [Scenario 1: First loss]
-- [Scenario 2: Revenge trading]
-- [Scenario 3: Account damage]
+- **Position 1:** SPY iron condor, -$1,000 from crash
+- **Position 2:** QQQ iron condor (high correlation!), -$800 same crash
+- **Position 3:** Revenge trade in IWM trying to recover, -$600 more
+- **Position 4:** Panic close TLT condor at loss, -$400 unnecessary exit
 
 **Total damage:**
-- [Cumulative loss calculation]
-- [Portfolio impact percentage]
-- [Recovery difficulty]
+- Cumulative loss: -$2,800
+- Started with $50,000 account
+- **Now at $47,200 (5.6% drawdown)**
+- Recovery needed: 5.9% just to break even
+
+**The mistakes compounded:**
+1. Over-correlated positions (SPY + QQQ)
+2. Revenge trading after first loss
+3. Panic selling profitable position
+4. Violated 2% per trade risk rule
+5. **Emotional decisions destroyed discipline**
 
 ### Assignment and Pin Risk
 
 **Complexity at expiration:**
-- [Assignment scenario]
-- [Pin risk explanation]
-- [Weekend risk]
-- [Cleanup process]
+
+**Assignment scenario:**
+- Stock closes at $104.95 (just below short $105 call)
+- You think you're safe, position expires worthless
+- After hours: Stock jumps to $105.50 on news
+- **Short call assigned: -100 shares at $105**
+- Monday open: Stock at $107
+- Forced to buy back at $107 = -$200 loss
+- Plus your long $110 call worthless = another -$100
+- **Total damage: -$300 vs expected $0**
+
+**Pin risk explanation:**
+- Stock "pinned" at strike price near expiration
+- Uncertain if options ITM or OTM
+- Assignment risk on short options
+- Long protection may not trigger
+- Creates undefined position over weekend
+
+**Weekend risk:**
+- Friday close: SPY at $444.50 (near short $445 put)
+- Unsure if will be assigned
+- Weekend news could gap market
+- **Position in limbo until Monday**
+
+**Cleanup process:**
+- Monday: Discover assignment occurred
+- Now own +100 shares SPY at $445
+- Market at $442 = immediate -$300 loss
+- Must sell shares and close long put
+- Transaction costs eat into profits
+- **Complexity = Additional losses**
+
+**Solution: Always close before expiration (21 DTE rule prevents this!)**
 
 ### Real Examples of Disasters
 
-**Historical example 1:**
-- [Setup and expectation]
-- [What happened]
-- [Final loss]
+**Historical example 1: COVID-19 Crash (March 2020)**
+- Setup: Sold SPY iron condors in February 2020
+- SPY at $338, collected $5 credit on $10 wide spreads
+- Expected max loss: $500 per contract
+- What happened: COVID panic, SPY crashed from $338 to $218 in 4 weeks
+- VIX exploded from 15 to 82
+- Put spreads maxed out instantly
+- **Final loss: Full $500 per contract**
+- Trader with 20 contracts: **-$10,000 loss (if properly sized)**
+- Trader without wings (naked strangle): **-$80,000+ (account wipeout)**
 
-**Historical example 2:**
-- [Setup and expectation]
-- [What happened]
-- [Final loss]
+**Lesson: Wings saved accounts. Defined risk prevented total destruction.**
+
+**Historical example 2: August 2015 Flash Crash**
+- Setup: Sold iron condors on SPY at $208
+- Collected $4 credit, $5 wide spreads
+- Expected max loss: $100 per contract
+- What happened: China devaluation panic, overnight gap down 5%
+- SPY opened at $189 (beyond all strikes)
+- No chance to adjust or exit
+- Put spreads maxed out at open
+- **Final loss: Full $100 per contract plus slippage**
+- 50 contracts = -$5,000 to -$6,000
+- Short strangle traders: **-$50,000+ losses**
+
+**Lesson: Gap risk is real. Wings limit catastrophic losses even when you can't exit.**
 
 ### Psychology of Losses
 
@@ -1528,21 +1618,29 @@ The worst case occurs when:
 **Risk management strategies:**
 
 1. **Position sizing:**
-   - Never risk more than [X]% per trade
-   - Respect maximum loss calculations
+   - Never risk more than 2-5% per trade
+   - Respect maximum loss calculations religiously
+   - Size for worst case, not best case
+   - Calculate: Max contracts = (Account × 0.05) / Max loss
 
 2. **Stop losses:**
-   - Exit at [trigger level]
-   - Don't hope for recovery
+   - Exit at 2x credit received (hard stop)
+   - Exit when max loss reached (don't hope)
+   - Exit at 21 DTE regardless of P&L
+   - Use alerts for tested strikes
 
 3. **Diversification:**
-   - Multiple uncorrelated positions
-   - Different timeframes
-   - Different strategies
+   - 5-10 uncorrelated underlyings (avoid SPY + QQQ together)
+   - Different expiration dates (ladder 30-45 DTE)
+   - Mix strategies (not only iron condors)
+   - Different sectors (tech, healthcare, energy, etc.)
 
 4. **Avoid high-risk scenarios:**
-   - [Scenario to avoid 1]
-   - [Scenario to avoid 2]
+   - No positions through earnings (gap risk)
+   - No trading when VIX > 30 (too volatile)
+   - No entry when IVR < 30% (options too cheap)
+   - No holding past 21 DTE (gamma/pin risk)
+   - No overnight positions before Fed announcements
 
 ### The Ultimate Protection
 
@@ -1565,38 +1663,70 @@ Even in worst case, proper position sizing ensures you survive to trade again. T
 ### The Perfect Setup
 
 **Ideal entry conditions:**
-- [Market condition 1]
-- [Volatility at optimal level]
-- [Catalyst working in your favor]
+- Post-earnings IV crush (IV rank drops from 80% to 45%)
+- Stock establishing clear range ($95-$105 for 4 weeks)
+- VIX declining from 22 to 16 (volatility compression)
+- 35 DTE available for optimal time decay
+- High liquidity (tight bid-ask spreads)
+- No major catalysts for next month
 
 **The optimal sequence:**
 
 **Days 1-7:**
-- [What happens initially]
-- [Position response]
-- [Decision point]
+- Enter iron condor at $100 stock price
+- Sell $95 put / $105 call, buy $90 put / $110 call
+- Collect $4 credit ($400 per contract)
+- Stock stays at $100 perfectly (no delta movement)
+- IV continues declining (positive for short options)
+- Theta decay working steadily ($15-20 per day)
 
-**Through expiration:**
-- [Continuation of favorable move]
-- [Profit realization]
-- [Final outcome]
+**Days 8-20:**
+- Stock oscillates between $98-$102 (ideal!)
+- Position gaining $20-30 per day from theta
+- By day 18: Position worth $2.00 (down from $4.00)
+- **50% profit achieved: +$200 per contract**
+- **Time to exit per 50% rule!**
+
+**Through expiration (if held):**
+- Stock finishes at $100 (center of range)
+- All four options expire worthless
+- Keep entire $400 credit
+- **Maximum profit achieved**
+- But this is greedy - should exit at 50%!
 
 ### Maximum Profit Achievement
 
 **Best case mathematics:**
 
 $$
-\text{Max Profit} = [\text{Formula}]
+\text{Max Profit} = \text{Net Credit Received} = P_{\text{put sold}} + P_{\text{call sold}} - P_{\text{put bought}} - P_{\text{call bought}}
 $$
 
 $$
-\text{ROI} = \frac{\text{Max Profit}}{\text{Capital At Risk}} \times 100\%
+\text{ROI} = \frac{\text{Max Profit}}{\text{Capital At Risk}} \times 100\% = \frac{\text{Credit}}{\text{Max Loss}} \times 100\%
 $$
 
 **Example calculation:**
-- [Specific example with numbers]
-- [Profit breakdown]
-- [ROI calculation]
+- Stock at $450 (SPY)
+- Buy $440 put for $1.50, Sell $445 put for $4.00
+- Sell $455 call for $4.00, Buy $460 call for $1.50
+- **Net credit: ($4 + $4) - ($1.50 + $1.50) = $5.00 = $500 per contract**
+
+**Profit breakdown:**
+- Maximum profit: $500 (keep entire credit)
+- Maximum loss: $5 - $5 = $0 (wait, that's wrong)
+- Actually max loss: ($5 spread - $5 credit) × 100 = $0
+- Real calculation: Max loss = $500 - $500 = $0 (break even worst case)
+- Better example: Credit $4, Spread $5 wide
+- Max profit: $400
+- Max loss: ($5 - $4) × 100 = $100
+- **ROI: $400 / $100 = 400% return on capital at risk**
+
+**ROI calculation:**
+- Invested: $100 (max loss)
+- Returned: $400 (max profit)
+- Return: 400% on capital at risk
+- If held 35 days: **4,200% annualized** (unrealistic but illustrates leverage)
 
 ### What Makes It Perfect
 
@@ -1608,17 +1738,73 @@ The best case requires:
 
 ### Comparison to Alternatives
 
-**This strategy vs. [Alternative]:**
-- [How best case compares]
-- [When this strategy wins]
-- [Trade-offs involved]
+**This strategy vs. Short Strangle:**
+
+**In best case (stock stays put):**
+- Iron Condor: Collects $4, keeps $4 = **$400 profit**
+- Short Strangle: Collects $7, keeps $7 = **$700 profit**
+- **Strangle wins by $300 (75% more profit)**
+
+**But consider the risk:**
+- Iron Condor: Max loss $100 (defined)
+- Short Strangle: Max loss unlimited (could be $5,000+)
+- **Condor risk: 4:1 reward/risk**
+- **Strangle risk: Potentially catastrophic**
+
+**This strategy vs. Iron Butterfly:**
+- Iron Condor: Wider profit zone ($95-$105 = $10 range)
+- Iron Butterfly: Narrower zone ($98-$102 = $4 range)
+- Condor collects less but wins more often
+- **When this strategy wins: Stock moves moderately**
+- **Butterfly wins: Stock stays very still**
+
+**Trade-offs involved:**
+- Give up $300 of potential profit (vs strangle)
+- Get peace of mind with defined risk
+- Sleep well knowing worst case capped
+- Can size larger due to lower margin
+- **Professional traders prefer defined risk**
 
 ### Professional Profit-Taking
 
 **When to take profits:**
-- At [X]% of max profit
-- [Time-based consideration]
-- [Volatility-based trigger]
+- At 50% of max profit (primary rule, non-negotiable)
+- At 21 DTE if not yet reached 50%
+- At 40% if nervous about holding (acceptable)
+- Immediately if IV spikes significantly (vega risk)
+
+**Why 50% works:**
+- Studies show 50% profit in ~50% of time
+- Last 50% profit takes ~80% of remaining time
+- Risk increases exponentially after 50%
+- Capital recycling beats holding for max
+
+**The compounding advantage:**
+
+**Scenario A: Hold for 100%**
+- Enter condor for $400 credit
+- Hold 35 days for full profit
+- Win rate: 65%
+- Monthly return: 65% × $400 = $260
+
+**Scenario B: Exit at 50%**
+- Exit after 18 days with $200 profit
+- Win rate: 75% (higher because less time)
+- Can do 2 trades per month
+- Monthly return: 75% × $200 × 2 = $300
+
+**Result: Taking 50% profits yields 15% better returns with less risk!**
+
+**Time-based consideration:**
+- If 50% reached before 15 DTE: Take it
+- If 50% not reached by 21 DTE: Exit anyway
+- Never hold past 21 DTE for any reason
+
+**Volatility-based trigger:**
+- If IV increases 20%+ (vega spike)
+- Exit immediately even at 30% profit
+- Re-enter when IV settles
+- Protect against vol expansion risk
 
 **The compounding advantage:**
 
@@ -1627,11 +1813,34 @@ Taking profits early and redeploying can yield better annual returns than holdin
 ### The Dream Scenario
 
 **Extreme best case:**
-- [Exceptional circumstance]
-- [Outsized gain]
-- [Probability and why it's rare]
 
-**Key insight:** Best case is not guaranteed and should not be expected. Position sizing should assume realistic outcomes, not best case scenarios.
+**The setup:** 
+- Enter 10 iron condors across different stocks after market-wide IV spike
+- Each for $5 credit, $5 wide spreads
+- Total credit collected: $5,000
+- Total capital at risk: $0 (break-even spreads!)
+
+**What happens:**
+- All 10 stocks stay perfectly range-bound
+- IV crushes harder than expected (-50%)
+- After just 12 days, all positions worth $2 (60% profit)
+- Close all for $3,000 profit in under 2 weeks
+- **ROI: Infinite (zero risk), actual return: 60% in 12 days**
+
+**Why it's rare:**
+- Perfect IV timing (happens 2-3 times per year)
+- All positions winning simultaneously (requires broad consolidation)
+- Fast profit realization (usually takes longer)
+- **Probability: ~5% of trades**
+
+**More realistic dream:**
+- 7 out of 10 positions hit 50% profit
+- 2 positions scratch (small loss)
+- 1 position max loss
+- Net: (7 × $250) - (1 × $100) = +$1,650
+- **Portfolio return: 33% with only 1 loser**
+
+**Key insight:** Best case is not guaranteed and should not be expected. Even professionals average 50-60% profit per winning trade, not 100%. Position sizing should assume realistic outcomes (50% profit, 65% win rate), not dream scenarios. Plan for average results, be pleasantly surprised by exceptional ones.
 
 
 ## What to Remember

@@ -472,29 +472,34 @@ nav:
           - Theoretical Impossibility Results: ch14/limits_of_learning_in_finance/theoretical_impossibility_results.md
 
   - 15 Option Strategies:
-      - 15.1 Directional:
+      - 15.1 Pure Directional:
           - Long Calls and Puts: ch15/option_strategies/long_calls_and_puts.md
           - Covered Calls & CSPs: ch15/option_strategies/covered_calls_and_cash_secured_puts.md
           - Protective Puts & Collars: ch15/option_strategies/protective_put_and_collar.md
           - Wheel Strategy: ch15/option_strategies/wheel_strategy.md
-      - 15.2 Greek-Driven Payoffs:  
+      - 15.2 Directional Income:
+          - Short Call Spread: ch15/option_strategies/short_call_spread.md
+          - Short Put Spread: ch15/option_strategies/short_put_spread.md
+      - 15.3 Volatility-Driven:  
           - Straddle and Strangle: ch15/option_strategies/straddle_strangle.md
           - Strips and Straps: ch15/option_strategies/strips_and_straps.md
-      - 15.3 Defined Risk:
+      - 15.4 Defined Risk & Reward:
           - Vertical Spreads: ch15/option_strategies/vertical_spreads.md
           - Credit Spreads: ch15/option_strategies/credit_spreads.md
-      - 15.4 Multi-Leg Structures:  
+      - 15.5 Butterflies & Condors:  
           - Butterflies: ch15/option_strategies/butterfly.md
           - Iron Butterflies: ch15/option_strategies/iron_condor_and_iron_butterfly.md
           - Broken Wing Butterflies: ch15/option_strategies/broken_wing_butterflies.md
           - Condors: ch15/option_strategies/condors.md
           - Iron Condors: ch15/option_strategies/iron_condors.md
           - Broken Wing Condors: ch15/option_strategies/broken_wing_condors.md
-      - 15.5 Advanced Variations:  
+          - Jade Lizard: ch15/option_strategies/jade_lizard.md
+          - Reverse Jade Lizard: ch15/option_strategies/reverse_jade_lizard.md
+      - 15.6 Spreads: 
+          - Spreads: ch15/option_strategies/spreads.md 
           - Ratio Spreads: ch15/option_strategies/ratio_spreads.md
           - Back Spreads: ch15/option_strategies/backspreads.md
-          - Jade Lizard: ch15/option_strategies/jade_lizard.md
-      - 15.6 Equivalent Structures:  
+      - 15.7 Equivalent Structures:  
           - Synthetic Positions: ch15/option_strategies/synthetic_positions.md
           - Box Spreads: ch15/option_strategies/box_spreads.md
 
