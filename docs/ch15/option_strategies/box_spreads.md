@@ -41,14 +41,17 @@ $$
 **Structure (Long Box):**
 
 **Bull Call Spread:**
+
 - Buy lower strike call ($K_L = 100$ call)
 - Sell higher strike call ($K_H = 105$ call)
 
 **Bear Put Spread:**
+
 - Buy higher strike put ($K_H = 105$ put)
 - Sell lower strike put ($K_L = 100$ put)
 
 **Combined position (Long Box):**
+
 - **Buy:** $100 call + $105 put
 - **Sell:** $105 call + $100 put
 - **Net:** 4-leg option combination
@@ -82,10 +85,12 @@ $110 | $5 ($105 - $100) | $0 (both OTM) | **$5**
 **When to use:** Sell box if market price > theoretical value
 
 **Structure:**
+
 - **Sell:** $100 call + $105 put (collect premium)
 - **Buy:** $105 call + $100 put (pay premium)
 
 **Guaranteed outcome:**
+
 - Collect net credit now
 - Pay $K_H - K_L$ at expiration
 - **Profit if:** Net credit > $(K_H - K_L) \times e^{-rT}$
@@ -160,6 +165,7 @@ A long box is equivalent to:
 - **Theoretical box value:** $5 \times e^{-0.04 \times 1} = $5 \times 0.9608 = $4.804$
 
 **If you buy box for $4.75:**
+
 - Pay $4.75 now
 - Receive $5.00 at expiration
 - **Profit:** $5.00 - $4.75 = $0.25 (5.26% return)
@@ -264,11 +270,13 @@ A long box is equivalent to:
 - **Theoretical value:** $5 \times e^{-0.05 \times 0.0822} = $5 \times 0.9959 = $4.98$
 
 **Market prices:**
+
 - $95 call: $8.50, $100 call: $4.20 → Bull call spread: $4.30
 - $100 put: $3.80, $95 put: $1.50 → Bear put spread: $2.30
 - **Box cost:** $4.30 + $2.30 = $4.60
 
 **Arbitrage:**
+
 - Pay $4.60 now
 - Receive $5.00 at expiration
 - **Profit: $0.40** (risk-free!)
@@ -315,11 +323,13 @@ $$
 **Scenario:** Options imply high financing cost (put prices rich relative to calls)
 
 **Setup:**
+
 - Stock hard-to-borrow (GME, AMC during short squeeze)
 - Borrowing cost: 50% annually (insane)
 - This gets embedded in put prices (puts expensive)
 
 **Trade:**
+
 - Sell box (collect rich premium from expensive puts)
 - Implied rate in box: 30% (still high, but less than 50%)
 - **Lock in 30% lending rate** (better than 0% in T-bills)
@@ -500,6 +510,7 @@ American options can be exercised BEFORE expiration. If one leg gets assigned ea
 **Example disaster:**
 
 **Setup:**
+
 - Long box: $95/$100 strikes
 - Stock at $110
 - Deep ITM $100 call assigned early (counterparty exercises)
@@ -822,6 +833,7 @@ Let me fix the example:
 **Actually, let me try SHORT box (sell overpriced):**
 
 **Market prices (box overpriced):**
+
 - Box trading at $10.25 (can sell for this)
 - Theoretical: $9.96
 - **Edge: $0.29**

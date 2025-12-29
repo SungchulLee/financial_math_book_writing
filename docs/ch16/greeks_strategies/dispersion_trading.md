@@ -2,11 +2,36 @@
 
 **Dispersion trading** is a strategy where you profit from the difference between index volatility and the weighted average of individual stock volatilities by exploiting the correlation structure of the market.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_correlation.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 1:** Dispersion Trading Correlation visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_pnl.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 2:** Dispersion Trading Pnl visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_realized_implied.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 3:** Dispersion Trading Realized Implied visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_vol_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 4:** Dispersion Trading Vol Comparison visualization.
+
 ---
 
 ## The Core Insight
 
 **The fundamental idea:**
+
 - An index (like S&P 500) has its own volatility
 - Each stock in the index also has its own volatility
 - **These are NOT the same thing!**
@@ -19,6 +44,7 @@ $$
 $$
 
 **In plain English:**
+
 - Index volatility = individual volatilities + correlation effects
 - When correlation is high → index vol is high (stocks move together)
 - When correlation is low → index vol is low (stocks offset each other)
@@ -73,18 +99,21 @@ $$
 ### The Fundamental Trade
 
 **Classic "Long Dispersion" (Most Common):**
+
 1. Sell index options (short index volatility) 
 2. Buy individual stock options (long individual stock volatilities)
 3. Delta hedge everything
 4. Profit when stocks "disperse" (move independently, low correlation)
 
 **"Short Dispersion" (Opposite):**
+
 1. Buy index options (long index volatility)
 2. Sell individual stock options (short individual stock volatilities)
 3. Delta hedge everything
 4. Profit when stocks "correlate" (move together, high correlation)
 
 **What you're betting on:**
+
 - **Long dispersion:** "Stocks will move independently (low correlation)"
 - **Short dispersion:** "Stocks will move together (high correlation)"
 
@@ -142,6 +171,7 @@ where:
 ### What Is Implied Correlation?
 
 **From options, we observe:**
+
 - Index implied volatility: $\sigma_{\text{index}}^{\text{implied}}$ (from index options)
 - Individual implied volatilities: $\sigma_i^{\text{implied}}$ (from single-stock options)
 
@@ -156,6 +186,7 @@ $$
 ### Example: Calculating Implied Correlation
 
 **Market data:**
+
 - SPX (S&P 500 index) IV = 20%
 - Average single-stock IV = 35%
 - Equal-weighted basket of 10 stocks
@@ -170,6 +201,7 @@ Solving: implied correlation ≈ 50%
 **Interpretation:** Market is pricing in 50% correlation among stocks.
 
 **Your trade:**
+
 - If you think realized correlation will be < 50% → long dispersion
 - If you think realized correlation will be > 50% → short dispersion
 
@@ -199,6 +231,7 @@ $$
 ### 2. Vega P&L (Side Effect)
 
 **Your position has residual vega exposure:**
+
 - Short index vega (short index options)
 - Long individual vega (long stock options)
 - Net vega ≠ 0 (usually slightly long vega overall)
@@ -208,6 +241,7 @@ $$
 ### 3. Gamma P&L (Rebalancing)
 
 **From delta hedging rebalancing:**
+
 - Short gamma on index
 - Long gamma on individuals
 - Net gamma ≈ 0 if weighted properly
@@ -216,6 +250,7 @@ $$
 ### 4. Net Theta (Carry)
 
 **Time decay:**
+
 - Collect theta from short index options
 - Pay theta from long individual options
 - Net theta is usually close to zero (but not exactly)
@@ -261,6 +296,7 @@ Over 30 days:
 - Realized correlation: 40%
 
 **Your P&L:**
+
 - **Individual options (long gamma):** Profit from stocks bouncing around → +$10,000
 - **Index options (short gamma):** Small loss from index not moving much → -$2,000
 - **Net P&L:** +$8,000 ✓
@@ -276,6 +312,7 @@ Over 30 days:
 - Realized correlation: 80%
 
 **Your P&L:**
+
 - **Individual options (long gamma):** Profit from stocks moving → +$5,000
 - **Index options (short gamma):** Large loss from index moving a lot → -$12,000
 - **Net P&L:** -$7,000 ✗
@@ -289,28 +326,33 @@ Over 30 days:
 ### Long Dispersion (Most Common)
 
 **Position:**
+
 - Short index options
 - Long individual stock options
 - Delta hedge everything
 
 **Bet:**
+
 - Realized correlation < Implied correlation
 - "Stocks will move independently"
 - "Dispersion will increase"
 
 **When to use:**
+
 - High market stress (correlations typically elevated)
 - After crashes (correlation spike, likely to revert)
 - Implied correlation > historical average
 - Market pricing in too much "together" movement
 
 **Risk profile:**
+
 - Limited profit (can't make more than premium collected/paid difference)
 - Unlimited loss if correlation spikes
 - Theta is approximately neutral
 - Positive convexity (gamma)
 
 **Typical market environment:**
+
 - Crisis aftermath
 - High VIX
 - Market pricing in systemic risk
@@ -318,28 +360,33 @@ Over 30 days:
 ### Short Dispersion
 
 **Position:**
+
 - Long index options
 - Short individual stock options
 - Delta hedge everything
 
 **Bet:**
+
 - Realized correlation > Implied correlation
 - "Stocks will move together"
 - "Dispersion will decrease"
 
 **When to use:**
+
 - Low market stress (correlations low)
 - Calm markets (correlation likely to spike)
 - Implied correlation < historical average
 - Before systemic events
 
 **Risk profile:**
+
 - Limited profit
 - Unlimited loss if correlation crashes
 - Theta is approximately neutral
 - Negative convexity (gamma)
 
 **Typical market environment:**
+
 - Calm bull markets
 - Low VIX
 - Complacent markets
@@ -359,20 +406,24 @@ Over 30 days:
    - Higher index IV → higher implied correlation
    
 2. **Supply/demand imbalance:** 
+
    - Many institutions want to hedge systematic risk (buy index puts)
    - Fewer want to hedge individual stock risk
    - Creates structural bid for index options
 
 3. **Behavioral bias:**
+
    - Market overestimates how much stocks move together
    - Fear of systemic risk is overstated
 
 4. **Diversification illusion:**
+
    - Index options price in less diversification benefit than actually exists
 
 **Result:** Long dispersion (short implied correlation) has positive expected return on average!
 
 **This is similar to:**
+
 - Volatility risk premium (IV > realized vol)
 - But for correlation instead of volatility
 
@@ -392,21 +443,25 @@ Over 30 days:
 ### Dispersion vs. Gamma Scalping
 
 **Similarities:**
+
 - Both involve delta hedging
 - Both have gamma exposure
 - Both profit from realized movement
 
 **Differences:**
+
 - **Gamma scalping:** Single asset, want it to move
 - **Dispersion:** Multiple assets, want them to move INDEPENDENTLY
 
 ### Dispersion vs. Vega Trading
 
 **Similarities:**
+
 - Both trade mispriced volatility metrics
 - Both delta hedge
 
 **Differences:**
+
 - **Vega:** Trade level of volatility (high vs. low)
 - **Dispersion:** Trade structure of volatility (together vs. independent)
 
@@ -415,6 +470,7 @@ Over 30 days:
 **These are almost the same!**
 
 **Subtle difference:**
+
 - **Dispersion trading:** Implemented via options (trade implied correlation)
 - **Correlation trading:** Can use variance swaps, correlation swaps (cleaner exposure)
 - Dispersion trading is really "correlation trading via options"
@@ -428,18 +484,21 @@ Over 30 days:
 ### 1. Identify Mispriced Correlation
 
 **Analysis:**
+
 - Calculate current implied correlation from option prices
 - Compare to historical realized correlation
 - Look at correlation percentile (historical ranking)
 - Identify regime (crisis vs. calm)
 
 **Tools:**
+
 - Implied correlation calculators
 - Historical correlation charts
 - Correlation indices (e.g., CBOE correlation index)
 - Cross-asset correlation analysis
 
 **Rule of thumb:**
+
 - Implied correlation > 70% → consider long dispersion
 - Implied correlation < 40% → consider short dispersion
 
@@ -459,6 +518,7 @@ Over 30 days:
 - Practical and efficient
 
 **Considerations:**
+
 - Liquidity (need tight option spreads)
 - Sector diversification
 - Weighting scheme (equal-weighted or market-cap weighted)
@@ -468,16 +528,19 @@ Over 30 days:
 **For long dispersion:**
 
 **Sell index options:**
+
 - ATM straddles (max vega)
 - Size based on portfolio risk
 - Shorter-dated options (higher theta)
 
 **Buy individual options:**
+
 - ATM straddles on each stock
 - Weight to match index vega
 - Match maturity with index options
 
 **Delta hedge:**
+
 - Hedge index position (with futures or ETF)
 - Hedge each stock individually
 - Continuous rebalancing
@@ -491,6 +554,7 @@ $$
 $$
 
 **Example:**
+
 - Index straddle vega: $10,000 per 1% IV
 - Each stock straddle vega: $1,000 per 1% IV
 - Use 10 stock positions to match
@@ -500,11 +564,13 @@ $$
 ### 5. Manage the Trade
 
 **Daily tasks:**
+
 - Rebalance delta on index and all stocks
 - Monitor implied vs. realized correlation
 - Adjust weights as needed
 
 **Risk management:**
+
 - Set correlation stop-loss (if correlation moves against you)
 - Monitor individual position risks
 - Be aware of events (earnings, etc.)
@@ -512,6 +578,7 @@ $$
 ### 6. Exit Strategy
 
 **Exit when:**
+
 - Correlation converges to your target
 - Time decay becomes too large
 - Risk/reward deteriorates
@@ -526,6 +593,7 @@ $$
 ### 1. Operational Complexity
 
 **Managing many positions:**
+
 - Must trade and hedge 10-50 assets simultaneously
 - Delta rebalancing is labor-intensive
 - Requires sophisticated systems
@@ -534,6 +602,7 @@ $$
 ### 2. Transaction Costs
 
 **Costs multiply:**
+
 - Bid-ask spreads on 10-50 options
 - Delta hedging costs on all assets
 - Frequent rebalancing
@@ -542,6 +611,7 @@ $$
 ### 3. Imperfect Correlation Exposure
 
 **Reality:**
+
 - Also have vega exposure (not purely correlation)
 - Gamma P&L from rebalancing
 - Theta drift
@@ -550,6 +620,7 @@ $$
 ### 4. Model Risk
 
 **Assumptions:**
+
 - Implied correlation calculation has assumptions
 - Basket must track index well
 - Correlation is not constant (regime changes)
@@ -557,6 +628,7 @@ $$
 ### 5. Liquidity Risk
 
 **Problems:**
+
 - Individual stock options less liquid than index
 - Can't exit all positions simultaneously
 - Slippage on large positions
@@ -564,6 +636,7 @@ $$
 ### 6. Event Risk
 
 **Individual stock events:**
+
 - Earnings announcements
 - Mergers, acquisitions
 - Regulatory actions
@@ -572,6 +645,7 @@ $$
 ### 7. Tail Risk
 
 **Extreme scenarios:**
+
 - Market crashes → correlation spikes to 1
 - Long dispersion can suffer massive losses
 - "Everything correlates in a crisis"
@@ -664,6 +738,7 @@ $$
 ### For Long Dispersion
 
 **Favorable conditions:**
+
 - **High implied correlation** (> 70% or historically elevated)
 - **Post-crisis environment** (correlations spiked, likely to revert)
 - **Market stress declining** (fear subsiding)
@@ -671,6 +746,7 @@ $$
 - **Panic has peaked** (correlation about to decline)
 
 **Catalysts:**
+
 - Crisis aftermath (2008-2009, COVID-2020)
 - Market calming after systemic shock
 - Central bank intervention (reduces systemic risk)
@@ -684,12 +760,14 @@ $$
 ### For Short Dispersion
 
 **Favorable conditions:**
+
 - **Low implied correlation** (< 40% or historically depressed)
 - **Calm bull market** (complacency)
 - **Low VIX** (< 15)
 - **Extended rally** (correlation about to spike)
 
 **Catalysts:**
+
 - Building systemic risk
 - Overdue correction
 - Macro shocks on horizon
@@ -710,6 +788,7 @@ $$
 - Sufficient time to expiration (1-3 months)
 
 **Unfavorable conditions:**
+
 - Mid-range correlation (40-60%)
 - Unclear regime
 - High transaction costs
@@ -724,6 +803,7 @@ $$
 ### Correlation Stop-Loss
 
 **Set limits:**
+
 - If long dispersion and correlation spikes 20% → exit
 - If short dispersion and correlation crashes 20% → exit
 - Don't fight major correlation regime changes
@@ -731,6 +811,7 @@ $$
 ### Vega Neutrality
 
 **Maintain:**
+
 - Monitor net vega exposure
 - Adjust weights if IVs change significantly
 - Goal: pure correlation exposure
@@ -738,6 +819,7 @@ $$
 ### Individual Position Limits
 
 **Risk controls:**
+
 - Maximum loss per stock
 - Event risk management (reduce size before earnings)
 - Diversification across sectors
@@ -745,6 +827,7 @@ $$
 ### Leverage Constraints
 
 **Capital management:**
+
 - Don't over-leverage
 - Correlation moves can be swift
 - Maintain margin cushion
@@ -758,17 +841,20 @@ $$
 ### Correlation Swaps
 
 **Structure:**
+
 - Direct bet on correlation
 - Payoff: (Realized correlation - Strike) × Notional
 - No options, no delta hedging
 - Pure correlation exposure
 
 **Advantages:**
+
 - No gamma, vega, theta noise
 - No rebalancing needed
 - Clean P&L
 
 **Disadvantages:**
+
 - OTC only (not exchange-traded)
 - Less liquid
 - Counterparty risk
@@ -777,6 +863,7 @@ $$
 ### Variance Dispersion
 
 **Structure:**
+
 - Trade variance (volatility squared) instead of volatility
 - More mathematically clean
 - Better replication properties
@@ -790,6 +877,7 @@ $$
 ### Hedge Funds
 
 **Strategy:**
+
 - Dedicated volatility arbitrage funds
 - Run long dispersion as core position
 - Harvest dispersion premium
@@ -798,6 +886,7 @@ $$
 ### Market Makers
 
 **Strategy:**
+
 - Manage correlation risk from customer trades
 - Client buys index options → creates short correlation risk
 - Hedge with dispersion trades
@@ -805,6 +894,7 @@ $$
 ### Risk Parity Funds
 
 **Strategy:**
+
 - Need to understand correlation
 - Dispersion trades help manage correlation risk
 - Portfolio diversification
@@ -812,6 +902,7 @@ $$
 ### Proprietary Trading
 
 **Strategy:**
+
 - Tactical trades around events
 - Exploit correlation dislocations
 - Mean reversion strategies
@@ -830,11 +921,13 @@ $$
 ### The Fundamental Trade
 
 **Long Dispersion (most common):**
+
 - Short index options + Long individual options
 - Profit when correlation < implied (stocks move independently)
 - Structural edge (dispersion premium)
 
 **Short Dispersion:**
+
 - Long index options + Short individual options  
 - Profit when correlation > implied (stocks move together)
 - Counter-trend trade

@@ -2,6 +2,22 @@
 
 **IV Rank & Percentile strategies** are systematic approaches to options trading based on statistical measures of implied volatility relative to historical ranges, enabling traders to identify when options are expensive or cheap and deploy appropriate strategies that profit from mean reversion of volatility levels.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_by_rank.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_calculation.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_performance.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_zones.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -144,17 +160,20 @@ $$
 **Example where they differ:**
 
 **Scenario:**
+
 - 252 trading days
 - IV spent 240 days between 15-25%
 - Had one panic spike to 80% (lasted 3 days)
 - Current IV: 30%
 
 **IVR calculation:**
+
 - Min: 15%, Max: 80%, Current: 30%
 - IVR = $(30-15)/(80-15) \times 100 = 23\%$
 - **Suggests IV is LOW**
 
 **IVP calculation:**
+
 - Days below 30%: ~230 out of 252
 - IVP = $230/252 \times 100 = 91\%$
 - **Suggests IV is HIGH**
@@ -170,11 +189,13 @@ $$
 **Why not just use absolute IV?**
 
 **Stock A:**
+
 - Current IV: 30%
 - Typical range: 15-25%
 - **30% is HIGH for this stock**
 
 **Stock B:**
+
 - Current IV: 30%
 - Typical range: 40-80%
 - **30% is LOW for this stock**
@@ -269,11 +290,13 @@ where:
 **Implications:**
 
 **If IV at 90th percentile:**
+
 - $E[\text{IV}_{\text{1-month}}]$ likely lower than current
 - **Sell options:** Profit from decline
 - Positive edge from mean reversion
 
 **If IV at 10th percentile:**
+
 - $E[\text{IV}_{\text{1-month}}]$ likely higher than current
 - **Buy options:** Profit from increase
 - Positive edge from mean reversion
@@ -304,6 +327,7 @@ $$
 $$
 
 **The bet:**
+
 - Current high IV will decrease (mean revert)
 - Realized volatility < Implied volatility
 - Stock stays in range
@@ -329,6 +353,7 @@ $$
 $$
 
 **The bet:**
+
 - IV in normal range, no extreme bet
 - Term structure opportunities
 - Time decay favorable
@@ -356,6 +381,7 @@ $$
 $$
 
 **The bet:**
+
 - Current low IV will increase (mean revert)
 - Buying options cheap
 - Directional move expected
@@ -380,10 +406,12 @@ $$
 $$
 
 **For short vega positions:**
+
 - If IV decreases (mean reversion): **Profit** (negative vega × negative IV change = positive)
 - Vega net < 0, so $\delta\sigma < 0$ creates profit
 
 **Example:**
+
 - Short strangle vega: -$500 per 1% IV
 - IV drops from 70th percentile (45%) to 50th percentile (30%): -15 points
 - **P&L:** -500 × (-15) = **+$7,500 profit**
@@ -395,10 +423,12 @@ $$
 $$
 
 **For short premium:**
+
 - Positive theta daily
 - Compounds over time
 
 **Example:**
+
 - Iron condor theta: +$50/day
 - 30 days: +$1,500 collected
 
@@ -409,10 +439,12 @@ $$
 $$
 
 **For short gamma:**
+
 - Large moves hurt
 - This is the risk of high IV strategies
 
 **Example:**
+
 - Short gamma: -20
 - Stock moves 5%: Loss ≈ -$500
 
@@ -427,10 +459,12 @@ $$
 **1. IV Expansion P&L (Primary Edge):**
 
 **For long vega positions:**
+
 - If IV increases (mean reversion): **Profit**
 - Positive vega × positive IV change = profit
 
 **Example:**
+
 - Long straddle vega: +$600 per 1% IV
 - IV rises from 10th percentile (15%) to 40th percentile (25%): +10 points
 - **P&L:** +600 × 10 = **+$6,000 profit**
@@ -438,16 +472,19 @@ $$
 **2. Theta P&L (Cost):**
 
 **For long premium:**
+
 - Negative theta daily
 - Decay cost
 
 **Example:**
+
 - Long straddle theta: -$30/day
 - 30 days: -$900 cost
 
 **3. Gamma P&L (Benefit):**
 
 **For long gamma:**
+
 - Benefits from moves
 - Profit from realized volatility
 
@@ -458,6 +495,7 @@ $$
 ### 1. High IV Strategies (IVR/IVP > 70)
 
 **Philosophy:**
+
 - Options are expensive
 - Mean reversion expected downward
 - Sell premium
@@ -467,23 +505,27 @@ $$
 #### A. Short Strangle
 
 **Structure:**
+
 - Sell OTM put
 - Sell OTM call
 - Undefined risk
 
 **When to use:**
+
 - IVR > 80 (very high)
 - Strong mean reversion expected
 - Accept unlimited risk
 - Can manage actively
 
 **Example:**
+
 - Stock at $100, IVR = 85
 - Sell $90 put @ $3.50
 - Sell $110 call @ $3.20
 - **Credit: $6.70** per strangle
 
 **Profit driver:**
+
 - IV drops from 85 → 50 percentile
 - Both options lose value
 - Keep premium
@@ -491,16 +533,19 @@ $$
 #### B. Iron Condor
 
 **Structure:**
+
 - Short strangle with wings
 - Defined risk
 
 **When to use:**
+
 - IVR > 70
 - Want defined risk
 - Range-bound expectation
 - Systematic approach
 
 **Example:**
+
 - Stock at $100, IVR = 75
 - Sell $95 put, Buy $90 put
 - Sell $105 call, Buy $110 call
@@ -508,6 +553,7 @@ $$
 - **Max risk: $2.50** (width - credit)
 
 **Profit driver:**
+
 - IV mean reversion
 - Time decay
 - Stock stays in range
@@ -515,22 +561,26 @@ $$
 #### C. Covered Call (High IV)
 
 **Structure:**
+
 - Own 100 shares
 - Sell OTM call
 
 **When to use:**
+
 - IVR > 60
 - Stock you own
 - Willing to cap upside
 - Generate income
 
 **Example:**
+
 - Own 100 shares @ $100
 - IVR = 70
 - Sell $105 call @ $4.50
 - **Income: $450**
 
 **Profit driver:**
+
 - High IV makes call expensive
 - Keep premium if stock < $105
 - Lower effective cost basis
@@ -538,6 +588,7 @@ $$
 ### 2. Medium IV Strategies (IVR/IVP 30-70)
 
 **Philosophy:**
+
 - Options fairly priced
 - No strong IV mean reversion bet
 - Focus on structure, theta, direction
@@ -546,23 +597,27 @@ $$
 #### A. Calendar Spread
 
 **Structure:**
+
 - Sell front month
 - Buy back month
 - Same strike
 
 **When to use:**
+
 - IVR 40-60 (neutral)
 - Term structure opportunities
 - Range-bound
 - No extreme IV bet
 
 **Example:**
+
 - Stock at $100, IVR = 50
 - Sell 30-day $100 call @ $3.00
 - Buy 90-day $100 call @ $5.20
 - **Debit: $2.20**
 
 **Profit driver:**
+
 - Term structure
 - Theta from front month
 - Not relying on IV expansion/contraction
@@ -570,16 +625,19 @@ $$
 #### B. Diagonal Spread
 
 **Structure:**
+
 - Different strikes AND times
 - Directional component
 
 **When to use:**
+
 - IVR 35-65
 - Directional bias
 - Want theta benefit
 - Moderate complexity
 
 **Example:**
+
 - Stock at $100, IVR = 55
 - Buy 90-day $105 call @ $5.50
 - Sell 30-day $110 call @ $2.00
@@ -588,17 +646,20 @@ $$
 #### C. Butterfly Spread
 
 **Structure:**
+
 - Wings + body
 - Defined risk
 - Narrow profit range
 
 **When to use:**
+
 - IVR 40-60
 - Strong range conviction
 - Want defined risk
 - Smile opportunities
 
 **Example:**
+
 - Stock at $100, IVR = 50
 - Buy $95 call + $105 call
 - Sell 2× $100 calls
@@ -607,6 +668,7 @@ $$
 ### 3. Low IV Strategies (IVR/IVP < 30)
 
 **Philosophy:**
+
 - Options are cheap
 - Mean reversion expected upward
 - Buy premium
@@ -616,23 +678,27 @@ $$
 #### A. Long Straddle
 
 **Structure:**
+
 - Buy ATM call + ATM put
 - Unlimited profit potential
 - Defined risk
 
 **When to use:**
+
 - IVR < 20 (very low)
 - Expecting volatility spike
 - Directional uncertainty
 - Event anticipated
 
 **Example:**
+
 - Stock at $100, IVR = 15
 - Buy $100 call @ $2.50
 - Buy $100 put @ $2.30
 - **Debit: $4.80**
 
 **Profit driver:**
+
 - IV spikes to 50+ percentile
 - Or large move
 - Cheap entry point
@@ -640,23 +706,27 @@ $$
 #### B. Debit Spreads
 
 **Structure:**
+
 - Buy ITM or ATM
 - Sell OTM
 - Directional
 
 **When to use:**
+
 - IVR < 30
 - Directional bias
 - Want to buy options cheap
 - Defined risk
 
 **Example:**
+
 - Stock at $100, IVR = 25
 - Buy $100 call @ $5.50
 - Sell $110 call @ $2.00
 - **Debit: $3.50**
 
 **Profit driver:**
+
 - IV expansion
 - Directional move
 - Cheap initial purchase
@@ -664,23 +734,27 @@ $$
 #### C. Ratio Backspread
 
 **Structure:**
+
 - Sell fewer ITM
 - Buy more OTM
 - Can be credit or small debit
 
 **When to use:**
+
 - IVR < 25
 - Expecting big move + IV spike
 - Leveraged volatility play
 - Sophisticated
 
 **Example:**
+
 - Stock at $100, IVR = 20
 - Sell 1× $95 put @ $4.00
 - Buy 2× $90 puts @ $1.80
 - **Debit: $0.40** (or credit)
 
 **Profit driver:**
+
 - Large move + IV expansion
 - Leveraged gamma
 - Cheap long vega
@@ -688,6 +762,7 @@ $$
 ### 4. Transition Strategies (IV Moving Between Zones)
 
 **Philosophy:**
+
 - IV transitioning between levels
 - Adjust existing positions
 - Roll or close strategies
@@ -695,11 +770,13 @@ $$
 #### A. Rolling from High to Medium IV
 
 **Situation:**
+
 - Entered at IVR = 80
 - Now IVR = 55
 - Short premium position
 
 **Action:**
+
 - Close short strangles/ICs
 - Transition to calendars/diagonals
 - Lock in profits
@@ -708,11 +785,13 @@ $$
 #### B. Rolling from Low to Medium IV
 
 **Situation:**
+
 - Entered at IVR = 20
 - Now IVR = 50
 - Long premium position
 
 **Action:**
+
 - Close long straddles
 - Take profits from IV expansion
 - May enter neutral strategies
@@ -727,20 +806,24 @@ $$
 **Stock:** SPY at $450
 
 **IV Analysis:**
+
 - Current IV: 35%
 - 52-week range: 12-45%
 - **IVR:** $(35-12)/(45-12) \times 100 = 69.7\%$
 
 **IVP Analysis:**
+
 - Past 252 days
 - Days with IV below 35%: 198 days
 - **IVP:** $198/252 \times 100 = 78.6\%$
 
 **Conclusion:**
+
 - Both IVR and IVP ~70-79%
 - **IV is elevated → SELL PREMIUM**
 
 **Historical context:**
+
 - Average IV: 18%
 - Current 35% is 1.94× average
 - Mean reversion expected
@@ -750,15 +833,18 @@ $$
 **Short Strangle (45-day expiration):**
 
 **Position:**
+
 - Sell $435 put @ $6.80 (16-delta)
 - Sell $465 call @ $6.20 (16-delta)
 - **Total credit: $13.00** per strangle
 
 **Position size:**
+
 - 5 contracts
 - **Total credit: $6,500**
 
 **Greeks (per strangle):**
+
 - Delta: ≈ 0 (neutral)
 - Vega: -$85 per 1% IV (short vega)
 - Theta: +$65/day (positive theta)
@@ -769,6 +855,7 @@ $$
 **Breakevens:** $435 - $13 = $422 and $465 + $13 = $478
 
 **Management plan:**
+
 - Target profit: 50% of credit = $3,250
 - Stop loss: Stock breaks $430 or $470
 - Time stop: Close at 14 days to expiration
@@ -781,22 +868,26 @@ $$
 **Stock:** $451 (small move, still centered)
 
 **IV changes:**
+
 - IV drops: 35% → 22%
 - **IVR drops:** 70% → 30%
 - **IVP drops:** 79% → 40%
 
 **Position value:**
+
 - $435 put: Was $6.80, now $3.20 (IV decrease + time)
 - $465 call: Was $6.20, now $3.00 (IV decrease + time)
 - **Current value: $6.20** (to buy back)
 
 **P&L:**
+
 - Sold for: $13.00
 - Buy back: $6.20
 - **Profit: $6.80 per strangle**
 - **Total: 5 × $680 = $3,400** (52% profit)
 
 **Attribution:**
+
 - IV mean reversion: ~$4.50 of profit
 - Theta decay: ~$2.00 of profit
 - Stock position: ~$0.30 of profit
@@ -810,16 +901,19 @@ $$
 **Stock:** $468 (sharp move up)
 
 **Position at risk:**
+
 - $435 put: Nearly worthless
 - $465 call: Now ITM, worth ~$7.00
 
 **Action (management):**
+
 - Buy back entire strangle
 - $435 put: $0.50
 - $465 call: $7.00
 - **Cost: $7.50**
 
 **P&L:**
+
 - Sold for: $13.00
 - Buy back: $7.50
 - **Profit: $5.50** per strangle
@@ -839,22 +933,26 @@ $$
 **Stock:** $452 (barely moved)
 
 **IV changes:**
+
 - IV spikes: 35% → 55%
 - **IVR:** 70% → 100%
 - Extreme fear event
 
 **Position value:**
+
 - $435 put: Was $6.80, now $10.50 (IV spike despite time)
 - $465 call: Was $6.20, now $9.80 (IV spike)
 - **Current value: $20.30**
 
 **P&L:**
+
 - Sold for: $13.00
 - Current value: $20.30
 - **Loss: -$7.30** per strangle
 - **Total: -$3,650** (loss)
 
 **Decision:**
+
 - This violated the thesis (IV should drop)
 - Cut loss at -$3,650
 - IVR at 100% might be new opportunity (reverse)
@@ -870,20 +968,24 @@ $$
 **Stock:** Tech company at $200
 
 **IV Analysis:**
+
 - Current IV: 18%
 - 52-week range: 15-65%
 - **IVR:** $(18-15)/(65-15) \times 100 = 6\%$
 
 **IVP Analysis:**
+
 - Past 252 days
 - Days with IV below 18%: 25 days
 - **IVP:** $25/252 \times 100 = 9.9\%$
 
 **Conclusion:**
+
 - Both IVR and IVP < 10%
 - **IV is extremely depressed → BUY PREMIUM**
 
 **Historical context:**
+
 - Average IV: 35%
 - Current 18% is only 51% of average
 - IV expansion expected
@@ -894,15 +996,18 @@ $$
 **Long Straddle (60-day expiration):**
 
 **Position:**
+
 - Buy $200 call @ $7.50 (50-delta, IV = 18%)
 - Buy $200 put @ $7.20 (50-delta, IV = 18%)
 - **Total debit: $14.70** per straddle
 
 **Position size:**
+
 - 3 contracts
 - **Total cost: $4,410**
 
 **Greeks (per straddle):**
+
 - Delta: ≈ 0 (neutral)
 - Vega: +$140 per 1% IV (long vega)
 - Theta: -$25/day (negative theta cost)
@@ -913,6 +1018,7 @@ $$
 **Breakevens:** $200 ± $14.70 = $185.30 and $214.70
 
 **Management plan:**
+
 - Target profit: 50-100% ($4,410 - $8,820)
 - Time stop: Close by 30 days to expiration
 - IV target: If IVR reaches 50%+
@@ -925,23 +1031,27 @@ $$
 **Stock:** $205 (moderate move)
 
 **IV changes:**
+
 - IV expands: 18% → 32%
 - **IVR:** 6% → 34%
 - **IVP:** 10% → 55%
 - Normal mean reversion to average
 
 **Position value:**
+
 - $200 call: Now worth $13.50 (IV expansion + move + time)
 - $200 put: Now worth $5.80 (IV expansion, but OTM - time)
 - **Current value: $19.30**
 
 **P&L:**
+
 - Cost: $14.70
 - Current: $19.30
 - **Profit: $4.60** per straddle
 - **Total: 3 × $460 = $1,380** (31% profit)
 
 **Attribution:**
+
 - IV expansion: ~$3.50 of profit (main driver)
 - Directional move: ~$2.00 of profit
 - Theta decay: ~-$0.90 (cost)
@@ -958,22 +1068,26 @@ $$
 **Stock:** $220 (big earnings beat, surprise)
 
 **IV changes:**
+
 - IV spikes: 18% → 45%
 - **IVR:** 6% → 60%
 - Event + mean reversion
 
 **Position value:**
+
 - $200 call: Now worth $26.50 ($20 ITM + $6.50 time value at higher IV)
 - $200 put: Now worth $3.20 (OTM but IV elevated)
 - **Current value: $29.70**
 
 **P&L:**
+
 - Cost: $14.70
 - Current: $29.70
 - **Profit: $15.00** per straddle
 - **Total: 3 × $1,500 = $4,500** (102% profit)
 
 **Attribution:**
+
 - IV expansion: ~$7.00 of profit
 - Directional move: ~$9.00 of profit
 - Theta decay: ~-$1.00
@@ -990,27 +1104,32 @@ $$
 **Stock:** $198 (barely moved)
 
 **IV changes:**
+
 - IV stays low: 18% → 20%
 - **IVR:** 6% → 10%
 - No mean reversion yet
 
 **Position value:**
+
 - $200 call: Worth $3.80 (20 days left, just OTM)
 - $200 put: Worth $4.20 (20 days left, slightly ITM)
 - **Current value: $8.00**
 
 **P&L:**
+
 - Cost: $14.70
 - Current: $8.00
 - **Loss: -$6.70** per straddle
 - **Total: -$2,010** (46% loss)
 
 **Attribution:**
+
 - IV change: +$0.30 (small)
 - Theta decay: -$7.00 (ouch!)
 - Directional: $0
 
 **Decision:**
+
 - Thesis not playing out (IV didn't expand)
 - Cut loss at -46%
 - Live to fight another day
@@ -1026,15 +1145,18 @@ $$
 **Stock:** SPY at $480
 
 **IV Analysis:**
+
 - Current IV: 18%
 - 52-week range: 10-35%
 - **IVR:** $(18-10)/(35-10) \times 100 = 32\%$
 
 **IVP Analysis:**
+
 - Days with IV below 18%: 105 out of 252
 - **IVP:** $105/252 \times 100 = 42\%$
 
 **Conclusion:**
+
 - IVR = 32%, IVP = 42%
 - **Medium IV → Neutral strategy**
 - No strong mean reversion bet either way
@@ -1044,17 +1166,20 @@ $$
 **Iron Condor (45-day expiration):**
 
 **Position:**
+
 - Sell $470 put @ $3.20 (20-delta)
 - Buy $465 put @ $1.80 (15-delta)
 - Sell $490 call @ $3.00 (20-delta)
 - Buy $495 call @ $1.70 (15-delta)
 
 **Credit per IC:**
+
 - Put spread credit: $3.20 - $1.80 = $1.40
 - Call spread credit: $3.00 - $1.70 = $1.30
 - **Total credit: $2.70**
 
 **Risk per IC:**
+
 - Width: $5.00
 - Max loss: $5.00 - $2.70 = **$2.30**
 
@@ -1065,6 +1190,7 @@ $$
 **Profit range:** $470 to $490 (52 points wide, 10.8% range)
 
 **Management:**
+
 - Target: 50% of credit = $1,350
 - Stop: Stock breaks $468 or $492
 - Time: Close at 21 days (50% of time)
@@ -1076,11 +1202,13 @@ $$
 **IV:** 18% → 16% (slight decrease)
 
 **Position value:**
+
 - Put spread: $0.40
 - Call spread: $0.50
 - **Total: $0.90** (to buy back)
 
 **P&L:**
+
 - Credit received: $2.70
 - Buy back cost: $0.90
 - **Profit: $1.80** per IC
@@ -1099,16 +1227,19 @@ $$
 **Short Strangle strikes:**
 
 **Delta-based approach:**
+
 - Sell puts: 15-20 delta
 - Sell calls: 15-20 delta
 - **~80-85% probability OTM**
 
 **Standard deviation approach:**
+
 - 1 SD OTM: ~84% probability
 - 1.5 SD OTM: ~93% probability
 - 2 SD OTM: ~97% probability
 
 **Example:**
+
 - Stock $100, IV 40%, 30 days
 - 1 SD = $100 × 0.40 × \sqrt{30/365} = $11.50
 - Sell $88 put, $112 call (1 SD)
@@ -1116,11 +1247,13 @@ $$
 **Iron Condor strikes:**
 
 **Wing width selection:**
+
 - Narrow ($5 wide): Higher credit, higher risk
 - Medium ($10 wide): Balanced
 - Wide ($20 wide): Lower credit, safer
 
 **Short strikes:**
+
 - 1 SD from current price (20-30 delta)
 - **Max profit:** Want credit ≥ 33% of wing width
 - Example: $5 wide, target $1.65+ credit
@@ -1130,6 +1263,7 @@ $$
 **Goal:** Maximize leverage while controlling cost
 
 **Long Straddle:**
+
 - **ATM strikes** (50-delta each)
 - Maximum vega exposure
 - Centered for symmetry
@@ -1137,16 +1271,19 @@ $$
 **Debit Spreads:**
 
 **Aggressive (more vega):**
+
 - Buy ATM (50-delta)
 - Sell 1 SD OTM (20-30 delta)
 - Higher vega, higher cost
 
 **Conservative (cheaper):**
+
 - Buy 30-delta
 - Sell far OTM
 - Lower vega, defined risk
 
 **Example:**
+
 - Stock $100, IVR = 15%
 - Buy $100 call (50-delta) @ $5.00
 - Sell $110 call (25-delta) @ $2.00
@@ -1163,23 +1300,27 @@ $$
 **Optimal expiration:**
 
 **30-45 days (most common):**
+
 - High theta decay
 - Enough time for IV mean reversion
 - Liquid options
 - Standard for mechanical strategies
 
 **Why this range:**
+
 - Theta accelerates < 45 days
 - IV typically mean-reverts within 1-2 months
 - Good balance of time vs theta
 
 **Shorter term (7-21 days):**
+
 - Very high theta
 - Higher gamma risk
 - More active management
 - For experienced traders
 
 **Longer term (60-90 days):**
+
 - More time for mean reversion
 - Lower theta per day
 - More capital tied up
@@ -1192,23 +1333,27 @@ $$
 **Optimal expiration:**
 
 **60-90 days (most common):**
+
 - Enough time for IV expansion
 - Lower daily theta cost
 - Withstand short-term noise
 - Wait for catalyst
 
 **Why this range:**
+
 - IV cycles can take 1-3 months
 - Theta less painful with time
 - More room for unexpected delays
 
 **Longer term (90-180 days or LEAPS):**
+
 - Maximum time
 - Very expensive
 - For strong conviction
 - Catalyst-driven (earnings, product launch)
 
 **Shorter term (30-45 days):**
+
 - Cheaper
 - But theta painful
 - Need quick IV expansion
@@ -1250,21 +1395,25 @@ P&L: +$2,400 (48% of max)
 **Adjustment triggers:**
 
 **Profit target hit (50-75% of max):**
+
 - **Close position**
 - Don't wait for 100%
 - Redeploy capital
 
 **Stock approaching breakeven:**
+
 - Roll threatened side
 - Or close entire position
 - Don't let winner become loser
 
 **IV spikes higher (opposite of thesis):**
+
 - Reassess thesis
 - Consider closing
 - IVR > 85%: May cut loss
 
 **Time approaching (14 days):**
+
 - Gamma risk increasing
 - Roll or close
 - Avoid last 2 weeks usually
@@ -1291,21 +1440,25 @@ P&L: +$2,400 (48% of max)
 **Adjustment triggers:**
 
 **IV expands to target (IVR > 50%):**
+
 - **Close position**
 - Thesis achieved
 - Lock in profit
 
 **Major move occurs:**
+
 - May close if profit target hit
 - Or hold for more IV expansion
 - Depends on scenario
 
 **Nothing happens (theta grinding):**
+
 - At 50% time elapsed: Reassess
 - If no IV expansion: Consider exiting
 - Don't let theta eat all value
 
 **IV drops further (adverse):**
+
 - Averaging down risky
 - May need to accept loss
 - Set max loss tolerance (50% of debit)
@@ -1320,6 +1473,7 @@ P&L: +$2,400 (48% of max)
 ✓ Normal management rules apply
 
 **Management:**
+
 - Follow standard calendar/diagonal rules
 - No special IV considerations
 - Focus on price action and Greeks
@@ -1462,6 +1616,7 @@ Total: +$3,000
 - Normal market conditions
 
 **Strategies:**
+
 - Calendars
 - Diagonals
 - Butterflies
@@ -1596,6 +1751,7 @@ $$
 where $\phi$ = autoregressive coefficient
 
 **Example:**
+
 - If $\phi = 0.95$ (daily persistence)
 - Half-life = $-\ln(2)/\ln(0.95) = 13.5$ days
 - **Takes ~14 days for IV to revert halfway**
@@ -1725,11 +1881,13 @@ target = 'iv_change_30d'
 ```
 
 **Model predicts:**
+
 - Probability of IV increase
 - Expected IV change
 - Optimal entry timing
 
 **Enhance strategy:**
+
 - Not just IVR > 70%, but **predicted** to revert
 - Timing based on ML signal
 - Higher win rates
@@ -1743,6 +1901,7 @@ target = 'iv_change_30d'
 **Setup:**
 
 **SPY IV levels:**
+
 - Pre-COVID (Feb 2020): IV = 12%
 - March 16, 2020: IV = 80%
 - 52-week range: 9-85%
@@ -1771,6 +1930,7 @@ Sell premium at IVR = 93%:
 - **Risk:** Could gap down more
 
 **What happened:**
+
 - Those who sold premium March 16-23: Massive losses initially
 - Stock dropped to $218 (March 23)
 - But if managed... eventual profits as IV collapsed
@@ -1783,6 +1943,7 @@ Wait for stabilization:
 - **Lower credit but safer**
 
 **What happened:**
+
 - April entries: Very profitable
 - IV mean-reverted April-July
 - IVR from 75% → 30%
@@ -1799,6 +1960,7 @@ Wait for stabilization:
 **Setup:**
 
 **SPY IV levels (Summer 2017):**
+
 - Current IV: 9%
 - 52-week range: 9-18%
 - **IVR:** 0% (at historical low!)
@@ -1814,6 +1976,7 @@ Wait for stabilization:
 **The trade:**
 
 **Multiple traders bought straddles/strangles:**
+
 - Long straddles at ATM
 - Cost: Very cheap (low IV)
 - Time frame: 60-90 days
@@ -1827,11 +1990,13 @@ Wait for stabilization:
 - Long straddles very profitable
 
 **Then:**
+
 - IV settled back down to 10-12%
 - Those who closed: Profits
 - Those who held: Gave back some gains
 
 **Performance:**
+
 - Early closers: +60-120% profits
 - Long holders: +20-40% profits
 
@@ -2223,6 +2388,7 @@ $$
 - Well-documented empirically
 
 **Example:**
+
 - Stock's average IV: 25%
 - Currently at 50% (IVR = 90%)
 - History: Always reverted within 1-3 months
@@ -2249,11 +2415,13 @@ $$
 ### Time Frames
 
 **For selling premium (high IVR):**
+
 - **Optimal:** 30-45 days
 - High theta, enough time for mean reversion
 - Close at 50% profit or 21 DTE
 
 **For buying premium (low IVR):**
+
 - **Optimal:** 60-90 days
 - Lower theta cost, time for expansion
 - Close when IVR > 50% or target hit
@@ -2317,18 +2485,21 @@ $$
 **Realistic targets (systematic approach):**
 
 **High IV selling:**
+
 - Win rate: 65-75%
 - Average profit: +2-3% per trade
 - Annual return: 15-25%
 - Sharpe ratio: 1.2-1.6
 
 **Low IV buying:**
+
 - Win rate: 45-55%
 - Average profit: +3-5% per trade (when wins)
 - Annual return: 10-20%
 - Sharpe ratio: 0.8-1.2
 
 **Combined approach:**
+
 - Win rate: 60-70%
 - Annual return: 18-30%
 - Sharpe ratio: 1.4-1.8

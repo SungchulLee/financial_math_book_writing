@@ -2,6 +2,22 @@
 
 **Earnings IV Crush strategies** are options approaches designed to exploit the predictable phenomenon where implied volatility spikes before earnings announcements and then collapses immediately afterward, regardless of the actual stock move, creating systematic profit opportunities from volatility mean reversion rather than directional bets.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_iv_pattern.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -61,26 +77,31 @@ Implied volatility follows a **predictable pattern** around earnings announcemen
 **The four phases:**
 
 **1. Base Period (30-45 days before):**
+
 - IV at normal levels (20-30% typical)
 - No earnings premium yet
 - Regular trading
 
 **2. Build-up Period (20-10 days before):**
+
 - IV starts rising gradually
 - Market pricing in uncertainty
 - Premium accumulating
 
 **3. Peak Period (5-1 days before):**
+
 - IV at maximum (40-60%+ typical)
 - Peak uncertainty
 - **This is when to sell premium**
 
 **4. Crush Period (Day after earnings):**
+
 - IV collapses rapidly (50-70% drop in IV)
 - Uncertainty resolved
 - **This is the "crush"**
 
 **5. Recovery Period (2-30 days after):**
+
 - IV gradually normalizes
 - Returns to base level
 - Next cycle begins
@@ -90,12 +111,14 @@ Implied volatility follows a **predictable pattern** around earnings announcemen
 **The fundamental reason:**
 
 **Before earnings:**
+
 - Unknown information
 - Stock could move ±10-20% (large uncertainty)
 - Option buyers willing to pay premium
 - **IV reflects this uncertainty**
 
 **After earnings:**
+
 - Information released
 - Move has occurred (or not)
 - Uncertainty resolved
@@ -122,21 +145,25 @@ Even if $S' > S$ (stock moved favorably), the crush in $\sigma$ can dominate!
 **Example scenario:**
 
 **Before earnings:**
+
 - Stock at $100
 - Buy $100 call for $5 (IV = 60%)
 - Expecting 8-10% move
 
 **After earnings:**
+
 - Stock moves to $108 (+8%, favorable!)
 - IV crushes: 60% → 25%
 - Call worth: $8.50 (not $13 as you'd expect)
 
 **P&L:**
+
 - Paid: $5.00
 - Worth: $8.50
 - **Profit: $3.50** (70% profit)
 
 **But if just owned stock:**
+
 - Bought at $100
 - Now at $108
 - **Profit: $8.00** (8% profit)
@@ -146,6 +173,7 @@ Even if $S' > S$ (stock moved favorably), the crush in $\sigma$ can dominate!
 **Worse scenario:**
 
 **If stock moved to $104 (+4%, still up):**
+
 - IV crushes: 60% → 25%
 - Call worth: $4.20
 - **LOSS: -$0.80** despite stock going up!
@@ -231,6 +259,7 @@ $$
 $$
 
 **Example:**
+
 - Pre-earnings IV: 60%
 - Post-earnings IV: 25%
 - **Crush: 58% decline** in IV level
@@ -244,6 +273,7 @@ $$
 $$
 
 **Example:**
+
 - Short strangle vega: -$80 per 1% IV
 - IV drops 35 points (60% → 25%)
 - **Profit: -80 × (-35) = $2,800** from IV crush alone!
@@ -274,6 +304,7 @@ $$
 $$
 
 **The bet:**
+
 - IV crush dominates price movement
 - Even if stock moves against you, IV crush helps
 - Close immediately after earnings
@@ -296,6 +327,7 @@ $$
 $$
 
 **The bet:**
+
 - Aggressive IV crush play
 - Undefined risk but historically profitable
 - Requires active management
@@ -322,6 +354,7 @@ $$
 $$
 
 **The bet:**
+
 - Options very cheap post-crush
 - Directional play with cheap premium
 - Normal theta decay applies
@@ -351,6 +384,7 @@ $$
 $$
 
 **Example:**
+
 - Short strangle vega: -$100 per 1% IV
 - IV crushes: 60% → 25% = -35 points
 - **P&L from IV: $3,500 profit**
@@ -364,11 +398,13 @@ $$
 $$
 
 **For delta-neutral positions:**
+
 - Initial delta ≈ 0
 - But stock move creates delta
 - Usually small compared to IV effect
 
 **Example:**
+
 - Stock moves $8 (8%)
 - Delta shifts to +20
 - **P&L from direction: +$160**
@@ -380,15 +416,18 @@ $$
 $$
 
 **For short gamma:**
+
 - Large moves hurt
 - But IV crush often overwhelms this
 
 **Example:**
+
 - Short gamma: -30
 - Stock moves $8
 - **P&L from gamma: -$960 loss**
 
 **TOTAL P&L:**
+
 - IV crush: +$3,500
 - Direction: +$160
 - Gamma: -$960
@@ -403,6 +442,7 @@ $$
 $$
 
 **Different focus:**
+
 - Not relying on IV crush
 - Playing directional with cheap entry
 - Normal option mechanics
@@ -414,6 +454,7 @@ $$
 ### 1. Pre-Earnings Premium Selling (The Main Approach)
 
 **Philosophy:**
+
 - IV spike before earnings is predictable
 - Crush is nearly guaranteed (historically)
 - Sell expensive premium, buy back cheap
@@ -422,21 +463,25 @@ $$
 #### A. Iron Condor (Earnings)
 
 **Structure:**
+
 - Sell OTM put spread
 - Sell OTM call spread
 - **Before earnings**, close **after**
 
 **When to use:**
+
 - Want defined risk
 - Accept capped profit
 - Conservative approach
 - Systematic income
 
 **Sizing:**
+
 - Width includes expected move + buffer
 - Typical: 1.5× expected move width
 
 **Example:**
+
 - Stock at $100, expected move: $10
 - Sell $85/$80 put spread
 - Sell $115/$120 call spread
@@ -448,29 +493,34 @@ $$
 #### B. Short Strangle (Earnings)
 
 **Structure:**
+
 - Sell OTM put
 - Sell OTM call
 - Undefined risk
 - **Higher profit potential**
 
 **When to use:**
+
 - Aggressive approach
 - Confident in IV crush > move
 - Can accept assignment
 - Higher capital accounts
 
 **Strike selection:**
+
 - 1 SD from expected move
 - Or 16-20 delta options
 - Want meaningful premium
 
 **Example:**
+
 - Stock at $100, expected move: $8
 - Sell $92 put (1 SD below move)
 - Sell $108 call (1 SD above move)
 - **Credit: $6-8** typically
 
 **Management critical:**
+
 - Close immediately after earnings
 - Don't hold if stock breaks strike
 - May need to roll
@@ -478,17 +528,20 @@ $$
 #### C. Credit Spreads (Earnings + Direction)
 
 **Structure:**
+
 - Sell closer strike
 - Buy further strike
 - **Directional bias + IV crush**
 
 **When to use:**
+
 - Have directional view
 - Want defined risk
 - Combine crush + direction
 - Two edges
 
 **Example (Bullish):**
+
 - Expect stock up + IV crush
 - Stock at $100
 - Sell $95 put / Buy $90 put
@@ -496,6 +549,7 @@ $$
 - Benefits from up move + crush
 
 **Key insight:**
+
 - Can profit even if wrong on direction
 - IV crush helps even if stock drops some
 - Requires less precision
@@ -503,27 +557,32 @@ $$
 #### D. Covered Calls (Earnings)
 
 **Structure:**
+
 - Own 100 shares
 - Sell call before earnings
 - Collect elevated premium
 
 **When to use:**
+
 - Already own stock
 - Willing to cap upside
 - Generate income
 - Conservative
 
 **Strike selection:**
+
 - OTM at price willing to sell
 - Typical: +10-15% from current
 
 **Example:**
+
 - Own 100 shares @ $100
 - Sell $110 call @ $5 (high IV!)
 - **Income: $500**
 - Keep if stock < $110
 
 **Risk:**
+
 - Stock gaps up >$110, shares called away
 - But kept premium + gains to $110
 - Usually acceptable
@@ -531,6 +590,7 @@ $$
 ### 2. Post-Earnings Premium Buying
 
 **Philosophy:**
+
 - After crush, options are cheap
 - IV at lows, will normalize
 - Buy premium for directional plays
@@ -539,17 +599,20 @@ $$
 #### A. Debit Spreads (Post-Earnings)
 
 **Structure:**
+
 - Buy ITM or ATM
 - Sell OTM
 - **After earnings** at crushed IV
 
 **When to use:**
+
 - Have directional view
 - Want cheap leverage
 - Don't want naked long options
 - Defined risk
 
 **Example:**
+
 - Earnings passed, IV crushed
 - Stock at $105 (moved up)
 - Buy $105 call @ $4 (IV crushed to 25%)
@@ -559,17 +622,20 @@ $$
 #### B. Long Options (Post-Earnings)
 
 **Structure:**
+
 - Buy calls or puts
 - After IV crush
 - Simple directional
 
 **When to use:**
+
 - Very cheap entry
 - Strong directional conviction
 - Willing to accept theta
 - Want unlimited upside
 
 **Timing:**
+
 - Day after earnings
 - Or 2-3 days after (IV stabilized)
 - Before IV starts building for next earnings
@@ -579,23 +645,27 @@ $$
 #### A. Earnings Calendar Spread
 
 **Structure:**
+
 - Sell front month (through earnings)
 - Buy back month (after earnings)
 - **Profit from crush in front month**
 
 **Example:**
+
 - 2 weeks before earnings
 - Sell 1-month $100 call (includes earnings)
 - Buy 2-month $100 call (after earnings)
 - **Debit: $3.00**
 
 **What happens:**
+
 - Front month IV spikes (good for short)
 - Front month expires/crushes
 - Back month unaffected
 - **Profit from differential**
 
 **Timing critical:**
+
 - Enter 2-3 weeks before
 - Front month expires just after earnings
 - Back month far enough out
@@ -603,11 +673,13 @@ $$
 #### B. Reverse Iron Condor (Earnings)
 
 **Structure:**
+
 - Buy strangle (before earnings)
 - Sell wider strangle (after earnings)
 - Play the spike AND crush
 
 **Advanced strategy:**
+
 - Expensive and complex
 - Needs big move + crush
 - Not recommended for beginners
@@ -648,12 +720,14 @@ $$
 **Analysis:**
 
 **Historical data:**
+
 - Average IV pre-earnings: 50-60%
 - Average IV post-earnings: 20-25%
 - Average crush: 50-60%
 - Expected move vs actual move: 85% accuracy
 
 **IV will likely:**
+
 - Spike to 55-60% in next week
 - Crush to 22-25% day after
 - **Crush: ~35 points (58% decline)**
@@ -663,11 +737,13 @@ $$
 **Iron Condor Entry:**
 
 **Put side:**
+
 - Sell $170 put @ $4.20 (IV = 52%)
 - Buy $165 put @ $2.30 (IV = 50%)
 - **Credit: $1.90**
 
 **Call side:**
+
 - Sell $190 call @ $4.00 (IV = 53%)
 - Buy $195 call @ $2.20 (IV = 51%)
 - **Credit: $1.80**
@@ -679,6 +755,7 @@ $$
 **Max risk:** ($5 width - $3.70 credit) × 10 × 100 = $1,300
 
 **Greeks (at entry):**
+
 - Delta: -5 (nearly neutral)
 - Vega: -$95 per 1% IV (short vega)
 - Theta: +$55/day
@@ -687,6 +764,7 @@ $$
 **Profit zone:** $170 to $190 (5.6% range each side)
 
 **Management plan:**
+
 - Close day after earnings
 - Don't wait for expiration
 - Stop: Stock breaks $168 or $192
@@ -698,6 +776,7 @@ $$
 **Stock:** $184 (+2.2% move, well within range)
 
 **IV changes:**
+
 - Pre-earnings: 52-53% average
 - Post-earnings: 24%
 - **Crush: 28-29 points (55% decline)**
@@ -705,11 +784,13 @@ $$
 **Position value:**
 
 **Put spread:**
+
 - $170 put: Was $4.20, now $0.60 (far OTM + crushed IV)
 - $165 put: Was $2.30, now $0.25
 - Spread worth: $0.35
 
 **Call spread:**
+
 - $190 call: Was $4.00, now $1.40 (OTM but closer + crushed IV)
 - $195 call: Was $2.20, now $0.65
 - Spread worth: $0.75
@@ -717,12 +798,14 @@ $$
 **Total position value: $1.10** (to buy back)
 
 **P&L:**
+
 - Received: $3.70
 - Buy back: $1.10
 - **Profit: $2.60 per IC**
 - **Total: 10 × $260 = $2,600** (70% of max profit)
 
 **Attribution:**
+
 - IV crush: +$2,100 (81%)
 - Theta (5 days): +$275 (11%)
 - Stock move: +$225 (8%)
@@ -742,6 +825,7 @@ $$
 **Put spread:** Nearly worthless ($0.10)
 
 **Call spread:**
+
 - $190 call: $4.50 (ATM at crushed IV)
 - $195 call: $1.20
 - Spread worth: $3.30
@@ -749,6 +833,7 @@ $$
 **Total: $3.40**
 
 **P&L:**
+
 - Received: $3.70
 - Buy back: $3.40
 - **Profit: $0.30 per IC** (small profit)
@@ -769,6 +854,7 @@ $$
 **Put spread:** Worthless
 
 **Call spread:**
+
 - $190 call: $6.50 ITM
 - $195 call: $2.50 ITM
 - Spread worth: $4.00 (near max width)
@@ -776,6 +862,7 @@ $$
 **Total: $4.00**
 
 **P&L:**
+
 - Received: $3.70
 - Buy back: $4.00
 - **Loss: -$0.30 per IC**
@@ -784,6 +871,7 @@ $$
 **Close and move on.**
 
 **Even with loss, IV crush helped:**
+
 - Without IV crush, spread would be worth $5.00 (full width)
 - IV crush saved $1.00 × 10 = $1,000 in losses
 - Could have been -$1,300 loss instead of -$300
@@ -795,11 +883,13 @@ $$
 **Stock:** $210 (+16.7% gap - guidance raised dramatically)
 
 **Position:**
+
 - Both call options deep ITM
 - Spread at full width ($5)
 - Put spread worthless
 
 **P&L:**
+
 - Received: $3.70
 - Spread worth: $5.00
 - **Loss: -$1.30 per IC**
@@ -808,6 +898,7 @@ $$
 **This is the risk!**
 
 **But historically:**
+
 - Happens ~5% of the time
 - Win rate 65-70% × avg profit covers this
 - Positive expectancy over many trades
@@ -827,6 +918,7 @@ $$
 **Analysis:**
 
 **TSLA characteristics:**
+
 - Very volatile
 - Big earnings moves
 - But IV crush always happens
@@ -844,18 +936,21 @@ $$
 **Total credit:** $5,550
 
 **Greeks:**
+
 - Delta: +3 (neutral)
 - Vega: -$145 per 1% IV
 - Theta: +$90/day
 - Gamma: -35
 
 **Breakevens:** 
+
 - Downside: $230 - $18.50 = $211.50
 - Upside: $270 + $18.50 = $288.50
 
 **Risk:** Undefined (but manage actively)
 
 **Management:**
+
 - Close day after earnings
 - Stop: Stock breaks $225 or $275 (warning)
 - Emergency: Stock at breakeven, close immediately
@@ -867,6 +962,7 @@ $$
 **Stock:** $270 (+8% move, exactly at short call)
 
 **IV changes:**
+
 - Pre: 65-66%
 - Post: 28%
 - **Crush: 38 points (58%)**
@@ -878,6 +974,7 @@ $$
 - **Total: $5.60**
 
 **P&L:**
+
 - Received: $18.50
 - Buy back: $5.60
 - **Profit: $12.90 per strangle**
@@ -886,6 +983,7 @@ $$
 **IV crush overcame the directional move!**
 
 **Without IV crush:**
+
 - $270 call would be worth $15+ at original IV
 - Would be a $6,000+ loss
 - **IV crush saved $10,000+**
@@ -909,11 +1007,13 @@ $$
 **Option A: Hold through earnings (BAD)**
 
 **Scenario if stock moves to $108:**
+
 - Without IV crush: Call worth $12 (would be great!)
 - With IV crush (50% → 22%): Call worth $8.50
 - **Profit limited by crush**
 
 **Scenario if stock stays at $100:**
+
 - IV crushes to 22%
 - Call worth $2.50
 - **From $7.50 to $2.50 = -67% loss in one day!**
@@ -923,6 +1023,7 @@ $$
 **Action:** Sell all 10 calls @ $7.50
 
 **P&L:**
+
 - Cost: $5.00
 - Sell: $7.50
 - **Profit: $2.50 per call = $2,500 (50% gain)**
@@ -932,11 +1033,13 @@ $$
 **Option C: Roll to later expiration**
 
 **Action:**
+
 - Sell current $100 calls @ $7.50
 - Buy 60-day $100 calls @ $6.20 (later expiration, lower IV)
 - **Net credit: $1.30**
 
 **Result:**
+
 - Maintained position
 - Collected $1,300
 - After earnings, IV normalizes
@@ -961,6 +1064,7 @@ $$
 $$
 
 **Example:**
+
 - ATM straddle costs $15
 - Expected move: $15 × 0.85 = $12.75 (one direction)
 
@@ -971,23 +1075,27 @@ $$
 $$
 
 **Example:**
+
 - Stock $100, IV 60%, days to earnings 7
 - Expected move = $100 × 0.60 × √(7/365) = $8.30
 
 **Strike selection rules:**
 
 **Conservative (Iron Condor):**
+
 - **Strikes at 1.5× expected move**
 - Example: Expected $8, use $88/$112 strikes
 - Lower profit, higher win rate (75-80%)
 
 **Standard (Iron Condor):**
+
 - **Strikes at 1.0-1.2× expected move**
 - Example: Expected $8, use $92/$108 strikes
 - Balanced
 - Win rate: 65-70%
 
 **Aggressive (Short Strangle):**
+
 - **Strikes at 0.8-1.0× expected move**
 - Example: Expected $8, use $92/$108 naked
 - Higher profit, more risk
@@ -1000,16 +1108,19 @@ $$
 **Strike selection:**
 
 **ATM or slightly ITM:**
+
 - Maximum leverage
 - Cheap after crush
 - Delta 45-55
 
 **Example:**
+
 - Stock at $105 post-earnings
 - Buy $100 call (ITM) cheap
 - Or buy $105 call (ATM) cheapest
 
 **Avoid deep OTM:**
+
 - Still expensive relative to probability
 - Theta painful
 - Better to use spreads
@@ -1025,6 +1136,7 @@ $$
 **Optimal entry:** 5-15 days before earnings
 
 **Why:**
+
 - IV building but not peaked
 - Enough time to collect theta
 - Not too early (IV hasn't spiked)
@@ -1045,11 +1157,13 @@ Days Before | IV Level | Entry Quality
 **Exit timing:**
 
 **Immediately after earnings release:**
+
 - Morning after if earnings after hours
 - Same day if earnings pre-market
 - Don't wait!
 
 **Why close immediately:**
+
 - Crush happens instantly
 - Capture full IV drop
 - Avoid gamma risk continuing
@@ -1059,11 +1173,13 @@ Days Before | IV Level | Entry Quality
 **Entry timing:**
 
 **Day after earnings:**
+
 - IV fully crushed
 - Cheapest entry
 - Direction clarifying
 
 **Or 2-3 days after:**
+
 - IV stabilized
 - Can assess direction better
 - Still cheap
@@ -1071,6 +1187,7 @@ Days Before | IV Level | Entry Quality
 **Expiration:**
 
 **30-60 days out:**
+
 - Enough time for thesis
 - Lower daily theta
 - Not too expensive
@@ -1101,10 +1218,12 @@ Days Before | IV Level | Entry Quality
 4. **News:** Any early release risk?
 
 **If IV spikes more:**
+
 - Good! More crush potential
 - Consider adding if very early (15+ days)
 
 **If stock moves toward short strike (5+ days before):**
+
 - May need to roll strike out
 - Or close early
 - Don't let winner become loser
@@ -1112,33 +1231,39 @@ Days Before | IV Level | Entry Quality
 **Critical day before earnings:**
 
 **Review position:**
+
 - In profit zone still?
 - Expected move reasonable?
 - Comfortable holding through?
 
 **If stock outside strikes:**
+
 - Close position (take small loss)
 - Don't gamble on reversal
 
 **The earnings day:**
 
 **After hours earnings (most common):**
+
 - Stock moves after close
 - Options adjust pre-market next day
 - **Close at open next morning**
 
 **Pre-market earnings:**
+
 - Stock moves before open
 - Options adjust at open
 - **Close at open**
 
 **Intraday earnings (rare):**
+
 - Close immediately after release
 - Don't wait
 
 **CRITICAL: Close day after earnings, no exceptions!**
 
 **Why:**
+
 - IV crush captured ✓
 - Gamma risk eliminated ✓
 - Redeploy capital ✓
@@ -1175,11 +1300,13 @@ $$
 $$
 
 **Typically:**
+
 - Net vega: -$80 to -$120 per 1% IV
 - **This is your edge!**
 - IV drop = profit
 
 **Example P&L from IV:**
+
 - Vega: -$100 per 1% IV
 - IV drop: 35 points (60% → 25%)
 - **Profit: $3,500 from IV alone**
@@ -1187,6 +1314,7 @@ $$
 **Theta (Secondary):**
 
 **For short premium:**
+
 - Positive theta (+$40-80/day typical)
 - But only 5-7 days to collect
 - Total theta: $200-$560
@@ -1196,6 +1324,7 @@ $$
 **Gamma (The Risk):**
 
 **For short premium:**
+
 - Negative gamma (-20 to -40 typical)
 - Large moves hurt
 - **This is the main risk**
@@ -1485,6 +1614,7 @@ Days Before | Avg Profit | Win Rate | Sharpe
 **Finding:** 7-10 days before earnings optimal
 
 **Why:**
+
 - IV building but not peaked
 - Enough theta collection time
 - Can still adjust
@@ -1495,12 +1625,14 @@ Days Before | Avg Profit | Win Rate | Sharpe
 **Diversification across earnings:**
 
 **Instead of 1 large position:**
+
 - 10 small earnings positions
 - Spread across different weeks
 - Different sectors
 - Different expected moves
 
 **Result:**
+
 - Lower volatility
 - More consistent returns
 - Survival of losing streaks
@@ -1548,6 +1680,7 @@ Monthly Expected: +10.6% on 40% of capital
 **The whole surface shifts down!**
 
 **Implication:**
+
 - Not just ATM that crushes
 - All strikes crush (wings too)
 - Can trade any strike
@@ -1558,18 +1691,21 @@ Monthly Expected: +10.6% on 40% of capital
 **After-hours vs Pre-market:**
 
 **After-hours (most common):**
+
 - Announce after 4pm ET
 - Stock moves after close
 - Options react next morning
 - **Best for overnight holding**
 
 **Pre-market (less common):**
+
 - Announce before 9:30am ET
 - Stock gaps at open
 - More slippage on close
 - **Harder to manage**
 
 **Intraday (rare):**
+
 - Announce during market hours
 - Immediate reaction
 - **Can close instantly (best)**
@@ -1600,6 +1736,7 @@ Monthly Expected: +10.6% on 40% of capital
 **The Trade (Jan 22, 2024):**
 
 **Iron Condor:**
+
 - Sell $175/$170 put spread @ $1.85
 - Sell $195/$200 call spread @ $1.75
 - **Total credit: $3.60**
@@ -1609,6 +1746,7 @@ Monthly Expected: +10.6% on 40% of capital
 **What happened:**
 
 **Feb 1 (earnings day):**
+
 - After hours, AAPL reports beats
 - Stock jumps to $191 (+3.2%)
 - Within range ✓
@@ -1616,11 +1754,13 @@ Monthly Expected: +10.6% on 40% of capital
 **Feb 2 (next morning):**
 
 **IV crushed:**
+
 - Pre: 58% (had spiked further)
 - Post: 23%
 - **Crush: 35 points (60%)**
 
 **Position value:**
+
 - Put spread: $0.15 (far OTM + crushed)
 - Call spread: $0.95 (close to short strike + crushed)
 - **Total: $1.10**
@@ -1628,6 +1768,7 @@ Monthly Expected: +10.6% on 40% of capital
 **Close immediately:**
 
 **P&L:**
+
 - Credit received: $3.60
 - Buy back: $1.10
 - **Profit: $2.50 per IC**
@@ -1637,6 +1778,7 @@ Monthly Expected: +10.6% on 40% of capital
 **Return:** 69% (annualized: 2,290%!)
 
 **Why it worked:**
+
 - IV crush as predicted ✓
 - Stock stayed in range ✓
 - Closed immediately ✓
@@ -1653,6 +1795,7 @@ Monthly Expected: +10.6% on 40% of capital
 **Trade:**
 
 **Short Strangle (aggressive):**
+
 - Sell $150 put @ $7.50
 - Sell $190 call @ $7.00
 - **Credit: $14.50**
@@ -1665,6 +1808,7 @@ Monthly Expected: +10.6% on 40% of capital
 **What happened:**
 
 **Earnings disaster:**
+
 - TSLA misses badly
 - Stock gaps down to $145 (-14.7%)
 - **Beyond short put!**
@@ -1681,6 +1825,7 @@ Monthly Expected: +10.6% on 40% of capital
 **Close position:**
 
 **P&L:**
+
 - Credit: $14.50
 - Close put: -$6.50
 - Close call: -$0.10
@@ -1690,11 +1835,13 @@ Monthly Expected: +10.6% on 40% of capital
 **Even with gap beyond strike, still profitable!**
 
 **Why:**
+
 - Massive IV crush (40 points)
 - Put didn't go full ITM value due to crush
 - Shows power of strategy
 
 **If IV hadn't crushed:**
+
 - $150 put would be worth $12+ at original IV
 - Would be a $2,500 loss
 - **IV crush saved the trade**
@@ -1710,6 +1857,7 @@ Monthly Expected: +10.6% on 40% of capital
 **Trade:**
 
 **Iron Condor (too aggressive):**
+
 - Sell $40/$38 put spread
 - Sell $50/$52 call spread
 - Credit: $1.80
@@ -1723,6 +1871,7 @@ Monthly Expected: +10.6% on 40% of capital
 **What happened:**
 
 **Earnings shock:**
+
 - FDA approval announced with earnings
 - Stock gaps to $58 (+28.9%)
 - **Way beyond calls**
@@ -1730,16 +1879,19 @@ Monthly Expected: +10.6% on 40% of capital
 **Next morning:**
 
 **Position:**
+
 - Put spread: Worthless
 - Call spread: Full width ($2.00)
 
 **P&L:**
+
 - Credit: $1.80
 - Loss: -$2.00
 - **Loss: -$0.20 per IC**
 - **Total: -$200**
 
 **But wait:**
+
 - Max loss on IC: Width - Credit = $2.00 - $1.80 = $0.20 ✓
 - Defined risk worked ✓
 - Lost 100% of capital at risk
@@ -1753,6 +1905,7 @@ Monthly Expected: +10.6% on 40% of capital
 5. **Move on to next trade**
 
 **Historical edge still positive:**
+
 - If 7/10 trades make $300
 - And 3/10 lose $200
 - Net: +$1,500 per 10 trades
@@ -2070,6 +2223,7 @@ $$
 $$
 
 **Typical crush magnitude:**
+
 - Pre-earnings IV: 50-70%
 - Post-earnings IV: 20-30%
 - **Decline: 30-40 points (50-70% drop)**
@@ -2088,6 +2242,7 @@ Base → Build-up → Peak → CRUSH → Recovery
 ```
 
 **Timeline:**
+
 - 30 days before: Base IV
 - 10-20 days: Building
 - 5-1 days: Peak (enter here!)
@@ -2137,6 +2292,7 @@ $$
 - **Aggressive:** 0.8-1.0× expected move
 
 **Example:**
+
 - Stock $100, expected move $10
 - Conservative: $85/$115 strikes
 - Standard: $90/$110 strikes
@@ -2175,6 +2331,7 @@ $$
 - **Delta:** ≈ 0 (neutral)
 
 **The math:**
+
 - Vega × IV crush = $3,000-5,000 profit (typical)
 - Gamma × move = $500-1,500 loss (typical)
 - **Net: +$1,500-3,500 profit**
@@ -2240,12 +2397,14 @@ $$
 **Realistic targets (systematic):**
 
 **Per trade:**
+
 - Win rate: 65-75%
 - Average win: +50-70% of capital at risk
 - Average loss: -50-100% of capital at risk
 - Holding period: 7-15 days
 
 **Portfolio (10 trades/month):**
+
 - Monthly return: +8-15% on deployed capital
 - Annualized: +96-180%
 - Max drawdown: -15% to -25%

@@ -5,6 +5,22 @@
 
 Rather than predicting direction, these strategies trade the **dynamics of uncertainty itself**.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_half_life.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_pattern.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_performance.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_zones.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -178,10 +194,12 @@ with exposure concentrated in **volatility level**, not direction.
 **VIX:** 38 (historical avg ≈ 20)
 
 **Trade:**
+
 - Sell 30-day ATM straddle
 - Delta hedge
 
 **Thesis:**
+
 - Volatility spike caused by temporary shock
 - Expect normalization
 

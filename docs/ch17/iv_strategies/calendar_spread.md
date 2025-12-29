@@ -2,6 +2,22 @@
 
 **Calendar spreads** (also called time spreads or horizontal spreads) are strategies where you profit from differences in implied volatility between different expiration dates by simultaneously buying and selling options at the same strike but different maturities.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_entry_timing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight

@@ -5,6 +5,22 @@
 
 These strategies trade **when volatility occurs**, not whether price goes up or down.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_by_event.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_exit_timing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_timing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight

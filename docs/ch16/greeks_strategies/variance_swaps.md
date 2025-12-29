@@ -2,11 +2,36 @@
 
 **Variance swaps** are derivatives that provide pure, direct exposure to realized variance, allowing you to bet on volatility without the complications of delta hedging, gamma scalping, or theta decay.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/variance_swaps_calculation.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 1:** Variance Swaps Calculation visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/variance_swaps_convexity.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 2:** Variance Swaps Convexity visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/variance_swaps_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 3:** Variance Swaps Payoff visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/variance_swaps_vol_variance.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 4:** Variance Swaps Vol Variance visualization.
+
 ---
 
 ## The Core Insight
 
 **The fundamental idea:**
+
 - All previous strategies (gamma scalping, vega trading) trade volatility indirectly through options
 - They require constant delta hedging, have theta decay, transaction costs
 - Variance swaps trade volatility DIRECTLY
@@ -14,6 +39,7 @@
 - Clean, pure, elegant exposure
 
 **The key equation:**
+
 $$
 \text{Payoff} = \text{Notional} \times (\sigma_{\text{realized}}^2 - K_{\text{var}})
 $$
@@ -29,20 +55,24 @@ $$
 ### Variance vs. Volatility
 
 **Volatility** is what we usually talk about:
+
 - Standard deviation of returns
 - Measured in % (e.g., "30% volatility")
 - Square root of variance
 
 **Variance** is volatility squared:
+
 $$
 \text{Variance} = \text{Volatility}^2
 $$
 
 **Example:**
+
 - Volatility = 30% = 0.30
 - Variance = (0.30)² = 0.09 = 9%
 
 **Why trade variance instead of volatility?**
+
 - **Mathematical convenience:** Variance is additive, volatility is not
 - **Cleaner replication:** Options naturally replicate variance
 - **No square root:** Easier to work with mathematically
@@ -58,6 +88,7 @@ $$
 $$
 
 **In plain English:**
+
 1. Calculate daily returns
 2. Square each return
 3. Add them up
@@ -82,6 +113,7 @@ Sum over 60 days, multiply by 252/60 = 4.2
 ### The Contract Terms
 
 **Buyer agrees to:**
+
 - Pay a fixed amount: **Variance Strike** ($K_{\text{var}}$)
 - Receive a variable amount: **Realized Variance** ($\sigma_{\text{realized}}^2$)
 
@@ -92,16 +124,19 @@ $$
 $$
 
 **Example Contract:**
+
 - Notional: $1,000,000
 - Variance Strike: 0.09 (equivalent to 30% volatility)
 - Maturity: 3 months
 
 **Scenario 1: High Realized Variance**
+
 - Realized variance: 0.16 (40% volatility)
 - Payoff: $1,000,000 × (0.16 - 0.09) = **+$70,000**
 - You profit! Stock was more volatile than expected
 
 **Scenario 2: Low Realized Variance**
+
 - Realized variance: 0.04 (20% volatility)
 - Payoff: $1,000,000 × (0.04 - 0.09) = **-$50,000**
 - You lose! Stock was less volatile than expected
@@ -139,19 +174,24 @@ $$
 ### Why Variance Instead of Volatility?
 
 **Mathematical reasons:**
+
 1. **Variance is additive:**
-   - Daily variances add up to total variance
-   - Makes replication clean
+
+         - Daily variances add up to total variance
+         - Makes replication clean
    
 2. **Options replicate variance naturally:**
-   - Portfolio of options = variance exposure
-   - No square root complications
+
+         - Portfolio of options = variance exposure
+         - No square root complications
 
 3. **Convexity:**
-   - Variance swap is naturally long convexity
-   - Large moves contribute disproportionately
+
+         - Variance swap is naturally long convexity
+         - Large moves contribute disproportionately
 
 **Practical reason:**
+
 - Variance swaps are more liquid
 - Market standard
 - Easier to price and hedge
@@ -165,6 +205,7 @@ $$
 ### Gamma Scalping (Complex)
 
 **What you do:**
+
 1. Buy options (pay premium)
 2. Delta hedge (short stock)
 3. Rebalance constantly (transaction costs)
@@ -173,6 +214,7 @@ $$
 6. Hope realized variance > implied variance (after costs)
 
 **Complications:**
+
 - Discrete rebalancing → tracking error
 - Transaction costs → eat into profits
 - Theta decay → constant cost
@@ -180,6 +222,7 @@ $$
 - Model-dependent
 
 **P&L:**
+
 $$
 \delta \Pi \approx \frac{1}{2}\Gamma(\delta S)^2 - \theta\,\delta t - \text{transaction costs}
 $$
@@ -187,6 +230,7 @@ $$
 ### Variance Swap (Simple)
 
 **What you do:**
+
 1. Enter variance swap contract
 2. Wait
 3. Realized variance is calculated
@@ -195,6 +239,7 @@ $$
 **That's it!**
 
 **Complications:**
+
 - None
 - No hedging
 - No transaction costs
@@ -202,6 +247,7 @@ $$
 - No rebalancing
 
 **P&L:**
+
 $$
 \text{Payoff} = \text{Notional} \times (\sigma_{\text{realized}}^2 - K_{\text{var}})
 $$
@@ -217,6 +263,7 @@ $$
 ### Gamma Scalping Converges to Variance Swap
 
 **In the theoretical limit:**
+
 - Continuous rebalancing (no discrete tracking error)
 - Zero transaction costs
 - Infinite liquidity
@@ -230,6 +277,7 @@ $$
 **This is exactly the variance swap payoff!**
 
 **So:**
+
 - **Variance swap** = What gamma scalping wants to be
 - **Gamma scalping** = Imperfect replication of variance swap
 
@@ -246,11 +294,13 @@ minus costs            exposure
 ### Why This Matters
 
 **Understanding:**
+
 - Variance swaps are the "Platonic ideal" of volatility trading
 - Gamma scalping is the practical implementation
 - The difference is friction (costs, theta, tracking error)
 
 **In practice:**
+
 - If variance swaps available → cleaner exposure
 - If not → gamma scalping is approximation
 - Market makers hedge variance swaps via gamma scalping!
@@ -274,11 +324,13 @@ K_{\text{var}} \approx \frac{2}{T} \int_0^{\infty} \frac{C(K) + P(K)}{K^2} dK
 $$
 
 where:
+
 - $T$ = Time to maturity
 - $C(K)$ = Call option price at strike $K$
 - $P(K)$ = Put option price at strike $K$
 
 **In plain English:**
+
 - Take all call and put options (across all strikes)
 - Weight by $1/K^2$
 - Integrate (sum) them up
@@ -289,11 +341,13 @@ where:
 ### Practical Pricing
 
 **Market makers use:**
+
 1. Liquid option prices (nearby strikes)
 2. Implied volatility surface
 3. Approximate the integral with a sum
 
 **Example:**
+
 - Stock at $100
 - Options imply 30% volatility
 - Variance strike ≈ (0.30)² = 0.09
@@ -317,6 +371,7 @@ $$
 $$
 
 **In practice:**
+
 1. Buy a strip of out-of-the-money puts (strikes below spot)
 2. Buy a strip of out-of-the-money calls (strikes above spot)
 3. Weight each by $1/K^2$
@@ -327,16 +382,19 @@ $$
 ### Dynamic Hedging
 
 **Alternative (used by most dealers):**
+
 - Gamma scalping!
 - Continuously delta hedge a dynamically-adjusted option portfolio
 - Accumulate realized variance through rebalancing
 
 **So market makers hedge variance swaps via gamma scalping:**
+
 - You want clean variance exposure → buy variance swap
 - Dealer provides it → hedges with gamma scalping
 - You avoid the complexity → dealer takes it on (for a spread)
 
 **Circle complete:**
+
 - Variance swap = clean exposure
 - Gamma scalping = replication method
 - Market maker bridges the gap
@@ -348,26 +406,31 @@ $$
 ### Long Variance (Buy Variance Swap)
 
 **Position:**
+
 - Pay fixed variance strike
 - Receive realized variance
 
 **Payoff:**
+
 $$
 \text{Payoff} = \text{Notional} \times (\sigma_{\text{realized}}^2 - K_{\text{var}})
 $$
 
 **You profit when:**
+
 - Realized variance > Strike
 - Stock moves around more than expected
 - "Long volatility"
 
 **When to use:**
+
 - Believe market is complacent
 - Expect volatility spike
 - Before events (earnings, elections)
 - Similar motivation to buying options/gamma scalping
 
 **Example:**
+
 - VIX at 12 (historically low)
 - You expect volatility to spike
 - Buy variance swap at strike 0.0144 (12% vol)
@@ -377,26 +440,31 @@ $$
 ### Short Variance (Sell Variance Swap)
 
 **Position:**
+
 - Receive fixed variance strike
 - Pay realized variance
 
 **Payoff:**
+
 $$
 \text{Payoff} = \text{Notional} \times (K_{\text{var}} - \sigma_{\text{realized}}^2)
 $$
 
 **You profit when:**
+
 - Realized variance < Strike
 - Stock is calmer than expected
 - "Short volatility"
 
 **When to use:**
+
 - Believe market is too fearful
 - Expect volatility to decline
 - After crises (vol crush)
 - Similar motivation to selling options
 
 **Example:**
+
 - VIX at 40 (crisis levels)
 - You expect volatility to calm
 - Sell variance swap at strike 0.16 (40% vol)
@@ -411,14 +479,15 @@ $$
 
 ### Setup
 
-**Date:** January 1
-**Stock:** SPY (S&P 500 ETF)
-**Current price:** $400
-**Implied volatility:** 20%
+- **Date:** January 1
+- **Stock:** SPY (S&P 500 ETF)
+- **Current price:** $400
+- **Implied volatility:** 20%
 
 **Your view:** "The market is too complacent. Volatility will be higher than 20%."
 
 **The trade:**
+
 - Buy 3-month variance swap
 - Variance strike: 0.04 (20% volatility squared)
 - Notional: $1,000,000
@@ -427,11 +496,13 @@ $$
 ### During the Contract
 
 **The stock moves over 60 days:**
+
 - Some days up 2%, some days down 1.5%
 - Some big moves: +3%, -2.5%
 - Some quiet days: +0.1%, -0.2%
 
 **You don't do anything:**
+
 - No trading
 - No hedging  
 - No rebalancing
@@ -452,20 +523,24 @@ $$
 $$
 
 **Example calculation:**
+
 - Sum of squared returns: 0.015
 - Annualized: 0.015 × (252/60) = 0.063
 
 **Realized volatility:**
+
 $$
 \sigma_{\text{realized}} = \sqrt{0.063} = 25.1\%
 $$
 
 **Your payoff:**
+
 $$
 \text{Payoff} = 1,000,000 \times (0.063 - 0.04) = 1,000,000 \times 0.023 = \$23,000
 $$
 
 **You made $23,000 because:**
+
 - Strike: 20% vol (0.04 variance)
 - Realized: 25.1% vol (0.063 variance)
 - Difference: 5.1% vol (0.023 variance)
@@ -474,6 +549,7 @@ $$
 ### What If You Were Wrong?
 
 **If realized volatility was 15%:**
+
 - Realized variance: 0.0225
 - Payoff: $1,000,000 × (0.0225 - 0.04) = **-$17,500**
 - You lose because volatility was lower than expected
@@ -525,6 +601,7 @@ $$
 | **Theta** | Yes (costs or earns) | No |
 
 **Different bets:**
+
 - Vega: "Market's expectation will change"
 - Variance swap: "Actual variance will be X"
 
@@ -543,6 +620,7 @@ $$
 $$
 
 **In other words:**
+
 - Variance strikes (implied variance) are typically higher than realized variance
 - Short variance swaps have positive expected return on average
 - This is the "variance risk premium"
@@ -550,31 +628,37 @@ $$
 **Why does this exist?**
 
 1. **Risk aversion:**
-   - Investors pay premium for volatility protection
-   - Willing to overpay for hedges
-   - Similar to insurance premium
+
+         - Investors pay premium for volatility protection
+         - Willing to overpay for hedges
+         - Similar to insurance premium
 
 2. **Crash fear:**
-   - Market fears left-tail events
-   - Prices in more volatility than usually occurs
-   - Premium for jump risk
+
+         - Market fears left-tail events
+         - Prices in more volatility than usually occurs
+         - Premium for jump risk
 
 3. **Hedging demand:**
-   - Institutions need volatility hedges
-   - Buy variance swaps/options for protection
-   - Demand drives up price
+
+         - Institutions need volatility hedges
+         - Buy variance swaps/options for protection
+         - Demand drives up price
 
 4. **Behavioral bias:**
-   - People overestimate volatility
-   - Loss aversion
-   - Recency bias
+
+         - People overestimate volatility
+         - Loss aversion
+         - Recency bias
 
 **The result:**
+
 - Short variance swaps earn premium on average
 - Like selling insurance
 - But with tail risk (crashes)
 
 **Historical data:**
+
 - S&P 500 variance risk premium: ~3-5% annualized
 - Varies by market conditions
 - Higher in bull markets, lower in crises
@@ -586,43 +670,51 @@ $$
 ### Advantages ✓
 
 **1. Pure variance exposure**
+
 - Direct bet on realized variance
 - No gamma, theta, delta complications
 - Exactly what you want
 
 **2. No transaction costs**
+
 - No rebalancing needed
 - No bid-ask spreads on hedges
 - No borrow costs
 - Pure P&L
 
 **3. No theta decay**
+
 - Options lose value daily (theta)
 - Variance swaps have no time decay
 - No carrying cost
 
 **4. No hedging required**
+
 - Set it and forget it
 - No constant monitoring
 - No execution risk
 
 **5. Perfect replication of variance**
+
 - No tracking error
 - Continuous equivalent (no discretization)
 - Mathematical purity
 
 **6. Structural edge (variance risk premium)**
+
 - Short variance historically profitable
 - Similar to selling insurance
 - Quantifiable expected return
 
 **7. Operationally simple**
+
 - Enter contract
 - Wait
 - Settle
 - That's it
 
 **8. Theoretical elegance**
+
 - Clean mathematical properties
 - Variance is additive
 - Easy to understand payoff
@@ -630,6 +722,7 @@ $$
 ### Disadvantages ✗
 
 **1. Institutional access only**
+
 - OTC market
 - Need large capital
 - Prime broker relationships
@@ -637,47 +730,55 @@ $$
 - Minimum notionals (typically $1M+)
 
 **2. Counterparty risk**
+
 - Bilateral contract
 - Dealer might default
 - Need credit management
 - Not exchange-cleared (usually)
 
 **3. Illiquid**
+
 - Can't easily exit mid-trade
 - Wide bid-ask spreads if you want out
 - Stuck until maturity
 - Market price can be adverse
 
 **4. Mark-to-market volatility**
+
 - Value fluctuates with implied variance
 - Can show large unrealized losses
 - Need to manage margin
 - Accounting issues
 
 **5. No optionality**
+
 - Linear payoff (unlike options)
 - Unlimited loss potential (if short)
 - No protection from extremes
 
 **6. Convexity risk (short variance)**
+
 - Large moves hurt disproportionately
 - Variance is squared (convex)
 - Tail risk significant
 - Can lose multiples of premium
 
 **7. Jump risk**
+
 - Single large jump can dominate P&L
 - Gap risk (overnight, weekends)
 - Flash crashes
 - Hard to hedge
 
 **8. Less flexible than options**
+
 - Can't customize strikes
 - Can't do spreads
 - Binary: long or short variance
 - Limited structures
 
 **9. Vega vs. variance basis risk**
+
 - Variance swap ≠ vega swap
 - Non-linear relationship
 - Hedging one with other imperfect
@@ -689,6 +790,7 @@ $$
 ### For Long Variance
 
 **Favorable conditions:**
+
 - **Low implied volatility** (VIX < 15)
 - **Market complacency** (extended bull market)
 - **Before known events** (elections, Fed meetings)
@@ -696,12 +798,14 @@ $$
 - **Historical vol percentile low** (< 20th percentile)
 
 **Catalysts:**
+
 - Upcoming binary events
 - Structural changes expected
 - Market fragility increasing
 - Low realized vol but high potential
 
 **Example environments:**
+
 - Late 2019 (pre-COVID)
 - Mid-2007 (pre-financial crisis)
 - Any "calm before the storm"
@@ -709,6 +813,7 @@ $$
 ### For Short Variance
 
 **Favorable conditions:**
+
 - **High implied volatility** (VIX > 30)
 - **Post-crisis environment** (fear elevated)
 - **Volatility spike just occurred**
@@ -716,12 +821,14 @@ $$
 - **Historical vol percentile high** (> 80th percentile)
 
 **Catalysts:**
+
 - Crisis peaked
 - Central bank intervention
 - Worst-case scenarios priced in
 - Volatility unsustainable at current levels
 
 **Example environments:**
+
 - April 2020 (post-COVID crash)
 - Early 2009 (post-financial crisis trough)
 - After any panic spike
@@ -729,6 +836,7 @@ $$
 ### General Favorable Conditions
 
 **For both directions:**
+
 - Strong view on realized volatility
 - Long time horizon (can wait out fluctuations)
 - Sufficient capital
@@ -736,6 +844,7 @@ $$
 - Conviction in variance risk premium (for short)
 
 **Unfavorable conditions:**
+
 - Mid-range volatility (no strong view)
 - Need liquidity (might have to exit early)
 - Counterparty concerns
@@ -753,11 +862,13 @@ $$
 **Just like option dispersion, but with variance swaps:**
 
 **Long Variance Dispersion:**
+
 - Short index variance swap
 - Long individual stock variance swaps (weighted)
 - Bet: Stocks will move independently (low correlation)
 
 **Short Variance Dispersion:**
+
 - Long index variance swap
 - Short individual stock variance swaps
 - Bet: Stocks will move together (high correlation)
@@ -765,6 +876,7 @@ $$
 ### Why It's Cleaner
 
 **Advantages over option dispersion:**
+
 - No gamma hedging required
 - No theta decay
 - No transaction costs
@@ -793,6 +905,7 @@ $$
 $$
 
 **Example:**
+
 - Want $10,000 vega (per 1% vol move)
 - Implied vol = 20%
 - Need notional: $N_{\text{var}} = 2 \times 0.20 \times 10,000 = $4,000,000
@@ -800,11 +913,13 @@ $$
 ### Strike Setting
 
 **Variance strike is typically set at:**
+
 - Fair value based on option prices
 - Slightly above realized vol (variance risk premium)
 - Negotiated with dealer
 
 **Example:**
+
 - Implied vol: 22%
 - Historical realized vol: 18%
 - Variance strike might be set at 20% → 0.04
@@ -812,12 +927,14 @@ $$
 ### Settlement
 
 **Most variance swaps cash settle:**
+
 - Calculate realized variance
 - Compare to strike
 - Cash payment exchanges hands
 - No physical delivery
 
 **Some have caps:**
+
 - Maximum variance level (e.g., 2.5× strike)
 - Protects seller from extreme moves
 - Reduces premium for buyer
@@ -829,12 +946,14 @@ $$
 ### Hedge Funds
 
 **Volatility arbitrage funds:**
+
 - Core strategy: sell variance swaps
 - Harvest variance risk premium
 - Hedge with dynamic gamma scalping
 - Systematic volatility strategies
 
 **Examples:**
+
 - Many "vol arb" funds
 - Managed futures
 - Relative value strategies
@@ -842,6 +961,7 @@ $$
 ### Market Makers
 
 **Dealers use for:**
+
 - Hedge option positions
 - Manage variance exposure
 - Warehouse risk
@@ -850,12 +970,14 @@ $$
 ### Institutional Investors
 
 **Uses:**
+
 - Portfolio hedging (buy variance)
 - Yield enhancement (sell variance)
 - Volatility overlay strategies
 - Tail risk hedging
 
 **Example:**
+
 - Pension fund worried about crash
 - Buy variance swap as tail hedge
 - Pays off if volatility spikes
@@ -868,11 +990,13 @@ $$
 ### 2008 Financial Crisis
 
 **Pre-crisis (2007):**
+
 - VIX at 15-20
 - Short variance was popular
 - "Great Moderation" mentality
 
 **During crisis (late 2008):**
+
 - VIX spiked to 80+
 - Realized variance went to 0.64+ (80% vol)
 - Short variance positions devastated
@@ -883,16 +1007,19 @@ $$
 ### COVID-19 Crash (March 2020)
 
 **Pre-crash (February 2020):**
+
 - VIX at 15
 - Market complacent
 
 **During crash (March 2020):**
+
 - VIX spiked to 80+
 - Realized variance exploded
 - Long variance highly profitable
 - Short variance catastrophic
 
 **Recovery (April-May 2020):**
+
 - VIX declined to 30
 - Short variance from high levels profitable
 - Mean reversion
@@ -902,15 +1029,18 @@ $$
 ### Brexit (June 2016)
 
 **Before vote:**
+
 - Implied vol elevated (uncertainty)
 - Realized vol moderate
 
 **Vote result:**
+
 - Large one-day move
 - But then stabilization
 - Realized variance lower than implied
 
 **After:**
+
 - Short variance profitable
 - One-time event didn't sustain high vol
 
@@ -936,11 +1066,13 @@ $$
 ### The Beautiful Simplicity
 
 **Compared to gamma scalping:**
+
 - Gamma scalping = imperfect, costly replication of variance
 - Variance swap = pure, clean variance exposure
 - Variance swap is what gamma scalping "wants to be"
 
 **In the limit:**
+
 - Continuous gamma scalping → variance swap payoff
 - Variance swap = theoretical ideal
 - Gamma scalping = practical approximation
@@ -948,12 +1080,14 @@ $$
 ### Two Directions
 
 **Long Variance:**
+
 - Buy variance swap
 - Profit when realized > strike
 - Use when expecting volatility spike
 - Similar to buying options
 
 **Short Variance:**
+
 - Sell variance swap
 - Profit when realized < strike
 - Harvest variance risk premium
@@ -962,12 +1096,14 @@ $$
 ### The Variance Risk Premium
 
 **Empirical fact:**
+
 - Implied variance > realized variance (on average)
 - Short variance has positive expected return
 - ~3-5% annually for S&P 500
 - But with significant tail risk
 
 **Why:**
+
 - Investors pay for volatility protection
 - Risk aversion
 - Hedging demand
@@ -984,6 +1120,7 @@ $$
 5. **Dispersion** → Correlation (relationships)
 
 **Variance swaps are the "cleanest" volatility exposure:**
+
 - No complications
 - Pure mathematical exposure
 - Theoretical ideal
@@ -991,11 +1128,13 @@ $$
 ### Practical Reality
 
 **Advantages:**
+
 - Operationally simple
 - No hedging needed
 - Pure exposure
 
 **Limitations:**
+
 - Institutional only
 - Counterparty risk
 - Illiquid
@@ -1034,12 +1173,14 @@ Mathematical           Operational
 **Level 5:** Variance dispersion (pure correlation, no friction)
 
 **Each level removes one more source of noise:**
+
 - Direction → Delta hedge
 - Theta → Variance swap
 - Transaction costs → Variance swap
 - Single asset → Dispersion
 
 **Variance swaps represent the penultimate level:**
+
 - Clean exposure to what you want
 - No operational complexity
 - Mathematical elegance
@@ -1058,6 +1199,7 @@ Mathematical           Operational
 6. **Variance Swaps** - Realized variance (pure)
 
 **Each has its place:**
+
 - Variance swap: When available, cleanest exposure
 - Gamma scalping: Retail-accessible approximation
 - Vega: Trade expectations, not reality

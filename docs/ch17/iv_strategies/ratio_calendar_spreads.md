@@ -2,6 +2,22 @@
 
 **Ratio calendar spreads** are strategies where you use **unequal numbers of contracts** across different expiration dates, creating asymmetric positions that can enhance returns, reduce cost, or create unique risk/reward profiles by trading both term structure differences and quantity ratios simultaneously.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_management.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_ratio_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -54,6 +70,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 **Two main types:**
 
 **1. Front-heavy ratios (1x2, 1x3):**
+
 - Sell MORE front month than back month
 - Example: Buy 1 back, Sell 2 front
 - **Enhanced theta collection**
@@ -61,6 +78,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 - But additional risk if stock moves
 
 **2. Back-heavy ratios (2x1, 3x1):**
+
 - Buy MORE back month than sell front
 - Example: Buy 2 back, Sell 1 front
 - **Reduced net cost**
@@ -1443,6 +1461,7 @@ Use 1x2 ratios continuously for monthly income
 - Remaining short call bought for $3.20
 - Long call worth $7.00
 - **Total P&L:**
+
   - Received: $900 initially
   - Bought back: -$500 (first) -$320 (second) = -$820
   - Long call value: $700
@@ -2063,12 +2082,14 @@ $$
 **The strategic value:**
 
 **1x2 provides:**
+
 - **Maximum theta generation** (beats all other structures)
 - **Credit or minimal debit** entry
 - **Monthly income potential** via rolling
 - But requires active, disciplined management
 
 **2x1 provides:**
+
 - **Leveraged vega exposure** (most capital efficient)
 - **Directional participation** with theta offset
 - **Defined risk** (unlike 1x2)

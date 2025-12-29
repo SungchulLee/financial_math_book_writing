@@ -2,6 +2,42 @@
 
 **Credit spreads** are defined-risk option strategies where you sell a higher-premium option and buy a lower-premium option at a different strike, collecting net premium upfront. They offer high probability of profit with limited, predefined risk - making them the workhorse strategy for income-focused options traders.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spread_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spreads_bear_call_spread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spreads_bull_put_spread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spreads_bull_put_vs_bear_call.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spreads_fifty_percent_rule.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spreads_strike_selection.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spreads_theta_decay_curve.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/credit_spreads_time_management.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_credit_spread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -38,6 +74,7 @@ $$
 **Definition:** Sell a higher-strike put, buy a lower-strike put for protection, collecting net credit.
 
 **Structure:**
+
 - **Sell:** $95 put for $3 (obligation to buy at $95)
 - **Buy:** $90 put for $1 (right to sell at $90)
 - **Net Credit:** $3 - $1 = $2 = $200 per spread
@@ -47,6 +84,7 @@ $$
 **Max Risk:** ($95 - $90) - $2 = $3 per share = $300 per spread
 
 **Characteristics:**
+
 - Bullish strategy (want stock flat or up)
 - Profit if stock stays above short strike
 - Defined risk (long put protects downside)
@@ -58,6 +96,7 @@ $$
 **Definition:** Sell a lower-strike call, buy a higher-strike call for protection, collecting net credit.
 
 **Structure:**
+
 - **Sell:** $105 call for $3 (obligation to sell at $105)
 - **Buy:** $110 call for $1 (right to buy at $110)
 - **Net Credit:** $3 - $1 = $2 = $200 per spread
@@ -67,6 +106,7 @@ $$
 **Max Risk:** ($110 - $105) - $2 = $3 per share = $300 per spread
 
 **Characteristics:**
+
 - Bearish/neutral strategy (want stock flat or down)
 - Profit if stock stays below short strike
 - Defined risk (long call protects upside)
@@ -104,12 +144,14 @@ $$
 **Why this matters:**
 
 **Traditional naked put selling:**
+
 - Sell $95 put for $3
 - Collect $300 premium
 - If stock → $50, you lose $4,200 ($95 - $50 - $3)
 - **Potential for catastrophic loss**
 
 **Bull put spread (insurance with reinsurance):**
+
 - Sell $95 put for $3
 - Buy $90 put for $1
 - Collect $200 net
@@ -121,6 +163,7 @@ $$
 ### Example: Breaking Down the SPY Bull Put Spread
 
 **Setup:**
+
 - SPY at $450
 - Sell $445 put for $4
 - Buy $440 put for $2
@@ -154,6 +197,7 @@ $$
 **Think like an insurance company:**
 
 **When you sell a credit spread:**
+
 - You're the insurance company
 - Premium collected = your revenue
 - Short strike = policy deductible
@@ -161,11 +205,13 @@ $$
 - Long option = your reinsurance policy
 
 **Insurance companies profit when:**
+
 - Claims (stock moves) are rare
 - Premiums (credits) exceed payouts
 - Losses are capped by reinsurance
 
 **Same with credit spreads:**
+
 - Most expire worthless (high probability)
 - You keep credit most of the time
 - Occasional losses are limited by long option
@@ -179,6 +225,7 @@ $$
 $$
 
 **Credit spread trader:**
+
 - Collects premium upfront
 - High probability of small win
 - Occasional large loss (but defined)
@@ -186,6 +233,7 @@ $$
 - Needs high win rate
 
 **Debit spread trader:**
+
 - Pays premium upfront
 - Low probability of large win
 - Frequent small losses
@@ -203,21 +251,25 @@ $$
 **Understanding credit spreads as insurance underwriting helps you:**
 
 1. **Think probabilistically:**
+
    - What's probability stock stays above short strike?
    - Am I being paid enough for the risk?
    - Is my premium/risk ratio attractive?
 
 2. **Understand premium pricing:**
+
    - Premium = probability × payout + time value
    - Higher IV = higher premiums (better for sellers)
    - Lower IV = lower premiums (better for buyers)
 
 3. **Size positions correctly:**
+
    - Insurance companies diversify policies
    - You should diversify credit spreads
    - Never risk >5% on single spread
 
 4. **Recognize when to stop selling:**
+
    - Insurance companies refuse policies in disasters
    - Don't sell credit spreads in high IV spikes
    - Wait for IV to normalize before selling
@@ -242,6 +294,7 @@ $$
 - **Risk: Maximum -$300 loss (defined)**
 
 **The spread gives you:**
+
 - 9x lower capital requirement ($300 vs. $9,000)
 - Defined, manageable risk
 - Sleep-at-night comfort
@@ -303,26 +356,31 @@ $$
 **When to use:**
 
 1. **Moderately bullish:**
+
    - Stock in uptrend, expect continuation
    - Want to profit from range-bound trading
    - Don't expect huge rally, just no collapse
 
 2. **High IV environment:**
+
    - Premiums rich from elevated volatility
    - Good credit collection opportunity
    - Sell expensive options before IV contracts
 
 3. **Earnings aftermath:**
+
    - Stock already moved, IV crushed
    - Sell the high remaining premium
    - Expect stabilization/consolidation
 
 4. **Support levels:**
+
    - Stock near strong support
    - Technical setup suggests floor
    - Sell puts below support
 
 5. **Income generation:**
+
    - Want consistent premium collection
    - Accept moderate risk for regular income
    - Building theta-positive portfolio
@@ -341,26 +399,31 @@ $$
 **When to use:**
 
 1. **Moderately bearish:**
+
    - Stock in downtrend, expect continuation
    - Want to profit from capped upside
    - Don't expect crash, just no rally
 
 2. **Resistance overhead:**
+
    - Stock near major resistance
    - Technical setup suggests ceiling
    - Sell calls above resistance
 
 3. **Post-rally exhaustion:**
+
    - Stock had big run, looking toppy
    - Momentum fading
    - Expect pullback or consolidation
 
 4. **Elevated IV:**
+
    - Premiums inflated from fear/uncertainty
    - Good opportunity to sell expensive calls
    - Especially on meme stocks with high IV
 
 5. **Hedging long positions:**
+
    - Own stock, want to collect premium
    - Bear call spread as partial hedge
    - Reduces cost basis while capping upside
@@ -389,6 +452,7 @@ $$
 $$
 
 **What this means:**
+
 - Positive delta (bullish)
 - If stock up $1, spread gains ~$0.20-$0.40
 - If stock down $1, spread loses ~$0.20-$0.40
@@ -401,12 +465,14 @@ $$
 $$
 
 **What this means:**
+
 - Negative delta (bearish)
 - If stock down $1, spread gains ~$0.20-$0.40
 - If stock up $1, spread loses ~$0.20-$0.40
 - Acts like shorting 20-40 shares per spread
 
 **Delta evolution:**
+
 - As stock approaches short strike → delta increases (danger zone)
 - As stock moves away from short strike → delta decreases (safe zone)
 
@@ -419,6 +485,7 @@ $$
 $$
 
 **What this means:**
+
 - **Positive theta** (time decay helps you!)
 - Every day that passes, spread value declines
 - Decline in spread value = profit for you
@@ -431,12 +498,14 @@ $$
 </p>
 
 **Time to expiration vs. theta:**
+
 - 60+ DTE: Slow decay (~$0.02/day)
 - 30-45 DTE: Sweet spot (~$0.05/day)
 - 15-21 DTE: Accelerating (~$0.08/day)
 - <7 DTE: Exponential decay (risky zone)
 
 **The 30-45 DTE sweet spot:**
+
 - Optimal theta/gamma ratio
 - Good credit collection
 - Time for position management
@@ -451,6 +520,7 @@ $$
 $$
 
 **What this means:**
+
 - Delta accelerates against you as stock approaches short strike
 - Small moves become big moves quickly near expiration
 - Maximum gamma risk at short strike
@@ -466,6 +536,7 @@ $$
 | Past short strike | Extreme | Explosive | Emergency exit |
 
 **The gamma squeeze:**
+
 - As expiration nears + stock at short strike = gamma explosion
 - Delta can go from -0.30 to -0.80 in one day
 - This is why we close at 50% profit or roll out
@@ -479,6 +550,7 @@ $$
 $$
 
 **What this means:**
+
 - IV increase hurts your position
 - IV spike of 10% → lose $150-$300 per spread
 - IV contraction helps your position
@@ -487,11 +559,13 @@ $$
 **IV scenarios:**
 
 **Good entry (high IV):**
+
 - VIX at 25, stock IV at 40%
 - Collect $200 credit on $5-wide spread
 - IV drops to 30% → spread value drops → you profit
 
 **Bad entry (low IV):**
+
 - VIX at 12, stock IV at 20%
 - Collect $80 credit on $5-wide spread
 - IV spikes to 35% → spread value rises → you lose
@@ -505,6 +579,7 @@ Many beginners sell credit spreads in low IV, then:
 4. **Always check IV percentile before selling!**
 
 **IV percentile guideline:**
+
 - >50%: Good environment to sell
 - >70%: Great environment to sell
 - <30%: Avoid selling, consider buying
@@ -515,6 +590,7 @@ Many beginners sell credit spreads in low IV, then:
 **Impact:** ~$0.01 per 1% rate change
 
 **Why it doesn't matter much:**
+
 - Rates don't change daily
 - Effect minimal on short-term spreads
 - More relevant for LEAPS or rate-sensitive stocks
@@ -544,12 +620,14 @@ Many beginners sell credit spreads in low IV, then:
 **Why this range works:**
 
 **20-delta short strike:**
+
 - 80% probability of profit
 - Reasonable credit (10-20% of spread width)
 - Stock needs to move ~1 standard deviation to lose
 - Good balance of risk/reward
 
 **Example:**
+
 - Stock at $100, 30 days to expiration
 - Sell $95 put (20-delta) for $1.20
 - Buy $90 put for $0.40
@@ -572,6 +650,7 @@ Because real trading includes:
 4. **Diversification:** Multiple uncorrelated positions
 
 **With proper management, 20-delta spreads can achieve:**
+
 - 75-80% win rate
 - Average win: $0.60 (from $0.80 credit, close at 50%)
 - Average loss: $3.00 (from $4.20 max, good management)
@@ -582,16 +661,19 @@ Because real trading includes:
 **How wide should your spread be?**
 
 **Narrow spreads ($1-$2 wide):**
+
 - **Pros:** Less capital required, smaller max loss
 - **Cons:** Terrible credit (low premium), not worth risk
 - **Use:** Never - avoid these
 
 **Medium spreads ($5 wide):**
+
 - **Pros:** Decent credit/risk ratio (15-20%), liquid
 - **Cons:** Standard choice, nothing special
 - **Use:** Default choice for most stocks
 
 **Wide spreads ($10+ wide):**
+
 - **Pros:** Excellent credit collection, better ratios
 - **Cons:** Large capital requirement, larger max loss
 - **Use:** High-priced stocks (AMZN, GOOGL), when you have capital
@@ -603,6 +685,7 @@ $$
 $$
 
 **Examples:**
+
 - $100 stock: $5-$10 wide spreads
 - $200 stock: $10-$20 wide spreads
 - $50 stock: $2.50-$5 wide spreads
@@ -616,6 +699,7 @@ $$
 **Target:** 1:4 to 1:3 ratio (collect 20-25% of spread width)
 
 **Example:**
+
 - $5-wide spread, collect $1.25 credit
 - Max risk: $5 - $1.25 = $3.75
 - Ratio: $1.25/$3.75 = 1:3 ✓
@@ -633,20 +717,24 @@ $$
 **Why this timeframe?**
 
 1. **Optimal theta/gamma ratio:**
+
    - Good time decay without gamma risk explosion
    - Theta decay accelerating but not frantic
    - Time to manage if trade goes wrong
 
 2. **Liquidity:**
+
    - Most liquid expiration cycle
    - Tight bid-ask spreads
    - Easy to adjust or close
 
 3. **Premium collection:**
+
    - Capture ~30-40% of option's total value
    - Better than weekly (too risky) or quarterly (too slow)
 
 4. **Probability works in your favor:**
+
    - More time for mean reversion
    - Stock unlikely to sustain big move for 30 days
    - Gives you management flexibility
@@ -695,11 +783,13 @@ Research from tastytrade (analyzed 1 million+ trades):
 Assume 70% win rate at expiration:
 
 **Hold to expiration:**
+
 - Win: $1 × 70% = $0.70
 - Lose: -$4 × 30% = -$1.20
 - **EV: -$0.50 (negative!)**
 
 **Close at 50%:**
+
 - Win: $0.50 × 75% = $0.375 (higher win rate)
 - Lose: -$2.50 × 25% = -$0.625 (lower loss)
 - **EV: -$0.25 (less negative, close to breakeven with management)**
@@ -713,6 +803,7 @@ Assume 70% win rate at expiration:
 **Close spreads at 21 DTE regardless of profit/loss:**
 
 **Rationale:**
+
 - Gamma risk accelerates dramatically <21 DTE
 - Theta benefit diminishes in final 3 weeks
 - Risk of overnight gap exceeds reward of holding
@@ -725,6 +816,7 @@ Assume 70% win rate at expiration:
 </p>
 
 **Combined rule:**
+
 - Close at 50% profit, OR
 - Close at 21 DTE, whichever comes first
 - This maximizes long-term expectancy
@@ -736,12 +828,14 @@ Assume 70% win rate at expiration:
 **Rolling out (same strikes, later expiration):**
 
 **When to roll:**
+
 - Stock approaching short strike (delta >0.50)
 - Still 14+ DTE left
 - Credit collected > max loss
 - Thesis still intact (still bullish/bearish)
 
 **How to roll:**
+
 1. Buy back current spread
 2. Sell new spread same strikes, next month
 3. Collect net credit for the roll
@@ -750,12 +844,14 @@ Assume 70% win rate at expiration:
 **Example - Bull Put Spread Roll:**
 
 **Original position:**
+
 - Sold SPY $440/$435 spread for $1.25
 - SPY dropped to $437 (danger!)
 - Spread now worth $2.50 (losing $1.25)
 - 14 DTE remaining
 
 **Roll out:**
+
 - Buy back $440/$435 for $2.50
 - Sell next month $440/$435 for $1.75
 - Net debit: -$0.75
@@ -765,6 +861,7 @@ Assume 70% win rate at expiration:
 **The bet:** SPY will recover above $440 in next 30 days
 
 **When NOT to roll:**
+
 - Thesis broken (momentum shifted)
 - Stock blasting through short strike
 - Already rolled once (don't chase)
@@ -773,6 +870,7 @@ Assume 70% win rate at expiration:
 **Rolling down/up (adjust strikes):**
 
 **Only in specific scenarios:**
+
 - Turn loser into different trade (usually bad idea)
 - Converting to wider spread (increases risk)
 - Generally avoid - accept loss or close
@@ -798,12 +896,14 @@ $$
 $$
 
 **Example:**
+
 - Stock at $100
 - Sell $95 put for $2
 - Buy $90 put for $0.50
 - Net credit: $1.50
 
 **Calculations:**
+
 - Max profit: $1.50 × 100 = $150
 - Max loss: ($95 - $90) - $1.50 = $3.50 × 100 = $350
 - Break-even: $95 - $1.50 = $93.50
@@ -834,12 +934,14 @@ $$
 $$
 
 **Example:**
+
 - Stock at $100
 - Sell $105 call for $2
 - Buy $110 call for $0.50
 - Net credit: $1.50
 
 **Calculations:**
+
 - Max profit: $1.50 × 100 = $150
 - Max loss: ($110 - $105) - $1.50 = $3.50 × 100 = $350
 - Break-even: $105 + $1.50 = $106.50
@@ -853,6 +955,7 @@ $$
 $$
 
 **Example:**
+
 - Collect $1.50 credit
 - Max risk $3.50
 - ROR = $1.50/$3.50 = 43%
@@ -868,18 +971,21 @@ $$
 **Why this matters:**
 
 **High ROR (>40%):**
+
 - Usually means strike too close (high risk)
 - Or very short DTE (gamma risk)
 - Tempting but dangerous
 - Lower win rate needed
 
 **Low ROR (<15%):**
+
 - Safe strikes but poor reward
 - Need very high win rate
 - Not worth capital commitment
 - Better opportunities exist
 
 **Optimal ROR (20-33%):**
+
 - Balanced risk/reward
 - Achievable with 30-45 DTE
 - Sustainable long-term
@@ -894,6 +1000,7 @@ $$
 $$
 
 **Example spread:**
+
 - Collect $150, risk $350
 - Win probability: 75%
 - Loss probability: 25%
@@ -904,6 +1011,7 @@ $$
 $$
 
 **With 50% profit management:**
+
 - Average win: $75 (close at 50%)
 - Average loss: $250 (good management)
 - Win rate increases to 80%
@@ -913,6 +1021,7 @@ $$
 $$
 
 **Why management matters:**
+
 - Improves win rate (75% → 80%)
 - Reduces average loss ($350 → $250)
 - Lowers average win but increases frequency
@@ -936,6 +1045,7 @@ $$
 - IV likely to contract (helping your position)
 
 **How to check:**
+
 1. Check VIX (market-wide volatility)
 2. Check IV Rank (stock-specific volatility)
 3. Only sell when IV Rank > 50%
@@ -947,6 +1057,7 @@ $$
 $$
 
 **Example:**
+
 - Current IV: 35%
 - 52-week range: 20% to 60%
 - IV Rank = (35-20)/(60-20) = 37.5%
@@ -958,12 +1069,14 @@ $$
 **Perfect timing for credit spreads:**
 
 **After earnings announcement:**
+
 - IV drops 30-50% overnight
 - Stock stabilizes in range
 - Elevated premium still available
 - Lower probability of big moves
 
 **Example:**
+
 - NFLX earnings tonight
 - Pre-earnings IV: 80%
 - Post-earnings IV: 45%
@@ -973,6 +1086,7 @@ $$
 - Profit from continued IV contraction
 
 **Other events:**
+
 - FDA decisions (biotech)
 - Product launches
 - Merger announcements
@@ -985,12 +1099,14 @@ $$
 **The credit spread trader's dream:**
 
 **Characteristics:**
+
 - Stock trading in defined range for weeks
 - Low beta, predictable moves
 - Technical support/resistance clear
 - Boring, sideways action
 
 **Example:**
+
 - KO trading $58-$62 for 3 months
 - Sell $57/$52 bull put spreads (below support)
 - Sell $63/$68 bear call spreads (above resistance)
@@ -1004,21 +1120,25 @@ $$
 #### Bull Put Spreads - Technical Entry Signals
 
 **1. Support level bounces:**
+
 - Stock pulls back to strong support
 - Bullish reversal pattern forming
 - **Sell puts below support**
 
 **2. Uptrend continuation:**
+
 - Stock in clear uptrend (higher lows)
 - Pullback to rising trendline
 - **Sell puts at/below trendline**
 
 **3. Moving average support:**
+
 - Stock above rising 50/200 EMA
 - Price tests EMA and holds
 - **Sell puts below EMA**
 
 **4. Bullish chart patterns:**
+
 - Bull flag/pennant forming
 - After consolidation near highs
 - **Sell puts below pattern low**
@@ -1026,21 +1146,25 @@ $$
 #### Bear Call Spreads - Technical Entry Signals
 
 **1. Resistance rejection:**
+
 - Stock rallies to resistance, fails
 - Bearish reversal pattern forming
 - **Sell calls above resistance**
 
 **2. Downtrend continuation:**
+
 - Stock in clear downtrend (lower highs)
 - Bounce to falling trendline
 - **Sell calls at/above trendline**
 
 **3. Moving average resistance:**
+
 - Stock below declining 50/200 EMA
 - Price tests EMA from below, rejects
 - **Sell calls above EMA**
 
 **4. Bearish chart patterns:**
+
 - Bear flag/head and shoulders
 - After rally in downtrend
 - **Sell calls above pattern high**
@@ -1052,16 +1176,19 @@ $$
 #### Positive Scenarios (Bull Put Spreads)
 
 **1. Better-than-expected earnings:**
+
 - Company beats estimates
 - Stock gaps up
 - Sell puts below new support (gap fill level)
 
 **2. Positive analyst upgrades:**
+
 - Major firm upgrades stock
 - Price target raised significantly
 - Sell puts below previous resistance (now support)
 
 **3. Sector rotation into stock:**
+
 - Money flowing into sector
 - Stock showing relative strength
 - Sell puts on pullbacks
@@ -1069,16 +1196,19 @@ $$
 #### Negative Scenarios (Bear Call Spreads)
 
 **1. Worse-than-expected earnings:**
+
 - Company misses badly
 - Stock gaps down
 - Sell calls above new resistance (gap fill level)
 
 **2. Negative analyst downgrades:**
+
 - Major firm downgrades
 - Price target slashed
 - Sell calls above previous support (now resistance)
 
 **3. Regulatory headwinds:**
+
 - New regulations threaten business
 - Legal issues arise
 - Sell calls on rallies (dead cat bounces)
@@ -1099,6 +1229,7 @@ $$
 - Not worth the risk
 
 **Example:**
+
 - Want to sell SPY $440/$435 bull put spread
 - IV Rank: 25% (low)
 - Credit available: $0.40
@@ -1106,6 +1237,7 @@ $$
 - **ROR: 8.7% (terrible!)**
 
 **Why it fails:**
+
 - Tiny credit for substantial risk
 - If IV spikes, you're crushed
 - Better to buy options in low IV
@@ -1117,6 +1249,7 @@ $$
 **The known-unknown trap:**
 
 **Events that create massive uncertainty:**
+
 - Earnings in 0-3 days
 - FDA decisions pending
 - Merger votes
@@ -1124,6 +1257,7 @@ $$
 - Political elections
 
 **Why avoid:**
+
 - IV will spike (hurts your position)
 - Stock can gap huge (blow through your spread)
 - Probability models break down
@@ -1132,12 +1266,14 @@ $$
 **Example - The Earnings Mistake:**
 
 **Setup:**
+
 - NVDA at $450
 - Earnings tomorrow
 - IV at 60% (elevated)
 - Sell $440/$435 bull put spread for $2
 
 **What happens:**
+
 - Earnings: Miss revenue by 5%
 - Stock gaps to $400 overnight
 - Spread worth $5 (max loss)
@@ -1150,12 +1286,14 @@ $$
 **Don't fight momentum:**
 
 **When stock is ripping/crashing:**
+
 - Vertical price action
 - 20+ IV percentile spike
 - RSI >80 or <20
 - Clear momentum/mania
 
 **Example:**
+
 - GME at $40, squeezing to $100
 - "It has to come down, I'll sell $120 calls!"
 - Stock goes to $480
@@ -1176,6 +1314,7 @@ $$
 - Lose defined-risk protection
 
 **Example:**
+
 - Sold $95 put on $100 stock
 - Ex-dividend: $2 tomorrow
 - Put becomes ITM after dividend
@@ -1199,17 +1338,20 @@ $$
 - **Stock moves $2, you're destroyed**
 
 **The mistake:**
+
 - Selling 40-50 delta options (low probability)
 - Chasing high ROR without understanding risk
 - Ignoring probability of profit
 
 **Example:**
+
 - AAPL at $180
 - Sell $178/$173 bull put spread for $3
 - Stock drops to $175 (normal pullback)
 - **Max loss: -$2 per share**
 
 **The fix:**
+
 - Stick to 20-30 delta short strikes
 - Accept lower premium for higher probability
 - 20% ROR at 75% win rate > 50% ROR at 50% win rate
@@ -1224,11 +1366,13 @@ $$
 - **Turn $0.80 winner into -$3 loser**
 
 **The mistake:**
+
 - Squeezing last penny of time value
 - Exposing position to gamma risk
 - Ignoring data (50% rule optimizes returns)
 
 **The fix:**
+
 - Close at 50% profit religiously
 - Exit at 21 DTE regardless
 - Free up capital for new opportunities
@@ -1244,11 +1388,13 @@ $$
 - **Months of gains wiped out**
 
 **The mistake:**
+
 - Not checking IV environment
 - Mechanical selling without selectivity
 - Ignoring volatility cycles
 
 **The fix:**
+
 - Only sell when IV Rank > 50%
 - Be patient, wait for opportunities
 - When IV low, buy options instead (debit spreads)
@@ -1264,11 +1410,13 @@ $$
 - **Account to $0**
 
 **The mistake:**
+
 - Using all buying power
 - Not leaving room for losses
 - Treating high probability as certainty
 
 **The fix:**
+
 - Max 30-40% of portfolio in credit spreads
 - Max 5-10% per underlying
 - Max 2-5% per trade
@@ -1285,11 +1433,13 @@ $$
 - **Nope, max loss**
 
 **The mistake:**
+
 - Confusing probability with certainty
 - No exit plan for losers
 - Emotional attachment to "being right"
 
 **The fix:**
+
 - Set stop loss at 2x credit (losing trade)
 - If spread doubles in value against you, exit
 - Accept losses quickly
@@ -1306,11 +1456,13 @@ $$
 - **All 5 hit max loss simultaneously**
 
 **The mistake:**
+
 - False diversification (all tech)
 - Ignoring sector/market correlation
 - Compounding risk instead of spreading it
 
 **The fix:**
+
 - Diversify across sectors
 - Mix bull and bear spreads
 - Vary expiration dates
@@ -1327,6 +1479,7 @@ $$
 - **One bad month wipes out 6 good months**
 
 **The mistake:**
+
 - Treating trading like gambling
 - Focusing on wins, ignoring tail risk
 - Not respecting negative skew
@@ -1334,12 +1487,14 @@ $$
 **The reality:**
 
 Credit spreads have **negative skew:**
+
 - Many small wins
 - Occasional large losses
 - One bad loss can erase months of gains
 - **Need discipline to survive long-term**
 
 **The fix:**
+
 - Track overall P/L, not win rate
 - Calculate expectancy (not just probability)
 - Use stop losses religiously
@@ -1361,25 +1516,30 @@ $$
 $$
 
 **Example:**
+
 - $5-wide spread should total $5 in credits
 
 **Reality:**
+
 - Bull put spread (sell $95/90): Collect $1.20
 - Bear put spread (sell $100/95): Collect $4.10
 - Total: $5.30 (>$5.00)
 
 **Arbitrage opportunity:**
+
 - Sell both spreads
 - Collect $5.30 total
 - Max risk: $5.00
 - **Guaranteed $0.30 profit**
 
 **Why it exists:**
+
 - Market inefficiency
 - Skew in put prices
 - Temporary supply/demand imbalance
 
 **How to find:**
+
 - Compare bull put vs. bear put at same strikes
 - Look for total credit > spread width
 - Act fast (arb disappears quickly)
@@ -1389,28 +1549,33 @@ $$
 **Variation: Different expiration dates**
 
 **Structure:**
+
 - Sell near-term option (high theta)
 - Buy later-term option (protection)
 - Collect net credit (usually)
 - Benefits from theta and calendar effects
 
 **Example - Diagonal Bull Put:**
+
 - Stock at $100
 - Sell $95 put, 30 DTE for $2
 - Buy $90 put, 60 DTE for $1.50
 - Net credit: $0.50
 
 **Advantages:**
+
 - Long option doesn't decay as fast
 - Can roll short option monthly
 - Reduced capital requirement vs. vertical
 
 **Disadvantages:**
+
 - More complex to manage
 - Vega risk from long option
 - Can lose on both legs in extreme moves
 
 **When to use:**
+
 - Expect gradual move in your favor
 - Want to leg into calendar spread
 - Bullish long-term, neutral short-term
@@ -1420,6 +1585,7 @@ $$
 **Combining bull put + bear call = Iron Condor**
 
 **Iron Condor structure:**
+
 - Sell OTM put spread (bull put)
 - Sell OTM call spread (bear call)
 - Collect credit from both sides
@@ -1434,12 +1600,14 @@ $$
 | Iron Condor | Neutral | High | Complex |
 
 **When to use Iron Condor:**
+
 - Stock in tight range
 - Expect consolidation
 - High IV environment
 - Willing to manage 4 legs
 
 **When to use single spread:**
+
 - Have directional bias
 - Simpler management
 - Lower capital requirement
@@ -1450,28 +1618,33 @@ $$
 **Variation: Unequal number of contracts**
 
 **Structure:**
+
 - Sell 2 near-ATM options
 - Buy 1 far-OTM option
 - Collect larger credit
 - Undefined risk if stock moves far
 
 **Example:**
+
 - Sell 2 × $95 puts for $4 total
 - Buy 1 × $90 put for $1.50
 - Net credit: $2.50
 - **Risky if stock crashes hard**
 
 **Advantages:**
+
 - Much higher credit
 - Better return on capital
 - Works well in low IV
 
 **Disadvantages:**
+
 - Undefined risk beyond long strike
 - Requires more management
 - Can blow up in tail events
 
 **When to use:**
+
 - Very high conviction on range
 - Low probability of extreme move
 - Experienced traders only
@@ -1482,26 +1655,31 @@ $$
 **Using theoretical vs. market probabilities:**
 
 **Theory:**
+
 - Option delta ≈ probability of finishing ITM
 - 30-delta option ≈ 30% chance of ITM
 
 **Reality:**
+
 - Market prices don't always match theoretical probabilities
 - Skew creates opportunities
 
 **Example:**
+
 - Stock at $100
 - $95 put has 25-delta (25% ITM probability)
 - But historical data shows: stock only drops below $95 15% of time
 - **Market overpricing downside protection**
 
 **Opportunity:**
+
 - Sell $95 put (collect inflated premium)
 - Market paying for 25% probability
 - Reality is 15% probability
 - **Statistical edge over time**
 
 **How to identify:**
+
 - Compare implied volatility to realized volatility
 - Check historical move probabilities
 - Find where IV > realized vol consistently
@@ -1512,26 +1690,31 @@ $$
 **Exploiting skew in the volatility smile:**
 
 **The pattern:**
+
 - OTM puts have higher IV than ATM (put skew)
 - Downside protection is expensive
 - Upside calls have lower IV
 
 **Strategy:**
+
 - Sell the expensive OTM puts (high IV)
 - Use that premium to buy ATM options
 - Capture the skew premium
 
 **Example:**
+
 - ATM put (Strike $100): IV = 30%, costs $4
 - OTM put (Strike $90): IV = 40%, costs $2
 
 **Bull put spread:**
+
 - Sell $90 put (IV = 40%) for $2
 - Buy $85 put (IV = 45%) for $1.25
 - Net credit: $0.75
 - **Selling higher IV than buying (good)**
 
 **The edge:**
+
 - Volatility smile tends to flatten
 - OTM puts' elevated IV often contracts
 - Spread value decreases faster than theta alone
@@ -1557,6 +1740,7 @@ Where:
 - $L$ = Loss amount (max risk)
 
 **Example:**
+
 - Win probability: 75%
 - Average win: $150
 - Average loss: $350
@@ -1575,6 +1759,7 @@ $$
 4. **Correlation adjustment:** Reduce size when positions correlated
 
 **Example for $50,000 account:**
+
 - Max per spread: $2,500 (5%)
 - Max per stock: $5,000 (10%)
 - Max total credit spreads: $20,000 (40%)
@@ -1585,21 +1770,25 @@ $$
 **Never put all eggs in one basket:**
 
 **Sector diversification:**
+
 - Max 20% in any sector
 - Mix cyclical and defensive
 - Include index spreads for broad exposure
 
 **Time diversification:**
+
 - Vary expiration dates
 - Don't have everything expiring same week
 - Stagger entries over time
 
 **Strategy diversification:**
+
 - Mix bull puts and bear calls
 - Some in high IV, some in medium IV
 - Different underlying volatilities
 
 **Example portfolio:**
+
 - 3 bull put spreads (different sectors, different DTE)
 - 2 bear call spreads (different sectors)
 - 1 iron condor on index
@@ -1613,16 +1802,19 @@ $$
 #### Profit Taking
 
 **1. The 50% profit rule:**
+
 - Close when captured 50% of max credit
 - Example: Sold for $1, close at $0.50
 - Optimal risk/reward balance
 
 **2. The 21-DTE exit:**
+
 - Close all spreads at 21 DTE
 - Avoid gamma explosion risk
 - Frees capital for new trades
 
 **3. The delta trigger:**
+
 - If short option delta reaches 0.70, close immediately
 - Position too risky regardless of P/L
 - Gamma risk too high
@@ -1630,16 +1822,19 @@ $$
 #### Loss Cutting
 
 **1. The 2x credit stop loss:**
+
 - If spread value doubles, exit
 - Example: Sold for $1, exit at $2 (losing $1)
 - Prevents holding through max loss
 
 **2. The 50% max loss stop:**
+
 - Never lose more than 50% of max risk
 - Example: Max risk $400, stop at -$200
 - Preserves capital for next trade
 
 **3. The thesis break:**
+
 - If fundamental reason for trade invalidated, exit
 - Don't wait for technical stop
 - Example: Bullish spread, company issues profit warning → exit
@@ -1647,11 +1842,13 @@ $$
 #### Time Stops
 
 **1. Theta decay insufficient:**
+
 - If 50% of time passed and only 25% profit → exit
 - Theta not working as expected
 - Free capital for better opportunity
 
 **2. Stuck in the mud:**
+
 - Position unchanged for 10+ days
 - No progress toward profit
 - Opportunity cost too high → exit
@@ -1663,6 +1860,7 @@ $$
 #### Scenario 1: Stock Approaching Short Strike
 
 **Diagnosis:**
+
 - 14+ DTE remaining
 - Short strike delta 0.50-0.60
 - Thesis still intact
@@ -1677,6 +1875,7 @@ $$
 #### Scenario 2: Stock Blasted Through Short Strike
 
 **Diagnosis:**
+
 - Short strike now ATM or ITM
 - Delta >0.70
 - Time running out
@@ -1689,6 +1888,7 @@ $$
 #### Scenario 3: IV Spike
 
 **Diagnosis:**
+
 - Spread value increased due to IV
 - Stock position unchanged
 - IV rank jumped 20+ points
@@ -1701,6 +1901,7 @@ $$
 #### Scenario 4: Slow Bleed
 
 **Diagnosis:**
+
 - Position slowly losing
 - No catalyst for reversal
 - Time decay not helping enough
@@ -1728,11 +1929,13 @@ $$
 **When everything goes wrong:**
 
 **Market crash scenario:**
+
 - VIX spikes to 40+
 - All positions threatened
 - What do you do?
 
 **Action plan:**
+
 1. **Assess damage:** Which positions salvageable?
 2. **Triage:** Close worst positions first (deepest ITM)
 3. **Keep winners:** Don't panic close profitable spreads
@@ -1740,6 +1943,7 @@ $$
 5. **Wait for IV to stabilize:** Don't immediately re-enter
 
 **Example:**
+
 - Portfolio has 5 bull put spreads
 - Market crashes, 3 spreads threatened
 - Action:
@@ -1764,6 +1968,7 @@ $$
 - VIX: 18
 
 **Technical analysis:**
+
 - 50-day EMA at $555 (rising)
 - RSI: 55 (neutral, not overbought)
 - Volume declining (healthy consolidation)
@@ -1779,6 +1984,7 @@ $$
 - **POP:** ~80%
 
 **Position sizing:**
+
 - $50,000 account
 - Max risk per trade: $2,500 (5%)
 - Number of spreads: 8 contracts
@@ -1786,6 +1992,7 @@ $$
 - Total risk: $2,400
 
 **Management plan:**
+
 - Close at 50% profit ($100 per spread)
 - Stop loss at -100% (spread worth $4)
 - Exit at 21 DTE regardless
@@ -1803,6 +2010,7 @@ Day 11-20:
 - **60% profit! Close position**
 
 **Final results:**
+
 - Entry: $2.00 credit ($1,600 total)
 - Exit: $0.80 ($640 buy-back cost)
 - **Profit: $1.20 per spread = $960 total**
@@ -1810,6 +2018,7 @@ Day 11-20:
 - **Annualized: ~730%**
 
 **Lessons:**
+
 - Proper strike selection (20-delta)
 - Closed at 60% (exceeded 50% rule)
 - Exited with 15 DTE remaining (avoided gamma risk)
@@ -1826,6 +2035,7 @@ Day 11-20:
 - Elon Musk bullish on Twitter
 
 **Technical analysis:**
+
 - RSI: 78 (overbought)
 - Momentum divergence (price up, RSI declining)
 - Volume decreasing on rally (warning sign)
@@ -1858,6 +2068,7 @@ Day 6-10:
 - **Total loss: $700 per spread**
 
 **If traded 3 contracts:**
+
 - Collected: $900 total
 - Final loss: -$2,100
 - **Net: -$1,200 loss**
@@ -1871,6 +2082,7 @@ Day 6-10:
 5. **Don't bet against Elon** (cult stocks are different)
 
 **What should have been done:**
+
 - Wait for TSLA to consolidate
 - Or sell bear call much higher ($280/$290)
 - Or simply avoid - too much momentum
@@ -1887,6 +2099,7 @@ Day 6-10:
 - IV Rank: 40% → 25% (crushed)
 
 **The opportunity:**
+
 - Event risk gone (earnings passed)
 - IV still elevated but declining
 - Stock found new range
@@ -1902,6 +2115,7 @@ Day 6-10:
 - **POP:** ~82%
 
 **Why this works:**
+
 - Selling after IV spike (better premium)
 - Event uncertainty removed
 - Stock unlikely to move big in next month
@@ -1922,6 +2136,7 @@ Week 2:
 - **Close position!**
 
 **Final results:**
+
 - Entry: $1.30 credit
 - Exit: $0.60 ($70 buy-back)
 - **Profit: $0.70 per spread**
@@ -1929,6 +2144,7 @@ Week 2:
 - **Key advantage: Vega contraction added to theta decay**
 
 **Lessons:**
+
 - Post-event timing crucial (IV still elevated)
 - Double benefit: time decay + IV contraction
 - Closed at 50%+ profit (followed rules)
@@ -1947,16 +2163,19 @@ Week 2:
 **Strategy:** Iron Condor (bull put + bear call)
 
 **Bull Put Spread:**
+
 - Sell $560 put for $2.50
 - Buy $555 put for $1.00
 - Credit: $1.50
 
 **Bear Call Spread:**
+
 - Sell $590 call for $2.00
 - Buy $595 call for $0.80
 - Credit: $1.20
 
 **Combined Iron Condor:**
+
 - Total credit: $2.70 = $270 per IC
 - Max risk: $2.30 = $230 per IC (on either side)
 - Break-evens: $557.30 (downside), $592.70 (upside)
@@ -1982,17 +2201,20 @@ Week 3:
 - Avoid late gamma risk
 
 **Final results:**
+
 - Entry: $2.70 credit
 - Exit: $2.00
 - **Profit: $0.70 = $70 per IC**
 - **ROI: 30% in 23 days**
 
 **If traded 5 ICs:**
+
 - Collected: $1,350
 - Profit: $350
 - **Return on risk: 30% in 3 weeks**
 
 **Lessons:**
+
 - Range-bound strategy worked
 - Didn't wait for 50% (risk management)
 - Exited before gamma risk period

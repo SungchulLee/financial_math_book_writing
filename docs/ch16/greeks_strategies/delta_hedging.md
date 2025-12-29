@@ -2,6 +2,30 @@
 
 **Delta hedging** is a risk management strategy that eliminates directional exposure by continuously adjusting a hedge position to keep your portfolio delta-neutral.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/delta_hedging_concept.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 1:** Conceptual framework of delta hedging showing how a delta-neutral position is constructed by offsetting the delta of an option position with the underlying stock, illustrating the fundamental principle of directional risk elimination.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/delta_hedging_evolution.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 2:** Evolution of delta over time showing how the option delta changes with underlying price movements, demonstrating why continuous rebalancing is necessary to maintain delta neutrality.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/delta_hedging_pnl_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 3:** P&L decomposition of a delta-hedged position showing the separate contributions from gamma scalping profits, theta decay costs, and transaction costs, illustrating the key components that determine overall profitability.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/delta_hedging_rebalancing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 4:** Rebalancing mechanics showing the stock positions required at different price levels to maintain delta neutrality, with arrows indicating buy/sell actions needed as the underlying moves.
+
 ---
 
 ## The Core Insight

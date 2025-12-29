@@ -2,6 +2,38 @@
 
 **Iron condors** are neutral, defined-risk option strategies that combine a bull put spread and a bear call spread, profiting from low volatility and time decay with capped maximum loss.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_management_zones.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_wing_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -69,12 +101,14 @@ $$
 ### Key Characteristics
 
 **Defined risk neutral strategy:**
+
 - Maximum loss is known upfront
 - Cannot lose more than defined amount
 - Profit from stock staying in range
 - Win from time decay and volatility decrease
 
 **Risk profile:**
+
 - **Max profit:** Net credit received (limited)
 - **Max loss:** Width of spread - Net credit (capped!)
 - **Breakeven points:** Two of them
@@ -82,6 +116,7 @@ $$
   - Upper: Short call strike + Net credit
 
 **Probability of Profit:**
+
 - Typically 60-70% (similar to short strangle)
 - But max loss much smaller
 - Risk-reward ratio better defined
@@ -119,12 +154,14 @@ $$
 **Why this matters:**
 
 **Short Strangle (no reinsurance):**
+
 - Collect $6 premium
 - Risk: UNLIMITED if stock crashes or moons
 - Potential loss: $10,000+ if catastrophic move
 - **Can't sleep at night**
 
 **Iron Condor (with reinsurance):**
+
 - Collect $4 premium (less than strangle)
 - Risk: Capped at $600 max
 - You paid $2 for reinsurance ($6 - $4)
@@ -135,6 +172,7 @@ $$
 ### Example: Breaking Down the SPY Iron Condor
 
 **Setup:**
+
 - SPY at $450
 - Buy $440 put for $1
 - Sell $445 put for $3.50
@@ -192,11 +230,13 @@ $$
 **Understanding the institutional perspective:**
 
 **Retail traders often think:**
+
 - "Why accept less premium?"
 - "I'll just manage the strangle if it goes wrong"
 - "I want maximum income"
 
 **Professional traders know:**
+
 - Blowups happen when you can't manage (gap moves, black swans)
 - Career risk from unlimited loss unacceptable
 - Consistent small wins > occasional catastrophic loss
@@ -207,11 +247,13 @@ $$
 **With $100,000 account:**
 
 **Short Strangles:**
+
 - Margin: $10,000 per position
 - Max positions: 5 (to be safe)
 - One blowup: Could lose $20,000+ (20% of account)
 
 **Iron Condors:**
+
 - Margin: $500 per position  
 - Max positions: 20 (with proper diversification)
 - One blowup: Lose $500 max (0.5% of account)
@@ -251,6 +293,7 @@ $$
 $$
 
 **Example:**
+
 - Credit: $4
 - Wing width: $5
 - Max loss: $5 - $4 = $1
@@ -379,6 +422,7 @@ $$
 - Symmetric structure, balanced risk
 
 **Advantages:**
+
 - Easy to manage
 - Symmetric risk
 - Standard margin calculations
@@ -411,18 +455,21 @@ $$
 **Trade-off: Premium vs. Max Loss**
 
 **Narrow wings ($2-3 wide):**
+
 - Less max loss ($150-$250)
 - Less premium collected ($0.50-$1.00)
 - Better risk/reward ratio
 - Lower margin requirement
 
 **Standard wings ($5 wide):**
+
 - Moderate max loss ($400-$500)
 - Moderate premium ($3-$5)
 - Balanced approach
 - Industry standard
 
 **Wide wings ($10+ wide):**
+
 - Large max loss ($800-$1,000)
 - More premium collected ($6-$8)
 - Worse risk/reward
@@ -443,18 +490,21 @@ $$
 **Distance between short strikes:**
 
 **Narrow body (short strikes close):**
+
 - Example: $95/$100 or $100/$105
 - More premium collected
 - Lower POP (50-60%)
 - More active management needed
 
 **Standard body:**
+
 - Example: $95/$105 (stock at $100)
 - Balanced premium/POP
 - 60-70% POP
 - Most common approach
 
 **Wide body:**
+
 - Example: $90/$110 (stock at $100)
 - Less premium
 - Higher POP (70-80%)
@@ -473,24 +523,28 @@ Where $S_0$ is current stock price.
 **Optimal timeframes for iron condors:**
 
 **30-45 DTE (Sweet Spot):**
+
 - Good theta decay
 - Manageable gamma risk
 - Industry standard
 - Best balance
 
 **45-60 DTE:**
+
 - Higher premium
 - Slower theta
 - More time for adjustments
 - If very patient
 
 **21-30 DTE:**
+
 - Fast theta
 - Higher gamma risk
 - For experienced traders
 - Quick profits or losses
 
 **Never < 21 DTE:**
+
 - Gamma too high
 - Whipsaw risk
 - Hard to manage
@@ -620,6 +674,7 @@ $$
 - **Condor: -$300, Strangle: -$500**
 
 **Mitigations:**
+
 - Enter when IVR high (50%+)
 - Exit if IV spikes unexpectedly
 - Use VIX as market volatility gauge
@@ -641,12 +696,14 @@ $$
 **When winning: Exit before expiration**
 
 **50% Rule (Standard):**
+
 - Position showing 50% of max profit
 - Example: $400 credit, now worth $200
 - **Close for $200 profit, redeploy**
 - Captures most edge, avoids late gamma
 
 **21 DTE Rule:**
+
 - Exit at 21 DTE regardless of profit
 - Even if only 30% profit
 - Gamma acceleration not worth risk
@@ -700,18 +757,21 @@ Action: **Close immediately, bank $220**
 **Extending duration when needed:**
 
 **Vertical Roll:**
+
 - Same expiration, different strikes
 - Roll tested side further OTM
 - Collect additional credit
 - Increases max loss
 
 **Horizontal Roll:**
+
 - Keep strikes, extend expiration
 - Roll entire condor to next month
 - Usually near zero cost
 - Gives more time
 
 **Diagonal Roll:**
+
 - Change both strikes and expiration
 - Most flexible
 - Can improve position significantly
@@ -781,12 +841,14 @@ Test different widths:
 **Adjusting for bias:**
 
 **Bullish bias:**
+
 - Wider put spread ($7-10 wide)
 - Narrower call spread ($3-5 wide)
 - Collect asymmetric premium
 - More upside room
 
 **Bearish bias:**
+
 - Wider call spread
 - Narrower put spread
 - More downside room
@@ -852,17 +914,20 @@ $$
 ### Mistake 1: Wings Too Narrow
 
 **The error:**
+
 - Use $2-3 wings to "maximize premium"
 - Think "I'll just manage it"
 - Max loss too large relative to credit
 
 **Why it fails:**
+
 - Max loss = $200-$300
 - Credit = $50-$100  
 - Risk/reward ratio terrible (3:1 or worse)
 - **One loss wipes out multiple wins**
 
 **Fix:**
+
 - Use $5+ wings minimum
 - Target 2:1 to 4:1 reward/risk
 - Don't optimize for premium alone
@@ -871,17 +936,20 @@ $$
 ### Mistake 2: Holding Past 21 DTE
 
 **The error:**
+
 - "Just 10 more days for full profit"
 - Gamma explodes, whipsaw kills position
 - $300 profit → $500 loss in one day
 
 **Why it fails:**
+
 - Gamma accelerates exponentially
 - Pin risk emerges
 - Assignment complications
 - **Last 10% profit has 90% of risk**
 
 **Fix:**
+
 - Hard exit at 21 DTE
 - Or take 50% profit
 - Whichever comes first
@@ -890,16 +958,19 @@ $$
 ### Mistake 3: Not Diversifying Strikes
 
 **The error:**
+
 - All condors at same delta
 - All tested if market moves
 - Correlated losses
 
 **Why it fails:**
+
 - One market move hits all positions
 - No diversification benefit
 - **Cluster risk**
 
 **Fix:**
+
 - Vary delta selection (-0.15 to -0.25)
 - Different underlyings
 - Different expirations
@@ -908,18 +979,21 @@ $$
 ### Mistake 4: Fighting the Tested Side
 
 **The error:**
+
 - Stock breaches short strike
 - "I'll roll and collect more premium"
 - Keep rolling, keep losing
 - Turn $200 loss into $1,000 loss
 
 **Why it fails:**
+
 - Stock has momentum
 - Rolling increases max loss
 - Chasing bad position
 - **Throwing good money after bad**
 
 **Fix:**
+
 - Accept loss at 2x credit
 - Close and move on
 - Don't marry losing trades
@@ -928,18 +1002,21 @@ $$
 ### Mistake 5: Low IV Environments
 
 **The error:**
+
 - Sell condors when IVR = 10%
 - Premium is $1-2 (tiny)
 - IV likely to increase
 - Negative expected value
 
 **Why it fails:**
+
 - Premium too small vs. risk
 - IV mean reversion hurts
 - Negative vega hits hard
 - **Wrong time to sell vol**
 
 **Fix:**
+
 - Only enter when IVR > 40%
 - Ideal when IVR > 60%
 - Check IV percentile first
@@ -1090,6 +1167,7 @@ $$
 - **Max size: 5 contracts maximum**
 
 **Professional sizing:**
+
 - 2-5% risk per position
 - Max 10 total positions
 - Max 50% of account in condors
@@ -1124,12 +1202,14 @@ $$
 **Exit rules when winning:**
 
 **50% Rule (Primary):**
+
 - Position showing 50% max profit
 - Close immediately
 - Don't debate, just exit
 - **This is the edge!**
 
 **21 DTE Rule (Secondary):**
+
 - If not hit 50%, close at 21 DTE
 - Take whatever profit exists
 - Redeploy to fresh position
@@ -1152,18 +1232,21 @@ Action: Close (50% rule exceeded!)
 **Spread risk across:**
 
 **Underlyings:**
+
 - 5-10 different stocks/ETFs
 - Different sectors
 - Different market caps
 - Low correlation
 
 **Expirations:**
+
 - Ladder maturities (30, 35, 40, 45 DTE)
 - Not all same week
 - Smooth theta income
 - Reduce concentration
 
 **Strikes:**
+
 - Vary delta (-0.15 to -0.25)
 - Different wing widths
 - Different body widths
@@ -1194,6 +1277,7 @@ $$
 $$
 
 **Example:**
+
 - Current IV: 28%
 - 52-week range: 15% to 50%
 - IVR = (28-15)/(50-15) = 37%
@@ -1255,6 +1339,7 @@ $$
 - Symmetric wings (balanced risk)
 
 **Example deltas:**
+
 - Long put: -0.05
 - Short put: -0.20
 - Short call: +0.20
@@ -1276,10 +1361,12 @@ $$
 - **Max profit:** Net credit received (limited, kept if all expire worthless)
 - **Max loss:** Wing width - Net credit (DEFINED and CAPPED!)
 - **Breakevens:**
+
   - Lower: Short put - Credit
   - Upper: Short call + Credit
 
 **Example:**
+
 - Credit: $4
 - Spreads: $5 wide
 - Max profit: $400
@@ -1330,16 +1417,19 @@ $$
 ### Comparison to Other Strategies
 
 **vs. Short Strangle:**
+
 - Condor: Less premium, DEFINED risk
 - Strangle: More premium, unlimited risk
 - **Condor = Strangle + Insurance (long wings)**
 
 **vs. Iron Butterfly:**
+
 - Condor: Wider profit zone, less premium
 - Butterfly: Narrower zone, more premium
 - Condor more conservative
 
 **vs. Credit Spreads:**
+
 - Condor: Neutral, two spreads
 - Single spread: Directional, one spread
 - Condor combines both directions

@@ -2,6 +2,16 @@
 
 **The Wheel Strategy** is a systematic approach to generating income by selling cash-secured puts until assigned stock, then selling covered calls on that stock, continuously "wheeling" between the two states to harvest premium while potentially profiting from capital appreciation.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true" alt="wheel_strategy_rotation" width="700">
+</p>
+**Figure 1:** The Wheel Strategy rotation diagram showing the continuous cycle between cash-secured puts, stock ownership, covered calls, and back to cash, creating perpetual income generation.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true" alt="wheel_strategy_diagram" width="700">
+</p>
+**Figure 2:** Detailed Wheel Strategy flowchart illustrating decision points, timing considerations, and profit realization at each stage of the income-generating cycle.
+
 ---
 
 ## The Core Insight
@@ -39,12 +49,14 @@ $$
 **The Wheel operates in two states:**
 
 **State 1: No stock position (Selling Cash-Secured Puts)**
+
 - Sell OTM put on stock you'd be happy owning
 - Collect premium immediately
 - If not assigned: Keep premium, repeat
 - If assigned: Move to State 2
 
 **State 2: Own stock (Selling Covered Calls)**
+
 - Now own 100 shares from assignment
 - Sell OTM call against those shares
 - Collect premium
@@ -52,6 +64,7 @@ $$
 - If called away: Stock sold at profit, back to State 1
 
 **The "Wheel" name:**
+
 - Like a wheel turning: CSP → Stock → CC → No Stock → CSP → ...
 - Continuous motion
 - Always collecting premium
@@ -62,16 +75,19 @@ $$
 **Phase 1: Selling Cash-Secured Puts (CSP)**
 
 **Mechanics:**
+
 - Choose stock you want to own at price $K$
 - Sell put option at strike $K$ (usually slightly OTM)
 - Set aside cash to buy 100 shares if assigned
 - Collect premium upfront
 
 **Outcomes:**
+
 - **Not assigned (stock stays above $K):** Keep premium, repeat next month
 - **Assigned (stock drops below $K):** Buy 100 shares at $K$, move to Phase 2
 
 **Example:**
+
 - Want to own AAPL at $170
 - AAPL currently at $175
 - Sell $170 put for $3, collect $300
@@ -81,16 +97,19 @@ $$
 **Phase 2: Selling Covered Calls (CC)**
 
 **Mechanics:**
+
 - Now own 100 shares from assignment
 - Sell call option at strike $K_c$ (above your cost basis ideally)
 - Collect premium
 - Keep stock shares as "cover" for the call
 
 **Outcomes:**
+
 - **Not assigned (stock stays below $K_c):** Keep stock + premium, repeat
 - **Called away (stock rises above $K_c):** Sell shares at $K_c$, realize gain, back to Phase 1
 
 **Example:**
+
 - Own 100 AAPL at $170 (assigned from put)
 - Sell $175 call for $2.50, collect $250
 - If AAPL stays < $175: Keep stock + $250, sell another call
@@ -99,17 +118,20 @@ $$
 ### Key Characteristics
 
 **Income sources:**
+
 1. **Put premiums** (while waiting to buy)
 2. **Call premiums** (while holding stock)
 3. **Capital gains** (if stock called away above cost basis)
 4. **Dividends** (while holding stock)
 
 **Risk profile:**
+
 - **Max profit:** Technically unlimited (but capped by strikes chosen)
 - **Max loss:** Full stock value minus premiums collected
 - **Real risk:** Stock drops significantly and stays down
 
 **Time commitment:**
+
 - 15-30 minutes per month per position
 - Very mechanical, systematic
 - Low stress compared to active trading
@@ -148,6 +170,7 @@ $$
 **Why this matters:**
 
 **Traditional stock investing:**
+
 - See stock at $100, want to buy
 - Buy immediately
 - **No income while waiting**
@@ -156,6 +179,7 @@ $$
 - **Only profit = capital gain**
 
 **Wheel Strategy:**
+
 - Want stock at $95
 - Sell $95 put, collect $2 immediately
 - If not assigned: **Earned $2 for NOT buying** (repeat)
@@ -169,6 +193,7 @@ $$
 ### Example: Breaking Down a Complete Wheel Cycle
 
 **Setup:**
+
 - Target stock: SPY at $450
 - Capital: $45,000
 - Timeframe: 12 months
@@ -176,6 +201,7 @@ $$
 **Month 1-2: Selling CSPs (No Assignment)**
 
 Sell $445 put (30 DTE) for $4
+
 - Collected: $400
 - Stock stays above $445
 - Repeat: Sell $445 put again for $4
@@ -185,6 +211,7 @@ Sell $445 put (30 DTE) for $4
 **Month 3: Assignment**
 
 Sell $445 put for $4
+
 - Stock drops to $440
 - **Assigned: Buy 100 shares at $445**
 - Effective cost: $445 - $12 (premiums) = **$433**
@@ -192,6 +219,7 @@ Sell $445 put for $4
 **Month 4-8: Selling Covered Calls (Not Assigned)**
 
 Each month: Sell $450 call for $3
+
 - Month 4: $300
 - Month 5: $300
 - Month 6: $300
@@ -204,6 +232,7 @@ Each month: Sell $450 call for $3
 **Month 9: Called Away**
 
 Sell $450 call for $3
+
 - Stock rallies to $455
 - **Called away: Sell 100 shares at $450**
 - Capital gain: $450 - $433 = $17/share = $1,700
@@ -211,6 +240,7 @@ Sell $450 call for $3
 **Month 10-12: Back to CSPs**
 
 Sell $445 puts monthly:
+
 - Month 10: $400
 - Month 11: $400  
 - Month 12: $400
@@ -270,6 +300,7 @@ $$
 $$
 
 **Example:**
+
 - Assigned at $100 via put
 - Collected $3 in put premiums before assignment
 - Collected $6 in call premiums while holding
@@ -291,18 +322,21 @@ $$
 ### 1. Generate Consistent Income
 
 **Best for:**
+
 - Retirement accounts (tax-deferred)
 - Conservative investors
 - Income-focused strategies
 - Long-term wealth building
 
 **Why it works:**
+
 - Monthly premium collection
 - 1-3% return per month typical
 - Compounds over time
 - Lower stress than active trading
 
 **Example:**
+
 - $100,000 account
 - Run Wheel on 2-3 stocks
 - Average 2% per month = $2,000
@@ -311,12 +345,14 @@ $$
 ### 2. Own Stocks at Discount
 
 **Strategic accumulation:**
+
 - Want to own quality stocks
 - But not at current prices
 - Sell puts at your target price
 - Get paid to wait
 
 **Example:**
+
 - AAPL at $180, you want it at $170
 - Sell $170 puts monthly, collect $3-4 each time
 - If assigned: You bought at effective $166-167
@@ -327,11 +363,13 @@ $$
 **Already own dividend stocks?**
 
 Traditional approach:
+
 - Own 100 shares of stock
 - Collect 2-3% dividend yield
 - **Total yield: 2-3%**
 
 With Wheel (CC phase):
+
 - Own 100 shares of stock
 - Collect 2-3% dividend yield  
 - Sell monthly covered calls for 1-2%
@@ -342,11 +380,13 @@ With Wheel (CC phase):
 **Compared to buying stock outright:**
 
 **Buying stock directly:**
+
 - Buy at $100
 - Stock drops to $90
 - Down -10%
 
 **Using Wheel:**
+
 - Sell $100 puts, collect $3
 - Assigned at $100
 - Sell $105 calls, collect $3
@@ -364,11 +404,13 @@ $$
 $$
 
 **What this means:**
+
 - Options consistently overpriced
 - Sellers have edge over buyers
 - Wheel captures this edge systematically
 
 **Long-term statistics:**
+
 - IV overstates movement by 3-5% typically
 - This is your "insurance premium"
 - Wheel harvests this consistently
@@ -390,17 +432,20 @@ $$
 ✓ **Dividend payer:** Extra yield while holding
 
 **Why quality matters:**
+
 - You WILL get assigned eventually
 - Need to be comfortable holding
 - Want stock that recovers from dips
 - Avoid value traps
 
 **Good examples:**
+
 - AAPL, MSFT, GOOGL, JPM, JNJ
 - S&P 500 ETFs (SPY, QQQ)
 - Blue-chip dividend aristocrats
 
 **Bad examples:**
+
 - Meme stocks (GME, AMC)
 - Penny stocks
 - Highly volatile biotech
@@ -416,6 +461,7 @@ $$
 ✓ Open interest > 500 on strikes you'll use
 
 **Why liquidity matters:**
+
 - Tighter spreads = more premium captured
 - Easy to roll positions
 - Can exit quickly if needed
@@ -430,16 +476,19 @@ $$
 $$
 
 **Too low IV (<30th):**
+
 - Tiny premiums
 - Not worth the risk
 - Better opportunities elsewhere
 
 **Good IV (30-70th):**
+
 - Decent premiums
 - Not overly risky
 - **Goldilocks zone**
 
 **Too high IV (>80th):**
+
 - Fat premiums (tempting!)
 - But high risk of blow-up
 - Often elevated for a reason
@@ -456,16 +505,19 @@ $$
 **Why?**
 
 **Too cheap (<$20):**
+
 - Lower premium dollars
 - Often low quality
 - Hard to find good strikes
 
 **Good range ($30-200):**
+
 - Meaningful premium
 - Quality companies
 - Flexible strike selection
 
 **Too expensive (>$300):**
+
 - Large capital requirement
 - Less diversification possible
 - Consider using lower-priced alternatives (like QQQ instead of individual tech stocks)
@@ -503,18 +555,21 @@ $$
 **What this means:**
 
 **0.20 delta (far OTM):**
+
 - ~20% chance of assignment
 - Lower premium ($1-2)
 - Safer, less likely to own stock
 - Good for volatile stocks
 
 **0.30 delta (standard):**
+
 - ~30% chance of assignment
 - Moderate premium ($2-4)
 - **Most common choice**
 - Balanced risk/reward
 
 **0.40-0.50 delta (aggressive):**
+
 - 40-50% chance of assignment
 - Higher premium ($4-6)
 - More likely to own stock
@@ -525,18 +580,21 @@ $$
 **The premium target approach:**
 
 **Conservative (lower premium, less likely called away):**
+
 - Strike: 5-10% above cost basis
 - Delta: 0.20-0.30
 - Premium: 1-2% of stock value
 - Keep stock most of the time
 
 **Moderate (balanced):**
+
 - Strike: 2-5% above cost basis
 - Delta: 0.30-0.40
 - Premium: 2-3% of stock value
 - **Most common**
 
 **Aggressive (maximize premium, okay being called away):**
+
 - Strike: At cost basis or slight ly above
 - Delta: 0.40-0.50
 - Premium: 3-5% of stock value
@@ -547,16 +605,19 @@ $$
 **Use technical analysis:**
 
 **For puts:**
+
 - Sell at support levels
 - Places where stock historically bounces
 - Gives you margin of safety
 
 **For calls:**
+
 - Sell at resistance levels
 - Places where stock historically stalls
 - Increases chance of keeping stock
 
 **Example:**
+
 - Stock at $100
 - Support at $95 (bounced 3 times)
 - Resistance at $110 (rejected 3 times)
@@ -573,18 +634,21 @@ $$
 **Why?**
 
 **Too short (<21 days):**
+
 - Higher theta (good)
 - But higher gamma risk (bad)
 - More assignment risk
 - More transaction costs (rolling frequently)
 
 **Sweet spot (30-45 days):**
+
 - Good theta decay
 - Lower gamma risk
 - **Optimal premium/risk**
 - Standard monthly cycle
 
 **Too long (>60 days):**
+
 - Lower theta
 - Capital tied up longer
 - Less efficient
@@ -601,23 +665,27 @@ $$
 **If stock drops toward your strike:**
 
 **Option 1: Roll down and out**
+
 - Close current put
 - Sell new put at lower strike, further expiration
 - Collect additional credit
 - Lowers your potential cost basis further
 
 **Example:**
+
 - Sold $100 put, stock now $102
 - Close $100 put for $1.50 (collected $3, so $1.50 profit)
 - Sell $98 put 30 days out for $3
 - Net: Collected $4.50 total, lower strike
 
 **Option 2: Take assignment**
+
 - Let stock be assigned
 - Begin CC phase
 - Already profitable if collected decent premium
 
 **Option 3: Close for profit**
+
 - If profitable (common at 50% max profit)
 - Take profit, redeploy
 - Start new CSP
@@ -627,23 +695,27 @@ $$
 **If stock rallies toward call strike:**
 
 **Scenario 1: Happy to sell (have gains)**
+
 - Let it be called away
 - Realize capital gain + call premium
 - Back to CSP phase
 
 **Scenario 2: Want to keep stock**
+
 - Roll call up and out
 - Close current call
 - Sell higher strike, further expiration
 - Collect additional credit
 
 **Example:**
+
 - Sold $105 call, stock now $106
 - Close $105 call for $2 (collected $3, so $1 profit)
 - Sell $110 call 30 days out for $3
 - Net: Collected $4 total, higher strike
 
 **Scenario 3: Take profit early**
+
 - If call lost most value (50-80% profit)
 - Close call
 - Sell new call immediately
@@ -654,6 +726,7 @@ $$
 **The challenge: Underwater stock position**
 
 **Example:**
+
 - Assigned at $100
 - Sold $105 calls for $2 (cost basis $98)
 - Stock drops to $85
@@ -662,24 +735,28 @@ $$
 **Management options:**
 
 **Option 1: Wait it out**
+
 - Keep selling calls below cost basis
 - Collect premium monthly
 - Wait for recovery
 - Common strategy
 
 **Math:**
+
 - Sell $90 calls for $1/month
 - After 6 months: Collected $6 more
 - Cost basis now $92
 - Break even when stock hits $92 (vs $98 originally)
 
 **Option 2: Convert to spread**
+
 - Sell puts below to create collar
 - Caps downside, but also upside
 - Collect premium from puts
 - Reduces pain of waiting
 
 **Option 3: Cut losses**
+
 - If fundamentals changed
 - Company deteriorating
 - Don't throw good money after bad
@@ -696,12 +773,14 @@ $$
 **Always roll for a credit, never a debit!**
 
 **Rules:**
+
 1. Roll when option has 21 days or less
 2. Roll to same strike or better
 3. Roll 30-45 days out
 4. Collect credit (usually $0.50-$2.00)
 
 **Example:**
+
 - Sold $100 put for $3 with 30 DTE
 - Now 21 DTE, put worth $1
 - Close for $1 (profit $2)
@@ -717,6 +796,7 @@ $$
 **Portfolio approach:**
 
 **Diversification:**
+
 - 5-10 different stocks
 - Different sectors
 - Different volatility profiles
@@ -741,6 +821,7 @@ $$
 **The Wheel can be tax-inefficient:**
 
 **Problem:**
+
 - Premium = ordinary income (short-term gains)
 - Taxed at high rate
 - Can be 35-40% for high earners
@@ -748,16 +829,19 @@ $$
 **Solutions:**
 
 **1. Run in IRA/Roth:**
+
 - Tax-deferred or tax-free growth
 - No immediate tax hit
 - **Best solution if possible**
 
 **2. Hold stock >1 year:**
+
 - If assigned, hold stock 12+ months before selling
 - Capital gains become long-term (lower rate)
 - But reduces premium opportunity
 
 **3. Focus on qualified dividends:**
+
 - Choose dividend stocks
 - Dividends taxed at lower rate
 - Adds to total return
@@ -767,12 +851,14 @@ $$
 **Margin vs. Cash:**
 
 **Cash-secured:**
+
 - Set aside full capital
 - No margin interest
 - Very safe
 - Lower ROC (return on capital)
 
 **On margin:**
+
 - Use ~50% cash
 - Pay margin interest (8-10%)
 - Higher risk
@@ -781,11 +867,13 @@ $$
 **Example:**
 
 **Cash-secured:**
+
 - $100,000 cash
 - Run 10 wheels
 - Annual return: $20,000 (20%)
 
 **With margin (50%):**
+
 - $50,000 cash + $50,000 margin
 - Run 10 wheels
 - Annual return: $20,000 - $4,000 interest = $16,000
@@ -798,6 +886,7 @@ $$
 **Special considerations:**
 
 **Before earnings:**
+
 - IV often elevated (higher premium)
 - Gap risk increases
 - Decisions:
@@ -806,6 +895,7 @@ $$
   - Accept risk for extra premium
 
 **After earnings:**
+
 - IV crush (great time to sell)
 - Stock settles into range
 - **Best time to start new Wheel**
@@ -819,12 +909,14 @@ $$
 ### 1. Running Wheel on Low-Quality Stocks
 
 **The mistake:**
+
 - Chase high IV/premium
 - Sell puts on sketchy stocks
 - Get assigned
 - Stock continues dropping (value trap)
 
 **Example:**
+
 - Meme stock at $20, IV at 150%
 - Sell $18 put for $3 (huge premium!)
 - Assigned at $18
@@ -832,6 +924,7 @@ $$
 - Now stuck in bad company
 
 **The fix:**
+
 - Quality first, premium second
 - Only Wheel stocks you'd buy anyway
 - Check fundamentals before starting
@@ -840,12 +933,14 @@ $$
 ### 2. Using Too Much Capital Per Position
 
 **The mistake:**
+
 - Run Wheel with entire account
 - One stock = 100% of capital
 - No diversification
 - One bad position wipes out gains
 
 **The fix:**
+
 - Max 10-20% per position
 - 5-10 different stocks
 - Keep 10-20% cash buffer
@@ -854,12 +949,14 @@ $$
 ### 3. Not Taking Assignment
 
 **The mistake:**
+
 - Stock hits strike
 - Roll, roll, roll to avoid assignment
 - Never actually run the Wheel
 - Miss out on full strategy benefits
 
 **The fix:**
+
 - Assignment is normal!
 - It's part of the strategy
 - Don't fear it
@@ -868,12 +965,14 @@ $$
 ### 4. Selling ATM/ITM for Premium
 
 **The mistake:**
+
 - Sell $100 put when stock at $98 (ITM)
 - Collect $5 premium (wow!)
 - Immediate assignment
 - Bought stock at premium to market
 
 **The fix:**
+
 - Stick to OTM strikes
 - 0.20-0.40 delta
 - Accept lower premium
@@ -882,12 +981,14 @@ $$
 ### 5. Chasing High IV Without Understanding Why
 
 **The mistake:**
+
 - See 80% IV
 - Sell puts for fat premium
 - IV elevated due to bankruptcy risk, fraud, etc.
 - Company collapses
 
 **The fix:**
+
 - Check WHY IV is high
 - Is it temporary or structural?
 - Avoid elevated IV from fundamental problems
@@ -896,12 +997,14 @@ $$
 ### 6. Not Managing Winners
 
 **The mistake:**
+
 - CSP with 80% profit (8 worth $1, sold for $3)
 - "I'll wait for $0"
 - Stock moves, profit evaporates
 - Or: hold to expiration, tie up capital
 
 **The fix:**
+
 - Close at 50-80% profit
 - Typical: Close at 50% or 21 DTE
 - Redeploy capital
@@ -910,6 +1013,7 @@ $$
 ### 7. Revenge Trading After Assignment
 
 **The mistake:**
+
 - Assigned at $100
 - Stock at $90 (underwater)
 - Sell $92 call (below cost basis)
@@ -918,6 +1022,7 @@ $$
 - Panic, try to recover immediately
 
 **The fix:**
+
 - Be patient after underwater assignment
 - Sell calls at or above cost basis
 - Collect premium while waiting
@@ -926,11 +1031,13 @@ $$
 ### 8. Ignoring Dividends
 
 **The mistake:**
+
 - Run Wheel, collect premiums
 - Ignore dividend yield
 - Miss extra 2-3% return
 
 **The fix:**
+
 - Favor dividend payers
 - 2-4% yield typical
 - Adds significantly to returns
@@ -1091,6 +1198,7 @@ $$
 **12-Month Results:**
 
 **Assignments:**
+
 - AAPL: Never assigned (collected puts for 12 months)
 - JPM: Assigned month 3, called away month 9 (+$8/share gain)
 - JNJ: Assigned month 5, still holding (selling calls)
@@ -1133,6 +1241,7 @@ $$
 - Keep 10-20% cash reserve
 
 **Why?**
+
 - Diversification (don't concentrate risk)
 - Can handle 1-2 bad assignments
 - Not wiped out by single event
@@ -1143,18 +1252,21 @@ $$
 **The debate:**
 
 **No stop loss camp:**
+
 - Wheel is long-term strategy
 - Assignment expected
 - Selling calls lowers cost basis over time
 - Patient capital approach
 
 **With stop loss camp:**
+
 - If fundamentals deteriorate
 - Company in serious trouble
 - Cut loss at -20 to -30%
 - Preserve capital
 
 **Recommended approach:**
+
 - No mechanical stop loss
 - But fundamental stop loss
 - If company deteriorating → exit
@@ -1189,6 +1301,7 @@ $$
 $$
 
 **Uses:**
+
 - Handle multiple assignments
 - Opportunistic trades
 - Emergency situations
@@ -1225,17 +1338,20 @@ $$
 ### The Complete Cycle
 
 **Phase 1: Cash-Secured Puts**
+
 - Sell OTM puts on quality stocks
 - Collect premium immediately ($2-5 typical)
 - Hope: Not assigned (keep premium, repeat)
 - Reality: Eventually assigned (that's okay!)
 
 **Phase 2: Stock Ownership**
+
 - Now own 100 shares from assignment
 - Cost basis = Strike - All premiums collected
 - Start selling covered calls
 
 **Phase 3: Covered Calls**
+
 - Sell OTM calls on owned shares
 - Collect premium ($2-4 typical)
 - Hope: Not assigned (keep stock, keep premium, repeat)
@@ -1253,6 +1369,7 @@ $$
 $$
 
 **Example breakdown:**
+
 - Put premiums: 12% annualized (while waiting to buy)
 - Call premiums: 12% annualized (while holding)
 - Capital gains: 5-15% (if called away above cost basis)
@@ -1272,6 +1389,7 @@ $$
 ✓ Price range $30-200
 
 **Good candidates:**
+
 - AAPL, MSFT, GOOGL (tech)
 - JPM, BAC (finance)
 - JNJ, UNH (healthcare)
@@ -1280,12 +1398,14 @@ $$
 ### Strike Selection
 
 **CSP strikes:**
+
 - Delta: 0.20-0.40 (based on risk tolerance)
 - Below support levels
 - 30-45 DTE
 - Premium target: 1-3% of stock price
 
 **CC strikes:**
+
 - Delta: 0.20-0.40
 - Above resistance levels
 - At or above cost basis (ideally)
@@ -1295,17 +1415,20 @@ $$
 ### Management Rules
 
 **Taking profit:**
+
 - Close CSP/CC at 50% max profit
 - Or at 21 DTE (whichever first)
 - Redeploy capital immediately
 
 **Rolling:**
+
 - Roll when 21 DTE remaining
 - Always collect credit on roll
 - Same strike or better
 - 30-45 DTE on new position
 
 **Assignment:**
+
 - Don't fear it (it's normal!)
 - CSP assignment → Begin CC phase
 - CC assignment → Back to CSP phase
@@ -1321,6 +1444,7 @@ $$
 - Diversify sectors
 
 **Example $100,000 account:**
+
 - 7 positions × $12,000 each = $84,000
 - Cash reserve: $16,000
 - Each position: 12% of account
@@ -1334,6 +1458,7 @@ $$
 - **Annually: 18-35%**
 
 **Sources:**
+
 - Put premiums: 8-15% annually
 - Call premiums: 8-15% annually
 - Capital gains: 0-10% (if called away)
@@ -1342,10 +1467,12 @@ $$
 ### Maximum Profit/Loss
 
 **Max profit:**
+
 - Technically unlimited (but capped by strikes)
 - Realistically: 30-50% in great years
 
 **Max loss:**
+
 - Stock goes to zero minus premiums
 - Example: Buy at $100, collect $20 in premiums, stock → $0 = -$80 loss
 - **This is why quality selection matters!**
@@ -1384,16 +1511,19 @@ $$
 ### Comparison to Alternatives
 
 **vs. Buy and Hold:**
+
 - Wheel: 20-35% return (active)
 - Buy and hold: 10-15% return (passive)
 - Wheel requires time commitment
 
 **vs. Dividend Investing:**
+
 - Wheel: 20-35% total return
 - Dividends: 3-6% yield
 - Wheel = "Enhanced dividend strategy"
 
 **vs. Day Trading:**
+
 - Wheel: Systematic, low stress
 - Day trading: Active, high stress
 - Wheel: 15-30 min/month per stock
@@ -1409,6 +1539,7 @@ $$
 - If taxable account: Factor in 30-40% tax
 
 **Example:**
+
 - $20,000 profit in taxable account
 - After 35% tax: $13,000 net
 - Same in Roth IRA: $20,000 net (tax-free)
@@ -1416,11 +1547,13 @@ $$
 ### Time Commitment
 
 **Monthly per position:**
+
 - 10 minutes: Check position, decide if rolling
 - 5 minutes: Execute roll or new trade
 - **Total: 15 minutes/month per stock**
 
 **For 7 stocks:**
+
 - 105 minutes = ~2 hours/month
 - Very manageable for busy professionals
 

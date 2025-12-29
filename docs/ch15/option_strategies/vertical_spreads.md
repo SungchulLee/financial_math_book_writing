@@ -780,6 +780,7 @@ After 30 days:
 - Want income + defined risk
 
 **General rule:**
+
 - **Debit spreads:** Directional bets, moderate conviction
 - **Credit spreads:** Income generation, high probability
 

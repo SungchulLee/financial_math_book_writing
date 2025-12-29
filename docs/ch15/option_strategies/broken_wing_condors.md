@@ -2,6 +2,34 @@
 
 **Broken wing condors** are asymmetric, defined-risk option strategies where one side of an iron condor has unequal strike spacing, creating a directional bias while maintaining credit collection. They offer the income generation of condors with reduced capital requirements and strategic flexibility for traders with moderate directional conviction.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bearish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_broken_wing_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_brokenness_levels.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bullish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_risk_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_symmetric_vs_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -42,12 +70,15 @@ $$
 **Definition:** Regular bull put spread + wider bear call spread, creating bullish bias.
 
 **Structure:**
+
 - **Bull Put Spread (normal):**
+
   - Sell $95 put for $2.00
   - Buy $90 put for $0.50
   - Width: $5
   
 - **Bear Call Spread (broken - wider):**
+
   - Sell $105 call for $1.50
   - Buy $115 call for $0.25
   - Width: $10 (broken!)
@@ -57,10 +88,12 @@ $$
 **The bet:** Stock stays above $95 or rallies (bullish bias)
 
 **Max Risk:** 
+
 - Downside: $5 - $2.75 = $2.25 (concentrated risk)
 - Upside: $10 - $2.75 = $7.25 (but unlikely - far OTM)
 
 **Characteristics:**
+
 - Bullish directional bias
 - Lower upside risk (wider call spread)
 - Concentrated downside risk (normal put spread)
@@ -72,12 +105,15 @@ $$
 **Definition:** Wider bull put spread + regular bear call spread, creating bearish bias.
 
 **Structure:**
+
 - **Bull Put Spread (broken - wider):**
+
   - Sell $95 put for $2.00
   - Buy $85 put for $0.25
   - Width: $10 (broken!)
   
 - **Bear Call Spread (normal):**
+
   - Sell $105 call for $1.50
   - Buy $110 call for $0.50
   - Width: $5
@@ -87,10 +123,12 @@ $$
 **The bet:** Stock stays below $105 or declines (bearish bias)
 
 **Max Risk:**
+
 - Downside: $10 - $2.75 = $7.25 (but unlikely - far OTM)
 - Upside: $5 - $2.75 = $2.25 (concentrated risk)
 
 **Characteristics:**
+
 - Bearish directional bias
 - Lower downside risk (wider put spread)
 - Concentrated upside risk (normal call spread)
@@ -102,6 +140,7 @@ $$
 **Definition:** One side has a completely missing strike, creating zero-cost protection on one wing.
 
 **Structure (extreme bullish):**
+
 - Sell $95 put for $2.50
 - Buy $90 put for $1.00
 - Sell $110 call for $1.00
@@ -110,6 +149,7 @@ $$
 **Net Credit:** ($2.50 + $1.00) - ($1.00 + $0.10) = $2.40
 
 **The asymmetry:**
+
 - Put side: $5 wide, realistic risk
 - Call side: $10 wide, extremely unlikely risk
 - Acts almost like covered strangle with defined risk
@@ -145,12 +185,14 @@ $$
 **Why this matters:**
 
 **Symmetric Iron Condor (no conviction):**
+
 - Sell $95/$90 put spread for $1.50 (risk $3.50)
 - Sell $105/$110 call spread for $1.50 (risk $3.50)
 - Collect $3.00 net
 - **No directional edge, symmetric risk**
 
 **Broken Wing Condor (bullish conviction):**
+
 - Sell $95/$90 put spread for $1.50 (risk $3.50)
 - Sell $105/$115 call spread for $1.75 (risk $8.25)
 - Collect $3.25 net
@@ -161,11 +203,13 @@ $$
 ### Example: Breaking Down the SPY Broken Wing Condor
 
 **Setup:**
+
 - SPY at $450 (bullish trend)
 - Technical: Support at $445, resistance at $460
 - Conviction: More likely to break up than down
 
 **Symmetric Iron Condor (no conviction):**
+
 - Sell $440/$435 put spread for $1.50
 - Sell $460/$465 call spread for $1.50
 - Net credit: $3.00
@@ -173,6 +217,7 @@ $$
 - Capital required: $500 per condor
 
 **Broken Wing Condor (bullish conviction):**
+
 - Sell $440/$435 put spread for $1.50 (same)
 - Sell $460/$475 call spread for $2.00 (broken!)
 - Net credit: $3.50
@@ -215,6 +260,7 @@ If you're right about bullish bias:
 **Think like a portfolio manager with directional conviction:**
 
 **When you construct a broken wing:**
+
 - You're allocating capital asymmetrically
 - More protection where you expect stock to go
 - Less protection where you don't expect stock to go
@@ -223,12 +269,14 @@ If you're right about bullish bias:
 **Capital comparison:**
 
 **Regular Iron Condor:**
+
 - $5-wide on both sides
 - Max risk: $200 per side
 - Total capital: $400
 - Return on capital: $300/$400 = 75%
 
 **Broken Wing (bullish):**
+
 - Put side: $5-wide (risk $200)
 - Call side: $10-wide (risk $650)
 - Total capital: $650 (higher!)
@@ -240,21 +288,25 @@ If you're right about bullish bias:
 **Understanding broken wings as conviction trades helps you:**
 
 1. **Express directional views with defined risk:**
+
    - Not pure directional (like long calls)
    - Not pure neutral (like iron condors)
    - **Hybrid: directional bias + income**
 
 2. **Optimize capital efficiency:**
+
    - Don't waste capital protecting unlikely moves
    - Concentrate protection where needed
    - Use saved premium to improve credit
 
 3. **Manage risk asymmetrically:**
+
    - Know which side is your "danger zone"
    - Monitor the tight spread closely
    - Let wide spread take care of itself
 
 4. **Understand probability-weighted outcomes:**
+
    - Better max profit (higher credit)
    - Same max loss on expected side
    - Worse max loss on unexpected side
@@ -285,6 +337,7 @@ If you're right about bullish bias:
 - **Profit if flat OR rallies, protected if small drop**
 
 **The broken wing gives you:**
+
 - Credit collection (income strategy)
 - Directional bias (conviction expression)
 - Defined risk (sleep at night)
@@ -348,30 +401,35 @@ If you're right about bullish bias:
 **When to use:**
 
 1. **Moderate bullish conviction:**
+
    - Uptrend intact but overbought
    - Expect consolidation or continued rally
    - Don't expect major pullback
    - Want to collect premium during rally
 
 2. **Post-correction setups:**
+
    - Stock bottomed, starting recovery
    - Downside risk reduced
    - Upside potential opening
    - Want income during recovery phase
 
 3. **Technical breakout scenarios:**
+
    - Stock breaking resistance
    - New uptrend forming
    - Unlikely to reverse quickly
    - Sell puts below support, wide calls above
 
 4. **Bull market conditions:**
+
    - Overall market strong
    - Sector rotation favorable
    - "Buy the dip" mentality prevalent
    - Profit from bullish bias with income
 
 5. **Reduced capital deployment:**
+
    - Want iron condor-like income
    - But limited capital
    - Accept more risk on unlikely upside
@@ -394,30 +452,35 @@ If you're right about bullish bias:
 **When to use:**
 
 1. **Moderate bearish conviction:**
+
    - Downtrend forming
    - Expect consolidation or decline
    - Don't expect major rally
    - Want to collect premium during weakness
 
 2. **Post-rally exhaustion:**
+
    - Stock topped after big move
    - Upside momentum fading
    - Downside breakout unlikely (yet)
    - Collect premium as stock rolls over
 
 3. **Resistance rejection setups:**
+
    - Stock failed at major resistance
    - Lower high forming
    - Unlikely to break out quickly
    - Sell calls above resistance, wide puts below
 
 4. **Bear market conditions:**
+
    - Overall market weak
    - Sector under pressure
    - Rallies are short-lived
    - Profit from bearish bias with income
 
 5. **Overvaluation plays:**
+
    - Stock expensive fundamentally
    - Sentiment shift underway
    - Gradual decline expected
@@ -450,6 +513,7 @@ $$
 $$
 
 **What this means:**
+
 - Slightly bullish delta (unlike neutral IC)
 - Benefits from upward moves
 - Hurt by downward moves (more than IC)
@@ -462,6 +526,7 @@ $$
 $$
 
 **What this means:**
+
 - Slightly bearish delta
 - Benefits from downward moves
 - Hurt by upward moves (more than IC)
@@ -497,6 +562,7 @@ $$
 **Total theta:** Similar to regular IC, but composition differs
 
 **What this means:**
+
 - Tight spread decays faster (good if stock cooperates)
 - Wide spread decays slower (less help if stock moves wrong way)
 - Net positive theta overall
@@ -509,6 +575,7 @@ $$
 </p>
 
 **Time to expiration vs. theta:**
+
 - Regular side: High theta (normal decay)
 - Broken side: Low theta (far OTM)
 - **Total theta close to symmetric IC**
@@ -535,6 +602,7 @@ $$
 $$
 
 **What this means:**
+
 - Tight spread has high gamma risk (danger zone)
 - Wide spread has low gamma risk (safe zone)
 - Delta accelerates quickly toward tight spread
@@ -566,6 +634,7 @@ $$
 $$
 
 **What this means:**
+
 - IV increase hurts position (both sides)
 - IV spike can create losses even if stock flat
 - IV contraction helps position
@@ -574,10 +643,12 @@ $$
 **But vega distribution matters:**
 
 **Regular IC:**
+
 - Vega distributed evenly across both spreads
 - Symmetric risk to IV changes
 
 **Broken Wing:**
+
 - Tight spread: Higher vega (closer to ATM)
 - Wide spread: Lower vega (far OTM)
 - **IV spike hurts tight spread more**
@@ -585,6 +656,7 @@ $$
 **Vega scenarios:**
 
 **Bullish BWC during IV spike:**
+
 - Put spread (tight): Vega hurts significantly
 - Call spread (wide): Vega hurts minimally
 - Net: Still negative vega, but concentrated on put side
@@ -631,11 +703,13 @@ $$
 **Example - Bullish BWC on $100 stock:**
 
 **Conservative (1:2 ratio):**
+
 - Tight put spread: $95/$90 ($5 wide)
 - Wide call spread: $105/$115 ($10 wide)
 - Moderate asymmetry
 
 **Aggressive (1:3 ratio):**
+
 - Tight put spread: $95/$90 ($5 wide)
 - Wide call spread: $105/$120 ($15 wide)
 - Strong asymmetry, very bullish
@@ -645,12 +719,14 @@ $$
 **Professional approach:**
 
 **Tight spread (danger zone):**
+
 - Short strike: 20-30 delta
 - Long strike: 10-15 delta
 - Width: $5 (standard stock)
 - **High probability but concentrated risk**
 
 **Wide spread (safe zone):**
+
 - Short strike: 15-20 delta
 - Long strike: 2-5 delta (very far OTM)
 - Width: $10-$20
@@ -659,12 +735,14 @@ $$
 **Example - SPY at $450:**
 
 **Bullish BWC:**
+
 - Short $440 put (20-delta)
 - Long $435 put (12-delta)
 - Short $465 call (18-delta)
 - Long $480 call (3-delta) ← skip strike!
 
 **Credit analysis:**
+
 - Put spread: $1.50 credit (risk $3.50)
 - Call spread: $1.80 credit (risk $13.20!)
 - Net: $3.30 credit
@@ -682,11 +760,13 @@ $$
 **Example calculation:**
 
 **Bullish BWC:**
+
 - Credit: $3.30
 - Tight side (put) loss: $1.70
 - Wide side (call) loss: $13.20
 
 **Probabilities:**
+
 - Win (between spreads): 70%
 - Tight side loss: 25%
 - Wide side loss: 5%
@@ -714,6 +794,7 @@ $$
 $$
 
 **Example:**
+
 - Tight spread: $5 wide
 - Target credit: $2.00-$3.00 total
 - If collecting <$2.00 → strikes too far out
@@ -727,6 +808,7 @@ Ideally:
 - This balance indicates proper strike selection
 
 **Example:**
+
 - Total credit target: $3.00
 - Put spread (tight): $1.80 (60%)
 - Call spread (wide): $1.20 (40%)
@@ -737,6 +819,7 @@ Ideally:
 **Optimal strike configuration for bullish BWC:**
 
 **For stock at $100:**
+
 - **Tight put spread:** $95/$90
   - Short strike: 2-3% below current price
   - Width: 5% of stock price
@@ -748,11 +831,13 @@ Ideally:
   - Long strike delta: <5 (skip strike)
 
 **This creates:**
+
 - Win zone: $90-$105 (15-point range)
 - Small risk zone: $90-$85 (5 points)
 - Large but unlikely risk: >$120 (20+ points away)
 
 **Probability profile:**
+
 - 75% probability between spreads
 - 20% probability hit tight spread
 - 5% probability hit wide spread
@@ -771,21 +856,25 @@ Ideally:
 **Why longer than regular ICs (30-45)?**
 
 1. **Asymmetric gamma needs more time:**
+
    - Tight spread has high gamma risk
    - Need time buffer for adjustments
    - 45-60 DTE gives management flexibility
 
 2. **Directional thesis needs time to play out:**
+
    - Unlike neutral IC, you have conviction
    - Stock needs time to move in your favor
    - Or time to NOT move against you
 
 3. **Better credit collection:**
+
    - Longer DTE = fatter premiums
    - Wide spread benefits more from time premium
    - Improves risk/reward ratio
 
 4. **Vega protection:**
+
    - More time = less vega sensitivity
    - IV spikes hurt less with time buffer
    - Can ride out short-term volatility
@@ -806,11 +895,13 @@ Ideally:
 #### Rule 1: Close at 50% Profit (Standard)
 
 **Same as regular credit spreads:**
+
 - Close when you've captured 50% of max credit
 - Optimal risk/reward balance
 - Frees capital for new opportunities
 
 **Example:**
+
 - Collected $3.00 credit
 - Close when spread worth $1.50
 - Take $1.50 profit, move on
@@ -820,16 +911,19 @@ Ideally:
 **Close immediately if stock approaches tight spread short strike:**
 
 **Warning signs:**
+
 - Stock within 2% of tight spread short strike
 - Tight spread delta reaches 0.50
 - Gamma risk accelerating
 
 **Action:**
+
 - Don't wait for stop loss
 - Don't try to adjust
 - **Close entire condor immediately**
 
 **Example - Bullish BWC:**
+
 - SPY at $450
 - Tight spread: Sell $440 put
 - SPY drops to $442 (approaching!)
@@ -848,12 +942,14 @@ Because of asymmetric gamma:
 **Close broken wings at 30 DTE regardless:**
 
 **Rationale:**
+
 - Gamma risk increases exponentially <30 DTE
 - Tight spread becomes too dangerous
 - Wide spread doesn't help enough
 - Theta benefit not worth gamma risk
 
 **Comparison to regular IC:**
+
 - Regular IC: Close at 21 DTE
 - Broken wing: Close at 30 DTE
 - **Earlier exit because of asymmetric gamma**
@@ -873,6 +969,7 @@ Because of asymmetric gamma:
 - Reset time for thesis to work
 
 **Example:**
+
 - Bullish BWC on SPY
 - SPY dropped from $450 to $442
 - Tight put spread threatened
@@ -887,6 +984,7 @@ Because of asymmetric gamma:
 - Essentially "fix the broken wing"
 
 **Example:**
+
 - Bullish BWC: $440/$435 put, $465/$480 call
 - Put spread threatened
 - **Convert:** Close $440/$435, sell $438/$433
@@ -896,12 +994,14 @@ Because of asymmetric gamma:
 #### When to NOT Roll
 
 **Don't roll if:**
+
 - Thesis completely broken (fundamental change)
 - Stock blasted through short strike (already lost)
 - Already rolled once (don't chase)
 - Better to take loss and move on
 
 **Example of thesis break:**
+
 - Bullish BWC on tech stock
 - Fed announces rate hikes (bearish for growth)
 - Your bullish thesis invalidated
@@ -912,12 +1012,14 @@ Because of asymmetric gamma:
 **Advanced approach: Laddering broken wings**
 
 **Concept:**
+
 - Open multiple BWCs with different expirations
 - Each month: close expiring, open new one
 - Creates continuous income stream
 - Diversifies time risk
 
 **Example structure:**
+
 - Month 1: Open 60-DTE BWC
 - Month 2: Open another 60-DTE BWC (now have 2)
 - Month 3: Open third 60-DTE BWC (now have 3)
@@ -925,6 +1027,7 @@ Because of asymmetric gamma:
 - **Continuous 3-month rolling ladder**
 
 **Benefits:**
+
 - Smooth income (not lumpy)
 - Time diversification
 - Always have positions in sweet spot (30-60 DTE)
@@ -959,12 +1062,14 @@ $$
 $$
 
 **Example:**
+
 - Stock at $100
 - Sell $95/$90 put spread for $2.00
 - Sell $105/$120 call spread for $1.50
 - Net credit: $3.50
 
 **Calculations:**
+
 - Max profit: $3.50 × 100 = $350
 - Max loss (puts): ($5 - $3.50) = $1.50 × 100 = $150
 - Max loss (calls): ($15 - $3.50) = $11.50 × 100 = $1,150
@@ -988,12 +1093,14 @@ $$
 **The critical question: Is the asymmetry worth it?**
 
 **Symmetric Iron Condor comparison:**
+
 - $5 wide both sides
 - Collect $3.00
 - Max loss: $2.00 on either side
 - Risk/reward: 2:3 = 0.67:1
 
 **Broken Wing Condor:**
+
 - Tight side: $5 wide
 - Wide side: $15 wide
 - Collect $3.50
@@ -1025,6 +1132,7 @@ $$
 **Interesting result: Same EV if probabilities hold!**
 
 **But the reality:**
+
 - Symmetric IC: Predictable, consistent
 - Broken wing: Higher variance, conviction-dependent
 - **Broken wing better ONLY if your directional thesis correct**
@@ -1034,12 +1142,14 @@ $$
 **The capital efficiency question:**
 
 **Symmetric IC:**
+
 - Max risk either side: $200
 - Capital requirement: $200
 - Max profit: $300
 - ROC: $300/$200 = 150%
 
 **Bullish BWC:**
+
 - Max risk (tight): $150
 - Max risk (wide): $1,150
 - Capital requirement: $1,150 (broker holds for wider spread)
@@ -1053,16 +1163,19 @@ Broken wings require MORE capital (for wide spread) but offer same/similar profi
 **Why trade them then?**
 
 1. **Probability-weighted capital:**
+
    - Wide spread loss is 5% probable
    - Real capital at risk: $150 (25%) + $1,150(5%) = $37.50 + $57.50 = $95
    - Effective ROC: $350/$95 = 368%!
 
 2. **Directional edge:**
+
    - If you're right about direction >70% of time
    - Broken wing outperforms
    - Regular IC has no edge
 
 3. **Flexibility:**
+
    - Can adjust tight side easily
    - Wide side unlikely to need adjustment
    - Management simpler in practice
@@ -1093,6 +1206,7 @@ Broken wings make sense when:
 - Want income during consolidation
 
 **Bullish example:**
+
 - SPY in uptrend from $420 → $460
 - Pullback to $450 (normal)
 - Support at $445 holding
@@ -1100,6 +1214,7 @@ Broken wings make sense when:
 - Profit from consolidation or renewed rally
 
 **Bearish example:**
+
 - TSLA in downtrend from $300 → $220
 - Bounce to $230 (dead cat)
 - Resistance at $240
@@ -1116,11 +1231,13 @@ Broken wings make sense when:
 - Stock finding new range
 
 **Example:**
+
 - NFLX earnings beat
 - Stock gaps from $380 → $420
 - Settles at $415 over 2 days
 - IV: 60% → 40% (still elevated)
 - **Enter bullish BWC:**
+
   - Sell $405/$400 puts (below gap)
   - Sell $440/$455 calls (above recent high)
 - Profit from consolidation with bullish bias
@@ -1135,11 +1252,13 @@ Broken wings make sense when:
 - Want to capture new range with income
 
 **Example:**
+
 - QQQ trading $360-$370 for months
 - Breaks above $370 (bullish breakout)
 - New support at $370
 - New resistance unknown (maybe $385?)
 - **Enter bullish BWC:**
+
   - Sell $368/$363 puts (below new support)
   - Sell $390/$405 calls (wide above)
 - Profit from consolidation in new higher range
@@ -1151,21 +1270,25 @@ Broken wings make sense when:
 #### Bullish BWC - Technical Signals
 
 **1. Trendline bounces:**
+
 - Stock pulls back to rising trendline
 - Bullish reversal candle at trendline
 - **Sell puts below trendline, wide calls above**
 
 **2. Moving average support:**
+
 - Stock riding 20/50 EMA higher
 - Dip to EMA holds
 - **Sell puts below EMA, wide calls above resistance**
 
 **3. Breakout consolidations:**
+
 - Stock breaks resistance
 - Consolidates above old resistance (new support)
 - **Sell puts below new support, wide calls well above**
 
 **4. Bull flag patterns:**
+
 - Strong rally, tight consolidation
 - Expect continuation
 - **Sell puts below flag, wide calls above prior high**
@@ -1173,21 +1296,25 @@ Broken wings make sense when:
 #### Bearish BWC - Technical Signals
 
 **1. Trendline rejections:**
+
 - Stock bounces to falling trendline
 - Bearish reversal at trendline
 - **Sell calls above trendline, wide puts below**
 
 **2. Moving average resistance:**
+
 - Stock below declining 20/50 EMA
 - Rally to EMA rejected
 - **Sell calls above EMA, wide puts below support**
 
 **3. Breakdown consolidations:**
+
 - Stock breaks support
 - Consolidates below old support (new resistance)
 - **Sell calls below old support, wide puts well below**
 
 **4. Bear flag patterns:**
+
 - Strong drop, weak bounce
 - Expect continuation down
 - **Sell calls above flag, wide puts below prior low**
@@ -1199,6 +1326,7 @@ Broken wings make sense when:
 **Best IV conditions for broken wings:**
 
 **Medium IV (40-60 percentile):**
+
 - Not too high (safer entry)
 - Not too low (still collectable premium)
 - **Goldilocks zone for BWC**
@@ -1236,6 +1364,7 @@ Broken wings work best in moderate IV because:
 - IV crush can be devastating
 
 **Example:**
+
 - Market panic, VIX at 40
 - AAPL IV at 60%
 - Sell bullish BWC: $170/$165 puts, $190/$210 calls
@@ -1245,6 +1374,7 @@ Broken wings work best in moderate IV because:
 - **Lost $500 instead of profiting**
 
 **Why this fails:**
+
 - High IV = high realized volatility likely
 - Big moves more probable
 - Tight spread gets tested
@@ -1257,6 +1387,7 @@ Broken wings work best in moderate IV because:
 **Never fight momentum with broken wings:**
 
 **The disaster scenario:**
+
 - Stock in parabolic rally
 - You think "it's overdone"
 - Sell bearish BWC
@@ -1264,6 +1395,7 @@ Broken wings work best in moderate IV because:
 - **Tight call spread destroyed**
 
 **Example:**
+
 - GME at $40, rallying
 - Sell bearish BWC: $50/$55 calls (tight), $35/$20 puts (wide)
 - "Surely it won't go past $50..."
@@ -1283,12 +1415,14 @@ Events coming in 0-3 days:
 - Merger votes
 
 **Why avoid:**
+
 - Gap risk through tight spread
 - Probability models invalid
 - Wide spread won't save you
 - **One event can wipe out months of gains**
 
 **Example:**
+
 - Biotech at $40
 - FDA decision tomorrow
 - Sell bullish BWC
@@ -1300,12 +1434,14 @@ Events coming in 0-3 days:
 **The most important rule:**
 
 **If you have NO conviction:**
+
 - Use symmetric iron condor instead
 - Don't use broken wing "just for higher credit"
 - Asymmetric risk requires asymmetric confidence
 - **Broken wing without conviction = gambling**
 
 **Example mistake:**
+
 - SPY at $450, no clear direction
 - "I'll sell bullish BWC for extra credit"
 - No technical reason, no conviction
@@ -1324,12 +1460,14 @@ Events coming in 0-3 days:
 - **Can't exit when needed**
 
 **Issues:**
+
 - Enter at mid-price
 - Need to exit emergency
 - Bid-ask $2 wide
 - **Slippage kills profitability**
 
 **Minimum liquidity requirements:**
+
 - Stock volume: >1M shares/day
 - Option volume: >500 contracts/day
 - Bid-ask spread: <$0.15 for ATM options
@@ -1350,11 +1488,13 @@ Events coming in 0-3 days:
 - **Just greedy for credit**
 
 **The mistake:**
+
 - Asymmetric risk without asymmetric conviction
 - When tight spread hit, regret decision
 - Extra $0.50 not worth the concentrated risk
 
 **Example:**
+
 - SPY at $450, neutral outlook
 - Regular IC: Collect $3.00 (safe)
 - BWC: Collect $3.50 (risky on one side)
@@ -1363,6 +1503,7 @@ Events coming in 0-3 days:
 - BWC: **Bigger loss on tight put spread**
 
 **The fix:**
+
 - Only use BWC when you have directional conviction
 - Extra credit must be justified by thesis
 - **If neutral, use symmetric IC**
@@ -1378,11 +1519,13 @@ Events coming in 0-3 days:
 - **Stock moves normally, spread hit**
 
 **The mistake:**
+
 - Confusing probability with certainty
 - 70% sure = 30% wrong = too often!
 - Gamma explosion destroys position
 
 **Example - Bullish BWC:**
+
 - AAPL at $180
 - Sell $178/$173 put spread (too close!)
 - Collect $2.50 (great credit!)
@@ -1390,6 +1533,7 @@ Events coming in 0-3 days:
 - **Max loss on tight spread**
 
 **The fix:**
+
 - Stick to 20-30 delta for tight spread short strike
 - Give yourself room for normal volatility
 - Don't chase extra $0.50-$1.00 credit
@@ -1405,12 +1549,14 @@ Events coming in 0-3 days:
 - **Caught completely off guard**
 
 **The mistake:**
+
 - Treating wide spread as free money
 - Not monitoring it at all
 - Assuming <5% probability = 0% probability
 - One black swan wipes out year of gains
 
 **Example:**
+
 - Bullish BWC on SPY
 - Tight: $440/$435 puts (monitor closely)
 - Wide: $470/$495 calls (ignore)
@@ -1418,6 +1564,7 @@ Events coming in 0-3 days:
 - **"Where did this $2,500 loss come from?!"**
 
 **The fix:**
+
 - Set price alerts on wide spread too
 - Check both sides daily
 - Remember: low probability ≠ no probability
@@ -1434,11 +1581,13 @@ Events coming in 0-3 days:
 - **Instant max loss**
 
 **The mistake:**
+
 - Underestimating event volatility
 - Gap risk ignored
 - One earnings report destroys position
 
 **Example:**
+
 - NVDA at $450
 - Bullish BWC: $430/$425 puts, $480/$500 calls
 - Earnings tonight
@@ -1447,6 +1596,7 @@ Events coming in 0-3 days:
 - **Put spread at max loss instantly**
 
 **The fix:**
+
 - Always close before earnings
 - Even if profitable, close it
 - Re-enter after event settles
@@ -1463,11 +1613,13 @@ Events coming in 0-3 days:
 - **Greed turned winner into loser**
 
 **The mistake:**
+
 - Squeezing last bit of profit
 - Exposing to gamma risk
 - Ignoring mathematical optimal exit
 
 **Example:**
+
 - Collected $3.00 credit
 - Position worth $1.20 (60% profit)
 - "I'll wait for $0.90..."
@@ -1476,6 +1628,7 @@ Events coming in 0-3 days:
 - **Should have taken $1.80 profit**
 
 **The fix:**
+
 - 50% profit rule is LAW
 - Don't get greedy
 - Free up capital, move to next trade
@@ -1492,11 +1645,13 @@ Events coming in 0-3 days:
 - **All 5 tight spreads hit simultaneously**
 
 **The mistake:**
+
 - False diversification
 - All eggs in one directional basket
 - Correlation ignored
 
 **Example:**
+
 - 5 bullish BWCs on tech stocks
 - Collected $1,500 total
 - Tech selloff
@@ -1505,6 +1660,7 @@ Events coming in 0-3 days:
 - **Account destroyed**
 
 **The fix:**
+
 - Mix bullish and bearish BWCs
 - Diversify across sectors
 - Some conservative, some aggressive
@@ -1522,11 +1678,13 @@ Events coming in 0-3 days:
 - **Loses money fighting new reality**
 
 **The mistake:**
+
 - Emotional attachment to original thesis
 - Not updating view with new information
 - Stubbornness over flexibility
 
 **Example:**
+
 - Bullish BWC on growth stocks
 - Fed announces faster rate hikes
 - Growth stocks will suffer (clear)
@@ -1534,6 +1692,7 @@ Events coming in 0-3 days:
 - **Tight put spread destroyed**
 
 **The fix:**
+
 - Monitor thesis constantly
 - If invalidated, exit immediately
 - Accept small loss to avoid big loss
@@ -1548,22 +1707,26 @@ Events coming in 0-3 days:
 **Extreme asymmetry on both sides:**
 
 **Structure:**
+
 - Both put and call spreads have different widths
 - Both "broken" but in opposite ways
 - Creates compound asymmetry
 
 **Example:**
+
 - Sell $95/$85 put spread ($10 wide)
 - Sell $105/$110 call spread ($5 wide)
 - Collect $3.50 credit
 
 **Characteristics:**
+
 - Neither side symmetric
 - Downside less risky (wide put spread)
 - Upside more risky (tight call spread)
 - **Bearish bias with both wings broken**
 
 **When to use:**
+
 - Very strong directional conviction
 - Want maximum credit
 - Accept concentrated risk on wrong side
@@ -1574,12 +1737,14 @@ Events coming in 0-3 days:
 **Unequal number of contracts:**
 
 **Structure:**
+
 - Sell 2 contracts on tight spread
 - Sell 1 contract on wide spread
 - Collect substantially more credit
 - **Undefined risk on tight side!**
 
 **Example:**
+
 - Sell 2 × $95 put for $4.00 total
 - Buy 1 × $90 put for $1.50
 - Sell 1 × $105 call for $1.50
@@ -1587,11 +1752,13 @@ Events coming in 0-3 days:
 - Net credit: $3.75
 
 **The danger:**
+
 - If stock below $90, losing on naked put
 - Undefined risk creeping in
 - Essentially hybrid of BWC and ratio spread
 
 **When to use:**
+
 - Very high conviction
 - Very low IV (need extra credit)
 - Experienced traders only
@@ -1602,25 +1769,30 @@ Events coming in 0-3 days:
 **The adjustment strategy:**
 
 **Scenario:**
+
 - Have symmetric IC
 - One side threatened
 - Convert to BWC by adjusting threatened side
 
 **Example:**
+
 - Symmetric IC on SPY
 - Call side threatened (stock rallying)
 - **Adjustment:**
+
   - Close tight call spread
   - Sell new call spread much wider
   - Now have broken wing (bullish)
   - Reduced upside risk, accept downside risk
 
 **Pros:**
+
 - Saves losing position
 - Collects additional credit
 - Reduces risk in direction of momentum
 
 **Cons:**
+
 - Now concentrated risk on other side
 - Changing strategy mid-trade
 - Thesis must support new asymmetry
@@ -1630,18 +1802,21 @@ Events coming in 0-3 days:
 **Understanding the difference:**
 
 **Broken Wing Butterfly:**
+
 - All options same expiration
 - Three strikes (1-2-1 or 1-3-1 ratio)
 - Concentrated profit zone
 - More like pure directional bet
 
 **Broken Wing Condor:**
+
 - Four strikes (1-1-1-1 ratio)
 - Wider profit zone
 - More like income strategy with bias
 - Better for moderate conviction
 
 **When to choose each:**
+
 - **High conviction, specific target:** BWB
 - **Moderate conviction, range:** BWC
 
@@ -1650,23 +1825,27 @@ Events coming in 0-3 days:
 **The perpetual BWC strategy:**
 
 **Concept:**
+
 - Always have 2-3 BWCs at different expirations
 - Roll each monthly
 - Maintain continuous directional income
 
 **Structure:**
+
 - Month 1: Open 60-DTE bullish BWC
 - Month 2: Open another 60-DTE (now have 2)
 - Month 3: Close first at 30 DTE, open new 60-DTE
 - **Rolling perpetual income stream**
 
 **Benefits:**
+
 - Continuous exposure
 - Time diversification
 - Systematic approach
 - Compound small wins
 
 **Example portfolio:**
+
 - Position A: 60 DTE, just opened
 - Position B: 45 DTE, 25% profit
 - Position C: 30 DTE, 50% profit (closing)
@@ -1677,11 +1856,13 @@ Events coming in 0-3 days:
 **Using skew to optimize broken wings:**
 
 **The pattern:**
+
 - OTM puts have higher IV (put skew)
 - OTM calls have lower IV
 - This affects BWC construction
 
 **Strategy for bullish BWC:**
+
 - Sell puts (high IV, expensive)
 - Buy cheaper puts (still high IV)
 - Sell calls (lower IV, cheaper)
@@ -1689,6 +1870,7 @@ Events coming in 0-3 days:
 - **Sell the expensive, buy the cheap**
 
 **Example:**
+
 - Stock at $100
 - $95 put: IV = 35%
 - $90 put: IV = 40%
@@ -1696,6 +1878,7 @@ Events coming in 0-3 days:
 - $120 call: IV = 25%
 
 **Optimal structure:**
+
 - Sell $95 put (expensive due to high IV)
 - Buy $90 put (protection)
 - Sell $105 call (reasonable price)
@@ -1715,6 +1898,7 @@ $$
 $$
 
 **Example:**
+
 - $50,000 account
 - Risk capital: $50,000 × 0.015 = $750 per trade
 - Tight side max risk: $150 per BWC
@@ -1738,22 +1922,26 @@ $$
 **Even more important for BWCs:**
 
 **Directional diversification:**
+
 - Max 60% in one direction (bullish or bearish)
 - If running 5 BWCs, max 3 should be same bias
 - Balance bullish and bearish positions
 
 **Example portfolio:**
+
 - 3 bullish BWCs (different sectors)
 - 2 bearish BWCs (different sectors)
 - Total: 5 positions
 - **Directional balance with bias**
 
 **Sector diversification:**
+
 - Max 2 BWCs in same sector
 - Avoid correlated moves
 - Example: Don't have 5 tech BWCs
 
 **Time diversification:**
+
 - Stagger expirations
 - Not all expiring same month
 - Some 60 DTE, some 45 DTE, some 30 DTE
@@ -1766,11 +1954,13 @@ $$
 #### Tier 1: Tight Spread Alert (Early Warning)
 
 **Trigger:**
+
 - Stock within 3% of tight spread short strike
 - Tight spread delta reaches 0.40
 - Position down 30%
 
 **Action:**
+
 - Start monitoring daily (or intraday)
 - Prepare to close
 - Don't add to position
@@ -1779,12 +1969,14 @@ $$
 #### Tier 2: Tight Spread Emergency (Hard Stop)
 
 **Trigger:**
+
 - Stock within 1% of tight spread short strike
 - Tight spread delta reaches 0.60
 - Position down 50%
 - OR stock blasted through short strike
 
 **Action:**
+
 - **Close immediately, no questions**
 - Don't try to adjust
 - Don't hope for reversal
@@ -1793,11 +1985,13 @@ $$
 **Example - Bullish BWC:**
 
 **Tier 1 triggers:**
+
 - SPY at $450, tight spread sell $440 put
 - SPY drops to $443 (3% away)
 - **Action:** Close if losing >30%, or monitor closely
 
 **Tier 2 triggers:**
+
 - SPY drops to $441 (1% away)
 - OR SPY gaps to $438 (through short strike)
 - **Action:** Emergency exit immediately
@@ -1807,11 +2001,13 @@ $$
 **Don't ignore the unlikely:**
 
 **Set alerts:**
+
 - Price alert at wide spread short strike
 - Check position daily (both sides)
 - Monitor news that could cause gap
 
 **Black swan preparation:**
+
 - Know max loss on wide side
 - Have cash reserve to cover it
 - Don't assume "it will never happen"
@@ -1822,17 +2018,20 @@ $$
 **Weekly thesis review:**
 
 **Every week, ask:**
+
 1. Is my directional thesis still valid?
 2. Has anything changed fundamentally?
 3. Am I still comfortable with asymmetric risk?
 4. Should I close early or adjust?
 
 **If answer to #1 or #3 is NO:**
+
 - Close position immediately
 - Don't wait for technical stop
 - Thesis break = exit trigger
 
 **Example:**
+
 - Bullish BWC on growth stocks
 - Fed turns hawkish (thesis break!)
 - Exit even if profitable
@@ -1843,22 +2042,26 @@ $$
 **Aggregate exposure limits:**
 
 **Total BWC exposure:**
+
 - Max 30-40% of portfolio in all BWCs
 - Max 20% in one direction
 - Keep 60% cash for opportunities/adjustments
 
 **Example $50,000 portfolio:**
+
 - Max in all BWCs: $20,000
 - Max in bullish BWCs: $10,000
 - Max in bearish BWCs: $10,000
 - Cash reserve: $30,000
 
 **Correlation limit:**
+
 - Calculate portfolio delta
 - Max net delta: ±300 (like ±30 shares of SPY)
 - If exceeded, close positions or hedge
 
 **Example check:**
+
 - 3 bullish BWCs: +20 delta each = +60
 - 2 bearish BWCs: -15 delta each = -30
 - Net portfolio delta: +30 (acceptable)
@@ -1868,17 +2071,20 @@ $$
 **Quarterly portfolio check:**
 
 **Every quarter:**
+
 1. Review all BWC performance
 2. Calculate win rate and EV
 3. Adjust position sizing if needed
 4. Rebalance directional bias
 
 **If win rate <60% on BWCs:**
+
 - Reduce position size
 - Use more conservative strikes
 - Or switch to symmetric ICs temporarily
 
 **If win rate >80%:**
+
 - Can increase position size slightly
 - But don't get overconfident
 - **Regression to mean is real**
@@ -1899,6 +2105,7 @@ $$
 - Thesis: Consolidation or continued rally
 
 **Technical analysis:**
+
 - 200-day EMA: $540 (strong support)
 - RSI: 58 (neutral, room to run)
 - Volume: Declining on pullback (healthy)
@@ -1907,12 +2114,15 @@ $$
 **Trade: Bullish Broken Wing Condor**
 
 **Structure:**
+
 - **Tight put spread:**
+
   - Sell $545 put (22-delta) for $2.20
   - Buy $540 put (15-delta) for $1.00
   - Width: $5, Credit: $1.20
   
 - **Wide call spread:**
+
   - Sell $580 call (18-delta) for $2.50
   - Buy $595 call (5-delta) for $0.50
   - Width: $15, Credit: $2.00
@@ -1924,6 +2134,7 @@ $$
 - **Break-evens:** $541.80 (put), $583.20 (call)
 
 **Position sizing:**
+
 - $50,000 account
 - Risk per trade: 1.5% = $750
 - Position: 4 BWCs
@@ -1932,6 +2143,7 @@ $$
 - Total risk (wide): $4,720 (unlikely)
 
 **Management plan:**
+
 - Close at 50% profit ($160 per BWC)
 - Stop loss if SPY < $547 (tight spread alert)
 - Exit at 30 DTE regardless
@@ -1939,21 +2151,25 @@ $$
 **Trade progression:**
 
 **Week 1-2:**
+
 - SPY consolidates $555-$565
 - Position: $2.50 value (22% profit)
 - Action: Hold, thesis intact
 
 **Week 3-4:**
+
 - SPY rallies to $572
 - Position: $1.80 value (44% profit)
 - Action: Hold for 50%
 
 **Week 5:**
+
 - SPY at $575, consolidating
 - Position: $1.55 value (52% profit)
 - **Action: Close at 52% profit!**
 
 **Final results:**
+
 - Entry: $3.20 credit × 4 = $1,280
 - Exit: $1.55 buy-back × 4 = $620
 - **Net profit: $660**
@@ -1962,6 +2178,7 @@ $$
 - **Annualized: ~1,050%**
 
 **Lessons:**
+
 - Bullish thesis validated
 - Proper strike selection (20-delta range)
 - Closed at 50%+ (discipline)
@@ -1979,6 +2196,7 @@ $$
 - **Mistake: Fighting the trend**
 
 **Thesis (wrong):**
+
 - "It's overbought, must pull back"
 - "I'll sell calls above here"
 - Technical divergence forming
@@ -1987,12 +2205,15 @@ $$
 **Trade: Bearish Broken Wing Condor**
 
 **Structure:**
+
 - **Tight call spread:**
+
   - Sell $510 call (28-delta) for $8.00
   - Buy $520 call (18-delta) for $4.00
   - Credit: $4.00
   
 - **Wide put spread:**
+
   - Sell $470 put (20-delta) for $5.50
   - Buy $450 put (8-delta) for $2.00
   - Credit: $3.50
@@ -2005,6 +2226,7 @@ $$
 **What went wrong:**
 
 **Day 1-3:**
+
 - NVDA continued rally to $515
 - Tight call spread threatened
 - Position: $9.00 (losing $1.50)
@@ -2012,18 +2234,21 @@ $$
 - **Mistake: Held, thinking "it's overbought"**
 
 **Day 4-7:**
+
 - NVDA gaps to $530 on AI news
 - Call spread blown through
 - Position: $12.50 (max loss on calls)
 - Wide put spread worthless (no help)
 
 **Final results:**
+
 - Entry: $7.50 credit
 - Loss: $2.50 (call spread max loss)
 - **Net: -$250 per BWC**
 - If traded 3 BWCs: -$750 total
 
 **Compounding mistake:**
+
 - Held hoping for reversal
 - Didn't follow stop loss
 - Let winner become max loser
@@ -2052,6 +2277,7 @@ $$
    - **Only works if directional thesis correct**
 
 **What should have been done:**
+
 - Wait for consolidation before entering
 - Or use much higher strikes ($530/$545 calls)
 - Or simply avoid - too much momentum
@@ -2069,6 +2295,7 @@ $$
 - Stock stabilizing in new range
 
 **The opportunity:**
+
 - Event risk gone
 - IV still above average (28% vs. 20% normal)
 - Direction clarified (bullish)
@@ -2076,6 +2303,7 @@ $$
 - New resistance around $200
 
 **Thesis:**
+
 - Bullish on AAPL long-term
 - Expect consolidation $190-$200
 - IV will continue contracting
@@ -2084,12 +2312,15 @@ $$
 **Trade: Bullish Broken Wing Condor**
 
 **Structure:**
+
 - **Tight put spread:**
+
   - Sell $190 put (20-delta) for $2.80
   - Buy $185 put (12-delta) for $1.20
   - Credit: $1.60
   
 - **Wide call spread:**
+
   - Sell $205 call (16-delta) for $3.20
   - Buy $220 call (4-delta) for $0.60
   - Credit: $2.60
@@ -2103,11 +2334,13 @@ $$
 **Why this works:**
 
 **Triple benefit:**
+
 1. **Theta decay** (time works for you)
 2. **Vega contraction** (IV dropping helps)
 3. **Directional edge** (post-earnings bullish)
 
 **Position sizing:**
+
 - 5 BWCs (conservative)
 - Total credit: $2,100
 - Total risk (tight): $400
@@ -2116,24 +2349,28 @@ $$
 **Trade progression:**
 
 **Week 1:**
+
 - AAPL consolidates $193-$197
 - IV drops to 26%
 - Position: $3.20 value (24% profit)
 - Action: Hold
 
 **Week 2:**
+
 - AAPL drifts to $199
 - IV drops to 24%
 - Position: $2.40 value (43% profit)
 - Action: Hold for 50%
 
 **Week 3:**
+
 - AAPL at $198, range-bound
 - IV at 23%
 - Position: $2.00 value (52% profit)
 - **Action: Close at 52%!**
 
 **Final results:**
+
 - Entry: $4.20 × 5 = $2,100
 - Exit: $2.00 × 5 = $1,000
 - **Net profit: $1,100**
@@ -2155,6 +2392,7 @@ $$
 **Scenario: Running 6 BWCs Simultaneously**
 
 **Portfolio:**
+
 - $100,000 account
 - 6 broken wing condors
 - 3 bullish, 3 bearish
@@ -2163,6 +2401,7 @@ $$
 **Positions:**
 
 **Bullish BWCs:**
+
 1. **SPY** (45 DTE): $550/$545 puts, $580/$600 calls
    - Credit: $3.50, Risk: $150 (put), $1,650 (call)
    - Status: 25% profit
@@ -2176,6 +2415,7 @@ $$
    - Status: 40% profit
 
 **Bearish BWCs:**
+
 4. **TSLA** (48 DTE): $240/$250 calls, $210/$190 puts
    - Credit: $3.20, Risk: $680 (call), $1,680 (put)
    - Status: 30% profit
@@ -2200,16 +2440,19 @@ $$
 **Week 1 review:**
 
 **DIS (40% profit):** 
+
 - Close! Hit target early
 - Take $1.12 profit
 - Free up capital
 
 **TSLA (30% profit):**
+
 - Hold for 50%
 - Still 48 DTE
 - Plenty of time
 
 **NFLX (-15% loss):**
+
 - Stock moving toward tight call spread
 - Thesis: Bearish on NFLX
 - Action: Monitor closely, set stop at -30%
@@ -2217,6 +2460,7 @@ $$
 **Week 2 events:**
 
 **NFLX update:**
+
 - Stock rallied to $425 (tight spread threatened!)
 - Loss now -25%
 - **Decision: Close immediately**
@@ -2224,10 +2468,12 @@ $$
 - Preserve capital
 
 **SPY update:**
+
 - Hit 50% profit
 - Close, take $1.75 profit
 
 **New position:**
+
 - Open new bullish BWC on MSFT
 - Different sector (software vs. index)
 - Reset time decay
@@ -2235,18 +2481,21 @@ $$
 **Month-end results:**
 
 **Closed positions:**
+
 - DIS: +$1.12 (40% profit)
 - SPY: +$1.75 (50% profit)
 - NFLX: -$1.13 (25% loss)
 - Net: +$1.74
 
 **Open positions:**
+
 - AAPL: 35% profit (holding)
 - TSLA: 45% profit (close next week)
 - NVDA: 20% profit (holding)
 - MSFT: 5% profit (new)
 
 **Overall:**
+
 - Win rate: 67% (2 wins, 1 loss)
 - Net profit: $1.74 on $24 collected = 7.25%
 - Time: 1 month
@@ -2350,6 +2599,7 @@ $$
 - Break-even: Short strikes ± credit
 
 **Asymmetric risk profile:**
+
 - Tight side: Small loss likely
 - Wide side: Large loss unlikely
 - **Probability-weighted risk acceptable**

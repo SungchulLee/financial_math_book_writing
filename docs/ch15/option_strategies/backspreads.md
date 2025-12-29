@@ -2,6 +2,38 @@
 
 **Backspreads** are reverse ratio spreads where you buy more options than you sell at different strikes, creating unlimited profit potential in the favored direction while often collecting a credit or paying minimal debit, combining directional bias with volatility exposure.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_ratio_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_vs_ratio.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/call_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/put_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/theta_decay_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -267,6 +299,7 @@ $$
 **Scenario:** Stock consolidating, expecting breakout to upside
 
 **Setup:**
+
 - Stock at $100, trading $98-$102 for weeks
 - Technical breakout level: $105
 - Thesis: If breaks out, could run to $115+
@@ -278,20 +311,24 @@ $$
 - **Net cost: $0 (zero-cost backspread)**
 
 **Outcome A (breakout to $115):**
+
 - Short $100 call: -$15
 - Long 2× $105 calls: $20 ($10 each)
 - **P&L: +$5 (infinite upside beyond)**
 
 **Outcome B (fails to break, drops to $95):**
+
 - All expire worthless
 - **P&L: $0** (zero cost entry, no loss!)
 
 **Outcome C (worst case, stays at $105):**
+
 - Short $100 call: -$5
 - Long calls: $0
 - **P&L: -$5** (max loss)
 
 **Why this works:**
+
 - Zero cost entry (risking nothing if wrong)
 - Unlimited profit if breakout confirmed
 - Max loss only if "pinned" at $105 (low probability)
@@ -301,6 +338,7 @@ $$
 **Scenario:** Market at all-time highs, expecting correction
 
 **Setup:**
+
 - SPY at $500
 - VIX at 12 (low, puts cheap)
 - Thesis: Crash risk underpriced
@@ -312,20 +350,24 @@ $$
 - **Net credit: $1** (get paid to enter!)
 
 **Outcome A (crash to $450):**
+
 - Short $500 put: -$50
 - Long 2× $480 puts: $60 ($30 each)
 - **P&L: +$10 + $1 credit = +$11**
 
 **Outcome B (continues up to $520):**
+
 - All expire worthless
 - **P&L: +$1** (keep credit, small profit)
 
 **Outcome C (worst case, pins at $480):**
+
 - Short $500 put: -$20
 - Long puts: $0
 - **P&L: -$20 + $1 credit = -$19** (max loss)
 
 **Why this works:**
+
 - Collect credit (profit if no crash)
 - Massive profit if crash happens (2× leverage)
 - Crash risk underpriced in low VIX environment
@@ -335,6 +377,7 @@ $$
 **Scenario:** Post-earnings, IV collapsed, expecting move
 
 **Setup:**
+
 - Stock at $100 post-earnings
 - IV crushed from 80% → 30% (options cheap now)
 - Expecting delayed reaction (more volatility coming)
@@ -346,15 +389,18 @@ $$
 - **Net cost: $0.40** (very cheap)
 
 **Thesis:**
+
 - If stock re-rates higher (analyst upgrades), could run to $110+
 - Small cost = small risk
 
 **Outcome (stock rallies to $112):**
+
 - Short $100 call: -$12
 - Long 2× $105 calls: $14 ($7 each)
 - **P&L: $14 - $12 - $0.40 = +$1.60 (400% return!)**
 
 **Why this works:**
+
 - Entered when IV low (options cheap)
 - Bet on re-acceleration of move
 - Small cost for unlimited upside
@@ -364,6 +410,7 @@ $$
 **Scenario:** Own stock + sold covered call, want downside protection
 
 **Setup:**
+
 - Own 100 shares at $100
 - Sold $105 call (covered call)
 - Worried about crash
@@ -375,18 +422,21 @@ $$
 - **Net credit: $1**
 
 **Combined position:**
+
 - Long stock
 - Short $105 call (capped upside)
 - Short $100 put (neutral, offset by long stock)
 - Long 2× $90 puts (crash protection!)
 
 **If stock crashes to $80:**
+
 - Stock loss: -$20
 - Covered call: Keep $0 (worthless)
 - Put backspread: $20 gain (2× $90 puts)
 - **Net: Breakeven!** (crash hedged)
 
 **Why this works:**
+
 - Covered call already limits upside
 - Put backspread adds crash protection
 - Collected credit on backspread (free insurance)
@@ -404,6 +454,7 @@ $$
 $$
 
 **Example:**
+
 - Sell $100 call: Δ = -0.55
 - Buy 2× $105 calls: Δ = +0.35 each = +0.70
 - **Net delta: +0.15** (slightly bullish)
@@ -430,6 +481,7 @@ $$
 You own MORE options (2×) than you sold (1×). Net long gamma.
 
 **Example:**
+
 - Sell $100 call gamma: -0.05
 - Buy 2× $105 calls gamma: +0.04 each = +0.08
 - **Net gamma: +0.03** (positive)
@@ -453,6 +505,7 @@ $$
 Buying 2× options creates more theta bleed than selling 1× option generates.
 
 **Example:**
+
 - Sell $100 call theta: +$0.15/day
 - Buy 2× $105 calls theta: -$0.10/day each = -$0.20/day
 - **Net theta: -$0.05/day**
@@ -479,6 +532,7 @@ $$
 $$
 
 **Example:**
+
 - Sell $100 call vega: -0.22
 - Buy 2× $105 calls vega: +0.18 each = +0.36
 - **Net vega: +0.14** (positive)
@@ -503,6 +557,7 @@ $$
 **Scenario:** Call backspread expecting rally, stock goes sideways
 
 **Setup:**
+
 - Call backspread: Sell $100 call, buy 2× $105 calls
 - Cost: $0.50 debit
 - Theta: -$0.08/day
@@ -531,6 +586,7 @@ $$
 **Scenario:** Entered call backspread at high IV
 
 **Setup:**
+
 - Stock at $100, IV at 70%
 - Call backspread cost: $2 (expensive due to high IV)
 - Vega: +0.18
@@ -548,6 +604,7 @@ $$
 **Scenario:** Stock pins exactly at short strike
 
 **Setup:**
+
 - Call backspread: Sell $100 call, buy 2× $105 calls
 - Zero-cost entry
 
@@ -558,6 +615,7 @@ $$
 - **Max loss:** $0 if not assigned, -$5 if assigned and stock drops Monday
 
 **Risk:**
+
 - Assignment uncertainty
 - Overnight gap risk if assigned
 
@@ -580,11 +638,13 @@ Backspreads are DIRECTIONAL volatility bets. Need to be right on direction.
 **Example:**
 
 **Call backspread (bullish):**
+
 - Stock drops from $100 → $90
 - All options expire worthless
 - **P&L: $0** (if zero-cost) or **-100% loss** (if paid debit)
 
 **Should have used:**
+
 - If neutral volatility: Straddle
 - If bearish: Put backspread (not call backspread)
 
@@ -607,6 +667,7 @@ Backspreads are LONG vega. High IV = buying expensive + risk of IV crush.
 **Example:**
 
 **Entry at 80th percentile IV:**
+
 - Cost: $3 (expensive)
 - IV crush to 50th percentile
 - **Vega loss:** -$450
@@ -630,10 +691,12 @@ Theta accelerates in final week + pin risk at short strike.
 **Example:**
 
 **Week before expiration:**
+
 - Backspread value: $1.50
 - Theta: -$0.30/day (accelerating)
 
 **Final week:**
+
 - **Day 1:** Lose $0.30
 - **Day 2:** Lose $0.35
 - **Day 3:** Lose $0.40
@@ -659,11 +722,13 @@ Higher ratio = more cost, more theta bleed, higher risk if wrong.
 **Comparison:**
 
 **1:2 backspread:**
+
 - Cost: $0.50
 - Theta: -$0.08/day
 - Leverage: 2× on upside
 
 **1:3 backspread:**
+
 - Cost: $2.50 (5× more!)
 - Theta: -$0.25/day (3× more bleed)
 - Leverage: 3× on upside (but must overcome higher cost)
@@ -686,11 +751,13 @@ Skew makes put backspreads EASIER to enter for credit (steep put skew in equitie
 **Example:**
 
 **Put backspread (equity market):**
+
 - ATM put IV: 35%
 - OTM put IV: 28%
 - **Can collect credit** (sell expensive, buy cheap)
 
 **Call backspread (equity market):**
+
 - ATM call IV: 30%
 - OTM call IV: 26%
 - **Less skew, harder to get credit** (usually small debit)
@@ -879,6 +946,7 @@ $$
 - **Vega loss:** -$450 (long vega position)
 
 **P&L:**
+
 - Short $50 call: -$8
 - Long 2× $55 calls: $6 ($3 each)
 - **Directional gain:** -$2
@@ -995,12 +1063,14 @@ Put backspread: $K_2 - 2(K_2 - K_1)$
 ### Comparison to Ratio Spreads
 
 **Backspreads:**
+
 - Buy more than sell (unlimited profit)
 - Pay small debit or collect small credit
 - Long volatility (benefit from big moves)
 - Limited risk
 
 **Ratio Spreads:**
+
 - Sell more than buy (unlimited risk)
 - Collect credit
 - Short volatility (benefit from stability)

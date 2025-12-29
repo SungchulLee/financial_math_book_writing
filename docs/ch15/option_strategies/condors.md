@@ -2,6 +2,38 @@
 
 **Condors** are four-legged spreads combining two vertical spreads with a gap between them, creating a flat-top profit zone that's wider than a butterfly but with lower maximum profit, offering higher probability of success at the cost of reduced profit potential.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_vs_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_whipsaw.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_condor.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -112,12 +144,14 @@ $$
 **The fundamental progression:**
 
 **Butterfly (3 strikes):**
+
 - Buy $95 call, sell 2× $100 calls, buy $105 call
 - **Profit zone:** Single point ($100)
 - **Max profit:** $2.50 (at exactly $100)
 - **Probability:** ~40% (stock must land near $100)
 
 **Condor (4 strikes):**
+
 - Buy $95 call, sell $100 call, sell $105 call, buy $110 call
 - **Profit zone:** Range ($100-$105)
 - **Max profit:** $2.50 (anywhere $100-$105)
@@ -144,16 +178,19 @@ Both have same debit and same wing widths. The condor just "spreads out" the but
 **Alternative view: Condor = Bull Spread + Bear Spread**
 
 **Bull call spread (lower wing):**
+
 - Buy $95 call, sell $100 call
 - Debit: $4
 - Max profit: $1 (at $100+)
 
 **Bear call spread (upper wing):**
+
 - Sell $105 call, buy $110 call
 - Credit: $1.50
 - Max profit: $1.50 (at $105-)
 
 **Combined (Condor):**
+
 - Net debit: $4 - $1.50 = $2.50
 - Max profit: $5 - $2.50 = $2.50 (when both spreads hit max value)
 
@@ -177,11 +214,13 @@ Stock returns follow (approximately) normal distribution. Condor profits from st
 - Expected move (1σ): $100 × 0.20 × √(30/365) = $5.72
 
 **Condor strikes:**
+
 - $95/$100/$105/$110 (body: $100-$105)
 - Body center: $102.50
 - **Probability stock ends $100-$105:** ~45% (assuming normal distribution)
 
 **Compare to butterfly:**
+
 - $95/$102.50/$110 (peak at $102.50)
 - **Probability stock ends within $2 of $102.50:** ~25%
 
@@ -262,6 +301,7 @@ $$
 - Stock at $188 (above range) → Max loss -$1.50
 
 **Why this works:**
+
 - Don't need to predict exact price (entire $175-$180 range works)
 - Higher probability than butterfly (~60% vs. ~40%)
 - Still limited risk (only risk $1.50)
@@ -271,6 +311,7 @@ $$
 **Scenario:** Stock gapped on earnings, expect rest of day/week to consolidate
 
 **Setup:**
+
 - TSLA reports earnings, gaps from $240 → $250 pre-market
 - Expecting consolidation in $245-$255 range post-gap
 
@@ -283,11 +324,13 @@ $$
 - **Net debit: $2.50**
 
 **Thesis:**
+
 - Big move already happened (gap up $10)
 - Stock will digest move, trade range-bound
 - Condor captures consolidation better than butterfly
 
 **Outcome (3 days later):**
+
 - Stock consolidated between $248-$252
 - Condor at max profit: $7.50 ($10 body - $2.50 debit)
 - **Return: 200%** (on $2.50 debit)
@@ -315,6 +358,7 @@ Wait, let me reconsider. For income, you'd want SHORT condor:
 - **Net credit: $2.50**
 
 **Income thesis:**
+
 - SPY breaks out of $445-$455 range → Collect $2.50 credit
 - SPY stays in range → Max loss $2.50 (but this is what we DON'T want)
 
@@ -327,6 +371,7 @@ Let me fix this example:
 **Scenario:** Stock has broken out, expect mean reversion back to range
 
 **Setup:**
+
 - Stock normally trades $95-$105
 - Just broke down to $90 (oversold)
 - Expect reversion back to $95-$105
@@ -340,11 +385,13 @@ Let me fix this example:
 - **Net debit: $2.08**
 
 **Thesis:**
+
 - Stock will revert to $95-$105 range (normal range)
 - Don't care exactly where in range
 - Condor profits from entire range
 
 **Outcome (2 weeks later):**
+
 - Stock at $98 (back in range)
 - Max profit: $5 - $2.08 = $2.92 (140% return)
 
@@ -353,6 +400,7 @@ Let me fix this example:
 **Scenario:** IV elevated before earnings, expect crush after
 
 **Setup:**
+
 - Stock at $100, earnings tomorrow
 - IV at 60% (high)
 - After earnings, expect IV → 35% AND stock to stay $95-$105
@@ -366,12 +414,14 @@ Let me fix this example:
 - **Net debit: $1.50**
 
 **Post-earnings:**
+
 - Stock at $102 (within body)
 - IV crushed to 35%
 - Condor value: $4.80 (intrinsic + small time value)
 - **Can close for $3.30 profit (220% gain)**
 
 **Why this works:**
+
 - IV crush helps (all options cheaper, net benefit to debit spread)
 - Stock in profit zone (max profit approaching)
 - Didn't need to predict exact landing spot
@@ -577,6 +627,7 @@ The two short strikes (at $100 and $105) have higher vega than the two long stri
 - **Missed profit: $1.50** (another 60%)
 
 **Trade-off:**
+
 - Early exit secured $1.00 profit (40% return)
 - But left $1.50 on table (60% additional return)
 
@@ -691,16 +742,19 @@ Once stock exits body, probability of returning diminishes. Early adjustment sav
 **Example:**
 
 **Week 1:**
+
 - Condor: $95/$100/$105/$110, debit $2.50
 - Stock at $108 (above body)
 - Current loss: -$1.50
 - **Thought:** "It might come back"
 
 **Week 2:**
+
 - Stock at $111 (even further out)
 - Current loss: -$2.50 (max loss)
 
 **Week 3:**
+
 - Stock at $113 (no hope)
 - Max loss locked in
 
@@ -837,6 +891,7 @@ $$
 - **Net debit: $1.70**
 
 **Position Greeks:**
+
 - Delta: +0.02 (nearly neutral)
 - Gamma: -0.03 (small negative)
 - Theta: +$0.12/day

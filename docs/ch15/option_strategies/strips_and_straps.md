@@ -2,6 +2,38 @@
 
 **Strips and straps** are directional volatility strategies that combine unequal ratios of puts and calls at the same strike, expressing both a directional bias and a volatility bet - strips favor downside (2 puts : 1 call) while straps favor upside (1 put : 2 calls).
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_strip_strap_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strap_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_vs_two_puts.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strips_and_straps_breakeven_analysis.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -286,6 +318,7 @@ $$
 **Scenario:** Company reporting earnings, expecting big move, slight bearish bias
 
 **Setup:**
+
 - Stock at $100
 - Earnings tomorrow
 - IV at 60% (expensive, but expecting move)
@@ -298,18 +331,21 @@ $$
 - **Total cost: $18**
 
 **Outcome Scenario A (bearish correct):**
+
 - Earnings miss, stock drops to $85
 - Call worthless: $0
 - Each put worth $15 × 2 = $30
 - **P&L: $30 - $18 = +$12 (67% return)**
 
 **Outcome Scenario B (wrong, but protected):**
+
 - Earnings beat, stock rallies to $115
 - Call worth $15
 - Puts worthless: $0
 - **P&L: $15 - $18 = -$3 (17% loss, not 100%!)**
 
 **Why this works:**
+
 - Express directional bias (bearish) while maintaining upside protection
 - If wrong, only lose partial premium (not all)
 - If right, get 2× leverage
@@ -319,6 +355,7 @@ $$
 **Scenario:** Biotech awaiting FDA approval decision
 
 **Market expectations:**
+
 - 60% approval → Stock $150 (+50%)
 - 40% rejection → Stock $70 (-30%)
 - **Skew favors upside** (rare situation)
@@ -331,18 +368,21 @@ $$
 - **Total cost: $22**
 
 **Outcome A (approval):**
+
 - Stock → $150
 - Calls: 2× $50 = $100
 - Put: $0
 - **P&L: $100 - $22 = +$78 (355% return!)**
 
 **Outcome B (rejection):**
+
 - Stock → $70
 - Calls: $0
 - Put: $30
 - **P&L: $30 - $22 = +$8 (36% return, still profit!)**
 
 **Why this works:**
+
 - Positive skew (upside > downside magnitude)
 - Strap aligns with skew (2× upside exposure)
 - Even if rejected, downside protected by put
@@ -352,6 +392,7 @@ $$
 **Scenario:** Oil at $80, geopolitical tensions rising
 
 **Thesis:**
+
 - If tensions escalate → Oil $95 (supply shock)
 - If resolved → Oil $75 (normalization)
 - **Upside has more magnitude** ($95 vs $75 = $15 up vs $5 down)
@@ -363,16 +404,19 @@ $$
 - **Total cost: $14**
 
 **Outcome A (tensions escalate):**
+
 - Oil → $95
 - Calls: 2× $15 = $30
 - **P&L: $30 - $14 = +$16 (114% return)**
 
 **Outcome B (resolved):**
+
 - Oil → $75
 - Put: $5
 - **P&L: $5 - $14 = -$9 (64% loss, partial)**
 
 **Why this works:**
+
 - Asymmetric move expectations (bigger upside)
 - Strap captures 2× upside leverage
 - Put limits downside to 64% vs. 100% if just calls
@@ -382,6 +426,7 @@ $$
 **Scenario:** Market just crashed 15%, expecting bounce or further drop
 
 **Setup:**
+
 - SPY at $400 (down from $470)
 - Expecting: Either recovery rally to $430 OR another leg down to $370
 - **Bias:** Slightly bullish (oversold bounce more likely)
@@ -393,16 +438,19 @@ $$
 - **Total cost: $34**
 
 **Outcome A (bounce):**
+
 - SPY → $430
 - Calls: 2× $30 = $60
 - **P&L: $60 - $34 = +$26 (76% return)**
 
 **Outcome B (further drop):**
+
 - SPY → $370
 - Put: $30
 - **P&L: $30 - $34 = -$4 (12% loss)**
 
 **Why this works:**
+
 - Crash recovery has historical precedent
 - 2× calls capitalize on bounce
 - Put hedges renewed selloff
@@ -412,6 +460,7 @@ $$
 **Comparison question:** Why strip instead of straddle?
 
 **Scenario:**
+
 - Stock at $100, volatility expected
 - **Slight bearish bias** (55% down, 45% up)
 
@@ -434,6 +483,7 @@ If stock → $115:
 - Strip profit: $15 - $15 = $0 (breakeven)
 
 **Expected value (55% down, 45% up):**
+
 - Straddle: (0.55 × $5) + (0.45 × $5) = $5
 - Strip: (0.55 × $15) + (0.45 × $0) = $8.25
 
@@ -452,17 +502,20 @@ $$
 $$
 
 **Initial delta (ATM):**
+
 - Strip: Delta ≈ -0.50 (bearish)
 - Strap: Delta ≈ +0.50 (bullish)
 
 **Delta evolution:**
 
 **Strip (stock drops to $90):**
+
 - Call delta: +0.20 (OTM)
 - Put delta: -0.75 each × 2 = -1.50
 - **Net delta: -1.30** (very bearish!)
 
 **Strip (stock rises to $110):**
+
 - Call delta: +0.80 (ITM)
 - Put delta: -0.25 each × 2 = -0.50
 - **Net delta: +0.30** (slightly bullish)
@@ -482,6 +535,7 @@ $$
 You OWN all options (long gamma position). Every option you buy contributes positive gamma.
 
 **Example:**
+
 - Call gamma: +0.05
 - Put gamma: +0.05 each × 2 = +0.10
 - **Net gamma: +0.15** (excellent!)
@@ -507,6 +561,7 @@ $$
 You bought 3 options. Time decay works AGAINST you.
 
 **Example:**
+
 - Call theta: -$0.15/day
 - Put theta: -$0.15/day × 2 = -$0.30/day
 - **Net theta: -$0.45/day**
@@ -533,6 +588,7 @@ $$
 $$
 
 **Example:**
+
 - Call vega: +0.20
 - Put vega: +0.20 × 2 = +0.40
 - **Net vega: +0.60**
@@ -546,9 +602,11 @@ $$
 **Example:**
 
 **Buy strip at IV = 40%:**
+
 - Cost: $15
 
 **Next day, IV drops to 30% (IV crush):**
+
 - Vega loss: -0.60 × 10 = -$600
 - **New value: $9** (lost 40% overnight!)
 
@@ -563,6 +621,7 @@ $$
 **Scenario:** Bought strap expecting big move, stock stays flat
 
 **Setup:**
+
 - Stock at $100
 - Strap cost: $15 (2 calls + 1 put)
 - Theta: -$0.45/day
@@ -592,17 +651,20 @@ $$
 **Scenario:** Bought strip before earnings at high IV
 
 **Setup:**
+
 - Stock at $100, earnings tonight
 - IV at 70% (very high)
 - Strip cost: $22 (expensive due to high IV)
 - Vega: +0.65
 
 **Post-earnings:**
+
 - Stock drops to $92 (good for strip, 2× puts!)
 - But IV crushes: 70% → 35% (-35%)
 - **Vega loss:** -0.65 × 35 = -$2,275 (!!)
 
 **P&L breakdown:**
+
 - Puts gained from move: 2× $8 = $16
 - Vega loss from IV crush: -$22.75
 - **Net P&L: $16 - $22.75 = -$6.75 loss**
@@ -616,16 +678,19 @@ $$
 **Scenario:** Bought strip (bearish), stock rallied
 
 **Setup:**
+
 - Strip cost: $15
 - Expecting drop to $85
 - Stock rallied to $110 instead
 
 **P&L:**
+
 - Call gained: $10
 - Puts lost: $0 (worthless)
 - **Net: $10 - $15 = -$5 loss (33%)**
 
 **Compare to straddle:**
+
 - Straddle cost: $10
 - Stock at $110: $10 gain
 - **Net: $10 - $10 = $0 breakeven**
@@ -649,9 +714,11 @@ High IV = expensive options. You're paying top dollar and vulnerable to IV crush
 **Example:**
 
 **IV at 70% (pre-earnings):**
+
 - Strip cost: $22
 
 **IV at 35% (post-earnings):**
+
 - Strip value: $12 (even if stock moved favorably)
 - **IV crush cost you $10 (45% of position!)**
 
@@ -674,11 +741,13 @@ Longer time = more theta to pay. Strips/straps need short-term catalysts.
 **Example:**
 
 **3-month strip:**
+
 - Cost: $20
 - Theta: -$0.30/day
 - **Total theta to expiration:** $0.30 × 90 = $27 (more than you paid!)
 
 **1-month strip:**
+
 - Cost: $15
 - Theta: -$0.50/day
 - **Total theta to expiration:** $0.50 × 30 = $15 (equal to cost)
@@ -735,6 +804,7 @@ Ratio spreads SELL options (collect premium), strips/straps BUY options (pay pre
 **The fix:**
 
 - **Only use strips/straps for SPECIFIC EVENTS:**
+
   - Earnings (< 1 week away)
   - FDA decisions (< 2 weeks)
   - Fed announcements (< 1 week)
@@ -754,11 +824,13 @@ Higher ratio = more capital, more theta, less hedging.
 **Comparison:**
 
 **2:1 strip (standard):**
+
 - 1 call + 2 puts
 - Cost: $15
 - Hedging: Call provides reasonable upside protection
 
 **4:1 strip (aggressive):**
+
 - 1 call + 4 puts
 - Cost: $25
 - Hedging: Call provides WEAK upside protection (4× puts overwhelm)
@@ -875,6 +947,7 @@ $$
 - **Total cost: $30 ($3,000)**
 
 **Position Greeks:**
+
 - Delta: -0.48 (bearish bias)
 - Gamma: +0.18 (long volatility)
 - Theta: -$125/day (high, but short time frame)

@@ -115,11 +115,13 @@ $$
 **Why this matters:**
 
 **Traditional leverage (margin):**
+
 - Borrow $15,000, buy 100 shares at $150
 - If stock → $50, you lose $10,000 AND still owe the loan
 - **Potential for catastrophic loss beyond your capital**
 
 **Call option (leveraged with protection):**
+
 - Pay $800 premium for $150 call
 - If stock → $50, you simply walk away
 - **Maximum loss: $800 (the premium)**
@@ -129,6 +131,7 @@ $$
 ### Example: Breaking Down the AAPL Call
 
 **Setup:**
+
 - AAPL at $150
 - Buy $150 call for $8
 
@@ -163,11 +166,13 @@ $$
 $$
 
 **Traditional shorting:**
+
 - Borrow stock, sell at $100
 - If stock → $200, you must buy back at $200
 - **Loss: $100 per share (unlimited potential)**
 
 **Put option:**
+
 - Pay $5 premium for $100 put
 - If stock → $200, you walk away
 - **Loss: $5 per share (premium only)**
@@ -209,20 +214,24 @@ $$
 **Understanding options as financing structures helps you:**
 
 1. **Compare to alternatives:**
+
    - Should I buy stock on margin or buy calls?
    - Should I short stock or buy puts?
    - **Options = Leverage + Automatic Risk Control**
 
 2. **Understand premium pricing:**
+
    - Premium = Cost of leverage + Cost of limited liability
    - Higher strikes (more leverage) → Higher cost
    - Longer time → More insurance cost
 
 3. **See synthetic positions:**
+
    - Long stock + Long put = Long call (economically identical)
    - Short stock + Long call = Long put (economically identical)
 
 4. **Recognize arbitrage opportunities:**
+
    - If put-call parity violated → Free money!
    - Market makers constantly monitor this
 
@@ -246,6 +255,7 @@ $$
 - **Risk: Maximum loss = $800, cannot exceed**
 
 **The call option is like getting a non-recourse loan:**
+
 - If stock crashes, lender (option seller) bears the tail risk
 - You pay upfront premium instead of ongoing interest
 - No margin calls, no liquidation risk
@@ -351,9 +361,7 @@ $$
 
 **Protect against catastrophic loss:**
 
-- Stock can go to $0 → lose $15,000
-- Call can go to $0 → lose $800 only
-- **Predefined maximum loss**
+- Downside risk is limited to the premium paid (see **The Core Insight**).
 
 ### 4. Earnings/Event Play
 
@@ -767,7 +775,7 @@ $$
 **Problem:**
 
 - Long options need movement
-- Theta bleeds you daily
+- theta decay accumulates each day (see **Theta (Θ)**)
 - Stock going nowhere = you lose
 
 **Example:**
@@ -1185,9 +1193,6 @@ $$
 \text{Long Put} = \text{Bearish bet with defined risk and large profit potential}
 $$
 
-- Pay premium upfront
-- Max loss = premium (known)
-- Max profit = unlimited (call) or large (put)
 - Need to be right on direction AND timing
 
 ### The Setup
@@ -1239,13 +1244,11 @@ $$
 
 **Long Call:**
 
-- Max loss: Premium paid (100%)
 - Max profit: Unlimited (stock can go to infinity)
 - Breakeven: Strike + Premium
 
 **Long Put:**
 
-- Max loss: Premium paid (100%)
 - Max profit: Strike - Premium (stock to $0)
 - Breakeven: Strike - Premium
 
@@ -1263,7 +1266,6 @@ $$
 - Bearish catalyst coming
 - Portfolio hedge needed
 - Can't or won't short
-- Defined risk desired
 
 **Don't use when:**
 
@@ -1297,8 +1299,6 @@ $$
 
 **Advantages over stock:**
 
-- Massive leverage (10-20x)
-- Defined risk (can't lose more than premium)
 - Less capital required
 
 **Disadvantages vs. stock:**

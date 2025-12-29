@@ -2,6 +2,38 @@
 
 **Jade Lizard** is an income strategy combining a short put with a short call spread, creating a credit position with no upside risk (cannot lose if stock rallies) but defined downside risk, popular among traders seeking premium collection with asymmetric risk profiles.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_components.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_credit_vs_width.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_vs_big_lizard.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -66,6 +98,7 @@ This ensures **zero upside risk** (credit collected exceeds max call spread loss
 | $110+ | $0 | -$3.30 (max loss) | **-$3.30** |
 
 **But wait - at $110:**
+
 - Put expires worthless: Keep $3.50
 - Call spread max loss: -$5 (width)
 - **Net: $3.50 - $5 = -$1.50?**
@@ -73,6 +106,7 @@ This ensures **zero upside risk** (credit collected exceeds max call spread loss
 Let me recalculate:
 
 **At $110 (stock above call spread):**
+
 - Put: Expires worthless (sold for $3.50, keep it)
 - Call spread: Max loss = -($110 - $105) = -$5
 - **Total: $3.50 - $5 = -$1.50 loss**
@@ -84,6 +118,7 @@ Let me reconsider. The net credit collected was $5.20. Let's trace through again
 **Total credit collected upfront:** $5.20
 
 **At expiration, if stock at $110+:**
+
 - Short $105 call: Must pay ($110 - $105) = $5
 - Long $110 call: Receive ($110 - $110) = $0
 - **Call spread loss: -$5**
@@ -116,6 +151,7 @@ This is the key to Jade Lizard: **Credit must exceed call spread width.**
 **This is NOT a pure Jade Lizard** (has upside risk), but collects more premium.
 
 **Trade-off:**
+
 - More premium ($5.80 vs $5.20)
 - But upside risk exists (if stock rallies hard)
 
@@ -135,11 +171,13 @@ This is the key to Jade Lizard: **Credit must exceed call spread width.**
 **Jade Lizard = Short Put + Short Call Spread**
 
 **Short Put component:**
+
 - Collect premium
 - Risk: Stock drops below strike
 - Obligation: Buy stock at strike if assigned
 
 **Short Call Spread component:**
+
 - Collect premium (sell $105 call, buy $110 call)
 - Risk: Stock rallies above $105
 - Max loss: Width of spread ($5)
@@ -171,14 +209,17 @@ Historical data shows:
 **Comparison to alternatives:**
 
 **Short strangle (sell put + sell call):**
+
 - Risk on BOTH sides (downside AND upside)
 - Unlimited risk on both ends
 
 **Jade Lizard (sell put + sell call spread):**
+
 - Risk on downside ONLY
 - **No upside risk** (capped by call spread, offset by credit)
 
 **Trade-off:**
+
 - Collect less premium than strangle
 - But eliminate upside risk (sleep better)
 
@@ -192,6 +233,7 @@ Historical data shows:
 - Contrasts with "Iron Condor" (sells both sides with defined risk)
 
 **Big Lizard:**
+
 - Wider call spread (bigger "lizard")
 - More premium but violates no-upside-risk rule
 
@@ -232,6 +274,7 @@ $$
 $$
 
 **Example:**
+
 - Short $95 put, net credit $5.20
 - **BE: $95 - $5.20 = $89.80**
 
@@ -246,6 +289,7 @@ $$
 **Scenario:** Stock in established uptrend, want income without upside risk
 
 **Setup:**
+
 - AAPL at $175, strong uptrend
 - Expect: Consolidation or continued rally (NOT crash)
 
@@ -261,24 +305,29 @@ $$
 **Outcomes:**
 
 **AAPL → $180 (slight rally):**
+
 - All expire worthless
 - **Profit: $6.20** (full credit, max profit)
 
 **AAPL → $195 (strong rally):**
+
 - Put worthless, call spread loses $5
 - **P&L: $6.20 - $5 = +$1.20** (still profit!)
 
 **AAPL → $160 (drops):**
+
 - Put assigned: Buy 100 shares at $165
 - Shares worth $160 → Loss $5
 - **P&L: $6.20 - $5 = +$1.20** (breakeven zone)
 
 **AAPL → $150 (crashes):**
+
 - Put assigned at $165
 - Shares worth $150 → Loss $15
 - **P&L: $6.20 - $15 = -$8.80** (max risk zone)
 
 **Why this works:**
+
 - AAPL trending up (upside protected by design)
 - Collect $6.20 premium (good income)
 - Only risk if crashes (lower probability)
@@ -288,6 +337,7 @@ $$
 **Scenario:** Stock reported earnings, IV elevated, expecting IV crush + consolidation
 
 **Setup:**
+
 - TSLA at $240, just reported earnings
 - IV at 70% (elevated post-earnings)
 - Expect: IV to normalize to 45%, stock to consolidate
@@ -305,6 +355,7 @@ $$
 Let me adjust:
 
 **Better trade:**
+
 - Sell $230 put for $6
 - Sell $255 call for $5
 - Buy $260 call for $3
@@ -313,12 +364,14 @@ Let me adjust:
 - **No upside risk: $8 > $5** ✓
 
 **Outcome (one week later):**
+
 - IV crushes: 70% → 45%
 - Stock at $245 (consolidating)
 - **Position value:** $1.50 (mostly decayed)
 - **Can close for:** $8 - $1.50 = $6.50 profit (81% of max)
 
 **Why this works:**
+
 - IV crush benefits ALL short options
 - Stock consolidation keeps price in safe zone
 - Collected premium during high IV (optimal entry)
@@ -328,6 +381,7 @@ Let me adjust:
 **Scenario:** Market in extended low-volatility regime
 
 **Setup:**
+
 - SPY trading $445-$455 for 3 months
 - VIX at 12 (very low)
 - Expecting continued range
@@ -342,11 +396,13 @@ Let me adjust:
 - **No upside risk: $5.80 > $5** ✓
 
 **Weekly management:**
+
 - **Week 1-3:** SPY stays $445-$455, theta working
 - **Week 4:** SPY at $452, position value $1.20
 - **Exit:** Close for $4.60 profit (79% of max)
 
 **Why this works:**
+
 - Low VIX = cheaper options (but still collect good premium)
 - Range-bound eliminates directional risk
 - No upside risk = perfect for slow uptrend
@@ -356,12 +412,14 @@ Let me adjust:
 **Comparison:**
 
 **Traditional covered call:**
+
 - Own 100 shares at $100 = $10,000 capital
 - Sell $105 call for $2.50
 - **Capital required: $10,000**
 - **Max profit: $7.50** (if called away at $105)
 
 **Jade Lizard alternative:**
+
 - Sell $95 put for $3.50
 - Sell $105 call for $2.50
 - Buy $110 call for $0.80
@@ -379,6 +437,7 @@ Let me adjust:
 | Risk | Own stock (full downside) | Put assignment |
 
 **Why Jade Lizard can be better:**
+
 - **3× capital efficiency** ($3K vs $10K)
 - **2× ROI** (17% vs 7.5%)
 - **No upside risk** (vs covered call capped)
@@ -396,6 +455,7 @@ $$
 $$
 
 **Example:**
+
 - Short $95 put: Δ = +0.20 (short put = positive delta)
 - Short $105/$110 call spread: Δ = -0.15
 - **Net delta: +0.05** (slightly bullish)
@@ -421,6 +481,7 @@ $$
 You SOLD options (short gamma). Small moves around strikes hurt.
 
 **Example:**
+
 - Short put gamma: -0.03
 - Short call spread gamma: -0.02
 - **Net gamma: -0.05**
@@ -439,6 +500,7 @@ $$
 $$
 
 **Example:**
+
 - Short put theta: +$0.12/day
 - Short call spread theta: +$0.08/day
 - **Net theta: +$0.20/day** (collect ~$20/day)
@@ -464,6 +526,7 @@ $$
 $$
 
 **Example:**
+
 - Short put vega: -0.18
 - Short call spread vega: -0.12
 - **Net vega: -0.30**
@@ -492,6 +555,7 @@ If credit < call spread width, you have upside risk (no longer a true Jade Lizar
 **Example:**
 
 **Bad trade:**
+
 - Sell $95 put for $3.50
 - Sell $105 call for $2.50
 - Buy $115 call for $0.50 (wide spread)
@@ -517,11 +581,13 @@ Short put can be assigned EARLY (American options), especially if deep ITM near 
 **Example:**
 
 **Setup:**
+
 - Jade Lizard on AAPL
 - Stock drops from $175 → $155 (below $165 put strike)
 - Ex-dividend date tomorrow ($0.25)
 
 **Friday night:**
+
 - Short $165 put is $10 ITM
 - **Assigned:** Must buy 100 shares at $165
 - Now own shares worth $155 → Immediate -$10 loss
@@ -546,11 +612,13 @@ ATM put has 50% probability of being ITM. Too risky.
 **Example:**
 
 **Aggressive trade:**
+
 - Stock at $100
 - Sell $100 put (ATM) for $5
 - High probability of assignment!
 
 **Conservative trade:**
+
 - Stock at $100
 - Sell $90 put (10% OTM) for $2
 - Lower premium BUT lower probability
@@ -574,11 +642,13 @@ Low IV = low premium collected. Not worth the risk.
 **Example:**
 
 **Low IV entry (VIX = 12, stock IV 18%):**
+
 - Net credit: $2.50
 - Downside risk: Potentially -$15 if stock crashes
 - **Risk/reward: Terrible** ($2.50 gain vs $15+ loss)
 
 **High IV entry (VIX = 22, stock IV 35%):**
+
 - Net credit: $6.50
 - Same downside risk: -$15
 - **Risk/reward: Better** ($6.50 gain vs $15 loss)
@@ -602,6 +672,7 @@ Last 20% of profit has highest risk (gamma explodes, assignment risk).
 **Example:**
 
 **Week 4 (of 6):**
+
 - Collected $6 credit initially
 - Position now worth $1.50
 - **Unrealized profit: $4.50 (75% of max)**
@@ -631,6 +702,7 @@ $$
 $$
 
 **Example:**
+
 - Stock at $100
 - Target: 20-delta put
 - **Strikes: $85-$90 range**
@@ -646,6 +718,7 @@ $$
 $$
 
 **Example:**
+
 - Stock at $100, ATR = $3
 - Short call: $110-$115 (20-25 delta)
 - Width: $5 (about 1.5× ATR)
@@ -674,14 +747,17 @@ $$
 ### Time Frame
 
 **Entry:**
+
 - **30-45 DTE:** Optimal theta decay zone
 - Avoid <21 DTE (gamma too high)
 
 **Exit:**
+
 - **Target:** 50-75% of max profit
 - **OR:** 7-10 DTE (whichever first)
 
 **Example:**
+
 - Enter 35 DTE for $6 credit
 - Exit at $1.50-$3 remaining value (75-50% profit)
 - OR exit at Day 25 (10 DTE remaining)
@@ -749,6 +825,7 @@ $$
 - **Profit: $4.30** (63% of max)
 
 **Exit (Day 22, 13 DTE remaining):**
+
 - Closed for $2.00
 - **Total profit: $4.80 (71% of max)**
 - **ROI: 160%** on $3,000 margin
@@ -828,6 +905,7 @@ $$
 
 - Stock at $100
 - **Big Lizard (not standard Jade):**
+
   - Sell $90 put for $3
   - Sell $110 call for $3
   - Buy $125 call for $0.50
@@ -954,14 +1032,17 @@ $$
 ### Comparison to Alternatives
 
 **vs. Covered Call:**
+
 - Jade Lizard: Less capital, higher ROI, no upside cap
 - Covered Call: Own stock, capped upside
 
 **vs. Short Strangle:**
+
 - Jade Lizard: No upside risk
 - Strangle: Unlimited risk both sides
 
 **vs. Iron Condor:**
+
 - Jade Lizard: Only downside risk, higher credit
 - Iron Condor: Both sides defined risk, lower credit
 

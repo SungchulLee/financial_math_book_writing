@@ -2,6 +2,22 @@
 
 **Double diagonals** are option strategies where you **simultaneously run diagonal spreads on both the call side and put side**, combining **different strike prices AND different expiration dates** on both wings. They create positions that can profit from **directional movement within a range, time decay on both sides, and term structure advantages** with **defined (or mostly-defined) risk**.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_flexibility.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_management.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_structure.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_vs_double_calendar.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -40,10 +56,12 @@ A double diagonal uses:
 **Typical construction (most common):**
 
 **Call side (upper):**
+
 - **BUY** a longer-dated OTM/ATM call (back month)
 - **SELL** a shorter-dated further OTM call (front month)
 
 **Put side (lower):**
+
 - **BUY** a longer-dated OTM/ATM put (back month)
 - **SELL** a shorter-dated further OTM put (front month)
 
@@ -90,6 +108,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 - Neutral directional assumption
 
 **Example:**
+
 - Stock at $100
 - Buy 90-day $105 call, Sell 30-day $110 call
 - Buy 90-day $95 put, Sell 30-day $90 put
@@ -105,6 +124,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 - Biased toward upside profit
 
 **Example:**
+
 - Stock at $100
 - Buy 90-day $102 call, Sell 30-day $108 call (2 contracts)
 - Buy 90-day $95 put, Sell 30-day $88 put (1 contract)
@@ -120,6 +140,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 - Biased toward downside profit
 
 **Example:**
+
 - Stock at $100
 - Buy 90-day $105 call, Sell 30-day $112 call (1 contract)
 - Buy 90-day $98 put, Sell 30-day $92 put (2 contracts)
@@ -136,6 +157,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 - Lower theta but higher profit potential from moves
 
 **Example:**
+
 - Stock at $100
 - Buy 90-day $100 call, Sell 30-day $115 call
 - Buy 90-day $100 put, Sell 30-day $85 put
@@ -190,11 +212,13 @@ where:
 **Trade:**
 
 **Call diagonal (upper):**
+
 - Buy 90-day **$105 call** (slightly OTM) for **$4.50**
 - Sell 30-day **$110 call** (further OTM) for **$1.50**
 - Net debit: $3.00 per spread
 
 **Put diagonal (lower):**
+
 - Buy 90-day **$95 put** (slightly OTM) for **$4.20**
 - Sell 30-day **$90 put** (further OTM) for **$1.40**
 - Net debit: $2.80 per spread
@@ -202,6 +226,7 @@ where:
 **Total net debit:** $3.00 + $2.80 = **$5.80** (= $580 per double diagonal)
 
 **Greeks at entry:**
+
 - Delta: ≈ 0 (approximately neutral)
 - Theta: +$25/day (from both short options)
 - Vega: +0.6 per spread (net long vol)
@@ -264,12 +289,14 @@ where:
 **Trade:**
 
 **Call diagonal (upper - emphasized):**
+
 - Buy 90-day **$102 call** (close to money) for **$5.80**
 - Sell 30-day **$108 call** (OTM) for **$1.80**
 - Net debit: $4.00 per spread
 - **2 contracts** = $800 debit
 
 **Put diagonal (lower - protection):**
+
 - Buy 90-day **$95 put** (OTM) for **$4.00**
 - Sell 30-day **$88 put** (far OTM) for **$0.80**
 - Net debit: $3.20 per spread
@@ -280,6 +307,7 @@ where:
 **Position delta:** Approximately **+20 to +30** (bullish bias)
 
 **Rationale:**
+
 - More capital in call diagonal (expecting upward move)
 - Put diagonal provides insurance + some theta
 - If stock rises to $105-$108: large profit from call side
@@ -294,12 +322,14 @@ where:
 **Call diagonal - long call:**
 
 **Neutral to bullish approach:**
+
 - **ATM to slightly OTM** ($100-$105 on $100 stock)
 - Delta: 0.45-0.60
 - Provides directional exposure
 - Not too expensive
 
 **Aggressive bullish:**
+
 - **Slightly ITM** ($95-$100 on $100 stock)
 - Delta: 0.60-0.75
 - More expensive but more stock-like
@@ -308,12 +338,14 @@ where:
 **Put diagonal - long put:**
 
 **Neutral to bearish approach:**
+
 - **ATM to slightly OTM** ($95-$100 on $100 stock)
 - Delta: -0.45 to -0.60
 - Provides directional exposure
 - Mirror of call side for symmetry
 
 **Conservative approach:**
+
 - **Further OTM** ($90-$95 on $100 stock)
 - Delta: -0.30 to -0.45
 - Cheaper, more protection-focused
@@ -324,11 +356,13 @@ where:
 **Call diagonal - short call:**
 
 **Standard approach:**
+
 - **OTM** with delta 0.20-0.35
 - Example: $108-$112 on $100 stock
 - Meaningful premium but room to move
 
 **Aggressive income:**
+
 - **Closer to money** with delta 0.35-0.45
 - Example: $105-$108 on $100 stock
 - More premium but tighter range
@@ -336,11 +370,13 @@ where:
 **Put diagonal - short put:**
 
 **Standard approach:**
+
 - **OTM** with delta -0.20 to -0.35
 - Example: $88-$92 on $100 stock
 - Mirror of call side
 
 **Aggressive income:**
+
 - **Closer to money** with delta -0.35 to -0.45
 - Example: $92-$95 on $100 stock
 - More premium but tighter range
@@ -348,6 +384,7 @@ where:
 ### Strike Width Strategy
 
 **Narrow tent (5-8% total width):**
+
 - Call: Buy $102, Sell $107
 - Put: Buy $98, Sell $93
 - Higher theta per dollar
@@ -355,6 +392,7 @@ where:
 - Less forgiving
 
 **Medium tent (10-15% total width):**
+
 - Call: Buy $105, Sell $112
 - Put: Buy $95, Sell $88
 - **Most common structure**
@@ -362,6 +400,7 @@ where:
 - Good probability of profit
 
 **Wide tent (18-25% total width):**
+
 - Call: Buy $105, Sell $115
 - Put: Buy $95, Sell $85
 - Maximum directional room
@@ -375,11 +414,13 @@ where:
 ### Typical Expirations
 
 **Long legs (back month):**
+
 - **60-90 days:** Standard
 - **90-120 days:** More conservative
 - **120-180 days (or LEAPS):** Very stable, PMCC-style
 
 **Short legs (front month):**
+
 - **20-30 days:** Maximum theta
 - **30-45 days:** Most common, balanced
 - **45-60 days:** More conservative, lower theta
@@ -402,6 +443,7 @@ where:
 | 180 days (LEAPS) | 30 days | 6:1 | Very stable | PMCC-style |
 
 **Rule of thumb:**
+
 - Minimum ratio: **2:1** (back:front)
 - Sweet spot: **3:1** (90 days vs. 30 days)
 - For PMCC-style: **4:1 or higher**
@@ -415,18 +457,21 @@ where:
 **Best conditions to enter:**
 
 **Market environment:**
+
 - Moderate volatility (IVR 30-70%)
 - Upward sloping term structure
 - No major events in next 45 days
 - Stock in defined range or trend
 
 **Stock selection:**
+
 - Liquid options (narrow bid-ask)
 - Clear technical levels
 - Moderate volatility (not extreme)
 - No earnings in front month
 
 **Avoid entering when:**
+
 - Earnings announcement inside front month
 - Extreme IV (very high or very low)
 - Inverted term structure
@@ -437,18 +482,21 @@ where:
 **Weekly monitoring:**
 
 **Check position:**
+
 - Where is stock vs. your strikes?
 - How is theta accumulation?
 - Any Greek shifts?
 - Term structure still favorable?
 
 **Watch for:**
+
 - Stock approaching a short strike
 - Significant IV changes
 - Term structure flattening
 - Time to adjust or roll
 
 **Daily monitoring (last 2 weeks):**
+
 - Gamma risk increasing
 - Assignment risk if short legs ITM
 - Decision point approaching
@@ -497,22 +545,26 @@ where:
 **Decision tree (7-14 days before expiration):**
 
 **If both short options OTM and stock near center:**
+
 - **Let them expire worthless**
 - Collect full premium
 - Immediately sell new front month on both sides
 - **This is the ideal scenario**
 
 **If one side threatened:**
+
 - **Roll the threatened side** only
 - Keep the profitable side
 - Adjust strikes as needed
 
 **If position profitable overall:**
+
 - **Close entire position** if target hit (25-50% profit)
 - **Roll both sides** if continuing strategy
 - Don't get greedy
 
 **If position at loss:**
+
 - **Evaluate each diagonal separately**
 - Close losing side if beyond repair
 - Keep winning side if it can recover losses
@@ -547,15 +599,18 @@ where:
 **Example monthly roll:**
 
 **Original position (Day 0):**
+
 - Long 90-day $105 call, Short 30-day $110 call
 - Long 90-day $95 put, Short 30-day $90 put
 
 **At 30 days (front expiration):**
+
 - Short $110 call expires worthless: +$150
 - Short $90 put expires worthless: +$140
 - **Total collected: $290**
 
 **New position (Day 30):**
+
 - Same: Long 60-day $105 call (was 90-day, now 60-day left)
 - **New:** Sell 30-day $110 call for $120
 - Same: Long 60-day $95 put (was 90-day, now 60-day left)
@@ -563,6 +618,7 @@ where:
 - **Collected: $230 new premium**
 
 **Position now:**
+
 - Cost basis reduced by $290 from first month
 - Collecting another $230 this month
 - Total income: $520
@@ -655,12 +711,14 @@ where:
 ### 1) Entering with Unbalanced Strikes
 
 **The error:**
+
 - Call diagonal: Buy $102, Sell $108
 - Put diagonal: Buy $93, Sell $88
 - Strikes not symmetrically positioned
 - Creates unintended directional bias
 
 **Fix:** 
+
 - Keep strikes roughly equidistant from spot
 - Or intentionally bias with understanding
 - Don't create accidental asymmetry
@@ -668,12 +726,14 @@ where:
 ### 2) Wrong Long Leg Time Frame
 
 **The error:**
+
 - Buying only 45-day long legs
 - They decay too fast
 - Not enough time to roll short legs
 - Position collapses before theta collected
 
 **Fix:**
+
 - Use at least 60-90 days for long legs
 - 90+ days is better for stability
 - LEAPS (180+ days) for true PMCC-style
@@ -681,12 +741,14 @@ where:
 ### 3) Holding Short Legs Too Close to Expiration
 
 **The error:**
+
 - "Just 3 more days of theta!"
 - Gamma and pin risk explode
 - Assignment becomes likely
 - Last-minute management chaos
 
 **Fix:**
+
 - **Roll or close at 7-14 days** remaining
 - Don't chase last few dollars of theta
 - Avoid expiration week gamma
@@ -694,12 +756,14 @@ where:
 ### 4) Ignoring One Side
 
 **The error:**
+
 - Focus only on threatened side
 - Neglect the profitable side
 - Miss opportunity to take profit on one side
 - Over-manage one, under-manage other
 
 **Fix:**
+
 - Evaluate **each diagonal independently**
 - Close profitable side early if appropriate
 - Don't tie both sides together artificially
@@ -707,12 +771,14 @@ where:
 ### 5) Over-Adjusting
 
 **The error:**
+
 - Stock moves $2, immediately adjust
 - Constant rolling creates friction
 - Death by a thousand adjustments
 - Transaction costs pile up
 
 **Fix:**
+
 - Have clear adjustment rules
 - Only adjust when short strike seriously threatened
 - Accept some stock movement
@@ -721,12 +787,14 @@ where:
 ### 6) Wrong Position Size
 
 **The error:**
+
 - "It's defined risk, so 10 contracts!"
 - Ties up too much capital
 - Can't adjust properly
 - Psychological pressure
 
 **Fix:**
+
 - Size so max loss = 1-2% of portfolio
 - Start small (1-2 contracts)
 - Scale up as you gain experience
@@ -735,12 +803,14 @@ where:
 ### 7) Entering Before Events
 
 **The error:**
+
 - Earnings in 3 weeks
 - "But my strikes are far OTM!"
 - IV spike crushes structure
 - Event volatility unpredictable
 
 **Fix:**
+
 - **Always check earnings calendar**
 - Avoid front month events entirely
 - Back month events OK if > 60 days
@@ -749,12 +819,14 @@ where:
 ### 8) Expecting Perfection
 
 **The error:**
+
 - Want stock to stay perfectly centered
 - Frustrated by any movement
 - Unrealistic expectations
 - Give up after one adjustment
 
 **Fix:**
+
 - Accept that adjustments are **normal**
 - Stock WILL move, that's OK
 - Strategy works over many trades
@@ -767,24 +839,28 @@ where:
 ### Best Conditions ✓
 
 **Market environment:**
+
 - **Moderate volatility** expected (not extreme low or high)
 - Range-bound to **mild trending** market
 - Upward sloping term structure
 - No major market events pending
 
 **Stock characteristics:**
+
 - **Liquid options** (tight bid-ask spreads)
 - Moderate beta (not ultra-volatile)
 - Clear support/resistance levels
 - Stable company fundamentals
 
 **Volatility conditions:**
+
 - IVR (IV Rank) **30-70%** (not extremes)
 - Front month IV < Back month IV
 - Stable or slightly increasing IV
 - No extreme skew distortions
 
 **Your situation:**
+
 - Can **monitor position** regularly
 - Comfortable with **rolling options**
 - Have margin for potential assignment
@@ -792,6 +868,7 @@ where:
 - Want theta income with directional room
 
 **Your outlook:**
+
 - **Mildly directional** or neutral
 - Expect moderate stock movement
 - Want to collect theta while allowing drift
@@ -802,24 +879,28 @@ where:
 **Dangerous conditions:**
 
 **Binary events:**
+
 - **Earnings inside front month** (avoid completely)
 - FDA decisions
 - Merger announcements
 - Economic reports (if high beta stock)
 
 **Market structure:**
+
 - **Inverted term structure** (kills the strategy)
 - Extreme high IV (pending collapse)
 - Extreme low IV (no premium)
 - Highly trending market (pick direction instead)
 
 **Stock issues:**
+
 - **Poor liquidity** (wide spreads, assignment nightmares)
 - Highly volatile stock (breaks strikes constantly)
 - Penny stocks (assignment risk too high)
 - Biotech with binary catalysts
 
 **Personal constraints:**
+
 - Cannot monitor regularly
 - Cannot handle assignment
 - No margin account
@@ -827,6 +908,7 @@ where:
 - Don't understand diagonals yet
 
 **Market conditions:**
+
 - **Crisis/panic** (volatility explosions)
 - **Strong trends** (just buy calls/puts instead)
 - **Low volatility grind** (iron condor better)
@@ -852,12 +934,14 @@ Double diagonals are a sophisticated "hybrid of hybrids" strategy:
 - **Defined-ish risk** with management requirements
 
 **Best for:**
+
 - Experienced option traders
 - Those comfortable with rolling
 - Active managers willing to monitor
 - Traders wanting directional flexibility + income
 
 **The progression:**
+
 - Master **single calls/puts** first
 - Then **covered calls / diagonals** (one side)
 - Then **double calendars** (pure time, same strikes)

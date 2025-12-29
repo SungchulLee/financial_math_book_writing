@@ -479,7 +479,6 @@ nav:
           - Wheel Strategy: ch15/option_strategies/wheel_strategy.md
       - 15.2 Greek-Driven Payoffs:  
           - Straddle and Strangle: ch15/option_strategies/straddle_strangle.md
-          - Short Strangles: ch15/option_strategies/short_strangles.md
           - Strips and Straps: ch15/option_strategies/strips_and_straps.md
       - 15.3 Defined Risk:
           - Vertical Spreads: ch15/option_strategies/vertical_spreads.md
@@ -500,6 +499,8 @@ nav:
           - Box Spreads: ch15/option_strategies/box_spreads.md
 
   - 16 Greek-Based Strategies:
+      - 16.0 Delta-Neutral Thinking:  
+          - Delta-Neutral Portfolio: ch16/greeks_strategies/delta_neutral_portfolio_construction.md
       - 16.1 Hedging Paradigms:  
           - Delta Hedging: ch16/greeks_strategies/delta_hedging.md
           - Static vs Dynamic Hedging: ch16/greeks_strategies/static_vs_dynamic_hedging.md
@@ -507,7 +508,7 @@ nav:
           - Gamma Scalping: ch16/greeks_strategies/gamma_scalping.md
           - Theta and Carry: ch16/greeks_strategies/theta_and_carry.md
           - Vega Trading: ch16/greeks_strategies/vega_trading.md
-      - 16.3 Higher-Order Sensitivities: 
+      - 16.3 Higher-Orders: 
           - Higher-Order Greeks: ch16/greeks_strategies/higher_order_greeks.md
           - Zero-DTE Option Strategies: ch16/greeks_strategies/0DTE_strategies.md
       - 16.4 Vol Surface Trading:

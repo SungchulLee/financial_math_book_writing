@@ -2,6 +2,22 @@
 
 **Double calendars** (also called iron calendars or double time spreads) are strategies where you simultaneously run calendar spreads on both the call side and put side, creating a defined-risk structure that profits from the stock staying within a range while exploiting term structure differences across two strikes.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_calendars_iv_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_calendars_structure.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_calendars_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_calendars_vs_iron_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight

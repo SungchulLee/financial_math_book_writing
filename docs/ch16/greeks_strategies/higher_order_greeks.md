@@ -2,6 +2,30 @@
 
 **Higher-order Greeks** are second-order partial derivatives that measure how the first-order Greeks (delta, vega) change with respect to underlying price, volatility, and time, providing deeper insight into options risk dynamics and portfolio hedging strategies.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/higher_order_greeks_charm.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 1:** Higher Order Greeks Charm visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/higher_order_greeks_composite.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 2:** Higher Order Greeks Composite visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/higher_order_greeks_hierarchy.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 3:** Higher Order Greeks Hierarchy visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/higher_order_greeks_vanna.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 4:** Higher Order Greeks Vanna visualization.
+
 ---
 
 ## The Core Insight
@@ -90,6 +114,8 @@ $$
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/greeks_hierarchy.png?raw=true" alt="greeks_hierarchy" width="700">
 </p>
+
+**Figure 5:** Greeks Hierarchy visualization.
 **Figure 1:** Visual hierarchy of Greeks showing progression from option value through first-order (delta, vega, theta) to second-order Greeks (gamma, volga, vanna, charm), demonstrating how each level measures the rate of change of the previous level.
 
 ---
@@ -129,6 +155,7 @@ Where $n(d_1)$ is the standard normal density function.
 **What volga tells you:**
 
 If you're **long vega** (own options) and have **positive volga**:
+
 - IV increases 1% → Your vega INCREASES
 - IV decreases 1% → Your vega DECREASES
 
@@ -137,16 +164,19 @@ If you're **long vega** (own options) and have **positive volga**:
 **Scenario: Long ATM straddle**
 
 **Initial state:**
+
 - Stock at $100, IV = 30%
 - Vega = +$50 (per 1% IV move)
 - Volga = +$2 (vega changes $2 per 1% IV move)
 
 **IV spikes to 40% (+10%):**
+
 - **Without volga:** You'd expect: $50 × 10 = $500 gain
 - **With volga:** Your vega increased from $50 to $70 (volga kicked in)
 - **Actual gain:** ~$600 (volga amplified the gains)
 
 **IV drops to 20% (-10%):**
+
 - **Without volga:** You'd expect: $50 × -10 = -$500 loss
 - **With volga:** Your vega decreased from $50 to $30 (volga reduced exposure)
 - **Actual loss:** ~$400 (volga cushioned the losses)
@@ -212,10 +242,12 @@ $$
 **Trade:** Buy ATM straddle (long vega, long volga)
 
 **Scenario:**
+
 - IV at 25% (low)
 - Buy straddle: Vega = +$40, Volga = +$3
 
 **If IV whipsaws 25% → 35% → 25%:**
+
 - **First move (25% → 35%):** Gain $400 from vega
 - **Your vega increased** to $70 (volga effect)
 - **Second move (35% → 25%):** Lose only $300 (lower vega on way down)
@@ -242,6 +274,8 @@ $$
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volga_surface.png?raw=true" alt="volga_surface" width="700">
 </p>
+
+**Figure 6:** Volga Surface visualization.
 **Figure 2:** Volga surface across strike prices and volatility levels, showing maximum volga at ATM strikes and how volga magnitude increases with higher implied volatility.
 
 ---
@@ -269,10 +303,12 @@ $$
 **What vanna tells you:**
 
 **For long call with positive vanna:**
+
 - Stock price increases → Delta increases (normal gamma effect) AND vega decreases
 - IV increases → Delta increases AND position becomes more directional
 
 **For long put with negative vanna (for ATM/OTM puts):**
+
 - Stock price decreases → Delta becomes more negative AND vega increases
 - IV increases → Delta becomes less negative (moves toward 0)
 
@@ -281,16 +317,19 @@ $$
 **Scenario: Long ATM call**
 
 **Initial state:**
+
 - Stock at $100, IV = 30%
 - Delta = +0.50, Vega = +$22
 - Vanna = +$0.60
 
 **Stock rallies to $105 (+5%):**
+
 - **Gamma effect:** Delta increases to ~0.70 (expected)
 - **Vanna effect:** Vega decreases to ~$18 (unexpected if you don't track vanna)
 - **Result:** Position less sensitive to IV changes (vega dropped)
 
 **IV spikes to 40% (+10%):**
+
 - **Vega effect:** Position gains $22 × 10 = $220
 - **Vanna effect:** Delta increases from +0.50 to +0.56
 - **Result:** Position more directionally exposed (delta increased)
@@ -338,6 +377,7 @@ $$
 **Problem:** Portfolio long 1,000 ATM calls (vanna = +$600 total)
 
 **Risk:** If stock rallies AND IV drops:
+
 - Gain from delta (stock up)
 - Lose from vega (IV down)
 - Vanna amplifies both (delta increased, vega decreased)
@@ -351,21 +391,25 @@ $$
 **Trade:** Long call calendar spread + vanna consideration
 
 **Setup:**
+
 - Sell near-term ATM call (high vanna)
 - Buy far-term ATM call (high vanna)
 - **Net vanna:** Positive (long vanna dominates due to longer time)
 
 **Scenario:**
+
 - Stock drifts higher → Vanna causes your delta to increase in long call faster than short call delta increases
 - **Result:** Positive vanna works in your favor (accumulating delta as stock rises)
 
 **3. Earnings Vanna Play**
 
 **Pre-earnings:**
+
 - High IV (60%)
 - Long ATM straddle: Delta = 0, Vega = +$80, Vanna = +$1.20
 
 **Post-earnings (stock rallies, IV crushes):**
+
 - Stock +10%, IV -20%
 - **Vanna effect:** As stock rallied, delta increased (vanna positive)
 - **But IV dropped:** Vega decreased (vanna positive for calls)
@@ -376,6 +420,8 @@ $$
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vanna_surface.png?raw=true" alt="vanna_surface" width="700">
 </p>
+
+**Figure 7:** Vanna Surface visualization.
 **Figure 3:** Vanna surface showing how delta-vega cross-sensitivity varies with stock price and time to expiration, with maximum vanna occurring slightly OTM and decreasing as expiration approaches.
 
 ---
@@ -403,12 +449,15 @@ $$
 **What charm tells you:**
 
 **For ATM call:**
+
 - **Charm ≈ 0** (ATM options maintain ~0.50 delta as time passes)
 
 **For OTM call:**
+
 - **Charm < 0** (delta decays toward 0 as expiration approaches)
 
 **For ITM call:**
+
 - **Charm > 0** (delta increases toward 1.0 as expiration approaches)
 
 **Why this matters:**
@@ -416,11 +465,13 @@ $$
 **Scenario: OTM call**
 
 **Initial state (30 DTE):**
+
 - Stock at $100, call strike $105
 - Delta = +0.35
 - Charm = -0.015 (negative)
 
 **One day passes (29 DTE):**
+
 - Stock still at $100 (unchanged)
 - **Expected:** Delta should stay ~0.35
 - **Reality:** Delta decreased to 0.335 (charm effect)
@@ -431,11 +482,13 @@ $$
 **Scenario: ITM call**
 
 **Initial state (30 DTE):**
+
 - Stock at $100, call strike $95
 - Delta = +0.65
 - Charm = +0.015 (positive)
 
 **One day passes:**
+
 - Stock still at $100
 - Delta increased to 0.665 (charm effect)
 - **Change:** +0.015 per day
@@ -502,20 +555,24 @@ $$
 **Problem:** Delta-hedged portfolio needs constant rebalancing
 
 **Without charm awareness:**
+
 - Hedge when stock moves (gamma hedging)
 - Ignore time passage
 
 **With charm awareness:**
+
 - **Anticipate delta decay:** OTM options lose delta daily (charm negative)
 - **Preemptively adjust hedge:** Reduce long stock hedge as OTM call delta decays
 
 **Example:**
 
 **Day 1:**
+
 - Long 100× $105 calls, delta = +0.40 each = +40 delta total
 - Hedge: Short 40 shares
 
 **Day 7 (stock unchanged at $100):**
+
 - **Without charm:** Still short 40 shares (assume delta unchanged)
 - **With charm:** Delta decayed to +0.35 each = +35 delta total
 - **Adjust hedge:** Buy back 5 shares
@@ -526,12 +583,14 @@ $$
 **Trade:** Sell near-term $105 call, buy far-term $105 call
 
 **Initial deltas:**
+
 - Near-term (7 DTE): Delta = +0.30, charm = -0.045
 - Far-term (30 DTE): Delta = +0.36, charm = -0.012
 - **Net delta:** +0.06
 - **Net charm:** +0.033
 
 **One day later (stock at $100):**
+
 - Near-term delta: +0.255 (decayed -0.045)
 - Far-term delta: +0.348 (decayed -0.012)
 - **New net delta:** +0.093 (increased!)
@@ -553,6 +612,8 @@ $$
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/charm_evolution.png?raw=true" alt="charm_evolution" width="700">
 </p>
+
+**Figure 8:** Charm Evolution visualization.
 **Figure 4:** Charm evolution over final 30 days showing how OTM options experience negative charm (delta decays to zero) while ITM options experience positive charm (delta increases to 1.0), with magnitude exploding in final week.
 
 ---
@@ -562,10 +623,12 @@ $$
 ### Portfolio Size and Complexity
 
 **Small retail positions:**
+
 - **First-order Greeks sufficient:** Delta, vega, theta
 - Higher-order Greeks: Nice to know, not critical
 
 **Large institutional positions:**
+
 - **Second-order Greeks essential:** Volga, vanna, charm
 - Risk management requires precision
 - Portfolio P&L attribution needs higher-order terms
@@ -573,6 +636,7 @@ $$
 **Example:**
 
 **Retail trader:**
+
 - 10 long ATM calls
 - Vega = +$220 total
 - Volga = +$21
@@ -580,6 +644,7 @@ $$
 - **Not critical** (can ignore)
 
 **Institutional trader:**
+
 - 10,000 long ATM calls
 - Vega = +$220,000 total
 - Volga = +$21,000
@@ -589,10 +654,12 @@ $$
 ### Extreme Market Conditions
 
 **Normal markets:**
+
 - First-order Greeks dominate
 - Second-order effects small
 
 **Volatile/crisis markets:**
+
 - **Large moves:** Gamma, vanna effects amplified
 - **IV whipsaws:** Volga effects amplified
 - **Time compression:** Charm effects accelerated
@@ -600,6 +667,7 @@ $$
 **Example: COVID crash (March 2020)**
 
 **Day 1:** SPX drops 10%, IV spikes 20%
+
 - **First-order:** Delta loss, vega gain (as expected)
 - **Second-order (vanna):** Delta increased from vega spike, amplifying losses
 - **Second-order (volga):** Vega increased from IV spike, amplifying future vega exposure
@@ -608,10 +676,12 @@ $$
 ### Dynamic Hedging Strategies
 
 **Static hedge:**
+
 - Set and forget
 - First-order Greeks sufficient
 
 **Dynamic hedge:**
+
 - Continuous rebalancing
 - **Charm critical:** Delta changes daily even without stock move
 - **Vanna critical:** Volatility changes affect directional exposure
@@ -626,6 +696,7 @@ $$
 **Position:** Short 1,000 ATM straddles (providing liquidity)
 
 **Greeks:**
+
 - Delta: 0 (balanced)
 - Gamma: -800 (short gamma risk)
 - Vega: -$88,000 (short vega)
@@ -635,20 +706,24 @@ $$
 - **Charm:** ~0 (ATM, minimal delta decay)
 
 **Day 1: SPX rallies 2%, IV unchanged**
+
 - **First-order:** Gamma loss = -800 × 4 = -$3,200
 - **Second-order (vanna):** Delta increased, amplifying loss = additional -$500
 - **Actual loss:** -$3,700
 
 **Market maker hedges:**
+
 - Buy 16 SPX futures to delta hedge
 - But due to vanna, needs to buy 18 futures (accounting for vanna effect)
 
 **Day 2: SPX unchanged, IV spikes 5%**
+
 - **First-order:** Vega loss = -$88,000 × 5 = -$440,000
 - **Second-order (volga):** Vega increased in magnitude to -$120,000
 - **Future vega risk amplified** (volga effect)
 
 **Market maker adjustment:**
+
 - Originally hedging -$88,000 vega
 - After IV spike, vega is -$120,000
 - **Must buy back $32,000 vega** (buy options to hedge)
@@ -658,6 +733,7 @@ $$
 **Setup:** Long variance swap (pure vega exposure)
 
 **Position:**
+
 - Vega: +$50,000
 - Volga: +$5,000
 - Vanna: +$800
@@ -665,12 +741,14 @@ $$
 **Strategy:** Dynamic hedging with options
 
 **Scenario 1: IV increases 5%**
+
 - **Vega P&L:** +$50,000 × 5 = +$250,000
 - **Volga effect:** Vega increased to +$75,000
 - **New exposure:** Much larger vega sensitivity
 - **Action:** Sell some vega (sell options) to reduce exposure
 
 **Scenario 2: Stock rallies 10%**
+
 - **Vanna effect:** Vega decreased (positive vanna for long position)
 - **New vega:** +$42,000 (reduced exposure)
 - **Action:** Buy more vega (buy options) to restore target
@@ -694,11 +772,13 @@ Volga causes vega to change as IV moves.
 **Example:**
 
 **Linear estimate (ignoring volga):**
+
 - Initial vega: +$10,000
 - IV +10%
 - **Expected P&L:** +$100,000
 
 **Reality (with volga = +$1,000):**
+
 - As IV increases, vega increases to +$20,000 (volga effect)
 - **Actual P&L:** +$150,000 (50% more than linear estimate!)
 
@@ -721,16 +801,19 @@ Stock moves change your vega (vanna effect), which then affects your IV sensitiv
 **Example:**
 
 **Initial:**
+
 - Delta: 0 (hedged)
 - Vega: +$20,000
 - Vanna: +$400
 
 **Stock rallies 10%:**
+
 - **First-order:** No delta P&L (hedged correctly)
 - **Second-order (vanna):** Vega decreased to +$16,000
 - **Now:** Less exposed to IV changes (lost $4,000 vega)
 
 **If IV then spikes 5%:**
+
 - **Expected (original vega):** +$20,000 × 5 = +$100,000
 - **Actual (reduced vega):** +$16,000 × 5 = +$80,000
 - **Lost $20,000 to vanna effect**
@@ -752,10 +835,12 @@ Charm causes delta to decay hourly in short-dated options.
 **Example:**
 
 **0DTE call (expiration today):**
+
 - 10 AM: Strike $100, stock at $102, delta = +0.65, charm = -0.08/hour
 - **Hedged:** Short 65 shares
 
 **11 AM (stock unchanged at $102):**
+
 - Delta now +0.57 (charm decayed it)
 - **Hedge now wrong:** Should be short 57 shares
 - **Unhedged exposure:** +8 delta (over-hedged)
@@ -816,12 +901,14 @@ Higher-order Greeks matter when effects are MATERIAL (large positions or extreme
 **Example:**
 
 **Problem:**
+
 - Long 100× ATM calls (30 DTE)
 - Vega = +$2,200
 - Volga = +$210
 - **Risk:** If IV spikes, vega increases dramatically
 
 **Hedge:**
+
 - Sell 150× far OTM calls (30 DTE)
 - These have: Vega = -$15 each = -$2,250 total, Volga = -$5 each = -$750 total
 - **Net volga:** +$210 - $750 = -$540
@@ -829,6 +916,7 @@ Higher-order Greeks matter when effects are MATERIAL (large positions or extreme
 Wait, this over-hedges. Let me recalculate:
 
 **Better hedge:**
+
 - Sell 40× far OTM calls
 - Vega = -$15 each = -$600
 - Volga = -$5 each = -$200
@@ -850,11 +938,13 @@ Wait, this over-hedges. Let me recalculate:
 **Example:**
 
 **Problem:**
+
 - Short 200× ATM straddles
 - Vanna = -$1,600 (negative)
 - **Risk:** Stock rallies → Delta becomes more negative → Vega becomes more negative
 
 **Hedge:**
+
 - Buy 400× OTM calls (lower vanna per option but higher quantity)
 - Vanna = +$4 each = +$1,600 total
 - **Net vanna:** -$1,600 + $1,600 = 0 (neutral)
@@ -874,11 +964,13 @@ Wait, this over-hedges. Let me recalculate:
 **Example:**
 
 **Problem:**
+
 - Long 500× OTM calls (7 DTE)
 - Charm = -0.04/day each = -20 delta/day
 - **Risk:** Delta decays 20 points daily even if stock unchanged
 
 **Management:**
+
 - **Option 1:** Roll to 30 DTE (lower charm)
 - **Option 2:** Close position before final week
 - **Option 3:** Add long ITM calls (positive charm) to offset
@@ -894,6 +986,7 @@ Wait, this over-hedges. Let me recalculate:
 **Setup (February 2020):**
 
 **Position:**
+
 - Long 1,000× SPX ATM straddles
 - Vega = +$80,000
 - Volga = +$8,000
@@ -902,11 +995,13 @@ Wait, this over-hedges. Let me recalculate:
 **COVID crash (March 2020):**
 
 **Week 1:** VIX: 15 → 30 (+15 points)
+
 - **Linear vega P&L:** +$80,000 × 15 = +$1.2M
 - **Volga effect:** Vega increased to +$200,000
 - **Actual P&L:** ~+$2M (volga amplified gains)
 
 **Week 2:** VIX: 30 → 50 (+20 points)
+
 - **New vega:** +$200,000 (from volga)
 - **Linear estimate:** +$200,000 × 20 = +$4M
 - **Volga effect:** Vega increased to +$360,000
@@ -921,6 +1016,7 @@ Wait, this over-hedges. Let me recalculate:
 **Setup (Pre-earnings):**
 
 **Position:**
+
 - Short 500× ATM straddles (collecting premium)
 - Delta: 0 (balanced)
 - Vega: -$55,000 (short vega)
@@ -930,17 +1026,20 @@ Wait, this over-hedges. Let me recalculate:
 **Earnings surprise (stock +8%, IV -15%):**
 
 **First-order P&L:**
+
 - Gamma loss: ~-$80,000 (stock moved)
 - Vega gain: ~+$825,000 (IV crushed, short vega helped)
 - **Net: +$745,000** (great!)
 
 **Second-order (vanna) effect:**
+
 - Stock rose 8% → Delta became -40 (short 4,000 shares equivalent)
 - But IV dropped 15% → Delta also affected by vanna
 - **Vanna impact:** Delta increased toward zero faster than expected
 - **Result:** Unhedged directional exposure during move
 
 **Actual P&L:**
+
 - Had to buy stock to re-hedge (during rally)
 - **Slippage from poor hedge:** -$120,000
 - **Net P&L:** +$625,000 (vs. +$745,000 expected)
@@ -952,30 +1051,36 @@ Wait, this over-hedges. Let me recalculate:
 **Setup (Friday, 0DTE):**
 
 **Position:**
+
 - Short 1,000× SPX $4500 calls (sold Thursday for income)
 - Stock at $4502 (slightly ITM)
 - 3 PM: Delta = -0.55, Charm = +0.12/hour
 
 **3:00 PM:** Stock at $4502
+
 - Delta = -0.55 (short 550 SPX equivalent)
 - Hedged with long 550 SPX futures
 
 **3:30 PM (stock unchanged at $4502):**
+
 - **Charm effect:** Delta increased to -0.91 (approaching -1.0)
 - **Now short 910 SPX equivalent**
 - **Hedge is WRONG:** Only long 550, need 910
 - **Unhedged:** -360 delta
 
 **3:50 PM (stock drops to $4500.50):**
+
 - Delta now -0.50 (right at strike, very unstable)
 - Charm exploded: -0.30/minute (!)
 - **Can't hedge fast enough** (delta changing by the second)
 
 **4:00 PM close:** Stock at $4500.10 (barely ITM)
+
 - Calls exercised (short 100,000 SPX units)
 - **Forced to deliver over weekend**
 
 **Monday:** Stock gaps to $4520
+
 - **Loss:** ($4520 - $4500) × 100,000 = -$2M
 
 **Lesson:** Charm explodes in final hour of 0DTE. Delta becomes impossibly unstable. Should have closed by 3 PM.
@@ -1069,14 +1174,17 @@ $$
 ### Risk Management Applications
 
 **Volga hedging:**
+
 - Offset with different expirations (far-dated have higher volga)
 - Neutralize to prevent vega explosion
 
 **Vanna hedging:**
+
 - Offset with different strikes (ATM vs OTM have different vannas)
 - Decouple delta and vega risks
 
 **Charm management:**
+
 - Close short-dated positions before final week
 - Balance OTM (negative charm) with ITM (positive charm)
 

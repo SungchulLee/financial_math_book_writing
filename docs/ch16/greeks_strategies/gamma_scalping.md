@@ -2,6 +2,30 @@
 
 **Gamma scalping** is a trading strategy that systematically profits by **buying low and selling high** through frequent rebalancing of a hedged option position.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/gamma_scalping_mechanism.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 1:** Gamma scalping mechanism illustrating how rebalancing a delta-hedged position forces systematic buying low and selling high, converting gamma exposure into realized P&L through dynamic trading.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/gamma_scalping_pnl_components.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 2:** P&L component breakdown showing the interplay between gamma scalping profits (positive convexity), theta decay (time cost), and transaction costs, demonstrating the conditions required for profitable gamma scalping.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/gamma_scalping_profile.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 3:** Profit profile of a gamma scalping strategy showing cumulative P&L over time under different realized volatility scenarios, illustrating how profitability depends on realized vol exceeding implied vol.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/gamma_scalping_realized_vs_implied.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 4:** Realized versus implied volatility comparison showing the critical relationship that determines gamma scalping profitability, with breakeven volatility levels and optimal entry/exit zones marked.
+
 ---
 
 ## The Core Insight

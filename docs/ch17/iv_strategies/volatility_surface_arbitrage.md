@@ -2,6 +2,22 @@
 
 **Volatility surface arbitrage** is the practice of identifying and exploiting mispricings across the entire implied volatility surface by trading combinations of options at different strikes and maturities simultaneously, profiting when the surface returns to fair value or theoretical relationships.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_surface.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -60,18 +76,21 @@ The implied volatility surface is a **3-dimensional structure**:
 **Key features of a typical surface:**
 
 **1. Volatility Smile/Skew (across strikes):**
+
 - OTM puts: High IV (fear premium)
 - ATM: Lower IV
 - OTM calls: Moderate IV
 - Creates "smile" or "skew" shape
 
 **2. Term Structure (across time):**
+
 - Near-term: Variable IV
 - Medium-term: Usually higher IV
 - Long-term: Mean-reverting IV
 - Creates term structure curve
 
 **3. Combined Surface:**
+
 - Not flat
 - Has curvature in both dimensions
 - Should satisfy no-arbitrage bounds
@@ -80,12 +99,14 @@ The implied volatility surface is a **3-dimensional structure**:
 ### The Problem with Real Surfaces
 
 **Theoretical surface:**
+
 - Smooth
 - Follows no-arbitrage conditions
 - Reflects single volatility regime
 - Static relationships
 
 **Real market surface:**
+
 - **Bumpy** (supply/demand imbalances)
 - **Dislocated** (market inefficiencies)
 - **Time-varying** (regime shifts)
@@ -119,18 +140,21 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 **1. Strike Dimension Arbitrage (Vertical):**
 
 **Butterfly arbitrage:**
+
 - Buy OTM put + ITM call
 - Sell 2× ATM options
 - Exploits smile curvature
 - **Same expiration**
 
 **Call spread vs put spread parity:**
+
 - Long call spread should equal long put spread (with adjustments)
 - Violations create arbitrage
 
 **2. Time Dimension Arbitrage (Horizontal):**
 
 **Calendar arbitrage:**
+
 - Buy back month
 - Sell front month
 - **Same strike**
@@ -139,15 +163,18 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 **3. Surface Arbitrage (Both Dimensions):**
 
 **Box spreads:**
+
 - Combines call spread + put spread
 - Should equal present value of strike difference
 - Pure arbitrage when mispriced
 
 **Diagonal butterflies:**
+
 - Butterflies across different expirations
 - Exploits surface curvature in 2D
 
 **Calendar butterflies:**
+
 - Calendar spreads at multiple strikes
 - Creates 3D surface exposure
 
@@ -349,6 +376,7 @@ $$
 $$
 
 **Action:** 
+
 - If too cheap: Buy box
 - If too rich: Sell box
 
@@ -668,10 +696,12 @@ $$
 **Market prices (60-day options):**
 
 **Calls:**
+
 - $170 call: $13.50
 - $180 call: $7.20
 
 **Puts:**
+
 - $170 put: $2.80
 - $180 put: $6.50
 
@@ -998,6 +1028,7 @@ $$
 1. **Recalculate mispricings:** Is arbitrage still there?
 2. **Check Greeks:** Still within limits?
 3. **Measure P&L attribution:**
+
    - How much from surface normalization?
    - How much from theta?
    - How much from gamma?
@@ -1611,6 +1642,7 @@ Let me simplify with a clearer example:
 - Front month (2 days left) worth $2.10
 - Back month (32 days left) worth $5.50
 - **Close position:**
+
   - Sell front: +$210
   - Buy back back month: -$550
 

@@ -136,7 +136,8 @@ $$
 | $105 | -$2.50 |
 | > $105 | -$2.50 (max loss) |
 
-![long_call_butterfly_pnl](https://github.com/SungchulLee/img/blob/main/long_call_butterfly_pnl.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_butterfly_pnl.png?raw=true" alt="long_call_butterfly_pnl" width="700">
+
 **Figure 1:** Long call butterfly profit/loss diagram showing the characteristic peaked payoff structure with maximum profit at the middle strike ($100) and limited losses at the wing strikes, illustrating how the position profits from pinpoint price stability.
 
 ### 2. Long Put Butterfly
@@ -235,7 +236,8 @@ $$
 - Rare (just use straddle instead)
 - Specific vega/gamma considerations
 
-![butterfly_types_comparison](https://github.com/SungchulLee/img/blob/main/butterfly_types_comparison.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/butterfly_types_comparison.png?raw=true" alt="butterfly_types_comparison" width="700">
+
 **Figure 2:** Comprehensive comparison of different butterfly types including long call butterfly, long put butterfly, iron butterfly, broken wing butterfly, and reverse butterfly, showing how each structure creates distinct profit/loss profiles while maintaining the core butterfly shape.
 
 ---
@@ -386,7 +388,8 @@ $$
 
 **Decision:** Either exit for small loss, or hold hoping for vol crush
 
-![spy_butterfly_scenarios](https://github.com/SungchulLee/img/blob/main/spy_butterfly_scenarios.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/spy_butterfly_scenarios.png?raw=true" alt="spy_butterfly_scenarios" width="700">
+
 **Figure 3:** SPY butterfly trade scenarios showing P&L outcomes across different stock prices at expiration, illustrating the five key scenarios from max profit (stock at $450) to max loss (stock outside wings), with breakeven points clearly marked.
 
 ---
@@ -425,7 +428,8 @@ $$
   - Higher probability
   - Lower ROI
 
-![strike_width_comparison](https://github.com/SungchulLee/img/blob/main/strike_width_comparison.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/strike_width_comparison.png?raw=true" alt="strike_width_comparison" width="700">
+
 **Figure 4:** Strike width comparison showing how narrow spreads (tighter spacing) versus wide spreads (wider spacing) affect the cost, probability of profit, and ROI potential of butterfly positions, illustrating the fundamental trade-off between capital efficiency and success probability.
 
 ### The Greeks
@@ -456,7 +460,8 @@ $$
 
 **Key insight:** Butterflies are short volatility + positive theta (like iron condors but more targeted)
 
-![butterfly_greeks_profile](https://github.com/SungchulLee/img/blob/main/butterfly_greeks_profile.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/butterfly_greeks_profile.png?raw=true" alt="butterfly_greeks_profile" width="700">
+
 **Figure 5:** Butterfly Greeks profile showing the characteristic behavior of delta (near zero at center), gamma (positive at body, negative at wings), theta (positive throughout), and vega (negative), demonstrating why butterflies profit from stability and time decay while being hurt by volatility increases.
 
 ---
@@ -566,7 +571,8 @@ $$
 - High ROI potential (300-500%)
 - Low risk ($1-2 max loss)
 
-![iv_impact_butterfly](https://github.com/SungchulLee/img/blob/main/iv_impact_butterfly.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_butterfly.png?raw=true" alt="iv_impact_butterfly" width="700">
+
 **Figure 6:** Implied volatility impact on butterfly pricing and profitability, showing how high IV environments make butterflies expensive to enter while IV crush post-event creates ideal entry opportunities, illustrating the critical importance of timing butterfly trades around volatility cycles.
 
 ### Unfavorable Conditions
@@ -596,7 +602,8 @@ $$
 - Gamma risk high
 - Hard to manage
 
-![profit_probability](https://github.com/SungchulLee/img/blob/main/profit_probability.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/profit_probability.png?raw=true" alt="profit_probability" width="700">
+
 **Figure 7:** Profit probability distribution for butterfly spreads showing the relationship between strike positioning, profit zone width, and win rate, illustrating why tighter butterflies have lower probability of profit (10-20%) but higher ROI when successful, while wider butterflies offer higher probability but lower percentage returns.
 
 ---
@@ -627,7 +634,8 @@ $$
 - Reduce cost, accept capped profit
 - Advanced combination
 
-![butterfly_vs_straddle](https://github.com/SungchulLee/img/blob/main/butterfly_vs_straddle.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/butterfly_vs_straddle.png?raw=true" alt="butterfly_vs_straddle" width="700">
+
 **Figure 8:** Butterfly versus straddle profit/loss comparison showing the fundamental opposition: butterflies profit from stability with positive theta and negative vega, while straddles profit from volatility with negative theta and positive vega, illustrating how these strategies represent opposite market views.
 
 ---
@@ -647,7 +655,8 @@ $$
 - Directional bias
 - Advanced traders
 
-![broken_wing_butterfly](https://github.com/SungchulLee/img/blob/main/broken_wing_butterfly.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_butterfly.png?raw=true" alt="broken_wing_butterfly" width="700">
+
 **Figure 9:** Broken wing butterfly structure showing unequal strike spacing that creates directional bias, allowing traders to collect credit or reduce debit while maintaining defined risk, illustrating how asymmetric butterflies can be tailored for specific risk-reward preferences and market outlooks.
 
 ### 2. Skip-Strike Butterfly
@@ -801,7 +810,8 @@ $$
 - Take profit and redeploy
 - Don't be greedy
 
-![time_decay_butterfly](https://github.com/SungchulLee/img/blob/main/time_decay_butterfly.png?raw=true)
+<img src="https://github.com/SungchulLee/img/blob/main/time_decay_butterfly.png?raw=true" alt="time_decay_butterfly" width="700">
+
 **Figure 10:** Time decay evolution of butterfly spread value showing how positive theta works over time, with value appreciation accelerating as expiration approaches (assuming stock stays near the target strike), illustrating optimal entry timing and profit-taking windows for maximum theta capture.
 
 **At 75% of max profit:**

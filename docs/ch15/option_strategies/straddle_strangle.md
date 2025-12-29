@@ -2,11 +2,48 @@
 
 **Straddles and strangles** are the simplest volatility trading strategies where you profit from large price movements in either direction without the complexity of delta hedging or rebalancing.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_straddle_pnl.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_strangle_pnl.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_vs_short_straddle.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_pnl_sources.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_scenario_analysis.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_volatility_impact.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
 
 **The fundamental idea:**
+
 - You don't know which way the market will move
 - But you believe it will move A LOT
 - Buy options on both sides (calls AND puts)
@@ -31,6 +68,7 @@ $$
 **Before learning complex strategies (gamma scalping, dispersion, etc.), understand straddles:**
 
 **Progression:**
+
 1. **Straddles/Strangles** ← Start here! (Simple, no hedging)
 2. **Delta Hedging** → Add hedging to remove directional risk
 3. **Gamma Scalping** → Delta hedge + rebalancing for profit
@@ -38,6 +76,7 @@ $$
 5. **And beyond...**
 
 **Think of it this way:**
+
 - **Straddle** = Raw volatility bet (simple)
 - **Gamma scalping** = Refined volatility bet (delta hedged)
 - **Variance swap** = Pure volatility bet (no options needed)
@@ -53,12 +92,14 @@ $$
 ### Long Straddle Structure
 
 **What you do:**
+
 - Buy 1 ATM call
 - Buy 1 ATM put
 - Same strike (at-the-money)
 - Same expiration
 
 **Example:**
+
 - Stock at $100
 - Buy $100 call for $5
 - Buy $100 put for $5
@@ -82,6 +123,7 @@ $$
 ```
 
 **Key characteristics:**
+
 - **Maximum loss:** Premium paid ($10)
 - **Breakeven points:** Strike ± Premium ($90 and $110)
 - **Unlimited profit potential:** Both upside and downside
@@ -102,6 +144,7 @@ $$
 $$
 
 **Profit if:**
+
 - Stock > $110 (call profits)
 - Stock < $90 (put profits)
 - **Loss if:** Stock stays near $100 (both expire worthless)
@@ -115,12 +158,14 @@ $$
 ### Long Strangle Structure
 
 **What you do:**
+
 - Buy 1 OTM call (higher strike)
 - Buy 1 OTM put (lower strike)
 - Different strikes
 - Same expiration
 
 **Example:**
+
 - Stock at $100
 - Buy $110 call for $2
 - Buy $90 put for $2
@@ -142,6 +187,7 @@ $$
 ```
 
 **Key characteristics:**
+
 - **Maximum loss:** Premium paid ($4)
 - **Breakeven points:** $90 - $4 = $86 and $110 + $4 = $114
 - **Wider breakeven range** than straddle
@@ -160,6 +206,7 @@ $$
 | **Risk/Reward** | Higher premium, easier profit | Lower premium, harder profit |
 
 **When to choose:**
+
 - **Straddle:** Expect large move, willing to pay more
 - **Strangle:** Expect VERY large move, want cheaper entry
 
@@ -170,11 +217,13 @@ $$
 ### Long Straddle/Strangle (Buy Volatility)
 
 **Structure:**
+
 - **Buy** call + put
 - Pay premium
 - Want large movement
 
 **Characteristics:**
+
 - Limited loss (premium paid)
 - Unlimited profit potential
 - Negative theta (pay time decay daily)
@@ -182,6 +231,7 @@ $$
 - Long gamma (profit from movement)
 
 **When to use:**
+
 - Believe stock will move more than market expects
 - Before earnings, events, announcements
 - When IV is low (options cheap)
@@ -192,11 +242,13 @@ $$
 ### Short Straddle/Strangle (Sell Volatility)
 
 **Structure:**
+
 - **Sell** call + put
 - Receive premium
 - Want no movement
 
 **Characteristics:**
+
 - Limited profit (premium received)
 - Unlimited loss potential (very risky!)
 - Positive theta (collect time decay daily)
@@ -204,6 +256,7 @@ $$
 - Short gamma (hurt by movement)
 
 **When to use:**
+
 - Believe stock will stay in range
 - After events (vol crush expected)
 - When IV is high (options expensive)
@@ -226,12 +279,14 @@ $$
 where $C(K)$ and $P(K)$ are call and put at strike $K$.
 
 **Greeks:**
+
 - **Delta:** ≈ 0 initially (call +0.5, put -0.5 cancel out)
 - **Gamma:** Positive (both options have positive gamma)
 - **Vega:** Positive (both long options)
 - **Theta:** Negative (pay decay on both)
 
 **What you're exposed to:**
+
 - ✓ Movement (want it!)
 - ✓ Implied volatility increases (good)
 - ✗ Time decay (bad)
@@ -246,6 +301,7 @@ $$
 where $K_{\text{call}} > S > K_{\text{put}}$ (both OTM).
 
 **Greeks (similar but smaller magnitude):**
+
 - **Delta:** ≈ 0 initially
 - **Gamma:** Positive (but less than straddle)
 - **Vega:** Positive (but less than straddle)
@@ -264,18 +320,21 @@ $$
 **Breaking it down:**
 
 **1. Gamma P&L (Movement):**
+
 - Stock moves → both options change value
 - Net effect: profit from absolute movement
 - $(\delta S)^2$ means direction doesn't matter!
 - **This is your main profit source at expiry**
 
 **2. Vega P&L (Implied Volatility):**
+
 - If IV increases → both options gain value
 - Can profit even before expiry
 - Can exit early if IV spikes
 - **Short-term profit opportunity**
 
 **3. Theta (Time Decay):**
+
 - Every day, both options lose value
 - Relentless bleed
 - Must overcome this with movement or IV increase
@@ -300,11 +359,13 @@ $$
 **Stock:** Tech company at $100
 **Event:** Earnings announcement in 2 weeks
 **Market conditions:**
+
 - Current IV: 35%
 - Historical realized vol: 45% (usually moves 8-10% on earnings)
 - ATM options cheap relative to historical earnings moves
 
 **Your view:** 
+
 - "Stock will move 10%+ on earnings"
 - "Don't know direction, but will be volatile"
 - "IV of 35% underprices the likely move"
@@ -312,11 +373,13 @@ $$
 **The Trade:**
 
 **Buy ATM Straddle:**
+
 - Buy 10 contracts of $100 calls at $4.00
 - Buy 10 contracts of $100 puts at $4.00
 - **Total cost:** ($4 + $4) × 10 × 100 = **$8,000**
 
 **Position Greeks:**
+
 - Delta: ≈ 0 (neutral initially)
 - Gamma: +0.30 per contract
 - Vega: +$50 per 1% IV change per contract
@@ -324,6 +387,7 @@ $$
 - **Net theta bleed:** -$400/day
 
 **Breakeven at expiration:**
+
 - Upside: $100 + $8 = $108
 - Downside: $100 - $8 = $92
 - **Need move > 8% to profit**
@@ -337,11 +401,13 @@ After earnings (2 weeks later):
 - Total position value: $15 × 10 × 100 = $15,000
 
 **Your P&L:**
+
 - Entry cost: -$8,000
 - Exit value: +$15,000
 - **Net profit: +$7,000** (87.5% return!)
 
 **Why you won:**
+
 - Move exceeded breakeven ($115 > $108)
 - Gamma profits from large move
 - Call went deep ITM
@@ -355,11 +421,13 @@ After earnings:
 - Total position value: $10 × 10 × 100 = $10,000
 
 **Your P&L:**
+
 - Entry cost: -$8,000
 - Exit value: +$10,000
 - **Net profit: +$2,000** (25% return)
 
 **Why you won:**
+
 - Move exceeded breakeven ($90 < $92)
 - Put went ITM
 - Direction didn't matter!
@@ -373,11 +441,13 @@ After earnings:
 - Total position value: $2 × 10 × 100 = $2,000
 
 **Your P&L:**
+
 - Entry cost: -$8,000
 - Exit value: +$2,000
 - **Net loss: -$6,000** (75% loss)
 
 **Why you lost:**
+
 - Move too small (didn't reach $108 breakeven)
 - Theta decay ate most of the premium
 - Stock didn't move enough!
@@ -390,6 +460,7 @@ After earnings:
 - Total position value: $0
 
 **Your P&L:**
+
 - Entry cost: -$8,000
 - Exit value: $0
 - **Maximum loss: -$8,000** (100% loss)
@@ -404,6 +475,7 @@ After 1 week (before earnings announcement):
 - Options more valuable due to higher IV
 
 **Position value:**
+
 - Vega per contract: $50 per 1% IV
 - IV change: +15%
 - Value increase: $50 × 15% × 10 contracts = $7,500
@@ -411,6 +483,7 @@ After 1 week (before earnings announcement):
 - **Net change: +$4,700**
 
 **Your decision:**
+
 - Exit now with profit: +$4,700 (59% gain)
 - Or hold through earnings and risk it?
 
@@ -455,6 +528,7 @@ potential                     potential
 ```
 
 **In the limit:**
+
 - Perfect gamma scalping → captures all realized variance
 - Straddle → captures realized variance at expiry
 - **Same goal, different paths!**
@@ -462,6 +536,7 @@ potential                     potential
 ### When to Choose Each
 
 **Choose Straddle when:**
+
 - You're a retail trader (simplicity)
 - Low transaction costs unavailable
 - Short time to expiry (less rebalancing time)
@@ -469,6 +544,7 @@ potential                     potential
 - Accept directional risk
 
 **Choose Gamma Scalping when:**
+
 - You're professional/institutional
 - Can rebalance efficiently
 - Longer time horizon
@@ -484,6 +560,7 @@ potential                     potential
 ### 1. Event-Driven Opportunities
 
 **Binary events create volatility:**
+
 - Earnings announcements
 - FDA approvals (biotech)
 - Court rulings
@@ -494,6 +571,7 @@ potential                     potential
 ### 2. Implied vs. Realized Gap
 
 **Market misprices volatility:**
+
 - Implied vol ≠ realized vol
 - If you think stock will move more than IV suggests
 - Straddle is the simple way to bet on it
@@ -501,6 +579,7 @@ potential                     potential
 ### 3. Accessibility
 
 **Retail investors can trade:**
+
 - No complex hedging needed
 - No continuous monitoring
 - Buy and hold (or exit early)
@@ -509,6 +588,7 @@ potential                     potential
 ### 4. Leverage
 
 **Options provide leverage:**
+
 - Small premium controls large movement
 - Limited loss (premium paid)
 - Unlimited profit potential
@@ -517,6 +597,7 @@ potential                     potential
 ### 5. Portfolio Hedging
 
 **Tail risk protection:**
+
 - Long straddle protects against big moves
 - Don't know which way crisis will hit
 - Pay small premium for protection
@@ -529,6 +610,7 @@ potential                     potential
 ### 1. Unbalanced Straddle
 
 **Structure:**
+
 - More calls than puts (or vice versa)
 - Directional bias
 - Example: 2 calls, 1 put (bullish bias)
@@ -538,6 +620,7 @@ potential                     potential
 ### 2. Ratio Straddle
 
 **Structure:**
+
 - Different number of calls vs. puts
 - Often sell extra options
 - Example: Buy 1 call + 1 put, sell 1 additional OTM call
@@ -547,6 +630,7 @@ potential                     potential
 ### 3. Straddle with Different Expirations
 
 **Structure:**
+
 - Call and put with different expiries
 - Not technically a straddle anymore
 - Exploits term structure
@@ -554,6 +638,7 @@ potential                     potential
 ### 4. Straddle + Vertical Spread (Iron Butterfly)
 
 **Structure:**
+
 - Long straddle
 - Sell further OTM call and put
 - Reduces cost, caps profit
@@ -561,6 +646,7 @@ potential                     potential
 ### 5. Moving Straddle
 
 **Structure:**
+
 - Start with straddle at one strike
 - If stock moves, adjust strikes
 - "Chase" the stock
@@ -572,6 +658,7 @@ potential                     potential
 ### Example 1: Tesla Earnings (Q2 2023)
 
 **Before earnings:**
+
 - Stock at $250
 - Earnings in 1 week
 - IV: 65% (elevated)
@@ -583,6 +670,7 @@ potential                     potential
 - Need 14% move
 
 **After earnings:**
+
 - Stock moved to $290 (+16%)
 - Straddle worth: $40 (call: $40, put: $0)
 - **Profit: $5** (14% return)
@@ -592,6 +680,7 @@ potential                     potential
 ### Example 2: Biotech FDA Approval
 
 **Before FDA decision:**
+
 - Stock at $20
 - Binary outcome (approval vs. rejection)
 - Expected move: 40-50% either way
@@ -603,12 +692,14 @@ potential                     potential
 - Need 40% move
 
 **After decision (Approval!):**
+
 - Stock surges to $32 (+60%)
 - Call worth: $12
 - Put worth: $0
 - **Profit: $4** (50% return)
 
 **After decision (Rejection scenario):**
+
 - Stock crashes to $8 (-60%)
 - Call worth: $0
 - Put worth: $12
@@ -619,6 +710,7 @@ potential                     potential
 ### Example 3: Post-Earnings Vol Crush (Short Straddle)
 
 **After earnings:**
+
 - Stock at $100 (earnings passed)
 - IV: 50% (elevated from earnings)
 - Expectation: IV will collapse, stock calm
@@ -629,12 +721,14 @@ potential                     potential
 - Max profit: $8 (if at $100)
 
 **Outcome (3 weeks later):**
+
 - Stock drifts to $103 (small move)
 - IV collapses to 25%
 - Straddle value: $3.50
 - Buy back to close
 
 **P&L:**
+
 - Received: $8
 - Paid to close: $3.50
 - **Profit: $4.50** (56% of max)
@@ -644,6 +738,7 @@ potential                     potential
 ### Example 4: GameStop Squeeze (Jan 2021)
 
 **During squeeze:**
+
 - Stock at $50 (highly volatile)
 - IV: 300%+ (insane)
 - Direction unpredictable
@@ -652,6 +747,7 @@ potential                     potential
 **Risk:** Unlimited loss if stock continued moving
 
 **Outcome:**
+
 - Stock went from $50 → $483 (!)
 - Short call losses: massive
 - Short put also lost value but less
@@ -758,6 +854,7 @@ potential                     potential
 ### For Long Straddles
 
 **Favorable conditions:**
+
 - **Binary events upcoming** (earnings, FDA, elections)
 - **Low implied volatility** (cheap options)
 - **Historical large moves** (stock has history of volatility)
@@ -765,6 +862,7 @@ potential                     potential
 - **High conviction** on movement but not direction
 
 **Example setups:**
+
 - Tech earnings with history of 10%+ moves
 - Biotech awaiting binary FDA decision
 - Merger arbitrage situations
@@ -773,6 +871,7 @@ potential                     potential
 ### For Long Strangles
 
 **When straddles too expensive:**
+
 - Very high IV (straddle cost prohibitive)
 - Expect VERY large move (strangle cheaper)
 - Lower probability setup (wider breakevens okay)
@@ -781,6 +880,7 @@ potential                     potential
 ### For Short Straddles (Caution!)
 
 **Only for experienced traders:**
+
 - Post-event (vol crush expected)
 - High IV environment (expensive options)
 - Conviction on stability
@@ -788,6 +888,7 @@ potential                     potential
 - Small size (never bet the farm!)
 
 **Example:**
+
 - Day after earnings, IV 60%, expecting collapse to 30%
 - Sell straddle, collect premium, exit early
 
@@ -810,6 +911,7 @@ potential                     potential
 - Positive EV required
 
 **Example:**
+
 - 40% chance of $7,000 profit
 - 60% chance of $5,000 loss
 - EV = 0.4($7,000) - 0.6($5,000) = $2,800 - $3,000 = -$200
@@ -857,12 +959,14 @@ potential                     potential
 ### 1. Finding Opportunities
 
 **Screen for:**
+
 - Upcoming binary events (earnings calendar)
 - Historical IV percentile (is IV low or high?)
 - Historical price moves (how much does it usually move?)
 - Risk/reward (breakeven vs. historical move)
 
 **Tools:**
+
 - Earnings calendars
 - IV rank/percentile tools
 - Historical volatility analysis
@@ -871,11 +975,13 @@ potential                     potential
 ### 2. Strike Selection
 
 **For straddles:**
+
 - Always ATM (or nearest strike to current price)
 - Maximum gamma and vega
 - Best bang for buck
 
 **For strangles:**
+
 - Typically 1 standard deviation OTM on each side
 - Or based on historical move size
 - Balance cost vs. probability
@@ -883,11 +989,13 @@ potential                     potential
 ### 3. Timing
 
 **Entry:**
+
 - 1-2 weeks before event (balance IV and theta)
 - Too early: pay too much theta
 - Too late: IV already inflated
 
 **Exit:**
+
 - If profit target hit: take it!
 - Day before event: consider IV spike exit
 - After event: immediately (avoid vol crush)
@@ -896,12 +1004,14 @@ potential                     potential
 ### 4. Position Management
 
 **Monitor:**
+
 - Stock price relative to breakevens
 - IV changes
 - Time decay
 - Days to expiration
 
 **Adjustments:**
+
 - Generally don't adjust (directional risk)
 - Maybe close one leg if huge move
 - Consider rolling if more time needed
@@ -926,12 +1036,14 @@ $$
 ### The Structure
 
 **Straddle:**
+
 - Same strike (ATM)
 - More expensive
 - Closer breakevens
 - Easier to profit
 
 **Strangle:**
+
 - Different strikes (OTM)
 - Cheaper
 - Wider breakevens
@@ -940,12 +1052,14 @@ $$
 ### Long vs. Short
 
 **Long (buy volatility):**
+
 - Pay premium
 - Limited loss
 - Unlimited profit
 - Want large moves
 
 **Short (sell volatility):**
+
 - Receive premium
 - Limited profit
 - Unlimited loss
@@ -955,11 +1069,13 @@ $$
 ### The P&L Sources
 
 **Before expiry:**
+
 1. Movement (gamma)
 2. IV changes (vega)
 3. Time decay (theta) - negative
 
 **At expiry:**
+
 - Only intrinsic value matters
 - $|S - K|$ for straddle
 - Need move > premium paid
@@ -967,18 +1083,21 @@ $$
 ### Straddles vs. Gamma Scalping
 
 **Key relationship:**
+
 - Straddles = simple, accept directional risk
 - Gamma scalping = complex, hedge directional risk
 - Same goal: profit from volatility
 - Different execution paths
 
 **Straddles lead to gamma scalping:**
+
 - Want volatility profit without directional risk?
 - → Add delta hedging → Gamma scalping!
 
 ### When to Use
 
 **Best scenarios:**
+
 - Binary events (earnings, FDA)
 - Low IV (cheap options)
 - High conviction on movement
@@ -986,6 +1105,7 @@ $$
 - Retail traders (simplicity)
 
 **Avoid:**
+
 - High IV (expensive)
 - No clear catalyst
 - Long time to event (theta bleed)
@@ -994,12 +1114,14 @@ $$
 ### Risk Management
 
 **For long straddles:**
+
 - Max loss = premium (2-5% of portfolio)
 - Exit early if profitable
 - Don't hold to zero
 - Have profit target and stop loss
 
 **For short straddles:**
+
 - VERY risky (unlimited loss)
 - Only for experienced traders
 - Tiny position sizes
@@ -1045,12 +1167,14 @@ Simplicity Ladder:
 "You can profit from uncertainty itself. You don't need to predict the future, just that the future will be uncertain. This is the fundamental idea behind ALL volatility strategies."
 
 **Straddles are where volatility trading begins:**
+
 - Simple to understand
 - Easy to execute
 - Teaches the core concept
 - Foundation for everything else
 
 **Once you understand straddles:**
+
 - Delta hedging makes sense (remove directional risk)
 - Gamma scalping makes sense (harvest gamma continuously)
 - Vega trading makes sense (trade expectations vs. reality)
@@ -1067,6 +1191,7 @@ Simplicity Ladder:
 5. **Accessible:** Retail can trade these
 
 **Then build up:**
+
 - Want to remove directional risk? → Delta hedging
 - Want to harvest gamma continuously? → Gamma scalping
 - Want pure exposure? → Variance swaps

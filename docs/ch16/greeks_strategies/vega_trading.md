@@ -2,14 +2,41 @@
 
 **Vega trading** is a strategy where you profit from changes in implied volatility by holding options positions while hedging away directional risk.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_trading_by_maturity.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 1:** Vega Trading By Maturity visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_trading_calendar_spread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 2:** Vega Trading Calendar Spread visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_trading_pnl_evolution.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 3:** Vega Trading Pnl Evolution visualization.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_trading_term_structure.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+**Figure 4:** Vega Trading Term Structure visualization.
+
 ---
 
 ## The Core Insight
 
 **The fundamental idea:**
+
 - Options have two types of volatility exposure:
-  - **Realized volatility** (actual stock movement)
-  - **Implied volatility** (market's expectation, embedded in option prices)
+
+      - **Realized volatility** (actual stock movement)
+      - **Implied volatility** (market's expectation, embedded in option prices)
+
 - You can bet that implied volatility is wrong without betting on stock direction
 - Delta hedge to remove directional exposure
 - Profit when implied volatility moves toward your expectation
@@ -23,18 +50,21 @@
 **This distinction is CRUCIAL:**
 
 ### Realized Volatility (Historical/Future Actual)
+
 - **What it is:** How much the stock ACTUALLY moves
 - **Measured by:** $\sigma_{\text{realized}} = \sqrt{\frac{252}{T}\sum (\text{daily returns})^2}$
 - **Example:** Stock bounces between $90 and $110 → high realized volatility
 - **Who trades it:** Gamma scalpers
 
 ### Implied Volatility (Market's Expectation)
+
 - **What it is:** The market's EXPECTATION of future volatility, embedded in option prices
 - **Derived from:** Option prices via Black-Scholes (solving for $\sigma$)
 - **Example:** Options are expensive → market expects high volatility → high IV
 - **Who trades it:** Vega traders
 
 **The key insight:** These two can diverge!
+
 - Market might expect 40% volatility (IV = 40%)
 - But stock might actually realize only 25% volatility
 - Or vice versa!
@@ -54,6 +84,7 @@ $$
 $$
 
 **In plain English:**
+
 - If vega = 0.20, then a 1% increase in IV → option value increases by $0.20
 - Long options have positive vega (benefit from IV increase)
 - Short options have negative vega (hurt by IV increase)
@@ -63,9 +94,12 @@ $$
 ## The Basic Idea
 
 **What you do:**
+
 1. Identify mispriced implied volatility
-   - Too high? Sell options (short vega)
-   - Too low? Buy options (long vega)
+
+      - Too high? Sell options (short vega)
+      - Too low? Buy options (long vega)
+
 2. Delta hedge to remove directional exposure
 3. Hold the position as IV changes
 4. Profit when IV moves toward your expectation
@@ -74,6 +108,7 @@ $$
 **The goal:** Profit from implied volatility changes, not from stock direction or realized volatility.
 
 **Key distinction from gamma scalping:**
+
 - Gamma scalping: profit from stock MOVING (realized vol)
 - Vega trading: profit from IV CHANGING (implied vol)
 
@@ -88,6 +123,7 @@ $$
 $$
 
 More precisely:
+
 $$
 \Pi = V(S, t, \sigma) - \Delta \cdot S
 $$
@@ -95,6 +131,7 @@ $$
 where $V(S,t,\sigma)$ is the option value (function of stock price, time, AND volatility), and you hedge with $\Delta$ shares.
 
 **Why this structure?**
+
 - The option gives you vega exposure (sensitivity to IV changes)
 - The delta hedge removes directional exposure
 - You're now exposed primarily to changes in implied volatility
@@ -113,16 +150,19 @@ $$
 **What this means:**
 
 1. **$\text{Vega} \cdot \delta\sigma$**: P&L from implied volatility changes
+
    - This is your PRIMARY profit source in vega trading
    - If long vega and IV increases → profit
    - If short vega and IV decreases → profit
    
 2. **$\frac{1}{2}\Gamma(\delta S)^2$**: P&L from delta rebalancing
+
    - This is a SIDE EFFECT (like in delta hedging)
    - You're not trying to maximize this (unlike gamma scalping)
    - It's tracking error that you tolerate
    
 3. **$-\theta\,\delta t$**: Time decay
+
    - For long vega (long options): you pay theta
    - For short vega (short options): you collect theta
    - This is the "carry" of your position
@@ -138,23 +178,28 @@ $$\boxed{\delta \Pi \approx \underbrace{\text{Vega} \cdot \delta\sigma}_{\text{p
 ### The Three Components
 
 **$\text{Vega} \cdot \delta\sigma$:** Your main bet - profit from IV changes
+
 - **Long vega (long options):** 
-  - Vega > 0
-  - You want IV to INCREASE
-  - Betting: "Market is too complacent, volatility will spike"
+
+      - Vega > 0
+      - You want IV to INCREASE
+      - Betting: "Market is too complacent, volatility will spike"
   
 - **Short vega (short options):**
-  - Vega < 0  
-  - You want IV to DECREASE
-  - Betting: "Market is too fearful, volatility will calm down"
+
+      - Vega < 0  
+      - You want IV to DECREASE
+      - Betting: "Market is too fearful, volatility will calm down"
 
 **$\frac{1}{2}\Gamma(\delta S)^2$:** Rebalancing P&L (not your focus)
+
 - Comes from delta hedging rebalancing
 - Not intentional profit (unlike gamma scalping)
 - Just accept it as side effect
 - Can be positive or negative depending on position
 
 **$-\theta\,\delta t$:** The cost or benefit of holding
+
 - Long options: pay theta (this is your cost)
 - Short options: collect theta (this is your revenue)
 - Trade-off with vega exposure
@@ -166,6 +211,7 @@ $$\boxed{\delta \Pi \approx \underbrace{\text{Vega} \cdot \delta\sigma}_{\text{p
 **Setup: You think IV is too low**
 
 **Market conditions:**
+
 - Stock at $S = \$100$
 - ATM call trading at implied volatility IV = 20%
 - Call price: $V = \$5.00$
@@ -174,9 +220,11 @@ $$\boxed{\delta \Pi \approx \underbrace{\text{Vega} \cdot \delta\sigma}_{\text{p
 - Call theta: $\theta = -\$0.05$ per day
 
 **Your view:**
+
 - "IV of 20% is too low—I expect it to rise to 25%"
 
 **Your trade:**
+
 - Buy 100 call contracts (10,000 shares worth)
 - Delta hedge: short $0.5 \times 10,000 = 5,000$ shares
 - **Initial cost:** $(100 \times \$5 \times 100) - (5,000 \times \$100) = \$50,000 - \$500,000 = -\$450,000$
@@ -184,11 +232,13 @@ $$\boxed{\delta \Pi \approx \underbrace{\text{Vega} \cdot \delta\sigma}_{\text{p
 **Scenario 1: IV increases to 25% (you're right!)**
 
 After 5 days:
+
 - Stock still at $\$100$ (delta-hedged, so stock movement doesn't matter much)
 - IV increases from 20% to 25% (5% increase)
 - New call price: approximately $\$6.25$ (increased due to higher IV)
 
 **Your P&L breakdown:**
+
 - **Vega profit:** $100 \text{ contracts} \times \$0.25 \times 5\% = +\$1,250$
 - **Theta loss:** $100 \text{ contracts} \times (-\$0.05) \times 5 \text{ days} = -\$250$
 - **Gamma P&L:** Small (stock didn't move much, well-hedged) ≈ $0
@@ -199,11 +249,13 @@ After 5 days:
 **Scenario 2: IV stays at 20% (you're wrong)**
 
 After 5 days:
+
 - Stock still at $\$100$
 - IV unchanged at 20%
 - Call price: approximately $\$4.75$ (decreased only due to theta)
 
 **Your P&L breakdown:**
+
 - **Vega profit:** $0$ (IV didn't change)
 - **Theta loss:** $100 \times (-\$0.05) \times 5 = -\$250$
 - **Gamma P&L:** ≈ $0$
@@ -222,19 +274,23 @@ After 5 days:
 **Position:** Long calls and/or long puts (delta-hedged)
 
 **Characteristics:**
+
 - Vega > 0 (benefit from IV increases)
 - Theta < 0 (pay time decay every day)
 - Gamma > 0 (delta-hedged long option)
 
 **When you use it:**
+
 - You believe IV is too LOW
 - You expect IV to INCREASE
 - Examples:
-  - Before earnings (expect vol spike)
-  - During calm markets (expect fear to return)
-  - When VIX is historically low
+
+      - Before earnings (expect vol spike)
+      - During calm markets (expect fear to return)
+      - When VIX is historically low
 
 **The bet:**
+
 - "Market is too complacent"
 - "Volatility will surprise to the upside"
 - "Options are too cheap"
@@ -246,19 +302,23 @@ After 5 days:
 **Position:** Short calls and/or short puts (delta-hedged)
 
 **Characteristics:**
+
 - Vega < 0 (hurt by IV increases)
 - Theta > 0 (collect time decay every day)
 - Gamma < 0 (delta-hedged short option)
 
 **When you use it:**
+
 - You believe IV is too HIGH
 - You expect IV to DECREASE
 - Examples:
-  - After earnings (vol crush)
-  - During panic (expect calm to return)
-  - When VIX is historically high
+
+      - After earnings (vol crush)
+      - During panic (expect calm to return)
+      - When VIX is historically high
 
 **The bet:**
+
 - "Market is too fearful"
 - "Volatility will calm down"
 - "Options are too expensive"
@@ -285,10 +345,12 @@ After 5 days:
 | **What you need to be right about** | Where IV will go | How much stock will actually move |
 
 **Key insight:**
+
 - **Gamma scalping:** "I don't care what the market EXPECTS—I know what will ACTUALLY happen (high realized vol)"
 - **Vega trading:** "I know the market's EXPECTATION is wrong—IV is mispriced"
 
 **Example to illustrate:**
+
 - Stock at $100, IV = 30%
 - **Vega trader thinks:** "30% IV is too high—it will drop to 20% when fear subsides" → short vega
 - **Gamma scalper thinks:** "30% IV is perfect—stock will actually move 35%" → long gamma
@@ -304,11 +366,13 @@ They can both be right! Or both wrong! They're betting on different things.
 ### Volatility Arbitrage (Vega + Gamma)
 
 **The strategy:**
+
 - Believe IV is too low (vega view)
 - AND believe realized vol will be high (gamma view)
 - **Trade:** Buy options (long vega + long gamma), delta hedge
 
 **You profit from:**
+
 - IV increasing (vega profit)
 - Stock moving around (gamma profit)
 - **This is the "full package" volatility trade**
@@ -318,12 +382,14 @@ They can both be right! Or both wrong! They're betting on different things.
 ### Pure Vega (Vega Only)
 
 **The strategy:**
+
 - Have a view on IV changes only
 - Don't care about realized vol
 - **Trade:** Options position based on IV view, delta hedge
 - Try to minimize gamma exposure (use shorter-dated options with lower gamma)
 
 **Example:**
+
 - Believe IV will drop after earnings → short options right before announcement
 - Exit immediately after earnings (capture vol crush)
 - Don't wait for realized vol to play out
@@ -337,12 +403,14 @@ They can both be right! Or both wrong! They're betting on different things.
 **Scenario:** Market is too fearful or too complacent
 
 **Example (Long Vega):**
+
 - VIX at 12 (historically very low)
 - Market is complacent
 - You believe volatility will spike
 - **Trade:** Buy ATM straddles, delta hedge
 
 **Example (Short Vega):**
+
 - After a crash, VIX at 40
 - Market is panicking
 - You believe volatility will calm down
@@ -353,12 +421,14 @@ They can both be right! Or both wrong! They're betting on different things.
 **Scenario:** Earnings announcement in 2 days
 
 **Pre-earnings (Long Vega):**
+
 - IV typically rises before earnings
 - Buy options 1 week before earnings
 - Sell them 1 day before (capture IV rise)
 - Don't hold through earnings
 
 **Post-earnings (Short Vega):**
+
 - "Vol crush" - IV drops after announcement
 - Sell options right before earnings
 - Buy them back after (capture IV drop)
@@ -370,6 +440,7 @@ They can both be right! Or both wrong! They're betting on different things.
 **Your view:** "This term structure is wrong"
 
 **Trade:**
+
 - Sell back-month options (short high IV)
 - Buy front-month options (long low IV)
 - Delta hedge both
@@ -380,10 +451,12 @@ They can both be right! Or both wrong! They're betting on different things.
 **Scenario:** Volatility tends to revert to long-term average
 
 **When IV > historical average:**
+
 - Short vega (sell options)
 - Bet on mean reversion downward
 
 **When IV < historical average:**
+
 - Long vega (buy options)
 - Bet on mean reversion upward
 
@@ -396,6 +469,7 @@ They can both be right! Or both wrong! They're betting on different things.
 ### 1. Identify Mispriced IV
 
 **Analysis methods:**
+
 - Compare current IV to historical IV
 - Compare IV to realized volatility
 - Look at IV percentile (where IV ranks historically)
@@ -403,6 +477,7 @@ They can both be right! Or both wrong! They're betting on different things.
 - Check volatility smile/skew
 
 **Tools:**
+
 - VIX index (market volatility expectation)
 - Historical volatility charts
 - IV rank and IV percentile
@@ -411,11 +486,13 @@ They can both be right! Or both wrong! They're betting on different things.
 ### 2. Establish Position
 
 **If IV too low (Long Vega):**
+
 - Buy ATM options (highest vega per dollar)
 - Consider straddles or strangles
 - Longer-dated options have more vega
 
 **If IV too high (Short Vega):**
+
 - Sell ATM options
 - Consider iron condors (defined risk)
 - Shorter-dated options have higher theta/vega ratio
@@ -423,6 +500,7 @@ They can both be right! Or both wrong! They're betting on different things.
 ### 3. Delta Hedge
 
 **Immediately hedge directional risk:**
+
 - Calculate position delta
 - Trade underlying to neutralize
 - This isolates your vega exposure
@@ -430,18 +508,21 @@ They can both be right! Or both wrong! They're betting on different things.
 ### 4. Manage the Position
 
 **Monitor:**
+
 - IV changes (your main exposure)
 - Delta drift (rebalance as needed)
 - Time decay (your cost or revenue)
 - Gamma P&L (side effect)
 
 **Rebalancing:**
+
 - Rebalance delta periodically (don't over-optimize like gamma scalping)
 - Focus on maintaining vega exposure, not harvesting gamma
 
 ### 5. Exit Strategy
 
 **Exit when:**
+
 - IV reaches your target
 - Your thesis is invalidated
 - Theta decay overwhelms expected IV movement
@@ -460,6 +541,7 @@ They can both be right! Or both wrong! They're betting on different things.
 | **Vega Trading** | Vega (implied vol) | IV to change | Isolates vega exposure |
 
 **Position structure (all similar):**
+
 - Delta hedging: Option + stock hedge (for risk management)
 - Gamma scalping: Option + stock hedge (to harvest gamma)
 - Vega trading: Option + stock hedge (to isolate vega)
@@ -494,85 +576,101 @@ risk      realized   changes
 ### Advantages ✓
 
 **1. Directionally neutral**
+
 - Don't need to predict stock direction
 - Only need view on volatility expectations
 - Can profit in any market direction
 
 **2. Can profit quickly**
+
 - Don't need to wait for volatility to realize
 - IV can change in hours or days
 - Faster than gamma scalping (which needs time for vol to play out)
 
 **3. Clear analytical framework**
+
 - IV is observable and measurable
 - Can compare to historical levels
 - Can use statistical tools (percentiles, z-scores, mean reversion)
 
 **4. Event-driven opportunities**
+
 - Earnings announcements
 - Fed meetings
 - Political events
 - Predictable IV patterns
 
 **5. Volatility risk premium**
+
 - Historical tendency: IV > realized vol
 - Short vega strategies can harvest this premium
 - Systematic edge over time
 
 **6. Multiple strategies**
+
 - Can go long or short vega
 - Can trade term structure
 - Can trade volatility smile/skew
 - Many ways to express views
 
 **7. Combines well with gamma scalping**
+
 - Can profit from both IV changes AND realized vol
 - Complementary strategies
 
 ### Disadvantages ✗
 
 **1. Theta decay is relentless**
+
 - Long vega: pay theta every day
 - Need IV to move fast enough to overcome theta
 - Time is your enemy (for long vega)
 
 **2. IV can stay "wrong" for a long time**
+
 - "The market can remain irrational longer than you can remain solvent"
 - IV might be mispriced but not correct quickly
 - Theta bleeds while you wait
 
 **3. Two-way risk**
+
 - Long vega: IV can drop, you pay theta
 - Short vega: IV can spike, unlimited risk
 - Need to be right on both direction AND timing
 
 **4. Transaction costs**
+
 - Must delta hedge (incurs costs)
 - Rebalancing adds up
 - Bid-ask spreads on options
 
 **5. Gamma side effects**
+
 - Still exposed to gamma P&L
 - Can work for or against you
 - Adds noise to pure vega bet
 
 **6. Requires active management**
+
 - Need to monitor IV constantly
 - Delta rebalancing needed
 - Position management
 - Not passive
 
 **7. Correlation with market stress**
+
 - Long vega profits in crises (when you don't need money)
 - Short vega loses in crises (when it hurts most)
 - Timing is crucial
 
 **8. IV can be manipulated**
+
 - Market makers can widen spreads
 - Thin markets → unreliable IV
 - Earnings IV can be "pinned"
 
 **9. Model risk**
+
 - IV derived from models (Black-Scholes, etc.)
 - Different models → different IV
 - What is "fair" IV?
@@ -625,12 +723,14 @@ risk      realized   changes
 ### 1. Straddle/Strangle
 
 **Long Straddle (Long Vega):**
+
 - Buy ATM call + ATM put
 - Maximum vega per dollar
 - Delta-neutral naturally
 - Bet: IV will increase
 
 **Short Straddle (Short Vega):**
+
 - Sell ATM call + ATM put
 - Collect theta, short vega
 - Bet: IV will decrease
@@ -638,11 +738,13 @@ risk      realized   changes
 ### 2. Calendar Spread (Time Vega)
 
 **Setup:**
+
 - Sell front-month option
 - Buy back-month option
 - Exploits term structure
 
 **Vega profile:**
+
 - Slightly long vega overall
 - Profits if back-month IV rises relative to front
 - Collects theta from front month
@@ -650,6 +752,7 @@ risk      realized   changes
 ### 3. Volatility Arbitrage
 
 **Setup:**
+
 - Buy options when IV low
 - Sell options when IV high
 - Delta hedge both
@@ -658,6 +761,7 @@ risk      realized   changes
 ### 4. Dispersion Trading (Advanced)
 
 **Setup:**
+
 - Trade index vol vs. individual stock vol
 - Exploits correlation structure
 - Delta hedge all components
@@ -665,11 +769,13 @@ risk      realized   changes
 ### 5. Event Trading
 
 **Vol Spike Trading:**
+
 - Buy options before events
 - Sell before announcement
 - Capture IV rise, avoid realized vol
 
 **Vol Crush Trading:**
+
 - Sell options before events
 - Buy back after announcement
 - Capture IV drop
@@ -683,6 +789,7 @@ risk      realized   changes
 ### Vega Exposure
 
 **Rule of thumb:**
+
 - Don't risk more than you can afford to lose on 5% IV move
 - If vega = $1,000 per 1% IV, a 5% move = $5,000 P&L
 - Size position so this fits your risk tolerance
@@ -690,6 +797,7 @@ risk      realized   changes
 ### Theta Management
 
 **For long vega:**
+
 - Calculate daily theta bleed
 - Ensure IV can realistically move enough to offset
 - Time horizon: typically days to weeks, not months
@@ -697,17 +805,20 @@ risk      realized   changes
 ### Delta Rebalancing
 
 **Balance:**
+
 - Rebalance enough to stay roughly delta-neutral
 - Don't over-rebalance (costs money)
 - Not trying to harvest gamma (that's a different strategy)
 
 **Thresholds:**
+
 - Rebalance when delta > 10-20% of position
 - Or time-based (daily or twice daily)
 
 ### Exit Discipline
 
 **Have clear rules:**
+
 - Target IV level (take profit)
 - Stop loss (IV moves against you)
 - Time stop (if thesis not playing out)
@@ -728,11 +839,13 @@ risk      realized   changes
 ### Two Directions
 
 - **Long vega (buy options):** 
+
   - Bet IV will INCREASE
   - Pay theta (your cost)
   - Want: market complacency to turn into fear
   
 - **Short vega (sell options):**
+
   - Bet IV will DECREASE  
   - Collect theta (your revenue)
   - Want: market panic to calm down
@@ -740,6 +853,7 @@ risk      realized   changes
 ### Key Distinctions
 
 **Vega Trading vs. Gamma Scalping:**
+
 - Vega: Trade IMPLIED vol changes (market expectations)
 - Gamma: Trade REALIZED vol (actual movement)
 - Vega: Don't need stock to move
@@ -747,6 +861,7 @@ risk      realized   changes
 - Can combine both strategies!
 
 **Vega Trading vs. Delta Hedging:**
+
 - Same technique (option + delta hedge)
 - Different purpose (profit vs. risk management)
 - Vega trader WANTS vega exposure
@@ -763,6 +878,7 @@ risk      realized   changes
 ### Advanced Insight
 
 **The fundamental bet in vega trading:**
+
 - "The market's EXPECTATION of volatility (IV) is wrong"
 - Not about what WILL happen (realized vol)
 - About what market THINKS will happen (implied vol)

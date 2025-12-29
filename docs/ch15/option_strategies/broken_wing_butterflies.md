@@ -72,6 +72,7 @@ $$
 Where offset creates asymmetry and allows credit collection.
 
 **Example breakdown:**
+
 - $K_1 = 95$ (lower strike)
 - $K_2 = 100$ (center strike, short)
 - $K_3 = 110$ (upper strike, NOT 105)
@@ -119,12 +120,14 @@ $$
 **Why traders love broken wings:**
 
 **Regular butterfly:**
+
 - Pay $2 debit
 - Max profit: $3 (150% return)
 - Risk $2 on BOTH sides
 - **Symmetric but requires capital**
 
 **Broken wing butterfly:**
+
 - Collect $0.50 credit
 - Max profit: $5.50 (∞% return on credit!)
 - Risk $4.50 on ONE side only
@@ -218,6 +221,7 @@ You're accepting that if you're wrong on direction (stock crashes below $95), yo
 - **Net credit: $16 - $6 - $2 = $8 collected**
 
 **Outcome:**
+
 - Stock at $175: Max profit = $13 ($5 body + $8 credit)
 - Stock above $180: Breakeven to small profit
 - Stock below $170: Max loss = -$7 ($5 body - $8 credit, but negative)
@@ -233,6 +237,7 @@ Actually, the calculation is:
 - Above $185: Complex, need to verify structure
 
 **Why this works:**
+
 - Upside protection from wide upper wing
 - Collect premium upfront
 - Only risk on downside (if stock crashes)
@@ -242,26 +247,31 @@ Actually, the calculation is:
 **Scenario:** TSLA earnings, expect neutral to slightly bullish move, not crash
 
 **Traditional butterfly:**
+
 - Symmetric risk both sides
 - Pay debit
 - IV crush helps but eats both wings
 
 **Broken wing butterfly:**
+
 - Wider upper wing (no upside risk if stock rockets)
 - Collect credit (IV crush multiplies profit)
 - Only risk: Stock crashes below lower strike
 
 **Trade:**
+
 - Stock at $240
 - Buy $230 call, sell 2× $240 calls, buy $255 call
 - Net credit: $3
 
 **Outcomes:**
+
 - Stock rockets to $270: Upper wing protection, keep $3 profit
 - Stock stays $240: Max profit $13 ($10 body + $3 credit)
 - Stock crashes to $220: Max loss $7 ($10 body - $3 credit)
 
 **Why this works:**
+
 - Earnings: Upside surprise more common than crash
 - Broken wing protects against upside surprise
 - IV crush benefits credit collection
@@ -272,6 +282,7 @@ Actually, the calculation is:
 **Scenario:** Income strategy, willing to take downside risk but not upside
 
 **Philosophy:**
+
 - Markets tend to trend up over time (equities)
 - Willing to risk losses if market crashes
 - NOT willing to cap upside in strong rallies
@@ -280,21 +291,25 @@ Actually, the calculation is:
 **Trade:** Sell broken wing butterflies monthly
 
 **Example on SPY:**
+
 - SPY at $450
 - Buy $440 call, sell 2× $450 calls, buy $465 call (wider upper wing)
 - Net credit: $2
 
 **Each month:**
+
 - Collect $2 credit ($200 per contract)
 - Risk $8 if SPY drops below $440
 - No risk if SPY rallies above $465
 
 **Annual strategy:**
+
 - 12 months × $2 credit = $24 potential income
 - Occasional losses when market drops
 - Never capped on upside (broken wing protects)
 
 **Why this works:**
+
 - Consistent credit collection (theta decay)
 - Asymmetric risk matches market tendency (up-bias)
 - No missed rallies (broken wing covers you)
@@ -304,6 +319,7 @@ Actually, the calculation is:
 **Scenario:** IV elevated, expecting mean reversion and stock stability
 
 **Setup:**
+
 - Stock at $100
 - IV at 40% (80th percentile, rich)
 - Expect IV to compress to 30% AND stock to stay stable
@@ -316,11 +332,13 @@ Actually, the calculation is:
 - **Net credit: $1.50**
 
 **What happens if correct:**
+
 - Stock stays near $100: Max profit zone
 - IV drops 10% → Short calls lose value faster (richest IV)
 - **Combined: Theta decay + Vega crush = accelerated profit**
 
 **Outcome after 2 weeks:**
+
 - Stock at $99
 - IV compressed to 32% (-8%)
 - Position value: +$4.50 (already profitable)
@@ -339,6 +357,7 @@ $$
 $$
 
 **Example at initiation:**
+
 - $K_1 = 95$ call: $\Delta = +0.65$
 - $K_2 = 100$ calls: $\Delta = +0.50$ each
 - $K_3 = 110$ call: $\Delta = +0.25$
@@ -365,6 +384,7 @@ $$
 **Critical characteristic: NEGATIVE gamma near short strikes!**
 
 **Example:**
+
 - Stock at $100 (at short strike)
 - **Gamma: -0.08** (very negative)
 - Small move either direction HURTS initially
@@ -427,6 +447,7 @@ $$
 - Net: You're SHORT volatility
 
 **Example:**
+
 - $95 call vega: +0.15
 - $100 calls vega: +0.22 each
 - $110 call vega: +0.08
@@ -455,6 +476,7 @@ $$
 **Scenario:** Stock oscillates around short strike
 
 **Setup:**
+
 - Broken wing butterfly: $95/$100/$110 calls
 - Stock at $100
 - Net credit: $2
@@ -470,6 +492,7 @@ $$
 - **P&L: -$80** (another -$40)
 
 **Net result:**
+
 - Stock ended $2 higher (slightly favorable)
 - But whipsaw caused -$80 loss
 - **This is gamma risk at short strikes!**
@@ -481,6 +504,7 @@ $$
 **Scenario:** Unexpected news spikes IV
 
 **Setup:**
+
 - Stock at $100
 - Broken wing fly with $2 credit
 - IV at 30%
@@ -488,9 +512,11 @@ $$
 **News:** FDA approval uncertainty announced
 
 **Day 1:**
+
 - Stock unchanged at $100
 - IV spikes: 30% → 50% (+20%)
 - **Your P&L:**
+
   - Vega: -0.21 × 20 = -$420
   - Delta: $0 (stock flat)
   - Theta: +$10 (one day's decay)
@@ -503,6 +529,7 @@ $$
 **Scenario:** Stock slowly trends toward max loss zone
 
 **Setup:**
+
 - Bullish broken wing: $95/$100/$110
 - Max loss below $95
 - Stock at $100, slowly declining
@@ -538,11 +565,13 @@ $$
 Broken wings ARE directional trades! You've concentrated risk on one side.
 
 **Example:**
+
 - Trade bullish broken wing (risk on downside)
 - Stock drops 10%
 - **Max loss hit, despite collecting credit**
 
 **The fix:**
+
 - Only use bullish broken wing if neutral-to-bullish
 - Only use bearish broken wing if neutral-to-bearish
 - Match direction to your actual market view
@@ -558,12 +587,14 @@ Broken wings ARE directional trades! You've concentrated risk on one side.
 Negative gamma at short strike = whipsaw risk. Small moves hurt disproportionately.
 
 **Example:**
+
 - Stock at $100 (your short strike)
 - Stock whipsaws $100 → $102 → $98 → $101
 - Each move costs -$30 to -$50
 - **Total: -$150 loss despite ending near $100**
 
 **The fix:**
+
 - Take profits early (at 50% max profit, don't wait for max)
 - Exit if stock volatile around short strike
 - Monitor intraday moves, not just close prices
@@ -582,12 +613,14 @@ You're selling options (short vega). Need HIGH IV to:
 3. Get proper compensation for risk
 
 **Example:**
+
 - Enter broken wing at 20th percentile IV
 - Collect $0.50 credit (small)
 - IV normalizes UP to 50th percentile
 - **P&L: -$200** (vega loss exceeds credit)
 
 **The fix:**
+
 - Only enter broken wings at >60th percentile IV
 - Check IV rank/percentile before trading
 - Use broken wings as "IV crush" plays
@@ -606,6 +639,7 @@ You're selling options (short vega). Need HIGH IV to:
 - Minimal additional profit vs huge risk
 
 **Example:**
+
 - Stock at $100, Friday expiration
 - Hoping for max profit (stock stays exactly $100)
 - Stock closes at $100.05 (slightly ITM)
@@ -614,6 +648,7 @@ You're selling options (short vega). Need HIGH IV to:
 - **Loss: -$600** (could have closed Friday for +$400)
 
 **The fix:**
+
 - Close 1 week before expiration (capture 80% of max profit)
 - Avoid Friday expiration if stock near short strikes
 - Take profit early, avoid gamma + pin risk
@@ -629,6 +664,7 @@ You're selling options (short vega). Need HIGH IV to:
 Wider broken wing = More directional bias needed. If you're wrong, max loss increases.
 
 **Example:**
+
 - Stock at $100
 - Aggressive broken wing: $95/$100/$120 (very wide upper wing)
 - Net credit: $5 (attractive!)
@@ -637,6 +673,7 @@ Wider broken wing = More directional bias needed. If you're wrong, max loss incr
 - Could have used $95/$100/$110: Max loss only -$7
 
 **The fix:**
+
 - Match wing width to conviction level
 - Typical: Upper wing 2× body width (balanced)
 - Aggressive: Upper wing 3× body width (higher credit, more risk)
@@ -680,22 +717,26 @@ $$
 - Aggressive: 3× body width (rare, high credit)
 
 **Example on $100 stock:**
+
 - Body: $95-$100 ($5 wide)
 - Broken wing: $95/$100/$110 (upper wing = $10 = 2× body)
 
 ### Time Frame Selection
 
 **Entry:**
+
 - 30-45 days to expiration (DTE)
 - Optimal theta decay zone
 - Enough time for stock to settle
 
 **Exit:**
+
 - Target: 7-14 days remaining
 - Capture 70-80% of max profit
 - Avoid gamma explosion
 
 **Example timeline:**
+
 - Day 0: Enter (45 DTE)
 - Day 30: Evaluate, consider taking profit if +50%
 - Day 35: Close if still open (10 DTE)
@@ -739,6 +780,7 @@ $$
 - **Net credit: $23 - $8.50 - $3 = $11.50 collected**
 
 **Position Greeks:**
+
 - Delta: -0.05 (slightly bearish initially)
 - Gamma: -0.06 (negative at $175)
 - Theta: +$0.15/day
@@ -749,6 +791,7 @@ $$
 - AAPL drifted to $177 (slightly above target)
 - IV compressed: 65th → 45th percentile
 - **P&L breakdown:**
+
   - Theta: +$150 (30 days × $5/day average)
   - Delta: +$20 (small favorable move)
   - Vega: +$80 (IV crush helped)
@@ -781,6 +824,7 @@ $$
 - **P&L after week 2: -$280**
 
 **Exit:**
+
 - Closed at -$280 loss
 - Credit was $400, so net -$680 total loss
 
@@ -806,6 +850,7 @@ $$
 - TSLA rallied to $250 (good directional call)
 - IV crushed: 80% → 45%
 - **P&L:**
+
   - Delta: +$100 (stock move)
   - Vega: +$350 (massive IV crush benefit)
   - Theta: +$80 (1 week decay)
@@ -895,10 +940,12 @@ $$
 ### Strike Selection
 
 **Body width:**
+
 - Narrow: Higher prob, lower profit, less risk
 - Wide: Lower prob, higher profit, more risk
 
 **Broken wing multiple:**
+
 - 1.5×: Conservative (small credit, balanced risk)
 - 2.0×: Standard (good credit, defined risk)
 - 3.0×: Aggressive (large credit, higher risk)
@@ -918,6 +965,7 @@ $$
 $$
 
 **Breakevens:**
+
 - Lower: $K_1 + $ (Net credit or - Net debit)
 - Upper: Broken wing side = no upper breakeven (protected!)
 

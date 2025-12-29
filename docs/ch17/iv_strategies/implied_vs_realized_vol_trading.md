@@ -5,6 +5,22 @@
 
 This is one of the most fundamental and persistent edges in volatility trading.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/implied_vs_realized_vol_trading_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/implied_vs_realized_vol_trading_risk_premium.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/implied_vs_realized_vol_trading_strategy_returns.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/implied_vs_realized_vol_trading_win_rate.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -205,6 +221,7 @@ The portfolio’s P&L depends primarily on **realized volatility**.
 **ATM IV:** 22%
 
 **Trade:**
+
 - Sell ATM straddle
 - Delta-hedge daily
 

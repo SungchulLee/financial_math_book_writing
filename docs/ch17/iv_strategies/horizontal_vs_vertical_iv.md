@@ -2,6 +2,22 @@
 
 **Horizontal vs vertical IV relationships** refer to the two fundamental dimensions along which implied volatility varies: the **term structure** (horizontal, across time) and the **smile/skew** (vertical, across strikes). Understanding and trading the relationship between these dimensions—how they interact, diverge, and normalize—is essential for sophisticated volatility trading and surface arbitrage.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_dimensions.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_divergence.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -57,18 +73,21 @@ The **term structure** shows how IV changes with time to expiration (holding str
 **Key features:**
 
 **Normal (upward sloping):**
+
 - Near-term: Lower IV (15-20%)
 - Medium-term: Higher IV (20-25%)
 - Long-term: Highest IV (25-30%)
 - Reflects uncertainty increases with time
 
 **Inverted (downward sloping):**
+
 - Near-term: High IV (35%+)
 - Medium-term: Lower IV (25%)
 - Long-term: Even lower IV (20%)
 - Common during crises or before events
 
 **Humped:**
+
 - Near-term: Moderate IV (20%)
 - Event maturity: High IV (40%)
 - Far-term: Normal IV (25%)
@@ -98,17 +117,20 @@ The **smile/skew** shows how IV changes with strike price (holding time constant
 **Key features:**
 
 **Equity skew (most common):**
+
 - OTM puts: High IV (35%+) - fear premium
 - ATM: Lower IV (25%)
 - OTM calls: Moderate IV (28%)
 - Asymmetric smile
 
 **Symmetric smile:**
+
 - Both wings elevated
 - ATM lowest
 - Common in commodities, FX
 
 **Flat:**
+
 - All strikes similar IV
 - Rare, typically very short-dated
 - Or very low volatility environment
@@ -127,16 +149,19 @@ In a simple Black-Scholes world:
 The two dimensions are **correlated** but imperfectly:
 
 1. **When overall IV increases:**
+
    - Term structure often steepens
    - Skew often steepens too
    - But not always proportionally!
 
 2. **When stress hits:**
+
    - Near-term spikes (horizontal)
    - OTM puts spike (vertical)
    - But the RATIO varies
 
 3. **Normal times:**
+
    - Predictable term structure
    - Stable skew
    - Relationship more consistent
@@ -154,12 +179,14 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 **1. Pure Horizontal Trades (Term Structure Only):**
 
 **Calendar Spread:**
+
 - Buy back month
 - Sell front month
 - **Same strike** (isolates time dimension)
 - Profits from term structure steepening
 
 **Example:**
+
 - Stock at $100
 - Sell 1-month $100 call
 - Buy 3-month $100 call
@@ -168,18 +195,21 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 **2. Pure Vertical Trades (Smile/Skew Only):**
 
 **Butterfly Spread:**
+
 - Buy wings (OTM strikes)
 - Sell body (ATM)
 - **Same expiration** (isolates strike dimension)
 - Profits from smile flattening
 
 **Example:**
+
 - Stock at $100
 - Buy $95 put + $105 call
 - Sell 2× $100 calls
 - Pure vertical bet
 
 **Risk Reversal:**
+
 - Buy OTM call
 - Sell OTM put
 - **Same expiration**
@@ -188,16 +218,19 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 **3. Combined Horizontal + Vertical Trades:**
 
 **Diagonal Spread:**
+
 - Different strikes AND times
 - Trades both dimensions
 - More complex
 
 **Example:**
+
 - Buy 3-month $105 call
 - Sell 1-month $110 call
 - Both dimensions involved
 
 **Calendar Butterfly:**
+
 - Butterflies at different expirations
 - Trades relationship between vertical shapes across time
 
@@ -206,6 +239,7 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 **These explicitly trade the CORRELATION between dimensions:**
 
 **Example: Skew vs Term Structure:**
+
 - When: Near-term skew very steep, far-term skew flat
 - Trade: Vertical spread in front month vs vertical spread in back month
 - Bet: Relationship normalizes
@@ -347,6 +381,7 @@ This depends on **relative IV changes across maturities**:
 - If $\delta\sigma_{T_2} < \delta\sigma_{T_1}$: Loss (term structure flattens)
 
 **Example:**
+
 - Front month IV: 20% → 22% (+2 points)
 - Back month IV: 24% → 28% (+4 points)
 - **Term structure steepened** → Calendar profitable
@@ -380,6 +415,7 @@ This depends on **relative IV changes across strikes**:
 - If smile steepens more: Loss
 
 **Example (butterfly):**
+
 - $95 put IV: 30% → 28% (-2 points, you're long)
 - $100 call IV: 25% → 26% (+1 point, you're short 2×)
 - $105 call IV: 28% → 27% (-1 point, you're long)
@@ -409,6 +445,7 @@ $$
 - Plus the **correlation** between them
 
 **Example:**
+
 - Front month ATM IV changes: +2%
 - Back month OTM IV changes: +3%
 - Diagonal profits from: 
@@ -439,6 +476,7 @@ $$
 ### 1. Pure Horizontal (Term Structure Focus)
 
 **When to use:**
+
 - Trading time dimension only
 - Clear view on term structure slope
 - Want to isolate from strike effects
@@ -446,18 +484,22 @@ $$
 **Examples:**
 
 **A. Standard Calendar:**
+
 - Same strike, different times
 - Steepening bet
 
 **B. Reverse Calendar:**
+
 - Same strike, inverted structure
 - Flattening bet
 
 **C. Ratio Calendar:**
+
 - Unequal contracts
 - Enhanced theta or vega
 
 **Characteristics:**
+
 - Delta-neutral (approximately)
 - Vega-positive (usually)
 - Theta-positive (usually)
@@ -466,6 +508,7 @@ $$
 ### 2. Pure Vertical (Smile/Skew Focus)
 
 **When to use:**
+
 - Trading strike dimension only
 - Clear view on smile shape
 - Want to isolate from time effects
@@ -473,18 +516,22 @@ $$
 **Examples:**
 
 **A. Butterfly Spread:**
+
 - Three strikes, same expiration
 - Smile flattening bet
 
 **B. Risk Reversal:**
+
 - OTM call + OTM put
 - Skew direction bet
 
 **C. Vertical Spread:**
+
 - Two strikes, directional + skew
 - Bounded risk/reward
 
 **Characteristics:**
+
 - Delta varies (depends on strikes)
 - Vega varies (depends on structure)
 - Theta varies (depends on moneyness)
@@ -493,16 +540,19 @@ $$
 ### 3. Horizontal-Heavy Diagonal
 
 **Structure:**
+
 - Emphasize term structure
 - Strikes close together
 - Time spread dominant
 
 **Example:**
+
 - Buy 90-day $100 call
 - Sell 30-day $102 call
 - Mostly a calendar, slight vertical component
 
 **When to use:**
+
 - Primary view on term structure
 - Secondary view on direction
 - Want some directional flexibility
@@ -510,16 +560,19 @@ $$
 ### 4. Vertical-Heavy Diagonal
 
 **Structure:**
+
 - Emphasize smile/skew
 - Times close together
 - Strike spread dominant
 
 **Example:**
+
 - Buy 45-day $95 put
 - Sell 30-day $100 put
 - Mostly a vertical spread, slight calendar component
 
 **When to use:**
+
 - Primary view on skew
 - Secondary view on time decay
 - Want some theta benefit
@@ -527,16 +580,19 @@ $$
 ### 5. Balanced Diagonal
 
 **Structure:**
+
 - Equal emphasis on both dimensions
 - Moderate strike difference
 - Moderate time difference
 
 **Example:**
+
 - Buy 90-day $105 call
 - Sell 30-day $110 call
 - True diagonal structure
 
 **When to use:**
+
 - Views on both dimensions
 - Want combined exposure
 - Directional + term structure bet
@@ -544,21 +600,25 @@ $$
 ### 6. Horizontal vs Vertical Relationship Trade
 
 **Structure:**
+
 - Explicitly trade the correlation
 - Compare slopes across dimensions
 
 **Example:**
+
 - Front month skew is very steep (vertical)
 - Term structure is very flat (horizontal)
 - **Historically, these move together**
 - Trade: Expect convergence
 
 **Specific trade:**
+
 - Buy front-month vertical spread (capture steep skew)
 - Sell back-month vertical spread (flat skew)
 - Bet: Skews will align
 
 **When to use:**
+
 - Divergence between dimensions
 - Historical correlation broken
 - Mean reversion expected
@@ -572,6 +632,7 @@ $$
 **Stock:** SPY at $480
 
 **Market IVs (ATM):**
+
 - 1-month: 15% (low)
 - 3-month: 18% (low)
 - 6-month: 22% (elevated)
@@ -595,6 +656,7 @@ $$
 **Position analysis:**
 
 **Greeks:**
+
 - Delta: ≈ 0
 - Vega (net): +0.25 (long back month vega)
 - Theta: +$15/day
@@ -609,6 +671,7 @@ $$
 **Scenario 1 (30 days later - optimal):**
 
 **If term structure steepens:**
+
 - 1-month expired (was $8.50)
 - 3-month (now 2-month) IV: 18% → 20%
 - 3-month call now worth: $11.50
@@ -616,6 +679,7 @@ $$
 - **Profit: $2.10** (45% return)
 
 **Scenario 2: Stock moves to $490:**
+
 - 1-month call: $10 at expiration (ITM)
 - 3-month call: Worth $15
 - Calendar compressed
@@ -623,6 +687,7 @@ $$
 - **Loss: ≈ -$4.40**
 
 **Scenario 3: Term structure flattens:**
+
 - 1-month expired
 - 3-month IV: 18% → 16% (dropped)
 - 3-month call: Worth $9.80
@@ -638,6 +703,7 @@ $$
 **Stock:** AAPL at $180
 
 **Market IVs (30-day):**
+
 - $170 call: IV = 22%
 - $180 call: IV = 18%
 - $190 call: IV = 24%
@@ -661,6 +727,7 @@ $$
 **Position analysis:**
 
 **Greeks:**
+
 - Delta: ≈ 0 (if stock at $180)
 - Vega: +0.15 (net long wings)
 - Theta: -$8/day (cost of convexity)
@@ -675,6 +742,7 @@ $$
 **Scenario 1 (at expiration - stock at $180):**
 
 **If smile flattened:**
+
 - All options expire at/near the money
 - Butterfly worth: ≈$0-2
 - **P&L:** Lost the $4.00 premium
@@ -692,6 +760,7 @@ Actually, at expiration, if stock is exactly at $180:
 **Scenario 2 (before expiration - smile flattens):**
 
 **If IVs converge to 20%:**
+
 - $170 call @ IV=20%: $13.00 (down from $14.80)
 - $180 call @ IV=20%: $7.80 (up from $7.50)
 - $190 call @ IV=20%: $3.50 (down from $4.20)
@@ -714,16 +783,19 @@ If the smile is too steep (wings too expensive), we want to **SELL the butterfly
 **The bet:** Smile flattens (wings get cheaper relative to ATM)
 
 **Scenario (smile flattens):**
+
 - Wings lose value
 - Butterfly loses value
 - We profit from short position
 
 **At expiration (stock at $180):**
+
 - Butterfly worth $10 (max value)
 - We need to buy it back
 - **Loss: $10 - $4 = -$6** (this is the risk)
 
 **Before expiration (smile flattens to all 20% IV):**
+
 - Butterfly worth $0.90 (from calculation above)
 - **P&L: $4.00 - $0.90 = $3.10 profit**
 
@@ -740,11 +812,13 @@ This makes more sense.
 **Market conditions:**
 
 **Horizontal (term structure):**
+
 - 1-month ATM IV: 25%
 - 3-month ATM IV: 28%
 - Normal upward slope
 
 **Vertical (skew):**
+
 - 1-month $105 call IV: 27%
 - 3-month $105 call IV: 30%
 - Wings elevated as expected
@@ -766,6 +840,7 @@ This makes more sense.
 **Position analysis:**
 
 **Greeks:**
+
 - Delta: +25 (net bullish)
 - Vega: +0.30 (net long back month)
 - Theta: +$8/day (short front offsets some)
@@ -785,17 +860,20 @@ This makes more sense.
 - **P&L: -$3.60 + $2.20 + $8.50 - $5.80 = $1.30 profit**
 
 **Breakdown:**
+
 - Directional gain: Stock moved up
 - Horizontal gain: Back month IV increased
 - Theta gain: Front month decayed
 - **All dimensions contributed!**
 
 **Scenario 2: Stock at $103 (modest move):**
+
 - Short $108 call: Expires worthless
 - Long $105 call: Worth $5.50
 - **P&L: -$3.60 + $2.20 + $5.50 - $5.80 = -$1.70 loss**
 
 **Scenario 3: Stock at $110 (large move):**
+
 - Short $108 call: $2 ITM, pay -$2.00
 - Long $105 call: Worth $11.00
 - **P&L: -$3.60 + $2.20 - $2.00 + $11.00 - $5.80 = $1.80 profit**
@@ -821,12 +899,14 @@ The diagonal profits from:
 **Unusual observation:**
 
 **Front month (30-day):**
+
 - $440 put IV: 28%
 - $450 call IV: 20%
 - $460 call IV: 24%
 - **Skew: Very steep** (8 point put/ATM spread)
 
 **Back month (90-day):**
+
 - $440 put IV: 24%
 - $450 call IV: 22%
 - $460 call IV: 23%
@@ -835,11 +915,13 @@ The diagonal profits from:
 **Analysis:**
 
 **Historically:**
+
 - Front and back month skews track closely
 - Correlation ≈ 0.85
 - Both should be steep or both flat
 
 **Currently:**
+
 - Front skew: Steep
 - Back skew: Flat
 - **Correlation broken!**
@@ -879,20 +961,24 @@ Sell back-month put spread (skew should steepen):
 **Scenario 1 (15 days later - skews converge):**
 
 **Front month skew flattens:**
+
 - $440 put IV: 28% → 24% 
 - $450 put IV: 20% → 22%
 - Spread value decreases to $2.00
 
 **Back month skew steepens:**
+
 - $440 put IV: 24% → 26%
 - $450 put IV: 22% → 22%
 - Spread value increases to $2.80
 
 **Close position:**
+
 - Front spread: Was $2.80, now $2.00 → Buy back for $2.00
 - Back spread: Was $2.20, now $2.80 → Buy back for $2.80
 
 **P&L:**
+
 - Front: -$2.80 + $2.00 = -$0.80
 - Back: +$2.20 - $2.80 = -$0.60
 - **Total: -$1.40 loss**
@@ -936,21 +1022,25 @@ This is cleaner and works!
 **Strike selection:**
 
 **ATM strikes (most common):**
+
 - Maximum sensitivity to term structure
 - Highest liquidity
 - Clearest signal
 
 **Why ATM:**
+
 - Vega concentrated at ATM
 - Skew effects minimized
 - Pure time dimension exposure
 
 **OTM strikes (special cases):**
+
 - When combining with directional view
 - Or when ATM liquidity poor
 - Still same strike across time
 
 **Strike rules:**
+
 - **Same strike** for front and back
 - Typically ATM ± 1 strike
 - High liquidity essential
@@ -964,16 +1054,19 @@ This is cleaner and works!
 **For butterflies:**
 
 **Centered butterflies:**
+
 - Center at ATM
 - Wings equidistant (±1 SD, or ±5%, ±10%)
 - Pure smile bet
 
 **Example:**
+
 - Stock at $100
 - Buy $95 + $105
 - Sell 2× $100
 
 **Shifted butterflies:**
+
 - Center away from ATM
 - Trade specific smile region
 - Can be far OTM
@@ -981,16 +1074,19 @@ This is cleaner and works!
 **For risk reversals:**
 
 **Standard:**
+
 - 25-delta call and put (common in FX)
 - Measures skew directly
 - Industry standard
 
 **Custom:**
+
 - Any OTM strikes
 - Reflects your skew view
 - Match to expected range
 
 **Strike rules:**
+
 - **Same expiration** for all options
 - Consider liquidity at each strike
 - Symmetric or asymmetric (your choice)
@@ -1002,27 +1098,32 @@ This is cleaner and works!
 **Strike selection:**
 
 **Horizontal-heavy:**
+
 - Front and back strikes close (1-2 strikes apart)
 - Emphasizes term structure
 - Slight directional bias
 
 **Vertical-heavy:**
+
 - Front and back strikes far apart
 - Emphasizes smile/skew
 - Strong directional component
 
 **Balanced:**
+
 - Moderate strike separation
 - Equal weight to both dimensions
 
 **Common patterns:**
 
 **Bullish diagonal:**
+
 - Long back: ATM to slightly ITM
 - Short front: OTM
 - Example: Long 90-day $100, Short 30-day $105
 
 **Bearish diagonal:**
+
 - Long back: ATM to slightly ITM (put)
 - Short front: OTM (put)
 - Example: Long 90-day $100 put, Short 30-day $95 put
@@ -1034,12 +1135,14 @@ This is cleaner and works!
 ### For Horizontal Trades (Pure Term Structure)
 
 **Front month:**
+
 - **30-45 days:** Standard
 - High theta decay
 - Liquid options
 - Not too close to expiration
 
 **Back month:**
+
 - **90-120 days:** Standard
 - 2:1 to 3:1 ratio (back:front)
 - Stable vega exposure
@@ -1048,12 +1151,14 @@ This is cleaner and works!
 **Special cases:**
 
 **Short-term term structure:**
+
 - Front: 7-14 days
 - Back: 30-45 days
 - Very steep decay differential
 - Higher risk (gamma)
 
 **Long-term term structure:**
+
 - Front: 60 days
 - Back: 180 days (LEAPS)
 - Stable, lower maintenance
@@ -1062,12 +1167,14 @@ This is cleaner and works!
 ### For Vertical Trades (Pure Smile/Skew)
 
 **Standard expirations:**
+
 - **30-60 days:** Most common
 - Adequate time for normalization
 - Good liquidity
 - Manageable Greeks
 
 **Why these maturities:**
+
 - Smile well-defined
 - Sufficient vega
 - Not dominated by gamma (near expiry)
@@ -1076,11 +1183,13 @@ This is cleaner and works!
 **Special cases:**
 
 **Near-term smile (7-14 days):**
+
 - Very sensitive to skew changes
 - High gamma risk
 - Event-driven (earnings)
 
 **Long-term smile (90-180 days):**
+
 - More stable
 - Expensive
 - Structural views
@@ -1088,6 +1197,7 @@ This is cleaner and works!
 ### For Diagonal Trades
 
 **Time spread:**
+
 - **2:1 to 3:1 ratio** (back:front)
 - Example: 90-day back, 30-day front
 - Standard for most diagonals
@@ -1115,6 +1225,7 @@ This is cleaner and works!
 **During the trade:**
 
 **Monitor:**
+
 1. **Term structure slope:** Is it steepening as expected?
 2. **Stock price:** Staying near strike?
 3. **Theta accumulation:** On track?
@@ -1123,16 +1234,19 @@ This is cleaner and works!
 **Adjustment triggers:**
 
 **Stock moves away (> ±5% from strike):**
+
 - Close position
 - Or roll strike to new level
 - Or adjust to diagonal
 
 **Term structure inverts:**
+
 - Consider closing
 - Thesis no longer valid
 - Cut losses
 
 **Front month approaching (7-14 days):**
+
 - Roll to next month
 - Or close entire position
 - Avoid gamma explosion
@@ -1150,6 +1264,7 @@ This is cleaner and works!
 **During the trade:**
 
 **Monitor:**
+
 1. **Smile shape:** Changing as expected?
 2. **Stock price:** Near center of butterfly?
 3. **Realized vol:** vs implied?
@@ -1158,16 +1273,19 @@ This is cleaner and works!
 **Adjustment triggers:**
 
 **Stock moves to wing (> ±3-4%):**
+
 - Close position
 - Or adjust center
 - Or let it ride (if thesis intact)
 
 **Smile steepens more (if short fly):**
+
 - May need to close
 - Loss expanding
 - Reassess thesis
 
 **Near expiration (<14 days):**
+
 - Gamma risk increases
 - Close or roll
 - Avoid pin risk
@@ -1185,6 +1303,7 @@ This is cleaner and works!
 **During the trade:**
 
 **Monitor:**
+
 1. **Both dimensions:** Horizontal and vertical
 2. **Stock price:** Directional component
 3. **Term structure:** Changes
@@ -1193,16 +1312,19 @@ This is cleaner and works!
 **Adjustment triggers:**
 
 **Stock moves against you:**
+
 - Roll short strike
 - Adjust structure
 - May convert to different trade
 
 **Either dimension moves adversely:**
+
 - Re-evaluate thesis
 - May need to close
 - Cut losses if both turn
 
 **Front month expiration:**
+
 - Standard: Roll short leg
 - Or close entire position
 - Adjust based on P&L
@@ -1220,6 +1342,7 @@ This is cleaner and works!
 **During the trade:**
 
 **Monitor:**
+
 1. **Correlation:** Is it normalizing?
 2. **Individual dimensions:** How are they behaving?
 3. **P&L attribution:** Which dimension contributing?
@@ -1228,16 +1351,19 @@ This is cleaner and works!
 **Adjustment triggers:**
 
 **Relationship normalizes (50-75% of expected):**
+
 - **Take profit**
 - Don't wait for perfect
 - Lock in gains
 
 **Relationship diverges more:**
+
 - Reassess thesis
 - Set stop loss
 - May be regime change
 
 **Time running out:**
+
 - Close at 14 days
 - Avoid expiration complexity
 - Redeploy if needed
@@ -1651,25 +1777,30 @@ $$
 ### 4. Volatility Surface Dynamics
 
 **Sticky strike:**
+
 - IV "sticks" to absolute strikes
 - Common in equity indices
 
 **Sticky delta:**
+
 - IV "sticks" to moneyness
 - Common in FX
 
 **Mixed behavior:**
+
 - Varies by asset class
 - Changes over time
 
 **Implications for horizontal vs vertical:**
 
 **Sticky strike:**
+
 - As stock moves, smile shape preserved
 - Horizontal trades less affected
 - Vertical trades more sensitive
 
 **Sticky delta:**
+
 - Smile moves with stock
 - Horizontal trades more affected
 - Complex interactions
@@ -1691,11 +1822,13 @@ $$
 $$
 
 **When horizontal variance > vertical variance:**
+
 - Term structure more unstable
 - Calendar trades riskier
 - Butterfly trades safer
 
 **When vertical variance > horizontal variance:**
+
 - Smile more unstable
 - Butterfly trades riskier
 - Calendar trades safer
@@ -1729,11 +1862,13 @@ $$
 **Observation:**
 
 **Horizontal dimension (term structure):**
+
 - Front month (30-day) IV: **85%** (extreme)
 - Back month (90-day) IV: **60%** (elevated but less)
 - **Massive inversion**
 
 **Vertical dimension (smile):**
+
 - 30-day OTM put IV: **95%**
 - 30-day ATM IV: **85%**
 - **Skew extremely steep**
@@ -1755,17 +1890,20 @@ $$
 **What happened:**
 
 **Week 1-2:**
+
 - Front month IV stayed elevated (80-90%)
 - Calendar struggled
 - Losses mounting
 
 **Week 3-4:**
+
 - Panic subsided
 - Front month IV collapsed: 85% → 50%
 - Back month IV: 60% → 55%
 - **Term structure normalized**
 
 **Result:**
+
 - Calendar profitable
 - 40-60% returns in 4 weeks
 - But required nerve and risk tolerance
@@ -1785,11 +1923,13 @@ $$
 **Observation:**
 
 **Horizontal (term structure):**
+
 - 1-month (includes earnings) IV: **70%**
 - 3-month (after earnings) IV: **45%**
 - Extreme elevation in front month
 
 **Vertical (smile):**
+
 - 1-month skew: Relatively flat (binary event)
 - 3-month skew: Normal equity skew
 - Different smile shapes!
@@ -1811,17 +1951,20 @@ $$
 **What happened:**
 
 **Before earnings (days 1-27):**
+
 - Front month IV stayed 65-70%
 - Position flat to slightly profitable
 - Time decay helped
 
 **After earnings (day 29):**
+
 - Stock moved 8% (in line with historical)
 - Front month IV crushed: 70% → 35%
 - Back month IV unchanged: 45%
 - **Reverse calendar profitable**
 
 **Result:**
+
 - 50-80% return
 - IV crush was the driver
 - Horizontal dimension trade
@@ -1841,11 +1984,13 @@ $$
 **Observation:**
 
 **Vertical (smile):**
+
 - OTM put IV: **35%**
 - ATM IV: **18%**
 - **Skew extremely steep** (fear premium lingering)
 
 **Horizontal (term structure):**
+
 - All maturities: Normal upward slope
 - 1m: 18%, 3m: 20%, 6m: 22%
 - Nothing unusual
@@ -1868,6 +2013,7 @@ $$
 **What happened:**
 
 **Over 60 days:**
+
 - Market continued recovering
 - Fear premium declined
 - OTM put IV: 35% → 25%
@@ -1875,6 +2021,7 @@ $$
 - **Skew flattened**
 
 **Result:**
+
 - Butterfly value decreased
 - Profitable short position
 - 40-50% return on capital at risk
@@ -2017,21 +2164,25 @@ Capital allocation:
 **Stop losses:**
 
 **Horizontal trades:**
+
 - Exit if term structure inverts (if long calendar)
 - Stop: -30% of debit paid
 - Or: 14 days to front expiration
 
 **Vertical trades:**
+
 - Exit if skew steepens 50% more (if short fly)
 - Stop: -40% of credit received
 - Or: < 14 days to expiration
 
 **Diagonal trades:**
+
 - Exit if stock breaks out of range
 - Stop: -35% of debit paid
 - Or: Reassess at front expiration
 
 **Relationship trades:**
+
 - Exit if correlation diverges further
 - Stop: -50% of expected profit
 - Or: Regime change evident
@@ -2041,21 +2192,25 @@ Capital allocation:
 **Required tools:**
 
 **Data:**
+
 - Real-time option chains
 - IV surface calculator
 - Historical IV database
 
 **Analytics:**
+
 - Term structure plotter
 - Smile curve fitter
 - Correlation calculator
 
 **Execution:**
+
 - Spread order entry
 - Multi-leg optimizer
 - Greeks monitor
 
 **Backtesting:**
+
 - Historical surface data
 - Strategy simulator
 - P&L attribution
@@ -2169,14 +2324,17 @@ $$
 **Horizontal (Term Structure):**
 
 **What it is:**
+
 - IV vs time to expiration
 - Holding strike constant
 
 **How to trade it:**
+
 - **Calendar spreads** (same strike, different times)
 - Bet on steepening, flattening, or slope changes
 
 **When to use:**
+
 - Clear term structure view
 - Range-bound stock expectation
 - Want positive theta (usually)
@@ -2184,15 +2342,18 @@ $$
 **Vertical (Smile/Skew):**
 
 **What it is:**
+
 - IV vs strike price
 - Holding time constant
 
 **How to trade it:**
+
 - **Butterflies** (same time, different strikes)
 - **Risk reversals** (OTM options)
 - Bet on smile flattening, steepening
 
 **When to use:**
+
 - Clear skew view
 - Want defined risk
 - Realized vol view
@@ -2214,21 +2375,25 @@ $$
 ### Strategy Selection
 
 **Pure horizontal (calendar):**
+
 - Same strike, different times
 - Term structure bet
 - Theta-positive (usually)
 
 **Pure vertical (butterfly):**
+
 - Different strikes, same time
 - Smile/skew bet
 - Defined risk
 
 **Combined (diagonal):**
+
 - Different strikes AND times
 - Both dimensions
 - More complex
 
 **Relationship trades:**
+
 - Explicit correlation bet
 - Advanced
 - Requires modeling
@@ -2236,18 +2401,21 @@ $$
 ### Greeks by Dimension
 
 **Horizontal trades:**
+
 - Delta: ≈ 0
 - Vega: Positive (back month)
 - Theta: Positive (front decays)
 - Gamma: Mixed
 
 **Vertical trades:**
+
 - Delta: Variable (depends on structure)
 - Vega: Depends on wings vs body
 - Theta: Negative (long fly) or Positive (short fly)
 - Gamma: Positive (long fly) or Negative (short fly)
 
 **Combined trades:**
+
 - All Greeks active
 - Complex interactions
 - Requires careful management
@@ -2279,24 +2447,28 @@ $$
 ### When to Use Each
 
 **Horizontal (Calendar) ✓:**
+
 - Term structure abnormal
 - Stock range-bound
 - Want theta income
 - No events in front month
 
 **Vertical (Butterfly) ✓:**
+
 - Skew abnormal
 - Clear smile view
 - Want defined risk
 - Adequate time (>30 days)
 
 **Combined (Diagonal) ✓:**
+
 - Views on both dimensions
 - Directional + time/skew
 - Comfortable with complexity
 - Can manage actively
 
 **Relationship Trades ✓:**
+
 - Correlation broken
 - Historical mean reversion
 - Sophisticated approach
@@ -2305,18 +2477,21 @@ $$
 ### Performance Expectations
 
 **Horizontal trades:**
+
 - Win rate: 60-70%
 - Returns: 20-40% per trade
 - Hold time: 15-30 days
 - Frequency: Weekly opportunities
 
 **Vertical trades:**
+
 - Win rate: 55-65%
 - Returns: 25-50% per trade
 - Hold time: 20-45 days
 - Frequency: Monthly opportunities
 
 **Combined/Relationship:**
+
 - Win rate: 50-60%
 - Returns: 30-60% per trade
 - Hold time: 30-60 days
@@ -2331,16 +2506,19 @@ $$
 **The strategic value:**
 
 **Horizontal dimension:**
+
 - **Term structure trading** (time)
 - **Theta harvesting** capability
 - **Vega positioning** across maturities
 
 **Vertical dimension:**
+
 - **Smile/skew trading** (strikes)
 - **Realized vol exposure** management
 - **Strike-specific** positioning
 
 **Combined:**
+
 - **Maximum flexibility** (both dimensions)
 - **Relationship exploitation** (correlation)
 - **Complete surface** understanding

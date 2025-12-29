@@ -339,22 +339,26 @@ $$\underbrace{+5}_{\text{Long terminal}} + \underbrace{(-1)}_{\text{Long initial
 Understanding this separation is crucial:
 
 **1. For Theoretical Pricing:**
+
 - Terminal payoffs are mirror images (opposite structures)
 - Initial cash flows exactly compensate
 - Present values are equal (no arbitrage via put-call parity)
 
 **2. For Practical Trading:**
+
 - The initial cash flow difference is REAL money today
 - Time value of money advantage to Iron Butterfly
 - Capital efficiency benefits are tangible
 
 **3. For Risk Management:**
+
 - You need to understand BOTH components:
   - **Cash impact today:** Iron gives you $4 to work with
   - **Exposure at expiration:** Both have same risk profile
 - The P&L diagram shows the combined effect
 
 **4. For Portfolio Construction:**
+
 - Iron Butterfly: Sell risk (short options), receive premium
 - Long Butterfly: Buy asymmetry (long options), pay premium
 - Same net exposure, different funding structure
@@ -364,12 +368,14 @@ Understanding this separation is crucial:
 This works because of **put-call parity**. The strategies are **synthetic equivalents**:
 
 - **Long Butterfly Structure:**
+
   - Buy low strike call: +$5 if stock rises
   - Sell 2 middle calls: -$10 if stock at middle
   - Buy high strike call: +$5 if stock rises high
   - Net: Peaks at middle, pay upfront
 
 - **Iron Butterfly Structure:**
+
   - Sell ATM straddle: Collect premium, owe if stock moves
   - Buy wings for protection: Limit losses
   - Net: Same risk profile, collect upfront
@@ -382,11 +388,13 @@ But the **timing** of cash flows differs, creating practical advantages!
 #### The Bottom Line on P&L Diagrams
 
 **What you see in the P&L diagram:**
+
 - ✓ Total combined effect (terminal + initial)
 - ✓ Your actual profit/loss at each price
 - ✓ Risk-reward at expiration
 
 **What the P&L diagram doesn't show:**
+
 - ✗ When you get/pay money (upfront vs later)
 - ✗ Time value of money differences
 - ✗ Capital efficiency advantages
@@ -409,6 +417,7 @@ Even though P&L is identical, many traders prefer iron butterflies:
 4. **✓ Theta positive from day one** - Time decay works for you immediately
 
 **Think of it like:**
+
 - **Long Butterfly**: Pay $1 for a lottery ticket worth up to $5
 - **Iron Butterfly**: Sell a guarantee for $4, but might have to pay out $5
 
@@ -439,12 +448,14 @@ Day 30:  P&L = +$4 (if stock at $100)
 **Assume:** 30-day trade, risk-free rate = 5% annually
 
 **Iron Butterfly:**
+
 - Receive $400 upfront (per contract)
 - Put in money market: $400 × (5%/12) = **$1.67** interest per month
 - At expiration if stock at $100: Keep $400 + **$1.67 interest**
 - **Total gain: $401.67**
 
 **Long Butterfly:**
+
 - Pay $100 upfront (per contract)
 - No interest earned
 - At expiration if stock at $100: Gain $400
@@ -503,12 +514,14 @@ Iron Butterflies:
 **Example with $10,000 capital:**
 
 **Long Butterfly Approach:**
+
 - Buy 100 contracts at $100 debit each = $10,000
 - If all win (+$400 each): Profit = $40,000
 - ROI: 400% on deployed capital
 - **But: All capital locked up for 30 days**
 
 **Iron Butterfly Approach:**
+
 - Margin requirement: ~$100 per contract (max loss)
 - Can sell 100 contracts
 - Receive: 100 × $400 = **$40,000 credit immediately**
@@ -705,6 +718,7 @@ This **forces** equivalent strategies to have equal present values, even when:
 - Nominal amounts differ
 
 **The option prices themselves already incorporate:**
+
 1. Time value of money (risk-free rate r)
 2. Carry costs
 3. Dividend yields
@@ -713,11 +727,13 @@ This **forces** equivalent strategies to have equal present values, even when:
 #### The Key Insight
 
 **Theoretically (Black-Scholes/No-Arbitrage):**
+
 - ✓ Present values are equal
 - ✓ No arbitrage exists
 - ✓ Pricing is efficient at the risk-free rate
 
 **Practically (Real-World Trading):**
+
 - ✓ Iron Butterfly IS still better because:
   - You can invest the $4 at YOUR rate (possibly > risk-free)
   - Capital efficiency creates compounding opportunities

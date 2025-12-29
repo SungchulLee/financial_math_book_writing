@@ -2,6 +2,22 @@
 
 **Vega-neutral multi-leg structures** are sophisticated options positions constructed with multiple strikes and/or expirations designed to have zero (or minimal) net vega exposure, allowing traders to isolate and profit from other dimensions—such as gamma, theta, realized volatility, or time decay—while eliminating sensitivity to changes in implied volatility levels.
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_construction.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_implementation.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ---
 
 ## The Core Insight
@@ -49,6 +65,7 @@ $$
 $$
 
 **Example:**
+
 - Option has vega = $50
 - IV increases from 25% → 26% (+1%)
 - Option price increases by: **$50**
@@ -56,17 +73,20 @@ $$
 **Key properties of vega:**
 
 **1. Always positive for long options:**
+
 - Long call: Vega > 0
 - Long put: Vega > 0
 - Short call: Vega < 0
 - Short put: Vega < 0
 
 **2. Maximized at ATM:**
+
 - ATM options have highest vega
 - Deep ITM/OTM have lower vega
 - Vega peaks at the money
 
 **3. Increases with time:**
+
 - Longer-dated options have more vega
 - Near expiration vega → 0
 - LEAPS have maximum vega
@@ -84,10 +104,12 @@ Vega and gamma are connected through the Greeks structure.
 **Scenario: You want to trade gamma (realized vol)**
 
 **Standard approach:**
+
 - Buy straddle (long gamma)
 - But also long vega (+$200 per 1% IV)
 
 **What happens:**
+
 - Stock moves perfectly (gamma profit: +$1,500)
 - But IV drops from 30% → 25% (-5 points)
 - Vega loss: -$200 × 5 = -$1,000
@@ -301,6 +323,7 @@ $$
 $$
 
 **Result:**
+
 - Positive gamma (your bet)
 - Zero vega (isolated)
 - Theta varies (cost of gamma usually)
@@ -326,6 +349,7 @@ $$
 $$
 
 **Result:**
+
 - Positive theta (your bet)
 - Zero vega (isolated)
 - Gamma near zero (ideal)
@@ -389,11 +413,13 @@ $$
 $$
 
 **This captures realized volatility:**
+
 - Big moves → Positive P&L (if long gamma)
 - Small moves → Negative P&L (theta cost dominates)
 - **Betting: Realized vol > Implied vol**
 
 **Example:**
+
 - Net gamma: +50
 - Stock moves $2, then -$1.50, then +$2.50 over 3 days
 - P&L = $\frac{1}{2} \times 50 \times (4 + 2.25 + 6.25) = +$312.50$
@@ -405,6 +431,7 @@ $$
 $$
 
 **For long gamma structures:**
+
 - Theta typically negative (cost of gamma)
 - Example: -$30/day × 10 days = -$300
 
@@ -436,11 +463,13 @@ $$
 $$
 
 **Goal:**
+
 - Maximize theta
 - Minimize gamma (don't want moves)
 - Zero vega (no IV risk)
 
 **Example:**
+
 - Theta: +$50/day
 - 20 days: +$1,000 theta collected
 - Gamma moves: -$150
@@ -453,6 +482,7 @@ $$
 ### 1. Gamma-Focused Vega-Neutral
 
 **Philosophy:**
+
 - Want long gamma for scalping
 - Don't want IV exposure
 - Neutralize vega precisely
@@ -470,12 +500,14 @@ $$
 **Stock $100:**
 
 **Long position:**
+
 - Buy 10 contracts 30-day $100 straddle
 - Vega per straddle: +$60
 - Total vega: +$600
 - Gamma: +40
 
 **Short position (to neutralize):**
+
 - Sell 90-day $100 straddle
 - Vega per straddle: +$100
 - Need: $600 / $100 = 6 contracts
@@ -483,11 +515,13 @@ $$
 - Gamma: -15
 
 **Net position:**
+
 - Vega: +$600 - $600 = **0** ✓
 - Gamma: +40 - 15 = **+25** ✓
 - Theta: -$250 + $120 = **-$130/day**
 
 **The bet:**
+
 - Realized vol high (gamma wins)
 - IV level doesn't matter (vega neutral)
 - Pay theta cost (acceptable)
@@ -508,6 +542,7 @@ $$
 - **Gamma: Net positive**
 
 **Characteristics:**
+
 - Long gamma away from ATM
 - Zero vega
 - Positive theta possible
@@ -521,11 +556,13 @@ $$
 - But can be adjusted with ratio
 
 **Standard calendar:**
+
 - Sell 30-day $100 call (vega = -$40)
 - Buy 90-day $100 call (vega = +$65)
 - **Net vega: +$25** (not neutral)
 
 **Vega-neutral adjustment:**
+
 - Sell 1.625 × 30-day calls
 - Or buy 0.615 × 90-day calls
 - **Achieves vega neutrality**
@@ -533,6 +570,7 @@ $$
 ### 2. Theta-Focused Vega-Neutral
 
 **Philosophy:**
+
 - Want positive theta
 - Don't want IV risk
 - Minimize gamma (don't want moves)
@@ -550,6 +588,7 @@ $$
 **Stock $100:**
 
 **Standard IC:**
+
 - Sell $95/$90 put spread (vega = -$30)
 - Sell $105/$110 call spread (vega = -$30)
 - **Net vega: -$60**
@@ -562,6 +601,7 @@ Add long vega from further-dated options:
 - **Net vega: -$60 + $60 = 0** ✓
 
 **Result:**
+
 - Theta: Still positive
 - Vega: Neutral
 - More complex management
@@ -583,6 +623,7 @@ Add long vega from further-dated options:
 **Net vega:** +15 - 80 + 65 = 0 ✓
 
 **Characteristics:**
+
 - Profits from specific time decay pattern
 - Neutral to IV changes
 - Complex Greeks
@@ -590,6 +631,7 @@ Add long vega from further-dated options:
 ### 3. Skew-Focused Vega-Neutral
 
 **Philosophy:**
+
 - Want to trade smile shape
 - Don't want to bet on IV level
 - Isolate skew sensitivity
@@ -597,6 +639,7 @@ Add long vega from further-dated options:
 #### A. Vega-Neutral Risk Reversal
 
 **Standard risk reversal:**
+
 - Buy $105 call (vega = +$35)
 - Sell $95 put (vega = -$30)
 - **Net vega: +$5** (small but not zero)
@@ -609,6 +652,7 @@ Add calendar component:
 - **Achieve vega = 0**
 
 **Now:**
+
 - Pure skew bet (call IV vs put IV)
 - No level bet
 - Isolated exposure
@@ -624,15 +668,18 @@ Add calendar component:
 **Example:**
 
 **Front-month butterfly:**
+
 - Buy $95 call, sell 2× $100 calls, buy $105 call
 - Net vega: +$15 (depends on strikes)
 
 **Add:**
+
 - Sell 60-day $100 call (vega = -$50)
 - Ratio: 0.3 contracts
 - **Net vega: +$15 - $15 = 0** ✓
 
 **Result:**
+
 - Skew exposure (butterfly)
 - No IV level exposure
 - Time dimension added
@@ -655,6 +702,7 @@ Add calendar component:
 - **Harvest gamma profits**
 
 **P&L sources:**
+
 1. Gamma from moves (positive if vol realized)
 2. Vega: Zero (neutralized)
 3. Theta: Negative (cost)
@@ -683,6 +731,7 @@ $$
 Where $K_{\text{var}}$ is strike variance
 
 **Construction:**
+
 - Complex weighted portfolio of options
 - Continuously rebalanced
 - Institutional approach
@@ -713,12 +762,14 @@ Where $K_{\text{var}}$ is strike variance
 - **Cost:** $187,000 ($18,700 per straddle × 10)
 
 **Greeks:**
+
 - Delta: 0 (neutral)
 - Gamma: +180
 - Vega: +$850 per 1% IV (PROBLEM!)
 - Theta: -$320/day
 
 **Issue:** 
+
 - Long vega = $850
 - If IV drops to 16% (-2 points), lose $1,700
 - This contaminates gamma bet
@@ -733,6 +784,7 @@ Where $K_{\text{var}}$ is strike variance
 - Sell 6 contracts $450 put @ $17.00
 
 **Greeks from short position:**
+
 - Gamma: -72
 - Vega: -$840 (6 × $140)
 - Theta: +$180/day
@@ -740,12 +792,14 @@ Where $K_{\text{var}}$ is strike variance
 **Step 4: Net position**
 
 **Combined:**
+
 - Gamma: +180 - 72 = **+108** ✓
 - Vega: +$850 - $840 = **+$10** ✓ (nearly zero!)
 - Theta: -$320 + $180 = **-$140/day**
 - Delta: 0
 
 **Capital:**
+
 - Long straddles: -$187,000
 - Short straddles: +$207,000
 - **Net credit: +$20,000** (cash collected)
@@ -753,6 +807,7 @@ Where $K_{\text{var}}$ is strike variance
 **Step 5: Trading plan**
 
 **Delta hedging:**
+
 - Rehedge when delta reaches ±20
 - Buy/sell SPY shares
 - Frequency: 2-3 times per day
@@ -769,9 +824,11 @@ Where $K_{\text{var}}$ is strike variance
 - 20 days: **+$45,640**
 
 **Theta cost:**
+
 - -$140/day × 20 = **-$2,800**
 
 **Vega impact:**
+
 - If IV drops 2 points: +$10 × -2 = **-$20** (negligible!)
 
 **Net P&L:** +$45,640 - $2,800 - $20 = **+$42,820**
@@ -797,6 +854,7 @@ Where $K_{\text{var}}$ is strike variance
 **Total P&L: $50,000 - $2,800 + $20 - $500 = +$46,720**
 
 **Close position:**
+
 - Buy back short straddles
 - Sell long straddles
 - Realize profit
@@ -822,6 +880,7 @@ Where $K_{\text{var}}$ is strike variance
 **Still profitable!** But much less than expected.
 
 **If realized vol was even lower (10%):**
+
 - Gamma: $10,000
 - Costs: -$3,100
 - **Net: +$6,900** (marginal)
@@ -846,12 +905,14 @@ Where $K_{\text{var}}$ is strike variance
 - **10 contracts: $3,500 credit**
 
 **Greeks:**
+
 - Theta: +$55/day ✓ (want this!)
 - Vega: -$95 per 1% IV (don't want this!)
 - Gamma: -25
 - Delta: 0
 
 **Problem:**
+
 - If IV rises (market gets nervous), could lose money
 - Don't want to bet on IV direction
 
@@ -860,11 +921,13 @@ Where $K_{\text{var}}$ is strike variance
 **Add long vega position:**
 
 **Buy 60-day ATM calls:**
+
 - 60-day $180 call vega: +$48
 - Need: $95 / $48 = 1.98 ≈ 2 contracts
 - Buy 2 contracts @ $11.50
 
 **Greeks from long calls:**
+
 - Theta: -$12/day
 - Vega: +$96
 - Gamma: +8
@@ -873,12 +936,14 @@ Where $K_{\text{var}}$ is strike variance
 **Step 3: Net position**
 
 **Combined IC + Long calls:**
+
 - Theta: +$55 - $12 = **+$43/day** ✓
 - Vega: -$95 + $96 = **+$1** ✓ (neutral!)
 - Gamma: -25 + 8 = **-17**
 - Delta: +50 (hedge with -50 shares)
 
 **Capital:**
+
 - IC credit: +$3,500
 - Long calls: -$2,300
 - **Net credit: +$1,200**
@@ -886,6 +951,7 @@ Where $K_{\text{var}}$ is strike variance
 **Step 4: Management**
 
 **Daily:**
+
 - Collect theta: +$43
 - Rehedge delta if needed
 - Monitor stock position (should stay in IC range)
@@ -909,15 +975,18 @@ Market panic, IV spikes:
 - Stock still at $182 (in range)
 
 **Without vega hedge:**
+
 - Iron condor loss: -$95 × 16 = **-$1,520** (ouch!)
 - Would wipe out all theta profits and more
 
 **With vega hedge:**
+
 - Iron condor loss: -$95 × 16 = -$1,520
 - Long calls gain: +$96 × 16 = **+$1,536**
 - **Net vega impact: +$16** (minimal!)
 
 **P&L at day 10:**
+
 - Theta collected: +$43 × 10 = **+$430**
 - Vega: +$16
 - **Total: +$446** (still on track!)
@@ -950,16 +1019,19 @@ Buy butterfly to exploit steep skew:
 - **Debit: $3.30**
 
 **Greeks:**
+
 - Vega: +$35 (net long wings)
 - Gamma: +18
 - Theta: -$15/day
 
 **Problem:**
+
 - Want skew to flatten (wings get cheaper relative to ATM)
 - But overall IV might rise or fall
 - +$35 vega means IV changes affect P&L
 
 **If IV rises across the board:**
+
 - Even if skew flattens, might lose money
 - Contaminated bet!
 
@@ -968,6 +1040,7 @@ Buy butterfly to exploit steep skew:
 **Add time dimension:**
 
 **Sell 60-day $100 call:**
+
 - Vega: -$50
 - Ratio: $35 / $50 = 0.7 contracts
 - Sell 0.7 contracts ≈ sell call spread to get -$35 vega
@@ -982,11 +1055,13 @@ Sell 60-day $100/$110 call spread:
 **Step 3: Combined position**
 
 **Butterfly + Time spread:**
+
 - Vega: +$35 - $35 = **0** ✓
 - Gamma: +18 - 3 = +15
 - Theta: -$15 + $8 = **-$7/day**
 
 **The bet:**
+
 - Skew flattens (wings get relatively cheaper)
 - IV level doesn't matter (vega neutral)
 - Small theta cost
@@ -1007,22 +1082,26 @@ $$
 **20 days later:**
 
 **Skew change:**
+
 - Entry: 95 put IV = 45%, ATM = 30%, skew = 15
 - Now: 95 put IV = 40%, ATM = 35%, skew = 5
 - **Skew flattened by 10 points** ✓
 
 **Overall IV:**
+
 - Average IV rose from 32% → 37% (+5 points)
 
 **P&L:**
 
 **Butterfly component:**
+
 - Skew flattening: +$450 (wings cheaper relative to body)
 - IV rise: +$35 × 5 = +$175 (but we're hedged...)
 - Theta: -$15 × 20 = -$300
 - **Subtotal: +$325**
 
 **Time spread component:**
+
 - IV rise: -$35 × 5 = **-$175** (offsets butterfly vega!)
 - Theta: +$8 × 20 = +$160
 - **Subtotal: -$15**
@@ -1041,17 +1120,20 @@ Only skew change mattered ✓
 **Goal:** Maximize gamma while achieving vega neutrality
 
 **ATM strikes preferred:**
+
 - Highest gamma per dollar
 - But also highest vega
 - Need larger hedge
 
 **Example:**
+
 - Stock $100
 - Buy ATM straddle: Gamma = 40, Vega = $80
 - Need to sell vega: $80 worth
 - High hedge ratio
 
 **Slightly OTM alternative:**
+
 - Buy $102 call + $98 put
 - Gamma = 35, Vega = $60
 - Need to sell vega: $60 worth
@@ -1068,16 +1150,19 @@ Only skew change mattered ✓
 **Goal:** Maximize theta while neutralizing vega
 
 **Short positions:**
+
 - Sell ATM or slightly OTM
 - High theta
 - High vega (need hedge)
 
 **Long hedge positions:**
+
 - Far-dated OTM
 - Low theta
 - High vega (provides hedge)
 
 **Example:**
+
 - Sell 30-day $100 calls (theta = -$25, vega = -$40)
 - Buy 90-day $110 calls (theta = -$5, vega = +$40)
 - **Vega neutral, net theta positive**
@@ -1087,16 +1172,19 @@ Only skew change mattered ✓
 **Goal:** Isolate skew exposure
 
 **Wing strikes:**
+
 - Where skew is most pronounced
 - Usually 10-20% OTM
 - 1 SD from ATM typical
 
 **Example:**
+
 - Stock $100, IV 30%, 1 SD = $10
 - Use $90 puts, $100 ATM, $110 calls
 - Classic skew triangle
 
 **Time balancing:**
+
 - Use different expirations to neutralize vega
 - Front month for skew exposure
 - Back month for vega hedge
@@ -1108,18 +1196,21 @@ Only skew change mattered ✓
 ### For Gamma Structures
 
 **Front leg (long gamma):**
+
 - **20-45 days optimal**
 - Enough gamma
 - Not too much theta bleed
 - Manageable
 
 **Back leg (vega hedge):**
+
 - **60-120 days**
 - High vega to hedge efficiently
 - Lower gamma (doesn't interfere)
 - 2:1 to 3:1 ratio to front
 
 **Example:**
+
 - Long 30-day straddle
 - Short 90-day straddle
 - 3:1 time ratio
@@ -1127,11 +1218,13 @@ Only skew change mattered ✓
 ### For Theta Structures
 
 **Front leg (short theta):**
+
 - **30-45 days**
 - Maximum theta decay
 - Before acceleration zone
 
 **Back leg (vega hedge):**
+
 - **90-180 days**
 - High vega
 - Low theta
@@ -1140,11 +1233,13 @@ Only skew change mattered ✓
 ### For Skew Structures
 
 **Primary position:**
+
 - **30-60 days**
 - Skew well-defined
 - Enough time for normalization
 
 **Hedge position:**
+
 - **60-120 days**
 - Vega hedge
 - Different maturity
@@ -1202,16 +1297,19 @@ $$
 $$
 
 **Example:**
+
 - Threshold: 0.25% = 0.0025
 - Stock $450
 - Trigger: Delta > ±$1.13 (450 × 0.0025)
 
 **Hedging action:**
+
 - Sell shares if delta positive
 - Buy shares if delta negative
 - Return delta to zero
 
 **Frequency:**
+
 - High vol: 3-5 times per day
 - Low vol: 1-2 times per day
 - Overnight: Always hedge to zero
@@ -1228,12 +1326,14 @@ $$
 **During hold:**
 
 **Monitor:**
+
 1. **Vega drift:** Rebalance weekly
 2. **Stock position:** In expected range?
 3. **Theta collection:** On track?
 4. **IV level:** Confirming neutrality working
 
 **Exit criteria:**
+
 - Target theta collected (50-75%)
 - Stock approaches edge
 - Vega drifts too far (>$500)
@@ -1258,6 +1358,7 @@ $$
 Track convergence to target.
 
 **Exit triggers:**
+
 - Skew normalizes 50-75%
 - Vega drift >$300
 - Time to expiration <21 days
@@ -1299,11 +1400,13 @@ $$
 $$
 
 **Meaning:**
+
 - As stock moves, vega changes
 - Proportional to gamma
 - Longer time = more vega drift
 
 **Impact on vega-neutral:**
+
 - Position won't stay neutral without rebalancing
 - Gamma exposure causes vega drift
 - Need periodic adjustments
@@ -1313,6 +1416,7 @@ $$
 **In vega-neutral structures:**
 
 **For long gamma (vega-neutral):**
+
 - Theta usually negative (cost)
 - Paying for gamma
 - Break-even realized vol:
@@ -1322,6 +1426,7 @@ $$
 $$
 
 **For short gamma (vega-neutral):**
+
 - Theta usually positive (income)
 - Collecting for gamma risk
 - Profitable if realized vol < implied
@@ -1548,6 +1653,7 @@ $$
 How vega changes as IV changes.
 
 **Implications:**
+
 - Long vega at low IV: Vomma > 0
 - As IV rises, vega increases (accelerates)
 - Vega-neutral at IV=20% may not be neutral at IV=30%
@@ -1561,6 +1667,7 @@ $$
 How vega changes with stock price.
 
 **Implications:**
+
 - Stock moves → vega changes
 - Need to rebalance
 - Connected to gamma-vega drift
@@ -1570,11 +1677,13 @@ How vega changes with stock price.
 **Trade-off:**
 
 **More frequent:**
+
 - Better vega neutrality maintained
 - Higher transaction costs
 - More complex
 
 **Less frequent:**
+
 - Lower costs
 - Vega drift accumulates
 - Risk from vega exposure
@@ -1588,6 +1697,7 @@ f^* = \arg\min [\text{Vega Risk Cost} + \text{Transaction Costs}]
 $$
 
 **Typical findings:**
+
 - High gamma structures: Daily rebalancing
 - Low gamma structures: Weekly rebalancing
 - After 5%+ move: Immediate rebalancing
@@ -1639,10 +1749,12 @@ Subject to:
 ### 5. Dynamic Vega Hedging
 
 **Static hedge (basic):**
+
 - Set vega = 0 at entry
 - Rebalance periodically
 
 **Dynamic hedge (advanced):**
+
 - Adjust hedge ratio based on conditions
 - Model vega drift
 - Predictive rebalancing
@@ -1691,6 +1803,7 @@ $$
 **Construction:**
 
 **Long position:**
+
 - Buy 100 contracts 30-day ATM straddles
 - SPX at 4,500
 - Cost: $65 per straddle × 100 = $650,000
@@ -1698,12 +1811,14 @@ $$
 - Vega: +$12,000 per 1% IV
 
 **Vega hedge:**
+
 - Sell 60-day ATM straddles
 - Vega per straddle: +$200
 - Sell: $12,000 / $200 = 60 contracts
 - Credit: $110 per straddle × 60 = $660,000
 
 **Net:**
+
 - Capital: +$10,000 credit
 - Gamma: +2,500 - 900 = +1,600
 - Vega: +$12,000 - $12,000 = **$0** ✓
@@ -1712,6 +1827,7 @@ $$
 **Trading:**
 
 **Delta hedging protocol:**
+
 - Hedge when delta > ±$10,000
 - Frequency: 3-4× per day
 - Using SPX futures for efficiency
@@ -1733,12 +1849,14 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 ```
 
 **Total (30 days):**
+
 - Gamma profits: +$142,000
 - Theta cost: -$81,000
 - Transaction costs: -$8,000
 - **Net: +$53,000** (8.2% on $650k capital)
 
 **IV Impact:**
+
 - IV dropped from 13% → 11% during period
 - Vega impact: $0 × -2% = **$0** ✓
 - **Neutrality worked perfectly!**
@@ -1760,6 +1878,7 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 **Trade:**
 
 **Butterfly (skew position):**
+
 - Buy $230 put @ $12 (IV = 75%)
 - Sell 2× $250 calls @ $14 (IV = 55%)
 - Buy $270 call @ $8 (IV = 60%)
@@ -1767,6 +1886,7 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 - Vega: +$45
 
 **Vega hedge:**
+
 - Sell 60-day $250 call
 - Vega: -$65
 - Ratio: 45/65 = 0.69 ≈ 1 contract
@@ -1774,12 +1894,14 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 - Vega: -$65
 
 **Net:**
+
 - Vega: +45 - 65 = -$20 (close enough)
 - Capital: -$2,000 + $2,200 = +$200 credit
 
 **What happened:**
 
 **Week 1:**
+
 - Skew stays steep
 - Overall IV rises (market jitters)
 - Butterfly: -$150 (small loss)
@@ -1787,11 +1909,13 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 - **Total: -$230**
 
 **Week 2:**
+
 - TSLA announces stock split
 - Stock surges to $290
 - **Beyond all strikes!**
 
 **Position:**
+
 - Butterfly: Max loss = -$2,000
 - Short call: -$40 loss (-$4,000)
 - **Total loss: -$6,000**
@@ -1804,6 +1928,7 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 4. **Position sizing:** Too large (12% of account)
 
 **Lessons:**
+
 - Vega neutrality doesn't protect from directional disaster
 - Always check event calendar
 - Consider stock-specific risk
@@ -1818,6 +1943,7 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 **Structure:**
 
 **Variance swap replication:**
+
 - Long weighted strip of OTM options
 - Short appropriate amount of ATM
 - Continuous rebalancing
@@ -1837,6 +1963,7 @@ $$
 $$
 
 **Characteristics:**
+
 - Vega ≈ 0 (carefully constructed)
 - Gamma balanced across strikes
 - Pure variance exposure
@@ -2037,12 +2164,14 @@ Options Trading Dimensions:
 | **Vega-Neutral Theta** | **Zero** | **Complete** | **High** | **Pure theta bet** |
 
 **When standard is better:**
+
 - Simple directional bet
 - Want vega exposure
 - Can't manage complexity
 - Small account
 
 **When vega-neutral is better:**
+
 - Specific Greek thesis
 - Don't want IV bet
 - Can manage multi-leg
@@ -2061,6 +2190,7 @@ $$
 $$
 
 **This allows isolation of other exposures:**
+
 - **Gamma:** Realized volatility
 - **Theta:** Time decay  
 - **Skew:** Smile shape
@@ -2073,6 +2203,7 @@ $$
 **Goal:** Profit from realized vol > implied
 
 **Structure:**
+
 - Long near-term options (gamma)
 - Short far-term options (vega hedge)
 - Ratio for vega = 0
@@ -2084,6 +2215,7 @@ $$
 **Goal:** Collect time decay without IV risk
 
 **Structure:**
+
 - Short near-term (theta)
 - Long far-term (vega hedge)
 - Balanced for vega = 0
@@ -2095,6 +2227,7 @@ $$
 **Goal:** Trade smile shape, not level
 
 **Structure:**
+
 - Butterfly or vertical (skew exposure)
 - Calendar component (vega hedge)
 - Net vega = 0
@@ -2116,11 +2249,13 @@ $$
 ### Key Metrics
 
 **Vega neutrality threshold:**
+
 - Tight: ±$50 per $100k
 - Acceptable: ±$200 per $100k  
 - Loose: ±$500 per $100k
 
 **Rebalancing frequency:**
+
 - High gamma: Daily
 - Low gamma: Weekly
 - After 5%+ move: Immediate
@@ -2168,24 +2303,28 @@ $$
 ### When to Use
 
 **Vega-Neutral Gamma ✓:**
+
 - Realized vol > implied (edge identified)
 - Can hedge actively (3-5× daily)
 - Low transaction costs
 - Want pure gamma exposure
 
 **Vega-Neutral Theta ✓:**
+
 - Want theta without IV bet
 - Range-bound expectation
 - Regular monitoring capability
 - Don't want to predict IV
 
 **Vega-Neutral Skew ✓:**
+
 - Skew abnormality identified
 - Sophisticated smile understanding
 - IV level uncertain
 - Active management capable
 
 **Avoid vega-neutral ✗:**
+
 - Simple directional bet
 - Actually want vega exposure
 - Can't manage complexity
@@ -2196,18 +2335,21 @@ $$
 ### Performance Expectations
 
 **Gamma-focused:**
+
 - Break-even: Realized ≈ Implied + theta/gamma
 - Target: Realized > Implied + 3-5 points
 - Win rate: 55-65%
 - Sharpe: 1.5-2.0
 
 **Theta-focused:**
+
 - Monthly: 3-8% on capital
 - Win rate: 60-70%
 - Dependent on range accuracy
 - Sharpe: 1.2-1.8
 
 **Skew-focused:**
+
 - Highly variable
 - Win rate: 50-60%
 - Large winners when right
@@ -2222,16 +2364,19 @@ $$
 **The strategic value:**
 
 **Isolation:**
+
 - Trade gamma without vega
 - Trade theta without vega
 - Trade skew without level
 
 **Precision:**
+
 - Exact exposure desired
 - No contamination
 - Pure thesis expression
 
 **Professional edge:**
+
 - Institutional approach
 - Requires sophistication
 - Separates amateurs from pros
