@@ -471,22 +471,19 @@ nav:
   - Part IV Trading Strategies:
       - 15 Options:
           - 15.1 Pure Directional:
-              - Long Calls and Puts: ch15/option_strategies/long_calls_and_puts.md
+              - Long Calls and Puts: ch15/pure_directional/long_calls_and_puts.md
           - 15.2 Directional Income:
-              - Short Call Spread: ch15/option_strategies/short_call_spread.md
-              - Short Put Spread: ch15/option_strategies/short_put_spread.md
+              - Short Call Spread: ch15/directional_income/short_call_spread.md
+              - Short Put Spread: ch15/directional_income/short_put_spread.md
           - 15.3 Hedging:
-              - Protective Puts & Collars: ch15/option_strategies/protective_put_and_collar.md
+              - Protective Puts & Collars: ch15/hedging/protective_put_and_collar.md
           - 15.4 Buy Low Sell High:
-              - Covered Calls & CSPs: ch15/option_strategies/covered_calls_and_cash_secured_puts.md
-              - Wheel Strategy: ch15/option_strategies/wheel_strategy.md
+              - Covered Calls & CSPs: ch15/buy_low_sell_high/covered_calls_and_cash_secured_puts.md
+              - Wheel Strategy: ch15/buy_low_sell_high/wheel_strategy.md
           - 15.5 Volatility-Driven:
-              - Straddle and Strangle: ch15/option_strategies/straddle_strangle.md
-              - Strips and Straps: ch15/option_strategies/strips_and_straps.md
-          - 15.6 Risk & Reward:
-              - Vertical Spreads: ch15/option_strategies/vertical_spreads.md
-              - Credit Spreads: ch15/option_strategies/credit_spreads.md
-          - 15.7 Butterfly & Condor:
+              - Straddle and Strangle: ch15/volatility_driven/straddle_and_strangle.md
+              - Strips and Straps: ch15/volatility_driven/strips_and_straps.md
+          - 15.6 Butterfly & Condor:
               - Butterflies: ch15/butterfly_and_condor/butterfly.md
               - Iron Butterflies: ch15/butterfly_and_condor/iron_condor_and_iron_butterfly.md
               - Broken Wing Butterflies: ch15/butterfly_and_condor/broken_wing_butterflies.md
@@ -495,13 +492,16 @@ nav:
               - Broken Wing Condors: ch15/butterfly_and_condor/broken_wing_condors.md
               - Jade Lizard: ch15/butterfly_and_condor/jade_lizard.md
               - Reverse Jade Lizard: ch15/butterfly_and_condor/reverse_jade_lizard.md
+          - 15.7 Risk & Reward:
+              - Vertical Spreads: ch15/risk_and_reward/vertical_spreads.md
+              - Credit Spreads: ch15/risk_and_reward/credit_spreads.md
           - 15.8 Spreads:
-              - Spreads: ch15/option_strategies/spreads.md
-              - Ratio Spreads: ch15/option_strategies/ratio_spreads.md
-              - Back Spreads: ch15/option_strategies/backspreads.md
+              - Spreads: ch15/spreads/spreads.md
+              - Ratio Spreads: ch15/spreads/ratio_spreads.md
+              - Back Spreads: ch15/spreads/backspreads.md
           - 15.9 Equivalent Forms:
-              - Synthetic Positions: ch15/option_strategies/synthetic_positions.md
-              - Box Spreads: ch15/option_strategies/box_spreads.md
+              - Synthetic Positions: ch15/equivalent_forms/synthetic_positions.md
+              - Box Spreads: ch15/equivalent_forms/box_spreads.md
 
       - 16 Greeks:
           - 16.1 Hedging:

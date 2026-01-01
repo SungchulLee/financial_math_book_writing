@@ -2736,4 +2736,4 @@ OPPOSITE:
 
 - Not your only strategy (part of toolkit)
 
-**Master butterflies to trade specific price targets with defined risk!** 🦋📊
+**Master butterflies to trade specific price targets with defined risk!** 
