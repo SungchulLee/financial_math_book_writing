@@ -358,9 +358,683 @@ If a short put gets assigned, you may end up long shares.
 
 ## Real-World Examples
 
-[Concrete IV strategy examples]
+**Detailed scenarios showing diagonal spreads in practice:**
 
+### Example 1: Poor Man's Covered Call (PMCC) - Success Story
 
+**Setup:**
+
+**Trader profile:**
+- Account: $25,000
+- Goal: Generate income like covered calls without tying up $17,500 in stock
+- Stock: XYZ trading at $175
+- Bullish bias, wants upside participation + income
+
+**Traditional covered call requires:**
+- Buy 100 shares at $175 = $17,500
+- Sell monthly calls against it = collect premium
+- Problem: $17,500 capital tied up (70% of account!)
+
+**PMCC alternative:**
+
+```
+Strategy: Diagonal call spread (PMCC)
+
+Long leg (back month):
+- Buy 1× XYZ $160 call, 180 DTE
+- Deep ITM (delta ~0.80)
+- Cost: $19.50 per contract = $1,950
+- Acts as stock substitute
+
+Short leg (front month):
+- Sell 1× XYZ $185 call, 30 DTE
+- OTM (delta ~0.25)
+- Credit: $2.50 = $250
+
+Net cost: $1,950 - $250 = $1,700
+Capital saved: $17,500 - $1,700 = $15,800 (9.3× more efficient!)
+```
+
+**Initial Greeks:**
+```
+Long $160 call (180 DTE):
+- Delta: +0.80
+- Theta: -$0.02/day = -$2/day
+- Vega: +0.15
+
+Short $185 call (30 DTE):
+- Delta: -0.25
+- Theta: +$0.08/day = +$8/day
+- Vega: -0.05
+
+Combined position:
+- Net delta: +0.55 (bullish exposure)
+- Net theta: +$6/day (collecting decay!)
+- Net vega: +0.10 (slightly long vol)
+```
+
+**Month 1: Perfect execution**
+
+**Week 1-2: Stock consolidates $173-$178**
+```
+Action: None, let theta work
+Short call: $2.50 → $1.75 (30% decay)
+Long call: $19.50 → $19.80 (stock up slightly)
+Net position: $1,700 → $1,550 (profit $150)
+```
+
+**Week 3: Stock rallies to $182**
+```
+Short call getting tested:
+- Now worth $1.00 (down 60%)
+- Delta: 0.25 → 0.40
+Long call benefiting:
+- Now worth $22.50 (up $3.00)
+- Delta: 0.80 → 0.85
+
+Net position:
+- Entry: -$1,700
+- Current: -$1,050 (short call $1.00, long call $22.50)
+- Profit: $650
+```
+
+**Week 4 (expiration week): Stock at $183**
+```
+Decision: Let short call expire worthless, roll new one
+
+Short $185 call expires:
+- Worth $0 (OTM by $2)
+- Collected full $250 credit!
+
+Immediately roll:
+- Sell new $190 call, 30 DTE for $2.00
+- Collect another $200
+
+Position update:
+- Long call: Still holding $160 call (150 DTE remaining)
+- Short call: Now $190 strike (new 30 DTE cycle)
+- Month 1 income: $250
+- Long call appreciation: $3.00 per share = $300
+- Total month gain: $550
+```
+
+**Month 2-6: Continuation (rinse and repeat)**
+
+```
+Month 2: Stock $178-$185 range
+- Collect $240 on new short call
+- Long call stable
+- Profit: $240
+
+Month 3: Stock pulls back to $172
+- Short call expires worthless: $225
+- Long call down slightly: -$150
+- Net: +$75
+
+Month 4: Stock at $180
+- Collect $260 on short call
+- Long call up: +$200
+- Profit: $460
+
+Month 5: Stock at $182
+- Collect $245
+- Long call up: +$100
+- Profit: $345
+
+Month 6: Stock rallies to $188
+- Short call tested, close early at $90 loss
+- Roll to higher strike, collect $200 net
+- Long call up: +$500
+- Profit: $410
+```
+
+**Final outcome after 6 months:**
+
+```
+Total income from short calls:
+Month 1: $250
+Month 2: $240
+Month 3: $225
+Month 4: $260
+Month 5: $245
+Month 6: $110 ($200 - $90 adjustment)
+Total: $1,330
+
+Long call P&L:
+Entry: $1,950 (180 DTE)
+Current: $2,900 (30 DTE remaining)
+Appreciation: +$950
+
+Combined profit: $1,330 + $950 = $2,280
+Initial investment: $1,700
+ROI: 134% in 6 months
+Annualized: ~268%
+
+Compare to covered call:
+- Would need $17,500
+- Generated ~$1,500 income
+- Stock appreciation: $1,300
+- Total: $2,800
+- ROI: 16% in 6 months
+- Annualized: ~32%
+
+PMCC advantage:
+- 8× higher ROI (134% vs 16%)
+- 10× less capital ($1,700 vs $17,500)
+- Similar income ($1,330 vs $1,500)
+- Similar risk profile
+```
+
+**What made it work:**
+
+1. **Deep ITM long call:**
+   - Delta 0.80 acts like owning 80 shares
+   - Lower theta decay on back month
+   - Good stock substitute
+
+2. **OTM short calls:**
+   - High probability of expiring worthless
+   - Collected premium month after month
+   - Rolled when threatened
+
+3. **Time decay advantage:**
+   - Short call theta > long call theta
+   - Net positive $6/day
+   - Compounded over 6 months
+
+4. **Disciplined rolling:**
+   - Closed short calls at 21 DTE
+   - Immediately rolled to next month
+   - Never held through expiration risk
+
+5. **Stock cooperation:**
+   - Mostly stayed in favorable range
+   - Rallies captured by long call
+   - Pullbacks didn't break structure
+
+**Lessons:**
+- PMCC provides leverage without margin
+- Monthly income machine when managed
+- Requires active management (monthly rolls)
+- Capital efficiency enables diversification
+- Works best in sideways to moderately bullish markets
+
+### Example 2: Bearish Put Diagonal - Mixed Results
+
+**Setup:**
+
+**Trader thesis:**
+- Account: $50,000
+- Bearish on tech sector
+- Stock: High-flying tech at $250
+- Thinks consolidation/pullback coming
+- Want to profit from time + direction
+
+**The position:**
+
+```
+Diagonal put spread (bearish)
+
+Long leg (back month):
+- Buy 2× $250 puts, 90 DTE
+- ATM (delta -0.50)
+- Cost: $15.00 each × 2 = $3,000
+
+Short leg (front month):
+- Sell 2× $240 puts, 30 DTE
+- OTM (delta -0.30)
+- Credit: $4.50 each × 2 = $900
+
+Net cost: $3,000 - $900 = $2,100
+Max risk: $2,100 (if both expire worthless)
+
+Greeks:
+- Net delta: -0.40 (bearish)
+- Net theta: +$15/day (collecting decay)
+- Net vega: +0.30 (long volatility)
+```
+
+**Week 1-2: Thesis NOT working (stock rallies)**
+
+```
+Stock moves: $250 → $260 (+4%)
+
+Impact:
+- Long $250 puts: $15.00 → $10.00 (down $5)
+- Short $240 puts: $4.50 → $2.00 (down $2.50)
+
+Position P&L:
+- Long puts loss: -$500 × 2 = -$1,000
+- Short puts gain: +$250 × 2 = +$500
+- Net: -$500 (24% of capital at risk)
+
+Decision point:
+- Thesis invalidated? Or temporary?
+- Stock broke above resistance
+- Should cut loss or hold?
+
+Mistake: Held hoping for reversal
+```
+
+**Week 3: Continued rally ($260 → $265)**
+
+```
+Position deteriorating:
+- Long $250 puts: $10.00 → $7.50
+- Short $240 puts: $2.00 → $1.00
+
+Additional loss:
+- Long: -$250 × 2 = -$500
+- Short: +$100 × 2 = +$200
+- Net additional: -$300
+
+Cumulative loss: -$800 (38% of capital)
+
+Emotional state: Frustrated, hoping for reversal
+Critical error: Not cutting loss at -25%
+```
+
+**Week 4 (expiration): Short puts expire worthless**
+
+```
+Stock at $265 (still up)
+
+Short $240 puts:
+- Expire OTM (worthless)
+- Kept full $900 credit ✓
+
+Long $250 puts:
+- Now worth $5.50 (60 DTE)
+- Down from $15 entry
+
+Decision: Roll short puts to next month
+- Sell $235 puts, 30 DTE for $3.00
+- Collect $300 more
+
+Position now:
+- Long 2× $250 puts (60 DTE) at effective cost $10.50
+  (paid $15, collected $4.50 first month, $1.50 second month)
+- Short 2× $235 puts (30 DTE)
+- Down $500 cumulative
+- Still need stock to drop
+```
+
+**Month 2: Finally, the reversal**
+
+```
+Catalyst: Tech sector selloff on Fed comments
+
+Week 1-2: Stock drops $265 → $245 (-7.5%)
+
+Position response:
+- Long $250 puts: $5.50 → $12.00 (+$6.50)
+- Short $235 puts: $3.00 → $8.00 (-$5.00)
+
+Net change:
+- Long gain: +$650 × 2 = +$1,300
+- Short loss: -$500 × 2 = -$1,000
+- Net: +$300
+
+This offsets previous -$500, now down only -$200
+```
+
+**Week 3-4: Continued weakness ($245 → $238)**
+
+```
+Position accelerating:
+- Long $250 puts: $12.00 → $16.50
+- Short $235 puts: $8.00 → $5.00 (at risk!)
+
+Decision: Close short puts early (getting deep ITM)
+- Buy back $235 puts at $5.00
+- Loss on short leg: -$200 × 2 = -$400
+- But protect against assignment
+
+Long puts continue:
+- Worth $16.50
+- Up from $15 entry
+- Profit on long: +$150 × 2 = +$300
+
+Month 2 net: Roughly breakeven after adjustment costs
+```
+
+**Month 3: Exit strategy**
+
+```
+Stock stabilizes $235-$240
+
+Long puts (30 DTE now):
+- Worth $14.00
+- Theta accelerating (burning faster now)
+
+Decision: Take profits
+- Sell long $250 puts at $14.00
+- Loss: -$100 × 2 = -$200 (from $15 entry)
+
+Total P&L across entire trade:
+Month 1: -$500 (wrong direction)
+Month 2: +$200 (reversal)
+Month 3: -$200 (exit)
+Credits collected: +$900 + $300 = +$1,200
+Net profit: $700
+
+ROI: $700 / $2,100 = 33% in 3 months
+But: High stress, nearly failed
+```
+
+**What went wrong (then right):**
+
+**Mistakes made:**
+1. **Wrong initial timing:**
+   - Entered too early
+   - Stock had more upside
+   - Should have waited for reversal confirmation
+
+2. **No stop loss:**
+   - Let position go -38%
+   - Should have cut at -25%
+   - Hope kept position alive
+
+3. **Over-confidence in thesis:**
+   - "Tech must pull back"
+   - Market can stay irrational
+   - Confirmation bias
+
+**What saved the trade:**
+1. **Time decay helped:**
+   - Collected $1,200 in credits
+   - Offset some losses
+   - Theta was friend, not enemy
+
+2. **Thesis eventually right:**
+   - Stock did pull back (finally!)
+   - Long puts gained value
+   - Directional bet paid off
+
+3. **Active management:**
+   - Closed short puts when threatened
+   - Didn't get assigned
+   - Took profits on long puts
+
+**Lessons:**
+- Don't fight the trend (even if you "know" better)
+- Use stop losses on diagonals (not unlimited time)
+- Theta helps but doesn't replace good timing
+- Being right eventually doesn't mean being right early
+- Consider directional trades vs. income trades differently
+
+### Example 3: Calendar-to-Diagonal Adjustment (Advanced)
+
+**Setup:**
+
+**Trader strategy:**
+- Neutral strategy: Start with ATM calendar
+- Plan: Adjust to diagonal if stock moves
+- Goal: Manage risk while staying in trade
+
+**Initial position (calendar spread):**
+
+```
+Stock at $100
+
+Calendar spread (neutral):
+- Buy 1× $100 call, 60 DTE for $6.00
+- Sell 1× $100 call, 30 DTE for $3.50
+- Net cost: $2.50
+
+Greeks:
+- Delta: ~0 (neutral)
+- Theta: +$5/day
+- Vega: +0.15
+- Max profit: ~$4.50 (if stock at $100 at front expiration)
+```
+
+**Week 1-2: Stock rallies to $105**
+
+```
+Calendar in trouble:
+- Long $100 call: $6.00 → $9.50
+- Short $100 call: $3.50 → $7.00
+
+Position:
+- Net: $2.50 → $0.00 (breakeven)
+- Short call now ITM (delta -0.70)
+- Risk: Assignment if continues higher
+
+Traditional response: Close at breakeven, accept defeat
+
+Advanced response: Convert to diagonal!
+```
+
+**Adjustment: Calendar → Diagonal**
+
+```
+Action:
+Step 1: Close short $100 call
+- Buy back at $7.00
+- Cost: $700
+
+Step 2: Sell higher strike
+- Sell $110 call, 30 DTE for $2.00
+- Credit: $200
+
+Net adjustment cost: $700 - $200 = $500
+
+New position (diagonal):
+- Long $100 call, 45 DTE (now ITM)
+- Short $110 call, 30 DTE (OTM)
+- Total invested: $2.50 + $5.00 = $7.50
+- Structure: Now directional (bullish diagonal)
+```
+
+**Week 3-4: Stock consolidates $104-$107**
+
+```
+Perfect range for new diagonal:
+
+Short $110 call:
+- Expires worthless (stock stayed below)
+- Kept $200 credit
+
+Long $100 call:
+- Stock at $106, worth $10.00 (15 DTE)
+- Up from $9.50 after adjustment
+
+Month result:
+- Long call gain: +$50
+- Short call credit: +$200
+- Total: +$250
+```
+
+**Roll #2: New diagonal cycle**
+
+```
+Position:
+- Long $100 call now 15 DTE, worth $10.00
+- Sell new $110 call, 30 DTE for $2.50
+
+But: Long call theta accelerating (risky)
+
+Better decision: Roll long call too
+- Sell $100 call at $10.00
+- Buy $105 call, 45 DTE at $7.00
+- Net: Pocket $3.00
+
+New structure:
+- Long $105 call, 45 DTE
+- Short $110 call, 30 DTE
+- Locked in: $3.00 profit
+- New cost basis: $4.50
+```
+
+**Month 2-3: Continued management**
+
+```
+Repeated pattern:
+- Stock stays $104-$108 range
+- Short calls expire worthless monthly
+- Collect $200-$250/month
+- Roll long call when theta risk too high
+
+Final outcome after 3 months:
+- Collected short call credits: $650
+- Long call rolled profitably: 3 times
+- Total profit: $850
+- Initial investment: $250 (original calendar)
+- ROI: 340% in 3 months
+```
+
+**What made it exceptional:**
+
+1. **Flexible adjustment:**
+   - Didn't panic when calendar failed
+   - Converted to structure that fits new market
+   - Adaptation saved the trade
+
+2. **Rolling discipline:**
+   - Rolled short calls monthly
+   - Rolled long call when theta accelerated
+   - Never held into dangerous zones
+
+3. **Taking profits:**
+   - Locked in gains on long call rolls
+   - Didn't try for "maximum profit"
+   - Banked money along the way
+
+4. **Market cooperation:**
+   - Stock found range after rally
+   - Perfect for diagonal structure
+   - Consistent theta collection
+
+**Advanced lessons:**
+- Structures can be adjusted (not static)
+- Calendar → diagonal conversion valuable
+- Active management creates opportunities
+- Multiple rolls compound profits
+- Flexibility > rigid adherence to original plan
+
+### Example 4: Disaster - Earnings IV Crush on Diagonal
+
+**Setup:**
+
+**Trader mistake:**
+- Bullish on stock into earnings
+- Thinks: "Diagonal will benefit from both move + IV"
+- Doesn't understand IV crush risk
+
+**The position:**
+
+```
+2 weeks before earnings:
+
+Diagonal call spread:
+- Buy 1× $150 call, 60 DTE (after earnings)
+- Sell 1× $155 call, 14 DTE (expires day after earnings)
+- Cost: $7.50 - $2.50 = $5.00
+
+IV environment:
+- Long call IV: 45% (moderate)
+- Short call IV: 85% (elevated pre-earnings)
+- Collected high premium on short call ✓
+
+Expectation:
+- Stock rallies on earnings
+- Short call profits from time decay
+- Long call profits from stock move
+- "Can't lose!" mindset
+```
+
+**The disaster (earnings night):**
+
+```
+Earnings released: Beat on revenue, miss on guidance
+
+Stock reaction:
+- Initial after-hours: Up to $153
+- Think: "Great! Profitable!"
+
+Next morning:
+- Open: Stock gaps to $148 (down)
+- Market didn't like guidance
+- IV crushes 85% → 30% (massive)
+
+Position carnage:
+- Long $150 call: Was $7.50
+  - Stock down to $148
+  - IV crushed 45% → 30%
+  - Now worth: $2.50 (down $5.00!)
+
+- Short $155 call: Was $2.50
+  - Stock at $148, far OTM
+  - IV crushed, almost worthless
+  - Now worth: $0.30 (gain $2.20)
+
+Net P&L:
+- Long loss: -$500
+- Short gain: +$220
+- Net: -$280 (56% loss in one day!)
+```
+
+**Why it was SO bad:**
+
+```
+Multiple disasters combined:
+
+1. Wrong direction:
+   - Thought bullish, stock dropped
+   - Directional bet failed
+
+2. IV crush on long call:
+   - Bought at 45% IV
+   - Now at 30% IV
+   - Vega loss: 0.15 × -15 = -$2.25
+   - This ALONE killed the position
+
+3. Wasted elevated short premium:
+   - Collected at 85% IV thinking it was edge
+   - But it was pricing in THIS EXACT RISK
+   - Market was right, trader was wrong
+
+4. No protective stops:
+   - Held through binary event
+   - All-or-nothing bet
+   - Lost the "all" side
+```
+
+**What should have been done:**
+
+```
+Correct approach:
+
+Option 1: Avoid entirely
+- Don't trade diagonals through earnings
+- Binary events = bad for complex structures
+- Wait until after earnings
+
+Option 2: Close before earnings
+- If already in position
+- Exit 2-3 days before
+- Accept small loss/gain
+- Avoid the risk
+
+Option 3: Different structure
+- If must play earnings:
+- Use debit spreads (both legs short-dated)
+- Or long calls only (one decision)
+- Not diagonals (too complex for binary event)
+
+What would have saved $280:
+- Exit 3 days before earnings at -$50 loss
+- Saved: $230
+- Lesson cost: $50 vs $280
+```
+
+**Lessons from disaster:**
+- Never hold complex structures through earnings
+- IV crush destroys long options even if right on direction
+- Elevated short call premium is pricing in risk (not "free money")
+- Binary events require simple structures or avoidance
+- Sometimes not trading is best trade
 
 ---
 

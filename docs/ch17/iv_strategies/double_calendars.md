@@ -875,16 +875,20 @@ $$
 ### Step 2: Strategy Selection Criteria
 
 **Enter this strategy when:**
-- [Specific IV conditions]
-- [Term structure requirements]
-- [Skew positioning]
-- [Time to event/expiration]
+- Front month IV > back month IV (normal term structure)
+- IV percentile > 50% overall (options expensive)
+- No earnings within front month expiration
+- Stock establishing defined range (support/resistance clear)
+- Term structure steep enough (4-6 vol points difference)
+- Can dedicate time to monitor and manage position
 
 **Avoid this strategy when:**
-- [Unfavorable IV environment]
-- [Wrong term structure shape]
-- [Insufficient IV edge]
-- [Event risk too high]
+- Term structure flat or inverted (backwardation)
+- Earnings or major catalyst within front month
+- IV percentile < 30% (options too cheap)
+- Stock in strong trend (not range-bound)
+- Insufficient liquidity (bid-ask > 10%)
+- Unable to actively manage position daily
 
 ### Step 3: Position Sizing
 
@@ -1608,23 +1612,46 @@ Range Trading Strategies:
 ### The Nightmare Setup
 
 **How it starts:**
-- [IV moves against position]
-- [Term structure inverts unexpectedly]
-- [Unexpected catalyst emerges]
-- [Position deteriorating rapidly]
+- Enter double calendar on QQQ at $370
+- Sell 30 DTE $365 puts and $375 calls
+- Buy 90 DTE $365 puts and $375 calls  
+- Net debit: $4.50 per spread ($450 per contract)
+- 5 contracts = $2,250 total investment
+- Front month IV: 20%, Back month IV: 24% (normal term structure)
+- Expecting range-bound trading $365-$375
 
 **The deterioration:**
 
 **Week 1:**
-- [Early warning signs in IV]
-- [Position losing value]
-- [IV percentile moving adversely]
-- [Critical decision point: hold or fold?]
+- Day 3: Fed surprise hawkish pivot announced
+- QQQ gaps down from $370 to $360 (breaks lower strike)
+- Front month IV explodes: 20% → 35%
+- Back month IV rises: 24% → 32%
+- **Term structure inverts: Front now higher IV than back!**
+- Position down $800 (-35% already)
+- Short $365 put now ITM, negative delta exposure
+- Critical decision point: Close for loss or adjust?
+
+**Week 2:**
+- Market continues volatile, QQQ whipsaws $355-$365
+- Front month IV stays elevated at 38%
+- Back month IV at 30%
+- Term structure still inverted (disaster for calendars)
+- Vega losses mounting: -$600 more
+- Theta collection minimal (overwhelmed by vega)
+- Position down $1,400 total (-62%)
+- **Should have closed Week 1!**
 
 **Through expiration:**
-- [Continued adverse IV dynamics]
-- [Maximum loss approached/realized]
-- [Final devastating outcome]
+- Week 3: QQQ settles at $358 (below lower strike)
+- Front month $365 puts expire with $7 intrinsic
+- Had to buy back for $7 (paid $2.50 originally)
+- Loss on put side: -$450 per contract
+- Call side expired worthless (small win +$230)
+- Back month puts gained some value (+$300)
+- **Net loss per contract: $4.50 debit + $4.50 adjustment = -$920**
+- 5 contracts: **Total loss: -$4,600 (204% of investment)**
+- Plus commissions and slippage: **Final loss: -$4,750**
 
 ### Maximum Loss Calculation
 
@@ -1647,11 +1674,23 @@ $$
 $$
 
 **Example calculation:**
-- Position: [Specific IV structure]
-- Entry IV: [Level and percentile]
-- Adverse scenario: [What went wrong]
-- **Loss: [Calculation]**
-- **Impact: [% of portfolio]**
+- Position: 5 double calendars on QQQ, strikes $365/$375
+- Entry IV: Front 20%, Back 24% (normal term structure)
+- Entry debit: $4.50 per spread = $2,250 total
+- Adverse scenario: Fed surprise → term structure inversion
+  - Front IV: 20% → 38% (+18 points)
+  - Back IV: 24% → 30% (+6 points)
+  - **Term structure inverted by 8 points**
+- Stock move: $370 → $358 (breaks through lower strike)
+- **Loss breakdown:**
+  - Front month short put: Paid $7.00 to close (sold at $2.50) = -$4.50
+  - Front month short call: Expired worthless, kept $2.30 = +$2.30
+  - Back month long put: Gained $3.00 in value = +$3.00
+  - Back month long call: Lost $0.80 in value = -$0.80
+  - **Net loss per contract: -$4.50 - $0.80 + $3.00 + $2.30 = $0 (but spent $4.50 debit)**
+  - **Actual loss: $4.50 debit + $4.50 net position = -$9.00 per spread**
+  - 5 contracts × $9.00 = **-$4,500 (200% of investment)**
+- **Impact: 9% of $50,000 portfolio (devastating single trade)**
 
 ### What Goes Wrong
 
@@ -1875,24 +1914,54 @@ $$
 ### The Perfect Setup
 
 **Ideal entry conditions:**
-- [IV at optimal level for strategy]
-- [Term structure favorably positioned]
-- [Skew supporting the trade]
-- [Timing aligned with catalyst/events]
+- SPY at $450, consolidating in $445-$455 range for 3 weeks
+- IV percentile at 55% (moderately elevated)
+- Front month IV: 22%, Back month IV: 26% (healthy 4-point term structure)
+- No earnings or major catalysts for 45 days
+- Strong support at $445, resistance at $455
+- Realized volatility running 16% (lower than implied)
+- High liquidity, tight bid-ask spreads (<5%)
+- 30 DTE front, 90 DTE back (ideal time spread)
 
 **The optimal sequence:**
 
 **Week 1:**
-- [IV moves as anticipated]
-- [Term structure behaves favorably]
-- [Position accumulating profit]
-- [Greeks performing as expected]
+- Enter 5 double calendars: $445 puts and $455 calls
+- Sell 30 DTE $445 put @ $3.00, Buy 90 DTE $445 put @ $5.20
+- Sell 30 DTE $455 call @ $2.80, Buy 90 DTE $455 call @ $4.80
+- Net debit: ($2.20 + $2.00) = $4.20 per spread
+- Total investment: 5 contracts × $4.20 = $2,100
+- SPY trades $448-$452 (perfect range)
+- Theta working: Short options decay faster (-$15/day)
+- Position value: $4.20 → $3.80 (up $200, 10%)
 
-**Through expiration:**
-- [Continued favorable IV dynamics]
-- [Optimal IV/RV relationship]
-- [Maximum profit zone reached]
-- [Exit at optimal timing]
+**Week 2:**
+- SPY continues range: $446-$454
+- IV stable, term structure intact
+- Front month decaying rapidly (now 16 DTE)
+- Back month holding value well (76 DTE)
+- Position value: $3.80 → $3.00
+- **Cumulative profit: $600 (29% gain)**
+- Theta accumulation: $120/day now
+
+**Week 3:**
+- SPY pinned near $450 (ideal center)
+- Front month approaching expiration (7 DTE)
+- Short $445 put: $0.30 (nearly worthless)
+- Short $455 call: $0.20 (nearly worthless)
+- Position value: $3.00 → $2.00
+- **Cumulative profit: $1,100 (52% gain in 21 days)**
+- **Decision: Close at 50%+ profit per rules**
+
+**Through front expiration (if held):**
+- Day 28: SPY at $451
+- Both front month options expire worthless
+- Kept $5.80 of short premium ($3.00 put + $2.80 call)
+- Back month long options worth $5.50 total
+- **Net position value: $5.50 (vs $4.20 debit)**
+- **Maximum profit: $1.30 per spread = $650 (31% ROI)**
+- But closing at 50% freed capital 9 days early for redeployment
+- **Early close actually better for compounding!**
 
 ### Maximum Profit Achievement
 
@@ -1903,16 +1972,22 @@ $$
 $$
 
 **Example calculation:**
-- Position: [Specific IV structure]
-- Entry IV: [Level and percentile]
-- Vega exposure: [$ per 1% IV]
-- Theta collection: [$ per day]
+- Position: 5 double calendars on SPY, $445 puts and $455 calls
+- Entry IV: Front 22%, Back 26% (4-point term structure)
+- Vega exposure: +$150 per 1% IV move (net long vega from calendar structure)
+- Theta collection: +$15/day initially, accelerating to +$30/day at week 3
 - **Scenario:**
-  - IV moves from [X]% to [Y]%
-  - Time passes: [N] days
-  - Stock movement: [Favorable/minimal]
-- **Profit: [Calculation]**
-- **ROI: [Percentage]**
+  - IV stays stable (22% → 22% front, 26% → 25% back)
+  - Time passes: 21 days
+  - Stock movement: Stays $448-$452 (minimal, perfect)
+- **Profit breakdown:**
+  - Theta collection: $15/day × 7 days + $20/day × 7 days + $30/day × 7 days = $455
+  - Vega impact: -1% back month IV × $150 = +$150
+  - Gamma loss: Minimal movement = -$50
+  - **Total profit: $455 + $150 - $50 = $555 per spread**
+  - 5 contracts × $555 = **$2,775 profit**
+- **ROI: $2,775 / $2,100 = 132% in 21 days**
+- **Annualized: ~2,300% (unrealistic to repeat but shows power)**
 
 ### What Makes It Perfect
 
@@ -1926,30 +2001,67 @@ The best case requires:
 ### IV Component Breakdown
 
 **Vega P&L:**
-- Entry IV: [Level]
-- Exit IV: [Level]
-- Vega position: [$ per 1%]
-- **Vega profit: [Calculation]**
+- Entry IV: Front 22%, Back 26%
+- Exit IV: Front 20% (decayed with time), Back 25%
+- Vega position: +$150 per 1% IV move (calendars are long vega)
+- Back month IV decline: 26% → 25% = -1%
+- **Vega profit: -1% × (+$150) = -$150 (small loss)**
+- But offset by front month IV decay being faster
 
 **Theta P&L:**
-- Days passed: [N]
-- Daily theta: [$ per day]
-- **Theta profit/cost: [Calculation]**
+- Days passed: 21 days
+- Daily theta: Started $15/day, averaged $20/day across period
+- Front month theta (short): -$30/day (we collect)
+- Back month theta (long): -$10/day (we pay)
+- Net theta: +$20/day average
+- **Theta profit: $20 × 21 days = +$420**
 
 **Gamma P&L:**
-- Stock moves: [Minimal/favorable]
-- Rebalancing: [Minimal/profitable]
-- **Gamma impact: [Calculation]**
+- Stock moves: Minimal ($448-$452, ~0.5% range)
+- Gamma position: Long gamma at strikes, short gamma in between
+- Rebalancing: None needed (stayed delta neutral)
+- **Gamma impact: ~$0 (negligible with minimal movement)**
 
-**Net P&L:** Sum of all components
+**Net P&L:** -$150 (vega) + $420 (theta) + $0 (gamma) = **+$270 per spread minimum**
+- Actual was higher due to term structure steepening bonus
 
 ### Comparison to Alternatives
 
-**This strategy vs. [Alternative IV approach]:**
-- [IV exposure comparison]
-- [Risk-reward analysis]
-- [When this strategy wins]
-- [Capital efficiency]
+**This strategy vs. Iron Condor (alternative range strategy):**
+
+**Double Calendar:**
+- IV exposure: Long vega (benefits from IV increase)
+- Theta collection: Enhanced (sell front, buy back)
+- Capital required: $2,100 (moderate debit)
+- Risk: Limited to debit paid
+- Best when: Range-bound + term structure favorable
+- Profit: $650 in 28 days (31% ROI)
+
+**Iron Condor:**
+- IV exposure: Short vega (hurt by IV increase)
+- Theta collection: Standard (all same expiration)
+- Capital required: $4,000 max risk (credit spread)
+- Risk: Defined but larger
+- Best when: Range-bound + IV declining
+- Profit: $400 on $1,000 risk (40% ROI typical)
+
+**Risk-reward analysis:**
+- Calendar has better upside if term structure persists
+- Condor has better defined maximum risk
+- Calendar more sensitive to IV changes
+- Condor more sensitive to stock movement
+
+**When double calendar wins:**
+- Term structure steep (4+ vol points)
+- Stock stays very range-bound
+- IV stable or increasing slightly
+- Can manage actively before front expiration
+
+**Capital efficiency:**
+- Calendar: 31% return on $2,100 = $651
+- Condor: 40% return on $1,000 risk = $400
+- **Calendar higher absolute profit but more capital**
+- Both excellent for different conditions
 
 ### Professional Profit-Taking
 

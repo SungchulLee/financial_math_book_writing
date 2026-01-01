@@ -1243,50 +1243,313 @@ If you follow 2% rule and diversify:
 - NVDA at $480
 - AI boom continuing
 - Want leveraged exposure with defined risk
+- IV rank at 42% (moderate)
+- Technical: Broke above $470 resistance
 
-**Trade:** $480/$520 bull call spread, 60 days
+**Trade:** $480/$520 bull call spread, 60 DTE
 
 - Buy $480 call: $35
 - Sell $520 call: $18
-- **Net debit: $17**
+- **Net debit: $17 ($1,700 per contract)**
+- Max profit: $40 - $17 = $23 ($2,300)
+- Max loss: $17 ($1,700)
+- Breakeven: $497
+- Risk/reward: 1.35:1
 
-**Outcome after 60 days:**
+**Management:**
 
-- NVDA rallied to $560
-- Spread at max value: $40
-- **Profit: $40 - $17 = $23** (135% return)
+- Week 1: NVDA rallies to $500, spread at $23 (up $600, 35% profit)
+- Week 2: Continues to $520, spread at $32 (up $1,500, 88% profit)
+- Week 3: Hits $540, spread maxes at $40
+- **Closed at Week 3: +$2,300 profit (135% ROI in 21 days)**
+
+**Outcome:**
+
+- Perfect execution: stock moved full spread width
+- Annualized ROI: ~2,200%
+- Could have closed earlier at 50% for faster capital recycling
 
 **Comparison:**
 
-- Single $480 call would've made $80 - $35 = $45
-- But spread used less capital
-- Spread breakeven lower
+- Single $480 call would've made $60 - $35 = $25 per share (71% ROI)
+- But required $3,500 capital vs $1,700
+- Spread had lower breakeven ($497 vs $515)
+- **Spread was more capital efficient despite capped upside**
+
+**Lesson:** Strong trend + catalyst + defined risk = ideal debit spread setup. Take profits at max value.
 
 ### Example 2: SPY Bull Put Spread (Mar 2024)
 
 **Setup:**
 
 - SPY at $510
-- Pullback to strong support
-- High IV from volatility
+- Pullback to strong support at $505
+- High IV from recent volatility (VIX at 18)
+- IV rank at 65% (elevated)
+- Technical: RSI at 35 (oversold)
 
-**Trade:** $490/$500 bull put spread, 45 days
+**Trade:** $490/$500 bull put spread, 45 DTE
 
 - Sell $500 put: $7
 - Buy $490 put: $3
-- **Net credit: $4**
+- **Net credit: $4 ($400 per contract)**
+- Max profit: $400
+- Max loss: $10 - $4 = $6 ($600)
+- Breakeven: $496
+- Probability of profit: ~75%
 
-**Outcome after 30 days:**
+**Management:**
 
-- SPY stayed above $505
-- Closed spread for $1 debit
-- **Profit: $4 - $1 = $3** (75% of max, 30% return on BP)
+- Day 10: SPY at $512, spread worth $2.50 (profit $150, 37.5%)
+- Day 18: SPY at $515, spread worth $1.50 (profit $250, 62.5%)
+- **Closed at Day 18 per 50%+ rule: +$250 profit**
 
-**Closed early:**
+**Outcome after 18 days:**
 
-- Got 75% of max profit
-- Freed up capital
-- Reduced risk of reversal
+- Profit: $250 (62.5% of max profit)
+- ROC: 41% on max risk in 18 days
+- Freed capital 27 days early
+- SPY continued higher (could have kept full $400)
+- **But following 50% rule allows faster compounding**
+
+**Closed early rationale:**
+
+- Got 62.5% of max profit in 40% of time
+- Remaining $150 profit requires 60% of time
+- Risk/reward ratio deteriorating
+- Can redeploy $600 capital to new trade
+
+**Lesson:** High IV + support level + credit spread = high probability trade. Take 50-70% profits for capital efficiency.
+
+### Example 3: TSLA Bear Put Spread Disaster (Learning Experience)
+
+**Setup:**
+
+- TSLA at $240, seemed overvalued
+- Deliveries disappointing
+- Expected further decline
+- IV rank at 55%
+
+**Trade:** $240/$230 bear put spread, 45 DTE
+
+- Buy $240 put: $12
+- Sell $230 put: $7
+- **Net debit: $5 ($500 per contract)**
+- Max profit: $10 - $5 = $5 ($500)
+- Max loss: $5 ($500)
+- Breakeven: $235
+- Risk/reward: 1:1
+
+**What went wrong:**
+
+**Week 1:**
+- Elon Musk bullish tweets
+- TSLA rallies to $255 (completely wrong direction)
+- Spread value drops to $2 (down $300, -60%)
+- **Should have cut loss at -50% here**
+
+**Week 2:**
+- Continued holding, hoping for reversal
+- TSLA at $265
+- Spread value: $0.50 (down $450, -90%)
+- Finally cut loss at -90%
+
+**Week 3:**
+- TSLA actually drops to $230 (thesis was eventually right!)
+- But too late - already exited
+- **Wrong timing destroyed good thesis**
+
+**Final outcome:**
+
+- Loss: $450 (90% of max loss)
+- Should have exited at -50% for -$250 loss
+- **Extra $200 lost from "hope trading"**
+- Later reversal didn't help (already out)
+
+**Lessons learned:**
+
+1. Stop losses exist for a reason (-50% is the line)
+2. Being eventually right doesn't matter if timing wrong
+3. Hope is not a strategy
+4. Trends can last longer than you can stay solvent
+5. **Never fight strong momentum without clear catalyst**
+
+### Example 4: AAPL Bear Call Spread (IV Crush Win)
+
+**Setup:**
+
+- AAPL at $185 post-earnings
+- IV rank dropped from 70% to 35% after earnings
+- Stock establishing range $180-$190
+- No major catalysts for 6 weeks
+
+**Trade:** $195/$200 bear call spread, 35 DTE
+
+- Sell $195 call: $2.50
+- Buy $200 call: $1.00
+- **Net credit: $1.50 ($150 per contract)**
+- Max profit: $150
+- Max loss: $5 - $1.50 = $3.50 ($350)
+- Breakeven: $196.50
+- Probability of profit: ~70%
+
+**Management:**
+
+- Week 1: AAPL at $182, spread at $1.00 (profit $50, 33%)
+- Week 2: AAPL at $186, spread at $0.60 (profit $90, 60%)
+- **Closed at Week 2: +$90 profit (60% of max in 40% of time)**
+
+**Alternative outcome if held:**
+
+- Week 3-5: AAPL consolidated $185-$188
+- Spread expired worthless
+- Would have made full $150
+- But took longer and had more risk
+
+**Why early exit was smart:**
+
+- $90 profit in 14 days = 25% ROC
+- Remaining $60 would take 21 more days
+- Risk of surprise move increases over time
+- **Capital recycling beats maximum profit**
+
+**Lesson:** Post-earnings, low-IV environments favor credit spreads. Take 50-70% profits and move on.
+
+### Example 5: QQQ Bull Call Spread (Gap Risk Lesson)
+
+**Setup:**
+
+- QQQ at $370
+- Tech rally momentum
+- Entered 3 days before Fed announcement (MISTAKE!)
+- IV rank at 40%
+
+**Trade:** $370/$380 bull call spread, 30 DTE
+
+- Buy $370 call: $9
+- Sell $380 call: $4
+- **Net debit: $5 ($500 per contract)**
+- Max profit: $10 - $5 = $5 ($500)
+- Max loss: $5 ($500)
+
+**What happened:**
+
+**Day 1-2:**
+- QQQ hovering $370-$372
+- Spread at $5.50 (up $50)
+- Looking good
+
+**Day 3 (Fed announcement):**
+- Fed surprise hawkish
+- QQQ gaps down to $360 overnight
+- Spread opens at $0.50 (down $450, -90%)
+- **No chance to manage - gap was instant**
+
+**Final outcome:**
+
+- Closed at $0.50: -$450 loss (90%)
+- Just 10% salvaged
+- Gap risk destroyed position instantly
+- **Binary event risk realized**
+
+**What went wrong:**
+
+1. Entered too close to major catalyst (Fed)
+2. Didn't account for gap risk
+3. Should have used credit spread (less directional risk)
+4. Or avoided position entirely
+
+**Lesson:** Don't hold debit spreads through binary events (Fed, earnings, major news). Gap risk can destroy positions instantly with no chance to manage.
+
+### Example 6: SPY Bull Put Spread (50% Rule Pays Off)
+
+**Setup:**
+
+- SPY at $455, range-bound $450-$460
+- IV rank 58% (good for credit spreads)
+- Multiple positions for diversification
+
+**Trade:** $445/$450 bull put spread, 40 DTE (5 contracts)
+
+- Sell $450 put: $3.50
+- Buy $445 put: $1.20
+- **Net credit: $2.30 ($230 per contract)**
+- Total credit: $1,150 (5 contracts)
+- Max loss per contract: $5 - $2.30 = $2.70 ($270)
+- Total max loss: $1,350
+
+**Management timeline:**
+
+**Day 12:**
+- SPY at $458, spread at $1.10
+- Profit: $1.20 × 500 = $600 (52% of max)
+- **Followed 50% rule: CLOSED ALL 5 contracts**
+- Freed up $1,350 buying power
+- Total days held: 12
+
+**What happened after:**
+
+- Day 15: SPY rallied to $463 (would have been full profit)
+- Day 20: SPY dropped to $452 (still full profit)
+- Day 28: SURPRISE Fed hawkish, SPY crash to $440!
+- Spread would have gone to max loss: -$1,350
+
+**Outcome comparison:**
+
+**Following 50% rule:**
+- Profit: +$600 in 12 days
+- Avoided disaster
+- Capital redeployed to new trade
+- **Second trade also hit 50%: Another +$500**
+- **Total in 40 days: $1,100**
+
+**If held for max:**
+- Would have lost -$1,350 due to surprise crash
+- **50% rule saved $2,450 swing!**
+
+**Lesson:** The 50% rule isn't about maximizing single trades - it's about risk management and compounding. Greed kills. Discipline survives.
+
+### Example 7: Small Account Example (Position Sizing Discipline)
+
+**Setup:**
+
+- $10,000 account (small trader)
+- Bullish on IWM (Russell 2000)
+- Want to risk 2% = $200 max
+
+**Trade:** $195/$200 bull call spread, 60 DTE
+
+- Buy $195 call: $4.50
+- Sell $200 call: $2.50
+- **Net debit: $2.00 ($200 per contract)**
+- Max loss: $200 (1 contract only)
+- Max profit: $5 - $2 = $3 ($300)
+
+**Position sizing decision:**
+
+**Tempting to do more:**
+- Could afford 5 contracts ($1,000)
+- Max profit would be $1,500
+- But max loss would be $1,000 (10% of account!)
+
+**Disciplined approach:**
+- 1 contract only
+- Max loss $200 (2% of account)
+- **Survivability over maximum gains**
+
+**Outcome:**
+
+- IWM rallied to $205
+- Spread maxed at $5
+- **Profit: $300 (150% ROI, 3% of account)**
+- Small dollar amount but proper risk management
+
+**If had over-sized to 5 contracts:**
+- Would have made $1,500 (15% of account) ✓
+- But if trade went wrong: -$1,000 (10% of account) ✗
+- **One bad trade would devastate small account**
+
+**Lesson:** Position sizing discipline is MORE important with small accounts. Protect capital first, grow slow and steady. Don't let greed destroy discipline.
 
 ---
 

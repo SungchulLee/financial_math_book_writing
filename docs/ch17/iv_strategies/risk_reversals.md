@@ -2616,8 +2616,1123 @@ $$
 
 ## Common Mistakes
 
-[Common IV strategy errors to avoid]
+**The fatal errors that destroy risk reversal traders:**
 
+### Mistake #1: Entering with Weak Conviction (<8/10)
+
+**The trap:**
+
+**What traders do:**
+```
+Market environment:
+- Stock at $100
+- "Feels" like it might go up
+- Conviction: 6/10 (weak)
+- Think: "RR is zero cost, why not try?"
+
+Enter bullish RR:
+- Sell $95 put for $3.00
+- Buy $105 call for $3.00
+- Net: $0 cost
+```
+
+**Why it's wrong:**
+
+**Risk reversal characteristics:**
+- Unlimited downside risk (like owning stock)
+- Unlimited upside potential (like owning stock)
+- But: Dead zone $95-$105 (no profit in middle)
+- **Need STRONG move to profit**
+
+**With 6/10 conviction:**
+```
+Probability outcomes:
+- 30% stock rallies above $105 (profit)
+- 40% stock stays $95-$105 (breakeven, wasted time)
+- 30% stock drops below $95 (unlimited loss)
+
+Expected value:
+- Best case: +$2,000 (30% chance)
+- Dead zone: $0 (40% chance)
+- Bad case: -$5,000 (30% chance on -$5 move)
+
+EV = (0.30 × $2,000) + (0.40 × $0) + (0.30 × -$5,000)
+   = $600 - $1,500 = -$900
+
+Negative EV trade!
+```
+
+**With 8+/10 conviction:**
+```
+Probability outcomes (when conviction justified):
+- 60% stock rallies above $105 (profit)
+- 25% stock stays $95-$105 (breakeven)
+- 15% stock drops below $95 (loss)
+
+Expected value:
+- Best case: +$2,000 (60% chance)
+- Dead zone: $0 (25% chance)
+- Bad case: -$5,000 (15% chance)
+
+EV = (0.60 × $2,000) + (0.25 × $0) + (0.15 × -$5,000)
+   = $1,200 - $750 = +$450
+
+Positive EV trade!
+```
+
+**The disaster:**
+
+```
+Weak conviction (6/10) trade progression:
+
+Week 1-2: Stock at $98-$102 (dead zone)
+- No profit
+- Time passing
+- Opportunity cost building
+
+Week 3: Stock drops to $94
+- Short put getting close to ITM
+- Start worrying
+- "Maybe I was wrong?"
+
+Week 4: Stock at $91
+- Short put ITM
+- Down -$4 per share = -$400
+- Conviction was never strong enough
+- **Should never have entered**
+
+Final: Close at -$400 loss
+Could have been avoided entirely with 8+ conviction rule
+```
+
+**The fix:**
+
+**Conviction requirements for RR:**
+
+```
+Minimum conviction scale:
+
+8/10: Acceptable for RR
+- Clear thesis
+- Multiple supporting factors
+- High probability of strong move
+- Comfortable with risk
+
+9/10: Ideal for RR
+- Very strong conviction
+- Overwhelming evidence
+- Willing to bet account on it
+- Perfect setup
+
+<8/10: DO NOT TRADE RR
+- Use vertical spread instead (defined risk)
+- Or long call/put (limited loss)
+- Or skip the trade
+- Never RR with weak conviction
+```
+
+**Conviction checklist:**
+
+```
+Before entering RR, verify:
+[ ] Fundamental analysis supports move
+[ ] Technical setup confirms direction
+[ ] Catalyst identified for move
+[ ] Risk/reward compelling
+[ ] Comfortable with unlimited risk
+[ ] Multiple timeframe confirmation
+[ ] Willing to hold through volatility
+[ ] Can size position appropriately
+
+If any box unchecked: Conviction <8/10
+Don't trade RR!
+```
+
+**Prevention:**
+```
+[ ] Rate conviction 1-10 before every RR
+[ ] If <8: Don't enter (use different strategy)
+[ ] Document conviction reasoning in journal
+[ ] Review past RRs: Did conviction match outcome?
+[ ] Remember: "Zero cost" ≠ "no risk"
+```
+
+### Mistake #2: Ignoring the Dead Zone (Wasting Time)
+
+**The trap:**
+
+**What traders do:**
+```
+Bullish RR:
+- Stock at $100
+- Sell $95 put
+- Buy $105 call
+- Dead zone: $95-$105 ($10 range)
+
+Think: "Stock will rally above $105, easy!"
+```
+
+**Why it's wrong:**
+
+**Dead zone reality:**
+
+```
+Stock movement probabilities (typical):
+- Below $95: 20%
+- $95-$105 (dead zone): 50%
+- Above $105: 30%
+
+Most likely outcome: DEAD ZONE (50%)
+In dead zone: Zero profit, maximum time waste
+```
+
+**The mathematics:**
+
+**Dead zone width vs. profitability:**
+
+| Dead Zone Width | Stock Volatility | % Time in Dead Zone | Expected Value |
+|----------------|------------------|---------------------|----------------|
+| $5 (narrow) | 15% annual | 30% | Positive |
+| $10 (normal) | 15% annual | 50% | Neutral/Negative |
+| $15 (wide) | 15% annual | 65% | Very Negative |
+| $20 (huge) | 15% annual | 75% | Terrible |
+
+**Wider dead zone = higher probability of wasting time**
+
+**The disaster:**
+
+```
+Month 1: Enter RR with $15 dead zone
+- Stock at $100
+- Sell $90 put, Buy $115 call
+- Credit: $1.00 (small, from skew)
+
+Week 1-4: Stock at $98-$108 (dead zone)
+- Position value: +$50 (credit + small IV move)
+- But: No meaningful profit
+- Time: 4 weeks wasted
+
+Month 2: Stock still at $102-$110 (dead zone)
+- Position value: +$100 total
+- 2 months of capital tied up
+- Opportunity cost: Could have made $500 in other trades
+
+Month 3 (approaching expiration):
+- Stock at $105 (dead zone)
+- Position expires worthless (except small credit)
+- Total profit: $100
+- Time wasted: 90 days
+- ROI: Terrible (on opportunity cost basis)
+
+Compare to:
+- Narrower dead zone ($5 wide)
+- Higher probability of profiting
+- Less time wasted in "no man's land"
+```
+
+**The fix:**
+
+**Optimal dead zone sizing:**
+
+```
+Dead zone width formula:
+
+Maximum dead zone = Stock Price × (Expected Daily Move × √Days)
+
+For 30-60 DTE:
+- Low volatility stock (15% IV): 5-7% dead zone
+- Medium volatility (25% IV): 7-10% dead zone  
+- High volatility (40% IV): 10-15% dead zone
+
+Example at $100 stock, 25% IV, 60 DTE:
+Max dead zone = $100 × 0.10 = $10
+Strikes: $95 put, $105 call ✓
+
+Avoid: $90 put, $110 call (too wide!)
+```
+
+**Strike selection rules:**
+
+```
+For bullish RR:
+Short put: 1-1.5 standard deviations OTM
+Long call: 1-1.5 standard deviations OTM
+
+This creates:
+- Moderate dead zone (not too wide)
+- Reasonable chance to profit
+- Acceptable credit from skew
+
+Don't:
+- Make dead zone >15% of stock price
+- Put strikes too far OTM
+- Accept tiny credit for huge dead zone
+```
+
+**Prevention:**
+```
+[ ] Calculate dead zone width before entry
+[ ] Max dead zone: 10% of stock price
+[ ] If dead zone >10%: Tighten strikes
+[ ] Check historical price movement (past 60 days)
+[ ] If stock rangebound: Avoid RR entirely
+[ ] Remember: Dead zone = dead money
+```
+
+### Mistake #3: Not Closing When Short Strike Breached
+
+**The trap:**
+
+**What traders do:**
+```
+Bullish RR:
+- Stock at $100
+- Sell $95 put, Buy $105 call
+
+Week 3: Stock drops to $94
+- Short $95 put now ITM
+- Think: "It will bounce back"
+- Don't close
+
+Week 4: Stock at $91
+- Deep ITM on put
+- Down -$4 = -$400
+- Still hoping
+- **Still not closing**
+```
+
+**Why it's DISASTROUS:**
+
+**Unlimited loss acceleration:**
+
+```
+Short put behavior once ITM:
+
+At strike ($95):
+- Delta: -0.50
+- For each $1 drop: Lose $50
+
+$1 below strike ($94):
+- Delta: -0.65
+- For each $1 drop: Lose $65
+
+$2 below strike ($93):
+- Delta: -0.75
+- For each $1 drop: Lose $75
+
+$5 below strike ($90):
+- Delta: -0.95
+- For each $1 drop: Lose $95
+
+Losses accelerate geometrically!
+```
+
+**The disaster:**
+
+```
+Timeline of ignoring breach:
+
+Day 1: Stock at $94 (put strike $95)
+- Loss: -$100
+- Think: "Small loss, will recover"
+- Decision: Hold
+
+Day 5: Stock at $92
+- Loss: -$300
+- Think: "Oversold, must bounce"
+- Decision: Still hold
+
+Day 10: Stock at $89
+- Loss: -$600
+- Now panicking
+- Think: "Already down so much, might as well hold"
+- **Mistake: Sunk cost fallacy**
+
+Day 15: Stock at $85
+- Loss: -$1,000
+- Finally capitulate
+- Close at massive loss
+
+If had closed at $94 (Day 1):
+- Loss: -$100
+- Saved: $900
+- Just by acting fast!
+```
+
+**Why traders don't close:**
+
+1. **Hope:**
+   - "Stock will bounce"
+   - "Just temporary"
+   - "Can't accept loss"
+
+2. **Sunk cost fallacy:**
+   - "Already down $300"
+   - "Might as well hold"
+   - "Could recover"
+
+3. **Denial:**
+   - "Thesis still valid"
+   - "Market wrong, I'm right"
+   - "Different this time"
+
+4. **Ego:**
+   - "Can't be wrong"
+   - "Traders don't lose"
+   - "Must prove myself right"
+
+**The fix:**
+
+**Immediate exit rules:**
+
+```
+Rule 1: CLOSE immediately when short strike breached
+- No exceptions
+- No hoping
+- No waiting
+- Exit NOW
+
+Rule 2: If short strike tested (within 1%)
+- Start preparing exit
+- Tighten stop
+- Evaluate thesis
+- Likely exit soon
+
+Rule 3: Loss limits (redundant safety)
+- Max loss: 2× dead zone width
+- Example: $10 dead zone → -$20 max loss
+- If hit: Auto-exit
+
+Rule 4: Time-based review
+- If not profitable after 50% of time
+- Close and redeploy
+- Don't wait for miracle
+```
+
+**Mechanical exit system:**
+
+```python
+def should_exit_RR(stock_price, short_strike, strike_type, dead_zone_width):
+    """
+    Determine if should exit risk reversal
+    """
+    if strike_type == "put":
+        # Bullish RR
+        if stock_price <= short_strike:
+            return True, "Short put BREACHED - EXIT NOW"
+        elif stock_price <= short_strike * 1.01:
+            return True, "Short put tested - EXIT SOON"
+            
+    elif strike_type == "call":
+        # Bearish RR
+        if stock_price >= short_strike:
+            return True, "Short call BREACHED - EXIT NOW"
+        elif stock_price >= short_strike * 0.99:
+            return True, "Short call tested - EXIT SOON"
+    
+    return False, "Position OK"
+
+# Example:
+# Bullish RR: short $95 put
+# Stock at $94
+# Result: "Short put BREACHED - EXIT NOW"
+# ACTION: Close immediately, no thinking
+```
+
+**Prevention:**
+```
+[ ] Set alert at short strike price
+[ ] Set alert at short strike + 1%
+[ ] Pre-commit to exit if breached
+[ ] No exceptions for "special circumstances"
+[ ] Close within 1 hour of breach
+[ ] Review breaches monthly: Did I exit fast enough?
+[ ] Remember: First loss is best loss
+```
+
+### Mistake #4: Over-Sizing Because "It's Zero Cost"
+
+**The trap:**
+
+**What traders think:**
+```
+Risk reversal costs: $0
+Think: "No money at risk! Can do more!"
+
+Position sizing:
+- Normally trade 1-2 contracts
+- But RR is "free"
+- Enter 10 contracts!
+- "Why not? It's zero cost!"
+```
+
+**Why it's CATASTROPHIC:**
+
+**Hidden leverage:**
+
+```
+Apparent cost: $0
+Real risk: UNLIMITED
+
+10 contract RR = controlling $100,000 of stock
+For: $0 upfront
+This is: INFINITE leverage!
+
+Compare:
+- Buying 1,000 shares: $100,000 capital
+- 10 RR contracts: $0 capital, same exposure
+- Leverage: ∞:1 (literally infinite)
+```
+
+**The mathematics:**
+
+**True risk calculation:**
+
+```
+Bullish RR: Sell $95 put, Buy $105 call
+
+Assignment risk calculation:
+- If stock drops to $85 (10% decline)
+- Short put assigned: Must buy at $95
+- 10 contracts = 1,000 shares
+- Cost: 1,000 × $95 = $95,000
+- Current value: 1,000 × $85 = $85,000
+- Loss: -$10,000
+
+Plus: Don't have $95,000!
+- Must use margin
+- Margin call likely
+- Forced to close at worst price
+- Real loss: -$12,000+ (with margin fees)
+
+"Zero cost" position created $12,000 loss!
+```
+
+**The disaster:**
+
+```
+Account: $50,000
+
+Enter 10 RR contracts (bullish):
+- Think: "Zero cost, no risk!"
+- Assignment risk: $95,000
+- Real exposure: 2× account size
+
+Week 1: Stock drops 5% to $95
+- Short put at strike
+- Nervous but holding
+
+Week 2: Stock drops to $90
+- Short put deep ITM
+- Loss: -$5,000 (10 contracts × $500)
+- Still have long calls (worthless)
+- Net: -$5,000 (10% of account!)
+
+Week 3: Stock at $85
+- Approaching assignment
+- Loss: -$10,000 (20% of account!)
+- Margin call coming
+- Panic: Must close
+
+Exit forced at $85:
+- Total loss: -$10,000
+- Account: $50,000 → $40,000
+- Drawdown: -20%
+- Recovery needed: 25% gain
+
+If had sized properly (2 contracts):
+- Loss: -$2,000 (4% of account)
+- Still alive, can recover
+- Manageable drawdown
+
+Oversizing multiplied disaster 5×!
+```
+
+**The fix:**
+
+**Proper RR position sizing:**
+
+```
+Formula 1: Assignment-based sizing
+
+Max contracts = (Account × 0.50) / (Short Strike × 100)
+
+Example:
+$50,000 account
+Short $95 put
+Max = ($50,000 × 0.50) / ($95 × 100)
+    = $25,000 / $9,500
+    = 2.63 → 2 contracts
+
+Rule: Never use more than 50% of account for assignment risk
+
+Formula 2: Loss-based sizing (more conservative)
+
+Max contracts = (Account × 0.02) / Expected Loss Per Contract
+
+Example:
+$50,000 account
+Expected max loss: $1,000 per contract (10% move)
+Max = ($50,000 × 0.02) / $1,000
+    = $1,000 / $1,000
+    = 1 contract
+
+Rule: Risk only 2% of account per trade
+```
+
+**Position limits:**
+
+```
+Conservative (recommended):
+- Max 2% of account at risk
+- 1-2 contracts for $50k account
+- 3-5 contracts for $100k account
+
+Moderate:
+- Max 5% of account at risk  
+- 2-4 contracts for $50k account
+- 5-10 contracts for $100k account
+
+Aggressive (dangerous):
+- Max 10% of account at risk
+- 4-6 contracts for $50k account
+- Only for highest conviction (9-10/10)
+
+Never:
+- >10% of account at risk
+- Position size that can't handle assignment
+- "All in" because "zero cost"
+```
+
+**Prevention:**
+```
+[ ] Calculate assignment risk before entry
+[ ] Max position: 50% of account in assignment risk
+[ ] Alternatively: Max 2% risk per trade
+[ ] "Zero cost" does NOT mean "no risk"
+[ ] Size RR like you're buying stock
+[ ] Keep 50%+ cash for assignments
+[ ] Remember: Leverage kills accounts
+```
+
+### Mistake #5: Trading RR Around Earnings/Events
+
+**The trap:**
+
+**What traders do:**
+```
+Earnings in 3 days:
+- Stock at $100
+- "Bullish on earnings"
+- Enter bullish RR
+
+Think: "If earnings good, stock gaps to $110!"
+       "RR will print money!"
+```
+
+**Why it's a GAMBLE (not trade):**
+
+**Binary event characteristics:**
+
+```
+Earnings outcomes:
+- Beat: Stock gaps +8% → Win big
+- Meet: Stock flat → Dead zone
+- Miss: Stock gaps -15% → Disaster
+
+Probabilities (roughly):
+- Beat: 33%
+- Meet: 33%
+- Miss: 33%
+
+This is literally a coin flip!
+No edge, pure gambling
+```
+
+**The disaster:**
+
+```
+Pre-earnings RR (bullish):
+- Stock at $100
+- Sell $95 put for $4.00 (IV 60%)
+- Buy $105 call for $4.00 (IV 55%)
+- Net: $0 cost
+
+Expectations:
+- Beat → Stock to $110 → +$500 profit
+- Meet → Stock to $102 → Small profit
+- Miss → Stock to $92 → -$300 loss
+
+Actual earnings result: MISS
+- Revenue miss, guidance cut
+- Stock gaps to $85 (down 15%!)
+- Short $95 put: Deep ITM
+- Long $105 call: Worthless
+
+Day after earnings:
+- Stock at $85
+- Short put loss: -$10 per share
+- Long call: Worthless
+- Total: -$1,000 (per contract)
+
+Plus: IV crush (60% → 30%)
+- Short put IV drops (helps)
+- But delta loss overwhelms
+- Net: Still massive loss
+
+Expected worst case: -$300
+Actual loss: -$1,000
+3× worse than planned!
+
+Binary events are unpredictable
+Gaps can be massive
+RR amplifies the disaster
+```
+
+**Why traders do it:**
+
+1. **Greed:**
+   - "Big move opportunity!"
+   - "Can't miss it!"
+   - "This is THE trade!"
+
+2. **Overconfidence:**
+   - "I know earnings will beat"
+   - "My analysis is better"
+   - "Market doesn't understand"
+
+3. **FOMO:**
+   - "Everyone else trading it"
+   - "Miss out on gains"
+   - "Easy money"
+
+4. **Ignorance:**
+   - Don't understand IV crush
+   - Don't realize gaps bypass strikes
+   - Don't know binary risk
+
+**The fix:**
+
+**Event avoidance rules:**
+
+```
+NEVER trade RR around:
+
+1. Earnings (0-7 days before)
+   - IV elevated (priced in)
+   - Gap risk massive
+   - Binary outcome
+   - Wait until AFTER
+
+2. FDA decisions (biotech)
+   - Approval: Stock +100%
+   - Rejection: Stock -80%
+   - Pure lottery
+   - Avoid entirely
+
+3. Fed meetings (major decisions)
+   - Market-wide gap risk
+   - Unpredictable reaction
+   - Wait for clarity
+
+4. Product launches (Apple, Tesla)
+   - Reception unknown
+   - Stock can gap either way
+   - Wait for results
+
+5. Legal rulings
+   - Binary outcomes
+   - Massive gaps possible
+   - Too risky
+
+6. Geopolitical events
+   - War, elections, etc.
+   - Market chaos
+   - Avoid uncertainty
+```
+
+**Safe timing:**
+
+```
+AFTER events:
+
+1-2 days after earnings:
+- IV crushed back to normal
+- Stock found new level
+- Direction clearer
+- NOW consider RR (if still bullish/bearish)
+
+After FDA/catalyst:
+- Dust settled
+- Stock stabilized
+- New trend forming
+- NOW can trade
+
+Advantage:
+- Less uncertainty
+- Normal volatility
+- Better risk/reward
+- Actual edge (not gambling)
+```
+
+**Prevention:**
+```
+[ ] Check earnings calendar before EVERY RR
+[ ] No RR within 7 days of earnings
+[ ] No RR before any binary event
+[ ] If event announced after entry: Close immediately
+[ ] Wait 1-2 days after event before re-entering
+[ ] Remember: Events = gambling, not trading
+```
+
+### Mistake #6: Not Using Skew to Your Advantage
+
+**The trap:**
+
+**What traders do:**
+```
+Want bullish exposure:
+
+Option A: Buy call
+- Cost: $5.00
+- Need stock to move
+
+Option B: Bullish RR
+- Sell $95 put: IV 45%, get $4.50
+- Buy $105 call: IV 35%, pay $4.50
+- Net: $0
+
+Think: "Both zero cost, same thing"
+```
+
+**Why it's wrong:**
+
+**Missing the skew edge:**
+
+```
+Put skew exists: Puts trade at higher IV than calls
+
+Normal market:
+- $95 put: IV 45% (elevated)
+- $105 call: IV 35% (normal)
+- Difference: 10 points
+
+This creates OPPORTUNITY:
+- Sell expensive put (45% IV)
+- Buy cheap call (35% IV)
+- Collect CREDIT from skew!
+
+Better RR structure:
+- Sell $95 put for $5.00 (high IV)
+- Buy $105 call for $4.00 (low IV)
+- **Net credit: $1.00 ($100)**
+
+Same structure, but got PAID $100!
+```
+
+**The mathematics:**
+
+**Skew value:**
+
+```
+Stock at $100
+
+Scenario A: Ignoring skew (balanced IV)
+- Sell $95 put at 40% IV: $4.50
+- Buy $105 call at 40% IV: $4.50
+- Credit: $0
+
+Scenario B: Using skew
+- Sell $95 put at 50% IV: $6.00
+- Buy $105 call at 35% IV: $4.00
+- Credit: $2.00 ($200!)
+
+Extra edge: $200 from skew
+This is FREE MONEY from market mispricing!
+```
+
+**The disaster (missing skew):**
+
+```
+Trader 1 (ignores skew):
+
+Enters RR at balanced strikes:
+- Zero credit
+- Stock must move significantly to profit
+- Dead zone: $95-$105
+- Needs >5% move minimum
+
+Result:
+- Stock rallies to $107
+- Profit: $200 (2% move into profit zone)
+
+Trader 2 (uses skew):
+
+Enters RR collecting $2.00 credit:
+- Got paid $200 upfront
+- Same strikes
+- Same dead zone
+
+Result:
+- Stock rallies to $107
+- Profit: $200 (from move) + $200 (credit)
+- Total: $400
+
+Difference: 2× profit for same trade!
+Skew awareness doubled returns!
+```
+
+**How to check skew:**
+
+```
+Before entering RR:
+
+1. Look up IVs:
+   - Check put IV at your strike
+   - Check call IV at your strike
+   - Calculate difference
+
+2. Skew opportunity:
+   - Put IV - Call IV > 5 points: Good
+   - Put IV - Call IV > 10 points: Excellent
+   - Put IV - Call IV < 3 points: Poor, skip
+
+3. Adjust strikes if needed:
+   - If skew poor at chosen strikes
+   - Move strikes to find better skew
+   - Optimize for maximum credit
+
+Example:
+- Original: $95 put (IV 42%), $105 call (IV 38%) → 4 point skew
+- Better: $92 put (IV 48%), $108 call (IV 36%) → 12 point skew
+- Choose better skew strikes!
+```
+
+**The fix:**
+
+**Skew exploitation rules:**
+
+```
+For bullish RR:
+- Target put IV > call IV by 5+ points
+- Collect credit, don't pay debit
+- Minimum credit: $0.50 per spread
+- Ideal credit: $1.00-$2.00
+
+For bearish RR:
+- Sometimes call IV > put IV (rare)
+- Same principles apply
+- Sell expensive, buy cheap
+
+For any RR:
+- Always check skew first
+- Optimize strikes for credit
+- Free money from market inefficiency
+- Don't leave it on table!
+```
+
+**Skew checking tool:**
+
+```python
+def analyze_skew(put_strike, put_iv, call_strike, call_iv):
+    """
+    Check if skew provides edge for RR
+    """
+    skew = put_iv - call_iv
+    
+    if skew > 10:
+        return "EXCELLENT", f"Put IV {skew} points higher - strong credit"
+    elif skew > 5:
+        return "GOOD", f"Put IV {skew} points higher - decent credit"
+    elif skew > 2:
+        return "ACCEPTABLE", f"Minimal skew advantage"
+    else:
+        return "POOR", f"No skew edge - consider different strikes"
+
+# Example:
+# analyze_skew(95, 50, 105, 38)
+# Result: "EXCELLENT", "Put IV 12 points higher - strong credit"
+```
+
+**Prevention:**
+```
+[ ] Always check IV of both strikes before entry
+[ ] Calculate skew differential (put IV - call IV)
+[ ] Minimum skew: 3 points for RR
+[ ] Prefer skew >5 points
+[ ] Adjust strikes to optimize skew
+[ ] If no skew: Consider different strategy
+[ ] Remember: Skew = free edge, use it!
+```
+
+### Mistake #7: Treating RR Like Covered Call (Passive Management)
+
+**The trap:**
+
+**What traders think:**
+```
+Covered call mentality:
+- Sell call, collect premium
+- Hold stock
+- Manage passively
+- Roll if needed
+
+Apply to RR:
+- Enter RR, collect credit
+- Set and forget
+- "It'll work out"
+- Check once a week
+```
+
+**Why it's WRONG:**
+
+**Key differences:**
+
+```
+Covered call:
+- Defined max loss (stock to $0)
+- Gradual movement (-$1/day typical)
+- Time to react (days/weeks)
+- Can hold through volatility
+- Assignment = OK (wanted to sell anyway)
+
+Risk reversal:
+- UNLIMITED loss potential
+- Can gap overnight (earnings, news)
+- No time to react (gaps bypass stops)
+- Cannot hold through volatility
+- Assignment = DISASTER (don't have capital)
+
+Management intensity:
+- Covered call: Check 1-2× per week
+- Risk reversal: Check DAILY minimum
+```
+
+**The disaster:**
+
+```
+Passive RR management:
+
+Monday: Enter bullish RR
+- Stock at $100
+- Sell $95 put, Buy $105 call
+- Credit: $1.00
+- Set and forget
+
+Tuesday-Thursday: Busy with work
+- Don't check position
+- "It's fine, stock stable"
+
+Friday morning: Check position
+- Stock gapped down to $88 overnight!
+- Negative news (accounting issue)
+- Short $95 put: -$7 ITM
+- Loss: -$700 per contract
+
+Shocked: "How did this happen?"
+Reality: Didn't monitor, missed warning signs
+
+If had checked daily:
+- Wednesday: News leaked, stock $97
+- Could have closed at -$200
+- Instead: Closed at -$700
+- Passive management cost $500!
+```
+
+**What active management catches:**
+
+```
+Daily monitoring catches:
+
+1. Technical breaks:
+   - Support level broken
+   - Trend change
+   - Exit before bigger move
+
+2. News flow:
+   - Company announcements
+   - Sector weakness
+   - Macro changes
+
+3. Position changes:
+   - Delta shifts
+   - IV changes
+   - Time decay
+
+4. Conviction updates:
+   - Thesis still valid?
+   - New information?
+   - Need to adjust?
+
+Missing any = potential disaster
+```
+
+**The fix:**
+
+**Active RR management:**
+
+```
+Daily routine (5-10 minutes):
+
+Morning:
+[ ] Check stock price vs. strikes
+[ ] Check for overnight news
+[ ] Verify thesis still intact
+[ ] Calculate current P/L
+[ ] Check days to expiration
+
+Mid-day (if volatile):
+[ ] Re-check price
+[ ] Monitor any news
+[ ] Be ready to act
+
+Evening:
+[ ] Log daily changes
+[ ] Plan for tomorrow
+[ ] Set alerts for next day
+
+Weekly review:
+[ ] Full position analysis
+[ ] Greeks check
+[ ] Thesis evaluation
+[ ] Consider adjustments
+```
+
+**Alert system:**
+
+```
+Set multiple alerts:
+
+Price alerts:
+- Short strike price (critical)
+- Short strike + 2% (warning)
+- Long strike price (profit target)
+
+News alerts:
+- Company announcements
+- Sector news
+- Earnings date reminders
+
+Time alerts:
+- 30 DTE (start thinking exit)
+- 21 DTE (exit zone)
+- 7 DTE (must exit)
+
+Multiple layers = safety net
+```
+
+**Prevention:**
+```
+[ ] Commit to daily monitoring
+[ ] Set comprehensive alerts
+[ ] Never "set and forget" RR
+[ ] Log daily in trading journal
+[ ] Weekend review of all positions
+[ ] RR requires active management
+[ ] Remember: Passive = dangerous
+```
+
+---
 
 ## Real-World Examples
 

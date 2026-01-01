@@ -1504,16 +1504,20 @@ $$
 ### Step 2: Strategy Selection Criteria
 
 **Enter this strategy when:**
-- [Specific IV conditions]
-- [Term structure requirements]
-- [Skew positioning]
-- [Time to event/expiration]
+- Pre-earnings IV has elevated significantly (IVR > 60%)
+- 5-15 days before earnings announcement
+- Historical crush pattern consistent (check last 4-8 quarters)
+- Stock is well-established ($50+ price, liquid options)
+- Expected move calculable and reasonable (<15% typically)
+- No other major catalysts overlapping (FDA, lawsuits, etc.)
 
 **Avoid this strategy when:**
-- [Unfavorable IV environment]
-- [Wrong term structure shape]
-- [Insufficient IV edge]
-- [Event risk too high]
+- Biotech/penny stocks (binary outcomes)
+- IV hasn't elevated yet (<40% IVR too early)
+- Too close to earnings (<3 days, gap risk)
+- Illiquid options (bid-ask > 10%, OI < 500)
+- Erratic historical crush patterns
+- Major non-earnings catalyst present
 
 ### Step 3: Position Sizing
 
@@ -2465,23 +2469,73 @@ Options Trading Approaches:
 ### The Nightmare Setup
 
 **How it starts:**
-- [IV moves against position]
-- [Term structure inverts unexpectedly]
-- [Unexpected catalyst emerges]
-- [Position deteriorating rapidly]
+- Enter iron condor on NFLX 7 days before earnings
+- Stock at $425, expected move $35 (8.2%)
+- Sell $390/$385 put spread for $2.00
+- Sell $460/$465 call spread for $1.90
+- Net credit: $3.90 per IC ($390 per contract)
+- 10 contracts = $3,900 total credit
+- IV at entry: 68% (elevated, seemed perfect)
+- Max risk: ($5 - $3.90) × 100 × 10 = $11,000
 
 **The deterioration:**
 
-**Week 1:**
-- [Early warning signs in IV]
-- [Position losing value]
-- [IV percentile moving adversely]
-- [Critical decision point: hold or fold?]
+**Day 1-5 (before earnings):**
+- NFLX trading $420-$430 (within range, looking good)
+- IV climbing to 72% (even better crush potential)
+- Theta collecting: +$40/day
+- Position up $200 (5% profit so far)
+- Confidence high: "Easy money"
 
-**Through expiration:**
-- [Continued adverse IV dynamics]
-- [Maximum loss approached/realized]
-- [Final devastating outcome]
+**Earnings Day (After Hours):**
+- NFLX reports subscriber loss (unexpected disaster)
+- Stock gaps down from $425 to $365 (-14.1%)
+- **FAR beyond put spread ($390 short strike)**
+- Cannot close after hours, must wait for morning
+- Overnight panic, can't sleep
+
+**Next Morning (The Crush):**
+- Market opens, NFLX at $365
+- IV crushed: 72% → 35% (yes, still crushed)
+- But doesn't matter - deep ITM
+- **Position analysis:**
+  - Put spread: $385 short / $390 long
+  - Stock at $365: Both deep ITM
+  - Put spread worth: $5.00 (max loss per spread)
+  - Call spread: Worthless ($0)
+- **Position value: $5.00 (full max loss)**
+
+**Critical decision point: Close or hope for bounce?**
+- Already at max loss ($5.00 - $3.90 credit = $1.10 loss × 100)
+- No hope for recovery (stock down 14%)
+- **Must close before expiration (assignment risk)**
+
+**Day After Earnings:**
+- NFLX continues down to $358 (more selling)
+- Put spread still at max loss
+- Close position at market open
+- **Final P&L:**
+  - Collected: $3.90 × 10 = $3,900
+  - Paid to close: $5.00 × 10 = $5,000
+  - **Net loss: -$1,100 per spread**
+  - **Total loss: -$11,000 (10 contracts)**
+  - Plus commissions: -$120
+  - **Final: -$11,120 (285% loss on credit, 22% of $50k account)**
+
+**If held to expiration (even worse):**
+- Put spread assigned
+- Now short 1,000 shares NFLX at $385
+- Stock at $358, need to cover
+- Loss: $27 per share × 1,000 = $27,000
+- Minus credit: -$11,100
+- **Would be -$38,100 (76% of account wiped out!)**
+
+**Why so bad:**
+- Gap exceeded expected move by 70%
+- Went beyond BOTH put strikes
+- IV crush irrelevant when deep ITM
+- "Safe" strikes weren't safe enough
+- **Concentrated too much in single earnings**
 
 ### Maximum Loss Calculation
 
@@ -2504,11 +2558,29 @@ $$
 $$
 
 **Example calculation:**
-- Position: [Specific IV structure]
-- Entry IV: [Level and percentile]
-- Adverse scenario: [What went wrong]
-- **Loss: [Calculation]**
-- **Impact: [% of portfolio]**
+- Position: 10 iron condors on NFLX, $385/$390/$460/$465
+- Entry IV: 68% (IVR 75%, very elevated pre-earnings)
+- Credit collected: $3.90 per spread = $3,900 total
+- Max risk per spread: $5.00 - $3.90 = $1.10 ($110)
+- Total max risk: $1,100 (standard calculation)
+- Adverse scenario: Subscriber loss announcement
+  - Stock gaps from $425 to $365 (-$60, -14.1%)
+  - Expected move was $35 (8.2%)
+  - **Actual move 71% larger than expected**
+  - IV crushed 68% → 35% (irrelevant when deep ITM)
+- **Loss breakdown:**
+  - Put spread: Max loss $5.00 × 1,000 shares = -$5,000
+  - Call spread: Expired worthless, kept credit = +$1,900
+  - Net position loss: -$3,100
+  - Minus credit collected: -$3,900
+  - **Gross loss before credit: -$7,000**
+  - **Net loss: -$3,100 (credit partially offset)**
+  - **Actual: -$11,000 total capital at risk lost**
+  - **Wait, let me recalculate correctly:**
+  - Collected $3,900, paid $5,000 to close = **-$1,100 net**
+  - But max risk was 10 × ($5 - $3.90) × 100 = $11,000
+  - So lost full max risk amount
+- **Impact: 22% of $50,000 portfolio (devastating single trade)**
 
 ### What Goes Wrong
 
@@ -2732,24 +2804,59 @@ $$
 ### The Perfect Setup
 
 **Ideal entry conditions:**
-- [IV at optimal level for strategy]
-- [Term structure favorably positioned]
-- [Skew supporting the trade]
-- [Timing aligned with catalyst/events]
+- AAPL earnings in 8 days, historically reliable crush pattern
+- Stock at $180, strong range $175-$185 past 3 weeks
+- IV at 52% (IVR 68%, elevated but not peak)
+- Historical pre-earnings peak: 58-65%
+- Historical post-earnings IV: 20-25%
+- Expected crush: 30-35 points (massive)
+- Expected move: $9 (5%)
+- No other catalysts, clean earnings setup
+- High liquidity, tight spreads (0.03 bid-ask)
 
 **The optimal sequence:**
 
-**Week 1:**
-- [IV moves as anticipated]
-- [Term structure behaves favorably]
-- [Position accumulating profit]
-- [Greeks performing as expected]
+**Days 1-5 (IV building):**
+- Enter iron condor 8 days before earnings
+- Sell $170/$165 put spread @ $2.20
+- Sell $190/$195 call spread @ $2.10
+- **Net credit: $4.30 per IC ($430 per contract)**
+- 10 contracts = $4,300 total credit
+- Max risk: ($5 - $4.30) × 100 × 10 = $7,000
+- AAPL trading $178-$182 (stable)
+- IV climbs from 52% to 58% (position gains value!)
+- Theta working: +$50/day
+- **Position up $300 from IV expansion + theta**
 
-**Through expiration:**
-- [Continued favorable IV dynamics]
-- [Optimal IV/RV relationship]
-- [Maximum profit zone reached]
-- [Exit at optimal timing]
+**Day 6-7 (peak IV):**
+- IV reaches 62% (near historical peak)
+- AAPL at $181 (still centered)
+- Position now worth $3.50 (from $4.30)
+- **Already up $800 (19% profit)**
+- Could close here but earnings next day
+- Decision: Hold for full crush
+
+**Earnings Day (After Hours):**
+- AAPL beats estimates, slight guidance raise
+- Stock moves to $185 (+2.2%, modest)
+- Still well within iron condor range ✓
+- Overnight: Waiting for crush
+
+**Next Morning (The Crush):**
+- Market opens, IV crushed immediately
+- **IV: 62% → 23% (39-point crush, 63% decline)**
+- Position value plummets: $3.50 → $0.80
+- **Time to close!**
+  - Put spread: $0.25 (far OTM + crushed)
+  - Call spread: $0.55 (slightly ITM but crushed hard)
+  - Total: $0.80 to close
+- **P&L:**
+  - Collected: $4.30
+  - Paid to close: $0.80
+  - **Profit: $3.50 per spread**
+  - **Total: 10 × $350 = $3,500 profit**
+  - **ROI: 81% on credit in 9 days**
+  - **Annualized: 3,285%!**
 
 ### Maximum Profit Achievement
 
@@ -2760,16 +2867,26 @@ $$
 $$
 
 **Example calculation:**
-- Position: [Specific IV structure]
-- Entry IV: [Level and percentile]
-- Vega exposure: [$ per 1% IV]
-- Theta collection: [$ per day]
+- Position: 10 iron condors on AAPL, $165/$170/$190/$195
+- Entry IV: 52% (building toward earnings)
+- Peak IV: 62% (day before earnings)
+- Post IV: 23% (crushed)
+- Vega exposure: -$280 per 1% IV move (short vega from iron condor)
+- Theta collection: +$50/day initially, +$80/day near earnings
 - **Scenario:**
-  - IV moves from [X]% to [Y]%
-  - Time passes: [N] days
-  - Stock movement: [Favorable/minimal]
-- **Profit: [Calculation]**
-- **ROI: [Percentage]**
+  - IV moves from 62% → 23% (39-point crush)
+  - Time passes: 9 days total
+  - Stock movement: $180 → $185 (+2.8%, stayed in range)
+- **Profit breakdown:**
+  - Vega P&L: -$280 × (-39) = +$10,920 (from IV crush!)
+  - Theta P&L: $50 × 5 days + $80 × 4 days = $250 + $320 = +$570
+  - Gamma loss: Stock moved toward call side = -$200
+  - Gross profit: $10,920 + $570 - $200 = **$11,290**
+  - But position closed at $0.80 vs $4.30 entry
+  - **Actual profit: ($4.30 - $0.80) × 10 × 100 = $3,500**
+- **ROI: $3,500 / $4,300 credit = 81.4% in 9 days**
+- **Annualized: 3,285% (obviously unsustainable but shows power)**
+- **Return on capital at risk: $3,500 / $7,000 = 50% in 9 days**
 
 ### What Makes It Perfect
 
@@ -2783,30 +2900,71 @@ The best case requires:
 ### IV Component Breakdown
 
 **Vega P&L:**
-- Entry IV: [Level]
-- Exit IV: [Level]
-- Vega position: [$ per 1%]
-- **Vega profit: [Calculation]**
+- Entry IV: 52%, Peak IV: 62%, Exit IV: 23%
+- Net IV change: 52% → 23% = -29 points
+- Vega position: -$280 per 1% (iron condor is short vega)
+- Vega profit: -$280 × (-29) = **+$8,120**
+- This is THE profit driver in earnings IV crush
 
 **Theta P&L:**
-- Days passed: [N]
-- Daily theta: [$ per day]
-- **Theta profit/cost: [Calculation]**
+- Days passed: 9 days
+- Daily theta: +$50 average (accelerated near end)
+- Total theta collected: 9 × $50 = **+$450**
+- Smaller contributor but still positive
+- Front-loaded theta helps build cushion
 
 **Gamma P&L:**
-- Stock moves: [Minimal/favorable]
-- Rebalancing: [Minimal/profitable]
-- **Gamma impact: [Calculation]**
+- Stock moves: $180 → $185 (+$5, +2.8%)
+- Gamma position: Short gamma at strikes
+- Stock moved toward call side (slightly negative for us)
+- Small rebalancing effect: **-$100**
+- Nearly neutral due to crush overwhelming
 
-**Net P&L:** Sum of all components
+**Net P&L:** $8,120 (vega) + $450 (theta) - $100 (gamma) = **+$8,470 Greeks P&L**
+
+**Actual P&L calculation:**
+- Simplified: Collected $4.30, closed $0.80 = $3.50 × 1,000 shares × 10 = **$3,500**
+- Greeks attribution shows vega dominates (97% of profit from IV crush)
 
 ### Comparison to Alternatives
 
-**This strategy vs. [Alternative IV approach]:**
-- [IV exposure comparison]
-- [Risk-reward analysis]
-- [When this strategy wins]
-- [Capital efficiency]
+**This strategy vs. Directional Call Buying:**
+
+**Earnings IV Crush Iron Condor:**
+- Position: Sell premium before earnings
+- Direction needed: None (just stay in range)
+- Profit: $3,500 in 9 days (81% ROC)
+- Win rate: 65-70% (high probability)
+- Max loss: Defined ($7,000)
+- Required move: Stock stays $165-$195 (17% range)
+- **Key: Profits from IV crush, not stock move**
+
+**Directional Long Call:**
+- Position: Buy $180 calls before earnings
+- Direction needed: Stock must rally significantly
+- Cost: $8 per contract × 10 = $8,000
+- Profit if stock to $185: $5 × 1,000 = $5,000 (62% ROC)
+- But IV crush: Call worth only $7 despite $5 ITM
+- **Actual profit: -$1,000 (loss despite right direction!)**
+- Win rate: 35-40% (low probability)
+- Max loss: 100% ($8,000)
+
+**Analysis:**
+- Iron condor won with $3,500 profit
+- Long call lost -$1,000 despite being directionally right
+- IV crush destroyed call despite stock moving up
+- **Earnings IV crush > directional betting**
+
+**When directional wins:**
+- Only if stock gaps significantly (>10%)
+- But those happen <15% of time
+- Iron condor wins 65-70% of time
+- **Math favors IV crush strategy**
+
+**Capital efficiency:**
+- IC: $3,500 profit on $7,000 risk = 50% ROC
+- Call: -$1,000 loss on $8,000 cost = -12.5% ROC
+- **IC superior for earnings events**
 
 ### Professional Profit-Taking
 
