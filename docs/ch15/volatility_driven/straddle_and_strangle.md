@@ -143,6 +143,7 @@ $$
 **At expiration:**
 
 If stock at $S$:
+
 - Call worth: $\max(S - 100, 0)$
 - Put worth: $\max(100 - S, 0)$
 - Total value: $|S - 100|$ (absolute value!)
@@ -378,6 +379,7 @@ $$
 **Economic meaning:**
 
 This is a bet on **realized volatility exceeding implied volatility**. You're:
+
 - Paying $\sigma_{\text{implied}}$ (via premium)
 - Receiving $\sigma_{\text{realized}}$ (via |moves|)
 - Profitable if $\sigma_{\text{realized}} > \sigma_{\text{implied}}$
@@ -401,18 +403,22 @@ $$
 Markets create these structures because different participants have different:
 
 **Risk preferences:**
+
 - Hedgers: Want to remove uncertainty (buy straddles)
 - Speculators: Want to harvest premium (sell straddles)
 
 **Time horizons:**
+
 - Short-term traders: Buy before events
 - Long-term investors: Sell when IV is elevated
 
 **Capital constraints:**
+
 - Limited capital: Use strangles (cheaper)
 - Large capital: Use straddles (better risk/reward)
 
 **View on volatility vs. direction:**
+
 - Directional traders: Use calls or puts
 - Volatility traders: Use straddles/strangles
 
@@ -447,6 +453,7 @@ $$
 $$
 
 For typical ATM straddles:
+
 - Premium ≈ 3-5% of stock price for 1-month options
 - Requires >3-5% move in either direction to profit
 
@@ -476,6 +483,7 @@ $$
 **Statistical edge:**
 
 Historical studies show:
+
 - Selling straddles wins ~60-70% of the time
 - But losses can be catastrophic (fat tails)
 - Long straddles need exceptional timing or events
@@ -513,6 +521,7 @@ $$
 $$
 
 **ATM characteristics:**
+
 - Maximum gamma when $S = K$
 - Both options contribute maximum gamma
 - Decreases as stock moves away from strike
@@ -588,6 +597,7 @@ $$
 **Daily trade-off:**
 
 Each day you hold:
+
 - **Lose:** $\Theta dt < 0$ (certain loss)
 - **Gain:** $\frac{1}{2}\Gamma(dS)^2$ (if stock moves)
 - **Uncertain:** $\mathcal{V}d\sigma$ (depends on IV changes)
@@ -642,6 +652,7 @@ Days to Expiry:
 **T-30 days (Entry):**
 
 Position characteristics:
+
 - Premium: $8.64 (example)
 - Delta ≈ 0
 - Gamma moderate
@@ -651,6 +662,7 @@ Position characteristics:
 **T-20 days:**
 
 If stock unchanged:
+
 - Value: $6.50 (lost $2.14 to theta)
 - Theta accelerating: -$0.35/day
 - Still have time for move
@@ -658,6 +670,7 @@ If stock unchanged:
 **T-10 days:**
 
 If stock unchanged:
+
 - Value: $3.80 (lost $4.84 total)
 - Theta severe: -$0.50/day
 - Getting worried...
@@ -665,6 +678,7 @@ If stock unchanged:
 **T-3 days:**
 
 If stock unchanged:
+
 - Value: $1.20 (lost $7.44 total)
 - Theta extreme: -$0.90/day
 - Emergency mode!
@@ -672,6 +686,7 @@ If stock unchanged:
 **T-0 (Expiration):**
 
 If stock unchanged:
+
 - Value: $0
 - Total loss: $8.64 (100%)
 - Game over
@@ -681,6 +696,7 @@ If stock unchanged:
 **T-25 days:** Stock jumps to $108 (+8%)
 
 Immediate effects:
+
 - Intrinsic: $8
 - Time value remaining: ~$4
 - **Total value: $12**
@@ -702,6 +718,7 @@ Remaining 25 days will cost $0.30/day × 25 = $7.50 in theta. Stock needs to sta
 **T-5 days:** Stock finally moves to $106 (+6%)
 
 Position value:
+
 - Intrinsic: $6
 - Time value: ~$1.50
 - **Total value: $7.50**
@@ -753,6 +770,7 @@ $$
 **Example calculation:**
 
 Current position worth $12 (profit = $3.36):
+
 - Expected future movement in 25 days: $2
 - Expected theta cost: $7.50
 - Expected net if hold: $12 + $2 - $7.50 = $6.50
@@ -764,16 +782,19 @@ Current value ($12) > Expected future value ($6.50) → **Exit now!**
 **Optimal horizon for long straddles:**
 
 **Too short (<7 days):**
+
 - Theta too brutal
 - Need immediate large move
 - Small margin for error
 
 **Too long (>90 days):**
+
 - Expensive premium
 - Theta compounds over time
 - Uncertainty too high
 
 **Sweet spot (30-60 days):**
+
 - Reasonable premium
 - Manageable theta
 - Time for catalyst to play out
@@ -781,6 +802,7 @@ Current value ($12) > Expected future value ($6.50) → **Exit now!**
 **Empirical data:**
 
 Historical win rates:
+
 - 7-day straddles: 25% profitable
 - 30-day straddles: 35% profitable  
 - 60-day straddles: 40% profitable
@@ -793,14 +815,17 @@ Historical win rates:
 **Timeline:**
 
 **T-7 days:** Buy straddle
+
 - Premium includes event vol
 - But still reasonable cost
 
 **T-0 (Event day):** Event occurs
+
 - Stock moves 10%
 - Large profit
 
 **T+1:** Exit immediately
+
 - Capture intrinsic value
 - Avoid post-event theta decay
 
@@ -867,11 +892,13 @@ IV decreases 3 points: $\text{Vega P\&L} = 100 \times (-0.03) = -\$3.00$ ✗
 **Common vega scenarios:**
 
 **Pre-event IV expansion:**
+
 - IV: 25% → 35% (+10 points)
 - Vega P&L: +$10 (without stock moving!)
 - Can exit here for profit
 
 **Post-event vol crush:**
+
 - IV: 35% → 20% (-15 points)  
 - Vega P&L: -$15 (even if stock moved!)
 - This kills many straddles
@@ -962,6 +989,7 @@ If this inequality doesn't hold, close the position!
 **Statistical reality:**
 
 On average:
+
 - Gamma P&L: Slightly positive (but small daily moves)
 - Vega P&L: Often negative (vol risk premium)
 - Theta P&L: Definitely negative (guaranteed loss)
@@ -995,6 +1023,7 @@ Consider exit if IV expected to drop further.
 ```
 
 **This attribution helps you understand:**
+
 - What's working
 - What's not working
 - Whether to hold or exit
@@ -1004,6 +1033,7 @@ Consider exit if IV expected to drop further.
 **Best case:** Both work in your favor
 
 **Event anticipation:**
+
 - IV rises before event (vega P&L positive)
 - Stock moves on event (gamma P&L positive)
 - Exit immediately after event (avoid vol crush)
@@ -1011,6 +1041,7 @@ Consider exit if IV expected to drop further.
 **Example:**
 
 Buy straddle 5 days before earnings:
+
 - Days 1-4: IV rises 25% → 35%, Vega P&L = +$10
 - Day 5: Stock moves 8%, Gamma P&L = +$3.20
 - Day 5: Exit immediately
@@ -1039,9 +1070,11 @@ where $\phi$ is standard normal PDF and $d_1$ depends on moneyness.
 **Comparison:**
 
 **5-point IV increase:**
+
 - Vega P&L = $100 × 0.05 = $5.00
 
 **$5 stock move:**
+
 - Gamma P&L = $0.5 × 0.05 × 5² = $0.625
 
 **IV change has 8× the impact!**
@@ -1055,10 +1088,12 @@ You can profit from straddle WITHOUT stock moving, just from IV increasing. Conv
 **ATM vs. OTM vega:**
 
 ATM options (straddle strikes):
+
 - Highest vega
 - Maximum IV sensitivity
 
 OTM options (strangle strikes):
+
 - Lower vega
 - Less IV sensitivity
 
@@ -1067,6 +1102,7 @@ OTM options (strangle strikes):
 **Volatility smile impact:**
 
 During market stress:
+
 - ATM IV: +5 points
 - OTM IV: +8 points (smile steepens)
 - Strangles can actually outperform straddles!
@@ -1098,10 +1134,12 @@ $$
 **Examples:**
 
 Implied vol = 25%, Realized vol = 35%:
+
 - **Win:** Realized exceeded implied
 - Profit ≈ $(0.35 - 0.25) × 100 = $10$
 
 Implied vol = 35%, Realized vol = 20%:
+
 - **Lose:** Realized fell short of implied  
 - Loss ≈ $(0.20 - 0.35) × 100 = -$15$
 
@@ -1130,6 +1168,7 @@ On average, implied vol is 2-4 percentage points higher than subsequently realiz
 **When long straddles work:**
 
 Despite negative expectation, long straddles profit when:
+
 1. Exceptional events occur (earnings surprises)
 2. Black swan events (crashes, squeezes)
 3. IV expansion before events (sell before move happens)
@@ -1155,11 +1194,13 @@ IV by Tenor:
 **Strategy implications:**
 
 **Buy straddles when:**
+
 - IV low relative to historical average
 - Near-term IV < longer-term IV (backwardation)
 - Before known catalysts
 
 **Sell straddles when:**
+
 - IV high relative to historical average
 - Near-term IV > longer-term IV (contango)
 - After events (vol crush)
@@ -1180,16 +1221,19 @@ T+1:  20% (crush!)
 **Straddle strategies:**
 
 **Strategy 1:** Buy at T-10, sell at T-3
+
 - Capture IV expansion
 - Avoid actual event
 - Take 30% profit from vega alone
 
 **Strategy 2:** Buy at T-3, hold through event
+
 - Ride peak IV
 - Capture movement
 - Risk vol crush if move is small
 
 **Strategy 3:** Buy at T-1, sell at T+0 open
+
 - Minimal theta exposure
 - Capture overnight move
 - Exit before full vol crush
@@ -1208,11 +1252,13 @@ $$
 **Trading implications:**
 
 When IV is extremely high:
+
 - Expect reversion to mean
 - Short straddles may be profitable
 - But timing is difficult!
 
 When IV is extremely low:
+
 - Expect eventual spike
 - Long straddles may be profitable
 - But can stay low for long time
@@ -1220,6 +1266,7 @@ When IV is extremely low:
 **Practical rule:**
 
 Compare current IV to:
+
 - 30-day historical average
 - 1-year percentile ranking
 
@@ -1241,6 +1288,7 @@ $$
 **Trading implication:**
 
 After a volatile day:
+
 - Tomorrow likely to be volatile too
 - Straddles may be profitable even after first move
 - But be aware IV may have already adjusted
@@ -1300,12 +1348,14 @@ Understanding volatility dynamics is crucial. Stock movement alone doesn't deter
 ### Scenario 1: Stock Moves Immediately
 
 **Setup:**
+
 - Buy straddle at $100 strike for $8.64
 - Day 1: Stock gaps to $108
 
 **Analysis:**
 
 Position value:
+
 - Call intrinsic: $8
 - Call time value: $3.20
 - Put worthless: $0
@@ -1314,6 +1364,7 @@ Position value:
 **P&L:** +$2.56 (+30%)
 
 **Greeks update:**
+
 - Delta: Now +0.85 (dominated by call)
 - Gamma: Lower (further from ATM)
 - Vega: Lower (less sensitive)
@@ -1329,20 +1380,24 @@ Position value:
 ### Scenario 2: Stock Drifts Slowly
 
 **Setup:**
+
 - Buy straddle for $8.64
 - Stock drifts up gradually over 30 days
 
 **Timeline:**
 
 Day 10: Stock at $102
+
 - Position value: $6.50
 - P&L: -$2.14 (-25%)
 
 Day 20: Stock at $104
+
 - Position value: $5.20
 - P&L: -$3.44 (-40%)
 
 Day 30: Stock at $106
+
 - Position value: $6.00 (intrinsic only)
 - P&L: -$2.64 (-31%)
 
@@ -1355,6 +1410,7 @@ Move happened too slowly! Theta consumed more value than gamma generated.
 ### Scenario 3: Volatility Spike Without Movement
 
 **Setup:**
+
 - Buy straddle for $8.64
 - Stock stays at $100
 - But IV increases 25% → 40%
@@ -1362,6 +1418,7 @@ Move happened too slowly! Theta consumed more value than gamma generated.
 **Analysis:**
 
 Position value:
+
 - Intrinsic: $0
 - Time value with higher IV: $12.40
 - **Total: $12.40**
@@ -1380,6 +1437,7 @@ Position value:
 ### Scenario 4: Post-Earnings Vol Crush
 
 **Setup:**
+
 - Buy straddle 1 day before earnings for $10
 - Stock moves 5% but IV collapses 40% → 20%
 
@@ -1401,6 +1459,7 @@ Theta P&L: -$0.50 (1 day)
 ### Scenario 5: The Whipsaw Winner
 
 **Setup:**
+
 - Buy straddle for $8.64
 - Stock whipsaws violently
 
@@ -1416,6 +1475,7 @@ Day 5: $105 → $100 (-5%)
 **But straddle is profitable:**
 
 Each large move generated gamma P&L:
+
 - Move 1: +$1.60
 - Move 2: +$2.00
 - Move 3: +$1.60
@@ -1431,6 +1491,7 @@ Each large move generated gamma P&L:
 ### Scenario 6: The Slow Death
 
 **Setup:**
+
 - Buy straddle for $8.64
 - Stock stays between $98-$102 for 30 days
 
@@ -1443,6 +1504,7 @@ Day 30: Value $0 (-100%)
 **What happened:**
 
 Stock moved slightly but not enough:
+
 - Daily moves: 0.5-2% (small)
 - Gamma generated: $0.50 total
 - Theta lost: $8.64
@@ -1455,12 +1517,14 @@ Stock moved slightly but not enough:
 ### Scenario 7: Black Swan Event
 
 **Setup:**
+
 - Hold straddle during unexpected crisis
 - Stock crashes 30% overnight
 
 **Analysis:**
 
 Position value:
+
 - Call worthless: $0
 - Put intrinsic: $30
 - **Total: $30**
@@ -1472,6 +1536,7 @@ Position value:
 **Why straddles are tail risk hedges:**
 
 During market crashes:
+
 - Portfolios down 20-40%
 - Straddles up 200-400%
 - Provides crucial hedge
@@ -1479,6 +1544,7 @@ During market crashes:
 ### Scenario 8: The IV Expansion Play
 
 **Setup:**
+
 - Buy straddle 2 weeks before known event
 - Exit 1 day before event
 
@@ -1543,6 +1609,7 @@ Entry → Day 5 checkpoint:
 **Statistical reality check:**
 
 Based on historical data:
+
 - 30% of straddles: Large profit (>50%)
 - 20% of straddles: Small profit (10-50%)
 - 50% of straddles: Loss (theta wins)
@@ -1579,6 +1646,7 @@ Position value: $31
 **Analysis:**
 
 Position value:
+
 - Put intrinsic: $40
 - Remaining time value: $3
 - **Total: $43**
@@ -1619,6 +1687,7 @@ IV collapses: 18% → 11%
 **Analysis:**
 
 Position value:
+
 - Call intrinsic: $1
 - Vega loss from vol crush: -$5
 - **Total: $1**
@@ -1656,6 +1725,7 @@ Position value:
 **Analysis:**
 
 Position value:
+
 - Call intrinsic: $35
 - **Total: $35**
 
@@ -1696,6 +1766,7 @@ Day 30: Stock at $100, position value $0 (-100%)
 **Analysis:**
 
 Stock stayed in $98-$102 range entire time:
+
 - Max intraday move: 1.8%
 - Realized vol: 15% (below implied 22%)
 - Theta destroyed position
@@ -1734,6 +1805,7 @@ Day 7: Stock at $152
 **Analysis at Day 7:**
 
 Position value:
+
 - Intrinsic: $2
 - Time value with higher IV: $11
 - **Total: $13**
@@ -1808,12 +1880,14 @@ Position value at Day 5: $7.50
 ### Key Patterns Across Examples
 
 **Winners had:**
+
 - Specific catalyst for movement
 - Correct timing (enter close to event)
 - Exit strategy (took profits or cut losses)
 - Reasonable cost relative to expected move
 
 **Losers had:**
+
 - Vague thesis ("might move")
 - No catalyst or wrong catalyst
 - Held too long (theta killed)
@@ -1857,6 +1931,7 @@ Expiration: Position worth $0 (lost 100%)
 **Professional approach:**
 
 Set calendar-based exit:
+
 - Entered 30-day straddle → Exit by day 20 regardless
 - Never hold last week
 - Exception: Very specific event on expiration day
@@ -1878,12 +1953,14 @@ Before earnings, IV at 55%
 Straddle costs $12 instead of usual $6
 
 Stock moves 10% (large move!):
+
 - In normal vol environment: Profit of $4 (breakeven $6)
 - In high vol environment: Loss of $2 (breakeven $12)
 
 **Same move, different outcome** due to entry cost.
 
 **Lesson:** Compare current IV to:
+
 1. Historical IV percentile
 2. Post-event typical collapse
 
@@ -1912,6 +1989,7 @@ Vol crush can overwhelm directional profit. The $5 loss from vega > $2 gain from
 **Lesson:** 
 
 For event trades, consider:
+
 1. Buy early (T-10), exit before event (T-1)
 2. Accept you're trading IV expansion, not outcome
 3. If holding through event, ensure breakeven accounts for vol crush
@@ -1944,6 +2022,7 @@ Expiration: $0 (down 100%)
 **Better approach:**
 
 Exit when position down 30-40%:
+
 - Entry: $10
 - Exit at $6 (down 40%)
 - Saved: $6 to deploy elsewhere
@@ -1953,6 +2032,7 @@ Exit when position down 30-40%:
 **Stop loss rule:**
 
 If position down 30-40% AND:
+
 - No movement yet
 - >50% of time elapsed
 - No clear catalyst soon
@@ -1968,6 +2048,7 @@ If position down 30-40% AND:
 **The disaster:**
 
 10 straddles at 20% each means:
+
 - All could expire worthless
 - Lose 20% of entire portfolio
 - Happened in 3 weeks
@@ -1975,6 +2056,7 @@ If position down 30-40% AND:
 **Proper sizing:**
 
 Risk only 2-5% per straddle trade:
+
 - $100k portfolio → $2k-5k per trade
 - Lose entire premium → Only down 2-5%
 - Can survive 20 consecutive losses
@@ -2004,6 +2086,7 @@ Still 60 days left but already down 33%!
 **Better approach:**
 
 30-45 day straddles:
+
 - Lower absolute premium
 - Still enough time for catalyst
 - Less compounded theta
@@ -2031,6 +2114,7 @@ Straddle expires worthless
 100% loss
 
 **Lesson:** Need SPECIFIC catalyst:
+
 - Earnings (✓)
 - FDA decision (✓)
 - Merger talk (✓)
@@ -2062,6 +2146,7 @@ Result: Lose $5k more
 Total loss: $7k (could have been $2k)
 
 **Lesson:** After losing trade:
+
 1. Take break (at least 1 day)
 2. Analyze what went wrong
 3. Return with normal position size
@@ -2106,6 +2191,7 @@ Most straddles lose. Doing too many means death by thousand cuts.
 **Example:**
 
 Place 20 straddle trades per month:
+
 - 14 lose (70%): -$70
 - 6 win (30%): +$60
 - **Net: -$10** despite winning trades!
@@ -2113,6 +2199,7 @@ Place 20 straddle trades per month:
 **Better approach:**
 
 High-quality setups only:
+
 - 2-3 trades per month
 - Strong catalysts only
 - Better win rate (40-50%)
@@ -2123,21 +2210,25 @@ High-quality setups only:
 ### Summary: How to Avoid Pitfalls
 
 **Risk management:**
+
 1. Always have stop loss (-30-40%)
 2. Exit before final week
 3. Size positions properly (2-5%)
 
 **Trade selection:**
+
 1. Need specific catalyst
 2. Enter when IV reasonable
 3. Know event timing precisely
 
 **Emotional control:**
+
 1. No revenge trading
 2. Accept losses quickly
 3. Don't fight the tape
 
 **Remember:** Most pitfalls come from either:
+
 - Improper risk management (sizing, stops, exits)
 - Poor trade selection (no catalyst, expensive IV)
 - Emotional errors (revenge, hope, anchoring)
@@ -2153,24 +2244,28 @@ Professional traders avoid these through discipline and checklist adherence.
 **Before placing any straddle trade, verify:**
 
 **Catalyst & Timing:**
+
 - [ ] Specific catalyst identified (earnings, FDA, FOMC, etc.)
 - [ ] Catalyst date confirmed
 - [ ] Entry is 3-7 days before catalyst (optimal window)
 - [ ] No earlier conflicting events
 
 **Volatility Assessment:**
+
 - [ ] Current IV vs. historical percentile checked
 - [ ] Current IV < historical pre-event average (cheaper entry)
 - [ ] Expected IV expansion path mapped
 - [ ] Post-event vol crush quantified
 
 **Cost-Benefit:**
+
 - [ ] Breakeven calculated as % of stock price
 - [ ] Breakeven is achievable (< 1 std dev of expected move)
 - [ ] Premium relative to event probability justified
 - [ ] Compared to historical similar setups
 
 **Risk Management:**
+
 - [ ] Position size = 2-5% of portfolio
 - [ ] Stop loss defined (-30-40% from entry)
 - [ ] Profit target defined (+40-50% or higher)
@@ -2200,6 +2295,7 @@ Breakeven: ±4.7%
 **Daily check (5 minutes):**
 
 Track three numbers:
+
 1. Current position value
 2. Days to expiration
 3. Current IV level
@@ -2217,6 +2313,7 @@ IV: 68% (entry: 65%)
 **Action triggers:**
 
 **Green (good):**
+
 - P&L: +16%
 - IV: Up 3 points
 - → Continue holding, watch for profit target
@@ -2224,6 +2321,7 @@ IV: 68% (entry: 65%)
 **Weekly deep dive (30 minutes):**
 
 Decompose P&L:
+
 - Gamma contribution
 - Vega contribution  
 - Theta cost
@@ -2250,18 +2348,21 @@ Decision: HOLD, thesis intact
 **Exit immediately if ANY of:**
 
 **Profit-taking triggers:**
+
 1. Hit profit target (+40-50%)
 2. IV expanded significantly (>10 points) regardless of stock move
 3. Large favorable move (stock beyond breakeven)
 4. Event happened and captured most value
 
 **Stop-loss triggers:**
+
 1. Position down 30-40%
 2. IV collapsed unexpectedly
 3. Catalyst cancelled/postponed
 4. More than 50% of time elapsed with no significant movement
 
 **Time-based triggers:**
+
 1. Entered last week (never hold through last week except for specific expiry events)
 2. Calendar-based exit reached (e.g., day 20 of 30-day straddle)
 
@@ -2275,6 +2376,7 @@ DTE: 23 days
 Decision: EXIT
 
 Rationale: 
+
 - Hit profit target
 - Still have theta risk
 - Don't get greedy
@@ -2289,6 +2391,7 @@ No meaningful stock movement
 Decision: EXIT
 
 Rationale:
+
 - Approaching stop loss threshold
 - Time elapsed without movement
 - Preserve remaining capital
@@ -2303,6 +2406,7 @@ Stock moved only 2%
 Decision: EXIT
 
 Rationale:
+
 - IV expanded 15 points (huge)
 - Most profit from vega
 - Exit before potential vol crush
@@ -2318,6 +2422,7 @@ Stock positioned well
 Decision: HOLD
 
 Rationale:
+
 - Small profit, room for more
 - Catalyst still coming
 - Thesis intact
@@ -2337,12 +2442,14 @@ If position down due to theta but thesis still valid:
 Action: Close current straddle, open further-dated straddle
 
 Example:
+
 - Current 10-day straddle: $4 (entry: $8, down 50%)
 - Close and pay $4
 - Open 30-day straddle: $10
 - **Total invested: $14** (original $8 + rollforward $6)
 
 **Only if:**
+
 - Strong conviction in catalyst still coming
 - Willing to commit more capital
 - New breakeven still achievable
@@ -2354,6 +2461,7 @@ If stock moved strongly one direction:
 Action: Close losing leg, hold winning leg
 
 Example:
+
 - Stock moved from $100 to $115
 - Call now worth $18, put worth $0.50
 - Close put, hold call
@@ -2368,6 +2476,7 @@ If profitable, reduce risk:
 Action: Close 50-75% of position, let rest ride
 
 Example:
+
 - Position up 40% 
 - Close 70% at +40%
 - Hold 30% with "house money"
@@ -2389,6 +2498,7 @@ Good: AAPL + XLE + GLD straddles (low correlation)
 **Portfolio Greeks:**
 
 Track aggregate exposure:
+
 - Total gamma
 - Total vega
 - Total theta
@@ -2412,6 +2522,7 @@ With combined Gamma = 0.15 and Theta = -90:
 **Concentration limits:**
 
 Never allocate >15% of portfolio to straddles simultaneously:
+
 - Max 3 positions at 5% each
 - Total theta manageable
 - Diversification maintained
@@ -2425,10 +2536,12 @@ Never allocate >15% of portfolio to straddles simultaneously:
 **Is position profitable?**
 
 → **YES, profitable:** 
+
 - Take profits now (avoid vol crush risk)
 - Exception: If profit is small (<20%) and move hasn't happened yet, might hold
 
 → **NO, losing:**
+
 - Is stock positioned near breakeven?
   - YES → Hold through event (last chance)
   - NO → Exit now, save remaining value
@@ -2480,11 +2593,13 @@ Trade: NFLX Earnings Straddle
 Date: Q3 2024
 
 Entry:
+
 - Price: $440, IV: 58%, 7 DTE
 - Cost: $31 (7.0% breakeven)
 - Thesis: Subscriber growth surprise expected
 
 What happened:
+
 - Held 7 days through earnings
 - Stock moved to $465 (+5.7%)
 - IV crushed 58% → 35%
@@ -2498,11 +2613,13 @@ What I learned:
 ✓ Position sizing was appropriate (no portfolio damage)
 
 Next time:
+
 - Exit before event if IV expands >10 points
 - Use tighter breakeven requirement (<5%)
 ```
 
 **Keep a journal.** Patterns emerge. You'll notice:
+
 - Which setups consistently work
 - Which consistently fail
 - Your behavioral tendencies
@@ -2535,6 +2652,7 @@ Alerts:
 ```
 
 **Having this dashboard helps you:**
+
 - Make rational decisions
 - Avoid emotional responses
 - Know when to hold vs. fold
@@ -2691,6 +2809,7 @@ $$
 5. **Learning:** "What went wrong?" (Now)
 
 **Winning trader mindset:**
+
 - Accept losses quickly
 - Analyze dispassionately
 - Learn and adapt
@@ -2806,11 +2925,13 @@ Stock gaps in aftermarket: $46 → $78 (+70%)
 **Day 5 (Market open):** Position assessment
 
 Call value:
+
 - Intrinsic: $33
 - Remaining time value (hours left): $2
 - **Total call: $35**
 
 Put value:
+
 - Worthless: $0
 
 **Position value: $35**
@@ -2871,11 +2992,13 @@ The best case requires ALL of:
 **This strategy vs. Long Call:**
 
 Straddle:
+
 - Required $9.50, made $25.50 (268%)
 - No directional risk
 - Would profit from denial too
 
 Long Call (same money):
+
 - Required $9.50 for call, made ~$33 (347%)
 - ONLY profits from approval
 - Would lose 100% on denial
@@ -2885,6 +3008,7 @@ Long Call (same money):
 **When straddle is better:**
 
 Binary events where either outcome causes large move:
+
 - FDA approvals/denials
 - Acquisition bids (succeed or fail)  
 - Earnings (beat or miss)
@@ -2893,6 +3017,7 @@ Binary events where either outcome causes large move:
 **When directional is better:**
 
 Strong conviction on direction:
+
 - Obvious upcoming catalyst
 - Technical breakout
 - Fundamental thesis
@@ -2904,6 +3029,7 @@ Strong conviction on direction:
 **Option 1: Exit at 50% profit**
 
 Day 3 position at $14.25 (+50%):
+
 - Take profit here?
 - Guaranteed 50% return
 - Avoid event risk
@@ -2923,10 +3049,12 @@ Day 3 position at $14.25 (+50%):
 **Professional approach:**
 
 **Scale out:**
+
 - Exit 50% at +50% profit (Day 3)
 - Hold 50% through event
 
 **Result from this example:**
+
 - 50% position: +50% = +25% on that portion
 - 50% position: +268% = +134% on that portion
 - **Average return: +159.5%**
@@ -2938,14 +3066,17 @@ Day 3 position at $14.25 (+50%):
 **Taking profits early and redeploying:**
 
 Scenario A: Hold to max profit (268%)
+
 - One trade, 5 days, $5k → $18,400
 
 Scenario B: Take 50% profit, redeploy
+
 - Day 3: Exit at +50%, now have $7,500
 - Day 4: Deploy in new setup, make 30%
 - **Result: $9,750**
 
 **Over full year, compounding faster exits:**
+
 - 10 trades at 50% each (holding 3-5 days) = 5,767% annual
 - 2-3 trades at 200%+ (holding 30 days) = 400-800% annual
 
@@ -2961,6 +3092,7 @@ Hypothetical: FDA approval + major partnership announced simultaneously
 Stock goes to $120 (+167%)
 
 **Straddle value:**
+
 - Call intrinsic: $75
 - **Total: $75**
 
@@ -2994,6 +3126,7 @@ Expected Value = 0.10(200) + 0.15(50) + 0.25(10) + 0.30(-30) + 0.20(-80)
 ```
 
 **Slightly positive expected value IF:**
+
 - You select good setups
 - You manage positions well
 - You take profits and cut losses
@@ -3014,6 +3147,7 @@ Expected Value = 0.10(200) + 0.15(50) + 0.25(10) + 0.30(-30) + 0.20(-80)
 3. **Provide hope:** Keeps traders engaged despite frequent losses
 
 **But professional never expects best case:**
+
 - Position size assuming base case
 - Take profits aggressively  
 - Cut losses quickly
@@ -3137,18 +3271,25 @@ Want volatility profit without directional risk? → Add delta hedging → Gamma
 
 ```
 Simplicity Ladder:
+
 1. Straddles ← START HERE! (simplest)
    ↓
+
 2. Delta Hedging (add hedging)
    ↓
+
 3. Gamma Scalping (add rebalancing)
    ↓
+
 4. Vega Trading (focus on IV)
    ↓
+
 5. Smile/Skew/Calendar (multi-dimensional)
    ↓
+
 6. Dispersion/Convertibles (advanced)
    ↓
+
 7. Variance Swaps (pure form)
 ```
 
@@ -3210,8 +3351,10 @@ Simplicity Ladder:
 
 **Option A: Chapter 1.5 (Before Gamma Scalping)**
 ```
+
 1. Delta Hedging (foundation)
 1.5. Straddles/Strangles (simple vol bet) ← Insert here!
+
 2. Gamma Scalping (refined vol bet)
 3. Vega Trading
 ... etc.
@@ -3221,9 +3364,11 @@ Simplicity Ladder:
 
 **Option B: Chapter 2.5 (After Gamma Scalping)**
 ```
+
 1. Delta Hedging
 2. Gamma Scalping
 2.5. Straddles/Strangles ← Insert here as "simpler alternative"
+
 3. Vega Trading
 ... etc.
 ```

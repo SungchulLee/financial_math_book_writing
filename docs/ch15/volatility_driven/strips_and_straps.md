@@ -3,35 +3,51 @@
 **Strips and straps** are directional volatility strategies that combine unequal ratios of puts and calls at the same strike, expressing both a directional bias and a volatility bet - strips favor downside (2 puts : 1 call) while straps favor upside (1 put : 2 calls).
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/straddle_strip_strap_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_strip_strap_comparison.png?raw=true" alt="Comparison of straddle, strip, and strap structures showing payoff symmetry vs directional bias." width="700">
+
+**Figure:** Comparison of straddle, strip, and strap structures showing payoff symmetry vs directional bias.
 </p>
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strap_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/strap_payoff.png?raw=true" alt="Payoff diagram of a strap strategy (2 calls + 1 put), highlighting upside leverage." width="700">
+
+**Figure:** Payoff diagram of a strap strategy (2 calls + 1 put), highlighting upside leverage.
 </p>
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_payoff.png?raw=true" alt="Payoff diagram of a strip strategy (1 call + 2 puts), highlighting downside leverage." width="700">
+
+**Figure:** Payoff diagram of a strip strategy (1 call + 2 puts), highlighting downside leverage.
 </p>
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_greeks.png?raw=true" alt="Greek profiles (delta, gamma, theta, vega) for strip and strap strategies." width="700">
+
+**Figure:** Greek profiles (delta, gamma, theta, vega) for strip and strap strategies.
 </p>
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_scenarios.png?raw=true" alt="Scenario analysis of strip and strap performance under different price outcomes." width="700">
+
+**Figure:** Scenario analysis of strip and strap performance under different price outcomes.
 </p>
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_time_decay.png?raw=true" alt="Time decay (theta) behavior of a strip position as expiration approaches." width="700">
+
+**Figure:** Time decay (theta) behavior of a strip position as expiration approaches.
 </p>
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_vs_two_puts.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_vs_two_puts.png?raw=true" alt="Comparison of a strip versus holding two long puts." width="700">
+
+**Figure:** Comparison of a strip versus holding two long puts.
 </p>
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strips_and_straps_breakeven_analysis.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/strips_and_straps_breakeven_analysis.png?raw=true" alt="Breakeven analysis for strip and strap strategies." width="700">
+
+**Figure:** Breakeven analysis for strip and strap strategies.
 </p>
 
 ---

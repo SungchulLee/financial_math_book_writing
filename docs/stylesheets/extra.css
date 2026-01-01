@@ -1,19 +1,4 @@
-/* Widen left navigation (sidebar) */
-.md-sidebar--primary {
-  width: 500px;
-}
-
-/* Ensure main content shifts accordingly */
-.md-main__inner {
-  margin-left: 500px;
-}
-
-/* Optional: slightly wider on large screens */
-@media (min-width: 76.25em) {
-  .md-sidebar--primary {
-    width: 340px;
-  }
-  .md-main__inner {
-    margin-left: 340px;
-  }
+/* Left-align figure captions (but keep images centered) */
+.md-typeset figure figcaption {
+  text-align: left;
 }
