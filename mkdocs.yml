@@ -512,18 +512,12 @@ nav:
               - Gamma Scalping: ch16/buy_low_sell_high/gamma_scalping.md
           - 16.3 Short Positions:
               - Theta and Carry: ch16/short_positions/theta_and_carry.md
-          - 16.4 Realized Vol Bets:
-              - Vega Trading: ch16/realized_vol_bets/vega_trading.md
-          - 16.5 Higher-Orders:
+          - 16.4 Higher-Orders:
               - Higher-Order Greeks: ch16/higher_orders/higher_order_greeks.md
               - Zero-DTE Option Strategies: ch16/higher_orders/0DTE_strategies.md
-          - 16.6 Vol Surface Trading:
-              - Volatility Smile & Skew: ch16/vol_surface_trading/vol_smile_skew_trading.md
-              - Variance Swaps: ch16/vol_surface_trading/variance_swaps.md
-              - Dispersion Trading: ch16/vol_surface_trading/dispersion_trading.md
-          - 16.7 Cross-Asset:
+          - 16.5 Cross-Asset:
               - CB Arbitrage: ch16/cross_asset/convertible_bond_arbitrage.md
-          - 16.8 Asympt Strategies:
+          - 16.6 Asympt Strategies:
               - Near Expiry Gamma Exploit: ch16/asymptotic_trading/short_time_gamma_exploitation.md
               - Vega Asympt Vol Arbitrage: ch16/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
               - Smile Trading & Skew Bets: ch16/asymptotic_trading/smile_trading_and_skew_bets.md
@@ -533,16 +527,20 @@ nav:
           - 17.1 IV Surface:
               - Term vs Strike IV: ch17/iv_surface/horizontal_vs_vertical_iv.md
               - Vol Surface Arbitrage: ch17/iv_surface/volatility_surface_arbitrage.md
+              - Volatility Smile & Skew: ch17/iv_surface/vol_smile_skew_trading.md
+              - Variance Swaps: ch17/iv_surface/variance_swaps.md
+              - Dispersion Trading: ch17/iv_surface/dispersion_trading.md
           - 17.2 IV vs Realized Vol:
               - Implied vs Realized Vol: ch17/iv_vs_realized_vol/implied_vs_realized_vol_trading.md
+              - Vega Trading: ch17/iv_vs_realized_vol/vega_trading.md
           - 17.3 Calendar Family:
               - Calendar Spreads: ch17/calendar_family/calendar_spread.md
               - Double Calendars: ch17/calendar_family/double_calendars.md
               - Ratio Calendar Spreads: ch17/calendar_family/ratio_calendar_spreads.md
               - Event Calendar Spreads: ch17/calendar_family/event_calendar_spreads.md
-          - 17.4 Strike-Dim Trading:
-              - Skew Trading Spreads: ch17/strike_dim_trading/skew_trading_spreads.md
-              - Risk Reversals: ch17/strike_dim_trading/risk_reversals.md
+          - 17.4 Vertical Family:
+              - Skew Trading Spreads: ch17/vertical_family/skew_trading_spreads.md
+              - Risk Reversals: ch17/vertical_family/risk_reversals.md
           - 17.5 Diagonal Family:
               - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
               - Double Diagonals: ch17/diagonal_family/double_diagonals.md
@@ -555,7 +553,6 @@ nav:
               - Volatility Mean Reversion: ch17/analysis_tools/volatility_mean_reversion_strategies.md
               - IV Rank Percentile: ch17/analysis_tools/iv_rank_percentile_strategies.md
               
-
       - 18 Futures:
           - 18.1 Pure Directional:
               - Long and Short Futures: ch18/pure_directional/long_short_futures.md
