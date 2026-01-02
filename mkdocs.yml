@@ -505,24 +505,24 @@ nav:
 
       - 16 Greeks:
           - 16.1 Hedging:
-              - Delta-Neutral Portfolio: ch16/greeks_strategies/delta_neutral_portfolio_construction.md
-              - Delta Hedging: ch16/greeks_strategies/delta_hedging.md
-              - Static vs Dynamic Hedging: ch16/greeks_strategies/static_vs_dynamic_hedging.md
+              - Delta-Neutral Portfolio: ch16/hedging/delta_neutral_portfolio_construction.md
+              - Delta Hedging: ch16/hedging/delta_hedging.md
+              - Static vs Dynamic Hedging: ch16/hedging/static_vs_dynamic_hedging.md
           - 16.2 Buy Low Sell High:
               - Gamma Scalping: ch16/greeks_strategies/gamma_scalping.md
           - 16.3 Short Positions:
               - Theta and Carry: ch16/greeks_strategies/theta_and_carry.md
           - 16.4 Realized Vol Bets:
-              - Vega Trading: ch16/greeks_strategies/vega_trading.md
+              - Vega Trading: ch16/realized_vol_bets/vega_trading.md
           - 16.5 Higher-Orders:
               - Higher-Order Greeks: ch16/greeks_strategies/higher_order_greeks.md
               - Zero-DTE Option Strategies: ch16/greeks_strategies/0DTE_strategies.md
           - 16.6 Vol Surface Trading:
-              - Volatility Smile & Skew: ch16/greeks_strategies/vol_smile_skew_trading.md
-              - Variance Swaps: ch16/greeks_strategies/variance_swaps.md
-              - Dispersion Trading: ch16/greeks_strategies/dispersion_trading.md
+              - Volatility Smile & Skew: ch16/vol_surface_trading/vol_smile_skew_trading.md
+              - Variance Swaps: ch16/vol_surface_trading/variance_swaps.md
+              - Dispersion Trading: ch16/vol_surface_trading/dispersion_trading.md
           - 16.7 Cross-Asset:
-              - Convertible Bond Arbitrage: ch16/greeks_strategies/convertible_bond_arbitrage.md
+              - CB Arbitrage: ch16/cross_asset/convertible_bond_arbitrage.md
           - 16.8 Asympt Strategies:
               - Near Expiry Gamma Exploit: ch16/asymptotic_trading/short_time_gamma_exploitation.md
               - Vega Asympt Vol Arbitrage: ch16/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
