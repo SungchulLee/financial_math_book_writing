@@ -131,7 +131,7 @@ nav:
               - Pricing vs Hedging: ch04/financial_interpretation/pricing_vs_hedging.md
               - P vs Q: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
 
-  - Part II Pricing and Models:
+  - Part II Pricing Models:
       - 5 BS Model:
           - 5.1 Binomial Model:
               - Binomial Model: ch05/binomial_asset_pricing_model/binomial_asset_pricing_model.md
@@ -530,30 +530,31 @@ nav:
               - Regime-Based Strategy: ch16/asymptotic_trading/regime_based_strategy_design.md
 
       - 17 Implied Volatility:
-          - 17.1 Foundational IV:
-              - Term vs Strike IV: ch17/foundational_iv/horizontal_vs_vertical_iv.md
-          - 17.2 Implied vs Realized Vol:
-              - Implied vs Realized Vol: ch17/implied_vs_realized_vol/implied_vs_realized_vol_trading.md
-          - 17.3 Analysis Tools:
-              - Volatility Cone Analysis: ch17/analysis_tools/volatility_cone_analysis.md
-              - Volatility Mean Reversion: ch17/analysis_tools/volatility_mean_reversion_strategies.md
-              - IV Rank Percentile: ch17/analysis_tools/iv_rank_percentile_strategies.md
-          - 17.4 Calendar Family:
+          - 17.1 IV Surface:
+              - Term vs Strike IV: ch17/iv_surface/horizontal_vs_vertical_iv.md
+              - Vol Surface Arbitrage: ch17/iv_surface/volatility_surface_arbitrage.md
+          - 17.2 IV vs Realized Vol:
+              - Implied vs Realized Vol: ch17/iv_vs_realized_vol/implied_vs_realized_vol_trading.md
+          - 17.3 Calendar Family:
               - Calendar Spreads: ch17/calendar_family/calendar_spread.md
               - Double Calendars: ch17/calendar_family/double_calendars.md
               - Ratio Calendar Spreads: ch17/calendar_family/ratio_calendar_spreads.md
               - Event Calendar Spreads: ch17/calendar_family/event_calendar_spreads.md
-          - 17.5 Strike-Dim Trading:
+          - 17.4 Strike-Dim Trading:
               - Skew Trading Spreads: ch17/strike_dim_trading/skew_trading_spreads.md
               - Risk Reversals: ch17/strike_dim_trading/risk_reversals.md
-          - 17.6 Diagonal Family:
+          - 17.5 Diagonal Family:
               - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
               - Double Diagonals: ch17/diagonal_family/double_diagonals.md
-          - 17.7 Event-Driven IV:
+          - 17.6 Event-Driven IV:
               - Earnings IV Crush: ch17/event_driven_iv/earnings_iv_crush_strategies.md
-          - 17.8 Adv Structures:
-              - Vega Neutral Structures: ch17/adv_structures/vega_neutral_structures.md
-              - Vol Surface Arbitrage: ch17/adv_structures/volatility_surface_arbitrage.md
+          - 17.7 Vega Neutral:
+              - Vega Neutral Structures: ch17/vega_neutral/vega_neutral_structures.md
+          - 17.8 Analysis Tools:
+              - Volatility Cone Analysis: ch17/analysis_tools/volatility_cone_analysis.md
+              - Volatility Mean Reversion: ch17/analysis_tools/volatility_mean_reversion_strategies.md
+              - IV Rank Percentile: ch17/analysis_tools/iv_rank_percentile_strategies.md
+              
 
       - 18 Futures:
           - 18.1 Pure Directional:
@@ -577,10 +578,10 @@ nav:
               - Volatility Targeting: ch18/volatility_driven/volatility_targeting.md
               - VIX Futures Trading: ch18/volatility_driven/vix_futures_trading.md
           - 18.6 Relative Value:
-              - Inter-Commodity Spreads: ch18/futures_strategies/inter_commodity_spreads.md
-              - Curve Trading and Flies: ch18/futures_strategies/curve_trading_and_flies.md
-              - Pairs Trading in Futures: ch18/futures_strategies/pairs_trading_futures.md
-              - Cointegration-Based Spread Trading: ch18/futures_strategies/cointegration_spread_trading.md
+              - Inter-Commodity Spreads: ch18/relative_value/inter_commodity_spreads.md
+              - Curve Trading and Flies: ch18/relative_value/curve_trading_and_flies.md
+              - Pairs Trading in Futures: ch18/relative_value/pairs_trading_futures.md
+              - Cointegration-Based Spread Trading: ch18/relative_value/cointegration_spread_trading.md
           - 18.7 Cycles:
               - Commodity Seasonality Trading: ch18/futures_strategies/commodity_seasonality.md
           - 18.8 Macro Event Trading:
