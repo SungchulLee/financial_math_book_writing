@@ -509,14 +509,14 @@ nav:
               - Delta Hedging: ch16/hedging/delta_hedging.md
               - Static vs Dynamic Hedging: ch16/hedging/static_vs_dynamic_hedging.md
           - 16.2 Buy Low Sell High:
-              - Gamma Scalping: ch16/greeks_strategies/gamma_scalping.md
+              - Gamma Scalping: ch16/buy_low_sell_high/gamma_scalping.md
           - 16.3 Short Positions:
-              - Theta and Carry: ch16/greeks_strategies/theta_and_carry.md
+              - Theta and Carry: ch16/short_positions/theta_and_carry.md
           - 16.4 Realized Vol Bets:
               - Vega Trading: ch16/realized_vol_bets/vega_trading.md
           - 16.5 Higher-Orders:
-              - Higher-Order Greeks: ch16/greeks_strategies/higher_order_greeks.md
-              - Zero-DTE Option Strategies: ch16/greeks_strategies/0DTE_strategies.md
+              - Higher-Order Greeks: ch16/higher_orders/higher_order_greeks.md
+              - Zero-DTE Option Strategies: ch16/higher_orders/0DTE_strategies.md
           - 16.6 Vol Surface Trading:
               - Volatility Smile & Skew: ch16/vol_surface_trading/vol_smile_skew_trading.md
               - Variance Swaps: ch16/vol_surface_trading/variance_swaps.md
@@ -531,28 +531,28 @@ nav:
 
       - 17 Implied Volatility:
           - 17.1 Foundational IV:
-              - Term vs Strike IV: ch17/iv_strategies/horizontal_vs_vertical_iv.md
-              - Implied vs Realized Vol: ch17/iv_strategies/implied_vs_realized_vol_trading.md
+              - Term vs Strike IV: ch17/foundational_iv/horizontal_vs_vertical_iv.md
+              - Implied vs Realized Vol: ch17/foundational_iv/implied_vs_realized_vol_trading.md
           - 17.2 Analysis Tools:
-              - Volatility Cone Analysis: ch17/iv_strategies/volatility_cone_analysis.md
-              - Volatility Mean Reversion: ch17/iv_strategies/volatility_mean_reversion_strategies.md
-              - IV Rank Percentile: ch17/iv_strategies/iv_rank_percentile_strategies.md
+              - Volatility Cone Analysis: ch17/analysis_tools/volatility_cone_analysis.md
+              - Volatility Mean Reversion: ch17/analysis_tools/volatility_mean_reversion_strategies.md
+              - IV Rank Percentile: ch17/analysis_tools/iv_rank_percentile_strategies.md
           - 17.3 Calendar Family:
-              - Calendar Spreads: ch17/iv_strategies/calendar_spread.md
-              - Double Calendars: ch17/iv_strategies/double_calendars.md
-              - Ratio Calendar Spreads: ch17/iv_strategies/ratio_calendar_spreads.md
-              - Event Calendar Spreads: ch17/iv_strategies/event_calendar_spreads.md
+              - Calendar Spreads: ch17/calendar_family/calendar_spread.md
+              - Double Calendars: ch17/calendar_family/double_calendars.md
+              - Ratio Calendar Spreads: ch17/calendar_family/ratio_calendar_spreads.md
+              - Event Calendar Spreads: ch17/calendar_family/event_calendar_spreads.md
           - 17.4 Strike-Dim Trading:
-              - Skew Trading Spreads: ch17/iv_strategies/skew_trading_spreads.md
-              - Risk Reversals: ch17/iv_strategies/risk_reversals.md
+              - Skew Trading Spreads: ch17/strike_dim_trading/skew_trading_spreads.md
+              - Risk Reversals: ch17/strike_dim_trading/risk_reversals.md
           - 17.5 Diagonal Family:
-              - Diagonal Spreads: ch17/iv_strategies/diagonal_spread.md
-              - Double Diagonals: ch17/iv_strategies/double_diagonals.md
+              - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
+              - Double Diagonals: ch17/diagonal_family/double_diagonals.md
           - 17.6 Event-Driven IV:
-              - Earnings IV Crush: ch17/iv_strategies/earnings_iv_crush_strategies.md
+              - Earnings IV Crush: ch17/event_driven_iv/earnings_iv_crush_strategies.md
           - 17.7 Adv Structures:
-              - Vega Neutral Structures: ch17/iv_strategies/vega_neutral_structures.md
-              - Vol Surface Arbitrage: ch17/iv_strategies/volatility_surface_arbitrage.md
+              - Vega Neutral Structures: ch17/adv_structures/vega_neutral_structures.md
+              - Vol Surface Arbitrage: ch17/adv_structures/volatility_surface_arbitrage.md
 
       - 18 Futures:
           - 18.1 Pure Directional:
@@ -573,8 +573,8 @@ nav:
               - Roll Yield Strategies: ch18/carry_and_roll/roll_yield_strategies.md
               - Inventory Cycle Strategies: ch18/carry_and_roll/inventory_cycle_strategies.md
           - 18.5 Volatility-Driven:
-              - Volatility Targeting: ch18/futures_strategies/volatility_targeting.md
-              - VIX Futures Trading: ch18/futures_strategies/vix_futures_trading.md
+              - Volatility Targeting: ch18/volatility_driven/volatility_targeting.md
+              - VIX Futures Trading: ch18/volatility_driven/vix_futures_trading.md
           - 18.6 Relative Value:
               - Inter-Commodity Spreads: ch18/futures_strategies/inter_commodity_spreads.md
               - Curve Trading and Flies: ch18/futures_strategies/curve_trading_and_flies.md
