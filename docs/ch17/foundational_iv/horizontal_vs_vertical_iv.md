@@ -6,19 +6,14 @@
 <img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_dimensions.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
+---
+
+## The Core Insight
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_divergence.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
-
----
 
 ## The Core Insight
 
@@ -45,7 +40,12 @@ Where:
 
 **You're essentially betting: "The relationship between how IV varies across strikes versus how it varies across time is currently abnormal and will normalize."**
 
----
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 
 ## What Are Horizontal and Vertical IV Relationships?
 
@@ -170,7 +170,12 @@ The two dimensions are **correlated** but imperfectly:
 
 Trade when the relationship between horizontal and vertical IV **diverges from normal patterns**.
 
----
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 
 ## The Structure
 

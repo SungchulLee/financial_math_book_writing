@@ -532,25 +532,26 @@ nav:
       - 17 Implied Volatility:
           - 17.1 Foundational IV:
               - Term vs Strike IV: ch17/foundational_iv/horizontal_vs_vertical_iv.md
-              - Implied vs Realized Vol: ch17/foundational_iv/implied_vs_realized_vol_trading.md
-          - 17.2 Analysis Tools:
+          - 17.2 Implied vs Realized Vol:
+              - Implied vs Realized Vol: ch17/implied_vs_realized_vol/implied_vs_realized_vol_trading.md
+          - 17.3 Analysis Tools:
               - Volatility Cone Analysis: ch17/analysis_tools/volatility_cone_analysis.md
               - Volatility Mean Reversion: ch17/analysis_tools/volatility_mean_reversion_strategies.md
               - IV Rank Percentile: ch17/analysis_tools/iv_rank_percentile_strategies.md
-          - 17.3 Calendar Family:
+          - 17.4 Calendar Family:
               - Calendar Spreads: ch17/calendar_family/calendar_spread.md
               - Double Calendars: ch17/calendar_family/double_calendars.md
               - Ratio Calendar Spreads: ch17/calendar_family/ratio_calendar_spreads.md
               - Event Calendar Spreads: ch17/calendar_family/event_calendar_spreads.md
-          - 17.4 Strike-Dim Trading:
+          - 17.5 Strike-Dim Trading:
               - Skew Trading Spreads: ch17/strike_dim_trading/skew_trading_spreads.md
               - Risk Reversals: ch17/strike_dim_trading/risk_reversals.md
-          - 17.5 Diagonal Family:
+          - 17.6 Diagonal Family:
               - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
               - Double Diagonals: ch17/diagonal_family/double_diagonals.md
-          - 17.6 Event-Driven IV:
+          - 17.7 Event-Driven IV:
               - Earnings IV Crush: ch17/event_driven_iv/earnings_iv_crush_strategies.md
-          - 17.7 Adv Structures:
+          - 17.8 Adv Structures:
               - Vega Neutral Structures: ch17/adv_structures/vega_neutral_structures.md
               - Vol Surface Arbitrage: ch17/adv_structures/volatility_surface_arbitrage.md
 
