@@ -491,9 +491,9 @@ nav:
               - Broken Wing Condors: ch15/butterfly_and_condor/broken_wing_condors.md
               - Jade Lizard: ch15/butterfly_and_condor/jade_lizard.md
               - Reverse Jade Lizard: ch15/butterfly_and_condor/reverse_jade_lizard.md
-          - 15.6 Equivalent Forms:
-              - Synthetic Positions: ch15/equivalent_forms/synthetic_positions.md
-              - Box Spreads: ch15/equivalent_forms/box_spreads.md
+          - 15.6 Replication:
+              - Synthetic Positions: ch15/replication/synthetic_positions.md
+              - Box Spreads: ch15/replication/box_spreads.md
 
       - 16 Greeks:
           - 16.1 Hedging:
@@ -533,10 +533,10 @@ nav:
           - 17.4 Diagonal Family:
               - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
               - Double Diagonals: ch17/diagonal_family/double_diagonals.md
-          - 17.5 Ratio & Back Spread:
-              - Spreads: ch17/ratio_and_back_spread/spreads.md
-              - Ratio Spreads: ch17/ratio_and_back_spread/ratio_spreads.md
-              - Back Spreads: ch17/ratio_and_back_spread/backspreads.md
+          - 17.5 Ratio & Back Family:
+              - Spreads: ch17/ratio_and_back_family/spreads.md
+              - Ratio Spreads: ch17/ratio_and_back_family/ratio_spreads.md
+              - Back Spreads: ch17/ratio_and_back_family/backspreads.md
           - 17.6 Event-Driven IV:
               - Earnings IV Crush: ch17/event_driven_iv/earnings_iv_crush_strategies.md
           - 17.7 IV vs Realized Vol:
@@ -548,8 +548,7 @@ nav:
               - IV Rank Percentile: ch17/iv_vs_historic_vol/iv_rank_percentile_strategies.md
           - 17.9 Vega Neutral:
               - Vega Neutral Structures: ch17/vega_neutral/vega_neutral_structures.md
-
-              
+          
       - 18 Futures:
           - 18.1 Directional:
               - Long and Short Futures: ch18/directional/long_short_futures.md
