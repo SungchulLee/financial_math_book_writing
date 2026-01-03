@@ -502,8 +502,8 @@ nav:
               - Static vs Dynamic Hedging: ch16/hedging/static_vs_dynamic_hedging.md
           - 16.2 Buy Low Sell High:
               - Gamma Scalping: ch16/buy_low_sell_high/gamma_scalping.md
-          - 16.3 Short Positions:
-              - Theta and Carry: ch16/short_positions/theta_and_carry.md
+          - 16.3 Collecting Premiums:
+              - Theta and Carry: ch16/collecting_premiums/theta_and_carry.md
           - 16.4 Regime-Based:
               - Near Expiry Gamma Exploit: ch16/regime_based/short_time_gamma_exploitation.md
               - Vega Asympt Vol Arbitrage: ch16/regime_based/volatility_arbitrage_via_vega_asymptotics.md
