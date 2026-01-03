@@ -516,9 +516,8 @@ nav:
           - 17.1 IV Surface:
               - Term vs Strike IV: ch17/iv_surface/horizontal_vs_vertical_iv.md
               - Vol Surface Arbitrage: ch17/iv_surface/volatility_surface_arbitrage.md
-              - Volatility Smile & Skew: ch17/iv_surface/vol_smile_skew_trading.md
-              - Smile Trading & Skew Bets: ch17/iv_surface/smile_trading_and_skew_bets.md
-              - Dispersion Trading: ch17/iv_surface/dispersion_trading.md
+              - Smile & Skew Trading: ch17/iv_surface/smile_and_skew_trading.md
+              
           - 17.2 Calendar Family:
               - Calendar Spreads: ch17/calendar_family/calendar_spread.md
               - Double Calendars: ch17/calendar_family/double_calendars.md
@@ -546,7 +545,9 @@ nav:
               - Volatility Cone Analysis: ch17/iv_vs_historic_vol/volatility_cone_analysis.md
               - Volatility Mean Reversion: ch17/iv_vs_historic_vol/volatility_mean_reversion_strategies.md
               - IV Rank Percentile: ch17/iv_vs_historic_vol/iv_rank_percentile_strategies.md
-          - 17.9 Vega Neutral:
+          - 17.9 Index–Single IV:
+              - Dispersion Trading: ch17/index_single_iv/dispersion_trading.md
+          - 17.10 Vega Neutral:
               - Vega Neutral Structures: ch17/vega_neutral/vega_neutral_structures.md
           
       - 18 Futures:
@@ -592,20 +593,20 @@ nav:
 
       - 19 Fixed Income:
           - 19.1 Foundational Rates:
-              - Yield, Duration, Convexity: ch19/rates_strategies/yield_duration_convexity.md
-              - Yield Curve Construction: ch19/rates_strategies/yield_curve_construction.md
+              - Yield, Duration, Convexity: ch19/foundational_rates/yield_duration_convexity.md
+              - Yield Curve Construction: ch19/foundational_rates/yield_curve_construction.md
           - 19.2 Curve Trading:
-              - Steepeners and Flatteners: ch19/rates_strategies/steepeners_flatteners.md
-              - Butterfly Trades: ch19/rates_strategies/curve_butterfly_trades.md
+              - Steepeners and Flatteners: ch19/curve_trading/steepeners_flatteners.md
+              - Butterfly Trades: ch19/curve_trading/curve_butterfly_trades.md
           - 19.3 Carry and Roll:
-              - Bond Carry and Roll-Down: ch19/rates_strategies/bond_carry_roll_down.md
-              - Swap Carry Trades: ch19/rates_strategies/swap_carry_trades.md
+              - Bond Carry and Roll-Down: ch19/carry_and_roll/bond_carry_roll_down.md
+              - Swap Carry Trades: ch19/carry_and_roll/swap_carry_trades.md
           - 19.4 Swaps and Spreads:
-              - Interest Rate Swaps: ch19/rates_strategies/interest_rate_swaps.md
-              - Swap Spreads: ch19/rates_strategies/swap_spreads.md
+              - Interest Rate Swaps: ch19/swaps_and_spreads/interest_rate_swaps.md
+              - Swap Spreads: ch19/swaps_and_spreads/swap_spreads.md
           - 19.5 Hedging:
-              - Duration Hedging: ch19/rates_strategies/duration_hedging.md
-              - Futures Overlays: ch19/rates_strategies/futures_overlays.md
+              - Duration Hedging: ch19/hedging/duration_hedging.md
+              - Futures Overlays: ch19/hedging/futures_overlays.md
 
       - 20 Credit and Default:
           - 20.1 Credit Basics:
