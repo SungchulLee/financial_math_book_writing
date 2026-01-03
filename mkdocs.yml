@@ -491,11 +491,7 @@ nav:
               - Broken Wing Condors: ch15/butterfly_and_condor/broken_wing_condors.md
               - Jade Lizard: ch15/butterfly_and_condor/jade_lizard.md
               - Reverse Jade Lizard: ch15/butterfly_and_condor/reverse_jade_lizard.md
-          - 15.6 Spreads:
-              - Spreads: ch15/spreads/spreads.md
-              - Ratio Spreads: ch15/spreads/ratio_spreads.md
-              - Back Spreads: ch15/spreads/backspreads.md
-          - 15.7 Equivalent Forms:
+          - 15.6 Equivalent Forms:
               - Synthetic Positions: ch15/equivalent_forms/synthetic_positions.md
               - Box Spreads: ch15/equivalent_forms/box_spreads.md
 
@@ -537,16 +533,20 @@ nav:
           - 17.4 Diagonal Family:
               - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
               - Double Diagonals: ch17/diagonal_family/double_diagonals.md
-          - 17.5 Event-Driven IV:
+          - 17.5 Ratio & Back Spread:
+              - Spreads: ch17/ratio_and_back_spread/spreads.md
+              - Ratio Spreads: ch17/ratio_and_back_spread/ratio_spreads.md
+              - Back Spreads: ch17/ratio_and_back_spread/backspreads.md
+          - 17.6 Event-Driven IV:
               - Earnings IV Crush: ch17/event_driven_iv/earnings_iv_crush_strategies.md
-          - 17.6 IV vs Realized Vol:
+          - 17.7 IV vs Realized Vol:
               - Implied vs Realized Vol: ch17/iv_vs_realized_vol/implied_vs_realized_vol_trading.md
               - Vega Trading: ch17/iv_vs_realized_vol/vega_trading.md
-          - 17.7 IV vs Historic Vol:
+          - 17.8 IV vs Historic Vol:
               - Volatility Cone Analysis: ch17/iv_vs_historic_vol/volatility_cone_analysis.md
               - Volatility Mean Reversion: ch17/iv_vs_historic_vol/volatility_mean_reversion_strategies.md
               - IV Rank Percentile: ch17/iv_vs_historic_vol/iv_rank_percentile_strategies.md
-          - 17.8 Vega Neutral:
+          - 17.9 Vega Neutral:
               - Vega Neutral Structures: ch17/vega_neutral/vega_neutral_structures.md
 
               
