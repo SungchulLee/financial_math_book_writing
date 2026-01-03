@@ -511,10 +511,10 @@ nav:
           - 16.4 Higher-Orders:
               - Higher-Order Greeks: ch16/higher_orders/higher_order_greeks.md
               - Zero-DTE Option Strategies: ch16/higher_orders/0DTE_strategies.md
-          - 16.5 Asympt Strategies:
-              - Near Expiry Gamma Exploit: ch16/asymptotic_trading/short_time_gamma_exploitation.md
-              - Vega Asympt Vol Arbitrage: ch16/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
-              - Regime-Based Strategy: ch16/asymptotic_trading/regime_based_strategy_design.md
+          - 16.5 Regime-Based:
+              - Near Expiry Gamma Exploit: ch16/regime_based/short_time_gamma_exploitation.md
+              - Vega Asympt Vol Arbitrage: ch16/regime_based/volatility_arbitrage_via_vega_asymptotics.md
+              - Regime-Based Strategy: ch16/regime_based/regime_based_strategy_design.md
 
       - 17 Implied Volatility:
           - 17.1 IV Surface:

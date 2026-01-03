@@ -1,7 +1,5 @@
 # Regime-Based Strategy Design
 
-# Regime-Based Strategy Design
-
 **Regime-based strategy design** recognizes that no single options strategy works well in all market conditions. Instead of forcing one approach across all environments, sophisticated traders classify market states (regimes) and systematically adapt their strategy selection to match the dominant risk channels of each regime.
 
 Greeks quantify exposures; regimes determine whether those exposures are rewarded (realized variance, jump risk, liquidity).
