@@ -491,15 +491,11 @@ nav:
               - Broken Wing Condors: ch15/butterfly_and_condor/broken_wing_condors.md
               - Jade Lizard: ch15/butterfly_and_condor/jade_lizard.md
               - Reverse Jade Lizard: ch15/butterfly_and_condor/reverse_jade_lizard.md
-          - 15.6 Vertical Spreads:
-              - Overview: ch15/vertical_spreads/vertical_spreads.md
-              - Credit Spreads: ch15/vertical_spreads/credit_spreads.md
-              - Debit Spreads: ch15/vertical_spreads/debit_spreads.md
-          - 15.7 Spreads:
+          - 15.6 Spreads:
               - Spreads: ch15/spreads/spreads.md
               - Ratio Spreads: ch15/spreads/ratio_spreads.md
               - Back Spreads: ch15/spreads/backspreads.md
-          - 15.8 Equivalent Forms:
+          - 15.7 Equivalent Forms:
               - Synthetic Positions: ch15/equivalent_forms/synthetic_positions.md
               - Box Spreads: ch15/equivalent_forms/box_spreads.md
 
@@ -515,9 +511,7 @@ nav:
           - 16.4 Higher-Orders:
               - Higher-Order Greeks: ch16/higher_orders/higher_order_greeks.md
               - Zero-DTE Option Strategies: ch16/higher_orders/0DTE_strategies.md
-          - 16.5 Cross-Asset:
-              - CB Arbitrage: ch16/cross_asset/convertible_bond_arbitrage.md
-          - 16.6 Asympt Strategies:
+          - 16.5 Asympt Strategies:
               - Near Expiry Gamma Exploit: ch16/asymptotic_trading/short_time_gamma_exploitation.md
               - Vega Asympt Vol Arbitrage: ch16/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
               - Smile Trading & Skew Bets: ch16/asymptotic_trading/smile_trading_and_skew_bets.md
@@ -528,7 +522,6 @@ nav:
               - Term vs Strike IV: ch17/iv_surface/horizontal_vs_vertical_iv.md
               - Vol Surface Arbitrage: ch17/iv_surface/volatility_surface_arbitrage.md
               - Volatility Smile & Skew: ch17/iv_surface/vol_smile_skew_trading.md
-              - Variance Swaps: ch17/iv_surface/variance_swaps.md
               - Dispersion Trading: ch17/iv_surface/dispersion_trading.md
           - 17.2 IV vs Realized Vol:
               - Implied vs Realized Vol: ch17/iv_vs_realized_vol/implied_vs_realized_vol_trading.md
@@ -539,6 +532,9 @@ nav:
               - Ratio Calendar Spreads: ch17/calendar_family/ratio_calendar_spreads.md
               - Event Calendar Spreads: ch17/calendar_family/event_calendar_spreads.md
           - 17.4 Vertical Family:
+              - Vertical Spreads: ch17/vertical_family/vertical_spreads.md
+              - Credit Spreads: ch17/vertical_family/credit_spreads.md
+              - Debit Spreads: ch17/vertical_family/debit_spreads.md
               - Skew Trading Spreads: ch17/vertical_family/skew_trading_spreads.md
               - Risk Reversals: ch17/vertical_family/risk_reversals.md
           - 17.5 Diagonal Family:
@@ -554,11 +550,11 @@ nav:
               - IV Rank Percentile: ch17/analysis_tools/iv_rank_percentile_strategies.md
               
       - 18 Futures:
-          - 18.1 Pure Directional:
-              - Long and Short Futures: ch18/pure_directional/long_short_futures.md
-              - Trend Following: ch18/pure_directional/trend_following.md
-              - Intraday Momentum: ch18/pure_directional/intraday_momentum.md
-              - Opening Range Breakout: ch18/pure_directional/opening_range_breakout.md
+          - 18.1 Directional:
+              - Long and Short Futures: ch18/directional/long_short_futures.md
+              - Trend Following: ch18/directional/trend_following.md
+              - Intraday Momentum: ch18/directional/intraday_momentum.md
+              - Opening Range Breakout: ch18/directional/opening_range_breakout.md
           - 18.2 Hedging:
               - Producer and Consumer Hedging: ch18/hedging/producer_consumer_hedging.md
               - Portfolio Hedging with Futures: ch18/hedging/portfolio_hedging_with_futures.md
@@ -580,16 +576,16 @@ nav:
               - Pairs Trading in Futures: ch18/relative_value/pairs_trading_futures.md
               - Cointegration-Based Spread Trading: ch18/relative_value/cointegration_spread_trading.md
           - 18.7 Cycles:
-              - Commodity Seasonality Trading: ch18/futures_strategies/commodity_seasonality.md
+              - Commodity Seasonality Trading: ch18/cycles/commodity_seasonality.md
           - 18.8 Macro Event Trading:
-              - Economic Data Release Trading: ch18/futures_strategies/economic_data_release_trading.md
-              - Central Bank Policy Trades: ch18/futures_strategies/central_bank_policy_trades.md
+              - Economic Data Release Trading: ch18/macro_event_trading/economic_data_release_trading.md
+              - Central Bank Policy Trades: ch18/macro_event_trading/central_bank_policy_trades.md
           - 18.9 Risk Premia:
-              - Futures Momentum Strategies: ch18/futures_strategies/futures_momentum_strategies.md
-              - Carry Factor Portfolios: ch18/futures_strategies/carry_factor_portfolios.md
+              - Futures Momentum Strategies: ch18/risk_premia/futures_momentum_strategies.md
+              - Carry Factor Portfolios: ch18/risk_premia/carry_factor_portfolios.md
           - 18.10 Replication:
-              - Synthetic Forward Construction: ch18/futures_strategies/synthetic_forward_construction.md
-              - Index Replication with Futures: ch18/futures_strategies/index_replication_with_futures.md
+              - Synthetic Forward Construction: ch18/replication/synthetic_forward_construction.md
+              - Index Replication with Futures: ch18/replication/index_replication_with_futures.md
           - 18.11 Crisis & Stress:
               - Flight to Quality Strategies: ch18/futures_strategies/flight_to_quality_strategies.md
               - Liquidity Stress Trading: ch18/futures_strategies/liquidity_stress_trading.md
@@ -671,13 +667,14 @@ nav:
               - Index vs Basket Arbitrage: ch23/cross_asset_strategies/index_basket_arbitrage.md
               - ETF vs Futures vs Cash: ch23/cross_asset_strategies/etf_futures_cash.md
           - 23.4 Multi-Product RV:
-              - Cross-Asset Basis Trades: ch23/cross_asset_strategies/cross_asset_basis_trades.md
-              - Statistical RV Across Assets: ch23/cross_asset_strategies/statistical_rv_across_assets.md
+              - CB Arbitrage: ch23/multi_product_rv/convertible_bond_arbitrage.md
+              - Cross-Asset Basis Trades: ch23/multi_product_rv/cross_asset_basis_trades.md
+              - Statistical RV Across Assets: ch23/multi_product_rv/statistical_rv_across_assets.md
 
       - 24 Variance and Volatility:
           - 24.1 Variance Products:
-              - Variance Swaps: ch24/variance_strategies/variance_swaps.md
-              - Volatility Swaps: ch24/variance_strategies/volatility_swaps.md
+              - Variance Swaps: ch24/variance_products/variance_swaps.md
+              - Volatility Swaps: ch24/variance_products/volatility_swaps.md
           - 24.2 Risk Premia:
               - Variance Risk Premium: ch24/variance_strategies/variance_risk_premium.md
               - Volatility Carry: ch24/variance_strategies/volatility_carry.md
