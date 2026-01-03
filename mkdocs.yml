@@ -523,31 +523,32 @@ nav:
               - Vol Surface Arbitrage: ch17/iv_surface/volatility_surface_arbitrage.md
               - Volatility Smile & Skew: ch17/iv_surface/vol_smile_skew_trading.md
               - Dispersion Trading: ch17/iv_surface/dispersion_trading.md
-          - 17.2 IV vs Realized Vol:
-              - Implied vs Realized Vol: ch17/iv_vs_realized_vol/implied_vs_realized_vol_trading.md
-              - Vega Trading: ch17/iv_vs_realized_vol/vega_trading.md
-          - 17.3 Calendar Family:
+          - 17.2 Calendar Family:
               - Calendar Spreads: ch17/calendar_family/calendar_spread.md
               - Double Calendars: ch17/calendar_family/double_calendars.md
               - Ratio Calendar Spreads: ch17/calendar_family/ratio_calendar_spreads.md
               - Event Calendar Spreads: ch17/calendar_family/event_calendar_spreads.md
-          - 17.4 Vertical Family:
+          - 17.3 Vertical Family:
               - Vertical Spreads: ch17/vertical_family/vertical_spreads.md
               - Credit Spreads: ch17/vertical_family/credit_spreads.md
               - Debit Spreads: ch17/vertical_family/debit_spreads.md
               - Skew Trading Spreads: ch17/vertical_family/skew_trading_spreads.md
               - Risk Reversals: ch17/vertical_family/risk_reversals.md
-          - 17.5 Diagonal Family:
+          - 17.4 Diagonal Family:
               - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
               - Double Diagonals: ch17/diagonal_family/double_diagonals.md
-          - 17.6 Event-Driven IV:
+          - 17.5 Event-Driven IV:
               - Earnings IV Crush: ch17/event_driven_iv/earnings_iv_crush_strategies.md
-          - 17.7 Vega Neutral:
+          - 17.6 IV vs Realized Vol:
+              - Implied vs Realized Vol: ch17/iv_vs_realized_vol/implied_vs_realized_vol_trading.md
+              - Vega Trading: ch17/iv_vs_realized_vol/vega_trading.md
+          - 17.7 IV vs Historic Vol:
+              - Volatility Cone Analysis: ch17/iv_vs_historic_vol/volatility_cone_analysis.md
+              - Volatility Mean Reversion: ch17/iv_vs_historic_vol/volatility_mean_reversion_strategies.md
+              - IV Rank Percentile: ch17/iv_vs_historic_vol/iv_rank_percentile_strategies.md
+          - 17.8 Vega Neutral:
               - Vega Neutral Structures: ch17/vega_neutral/vega_neutral_structures.md
-          - 17.8 Analysis Tools:
-              - Volatility Cone Analysis: ch17/analysis_tools/volatility_cone_analysis.md
-              - Volatility Mean Reversion: ch17/analysis_tools/volatility_mean_reversion_strategies.md
-              - IV Rank Percentile: ch17/analysis_tools/iv_rank_percentile_strategies.md
+
               
       - 18 Futures:
           - 18.1 Directional:
@@ -587,8 +588,8 @@ nav:
               - Synthetic Forward Construction: ch18/replication/synthetic_forward_construction.md
               - Index Replication with Futures: ch18/replication/index_replication_with_futures.md
           - 18.11 Crisis & Stress:
-              - Flight to Quality Strategies: ch18/futures_strategies/flight_to_quality_strategies.md
-              - Liquidity Stress Trading: ch18/futures_strategies/liquidity_stress_trading.md
+              - Flight to Quality Strategies: ch18/crisis_and_stress/flight_to_quality_strategies.md
+              - Liquidity Stress Trading: ch18/crisis_and_stress/liquidity_stress_trading.md
 
       - 19 Fixed Income:
           - 19.1 Foundational Rates:
