@@ -514,7 +514,6 @@ nav:
           - 16.5 Asympt Strategies:
               - Near Expiry Gamma Exploit: ch16/asymptotic_trading/short_time_gamma_exploitation.md
               - Vega Asympt Vol Arbitrage: ch16/asymptotic_trading/volatility_arbitrage_via_vega_asymptotics.md
-              - Smile Trading & Skew Bets: ch16/asymptotic_trading/smile_trading_and_skew_bets.md
               - Regime-Based Strategy: ch16/asymptotic_trading/regime_based_strategy_design.md
 
       - 17 Implied Volatility:
@@ -522,6 +521,7 @@ nav:
               - Term vs Strike IV: ch17/iv_surface/horizontal_vs_vertical_iv.md
               - Vol Surface Arbitrage: ch17/iv_surface/volatility_surface_arbitrage.md
               - Volatility Smile & Skew: ch17/iv_surface/vol_smile_skew_trading.md
+              - Smile Trading & Skew Bets: ch17/iv_surface/smile_trading_and_skew_bets.md
               - Dispersion Trading: ch17/iv_surface/dispersion_trading.md
           - 17.2 Calendar Family:
               - Calendar Spreads: ch17/calendar_family/calendar_spread.md
