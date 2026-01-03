@@ -502,8 +502,8 @@ nav:
               - Static vs Dynamic Hedging: ch16/hedging/static_vs_dynamic_hedging.md
           - 16.2 Buy Low Sell High:
               - Gamma Scalping: ch16/buy_low_sell_high/gamma_scalping.md
-          - 16.3 Collecting Premiums:
-              - Theta and Carry: ch16/collecting_premiums/theta_and_carry.md
+          - 16.3 Premium Carry:
+              - Theta and Carry: ch16/premium_carry/theta_and_carry.md
           - 16.4 Regime-Based:
               - Near Expiry Gamma Exploit: ch16/regime_based/short_time_gamma_exploitation.md
               - Vega Asympt Vol Arbitrage: ch16/regime_based/volatility_arbitrage_via_vega_asymptotics.md
@@ -516,11 +516,10 @@ nav:
           - 17.1 IV Surface:
               - Term vs Strike IV: ch17/iv_surface/horizontal_vs_vertical_iv.md
               - Vol Surface Arbitrage: ch17/iv_surface/volatility_surface_arbitrage.md
-              - Smile & Skew Trading: ch17/iv_surface/smile_and_skew_trading.md
-              
+              - Smile & Skew Trading: ch17/iv_surface/smile_and_skew_trading.md 
           - 17.2 Calendar Family:
               - Calendar Spreads: ch17/calendar_family/calendar_spread.md
-              - Double Calendars: ch17/calendar_family/double_calendars.md
+              - Iron Calendars: ch17/calendar_family/iron_calendars.md
               - Ratio Calendar Spreads: ch17/calendar_family/ratio_calendar_spreads.md
               - Event Calendar Spreads: ch17/calendar_family/event_calendar_spreads.md
           - 17.3 Vertical Family:

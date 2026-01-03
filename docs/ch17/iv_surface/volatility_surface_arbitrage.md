@@ -25,10 +25,15 @@
 **The fundamental idea:**
 
 - Options prices create an implied volatility **SURFACE** across strike and time dimensions
+
 - This surface should follow certain theoretical relationships and arbitrage bounds
+
 - But market frictions, supply/demand, and imperfect information create **dislocations**
+
 - **Solution:** Trade multi-leg structures that exploit surface mispricings
+
 - Profit when surface normalizes to fair value
+
 - Can be model-free (pure arbitrage) or model-dependent (statistical arbitrage)
 
 **The key equation:**
@@ -54,7 +59,9 @@ Where you're trading the **entire surface relationship**, not just one dimension
 The implied volatility surface is a **3-dimensional structure**:
 
 - **X-axis:** Strike prices (moneyness)
+
 - **Y-axis:** Time to expiration
+
 - **Z-axis:** Implied volatility
 
 **Visual representation:**
@@ -78,22 +85,31 @@ The implied volatility surface is a **3-dimensional structure**:
 **1. Volatility Smile/Skew (across strikes):**
 
 - OTM puts: High IV (fear premium)
+
 - ATM: Lower IV
+
 - OTM calls: Moderate IV
+
 - Creates "smile" or "skew" shape
 
 **2. Term Structure (across time):**
 
 - Near-term: Variable IV
+
 - Medium-term: Usually higher IV
+
 - Long-term: Mean-reverting IV
+
 - Creates term structure curve
 
 **3. Combined Surface:**
 
 - Not flat
+
 - Has curvature in both dimensions
+
 - Should satisfy no-arbitrage bounds
+
 - Reflects market views on future volatility path
 
 ### The Problem with Real Surfaces
@@ -101,23 +117,33 @@ The implied volatility surface is a **3-dimensional structure**:
 **Theoretical surface:**
 
 - Smooth
+
 - Follows no-arbitrage conditions
+
 - Reflects single volatility regime
+
 - Static relationships
 
 **Real market surface:**
 
 - **Bumpy** (supply/demand imbalances)
+
 - **Dislocated** (market inefficiencies)
+
 - **Time-varying** (regime shifts)
+
 - **Mispriced** (opportunity!)
 
 **Common dislocations:**
 
 1. **Butterfly arbitrage violations:** Wings too cheap/expensive
+
 2. **Calendar arbitrage violations:** Time spreads mispriced
+
 3. **Box spread deviations:** Put-call parity violations
+
 4. **Surface curvature anomalies:** Unrealistic implied distributions
+
 5. **Term structure inversions:** Front month > back month (temporarily)
 
 ---
@@ -131,8 +157,11 @@ The implied volatility surface is a **3-dimensional structure**:
 Surface arbitrage trades exploit relationships by constructing portfolios that are:
 
 1. **Multi-dimensional:** Use strikes AND maturities
+
 2. **Relative value:** Long cheap, short expensive
+
 3. **Mean-reverting:** Expect normalization
+
 4. **Risk-controlled:** Often delta/gamma neutral
 
 ### Types of Surface Structures
@@ -142,13 +171,17 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 **Butterfly arbitrage:**
 
 - Buy OTM put + ITM call
+
 - Sell 2× ATM options
+
 - Exploits smile curvature
+
 - **Same expiration**
 
 **Call spread vs put spread parity:**
 
 - Long call spread should equal long put spread (with adjustments)
+
 - Violations create arbitrage
 
 **2. Time Dimension Arbitrage (Horizontal):**
@@ -156,8 +189,11 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 **Calendar arbitrage:**
 
 - Buy back month
+
 - Sell front month
+
 - **Same strike**
+
 - Exploits term structure
 
 **3. Surface Arbitrage (Both Dimensions):**
@@ -165,17 +201,21 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 **Box spreads:**
 
 - Combines call spread + put spread
+
 - Should equal present value of strike difference
+
 - Pure arbitrage when mispriced
 
 **Diagonal butterflies:**
 
 - Butterflies across different expirations
+
 - Exploits surface curvature in 2D
 
 **Calendar butterflies:**
 
 - Calendar spreads at multiple strikes
+
 - Creates 3D surface exposure
 
 ### The Visual
@@ -201,8 +241,11 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 **Key features:**
 
 - Exploit relative mispricings
+
 - Multiple strikes and times
+
 - Converges to fair value
+
 - Often market-neutral
 
 ---
@@ -216,9 +259,13 @@ $$
 $$
 
 where:
+
 - $n_i$ = Number of contracts (can be long or short)
+
 - $K_i$ = Strike prices (multiple strikes)
+
 - $T_i$ = Expiration times (multiple expirations)
+
 - $\sigma_i$ = Implied volatilities at each point
 
 **Subject to constraints:**
@@ -291,9 +338,13 @@ $$
 ### Why This IV Structure Exists Economically
 
 Markets create these IV structures because different participants have different:
+
 - Volatility expectations (near-term vs. long-term)
+
 - Risk preferences (convexity vs. theta)
+
 - Event views (known catalysts vs. unknown volatility)
+
 - Hedging needs (portfolio protection vs. income generation)
 
 ### The Volatility Risk Premium
@@ -305,17 +356,25 @@ $$
 $$
 
 **Why this exists:**
+
 1. **Insurance value:** Investors pay premium for protection
+
 2. **Crash insurance:** Fear of tail events inflates IV
+
 3. **Supply/demand:** More vol buyers than sellers
+
 4. **Behavioral biases:** Overestimation of future volatility
 
 ### Professional Institutional Perspective
 
 Institutional traders view IV strategies as tools for:
+
 1. **Volatility arbitrage:** Extracting the vol risk premium
+
 2. **Term structure trading:** Exploiting mispricings across time
+
 3. **Skew trading:** Capturing mispricing across strikes
+
 4. **Surface arbitrage:** Finding no-arbitrage violations
 
 Understanding the economic foundations helps you recognize when IV offers genuine edge versus when market pricing is fair.
@@ -342,13 +401,17 @@ $$
 **This is your edge:**
 
 - Long options at cheap IVs (negative vega × negative IV diff = positive)
+
 - Short options at rich IVs (positive vega × positive IV diff = positive)
+
 - Profit as surface normalizes
 
 **Example:**
 
 - OTM put IV currently 40% (rich), fair value 35%
+
 - You're short this option
+
 - As IV falls to 35%: Profit from vega × IV decrease
 
 ### 2. Theta P&L (Usually Controlled)
@@ -360,8 +423,11 @@ $$
 **In surface arbitrage:**
 
 - Not the primary edge (unlike calendars)
+
 - Often neutralized or controlled
+
 - Can be positive or negative depending on structure
+
 - Managed to not dominate the trade
 
 ### 3. Gamma P&L (Often Hedged)
@@ -375,8 +441,11 @@ $$
 **Management:**
 
 - Often gamma-neutralize for pure surface exposure
+
 - Or accept small gamma as cost
+
 - Hedge with dynamic delta adjustments
+
 - Focus stays on surface normalization
 
 ### 4. Delta P&L (Hedged to Zero)
@@ -388,8 +457,11 @@ $$
 $$
 
 - Continuously delta-hedged
+
 - No directional bet
+
 - Pure surface play
+
 - Stock movement irrelevant
 
 ---
@@ -401,8 +473,11 @@ $$
 **Characteristics:**
 
 - Violates no-arbitrage bounds
+
 - Risk-free profit (in theory)
+
 - Rare in liquid markets
+
 - Execution risk main concern
 
 **Examples:**
@@ -428,6 +503,7 @@ $$
 **Action:** 
 
 - If too cheap: Buy box
+
 - If too rich: Sell box
 
 **C. Put-Call Parity Violations:**
@@ -445,8 +521,11 @@ $$
 **Characteristics:**
 
 - Surface "mispriced" relative to model
+
 - Statistical edge, not risk-free
+
 - Requires volatility model
+
 - Mean reversion assumption
 
 **Examples:**
@@ -456,14 +535,19 @@ $$
 **Setup:**
 
 - Fit theoretical smile model (e.g., SVI, SABR)
+
 - Identify strikes where market IV deviates from model
+
 - Trade to exploit deviations
 
 **Example:**
 
 - Model says 95 put should trade at IV = 32%
+
 - Market trades at IV = 35%
+
 - **Sell 95 put, hedge delta**
+
 - Profit as IV reverts to 32%
 
 **B. Term Structure Arbitrage:**
@@ -471,14 +555,19 @@ $$
 **Setup:**
 
 - Model term structure slope
+
 - Identify maturities trading rich/cheap
+
 - Calendar spreads to exploit
 
 **Example:**
 
 - Model says front/back ratio should be 0.90
+
 - Market ratio is 0.85 (front too cheap)
+
 - **Buy front month calendar**
+
 - Profit as ratio normalizes
 
 **C. Surface Curvature Arbitrage:**
@@ -486,13 +575,17 @@ $$
 **Setup:**
 
 - Measure curvature across both dimensions
+
 - Identify areas of excessive/insufficient curvature
+
 - Multi-leg structures to exploit
 
 **Example:**
 
 - Skew too steep between 95-100 strikes
+
 - **Vertical butterfly at those strikes**
+
 - Profit as skew flattens
 
 ### 3. Relative Value Arbitrage
@@ -500,8 +593,11 @@ $$
 **Characteristics:**
 
 - Trade rich vs cheap areas of surface
+
 - Market-neutral structure
+
 - Mean reversion to historical relationships
+
 - Pairs-trading approach
 
 **Examples:**
@@ -509,19 +605,25 @@ $$
 **A. Strike-Pair Arbitrage:**
 
 - Compare IV of two equidistant strikes
+
 - Example: 95 put IV vs 105 call IV
+
 - If historical ratio violated, trade back to normal
 
 **B. Maturity-Pair Arbitrage:**
 
 - Compare IVs of same strike, different maturities
+
 - Example: 30-day vs 60-day at ATM
+
 - Trade when ratio extreme
 
 **C. Cross-Asset Surface Arbitrage:**
 
 - SPX surface vs SPY surface (should align)
+
 - Individual stocks vs sector ETF
+
 - Exploit temporary dislocations
 
 ### 4. Volatility Dispersion on Surface
@@ -529,14 +631,19 @@ $$
 **Characteristics:**
 
 - Trade index surface vs component surfaces
+
 - Correlation-driven
+
 - Multi-dimensional structure
+
 - Complex execution
 
 **Structure:**
 
 - Short index options (single surface)
+
 - Long weighted portfolio of component options (multiple surfaces)
+
 - Profit from correlation changes
 
 ### 5. Calendar Butterfly Arbitrage
@@ -544,13 +651,17 @@ $$
 **Structure:**
 
 - Run butterflies across multiple expirations
+
 - Exploits both strike and time dimensions
 
 **Example:**
 
 - Near-term butterfly (30-day): -$2.00
+
 - Far-term butterfly (90-day): -$2.50
+
 - **Surface says this relationship is wrong**
+
 - Trade calendar spread OF butterflies
 
 ### 6. Diagonal Surface Arbitrage
@@ -558,14 +669,19 @@ $$
 **Structure:**
 
 - Options at different strikes AND times
+
 - Creates tilted exposure across surface
+
 - Exploits 2D mispricings
 
 **Example:**
 
 - Buy 90-day 95 put (cheap on surface)
+
 - Sell 30-day 100 put (rich on surface)
+
 - Delta hedge
+
 - Profit from surface normalization
 
 ---
@@ -579,7 +695,9 @@ $$
 **Market prices (30-day options):**
 
 - $440 put: $3.50 (IV = 18%)
+
 - $450 call: $7.00 (IV = 15%)
+
 - $460 call: $4.00 (IV = 17%)
 
 **Theoretical check:**
@@ -587,7 +705,9 @@ $$
 **Construct butterfly:**
 
 - Buy $440 put @ $3.50
+
 - Sell 2× $450 calls @ $7.00 each
+
 - Buy $460 call @ $4.00
 
 **Cost:**
@@ -601,6 +721,7 @@ $$
 **Theoretical bounds:**
 
 **Lower bound:** $0$ (butterfly can't have negative value)
+
 **Upper bound:** $10$ (strike width)
 
 **Current price:** -$6.50 (VIOLATION!)
@@ -614,8 +735,11 @@ $$
 **Your trade:**
 
 - **Sell** $440 put → Receive $3.50
+
 - **Buy** 2× $450 calls → Pay $14.00
+
 - **Sell** $460 call → Receive $4.00
+
 - **Net: Pay $6.50**
 
 **Analysis at expiration:**
@@ -623,8 +747,11 @@ $$
 **Scenario 1: SPY at $440 or below**
 
 - $440 put: Assigned, you're short @ $440
+
 - 2× $450 calls: Expire worthless
+
 - $460 call: Expire worthless
+
 - Net: Short stock @ $440 (delta hedge makes this neutral)
 
 Wait, let me reconsider this example. A negative butterfly price is extremely rare and would be immediately arbitraged. Let me use a more realistic example.
@@ -634,7 +761,9 @@ Wait, let me reconsider this example. A negative butterfly price is extremely ra
 **Market prices:**
 
 - $440 put: $3.50 (IV = 22%)
+
 - $450 call: $7.00 (IV = 15%)  
+
 - $460 call: $2.50 (IV = 18%)
 
 **Butterfly cost:**
@@ -658,7 +787,9 @@ Actually, let me create a proper butterfly arbitrage example where the butterfly
 **Market prices (30-day options, all calls):**
 
 - $440 call: $14.50 (IV = 17%)
+
 - $450 call: $7.00 (IV = 15%)
+
 - $460 call: $2.80 (IV = 18%)
 
 **Construct butterfly:**
@@ -688,7 +819,9 @@ $$
 **Using model (e.g., Black-Scholes with fitted vol):**
 
 - Expected butterfly value: **$2.50**
+
 - Market price: **$3.30**
+
 - **Overpriced by $0.80!**
 
 **The statistical arbitrage:**
@@ -698,27 +831,37 @@ $$
 **Your trade (10 contracts):**
 
 - Sell 10 contracts $440 call @ $14.50 = -$14,500
+
 - Buy 20 contracts $450 call @ $7.00 = +$14,000
+
 - Sell 10 contracts $460 call @ $2.80 = -$2,800
+
 - **Net: Receive $3,300**
 
 **Greeks:**
 
 - Delta: ≈ 0 (butterfly is delta-neutral near center)
+
 - Gamma: Negative (short butterfly = short gamma)
+
 - Vega: Negative (short butterfly = short vega)
+
 - Theta: Positive (short butterfly = positive theta)
 
 **Risk management:**
 
 - Delta hedge: Buy/sell stock to maintain delta = 0
+
 - Gamma risk: Negative, will lose if big move
+
 - Vega risk: Negative, will lose if IV increases
 
 **Profit drivers:**
 
 1. **Time decay:** +$200/day (theta)
+
 2. **IV normalization:** If IVs converge, butterfly value decreases to $2.50
+
 3. **Realized vol < implied:** Short gamma profits if stock stays calm
 
 **Scenario at expiration:**
@@ -726,13 +869,17 @@ $$
 **If SPY at $450 (optimal):**
 
 - All options expire near worthless or offset
+
 - Keep most of $3,300 received
+
 - **Profit: ≈$2,500 - $3,000**
 
 **If SPY at $440 or $460:**
 
 - Butterfly has some value (≈$10 max)
+
 - Need to buy back for more than received
+
 - **Loss possible if large move**
 
 ---
@@ -748,11 +895,13 @@ $$
 **Calls:**
 
 - $170 call: $13.50
+
 - $180 call: $7.20
 
 **Puts:**
 
 - $170 put: $2.80
+
 - $180 put: $6.50
 
 **Construct box spread:**
@@ -784,7 +933,9 @@ $$
 **Comparison:**
 
 - Market price: $10.00
+
 - Theoretical value: $9.918
+
 - **Overpriced by $0.082** per spread
 
 **The arbitrage (if tradeable):**
@@ -796,8 +947,11 @@ $$
 **Your trade (10 spreads):**
 
 1. Sell $170 call @ $13.50
+
 2. Buy $180 call @ $7.20
+
 3. Buy $170 put @ $2.80
+
 4. Sell $180 put @ $6.50
 
 **Net cash received:** $10.00 × 10 × 100 = **$10,000**
@@ -805,12 +959,15 @@ $$
 **At expiration (guaranteed payoff):**
 
 - You owe: $10 per spread × 10 = $10,000
+
 - You received: $10,000
+
 - **Profit: $82** (the mispricing) × 10 = **$820**
 
 **But wait:**
 
 - Need to discount the profit
+
 - Present value of profit: $820 / 1.0082 ≈ $813
 
 **Risk-free profit:** ~$813 (minus transaction costs)
@@ -818,15 +975,21 @@ $$
 **Reality check:**
 
 - Transaction costs: ~$20-40 (bid-ask, commissions)
+
 - Pin risk at expiration
+
 - Early assignment risk
+
 - **Net profit after costs: ≈$400-$600**
 
 **Why does this exist?**
 
 - Retail order flow creates temporary mispricings
+
 - Market makers may not instantly arbitrage small amounts
+
 - Execution costs can be larger than edge
+
 - But systematic traders can profit at scale
 
 ---
@@ -840,8 +1003,11 @@ $$
 **Market IVs (ATM options):**
 
 - 1-month IV: 18%
+
 - 2-month IV: 20%
+
 - 3-month IV: 22%
+
 - 6-month IV: 21% ← **This is wrong!**
 
 **Term structure should be monotonically increasing or smooth. 6-month IV < 3-month IV is unusual.**
@@ -849,7 +1015,9 @@ $$
 **Analysis:**
 
 - 3-month to 6-month should increase or stay flat
+
 - Currently inverted (21% < 22%)
+
 - **Dislocation!**
 
 **The statistical arbitrage:**
@@ -859,18 +1027,23 @@ $$
 **Trade:** **Calendar spread at ATM**
 
 - Sell 3-month $100 call (IV = 22%)
+
 - Buy 6-month $100 call (IV = 21%)
 
 **Pricing:**
 
 - 3-month call @ IV=22%: $6.80
+
 - 6-month call @ IV=21%: $9.20
+
 - **Net debit: $9.20 - $6.80 = $2.40**
 
 **Greeks:**
 
 - Vega (net): Positive (long back month vega dominates)
+
 - Theta (net): Slightly positive (front month decay > back month)
+
 - Delta: ≈ 0
 
 **The bet:**
@@ -878,7 +1051,9 @@ $$
 If 6-month IV increases from 21% → 23% (normalizes):
 
 - 6-month call value increases
+
 - 3-month call value may stay same or decrease
+
 - **Profit from IV normalization**
 
 **Scenario (30 days later):**
@@ -886,8 +1061,11 @@ If 6-month IV increases from 21% → 23% (normalizes):
 **If IVs normalize:**
 
 - 3-month call (now 2-month) @ IV=20%: expires worthless or bought back
+
 - 6-month call (now 5-month) @ IV=23%: Worth $10.50
+
 - **P&L:** Paid $2.40, received $6.80 (front), sold back $10.50
+
 - **Profit:** ≈$0.90 - $1.20 per spread (30-50% return)
 
 ---
@@ -899,20 +1077,26 @@ If 6-month IV increases from 21% → 23% (normalizes):
 **Model-based selection:**
 
 1. **Fit smile model** (SVI, SABR, polynomial)
+
 2. **Calculate model IVs** at each strike
+
 3. **Compare to market IVs**
+
 4. **Identify largest deviations**
 
 **Strikes to focus:**
 
 - **Wing strikes** (far OTM): Often mispriced
+
 - **ATM cluster:** High liquidity, tight spreads
+
 - **Standard maturities:** Weeklies, monthlies for liquidity
 
 **Example process:**
 
 ```
 Strike | Market IV | Model IV | Deviation | Action
+
 -------|-----------|----------|-----------|--------
 $95    | 35%      | 32%      | +3%       | Rich (sell)
 $100   | 28%      | 28%      | 0%        | Fair
@@ -926,14 +1110,19 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 **Term structure analysis:**
 
 1. **Plot term structure curve**
+
 2. **Identify inversions or unusual slopes**
+
 3. **Compare to historical percentiles**
+
 4. **Select maturity pairs with largest dislocation**
 
 **Typical pairs:**
 
 - **Front/back ratio trades:** 1-month vs 3-month
+
 - **Medium-term dislocations:** 3-month vs 6-month  
+
 - **LEAPS vs near-term:** 1-year vs 3-month
 
 ### For Box Spreads
@@ -941,13 +1130,17 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 **Strike selection:**
 
 - **ITM strikes:** Larger intrinsic value, easier to see mispricing
+
 - **Liquid strikes:** $5 or $10 wide standard strikes
+
 - **Avoid extreme OTM:** Pin risk and execution issues
 
 **Optimal conditions:**
 
 - Strikes where bid-ask tight on all four legs
+
 - Sufficient open interest
+
 - Near-month expirations (less time value = clearer arbitrage)
 
 ---
@@ -959,13 +1152,17 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 **Near-term expirations preferred:**
 
 - **7-30 days:** Clearest arbitrage bounds
+
 - Less time value = easier to see violations
+
 - Lower vega risk
+
 - Faster capital turnover
 
 **Avoid:**
 
 - Very short (<7 days): Pin risk
+
 - Very long (>90 days): More vega, less clear bounds
 
 ### For Statistical Arbitrage
@@ -973,14 +1170,19 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 **Medium-term optimal:**
 
 - **30-90 days:** Enough time for mean reversion
+
 - Liquid options
+
 - Manageable gamma/vega
+
 - Not too expensive
 
 **Time horizon considerations:**
 
 - **30-45 days:** Fast mean reversion expected
+
 - **60-90 days:** Structural dislocations
+
 - **90-180 days:** Long-term value trades
 
 ### For Term Structure Arbitrage
@@ -988,13 +1190,17 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 **Standard calendar ratios:**
 
 - **Front month:** 30-45 days
+
 - **Back month:** 90-120 days
+
 - **Ratio:** 2:1 to 3:1
 
 **Special situations:**
 
 - **Pre-earnings:** Front includes earnings, back doesn't
+
 - **Event-driven:** Around known catalysts
+
 - **Roll periods:** Around index rebalancing
 
 ---
@@ -1008,8 +1214,11 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 **Signal generation:**
 
 - Model deviation > 2 standard deviations
+
 - Historical percentile > 90th or < 10th
+
 - Multiple confirmation signals
+
 - Adequate liquidity
 
 **Entry checklist:**
@@ -1029,7 +1238,9 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 **Frequency:**
 
 - Daily rebalancing minimum
+
 - Intraday if large moves (>1%)
+
 - After major news
 
 **Methodology:**
@@ -1041,6 +1252,7 @@ $$
 **Example:**
 
 - Position delta: +50
+
 - **Sell 50 shares** to neutralize
 
 **Gamma management:**
@@ -1054,7 +1266,9 @@ $$
 **If gamma too large:**
 
 - Reduce position size
+
 - Add opposite gamma positions
+
 - Increase hedging frequency
 
 **Vega management:**
@@ -1062,13 +1276,17 @@ $$
 **For vega-neutral surface trades:**
 
 - Calculate vega by maturity bucket
+
 - Ensure exposures offset
+
 - Rebalance when drifts occur
 
 **For vega-exposed trades:**
 
 - Set vega limits (e.g., ±1,000 per $1M capital)
+
 - Monitor IV changes
+
 - Hedge with VIX futures if needed
 
 ### 3. Position Monitoring
@@ -1076,19 +1294,27 @@ $$
 **Daily tasks:**
 
 1. **Recalculate mispricings:** Is arbitrage still there?
+
 2. **Check Greeks:** Still within limits?
+
 3. **Measure P&L attribution:**
 
    - How much from surface normalization?
+
    - How much from theta?
+
    - How much from gamma?
+
 4. **Update models:** New market data
 
 **Weekly tasks:**
 
 1. Review all positions
+
 2. Refit volatility models
+
 3. Check historical percentiles
+
 4. Assess capital allocation
 
 ### 4. Exit Strategies
@@ -1096,9 +1322,13 @@ $$
 **For pure arbitrage:**
 
 - **Hold to expiration** (risk-free convergence)
+
 - Or exit early if:
+
   * Pin risk developing
+
   * Early assignment likely
+
   * Better use of capital
 
 **For statistical arbitrage:**
@@ -1106,15 +1336,21 @@ $$
 **Take profit triggers:**
 
 - Mispricing < 0.5 SD (normalized)
+
 - **50-75%** of expected profit captured
+
 - Time to expiration < 14 days (avoid gamma)
+
 - Better opportunity identified
 
 **Stop loss triggers:**
 
 - Mispricing increases (goes more wrong)
+
 - **Loss > 50%** of expected profit
+
 - Model breaks down (regime change)
+
 - Greeks exceed limits
 
 **Example rules:**
@@ -1146,8 +1382,11 @@ $$
 **Short butterfly (overpriced):**
 
 - All greeks opposite sign
+
 - **Short gamma = want low realized vol**
+
 - **Short vega = want IV to decrease**
+
 - **Positive theta = time on your side**
 
 ### Box Spread Greeks
@@ -1166,7 +1405,9 @@ $$
 **This is pure arbitrage!**
 
 - No greek exposures
+
 - Profit locked in at entry
+
 - Just need to hold to expiration
 
 ### Calendar Arbitrage Greeks
@@ -1185,7 +1426,9 @@ $$
 **Vega exposure dominant:**
 
 - Want back month IV to increase
+
 - Or term structure to steepen
+
 - Theta helps but not main edge
 
 ---
@@ -1197,29 +1440,41 @@ $$
 **Market environment:**
 
 - **Normal functioning markets** (liquidity present)
+
 - Moderate volatility (not extreme crisis)
+
 - Sufficient trading volume
+
 - Clear price discovery
 
 **Surface characteristics:**
 
 - **Visible dislocations** (>2 SD from model)
+
 - Historical precedent for mean reversion
+
 - Multiple strikes/times affected
+
 - Statistically significant mispricings
 
 **Infrastructure:**
 
 - **Fast execution** capability
+
 - Real-time pricing models
+
 - Automated hedging systems
+
 - Risk management tools
 
 **Capital:**
 
 - Adequate size for scale ($100K+ for retail, $1M+ for serious)
+
 - Margin availability
+
 - Low cost of capital
+
 - Patient capital (for statistical arb)
 
 ### Avoid When ✗
@@ -1261,37 +1516,57 @@ $$
 **Before entering, evaluate:**
 
 1. **IV level analysis:**
+
    - Current IV percentile (IVP) or IV rank (IVR)
+
    - Is IV historically high or low?
+
    - IV vs. realized volatility spread
 
 2. **Term structure analysis:**
+
    - Shape of vol term structure (contango/backwardation)
+
    - Front month vs. back month IV relationship
+
    - Event-driven distortions in term structure
 
 3. **Skew analysis:**
+
    - Put vs. call IV differential
+
    - Shape of vol smile/smirk
+
    - Unusual skew steepness
 
 4. **Upcoming events:**
+
    - Earnings announcements
+
    - Fed meetings, economic data
+
    - Product launches, regulatory decisions
 
 ### Step 2: Strategy Selection Criteria
 
 **Enter this strategy when:**
+
 - [Specific IV conditions]
+
 - [Term structure requirements]
+
 - [Skew positioning]
+
 - [Time to event/expiration]
 
 **Avoid this strategy when:**
+
 - [Unfavorable IV environment]
+
 - [Wrong term structure shape]
+
 - [Insufficient IV edge]
+
 - [Event risk too high]
 
 ### Step 3: Position Sizing
@@ -1303,15 +1578,23 @@ $$
 $$
 
 **For IV strategies, consider:**
+
 - Vega exposure limits ($ per 1% IV move)
+
 - Theta collection goals ($ per day target)
+
 - Gamma risk near expiration
+
 - Capital at risk for defined-risk strategies
 
 **Conservative sizing:**
+
 - Max vega: $100-200 per 1% IV move per $10k capital
+
 - Max theta: $20-50 per day per $10k capital
+
 - Risk 1-2% on undefined risk strategies
+
 - Risk 2-5% on defined risk strategies
 
 ### Step 4: Entry Execution
@@ -1319,20 +1602,33 @@ $$
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
+
 2. **Liquidity check:** Ensure tight bid-ask spreads
+
 3. **Multi-leg orders:** Enter complete structure as one order
+
 4. **Timing considerations:** 
+
    - Sell vol when IV elevated (IVR > 50)
+
    - Buy vol when IV depressed (IVR < 30)
+
    - Avoid entering right before events (IV usually elevated)
 
 **Entry checklist:**
+
 - [ ] IV percentile checked
+
 - [ ] Term structure analyzed
+
 - [ ] Liquidity verified (bid-ask < 10%)
+
 - [ ] Position sized appropriately
+
 - [ ] Greeks calculated (delta, vega, theta, gamma)
+
 - [ ] Max loss understood
+
 - [ ] Exit plan defined
 
 ### Step 5: Position Management
@@ -1340,25 +1636,39 @@ $$
 **Active management rules:**
 
 **IV monitoring:**
+
 - Track IV daily (minimum)
+
 - Monitor IV percentile changes
+
 - Watch term structure shifts
+
 - Alert on IV expansion/contraction
 
 **Profit targets:**
+
 - **For short vol:** Close at 50-75% of max profit
+
 - **For long vol:** Take profit at 100-200% gain
+
 - **For term structure:** Close when term structure normalizes
 
 **Loss limits:**
+
 - **For short vol:** Close at 2-3x credit received
+
 - **For long vol:** Cut at 50% loss
+
 - **Time stop:** Exit if 50% of time passed with no favorable IV move
 
 **Adjustment triggers:**
+
 - IV percentile moves 20+ points
+
 - Term structure inverts unexpectedly
+
 - Underlying makes large move (>2 SD)
+
 - Event announced/cancelled
 
 ### Step 6: Adjustment Protocols
@@ -1366,79 +1676,127 @@ $$
 **When to adjust:**
 
 **For short vol strategies:**
+
 - Stock moves significantly against position
+
 - IV expanding beyond entry level
+
 - Risk of max loss approaching
 
 **How to adjust:**
+
 - Roll out in time (collect more theta)
+
 - Roll strikes (move to new delta)
+
 - Convert to different structure (spread to iron condor)
+
 - Close and reenter at better strikes
 
 **For long vol strategies:**
+
 - IV not expanding as expected
+
 - Theta burn exceeding plan
+
 - Realized vol lower than expected
 
 **How to adjust:**
+
 - Scale into more contracts if IV crashes
+
 - Roll to longer dated (reduce theta)
+
 - Take partial profits on IV spikes
+
 - Convert to calendar (neutralize theta)
 
 ### Step 7: Record Keeping
 
 **Track every trade:**
+
 - Entry IV level and percentile
+
 - Term structure shape at entry
+
 - Vega, theta, gamma at entry
+
 - Days to expiration
+
 - P&L by component (vega, theta, gamma)
+
 - Actual IV vs. entry IV
+
 - Lessons learned
 
 **Quarterly review:**
+
 - Win rate by IV percentile
+
 - P&L by term structure shape
+
 - Best entry IV conditions
+
 - Common mistakes
 
 ### Common Execution Mistakes to Avoid
 
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
+
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
+
 3. **Ignoring term structure** - Don't sell front month if in backwardation
+
 4. **Over-leveraging vega** - Too much vega exposure can blow up account
+
 5. **Holding through earnings** - IV crush destroys long vol positions
+
 6. **Not taking profits** - Greed kills short vol profits
+
 7. **Fighting IV trends** - IV regimes can persist
+
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### Professional Implementation Tips
 
 **For volatility selling (short vega):**
+
 - Enter when IVR > 50, ideally > 70
+
 - Target 60-70% probability of profit
+
 - Close at 50% of max profit
+
 - Use mechanical stops (2x credit)
 
 **For volatility buying (long vega):**
+
 - Enter when IVR < 30
+
 - Need catalyst for IV expansion
+
 - Take profits quickly on IV spikes
+
 - Cut losses at 50% if IV doesn't cooperate
 
 **For term structure trades:**
+
 - Understand event calendar
+
 - Check historical term structure patterns
+
 - Monitor roll dynamics
+
 - Scale positions gradually
 
 **For skew trades:**
+
 - Understand why skew exists in that stock
+
 - Check historical skew patterns
+
 - Combine with directional view
+
 - Monitor skew changes daily
 
 
@@ -1453,14 +1811,19 @@ $$
 **What traders do:**
 ```
 Surface analysis shows mispricing:
+
 - Butterfly theoretical value: $5.00
+
 - Market price: $4.80
+
 - "Arbitrage": $0.20 per spread
 
 Think: "Found edge! Let's trade 10 contracts!"
 
 Enter trade:
+
 - 10 butterfly spreads
+
 - Expected profit: $0.20 × 10 × 100 = $200
 ```
 
@@ -1470,17 +1833,24 @@ Enter trade:
 
 ```
 Per butterfly (4 legs):
+
 - Buy wing 1: Bid-ask $0.05
+
 - Sell 2× body: Bid-ask $0.08 (× 2)
+
 - Buy wing 2: Bid-ask $0.05
+
 - Total spread cost: $0.26
 
 Plus commissions:
+
 - 4 legs × $0.65/contract = $2.60
+
 - Per butterfly cost: $0.26 + $0.026 = $0.286
 
 Your "edge": $0.20
 Real cost: $0.286
+
 **Net edge: -$0.086 (LOSING TRADE!)**
 ```
 
@@ -1495,10 +1865,15 @@ $$
 **Example calculation:**
 ```
 4-leg butterfly:
+
 - Bid-ask: $0.25
+
 - Commissions: $0.03
+
 - Slippage (1% of notional): $0.05
+
 - Safety margin (2×): Double all above
+
 - **Minimum edge needed: $0.66**
 
 Your edge: $0.20
@@ -1510,19 +1885,29 @@ Result: **Don't trade!**
 
 ```
 Month 1: Execute 20 surface "arbitrages"
+
 - Total theoretical edge: $4,000
+
 - Total transaction costs: $5,200
+
 - Net: -$1,200 loss
 
 Month 2: "Maybe I got unlucky, try more"
+
 - 30 trades
+
 - Edge: $5,500
+
 - Costs: $7,800
+
 - Net: -$2,300
 
 After 2 months:
+
 - Gross edge: $9,500 (models were right!)
+
 - Costs: $13,000 (killed by execution)
+
 - **Net loss: -$3,500**
 
 Broke despite having genuine edge!
@@ -1534,18 +1919,27 @@ Broke despite having genuine edge!
 
 ```
 For institutional scale (1000+ contracts):
+
 - Minimum edge: 1.5× total costs
+
 - Better: 2× total costs
+
 - Ideal: 3× total costs
 
 For retail (10-50 contracts):
+
 - Minimum edge: 3× total costs
+
 - Better: 4-5× total costs
+
 - Anything less: Skip the trade
 
 Example:
+
 - Total cost per spread: $0.30
+
 - Retail minimum: $0.90 edge
+
 - If edge < $0.90: **Don't trade**
 ```
 
@@ -1603,8 +1997,11 @@ def calculate_net_edge(theoretical_edge, num_legs, bid_ask_per_leg,
 **What traders do:**
 ```
 Use volatility model (e.g., Black-Scholes with constant vol):
+
 - Model says $100 straddle worth $8.50
+
 - Market price: $9.00
+
 - "Arbitrage": Market overpriced by $0.50!
 
 Sell straddle for $9.00
@@ -1617,24 +2014,37 @@ Think: "Market is stupid, I'm smart"
 
 ```
 Your model (Black-Scholes):
+
 - Assumes constant volatility
+
 - Assumes no jumps
+
 - Assumes continuous trading
+
 - Assumes normal distribution
 
 Reality:
+
 - Volatility changes (stochastic)
+
 - Jumps occur (gaps)
+
 - Discrete trading (overnight risk)
+
 - Fat tails (crashes)
 
 Market price ($9.00) reflects:
+
 - Jump risk premium
+
 - Tail risk premium
+
 - Discrete hedging costs
+
 - Real-world frictions
 
 Your model ($8.50) ignores all this!
+
 **Market is RIGHT, your model is WRONG**
 ```
 
@@ -1642,28 +2052,43 @@ Your model ($8.50) ignores all this!
 
 ```
 Week 1: Sell straddle at $9.00 (think it's worth $8.50)
+
 - Collect $900 premium
+
 - Delta hedge daily
+
 - Model says: Position worth $8.30, profit $70
 
 Week 2: Overnight gap
+
 - Stock gaps down 5% on news
+
 - Cannot hedge the gap
+
 - Straddle now worth $11.00
+
 - Position: -$200 (not +$70!)
 
 Week 3: Continue hedging
+
 - More gaps occur
+
 - Cumulative loss: -$500
 
 Week 4: Close at -$500 loss
+
 - Model predicted: +$150 profit
+
 - Reality: -$500 loss
+
 - **Model was wrong by $650!**
 
 Your "arbitrage" was actually:
+
 - Selling insurance at actuarially fair price
+
 - Ignoring real-world risk premiums
+
 - **Getting paid to take risks you didn't understand**
 ```
 
@@ -1671,19 +2096,29 @@ Your "arbitrage" was actually:
 
 **Black-Scholes failures:**
 ```
+
 1. 1987 crash:
+
    - Model predicted 10-sigma move
+
    - Happened: 22-sigma move
+
    - Model loss: Catastrophic
 
 2. Put skew:
+
    - Model: Puts and calls same IV
+
    - Reality: Puts 5-15 points higher IV
+
    - "Arbitrage": No, just wrong model
 
 3. Vol clustering:
+
    - Model: Constant vol
+
    - Reality: High vol persists
+
    - Hedging: More expensive than model predicts
 ```
 
@@ -1695,23 +2130,35 @@ Your "arbitrage" was actually:
 Model hierarchy:
 
 1. Simple (Black-Scholes):
+
    - Good for rough estimates
+
    - NOT for arbitrage identification
+
    - Understand limitations
 
 2. Intermediate (Heston, SABR):
+
    - Stochastic volatility
+
    - Better for surface fitting
+
    - Still has assumptions
 
 3. Advanced (Local vol, SVI):
+
    - Market-calibrated
+
    - Fits observed surface
+
    - Minimal assumptions
 
 For arbitrage:
+
 - Require agreement from 2-3 models
+
 - If only 1 model shows "arbitrage": Skip
+
 - If all models agree: Potential genuine arb
 ```
 
@@ -1721,22 +2168,33 @@ For arbitrage:
 Before using model for trading:
 
 1. Backtest on historical data:
+
    - Did model predictions match realized P&L?
+
    - What was error rate?
+
    - How did it perform in crises?
 
 2. Out-of-sample testing:
+
    - Test on period NOT used for calibration
+
    - If fails out-of-sample: Model is overfit
 
 3. Reality check:
+
    - Does "arbitrage" make economic sense?
+
    - Why would market misprice this?
+
    - Who is on other side?
 
 4. Stress testing:
+
    - What if volatility doubles?
+
    - What if gap occurs?
+
    - Can you survive?
 ```
 
@@ -1746,14 +2204,21 @@ Before using model for trading:
 When model disagrees with market:
 
 Default assumption: Model is wrong
+
 - Market has more information
+
 - Market includes risk premiums you missed
+
 - Market reflects real trading costs
 
 Only override if:
+
 - Clear mechanical error (typo in quote)
+
 - Multiple models confirm
+
 - Historical precedent for this mispricing
+
 - Can explain WHY market is wrong
 
 Otherwise: Trust the market, fix your model
@@ -1777,8 +2242,11 @@ Otherwise: Trust the market, fix your model
 **What traders do:**
 ```
 Find genuine arbitrage:
+
 - Butterfly edge: $0.50 (after costs)
+
 - Trade: 2 contracts
+
 - Expected profit: $100
 
 Think: "Every dollar counts!"
@@ -1790,21 +2258,33 @@ Think: "Every dollar counts!"
 
 ```
 Surface arbitrage complexity:
+
 - Monitor 20-50 strikes across 3-5 expirations
+
 - Calculate Greeks for multi-leg positions
+
 - Delta hedge 2-3 times per day
+
 - Model calibration daily
+
 - Risk management continuous
+
 - Execution requires skill
 
 Time investment:
+
 - Research: 2 hours/day
+
 - Monitoring: 3 hours/day
+
 - Execution: 1 hour/day
+
 - Total: 6 hours/day minimum
 
 For 2-contract position making $100:
+
 - Monthly: ~$400 (4 trades)
+
 - Hourly rate: $400 / (6 × 20 days) = $3.33/hour
 
 **Working at McDonald's pays better!**
@@ -1837,19 +2317,27 @@ Below 20 contracts: Not worth it!
 Year 1 trading 1-5 contracts:
 
 Time invested:
+
 - 6 hours/day × 250 trading days = 1,500 hours
+
 - Value at $50/hour job = $75,000 opportunity cost
 
 P&L:
+
 - Average profit per trade: $120
+
 - Trades: 40/year
+
 - Total: $4,800
 
 **Net: -$70,200 (after opportunity cost!)**
 
 Worse: Same skill/time with 50-100 contracts:
+
 - Profit per trade: $3,000
+
 - Trades: 40/year
+
 - Total: $120,000
 
 Difference: $115,200 left on table by under-sizing!
@@ -1861,27 +2349,43 @@ Difference: $115,200 left on table by under-sizing!
 
 ```
 Butterfly/Condor arbitrage:
+
 - Minimum: 10 contracts
+
 - Workable: 20-50 contracts
+
 - Professional: 100+ contracts
+
 - Reason: Multiple legs, thin edge
 
 Box spread arbitrage:
+
 - Minimum: 50 contracts
+
 - Workable: 100-500 contracts
+
 - Professional: 1000+ contracts
+
 - Reason: Very thin edge ($0.05-$0.15)
 
 Conversion/Reversal:
+
 - Minimum: 25 contracts
+
 - Workable: 100+ contracts
+
 - Professional: 500+ contracts
+
 - Reason: Tiny edge, needs volume
 
 Calendar arbitrage:
+
 - Minimum: 15 contracts
+
 - Workable: 30-100 contracts
+
 - Professional: 200+ contracts
+
 - Reason: Time decay needs scale
 ```
 
@@ -1891,18 +2395,27 @@ Calendar arbitrage:
 Minimum account sizes:
 
 For 10-20 contracts:
+
 - $50,000 minimum
+
 - $100,000 comfortable
+
 - Margin for multi-leg positions
 
 For 50-100 contracts:
+
 - $250,000 minimum
+
 - $500,000 comfortable
+
 - Professional scale
 
 For 100+ contracts:
+
 - $1,000,000+ required
+
 - Institutional level
+
 - Full-time operation
 
 Below minimums: Stick to simpler strategies!
@@ -1914,13 +2427,19 @@ Below minimums: Stick to simpler strategies!
 
 ```
 Step 1: Calculate required scale
+
 - Monthly income goal: $______
+
 - Edge per contract: $______
+
 - Required contracts: ______
 
 Step 2: Check capital
+
 - Have $______ available
+
 - Need $______ for scale
+
 - Can I reach scale? Yes/No
 
 Step 3: Decide
@@ -1941,14 +2460,21 @@ Either do it properly or don't do it.
 If account <$50,000:
 
 Better strategies:
+
 - Vertical spreads (defined risk)
+
 - Iron condors (simpler Greeks)
+
 - Calendar spreads (2 legs, not 4)
+
 - Covered calls (straightforward)
 
 Build to $100,000+, then:
+
 - Transition to surface arbitrage
+
 - Have proper scale
+
 - Make it worthwhile
 
 The journey:
@@ -1976,9 +2502,13 @@ $500,000+ → Advanced surface strategies
 **What traders do:**
 ```
 Friday 3:00 PM (expiration day):
+
 - Box spread position
+
 - Stock at $100.00
+
 - Box strikes: $95/$100
+
 - Think: "Let it expire, max profit"
 ```
 
@@ -1988,23 +2518,34 @@ Friday 3:00 PM (expiration day):
 
 ```
 Friday 4:00 PM close:
+
 - Stock closes at $100.02 (2¢ above $100 strike)
+
 - $100 call: Expires ITM (assigned)
+
 - $100 put: Expires OTM (worthless)
 
 Saturday:
+
 - Assignment notice
+
 - You're short 1,000 shares at $100
+
 - (from 10 box spreads)
 
 Monday morning:
+
 - Stock gaps to $103 on news
+
 - You're short from $100
+
 - Current: $103
+
 - Loss: $3 × 1,000 = $3,000
 
 Expected profit from box: $500
 Actual result: -$3,000 loss
+
 **Net disaster: -$3,500**
 ```
 
@@ -2021,12 +2562,17 @@ As $T \to 0$ (expiration day), probability increases dramatically.
 **Example:**
 ```
 Day before expiration (1 DTE):
+
 - Vol: 25% annual = 1.5% daily
+
 - $100 stock daily range: ±$1.50
+
 - Probability within $0.50 of $100: ~33%
 
 Expiration day (4 hours to close):
+
 - Range narrows
+
 - Probability within $0.50: ~50%+
 
 Pin risk is VERY REAL near expiration!
@@ -2038,41 +2584,67 @@ Pin risk is VERY REAL near expiration!
 Box spread example (10 contracts):
 
 Position:
+
 - Long $95/$100 call spread
+
 - Short $95/$100 put spread
+
 - Theoretical value: $5.00
+
 - Collected: $5.05 (small arb)
+
 - Expected profit: $50
 
 Friday 3:00 PM:
+
 - Stock at $99.95
+
 - Could close for $5.02 profit: $30
+
 - Think: "Wait for expiration, get full $50"
+
 - **Mistake: Didn't close**
 
 Friday 4:00 PM:
+
 - Stock closes at $100.05
+
 - Both $100 options ITM!
+
 - Call assigned: Short 1,000 shares
+
 - Put assigned: Long 1,000 shares
+
 - **Net: Should be flat...**
 
 Saturday/Sunday:
+
 - Don't realize assignments yet
+
 - Broker processing
 
 Monday 9:30 AM:
+
 - Check account
+
 - Short 1,000 shares (call assignment processed)
+
 - Long position not processed yet (put not assigned - expired worthless)
+
 - Stock gaps to $102
+
 - **Forced to cover at $102**
+
 - Loss: $2 × 1,000 = -$2,000
 
 Reality of assignments:
+
 - Calls assigned: Yes (ITM by $0.05)
+
 - Puts assigned: No (OTM by $0.05)
+
 - Result: Unexpected short position
+
 - Monday gap: Disaster
 
 Expected: +$50 profit
@@ -2086,21 +2658,31 @@ Difference: $2,050 destroyed by pin risk
 Iron butterfly with pin risk:
 
 Position (20 contracts):
+
 - Sell $100 call (20)
+
 - Sell $100 put (20)
+
 - Buy $105 call (20)
+
 - Buy $95 put (20)
 
 Friday close: Stock at $100.01
 
 Assignments:
+
 - Short $100 calls: Assigned (ITM)
+
 - Short $100 puts: Not assigned (OTM)
+
 - Result: Short 2,000 shares
 
 Monday gap to $104:
+
 - Cover 2,000 at $104
+
 - Assigned at $100
+
 - Loss: $4 × 2,000 = $8,000
 
 Position was "delta neutral"
@@ -2113,25 +2695,39 @@ Pin risk created $8,000 loss!
 
 ```
 Rule 1: Close ALL multi-leg positions by Wednesday before expiration
+
 - Don't wait until Friday
+
 - Exit Wednesday or earlier
+
 - Sacrifice last $0.10-$0.20 of profit
+
 - **Worth it to avoid pin risk**
 
 Rule 2: If forgot and it's Friday:
+
 - Close before 2 PM (2 hours before close)
+
 - Pay the spread to exit
+
 - Don't risk assignment
 
 Rule 3: If Friday 3:00 PM and still holding:
+
 - Close IMMEDIATELY
+
 - Use market orders if necessary
+
 - Any loss < pin risk disaster
 
 Rule 4: Never hold through expiration
+
 - Box spreads: Close Wednesday
+
 - Butterflies: Close Wednesday
+
 - Iron condors: Close Wednesday
+
 - ANY multi-leg: Close Wednesday
 ```
 
@@ -2139,17 +2735,27 @@ Rule 4: Never hold through expiration
 
 ```
 Scenario A: Close Wednesday (3 DTE)
+
 - Box worth $4.97
+
 - Theoretical max: $5.00
+
 - Give up: $0.03 per spread
+
 - Cost: $30 (10 contracts)
+
 - Pin risk avoided: Priceless
 
 Scenario B: Hold to Friday 3 PM
+
 - Box worth $5.00
+
 - Extra profit: $30
+
 - Pin risk: 40% probability
+
 - Expected pin loss: 0.40 × $2,000 = $800
+
 - Expected value: -$770
 
 Clear winner: Scenario A (close early)
@@ -2175,18 +2781,27 @@ Clear winner: Scenario A (close early)
 Volatility surface modeling:
 
 Collect data:
+
 - Last 10 trading days
+
 - Recent option prices
+
 - Current IVs
 
 Fit model (SVI, SABR, etc.):
+
 - Optimize parameters
+
 - Perfect fit to recent 10 days!
+
 - R² = 0.98
 
 Find "arbitrages":
+
 - Model shows 15 opportunities
+
 - Think: "My model is superior!"
+
 - Trade all 15
 ```
 
@@ -2196,19 +2811,29 @@ Find "arbitrages":
 
 ```
 What you did:
+
 - Fit complex model (7-10 parameters)
+
 - To short history (10 days = noise)
+
 - Perfect fit = fitting noise, not signal
 
 Reality:
+
 - Random fluctuations
+
 - Temporary imbalances
+
 - Market microstructure
+
 - Not genuine mispricings
 
 Result:
+
 - "Arbitrages" are false signals
+
 - Will lose money systematically
+
 - Model captures noise, not edge
 ```
 
@@ -2223,13 +2848,19 @@ $$
 **Example:**
 ```
 Your model:
+
 - Parameters: 10 (complex volatility surface model)
+
 - Data points: 10 days × 5 strikes = 50 observations
+
 - Degrees of freedom: 50 - 10 = 40
 
 Better minimum:
+
 - Need 10× parameters in data
+
 - 10 parameters → 100 data points minimum
+
 - Your 50: INSUFFICIENT
 
 Over-fitting occurs when DF < 30
@@ -2239,31 +2870,49 @@ Over-fitting occurs when DF < 30
 
 ```
 Week 1: Fit model to 10 recent days
+
 - Find 12 "arbitrages"
+
 - Trade all 12
+
 - Total capital: $15,000
 
 Week 2: Positions behaving badly
+
 - 10 of 12 losing money
+
 - "Model must be right, market wrong"
+
 - Hold positions
+
 - Loss: -$1,200
 
 Week 3: Re-fit model (another 10 days)
+
 - Find 8 new "arbitrages"
+
 - Close old losers at -$2,000
+
 - Open new positions
+
 - **Chasing noise**
 
 Week 4: New positions also losing
+
 - Total loss: -$3,500
+
 - Win rate: 15% (terrible)
+
 - **Model was fitting noise entire time**
 
 Month result:
+
 - Gross trades: 20
+
 - Wins: 3
+
 - Losses: 17
+
 - Net: -$4,200
 
 Problem: Model over-fit to short-term noise
@@ -2275,34 +2924,54 @@ Never had genuine edge
 **Genuine surface mispricing (signal):**
 ```
 Characteristics:
+
 - Persists across multiple days
+
 - Multiple models detect it
+
 - Economic reason exists
+
 - Historical precedent
+
 - Large magnitude (>$0.50)
 
 Example:
+
 - Put skew consistently 2 points too steep
+
 - Persists 30+ days
+
 - Multiple models confirm
+
 - Reason: Post-crash fear premium abnormal
+
 - **Genuine arbitrage opportunity**
 ```
 
 **Noise trading:**
 ```
 Characteristics:
+
 - Appears for 1-3 days
+
 - Only one model shows it
+
 - No economic reason
+
 - Random fluctuation
+
 - Small magnitude (<$0.20)
 
 Example:
+
 - $105 call IV spike to 38% for 2 days
+
 - Then back to 35%
+
 - One model says "arbitrage"
+
 - Others say fair value
+
 - **Noise, not signal**
 ```
 
@@ -2312,9 +2981,13 @@ Example:
 
 ```
 Rule 1: Use longer history
+
 - Minimum: 60 trading days
+
 - Better: 90 days
+
 - Ideal: 120 days
+
 - Captures different regimes
 
 Rule 2: Out-of-sample validation
@@ -2325,15 +2998,23 @@ c) If test period fails: Model overfit
 d) Only use if test period validates
 
 Rule 3: Simpler models
+
 - Fewer parameters = less overfitting
+
 - 3-5 parameters vs 10-15
+
 - Polynomial fits often better
+
 - SVI with conservative constraints
 
 Rule 4: Cross-validation
+
 - Fit to odd days
+
 - Test on even days
+
 - Or rolling windows
+
 - Confirm stability
 ```
 
@@ -2402,15 +3083,21 @@ Be strict: Most "opportunities" are noise
 **What traders do:**
 ```
 Butterfly arbitrage:
+
 - Buy $95 call
+
 - Sell 2× $100 calls
+
 - Buy $105 call
 
 Think: "This is market neutral, no need to hedge"
 
 Position Greeks:
+
 - Delta: +5 (small, ignore it)
+
 - Gamma: +0.15
+
 - Vega: +2.5
 ```
 
@@ -2420,15 +3107,23 @@ Position Greeks:
 
 ```
 "Small" delta of +5:
+
 - Equivalent to long 5 shares
+
 - If stock moves $10 = $50 P&L
+
 - Butterfly expected P&L: $30
+
 - **Delta P&L > Arbitrage P&L!**
 
 The problem:
+
 - You're trading for $30 arbitrage edge
+
 - But have $50 of directional exposure
+
 - Directional noise swamps arbitrage signal
+
 - Can't tell if strategy working!
 ```
 
@@ -2436,32 +3131,51 @@ The problem:
 
 ```
 Week 1: Enter butterfly
+
 - Edge: $0.30 per spread
+
 - 10 contracts
+
 - Expected profit: $300
+
 - Delta: +50 (not hedged)
 
 Day 1-3: Stock rallies +3%
+
 - Delta profit: +$150
+
 - Butterfly edge: +$50
+
 - Total: +$200
+
 - Think: "Strategy working great!"
 
 Day 4-7: Stock drops -4%
+
 - Delta loss: -$200
+
 - Butterfly edge: +$100
+
 - Total: -$100
+
 - Think: "Strategy failing!"
 
 Reality check:
+
 - Arbitrage edge: +$150 total (working!)
+
 - Delta noise: -$50 (random)
+
 - **Can't see the edge through delta noise**
 
 Week 2: Give up on "losing" strategy
+
 - Close at -$80
+
 - Actual arbitrage was +$180
+
 - Delta lost -$260
+
 - **Quit a winning strategy due to delta noise!**
 ```
 
@@ -2509,23 +3223,35 @@ Signal-to-noise ratio: ∞
 
 ```
 Rule 1: Delta hedge EVERY position
+
 - Calculate position delta
+
 - Trade opposite in stock
+
 - Neutralize to delta <5
 
 Rule 2: Hedging frequency
+
 - Daily minimum
+
 - Intraday if large moves
+
 - After any 1% stock move
 
 Rule 3: Delta tolerance
+
 - Maintain |delta| < 5 per $100k capital
+
 - Larger positions: Tighter tolerance
+
 - Never let delta > 10 unhedged
 
 Rule 4: Hedging costs
+
 - Budget 0.02% per rebalance
+
 - Should be < 20% of arbitrage edge
+
 - If costs > edge: Position too small
 ```
 
@@ -2533,23 +3259,35 @@ Rule 4: Hedging costs
 
 ```
 Step 1: Calculate position delta
+
 - Use Greeks from model
+
 - Or broker platform
+
 - Sum across all legs
 
 Step 2: Hedge in stock
+
 - If delta +50: Short 50 shares
+
 - If delta -30: Long 30 shares
+
 - Execute immediately
 
 Step 3: Monitor and rebalance
+
 - Check delta each morning
+
 - Rebalance if changed >5
+
 - Track hedging costs
 
 Step 4: Close hedge with position
+
 - When exit arbitrage
+
 - Close stock hedge too
+
 - Don't leave directional position
 ```
 
@@ -2603,16 +3341,22 @@ def analyze_hedging_costs(edge_per_day, stock_vol, position_delta, days):
 **What traders do:**
 ```
 Historical analysis (2015-2019):
+
 - VIX averaged 14
+
 - Put skew averaged 3 points
+
 - Term structure normal (contango)
 
 Build model based on this
 Trade deviations from historical norms
 
 March 2020:
+
 - VIX at 40
+
 - Put skew at 8 points  
+
 - Term structure inverted
 
 Think: "Mean reversion! Fade the extremes!"
@@ -2624,15 +3368,23 @@ Think: "Mean reversion! Fade the extremes!"
 
 ```
 Pre-crisis regime (2015-2019):
+
 - Low volatility
+
 - Stable correlations
+
 - Predictable patterns
+
 - Mean reversion works
 
 Crisis regime (2020):
+
 - High volatility
+
 - Correlations → 1
+
 - Broken patterns
+
 - Mean reversion fails
 
 NEW REGIME emerged
@@ -2645,27 +3397,43 @@ Your old model IRRELEVANT
 March 2020 trading based on 2015-2019 data:
 
 Trade 1: "VIX too high, sell vol"
+
 - Entry: VIX 35
+
 - Think: "Mean revert to 14"
+
 - Reality: VIX went to 85
+
 - Loss: -$8,000
 
 Trade 2: "Put skew too steep, flatten it"
+
 - Entry: Skew 8 points
+
 - Think: "Mean revert to 3 points"
+
 - Reality: Skew went to 12 points
+
 - Loss: -$5,000
 
 Trade 3: "Term structure inverted, sell front"
+
 - Entry: Front IV > Back IV
+
 - Think: "Will normalize"
+
 - Reality: Stayed inverted 6 weeks
+
 - Loss: -$3,000
 
 Month total:
+
 - Trades: 12
+
 - Wins: 1
+
 - Losses: 11
+
 - Net: -$22,000 (44% of $50k account)
 
 **Fighting regime change destroyed account**
@@ -2676,19 +3444,29 @@ Month total:
 **Historical regime changes:**
 
 ```
+
 1. Pre/Post 1987 Crash:
+
    - Before: No put skew
+
    - After: Permanent put skew
+
    - Traders fighting skew: Destroyed
 
 2. Pre/Post 2008 Crisis:
+
    - Before: VIX 10-20 normal
+
    - After: VIX 15-30 normal
+
    - Mean reverted to higher level
 
 3. Pre/Post COVID:
+
    - Before: Smooth volatility
+
    - After: Clustered volatility
+
    - Different autocorrelation structure
 
 Each regime change: Permanent
@@ -2703,24 +3481,37 @@ Fighting it: Suicide
 Monitor regime indicators:
 
 1. VIX level changes:
+
    - 90-day moving average
+
    - If MA > 20: High vol regime
+
    - If MA < 15: Low vol regime
+
    - Trade accordingly
 
 2. Correlation changes:
+
    - Average pairwise correlation
+
    - If >0.70: Crisis regime
+
    - If <0.40: Normal regime
 
 3. Volatility of volatility:
+
    - VVIX or realized vol of VIX
+
    - If high: Unstable regime
+
    - If low: Stable regime
 
 4. Term structure shape:
+
    - Consistent contango: Normal
+
    - Backwardation: Stress
+
    - Flat: Transition
 ```
 
@@ -2728,27 +3519,43 @@ Monitor regime indicators:
 
 ```
 In normal regime (VIX <20, stable):
+
 - Use mean reversion strategies
+
 - Sell volatility
+
 - Rely on historical patterns
+
 - Full position sizes
 
 In transition regime (VIX 20-30, changing):
+
 - Reduce position sizes 50%
+
 - Be more selective
+
 - Faster exits
+
 - Monitor closely
 
 In crisis regime (VIX >30, unstable):
+
 - STOP most arbitrage strategies
+
 - Or position size at 25%
+
 - Focus on survival
+
 - Wait for normalization
 
 Don't fight regime changes:
+
 - Recognize early
+
 - Adapt or exit
+
 - Preserve capital
+
 - Return when normal
 ```
 
@@ -2778,8 +3585,11 @@ Don't trade through regime changes!
 Instead of single static model:
 
 1. Build regime-conditional models:
+
    - Low vol regime model
+
    - High vol regime model
+
    - Crisis regime model
 
 2. Detect current regime
@@ -2787,8 +3597,11 @@ Instead of single static model:
 3. Use appropriate model
 
 4. When regime changes:
+
    - Switch models
+
    - Re-calibrate
+
    - Adjust strategies
 
 Never force old model on new regime!
@@ -2816,8 +3629,11 @@ Never force old model on new regime!
 **Stochastic Volatility Models:**
 
 - **Heston model:** Models volatility as random process
+
 - **SABR model:** Stochastic alpha, beta, rho
+
 - Captures smile dynamics
+
 - More accurate pricing
 
 **Surface fitting methods:**
@@ -2833,7 +3649,9 @@ where $k = \log(K/F)$ (log-moneyness)
 **Advantages:**
 
 - No arbitrage by construction
+
 - Fits wings well
+
 - Computationally fast
 
 **SSVI (Surface SVI):**
@@ -2881,19 +3699,25 @@ $$
 **Trade when:**
 
 - $|Z| > 2$: Enter
+
 - $|Z| < 0.5$: Exit
 
 **Correlation structure:**
 
 - Calculate correlation between strikes
+
 - Deviations = opportunity
+
 - Pairs trading on surface
 
 **Example:**
 
 - Historical correlation 95 put IV vs 105 call IV: 0.85
+
 - Current correlation: 0.50
+
 - **Dislocation!**
+
 - Trade to normalize
 
 ### 4. Volatility Risk Premium Extraction
@@ -2905,13 +3729,17 @@ Market IV typically > realized vol
 **Surface manifestation:**
 
 - Systematic richness in certain areas
+
 - Can harvest systematically
 
 **Example strategy:**
 
 - Sell butterflies at 2-3 SD rich
+
 - Delta hedge
+
 - Collect vol risk premium + theta
+
 - Repeat monthly
 
 ### 5. Cross-Asset Surface Arbitrage
@@ -2919,19 +3747,25 @@ Market IV typically > realized vol
 **SPX vs SPY:**
 
 - Should have near-identical surfaces
+
 - Small tracking differences exist
+
 - Exploit temporary dislocations
 
 **Example:**
 
 - SPX 95% put IV: 35%
+
 - SPY 95% put IV: 32%
+
 - **SPX rich relative to SPY**
+
 - Sell SPX put, buy SPY puts (delta-adjusted)
 
 **Index vs components:**
 
 - Dispersion trading extended to surface
+
 - Multiple dimensions simultaneously
 
 ### 6. Dynamic Hedging Strategies
@@ -2941,13 +3775,17 @@ Market IV typically > realized vol
 **For long butterfly positions:**
 
 - Long gamma at ATM
+
 - Dynamically hedge delta
+
 - Profit from gamma + arbitrage convergence
 
 **Frequency optimization:**
 
 - Too frequent: Over-trade, high costs
+
 - Too infrequent: Delta risk dominates
+
 - Optimal: Trade when |delta| > threshold
 
 **Threshold based on:**
@@ -2965,13 +3803,17 @@ $$
 **Setup (March 16, 2020):**
 
 - SPY at $240 (down from $340)
+
 - VIX at 80 (extreme fear)
+
 - Volatility surface distorted
 
 **Market prices (30-day SPY options):**
 
 - $220 put: $28 (IV = 95%)
+
 - $240 call: $18 (IV = 80%)
+
 - $260 call: $12 (IV = 90%)
 
 **Butterfly construction:**
@@ -2989,30 +3831,43 @@ $$
 **Buy butterfly (10 contracts):**
 
 - Buy 10 × $220 puts @ $28 = $28,000
+
 - Sell 20 × $240 calls @ $18 = $36,000
+
 - Buy 10 × $260 calls @ $12 = $12,000
+
 - **Net: Pay $4,000** ($4 per spread × 10)
 
 **Risk management:**
 
 - Delta hedge: Position initially delta ≈ -30
+
 - **Buy 30 shares** SPY to neutralize
+
 - Gamma: Positive (good for volatility)
+
 - Vega: Positive (good if IV stays high)
 
 **Outcome (2 weeks later):**
 
 - Market stabilized
+
 - SPY at $245
+
 - Butterfly value: $7.00
+
 - **Sell at $7.00 × 10 = $7,000**
+
 - **Profit: $7,000 - $4,000 = $3,000 (75%)**
 
 **Post-analysis:**
 
 - Surface normalized as panic subsided
+
 - Butterfly moved toward fair value
+
 - Gamma helped during swings
+
 - Statistical arb worked!
 
 ### Example 2: Earnings IV Crush - Term Structure Arbitrage
@@ -3020,19 +3875,25 @@ $$
 **Setup:**
 
 - Tech stock at $150
+
 - Earnings in 32 days
+
 - Front month IV elevated
 
 **Market IVs:**
 
 - 1-month (includes earnings) IV: 65%
+
 - 3-month (after earnings) IV: 42%
+
 - **Front month extraordinarily rich!**
 
 **Analysis:**
 
 - Historical earnings move: 8-10%
+
 - Current front month pricing in 15% move
+
 - **Overpriced front month**
 
 **The trade:**
@@ -3040,7 +3901,9 @@ $$
 **Sell front month calendar (reverse calendar):**
 
 - **Buy** 1-month $150 call @ IV=65% = $9.50
+
 - **Sell** 3-month $150 call @ IV=42% = $8.20
+
 - **Net: Pay $1.30**
 
 **Wait, this is backward. Let me reconsider:**
@@ -3050,33 +3913,49 @@ Actually, for term structure arbitrage when front is rich:
 **The correct trade (standard calendar):**
 
 - **Sell** 1-month $150 call @ IV=65% (rich) = $9.50
+
 - **Buy** 3-month $150 call @ IV=42% (normal) = $8.20
+
 - **Net: Receive $1.30 CREDIT**
 
 **Position:**
 
 - Short expensive front month
+
 - Long cheaper back month
+
 - Vega: Negative front, positive back (nearly neutral)
+
 - Theta: Collecting from short front
 
 **After earnings (30 days later):**
 
 - Stock moved 9% (in line with historical)
+
 - Front month expired
+
 - Front IV collapsed to 40%
+
 - Back month now 2-month IV: 42% (unchanged)
+
 - **Kept $9.50 from short front month**
+
 - Back month worth $7.80 (stock moved to $164)
+
 - **Net: $9.50 + $7.80 - $8.20 = $9.10**
+
 - **Profit: $9.10 - $1.30 credit = $7.80**
 
 Wait, that's wrong math. If we received credit initially:
 
 - Initial: RECEIVED $1.30
+
 - Front expired: Kept the $9.50
+
 - Back month current value: $7.80
+
 - We owe: $8.20 - $7.80 if we close back month
+
 - Actually this doesn't work out right.
 
 Let me recalculate properly:
@@ -3084,22 +3963,31 @@ Let me recalculate properly:
 **Initial trade (receive credit):**
 
 - Sell front @ $9.50: **+$950**
+
 - Buy back @ $8.20: **-$820**
+
 - **Net cash: +$130**
 
 **At front expiration:**
 
 - Front option expires (stock at $154)
+
 - Short $150 call: $4 ITM, pay **-$400**
+
 - Long back option worth $7.20
+
 - Sell back option: **+$720**
 
 **Total P&L:**
 
 - Initial: +$130
+
 - Front assignment: -$400
+
 - Sell back: +$720
+
 - Paid for back: -$820
+
 - **Net: $130 - $400 + $720 - $820 = -$370 LOSS**
 
 Hmm, this doesn't work either. The issue is I need to be more careful about what happens at expiration.
@@ -3111,43 +3999,59 @@ Let me simplify with a clearer example:
 **Setup:**
 
 - Stock at $100
+
 - Earnings in 25 days
+
 - Expecting IV crush after
 
 **Market prices:**
 
 - 1-month (30-day, includes earnings) $100 call: $6.50 (IV = 55%)
+
 - 2-month (60-day, after earnings) $100 call: $7.80 (IV = 35%)
 
 **Expected behavior:**
 
 - After earnings, front month IV crashes to 30%
+
 - Back month stays at 35%
+
 - **Front month overpriced relative to back**
 
 **The trade (reverse calendar):**
 
 - **Sell** 2-month call @ $7.80 (back month)
+
 - **Buy** 1-month call @ $6.50 (front month)
+
 - **Net: Receive $1.30 CREDIT**
 
 **After earnings (28 days later):**
 
 - Earnings passed
+
 - Stock at $102 (moderate move)
+
 - Front month (2 days left) worth $2.10
+
 - Back month (32 days left) worth $5.50
+
 - **Close position:**
 
   - Sell front: +$210
+
   - Buy back back month: -$550
 
 **P&L:**
 
 - Initial credit: +$130
+
 - Close front: +$210
+
 - Close back: -$550
+
 - Initial back: +$780
+
 - **Net: $130 + $210 - $550 + $780 = $570 profit**
 
 This still seems off. Let me use a simpler pure arbitrage example:
@@ -3157,30 +4061,39 @@ This still seems off. Let me use a simpler pure arbitrage example:
 **Setup (clearer):**
 
 - Stock: $100
+
 - 30-day options
 
 **Market prices:**
 
 - $95 call: $7.20
+
 - $100 call: $3.50
+
 - $95 put: $1.80
+
 - $100 put: $4.10
 
 **Box spread value:**
 
 - Call spread: $7.20 - $3.50 = $3.70
+
 - Put spread: $1.80 - $4.10 = -$2.30
+
 - **Box: $3.70 - (-$2.30) = $6.00**
 
 **Theoretical value:**
 
 - Strike difference: $5.00
+
 - PV at 5% for 30 days: $5.00 × 0.996 = $4.98
 
 **Mispricing:**
 
 - Market: $6.00
+
 - Fair value: $4.98
+
 - **Overpriced by $1.02**
 
 **The arbitrage:**
@@ -3188,19 +4101,25 @@ This still seems off. Let me use a simpler pure arbitrage example:
 **Sell the box:**
 
 - Sell $95/$100 call spread (receive $3.70)
+
 - Buy $95/$100 put spread (pay $2.30)
+
 - **Net: Receive $6.00 per box**
 
 **At expiration:**
 
 - Guaranteed to pay out $5.00
+
 - You received $6.00
+
 - **Profit: $1.00 per box** (slight difference from $1.02 due to rounding)
 
 **Execution (100 boxes):**
 
 - Collect: $600 per box × 100 = $60,000
+
 - Owe at expiration: $500 per box × 100 = $50,000
+
 - **Profit: $10,000 risk-free**
 
 (Minus transaction costs ≈ $500-1,000)
@@ -3216,8 +4135,11 @@ This still seems off. Let me use a simpler pure arbitrage example:
 **Options:**
 
 - **SVI:** Fast, no-arbitrage, good for single maturity
+
 - **SSVI:** Full surface, more complex
+
 - **SABR:** Industry standard, stochastic vol
+
 - **Polynomial:** Simple, but can violate no-arbitrage
 
 **Recommendation:** Start with SVI per maturity
@@ -3238,7 +4160,9 @@ def calibrate_svi(market_ivs, strikes):
 **Step 3: Validation**
 
 - Check no-arbitrage conditions
+
 - Compare to historical fits
+
 - Out-of-sample test
 
 ### 2. Screening for Mispricings
@@ -3248,7 +4172,9 @@ def calibrate_svi(market_ivs, strikes):
 **Morning:**
 
 1. **Download market data** (all option chains)
+
 2. **Calibrate models** (per expiration)
+
 3. **Calculate deviations:**
 
 ```
@@ -3261,16 +4187,23 @@ If abs(z_score) > 2:
 ```
 
 4. **Rank opportunities** by:
+
    - Z-score magnitude
+
    - Liquidity (volume, open interest)
+
    - Bid-ask spread
+
    - Position size possible
 
 **Filters:**
 
 - Min z-score: 2.0
+
 - Max bid-ask as % of premium: 5%
+
 - Min open interest: 100 contracts
+
 - Min volume: 50 contracts/day
 
 ### 3. Execution Strategy
@@ -3280,25 +4213,33 @@ If abs(z_score) > 2:
 **For small positions (<10 contracts):**
 
 - Market orders on each leg
+
 - Fast execution critical
+
 - Accept some slippage
 
 **For medium positions (10-50 contracts):**
 
 - Limit orders at mid
+
 - Work for 5-10 minutes
+
 - Walk toward offer if needed
 
 **For large positions (>50 contracts):**
 
 - Break into chunks
+
 - VWAP algo if available
+
 - May take hours to fill
 
 **Spread orders:**
 
 - Single spread order if possible
+
 - Reduces legging risk
+
 - But may get worse fill
 
 ### 4. Greeks Monitoring Dashboard
@@ -3319,8 +4260,11 @@ Position 2: Delta +150, Gamma -30, ...
 ...
 
 Alerts:
+
 - Delta > 500: HEDGE NOW
+
 - Gamma < -100: WARNING
+
 - Vega > 2000: REDUCE POSITION
 ```
 
@@ -3329,20 +4273,27 @@ Alerts:
 **Position limits:**
 
 - Max single position: 10% of capital
+
 - Max total surface arb: 30% of capital
+
 - Max negative gamma: -$5,000 per 1% move
+
 - Max vega: ±$2,000 per 1% IV
 
 **Stop losses:**
 
 - Individual position: -50% of expected profit
+
 - Daily portfolio: -2% of capital
+
 - Weekly portfolio: -5% of capital
 
 **Rebalancing rules:**
 
 - Delta hedge: When abs(delta) > $1,000
+
 - Gamma rebalance: When gamma > 2× limit
+
 - Position size: When concentration > 15%
 
 ---
@@ -3375,8 +4326,11 @@ Volatility Trading Evolution:
 **Surface arbitrage uniquely provides:**
 
 - **Complete surface view** (all dimensions)
+
 - **Model-based edge** (quantitative)
+
 - **Diversification** (many small arbitrages)
+
 - **Scalability** (systematic process)
 
 ### Comparison with Related Strategies
@@ -3404,22 +4358,33 @@ Volatility Trading Evolution:
 ### The Nightmare Setup
 
 **How it starts:**
+
 - [IV moves against position]
+
 - [Term structure inverts unexpectedly]
+
 - [Unexpected catalyst emerges]
+
 - [Position deteriorating rapidly]
 
 **The deterioration:**
 
 **Week 1:**
+
 - [Early warning signs in IV]
+
 - [Position losing value]
+
 - [IV percentile moving adversely]
+
 - [Critical decision point: hold or fold?]
 
 **Through expiration:**
+
 - [Continued adverse IV dynamics]
+
 - [Maximum loss approached/realized]
+
 - [Final devastating outcome]
 
 ### Maximum Loss Calculation
@@ -3443,10 +4408,15 @@ $$
 $$
 
 **Example calculation:**
+
 - Position: [Specific IV structure]
+
 - Entry IV: [Level and percentile]
+
 - Adverse scenario: [What went wrong]
+
 - **Loss: [Calculation]**
+
 - **Impact: [% of portfolio]**
 
 ### What Goes Wrong
@@ -3454,21 +4424,33 @@ $$
 The worst case occurs when:
 
 **For short volatility strategies:**
+
 1. **Wrong IV direction:** IV explodes instead of contracting
+
 2. **Wrong timing:** IV spike happens immediately
+
 3. **Wrong magnitude:** IV move much larger than expected
+
 4. **Black swan:** Unpredicted major event (crash, war, etc.)
 
 **For long volatility strategies:**
+
 1. **Wrong IV direction:** IV crushes instead of expanding
+
 2. **Wrong timing:** Theta decay faster than IV gain
+
 3. **Wrong catalyst:** Expected catalyst doesn't materialize
+
 4. **IV collapse:** Sudden IV crush (post-earnings, resolution of uncertainty)
 
 **For term structure strategies:**
+
 1. **Term structure inversion:** Front month IV explodes relative to back
+
 2. **Event surprise:** Unexpected event distorts normal term structure
+
 3. **Roll dynamics:** Unfavorable roll yield
+
 4. **Gamma explosion:** Front month gamma blows up
 
 ### The Cascade Effect
@@ -3476,58 +4458,95 @@ The worst case occurs when:
 **Multiple compounding failures:**
 
 **Trade 1: Initial short vol loss**
+
 - Sold premium at IVR 60 (thought it was high enough)
+
 - Market crashes, IV explodes to IVR 100
+
 - Loss: $2,000 (max loss on position)
 
 **Trade 2: Panic adjustment**
+
 - Roll position out and down
+
 - Pay $500 to roll
+
 - Market continues lower
+
 - Loss: Another $1,500
 
 **Trade 3: Desperation**
+
 - Double position size to "average down"
+
 - IV continues high
+
 - Assignment risk at expiration
+
 - Loss: $3,000
 
 **Total damage:**
+
 - Cumulative loss: $7,000
+
 - Portfolio impact: 14% of $50k account
+
 - Emotional damage: Severe
+
 - Time to recover: Months
 
 ### Real Disaster Scenarios
 
 **Short volatility blow-up (February 2018 Volmageddon):**
+
 - VIX inverse products imploded
+
 - XIV (short vol ETN) lost 90%+ in one day
+
 - Selling vol when VIX at 10-12
+
 - VIX spiked to 50+
+
 - Traders who sold naked vol destroyed
+
 - **Many accounts wiped out entirely**
 
 **Long volatility decay (2017):**
+
 - Bought VIX calls expecting volatility
+
 - VIX stayed suppressed entire year (8-12 range)
+
 - Theta decay relentless month after month
+
 - Traders lost 50-80% waiting for vol spike
+
 - **Death by a thousand theta cuts**
 
 **Term structure inversion (COVID March 2020):**
+
 - Calendar spreads assumed normal term structure
+
 - Front month IV exploded relative to back month
+
 - Term structure inverted violently
+
 - Calendar spreads lost 200-300%
+
 - **"Safe" calendar spreads destroyed**
 
 **Earnings IV crush disaster:**
+
 - Bought straddle into earnings at IVR 90
+
 - IV was 80% before earnings
+
 - Earnings came, stock moved 5% (decent move)
+
 - But IV crushed to 30%
+
 - Straddle lost 40% despite stock moving
+
 - **Directionally right, still lost big**
 
 ### The Gamma Blow-Up
@@ -3535,20 +4554,31 @@ The worst case occurs when:
 **Worst case for short vol at expiration:**
 
 **Friday 3:00pm:**
+
 - Stock at $100.00
+
 - Short $100 straddle (naked)
+
 - Thought it would expire worthless
+
 - **Net delta: 0, everything looks safe**
 
 **Friday 3:59pm:**
+
 - Stock drops to $99.50
+
 - Puts now ITM
+
 - **Net delta: -10,000 shares (100 contracts)**
 
 **Monday morning:**
+
 - Gap down to $95
+
 - Must cover 10,000 shares at market
+
 - Slippage on assignment
+
 - **Loss: $45,000 on what was $2,000 credit**
 
 **This is pin risk + gamma explosion at expiration**
@@ -3558,15 +4588,19 @@ The worst case occurs when:
 **The long grind:**
 
 **Month 1:** Sold vol at IVR 50, expecting mean reversion
+
 - IV stays elevated, position down 30%
 
 **Month 2:** Rolled position, paid debit
+
 - IV still elevated, position down 50%
 
 **Month 3:** Rolled again, more debit
+
 - IV finally normalizing but already lost 60%
 
 **Month 4:** Position finally profitable
+
 - Net result: -40% over 4 months
 
 **The lesson:** IV regimes can persist much longer than you can stay solvent. Mean reversion is real but timing is impossible.
@@ -3574,18 +4608,29 @@ The worst case occurs when:
 ### Psychology of IV Losses
 
 **Emotional stages:**
+
 1. **Confidence:** "IV is too high, easy short"
+
 2. **Concern:** "IV going up but it'll revert"
+
 3. **Denial:** "This is temporary, just need to wait"
+
 4. **Panic:** "Close everything NOW!"
+
 5. **Capitulation:** "I'll never trade vol again"
+
 6. **Learning:** "What did I miss about IV regimes?"
 
 **Winning trader mindset:**
+
 - Respect IV percentile religiously
+
 - Accept that IV can stay irrational
+
 - Cut losses mechanically
+
 - Don't fight IV regime changes
+
 - Learn and adapt
 
 ### Preventing Worst Case
@@ -3671,23 +4716,35 @@ $$
 ### The Perfect Setup
 
 **Ideal entry conditions:**
+
 - [IV at optimal level for strategy]
+
 - [Term structure favorably positioned]
+
 - [Skew supporting the trade]
+
 - [Timing aligned with catalyst/events]
 
 **The optimal sequence:**
 
 **Week 1:**
+
 - [IV moves as anticipated]
+
 - [Term structure behaves favorably]
+
 - [Position accumulating profit]
+
 - [Greeks performing as expected]
 
 **Through expiration:**
+
 - [Continued favorable IV dynamics]
+
 - [Optimal IV/RV relationship]
+
 - [Maximum profit zone reached]
+
 - [Exit at optimal timing]
 
 ### Maximum Profit Achievement
@@ -3699,42 +4756,67 @@ $$
 $$
 
 **Example calculation:**
+
 - Position: [Specific IV structure]
+
 - Entry IV: [Level and percentile]
+
 - Vega exposure: [$ per 1% IV]
+
 - Theta collection: [$ per day]
+
 - **Scenario:**
+
   - IV moves from [X]% to [Y]%
+
   - Time passes: [N] days
+
   - Stock movement: [Favorable/minimal]
+
 - **Profit: [Calculation]**
+
 - **ROI: [Percentage]**
 
 ### What Makes It Perfect
 
 The best case requires:
+
 1. **Right IV direction:** IV moves as anticipated (up for long vol, down for short vol)
+
 2. **Right timing:** IV move happens in time frame expected
+
 3. **Right term structure:** Front/back relationship evolves favorably
+
 4. **Right underlying movement:** Stock moves (or doesn't move) as needed
+
 5. **Right skew:** Put/call differential behaves as expected
 
 ### IV Component Breakdown
 
 **Vega P&L:**
+
 - Entry IV: [Level]
+
 - Exit IV: [Level]
+
 - Vega position: [$ per 1%]
+
 - **Vega profit: [Calculation]**
 
 **Theta P&L:**
+
 - Days passed: [N]
+
 - Daily theta: [$ per day]
+
 - **Theta profit/cost: [Calculation]**
 
 **Gamma P&L:**
+
 - Stock moves: [Minimal/favorable]
+
 - Rebalancing: [Minimal/profitable]
+
 - **Gamma impact: [Calculation]**
 
 **Net P&L:** Sum of all components
@@ -3742,30 +4824,45 @@ The best case requires:
 ### Comparison to Alternatives
 
 **This strategy vs. [Alternative IV approach]:**
+
 - [IV exposure comparison]
+
 - [Risk-reward analysis]
+
 - [When this strategy wins]
+
 - [Capital efficiency]
 
 ### Professional Profit-Taking
 
 **For short volatility:**
+
 - Close at 50-75% of max profit
+
 - Don't wait for 100% (last 20% most risky)
+
 - Free up capital for next trade
+
 - Example: $3 credit → close at $1.50 debit (50%)
 
 **For long volatility:**
+
 - Take profits on IV spikes (100-200% gains)
+
 - Don't wait for perfect scenario
+
 - IV mean-reverts quickly
+
 - Example: Paid $5, worth $10 → sell
 
 **The compounding advantage:**
 
 Short vol example:
+
 - Strategy 1: Hold to expiration (30 days, $300 profit)
+
 - Strategy 2: Close at 50% (15 days, $150), redeploy for another 15 days ($150)
+
 - **Same profit, half the time, quarter the risk**
 
 ### The Dream Scenario
@@ -3773,21 +4870,33 @@ Short vol example:
 **Extreme best case:**
 
 **For short volatility:**
+
 - Enter at IVR 80 (IV very high)
+
 - IV immediately crushes to IVR 20
+
 - Capture 80% of max profit in first week
+
 - **100%+ annualized return with minimal risk**
 
 **For long volatility:**
+
 - Enter at IVR 10 (IV very low)
+
 - Unexpected catalyst hits
+
 - IV spikes to IVR 90
+
 - **300-500% return in days**
 
 **For term structure:**
+
 - Perfect term structure reversion
+
 - Front month IV collapses relative to back month
+
 - Calendar spread worth max value
+
 - **200-300% return on capital**
 
 **Probability:** Rare but illustrates potential when timing perfect
@@ -3806,7 +4915,9 @@ $$
 $$
 
 - **K dimension:** Strike prices (smile/skew)
+
 - **T dimension:** Time to expiration (term structure)
+
 - **Mispricings:** Deviations from theoretical relationships
 
 ### The Surface Structure
@@ -3814,19 +4925,25 @@ $$
 **3D Surface:**
 
 - X-axis: Strikes (moneyness)
+
 - Y-axis: Time to expiration
+
 - Z-axis: Implied volatility
 
 **Should satisfy:**
 
 - No-arbitrage bounds
+
 - Smoothness conditions
+
 - Theoretical relationships (put-call parity, etc.)
 
 **Reality:**
 
 - Bumpy (supply/demand)
+
 - Dislocated (inefficiencies)
+
 - Mean-reverting (opportunity)
 
 ### Types of Arbitrage
@@ -3834,24 +4951,35 @@ $$
 **1. Pure Arbitrage (Model-Free):**
 
 - Box spreads
+
 - Put-call parity violations
+
 - Butterfly bound violations
+
 - Risk-free profit (in theory)
+
 - Rare in liquid markets
 
 **2. Statistical Arbitrage (Model-Dependent):**
 
 - Smile/skew deviations from model
+
 - Term structure anomalies
+
 - Surface curvature mispricings
+
 - Requires model, mean reversion
+
 - More common
 
 **3. Relative Value:**
 
 - Rich vs cheap areas
+
 - Cross-asset surface trades
+
 - Pairs trading on surface
+
 - Statistical edge
 
 ### Key Instruments
@@ -3881,8 +5009,11 @@ $$
 **Typical surface arbitrage position:**
 
 - **Delta:** ≈ 0 (hedged daily)
+
 - **Gamma:** Controlled (often small)
+
 - **Vega:** Targeted exposure (long mispriced areas)
+
 - **Theta:** Variable (depends on structure)
 
 ### Risk Management
@@ -3890,17 +5021,25 @@ $$
 **Critical risks:**
 
 1. **Model risk:** Your model is wrong
+
 2. **Execution risk:** Can't fill all legs
+
 3. **Transaction costs:** Eat the edge
+
 4. **Regime change:** Surface fundamentally shifts
+
 5. **Liquidity risk:** Can't exit
 
 **Management:**
 
 - Multiple models (cross-validate)
+
 - Size based on liquidity
+
 - Edge > 2× costs minimum
+
 - Monitor regime indicators
+
 - Hard stop losses
 
 ### Success Factors
@@ -3908,17 +5047,25 @@ $$
 **Infrastructure requirements:**
 
 1. **Real-time pricing models**
+
 2. **Fast execution** (sub-second)
+
 3. **Automated hedging**
+
 4. **Risk monitoring** systems
+
 5. **Adequate capital** ($100K+ minimum)
 
 **Skills required:**
 
 1. **Quantitative modeling**
+
 2. **Option mechanics** (deep)
+
 3. **Programming** (automation)
+
 4. **Risk management**
+
 5. **Market microstructure**
 
 ### The Deep Insight
@@ -3930,18 +5077,27 @@ $$
 **The pattern:**
 
 - Simple traders: Buy calls/puts
+
 - Intermediate traders: Trade calendar spreads
+
 - Advanced traders: Trade smile/skew
+
 - **Sophisticated traders: Arbitrage the entire surface**
 
 ### Common Pitfalls
 
 1. ❌ Model over-fitting (noise ≠ signal)
+
 2. ❌ Ignoring transaction costs (edge < costs)
+
 3. ❌ Insufficient size (not worth complexity)
+
 4. ❌ Wrong model choice (inappropriate for market)
+
 5. ❌ No delta hedging (directional risk dominates)
+
 6. ❌ Fighting regime changes (old model broken)
+
 7. ❌ Pin risk at expiration (assignment chaos)
 
 ### When to Use
@@ -3949,19 +5105,29 @@ $$
 **✓ Perfect conditions:**
 
 - Normal functioning markets
+
 - Visible model deviations (>2 SD)
+
 - Adequate liquidity (tight spreads)
+
 - Proper infrastructure (systems)
+
 - Sufficient capital (scale)
+
 - Quantitative skill set
 
 **✗ Avoid when:**
 
 - Extreme volatility (chaos)
+
 - Wide spreads (>10% edge)
+
 - Low liquidity (can't execute)
+
 - No proper systems (delayed data)
+
 - Insufficient capital (<$100K)
+
 - Don't understand models
 
 ### Performance Expectations
@@ -3969,21 +5135,29 @@ $$
 **Realistic targets:**
 
 - **Win rate:** 60-65% (statistical arb)
+
 - **Average win:** +1-2% per trade
+
 - **Average loss:** -0.5-1% per trade
+
 - **Expectancy:** Positive but modest
+
 - **Frequency:** Multiple trades per week
 
 **Capital requirements:**
 
 - Minimum: $100,000
+
 - Comfortable: $500,000+
+
 - Professional: $5,000,000+
 
 **Returns:**
 
 - Target: 15-30% annually
+
 - Risk: 10-15% volatility
+
 - Sharpe: 1.5-2.5 (if done well)
 
 ### Final Thought
@@ -3995,9 +5169,13 @@ $$
 **The strategic value:**
 
 - **Systematic approach** (repeatable)
+
 - **Diversified edges** (many small arbitrages)
+
 - **Model-based** (quantitative)
+
 - **Scalable** (grows with capital)
+
 - **Professional-grade** (institutional quality)
 
 **This completes your understanding of volatility trading across ALL dimensions: level, shape, time, and now the FULL SURFACE—you have the complete toolkit from basic to institutional-grade strategies!** 🎯📊📈
