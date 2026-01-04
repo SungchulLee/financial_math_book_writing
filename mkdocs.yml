@@ -564,33 +564,33 @@ nav:
               - Mean Reversion Trading: ch18/buy_low_sell_high/mean_reversion_trading.md
               - VWAP Reversion: ch18/buy_low_sell_high/vwap_reversion.md
               - Basis Trading: ch18/buy_low_sell_high/basis_trading.md
-          - 18.4 Carry and Roll:
+          - 18.4 Volatility-Driven:
+              - Volatility Targeting: ch18/volatility_driven/volatility_targeting.md
+              - VIX Futures Trading: ch18/volatility_driven/vix_futures_trading.md
+          - 18.5 Replication:
+              - Synthetic Forward: ch18/replication/synthetic_forward.md
+              - Index Replication: ch18/replication/index_replication_with_futures.md
+          - 18.6 Carry and Roll:
               - Term Structure Carry Trades: ch18/carry_and_roll/term_structure_carry.md
               - Calendar Spread Carry: ch18/carry_and_roll/calendar_spread_carry.md
               - Roll Yield Strategies: ch18/carry_and_roll/roll_yield_strategies.md
               - Inventory Cycle Strategies: ch18/carry_and_roll/inventory_cycle_strategies.md
-          - 18.5 Volatility-Driven:
-              - Volatility Targeting: ch18/volatility_driven/volatility_targeting.md
-              - VIX Futures Trading: ch18/volatility_driven/vix_futures_trading.md
-          - 18.6 Relative Value:
+          - 18.7 Relative Value:
               - Inter-Commodity Spreads: ch18/relative_value/inter_commodity_spreads.md
               - Curve Trading and Flies: ch18/relative_value/curve_trading_and_flies.md
               - Pairs Trading in Futures: ch18/relative_value/pairs_trading_futures.md
               - Cointegration Trading: ch18/relative_value/cointegration_trading.md
-          - 18.7 Cycles:
+          - 18.8 Cycles:
               - Seasonality Trading: ch18/cycles/seasonality_trading.md
-          - 18.8 Macro Event Trading:
+          - 18.9 Macro Event Trading:
               - Economic Data Trading: ch18/macro_event_trading/economic_data_trading.md
               - Central Bank Policy Trades: ch18/macro_event_trading/central_bank_policy_trades.md
-          - 18.9 Risk Premia:
-              - Futures Momentum Trading: ch18/risk_premia/futures_momentum_trading.md
-              - Carry Factor Portfolios: ch18/risk_premia/carry_factor_portfolios.md
-          - 18.10 Replication:
-              - Synthetic Forward: ch18/replication/synthetic_forward.md
-              - Index Replication: ch18/replication/index_replication_with_futures.md
-          - 18.11 Crisis & Stress:
+          - 18.10 Crisis & Stress:
               - Flight to Quality: ch18/crisis_and_stress/flight_to_quality_strategies.md
               - Liquidity Stress: ch18/crisis_and_stress/liquidity_stress_trading.md
+          - 18.11 Risk Premia:
+              - Futures Momentum Trading: ch18/risk_premia/futures_momentum_trading.md
+              - Carry Factor Portfolios: ch18/risk_premia/carry_factor_portfolios.md
 
       - 19 Fixed Income:
           - 19.1 Foundational Rates:

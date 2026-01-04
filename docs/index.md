@@ -7,8 +7,9 @@ While I have reviewed and revised portions of the material,
 time constraints have prevented a comprehensive review of all content. 
 I welcome your contributions in identifying and correcting errors through Git pull requests or email.
 
-Email: sungchul@yonsei.ac.kr  
 GitHub: https://github.com/SungchulLee/financial_math_book_writing
+
+Email: sungchul@yonsei.ac.kr 
 
 To run the code examples in this course, install the following packages that are not included in the standard Anaconda distribution:
 ```python
