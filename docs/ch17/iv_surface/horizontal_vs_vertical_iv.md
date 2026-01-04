@@ -2,20 +2,22 @@
 
 **Horizontal vs vertical IV relationships** refer to the two fundamental dimensions along which implied volatility varies: the **term structure** (horizontal, across time) and the **smile/skew** (vertical, across strikes). Understanding and trading the relationship between these dimensions—how they interact, diverge, and normalize—is essential for sophisticated volatility trading and surface arbitrage.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_dimensions.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_divergence.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_dimensions.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 
+
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_divergence.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -51,16 +53,21 @@ Where:
 
 
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 
 ## What Are Horizontal and Vertical IV Relationships?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before understanding their relationship, we need to define each dimension:**
 
 ### The Horizontal Dimension (Term Structure)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **What is it?**
 
@@ -206,9 +213,6 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 
 
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 
 ## The Structure

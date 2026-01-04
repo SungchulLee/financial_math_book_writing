@@ -2,25 +2,17 @@
 
 **Volatility surface arbitrage** is the practice of identifying and exploiting mispricings across the entire implied volatility surface by trading combinations of options at different strikes and maturities simultaneously, profiting when the surface returns to fair value or theoretical relationships.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_surface.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -50,9 +42,17 @@ Where you're trading the **entire surface relationship**, not just one dimension
 
 ## What Is Volatility Surface Arbitrage?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before understanding surface arbitrage, we need to understand the surface itself:**
 
 ### The Volatility Surface
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **What is it?**
 
@@ -113,6 +113,10 @@ The implied volatility surface is a **3-dimensional structure**:
 - Reflects market views on future volatility path
 
 ### The Problem with Real Surfaces
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_surface.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Theoretical surface:**
 

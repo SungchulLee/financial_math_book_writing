@@ -628,46 +628,46 @@ nav:
 
       - 21 FX:
           - 21.1 FX Foundations:
-              - Spot, Forwards, and Swaps: ch21/fx_strategies/spot_forwards_swaps.md
+              - Spot, Forwards, and Swaps: ch21/fx_foundations/spot_forwards_swaps.md
               - Interest Rate Parity: ch21/fx_strategies/interest_rate_parity.md
           - 21.2 Carry and Funding:
-              - FX Carry Trades: ch21/fx_strategies/fx_carry_trades.md
-              - Funding and Safe Haven Dynamics: ch21/fx_strategies/funding_safe_haven.md
+              - FX Carry Trades: ch21/carry_and_funding/fx_carry_trades.md
+              - Funding and Safe Haven Dynamics: ch21/carry_and_funding/funding_safe_haven.md
           - 21.3 Macro:
-              - Central Bank Divergence: ch21/fx_strategies/central_bank_divergence.md
-              - Macro Regime Trades: ch21/fx_strategies/macro_regime_trades.md
+              - Central Bank Divergence: ch21/macro/central_bank_divergence.md
+              - Macro Regime Trades: ch21/macro/macro_regime_trades.md
           - 21.4 Relative Value:
-              - Value and PPP Reversion: ch21/fx_strategies/value_ppp_reversion.md
-              - Cross Rates and Triangular Arbitrage: ch21/fx_strategies/cross_rates_triangular_arbitrage.md
+              - Value and PPP Reversion: ch21/relative_value/value_ppp_reversion.md
+              - Cross Rates and Triangular Arbitrage: ch21/relative_value/cross_rates_triangular_arbitrage.md
           - 21.5 Hedging:
-              - FX Hedging Programs: ch21/fx_strategies/fx_hedging_programs.md
-              - Overlay Strategies: ch21/fx_strategies/overlay_strategies.md
+              - FX Hedging Programs: ch21/hedging/fx_hedging_programs.md
+              - Overlay Strategies: ch21/hedging/overlay_strategies.md
 
       - 22 Structured Product:
           - 22.1 Embedded Options:
-              - Payoff Engineering: ch22/structured_strategies/payoff_engineering.md
-              - Path Dependence Basics: ch22/structured_strategies/path_dependence_basics.md
+              - Payoff Engineering: ch22/mmbedded_options/payoff_engineering.md
+              - Path Dependence Basics: ch22/mmbedded_options/path_dependence_basics.md
           - 22.2 Equity Structures:
-              - Covered Yield Notes: ch22/structured_strategies/covered_yield_notes.md
-              - Autocallables: ch22/structured_strategies/autocallables.md
-              - Reverse Convertibles: ch22/structured_strategies/reverse_convertibles.md
+              - Covered Yield Notes: ch22/equity_structures/covered_yield_notes.md
+              - Autocallables: ch22/equity_structures/autocallables.md
+              - Reverse Convertibles: ch22/equity_structures/reverse_convertibles.md
           - 22.3 Barrier and Digital:
-              - Barrier Structures: ch22/structured_strategies/barrier_structures.md
-              - Digitals and Range Accruals: ch22/structured_strategies/digitals_range_accruals.md
+              - Barrier Structures: ch22/barrier_and_digital/barrier_structures.md
+              - Digitals and Range Accruals: ch22/barrier_and_digital/digitals_range_accruals.md
           - 22.4 Risk and Hedging:
-              - Hedging Exotics (Smile and Skew): ch22/structured_strategies/hedging_exotics_smile.md
-              - Model Risk and Parameter Risk: ch22/structured_strategies/model_risk_parameter_risk.md
+              - Hedging Exotics (Smile and Skew): ch22/risk_and_hedging/hedging_exotics_smile.md
+              - Model Risk and Parameter Risk: ch22/risk_and_hedging/model_risk_parameter_risk.md
 
       - 23 Cross-Asset:
           - 23.1 Foundations:
-              - No-Arbitrage Links Across Markets: ch23/cross_asset_strategies/no_arbitrage_links.md
-              - Correlation and Factor Exposure: ch23/cross_asset_strategies/correlation_factor_exposure.md
+              - No-Arbitrage Links Across Markets: ch23/foundations/no_arbitrage_links.md
+              - Correlation and Factor Exposure: ch23/foundations/correlation_factor_exposure.md
           - 23.2 Equity-Vol-Rates:
-              - Equity vs Volatility Triangulation: ch23/cross_asset_strategies/equity_vol_triangulation.md
-              - Vol vs Rates Interaction: ch23/cross_asset_strategies/vol_rates_interaction.md
+              - Equity vs Volatility Triangulation: ch23/equity_vol_rates/equity_vol_triangulation.md
+              - Vol vs Rates Interaction: ch23/equity_vol_rates/vol_rates_interaction.md
           - 23.3 Index:
-              - Index vs Basket Arbitrage: ch23/cross_asset_strategies/index_basket_arbitrage.md
-              - ETF vs Futures vs Cash: ch23/cross_asset_strategies/etf_futures_cash.md
+              - Index vs Basket Arbitrage: ch23/index/index_basket_arbitrage.md
+              - ETF vs Futures vs Cash: ch23/index/etf_futures_cash.md
           - 23.4 Multi-Product RV:
               - CB Arbitrage: ch23/multi_product_rv/convertible_bond_arbitrage.md
               - Cross-Asset Basis Trades: ch23/multi_product_rv/cross_asset_basis_trades.md
@@ -678,42 +678,42 @@ nav:
               - Variance Swaps: ch24/variance_products/variance_swaps.md
               - Volatility Swaps: ch24/variance_products/volatility_swaps.md
           - 24.2 Risk Premia:
-              - Variance Risk Premium: ch24/variance_strategies/variance_risk_premium.md
-              - Volatility Carry: ch24/variance_strategies/volatility_carry.md
+              - Variance Risk Premium: ch24/risk_premia/variance_risk_premium.md
+              - Volatility Carry: ch24/risk_premia/volatility_carry.md
           - 24.3 Relative Value:
-              - Dispersion Trading: ch24/variance_strategies/dispersion_trading.md
-              - Correlation Trading: ch24/variance_strategies/correlation_trading.md
+              - Dispersion Trading: ch24/relative_value/dispersion_trading.md
+              - Correlation Trading: ch24/relative_value/correlation_trading.md
           - 24.4 Tail and Hedging:
-              - Crash Protection with Variance: ch24/variance_strategies/crash_protection_variance.md
-              - Dynamic Vol Hedges: ch24/variance_strategies/dynamic_vol_hedges.md
+              - Crash Protection with Variance: ch24/tail_and_hedging/crash_protection_variance.md
+              - Dynamic Vol Hedges: ch24/tail_and_hedging/dynamic_vol_hedges.md
 
       - 25 Funding and Liquidity:
           - 25.1 Funding Basics:
-              - Repo and Securities Lending: ch25/funding_strategies/repo_and_securities_lending.md
-              - Balance Sheet Constraints: ch25/funding_strategies/balance_sheet_constraints.md
+              - Repo and Securities Lending: ch25/funding_basics/repo_and_securities_lending.md
+              - Balance Sheet Constraints: ch25/funding_basics/balance_sheet_constraints.md
           - 25.2 Basis Trades:
-              - Cash-Futures Basis Trades: ch25/funding_strategies/cash_futures_basis_trades.md
-              - Treasury Specials and Scarcity: ch25/funding_strategies/treasury_specials_scarcity.md
+              - Cash-Futures Basis Trades: ch25/basis_trades/cash_futures_basis_trades.md
+              - Treasury Specials and Scarcity: ch25/basis_trades/treasury_specials_scarcity.md
           - 25.3 Liquidity and Stress:
-              - Liquidity Risk and Spreads: ch25/funding_strategies/liquidity_risk_spreads.md
-              - Crisis Basis Dynamics: ch25/funding_strategies/crisis_basis_dynamics.md
+              - Liquidity Risk and Spreads: ch25/liquidity_and_stress/liquidity_risk_spreads.md
+              - Crisis Basis Dynamics: ch25/liquidity_and_stress/crisis_basis_dynamics.md
           - 25.4 Implementation:
-              - Haircuts, Margin, and Funding Costs: ch25/funding_strategies/haircuts_margin_funding_costs.md
-              - Risk Controls for Leverage: ch25/funding_strategies/risk_controls_for_leverage.md
+              - Haircuts, Margin, and Funding Costs: ch25/implementation/haircuts_margin_funding_costs.md
+              - Risk Controls for Leverage: ch25/implementation/risk_controls_for_leverage.md
 
       - 26 Digital Asset:
           - 26.1 Market Structure:
-              - Spot vs Perpetuals: ch26/crypto_strategies/spot_vs_perpetuals.md
-              - Funding Rates and Open Interest: ch26/crypto_strategies/funding_rates_open_interest.md
+              - Spot vs Perpetuals: ch26/market_structure/spot_vs_perpetuals.md
+              - Funding Rates and Open Interest: ch26/market_structure/funding_rates_open_interest.md
           - 26.2 Basis and Carry:
-              - Cash-and-Carry Arbitrage: ch26/crypto_strategies/cash_and_carry_arbitrage.md
-              - Funding-Rate Harvesting: ch26/crypto_strategies/funding_rate_harvesting.md
+              - Cash-and-Carry Arbitrage: ch26/basis_and_carry/cash_and_carry_arbitrage.md
+              - Funding-Rate Harvesting: ch26/basis_and_carry/funding_rate_harvesting.md
           - 26.3 Volatility and Risk:
-              - Crypto Vol Regimes: ch26/crypto_strategies/crypto_vol_regimes.md
-              - Liquidation and Tail Risk: ch26/crypto_strategies/liquidation_tail_risk.md
+              - Crypto Vol Regimes: ch26/volatility_and_risk/crypto_vol_regimes.md
+              - Liquidation and Tail Risk: ch26/volatility_and_risk/liquidation_tail_risk.md
           - 26.4 Operational Risk:
-              - Exchange and Custody Risk: ch26/crypto_strategies/exchange_custody_risk.md
-              - Slippage and Market Impact: ch26/crypto_strategies/slippage_market_impact.md
+              - Exchange and Custody Risk: ch26/operational_risk/exchange_custody_risk.md
+              - Slippage and Market Impact: ch26/operational_risk/slippage_market_impact.md
 
   - Appendix Python Codes:
       - 1 Stochastic Process:

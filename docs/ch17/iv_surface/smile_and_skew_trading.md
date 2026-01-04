@@ -2,6 +2,10 @@
 
 ## Part I — Foundations: Volatility Smile & Skew
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_put_skew.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 (This section introduces the concept, intuition, and basic structures.)
 
 ---
@@ -10,33 +14,25 @@
 
 **Volatility smile and skew trading** is a strategy where you profit from mispricing across different option strikes by exploiting the fact that options at different strikes trade at different implied volatilities.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_put_skew.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 **Figure 1:** Vol Smile Skew Trading Put Skew visualization.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_smile_dynamics.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 **Figure 2:** Vol Smile Skew Trading Smile Dynamics visualization.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_smile_pattern.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 **Figure 3:** Vol Smile Skew Trading Smile Pattern visualization.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_strategy.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 **Figure 4:** Vol Smile Skew Trading Strategy visualization.
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_smile_dynamics.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -68,9 +64,17 @@ $$
 
 ## What Is the Volatility Smile/Skew?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_smile_pattern.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before trading it, we need to understand what it is:**
 
 ### The Black-Scholes Expectation
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_strategy.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Theory says:**
 
