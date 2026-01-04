@@ -474,6 +474,8 @@ nav:
       - 15 Options:
           - 15.1 Directional:
               - Long Calls and Puts: ch15/directional/long_calls_and_puts.md
+              - Trend Following: ch15/directional/trend_following.md
+              - Intraday Momentum: ch15/directional/intraday_momentum.md
           - 15.2 Hedging:
               - Protective Puts & Collars: ch15/hedging/protective_put_and_collar.md
           - 15.3 Buy Low Sell High:
@@ -535,8 +537,8 @@ nav:
               - Spreads: ch17/ratio_and_back_family/spreads.md
               - Ratio Spreads: ch17/ratio_and_back_family/ratio_spreads.md
               - Back Spreads: ch17/ratio_and_back_family/backspreads.md
-          - 17.6 Event-Driven IV:
-              - Earnings IV Crush: ch17/event_driven_iv/earnings_iv_crush_strategies.md
+          - 17.6 Event-Driven:
+              - Earnings IV Crush: ch17/event_driven/earnings_iv_crush_strategies.md
           - 17.7 IV vs Realized Vol:
               - Implied vs Realized Vol: ch17/iv_vs_realized_vol/implied_vs_realized_vol_trading.md
               - Vega Trading: ch17/iv_vs_realized_vol/vega_trading.md
@@ -552,12 +554,12 @@ nav:
       - 18 Futures:
           - 18.1 Directional:
               - Long and Short Futures: ch18/directional/long_short_futures.md
-              - Trend Following: ch18/directional/trend_following.md
-              - Intraday Momentum: ch18/directional/intraday_momentum.md
+              - Trend Following: ch18/directional/trend_following_futures.md
+              - Intraday Momentum: ch18/directional/intraday_momentum_futures.md
               - Opening Range Breakout: ch18/directional/opening_range_breakout.md
           - 18.2 Hedging:
-              - Producer and Consumer Hedging: ch18/hedging/producer_consumer_hedging.md
-              - Portfolio Hedging with Futures: ch18/hedging/portfolio_hedging_with_futures.md
+              - Commercial Hedging: ch18/hedging/commercial_hedging.md
+              - Portfolio Hedging: ch18/hedging/portfolio_hedging_with_futures.md
           - 18.3 Buy Low Sell High:
               - Mean Reversion Trading: ch18/buy_low_sell_high/mean_reversion_trading.md
               - VWAP Reversion: ch18/buy_low_sell_high/vwap_reversion.md
@@ -574,21 +576,21 @@ nav:
               - Inter-Commodity Spreads: ch18/relative_value/inter_commodity_spreads.md
               - Curve Trading and Flies: ch18/relative_value/curve_trading_and_flies.md
               - Pairs Trading in Futures: ch18/relative_value/pairs_trading_futures.md
-              - Cointegration-Based Spread Trading: ch18/relative_value/cointegration_spread_trading.md
+              - Cointegration Trading: ch18/relative_value/cointegration_trading.md
           - 18.7 Cycles:
-              - Commodity Seasonality Trading: ch18/cycles/commodity_seasonality.md
+              - Seasonality Trading: ch18/cycles/seasonality_trading.md
           - 18.8 Macro Event Trading:
-              - Economic Data Release Trading: ch18/macro_event_trading/economic_data_release_trading.md
+              - Economic Data Trading: ch18/macro_event_trading/economic_data_trading.md
               - Central Bank Policy Trades: ch18/macro_event_trading/central_bank_policy_trades.md
           - 18.9 Risk Premia:
-              - Futures Momentum Strategies: ch18/risk_premia/futures_momentum_strategies.md
+              - Futures Momentum Trading: ch18/risk_premia/futures_momentum_trading.md
               - Carry Factor Portfolios: ch18/risk_premia/carry_factor_portfolios.md
           - 18.10 Replication:
-              - Synthetic Forward Construction: ch18/replication/synthetic_forward_construction.md
-              - Index Replication with Futures: ch18/replication/index_replication_with_futures.md
+              - Synthetic Forward: ch18/replication/synthetic_forward.md
+              - Index Replication: ch18/replication/index_replication_with_futures.md
           - 18.11 Crisis & Stress:
-              - Flight to Quality Strategies: ch18/crisis_and_stress/flight_to_quality_strategies.md
-              - Liquidity Stress Trading: ch18/crisis_and_stress/liquidity_stress_trading.md
+              - Flight to Quality: ch18/crisis_and_stress/flight_to_quality_strategies.md
+              - Liquidity Stress: ch18/crisis_and_stress/liquidity_stress_trading.md
 
       - 19 Fixed Income:
           - 19.1 Foundational Rates:
@@ -609,20 +611,20 @@ nav:
 
       - 20 Credit and Default:
           - 20.1 Credit Basics:
-              - Credit Spreads and OAS: ch20/credit_strategies/credit_spreads_oas.md
-              - Default Risk and Recovery: ch20/credit_strategies/default_risk_recovery.md
+              - Credit Spreads and OAS: ch20/credit_basics/credit_spreads_oas.md
+              - Default Risk and Recovery: ch20/credit_basics/default_risk_recovery.md
           - 20.2 CDS and Indices:
-              - CDS Mechanics: ch20/credit_strategies/cds_mechanics.md
-              - Credit Index Trading: ch20/credit_strategies/credit_index_trading.md
+              - CDS Mechanics: ch20/cds_and_indices/cds_mechanics.md
+              - Credit Index Trading: ch20/cds_and_indices/credit_index_trading.md
           - 20.3 Carry and Roll:
-              - Credit Carry Trades: ch20/credit_strategies/credit_carry_trades.md
-              - Roll-Down in Credit Curves: ch20/credit_strategies/credit_roll_down.md
+              - Credit Carry Trades: ch20/carry_and_roll/credit_carry_trades.md
+              - Roll-Down in Credit Curves: ch20/carry_and_roll/credit_roll_down.md
           - 20.4 Relative Value:
-              - Cash Bond vs CDS Basis: ch20/credit_strategies/cash_bond_vs_cds_basis.md
-              - Capital Structure Arbitrage: ch20/credit_strategies/capital_structure_arbitrage.md
+              - Cash Bond vs CDS Basis: ch20/relative_value/cash_bond_vs_cds_basis.md
+              - Capital Structure Arbitrage: ch20/relative_value/capital_structure_arbitrage.md
           - 20.5 Event-Driven:
-              - Distressed Credit Trading: ch20/credit_strategies/distressed_credit_trading.md
-              - Ratings and Downgrade Risk: ch20/credit_strategies/ratings_downgrade_risk.md
+              - Distressed Credit Trading: ch20/event_driven/distressed_credit_trading.md
+              - Ratings and Downgrade Risk: ch20/event_driven/ratings_downgrade_risk.md
 
       - 21 FX:
           - 21.1 FX Foundations:

@@ -18,11 +18,11 @@
 **The key equation:**
 
 $$
-\text{P\&L}_{\text{Long}} = (\text{Current Price} - \text{Entry Price}) \times \text{Contract Multiplier} \times \text{Number of Contracts}
+\text{P&L}_{\text{Long}} = (\text{Current Price} - \text{Entry Price}) \times \text{Contract Multiplier} \times \text{Number of Contracts}
 $$
 
 $$
-\text{P\&L}_{\text{Short}} = (\text{Entry Price} - \text{Current Price}) \times \text{Contract Multiplier} \times \text{Number of Contracts}
+\text{P&L}_{\text{Short}} = (\text{Entry Price} - \text{Current Price}) \times \text{Contract Multiplier} \times \text{Number of Contracts}
 $$
 
 **You're essentially betting: "The price will move in my direction, and I can handle unlimited risk in the other direction."**

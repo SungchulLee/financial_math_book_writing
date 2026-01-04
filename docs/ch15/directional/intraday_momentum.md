@@ -149,12 +149,12 @@ $$
 **What you're really buying:**
 
 $$
-\begin{align}
-\text{Economic Position} &= \text{Delta exposure: 0.55 shares per $1 move} \\
-&+ \text{Gamma exposure: delta increases 0.08 per $1 move} \\
-&+ \text{Vega exposure: benefits from IV expansion} \\
-&- \text{Theta decay: only $0.15/day = $0.006/hour minimal}
-\end{align}
+\begin{array}{lll}
+\text{Economic Position} &=& \text{Delta exposure: 0.55 shares per \$1 move} \\
+&+& \text{Gamma exposure: delta increases 0.08 per \$1 move} \\
+&+& \text{Vega exposure: benefits from IV expansion} \\
+&-& \text{Theta decay: only \$0.15/day = \$0.006/hour minimal}
+\end{array}
 $$
 
 **Scenarios over 3 hours:**
