@@ -2,6 +2,35 @@
 
 **Delta-neutral portfolio construction** is a sophisticated options trading approach where positions are structured to have near-zero delta exposure, making them insensitive to small directional moves in the underlying asset. Instead of betting on direction, these portfolios profit from volatility, time decay, or mean reversion while maintaining market neutrality.
 
+
+- Traditional trading requires predicting market direction (hard!)
+
+- Most traders lose because directional prediction is difficult
+
+- What if you could profit WITHOUT predicting direction?
+
+- Delta-neutral portfolios eliminate directional risk
+
+- Profit from volatility, time decay, or Greeks instead
+
+- Trade like a casino: collect edge, not gamble on outcomes
+
+**The key equation:**
+
+$$
+\text{Portfolio Delta} = \sum_{i=1}^{n} (\text{Delta}_i \times \text{Quantity}_i) \approx 0
+$$
+
+$$
+\text{Profit Sources} = \text{Theta Decay} + \text{Vega Changes} + \text{Gamma Scalping}
+$$
+
+**You're essentially betting: "I don't know which way the market goes, but I can profit from volatility, time decay, or mean reversion while remaining market-neutral."**
+
+---
+
+## What Is Delta-Neutral Portfolio Construction?
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/delta_neutral_portfolio_construction_greeks.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -32,37 +61,22 @@
 
 **The fundamental idea:**
 
-- Traditional trading requires predicting market direction (hard!)
-
-- Most traders lose because directional prediction is difficult
-
-- What if you could profit WITHOUT predicting direction?
-
-- Delta-neutral portfolios eliminate directional risk
-
-- Profit from volatility, time decay, or Greeks instead
-
-- Trade like a casino: collect edge, not gamble on outcomes
-
-**The key equation:**
-
-$$
-\text{Portfolio Delta} = \sum_{i=1}^{n} (\text{Delta}_i \times \text{Quantity}_i) \approx 0
-$$
-
-$$
-\text{Profit Sources} = \text{Theta Decay} + \text{Vega Changes} + \text{Gamma Scalping}
-$$
-
-**You're essentially betting: "I don't know which way the market goes, but I can profit from volatility, time decay, or mean reversion while remaining market-neutral."**
-
----
-
-## What Is Delta-Neutral Portfolio Construction?
-
 **Before building delta-neutral portfolios, understand the main approaches:**
 
 ### Method 1: Straddles and Strangles (Long Volatility)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/delta_neutral_strategies.png?raw=true" alt="delta_neutral" width="700">
+</p>
+
+**Figure 5:** Delta Neutral Strategies visualization.
+**Figure 1:** Profit/loss diagrams for various delta-neutral strategies showing different risk profiles: long straddle (unlimited profit both ways), short straddle (unlimited risk both ways), iron condor (defined risk/reward), and ratio spread (asymmetric profile).
+
+---
+
+## Economic Interpretation: Market Making Without Directional Risk
+
+**Beyond the basic definition, understanding what delta-neutral portfolios REALLY are economically:**
 
 **Definition:** Buy equal amounts of calls and puts at same strike (straddle) or different strikes (strangle).
 
@@ -272,18 +286,6 @@ $$
 
 - Complex Greeks behavior
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/delta_neutral_strategies.png?raw=true" alt="delta_neutral" width="700">
-</p>
-
-**Figure 5:** Delta Neutral Strategies visualization.
-**Figure 1:** Profit/loss diagrams for various delta-neutral strategies showing different risk profiles: long straddle (unlimited profit both ways), short straddle (unlimited risk both ways), iron condor (defined risk/reward), and ratio spread (asymmetric profile).
-
----
-
-## Economic Interpretation: Market Making Without Directional Risk
-
-**Beyond the basic definition, understanding what delta-neutral portfolios REALLY are economically:**
 
 ### Delta-Neutral Portfolios as Market Making
 

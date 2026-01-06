@@ -6,6 +6,16 @@
 
 ## The Core Insight
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/bull_call_spread.png?raw=true" alt="Bull Call Spread" width="700">
+</p>
+
+**Figure 1:** Bull call spread profit/loss diagram showing the defined risk-reward profile of buying a lower strike call and selling a higher strike call, illustrating capped profit potential and limited downside.
+
+### 2. Bear Put Spread (Debit Spread)
+
+**Bearish, pay net debit**
+
 **The fundamental idea:**
 
 - Single options have unlimited risk (if selling) or 100% loss (if buying)
@@ -36,9 +46,29 @@ $$
 
 ## Types of Vertical Spreads
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/bear_put_spread.png?raw=true" alt="Bear Put Spread" width="700">
+</p>
+
+**Figure 2:** Bear put spread profit/loss diagram demonstrating the bearish strategy with defined risk, showing how buying a higher strike put and selling a lower strike put creates a capped profit structure.
+
+### 3. Bull Put Spread (Credit Spread)
+
+**Bullish, receive net credit**
+
 **Four main types:**
 
 ### 1. Bull Call Spread (Debit Spread)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/bull_put_spread.png?raw=true" alt="Bull Put Spread" width="700">
+</p>
+
+**Figure 3:** Bull put spread profit/loss diagram illustrating the credit spread structure where selling a higher strike put and buying a lower strike put generates immediate income with defined maximum loss.
+
+### 4. Bear Call Spread (Credit Spread)
+
+**Bearish, receive net credit**
 
 **Bullish, pay net debit**
 
@@ -66,15 +96,6 @@ $$
 
 **Max loss:** $3 (debit paid)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/bull_call_spread.png?raw=true" alt="Bull Call Spread" width="700">
-</p>
-
-**Figure 1:** Bull call spread profit/loss diagram showing the defined risk-reward profile of buying a lower strike call and selling a higher strike call, illustrating capped profit potential and limited downside.
-
-### 2. Bear Put Spread (Debit Spread)
-
-**Bearish, pay net debit**
 
 **Structure:**
 
@@ -100,15 +121,6 @@ $$
 
 **Max loss:** $3 (debit paid)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/bear_put_spread.png?raw=true" alt="Bear Put Spread" width="700">
-</p>
-
-**Figure 2:** Bear put spread profit/loss diagram demonstrating the bearish strategy with defined risk, showing how buying a higher strike put and selling a lower strike put creates a capped profit structure.
-
-### 3. Bull Put Spread (Credit Spread)
-
-**Bullish, receive net credit**
 
 **Structure:**
 
@@ -134,15 +146,6 @@ $$
 
 **Max loss:** $100 - $90 - $3 = $7
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/bull_put_spread.png?raw=true" alt="Bull Put Spread" width="700">
-</p>
-
-**Figure 3:** Bull put spread profit/loss diagram illustrating the credit spread structure where selling a higher strike put and buying a lower strike put generates immediate income with defined maximum loss.
-
-### 4. Bear Call Spread (Credit Spread)
-
-**Bearish, receive net credit**
 
 **Structure:**
 
@@ -168,6 +171,9 @@ $$
 
 **Max loss:** $110 - $100 - $3 = $7
 
+
+### The Risk Modification Trade-Off
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bear_call_spread.png?raw=true" alt="Bear Call Spread" width="700">
 </p>
@@ -179,8 +185,6 @@ $$
 ## Economic Interpretation
 
 **Understanding what vertical spreads REALLY represent economically:**
-
-### The Risk Modification Trade-Off
 
 **Vertical spreads are fundamentally about:**
 

@@ -2,41 +2,21 @@
 
 **Reverse Jade Lizard** is a bullish debit strategy combining a long call for unlimited upside profit with a long put spread for limited downside protection, creating a defined-risk position with strong directional bias and strategic profit characteristics.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_greeks.png?raw=true" alt="reverse_jade_lizard_greeks" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_components.png?raw=true" alt="reverse_jade_lizard_components" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_scenarios.png?raw=true" alt="reverse_jade_lizard_scenarios" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_vs_long_call.png?raw=true" alt="reverse_jade_lizard_vs_long_call" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_risk_profile.png?raw=true" alt="reverse_jade_lizard_risk_profile" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_reverse_jade_lizard.png?raw=true" alt="iv_impact_reverse_jade_lizard" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/theta_decay_reverse_jade_lizard.png?raw=true" alt="theta_decay_reverse_jade_lizard" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strike_selection_reverse_jade_lizard.png?raw=true" alt="strike_selection_reverse_jade_lizard" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_greeks.png?raw=true" alt="reverse_jade_lizard_greeks" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -66,9 +46,17 @@ where $K_1 < K_2 < K_3$ (typically $K_2$ near current price, $K_3$ OTM, $K_1$ fa
 
 ## What Is Reverse Jade Lizard?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_components.png?raw=true" alt="reverse_jade_lizard_components" width="700">
+</p>
+
 **Before trading reverse jade lizard, understand the structure:**
 
 ### Core Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_scenarios.png?raw=true" alt="reverse_jade_lizard_scenarios" width="700">
+</p>
 
 **Definition:** Long call at higher strike + long put spread (buy higher strike put, sell lower strike put).
 
@@ -114,6 +102,10 @@ where $K_1 < K_2 < K_3$ (typically $K_2$ near current price, $K_3$ OTM, $K_1$ fa
 
 ### Why "Reverse" Jade Lizard?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_vs_long_call.png?raw=true" alt="reverse_jade_lizard_vs_long_call" width="700">
+</p>
+
 **Compare to regular Jade Lizard:**
 
 **Jade Lizard (bearish credit strategy):**
@@ -141,18 +133,23 @@ $$
 2. Credit/debit reversed: Credit → Debit
 3. Risk profile reversed: Undefined upside risk → Defined downside risk
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_payoff.png?raw=true" alt="reverse_jade_lizard_payoff" width="700">
-</p>
 **Figure 1:** Payoff diagram of reverse jade lizard showing unlimited upside profit (long call), limited downside protection (put spread), defined max loss zone between put strikes, and asymmetric risk-reward profile favoring bulls.
 
 ---
 
 ## Economic Interpretation: Asymmetric Bullish Bet
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_risk_profile.png?raw=true" alt="reverse_jade_lizard_risk_profile" width="700">
+</p>
+
 **Beyond the basic definition, understanding what reverse jade lizard REALLY is economically:**
 
 ### Decomposition 1: Long Call + Protective Floor
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_reverse_jade_lizard.png?raw=true" alt="iv_impact_reverse_jade_lizard" width="700">
+</p>
 
 **Alternative view:**
 
@@ -176,6 +173,10 @@ $$
 - **Trade-off:** Accept defined max loss for cheaper entry
 
 ### Decomposition 2: Synthetic Long Stock + Put Spread
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/theta_decay_reverse_jade_lizard.png?raw=true" alt="theta_decay_reverse_jade_lizard" width="700">
+</p>
 
 **Alternative decomposition:**
 
@@ -208,6 +209,10 @@ This becomes a **modified bullish straddle** with downside risk capped by short 
 3. Asymmetric reward (unlimited upside, limited downside protection)
 
 ### Decomposition 3: Long Call Financed by Put Credit Spread
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strike_selection_reverse_jade_lizard.png?raw=true" alt="strike_selection_reverse_jade_lizard" width="700">
+</p>
 
 **Most intuitive view:**
 
@@ -295,6 +300,10 @@ So **max loss occurs at $K_2$ (the long put strike) = -$4.50**.
 
 ### Comparison to Other Bullish Strategies
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_payoff.png?raw=true" alt="reverse_jade_lizard_payoff" width="700">
+</p>
+
 **Reverse Jade Lizard vs. Long Call:**
 
 | Metric | Long Call | Reverse Jade Lizard |
@@ -323,6 +332,10 @@ So **max loss occurs at $K_2$ (the long put strike) = -$4.50**.
 4. Accept higher breakeven (vs. plain call)
 
 ### Advanced Professional Perspectives
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_risk_reward.png?raw=true" alt="reverse_jade_lizard_risk_reward" width="700">
+</p>
 
 **Understanding the deeper economics of reverse jade lizards:**
 
@@ -1097,9 +1110,6 @@ Given probabilities:
 - With 2-4× payoffs per win
 - **OR** Enter in extremely low IV (improves odds)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_risk_reward.png?raw=true" alt="reverse_jade_lizard_risk_reward" width="700">
-</p>
 **Figure 2:** Risk-reward profile showing unlimited upside potential with defined downside risk, breakeven points, max loss zone, and asymmetric payoff structure favoring bulls.
 
 ---

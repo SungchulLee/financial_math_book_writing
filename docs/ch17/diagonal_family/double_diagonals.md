@@ -2,25 +2,17 @@
 
 **Double diagonals** are option strategies where you **simultaneously run diagonal spreads on both the call side and put side**, combining **different strike prices AND different expiration dates** on both wings. They create positions that can profit from **directional movement within a range, time decay on both sides, and term structure advantages** with **defined (or mostly-defined) risk**.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_flexibility.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_management.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_structure.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_vs_double_calendar.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_flexibility.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -44,7 +36,15 @@ You're essentially betting:
 
 ## What Is a Double Diagonal?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_management.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ### The Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_structure.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 A double diagonal uses:
 
@@ -70,6 +70,10 @@ This creates a **"diagonal tent"** with directional bias possibilities.
 ---
 
 ## Why Double Diagonals Exist
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_vs_double_calendar.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 ### 1. Directional Flexibility + Income
 Unlike single diagonals (one direction only), double diagonals allow:

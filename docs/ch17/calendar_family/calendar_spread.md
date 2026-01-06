@@ -2,29 +2,18 @@
 
 **Calendar spreads** (also called time spreads or horizontal spreads) are strategies where you profit from differences in implied volatility between different expiration dates by simultaneously buying and selling options at the same strike but different maturities.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_entry_timing.png?raw=true" alt="calendar_spread_entry_timing" width="700">
-</p>
-<p align="center"><em>Figure 1: Optimal entry timing for calendar spreads based on volatility term structure and stock price positioning</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_iv_impact.png?raw=true" alt="calendar_spread_iv_impact" width="700">
-</p>
-<p align="center"><em>Figure 2: Implied volatility impact on calendar spread value showing vega sensitivity across different maturities</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_payoff.png?raw=true" alt="calendar_spread_payoff" width="700">
-</p>
-<p align="center"><em>Figure 3: Calendar spread payoff diagram at front-month expiration demonstrating maximum profit at strike</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_time_decay.png?raw=true" alt="calendar_spread_time_decay" width="700">
-</p>
-<p align="center"><em>Figure 4: Time decay comparison between front and back month options showing theta asymmetry</em></p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_entry_timing.png?raw=true" alt="calendar_spread_entry_timing" width="700">
+</p>
+<p align="center"><em>Figure 1: Optimal entry timing for calendar spreads based on volatility term structure and stock price positioning</em></p>
 
 **The fundamental idea:**
 
@@ -46,9 +35,19 @@ $$
 
 ## What Is the Volatility Term Structure?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_iv_impact.png?raw=true" alt="calendar_spread_iv_impact" width="700">
+</p>
+<p align="center"><em>Figure 2: Implied volatility impact on calendar spread value showing vega sensitivity across different maturities</em></p>
+
 **Before understanding calendar spreads, we need to understand the term structure:**
 
 ### The Concept
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_payoff.png?raw=true" alt="calendar_spread_payoff" width="700">
+</p>
+<p align="center"><em>Figure 3: Calendar spread payoff diagram at front-month expiration demonstrating maximum profit at strike</em></p>
 
 **Volatility term structure** is the relationship between implied volatility and time to expiration:
 
@@ -99,6 +98,11 @@ Plot IV vs. Time to Maturity → creates a curve
 - After event, vol expected to normalize
 
 ### Real Examples
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_time_decay.png?raw=true" alt="calendar_spread_time_decay" width="700">
+</p>
+<p align="center"><em>Figure 4: Time decay comparison between front and back month options showing theta asymmetry</em></p>
 
 **Example 1: Normal Market (Upward Sloping)**
 

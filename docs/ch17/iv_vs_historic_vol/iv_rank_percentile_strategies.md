@@ -2,25 +2,17 @@
 
 **IV Rank & Percentile strategies** are systematic approaches to options trading based on statistical measures of implied volatility relative to historical ranges, enabling traders to identify when options are expensive or cheap and deploy appropriate strategies that profit from mean reversion of volatility levels.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_by_rank.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_calculation.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_performance.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_zones.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_by_rank.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -58,9 +50,17 @@ $$
 
 ## What Are IV Rank and IV Percentile?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_calculation.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before understanding IV-based strategies, we need to define these metrics:**
 
 ### IV Rank (IVR)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_performance.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **What is it?**
 
@@ -109,6 +109,10 @@ $$
 ```
 
 ### IV Percentile (IVP)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_zones.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **What is it?**
 

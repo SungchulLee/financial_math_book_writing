@@ -1,51 +1,87 @@
 # Straddles and Strangles
 
-**Straddles and strangles** are the simplest volatility trading strategies where you profit from large price movements in either direction without the complexity of delta hedging or rebalancing.
-
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_straddle_pnl.png?raw=true" alt="long_straddle_pnl" width="700">
 </p>
+
+
 <p align="center"><em>Figure 1: Long straddle P&L profile showing V-shaped payoff with unlimited profit potential in both directions and maximum loss equal to premium paid</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_strangle_pnl.png?raw=true" alt="long_strangle_pnl" width="700">
 </p>
+
+
 <p align="center"><em>Figure 2: Long strangle P&L profile with wider breakeven range and lower cost compared to straddle</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_vs_short_straddle.png?raw=true" alt="long_vs_short_straddle" width="700">
 </p>
+
+
 <p align="center"><em>Figure 3: Long vs. short straddle comparison showing inverse risk/reward profiles</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/straddle_greeks.png?raw=true" alt="straddle_greeks" width="700">
 </p>
+
+
 <p align="center"><em>Figure 4: Greek exposures of straddle position including delta, gamma, vega, and theta</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/straddle_pnl_sources.png?raw=true" alt="straddle_pnl_sources" width="700">
 </p>
+
+
 <p align="center"><em>Figure 5: Decomposition of straddle P&L into movement (gamma), volatility (vega), and time decay (theta) components</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/straddle_scenario_analysis.png?raw=true" alt="straddle_scenario_analysis" width="700">
 </p>
+
+
 <p align="center"><em>Figure 6: Scenario analysis showing P&L outcomes under different market conditions and time horizons</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/straddle_time_decay.png?raw=true" alt="straddle_time_decay" width="700">
 </p>
+
+
 <p align="center"><em>Figure 7: Time decay impact on straddle value showing accelerating theta burn approaching expiration</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/straddle_volatility_impact.png?raw=true" alt="straddle_volatility_impact" width="700">
 </p>
+
+
 <p align="center"><em>Figure 8: Implied volatility impact on straddle value demonstrating vega exposure</em></p>
+
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/straddle_vs_strangle.png?raw=true" alt="straddle_vs_strangle" width="700">
 </p>
+
+
 <p align="center"><em>Figure 9: Direct comparison of straddle vs. strangle showing cost/breakeven trade-offs</em></p>
+
+
+
+**Straddles and strangles** are the simplest volatility trading strategies where you profit from large price movements in either direction without the complexity of delta hedging or rebalancing.
 
 ---
 

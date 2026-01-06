@@ -2,6 +2,25 @@
 
 **Delta hedging** is a risk management strategy that eliminates directional exposure by continuously adjusting a hedge position to keep your portfolio delta-neutral.
 
+
+- Own an option (or any derivative)
+
+- The option's value changes as the stock moves
+
+- Hedge by trading the underlying stock to offset this exposure
+
+- Your portfolio becomes insensitive to small stock price movements
+
+- You've eliminated directional market risk
+
+**You're essentially building a position that doesn't care whether the market goes up or down.**
+
+**Think of it as insurance:** Delta hedging protects you from directional risk, just like home insurance protects you from fire. You pay a premium (transaction costs), but you avoid losses from risks you don't want to take.
+
+---
+
+## Delta Hedging as Insurance
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/delta_hedging_concept.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -31,24 +50,6 @@
 ## The Core Insight
 
 **The fundamental idea:**
-
-- Own an option (or any derivative)
-
-- The option's value changes as the stock moves
-
-- Hedge by trading the underlying stock to offset this exposure
-
-- Your portfolio becomes insensitive to small stock price movements
-
-- You've eliminated directional market risk
-
-**You're essentially building a position that doesn't care whether the market goes up or down.**
-
-**Think of it as insurance:** Delta hedging protects you from directional risk, just like home insurance protects you from fire. You pay a premium (transaction costs), but you avoid losses from risks you don't want to take.
-
----
-
-## Delta Hedging as Insurance
 
 **This is the key to understanding delta hedging:**
 

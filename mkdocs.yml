@@ -481,10 +481,12 @@ nav:
           - 15.3 Buy Low Sell High:
               - Covered Calls & CSPs: ch15/buy_low_sell_high/covered_calls_and_cash_secured_puts.md
               - Wheel Strategy: ch15/buy_low_sell_high/wheel_strategy.md
-          - 15.4 Volatility-Driven:
+          - 15.4 Spreads:
+              - Spreads: ch15/spreads/spreads.md
+          - 15.5 Volatility-Driven:
               - Straddle and Strangle: ch15/volatility_driven/straddle_and_strangle.md
               - Strips and Straps: ch15/volatility_driven/strips_and_straps.md
-          - 15.5 Butterfly & Condor:
+          - 15.6 Butterfly & Condor:
               - Butterflies: ch15/butterfly_and_condor/butterfly.md
               - Iron Butterflies: ch15/butterfly_and_condor/iron_condor_and_iron_butterfly.md
               - Broken Wing Butterflies: ch15/butterfly_and_condor/broken_wing_butterflies.md
@@ -493,7 +495,7 @@ nav:
               - Broken Wing Condors: ch15/butterfly_and_condor/broken_wing_condors.md
               - Jade Lizard: ch15/butterfly_and_condor/jade_lizard.md
               - Reverse Jade Lizard: ch15/butterfly_and_condor/reverse_jade_lizard.md
-          - 15.6 Replication:
+          - 15.7 Replication:
               - Synthetic Positions: ch15/replication/synthetic_positions.md
               - Box Spreads: ch15/replication/box_spreads.md
 
@@ -534,7 +536,6 @@ nav:
               - Diagonal Spreads: ch17/diagonal_family/diagonal_spread.md
               - Double Diagonals: ch17/diagonal_family/double_diagonals.md
           - 17.5 Ratio & Back Family:
-              - Spreads: ch17/ratio_and_back_family/spreads.md
               - Ratio Spreads: ch17/ratio_and_back_family/ratio_spreads.md
               - Back Spreads: ch17/ratio_and_back_family/backspreads.md
           - 17.6 Event-Driven:
@@ -609,7 +610,7 @@ nav:
               - Duration Hedging: ch19/hedging/duration_hedging.md
               - Futures Overlays: ch19/hedging/futures_overlays.md
 
-      - 20 Credit and Default:
+      - 20 Credit and Default ---- :
           - 20.1 Credit Basics:
               - Credit Spreads and OAS: ch20/credit_basics/credit_spreads_oas.md
               - Default Risk and Recovery: ch20/credit_basics/default_risk_recovery.md
@@ -626,7 +627,7 @@ nav:
               - Distressed Credit Trading: ch20/event_driven/distressed_credit_trading.md
               - Ratings and Downgrade Risk: ch20/event_driven/ratings_downgrade_risk.md
 
-      - 21 FX:
+      - 21 FX ---- :
           - 21.1 FX Foundations:
               - Spot, Forwards, and Swaps: ch21/fx_foundations/spot_forwards_swaps.md
               - Interest Rate Parity: ch21/fx_strategies/interest_rate_parity.md
@@ -643,7 +644,7 @@ nav:
               - FX Hedging Programs: ch21/hedging/fx_hedging_programs.md
               - Overlay Strategies: ch21/hedging/overlay_strategies.md
 
-      - 22 Structured Product:
+      - 22 Structured Product --- :
           - 22.1 Embedded Options:
               - Payoff Engineering: ch22/mmbedded_options/payoff_engineering.md
               - Path Dependence Basics: ch22/mmbedded_options/path_dependence_basics.md
@@ -673,7 +674,7 @@ nav:
               - Cross-Asset Basis Trades: ch23/multi_product_rv/cross_asset_basis_trades.md
               - Statistical RV Across Assets: ch23/multi_product_rv/statistical_rv_across_assets.md
 
-      - 24 Variance and Volatility:
+      - 24 Variance and Volatility --- :
           - 24.1 Variance Products:
               - Variance Swaps: ch24/variance_products/variance_swaps.md
               - Volatility Swaps: ch24/variance_products/volatility_swaps.md
@@ -687,7 +688,7 @@ nav:
               - Crash Protection with Variance: ch24/tail_and_hedging/crash_protection_variance.md
               - Dynamic Vol Hedges: ch24/tail_and_hedging/dynamic_vol_hedges.md
 
-      - 25 Funding and Liquidity:
+      - 25 Funding and Liquidity --- :
           - 25.1 Funding Basics:
               - Repo and Securities Lending: ch25/funding_basics/repo_and_securities_lending.md
               - Balance Sheet Constraints: ch25/funding_basics/balance_sheet_constraints.md
@@ -701,7 +702,7 @@ nav:
               - Haircuts, Margin, and Funding Costs: ch25/implementation/haircuts_margin_funding_costs.md
               - Risk Controls for Leverage: ch25/implementation/risk_controls_for_leverage.md
 
-      - 26 Digital Asset:
+      - 26 Digital Asset ----- :
           - 26.1 Market Structure:
               - Spot vs Perpetuals: ch26/market_structure/spot_vs_perpetuals.md
               - Funding Rates and Open Interest: ch26/market_structure/funding_rates_open_interest.md

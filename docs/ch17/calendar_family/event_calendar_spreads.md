@@ -1,29 +1,25 @@
 # Event Calendar Spreads  
 ## Trading Event-Driven Volatility Dislocations
 
-**Event calendar spreads** exploit differences in implied volatility **before and after discrete events** such as earnings, economic releases, or policy announcements.
-
-These strategies trade **when volatility occurs**, not whether price goes up or down.
-
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_by_event.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_exit_timing.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
+**Event calendar spreads** exploit differences in implied volatility **before and after discrete events** such as earnings, economic releases, or policy announcements.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_payoff.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
+These strategies trade **when volatility occurs**, not whether price goes up or down.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_timing.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
+
+
+
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_exit_timing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -39,7 +35,15 @@ These strategies trade **when volatility occurs**, not whether price goes up or 
 
 ## What Is Event Volatility?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ### Discrete Events
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_timing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 Events that materially affect prices over short horizons:
 

@@ -2,37 +2,20 @@
 
 **Broken wing condors** are asymmetric, defined-risk option strategies where one side of an iron condor has unequal strike spacing, creating a directional bias while maintaining credit collection. They offer the income generation of condors with reduced capital requirements and strategic flexibility for traders with moderate directional conviction.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bearish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_broken_wing_greeks.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_brokenness_levels.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bullish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_risk_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_symmetric_vs_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bearish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -63,9 +46,17 @@ $$
 
 ## What Are Broken Wing Condors?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_broken_wing_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before trading broken wings, understand the variations:**
 
 ### Broken Wing Iron Condor (Call Side Broken)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_brokenness_levels.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Definition:** Regular bull put spread + wider bear call spread, creating bullish bias.
 
@@ -102,6 +93,10 @@ $$
 
 ### Broken Wing Iron Condor (Put Side Broken)
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bullish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Definition:** Wider bull put spread + regular bear call spread, creating bearish bias.
 
 **Structure:**
@@ -137,6 +132,10 @@ $$
 
 ### Skip Strike Broken Wing Condor
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Definition:** One side has a completely missing strike, creating zero-cost protection on one wing.
 
 **Structure (extreme bullish):**
@@ -154,18 +153,23 @@ $$
 - Call side: $10 wide, extremely unlikely risk
 - Acts almost like covered strangle with defined risk
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condor.png?raw=true" alt="broken_wing_condor" width="700">
-</p>
 **Figure 1:** Profit/loss diagram comparing symmetric iron condor (left) to broken wing condor (right). Note the asymmetric risk profile with concentrated risk on one side and distant max loss on the other, creating directional bias while maintaining credit collection.
 
 ---
 
 ## Economic Interpretation: Asymmetric Insurance with Directional Conviction
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_risk_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Beyond the basic definition, understanding what broken wing condors REALLY are economically:**
 
 ### Broken Wing Condors as Directional Insurance Underwriting
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_symmetric_vs_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The deep insight:**
 
@@ -201,6 +205,10 @@ $$
 **The wider call spread costs less in premium but provides the same protection benefit IF you're right about direction.**
 
 ### Example: Breaking Down the SPY Broken Wing Condor
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condor.png?raw=true" alt="broken_wing_condor" width="700">
+</p>
 
 **Setup:**
 
@@ -256,6 +264,10 @@ If you're right about bullish bias:
 - **Only big downside hurts (which you don't expect)**
 
 ### The Conviction-Based Capital Allocation
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_theta.png?raw=true" alt="theta_asymmetry" width="600">
+</p>
 
 **Think like a portfolio manager with directional conviction:**
 
@@ -570,9 +582,6 @@ $$
 
 **Theta acceleration pattern:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_theta.png?raw=true" alt="theta_asymmetry" width="600">
-</p>
 
 **Time to expiration vs. theta:**
 

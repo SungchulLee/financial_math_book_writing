@@ -6,6 +6,11 @@
 
 ## The Core Insight
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/covered_call_pnl.png?raw=true" alt="covered_call_pnl" width="700">
+</p>
+**Figure 1:** Covered call profit/loss diagram showing the combination of long stock and short call, illustrating capped upside at the strike price while maintaining downside risk (reduced only by premium collected).
+
 **The fundamental idea:**
 
 - You own stock or have cash sitting idle
@@ -27,11 +32,21 @@ $$
 
 ## What Is a Covered Call?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/cash_secured_put_pnl.png?raw=true" alt="cash_secured_put_pnl" width="700">
+</p>
+**Figure 2:** Cash-secured put profit/loss diagram showing the short put position with cash reserve, illustrating premium collection and the obligation to purchase stock if price falls below strike.
+
 **Definition:** Sell call options against stock you already own.
 
 **Refined concept:** Sell at a target price you're happy with, and get paid while waiting.
 
 ### The Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/cc_csp_framework.png?raw=true" alt="cc_csp_framework" width="700">
+</p>
+**Figure 3:** Framework comparing covered calls and cash-secured puts, showing the structural relationship between owning stock/cash and selling options to generate income with defined obligations.
 
 **What you have:**
 
@@ -51,6 +66,11 @@ $$
 - "Rent out" the upside above strike
 
 ### Example
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/covered_call_csp_symmetry.png?raw=true" alt="covered_call_csp_symmetry" width="700">
+</p>
+**Figure 4:** Symmetry between covered calls and cash-secured puts through put-call parity, demonstrating their equivalent risk-reward profiles and mirror-image payoff structures.
 
 **Position:**
 
@@ -79,10 +99,6 @@ $$
 - But still made $10/share capital gain + $2 premium = $12 total
 - **Capped upside**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/covered_call_pnl.png?raw=true" alt="covered_call_pnl" width="700">
-</p>
-**Figure 1:** Covered call profit/loss diagram showing the combination of long stock and short call, illustrating capped upside at the strike price while maintaining downside risk (reduced only by premium collected).
 
 **What's working in your favor:**
 
@@ -100,11 +116,21 @@ $$
 
 ## What Is a Cash-Secured Put?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/covered_call_strike_selection.png?raw=true" alt="covered_call_strike_selection" width="700">
+</p>
+**Figure 5:** Covered call strike selection comparison showing the trade-off between premium income and probability of assignment across ITM, ATM, and OTM strikes.
+
 **Definition:** Sell put options while holding cash to buy the stock if assigned.
 
 **Refined concept:** Get paid to place a limit order at a lower price.
 
 ### The Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/csp_strike_selection.png?raw=true" alt="csp_strike_selection" width="700">
+</p>
+**Figure 6:** Cash-secured put strike selection comparison illustrating how different strikes (OTM, ATM, ITM) affect premium income and assignment probability for put sellers.
 
 **What you have:**
 
@@ -124,6 +150,11 @@ $$
 - "Get paid to place limit order"
 
 ### Example
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_premiums.png?raw=true" alt="iv_impact_premiums" width="700">
+</p>
+**Figure 7:** Impact of implied volatility on option premiums, demonstrating how higher IV environments provide significantly better income opportunities for covered calls and cash-secured puts.
 
 **Position:**
 
@@ -154,10 +185,6 @@ $$
 - Better than $150 original price!
 - **Acquired stock at discount**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/cash_secured_put_pnl.png?raw=true" alt="cash_secured_put_pnl" width="700">
-</p>
-**Figure 2:** Cash-secured put profit/loss diagram showing the short put position with cash reserve, illustrating premium collection and the obligation to purchase stock if price falls below strike.
 
 **What's working in your favor:**
 
@@ -173,12 +200,13 @@ $$
 
 ---
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/cc_csp_framework.png?raw=true" alt="cc_csp_framework" width="700">
-</p>
-**Figure 3:** Framework comparing covered calls and cash-secured puts, showing the structural relationship between owning stock/cash and selling options to generate income with defined obligations.
 
 ## The Symmetry: Mirror Image Strategies
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true" alt="wheel_strategy_rotation" width="700">
+</p>
+**Figure 8:** The Wheel Strategy rotation diagram showing the continuous cycle between cash-secured puts, stock ownership, covered calls, and back to cash, creating perpetual income generation.
 
 Covered calls and cash-secured puts are **mirror images** of each other. This is a fundamental concept in options theory.
 
@@ -194,23 +222,34 @@ Covered calls and cash-secured puts are **mirror images** of each other. This is
 
 **Deep insight:** Both strategies convert "patience" into income. You're getting paid to wait—either to sell at a higher price or to buy at a lower price. The cost is giving up extreme outcomes (huge rallies or catching the absolute bottom).
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/covered_call_csp_symmetry.png?raw=true" alt="covered_call_csp_symmetry" width="700">
-</p>
-**Figure 4:** Symmetry between covered calls and cash-secured puts through put-call parity, demonstrating their equivalent risk-reward profiles and mirror-image payoff structures.
 
 ---
 
 ## Why These Strategies Exist
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true" alt="wheel_strategy_diagram" width="700">
+</p>
+**Figure 9:** Detailed Wheel Strategy flowchart illustrating decision points, timing considerations, and profit realization at each stage of the income-generating cycle.
 
 
 ---
 
 ## Economic Interpretation
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/risk_return_comparison.png?raw=true" alt="risk_return_comparison" width="700">
+</p>
+**Figure 10:** Risk-return comparison across different option strategies, positioning covered calls and cash-secured puts as moderate-risk, moderate-return income strategies relative to other approaches.
+
 **Understanding what these strategies REALLY represent economically:**
 
 ### The Core Economic Trade-Off
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/tesla_covered_call_example.png?raw=true" alt="tesla_covered_call_example" width="700">
+</p>
+**Figure 11:** Tesla covered call example showing the progressive income collection over three months and the eventual assignment, illustrating the trade-off between capped upside and premium income.
 
 Both covered calls and cash-secured puts are fundamentally about **monetizing optionality**. You're converting rights (to sell high or buy low) into immediate cash, accepting defined obligations in return.
 
@@ -236,6 +275,11 @@ $$
 
 ### The Volatility Sale
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/microsoft_csp_example.png?raw=true" alt="microsoft_csp_example" width="700">
+</p>
+**Figure 12:** Microsoft cash-secured put example demonstrating how patient premium collection leads to favorable stock acquisition below original market price with reduced net cost basis.
+
 What you're really selling is **volatility exposure**:
 
 - **Option buyers** pay for the right to extreme outcomes (big moves)
@@ -247,6 +291,11 @@ What you're really selling is **volatility exposure**:
 - **Cash-Secured Put:** "I'm willing to own this stock at a lower price"
 
 ### Why This Structure Exists Economically
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strategy_comparison.png?raw=true" alt="strategy_comparison" width="700">
+</p>
+**Figure 13:** Comprehensive strategy comparison matrix showing how covered calls and cash-secured puts fit within the broader landscape of options strategies based on market outlook and risk tolerance.
 
 Markets create these opportunities because participants have different:
 
@@ -2016,10 +2065,6 @@ $$
 | $150 | ATM | $4.00 | Medium | 2.7% | Neutral |
 | $140 | ITM | $11.00 | Low | 7.3% | Want to sell |
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/covered_call_strike_selection.png?raw=true" alt="covered_call_strike_selection" width="700">
-</p>
-**Figure 5:** Covered call strike selection comparison showing the trade-off between premium income and probability of assignment across ITM, ATM, and OTM strikes.
 
 ### For Cash-Secured Puts
 
@@ -2041,10 +2086,6 @@ $$
 - High premium, very likely assigned
 - Use when very bullish
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/csp_strike_selection.png?raw=true" alt="csp_strike_selection" width="700">
-</p>
-**Figure 6:** Cash-secured put strike selection comparison illustrating how different strikes (OTM, ATM, ITM) affect premium income and assignment probability for put sellers.
 
 ---
 
@@ -2105,10 +2146,6 @@ Implied volatility (IV) directly determines the premium you collect. Understandi
 | Medium (40%) | $100 | $105 | $2.00 | 2.0% |
 | High (60%) | $100 | $105 | $3.50 | 3.5% |
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_premiums.png?raw=true" alt="iv_impact_premiums" width="700">
-</p>
-**Figure 7:** Impact of implied volatility on option premiums, demonstrating how higher IV environments provide significantly better income opportunities for covered calls and cash-secured puts.
 
 **Strategy timing:**
 
@@ -2260,10 +2297,6 @@ Implied volatility (IV) directly determines the premium you collect. Understandi
 
 ---
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true" alt="wheel_strategy_rotation" width="700">
-</p>
-**Figure 8:** The Wheel Strategy rotation diagram showing the continuous cycle between cash-secured puts, stock ownership, covered calls, and back to cash, creating perpetual income generation.
 
 ## The Wheel Strategy
 
@@ -2310,10 +2343,6 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 - Month 9: Called away, sell at $105 (net $117)
 - **Total: $26 profit on $100 stock = 26% in 9 months**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true" alt="wheel_strategy_diagram" width="700">
-</p>
-**Figure 9:** Detailed Wheel Strategy flowchart illustrating decision points, timing considerations, and profit realization at each stage of the income-generating cycle.
 
 **Annual potential: 20-40% returns**
 
@@ -2657,10 +2686,6 @@ Track every trade:
 - Have follow-up strategy (covered calls?)
 - Don't panic if assigned
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/risk_return_comparison.png?raw=true" alt="risk_return_comparison" width="700">
-</p>
-**Figure 10:** Risk-return comparison across different option strategies, positioning covered calls and cash-secured puts as moderate-risk, moderate-return income strategies relative to other approaches.
 
 ---
 
@@ -2697,10 +2722,6 @@ Track every trade:
 - Stock went to $280, missed $10/share = $2,000
 - But $4,200 premium more than compensated
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/tesla_covered_call_example.png?raw=true" alt="tesla_covered_call_example" width="700">
-</p>
-**Figure 11:** Tesla covered call example showing the progressive income collection over three months and the eventual assignment, illustrating the trade-off between capped upside and premium income.
 
 ### Example 2: Microsoft Cash-Secured Puts (2024)
 
@@ -2740,10 +2761,6 @@ Track every trade:
 - Acquired at $336 vs. $380 originally
 - $44/share discount (11.6%)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/microsoft_csp_example.png?raw=true" alt="microsoft_csp_example" width="700">
-</p>
-**Figure 12:** Microsoft cash-secured put example demonstrating how patient premium collection leads to favorable stock acquisition below original market price with reduced net cost basis.
 
 ---
 
@@ -3691,10 +3708,6 @@ Remember: Best case scenarios should inspire but not define strategy. Plan for m
 | **Bias** | Neutral/slightly bullish | Bullish |
 | **Assignment** | Sell stock | Buy stock |
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strategy_comparison.png?raw=true" alt="strategy_comparison" width="700">
-</p>
-**Figure 13:** Comprehensive strategy comparison matrix showing how covered calls and cash-secured puts fit within the broader landscape of options strategies based on market outlook and risk tolerance.
 
 ### Final Wisdom
 

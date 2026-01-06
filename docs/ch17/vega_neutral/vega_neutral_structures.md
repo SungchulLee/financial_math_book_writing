@@ -2,25 +2,17 @@
 
 **Vega-neutral multi-leg structures** are sophisticated options positions constructed with multiple strikes and/or expirations designed to have zero (or minimal) net vega exposure, allowing traders to isolate and profit from other dimensions—such as gamma, theta, realized volatility, or time decay—while eliminating sensitivity to changes in implied volatility levels.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_construction.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_greeks.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_implementation.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_construction.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -52,9 +44,17 @@ where:
 
 ## What Are Vega-Neutral Multi-Leg Structures?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before understanding vega-neutral construction, we need to understand vega:**
 
 ### Vega: The IV Sensitivity Greek
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_implementation.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **What is vega?**
 
@@ -100,6 +100,10 @@ $$
 Vega and gamma are connected through the Greeks structure.
 
 ### The Problem with Vega Exposure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Scenario: You want to trade gamma (realized vol)**
 

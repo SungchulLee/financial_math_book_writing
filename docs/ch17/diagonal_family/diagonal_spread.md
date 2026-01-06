@@ -2,25 +2,17 @@
 
 **Diagonal spreads** are option strategies where you **buy and sell options of the same type** (calls or puts) with **different strike prices AND different expiration dates**. They combine the ideas of **vertical spreads (different strikes)** and **calendar spreads (different expirations)** to create positions that can profit from **time decay, direction, and/or volatility changes** with **defined (or mostly-defined) risk**.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_bullish.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_greeks.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_rolling.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_vs_calendar.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_bullish.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -44,7 +36,15 @@ You’re essentially betting:
 
 ## What Is a Diagonal Spread?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ### The Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_rolling.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 A diagonal spread uses:
 
@@ -62,6 +62,10 @@ This is often called a **diagonal calendar**.
 ---
 
 ## Why Diagonals Exist
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_vs_calendar.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 ### 1. Turn Time Decay into an Asset
 Long options pay theta.

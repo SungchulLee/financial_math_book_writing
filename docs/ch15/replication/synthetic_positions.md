@@ -6,6 +6,19 @@
 
 ## The Core Insight
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/put_call_parity_synthetic_positions.png?raw=true" alt="put_call_parity_synthetic_positions" width="700">
+</p>
+**Figure 1:** Put-call parity relationship diagram showing the fundamental no-arbitrage equation C - P = S - K×e^(-rT) that links call prices, put prices, stock price, and the present value of the strike, forming the theoretical foundation for all synthetic position construction and ensuring price consistency across options markets.
+
+---
+
+## What Is a Synthetic Position?
+
+A **synthetic** is a position constructed from options that **replicates the payoff** of another position at expiration (and often approximately before expiration).
+
+**Key idea:**
+
 **The fundamental idea:**
 
 - Calls and puts are not independent
@@ -28,19 +41,16 @@ S = C - P + K e^{-rT}
 
 This identity is the mathematical foundation of all synthetic positions.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/put_call_parity_synthetic_positions.png?raw=true" alt="put_call_parity_synthetic_positions" width="700">
-</p>
-**Figure 1:** Put-call parity relationship diagram showing the fundamental no-arbitrage equation C - P = S - K×e^(-rT) that links call prices, put prices, stock price, and the present value of the strike, forming the theoretical foundation for all synthetic position construction and ensuring price consistency across options markets.
-
----
-
-## What Is a Synthetic Position?
-
-A **synthetic** is a position constructed from options that **replicates the payoff** of another position at expiration (and often approximately before expiration).
-
-**Key idea:**
 > If two portfolios have the same payoff in all states, they must have the same price (no-arbitrage).
+
+- **Sell 1 put**
+- Same strike \(K\), same expiration \(T\)
+
+\[
+\text{Synthetic Long Stock} = +C(K,T) - P(K,T)
+\]
+
+#### Payoff at Expiration
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown.png?raw=true" alt="synthetic_components_breakdown" width="700">
@@ -84,14 +94,6 @@ Institutions frequently use synthetics to:
 #### Structure
 
 - **Buy 1 call**
-- **Sell 1 put**
-- Same strike \(K\), same expiration \(T\)
-
-\[
-\text{Synthetic Long Stock} = +C(K,T) - P(K,T)
-\]
-
-#### Payoff at Expiration
 
 \[
 \max(S-K,0) - \max(K-S,0) = S - K
@@ -100,10 +102,6 @@ Institutions frequently use synthetics to:
 Linear, stock-like payoff.
 
 #### Interpretation
-
-- Delta ≈ +1
-- Unlimited upside
-- Downside similar to owning stock (below strike)
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_long_stock.png?raw=true" alt="synthetic_long_stock" width="700">
@@ -119,6 +117,11 @@ Linear, stock-like payoff.
 #### Structure
 
 - **Sell 1 call**
+
+- Delta ≈ +1
+- Unlimited upside
+- Downside similar to owning stock (below strike)
+
 - **Buy 1 put**
 - Same strike and expiration
 
@@ -127,16 +130,6 @@ Linear, stock-like payoff.
 \]
 
 #### Payoff at Expiration
-
-\[
--(S-K) = K - S
-\]
-
-#### Interpretation
-
-- Delta ≈ −1
-- Unlimited downside risk (like short stock)
-- Profits if stock falls
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_short_stock.png?raw=true" alt="synthetic_short_stock" width="700">
@@ -155,9 +148,12 @@ C - P = S - K e^{-rT}
 
 So:
 - Long call + short put ≈ **long forward**
-- Strike-adjusted cash position completes equivalence
 
-This is heavily used in institutional pricing.
+\[
+-(S-K) = K - S
+\]
+
+#### Interpretation
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/conversion_relationships_synthetic_positions.png?raw=true" alt="conversion_relationships_synthetic_positions" width="700">
@@ -175,7 +171,133 @@ This is heavily used in institutional pricing.
 
 **Understanding what synthetic positions REALLY represent economically:**
 
+- Delta ≈ −1
+- Unlimited downside risk (like short stock)
+- Profits if stock falls
+
+- Strike-adjusted cash position completes equivalence
+
+This is heavily used in institutional pricing.
+
+
 ### The Core Economic Trade-Off
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/concrete_example_synthetic_positions.png?raw=true" alt="concrete_example_synthetic_positions" width="700">
+</p>
+**Figure 6:** Concrete examples of synthetic long and short stock positions showing detailed P&L tables and payoff diagrams at various stock prices, illustrating how the option combinations exactly replicate stock exposure with identical profit/loss outcomes at expiration across all price scenarios.
+
+---
+
+## Strike Selection
+
+### ATM Synthetics (Most Common)
+
+- Best replication of stock
+- Delta ≈ ±1
+- Most liquid options
+- Most accurate parity behavior
+
+### ITM / OTM Synthetics
+
+- Still work mathematically
+- Different capital requirements
+- Delta deviates slightly from ±1
+- Used for fine-tuning exposure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strike_selection_synthetics.png?raw=true" alt="strike_selection_synthetics" width="700">
+</p>
+**Figure 7:** Strike selection for synthetic positions showing how ATM synthetics (strike equals stock price) replicate stock most accurately with delta ≈ ±1, while ITM and OTM synthetics create leverage or deductibles with different capital requirements and delta profiles, demonstrating strategic strike choices for customized exposure.
+
+---
+
+## Time Selection
+
+### Short-Dated
+
+- Tracks stock closely
+- Higher gamma near expiration
+- More sensitive to price moves
+
+### Longer-Dated
+
+- Smoother behavior
+- Less gamma
+- Often preferred for long-term exposure
+
+---
+
+## Synthetics vs. Stock
+
+| Aspect | Synthetic | Stock |
+|------|-----------|-------|
+| Capital | Lower upfront | Full share price |
+| Dividends | Indirect (priced in) | Received directly |
+| Voting rights | None | Yes |
+| Margin | Often required | None (cash account) |
+| Flexibility | High | Lower |
+
+**Key insight:** synthetics replicate **price exposure**, not ownership benefits.
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/synthetic_vs_stock_comparison.png?raw=true" alt="synthetic_vs_stock_comparison" width="700">
+</p>
+**Figure 8:** Comprehensive comparison of synthetic positions versus actual stock holdings showing key differences in capital requirements, dividend treatment, voting rights, margin obligations, and operational flexibility, illustrating when synthetics offer advantages (capital efficiency, shorting) versus when stock is preferable (dividends, voting, simplicity).
+
+---
+
+## Practical Applications
+
+### 1) Replacing Stock Exposure
+
+- Want delta ≈ 1
+- Less capital tied up
+- Easy to adjust or close
+
+### 2) Avoiding Short-Sale Constraints
+
+- Hard-to-borrow stock
+- Use synthetic short instead
+
+### 3) Transition Trades
+
+- Convert stock → options exposure (or vice versa)
+- Maintain risk while restructuring portfolio
+
+---
+
+## Risks and Caveats
+
+### 1) Assignment Risk
+
+- Short option leg can be assigned
+- Leads to temporary stock position
+- Must be managed proactively
+
+### 2) Dividend Effects
+
+- Dividends affect put–call parity
+- Early assignment risk increases near ex-dividend dates
+
+### 3) Financing Differences
+
+- Interest rates embedded in option prices
+- Synthetic may not be exactly free
+
+### 4) Margin Requirements
+
+- Brokers may require margin similar to stock exposure
+- Not “free leverage” in practice
+
+---
+
+
+---
+
+## Practical Guidance
+
+**Step-by-step implementation framework:**
 
 Synthetic positions are not just mathematical curiosities—they reveal the **fundamental structure of options markets** and how options encode **financing, forward prices, and leverage**.
 
@@ -624,122 +746,6 @@ Understanding synthetics means understanding:
 
 Identical to shorting stock from $100.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/concrete_example_synthetic_positions.png?raw=true" alt="concrete_example_synthetic_positions" width="700">
-</p>
-**Figure 6:** Concrete examples of synthetic long and short stock positions showing detailed P&L tables and payoff diagrams at various stock prices, illustrating how the option combinations exactly replicate stock exposure with identical profit/loss outcomes at expiration across all price scenarios.
-
----
-
-## Strike Selection
-
-### ATM Synthetics (Most Common)
-
-- Best replication of stock
-- Delta ≈ ±1
-- Most liquid options
-- Most accurate parity behavior
-
-### ITM / OTM Synthetics
-
-- Still work mathematically
-- Different capital requirements
-- Delta deviates slightly from ±1
-- Used for fine-tuning exposure
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strike_selection_synthetics.png?raw=true" alt="strike_selection_synthetics" width="700">
-</p>
-**Figure 7:** Strike selection for synthetic positions showing how ATM synthetics (strike equals stock price) replicate stock most accurately with delta ≈ ±1, while ITM and OTM synthetics create leverage or deductibles with different capital requirements and delta profiles, demonstrating strategic strike choices for customized exposure.
-
----
-
-## Time Selection
-
-### Short-Dated
-
-- Tracks stock closely
-- Higher gamma near expiration
-- More sensitive to price moves
-
-### Longer-Dated
-
-- Smoother behavior
-- Less gamma
-- Often preferred for long-term exposure
-
----
-
-## Synthetics vs. Stock
-
-| Aspect | Synthetic | Stock |
-|------|-----------|-------|
-| Capital | Lower upfront | Full share price |
-| Dividends | Indirect (priced in) | Received directly |
-| Voting rights | None | Yes |
-| Margin | Often required | None (cash account) |
-| Flexibility | High | Lower |
-
-**Key insight:** synthetics replicate **price exposure**, not ownership benefits.
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/synthetic_vs_stock_comparison.png?raw=true" alt="synthetic_vs_stock_comparison" width="700">
-</p>
-**Figure 8:** Comprehensive comparison of synthetic positions versus actual stock holdings showing key differences in capital requirements, dividend treatment, voting rights, margin obligations, and operational flexibility, illustrating when synthetics offer advantages (capital efficiency, shorting) versus when stock is preferable (dividends, voting, simplicity).
-
----
-
-## Practical Applications
-
-### 1) Replacing Stock Exposure
-
-- Want delta ≈ 1
-- Less capital tied up
-- Easy to adjust or close
-
-### 2) Avoiding Short-Sale Constraints
-
-- Hard-to-borrow stock
-- Use synthetic short instead
-
-### 3) Transition Trades
-
-- Convert stock → options exposure (or vice versa)
-- Maintain risk while restructuring portfolio
-
----
-
-## Risks and Caveats
-
-### 1) Assignment Risk
-
-- Short option leg can be assigned
-- Leads to temporary stock position
-- Must be managed proactively
-
-### 2) Dividend Effects
-
-- Dividends affect put–call parity
-- Early assignment risk increases near ex-dividend dates
-
-### 3) Financing Differences
-
-- Interest rates embedded in option prices
-- Synthetic may not be exactly free
-
-### 4) Margin Requirements
-
-- Brokers may require margin similar to stock exposure
-- Not “free leverage” in practice
-
----
-
-
----
-
-## Practical Guidance
-
-**Step-by-step implementation framework:**
 
 ### Step 1: Market Assessment
 

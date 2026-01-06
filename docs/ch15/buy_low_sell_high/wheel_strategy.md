@@ -2,19 +2,16 @@
 
 **The Wheel Strategy** is a systematic approach to generating income by selling cash-secured puts until assigned stock, then selling covered calls on that stock, continuously "wheeling" between the two states to harvest premium while potentially profiting from capital appreciation.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true" alt="wheel_strategy_rotation" width="700">
-</p>
-**Figure 1:** The Wheel Strategy rotation diagram showing the continuous cycle between cash-secured puts, stock ownership, covered calls, and back to cash, creating perpetual income generation.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true" alt="wheel_strategy_diagram" width="700">
-</p>
-**Figure 2:** Detailed Wheel Strategy flowchart illustrating decision points, timing considerations, and profit realization at each stage of the income-generating cycle.
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true" alt="wheel_strategy_rotation" width="700">
+</p>
+**Figure 1:** The Wheel Strategy rotation diagram showing the continuous cycle between cash-secured puts, stock ownership, covered calls, and back to cash, creating perpetual income generation.
 
 **The fundamental idea:**
 
@@ -42,9 +39,19 @@ $$
 
 ## What Is The Wheel Strategy?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true" alt="wheel_strategy_diagram" width="700">
+</p>
+**Figure 2:** Detailed Wheel Strategy flowchart illustrating decision points, timing considerations, and profit realization at each stage of the income-generating cycle.
+
 **Before implementing the Wheel, understand the complete cycle:**
 
 ### The Complete Cycle
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_flow.png?raw=true" alt="wheel_strategy_flow" width="700">
+</p>
+**Figure 1:** The Wheel Strategy cycle showing the continuous flow between selling cash-secured puts (CSP), stock ownership, and selling covered calls (CC). Premium is collected at every stage regardless of assignment.
 
 **The Wheel operates in two states:**
 
@@ -71,6 +78,11 @@ $$
 - **Never static, always earning**
 
 ### Detailed Breakdown
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/wheel_returns_breakdown.png?raw=true" alt="wheel_returns_breakdown" width="700">
+</p>
+**Figure 2:** Annual income breakdown from Wheel Strategy showing multiple revenue streams (put premiums, call premiums, capital gains, dividends), and cumulative returns over time with compound effect of continuous premium collection across market conditions.
 
 **Phase 1: Selling Cash-Secured Puts (CSP)**
 
@@ -137,10 +149,6 @@ $$
 - Low stress compared to active trading
 - **Set-and-forget premium collection**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_flow.png?raw=true" alt="wheel_strategy_flow" width="700">
-</p>
-**Figure 1:** The Wheel Strategy cycle showing the continuous flow between selling cash-secured puts (CSP), stock ownership, and selling covered calls (CC). Premium is collected at every stage regardless of assignment.
 
 ---
 
@@ -3198,7 +3206,3 @@ $$
 
 **Remember:** Every month you collect premium. Every assignment gets you closer to the other phase. Every call sold lowers your cost basis. The Wheel never stops turning - and neither does your income! 🎯📈🔄
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/wheel_returns_breakdown.png?raw=true" alt="wheel_returns_breakdown" width="700">
-</p>
-**Figure 2:** Annual income breakdown from Wheel Strategy showing multiple revenue streams (put premiums, call premiums, capital gains, dividends), and cumulative returns over time with compound effect of continuous premium collection across market conditions.

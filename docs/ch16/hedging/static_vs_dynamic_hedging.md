@@ -2,6 +2,31 @@
 
 **Static hedging** is a risk management approach where you establish a hedge once and hold it without continuous rebalancing, as opposed to dynamic hedging which requires frequent adjustments.
 
+
+- Most strategies we've covered require continuous delta hedging (dynamic)
+
+- But continuous rebalancing has costs (bid-ask, commissions)
+
+- What if you could hedge ONCE and be done?
+
+- Static hedging: set it and forget it
+
+- Trade off: imperfect hedge, but no transaction costs
+
+- Works best for certain option types (barriers, digitals)
+
+**The key equation:**
+
+$$
+\text{Static Hedge} = \text{Set once} + \text{Hold to maturity} + \text{Accept tracking error}
+$$
+
+**You're essentially betting: "The savings from avoiding transaction costs outweigh the tracking error from not rebalancing."**
+
+---
+
+## What Is Static Hedging?
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/static_vs_dynamic_hedging_comparison.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -31,30 +56,6 @@
 ## The Core Insight
 
 **The fundamental idea:**
-
-- Most strategies we've covered require continuous delta hedging (dynamic)
-
-- But continuous rebalancing has costs (bid-ask, commissions)
-
-- What if you could hedge ONCE and be done?
-
-- Static hedging: set it and forget it
-
-- Trade off: imperfect hedge, but no transaction costs
-
-- Works best for certain option types (barriers, digitals)
-
-**The key equation:**
-
-$$
-\text{Static Hedge} = \text{Set once} + \text{Hold to maturity} + \text{Accept tracking error}
-$$
-
-**You're essentially betting: "The savings from avoiding transaction costs outweigh the tracking error from not rebalancing."**
-
----
-
-## What Is Static Hedging?
 
 **Before understanding why it's useful, understand what it is:**
 

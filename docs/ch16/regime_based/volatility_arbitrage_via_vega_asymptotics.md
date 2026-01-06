@@ -4,29 +4,18 @@
 
 The key insight: **mid-maturity options often provide maximum vega per dollar invested**, making them the most capital-efficient instruments for pure volatility bets.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_scaling.png?raw=true" alt="vega_asymptotics_scaling" width="700">
-</p>
-<p align="center"><em>Figure 1: Vega scaling across maturities showing √τ relationship and optimal vega concentration at 30-90 day maturities</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_efficiency.png?raw=true" alt="vega_asymptotics_efficiency" width="700">
-</p>
-<p align="center"><em>Figure 2: Vega per dollar invested comparison demonstrating capital efficiency advantage of mid-term options</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_gamma_tradeoff.png?raw=true" alt="vega_asymptotics_gamma_tradeoff" width="700">
-</p>
-<p align="center"><em>Figure 3: Vega-to-gamma ratio across maturities illustrating the theta-gamma-vega trade-off spectrum</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_arbitrage.png?raw=true" alt="vega_asymptotics_arbitrage" width="700">
-</p>
-<p align="center"><em>Figure 4: Vega arbitrage opportunities arising from maturity-dependent volatility risk premium mispricing</em></p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_scaling.png?raw=true" alt="vega_asymptotics_scaling" width="700">
+</p>
+<p align="center"><em>Figure 1: Vega scaling across maturities showing √τ relationship and optimal vega concentration at 30-90 day maturities</em></p>
 
 **The fundamental idea:**
 
@@ -49,7 +38,17 @@ $$
 
 ## The Mathematical Foundation
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_efficiency.png?raw=true" alt="vega_asymptotics_efficiency" width="700">
+</p>
+<p align="center"><em>Figure 2: Vega per dollar invested comparison demonstrating capital efficiency advantage of mid-term options</em></p>
+
 ### Vega Scaling Law
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_gamma_tradeoff.png?raw=true" alt="vega_asymptotics_gamma_tradeoff" width="700">
+</p>
+<p align="center"><em>Figure 3: Vega-to-gamma ratio across maturities illustrating the theta-gamma-vega trade-off spectrum</em></p>
 
 For at-the-money (ATM) options under Black-Scholes:
 
@@ -82,6 +81,11 @@ $$
 **Critical insight:** Vega scales as **√τ**, not **τ**.
 
 ### Vega Efficiency Metric
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_arbitrage.png?raw=true" alt="vega_asymptotics_arbitrage" width="700">
+</p>
+<p align="center"><em>Figure 4: Vega arbitrage opportunities arising from maturity-dependent volatility risk premium mispricing</em></p>
 
 Define vega efficiency as vega per dollar of option premium:
 

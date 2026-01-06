@@ -2,41 +2,21 @@
 
 **Jade Lizard** is an income strategy combining a short put with a short call spread, creating a credit position with no upside risk (cannot lose if stock rallies) but defined downside risk, popular among traders seeking premium collection with asymmetric risk profiles.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_components.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_credit_vs_width.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_greeks.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_payoff.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_vs_big_lizard.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -61,9 +41,17 @@ This ensures **zero upside risk** (credit collected exceeds max call spread loss
 
 ## What Is a Jade Lizard?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_components.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before trading Jade Lizards, understand the structure:**
 
 ### Standard Jade Lizard
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_credit_vs_width.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Definition:** Sell OTM put + Sell OTM call spread (higher strikes).
 
@@ -130,6 +118,10 @@ This is the key to Jade Lizard: **Credit must exceed call spread width.**
 
 ### Big Lizard (Variation)
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Definition:** Jade Lizard with WIDER call spread to collect more premium.
 
 **Structure:**
@@ -155,18 +147,23 @@ This is the key to Jade Lizard: **Credit must exceed call spread width.**
 - More premium ($5.80 vs $5.20)
 - But upside risk exists (if stock rallies hard)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_payoff.png?raw=true" alt="jade_lizard" width="700">
-</p>
 **Figure 1:** Payoff diagram for Jade Lizard showing no upside risk (flat or small profit above call spread), maximum profit in the middle range, and downside risk below short put strike.
 
 ---
 
 ## Economic Interpretation: Selling Two Risks, Keeping One
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Beyond the basic definition, understanding what Jade Lizards REALLY are economically:**
 
 ### Decomposition into Components
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Jade Lizard = Short Put + Short Call Spread**
 
@@ -192,6 +189,10 @@ $$
 **Key insight:** By ensuring **credit > call spread width**, you eliminate upside risk entirely.
 
 ### Why Eliminate Upside Risk?
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_vs_big_lizard.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Market bias: Equities have upside drift**
 
@@ -225,6 +226,10 @@ Historical data shows:
 
 ### The "Lizard" Name Origin
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Why "Jade Lizard"?**
 
 - Coined by options educators (tastytrade community)
@@ -240,6 +245,10 @@ Historical data shows:
 ---
 
 ## Key Terminology
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_payoff.png?raw=true" alt="jade_lizard" width="700">
+</p>
 
 **Jade Lizard:**
 
@@ -281,6 +290,10 @@ $$
 ---
 
 ## Why Trade Jade Lizards?
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_theta.png?raw=true" alt="jade_theta" width="700">
+</p>
 
 **Use cases:**
 
@@ -832,9 +845,6 @@ $$
 
 **Theta evolution:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_theta.png?raw=true" alt="jade_theta" width="700">
-</p>
 **Figure 2:** Theta decay collection for Jade Lizard showing positive daily theta from both short put and short call spread components, accelerating in final 2 weeks.
 
 **Strategic timing:**

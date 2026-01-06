@@ -6,6 +6,10 @@
 
 ## The Core Insight
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_butterfly.png?raw=true" alt="broken_wing" width="700">
+</p>
+
 **The fundamental idea:**
 
 - Regular butterflies are symmetric: profit at center, risk on both wings
@@ -31,9 +35,17 @@ $$
 
 ## What Is a Broken Wing Butterfly?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/bwb_theta_decay.png?raw=true" alt="bwb_theta" width="700">
+</p>
+
 **Before trading broken wings, understand the modification from regular butterflies:**
 
 ### Regular Butterfly (Symmetric) - Baseline
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/bwb_vega_surface.png?raw=true" alt="bwb_vega" width="700">
+</p>
 
 **Standard call butterfly:**
 
@@ -87,9 +99,6 @@ Where offset creates asymmetry and allows credit collection.
 - Stock = $105 or higher: Breakeven to small profit
 - **No risk above $105** (broken wing protects you!)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/broken_wing_butterfly.png?raw=true" alt="broken_wing" width="700">
-</p>
 **Figure 1:** Comparison of regular butterfly (symmetric) vs broken wing butterfly (asymmetric), showing how the broken wing eliminates upside risk while maintaining defined downside risk and often allowing credit collection.
 
 ---
@@ -724,9 +733,6 @@ $$
 
 **Theta evolution:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/bwb_theta_decay.png?raw=true" alt="bwb_theta" width="700">
-</p>
 **Figure 2:** Theta decay acceleration for broken wing butterfly, showing how time decay accelerates in final weeks as short options lose value faster than long options.
 
 **Pattern:**
@@ -768,9 +774,6 @@ $$
 
 **Vega surface:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/bwb_vega_surface.png?raw=true" alt="bwb_vega" width="700">
-</p>
 **Figure 3:** Vega surface showing negative vega exposure concentrated at short strike, with magnitude increasing as IV rises and time to expiration increases.
 
 ---

@@ -2,6 +2,32 @@
 
 **Theta and carry** are strategies where you profit from the passage of time itself by systematically collecting option premium as options decay toward expiration.
 
+
+- Every option loses value as time passes (all else equal)
+- This is called "time decay" or "theta"
+- Most traders fight theta (pay it, try to overcome it)
+- But you can profit FROM theta by being on the other side
+- Sell options, collect premium, let time work for you
+- "Earn rent" on volatility
+
+**The key equation:**
+
+$$
+\text{Option Value} = \text{Intrinsic Value} + \text{Time Value}
+$$
+
+As time passes:
+
+$$
+\text{Time Value} \to 0 \text{ (at expiration)}
+$$
+
+**You're essentially betting: "I can collect more premium from time decay than I lose from adverse price movements."**
+
+---
+
+## What Is Theta?
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/theta_and_carry_by_strike.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -31,31 +57,6 @@
 ## The Core Insight
 
 **The fundamental idea:**
-
-- Every option loses value as time passes (all else equal)
-- This is called "time decay" or "theta"
-- Most traders fight theta (pay it, try to overcome it)
-- But you can profit FROM theta by being on the other side
-- Sell options, collect premium, let time work for you
-- "Earn rent" on volatility
-
-**The key equation:**
-
-$$
-\text{Option Value} = \text{Intrinsic Value} + \text{Time Value}
-$$
-
-As time passes:
-
-$$
-\text{Time Value} \to 0 \text{ (at expiration)}
-$$
-
-**You're essentially betting: "I can collect more premium from time decay than I lose from adverse price movements."**
-
----
-
-## What Is Theta?
 
 **Before understanding carry trades, understand theta:**
 

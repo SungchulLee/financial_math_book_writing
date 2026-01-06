@@ -2,29 +2,18 @@
 
 **Dispersion trading** is a strategy where you profit from the difference between index volatility and the weighted average of individual stock volatilities by exploiting the correlation structure of the market.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_correlation.png?raw=true" alt="dispersion_trading_correlation" width="700">
-</p>
-<p align="center"><em>Figure 1: Correlation dynamics showing relationship between individual stock correlations and index volatility levels</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_pnl.png?raw=true" alt="dispersion_trading_pnl" width="700">
-</p>
-<p align="center"><em>Figure 2: P&L profile of long dispersion trade demonstrating profit from declining correlation</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_realized_implied.png?raw=true" alt="dispersion_trading_realized_implied" width="700">
-</p>
-<p align="center"><em>Figure 3: Realized vs. implied correlation comparison showing historical dispersion premium</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_vol_comparison.png?raw=true" alt="dispersion_trading_vol_comparison" width="700">
-</p>
-<p align="center"><em>Figure 4: Volatility comparison between index and individual stock components illustrating diversification benefit</em></p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_correlation.png?raw=true" alt="dispersion_trading_correlation" width="700">
+</p>
+<p align="center"><em>Figure 1: Correlation dynamics showing relationship between individual stock correlations and index volatility levels</em></p>
 
 **The fundamental idea:**
 
@@ -59,9 +48,19 @@ $$
 
 ## The Volatility-Correlation Relationship
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_pnl.png?raw=true" alt="dispersion_trading_pnl" width="700">
+</p>
+<p align="center"><em>Figure 2: P&L profile of long dispersion trade demonstrating profit from declining correlation</em></p>
+
 **This is CRUCIAL to understand:**
 
 ### A Simple Example: Two-Stock Index
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_realized_implied.png?raw=true" alt="dispersion_trading_realized_implied" width="700">
+</p>
+<p align="center"><em>Figure 3: Realized vs. implied correlation comparison showing historical dispersion premium</em></p>
 
 **Imagine an index with two stocks (equal weighted):**
 
@@ -106,6 +105,11 @@ $$
 ---
 
 ## What Is Dispersion Trading?
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_vol_comparison.png?raw=true" alt="dispersion_trading_vol_comparison" width="700">
+</p>
+<p align="center"><em>Figure 4: Volatility comparison between index and individual stock components illustrating diversification benefit</em></p>
 
 **Dispersion trading is betting on the CORRELATION structure:**
 

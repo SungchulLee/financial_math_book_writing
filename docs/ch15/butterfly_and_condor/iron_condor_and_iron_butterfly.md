@@ -6,6 +6,10 @@
 
 ## The Core Insight
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_butterfly.png?raw=true" alt="iron_butterfly" width="700">
+</p>
+
 **The fundamental idea:**
 
 - Most stocks trade in ranges 70-80% of the time
@@ -31,11 +35,19 @@ $$
 
 ## Why Called "Iron"?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_butterfly.png?raw=true" alt="long_call_butterfly" width="700">
+</p>
+
 **The "iron" prefix has a specific meaning in options terminology:**
 
 In options, **"iron"** means the strategy uses **both calls AND puts together** (mixed instruments), rather than just one type.
 
 ### The Naming Pattern
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_vs_short_butterfly.png?raw=true" alt="long_vs_short_butterfly" width="700">
+</p>
 
 | Regular Strategy | Uses | Iron Strategy | Uses |
 |-----------------|------|---------------|------|
@@ -45,6 +57,10 @@ In options, **"iron"** means the strategy uses **both calls AND puts together** 
 | **Bear Call Spread** | Only calls | **Iron Bear** | Calls + puts |
 
 ### Why "Iron"?
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/butterfly_type_comparison.png?raw=true" alt="butterfly_type_comparison" width="700">
+</p>
 
 The term likely comes from the idea that mixing calls and puts creates a **stronger, more rigid structure** (like iron is stronger than individual materials).
 
@@ -74,9 +90,17 @@ Buy  110 call    ← call
 
 ## What Is an Iron Condor?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/butterfly_wing_width_comparison.png?raw=true" alt="butterfly_wing_width_comparison" width="700">
+</p>
+
 **Definition:** Combination of bull put spread + bear call spread
 
 ### The Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/realistic_butterfly_trade.png?raw=true" alt="realistic_butterfly_trade" width="700">
+</p>
 
 **Four legs (all same expiration):**
 
@@ -144,9 +168,6 @@ Buy  110 call    ← call
 
 **Total credit: $6.00**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_butterfly.png?raw=true" alt="iron_butterfly" width="700">
-</p>
 **Figure 1:** Iron butterfly profit/loss diagram showing the combination of ATM put and call spreads with wings for protection, illustrating the narrow profit zone centered at the ATM strike with defined maximum loss at the wing strikes.
 
 **Profit zone:** Narrow window around $100
@@ -402,9 +423,6 @@ But the **timing** of cash flows differs, creating practical advantages!
 
 **Remember:** Same destination (total P&L), different journey (cash flow timing)!
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/long_call_butterfly.png?raw=true" alt="long_call_butterfly" width="700">
-</p>
 **Figure 2:** Long call butterfly profit/loss diagram showing the classic debit butterfly structure using only call options, demonstrating how buying lower and higher strikes while selling two middle strikes creates a limited risk, limited reward profile with peak profit at the middle strike.
 
 ### Why Choose Iron Butterfly?
@@ -584,9 +602,6 @@ This is why sophisticated traders and institutions typically prefer:
 
 **Remember:** The P&L diagram shows only the final destination. The journey—how you get there and what you can do with your capital along the way—matters just as much!
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/long_vs_short_butterfly.png?raw=true" alt="long_vs_short_butterfly" width="700">
-</p>
 **Figure 3:** Comparison of long butterfly (debit) versus short butterfly (credit) strategies, illustrating how opposite structures create mirror-image terminal payoffs but identical total P&L profiles when combined with their respective initial cash flows.
 
 ## Iron Butterfly − Regular Butterfly = Risk-Free Cash Position
@@ -845,9 +860,6 @@ These differences create preference for one structure over another, **without vi
 | **Beginner-friendly** | **Yes** | Less so |
 | **Win rate** | Higher | Lower |
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/butterfly_type_comparison.png?raw=true" alt="butterfly_type_comparison" width="700">
-</p>
 **Figure 4:** Comprehensive comparison of iron condor versus iron butterfly profit/loss diagrams, showing the trade-off between wider profit zones with lower premium (condor) versus narrower profit zones with higher premium (butterfly).
 
 **When to use which:**
@@ -1298,9 +1310,6 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 
 **Optimal:** Usually 5-10 points for most stocks
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/butterfly_wing_width_comparison.png?raw=true" alt="butterfly_wing_width_comparison" width="700">
-</p>
 **Figure 5:** Butterfly wing width comparison illustrating how narrow wings (5-point) versus wide wings (10-15 point) affect capital requirements, maximum loss, and the risk-reward profile of iron butterfly strategies.
 
 ---
@@ -2327,9 +2336,6 @@ Max Drawdown = Largest peak-to-trough decline
 
 **Key lesson:** Size appropriately, one loss can hurt
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/realistic_butterfly_trade.png?raw=true" alt="realistic_butterfly_trade" width="700">
-</p>
 **Figure 6:** Realistic butterfly trade example showing actual market conditions, entry/exit points, and P&L evolution over time, demonstrating the practical application of iron butterfly strategy with real-world pricing and volatility dynamics.
 
 ---
@@ -2861,7 +2867,8 @@ For $100,000 portfolio:
 
 If max loss per IC = $45:
 $$
-	ext{Max Contracts} = rac{\$2,000}{\$45 	imes 100} = rac{\$2,000}{\$4,500} = 0.44 ightarrow 0 	ext{ contracts (too large!)}
+	ext{Max Contracts} = rac{\$2,000}{\$45 	imes 100} = rac{\$2,000}{\$4,500} = 0.44 
+ightarrow 0 	ext{ contracts (too large!)}
 $$
 
 For $45 max loss, need smaller size or larger account:

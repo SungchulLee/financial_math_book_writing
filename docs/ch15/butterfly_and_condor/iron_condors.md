@@ -2,41 +2,21 @@
 
 **Iron condors** are neutral, defined-risk option strategies that combine a bull put spread and a bear call spread, profiting from low volatility and time decay with capped maximum loss.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_management_zones.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_payoff.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_wing_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -63,9 +43,17 @@ $$
 
 ## What Is an Iron Condor?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before trading iron condors, understand the structure:**
 
 ### Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Definition:** An iron condor combines two credit spreads with the same expiration:
 1. Bull put spread (below current price)
@@ -100,6 +88,10 @@ $$
 
 ### Key Characteristics
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_management_zones.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Defined risk neutral strategy:**
 
 - Maximum loss is known upfront
@@ -122,18 +114,23 @@ $$
 - Risk-reward ratio better defined
 - **Key advantage: Sleep at night knowing max loss**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_payoff.png?raw=true" alt="iron_condor_payoff" width="700">
-</p>
 **Figure 1:** Iron condor payoff diagram showing the defined-risk profit zone between breakeven points. Unlike short strangles, losses are capped at the width of the spreads minus credit received.
 
 ---
 
 ## Economic Interpretation: Insurance with Reinsurance
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Beyond the basic definition, understanding what iron condors REALLY are economically:**
 
 ### The Reinsurance Analogy
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The deep insight:**
 
@@ -171,6 +168,10 @@ $$
 
 ### Example: Breaking Down the SPY Iron Condor
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Setup:**
 
 - SPY at $450
@@ -207,6 +208,10 @@ $$
 
 ### The Risk-Reward Trade-off
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_wing_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Iron condor vs. short strangle:**
 
 $$
@@ -226,6 +231,10 @@ $$
 **This is the fundamental trade-off: Less upside in exchange for defined downside.**
 
 ### Why Professional Traders Prefer Iron Condors
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_payoff.png?raw=true" alt="iron_condor_payoff" width="700">
+</p>
 
 **Understanding the institutional perspective:**
 
@@ -264,6 +273,10 @@ $$
 ---
 
 ## Key Terminology
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_greeks.png?raw=true" alt="iron_condor_greeks" width="700">
+</p>
 
 **Strike Width:**
 
@@ -716,9 +729,6 @@ $$
 - Use VIX as market volatility gauge
 - Diversify expirations
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iron_condor_greeks.png?raw=true" alt="iron_condor_greeks" width="700">
-</p>
 **Figure 2:** Greeks comparison between iron condor and short strangle, showing how the long wings reduce gamma and vega risk while maintaining positive theta. The iron condor has less extreme Greeks across all dimensions.
 
 ---

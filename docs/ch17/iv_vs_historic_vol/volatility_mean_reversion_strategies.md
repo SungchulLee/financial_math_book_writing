@@ -1,33 +1,27 @@
 # Volatility Mean Reversion Strategies  
 ## Trading the Cyclical Nature of Volatility
 
-**Volatility mean reversion strategies** exploit the empirical fact that volatility tends to **revert toward a long-term average** after periods of unusually high or low levels.
-
-Rather than predicting direction, these strategies trade the **dynamics of uncertainty itself**.
-
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_half_life.png?raw=true" alt="volatility_mean_reversion_strategies_half_life" width="700">
 </p>
 <p align="center"><em>Figure 1: Half-life analysis showing mean reversion speed across different volatility regimes and asset classes</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_pattern.png?raw=true" alt="volatility_mean_reversion_strategies_pattern" width="700">
-</p>
-<p align="center"><em>Figure 2: Volatility mean reversion pattern demonstrating clustering, spikes, and decay toward long-term average</em></p>
+**Volatility mean reversion strategies** exploit the empirical fact that volatility tends to **revert toward a long-term average** after periods of unusually high or low levels.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_performance.png?raw=true" alt="volatility_mean_reversion_strategies_performance" width="700">
-</p>
-<p align="center"><em>Figure 3: Performance comparison of mean reversion strategies across bull, bear, and crisis market conditions</em></p>
+Rather than predicting direction, these strategies trade the **dynamics of uncertainty itself**.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_zones.png?raw=true" alt="volatility_mean_reversion_strategies_zones" width="700">
-</p>
-<p align="center"><em>Figure 4: Trading zones showing optimal entry points for selling volatility (extremes) vs buying volatility (compression)</em></p>
+
+
+
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_pattern.png?raw=true" alt="volatility_mean_reversion_strategies_pattern" width="700">
+</p>
+<p align="center"><em>Figure 2: Volatility mean reversion pattern demonstrating clustering, spikes, and decay toward long-term average</em></p>
 
 **The fundamental idea:**
 
@@ -50,6 +44,11 @@ $$
 ---
 
 ## Why Volatility Mean-Reverts
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_performance.png?raw=true" alt="volatility_mean_reversion_strategies_performance" width="700">
+</p>
+<p align="center"><em>Figure 3: Performance comparison of mean reversion strategies across bull, bear, and crisis market conditions</em></p>
 
 Volatility mean reversion arises from:
 
@@ -82,6 +81,11 @@ Low volatility triggers:
 ---
 
 ## What Mean Reversion Means in Practice
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_zones.png?raw=true" alt="volatility_mean_reversion_strategies_zones" width="700">
+</p>
+<p align="center"><em>Figure 4: Trading zones showing optimal entry points for selling volatility (extremes) vs buying volatility (compression)</em></p>
 
 ### Volatility Regimes
 

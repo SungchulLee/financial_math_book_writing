@@ -2,41 +2,21 @@
 
 **Condors** are four-legged spreads combining two vertical spreads with a gap between them, creating a flat-top profit zone that's wider than a butterfly but with lower maximum profit, offering higher probability of success at the cost of reduced profit potential.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_vs_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_whipsaw.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/long_call_condor.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -63,9 +43,17 @@ $$
 
 ## What Is a Condor?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before trading condors, understand the structure:**
 
 ### Call Condor (Bullish to Neutral)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Definition:** Four calls at different strikes creating flat-top payoff.
 
@@ -108,6 +96,10 @@ $$
 
 ### Put Condor (Bearish to Neutral)
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Definition:** Four puts at different strikes creating flat-top payoff.
 
 **Structure (Long Put Condor):**
@@ -128,18 +120,23 @@ $$
 
 **Payoff: Identical to call condor** (by put-call parity)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_vs_butterfly.png?raw=true" alt="condor_butterfly" width="700">
-</p>
 **Figure 1:** Comparison of butterfly (peaked payoff) vs. condor (flat-top payoff), showing how the condor sacrifices maximum profit for a wider profit zone and higher probability of success.
 
 ---
 
 ## Economic Interpretation: The Probability Trade-Off
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Beyond the basic definition, understanding what condors REALLY are economically:**
 
 ### From Butterfly to Condor: The Evolution
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_vs_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental progression:**
 
@@ -175,6 +172,10 @@ Both have same debit and same wing widths. The condor just "spreads out" the but
 
 ### Condor as Two Vertical Spreads
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_whipsaw.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Alternative view: Condor = Bull Spread + Bear Spread**
 
 **Bull call spread (lower wing):**
@@ -204,6 +205,10 @@ This decomposition helps with adjustment strategies (can exit one side independe
 
 ### The Gaussian Distribution Bet
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/long_call_condor.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **What you're really betting on:**
 
 Stock returns follow (approximately) normal distribution. Condor profits from stock staying within 1 standard deviation.
@@ -229,6 +234,10 @@ Stock returns follow (approximately) normal distribution. Condor profits from st
 ---
 
 ## Key Terminology
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_vs_butterfly.png?raw=true" alt="condor_butterfly" width="700">
+</p>
 
 **Body (or Plateau):**
 
@@ -279,10 +288,18 @@ $$
 
 ## Why Trade Condors?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_delta_profile.png?raw=true" alt="condor_delta" width="700">
+</p>
+
 **Use cases for condors:**
 
 
 ### Why This Structure Exists Economically
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/condor_theta_decay.png?raw=true" alt="condor_theta" width="700">
+</p>
 
 Markets create these structures because different participants have different:
 - Risk preferences
@@ -474,9 +491,6 @@ $$
 - **$105-$110:** Delta decreases (short $105 call activating)
 - **Above $110:** Delta ≈ 0 (all wings balanced, all ITM)
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_delta_profile.png?raw=true" alt="condor_delta" width="700">
-</p>
 **Figure 2:** Delta profile of long condor showing near-zero delta within the body (profit zone) and small positive delta in the wings, demonstrating the range-neutral characteristic.
 
 **Practical implication:**
@@ -529,9 +543,6 @@ You sold 2 options (short $100 and $105 calls) and bought 2 options (long $95 an
 
 **Theta evolution:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/condor_theta_decay.png?raw=true" alt="condor_theta" width="700">
-</p>
 **Figure 3:** Theta decay acceleration for condor over time, showing how time decay benefits the position as expiration approaches, with maximum theta in final two weeks.
 
 **Pattern:**

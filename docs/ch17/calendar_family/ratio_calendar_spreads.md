@@ -2,29 +2,18 @@
 
 **Ratio calendar spreads** are strategies where you use **unequal numbers of contracts** across different expiration dates, creating asymmetric positions that can enhance returns, reduce cost, or create unique risk/reward profiles by trading both term structure differences and quantity ratios simultaneously.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_greeks.png?raw=true" alt="ratio_calendar_spreads_greeks" width="700">
-</p>
-<p align="center"><em>Figure 1: Greek exposures of ratio calendar spreads showing theta enhancement (1x2) vs. vega leverage (2x1) profiles</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_management.png?raw=true" alt="ratio_calendar_spreads_management" width="700">
-</p>
-<p align="center"><em>Figure 2: Position management framework for ratio calendars including adjustment triggers and risk monitoring</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_payoff.png?raw=true" alt="ratio_calendar_spreads_payoff" width="700">
-</p>
-<p align="center"><em>Figure 3: Payoff diagrams comparing 1x2 (unlimited upside risk) vs. 2x1 (defined risk) structures</em></p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_ratio_comparison.png?raw=true" alt="ratio_calendar_spreads_ratio_comparison" width="700">
-</p>
-<p align="center"><em>Figure 4: Ratio comparison showing theta collection vs. capital efficiency trade-offs across different ratios</em></p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_greeks.png?raw=true" alt="ratio_calendar_spreads_greeks" width="700">
+</p>
+<p align="center"><em>Figure 1: Greek exposures of ratio calendar spreads showing theta enhancement (1x2) vs. vega leverage (2x1) profiles</em></p>
 
 **The fundamental idea:**
 
@@ -50,9 +39,19 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 
 ## What Is a Ratio Calendar?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_management.png?raw=true" alt="ratio_calendar_spreads_management" width="700">
+</p>
+<p align="center"><em>Figure 2: Position management framework for ratio calendars including adjustment triggers and risk monitoring</em></p>
+
 **Before understanding ratio calendars, we need to recall standard calendars:**
 
 ### Quick Standard Calendar Recap
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_payoff.png?raw=true" alt="ratio_calendar_spreads_payoff" width="700">
+</p>
+<p align="center"><em>Figure 3: Payoff diagrams comparing 1x2 (unlimited upside risk) vs. 2x1 (defined risk) structures</em></p>
 
 **Standard 1:1 calendar spread:**
 
@@ -92,6 +91,11 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 ---
 
 ## The Structure
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_ratio_comparison.png?raw=true" alt="ratio_calendar_spreads_ratio_comparison" width="700">
+</p>
+<p align="center"><em>Figure 4: Ratio comparison showing theta collection vs. capital efficiency trade-offs across different ratios</em></p>
 
 ### Basic Ratio Calendar Construction
 

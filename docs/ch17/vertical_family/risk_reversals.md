@@ -2,25 +2,17 @@
 
 **Risk reversals** are zero-cost or near-zero-cost directional option strategies where you simultaneously sell an out-of-the-money option in one direction and buy an out-of-the-money option in the opposite direction, creating a synthetic long or short stock position with defined risk on one side and unlimited potential on the other.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_delta_comparison.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_payoff.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_skew_trading.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_use_cases.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_delta_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -52,9 +44,17 @@ $$
 
 ## What Are Risk Reversals?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before trading risk reversals, understand the two main types:**
 
 ### Bullish Risk Reversal (Synthetic Long Stock)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_skew_trading.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Definition:** Sell OTM put, buy OTM call, typically for zero or small net cost/credit.
 
@@ -89,6 +89,10 @@ $$
 
 ### Bearish Risk Reversal (Synthetic Short Stock)
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_use_cases.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Definition:** Sell OTM call, buy OTM put, typically for zero or small net cost/credit.
 
 **Structure:**
@@ -120,18 +124,23 @@ $$
 - Negative delta exposure
 - Exploits call-put skew
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals.png?raw=true" alt="risk_reversals" width="700">
-</p>
 **Figure 1:** Profit/loss diagrams for bullish risk reversal (left) and bearish risk reversal (right), showing synthetic stock-like payoffs with unlimited risk on one side and unlimited/large profit on the other, typically entered for zero cost.
 
 ---
 
 ## Economic Interpretation: Synthetic Stock Without Capital
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/risk_reversals.png?raw=true" alt="risk_reversals" width="700">
+</p>
+
 **Beyond the basic definition, understanding what risk reversals REALLY are economically:**
 
 ### Risk Reversals as Leveraged Stock Substitutes
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/risk_reversal_delta.png?raw=true" alt="rr_delta" width="600">
+</p>
 
 **The deep insight:**
 
@@ -571,9 +580,6 @@ $$
 
 **The S-curve pattern:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/risk_reversal_delta.png?raw=true" alt="rr_delta" width="600">
-</p>
 
 **Key insights:**
 

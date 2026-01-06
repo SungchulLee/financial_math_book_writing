@@ -2,54 +2,6 @@
 
 **Strips and straps** are directional volatility strategies that combine unequal ratios of puts and calls at the same strike, expressing both a directional bias and a volatility bet - strips favor downside (2 puts : 1 call) while straps favor upside (1 put : 2 calls).
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/straddle_strip_strap_comparison.png?raw=true" alt="Comparison of straddle, strip, and strap structures showing payoff symmetry vs directional bias." width="700">
-
-**Figure:** Comparison of straddle, strip, and strap structures showing payoff symmetry vs directional bias.
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strap_payoff.png?raw=true" alt="Payoff diagram of a strap strategy (2 calls + 1 put), highlighting upside leverage." width="700">
-
-**Figure:** Payoff diagram of a strap strategy (2 calls + 1 put), highlighting upside leverage.
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_payoff.png?raw=true" alt="Payoff diagram of a strip strategy (1 call + 2 puts), highlighting downside leverage." width="700">
-
-**Figure:** Payoff diagram of a strip strategy (1 call + 2 puts), highlighting downside leverage.
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_greeks.png?raw=true" alt="Greek profiles (delta, gamma, theta, vega) for strip and strap strategies." width="700">
-
-**Figure:** Greek profiles (delta, gamma, theta, vega) for strip and strap strategies.
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_scenarios.png?raw=true" alt="Scenario analysis of strip and strap performance under different price outcomes." width="700">
-
-**Figure:** Scenario analysis of strip and strap performance under different price outcomes.
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_time_decay.png?raw=true" alt="Time decay (theta) behavior of a strip position as expiration approaches." width="700">
-
-**Figure:** Time decay (theta) behavior of a strip position as expiration approaches.
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_vs_two_puts.png?raw=true" alt="Comparison of a strip versus holding two long puts." width="700">
-
-**Figure:** Comparison of a strip versus holding two long puts.
-</p>
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strips_and_straps_breakeven_analysis.png?raw=true" alt="Breakeven analysis for strip and strap strategies." width="700">
-
-**Figure:** Breakeven analysis for strip and strap strategies.
-</p>
-
 ---
 
 ## The Core Insight
@@ -83,6 +35,72 @@ $$
 **You're essentially betting: "The stock will make a BIG move, and I think it's more likely to go in MY direction (down for strips, up for straps), but I'm hedged if wrong."**
 
 ---
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/straddle_strip_strap_comparison.png?raw=true" alt="Comparison of straddle, strip, and strap structures showing payoff symmetry vs directional bias." width="700">
+
+**Figure:** Comparison of straddle, strip, and strap structures showing payoff symmetry vs directional bias.
+</p>
+
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strap_payoff.png?raw=true" alt="Payoff diagram of a strap strategy (2 calls + 1 put), highlighting upside leverage." width="700">
+
+**Figure:** Payoff diagram of a strap strategy (2 calls + 1 put), highlighting upside leverage.
+</p>
+
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_payoff.png?raw=true" alt="Payoff diagram of a strip strategy (1 call + 2 puts), highlighting downside leverage." width="700">
+
+**Figure:** Payoff diagram of a strip strategy (1 call + 2 puts), highlighting downside leverage.
+</p>
+
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_greeks.png?raw=true" alt="Greek profiles (delta, gamma, theta, vega) for strip and strap strategies." width="700">
+
+**Figure:** Greek profiles (delta, gamma, theta, vega) for strip and strap strategies.
+</p>
+
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_scenarios.png?raw=true" alt="Scenario analysis of strip and strap performance under different price outcomes." width="700">
+
+**Figure:** Scenario analysis of strip and strap performance under different price outcomes.
+</p>
+
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_time_decay.png?raw=true" alt="Time decay (theta) behavior of a strip position as expiration approaches." width="700">
+
+**Figure:** Time decay (theta) behavior of a strip position as expiration approaches.
+</p>
+
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_vs_two_puts.png?raw=true" alt="Comparison of a strip versus holding two long puts." width="700">
+
+**Figure:** Comparison of a strip versus holding two long puts.
+</p>
+
+
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strips_and_straps_breakeven_analysis.png?raw=true" alt="Breakeven analysis for strip and strap strategies." width="700">
+
+**Figure:** Breakeven analysis for strip and strap strategies.
+</p>
+
+
+
+
 
 ## What Are Strips and Straps?
 
@@ -188,9 +206,6 @@ $$
 
 - **Max loss at strike:** If stock exactly at $100, all options expire worthless
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_payoff.png?raw=true" alt="strip_strap" width="700">
-</p>
 **Figure 1:** Payoff diagrams comparing straddle (symmetric), strip (bearish bias), and strap (bullish bias), showing how the 2:1 ratio creates asymmetric profit potential favoring the biased direction.
 
 ---
@@ -233,7 +248,12 @@ $$
 
 - Bet: Big move either direction, prefer up
 
-- Cost: 3× ATM options = $15
+- Cost: 3×
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_strap_payoff.png?raw=true" alt="strip_strap" width="700">
+</p>
+ ATM options = $15
 
 - Profit ratio: 2:1 up vs. 1:1 down
 
@@ -1106,9 +1126,6 @@ You bought 3 options. Time decay works AGAINST you.
 
 **Theta evolution:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/strip_theta_decay.png?raw=true" alt="strip_theta" width="700">
-</p>
 **Figure 2:** Theta decay for strip showing accelerating time decay as expiration approaches, with 50% of value lost in final 2 weeks if stock unmoved.
 
 ### Vega: Positive (Long Volatility)
@@ -1213,7 +1230,12 @@ $$
 
 - But IV crushes: 70% → 35% (-35%)
 
-- **Vega loss:** -0.65 × 35 = -$2,275 (!!)
+- **Vega loss:** -0.65 × 35 = -$2,275 (!!
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/strip_theta_decay.png?raw=true" alt="strip_theta" width="700">
+</p>
+)
 
 **P&L breakdown:**
 

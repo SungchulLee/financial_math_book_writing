@@ -1,29 +1,25 @@
 # Volatility Cone Analysis  
 ## Using Historical Volatility Ranges to Identify IV Opportunities
 
-**Volatility cone analysis** compares current implied volatility to the historical distribution of realized volatility over different horizons, helping identify when implied volatility is **unusually high or low** relative to history.
-
-This approach provides a **statistical framework** for volatility trading decisions.
-
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_cone.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_percentile.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
+**Volatility cone analysis** compares current implied volatility to the historical distribution of realized volatility over different horizons, helping identify when implied volatility is **unusually high or low** relative to history.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_signals.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
+This approach provides a **statistical framework** for volatility trading decisions.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_term_structure.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
+
+
+
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_percentile.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -47,7 +43,15 @@ This approach provides a **statistical framework** for volatility trading decisi
 
 ## What Is a Volatility Cone?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_signals.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 ### Definition
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_term_structure.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 A **volatility cone** is constructed by:
 

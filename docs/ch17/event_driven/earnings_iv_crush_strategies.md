@@ -2,25 +2,17 @@
 
 **Earnings IV Crush strategies** are options approaches designed to exploit the predictable phenomenon where implied volatility spikes before earnings announcements and then collapses immediately afterward, regardless of the actual stock move, creating systematic profit opportunities from volatility mean reversion rather than directional bets.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_comparison.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_iv_pattern.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_payoff.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -50,9 +42,17 @@ $$
 
 ## What Is Earnings IV Crush?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_iv_pattern.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before understanding earnings strategies, we need to understand the earnings cycle:**
 
 ### The Earnings IV Cycle
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_payoff.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **What is it?**
 
@@ -107,6 +107,10 @@ Implied volatility follows a **predictable pattern** around earnings announcemen
 - Next cycle begins
 
 ### Why Does IV Crush Happen?
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental reason:**
 

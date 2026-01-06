@@ -2,6 +2,19 @@
 
 **Gamma scalping** is a trading strategy that systematically profits by **buying low and selling high** through frequent rebalancing of a hedged option position.
 
+
+- Own an option + hedge with stock
+- When the stock moves, your hedge becomes unbalanced
+- Rebalance by trading in the opposite direction
+- This forces you to buy after drops and sell after rises
+- Repeat this many times to accumulate profits
+
+**You're essentially converting stock volatility into systematic "buy low, sell high" trades.**
+
+---
+
+## The Basic Idea
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/gamma_scalping_mechanism.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -31,18 +44,6 @@
 ## The Core Insight
 
 **The fundamental idea is simple:**
-
-- Own an option + hedge with stock
-- When the stock moves, your hedge becomes unbalanced
-- Rebalance by trading in the opposite direction
-- This forces you to buy after drops and sell after rises
-- Repeat this many times to accumulate profits
-
-**You're essentially converting stock volatility into systematic "buy low, sell high" trades.**
-
----
-
-## The Basic Idea
 
 **What you do:**
 

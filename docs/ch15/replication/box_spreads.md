@@ -6,6 +6,17 @@
 
 ## The Core Insight
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/box_spread_payoff.png?raw=true" alt="box_spread" width="700">
+</p>
+**Figure 1:** Box spread payoff diagram showing flat payoff equal to strike width regardless of underlying stock price at expiration.
+
+### Short Box (Reverse Position)
+
+**When to use:** Sell box if market price > theoretical value
+
+**Structure:**
+
 **The fundamental idea:**
 
 - Options are derivatives of stock, bound by put-call parity
@@ -31,6 +42,13 @@ $$
 ---
 
 ## What Is a Box Spread?
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/box_theta_convergence.png?raw=true" alt="box_theta" width="700">
+</p>
+**Figure 2:** Box spread value convergence to strike width over time, showing how time decay (theta) drives value from discounted present value to face value at expiration.
+
+**Pattern:**
 
 **Before trading boxes, understand what you're creating:**
 
@@ -75,16 +93,6 @@ $110 | $5 ($105 - $100) | $0 (both OTM) | **$5**
 
 **Key insight: Stock price is IRRELEVANT! Box always pays strike width.**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/box_spread_payoff.png?raw=true" alt="box_spread" width="700">
-</p>
-**Figure 1:** Box spread payoff diagram showing flat payoff equal to strike width regardless of underlying stock price at expiration.
-
-### Short Box (Reverse Position)
-
-**When to use:** Sell box if market price > theoretical value
-
-**Structure:**
 
 - **Sell:** $100 call + $105 put (collect premium)
 - **Buy:** $105 call + $100 put (pay premium)
@@ -680,12 +688,6 @@ Box value moves from PV of strike width → strike width as expiration approache
 
 **Theta evolution:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/box_theta_convergence.png?raw=true" alt="box_theta" width="700">
-</p>
-**Figure 2:** Box spread value convergence to strike width over time, showing how time decay (theta) drives value from discounted present value to face value at expiration.
-
-**Pattern:**
 
 - Far from expiration: Slow convergence
 - Last 30 days: Accelerating approach

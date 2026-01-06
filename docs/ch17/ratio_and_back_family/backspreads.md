@@ -2,41 +2,21 @@
 
 **Backspreads** are reverse ratio spreads where you buy more options than you sell at different strikes, creating unlimited profit potential in the favored direction while often collecting a credit or paying minimal debit, combining directional bias with volatility exposure.
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/backspread_greeks.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/backspread_ratio_comparison.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/backspread_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/backspread_vs_ratio.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/call_backspread.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_backspread.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/put_backspread.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/theta_decay_backspread.png?raw=true" alt="long_call_vs_put" width="700">
-</p>
 
 ---
 
 ## The Core Insight
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_greeks.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The fundamental idea:**
 
@@ -64,9 +44,17 @@ $$
 
 ## What Are Backspreads?
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_ratio_comparison.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Before trading backspreads, understand the structure:**
 
 ### Call Backspread (Bullish Volatility)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Definition:** Sell ITM/ATM calls, buy 2× OTM calls (higher strike).
 
@@ -108,6 +96,10 @@ $$
 
 ### Put Backspread (Bearish Volatility)
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_vs_ratio.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Definition:** Sell ITM/ATM puts, buy 2× OTM puts (lower strike).
 
 **Structure (1:2 ratio):**
@@ -146,18 +138,23 @@ $$
 - **Max loss:** At short put strike if entered for debit
 - **Breakeven (lower):** $K_2 - 2 \times (K_2 - K_1) = $100 - 2(5) = $90$
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/backspread_payoff.png?raw=true" alt="backspread" width="700">
-</p>
 **Figure 1:** Payoff diagrams comparing call backspread (unlimited upside profit) and put backspread (unlimited downside profit), showing limited risk zone between strikes and explosive profit potential beyond breakeven.
 
 ---
 
 ## Economic Interpretation: Leveraged Volatility Bet
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/call_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Beyond the basic definition, understanding what backspreads REALLY are economically:**
 
 ### Backspread vs. Ratio Spread (Opposite Structures)
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/iv_impact_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **Ratio spread (sell volatility):**
 
@@ -184,6 +181,10 @@ $$
 **Key insight:** Backspreads are the INVERSE of ratio spreads - you're buying the "lottery ticket" side.
 
 ### Why Backspreads Can Be Entered for Credit
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/put_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
 
 **The volatility skew advantage:**
 
@@ -212,6 +213,10 @@ In equity markets, OTM puts are more expensive than OTM calls (put skew).
 
 ### Backspread as Synthetic Straddle + Direction
 
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/theta_decay_backspread.png?raw=true" alt="long_call_vs_put" width="700">
+</p>
+
 **Alternative view:**
 
 $$
@@ -235,6 +240,10 @@ $$
 ---
 
 ## Key Terminology
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_payoff.png?raw=true" alt="backspread" width="700">
+</p>
 
 **Backspread:**
 
@@ -291,6 +300,10 @@ $$
 ---
 
 ## Why Trade Backspreads?
+
+<p align="center">
+<img src="https://github.com/SungchulLee/img/blob/main/backspread_theta.png?raw=true" alt="backspread_theta" width="700">
+</p>
 
 **Use cases:**
 
@@ -653,9 +666,6 @@ Buying 2× options creates more theta bleed than selling 1× option generates.
 
 **Theta evolution:**
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/backspread_theta.png?raw=true" alt="backspread_theta" width="700">
-</p>
 **Figure 2:** Theta decay for backspread showing net negative theta from owning more options than sold, accelerating in final weeks as OTM long options decay faster.
 
 ### Vega: Positive (Long Volatility)
