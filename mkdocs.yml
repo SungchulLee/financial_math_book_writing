@@ -501,7 +501,6 @@ nav:
 
       - 16 Greeks:
           - 16.1 Hedging:
-              - Delta-Neutral Portfolio: ch16/hedging/delta_neutral_portfolio_construction.md
               - Delta Hedging: ch16/hedging/delta_hedging.md
               - Static vs Dynamic Hedging: ch16/hedging/static_vs_dynamic_hedging.md
           - 16.2 Buy Low Sell High:
@@ -610,7 +609,7 @@ nav:
               - Duration Hedging: ch19/hedging/duration_hedging.md
               - Futures Overlays: ch19/hedging/futures_overlays.md
 
-      - 20 Credit and Default ---- :
+      - 20 Credit and Default:
           - 20.1 Credit Basics:
               - Credit Spreads and OAS: ch20/credit_basics/credit_spreads_oas.md
               - Default Risk and Recovery: ch20/credit_basics/default_risk_recovery.md
@@ -627,7 +626,7 @@ nav:
               - Distressed Credit Trading: ch20/event_driven/distressed_credit_trading.md
               - Ratings and Downgrade Risk: ch20/event_driven/ratings_downgrade_risk.md
 
-      - 21 FX ---- :
+      - 21 FX:
           - 21.1 FX Foundations:
               - Spot, Forwards, and Swaps: ch21/fx_foundations/spot_forwards_swaps.md
               - Interest Rate Parity: ch21/fx_strategies/interest_rate_parity.md
@@ -644,7 +643,7 @@ nav:
               - FX Hedging Programs: ch21/hedging/fx_hedging_programs.md
               - Overlay Strategies: ch21/hedging/overlay_strategies.md
 
-      - 22 Structured Product --- :
+      - 22 Structured Product:
           - 22.1 Embedded Options:
               - Payoff Engineering: ch22/mmbedded_options/payoff_engineering.md
               - Path Dependence Basics: ch22/mmbedded_options/path_dependence_basics.md
@@ -674,7 +673,7 @@ nav:
               - Cross-Asset Basis Trades: ch23/multi_product_rv/cross_asset_basis_trades.md
               - Statistical RV Across Assets: ch23/multi_product_rv/statistical_rv_across_assets.md
 
-      - 24 Variance and Volatility --- :
+      - 24 Variance and Volatility:
           - 24.1 Variance Products:
               - Variance Swaps: ch24/variance_products/variance_swaps.md
               - Volatility Swaps: ch24/variance_products/volatility_swaps.md
@@ -688,7 +687,7 @@ nav:
               - Crash Protection with Variance: ch24/tail_and_hedging/crash_protection_variance.md
               - Dynamic Vol Hedges: ch24/tail_and_hedging/dynamic_vol_hedges.md
 
-      - 25 Funding and Liquidity --- :
+      - 25 Funding and Liquidity:
           - 25.1 Funding Basics:
               - Repo and Securities Lending: ch25/funding_basics/repo_and_securities_lending.md
               - Balance Sheet Constraints: ch25/funding_basics/balance_sheet_constraints.md
@@ -702,7 +701,7 @@ nav:
               - Haircuts, Margin, and Funding Costs: ch25/implementation/haircuts_margin_funding_costs.md
               - Risk Controls for Leverage: ch25/implementation/risk_controls_for_leverage.md
 
-      - 26 Digital Asset ----- :
+      - 26 Digital Asset:
           - 26.1 Market Structure:
               - Spot vs Perpetuals: ch26/market_structure/spot_vs_perpetuals.md
               - Funding Rates and Open Interest: ch26/market_structure/funding_rates_open_interest.md
