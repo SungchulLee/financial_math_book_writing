@@ -1,4 +1,4 @@
-# Flight to Quality Strategies
+# Flight to Quality
 
 **Flight to quality strategies** are crisis-responsive trading approaches that exploit the systematic movement of capital from risky assets (equities, high-yield bonds, emerging markets) to safe-haven assets (US Treasuries, gold, Swiss franc, Japanese yen) during periods of market stress, geopolitical uncertainty, or economic crisis, profiting from the predictable repricing of safety premiums and risk aversion.
 
@@ -39,11 +39,11 @@ $$
 
 ---
 
-## What Is Flight to Quality?
+## What Is Flight to
 
 **Before trading flight to quality, understand the fundamental mechanics:**
 
-### 1. The Risk-On / Risk-Off Regime
+### 1. The Risk-On /
 
 **Two distinct market states:**
 
@@ -87,7 +87,7 @@ $$
 - Policy errors (Fed mistakes)
 - Black swan events (COVID-19)
 
-### 2. The Classic Safe Havens
+### 2. The Classic Safe
 
 **Four primary safe-haven assets:**
 
@@ -264,7 +264,7 @@ $$
 - Current account surplus
 - **Trust + stability**
 
-### 4. Historical Crisis Performance
+### 4. Historical Crisis
 
 **Comparing assets during major crises:**
 
@@ -296,7 +296,7 @@ $$
 
 **Beyond the patterns, understanding the economic rationale:**
 
-### 1. Risk Aversion and Portfolio Rebalancing
+### 1. Risk Aversion and
 
 **The deep insight:**
 
@@ -338,7 +338,7 @@ $$
 
 **This is SYSTEMATIC, not emotional!**
 
-### 2. Central Bank Responses Amplify Flows
+### 2. Central Bank
 
 **Policy reaction function:**
 
@@ -390,7 +390,7 @@ $$
 - SPY: -34%
 - **Perfect negative correlation**
 
-### 3. Liquidity Preference in Crisis
+### 3. Liquidity
 
 **Keynes' insight:**
 
@@ -433,7 +433,7 @@ $$
 - Cannot sell $10M corporate bonds
 - **Flight to liquidity = flight to quality**
 
-### 4. Correlation Dynamics (Diversification Breakdown)
+### 4. Correlation
 
 **Normal markets:**
 
@@ -487,7 +487,7 @@ $$
 
 **This is why flight to quality matters for portfolios.**
 
-### 5. Carry Trade Unwind (Yen Mechanics)
+### 5. Carry Trade
 
 **The carry trade:**
 
@@ -555,7 +555,7 @@ $$
 - Yen buying = yen appreciation
 - **Automatic bid in crisis**
 
-### 6. Gold as Monetary Crisis Hedge
+### 6. Gold as Monetary
 
 **Gold pricing model:**
 
@@ -721,11 +721,11 @@ $$
 
 ---
 
-## The Greeks (Flight to Quality Dynamics)
+## The Greeks (Flight
 
 **Safe-haven strategies have unique risk characteristics:**
 
-### 1. Delta (Directional Sensitivity to Crisis)
+### 1. Delta
 
 **Definition:** Sensitivity to equity market movements.
 
@@ -765,7 +765,7 @@ $$
 - SPY down 1% → Gold up 0.1-0.2%
 - **Secondary hedge**
 
-### 2. Gamma (Acceleration in Crisis)
+### 2. Gamma
 
 **Definition:** How delta changes as crisis intensifies.
 
@@ -838,7 +838,7 @@ $$
 - March-August: Gold +25%
 - **Post-crisis leader**
 
-### 3. Theta (Time Decay / Mean Reversion)
+### 3. Theta (Time Decay
 
 **Definition:** Expected return over time as crisis resolves.
 
@@ -872,7 +872,7 @@ $$
 - Hold too long = give back profits
 - **Exit timing critical**
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **Definition:** Sensitivity to market volatility regime.
 
@@ -914,7 +914,7 @@ $$
 - Monetary response kicks in
 - **Delayed positive vega**
 
-### 5. Rho (Interest Rate Sensitivity)
+### 5. Rho (Interest
 
 **Definition:** Sensitivity to interest rate changes.
 
@@ -968,7 +968,7 @@ $$
 
 **Different safe havens for different crisis types:**
 
-### 1. US Treasuries (TLT) - Best for Financial Crises
+### 1. US Treasuries
 
 **Optimal scenarios:**
 
@@ -1011,7 +1011,7 @@ $$
 - Need liquidity
 - **Default safe haven**
 
-### 2. Gold - Best for Monetary/Inflation Crises
+### 2. Gold - Best for
 
 **Optimal scenarios:**
 
@@ -1062,7 +1062,7 @@ $$
 - Long time horizon
 - **Monetary hedge**
 
-### 3. Japanese Yen - Best for Carry Trade Unwind
+### 3. Japanese Yen -
 
 **Optimal scenarios:**
 
@@ -1105,7 +1105,7 @@ $$
 - Monitor BOJ speeches
 - **Intervention risk**
 
-### 4. Swiss Franc - Best for European Crisis
+### 4. Swiss Franc -
 
 **Optimal scenarios:**
 
@@ -1148,7 +1148,7 @@ $$
 
 **Beginner recommendation: TLT (most reliable, liquid, no intervention risk)**
 
-### 6. Diversified Safe Haven Portfolio
+### 6. Diversified Safe
 
 **Optimal allocation:**
 
@@ -1188,7 +1188,7 @@ $$
 
 **Flight to quality is about TIMING:**
 
-### 1. Crisis Early Warning Indicators
+### 1. Crisis Early
 
 **Leading indicators of risk-off:**
 
@@ -1258,7 +1258,7 @@ $$
 - Natural disasters
 - **Event-driven**
 
-### 2. Entry Timing Strategies
+### 2. Entry Timing
 
 **Approach 1: Anticipatory (before crisis peak)**
 
@@ -1343,7 +1343,7 @@ $$
 - Allocation = min(40%, 17.5%) = 17.5%
 - **Dynamic sizing**
 
-### 3. Exit Timing Strategies
+### 3. Exit Timing
 
 **Approach 1: VIX normalization**
 
@@ -1430,7 +1430,7 @@ $$
 - Exit at extremes
 - **Fade the extension**
 
-### 4. Avoid These Timing Mistakes
+### 4. Avoid These
 
 **1. Entering after crisis peak:**
 
@@ -1480,9 +1480,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Long TLT (Financial Crisis Hedge)
+### 1. Long TLT
 
 **Setup:**
 
@@ -1543,7 +1543,7 @@ $$
 
 **Lesson: Exit when crisis resolves!**
 
-### 2. Long Gold (Monetary Crisis Hedge)
+### 2. Long Gold
 
 **Setup:**
 
@@ -1592,7 +1592,7 @@ $$
 - Gain: +40.3%
 - **Patience rewarded**
 
-### 3. JPY Long (Carry Unwind)
+### 3. JPY Long (Carry
 
 **Setup:**
 
@@ -1641,9 +1641,9 @@ $$
 
 ---
 
-## When to Use Flight to Quality Strategies
+## When to Use Flight
 
-### 1. Ideal Market Conditions
+### 1. Ideal Market
 
 **Use safe havens when:**
 
@@ -1706,7 +1706,7 @@ $$
 - Safe havens insurance
 - **Defensive positioning**
 
-### 2. Specific Use Cases
+### 2. Specific Use
 
 **Use Case 1: Portfolio insurance (60/40)**
 
@@ -1799,9 +1799,9 @@ $$
 
 ---
 
-## When NOT to Use Flight to Quality Strategies
+## When NOT to Use
 
-### 1. Avoid These Situations
+### 1. Avoid These
 
 **1. Strong risk-on environment:**
 
@@ -1916,7 +1916,7 @@ $$
 - Or cash
 - **Gold lags initially**
 
-### 2. Warning Signs to Exit
+### 2. Warning Signs to
 
 **1. VIX collapsing:**
 
@@ -1969,7 +1969,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
 ### 1. The Golden Rule
 
@@ -2020,7 +2020,7 @@ $$
 - Net: -$157.5k (vs -$210k unhedged)
 - **Saved $52.5k (25%)**
 
-### 2. Portfolio Allocation Frameworks
+### 2. Portfolio
 
 **Conservative (retired, risk-averse):**
 
@@ -2070,7 +2070,7 @@ $$
 - 5% Cash
 - **Maximum defensive**
 
-### 3. Diversification Across Safe Havens
+### 3. Diversification
 
 **Don't concentrate in one:**
 
@@ -2106,7 +2106,7 @@ $$
 
 **Low correlation = better diversification**
 
-### 4. Stop Loss Strategy
+### 4. Stop Loss
 
 **Safe havens don't use traditional stops:**
 
@@ -2160,7 +2160,7 @@ $$
 
 **Perfect exit (VIX back to normal)**
 
-### 5. Rebalancing Discipline
+### 5. Rebalancing
 
 **Dynamic rebalancing:**
 
@@ -2196,7 +2196,7 @@ $$
 - Buy low (add in recovery)
 - **Contrarian discipline**
 
-### 6. Example
+### 6. Portfolio:
 
 **Portfolio: $2,000,000**
 
@@ -2255,9 +2255,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: March
 
 **The error:**
 
@@ -2288,7 +2288,7 @@ $$
 - Switch to gold
 - **Rotation strategy**
 
-### 2. Mistake #2
+### 2. The error:
 
 **The error:**
 
@@ -2308,7 +2308,7 @@ $$
 - Rotate to equities (recovery)
 - **Active management**
 
-### 3. Mistake #3
+### 3. The error: 2021:
 
 **The error:**
 
@@ -2333,7 +2333,7 @@ $$
 - Or short-duration bonds
 - **Rate-appropriate**
 
-### 4. Mistake #4
+### 4. The error: All
 
 **The error:**
 
@@ -2366,7 +2366,7 @@ $$
 - Lower correlation
 - **Better risk management**
 
-### 5. Mistake #5
+### 5. The error: Crisis
 
 **The error:**
 
@@ -2396,7 +2396,7 @@ $$
 - Rotate to gold later (monetary crisis)
 - **Two-stage approach**
 
-### 6. Mistake #6
+### 6. The error: US
 
 **The error:**
 
@@ -2416,7 +2416,7 @@ $$
 - EUR investor: CHF better (regional)
 - **Currency awareness**
 
-### 7. Mistake #7
+### 7. The error: Fear
 
 **The error:**
 
@@ -2444,7 +2444,7 @@ $$
 - 60-70% equities (growth)
 - **Balance protection and growth**
 
-### 8. Mistake #8
+### 8. The error: Own
 
 **The error:**
 
@@ -2464,7 +2464,7 @@ $$
 - Trust the thesis
 - **Hold through volatility**
 
-### 9. Mistake #9
+### 9. The error: 2015:
 
 **The error:**
 
@@ -2483,7 +2483,7 @@ $$
 - Rebalance to target
 - **Dynamic management**
 
-### 10. Mistake #10
+### 10. The error:
 
 **The error:**
 

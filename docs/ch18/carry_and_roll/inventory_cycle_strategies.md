@@ -1,4 +1,4 @@
-# Inventory Cycle Strategies
+# Inventory Cycle
 
 **Inventory cycle strategies** are options trading approaches that exploit predictable patterns in commodity and equity markets driven by inventory build-up and draw-down cycles, using fundamental supply-demand data to time directional options positions with defined risk.
 
@@ -34,7 +34,7 @@ $$
 
 ---
 
-## What Are Inventory Cycle Strategies?
+## What Are Inventory
 
 **Before executing inventory-based trades, understand the mechanics:**
 
@@ -71,7 +71,7 @@ $$
 - Calls: $1.20 → $3.00 (+150%)
 - Exit same day: Profit $180 per contract
 
-### 2. The Inverse Relationship
+### 2. The Inverse
 
 **Understanding the price dynamics:**
 
@@ -102,7 +102,7 @@ $$
 - Tech (AAPL): Low inventory might signal production issues (bad)
 - Retail (WMT): High inventory pre-holiday might be good (stocking up)
 
-### 3. Scheduled vs. Unscheduled Reports
+### 3. Scheduled vs.
 
 **Scheduled reports (most common):**
 
@@ -144,7 +144,7 @@ $$
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Inventory-Price Relationship
+### 1. The
 
 **The deep insight:**
 
@@ -197,7 +197,7 @@ $$
 
 **The edge: Data-driven timing beats chart-watching**
 
-### 2. The Theory of Storage
+### 2. The Theory of
 
 **Academic foundation:**
 
@@ -244,7 +244,7 @@ $$
 - Backwardation (low inventory) → Buy calls (expect rally)
 - Contango (high inventory) → Buy puts (expect decline)
 
-### 3. Seasonal Patterns in Inventory
+### 3. Seasonal Patterns
 
 **Why inventory cycles exist:**
 
@@ -283,7 +283,7 @@ Where:
 
 **Deviation from seasonal pattern = Trading opportunity**
 
-### 4. The Inventory Surprise Premium
+### 4. The Inventory
 
 **Market efficiency paradox:**
 
@@ -314,7 +314,7 @@ You'd think scheduled reports are priced in, but:
 
 **The edge exists in the 35% of reports with surprises**
 
-### 5. The Gamma Scalping Opportunity
+### 5. The Gamma
 
 **Why options, not futures?**
 
@@ -344,7 +344,7 @@ You'd think scheduled reports are priced in, but:
 
 **Options are superior for inventory cycle trading**
 
-### 6. Put-Call Parity in Commodity Options
+### 6. Put-Call Parity
 
 **Fundamental relationship:**
 
@@ -378,7 +378,7 @@ Commodity options often have:
 - Put skew: 30% IV puts vs. 25% IV calls
 - **Buy calls (cheaper) rather than sell puts (expensive)**
 
-### 7. Why Inventory Cycle Trading Works
+### 7. Why Inventory
 
 **The informational edge:**
 
@@ -496,9 +496,9 @@ Commodity options often have:
 
 ---
 
-## Mathematical Foundation
+## Mathematical
 
-### 1. The Inventory-Price Elasticity
+### 1. The
 
 **Measuring price sensitivity to inventory changes:**
 
@@ -535,7 +535,7 @@ $$
 - Actual move: -$1.50 to -$2.00 (3-4x model)
 - **This overreaction creates options opportunity**
 
-### 2. Expected Value of Inventory Surprise Trade
+### 2. Expected Value of
 
 **Setup:**
 
@@ -587,7 +587,7 @@ $$
 
 **Still attractive for conservative sizing**
 
-### 3. Optimal Position Sizing for Inventory Trades
+### 3. Optimal Position
 
 **Kelly Criterion applied:**
 
@@ -616,7 +616,7 @@ $$
 
 **For $50k account: $1,050 per trade (reasonable)**
 
-### 4. Volatility Forecasting Around Reports
+### 4. Volatility
 
 **IV behavior around inventory releases:**
 
@@ -665,7 +665,7 @@ $$
 
 **Optimal entry: Monday, when IV still normal**
 
-### 5. Regression Model for Inventory Prediction
+### 5. Regression Model
 
 **Statistical approach:**
 
@@ -703,7 +703,7 @@ $$
 
 ---
 
-## Step-by-Step Setup
+## Key ideas
 
 ### 1. Phase 1
 
@@ -757,14 +757,14 @@ $$
 import pandas as pd
 import numpy as np
 
-# Load 5 years of weekly inventory data
+# Load 5 years of
 df = pd.read_csv('eia_crude_inventory.csv')
 
-# Calculate seasonal average by week
+# Calculate seasonal
 df['week'] = df['date'].dt.isocalendar().week
 seasonal = df.groupby('week')['inventory'].mean()
 
-# Current deviation from seasonal
+# Current deviation
 current_inv = 420  # million barrels
 seasonal_norm = seasonal[current_week]  # e.g., 435M
 deviation = current_inv - seasonal_norm  # -15M (tight!)
@@ -1432,7 +1432,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Date: February 7, 2024**
 
@@ -1500,7 +1500,7 @@ $$
 
 **Key lesson: When fundamentals align (tight stocks, strong demand), inventory surprises can be enormous**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Date: November 16, 2023**
 
@@ -1551,7 +1551,7 @@ $$
 
 **Key lesson: Even moderate inventory surprises can be profitable with options leverage**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Date: May 2, 2024**
 
@@ -1600,7 +1600,7 @@ $$
 
 **Key lesson: Inventory strategies work both directions - puts for builds, calls for draws**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Date: August 2024**
 
@@ -1655,7 +1655,7 @@ $$
 - Exit when thesis breaks (should have closed at -50%)
 - **Inventory strategies have losses - manage risk**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Date: June 30, 2024**
 
@@ -1714,7 +1714,7 @@ $$
 
 ## Risk Management
 
-### 1. Position Sizing for Inventory Trades
+### 1. Position Sizing
 
 **The weekly trade frequency challenge:**
 
@@ -1744,7 +1744,7 @@ $$
 - After 4 losses: 1% risk
 - **Reduce size during cold streaks**
 
-### 2. Stop Loss Discipline
+### 2. Stop Loss
 
 **For inventory trades:**
 
@@ -1774,7 +1774,7 @@ $$
 - **Exit at $0.15, lose $850 per 10 contracts**
 - **But preserved $150 vs. holding to zero**
 
-### 3. Profit Taking Strategy
+### 3. Profit Taking
 
 **For inventory trades:**
 
@@ -1832,7 +1832,7 @@ $$
 - Spreads widen
 - **Always exit Wednesday or Thursday**
 
-### 5. Diversification Across Reports
+### 5. Diversification
 
 **Don't concentrate:**
 
@@ -1857,7 +1857,7 @@ $$
 - Smooths equity curve
 - **Reduces single-report risk**
 
-### 6. Risk Management Checklist
+### 6. Risk Management
 
 **Before entry (Monday):**
 

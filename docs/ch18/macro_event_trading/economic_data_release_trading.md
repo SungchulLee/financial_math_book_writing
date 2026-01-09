@@ -1,4 +1,4 @@
-# Economic Data Release Trading
+# Economic Data
 
 **Economic data release trading** involves positioning futures contracts before or immediately after scheduled macroeconomic announcements, profiting from the volatility spike and directional moves created by surprises relative to market expectations, while managing the substantial risk of binary outcomes and potential whipsaw reversals.
 
@@ -40,11 +40,11 @@ $$
 
 ---
 
-## What is Economic Data Release Trading?
+## What is Economic
 
 **Before trading data releases, understand what you're actually trading:**
 
-### 1. Economic Data Release Defined
+### 1. Economic Data
 
 **Definition:** Trading futures contracts in anticipation of, during, or immediately after scheduled macroeconomic data announcements, capitalizing on the information asymmetry, volatility expansion, and price discovery process.
 
@@ -163,7 +163,7 @@ $$
 
 **Beyond the mechanical reaction, understanding the economic significance:**
 
-### 1. The Information Content
+### 1. The Information
 
 **Economic data reveals:**
 
@@ -183,7 +183,7 @@ $$
    - Consumer spending → Retail earnings
    - Manufacturing → Industrial earnings
 
-### 2. The Surprise Principle
+### 2. The Surprise
 
 **Why surprises matter:**
 
@@ -214,7 +214,7 @@ Where:
 - CPI: $\beta \approx -20$ (ES points per 0.1% surprise)
 - GDP: $\beta \approx 15$ (ES points per 1% surprise)
 
-### 3. The Federal Reserve Reaction Function
+### 3. The Federal
 
 **Most important linkage:**
 
@@ -244,7 +244,7 @@ $$
 
 **This is why NFP and CPI are MOST important data!**
 
-### 4. Time-Varying Sensitivity
+### 4. Time-Varying
 
 **Market sensitivity changes:**
 
@@ -262,7 +262,7 @@ $$
 
 **Current regime identification is CRITICAL!**
 
-### 5. Why This Perspective Matters
+### 5. Why This
 
 **Understanding economics helps you:**
 
@@ -456,11 +456,11 @@ $$
 
 ---
 
-## Contract Specifications
+## Contract
 
 **Understanding sensitivity of different futures to economic releases:**
 
-### 1. Equity Index Futures (Multi-Data Sensitivity)
+### 1. Equity Index
 
 **E-mini S&P 500 (ES):**
 
@@ -493,7 +493,7 @@ $$
 - More volatile
 - **Preferred for aggressive traders**
 
-### 2. Interest Rate Futures (Fed-Focused)
+### 2. Interest Rate
 
 **10-Year Treasury Note (ZN):**
 
@@ -521,7 +521,7 @@ $$
 - Most sensitive to FOMC
 - **Average move: ±10-25 bps implied**
 
-### 3. Currency Futures (Dollar Strength)
+### 3. Currency Futures
 
 **Euro (6E):**
 
@@ -547,7 +547,7 @@ $$
 - Reflects overall dollar strength
 - **Good Fed reaction trade**
 
-### 4. Commodity Futures (Mixed Sensitivity)
+### 4. Commodity Futures
 
 **Crude Oil (CL):**
 
@@ -590,7 +590,7 @@ $$
 - Crop reports, WASDE
 - **Ignore general NFP/CPI**
 
-### 5. Selecting the Right Contract
+### 5. Selecting the
 
 **Decision matrix:**
 
@@ -609,9 +609,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Understanding Data Release P&L
+### 1. Understanding
 
 **The profit equation:**
 
@@ -631,7 +631,7 @@ $$
 - Price gaps
 - **Execution at worse prices**
 
-### 2. Maximum Profit Scenarios
+### 2. Maximum Profit
 
 **Best case: Large surprise, perfect execution**
 
@@ -666,7 +666,7 @@ $$
 - Exit at 4,445 (low)
 - **Profit: 55 points = $55,000** (perfect trade)
 
-### 3. Maximum Loss Scenarios
+### 3. Maximum Loss
 
 **Worst case: Wrong direction, whipsaw, stopped out**
 
@@ -733,7 +733,7 @@ $$
 - Instant wipeout
 - **This is why pre-positioning is so risky!**
 
-### 5. Risk-Reward Analysis
+### 5. Risk-Reward
 
 **Typical data release trade:**
 
@@ -761,7 +761,7 @@ $$
 
 ---
 
-## Entry and Exit Strategies
+## Entry and Exit
 
 ### 1. Entry Strategies
 
@@ -1029,7 +1029,7 @@ $$
 - **Exit at 4,476 (9-point profit)**
 - Saved from whipsaw!
 
-### 3. Position Management
+### 3. Position
 
 **1. Scaling**
 

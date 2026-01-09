@@ -1,4 +1,4 @@
-# Roll Yield Strategies
+# Roll Yield
 
 **Roll yield strategies** involve systematically profiting from or managing the cost/benefit of rolling futures positions from expiring contracts to later-dated contracts, exploiting predictable patterns in the futures curve shape (contango or backwardation) to generate returns independent of absolute price movements.
 
@@ -40,7 +40,7 @@ $$
 
 **Before trading roll yield, understand what you're actually capturing:**
 
-### 1. The Rolling Mechanism
+### 1. The Rolling
 
 **Definition:** Roll yield is the profit or loss from closing an expiring futures contract and opening the next contract, driven by the difference in price between the two contracts.
 
@@ -64,7 +64,7 @@ $$
 
 **This $2 cost is negative roll yield in contango.**
 
-### 2. Contango vs. Backwardation
+### 2. Contango vs.
 
 **Contango (Upward-sloping curve):**
 
@@ -114,7 +114,7 @@ $$
 - Open June at $77
 - **Gain: $3/barrel (positive roll yield)**
 
-### 3. The Compounding Effect
+### 3. The Compounding
 
 **Single roll:**
 - Roll cost/benefit: $2/barrel
@@ -142,7 +142,7 @@ $$
 
 This is why understanding roll yield is CRITICAL.
 
-### 4. Real-World Example
+### 4. Real-World
 
 **The commodity ETF trap:**
 
@@ -184,7 +184,7 @@ This is why understanding roll yield is CRITICAL.
 
 **Beyond the mechanical explanation, understanding the economic drivers:**
 
-### 1. The Cost of Carry Framework
+### 1. The Cost of Carry
 
 **For storable commodities, futures prices reflect carry costs:**
 
@@ -218,7 +218,7 @@ If $y > r + u$ (convenience yield > carry costs):
 - Near contracts higher (immediate need premium)
 - **Positive roll yield for longs**
 
-### 2. Storage Theory and Convenience Yield
+### 2. Storage Theory
 
 **The Theory of Storage (Kaldor, Working, Brennan):**
 
@@ -256,7 +256,7 @@ If $y > r + u$ (convenience yield > carry costs):
 - Net carry: -8%
 - **Backwardation: $5-$10/barrel (positive roll yield)**
 
-### 3. Why This Perspective Matters
+### 3. Why This
 
 **Understanding roll yield economics helps you:**
 
@@ -308,7 +308,7 @@ Roll yield can be +100% or -90% annually. It compounds. It's predictable. It's o
 - **All from roll yield**
 - Don't let this be you! ⚠️
 
-### 25. Core Concept
+### 1. Core Concept
 
 **Roll yield is the profit or loss from rolling futures contracts:**
 
@@ -326,7 +326,7 @@ $$
 - Independent of spot price direction
 - **Can make or break commodity investing**
 
-### 26. The Compounding Effect
+### 2. The Compounding
 
 **Single roll:** Small impact (-3%)
 **Multiple rolls:** MASSIVE impact
@@ -337,7 +337,7 @@ $$
 - 5 years: -85% cumulative
 - **Time multiplies roll impact**
 
-### 27. Contango vs. Backwardation
+### 3. Contango vs.
 
 **Contango (negative roll):**
 
@@ -359,7 +359,7 @@ $$
 - Indicates supply tightness
 - **Benefits long positions (sell high, buy low)**
 
-### 28. When to Trade for Roll Yield
+### 4. When to Trade for
 
 **Enter long when:**
 - Backwardation >5% monthly
@@ -373,7 +373,7 @@ $$
 - High inventory levels
 - **Negative roll expected - use alternatives!**
 
-### 29. Best Case
+### 5. Best Case
 
 **Example: 2022 Europe Natural Gas**
 - Entry: €40/MWh (backwardation €5/month)
@@ -381,7 +381,7 @@ $$
 - Spot also rose: +€30 (+75%)
 - **Total: +160% (roll > spot!)** 🎯
 
-### 30. Worst Case
+### 6. Worst Case
 
 **Example: USO 2009-2020**
 - Oil spot: $50 → $40 (-20%)
@@ -389,7 +389,7 @@ $$
 - **Roll yield cost: -75%!** ☠️
 - Persistent contango killed the fund
 
-### 31. Critical Lessons
+### 7. Critical Lessons
 
 **From USO disaster:**
 - Never buy commodity ETFs in contango
@@ -403,7 +403,7 @@ $$
 - Natural gas: Long winter, avoid summer
 - **Curve shape matters more than price**
 
-### 32. Alternatives to Avoid Negative Roll
+### 8. Alternatives to
 
 **In persistent contango (>3% monthly):**
 - Commodity stocks (no roll, dividends)
@@ -411,7 +411,7 @@ $$
 - Long-dated options (1-2 rolls/year vs. 12)
 - **Don't use front-month futures!**
 
-### 33. Key Magnitudes
+### 9. Key Magnitudes
 
 | Commodity | Typical Contango | Typical Backwardation |
 |-----------|-----------------|---------------------|

@@ -1,4 +1,4 @@
-# Calendar Spread Carry
+# Calendar Spread
 
 **Calendar spread carry** involves simultaneously buying one futures contract month and selling another month of the same commodity to profit from changes in the price differential (spread) between the two contracts, capturing the carry (cost or benefit of holding the spread) while being market-neutral to absolute price movements.
 
@@ -35,11 +35,11 @@ $$
 
 ---
 
-## What Are Calendar Spreads?
+## What Are Calendar
 
 **Before trading calendar spreads, understand what you're actually trading:**
 
-### 1. Calendar Spread Defined
+### 1. Calendar Spread
 
 **Definition:** A calendar spread (also called time spread or horizontal spread) is a position where you simultaneously hold opposite positions in two different expiration months of the same futures contract.
 
@@ -104,7 +104,7 @@ $$
 
 **Notice:** Scenario A made money despite both legs moving. The spread change is what matters, not the absolute price direction!
 
-### 3. Why Calendar Spreads Exist
+### 3. Why Calendar
 
 **The spread reflects:**
 
@@ -151,7 +151,7 @@ $$
 
 **Beyond the mechanical definition, understanding the economic drivers:**
 
-### 1. The Theory of Storage
+### 1. The Theory of
 
 **Full carry market:**
 
@@ -182,7 +182,7 @@ $$
 - Stockout risk high
 - **Backwardation (positive spread)**
 
-### 2. Inventory Dynamics
+### 2. Inventory
 
 **High inventory → Contango → Negative spread:**
 
@@ -267,7 +267,7 @@ With $\beta < 0$ typically (higher inventory → wider contango)
 
 **Spread moved from -$1.00 to +$0.30 = +$1.30 widening!**
 
-### 5. The Convergence Property
+### 5. The Convergence
 
 **Critical feature of calendar spreads:**
 
@@ -296,7 +296,7 @@ $$
 
 **This convergence is NOT guaranteed to be linear or smooth, but the endpoint is certain.**
 
-### 6. Why This Perspective Matters
+### 6. Why This
 
 **Understanding spread economics helps you:**
 
@@ -510,11 +510,11 @@ $$
 
 ---
 
-## Contract Specifications
+## Contract
 
 **Understanding which commodities have the best spread trading opportunities:**
 
-### 1. Energy Commodities (High Spread Volatility)
+### 1. Energy
 
 **Crude Oil (WTI - NYMEX):**
 
@@ -576,7 +576,7 @@ $$
 **Winter:**
 - Nov-Dec spread: -$0.08 (contango in low season)
 
-### 2. Agricultural Commodities (Harvest Patterns)
+### 2. Agricultural
 
 **Corn (CBOT):**
 
@@ -612,7 +612,7 @@ $$
 - Spring wheat: August-September
 - **Less pronounced seasonality than corn**
 
-### 3. Precious Metals (Interest Rate Driven)
+### 3. Precious Metals
 
 **Gold (COMEX):**
 
@@ -652,7 +652,7 @@ $$
 - Slightly wider spreads than gold
 - More deviation from theory
 
-### 4. Livestock (Production Cycles)
+### 4. Livestock
 
 **Live Cattle (CME):**
 
@@ -676,7 +676,7 @@ $$
 - Trade policy (tariffs)
 - Consumer preference shifts
 
-### 5. Spread Liquidity Considerations
+### 5. Spread Liquidity
 
 **Most liquid spreads:**
 
@@ -698,9 +698,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Understanding Calendar Spread P&L
+### 1. Understanding
 
 **The profit/loss equation:**
 
@@ -718,7 +718,7 @@ $$
 
 **Key insight: Maximum profit/loss is LIMITED compared to outrights!**
 
-### 2. Maximum Profit (Long Spread)
+### 2. Maximum Profit
 
 **Theoretical maximum:**
 
@@ -760,7 +760,7 @@ $$
 | Corn | -$0.30 | +$0.10 | $0.40 |
 | Gold | -$25 | -$15 | $10 |
 
-### 3. Maximum Loss (Long Spread)
+### 3. Maximum Loss
 
 **Theoretical maximum:**
 
@@ -799,7 +799,7 @@ $$
 - Max loss: ~-$6/barrel (spread to -$8)
 - **Profit range: -$6 to +$12** (much narrower!)
 
-### 4. Real-World Example
+### 4. Real-World
 
 **Trade: Sell Dec-Mar spread**
 
@@ -842,7 +842,7 @@ $$
 - **Risk-reward: 2:1** (risking $500 to make $1,000)
 - Much better than outright position!
 
-### 5. Calendar Spread Risk vs. Outright Risk
+### 5. Calendar Spread
 
 **Volatility comparison:**
 
@@ -870,7 +870,7 @@ $$
 
 ---
 
-## Entry and Exit Strategies
+## Entry and Exit
 
 ### 1. Entry Strategies
 
@@ -1082,7 +1082,7 @@ $$
 - Pattern about to reverse
 - Lock in seasonal profit
 
-### 3. Position Management Techniques
+### 3. Position
 
 **1. Scaling Into Spreads**
 

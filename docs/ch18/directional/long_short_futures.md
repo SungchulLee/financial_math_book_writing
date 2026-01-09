@@ -1,4 +1,4 @@
-# Long and Short Futures
+# Long and Short
 
 **Long and short futures** are standardized contracts to buy or sell an asset at a predetermined price on a future date, giving you direct linear exposure to price movements with symmetrical unlimited risk and reward.
 
@@ -33,7 +33,7 @@ $$
 
 **Before trading futures, understand what you're entering:**
 
-### 1. Long Futures Position
+### 1. Long Futures
 
 **Definition:** An obligation to BUY the underlying asset at price $F$ on delivery date $T$ (or cash settle).
 
@@ -60,7 +60,7 @@ $$
 - Price → 4550: Profit = (4550 - 4500) × $50 = $2,500
 - Price → 4450: Loss = (4450 - 4500) × $50 = -$2,500
 
-### 2. Short Futures Position
+### 2. Short Futures
 
 **Definition:** An obligation to SELL the underlying asset at price $F$ on delivery date $T$ (or cash settle).
 
@@ -98,7 +98,7 @@ $$
 
 **Beyond the basic definition, understanding what futures REALLY are economically:**
 
-### 1. The Fundamental Nature of Futures
+### 1. The Fundamental
 
 **A futures contract is a pure price exposure instrument:**
 
@@ -154,7 +154,7 @@ $$
 
 **Futures trade at premium of ~39 points (called "contango")**
 
-### 3. The Cost of Carry Relationship
+### 3. The Cost of Carry
 
 **The fundamental arbitrage:**
 
@@ -176,7 +176,7 @@ $$
 
 **Market makers constantly monitor this to prevent arbitrage opportunities!**
 
-### 4. Futures vs. Forwards
+### 4. Futures vs.
 
 **Forward contracts (OTC, customized):**
 - Credit risk (counterparty can default)
@@ -246,7 +246,7 @@ $$
 - 1% move in futures = 18.75% return on margin
 - **High reward potential, but also high risk!**
 
-### 6. Convergence at Expiration
+### 6. Convergence at
 
 **The fundamental theorem of futures:**
 
@@ -270,7 +270,7 @@ $$
 \lim_{t \to T} \text{Basis}_t = 0
 $$
 
-### 7. Why This Perspective Matters
+### 7. Why This
 
 **Understanding futures as pure price commitments helps you:**
 
@@ -292,7 +292,7 @@ $$
    - Short futures + Long calls = Synthetic long stock
    - Futures are building blocks for complex strategies
 
-### 8. The Strategic Advantage of Futures
+### 8. The Strategic
 
 **Why traders prefer futures over spot:**
 
@@ -451,11 +451,11 @@ $$
 
 ---
 
-## Contract Specifications
+## Contract
 
 **Understanding specifications is crucial for proper risk management:**
 
-### 1. Popular Financial Futures
+### 1. Popular Financial
 
 **E-mini S&P 500 (ES):**
 - Underlying: S&P 500 Index
@@ -499,7 +499,7 @@ $$
 - Rates rise, price → 109-00 (109.00)
 - Loss: (110 - 109) × $1,000 = **-$1,000**
 
-### 2. Popular Commodity Futures
+### 2. Popular Commodity
 
 **Crude Oil (CL):**
 - Contract size: 1,000 barrels
@@ -554,7 +554,7 @@ $$
 - Euro weakens to 1.0900
 - Loss: (1.0900 - 1.1000) × 125,000 = **-$1,250**
 
-### 4. Micro Contracts (Smaller Size)
+### 4. Micro Contracts
 
 **Many futures now have "micro" versions:**
 
@@ -577,9 +577,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Understanding the Symmetry
+### 1. Understanding the
 
 **Unlike options, futures have symmetric unlimited risk:**
 
@@ -665,7 +665,7 @@ $$
 - On margin of $2,000: **-6,000% loss**
 - **Owe $118,000 beyond margin**
 
-### 4. The Margin Call Reality
+### 4. The Margin Call
 
 **Critical understanding: Futures losses can EXCEED your account balance!**
 
@@ -710,7 +710,7 @@ $$
    - Actual loss: (4150 - 4500) × $50 = -$17,500
    - **Account now -$2,500 (YOU OWE THE BROKER!)**
 
-### 5. Comparing to Options
+### 5. Comparing to
 
 **Long Call (for comparison):**
 - Max loss: Premium paid ($500)
@@ -748,7 +748,7 @@ $$
 
 ---
 
-## Entry and Exit Strategies
+## Entry and Exit
 
 ### 1. Entry Strategies
 

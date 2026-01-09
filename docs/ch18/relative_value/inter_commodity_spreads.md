@@ -1,4 +1,4 @@
-# Inter-Commodity Spreads
+# Inter-Commodity
 
 **Inter-commodity spreads** are futures strategies that trade the price relationship between two related but different commodities, profiting from mean reversion in processing margins, substitution ratios, or economic linkages while remaining directionally neutral to absolute price movements.
 
@@ -35,11 +35,11 @@ $$
 
 ---
 
-## What Are Inter-Commodity Spreads?
+## What Are
 
 **Before trading inter-commodity spreads, understand the fundamental mechanics:**
 
-### 1. Types of Inter-Commodity Spreads
+### 1. Types of
 
 **1. Processing Spreads (Input → Outputs):**
 
@@ -137,7 +137,7 @@ $$
 - Ratio indicates risk appetite
 - **Macro indicator**
 
-### 2. Example
+### 2. Most common crack
 
 **Most common crack spread configuration:**
 
@@ -195,7 +195,7 @@ $$
 
 **This $28.60 is the refiner margin per barrel!**
 
-### 3. Example
+### 3. Configuration:
 
 **Configuration:**
 
@@ -265,7 +265,7 @@ $$
 
 **Beyond the basic mechanics, understanding the economic rationale:**
 
-### 1. Processing Spreads as Producer Margins
+### 1. Processing
 
 **The deep insight:**
 
@@ -299,7 +299,7 @@ $$
 - Spread widens
 - **Mean reversion**
 
-### 2. Crack Spread Economics
+### 2. Crack Spread
 
 **Refinery decision-making:**
 
@@ -351,7 +351,7 @@ $$
 
 **This is why crack spreads mean-revert!**
 
-### 3. Crush Spread Economics
+### 3. Crush Spread
 
 **Soybean processor decision-making:**
 
@@ -394,7 +394,7 @@ $$
 - Crush spread narrows
 - **Best time to long spread**
 
-### 4. Substitution Spreads and Relative Demand
+### 4. Substitution
 
 **Corn/Wheat spread:**
 
@@ -482,7 +482,7 @@ $$
 - Ratio: 71 (normalized)
 - **Long silver/short gold = massive profit**
 
-### 6. Why Spreads Mean-Revert
+### 6. Why Spreads
 
 **Four fundamental forces:**
 
@@ -642,11 +642,11 @@ $$
 
 ---
 
-## The Greeks (Spread Dynamics)
+## The Greeks (Spread
 
 **While commodity spreads don't have traditional option Greeks, we can define analogous sensitivities:**
 
-### 1. Delta (Directional Sensitivity)
+### 1. Delta
 
 **Definition:** How spread value changes with absolute commodity price movements.
 
@@ -725,7 +725,7 @@ At very high gas prices:
 - No gamma
 - **Simpler risk profile**
 
-### 3. Theta (Time Decay / Convergence)
+### 3. Theta (Time Decay
 
 **Definition:** How spread changes with time passage (assuming fundamentals unchanged).
 
@@ -762,7 +762,7 @@ $$
 - Narrow spread → Long spread → Theta positive (earns as widens)
 - **Mean reversion = positive theta**
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **Definition:** How spread responds to changes in volatility of underlying commodities.
 
@@ -797,7 +797,7 @@ $$
 - Better risk-adjusted returns
 - **Attractive characteristics**
 
-### 5. Rho (Interest Rate Sensitivity)
+### 5. Rho (Interest
 
 **Definition:** How spread value changes with interest rates.
 
@@ -821,7 +821,7 @@ Higher rates → higher carry cost → steeper contango:
 - Inter-commodity spreads less so
 - **Secondary effect**
 
-### 6. Correlation Risk (Unique to Spreads)
+### 6. Correlation Risk
 
 **Definition:** Risk that correlation between legs changes.
 
@@ -861,7 +861,7 @@ $$
 
 **Just as traders select securities, spread traders must select optimal spreads:**
 
-### 1. Crack Spreads (Energy) - Most Popular
+### 1. Crack Spreads
 
 **3-2-1 Crack Spread:**
 
@@ -911,7 +911,7 @@ $$
 - Regulatory changes (RIN credits)
 - **Requires fundamental analysis**
 
-### 2. Crush Spreads (Agriculture) - Second Most Popular
+### 2. Crush Spreads
 
 **Soybean Crush:**
 
@@ -975,7 +975,7 @@ $$
 - Disease outbreaks (African swine fever)
 - **Global complexity**
 
-### 3. Gold/Silver Ratio - Macro Indicator
+### 3. Gold/Silver Ratio
 
 **Characteristics:**
 
@@ -1031,7 +1031,7 @@ $$
 - Central bank policy affects
 - **Requires patience**
 
-### 4. Corn/Wheat Spread - Feed Substitution
+### 4. Corn/Wheat Spread
 
 **Characteristics:**
 
@@ -1088,7 +1088,7 @@ $$
 
 **Timing is critical for spread trading:**
 
-### 1. Optimal Entry Timing
+### 1. Optimal Entry
 
 **Statistical approach:**
 
@@ -1288,9 +1288,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Long Crack Spread Example
+### 1. Long Crack Spread
 
 **Setup:**
 
@@ -1349,7 +1349,7 @@ $$
 \text{Return} = -12\%
 $$
 
-### 2. Short Crush Spread Example
+### 2. Short Crush
 
 **Setup:**
 
@@ -1410,7 +1410,7 @@ $$
 \text{Loss} = -10¢ \times 5,000 \times 20 = -\$10,000 \text{ (-17\%)}
 $$
 
-### 3. Gold/Silver Ratio Example
+### 3. Gold/Silver Ratio
 
 **Setup:**
 
@@ -1509,9 +1509,9 @@ $$
 
 ---
 
-## When to Use Inter-Commodity Spreads
+## When to Use
 
-### 1. Ideal Market Conditions
+### 1. Ideal Market
 
 **Use spreads when:**
 
@@ -1572,7 +1572,7 @@ $$
 - Physical market confirming
 - **Flow alignment**
 
-### 2. Specific Use Cases
+### 2. Specific Use
 
 **Use Case 1: Hedging production costs**
 
@@ -1624,9 +1624,9 @@ $$
 
 ---
 
-## When NOT to Use Inter-Commodity Spreads
+## When NOT to Use
 
-### 1. Avoid These Situations
+### 1. Avoid These
 
 **1. Structural changes occurring:**
 
@@ -1716,7 +1716,7 @@ $$
 - Liquidity vanished
 - **Crisis regime**
 
-### 2. Warning Signs to Exit
+### 2. Warning Signs to
 
 **1. Spread moving against you AND fundamentals worsening:**
 
@@ -1762,7 +1762,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
 ### 1. The Golden Rule
 
@@ -1802,7 +1802,7 @@ $$
 
 **Trade: 20 crush spreads**
 
-### 2. Portfolio Allocation
+### 2. Portfolio
 
 **Conservative:**
 
@@ -1829,7 +1829,7 @@ $$
 - Require active management
 - **Not set-and-forget**
 
-### 3. Stop Loss Strategy
+### 3. Stop Loss
 
 **Statistical stops:**
 
@@ -1933,7 +1933,7 @@ $$
 - Natural portfolio hedge
 - **Balanced**
 
-### 6. Example
+### 6. Account: $500,000
 
 **Account: $500,000**
 
@@ -1983,9 +1983,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: See
 
 **The error:**
 
@@ -2009,7 +2009,7 @@ $$
 - Ignore absolute prices
 - **Focus on spread level**
 
-### 2. Mistake #2
+### 2. The error: Crack
 
 **The error:**
 
@@ -2039,7 +2039,7 @@ $$
 - Structural change → Skip
 - **Fundamentals first**
 
-### 3. Mistake #3
+### 3. The error: Crush
 
 **The error:**
 
@@ -2089,7 +2089,7 @@ $$
 - Crush: 1 SM + 11 BO : 1 ZS
 - **Industry standard for reason**
 
-### 4. Mistake #4
+### 4. The error: Long
 
 **The error:**
 
@@ -2119,7 +2119,7 @@ $$
 - Roll proactively
 - **Never surprised**
 
-### 5. Mistake #5
+### 5. The error: Short
 
 **The error:**
 
@@ -2160,7 +2160,7 @@ $$
 - Fundamentals can change
 - **Protect capital**
 
-### 6. Mistake #6
+### 6. The error: Crack
 
 **The error:**
 
@@ -2190,7 +2190,7 @@ $$
 
 **Don't be fooled by low margin requirements!**
 
-### 7. Mistake #7
+### 7. The error: Short
 
 **The error:**
 
@@ -2221,7 +2221,7 @@ $$
 - Corn/wheat: Depends on crop cycle
 - **Trade WITH seasons**
 
-### 8. Mistake #8
+### 8. The error:
 
 **The error:**
 
@@ -2252,7 +2252,7 @@ $$
 - Short 50% on decline to 130
 - **Average in**
 
-### 9. Mistake #9
+### 9. The error: Enter
 
 **The error:**
 
@@ -2275,7 +2275,7 @@ $$
 - When liquidity shifts to new crop
 - **Follow the market**
 
-### 10. Mistake #10
+### 10. The error: Enter
 
 **The error:**
 

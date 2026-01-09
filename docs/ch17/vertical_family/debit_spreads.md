@@ -15,7 +15,7 @@ They have **defined risk and defined reward**.
 
 ---
 
-## Debit Spreads as Vertical Spreads
+## Debit Spreads as
 
 All debit spreads are **vertical spreads**, but not all vertical spreads are debit spreads.
 
@@ -48,7 +48,7 @@ The short option reduces cost but caps the maximum profit.
 
 ---
 
-## Long Call Spread (Bull Call Spread)
+## Long Call Spread
 
 ### 1. Market Outlook
 - **Bullish**
@@ -59,7 +59,7 @@ The short option reduces cost but caps the maximum profit.
 - Sell a call at a higher strike \( K_2 > K_1 \)
 - Same expiration
 
-### 3. Payoff Characteristics
+### 3. Payoff
 - **Maximum Loss:** Net debit paid
 - **Maximum Profit:**  
   \[
@@ -76,7 +76,7 @@ Compared to buying a naked call, this strategy lowers cost at the expense of cap
 
 ---
 
-## Long Put Spread (Bear Put Spread)
+## Long Put Spread
 
 ### 1. Market Outlook
 - **Bearish**
@@ -87,7 +87,7 @@ Compared to buying a naked call, this strategy lowers cost at the expense of cap
 - Sell a put at a lower strike \( K_2 < K_1 \)
 - Same expiration
 
-### 3. Payoff Characteristics
+### 3. Payoff
 - **Maximum Loss:** Net debit paid
 - **Maximum Profit:**  
   \[
@@ -104,9 +104,9 @@ The sold put finances part of the long put while limiting profit.
 
 ---
 
-## Risk and Reward Profile
+## Risk and Reward
 
-### 1. Key Properties of Debit Spreads
+### 1. Key Properties of
 
 | Feature | Debit Spreads |
 |------|---------------|
@@ -132,7 +132,7 @@ Debit spreads trade **limited reward for defined and reduced risk**.
 
 ---
 
-## When to Use Debit Spreads
+## When to Use Debit
 
 Debit spreads are well-suited when:
 

@@ -30,11 +30,11 @@ $$
 
 ---
 
-## What Are VWAP and VWAP Reversion?
+## What Are VWAP and
 
 **Before trading this strategy, understand the mechanics:**
 
-### 1. Volume Weighted Average Price (VWAP)
+### 1. Volume Weighted
 
 **Definition:** The ratio of value traded (price × volume) to total volume traded over a specific time period.
 
@@ -68,7 +68,7 @@ $$
 - Cannot be manipulated easily (requires enormous volume)
 - Industry-standard execution benchmark
 
-### 2. Why Institutions Care About VWAP
+### 2. Why Institutions
 
 **VWAP is THE primary execution benchmark for institutional traders:**
 
@@ -106,7 +106,7 @@ Many dark pools use VWAP for execution:
 - Mutual fund NAV calculations use VWAP
 - **Enormous institutional volume tied to VWAP**
 
-### 3. VWAP Reversion Concept
+### 3. VWAP Reversion
 
 **What you're trading:**
 
@@ -136,7 +136,7 @@ $$
 - Technical traders using VWAP bands
 - **Collective action creates reversion**
 
-### 4. Example
+### 4. Setup: Stock:
 
 **Setup:**
 
@@ -199,7 +199,7 @@ $$
 
 **Beyond the basic indicator, understanding the market microstructure:**
 
-### 1. VWAP as Market Equilibrium Price
+### 1. VWAP as Market
 
 **The deep insight:**
 
@@ -256,7 +256,7 @@ $$
 
 **VWAP better reflects the $102 level where 10× more volume traded!**
 
-### 2. Institutional Order Flow and VWAP
+### 2. Institutional
 
 **Understanding who moves markets:**
 
@@ -314,7 +314,7 @@ $$
 - Price pushed back up toward $175.00
 - **Reversion force in action**
 
-### 3. Mean Reversion Dynamics
+### 3. Mean Reversion
 
 **Statistical foundation:**
 
@@ -351,7 +351,7 @@ $$
 - Expected remaining deviation at 10:30 AM: $0.25
 - **Price reverts by 50% every 15 minutes on average**
 
-### 4. Standard Deviation Bands as Entry Signals
+### 4. Standard
 
 **Statistical framework:**
 
@@ -403,7 +403,7 @@ $$
 - High probability of reversion
 - **Short entry signal**
 
-### 5. Market Maker Role in Reversion
+### 5. Market Maker Role
 
 **Market makers provide liquidity and facilitate reversion:**
 
@@ -455,7 +455,7 @@ $$
 
 **This activity CREATES the reversion force we trade!**
 
-### 6. Why Deviations Are Temporary
+### 6. Why Deviations
 
 **Economic forces ensuring reversion:**
 
@@ -491,7 +491,7 @@ Portfolio managers MUST achieve VWAP performance:
 - Self-fulfilling prophecy
 - **Collective behavior reinforces reversion**
 
-### 7. The Optimal Deviation Threshold
+### 7. The Optimal
 
 **Trade-off analysis:**
 
@@ -652,11 +652,11 @@ $$
 
 ---
 
-## The Greeks (Applied to VWAP Reversion)
+## The Greeks (Applied
 
 **While VWAP reversion doesn't have traditional option Greeks, we can define analogous sensitivities:**
 
-### 1. Delta (Price Sensitivity to VWAP Distance)
+### 1. Delta (Price
 
 **Definition:** How much edge/probability changes as distance from VWAP increases.
 
@@ -689,7 +689,7 @@ Beyond 2.5σ, probability gains flatten (may signal regime change)
 
 **Optimal entry: 1.5σ to 2σ deviation (sweet spot of edge vs. frequency)**
 
-### 2. Gamma (Acceleration of Reversion)
+### 2. Gamma
 
 **Definition:** How reversion force intensifies as deviation grows.
 
@@ -736,7 +736,7 @@ $$
 - Force peaks around 2.5σ
 - Beyond that, decreased reliability (may be actual news-driven move)
 
-### 3. Theta (Time Decay of VWAP Relevance)
+### 3. Theta (Time Decay
 
 **Definition:** How VWAP's predictive power decreases throughout trading day.
 
@@ -795,7 +795,7 @@ Where $t_{\text{optimal}} \approx 11:00$ AM
 - Decays exponentially after 2 PM
 - Near zero by 3:30 PM
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **Definition:** How VWAP reversion edge changes with underlying volatility.
 
@@ -875,7 +875,7 @@ $$
 - Less reliable reversion
 - **Higher risk**
 
-### 5. Rho (Market Regime Sensitivity)
+### 5. Rho (Market
 
 **Definition:** How VWAP reversion performance varies with overall market conditions.
 
@@ -922,11 +922,11 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 
 ---
 
-## Deviation Threshold Selection
+## Deviation Threshold
 
 **Just as options traders select strikes, VWAP traders select deviation thresholds:**
 
-### 1. Small Deviation (0.5σ to 1.0σ)
+### 1. Small Deviation
 
 **Characteristics:**
 
@@ -966,7 +966,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 - Need perfect execution
 - Mentally exhausting (many trades)
 
-### 2. Medium Deviation (1.0σ to 2.0σ) - STANDARD
+### 2. Medium Deviation
 
 **Characteristics:**
 
@@ -1006,7 +1006,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 - Can miss moves if too strict
 - Need discipline (no FOMO)
 
-### 3. Large Deviation (2.0σ to 3.0σ)
+### 3. Large Deviation
 
 **Characteristics:**
 
@@ -1047,7 +1047,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 - Psychological difficulty (fighting strong move)
 - **Can be trend start, not reversion setup**
 
-### 4. Extreme Deviation (3.0σ+)
+### 4. Extreme Deviation
 
 **Characteristics:**
 
@@ -1106,7 +1106,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 
 **Just as options traders select expiration dates, VWAP traders must time their entries:**
 
-### 1. Pre-Market Analysis (4
+### 1. Pre-Market
 
 **What to prepare:**
 
@@ -1170,7 +1170,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 - Identify first VWAP cross
 - **Prepare, don't trade yet**
 
-### 3. Prime Trading Window (10
+### 3. Prime Trading
 
 **Why this is optimal:**
 
@@ -1237,7 +1237,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 - Prepare for afternoon (if trading)
 - **Most traders: Done for the day**
 
-### 5. Afternoon Session (1
+### 5. Afternoon Session
 
 **Characteristics:**
 
@@ -1301,7 +1301,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 - Prepare for tomorrow
 - **Close shop**
 
-### 7. Day of Week Effects
+### 7. Day of Week
 
 **Monday:**
 
@@ -1324,7 +1324,7 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 - Morning still good
 - **Trade AM only, skip PM**
 
-### 8. Optimal Trading Schedule
+### 8. Optimal Trading
 
 **Recommended approach for most traders:**
 
@@ -1348,9 +1348,9 @@ SPY down 2%: Long below VWAP wins 80% of time (aligned with bias)
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Long Reversion Trade (Below VWAP)
+### 1. Long Reversion
 
 **Setup:**
 
@@ -1417,7 +1417,7 @@ $$
 \text{Breakeven} = \$173.10 \text{ (entry price)}
 $$
 
-### 2. Short Reversion Trade (Above VWAP)
+### 2. Short Reversion
 
 **Setup:**
 
@@ -1544,9 +1544,9 @@ $$
 
 ---
 
-## When to Use VWAP Reversion
+## When to Use VWAP
 
-### 1. Ideal Market Conditions
+### 1. Ideal Market
 
 **Use VWAP reversion when:**
 
@@ -1588,7 +1588,7 @@ $$
 - Not opening, not close
 - **Prime reversion hours**
 
-### 2. Best Stocks for VWAP Reversion
+### 2. Best Stocks for
 
 **Characteristics of ideal candidates:**
 
@@ -1618,7 +1618,7 @@ $$
 - Meme stocks (too emotional)
 - Illiquid options
 
-### 3. Sector Considerations
+### 3. Sector
 
 **Best sectors for VWAP reversion:**
 
@@ -1659,7 +1659,7 @@ $$
 - VWAP meaningless
 - **Stay away**
 
-### 4. Market Regime Alignment
+### 4. Market Regime
 
 **Neutral/Sideways market (BEST):**
 
@@ -1710,7 +1710,7 @@ $$
 
 **Win rate in high volatility: 45-50% (negative expectancy!)**
 
-### 5. Specific Use Cases
+### 5. Specific Use
 
 **Use Case 1: Gap Fill Trading**
 
@@ -1764,9 +1764,9 @@ Lunch breakout often fails:
 
 ---
 
-## When NOT to Use VWAP Reversion
+## When NOT to Use VWAP
 
-### 1. Avoid These Situations
+### 1. Avoid These
 
 **1. First 30 minutes of trading (9:30-10:00 AM):**
 
@@ -1908,7 +1908,7 @@ $$
 - Positions blown out
 - **Wait for volatility to settle**
 
-### 2. Warning Signs to Skip the Trade
+### 2. Warning Signs to
 
 **Even if deviation looks good:**
 
@@ -1949,9 +1949,9 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
-### 1. The Golden Rule of Position Sizing
+### 1. The Golden Rule
 
 **Never risk more than 1-2% of account per trade:**
 
@@ -1988,7 +1988,7 @@ Wrong: "I always trade 1,000 shares"
 
 Right: Calculate shares based on stop distance
 
-### 2. Stop Loss Placement
+### 2. Stop Loss
 
 **Critical: Must use hard stops, not mental stops**
 
@@ -2094,7 +2094,7 @@ Entry: $173.10, VWAP: $175.00, 600 shares
 - 200 shares @ $174.70 (Target 2: 85% reversion)
 - 200 shares @ $175.00+ (Target 3: trail)
 
-### 4. Maximum Position Concentration
+### 4. Maximum Position
 
 **Limit exposure to VWAP reversion:**
 
@@ -2224,7 +2224,7 @@ $$
 - Tighten entry criteria
 - **Adapt or stop trading temporarily**
 
-### 8. Example
+### 8. Account: $50,000
 
 **Account: $50,000**
 
@@ -2303,7 +2303,7 @@ $$
 
 ## Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -2374,7 +2374,7 @@ $$
 6. Proper scaling (locked profits progressively)
 7. **Textbook setup and execution**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background:**
 
@@ -2454,7 +2454,7 @@ $$
 
 **Key lesson: Not all news is created equal. Analyst upgrades often create short-term spikes that fade. FDA approvals or earnings are different (fundamental changes).**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background:**
 
@@ -2514,7 +2514,7 @@ Should have waited for 1.5σ+ but FOMO from earlier wins
 
 **Lesson: Not every setup is tradeable. Wait for quality. FOMO kills accounts.**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Background:**
 
@@ -2565,9 +2565,9 @@ Should have waited for 1.5σ+ but FOMO from earlier wins
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: 9:35
 
 **The error:**
 
@@ -2597,7 +2597,7 @@ Should have waited for 1.5σ+ but FOMO from earlier wins
 - Then assess deviations
 - **Patience = profit**
 
-### 2. Mistake #2
+### 2. The error: VWAP:
 
 **The error:**
 
@@ -2637,7 +2637,7 @@ $$
 - Better risk/reward
 - **Quality over quantity**
 
-### 3. Mistake #3
+### 3. The error: SPY
 
 **The error:**
 
@@ -2675,7 +2675,7 @@ $$
 
 **Trade WITH market bias, not against it!**
 
-### 4. Mistake #4
+### 4. The error: Enter
 
 **The error:**
 
@@ -2719,7 +2719,7 @@ $$
 - Gets executed automatically
 - **Removes emotion from equation**
 
-### 5. Mistake #5
+### 5. The error: Day
 
 **The error:**
 
@@ -2767,7 +2767,7 @@ $$
 - 2-4 trades per day MAX
 - **Quality >>> Quantity**
 
-### 6. Mistake #6
+### 6. The error: Enter
 
 **The error:**
 
@@ -2807,7 +2807,7 @@ $$
 - Still captures full move if continues
 - **Professional risk management**
 
-### 7. Mistake #7
+### 7. The error: Trade
 
 **The error:**
 
@@ -2849,7 +2849,7 @@ $$
 
 Typically N = 2 or 3
 
-### 8. Mistake #8
+### 8. The error: Great
 
 **The error:**
 
@@ -2889,7 +2889,7 @@ Typically N = 2 or 3
 - Come back at 1:00 PM (if trading afternoon)
 - **Avoid the dead zone**
 
-### 9. Mistake #9
+### 9. The error:
 
 **The error:**
 
@@ -2936,7 +2936,7 @@ Trading low-volume, wide-spread stock:
 - Liquid names: SPY, QQQ, AAPL, MSFT, TSLA, NVDA, GOOGL, AMZN
 - **Tight markets only**
 
-### 10. Mistake #10
+### 10. The error:
 
 **The error:**
 

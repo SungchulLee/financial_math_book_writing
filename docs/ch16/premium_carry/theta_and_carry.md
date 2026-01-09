@@ -106,7 +106,7 @@ Option Value
 - 90 days out: slow decay
 - Theta accelerates as expiration approaches
 
-### 3. Theta for Differe
+### 3. Theta for
 
 **ATM options:**
 
@@ -282,7 +282,7 @@ $$
 
 ## Common Carry Trade
 
-### 1. Short Straddles/S
+### 1. Short
 
 **Structure:**
 
@@ -522,7 +522,7 @@ $$
 
 **Why do carry trades work? The vol risk premium:**
 
-### 1. Empirical Observa
+### 1. Empirical
 
 **Historical data shows:**
 
@@ -897,7 +897,7 @@ $$
 - Leverage magnifies disasters
 - **Carry trades can destroy capital**
 
-### 3. Victor Niederhoff
+### 3. Victor
 
 **Famous trader, sold puts on crash:**
 
@@ -1039,7 +1039,7 @@ $$
 
 ## When Carry Trades
 
-### 1. Favorable Conditi
+### 1. Favorable
 
 **1. High implied volatility (post-event)**
 
@@ -1115,9 +1115,9 @@ $$
 
 ---
 
-## Practical Implementa
+## Practical
 
-### 1. Step 1
+### 1. Conservative
 
 **Conservative (recommended for most):**
 
@@ -1133,7 +1133,7 @@ $$
 - Higher size
 - **Requires discipline**
 
-### 2. Step 2
+### 2. Before entering
 
 **Before entering any trade:**
 
@@ -1153,7 +1153,7 @@ $$
 - Max contracts: 5
 - Stop loss trigger: lose $75 per contract
 
-### 3. Step 3
+### 3. When to enter:
 
 **When to enter:**
 
@@ -1169,7 +1169,7 @@ $$
 - Enter short straddle or iron condor
 - Capture vol crush + theta
 
-### 4. Step 4
+### 4. Daily: Check
 
 **Daily:**
 
@@ -1190,7 +1190,7 @@ $$
 - IV spiking: consider exit
 - **Never hope, always act**
 
-### 5. Step 5
+### 5. Exit when: Profit
 
 **Exit when:**
 
@@ -1284,7 +1284,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This Structur
+### 2. Why This
 
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
@@ -1307,7 +1307,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -1326,7 +1326,7 @@ Understanding the economic foundations helps you recognize when the strategy off
    - Bid-ask spreads
    - Transaction cost environment
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 - [Specific Greeks conditions]
@@ -1340,7 +1340,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - [Insufficient liquidity]
 - [Wrong volatility regime]
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -1354,7 +1354,7 @@ $$
 - Capital for hedge adjustments
 - Margin requirements
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -1369,7 +1369,7 @@ $$
 - Gamma management when: Position size changes
 - Transaction cost consideration: Balance frequency vs. cost
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -1390,7 +1390,7 @@ $$
 - Cut losses at: [Max acceptable Greeks loss]
 - Time-based exit: [Time decay considerations]
 
-### 6. Step 6
+### 6. Greeks risk
 
 **Greeks risk limits:**
 - Max delta exposure: [Limit]
@@ -1404,7 +1404,7 @@ $$
 - Stress testing for market moves
 - Worst-case scenario planning
 
-### 7. Step 7
+### 7. Track for every
 
 **Track for every trade:**
 - Entry Greeks (delta, gamma, vega, theta)

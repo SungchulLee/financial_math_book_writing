@@ -1,5 +1,5 @@
-# Implied vs Realized Vol Trading
-## Trading the Volatility Risk Premium
+# Implied vs Realized
+## Trading the
 
 **Implied vs realized volatility trading** focuses on exploiting the systematic difference between **implied volatility (what the market prices)** and **realized volatility (what actually occurs)**.
 
@@ -44,9 +44,9 @@ This is one of the most fundamental and persistent edges in volatility trading.
 
 ---
 
-## What Are Implied and Realized Volatility?
+## What Are Implied and
 
-### 1. Implied Volatility (IV)
+### 1. Implied
 
 - Backed out from option prices
 
@@ -68,7 +68,7 @@ This is one of the most fundamental and persistent edges in volatility trading.
 
 ---
 
-### 2. Realized Volatility (RV)
+### 2. Realized
 
 - Measured from historical price returns
 
@@ -84,7 +84,7 @@ This is one of the most fundamental and persistent edges in volatility trading.
 
 ---
 
-## Why IV Is Usually Higher Than RV
+## Why IV Is Usually
 
 IV embeds compensation for:
 
@@ -104,7 +104,7 @@ This creates a **structural premium** paid by option buyers to option sellers.
 
 ---
 
-## Why the IV–RV Spread Is Tradable
+## Why the IV–RV Spread
 
 The IV–RV gap is:
 
@@ -128,7 +128,7 @@ The IV–RV gap is:
 
 ## The Structure
 
-### 1. General IV–RV Trading
+### 1. General IV–RV
 
 IV–RV trades typically involve:
 
@@ -142,9 +142,9 @@ IV–RV trades typically involve:
 
 ---
 
-### 2. Common IV–RV Trading Structures
+### 2. Common IV–RV
 
-### 3. Short Straddle / Strangle (Classic Vol Selling)
+### 3. Short Straddle /
 
 \[
 \text{Short Straddle} = -C(K) - P(K)
@@ -158,7 +158,7 @@ IV–RV trades typically involve:
 
 ---
 
-### 4. Long Straddle (Vol Buying)
+### 4. Long Straddle
 
 \[
 \text{Long Straddle} = +C(K) + P(K)
@@ -172,7 +172,7 @@ IV–RV trades typically involve:
 
 ---
 
-### 5. Gamma Scalping (Pure IV–RV Play)
+### 5. Gamma Scalping
 
 - Long gamma via options
 
@@ -182,7 +182,7 @@ IV–RV trades typically involve:
 
 ---
 
-### 6. Variance Swaps (Institutional)
+### 6. Variance Swaps
 
 \[
 \text{Payoff} = (\sigma_{\text{realized}}^2 - \sigma_{\text{implied}}^2)
@@ -198,7 +198,7 @@ IV–RV trades typically involve:
 
 ## The Portfolio
 
-### 1. Generic IV–RV Portfolio
+### 1. Generic IV–RV
 
 \[
 \Pi_{\text{IV-RV}} = \sum_i n_i \cdot V(K_i, T, \sigma_{\text{implied}})
@@ -221,7 +221,7 @@ The portfolio’s P&L depends primarily on **realized volatility**.
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -231,7 +231,7 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV Structure Exists Economically
+### 2. Why This IV
 
 Markets create these IV structures because different participants have different:
 
@@ -243,7 +243,7 @@ Markets create these IV structures because different participants have different
 
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility Risk Premium
+### 3. The Volatility
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -261,7 +261,7 @@ $$
 
 4. **Behavioral biases:** Overestimation of future volatility
 
-### 4. Professional Institutional Perspective
+### 4. Professional
 
 Institutional traders view IV strategies as tools for:
 
@@ -310,7 +310,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## Concrete Example
 
-### 1. Short Volatility Trade
+### 1. Short Volatility
 
 **Underlying:** SPY  
 
@@ -380,7 +380,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ---
 
-## Relationship to Other Volatility Strategies
+## Relationship to
 
 | Strategy | What It Trades |
 |--------|---------------|
@@ -394,7 +394,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ---
 
-## When IV–RV Trading Works Best
+## When IV–RV Trading
 
 ✅ Normal markets  
 ✅ High implied volatility environments  
@@ -417,7 +417,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -453,7 +453,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
    - Product launches, regulatory decisions
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 
@@ -475,7 +475,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 - [Event risk too high]
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -503,7 +503,7 @@ $$
 
 - Risk 2-5% on defined risk strategies
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -537,7 +537,7 @@ $$
 
 - [ ] Exit plan defined
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -577,7 +577,7 @@ $$
 
 - Event announced/cancelled
 
-### 6. Step 6
+### 6. When to adjust:
 
 **When to adjust:**
 
@@ -617,7 +617,7 @@ $$
 
 - Convert to calendar (neutralize theta)
 
-### 7. Step 7
+### 7. Track every
 
 **Track every trade:**
 
@@ -645,7 +645,7 @@ $$
 
 - Common mistakes
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 
@@ -663,7 +663,7 @@ $$
 
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For volatility selling (short vega):**
 
@@ -710,7 +710,7 @@ $$
 
 **Critical errors that destroy IV-RV traders:**
 
-### 1. Mistake #1
+### 1. The error: "VIX
 
 **The error:**
 "VIX is at 11. It can't go lower. Time to buy volatility!"
@@ -767,7 +767,7 @@ $$
 
 ---
 
-### 2. Mistake #2
+### 2. The error: "VIX
 
 **The error:**
 "VIX at 12! Free theta! I'll sell straddles all day!"
@@ -830,7 +830,7 @@ $$
 
 ---
 
-### 3. Mistake #3
+### 3. The error: "Stock
 
 **The error:**
 "Stock moving a lot (high realized vol). Perfect for selling options (high IV)!"
@@ -899,7 +899,7 @@ $$
 
 ---
 
-### 4. Mistake #4
+### 4. The error: "IV is
 
 **The error:**
 "IV is 30%, but RV is only 25%. IV is overpriced! Short it!"
@@ -969,7 +969,7 @@ $$
 
 ---
 
-### 5. Mistake #5
+### 5. The error:
 
 **The error:**
 "Selling vol has high win rate (80%+). I'll use 50% of my account!"
@@ -1047,7 +1047,7 @@ $$
 
 ---
 
-### 6. Mistake #6
+### 6. The error: "I'll
 
 **The error:**
 "I'll just sell vol naked. Hedging reduces profits!"
@@ -1124,7 +1124,7 @@ $$
 
 ---
 
-### 7. Mistake #7
+### 7. The error: "Lost
 
 **The error:**
 "Lost $10,000 on short vol. I'll double position size to make it back!"
@@ -1174,7 +1174,7 @@ Lost 20%? → Reduce size 20%!
 
 ---
 
-### 8. Mistake #8
+### 8. The error:
 
 **The error:**
 "Earnings are tomorrow. IV is 60%! I'll sell straddles for huge credit!"
@@ -1227,7 +1227,7 @@ Lost 20%? → Reduce size 20%!
 
 ---
 
-### 9. Mistake #9
+### 9. The error: "I'll
 
 **The error:**
 "I'll diversify: Short vol on 10 different stocks!"
@@ -1278,7 +1278,7 @@ Lost 20%? → Reduce size 20%!
 
 ---
 
-### 10. Mistake #10
+### 10. The error: "I
 
 **The error:**
 "I made 5% last month shorting vol. Too slow! I'll use margin to make 10%!"
@@ -1333,7 +1333,7 @@ Lost 20%? → Reduce size 20%!
 
 ---
 
-### 11. Summary
+### 11. | | Mistake |
 
 | # | Mistake | Fix |
 |---|---------|-----|
@@ -1356,7 +1356,7 @@ Lost 20%? → Reduce size 20%!
 
 **Concrete scenarios showing IV-RV trading in practice:**
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Trader profile:**
 
@@ -1412,7 +1412,7 @@ Lost 20%? → Reduce size 20%!
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Trader profile:**
 
@@ -1491,7 +1491,7 @@ Lost 20%? → Reduce size 20%!
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Institution profile:**
 
@@ -1549,7 +1549,7 @@ Lost 20%? → Reduce size 20%!
 
 ---
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Trader profile:**
 
@@ -1635,7 +1635,7 @@ Annualized: ~7.5%/year (excellent risk-adjusted!)
 
 ---
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Retail trader:**
 
@@ -1710,7 +1710,7 @@ Annualized: ~7.5%/year (excellent risk-adjusted!)
 
 ---
 
-### 6. Example 6
+### 6. Sophisticated
 
 **Sophisticated trader:**
 
@@ -1786,7 +1786,7 @@ Annualized: ~7.5%/year (excellent risk-adjusted!)
 
 ---
 
-### 7. Example 7
+### 7. Contrarian
 
 **Contrarian trader:**
 
@@ -1847,7 +1847,7 @@ Annualized: ~7.5%/year (excellent risk-adjusted!)
 
 ---
 
-### 8. Summary
+### 8. Successful IV-RV
 
 **Successful IV-RV trading requires:**
 

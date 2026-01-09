@@ -1,4 +1,4 @@
-# Commodity Seasonality Trading
+# Commodity
 
 **Commodity seasonality trading** is a futures strategy that exploits predictable annual price patterns driven by crop cycles, weather patterns, demand variations, and storage costs, profiting from statistically significant recurring price movements that repeat each calendar year.
 
@@ -36,11 +36,11 @@ $$
 
 ---
 
-## What Are Commodity Seasonals?
+## What Are Commodity
 
 **Before trading seasonal patterns, understand the fundamental mechanics:**
 
-### 1. Types of Seasonal Drivers
+### 1. Types of Seasonal
 
 **1. Agricultural Crop Cycles:**
 
@@ -176,7 +176,7 @@ $$
 - Price volatility increases
 - **Disaster risk premium**
 
-### 2. Example
+### 2. Annual cycle: |
 
 **Annual cycle:**
 
@@ -204,7 +204,7 @@ $$
 
 **Historical win rate: 73% (22 of 30 years)**
 
-### 3. Example
+### 3. Annual cycle: |
 
 **Annual cycle:**
 
@@ -256,7 +256,7 @@ $$
 
 **Beyond the patterns, understanding the economic forces:**
 
-### 1. Agricultural Seasonals as Risk Premiums
+### 1. Agricultural
 
 **The deep insight:**
 
@@ -314,7 +314,7 @@ $$
 - October: $0 (harvest complete, no uncertainty)
 - **Time decay of risk premium**
 
-### 2. Storage Economics and Carry
+### 2. Storage Economics
 
 **Post-harvest seasonality driven by storage costs:**
 
@@ -362,7 +362,7 @@ $$
 - Actual cost of carry: 32¢
 - **Spread underpriced if < 32¢**
 
-### 3. Energy Seasonals as Demand Cycles
+### 3. Energy Seasonals
 
 **Natural gas winter premium:**
 
@@ -423,7 +423,7 @@ $$
 - High prices → Producers increase output
 - **But with lag, perpetuating seasonality**
 
-### 4. Livestock Biological Constraints
+### 4. Livestock
 
 **Cattle cycle is biological, not discretionary:**
 
@@ -480,7 +480,7 @@ $$
 - Marketing: Summer/Fall
 - **70% win rate on seasonal trades**
 
-### 5. Why Seasonals Persist (Don't Arbitrage Away)
+### 5. Why Seasonals
 
 **Market participants can't eliminate seasonality:**
 
@@ -655,11 +655,11 @@ $$
 
 ---
 
-## The Greeks (Seasonal Trade Dynamics)
+## The Greeks (Seasonal
 
 **While seasonality isn't options, we can define analogous sensitivities:**
 
-### 1. Delta (Directional Sensitivity)
+### 1. Delta
 
 **Definition:** Sensitivity of position to absolute price moves.
 
@@ -686,7 +686,7 @@ Since full delta exposure:
 - Diversify across commodities
 - **Manage directional risk**
 
-### 2. Gamma (Acceleration)
+### 2. Gamma
 
 **Definition:** How delta changes as price moves.
 
@@ -711,7 +711,7 @@ $$
 
 **Management: Reduce size during high-vol periods**
 
-### 3. Theta (Time Decay / Seasonal Strength)
+### 3. Theta (Time Decay
 
 **Definition:** How edge changes as season progresses.
 
@@ -748,7 +748,7 @@ As harvest approaches:
 - Seasonal edge dissipates
 - **Exit before theta decay**
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **Definition:** Sensitivity to volatility changes.
 
@@ -784,7 +784,7 @@ $$
 
 **Long seasonals = long vol exposure**
 
-### 5. Rho (Interest Rate Sensitivity)
+### 5. Rho (Interest
 
 **Definition:** Sensitivity to interest rate changes.
 
@@ -806,7 +806,7 @@ Higher rates → higher carry costs → steeper contango:
 - Not directional seasonals
 - **Secondary effect**
 
-### 6. Fundamental Sensitivity (Unique to Seasonals)
+### 6. Fundamental
 
 **Definition:** Sensitivity to fundamental supply/demand changes.
 
@@ -859,7 +859,7 @@ $$
 
 **Not all seasonals are created equal. Selection criteria:**
 
-### 1. Strongest Agricultural Seasonals
+### 1. Strongest
 
 **Corn: Feb-Jun Long**
 
@@ -944,7 +944,7 @@ $$
 - Expectancy: +7.1%
 - **Moderate returns**
 
-### 2. Strongest Energy Seasonals
+### 2. Strongest Energy
 
 **Natural Gas: Mar-Sep Short**
 
@@ -1006,7 +1006,7 @@ $$
 - EV adoption accelerating (long-term)
 - **Watch crude correlation**
 
-### 3. Strongest Livestock Seasonals
+### 3. Strongest
 
 **Live Cattle: Feb-Jun Long**
 
@@ -1074,7 +1074,7 @@ $$
 
 **Precise timing is critical for seasonal trades:**
 
-### 1. Entry Timing Methodology
+### 1. Entry Timing
 
 **Statistical approach:**
 
@@ -1116,7 +1116,7 @@ $$
 
 **Jun 25 is optimal: Peak return before harvest pressure**
 
-### 2. Fundamental Confirmation
+### 2. Fundamental
 
 **Don't enter blindly on calendar date:**
 
@@ -1169,7 +1169,7 @@ $$
 | Normal | Normal | Normal | YES (standard) |
 | Abundant (>30%) | High | Large | NO (skip year) |
 
-### 3. Weather Override Signals
+### 3. Weather Override
 
 **Exit early if weather normalizes:**
 
@@ -1218,7 +1218,7 @@ $$
 - Extend beyond seasonal exit
 - **Ride the volatility**
 
-### 4. Rolling Seasonal Positions
+### 4. Rolling Seasonal
 
 **Many seasonals use front-month contracts:**
 
@@ -1284,9 +1284,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Corn Seasonal (Long Feb-Jun)
+### 1. Corn Seasonal
 
 **Setup:**
 
@@ -1370,7 +1370,7 @@ $$
 
 **Expected 89% return over 4.5 months!**
 
-### 2. Natural Gas Short Seasonal (Mar-Sep)
+### 2. Natural Gas Short
 
 **Setup:**
 
@@ -1424,7 +1424,7 @@ $$
 
 **Expected 71% return over 7 months**
 
-### 3. Cattle Seasonal (Long Feb-Jun)
+### 3. Cattle Seasonal
 
 **Setup:**
 
@@ -1471,9 +1471,9 @@ $$
 
 ---
 
-## When to Use Seasonal Trades
+## When to Use Seasonal
 
-### 1. Ideal Market Conditions
+### 1. Ideal Market
 
 **Use seasonals when:**
 
@@ -1526,7 +1526,7 @@ $$
 - News flow
 - **Active management required**
 
-### 2. Specific Use Cases
+### 2. Specific Use
 
 **Use Case 1: Pure seasonal portfolio**
 
@@ -1586,9 +1586,9 @@ $$
 
 ---
 
-## When NOT to Use Seasonal Trades
+## When NOT to Use
 
-### 1. Avoid These Situations
+### 1. Avoid These
 
 **1. Extreme fundamental imbalance:**
 
@@ -1713,7 +1713,7 @@ $$
 - Different time windows
 - **Must adapt**
 
-### 2. Warning Signs to Exit
+### 2. Warning Signs to
 
 **1. Fundamental reversal mid-trade:**
 
@@ -1766,7 +1766,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
 ### 1. The Golden Rule
 
@@ -1794,7 +1794,7 @@ $$
 
 **Trade: 9 corn contracts**
 
-### 2. Portfolio Allocation
+### 2. Portfolio
 
 **Conservative:**
 
@@ -1824,7 +1824,7 @@ $$
 - Need diversification
 - **Cap total exposure**
 
-### 3. Diversification Across Seasonals
+### 3. Diversification
 
 **Don't concentrate in one sector:**
 
@@ -1844,7 +1844,7 @@ $$
 - Softs (coffee/cocoa): 5%
 - **Diversified 30%**
 
-### 4. Stop Loss Strategy
+### 4. Stop Loss
 
 **Two types of stops:**
 
@@ -1946,7 +1946,7 @@ $$
 - Avoid forced liquidation
 - **Safety buffer**
 
-### 7. Example
+### 7. Account: $500,000
 
 **Account: $500,000**
 
@@ -2003,9 +2003,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: "It's
 
 **The error:**
 
@@ -2032,7 +2032,7 @@ $$
 4. Read USDA monthly reports
 5. **Only enter if fundamentals neutral/supportive**
 
-### 2. Mistake #2
+### 2. The error:
 
 **The error:**
 
@@ -2068,7 +2068,7 @@ $$
 - Wait for next cycle
 - **Patience**
 
-### 3. Mistake #3
+### 3. The error:
 
 **The error:**
 
@@ -2103,7 +2103,7 @@ $$
 - Stop limits damage
 - **Non-negotiable**
 
-### 4. Mistake #4
+### 4. The error: Corn
 
 **The error:**
 
@@ -2130,7 +2130,7 @@ $$
 - Contracts: $2,500 / ($0.27 × 5,000) = 1.85 ≈ 2
 - **Only 2 contracts!**
 
-### 5. Mistake #5
+### 5. The error:
 
 **The error:**
 
@@ -2171,7 +2171,7 @@ $$
 - Don't overstay
 - **Follow the calendar**
 
-### 6. Mistake #6
+### 6. The error:
 
 **The error:**
 
@@ -2203,7 +2203,7 @@ $$
 - After that: Skip
 - **Discipline**
 
-### 7. Mistake #7
+### 7. The error:
 
 **The error:**
 
@@ -2234,7 +2234,7 @@ $$
 - If worsens → Hold/extend
 - **Dynamic management**
 
-### 8. Mistake #8
+### 8. The error:
 
 **The error:**
 
@@ -2262,7 +2262,7 @@ $$
 - Stop preserves capital
 - **Live to trade next year**
 
-### 9. Mistake #9
+### 9. The error:
 
 **The error:**
 
@@ -2292,7 +2292,7 @@ $$
 - Livestock: 30%
 - **Correlation <0.50**
 
-### 10. Mistake #10
+### 10. The error:
 
 **The error:**
 

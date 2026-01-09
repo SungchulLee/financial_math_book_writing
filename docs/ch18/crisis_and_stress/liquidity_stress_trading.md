@@ -1,4 +1,4 @@
-# Liquidity Stress Trading
+# Liquidity Stress
 
 **Liquidity stress trading** is a specialized futures strategy designed for periods when normal market liquidity evaporates—characterized by widening bid-ask spreads, vanishing market depth, and violent price dislocations—where traders either avoid participation entirely, exploit temporary mispricings, or provide liquidity to capture elevated spreads while managing extreme execution risk.
 
@@ -35,7 +35,7 @@ $$
 
 ---
 
-## What Is Liquidity Stress?
+## What Is Liquidity
 
 **Before trading liquidity stress, understand the mechanics:**
 
@@ -80,7 +80,7 @@ $$
 
 **Impact: A 50-contract market order would move price 15-20 points ($750-$1,000 per contract slippage)**
 
-### 2. Types of Liquidity Stress
+### 2. Types of
 
 **1. Flash Crash (Minutes):**
 
@@ -121,7 +121,7 @@ $$
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Liquidity Provider's Dilemma
+### 1. The Liquidity
 
 **The deep insight:**
 
@@ -157,7 +157,7 @@ $$
 
 **Spread widens 11x (observed in practice)**
 
-### 2. The Inventory Effect
+### 2. The Inventory
 
 **Market makers manage inventory:**
 
@@ -187,7 +187,7 @@ $$
 \text{More Stress} \rightarrow \text{Wider Spreads} \rightarrow \text{More Panic} \rightarrow \text{Even Less Liquidity}
 $$
 
-### 3. The Circuit Breaker Mechanism
+### 3. The Circuit
 
 **Exchanges implement circuit breakers:**
 
@@ -227,7 +227,7 @@ $$
 
 **Circuit breaker didn't prevent decline, just delayed it**
 
-### 4. The Correlation Breakdown Phenomenon
+### 4. The Correlation
 
 **Normal markets:**
 
@@ -261,7 +261,7 @@ $$
 - Risk parity funds → Delever all positions simultaneously
 - **Selling begets selling, correlations spike to 1.0**
 
-### 5. The Flight to Quality vs. Flight to Cash
+### 5. The Flight to
 
 **Traditional flight to quality:**
 
@@ -365,9 +365,9 @@ $$
 
 ---
 
-## Mathematical Foundation
+## Mathematical
 
-### 1. Spread Widening Model
+### 1. Spread Widening
 
 **Kyle's Lambda (price impact coefficient):**
 
@@ -390,7 +390,7 @@ $$
 
 **Price impact increases ~10x during stress**
 
-### 2. Execution Cost Estimation
+### 2. Execution Cost
 
 **Total transaction cost:**
 
@@ -426,7 +426,7 @@ $$
 
 **Stress increases execution cost 10x ($10k → $107k)**
 
-### 3. Optimal Trade Sizing During Stress
+### 3. Optimal Trade
 
 **Trade-off between urgency and cost:**
 
@@ -448,7 +448,7 @@ $$
 
 **Implication: Must split large orders over much longer time**
 
-### 4. Probability of Execution
+### 4. Probability of
 
 **Limit order fill probability:**
 
@@ -476,7 +476,7 @@ $$
 
 ---
 
-## Step-by-Step Setup
+## Key ideas
 
 ### 1. Phase 1
 
@@ -503,7 +503,7 @@ def liquidity_stress_score(data):
     
     return np.clip(stress, 0, 100)
 
-# Example
+# data = {
 data = {
     'current_spread': 2.5,  # ES spread
     'avg_spread_20d': 0.25,
@@ -764,7 +764,7 @@ Lesson: Exiting during stress saved $127,500 worst-case vs holding through
 **2. Refine Crisis Triggers:**
 
 ```python
-# Updated stress thresholds based on 2020 experience
+# Updated stress
 
 def update_crisis_triggers():
     triggers = {
@@ -799,7 +799,7 @@ def update_crisis_triggers():
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -884,7 +884,7 @@ Risk: What if it hadn't bounced? Could have fallen to 1,000
 3. **V-shaped recovery common** (but not guaranteed—could continue down)
 4. **Opportunists can profit** (but must accept risk of further decline)
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background:**
 
@@ -996,7 +996,7 @@ vs. Original: $1M → $1.08M (+8% over 4.5 years)
 3. **Re-entry discipline worked** (waited for VIX <45, spreads <2 pts)
 4. **Final outcome:** Small gain but SURVIVED (+8% vs. -100%)
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background:**
 
@@ -1038,7 +1038,7 @@ Diversification: FAILED
 
 **Lesson: During extreme stress, correlations → 1.0, diversification fails**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Background:**
 
@@ -1084,7 +1084,7 @@ Gap cost: $37,500 extra due to stop loss gap execution
 
 **Lesson: Stops don't protect against gaps, limit orders sometimes better**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Background:**
 

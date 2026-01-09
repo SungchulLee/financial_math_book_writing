@@ -17,7 +17,7 @@ They have **defined risk and defined reward**.
 
 ---
 
-## Credit Spreads as Vertical Spreads
+## Credit Spreads as
 
 All credit spreads are **vertical spreads**, but not all vertical spreads are credit spreads.
 
@@ -50,7 +50,7 @@ The long option limits risk by capping potential losses.
 
 ---
 
-## Short Call Spread (Bear Call Spread)
+## Short Call Spread
 
 ### 1. Market Outlook
 - Neutral to **bearish**
@@ -61,7 +61,7 @@ The long option limits risk by capping potential losses.
 - Buy a call at a higher strike \( K_2 > K_1 \)
 - Same expiration
 
-### 3. Payoff Characteristics
+### 3. Payoff
 - **Maximum Profit:** Net credit received
 - **Maximum Loss:**  
   \[
@@ -78,7 +78,7 @@ Time decay works in your favor as long as price stays below the short call.
 
 ---
 
-## Short Put Spread (Bull Put Spread)
+## Short Put Spread
 
 ### 1. Market Outlook
 - Neutral to **bullish**
@@ -89,7 +89,7 @@ Time decay works in your favor as long as price stays below the short call.
 - Buy a put at a lower strike \( K_2 < K_1 \)
 - Same expiration
 
-### 3. Payoff Characteristics
+### 3. Payoff
 - **Maximum Profit:** Net credit received
 - **Maximum Loss:**  
   \[
@@ -106,9 +106,9 @@ Time decay benefits you as long as price remains above the short put.
 
 ---
 
-## Risk and Reward Profile
+## Risk and Reward
 
-### 1. Key Properties of Credit Spreads
+### 1. Key Properties of
 
 | Feature | Credit Spreads |
 |------|---------------|
@@ -134,7 +134,7 @@ Credit spreads trade **high probability for limited reward**.
 
 ---
 
-## When to Use Credit Spreads
+## When to Use Credit
 
 Credit spreads are well-suited when:
 

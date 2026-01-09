@@ -1,5 +1,5 @@
 # Skew Trading Spreads
-## Exploiting Put / Call Implied Volatility Differences
+## Exploiting Put /
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/skew_trading_spreads_mean_reversion.png?raw=true" alt="long_call_vs_put" width="700">
@@ -31,7 +31,7 @@
 
 ---
 
-## What Is Volatility Skew?
+## What Is Volatility
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/skew_trading_spreads_premium.png?raw=true" alt="long_call_vs_put" width="700">
@@ -77,7 +77,7 @@ Skew reflects **market-implied asymmetry in future return distributions**.
 
 ---
 
-## Why Skew Becomes Tradable
+## Why Skew Becomes
 
 Skew is **persistent**, but:
 
@@ -95,7 +95,7 @@ Skew is **persistent**, but:
 
 ## The Structure
 
-### 1. General Skew Trading
+### 1. General Skew
 
 Skew trades are typically:
 
@@ -109,7 +109,7 @@ Skew trades are typically:
 
 ---
 
-### 2. Common Skew Trading Structures
+### 2. Common Skew
 
 ### 3. Risk Reversal
 
@@ -123,7 +123,7 @@ Skew trades are typically:
 
 ---
 
-### 4. Put vs Call Vertical Spread
+### 4. Put vs Call
 
 - Sell expensive put spread
 - Buy cheap call spread
@@ -162,7 +162,7 @@ Target exposures:
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -172,7 +172,7 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV Structure Exists Economically
+### 2. Why This IV
 
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
@@ -180,7 +180,7 @@ Markets create these IV structures because different participants have different
 - Event views (known catalysts vs. unknown volatility)
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility Risk Premium
+### 3. The Volatility
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -194,7 +194,7 @@ $$
 3. **Supply/demand:** More vol buyers than sellers
 4. **Behavioral biases:** Overestimation of future volatility
 
-### 4. Professional Institutional Perspective
+### 4. Professional
 
 Institutional traders view IV strategies as tools for:
 1. **Volatility arbitrage:** Extracting the vol risk premium
@@ -225,7 +225,7 @@ Profit comes from **skew normalization**, not direction.
 
 ---
 
-## Relationship to Other Strategies
+## Relationship to
 
 | Strategy | Dimension |
 |--------|-----------|
@@ -246,7 +246,7 @@ Profit comes from **skew normalization**, not direction.
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -270,7 +270,7 @@ Profit comes from **skew normalization**, not direction.
    - Fed meetings, economic data
    - Product launches, regulatory decisions
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 - Skew deviates significantly from historical norm (>1.5 standard deviations)
@@ -288,7 +288,7 @@ Profit comes from **skew normalization**, not direction.
 - During earnings week (skew distorted by event)
 - Trending market (skew may persist with trend)
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -308,7 +308,7 @@ $$
 - Risk 1-2% on undefined risk strategies
 - Risk 2-5% on defined risk strategies
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -329,7 +329,7 @@ $$
 - [ ] Max loss understood
 - [ ] Exit plan defined
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -355,7 +355,7 @@ $$
 - Underlying makes large move (>2 SD)
 - Event announced/cancelled
 
-### 6. Step 6
+### 6. When to adjust:
 
 **When to adjust:**
 
@@ -381,7 +381,7 @@ $$
 - Take partial profits on IV spikes
 - Convert to calendar (neutralize theta)
 
-### 7. Step 7
+### 7. Track every
 
 **Track every trade:**
 - Entry IV level and percentile
@@ -398,7 +398,7 @@ $$
 - Best entry IV conditions
 - Common mistakes
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
@@ -409,7 +409,7 @@ $$
 7. **Fighting IV trends** - IV regimes can persist
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -438,7 +438,7 @@ $$
 
 ## Common Mistakes
 
-### 1. Assuming Skew Always Mean-Reverts
+### 1. Assuming Skew
 
 **The error:**
 - Skew at 15 points (historically 8-10)
@@ -452,7 +452,7 @@ $$
 - Only trade skew compression in calm/bullish regimes
 - **Skew is regime-dependent, not purely mean-reverting**
 
-### 2. Ignoring Directional Risk
+### 2. Ignoring
 
 **The error:**
 - "I'm trading skew, not direction"
@@ -466,7 +466,7 @@ $$
 - Monitor both skew AND stock price
 - **Can't ignore delta just because trading skew**
 
-### 3. Wrong Strike Selection
+### 3. Wrong Strike
 
 **The error:**
 - Using ATM strikes for skew trade
@@ -480,7 +480,7 @@ $$
 - True skew traders focus on wings
 - **Real skew is in the tails**
 
-### 4. Insufficient Skew Deviation
+### 4. Insufficient Skew
 
 **The error:**
 - Skew at 11 points, normal is 10
@@ -493,7 +493,7 @@ $$
 - Factor in bid-ask spreads
 - **Only trade significant dislocations**
 
-### 5. Not Checking Historical Patterns
+### 5. Not Checking
 
 **The error:**
 - "This skew looks steep to me"
@@ -540,7 +540,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup (March 2020 Recovery):**
 - SPY at $350, recovering from COVID crash
@@ -588,7 +588,7 @@ $$
 - Both vega AND delta worked in our favor
 - **Perfect skew mean-reversion setup**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup (September 2022):**
 - QQQ at $300 during Fed tightening
@@ -634,7 +634,7 @@ $$
 - Should have had 50% stop loss
 - **Market regime > statistical mean reversion**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup (January 2024):**
 - AAPL earnings in 5 days
@@ -670,7 +670,7 @@ $$
 
 **Lesson:** Skew trades work better in non-event periods. During binary events, absolute IV changes overwhelm relative skew changes.
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Approach:**
 - Run skew compression trades systematically

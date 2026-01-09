@@ -10,7 +10,7 @@
 
 ---
 
-# Volatility Smile and Skew Trading
+# Volatility Smile and
 
 **Volatility smile and skew trading** is a strategy where you profit from mispricing across different option strikes by exploiting the fact that options at different strikes trade at different implied volatilities.
 
@@ -62,7 +62,7 @@ $$
 
 ---
 
-## What Is the Volatility Smile/Skew?
+## What Is the
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_smile_pattern.png?raw=true" alt="long_call_vs_put" width="700">
@@ -70,7 +70,7 @@ $$
 
 **Before trading it, we need to understand what it is:**
 
-### 1. The Black-Scholes Expectation
+### 1. The Black-Scholes
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vol_smile_skew_trading_strategy.png?raw=true" alt="long_call_vs_put" width="700">
@@ -96,7 +96,7 @@ $$
 
 - **All the same!**
 
-### 2. The Market Reality
+### 2. The Market
 
 **In practice:**
 
@@ -130,7 +130,7 @@ $$
 
 - **U-shaped → "volatility smile"**
 
-### 3. Visualizing the Patterns
+### 3. Visualizing the
 
 ```
 Equity Skew (typical):          FX Smile (typical):
@@ -173,11 +173,11 @@ Equity Skew (typical):          FX Smile (typical):
 
 ---
 
-## Why Does the Smile/Skew Exist?
+## Why Does the
 
 **Several reasons why reality differs from Black-Scholes:**
 
-### 1. Crash Fear (Equity Skew)
+### 1. Crash Fear
 
 **Post-1987 phenomenon:**
 
@@ -209,7 +209,7 @@ Equity Skew (typical):          FX Smile (typical):
 
 - Both wings (OTM puts and calls) elevated
 
-### 3. Stochastic Volatility
+### 3. Stochastic
 
 **Volatility itself is random:**
 
@@ -247,7 +247,7 @@ Equity Skew (typical):          FX Smile (typical):
 
 - Produces skew
 
-### 6. Supply/Demand Imbalances
+### 6. Supply/Demand
 
 **Structural demand:**
 
@@ -265,7 +265,7 @@ Equity Skew (typical):          FX Smile (typical):
 
 **What you do:**
 
-### 1. Identify Mispricing
+### 1. Identify
 
 **Compare current skew to:**
 
@@ -358,7 +358,7 @@ where you hold options at multiple strikes $K_i$ with weights $w_i$.
 
 **Understanding what volatility smile/skew trading REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 Volatility smile and skew trading is fundamentally about **exploiting market inefficiencies in how tail risk is priced across strikes**. You're not just trading volatility levels—you're trading the **shape of the fear distribution**.
 
@@ -374,7 +374,7 @@ $$
 \text{Smile/Skew} = \underbrace{\text{Crash Fear}}_{\text{behavioral}} + \underbrace{\text{Supply/Demand}}_{\text{structural}} + \underbrace{\text{Fat Tails}}_{\text{statistical}}
 $$
 
-### 2. Why the Smile/Skew Exists
+### 2. Why the
 
 **Black-Scholes assumes:**
 
@@ -672,11 +672,11 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - **Buy skew in high vol** (will flatten when vol falls)
 
-### 8. The Professional Institutional Perspective
+### 8. The Professional
 
 **How different players view the smile/skew:**
 
-### 9. Market Makers (Citadel, Susquehanna, IMC)
+### 9. Market Makers
 
 **Business model:**
 
@@ -710,7 +710,7 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - Gamma scalping
 
-### 10. Hedge Funds (Volatility Arbitrage Funds)
+### 10. Hedge Funds
 
 **Examples:** Capstone, Ronin, IMC
 
@@ -736,7 +736,7 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - **Example:** If skew tightens 1 vol point = $10,000 profit
 
-### 11. Investment Banks (Goldman, JPM, Morgan Stanley)
+### 11. Investment Banks
 
 **Business model:**
 
@@ -762,7 +762,7 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - This supports the skew structure
 
-### 12. Pension Funds / Asset Managers
+### 12. Pension Funds /
 
 **Holdings:** $trillions in equities
 
@@ -788,11 +788,11 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - **Result:** Persistent skew
 
-### 13. Why Skew Trading Offers Economic Edge
+### 13. Why Skew Trading
 
 **The strategy works when:**
 
-### 14. Skew Mean-Reversion
+### 14. Skew
 
 **Historical observation:**
 
@@ -820,7 +820,7 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - **Expected value positive**
 
-### 15. Volatility Regime Changes
+### 15. Volatility
 
 **Low vol → High vol transition:**
 
@@ -842,7 +842,7 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - **Predictable pattern!**
 
-### 16. Event Risk Mispricing
+### 16. Event Risk
 
 **Before known events (earnings, Fed, elections):**
 
@@ -866,7 +866,7 @@ When stock moves, **strikes don't move**—they're sticky!
 
 - If market only prices +0.2 → **Arb opportunity**
 
-### 17. The Mathematical Framework
+### 17. The Mathematical
 
 **Defining skew mathematically:**
 
@@ -918,7 +918,7 @@ $$
 
 - **Profit: 400 × 2 = $800**
 
-### 18. Why Smile Trading Has Become Harder (Post-2008)
+### 18. Why Smile
 
 **Pre-2008:**
 
@@ -970,7 +970,7 @@ $$
 
    - **Reduces leverage available**
 
-### 19. Summary of Economic Insights
+### 19. The volatility
 
 **The volatility smile/skew exists because:**
 
@@ -1006,7 +1006,7 @@ $$
 
 
 
-## Common Skew Trading Strategies
+## Common Skew Trading
 
 ### 1. Butterfly Spread
 
@@ -1063,7 +1063,7 @@ $$
 
 Maximum profit if stock exactly at $100 at expiry.
 
-### 2. Risk Reversal (Collar)
+### 2. Risk Reversal
 
 **Directional skew bet:**
 
@@ -1103,7 +1103,7 @@ Maximum profit if stock exactly at $100 at expiry.
 
 - If skew steepens (put IV rises, call IV drops) → loss
 
-### 3. Call Spread vs. Put Spread Arbitrage
+### 3. Call Spread vs.
 
 **Relative value between call spreads and put spreads:**
 
@@ -1135,7 +1135,7 @@ Maximum profit if stock exactly at $100 at expiry.
 
 - Statistical arbitrage
 
-### 4. Skew Straddle/Strangle
+### 4. Skew
 
 **Modified straddle exploiting skew:**
 
@@ -1157,7 +1157,7 @@ Maximum profit if stock exactly at $100 at expiry.
 
 - Collect from expensive puts, pay less for calls
 
-### 5. Vertical Spread Compression
+### 5. Vertical Spread
 
 **Trade relative richness within same side:**
 
@@ -1189,7 +1189,7 @@ Maximum profit if stock exactly at $100 at expiry.
 
 **How to quantify skew:**
 
-### 1. 25-Delta Risk Reversal
+### 1. -Delta Risk
 
 **Market standard:**
 
@@ -1215,7 +1215,7 @@ $$
 
 - Steep skew (typical equities)
 
-### 2. 25-Delta Butterfly
+### 2. -Delta
 
 **Market standard for smile:**
 
@@ -1239,7 +1239,7 @@ $$
 
 **Normalized by moneyness.**
 
-### 4. At-The-Money vs. Out-of-The-Money Spread
+### 4. At-The-Money vs.
 
 $$
 \text{Skew Spread} = \text{IV}_{\text{OTM put}} - \text{IV}_{\text{ATM}}
@@ -1253,7 +1253,7 @@ $$
 
 **Your P&L from skew trading comes from:**
 
-### 1. Skew Change (Primary)
+### 1. Skew Change
 
 $$
 \text{Skew P\&L} = \sum_i \text{Vega}_i \times \Delta \text{IV}_i
@@ -1275,7 +1275,7 @@ $$
 
 - Net: Profit if smile flattens
 
-### 2. Realized Volatility vs. Implied (Secondary)
+### 2. Realized
 
 **Still have gamma exposure:**
 
@@ -1285,7 +1285,7 @@ $$
 
 - Similar to gamma scalping but with skew bias
 
-### 3. Time Decay (Theta)
+### 3. Time Decay
 
 **Net theta depends on structure:**
 
@@ -1295,7 +1295,7 @@ $$
 
 - Must manage this
 
-### 4. Vega Changes (If Not Neutral)
+### 4. Vega Changes (If
 
 **Overall IV level changes:**
 
@@ -1435,7 +1435,7 @@ Actually still profitable due to theta! (This shows butterflies can be complex.)
 
 ---
 
-## Smile/Skew Trading vs. Other Strategies
+## Smile/Skew Trading
 
 | Strategy | What You Trade | Primary Exposure | Need Multiple Strikes? |
 |----------|---------------|------------------|----------------------|
@@ -1469,7 +1469,7 @@ Actually still profitable due to theta! (This shows butterflies can be complex.)
 
 ---
 
-## Why Smile/Skew Trading Exists
+## Why Smile/Skew
 
 **Why do opportunities persist?**
 
@@ -1509,7 +1509,7 @@ Actually still profitable due to theta! (This shows butterflies can be complex.)
 
 - Smile reflects these realities
 
-### 4. Supply/Demand Imbalances
+### 4. Supply/Demand
 
 **Temporary dislocations:**
 
@@ -1519,7 +1519,7 @@ Actually still profitable due to theta! (This shows butterflies can be complex.)
 
 - Market microstructure
 
-### 5. Information Asymmetry
+### 5. Information
 
 **Different market participants:**
 
@@ -1657,9 +1657,9 @@ Actually still profitable due to theta! (This shows butterflies can be complex.)
 
 ---
 
-## When Smile/Skew Trading Works Best
+## When Smile/Skew
 
-### 1. For "Short Skew" (Skew Flattening Bets)
+### 1. For "Short Skew"
 
 **Favorable conditions:**
 
@@ -1687,7 +1687,7 @@ Actually still profitable due to theta! (This shows butterflies can be complex.)
 
 - Individual stocks after earnings fear
 
-### 2. For "Long Skew" (Skew Steepening Bets)
+### 2. For "Long Skew"
 
 **Favorable conditions:**
 
@@ -1715,7 +1715,7 @@ Actually still profitable due to theta! (This shows butterflies can be complex.)
 
 - When protection is cheap
 
-### 3. For Relative Value
+### 3. For Relative
 
 **Favorable conditions:**
 
@@ -1779,7 +1779,7 @@ $$
 
 **How skew changes over time:**
 
-### 1. Sticky Strike vs. Sticky Delta
+### 1. Sticky Strike vs.
 
 **Two models for skew behavior:**
 
@@ -1801,7 +1801,7 @@ $$
 
 **Reality:** Somewhere in between, market-dependent
 
-### 2. Term Structure of Skew
+### 2. Term Structure of
 
 **Skew varies by maturity:**
 
@@ -1833,7 +1833,7 @@ $$
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -1861,7 +1861,7 @@ $$
 
    - Transaction cost environment
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 
@@ -1883,7 +1883,7 @@ $$
 
 - [Wrong volatility regime]
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -1901,7 +1901,7 @@ $$
 
 - Margin requirements
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -1923,7 +1923,7 @@ $$
 
 - Transaction cost consideration: Balance frequency vs. cost
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -1955,7 +1955,7 @@ $$
 
 - Time-based exit: [Time decay considerations]
 
-### 6. Step 6
+### 6. Greeks risk
 
 **Greeks risk limits:**
 
@@ -1977,7 +1977,7 @@ $$
 
 - Worst-case scenario planning
 
-### 7. Step 7
+### 7. Track for every
 
 **Track for every trade:**
 
@@ -1993,7 +1993,7 @@ $$
 
 - Lessons learned
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 
@@ -2007,7 +2007,7 @@ $$
 
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For delta hedging:**
 
@@ -2041,7 +2041,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Before earnings:**
 
@@ -2057,7 +2057,7 @@ $$
 
 - Butterfly profits from both IV decline and skew normalization
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Pre-crisis:**
 
@@ -2081,7 +2081,7 @@ $$
 
 - Structural shift
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **During squeeze:**
 
@@ -2101,7 +2101,7 @@ $$
 
 ---
 
-## Practical Implementation
+## Practical
 
 ### 1. Skew Screening
 
@@ -2182,13 +2182,13 @@ $$
 
 
 
-## Part II — Advanced Surface Trading
+## Part II — Advanced
 
 (This section develops the institutional, economic, and quantitative depth.)
 
 ---
 
-# Smile Trading and Skew Bets
+# Smile Trading and
 
 **Smile trading and skew bets** target relative mispricings across strikes (skew/curvature) and maturities (term structure), exploiting the fact that the **volatility surface is not flat** and its shape changes predictably over time.
 
@@ -2230,7 +2230,7 @@ $$
 
 **Understanding what smile/skew trading REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 Smile and skew trading is fundamentally about **exploiting the supply/demand imbalances and behavioral biases** that create non-uniform pricing across the volatility surface. You're trading **fear asymmetry** and **structural hedging flows**.
 
@@ -2254,7 +2254,7 @@ $$
 \Sigma_{\text{put}}^{\text{OTM}} > \Sigma_{\text{ATM}} > \Sigma_{\text{call}}^{\text{OTM}} \quad \text{(downward sloping skew for equities)}
 $$
 
-### 2. Why the Volatility Surface Has Shape
+### 2. Why the
 
 ### 3. Force 1
 
@@ -2540,7 +2540,7 @@ $$
 
 **The cyclicality is HIGHLY PREDICTABLE.**
 
-### 7. The Volatility Surface as a Market
+### 7. The Volatility
 
 **The surface $\Sigma(T,K)$ is a MARKET** with its own supply/demand dynamics:
 
@@ -2578,9 +2578,9 @@ $$
 
 - Back month: Smoother (long-run expectations)
 
-### 8. Professional Institutional Perspectives
+### 8. Professional
 
-### 9. Market Makers (Citadel, Susquehanna, IMC)
+### 9. Market Makers
 
 **How they manage the surface:**
 
@@ -2599,7 +2599,7 @@ Instead of tracking individual options, they decompose exposure into:
 **Daily surface management:**
 
 ```python
-# Pseudo-code for market maker surface risk
+# Pseudo-code for
 total_position = sum(all_options_portfolio)
 
 # Decompose
@@ -2642,7 +2642,7 @@ Market makers often accumulate:
 
 - **Rebalance frequency:** Multiple times per day
 
-### 1. Volatility Arbitrage Hedge Funds
+### 1. Volatility
 
 **Systematic skew trading strategies:**
 
@@ -2760,7 +2760,7 @@ Exit:
 
 - Average profit: +$380 per spread
 
-### 2. Proprietary Trading Firms
+### 2. Proprietary
 
 **High-frequency surface monitoring:**
 
@@ -2790,7 +2790,7 @@ Monitor for **no-arbitrage violations** on the surface:
 
 - **Annual return: 15-30%** (from volume)
 
-### 3. Institutional Hedgers (Pension Funds, Asset Managers)
+### 3. Institutional
 
 **Strategic use of skew:**
 
@@ -2844,7 +2844,7 @@ Instead of buying ATM puts (expensive), use skew intelligently:
 
 - **Skew-aware strategy saves $1.35M annually**
 
-### 4. Why Smile Trading Offers Economic Edge
+### 4. Why Smile Trading
 
 **The quantifiable edges:**
 
@@ -2991,7 +2991,7 @@ Over many trades, sticky strike adds:
 
 **Win rate:** 67% (over 500+ earnings cycles studied)
 
-### 9. The Mathematics of Surface Trading
+### 9. The Mathematics
 
 **Decomposing P&L:**
 
@@ -3042,7 +3042,7 @@ Where curvature $c$ measures convexity of the smile.
 
 - High curvature: c = 2.5 vol points (pronounced smile)
 
-### 10. Summary of Economic Insights
+### 10. Smile and skew
 
 **Smile and skew trading works because:**
 
@@ -3074,7 +3074,7 @@ Where curvature $c$ measures convexity of the smile.
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background (February 1, 2024):**
 
@@ -3248,7 +3248,7 @@ Market at all-time highs, VIX low, but skew STILL elevated (residual fear from 2
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background (April 22, 2024):**
 
@@ -3487,7 +3487,7 @@ Hmm, butterflies are typically net debits for long curvature.
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background (July 31, 2024):**
 

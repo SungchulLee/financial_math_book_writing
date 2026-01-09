@@ -36,11 +36,11 @@ $$
 
 ---
 
-## What Are Synthetic Forwards?
+## What Are Synthetic
 
 **Before constructing synthetics, understand the fundamental mechanics:**
 
-### 1. Put-Call Parity Foundation
+### 1. Put-Call Parity
 
 **The cornerstone relationship:**
 
@@ -91,7 +91,7 @@ $$
 
 **This is IDENTICAL to buying at $K$ and selling at $S_T$!**
 
-### 2. Synthetic Long Forward
+### 2. Synthetic Long
 
 **Construction:**
 
@@ -123,7 +123,7 @@ $$
 - Or long SPY futures
 - **Perfect replication**
 
-### 3. Synthetic Short Forward
+### 3. Synthetic Short
 
 **Construction:**
 
@@ -155,7 +155,7 @@ $$
 - Or short gold futures
 - **Perfect replication**
 
-### 4. Why Use Synthetics vs Futures?
+### 4. Why Use
 
 **Several tactical reasons:**
 
@@ -224,7 +224,7 @@ $$
 
 **Beyond the mechanics, understanding the economic rationale:**
 
-### 1. Put-Call Parity as Arbitrage Enforcement
+### 1. Put-Call Parity
 
 **The deep insight:**
 
@@ -314,7 +314,7 @@ $$
 - Restore parity
 - **Equilibrium enforced**
 
-### 3. Interest Rate Component
+### 3. Interest Rate
 
 **Put-call parity includes time value of money:**
 
@@ -359,7 +359,7 @@ $$
 
 **This $3.69 difference is the present value of carrying cost.**
 
-### 4. Dividends Complicate Parity
+### 4. Dividends
 
 **For dividend-paying stocks:**
 
@@ -406,7 +406,7 @@ $$
 
 **Dividends reduce synthetic forward cost for longs.**
 
-### 5. Why Synthetics Can Be Cheaper
+### 5. Why Synthetics
 
 **Several market imperfections:**
 
@@ -449,7 +449,7 @@ $$
 - But sometimes BETTER pricing via synthetics
 - **Market microstructure**
 
-### 6. Futures vs Synthetics
+### 6. Futures vs
 
 | Feature | Futures | Synthetic (Options) |
 |---------|---------|---------------------|
@@ -587,11 +587,11 @@ $$
 
 ---
 
-## The Greeks (Synthetic Forward Dynamics)
+## The Greeks
 
 **Synthetics replicate futures Greeks:**
 
-### 1. Delta (Directional Sensitivity)
+### 1. Delta
 
 **Definition:** Sensitivity to underlying price changes.
 
@@ -674,7 +674,7 @@ $$
 - Net: 0
 - **But requires rebalancing if assigned early**
 
-### 3. Theta (Time Decay)
+### 3. Theta (Time
 
 **Definition:** Change in value as time passes.
 
@@ -715,7 +715,7 @@ $$
 - Also ≈ 0 (marked to market)
 - **Synthetics match**
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **Definition:** Sensitivity to implied volatility changes.
 
@@ -754,7 +754,7 @@ $$
 - Unlike pure option strategies
 - **Directional purity**
 
-### 5. Rho (Interest Rate Sensitivity)
+### 5. Rho (Interest
 
 **Definition:** Sensitivity to interest rate changes.
 
@@ -797,7 +797,7 @@ $$
 
 **Different synthetic constructions for different goals:**
 
-### 1. ATM Synthetic (Most Common)
+### 1. ATM Synthetic
 
 **Strike = Current spot price**
 
@@ -833,7 +833,7 @@ $$
 - Pays full "forward premium"
 - **Neutral pricing**
 
-### 2. OTM Synthetic (Bullish Tilt)
+### 2. OTM Synthetic
 
 **Strike > Current spot (for longs)**
 
@@ -871,7 +871,7 @@ $$
 - Accept higher breakeven
 - **Tactical positioning**
 
-### 3. ITM Synthetic (Conservative)
+### 3. ITM Synthetic
 
 **Strike < Current spot (for longs)**
 
@@ -907,7 +907,7 @@ $$
 - Accept higher cost
 - **Defensive long**
 
-### 4. Leveraged Synthetic (Multiple Contracts)
+### 4. Leveraged
 
 **Scale up position:**
 
@@ -941,7 +941,7 @@ $$
 - Margin calls possible
 - **Use sparingly**
 
-### 5. Calendar Synthetic (Different Expirations)
+### 5. Calendar
 
 **Near-term short, long-term long:**
 
@@ -1163,7 +1163,7 @@ $$
 - Directional view unchanged
 - **Long-term positioning**
 
-### 3. Early Assignment Management
+### 3. Early Assignment
 
 **Risk: Short put exercised early**
 
@@ -1205,9 +1205,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Synthetic Long Position
+### 1. Synthetic Long
 
 **Setup:**
 
@@ -1290,7 +1290,7 @@ $$
 
 **Need NVDA > $501 at expiration to profit**
 
-### 2. Synthetic Short Position
+### 2. Synthetic Short
 
 **Setup:**
 
@@ -1395,9 +1395,9 @@ $$
 
 ---
 
-## When to Use Synthetic Forwards
+## When to Use
 
-### 1. Ideal Market Conditions
+### 1. Ideal Market
 
 **Use synthetics when:**
 
@@ -1461,7 +1461,7 @@ $$
 - Exercise call if want to exit
 - **Dividend arbitrage possible**
 
-### 2. Specific Use Cases
+### 2. Specific Use
 
 **Use Case 1: Individual stock exposure**
 
@@ -1574,9 +1574,9 @@ $$
 
 ---
 
-## When NOT to Use Synthetic Forwards
+## When NOT to Use
 
-### 1. Avoid These Situations
+### 1. Avoid These
 
 **1. Liquid futures available:**
 
@@ -1679,7 +1679,7 @@ $$
 - Skip synthetics
 - **Too complex**
 
-### 2. Warning Signs to Unwind
+### 2. Warning Signs to
 
 **1. Approaching expiration (<7 DTE):**
 
@@ -1743,7 +1743,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
 ### 1. The Golden Rule
 
@@ -1766,7 +1766,7 @@ $$
 - Contracts needed: $1,125,000 / $45,000 = 25 SPY synthetics
 - **25 long calls + 25 short puts**
 
-### 2. Portfolio Allocation
+### 2. Portfolio
 
 **Conservative (5-10% in synthetics):**
 
@@ -1855,7 +1855,7 @@ $$
 - Geography (US, international)
 - **Uncorrelated**
 
-### 5. Stop Loss Strategy
+### 5. Stop Loss
 
 **Price-based stop:**
 
@@ -1887,7 +1887,7 @@ $$
 - Don't let expire accidentally
 - **Active management**
 
-### 6. Example
+### 6. Account: $500,000
 
 **Account: $500,000**
 
@@ -1923,9 +1923,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: Sell
 
 **The error:**
 
@@ -1951,7 +1951,7 @@ $$
 - Close before ex-div if >$5 ITM
 - **Prevent assignment**
 
-### 2. Mistake #2
+### 2. The error: Want
 
 **The error:**
 
@@ -1981,7 +1981,7 @@ $$
 - Volume >100 daily
 - **Liquid markets only**
 
-### 3. Mistake #3
+### 3. The error: Want
 
 **The error:**
 
@@ -2007,7 +2007,7 @@ $$
 
 **Both at same strike!**
 
-### 4. Mistake #4
+### 4. The error:
 
 **The error:**
 
@@ -2042,7 +2042,7 @@ $$
 - Clean exit
 - **Intentional settlement**
 
-### 5. Mistake #5
+### 5. The error:
 
 **The error:**
 
@@ -2078,7 +2078,7 @@ $$
 - Adjust pricing expectations
 - **Fair value**
 
-### 6. Mistake #6
+### 6. The error: $100k
 
 **The error:**
 
@@ -2109,7 +2109,7 @@ For $100k:
 - SPY synthetics: 6-7 max
 - **Manageable risk**
 
-### 7. Mistake #7
+### 7. The error:
 
 **The error:**
 
@@ -2145,7 +2145,7 @@ For $100k:
 - Realistic net returns
 - **Conservative projections**
 
-### 8. Mistake #8
+### 8. The error:
 
 **The error:**
 
@@ -2184,7 +2184,7 @@ $$
 
 **Avoid pin risk entirely**
 
-### 9. Mistake #9
+### 9. The error:
 
 **The error:**
 
@@ -2221,7 +2221,7 @@ $$
 - Reduce positions proactively in vol
 - **Safety margin**
 
-### 10. Mistake #10
+### 10. The error: Own
 
 **The error:**
 

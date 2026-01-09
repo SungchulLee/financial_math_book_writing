@@ -1,4 +1,4 @@
-# Futures Momentum Strategies
+# Futures Momentum
 
 **Futures momentum strategies** are systematic trading approaches that exploit the empirically-validated tendency for assets with strong recent performance to continue outperforming (or underperforming) in the near future, capturing persistent trends across diversified futures markets while harvesting risk premia through rules-based position sizing and disciplined rebalancing.
 
@@ -36,11 +36,11 @@ $$
 
 ---
 
-## What Is Futures Momentum?
+## What Is Futures
 
 **Before trading momentum, understand the fundamental mechanics:**
 
-### 1. Academic Foundation
+### 1. Academic
 
 **Seminal research:**
 
@@ -67,7 +67,7 @@ $$
 - Low correlation to equities
 - **Persistent risk premium**
 
-### 2. Time-Series vs Cross-Sectional Momentum
+### 2. Time-Series vs
 
 **Two distinct approaches:**
 
@@ -115,7 +115,7 @@ $$
 
 **Recommendation: Time-series momentum (TSMOM) for most traders**
 
-### 3. Standard TSMOM Implementation
+### 3. Standard TSMOM
 
 **Classic specification:**
 
@@ -162,7 +162,7 @@ $$
 - Vol: 60%
 - Position: $\frac{-1}{0.60} \times 0.12 = -0.20$ (short 20%)
 
-### 4. Why Momentum Works
+### 4. Why Momentum
 
 **Academic explanations:**
 
@@ -214,7 +214,7 @@ $$
 - Creates bond/FX trends
 - **Institutional inertia**
 
-### 5. Historical Performance
+### 5. Historical
 
 **Moskowitz et al. (2012) results:**
 
@@ -256,7 +256,7 @@ $$
 
 **Beyond the signals, understanding the economic rationale:**
 
-### 1. Momentum as Compensation for Crash Risk
+### 1. Momentum as
 
 **The deep insight:**
 
@@ -306,7 +306,7 @@ $$
 \text{Annual Return} = 14.9\% = \text{Compensation for occasional crashes}
 $$
 
-### 2. Information Diffusion and Delayed Response
+### 2. Information
 
 **Academic model (Hong and Stein, 1999):**
 
@@ -358,7 +358,7 @@ Where $\alpha < 1$ (incomplete incorporation)
 - Profit: +11.4%
 - **Trend following**
 
-### 3. Momentum vs Mean Reversion (Time Scales)
+### 3. Momentum vs Mean
 
 **Critical distinction:**
 
@@ -408,7 +408,7 @@ $$
 
 **Lesson: Momentum and mean reversion coexist at different time scales!**
 
-### 4. Commodity Momentum
+### 4. Commodity
 
 **Commodity-specific driver:**
 
@@ -481,7 +481,7 @@ $$
 
 **But crashed 2008 (momentum risk!)**
 
-### 6. Portfolio Benefits
+### 6. Portfolio
 
 **Why diversified momentum outperforms single-market:**
 
@@ -651,11 +651,11 @@ $$
 
 ---
 
-## The Greeks (Momentum Strategy Dynamics)
+## The Greeks (Momentum
 
 **While momentum isn't options, we can define analogous sensitivities:**
 
-### 1. Delta (Directional Sensitivity)
+### 1. Delta
 
 **Definition:** Exposure to absolute price movements.
 
@@ -684,7 +684,7 @@ $$
 
 **Unlike spreads (delta-neutral), momentum is pure trend-following!**
 
-### 2. Gamma (Trend Acceleration)
+### 2. Gamma (Trend
 
 **Definition:** How delta changes as trends accelerate/decelerate.
 
@@ -715,7 +715,7 @@ $$
 - Momentum "gamma" = rebalancing
 - **Similar payoff profile**
 
-### 3. Theta (Time Decay / Signal Decay)
+### 3. Theta (Time Decay
 
 **Definition:** How signal strength changes over time.
 
@@ -747,7 +747,7 @@ $$
 - Must rebalance to capture fresh trends
 - **Why monthly rebalancing critical**
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **Definition:** How strategy performs in different volatility regimes.
 
@@ -787,7 +787,7 @@ $$
 
 **Long volatility exposure (generally positive)**
 
-### 5. Rho (Interest Rate Sensitivity)
+### 5. Rho (Interest
 
 **Definition:** Sensitivity to interest rate changes.
 
@@ -809,7 +809,7 @@ When trading bond futures:
 - But strategy itself not rate-sensitive
 - **Indirect effect**
 
-### 6. Beta (Market Sensitivity)
+### 6. Beta (Market
 
 **Definition:** Correlation to equity markets.
 
@@ -847,7 +847,7 @@ $$
 
 **Not all momentum implementations are equal:**
 
-### 1. Classic 12-1 Month TSMOM (Recommended)
+### 1. Classic 12-1
 
 **Specification:**
 
@@ -884,7 +884,7 @@ $$
 - Suffers in quick reversals
 - **Trade-off for stability**
 
-### 2. Fast Momentum (3-6 Month)
+### 2. Fast Momentum
 
 **Specification:**
 
@@ -922,7 +922,7 @@ $$
 
 **When to use: Strong trending environments**
 
-### 3. Slow Momentum (12-24 Month)
+### 3. Slow Momentum
 
 **Specification:**
 
@@ -960,7 +960,7 @@ $$
 
 **When to use: Low-cost, passive implementation**
 
-### 4. Combined Signal (Multi-Timeframe)
+### 4. Combined Signal
 
 **Specification:**
 
@@ -1019,7 +1019,7 @@ $$
 
 **Momentum is SYSTEMATIC, not discretionary:**
 
-### 1. Entry Timing (Monthly Rebalance)
+### 1. Entry Timing
 
 **Standard approach:**
 
@@ -1074,7 +1074,7 @@ $$
 - Weight: -1/0.60 × 0.12 = -20%
 - **Enter 20% short position**
 
-### 2. Exit Timing (Systematic)
+### 2. Exit Timing
 
 **No discretionary exits:**
 
@@ -1093,7 +1093,7 @@ $$
 
 **This eliminates emotion and second-guessing!**
 
-### 3. Intra-Month Management
+### 3. Intra-Month
 
 **Standard: Do nothing**
 
@@ -1110,7 +1110,7 @@ $$
 
 **But generally: Trust the system**
 
-### 4. Handling Reversals
+### 4. Handling
 
 **Momentum's biggest risk: Rapid reversals**
 
@@ -1168,9 +1168,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Diversified Momentum Portfolio
+### 1. Diversified
 
 **Setup:**
 
@@ -1255,7 +1255,7 @@ $$
 \text{Max DD} = -\$250,000
 $$
 
-### 2. Single-Market Momentum (Higher Risk)
+### 2. Single-Market
 
 **Setup:**
 
@@ -1334,9 +1334,9 @@ $$
 
 ---
 
-## When to Use Momentum Strategies
+## When to Use Momentum
 
-### 1. Ideal Market Conditions
+### 1. Ideal Market
 
 **Use momentum when:**
 
@@ -1391,7 +1391,7 @@ $$
 - Ride through crashes
 - **Patience rewarded**
 
-### 2. Specific Use Cases
+### 2. Specific Use
 
 **Use Case 1: Portfolio diversification**
 
@@ -1470,9 +1470,9 @@ $$
 
 ---
 
-## When NOT to Use Momentum Strategies
+## When NOT to Use
 
-### 1. Avoid These Situations
+### 1. Avoid These
 
 **1. Choppy, range-bound markets:**
 
@@ -1566,7 +1566,7 @@ $$
 - Short-term: Too noisy
 - **Long-term strategy**
 
-### 2. Warning Signs to Reduce Exposure
+### 2. Warning Signs to
 
 **1. All signals aligned (crowded trade):**
 
@@ -1614,7 +1614,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
 ### 1. The Golden Rule
 
@@ -1665,7 +1665,7 @@ $$
 - Gas: 4.5% × 60% = 2.7%
 - **Equal risk contribution**
 
-### 2. Portfolio Allocation
+### 2. Portfolio
 
 **Conservative (5-10% of total portfolio):**
 
@@ -1697,7 +1697,7 @@ $$
 - Vol target: 10-15%
 - **Professional implementation**
 
-### 3. Diversification Requirements
+### 3. Diversification
 
 **Minimum markets:**
 
@@ -1734,7 +1734,7 @@ $$
 \bar{\rho} \approx 0.2\text{-}0.3 \quad \text{(low average correlation)}
 $$
 
-### 4. Stop Loss Strategy
+### 4. Stop Loss
 
 **No traditional stops for momentum:**
 
@@ -1777,7 +1777,7 @@ $$
 
 **Prevents concentration**
 
-### 5. Leverage Management
+### 5. Leverage
 
 **Futures allow massive leverage:**
 
@@ -1807,7 +1807,7 @@ $$
 
 **Beyond this: Unmanageable risk**
 
-### 6. Example
+### 6. Account:
 
 **Account: $1,000,000**
 
@@ -1848,9 +1848,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: "Crude
 
 **The error:**
 
@@ -1878,7 +1878,7 @@ $$
 N \geq 20 \text{ markets minimum}
 $$
 
-### 2. Mistake #2
+### 2. The error: Signal
 
 **The error:**
 
@@ -1909,7 +1909,7 @@ $$
 - Emotion-free execution
 - **Systematic discipline**
 
-### 3. Mistake #3
+### 3. The error:
 
 **The error:**
 
@@ -1934,7 +1934,7 @@ $$
 - Don't over-optimize
 - **Robust > optimal**
 
-### 4. Mistake #4
+### 4. The error:
 
 **The error:**
 
@@ -1966,7 +1966,7 @@ $$
 - Calculate net returns
 - **Realistic expectations**
 
-### 5. Mistake #5
+### 5. The error: $100k
 
 **The error:**
 
@@ -1994,7 +1994,7 @@ $$
 - Nat gas: Lower allocation (higher vol)
 - **Equal risk contribution**
 
-### 6. Mistake #6
+### 6. The error:
 
 **The error:**
 
@@ -2025,7 +2025,7 @@ $$
 - Trust long-term Sharpe
 - **Stay invested**
 
-### 7. Mistake #7
+### 7. The error:
 
 **The error:**
 
@@ -2050,7 +2050,7 @@ $$
 - Average entry price
 - **Smooth timing**
 
-### 8. Mistake #8
+### 8. The error: Use
 
 **The error:**
 
@@ -2080,7 +2080,7 @@ $$
 \text{Lookback} \in [6, 12] \text{ months}
 $$
 
-### 9. Mistake #9
+### 9. The error: Set
 
 **The error:**
 
@@ -2105,7 +2105,7 @@ $$
 - Exit dead trends
 - **Fresh signals**
 
-### 10. Mistake #10
+### 10. The error: Use
 
 **The error:**
 

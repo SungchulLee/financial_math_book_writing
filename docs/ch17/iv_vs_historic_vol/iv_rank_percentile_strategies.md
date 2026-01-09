@@ -1,4 +1,4 @@
-# IV Rank & Percentile Strategies
+# IV Rank & Percentile
 
 **IV Rank & Percentile strategies** are systematic approaches to options trading based on statistical measures of implied volatility relative to historical ranges, enabling traders to identify when options are expensive or cheap and deploy appropriate strategies that profit from mean reversion of volatility levels.
 
@@ -48,7 +48,7 @@ $$
 
 ---
 
-## What Are IV Rank and IV Percentile?
+## What Are IV Rank and
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_calculation.png?raw=true" alt="long_call_vs_put" width="700">
@@ -108,7 +108,7 @@ $$
      0        26       52 weeks
 ```
 
-### 2. IV Percentile (IVP)
+### 2. IV Percentile
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iv_rank_percentile_strategies_zones.png?raw=true" alt="long_call_vs_put" width="700">
@@ -164,7 +164,7 @@ $$
            (50%)    (83%)
 ```
 
-### 3. The Difference Between IVR and IVP
+### 3. The Difference
 
 **IV Rank (range-based):**
 
@@ -252,7 +252,7 @@ $$
 
 ## The Structure
 
-### 1. Strategy Selection Framework
+### 1. Strategy
 
 **The systematic approach:**
 
@@ -318,7 +318,7 @@ Strategies:
    Credit Spreads  Butterflies    Backspreads
 ```
 
-### 3. The Statistical Edge
+### 3. The Statistical
 
 **Mean reversion principle:**
 
@@ -356,7 +356,7 @@ where:
 
 ## The Portfolio
 
-### 1. High IV Strategy Portfolio (IVR > 70)
+### 1. High IV Strategy
 
 **Example: Iron Condor**
 
@@ -387,7 +387,7 @@ $$
 
 - Collect premium from expensive options
 
-### 2. Medium IV Strategy Portfolio (IVR 30-70)
+### 2. Medium IV
 
 **Example: Calendar Spread**
 
@@ -416,7 +416,7 @@ $$
 
 - Neutral on IV direction
 
-### 3. Low IV Strategy Portfolio (IVR < 30)
+### 3. Low IV Strategy
 
 **Example: Debit Spread**
 
@@ -456,7 +456,7 @@ $$
 
 **Understanding what IV Rank/Percentile strategies REALLY represent economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 IV Rank and IV Percentile strategies are fundamentally about **exploiting the mean-reversion property of implied volatility**. You're not trading direction or time—you're trading the **cyclicality of fear and complacency**.
 
@@ -480,7 +480,7 @@ $$
 E[\sigma_{\text{implied}}] \approx E[\sigma_{\text{realized}}] + \underbrace{4\%}_{\text{vol risk premium}} + \underbrace{\text{Cyclical Premium}}_{\text{mean-reverting}}
 $$
 
-### 2. Why IV Mean-Reverts
+### 2. Why IV
 
 ### 3. Force 1
 
@@ -805,11 +805,11 @@ But this CANNOT continue forever (liquidation, forced buying/selling exhausts).
 
 **Key insight:** Microstructure creates overshoots, but physics (mean reversion) always wins.
 
-### 7. The Professional Institutional Perspective
+### 7. The Professional
 
 **How different players use IV Rank/Percentile:**
 
-### 8. Market Makers (Citadel, Susquehanna, IMC)
+### 8. Market Makers
 
 **Business model:**
 
@@ -859,7 +859,7 @@ Target: Keep portfolio IVR near 50 (neutral)
 
 - Gamma scalping: 10-20% of profit
 
-### 9. Hedge Funds (Volatility Arbitrage)
+### 9. Hedge Funds
 
 **Examples:** Capstone, IMC, Ronin Capital
 
@@ -906,7 +906,7 @@ $$
 
 Typically: 1-3% of capital per position
 
-### 10. Retail Traders (Tasty Trade, r/thetagang methodology)
+### 10. Retail Traders
 
 **Popular approach:**
 
@@ -946,7 +946,7 @@ Typically: 1-3% of capital per position
 
 - Not managing losers → Single trade wipes account
 
-### 11. Pension Funds / Asset Managers (Overlay Programs)
+### 11. Pension Funds /
 
 **Use case:**
 
@@ -994,7 +994,7 @@ Typically: 1-3% of capital per position
 
 - **Key:** Disciplined regime switching (not emotional)
 
-### 12. Why IV Rank/Percentile Strategies Offer Edge
+### 12. Why IV
 
 **The quantifiable edges:**
 
@@ -1166,7 +1166,7 @@ When front-month IVR > back-month IVR by 20+ points:
 
 - **Annualized:** ~25-35% on capital at risk
 
-### 17. Summary of Economic Insights
+### 17. Detail
 
 **IV Rank/Percentile strategies exist because:**
 
@@ -1206,7 +1206,7 @@ When front-month IVR > back-month IVR by 20+ points:
 
 ## The P&L Formula
 
-### 1. For High IV Strategies (Premium Selling)
+### 1. For High IV
 
 $$
 \delta \Pi_{\text{High IV}} \approx \underbrace{\text{Vega}_{\text{net}} \cdot \delta\sigma}_{\text{IV mean reversion (negative vega)}} + \underbrace{\Theta \, \delta t}_{\text{Time decay (positive)}} + \underbrace{\frac{1}{2}\Gamma (\delta S)^2}_{\text{Gamma (negative)}}
@@ -1270,7 +1270,7 @@ $$
 
 - Stock moves 5%: Loss ≈ -$500
 
-### 2. For Low IV Strategies (Premium Buying)
+### 2. For Low IV
 
 $$
 \delta \Pi_{\text{Low IV}} \approx \underbrace{\text{Vega}_{\text{net}} \cdot \delta\sigma}_{\text{IV expansion (positive vega)}} + \underbrace{\Theta \, \delta t}_{\text{Time decay (negative)}} + \underbrace{\frac{1}{2}\Gamma (\delta S)^2}_{\text{Gamma (positive)}}
@@ -1318,9 +1318,9 @@ $$
 
 ---
 
-## Types of IV Rank & Percentile Strategies
+## Types of IV Rank &
 
-### 1. High IV Strategies (IVR/IVP > 70)
+### 1. High IV
 
 **Philosophy:**
 
@@ -1410,7 +1410,7 @@ $$
 
 - Stock stays in range
 
-### 4. C. Covered Call (High IV)
+### 4. C. Covered Call
 
 **Structure:**
 
@@ -1446,7 +1446,7 @@ $$
 
 - Lower effective cost basis
 
-### 5. Medium IV Strategies (IVR/IVP 30-70)
+### 5. Medium IV
 
 **Philosophy:**
 
@@ -1458,7 +1458,7 @@ $$
 
 - More neutral Greeks
 
-### 6. A. Calendar Spread
+### 6. A. Calendar
 
 **Structure:**
 
@@ -1496,7 +1496,7 @@ $$
 
 - Not relying on IV expansion/contraction
 
-### 7. B. Diagonal Spread
+### 7. B. Diagonal
 
 **Structure:**
 
@@ -1524,7 +1524,7 @@ $$
 
 - **Debit: $3.50**
 
-### 8. C. Butterfly Spread
+### 8. C. Butterfly
 
 **Structure:**
 
@@ -1554,7 +1554,7 @@ $$
 
 - **Debit: $2.50**
 
-### 9. Low IV Strategies (IVR/IVP < 30)
+### 9. Low IV Strategies
 
 **Philosophy:**
 
@@ -1644,7 +1644,7 @@ $$
 
 - Cheap initial purchase
 
-### 12. C. Ratio Backspread
+### 12. C. Ratio
 
 **Structure:**
 
@@ -1682,7 +1682,7 @@ $$
 
 - Cheap long vega
 
-### 13. Transition Strategies (IV Moving Between Zones)
+### 13. Transition
 
 **Philosophy:**
 
@@ -1692,7 +1692,7 @@ $$
 
 - Roll or close strategies
 
-### 14. A. Rolling from High to Medium IV
+### 14. A. Rolling from
 
 **Situation:**
 
@@ -1712,7 +1712,7 @@ $$
 
 - Redeploy differently
 
-### 15. B. Rolling from Low to Medium IV
+### 15. B. Rolling from
 
 **Situation:**
 
@@ -2274,9 +2274,9 @@ $$
 
 ---
 
-## Strike Selection Strategy
+## Strike Selection
 
-### 1. For High IV Strategies (Selling Premium)
+### 1. For High IV
 
 **Goal:** Maximize credit while maintaining acceptable risk
 
@@ -2324,7 +2324,7 @@ $$
 
 - Example: $5 wide, target $1.65+ credit
 
-### 2. For Low IV Strategies (Buying Premium)
+### 2. For Low IV
 
 **Goal:** Maximize leverage while controlling cost
 
@@ -2368,7 +2368,7 @@ $$
 
 ## Time Frame Selection
 
-### 1. For High IV Strategies
+### 1. For High IV
 
 **Goal:** Maximize theta collection while IV mean reverts
 
@@ -2412,7 +2412,7 @@ $$
 
 - More conservative
 
-### 2. For Low IV Strategies
+### 2. For Low IV
 
 **Goal:** Give IV time to expand before theta kills you
 
@@ -2460,7 +2460,7 @@ $$
 
 ## Position Management
 
-### 1. Managing High IV Positions
+### 1. Managing High IV
 
 **Entry checklist:**
 
@@ -2526,7 +2526,7 @@ P&L: +$2,400 (48% of max)
 
 - Avoid last 2 weeks usually
 
-### 2. Managing Low IV Positions
+### 2. Managing Low IV
 
 **Entry checklist:**
 
@@ -2582,7 +2582,7 @@ P&L: +$2,400 (48% of max)
 
 - Set max loss tolerance (50% of debit)
 
-### 3. Managing Medium IV Positions
+### 3. Managing Medium
 
 **Entry checklist:**
 
@@ -2601,9 +2601,9 @@ P&L: +$2,400 (48% of max)
 
 ---
 
-## Greeks Analysis by IV Regime
+## Greeks Analysis by
 
-### 1. High IV Strategies (Short Premium)
+### 1. High IV
 
 **Typical Greeks profile:**
 
@@ -2634,7 +2634,7 @@ Gamma/Delta: +$300 (10%)
 Total: +$3,000
 ```
 
-### 2. Low IV Strategies (Long Premium)
+### 2. Low IV Strategies
 
 **Typical Greeks profile:**
 
@@ -2667,9 +2667,9 @@ Total: +$3,000
 
 ---
 
-## When to Use IV Rank & Percentile Strategies
+## When to Use IV Rank
 
-### 1. Use High IV Strategies (Sell Premium) When
+### 1. Use High IV
 
 **Market conditions ✓**
 
@@ -2709,7 +2709,7 @@ Total: +$3,000
 
 - Can't manage actively
 
-### 2. Use Low IV Strategies (Buy Premium) When
+### 2. Use Low IV
 
 **Market conditions ✓**
 
@@ -2749,7 +2749,7 @@ Total: +$3,000
 
 - Can't afford theta bleed
 
-### 3. Use Medium IV Strategies When
+### 3. Use Medium IV
 
 **Market conditions ✓**
 
@@ -2780,7 +2780,7 @@ Total: +$3,000
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -2816,7 +2816,7 @@ Total: +$3,000
 
    - Product launches, regulatory decisions
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 
@@ -2838,7 +2838,7 @@ Total: +$3,000
 
 - [Event risk too high]
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -2866,7 +2866,7 @@ $$
 
 - Risk 2-5% on defined risk strategies
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -2900,7 +2900,7 @@ $$
 
 - [ ] Exit plan defined
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -2940,7 +2940,7 @@ $$
 
 - Event announced/cancelled
 
-### 6. Step 6
+### 6. When to adjust:
 
 **When to adjust:**
 
@@ -2980,7 +2980,7 @@ $$
 
 - Convert to calendar (neutralize theta)
 
-### 7. Step 7
+### 7. Track every
 
 **Track every trade:**
 
@@ -3008,7 +3008,7 @@ $$
 
 - Common mistakes
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 
@@ -3026,7 +3026,7 @@ $$
 
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For volatility selling (short vega):**
 
@@ -3071,7 +3071,7 @@ $$
 
 ## Common Mistakes
 
-### 1. Ignoring the Metric (Trading on Absolute IV)
+### 1. Ignoring the
 
 **The error:**
 
@@ -3091,7 +3091,7 @@ $$
 
 - Different stocks have different ranges
 
-### 2. Using Only IV Rank (Ignoring Outliers)
+### 2. Using Only IV
 
 **The error:**
 
@@ -3111,7 +3111,7 @@ $$
 
 - Or use both and compare
 
-### 3. Fighting the Trend (No Mean Reversion)
+### 3. Fighting the
 
 **The error:**
 
@@ -3193,7 +3193,7 @@ $$
 
 - Max total short premium: 30-40% of portfolio
 
-### 7. Not Taking Profits
+### 7. Not Taking
 
 **The error:**
 
@@ -3221,7 +3221,7 @@ $$
 
 ## Advanced Concepts
 
-### 1. IV Mean Reversion Speed
+### 1. IV Mean Reversion
 
 **Measuring mean reversion:**
 
@@ -3257,7 +3257,7 @@ where $\phi$ = autoregressive coefficient
 
 - Set realistic profit targets
 
-### 2. Optimal Entry Thresholds
+### 2. Optimal Entry
 
 **Statistical optimization:**
 
@@ -3284,7 +3284,7 @@ IVR Threshold | Win Rate | Avg Profit | Sharpe
 
 - **Optimal often 20-30%** for buying
 
-### 3. Multiple Time Frames
+### 3. Multiple Time
 
 **Short-term vs long-term IV metrics:**
 
@@ -3310,7 +3310,7 @@ IVR Threshold | Win Rate | Avg Profit | Sharpe
 
 - Use shorter-dated options
 
-### 4. IV Rank by Maturity
+### 4. IV Rank by
 
 **Term structure IVR:**
 
@@ -3339,7 +3339,7 @@ Maturity | IV  | IVR
 
 - Exploit different IVRs across time
 
-### 5. Cross-Sectional IV Analysis
+### 5. Cross-Sectional
 
 **Compare IVRs across stocks:**
 
@@ -3368,7 +3368,7 @@ GOOGL  | 45% | 50%
 
 - Pairs-style volatility trading
 
-### 6. Machine Learning for IV Prediction
+### 6. Machine Learning
 
 **Features for ML model:**
 
@@ -3409,7 +3409,7 @@ target = 'iv_change_30d'
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background (January 2018):**
 
@@ -3597,7 +3597,7 @@ VIX collapsed back to 15-20 within 30 days. Those who:
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background (February 2020):**
 
@@ -3809,7 +3809,7 @@ IF IVR > 90 AND declining for 3+ days:
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background (June 2017):**
 
@@ -3963,7 +3963,7 @@ These examples show the critical importance of:
 
 
 
-## Practical Implementation
+## Practical
 
 ### 1. Daily Workflow
 
@@ -3972,7 +3972,7 @@ These examples show the critical importance of:
 **Step 1: Calculate metrics (5 min)**
 
 ```python
-# For each stock in watchlist
+# For each stock in
 for stock in watchlist:
     current_iv = get_current_iv(stock)
     iv_52w = get_52week_iv_range(stock)
@@ -4039,7 +4039,7 @@ Top 3:
 3. NVDA: IVR=25% ✓ → Debit Spread
 ```
 
-### 1. Position Tracking Template
+### 1. Position Tracking
 
 ```
 === POSITION LOG ===
@@ -4090,7 +4090,7 @@ Date | DTE | Stock | IVR | P&L | Action
 2/5  | 24  | 451   | 58% | +$145| CLOSE ✓
 ```
 
-### 2. Strategy Decision Matrix
+### 2. Strategy Decision
 
 **Quick reference card:**
 
@@ -4201,9 +4201,9 @@ print(df.sort_values('IVR', ascending=False))
 
 ---
 
-## IV Rank & Percentile in Your Toolkit
+## IV Rank & Percentile
 
-### 1. How IV Metrics Fit with Other Strategies
+### 1. How IV Metrics
 
 **The complete framework:**
 
@@ -4245,7 +4245,7 @@ Options Trading Decision Hierarchy:
 
 - **Risk management anchor** (when to exit)
 
-### 2. Comparison with Other Approaches
+### 2. Comparison with
 
 | Approach | Entry Signal | Edge | Complexity | Win Rate |
 |----------|-------------|------|------------|----------|

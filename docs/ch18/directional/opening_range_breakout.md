@@ -1,4 +1,4 @@
-# Opening Range Breakout (ORB)
+# Opening Range
 
 **Opening range breakout** is a day trading strategy where you identify the high and low prices established in the first 15-30 minutes of trading, then enter positions when price breaks through these levels, capitalizing on momentum continuation with defined risk levels.
 
@@ -34,11 +34,11 @@ Where $\epsilon$ is a small buffer (typically 0.05-0.10% or a few ticks) to avoi
 
 ---
 
-## What Is Opening Range Breakout?
+## What Is Opening
 
 **Before trading this strategy, understand the market dynamics:**
 
-### 1. The Opening Range (OR)
+### 1. The Opening Range
 
 **Definition:** The price range (high to low) established during the first $N$ minutes of regular trading session.
 
@@ -64,7 +64,7 @@ Where $\epsilon$ is a small buffer (typically 0.05-0.10% or a few ticks) to avoi
   - Low: $99.75
   - **Opening Range: [$99.75, $101.25] with width $1.50**
 
-### 2. The Breakout Signal
+### 2. The Breakout
 
 **Definition:** Price moves decisively beyond the opening range boundaries, suggesting directional momentum.
 
@@ -105,7 +105,7 @@ Where $\epsilon$ is a small buffer (typically 0.05-0.10% or a few ticks) to avoi
 
 **Beyond the basic pattern, understanding the market microstructure:**
 
-### 1. The Information Absorption Phase
+### 1. The Information
 
 **The deep insight:**
 
@@ -147,7 +147,7 @@ $$
 \text{Cumulative Buy Volume} \approx \text{Cumulative Sell Volume}
 $$
 
-### 2. Why Breakouts Continue
+### 2. Why Breakouts
 
 **Three mechanisms drive continuation:**
 
@@ -186,7 +186,7 @@ $$
 - High-frequency traders provide liquidity
 - Institutional algos scale into positions
 
-### 3. The Range Width as Volatility Predictor
+### 3. The Range Width
 
 **Critical insight:**
 
@@ -223,7 +223,7 @@ $$
 - Not so much it's already done
 - Best risk/reward setups
 
-### 4. Example
+### 4. Setup: Previous
 
 **Setup:**
 
@@ -311,7 +311,7 @@ $$
    - Technical levels widely watched
    - Institutional awareness of these patterns
 
-### 6. Put-Call Ratio and ORB Direction
+### 6. Put-Call Ratio
 
 **Advanced indicator integration:**
 
@@ -402,11 +402,11 @@ $$
 
 ---
 
-## The Greeks (Conceptual Analogs for ORB)
+## The Greeks
 
 **While ORB doesn't have Greeks like options, we can think of similar sensitivities:**
 
-### 1. Delta (Directional Sensitivity)
+### 1. Delta
 
 **Definition:** How much your P&L changes per $1 move in stock price.
 
@@ -422,7 +422,7 @@ $$
 
 **Key insight:** ORB has delta = 1.0 (for stock/futures), not time-decaying like options.
 
-### 2. Theta (Time Sensitivity)
+### 2. Theta (Time
 
 **Definition:** How your trade quality degrades over time.
 
@@ -447,7 +447,7 @@ $$
 
 Where $\lambda$ represents how quickly the edge disappears (typically high).
 
-### 3. Vega (Volatility Sensitivity)
+### 3. Vega (Volatility
 
 **Definition:** How ORB success depends on underlying volatility regime.
 
@@ -471,7 +471,7 @@ $$
 \text{ATR} \in [1.5\%, 3.5\%] \text{ of price}
 $$
 
-### 4. Gamma (Acceleration Sensitivity)
+### 4. Gamma
 
 **Definition:** How quickly momentum builds after breakout.
 
@@ -501,7 +501,7 @@ $$
 
 If momentum score < 1.0 → Consider exit (losing steam).
 
-### 5. Rho (Market Sensitivity)
+### 5. Rho (Market
 
 **Definition:** How ORB performs in different market regimes.
 
@@ -541,11 +541,11 @@ $$
 
 ---
 
-## Strike Selection Analog
+## Strike Selection
 
 **Just as options traders select strikes, ORB traders select timeframes:**
 
-### 1. 5-Minute Opening Range
+### 1. -Minute Opening
 
 **Characteristics:**
 
@@ -575,7 +575,7 @@ $$
 - High stress
 - Needs fast fills
 
-### 2. 15-Minute Opening Range (Standard)
+### 2. -Minute Opening
 
 **Characteristics:**
 
@@ -605,7 +605,7 @@ $$
 - Must be patient
 - Can miss fast moves
 
-### 3. 30-Minute Opening Range
+### 3. -Minute Opening
 
 **Characteristics:**
 
@@ -636,7 +636,7 @@ $$
 - May miss entire day if no breakout
 - Lower frequency
 
-### 4. 60-Minute Opening Range
+### 4. -Minute Opening
 
 **Characteristics:**
 
@@ -678,11 +678,11 @@ $$
 
 ---
 
-## Time Selection Analog
+## Time Selection
 
 **Just as options traders select expiration dates, ORB traders must time entries:**
 
-### 1. Pre-Market Analysis (4
+### 1. Pre-Market
 
 **What to watch:**
 
@@ -708,7 +708,7 @@ $$
    - Gap down + weak futures → Short bias
    - Mixed signals → Wait for OR to form
 
-### 2. Opening Range Formation (9
+### 2. Opening Range
 
 **Critical period:**
 
@@ -725,7 +725,7 @@ $$
 4. Prepare entry orders (stop-limit or market)
 5. Monitor volume for confirmation
 
-### 3. Prime Trading Window (9
+### 3. Prime Trading
 
 **Why this is the golden hour:**
 
@@ -742,7 +742,7 @@ $$
 - Win rate: 55-60%
 - Best risk/reward
 
-### 4. Secondary Window (10
+### 4. Secondary Window
 
 **Characteristics:**
 
@@ -773,7 +773,7 @@ $$
 - Exceptional volatility continues
 - Clear sustained trend
 
-### 6. Afternoon Session (2
+### 6. Afternoon Session
 
 **Not for ORB:**
 
@@ -787,7 +787,7 @@ $$
 - If you're still in a winning ORB trade from morning
 - Trail stops, manage exit
 
-### 7. Day of Week Effects
+### 7. Day of Week
 
 **Monday:**
 
@@ -810,7 +810,7 @@ $$
 - Lower win rate
 - Consider reducing size
 
-### 8. Seasonal Considerations
+### 8. Seasonal
 
 **High volatility periods (best for ORB):**
 
@@ -828,9 +828,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Long Breakout (Bullish ORB)
+### 1. Long Breakout
 
 **Setup:**
 
@@ -883,7 +883,7 @@ $$
 \text{Breakeven} = \text{Entry Price} = \$100.60
 $$
 
-### 2. Short Breakout (Bearish ORB)
+### 2. Short Breakout
 
 **Setup:**
 
@@ -936,7 +936,7 @@ $$
 \text{Breakeven} = \text{Entry Price} = \$98.90
 $$
 
-### 3. Risk-Reward Profiles
+### 3. Risk-Reward
 
 **Conservative target (1.5× OR):**
 
@@ -999,7 +999,7 @@ Where $P_i$ is probability of reaching target $i$.
 
 ## When to Use ORB
 
-### 1. Ideal Market Conditions
+### 1. Ideal Market
 
 **Use ORB when you see:**
 
@@ -1034,7 +1034,7 @@ Where $P_i$ is probability of reaching target $i$.
    - Aligns with trend
    - Clear chart pattern
 
-### 2. Best Stocks for ORB
+### 2. Best Stocks for
 
 **Characteristics of ideal ORB candidates:**
 
@@ -1061,7 +1061,7 @@ Where $P_i$ is probability of reaching target $i$.
 - Penny stocks
 - Illiquid options (if using)
 
-### 3. Market Regime Alignment
+### 3. Market Regime
 
 **Bull market:**
 
@@ -1085,7 +1085,7 @@ Where $P_i$ is probability of reaching target $i$.
 - Lower targets
 - May skip entirely
 
-### 4. Time of Year Considerations
+### 4. Time of Year
 
 **Best months for ORB:**
 
@@ -1104,7 +1104,7 @@ Where $P_i$ is probability of reaching target $i$.
 
 ## When NOT to Use ORB
 
-### 1. Avoid These Situations
+### 1. Avoid These
 
 **1. Extremely wide opening range:**
 
@@ -1168,7 +1168,7 @@ $$
 - Emotional control critical
 - Skip if not 100%
 
-### 2. Warning Signs to Skip the Trade
+### 2. Warning Signs to
 
 **Even if setup looks good:**
 
@@ -1202,9 +1202,9 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
-### 1. The Golden Rule of Position Sizing
+### 1. The Golden Rule
 
 **Never risk more than 1-2% of account per trade:**
 
@@ -1230,7 +1230,7 @@ $$
 \text{Actual Risk} = 300 \times \$1.70 = \$510 \text{ (1.02% of account)}
 $$
 
-### 2. Scaling Based on Confidence
+### 2. Scaling Based on
 
 **Adjust size based on setup quality:**
 
@@ -1260,7 +1260,7 @@ $$
 
 - Skip it (don't trade)
 
-### 3. Stop Loss Strategies
+### 3. Stop Loss
 
 **Initial stop placement:**
 
@@ -1301,7 +1301,7 @@ $$
 - Tightens as trade extends
 - Captures maximum move
 
-### 4. Example
+### 4. Setup: Account:
 
 **Setup:**
 
@@ -1371,7 +1371,7 @@ $$
 
 ## Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -1435,7 +1435,7 @@ $$
 - Account gain: 2.54%
 - **Excellent trade!**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background:**
 
@@ -1498,7 +1498,7 @@ $$
 - Account gain: 3.36%
 - **Very strong trade!**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background:**
 
@@ -1550,7 +1550,7 @@ $$
 - Loss was controlled (1% of account)
 - **Live to trade another day**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Background:**
 
@@ -1614,9 +1614,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: See
 
 **The error:**
 
@@ -1644,7 +1644,7 @@ $$
 - Breakout should show urgency
 - No volume = no trade
 
-### 2. Mistake #2
+### 2. The error: Miss
 
 **The error:**
 
@@ -1679,7 +1679,7 @@ $$
 - Or skip and find next setup
 - Never chase momentum
 
-### 3. Mistake #3
+### 3. The error: OR
 
 **The error:**
 
@@ -1712,7 +1712,7 @@ $$
 - Accept larger stop = smaller position
 - Quality over quantity
 
-### 4. Mistake #4
+### 4. The error: Enter
 
 **The error:**
 
@@ -1740,7 +1740,7 @@ $$
   - Trail remainder
 - **Execute the plan mechanically**
 
-### 5. Mistake #5
+### 5. The error:
 
 **The error:**
 
@@ -1770,7 +1770,7 @@ $$
 - Reduce size in weak market
 - Some days = no trades (and that's OK!)
 
-### 6. Mistake #6
+### 6. The error: Trade
 
 **The error:**
 
@@ -1803,7 +1803,7 @@ $$
 - Quality >>> Quantity
 - "When in doubt, stay out"
 
-### 7. Mistake #7
+### 7. The error: Take
 
 **The error:**
 
@@ -1834,7 +1834,7 @@ $$
 - Which setups work best?
 - What mistakes are you repeating?
 
-### 8. Mistake #8
+### 8. The error: Find
 
 **The error:**
 
@@ -1865,7 +1865,7 @@ $$
 - Can exit 1,000 shares without moving market
 - Stick to major names
 
-### 9. Mistake #9
+### 9. The error: Enter
 
 **The error:**
 
@@ -1897,7 +1897,7 @@ $$
 - Wrong = wrong, accept it
 - Only add to winners (scale in)
 
-### 10. Mistake #10
+### 10. The error: Enter
 
 **The error:**
 

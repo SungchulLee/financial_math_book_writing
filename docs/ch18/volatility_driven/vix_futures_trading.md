@@ -36,11 +36,11 @@ $$
 
 ---
 
-## What Are VIX Futures?
+## What Are VIX
 
 **Before trading VIX futures, understand the critical mechanics:**
 
-### 1. VIX Index vs VIX Futures (CRITICAL DIFFERENCE)
+### 1. VIX Index vs VIX
 
 **VIX Index (spot VIX):**
 
@@ -83,7 +83,7 @@ $$
 - Plus premium for volatility risk
 - **Futures > spot in normal markets**
 
-### 2. VIX Term Structure
+### 2. VIX Term
 
 **Definition:** The curve of VIX futures prices across expiration months.
 
@@ -123,7 +123,7 @@ $$
 
 **Backwardation = extreme fear NOW, expected calm later**
 
-### 3. How VIX Futures Work
+### 3. How VIX Futures
 
 **Contract specifications:**
 
@@ -162,7 +162,7 @@ $$
 
 **Lower leverage than equity futures but MUCH higher volatility!**
 
-### 4. The Roll Decay Problem (Critical for Longs)
+### 4. The Roll Decay
 
 **If you hold VIX futures long-term in contango:**
 
@@ -191,7 +191,7 @@ $$
 
 **This is why buying and holding VIX futures is a LOSING strategy!**
 
-### 5. Settlement and Expiration
+### 5. Settlement and
 
 **VIX futures settle to VIX index (spot):**
 
@@ -227,7 +227,7 @@ $$
 
 **Beyond the basic mechanics, understanding the economic rationale:**
 
-### 1. VIX as Market Insurance Premium
+### 1. VIX as Market
 
 **The deep insight:**
 
@@ -260,7 +260,7 @@ $$
 
 **VIX doubling = expected volatility doubling**
 
-### 2. Why VIX Futures Trade at Premium (Contango)
+### 2. Why VIX Futures
 
 **Economic reasons for persistent contango:**
 
@@ -312,7 +312,7 @@ $$
 
 Holding VIX futures long costs 5-10% per month in normal markets!
 
-### 3. VIX Mean Reversion Dynamics
+### 3. VIX Mean
 
 **Statistical properties:**
 
@@ -360,7 +360,7 @@ $$
 - Short VIX from elevated levels = high probability
 - **But catastrophic risk if wrong!**
 
-### 4. The VIX-SPX Relationship
+### 4. The VIX-SPX
 
 **Empirical correlation:**
 
@@ -407,7 +407,7 @@ Where $\beta_2 > 0$ (convexity)
 
 VIX longs are CRASH insurance, not volatility insurance
 
-### 5. VIX Futures as Portfolio Insurance
+### 5. VIX Futures as
 
 **Portfolio manager perspective:**
 
@@ -463,7 +463,7 @@ $$
 
 **Disadvantage: Continuous roll cost**
 
-### 6. Short VIX as Income Strategy
+### 6. Short VIX as
 
 **The other side: Selling fear**
 
@@ -633,11 +633,11 @@ $$
 
 ---
 
-## The Greeks (VIX Futures Dynamics)
+## The Greeks (VIX
 
 **While VIX futures don't have traditional option Greeks, we can define analogous sensitivities:**
 
-### 1. Delta (Sensitivity to VIX Spot)
+### 1. Delta
 
 **Definition:** How VIX futures price changes with VIX index movement.
 
@@ -677,7 +677,7 @@ $$
 - Back months relatively stable
 - **Calendar spreads exploit this differential**
 
-### 2. Gamma (Acceleration)
+### 2. Gamma
 
 **Definition:** How delta changes as VIX moves.
 
@@ -704,7 +704,7 @@ $$
 
 Long VIX futures benefit disproportionately from extreme spikes
 
-### 3. Theta (Time Decay in Term Structure)
+### 3. Theta (Time Decay
 
 **Definition:** How futures price changes as time passes (assuming VIX unchanged).
 
@@ -762,7 +762,7 @@ $$
 - Backwardation theta pays longs
 - **Must understand regime**
 
-### 4. Vega (Volatility of Volatility)
+### 4. Vega (Volatility
 
 **VIX futures are volatility instruments, so "vega" here means sensitivity to volatility OF volatility (vol-of-vol).**
 
@@ -793,7 +793,7 @@ $$
 - 1σ range: 17-23 daily
 - **Can move 10-15% in a day**
 
-### 5. Rho (Interest Rate Sensitivity)
+### 5. Rho (Interest
 
 **Definition:** How VIX futures change with interest rates.
 
@@ -825,7 +825,7 @@ Focus on VIX level and term structure instead
 
 **Just as options traders select strikes/expirations, VIX traders select months:**
 
-### 1. Front Month (VX1) - High Risk, High Reward
+### 1. Front Month (VX1)
 
 **Characteristics:**
 
@@ -872,7 +872,7 @@ Focus on VIX level and term structure instead
 - Whipsaw risk
 - **Heart attack inducing**
 
-### 2. Second Month (VX2) - Balanced
+### 2. Characteristics:
 
 **Characteristics:**
 
@@ -911,7 +911,7 @@ Focus on VIX level and term structure instead
 - Can still gap violently
 - **Not "safe," just less crazy**
 
-### 3. Back Months (VX3-VX8) - Low Volatility
+### 3. Back Months
 
 **Characteristics:**
 
@@ -950,7 +950,7 @@ Focus on VIX level and term structure instead
 - Still decays in contango
 - **Boring**
 
-### 4. VIX Calendar Spreads
+### 4. VIX Calendar
 
 **Most sophisticated approach:**
 
@@ -1011,7 +1011,7 @@ Focus on VIX level and term structure instead
 
 **VIX trading is ALL about timing:**
 
-### 1. Optimal Entry Timing for LONG VIX
+### 1. Optimal Entry
 
 **Best times to buy VIX futures:**
 
@@ -1088,7 +1088,7 @@ $$
 - Volume spikes on down days
 - **VIX spike probable**
 
-### 2. Optimal Entry Timing for SHORT VIX
+### 2. Optimal Entry
 
 **Best times to sell VIX futures:**
 
@@ -1164,7 +1164,7 @@ $$
 - Backwardation may flip to contango
 - **Short becomes favorable**
 
-### 3. When NOT to Trade VIX
+### 3. When NOT to Trade
 
 **Avoid these situations:**
 
@@ -1292,7 +1292,7 @@ Short VIX can lose 200-300% in days:
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
 ### 1. Long VIX Futures
 
@@ -1460,9 +1460,9 @@ $$
 
 ---
 
-## When to Use VIX Futures
+## When to Use VIX
 
-### 1. Ideal Situations for LONG VIX
+### 1. Ideal Situations
 
 **Use long VIX futures when:**
 
@@ -1512,7 +1512,7 @@ $$
 - 5-10% portfolio to VIX longs
 - **Defensive allocation strategy**
 
-### 2. Ideal Situations for SHORT VIX
+### 2. Ideal Situations
 
 **Use short VIX futures when:**
 
@@ -1567,7 +1567,7 @@ $$
 - Harvest convergence differential
 - **Market-neutral term structure play**
 
-### 3. Specific Use Cases
+### 3. Specific Use
 
 **Use Case 1: Black Swan hedging**
 
@@ -1629,9 +1629,9 @@ $$
 
 ---
 
-## When NOT to Use VIX Futures
+## When NOT to Use VIX
 
-### 1. Situations to Avoid
+### 1. Situations to
 
 **1. As buy-and-hold investment:**
 
@@ -1746,7 +1746,7 @@ $$
 - Convergence dynamics
 - **Education required first**
 
-### 2. Warning Signs to Exit
+### 2. Warning Signs to
 
 **For LONG VIX:**
 
@@ -1794,7 +1794,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
 ### 1. The Golden Rule
 
@@ -1820,7 +1820,7 @@ $$
 
 **NEVER >20% regardless of conviction!**
 
-### 2. Position Sizing by Strategy
+### 2. Position Sizing
 
 **Long VIX (hedging):**
 
@@ -1877,7 +1877,7 @@ $$
 
 **NEVER short more than 5-10 contracts without institutional capital!**
 
-### 3. Stop Loss Strategy
+### 3. Stop Loss
 
 **For LONG VIX:**
 
@@ -1980,7 +1980,7 @@ $$
 - Size conservatively
 - **Always have buffer**
 
-### 5. Diversification Rules
+### 5. Diversification
 
 **Don't concentrate in VIX:**
 
@@ -2011,7 +2011,7 @@ $$
 - Don't double up with SPX shorts
 - **Already have correlation**
 
-### 6. Example
+### 6. Account: $300,000
 
 **Account: $300,000**
 
@@ -2072,9 +2072,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error: See
 
 **The error:**
 
@@ -2116,7 +2116,7 @@ $$
 - OR use options instead (defined risk)
 - **Never buy and hold VIX futures**
 
-### 2. Mistake #2
+### 2. The error: VIX at
 
 **The error:**
 
@@ -2158,7 +2158,7 @@ $$
 \text{ALWAYS use stops}
 $$
 
-### 3. Mistake #3
+### 3. The error: VIX at
 
 **The error:**
 
@@ -2199,7 +2199,7 @@ Backwardation (VX1 < VIX):
 - Short = risk of spike
 ```
 
-### 4. Mistake #4
+### 4. The error: Short
 
 **The error:**
 
@@ -2235,7 +2235,7 @@ $$
 - Set at entry
 - **No emotions, automatic exit**
 
-### 5. Mistake #5
+### 5. The error:
 
 **The error:**
 
@@ -2271,7 +2271,7 @@ For $100k:
 - ~3 contracts
 - **Conservative sizing**
 
-### 6. Mistake #6
+### 6. The error: Long
 
 **The error:**
 
@@ -2305,7 +2305,7 @@ $$
 \text{Close or roll } 3\text{-}5 \text{ days before expiration}
 $$
 
-### 7. Mistake #7
+### 7. The error: VIX at
 
 **The error:**
 
@@ -2352,7 +2352,7 @@ $$
 - VX1 < VIX (fear)
 - Futures price mean reversion DOWN
 
-### 8. Mistake #8
+### 8. The error: Trade
 
 **The error:**
 
@@ -2387,7 +2387,7 @@ $$
 5. Standard size (don't revenge size up)
 6. **Emotion-free decisions**
 
-### 9. Mistake #9
+### 9. The error: VIX
 
 **The error:**
 
@@ -2422,7 +2422,7 @@ $$
 
 **VIX trend > VIX level**
 
-### 10. Mistake #10
+### 10. The error: Trade
 
 **The error:**
 

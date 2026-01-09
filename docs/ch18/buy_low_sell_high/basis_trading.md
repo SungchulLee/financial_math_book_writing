@@ -35,7 +35,7 @@ $$
 
 ---
 
-## What is Basis Trading?
+## What is Basis
 
 **Before trading basis, understand what you're actually trading:**
 
@@ -64,7 +64,7 @@ $$
 - Crude oil futures (3-month): $76.50/barrel
 - **Basis = $75.00 - $76.50 = -$1.50 (negative, contango)**
 
-### 2. What Basis Trading Is
+### 2. What Basis
 
 **A basis trade is NOT:**
 - A directional bet on price going up or down
@@ -103,7 +103,7 @@ $$
 - **Example:** Sell oil at spot $75, buy futures at $77, basis = -$2
 - **Profit if:** Basis moves from -$2 to -$3 (weakened)
 
-### 3. Example
+### 3. Setup (Long Basis
 
 **Setup (Long Basis Trade):**
 
@@ -163,7 +163,7 @@ $$
 
 **Beyond the simple definition, understanding the economic forces behind basis:**
 
-### 1. The Cost of Carry Model
+### 1. The Cost of Carry
 
 **For storable commodities, basis reflects the cost of carrying the physical commodity:**
 
@@ -213,7 +213,7 @@ $$
 S > F \quad \implies \quad \text{Basis} > 0
 $$
 
-### 2. Example
+### 2. Given: Spot gold:
 
 **Given:**
 - Spot gold: $2,000/oz
@@ -239,7 +239,7 @@ $$
 - Fair basis: -$27.63
 - **Basis too wide (futures overpriced) → Arbitrage opportunity!**
 
-### 3. The Convergence Theorem
+### 3. The Convergence
 
 **The fundamental law of basis trading:**
 
@@ -269,7 +269,7 @@ $$
 
 **This predictable convergence is the foundation of basis trading!**
 
-### 4. Basis Risk Components
+### 4. Basis Risk
 
 **Why basis doesn't follow theory perfectly:**
 
@@ -315,7 +315,7 @@ $$
 \text{Total Basis} = \text{Theoretical} + \text{Location} + \text{Quality} + \text{Timing}
 $$
 
-### 5. Economic Forces That Change Basis
+### 5. Economic Forces
 
 **1. Supply shocks (strengthen basis → backwardation):**
 
@@ -385,7 +385,7 @@ $$
 - Convenience yield spikes: 10%+
 - **Basis: Strong backwardation (+$5 to +$10)**
 
-### 7. Arbitrage and Basis Bounds
+### 7. Arbitrage and
 
 **The no-arbitrage bounds:**
 
@@ -417,7 +417,7 @@ $$
 
 **Market makers constantly monitor for violations!**
 
-### 8. Why This Perspective Matters
+### 8. Why This
 
 **Understanding basis economics helps you:**
 
@@ -711,11 +711,11 @@ If futures underpriced ($F < S \cdot e^{r(T-t)}$):
 
 ---
 
-## Contract Specifications
+## Contract
 
 **Understanding which contracts are suitable for basis trading:**
 
-### 1. Agricultural Commodities (Strong Seasonality)
+### 1. Agricultural
 
 **Corn (ZC - CBOT):**
 
@@ -762,7 +762,7 @@ If futures underpriced ($F < S \cdot e^{r(T-t)}$):
 - More complex basis dynamics
 - Harvest patterns similar to corn
 
-### 2. Energy Commodities (Strong Contango/Backwardation Swings)
+### 2. Energy
 
 **Crude Oil (CL - NYMEX):**
 
@@ -829,7 +829,7 @@ If futures underpriced ($F < S \cdot e^{r(T-t)}$):
 - Basis relationship between crude and products
 - Seasonal demand patterns (heating oil winter, gasoline summer)
 
-### 3. Metals (Stable Contango)
+### 3. Metals (Stable
 
 **Gold (GC - COMEX):**
 
@@ -875,7 +875,7 @@ If futures at $2,035 (basis -$35 vs. fair -$25):
 - Often in backwardation (supply tight)
 - Basis reflects production/inventory cycles
 
-### 4. Stock Index Futures (Dividend-Driven Basis)
+### 4. Stock Index
 
 **E-mini S&P 500 (ES):**
 
@@ -936,9 +936,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Understanding Basis Trade Payoffs
+### 1. Understanding
 
 **The fundamental payoff equation:**
 
@@ -952,7 +952,7 @@ Where:
 
 **Key insight: Payoff depends ONLY on basis change, not absolute price movement.**
 
-### 2. Long Basis (Buy the Basis) Payoffs
+### 2. Long Basis (Buy
 
 **Position:** Long Spot + Short Futures
 
@@ -998,7 +998,7 @@ $$
 
 **Notice: Convergence trade has known maximum profit!**
 
-### 3. Short Basis (Sell the Basis) Payoffs
+### 3. Short Basis (Sell
 
 **Position:** Short Spot + Long Futures
 
@@ -1026,7 +1026,7 @@ $$
 - **Basis strengthened by $5.00**
 - On 10,000 barrels: **-$50,000 loss**
 
-### 4. Detailed P&L Examples
+### 4. Detailed P&L
 
 **Example 1: Long Basis, Prices Rise**
 
@@ -1120,7 +1120,7 @@ $$
 - Short basis profits from weakening
 - P&L: +$0.30 × 50,000 = **+$15,000** ✓
 
-### 5. Risk Comparison to Outright Positions
+### 5. Risk Comparison
 
 **Scenario: $10 absolute price move**
 
@@ -1150,7 +1150,7 @@ $$
 
 ---
 
-## Entry and Exit Strategies
+## Entry and Exit
 
 ### 1. Entry Strategies
 
@@ -1398,7 +1398,7 @@ $$
 - Actual: Basis -$1.70 (only $0.30 convergence)
 - **Behind schedule → Exit**
 
-### 3. Position Management
+### 3. Position
 
 **Dynamic adjustment strategies:**
 

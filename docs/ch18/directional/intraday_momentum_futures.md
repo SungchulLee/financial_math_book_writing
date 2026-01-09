@@ -1,4 +1,4 @@
-# Intraday Momentum with Futures
+# Intraday Momentum
 
 ## Overview
 Intraday momentum trading with futures aims to exploit **short-horizon directional persistence** within the trading day using highly liquid, low-cost instruments. Unlike options-based intraday momentum, this approach relies on **linear exposure, execution efficiency, and volatility-adjusted sizing**, not gamma or implied volatility.
@@ -21,7 +21,7 @@ Key characteristics:
 
 ---
 
-## Intraday Momentum Signal
+## Intraday Momentum
 
 Common intraday signals:
 - Opening range breakout (ORB)
@@ -73,7 +73,7 @@ This enforces:
 
 ---
 
-## Transaction Costs and Slippage
+## Transaction Costs
 
 Critical considerations:
 - Bid–ask spread
@@ -115,7 +115,7 @@ Performs poorly when:
 
 ---
 
-## Comparison with Options-Based Intraday Momentum
+## Comparison with
 
 | Aspect | Futures | Options |
 |------|--------|---------|
@@ -128,7 +128,7 @@ Performs poorly when:
 
 ---
 
-## Institutional Perspective
+## Institutional
 
 Used by:
 - Prop trading firms
@@ -141,7 +141,7 @@ Often complements:
 
 ---
 
-## Summary
+## Intraday momentum
 
 Intraday momentum with futures is:
 - Execution-driven

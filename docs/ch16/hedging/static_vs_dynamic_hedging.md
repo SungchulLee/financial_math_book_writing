@@ -169,7 +169,7 @@ High tracking   Medium tracking     Low tracking error
 
 - Static hedge with spread is cleaner
 
-### 3. Liquidity Constra
+### 3. Liquidity
 
 **Can't always rebalance:**
 
@@ -195,7 +195,7 @@ High tracking   Medium tracking     Low tracking error
 
 - Prefer set-and-forget hedges
 
-### 5. Long Time Horizon
+### 5. Long Time
 
 **For very long-dated options:**
 
@@ -261,7 +261,7 @@ $$
 
 **The basic process:**
 
-### 1. Step 1
+### 1. For vanilla
 
 **For vanilla option, might use:**
 
@@ -281,7 +281,7 @@ $$
 
 - Match at critical points (barriers, etc.)
 
-### 2. Step 2
+### 2. At inception:
 
 **At inception:**
 
@@ -293,7 +293,7 @@ $$
 
 - **This is your ONLY adjustment**
 
-### 3. Step 3
+### 3. One-time trade:
 
 **One-time trade:**
 
@@ -303,7 +303,7 @@ $$
 
 - No further rebalancing
 
-### 4. Step 4
+### 4. During life:
 
 **During life:**
 
@@ -315,7 +315,7 @@ $$
 
 - **Accept this drift**
 
-### 5. Step 5
+### 5. At maturity:
 
 **At maturity:**
 
@@ -647,7 +647,7 @@ where $\mu$ depends on rates and volatility.
 
 - Significant events (earnings, Fed meetings)
 
-### 2. Example
+### 2. For 1-year
 
 **For 1-year option:**
 
@@ -843,7 +843,7 @@ where $\mu$ depends on rates and volatility.
 
 ## When Static Hedging
 
-### 1. Favorable Conditi
+### 1. Favorable
 
 **1. Long time horizons**
 
@@ -1107,7 +1107,7 @@ where $\mu$ depends on rates and volatility.
 
 **The mathematical foundation:**
 
-### 1. Carr-Madan Formul
+### 1. Carr-Madan
 
 **Any European option can be replicated with portfolio of vanillas:**
 
@@ -1161,9 +1161,9 @@ where:
 
 ---
 
-## Real-World Applicati
+## Real-World
 
-### 1. Structured Produc
+### 1. Structured
 
 **Investment banks selling:**
 
@@ -1185,7 +1185,7 @@ where:
 
 - Manage residual risk dynamically
 
-### 2. Insurance Compani
+### 2. Insurance
 
 **Life insurers with:**
 
@@ -1251,9 +1251,9 @@ where:
 
 ---
 
-## Practical Implementa
+## Practical
 
-### 1. Step 1
+### 1. Ask: What's the
 
 **Ask:**
 
@@ -1267,7 +1267,7 @@ where:
 
 - Is volatility low? (Lower vol favors static)
 
-### 2. Step 2
+### 2. For vanilla
 
 **For vanilla option:**
 
@@ -1293,7 +1293,7 @@ where:
 
 - Hold to expiry
 
-### 3. Step 3
+### 3. One-time trade:
 
 **One-time trade:**
 
@@ -1305,7 +1305,7 @@ where:
 
 - Set expiry management plan
 
-### 4. Step 4
+### 4. Don't rebalance,
 
 **Don't rebalance, but do monitor:**
 
@@ -1317,7 +1317,7 @@ where:
 
 - **But don't trade!**
 
-### 5. Step 5
+### 5. At expiration:
 
 **At expiration:**
 
@@ -1479,7 +1479,7 @@ Selling barrier option (knock-out call):
 
 **Economic insight:** Static hedging allows you to harvest volatility smile inefficiencies while avoiding transaction costs.
 
-### 5. Why This Structur
+### 5. Why This
 
 Markets create static hedging opportunities because:
 
@@ -1521,7 +1521,7 @@ Markets create static hedging opportunities because:
 
 - **Market developed static for exotics**
 
-### 6. The Hedge Efficie
+### 6. The Hedge
 
 There exists a frontier:
 
@@ -1597,7 +1597,7 @@ $$
 
 **If holding <1 year: Dynamic might be better**
 
-### 8. The Market Micros
+### 8. The Market
 
 **Why transaction costs matter more than theory suggests:**
 
@@ -1723,7 +1723,7 @@ $$
 
 - PV analysis: Static wins if holding >15 years
 
-### 12. Optimal Rebalanc
+### 12. Optimal
 
 **Academic research (Leland, Boyle & Vorst) shows:**
 
@@ -1755,7 +1755,7 @@ For typical equity option:
 
 - Or: Option structure makes replication possible (barriers, digitals)
 
-### 13. Summary
+### 13. Static hedging
 
 **Static hedging exists because:**
 
@@ -1814,7 +1814,7 @@ Decision Tree:
    → Low (far OTM/ITM) → DYNAMIC (infrequent rebalancing anyway)
 ```
 
-### 2. Step 1
+### 2. Before choosing,
 
 **Before choosing, calculate your actual costs:**
 
@@ -1862,7 +1862,7 @@ $$
 \text{If: } \frac{\text{Total Transaction Cost}}{\text{Notional}} > 0.1\% \Rightarrow \text{Consider Static}
 $$
 
-### 3. Step 2
+### 3. For static
 
 **For static hedging, calculate expected tracking error:**
 
@@ -1910,7 +1910,7 @@ On $100 option = **1.56% tracking error**
 
 - **Dynamic wins decisively**
 
-### 4. Step 3
+### 4. Based on
 
 **Based on analysis:**
 
@@ -1956,7 +1956,7 @@ Use when:
 
 - Market-making or professional trading
 
-### 5. Step 4
+### 5. For pure static
 
 **For pure static approach:**
 
@@ -2032,7 +2032,7 @@ vs. Dynamic hedging same protection:
 
 **Dynamic is cheaper here** (but static is simpler, no management needed)
 
-### 6. Step 5
+### 6. For continuous
 
 **For continuous rebalancing approach:**
 
@@ -2140,7 +2140,7 @@ For each time interval (e.g., every 15 minutes):
 
 - Target: Realized vol > Implied vol + 2%
 
-### 7. Step 6
+### 7. For static
 
 **For static hedges, management is minimal:**
 
@@ -2164,7 +2164,7 @@ For each time interval (e.g., every 15 minutes):
 
 **Otherwise: DO NOTHING** (that's the point of static!)
 
-### 8. Step 7
+### 8. For dynamic
 
 **For dynamic hedges, active management:**
 
@@ -2212,7 +2212,7 @@ For each time interval (e.g., every 15 minutes):
 
 - Calculate actual vs. expected costs
 
-### 9. Step 8
+### 9. Track these KPIs:
 
 **Track these KPIs:**
 
@@ -2252,7 +2252,7 @@ $$
 
 **Target:** 0.2-0.4 (once every 2.5-5 days)
 
-### 10. Step 9
+### 10. Signals to
 
 **Signals to switch from Static to Dynamic:**
 
@@ -2268,7 +2268,7 @@ $$
 3. **Long time remaining** (>6 months, better to go static)
 4. **Liquidity dried up** (cannot rebalance efficiently)
 
-### 11. Step 10
+### 11. Determine
 
 **Determine optimal rebalancing frequency:**
 
@@ -2373,7 +2373,7 @@ Delta Threshold = 0.05 - 0.20 (don't over-trade)
 Review Frequency = Daily
 ```
 
-### 14. Emergency Proced
+### 14. Emergency
 
 **For Static Hedging:**
 
@@ -2391,7 +2391,7 @@ Review Frequency = Daily
 3. Consider moving to semi-static
 4. If costs >1%: Stop and go static
 
-### 15. Success Checklis
+### 15. Success
 
 **Before implementing static hedge:**
 ```
@@ -2425,7 +2425,7 @@ Review Frequency = Daily
 
 **Critical errors in choosing and implementing hedging strategies:**
 
-### 1. Mistake #1
+### 1. Choose dynamic
 
 **What it looks like:**
 
@@ -2473,7 +2473,7 @@ $$
 
 ---
 
-### 2. Mistake #2
+### 2. Choose "dynamic"
 
 **What it looks like:**
 
@@ -2523,7 +2523,7 @@ Sell ATM calls (delta = -0.50), hedge with shares:
 
 ---
 
-### 3. Mistake #3
+### 3. Try to delta
 
 **What it looks like:**
 
@@ -2583,7 +2583,7 @@ Transaction costs explode:
 
 ---
 
-### 4. Mistake #4
+### 4. Plan to delta
 
 **What it looks like:**
 
@@ -2639,7 +2639,7 @@ $$
 
 ---
 
-### 5. Mistake #5
+### 5. Want "perfect"
 
 **What it looks like:**
 
@@ -2681,7 +2681,7 @@ vs. Transaction cost to fix:
 
 ---
 
-### 6. Mistake #6
+### 6. Choose static
 
 **What it looks like:**
 
@@ -2727,7 +2727,7 @@ Portfolio manager:
 
 ---
 
-### 7. Mistake #7
+### 7. Choose dynamic
 
 **What it looks like:**
 
@@ -2781,7 +2781,7 @@ Monday open:
 
 ---
 
-### 8. Mistake #8
+### 8. Sold SPX index
 
 **What it looks like:**
 
@@ -2827,7 +2827,7 @@ Hedging European-style SPX options with American-style SPY:
 
 ---
 
-### 9. Mistake #9
+### 9. Delta hedge
 
 **What it looks like:**
 
@@ -2875,7 +2875,7 @@ Buy OTM call spread (vega hedge):
 
 ---
 
-### 10. Mistake #10
+### 10. Set rule:
 
 **What it looks like:**
 
@@ -2929,7 +2929,7 @@ vs. Rebalancing at 11:00 AM:
 
 ---
 
-### 11. Mistake #11
+### 11. Start with
 
 **What it looks like:**
 
@@ -2966,7 +2966,7 @@ Month 3: Total costs $15,000 vs. $10,000 (static) or $8,000 (dynamic from start)
 
 ---
 
-### 12. Mistake #12
+### 12. Implement static
 
 **What it looks like:**
 
@@ -3004,7 +3004,7 @@ Static hedge with vanilla options portfolio:
 
 ---
 
-### 13. Mistake #13
+### 13. Short options,
 
 **What it looks like:**
 
@@ -3046,7 +3046,7 @@ Stock drops 10%:
 
 ---
 
-### 14. Mistake #14
+### 14. Static hedge
 
 **What it looks like:**
 
@@ -3086,7 +3086,7 @@ Over 3 years: $24,000 in interest!
 
 ---
 
-### 15. Mistake #15
+### 15. Implement hedge
 
 **What it looks like:**
 
@@ -3702,7 +3702,7 @@ Hour-by-hour inventory on typical day:
 
 ---
 
-### 6. Example 6
+### 6. Background:
 
 **Background:**
 
@@ -3791,7 +3791,7 @@ Hour-by-hour inventory on typical day:
 
 ---
 
-### 7. Example 7
+### 7. Historical
 
 **Historical scenario:** October 19, 1987
 

@@ -1,4 +1,4 @@
-# Backspreads (Call and Put Backspreads)
+# Backspreads (Call
 
 **Backspreads** are reverse ratio spreads where you buy more options than you sell at different strikes, creating unlimited profit potential in the favored direction while often collecting a credit or paying minimal debit, combining directional bias with volatility exposure.
 
@@ -42,7 +42,7 @@ $$
 
 ---
 
-## What Are Backspreads?
+## What Are
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/backspread_ratio_comparison.png?raw=true" alt="long_call_vs_put" width="700">
@@ -50,7 +50,7 @@ $$
 
 **Before trading backspreads, understand the structure:**
 
-### 1. Call Backspread (Bullish Volatility)
+### 1. Call Backspread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/backspread_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
@@ -94,7 +94,7 @@ $$
 - **Max loss:** At short call strike if entered for debit, OR at higher strike if entered for credit
 - **Breakeven (upper):** $K_1 + 2 \times (K_2 - K_1) = $100 + 2(5) = $110$
 
-### 2. Put Backspread (Bearish Volatility)
+### 2. Put Backspread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/backspread_vs_ratio.png?raw=true" alt="long_call_vs_put" width="700">
@@ -150,7 +150,7 @@ $$
 
 **Beyond the basic definition, understanding what backspreads REALLY are economically:**
 
-### 1. Backspread vs. Ratio Spread (Opposite Structures)
+### 1. Backspread vs.
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iv_impact_backspread.png?raw=true" alt="long_call_vs_put" width="700">
@@ -180,7 +180,7 @@ $$
 
 **Key insight:** Backspreads are the INVERSE of ratio spreads - you're buying the "lottery ticket" side.
 
-### 2. Why Backspreads Can Be Entered for Credit
+### 2. Why Backspreads
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/put_backspread.png?raw=true" alt="long_call_vs_put" width="700">
@@ -211,7 +211,7 @@ In equity markets, OTM puts are more expensive than OTM calls (put skew).
 - Harder to get credit
 - Usually small debit
 
-### 3. Backspread as Synthetic Straddle + Direction
+### 3. Backspread as
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/theta_decay_backspread.png?raw=true" alt="long_call_vs_put" width="700">
@@ -299,7 +299,7 @@ $$
 
 ---
 
-## Why Trade Backspreads?
+## Why Trade
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/backspread_theta.png?raw=true" alt="backspread_theta" width="700">
@@ -314,7 +314,7 @@ $$
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 Backspreads represent a specific economic proposition: **trading high probability of small losses for low probability of unlimited gains**, funded by selling nearer-to-the-money options to finance buying further-out-of-the-money options.
 
@@ -326,7 +326,7 @@ $$
 
 This creates a **reverse insurance structure**: you're buying "tail risk" protection (unlimited upside/downside) and financing it by selling "body insurance" (limited range protection).
 
-### 2. Why This Structure Exists Economically
+### 2. Why This
 
 Markets create these structures because different participants have different:
 
@@ -347,7 +347,7 @@ Markets create these structures because different participants have different:
 - Pure directional: Use outright options
 - **Directional + volatility**: Use backspreads (you need BOTH)
 
-### 3. Professional Institutional Perspective
+### 3. Professional
 
 Institutional traders view backspreads as tools for:
 
@@ -383,7 +383,7 @@ Backspreads invert the typical options trade:
 - Typical: High probability of small gain, low probability of large loss
 - **Backspread: Low probability of large gain, high probability of small/zero loss**
 
-### 4. The Economic Paradox
+### 4. The Economic
 
 **Why would anyone sell you this structure?**
 
@@ -420,7 +420,7 @@ $$
 
 This reveals backspreads are NOT neutral - they're **bi-directional bets with a skewed payoff**: small profit if wrong direction, unlimited if right direction and big enough.
 
-### 6. Market Efficiency and Pricing
+### 6. Market Efficiency
 
 **Are backspreads "fairly priced"?**
 
@@ -442,7 +442,7 @@ But inefficiencies arise from:
 Understanding the economic foundations helps you recognize when the strategy offers genuine edge versus when market pricing is fair.
 
 
-### 7. Bullish Breakout Play (Call Backspread)
+### 7. Bullish Breakout
 
 **Scenario:** Stock consolidating, expecting breakout to upside
 
@@ -481,7 +481,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Unlimited profit if breakout confirmed
 - Max loss only if "pinned" at $105 (low probability)
 
-### 8. Bearish Crash Bet (Put Backspread)
+### 8. Bearish Crash Bet
 
 **Scenario:** Market at all-time highs, expecting correction
 
@@ -520,7 +520,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Massive profit if crash happens (2× leverage)
 - Crash risk underpriced in low VIX environment
 
-### 9. Earnings IV Crush Play (Reverse Strategy)
+### 9. Earnings IV Crush
 
 **Scenario:** Post-earnings, IV collapsed, expecting move
 
@@ -553,7 +553,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Bet on re-acceleration of move
 - Small cost for unlimited upside
 
-### 10. Hedging Covered Calls (Put Backspread)
+### 10. Hedging Covered
 
 **Scenario:** Own stock + sold covered call, want downside protection
 
@@ -697,7 +697,7 @@ $$
 
 ## When Greeks Hurt You
 
-### 1. The No-Move Theta Bleed
+### 1. The No-Move Theta
 
 **Scenario:** Call backspread expecting rally, stock goes sideways
 
@@ -726,7 +726,7 @@ $$
 
 **Lesson:** Backspreads NEED big moves. Slow drift or sideways kills via theta + wrong side of short option.
 
-### 2. The IV Crush Disaster
+### 2. The IV Crush
 
 **Scenario:** Entered call backspread at high IV
 
@@ -744,7 +744,7 @@ $$
 
 **Lesson:** Don't enter backspreads at HIGH IV if you're long vega. Enter at LOW IV to benefit from expansion.
 
-### 3. The Pin at Short Strike
+### 3. The Pin at Short
 
 **Scenario:** Stock pins exactly at short strike
 
@@ -770,7 +770,7 @@ $$
 
 ## Common Pitfalls
 
-### 1. Wrong Directional Bias
+### 1. Wrong Directional
 
 **The mistake:**
 
@@ -799,7 +799,7 @@ Backspreads are DIRECTIONAL volatility bets. Need to be right on direction.
 - **Put backspread:** Only if expecting BIG DOWNSIDE move
 - Match structure to directional bias
 
-### 2. Entering at High IV
+### 2. Entering at High
 
 **The mistake:**
 
@@ -823,7 +823,7 @@ Backspreads are LONG vega. High IV = buying expensive + risk of IV crush.
 - **Only enter backspreads at LOW IV** (<40th percentile)
 - Or enter at high IV only if expecting FURTHER IV expansion (rare)
 
-### 3. Holding to Expiration
+### 3. Holding to
 
 **The mistake:**
 
@@ -854,7 +854,7 @@ Theta accelerates in final week + pin risk at short strike.
 - **Exit at 7-10 DTE** if not profitable
 - Don't hold to expiration unless deeply profitable
 
-### 4. Wrong Ratio Selection
+### 4. Wrong Ratio
 
 **The mistake:**
 
@@ -914,7 +914,7 @@ Skew makes put backspreads EASIER to enter for credit (steep put skew in equitie
 
 ---
 
-## Risk Management Rules
+## Risk Management
 
 ### 1. Position Sizing
 
@@ -945,7 +945,7 @@ $$
 - **Buy strike:** 5-10% OTM (delta ~-0.25 to -0.35)
 - **Target:** Net credit (exploit skew)
 
-### 3. Time Frame Selection
+### 3. Time Frame
 
 **Optimal expiration:**
 
@@ -954,7 +954,7 @@ $$
 - **Avoid <2 weeks:** Theta too destructive
 - **Avoid >8 weeks:** Too much theta to overcome
 
-### 4. IV Entry Guidelines
+### 4. IV Entry
 
 **Check IV percentile:**
 
@@ -975,7 +975,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup (October 2024):**
 
@@ -1004,7 +1004,7 @@ $$
 
 **Lesson:** Zero-cost backspread on confirmed breakout = ideal setup. No cost if wrong (stock stays flat), massive profit if right.
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup (January 2024):**
 
@@ -1038,7 +1038,7 @@ $$
 
 **Lesson:** Put backspread with credit = perfect crash hedge. Even if no crash, keep $2 credit. If crash happens, 2× leverage generates huge gains.
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -1069,7 +1069,7 @@ $$
 
 **Lesson:** Backspreads NEED explosive moves. Slow drift or consolidation = theta death. Should have exited after Week 1 when catalyst failed.
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup (Pre-earnings):**
 
@@ -1119,7 +1119,7 @@ Actually, let me reconsider:
 
 **The mistakes that cost traders the most money:**
 
-### 1. Mistake #1
+### 1. The error: "Stock
 
 **The error:**
 "Stock is at support, I'll enter a call backspread in case it bounces."
@@ -1148,7 +1148,7 @@ Actually, let me reconsider:
 Before entry, answer: "What specific event will cause the explosive move I need?"  
 If answer is vague ("eventually," "trends up," "looks ready"), **DON'T TRADE**.
 
-### 2. Mistake #2
+### 2. The error: "IV is
 
 **The error:**
 "IV is at 80%, let me buy a backspread to benefit from the volatility."
@@ -1177,7 +1177,7 @@ If answer is vague ("eventually," "trends up," "looks ready"), **DON'T TRADE**.
 - ThinkorSwim: Shows IV Rank automatically
 - If IV > 60th percentile → **WAIT or skip trade**
 
-### 3. Mistake #3
+### 3. The error: "I
 
 **The error:**
 "I like volatility, so I'll trade both call and put backspreads."
@@ -1200,7 +1200,7 @@ If answer is vague ("eventually," "trends up," "looks ready"), **DON'T TRADE**.
   - Strong bearish → Put backspread
   - **Neutral/uncertain → Don't use backspreads** (use straddle instead)
 
-### 4. Mistake #4
+### 4. The error: "I'll
 
 **The error:**
 "I'll hold until expiration to see if stock makes final push."
@@ -1233,7 +1233,7 @@ If answer is vague ("eventually," "trends up," "looks ready"), **DON'T TRADE**.
 - **ALWAYS exit by 3 DTE** (don't risk pin assignment)
 - Don't get greedy in final days (theta vs. potential gain not worth it)
 
-### 5. Mistake #5
+### 5. The error: "This
 
 **The error:**
 "This is a sure thing, I'll risk 20% of my account."
@@ -1274,7 +1274,7 @@ Example:
 - Max loss per spread: $5
 - **Max contracts:** 200 contracts (but respect liquidity limits!)
 
-### 6. Mistake #6
+### 6. The error: "Call
 
 **The error:**
 "Call and put backspreads are the same structure, I'll trade whichever direction I prefer."
@@ -1302,7 +1302,7 @@ Example:
 - **Don't force:** If can't get reasonable price, skip trade
 - Check IV skew before entering (ThinkorSwim volatility smile)
 
-### 7. Mistake #7
+### 7. The error: "1:3
 
 **The error:**
 "1:3 ratio gives more upside leverage, I'll use that instead of 1:2."
@@ -1339,7 +1339,7 @@ Example:
   - Low IV environment (<30th percentile)
   - Large expected move (earnings beat, major news)
 
-### 8. Mistake #8
+### 8. The error: "I'll
 
 **The error:**
 "I'll sell the calls first, then buy the calls later to save money."
@@ -1368,7 +1368,7 @@ Example:
 - Accept mid-price or better
 - Use "combo order" feature in broker platform
 
-### 9. Mistake #9
+### 9. The error: "I'll
 
 **The error:**
 "I'll figure out when to exit once I see how the trade goes."
@@ -1403,7 +1403,7 @@ Example:
 
 **Then follow rules religiously**, no exceptions.
 
-### 10. Mistake #10
+### 10. The error: "Lost
 
 **The error:**
 "Lost $2,000 on last backspread, need to make it back fast with bigger position."
@@ -1439,7 +1439,7 @@ Example:
 - Review strategy, paper trade only
 - Only return when emotionally reset
 
-### 11. Mistake #11
+### 11. The error: "I
 
 **The error:**
 "I found a great setup in a small-cap stock, I'll trade it."
@@ -1479,7 +1479,7 @@ Example:
 - Calculate spread: (Ask - Bid) / Mid × 100%
 - If >10% → **Skip trade**, find better opportunity
 
-### 12. Mistake #12
+### 12. The error: "I'm
 
 **The error:**
 "I'm up +100%, but could go to +500%. I'll hold for the home run."
@@ -1528,7 +1528,7 @@ $$
 - **Avg win size:** +100-200% per winner
 - **Trade frequency:** Fast capital recycling (more trades per year)
 
-### 13. The Cost of Mistakes
+### 13. The Cost of
 
 **One mistake can wipe out multiple winners:**
 
@@ -1579,7 +1579,7 @@ Follow the rules, avoid mistakes, and backspreads become profitable! 🎯
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -1668,7 +1668,7 @@ Check:
 - Bull market, VIX < 15 → Market complacent, put backspreads attractive (crash hedge)
 - Bear market, VIX > 30 → Market fearful, call backspreads attractive (bounce)
 
-### 2. Step 2
+### 2. Enter backspreads
 
 **Enter backspreads when:**
 
@@ -1690,7 +1690,7 @@ Check:
 ✗ **Earnings same day** (too binary, IV collapse)  
 ✗ **After big move** (already extended, less room)
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -1744,7 +1744,7 @@ $$
 - If max loss per backspread: $10
 - **Contracts per position:** $2,000 / $10 = 200 contracts (subject to liquidity)
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -1816,7 +1816,7 @@ $$
 - Stock might move before second leg filled
 - Single order = **no directional risk**, both legs simultaneously
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -1886,7 +1886,7 @@ Theta accelerates as expiration approaches:
 - Pin risk at max
 - Weekend risk (can't adjust if assigned)
 
-### 6. Step 6
+### 6. When to adjust:
 
 **When to adjust:**
 
@@ -1958,7 +1958,7 @@ Theta accelerates as expiration approaches:
 - Adjustments need time to work
 - Too close to expiration = just close
 
-### 7. Step 7
+### 7. Track every trade
 
 **Track every trade (critical for improvement):**
 
@@ -2078,7 +2078,7 @@ There we go! So my record should be:
 - Could have sized larger (only risked 1.1% of account)
 - Might try 2×-3 ratio next time for more leverage (if low IV persists)
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 **1. Entering at wrong volatility level**
 

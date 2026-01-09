@@ -1,4 +1,4 @@
-# Trend Following with Futures
+# Trend Following with
 
 ## Overview
 Trend following in futures focuses on capturing sustained directional moves using liquid, leveraged instruments across asset classes. Unlike options-based trend strategies, futures trend following relies on **price momentum, volatility targeting, and risk-managed position sizing**, rather than convexity or implied volatility.
@@ -109,7 +109,7 @@ Underperforms during:
 
 ---
 
-## Comparison with Options-Based Trend Following
+## Comparison with
 
 | Aspect | Futures | Options |
 |------|--------|---------|
@@ -120,7 +120,7 @@ Underperforms during:
 
 ---
 
-## Institutional Perspective
+## Institutional
 
 Used by:
 - CTAs
@@ -132,7 +132,7 @@ Trend following futures are often deployed as **portfolio insurance** rather tha
 
 ---
 
-## Summary
+## Futures trend
 
 Futures trend following is:
 - Systematic

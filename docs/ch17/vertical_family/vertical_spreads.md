@@ -38,7 +38,7 @@ $$
 
 ---
 
-## Types of Vertical Spreads
+## Types of Vertical
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bear_put_spread.png?raw=true" alt="Bear Put Spread" width="700">
@@ -46,7 +46,7 @@ $$
 
 **Four main types:**
 
-### 1. Bull Call Spread (Debit Spread)
+### 1. Bull Call Spread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bull_put_spread.png?raw=true" alt="Bull Put Spread" width="700">
@@ -81,7 +81,7 @@ $$
 
 **Figure 1:** Bull call spread profit/loss diagram showing the defined risk-reward profile of buying a lower strike call and selling a higher strike call, illustrating capped profit potential and limited downside.
 
-### 2. Bear Put Spread (Debit Spread)
+### 2. Bear Put Spread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bear_call_spread.png?raw=true" alt="Bear Call Spread" width="700">
@@ -116,7 +116,7 @@ $$
 
 **Figure 2:** Bear put spread profit/loss diagram demonstrating the bearish strategy with defined risk, showing how buying a higher strike put and selling a lower strike put creates a capped profit structure.
 
-### 3. Bull Put Spread (Credit Spread)
+### 3. Bull Put Spread
 
 **Bullish, receive net credit**
 
@@ -147,7 +147,7 @@ $$
 
 **Figure 3:** Bull put spread profit/loss diagram illustrating the credit spread structure where selling a higher strike put and buying a lower strike put generates immediate income with defined maximum loss.
 
-### 4. Bear Call Spread (Credit Spread)
+### 4. Bear Call Spread
 
 **Bearish, receive net credit**
 
@@ -184,7 +184,7 @@ $$
 
 **Understanding what vertical spreads REALLY represent economically:**
 
-### 1. The Risk Modification Trade-Off
+### 1. The Risk
 
 **Vertical spreads are fundamentally about:**
 
@@ -266,7 +266,7 @@ $$
 
 - You're protected if catastrophic loss occurs
 
-### 4. The Fundamental Probability-Reward Equation
+### 4. The Fundamental
 
 **Core economic insight for all vertical spreads:**
 
@@ -300,7 +300,7 @@ This is why:
 
 - Better management (when to exit, roll, adjust)
 
-### 5. Spreads as Volatility Positions
+### 5. Spreads as
 
 **Beyond directional:**
 
@@ -330,7 +330,7 @@ $$
 
 All three components matter, not just direction.
 
-### 6. Why Professionals Use Spreads
+### 6. Why Professionals
 
 **The institutional perspective:**
 
@@ -353,7 +353,7 @@ This mindset shift is crucial. You're not losing opportunity - you're **managing
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering
 
 **Before entering any spread, determine:**
 
@@ -384,7 +384,7 @@ This mindset shift is crucial. You're not losing opportunity - you're **managing
 
    - Trend strength
 
-### 2. Step 2
+### 2. Decision tree:
 
 **Decision tree:**
 
@@ -408,7 +408,7 @@ Bullish view?
 
 - **Higher win rate?** → Credit spread
 
-### 3. Step 3
+### 3. For debit
 
 **For debit spreads:**
 
@@ -460,7 +460,7 @@ Bullish view?
 
 - Wide (20 points): Higher premium, higher risk
 
-### 4. Step 4
+### 4. Short-term (<30
 
 **Short-term (<30 DTE):**
 
@@ -492,7 +492,7 @@ Bullish view?
 
 - Debit spreads: 45-75 DTE
 
-### 5. Step 5
+### 5. Critical
 
 **Critical formulas:**
 
@@ -528,7 +528,7 @@ Example: $50,000 portfolio, $10 wide spread, $3 credit
 
 - Never more than 20% of portfolio in spreads total
 
-### 6. Step 6
+### 6. Best practices:
 
 **Best practices:**
 
@@ -567,7 +567,7 @@ Open Interest > 500
 
 - Never enter minutes before major news
 
-### 7. Step 7
+### 7. For credit
 
 **For credit spreads:**
 
@@ -633,7 +633,7 @@ Open new spread:
 - Must collect net credit
 ```
 
-### 8. Step 8
+### 8. Track for every
 
 **Track for every trade:**
 
@@ -663,7 +663,7 @@ Open new spread:
 
 - Best/worst setups
 
-### 9. Common Execution Mistakes to Avoid
+### 9. Common Execution
 
 **1. Legging into spreads:**
 
@@ -701,7 +701,7 @@ Open new spread:
 
 - **Right:** Close or roll before ex-div date
 
-### 10. Professional Tips
+### 10. Professional
 
 **Spread selection matrix:**
 
@@ -739,7 +739,7 @@ Before every spread:
 
 **Top mistakes with spreads:**
 
-### 1. Wrong Spread Width
+### 1. Wrong Spread
 
 - **Mistake:** Always use $5 wide or $10 wide
 
@@ -747,7 +747,7 @@ Before every spread:
 
 - **Fix:** Adjust width to capital and risk appetite
 
-### 2. Ignoring Liquidity
+### 2. Ignoring
 
 - **Mistake:** Trade illiquid strikes
 
@@ -755,7 +755,7 @@ Before every spread:
 
 - **Fix:** Only trade liquid options (vol > 100)
 
-### 3. Holding to Expiration
+### 3. Holding to
 
 - **Mistake:** Wait for max profit on credit spreads
 
@@ -763,7 +763,7 @@ Before every spread:
 
 - **Fix:** Close at 50% profit
 
-### 4. Not Managing Losers
+### 4. Not Managing
 
 - **Mistake:** Let losing spread go to max loss
 
@@ -807,7 +807,7 @@ Before every spread:
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup:**
 
@@ -867,7 +867,7 @@ Before every spread:
 
 **Lesson:** Strong trend + catalyst + defined risk = ideal debit spread setup. Take profits at max value.
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup:**
 
@@ -929,7 +929,7 @@ Before every spread:
 
 **Lesson:** High IV + support level + credit spread = high probability trade. Take 50-70% profits for capital efficiency.
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -1005,7 +1005,7 @@ Before every spread:
 4. Trends can last longer than you can stay solvent
 5. **Never fight strong momentum without clear catalyst**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup:**
 
@@ -1063,7 +1063,7 @@ Before every spread:
 
 **Lesson:** Post-earnings, low-IV environments favor credit spreads. Take 50-70% profits and move on.
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Setup:**
 
@@ -1126,7 +1126,7 @@ Before every spread:
 
 **Lesson:** Don't hold debit spreads through binary events (Fed, earnings, major news). Gap risk can destroy positions instantly with no chance to manage.
 
-### 6. Example 6
+### 6. Setup: SPY at
 
 **Setup:**
 
@@ -1196,7 +1196,7 @@ Before every spread:
 
 **Lesson:** The 50% rule isn't about maximizing single trades - it's about risk management and compounding. Greed kills. Discipline survives.
 
-### 7. Example 7
+### 7. Setup: $10,000
 
 **Setup:**
 

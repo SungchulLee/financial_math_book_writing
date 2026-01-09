@@ -1,4 +1,4 @@
-# Cointegration-Based Spread Trading
+# Cointegration-Based
 
 **Cointegration-based spread trading** involves identifying pairs or groups of futures contracts that share a long-term equilibrium relationship (cointegration), then trading the temporary deviations from this equilibrium, profiting from the statistical tendency of the spread to revert to its mean while being market-neutral to directional price movements.
 
@@ -41,11 +41,11 @@ $$
 
 ---
 
-## What is Cointegration?
+## What is
 
 **Before trading cointegration, understand what it actually means:**
 
-### 1. Cointegration Defined
+### 1. Cointegration
 
 **Definition:** Two or more time series are cointegrated if:
 
@@ -62,7 +62,7 @@ $$
 
 Then $Y_t$ and $X_t$ are **cointegrated** with cointegration vector $[1, -\beta]$.
 
-### 2. Stationary vs. Non-Stationary
+### 2. Stationary vs.
 
 **Stationary process $I(0)$:**
 
@@ -96,7 +96,7 @@ $$
 - Shocks are permanent
 - **Not tradeable for mean reversion**
 
-### 3. Correlation vs. Cointegration
+### 3. Correlation vs.
 
 **Correlation:** Measures contemporaneous co-movement
 
@@ -185,7 +185,7 @@ $$
 
 **Beyond the statistical definition, understanding the economic drivers:**
 
-### 1. Fundamental Linkages
+### 1. Fundamental
 
 **Cointegration exists when two assets share:**
 
@@ -204,7 +204,7 @@ $$
    - Commodity pairs: Industrial demand
    - Currency pairs: Trade relationships
 
-### 2. The Law of One Price
+### 2. The Law of One
 
 **Economic principle:**
 
@@ -230,7 +230,7 @@ $$
 - If Brent too cheap → European refiners buy Brent, sell WTI
 - **Arbitrage keeps spread bounded**
 
-### 3. Cost of Carry Relationships
+### 3. Cost of Carry
 
 **For related commodities:**
 
@@ -260,7 +260,7 @@ $$
 - Processors arbitrage deviations
 - **Economic cointegration**
 
-### 4. Storage and Transportation
+### 4. Storage and
 
 **Geographic price relationships:**
 
@@ -298,7 +298,7 @@ $$
 - Driven by same macro factors
 - **Statistical and economic cointegration**
 
-### 6. Why Cointegration Breaks Down
+### 6. Why Cointegration
 
 **Regime changes can destroy cointegration:**
 
@@ -319,7 +319,7 @@ $$
 
 **This is why cointegration must be monitored continuously!**
 
-### 7. Why This Perspective Matters
+### 7. Why This
 
 **Understanding cointegration economics helps you:**
 
@@ -553,11 +553,11 @@ $$
 
 ---
 
-## Contract Specifications
+## Contract
 
 **Understanding which futures contracts are most likely to be cointegrated:**
 
-### 1. Energy Sector (Strong Cointegration)
+### 1. Energy Sector
 
 **Crude Oil Pairs:**
 
@@ -605,7 +605,7 @@ Similar relationship, seasonal variation (winter demand)
 - Better: Short-term calendar spreads
 - **Cointegration weaker than crude pairs**
 
-### 2. Agricultural Sector (Moderate Cointegration)
+### 2. Agricultural
 
 **Grain Complexes:**
 
@@ -643,7 +643,7 @@ $$
 - Geographic price differences
 - Weaker cointegration than crude oil
 
-### 3. Metals Sector (Variable Cointegration)
+### 3. Metals Sector
 
 **Precious Metals:**
 
@@ -674,7 +674,7 @@ $$
 - Different supply dynamics
 - **Cointegration: Weak**
 
-### 4. Equity Index Futures (Strong Cointegration)
+### 4. Equity Index
 
 **E-mini Contracts:**
 
@@ -710,7 +710,7 @@ $$
 - Time zone differences
 - **Cointegration: Moderate (currency-hedged better)**
 
-### 5. Currency Futures (Triangular Relationships)
+### 5. Currency Futures
 
 **Major Pairs:**
 
@@ -729,7 +729,7 @@ $$
 - Enforced by triangular arbitrage
 - **Very strong cointegration** ✓
 
-### 6. Fixed Income Futures (Yield Curve)
+### 6. Fixed Income
 
 **Treasury Futures:**
 
@@ -756,7 +756,7 @@ $$
 - Very strong cointegration
 - **Popular institutional trade**
 
-### 7. Commodity Pairs to Avoid
+### 7. Commodity Pairs
 
 **Weak/No cointegration:**
 
@@ -775,7 +775,7 @@ $$
    - Electricity (non-storable)
    - **Physical constraints break cointegration** ✗
 
-### 8. Selection Criteria
+### 8. Selection
 
 **Best cointegration pairs have:**
 
@@ -801,9 +801,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Understanding Cointegration Spread P&L
+### 1. Understanding
 
 **The profit/loss equation:**
 
@@ -827,7 +827,7 @@ $$
 - Exit: $\epsilon = \mu$ (fair value)
 - **Profit: $2\sigma$**
 
-### 2. Maximum Profit (Theoretical)
+### 2. Maximum Profit
 
 **Perfect mean reversion from extreme:**
 
@@ -866,7 +866,7 @@ If spread from -3σ to +3σ:
 - Range: $6\sigma = 6 × \$3 = \$18$
 - **Max profit: $18 × 10,000 = $180,000** (extreme case)
 
-### 3. Maximum Loss (Risk Management)
+### 3. Maximum Loss
 
 **Stop loss scenarios:**
 
@@ -889,7 +889,7 @@ If spread from -3σ to +3σ:
 
 **This is why stops are ESSENTIAL!**
 
-### 4. Risk-Reward Profile
+### 4. Risk-Reward
 
 **Typical cointegration trade:**
 
@@ -912,7 +912,7 @@ $$
 
 **Positive expectancy!**
 
-### 5. Comparison to Directional Trading
+### 5. Comparison to
 
 **Outright long futures:**
 - Max gain: Unlimited
@@ -947,7 +947,7 @@ $$
 
 ---
 
-## Entry and Exit Strategies
+## Entry and Exit
 
 ### 1. Entry Strategies
 
@@ -1177,7 +1177,7 @@ $$
 - Current σ: $5.50 (doubled!)
 - **Exit: Regime change likely**
 
-### 3. Position Management
+### 3. Position
 
 **1. Hedge Ratio Adjustment**
 

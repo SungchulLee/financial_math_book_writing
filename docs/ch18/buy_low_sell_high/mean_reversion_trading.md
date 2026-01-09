@@ -1,4 +1,4 @@
-# Mean Reversion Trading
+# Mean Reversion
 
 **Mean reversion trading** is a strategy that exploits the statistical tendency of prices to return to their average levels, using options to profit from oversold or overbought conditions while managing risk through defined entry and exit criteria.
 
@@ -31,7 +31,7 @@ $$
 
 ---
 
-## What Is Mean Reversion Trading?
+## What Is Mean
 
 **Before executing mean reversion strategies, understand the mechanics:**
 
@@ -68,7 +68,7 @@ $$
 - 14 days later → AAPL at $175 → Calls now $11.50 (up 229%)
 - Exit at $11.50 → Profit $800 per contract
 
-### 2. Put Version (Selling Overbought)
+### 2. Put Version
 
 **Definition:** Using puts to profit from downward mean reversion when price is extended above average.
 
@@ -111,7 +111,7 @@ $$
 
 **Beyond the basic strategy, understanding the REAL economics:**
 
-### 1. The Behavioral Foundation
+### 1. The Behavioral
 
 **The deep insight:**
 
@@ -152,7 +152,7 @@ $$
 
 **The key difference: You're betting AGAINST the recent move**
 
-### 2. The Rubber Band Analogy
+### 2. The Rubber Band
 
 **Visualizing mean reversion:**
 
@@ -181,7 +181,7 @@ Where $k$ is the "spring constant" (speed of reversion)
 
 **This is why we wait for 2σ+ moves: Maximum force, fastest reversion**
 
-### 3. Statistical Evidence
+### 3. Statistical
 
 **The mathematical model:**
 
@@ -218,7 +218,7 @@ $$
 - Gives time for reversion to occur
 - But not too much theta decay
 
-### 4. Why Extremes Create Opportunities
+### 4. Why Extremes
 
 **The inefficiency at extremes:**
 
@@ -254,7 +254,7 @@ Historical analysis (2020-2024):
 - Win rate: 52%
 - **Mean reversion entry: 5x better return**
 
-### 5. The Role of Implied Volatility
+### 5. The Role of
 
 **IV and mean reversion:**
 
@@ -281,7 +281,7 @@ $$
 - Vega loss can offset delta gain
 - **Solution: Trade when IV at 50-70th percentile, not 90th+**
 
-### 6. The Strategic Advantage
+### 6. The Strategic
 
 **Why options for mean reversion?**
 
@@ -375,9 +375,9 @@ $$
 
 ---
 
-## Mathematical Foundation
+## Mathematical
 
-### 1. The Mean Reversion Test
+### 1. The Mean
 
 **Testing if a stock exhibits mean reversion:**
 
@@ -455,7 +455,7 @@ $$
 
 **Signal: Buy calls (2σ oversold)**
 
-### 3. Expected Return Calculation
+### 3. Expected Return
 
 **For mean-reverting process:**
 
@@ -492,7 +492,7 @@ $$
 - Expected call value: ~$12.50
 - **Expected profit: $9.00 (257% gain)**
 
-### 4. Probability of Reversion
+### 4. Probability of
 
 **Using normal distribution:**
 
@@ -520,7 +520,7 @@ $$
 
 **Conclusion: More extreme entry → Higher win rate, bigger returns**
 
-### 5. Optimal Holding Period
+### 5. Optimal Holding
 
 **Time to reversion:**
 
@@ -545,7 +545,7 @@ Where $\epsilon$ = acceptable distance from mean (e.g., 0.5σ)
 - Gives buffer for slower-than-expected reversion
 - Balances theta decay vs. time needed
 
-### 6. Portfolio Kelly Criterion
+### 6. Portfolio Kelly
 
 **Optimal position size for mean reversion:**
 
@@ -581,7 +581,7 @@ $$
 
 ---
 
-## Step-by-Step Setup
+## Key ideas
 
 ### 1. Phase 1
 
@@ -622,16 +622,16 @@ import numpy as np
 # Load price data
 prices = pd.read_csv('AAPL.csv')['Close']
 
-# Calculate 50-day mean
+# Calculate 50-day
 mean = prices.rolling(50).mean()
 
-# Calculate 50-day std dev
+# Calculate 50-day std
 std = prices.rolling(50).std()
 
 # Calculate z-score
 z_score = (prices - mean) / std
 
-# Identify entry points
+# Identify entry
 oversold = z_score < -2.0
 overbought = z_score > 2.0
 ```
@@ -1230,7 +1230,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Date: August 5, 2024 (real event)**
 
@@ -1286,7 +1286,7 @@ $$
 
 **Key lesson: Extreme dislocations offer best risk-reward**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Date: November 2023**
 
@@ -1340,7 +1340,7 @@ $$
 
 **Key lesson: Overbought mean reversion works but moves faster down than up**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Date: March 2024**
 
@@ -1384,7 +1384,7 @@ $$
 - Don't fight the Fed (new regime = new mean)
 - Cutting loss at -80% saved from -100%
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Date: May 2024**
 
@@ -1429,7 +1429,7 @@ $$
 - For mean reversion around earnings: Wait until after
 - IV crush can destroy directionally correct trades
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Date: July 2024**
 
@@ -1482,7 +1482,7 @@ $$
 
 ## Risk Management
 
-### 1. Position Sizing for Mean Reversion
+### 1. Position Sizing
 
 **The cardinal rule:**
 
@@ -1515,7 +1515,7 @@ $$
 - Must survive losing streaks
 - **Losing 5 trades at 5% each = -25% drawdown (devastating)**
 
-### 2. Stop Loss Discipline
+### 2. Stop Loss
 
 **Mandatory stop:**
 
@@ -1544,7 +1544,7 @@ $$
 - Bear reversion: z rises above +2.5 (getting worse)
 - **Thesis invalidated → Exit regardless of option value**
 
-### 3. Profit Taking Strategy
+### 3. Profit Taking
 
 **Three-tier exit plan:**
 
@@ -1579,7 +1579,7 @@ $$
 - After 10 days, if stock still at entry (no reversion)
 - **Exit → Theta will kill remaining value**
 
-### 5. Diversification Rules
+### 5. Diversification
 
 **Maximum positions:**
 
@@ -1589,7 +1589,7 @@ $$
 - Different timeframes
 - **Uncorrelated as possible**
 
-### 6. Risk Management Checklist
+### 6. Risk Management
 
 **Before entry:**
 

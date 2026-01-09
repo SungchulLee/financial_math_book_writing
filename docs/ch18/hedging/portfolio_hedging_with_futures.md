@@ -1,4 +1,4 @@
-# Portfolio Hedging with Futures
+# Portfolio Hedging
 
 **Portfolio hedging with futures** is a risk management strategy where you use stock index futures contracts to protect a portfolio of stocks against market decline, providing insurance-like protection with high capital efficiency and precise exposure control.
 
@@ -30,11 +30,11 @@ $$
 
 ---
 
-## What Are Futures and Portfolio Hedging?
+## What Are Futures and
 
 **Before implementing hedges, understand the mechanics:**
 
-### 1. Stock Index Futures Contracts
+### 1. Stock Index
 
 **Definition:** Standardized agreements to buy/sell a stock index at a specified price on a future date, settled in cash (not physical delivery).
 
@@ -79,7 +79,7 @@ $$
 - Contract size: $50 × Russell 2000
 - For small-cap portfolio hedging
 
-### 2. Portfolio Hedging Concept
+### 2. Portfolio Hedging
 
 **What you're doing:**
 
@@ -130,7 +130,7 @@ $$
 
 **Beyond the basic mechanics, understanding the economic equivalence:**
 
-### 1. Futures Hedge = Synthetic Put Options (Without Premium Decay)
+### 1. Futures Hedge =
 
 **The deep insight:**
 
@@ -178,7 +178,7 @@ $$
 
 **Futures are 40× cheaper than puts for same protection!**
 
-### 2. Put-Call Parity and Futures Relationship
+### 2. Put-Call Parity
 
 **The fundamental equation connecting futures, forwards, and options:**
 
@@ -213,7 +213,7 @@ $$
 
 **You've effectively "synthetically sold" your stock exposure without actually selling!**
 
-### 3. Example
+### 3. Setup: Portfolio:
 
 **Setup:**
 
@@ -254,7 +254,7 @@ $$
 
 **The futures hedge is essentially FREE (except tracking error), while puts cost 2.5% of portfolio value!**
 
-### 4. The Leverage Advantage
+### 4. The Leverage
 
 **Capital efficiency comparison:**
 
@@ -292,7 +292,7 @@ $$
 
 **This means with $48,000, you control $1,000,000 of hedging power!**
 
-### 5. Why Institutional Investors Prefer Futures
+### 5. Why Institutional
 
 **Professional portfolio managers use futures because:**
 
@@ -336,7 +336,7 @@ For puts: $1M protection / $25k cost = 40× efficiency (but paying premium!)
 - Futures: No IV component
 - **Pure directional hedge**
 
-### 6. The Basis Risk Trade-off
+### 6. The Basis Risk
 
 **However, futures have tracking error:**
 
@@ -500,11 +500,11 @@ $$
 
 ---
 
-## The Greeks (Applied to Futures Hedging)
+## The Greeks (Applied
 
 **While futures don't have traditional Greeks like options, we can define analogous sensitivities:**
 
-### 1. Delta (Market Sensitivity)
+### 1. Delta (Market
 
 **Definition:** How much your hedged portfolio P&L changes per $1 move in the market.
 
@@ -558,7 +558,7 @@ $$
 
 **To achieve perfect delta neutrality, would need 2.44 contracts, but can only trade whole contracts → basis risk!**
 
-### 2. Gamma (Convexity Risk)
+### 2. Gamma (Convexity
 
 **Definition:** How your hedge ratio changes as markets move (rebalancing need).
 
@@ -621,7 +621,7 @@ Less frequent rebalancing:
 
 **Optimal rebalancing: When portfolio delta drifts >5-10% from target**
 
-### 3. Theta (Time Decay)
+### 3. Theta (Time
 
 **Definition:** How much your hedge costs per day.
 
@@ -675,7 +675,7 @@ $$
 
 **Futures theta is 16× cheaper than puts!**
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **Futures have NO vega (volatility sensitivity):**
 
@@ -717,7 +717,7 @@ $$
 
 **Lesson: Futures hedging immune to volatility regime changes. Options hedging highly sensitive to IV timing.**
 
-### 5. Rho (Interest Rate Sensitivity)
+### 5. Rho (Interest
 
 **Definition:** How hedge cost changes with interest rate changes.
 
@@ -768,7 +768,7 @@ Higher rates → Higher futures price → More contango → Higher roll costs
 
 **Just as options traders select strikes, hedgers must select appropriate futures contracts:**
 
-### 1. E-mini S&P 500 (ES) - The Standard
+### 1. E-mini S&P 500
 
 **Characteristics:**
 
@@ -808,7 +808,7 @@ $$
 - May over/under hedge smaller portfolios
 - Doesn't match sector exposures
 
-### 2. E-mini NASDAQ-100 (NQ) - For Tech Portfolios
+### 2. E-mini NASDAQ-100
 
 **Characteristics:**
 
@@ -859,7 +859,7 @@ $$
 - Higher margin requirement
 - More volatile (larger daily swings)
 
-### 3. Micro E-mini S&P 500 (MES) - For Smaller Portfolios
+### 3. Micro E-mini S&P
 
 **Characteristics:**
 
@@ -910,7 +910,7 @@ Using 5 MES = 94% hedge (nearly perfect!)
 - More contracts to manage
 - Higher relative transaction costs
 
-### 4. E-mini Russell 2000 (RTY) - For Small-Cap Portfolios
+### 4. E-mini Russell
 
 **Characteristics:**
 
@@ -949,7 +949,7 @@ $$
 - ES hedge on small-cap portfolio: TE ~ 5-8%
 - RTY hedge on small-cap portfolio: TE ~ 2-3%
 
-### 5. Multiple Contracts Strategy (Advanced)
+### 5. Multiple
 
 **For very large or sector-specific portfolios:**
 
@@ -1002,7 +1002,7 @@ $$
 
 **Just as options traders select expirations, hedgers must time their protection:**
 
-### 1. Quarterly Expiration Cycle
+### 1. Quarterly
 
 **Futures expire quarterly:**
 
@@ -1022,7 +1022,7 @@ $$
 3. Better execution in next contract
 4. Avoid delivery/settlement complications
 
-### 2. Short-Term Hedging (1-3 Months)
+### 2. Short-Term
 
 **Use case: Tactical protection**
 
@@ -1056,7 +1056,7 @@ September 15: Worried about October volatility (historically weak)
 - May remove hedge too early/late
 - Transaction costs for entering/exiting
 
-### 3. Medium-Term Hedging (3-12 Months)
+### 3. Medium-Term
 
 **Use case: Extended uncertainty**
 
@@ -1108,7 +1108,7 @@ January 2024: Concerned about elevated valuations, election uncertainty
 - 12-month ATM puts: 5-7% of portfolio = $50,000-$70,000
 - **Futures hedge is 90% cheaper!**
 
-### 4. Long-Term Hedging (1+ Years)
+### 4. Long-Term Hedging
 
 **Use case: Permanent portfolio insurance**
 
@@ -1163,7 +1163,7 @@ Instead of 100% hedge, use 50% hedge:
 - Lower costs (half the contracts)
 - Better risk-adjusted returns
 
-### 5. Dynamic Hedging Based on VIX
+### 5. Dynamic Hedging
 
 **Sophisticated approach: Adjust hedge ratio based on market regime**
 
@@ -1254,9 +1254,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Hedged Portfolio Outcomes
+### 1. Hedged Portfolio
 
 **Setup:**
 
@@ -1269,7 +1269,7 @@ $$
 
 **Scenario Analysis:**
 
-### 2. 1
+### 2. Market moves: S&P
 
 **Market moves:**
 
@@ -1314,7 +1314,7 @@ $$
 
 **Protection value: $89,800 preserved!**
 
-### 3. 2
+### 3. Market moves: S&P
 
 **Market moves:**
 
@@ -1359,7 +1359,7 @@ $$
 
 **This is the price of insurance – it costs when you don't need it!**
 
-### 4. 3
+### 4. Market moves: S&P
 
 **Market moves:**
 
@@ -1397,7 +1397,7 @@ $$
 
 **Hedged portfolio: $496,900 (down 0.62%, dividends offset most of cost)**
 
-### 5. 4
+### 5. Same setup but
 
 **Same setup but only short 1 ES contract (50% hedge):**
 
@@ -1427,7 +1427,7 @@ $$
 - Still provides significant protection (45%)
 - **Better risk-adjusted returns for most investors**
 
-### 6. Maximum Theoretical Outcomes
+### 6. Maximum
 
 **Best case (market crashes, full hedge):**
 
@@ -1460,9 +1460,9 @@ If market doubles (+100%):
 
 ---
 
-## When to Use Portfolio Hedging with Futures
+## When to Use
 
-### 1. Ideal Situations for Hedging
+### 1. Ideal Situations
 
 **Use futures hedging when:**
 
@@ -1542,7 +1542,7 @@ Tech-heavy portfolio before FOMC meeting:
 - Protect against market crash
 - **Alpha strategy (stock selection) while beta-neutral**
 
-### 2. Market Conditions Favoring Hedging
+### 2. Market Conditions
 
 **Strong hedging environments:**
 
@@ -1578,7 +1578,7 @@ $$
 - Defensive sectors outperforming
 - **Distribution phase beginning**
 
-### 3. Specific Use Cases
+### 3. Specific Use
 
 **Use Case 1: Tax-Loss Harvesting Alternative**
 
@@ -1615,7 +1615,7 @@ You want to shift from stocks to bonds:
 - If real estate correlates with stocks, hedge provides cash
 - **Liquidity buffer for illiquid assets**
 
-### 4. When Hedging Makes Economic Sense
+### 4. When Hedging
 
 **Calculate expected value of hedging:**
 
@@ -1645,9 +1645,9 @@ $$
 
 ---
 
-## When NOT to Use Portfolio Hedging with Futures
+## When NOT to Use
 
-### 1. Situations to Avoid Hedging
+### 1. Situations to
 
 **Don't hedge when:**
 
@@ -1755,7 +1755,7 @@ $80k portfolio:
 - Leverage cuts both ways
 - **Education before implementation!**
 
-### 2. Red Flags That You're Over-Hedging
+### 2. Red Flags That
 
 **Warning signs:**
 
@@ -1790,7 +1790,7 @@ $$
 - Other assets: $900k (unhedged real estate, bonds, etc.)
 - **Wasting time hedging 10% of wealth**
 
-### 3. Alternative Risk Management Approaches
+### 3. Alternative Risk
 
 **Instead of futures hedging, consider:**
 
@@ -1831,9 +1831,9 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
-### 1. Calculating Optimal Hedge Ratio
+### 1. Calculating
 
 **The fundamental formula:**
 
@@ -1966,7 +1966,7 @@ $$
 4. Never use 100% of available margin
 5. Reduce position if margin getting tight
 
-### 3. Dynamic Rebalancing
+### 3. Dynamic
 
 **Hedge ratio drifts over time. Need to rebalance when:**
 
@@ -2015,7 +2015,7 @@ Each adjustment costs:
 - Too infrequent rebalancing → Large tracking error
 - **Quarterly rebalancing typically optimal**
 
-### 4. Partial Hedging Strategies
+### 4. Partial Hedging
 
 **Most investors should use partial hedges:**
 
@@ -2060,7 +2060,7 @@ $$
 
 **This allows tactical adjustments while maintaining core position.**
 
-### 5. Portfolio Insurance Formula (Advanced)
+### 5. Portfolio
 
 **For sophisticated investors wanting dynamic protection:**
 
@@ -2103,7 +2103,7 @@ $$
 
 **This creates a "constant proportion portfolio insurance" (CPPI) strategy that dynamically adjusts protection.**
 
-### 6. Risk Limits and Controls
+### 6. Risk Limits and
 
 **Establish hard limits:**
 
@@ -2141,7 +2141,7 @@ $$
 
 ## Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -2239,7 +2239,7 @@ $$
 - With hedge: Portfolio $1.006M → Already recovered
 - **Sequence of returns protected**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background:**
 
@@ -2349,7 +2349,7 @@ $$
 - This wasn't risk management, it was bearish bet
 - **Confused hedging with market timing**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background:**
 
@@ -2455,7 +2455,7 @@ VIX: 65, extreme fear, market down 34% from peak
 
 **This is the ideal case: Hedge during crash, remove at bottom, capture recovery.**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Background:**
 
@@ -2535,9 +2535,9 @@ VIX: 65, extreme fear, market down 34% from peak
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. The error:
 
 **The error:**
 
@@ -2572,7 +2572,7 @@ $$
 
 If bearish, reduce equity allocation OR use hedge + puts, but don't over-hedge.
 
-### 2. Mistake #2
+### 2. The error: Short
 
 **The error:**
 
@@ -2604,7 +2604,7 @@ If bearish, reduce equity allocation OR use hedge + puts, but don't over-hedge.
 4. Have cash ready for margin calls
 5. Reduce position if margin getting tight
 
-### 3. Mistake #3
+### 3. The error: Opened
 
 **The error:**
 
@@ -2638,7 +2638,7 @@ Typical roll timing: 1-2 weeks before expiration
 - September expiration: Roll September 11-15
 - December expiration: Roll December 10-14
 
-### 4. Mistake #4
+### 4. The error:
 
 **The error:**
 
@@ -2683,7 +2683,7 @@ Can't trade 0.33 contracts!
 
 **Rule: Futures hedging makes sense only if portfolio > $250k for ES, or >$50k for MES.**
 
-### 5. Mistake #5
+### 5. The error:
 
 **The error:**
 
@@ -2716,7 +2716,7 @@ $$
 
 **Futures hedge only protects against MARKET risk, not STOCK-SPECIFIC risk.**
 
-### 6. Mistake #6
+### 6. The error: March
 
 **The error:**
 
@@ -2762,7 +2762,7 @@ $$
 - Recovery likely
 - **Don't close barn door after horse escaped**
 
-### 7. Mistake #7
+### 7. The error:
 
 **The error:**
 
@@ -2806,7 +2806,7 @@ $$
 - Don't get greedy with insurance
 - **Insurance collected, move on**
 
-### 8. Mistake #8
+### 8. The error: Market
 
 **The error:**
 
@@ -2846,7 +2846,7 @@ $$
 
 **Set thresholds and stick to them. Don't over-trade!**
 
-### 9. Mistake #9
+### 9. The error:
 
 **The error:**
 
@@ -2884,7 +2884,7 @@ $$
 
 **Choose futures contract that MATCHES your portfolio composition!**
 
-### 10. Mistake #10
+### 10. The error:
 
 **The error:**
 

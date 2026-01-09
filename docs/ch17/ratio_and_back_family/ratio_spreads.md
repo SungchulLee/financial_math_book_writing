@@ -34,7 +34,7 @@ Typical ratios: 1:2, 1:3, 2:3
 
 ---
 
-## What Is a Ratio Spread?
+## What Is a Ratio
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_long_stock_ratio_spreads.png?raw=true" alt="synthetic_long_stock_ratio_spreads" width="700">
@@ -42,7 +42,7 @@ Typical ratios: 1:2, 1:3, 2:3
 
 **The unbalanced strategy:**
 
-### 1. The Basic Structure
+### 1. The Basic
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_short_stock_ratio_spreads.png?raw=true" alt="synthetic_short_stock_ratio_spreads" width="700">
@@ -96,7 +96,7 @@ Typical ratios: 1:2, 1:3, 2:3
 
 - **Unlimited risk if stock crashes below $90**
 
-### 2. The Key Characteristic
+### 2. The Key
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown_ratio_spreads.png?raw=true" alt="synthetic_components_breakdown_ratio_spreads" width="700">
@@ -352,7 +352,7 @@ $$
 
 ---
 
-## Types of Ratio Spreads
+## Types of Ratio
 
 
 ---
@@ -361,7 +361,7 @@ $$
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 **What you're trading:**
 
@@ -383,7 +383,7 @@ This is fundamentally different from vertical spreads where you PAY for defined 
 
 ---
 
-### 2. The Premium Selling Economics
+### 2. The Premium
 
 **Why selling extra options makes this cheaper:**
 
@@ -417,7 +417,7 @@ When IV is high, you collect more premium (better entry point).
 
 ---
 
-### 3. The Probability Distribution Bet
+### 3. The Probability
 
 **What you're actually betting on:**
 
@@ -471,7 +471,7 @@ Stock returns follow (approximately) normal distribution. Ratio spreads are bets
 
 ---
 
-### 4. Why This Structure Exists Economically
+### 4. Why This
 
 **Market participants with different needs:**
 
@@ -519,7 +519,7 @@ Ratio spreads exist because:
 
 ---
 
-### 5. Professional Institutional Perspective
+### 5. Professional
 
 **How institutions use ratio spreads:**
 
@@ -551,7 +551,7 @@ Ratio spreads exist because:
 
 ---
 
-### 6. The Capital Efficiency Trap
+### 6. The Capital
 
 **Why "cheap" can be expensive:**
 
@@ -589,7 +589,7 @@ Suddenly not so cheap!
 
 ---
 
-### 7. When The Economics Favor Ratio Spreads
+### 7. When The
 
 **Optimal conditions:**
 
@@ -688,7 +688,7 @@ Often makes defined-risk strategies cheaper in reality!
 
 ---
 
-### 9. Economic Comparison to Alternatives
+### 9. Economic
 
 **Ratio spread vs. Vertical spread:**
 
@@ -734,7 +734,7 @@ $$
 
 ---
 
-### 10. The Volatility Smile Economics
+### 10. The Volatility
 
 **Why IV matters for ratio spreads:**
 
@@ -772,7 +772,7 @@ When you sell OTM calls, you're selling at LOWER IV than you're buying. This is 
 
 ---
 
-### 11. Final Economic Wisdom
+### 11. Final Economic
 
 **The fundamental equation:**
 
@@ -805,7 +805,7 @@ $$
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 12. The Core Economic Trade-Off
+### 12. The Core
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -815,7 +815,7 @@ $$
 \text{Strategy Payoff} = \text{Component 1} + \text{Component 2} - \text{Cost/Benefit}
 $$
 
-### 13. Why This Structure Exists Economically
+### 13. Why This
 
 Markets create these structures because different participants have different:
 
@@ -827,7 +827,7 @@ Markets create these structures because different participants have different:
 
 - View on volatility vs. direction
 
-### 14. Professional Institutional Perspective
+### 14. Professional
 
 Institutional traders view this strategy as a tool for:
 
@@ -842,7 +842,7 @@ Institutional traders view this strategy as a tool for:
 Understanding the economic foundations helps you recognize when the strategy offers genuine edge versus when market pricing is fair.
 
 
-### 15. Standard Ratio (1
+### 15. Standard Ratio
 
 **Most common:**
 
@@ -852,7 +852,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 - Typical use
 
-### 16. Aggressive Ratio (1
+### 16. Aggressive Ratio
 
 **Higher risk:**
 
@@ -874,7 +874,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 - **Very dangerous if stock moons**
 
-### 17. Conservative Ratio (2
+### 17. Conservative
 
 **Lower risk:**
 
@@ -894,7 +894,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 - Only 1 call uncovered
 
-### 18. Ratio Call Spread (for credit)
+### 18. Ratio Call
 
 **Receive money upfront:**
 
@@ -908,7 +908,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Danger:** Still unlimited risk above breakeven!
 
-### 19. Ratio Put Spread (for credit)
+### 19. Ratio Put Spread
 
 **Receive money upfront:**
 
@@ -966,7 +966,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 - Upper breakeven: $289
 
-### 4. 1
+### 4. At expiration:
 
 **At expiration:**
 
@@ -980,7 +980,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Perfect outcome:** Stock at upper short strike
 
-### 5. 2
+### 5. At expiration:
 
 **At expiration:**
 
@@ -994,7 +994,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Still very profitable**
 
-### 6. 3
+### 6. At expiration:
 
 **At expiration:**
 
@@ -1008,7 +1008,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Decent profit**
 
-### 7. 4
+### 7. At expiration:
 
 **At expiration:**
 
@@ -1022,7 +1022,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Loss! Stock moved TOO MUCH**
 
-### 8. 5
+### 8. At expiration:
 
 **At expiration:**
 
@@ -1038,7 +1038,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **This is the ratio spread paradox: Can lose money from being "too right"**
 
-### 9. Management Decision
+### 9. Management
 
 **After 20 days:**
 
@@ -1061,7 +1061,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Concrete scenarios showing ratio spreads in practice:**
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup:**
 
@@ -1155,7 +1155,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup:**
 
@@ -1253,7 +1253,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -1335,7 +1335,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup:**
 
@@ -1431,7 +1431,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Setup:**
 
@@ -1543,7 +1543,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-### 6. Example 6
+### 6. Setup: BAC at $28
 
 **Setup:**
 
@@ -1601,7 +1601,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-### 7. Example 7
+### 7. Setup: Trader
 
 **Setup:**
 
@@ -1677,7 +1677,7 @@ This is probably the ONLY good long-term use of ratio spread concepts!
 
 ---
 
-### 8. Summary
+### 8. Winning scenarios
 
 **Winning scenarios (20-30% of trades):**
 
@@ -1730,9 +1730,9 @@ $$
 
 ---
 
-## When to Use Ratio Spreads
+## When to Use Ratio
 
-### 1. Favorable Conditions
+### 1. Favorable
 
 **1. Moderately directional view:**
 
@@ -1766,7 +1766,7 @@ $$
 
 - Sweet spot at your target
 
-### 2. Unfavorable Conditions
+### 2. Unfavorable
 
 **1. Uncertain direction:**
 
@@ -1802,7 +1802,7 @@ $$
 
 ---
 
-## Risk Management (CRITICAL!)
+## Risk Management
 
 **Ratio spreads require strict discipline:**
 
@@ -1900,7 +1900,7 @@ $$
 
 ---
 
-## Ratio Spreads vs. Other Strategies
+## Ratio Spreads vs.
 
 | Strategy | Cost | Downside Risk | Upside Risk | Complexity |
 |----------|------|---------------|-------------|-----------|
@@ -1927,7 +1927,7 @@ $$
 
 ## Advanced Variations
 
-### 1. Synthetic Conversions and Ratio Spreads
+### 1. Synthetic
 
 **Advanced traders may combine ratio spreads with synthetic positions to create complex risk-reward profiles:**
 
@@ -1945,7 +1945,7 @@ $$
 
 **Figure 8:** Strike selection for synthetic positions and ratio spreads showing how ATM synthetics replicate stock exactly while OTM synthetics create leverage or deductibles, demonstrating strategic strike choices when combining synthetics with ratio spread structures.
 
-### 2. Ratio Backspread (Reverse Ratio)
+### 2. Ratio Backspread
 
 **Opposite structure:**
 
@@ -1967,7 +1967,7 @@ $$
 
 - Accept risk on one side
 
-### 3. Christmas Tree Spread
+### 3. Christmas Tree
 
 **Multiple ratios:**
 
@@ -1993,7 +1993,7 @@ $$
 
 - Graduated profit zones
 
-### 5. Ratio Diagonal Spread
+### 5. Ratio Diagonal
 
 **Different expirations:**
 
@@ -2014,7 +2014,7 @@ $$
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -2042,7 +2042,7 @@ $$
 
    - Macro environment
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 
@@ -2062,7 +2062,7 @@ $$
 
 - [Insufficient time or liquidity]
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -2078,7 +2078,7 @@ $$
 
 - Never more than 20% of portfolio in options
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -2090,7 +2090,7 @@ $$
 
 4. **Single order:** Enter as complete strategy, don't leg in
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -2116,7 +2116,7 @@ $$
 
 - Exit if [time-based trigger]
 
-### 6. Step 6
+### 6. When to adjust:
 
 **When to adjust:**
 
@@ -2134,7 +2134,7 @@ $$
 
 - [When to take loss instead]
 
-### 7. Step 7
+### 7. Track every
 
 Track every trade:
 
@@ -2146,7 +2146,7 @@ Track every trade:
 
 - P&L and lessons learned
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Entering at wrong volatility level**
 
@@ -2161,7 +2161,7 @@ Track every trade:
 
 ## Common Mistakes
 
-### 1. Mistake 1
+### 1. ❌ Wrong: "Stock
 
 ❌ **Wrong:**
 
@@ -2193,7 +2193,7 @@ Track every trade:
 
 - Accept you can't predict extremes
 
-### 2. Mistake 2
+### 2. ❌ Wrong: Set up
 
 ❌ **Wrong:**
 
@@ -2223,7 +2223,7 @@ Track every trade:
 
 - Use defined-risk strategies for events
 
-### 3. Mistake 3
+### 3. ❌ Wrong: Set up
 
 ❌ **Wrong:**
 
@@ -2253,7 +2253,7 @@ Track every trade:
 
 - Mechanical exit
 
-### 4. Mistake 4
+### 4. ❌ Wrong: $25,000
 
 ❌ **Wrong:**
 
@@ -2281,7 +2281,7 @@ Track every trade:
 
 - Never more than few contracts
 
-### 5. Mistake 5
+### 5. ❌ Wrong: Strikes
 
 ❌ **Wrong:**
 

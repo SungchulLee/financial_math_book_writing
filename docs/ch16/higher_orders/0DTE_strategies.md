@@ -1,4 +1,4 @@
-# 0DTE Strategies
+# DTE Strategies
 
 **0DTE strategies** involve trading options on their expiration day when time value approaches zero, Greeks reach extreme levels, and price movements create asymmetric opportunities driven by gamma explosions and theta acceleration.
 
@@ -54,7 +54,7 @@ $$
 
 ---
 
-## What Are 0DTE Option
+## What Are 0DTE
 
 **Before trading 0DTE, understand what makes them unique:**
 
@@ -199,7 +199,7 @@ $$
 - But if market moves → Massive payoff (gamma works for you)
 - Cheap entry (low premium = lottery ticket pricing)
 
-### 3. The Gamma Imbalan
+### 3. The Gamma
 
 **Institutional observation:**
 
@@ -298,7 +298,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This Structur
+### 2. Why This
 
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
@@ -764,7 +764,7 @@ $$
 
 ## When Greeks Destroy
 
-### 1. The Gamma Guillot
+### 1. The Gamma
 
 **Scenario:** Sold 0DTE iron condor, feeling confident
 
@@ -1220,7 +1220,7 @@ These days have 2-3× normal volatility → Gamma risk explodes.
 
 **Step-by-step implementation framework for trading 0DTE successfully:**
 
-### 1. Step 1
+### 1. Before market
 
 **Before market opens, complete this checklist:**
 
@@ -1263,7 +1263,7 @@ $$
 
 **Use 2× this for strike selection.**
 
-### 2. Step 2
+### 2. Watch first 30
 
 **Watch first 30 minutes (DON'T trade yet):**
 
@@ -1287,7 +1287,7 @@ $$
 - Range-bound price action
 - No news
 
-### 3. Step 3
+### 3. For iron condor
 
 **For iron condor sellers:**
 
@@ -1337,7 +1337,7 @@ $$
 
 **Don't round up! Stay at 1.**
 
-### 4. Step 4
+### 4. Use limit orders
 
 **Use limit orders (NEVER market):**
 
@@ -1357,7 +1357,7 @@ Ask: $4.20
 
 **Don't chase!** If market isn't giving your price, there's a reason (hidden risk).
 
-### 5. Step 5
+### 5. Monitoring
 
 **Monitoring schedule:**
 
@@ -1415,7 +1415,7 @@ Collected $4? Stop at $8 (down $4)
 
 **Exit immediately when hit!** No hoping.
 
-### 6. Step 6
+### 6. CRITICAL PERIOD -
 
 **CRITICAL PERIOD - Close ALL positions by 3:30 PM**
 
@@ -1448,7 +1448,7 @@ $$
 
 Last 15 minutes: Gamma 5-10× higher!
 
-### 7. Step 7
+### 7. Journal every
 
 **Journal every trade:**
 
@@ -1499,7 +1499,7 @@ Trade Again?: [Yes/No and why]
 - Do you lose in certain market conditions (high IV)?
 - **Adjust strategy based on data**
 
-### 8. Step 8
+### 8. A
 
 **A. Iron Condor Selling (Most Common)**
 
@@ -1718,7 +1718,7 @@ $$
 
 **Critical errors that destroy 0DTE traders - unique to same-day expiration:**
 
-### 1. Mistake #1
+### 1. Sell iron condor
 
 **What it looks like:**
 
@@ -1762,7 +1762,7 @@ As time → 0, losses → ∞ for same move!
 
 ---
 
-### 2. Mistake #2
+### 2. AM: Buy SPX $4500
 
 **What it looks like:**
 
@@ -1801,7 +1801,7 @@ For $15 premium, 0.50 delta: Need 60-point move just to break even!
 
 ---
 
-### 3. Mistake #3
+### 3. See Fed meeting
 
 **What it looks like:**
 
@@ -1842,7 +1842,7 @@ For $15 premium, 0.50 delta: Need 60-point move just to break even!
 
 ---
 
-### 4. Mistake #4
+### 4. Want to close
 
 **What it looks like:**
 
@@ -1886,7 +1886,7 @@ Market order: Filled at $1.18 (near ask)
 
 ---
 
-### 5. Mistake #5
+### 5. Normal position
 
 **What it looks like:**
 
@@ -1945,7 +1945,7 @@ $50,000 account → Max risk $250 per trade
 
 ---
 
-### 6. Mistake #6
+### 6. Sell iron condor:
 
 **What it looks like:**
 
@@ -1983,7 +1983,7 @@ Even $0.05 ITM = full assignment!
 
 ---
 
-### 7. Mistake #7
+### 7. Experience with
 
 **What it looks like:**
 
@@ -2033,7 +2033,7 @@ $$
 
 ---
 
-### 8. Mistake #8
+### 8. Sell iron condor
 
 **What it looks like:**
 
@@ -2088,7 +2088,7 @@ In regular options, can wait days for recovery. In 0DTE, hours evaporate.
 
 ---
 
-### 9. Mistake #9
+### 9. SPX at 4500
 
 **What it looks like:**
 
@@ -2147,7 +2147,7 @@ $$
 
 ---
 
-### 10. Mistake #10
+### 10. Trade 0DTE every
 
 **What it looks like:**
 
@@ -2198,7 +2198,7 @@ $$
 
 ---
 
-### 11. Mistake #11
+### 11. Have $5,000
 
 **What it looks like:**
 
@@ -2242,7 +2242,7 @@ $$
 
 ---
 
-### 12. Mistake #12
+### 12. Wake up, open
 
 **What it looks like:**
 
@@ -2280,7 +2280,7 @@ One news event = wipes out week of profits
 
 ---
 
-### 13. Mistake #13
+### 13. Sell iron condor
 
 **What it looks like:**
 
@@ -2324,7 +2324,7 @@ Rare, but happens (especially when emotional).
 
 ---
 
-### 14. Mistake #14
+### 14. Sell iron condor
 
 **What it looks like:**
 
@@ -2355,7 +2355,7 @@ Rare, but happens (especially when emotional).
 
 ---
 
-### 15. Mistake #15
+### 15. Trade 0DTE for 3
 
 **What it looks like:**
 

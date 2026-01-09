@@ -33,7 +33,7 @@ $$
 
 ---
 
-## What Is the Volatility Term Structure?
+## What Is the
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_iv_impact.png?raw=true" alt="calendar_spread_iv_impact" width="700">
@@ -130,7 +130,7 @@ Plot IV vs. Time to Maturity → creates a curve
 
 ---
 
-## What Is a Calendar Spread?
+## What Is a Calendar
 
 **A calendar spread trades the relationship between two maturities:**
 
@@ -150,7 +150,7 @@ Plot IV vs. Time to Maturity → creates a curve
 - Buy 3-month $100 call at IV=22%
 - Net cost: approximately $2 per share
 
-### 2. Why This Structure?
+### 2. Why This
 
 **Time decay asymmetry:**
 
@@ -227,7 +227,7 @@ $$
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 **Calendar spreads are fundamentally trading the volatility term structure:**
 
@@ -243,7 +243,7 @@ You're betting that the relationship between front and back month volatilities w
 - **Term structure normalization:** Abnormal term structures revert to normal
 - **Volatility uncertainty resolution:** Different maturities price uncertainty differently
 
-### 2. Why Calendar Spreads Exist Economically
+### 2. Why Calendar
 
 **The term structure reflects different economic forces:**
 
@@ -276,7 +276,7 @@ $$
 
 More time = more cumulative uncertainty. Longer-dated options price this in.
 
-### 3. The Volatility Term Structure Premium
+### 3. The Volatility
 
 **Historical observation:**
 
@@ -301,7 +301,7 @@ Studies show:
 
 **This creates trading edge** for calendar spreads positioned to benefit from normalization.
 
-### 4. Professional Institutional Perspective
+### 4. Professional
 
 **Institutional traders view calendars as:**
 
@@ -324,7 +324,7 @@ Studies show:
    - Small vol increases: Net positive (vega)
    - Large vol spikes: Complex (front gamma negative, back gamma positive)
 
-### 5. The Time Dimension of Volatility
+### 5. The Time
 
 **Calendars reveal that volatility has temporal structure:**
 
@@ -355,7 +355,7 @@ Just as bond traders trade yield curve (interest rates across maturities), optio
 | Curve flattening | Term structure flattening |
 | Curve inversion | Term structure inversion |
 
-### 6. Fair Value Framework
+### 6. Fair Value
 
 **Theoretical fair value of calendar spread:**
 
@@ -392,7 +392,7 @@ $$
 
 Theta collection is positive and certain. Vega P&L depends on IV path. Gamma costs occur if stock moves significantly.
 
-### 7. When Calendar Spreads Offer Edge
+### 7. When Calendar
 
 **Genuine edge exists when:**
 
@@ -428,7 +428,7 @@ $$
 
 **Breaking it down:**
 
-### 1. Term Structure P&L (Your Primary Bet)
+### 1. Term Structure
 
 **Two components:**
 
@@ -473,7 +473,7 @@ After 1 month:
 
 This is analogous to bond "roll-down yield."
 
-### 2. Theta P&L (Usually Positive)
+### 2. Theta P&L
 
 $$
 \Theta_{\text{net}} = \Theta_{\text{back}} - \Theta_{\text{front}}
@@ -504,7 +504,7 @@ Calendar: $\Theta_{\text{net}} = -0.29 - (-0.50) = +\$0.21$/day
 
 **You collect +$0.21/day!**
 
-### 3. Gamma P&L (Complex)
+### 3. Gamma P&L
 
 **Mixed gamma:**
 
@@ -539,7 +539,7 @@ $$
 
 **Trade-off:** Calendar sacrifices some gamma upside for positive theta.
 
-### 4. Complete Daily P&L
+### 4. Complete Daily
 
 $$
 \text{Daily P\&L} = \underbrace{(\mathcal{V}_{\text{back}} - \mathcal{V}_{\text{front}}) d\sigma}_{\text{Vega}} + \underbrace{\Theta_{\text{net}} dt}_{\text{Theta (+)}} + \underbrace{\frac{1}{2}\Gamma_{\text{net}} (dS)^2}_{\text{Gamma (-)}}
@@ -551,9 +551,9 @@ $$
 
 ---
 
-## Types of Calendar Spreads
+## Types of Calendar
 
-### 1. Standard Calendar (ATM)
+### 1. Standard Calendar
 
 **Structure:**
 
@@ -596,7 +596,7 @@ $$
 - Still benefits from time decay
 - Combines calendar + vertical spread
 
-### 3. Double Calendar (Iron Calendar)
+### 3. Double Calendar
 
 **Structure:**
 
@@ -764,7 +764,7 @@ After 30 days:
 
 ---
 
-## Calendar Spreads vs. Other Strategies
+## Calendar Spreads vs.
 
 | Strategy | What You Trade | Time Dimension | Number of Expiries |
 |----------|---------------|----------------|-------------------|
@@ -807,11 +807,11 @@ After 30 days:
 
 ---
 
-## Why Calendar Spreads Exist
+## Why Calendar Spreads
 
 **Why is the term structure non-flat?**
 
-### 1. Mean Reversion of Volatility
+### 1. Mean Reversion of
 
 **Volatility reverts to long-term average:**
 
@@ -827,7 +827,7 @@ After 30 days:
 - → Front month: 35%, Back month: 28% (flatter)
 - → Downward sloping term structure
 
-### 2. Events and Announcements
+### 2. Events and
 
 **Known events create humps:**
 
@@ -851,7 +851,7 @@ After 30 days:
 - Less demand for long-dated
 - → Term structure effects
 
-### 4. Carry and Cost of Capital
+### 4. Carry and Cost of
 
 **Time value of money:**
 
@@ -859,7 +859,7 @@ After 30 days:
 - Premium for duration
 - → Upward sloping (typically)
 
-### 5. Uncertainty Resolution
+### 5. Uncertainty
 
 **Information arrival:**
 
@@ -869,9 +869,9 @@ After 30 days:
 
 ---
 
-## When Calendar Spreads Work Best
+## When Calendar
 
-### 1. For Long Calendar (Standard)
+### 1. For Long Calendar
 
 **Favorable conditions:**
 
@@ -912,7 +912,7 @@ After 30 days:
 - Stock trading in range
 - Before event vol crush
 
-### 2. For Reverse Calendar (Rare)
+### 2. For Reverse
 
 **Favorable conditions:**
 

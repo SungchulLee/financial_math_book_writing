@@ -1,4 +1,4 @@
-# Carry Factor Portfolios
+# Carry Factor
 
 **Carry factor portfolios** are systematic investment strategies that construct diversified baskets of long and short futures positions across multiple asset classes (commodities, rates, currencies, equities) to harvest the persistent risk premium associated with holding assets in backwardation or high-yielding currencies, exploiting the tendency for positive carry positions to generate excess returns over time.
 
@@ -37,7 +37,7 @@ $$
 
 ---
 
-## What Is a Carry Factor Portfolio?
+## What Is a Carry
 
 **Before building carry portfolios, understand the mechanics:**
 
@@ -87,7 +87,7 @@ Short Japanese Yen: Low interest rate (pay to hold)
 
 **Note:** Carry is the expected return from HOLDING. Actual returns include carry + price changes.
 
-### 2. Carry Across Asset Classes
+### 2. Carry Across
 
 **How carry manifests in different markets:**
 
@@ -180,7 +180,7 @@ $$
 - Carry: 1.5% - 5.25% = -3.75%
 - **Negative carry in high-rate environment**
 
-### 3. Why Carry Exists as a Risk Premium
+### 3. Why Carry Exists
 
 **Economic rationale:**
 
@@ -227,7 +227,7 @@ $$
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Theory of Storage
+### 1. The Theory of
 
 **The deep insight:**
 
@@ -289,7 +289,7 @@ $$
 - Short contango (avoid negative carry) = Earn $5/bbl over 6 months
 - **Systematic long-short captures spread**
 
-### 2. The Hedging Pressure Hypothesis
+### 2. The Hedging
 
 **Why backwardation persists:**
 
@@ -322,7 +322,7 @@ Commodity producers need to **hedge future production**:
 - Equities (can't hedge production)
 - **These show less consistent carry**
 
-### 3. Uncovered Interest Parity (UIP) Failure
+### 3. Uncovered
 
 **UIP theory (textbook):**
 
@@ -401,7 +401,7 @@ Where:
 4. **Options:** Buy OTM puts as crash insurance
 5. **Accept it:** Carry IS crash risk premium (can't eliminate)
 
-### 5. Cross-Sectional vs. Time-Series Carry
+### 5. Cross-Sectional
 
 **Two implementations:**
 
@@ -524,9 +524,9 @@ $$
 
 ---
 
-## Mathematical Foundation
+## Mathematical
 
-### 1. Carry Calculation by Asset Class
+### 1. Carry Calculation
 
 **Commodities (roll yield):**
 
@@ -625,7 +625,7 @@ Check: Longs = 50%, Shorts = 50% ✓
 
 **Result: EUR dominates (low vol), NG smallest (high vol)**
 
-### 3. Expected Return and Sharpe Ratio
+### 3. Expected Return
 
 **Expected portfolio return:**
 
@@ -687,7 +687,7 @@ $$
 - Volatility: 12-15% (targeted)
 - Sharpe: 0.6-0.8 (after costs)
 
-### 4. Optimal Rebalancing Frequency
+### 4. Optimal
 
 **Trade-off:**
 
@@ -713,7 +713,7 @@ $$
 
 ---
 
-## Step-by-Step Setup
+## Key ideas
 
 ### 1. Phase 1
 
@@ -823,7 +823,7 @@ def calculate_carry(front_price, second_price, days_to_roll, asset_class):
     
     return carry_ann
 
-# Example for crude oil
+# clfront = 80.00
 cl_front = 80.00
 cl_second = 81.50
 cl_days = 30
@@ -870,11 +870,11 @@ print(f"Crude Oil Carry: {cl_carry:.2%}")
 **Step 3: Calculate volatility for each asset**
 
 ```python
-# 60-day realized volatility
+# day realized
 returns = prices.pct_change()
 volatility = returns.rolling(60).std() * np.sqrt(252)
 
-# Example results
+# volatilities = {
 volatilities = {
     'Natural Gas': 0.52,  # 52% annual vol
     'Crude Oil': 0.28,
@@ -914,14 +914,14 @@ def calculate_weights(assets, carries, vols):
     
     return weights
 
-# Example
+# topassets =
 top_assets = ['Natural Gas', 'Heating Oil', 'Coffee', ...]
 top_carries = [-0.45, -0.18, -0.15, ...]
 top_vols = [0.52, 0.35, 0.30, ...]
 
 weights = calculate_weights(top_assets, top_carries, top_vols)
 
-# Normalize to sum to 100% long, 100% short
+# Normalize to sum to
 ```
 
 **Step 5: Convert to contracts**
@@ -940,7 +940,7 @@ def calculate_contracts(weight, capital, price, multiplier, target_vol, current_
     
     return int(round(contracts))
 
-# Example
+# ngweight = 0.125
 ng_weight = 0.125  # 12.5% of portfolio
 ng_price = 6.00
 ng_multiplier = 10_000  # MMBtu
@@ -1097,17 +1097,17 @@ Reduce: Natural Gas from 6 to 4 contracts (carry declining)
 **Crisis management:**
 
 ```python
-# Volatility targeting kicks in
+# Volatility targeting
 target_vol = 0.15
 current_vol = 0.38
 scalar = target_vol / current_vol  # 0.39
 
-# Reduce all positions to 39% of current
+# Reduce all positions
 for asset in portfolio:
     new_size = current_size * 0.39
     close_contracts(current_size - new_size)
 
-# Lock in profits on energy (carry regime changing)
+# Lock in profits on
 close_position('Natural Gas', reason='extraordinary profit, regime shift')
 ```
 
@@ -1121,9 +1121,9 @@ close_position('Natural Gas', reason='extraordinary profit, regime shift')
 
 ---
 
-## Risk Management for Carry Portfolios
+## Risk Management for
 
-### 1. Position Sizing and Diversification
+### 1. Position Sizing
 
 **The 1/N rule with vol adjustment:**
 
@@ -1147,7 +1147,7 @@ $$
 | Rates | 15% | 5 countries |
 | Equities | 10% | 3 indices, low weight |
 
-### 2. Volatility Targeting
+### 2. Volatility
 
 **Daily adjustment:**
 
@@ -1173,7 +1173,7 @@ $$
 - Maintains consistent risk profile
 - Improves Sharpe ratio
 
-### 3. Stop Losses and Drawdown Control
+### 3. Stop Losses and
 
 **Portfolio-level stops:**
 
@@ -1203,21 +1203,21 @@ $$
 - Current carry: -8% (< 30% × 30% = 9%)
 - **Exit: Carry regime has changed**
 
-### 4. Correlation Monitoring
+### 4. Correlation
 
 **Risk:** Correlations spike in crises (diversification fails)
 
 **Monitoring:**
 
 ```python
-# Calculate rolling pairwise correlations
+# Calculate rolling
 window = 60  # days
 corr_matrix = returns.rolling(window).corr()
 
 # Average correlation
 avg_corr = corr_matrix.mean().mean()
 
-# Alert if avg > 0.3 (normal is 0.1-0.2)
+# Alert if avg > 0.3
 if avg_corr > 0.3:
     print("WARNING: Correlations elevated, reduce leverage")
 ```
@@ -1230,7 +1230,7 @@ if avg_corr > 0.3:
 | Stress | 0.35 | Reduce to 70% |
 | Crisis | 0.60 | Reduce to 40% |
 
-### 1. Crash Risk Hedging
+### 1. Crash Risk
 
 **The carry "smile" problem:**
 
@@ -1269,7 +1269,7 @@ if avg_corr > 0.3:
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -1350,7 +1350,7 @@ Short (Low Carry):
 - Correlations spike when needed most
 - **Volatility targeting could have helped (reduce leverage as vol spiked)**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background:**
 
@@ -1434,7 +1434,7 @@ Realized vol: 13% (calm market)
 - 2020: -10.5% DD, 3-month recovery
 - **Risk management worked**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -1512,7 +1512,7 @@ Risk: Weather turns warm, storage builds
 
 **Key lesson: Commodity carry can be EXPLOSIVE when fundamentals align**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Background:**
 
@@ -1566,7 +1566,7 @@ Target: Collect 6.5% annual carry
 - **Need stop loss or diversification**
 - Single-pair carry is NOT a portfolio
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Setup:**
 

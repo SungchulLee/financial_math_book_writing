@@ -1,4 +1,4 @@
-# Earnings IV Crush Strategies
+# Earnings IV Crush
 
 **Earnings IV Crush strategies** are options approaches designed to exploit the predictable phenomenon where implied volatility spikes before earnings announcements and then collapses immediately afterward, regardless of the actual stock move, creating systematic profit opportunities from volatility mean reversion rather than directional bets.
 
@@ -40,7 +40,7 @@ $$
 
 ---
 
-## What Is Earnings IV Crush?
+## What Is Earnings IV
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_iv_pattern.png?raw=true" alt="long_call_vs_put" width="700">
@@ -48,7 +48,7 @@ $$
 
 **Before understanding earnings strategies, we need to understand the earnings cycle:**
 
-### 1. The Earnings IV Cycle
+### 1. The Earnings IV
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_payoff.png?raw=true" alt="long_call_vs_put" width="700">
@@ -106,7 +106,7 @@ Implied volatility follows a **predictable pattern** around earnings announcemen
 - Returns to base level
 - Next cycle begins
 
-### 2. Why Does IV Crush Happen?
+### 2. Why Does IV Crush
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/earnings_iv_crush_strategies_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
@@ -144,7 +144,7 @@ $$
 
 Even if $S' > S$ (stock moved favorably), the crush in $\sigma$ can dominate!
 
-### 3. The Cruel Reality of Long Options into Earnings
+### 3. The Cruel Reality
 
 **Example scenario:**
 
@@ -188,7 +188,7 @@ Even if $S' > S$ (stock moved favorably), the crush in $\sigma$ can dominate!
 
 ## The Structure
 
-### 1. Types of Earnings Strategies
+### 1. Types of Earnings
 
 **Based on your timing and position:**
 
@@ -286,7 +286,7 @@ $$
 
 ## The Portfolio
 
-### 1. Pre-Earnings Short Premium Portfolio
+### 1. Pre-Earnings
 
 **Example: Iron Condor**
 
@@ -313,7 +313,7 @@ $$
 - Even if stock moves against you, IV crush helps
 - Close immediately after earnings
 
-### 2. Pre-Earnings Short Strangle Portfolio
+### 2. Pre-Earnings
 
 $$
 \Pi_{\text{Strangle}} = -C(K_{\text{call}}) - P(K_{\text{put}})
@@ -336,7 +336,7 @@ $$
 - Undefined risk but historically profitable
 - Requires active management
 
-### 3. Post-Earnings Long Premium Portfolio
+### 3. Post-Earnings
 
 **Example: Debit Spread**
 
@@ -372,7 +372,7 @@ $$
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -382,7 +382,7 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV Structure Exists Economically
+### 2. Why This IV
 
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
@@ -390,7 +390,7 @@ Markets create these IV structures because different participants have different
 - Event views (known catalysts vs. unknown volatility)
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility Risk Premium
+### 3. The Volatility
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -404,7 +404,7 @@ $$
 3. **Supply/demand:** More vol buyers than sellers
 4. **Behavioral biases:** Overestimation of future volatility
 
-### 4. Professional Institutional Perspective
+### 4. Professional
 
 Institutional traders view IV strategies as tools for:
 1. **Volatility arbitrage:** Extracting the vol risk premium
@@ -417,7 +417,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## The P&L Formula
 
-### 1. For Pre-Earnings Short Premium
+### 1. For Pre-Earnings
 
 $$
 \delta \Pi_{\text{Pre}} \approx \underbrace{\text{Vega}_{\text{net}} \cdot \delta\sigma}_{\text{IV CRUSH (dominant)}} + \underbrace{\Delta_{\text{net}} \cdot \delta S}_{\text{Stock move}} + \underbrace{\frac{1}{2}\Gamma (\delta S)^2}_{\text{Gamma}}
@@ -489,7 +489,7 @@ $$
 
 **IV crush dominated!**
 
-### 2. For Post-Earnings Long Premium
+### 2. For Post-Earnings
 
 $$
 \delta \Pi_{\text{Post}} \approx \underbrace{\Delta \cdot \delta S}_{\text{Directional (primary)}} + \underbrace{\text{Vega} \cdot \delta\sigma}_{\text{IV normalization}} + \underbrace{\Theta \, \delta t}_{\text{Theta decay}}
@@ -503,9 +503,9 @@ $$
 
 ---
 
-## Types of Earnings IV Crush Strategies
+## Types of Earnings IV
 
-### 1. Pre-Earnings Premium Selling (The Main Approach)
+### 1. Pre-Earnings
 
 **Philosophy:**
 
@@ -514,7 +514,7 @@ $$
 - Sell expensive premium, buy back cheap
 - Accept stock movement risk
 
-### 2. A. Iron Condor (Earnings)
+### 2. A. Iron Condor
 
 **Structure:**
 
@@ -544,7 +544,7 @@ $$
 **Entry timing:** 5-10 days before earnings
 **Exit timing:** Day after earnings (immediately)
 
-### 3. B. Short Strangle (Earnings)
+### 3. B. Short Strangle
 
 **Structure:**
 
@@ -579,7 +579,7 @@ $$
 - Don't hold if stock breaks strike
 - May need to roll
 
-### 4. C. Credit Spreads (Earnings + Direction)
+### 4. C. Credit Spreads
 
 **Structure:**
 
@@ -608,7 +608,7 @@ $$
 - IV crush helps even if stock drops some
 - Requires less precision
 
-### 5. D. Covered Calls (Earnings)
+### 5. D. Covered Calls
 
 **Structure:**
 
@@ -641,7 +641,7 @@ $$
 - But kept premium + gains to $110
 - Usually acceptable
 
-### 6. Post-Earnings Premium Buying
+### 6. Post-Earnings
 
 **Philosophy:**
 
@@ -650,7 +650,7 @@ $$
 - Buy premium for directional plays
 - Better risk/reward than pre-earnings
 
-### 7. A. Debit Spreads (Post-Earnings)
+### 7. A. Debit Spreads
 
 **Structure:**
 
@@ -673,7 +673,7 @@ $$
 - Sell $115 call @ $1.50
 - **Debit: $2.50** (much cheaper than pre-earnings)
 
-### 8. B. Long Options (Post-Earnings)
+### 8. B. Long Options
 
 **Structure:**
 
@@ -694,9 +694,9 @@ $$
 - Or 2-3 days after (IV stabilized)
 - Before IV starts building for next earnings
 
-### 9. Hybrid Strategies (Before AND After)
+### 9. Hybrid Strategies
 
-### 10. A. Earnings Calendar Spread
+### 10. A. Earnings
 
 **Structure:**
 
@@ -724,7 +724,7 @@ $$
 - Front month expires just after earnings
 - Back month far enough out
 
-### 11. B. Reverse Iron Condor (Earnings)
+### 11. B. Reverse Iron
 
 **Structure:**
 
@@ -738,7 +738,7 @@ $$
 - Needs big move + crush
 - Not recommended for beginners
 
-### 12. Avoiding Earnings (Defensive)
+### 12. Avoiding
 
 **Not a "strategy" but important:**
 
@@ -1103,9 +1103,9 @@ $$
 
 ---
 
-## Strike Selection Strategy
+## Strike Selection
 
-### 1. For Pre-Earnings Short Premium
+### 1. For Pre-Earnings
 
 **Goal:** Capture IV crush while giving stock room to move
 
@@ -1155,7 +1155,7 @@ $$
 - Higher profit, more risk
 - Win rate: 60-65%
 
-### 2. For Post-Earnings Long Premium
+### 2. For Post-Earnings
 
 **Goal:** Buy cheap, directional exposure
 
@@ -1183,7 +1183,7 @@ $$
 
 ## Time Frame Selection
 
-### 1. For Pre-Earnings Selling
+### 1. For Pre-Earnings
 
 **Front month containing earnings:**
 
@@ -1222,7 +1222,7 @@ Days Before | IV Level | Entry Quality
 - Capture full IV drop
 - Avoid gamma risk continuing
 
-### 2. For Post-Earnings Buying
+### 2. For Post-Earnings
 
 **Entry timing:**
 
@@ -1250,7 +1250,7 @@ Days Before | IV Level | Entry Quality
 
 ## Position Management
 
-### 1. Managing Pre-Earnings Positions
+### 1. Managing
 
 **Entry checklist:**
 
@@ -1323,7 +1323,7 @@ Days Before | IV Level | Entry Quality
 - Redeploy capital ✓
 - Don't get greedy ✗
 
-### 2. Managing Post-Earnings Positions
+### 2. Managing
 
 **Entry checklist:**
 
@@ -1343,7 +1343,7 @@ Days Before | IV Level | Entry Quality
 
 ## Greeks Analysis
 
-### 1. Pre-Earnings Short Premium Greeks
+### 1. Pre-Earnings
 
 **Vega (THE CRITICAL GREEK):**
 
@@ -1391,7 +1391,7 @@ $$
 
 **Historical:** Vega wins 65-70% of the time
 
-### 2. Post-Earnings Long Premium Greeks
+### 2. Post-Earnings
 
 **Vega (Reduced Importance):**
 
@@ -1414,9 +1414,9 @@ $$
 
 ---
 
-## When to Use Earnings IV Crush Strategies
+## When to Use Earnings
 
-### 1. Use Pre-Earnings Short Premium When
+### 1. Use Pre-Earnings
 
 **Market conditions ✓**
 
@@ -1456,7 +1456,7 @@ $$
 - Can't monitor through earnings
 - First time (practice first!)
 
-### 2. Use Post-Earnings Buying When
+### 2. Use Post-Earnings
 
 **Market conditions ✓**
 
@@ -1481,7 +1481,7 @@ $$
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -1505,7 +1505,7 @@ $$
    - Fed meetings, economic data
    - Product launches, regulatory decisions
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 - Pre-earnings IV has elevated significantly (IVR > 60%)
@@ -1523,7 +1523,7 @@ $$
 - Erratic historical crush patterns
 - Major non-earnings catalyst present
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -1543,7 +1543,7 @@ $$
 - Risk 1-2% on undefined risk strategies
 - Risk 2-5% on defined risk strategies
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -1564,7 +1564,7 @@ $$
 - [ ] Max loss understood
 - [ ] Exit plan defined
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -1590,7 +1590,7 @@ $$
 - Underlying makes large move (>2 SD)
 - Event announced/cancelled
 
-### 6. Step 6
+### 6. When to adjust:
 
 **When to adjust:**
 
@@ -1616,7 +1616,7 @@ $$
 - Take partial profits on IV spikes
 - Convert to calendar (neutralize theta)
 
-### 7. Step 7
+### 7. Track every
 
 **Track every trade:**
 - Entry IV level and percentile
@@ -1633,7 +1633,7 @@ $$
 - Best entry IV conditions
 - Common mistakes
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
@@ -1644,7 +1644,7 @@ $$
 7. **Fighting IV trends** - IV regimes can persist
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -1673,7 +1673,7 @@ $$
 
 ## Common Mistakes
 
-### 1. Entering Too Late (Peak IV)
+### 1. Entering Too Late
 
 **The error:**
 
@@ -1690,7 +1690,7 @@ $$
 - Time to collect theta
 - Room to adjust if needed
 
-### 2. Holding Too Long After Earnings
+### 2. Holding Too Long
 
 **The error:**
 
@@ -1723,7 +1723,7 @@ $$
 - Rather get less premium and win
 - Consistent small wins > occasional big losses
 
-### 4. Ignoring Expected Move
+### 4. Ignoring Expected
 
 **The error:**
 
@@ -1739,7 +1739,7 @@ $$
 - Or IV × price × √(days/365)
 - Base strikes on this
 
-### 5. Position Too Large
+### 5. Position Too
 
 **The error:**
 
@@ -1755,7 +1755,7 @@ $$
 - Never more than 30% total in earnings
 - Protect capital
 
-### 6. Ignoring Earnings Quality
+### 6. Ignoring Earnings
 
 **The error:**
 
@@ -1771,7 +1771,7 @@ $$
 - Normal businesses (tech, retail, etc.)
 - Avoid binary biotech/clinical trials
 
-### 7. Long Options Through Earnings
+### 7. Long Options
 
 **The error:**
 
@@ -1792,7 +1792,7 @@ $$
 
 ## Advanced Concepts
 
-### 1. Quantifying Historical Crush Patterns
+### 1. Quantifying
 
 **Backtesting framework:**
 
@@ -1824,7 +1824,7 @@ Max: 0.55
 - Size positions based on consistency
 - Avoid stocks with erratic patterns
 
-### 2. Expected Move Accuracy
+### 2. Expected Move
 
 **Compare expected vs actual:**
 
@@ -1848,7 +1848,7 @@ SPY   | 0.90 (moves 10% less) | Good estimate
 - If accuracy < 0.9: Can use tighter strikes
 - Improves win rate
 
-### 3. Optimal Entry Timing
+### 3. Optimal Entry
 
 **Backtest different entry timings:**
 
@@ -1871,7 +1871,7 @@ Days Before | Avg Profit | Win Rate | Sharpe
 - Can still adjust
 - Not too early (IV may not spike yet)
 
-### 4. Multi-Earnings Portfolio Theory
+### 4. Multi-Earnings
 
 **Diversification across earnings:**
 
@@ -1902,7 +1902,7 @@ Week 4| DIS, NKE       | 10%        | +2.2%
 Monthly Expected: +10.6% on 40% of capital
 ```
 
-### 5. Volatility Surface Changes
+### 5. Volatility
 
 **The surface transforms around earnings:**
 
@@ -1937,7 +1937,7 @@ Monthly Expected: +10.6% on 40% of capital
 - Can trade any strike
 - But ATM has most vega
 
-### 6. Earnings Announcement Timing Matters
+### 6. Earnings
 
 **After-hours vs Pre-market:**
 
@@ -1967,7 +1967,7 @@ Monthly Expected: +10.6% on 40% of capital
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup:**
 
@@ -2035,7 +2035,7 @@ Monthly Expected: +10.6% on 40% of capital
 - Closed immediately ✓
 - Proper strike selection ✓
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup:**
 
@@ -2097,7 +2097,7 @@ Monthly Expected: +10.6% on 40% of capital
 - Would be a $2,500 loss
 - **IV crush saved the trade**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -2164,9 +2164,9 @@ Monthly Expected: +10.6% on 40% of capital
 
 ---
 
-## Practical Implementation
+## Practical
 
-### 1. Earnings Calendar Tracking
+### 1. Earnings Calendar
 
 **Weekly workflow:**
 
@@ -2213,7 +2213,7 @@ Fri 2/9:
 - AMZN: $175, IV 48%, Expected $12, Enter 2/2
 ```
 
-### 2. Entry Checklist Template
+### 2. Entry Checklist
 
 ```
 === EARNINGS TRADE CHECKLIST ===
@@ -2259,7 +2259,7 @@ APPROVAL:
 Ready to enter: Y / N
 ```
 
-### 3. Live Position Tracker
+### 3. Live Position
 
 **Spreadsheet format:**
 
@@ -2279,7 +2279,7 @@ Set calendar reminder:
 - "GOOGL Earnings Tomorrow AM - Close at Open"
 ```
 
-### 4. Post-Trade Analysis
+### 4. Post-Trade
 
 **After each earnings trade:**
 
@@ -2405,9 +2405,9 @@ print_formatted_table(results)
 
 ---
 
-## Earnings IV Crush in Your Toolkit
+## Earnings IV Crush in
 
-### 1. How Earnings Strategies Fit Overall
+### 1. How Earnings
 
 **The complete options framework:**
 
@@ -2444,7 +2444,7 @@ Options Trading Approaches:
 - **Repeatable** (every quarter, multiple stocks)
 - **Independent of market direction**
 
-### 2. Comparison with Other IV Strategies
+### 2. Comparison with
 
 | Strategy | Edge | Holding Period | Win Rate | Complexity |
 |----------|------|----------------|----------|------------|

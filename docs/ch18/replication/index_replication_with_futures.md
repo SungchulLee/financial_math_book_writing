@@ -1,4 +1,4 @@
-# Index Replication with Futures
+# Index Replication
 
 **Index replication with futures** is a capital-efficient strategy that uses equity index futures contracts (ES, NQ, RTY) to synthetically replicate the performance of major market indices, providing full market exposure with minimal capital deployment, daily liquidity, and favorable tax treatment compared to buying individual stocks or ETFs.
 
@@ -35,7 +35,7 @@ $$
 
 ---
 
-## What Is Index Replication with Futures?
+## What Is Index
 
 **Before replicating indices with futures, understand the mechanics:**
 
@@ -79,7 +79,7 @@ $$
 
 **Capital efficiency: $1M exposure for $52k margin = 19.2x leverage**
 
-### 2. The Futures-Spot Relationship
+### 2. The Futures-Spot
 
 **Cost of carry model:**
 
@@ -119,7 +119,7 @@ $$
 - You miss dividends on stocks not owned (1.5%)
 - Net: 3.5% carry = Premium
 
-### 3. Major Index Futures Contracts
+### 3. Major Index
 
 **E-mini S&P 500 (ES):**
 
@@ -165,7 +165,7 @@ $$
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Capital Efficiency Advantage
+### 1. The Capital
 
 **The deep insight:**
 
@@ -236,7 +236,7 @@ $$
 
 **Long-term wealth creation heavily favors futures**
 
-### 3. The Liquidity Premium
+### 3. The Liquidity
 
 **Futures markets are MORE liquid than spot:**
 
@@ -267,7 +267,7 @@ $$
 - Large portfolio rebalancing
 - **Futures provide instant, deep liquidity**
 
-### 4. The Dividend Reinvestment Efficiency
+### 4. The Dividend
 
 **The subtle advantage:**
 
@@ -301,7 +301,7 @@ $$
 - Zero tracking error from dividends
 - **Seamless compounding**
 
-### 5. The Rolling Mechanics and Cost
+### 5. The Rolling
 
 **Futures expire quarterly:**
 
@@ -421,9 +421,9 @@ $$
 
 ---
 
-## Mathematical Foundation
+## Mathematical
 
-### 1. Notional Exposure Calculation
+### 1. Notional Exposure
 
 **Basic formula:**
 
@@ -450,7 +450,7 @@ $$
 
 **Overshoot: $100,000 (5%) - acceptable**
 
-### 2. Margin and Leverage Calculation
+### 2. Margin and
 
 **Initial margin requirement:**
 
@@ -476,7 +476,7 @@ $$
 - 1% S&P 500 move = 19.9% account move (if account = margin only)
 - 1% S&P 500 move = 1.05% account move (if account = $2M cash + futures)
 
-### 3. Expected Roll Cost
+### 3. Expected Roll
 
 **Annual cost of carry:**
 
@@ -503,7 +503,7 @@ $$
 
 **Net advantage: $100,000 - $70,000 = $30,000/year vs. SPY**
 
-### 4. Tracking Error Calculation
+### 4. Tracking Error
 
 **Sources of tracking error:**
 
@@ -520,7 +520,7 @@ $$
 
 **This is excellent (nearly perfect tracking)**
 
-### 5. Tax Efficiency Calculation
+### 5. Tax Efficiency
 
 **After-tax return comparison:**
 
@@ -556,7 +556,7 @@ $$
 
 ---
 
-## Step-by-Step Setup
+## Key ideas
 
 ### 1. Phase 1
 
@@ -903,7 +903,7 @@ Net P&L locked in: $14,438 - $1,987.50 = $12,450
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -956,7 +956,7 @@ Free cash: $9,558,000 earning 5%
 
 **Futures allowed fund to capture 11.4% S&P rally while conducting manager search**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background:**
 
@@ -1001,7 +1001,7 @@ Net after-tax: $77,659
 
 **ES delivers $459,000 more wealth over 10 years**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background:**
 
@@ -1035,7 +1035,7 @@ Net after-tax: $77,659
   - Portable alpha: -20% (ES loss $1M, hedge fund flat)
 - **Higher returns come with higher risk**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Background:**
 
@@ -1097,7 +1097,7 @@ Net after-tax: $77,659
 - Without futures: Partial exposure, would have captured only ~$1,200,000
 - **Benefit: $1,200,000 captured returns**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Background:**
 

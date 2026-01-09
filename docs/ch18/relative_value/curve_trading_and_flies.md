@@ -1,4 +1,4 @@
-# Curve Trading and Flies
+# Curve Trading and
 
 **Curve trading and butterfly spreads (flies)** are relative value strategies in futures markets that profit from changes in the shape of the term structure curve rather than directional price movements, exploiting mispricings between different contract expirations through multi-leg spread positions.
 
@@ -34,11 +34,11 @@ $$
 
 ---
 
-## What Are Curve Trading and Butterflies?
+## What Are Curve
 
 **Before trading curves, understand the mechanics:**
 
-### 1. Core Concept - Curve Trades
+### 1. Core Concept -
 
 **Definition:** Trading the difference between near-dated and far-dated futures contracts, profiting when the spread between expirations widens (steepening) or narrows (flattening), independent of the absolute price level.
 
@@ -78,7 +78,7 @@ $$
 - Long ZN: 113.50 - 112.00 = +1.50 × $1,000 = +$1,500
 - **Net: +$500 profit**
 
-### 2. Core Concept - Butterfly Spreads
+### 2. Core Concept -
 
 **Definition:** A three-legged spread consisting of a body (middle expiration) and two wings (near and far expirations), designed to profit from the middle contract moving relative to the average of the wings while remaining neutral to parallel curve shifts.
 
@@ -249,7 +249,7 @@ Ah! That's the correct calculation. The butterfly spread is priced as the net of
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Shape of the Curve
+### 1. The Shape of the
 
 **The deep insight:**
 
@@ -283,7 +283,7 @@ $$
 
 **Changes in $r$, $u$, or $y$ affect curve shape**
 
-### 2. Contango vs. Backwardation
+### 2. Contango vs.
 
 **Fundamental term structures:**
 
@@ -329,7 +329,7 @@ $$
 - 6-month: $3.20/MMBtu (summer)
 - **Backwardation: -$2.80 over 6 months**
 
-### 3. Why Curves Change Shape
+### 3. Why Curves Change
 
 **Steepening scenarios:**
 
@@ -355,7 +355,7 @@ $$
 
 **Near month rallied most → Curve flattened**
 
-### 4. The Butterfly as a Curve Curvature Trade
+### 4. The Butterfly as
 
 **Mathematical interpretation:**
 
@@ -399,7 +399,7 @@ $$
 - Fly should be 0.00%
 - **Profit: 0.40% to 0.00% = 40 bps**
 
-### 5. Roll Yield in Curve Trading
+### 5. Roll Yield in
 
 **Carry and roll dynamics:**
 
@@ -438,7 +438,7 @@ $$
 
 **This is the cost of being long contango**
 
-### 6. Curve Trading vs. Outright Position
+### 6. Curve Trading vs.
 
 **Key differences:**
 
@@ -534,7 +534,7 @@ $$
 
 ---
 
-## Mathematical Foundation
+## Mathematical
 
 ### 1. Curve Steepness
 
@@ -564,7 +564,7 @@ $$
 - % Steepness: 6.25%
 - Annualized: $5.00 / 5 months × 12 = $12.00 per year
 
-### 2. Butterfly Spread Calculation
+### 2. Butterfly Spread
 
 **Standard butterfly:**
 
@@ -598,7 +598,7 @@ $$
 
 **5-year is 0.25 points rich relative to 2s and 10s**
 
-### 3. DV01 Neutral Sizing for Rates
+### 3. DV01 Neutral
 
 **For interest rate futures, need DV01-neutral:**
 
@@ -625,7 +625,7 @@ $$
 
 **Trade: Short 2 ZT, Long 1 ZN (DV01-neutral)**
 
-### 4. Expected P&L from Curve Move
+### 4. Expected P&L from
 
 **For steepener/flattener:**
 
@@ -712,7 +712,7 @@ $$
 \text{P&L} = 20 \times 147.50 = \$2,950
 $$
 
-### 5. Butterfly P&L Calculation
+### 5. Butterfly P&L
 
 **For butterfly spread:**
 
@@ -738,7 +738,7 @@ $$
 
 ---
 
-## Step-by-Step Setup
+## Key ideas
 
 ### 1. Phase 1
 
@@ -1103,9 +1103,9 @@ Wait, that's showing a loss again. Let me recalculate using the butterfly spread
 
 ---
 
-## Curve and Butterfly Greeks
+## Curve and Butterfly
 
-### 1. DV01 (Interest Rate Sensitivity)
+### 1. DV01 (Interest
 
 **For rate futures, DV01 critical:**
 
@@ -1130,7 +1130,7 @@ $$
 
 **This means: 1 bp spread widening = $147.50 profit**
 
-### 2. Delta (Price Sensitivity for Commodities)
+### 2. Delta (Price
 
 **For commodity futures:**
 
@@ -1154,7 +1154,7 @@ $$
 
 **This means: $1 move in spot might move spread by $0.30**
 
-### 3. Theta (Time Decay)
+### 3. Theta (Time
 
 **For curve trades:**
 
@@ -1187,7 +1187,7 @@ $$
 - After 1 week: Front becomes next month, spread might be -$1.45
 - **Positive theta: ~$0.05/week = $500 on 10,000 MMBtu**
 
-### 4. Vega (Volatility Sensitivity)
+### 4. Vega (Volatility
 
 **For options on futures curves:**
 
@@ -1208,7 +1208,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Date: October 2023 - March 2024**
 
@@ -1272,7 +1272,7 @@ $$
 
 **Key lesson: Extreme curve inversions eventually normalize**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Date: April 2024**
 
@@ -1335,7 +1335,7 @@ $$
 
 **Key lesson: Seasonal butterflies can be powerful short-term trades**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Date: June 2020 (during COVID)**
 
@@ -1406,7 +1406,7 @@ $$
 - Cut losses when thesis clearly broken
 - **Even "obvious" mispricings can persist**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Date: November 2023**
 
@@ -1472,7 +1472,7 @@ $$
 
 **Key lesson: Seasonal spreads with weather catalyst can be explosive**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Date: March 2022**
 
@@ -1535,7 +1535,7 @@ $$
 
 ## Risk Management
 
-### 1. Position Sizing for Curve Trades
+### 1. Position Sizing
 
 **The Sharpe ratio approach:**
 
@@ -1567,7 +1567,7 @@ $$
 
 **For larger accounts, scale proportionally**
 
-### 2. Stop Loss Management
+### 2. Stop Loss
 
 **For curve trades:**
 
@@ -1618,7 +1618,7 @@ $$
 - If spread stagnant: Negative carry eats profit
 - **Consider exit if carry > potential gain**
 
-### 4. Curve Regime Changes
+### 4. Curve Regime
 
 **Watch for structural shifts:**
 
@@ -1642,7 +1642,7 @@ $$
 - Consider flatteners (recovery trade)
 - **Adapt to new regime**
 
-### 5. Butterfly Risk Management
+### 5. Butterfly Risk
 
 **Unique risks:**
 
@@ -1689,7 +1689,7 @@ $$
 - Different fundamental drivers
 - Smooths returns
 
-### 7. Risk Management Checklist
+### 7. Risk Management
 
 **Before entry:**
 

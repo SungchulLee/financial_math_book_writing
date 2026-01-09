@@ -1,4 +1,4 @@
-# Regime-Based Strateg
+# Regime-Based
 
 **Regime-based strategy design** recognizes that no single options strategy works well in all market conditions. Instead of forcing one approach across all environments, sophisticated traders classify market states (regimes) and systematically adapt their strategy selection to match the dominant risk channels of each regime.
 
@@ -67,7 +67,7 @@ A **market regime** is a persistent pattern of market behavior characterized by:
 
 ---
 
-## Regime Classificatio
+## Regime
 
 ### 1. Quantitative
 
@@ -239,7 +239,7 @@ Skew > 15:  Fear regime
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Daily regime
 
 **Daily regime check:**
 
@@ -265,7 +265,7 @@ Skew > 15:  Fear regime
    - Are correlations increasing?
    - Regime stable or transitioning?
 
-### 2. Step 2
+### 2. Enter
 
 **Enter regime-appropriate strategies:**
 
@@ -290,7 +290,7 @@ Skew > 15:  Fear regime
 - Aggressive profit taking (vol mean-reverts)
 - **Stop:** When VIX drops below 20 (regime normalizing)
 
-### 3. Step 3
+### 3. Risk allocation
 
 **Risk allocation rules:**
 
@@ -315,7 +315,7 @@ $$
 - Can go 5-10% on long vol if RV > IV
 - **Opportunity:** Size up when edge clear
 
-### 4. Step 4
+### 4. Regime-specific
 
 **Regime-specific entry rules:**
 
@@ -336,7 +336,7 @@ $$
 - Enter quickly when opportunity appears
 - Don't wait for "perfect" entry
 
-### 5. Step 5
+### 5. Active regime
 
 **Active regime monitoring:**
 
@@ -359,7 +359,7 @@ $$
 - Accept small loss to avoid regime mismatch
 - **Example:** Short strangles in Low → High transition = close NOW
 
-### 6. Step 6
+### 6. When regime
 
 **When regime shifts:**
 
@@ -377,7 +377,7 @@ $$
 
 **Critical rule:** When regime changes, strategy MUST change. No exceptions.
 
-### 7. Step 7
+### 7. Track by regime:
 
 **Track by regime:**
 - Total trades per regime
@@ -455,7 +455,7 @@ $$
 - Don't react to noise
 - **Regime changes are rare, not daily**
 
-### 3. Mechanical Strate
+### 3. Mechanical
 
 **The error:**
 - "I always trade iron condors"
@@ -468,7 +468,7 @@ $$
 - Rotate as regime changes
 - **Strategy must match regime**
 
-### 4. Ignoring Transiti
+### 4. Ignoring
 
 **The error:**
 - In transition from low → high vol

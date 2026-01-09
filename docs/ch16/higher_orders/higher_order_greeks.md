@@ -58,11 +58,11 @@ $$
 
 ---
 
-## What Are Higher-Orde
+## What Are
 
 **Before using higher-order Greeks, understand the hierarchy:**
 
-### 1. The Greeks Hierar
+### 1. The Greeks
 
 **Level 0: Option Value**
 
@@ -233,7 +233,7 @@ $$
 - **Short-dated options:** Small volga (vega relatively stable)
 - **Long-dated options:** Large volga (vega highly sensitive to IV changes)
 
-### 5. Trading Applicati
+### 5. Trading
 
 **1. Long Volga Strategy (Volatility of Volatility)**
 
@@ -370,7 +370,7 @@ $$
 
 **Pattern:** Vanna peaks slightly OTM for calls.
 
-### 4. Trading Applicati
+### 4. Trading
 
 **1. Vanna-Neutral Hedging**
 
@@ -495,7 +495,7 @@ $$
 
 **Why?** ITM option becoming more certain to be exercised (delta → 1.0).
 
-### 3. Charm by Moneynes
+### 3. Charm by
 
 **ATM options:**
 
@@ -548,7 +548,7 @@ $$
 
 **Practical implication:** Charm explodes near expiration (delta becomes very unstable).
 
-### 5. Trading Applicati
+### 5. Trading
 
 **1. Delta Hedging with Charm Awareness**
 
@@ -728,7 +728,7 @@ $$
 - After IV spike, vega is -$120,000
 - **Must buy back $32,000 vega** (buy options to hedge)
 
-### 2. Volatility Arbitr
+### 2. Volatility
 
 **Setup:** Long variance swap (pure vega exposure)
 
@@ -759,7 +759,7 @@ $$
 
 ## Common Pitfalls
 
-### 1. Ignoring Convexit
+### 1. Ignoring
 
 **The mistake:**
 
@@ -788,7 +788,7 @@ $$
 \Delta V \approx \text{Vega} \cdot \Delta\sigma + \frac{1}{2} \cdot \text{Volga} \cdot (\Delta\sigma)^2
 $$
 
-### 2. Neglecting Cross-
+### 2. Neglecting
 
 **The mistake:**
 
@@ -849,7 +849,7 @@ Charm causes delta to decay hourly in short-dated options.
 
 In 0DTE, rebalance delta every 30-60 minutes accounting for charm.
 
-### 4. Linear Extrapolat
+### 4. Linear
 
 **The mistake:**
 
@@ -1248,7 +1248,7 @@ $$
 - **Volga negative:** Vega decreases as IV rises (bad for long vol)
 - **Can add:** 10-30% to vega P&L in volatile periods
 
-### 5. Behavioral Financ
+### 5. Behavioral
 
 **Retail blindness to higher-order effects:**
 
@@ -1323,7 +1323,7 @@ Understanding higher-order Greeks economically reveals:
 
 **Step-by-step higher-order Greeks implementation:**
 
-### 1. Critical Pre-Trad
+### 1. Critical
 
 ☐ **Calculate ALL Greeks?** (Delta, gamma, vega, theta, vanna, volga, charm)  
 ☐ **Stress test scenarios?** (Stock ±5%, IV ±15 points)  
@@ -1334,7 +1334,7 @@ Understanding higher-order Greeks economically reveals:
 ☐ **Liquidity verified?** (Can rebalance 5-10× per day)  
 ☐ **Greeks risk limits set?** (Max gamma, vanna, volga exposure)
 
-### 2. Step 1
+### 2. Before entering,
 
 **Before entering, calculate and evaluate:**
 
@@ -1362,7 +1362,7 @@ Understanding higher-order Greeks economically reveals:
   - Formula: Charm = ∂Delta/∂t
   - **Interpretation:** Charm < 0 → delta decays toward 0
 
-### 3. Step 2
+### 3. Build
 
 **Build comprehensive stress test (CRITICAL):**
 
@@ -1404,7 +1404,7 @@ Assume Greeks:
 
 **Repeat for all 8 scenarios before entry!**
 
-### 4. Step 3
+### 4. Determine
 
 **Determine rebalancing frequency:**
 
@@ -1444,7 +1444,7 @@ $$
 - Rebalance every N hours regardless of delta
 - **Based on optimal frequency:** 4× per day = every 1.6 hours during market
 
-### 5. Step 4
+### 5. Set hard limits
 
 **Set hard limits (MANDATORY):**
 
@@ -1487,7 +1487,7 @@ $$
 - Portfolio: $500k
 - **Max charm:** $500k × 0.02 = **$10k delta decay per day**
 
-### 6. Step 5
+### 6. Greeks
 
 **Greeks verification (before entry):**
 
@@ -1513,7 +1513,7 @@ Charm = -$2,000 per day
 - Delta threshold: ±$15k
 - **Alerts:** Set at thresholds
 
-### 7. Step 6
+### 7. Daily Greeks
 
 **Daily Greeks monitoring (CRITICAL):**
 
@@ -1553,7 +1553,7 @@ Charm = -$2,000 per day
 - **Cost:** $350 (slippage + commissions)
 - **Record:** "Rebalance #3, cost $350"
 
-### 8. Step 7
+### 8. Exit triggers
 
 **Exit triggers (ANY trigger → evaluate closing):**
 
@@ -1591,7 +1591,7 @@ $$
 - **Problem:** Losing despite profitable Greeks
 - **Action:** Exit or reduce rebalancing frequency
 
-### 9. Step 8
+### 9. Greeks hedging
 
 **Greeks hedging (institutional):**
 
@@ -1622,7 +1622,7 @@ $$
 - Transaction costs: $2,000/day
 - **Net edge:** $2,800/day (profitable!)
 
-### 10. Step 9
+### 10. | Date |
 
 | Date | Position | Delta | Gamma | Vega | Vanna | Volga | Charm | P&L | Attribution |
 |------|----------|-------|-------|------|-------|-------|-------|-----|-------------|

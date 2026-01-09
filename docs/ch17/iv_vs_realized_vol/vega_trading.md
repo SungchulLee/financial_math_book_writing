@@ -48,11 +48,11 @@
 
 ---
 
-## The Two Types of Volatility
+## The Two Types of
 
 **This distinction is CRUCIAL:**
 
-### 1. Realized Volatility (Historical/Future Actual)
+### 1. Realized
 
 - **What it is:** How much the stock ACTUALLY moves
 
@@ -62,7 +62,7 @@
 
 - **Who trades it:** Gamma scalpers
 
-### 2. Implied Volatility (Market's Expectation)
+### 2. Implied
 
 - **What it is:** The market's EXPECTATION of future volatility, embedded in option prices
 
@@ -167,7 +167,7 @@ where $V(S,t,\sigma)$ is the option value (function of stock price, time, AND vo
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -177,7 +177,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This Structure Exists Economically
+### 2. Why This
 
 Markets create these strategies because different participants have different:
 
@@ -189,7 +189,7 @@ Markets create these strategies because different participants have different:
 
 - View on volatility vs. direction
 
-### 3. Professional Institutional Perspective
+### 3. Professional
 
 Institutional traders view this strategy as a tool for:
 
@@ -242,11 +242,11 @@ $$
 
 ---
 
-## Understanding the P&L
+## Understanding the
 
 $$\boxed{\delta \Pi \approx \underbrace{\text{Vega} \cdot \delta\sigma}_{\text{primary profit source}} + \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{rebalancing side effect}} - \underbrace{\theta\,\delta t}_{\text{time decay}}}$$
 
-### 1. The Three Components
+### 1. The Three
 
 **$\text{Vega} \cdot \delta\sigma$:** Your main bet - profit from IV changes
 
@@ -362,11 +362,11 @@ After 5 days:
 
 ---
 
-## Long Vega vs. Short Vega
+## Long Vega vs. Short
 
 **Understanding the two directions:**
 
-### 1. Long Vega (Buy Options)
+### 1. Long Vega (Buy
 
 **Position:** Long calls and/or long puts (delta-hedged)
 
@@ -402,7 +402,7 @@ After 5 days:
 
 **Risk:** IV stays low or decreases → you pay theta and lose money
 
-### 2. Short Vega (Sell Options)
+### 2. Short Vega (Sell
 
 **Position:** Short calls and/or short puts (delta-hedged)
 
@@ -440,7 +440,7 @@ After 5 days:
 
 ---
 
-## Vega Trading vs. Gamma Scalping
+## Vega Trading vs.
 
 **These are both volatility strategies, but fundamentally different:**
 
@@ -475,11 +475,11 @@ They can both be right! Or both wrong! They're betting on different things.
 
 ---
 
-## Can You Combine Them?
+## Can You Combine
 
 **YES! And this is common in practice:**
 
-### 1. Volatility Arbitrage (Vega + Gamma)
+### 1. Volatility
 
 **The strategy:**
 
@@ -499,7 +499,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 **Risk:** You're paying theta twice, so you need BOTH views to be right
 
-### 2. Pure Vega (Vega Only)
+### 2. Pure Vega (Vega
 
 **The strategy:**
 
@@ -523,7 +523,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 ## Why You Vega Trade
 
-### 1. Use Case 1
+### 1. Market is too
 
 **Scenario:** Market is too fearful or too complacent
 
@@ -547,7 +547,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 - **Trade:** Sell ATM straddles, delta hedge
 
-### 2. Use Case 2
+### 2. Earnings
 
 **Scenario:** Earnings announcement in 2 days
 
@@ -569,7 +569,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 - Buy them back after (capture IV drop)
 
-### 3. Use Case 3
+### 3. Front-month IV =
 
 **Scenario:** Front-month IV = 25%, back-month IV = 35%
 
@@ -585,7 +585,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 - Profit when term structure normalizes
 
-### 4. Use Case 4
+### 4. Volatility tends
 
 **Scenario:** Volatility tends to revert to long-term average
 
@@ -603,11 +603,11 @@ They can both be right! Or both wrong! They're betting on different things.
 
 ---
 
-## How Vega Trading Works
+## How Vega Trading
 
 **Step-by-step process:**
 
-### 1. Identify Mispriced IV
+### 1. Identify
 
 **Analysis methods:**
 
@@ -631,7 +631,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 - Volatility surfaces
 
-### 2. Establish Position
+### 2. Establish
 
 **If IV too low (Long Vega):**
 
@@ -659,7 +659,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 - This isolates your vega exposure
 
-### 4. Manage the Position
+### 4. Manage the
 
 **Monitor:**
 
@@ -691,7 +691,7 @@ They can both be right! Or both wrong! They're betting on different things.
 
 ---
 
-## Vega Trading vs. Delta Hedging vs. Gamma Scalping
+## Vega Trading vs.
 
 **Let's see how all three relate:**
 
@@ -874,7 +874,7 @@ risk      realized   changes
 
 ---
 
-## When Vega Trading Works Best
+## When Vega Trading
 
 **Favorable conditions:**
 
@@ -902,7 +902,7 @@ risk      realized   changes
 
 - **Your catalyst:** Time for fear to subside
 
-### 3. General Favorable Conditions
+### 3. General Favorable
 
 - Liquid options markets (tight spreads)
 
@@ -930,7 +930,7 @@ risk      realized   changes
 
 ---
 
-## Vega Trading Strategies
+## Vega Trading
 
 **Common approaches:**
 
@@ -954,7 +954,7 @@ risk      realized   changes
 
 - Bet: IV will decrease
 
-### 2. Calendar Spread (Time Vega)
+### 2. Calendar Spread
 
 **Setup:**
 
@@ -972,7 +972,7 @@ risk      realized   changes
 
 - Collects theta from front month
 
-### 3. Volatility Arbitrage
+### 3. Volatility
 
 **Setup:**
 
@@ -984,7 +984,7 @@ risk      realized   changes
 
 - Profit from mean reversion
 
-### 4. Dispersion Trading (Advanced)
+### 4. Dispersion
 
 **Setup:**
 
@@ -1014,7 +1014,7 @@ risk      realized   changes
 
 ---
 
-## Position Sizing and Risk Management
+## Position Sizing and
 
 **Key considerations:**
 
@@ -1078,7 +1078,7 @@ risk      realized   changes
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -1106,7 +1106,7 @@ risk      realized   changes
 
    - Transaction cost environment
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 
@@ -1118,7 +1118,7 @@ risk      realized   changes
 
 - [Expected Greeks P&L > costs]
 
-### 3. Step 2
+### 3. Enter LONG vega
 
 **Enter LONG vega when:**
 
@@ -1201,7 +1201,7 @@ risk      realized   changes
 
 - [Wrong volatility regime]
 
-### 4. Step 3
+### 4. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -1219,7 +1219,7 @@ $$
 
 - Margin requirements
 
-### 5. Step 4
+### 5. Best practices: 1
 
 **Best practices:**
 
@@ -1241,7 +1241,7 @@ $$
 
 - Transaction cost consideration: Balance frequency vs. cost
 
-### 6. Step 5
+### 6. Active management
 
 **Active management rules:**
 
@@ -1273,7 +1273,7 @@ $$
 
 - Time-based exit: [Time decay considerations]
 
-### 7. Step 6
+### 7. Greeks risk
 
 **Greeks risk limits:**
 
@@ -1295,7 +1295,7 @@ $$
 
 - Worst-case scenario planning
 
-### 8. Step 7
+### 8. Track for every
 
 **Track for every trade:**
 
@@ -1311,7 +1311,7 @@ $$
 
 - Lessons learned
 
-### 9. Common Execution Mistakes to Avoid
+### 9. Common Execution
 
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 
@@ -1325,7 +1325,7 @@ $$
 
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
-### 10. Professional Implementation Tips
+### 10. Professional
 
 **For delta hedging:**
 
@@ -1356,7 +1356,7 @@ $$
 
 **Critical errors that destroy vega trading profits:**
 
-### 1. Mistake #1
+### 1. The error: "I'll
 
 **The error:**
 "I'll buy a straddle and make money from volatility!"
@@ -1401,7 +1401,7 @@ $$
 
 ---
 
-### 2. Mistake #2
+### 2. The error: "IV is
 
 **The error:**
 "IV is at 65%! So much premium! I'll buy straddles and profit from volatility!"
@@ -1463,7 +1463,7 @@ $$
 
 ---
 
-### 3. Mistake #3
+### 3. The error: "IV
 
 **The error:**
 "IV will spike 10 points. Vega is 100. I'll make $1,000!"
@@ -1518,7 +1518,7 @@ Not 10 points - need 16 points to overcome theta!
 
 ---
 
-### 4. Mistake #4
+### 4. The error:
 
 **The error:**
 "Earnings in 45 days. IV will spike. I'll enter now!"
@@ -1585,7 +1585,7 @@ Not 10 points - need 16 points to overcome theta!
 
 ---
 
-### 5. Mistake #5
+### 5. The error: "I'm
 
 **The error:**
 "I'm vega trading. Stock direction doesn't matter!"
@@ -1650,7 +1650,7 @@ Not 10 points - need 16 points to overcome theta!
 
 ---
 
-### 6. Mistake #6
+### 6. The error: "IV
 
 **The error:**
 "IV will spike AT earnings. I'll hold through for maximum profit!"
@@ -1715,7 +1715,7 @@ Not 10 points - need 16 points to overcome theta!
 
 ---
 
-### 7. Mistake #7
+### 7. The error: "TSLA
 
 **The error:**
 "TSLA IV is at 70%. I'll sell straddles and collect as it drops to 50%."
@@ -1792,7 +1792,7 @@ Not 10 points - need 16 points to overcome theta!
 
 ---
 
-### 8. Mistake #8
+### 8. The error: "Vega
 
 **The error:**
 "Vega trading is 'low risk' since I'm hedged. I'll use 30% of my account!"
@@ -1855,7 +1855,7 @@ Not 500 vega!
 
 ---
 
-### 9. Mistake #9
+### 9. The error: "IV
 
 **The error:**
 "IV just spiked from 20% to 40%! It's going higher! I'll buy now!"
@@ -1918,7 +1918,7 @@ Not 500 vega!
 
 ---
 
-### 10. Mistake #10
+### 10. The error: "I
 
 **The error:**
 "I entered long vega, I'll check it next week."
@@ -1981,7 +1981,7 @@ Not 500 vega!
 
 ---
 
-### 11. Summary
+### 11. | | Mistake |
 
 | # | Mistake | Fix |
 |---|---------|-----|
@@ -2004,7 +2004,7 @@ Not 500 vega!
 
 **Concrete scenarios showing vega trading in practice:**
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup:**
 
@@ -2060,7 +2060,7 @@ Not 500 vega!
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup:**
 
@@ -2135,7 +2135,7 @@ Not 500 vega!
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -2192,7 +2192,7 @@ Not 500 vega!
 
 ---
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup:**
 
@@ -2266,7 +2266,7 @@ Trader: "Easy money! IV falling as expected!"
 
 ---
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Setup:**
 
@@ -2348,7 +2348,7 @@ Trader: "Easy money! IV falling as expected!"
 
 ---
 
-### 6. Example 6
+### 6. Setup: Retail
 
 **Setup:**
 
@@ -2410,7 +2410,7 @@ Trader: "Easy money! IV falling as expected!"
 
 ---
 
-### 7. Example 7
+### 7. Setup: Trader:
 
 **Setup:**
 
@@ -2472,7 +2472,7 @@ Trader: "Easy money! IV falling as expected!"
 
 ---
 
-### 8. Summary
+### 8. Winners share:
 
 **Winners share:**
 

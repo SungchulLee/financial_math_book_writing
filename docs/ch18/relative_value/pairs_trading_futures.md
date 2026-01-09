@@ -1,4 +1,4 @@
-# Pairs Trading in Futures
+# Pairs Trading in
 
 **Pairs trading in futures** involves simultaneously taking long and short positions in two related futures contracts to profit from the convergence or divergence of their price relationship, creating a market-neutral position that profits from relative value changes rather than absolute price movements.
 
@@ -42,11 +42,11 @@ $$
 
 ---
 
-## What is Pairs Trading?
+## What is Pairs
 
 **Before trading pairs, understand what you're actually trading:**
 
-### 1. Pairs Trading Defined
+### 1. Pairs Trading
 
 **Definition:** Pairs trading is a market-neutral strategy where you simultaneously buy one futures contract and sell a related futures contract, profiting when the price spread between them moves in your favor.
 
@@ -157,7 +157,7 @@ $$
 
 **Beyond the statistical correlation, understanding the economic linkages:**
 
-### 1. Fundamental Relationships
+### 1. Fundamental
 
 **Substitution relationships:**
 
@@ -183,7 +183,7 @@ $$
 - High ratio → Buy silver, sell gold → Ratio narrows
 - Low ratio → Buy gold, sell silver → Ratio widens
 
-### 2. Input-Output Relationships
+### 2. Input-Output
 
 **Processing spreads:**
 
@@ -217,7 +217,7 @@ $$
 - Bounded by variable costs
 - **Pairs trade on refining margins**
 
-### 3. Geographic Arbitrage
+### 3. Geographic
 
 **WTI vs. Brent Crude:**
 
@@ -262,7 +262,7 @@ $$
 **Trade:** Short SPX, Long NQ
 **Target:** Ratio back to 0.25
 
-### 5. Cointegration Theory
+### 5. Cointegration
 
 **Statistical relationship:**
 
@@ -293,7 +293,7 @@ Where $\epsilon_t$ is stationary (mean-reverting)
 **When Spread > 2σ:** Short gold, long silver
 **When Spread < -2σ:** Long gold, short silver
 
-### 6. Why This Perspective Matters
+### 6. Why This
 
 **Understanding economic relationships helps you:**
 
@@ -492,11 +492,11 @@ $$
 
 ---
 
-## Contract Specifications
+## Contract
 
 **Understanding which pairs have the strongest relationships:**
 
-### 1. Energy Pairs (High Correlation, Arbitrage-Driven)
+### 1. Energy Pairs
 
 **WTI Crude vs. Brent Crude:**
 
@@ -550,7 +550,7 @@ $$
 - Current: 25 (oil expensive relative to gas)
 - **Trade:** Short oil, long gas
 
-### 2. Precious Metals Pairs (Classic Ratio Trade)
+### 2. Precious Metals
 
 **Gold vs. Silver:**
 
@@ -610,7 +610,7 @@ From regression: Gold = α + 75 × Silver
 **Inversion:** Sometimes gold > platinum (recession fears)
 **Trade:** Mean reversion on gold/platinum ratio
 
-### 3. Agricultural Pairs (Substitution and Rotation)
+### 3. Agricultural
 
 **Corn vs. Wheat:**
 
@@ -650,7 +650,7 @@ $$
 - Low ratio: Favor soybean planting
 - High ratio: Favor corn planting
 
-### 4. Equity Index Pairs (Sector Rotation)
+### 4. Equity Index
 
 **S&P 500 vs. Nasdaq 100:**
 
@@ -695,7 +695,7 @@ From regression: ES = α + 1.3 × NQ
 - Limited pairs opportunity
 - Mostly arbitrage (index composition)
 
-### 5. Cross-Asset Pairs (More Complex)
+### 5. Cross-Asset Pairs
 
 **Bonds vs. Equities:**
 
@@ -720,7 +720,7 @@ From regression: ES = α + 1.3 × NQ
 - Strong dollar → Gold falls (typically)
 - **Classic inverse pair**
 
-### 6. Processing Spreads (Input-Output Pairs)
+### 6. Processing
 
 **Soybean Crush Spread:**
 
@@ -745,9 +745,9 @@ $$
 
 ---
 
-## Maximum Profit and Loss
+## Maximum Profit and
 
-### 1. Understanding Pairs P&L Dynamics
+### 1. Understanding
 
 **The profit/loss equation:**
 
@@ -763,7 +763,7 @@ $$
 
 **Key insight: P&L depends on spread change, not absolute price levels!**
 
-### 2. Maximum Profit (Mean Reversion Trade)
+### 2. Maximum Profit
 
 **Setup: Enter at extreme deviation**
 
@@ -812,7 +812,7 @@ $$
 - Total move: 30 points (3σ)
 - **Captured full mean reversion + overshoot**
 
-### 3. Maximum Loss (Relationship Breakdown)
+### 3. Maximum Loss
 
 **Worst case: Relationship continues to diverge**
 
@@ -880,7 +880,7 @@ $$
 
 **This is the power of pairs: One leg can save you**
 
-### 5. Real-World Example
+### 5. Real-World
 
 **Setup (March 2020):**
 
@@ -942,7 +942,7 @@ $$
 
 ---
 
-## Entry and Exit Strategies
+## Entry and Exit
 
 ### 1. Entry Strategies
 
@@ -1136,7 +1136,7 @@ $$
 - Open April WTI-Brent
 - **May have slippage in spread**
 
-### 3. Position Management
+### 3. Position
 
 **1. Dynamic Hedge Ratio Adjustment**
 

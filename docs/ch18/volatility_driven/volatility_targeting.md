@@ -32,7 +32,7 @@ $$
 
 ---
 
-## What Is Volatility Targeting?
+## What Is Volatility
 
 **Before implementing vol targeting, understand the mechanics:**
 
@@ -67,7 +67,7 @@ $$
 
 **Result: Your portfolio volatility stays at 15% whether VIX is 12 or 40**
 
-### 2. The Inverse Scaling Relationship
+### 2. The Inverse
 
 **Understanding the mathematics:**
 
@@ -98,7 +98,7 @@ $$
 
 **Portfolio volatility stays constant at 15% despite market volatility varying 12%-35%**
 
-### 3. Fixed Notional vs. Vol Targeting
+### 3. Fixed Notional
 
 **Traditional approach (fixed notional):**
 
@@ -135,7 +135,7 @@ $$
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Risk Budget Framework
+### 1. The Risk Budget
 
 **The deep insight:**
 
@@ -176,7 +176,7 @@ $$
 
 **The key difference: Control risk, not notional**
 
-### 2. The Sharpe Ratio Enhancement
+### 2. The Sharpe Ratio
 
 **Why vol targeting improves risk-adjusted returns:**
 
@@ -214,7 +214,7 @@ $$
 - Increases position during recoveries (captures upside)
 - **Asymmetric exposure: More upside, less downside**
 
-### 3. The Volatility Clustering Phenomenon
+### 3. The Volatility
 
 **Markets exhibit volatility clustering:**
 
@@ -253,7 +253,7 @@ $$
 
 **Vol targeting exploits this clustering behavior**
 
-### 4. The Leverage Management Advantage
+### 4. The Leverage
 
 **Volatility targeting as dynamic leverage:**
 
@@ -291,7 +291,7 @@ $$
 - Crisis: Automatically de-lever
 - **Countercyclical, disciplined**
 
-### 5. The Mean Reversion of Volatility
+### 5. The Mean
 
 **Long-term property:**
 
@@ -329,7 +329,7 @@ $$
 - Light positions in chaos (expensive fear premium)
 - **Buy low, sell high mechanically**
 
-### 6. The Crash Protection Mechanism
+### 6. The Crash
 
 **Critical feature during market crashes:**
 
@@ -362,7 +362,7 @@ $$
 - No discretion needed
 - **Reactive, not predictive**
 
-### 7. The Rebalancing Premium
+### 7. The Rebalancing
 
 **Volatility targeting creates systematic rebalancing:**
 
@@ -464,7 +464,7 @@ $$
 
 ---
 
-## Mathematical Foundation
+## Mathematical
 
 ### 1. Volatility
 
@@ -499,7 +499,7 @@ $$
 
 **Current realized volatility: 32.1% annualized**
 
-### 2. Position Size Calculation
+### 2. Position Size
 
 **Basic formula:**
 
@@ -531,7 +531,7 @@ $$
 N = \frac{15\%}{32.1\%} \times 10 = 4.7 \rightarrow 5 \text{ contracts}
 $$
 
-### 3. Risk Budget Approach
+### 3. Risk Budget
 
 **Alternative calculation using dollar risk:**
 
@@ -556,7 +556,7 @@ $$
 
 **Hold 2 ES contracts to risk $10,000/day**
 
-### 4. Optimal Lookback Window
+### 4. Optimal Lookback
 
 **Trade-off between responsiveness and stability:**
 
@@ -577,7 +577,7 @@ $$
 
 **General rule: Higher vol of vol → Shorter window**
 
-### 5. Expected Sharpe Ratio Improvement
+### 5. Expected Sharpe
 
 **Theoretical Sharpe ratio of vol-targeted strategy:**
 
@@ -604,7 +604,7 @@ $$
 
 **More volatile the volatility, greater the improvement**
 
-### 6. Rebalancing Frequency Analysis
+### 6. Rebalancing
 
 **Optimal rebalancing balances:**
 
@@ -641,7 +641,7 @@ $$
 
 ---
 
-## Step-by-Step Setup
+## Key ideas
 
 ### 1. Phase 1
 
@@ -730,7 +730,7 @@ import numpy as np
 prices = pd.read_csv('ES_prices.csv')
 prices['returns'] = np.log(prices['close'] / prices['close'].shift(1))
 
-# Calculate 30-day realized vol (annualized)
+# Calculate 30-day
 window = 30
 prices['realized_vol'] = prices['returns'].rolling(window).std() * np.sqrt(252)
 
@@ -809,7 +809,7 @@ Expected Daily Risk: ~$10,000
 **Step 1: Calculate current vol**
 
 ```python
-# Get last 30 days of returns
+# Get last 30 days of
 recent_returns = prices['returns'].tail(30)
 current_vol = recent_returns.std() * np.sqrt(252)
 ```
@@ -905,10 +905,10 @@ else:
 **Monthly check:**
 
 ```python
-# Portfolio returns (position-adjusted)
+# Portfolio returns
 portfolio_returns = returns * position_sizes
 
-# Realized portfolio vol
+# Realized portfolio
 portfolio_vol = portfolio_returns.std() * np.sqrt(252)
 
 # Compare to target
@@ -1015,9 +1015,9 @@ $$
 
 ---
 
-## Risk Metrics Analysis
+## Risk Metrics
 
-### 1. Position Sizing Dynamics
+### 1. Position Sizing
 
 **For vol-targeted futures:**
 
@@ -1082,7 +1082,7 @@ $$
 
 **High turnover but necessary for vol targeting**
 
-### 4. Drawdown Management
+### 4. Drawdown
 
 **Max drawdown reduction:**
 
@@ -1110,7 +1110,7 @@ $$
 - Vol targeting preemptively reduces exposure
 - Less capital at risk when market falls
 
-### 5. Tail Risk Reduction
+### 5. Tail Risk
 
 **Value at Risk (VaR) comparison:**
 
@@ -1146,7 +1146,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -1205,7 +1205,7 @@ $$
 - Captured some upside, avoided most downside
 - **Asymmetric performance: The strategy's best feature**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Timeline:**
 
@@ -1261,7 +1261,7 @@ $$
 - Re-leveraged during the most explosive recovery phase
 - **This is vol targeting at its best**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background:**
 
@@ -1316,7 +1316,7 @@ $$
 - Consider intraday monitoring for large accounts
 - This is the strategy's main weakness
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Long-term vol targeting test:**
 
@@ -1356,7 +1356,7 @@ $$
 - Helps more in V-shaped crashes (2008, 2020)
 - Less helpful in grinding bears (2000-2002)
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Background:**
 
@@ -1404,7 +1404,7 @@ $$
 
 ## Risk Management
 
-### 1. Position Sizing Bounds
+### 1. Position Sizing
 
 **Implement hard limits:**
 
@@ -1443,7 +1443,7 @@ $$
 | 60% (crisis) | 0.25x | 0.25x |
 | 150% (panic) | 0.10x | **0.10x (at floor)** |
 
-### 2. Rebalancing Thresholds
+### 2. Rebalancing
 
 **Avoid excessive trading:**
 
@@ -1472,7 +1472,7 @@ $$
 - Prevents over-trading on noise
 - Still tracks target vol well
 
-### 3. Volatility Robustness
+### 3. Volatility
 
 **Use multiple vol measures:**
 
@@ -1498,7 +1498,7 @@ With $\lambda = 0.94$ (RiskMetrics standard)
 - If divergent → Wait for consensus
 - **Prevents false signals**
 
-### 4. Maximum Drawdown Limits
+### 4. Maximum Drawdown
 
 **Portfolio-level circuit breaker:**
 
@@ -1534,7 +1534,7 @@ $$
 - **Action: Reduce target from 15% → 10%**
 - De-risk until recovery
 
-### 5. Diversification Across Assets
+### 5. Diversification
 
 **Don't use single futures contract:**
 
@@ -1554,7 +1554,7 @@ $$
 - Smoother overall portfolio vol
 - Better risk-adjusted returns
 
-### 6. Transaction Cost Management
+### 6. Transaction Cost
 
 **Estimate total costs:**
 
@@ -1582,7 +1582,7 @@ $$
 
 **Must exceed this to be worthwhile!**
 
-### 7. Risk Management Checklist
+### 7. Risk Management
 
 **Before starting vol targeting:**
 

@@ -97,7 +97,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This Structur
+### 2. Why This
 
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
@@ -144,7 +144,7 @@ $$
 
 $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low, sell high profits}} - \underbrace{\theta\,\delta t}_{\text{option time decay}}}$$
 
-### 1. The Two Component
+### 1. The Two
 
 **$-\theta\,\delta t$:** Loss from time decay of the option
 
@@ -352,7 +352,7 @@ Think of the option as providing a **mathematical framework** that:
 
 ---
 
-### 8. Concrete Comparis
+### 8. Concrete
 
 **Scenario:** Stock at $100, drops to $98, rises back to $100
 
@@ -556,7 +556,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -575,7 +575,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
    - Bid-ask spreads
    - Transaction cost environment
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 - [Specific Greeks conditions]
@@ -589,7 +589,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 - [Insufficient liquidity]
 - [Wrong volatility regime]
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -603,7 +603,7 @@ $$
 - Capital for hedge adjustments
 - Margin requirements
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -618,7 +618,7 @@ $$
 - Gamma management when: Position size changes
 - Transaction cost consideration: Balance frequency vs. cost
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -639,7 +639,7 @@ $$
 - Cut losses at: [Max acceptable Greeks loss]
 - Time-based exit: [Time decay considerations]
 
-### 6. Step 6
+### 6. Greeks risk
 
 **Greeks risk limits:**
 - Max delta exposure: [Limit]
@@ -653,7 +653,7 @@ $$
 - Stress testing for market moves
 - Worst-case scenario planning
 
-### 7. Step 7
+### 7. Track for every
 
 **Track for every trade:**
 - Entry Greeks (delta, gamma, vega, theta)
@@ -694,7 +694,7 @@ $$
 
 **Critical errors that destroy gamma scalping profits:**
 
-### 1. Mistake #1
+### 1. The error: "Stock
 
 **The error:**
 "Stock is volatile lately. Perfect for gamma scalping!"
@@ -721,7 +721,7 @@ When IV < Realized vol:
 
 ---
 
-### 2. Mistake #2
+### 2. The error: "Gamma
 
 **The error:**
 "Gamma is +0.50, I'll rebalance every hour!"
@@ -759,7 +759,7 @@ Transaction costs include:
 
 ---
 
-### 3. Mistake #3
+### 3. The error: "Set
 
 **The error:**
 "Set and forget. I'll rebalance once a day at close."
@@ -805,7 +805,7 @@ Too frequent:
 
 ---
 
-### 4. Mistake #4
+### 4. The error: "Gamma
 
 **The error:**
 "Gamma scalping is 'market neutral.' I'll use 50% of my account!"
@@ -854,7 +854,7 @@ $$
 
 ---
 
-### 5. Mistake #5
+### 5. The error: "High
 
 **The error:**
 "High IV before earnings = perfect for gamma scalping!"
@@ -895,7 +895,7 @@ Earnings create:
 
 ---
 
-### 6. Mistake #6
+### 6. The error: "Gamma
 
 **The error:**
 "Gamma scalping is about gamma. I don't need to worry about vega."
@@ -941,7 +941,7 @@ Long straddle = long vega:
 
 ---
 
-### 7. Mistake #7
+### 7. The error: "I
 
 **The error:**
 "I understand the math. I don't need stops."
@@ -982,7 +982,7 @@ Gamma scalping can bleed slowly:
 
 ---
 
-### 8. Mistake #8
+### 8. The error: "Vol
 
 **The error:**
 "Vol died. Let me add more contracts to make up for it!"
@@ -1020,7 +1020,7 @@ Averaging down in gamma scalping:
 
 ---
 
-### 9. Mistake #9
+### 9. The error: "I'm
 
 **The error:**
 "I'm up $500. Great!"
@@ -1073,7 +1073,7 @@ $$
 
 ---
 
-### 10. Mistake #10
+### 10. The error: "Set
 
 **The error:**
 "Set up the straddle, rebalance daily. Passive income!"
@@ -1125,7 +1125,7 @@ $$
 
 ---
 
-### 11. Summary
+### 11. | | Mistake |
 
 | # | Mistake | Fix |
 |---|---------|-----|
@@ -1384,7 +1384,7 @@ Trader: "Just one slow week. Vol will pick up."
 
 ---
 
-### 6. Example 6
+### 6. Setup: Trader:
 
 **Setup:**
 - Trader: Retail, using Robinhood
@@ -1442,7 +1442,7 @@ If using limit orders:
 
 ---
 
-### 7. Summary
+### 7. Winners share:
 
 **Winners share:**
 - Entered when IV > realized vol (edge)

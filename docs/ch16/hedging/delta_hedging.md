@@ -75,7 +75,7 @@
 
 - **Other risks remain** (gamma, vega, theta)
 
-### 2. Example
+### 2. Situation:
 
 **Situation:**
 
@@ -177,7 +177,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Economic Rational
+### 2. Economic
 
 Markets create these strategies because different participants have different:
 
@@ -258,7 +258,7 @@ $$\boxed{\delta \Pi \approx \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{tr
 
 **This is DEFENSIVE, not offensive.** You're protecting yourself, not trying to make money from volatility.
 
-### 2. Post-Delta Exposu
+### 2. Post-Delta
 
 Once you've eliminated directional risk, you're still exposed to:
 
@@ -328,7 +328,7 @@ Once you've eliminated directional risk, you're still exposed to:
 
 ---
 
-## Rebalancing Frequenc
+## Rebalancing
 
 ### 1. The Theoretical
 
@@ -421,7 +421,7 @@ $$
 
 ## Why You Delta Hedge
 
-### 1. Use Case 1
+### 1. You sold a call
 
 **Scenario:** You sold a call option to a customer
 
@@ -443,7 +443,7 @@ $$
 
 **Insurance analogy:** Like a store buying theft insurance - they're in business to sell goods, not to bet on whether they'll be robbed.
 
-### 2. Use Case 2
+### 2. You want to bet
 
 **Scenario:** You want to bet on implied volatility, not stock direction
 
@@ -463,7 +463,7 @@ $$
 
 **Insurance analogy:** Like a farmer hedging crop prices - they want to bet on their farming skill, not on price fluctuations.
 
-### 3. Use Case 3
+### 3. You own a large
 
 **Scenario:** You own a large stock position and buy protective puts
 
@@ -757,11 +757,11 @@ The mechanism is simple:
 
 ---
 
-## Rebalancing Strategi
+## Rebalancing
 
 **How often should you rebalance? (How often to renew insurance?)**
 
-### 1. Time-Based Rebala
+### 1. Time-Based
 
 - Rebalance every hour, day, or week
 
@@ -897,7 +897,7 @@ $$
 
 ---
 
-### 5. Real-World Exampl
+### 5. Real-World
 
 **Example 1: Market Maker (Delta Hedging)**
 
@@ -1170,7 +1170,7 @@ All sophisticated volatility strategies build on delta hedging as the core risk 
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -1198,7 +1198,7 @@ All sophisticated volatility strategies build on delta hedging as the core risk 
 
    - Transaction cost environment
 
-### 2. Step 2
+### 2. Enter this
 
 **Enter this strategy when:**
 
@@ -1220,7 +1220,7 @@ All sophisticated volatility strategies build on delta hedging as the core risk 
 
 - [Wrong volatility regime]
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -1238,7 +1238,7 @@ $$
 
 - Margin requirements
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -1257,7 +1257,7 @@ $$
 
 - Transaction cost consideration: Balance frequency vs. cost
 
-### 5. Step 5
+### 5. Active management
 
 **Active management rules:**
 
@@ -1289,7 +1289,7 @@ $$
 
 - Time-based exit: [Time decay considerations]
 
-### 6. Step 6
+### 6. Greeks risk
 
 **Greeks risk limits:**
 
@@ -1311,7 +1311,7 @@ $$
 
 - Worst-case scenario planning
 
-### 7. Step 7
+### 7. Track for every
 
 **Track for every trade:**
 
@@ -1474,7 +1474,7 @@ def should_rebalance(current_delta, target_delta, threshold=0.10):
         return True
     return False
 
-# Example
+# Overview
 # Start
 # Stock moves, delta =
 # Change
@@ -1782,7 +1782,7 @@ def calculate_hedge_ratio(option_delta,
     hedge_ratio = option_delta * stock_beta
     return hedge_ratio
 
-# Example
+# Overview
 # XYZ beta
 # Option delta
 # Hedge

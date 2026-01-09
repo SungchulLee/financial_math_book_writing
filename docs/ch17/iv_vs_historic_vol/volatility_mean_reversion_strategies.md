@@ -1,5 +1,5 @@
-# Volatility Mean Reversion Strategies
-## Trading the Cyclical Nature of Volatility
+# Volatility Mean
+## Trading the Cyclical
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_half_life.png?raw=true" alt="volatility_mean_reversion_strategies_half_life" width="700">
@@ -43,7 +43,7 @@ $$
 
 ---
 
-## Why Volatility Mean-Reverts
+## Why Volatility
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_performance.png?raw=true" alt="volatility_mean_reversion_strategies_performance" width="700">
@@ -80,14 +80,14 @@ Low volatility triggers:
 
 ---
 
-## What Mean Reversion Means in Practice
+## What Mean Reversion
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_mean_reversion_strategies_zones.png?raw=true" alt="volatility_mean_reversion_strategies_zones" width="700">
 </p>
 <p align="center"><em>Figure 4: Trading zones showing optimal entry points for selling volatility (extremes) vs buying volatility (compression)</em></p>
 
-### 1. Volatility Regimes
+### 1. Volatility
 
 Volatility tends to oscillate between regimes:
 
@@ -115,7 +115,7 @@ Mean reversion strategies attempt to **fade extremes**, not predict exact turnin
 
 ## The Structure
 
-### 1. General Mean Reversion
+### 1. General Mean
 
 Mean reversion trades typically:
 
@@ -131,9 +131,9 @@ Mean reversion trades typically:
 
 ---
 
-### 2. Common Mean Reversion Structures
+### 2. Common Mean
 
-### 3. Short Volatility After Spikes
+### 3. Short Volatility
 
 - Sell ATM straddles or strangles
 
@@ -149,7 +149,7 @@ Used when:
 
 ---
 
-### 4. Long Volatility After Compression
+### 4. Long Volatility
 
 - Buy straddles or strangles
 
@@ -167,7 +167,7 @@ Used when:
 
 ---
 
-### 5. VIX Mean Reversion Trades
+### 5. VIX Mean
 
 - Short VIX futures after spikes
 
@@ -177,7 +177,7 @@ Used when:
 
 ---
 
-### 6. Calendar-Based Mean Reversion
+### 6. Calendar-Based
 
 - Sell near-term volatility spikes
 
@@ -207,7 +207,7 @@ with exposure concentrated in **volatility level**, not direction.
 
 **Understanding what mean reversion strategies REALLY represent economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 **Mean reversion strategies are fundamentally trading volatility overshoots:**
 
@@ -235,7 +235,7 @@ When you buy volatility after compression, you're betting:
 
 - Uncertainty will re-emerge
 
-### 2. The Ornstein-Uhlenbeck Process
+### 2. The
 
 **Theoretical foundation:**
 
@@ -283,7 +283,7 @@ Example: $\kappa = 3$ → $t_{1/2} = 84$ days
 
 **Trading implication:** If volatility spikes 20% above mean, expect ~50% reversion in 84 days.
 
-### 3. Why Mean Reversion Exists Economically
+### 3. Why Mean
 
 **1. Leverage cycling:**
 
@@ -324,7 +324,7 @@ $$
 Fear spikes during crises (IV overshoot), then normalizes
 Greed peaks during calm (IV undershoot), then reality hits
 
-### 4. The Volatility Risk Premium in Mean Reversion
+### 4. The Volatility
 
 **Standard vol risk premium:**
 
@@ -359,7 +359,7 @@ After spike: IV = 35%, RV normalizes to 20% → VRP = 15%
 
 **Mean reversion captures that extra 12%.**
 
-### 5. The Term Structure of Mean Reversion
+### 5. The Term
 
 **Near-term volatility mean-reverts faster than long-term:**
 
@@ -379,7 +379,7 @@ Mean Reversion Half-Life:
 Sell near-term vol after spikes (fast reversion)
 Buy long-term vol after compression (slow reversion, more convexity)
 
-### 6. Professional Institutional Perspective
+### 6. Professional
 
 **Institutional mean reversion strategies:**
 
@@ -434,7 +434,7 @@ At IVR 80%: 1.25× base size
 
 - Low vol → Increase equity → Buy vol
 
-### 7. The Empirical Evidence
+### 7. The Empirical
 
 **Historical mean reversion statistics:**
 
@@ -470,7 +470,7 @@ Auto-correlation (30-day): 0.78
 
 **Key insight:** Short vol mean reversion has higher win rate but catastrophic tail risk. Long vol mean reversion has lower win rate but convex payoffs.
 
-### 8. When Mean Reversion Offers Edge
+### 8. When Mean
 
 **Genuine edge exists when:**
 
@@ -518,7 +518,7 @@ Understanding these economic foundations helps recognize when mean reversion str
 
 ## The P&L Formula
 
-### 1. Primary P&L Driver — Volatility Normalization
+### 1. Primary P&L
 
 $$
 \text{P\&L}_{\text{MR}} =
@@ -566,7 +566,7 @@ If vega = $100/\%, then Expected P&L = $100 × 3.8 = $380
 
 ## Concrete Example
 
-### 1. Short Volatility After a Spike
+### 1. Short Volatility
 
 **Underlying:** SPX  
 
@@ -671,7 +671,7 @@ At IVR 20%: Position = Base / 1.30 = 77% of normal
 
 ---
 
-## Relationship to Other Volatility Strategies
+## Relationship to
 
 | Strategy | Primary Focus |
 |--------|---------------|
@@ -694,7 +694,7 @@ At IVR 20%: Position = Base / 1.30 = 77% of normal
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Before entering,
 
 **Before entering, evaluate:**
 
@@ -730,7 +730,7 @@ At IVR 20%: Position = Base / 1.30 = 77% of normal
 
    - Product launches, regulatory decisions
 
-### 2. Step 2
+### 2. Enter SHORT
 
 **Enter SHORT volatility when:**
 
@@ -778,7 +778,7 @@ At IVR 20%: Position = Base / 1.30 = 77% of normal
 
 - Markets trending calmly
 
-### 3. Step 3
+### 3. Calculate maximum
 
 **Calculate maximum position size:**
 
@@ -814,7 +814,7 @@ $$
 
 - At extremes (IVR > 80 or < 20): Reduce to $50-100
 
-### 4. Step 4
+### 4. Best practices: 1
 
 **Best practices:**
 
@@ -842,7 +842,7 @@ $$
 
 - [ ] Profit target set
 
-### 5. Step 5
+### 5. Active
 
 **Active monitoring:**
 
@@ -899,7 +899,7 @@ $$
 
 - 50% of expected holding period passed with no favorable move
 
-### 6. Step 6
+### 6. When to adjust
 
 **When to adjust (short vol):**
 
@@ -943,7 +943,7 @@ $$
 
 - Accept small loss
 
-### 7. Step 7
+### 7. For each trade,
 
 **For each trade, record:**
 
@@ -1013,7 +1013,7 @@ Lessons:
 
 - Best trades (what went right)
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 
@@ -1031,7 +1031,7 @@ Lessons:
 
 8. **Ignoring credit markets** - Credit stress = regime shift signal
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For mean reversion selling (after spikes):**
 
@@ -1105,7 +1105,7 @@ Lessons:
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup:**
 
@@ -1153,7 +1153,7 @@ Lessons:
 
 - Took profits early
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup:**
 
@@ -1187,7 +1187,7 @@ Lessons:
 
 - Many confused "low VIX" with "spike to fade"
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -1221,7 +1221,7 @@ Lessons:
 
 - Wait for resolution signals before selling vol
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup:**
 
@@ -1257,7 +1257,7 @@ Lessons:
 
 - Position sizing must allow for 6-12 month holds
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Setup:**
 
@@ -1311,7 +1311,7 @@ Lessons:
 
 5. **Take profits early** - don't wait for perfection
 
-### 2. Critical Distinctions
+### 2. Critical
 
 **Spike vs. Regime Shift:**
 
@@ -1330,7 +1330,7 @@ Lessons:
 
 - Can't use normal assumptions in crisis!
 
-### 3. Position Sizing Rules
+### 3. Position Sizing
 
 **Iron laws:**
 

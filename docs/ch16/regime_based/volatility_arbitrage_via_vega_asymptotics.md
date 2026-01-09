@@ -175,7 +175,7 @@ $$
 
 ## The Structure
 
-### 1. Basic Vega Arbitr
+### 1. Basic Vega
 
 **Objective:** Maximize vega exposure while managing other Greeks.
 
@@ -296,7 +296,7 @@ You're NOT betting on volatility direction alone—you're betting on:
 2. **Optimal maturity selection** (asymptotic advantage)
 3. **Capital efficiency** (vega per dollar)
 
-### 2. Why Vega Asymptot
+### 2. Why Vega
 
 **1. Mathematical asymmetry:**
 
@@ -350,7 +350,7 @@ Typical VRP by maturity:
 
 **Vega arbitrage captures the 30-90 day premium sweet spot.**
 
-### 3. The Term Structur
+### 3. The Term
 
 **Forward vega concept:**
 
@@ -468,7 +468,7 @@ Win rate: 64%
 
 **Conclusion:** Mid-term vega positions historically profitable with reasonable risk.
 
-### 6. When Vega Asympto
+### 6. When Vega
 
 **Genuine edge exists when:**
 
@@ -742,7 +742,7 @@ As term structure normalizes, 90-day IV rises faster than 30-day, profit from th
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Objective: Choose
 
 **Objective:** Choose maturity that maximizes vega per unit theta.
 
@@ -765,7 +765,7 @@ $$
 
 **Empirically:** 60-90 days for most vega trades.
 
-### 2. Step 2
+### 2. Choose structure
 
 **Choose structure based on goal:**
 
@@ -785,7 +785,7 @@ $$
 - Lower cost than straddle
 - Concentrated vega in narrow range
 
-### 3. Step 3
+### 3. Maximum vega
 
 **Maximum vega exposure:**
 
@@ -811,7 +811,7 @@ Example:
 
 **Conservative: Start with 50% of max, scale into full size.**
 
-### 4. Step 4
+### 4. Entry checklist:
 
 **Entry checklist:**
 
@@ -830,7 +830,7 @@ Example:
 3. **Monitor skew** (can affect ATM pricing)
 4. **Avoid earnings week** (unless that's the catalyst)
 
-### 5. Step 5
+### 5. Daily monitoring:
 
 **Daily monitoring:**
 
@@ -852,7 +852,7 @@ Example:
 - Time stop: 50% of time elapsed with no favorable IV move
 - **Cut losses quickly**
 
-### 6. Step 6
+### 6. Exit triggers: 1
 
 **Exit triggers:**
 
