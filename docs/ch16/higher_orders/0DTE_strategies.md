@@ -1,4 +1,4 @@
-# 0DTE Strategies (Zero Days to Expiration)
+# 0DTE Strategies
 
 **0DTE strategies** involve trading options on their expiration day when time value approaches zero, Greeks reach extreme levels, and price movements create asymmetric opportunities driven by gamma explosions and theta acceleration.
 
@@ -54,11 +54,11 @@ $$
 
 ---
 
-## What Are 0DTE Options?
+## What Are 0DTE Option
 
 **Before trading 0DTE, understand what makes them unique:**
 
-### 1. Definition and Evolution
+### 1. Definition and
 
 **0DTE = Zero Days To Expiration**
 
@@ -83,7 +83,7 @@ $$
 - **Fri expiry:** "SPXW" (if not 3rd Friday) or "SPX" (if monthly)
 - All expire 4:00 PM ET (AM settlement at open for SPX)
 
-### 2. How 0DTE Differs From Regular Options
+### 2. How 0DTE Differs
 
 **Time dimension:**
 
@@ -131,7 +131,7 @@ $$
 
 **Beyond the basic definition, understanding what 0DTE options REALLY are economically:**
 
-### 1. Why 0DTE Exploded in Popularity
+### 1. Why 0DTE Exploded
 
 **The market structure shift (2020-2024):**
 
@@ -163,7 +163,7 @@ $$
 - Billions in notional traded daily
 - Institutional AND retail participation
 
-### 2. The Fundamental Economic Trade-Off
+### 2. The Fundamental
 
 **What 0DTE sellers (short premium) are doing:**
 
@@ -199,7 +199,7 @@ $$
 - But if market moves → Massive payoff (gamma works for you)
 - Cheap entry (low premium = lottery ticket pricing)
 
-### 3. The Gamma Imbalance and Market Impact
+### 3. The Gamma Imbalan
 
 **Institutional observation:**
 
@@ -288,7 +288,7 @@ $$
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -298,7 +298,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This Structure Exists Economically
+### 2. Why This Structur
 
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
@@ -306,7 +306,7 @@ Markets create these strategies because different participants have different:
 - Capital constraints (leverage limitations)
 - View on volatility vs. direction
 
-### 3. Professional Institutional Perspective
+### 3. Professional
 
 Institutional traders view this strategy as a tool for:
 1. **Greeks arbitrage:** Extracting value from Greeks mispricing
@@ -321,7 +321,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Use cases for 0DTE strategies:**
 
-### 1. Income Generation (High Probability, Small Premium)
+### 1. Income Generation
 
 **Scenario:** SPX at 4500, market calm, want daily income
 
@@ -354,7 +354,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Theta decay is YOUR friend (accelerating all day)
 - High win rate (80-90%) if range is wide enough
 
-### 2. Leverage for Directional Bets
+### 2. Leverage for
 
 **Scenario:** Fed announcement at 2 PM, expecting dovish surprise (bullish)
 
@@ -387,7 +387,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Immediate result (know by 4 PM)
 - Can risk small amount for huge payoff
 
-### 3. Earnings Day Scalping
+### 3. Earnings Day
 
 **Scenario:** Stock reports earnings pre-market, opened up 5%, volatility high
 
@@ -424,7 +424,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Post-earnings consolidation is common pattern
 - Can be profitable even if directionally wrong (if move small)
 
-### 4. Hedging Overnight Positions
+### 4. Hedging Overnight
 
 **Scenario:** Own 1,000 shares SPY, worried about afternoon selloff
 
@@ -456,7 +456,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Expires same day (no overnight theta bleed)
 - Can repeat daily if needed
 
-### 5. Gamma Scalping Extreme Moves
+### 5. Gamma Scalping
 
 **Scenario:** Professional trader, expecting high volatility day
 
@@ -503,7 +503,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-## Greeks Behavior (The 0DTE Phenomenon)
+## Greeks Behavior (The
 
 ### 1. Gamma
 
@@ -762,9 +762,9 @@ $$
 
 ---
 
-## When Greeks Destroy You (0DTE Edition)
+## When Greeks Destroy
 
-### 1. The Gamma Guillotine (Most Common 0DTE Death)
+### 1. The Gamma Guillot
 
 **Scenario:** Sold 0DTE iron condor, feeling confident
 
@@ -810,7 +810,7 @@ $$
 
 **Lesson:** Gamma explosion can turn 85% probability winner into disaster. Small move (1.1%) caused massive loss due to extreme gamma near expiration.
 
-### 2. The Theta Trap (Death by a Thousand Cuts)
+### 2. The Theta Trap
 
 **Scenario:** Bought 0DTE calls expecting rally
 
@@ -853,7 +853,7 @@ $$
 
 **Lesson:** Theta decay is RELENTLESS in 0DTE. Even if directionally correct (ended $4 ITM), theta destroyed most value. Needed move EARLIER in day, not at close.
 
-### 3. The Pin Risk Nightmare
+### 3. The Pin Risk
 
 **Scenario:** Sold 0DTE straddle, SPX pins exactly at strike
 
@@ -893,7 +893,7 @@ $$
 
 **Lesson:** Pin risk in 0DTE is EXTREME. Even $0.10 difference causes assignment. Should have closed by 3:30 PM to avoid this nightmare.
 
-### 4. The Liquidity Trap (Can't Exit)
+### 4. The Liquidity
 
 **Scenario:** Bought 0DTE OTM calls, market moving against you
 
@@ -932,7 +932,7 @@ $$
 
 ## Common Pitfalls
 
-### 1. Underestimating Gamma Risk
+### 1. Underestimating
 
 **The mistake:**
 
@@ -996,7 +996,7 @@ $$
 - **Close losers:** Don't hope for miracle in last 30 min (gamma will destroy you)
 - **General rule:** If position profitable, close before 3:30 PM
 
-### 3. Buying 0DTE in the Morning
+### 3. Buying 0DTE in
 
 **The mistake:**
 
@@ -1032,7 +1032,7 @@ You're paying MAXIMUM theta with 6 hours to decay.
 - **Only buy if:** Expecting move >0.5% in next 1-2 hours
 - **Alternative:** Buy 1-2 DTE instead (less theta, still cheap)
 
-### 4. Ignoring News Calendar
+### 4. Ignoring News
 
 **The mistake:**
 
@@ -1067,7 +1067,7 @@ Certain days have high event risk (Fed, CPI, NFP, etc.)
 - **Reduce size:** Half normal position on event days
 - **Consider buying:** Events = buying opportunity (gamma > theta on these days)
 
-### 5. Using Market Orders
+### 5. Using Market
 
 **The mistake:**
 
@@ -1106,7 +1106,7 @@ Certain days have high event risk (Fed, CPI, NFP, etc.)
 
 ---
 
-## Risk Management Rules
+## Risk Management
 
 **Essential guidelines:**
 
@@ -1130,7 +1130,7 @@ $$
 - Regular options: Risk 2-3% per trade
 - **0DTE: Risk 0.5-1% per trade** (gamma risk too high)
 
-### 2. Time-Based Exit Rules
+### 2. Time-Based Exit
 
 **Non-negotiable timing:**
 
@@ -1171,7 +1171,7 @@ $$
 - **Stop loss:** Close if value drops to $5 (50% loss)
 - Don't let options decay to zero (preserve capital)
 
-### 4. Strike Selection Guidelines
+### 4. Strike Selection
 
 **For sellers (iron condors, credit spreads):**
 
@@ -1560,7 +1560,7 @@ Trade Again?: [Yes/No and why]
 
 **Not for beginners!**
 
-### 9. Platform-Specific Tips
+### 9. Platform-Specific
 
 **Think or Swim (TDA):**
 - Use "Analyze" tab for Greeks
@@ -1582,7 +1582,7 @@ Trade Again?: [Yes/No and why]
 - Use for learning only
 - Upgrade to professional platform
 
-### 10. Risk Management Framework
+### 10. Risk Management
 
 **Portfolio-level limits:**
 
@@ -1620,7 +1620,7 @@ Maximum premium per contract: $5-6
 4. Adjust strategy
 5. Paper trade 5 successful trades before resuming
 
-### 11. The Optimal Weekly Schedule
+### 11. The Optimal
 
 **Monday:**
 - **Skip** (weekend news risk, unpredictable opens)
@@ -1653,7 +1653,7 @@ Maximum premium per contract: $5-6
 
 **Most successful 0DTE traders: Tuesday-Wednesday only (2 days/week).**
 
-### 12. Success Metrics to Track
+### 12. Success Metrics
 
 **Track these monthly:**
 
@@ -1683,7 +1683,7 @@ $$
 
 **If any metric falls below target for 2 consecutive months: Stop and reassess.**
 
-### 13. Final Pre-Trade Checklist
+### 13. Final Pre-Trade
 
 **Before clicking "Submit Order", verify:**
 
@@ -2437,7 +2437,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup (Tuesday, no major events):**
 
@@ -2488,7 +2488,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 - **1-day return:** 16.2%
 - **Annualized:** ~4,050% (if repeatable, which it's not!)
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup (Wednesday, expecting volatility):**
 
@@ -2549,7 +2549,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 - Theta was enemy but gamma gains overwhelmed
 - Professional execution (futures access required)
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup (Thursday, trader expecting rally):**
 
@@ -2590,7 +2590,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 2. Used 1-2 DTE (less theta)
 3. Cut loss at 2:30 PM ($2.50 loss vs. $7 loss)
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup (Friday expiration):**
 

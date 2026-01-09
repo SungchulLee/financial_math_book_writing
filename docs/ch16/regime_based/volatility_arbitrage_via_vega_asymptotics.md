@@ -1,4 +1,4 @@
-# Volatility Arbitrage via Vega Asymptotics
+# Volatility Arbitrage
 
 **Volatility arbitrage via vega asymptotics** exploits the mathematical fact that vega scales non-linearly with time to maturity, creating opportunities to trade volatility more efficiently by carefully selecting option maturities based on vega concentration.
 
@@ -36,7 +36,7 @@ $$
 
 ---
 
-## The Mathematical Foundation
+## The Mathematical
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_efficiency.png?raw=true" alt="vega_asymptotics_efficiency" width="700">
@@ -80,7 +80,7 @@ $$
 
 **Critical insight:** Vega scales as **√τ**, not **τ**.
 
-### 2. Vega Efficiency Metric
+### 2. Vega Efficiency
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_arbitrage.png?raw=true" alt="vega_asymptotics_arbitrage" width="700">
@@ -121,7 +121,7 @@ Mid-term (30-90 days) balances:
 - Acceptable capital efficiency (1/√τ decay not too severe)
 - Reasonable theta cost
 
-### 3. The Optimal Maturity
+### 3. The Optimal
 
 Maximizing **net vega exposure per unit theta cost**:
 
@@ -146,7 +146,7 @@ $$
 - But not too long (capital tied up, liquidity poor)
 - **Sweet spot: 30-90 days**
 
-### 4. The Gamma-Vega Trade-off
+### 4. The Gamma-Vega
 
 As maturity varies:
 
@@ -175,7 +175,7 @@ $$
 
 ## The Structure
 
-### 1. Basic Vega Arbitrage
+### 1. Basic Vega Arbitr
 
 **Objective:** Maximize vega exposure while managing other Greeks.
 
@@ -225,7 +225,7 @@ Instead of buying 1 back / selling 1 front, buy 1.73 back / sell 1 front for veg
 
 ## The Portfolio
 
-### 1. Mid-Maturity Vega Position
+### 1. Mid-Maturity Vega
 
 $$
 \Pi_{\text{vega}} = \sum_{i=1}^{N} n_i \cdot V_i(\tau_{\text{opt}})
@@ -279,7 +279,7 @@ $$
 
 **Understanding what vega asymptotics REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 **Vega arbitrage via asymptotics exploits maturity-dependent pricing inefficiencies:**
 
@@ -296,7 +296,7 @@ You're NOT betting on volatility direction alone—you're betting on:
 2. **Optimal maturity selection** (asymptotic advantage)
 3. **Capital efficiency** (vega per dollar)
 
-### 2. Why Vega Asymptotics Creates Edge
+### 2. Why Vega Asymptot
 
 **1. Mathematical asymmetry:**
 
@@ -350,7 +350,7 @@ Typical VRP by maturity:
 
 **Vega arbitrage captures the 30-90 day premium sweet spot.**
 
-### 3. The Term Structure of Vega
+### 3. The Term Structur
 
 **Forward vega concept:**
 
@@ -373,7 +373,7 @@ $$
 - Short fairly-priced maturity
 - Capture convergence
 
-### 4. Professional Institutional Perspective
+### 4. Professional
 
 **Institutional vega arbitrage strategies:**
 
@@ -419,7 +419,7 @@ $$
 
 **Capital savings:** 40-60% less capital vs. full replication.
 
-### 5. The Empirical Evidence
+### 5. The Empirical
 
 **Historical vega asymptotic patterns (SPX options 2015-2024):**
 
@@ -468,7 +468,7 @@ Win rate: 64%
 
 **Conclusion:** Mid-term vega positions historically profitable with reasonable risk.
 
-### 6. When Vega Asymptotics Offers Edge
+### 6. When Vega Asympto
 
 **Genuine edge exists when:**
 
@@ -515,7 +515,7 @@ Understanding these economic foundations helps recognize when vega asymptotic st
 
 ## The P&L Formula
 
-### 1. Primary P&L Driver — Vega
+### 1. Primary P&L
 
 $$
 \text{P&L}_{\text{vega}} = \mathcal{V}_{\text{net}} \cdot (\sigma_{\text{exit}} - \sigma_{\text{entry}})
@@ -533,7 +533,7 @@ $$
 - IV change: 25% → 30% (+5 points)
 - **Vega P&L: 4.2 × 5 = +$21 per contract = +$210 total**
 
-### 2. Secondary Effect — Theta
+### 2. Secondary Effect
 
 $$
 \text{P&L}_{\text{theta}} = \Theta_{\text{net}} \cdot t
@@ -586,7 +586,7 @@ $$
 
 ## Concrete Example
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup (SPX at 4500):**
 
@@ -671,7 +671,7 @@ Let me redo with realistic scenario:
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Compare 3 maturities for same volatility bet:**
 
@@ -696,7 +696,7 @@ Let me redo with realistic scenario:
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 
@@ -881,7 +881,7 @@ Example:
 - Gamma explosion risk
 - Roll to new maturity or close
 
-### 7. Common Mistakes to Avoid
+### 7. Common Mistakes
 
 1. **Using wrong maturity**
    - Too short: Theta overwhelms vega

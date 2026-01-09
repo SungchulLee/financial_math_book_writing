@@ -106,7 +106,7 @@ Option Value
 - 90 days out: slow decay
 - Theta accelerates as expiration approaches
 
-### 3. Theta for Different Options
+### 3. Theta for Differe
 
 **ATM options:**
 
@@ -134,7 +134,7 @@ Option Value
 
 ---
 
-## Time Value vs. Intrinsic Value
+## Time Value vs.
 
 **Understanding this split is crucial:**
 
@@ -188,7 +188,7 @@ $$
 
 ---
 
-## What Are Carry Trades?
+## What Are Carry
 
 **Carry trades systematically profit from positive theta:**
 
@@ -227,7 +227,7 @@ $$
 
 ---
 
-## The Theta vs. Gamma Trade-off
+## The Theta vs. Gamma
 
 **This is THE fundamental trade-off in options:**
 
@@ -253,7 +253,7 @@ $$
 - Can't have positive theta AND positive gamma
 - Must choose: collect carry OR benefit from movement
 
-### 2. The Mathematical Relationship
+### 2. The Mathematical
 
 **From Black-Scholes PDE:**
 
@@ -280,9 +280,9 @@ $$
 
 ---
 
-## Common Carry Trade Strategies
+## Common Carry Trade
 
-### 1. Short Straddles/Strangles (Pure Carry)
+### 1. Short Straddles/S
 
 **Structure:**
 
@@ -313,7 +313,7 @@ $$
 - Strong range-bound conviction
 - Sophisticated risk management
 
-### 2. Iron Condors (Defined Risk Carry)
+### 2. Iron Condors
 
 **Structure:**
 
@@ -339,7 +339,7 @@ $$
 - Range-bound expectations
 - Lower theta but sleep better
 
-### 3. Calendar Spreads (Theta Differential)
+### 3. Calendar Spreads
 
 **Structure:**
 
@@ -362,7 +362,7 @@ $$
 
 **We covered this extensively in the calendar spreads chapter!**
 
-### 4. Ratio Spreads (Asymmetric Carry)
+### 4. Ratio Spreads
 
 **Structure:**
 
@@ -383,7 +383,7 @@ $$
 - Willing to accept upside risk
 - Maximize theta collection
 
-### 5. Covered Calls (Equity + Carry)
+### 5. Covered Calls
 
 **Structure:**
 
@@ -412,7 +412,7 @@ $$
 - "Rent out" upside optionality
 - Works in flat/modestly bullish markets
 
-### 6. Cash-Secured Puts (Bullish Carry)
+### 6. Cash-Secured Puts
 
 **Structure:**
 
@@ -451,7 +451,7 @@ $$
 
 **Breaking it down:**
 
-### 1. Theta Collection (Your Profit)
+### 1. Theta Collection
 
 **Steady, predictable income:**
 
@@ -466,7 +466,7 @@ $$
 - 30 days: +$1,500 potential
 - If stock stays calm: collect it all!
 
-### 2. Gamma Loss (Your Risk)
+### 2. Gamma Loss (Your
 
 **From price movements:**
 
@@ -481,7 +481,7 @@ $$
 - But collected $50/day theta
 - Move in 1 day wipes out 20 days of theta!
 
-### 3. Vega Loss (IV Risk)
+### 3. Vega Loss (IV
 
 **From volatility increases:**
 
@@ -518,11 +518,11 @@ $$
 
 ---
 
-## The Volatility Risk Premium
+## The Volatility Risk
 
 **Why do carry trades work? The vol risk premium:**
 
-### 1. Empirical Observation
+### 1. Empirical Observa
 
 **Historical data shows:**
 
@@ -537,7 +537,7 @@ $$
 - Premium: ~5% points
 - **Short vol earns this premium over time**
 
-### 2. Why Does This Exist?
+### 2. Why Does This
 
 **Three reasons:**
 
@@ -592,11 +592,11 @@ Frequency Distribution of Returns:
 
 ---
 
-## Managing Carry Trades
+## Managing Carry
 
 **How to survive as a theta collector:**
 
-### 1. Position Sizing (Critical!)
+### 1. Position Sizing
 
 **Golden rule:**
 
@@ -617,7 +617,7 @@ $$
 - Short straddle potential loss: $10,000
 - Max size: $2,000/$10,000 = 20% of full size
 
-### 2. Defined Risk Structures
+### 2. Defined Risk
 
 **Use spreads instead of naked shorts:**
 
@@ -632,7 +632,7 @@ $$
 - Iron condor: +$20/day theta, max loss $500
 - **Choose safety over greed**
 
-### 3. Stop Losses and Exit Rules
+### 3. Stop Losses and
 
 **Pre-defined exits:**
 
@@ -664,7 +664,7 @@ $$
 - Different expiration dates
 - Correlation < 1 between positions
 
-### 5. Volatility Regime Awareness
+### 5. Volatility Regime
 
 **Know the environment:**
 
@@ -728,7 +728,7 @@ $$
 
 **Margin requirement:** ~$500 per contract
 
-### 2. The Trade Over Time
+### 2. The Trade Over
 
 **Day 1:**
 
@@ -786,7 +786,7 @@ $$
 
 ---
 
-## Carry Trades Across Your Strategy Toolkit
+## Carry Trades Across
 
 **How theta fits into strategies we've covered:**
 
@@ -812,7 +812,7 @@ $$
 
 ---
 
-## The "Picking Up Nickels" Metaphor
+## The "Picking Up
 
 **Often used to describe carry trades:**
 
@@ -852,11 +852,11 @@ $$
 
 ---
 
-## Historical Blowups (Learning From Disasters)
+## Historical Blowups
 
 **Famous carry trade disasters:**
 
-### 1. Option Sellers, LLC (2018)
+### 1. Option Sellers,
 
 **Structure:**
 
@@ -878,7 +878,7 @@ $$
 - Need defined risk structures
 - Position sizing critical
 
-### 2. James Cordier (Same Fund, Later)
+### 2. James Cordier
 
 **Same fund, November 2018:**
 
@@ -897,7 +897,7 @@ $$
 - Leverage magnifies disasters
 - **Carry trades can destroy capital**
 
-### 3. Victor Niederhoffer (1997)
+### 3. Victor Niederhoff
 
 **Famous trader, sold puts on crash:**
 
@@ -913,7 +913,7 @@ $$
 - Tail risk is real
 - Can't predict crashes
 
-### 4. Many Hedge Funds (2008, 2020)
+### 4. Many Hedge Funds
 
 **Financial crisis and COVID:**
 
@@ -931,7 +931,7 @@ $$
 
 ---
 
-## Pros and Cons of Carry Trades
+## Pros and Cons of
 
 ### 1. Advantages ✓
 
@@ -1037,9 +1037,9 @@ $$
 
 ---
 
-## When Carry Trades Work Best
+## When Carry Trades
 
-### 1. Favorable Conditions
+### 1. Favorable Conditi
 
 **1. High implied volatility (post-event)**
 
@@ -1076,7 +1076,7 @@ $$
 - Diversification
 - **Most important!**
 
-### 2. Unfavorable Conditions
+### 2. Unfavorable
 
 **1. Very low vol (VIX < 12)**
 
@@ -1115,7 +1115,7 @@ $$
 
 ---
 
-## Practical Implementation
+## Practical Implementa
 
 ### 1. Step 1
 
@@ -1209,11 +1209,11 @@ $$
 
 ---
 
-## Systematic Carry Strategy Example
+## Systematic Carry
 
 **A professional approach:**
 
-### 1. The "Monthly Iron Condor Program"
+### 1. The "Monthly Iron
 
 **Strategy:**
 
@@ -1274,7 +1274,7 @@ $$
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -1284,7 +1284,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This Structure Exists Economically
+### 2. Why This Structur
 
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
@@ -1292,7 +1292,7 @@ Markets create these strategies because different participants have different:
 - Capital constraints (leverage limitations)
 - View on volatility vs. direction
 
-### 3. Professional Institutional Perspective
+### 3. Professional
 
 Institutional traders view this strategy as a tool for:
 1. **Greeks arbitrage:** Extracting value from Greeks mispricing
@@ -1414,7 +1414,7 @@ $$
 - Transaction costs vs. Greeks P&L
 - Lessons learned
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 2. **Wrong rebalancing frequency** - Too often or too infrequent
@@ -1423,7 +1423,7 @@ $$
 5. **Neglecting other Greeks** - Focus on one Greek, ignore others
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For delta hedging:**
 - Use delta bands (don't chase every move)
@@ -1485,7 +1485,7 @@ $$
 
 ---
 
-## Where This Fits in Your Curriculum
+## Where This Fits in
 
 **This is a CROSS-CUTTING theme that ties together:**
 

@@ -1,4 +1,4 @@
-# Regime-Based Strategy Design
+# Regime-Based Strateg
 
 **Regime-based strategy design** recognizes that no single options strategy works well in all market conditions. Instead of forcing one approach across all environments, sophisticated traders classify market states (regimes) and systematically adapt their strategy selection to match the dominant risk channels of each regime.
 
@@ -26,7 +26,7 @@ $$
 
 ---
 
-## What Are Market Regimes?
+## What Are Market
 
 ### 1. Definition
 
@@ -39,7 +39,7 @@ A **market regime** is a persistent pattern of market behavior characterized by:
 
 **Regimes are not static:** Markets transition between regimes based on macro conditions, policy changes, and structural shifts.
 
-### 2. The Three Core Regimes
+### 2. The Three Core
 
 **1. Low Volatility Regime (Grinding):**
 - RV: 5-15% annualized
@@ -67,9 +67,9 @@ A **market regime** is a persistent pattern of market behavior characterized by:
 
 ---
 
-## Regime Classification Framework
+## Regime Classificatio
 
-### 1. Quantitative Regime Indicators
+### 1. Quantitative
 
 **Primary metrics:**
 
@@ -102,7 +102,7 @@ Skew 5-12:  Normal
 Skew > 15:  Fear regime
 ```
 
-### 2. Regime Transition Signals
+### 2. Regime Transition
 
 **Low → Medium:**
 - VIX rising through 15
@@ -132,7 +132,7 @@ Skew > 15:  Fear regime
 
 ## Economic
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 **Each regime rewards different exposures:**
 
@@ -151,7 +151,7 @@ Skew > 15:  Fear regime
 - Punishes: Short gamma (gets run over), naked short vol
 - Why: Realized vol exceeds implied, gaps destroy short positions
 
-### 2. Why These Regime Patterns Exist
+### 2. Why These Regime
 
 **1. Volatility clustering:**
 - High vol begets high vol
@@ -168,7 +168,7 @@ Skew > 15:  Fear regime
 - High vol: Panic buying, forced liquidations
 - Flow imbalances create tradable dislocations
 
-### 3. Professional Institutional Perspective
+### 3. Professional
 
 **Market makers:**
 - Low vol: Happy to sell vol (rich premium, low risk)
@@ -187,9 +187,9 @@ Skew > 15:  Fear regime
 
 ---
 
-## Strategy Selection by Regime
+## Strategy Selection
 
-### 1. Low Volatility Regime
+### 1. Low Volatility
 
 **Favored strategies:**
 1. **Iron condors** - collect theta, range-bound
@@ -204,7 +204,7 @@ Skew > 15:  Fear regime
 
 **Position sizing:** Conservative (3-5% risk) - blow-ups happen here
 
-### 2. Medium Volatility Regime
+### 2. Medium Volatility
 
 **Favored strategies:**
 1. **Directional spreads** - vertical spreads with edge
@@ -218,7 +218,7 @@ Skew > 15:  Fear regime
 
 **Position sizing:** Moderate (2-3% risk)
 
-### 3. High Volatility Regime
+### 3. High Volatility
 
 **Favored strategies:**
 1. **Long options** - capture gaps
@@ -392,7 +392,7 @@ $$
 - Position sizing appropriate?
 - Transition timing good?
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Fighting the regime** - Selling vol in high vol regime
 2. **Slow regime recognition** - Staying in wrong strategy too long
@@ -403,7 +403,7 @@ $$
 7. **Not tracking regime performance** - Can't learn without data
 8. **Assuming regime will persist** - All regimes end eventually
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For systematic traders:**
 - Code regime classifier
@@ -441,7 +441,7 @@ $$
 - Adapt strategy immediately
 - **Regime IS what it IS, not what you want**
 
-### 2. Over-Trading Regime Calls
+### 2. Over-Trading
 
 **The error:**
 - VIX goes 17 → 19 → 16
@@ -455,7 +455,7 @@ $$
 - Don't react to noise
 - **Regime changes are rare, not daily**
 
-### 3. Mechanical Strategy Application
+### 3. Mechanical Strate
 
 **The error:**
 - "I always trade iron condors"
@@ -468,7 +468,7 @@ $$
 - Rotate as regime changes
 - **Strategy must match regime**
 
-### 4. Ignoring Transition Risk
+### 4. Ignoring Transiti
 
 **The error:**
 - In transition from low → high vol
@@ -482,7 +482,7 @@ $$
 - Don't hope for regime reversal
 - **Transition days are highest risk**
 
-### 5. Wrong Position Sizing for Regime
+### 5. Wrong Position
 
 **The error:**
 - High vol regime (VIX 40)
@@ -496,7 +496,7 @@ $$
 - 1-2% max in unfavorable regimes
 - **Regime determines risk appetite**
 
-### 6. Assuming Mean Reversion
+### 6. Assuming Mean
 
 **The error:**
 - Low vol regime at VIX 12
@@ -510,7 +510,7 @@ $$
 - Wait for actual regime change
 - **Don't anticipate, react**
 
-### 7. Not Tracking Regime History
+### 7. Not Tracking
 
 **The error:**
 - No data on which regimes traded well
@@ -528,7 +528,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup:**
 - January 2017: VIX at 11-12
@@ -571,7 +571,7 @@ $$
 - Perfect regime identification
 - **Regime persistence = consistent profits**
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup:**
 - Late Jan 2018: VIX at 10
@@ -619,7 +619,7 @@ $$
 - Accept small loss to avoid large loss
 - **Respect regime changes**
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 - March 2020: COVID crash
@@ -668,7 +668,7 @@ $$
 - Size up when regime matches strategy
 - **Regime match = explosive returns**
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup:**
 - Trader runs only iron condors

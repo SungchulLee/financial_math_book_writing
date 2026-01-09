@@ -87,7 +87,7 @@ where $V(S,t)$ is the option value and you short $\Delta$ shares.
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -97,7 +97,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This Structure Exists Economically
+### 2. Why This Structur
 
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
@@ -105,7 +105,7 @@ Markets create these strategies because different participants have different:
 - Capital constraints (leverage limitations)
 - View on volatility vs. direction
 
-### 3. Professional Institutional Perspective
+### 3. Professional
 
 Institutional traders view this strategy as a tool for:
 1. **Greeks arbitrage:** Extracting value from Greeks mispricing
@@ -140,11 +140,11 @@ $$
 
 ---
 
-## Understanding the P&L
+## Understanding the
 
 $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low, sell high profits}} - \underbrace{\theta\,\delta t}_{\text{option time decay}}}$$
 
-### 1. The Two Components
+### 1. The Two Component
 
 **$-\theta\,\delta t$:** Loss from time decay of the option
 
@@ -160,7 +160,7 @@ $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low,
 - The $(\delta S)^2$ term shows that bigger moves create more profit
 - This is an **active gain** from trading
 
-### 2. How "Buy Low, Sell High" Happens Automatically
+### 2. How "Buy Low,
 
 **The mechanism:**
 
@@ -250,7 +250,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-## Why You Need the Option
+## Why You Need the
 
 **Natural question:** "If the profit comes from buying low and selling high, why do I need the option? Can't I just trade the stock directly?"
 
@@ -258,7 +258,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-### 1. The Problem Without Options
+### 1. The Problem
 
 **If you just trade stock directly:**
 
@@ -302,9 +302,9 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-### 4. Why This Is Powerful
+### 4. Why This Is
 
-### 5. Without Option (Discretionary Trading)
+### 5. Without Option
 
 - **When to buy?** "I think the stock has dropped enough" ← subjective guess
 - **How much to buy?** "I'll buy $10,000 worth" ← arbitrary decision
@@ -312,7 +312,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 - **Emotion:** Fear and greed influence your decisions
 - **Result:** Requires skill, prediction, discipline, and luck
 
-### 6. With Option (Gamma Scalping)
+### 6. With Option
 
 - **When to buy?** "Delta changed, so I rebalance now" ← mechanical rule
 - **How much to buy?** "Exactly $(\Delta_{\text{new}} - \Delta_{\text{old}}) \times 100$ shares" ← precise calculation
@@ -322,7 +322,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-### 7. The Option's Mathematical Service
+### 7. The Option's
 
 Think of the option as providing a **mathematical framework** that:
 
@@ -352,7 +352,7 @@ Think of the option as providing a **mathematical framework** that:
 
 ---
 
-### 8. Concrete Comparison
+### 8. Concrete Comparis
 
 **Scenario:** Stock at $100, drops to $98, rises back to $100
 
@@ -378,7 +378,7 @@ Think of the option as providing a **mathematical framework** that:
 
 ---
 
-### 11. What You're Paying For
+### 11. What You're
 
 **Theta (time decay) is the price you pay for this automatic signal service:**
 
@@ -525,7 +525,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 ---
 
-## When Gamma Scalping Works Best
+## When Gamma Scalping
 
 **Favorable conditions:**
 
@@ -663,7 +663,7 @@ $$
 - Transaction costs vs. Greeks P&L
 - Lessons learned
 
-### 8. Common Execution Mistakes to Avoid
+### 8. Common Execution
 
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 2. **Wrong rebalancing frequency** - Too often or too infrequent
@@ -672,7 +672,7 @@ $$
 5. **Neglecting other Greeks** - Focus on one Greek, ignore others
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
-### 9. Professional Implementation Tips
+### 9. Professional
 
 **For delta hedging:**
 - Use delta bands (don't chase every move)
@@ -1148,7 +1148,7 @@ $$
 
 **Concrete scenarios showing gamma scalping in practice:**
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup:**
 - SPY: $440
@@ -1189,7 +1189,7 @@ $$
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup:**
 - AAPL: $180 post-earnings
@@ -1237,7 +1237,7 @@ $$
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup:**
 - TSLA: $240
@@ -1281,7 +1281,7 @@ $$
 
 ---
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Setup:**
 - SPY: $480
@@ -1328,7 +1328,7 @@ Trader: "Just one slow week. Vol will pick up."
 
 ---
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Setup:**
 - Trader: Professional, 10 years experience

@@ -25,7 +25,7 @@ $$
 
 ---
 
-## What Is Static Hedging?
+## What Is Static
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/static_vs_dynamic_hedging_comparison.png?raw=true" alt="long_call_vs_put" width="700">
@@ -103,11 +103,11 @@ High tracking   Medium tracking     Low tracking error
 
 ---
 
-## Why Static Hedging Exists
+## Why Static Hedging
 
 **Why would you ever accept tracking error?**
 
-### 1. Transaction Costs Are Real
+### 1. Transaction Costs
 
 **The dynamic hedging dream vs. reality:**
 
@@ -145,7 +145,7 @@ High tracking   Medium tracking     Low tracking error
 
 - **Cost: 252 × $1 = $252** (could be > option premium!)
 
-### 2. Path-Dependent Options
+### 2. Path-Dependent
 
 **Some options are naturally suited to static hedging:**
 
@@ -169,7 +169,7 @@ High tracking   Medium tracking     Low tracking error
 
 - Static hedge with spread is cleaner
 
-### 3. Liquidity Constraints
+### 3. Liquidity Constra
 
 **Can't always rebalance:**
 
@@ -183,7 +183,7 @@ High tracking   Medium tracking     Low tracking error
 
 - **Static hedge provides insurance**
 
-### 4. Regulatory/Structural Constraints
+### 4. Regulatory/Struct
 
 **Some institutions can't rebalance frequently:**
 
@@ -195,7 +195,7 @@ High tracking   Medium tracking     Low tracking error
 
 - Prefer set-and-forget hedges
 
-### 5. Long Time Horizons
+### 5. Long Time Horizon
 
 **For very long-dated options:**
 
@@ -209,7 +209,7 @@ High tracking   Medium tracking     Low tracking error
 
 ---
 
-## Static vs. Dynamic Hedging
+## Static vs. Dynamic
 
 **The fundamental comparison:**
 
@@ -225,7 +225,7 @@ High tracking   Medium tracking     Low tracking error
 | **Risk** | Accept residual risk | Minimize residual risk |
 | **Skill required** | Upfront structuring | Ongoing management |
 
-### 1. The Cost-Error Trade-off
+### 1. The Cost-Error
 
 **Fundamental relationship:**
 
@@ -257,7 +257,7 @@ $$
 
 ---
 
-## How Static Hedging Works
+## How Static Hedging
 
 **The basic process:**
 
@@ -327,11 +327,11 @@ $$
 
 ---
 
-## Static Hedging for Barrier Options
+## Static Hedging for
 
 **This is THE classic application:**
 
-### 1. What Are Barrier Options?
+### 1. What Are Barrier
 
 **Barrier options have payoffs that depend on whether the underlying hits a barrier:**
 
@@ -353,7 +353,7 @@ $$
 
 **Key feature:** Path-dependent (did it touch barrier?)
 
-### 2. Why Dynamic Hedging Fails for Barriers
+### 2. Why Dynamic
 
 **Problems with dynamic hedging:**
 
@@ -389,7 +389,7 @@ $$
 
    - Overwhelm savings from cheaper premium
 
-### 3. Static Hedge Solution
+### 3. Static Hedge
 
 **Key insight:** Can replicate barrier option with portfolio of vanilla options!
 
@@ -423,7 +423,7 @@ $$
 
 **No rebalancing needed!**
 
-### 4. The Mathematics (Simplified)
+### 4. The Mathematics
 
 **For up-and-out call with barrier $B$:**
 
@@ -483,11 +483,11 @@ where $\mu$ depends on rates and volatility.
 
 ---
 
-## Static Hedging for Digital Options
+## Static Hedging for
 
 **Another perfect application:**
 
-### 1. What Are Digital Options?
+### 1. What Are Digital
 
 **Digital (binary) options pay fixed amount if condition met:**
 
@@ -507,7 +507,7 @@ where $\mu$ depends on rates and volatility.
 
 - Impossible to hedge dynamically near expiry
 
-### 2. Static Hedge with Call Spread
+### 2. Static Hedge with
 
 **Solution: Replicate with tight call spread**
 
@@ -547,7 +547,7 @@ where $\mu$ depends on rates and volatility.
 
 ---
 
-## Static Hedging for Portfolio Insurance
+## Static Hedging for
 
 **Protecting equity portfolios:**
 
@@ -677,7 +677,7 @@ where $\mu$ depends on rates and volatility.
 
 ---
 
-## Static Hedging Strategies Across Your Toolkit
+## Static Hedging
 
 **How static hedging relates to strategies we've covered:**
 
@@ -841,9 +841,9 @@ where $\mu$ depends on rates and volatility.
 
 ---
 
-## When Static Hedging Works Best
+## When Static Hedging
 
-### 1. Favorable Conditions
+### 1. Favorable Conditi
 
 **1. Long time horizons**
 
@@ -903,7 +903,7 @@ where $\mu$ depends on rates and volatility.
 
 - Mid-life drift acceptable
 
-### 2. Unfavorable Conditions
+### 2. Unfavorable
 
 **1. Short time horizons**
 
@@ -1107,7 +1107,7 @@ where $\mu$ depends on rates and volatility.
 
 **The mathematical foundation:**
 
-### 1. Carr-Madan Formula
+### 1. Carr-Madan Formul
 
 **Any European option can be replicated with portfolio of vanillas:**
 
@@ -1161,9 +1161,9 @@ where:
 
 ---
 
-## Real-World Applications
+## Real-World Applicati
 
-### 1. Structured Products
+### 1. Structured Produc
 
 **Investment banks selling:**
 
@@ -1185,7 +1185,7 @@ where:
 
 - Manage residual risk dynamically
 
-### 2. Insurance Companies
+### 2. Insurance Compani
 
 **Life insurers with:**
 
@@ -1229,7 +1229,7 @@ where:
 
 - Static/semi-static natural fit
 
-### 4. Exotic Option Dealers
+### 4. Exotic Option
 
 **Market makers in:**
 
@@ -1251,7 +1251,7 @@ where:
 
 ---
 
-## Practical Implementation
+## Practical Implementa
 
 ### 1. Step 1
 
@@ -1340,7 +1340,7 @@ where:
 
 **Understanding what static and dynamic hedging REALLY represent economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 Static vs. dynamic hedging represents a fundamental trade-off in financial markets:
 
@@ -1368,7 +1368,7 @@ $$
 \text{Optimal Strategy} = \arg\min_{\text{frequency}} \left[\text{Tracking Error}(\text{frequency}) + \text{Trans Cost}(\text{frequency})\right]
 $$
 
-### 2. The Transaction Cost Reality
+### 2. The Transaction
 
 **Dynamic hedging in theory (Black-Scholes world):**
 
@@ -1411,7 +1411,7 @@ vs. Static: $0 + $5,000 = $5,000
 
 **So semi-static (weekly) can beat both extremes!**
 
-### 3. The Gamma-Cost Duality
+### 3. The Gamma-Cost
 
 **Why rebalancing costs money:**
 
@@ -1447,7 +1447,7 @@ This explains why static hedging works best for:
 
 - Short-dated options (high gamma)
 
-### 4. The Volatility Smile Impact
+### 4. The Volatility
 
 Options at different strikes have different implied volatilities. This creates arbitrage opportunities:
 
@@ -1479,7 +1479,7 @@ Selling barrier option (knock-out call):
 
 **Economic insight:** Static hedging allows you to harvest volatility smile inefficiencies while avoiding transaction costs.
 
-### 5. Why This Structure Exists Economically
+### 5. Why This Structur
 
 Markets create static hedging opportunities because:
 
@@ -1521,7 +1521,7 @@ Markets create static hedging opportunities because:
 
 - **Market developed static for exotics**
 
-### 6. The Hedge Efficiency Frontier
+### 6. The Hedge Efficie
 
 There exists a frontier:
 
@@ -1553,7 +1553,7 @@ Static     Semi-Static     Dynamic
 
 **Economic principle:** Law of diminishing returns applies to hedging!
 
-### 7. Professional Institutional Perspective
+### 7. Professional
 
 **Dealer hedging desk view:**
 
@@ -1597,7 +1597,7 @@ $$
 
 **If holding <1 year: Dynamic might be better**
 
-### 8. The Market Microstructure Angle
+### 8. The Market Micros
 
 **Why transaction costs matter more than theory suggests:**
 
@@ -1641,7 +1641,7 @@ vs. Tracking error is:
 
 **Sophisticated hedgers choose static.**
 
-### 9. The Basis Risk Trade-Off
+### 9. The Basis Risk
 
 **Static hedging using options (not underlying) creates basis risk:**
 
@@ -1667,7 +1667,7 @@ $$
 
 **Economic insight:** Static hedging exchanges transaction cost for basis risk. For institutional scale, basis risk diversifies away, transaction costs don't.
 
-### 10. Put-Call Parity and Static Replication
+### 10. Put-Call Parity
 
 **Fundamental relationship enables static hedging:**
 
@@ -1693,7 +1693,7 @@ $$
 
 **Economic value:** This arbitrage-free relationship lets you hedge exotics with vanillas without any trading.
 
-### 11. The Time-Value of Hedging Costs
+### 11. The Time-Value
 
 **Dynamic hedging costs accumulate over time:**
 
@@ -1723,7 +1723,7 @@ $$
 
 - PV analysis: Static wins if holding >15 years
 
-### 12. Optimal Rebalancing Frequency
+### 12. Optimal Rebalanc
 
 **Academic research (Leland, Boyle & Vorst) shows:**
 
@@ -1782,7 +1782,7 @@ For institutional-scale trading of exotic options, this condition usually holds.
 
 **Step-by-step framework for choosing and implementing static vs. dynamic hedging:**
 
-### 1. The Decision Framework
+### 1. The Decision
 
 **Before anything else, answer these questions:**
 
@@ -2317,7 +2317,7 @@ For 3-month option: Rebalance every ~13 days (roughly every 2 weeks)
 | 0.08% - 0.15% | Weekly (semi-static) |
 | > 0.15% | Monthly or never (static) |
 
-### 12. Platform and Tool Requirements
+### 12. Platform and
 
 **For Static Hedging:**
 
@@ -2373,7 +2373,7 @@ Delta Threshold = 0.05 - 0.20 (don't over-trade)
 Review Frequency = Daily
 ```
 
-### 14. Emergency Procedures
+### 14. Emergency Proced
 
 **For Static Hedging:**
 
@@ -2391,7 +2391,7 @@ Review Frequency = Daily
 3. Consider moving to semi-static
 4. If costs >1%: Stop and go static
 
-### 15. Success Checklist
+### 15. Success Checklis
 
 **Before implementing static hedge:**
 ```
@@ -3169,7 +3169,7 @@ In all cases:
 
 **Detailed case studies showing static vs. dynamic hedging in practice:**
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Background:**
 
@@ -3260,7 +3260,7 @@ In all cases:
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Background:**
 
@@ -3386,7 +3386,7 @@ In all cases:
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Background:**
 
@@ -3512,7 +3512,7 @@ In all cases:
 
 ---
 
-### 4. Tactical Duration Extension
+### 4. Tactical Duration
 
 **Background:**
 
@@ -3603,7 +3603,7 @@ Hour-by-hour inventory on typical day:
 
 ---
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge
 
 **Background:**
 
@@ -3863,7 +3863,7 @@ This is why institutions maintain static tail hedges even when running dynamic p
 
 
 
-## Where This Fits in Your Curriculum
+## Where This Fits in
 
 **This is another cross-cutting theme like theta/carry:**
 

@@ -1,4 +1,4 @@
-# Higher-Order Greeks (Volga, Vanna, Charm)
+# Higher-Order Greeks
 
 **Higher-order Greeks** are second-order partial derivatives that measure how the first-order Greeks (delta, vega) change with respect to underlying price, volatility, and time, providing deeper insight into options risk dynamics and portfolio hedging strategies.
 
@@ -58,11 +58,11 @@ $$
 
 ---
 
-## What Are Higher-Order Greeks?
+## What Are Higher-Orde
 
 **Before using higher-order Greeks, understand the hierarchy:**
 
-### 1. The Greeks Hierarchy
+### 1. The Greeks Hierar
 
 **Level 0: Option Value**
 
@@ -124,7 +124,7 @@ $$
 
 **Definition:** How vega changes when volatility changes.
 
-### 1. Mathematical Formula
+### 1. Mathematical
 
 **Black-Scholes volga:**
 
@@ -183,7 +183,7 @@ If you're **long vega** (own options) and have **positive volga**:
 
 **Key insight:** Positive volga = vega convexity = you benefit from volatility changes in BOTH directions (amplified gains, cushioned losses).
 
-### 3. Volga by Option Characteristics
+### 3. Volga by Option
 
 **ATM options:**
 
@@ -209,7 +209,7 @@ $$
 
 **Pattern:** Volga highest at ATM, decreases as you move away.
 
-### 4. Volga and Time to Expiration
+### 4. Volga and Time to
 
 **Longer-dated options:**
 
@@ -233,7 +233,7 @@ $$
 - **Short-dated options:** Small volga (vega relatively stable)
 - **Long-dated options:** Large volga (vega highly sensitive to IV changes)
 
-### 5. Trading Applications
+### 5. Trading Applicati
 
 **1. Long Volga Strategy (Volatility of Volatility)**
 
@@ -284,7 +284,7 @@ $$
 
 **Definition:** How delta changes with volatility OR how vega changes with stock price (same thing by symmetry).
 
-### 1. Mathematical Formula
+### 1. Mathematical
 
 **Black-Scholes vanna:**
 
@@ -336,7 +336,7 @@ $$
 
 **Key insight:** Vanna creates coupling between directional and volatility risks.
 
-### 3. Vanna by Option Characteristics
+### 3. Vanna by Option
 
 **Call options:**
 
@@ -370,7 +370,7 @@ $$
 
 **Pattern:** Vanna peaks slightly OTM for calls.
 
-### 4. Trading Applications
+### 4. Trading Applicati
 
 **1. Vanna-Neutral Hedging**
 
@@ -430,7 +430,7 @@ $$
 
 **Definition:** How delta changes with passage of time.
 
-### 1. Mathematical Formula
+### 1. Mathematical
 
 **Black-Scholes charm:**
 
@@ -495,7 +495,7 @@ $$
 
 **Why?** ITM option becoming more certain to be exercised (delta → 1.0).
 
-### 3. Charm by Moneyness
+### 3. Charm by Moneynes
 
 **ATM options:**
 
@@ -527,7 +527,7 @@ $$
 
 **Pattern:** Charm magnitude increases as you move away from ATM.
 
-### 4. Charm and Time to Expiration
+### 4. Charm and Time to
 
 **Near expiration:**
 
@@ -548,7 +548,7 @@ $$
 
 **Practical implication:** Charm explodes near expiration (delta becomes very unstable).
 
-### 5. Trading Applications
+### 5. Trading Applicati
 
 **1. Delta Hedging with Charm Awareness**
 
@@ -618,9 +618,9 @@ $$
 
 ---
 
-## When Higher-Order Greeks Matter
+## When Higher-Order
 
-### 1. Portfolio Size and Complexity
+### 1. Portfolio Size
 
 **Small retail positions:**
 
@@ -651,7 +651,7 @@ $$
 - **Volga impact on 10% IV move:** $21,000 × 10 = $210,000 (significant!)
 - **Critical** (must manage)
 
-### 2. Extreme Market Conditions
+### 2. Extreme Market
 
 **Normal markets:**
 
@@ -673,7 +673,7 @@ $$
 - **Second-order (volga):** Vega increased from IV spike, amplifying future vega exposure
 - **Combined effect:** Losses 30-50% larger than first-order estimate
 
-### 3. Dynamic Hedging Strategies
+### 3. Dynamic Hedging
 
 **Static hedge:**
 
@@ -689,9 +689,9 @@ $$
 
 ---
 
-## Higher-Order Greeks in Practice
+## Higher-Order Greeks
 
-### 1. Market Maker Example
+### 1. Market Maker
 
 **Position:** Short 1,000 ATM straddles (providing liquidity)
 
@@ -728,7 +728,7 @@ $$
 - After IV spike, vega is -$120,000
 - **Must buy back $32,000 vega** (buy options to hedge)
 
-### 2. Volatility Arbitrage Example
+### 2. Volatility Arbitr
 
 **Setup:** Long variance swap (pure vega exposure)
 
@@ -759,7 +759,7 @@ $$
 
 ## Common Pitfalls
 
-### 1. Ignoring Convexity Effects
+### 1. Ignoring Convexit
 
 **The mistake:**
 
@@ -788,7 +788,7 @@ $$
 \Delta V \approx \text{Vega} \cdot \Delta\sigma + \frac{1}{2} \cdot \text{Volga} \cdot (\Delta\sigma)^2
 $$
 
-### 2. Neglecting Cross-Effects (Vanna)
+### 2. Neglecting Cross-
 
 **The mistake:**
 
@@ -822,7 +822,7 @@ Stock moves change your vega (vanna effect), which then affects your IV sensitiv
 
 Track vanna and adjust vega hedge as stock moves.
 
-### 3. Ignoring Charm in Short-Dated Options
+### 3. Ignoring Charm in
 
 **The mistake:**
 
@@ -849,7 +849,7 @@ Charm causes delta to decay hourly in short-dated options.
 
 In 0DTE, rebalance delta every 30-60 minutes accounting for charm.
 
-### 4. Linear Extrapolation of Greeks
+### 4. Linear Extrapolat
 
 **The mistake:**
 
@@ -868,7 +868,7 @@ Higher-order Greeks are accurate for SMALL moves only. Large moves require full 
 - Small moves (<2%): Use second-order Greeks
 - Large moves (>5%): Revalue entire portfolio
 
-### 5. Over-Complicating Simple Positions
+### 5. Over-Complicating
 
 **The mistake:**
 
@@ -886,9 +886,9 @@ Higher-order Greeks matter when effects are MATERIAL (large positions or extreme
 
 ---
 
-## Risk Management with Higher-Order Greeks
+## Risk Management with
 
-### 1. Volga Hedging (Vega Stability)
+### 1. Volga Hedging
 
 **Goal:** Maintain stable vega exposure as IV changes
 
@@ -925,7 +925,7 @@ Wait, this over-hedges. Let me recalculate:
 
 **Result:** Maintained positive vega but neutralized volga (vega won't explode if IV spikes).
 
-### 2. Vanna Hedging (Decoupling Delta and Vega)
+### 2. Vanna Hedging
 
 **Goal:** Prevent stock moves from affecting vega exposure
 
@@ -951,7 +951,7 @@ Wait, this over-hedges. Let me recalculate:
 
 **Result:** Stock moves no longer affect vega exposure (vanna-neutralized).
 
-### 3. Charm Management (Delta Stability)
+### 3. Charm Management
 
 **Goal:** Reduce daily delta drift from time decay
 
@@ -992,7 +992,7 @@ Wait, this over-hedges. Let me recalculate:
 
 **Understanding what higher-order Greeks REALLY represent economically:**
 
-### 1. The Core Economic Trade-Off
+### 1. The Core Economic
 
 Higher-order Greeks represent the **second and third derivatives of option value** - they measure how the primary Greeks themselves change. Economically, they represent:
 
@@ -1010,7 +1010,7 @@ $$
 **Without higher-order Greeks:** Linear models misestimate risk by 20-50%  
 **With higher-order Greeks:** Capture 95%+ of actual P&L dynamics
 
-### 2. Why Higher-Order Greeks Exist Economically
+### 2. Why Higher-Order
 
 Markets create the need for higher-order Greeks because:
 
@@ -1071,7 +1071,7 @@ $$
 - **Optimize:** Rebalancing frequency
 - **Monitor:** Gamma P&L attribution
 
-### 3. Professional Institutional Uses
+### 3. Professional
 
 **1. Market maker Greeks management:**
 
@@ -1205,7 +1205,7 @@ $$
 - **Adjust:** Trade unequal vega amounts to balance vanna
 - **Result:** True hedge (both vega and vanna matched)
 
-### 4. The Mathematics of Higher-Order Economic Value
+### 4. The Mathematics
 
 **Expected P&L from Greeks:**
 
@@ -1248,7 +1248,7 @@ $$
 - **Volga negative:** Vega decreases as IV rises (bad for long vol)
 - **Can add:** 10-30% to vega P&L in volatile periods
 
-### 5. Behavioral Finance and Higher-Order Greeks
+### 5. Behavioral Financ
 
 **Retail blindness to higher-order effects:**
 
@@ -1275,7 +1275,7 @@ $$
 - **Or:** Accept gamma P&L as deliberate exposure
 - **Result:** Conscious risk-taking, not blind
 
-### 6. The Economic Truth
+### 6. The Economic
 
 **Key insights:**
 
@@ -1323,7 +1323,7 @@ Understanding higher-order Greeks economically reveals:
 
 **Step-by-step higher-order Greeks implementation:**
 
-### 1. Critical Pre-Trade Checklist
+### 1. Critical Pre-Trad
 
 ☐ **Calculate ALL Greeks?** (Delta, gamma, vega, theta, vanna, volga, charm)  
 ☐ **Stress test scenarios?** (Stock ±5%, IV ±15 points)  
@@ -1639,7 +1639,7 @@ $$
 \text{Greeks ROI} = \frac{\text{Total P\&L}}{\text{Greeks Exposure ($ at risk)}}
 $$
 
-### 11. The Higher-Order Greeks Trading Rules
+### 11. The Higher-Order
 
 **Never trade when:**
 1. Can't calculate all Greeks (insufficient data)
@@ -1668,7 +1668,7 @@ $$
 
 **All Greeks must be monitored. First-order Greeks alone are insufficient for professional trading.**
 
-### 12. Professional Implementation Framework
+### 12. Professional
 
 **Phase 1: Learn (1-3 months):**
 - Paper trade with full Greeks tracking
@@ -1705,7 +1705,7 @@ Understanding and applying higher-order Greeks separates retail from professiona
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Pension Duration
 
 **Setup (February 2020):**
 
@@ -1735,7 +1735,7 @@ Understanding and applying higher-order Greeks separates retail from professiona
 
 **Lesson:** Positive volga = convexity = asymmetric profits. Linear vega estimate was $5.2M, but volga added $2.3M extra (44% more).
 
-### 2. Transition Risk Hedge
+### 2. Transition Risk
 
 **Setup (Pre-earnings):**
 
@@ -1770,7 +1770,7 @@ Understanding and applying higher-order Greeks separates retail from professiona
 
 **Lesson:** Vanna creates path-dependency. Stock move + IV change simultaneously affects delta in complex ways.
 
-### 3. Portable Alpha with Futures
+### 3. Portable Alpha
 
 **Setup (Friday, 0DTE):**
 
