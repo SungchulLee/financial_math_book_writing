@@ -40,7 +40,7 @@ $$
 
 ---
 
-## What Are Steepeners and Flatteners?
+## Steepeners and Flatteners
 
 **Before trading curve slope, understand the fundamental mechanics:**
 
@@ -284,7 +284,7 @@ P&L:
 
 **Beyond the mechanics, understanding the economic drivers:**
 
-### 1. The Taylor Rule and Curve Slope
+### 1. Taylor Rule
 
 **The Taylor Rule (Fed policy reaction function):**
 
@@ -326,7 +326,7 @@ Where:
 - Spread: 225 bps (very steep)
 - **Classic recession steepening**
 
-### 2. Term Premium and Curve Slope
+### 2. Term Premium
 
 **Long-term yield decomposition:**
 
@@ -356,7 +356,7 @@ $$
 - 2s10s: 200 bps
 - **Curve flattened despite recession!**
 
-### 3. Expectations Hypothesis and Curve Shape
+### 3. Expectations View
 
 **Pure expectations theory:**
 
@@ -393,7 +393,7 @@ Where $f_{t,1}$ = expected 1-year forward rate at time $t$
 - 2s10s: -50 bps (inverted!)
 - **Massive flattening**
 
-### 4. Flight to Quality and Curve Flattening
+### 4. Flight to Quality
 
 **Crisis dynamics:**
 
@@ -423,7 +423,7 @@ Where $f_{t,1}$ = expected 1-year forward rate at time $t$
 - 10-year: 0.50% → 0.70% (+20 bps, supply concerns)
 - 2s10s: 10 bps → 50 bps (steepening)
 
-### 5. Quantity Theory and Long-End Behavior
+### 5. Money Supply
 
 **Quantity theory of money:**
 
@@ -560,11 +560,11 @@ $$
 
 ---
 
-## The Greeks (Curve Trade Dynamics)
+## The Greeks
 
 **Curve trades have unique risk characteristics:**
 
-### 1. Delta (Parallel Shift Sensitivity)
+### 1. Delta (Parallel Shift)
 
 **Duration-neutral trade:**
 
@@ -589,7 +589,7 @@ $$
 - Typical: ~$500-1,000 on $10M for 100 bp move
 - **Nearly neutral**
 
-### 2. Gamma (Spread Acceleration)
+### 2. Gamma of Spread
 
 **Spread volatility matters:**
 
@@ -946,7 +946,7 @@ $$
 
 ## Maximum Profit and Loss
 
-### 1. Steepener Maximum Profit (2008 Recession)
+### 1. 2008 Recession
 
 **Setup:**
 
@@ -993,7 +993,7 @@ Return on margin: $1.615M / $3M = **53.8% in 6 months!**
 
 **Annualized: >100%**
 
-### 2. Flattener Maximum Profit (2004-2006 Hiking Cycle)
+### 2. 2004-2006 Hiking Cycle
 
 **Setup:**
 
@@ -1029,7 +1029,7 @@ P&L = $8,500 × 295 = $2,507,500
 
 **On $5M margin: 50.1% over 2 years (22.4% annualized)**
 
-### 3. Maximum Loss (Wrong-Way Trade)
+### 3. Wrong-Way Trade
 
 **Setup:**
 
@@ -1063,7 +1063,7 @@ Loss = $4,250 × 50 = -$212,500
 
 ---
 
-## When to Use Steepeners and Flatteners
+## When to Use Curve Trades
 
 ### 1. Ideal Market Conditions
 
@@ -1149,7 +1149,7 @@ Loss = $4,250 × 50 = -$212,500
 
 ---
 
-## When NOT to Use Curve Trades
+## When Curve Trades Fails
 
 ### 1. Avoid These Situations
 
@@ -1221,7 +1221,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Sizing and Risk
 
 ### 1. The Golden Rule
 
@@ -1349,9 +1349,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. Ignoring Carry
 
 **The error:**
 
@@ -1377,7 +1377,7 @@ $$
 - Need 30 bps steepening over 1 year just to break even
 - **Factor in carry**
 
-### 2. Mistake #2
+### 2. Wrong DV01 Ratio
 
 **The error:**
 
@@ -1400,7 +1400,7 @@ $$
 - $10M 10yr requires $43.6M 2yr
 - **Duration-neutral**
 
-### 3. Mistake #3
+### 3. Poor Execution
 
 **The error:**
 
@@ -1428,7 +1428,7 @@ $$
 - Use limit orders
 - **Minimize slippage**
 
-### 4. Mistake #4
+### 4. Excess Leverage
 
 **The error:**
 
@@ -1451,7 +1451,7 @@ $$
 - $10M account → $30-50M trades max
 - **Prudent sizing**
 
-### 5. Mistake #5
+### 5. Chasing the Curve
 
 **The error:**
 
@@ -1476,7 +1476,7 @@ $$
 - Or wait for retracement
 - **Don't chase**
 
-### 6. Mistake #6
+### 6. Fighting the Fed
 
 **The error:**
 
@@ -1499,7 +1499,7 @@ $$
 - Exit immediately on policy shift
 - **Adaptive**
 
-### 7. Mistake #7
+### 7. Level vs Slope
 
 **The error:**
 
@@ -1522,7 +1522,7 @@ $$
 - Curve trades are slope, not level
 - **Clarity of view**
 
-### 8. Mistake #8
+### 8. No Exit Plan
 
 **The error:**
 
@@ -1540,7 +1540,7 @@ $$
 - Discipline
 - **Predefined exit**
 
-### 9. Mistake #9
+### 9. Wrong Spread
 
 **The error:**
 
@@ -1555,7 +1555,7 @@ $$
 - Match spread to view
 - **Appropriate selection**
 
-### 10. Mistake #10
+### 10. Ignoring Convexity
 
 **The error:**
 

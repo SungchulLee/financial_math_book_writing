@@ -40,7 +40,7 @@ $$
 
 ---
 
-## What Are Bond Carry and Roll-Down?
+## Bond Carry and Roll-Down
 
 **Before trading carry and roll, understand the fundamental mechanics:**
 
@@ -243,7 +243,7 @@ Roll-down profits accrue if future yields are lower than forward rates predict.
 
 **Beyond the mechanics, understanding the economic rationale:**
 
-### 1. Term Premium and Upward-Sloping Curves
+### 1. Term Premium
 
 **The deep insight:**
 
@@ -301,7 +301,7 @@ As the 3-year bond becomes a 2-year bond, it loses some term premium, causing th
 
 **This risk premium is the source of roll-down returns.**
 
-### 3. Supply and Demand Dynamics
+### 3. Supply and Demand
 
 **Issuance patterns:**
 
@@ -372,7 +372,7 @@ Let me use a more typical scenario:
 
 As 10-year → 9-year → 8-year, it moves down the curve toward lower yields.
 
-### 5. Convexity and Roll-Down Enhancement
+### 5. Convexity Effects
 
 **Positive convexity helps roll-down:**
 
@@ -520,11 +520,11 @@ $$
 
 ---
 
-## The Greeks (Carry and Roll Dynamics)
+## The Greeks 
 
 **Carry and roll strategies have specific risk characteristics:**
 
-### 1. Delta (Interest Rate Sensitivity)
+### 1. Delta
 
 **Directional exposure:**
 
@@ -681,7 +681,7 @@ $$
 
 **Different bonds offer different carry/roll profiles:**
 
-### 1. Maximum Roll Strategy (10-Year Point)
+### 1. Maximum Roll Strategy
 
 **Optimal maturity for roll-down:**
 
@@ -712,7 +712,7 @@ Empirically, the 10-year maturity point typically offers the best roll-down per 
 - Roll as maturity shortens
 - **Classic strategy**
 
-### 2. High Carry Strategy (Credit Bonds)
+### 2. High Carry Strategy
 
 **Maximize carry component:**
 
@@ -739,7 +739,7 @@ Empirically, the 10-year maturity point typically offers the best roll-down per 
 - Spread tightening potential: +0.30%
 - **Total expected: +2.00%**
 
-### 3. Leveraged Carry/Roll (Hedge Fund Strategy)
+### 3. Leveraged Carry/Roll
 
 **Amplify returns via leverage:**
 
@@ -982,7 +982,7 @@ $$
 
 ## Maximum Profit and Loss
 
-### 1. Maximum Profit (2010-2011 QE2 Era)
+### 1. 2010-2011 QE2 Era
 
 **Setup:**
 
@@ -1044,7 +1044,7 @@ $$
 6. ✅ Perfect alignment of factors
 7. **Once-in-decade opportunity**
 
-### 2. Maximum Loss (2022 Fed Hiking Cycle)
+### 2. 2022 Fed Hiking Cycle
 
 **Setup:**
 
@@ -1123,7 +1123,7 @@ $$
 
 ---
 
-## When to Use Carry and Roll-Down Strategies
+## When to Use Carry/Roll
 
 ### 1. Ideal Applications
 
@@ -1340,7 +1340,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Sizing and Risk
 
 ### 1. The Golden Rule
 
@@ -1485,9 +1485,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes 
 
-### 1. Mistake #1
+### 1. Ignoring Financing
 
 **The error:**
 
@@ -1514,7 +1514,7 @@ $$
 - Calculate net carry
 - **Realistic expectations**
 
-### 2. Mistake #2
+### 2. Fighting the Fed
 
 **The error:**
 
@@ -1541,7 +1541,7 @@ $$
 - Wait for pause/cuts
 - **Policy awareness**
 
-### 3. Mistake #3
+### 3. Overleverage
 
 **The error:**
 
@@ -1565,7 +1565,7 @@ $$
 - Keep cash buffer
 - **Prudent sizing**
 
-### 4. Mistake #4
+### 4. Duration Inefficiency
 
 **The error:**
 
@@ -1592,7 +1592,7 @@ $$
 - 10-year sweet spot typically
 - **Optimization**
 
-### 5. Mistake #5
+### 5. Ignoring Convexity
 
 **The error:**
 
@@ -1620,7 +1620,7 @@ $$
 - Use full pricing models
 - **Accuracy**
 
-### 6. Mistake #6
+### 6. No Exit Discipline
 
 **The error:**
 
@@ -1645,7 +1645,7 @@ $$
 - Exit when environment shifts
 - **Disciplined exits**
 
-### 7. Mistake #7
+### 7. Yield ≠ Return
 
 **The error:**
 
@@ -1668,7 +1668,7 @@ $$
 - Not just yield
 - **Comprehensive analysis**
 
-### 8. Mistake #8
+### 8. Timing the Curve
 
 **The error:**
 
@@ -1684,7 +1684,7 @@ $$
 - No timing, rules-based
 - **Mechanical**
 
-### 9. Mistake #9
+### 9. MIgnoring Pull-to-Par
 
 **The error:**
 
@@ -1711,7 +1711,7 @@ $$
 
 **Much worse than thought**
 
-### 10. Mistake #10
+### 10. Liquidity Blindness
 
 **The error:**
 

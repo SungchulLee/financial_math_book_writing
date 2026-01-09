@@ -290,7 +290,7 @@ What you're really selling is **volatility exposure**:
 - **Covered Call:** "I don't need exposure to huge rallies above the strike"
 - **Cash-Secured Put:** "I'm willing to own this stock at a lower price"
 
-### 3. Why This Structure Exists Economically
+### 3. Why This Structure Exists
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/strategy_comparison.png?raw=true" alt="strategy_comparison" width="700">
@@ -315,7 +315,7 @@ Markets create these opportunities because participants have different:
 - Sellers believe realized volatility < implied volatility
 - Buyers believe realized volatility > implied volatility
 
-### 4. The Income Stream Decomposition
+### 4. Income Decomposition
 
 Premium collected can be decomposed into:
 
@@ -350,7 +350,7 @@ $$
 \text{Net Return} = \text{Premium Collected} - \text{Loss if Assigned Below Net Cost}
 $$
 
-### 6. Professional Institutional Perspective
+### 6. Institutional Perspective
 
 Institutional traders view these strategies as:
 
@@ -436,7 +436,7 @@ $$
 
 **Economic meaning:** Both strategies have identical risk-reward profiles when constructed at same strike and expiration. The universe doesn't distinguish between owning stock with a cap versus having cash with an obligation to buy.
 
-### 11. The Volatility Smile Implication
+### 11. Vol Smile Implication
 
 Options at different strikes have different implied volatilities (the "smile"). This creates:
 
@@ -598,7 +598,7 @@ This limits any single position to 5% of account.
 - Correlate with overall portfolio beta
 - Use Kelly Criterion for optimal allocation
 
-### 3. Strike Selection Decision Tree
+### 3. Strike Selection Tree
 
 **Question 1: What's your primary goal?**
 
@@ -691,7 +691,7 @@ $$
 
 Only roll if Roll Benefit > 0.
 
-### 6. IV Environment Strategy Adjustment
+### 6. IV Strategy Adjustment
 
 **High IV (>50 percentile):**
 - Sell MORE aggressively
@@ -815,7 +815,7 @@ Return: [% return]
 - Implement the Wheel
 - Professional-level portfolio
 
-### 12. Troubleshooting Common Situations
+### 12. Common Troubleshootings
 
 **Problem: Stock drops 20% after selling covered call**
 - **Reality:** You'd lose 20% whether you had call or not
@@ -837,7 +837,7 @@ Return: [% return]
 - **Alternative:** Accept lower premium or closer strikes
 - **Remember:** Not every day is selling day
 
-### 13. Advanced Techniques (Once Comfortable)
+### 13. Advanced Techniques
 
 **1. Pairs Management:**
 - Run covered call on half position
@@ -859,7 +859,7 @@ Return: [% return]
 - Rotate capital to highest IV
 - Diversify temporal risk
 
-### 14. Mental Framework for Success
+### 14. Investor Mindset
 
 **The right mindset:**
 
@@ -890,7 +890,7 @@ Losers: Chase premium, panic on assignment, overtrade, ignore IV
 
 **Detailed walkthroughs showing how these strategies play out in practice:**
 
-### 1. Pension Duration Cut via Futures
+### 1. Covered Call Income
 
 **Setup:**
 
@@ -978,7 +978,7 @@ $$
 
 ---
 
-### 2. Transition Risk Hedge
+### 2. Put-to-Call Transition
 
 **Setup:**
 
@@ -1095,7 +1095,7 @@ $$
 
 ---
 
-### 3. Portable Alpha with Futures
+### 3. SPY Wheel
 
 **Setup:**
 
@@ -1168,7 +1168,7 @@ $$
 
 ---
 
-### 4. Tactical Duration Extension
+### 4. Calls in a Crash
 
 **Setup:**
 
@@ -1253,7 +1253,7 @@ Loss would be: $194,000 - $155,200 = $38,800
 
 ---
 
-### 5. Duration Hedge Failure in Crisis
+### 5. High-IV Premium Harvest
 
 **Setup:**
 
@@ -1329,7 +1329,7 @@ Market stabilized over next 3 weeks:
 
 ---
 
-### 6. Example 6
+### 6. Assignment Done Right
 
 **Setup:**
 
@@ -1412,7 +1412,7 @@ $$
 
 **Pitfalls to avoid that can turn solid strategies into losing trades:**
 
-### 1. Mistake #1
+### 1. Premium Chasing
 
 **What it looks like:**
 
@@ -1451,7 +1451,7 @@ $$
 
 ---
 
-### 2. Mistake #2
+### 2. IV Blindness
 
 **What it looks like:**
 
@@ -1487,7 +1487,7 @@ $$
 
 ---
 
-### 3. Mistake #3
+### 3. Expiration Errors
 
 **Too Short (<21 DTE):**
 
@@ -1525,7 +1525,7 @@ $$
 
 ---
 
-### 4. Mistake #4
+### 4. Assignment Risk
 
 **What happens:**
 
@@ -1562,7 +1562,7 @@ Weekend:
 
 ---
 
-### 5. Mistake #5
+### 5. Over-Leverage
 
 **What it looks like:**
 
@@ -1594,7 +1594,7 @@ Trader with $100,000:
 
 ---
 
-### 6. Mistake #6
+### 6. Earnings Exposure
 
 **What happens:**
 
@@ -1632,7 +1632,7 @@ NVDA at $500:
 
 ---
 
-### 7. Mistake #7
+### 7. Profit Greed
 
 **What it looks like:**
 
@@ -1674,7 +1674,7 @@ $$
 
 ---
 
-### 8. Mistake #8
+### 8. Bad Underlyings
 
 **Bad choices:**
 
@@ -1711,7 +1711,7 @@ Trader sells 10 puts on bankrupt company at $2 strike:
 
 ---
 
-### 9. Mistake #9
+### 9. Emotional Trading
 
 **What it looks like:**
 
@@ -1746,7 +1746,7 @@ Trader sells 10 puts on bankrupt company at $2 strike:
 
 ---
 
-### 10. Mistake #10
+### 10. Hidden Costs
 
 **What it looks like:**
 
@@ -1781,7 +1781,7 @@ Weekly covered calls:
 
 ---
 
-### 11. Mistake #11
+### 11. Concentration Risk
 
 **What it looks like:**
 
@@ -1810,7 +1810,7 @@ Weekly covered calls:
 
 ---
 
-### 12. Mistake #12
+### 12. Roll Addiction
 
 **What it looks like:**
 
@@ -1847,7 +1847,7 @@ $$
 
 ---
 
-### 13. Mistake #13
+### 13. No Records
 
 **What it looks like:**
 
@@ -1881,7 +1881,7 @@ $$
 
 ---
 
-### 14. Mistake #14
+### 14. ITM Misuse
 
 **Why people do it:**
 
@@ -1911,7 +1911,7 @@ Sell AAPL $190 call when stock at $200:
 
 ---
 
-### 15. Mistake #15
+### 15. Greek Ignorance
 
 **What happens:**
 
@@ -1945,29 +1945,6 @@ Sell AAPL $190 call when stock at $200:
 
 ---
 
-### 16. **Summary
-
-Before every trade, verify:
-
-☐ **Not chasing premium** (0.25-0.35 delta)
-☐ **IV percentile > 30%**
-☐ **30-45 DTE expiration**
-☐ **Assignment plan clear**
-☐ **Position size < 20% of account**
-☐ **No earnings in window**
-☐ **Will take profits at 50-70%**
-☐ **Quality underlying**
-☐ **Emotional state neutral**
-☐ **Transaction costs acceptable**
-☐ **Diversified portfolio**
-☐ **Won't roll more than 2-3 times**
-☐ **Trade logged**
-☐ **Strike is OTM**
-☐ **Greeks favorable**
-
-If you can honestly check all boxes, you're avoiding the major pitfalls that kill most option sellers. The difference between success and failure often comes down to discipline and avoiding these common traps.
-
----
 
 ## The Portfolio Structures
 
@@ -2155,148 +2132,6 @@ Implied volatility (IV) directly determines the premium you collect. Understandi
 
 ---
 
-## Concrete Example 1
-
-**Setup:**
-
-**Position:**
-
-- Own 500 shares of MSFT
-- Purchase price: $300/share
-- Current price: $350
-- Happy with gains, don't want to sell yet
-- Want extra income
-
-**Strategy:** Monthly covered calls
-
-**Month 1:**
-
-- Sell 5 contracts $360 call (OTM)
-- 30 days to expiration
-- Collect $5/share premium
-- **Income: $2,500**
-
-**Stock ends at $355:**
-
-- Not assigned
-- Keep stock
-- Keep $2,500
-
-**Month 2:**
-
-- Sell 5 contracts $365 call
-- Collect $4.50/share
-- **Income: $2,250**
-
-**Stock ends at $358:**
-
-- Not assigned
-- Keep stock
-- Keep $2,250
-
-**Month 3:**
-
-- Sell 5 contracts $370 call
-- Collect $4/share
-- **Income: $2,000**
-
-**Stock rallies to $375:**
-
-- **Assigned at $370**
-- Sold all shares
-
-**Results:**
-
-| Item | Amount |
-|------|--------|
-| Original cost | $150,000 (500 × $300) |
-| Sale price | $185,000 (500 × $370) |
-| Capital gain | $35,000 |
-| Call premiums | $6,750 ($2,500 + $2,250 + $2,000) |
-| **Total profit** | **$41,750** |
-| **Return** | **27.8%** in 3 months |
-
-**What was sacrificed:**
-
-- Stock went to $375, could have made $37,500 capital gain
-- But premiums added $6,750
-- Trade-off: $4,250 in upside given up for $6,750 in premium income
-- **Net: Still made $2,500 more** than just holding
-
----
-
-## Concrete Example 2
-
-**Setup:**
-
-**Position:**
-
-- Have $40,000 cash
-- Want to own NVDA
-- Current price: $420
-- Too expensive, want to buy at $400
-- Willing to wait
-
-**Strategy:** Monthly cash-secured puts
-
-**Month 1:**
-
-- Sell 1 contract $400 put
-- 30 days to expiration
-- Collect $12/share premium
-- Reserve $40,000
-- **Income: $1,200**
-
-**Stock ends at $425:**
-
-- Not assigned
-- Keep $1,200
-- Stock more expensive
-
-**Month 2:**
-
-- Sell 1 contract $405 put (adjusted)
-- Collect $10/share
-- **Income: $1,000**
-
-**Stock ends at $415:**
-
-- Not assigned
-- Keep $1,000
-- Total collected: $2,200
-
-**Month 3:**
-
-- Sell 1 contract $400 put
-- Collect $14/share (IV higher)
-- **Income: $1,400**
-
-**Stock drops to $385:**
-
-- **Assigned at $400**
-- Buy 100 shares
-
-**Results:**
-
-| Item | Amount |
-|------|--------|
-| Assignment price | $40,000 (100 × $400) |
-| Premiums collected | $3,600 ($1,200 + $1,000 + $1,400) |
-| **Net cost** | **$36,400** |
-| **Effective price/share** | **$364** |
-| Original price avoided | $420 |
-| **Savings** | **$56/share** (13.3%) |
-
-**Current situation:**
-
-- Own 100 shares at net $364
-- Stock at $385
-- Up $2,100 unrealized
-- Collected $3,600 while waiting
-- **Now selling covered calls**
-
----
-
 
 ## The Wheel Strategy
 
@@ -2350,7 +2185,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 
 ## When to Use Each Strategy
 
-### 1. Ideal Conditions for Covered Calls
+### 1. Covered Calls
 
 **Market environment:**
 
@@ -2405,7 +2240,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 - Dividend capture (might get assigned early)
 - Need flexibility to sell quickly
 
-### 2. Ideal Conditions for Cash-Secured Puts
+### 2. Cash-Secured Puts
 
 **Market environment:**
 
@@ -2475,7 +2310,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Setup Checklist
 
 **Before entering, evaluate:**
 
@@ -2494,7 +2329,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
    - Sector dynamics
    - Macro environment
 
-### 2. Step 2
+### 2. Entry Criteria
 
 **Enter this strategy when:**
 - [Specific market conditions]
@@ -2507,7 +2342,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 - [Wrong volatility environment]
 - [Insufficient time or liquidity]
 
-### 3. Step 3
+### 3. Position Sizing
 
 **Calculate maximum position size:**
 
@@ -2520,7 +2355,7 @@ $$
 - Max 5 uncorrelated positions
 - Never more than 20% of portfolio in options
 
-### 4. Step 4
+### 4. Execution Rules
 
 **Best practices:**
 
@@ -2529,7 +2364,7 @@ $$
 3. **Time entry:** Avoid first/last 30 minutes of trading day
 4. **Single order:** Enter as complete strategy, don't leg in
 
-### 5. Step 5
+### 5. Risk & Exits
 
 **Active management rules:**
 
@@ -2547,7 +2382,7 @@ $$
 - Monitor theta decay
 - Exit if [time-based trigger]
 
-### 6. Step 6
+### 6. Adjustments
 
 **When to adjust:**
 - Position threatened
@@ -2559,7 +2394,7 @@ $$
 - [Adjustment technique 2]
 - [When to take loss instead]
 
-### 7. Step 7
+### 7. Trade Review
 
 Track every trade:
 - Entry/exit dates and prices
@@ -2567,70 +2402,6 @@ Track every trade:
 - Market conditions (IV, trend, etc.)
 - P&L and lessons learned
 
-### 8. Common Execution Mistakes to Avoid
-
-1. **Entering at wrong volatility level**
-2. **Ignoring liquidity**
-3. **Over-sizing positions**
-4. **Failing to set exit rules upfront**
-5. **Emotional decision-making**
-
-
-## Common Mistakes
-
-### 1. For Covered Calls
-
-**1. Selling too far OTM**
-
-- Collect $0.20 premium
-- Not worth the cap
-- Better to not sell at all
-
-**2. Rolling down and out forever**
-
-- Stock drops, never recover
-- Keep selling lower strikes
-- End up selling at loss
-
-**3. Ignoring dividends**
-
-- Ex-dividend dates trigger assignment
-- Lose dividend
-- Assignment surprise
-
-**4. Selling before earnings**
-
-- IV high (tempting)
-- But stock could gap up
-- Miss huge move
-
-### 2. For Cash-Secured Puts
-
-**1. Not having cash secured**
-
-- Sell put without cash
-- Assignment forces margin
-- Can't fulfill obligation
-
-**2. Selling on falling knife**
-
-- Stock in free fall
-- Keep getting assigned
-- Catch bottom of crash
-
-**3. Too aggressive on strikes**
-
-- Sell at current price (ATM)
-- Assigned too often
-- Buy at tops
-
-**4. Ignoring fundamentals**
-
-- Sell puts on bad company
-- "Looks cheap"
-- Assigned and stock keeps dropping
-
----
 
 ## Risk Management
 

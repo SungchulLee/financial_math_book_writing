@@ -108,7 +108,7 @@ $$
 | Diagonal call | Different | Different | Debit/Credit | Diagonal call |
 | Diagonal put | Different | Different | Debit/Credit | Diagonal put |
 
-### 2. Vertical Spreads (Most Common)
+### 2. Vertical Spreads
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/spread_risk_profiles.png?raw=true" alt="spread_risk" width="700">
@@ -118,7 +118,7 @@ $$
 
 **Four main types:**
 
-### 3. Bull Call Spread (Long Call Spread)
+### 3. Long Call Spread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/spread_greeks_comparison.png?raw=true" alt="spread_greeks" width="700">
@@ -171,7 +171,7 @@ $$
 
 - **Vega:** Positive near money (IV rise helps)
 
-### 4. Bear Call Spread (Short Call Spread)
+### 4. Short Call Spread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_dynamics.png?raw=true" alt="calendar_spreads" width="700">
@@ -224,7 +224,7 @@ $$
 
 - **Vega:** Negative (IV drop helps)
 
-### 5. Bull Put Spread (Short Put Spread)
+### 5. Short Put Spread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_flexibility.png?raw=true" alt="diagonal_spreads" width="700">
@@ -277,7 +277,7 @@ $$
 
 - **Vega:** Negative (IV drop helps)
 
-### 6. Bear Put Spread (Long Put Spread)
+### 6. Long Put Spread
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vertical_spreads_payoff.png?raw=true" alt="vertical_spreads_payoff" width="700">
@@ -332,147 +332,23 @@ $$
 
 **Figure 1:** Payoff diagrams for all four vertical spreads showing defined risk/reward profiles: bull call (bullish debit), bear call (bearish credit), bull put (bullish credit), bear put (bearish debit).
 
-### 7. Horizontal Spreads (Calendar Spreads)
+### 7. Calendar Spreads
 
 **Definition:** Buy and sell options at same strike, different expirations.
 
 **Also called:** Time spreads, calendar spreads
 
-### 8. Calendar Call Spread
-
-**Structure:**
-
-- **Sell** near-term call at strike $K$
-
-- **Buy** far-term call at strike $K$
-
-- **Pay debit** (far-term more expensive)
-
-**Example:**
-
-- Stock at $100
-
-- Sell 30 DTE $100 call for $3
-
-- Buy 60 DTE $100 call for $5
-
-- **Net cost: $5 - $3 = $2 debit**
-
-**Key characteristics:**
-
-- **Theta:** Positive (near-term decays faster)
-
-- **Vega:** Positive (far-term has higher vega)
-
-- **Best case:** Stock stays near $K at near expiration
-
-- **Profit mechanism:** Near-term decays faster than far-term
-
-- **Max profit:** When stock = $K at near expiration
-
-- **Max loss:** Premium paid (if stock moves far from $K)
-
-**Payoff at near expiration (30 DTE):**
-
-| Stock Price | Short 30D Call | Long 60D Call | Approx P&L |
-|-------------|----------------|---------------|------------|
-| $90 | $0 | ~$1 | **-$1** |
-| $95 | $0 | ~$2.50 | **+$0.50** |
-| $100 | $0 | ~$4 | **+$2** (max profit zone) |
-| $105 | -$5 | ~$7.50 | **+$0.50** |
-| $110 | -$10 | ~$11 | **-$1** |
-
-**Note:** Exact P&L depends on IV and remaining time value in far-term option.
-
-### 9. Calendar Put Spread
-
-**Structure:**
-
-- **Sell** near-term put at strike $K$
-
-- **Buy** far-term put at strike $K$
-
-- **Pay debit** (far-term more expensive)
-
-**Example:**
-
-- Stock at $100
-
-- Sell 30 DTE $100 put for $3
-
-- Buy 60 DTE $100 put for $5
-
-- **Net cost: $5 - $3 = $2 debit**
-
-**Characteristics:** Similar to calendar call spread
-
-- Profit when stock stays near $K
-
-- Benefit from near-term theta decay
-
-- Long vega (profit if IV rises)
-
-### 10. Diagonal Spreads
+### 8. Diagonal Spreads
 
 **Definition:** Buy and sell options at different strikes AND different expirations.
 
 **Structure:** Hybrid of vertical and horizontal spreads.
 
-### 11. Diagonal Call Spread (Bullish)
-
-**Structure:**
-
-- **Sell** near-term OTM call at higher strike $K_2$
-
-- **Buy** far-term call at lower strike $K_1$ (or ATM)
-
-- **Pay debit or credit** (depends on strikes)
-
-**Example:**
-
-- Stock at $100
-
-- Sell 30 DTE $105 call for $2
-
-- Buy 60 DTE $100 call for $5
-
-- **Net cost: $5 - $2 = $3 debit**
-
-**Characteristics:**
-
-- **Flexibility:** Can roll short leg multiple times
-
-- **Income + position:** Collect premium while maintaining long position
-
-- **Adjustable:** Can adjust strikes as stock moves
-
-### 12. Diagonal Put Spread (Bearish)
-
-**Structure:**
-
-- **Sell** near-term OTM put at lower strike $K_1$
-
-- **Buy** far-term put at higher strike $K_2$ (or ATM)
-
-- **Pay debit or credit** (depends on strikes)
-
-**Example:**
-
-- Stock at $100
-
-- Sell 30 DTE $95 put for $2
-
-- Buy 60 DTE $100 put for $5
-
-- **Net cost: $5 - $2 = $3 debit**
-
----
-
 ## Economic
 
 **Beyond the basic definitions, understanding the ECONOMIC purpose of spreads:**
 
-### 1. Problem 1
+### 1. Cost Reduction
 
 **Buying single option:**
 
@@ -496,7 +372,7 @@ $$
 
 **Key insight:** Selling the OTM option funds most of your long option purchase.
 
-### 2. Problem 2
+### 2. Risk Limitation
 
 **Selling single option:**
 
@@ -520,7 +396,7 @@ $$
 
 **Key insight:** Buying the further OTM option as "insurance" caps your risk.
 
-### 3. Problem 3
+### 3. Vega Control
 
 **Long single option:**
 
@@ -544,7 +420,7 @@ $$
 
 **Key insight:** Both legs lose from vega, but NET vega exposure is reduced.
 
-### 4. Problem 4
+### 4. Theta Capture
 
 **Long single call:**
 
@@ -566,7 +442,7 @@ $$
 
 **Key insight:** Near-term options decay faster than far-term → Capture this differential.
 
-### 5. The Fundamental Spread Equation
+### 5. Spread Economics
 
 **All spreads can be understood as:**
 
@@ -670,7 +546,7 @@ $$
 
 - Examples: Calendar spreads (at-the-money)
 
-### 4. Spread Width and Strike Terms
+### 4. Spread Width & Strike Terms
 
 **Width (spread width):**
 
@@ -966,213 +842,6 @@ $$
 
 ---
 
-## When to Trade Each Spread Type
-
-### 1. Decision Framework
-
-**Start with your market view:**
-
-1. **What direction?** Bullish, bearish, or neutral?
-
-2. **How strong?** Moderate move or big move expected?
-
-3. **What timeframe?** Days, weeks, or months?
-
-4. **What's IV doing?** High or low? Rising or falling?
-
-**Then select spread type:**
-
-### 2. Bullish View → Bull Spreads
-
-**Moderate bullish (expect 5-10% rise):**
-
-**Use: Bull call spread (debit)**
-
-- Buy ATM call, sell OTM call
-
-- **When:** IV is low-to-moderate (want long vega)
-
-- **Advantage:** Cheaper than single call, profit from rise
-
-- **Disadvantage:** Pay theta, need stock to move up
-
-**Use: Bull put spread (credit)**
-
-- Sell OTM put, buy further OTM put
-
-- **When:** IV is moderate-to-high (want short vega + theta)
-
-- **Advantage:** Collect premium, profit from flat or up
-
-- **Disadvantage:** Limited profit, must be right on direction
-
-**Decision: Bull call or bull put?**
-
-| Factor | Bull Call Spread | Bull Put Spread |
-|--------|------------------|-----------------|
-| IV environment | Low-moderate | Moderate-high |
-| Theta | Pay (negative) | Collect (positive) |
-| Vega | Long (good if IV rises) | Short (good if IV falls) |
-| Breakeven | Higher (need more upside) | Lower (more cushion) |
-| Best for | Expect rally with IV rise | Expect stability with IV fall |
-
-**Example scenario:**
-
-- Stock at $100, expect $105-110 in 30 days
-
-- VIX at 18 (55th percentile)
-
-- **Choose:** Bull put spread (sell $95/$90 put spread)
-
-- **Reason:** Collect premium, profit from upside OR flat, benefit from IV crush
-
-### 3. Bearish View → Bear Spreads
-
-**Moderate bearish (expect 5-10% decline):**
-
-**Use: Bear put spread (debit)**
-
-- Buy ATM put, sell OTM put
-
-- **When:** IV is low-to-moderate or expect IV spike
-
-- **Advantage:** Cheaper than single put, profit from decline
-
-- **Disadvantage:** Pay theta, need stock to move down
-
-**Use: Bear call spread (credit)**
-
-- Sell OTM call, buy further OTM call
-
-- **When:** IV is moderate-to-high
-
-- **Advantage:** Collect premium, profit from flat or down
-
-- **Disadvantage:** Limited profit, risk if wrong
-
-**Decision: Bear put or bear call?**
-
-| Factor | Bear Put Spread | Bear Call Spread |
-|--------|-----------------|------------------|
-| IV environment | Low-moderate | Moderate-high |
-| Theta | Pay (negative) | Collect (positive) |
-| Vega | Long (good if IV rises) | Short (good if IV falls) |
-| Profit timing | Need move soon | Can wait (theta helps) |
-| Best for | Expect crash/volatility | Expect topping/stability |
-
-**Example scenario:**
-
-- Stock at $100, expect $90-95 in 30 days
-
-- VIX at 25 (70th percentile)
-
-- **Choose:** Bear call spread (sell $105/$110 call spread)
-
-- **Reason:** Collect fat premium due to high IV, profit from stability or decline
-
-### 4. Neutral View → Calendar or Diagonal Spreads
-
-**Expect stability with potential move later:**
-
-**Use: Calendar spread (at-the-money)**
-
-- Sell near-term, buy far-term (same strike near current price)
-
-- **When:** IV is moderate, expect stock to stay in tight range
-
-- **Advantage:** Profit from time decay differential, long vega
-
-- **Disadvantage:** Loses if stock moves far from strike
-
-**Use: Diagonal spread**
-
-- Sell near-term OTM, buy far-term ATM or ITM
-
-- **When:** Neutral-to-slightly directional, want flexibility
-
-- **Advantage:** Can roll short leg multiple times, adjustable
-
-- **Disadvantage:** More complex to manage
-
-**Example scenario:**
-
-- Stock at $100, bouncing between $98-102 for weeks
-
-- VIX at 20 (60th percentile)
-
-- No major catalyst for 30+ days
-
-- **Choose:** Calendar spread (sell 30D $100 call, buy 60D $100 call)
-
-- **Reason:** Profit from theta differential, benefit if IV rises
-
-### 5. By IV Environment
-
-**High IV (VIX > 60th percentile):**
-
-**Best: Credit spreads**
-
-- Bear call spreads
-
-- Bull put spreads
-
-- **Reason:** Collect fat premium, benefit from IV crush
-
-**Avoid: Debit spreads**
-
-- IV likely to decline (vega pain)
-
-- Expensive entry costs
-
-**Low IV (VIX < 40th percentile):**
-
-**Best: Debit spreads**
-
-- Bull call spreads
-
-- Bear put spreads
-
-- **Reason:** Cheaper entry, benefit if IV rises
-
-**Best: Calendar spreads**
-
-- Positioned to profit from IV mean reversion
-
-**Avoid: Credit spreads**
-
-- Thin premium
-
-- IV expansion risk
-
-### 6. By Time Horizon
-
-**Short-term (< 30 days):**
-
-**Best: Vertical credit spreads**
-
-- Theta works quickly
-
-- Defined risk for short period
-
-- Examples: 21-30 DTE credit spreads
-
-**Moderate-term (30-60 days):**
-
-**Best: Vertical debit spreads or calendars**
-
-- Debit spreads: Give stock time to move
-
-- Calendars: Harvest near-term decay, keep far-term
-
-**Long-term (60-90+ days):**
-
-**Best: Diagonal spreads or LEAPS spreads**
-
-- Diagonals: Roll short leg multiple times
-
-- LEAPS spreads: Reduce cost of long-term position
-
----
 
 ## Strike Selection Strategies
 
@@ -1196,7 +865,7 @@ $$
 
 3. **What DTE?**
 
-### 2. Decision 1
+### 2. Strike Distance
 
 **For credit spreads (bear call, bull put):**
 
@@ -1221,7 +890,7 @@ $$
 
 - Debit spreads: Closer to ATM = higher cost, better delta, need less movement
 
-### 3. Decision 2
+### 3. Spread Width
 
 **Width determines risk/reward:**
 
@@ -1260,7 +929,7 @@ $$
 
 **Key insight:** ROC is similar, but $5 wide is the liquidity sweet spot.
 
-### 4. Decision 3
+### 4. Expiration
 
 **DTE affects premium and theta:**
 
@@ -1295,7 +964,7 @@ $$
 
 - Ratio: Typically 2:1 or 3:1 time ratio
 
-### 5. Advanced
+### 5. Volatility Skew
 
 **Volatility skew impacts strike selection:**
 
@@ -1331,11 +1000,11 @@ $$
 
 ## Risk Management
 
-### 1. Position Sizing
+### 1. Principles
 
 **Universal rule: Manage risk at trade and portfolio level.**
 
-### 2. Trade-Level Sizing
+### 2. Trade Risk
 
 **Maximum risk per trade:**
 
@@ -1365,7 +1034,7 @@ $$
 
 - **Position size:** $1,000 / $300 = 3.33 → **3 spreads**
 
-### 3. Spread-Specific Sizing Considerations
+### 3. Spread Risk
 
 **Credit spreads:**
 
@@ -1397,7 +1066,7 @@ $$
 
 - **Sizing:** Use initial debit as approximate max risk
 
-### 4. Portfolio-Level Sizing
+### 4. Portfolio Risk
 
 **Maximum total risk:**
 
@@ -1449,7 +1118,7 @@ $$
 
 - Net vega: -$80 (short volatility)
 
-### 5. Stop Loss Rules by Spread Type
+### 5. Stops
 
 **Credit spreads (bear call, bull put):**
 
@@ -1505,7 +1174,7 @@ $$
 
 - **Stop loss:** Close if stock moves to $95 or $105 OR loss > $1
 
-### 6. Profit Taking Rules
+### 6. Exits
 
 **Universal profit target: 50% of max profit**
 
@@ -1546,7 +1215,7 @@ $$
 
 - **Rule of thumb:** If up 30%+, close by 14 DTE
 
-### 7. Adjustment Strategies
+### 7. Adjustments
 
 **When to adjust vs. close:**
 
@@ -1624,699 +1293,13 @@ $$
 
 ---
 
-## Real-World Trading Scenarios
 
-### 1. 1
-
-**Setup:**
-
-- AAPL at $180, expect rally to $190 after product launch
-
-- VIX at 15 (low)
-
-- Launch in 30 days
-
-- Your view: Bullish, expect 5% move
-
-**Trade selection: Bull call spread (debit)**
-
-**Why not bull put spread?**
-
-- Low IV → cheaper debit entry
-
-- Expect IV rise before launch → long vega helps
-
-- Want delta exposure (profit from move)
-
-**Trade structure:**
-
-| Parameter | Value |
-|-----------|-------|
-| Long strike | $180 (ATM) |
-| Short strike | $190 (5.5% OTM) |
-| DTE | 45 |
-| Long call cost | $7.50 |
-| Short call credit | $3.00 |
-| Net debit | $4.50 |
-| Max profit | $10 - $4.50 = $5.50 |
-| Max loss | $4.50 |
-| Breakeven | $184.50 |
-
-**Position sizing:**
-
-- Account: $50,000
-
-- Risk: 2% = $1,000
-
-- Max loss per spread: $450
-
-- **Contracts:** $1,000 / $450 = 2.2 → **2 spreads**
-
-**Trade progression:**
-
-**Day 15 (30 DTE):**
-
-- AAPL: $182 (+1%)
-
-- IV: 16% (slight increase)
-
-- Position P&L: +$100 per spread (+22% of risk)
-
-- **Decision:** Hold (launch coming, expect more upside)
-
-**Day 25 (20 DTE, launch day):**
-
-- AAPL: $188 (+4.4%)
-
-- IV: 21% (pre-launch spike)
-
-- Position P&L: +$400 per spread (+89% of risk!)
-
-- **Decision:** Close immediately (near max profit, don't risk reversal)
-
-**Final result:**
-
-- Entry cost: -$900 (2 spreads × $450)
-
-- Exit value: +$500 (closed position value)
-
-- **Net profit:** +$1,300 (2 spreads × $650 value gain)
-
-Wait, let me recalculate properly:
-
-Actually, if position is up +$400 per spread, that means:
-
-- Started: -$450 (debit paid)
-
-- Current value: Position now worth $450 - $400 = $50 to close
-
-- So I paid $450, now paying $50 to close
-
-- **Net gain:** $400 per spread
-
-- **Total:** 2 × $400 = $800 profit
-
-**Actually better calculation:**
-
-At AAPL = $188:
-
-- Long $180 call: Worth ~$8.50 (intrinsic $8 + time)
-
-- Short $190 call: Worth ~$1.00 (close to ATM)
-
-- **Spread value:** $8.50 - $1.00 = $7.50
-
-- Original cost: $4.50
-
-- **Gain:** $7.50 - $4.50 = $3.00 per spread
-
-- **Total profit:** 2 × $3.00 × 100 = **$600**
-
-- **ROC:** $600 / $900 = 67% in 25 days
-
-- **Annualized:** 67% × (365/25) = 978%!
-
-**Key lessons:**
-
-1. Debit spread worked because stock moved as expected
-
-2. Low IV entry + IV rise = double benefit (delta + vega)
-
-3. Closed before expiration at 89% of max profit (smart risk management)
-
-4. Launch catalyst provided the move needed
-
-### 2. 2
-
-**Setup:**
-
-- SPY at $460 after 15% rally in 3 months
-
-- VIX at 22 (elevated, 65th percentile)
-
-- RSI at 72 (overbought)
-
-- Your view: Rally exhausted, expect consolidation or pullback
-
-**Trade selection: Bear call spread (credit)**
-
-**Why not bear put spread?**
-
-- High IV → prefer to SELL premium (short vega)
-
-- Expect IV to decline (volatility crush helps)
-
-- Collect theta while stock consolidates
-
-**Trade structure:**
-
-| Parameter | Value |
-|-----------|-------|
-| Short strike | $465 (1.1% OTM, ~30 delta) |
-| Long strike | $470 |
-| DTE | 30 |
-| Short call credit | $3.20 |
-| Long call cost | $1.40 |
-| Net credit | $1.80 |
-| Max profit | $1.80 |
-| Max loss | $5 - $1.80 = $3.20 |
-| Breakeven | $466.80 |
-
-**Position sizing:**
-
-- Risk: 2% = $1,000
-
-- Max loss: $320 per spread
-
-- **Contracts:** 3 spreads
-
-- **Credit collected:** 3 × $180 = $540
-
-**Trade progression:**
-
-**Day 7 (23 DTE):**
-
-- SPY: $462 (slight pullback)
-
-- VIX: 19 (dropped 3 points!)
-
-- Position P&L: +$90 per spread (50% profit target!)
-
-- **Decision:** Close now (hit profit target, don't get greedy)
-
-**Final result:**
-
-- Entry credit: +$540
-
-- Exit cost: -$270 (buy back spread)
-
-- **Net profit:** $270
-
-- **ROC:** $270 / $960 = 28% in 7 days
-
-- **Annualized:** 28% × (365/7) = 1,460%!
-
-**Key lessons:**
-
-1. High IV entry allowed good premium collection
-
-2. IV crush was main profit driver (not theta or delta)
-
-3. Taking 50% profit in 7 days avoided unnecessary risk
-
-4. Resistance level held (stock never challenged $465)
-
-### 3. 3
-
-**Setup:**
-
-- XYZ at $100, trading $98-102 for 6 weeks
-
-- No catalyst expected
-
-- VIX at 18 (moderate, 55th percentile)
-
-- Your view: Continued range-bound trading, potential IV increase
-
-**Trade selection: Calendar call spread**
-
-**Why calendar vs. vertical?**
-
-- Stock not moving → benefit from time decay differential
-
-- Neutral view (don't want directional exposure)
-
-- Long vega (benefit if IV rises)
-
-**Trade structure:**
-
-| Parameter | Value |
-|-----------|-------|
-| Strike | $100 (ATM) |
-| Sell | 30 DTE call for $3.50 |
-| Buy | 60 DTE call for $5.00 |
-| Net cost | $1.50 debit |
-| Max profit | ~$2-2.50 (if stock at $100 at 30 DTE) |
-| Max loss | $1.50 (if stock moves far away) |
-
-**Position sizing:**
-
-- Risk: $1,000 (2%)
-
-- Max loss: $150 per calendar
-
-- **Contracts:** $1,000 / $150 = 6.6 → **6 calendars**
-
-- **Total cost:** 6 × $150 = $900
-
-**Trade progression:**
-
-**Day 21 (near-term at 9 DTE):**
-
-- XYZ: $101 (still in range!)
-
-- VIX: 21 (increased to 60th percentile)
-
-- Near-term call: Worth $1.50 (decayed from $3.50)
-
-- Far-term call: Worth $5.50 (increased due to IV + stock up $1)
-
-- **Spread value:** $5.50 - $1.50 = $4.00
-
-- **Gain:** $4.00 - $1.50 = $2.50 per calendar
-
-**Decision at 9 DTE:**
-
-- Option 1: Close entire position (+$2.50 per calendar = +$1,500 profit, 167% ROC)
-
-- Option 2: Close short leg, roll to new 30 DTE (collect more premium)
-
-**Choose Option 2: Roll the calendar**
-
-**Action:**
-
-- Buy back 30 DTE $100 call: Pay $1.50
-
-- Sell new 30 DTE $100 call: Collect $3.20
-
-- **Net credit:** $1.70 per calendar × 6 = **$1,020 collected**
-
-**New position:**
-
-- Long: Still have 60 DTE $100 call (now 39 DTE)
-
-- Short: New 30 DTE $100 call
-
-- **Already collected:** $1.70 per calendar (profit locked!)
-
-**30 days later (original far-term near expiration):**
-
-**Day 51:**
-
-- XYZ: $99 (still in range)
-
-- Short 30 DTE call: Expires worthless (+$3.20 kept)
-
-- Long call (now 9 DTE): Worth $0.50
-
-**Final P&L:**
-
-- Initial cost: -$1.50
-
-- First roll credit: +$1.70
-
-- Second short expires: +$3.20
-
-- Close long: +$0.50
-
-- **Total:** -$1.50 + $1.70 + $3.20 + $0.50 = +$3.90 per calendar
-
-- **Profit:** 6 × $3.90 × 100 = **$2,340**
-
-- **ROC:** $2,340 / $900 = 260%!
-
-**Key lessons:**
-
-1. Calendar spreads excel in range-bound markets
-
-2. Rolling short leg is the "secret sauce" (multiple premium collections)
-
-3. IV increase helped far-term call value
-
-4. Required active management (not set-and-forget)
-
-### 4. 4
-
-**Setup:**
-
-- TSLA at $200, expecting pullback
-
-- Sell bear call spread: $210/$220
-
-**Trade structure:**
-
-- Short $210 call: +$6
-
-- Long $220 call: -$2
-
-- **Net credit:** $4
-
-- **Max loss:** $10 - $4 = $6
-
-**Position sizing:**
-
-- 5 spreads
-
-- Credit: $2,000
-
-- Max risk: $3,000
-
-**What went wrong:**
-
-**Day 3:**
-
-- Elon tweets major news
-
-- TSLA gaps to $230 overnight
-
-- **Position:** Full max loss
-
-- Short $210 call: -$20 (losing $2,000 per spread)
-
-- Long $220 call: +$10 (gaining $1,000 per spread)
-
-- **Net loss:** -$10 per share = -$1,000 per spread
-
-- Plus credit: -$1,000 + $400 = **-$600 per spread**
-
-- **Total loss:** 5 × -$600 = -$3,000
-
-**Mistakes made:**
-
-1. Sold call spreads on volatile stock (TSLA)
-
-2. Didn't account for gap risk (news/tweets)
-
-3. Over-sized (5 spreads = 6% of account)
-
-4. No stop loss in place
-
-**Correct approach would have been:**
-
-1. Avoid high-beta stocks for credit spreads (too much gap risk)
-
-2. Size smaller (2-3 spreads max)
-
-3. Use wider spreads (more room) or further OTM strikes
-
-4. Accept loss immediately (don't hope for reversal)
-
-**Recovery:**
-
-- Lost 6% of account
-
-- Need 6.4% gain to recover
-
-- **Strategy:** Make it back over 5-10 trades, not one revenge trade
-
-- Learn lesson: Respect volatility and gap risk
-
----
-
-## Advanced Concepts
-
-### 1. Spread Combinations
-
-**Iron Condor = Bull put spread + Bear call spread**
-
-**Structure:**
-
-- Sell OTM put + Buy further OTM put (bull put spread)
-
-- Sell OTM call + Buy further OTM call (bear call spread)
-
-- **Collect credit from BOTH sides**
-
-**Example:**
-
-- Stock at $100
-
-- Bull put spread: Sell $95 put, buy $90 put → $1.50 credit
-
-- Bear call spread: Sell $105 call, buy $110 call → $1.50 credit
-
-- **Total credit:** $3.00
-
-- **Max loss:** $5 - $3 = $2.00 (on either side)
-
-**Iron Butterfly = Iron condor with strikes closer**
-
-**Structure:**
-
-- Sell ATM put + call (short straddle)
-
-- Buy OTM put + call protection (long strangle)
-
-- **Higher premium** than iron condor
-
-**Example:**
-
-- Stock at $100
-
-- Sell $100 put + $100 call → $8 credit
-
-- Buy $95 put + $105 call → $2 credit
-
-- **Net credit:** $6
-
-- **Max loss:** $5 - $6 = **profit?** No wait...
-
-Let me recalculate:
-
-- Sell $100 put: +$4
-
-- Sell $100 call: +$4
-
-- Buy $95 put: -$1
-
-- Buy $105 call: -$1
-
-- **Net credit:** $6
-
-- **Max loss:** If stock at $95 or $105: Lose $5, keep $6, net +$1... that's wrong.
-
-Actually:
-If stock at $95:
-
-- Short $100 put: -$5
-
-- Long $95 put: +$0 (at strike)
-
-- Short $100 call: $0
-
-- Long $105 call: $0
-
-- **Loss:** -$5, plus $6 credit = **+$1 profit**
-
-If stock at $90:
-
-- Short $100 put: -$10
-
-- Long $95 put: +$5
-
-- **Net loss:** -$5, plus $6 credit = **+$1 profit**
-
-So iron butterfly actually PROFITS at the wings? Let me reconsider the structure...
-
-Actually, I think I have the pricing wrong. Let me use realistic pricing:
-
-**Iron Butterfly (stock at $100):**
-
-- Sell $100 put: +$5
-
-- Sell $100 call: +$5
-
-- Buy $95 put: -$2
-
-- Buy $105 call: -$2
-
-- **Net credit:** $6
-
-- **Max profit:** $6 (if stock stays exactly at $100)
-
-- **Max loss:** At wings: $5 - $6 = **would be profit**, that's still not right...
-
-Hmm, the math for iron butterfly:
-
-If stock at $95:
-
-- Short $100 put loses $5
-
-- Long $95 put gains $0 (exactly at strike)
-
-- Calls expire worthless
-
-- **P&L:** -$5 + $6 = +$1
-
-If stock at $105:
-
-- Short $100 call loses $5
-
-- Long $105 call gains $0 (exactly at strike)
-
-- Puts expire worthless
-
-- **P&L:** -$5 + $6 = +$1
-
-If stock at $90 (beyond wing):
-
-- Short $100 put loses $10
-
-- Long $95 put gains $5
-
-- **Net on options:** -$5
-
-- Plus credit: -$5 + $6 = +$1
-
-**So iron butterfly has MAX PROFIT at center, reduces toward wings, but due to high credit collected, might still be profitable even at wings!**
-
-This is getting complicated. The key point is:
-
-- Iron condors and butterflies are NEUTRAL strategies
-
-- Profit from stock staying in range
-
-- Iron butterfly has higher profit potential but narrower range
-
-### 2. Ratio Spreads vs. Backspreads
-
-**Ratio spread:** Sell MORE than you buy
-
-**Call ratio spread:**
-
-- Buy 1× ATM call
-
-- Sell 2× OTM calls
-
-- **Net:** Usually credit or small debit
-
-- **Profile:** Profit from moderate rise, unlimited risk if stock rockets
-
-**Put ratio spread:**
-
-- Buy 1× ATM put
-
-- Sell 2× OTM puts
-
-- **Net:** Usually credit or small debit
-
-- **Profile:** Profit from moderate decline, risk if stock crashes
-
-**Backspread:** Buy MORE than you sell (reverse ratio)
-
-**Call backspread:**
-
-- Sell 1× ATM call
-
-- Buy 2× OTM calls
-
-- **Profile:** Profit from BIG rally, limited risk on downside
-
-**Put backspread:**
-
-- Sell 1× ATM put
-
-- Buy 2× OTM puts
-
-- **Profile:** Profit from BIG decline, limited risk on upside
-
-**Comparison:**
-
-| Strategy | Structure | Risk | Reward | Volatility |
-|----------|-----------|------|--------|------------|
-| Ratio spread | Sell more | Unlimited | Limited | Short vol |
-| Backspread | Buy more | Limited | Unlimited | Long vol |
-| Regular spread | 1:1 ratio | Limited | Limited | Neutral |
-
-### 3. Butterfly Spreads
-
-**Butterfly = Two spreads meeting at center strike**
-
-**Call butterfly:**
-
-- Buy 1× lower call ($K_1$)
-
-- Sell 2× middle call ($K_2$)
-
-- Buy 1× higher call ($K_3$)
-
-- **All debit**, wings equidistant from center
-
-**Example:**
-
-- Buy $95 call: -$7
-
-- Sell 2× $100 calls: +$8 (2 × $4)
-
-- Buy $105 call: -$1
-
-- **Net cost:** $0 (or small debit)
-
-**Payoff:**
-
-- Below $95: $0 loss
-
-- At $100: Max profit (≈ width - debit)
-
-- Above $105: $0 loss
-
-- **Profile:** Profit in narrow range around $100
-
-**When to use:**
-
-- Expect stock to pin at specific price
-
-- After earnings (stock often doesn't move much)
-
-- Low-cost, defined risk bet on stability
-
-### 4. Condor Spreads
-
-**Condor = Butterfly with wider center**
-
-**Call condor:**
-
-- Buy $95 call
-
-- Sell $100 call
-
-- Sell $105 call
-
-- Buy $110 call
-
-**Profile:**
-
-- Profit zone: $100-$105
-
-- Max profit: Width - debit
-
-- Max loss: Debit (if outside wings)
-
-**Comparison to butterfly:**
-
-- Butterfly: Profit at ONE price
-
-- Condor: Profit across RANGE
-
-- **Condor is more forgiving** (wider profit zone)
-
-### 5. Time Spread Strategies
-
-**Double calendar:**
-
-- Calendar spread at two different strikes
-
-- Example: Calendar at $95 and calendar at $105
-
-- **Profile:** Profit if stock stays in range, profit from theta differential
-
-**Triple calendar (Batman spread):**
-
-- Calendar spreads at three strikes
-
-- Creates "Batman ears" payoff diagram
-
-- Profit from stability across wide range
-
-**These are advanced and require active management.**
-
----
 
 ## Practical Guidance
 
 **Step-by-step implementation framework for spread trading:**
 
-### 1. Step 1
+### 1. Market Context
 
 **Before entering any spread, evaluate:**
 
@@ -2350,7 +1333,7 @@ This is getting complicated. The key point is:
 
    - Approaching or past earnings
 
-### 2. Step 2
+### 2. Strategy Choice
 
 **Choose vertical debit spreads when:**
 
@@ -2408,7 +1391,7 @@ This is getting complicated. The key point is:
 
 - Too many correlated positions already
 
-### 3. Step 3
+### 3. Risk Sizing
 
 **Calculate maximum position size:**
 
@@ -2436,7 +1419,7 @@ $$
 
 - **Max size: 4 contracts**
 
-### 4. Step 4
+### 4. Spread Design
 
 **For vertical debit spreads:**
 
@@ -2476,7 +1459,7 @@ $$
 
 - **Strike:** ATM or slightly OTM in direction of bias
 
-### 5. Step 5
+### 5. Execution
 
 **Best practices:**
 
@@ -2512,7 +1495,7 @@ $$
 
    - Bid-ask spread tight (<10% of mid)
 
-### 6. Step 6
+### 6. Management
 
 **Active management rules:**
 
@@ -2546,7 +1529,7 @@ $$
 
 - **Direction change:** Exit if stock moves far from strike
 
-### 7. Step 7
+### 7. Adjustments
 
 **When to adjust:**
 
@@ -2600,7 +1583,7 @@ $$
 
 - Better opportunity elsewhere
 
-### 8. Step 8
+### 8. Review
 
 **Track every trade:**
 
@@ -2628,32 +1611,9 @@ $$
 
 - Losing trade patterns
 
-### 9. Common Execution Mistakes to Avoid
+## Common Mistakes 
 
-1. **Legging into spreads** (market moves between legs)
-
-2. **Using market orders** (lose to bid-ask spread)
-
-3. **Ignoring liquidity** (can't exit when needed)
-
-4. **Over-sizing positions** (one loss hurts too much)
-
-5. **No profit target** (greed causes losses)
-
-6. **Holding through earnings** (gap risk destroys)
-
-7. **Fighting strong trends** (low probability)
-
-8. **Ignoring IV environment** (sell cheap, buy expensive)
-
-9. **No exit plan before entry** (emotional decisions)
-10. **Not scaling properly** (all-or-nothing approach)
-
----
-
-## Common Mistakes and How to Avoid Them
-
-### 1. Mistake 1
+### 1. No Exit Plan
 
 **The mistake:**
 
@@ -2679,7 +1639,7 @@ $$
 
 - Match strategy to conviction level
 
-### 2. Mistake 2
+### 2. No Rules
 
 **The mistake:**
 
@@ -2709,7 +1669,7 @@ $$
 
 - Let market make both sides simultaneously
 
-### 3. Mistake 3
+### 3. Undefined Risk
 
 **The mistake:**
 
@@ -2735,7 +1695,7 @@ $$
 
   - >10% of mid: Avoid (illiquid)
 
-### 4. Mistake 4
+### 4. Emotional Trading
 
 **The mistake:**
 
@@ -2755,7 +1715,7 @@ $$
 
 - Track total portfolio risk (< 20% across all positions)
 
-### 5. Mistake 5
+### 5. Reactive Decisions
 
 **The mistake:**
 
@@ -2783,7 +1743,7 @@ $$
 
 - **Exception:** Calendar spreads may hold longer (but manage actively)
 
-### 6. Mistake 6
+### 6. No Stop Loss
 
 **The mistake:**
 
@@ -2811,7 +1771,7 @@ $$
 
 - Check earnings calendar before entering
 
-### 7. Mistake 7
+### 7. No Time Stop
 
 **The mistake:**
 
@@ -2841,7 +1801,7 @@ $$
 
 - **Trade WITH trend, not against it**
 
-### 8. Mistake 8
+### 8. Trading on Hope
 
 **The mistake:**
 
@@ -2863,7 +1823,7 @@ $$
 
 - **Use IV rank/percentile** for individual stocks too
 
-### 9. Mistake 9
+### 9. Late Exits
 
 **The mistake:**
 
@@ -2891,7 +1851,7 @@ $$
 
 - **Check volume:** Need >5,000 daily volume
 
-### 10. Mistake 10
+### 10. Unplanned Trades
 
 **The mistake:**
 
@@ -2919,265 +1879,10 @@ $$
 
 ---
 
-## Real-World Examples
-
-### 1. Pension Duration Cut via Futures
-
-**Setup:**
-
-- AAPL at $175 in early September
-
-- iPhone 15 launch expected in 2 weeks
-
-- Historical pattern: Stock rallies post-launch
-
-- IV rank at 35% (reasonable)
-
-**Trade:** 45 DTE bull call spread
-
-- Buy $175 call for $8
-
-- Sell $185 call for $3
-
-- **Net debit: $5 ($500 per contract)**
-
-- Max profit: $10 - $5 = $5 ($500)
-
-- Max loss: $5 ($500)
-
-- Breakeven: $180
-
-**Management:**
-
-- Day 10: Launch announced, stock at $180
-
-- Spread value: $6 (up $100, 20% profit)
-
-- Hold for more...
-
-- Day 18: Stock reaches $185
-
-- Spread value: $7.50 (up $250, 50% profit)
-
-- **Close per 50% rule: +$250 profit per contract**
-
-**Outcome:**
-
-- Profit: $250 (50% ROC in 18 days)
-
-- Stock continued to $190 (could have made $500)
-
-- **But following rules beats being greedy**
-
-- Annualized ROC: ~500%
-
-**Lesson:** Catalysts work. Take 50% profits. Don't be greedy.
-
-### 2. Transition Risk Hedge
-
-**Setup:**
-
-- TSLA at $260, seems overvalued
-
-- Q3 deliveries disappointing
-
-- Earnings in 30 days
-
-- IV rank at 45%
-
-**Trade:** 45 DTE bear put spread
-
-- Buy $260 put for $15
-
-- Sell $250 put for $9
-
-- **Net debit: $6 ($600 per contract)**
-
-- Max profit: $10 - $6 = $4 ($400)
-
-- Max loss: $6 ($600)
-
-- Breakeven: $254
-
-**What happened:**
-
-- Week 1: TSLA rallies to $270 (wrong direction!)
-
-- Spread value: $3 (down $300, -50%)
-
-- **Should have exited at stop loss**
-
-- Week 2: Kept hoping, TSLA at $275
-
-- Spread value: $1 (down $500, -83%)
-
-- Finally cut loss: -$500
-
-**Outcome:**
-
-- Loss: $500 (83% of max loss)
-
-- Should have cut at -50% for -$300 loss
-
-- Violated stop loss discipline
-
-- **Extra $200 lost from hope**
-
-**Lesson:** Stop losses exist for a reason. Cut losers quickly. Hope is not a strategy.
-
-### 3. Portable Alpha with Futures
-
-**Setup:**
-
-- SPY at $450, consolidating in $445-$455 range
-
-- VIX at 18, IV rank 60% (elevated)
-
-- No major catalysts for 6 weeks
-
-- Perfect for credit spread
-
-**Trade:** 35 DTE bull put spread
-
-- Sell $445 put for $4
-
-- Buy $440 put for $1.50
-
-- **Net credit: $2.50 ($250 per contract)**
-
-- Max profit: $250
-
-- Max loss: $5 - $2.50 = $2.50 ($250)
-
-- Breakeven: $442.50
-
-**Management:**
-
-- Day 15: SPY at $452, spread at $1.20
-
-- Profit: $130 (52% of max)
-
-- **Close per 50% rule: +$130 profit**
-
-- Could have held for remaining $120
-
-- But risk not worth it
-
-**Outcome:**
-
-- Profit: $130 (52% ROC in 15 days)
-
-- SPY eventually stayed at $450 (full profit possible)
-
-- **Following rules compounds better than greed**
-
-- Freed capital for next trade
-
-**Lesson:** High IV rank + neutral market = credit spread opportunity. Take 50% and redeploy.
-
-### 4. Tactical Duration Extension
-
-**Setup:**
-
-- QQQ at $370, trading quietly
-
-- VIX at 12 (very low), IV rank 20%
-
-- Expect volatility to increase eventually
-
-- No immediate catalysts
-
-**Trade:** Calendar call spread
-
-- Sell $370 call, 30 DTE for $6
-
-- Buy $370 call, 90 DTE for $11
-
-- **Net debit: $5 ($500 per contract)**
-
-- Profit if: IV expands, stock near $370 at front month expiry
-
-**Management:**
-
-- Week 2: VIX spikes to 18 (Fed surprise)
-
-- Front month now $3.50, back month $13
-
-- Spread value: $13 - $3.50 = $9.50
-
-- **Up $450 (90% profit)**
-
-- Close trade: +$450
-
-**Outcome:**
-
-- Bought low IV, sold high IV
-
-- Vega worked perfectly
-
-- Time decay helped short leg
-
-- **Classic calendar spread win**
-
-**Lesson:** Buy calendars when IV low, sell when it expands. Patience required but profitable.
-
-### 5. Duration Hedge Failure in Crisis
-
-**Setup:**
-
-- NFLX at $400, earnings in 3 days
-
-- Analyst upgrades all week
-
-- IV rank 75% (very expensive!)
-
-- **Ignored the warning signs**
-
-**Trade:** 30 DTE bull call spread
-
-- Buy $400 call for $18
-
-- Sell $410 call for $11
-
-- **Net debit: $7 ($700 per contract)**
-
-- Max profit: $10 - $7 = $3 ($300)
-
-- Risk/reward: 2.3:1 (terrible!)
-
-**What happened:**
-
-- Earnings: NFLX beats but guides lower
-
-- Stock gaps to $405 (up but only 1.2%)
-
-- IV crush: 75% → 30%
-
-- Spread value: $5 (from $7)
-
-- **Down $200 despite stock UP**
-
-**Outcome:**
-
-- Loss: $200 (29% loss)
-
-- Directionally correct but still lost
-
-- IV was too expensive
-
-- IV crush overwhelmed intrinsic gain
-
-- **Should never have entered**
-
-**Lesson:** Don't buy expensive options before earnings. Don't buy debit spreads when IV rank > 70%. IV crush destroys even when right.
-
----
-
-
 
 ## Psychological Aspects
 
-### 1. Patience Required for Spreads
+### 1. Patience for Spreads
 
 **The mental game:**
 
@@ -3301,7 +2006,7 @@ $$
 
 - **Consider:** Is market environment changed? Adjust if needed
 
-### 4. The 50% Profit Rule Discipline
+### 4. The 50% Profit Rule
 
 **Hardest part: Taking profit at 50%**
 
@@ -3335,7 +2040,7 @@ $$
 
 ---
 
-## Step-by-Step Trade Execution Checklist
+## Trade Execution Checklist
 
 ### 1. Pre-Trade Analysis
 
@@ -3471,7 +2176,7 @@ $$
 
 - [ ] Correlation check: Diversified by underlying, expiration, sector?
 
-### 4. Exit Rules (Set BEFORE entering!)
+### 4. Exit Rules
 
 **Step 13: Profit target**
 
@@ -3641,133 +2346,7 @@ $$
 
 ---
 
-## Conclusion
-
-### 1. Why Spreads Work
-
-**1. Defined risk in both directions**
-
-Unlike single options:
-
-- Buying single call: Can lose 100% if wrong
-
-- Selling single call: Can lose unlimited if wrong
-
-- **Spread:** Limited loss in BOTH directions
-
-**2. Capital efficiency**
-
-- Bull call spread costs 50-70% less than single long call
-
-- Bear call spread requires less margin than naked call
-
-- **More trades possible with same capital**
-
-**3. Greek management**
-
-- Reduced vega exposure (both legs)
-
-- Manageable gamma risk (capped by wings)
-
-- Theta can work FOR you (credit spreads)
-
-- **More controlled risk profile**
-
-**4. Flexibility for any market view**
-
-- Bullish: Bull call or bull put spread
-
-- Bearish: Bear call or bear put spread
-
-- Neutral: Calendar or iron condor
-
-- **A spread for every scenario**
-
-### 2. The Realistic Path to Profitability
-
-**Months 1-3: Learning (expect to break even or small losses)**
-
-- Trade 10-20 spreads
-
-- Focus on PROCESS, not profits
-
-- Size small (1% risk per trade)
-
-- **Goal:** Learn mechanics, avoid big mistakes
-
-**Months 4-6: Developing edge (expect small positive returns)**
-
-- Trade 20-30 spreads
-
-- Start recognizing good setups vs. bad
-
-- Follow rules consistently
-
-- **Goal:** Positive expected value, build confidence
-
-**Months 7-12: Consistency (expect 20-40% returns)**
-
-- Trade 30-50 spreads
-
-- Refine strike selection and timing
-
-- Build win rate to 60-65%
-
-- **Goal:** Consistent profitability, scale up gradually
-
-**Year 2+: Mastery (expect 40-80%+ returns)**
-
-- 100+ trades recorded
-
-- Statistical edge proven
-
-- Disciplined risk management
-
-- **Goal:** Compound capital, manage larger positions
-
-### 3. The Keys to Long-Term Success
-
-**1. Risk management (most important)**
-
-- Never risk more than 2-5% per trade
-
-- Total portfolio risk < 20%
-
-- Accept losses quickly (don't hope)
-
-**2. Consistency (follow your rules)**
-
-- Don't improvise during trade
-
-- Take 50% profits (don't get greedy)
-
-- Exit by 21 DTE (avoid gamma risk)
-
-**3. Patience (let theta work)**
-
-- Don't force trades (wait for good setups)
-
-- Don't check positions daily (every 3-5 days)
-
-- Trust the process (edge shows over time)
-
-**4. Continuous learning (adapt and improve)**
-
-- Review EVERY trade (win or loss)
-
-- Track statistics (win rate, avg ROC, expectation)
-
-- Adjust strategy as you learn
-
-**5. Emotional control (hardest part)**
-
-- Accept losing streaks (they happen)
-
-- Don't revenge trade (after losses)
-
-- Stay humble (after winning streaks)
-
-### 4. Final Thoughts
+## Final Thoughts
 
 Spreads are not magic. They are:
 

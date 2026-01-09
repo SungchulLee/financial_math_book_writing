@@ -196,7 +196,7 @@ Yield
 
 **Body (5-year) is BELOW straight line = negative butterfly = cheap**
 
-### 2. Fed Policy and Butterfly Behavior
+### 2. Fed Policy and Butterfly
 
 **How Fed policy affects curvature:**
 
@@ -574,7 +574,7 @@ $$
 
 ## Step-by-Step Setup
 
-### 1. Phase 1
+### 1. Signal Analysis
 
 **1. Calculate Current Butterfly:**
 
@@ -666,7 +666,7 @@ if signal in ["strong", "moderate"]:
     print(f"Direction: {direction} the butterfly")
 ```
 
-### 1. Phase 2
+### 2. DV01 Construction
 
 **1. Gather DV01s:**
 
@@ -719,7 +719,7 @@ Long wing (10Y): $2,652,439
 Net DV01: $0 (should be ~0)
 ```
 
-### 1. Phase 3
+### 3. Trade Execution
 
 **1. Prepare Orders:**
 
@@ -784,7 +784,7 @@ def execute_butterfly(orders, execution_style='simultaneous'):
     return "Executed"
 ```
 
-### 1. Phase 4
+### 4. Monitoring & Exit
 
 **1. Daily P&L Tracking:**
 
@@ -893,7 +893,7 @@ should_exit, reason = check_exit_conditions(
 print(f"Exit: {should_exit}, Reason: {reason}")
 ```
 
-### 1. Phase 5
+### 5. Unwind & Review
 
 **1. Exit Execution:**
 
@@ -936,7 +936,7 @@ print(f"Annualized return: {annualized_return:.2%}")
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Background:**
 
@@ -1270,7 +1270,7 @@ Minimal, but negative.
 
 **Lesson: Butterflies don't offer significant carry unless spread is extreme**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge Failure
 
 **Background:**
 

@@ -50,7 +50,7 @@ Where:
 
 ---
 
-## What Is Intraday Momentum Trading?
+## Intraday Momentum Trading
 
 **Before executing this strategy, understand the mechanics:**
 
@@ -92,7 +92,7 @@ Where:
 
 - 3:30 PM → Exit at $7.20 → Profit $470 per contract
 
-### 2. Put Version (Bearish Momentum)
+### 2. Put Version
 
 **Definition:** Using puts to capture sharp downward moves during the session.
 
@@ -287,7 +287,7 @@ $$
 
 5. **Your option benefits from both price AND volatility**
 
-### 7. The Strategic Timing Advantage
+### 7. Strategic Timing Advantage
 
 **Why intraday horizon is optimal:**
 
@@ -466,7 +466,7 @@ $$
 
 **Per contract (100 shares): $932 profit**
 
-### 2. Why Short-Dated Options Work Best
+### 2. Why Short-Dated Options
 
 **Gamma comparison across expirations:**
 
@@ -596,7 +596,7 @@ $$
 
 ## Step-by-Step Setup
 
-### 1. Phase 1
+### 1. Pre-Market Scan
 
 **1. Identify Candidates (5-10 stocks):**
 
@@ -654,7 +654,7 @@ Bid-Ask Spread < $0.10 on ATM options
 
 - Prefer IV 30-60% (reasonable pricing)
 
-### 2. Phase 2
+### 2. Opening Setup
 
 **1. Observe First 30 Minutes:**
 
@@ -684,7 +684,7 @@ Bid-Ask Spread < $0.10 on ATM options
 
 - **This is your entry signal**
 
-### 3. Phase 3
+### 3. Trade Construction
 
 **1. Select Strike and Expiration:**
 
@@ -750,7 +750,7 @@ $$
 
 - Time stop: 3:30 PM (no matter what)
 
-### 4. Phase 4
+### 4. Active Management
 
 **1. Monitor Price Action:**
 
@@ -808,7 +808,7 @@ $$
 
 - IV starts collapsing (bid-ask widens)
 
-### 5. Phase 5
+### 5. End-of-Day Exit
 
 **1. Plan Exit Time:**
 
@@ -842,7 +842,7 @@ $$
 
 - Learn for next trade
 
-### 6. Complete Example
+### 6. Worked Example
 
 **Pre-Market (8:00 AM):**
 
@@ -1146,7 +1146,7 @@ $$
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Background:**
 
@@ -1405,7 +1405,7 @@ $$
 
 - For earnings, sell options (collect IV), don't buy
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge Failure
 
 **Background:**
 
@@ -1633,7 +1633,7 @@ $$
 
 - Different sectors → True diversification
 
-### 6. The Kelly Criterion (Advanced)
+### 6. The Kelly Criterion
 
 **Optimal position size:**
 

@@ -310,7 +310,7 @@ $$
 
 **This is why professionals use swaps for carry, not bonds**
 
-### 4. Forward Curve vs. Realized Rates
+### 4. Forward vs. Realized Rates
 
 **The key bet:**
 
@@ -536,7 +536,7 @@ $$
 
 ## Step-by-Step Setup
 
-### 1. Phase 1
+### 1. Carry Analysis
 
 **1. Examine Current Curve:**
 
@@ -680,7 +680,7 @@ print(results_df)
 - 30-year: Can tolerate only +0.19 bps/day (high DV01)
 - **5-7 year sector optimal (good carry, manageable DV01)**
 
-### 1. Phase 2
+### 2. Maturity Selection
 
 **Decision matrix:**
 
@@ -714,7 +714,7 @@ print(results_df[['maturity', 'composite_score']].sort_values('composite_score',
 
 **Winner: 5-year swap (best risk-adjusted carry)**
 
-### 1. Phase 3
+### 3. Position Sizing
 
 **1. Determine Risk Budget:**
 
@@ -789,7 +789,7 @@ Total return (flat rates): $850,000
 Return on collateral: 42.5%
 ```
 
-### 1. Phase 4
+### 4. Trade & Risk
 
 **1. Enter the Swap:**
 
@@ -901,7 +901,7 @@ risk = check_risk_limits(
 print(risk)
 ```
 
-### 1. Phase 5
+### 5. Exit Rules
 
 **1. Profit Target:**
 
@@ -938,7 +938,7 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Carry Windfall
 
 **Background:**
 
@@ -985,7 +985,7 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 4. Roll-down added bonus
 5. **Perfect storm for receive-fixed**
 
-### 2. Transition Risk Hedge
+### 2. Carry Trap
 
 **Background:**
 
@@ -1045,7 +1045,7 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 4. Didn't exit when Fed turned hawkish (March)
 5. **Carry of $1.7M/year meaningless when losing $18M**
 
-### 3. Portable Alpha with Futures
+### 3. Curve Transition
 
 **Background:**
 
@@ -1079,7 +1079,7 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 
 Let me use a better pure carry example:
 
-### 4. Better Example 3
+### 4. Short-End Carry
 
 **Background:**
 
@@ -1133,7 +1133,7 @@ Let me use a better pure carry example:
 4. Roll-down added small bonus
 5. **Modest, consistent profits—professional's favorite**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. QE Duration Bet
 
 **Background:**
 
@@ -1183,7 +1183,7 @@ Let me use a better pure carry example:
 
 **But note: This required perfect timing and high risk tolerance**
 
-### 6. Example 6
+### 6. Inflation Hedge
 
 **Background:**
 

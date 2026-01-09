@@ -37,31 +37,14 @@ $$
 
 ---
 
-## What Is a Protective Put?
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/protective_put_scenarios.png?raw=true" alt="protective_put_scenarios" width="700">
-</p>
-**Figure 2:** Protective put outcome scenarios showing four key cases: crash (protection works), stable (insurance cost), rally (insurance + upside), and near strike (premium paid without benefit), illustrating the complete range of possible outcomes and their P&L implications.
-
----
-
-## What Is a Collar?
-
-**Free insurance by giving up upside:**
-
-**The simplest portfolio insurance:**
-
-### 1. The Structure
-
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/collar_pnl.png?raw=true" alt="collar_pnl" width="700">
-</p>
-**Figure 3:** Collar profit/loss diagram showing the three-legged structure combining long stock, long put, and short call, creating a defined range with protection below and capping above, illustrating the zero-cost protection achieved by trading upside for downside insurance.
 
 ---
 
 ## Collar
+
+**Free insurance by giving up upside:**
+
+**The simplest portfolio insurance:**
 
 ### 1. Setup
 
@@ -81,14 +64,7 @@ $$
 - Limited downside (protected below $145)
 - Cost: $500 premium
 
-### 2. Why Use a Protective Put?
 
-<p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/collar_scenarios.png?raw=true" alt="collar_scenarios" width="700">
-</p>
-**Figure 4:** Collar outcome scenarios across different stock prices at expiration, showing crash protection, stable pricing, capped upside, and breakeven points, demonstrating how the zero-cost structure creates a defined range with balanced risk-reward trade-offs.
-
----
 
 ## Strike Selection Strategies
 
@@ -204,7 +180,7 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 - Long 1 AAPL $145 put (cost $3.50)
 - Total capital: $13,000 (stock) + $350 (put) = $13,350
 
-### 2. 1
+### 2. Put vs Collar
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/protective_put_vs_collar.png?raw=true" alt="protective_put_vs_collar" width="700">
@@ -215,339 +191,136 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 ## Rolling Strategies
 
-**What to do as expiration approaches:**
+**What to do as expiration approaches and how rolling affects total hedging cost.**
+
+---
+
+## Cost of Rolling
+
+### 1. Insurance Effect
 
 **Without put:**
 
-- Stock value: $12,000
-- Loss from $150: -$3,000
-- Loss from original cost: -$1,000
+- Stock value: $12,000  
+- Loss from $150: -$3,000  
+- Loss from original cost: -$1,000  
 - **Disaster!**
 
 **With protective put:**
 
-- Stock value: $12,000
-- Put value: $25 ($145 - $120)
-- Put profit: $2,500 - $350 = $2,150
-- **Net position: $12,000 + $2,500 = $14,500**
-- **Loss from $150: only -$850** (protected!)
+- Stock value: $12,000  
+- Put value: $25 ($145 − $120)  
+- Put profit: $2,500 − $350 = $2,150  
+- **Net position: $14,500**  
+- **Loss from $150: only −$850**
 
-**Insurance worked:** Put prevented 67% of the downside!
+**Insurance worked:** the put prevented ~67% of the downside.
 
-### 1. 2
+---
+
+### 2. Annualized Cost
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/annualized_cost_analysis_protective_put_and_collar.png?raw=true" alt="annualized_cost_analysis_protective_put_and_collar" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/annualized_cost_analysis_protective_put_and_collar.png?raw=true" width="700">
 </p>
-**Figure 8:** Annualized cost analysis for protective puts and collars across different time frames, showing how premium costs compound when rolling protection frequently versus using longer-dated options, illustrating the critical importance of calculating total hedging costs relative to portfolio value to ensure insurance doesn't become prohibitively expensive.
 
-### 2. Mistake 5
+**Figure:** Annualized cost of rolling protective puts and collars across maturities.  
+Frequent short-dated rolls dramatically increase total cost.
 
-❌ **Wrong:**
+---
 
-**At expiration:**
+### 3. Insurance Decay
 
-- Stock: $150 (unchanged)
-- Put: worthless (OTM)
-- Lost premium: -$350
+**At expiration (no move):**
+
+- Stock: $150  
+- Put: worthless  
+- Premium lost: −$350  
 
 **Result:**
 
-- Stock value: $15,000
-- Less put cost: -$350
-- Net: $14,650
-- **Cost of insurance: $350 (2.3% of position)**
+- Stock value: $15,000  
+- Net after insurance: $14,650  
+- **Cost: 2.3% of position**
 
-### 3. 3
+Insurance often expires unused — this cost must be accepted.
+
+---
+
+## Real-World Outcomes
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/real_world_examples_protective_put_and_collar.png?raw=true" alt="real_world_examples_protective_put_and_collar" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/real_world_examples_protective_put_and_collar.png?raw=true" width="700">
 </p>
-**Figure 9:** Real-world examples summary showing three practical applications: tech executive hedging RSU lockup with collar, retiree protecting concentrated AAPL position with puts, and startup employee using forward collar through IPO lockup, demonstrating how protective strategies solve actual portfolio risk management challenges.
 
-### 4. Tactical Duration Extension
+**Figure:** Practical uses of protective puts and collars.
 
-**Situation:**
+---
+
+### 1. Upside Capture
 
 **At expiration:**
 
-- Stock: $170
-- Put: worthless
-- Stock gain: +$2,000
-- Put cost: -$350
+- Stock: $170  
+- Put: worthless  
+- Stock gain: +$2,000  
+- Put cost: −$350  
 - **Net gain: +$1,650**
 
-**Key insight:** Full upside participation (minus insurance cost)
+**Insight:** full upside participation, minus insurance cost.
 
-### 5. 4
+---
+
+### 2. Near-Strike Loss
 
 **At expiration:**
 
-- Stock: $147
-- Put: worthless (just OTM)
-- Stock loss: -$300
-- Put cost: -$350
-- **Net loss: -$650**
+- Stock: $147  
+- Put: worthless (just OTM)  
+- Stock loss: −$300  
+- Put cost: −$350  
+- **Net loss: −$650**
 
-**Lesson:** If stock stays near strike, you pay premium but don't use insurance (like car insurance - you pay even if no accident)
+Like car insurance — you pay even if nothing happens.
 
+---
 
-### 6. The Structure
+## Collar Strategy
+
+### 1. Collar Structure
 
 **Collar = Long Stock + Long Put + Short Call**
 
 **Example:**
 
-- Own 100 shares AAPL at $150
-- Buy $145 put for $3.50
-- Sell $160 call for $3.50
-- **Net cost: $0 (zero-cost collar)**
-
-**What you've created:**
-
-- Protected below $145 (put)
-- Capped above $160 (call)
-- No premium paid (call premium = put premium)
-
-### 7. Why Use a Collar?
-
-**Want protection but:**
-
-1. **Don't want to pay premium** (reduce cost)
-2. **Willing to cap upside** (accept opportunity cost)
-3. **Define range** (know max gain and loss)
-4. **Preserve capital** (institutional preference)
-
-**Common uses:**
-
-**1. Lock in profits (zero cost):**
-
-- Stock up significantly
-- Want to protect gains
-- Don't pay premium
-- Accept capped upside
-
-**2. Hold through volatility:**
-
-- Uncertain period (earnings, Fed meeting)
-- Want to hold long-term
-- Free protection for event
-
-**3. Reduce cost of protection:**
-
-- Protective put too expensive
-- Sell call to finance it
-- Trade-off accepted
-
-**4. Regulatory/institutional:**
-
-- Pension funds, endowments
-- Need hedges but minimize cost
-- Defined risk acceptable
-
-### 8. Collar Payoff Diagram
-
-```
-    Profit
-      ↑
-      |    _______ (Capped at $160)
-      |   /|
-      |  / |
-      | /  |
-  ────┼/───┼────────
-      /|   |
-     / |   | Protected
-    /  |   |
-   /   |___|________→ Stock Price
-      $145  $160
-```
-
-**Range defined:** Max profit at $160, max loss at $145
-
-
-- Own 1,000 shares of NFLX
-- Average cost: $300
-- Current price: $400
-- Unrealized gain: $100,000
-- Want to protect but not pay premium
-
-**Goal:** Protect downside, willing to cap upside
-
-**3-month options:**
-
-| Strike | Type | Premium |
-|--------|------|---------|
-| $380 | Put | $8.00 |
-| $420 | Call | $8.00 |
-
-### 9. The Collar Trade
-
-**Execute:**
-
-- Buy 10 contracts $380 put (pay $8,000)
-- Sell 10 contracts $420 call (receive $8,000)
+- Own 100 AAPL shares @ $150  
+- Buy $145 put for $3.50  
+- Sell $160 call for $3.50  
 - **Net cost: $0**
 
-**New position:**
+**Result:**
 
-- Long 1,000 shares NFLX (cost $300, value $400,000)
-- Protected below $380
-- Capped above $420
-- **Zero-cost hedge!**
-
-### 10. 1
-
-**Without collar:**
-
-- Stock value: $320,000
-- Loss: -$80,000 (-20%)
-- **Painful!**
-
-**With collar:**
-
-- Stock value: $320,000
-- Put value: $60 × 1,000 = $60,000
-- Call value: $0 (OTM)
-- **Total: $380,000**
-- **Loss: only -$20,000** (-5%)
-
-**Protected:** Collar saved you $60,000!
-
-### 11. 2
-
-**At expiration:**
-
-- Stock: $400
-- Put: worthless
-- Call: worthless
-- **No cost, no benefit**
-
-**Like unused insurance:** Didn't need it, but didn't pay for it either
-
-### 12. 3
-
-**Without collar:**
-
-- Stock value: $450,000
-- Gain: +$50,000
-- **Full upside!**
-
-**With collar:**
-
-- Stock value: $450,000
-- Put value: $0
-- Call value: -$30 × 1,000 = -$30,000 (must deliver shares at $420)
-- **Net: $420,000**
-- **Gain: only +$20,000** (capped)
-
-**Trade-off:** Gave up $30,000 upside for free protection
-
-### 13. 4
-
-**At expiration:**
-
-- Stock: $380
-- Put: worthless (ATM)
-- Call: worthless
-- **Net: $380,000**
-
-**Breakeven at protection level**
-
-### 14. The Cost Analysis
-
-**Opportunity cost:**
-
-- Missed upside if > $420: Real cost
-- Protection if < $380: Real benefit
-- **Trade-off:** Free insurance but limited upside
-
-**Time value:**
-
-- Locked in for 3 months
-- Can't participate fully if stock moons
-- **Accept this constraint**
-
-
-- Strike above current price
-- Example: Stock $150, buy $155 put
-- Very expensive
-- Maximum protection
-- Use when: Very concerned, can afford premium
-
-**2. ATM (Balanced):**
-
-- Strike = current price
-- Example: Stock $150, buy $150 put
-- Moderate cost
-- Full current value protection
-- Use when: Standard hedge
-
-**3. OTM (Economical):**
-
-- Strike below current price
-- Example: Stock $150, buy $145 put
-- Cheaper premium
-- Accept some loss
-- Use when: **Most common** (like insurance deductible)
-
-**General rule:** 5-10% OTM is typical (balance cost vs. protection)
-
-
-- Put and call equidistant from current
-- Example: Stock $150, buy $145 put, sell $155 call
-- Balanced range
-
-**Skewed collar (more upside):**
-
-- Call strike farther out
-- Example: Stock $150, buy $145 put, sell $165 call
-- Keep more upside
-- **Pay net debit** (call premium < put premium)
-
-**Skewed collar (more protection):**
-
-- Put strike closer
-- Example: Stock $150, buy $148 put, sell $155 call
-- More protection
-- **Receive net credit** (call premium > put premium)
-
-
-- Cheaper
-- Good for specific events (earnings)
-- Need to roll frequently
-
-**Collars:**
-
-- Common for quarterly hedges
-- Re-evaluate each quarter
-
-### 15. Medium-Term (3-6 months)
-
-**Most common:**
-
-- Balance cost and protection
-- Semi-annual hedging
-- Let position develop
-
-### 16. Long-Term (LEAPS
-
-**For long-term holdings:**
-
-- Very expensive (protective puts)
-- But full year of protection
-- Institutional preference
-- Amortize cost over time
-
-**Example:**
-
-- Own stock long-term
-- Buy 2-year LEAPS puts
-- Cost 8-12% of stock value
-- But 2 years of protection
+- Downside protected below $145  
+- Upside capped above $160  
+- No premium paid
 
 ---
 
-## Protective Put vs. Collar Comparison
+### 2. Why Use Collars
+
+**Common reasons:**
+
+1. Avoid paying premium  
+2. Willing to cap upside  
+3. Define gain/loss range  
+4. Institutional preference  
+
+---
+
+### 3. Collar Payoff
+
+
+## Protective Put vs. Collar
 
 | Aspect | Protective Put | Collar |
 |--------|---------------|--------|
@@ -623,7 +396,7 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 **Important for real-world application:**
 
-### 1. Protective Puts and Holding Periods
+### 1. Holding Period Risk
 
 **IRS Rule:** Protective put can suspend holding period for tax purposes
 
@@ -636,7 +409,7 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 **Avoid:** Don't buy put if close to 1-year holding period
 
-### 2. Collars and Constructive Sales
+### 2. Constructive Sale
 
 **IRS Rule:** Tight collars can trigger "constructive sale"
 
@@ -669,7 +442,7 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 ---
 
-## Protective Puts vs. Other Strategies
+## Protective Puts vs. Others
 
 | Strategy | Cost | Downside | Upside | Complexity |
 |----------|------|----------|--------|-----------|
@@ -698,12 +471,6 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 
 ---
 
-
----
-
-
----
-
 ## Economic
 
 **Understanding what this strategy REALLY represents economically:**
@@ -718,7 +485,7 @@ $$
 \text{Strategy Payoff} = \text{Component 1} + \text{Component 2} - \text{Cost/Benefit}
 $$
 
-### 2. Why This Structure Exists Economically
+### 2. Why This Structure Exists
 
 Markets create these structures because different participants have different:
 
@@ -727,7 +494,7 @@ Markets create these structures because different participants have different:
 - Capital constraints
 - View on volatility vs. direction
 
-### 3. Professional Institutional Perspective
+### 3. Institutional Perspective
 
 Institutional traders view this strategy as a tool for:
 
@@ -743,7 +510,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Pre-Trade Checklist
 
 **Before entering, evaluate:**
 
@@ -762,7 +529,7 @@ Understanding the economic foundations helps you recognize when the strategy off
    - Sector dynamics
    - Macro environment
 
-### 2. Step 2
+### 2. Entry Conditions
 
 **Enter this strategy when:**
 
@@ -777,7 +544,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - [Wrong volatility environment]
 - [Insufficient time or liquidity]
 
-### 3. Step 3
+### 3. Position Sizing
 
 **Calculate maximum position size:**
 
@@ -791,7 +558,7 @@ $$
 - Max 5 uncorrelated positions
 - Never more than 20% of portfolio in options
 
-### 4. Step 4
+### 4. Trade Execution
 
 **Best practices:**
 
@@ -800,7 +567,7 @@ $$
 3. **Time entry:** Avoid first/last 30 minutes of trading day
 4. **Single order:** Enter as complete strategy, don't leg in
 
-### 5. Step 5
+### 5. Trade Management
 
 **Active management rules:**
 
@@ -821,7 +588,7 @@ $$
 - Monitor theta decay
 - Exit if [time-based trigger]
 
-### 6. Step 6
+### 6. Adjust or Exit
 
 **When to adjust:**
 
@@ -835,7 +602,7 @@ $$
 - [Adjustment technique 2]
 - [When to take loss instead]
 
-### 7. Step 7
+### 7. Trade Review
 
 Track every trade:
 
@@ -844,18 +611,10 @@ Track every trade:
 - Market conditions (IV, trend, etc.)
 - P&L and lessons learned
 
-### 8. Common Execution Mistakes to Avoid
-
-1. **Entering at wrong volatility level**
-2. **Ignoring liquidity**
-3. **Over-sizing positions**
-4. **Failing to set exit rules upfront**
-5. **Emotional decision-making**
-
 
 ## Common Mistakes
 
-### 1. Mistake 1
+### 1. Late Hedging
 
 ❌ **Wrong:**
 
@@ -875,7 +634,7 @@ Track every trade:
 - When IV is low
 - Anticipate risk
 
-### 2. Mistake 2
+### 2. Over-Hedging
 
 ❌ **Wrong:**
 
@@ -895,7 +654,7 @@ Track every trade:
 - Match exactly
 - Pure hedge
 
-### 3. Mistake 3
+### 3. Tight Collars
 
 ❌ **Wrong:**
 
@@ -915,7 +674,7 @@ Track every trade:
 - Example: $95 put / $110 call
 - Room to breathe
 
-### 4. Mistake 4
+### 4. Cost Blindness
 
 ❌ **Wrong:**
 
@@ -951,6 +710,70 @@ Track every trade:
 - Roll 1-2 weeks before expiration
 - Maintain continuous protection
 - No gaps
+
+### 5. Protection Gaps
+
+❌ **Wrong:**
+
+- Protective put expires
+- Trader waits until expiration or after
+- Position becomes **temporarily unhedged**
+- Weekend or overnight news hits
+
+**Example:**
+
+- Stock: $150 on Friday close
+- Put expires Friday (OTM)
+- No new hedge in place
+- Weekend news: regulatory issue
+- Monday open: $135 (–10%)
+
+**Result:**
+- Loss occurs **before protection is restored**
+- Hedge failed due to timing, not structure
+
+---
+
+**Why it fails:**
+
+- Market gaps do not respect option expiration
+- News risk is highest **outside market hours**
+- Volatility often spikes *after* the gap
+- Replacement puts become much more expensive
+
+---
+
+✅ **Better: Maintain Continuous Protection**
+
+**Best practices:**
+
+1. **Roll early**
+   - Roll protective puts **1–2 weeks before expiration**
+   - Avoid last-day decisions
+
+2. **Overlap protection**
+   - Open new put **before** closing old one
+   - Brief overlap > zero protection
+
+3. **Plan expiration dates**
+   - Avoid expirations before:
+     - Earnings
+     - Fed meetings
+     - Weekends with known risk
+     - Major macro events
+
+4. **Use longer-dated options**
+   - 3–6 month puts reduce roll frequency
+   - Lower annualized hedging cost
+   - Fewer gap-risk windows
+
+---
+
+**Key insight:**
+
+> Hedging that works only during market hours is **not hedging**.
+
+Protection must be **continuous**, not periodic.
 
 ---
 
@@ -1105,7 +928,7 @@ Track every trade:
 - Free protection for volatile period
 - Now can sell/diversify
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Situation:**
 
@@ -1218,7 +1041,7 @@ Market makers price puts using:
 
 **You pay this premium to transfer risk from yourself to the put seller.**
 
-### 3. Why This Structure Exists Economically
+### 3. Why This Structure Exists
 
 Markets create these opportunities because participants have different risk preferences and time horizons:
 
@@ -1290,7 +1113,7 @@ $$
 
 **The trade:** Give up theta to gain gamma and vega.
 
-### 6. The Collar as a Funded Purchase
+### 6. Self-Funded Protection
 
 **Collar economics:**
 
@@ -1354,7 +1177,7 @@ $$
 - If it does, average gain above $120 is $15
 - Expected opportunity cost = 0.30 × $15 = $4.50 per share
 
-### 8. Professional Institutional Perspective
+### 8. Institutional Perspective
 
 Institutional investors view protective strategies through multiple lenses:
 
@@ -1409,7 +1232,7 @@ On average, you overpay for protection:
 - Puts have negative EV but people buy for downside insurance
 - Both provide psychological/utility value beyond pure EV
 
-### 10. Put-Call Parity and Synthetic Positions
+### 10. Synthetic Positions
 
 **Fundamental relationship:**
 
@@ -1442,7 +1265,7 @@ $$
 \text{Collar} = \text{Limited-Risk Stock Position}
 $$
 
-### 11. Hedging Efficiency and Basis Risk
+### 11. Basis Risk
 
 **Perfect hedge:**
 
@@ -1464,7 +1287,7 @@ $$
 - Tighter collar = more hedging, higher cost (or negative credit)
 - Optimal collar balances cost and protection
 
-### 12. Time Decay Economics (Theta)
+### 12. Time Decay (Theta)
 
 **Protective puts lose value over time:**
 
@@ -1542,7 +1365,7 @@ Where $\lambda$ is risk aversion coefficient.
 - Allows better decisions (not forced to sell in panic)
 - Can hold winners longer without fear
 
-### 15. Institutional vs. Retail Perspectives
+### 15. Institutional vs. Retail
 
 **Institutional:**
 
@@ -1568,7 +1391,7 @@ Where $\lambda$ is risk aversion coefficient.
 - Use collars when appropriate (reduce cost)
 - Accept cost as insurance, not "wasted money"
 
-### 16. Understanding When Protection Is "Expensive"
+### 16. Costly Protection
 
 **Relative IV assessment:**
 
@@ -1595,7 +1418,7 @@ $$
 - 10-15% annually: High but acceptable for concentration
 - > 15% annually: Very expensive, consider alternatives
 
-### 17. The Dynamic Hedging Alternative
+### 17. Dynamic Hedging
 
 Instead of buying puts (static hedge), could use **dynamic hedging**:
 
@@ -1649,7 +1472,7 @@ Understanding these economic foundations helps you:
 
 **Actionable steps for implementing protective strategies successfully:**
 
-### 1. Getting Started
+### 1. When to Hedge
 
 **Step-by-Step for Protective Puts:**
 
@@ -1712,7 +1535,7 @@ $$
 - Set calendar reminder for 30 days before expiration
 - Review monthly: still need protection?
 
-### 2. Getting Started
+### 2. Protective Puts
 
 **Step-by-Step:**
 
@@ -1768,7 +1591,7 @@ Call Strike = Put Strike + (Put Premium / Call Delta)
 - If stock approaches put strike: consider rolling down
 - Review quarterly: still appropriate?
 
-### 3. Position Sizing Framework
+### 3. Position Size
 
 **Conservative approach (recommended):**
 
@@ -1797,7 +1620,7 @@ $$
 - Reduce cost while maintaining significant protection
 - "Worst case" protection rather than "all case"
 
-### 4. Strike Selection Decision Framework
+### 4. Strike Choice
 
 **Question 1: What's your primary concern?**
 
@@ -1872,7 +1695,7 @@ $$
 \text{Call Strike} = \text{Put Strike} + \frac{\text{Put Premium}}{\text{Call Delta per Dollar Strike}}
 $$
 
-### 6. Time Management System
+### 6. Timing & Calendar
 
 **Quarterly Hedging Program (Recommended):**
 
@@ -1905,7 +1728,7 @@ $$
 
 Budget 2-5% of portfolio annually for systematic protection.
 
-### 7. Rolling Decision Framework
+### 7. Rolling Rules
 
 **When to roll protective puts:**
 
@@ -1955,7 +1778,7 @@ $$
 
 Only roll if Roll Benefit > 0.
 
-### 8. Collar Rolling and Adjustment
+### 8. Collar anagement
 
 **At expiration:**
 
@@ -1977,7 +1800,7 @@ Only roll if Roll Benefit > 0.
 - Decision: Sell stock at put strike or roll put down?
 - Puts provide downside protection value
 
-### 9. Platform and Tools
+### 9. Tools & Platforms
 
 **Recommended platforms for hedging:**
 
@@ -1994,7 +1817,7 @@ Only roll if Roll Benefit > 0.
 - **Calendar:** Track expiration dates
 - **Cost basis tracking:** Understand adjusted basis
 
-### 10. Record Keeping Template
+### 10. Trade Log
 
 **For each protection position:**
 
@@ -2013,7 +1836,7 @@ Exit Plan: [When to remove protection]
 Outcome: [Final result]
 ```
 
-### 11. Risk Management for Hedgers
+### 11. Risk Checklist
 
 **Before implementing protection:**
 
@@ -2026,7 +1849,7 @@ Outcome: [Final result]
 ☐ Have plan for expiration (roll or exit)
 ☐ Budgeted protection cost for the year
 
-### 12. The Quarterly Protection Routine
+### 12. Quarterly Routine
 
 **Systematic approach to continuous protection:**
 
@@ -2056,7 +1879,7 @@ Outcome: [Final result]
 - Enter new quarter's protection
 - Update records
 
-### 13. Troubleshooting Common Situations
+### 13. Common Fixes
 
 **Problem: Put premium too expensive (>15% annualized)**
 
@@ -2130,7 +1953,7 @@ Outcome: [Final result]
 - Tighten collar in high IV (receive credit)
 - Adapt to market conditions
 
-### 15. Mental Framework for Hedging Success
+### 15. Hedging Mindset
 
 **The right mindset:**
 
@@ -2164,7 +1987,7 @@ Outcome: [Final result]
 
 **Detailed case studies showing how protective strategies play out in practice:**
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Background:**
 
@@ -2582,7 +2405,7 @@ $$
 
 ---
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge Failure
 
 **Background:**
 
@@ -2697,7 +2520,7 @@ Net benefit: $300,000+ in reduced risk
 
 ---
 
-### 6. Example 6
+### 6. Lockup Risk Failure
 
 **Background:**
 
@@ -2771,7 +2594,7 @@ Protected (what could have been):
 
 **Critical errors that destroy the value of protective strategies:**
 
-### 1. Mistake #1
+### 1. Hedging Too Late
 
 **What it looks like:**
 
@@ -2815,7 +2638,7 @@ Plus you already suffered the drop you were trying to avoid!
 
 ---
 
-### 2. Mistake #2
+### 2. Tax-Triggered Collars
 
 **What it looks like:**
 
@@ -2860,7 +2683,7 @@ $$
 
 ---
 
-### 3. Mistake #3
+### 3. Over-Hedging Risk
 
 **What it looks like:**
 
@@ -2907,7 +2730,7 @@ $$
 
 ---
 
-### 4. Mistake #4
+### 4. Too-Short Expirations
 
 **What it looks like:**
 
@@ -2954,7 +2777,7 @@ Month 3: [===Protected===] (new 2-week puts)
 
 ---
 
-### 5. Mistake #5
+### 5. Call Assignment Risk
 
 **What it looks like:**
 
@@ -3003,7 +2826,7 @@ Buy back calls:
 
 ---
 
-### 6. Mistake #6
+### 6. Buying at High IV
 
 **What it looks like:**
 
@@ -3052,7 +2875,7 @@ Day 30: Stock still at $100
 
 ---
 
-### 7. Mistake #7
+### 7. Missed Rolls
 
 **What it looks like:**
 
@@ -3095,7 +2918,7 @@ April 1: Portfolio down 20%, unprotected
 
 ---
 
-### 8. Mistake #8
+### 8. Wrong Hedge
 
 **What it looks like:**
 
@@ -3142,7 +2965,7 @@ $$
 
 ---
 
-### 9. Mistake #9
+### 9. Hedging After the Drop
 
 **What it looks like:**
 
@@ -3190,7 +3013,7 @@ $$
 
 ---
 
-### 10. Mistake #10
+### 10. Hedging vs. Speculation
 
 **What it looks like:**
 
@@ -3231,7 +3054,7 @@ Selling puts = risk addition
 
 ---
 
-### 11. Mistake #11
+### 11. Ineffective Strikes
 
 **What it looks like:**
 
@@ -3279,7 +3102,7 @@ Saving $2.50 on premium (cheap puts) cost $11.50 in protection!
 
 ---
 
-### 12. Mistake #12
+### 12. Excessive Rolling
 
 **What it looks like:**
 
@@ -3323,7 +3146,7 @@ Saving $2.50 on premium (cheap puts) cost $11.50 in protection!
 
 ---
 
-### 13. Mistake #13
+### 13. No Put Exit Plan
 
 **What it looks like:**
 
@@ -3372,7 +3195,7 @@ Put now valuable (stock dropped):
 
 ---
 
-### 14. Mistake #14
+### 14. Unrealistic Protection
 
 **What it looks like:**
 
@@ -3415,7 +3238,7 @@ But this costs $8 (8%)!
 
 ---
 
-### 15. Mistake #15
+### 15. Forced Share Loss
 
 **What it looks like:**
 
@@ -3462,7 +3285,7 @@ Use protective puts only (no collar):
 
 ---
 
-### 16. **Summary
+### 16. Protection Checklist
 
 Before implementing protection, verify:
 
@@ -3489,78 +3312,3 @@ Avoiding these mistakes transforms protective strategies from expensive annoyanc
 
 
 
-## Covered Calls vs. Protective Puts (Naming Symmetry)
-
-Both **protective puts** and **covered calls** start from the same base position:
-
-\[
-\text{Long Stock}
-\]
-
-The difference is **which option you add and why**.
-
----
-
-### 1. Protective Put — Buy Downside Protection
-
-> *“I own the stock and want to protect against downside risk.”*
-
-\[
-\text{Protective Put} = \text{Long Stock} + \text{Long Put}
-\]
-
-- Buy a put
-- Pay premium
-- Downside is protected below the put strike
-- Upside remains unlimited
-
-This is equivalent to buying insurance.
-
----
-
-### 2. Covered Call — Sell Upside for Income
-
-> *“I own the stock and want to generate upfront cash.”*
-
-\[
-\text{Covered Call} = \text{Long Stock} - \text{Short Call}
-\]
-
-- Sell a call
-- Receive premium upfront
-- Upside is capped at the call strike
-- Downside remains (partially offset by premium)
-
-The call is **covered** because the stock is already owned.
-
----
-
-### 3. Why the Names Are Symmetric
-
-| Strategy | Stock | Option Action | Economic Meaning |
-|--------|-------|---------------|------------------|
-| Protective **Put** | Long | Buy put | Buy downside insurance |
-| Covered **Call** | Long | Sell call | Sell upside for income |
-
----
-
-### 4. Key Takeaway
-
-> **Protective puts and covered calls are symmetric stock-plus-option strategies: one buys downside insurance, the other sells upside for cash.**
-
-
-### 5. Final Thought
-
-**Protective strategies are real insurance:**
-
-> "Like car or home insurance, you hope you never need it. You pay premiums (protective put) or accept limitations (collar cap) for protection. Most years, nothing bad happens - premium is 'wasted.' But the one year disaster strikes, insurance saves you. The question isn't whether protection costs money - it's whether the cost is acceptable for your risk tolerance and financial situation. For concentrated positions or large unrealized gains, the cost is usually worth it."
-
-**The truth:**
-
-- Most protective puts expire worthless (like most insurance)
-- Cost is real (2-5% quarterly typical)
-- But prevents catastrophic loss (that one time)
-- **Peace of mind is valuable**
-- Allows you to hold winners longer (not forced to sell from fear)
-
-**Master protective strategies before attempting complex hedges!** 🛡️📊

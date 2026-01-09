@@ -1,4 +1,4 @@
-# Yield Curve
+# Yield Curve Construction
 
 **Yield curve construction** is the process of building a continuous term structure of interest rates from discrete market instruments (bonds, swaps, futures) that represents the relationship between yield and time to maturity, serving as the foundational pricing benchmark for all fixed income securities and derivatives while revealing market expectations for future interest rates, inflation, and economic growth.
 
@@ -35,7 +35,7 @@ $$
 
 ---
 
-## What Is Yield Curve ?
+## What Is Yield Curve?
 
 **Before constructing yield curves, understand the mechanics:**
 
@@ -160,7 +160,7 @@ $$
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Pure Expectations Hypothesis
+### 1. Pure Expectations
 
 **The deep insight:**
 
@@ -192,7 +192,7 @@ $$
 - **Downward sloping curve:** Market expects rates to fall (recession, disinflation)
 - **Flat curve:** Market expects stable rates (equilibrium)
 
-### 2. Term Premium vs. Expectations
+### 2. Term Premium
 
 **Reality: Forward rates ≠ Expected future rates**
 
@@ -231,7 +231,7 @@ $$
 | 2010-2020 | 0.0-0.3% (compressed by QE) |
 | 2022-2024 | 0.3-0.5% (normalized) |
 
-### 3. The Three Theories of Term Structure
+### 3. Term Structure Theories
 
 **1. Pure Expectations Theory:**
 
@@ -617,7 +617,7 @@ $$
 
 ## Step-by-Step Setup
 
-### 1. Phase 1
+### 1. Market Data
 
 **1. Gather Market Data:**
 
@@ -663,7 +663,7 @@ def validate_data(df):
 validate_data(treasuries)
 ```
 
-### 2. Phase 2
+### 2. Bootstrapping Zeros
 
 **1. Convert Bills to Zero Rates:**
 
@@ -757,7 +757,7 @@ print(zeros)
 9      30.00   0.047456     30Y Bond
 ```
 
-### 1. Phase 3
+### 3. Curve Interpolation
 
 **1. Implement Cubic Spline:**
 
@@ -796,7 +796,7 @@ plt.grid(True, alpha=0.3)
 plt.show()
 ```
 
-### 1. Phase 4
+### 4. Derived Curves
 
 **1. Calculate Par Rates:**
 
@@ -873,7 +873,7 @@ plt.ylim(4, 6)
 plt.show()
 ```
 
-### 1. Phase 5
+### 5. Validation & Use
 
 **1. Arbitrage Checks:**
 
@@ -972,7 +972,7 @@ print(f"Duration: {duration:.2f} years")
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Market data:**
 
@@ -1128,7 +1128,7 @@ $$
 - 2019: Fed CUTS 3 times (to 1.75%)
 - **Flat curve was transition, then cuts**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. Duration Hedge Failure
 
 **Market data (December 2024):**
 

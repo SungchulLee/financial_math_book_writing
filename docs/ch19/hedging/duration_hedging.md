@@ -42,7 +42,7 @@ $$
 
 **Before implementing duration hedges, understand the foundation:**
 
-### 1. Duration as Interest Rate Sensitivity
+### 1. Rate Sensitivity
 
 **Modified duration definition:**
 
@@ -168,7 +168,7 @@ $$
 
 **Understanding the economic logic of duration hedging:**
 
-### 1. The Decomposition of Bond Returns
+### 1. Return Decomposition
 
 **Total bond return decomposes into:**
 
@@ -207,7 +207,7 @@ $$
 
 **You removed the rate risk (which you had no view on) and kept the components you wanted!**
 
-### 2. Duration as a Factor Risk Premium
+### 2. Duration as Beta
 
 **Think of duration as exposure to the "interest rate factor":**
 
@@ -234,7 +234,7 @@ $$
 - Long/short equity: Remove market beta, keep stock alpha
 - Duration hedging: Remove rate beta, keep credit/carry alpha
 
-### 3. The Hedge as a Swap of Cash Flows
+### 3. Cash Flow Swap
 
 **Economically, a duration hedge is a cash flow swap:**
 
@@ -359,9 +359,9 @@ $$
 
 ---
 
-## Basic Duration Hedging Strategies
+## Duration Hedging Strategies
 
-### 1. Strategy 1
+### 1. Futures Duration Hedge
 
 **Setup:**
 
@@ -419,7 +419,7 @@ Plus: Still have credit spread exposure, carry income.
 
 The hedge doesn't protect against credit risk!
 
-### 2. Strategy 2
+### 2. Swap Duration Extension
 
 **Setup:**
 
@@ -452,7 +452,7 @@ $$
 - Cheaper than selling FRNs and buying fixed-rate bonds
 - More flexible (can unwind swap easily)
 
-### 3. Strategy 3
+### 3. Proxy Futures Hedge
 
 **Setup:**
 
@@ -496,7 +496,7 @@ $$
 \text{Contracts} = 148 \times 0.92 = 136 \text{ contracts}
 $$
 
-### 4. Strategy 4
+### 4. Convexity-Adjusted Hedge
 
 **Setup:**
 
@@ -536,7 +536,7 @@ With convexity:
 
 ---
 
-## Greeks in Duration Hedging
+## Greeks 
 
 **Understanding the risk sensitivities:**
 
@@ -689,7 +689,7 @@ Where $s$ = credit spread.
 
 ## Duration Hedging Payoff Analysis
 
-### 1. Unhedged vs. Hedged Portfolio
+### 1. Hedged vs Unhedged
 
 **Setup:**
 - $100M corporate bond portfolio
@@ -747,9 +747,9 @@ Where $s$ = credit spread.
 
 ---
 
-## Real-World Duration Hedging Examples
+## Duration Hedging Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Setup:**
 
@@ -1074,9 +1074,9 @@ Why?
 
 ---
 
-## Entry and Exit Rules for Duration Hedging
+## Entry and Exit Rules
 
-### 1. Entry Checklist (When to Hedge)
+### 1. Entry Checklist 
 
 **Reasons to implement duration hedge:**
 
@@ -1119,7 +1119,7 @@ Why?
 
 **If ANY critical checkbox not checked → Reconsider hedge or use different instrument!**
 
-### 2. Hedge Monitoring (Ongoing)
+### 2. Ongoing Monitoring
 
 **Daily:**
 
@@ -1155,7 +1155,7 @@ Why?
    - Rolling costs (futures)
    - Carry impact
 
-### 3. Exit Rules (When to Remove Hedge)
+### 3. Exit Rules
 
 **Planned exits:**
 

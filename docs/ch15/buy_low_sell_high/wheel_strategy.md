@@ -366,7 +366,7 @@ $$
 - If assigned: You bought at effective $166-167
 - If not: You collected premium without buying
 
-### 3. Extract Extra Yield from Holdings
+### 3. Added Yield
 
 **Already own dividend stocks?**
 
@@ -729,7 +729,7 @@ $$
 - Sell new call immediately
 - Compound premium faster
 
-### 3. When Stock Drops Significantly
+### 3. Handling Large Drops
 
 **The challenge: Underwater stock position**
 
@@ -932,7 +932,7 @@ $$
 \text{Strategy Payoff} = \text{Component 1} + \text{Component 2} - \text{Cost/Benefit}
 $$
 
-### 2. Why This Structure Exists Economically
+### 2. Why This Structure Exists
 
 Markets create these structures because different participants have different:
 - Risk preferences
@@ -940,7 +940,7 @@ Markets create these structures because different participants have different:
 - Capital constraints
 - View on volatility vs. direction
 
-### 3. Professional Institutional Perspective
+### 3. Institutional Perspective
 
 Institutional traders view this strategy as a tool for:
 1. **Risk management:** Precise control over exposure
@@ -955,7 +955,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Step-by-step implementation framework for the Wheel Strategy:**
 
-### 1. Step 1
+### 1. Preparation
 
 **Before starting your first Wheel:**
 
@@ -991,7 +991,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-### 2. Step 2
+### 2. Put Entry
 
 **CSP selection process:**
 
@@ -1049,7 +1049,7 @@ Example:
 
 ---
 
-### 3. Step 3
+### 3. Put Outcomes
 
 **Daily monitoring checklist:**
 
@@ -1084,7 +1084,7 @@ Example:
 
 ---
 
-### 4. Step 4
+### 4. Assignment Transition
 
 **You've been assigned! Now what?**
 
@@ -1141,7 +1141,7 @@ Example:
 
 ---
 
-### 5. Step 5
+### 5. Call Income
 
 **Daily monitoring checklist:**
 
@@ -1174,7 +1174,7 @@ Example:
 
 ---
 
-### 6. Step 6
+### 6. Deep Drawdowns
 
 **When stock drops significantly after assignment:**
 
@@ -1234,7 +1234,7 @@ Example:
 
 ---
 
-### 7. Step 7
+### 7. Early Exit Rules
 
 **When to close positions early:**
 
@@ -1274,7 +1274,7 @@ Example:
 
 ---
 
-### 8. Step 8
+### 8. Portfolio Wheels
 
 **Running multiple wheels:**
 
@@ -1307,7 +1307,7 @@ Example:
 
 ---
 
-### 9. Step 9
+### 9. Tracking Results
 
 **Track every cycle in spreadsheet:**
 
@@ -1327,7 +1327,7 @@ Example:
 
 ---
 
-### 10. Step 10
+### 10. Advanced Variants
 
 **Once comfortable with basics:**
 
@@ -1364,31 +1364,11 @@ Target high dividend stocks:
 
 ---
 
-### 11. Common Execution Mistakes to Avoid
 
-**Mistake 1: Using margin**
-- ❌ "I'll use margin to run more wheels"
-- ✅ Cash-secured only (use actual cash)
-
-**Mistake 2: Chasing premium**
-- ❌ "This sketchy stock has 5% premium!"
-- ✅ Quality stocks with 2% premium better
-
-**Mistake 3: Letting position consume entire portfolio**
-- ❌ "$50k account, $50k in one wheel"
-- ✅ 5-10 positions max, 10-20% each
-
-**Mistake 4: Panic selling stock**
-- ❌ "Stock dropped, I'll sell at loss"
-- ✅ Keep stock, sell calls, be patient
-
-**Mistake 5: Not closing winners early**
-- ❌ "I'll squeeze every penny to expiration"
-- ✅ Close at 50% profit, recycle capital
 
 ---
 
-### 12. Your Wheel Checklist
+### 11. Execution Checklist
 
 **Before entering ANY position:**
 
@@ -1410,114 +1390,9 @@ The Wheel is systematic. Follow the system!
 
 ---
 
-## Practical Guidance
-
-**Step-by-step implementation framework:**
-
-### 1. Step 1
-
-**Before entering, evaluate:**
-
-1. **Market environment:**
-   - Trend direction and strength
-   - Volatility level (IV percentile)
-   - Upcoming events or catalysts
-
-2. **Technical analysis:**
-   - Support/resistance levels
-   - Volume and liquidity
-   - Recent price action
-
-3. **Fundamental backdrop:**
-   - Company-specific news
-   - Sector dynamics
-   - Macro environment
-
-### 2. Step 2
-
-**Enter this strategy when:**
-- [Specific market conditions]
-- [Volatility requirements]
-- [Time horizon matches]
-- [Risk tolerance appropriate]
-
-**Avoid this strategy when:**
-- [Unfavorable conditions]
-- [Wrong volatility environment]
-- [Insufficient time or liquidity]
-
-### 3. Step 3
-
-**Calculate maximum position size:**
-
-$$
-\text{Max Contracts} = \frac{\text{Portfolio} \times \text{Risk\%}}{\text{Max Loss Per Contract}}
-$$
-
-**Conservative guidelines:**
-- Risk 1-2% per trade when learning
-- Max 5 uncorrelated positions
-- Never more than 20% of portfolio in options
-
-### 4. Step 4
-
-**Best practices:**
-
-1. **Use limit orders:** Never use market orders
-2. **Check liquidity:** Bid-ask spread < 10% of mid-price
-3. **Time entry:** Avoid first/last 30 minutes of trading day
-4. **Single order:** Enter as complete strategy, don't leg in
-
-### 5. Step 5
-
-**Active management rules:**
-
-**Profit targets:**
-- Take profit at [X]% of max profit
-- Scale out if appropriate
-- Don't be greedy
-
-**Loss limits:**
-- Cut losses at [Y]% of max loss
-- Don't hope for recovery
-- Preserve capital
-
-**Time-based exits:**
-- Monitor theta decay
-- Exit if [time-based trigger]
-
-### 6. Step 6
-
-**When to adjust:**
-- Position threatened
-- Market environment changes  
-- New information emerges
-
-**How to adjust:**
-- [Adjustment technique 1]
-- [Adjustment technique 2]
-- [When to take loss instead]
-
-### 7. Step 7
-
-Track every trade:
-- Entry/exit dates and prices
-- Rationale for trade
-- Market conditions (IV, trend, etc.)
-- P&L and lessons learned
-
-### 8. Common Execution Mistakes to Avoid
-
-1. **Entering at wrong volatility level**
-2. **Ignoring liquidity**
-3. **Over-sizing positions**
-4. **Failing to set exit rules upfront**
-5. **Emotional decision-making**
-
-
 ## Common Mistakes
 
-### 1. Running Wheel on Low-Quality Stocks
+### 1. Low-Quality Underlyings
 
 **The mistake:**
 
@@ -1541,7 +1416,7 @@ Track every trade:
 - Check fundamentals before starting
 - Avoid meme stocks, biotech, sketchy companies
 
-### 2. Using Too Much Capital Per Position
+### 2. Capital Overuse
 
 **The mistake:**
 
@@ -1557,7 +1432,7 @@ Track every trade:
 - Keep 10-20% cash buffer
 - Diversify sectors
 
-### 3. Not Taking Assignment
+### 3. Assignment Avoidance
 
 **The mistake:**
 
@@ -1573,7 +1448,7 @@ Track every trade:
 - Don't fear it
 - Embrace both phases (CSP and CC)
 
-### 4. Selling ATM/ITM for Premium
+### 4. Aggressive Strikes
 
 **The mistake:**
 
@@ -1589,7 +1464,7 @@ Track every trade:
 - Accept lower premium
 - Avoid immediate assignment
 
-### 5. Chasing High IV Without Understanding Why
+### 5. IV Misinterpretation
 
 **The mistake:**
 
@@ -1605,7 +1480,7 @@ Track every trade:
 - Avoid elevated IV from fundamental problems
 - Stick to quality companies
 
-### 6. Not Managing Winners
+### 6. Winner Neglect
 
 **The mistake:**
 
@@ -1621,7 +1496,7 @@ Track every trade:
 - Redeploy capital
 - Compound wins faster
 
-### 7. Revenge Trading After Assignment
+### 7. Emotional Recovery
 
 **The mistake:**
 
@@ -1658,7 +1533,7 @@ Track every trade:
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Setup:**
 
@@ -1858,7 +1733,7 @@ $$
 - Not wiped out by single event
 - Sleep better at night
 
-### 2. Stop Loss? (Controversial for Wheel)
+### 2. Stop Loss? 
 
 **The debate:**
 

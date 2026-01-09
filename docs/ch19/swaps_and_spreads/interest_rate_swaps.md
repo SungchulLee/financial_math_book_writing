@@ -306,7 +306,7 @@ Can unwind swap by:
 
 **Beyond the mechanics, understanding the economic rationale:**
 
-### 1. Asset-Liability Mismatch Hedging
+### 1. ALM Hedging
 
 **The classic use case:**
 
@@ -355,7 +355,7 @@ Much better than -$15M!
 - Locked in spread regardless of SOFR
 - **Hedged interest rate risk**
 
-### 2. Comparative Advantage and Arbitrage
+### 2. Comparative Advantage
 
 **Classic swap arbitrage:**
 
@@ -601,7 +601,7 @@ $$
 
 **Swaps have risk characteristics similar to bonds:**
 
-### 1. Delta (Interest Rate Sensitivity)
+### 1. Delta
 
 **Definition:**
 
@@ -852,7 +852,7 @@ Interest rate changes directly impact swap value.
 
 **Swap timing depends on purpose:**
 
-### 1. Hedging Applications (Timing Less Critical)
+### 1. Hedging Applications
 
 **For hedgers:**
 
@@ -875,7 +875,7 @@ $$
 - Basis risk from delay
 - **Immediate hedging best practice**
 
-### 2. Speculative Applications (Timing Critical)
+### 2. Speculative Applications
 
 **For directional traders:**
 
@@ -913,7 +913,7 @@ $$
 - Rates fell 400+ bps
 - **Highly profitable**
 
-### 3. Curve Trades (Shape-Dependent)
+### 3. Curve Trades
 
 **Steepener:**
 
@@ -943,7 +943,7 @@ $$
 
 ## Maximum Profit and Loss
 
-### 1. Maximum Profit (2008 Crisis Receive Fixed)
+### 1. 2008 Crisis Receive Fixed
 
 **Setup:**
 
@@ -1010,7 +1010,7 @@ $$
 7. ✅ Held through volatility
 8. **Career-making trade**
 
-### 2. Maximum Loss (2022 Receive Fixed Disaster)
+### 2. 2022 Receive Fixed Disaster
 
 **Setup:**
 
@@ -1324,9 +1324,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes
 
-### 1. Mistake #1
+### 1. Ignoring Convexity
 
 **The error:**
 
@@ -1357,7 +1357,7 @@ $$
 - Don't rely on linear duration
 - **Include convexity**
 
-### 2. Mistake #2
+### 2. Tenor Mismatch
 
 **The error:**
 
@@ -1379,7 +1379,7 @@ $$
 - 7-year debt → 7-year swap
 - **Precise matching**
 
-### 3. Mistake #3
+### 3. Floating Leg Duration
 
 **The error:**
 
@@ -1401,7 +1401,7 @@ $$
 - $10B position: 0.25 duration still significant
 - **Be precise**
 
-### 4. Mistake #4
+### 4. Swap Spread Blindness
 
 **The error:**
 
@@ -1422,7 +1422,7 @@ $$
 - Current spread: 40 bps
 - **Actually fair value, not expensive**
 
-### 5. Mistake #5
+### 5. Excess Leverage
 
 **The error:**
 
@@ -1447,7 +1447,7 @@ $$
 - Keep cash buffer for margin
 - **Prudent leverage**
 
-### 6. Mistake #6
+### 6. No Exit Discipline
 
 **The error:**
 
@@ -1462,7 +1462,7 @@ $$
 - Or time-based exit (e.g., 6 months)
 - **Disciplined exits**
 
-### 7. Mistake #7
+### 7. Counterparty Risk
 
 **The error:**
 
@@ -1484,7 +1484,7 @@ $$
 - Or use cleared swaps (central counterparty)
 - **Credit risk management**
 
-### 8. Mistake #8
+### 8. Notional Confusion
 
 **The error:**
 
@@ -1499,7 +1499,7 @@ $$
 - Capital needed: Margin (small %)
 - **Leverage instrument**
 
-### 9. Mistake #9
+### 9. Wrong Swap Direction
 
 **The error:**
 
@@ -1514,7 +1514,7 @@ $$
 - Always verify direction
 - **Critical to get right**
 
-### 10. Mistake #10
+### 10. Day Count Errors
 
 **The error:**
 

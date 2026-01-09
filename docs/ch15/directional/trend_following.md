@@ -52,13 +52,13 @@ $$
 
 **Figure 2:** Long put payoff diagram showing limited downside risk (premium paid) and substantial upside potential for trend-following bearish positions.
 
-### 1. Trend Following vs. Buy-and-Hold
+### 1. Trend vs Buy-and-Hold
 
 **Comparison: AAPL uptrend over 60 days**
 
 **Before implementing trend-following option strategies, understand the philosophy:**
 
-### 2. The Trend Following Philosophy
+### 2. Trend Philosophy
 
 **Core principle:** Don't predict, react. Let the market tell you what's happening, then align with it.
 
@@ -76,7 +76,7 @@ $$
 
 - **Pyramiding:** Add to winners, not losers
 
-### 3. Why Options for Trend Following?
+### 3. Why Use Options?
 
 **Traditional trend following uses futures or stocks, but options offer unique advantages:**
 
@@ -190,7 +190,7 @@ Where $\alpha > 0$ indicates **momentum autocorrelation**.
 
 - **Market compensates those willing to ride volatility**
 
-### 3. Options as Trend-Following Derivatives
+### 3. Options for Trend-Following
 
 **An option position in a trend is economically equivalent to:**
 
@@ -311,7 +311,7 @@ $$
 
 ## Basic Trend Following Strategies
 
-### 1. Strategy 1
+### 1. Moving Average Trend
 
 **Setup:**
 
@@ -355,7 +355,7 @@ $$
 
 - **Exit:** Price breaks back through MA, or 50% profit, or -50% loss
 
-### 2. Strategy 2
+### 2. Breakout Momentum
 
 **Setup:**
 
@@ -401,7 +401,7 @@ $$
 
 - **Exit:** Next resistance level, or price back below breakout level
 
-### 3. Strategy 3
+### 3. Pullback Continuation
 
 **Setup:**
 
@@ -447,7 +447,7 @@ $$
 
 - **Exit:** New high achieved, or MA broken
 
-### 4. Strategy 4
+### 4. Strong Momentum Trend
 
 **Setup:**
 
@@ -725,7 +725,7 @@ TSLA breakout:
 
 ## Trend Identification Tools
 
-### 1. Moving Average Systems
+### 1. Moving Average
 
 **Single MA:**
 
@@ -767,7 +767,7 @@ $$
 
 - 50/200: Conservative (golden cross/death cross)
 
-### 2. ADX (Average Directional Index)
+### 2. ADX
 
 **Formula:**
 
@@ -801,7 +801,7 @@ Example:
 
 - Position size = 2% × (35/25) = 2.8%
 
-### 3. MACD (Moving Average Convergence Divergence)
+### 3. MACD
 
 **Formula:**
 
@@ -833,7 +833,7 @@ $$
 
 - Price makes new low, MACD doesn't: Bullish divergence (trend reversal possible)
 
-### 4. RSI (Relative Strength Index)
+### 4. RSI
 
 **Formula:**
 
@@ -980,9 +980,9 @@ $$
 
 ---
 
-## Real-World Trend Following Examples
+## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Duration Cut via Futures
 
 **Setup:**
 
@@ -1286,7 +1286,7 @@ $$
 
 ---
 
-## Strike Selection for Trend Following
+## Strike Selection 
 
 ### 1. ITM (In-the-Money)
 
@@ -1448,7 +1448,7 @@ Stock at $100, breakout setup:
 
 - Often expires worthless
 
-### 4. Strike Selection Decision Framework
+### 4. Strike Selection Framework
 
 **Based on trend strength (ADX):**
 
@@ -1481,7 +1481,7 @@ $$
 
 ---
 
-## Time Selection for Trend Following
+## Time Selection 
 
 ### 1. Short-term (< 30 DTE)
 
@@ -1717,7 +1717,7 @@ $$
 
 **If ANY checkbox not checked → DON'T TRADE!**
 
-### 2. Exit Rules (Must Have All Three Types)
+### 2. Exit Rules 
 
 **Type 1: Stop Loss Exits (Prevent Disaster)**
 

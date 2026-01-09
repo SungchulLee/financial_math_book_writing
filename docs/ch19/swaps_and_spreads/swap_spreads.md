@@ -175,7 +175,7 @@ $$
 
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### 1. The Credit Premium Component
+### 1. Credit Premium Component
 
 **The deep insight:**
 
@@ -219,7 +219,7 @@ When bank credit deteriorates:
 3. Supply/demand imbalances
 4. Regulatory capital costs
 
-### 2. The Regulatory Arbitrage
+### 2. Regulatory Arbitrage
 
 **Basel III impact (post-2008):**
 
@@ -269,7 +269,7 @@ $$
 
 **This was an arbitrage opportunity (or a structural shift?)**
 
-### 3. The Convexity Hedging Effect
+### 3. Convexity Hedging Effect
 
 **Mortgage-backed securities (MBS) create swap demand:**
 
@@ -305,7 +305,7 @@ When rates rise → Prepayments slow → MBS duration extends
 - MBS convexity hedging explodes
 - **10Y swap spread: +25 → +5 bps (tightened 20 bps)**
 
-### 4. Supply and Demand Dynamics
+### 4. Supply and Demand
 
 **Treasury supply:**
 
@@ -710,7 +710,7 @@ $$
 
 ## Step-by-Step Setup
 
-### 1. Phase 1
+### 1. Spread Analysis
 
 **1. Calculate Spreads Across Curve:**
 
@@ -805,7 +805,7 @@ plt.grid(True, alpha=0.3)
 plt.show()
 ```
 
-### 1. Phase 2
+### 2. Trade Selection
 
 **Decision matrix:**
 
@@ -870,7 +870,7 @@ print(f"Trade: {trade['direction']}")
 # Output
 ```
 
-### 1. Phase 3
+### 3. DV01 Neutral Setup
 
 **1. Calculate DV01s:**
 
@@ -929,7 +929,7 @@ trade_ticket = {
 print(pd.DataFrame([trade_ticket]).T)
 ```
 
-### 1. Phase 4
+### 4. P&L & Risk
 
 **1. Daily P&L Tracking:**
 
@@ -1011,7 +1011,7 @@ for alert in alerts:
     print(alert)
 ```
 
-### 1. Phase 5
+### 5. Exit Rules
 
 **1. Profit Target:**
 
@@ -1055,7 +1055,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 ## Real-World Examples
 
-### 1. Pension Duration Cut via Futures
+### 1. Crisis Spread Blowout
 
 **Background:**
 
@@ -1100,7 +1100,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 **Lesson: Never short spreads during financial crisis**
 
-### 2. Transition Risk Hedge
+### 2. Broken Mean Reversion
 
 **Background:**
 
@@ -1163,7 +1163,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 **Lesson: Structural changes can override historical mean reversion**
 
-### 3. Portable Alpha with Futures
+### 3. MBS Hedging Win
 
 **Background:**
 
@@ -1212,7 +1212,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 **Profit on $2M collateral = 675% return!**
 
-### 4. Tactical Duration Extension
+### 4. Short-End Reversion
 
 **Background:**
 
@@ -1261,7 +1261,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 4. Patient holding through Fed hikes
 5. **Disciplined exit at target**
 
-### 5. Duration Hedge Failure in Crisis
+### 5. TED Spread Crisis
 
 **Background:**
 

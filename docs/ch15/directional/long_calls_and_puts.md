@@ -1007,7 +1007,7 @@ $$
 
 **Step-by-step implementation framework:**
 
-### 1. Step 1
+### 1. Market Assessment
 
 **Before entering, evaluate:**
 
@@ -1029,7 +1029,7 @@ $$
       - Current position in cycle
       - Macro backdrop (Fed, geopolitics)
 
-### 2. Step 2
+### 2. Entry Conditions
 
 **Enter long calls when:**
 
@@ -1058,7 +1058,7 @@ $$
 - More than 3 months needed for thesis
 - Unclear conviction
 
-### 3. Step 3
+### 3. Position Sizing
 
 **Calculate maximum position size:**
 
@@ -1081,7 +1081,7 @@ $$
 
 - **Max size: 2 contracts**
 
-### 4. Step 4
+### 4. Contract Selection
 
 **Best practices:**
 
@@ -1110,7 +1110,7 @@ $$
       - Avoid first/last 30 minutes of day
       - Check option volume > 100 daily
 
-### 5. Step 5
+### 5. Trade Management
 
 **Active management rules:**
 
@@ -1134,7 +1134,7 @@ $$
 - Exit if 2 weeks before expiration with no move
 - Don't hold through expiration unless deep ITM
 
-### 6. Step 6
+### 6. Adjustments & Rolls
 
 **When to adjust:**
 
@@ -1158,7 +1158,7 @@ $$
 - IV spiked making rolls expensive
 - Less than 30 DTE remaining
 
-### 7. Step 7
+### 7. Exit Discipline
 
 Track every trade:
 
@@ -1168,17 +1168,6 @@ Track every trade:
 - Market conditions: IV rank, stock technicals
 - P&L and what you learned
 - Mistakes made (for improvement)
-
-### 8. Common Execution Mistakes
-
-1. **Not checking IV before buying** (pay too much)
-2. **Buying options too close to expiration** (theta kills)
-3. **Ignoring liquidity** (wide spreads eat profits)
-4. **Over-sizing positions** (one loss devastates)
-5. **No stop loss discipline** (holding losers to zero)
-6. **Buying day before earnings** (IV crush destroys)
-7. **Trading without catalyst** (random directional bets lose)
-8. **Fighting the trend** (catching falling knives)
 
 ---
 

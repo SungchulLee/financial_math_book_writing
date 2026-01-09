@@ -40,7 +40,7 @@ $$
 
 ---
 
-## What Are Yield, Duration, and Convexity?
+## Yield, Duration, and Convexity
 
 **Before trading bonds, understand the fundamental metrics:**
 
@@ -254,7 +254,7 @@ $$
 
 **Beyond the mathematics, understanding the economics:**
 
-### 1. Duration as Weighted Average Maturity
+### 1. Duration as WAM
 
 **The deep insight:**
 
@@ -298,7 +298,7 @@ $$
 - Significantly less than maturity
 - **High coupons = lower duration**
 
-### 2. Duration as Interest Rate Elasticity
+### 2. Duration as Elasticity
 
 **Economic parallel:**
 
@@ -393,7 +393,7 @@ $$
 - Difference: 0.24%
 - **Convexity bonus!**
 
-### 4. Term Structure and Economic Expectations
+### 4. Term Structure and Econ
 
 **Duration changes with yield curve:**
 
@@ -779,7 +779,7 @@ $$
 
 **Different duration strategies for different views:**
 
-### 1. Long Duration (Bullish on Bonds)
+### 1. Long Duration 
 
 **When to use:**
 
@@ -823,7 +823,7 @@ $$
 - 2020 COVID: Long bonds +21%
 - **Crisis hedge**
 
-### 2. Short Duration (Bearish on Bonds)
+### 2. Short Duration 
 
 **When to use:**
 
@@ -867,7 +867,7 @@ $$
 - Short duration: -5%
 - **Duration protected**
 
-### 3. Barbell Strategy (High Convexity)
+### 3. Barbell Strategy 
 
 **Structure:**
 
@@ -920,7 +920,7 @@ $$
 - Sacrifice ~10-20 bps yield
 - **Convexity premium paid**
 
-### 4. Bullet Strategy (Maximum Yield)
+### 4. Bullet Strategy 
 
 **Structure:**
 
@@ -947,7 +947,7 @@ $$
 - Underperforms in volatile markets
 - **Less optionality**
 
-### 5. Ladder Strategy (Cash Flow Matching)
+### 5. Ladder Strategy 
 
 **Structure:**
 
@@ -1161,7 +1161,7 @@ $$
 
 ## Maximum Profit and Loss
 
-### 1. Long Duration Trade (2008 Crisis)
+### 1. 2008 Crisis
 
 **Setup:**
 
@@ -1248,7 +1248,7 @@ $$
 
 **Devastating for buy-and-hold**
 
-### 2. Duration-Neutral Barbell (Volatility Play)
+### 2. Duration-Neutral Barbell
 
 **Setup:**
 
@@ -1307,7 +1307,7 @@ $$
 
 ---
 
-## When to Use Duration/Convexity Analysis
+## When to Use Duration/Convexity
 
 ### 1. Ideal Applications
 
@@ -1433,7 +1433,7 @@ $$
 
 ---
 
-## When NOT to Use Duration/Convexity
+## When Duration/Convexity Fails
 
 ### 1. Limitations and Failures
 
@@ -1548,7 +1548,7 @@ $$
 
 ---
 
-## Position Sizing and Risk Management
+## Sizing and Risk
 
 ### 1. The Golden Rule
 
@@ -1596,7 +1596,7 @@ $$
 
 **2.94× leverage, more prudent**
 
-### 2. Portfolio Duration Management
+### 2. Duration Management
 
 **Target duration approach:**
 
@@ -1804,9 +1804,9 @@ $$
 
 ---
 
-## Common Mistakes Beginners Make
+## Common Mistakes 
 
-### 1. Mistake #1
+### 1. Ignoring Convexity
 
 **The error:**
 
@@ -1841,7 +1841,7 @@ $$
 - Essential for accuracy
 - **Both terms matter**
 
-### 2. Mistake #2
+### 2. Wrong Duration for Calls
 
 **The error:**
 
@@ -1880,7 +1880,7 @@ $$
 - Account for call option
 - **OAS analysis**
 
-### 3. Mistake #3
+### 3. Parallel Shift Assumption
 
 **The error:**
 
@@ -1928,7 +1928,7 @@ $$
 - Model non-parallel shifts
 - **Curve risk explicit**
 
-### 4. Mistake #4
+### 4. Ignoring Pull-to-Par
 
 **The error:**
 
@@ -1957,7 +1957,7 @@ $$
 - Don't rely on current yield alone
 - **Total return focus**
 
-### 5. Mistake #5
+### 5. Leveraging Low Duration
 
 **The error:**
 
@@ -1983,7 +1983,7 @@ $$
 - Leverage conservatively
 - **Holistic risk view**
 
-### 6. Mistake #6
+### 6. Negative Convexity Risk
 
 **The error:**
 
@@ -2011,7 +2011,7 @@ $$
 - Avoid in volatile markets
 - **Convexity sign matters**
 
-### 7. Mistake #7
+### 7. Wrong Duration Measure
 
 **The error:**
 
@@ -2039,7 +2039,7 @@ $$
 - Small but compounds
 - **Use correct measure**
 
-### 8. Mistake #8
+### 8. Frequency Mismatch
 
 **The error:**
 
@@ -2067,7 +2067,7 @@ $$
 - Semi-annual most common in US
 - **Consistency essential**
 
-### 9. Mistake #9
+### 9. Duration Drift
 
 **The error:**
 
@@ -2090,7 +2090,7 @@ $$
 - Rebalance to target
 - **Active management**
 
-### 10. Mistake #10
+### 10. Ignoring Spread Duration
 
 **The error:**
 
