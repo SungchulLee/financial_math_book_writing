@@ -647,8 +647,8 @@ nav:
 
       - 22 Structured Product:
           - 22.1 Embedded Options:
-              - Payoff Engineering: ch22/mmbedded_options/payoff_engineering.md
-              - Path Dependence Basics: ch22/mmbedded_options/path_dependence_basics.md
+              - Payoff Engineering: ch22/embedded_options/payoff_engineering.md
+              - Path Dependence Basics: ch22/embedded_options/path_dependence_basics.md
           - 22.2 Equity Structures:
               - Covered Yield Notes: ch22/equity_structures/covered_yield_notes.md
               - Autocallables: ch22/equity_structures/autocallables.md
