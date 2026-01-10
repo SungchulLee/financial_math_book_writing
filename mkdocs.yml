@@ -480,8 +480,6 @@ nav:
               - Protective Puts & Collars: ch15/hedging/protective_put_and_collar.md
           - 15.3 Buy Low Sell High:
               - Covered Calls & CSPs: ch15/buy_low_sell_high/covered_calls_and_cash_secured_puts.md
-              #- Covered Calls: ch15/buy_low_sell_high/covered_calls.md
-              #- Cash Secured Puts: ch15/buy_low_sell_high/cash_secured_puts.md
               - Wheel Strategy: ch15/buy_low_sell_high/wheel_strategy.md
           - 15.4 Spreads:
               - Spreads: ch15/spreads/spreads.md
