@@ -631,16 +631,16 @@ nav:
       - 21 FX:
           - 21.1 FX Foundations:
               - Spot, Forwards, and Swaps: ch21/fx_foundations/spot_forwards_swaps.md
-              - Interest Rate Parity: ch21/fx_strategies/interest_rate_parity.md
+              - Interest Rate Parity: ch21/fx_foundations/interest_rate_parity.md
           - 21.2 Carry and Funding:
               - FX Carry Trades: ch21/carry_and_funding/fx_carry_trades.md
               - Funding and Safe Haven Dynamics: ch21/carry_and_funding/funding_safe_haven.md
           - 21.3 Macro:
-              - Central Bank Divergence: ch21/macro/central_bank_divergence.md
-              - Macro Regime Trades: ch21/macro/macro_regime_trades.md
+              - Central Bank Divergence: ch21/macro_trading_strategies/central_bank_divergence.md
+              - Macro Regime Trades: ch21/macro_trading_strategies/macro_regime_trades.md
           - 21.4 Relative Value:
-              - Value and PPP Reversion: ch21/relative_value/value_ppp_reversion.md
-              - Cross Rates and Triangular Arbitrage: ch21/relative_value/cross_rates_triangular_arbitrage.md
+              - Value and PPP Reversion: ch21/relative_value_strategies/value_ppp_reversion.md
+              - Cross Rates and Triangular Arbitrage: ch21/relative_value_strategies/cross_rates_triangular_arbitrage.md
           - 21.5 Hedging:
               - FX Hedging Programs: ch21/hedging/fx_hedging_programs.md
               - Overlay Strategies: ch21/hedging/overlay_strategies.md
