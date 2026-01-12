@@ -1,4 +1,4 @@
-# Quantitative Finance with Python
+# Financial Math with Python
 
 Welcome! This book is written in Markdown and published using MkDocs with the Material theme.
 
