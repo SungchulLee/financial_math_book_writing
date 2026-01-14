@@ -1,10 +1,12 @@
 # Dupire Equation as an Inverse Problem
 
+
 Local volatility models provide an *exact* fit (in principle) to a continuum of vanilla option prices. This exactness comes at a cost: constructing the local volatility surface is a **highly ill-posed inverse problem** because it requires differentiating noisy market data.
 
 ---
 
-## 1. The local volatility model
+## The local volatility model
+
 
 In the (risk-neutral) local volatility model, the underlying \(S_t\) follows
 
@@ -20,7 +22,8 @@ Given \(\sigma_{\text{loc}}\), the model implies a unique surface of European op
 
 ---
 
-## 2. Dupire’s forward equation
+## Dupire’s forward equation
+
 
 Let \(C(K,T)\) denote the time-0 price of a European call with strike \(K\) and maturity \(T\).
 Under standard smoothness assumptions, Dupire derived a forward PDE relating \(C\) and \(\sigma_{\text{loc}}\).
@@ -41,7 +44,8 @@ Solving this equation *forward* is the pricing problem.
 
 ---
 
-## 3. Inverting Dupire: extracting local volatility
+## Inverting Dupire: extracting local volatility
+
 
 Rearranging the forward equation yields an expression for local variance
 
@@ -69,7 +73,8 @@ is an unstable inversion involving differentiation and division by curvature.
 
 ---
 
-## 4. Relationship to implied volatility
+## Relationship to implied volatility
+
 
 Market data are often given as implied vol \(\sigma_{\text{impl}}(K,T)\), not prices.
 One may:
@@ -82,7 +87,8 @@ Alternatively, Dupire can be written directly in terms of implied vol or total v
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Dupire provides a *theoretical* route from a smooth call price surface to \(\sigma_{\text{loc}}(T,K)\).
 - Calibration is an inverse problem because it requires **differentiating noisy, discrete data**.
@@ -91,6 +97,7 @@ Alternatively, Dupire can be written directly in terms of implied vol or total v
 ---
 
 ## Further reading
+
 
 - Dupire (1994), “Pricing with a Smile”.
 - Gatheral, *The Volatility Surface* (local vol and implied vol geometry).

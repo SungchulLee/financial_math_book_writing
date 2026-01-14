@@ -1,10 +1,12 @@
 # Default Risk and Recovery
 
+
 **Default risk and recovery** are the fundamental building blocks of credit analysis, measuring the probability that a borrower will fail to make promised payments (default) and the percentage of principal that investors can expect to recover through bankruptcy proceedings, asset liquidation, or restructuring—with the product of default probability and loss-given-default (1 minus recovery rate) determining the expected loss that drives credit spreads and bond pricing.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -43,9 +45,11 @@ $$
 
 ## What Are Default Risk and Recovery?
 
+
 **Before investing in credit, understand the fundamentals:**
 
-### Core Concepts
+### 1. Core Concepts
+
 
 **Default Risk:**
 
@@ -138,7 +142,8 @@ $$
 
 **Decision: BUY (adequate compensation for risk)**
 
-### Default Probability Estimation Methods
+### 2. Default Probability Estimation Methods
+
 
 **1. Historical Default Rates (Actuarial):**
 
@@ -219,7 +224,8 @@ $$
 **Pros:** Market-based, liquid
 **Cons:** CDS market not available for all issuers
 
-### Recovery Rate Determinants
+### 3. Recovery Rate Determinants
+
 
 **Key factors affecting recovery:**
 
@@ -286,9 +292,11 @@ $$
 
 ## Economic Interpretation: Why Defaults and Recoveries Matter
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### The Default Cycle
+### 1. The Default Cycle
+
 
 **The deep insight:**
 
@@ -329,7 +337,8 @@ $$
 - Recession could push to 5-8%
 - **Use 4-5% PD for conservative analysis, not 1%**
 
-### Recovery Rate Compression During Crises
+### 2. Recovery Rate Compression During Crises
+
 
 **The cruel reality:**
 
@@ -380,7 +389,8 @@ Scenario-weighted:
 
 **27% higher than simple model!**
 
-### The Leverage Ratchet
+### 3. The Leverage Ratchet
+
 
 **How leverage drives default:**
 
@@ -438,6 +448,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Default:**
 
@@ -513,7 +524,9 @@ $$
 
 ## Mathematical Foundation
 
-### Expected Loss Calculation
+
+### 1. Expected Loss Calculation
+
 
 **Basic formula:**
 
@@ -537,7 +550,8 @@ $$
 EL_{\text{annual}} = \frac{4.8\%}{5} = 0.96\% \text{ per year}
 $$
 
-### Credit Spread Decomposition
+### 2. Credit Spread Decomposition
+
 
 **Theoretical spread:**
 
@@ -565,7 +579,8 @@ $$
 
 **Observed spread: 280 bps (close!)**
 
-### Distance to Default (Merton Model)
+### 3. Distance to Default (Merton Model)
+
 
 **Asset value dynamics:**
 
@@ -618,7 +633,8 @@ $$
 
 **Interpretation: 1.7% one-year default probability**
 
-### Altman Z-Score (Accounting-Based)
+### 4. Altman Z-Score (Accounting-Based)
+
 
 **Formula:**
 
@@ -661,7 +677,9 @@ $$
 
 ## Step-by-Step Analysis
 
-### Phase 1: Gather Data
+
+### 1. Phase 1: Gather Data
+
 
 **1. Company Financials:**
 
@@ -727,7 +745,8 @@ print(f"1-Year PD: {pd_1yr}%")
 # 1-Year PD: 1.00%
 ```
 
-### Phase 2: Calculate Default Probability
+### 2. Phase 2: Calculate Default Probability
+
 
 **1. Historical Method:**
 
@@ -788,7 +807,8 @@ Implied annual PD: 4.17%
 
 **Note: Market-implied is much higher (includes risk premium)**
 
-### Phase 3: Estimate Recovery Rate
+### 3. Phase 3: Estimate Recovery Rate
+
 
 **1. Seniority-Based:**
 
@@ -835,7 +855,8 @@ Base recovery (Senior Unsecured): 42%
 Industry-adjusted recovery: 38%
 ```
 
-### Phase 4: Calculate Expected Loss
+### 4. Phase 4: Calculate Expected Loss
+
 
 **1. Expected Loss:**
 
@@ -895,7 +916,8 @@ Risk Premium / Expected Loss: 1.68x
 - Adequate but not exceptional
 - **HOLD or small position** (marginal opportunity)
 
-### Phase 5: Scenario Analysis
+### 5. Phase 5: Scenario Analysis
+
 
 **1. Stress Testing:**
 
@@ -961,7 +983,9 @@ Stress adjustment: +44 bps
 
 ## Real-World Examples
 
-### Example 1: Investment Grade Default - General Electric 2018 (Near-Miss)
+
+### 1. Example 1: Investment Grade Default - General Electric 2018 (Near-Miss)
+
 
 **Background:**
 
@@ -1048,7 +1072,8 @@ $$
 - Spread was insufficient (0.60x risk premium too low)
 - **Avoid deteriorating IG names, even if historically strong**
 
-### Example 2: High-Yield Default - J.C. Penney 2020 (Total Loss)
+### 2. Example 2: High-Yield Default - J.C. Penney 2020 (Total Loss)
+
 
 **Background:**
 
@@ -1164,7 +1189,8 @@ $$
 - Market pricing was accurate (28% yield implied huge loss)
 - **Avoid unsecured distressed retail** (low tangible asset value)
 
-### Example 3: Spectacular Recovery - Hertz 2020-2021 (Equity Windfall)
+### 3. Example 3: Spectacular Recovery - Hertz 2020-2021 (Equity Windfall)
+
 
 **Background:**
 
@@ -1252,7 +1278,8 @@ $$
 - Market was wrong about liquidation (company reorganized)
 - **High risk but occasionally spectacular reward**
 
-### Example 4: Subordinated Debt Wipeout - Lehman Brothers 2008
+### 4. Example 4: Subordinated Debt Wipeout - Lehman Brothers 2008
+
 
 **Background:**
 
@@ -1327,7 +1354,8 @@ $$
 - Priority matters: Senior unsecured got 86%, subordinated got 18%
 - **Never buy subordinated debt of financial institutions** (wipeout risk)
 
-### Example 5: Secured Creditor Victory - Neiman Marcus 2020 (High Recovery)
+### 5. Example 5: Secured Creditor Victory - Neiman Marcus 2020 (High Recovery)
+
 
 **Background:**
 
@@ -1411,7 +1439,9 @@ $$
 
 ## Best Case Scenario
 
-### Perfect Default Risk Analysis
+
+### 1. Perfect Default Risk Analysis
+
 
 **Setup for avoiding losses:**
 
@@ -1423,7 +1453,8 @@ $$
 4. **Adequate risk premium** (2-3x expected loss)
 5. **Diversification** (no single name >2% of portfolio)
 
-### Best Case Example: High-Yield Portfolio 2010-2020 (No Defaults)
+### 2. Best Case Example: High-Yield Portfolio 2010-2020 (No Defaults)
+
 
 **Background:**
 
@@ -1563,7 +1594,9 @@ $$
 
 ## Worst Case Scenario
 
-### The Default and Recovery Disaster
+
+### 1. The Default and Recovery Disaster
+
 
 **Worst possible conditions:**
 
@@ -1573,7 +1606,8 @@ $$
 4. **Subordinated debt** (low recovery priority)
 5. **No diversification** (sector concentration)
 
-### Worst Case Example: Energy High-Yield Fund 2014-2016 (Catastrophic)
+### 2. Worst Case Example: Energy High-Yield Fund 2014-2016 (Catastrophic)
+
 
 **Background:**
 
@@ -1745,7 +1779,9 @@ $$
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Default and recovery analysis estimates the probability of non-payment and potential recovery, determining expected loss that drives credit spreads:**
 
@@ -1758,7 +1794,8 @@ $$
 - Expected loss must be less than spread for adequate compensation
 - Risk premium = Spread - Expected Loss (target 1.5-2.5x EL)
 
-### The Key Metrics
+### 2. The Key Metrics
+
 
 **Default probability (annual):**
 
@@ -1783,7 +1820,8 @@ $$
 \text{Spread Required} = \frac{\text{PD} \times \text{LGD}}{1 - \text{PD}} + \text{Risk Premium}
 $$
 
-### Risk Management
+### 3. Risk Management
+
 
 **Essential rules:**
 
@@ -1796,7 +1834,8 @@ $$
 - Covenant monitoring: Watch interest coverage <3x (danger zone)
 - Exit discipline: Sell if spread widens >2x initial (fundamental deterioration)
 
-### Maximum Profit/Loss
+### 4. Maximum Profit/Loss
+
 
 **Best case:**
 
@@ -1820,7 +1859,8 @@ $$
 - Spread: 3-4% (BB/B portfolio)
 - **Net return: 1.2-3.4% above Treasuries after losses**
 
-### When to Invest
+### 5. When to Invest
+
 
 **Invest in credit when:**
 
@@ -1838,7 +1878,8 @@ $$
 - Forced concentration (limited issuers, sector-specific)
 - Only subordinated available (15-30% recovery)
 
-### Common Mistakes
+### 6. Common Mistakes
+
 
 1. Using average recovery rates (should use recession-scenario recoveries)
 2. Sector concentration (>30% in one industry)
@@ -1849,7 +1890,8 @@ $$
 7. Late cycle buying (defaults cluster in recessions)
 8. Large position sizes (>5% in single issuer)
 
-### Final Wisdom
+### 7. Final Wisdom
+
 
 > "Default and recovery analysis is the foundation of credit investing—get this wrong and everything else fails. The math is deceptively simple: a BB bond with 7.5% default probability and 40% recovery has 4.5% expected loss over 5 years (0.9% annually). If it pays 350 bps spread, you're getting 260 bps risk premium (2.9x expected loss)—seems attractive! But here's the trap: those are average assumptions. In the actual default (2015-2016 energy crisis, 2020 retail), three things go wrong simultaneously: (1) PD spikes 5-10x (sector defaults cluster), (2) Recovery falls 15-20% (fire sale prices when everyone defaults together), (3) Mark-to-market spreads widen 3-5x (you can't exit without huge losses). That 'safe' 0.9% annual expected loss becomes 8-12% actual loss in two years, wiping out a decade of spread income. The difference between successful credit investors and blown-up funds is conservative assumptions: use recession-scenario default rates (not average), use stressed recoveries (not historical mean), and require 2.0-2.5x risk premium (not 1.0x). Diversify ruthlessly (50+ names, max 2% each, max 15% per sector), avoid subordinated debt entirely (recovers 15% vs 45% for senior), and exit when coverage falls below 3x or spreads double (don't hope for mean reversion). Done right, credit delivers 2-4% excess returns with <1% default losses annually. Done wrong, it delivers -50% to -80% losses in sector crises. The math works only if your assumptions are conservative and stress-tested."
 

@@ -1,10 +1,12 @@
 # Learning-Induced Instability
 
+
 When many agents adapt their strategies using similar learning rules, **learning-induced instability** can arise, amplifying volatility and systemic risk.
 
 ---
 
-## 1. Adaptive strategies
+## Adaptive strategies
+
 
 Learning algorithms:
 - update based on past performance,
@@ -15,7 +17,8 @@ Collective adaptation can destabilize markets.
 
 ---
 
-## 2. Feedback amplification
+## Feedback amplification
+
 
 Learning-induced effects include:
 - crowded trades,
@@ -26,7 +29,8 @@ Small signals can be amplified through learning feedback.
 
 ---
 
-## 3. Examples
+## Examples
+
 
 Examples include:
 - volatility targeting strategies,
@@ -37,7 +41,8 @@ These strategies can synchronize behavior.
 
 ---
 
-## 4. Risk management implications
+## Risk management implications
+
 
 Learning-induced instability implies:
 - non-linear risk amplification,
@@ -48,7 +53,8 @@ Models assuming independent agents are insufficient.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Adaptive learning can destabilize markets.
 - Feedback loops amplify shocks.
@@ -57,6 +63,7 @@ Models assuming independent agents are insufficient.
 ---
 
 ## Further reading
+
 
 - Hommes, heterogeneous agent models.
 - Danielsson et al., endogenous risk.

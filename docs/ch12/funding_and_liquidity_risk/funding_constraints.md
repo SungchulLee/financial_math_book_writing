@@ -1,10 +1,12 @@
 # Funding Constraints
 
+
 **Funding constraints** arise when institutions face limits or costs in raising capital to finance positions. These constraints materially affect pricing, risk management, and trading strategies.
 
 ---
 
-## 1. Nature of funding constraints
+## Nature of funding constraints
+
 
 Funding constraints stem from:
 - limited access to unsecured funding,
@@ -15,7 +17,8 @@ They bind most tightly during market stress.
 
 ---
 
-## 2. Impact on trading strategies
+## Impact on trading strategies
+
 
 When funding is constrained:
 - leveraged positions become costly,
@@ -26,7 +29,8 @@ Funding considerations influence portfolio construction.
 
 ---
 
-## 3. Interaction with derivatives
+## Interaction with derivatives
+
 
 For derivatives:
 - variation margin reduces counterparty risk but increases funding needs,
@@ -37,7 +41,8 @@ These effects motivate funding-adjusted valuation.
 
 ---
 
-## 4. Modeling approaches
+## Modeling approaches
+
 
 Common approaches include:
 - funding spread add-ons,
@@ -48,7 +53,8 @@ No single approach fully captures reality.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Funding constraints limit arbitrage.
 - They are state-dependent and procyclical.
@@ -57,6 +63,7 @@ No single approach fully captures reality.
 ---
 
 ## Further reading
+
 
 - Gârleanu & Pedersen, margin constraints.
 - Brunnermeier & Oehmke, funding liquidity.

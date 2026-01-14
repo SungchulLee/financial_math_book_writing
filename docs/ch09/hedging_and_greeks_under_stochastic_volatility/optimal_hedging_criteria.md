@@ -1,10 +1,12 @@
 # Optimal Hedging Criteria
 
+
 In incomplete markets, hedging strategies depend on the **optimality criterion** chosen. Different criteria lead to different hedges, reflecting trade-offs between risk, cost, and robustness.
 
 ---
 
-## 1. Mean–variance hedging
+## Mean–variance hedging
+
 
 A classical approach minimizes expected squared hedging error:
 
@@ -25,7 +27,8 @@ Cons:
 
 ---
 
-## 2. Utility-based hedging
+## Utility-based hedging
+
 
 Alternatively, one may maximize expected utility:
 
@@ -44,7 +47,8 @@ However, it is often computationally demanding.
 
 ---
 
-## 3. Robust hedging criteria
+## Robust hedging criteria
+
 
 Robust approaches aim to:
 - perform reasonably well across models,
@@ -58,7 +62,8 @@ Examples include:
 
 ---
 
-## 4. Practical considerations
+## Practical considerations
+
 
 In practice, desks choose criteria based on:
 - product type (vanilla vs exotic),
@@ -69,7 +74,8 @@ Often, hybrid or heuristic approaches are used.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Optimal hedging depends on the chosen risk criterion.
 - No single hedging strategy is universally optimal.
@@ -78,6 +84,7 @@ Often, hybrid or heuristic approaches are used.
 ---
 
 ## Further reading
+
 
 - Föllmer & Schweizer, hedging in incomplete markets.
 - Carmona, utility-based pricing and hedging.

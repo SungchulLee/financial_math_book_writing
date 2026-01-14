@@ -1,10 +1,12 @@
 # Overlay Strategies
 
+
 **Overlay strategies** are centralized portfolio management techniques that apply systematic risk management, tactical adjustments, or alpha generation across multiple underlying portfolios without disturbing the base managers, effectively adding a layer of risk control, hedging, or return enhancement on top of existing allocations.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Are Overlays?
 
+
 ### 1. Currency Overlay
+
 
 **Centralized FX management:**
 
@@ -57,6 +61,7 @@
 - Base managers not distracted by currency decisions
 
 ### 2. Tactical Asset Allocation
+
 
 **Active rebalancing overlay:**
 
@@ -92,6 +97,7 @@ Tactical adjustment (overlay view: bullish on equities):
 
 ### 3. Equity Exposure Overlay
 
+
 **Beta management:**
 
 **Definition:** Overlay manager adjusts the portfolio's overall equity exposure using index futures or swaps, overweighting or underweighting equities versus the strategic policy without changing individual stock holdings.
@@ -125,6 +131,7 @@ Tactical adjustment (overlay view: bullish on equities):
 - Executes in hours
 
 ### 4. Duration Overlay
+
 
 **Interest rate risk management:**
 
@@ -160,6 +167,7 @@ Portfolio has three bond managers:
 - Lower transaction costs, faster execution
 
 ### 5. Transition Overlay
+
 
 **Manager changes:**
 
@@ -198,6 +206,7 @@ Portfolio has three bond managers:
 - Can take time to optimize transition (no rush)
 
 ### 6. Portable Alpha
+
 
 **Alpha transport:**
 
@@ -239,6 +248,7 @@ Capital: $100M
 
 ### 7. Passive/Active Overlay
 
+
 **Alpha completion:**
 
 **Definition:** Use passive indexing for core beta exposure, add overlay of active managers for alpha generation, controlling aggregate exposures at overlay level.
@@ -267,6 +277,7 @@ If active managers increase equity exposure beyond policy:
 ---
 
 ## Key Terminology
+
 
 **Notional Exposure:**
 - Dollar amount of market exposure created by derivatives
@@ -308,7 +319,9 @@ If active managers increase equity exposure beyond policy:
 
 ## Overlay Design
 
+
 ### 1. Program Objectives
+
 
 **Define clear goals:**
 
@@ -334,6 +347,7 @@ If active managers increase equity exposure beyond policy:
 - Enhance reporting and risk monitoring
 
 ### 2. Governance Structure
+
 
 **Who does what:**
 
@@ -363,6 +377,7 @@ If active managers increase equity exposure beyond policy:
 - Ensures regulatory compliance (ERISA, RIC, etc.)
 
 ### 3. Authority & Limits
+
 
 **Overlay manager discretion:**
 
@@ -398,6 +413,7 @@ Tactical ranges allowed:
 
 ### 4. Instrument Selection
 
+
 **Choose appropriate derivatives:**
 
 **For equity exposure:**
@@ -425,6 +441,7 @@ Tactical ranges allowed:
 - Cash equitization: Maintain liquidity during transition
 
 ### 5. Benchmark & Evaluation
+
 
 **How to measure success:**
 
@@ -457,7 +474,9 @@ $$
 
 ## Implementation Strategies
 
+
 ### 1. Currency Overlay Program
+
 
 **Centralized FX hedging:**
 
@@ -500,6 +519,7 @@ $$
 Target: > 70% variance reduction
 
 ### 2. Tactical Asset Allocation
+
 
 **Active overlay implementation:**
 
@@ -555,6 +575,7 @@ Target: > 70% variance reduction
 
 ### 3. Completion Overlay
 
+
 **Filling gaps in base manager coverage:**
 
 **Problem:**
@@ -592,6 +613,7 @@ Add completion positions using ETFs/futures:
 - Maintains base managers' focus
 
 ### 4. Dynamic Rebalancing
+
 
 **Automated rebalancing overlay:**
 
@@ -649,6 +671,7 @@ $$
 Typical: 0.25-0.50% annually for diversified portfolio
 
 ### 5. Portable Alpha
+
 
 **Alpha transport implementation:**
 
@@ -708,7 +731,9 @@ Year 1:
 
 ## Common Mistakes
 
+
 ### 1. Over-Complication
+
 
 **Too many overlays:**
 
@@ -724,6 +749,7 @@ Year 1:
 
 ### 2. Ignoring Base Managers
 
+
 **Communication breakdown:**
 
 - **Mistake:** Overlay manager doesn't coordinate with base managers
@@ -738,6 +764,7 @@ Year 1:
 - **Result: Over-hedged by 5%, unintended bond overweight**
 
 ### 3. Chasing Performance
+
 
 **Tactical whipsaw:**
 
@@ -758,6 +785,7 @@ Month 3: Bullish again, buy futures (market falls -2%)
 - **Total: -9.3% vs. staying at policy: -1% (simple average)**
 
 ### 4. Leverage Creep
+
 
 **Unintentional leverage:**
 
@@ -789,6 +817,7 @@ Month 3: Bullish again, buy futures (market falls -2%)
 
 ### 5. Ignoring Costs
 
+
 **Death by a thousand cuts:**
 
 - **Mistake:** Frequent small adjustments, each with bid-ask spread and slippage
@@ -813,6 +842,7 @@ Monthly rebalancing (better):
 **Savings: $5.89M annually by trading less frequently**
 
 ### 6. No Stop-Loss Discipline
+
 
 **Letting losses run:**
 
@@ -842,7 +872,9 @@ Monthly rebalancing (better):
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Efficient currency overlay:**
 
@@ -880,6 +912,7 @@ With overlay:
 - **Successful risk management without sacrificing equity alpha**
 
 ### 2. Worst Case: Failure
+
 
 **Over-leveraged tactical overlay:**
 
@@ -927,7 +960,9 @@ With overlay:
 
 ## Risk Management Rules
 
+
 ### 1. Position Limits
+
 
 **Hard limits on exposure:**
 
@@ -948,6 +983,7 @@ $$
 
 ### 2. Stop-Loss Rules
 
+
 **Cut losses quickly:**
 
 **Per position:**
@@ -963,6 +999,7 @@ $$
 
 ### 3. Tracking Error Budget
 
+
 **Control active risk:**
 
 **For passive overlays (rebalancing, hedging):**
@@ -977,6 +1014,7 @@ $$
 - **If IR < 0.5 for 12 months, terminate active overlay**
 
 ### 4. Liquidity Requirements
+
 
 **Ensure positions can be unwound:**
 
@@ -996,6 +1034,7 @@ $$
 
 ### 5. Counterparty Risk
 
+
 **Diversify credit exposure:**
 
 $$
@@ -1013,7 +1052,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. CalPERS Currency Overlay
+
 
 **World's largest public pension fund:**
 
@@ -1036,6 +1077,7 @@ $$
 - **Estimated value added: $500M-$1B over 5 years**
 
 ### 2. Bridgewater Risk Parity
+
 
 **Pioneering overlay approach:**
 
@@ -1070,6 +1112,7 @@ $$
 
 ### 3. Norwegian Oil Fund Equity Overlay
 
+
 **$1.3 trillion sovereign wealth fund:**
 
 **Challenge:**
@@ -1090,6 +1133,7 @@ $$
 - **Estimated benefit: 0.2-0.3% annually** ($2.6-$3.9B per year!)
 
 ### 4. University Endowment TAA Overlay
+
 
 **$15B endowment:**
 
@@ -1122,7 +1166,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Program Design
+
 
 **Initial setup (3-6 months):**
 
@@ -1152,6 +1198,7 @@ $$
 
 ### 2. Launch Phase
 
+
 **First 90 days:**
 
 **Week 1-2: Data gathering**
@@ -1179,6 +1226,7 @@ $$
 - Refine processes based on lessons learned
 
 ### 3. Ongoing Management
+
 
 **Daily operations:**
 
@@ -1213,6 +1261,7 @@ $$
 - Manager evaluation: Should we continue/modify/terminate?
 
 ### 4. Performance Evaluation
+
 
 **Key metrics to track:**
 
@@ -1254,6 +1303,7 @@ $$
 
 ### 5. Termination Decision
 
+
 **When to end the overlay:**
 
 **Terminate if:**
@@ -1273,6 +1323,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Overlay strategies are like the conductor of an orchestra: they don't replace the musicians (base managers), but coordinate them to create harmony. The best overlay programs are nearly invisible—base managers hardly know they exist, but the portfolio stays perfectly in tune with policy. When overlays become the main show, demanding attention and resources, something has gone wrong. Keep overlays simple, focused, and humble. Their job is to make everyone else's job easier, not to be a hero."
 

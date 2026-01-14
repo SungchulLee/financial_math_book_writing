@@ -5,7 +5,8 @@ I will proceed **axiomatically and cleanly**, with **full LaTeX**, **index notat
 
 ---
 
-# 1. Probability–Filtration Setup
+# Probability–Filtration Setup
+
 
 Let
 [
@@ -24,7 +25,8 @@ be an (m)-dimensional Brownian motion adapted to ((\mathcal{F}_t)).
 
 ---
 
-# 2. Definition of an Itô Diffusion (Core Definition)
+# Definition of an Itô Diffusion (Core Definition)
+
 
 An (\mathbb{R}^d)-valued stochastic process
 [
@@ -52,7 +54,8 @@ Here:
 
 ---
 
-# 3. Integral (Weak) Form of the Definition
+# Integral (Weak) Form of the Definition
+
 
 The SDE above is shorthand for the **integral equation**
 
@@ -73,11 +76,13 @@ This is the **actual mathematical definition**; the differential form is symboli
 
 ---
 
-# 4. Structural Properties (Built into the Definition)
+# Structural Properties (Built into the Definition)
+
 
 From the definition:
 
-### (i) Continuity of paths
+### 1. (i) Continuity of paths
+
 
 [
 t \mapsto X_t(\omega) \quad \text{is continuous almost surely}
@@ -85,7 +90,8 @@ t \mapsto X_t(\omega) \quad \text{is continuous almost surely}
 
 because both integrals produce continuous processes.
 
-### (ii) Semimartingale structure
+### 2. (ii) Semimartingale structure
+
 
 [
 X_t^{i}
@@ -98,7 +104,8 @@ X_t^{i}
 
 ---
 
-# 5. Diffusion Matrix and Covariation
+# Diffusion Matrix and Covariation
+
 
 Define the **diffusion (covariance) matrix**
 [
@@ -123,7 +130,8 @@ This identity is **defining** for diffusions.
 
 ---
 
-# 6. Generator of a Diffusion
+# Generator of a Diffusion
+
 
 For (f \in C^{2}(\mathbb{R}^d)), define the **infinitesimal generator**
 [
@@ -145,6 +153,7 @@ f(X_t)
 
 ## f(X_0)
 
+
 \int_0^t (\mathcal{L}f)(X_s,s),\mathrm{d}s
 \quad \text{is a martingale}
 }
@@ -154,7 +163,8 @@ This characterizes diffusions among Markov processes.
 
 ---
 
-# 7. Markov Property (Under Mild Conditions)
+# Markov Property (Under Mild Conditions)
+
 
 If (b,\sigma) satisfy standard Lipschitz and growth assumptions, then (X_t) is a **strong Markov process**, and
 
@@ -168,11 +178,13 @@ If (b,\sigma) satisfy standard Lipschitz and growth assumptions, then (X_t) is a
 
 ---
 
-# 8. Kolmogorov Equations
+# Kolmogorov Equations
+
 
 Let (p(t,x)) be the probability density of (X_t).
 
-### Forward (Fokker–Planck):
+### 1. Forward (Fokker–Planck):
+
 
 [
 \boxed{
@@ -186,7 +198,8 @@ Let (p(t,x)) be the probability density of (X_t).
 }
 ]
 
-### Backward:
+### 2. Backward:
+
 
 [
 \boxed{
@@ -201,21 +214,25 @@ Let (p(t,x)) be the probability density of (X_t).
 
 ---
 
-# 9. Special Cases
+# Special Cases
 
-### (i) Pure Brownian motion
+
+### 1. (i) Pure Brownian motion
+
 
 [
 \mathrm{d}X_t^{i} = \mathrm{d}W_t^{i}
 ]
 
-### (ii) Drifted Brownian motion
+### 2. (ii) Drifted Brownian motion
+
 
 [
 \mathrm{d}X_t^{i} = b^{i}(X_t),\mathrm{d}t + \mathrm{d}W_t^{i}
 ]
 
-### (iii) Gradient diffusion
+### 3. (iii) Gradient diffusion
+
 
 [
 \mathrm{d}X_t = -\nabla V(X_t),\mathrm{d}t + \sqrt{2},\mathrm{d}W_t
@@ -228,7 +245,8 @@ with invariant density
 
 ---
 
-# 10. Conceptual Summary
+# Conceptual Summary
+
 
 A **diffusion process** is:
 
@@ -249,6 +267,7 @@ Symbolically:
 ---
 
 ## Natural Next Steps
+
 
 We are now ready for deep theory. The most natural continuations are:
 

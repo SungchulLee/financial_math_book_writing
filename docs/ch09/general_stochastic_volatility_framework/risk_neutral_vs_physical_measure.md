@@ -1,10 +1,12 @@
 # Risk-Neutral vs Physical Measure
 
+
 Stochastic volatility models distinguish between **physical (real-world)** dynamics and **risk-neutral** dynamics used for pricing. Understanding this distinction is essential for calibration and interpretation.
 
 ---
 
-## 1. Two probability measures
+## Two probability measures
+
 
 - **Physical measure (\(\mathbb{P}\))**: governs actual asset evolution.
 - **Risk-neutral measure (\(\mathbb{Q}\))**: used for pricing via discounted expectations.
@@ -13,7 +15,8 @@ Option prices identify \(\mathbb{Q}\)-dynamics only.
 
 ---
 
-## 2. Measure change and drifts
+## Measure change and drifts
+
 
 A change of measure modifies drifts but not diffusion terms:
 
@@ -27,7 +30,8 @@ The difference between \(a^{\mathbb{P}}\) and \(a^{\mathbb{Q}}\) encodes **risk 
 
 ---
 
-## 3. Volatility risk premium
+## Volatility risk premium
+
 
 Because volatility risk is unhedgeable:
 - investors demand compensation,
@@ -38,7 +42,8 @@ This explains discrepancies between historical and implied volatility behavior.
 
 ---
 
-## 4. Calibration implications
+## Calibration implications
+
 
 - option calibration recovers \(\mathbb{Q}\)-parameters,
 - time-series estimation recovers \(\mathbb{P}\)-parameters,
@@ -46,7 +51,8 @@ This explains discrepancies between historical and implied volatility behavior.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Pricing and historical dynamics live under different measures.
 - Risk premia are central in stochastic volatility models.
@@ -55,6 +61,7 @@ This explains discrepancies between historical and implied volatility behavior.
 ---
 
 ## Further reading
+
 
 - Duffie, *Dynamic Asset Pricing Theory*.
 - Fouque et al., stochastic volatility and asymptotics.

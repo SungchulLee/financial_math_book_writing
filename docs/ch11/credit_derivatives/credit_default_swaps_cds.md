@@ -1,10 +1,12 @@
 # Credit Default Swaps (CDS)
 
+
 A **Credit Default Swap (CDS)** is the fundamental traded instrument for transferring and pricing credit risk. It provides insurance against the default of a reference entity.
 
 ---
 
-## 1. Contract structure
+## Contract structure
+
 
 A CDS involves two legs:
 
@@ -19,7 +21,8 @@ The contract references:
 
 ---
 
-## 2. Protection leg
+## Protection leg
+
 
 If default occurs at time \(\tau \le T\), the protection seller pays
 
@@ -36,7 +39,8 @@ Settlement can be:
 
 ---
 
-## 3. Premium leg
+## Premium leg
+
 
 The protection buyer pays a fixed **CDS spread** \(s\) on scheduled dates until default or maturity:
 
@@ -51,7 +55,8 @@ Accrued premium is paid if default occurs between payment dates.
 
 ---
 
-## 4. Pricing principle
+## Pricing principle
+
 
 At inception, the CDS spread is set so that:
 
@@ -65,7 +70,8 @@ This no-arbitrage condition determines the fair CDS spread.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - CDS transfer default risk without funding the bond.
 - Pricing balances premium and protection legs.
@@ -74,6 +80,7 @@ This no-arbitrage condition determines the fair CDS spread.
 ---
 
 ## Further reading
+
 
 - O'Kane, *Modelling Single-name Credit Derivatives*.
 - Duffie & Singleton, CDS pricing.

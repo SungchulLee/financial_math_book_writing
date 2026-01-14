@@ -1,11 +1,13 @@
 # Greeks in the Black–Scholes Model
 
+
 In the previous sections, Greeks were defined abstractly as partial derivatives of a pricing operator
 \(V(t,S;\sigma,r,\dots)\). We now **specialize these definitions to the Black–Scholes model** and compute the Greeks explicitly from the closed-form European call/put formulas. 
 
 ---
 
 ## Notation and Black–Scholes parameters
+
 
 Let
 
@@ -39,6 +41,7 @@ P = K e^{-r\tau}N(-d_2) - S N(-d_1)
 
 ## Delta
 
+
 \[
 \Delta := \frac{\partial V}{\partial S}
 \]
@@ -61,6 +64,7 @@ Delta lies in \((0,1)\) for calls and \((-1,0)\) for puts.
 
 ## Gamma
 
+
 \[
 \Gamma := \frac{\partial^2 V}{\partial S^2}
 \]
@@ -77,6 +81,7 @@ Gamma is always positive (convexity in \(S\)) and becomes large near maturity (s
 
 ## Vega
 
+
 \[
 \nu := \frac{\partial V}{\partial \sigma}
 \]
@@ -92,6 +97,7 @@ Vega is typically largest near-the-money and for moderate maturities.
 ---
 
 ## Theta
+
 
 \[
 \Theta := \frac{\partial V}{\partial t}
@@ -120,6 +126,7 @@ Theta is typically negative (time decay), with exceptions in certain regimes (e.
 
 ## Rho
 
+
 \[
 \rho := \frac{\partial V}{\partial r}
 \]
@@ -142,6 +149,7 @@ Rho reflects the present-value effect of the strike and is usually small for sho
 
 ## Symmetries and notes
 
+
 - **Gamma** and **Vega** are identical for calls and puts: they depend on the diffusion of \(S\), not the payoff direction.
 - **Delta**, **Theta**, and **Rho** differ between calls and puts due to payoff asymmetry and the discounting term.
 - All expressions above follow by differentiating the Black–Scholes closed forms for \(C\) and \(P\).
@@ -149,6 +157,7 @@ Rho reflects the present-value effect of the strike and is usually small for sho
 ---
 
 ## Conceptual interpretation (typical signs)
+
 
 | Greek  | Meaning                                  | Call sign | Put sign |
 |-------:|------------------------------------------|:---------:|:--------:|
@@ -161,5 +170,6 @@ Rho reflects the present-value effect of the strike and is usually small for sho
 ---
 
 ## Summary
+
 
 This section shows how the abstract Greeks reduce, in the Black–Scholes model, to explicit closed-form expressions. These formulas are the baseline for practical risk management, hedging, and calibration, and they also highlight where Black–Scholes is too restrictive (e.g., constant \(\sigma\) across strikes/maturities).

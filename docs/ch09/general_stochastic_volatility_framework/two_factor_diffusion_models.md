@@ -1,10 +1,12 @@
 # Two-Factor Diffusion Models
 
+
 Stochastic volatility models extend Black–Scholes by introducing **additional sources of randomness**. The most common framework is a **two-factor diffusion**, where asset price and volatility evolve jointly.
 
 ---
 
-## 1. General structure
+## General structure
+
 
 A generic two-factor stochastic volatility model is written as
 
@@ -25,7 +27,8 @@ The second factor captures **randomness in volatility itself**.
 
 ---
 
-## 2. Examples of two-factor models
+## Examples of two-factor models
+
 
 Prominent examples include:
 
@@ -38,7 +41,8 @@ Despite differences, all share the same two-factor diffusion structure.
 
 ---
 
-## 3. Economic interpretation
+## Economic interpretation
+
 
 The volatility factor represents:
 - changing market uncertainty,
@@ -49,7 +53,8 @@ Because volatility is not directly traded, this factor introduces **market incom
 
 ---
 
-## 4. Implications for pricing
+## Implications for pricing
+
 
 Two-factor diffusions imply:
 - non-Gaussian return distributions,
@@ -60,7 +65,8 @@ Option prices depend on the joint law of \((S_T, V_T)\), not just marginal varia
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Two-factor diffusions are the canonical stochastic volatility framework.
 - They generalize Black–Scholes while remaining Markovian.
@@ -69,6 +75,7 @@ Option prices depend on the joint law of \((S_T, V_T)\), not just marginal varia
 ---
 
 ## Further reading
+
 
 - Heston (1993).
 - Hull & White (1987).

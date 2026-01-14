@@ -1,17 +1,20 @@
 # Firm Value Models (Merton)
 
+
 Structural credit risk models view default as an economic event driven by the firm’s asset value. The **Merton model** is the foundational framework in this class.
 
 ---
 
-## 1. Basic idea
+## Basic idea
+
 
 A firm defaults at maturity \(T\) if the value of its assets \(V_T\) is insufficient to repay its debt \(D\).
 Equity and debt are interpreted as contingent claims on firm value.
 
 ---
 
-## 2. Asset dynamics
+## Asset dynamics
+
 
 Under the risk-neutral measure,
 
@@ -27,7 +30,8 @@ where:
 
 ---
 
-## 3. Default event and payoffs
+## Default event and payoffs
+
 
 At maturity \(T\):
 - default occurs if \(V_T < D\),
@@ -38,7 +42,8 @@ Thus, equity is a call option on firm value, and debt is risk-free debt minus a 
 
 ---
 
-## 4. Credit spreads
+## Credit spreads
+
 
 The value of risky debt implies a credit spread over the risk-free rate.
 Spreads depend on:
@@ -50,7 +55,8 @@ The model links credit spreads to equity volatility.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Default occurs at maturity only.
 - Equity and debt are option-like claims.
@@ -59,6 +65,7 @@ The model links credit spreads to equity volatility.
 ---
 
 ## Further reading
+
 
 - Merton (1974).
 - Leland, structural credit models.

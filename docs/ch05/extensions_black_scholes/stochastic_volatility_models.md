@@ -1,10 +1,12 @@
 # Stochastic Volatility Models
 
+
 Stochastic volatility introduces a second factor \(v_t\) (variance), capturing smile/skew dynamics and volatility clustering.
 
 ---
 
-## 1. Generic Two-Factor Model
+## Generic Two-Factor Model
+
 
 
 \[
@@ -21,7 +23,8 @@ Stochastic volatility introduces a second factor \(v_t\) (variance), capturing s
 
 ---
 
-## 2. Heston Example
+## Heston Example
+
 
 
 \[
@@ -34,19 +37,22 @@ Stochastic volatility introduces a second factor \(v_t\) (variance), capturing s
 
 ---
 
-## 3. Pricing PDE (2D)
+## Pricing PDE (2D)
+
 
 For \(V(t,S,v)\), one obtains a two-dimensional parabolic PDE (with a mixed derivative term proportional to \(\rho\)).
 
 ---
 
-## 4. Incompleteness
+## Incompleteness
+
 
 Two risk factors with one underlying typically implies market incompleteness; pricing depends on additional assumptions (volatility risk premium).
 
 ---
 
-## 5. What to Remember
+## What to Remember
+
 
 - Stochastic volatility improves smile dynamics.
 - Pricing is higher-dimensional and often numerical/transform-based.

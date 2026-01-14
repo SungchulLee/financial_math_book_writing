@@ -1,10 +1,12 @@
 # Cash-Futures Basis Trades
 
+
 **Cash-futures basis trades** exploit the spread between the price of a cash bond and its corresponding futures contract, capturing mispricings driven by funding costs, delivery options, and supply-demand imbalances.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is the Basis?
 
+
 ### 1. Basic Definition
+
 
 **The basis:**
 
@@ -57,6 +61,7 @@ $$
 $$
 
 ### 2. Theoretical Basis (Cost of Carry)
+
 
 **No-arbitrage condition:**
 
@@ -92,6 +97,7 @@ $$
 
 ### 3. Gross Basis vs Net Basis
 
+
 **Gross basis:**
 
 $$
@@ -115,6 +121,7 @@ $$
 
 ### 4. Conversion Factor
 
+
 **Why conversion factors exist:**
 
 Futures contract specifies 6% coupon bond:
@@ -135,6 +142,7 @@ $$
 - **CF = 85.28 / 100 = 0.8528**
 
 ### 5. Cheapest-to-Deliver (CTD)
+
 
 **Multiple delivery options:**
 
@@ -158,6 +166,7 @@ $$
 - **Bond A is CTD (lower cost to deliver)**
 
 ### 6. Implied Repo Rate
+
 
 **Alternative measure of richness:**
 
@@ -188,6 +197,7 @@ $$
 
 ### 7. Delivery Option Value
 
+
 **Short futures holder has options:**
 
 **Quality option:**
@@ -215,9 +225,11 @@ $$
 
 ## Basis Trading Strategies
 
+
 **How to profit from basis:**
 
 ### 1. Long Basis Trade
+
 
 **Setup: Net basis cheap (futures underpriced)**
 
@@ -255,6 +267,7 @@ $$
 
 ### 2. Short Basis Trade
 
+
 **Setup: Net basis rich (futures overpriced)**
 
 **Position:**
@@ -277,6 +290,7 @@ $$
 
 ### 3. Basis Curve Trade
 
+
 **Exploit basis across maturities:**
 
 **Setup:**
@@ -295,6 +309,7 @@ $$
 
 ### 4. CTD Switch Trade
 
+
 **Bet on CTD bond changing:**
 
 **Setup:**
@@ -312,6 +327,7 @@ $$
 
 ### 5. Delivery Month Calendar
 
+
 **Basis converges during delivery month:**
 
 **Position:**
@@ -324,6 +340,7 @@ $$
 - **Profit: 0.30**
 
 ### 6. Volatility-Driven Basis
+
 
 **Option value increases with volatility:**
 
@@ -344,6 +361,7 @@ $$
 - Profit when vol spikes and basis widens
 
 ### 7. Funding Advantage Trade
+
 
 **Exploit special repo rates:**
 
@@ -367,7 +385,9 @@ $$
 
 ## Mathematical Framework
 
+
 ### 1. Basis Decomposition
+
 
 **Net basis components:**
 
@@ -391,6 +411,7 @@ Where $\sigma$ = Yield volatility, $T$ = Time to delivery
 
 ### 2. Convergence P&L
 
+
 **For short basis trade:**
 
 $$
@@ -410,6 +431,7 @@ $$
 
 ### 3. Implied Repo Rate Formula
 
+
 **Exact IRR:**
 
 $$
@@ -417,6 +439,7 @@ $$
 $$
 
 ### 4. Conversion Factor Duration
+
 
 **Price sensitivity of adjusted cash:**
 
@@ -432,6 +455,7 @@ $$
 
 ### 5. CTD Selection Algorithm
 
+
 **Minimize delivered cost:**
 
 $$
@@ -445,6 +469,7 @@ $$
 $$
 
 ### 6. Option Value Estimation
+
 
 **Delivery option value (approximate):**
 
@@ -460,6 +485,7 @@ Where:
 **Typical value: 5-15 ticks**
 
 ### 7. Calendar Spread Basis
+
 
 **Price differential between contracts:**
 
@@ -477,9 +503,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Ignoring Conversion Factor
+
 
 **Mistake:** Compare futures to cash directly
 
@@ -498,6 +526,7 @@ $$
 
 ### 2. Wrong Carry Calculation
 
+
 **Mistake:** Ignore coupon income
 
 **Why it fails:** Overestimate carry cost
@@ -514,6 +543,7 @@ $$
 **Fix:** Carry = Repo rate - Coupon income
 
 ### 3. Neglecting Delivery Options
+
 
 **Mistake:** Trade net basis at zero
 
@@ -534,6 +564,7 @@ $$
 
 ### 4. Misidentifying CTD
 
+
 **Mistake:** Trade wrong bond
 
 **Why it fails:** Not actually cheapest-to-deliver
@@ -547,6 +578,7 @@ $$
 **Fix:** Calculate IRR for all deliverable bonds, trade the CTD
 
 ### 5. Ignoring Repo Specials
+
 
 **Mistake:** Assume GC repo rate
 
@@ -562,6 +594,7 @@ $$
 
 ### 6. Poor Timing
 
+
 **Mistake:** Enter trade far from delivery
 
 **Why it fails:** Basis can widen before converging
@@ -575,6 +608,7 @@ $$
 **Fix:** Enter closer to delivery (< 30 days), less time for adverse moves
 
 ### 7. Leverage Mismatch
+
 
 **Mistake:** Unhedged basis trade
 
@@ -590,6 +624,7 @@ $$
 **Fix:** Match positions: long futures = short cash (dollar-neutral)
 
 ### 8. Neglecting Accrued Interest
+
 
 **Mistake:** Don't account for accrued
 
@@ -607,7 +642,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Maximum basis notional:**
 
@@ -630,6 +667,7 @@ $$
 
 ### 2. Hedge Ratio
 
+
 **Dollar-neutral hedge:**
 
 $$
@@ -646,6 +684,7 @@ $$
 
 ### 3. Entry Thresholds
 
+
 **Minimum net basis for trade:**
 
 - **Rich basis (short):** Net basis > Option value + 0.10
@@ -658,6 +697,7 @@ $$
 
 ### 4. Stop-Loss Rules
 
+
 **Basis widening stop:**
 
 - **Short basis:** Exit if net basis widens by 0.20
@@ -667,6 +707,7 @@ $$
 - Exit at 10 days before delivery (avoid squeeze risk)
 
 ### 5. Monitoring Frequency
+
 
 **Daily:**
 - Net basis calculation
@@ -681,6 +722,7 @@ $$
 
 ### 6. Delivery Month Management
 
+
 **Last 30 days:**
 - Tighten stops (0.10 basis move)
 - Monitor delivery notices
@@ -692,6 +734,7 @@ $$
 - Reduce position if basis not converging
 
 ### 7. Diversification
+
 
 **Spread risk across:**
 - Multiple contracts (10Y, 30Y)
@@ -706,7 +749,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Classic Convergence Trade (2019)
+
 
 **Setup:**
 - 10Y futures (TYZ19) December delivery
@@ -729,6 +774,7 @@ $$
 
 ### 2. Squeeze Risk (March 2020)
 
+
 **Setup:**
 - COVID crisis, dealer balance sheets full
 - Short basis positions crowded
@@ -745,6 +791,7 @@ $$
 - **Lesson:** Delivery month squeezes are real
 
 ### 3. CTD Switch Trade (2015)
+
 
 **Setup:**
 - 30Y futures, yields expected to rise
@@ -766,6 +813,7 @@ $$
 **Lesson:** CTD switches create relative value opportunities
 
 ### 4. Funding Advantage (2018)
+
 
 **Setup:**
 - 10Y CTD goes special
@@ -794,7 +842,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Identify Opportunity
+
 
 **Daily analysis:**
 
@@ -816,6 +866,7 @@ $$
 
 ### 2. Trade Execution
 
+
 **For short basis trade:**
 
 1. **Day 1 (simultaneously):**
@@ -834,6 +885,7 @@ $$
 
 ### 3. Position Management
 
+
 **Daily tasks:**
 
 - Update net basis calculation
@@ -851,6 +903,7 @@ $$
 
 ### 4. Exit Strategy
 
+
 **Planned exits:**
 
 - **Target:** Net basis converges to 0.15 (option value)
@@ -863,6 +916,7 @@ $$
 - Stop: 0.65 (loss = 0.20)
 
 ### 5. Delivery Management
+
 
 **If holding into delivery month:**
 
@@ -884,6 +938,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Cash-futures basis trading is the ultimate 'convergence trade' - buying cheap and selling rich with a known endpoint (delivery). It's mathematically precise, empirically stable, and historically profitable, but it's not free money. The three killers are: (1) funding stress when the CTD goes special and your carry explodes negative, (2) delivery month squeezes when dealers reduce balance sheets and net basis widens instead of converging, and (3) misidentifying the CTD and trading a bond that doesn't converge. Done right with proper CTD analysis, conservative sizing, and disciplined exits before the last 10 days, basis trades generate 5-15% annually with low volatility. The key is patience, precision, and paranoia about delivery month dynamics."
 

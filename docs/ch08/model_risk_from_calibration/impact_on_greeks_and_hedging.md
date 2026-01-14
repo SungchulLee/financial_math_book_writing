@@ -1,10 +1,12 @@
 # Impact on Greeks and Hedging
 
+
 Calibration error affects not only prices but also **Greeks**, which are used for hedging. Unstable or mis-specified Greeks can lead to systematic hedging losses.
 
 ---
 
-## 1. Greeks as model-dependent objects
+## Greeks as model-dependent objects
+
 
 Greeks are computed under the calibrated model:
 
@@ -19,7 +21,8 @@ If \(\hat\theta\) is unstable, Greeks inherit this instability.
 
 ---
 
-## 2. Sensitivity of Greeks to parameters
+## Sensitivity of Greeks to parameters
+
 
 A second-order effect appears:
 
@@ -35,7 +38,8 @@ Thus, even small parameter errors can materially distort hedge ratios.
 
 ---
 
-## 3. Hedging breakdown mechanisms
+## Hedging breakdown mechanisms
+
 
 Common failure modes:
 - frequent recalibration changes Greeks abruptly,
@@ -46,7 +50,8 @@ These effects are amplified in models with many weakly identifiable parameters.
 
 ---
 
-## 4. Robust hedging practices
+## Robust hedging practices
+
 
 Practitioners often:
 - hedge with **ranges** of Greeks,
@@ -56,7 +61,8 @@ Practitioners often:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Greeks are highly sensitive to calibration quality.
 - Hedging based on unstable parameters is fragile.
@@ -65,6 +71,7 @@ Practitioners often:
 ---
 
 ## Further reading
+
 
 - Taleb, *Dynamic Hedging*.
 - Cont & Tankov, discussions on model risk and Greeks.

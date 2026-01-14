@@ -1,10 +1,12 @@
 # Credit Carry Trades
 
+
 **Credit carry trades** involve systematically collecting positive spread income (carry) by selling credit protection on corporate bonds or CDS contracts, earning the difference between credit spreads and funding costs over time, while accepting mark-to-market risk from spread widening and occasional default losses—with successful strategies requiring disciplined risk management to avoid the asymmetric payoff structure where years of carry income can be wiped out by single crisis events.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -43,9 +45,11 @@ $$
 
 ## What Are Credit Carry Trades?
 
+
 **Before implementing carry trades, understand the mechanics:**
 
-### Core Concept
+### 1. Core Concept
+
 
 **Definition:** An investment strategy focused on systematically earning the positive spread differential between credit instruments (corporate bonds, CDS) and funding costs, through long credit exposure (selling protection or owning bonds), accepting mark-to-market volatility and default risk in exchange for consistent income generation that typically produces positive returns 70-90% of the time but occasionally experiences sharp drawdowns during credit market dislocations.
 
@@ -139,7 +143,8 @@ $$
 
 **Key insight: Win small often (42-70% annually), lose big rarely (-101%)**
 
-### Types of Credit Carry Trades
+### 2. Types of Credit Carry Trades
+
 
 **1. Corporate Bond Carry:**
 
@@ -192,9 +197,11 @@ $$
 
 ## Economic Interpretation: Why Credit Carry Works
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### The Risk Premium Harvest
+### 1. The Risk Premium Harvest
+
 
 **The deep insight:**
 
@@ -265,7 +272,8 @@ $$
 
 **This 48 bps excess return is the carry harvested over cycles**
 
-### The Sharpe Ratio Trap
+### 2. The Sharpe Ratio Trap
+
 
 **Carry trades look amazing on Sharpe ratio:**
 
@@ -308,7 +316,8 @@ $$
 
 **The problem: Crisis risk is underestimated in normal times**
 
-### The Steamroller Analogy
+### 3. The Steamroller Analogy
+
 
 **Famous quote: "Selling credit protection is like picking up pennies in front of a steamroller"**
 
@@ -350,7 +359,8 @@ $$
 
 **This is why carry requires discipline: Position sizing, stop-losses, diversification**
 
-### The Convexity Tax
+### 4. The Convexity Tax
+
 
 **Credit has negative convexity:**
 
@@ -386,6 +396,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Carry:**
 
@@ -462,7 +473,9 @@ $$
 
 ## Mathematical Foundation
 
-### Carry Calculation
+
+### 1. Carry Calculation
+
 
 **Annual carry:**
 
@@ -495,7 +508,8 @@ $$
 \text{Carry} = 1.20\% \times \$10M = \$120,000 \text{ per year}
 $$
 
-### Break-Even Spread Widening
+### 2. Break-Even Spread Widening
+
 
 **Time to lose carry:**
 
@@ -520,7 +534,8 @@ $$
 
 **Interpretation: Spreads can widen 8.1 bps in one year before carry is lost**
 
-### Expected Return with Defaults
+### 3. Expected Return with Defaults
+
 
 **Total return:**
 
@@ -546,7 +561,8 @@ $$
 E[R] = 3.5\% - 2.4\% + 0\% = 1.1\%
 $$
 
-### Sharpe Ratio (Misleading)
+### 4. Sharpe Ratio (Misleading)
+
 
 **Formula:**
 
@@ -571,7 +587,8 @@ $$
 
 **But this ignores fat tails! Better metric: Sortino or CVaR**
 
-### Sortino Ratio (Better)
+### 5. Sortino Ratio (Better)
+
 
 **Formula:**
 
@@ -595,7 +612,9 @@ $$
 
 ## Step-by-Step Implementation
 
-### Phase 1: Credit Selection and Screening
+
+### 1. Phase 1: Credit Selection and Screening
+
 
 **1. Screen for Carry Opportunities:**
 
@@ -712,7 +731,8 @@ print(bonds[['issuer', 'carry_bps', 'expected_loss_bps', 'net_carry', 'sharpe_es
 5. GM (1.05)
 6. Caterpillar (0.66) - Worst
 
-### Phase 2: Position Sizing
+### 2. Phase 2: Position Sizing
+
 
 **1. Kelly Criterion (Optimal Leverage):**
 
@@ -783,7 +803,8 @@ Position as % of capital: 333.3%
 
 **This is 3.3x leverage - reasonable for IG carry, but need proper repo haircuts**
 
-### Phase 3: Execute Trade
+### 3. Phase 3: Execute Trade
+
 
 **1. Bond Purchase and Repo Funding:**
 
@@ -907,7 +928,8 @@ Break-even: 5.7 bps annually
 
 Much better! 5.7 bps annual break-even is more reasonable for HY.
 
-### Phase 4: Monitor and Manage
+### 4. Phase 4: Monitor and Manage
+
 
 **1. Daily P&L Tracking:**
 
@@ -961,7 +983,8 @@ Total P&L: $-1,112,475
 
 **Spreads widened 15 bps, wiping out 90 days of carry and more!**
 
-### Phase 5: Exit Discipline
+### 5. Phase 5: Exit Discipline
+
 
 **1. Stop-Loss Rules:**
 
@@ -998,7 +1021,9 @@ Stop loss level: 431 bps
 
 ## Real-World Examples
 
-### Example 1: IG Carry Trade 2017-2019 (Steady Grind)
+
+### 1. Example 1: IG Carry Trade 2017-2019 (Steady Grind)
+
 
 **Background:**
 
@@ -1086,7 +1111,8 @@ Let me just simplify and use the portfolio average:
 
 **This is textbook carry: Low vol, positive carry, modest spread tightening = huge returns**
 
-### Example 2: HY Carry Disaster - 2015-2016 Energy Crisis
+### 2. Example 2: HY Carry Disaster - 2015-2016 Energy Crisis
+
 
 **Background:**
 
@@ -1192,7 +1218,8 @@ Let me just simplify and use the portfolio average:
 
 **The lesson: Sector-concentrated carry is suicide during commodity crashes. 100% energy + 10x leverage + oil collapse = wipeout.**
 
-### Example 3: Fallen Angel Trade - 2020 (COVID Recovery)
+### 3. Example 3: Fallen Angel Trade - 2020 (COVID Recovery)
+
 
 **Background:**
 
@@ -1264,7 +1291,8 @@ Let me just simplify and use the portfolio average:
 
 **This is the holy grail of carry trades: Distressed entry + Fed support + ratings normalization = triple-digit returns**
 
-### Example 4: CLO Equity Carry - 2018-2020 (Boom to Bust)
+### 4. Example 4: CLO Equity Carry - 2018-2020 (Boom to Bust)
+
 
 **Background:**
 
@@ -1347,7 +1375,8 @@ Let me just simplify and use the portfolio average:
 
 **The lesson: CLO equity offers great carry in good times (15% yields), but first-loss leverage destroys returns in crisis. Not suitable for portfolios that can't handle 50-70% drawdowns.**
 
-### Example 5: CDS Carry - Sell Protection 2021-2022 (Wrong Side of Cycle)
+### 5. Example 5: CDS Carry - Sell Protection 2021-2022 (Wrong Side of Cycle)
+
 
 **Background:**
 
@@ -1409,7 +1438,9 @@ Let me just simplify and use the portfolio average:
 
 ## Best Case Scenario
 
-### Perfect Credit Carry Trade
+
+### 1. Perfect Credit Carry Trade
+
 
 **Setup for maximum returns:**
 
@@ -1421,7 +1452,8 @@ Let me just simplify and use the portfolio average:
 4. **Short duration:** 2-4 years (lower MTM risk)
 5. **Disciplined exit:** Take profits at normalization
 
-### Best Case Example: Financial Crisis Recovery Carry 2009-2011
+### 2. Best Case Example: Financial Crisis Recovery Carry 2009-2011
+
 
 **Background:**
 
@@ -1507,7 +1539,9 @@ Let me just simplify and use the portfolio average:
 
 ## Worst Case Scenario
 
-### The Credit Carry Disaster
+
+### 1. The Credit Carry Disaster
+
 
 **Worst possible conditions:**
 
@@ -1517,7 +1551,8 @@ Let me just simplify and use the portfolio average:
 4. **Crisis hits:** Spreads blow out 200-500 bps
 5. **Forced exit:** Margin calls, can't hold
 
-### Worst Case Example: Pre-Crisis Carry Wipeout 2007-2008
+### 2. Worst Case Example: Pre-Crisis Carry Wipeout 2007-2008
+
 
 **Background:**
 
@@ -1689,7 +1724,9 @@ Let me reconsider. The thesis must be that spreads will tighten significantly:
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Credit carry trades systematically collect spread income while accepting mark-to-market risk and default losses:**
 
@@ -1703,7 +1740,8 @@ $$
 - Typical: Earn 1-3% annually, risk -10 to -30% in crisis
 - Asymmetric: Small gains often, large losses rarely
 
-### The Key Metrics
+### 2. The Key Metrics
+
 
 **Carry calculation:**
 
@@ -1719,7 +1757,8 @@ $$
 
 **Example:** 50 bps carry, 100 bps widening = 2 years of carry lost
 
-### Risk Management
+### 3. Risk Management
+
 
 **Essential rules:**
 
@@ -1732,7 +1771,8 @@ $$
 - Timing: Enter during/after crises (wide spreads), not late cycle (tight)
 - Funding: Secure term repo (not overnight, rollover risk)
 
-### Maximum Profit/Loss
+### 4. Maximum Profit/Loss
+
 
 **Best case:**
 
@@ -1755,7 +1795,8 @@ $$
 - Duration: Short (3-5 years)
 - **Returns: 15-30% annually, -15 to -30% in crisis years**
 
-### When to Enter
+### 5. When to Enter
+
 
 **Enter carry trades when:**
 
@@ -1773,7 +1814,8 @@ $$
 - Negative carry (funding > yield)
 - Only junk available (CCC, distressed)
 
-### Common Mistakes
+### 6. Common Mistakes
+
 
 1. Tight entry (spreads at cycle lows, no margin of safety)
 2. Overleveraging (20x+ notional/capital)
@@ -1784,7 +1826,8 @@ $$
 7. CLO equity (first-loss leverage during crisis)
 8. Ignoring break-even (not calculating widening tolerance)
 
-### Final Wisdom
+### 7. Final Wisdom
+
 
 > "Credit carry is the classic 'picking up pennies in front of a steamroller' trade—it works brilliantly until it doesn't. The math is seductive: sell protection on CDX IG at 55 bps, earn $2.75M annually on $500M notional with just $10M margin (27.5% ROE!). But the trap is asymmetric payoff: earn 55 bps per year (good), lose 200+ bps in one crisis event (catastrophic). Historical data shows carry works 70-90% of time, delivering 15-30% annual returns with Sharpe ratios of 1.0-1.5. But the 10-30% of time it fails, you lose 50-100% of capital in 3-12 months. The difference between success and failure is 100% determined by entry valuation and leverage. Best case: March 2009 entry at 325 bps spreads (crisis pricing), 10x leverage, Fed support → +245% annualized for 30 months (+612% total). Worst case: July 2007 entry at 38 bps spreads (all-time tights), 49x leverage, financial crisis → -119% total loss in 15 months (wiped out + owe money). The pattern is crystal clear: Enter when spreads wide (IG >100-150 bps, HY >400-600 bps) during/after crises, use moderate leverage (8-12x), set hard stops (3-6 months carry), and you'll compound 20-40% annually over cycles. Enter when spreads tight (<60 bps IG, <300 bps HY), use high leverage (15x+), ignore stops, and you'll blow up in the next crisis—guaranteed. Carry trades reward patience (waiting for wide entry), discipline (stop-losses), and humility (accepting 15-25% returns, not swinging for 100%). Master these and carry becomes a reliable income strategy. Violate them and you'll join the graveyard of leveraged credit funds that blew up in 1998, 2002, 2008, 2020, and every crisis."
 

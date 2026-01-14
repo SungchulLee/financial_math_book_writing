@@ -1,12 +1,16 @@
 # Knightian Uncertainty
 
+
 ## Introduction
+
 
 Knightian uncertainty, named after economist Frank Knight (1921), represents a fundamental distinction between **risk** and **uncertainty** that has profound implications for quantitative finance and decision theory. While risk refers to situations where probability distributions are known or estimable, Knightian uncertainty captures scenarios where probabilities themselves are unknown or unknowable.
 
 ## Knight's Risk-Uncertainty Distinction
 
-### Definitions
+
+### 1. Definitions
+
 
 **Risk**: Situations where the probability distribution over outcomes is known or can be objectively estimated from data. This corresponds to the classical probabilistic framework where:
 
@@ -21,7 +25,8 @@ for a known probability measure $P$.
 
 **Knightian Uncertainty (Ambiguity)**: Situations where the probability distribution is not uniquely specified, leading to a family of possible probability measures. Decision makers face **model uncertainty** about which probability measure governs the true data-generating process.
 
-### Historical Context and Motivation
+### 2. Historical Context and Motivation
+
 
 Knight (1921) argued that true uncertainty—as opposed to measurable risk—is the source of entrepreneurial profit. In competitive markets, pure risk can be priced through actuarial methods, but genuine uncertainty cannot be fully hedged or insured against.
 
@@ -32,7 +37,9 @@ Knight (1921) argued that true uncertainty—as opposed to measurable risk—is 
 
 ## Mathematical Framework
 
-### Savage's Subjective Expected Utility
+
+### 1. Savage's Subjective Expected Utility
+
 
 Savage (1954) axiomatized decision-making under uncertainty using a unique subjective probability measure. However, this framework assumes that decision makers can always form precise probabilistic beliefs, which Knightian uncertainty challenges.
 
@@ -49,7 +56,8 @@ where $u$ is a utility function and $P$ is a unique subjective probability measu
 
 **Limitation**: Savage's framework cannot accommodate situations where the decision maker is genuinely uncertain about which probability measure to use.
 
-### Multiple Priors Representation
+### 2. Multiple Priors Representation
+
 
 To capture Knightian uncertainty, we generalize from a single probability measure to a set of probability measures.
 
@@ -69,7 +77,8 @@ This is known as the **maxmin expected utility** representation (Gilboa-Schmeidl
 2. Evaluates the act by its worst-case expected utility
 3. Exhibits **ambiguity aversion** by focusing on the minimum
 
-### Variational Preferences
+### 3. Variational Preferences
+
 
 An alternative representation uses a penalty function for deviating from a reference measure $P_0$.
 
@@ -100,7 +109,9 @@ with $\theta > 0$ measuring the degree of ambiguity aversion.
 
 ## Ellsberg Paradox and Ambiguity Aversion
 
-### The Ellsberg Experiment
+
+### 1. The Ellsberg Experiment
+
 
 Ellsberg (1961) demonstrated systematic violations of Savage's axioms through the following thought experiment.
 
@@ -124,7 +135,8 @@ Ellsberg (1961) demonstrated systematic violations of Savage's axioms through th
 
 This contradiction demonstrates that people systematically avoid ambiguous situations, violating the independence axiom in Savage's theory.
 
-### Mathematical Analysis
+### 2. Mathematical Analysis
+
 
 Let $P_{\text{Urn 2}}$ denote the decision maker's beliefs about Urn 2. The observed preferences suggest:
 
@@ -148,7 +160,9 @@ $$
 
 ## Applications to Quantitative Finance
 
-### Model Uncertainty in Derivative Pricing
+
+### 1. Model Uncertainty in Derivative Pricing
+
 
 In the Black-Scholes framework, the risk-neutral measure $\mathbb{Q}$ is uniquely determined by no-arbitrage conditions. However, in practice:
 
@@ -167,7 +181,8 @@ $$
 
 where $\mathcal{Q}$ is a set of equivalent martingale measures compatible with observed market prices.
 
-### Volatility Uncertainty
+### 2. Volatility Uncertainty
+
 
 Consider a European call option under model uncertainty about volatility.
 
@@ -209,7 +224,8 @@ $$
 
 
 
-### Portfolio Selection under Ambiguity
+### 3. Portfolio Selection under Ambiguity
+
 
 The classical Markowitz framework assumes known mean $\mu$ and covariance $\Sigma$ of returns. Under ambiguity:
 
@@ -246,7 +262,9 @@ The ambiguity parameter $\delta$ effectively increases risk aversion, leading to
 
 ## Theoretical Properties
 
-### Ambiguity Aversion vs Risk Aversion
+
+### 1. Ambiguity Aversion vs Risk Aversion
+
 
 **Risk Aversion**: Preference for certain outcomes over risky lotteries with the same expected value:
 
@@ -276,7 +294,8 @@ where $P_{\text{avg}} = \int_{\mathcal{P}} P \, d\nu(P)$ for some averaging meas
 
 These are **orthogonal concepts**: one can be risk-neutral but ambiguity-averse.
 
-### Rectangularity and Dynamic Consistency
+### 2. Rectangularity and Dynamic Consistency
+
 
 A critical issue in multiple priors models is maintaining consistency across time.
 
@@ -293,7 +312,8 @@ $$
 
 **Theorem** (Epstein-Schneider): For maxmin preferences with multiple priors, dynamic consistency holds if and only if the set of priors is rectangular.
 
-### Connection to Robust Control
+### 3. Connection to Robust Control
+
 
 Knightian uncertainty has deep connections to robust control theory (Hansen-Sargent, 2001).
 
@@ -335,7 +355,9 @@ which is equivalent to exponential utility preferences over random costs.
 
 ## Axiomatization and Representation Theorems
 
-### Gilboa-Schmeidler Axioms
+
+### 1. Gilboa-Schmeidler Axioms
+
 
 Gilboa and Schmeidler (1989) provided an axiomatic foundation for maxmin expected utility.
 
@@ -363,7 +385,8 @@ $$
 
 **Key Axiom**: Uncertainty aversion (axiom 4) is the critical axiom distinguishing this from Savage's framework. It states that averaging over ambiguous acts is (weakly) preferred to the acts themselves.
 
-### Maccheroni-Marinacci-Rustichini Variational Preferences
+### 2. Maccheroni-Marinacci-Rustichini Variational Preferences
+
 
 MMR (2006) generalized this to variational preferences.
 
@@ -394,7 +417,9 @@ where $c: \mathcal{M}(\Omega) \to [0, \infty]$ is a convex, grounded ($\inf_P c(
 
 ## Calibration and Empirical Evidence
 
-### Measuring Ambiguity Aversion
+
+### 1. Measuring Ambiguity Aversion
+
 
 Several experimental and market-based approaches measure the degree of ambiguity aversion.
 
@@ -416,7 +441,8 @@ $$
 - Magnitude varies across individuals and contexts
 - Professional traders often show less ambiguity aversion
 
-### Market Implications
+### 2. Market Implications
+
 
 **Equity Premium Puzzle**: Hansen-Sargent (2001) show that model uncertainty can help explain the historically high equity premium:
 
@@ -433,7 +459,9 @@ $$
 
 ## Connections to Information Theory
 
-### Relative Entropy and Model Distance
+
+### 1. Relative Entropy and Model Distance
+
 
 The relative entropy (Kullback-Leibler divergence) provides a natural measure of model distance:
 
@@ -451,7 +479,8 @@ $$
 
 **Interpretation in Finance**: $D_{\text{KL}}(P \| Q)$ measures the "surprise" or information gained when the true model is $P$ but we believed $Q$.
 
-### Entropic Risk Measures
+### 2. Entropic Risk Measures
+
 
 The entropic risk measure combines ambiguity and risk:
 
@@ -480,7 +509,9 @@ This shows entropic risk as a variational preference with KL penalty.
 
 ## Advanced Topics
 
-### Second-Order Stochastic Dominance and Ambiguity
+
+### 1. Second-Order Stochastic Dominance and Ambiguity
+
 
 **Definition** (Second-Order Stochastic Dominance): Distribution $F$ second-order stochastically dominates $G$ (written $F \succeq_{\text{SSD}} G$) if:
 
@@ -504,7 +535,8 @@ $$
 
 for all concave $u$ and convex $\mathcal{P}$.
 
-### Smooth Ambiguity Model
+### 2. Smooth Ambiguity Model
+
 
 Klibanoff, Marinacci, Mukerji (2005) introduced **smooth ambiguity preferences**:
 
@@ -527,7 +559,8 @@ where:
 
 **Advantage**: Separates ambiguity aversion from likelihood judgments, allowing for smoother preferences than maxmin.
 
-### Choquet Expected Utility
+### 3. Choquet Expected Utility
+
 
 Another generalization uses non-additive measures (capacities).
 
@@ -581,6 +614,7 @@ $$
 
 
 ## Summary and Key Takeaways
+
 
 1. **Conceptual Distinction**: Knightian uncertainty separates measurable risk (known probabilities) from genuine uncertainty (unknown probabilities)
 

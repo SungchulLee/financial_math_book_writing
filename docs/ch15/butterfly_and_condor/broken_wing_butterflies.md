@@ -1,10 +1,12 @@
 # Broken Wing Butterflies
 
+
 **Broken wing butterflies** are asymmetric butterfly spreads where one wing is "broken" (skipped), creating directional bias while maintaining defined risk and often allowing for credit collection or reduced debit.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_butterfly.png?raw=true" alt="broken_wing" width="700">
@@ -35,6 +37,7 @@ $$
 
 ## What Is a Broken Wing Butterfly?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bwb_theta_decay.png?raw=true" alt="bwb_theta" width="700">
 </p>
@@ -42,6 +45,7 @@ $$
 **Before trading broken wings, understand the modification from regular butterflies:**
 
 ### 1. Regular Butterfly (Symmetric) - Baseline
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bwb_vega_surface.png?raw=true" alt="bwb_vega" width="700">
@@ -64,6 +68,7 @@ $$
 - **Symmetric risk**
 
 ### 2. Broken Wing Butterfly (Asymmetric)
+
 
 **Bullish broken wing call butterfly:**
 
@@ -105,9 +110,11 @@ Where offset creates asymmetry and allows credit collection.
 
 ## Economic
 
+
 **Beyond the basic definition, understanding what broken wings REALLY are economically:**
 
 ### 1. Why Does the Broken Wing Exist?
+
 
 **The fundamental market insight:**
 
@@ -125,6 +132,7 @@ $$
 $$
 
 ### 2. The Asymmetric Risk-Reward Profile
+
 
 **Why traders love broken wings:**
 
@@ -152,6 +160,7 @@ You're accepting that if you're wrong on direction (stock crashes below $95), yo
 
 ### 3. Comparison to Other Asymmetric Strategies
 
+
 **vs. Vertical Spread:**
 
 | Feature | Broken Wing Fly | Vertical Spread |
@@ -177,6 +186,7 @@ You're accepting that if you're wrong on direction (stock crashes below $95), yo
 ---
 
 ## Key Terminology
+
 
 **Broken Wing:**
 
@@ -216,6 +226,7 @@ You're accepting that if you're wrong on direction (stock crashes below $95), yo
 
 ## Why Trade Broken Wing Butterflies?
 
+
 **Use cases for broken wings:**
 
 
@@ -223,9 +234,11 @@ You're accepting that if you're wrong on direction (stock crashes below $95), yo
 
 ## Economic
 
+
 **Understanding what broken wing butterflies REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 Broken wing butterflies represent a specific economic proposition: **trading symmetric risk for asymmetric risk to match directional bias while collecting premium**. Unlike standard butterflies (neutral, pay debit), broken wings tilt the structure toward expected market behavior.
 
@@ -246,6 +259,7 @@ $$
 - **Credit collected:** Compensation for accepting skewed risk
 
 ### 2. Why This Structure Exists Economically
+
 
 Markets create broken wing butterflies because different participants have different:
 
@@ -303,6 +317,7 @@ Most investors have **asymmetric risk tolerance:**
 - Negative cost basis (profit locked in if expires in middle)
 
 ### 3. Professional Institutional Perspective
+
 
 **How institutions actually use broken wings:**
 
@@ -388,6 +403,7 @@ $$
 
 ### 4. The Volatility Smile Exploitation
 
+
 **Key insight:** Broken wings **arbitrage the volatility smile**
 
 **In equity markets:**
@@ -437,6 +453,7 @@ $$
 
 ### 5. The Behavioral Finance Angle
 
+
 **Why markets misprice broken wings:**
 
 **1. Investor overreaction to tail risk:**
@@ -464,6 +481,7 @@ $$
 
 ### 6. The Information Asymmetry Trade
 
+
 **Sophisticated traders use broken wings to exploit information edges:**
 
 **Example: Earnings insider (legal edge):**
@@ -483,6 +501,7 @@ $$
 - **Broken wing captures the difference**
 
 ### 7. Understanding the Economic Foundations
+
 
 **Key insights from broken wing butterflies:**
 
@@ -526,6 +545,7 @@ Understanding the economic foundations helps you recognize:
 
 ### 8. Directional Bias with Defined Risk
 
+
 **Scenario:** Moderately bullish on AAPL, but want defined risk
 
 **Trade:** Bullish broken wing call butterfly
@@ -558,6 +578,7 @@ Actually, the calculation is:
 - Only risk on downside (if stock crashes)
 
 ### 9. Earnings Play with Asymmetric Risk
+
 
 **Scenario:** TSLA earnings, expect neutral to slightly bullish move, not crash
 
@@ -593,6 +614,7 @@ Actually, the calculation is:
 - Directional bias matches historical earnings pattern
 
 ### 10. Monthly Income with Skewed Risk
+
 
 **Scenario:** Income strategy, willing to take downside risk but not upside
 
@@ -631,6 +653,7 @@ Actually, the calculation is:
 
 ### 11. Volatility Crush Trade
 
+
 **Scenario:** IV elevated, expecting mean reversion and stock stability
 
 **Setup:**
@@ -663,7 +686,9 @@ Actually, the calculation is:
 
 ## Greeks Behavior
 
+
 ### 1. Delta
+
 
 **Bullish broken wing delta profile:**
 
@@ -689,6 +714,7 @@ $$
 - Stock above $115: Delta ≈ 0 (all wings balanced out)
 
 ### 2. Gamma
+
 
 **Gamma profile:**
 
@@ -719,6 +745,7 @@ $$
 
 ### 3. Theta
 
+
 **Theta (time decay):**
 
 $$
@@ -745,6 +772,7 @@ $$
 **Strategy: Enter 30-45 days out, exit at 7-14 days to capture optimal theta**
 
 ### 4. Vega
+
 
 **Vega (IV sensitivity):**
 
@@ -780,7 +808,9 @@ $$
 
 ## When Greeks Hurt You
 
+
 ### 1. The Whipsaw Disaster (Negative Gamma)
+
 
 **Scenario:** Stock oscillates around short strike
 
@@ -810,6 +840,7 @@ $$
 
 ### 2. The IV Spike Crush
 
+
 **Scenario:** Unexpected news spikes IV
 
 **Setup:**
@@ -834,6 +865,7 @@ $$
 **Lesson:** Short vega position = vulnerability to IV spikes. Enter when IV high, not low.
 
 ### 3. The Slow Bleed (Stock Drifts to Risk Zone)
+
 
 **Scenario:** Stock slowly trends toward max loss zone
 
@@ -863,7 +895,9 @@ $$
 
 ## Common Pitfalls
 
+
 ### 1. Wrong Directional Bias
+
 
 **The mistake:**
 
@@ -887,6 +921,7 @@ Broken wings ARE directional trades! You've concentrated risk on one side.
 
 ### 2. Ignoring Gamma Risk
 
+
 **The mistake:**
 
 "Stock is at my short strike, perfect! I'll hold for max profit."
@@ -909,6 +944,7 @@ Negative gamma at short strike = whipsaw risk. Small moves hurt disproportionate
 - Monitor intraday moves, not just close prices
 
 ### 3. Entering at Low IV
+
 
 **The mistake:**
 
@@ -935,6 +971,7 @@ You're selling options (short vega). Need HIGH IV to:
 - Use broken wings as "IV crush" plays
 
 ### 4. Holding to Expiration
+
 
 **The mistake:**
 
@@ -964,6 +1001,7 @@ You're selling options (short vega). Need HIGH IV to:
 
 ### 5. Improper Strike Selection
 
+
 **The mistake:**
 
 "I'll make the broken wing really wide for maximum credit."
@@ -992,9 +1030,11 @@ Wider broken wing = More directional bias needed. If you're wrong, max loss incr
 
 ## Risk Management Rules
 
+
 **Essential guidelines:**
 
 ### 1. Position Sizing
+
 
 **Rule of thumb:**
 
@@ -1012,6 +1052,7 @@ $$
 **Key: Size based on MAX LOSS, not credit collected!**
 
 ### 2. Strike Selection Guidelines
+
 
 **Body width (distance to short strike):**
 
@@ -1031,6 +1072,7 @@ $$
 - Broken wing: $95/$100/$110 (upper wing = $10 = 2× body)
 
 ### 3. Time Frame Selection
+
 
 **Entry:**
 
@@ -1052,6 +1094,7 @@ $$
 
 ### 4. Exit Rules
 
+
 **Set upfront:**
 
 - **Profit target:** 50% of max profit (e.g., max profit $10, exit at $5)
@@ -1061,6 +1104,7 @@ $$
 - **Technical stop:** Exit if stock breaks support (bearish BWB) or resistance (bullish BWB)
 
 ### 5. Avoid These
+
 
 - Never trade broken wings in low IV (<40th percentile)
 - Never hold through earnings (IV crush unpredictable)
@@ -1073,7 +1117,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup (March 2024):**
 
@@ -1111,6 +1157,7 @@ $$
 
 ### 2. Transition Risk Hedge
 
+
 **Setup (January 2024):**
 
 - SPY at $480
@@ -1141,6 +1188,7 @@ $$
 
 ### 3. Portable Alpha with Futures
 
+
 **Setup (October 2024):**
 
 - TSLA at $240, earnings next week
@@ -1168,6 +1216,7 @@ $$
 **Lesson:** High IV entry + directional correctness + IV crush = home run. This is the ideal broken wing setup.
 
 ### 4. Tactical Duration Extension
+
 
 **Setup:**
 
@@ -1206,9 +1255,11 @@ $$
 
 ## Common Mistakes
 
+
 **The 10 mistakes that destroy broken wing butterfly profits:**
 
 ### 1. Mistake #1
+
 
 **The error:** Trading bullish BWB when actually bearish (or vice versa).  
 **Result:** Stock moves to your wide wing (risk side) = max loss.  
@@ -1216,11 +1267,13 @@ $$
 
 ### 2. Mistake #2
 
+
 **The error:** "It's defined risk, I'll trade 50 contracts!"  
 **Reality:** $7.50 max loss × 50 × 100 = **$37,500 loss** (75% of $50k account destroyed)  
 **Fix:** Use formula: Portfolio × 3% / Max Loss. Example: $50k account = 2-3 contracts MAX.
 
 ### 3. Mistake #3
+
 
 **The error:** Don't identify risk side before entry.  
 **Result:** Surprised when max loss hits: "I thought I was protected!"  
@@ -1228,17 +1281,20 @@ $$
 
 ### 4. Mistake #4
 
+
 **The error:** "Stock will bounce back" when already at max loss.  
 **Reality:** Theta doesn't help at max loss. Gamma hurts if it bounces.  
 **Fix:** Exit at -50% of max loss, ALWAYS. No hoping, no waiting.
 
 ### 5. Mistake #5
 
+
 **Low IV (<40th percentile):** Options too cheap, no edge, IV might expand (kills you).  
 **High IV (>80th percentile):** IV expansion risk huge, one spike destroys position.  
 **Fix:** ONLY trade 45-70th percentile IV. Outside this range = skip trade.
 
 ### 6. Mistake #6
+
 
 **The error:** "I want max profit!" (Max = landing exactly at center strike)  
 **Probability:** 5-10% (very rare)  
@@ -1247,6 +1303,7 @@ $$
 
 ### 7. Mistake #7
 
+
 **The error:** Trade OTM strikes with OI < 100.  
 **Reality:** Bid $9.50, Ask $12.50 (spread = $3). Want $11, get filled at $12.  
 **Cost:** -$100 per contract lost to slippage.  
@@ -1254,11 +1311,13 @@ $$
 
 ### 8. Mistake #8
 
+
 **The error:** Holding to 3 DTE with stock near strikes.  
 **Reality:** Gamma explodes, $0.50 move = $500 loss in minutes.  
 **Fix:** Exit by 7 DTE unless deeply profitable (+70%+).
 
 ### 9. Mistake #9
+
 
 **The error:** "I'll buy the calls today, sell tomorrow when market drops."  
 **Reality:** Overnight gap up = calls expensive, your structure now costs more.  
@@ -1266,6 +1325,7 @@ $$
 **Fix:** ALWAYS combo orders (all 4 legs simultaneously).
 
 ### 10. Mistake #10
+
 
 **The error:** "I collected $11.50 credit, I made $1,150!"  
 **Reality:** Max loss = $7.50 (wide wing - credit). You can LOSE $750 per spread.  
@@ -1288,6 +1348,7 @@ So if credit $11.50 > wide wing $10, max loss = $0 (you profit no matter what).
 **Fix:** Always calculate: Max Loss = Wide Wing - Credit. This is your REAL risk, not the credit amount.
 
 ### 11. The Compounding Effect
+
 
 **One mistake (oversizing) wipes out many wins:**
 
@@ -1316,6 +1377,7 @@ Broken wings are profitable when traded perfectly. Imperfect execution = account
 
 ## Final Wisdom
 
+
 > "Broken wing butterflies are the thinking trader's income strategy. You're not trying to be market-neutral - you're expressing a directional bias while still collecting premium and maintaining defined risk. The 'broken wing' isn't a flaw, it's a feature that protects you from catastrophic loss on one side while letting you sleep at night. Master these and you've unlocked asymmetric risk-reward with positive carry."
 
 **Key to success:**
@@ -1334,9 +1396,11 @@ Broken wings are profitable when traded perfectly. Imperfect execution = account
 
 ## Practical Guidance
 
+
 **Step-by-step broken wing butterfly implementation:**
 
 ### 1. Critical Pre-Trade Checklist
+
 
 ☐ **Directional bias clear?** (Bullish → Bullish BWB, Bearish → Bearish BWB)  
 ☐ **IV 45-70th percentile?** (Sweet spot for entry)  
@@ -1348,6 +1412,7 @@ Broken wings are profitable when traded perfectly. Imperfect execution = account
 
 ### 2. Position Sizing Formula
 
+
 $$
 \text{Max Contracts} = \frac{\text{Portfolio} \times 3\%}{\text{Max Loss Per Spread} \times 100}
 $$
@@ -1357,12 +1422,14 @@ $$
 
 ### 3. Entry Execution
 
+
 1. **Combo order** (all 4 legs simultaneously)
 2. **Limit at mid-price** (never market order)
 3. **Verify structure:** Which wing is wide? (Know your risk!)
 4. **Set alerts:** For breakevens and max loss zones
 
 ### 4. Exit Rules (Non-Negotiable)
+
 
 **Take profit:**
 - At +50-60% of max profit
@@ -1381,12 +1448,14 @@ $$
 
 ### 5. Management During Trade
 
+
 **Daily:** Check stock price relative to tent  
 **Weekly:** Check IV percentile (exit if > 70th)  
 **At 50% time:** Evaluate if hitting targets  
 **Never:** Hope for recovery when at max loss
 
 ### 6. When to Adjust vs. Close
+
 
 **Generally:** Close, don't adjust  
 **Broken wings are directional bets** - if wrong, exit
@@ -1399,6 +1468,7 @@ $$
 **Otherwise:** Close and move on
 
 ### 7. Record Template
+
 
 | Date | Underlying | Type | Strikes | DTE | Credit | IV | Max Loss | Outcome | Lesson |
 |------|------------|------|---------|-----|--------|----|---------| ---------|--------|

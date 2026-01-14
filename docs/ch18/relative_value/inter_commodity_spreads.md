@@ -1,10 +1,12 @@
 # Inter-Commodity
 
+
 **Inter-commodity spreads** are futures strategies that trade the price relationship between two related but different commodities, profiting from mean reversion in processing margins, substitution ratios, or economic linkages while remaining directionally neutral to absolute price movements.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Are
 
+
 **Before trading inter-commodity spreads, understand the fundamental mechanics:**
 
 ### 1. Types of
+
 
 **1. Processing Spreads (Input → Outputs):**
 
@@ -139,6 +143,7 @@ $$
 
 ### 2. Most common crack
 
+
 **Most common crack spread configuration:**
 
 $$
@@ -196,6 +201,7 @@ $$
 **This $28.60 is the refiner margin per barrel!**
 
 ### 3. Configuration:
+
 
 **Configuration:**
 
@@ -263,9 +269,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the economic rationale:**
 
 ### 1. Processing
+
 
 **The deep insight:**
 
@@ -300,6 +308,7 @@ $$
 - **Mean reversion**
 
 ### 2. Crack Spread
+
 
 **Refinery decision-making:**
 
@@ -353,6 +362,7 @@ $$
 
 ### 3. Crush Spread
 
+
 **Soybean processor decision-making:**
 
 $$
@@ -396,6 +406,7 @@ $$
 
 ### 4. Substitution
 
+
 **Corn/Wheat spread:**
 
 **Economic relationship:**
@@ -437,6 +448,7 @@ $$
 - **Short corn/long wheat = profitable**
 
 ### 5. Gold/Silver Ratio
+
 
 **Historical context:**
 
@@ -484,6 +496,7 @@ $$
 
 ### 6. Why Spreads
 
+
 **Four fundamental forces:**
 
 **1. Physical arbitrage:**
@@ -529,6 +542,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Inter-Commodity Spread:**
 
@@ -644,9 +658,11 @@ $$
 
 ## The Greeks (Spread
 
+
 **While commodity spreads don't have traditional option Greeks, we can define analogous sensitivities:**
 
 ### 1. Delta
+
 
 **Definition:** How spread value changes with absolute commodity price movements.
 
@@ -697,6 +713,7 @@ Crude rallies $20:
 
 ### 2. Gamma (Convexity)
 
+
 **Definition:** How delta changes as prices move.
 
 $$
@@ -726,6 +743,7 @@ At very high gas prices:
 - **Simpler risk profile**
 
 ### 3. Theta (Time Decay
+
 
 **Definition:** How spread changes with time passage (assuming fundamentals unchanged).
 
@@ -764,6 +782,7 @@ $$
 
 ### 4. Vega (Volatility
 
+
 **Definition:** How spread responds to changes in volatility of underlying commodities.
 
 **Spread volatility < underlying volatility:**
@@ -799,6 +818,7 @@ $$
 
 ### 5. Rho (Interest
 
+
 **Definition:** How spread value changes with interest rates.
 
 **For commodity spreads:**
@@ -822,6 +842,7 @@ Higher rates → higher carry cost → steeper contango:
 - **Secondary effect**
 
 ### 6. Correlation Risk
+
 
 **Definition:** Risk that correlation between legs changes.
 
@@ -859,9 +880,11 @@ $$
 
 ## Spread Selection
 
+
 **Just as traders select securities, spread traders must select optimal spreads:**
 
 ### 1. Crack Spreads
+
 
 **3-2-1 Crack Spread:**
 
@@ -912,6 +935,7 @@ $$
 - **Requires fundamental analysis**
 
 ### 2. Crush Spreads
+
 
 **Soybean Crush:**
 
@@ -977,6 +1001,7 @@ $$
 
 ### 3. Gold/Silver Ratio
 
+
 **Characteristics:**
 
 - Very liquid (precious metals popular)
@@ -1033,6 +1058,7 @@ $$
 
 ### 4. Corn/Wheat Spread
 
+
 **Characteristics:**
 
 - Moderate liquidity
@@ -1071,6 +1097,7 @@ $$
 
 ### 5. Comparison Table
 
+
 | Spread | Liquidity | Complexity | Mean Reversion | Best For |
 |--------|-----------|------------|----------------|----------|
 | 3-2-1 Crack | Excellent | Medium | 4-8 weeks | All traders |
@@ -1086,9 +1113,11 @@ $$
 
 ## Time Selection
 
+
 **Timing is critical for spread trading:**
 
 ### 1. Optimal Entry
+
 
 **Statistical approach:**
 
@@ -1166,6 +1195,7 @@ $$
 
 ### 2. When NOT to Enter
 
+
 **Avoid these situations:**
 
 **1. During delivery/expiration weeks:**
@@ -1224,6 +1254,7 @@ $$
 - **Reassess fair value**
 
 ### 3. Exit Strategy
+
 
 **Profit target approach:**
 
@@ -1290,7 +1321,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Long Crack Spread
+
 
 **Setup:**
 
@@ -1350,6 +1383,7 @@ $$
 $$
 
 ### 2. Short Crush
+
 
 **Setup:**
 
@@ -1411,6 +1445,7 @@ $$
 $$
 
 ### 3. Gold/Silver Ratio
+
 
 **Setup:**
 
@@ -1511,7 +1546,9 @@ $$
 
 ## When to Use
 
+
 ### 1. Ideal Market
+
 
 **Use spreads when:**
 
@@ -1574,6 +1611,7 @@ $$
 
 ### 2. Specific Use
 
+
 **Use Case 1: Hedging production costs**
 
 **Oil refiner:**
@@ -1626,7 +1664,9 @@ $$
 
 ## When NOT to Use
 
+
 ### 1. Avoid These
+
 
 **1. Structural changes occurring:**
 
@@ -1718,6 +1758,7 @@ $$
 
 ### 2. Warning Signs to
 
+
 **1. Spread moving against you AND fundamentals worsening:**
 
 **Example:**
@@ -1764,7 +1805,9 @@ $$
 
 ## Position Sizing and
 
+
 ### 1. The Golden Rule
+
 
 **Standard position sizing:**
 
@@ -1804,6 +1847,7 @@ $$
 
 ### 2. Portfolio
 
+
 **Conservative:**
 
 - 5% of portfolio in spreads
@@ -1830,6 +1874,7 @@ $$
 - **Not set-and-forget**
 
 ### 3. Stop Loss
+
 
 **Statistical stops:**
 
@@ -1865,6 +1910,7 @@ $$
 **Mean reversion should happen by then**
 
 ### 4. Margin Management
+
 
 **Spread margin << outright margin:**
 
@@ -1904,6 +1950,7 @@ $$
 
 ### 5. Diversification
 
+
 **Across spread types:**
 
 **Don't concentrate:**
@@ -1934,6 +1981,7 @@ $$
 - **Balanced**
 
 ### 6. Account: $500,000
+
 
 **Account: $500,000**
 
@@ -1985,7 +2033,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. The error: See
+
 
 **The error:**
 
@@ -2010,6 +2060,7 @@ $$
 - **Focus on spread level**
 
 ### 2. The error: Crack
+
 
 **The error:**
 
@@ -2040,6 +2091,7 @@ $$
 - **Fundamentals first**
 
 ### 3. The error: Crush
+
 
 **The error:**
 
@@ -2091,6 +2143,7 @@ $$
 
 ### 4. The error: Long
 
+
 **The error:**
 
 - Long crack spread in June contracts
@@ -2120,6 +2173,7 @@ $$
 - **Never surprised**
 
 ### 5. The error: Short
+
 
 **The error:**
 
@@ -2162,6 +2216,7 @@ $$
 
 ### 6. The error: Crack
 
+
 **The error:**
 
 - Crack spread margin: $25k per spread
@@ -2191,6 +2246,7 @@ $$
 **Don't be fooled by low margin requirements!**
 
 ### 7. The error: Short
+
 
 **The error:**
 
@@ -2223,6 +2279,7 @@ $$
 
 ### 8. The error:
 
+
 **The error:**
 
 - Gold/silver ratio spikes to 125
@@ -2254,6 +2311,7 @@ $$
 
 ### 9. The error: Enter
 
+
 **The error:**
 
 - Enter crush spread in old crop Nov beans
@@ -2276,6 +2334,7 @@ $$
 - **Follow the market**
 
 ### 10. The error: Enter
+
 
 **The error:**
 
@@ -2308,6 +2367,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Inter-commodity spreads offer one of the purest mean-reversion strategies in markets—the economic relationships between crude and products, beans and meal/oil, gold and silver are anchored by physical processing costs and substitution dynamics. When spreads deviate from fair value, supply and demand forces drive reversion. But 'mean reversion' is not a law of nature—it's a tendency that requires stable fundamentals. Structural changes (refinery closures, disease outbreaks, energy transitions) can shift equilibrium permanently. The successful spread trader combines statistical rigor (z-scores, historical ranges) with fundamental analysis (why is spread extreme?) and disciplined risk management (stops, proper sizing). Trade WITH fundamentals and seasons, not against them. Remember: spreads are lower risk than outrights, but they're not risk-free. Respect the physical economics, size conservatively, and always use stops."
 

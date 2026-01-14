@@ -1,10 +1,12 @@
 # Discrete-Time Hedging Error
 
+
 Continuous-time delta hedging is an idealization. Discrete rebalancing introduces a random hedging error influenced by gamma.
 
 ---
 
 ## Heuristic structure
+
 
 For hedge times \(t_k\), with \(\theta_k=\Delta(t_k,S_{t_k})\), the hedging error can be related to the replacement of quadratic variation by realized squared increments:
 
@@ -19,6 +21,7 @@ For hedge times \(t_k\), with \(\theta_k=\Delta(t_k,S_{t_k})\), the hedging erro
 ---
 
 ## What to remember
+
 
 - Discrete hedging creates variance-like error terms.
 - Near-expiry gamma blow-up magnifies the error.

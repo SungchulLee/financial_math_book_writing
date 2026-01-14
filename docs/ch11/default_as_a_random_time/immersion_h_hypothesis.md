@@ -1,10 +1,12 @@
 # Immersion (H-Hypothesis)
 
+
 The **immersion property**, also called the **H-hypothesis**, is a key assumption in credit risk models relating martingales under different filtrations.
 
 ---
 
-## 1. Definition of the H-hypothesis
+## Definition of the H-hypothesis
+
 
 Given filtrations \((\mathcal{F}_t)\subseteq(\mathcal{G}_t)\), immersion holds if:
 
@@ -18,7 +20,8 @@ This ensures consistency of martingale properties after enlargement.
 
 ---
 
-## 2. Interpretation in credit risk
+## Interpretation in credit risk
+
 
 If immersion holds:
 - market prices remain martingales after including default information,
@@ -29,7 +32,8 @@ This is a strong but convenient assumption.
 
 ---
 
-## 3. Relation to intensity models
+## Relation to intensity models
+
 
 In reduced-form (intensity-based) models:
 - immersion often holds by construction,
@@ -40,7 +44,8 @@ This supports clean separation of market and credit risk.
 
 ---
 
-## 4. When immersion fails
+## When immersion fails
+
 
 If immersion does not hold:
 - additional compensator terms appear,
@@ -51,7 +56,8 @@ Structural models often violate immersion.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Immersion preserves martingale properties after enlargement.
 - It simplifies pricing and hedging in credit models.
@@ -60,6 +66,7 @@ Structural models often violate immersion.
 ---
 
 ## Further reading
+
 
 - Jeanblanc & Le Cam, immersion in credit risk.
 - Elliott et al., hidden Markov default models.

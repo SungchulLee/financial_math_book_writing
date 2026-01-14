@@ -1,10 +1,12 @@
 # General Short-Rate Framework
 
+
 Short-rate models describe interest rates by modeling the **instantaneous short rate** \(r_t\). Once \(r_t\) is specified under the risk-neutral measure, discount factors and bond prices follow from expectation of discounted cashflows.
 
 ---
 
-## 1. The short rate and money-market account
+## The short rate and money-market account
+
 
 The **short rate** \(r_t\) is the instantaneous continuously compounded risk-free rate. The money-market account (bank account) evolves as
 
@@ -24,7 +26,8 @@ B_t = \exp\left(\int_0^t r_s ds\right).
 
 ---
 
-## 2. Pricing zero-coupon bonds
+## Pricing zero-coupon bonds
+
 
 A zero-coupon bond price at time \(t\) for maturity \(T\) is
 
@@ -38,7 +41,8 @@ Thus, the bond price is fully determined by the risk-neutral dynamics of \(r_t\)
 
 ---
 
-## 3. Markov short-rate models
+## Markov short-rate models
+
 
 In a Markov short-rate model,
 
@@ -52,7 +56,8 @@ Then \(P(t,T)=P(t,T,r_t)\) is a function of \(t\), \(T\), and the current short 
 
 ---
 
-## 4. Bond pricing PDE
+## Bond pricing PDE
+
 
 Under sufficient regularity, \(P(t,T,r)\) satisfies the PDE
 
@@ -65,7 +70,8 @@ with terminal condition \(P(T,T,r)=1\).
 
 ---
 
-## 5. Calibration perspective
+## Calibration perspective
+
 
 Short-rate models are typically calibrated to:
 - today’s yield curve (fit initial term structure),
@@ -76,7 +82,8 @@ A key design goal is tractability for \(P(t,T)\) and option pricing.
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Short-rate models start by specifying \(r_t\) under \(\mathbb{Q}\).
 - Bond prices are expectations of discounted short-rate integrals.
@@ -85,6 +92,7 @@ A key design goal is tractability for \(P(t,T)\) and option pricing.
 ---
 
 ## Further reading
+
 
 - Brigo & Mercurio, *Interest Rate Models*.
 - Björk, *Arbitrage Theory in Continuous Time*.

@@ -1,12 +1,15 @@
 # Quadratic Variation
 
+
 ## Motivation
+
 
 Brownian motion is continuous but extremely rough. The key quantitative measure of this roughness is **quadratic variation**, which is the mechanism behind Itô’s correction terms.
 
 ---
 
 ## Definition (quadratic variation)
+
 
 Let \(X=\{X_t\}_{t\in[0,T]}\) be a real-valued process with continuous paths. For a partition
 
@@ -35,6 +38,7 @@ then \([X]_T\) is called the **quadratic variation** of \(X\) over \([0,T]\). Th
 
 ## Quadratic variation of Brownian motion
 
+
 For standard Brownian motion \(\{W_t\}\),
 
 \[
@@ -51,6 +55,7 @@ Intuition: since increments satisfy \(\Delta W_k \sim \mathcal{N}(0,\Delta t_k)\
 ---
 
 ## Finite variation vs quadratic variation
+
 
 If \(A_t\) has finite variation on \([0,T]\), then
 
@@ -73,6 +78,7 @@ This sharply distinguishes Brownian motion from smooth paths: Brownian motion ha
 ---
 
 ## Covariation
+
 
 For two real-valued continuous processes \(X,Y\), define the **quadratic covariation**
 
@@ -97,6 +103,7 @@ For a multidimensional Brownian motion \(W_t=(W_t^{1},\dots,W_t^{m})\),
 
 ## Key algebra (Itô table)
 
+
 Quadratic variation is the rigorous content behind the heuristic rules:
 
 \[
@@ -113,6 +120,7 @@ These are shorthand for statements about covariation.
 ---
 
 ## Quadratic variation of Itô integrals
+
 
 Let
 
@@ -152,6 +160,7 @@ their covariation is
 ---
 
 ## Why this matters for Itô’s formula
+
 
 When expanding \(f(t,W_t)\) via a second-order Taylor approximation, a term involving \((\Delta W_k)^2\) survives in the limit because
 

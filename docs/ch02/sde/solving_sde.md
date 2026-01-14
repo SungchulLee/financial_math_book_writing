@@ -1,14 +1,17 @@
 # Solving Stochastic Differential Equations
 
+
 This section develops analytical solution methods through a carefully structured learning path, where each technique is motivated by concrete examples before systematic generalization.
 
 **Reference:** For additional perspectives, see [Korean lecture series](https://www.youtube.com/watch?v=G61MAT5OgTM&list=PLXziV1DL41og-CJN6Q1tLiU4DreSZmi_P&index=9)
 
 ---
 
-## 1. Introduction
+## Introduction
 
-### 1.1 General Form of an SDE
+
+### 1. General Form of an SDE
+
 
 An Itô stochastic differential equation takes the form:
 
@@ -22,7 +25,8 @@ where:
 - $\sigma(X_t, t)$ is the **diffusion term** (random fluctuation intensity)
 - $W_t$ is standard **Brownian motion**
 
-### 1.2 What Does "Solving" Mean?
+### 2. What Does "Solving" Mean?
+
 
 We seek an **explicit formula** for $X_t$ as a function of $W_t$ and $t$:
 
@@ -36,7 +40,8 @@ This allows us to:
 - Price derivatives in closed form
 - Benchmark numerical schemes
 
-### 1.3 Key Observation
+### 3. Key Observation
+
 
 **Most SDEs do not have closed-form solutions.** The techniques in this section work for special classes of SDEs with particular structures.
 
@@ -48,11 +53,13 @@ When analytical solutions don't exist, we use:
 
 ---
 
-## 2. Three Core Examples
+## Three Core Examples
+
 
 We begin with three fundamental SDEs that motivate our solution methods. Understanding these deeply provides the foundation for all subsequent techniques.
 
-### 2.1 Example 1: Brownian Motion with Drift
+### 1. Example 1: Brownian Motion with Drift
+
 
 **SDE:**
 
@@ -93,7 +100,8 @@ $$
 
 **Why this matters:** This example motivates **Method 1: Direct Integration**.
 
-### 2.2 Example 2: Geometric Brownian Motion
+### 2. Example 2: Geometric Brownian Motion
+
 
 **SDE:**
 
@@ -163,7 +171,8 @@ This is unique to stochastic calculus and does not appear in ordinary calculus.
 
 **Why this matters:** This example motivates **Method 2: Itô's Lemma (Change of Variables)**.
 
-### 2.3 Example 3: Vasicek Model (Mean-Reverting Process)
+### 3. Example 3: Vasicek Model (Mean-Reverting Process)
+
 
 **SDE:**
 
@@ -244,9 +253,11 @@ The process is **Gaussian** and **mean-reverting**.
 
 ---
 
-## 3. Method 1: Direct Integration
+## Method 1: Direct Integration
 
-### 3.1 When It Works
+
+### 1. When It Works
+
 
 **Class of SDEs:** Additive noise with simple drift.
 
@@ -256,7 +267,8 @@ $$
 
 where $b(t)$ and $\sigma(t)$ are known functions of time only (not of $X_t$).
 
-### 3.2 General Solution
+### 2. General Solution
+
 
 $$
 \boxed{
@@ -267,7 +279,8 @@ $$
 - First integral: ordinary Riemann integral
 - Second integral: Itô stochastic integral
 
-### 3.3 Special Cases
+### 3. Special Cases
+
 
 **Constant coefficients** (Example 1):
 
@@ -287,7 +300,8 @@ $$
 dX_t = 0\,dt + e^{-t}\,dW_t \quad \Rightarrow \quad X_t = X_0 + \int_0^t e^{-s}\,dW_s
 $$
 
-### 3.4 Computing Moments
+### 4. Computing Moments
+
 
 For $X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s$:
 
@@ -303,7 +317,8 @@ $$
 \text{Var}(X_t) = \mathbb{E}\left[\left(\int_0^t \sigma(s)\,dW_s\right)^2\right] = \int_0^t \sigma^2(s)\,ds
 $$
 
-### 3.5 Limitations
+### 5. Limitations
+
 
 **Does NOT work for:**
 - Multiplicative noise: $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$
@@ -313,9 +328,11 @@ For these, we need more sophisticated methods.
 
 ---
 
-## 4. Method 2: Itô's Lemma (Change of Variables)
+## Method 2: Itô's Lemma (Change of Variables)
 
-### 4.1 The Fundamental Tool
+
+### 1. The Fundamental Tool
+
 
 **Itô's Lemma** is the chain rule for stochastic calculus. For $Y_t = f(X_t)$ where $X_t$ satisfies:
 
@@ -333,7 +350,8 @@ $$
 
 **Key difference from ordinary calculus:** The second derivative term $\frac{1}{2}\sigma^2 f_{xx}$.
 
-### 4.2 Strategy for Solving SDEs
+### 2. Strategy for Solving SDEs
+
 
 **Goal:** Find transformation $Y_t = f(X_t)$ such that:
 
@@ -345,7 +363,8 @@ Then:
 1. Solve for $Y_t$ using direct integration
 2. Invert: $X_t = f^{-1}(Y_t)$
 
-### 4.3 The GBM Example Revisited (Example 2)
+### 3. The GBM Example Revisited (Example 2)
+
 
 **SDE:**
 
@@ -381,7 +400,8 @@ $$
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 $$
 
-### 4.4 General Power Transformations
+### 4. General Power Transformations
+
 
 **SDE:**
 
@@ -401,7 +421,8 @@ This is simpler only for special $\beta$ values.
 
 **Special case:** $\beta = 1/2$ gives a nearly linear SDE.
 
-### 4.5 Choosing the Right Transformation
+### 5. Choosing the Right Transformation
+
 
 **Guidelines:**
 
@@ -414,9 +435,11 @@ This is simpler only for special $\beta$ values.
 
 ---
 
-## 5. Method 3: Integrating Factor (Linear SDEs)
+## Method 3: Integrating Factor (Linear SDEs)
 
-### 5.1 When It Works
+
+### 1. When It Works
+
 
 **Class of SDEs:** Linear in $X_t$ with deterministic coefficients.
 
@@ -424,7 +447,8 @@ $$
 dX_t = [a(t) + b(t)X_t]\,dt + [c(t) + d(t)X_t]\,dW_t
 $$
 
-### 5.2 The Vasicek Example Revisited (Example 3)
+### 2. The Vasicek Example Revisited (Example 3)
+
 
 **SDE:**
 
@@ -454,7 +478,8 @@ $$
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
 $$
 
-### 5.3 General Linear SDE Solution
+### 3. General Linear SDE Solution
+
 
 For:
 
@@ -470,7 +495,8 @@ $$
 X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)a(s)\,ds + \int_0^t \mu(s)c(s)\,dW_s\right]
 $$
 
-### 5.4 When There's Diffusion in $X_t$
+### 4. When There's Diffusion in $X_t$
+
 
 For:
 
@@ -488,9 +514,11 @@ Then $Y_t$ is a **martingale**.
 
 ---
 
-## 6. More Core Examples
+## More Core Examples
 
-### 6.1 Standard Brownian Motion
+
+### 1. Standard Brownian Motion
+
 
 **SDE:**
 
@@ -515,7 +543,8 @@ $$
 
 **Why this matters:** Brownian motion is the building block of all Itô processes.
 
-### 6.2 Cox-Ingersoll-Ross (CIR) Model
+### 2. Cox-Ingersoll-Ross (CIR) Model
+
 
 **SDE:**
 
@@ -557,9 +586,11 @@ $$
 
 ---
 
-## 7. Method 4: Martingale Representation
+## Method 4: Martingale Representation
 
-### 7.1 Principle
+
+### 1. Principle
+
 
 If $M_t = g(X_t, t)$ is a **martingale**, then:
 
@@ -569,7 +600,8 @@ $$
 
 This constrains the distribution of $X_t$.
 
-### 7.2 Finding Martingales via Itô's Lemma
+### 2. Finding Martingales via Itô's Lemma
+
 
 For $M_t$ to be a martingale, its drift must vanish:
 
@@ -579,7 +611,8 @@ $$
 
 This is the **backward Kolmogorov equation**.
 
-### 7.3 Example: Exponential Martingale
+### 3. Example: Exponential Martingale
+
 
 For $dX_t = \mu\,dt + \sigma\,dW_t$, consider:
 
@@ -596,9 +629,11 @@ $$
 
 ---
 
-## 8. Method 5: Separation of Variables (Lamperti Transform)
+## Method 5: Separation of Variables (Lamperti Transform)
 
-### 8.1 Goal
+
+### 1. Goal
+
 
 Transform SDE with state-dependent diffusion to **unit diffusion**:
 
@@ -606,7 +641,8 @@ $$
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t \quad \Rightarrow \quad dY_t = \tilde{b}(Y_t)\,dt + dW_t
 $$
 
-### 8.2 Lamperti Transform
+### 2. Lamperti Transform
+
 
 **Transformation:**
 
@@ -616,7 +652,8 @@ $$
 
 **Result:** The transformed SDE has unit diffusion coefficient.
 
-### 8.3 Example: CIR Model
+### 3. Example: CIR Model
+
 
 **SDE:**
 
@@ -636,9 +673,11 @@ The transformed SDE relates to **squared Bessel processes**.
 
 ---
 
-## 9. Method 6: Variation of Constants
+## Method 6: Variation of Constants
 
-### 9.1 For Non-Homogeneous Linear SDEs
+
+### 1. For Non-Homogeneous Linear SDEs
+
 
 **SDE:**
 
@@ -659,15 +698,18 @@ $$
 
 where $\mu(t) = \exp\left(\int_0^t \beta(s)\,ds\right)$.
 
-### 9.2 Application: Time-Dependent Mean Reversion
+### 2. Application: Time-Dependent Mean Reversion
+
 
 Generalizes Vasicek to time-dependent parameters (useful for fitting yield curves).
 
 ---
 
-## 10. Method 7: Feynman-Kac (SDE ↔ PDE Connection)
+## Method 7: Feynman-Kac (SDE ↔ PDE Connection)
 
-### 10.1 The Bridge
+
+### 1. The Bridge
+
 
 Given SDE:
 
@@ -687,7 +729,8 @@ $$
 \frac{\partial u}{\partial t} + b(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
 $$
 
-### 10.2 Black-Scholes as Feynman-Kac
+### 2. Black-Scholes as Feynman-Kac
+
 
 For GBM under risk-neutral measure:
 
@@ -705,9 +748,11 @@ satisfies the Black-Scholes PDE.
 
 ---
 
-## 11. Method 8: Girsanov's Theorem (Change of Measure)
+## Method 8: Girsanov's Theorem (Change of Measure)
 
-### 11.1 Changing the Drift
+
+### 1. Changing the Drift
+
 
 **Girsanov's Theorem:** We can change the drift by changing probability measure.
 
@@ -725,7 +770,8 @@ $$
 
 where $W_t^{\mathbb{Q}} = W_t + \theta t$.
 
-### 11.2 Application: Risk-Neutral Pricing
+### 2. Application: Risk-Neutral Pricing
+
 
 Now $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, enabling:
 
@@ -735,9 +781,11 @@ $$
 
 ---
 
-## 12. Method 9: Similarity Solutions
+## Method 9: Similarity Solutions
 
-### 12.1 Scale-Invariant SDEs
+
+### 1. Scale-Invariant SDEs
+
 
 For SDEs with homogeneity properties, seek solutions:
 
@@ -745,7 +793,8 @@ $$
 X_t = t^\alpha f(W_t/t^\beta)
 $$
 
-### 12.2 Example: Quadratic SDE
+### 2. Example: Quadratic SDE
+
 
 $$
 dX_t = X_t^2\,dt + dW_t
@@ -755,7 +804,8 @@ May exhibit **finite-time explosion**. Similarity methods help characterize blow
 
 ---
 
-## 13. Summary: Matching Methods to SDEs
+## Summary: Matching Methods to SDEs
+
 
 | SDE Structure | Best Method | Example |
 |--------------|-------------|---------|
@@ -769,9 +819,11 @@ May exhibit **finite-time explosion**. Similarity methods help characterize blow
 
 ---
 
-## 14. When No Closed-Form Solution Exists
+## When No Closed-Form Solution Exists
 
-### 14.1 The Reality
+
+### 1. The Reality
+
 
 **Most SDEs lack analytical solutions**, including:
 - Heston model (stochastic volatility)
@@ -780,7 +832,8 @@ May exhibit **finite-time explosion**. Similarity methods help characterize blow
 - Jump-diffusions
 - General non-linear SDEs
 
-### 14.2 Alternative Approaches
+### 2. Alternative Approaches
+
 
 1. **Numerical Simulation**
    - Euler-Maruyama (see SDE Simulation section)
@@ -805,7 +858,8 @@ May exhibit **finite-time explosion**. Similarity methods help characterize blow
 
 ---
 
-## 15. Worked Example: Custom SDE
+## Worked Example: Custom SDE
+
 
 **Problem:** Solve
 
@@ -845,9 +899,11 @@ $$
 
 ---
 
-## 16. The Art of Solving SDEs
+## The Art of Solving SDEs
 
-### 16.1 Recognition is Key
+
+### 1. Recognition is Key
+
 
 Success requires **pattern recognition**:
 
@@ -856,7 +912,8 @@ Success requires **pattern recognition**:
 3. **Apply technique** systematically
 4. **Verify solution** (see Verifying Solutions section)
 
-### 16.2 When to Stop Looking
+### 2. When to Stop Looking
+
 
 If after trying:
 - Direct integration
@@ -870,7 +927,8 @@ Switch to:
 - Moment analysis
 - Asymptotic approximations
 
-### 16.3 Value of Analytical Solutions
+### 3. Value of Analytical Solutions
+
 
 Even when numerical methods are needed, analytical solutions provide:
 
@@ -880,7 +938,8 @@ Even when numerical methods are needed, analytical solutions provide:
 4. **Parameter bounds** from limiting cases
 5. **Connections** to PDEs and probability
 
-### 16.4 The Complete Toolkit
+### 4. The Complete Toolkit
+
 
 Solving SDEs requires combining:
 - **Stochastic calculus** (Itô's lemma)
@@ -893,7 +952,8 @@ Mastering these connections is the essence of modern quantitative finance.
 
 ---
 
-## 17. Cross-References
+## Cross-References
+
 
 For related topics, see:
 

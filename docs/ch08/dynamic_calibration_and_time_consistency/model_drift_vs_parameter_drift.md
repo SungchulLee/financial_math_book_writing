@@ -1,10 +1,12 @@
 # Model Drift vs Parameter Drift
 
+
 Observed parameter changes over time can stem from two fundamentally different sources: **model drift** and **parameter drift**. Distinguishing between them is crucial for interpretation and risk management.
 
 ---
 
-## 1. Parameter drift
+## Parameter drift
+
 
 **Parameter drift** occurs when:
 - model parameters are treated as time-dependent,
@@ -18,7 +20,8 @@ Parameter drift can be modeled explicitly but undermines static model interpreta
 
 ---
 
-## 2. Model drift
+## Model drift
+
 
 **Model drift** arises when:
 - the true market dynamics lie outside the model class,
@@ -30,7 +33,8 @@ In this case:
 
 ---
 
-## 3. Diagnosing the difference
+## Diagnosing the difference
+
 
 Indicators of model drift:
 - systematic parameter trends across regimes,
@@ -43,7 +47,8 @@ Indicators of parameter drift:
 
 ---
 
-## 4. Risk management implications
+## Risk management implications
+
 
 - Parameter drift requires dynamic hedging adjustments.
 - Model drift suggests the model should be replaced or extended.
@@ -51,7 +56,8 @@ Indicators of parameter drift:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Not all parameter changes mean the same thing.
 - Model drift signals misspecification.
@@ -60,6 +66,7 @@ Indicators of parameter drift:
 ---
 
 ## Further reading
+
 
 - Rebonato, *Volatility and Correlation*.
 - Cont, *Model Uncertainty and Its Impact on Pricing*.

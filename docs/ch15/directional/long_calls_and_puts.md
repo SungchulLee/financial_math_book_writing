@@ -1,5 +1,6 @@
 # Long Calls and Puts
 
+
 **Long calls and puts** are the simplest option strategies 
 where you buy the right (but not the obligation) to purchase (call) or sell (put) a stock at a predetermined price, 
 giving you directional exposure with limited downside risk.
@@ -7,6 +8,7 @@ giving you directional exposure with limited downside risk.
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -29,11 +31,14 @@ showing symmetric payoff structures with limited downside (premium paid) and unl
 
 ## What Are Calls and Puts?
 
+
 ### 1. Leverage
+
 
 **Control more shares with less capital:**
 
 ### 2. Portfolio Hedge (Insurance)
+
 
 **Protect stock portfolio from crash:**
 
@@ -49,6 +54,7 @@ showing symmetric payoff structures with limited downside (premium paid) and unl
 
 ### 3. Cheaper Than Shorting
 
+
 **Bearish play without margin:**
 
 **Definition:** The right (not obligation) to SELL stock at strike price $K$ by expiration date $T$.
@@ -62,6 +68,7 @@ showing symmetric payoff structures with limited downside (premium paid) and unl
 - Max profit = strike - premium (stock can't go below $0)
 
 ### 4. Theta (Θ)
+
 
 **How much option loses per day (all else equal):**
 
@@ -118,6 +125,7 @@ $$
 
 ### 5. Put-Call Parity
 
+
 **The most important equation in options:**
 
 $$
@@ -149,6 +157,7 @@ $$
 
 ### 6. Why This Matters
 
+
 **Understanding options as financing structures helps you:**
 
 1. **Compare to alternatives:**
@@ -174,6 +183,7 @@ $$
       - Market makers constantly monitor this
 
 ### 7. Strategic Advantage
+
 
 **Why traders prefer options over pure leverage:**
 
@@ -206,6 +216,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Strike Price ($K$):**
 
@@ -248,9 +259,11 @@ $$
 
 ## Why Buy Calls? (Bullish Strategy)
 
+
 **Use cases for buying calls:**
 
 ### 1. Directional Bet (Bullish)
+
 
 **View:** "Stock will go up significantly"
 
@@ -289,11 +302,13 @@ $$
 
 ### 2. Limited Downside
 
+
 **Protect against catastrophic loss:**
 
 - Downside risk is limited to the premium paid (see **The Core Insight**).
 
 ### 3. Earnings/Event Play
+
 
 **Before binary events:**
 
@@ -305,9 +320,11 @@ $$
 
 ## Why Buy Puts? (Bearish Strategy)
 
+
 **Use cases for buying puts:**
 
 ### 1. Directional Bet (Bearish)
+
 
 **View:** "Stock will go down significantly"
 
@@ -347,6 +364,7 @@ $$
 
 ### 2. Cannot Short
 
+
 **Some stocks hard to borrow:**
 
 - Heavily shorted already
@@ -358,7 +376,9 @@ $$
 
 ## The Greeks (Simplified)
 
+
 ### 1. Delta (Δ)
+
 
 **How much option price changes per $1 stock move:**
 
@@ -399,6 +419,7 @@ $$
 
 ### 2. Vega (ν)
 
+
 **How much option price changes per 1% change in implied volatility:**
 
 **All long options have positive vega:**
@@ -421,6 +442,7 @@ $$
 
 ### 3. Gamma (Γ)
 
+
 **How much delta changes per $1 stock move:**
 
 **Long options have positive gamma:**
@@ -440,9 +462,11 @@ $$
 
 ## Strike Selection (Critical!)
 
+
 **Choosing the right strike determines your payoff profile:**
 
 ### 1. ITM Calls/Puts
+
 
 **Characteristics:**
 
@@ -460,6 +484,7 @@ $$
 - Stock to $110 → call to $20 (67% gain)
 
 ### 2. ATM Calls/Puts
+
 
 **Characteristics:**
 
@@ -491,6 +516,7 @@ $$
 
 ### 3. The Trade-off
 
+
 **Strike selection is probability vs. payout:**
 
 $$
@@ -507,7 +533,9 @@ $$
 
 ## Time Selection (Crucial!)
 
+
 ### 1. Short-Term (<1 month)
+
 
 **Pros:**
 
@@ -533,6 +561,7 @@ $$
 - Need immediate move or lose fast
 
 ### 2. Medium-Term (1-3 months)
+
 
 **Pros:**
 
@@ -561,6 +590,7 @@ $$
 **This is the sweet spot for most traders!**
 
 ### 3. Long-Term (3+ months)
+
 
 **LEAPS = Long-term Equity Anticipation Securities (1-2 years out)**
 
@@ -593,7 +623,9 @@ $$
 
 ## When NOT to Buy Calls/Puts
 
+
 ### 1. High IV Environment
+
 
 **Problem:**
 
@@ -613,6 +645,7 @@ $$
 
 ### 2. Sideways Market
 
+
 **Problem:**
 
 - Long options need movement
@@ -630,6 +663,7 @@ $$
 
 ### 3. No Catalyst
 
+
 **Problem:**
 
 - Random hoping stock moves
@@ -645,6 +679,7 @@ $$
 **Solution:** Only trade around catalysts (earnings, FDA, etc.)
 
 ### 4. Long-Term Hold
+
 
 **Problem:**
 
@@ -663,6 +698,7 @@ $$
 **Solution:** Use stock or deep ITM LEAPS (1-2 years)
 
 ### 5. Already Priced In
+
 
 **Problem:**
 
@@ -684,7 +720,9 @@ $$
 
 ## Advanced Considerations
 
+
 ### 1. IV Percentile
+
 
 **Before buying ANY option, check IV percentile:**
 
@@ -710,6 +748,7 @@ $$
 
 ### 2. Position Sizing Math
 
+
 **Calculate position size based on risk:**
 
 **Formula:**
@@ -728,6 +767,7 @@ $$
 **This ensures no single trade wipes you out!**
 
 ### 3. Adjusting Positions
+
 
 **What to do when trade moves against you:**
 
@@ -762,6 +802,7 @@ $$
 - **Risk:** Concentration, timing
 
 ### 4. The Greeks in Action
+
 
 **Real scenario showing all Greeks:**
 
@@ -802,7 +843,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Buying OTM Lottery Tickets
+
 
 - **Mistake:** Consistently buying far OTM options because "they're cheap"
 - **Why it fails:** Low delta (0.10-0.20), stock needs 20%+ move, 80%+ lose money
@@ -811,12 +854,14 @@ $$
 
 ### 2. Holding Through Expiration
 
+
 - **Mistake:** "Diamond hands" - holding losing options hoping for miracle
 - **Why it fails:** Time decay accelerates, 99% expire worthless
 - **Fix:** Set stop loss (-50%), exit early if wrong
 - **Counter-Strategy:** **Sell theta in final 30 days** - when decay is steepest, sell options to those holding too long
 
 ### 3. Ignoring IV (IV Blindness)
+
 
 - **Mistake:** Buying options without checking IV percentile
 - **Why it fails:** Overpay when IV high, lose to IV crush
@@ -825,6 +870,7 @@ $$
 
 ### 4. Over-Leveraging
 
+
 - **Mistake:** "I can control 1000 shares for $5,000!" (using entire account)
 - **Why it fails:** One bad trade = account blown up
 - **Fix:** Risk only 2-5% per trade, position sizing discipline
@@ -832,11 +878,13 @@ $$
 
 ### 5. Trading Illiquid Options
 
+
 - **Mistake:** Buying options with wide bid/ask ($2.00 bid, $2.40 ask)
 - **Why it fails:** Lose 20% instantly to spread, can't exit cleanly
 - **Fix:** Only trade volume >100, tight spreads (<10%)
 
 ### 6. Buying Before Earnings
+
 
 - **Mistake:** "Stock will beat earnings, I'll buy calls today!"
 - **Why it fails:** IV already elevated, crushes even if you're right
@@ -845,12 +893,14 @@ $$
 
 ### 7. Chasing After Big Moves
 
+
 - **Mistake:** Stock up 15% → "I'll buy calls, momentum!" (FOMO)
 - **Why it fails:** Often buying the top, IV spiked, theta high
 - **Fix:** Wait for pullback, let IV settle
 - **Counter-Strategy:** **Sell to FOMO buyers** - after parabolic moves, sell calls to late chasers; after panic drops, sell puts to late bears
 
 ### 8. No Catalyst Trading
+
 
 - **Mistake:** "Stock looks cheap, I'll buy calls" (no reason why)
 - **Why it fails:** FOMO entry, buying tops
@@ -859,11 +909,13 @@ $$
 
 ### 9. Confusing Probability
 
+
 - **Mistake:** "I'm up 100%, this always works!"
 - **Why it fails:** One big win doesn't mean skill, could be luck
 - **Fix:** Track all trades, understand win rate needed
 
 ### 10. No Exit Plan
+
 
 - **Mistake:** Enter trade without profit target or stop loss
 - **Why it fails:** Hold too long (theta) or panic sell bottoms
@@ -873,7 +925,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Rule of thumb:**
 
@@ -890,6 +944,7 @@ $$
 
 ### 2. Diversification
 
+
 **Don't concentrate:**
 
 - Max 5-10% of portfolio in options
@@ -899,6 +954,7 @@ $$
 
 ### 3. Exit Rules
 
+
 **Set upfront:**
 
 - **Take profit:** 50-100% gain
@@ -907,6 +963,7 @@ $$
 - **IV exit:** Exit on IV spike even if stock flat
 
 ### 4. Avoid These
+
 
 - Never "double down" on losing position
 - Never "roll down and out" hoping for recovery (usually fails)
@@ -918,7 +975,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. AAPL (Sept 2023)
+
 
 **Setup:**
 
@@ -942,6 +1001,7 @@ $$
 
 ### 2. TSLA (Oct 2023)
 
+
 **Setup:**
 
 - TSLA at $240 before earnings
@@ -964,6 +1024,7 @@ $$
 
 ### 3. COVID (Feb 2020)
 
+
 **Setup:**
 
 - SPY at $340 (all-time high)
@@ -985,6 +1046,7 @@ $$
 
 ### 4. Small Cap Biotech
 
+
 **Setup:**
 
 - Small biotech at $20
@@ -1005,9 +1067,11 @@ $$
 
 ## Practical Steps
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Market Assessment
+
 
 **Before entering, evaluate:**
 
@@ -1030,6 +1094,7 @@ $$
       - Macro backdrop (Fed, geopolitics)
 
 ### 2. Entry Conditions
+
 
 **Enter long calls when:**
 
@@ -1060,6 +1125,7 @@ $$
 
 ### 3. Position Sizing
 
+
 **Calculate maximum position size:**
 
 $$
@@ -1082,6 +1148,7 @@ $$
 - **Max size: 2 contracts**
 
 ### 4. Contract Selection
+
 
 **Best practices:**
 
@@ -1112,6 +1179,7 @@ $$
 
 ### 5. Trade Management
 
+
 **Active management rules:**
 
 **Profit targets:**
@@ -1135,6 +1203,7 @@ $$
 - Don't hold through expiration unless deep ITM
 
 ### 6. Adjustments & Rolls
+
 
 **When to adjust:**
 
@@ -1160,6 +1229,7 @@ $$
 
 ### 7. Exit Discipline
 
+
 Track every trade:
 
 - Entry/exit dates and prices
@@ -1173,6 +1243,7 @@ Track every trade:
 
 ## Final Wisdom
 
+
 > "Long calls and puts are the simplest option strategies, but don't mistake simple for easy. They require you to be right on BOTH direction and timing, and theta decay is relentless. Use them for high-conviction, short-term directional bets with defined risk. Master these before attempting any complex strategies. If you can't make money with simple long options, you won't make money with complex spreads either."
 
 **Key to success:**
@@ -1183,3 +1254,45 @@ Track every trade:
 - Understand Greeks (especially theta and delta)
 - Check IV before entering (avoid expensive options)
 - Have catalyst (don't just hope)
+
+---
+
+!!! summary "Core Insight in One Sentence"
+    Long calls and puts provide **directional exposure with predefined maximum loss**, acting as leveraged positions with built-in insurance.
+
+---
+
+!!! note "Calls vs Puts — Mental Model"
+    A **call** is a leveraged long position with limited downside.  
+    A **put** is a leveraged short position with limited upside risk.
+
+---
+
+!!! warning "Theta Is Always Working Against You"
+    If price and volatility do not move in your favor, **time decay alone guarantees losses** for long option positions.
+
+---
+
+!!! summary "Greeks in One Sentence"
+    Delta = direction, Gamma = acceleration, Theta = time tax, Vega = volatility bet.
+
+---
+
+!!! tip "Strike & Time Selection Heuristic"
+    If you are unsure, choose **ATM strikes with 60–90 DTE** — this balances probability, leverage, and theta exposure.
+
+---
+
+!!! warning "High IV Is a Hidden Tax"
+    Buying options when IV is elevated exposes you to **IV crush**, even if your directional view is correct.
+
+---
+
+!!! summary "Risk Management Anchor"
+    Size trades so that **a full loss of premium is survivable** — options reward conviction, not over-leverage.
+
+---
+
+!!! tip "When Long Options Make Sense"
+    Use long calls or puts only when you have **direction + timing + catalyst** — remove any one, and expectancy collapses.
+

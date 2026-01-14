@@ -1,11 +1,13 @@
 # Value and PPP Reversion
 
+
 **Value and PPP reversion** strategies exploit currency mispricings relative to fundamental economic measures,
 betting that exchange rates eventually converge toward purchasing power parity and other equilibrium levels over medium to long-term horizons.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -28,7 +30,9 @@ showing persistent mispricings that eventually revert, creating systematic tradi
 
 ## Theoretical Foundation
 
+
 ### 1. Purchasing Power Parity
+
 
 **The fundamental relationship:**
 
@@ -60,6 +64,7 @@ Where:
 
 ### 2. Relative PPP
 
+
 **More practical formulation:**
 
 $$
@@ -89,6 +94,7 @@ $$
 
 ### 3. Real Exchange Rate
 
+
 **Deflating nominal rate:**
 
 $$
@@ -117,9 +123,11 @@ Where:
 
 ## Value Measurement
 
+
 **Quantifying currency mispricing:**
 
 ### 1. REER (Real Effective Exchange Rate)
+
 
 **Trade-weighted real rate:**
 
@@ -149,6 +157,7 @@ Where:
 
 ### 2. Big Mac Index
 
+
 **The Economist's measure:**
 
 $$
@@ -172,6 +181,7 @@ $$
 
 ### 3. Terms of Trade
 
+
 **Export/import price ratio:**
 
 $$
@@ -194,6 +204,7 @@ $$
 - **TOT explains currency move**
 
 ### 4. Balassa-Samuelson Effect
+
 
 **Productivity adjustment:**
 
@@ -219,9 +230,11 @@ $$
 
 ## Core Strategies
 
+
 **Practical implementations:**
 
 ### 1. REER Reversion Trade
+
 
 **Classic value trade:**
 
@@ -259,6 +272,7 @@ $$
 - **Net: +7% over 2 years (3.5% annually)**
 
 ### 2. Big Mac Arbitrage
+
 
 **Consumer PPP trade:**
 
@@ -301,6 +315,7 @@ $$
 - Win rate: 60-65% (patience required)
 
 ### 3. Terms of Trade Trade
+
 
 **Commodity currency strategy:**
 
@@ -348,6 +363,7 @@ $$
 
 ### 4. Yield-Adjusted PPP
 
+
 **Combining value and carry:**
 
 **Formula:**
@@ -384,9 +400,11 @@ $$
 
 ## Greeks and Sensitivities
 
+
 **Understanding position dynamics:**
 
 ### 1. Mean Reversion Speed (λ)
+
 
 **Speed of convergence:**
 
@@ -413,6 +431,7 @@ Where:
 
 ### 2. Volatility (σ)
 
+
 **Position risk:**
 
 $$
@@ -434,6 +453,7 @@ $$
 - Monitor vol regime (exit if spikes > 2σ)
 
 ### 3. Carry Drag (θ)
+
 
 **Time decay (or gain):**
 
@@ -465,6 +485,7 @@ $$
 
 ### 4. Correlation Risk (ρ)
 
+
 **Cross-currency dependencies:**
 
 **Key correlations (typical):**
@@ -492,9 +513,11 @@ $$
 
 ## Implementation Details
 
+
 **Practical execution framework:**
 
 ### 1. Data Sources
+
 
 **Essential inputs:**
 
@@ -517,6 +540,7 @@ $$
 - Bloomberg commodity indices
 
 ### 2. Valuation Thresholds
+
 
 **Entry signals:**
 
@@ -542,6 +566,7 @@ $$
 - Stay flat
 
 ### 3. Position Sizing
+
 
 **Risk-based framework:**
 
@@ -571,6 +596,7 @@ $$
 
 ### 4. Time Horizon
 
+
 **Expected holding periods:**
 
 **Major currencies (G10):**
@@ -593,6 +619,7 @@ $$
 - Cut position if vol regime changes (crisis)
 
 ### 5. Hedging Approaches
+
 
 **Tail risk protection:**
 
@@ -620,9 +647,11 @@ $$
 
 ## When It Works Best
 
+
 **Optimal conditions for value trades:**
 
 ### 1. Extreme Misalignment
+
 
 **Clear value signal:**
 
@@ -641,6 +670,7 @@ $$
 
 ### 2. Patient Capital Environment
 
+
 **Low volatility regime:**
 
 - VIX < 20 (stable markets)
@@ -657,6 +687,7 @@ $$
 - Need calm seas to hold through fluctuations
 
 ### 3. Monetary Policy Alignment
+
 
 **Central bank supporting reversion:**
 
@@ -678,9 +709,11 @@ $$
 
 ## When It Fails
 
+
 **Danger signs and pitfalls:**
 
 ### 1. Structural Breaks
+
 
 **Permanent regime shifts:**
 
@@ -707,6 +740,7 @@ $$
 
 ### 2. Crisis and Risk-Off
 
+
 **Violent mean reversion interruption:**
 
 **What happens:**
@@ -732,6 +766,7 @@ $$
 - Have pre-set circuit breakers
 
 ### 3. Central Bank Intervention
+
 
 **Fighting the central bank:**
 
@@ -761,9 +796,11 @@ $$
 
 ## Common Mistakes
 
+
 **Frequent errors to avoid:**
 
 ### 1. Ignoring Structural Changes
+
 
 **The mistake:**
 
@@ -789,6 +826,7 @@ $$
 
 ### 2. Insufficient Time Horizon
 
+
 **The mistake:**
 
 - Enter value trade with 6-month horizon
@@ -812,6 +850,7 @@ $$
 
 ### 3. Over-Leveraging
 
+
 **The mistake:**
 
 - "Value trade = low risk, mean reversion certain"
@@ -834,6 +873,7 @@ $$
 - Test: Can you hold this for 3 years?
 
 ### 4. Ignoring Carry
+
 
 **The mistake:**
 
@@ -860,7 +900,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Limits
+
 
 **Maximum exposure:**
 
@@ -883,6 +925,7 @@ $$
 - Including EM: Max 3x leverage
 
 ### 2. Diversification
+
 
 **Spread across:**
 
@@ -908,6 +951,7 @@ $$
 
 ### 3. Monitoring Framework
 
+
 **Daily:**
 
 - Major central bank announcements
@@ -932,6 +976,7 @@ $$
 
 ### 4. Exit Discipline
 
+
 **Planned exits:**
 
 **Take profit when:**
@@ -953,7 +998,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. EUR/CHF (2011-2015)
+
 
 **Setup:**
 
@@ -984,6 +1031,7 @@ $$
 
 ### 2. GBP Brexit (2016-2018)
 
+
 **Setup:**
 
 - June 2016: Brexit vote, GBP crashes
@@ -1009,6 +1057,7 @@ $$
 
 ### 3. AUD Terms of Trade (2020-2022)
 
+
 **Setup:**
 
 - COVID crash: AUD at 0.55 (March 2020)
@@ -1033,6 +1082,7 @@ $$
 **Lesson:** TOT + value + carry = trifecta. All factors aligned.
 
 ### 4. JPY Undervaluation (2012-2024)
+
 
 **Setup:**
 
@@ -1065,9 +1115,11 @@ $$
 
 ## Practical Steps
 
+
 **Step-by-step implementation:**
 
 ### 1. Build Valuation Dashboard
+
 
 **Spreadsheet setup:**
 
@@ -1094,6 +1146,7 @@ $$
 
 ### 2. Screen for Opportunities
 
+
 **Filtering process:**
 
 **Step 1: Identify extremes**
@@ -1116,6 +1169,7 @@ $$
 - Top 3-5 become positions
 
 ### 3. Position Sizing
+
 
 **For each trade:**
 
@@ -1140,6 +1194,7 @@ $$
 
 ### 4. Entry Execution
 
+
 **Best practices:**
 
 **Timing:**
@@ -1157,6 +1212,7 @@ $$
 - Allows averaging if wrong initially
 
 ### 5. Monitoring and Rebalancing
+
 
 **Quarterly review process:**
 
@@ -1186,6 +1242,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Value and PPP reversion is the most intellectually satisfying FX strategy—grounded in fundamental theory, statistically validated, and logically coherent. But it's also the hardest to execute: mean reversion takes years, carry bleeds, and behavioral discipline is tested repeatedly. Most traders give up before reversion occurs, or over-leverage and get stopped out. The secret is patience, conservative sizing, and constant vigilance for structural breaks. When it works, it's like watching gravity reassert itself. When it fails, it's because the world changed beneath you."
 

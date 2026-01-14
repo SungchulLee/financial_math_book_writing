@@ -1,10 +1,12 @@
 # Coherent Risk Measures
 
+
 A **coherent risk measure** satisfies a set of axioms that formalize desirable properties of a risk metric, especially with respect to diversification.
 
 ---
 
-## 1. Coherence axioms
+## Coherence axioms
+
 
 A risk measure \(\rho(L)\) is **coherent** if it satisfies:
 
@@ -21,7 +23,8 @@ Subadditivity encodes the diversification principle.
 
 ---
 
-## 2. VaR vs ES
+## VaR vs ES
+
 
 - **VaR** generally fails subadditivity and is *not* coherent.
 - **Expected Shortfall** satisfies all four axioms and *is* coherent.
@@ -30,7 +33,8 @@ This is a key theoretical distinction.
 
 ---
 
-## 3. Economic interpretation
+## Economic interpretation
+
 
 Coherent risk measures:
 - reward diversification,
@@ -41,7 +45,8 @@ They are particularly suitable for portfolio-level risk management.
 
 ---
 
-## 4. Practical relevance
+## Practical relevance
+
 
 Despite theoretical appeal:
 - coherent measures can be harder to estimate,
@@ -52,7 +57,8 @@ Nonetheless, coherence is a guiding principle in modern risk management.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Coherence formalizes desirable risk properties.
 - ES is coherent; VaR generally is not.
@@ -61,6 +67,7 @@ Nonetheless, coherence is a guiding principle in modern risk management.
 ---
 
 ## Further reading
+
 
 - Artzner et al., coherent risk measures.
 - Föllmer & Schied, *Stochastic Finance*.

@@ -1,10 +1,12 @@
 # BSDE-Based Risk Measures
 
+
 Backward Stochastic Differential Equations (BSDEs) provide a powerful mathematical framework for defining **dynamic risk measures**.
 
 ---
 
-## 1. BSDE formulation
+## BSDE formulation
+
 
 A BSDE has the form
 
@@ -21,7 +23,8 @@ The solution \(Y_t\) defines a dynamic risk measure.
 
 ---
 
-## 2. Risk measure interpretation
+## Risk measure interpretation
+
 
 Define
 
@@ -37,14 +40,16 @@ Different choices of the driver \(g\) correspond to different risk attitudes:
 
 ---
 
-## 3. Time-consistency
+## Time-consistency
+
 
 BSDE-based risk measures are naturally time-consistent due to their recursive structure.
 This makes them attractive for dynamic risk management.
 
 ---
 
-## 4. Applications
+## Applications
+
 
 BSDE risk measures are used in:
 - capital allocation,
@@ -55,7 +60,8 @@ They unify pricing and risk concepts.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - BSDEs generate dynamic, time-consistent risk measures.
 - The driver encodes risk aversion.
@@ -64,6 +70,7 @@ They unify pricing and risk concepts.
 ---
 
 ## Further reading
+
 
 - Peng, nonlinear expectations.
 - Delbaen et al., BSDE risk measures.

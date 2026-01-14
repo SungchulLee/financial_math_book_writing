@@ -1,10 +1,12 @@
 # Pathwise Differentiation
 
+
 Pathwise differentiation computes Greeks by differentiating sample paths with respect to parameters or initial data.
 
 ---
 
 ## Delta (Black–Scholes)
+
 
 Since \(\partial S_T/\partial S = S_T/S\),
 
@@ -18,6 +20,7 @@ for smooth \(\Phi\).
 ---
 
 ## Vega (Black–Scholes)
+
 
 Differentiate \(S_T\) with respect to \(\sigma\):
 
@@ -44,11 +47,13 @@ Thus, for smooth \(\Phi\),
 
 ## Limitation
 
+
 If \(\Phi\) has kinks, \(\Phi'\) is discontinuous and pathwise differentiation can fail at the kink. Likelihood ratio methods avoid this by moving derivatives to the density.
 
 ---
 
 ## What to remember
+
 
 - Pathwise methods are natural for smooth payoffs.
 - For kinked payoffs, likelihood ratio/Malliavin weights are often preferable.

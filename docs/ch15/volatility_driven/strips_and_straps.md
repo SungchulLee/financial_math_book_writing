@@ -1,10 +1,12 @@
 # Strips and Straps
 
+
 **Strips and straps** are directional volatility strategies that combine unequal ratios of puts and calls at the same strike, expressing both a directional bias and a volatility bet - strips favor downside (2 puts : 1 call) while straps favor upside (1 put : 2 calls).
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -104,9 +106,11 @@ $$
 
 ## What Are Strips and Straps?
 
+
 **Before trading strips/straps, understand the structure:**
 
 ### 1. Strip (Bearish Volatility Strategy)
+
 
 **Definition:** Buy 1 ATM call + 2 ATM puts at the same strike.
 
@@ -157,6 +161,7 @@ $$
 - **Max loss at strike:** If stock exactly at $100, all options expire worthless
 
 ### 2. Strap (Bullish Volatility Strategy)
+
 
 **Definition:** Buy 2 ATM calls + 1 ATM put at the same strike.
 
@@ -212,9 +217,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic definition, understanding what strips/straps REALLY are economically:**
 
 ### 1. The Evolution from Straddle to Strip/Strap
+
 
 **Straddle (neutral volatility):**
 
@@ -259,6 +266,7 @@ $$
 
 ### 2. Why Pay 50% More for Directional Bias?
 
+
 **The question:**
 
 Straddle costs $10 (2 options), strip/strap costs $15 (3 options). You're paying 50% more. Why?
@@ -297,6 +305,7 @@ $$
 
 ### 3. The Premium vs. Leverage Trade-Off
 
+
 **Compare strip to just buying 2× puts:**
 
 **Option A: Strip (1 call + 2 puts)**
@@ -334,6 +343,7 @@ For 50% more capital, you get:
 ---
 
 ## Key Terminology
+
 
 **Strip:**
 
@@ -403,6 +413,7 @@ $$
 
 ## Why Trade Strips and Straps?
 
+
 **Use cases:**
 
 
@@ -410,9 +421,11 @@ $$
 
 ## Economic
 
+
 **Understanding what strips and straps REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 Strips and straps represent a sophisticated proposition: **Trading symmetric volatility exposure (straddles) for asymmetric volatility exposure that matches directional conviction** while maintaining protection in the opposite direction.
 
@@ -445,6 +458,7 @@ $$
 **Key:** Extra premium buys 2× leverage in directional move, but lose more if wrong direction or no move.
 
 ### 2. Why This Structure Exists Economically
+
 
 Markets create strips and straps because traders need to express **"I expect volatility AND have directional bias"**:
 
@@ -798,6 +812,7 @@ Understanding these helps recognize:
 
 ### 3. Earnings with Directional Lean
 
+
 **Scenario:** Company reporting earnings, expecting big move, slight bearish bias
 
 **Setup:**
@@ -847,6 +862,7 @@ Understanding these helps recognize:
 - If right, get 2× leverage
 
 ### 4. FDA Approval Event (Biotech)
+
 
 **Scenario:** Biotech awaiting FDA approval decision
 
@@ -898,6 +914,7 @@ Understanding these helps recognize:
 
 ### 5. Commodity Supply Shock
 
+
 **Scenario:** Oil at $80, geopolitical tensions rising
 
 **Thesis:**
@@ -942,6 +959,7 @@ Understanding these helps recognize:
 
 ### 6. Post-Crash Recovery Play
 
+
 **Scenario:** Market just crashed 15%, expecting bounce or further drop
 
 **Setup:**
@@ -985,6 +1003,7 @@ Understanding these helps recognize:
 - Put hedges renewed selloff
 
 ### 7. Neutral to Slight Directional (vs. Straddle)
+
 
 **Comparison question:** Why strip instead of straddle?
 
@@ -1032,7 +1051,9 @@ If stock → $115:
 
 ## Greeks Behavior
 
+
 ### 1. Delta
+
 
 **Strip delta:**
 
@@ -1068,6 +1089,7 @@ $$
 
 ### 2. Gamma
 
+
 **Gamma:**
 
 $$
@@ -1097,6 +1119,7 @@ You OWN all options (long gamma position). Every option you buy contributes posi
 **This is critical:** Strips/straps are LONG volatility plays (benefit from movement).
 
 ### 3. Theta
+
 
 **Theta:**
 
@@ -1129,6 +1152,7 @@ You bought 3 options. Time decay works AGAINST you.
 **Figure 2:** Theta decay for strip showing accelerating time decay as expiration approaches, with 50% of value lost in final 2 weeks if stock unmoved.
 
 ### 4. Vega
+
 
 **Vega:**
 
@@ -1170,7 +1194,9 @@ $$
 
 ## When Greeks Hurt You
 
+
 ### 1. The No-Move Theta Bleed
+
 
 **Scenario:** Bought strap expecting big move, stock stays flat
 
@@ -1212,6 +1238,7 @@ $$
 
 ### 2. The IV Crush Disaster
 
+
 **Scenario:** Bought strip before earnings at high IV
 
 **Setup:**
@@ -1251,6 +1278,7 @@ $$
 
 ### 3. The Wrong Direction Disaster
 
+
 **Scenario:** Bought strip (bearish), stock rallied
 
 **Setup:**
@@ -1283,7 +1311,9 @@ $$
 
 ## Common Pitfalls
 
+
 ### 1. Buying at High IV
+
 
 **The mistake:**
 
@@ -1314,6 +1344,7 @@ High IV = expensive options. You're paying top dollar and vulnerable to IV crush
 - Or wait for IV to normalize post-event
 
 ### 2. Wrong Time Frame Selection
+
 
 **The mistake:**
 
@@ -1351,6 +1382,7 @@ Longer time = more theta to pay. Strips/straps need short-term catalysts.
 
 ### 3. Confusing Strip/Strap with Ratio Spreads
 
+
 **The mistake:**
 
 "Strip is like a put ratio spread, right?"
@@ -1378,6 +1410,7 @@ Ratio spreads SELL options (collect premium), strips/straps BUY options (pay pre
 - Completely different risk profiles
 
 ### 4. No Clear Catalyst
+
 
 **The mistake:**
 
@@ -1412,6 +1445,7 @@ Ratio spreads SELL options (collect premium), strips/straps BUY options (pay pre
 - If no catalyst, use LEAPS or stock instead
 
 ### 5. Wrong Ratio Selection
+
 
 **The mistake:**
 
@@ -1459,9 +1493,11 @@ If stock rallies to $115 (wrong direction):
 
 ## Risk Management Rules
 
+
 **Essential guidelines:**
 
 ### 1. Position Sizing
+
 
 **Rule of thumb:**
 
@@ -1487,6 +1523,7 @@ $$
 
 ### 2. IV Entry Guidelines
 
+
 **Check IV percentile before entering:**
 
 $$
@@ -1505,6 +1542,7 @@ $$
 
 ### 3. Time Frame Selection
 
+
 **Optimal expiration:**
 
 - **2-4 weeks:** Best balance of theta vs. time for catalyst
@@ -1522,6 +1560,7 @@ $$
 - Fed meeting in 3 days → Use 1-week expiration (exception)
 
 ### 4. Exit Rules
+
 
 **Set upfront:**
 
@@ -1547,6 +1586,7 @@ $$
 
 ### 5. Avoid These
 
+
 - Never buy strips/straps at high IV (>60th percentile)
 
 - Never use without specific catalyst (<4 weeks away)
@@ -1563,7 +1603,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup (October 2024):**
 
@@ -1613,6 +1655,7 @@ $$
 
 ### 2. Transition Risk Hedge
 
+
 **Setup (June 2024):**
 
 - Small cap biotech at $12
@@ -1650,6 +1693,7 @@ $$
 **Lesson:** Positive skew events (FDA approval) are PERFECT for straps. Even with lower probability (65%), the magnitude of upside movement creates exceptional returns. The put was "insurance" that wasn't needed.
 
 ### 3. Portable Alpha with Futures
+
 
 **Setup (March 2024):**
 
@@ -1696,6 +1740,7 @@ $$
 **Lesson:** "Eventually" is not a catalyst. Strips/straps need SPECIFIC, NEAR-TERM events. Theta destroyed this position despite neutral view being "correct."
 
 ### 4. Tactical Duration Extension
+
 
 **Setup (January 2024):**
 
@@ -1754,6 +1799,7 @@ $$
 
 ## Final Wisdom
 
+
 > "Strips and straps are for traders who have an opinion but respect uncertainty. You think the stock goes down (strip) or up (strap), but you're humble enough to pay insurance in case you're wrong. The 2:1 ratio is the sweet spot - enough bias to matter, enough hedge to sleep. But remember: these are sprints, not marathons. If you don't have a catalyst within 2-4 weeks, you're just lighting theta on fire. Use strips and straps for high-conviction, near-term events where you have directional edge but want volatility exposure. Otherwise, you're better off with straddles (if neutral) or directional spreads (if very confident)."
 
 **Key to success:**
@@ -1777,9 +1823,11 @@ $$
 
 ## Practical Guidance
 
+
 **Step-by-step strips/straps implementation:**
 
 ### 1. Critical Pre-Trade Checklist
+
 
 ☐ **Directional bias clear?** (Bearish → Strip, Bullish → Strap)  
 ☐ **IV < 35th percentile?** (Low IV critical for affordable entry)  
@@ -1791,6 +1839,7 @@ $$
 ☐ **Position size for 100% loss?** (Max loss = premium paid)
 
 ### 2. Step 1
+
 
 **CRITICAL: Only trade high-quality volatile events**
 
@@ -1824,6 +1873,7 @@ $$
 
 ### 3. Step 2
 
+
 **Choose structure based on conviction:**
 
 **Strip (Bearish bias):**
@@ -1845,6 +1895,7 @@ $$
 **If bias < 55%:** Use straddle instead (not strip/strap)
 
 ### 4. Step 3
+
 
 **ATM strikes (standard approach):**
 
@@ -1886,6 +1937,7 @@ $$
 
 ### 5. Step 4
 
+
 **Critical rule: IV < 35th percentile**
 
 **Check IV percentile (not absolute IV):**
@@ -1918,6 +1970,7 @@ $$
 
 ### 6. Step 5
 
+
 $$
 \text{Max Contracts} = \frac{\text{Portfolio} \times 2\%}{\text{Total Premium} \times 100}
 $$
@@ -1943,6 +1996,7 @@ $$
 
 ### 7. Step 6
 
+
 **Order entry:**
 
 1. **Multi-leg combo order** (all 3 legs simultaneously)
@@ -1962,6 +2016,7 @@ $$
 - **Optimal:** Enter when IV dips (typically mid-week)
 
 ### 8. Step 7
+
 
 **Daily monitoring:**
 
@@ -2003,6 +2058,7 @@ $$
 
 ### 9. Step 8
 
+
 **NEVER adjust strips/straps:**
 
 - Rolling doesn't help (different catalyst, different setup)
@@ -2027,6 +2083,7 @@ $$
 
 ### 10. Step 9
 
+
 | Date | Type | Stock | Catalyst | Premium | IV% | BE% | Outcome | P&L | ROI | Notes |
 |------|------|-------|----------|---------|-----|-----|---------|-----|-----|-------|
 | 1/15 | Strap | NVDA | Earnings | $15.50 | 28% | 6.0% | +$32.55 | +$9,765 | +210% | Crushed, exited D9 |
@@ -2050,6 +2107,7 @@ $$
 Example: 0.48 × $30 - 0.52 × $7.50 = $14.40 - $3.90 = **+$10.50 per trade**
 
 ### 11. The Strip/Strap Trading Rules
+
 
 **Never trade when:**
 

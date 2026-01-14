@@ -1,5 +1,6 @@
 # Negative Rates Issues
 
+
 The emergence of **negative interest rates** in several markets has highlighted
 important limitations and modeling challenges in classical interest rate
 frameworks. Negative rates do not represent a market anomaly; rather, they
@@ -10,7 +11,8 @@ models and how these issues are addressed in practice.
 
 ---
 
-## 1. Empirical Reality of Negative Rates
+## Empirical Reality of Negative Rates
+
 
 Negative nominal interest rates have been observed in multiple markets,
 including:
@@ -24,7 +26,8 @@ Therefore, any realistic interest rate model must either:
 
 ---
 
-## 2. Implicit Positivity Assumptions
+## Implicit Positivity Assumptions
+
 
 Many classical interest rate and derivative pricing models rely on **implicit
 positivity assumptions**, even when not stated explicitly.
@@ -39,7 +42,8 @@ or numerical inconsistencies.
 
 ---
 
-## 3. Lognormal Models and Their Limitations
+## Lognormal Models and Their Limitations
+
 
 Lognormal models, such as:
 - Black’s formula,
@@ -56,7 +60,8 @@ This does not indicate market failure, but rather **model misspecification**.
 
 ---
 
-## 4. Numerical and Calibration Issues
+## Numerical and Calibration Issues
+
 
 Negative rates can introduce practical difficulties, including:
 - instability in numerical schemes,
@@ -70,7 +75,8 @@ These effects are particularly pronounced for:
 
 ---
 
-## 5. Common Modeling Responses
+## Common Modeling Responses
+
 
 Market practice has adopted several approaches to handle negative rates:
 
@@ -88,7 +94,8 @@ consistency with market conventions.
 
 ---
 
-## 6. Interpretation as Model Risk
+## Interpretation as Model Risk
+
 
 Negative rates should be viewed as a **stress test for model assumptions**.
 
@@ -102,7 +109,8 @@ but to **understand which assumptions fail when they occur**.
 
 ---
 
-## 7. Concluding Remarks
+## Concluding Remarks
+
 
 Negative interest rates do not invalidate financial theory. Instead, they
 highlight the importance of:

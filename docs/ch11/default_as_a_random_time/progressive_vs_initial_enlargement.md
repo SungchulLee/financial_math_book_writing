@@ -1,10 +1,12 @@
 # Progressive vs Initial Enlargement
 
+
 There are two main ways to enlarge a filtration to include a default time: **progressive enlargement** and **initial enlargement**. They differ in how information about default is revealed.
 
 ---
 
-## 1. Progressive enlargement
+## Progressive enlargement
+
 
 In **progressive enlargement**, information about default is revealed only when it occurs.
 
@@ -23,7 +25,8 @@ Properties:
 
 ---
 
-## 2. Initial enlargement
+## Initial enlargement
+
 
 In **initial enlargement**, the default time is known from time 0:
 
@@ -37,7 +40,8 @@ This is mathematically convenient but financially unrealistic for default modeli
 
 ---
 
-## 3. Financial interpretation
+## Financial interpretation
+
 
 - Progressive enlargement reflects surprise default.
 - Initial enlargement corresponds to insider information.
@@ -45,7 +49,8 @@ This is mathematically convenient but financially unrealistic for default modeli
 
 ---
 
-## 4. Modeling implications
+## Modeling implications
+
 
 Most credit risk models assume progressive enlargement because:
 - it preserves causality,
@@ -56,7 +61,8 @@ Initial enlargement is mainly used for theoretical analysis.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Progressive enlargement reveals default information gradually.
 - Initial enlargement assumes full knowledge of default time.
@@ -65,6 +71,7 @@ Initial enlargement is mainly used for theoretical analysis.
 ---
 
 ## Further reading
+
 
 - Jeulin & Yor, enlargement of filtrations.
 - Bielecki & Rutkowski, credit risk frameworks.

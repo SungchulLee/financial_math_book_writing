@@ -1,10 +1,12 @@
 # Robust Learning
 
+
 **Robust learning** addresses uncertainty and misspecification in models by designing algorithms that perform well even when assumptions are violated.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 Financial environments are characterized by:
 - model misspecification,
@@ -15,7 +17,8 @@ Robust learning seeks stability rather than optimality under idealized assumptio
 
 ---
 
-## 2. Robust optimization perspective
+## Robust optimization perspective
+
 
 Robust learning often adopts a min–max formulation:
 
@@ -30,7 +33,8 @@ This guards against worst-case scenarios.
 
 ---
 
-## 3. Applications in finance
+## Applications in finance
+
 
 Robust learning is applied to:
 - portfolio allocation under uncertainty,
@@ -41,7 +45,8 @@ It aligns naturally with regulatory and risk-management objectives.
 
 ---
 
-## 4. Trade-offs
+## Trade-offs
+
 
 Robustness typically:
 - reduces sensitivity to estimation error,
@@ -52,7 +57,8 @@ This mirrors the bias–variance trade-off.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Robust learning hedges against model uncertainty.
 - Worst-case thinking improves stability.
@@ -61,6 +67,7 @@ This mirrors the bias–variance trade-off.
 ---
 
 ## Further reading
+
 
 - Hansen & Sargent, robust control.
 - Bertsimas et al., robust optimization.

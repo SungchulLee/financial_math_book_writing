@@ -1,10 +1,12 @@
 # Basis Trading
 
+
 **Basis trading** involves taking positions in both the spot (cash) market and futures market simultaneously to profit from the difference between the two prices, exploiting predictable patterns in how spot and futures prices converge, diverge, and respond to supply-demand imbalances.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What is Basis
 
+
 **Before trading basis, understand what you're actually trading:**
 
 ### 1. The Basis Defined
+
 
 **Definition:** Basis is the difference between the spot (cash) price and the futures price at any given moment.
 
@@ -65,6 +69,7 @@ $$
 - **Basis = $75.00 - $76.50 = -$1.50 (negative, contango)**
 
 ### 2. What Basis
+
 
 **A basis trade is NOT:**
 - A directional bet on price going up or down
@@ -104,6 +109,7 @@ $$
 - **Profit if:** Basis moves from -$2 to -$3 (weakened)
 
 ### 3. Setup (Long Basis
+
 
 **Setup (Long Basis Trade):**
 
@@ -161,9 +167,11 @@ $$
 
 ## Economic
 
+
 **Beyond the simple definition, understanding the economic forces behind basis:**
 
 ### 1. The Cost of Carry
+
 
 **For storable commodities, basis reflects the cost of carrying the physical commodity:**
 
@@ -215,6 +223,7 @@ $$
 
 ### 2. Given: Spot gold:
 
+
 **Given:**
 - Spot gold: $2,000/oz
 - Risk-free rate: 5% annual
@@ -240,6 +249,7 @@ $$
 - **Basis too wide (futures overpriced) → Arbitrage opportunity!**
 
 ### 3. The Convergence
+
 
 **The fundamental law of basis trading:**
 
@@ -270,6 +280,7 @@ $$
 **This predictable convergence is the foundation of basis trading!**
 
 ### 4. Basis Risk
+
 
 **Why basis doesn't follow theory perfectly:**
 
@@ -317,6 +328,7 @@ $$
 
 ### 5. Economic Forces
 
+
 **1. Supply shocks (strengthen basis → backwardation):**
 
 **Example: Oil refinery fire**
@@ -360,6 +372,7 @@ $$
 
 ### 6. Convenience Yield
 
+
 **Definition:** The benefit of holding physical commodity vs. futures contract.
 
 $$
@@ -386,6 +399,7 @@ $$
 - **Basis: Strong backwardation (+$5 to +$10)**
 
 ### 7. Arbitrage and
+
 
 **The no-arbitrage bounds:**
 
@@ -419,6 +433,7 @@ $$
 
 ### 8. Why This
 
+
 **Understanding basis economics helps you:**
 
 1. **Predict basis movements:**
@@ -446,6 +461,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Basis Fundamentals:**
 
@@ -713,9 +729,11 @@ If futures underpriced ($F < S \cdot e^{r(T-t)}$):
 
 ## Contract
 
+
 **Understanding which contracts are suitable for basis trading:**
 
 ### 1. Agricultural
+
 
 **Corn (ZC - CBOT):**
 
@@ -763,6 +781,7 @@ If futures underpriced ($F < S \cdot e^{r(T-t)}$):
 - Harvest patterns similar to corn
 
 ### 2. Energy
+
 
 **Crude Oil (CL - NYMEX):**
 
@@ -831,6 +850,7 @@ If futures underpriced ($F < S \cdot e^{r(T-t)}$):
 
 ### 3. Metals (Stable
 
+
 **Gold (GC - COMEX):**
 
 **Contract specs:**
@@ -877,6 +897,7 @@ If futures at $2,035 (basis -$35 vs. fair -$25):
 
 ### 4. Stock Index
 
+
 **E-mini S&P 500 (ES):**
 
 **Basis calculation:**
@@ -914,6 +935,7 @@ $$
 
 ### 5. Commodity Spreads
 
+
 **Crack Spread (Crude → Refined Products):**
 
 $$
@@ -938,7 +960,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Understanding
+
 
 **The fundamental payoff equation:**
 
@@ -953,6 +977,7 @@ Where:
 **Key insight: Payoff depends ONLY on basis change, not absolute price movement.**
 
 ### 2. Long Basis (Buy
+
 
 **Position:** Long Spot + Short Futures
 
@@ -1000,6 +1025,7 @@ $$
 
 ### 3. Short Basis (Sell
 
+
 **Position:** Short Spot + Long Futures
 
 **Maximum profit:**
@@ -1027,6 +1053,7 @@ $$
 - On 10,000 barrels: **-$50,000 loss**
 
 ### 4. Detailed P&L
+
 
 **Example 1: Long Basis, Prices Rise**
 
@@ -1122,6 +1149,7 @@ $$
 
 ### 5. Risk Comparison
 
+
 **Scenario: $10 absolute price move**
 
 **Outright long (10,000 barrels):**
@@ -1152,7 +1180,9 @@ $$
 
 ## Entry and Exit
 
+
 ### 1. Entry Strategies
+
 
 **1. Convergence Trade Entry**
 
@@ -1262,6 +1292,7 @@ $$
 - **Profit potential:** $2.00/barrel
 
 ### 2. Exit Strategies
+
 
 **1. Expiration Exit (Convergence Complete)**
 
@@ -1400,6 +1431,7 @@ $$
 
 ### 3. Position
 
+
 **Dynamic adjustment strategies:**
 
 **1. Scaling In/Out:**
@@ -1445,6 +1477,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Basis trading is the purest form of commodity market efficiency arbitrage. You're not betting on whether oil goes to $80 or $70—you're betting on whether spot and futures maintain their proper relationship. It's market-neutral, it's predictable in aggregate, and it can generate consistent returns. But it's not magic: carry costs are real, margin calls hurt, and basis can stay irrational longer than you can stay solvent. Trade it small, trade it disciplined, and never forget that 'market-neutral' doesn't mean 'risk-free'."
 

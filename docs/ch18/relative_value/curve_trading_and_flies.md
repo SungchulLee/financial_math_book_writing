@@ -1,10 +1,12 @@
 # Curve Trading and
 
+
 **Curve trading and butterfly spreads (flies)** are relative value strategies in futures markets that profit from changes in the shape of the term structure curve rather than directional price movements, exploiting mispricings between different contract expirations through multi-leg spread positions.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -36,9 +38,11 @@ $$
 
 ## What Are Curve
 
+
 **Before trading curves, understand the mechanics:**
 
 ### 1. Core Concept -
+
 
 **Definition:** Trading the difference between near-dated and far-dated futures contracts, profiting when the spread between expirations widens (steepening) or narrows (flattening), independent of the absolute price level.
 
@@ -79,6 +83,7 @@ $$
 - **Net: +$500 profit**
 
 ### 2. Core Concept -
+
 
 **Definition:** A three-legged spread consisting of a body (middle expiration) and two wings (near and far expirations), designed to profit from the middle contract moving relative to the average of the wings while remaining neutral to parallel curve shifts.
 
@@ -247,9 +252,11 @@ Ah! That's the correct calculation. The butterfly spread is priced as the net of
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. The Shape of the
+
 
 **The deep insight:**
 
@@ -284,6 +291,7 @@ $$
 **Changes in $r$, $u$, or $y$ affect curve shape**
 
 ### 2. Contango vs.
+
 
 **Fundamental term structures:**
 
@@ -331,6 +339,7 @@ $$
 
 ### 3. Why Curves Change
 
+
 **Steepening scenarios:**
 
 1. **Storage builds:** Excess supply → Far months fall relative to near
@@ -356,6 +365,7 @@ $$
 **Near month rallied most → Curve flattened**
 
 ### 4. The Butterfly as
+
 
 **Mathematical interpretation:**
 
@@ -401,6 +411,7 @@ $$
 
 ### 5. Roll Yield in
 
+
 **Carry and roll dynamics:**
 
 **For contango curve:**
@@ -440,6 +451,7 @@ $$
 
 ### 6. Curve Trading vs.
 
+
 **Key differences:**
 
 | Factor | Outright Long | Curve Trade |
@@ -472,6 +484,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Curve Steepener:**
 
@@ -536,7 +549,9 @@ $$
 
 ## Mathematical
 
+
 ### 1. Curve Steepness
+
 
 **Simple steepness (spread):**
 
@@ -565,6 +580,7 @@ $$
 - Annualized: $5.00 / 5 months × 12 = $12.00 per year
 
 ### 2. Butterfly Spread
+
 
 **Standard butterfly:**
 
@@ -600,6 +616,7 @@ $$
 
 ### 3. DV01 Neutral
 
+
 **For interest rate futures, need DV01-neutral:**
 
 $$
@@ -626,6 +643,7 @@ $$
 **Trade: Short 2 ZT, Long 1 ZN (DV01-neutral)**
 
 ### 4. Expected P&L from
+
 
 **For steepener/flattener:**
 
@@ -714,6 +732,7 @@ $$
 
 ### 5. Butterfly P&L
 
+
 **For butterfly spread:**
 
 $$
@@ -740,7 +759,9 @@ $$
 
 ## Key ideas
 
+
 ### 1. Phase 1
+
 
 **1. Choose Your Market:**
 
@@ -809,6 +830,7 @@ $$
 
 ### 2. Phase 2
 
+
 **1. Calculate DV01-Neutral Ratio:**
 
 **Step 1: Get DV01 values**
@@ -863,6 +885,7 @@ $$
 
 ### 3. Phase 3
 
+
 **1. Confirm Setup:**
 
 ✅ Curve significantly away from historical average
@@ -913,6 +936,7 @@ Margin: $1,720
 
 ### 4. Phase 4
 
+
 **1. Daily Monitoring:**
 
 **Track spread evolution:**
@@ -962,6 +986,7 @@ Margin: $1,720
 
 ### 5. Phase 5
 
+
 **1. Exit Triggers:**
 
 **Profit targets:**
@@ -1010,6 +1035,7 @@ What worked:
 ```
 
 ### 6. Complete Example
+
 
 **Background: July 2024**
 
@@ -1105,7 +1131,9 @@ Wait, that's showing a loss again. Let me recalculate using the butterfly spread
 
 ## Curve and Butterfly
 
+
 ### 1. DV01 (Interest
+
 
 **For rate futures, DV01 critical:**
 
@@ -1132,6 +1160,7 @@ $$
 
 ### 2. Delta (Price
 
+
 **For commodity futures:**
 
 **Curve spread delta:**
@@ -1155,6 +1184,7 @@ $$
 **This means: $1 move in spot might move spread by $0.30**
 
 ### 3. Theta (Time
+
 
 **For curve trades:**
 
@@ -1189,6 +1219,7 @@ $$
 
 ### 4. Vega (Volatility
 
+
 **For options on futures curves:**
 
 **Curve trades themselves have no vega (futures, not options)**
@@ -1208,7 +1239,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Date: October 2023 - March 2024**
 
@@ -1274,6 +1307,7 @@ $$
 
 ### 2. Transition Risk
 
+
 **Date: April 2024**
 
 **Background:**
@@ -1336,6 +1370,7 @@ $$
 **Key lesson: Seasonal butterflies can be powerful short-term trades**
 
 ### 3. Portable Alpha
+
 
 **Date: June 2020 (during COVID)**
 
@@ -1408,6 +1443,7 @@ $$
 
 ### 4. Tactical Duration
 
+
 **Date: November 2023**
 
 **Background:**
@@ -1474,6 +1510,7 @@ $$
 
 ### 5. Duration Hedge
 
+
 **Date: March 2022**
 
 **Background:**
@@ -1535,7 +1572,9 @@ $$
 
 ## Risk Management
 
+
 ### 1. Position Sizing
+
 
 **The Sharpe ratio approach:**
 
@@ -1569,6 +1608,7 @@ $$
 
 ### 2. Stop Loss
 
+
 **For curve trades:**
 
 **Spread-based stops:**
@@ -1595,6 +1635,7 @@ $$
 
 ### 3. Carry Monitoring
 
+
 **Critical for longer-term trades:**
 
 **Calculate daily carry:**
@@ -1620,6 +1661,7 @@ $$
 
 ### 4. Curve Regime
 
+
 **Watch for structural shifts:**
 
 **Indicators of regime change:**
@@ -1643,6 +1685,7 @@ $$
 - **Adapt to new regime**
 
 ### 5. Butterfly Risk
+
 
 **Unique risks:**
 
@@ -1672,6 +1715,7 @@ $$
 
 ### 6. Diversification
 
+
 **Don't concentrate in one sector:**
 
 **Multi-market approach:**
@@ -1690,6 +1734,7 @@ $$
 - Smooths returns
 
 ### 7. Risk Management
+
 
 **Before entry:**
 
@@ -1723,6 +1768,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Curve trading is the sophisticated investor's game—you're not betting on whether rates go up or down, but on HOW they move differently across maturities. The edge comes from recognizing extreme curve shapes that violate long-term equilibrium relationships, and positioning for normalization. The math is precise: DV01-neutral means you're indifferent to parallel shifts, profiting only from curve reshaping. But don't let the elegance fool you—curve trades can blow up spectacularly when you fight central banks or hold through regime shifts. The golden rule: Extreme curves normalize 80% of the time, but the 20% when they go further (like 2022 inversion) can destroy your account if you don't cut losses. Success requires patience, discipline, and the humility to exit when the Fed tells you you're wrong. Master the math, respect the Fed, honor your stops, and let historical mean reversion work in your favor over 3-12 month horizons."
 

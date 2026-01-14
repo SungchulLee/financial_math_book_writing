@@ -1,11 +1,13 @@
 # Drift Adjustment and Financial Meaning
 
+
 Girsanov’s theorem is used in finance to remove risk premia from asset prices,
 making arbitrage-free pricing possible.
 
 ---
 
 ## Asset Price Dynamics
+
 
 Under the physical measure \(\mathbb{P}\), assume
 
@@ -19,6 +21,7 @@ Discounting alone does not eliminate the drift unless \(\mu = r\).
 
 ## Market Price of Risk
 
+
 Define the market price of risk
 
 \[
@@ -30,6 +33,7 @@ This quantity measures excess return per unit of volatility.
 ---
 
 ## Measure Change
+
 
 Define the density process
 
@@ -54,6 +58,7 @@ is a Brownian motion.
 
 ## Risk-Neutral Dynamics
 
+
 Under the risk-neutral measure \(\mathbb{Q}\),
 
 \[
@@ -65,6 +70,7 @@ The discounted price process \(e^{-rt}S_t\) is therefore a martingale.
 ---
 
 ## Interpretation
+
 
 - Expected returns are adjusted to the risk-free rate
 - Volatility is unchanged

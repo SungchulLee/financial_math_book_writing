@@ -1,6 +1,7 @@
 # Binomial Tree Construction and Multi-Period Option Pricing
 
 
+
 This section develops the binomial tree model for asset prices and applies it
 to multi-period option pricing. The binomial tree provides a discrete-time,
 
@@ -12,7 +13,8 @@ and the convergence to continuous-time models such as Black–Scholes.
 ---
 
 
-## 1. One-Period Binomial Model (Review)
+## One-Period Binomial Model (Review)
+
 
 
 Let the current stock price be \( S_0 \). Over one time step \( \Delta t \),
@@ -40,9 +42,11 @@ No-arbitrage requires
 d < e^{r dt} < u 
 
 
-## 2. Building the Binomial Tree
+## Building the Binomial Tree
 
-### 2.1 Time Discretization
+
+### 1. Time Discretization
+
 
 Fix a maturity \( T \) and divide it into \( N \) equal periods:
 
@@ -52,7 +56,8 @@ At each time step, the stock price moves up by factor \( u \) or down by factor
 \( d \).
 
 
-### 2.2 Stock Price Dynamics
+### 2. Stock Price Dynamics
+
 
 At time step \( n \), after \( k \) up moves and \( n-k \) down moves, the stock
 
@@ -66,7 +71,8 @@ The binomial tree is **recombining**, meaning that the order of up and down move
 does not matter.
 
 
-### 2.3 Choice of Parameters
+### 3. Choice of Parameters
+
 
 Typical choices of parameters include:
 
@@ -90,7 +96,8 @@ These choices ensure recombination and convergence to continuous-time limits.
 
 
 
-## 3. Risk-Neutral Probability
+## Risk-Neutral Probability
+
 
 
 Define the **risk-neutral probability** \( q \) by
@@ -112,13 +119,15 @@ Under the risk-neutral measure:
 
 
 
-## 4. Multi-Period Option Pricing
+## Multi-Period Option Pricing
+
 
 
 Let \( V_{n,k} \) denote the value of an option at node \( (n,k) \).
 
 
-### 4.1 Terminal Payoff
+### 1. Terminal Payoff
+
 
 At maturity \( T \) (time step \( N \)), the option value is given by its payoff.
 
@@ -137,7 +146,8 @@ V_{N,k} = \max(K - S_{N,k}, 0)
 
 
 
-### 4.2 Backward Induction
+### 2. Backward Induction
+
 
 For \( n = N-1, \dots, 0 \), the option value is computed recursively as
 
@@ -155,7 +165,8 @@ This backward induction corresponds to forming a locally risk-free replicating
 portfolio at each node.
 
 
-### 4.3 Interpretation
+### 3. Interpretation
+
 
 The pricing formula shows that:
 
@@ -170,7 +181,8 @@ The pricing formula shows that:
 
 
 
-## 5. American Options (Optional Extension)
+## American Options (Optional Extension)
+
 
 For an **American option**, early exercise is allowed. The pricing rule becomes
 
@@ -186,7 +198,8 @@ Early exercise may be optimal for American puts but not for non-dividend-paying
 American calls.
 
 
-## 6. Convergence and Link to Black–Scholes
+## Convergence and Link to Black–Scholes
+
 
 As the number of periods \( N \to \infty \) and \( \Delta t \to 0 \):
 

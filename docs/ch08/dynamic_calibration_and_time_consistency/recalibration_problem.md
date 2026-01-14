@@ -1,10 +1,12 @@
 # Recalibration Problem
 
+
 In practice, models are recalibrated repeatedly as new market data arrive. This creates the **recalibration problem**: parameters change over time in ways that may be inconsistent with the model’s own dynamics, leading to instability and hedging errors.
 
 ---
 
-## 1. Static calibration versus dynamic usage
+## Static calibration versus dynamic usage
+
 
 A model calibrated at time \(t\) is typically used to:
 - price instruments at time \(t\),
@@ -21,7 +23,8 @@ can introduce artificial P&L unrelated to market moves.
 
 ---
 
-## 2. Sources of recalibration instability
+## Sources of recalibration instability
+
 
 Parameter changes arise from:
 - genuine market regime shifts,
@@ -33,7 +36,8 @@ Because calibration is an inverse problem, small data changes can produce large 
 
 ---
 
-## 3. Impact on hedging and P&L
+## Impact on hedging and P&L
+
 
 Frequent recalibration can:
 - break self-financing hedging arguments,
@@ -44,7 +48,8 @@ This is particularly severe for models with many weakly identifiable parameters.
 
 ---
 
-## 4. Common practitioner responses
+## Common practitioner responses
+
 
 Typical (ad-hoc) responses include:
 - smoothing parameters over time,
@@ -56,7 +61,8 @@ While pragmatic, these approaches often lack theoretical consistency.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Recalibration is unavoidable but problematic.
 - Parameter jumps are not always economically meaningful.
@@ -65,6 +71,7 @@ While pragmatic, these approaches often lack theoretical consistency.
 ---
 
 ## Further reading
+
 
 - Rebonato, *Volatility and Correlation*.
 - Andersen & Piterbarg, practitioner discussions on recalibration risk.

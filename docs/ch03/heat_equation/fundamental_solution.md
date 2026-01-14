@@ -1,10 +1,12 @@
-# Fundamental Solution of the Heat Equation
+# Fundamental Solution
+
 
 The heat equation admits an explicit fundamental solution, also called the **heat kernel**.
 
 ---
 
 ## Heat Kernel
+
 
 The fundamental solution is
 \[
@@ -19,7 +21,8 @@ This function satisfies:
 
 ---
 
-## Solution via Convolution
+## Solution via
+
 
 For an initial condition \(u(0,x) = f(x)\), the solution is given by
 \[
@@ -33,7 +36,8 @@ This representation shows explicitly:
 
 ---
 
-## Regularity and Positivity
+## Regularity
+
 
 If \(f\) is bounded or integrable, then:
 - \(u(t,\cdot)\) is infinitely differentiable for all \(t>0\)

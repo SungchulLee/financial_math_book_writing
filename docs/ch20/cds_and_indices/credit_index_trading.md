@@ -1,10 +1,12 @@
 # Credit Index Trading
 
+
 **Credit index trading** involves buying and selling standardized portfolios of credit default swaps (CDS) on baskets of corporate issuers, with the most liquid indices being CDX (North America) and iTraxx (Europe), allowing investors to take directional views on credit spreads, hedge portfolio risk, implement relative value strategies, or gain efficient exposure to entire credit markets without the operational complexity of trading individual bonds or single-name CDS contracts.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Are Credit Indices?
 
+
 **Before trading credit indices, understand the mechanics:**
 
-### Core Concept
+### 1. Core Concept
+
 
 **Definition:** A standardized, tradeable portfolio of credit default swap contracts on a fixed basket of reference entities (typically 100-125 corporate issuers), quoted as a single spread representing the equal-weighted average cost of credit protection on the constituent names, with new series launched every six months incorporating updated credit quality and market conditions.
 
@@ -114,7 +118,8 @@ $$
 - Index respread: Spread widens slightly (one name gone)
 - **Minor gain from default, larger impact from spread moves**
 
-### Major Credit Indices
+### 2. Major Credit Indices
+
 
 **1. CDX.NA.IG (North America Investment Grade):**
 
@@ -151,7 +156,8 @@ $$
 - Higher spreads: 200-400 bps (normal)
 - More volatile than developed markets
 
-### Index Roll Mechanics
+### 3. Index Roll Mechanics
+
 
 **New series every 6 months:**
 
@@ -208,9 +214,11 @@ If long protection on old series at 71 bps, rolling to new at 68 bps:
 
 ## Economic Interpretation: Why Credit Indices Exist
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### The Liquidity Premium
+### 1. The Liquidity Premium
+
 
 **The deep insight:**
 
@@ -244,7 +252,8 @@ Credit indices are MORE liquid than underlying bonds or single-name CDS:
 
 **This is why institutions use indices for beta exposure**
 
-### Basis Between Index and Single-Names
+### 2. Basis Between Index and Single-Names
+
 
 **Index spread ≠ Average of single-name spreads**
 
@@ -310,7 +319,8 @@ $$
 - Basis > +10 bps: Buy index, sell single names (convergence trade)
 - Basis < -10 bps: Sell index, buy single names (convergence trade)
 
-### The Macro Beta Tool
+### 3. The Macro Beta Tool
+
 
 **Credit indices as economic indicator:**
 
@@ -375,6 +385,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **On-the-Run:**
 
@@ -449,7 +460,9 @@ $$
 
 ## Mathematical Foundation
 
-### Index Spread Calculation
+
+### 1. Index Spread Calculation
+
 
 **Equal-weighted average:**
 
@@ -470,7 +483,8 @@ $$
 S_{\text{index}} = \frac{50 + 75 + ... + 80}{125} = 68 \text{ bps}
 $$
 
-### P&L Calculation
+### 2. P&L Calculation
+
 
 **Mark-to-market P&L:**
 
@@ -504,7 +518,8 @@ $$
 \text{P\&L} = \$4,500 \times 30 = \$135,000 \text{ gain}
 $$
 
-### Upfront Payment
+### 3. Upfront Payment
+
 
 **When coupon ≠ spread:**
 
@@ -530,7 +545,8 @@ $$
 
 **Protection buyer receives $144k upfront** (coupon > spread)
 
-### Basis Calculation
+### 4. Basis Calculation
+
 
 **Fair value basis:**
 
@@ -544,7 +560,8 @@ $$
 - Single-name avg: 67 bps
 - **Basis: +1 bp** (index cheap)
 
-### Default Impact on Index
+### 5. Default Impact on Index
+
 
 **Index spread adjustment after default:**
 
@@ -571,7 +588,9 @@ Typically rises 0.5-2 bps per default (widens slightly)
 
 ## Step-by-Step Implementation
 
-### Phase 1: Index Selection and Analysis
+
+### 1. Phase 1: Index Selection and Analysis
+
 
 **1. Choose Appropriate Index:**
 
@@ -643,7 +662,8 @@ BBB             52.8%
 Average Spread: 67.2 bps
 ```
 
-### Phase 2: Execute Index Trade
+### 2. Phase 2: Execute Index Trade
+
 
 **1. Calculate Position Size:**
 
@@ -730,7 +750,8 @@ Upfront: $960,480 (receive)
 Quarterly premium: $1,667,500 (pay)
 ```
 
-### Phase 3: Monitor and Manage
+### 3. Phase 3: Monitor and Manage
+
 
 **1. Daily P&L Tracking:**
 
@@ -811,7 +832,8 @@ Roll spread: -3 bps
 Roll cost: $-900,450 (gain from tightening)
 ```
 
-### Phase 4: Basis Trade Analysis
+### 4. Phase 4: Basis Trade Analysis
+
 
 **1. Calculate Index Basis:**
 
@@ -845,7 +867,8 @@ else:
     print("Basis within normal range, no trade")
 ```
 
-### Phase 5: Exit Strategy
+### 5. Phase 5: Exit Strategy
+
 
 **1. Profit Target:**
 
@@ -878,7 +901,9 @@ print(f"Risk/Reward: {abs(stop_pnl/profit_pnl):.2f}x")
 
 ## Real-World Examples
 
-### Example 1: COVID-19 Index Hedge - March 2020 (Spectacular Success)
+
+### 1. Example 1: COVID-19 Index Hedge - March 2020 (Spectacular Success)
+
 
 **Background:**
 
@@ -974,7 +999,8 @@ CDX hedge on $3B:
 
 **This is textbook index hedging—paid 55 bps, earned 80 bps spread widening, $108M profit on $3B notional**
 
-### Example 2: CDX HY Directional Short - 2022 (Fed Tightening Win)
+### 2. Example 2: CDX HY Directional Short - 2022 (Fed Tightening Win)
+
 
 **Background:**
 
@@ -1025,7 +1051,8 @@ CDX hedge on $3B:
 - Soft landing (HY resilient, narrow spreads)
 - Timing early (2021 entry would have bled premium for 12 months)
 
-### Example 3: Index Basis Arbitrage - 2020 (Liquidity Crisis Trade)
+### 3. Example 3: Index Basis Arbitrage - 2020 (Liquidity Crisis Trade)
+
 
 **Background:**
 
@@ -1146,7 +1173,8 @@ Plus:
 - Basis stays wide (took months to normalize)
 - Defaults (1-2 defaults would have skewed P&L)
 
-### Example 4: CDX Roll Trade - September 2023 (Roll Carry)
+### 4. Example 4: CDX Roll Trade - September 2023 (Roll Carry)
+
 
 **Background:**
 
@@ -1239,7 +1267,8 @@ I think the roll trade is actually simpler: most investors just want to maintain
 
 Let me use a different example.
 
-### Better Example 4: IG/HY Ratio Trade - 2019 (Mean Reversion)
+### 5. Better Example 4: IG/HY Ratio Trade - 2019 (Mean Reversion)
+
 
 **Background:**
 
@@ -1283,7 +1312,8 @@ If ratio goes to 7.5x:
 3. **Sized properly:** $100M HY vs $700M IG balanced DV01
 4. **Fast move:** 6 months to revert (not years)
 
-### Example 5: Tranche Trading - 2007 (Correlation Disaster)
+### 6. Example 5: Tranche Trading - 2007 (Correlation Disaster)
+
 
 **Background:**
 
@@ -1351,7 +1381,9 @@ If ratio goes to 7.5x:
 
 ## Best Case Scenario
 
-### Perfect Credit Index Trade
+
+### 1. Perfect Credit Index Trade
+
 
 **Setup for maximum profit:**
 
@@ -1363,7 +1395,8 @@ If ratio goes to 7.5x:
 4. **Liquid index** (tight spreads, easy exit)
 5. **Disciplined exit** (take profit at target)
 
-### Best Case Example: CDX IG Short Pre-2008 (Legendary Trade)
+### 2. Best Case Example: CDX IG Short Pre-2008 (Legendary Trade)
+
 
 **Background:**
 
@@ -1427,7 +1460,9 @@ If ratio goes to 7.5x:
 
 ## Worst Case Scenario
 
-### The Credit Index Disaster
+
+### 1. The Credit Index Disaster
+
 
 **Worst possible conditions:**
 
@@ -1437,7 +1472,8 @@ If ratio goes to 7.5x:
 4. **No exit discipline** (hold through adverse moves)
 5. **Correlation misjudgment** (tranche trading)
 
-### Worst Case Example: CDX HY Long Protection 2009-2010 (Catastrophic)
+### 2. Worst Case Example: CDX HY Long Protection 2009-2010 (Catastrophic)
+
 
 **Background:**
 
@@ -1553,7 +1589,9 @@ If ratio goes to 7.5x:
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Credit indices provide liquid, standardized exposure to credit markets through portfolios of 100-125 CDS contracts:**
 
@@ -1567,7 +1605,8 @@ $$
 - Used for hedging, macro views, beta exposure
 - 100-300x more liquid than individual bonds
 
-### The Key Metrics
+### 2. The Key Metrics
+
 
 **Index characteristics:**
 
@@ -1583,7 +1622,8 @@ $$
 \text{P\&L} = \text{Notional} \times \text{DV01}/\$1M \times \Delta \text{Spread (bps)}
 $$
 
-### Risk Management
+### 3. Risk Management
+
 
 **Essential rules:**
 
@@ -1596,7 +1636,8 @@ $$
 - Fed watching: Never fight Fed policy with leverage
 - Exit discipline: Take profits at 2-3x premium paid
 
-### Maximum Profit/Loss
+### 4. Maximum Profit/Loss
+
 
 **Best case:**
 
@@ -1619,7 +1660,8 @@ $$
 - Average loss: -20-30 bps (with stops)
 - **Expectancy: +10-20 bps per trade, 15-30% annual**
 
-### When to Trade
+### 5. When to Trade
+
 
 **Trade credit indices when:**
 
@@ -1637,7 +1679,8 @@ $$
 - Off-the-run series (illiquid, wide spreads)
 - Overleveraged (>5x notional/capital)
 
-### Common Mistakes
+### 6. Common Mistakes
+
 
 1. Overleveraging (10x+ notional/capital is suicide)
 2. Fighting the Fed (buying protection during QE, selling during tightening)
@@ -1648,7 +1691,8 @@ $$
 7. Basis ignorance (trading when basis is normal, not extreme)
 8. Entry timing (buying protection at crisis peaks)
 
-### Final Wisdom
+### 7. Final Wisdom
+
 
 > "Credit indices are the most liquid, efficient way to trade credit beta—$10B daily volume, 0.5 bp bid-ask, instant execution. They're also the most dangerous when misused. The math is seductive: buy $1B CDX IG protection on $20M margin (50x leverage!), spreads widen 50 bps, make $22.5M profit (112% return). But the trap is brutal: spreads tighten 50 bps instead, you lose $22.5M, margin calls wipe you out, forced liquidation at worst prices. The 2007-2008 heroes (bought protection at 38 bps, made 450% returns) got timing and direction perfect. The 2009 zeroes (bought protection at 800 bps, lost 99%) got timing perfectly wrong—literally entered at the crisis bottom and got destroyed by the recovery. The difference wasn't intelligence or analysis; both sides had sophisticated arguments. The difference was: (1) Entry valuation (38 bps vs 800 bps), (2) Direction relative to Fed (pre-crisis vs post-QE), and (3) Leverage discipline (50x is fine if you're right immediately, fatal if you're early or wrong). Rules for survival: Never exceed 5x leverage (3x safer), set hard stops at 25-50 bps adverse (-$112k-225k on $10M notional), never fight Fed policy (QE = spreads tighten, tightening = spreads widen), trade on-the-run only (liquidity is life), and take profits at 2-3x premium paid (don't wait for home runs). Credit indices are tools for expressing high-conviction macro views with defined risk. Use them correctly: make 15-30% annually with 45-55% win rate. Use them wrong: join the 99% of overleveraged funds that blew up in 2009, 2020, or the next crisis."
 

@@ -1,5 +1,6 @@
 # Delta, Gamma, Vega, Theta, Rho
 
+
 Let an option price be written as a function
 
 
@@ -19,6 +20,7 @@ The **Greeks** are partial derivatives of the pricing map \(V\) with respect to 
 ## Delta
 
 
+
 \[
 \boxed{\Delta(t,S) := \frac{\partial V}{\partial S}(t,S)}
 \]
@@ -30,6 +32,7 @@ Delta measures first-order sensitivity of the option value to small changes in \
 ---
 
 ## Gamma
+
 
 
 \[
@@ -45,6 +48,7 @@ Gamma measures convexity with respect to \(S\). It controls second-order error i
 ## Vega
 
 
+
 \[
 \boxed{\nu(t,S) := \frac{\partial V}{\partial \sigma}(t,S)}
 \]
@@ -56,6 +60,7 @@ Vega measures sensitivity to volatility. In Black–Scholes, \(\nu\) is typicall
 ---
 
 ## Theta
+
 
 There are multiple sign conventions. Here we define **calendar-time theta**
 
@@ -73,6 +78,7 @@ Since many PDEs are written backward in time, some texts define \(-\partial_t V\
 ## Rho
 
 
+
 \[
 \boxed{\rho(t,S) := \frac{\partial V}{\partial r}(t,S)}
 \]
@@ -84,6 +90,7 @@ Rho measures sensitivity to changes in interest rates.
 ---
 
 ## A second-order Taylor expansion viewpoint
+
 
 For a small perturbation \((\delta S,\delta\sigma,\delta r)\) (ignoring cross-terms for clarity),
 
@@ -105,6 +112,7 @@ This is the conceptual basis for “Greek-based” risk decomposition and hedgin
 ---
 
 ## What to remember
+
 
 - Greeks are derivatives of a pricing map \(V(t,S;\theta)\) with respect to state and parameters.
 - Gamma is the curvature term that dominates short-time hedging error.

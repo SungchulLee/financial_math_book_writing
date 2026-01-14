@@ -1,4 +1,5 @@
-# Feynman–Kac for a Discounted Terminal Payoff
+# Feynman Kac
+
 
 Let \(X_t\) solve
 
@@ -19,7 +20,8 @@ Let \(r(x,t)\) be a discount (or killing) rate and let \(f\) be a terminal payof
 
 ---
 
-## 1. Statement (Discounted Feynman–Kac)
+## Statement Discounted
+
 
 Define
 
@@ -40,7 +42,8 @@ u(x,T)=f(x).
 
 ---
 
-## 2. Proof (Itô + discount factor, clean version)
+## Proof discount
+
 
 Define the discount factor
 
@@ -102,7 +105,8 @@ This is the discounted Feynman–Kac representation.
 
 ---
 
-## 3. Special case: Kolmogorov backward
+## Special case
+
 
 If \(r\equiv 0\), then
 

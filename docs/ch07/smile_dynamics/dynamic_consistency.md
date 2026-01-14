@@ -1,10 +1,12 @@
 # Dynamic Consistency
 
+
 **Dynamic consistency** refers to whether a model’s implied volatility dynamics are coherent over time. A dynamically consistent model should not contradict itself when re-evaluated at future dates.
 
 ---
 
-## 1. Definition
+## Definition
+
 
 A volatility model is dynamically consistent if:
 - today’s implied dynamics,
@@ -15,7 +17,8 @@ This is closely related to forward-consistency ideas.
 
 ---
 
-## 2. Inconsistencies in common models
+## Inconsistencies in common models
+
 
 - **Black–Scholes:** dynamically consistent but unrealistic.
 - **Local volatility:** fits today’s surface but implies unrealistic future smiles.
@@ -25,7 +28,8 @@ Dynamic inconsistency manifests as implausible forward smiles.
 
 ---
 
-## 3. Consequences for pricing and hedging
+## Consequences for pricing and hedging
+
 
 Dynamic inconsistency leads to:
 - mispricing of forward-start products,
@@ -34,7 +38,8 @@ Dynamic inconsistency leads to:
 
 ---
 
-## 4. Model design trade-offs
+## Model design trade-offs
+
 
 Improving dynamic consistency often requires:
 - additional state variables,
@@ -45,7 +50,8 @@ This highlights the trade-off between static fit and dynamic realism.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Dynamic consistency is a stringent requirement.
 - Perfect static fit does not guarantee realistic dynamics.
@@ -54,6 +60,7 @@ This highlights the trade-off between static fit and dynamic realism.
 ---
 
 ## Further reading
+
 
 - Bergomi, *Stochastic Volatility Modeling*.
 - Björk, forward-consistent volatility modeling.

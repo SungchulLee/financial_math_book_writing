@@ -8,7 +8,8 @@ with Einstein summation over (\alpha=1,\dots,m). Assume the usual integrability 
 
 ---
 
-## 1. Quadratic Covariation
+## Quadratic Covariation
+
 
 The quadratic covariation is
 [
@@ -20,7 +21,8 @@ This comes from (\mathrm{d}\langle W^{\alpha},W^{\beta}\rangle_t=\delta^{\alpha\
 
 ---
 
-## 2. Itô Product Rule
+## Itô Product Rule
+
 
 The **Itô product rule** is
 [
@@ -50,7 +52,8 @@ Substituting the SDEs:
 
 ---
 
-## 3. “Differential Multiplication Table” (Useful Heuristic)
+## “Differential Multiplication Table” (Useful Heuristic)
+
 
 This rule is exactly what you get if you expand
 [
@@ -68,7 +71,9 @@ Then
 
 # (b_t^{\alpha},\mathrm{d}W_t^{\alpha})(d_t^{\beta},\mathrm{d}W_t^{\beta})
 
+
 # b_t^{\alpha}d_t^{\beta}\delta^{\alpha\beta},\mathrm{d}t
+
 
 b_t^{\alpha}d_t^{\alpha},\mathrm{d}t,
 ]
@@ -76,9 +81,11 @@ which matches (\mathrm{d}\langle X,Y\rangle_t).
 
 ---
 
-## 4. Common Special Cases
+## Common Special Cases
 
-### (a) Square / Itô formula for (X_t^2)
+
+### 1. (a) Square / Itô formula for (X_t^2)
+
 
 Take (Y_t=X_t):
 [
@@ -98,7 +105,8 @@ and since (\mathrm{d}\langle X\rangle_t = b_t^{\alpha}b_t^{\alpha},\mathrm{d}t),
 }
 ]
 
-### (b) Product of vector Itô processes (index form)
+### 2. (b) Product of vector Itô processes (index form)
+
 
 Let (X_t^{i},Y_t^{j}) satisfy
 [

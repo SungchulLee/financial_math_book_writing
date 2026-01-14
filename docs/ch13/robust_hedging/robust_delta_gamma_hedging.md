@@ -1,6 +1,8 @@
 # Robust Delta–Gamma Hedging
 
+
 ## Introduction
+
 
 Robust delta-gamma hedging extends classical delta-hedging by incorporating second-order (gamma) risk management while maintaining robustness to model misspecification. This approach recognizes that:
 
@@ -13,7 +15,9 @@ The mathematical framework draws from stochastic optimal control, robust optimiz
 
 ## Mathematical Framework
 
-### Greeks
+
+### 1. Greeks
+
 
 **Delta**: First-order price sensitivity:
 
@@ -53,7 +57,8 @@ $$
 
 connecting gamma and vega.
 
-### Portfolio Dynamics
+### 2. Portfolio Dynamics
+
 
 **Position**: Hold $\theta_t$ shares of stock and $\phi_t$ options (for gamma hedging).
 
@@ -97,7 +102,9 @@ where subscripts denote the derivative or hedging instrument.
 
 ## Classical Delta-Gamma Hedging
 
-### Black-Scholes Framework
+
+### 1. Black-Scholes Framework
+
 
 **Option PDE**: Under Black-Scholes with constant volatility $\sigma$:
 
@@ -121,7 +128,8 @@ where $\Theta = \frac{\partial V}{\partial t}$ is theta.
 
 **Replication**: Portfolio value exactly replicates option value at all times.
 
-### Discrete Hedging
+### 2. Discrete Hedging
+
 
 **Time Grid**: Rebalance at times $\{t_0, t_1, \ldots, t_N\}$ with spacing $\Delta t = t_{i+1} - t_i$.
 
@@ -158,7 +166,9 @@ Third and higher-order terms, which vanish as $\Delta t \to 0$.
 
 ## Robust Hedging Under Volatility Uncertainty
 
-### Uncertain Volatility Model
+
+### 1. Uncertain Volatility Model
+
 
 **Setup**: True volatility $\sigma_t$ is unknown but bounded:
 
@@ -182,7 +192,8 @@ where $\sigma_t \in [\underline{\sigma}, \overline{\sigma}]$ is adversarially ch
 
 **Objective**: Find hedging strategy that minimizes worst-case loss.
 
-### Hamilton-Jacobi-Bellman Equation
+### 2. Hamilton-Jacobi-Bellman Equation
+
 
 **Value Function**: The minimal super-replication cost $V(S, t)$ satisfies:
 
@@ -220,7 +231,8 @@ $$
 - Positive gamma → Use maximum volatility (worst case)
 - Negative gamma → Use minimum volatility (worst case)
 
-### Hedging Strategy
+### 3. Hedging Strategy
+
 
 **Delta Position**: 
 
@@ -247,7 +259,9 @@ $$
 
 ## Multi-Factor Robust Hedging
 
-### Stochastic Volatility
+
+### 1. Stochastic Volatility
+
 
 **Model**: Volatility follows its own process:
 
@@ -298,7 +312,8 @@ $$
 
 This is a **system of 3 equations** in 3 unknowns: $(\theta^S, \theta^{O_1}, \theta^{O_2})$.
 
-### Cross-Gamma
+### 2. Cross-Gamma
+
 
 **Definition**: 
 
@@ -319,7 +334,9 @@ measures interaction between price and volatility changes.
 
 ## Robust Optimization Framework
 
-### Worst-Case Hedging
+
+### 1. Worst-Case Hedging
+
 
 **Objective**: Minimize maximum loss over uncertainty set:
 
@@ -337,7 +354,8 @@ where $\Pi_T$ is the hedged portfolio value.
 2. Solve for each scenario
 3. Choose strategy that performs best in worst scenario
 
-### Robust PDE
+### 2. Robust PDE
+
 
 **General Form**: For uncertainty in drift $\mu$ and volatility $\sigma$:
 
@@ -357,7 +375,8 @@ where $\mathcal{U}$ is the uncertainty set.
 - Semi-Lagrangian schemes
 - Policy iteration
 
-### Penalty Function Approach
+### 3. Penalty Function Approach
+
 
 **Regularization**: Instead of hard constraints on $\sigma$, penalize deviations from reference:
 
@@ -383,7 +402,9 @@ clamped to $[\underline{\sigma}, \overline{\sigma}]$.
 
 ## Transaction Costs
 
-### Discrete Rebalancing
+
+### 1. Discrete Rebalancing
+
 
 **Cost Model**: Proportional costs $\lambda$ per unit traded:
 
@@ -414,7 +435,8 @@ $$
 
 where $\epsilon_{\Delta}, \epsilon_{\Gamma}$ depend on $\lambda$ and $\sigma$.
 
-### Asymptotic Analysis
+### 2. Asymptotic Analysis
+
 
 **Small Transaction Costs**: As $\lambda \to 0$:
 
@@ -436,7 +458,8 @@ $$
 
 **Implication**: Even small transaction costs significantly impact optimal hedging strategy.
 
-### Leland's Approach
+### 3. Leland's Approach
+
 
 **Modified Volatility**: To account for transaction costs in delta-hedging, use:
 
@@ -453,7 +476,9 @@ $$
 
 ## Correlation Risk
 
-### Multi-Asset Portfolios
+
+### 1. Multi-Asset Portfolios
+
 
 **Assets**: $\mathbf{S}_t = (S_t^{(1)}, \ldots, S_t^{(n)})$ with correlation matrix $\rho$.
 
@@ -488,7 +513,8 @@ $$
 
 where $\mathcal{R}$ is the set of valid correlation matrices in the uncertainty range.
 
-### Basket Options
+### 2. Basket Options
+
 
 **Payoff**: 
 
@@ -519,7 +545,9 @@ and hedge for this scenario.
 
 ## Numerical Methods
 
-### Finite Difference Schemes
+
+### 1. Finite Difference Schemes
+
 
 **Grid**: Discretize $(S, t)$ space:
 - Space: $S \in \{S_{\min}, S_{\min} + \Delta S, \ldots, S_{\max}\}$
@@ -556,7 +584,8 @@ $$
 3. Choose $\sigma^* = \overline{\sigma}$ if $\Gamma_i^n > 0$, else $\sigma^* = \underline{\sigma}$
 4. Update $V_i^{n+1}$ using explicit or implicit scheme
 
-### Monte Carlo with Stochastic Control
+### 2. Monte Carlo with Stochastic Control
+
 
 **Scenario Generation**: Simulate paths under various volatility scenarios.
 
@@ -582,7 +611,8 @@ $$
 
 **Iteration**: Work backwards from maturity to initial time.
 
-### Policy Iteration
+### 3. Policy Iteration
+
 
 **Value Function**: Guess initial $V^{(0)}(S, t)$.
 
@@ -608,7 +638,9 @@ $$
 
 ## Greeks Monitoring and Adjustment
 
-### Delta-Gamma Dashboard
+
+### 1. Delta-Gamma Dashboard
+
 
 **Real-Time Display**:
 - Current spot price $S_t$
@@ -622,7 +654,8 @@ $$
 - **Yellow**: Deviation exceeds 10% of target
 - **Red**: Deviation exceeds 25% of target
 
-### Adjustment Algorithm
+### 2. Adjustment Algorithm
+
 
 **Trigger**: If $|\Delta_{\text{portfolio}} - \Delta_{\text{target}}| > \epsilon_{\Delta}$ or $|\Gamma_{\text{portfolio}} - \Gamma_{\text{target}}| > \epsilon_{\Gamma}$:
 
@@ -655,7 +688,8 @@ $$
 
 **Step 4**: Update portfolio records and reset targets.
 
-### Stress Testing
+### 3. Stress Testing
+
 
 **Scenarios**: Test portfolio performance under extreme scenarios:
 1. **Large price move**: $S_t \to S_t \pm 10\%$
@@ -673,7 +707,9 @@ $$
 
 ## Practical Applications
 
-### Example 1: At-the-Money Call Option
+
+### 1. Example 1: At-the-Money Call Option
+
 
 **Setup**:
 - $S_0 = 100$, $K = 100$, $T = 1$ month, $r = 5\%$
@@ -695,7 +731,8 @@ $$
 
 **Rebalancing**: Daily, with thresholds $\epsilon_{\Delta} = 0.05$, $\epsilon_{\Gamma} = 0.01$.
 
-### Example 2: Short Straddle
+### 2. Example 2: Short Straddle
+
 
 **Position**:
 - Short 1 call at strike $K = 100$
@@ -717,7 +754,8 @@ $$
 
 **Robust Approach**: Use robust PDE with $\sigma \in [\underline{\sigma}, \overline{\sigma}]$ to price cost of gamma hedging. Trade-off expected profit vs. worst-case loss.
 
-### Example 3: Exotic Barrier Option
+### 3. Example 3: Exotic Barrier Option
+
 
 **Product**: Down-and-out call, $K = 100$, barrier $H = 90$, $T = 3$ months.
 
@@ -740,7 +778,9 @@ $$
 
 ## Advanced Topics
 
-### Smile Risk
+
+### 1. Smile Risk
+
 
 **Implied Volatility Surface**: $\sigma(K, T)$ varies with strike and maturity.
 
@@ -754,7 +794,8 @@ $$
 
 **Robust Approach**: Assume worst-case smile dynamics among plausible models.
 
-### Rough Volatility
+### 2. Rough Volatility
+
 
 **Model**: Volatility has Hölder regularity $H < 1/2$:
 
@@ -780,7 +821,8 @@ where $[S]_t$ is understood in rough path sense.
 
 **Practical Impact**: Need finer rebalancing frequency for rough volatility than smooth models suggest.
 
-### Jump Diffusion
+### 3. Jump Diffusion
+
 
 **Dynamics**: 
 
@@ -804,7 +846,9 @@ where $J_t$ is a jump process.
 
 ## Model Comparison
 
-### Model-Specific Hedging
+
+### 1. Model-Specific Hedging
+
 
 **Black-Scholes**: Constant volatility → Simple delta hedge sufficient asymptotically.
 
@@ -814,7 +858,8 @@ where $J_t$ is a jump process.
 
 **Jump Diffusion**: Delta-gamma hedge insufficient → Need tail options.
 
-### Robust Hedging
+### 2. Robust Hedging
+
 
 **Model-Free**: Works for **all models** within uncertainty class.
 
@@ -826,7 +871,9 @@ where $J_t$ is a jump process.
 
 ## Performance Metrics
 
-### Hedging Error
+
+### 1. Hedging Error
+
 
 **Definition**: 
 
@@ -857,7 +904,8 @@ $$
 
 
 
-### Sharpe Ratio of Hedged Portfolio
+### 2. Sharpe Ratio of Hedged Portfolio
+
 
 **Return**: 
 
@@ -881,7 +929,8 @@ where $r_f$ is the risk-free rate.
 
 **Interpretation**: Higher SR indicates better risk-adjusted performance.
 
-### Maximum Drawdown
+### 3. Maximum Drawdown
+
 
 **Drawdown**: Largest peak-to-trough decline:
 
@@ -903,7 +952,8 @@ $$
 
 **Risk Management**: Set limits on MDD to control tail risk.
 
-### Cost-Benefit Analysis
+### 4. Cost-Benefit Analysis
+
 
 **Total Cost**: Transaction costs + option premiums:
 
@@ -936,7 +986,9 @@ Aim for CBR < 1 (benefits exceed costs).
 
 ## Case Studies
 
-### Case 1: Market Maker in Equity Options
+
+### 1. Case 1: Market Maker in Equity Options
+
 
 **Position**: Long/short various calls and puts on S&P 500 across strikes and maturities.
 
@@ -957,7 +1009,8 @@ Aim for CBR < 1 (benefits exceed costs).
 - Transaction costs: 0.2% of notional per month
 - Sharpe ratio of hedged book: 1.8
 
-### Case 2: Exotic Derivatives Desk
+### 2. Case 2: Exotic Derivatives Desk
+
 
 **Portfolio**: Short Asian, lookback, and barrier options on FX pairs.
 
@@ -978,7 +1031,8 @@ Aim for CBR < 1 (benefits exceed costs).
 - P&L volatility reduced by 70% with hedging
 - Cost of hedging: 1% of notional per year
 
-### Case 3: Volatility Arbitrage Fund
+### 3. Case 3: Volatility Arbitrage Fund
+
 
 **Strategy**: Long-short positions exploiting implied vs. realized volatility mispricing.
 
@@ -1002,7 +1056,9 @@ Aim for CBR < 1 (benefits exceed costs).
 
 ## Summary and Key Insights
 
-### Fundamental Principles
+
+### 1. Fundamental Principles
+
 
 1. **Second-Order Risk**: Gamma captures curvature risk that delta-hedging alone cannot eliminate.
 
@@ -1014,7 +1070,8 @@ Aim for CBR < 1 (benefits exceed costs).
 
 5. **Discretization**: Continuous theory provides intuition, but discrete rebalancing is the reality; asymptotic analysis guides optimal frequencies.
 
-### Practical Guidelines
+### 2. Practical Guidelines
+
 
 **When to Gamma-Hedge**:
 - Short optionality (sold options)
@@ -1034,7 +1091,8 @@ Aim for CBR < 1 (benefits exceed costs).
 - Stress test under extreme scenarios
 - Dynamically adjust uncertainty ranges as new information arrives
 
-### Theoretical Foundations
+### 3. Theoretical Foundations
+
 
 - **Avellaneda-Paras**: Robust pricing under volatility uncertainty
 - **Lyons**: Rough path theory for finance
@@ -1042,7 +1100,8 @@ Aim for CBR < 1 (benefits exceed costs).
 - **Cont-Tankov**: Jump models and incomplete market hedging
 - **Wilmott et al.**: Practical aspects of gamma hedging
 
-### Future Directions
+### 4. Future Directions
+
 
 Robust delta-gamma hedging continues to evolve with:
 - **Machine learning**: Learning optimal hedging policies from data

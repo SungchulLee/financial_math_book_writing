@@ -1,12 +1,15 @@
-# Terminal and Boundary Conditions
+# Terminal Boundary
 
-## 1. Why Conditions Matter
+
+## Why Conditions
+
 A PDE alone does not determine a unique solution.
 Financial contracts specify *terminal* and *boundary* conditions.
 
 ---
 
-## 2. Terminal Conditions
+## Terminal Conditions
+
 For a European payoff \(\Phi(X_T)\):
 \[
 u(T,x) = \Phi(x).
@@ -18,7 +21,8 @@ Examples:
 
 ---
 
-## 3. Boundary Conditions
+## Boundary Conditions
+
 Boundaries encode contractual features:
 - Absorbing (Dirichlet): default, barriers
 - Reflecting (Neumann): regulatory constraints
@@ -30,14 +34,16 @@ u(t,B) = 0.
 
 ---
 
-## 4. Mathematical Classification
+## Mathematical
+
 - Dirichlet: value specified
 - Neumann: derivative specified
 - Mixed conditions
 
 ---
 
-## 5. Financial Interpretation
+## Financial
+
 Boundary conditions reflect:
 - Early termination
 - Insolvency
@@ -45,5 +51,6 @@ Boundary conditions reflect:
 
 ---
 
-## 6. Connection Forward
+## Connection Forward
+
 Boundary behavior becomes crucial in exotic option pricing.

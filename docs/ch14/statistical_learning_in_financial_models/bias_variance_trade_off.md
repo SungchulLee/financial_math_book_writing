@@ -1,10 +1,12 @@
 # Bias–Variance Trade-Off
 
+
 The **bias–variance trade-off** is a central concept in statistical learning, governing the balance between model simplicity and flexibility.
 
 ---
 
-## 1. Decomposition of error
+## Decomposition of error
+
 
 For an estimator \(\hat f\), the expected prediction error can be decomposed as:
 
@@ -19,7 +21,8 @@ This decomposition highlights competing sources of error.
 
 ---
 
-## 2. Bias
+## Bias
+
 
 Bias measures systematic error due to model assumptions:
 - overly simple models have high bias,
@@ -29,7 +32,8 @@ High bias leads to underfitting.
 
 ---
 
-## 3. Variance
+## Variance
+
 
 Variance measures sensitivity to data fluctuations:
 - overly flexible models have high variance,
@@ -39,7 +43,8 @@ High variance leads to overfitting.
 
 ---
 
-## 4. Implications for finance
+## Implications for finance
+
 
 Financial data is:
 - noisy,
@@ -50,7 +55,8 @@ This makes controlling variance especially important in practice.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Bias and variance pull in opposite directions.
 - Optimal models balance both.
@@ -59,6 +65,7 @@ This makes controlling variance especially important in practice.
 ---
 
 ## Further reading
+
 
 - Geman, bias–variance in finance.
 - Hastie et al., bias–variance trade-off.

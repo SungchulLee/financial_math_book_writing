@@ -1,10 +1,12 @@
 # Non-Stationarity
 
+
 A fundamental limitation of learning in finance is **non-stationarity**: the statistical properties of financial data change over time.
 
 ---
 
-## 1. What is non-stationarity?
+## What is non-stationarity?
+
 
 A process is non-stationary if:
 - distributions evolve over time,
@@ -15,7 +17,8 @@ Most financial time series exhibit non-stationarity.
 
 ---
 
-## 2. Sources in financial markets
+## Sources in financial markets
+
 
 Non-stationarity arises from:
 - changing market regimes,
@@ -27,7 +30,8 @@ These changes invalidate static models.
 
 ---
 
-## 3. Impact on learning algorithms
+## Impact on learning algorithms
+
 
 Non-stationarity causes:
 - degradation of predictive performance,
@@ -38,7 +42,8 @@ Models trained on past data may fail abruptly.
 
 ---
 
-## 4. Mitigation strategies
+## Mitigation strategies
+
 
 Common approaches include:
 - rolling-window estimation,
@@ -50,7 +55,8 @@ No method fully eliminates the problem.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Financial data is inherently non-stationary.
 - Learning performance degrades over time.
@@ -59,6 +65,7 @@ No method fully eliminates the problem.
 ---
 
 ## Further reading
+
 
 - Cont, model uncertainty and instability.
 - Hamilton, regime changes in economics.

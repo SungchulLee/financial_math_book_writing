@@ -1,10 +1,12 @@
 # Weighting and Market Liquidity
 
+
 Calibration is only as good as its treatment of **quote quality**. Two instruments can have the same mid price but very different reliability due to liquidity, bid/ask width, and microstructure effects. Weighting schemes translate market reality into the objective function.
 
 ---
 
-## 1. Why weights matter
+## Why weights matter
+
 
 Consider weighted least squares:
 
@@ -22,7 +24,8 @@ Without sensible weights, calibration may overfit illiquid points and produce un
 
 ---
 
-## 2. Using bid/ask spreads as noise proxies
+## Using bid/ask spreads as noise proxies
+
 
 A common heuristic is:
 
@@ -43,7 +46,8 @@ Variants:
 
 ---
 
-## 3. Liquidity and surface regions
+## Liquidity and surface regions
+
 
 Liquidity is not uniform across the surface:
 
@@ -59,7 +63,8 @@ Therefore, practitioners often apply **region-dependent weights**:
 
 ---
 
-## 4. Vega weighting and effective information content
+## Vega weighting and effective information content
+
 
 In vol-space calibration, the same vol error can imply very different price errors depending on Vega:
 
@@ -78,7 +83,8 @@ There is no universal best choice; it depends on whether you want parameters opt
 
 ---
 
-## 5. Data cleaning and weighting as a single pipeline
+## Data cleaning and weighting as a single pipeline
+
 
 Weighting cannot fix all issues. A robust pipeline typically includes:
 
@@ -91,9 +97,11 @@ Think of weights as *the last step* after basic data hygiene.
 
 ---
 
-## 6. Practical recipes
+## Practical recipes
 
-### 6.1 A simple “spread + maturity balancing” scheme
+
+### 1. A simple “spread + maturity balancing” scheme
+
 
 - baseline: \(w_j = 1/\text{spread}_j^2\),
 - per-maturity normalization so each maturity contributes similarly:
@@ -104,7 +112,8 @@ Think of weights as *the last step* after basic data hygiene.
 
 
 
-### 6.2 Robust weighting
+### 2. Robust weighting
+
 
 Combine with robust losses (Huber):
 - treat large residuals as probable bad data points,
@@ -112,7 +121,8 @@ Combine with robust losses (Huber):
 
 ---
 
-## 7. Key takeaways
+## Key takeaways
+
 
 - Weights encode market liquidity and quote reliability.
 - Bid/ask spreads provide a natural noise proxy, but require caps/floors.
@@ -122,6 +132,7 @@ Combine with robust losses (Huber):
 ---
 
 ## Further reading
+
 
 - Gatheral, *The Volatility Surface* (practical surface and calibration).
 - Fengler, *Semiparametric Modeling of Implied Volatility*.

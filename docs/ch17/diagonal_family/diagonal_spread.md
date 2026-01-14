@@ -1,5 +1,6 @@
 # Diagonal Spreads
 
+
 **Diagonal spreads** are option strategies where you **buy and sell options of the same type** (calls or puts) with **different strike prices AND different expiration dates**. They combine the ideas of **vertical spreads (different strikes)** and **calendar spreads (different expirations)** to create positions that can profit from **time decay, direction, and/or volatility changes** with **defined (or mostly-defined) risk**.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_bullish.png?raw=true" alt="long_call_vs_put" width="700">
@@ -36,11 +38,13 @@ You’re essentially betting:
 
 ## What Is a Diagonal
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_greeks.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 ### 1. The Structure
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_rolling.png?raw=true" alt="long_call_vs_put" width="700">
@@ -63,21 +67,25 @@ This is often called a **diagonal calendar**.
 
 ## Why Diagonals Exist
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_vs_calendar.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 ### 1. Turn Time Decay
+
 Long options pay theta.
 But diagonals can be structured so the **short option’s theta** helps offset (or exceed) what you pay on the long option.
 
 ### 2. Flexible
+
 By choosing strikes:
 
 - **Bullish diagonal (calls)**: long call is ITM/ATM, short call is OTM
 - **Bearish diagonal (puts)**: long put is ITM/ATM, short put is OTM
 
 ### 3. Capital
+
 A major practical diagonal is the **Poor Man’s Covered Call (PMCC)**:
 
 - A long-dated ITM call replaces owning 100 shares
@@ -87,7 +95,9 @@ A major practical diagonal is the **Poor Man’s Covered Call (PMCC)**:
 
 ## Types of Diagonal
 
+
 ### 1. Call Diagonal
+
 
 **Structure:**
 
@@ -98,6 +108,7 @@ A major practical diagonal is the **Poor Man’s Covered Call (PMCC)**:
 
 ### 2. Put Diagonal
 
+
 **Structure:**
 
 - Buy a longer-dated put (often ITM)
@@ -106,13 +117,16 @@ A major practical diagonal is the **Poor Man’s Covered Call (PMCC)**:
 **Goal:** collect short-put premium while keeping bearish exposure.
 
 ### 3. Neutral / Range
+
 Strikes chosen closer to spot, aiming to profit primarily from **time decay** and **mean reversion**, but this is more sensitive and requires tighter management.
 
 ---
 
 ## The Portfolio
 
+
 ### 1. Call Diagonal
+
 
 \[
 \Pi = C(S, K_{\text{long}}, T_{\text{long}}) - C(S, K_{\text{short}}, T_{\text{short}})
@@ -121,6 +135,7 @@ Strikes chosen closer to spot, aiming to profit primarily from **time decay** an
 where \(T_{\text{long}} > T_{\text{short}}\).
 
 ### 2. Put Diagonal
+
 
 \[
 \Pi = P(S, K_{\text{long}}, T_{\text{long}}) - P(S, K_{\text{short}}, T_{\text{short}})
@@ -142,9 +157,11 @@ where \(T_{\text{long}} > T_{\text{short}}\).
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -156,6 +173,7 @@ $$
 
 ### 2. Why This IV
 
+
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
 - Risk preferences (convexity vs. theta)
@@ -163,6 +181,7 @@ Markets create these IV structures because different participants have different
 - Hedging needs (portfolio protection vs. income generation)
 
 ### 3. The Volatility
+
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -178,6 +197,7 @@ $$
 
 ### 4. Professional
 
+
 Institutional traders view IV strategies as tools for:
 1. **Volatility arbitrage:** Extracting the vol risk premium
 2. **Term structure trading:** Exploiting mispricings across time
@@ -188,6 +208,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 
 ## Concrete Example 1
+
 
 **Setup:**
 
@@ -216,6 +237,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## Concrete Example 2
 
+
 **Setup:**
 
 - Stock at \(S = 100\)
@@ -237,7 +259,9 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## Strike Selection
 
+
 ### 1. Long Leg (Back
+
 
 **Common approach:**
 
@@ -253,6 +277,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ### 2. Short Leg (Front
 
+
 **Common approach:**
 
 - Choose **OTM** at a strike where you’re “willing” to cap near-term move
@@ -267,7 +292,9 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## Time Frame Selection
 
+
 ### 1. Typical
+
 
 - Long leg: **60–180 days**
 - Short leg: **20–45 days**
@@ -286,7 +313,9 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## Position Management
 
+
 ### 1. Close or Roll the
+
 
 If the short option is:
 
@@ -298,6 +327,7 @@ If the short option is:
 
 ### 2. Avoid Holding the
 
+
 Near expiration:
 
 - gamma risk increases
@@ -307,6 +337,7 @@ Near expiration:
 Many traders close/roll with **~7–14 days** left, especially if the short is near the money.
 
 ### 3. Assignment
+
 
 If a short call gets assigned, you may end up short shares.
 If a short put gets assigned, you may end up long shares.
@@ -320,7 +351,9 @@ If a short put gets assigned, you may end up long shares.
 
 ## Pros and Cons
 
+
 ### 1. Diagonals —
+
 **1. Flexible design**
 
 - Can be bullish, bearish, or neutral-ish
@@ -338,6 +371,7 @@ If a short put gets assigned, you may end up long shares.
 - Repeated short premium can reduce effective cost of the long option
 
 ### 2. Diagonals —
+
 **1. More moving parts**
 
 - Strike + expiration choices matter a lot
@@ -362,9 +396,11 @@ If a short put gets assigned, you may end up long shares.
 
 ## Real-World Examples
 
+
 **Detailed scenarios showing diagonal spreads in practice:**
 
 ### 1. Pension Duration
+
 
 **Setup:**
 
@@ -564,6 +600,7 @@ PMCC advantage:
 - Works best in sideways to moderately bullish markets
 
 ### 2. Transition Risk
+
 
 **Setup:**
 
@@ -769,6 +806,7 @@ But: High stress, nearly failed
 
 ### 3. Portable Alpha
 
+
 **Setup:**
 
 **Trader strategy:**
@@ -919,6 +957,7 @@ Final outcome after 3 months:
 
 ### 4. Tactical Duration
 
+
 **Setup:**
 
 **Trader mistake:**
@@ -1044,9 +1083,11 @@ What would have saved $280:
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -1072,6 +1113,7 @@ What would have saved $280:
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 - [Specific IV conditions]
 - [Term structure requirements]
@@ -1085,6 +1127,7 @@ What would have saved $280:
 - [Event risk too high]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -1106,6 +1149,7 @@ $$
 
 ### 4. Best practices: 1
 
+
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1126,6 +1170,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1153,6 +1198,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -1179,6 +1225,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 - Entry IV level and percentile
 - Term structure shape at entry
@@ -1196,6 +1243,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
 3. **Ignoring term structure** - Don't sell front month if in backwardation
@@ -1206,6 +1254,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -1234,27 +1283,33 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Buying a Long Leg
+
 If the long option expires soon, theta decay can overwhelm the strategy.
 
 **Fix:** use a longer-dated long leg (60–180 days or more).
 
 ### 2. Selling the Short
+
 You collect more premium but increase assignment risk and cap upside too aggressively.
 
 **Fix:** start with OTM short strikes and adjust gradually.
 
 ### 3. Holding the Short
+
 Pin risk and gamma explode.
 
 **Fix:** roll/close earlier (commonly 7–14 days remaining).
 
 ### 4. Ignoring Implied
+
 If IV collapses, long leg can lose value.
 
 **Fix:** avoid overpaying for the long leg; consider entering after volatility spikes when appropriate.
 
 ### 5. Over-sizing
+
 PMCC is not identical to a covered call.
 Your long call can lose value sharply.
 
@@ -1264,13 +1319,16 @@ Your long call can lose value sharply.
 
 ## When to Use
 
+
 ### 1. Best conditions
+
 
 - You have a **directional bias** (mild/moderate)
 - You want to **benefit from theta** (short leg decay)
 - You’re comfortable managing rolls and avoiding assignment surprises
 
 ### 2. Avoid when
+
 
 - Big binary event risk inside the short leg (earnings, FDA, etc.)
 - You cannot monitor or manage assignment/rolls
@@ -1284,6 +1342,7 @@ Your long call can lose value sharply.
 
 
 ## Diagonal spreads are
+
 
 Diagonal spreads are a powerful “hybrid” strategy:
 

@@ -1,4 +1,5 @@
-# Feynman–Kac Applications and Duality (Forward vs Backward)
+# Feynman Kac
+
 
 This page has two goals:
 
@@ -7,7 +8,8 @@ This page has two goals:
 
 ---
 
-## 1. Application: Heat equation with terminal condition
+## Application Heat
+
 
 Solve
 
@@ -36,7 +38,8 @@ V(t,x)=x^2+\sigma^2(T-t).
 
 ---
 
-## 2. Application: heat equation with drift
+## Application heat
+
 
 Solve
 
@@ -56,7 +59,8 @@ V(t,x)=\mathbb E[X_T^2]=\big(x+\mu(T-t)\big)^2+\sigma^2(T-t).
 
 ---
 
-## 3. Where the forward equation enters (the “meeting point”)
+## Where forward
+
 
 Let \(p(x,t;y,T)\) be the transition density of \(X\). Then (in the simplest case)
 
@@ -80,7 +84,8 @@ quietly contains the forward evolution through \(p\).
 
 ---
 
-## 4. Summary
+## Summary
+
 
 - Backward PDE: differential law for \(u\)
 - Forward PDE: differential law for \(p\)

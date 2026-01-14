@@ -1,10 +1,12 @@
 # Bootstrapping Hazard Rates
 
+
 Calibration of reduced-form credit models typically starts by **bootstrapping hazard rates** from market instruments, most commonly CDS spreads.
 
 ---
 
-## 1. Credit curve construction
+## Credit curve construction
+
 
 Analogous to yield curve bootstrapping, the goal is to construct a **survival probability curve**
 
@@ -22,7 +24,8 @@ Market inputs:
 
 ---
 
-## 2. Piecewise-constant hazard rates
+## Piecewise-constant hazard rates
+
 
 A standard approach assumes
 
@@ -36,7 +39,8 @@ Hazard rates are solved sequentially so that each CDS maturity is priced exactly
 
 ---
 
-## 3. Numerical procedure
+## Numerical procedure
+
 
 The bootstrapping algorithm:
 1. Fix recovery rate and discount curve.
@@ -47,7 +51,8 @@ This yields a term structure of default intensities.
 
 ---
 
-## 4. Practical considerations
+## Practical considerations
+
 
 - Results depend strongly on recovery assumptions.
 - Market liquidity varies by maturity.
@@ -57,7 +62,8 @@ Despite limitations, this approach is industry standard.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Hazard rates are bootstrapped from CDS spreads.
 - Piecewise-constant intensities are widely used.
@@ -66,6 +72,7 @@ Despite limitations, this approach is industry standard.
 ---
 
 ## Further reading
+
 
 - O'Kane, CDS bootstrapping.
 - Brigo et al., credit curve construction.

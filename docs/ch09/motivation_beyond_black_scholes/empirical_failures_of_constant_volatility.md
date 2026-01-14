@@ -1,10 +1,12 @@
 # Empirical Failures of Constant Volatility
 
+
 The Black–Scholes model assumes that volatility is constant over time and across states of the market. While this assumption leads to analytical tractability, it is fundamentally inconsistent with observed market behavior.
 
 ---
 
-## 1. The constant volatility assumption
+## The constant volatility assumption
+
 
 In the Black–Scholes framework, the underlying asset follows
 
@@ -22,7 +24,8 @@ This implies:
 
 ---
 
-## 2. Empirical evidence against constancy
+## Empirical evidence against constancy
+
 
 Market data contradict these implications:
 
@@ -34,7 +37,8 @@ These features are visible across equities, indices, and asset classes.
 
 ---
 
-## 3. Distributional failures
+## Distributional failures
+
 
 Under constant volatility, log-returns are Gaussian. Empirically, returns exhibit:
 
@@ -46,7 +50,8 @@ These features lead to systematic mispricing of out-of-the-money options.
 
 ---
 
-## 4. Implications for option pricing
+## Implications for option pricing
+
 
 Because option prices reflect the entire return distribution:
 
@@ -58,7 +63,8 @@ This motivates models with richer volatility dynamics.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Constant volatility is empirically invalid.
 - Volatility is stochastic, clustered, and state-dependent.
@@ -67,6 +73,7 @@ This motivates models with richer volatility dynamics.
 ---
 
 ## Further reading
+
 
 - Mandelbrot, early work on heavy-tailed returns.
 - Engle, ARCH effects and volatility clustering.

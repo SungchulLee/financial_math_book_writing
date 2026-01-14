@@ -1,10 +1,12 @@
 # Exposure Profiles
 
+
 Counterparty credit risk (CCR) arises from the possibility that a counterparty defaults while a derivative position has positive value. **Exposure profiles** describe how this value evolves over time.
 
 ---
 
-## 1. Definition of exposure
+## Definition of exposure
+
 
 For a portfolio value process \(V_t\), the exposure at time \(t\) is
 
@@ -18,7 +20,8 @@ Exposure is stochastic and depends on future market states.
 
 ---
 
-## 2. Expected Exposure (EE)
+## Expected Exposure (EE)
+
 
 The **Expected Exposure** at time \(t\) is
 
@@ -32,7 +35,8 @@ It summarizes average counterparty exposure and is used in CVA calculations.
 
 ---
 
-## 3. Exposure profiles over time
+## Exposure profiles over time
+
 
 Plotting \(\text{EE}(t)\) across maturities yields an exposure profile.
 Key drivers include:
@@ -42,7 +46,8 @@ Key drivers include:
 
 ---
 
-## 4. Role of netting and collateral
+## Role of netting and collateral
+
 
 - Netting reduces exposure by offsetting positions.
 - Collateral reduces exposure dynamically but introduces margin risk.
@@ -50,7 +55,8 @@ Key drivers include:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Exposure is the positive portfolio value.
 - Exposure profiles describe its time evolution.
@@ -59,6 +65,7 @@ Key drivers include:
 ---
 
 ## Further reading
+
 
 - Gregory, *Counterparty Credit Risk*.
 - Brigo et al., exposure modeling.

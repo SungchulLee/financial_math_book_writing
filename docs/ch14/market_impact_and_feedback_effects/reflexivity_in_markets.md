@@ -1,10 +1,12 @@
 # Reflexivity in Markets
 
+
 **Reflexivity**, a concept popularized by George Soros, describes the circular relationship between market participants’ beliefs and market outcomes.
 
 ---
 
-## 1. Concept of reflexivity
+## Concept of reflexivity
+
 
 Reflexivity posits that:
 - beliefs influence actions,
@@ -15,7 +17,8 @@ Markets are thus self-referential systems.
 
 ---
 
-## 2. Reflexivity vs equilibrium
+## Reflexivity vs equilibrium
+
 
 In reflexive markets:
 - equilibrium may not exist or be stable,
@@ -26,7 +29,8 @@ This contrasts with rational expectations models.
 
 ---
 
-## 3. Formal modeling approaches
+## Formal modeling approaches
+
 
 Reflexivity can be modeled via:
 - feedback control systems,
@@ -37,7 +41,8 @@ These models emphasize dynamics over equilibrium.
 
 ---
 
-## 4. Implications for finance
+## Implications for finance
+
 
 Reflexivity explains:
 - bubbles and crashes,
@@ -48,7 +53,8 @@ It highlights limits of purely rational models.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Markets are reflexive systems.
 - Beliefs and prices co-evolve.
@@ -57,6 +63,7 @@ It highlights limits of purely rational models.
 ---
 
 ## Further reading
+
 
 - Soros, *The Alchemy of Finance*.
 - Shiller, narrative economics.

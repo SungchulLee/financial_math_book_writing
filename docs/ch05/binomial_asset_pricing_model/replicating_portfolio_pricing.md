@@ -1,5 +1,6 @@
 # Replicating Portfolio and Pricing 
 
+
 This section develops **replication-based pricing** in the one-period binomial model and illustrates it through a sequence of concrete examples.
 
 The key message is simple and powerful:
@@ -8,7 +9,8 @@ The key message is simple and powerful:
 
 ---
 
-## 1. Payoff Space and Completeness
+## Payoff Space and Completeness
+
 
 In the one-period binomial model, the terminal payoff space is **two-dimensional**:
 
@@ -27,7 +29,8 @@ As a consequence:
 
 ---
 
-## 2. Replication Using Stock and Bond
+## Replication Using Stock and Bond
+
 
 Let a claim have payoff
 
@@ -73,9 +76,11 @@ This price is forced by no-arbitrage.
 
 ---
 
-## 3. Example 1: European Call Option
+## Example 1: European Call Option
 
-### Setup
+
+### 1. Setup
+
 
 Let
 
@@ -94,7 +99,8 @@ $$
 
 ---
 
-### Replication
+### 2. Replication
+
 
 $$
 \Delta = \frac{15 - 0}{(1.2 - 0.9)\cdot 100} = \frac{15}{30} = 0.5
@@ -109,7 +115,8 @@ $$
 
 ---
 
-### Price
+### 3. Price
+
 
 $$
 C_0 = 0.5 \cdot 100 - 42.86 = 7.14
@@ -125,9 +132,11 @@ $$
 
 ---
 
-## 4. Example 2: European Put Option
+## Example 2: European Put Option
 
-### Setup
+
+### 1. Setup
+
 
 Using the same parameters as Example 1:
 
@@ -144,7 +153,8 @@ $$
 
 ---
 
-### Replication
+### 2. Replication
+
 
 $$
 \Delta = \frac{0 - 15}{(1.2 - 0.9)\cdot 100} = -0.5
@@ -157,7 +167,8 @@ $$
 
 ---
 
-### Price
+### 3. Price
+
 
 $$
 P_0 = -0.5 \cdot 100 + 57.10 = 7.10 \approx 7.14
@@ -173,7 +184,8 @@ $$
 
 ---
 
-## 5. Example 3: Digital (Binary) Option
+## Example 3: Digital (Binary) Option
+
 
 Consider a **digital call** paying:
 
@@ -187,7 +199,8 @@ $$
 
 ---
 
-### Replication
+### 1. Replication
+
 
 $$
 \Delta = \frac{1 - 0}{(u-d)S_0}, \qquad
@@ -196,7 +209,8 @@ $$
 
 ---
 
-### Price
+### 2. Price
+
 
 $$
 V_0 = \Delta S_0 + \beta = e^{-r dt} q,
@@ -208,7 +222,8 @@ This example shows that **risk-neutral probability is literally the price of a d
 
 ---
 
-## 6. Example 4: Forward Contract
+## Example 4: Forward Contract
+
 
 A forward payoff is
 
@@ -225,7 +240,8 @@ $$
 
 ---
 
-### Replication
+### 1. Replication
+
 
 $$
 \Delta = \frac{(u-d)S_0}{(u-d)S_0} = 1,
@@ -235,7 +251,8 @@ $$
 
 ---
 
-### Price
+### 2. Price
+
 
 $$
 V_0 = S_0 - Ke^{-r dt}
@@ -245,7 +262,8 @@ This recovers the standard forward price directly from replication.
 
 ---
 
-## 7. Put–Call Parity (Replication View)
+## Put–Call Parity (Replication View)
+
 
 Consider two portfolios:
 
@@ -265,7 +283,8 @@ Put–call parity is therefore **a replication identity**, not an assumption.
 
 ---
 
-## 8. Interpretation of Delta and Beta
+## Interpretation of Delta and Beta
+
 
 Across all examples:
 
@@ -291,7 +310,8 @@ Dynamic hedging is introduced later.
 
 ---
 
-## 9. Key Takeaways
+## Key Takeaways
+
 
 1. Replication yields prices **without probabilities**.
 2. Prices are linear in payoffs.
@@ -302,6 +322,7 @@ Dynamic hedging is introduced later.
 ---
 
 ## Summary
+
 
 In the one-period binomial model:
 

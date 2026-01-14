@@ -1,10 +1,12 @@
 # Entropy Penalization
 
+
 **Entropy penalization** provides a smooth alternative to max–min preferences by penalizing deviations from a reference probability measure.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 Pure max–min preferences can be:
 - overly conservative,
@@ -15,7 +17,8 @@ Entropy penalties soften worst-case behavior.
 
 ---
 
-## 2. Relative entropy
+## Relative entropy
+
 
 The relative entropy (KL divergence) between \(\mathbb{Q}\) and \(\mathbb{P}\) is
 
@@ -32,7 +35,8 @@ It measures statistical distance between models.
 
 ---
 
-## 3. Penalized objective
+## Penalized objective
+
 
 Preferences are defined by
 
@@ -50,7 +54,8 @@ The parameter \(\lambda\) controls ambiguity aversion.
 
 ---
 
-## 4. Financial interpretation
+## Financial interpretation
+
 
 Entropy penalization:
 - favors models close to the reference,
@@ -59,7 +64,8 @@ Entropy penalization:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Entropy penalties soften worst-case preferences.
 - Ambiguity aversion is tunable.
@@ -68,6 +74,7 @@ Entropy penalization:
 ---
 
 ## Further reading
+
 
 - Hansen & Sargent, entropy methods.
 - Dupuis & Ellis, risk-sensitive control.

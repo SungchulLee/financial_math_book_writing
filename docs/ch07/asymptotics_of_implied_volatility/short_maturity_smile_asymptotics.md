@@ -1,12 +1,16 @@
 # Short-Maturity Smile Asymptotics
 
+
 ## Introduction
+
 
 The behavior of implied volatility as maturity approaches zero ($T \to 0$) reveals fundamental properties of the underlying asset's instantaneous volatility structure and the local geometry of the price process. Short-maturity asymptotics provide powerful tools for understanding market microstructure, extracting local volatility, and pricing very short-dated options (weekly, daily expirations). This section develops the complete asymptotic theory for the implied volatility smile in the small-time limit.
 
 ## Heuristic Intuition
 
-### Time Value Decay
+
+### 1. Time Value Decay
+
 
 As $T \to 0$, an option's value approaches its intrinsic value:
 
@@ -22,7 +26,8 @@ However, the **rate of approach** depends on how close $K$ is to the current spo
 - **Deep ITM/OTM:** Option has essentially determined payoff → IV reflects little uncertainty
 - **Near ATM:** Option payoff highly sensitive to small spot moves → IV reflects local volatility
 
-### Path Probability Concentration
+### 2. Path Probability Concentration
+
 
 For small $T$, the distribution of $S_T$ concentrates around $S_0$:
 
@@ -37,7 +42,9 @@ The limiting distribution as $T \to 0$ is determined by the **local volatility**
 
 ## Mathematical Framework
 
-### General Diffusion Setting
+
+### 1. General Diffusion Setting
+
 
 Consider the underlying asset following:
 
@@ -59,7 +66,8 @@ $$
 
 The implied volatility $\sigma_{\text{IV}}(K, T)$ is defined through the Black-Scholes formula.
 
-### Small-Time Asymptotic Expansion
+### 2. Small-Time Asymptotic Expansion
+
 
 We seek an expansion of the form:
 
@@ -74,7 +82,9 @@ The coefficients $\sigma_0, \sigma_1, \sigma_2$ depend on the local dynamics at 
 
 ## Leading-Order Asymptotics: Local Volatility
 
-### Main Result (Berestycki-Busca-Florent)
+
+### 1. Main Result (Berestycki-Busca-Florent)
+
 
 **Theorem 4.4.1** (Leading-Order Asymptotics)  
 For a local volatility model with smooth $\sigma(S, t)$, as $T \to 0$:
@@ -88,7 +98,8 @@ $$
 
 **Interpretation:** The short-maturity implied volatility at strike $K$ converges to the local volatility evaluated at that strike at the initial time.
 
-### Proof Sketch
+### 2. Proof Sketch
+
 
 The call option price can be written as:
 
@@ -110,7 +121,8 @@ $$
 
 Computing the option price with this Gaussian approximation and matching to Black-Scholes gives $\sigma_{\text{IV}} \sim \sigma(K, 0)$. □
 
-### At-the-Money Limit
+### 3. At-the-Money Limit
+
 
 **Corollary 4.4.1**  
 At-the-money ($K = S_0$):
@@ -124,7 +136,8 @@ $$
 
 The ATM implied volatility converges to the **spot volatility**.
 
-### Away from the Money
+### 4. Away from the Money
+
 
 For strikes $K \neq S_0$, the leading-order term still gives:
 
@@ -139,7 +152,9 @@ $$
 
 ## Next-Order Correction: Drift Effects
 
-### First-Order Correction
+
+### 1. First-Order Correction
+
 
 **Theorem 4.4.2** (First-Order Expansion)  
 For smooth local volatility $\sigma(S, t)$:
@@ -155,7 +170,8 @@ $$
 
 **Interpretation:** If local volatility is time-dependent, the first-order correction captures the instantaneous rate of change at $t = 0$.
 
-### Spatial Derivatives
+### 2. Spatial Derivatives
+
 
 For non-constant local volatility in the spot direction, higher-order terms involve:
 
@@ -177,7 +193,9 @@ $$
 
 ## Stochastic Volatility Models
 
-### Heston Model
+
+### 1. Heston Model
+
 
 The Heston model:
 
@@ -192,7 +210,8 @@ $$
 
 
 
-### Small-Time ATM Asymptotics (Heston)
+### 2. Small-Time ATM Asymptotics (Heston)
+
 
 **Theorem 4.4.3** (Heston ATM Asymptotics)  
 For the Heston model, as $T \to 0$:
@@ -221,7 +240,8 @@ $$
 
 where $A(T; \omega)$ and $B(T; \omega)$ satisfy Riccati ODEs. Expanding in powers of $T$ and inverting gives the IV expansion.
 
-### Small-Time Smile (Heston)
+### 3. Small-Time Smile (Heston)
+
 
 Away from ATM, for log-moneyness $y = \ln(K/S_0)$:
 
@@ -243,7 +263,9 @@ $$
 
 ## SABR Model
 
-### Model Specification
+
+### 1. Model Specification
+
 
 The SABR model:
 
@@ -260,7 +282,8 @@ $$
 
 commonly used for interest rate options.
 
-### Hagan's Asymptotic Formula
+### 2. Hagan's Asymptotic Formula
+
 
 **Theorem 4.4.5** (Hagan et al., 2002)  
 For SABR, the implied volatility admits the expansion:
@@ -291,7 +314,9 @@ $$
 
 ## Extreme Strikes: Small-Time Large-Deviation Theory
 
-### Large Deviations for ITM/OTM Options
+
+### 1. Large Deviations for ITM/OTM Options
+
 
 For deep ITM or OTM options (large $|K - S_0|$) with small $T$:
 
@@ -315,7 +340,8 @@ $$
 
 **Interpretation:** The option price decays exponentially in $T$ at a rate determined by the "most likely path" from $S_0$ to the payoff region.
 
-### Connection to Implied Volatility
+### 2. Connection to Implied Volatility
+
 
 Taking logarithms and using $C \approx S_0 \Phi(d_1) \approx S_0 e^{-d_1^2/2}$ for deep OTM:
 
@@ -330,7 +356,9 @@ $$
 
 ## Small-Time vs Small Moneyness Regimes
 
-### Three Asymptotic Regimes
+
+### 1. Three Asymptotic Regimes
+
 
 **Regime 1: ATM ($K \approx S_0$, $T \to 0$)**
 
@@ -365,7 +393,8 @@ $$
 
 This regime captures the transition from ATM to OTM, showing the parabolic smile shape.
 
-### Matched Asymptotics
+### 2. Matched Asymptotics
+
 
 The complete small-time picture requires **matching** these regimes:
 
@@ -381,7 +410,9 @@ $$
 
 ## Practical Implications
 
-### Extracting Local Volatility from Short-Dated Options
+
+### 1. Extracting Local Volatility from Short-Dated Options
+
 
 **Method 1: Direct approximation**
 
@@ -398,7 +429,8 @@ for small $T_{\text{short}}$ (e.g., 1 week).
 
 **Advantage:** Simple, model-free.
 
-### Calibrating Stochastic Volatility Models
+### 2. Calibrating Stochastic Volatility Models
+
 
 Short-dated smile constraints:
 - **ATM level:** Determines $\sqrt{v_0}$ (Heston) or $\alpha$ (SABR)
@@ -407,7 +439,8 @@ Short-dated smile constraints:
 
 **Strategy:** Fit short-dated options first to pin down instantaneous parameters, then calibrate mean reversion and term structure using longer maturities.
 
-### Pricing Short-Dated Exotics
+### 3. Pricing Short-Dated Exotics
+
 
 For barrier options, Asian options with short monitoring periods:
 
@@ -420,7 +453,9 @@ For barrier options, Asian options with short monitoring periods:
 
 ## Numerical Validation
 
-### Example: Heston Calibration
+
+### 1. Example: Heston Calibration
+
 
 **Parameters:**
 - $v_0 = 0.04$ ($\sigma_0 = 20\%$)
@@ -439,7 +474,8 @@ For barrier options, Asian options with short monitoring periods:
 
 **Observation:** Asymptotic formula extremely accurate for $T < 1$ month.
 
-### Example: SABR Smile
+### 2. Example: SABR Smile
+
 
 **Parameters:**
 - $F = 100$ (ATM forward)
@@ -463,7 +499,9 @@ For barrier options, Asian options with short monitoring periods:
 
 ## Limitations and Breakdown
 
-### When Small-Time Asymptotics Fail
+
+### 1. When Small-Time Asymptotics Fail
+
 
 **Jumps:**  
 If the model includes jumps:
@@ -488,7 +526,8 @@ $$
 
 **Fix:** Use separate asymptotic theory for jump-diffusions (Tankov, Figueroa-López).
 
-### Rough Volatility
+### 2. Rough Volatility
+
 
 For **rough volatility models** (fractional Brownian motion):
 
@@ -514,7 +553,8 @@ for $H < 1/2$, the smile becomes increasingly steep as $T \to 0$.
 
 **Empirical evidence:** Real short-dated smiles suggest $H \approx 0.1$ (very rough).
 
-### Very Large Strikes
+### 3. Very Large Strikes
+
 
 For $|K - S_0| \gg \sigma S_0 \sqrt{T}$, the option is so deep ITM/OTM that:
 
@@ -531,9 +571,11 @@ Implied volatility becomes **ill-defined** (numerically unstable) as the price a
 
 ## Summary
 
+
 Short-maturity asymptotics reveal:
 
-### **Leading-order behavior:**
+### 1. **Leading-order behavior:**
+
 
 
 $$
@@ -544,7 +586,8 @@ $$
 
 Implied volatility converges to local volatility.
 
-### **Stochastic volatility corrections:**
+### 2. **Stochastic volatility corrections:**
+
 
 **Heston:**
 
@@ -566,13 +609,15 @@ $$
 
 Backbone plus time-dependent corrections.
 
-### **Applications:**
+### 3. **Applications:**
+
 
 - **Local vol extraction:** Use short-dated smile to infer $\sigma(K, 0)$
 - **Model calibration:** Pin down instantaneous parameters ($v_0, \rho, \xi$)
 - **Fast pricing:** Asymptotic formulas for short-dated options
 
-### **Asymptotic regimes:**
+### 4. **Asymptotic regimes:**
+
 
 
 $$

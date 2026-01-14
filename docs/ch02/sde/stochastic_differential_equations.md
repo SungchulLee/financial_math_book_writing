@@ -1,5 +1,6 @@
 # Stochastic Differential Equations
 
+
 Stochastic differential equations (SDEs) are differential equations driven by **Brownian motion**.  
 They provide the canonical way to define **diffusion processes** and connect stochastic calculus to PDE, generators, and change of measure.
 
@@ -7,7 +8,8 @@ Throughout, let $(\Omega,\mathcal{F},\{\mathcal{F}_t\},\mathbb{P})$ be a filtere
 
 ---
 
-## 1. From Itô Integrals to SDEs
+## From Itô Integrals to SDEs
+
 
 An **Itô process** has the form
 
@@ -30,7 +32,8 @@ Here:
 
 > **Important:** The "$dX_t$" notation is shorthand for the integral equation above. The SDE should always be understood in the integral sense.
 
-### 1.1 Integral Form
+### 1. Integral Form
+
 
 The precise mathematical meaning of the SDE is given by the **integral equation**:
 
@@ -40,7 +43,8 @@ $$
 
 The first integral is a **Riemann or Lebesgue integral**, while the second is an **Itô stochastic integral**.
 
-### 1.2 Regularity Conditions
+### 2. Regularity Conditions
+
 
 For the integrals to be well-defined, we typically require:
 
@@ -56,11 +60,13 @@ where $\|\cdot\|$ denotes the Frobenius norm for matrices.
 
 ---
 
-## 2. What Is a Solution?
+## What Is a Solution?
+
 
 There are several notions of solution; the distinction is subtle but important.
 
-### 2.1 Strong Solution
+### 1. Strong Solution
+
 
 **Definition:** A process $X_t$ is a **strong solution** of
 
@@ -79,13 +85,15 @@ on $[0,T]$ if:
 
 **Key point:** A strong solution is constructed on the **given** probability space with the **given** Brownian motion.
 
-### 2.2 Weak Solution
+### 2. Weak Solution
+
 
 **Definition:** A **weak solution** consists of a probability space $(\Omega,\mathcal{F},\mathbb{P})$, a filtration $\{\mathcal{F}_t\}$, a Brownian motion $W_t$, and a process $X_t$ such that the integral equation holds.
 
 **Key difference:** We are allowed to **choose** the probability space and Brownian motion. Weak existence is a distributional property.
 
-### 2.3 Pathwise Uniqueness vs. Uniqueness in Law
+### 3. Pathwise Uniqueness vs. Uniqueness in Law
+
 
 - **Pathwise uniqueness:** If $X_t$ and $Y_t$ are two strong solutions on the same space with the same Brownian motion and $X_0 = Y_0$, then $X_t = Y_t$ for all $t$ a.s.
 
@@ -95,7 +103,8 @@ on $[0,T]$ if:
 1. Pathwise uniqueness + weak existence $\Rightarrow$ strong uniqueness.
 2. Strong uniqueness $\Rightarrow$ pathwise uniqueness and uniqueness in law.
 
-### 2.4 Connection to Martingale Problem
+### 4. Connection to Martingale Problem
+
 
 The **martingale problem** (Stroock-Varadhan) characterizes weak solutions via the infinitesimal generator. For the SDE above, we seek a process $X_t$ such that for all $f \in C_c^2(\mathbb{R}^d)$,
 
@@ -113,7 +122,8 @@ is the **infinitesimal generator**.
 
 ---
 
-## 3. Itô's Lemma for SDEs
+## Itô's Lemma for SDEs
+
 
 If $X_t$ solves
 
@@ -138,7 +148,8 @@ $$
 df(t,X_t) = \left(\frac{\partial f}{\partial t} + \mathcal{L}f\right)(t,X_t)\,dt + \nabla f \cdot \sigma(t,X_t)\,dW_t.
 $$
 
-### 3.1 Scalar Case
+### 1. Scalar Case
+
 
 For $d=m=1$, this simplifies to:
 
@@ -146,7 +157,8 @@ $$
 df(t,X_t) = \left(f_t + b f_x + \frac{1}{2}\sigma^2 f_{xx}\right)(t,X_t)\,dt + \sigma f_x(t,X_t)\,dW_t.
 $$
 
-### 3.2 Applications of Itô's Lemma
+### 2. Applications of Itô's Lemma
+
 
 Itô's lemma is the fundamental tool for:
 
@@ -158,9 +170,11 @@ Itô's lemma is the fundamental tool for:
 
 ---
 
-## 4. Canonical Examples
+## Canonical Examples
 
-### 4.1 Brownian Motion with Drift
+
+### 1. Brownian Motion with Drift
+
 
 $$
 dX_t=\mu\,dt+\sigma\,dW_t
@@ -172,7 +186,8 @@ This is a **Gaussian process** with:
 - Mean: $\mathbb{E}[X_t] = X_0 + \mu t$
 - Variance: $\text{Var}[X_t] = \sigma^2 t$
 
-### 4.2 Geometric Brownian Motion (GBM)
+### 2. Geometric Brownian Motion (GBM)
+
 
 $$
 \boxed{
@@ -206,7 +221,8 @@ $$
 - $\text{Var}[S_t] = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$
 - GBM is the foundation of the **Black-Scholes model**
 
-### 4.3 Ornstein-Uhlenbeck (OU) Process
+### 3. Ornstein-Uhlenbeck (OU) Process
+
 
 $$
 \boxed{
@@ -232,7 +248,8 @@ $$
 - $\text{Var}[X_t] = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t}) \to \frac{\sigma^2}{2\kappa}$ as $t \to \infty$
 - **Stationary distribution:** $\mathcal{N}\left(\theta, \frac{\sigma^2}{2\kappa}\right)$
 
-### 4.4 Linear SDE (General Form)
+### 4. Linear SDE (General Form)
+
 
 $$
 dX_t = (a(t) + b(t)X_t)\,dt + (c(t) + d(t)X_t)\,dW_t
@@ -242,9 +259,11 @@ where $a, b, c, d$ are deterministic functions. These can be solved explicitly u
 
 ---
 
-## 5. Existence and Uniqueness
+## Existence and Uniqueness
 
-### 5.1 Standard Conditions
+
+### 1. Standard Conditions
+
 
 **Theorem (Existence and Uniqueness):** Suppose $b$ and $\sigma$ satisfy:
 
@@ -260,7 +279,8 @@ where $a, b, c, d$ are deterministic functions. These can be solved explicitly u
 
 Then for any $\mathcal{F}_0$-measurable $X_0$ with $\mathbb{E}[|X_0|^2] < \infty$, there exists a **unique strong solution** $X_t$ on $[0,T]$.
 
-### 5.2 Proof Sketch
+### 2. Proof Sketch
+
 
 The proof uses a **Picard iteration** (fixed-point argument):
 
@@ -273,7 +293,8 @@ The proof uses a **Picard iteration** (fixed-point argument):
 - **Itô isometry:** $\mathbb{E}\left[\left|\int_0^t H_s\,dW_s\right|^2\right] = \mathbb{E}\left[\int_0^t |H_s|^2\,ds\right]$
 - **Grönwall's inequality:** Controls exponential growth
 
-### 5.3 Examples of Non-uniqueness
+### 3. Examples of Non-uniqueness
+
 
 When Lipschitz fails, uniqueness can fail.
 
@@ -281,7 +302,8 @@ When Lipschitz fails, uniqueness can fail.
 
 Then $X_t \equiv 0$ is a solution, but there are also non-trivial solutions. This SDE has **weak existence but not pathwise uniqueness**.
 
-### 5.4 Local Lipschitz and Explosion
+### 4. Local Lipschitz and Explosion
+
 
 If $b, \sigma$ are only **locally Lipschitz**, we get a unique solution up to a **stopping time** $\tau$ (explosion time).
 
@@ -289,11 +311,13 @@ If $b, \sigma$ are only **locally Lipschitz**, we get a unique solution up to a 
 
 ---
 
-## 6. Simulation: Euler-Maruyama Scheme
+## Simulation: Euler-Maruyama Scheme
+
 
 SDEs rarely have closed-form solutions, so numerical simulation is essential.
 
-### 6.1 The Scheme
+### 1. The Scheme
+
 
 For
 
@@ -311,7 +335,8 @@ $$
 
 with $\Delta W_n \sim \mathcal{N}(0,\Delta t)$ independent.
 
-### 6.2 Convergence Properties
+### 2. Convergence Properties
+
 
 **Theorem:** Under Lipschitz and growth conditions, the Euler-Maruyama scheme has:
 
@@ -320,7 +345,8 @@ with $\Delta W_n \sim \mathcal{N}(0,\Delta t)$ independent.
 
 Higher-order schemes (Milstein, Runge-Kutta) achieve better convergence rates.
 
-### 6.3 Python Implementation: GBM
+### 3. Python Implementation: GBM
+
 
 ```python
 import numpy as np
@@ -388,7 +414,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-### 6.4 Exact Simulation for GBM
+### 4. Exact Simulation for GBM
+
 
 For GBM, we can simulate **exactly** using the analytical solution:
 
@@ -412,9 +439,11 @@ This is more accurate than Euler-Maruyama for the same computational cost.
 
 ---
 
-## 7. Transformations and Change of Variables
+## Transformations and Change of Variables
 
-### 7.1 Lamperti Transform
+
+### 1. Lamperti Transform
+
 
 For SDEs of the form $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, the **Lamperti transform**
 
@@ -430,13 +459,15 @@ $$
 
 where $\tilde{b}(y) = \frac{b(x) - \frac{1}{2}\sigma(x)\sigma'(x)}{\sigma(x)}$ evaluated at $x = \sigma^{-1}(y)$.
 
-### 7.2 Example: CIR to Bessel Process
+### 2. Example: CIR to Bessel Process
+
 
 The CIR model $dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t$ can be transformed via $X_t = \sqrt{r_t}$ to a Bessel-like process.
 
 ---
 
-## 8. Multidimensional SDEs
+## Multidimensional SDEs
+
 
 For $X_t \in \mathbb{R}^d$ driven by $W_t \in \mathbb{R}^m$:
 
@@ -463,9 +494,11 @@ with $d\langle W^1, W^2 \rangle_t = \rho\,dt$ (correlation $\rho$).
 
 ---
 
-## 9. Connection to PDEs
+## Connection to PDEs
 
-### 9.1 Feynman-Kac Formula
+
+### 1. Feynman-Kac Formula
+
 
 If $X_t$ solves $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ and $u(t,x)$ satisfies
 
@@ -481,14 +514,16 @@ $$
 
 This connects **parabolic PDEs** to **expectations of diffusions**.
 
-### 9.2 Kolmogorov Equations
+### 2. Kolmogorov Equations
+
 
 - **Backward equation:** Describes evolution of expectations $u(t,x) = \mathbb{E}[f(X_T)|X_t = x]$
 - **Forward equation (Fokker-Planck):** Describes evolution of densities $p(t,x)$ of $X_t$
 
 ---
 
-## 10. Summary
+## Summary
+
 
 - An SDE is an **integral equation driven by Brownian motion**, written in differential notation for convenience.
 - **Strong solutions** are constructed on a given probability space; **weak solutions** allow changing the space.

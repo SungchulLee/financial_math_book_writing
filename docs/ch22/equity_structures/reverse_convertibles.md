@@ -1,10 +1,12 @@
 # Reverse Convertibles
 
+
 **Reverse convertible notes** are short-term structured products that pay enhanced coupons in exchange for investors selling put options on underlying stocks, where investors receive either cash principal (if stock stays above strike) or physical shares (if stock falls below strike), converting from bond to equity in the downside scenario—the "reverse" of traditional convertible bonds that give investors upside equity participation.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Are Reverse Convertibles?
 
+
 ### 1. Basic Structure
+
 
 **Core components:**
 
@@ -51,6 +55,7 @@
 - Maturity: 6 months
 
 ### 2. Payoff at Maturity
+
 
 **Two scenarios:**
 
@@ -84,6 +89,7 @@ Investor has sold put option:
 
 ### 3. Strike Selection
 
+
 **Three standard variations:**
 
 **At-the-money (ATM):**
@@ -114,6 +120,7 @@ Stock at $100:
 - Strike $110 (ITM): Coupon 25%
 
 ### 4. Maturity Timing
+
 
 **Short-term nature:**
 
@@ -146,6 +153,7 @@ Same 15% coupon on Apple:
 **Trade-off:** Shorter = Less time premium but less risk
 
 ### 5. Worst-Of Structure
+
 
 **Multiple underlying stocks:**
 
@@ -185,6 +193,7 @@ All three at $210+
 
 ### 6. Digital vs. Proportional
 
+
 **How conversion amount is determined:**
 
 **Proportional (standard):**
@@ -213,6 +222,7 @@ Fixed share amount regardless of final price
 - Harder to hedge, uncommon
 
 ### 7. Protection Features
+
 
 **Enhanced structures:**
 
@@ -244,6 +254,7 @@ Fixed share amount regardless of final price
 ---
 
 ## Key Terminology
+
 
 **Strike Price:**
 - Price at which conversion determined
@@ -285,7 +296,9 @@ Fixed share amount regardless of final price
 
 ## Why Investors Buy
 
+
 ### 1. Income Generation
+
 
 **High coupons in short timeframe:**
 
@@ -311,6 +324,7 @@ Capital: $100K
 - Appropriate if bullish on underlying
 
 ### 2. Strategic Stock Entry
+
 
 **Want to buy stock at lower price:**
 
@@ -341,6 +355,7 @@ Want to own Tesla at $200 (current: $250)
 
 ### 3. Market View
 
+
 **Neutral-to-bullish outlook:**
 
 **View:**
@@ -356,6 +371,7 @@ Want to own Tesla at $200 (current: $250)
 - Match view to structure
 
 ### 4. Portfolio Yield
+
 
 **Enhance fixed income returns:**
 
@@ -374,6 +390,7 @@ Want to own Tesla at $200 (current: $250)
 - During bull/sideways markets, massively outperform
 
 ### 5. Short-Term Speculation
+
 
 **Tactical bets:**
 
@@ -397,6 +414,7 @@ Apple earnings in 2 weeks
 - Either way, earn $1,667 in 1 month
 
 ### 6. Tax Harvesting
+
 
 **Losses for tax purposes:**
 
@@ -422,6 +440,7 @@ If converted to shares that fell:
 - **Net loss: $5,834** (much better than -$16,667)
 
 ### 7. Covered Call Alternative
+
 
 **Achieve similar risk-return:**
 
@@ -461,7 +480,9 @@ If converted to shares that fell:
 
 ## Pricing & Valuation
 
+
 ### 1. Put Premium Extraction
+
 
 **Core pricing formula:**
 
@@ -491,6 +512,7 @@ $$
 $$
 
 ### 2. Black-Scholes Valuation
+
 
 **Put option pricing:**
 
@@ -537,6 +559,7 @@ $$
 
 ### 3. Break-Even Analysis
 
+
 **At what stock price do you break even?**
 
 $$
@@ -555,6 +578,7 @@ $$
 **Interpretation:** Stock can fall to $166.50 (7.5% drop) and investor breaks even.
 
 ### 4. Probability of Conversion
+
 
 **Chance of receiving shares:**
 
@@ -575,6 +599,7 @@ $$
 **Interpretation:** Roughly 50% chance of conversion (makes sense for ATM)
 
 ### 5. Expected Return
+
 
 **Probability-weighted outcomes:**
 
@@ -600,6 +625,7 @@ $$
 
 ### 6. Volatility Sensitivity
 
+
 **Higher vol = higher coupon:**
 
 Stock at $180, 6-month maturity
@@ -622,6 +648,7 @@ Stock at $180, 6-month maturity
 - Trade-off: Income vs. risk
 
 ### 7. Dividend Adjustment
+
 
 **Dividends reduce put value:**
 
@@ -655,7 +682,9 @@ Stock at $180, no dividend vs. 3% dividend yield
 
 ## Common Mistakes
 
+
 ### 1. Treating as "Safe" Income
+
 
 **High coupon ≠ low risk:**
 
@@ -676,6 +705,7 @@ Investor buys RCN thinking "guaranteed 20% in 6 months"
 **Lesson:** High coupon is compensation for risk, not free money
 
 ### 2. Ignoring Forced Conversion
+
 
 **Can't choose to walk away:**
 
@@ -701,6 +731,7 @@ Investor buys RCN thinking "guaranteed 20% in 6 months"
 
 ### 3. Worst-Of Correlation
 
+
 **Underestimating joint probability:**
 
 - **Mistake:** "Three stocks, diversified, lower risk"
@@ -725,6 +756,7 @@ Worst-of on 3 banks (2007):
 
 ### 4. Maturity Mismatch
 
+
 **Duration vs. conviction:**
 
 - **Mistake:** Buy 12-month RCN with 3-month view
@@ -746,6 +778,7 @@ Bullish on tech for next quarter
 - **Should have used 3-month RCN** (would have exited at peak)
 
 ### 5. Strike Selection Errors
+
 
 **Optimizing wrong parameter:**
 
@@ -773,6 +806,7 @@ Stock at $100
 
 ### 6. Issuer Credit Ignorance
 
+
 **Focus only on equity, ignore credit:**
 
 - **Mistake:** Only analyze stock, ignore issuer rating
@@ -798,7 +832,9 @@ Stock at $100
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Ideal scenario:**
 
@@ -857,6 +893,7 @@ Repeat strategy 4 times over 2 years:
 **RCN strategy dominated** (in this ideal scenario)
 
 ### 2. Worst Case: Disaster
+
 
 **2008-style crash:**
 
@@ -931,7 +968,9 @@ Sold shares at $15:
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Maximum allocation:**
 
@@ -952,6 +991,7 @@ $500K portfolio: 60% equity ($300K), 40% bonds ($200K)
 
 ### 2. Diversification
 
+
 **Spread risk across dimensions:**
 
 **Rules:**
@@ -969,6 +1009,7 @@ $500K portfolio: 60% equity ($300K), 40% bonds ($200K)
 **Diversified:** ✓
 
 ### 3. Strike Cushion
+
 
 **Minimum downside buffer:**
 
@@ -994,6 +1035,7 @@ Stock at $100
 
 ### 4. Coupon Reasonableness
 
+
 **Fair value check:**
 
 $$
@@ -1015,6 +1057,7 @@ But with P(conversion) adjustment: ~18-22% is fair
 
 ### 5. Maturity Matching
 
+
 **Conviction horizon:**
 
 $$
@@ -1031,6 +1074,7 @@ Bullish on Tesla for next 3 months (product launch)
 - 12-month RCN ✗✗ (way too long)
 
 ### 6. Issuer Credit
+
 
 **Minimum standards:**
 
@@ -1058,6 +1102,7 @@ Better to wait for A-rated issuer offer
 
 ### 7. Break-Even Discipline
 
+
 **Minimum break-even cushion:**
 
 $$
@@ -1080,7 +1125,9 @@ Stock at $100, strike $100, coupon 15% for 6 months
 
 ## Real-World Examples
 
+
 ### 1. Classic Apple RCN (2015-2016)
+
 
 **Popular retail product:**
 
@@ -1115,6 +1162,7 @@ Stock at $100, strike $100, coupon 15% for 6 months
 
 ### 2. Energy Sector Disaster (2014-2016)
 
+
 **Oil crash impact:**
 
 **Setup:**
@@ -1146,6 +1194,7 @@ Stock at $100, strike $100, coupon 15% for 6 months
 - Should have been 18-20%
 
 ### 3. Tesla Volatility Play (2020)
+
 
 **High-vol structure:**
 
@@ -1179,6 +1228,7 @@ Stock at $100, strike $100, coupon 15% for 6 months
 - Need strong conviction
 
 ### 4. Worst-Of Tech (2018)
+
 
 **FAANG basket:**
 
@@ -1220,7 +1270,9 @@ Stock at $100, strike $100, coupon 15% for 6 months
 
 ## Practical Steps
 
+
 ### 1. Suitability Assessment
+
 
 **Is RCN right for you?**
 
@@ -1236,6 +1288,7 @@ Stock at $100, strike $100, coupon 15% for 6 months
 **If all checked → Proceed**
 
 ### 2. Product Evaluation
+
 
 **Screening criteria:**
 
@@ -1257,6 +1310,7 @@ Stock at $100, strike $100, coupon 15% for 6 months
 - Break-even: ≥8% decline cushion
 
 ### 3. Pricing Verification
+
 
 **Is it fair value?**
 
@@ -1295,6 +1349,7 @@ Offered 18% coupon
 
 ### 4. Execution
 
+
 **How to invest:**
 
 **Primary market:**
@@ -1315,6 +1370,7 @@ Offered 18% coupon
 - Don't overconcentrate
 
 ### 5. Monitoring
+
 
 **Ongoing surveillance:**
 
@@ -1337,6 +1393,7 @@ Offered 18% coupon
 - Market corrections (>5%)
 
 ### 6. Maturity Management
+
 
 **At expiration:**
 
@@ -1366,6 +1423,7 @@ Offered 18% coupon
 ---
 
 ## Final Wisdom
+
 
 > "Reverse convertibles are Wall Street's most straightforward structured product—which is both their strength and their danger. Unlike autocallables with their complex path dependencies, or principal-protected notes with their binary outcomes, RCNs have a simple premise: You're selling a put option and collecting the premium as a coupon. That's it. But simplicity doesn't mean safety. That 18% coupon is the market's fair price for the risk you're taking, not free money. If it seems like an easy 18% return, you're not understanding the risk—the market is smarter than you. RCNs work beautifully when you have genuine conviction on a stock and would be happy to own it at current prices. They work terribly when you're chasing yield without understanding you're selling equity downside insurance. The 'reverse' in reverse convertible doesn't just mean the opposite of traditional convertibles—it means you're on the OTHER SIDE of the trade, taking the risk that option buyers are paying to avoid. Use them when you'd buy the stock anyway, when you'd sell cash-secured puts anyway, when you truly understand you're an equity investor dressed up as a bond investor. Never buy them thinking 'I'll just take the coupon and never get converted'—because the moment you think that, you will get converted, the stock will be down 40%, and you'll realize that 18% coupon didn't compensate for 40% equity loss. Be the house, not the gambler. The house knows the odds and sizes positions accordingly."
 

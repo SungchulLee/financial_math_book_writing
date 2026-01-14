@@ -1,10 +1,12 @@
 # Forward Rates and Term Structures
 
+
 Forward rates describe **future borrowing/lending rates** implied by today’s yield curve. They are central to term-structure modeling, pricing FRAs/swaps, and understanding no-arbitrage dynamics.
 
 ---
 
-## 1. Simple forward rates from discount factors
+## Simple forward rates from discount factors
+
 
 Given discount factors \(P(0,T_1)\) and \(P(0,T_2)\) with \(0<T_1<T_2\), the **simple forward rate** over \([T_1,T_2]\) is defined by
 
@@ -28,7 +30,8 @@ This is the rate that makes a forward-starting loan have zero value at time 0 un
 
 ---
 
-## 2. Instantaneous forward rate curve
+## Instantaneous forward rate curve
+
 
 The **instantaneous forward rate** \(f(0,T)\) is defined by
 
@@ -60,7 +63,8 @@ Thus:
 
 ---
 
-## 3. Term structures as curves
+## Term structures as curves
+
 
 A **term structure** can refer to:
 - the discount factor curve \(T\mapsto P(0,T)\),
@@ -71,7 +75,8 @@ All contain equivalent information (given differentiability), but are used diffe
 
 ---
 
-## 4. Practical notes
+## Practical notes
+
 
 - Market data are discrete; forward rates require interpolation/smoothing.
 - Different interpolation choices can change forwards significantly (even if discounting is similar).
@@ -79,7 +84,8 @@ All contain equivalent information (given differentiability), but are used diffe
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Forward rates are implied by ratios of discount factors.
 - Instantaneous forward rates are derivatives of \(-\log P(0,T)\).
@@ -88,6 +94,7 @@ All contain equivalent information (given differentiability), but are used diffe
 ---
 
 ## Further reading
+
 
 - Brigo & Mercurio, *Interest Rate Models*.
 - Filipović, *Term-Structure Models*.

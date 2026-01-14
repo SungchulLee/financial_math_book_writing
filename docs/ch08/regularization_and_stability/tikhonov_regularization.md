@@ -1,10 +1,12 @@
 # Tikhonov Regularization
 
+
 Ill-posed calibration problems are often stabilized by **regularization**, which introduces additional structure or prior information. The most classical approach is **Tikhonov regularization**, widely used in inverse problems and numerical analysis.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 Recall a typical least-squares calibration problem:
 
@@ -19,7 +21,8 @@ If the Jacobian of \(F\) is ill-conditioned, small data noise can lead to large 
 
 ---
 
-## 2. Basic Tikhonov formulation
+## Basic Tikhonov formulation
+
 
 The Tikhonov-regularized problem is
 
@@ -42,7 +45,8 @@ Special cases:
 
 ---
 
-## 3. Linearized analysis
+## Linearized analysis
+
 
 For a linear forward map \(F(\theta) = A\theta\), the solution satisfies
 
@@ -62,7 +66,8 @@ This bias–variance trade-off is central to regularization.
 
 ---
 
-## 4. Interpretation as Bayesian prior
+## Interpretation as Bayesian prior
+
 
 Tikhonov regularization admits a Bayesian interpretation:
 
@@ -73,7 +78,8 @@ Then the regularized solution is the **maximum a posteriori (MAP)** estimator.
 
 ---
 
-## 5. Choosing the regularization parameter
+## Choosing the regularization parameter
+
 
 Selecting \(\lambda\) is critical. Common approaches:
 
@@ -86,7 +92,8 @@ In practice, calibration stability over time is often the most relevant criterio
 
 ---
 
-## 6. Practical considerations in finance
+## Practical considerations in finance
+
 
 - Regularization should not dominate liquid, well-identified directions.
 - Over-regularization can suppress meaningful smile/skew information.
@@ -94,7 +101,8 @@ In practice, calibration stability over time is often the most relevant criterio
 
 ---
 
-## 7. Key takeaways
+## Key takeaways
+
 
 - Tikhonov regularization stabilizes ill-posed calibration problems.
 - It trades bias for variance reduction.
@@ -104,6 +112,7 @@ In practice, calibration stability over time is often the most relevant criterio
 ---
 
 ## Further reading
+
 
 - Tikhonov & Arsenin, *Solutions of Ill-Posed Problems*.
 - Engl, Hanke & Neubauer, *Regularization of Inverse Problems*.

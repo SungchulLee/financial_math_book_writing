@@ -1,10 +1,12 @@
 # Central Bank Policy
 
+
 **Central bank policy trades** involve positioning futures contracts to profit from anticipated or actual changes in monetary policy by major central banks (Federal Reserve, ECB, BOJ, BOE, etc.), exploiting the predictable market reactions to interest rate decisions, forward guidance, quantitative easing/tightening, and macroeconomic policy shifts.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -38,9 +40,11 @@ $$
 
 ## What Are Central
 
+
 **Before trading policy decisions, understand the central bank toolkit:**
 
 ### 1. The Central Bank
+
 
 **1. Policy Interest Rates**
 
@@ -102,6 +106,7 @@ $$
 
 ### 2. The Policy Cycle
 
+
 **Typical cycle:**
 
 1. **Easing cycle (dovish):**
@@ -128,6 +133,7 @@ $$
 - **2024:** Pause, eventual easing expected
 
 ### 3. Market Reactions
+
 
 **Rate hike (hawkish):**
 
@@ -163,6 +169,7 @@ Where typically: $|\beta_2| >> |\beta_1|$
 - **Market reaction: 2-3× larger than if 0.50% was expected**
 
 ### 4. Simple Example
+
 
 **Setup (June 2023 FOMC meeting):**
 
@@ -219,9 +226,11 @@ Where typically: $|\beta_2| >> |\beta_1|$
 
 ## Economic
 
+
 **Beyond the mechanical reactions, understanding the transmission mechanisms:**
 
 ### 1. The Monetary
+
 
 **1. Interest Rate Channel**
 
@@ -292,6 +301,7 @@ $$
 
 ### 2. The Taylor Rule
 
+
 **Prescriptive policy rule:**
 
 $$
@@ -318,6 +328,7 @@ Where:
 
 ### 3. Forward Guidance
 
+
 **The commitment mechanism:**
 
 **Credible guidance:**
@@ -336,6 +347,7 @@ Where:
 - **Fed guidance moves markets more**
 
 ### 4. Quantitative
+
 
 **The portfolio balance channel:**
 
@@ -362,6 +374,7 @@ $$
 - **Massive policy response = Massive market reaction**
 
 ### 5. Why This
+
 
 **Understanding policy transmission helps you:**
 

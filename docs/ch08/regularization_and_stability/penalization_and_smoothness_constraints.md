@@ -1,10 +1,12 @@
 # Penalization and Smoothness Constraints
 
+
 Beyond simple parameter shrinkage, regularization can encode **structural beliefs** about smoothness, monotonicity, or shape. Such penalization is especially important when calibrating *functional* objects like volatility surfaces.
 
 ---
 
-## 1. Penalization as constraint relaxation
+## Penalization as constraint relaxation
+
 
 Hard constraints (e.g., exact smoothness or monotonicity) are often replaced by soft penalties:
 
@@ -21,9 +23,11 @@ This approach:
 
 ---
 
-## 2. Smoothness penalties
+## Smoothness penalties
 
-### 2.1 Finite-difference penalties
+
+### 1. Finite-difference penalties
+
 
 For discretized parameters \(\theta_i\):
 
@@ -40,7 +44,8 @@ These penalize:
 - large gradients (first differences),
 - curvature/roughness (second differences).
 
-### 2.2 Continuous formulations
+### 2. Continuous formulations
+
 
 For a function \(f(x)\):
 
@@ -56,7 +61,8 @@ Such penalties are common in spline-based volatility surfaces.
 
 ---
 
-## 3. Shape and financial constraints
+## Shape and financial constraints
+
 
 Regularization can enforce economically motivated shapes:
 
@@ -70,7 +76,8 @@ These are often implemented as:
 
 ---
 
-## 4. Penalization in stochastic and local volatility
+## Penalization in stochastic and local volatility
+
 
 - **Local volatility:** strong smoothing needed to prevent noise amplification.
 - **Stochastic volatility:** mild penalties help stabilize weakly identified parameters.
@@ -78,7 +85,8 @@ These are often implemented as:
 
 ---
 
-## 5. Interaction with discretization
+## Interaction with discretization
+
 
 Penalization strength depends on grid resolution:
 
@@ -89,7 +97,8 @@ Ignoring this can lead to misleading calibration comparisons.
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Penalization encodes prior beliefs about smoothness and shape.
 - Smoothness constraints are essential for functional calibration problems.
@@ -98,6 +107,7 @@ Ignoring this can lead to misleading calibration comparisons.
 ---
 
 ## Further reading
+
 
 - Wahba, *Spline Models for Observational Data*.
 - Fengler, *Semiparametric Modeling of Implied Volatility*.

@@ -1,6 +1,8 @@
 # Intraday Momentum
 
+
 ## Overview
+
 Intraday momentum trading with futures aims to exploit **short-horizon directional persistence** within the trading day using highly liquid, low-cost instruments. Unlike options-based intraday momentum, this approach relies on **linear exposure, execution efficiency, and volatility-adjusted sizing**, not gamma or implied volatility.
 
 This strategy is widely used by **systematic intraday funds, prop desks, and high-frequency CTAs**.
@@ -8,6 +10,7 @@ This strategy is widely used by **systematic intraday funds, prop desks, and hig
 ---
 
 ## Instruments
+
 - Equity index futures (ES, NQ, RTY)
 - Rates futures (ZN, ZB)
 - FX futures (6E, 6J)
@@ -22,6 +25,7 @@ Key characteristics:
 ---
 
 ## Intraday Momentum
+
 
 Common intraday signals:
 - Opening range breakout (ORB)
@@ -43,6 +47,7 @@ Signals are:
 
 ## Entry and Exit Rules
 
+
 Typical rules:
 - Enter on breakout / momentum confirmation
 - Trade only during high-liquidity windows
@@ -56,6 +61,7 @@ This removes:
 ---
 
 ## Position Sizing
+
 
 Positions are sized using **intraday volatility targeting**:
 
@@ -75,6 +81,7 @@ This enforces:
 
 ## Transaction Costs
 
+
 Critical considerations:
 - Bid–ask spread
 - Market impact
@@ -88,6 +95,7 @@ Most profits come from:
 ---
 
 ## Risk Management
+
 
 Primary risks:
 - Whipsaws
@@ -104,6 +112,7 @@ Controls:
 
 ## Regime Dependence
 
+
 Intraday momentum performs best when:
 - Macro news releases occur
 - Volatility is elevated
@@ -116,6 +125,7 @@ Performs poorly when:
 ---
 
 ## Comparison with
+
 
 | Aspect | Futures | Options |
 |------|--------|---------|
@@ -130,6 +140,7 @@ Performs poorly when:
 
 ## Institutional
 
+
 Used by:
 - Prop trading firms
 - Intraday systematic funds
@@ -142,6 +153,7 @@ Often complements:
 ---
 
 ## Intraday momentum
+
 
 Intraday momentum with futures is:
 - Execution-driven

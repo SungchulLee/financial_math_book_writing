@@ -1,10 +1,12 @@
 # Cointegration-Based
 
+
 **Cointegration-based spread trading** involves identifying pairs or groups of futures contracts that share a long-term equilibrium relationship (cointegration), then trading the temporary deviations from this equilibrium, profiting from the statistical tendency of the spread to revert to its mean while being market-neutral to directional price movements.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -43,9 +45,11 @@ $$
 
 ## What is
 
+
 **Before trading cointegration, understand what it actually means:**
 
 ### 1. Cointegration
+
 
 **Definition:** Two or more time series are cointegrated if:
 
@@ -63,6 +67,7 @@ $$
 Then $Y_t$ and $X_t$ are **cointegrated** with cointegration vector $[1, -\beta]$.
 
 ### 2. Stationary vs.
+
 
 **Stationary process $I(0)$:**
 
@@ -97,6 +102,7 @@ $$
 - **Not tradeable for mean reversion**
 
 ### 3. Correlation vs.
+
 
 **Correlation:** Measures contemporaneous co-movement
 
@@ -138,6 +144,7 @@ $$
 - **Spread stationary → Good pair**
 
 ### 4. Simple Example
+
 
 **The relationship:**
 
@@ -183,9 +190,11 @@ $$
 
 ## Economic
 
+
 **Beyond the statistical definition, understanding the economic drivers:**
 
 ### 1. Fundamental
+
 
 **Cointegration exists when two assets share:**
 
@@ -205,6 +214,7 @@ $$
    - Currency pairs: Trade relationships
 
 ### 2. The Law of One
+
 
 **Economic principle:**
 
@@ -231,6 +241,7 @@ $$
 - **Arbitrage keeps spread bounded**
 
 ### 3. Cost of Carry
+
 
 **For related commodities:**
 
@@ -262,6 +273,7 @@ $$
 
 ### 4. Storage and
 
+
 **Geographic price relationships:**
 
 $$
@@ -282,6 +294,7 @@ $$
 
 ### 5. Index Arbitrage
 
+
 **For equity index futures:**
 
 $$
@@ -299,6 +312,7 @@ $$
 - **Statistical and economic cointegration**
 
 ### 6. Why Cointegration
+
 
 **Regime changes can destroy cointegration:**
 
@@ -320,6 +334,7 @@ $$
 **This is why cointegration must be monitored continuously!**
 
 ### 7. Why This
+
 
 **Understanding cointegration economics helps you:**
 
@@ -348,6 +363,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Cointegration Fundamentals:**
 
@@ -555,9 +571,11 @@ $$
 
 ## Contract
 
+
 **Understanding which futures contracts are most likely to be cointegrated:**
 
 ### 1. Energy Sector
+
 
 **Crude Oil Pairs:**
 
@@ -607,6 +625,7 @@ Similar relationship, seasonal variation (winter demand)
 
 ### 2. Agricultural
 
+
 **Grain Complexes:**
 
 **Corn (ZC) vs. Wheat (ZW):**
@@ -645,6 +664,7 @@ $$
 
 ### 3. Metals Sector
 
+
 **Precious Metals:**
 
 **Gold (GC) vs. Silver (SI):**
@@ -675,6 +695,7 @@ $$
 - **Cointegration: Weak**
 
 ### 4. Equity Index
+
 
 **E-mini Contracts:**
 
@@ -712,6 +733,7 @@ $$
 
 ### 5. Currency Futures
 
+
 **Major Pairs:**
 
 **EUR/USD vs. GBP/USD:**
@@ -730,6 +752,7 @@ $$
 - **Very strong cointegration** ✓
 
 ### 6. Fixed Income
+
 
 **Treasury Futures:**
 
@@ -758,6 +781,7 @@ $$
 
 ### 7. Commodity Pairs
 
+
 **Weak/No cointegration:**
 
 1. **Unrelated commodities:**
@@ -776,6 +800,7 @@ $$
    - **Physical constraints break cointegration** ✗
 
 ### 8. Selection
+
 
 **Best cointegration pairs have:**
 
@@ -803,7 +828,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Understanding
+
 
 **The profit/loss equation:**
 
@@ -828,6 +855,7 @@ $$
 - **Profit: $2\sigma$**
 
 ### 2. Maximum Profit
+
 
 **Perfect mean reversion from extreme:**
 
@@ -868,6 +896,7 @@ If spread from -3σ to +3σ:
 
 ### 3. Maximum Loss
 
+
 **Stop loss scenarios:**
 
 **1. Mean fails to revert (regime change):**
@@ -891,6 +920,7 @@ If spread from -3σ to +3σ:
 
 ### 4. Risk-Reward
 
+
 **Typical cointegration trade:**
 
 **Entry signal:** $|Z| > 2$
@@ -913,6 +943,7 @@ $$
 **Positive expectancy!**
 
 ### 5. Comparison to
+
 
 **Outright long futures:**
 - Max gain: Unlimited
@@ -949,7 +980,9 @@ $$
 
 ## Entry and Exit
 
+
 ### 1. Entry Strategies
+
 
 **1. Z-Score Entry (Most Common)**
 
@@ -1072,6 +1105,7 @@ $$
 
 ### 2. Exit Strategies
 
+
 **1. Mean Reversion Exit (Primary)**
 
 **Target exit: Spread returns to mean**
@@ -1179,6 +1213,7 @@ $$
 
 ### 3. Position
 
+
 **1. Hedge Ratio Adjustment**
 
 **Re-estimate periodically:**
@@ -1222,6 +1257,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Cointegration trading is statistical arbitrage - you're betting on mean reversion of relationships that have held for years. It works beautifully until it doesn't. The edge is real but small (1-3% per trade), and you need volume, diversification, and discipline. Always test for cointegration before trading. Always use stops. Always monitor for regime changes. The best trades are when relationships break to 3+ sigma on panic, and you have the conviction to fade the crowd. But remember: past cointegration doesn't guarantee future cointegration. Markets change, relationships break. This is NOT passive income - it's active quantitative trading requiring constant monitoring and risk management."
 

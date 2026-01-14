@@ -1,10 +1,12 @@
 # Numéraire and Change of Measure
 
+
 This section develops the **numéraire viewpoint** and the associated **change of measure** technique, which naturally follow from the Fundamental Theorem of Asset Pricing (FTAP). While the FTAP guarantees the existence of an equivalent martingale measure (EMM), the choice of numéraire determines *which* martingale measure is used and how prices are represented.
 
 ---
 
 ## Numéraire: Definition and Generality
+
 
 A **numéraire** is any strictly positive traded asset (N_t > 0) almost surely for all (t). The only mathematical requirement is strict positivity, ensuring that all prices can be normalized relative to (N_t).
 
@@ -20,6 +22,7 @@ There is **no requirement** that the numéraire be risk-free. The frequent use o
 ---
 
 ## Discounted Prices and Numéraire Measures
+
 
 Given a choice of numéraire (N_t), define **normalized prices**
 
@@ -40,6 +43,7 @@ The measure (\mathbb{Q}^N) is called the **numéraire-associated martingale meas
 
 ## Pricing with a General Numéraire
 
+
 Let (\Phi_T) be a contingent claim payable at time (T). Under the numéraire (N_t), its arbitrage-free price process is
 
 [
@@ -51,6 +55,7 @@ This formula generalizes the familiar risk-neutral valuation formula obtained wh
 ---
 
 ## Change of Numéraire Theorem
+
 
 Let (N_t) and (M_t) be two numéraires with associated martingale measures (\mathbb{Q}^N) and (\mathbb{Q}^M). Then the two measures are related by the **Radon–Nikodym derivative**
 
@@ -75,7 +80,9 @@ Thus, different numéraires yield different martingale measures but **the same a
 
 ## Examples of Useful Numéraires
 
-### Risk-Free Money Market Account
+
+### 1. Risk-Free Money Market Account
+
 
 Choosing (N_t = e^{rt}) leads to the standard **risk-neutral measure** (\mathbb{Q}), under which discounted asset prices are martingales:
 
@@ -91,7 +98,8 @@ V_t = e^{-r(T-t)} , \mathbb{E}^{\mathbb{Q}}[\Phi_T \mid \mathcal{F}_t].
 
 ---
 
-### Zero-Coupon Bond and Forward Measure
+### 2. Zero-Coupon Bond and Forward Measure
+
 
 Let (N_t = P(t,T)) be the price of a zero-coupon bond maturing at (T). Under the associated **(T)-forward measure** (\mathbb{Q}^T),
 
@@ -105,7 +113,8 @@ Forward measures are fundamental in interest-rate modeling and the pricing of ca
 
 ---
 
-### Stock as Numéraire
+### 3. Stock as Numéraire
+
 
 A risky asset, such as a stock (S^j_t), may also serve as numéraire. Under the corresponding measure (\mathbb{Q}^j), relative prices satisfy
 
@@ -119,6 +128,7 @@ This approach is particularly useful for equity derivatives and foreign exchange
 ---
 
 ## Connection to Black–Scholes
+
 
 In the Black–Scholes model
 
@@ -138,6 +148,7 @@ Because there is a single source of randomness, the market is complete and the m
 
 ## Interpretation and Significance
 
+
 * The numéraire represents a **choice of units** in which prices are measured.
 * Different numéraires correspond to different martingale measures, but not different prices.
 * Change of numéraire is a powerful computational tool for simplifying expectations.
@@ -146,5 +157,6 @@ Because there is a single source of randomness, the market is complete and the m
 ---
 
 ## Summary
+
 
 The numéraire framework extends the FTAP by showing that arbitrage-free pricing is invariant under the choice of reference asset. Any strictly positive traded asset may serve as numéraire, leading to a corresponding martingale measure. Change-of-numéraire techniques play a central role in modern derivative pricing, particularly in interest-rate, foreign exchange, and equity markets.

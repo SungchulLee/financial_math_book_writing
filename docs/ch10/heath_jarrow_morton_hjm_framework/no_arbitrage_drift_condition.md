@@ -1,10 +1,12 @@
 # No-Arbitrage Drift Condition
 
+
 A defining feature of the HJM framework is that **no-arbitrage uniquely determines the drift** of forward rates once their volatility structure is specified.
 
 ---
 
-## 1. Risk-neutral requirement
+## Risk-neutral requirement
+
 
 Discounted bond prices must be martingales:
 
@@ -21,7 +23,8 @@ This constraint fixes the drift of \(f(t,T)\).
 
 ---
 
-## 2. HJM drift condition
+## HJM drift condition
+
 
 If
 
@@ -49,7 +52,8 @@ Thus:
 
 ---
 
-## 3. Consequences
+## Consequences
+
 
 - Arbitrary forward volatility choices are allowed (subject to regularity).
 - No separate market price of risk appears under \(\mathbb{Q}\).
@@ -57,7 +61,8 @@ Thus:
 
 ---
 
-## 4. Practical implications
+## Practical implications
+
 
 - Model calibration focuses on volatility structures.
 - Numerical implementation requires discretization in maturity.
@@ -65,7 +70,8 @@ Thus:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - No-arbitrage fixes HJM drift.
 - Volatility fully determines dynamics.
@@ -74,6 +80,7 @@ Thus:
 ---
 
 ## Further reading
+
 
 - Heath, Jarrow & Morton (1992).
 - Björk, *Arbitrage Theory in Continuous Time*.

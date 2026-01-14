@@ -1,14 +1,17 @@
 # Black-Scholes PDE via Delta Hedging
 
+
 The **delta hedging derivation** is the most intuitive approach from a practitioner's perspective—it constructs a **risk-free portfolio** through continuous rebalancing and invokes the no-arbitrage principle. This method reveals why the Black-Scholes PDE must hold and demonstrates the fundamental connection between hedging and pricing.
 
 ---
 
-## 1. Setup and Assumptions
+## Setup and Assumptions
+
 
 We work under the Black-Scholes-Merton framework with the following assumptions:
 
-### **Market Model**
+### 1. **Market Model**
+
 
 **Stock price dynamics**:
 
@@ -31,7 +34,8 @@ $$
 
 where $r$ is the constant risk-free rate.
 
-### **Derivative Contract**
+### 2. **Derivative Contract**
+
 
 Consider a European derivative with:
 - Payoff: $\Phi(S_T)$ at maturity $T$
@@ -41,7 +45,8 @@ Consider a European derivative with:
 
 ---
 
-## 2. Step 1: Apply Itô's Lemma
+## Step 1: Apply Itô's Lemma
+
 
 Since $V = V(t, S)$ is a function of both time $t$ and the stochastic process $S_t$, we apply **Itô's lemma**:
 
@@ -49,7 +54,8 @@ $$
 dV = \frac{\partial V}{\partial t} dt + \frac{\partial V}{\partial S} dS + \frac{1}{2} \frac{\partial^2 V}{\partial S^2} (dS)^2
 $$
 
-### **Compute the Quadratic Variation**
+### 1. **Compute the Quadratic Variation**
+
 
 Substituting $dS = \mu S dt + \sigma S dW$:
 
@@ -68,7 +74,8 @@ $$
 (dS)^2 = \sigma^2 S^2 (dW)^2 = \sigma^2 S^2 dt
 $$
 
-### **Full Expression for $dV$**
+### 2. **Full Expression for $dV$**
+
 
 Substituting into Itô's lemma:
 
@@ -86,25 +93,29 @@ $$
 
 ---
 
-## 3. Step 2: Construct the Delta-Hedged Portfolio
+## Step 2: Construct the Delta-Hedged Portfolio
+
 
 To eliminate the randomness in $dV$, we construct a **self-financing portfolio** $\Pi_t$ consisting of:
 - **Long position**: 1 unit of the derivative (value $V$)
 - **Short position**: $\Delta$ units of the stock (value $\Delta S$)
 
-### **Portfolio Value**
+### 1. **Portfolio Value**
+
 
 $$
 \Pi_t = V_t - \Delta S_t
 $$
 
-### **Key Insight**
+### 2. **Key Insight**
+
 
 We will choose $\Delta$ strategically to **eliminate the stochastic term** in the portfolio dynamics, making $\Pi_t$ locally risk-free.
 
 ---
 
-## 4. Step 3: Portfolio Dynamics
+## Step 3: Portfolio Dynamics
+
 
 The change in portfolio value over an infinitesimal time interval is:
 
@@ -127,7 +138,8 @@ $$
 d\Pi = \left( \frac{\partial V}{\partial t} + \mu S \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - \Delta \mu S \right) dt + \left( \sigma S \frac{\partial V}{\partial S} - \Delta \sigma S \right) dW
 $$
 
-### **Eliminate the Stochastic Term**
+### 1. **Eliminate the Stochastic Term**
+
 
 To make the portfolio risk-free, we **choose**:
 
@@ -157,7 +169,8 @@ $$
 
 ---
 
-## 5. Step 4: No-Arbitrage Argument
+## Step 4: No-Arbitrage Argument
+
 
 Since $\Pi$ is a **risk-free portfolio** (no stochastic component), the **no-arbitrage principle** requires that it must earn the risk-free rate $r$:
 
@@ -165,7 +178,8 @@ $$
 d\Pi = r \Pi dt
 $$
 
-### **Express $\Pi$ in Terms of $V$ and $S$**
+### 1. **Express $\Pi$ in Terms of $V$ and $S$**
+
 
 $$
 \Pi = V - \Delta S = V - \frac{\partial V}{\partial S} S
@@ -179,7 +193,8 @@ $$
 
 ---
 
-## 6. Step 5: Derive the Black-Scholes PDE
+## Step 5: Derive the Black-Scholes PDE
+
 
 Equating the two expressions for $d\Pi$:
 
@@ -203,7 +218,8 @@ $$
 
 ---
 
-## 7. Terminal Condition
+## Terminal Condition
+
 
 The PDE must be solved subject to the **terminal condition** (boundary condition at maturity):
 
@@ -213,7 +229,8 @@ $$
 
 where $\Phi(S)$ is the option payoff at expiration.
 
-### **Examples**
+### 1. **Examples**
+
 
 **European call option**:
 $$
@@ -234,11 +251,13 @@ The Black-Scholes PDE is solved **backward in time** from $t = T$ to $t = 0$, us
 
 ---
 
-## 8. Extension: Incorporating Continuous Dividends
+## Extension: Incorporating Continuous Dividends
+
 
 In many practical applications, the underlying asset pays dividends. For stocks with regular dividend payments, we can model this as a **continuous dividend yield** $q$.
 
-### **Modified Stock Price Dynamics**
+### 1. **Modified Stock Price Dynamics**
+
 
 With a continuous dividend yield $q$, the stock price dynamics become:
 
@@ -251,7 +270,8 @@ $$
 - Stockholders receive dividends, reducing the capital appreciation rate
 - The effective drift is $\mu - q$ instead of $\mu$
 
-### **Re-derive the PDE with Dividends**
+### 2. **Re-derive the PDE with Dividends**
+
 
 Following the same steps as before:
 
@@ -286,7 +306,8 @@ $$
 \frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} = rV - rS\frac{\partial V}{\partial S} + qS\frac{\partial V}{\partial S}
 $$
 
-### **Dividend-Adjusted Black-Scholes PDE**
+### 3. **Dividend-Adjusted Black-Scholes PDE**
+
 
 $$
 \boxed{\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q) S \frac{\partial V}{\partial S} - rV = 0}
@@ -294,7 +315,8 @@ $$
 
 **Key change**: The drift term becomes $(r - q)S\frac{\partial V}{\partial S}$ instead of $rS\frac{\partial V}{\partial S}$.
 
-### **Applications**
+### 4. **Applications**
+
 
 **1. Stock options with dividends**:
 - Most mature stocks pay regular dividends
@@ -317,16 +339,19 @@ $$
 
 ---
 
-## 9. Key Insights
+## Key Insights
 
-### **1. Market Completeness**
+
+### 1. **1. Market Completeness**
+
 
 The stock and bond **span all risk**, allowing perfect replication of any derivative:
 - Any derivative payoff can be synthesized using stock + bond
 - The delta-hedged portfolio demonstrates this explicitly
 - Completeness ensures unique pricing
 
-### **2. Risk-Neutral Valuation**
+### 2. **2. Risk-Neutral Valuation**
+
 
 The drift $\mu$ **does not appear** in the Black-Scholes PDE:
 - Only volatility $\sigma$ and risk-free rate $r$ (and dividend yield $q$ if applicable) matter for pricing
@@ -335,7 +360,8 @@ The drift $\mu$ **does not appear** in the Black-Scholes PDE:
 
 **Why $\mu$ disappears**: The hedging portfolio eliminates exposure to the stock's drift. The no-arbitrage condition then pins down the option price uniquely.
 
-### **3. Dynamic Hedging**
+### 3. **3. Dynamic Hedging**
+
 
 The delta position $\Delta = \frac{\partial V}{\partial S}$ must be **continuously rebalanced**:
 - As $S$ changes, delta changes (gamma effect)
@@ -344,7 +370,8 @@ The delta position $\Delta = \frac{\partial V}{\partial S}$ must be **continuous
 
 **In practice**: Hedging is done discretely (daily, hourly), creating **hedging error**. The continuous model is an idealization.
 
-### **4. Self-Financing Portfolio**
+### 4. **4. Self-Financing Portfolio**
+
 
 The hedging strategy requires **no external cash injection**:
 - Rebalancing is done by trading stock against the money market account
@@ -352,7 +379,8 @@ The hedging strategy requires **no external cash injection**:
 - Selling stock → lend to money market
 - The portfolio is **self-financing** by construction
 
-### **5. Path Independence**
+### 5. **5. Path Independence**
+
 
 The PDE derivation shows that the option value depends on:
 - Current stock price $S_t$
@@ -368,7 +396,8 @@ This is why European options are **Markovian**—the future depends only on the 
 
 ---
 
-## 10. Summary
+## Summary
+
 
 The delta hedging derivation establishes the Black-Scholes PDE through the following logical chain:
 
@@ -408,6 +437,7 @@ The delta hedging derivation is called the **"hedger's approach"**—it shows th
 ---
 
 ## Related Derivations
+
 
 The Black-Scholes PDE can also be derived via:
 - **Risk-neutral measure**: Direct use of martingale pricing (see Section 2.5.2)

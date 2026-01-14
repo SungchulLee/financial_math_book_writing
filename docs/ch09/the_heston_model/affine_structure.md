@@ -1,10 +1,12 @@
 # Affine Structure
 
+
 A key advantage of the Heston model is its **affine structure**, which enables semi-closed-form pricing of European options via characteristic functions.
 
 ---
 
-## 1. Affine processes
+## Affine processes
+
 
 A process is affine if its characteristic function has exponential-affine form:
 
@@ -19,7 +21,8 @@ The Heston model belongs to this class.
 
 ---
 
-## 2. Characteristic function of log-price
+## Characteristic function of log-price
+
 
 Let \(X_t = \log S_t\). Under Heston,
 
@@ -33,7 +36,8 @@ where \(A,B\) solve Riccati-type ODEs.
 
 ---
 
-## 3. Option pricing via Fourier methods
+## Option pricing via Fourier methods
+
 
 European option prices can be computed by:
 - Fourier inversion,
@@ -44,7 +48,8 @@ This makes Heston calibration fast and robust.
 
 ---
 
-## 4. Implications for calibration
+## Implications for calibration
+
 
 Affine structure implies:
 - rapid evaluation of prices and gradients,
@@ -53,7 +58,8 @@ Affine structure implies:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Affine structure is the main strength of Heston.
 - It enables efficient pricing and calibration.
@@ -62,6 +68,7 @@ Affine structure implies:
 ---
 
 ## Further reading
+
 
 - Duffie, Pan & Singleton, affine jump diffusions.
 - Carr & Madan, option valuation using FFT.

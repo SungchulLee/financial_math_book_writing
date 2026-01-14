@@ -1,10 +1,12 @@
 # Synthetic Forward
 
+
 **Synthetic forward construction** is an options-based strategy that replicates the payoff of a forward contract by combining long calls and short puts (or vice versa) at the same strike, creating equivalent directional exposure without using actual futures while exploiting pricing inefficiencies, managing margin, or accessing markets unavailable through futures.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -38,9 +40,11 @@ $$
 
 ## What Are Synthetic
 
+
 **Before constructing synthetics, understand the fundamental mechanics:**
 
 ### 1. Put-Call Parity
+
 
 **The cornerstone relationship:**
 
@@ -93,6 +97,7 @@ $$
 
 ### 2. Synthetic Long
 
+
 **Construction:**
 
 $$
@@ -125,6 +130,7 @@ $$
 
 ### 3. Synthetic Short
 
+
 **Construction:**
 
 $$
@@ -156,6 +162,7 @@ $$
 - **Perfect replication**
 
 ### 4. Why Use
+
 
 **Several tactical reasons:**
 
@@ -222,9 +229,11 @@ $$
 
 ## Economic
 
+
 **Beyond the mechanics, understanding the economic rationale:**
 
 ### 1. Put-Call Parity
+
 
 **The deep insight:**
 
@@ -278,6 +287,7 @@ $$
 
 ### 2. Arbitrage Example
 
+
 **If parity violated:**
 
 $$
@@ -315,6 +325,7 @@ $$
 - **Equilibrium enforced**
 
 ### 3. Interest Rate
+
 
 **Put-call parity includes time value of money:**
 
@@ -360,6 +371,7 @@ $$
 **This $3.69 difference is the present value of carrying cost.**
 
 ### 4. Dividends
+
 
 **For dividend-paying stocks:**
 
@@ -408,6 +420,7 @@ $$
 
 ### 5. Why Synthetics
 
+
 **Several market imperfections:**
 
 **1. Implied volatility skew:**
@@ -451,6 +464,7 @@ $$
 
 ### 6. Futures vs
 
+
 | Feature | Futures | Synthetic (Options) |
 |---------|---------|---------------------|
 | Payoff | Linear (1:1) | Linear (1:1) |
@@ -475,6 +489,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Put-Call Parity:**
 
@@ -589,9 +604,11 @@ $$
 
 ## The Greeks
 
+
 **Synthetics replicate futures Greeks:**
 
 ### 1. Delta
+
 
 **Definition:** Sensitivity to underlying price changes.
 
@@ -632,6 +649,7 @@ $$
 **Always delta = 1.0 regardless of strike!**
 
 ### 2. Gamma (Convexity)
+
 
 **Definition:** Change in delta as underlying moves.
 
@@ -676,6 +694,7 @@ $$
 
 ### 3. Theta (Time
 
+
 **Definition:** Change in value as time passes.
 
 $$
@@ -717,6 +736,7 @@ $$
 
 ### 4. Vega (Volatility
 
+
 **Definition:** Sensitivity to implied volatility changes.
 
 $$
@@ -755,6 +775,7 @@ $$
 - **Directional purity**
 
 ### 5. Rho (Interest
+
 
 **Definition:** Sensitivity to interest rate changes.
 
@@ -795,9 +816,11 @@ $$
 
 ## Strategy Selection
 
+
 **Different synthetic constructions for different goals:**
 
 ### 1. ATM Synthetic
+
 
 **Strike = Current spot price**
 
@@ -834,6 +857,7 @@ $$
 - **Neutral pricing**
 
 ### 2. OTM Synthetic
+
 
 **Strike > Current spot (for longs)**
 
@@ -873,6 +897,7 @@ $$
 
 ### 3. ITM Synthetic
 
+
 **Strike < Current spot (for longs)**
 
 $$
@@ -909,6 +934,7 @@ $$
 
 ### 4. Leveraged
 
+
 **Scale up position:**
 
 **Standard synthetic:**
@@ -942,6 +968,7 @@ $$
 - **Use sparingly**
 
 ### 5. Calendar
+
 
 **Near-term short, long-term long:**
 
@@ -978,6 +1005,7 @@ $$
 
 ### 6. Comparison Table
 
+
 | Synthetic Type | Strike | Cost | Delta | Best For |
 |----------------|--------|------|-------|----------|
 | ATM | $S_0$ | ~$0 | +1.0 | Standard replication |
@@ -992,9 +1020,11 @@ $$
 
 ## Time Selection
 
+
 **Unlike pure options, synthetics are held like futures:**
 
 ### 1. Entry Timing
+
 
 **Synthetics can be entered anytime:**
 
@@ -1072,6 +1102,7 @@ $$
 **Early exercise risk on short put!**
 
 ### 2. Exit Timing
+
 
 **Three approaches:**
 
@@ -1165,6 +1196,7 @@ $$
 
 ### 3. Early Assignment
 
+
 **Risk: Short put exercised early**
 
 **When it happens:**
@@ -1207,7 +1239,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Synthetic Long
+
 
 **Setup:**
 
@@ -1292,6 +1326,7 @@ $$
 
 ### 2. Synthetic Short
 
+
 **Setup:**
 
 - Stock: TSLA at $250
@@ -1343,6 +1378,7 @@ $$
 **Theoretically unlimited if stock keeps rising!**
 
 ### 3. Real Example
+
 
 **Advanced synthetic strategy:**
 
@@ -1397,7 +1433,9 @@ $$
 
 ## When to Use
 
+
 ### 1. Ideal Market
+
 
 **Use synthetics when:**
 
@@ -1462,6 +1500,7 @@ $$
 - **Dividend arbitrage possible**
 
 ### 2. Specific Use
+
 
 **Use Case 1: Individual stock exposure**
 
@@ -1576,7 +1615,9 @@ $$
 
 ## When NOT to Use
 
+
 ### 1. Avoid These
+
 
 **1. Liquid futures available:**
 
@@ -1681,6 +1722,7 @@ $$
 
 ### 2. Warning Signs to
 
+
 **1. Approaching expiration (<7 DTE):**
 
 **Risks escalate:**
@@ -1745,7 +1787,9 @@ $$
 
 ## Position Sizing and
 
+
 ### 1. The Golden Rule
+
 
 **Position sizing:**
 
@@ -1767,6 +1811,7 @@ $$
 - **25 long calls + 25 short puts**
 
 ### 2. Portfolio
+
 
 **Conservative (5-10% in synthetics):**
 
@@ -1795,6 +1840,7 @@ $$
 - **Safety first**
 
 ### 3. Margin Management
+
 
 **Two margin systems:**
 
@@ -1834,6 +1880,7 @@ $$
 
 ### 4. Diversification
 
+
 **Don't concentrate:**
 
 **Bad:**
@@ -1856,6 +1903,7 @@ $$
 - **Uncorrelated**
 
 ### 5. Stop Loss
+
 
 **Price-based stop:**
 
@@ -1888,6 +1936,7 @@ $$
 - **Active management**
 
 ### 6. Account: $500,000
+
 
 **Account: $500,000**
 
@@ -1925,7 +1974,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. The error: Sell
+
 
 **The error:**
 
@@ -1952,6 +2003,7 @@ $$
 - **Prevent assignment**
 
 ### 2. The error: Want
+
 
 **The error:**
 
@@ -1983,6 +2035,7 @@ $$
 
 ### 3. The error: Want
 
+
 **The error:**
 
 - Want synthetic long SPY
@@ -2008,6 +2061,7 @@ $$
 **Both at same strike!**
 
 ### 4. The error:
+
 
 **The error:**
 
@@ -2043,6 +2097,7 @@ $$
 - **Intentional settlement**
 
 ### 5. The error:
+
 
 **The error:**
 
@@ -2080,6 +2135,7 @@ $$
 
 ### 6. The error: $100k
 
+
 **The error:**
 
 - $100k account
@@ -2110,6 +2166,7 @@ For $100k:
 - **Manageable risk**
 
 ### 7. The error:
+
 
 **The error:**
 
@@ -2146,6 +2203,7 @@ For $100k:
 - **Conservative projections**
 
 ### 8. The error:
+
 
 **The error:**
 
@@ -2186,6 +2244,7 @@ $$
 
 ### 9. The error:
 
+
 **The error:**
 
 - Approved for portfolio margin
@@ -2223,6 +2282,7 @@ $$
 
 ### 10. The error: Own
 
+
 **The error:**
 
 - Own TSLA stock at $300
@@ -2258,6 +2318,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Synthetic forwards are the purest expression of put-call parity in action—mathematically equivalent to futures but constructed from options, offering tactical advantages in capital efficiency, market access, and arbitrage exploitation. The beauty is in the simplicity: long call + short put = perfect directional exposure with zero gamma, zero vega, and near-zero theta. But simplicity requires discipline: match strikes exactly, maintain adequate margin buffers, roll before expiration, monitor early exercise risk, and respect the leverage you're deploying. Synthetics excel when futures are unavailable (individual stocks), when portfolio margin creates capital efficiency (15% vs 100% Reg-T), or when volatility skew provides pricing advantages. But they're unnecessary complexity when liquid futures exist. Use synthetics as a precision tool for specific situations, not as a default approach. Master put-call parity, understand margin dynamics, and manage the operational details—early exercise, pin risk, dividend adjustments. The strategy is mathematically perfect; execution determines success."
 

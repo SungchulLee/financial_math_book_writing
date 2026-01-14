@@ -1,10 +1,12 @@
 # Curse of Dimensionality
 
+
 The **curse of dimensionality** describes the exponential growth in data requirements and computational complexity as the number of input dimensions increases.
 
 ---
 
-## 1. What is the curse?
+## What is the curse?
+
 
 In high dimensions:
 - data becomes sparse,
@@ -15,7 +17,8 @@ This affects most nonparametric learning methods.
 
 ---
 
-## 2. Manifestations
+## Manifestations
+
 
 Key consequences include:
 - slow convergence rates,
@@ -26,7 +29,8 @@ Even moderate dimensions can be problematic.
 
 ---
 
-## 3. Financial data challenges
+## Financial data challenges
+
 
 In finance:
 - many risk factors are observed,
@@ -37,7 +41,8 @@ This makes naive high-dimensional learning unreliable.
 
 ---
 
-## 4. Mitigation strategies
+## Mitigation strategies
+
 
 Common approaches include:
 - dimensionality reduction (PCA, factors),
@@ -48,7 +53,8 @@ Structure is essential to overcome dimensionality.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - High dimensionality severely degrades learning.
 - Data requirements grow exponentially.
@@ -57,6 +63,7 @@ Structure is essential to overcome dimensionality.
 ---
 
 ## Further reading
+
 
 - Bellman, curse of dimensionality.
 - Fan et al., high-dimensional statistics.

@@ -1,10 +1,12 @@
 # Stability Issues
 
+
 Even with smoothing, local volatility calibration can be unstable. Instability can appear as jagged \(\sigma_{\text{loc}}\) surfaces, extreme values near wings, or strong sensitivity to small quote changes. This section summarizes where instability comes from and how it is managed.
 
 ---
 
-## 1. Structural instability in the Dupire formula
+## Structural instability in the Dupire formula
+
 
 The Dupire expression
 
@@ -27,7 +29,8 @@ The curvature is typically smallest in:
 
 ---
 
-## 2. Boundary and extrapolation effects
+## Boundary and extrapolation effects
+
 
 Local vol requires a surface over a domain in \((K,T)\), but data are finite:
 
@@ -46,7 +49,8 @@ Common mitigation:
 
 ---
 
-## 3. Short-maturity pathologies
+## Short-maturity pathologies
+
 
 As \(T\to 0\), option prices become very sensitive to microstructure, discrete dividends, and jump risk.
 Even a small mismatch in forward/dividend handling can distort \(\partial_T C\) significantly.
@@ -58,7 +62,8 @@ Practitioner rules of thumb:
 
 ---
 
-## 4. Numerical differentiation stability
+## Numerical differentiation stability
+
 
 Even with a smooth fitted surface, numerical differentiation choices matter:
 
@@ -73,7 +78,8 @@ Stability improves when:
 
 ---
 
-## 5. Regularized local vol (post-processing)
+## Regularized local vol (post-processing)
+
 
 A common practical approach is to compute a “raw” local vol estimate and then solve a *regularized reconstruction* problem:
 
@@ -89,7 +95,8 @@ This shifts the problem from direct differentiation (very unstable) to a PDE-con
 
 ---
 
-## 6. Validation for stability
+## Validation for stability
+
 
 You should validate local vol surfaces by:
 
@@ -100,7 +107,8 @@ You should validate local vol surfaces by:
 
 ---
 
-## 7. Key takeaways
+## Key takeaways
+
 
 - Local volatility calibration is intrinsically ill-posed; smoothing is necessary but not sufficient.
 - Instability concentrates in wings, sparse maturities, and near expiry.
@@ -110,6 +118,7 @@ You should validate local vol surfaces by:
 ---
 
 ## Further reading
+
 
 - Dupire (1994), “Pricing with a Smile”.
 - Gatheral, *The Volatility Surface*.

@@ -1,11 +1,13 @@
 # Central Bank Divergence
 
+
 **Central bank divergence** trades capitalize on differing monetary policy trajectories across major economies,
 creating opportunities in currencies, rates, and cross-border assets as policy gaps drive capital flows and yield differentials.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -28,7 +30,9 @@ showing how widening rate differentials create structural trading opportunities 
 
 ## Policy Divergence Drivers
 
+
 ### 1. Economic Cycles
+
 
 **Different growth trajectories:**
 
@@ -48,6 +52,7 @@ showing how widening rate differentials create structural trading opportunities 
 
 ### 2. Inflation Dynamics
 
+
 **Varying price pressures:**
 
 **Sources of divergence:**
@@ -65,6 +70,7 @@ showing how widening rate differentials create structural trading opportunities 
 - Forward curves reflect policy paths
 
 ### 3. Political Constraints
+
 
 **Policy space limitations:**
 
@@ -86,9 +92,11 @@ showing how widening rate differentials create structural trading opportunities 
 
 ## Divergence Mechanics
 
+
 **How policy gaps translate to market moves:**
 
 ### 1. Interest Rate Differential
+
 
 **The fundamental relationship:**
 
@@ -112,6 +120,7 @@ $$
 
 ### 2. Uncovered Interest Parity
 
+
 **When arbitrage fails:**
 
 $$
@@ -126,6 +135,7 @@ $$
 - Behavioral factors sustain mispricing
 
 ### 3. Capital Flow Channel
+
 
 **Following the money:**
 
@@ -149,9 +159,11 @@ $$
 
 ## Core Strategies
 
+
 **Primary approaches to monetize divergence:**
 
 ### 1. FX Carry Trades
+
 
 **Classic implementation:**
 
@@ -187,6 +199,7 @@ $$
 
 ### 2. Cross-Currency Basis
 
+
 **Capture swap spreads:**
 
 **What it is:**
@@ -211,6 +224,7 @@ $$
 - Duration: Match policy cycle (6-12 months)
 
 ### 3. Relative Bond Trades
+
 
 **Position the yield curve:**
 
@@ -241,9 +255,11 @@ $$
 
 ## Greeks and Sensitivities
 
+
 **Understanding position exposures:**
 
 ### 1. FX Delta (Δ)
+
 
 **Currency exposure:**
 
@@ -259,6 +275,7 @@ $$
 - Stop-loss critical (3-5% typical)
 
 ### 2. Interest Rate Delta
+
 
 **Rate sensitivity:**
 
@@ -279,6 +296,7 @@ $$
 - Use swaps to fine-tune exposure
 
 ### 3. Correlation Risk (ρ)
+
 
 **Cross-asset spillover:**
 
@@ -302,6 +320,7 @@ $$
 
 ### 4. Convexity
 
+
 **Non-linear P&L:**
 
 **Carry trades:**
@@ -322,9 +341,11 @@ $$
 
 ## Implementation Details
 
+
 **Practical execution considerations:**
 
 ### 1. Instrument Selection
+
 
 **FX forwards:**
 
@@ -356,6 +377,7 @@ $$
 
 ### 2. Sizing Framework
 
+
 **Risk-based position sizing:**
 
 $$
@@ -378,6 +400,7 @@ $$
 
 ### 3. Entry Timing
 
+
 **When to initiate:**
 
 **Ideal entry conditions:**
@@ -398,6 +421,7 @@ $$
 - Liquidity concerns (year-end, holidays)
 
 ### 4. Hedging Approaches
+
 
 **Protecting the downside:**
 
@@ -426,9 +450,11 @@ $$
 
 ## When It Works Best
 
+
 **Optimal market conditions:**
 
 ### 1. Stable Risk Environment
+
 
 **Characteristics:**
 
@@ -447,6 +473,7 @@ $$
 
 ### 2. Clear Policy Divergence
 
+
 **Goldilocks scenario:**
 
 - Fed hiking, ECB/BOJ on hold
@@ -456,6 +483,7 @@ $$
 - No near-term reversal expected
 
 ### 3. Strong Economic Fundamentals
+
 
 **High-yield currency must have:**
 
@@ -477,9 +505,11 @@ $$
 
 ## When It Fails
 
+
 **Recognize these danger signs:**
 
 ### 1. Risk-Off Episodes
+
 
 **Crisis characteristics:**
 
@@ -505,6 +535,7 @@ $$
 
 ### 2. Policy Convergence
 
+
 **Cycle turns:**
 
 **Triggers:**
@@ -528,6 +559,7 @@ $$
 - Carry gains can reverse in weeks
 
 ### 3. Currency Intervention
+
 
 **Central bank action:**
 
@@ -557,9 +589,11 @@ $$
 
 ## Common Mistakes
 
+
 **Frequent errors to avoid:**
 
 ### 1. Over-Leveraging
+
 
 **The mistake:**
 
@@ -584,6 +618,7 @@ $$
 
 ### 2. Ignoring Volatility
 
+
 **The mistake:**
 
 - Entering when implied vol already elevated
@@ -607,6 +642,7 @@ $$
 
 ### 3. Chasing Yield
 
+
 **The mistake:**
 
 - Moving to EM currencies for higher carry
@@ -629,6 +665,7 @@ $$
 - If unsure, pass
 
 ### 4. No Exit Plan
+
 
 **The mistake:**
 
@@ -656,7 +693,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Limits
+
 
 **Conservative sizing:**
 
@@ -679,6 +718,7 @@ $$
 
 ### 2. Stop-Loss Discipline
 
+
 **Mandatory stops:**
 
 - **Carry trade:** -3% stop (hard exit)
@@ -695,6 +735,7 @@ $$
 
 ### 3. Diversification
 
+
 **Spread risk:**
 
 - Max 3 divergence trades simultaneously
@@ -704,6 +745,7 @@ $$
 - Geographic diversity (G10 only)
 
 ### 4. Monitoring Framework
+
 
 **Daily checks:**
 
@@ -732,7 +774,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Fed-ECB Divergence (2014-2015)
+
 
 **Setup:**
 
@@ -759,6 +803,7 @@ $$
 
 ### 2. USD/JPY Carry Collapse (2008)
 
+
 **Setup:**
 
 - USD/JPY at 110 (mid-2008)
@@ -784,6 +829,7 @@ $$
 
 ### 3. Swiss Franc Peg Break (2015)
 
+
 **Setup:**
 
 - SNB defending 1.20 floor in EUR/CHF
@@ -806,6 +852,7 @@ $$
 - **Lesson: Never trade against central banks with unlimited firepower**
 
 ### 4. AUD/JPY Carry (2020-2021)
+
 
 **Setup:**
 
@@ -834,9 +881,11 @@ $$
 
 ## Practical Steps
 
+
 **Step-by-step implementation:**
 
 ### 1. Divergence Identification
+
 
 **Research phase:**
 
@@ -860,6 +909,7 @@ $$
 
 ### 2. Pair Selection
 
+
 **Choosing the best pairs:**
 
 **Criteria:**
@@ -878,6 +928,7 @@ $$
 - USD/CHF: Safe haven dynamics
 
 ### 3. Entry Execution
+
 
 **Optimal entry:**
 
@@ -898,6 +949,7 @@ $$
 
 ### 4. Ongoing Management
 
+
 **Weekly review checklist:**
 
 - [ ] P&L vs. expected carry
@@ -917,6 +969,7 @@ $$
 - Profit > 50% of target: Take partial profit
 
 ### 5. Exit Strategy
+
 
 **Planned exits:**
 
@@ -947,6 +1000,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Central bank divergence trades are among the most reliable macro opportunities—when conditions are right. The key is patience: wait for clear divergence, enter with discipline, size conservatively, and exit when convergence appears. These trades work in stable environments but can reverse violently in risk-off periods. Respect volatility, use stops, and never over-leverage. The carry is attractive, but the risk is always lurking."
 

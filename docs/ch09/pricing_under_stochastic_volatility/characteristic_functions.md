@@ -1,10 +1,12 @@
 # Characteristic Functions
 
+
 A major reason stochastic volatility models (especially affine models like Heston) are practical is that many admit **closed-form characteristic functions** of the log-price. These characteristic functions enable efficient pricing, calibration, and risk computation via Fourier techniques.
 
 ---
 
-## 1. Definition
+## Definition
+
 
 For a random variable \(X\) (typically log-price), the **characteristic function** is
 
@@ -24,7 +26,8 @@ In a time-dependent setting, we often use the conditional characteristic functio
 
 ---
 
-## 2. Why characteristic functions are useful
+## Why characteristic functions are useful
+
 
 Characteristic functions help because:
 
@@ -36,7 +39,8 @@ Computationally, evaluating \(\varphi\) is often cheaper and more stable than si
 
 ---
 
-## 3. Affine exponential form
+## Affine exponential form
+
 
 In many stochastic volatility models, \(\varphi\) has an exponential-affine structure:
 
@@ -53,7 +57,8 @@ Heston is the canonical example.
 
 ---
 
-## 4. Risk-neutral drift and discounting
+## Risk-neutral drift and discounting
+
 
 Under \(\mathbb{Q}\), discounted prices must be martingales:
 
@@ -67,7 +72,8 @@ This condition determines the drift of \(X_t\) (log-price) and must be consisten
 
 ---
 
-## 5. Practical notes
+## Practical notes
+
 
 - Characteristic functions may have multiple algebraic forms; numerical stability can depend on the chosen representation.
 - Care is needed with complex logarithms, branch cuts, and cancellation errors (notably in Heston).
@@ -75,7 +81,8 @@ This condition determines the drift of \(X_t\) (log-price) and must be consisten
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Characteristic functions are central to practical stochastic volatility pricing.
 - Affine structure yields exponential-affine characteristic functions.
@@ -84,6 +91,7 @@ This condition determines the drift of \(X_t\) (log-price) and must be consisten
 ---
 
 ## Further reading
+
 
 - Heston (1993) and subsequent numerical stability refinements.
 - Carr & Madan (1999), FFT pricing.

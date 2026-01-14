@@ -1,6 +1,10 @@
-# Moments of Brownian Motion
+# Moments Brownian
+
+
 
 ## Introduction
+
+
 
 In **Brownian Motion Foundations**, we established that for standard Brownian motion $\{W_t\}_{t \ge 0}$:
 
@@ -19,9 +23,13 @@ Understanding the complete moment structure of Brownian motion provides:
 
 This section derives the full moment structure using the **moment generating function (MGF)** technique, revealing the rich analytical structure underlying the Gaussian distribution.
 
-## Moment Generating Functions
+## Moment Generating
 
-### Definition
+
+
+### 1. Definition
+
+
 
 For a random variable $X$, the **moment generating function** is:
 
@@ -45,7 +53,9 @@ $$\phi_X(t) = \sum_{k=0}^\infty \frac{\mathbb{E}[X^k]}{k!} t^k$$
 
 
 
-### MGF of the Normal Distribution
+### 2. MGF Normal Distri
+
+
 
 **Theorem 1.5.1** (MGF of Gaussian)
 
@@ -127,9 +137,13 @@ $$\mathbb{E}[e^{\theta W_T}] = \exp\left(\frac{1}{2} \theta^2 T\right)$$
 
 
 
-## Complete Moment Structure of Brownian Motion
+## Complete Moment
 
-### Main Result
+
+
+### 1. Main Result
+
+
 
 **Theorem 1.5.3** (Moments of Brownian Motion)
 
@@ -221,7 +235,9 @@ $$\mathbb{E}[W_T^{2k}] = (2k-1)!! \cdot T^k \quad \square$$
 
 
 
-### Explicit Values
+### 2. Explicit Values
+
+
 
 **Table of first few moments:**
 
@@ -243,7 +259,9 @@ $$1!! = 1, \quad 3!! = 3, \quad 5!! = 15, \quad 7!! = 105, \quad \ldots$$
 
 
 
-### Alternative Derivation via Gaussian Density
+### 3. Alternative Deriv
+
+
 
 **Alternative proof for even moments:**
 
@@ -260,9 +278,13 @@ $$= \int_{-\infty}^{\infty} (y\sqrt{T})^{2k} \frac{1}{\sqrt{2\pi}} e^{-y^2/2} \s
 
 The integral $\int_{-\infty}^{\infty} y^{2k} \frac{1}{\sqrt{2\pi}} e^{-y^2/2} dy = (2k-1)!!$ is a standard result for the standard normal distribution.
 
-## Deeper Analytical Structure
+## Deeper Analytical
 
-### Connection to Hermite Polynomials
+
+
+### 1. Connection Hermit
+
+
 
 The moments are intimately connected to **Hermite polynomials**, which form an orthogonal basis in $L^2(\mathbb{R}, e^{-x^2/2}dx)$.
 
@@ -306,7 +328,9 @@ For example:
 - $H_3(x) = x^3 - 3x$, so $\mathbb{E}[X^3] = 3\mathbb{E}[X] = 0$
 - $H_4(x) = x^4 - 6x^2 + 3$, so $\mathbb{E}[X^4] = 6\mathbb{E}[X^2] - 3 = 3$
 
-### Wiener Chaos Decomposition
+### 2. Wiener Chaos Deco
+
+
 
 The Hermite polynomials provide a **spectral decomposition** of $L^2(\Omega, \mathcal{F}, \mathbb{P})$ for functionals of Brownian motion.
 
@@ -332,7 +356,9 @@ The moments $\mathbb{E}[W_T^{2k}]$ determine the coefficients $c_j$ in this expa
 - Numerical methods for SPDEs
 - Variance reduction in Monte Carlo simulation
 
-### Wick Products and Normal Ordering
+### 3. Wick Products Nor
+
+
 
 The double factorial $(2k-1)!!$ counts the number of **pairings** in Wick products.
 
@@ -360,9 +386,13 @@ This structure appears in:
 - Combinatorics (matching problems)
 - Stochastic analysis (cumulants)
 
-## Asymptotic Behavior of Moments
+## Asymptotic Behavior
 
-### Growth Rate
+
+
+### 1. Growth Rate
+
+
 
 Using Stirling's approximation:
 
@@ -400,7 +430,11 @@ The moment sequence is dominated by a geometric sequence, not factorials.
 
 ## Applications
 
-### Application 1: Computing Expectations of Nonlinear Functionals
+
+
+### 1. Application 1 Com
+
+
 
 **Example:** Compute $\mathbb{E}\left[\left(\int_0^T W_s ds\right)^2\right]$.
 
@@ -424,7 +458,9 @@ $$= 2\int_0^T \int_0^s t \, dt \, ds = 2\int_0^T \frac{s^2}{2} ds = \frac{T^3}{3
 
 This uses $\mathbb{E}[W_s W_t] = \min(s,t)$ from the covariance structure, which is derivable from the second moment.
 
-### Application 2: Moment-Matching in Option Pricing
+### 2. Application 2 Mom
+
+
 
 In incomplete markets, one approach to pricing is **moment matching**:
 
@@ -444,7 +480,9 @@ $$\mathbb{E}[S_T^k] = S_0^k e^{k(\mu - \sigma^2/2)T} \mathbb{E}[e^{k\sigma W_T}]
 
 
 
-### Application 3: Variance Reduction via Control Variates
+### 3. Application 3 Var
+
+
 
 In Monte Carlo simulation, one can use:
 
@@ -461,7 +499,9 @@ $$\text{Var}(W_T^2) = \mathbb{E}[W_T^4] - (\mathbb{E}[W_T^2])^2 = 3T^2 - T^2 = 2
 
 This is computed using the fourth moment formula.
 
-### Application 4: Checking Numerical Schemes
+### 4. Application 4 Che
+
+
 
 When implementing numerical schemes for SDEs, one can verify correctness by checking if simulated paths match theoretical moments.
 
@@ -492,6 +532,8 @@ Checking against the theoretical value $3T^2$ verifies the scheme.
 
 ## Summary
 
+
+
 The complete moment structure of Brownian motion is:
 
 1. **Odd moments vanish:** $\mathbb{E}[W_T^{2k+1}] = 0$ (by symmetry)
@@ -515,6 +557,8 @@ These moment formulas will be used in:
 
 ## Exercises
 
+
+
 1. Verify that $\mathbb{E}[W_T^6] = 15T^3$ by direct integration against the Gaussian density.
 
 2. Compute $\mathbb{E}[W_T^8]$ using the MGF method.
@@ -528,6 +572,8 @@ These moment formulas will be used in:
 6. Show that $\mathbb{E}[(W_T - W_S)^4] = 3(T-S)^2$ for $S < T$ using the moment formula and independent increments.
 
 ## References
+
+
 
 - Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Chapter 1)
 - Nualart, D. (2006). *The Malliavin Calculus and Related Topics*, 2nd ed. Springer. (Wiener chaos decomposition)

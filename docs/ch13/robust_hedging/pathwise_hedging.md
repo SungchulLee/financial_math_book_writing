@@ -1,6 +1,8 @@
 # Pathwise Hedging
 
+
 ## Introduction
+
 
 Pathwise hedging represents a paradigm shift from traditional stochastic hedging strategies to deterministic, model-free approaches that work **path-by-path**. Rather than relying on specific probability measures or stochastic models, pathwise hedging constructs portfolios that replicate or dominate derivatives for **every possible realization** of the underlying asset price path.
 
@@ -14,7 +16,9 @@ The foundations of pathwise hedging lie in rough path theory, functional analysi
 
 ## Mathematical Framework
 
-### Path Space
+
+### 1. Path Space
+
 
 **Definition**: Let $\mathcal{C}([0,T], \mathbb{R})$ denote the space of continuous functions from $[0,T]$ to $\mathbb{R}$, equipped with the supremum norm:
 
@@ -29,7 +33,8 @@ $$
 
 **Filtration**: The natural filtration $(\mathcal{F}_t)_{t \in [0,T]}$ where $\mathcal{F}_t = \sigma(S_s: s \leq t)$ represents the information available up to time $t$.
 
-### Pathwise Derivative
+### 2. Pathwise Derivative
+
 
 **Functional Derivative**: For a functional $F: \mathcal{C}([0,T], \mathbb{R}_+) \to \mathbb{R}$, the **pathwise derivative** at time $t$ along path $S$ is:
 
@@ -44,7 +49,8 @@ where $\delta_t$ is a perturbation concentrated at time $t$.
 
 **Existence**: For sufficiently regular functionals, this limit exists and defines a measure on $[0,T]$.
 
-### Trading Strategy
+### 3. Trading Strategy
+
 
 **Portfolio Process**: A trading strategy is a predictable process $\theta_t$ representing the number of shares held at time $t$.
 
@@ -63,7 +69,9 @@ where the integral is understood pathwise (e.g., Riemann-Stieltjes or Young inte
 
 ## Classical Pathwise Results
 
-### Föllmer's Pathwise Itô Formula
+
+### 1. Föllmer's Pathwise Itô Formula
+
 
 **Theorem** (Föllmer, 1981): For a twice continuously differentiable function $f: \mathbb{R} \to \mathbb{R}$ and a continuous path $S$ of finite quadratic variation $[S]_T$, we have:
 
@@ -84,7 +92,8 @@ where:
 - Hold $\theta_t = f'(S_t)$ shares at time $t$ (delta hedging)
 - But accumulate error: $\frac{1}{2} \int_0^T f''(S_t) \, d[S]_t$
 
-### Vovk's Outer Measure
+### 2. Vovk's Outer Measure
+
 
 **Game-Theoretic Probability**: Vovk (2012) developed a framework where probability emerges from pathwise considerations.
 
@@ -106,7 +115,9 @@ where $A \subseteq \mathcal{C}([0,T], \mathbb{R}_+)$ is an event.
 
 ## Dupire-Type Formulas
 
-### Dupire's Local Volatility (Probabilistic View)
+
+### 1. Dupire's Local Volatility (Probabilistic View)
+
 
 **Classical Dupire Equation**: Under a diffusion model:
 
@@ -119,7 +130,8 @@ $$
 
 where $C(K, T)$ is the call price as a function of strike and maturity.
 
-### Pathwise Interpretation
+### 2. Pathwise Interpretation
+
 
 **Realized Variance**: For a given path $S$, define the **realized local variance** at time $t$:
 
@@ -147,7 +159,9 @@ where the expectation is with respect to paths conditional on $S_T = K$.
 
 ## Robust Pathwise Hedging Strategies
 
-### Tangent Process Construction
+
+### 1. Tangent Process Construction
+
 
 **Idea**: Construct a path $\tilde{S}$ that "touches" the derivative payoff at maturity.
 
@@ -175,7 +189,8 @@ $$
 
 
 
-### Upper and Lower Hedging
+### 2. Upper and Lower Hedging
+
 
 **Upper Hedge**: Construct portfolio that **dominates** the payoff for all paths:
 
@@ -211,7 +226,8 @@ $$
 
 reflects the inherent ambiguity in pathwise hedging.
 
-### Volatility-Robust Hedging
+### 3. Volatility-Robust Hedging
+
 
 **Volatility Uncertainty**: Assume only that:
 
@@ -248,7 +264,9 @@ $$
 
 ## Rough Path Theory
 
-### Rough Paths and Integration
+
+### 1. Rough Paths and Integration
+
 
 **Rough Path**: A pair $(X, \mathbb{X})$ where:
 - $X: [0,T] \to \mathbb{R}^d$ is a continuous path
@@ -282,7 +300,8 @@ exists pathwise.
 
 **Rough Integral**: For $\alpha \in (1/3, 1/2]$, integration requires the second-order term $\mathbb{X}$.
 
-### Controlled Rough Paths
+### 2. Controlled Rough Paths
+
 
 **Definition**: A process $Y$ is **controlled** by rough path $X$ if:
 
@@ -308,7 +327,8 @@ $$
 
 where $\theta_s$ is the delta position.
 
-### Pathwise Hedging with Rough Volatility
+### 3. Pathwise Hedging with Rough Volatility
+
 
 **Rough Volatility Models**: Volatility exhibits Hölder regularity $H < 1/2$:
 
@@ -332,13 +352,16 @@ where $W^H$ is fractional Brownian motion with $H < 1/2$.
 
 ## Robust Local Volatility
 
-### Setup
+
+### 1. Setup
+
 
 **Observed Data**: Market prices of European calls $C(K, T)$ for various strikes $K$ and maturities $T$.
 
 **Goal**: Construct local volatility function $\sigma(S, t)$ that is consistent with market prices and provides pathwise hedging.
 
-### Dupire's Formula (Pathwise)
+### 2. Dupire's Formula (Pathwise)
+
 
 **Forward Equation**: The local volatility surface satisfies:
 
@@ -353,7 +376,8 @@ $$
 - This formula is **model-free** in the sense that it directly relates market observables
 - The resulting $\sigma(K, T)$ can be used to hedge pathwise, without assuming a specific SDE
 
-### Robust Calibration
+### 3. Robust Calibration
+
 
 **Optimization Problem**: Find $\sigma(S, t)$ that minimizes:
 
@@ -384,7 +408,9 @@ to ensure smooth volatility surface amenable to pathwise analysis.
 
 ## Functional Itô Calculus
 
-### Path-Dependent Derivatives
+
+### 1. Path-Dependent Derivatives
+
 
 **Definition**: A derivative with payoff depending on entire path:
 
@@ -400,7 +426,8 @@ $$
 - Lookback options: $F(S) = \max_{0 \leq t \leq T} S_t - K$
 - Barrier options: $F(S) = (S_T - K)^+ \mathbb{1}_{\{\sup_{t \leq T} S_t < H\}}$
 
-### Functional Derivatives
+### 2. Functional Derivatives
+
 
 **Definition** (Vertical Derivative): For a functional $F: \mathcal{C}([0,T], \mathbb{R}) \to \mathbb{R}$, the vertical derivative at time $t$ is:
 
@@ -422,7 +449,8 @@ $$
 
 where $S^t$ is the path stopped at time $t$.
 
-### Functional Itô Formula
+### 3. Functional Itô Formula
+
 
 **Theorem** (Dupire, Cont-Fournié): For a path-dependent functional $F$ with sufficient regularity:
 
@@ -450,7 +478,9 @@ shares at time $t$, accumulating gamma and theta costs.
 
 ## Causal Functional Calculus
 
-### Causality Constraint
+
+### 1. Causality Constraint
+
 
 **Definition**: A functional $F: \mathcal{C}([0,T], \mathbb{R}) \to \mathbb{R}$ is **causal** (or **non-anticipating**) if:
 
@@ -463,7 +493,8 @@ $$
 
 **Financial Interpretation**: The value at time $\tau$ depends only on the path up to $\tau$, not on future values.
 
-### Vertical Derivative (Causal)
+### 2. Vertical Derivative (Causal)
+
 
 For causal functionals, the vertical derivative simplifies:
 
@@ -494,7 +525,8 @@ $$
 
 
 
-### Martingale Property (Pathwise)
+### 3. Martingale Property (Pathwise)
+
 
 **Definition**: A causal functional $M$ is a **pathwise martingale** if:
 
@@ -520,7 +552,9 @@ for any choice of local volatility $\sigma$.
 
 ## Applications to Exotic Options
 
-### Asian Options
+
+### 1. Asian Options
+
 
 **Payoff**: 
 
@@ -555,7 +589,8 @@ $$
 
 where $\delta_{\bar{S} = K}$ is the Dirac delta at the boundary.
 
-### Lookback Options
+### 2. Lookback Options
+
 
 **Payoff**: 
 
@@ -600,7 +635,8 @@ $$
 
 
 
-### Barrier Options
+### 3. Barrier Options
+
 
 **Up-and-Out Call**: 
 
@@ -624,7 +660,9 @@ $$
 
 ## Pathwise Vega Hedging
 
-### Volatility Exposure
+
+### 1. Volatility Exposure
+
 
 **Vega**: Sensitivity of option price to volatility:
 
@@ -637,7 +675,8 @@ $$
 
 **Pathwise Challenge**: Volatility is not a traded asset, so traditional delta-hedging logic doesn't apply.
 
-### Realized Variance Hedge
+### 2. Realized Variance Hedge
+
 
 **Variance Swap**: Contract paying:
 
@@ -670,7 +709,8 @@ $$
 
 for all paths.
 
-### Gamma-Vega Relationship
+### 3. Gamma-Vega Relationship
+
 
 **Pathwise Identity**:
 
@@ -694,7 +734,9 @@ $$
 
 ## Numerical Implementation
 
-### Discrete-Time Pathwise Hedge
+
+### 1. Discrete-Time Pathwise Hedge
+
 
 **Time Grid**: Partition $[0,T]$ into $0 = t_0 < t_1 < \cdots < t_N = T$.
 
@@ -727,7 +769,8 @@ $$
 
 
 
-### Quadratic Variation Estimation
+### 2. Quadratic Variation Estimation
+
 
 **Realized Variance**:
 
@@ -756,7 +799,8 @@ $$
 
 
 
-### Pathwise Simulation
+### 3. Pathwise Simulation
+
 
 **Algorithm**:
 1. Generate sample path $S_t$ (any model or historical data)
@@ -769,7 +813,9 @@ $$
 
 ## Connections to Model-Free Finance
 
-### Game-Theoretic Probability
+
+### 1. Game-Theoretic Probability
+
 
 **Shafer-Vovk Framework**: Replace probability spaces with game-theoretic protocols.
 
@@ -779,7 +825,8 @@ $$
 
 **Connection to Hedging**: Pathwise hedging strategies correspond to defensive betting strategies in the game-theoretic framework.
 
-### Obloj's Robust Framework
+### 2. Obloj's Robust Framework
+
 
 **Robust Pricing**: Given marginal distributions (from market option prices), compute bounds:
 
@@ -796,7 +843,9 @@ $$
 
 ## Advanced Topics
 
-### Non-Markovian Strategies
+
+### 1. Non-Markovian Strategies
+
 
 **Path Dependence**: Hedging strategy depends on entire history, not just current state:
 
@@ -820,7 +869,8 @@ adjusting for realized variance.
 
 **Optimality**: In some cases, non-Markovian strategies outperform Markovian ones in pathwise sense.
 
-### Transaction Costs
+### 2. Transaction Costs
+
 
 **Friction**: Each trade incurs cost proportional to transaction size:
 
@@ -844,7 +894,8 @@ $$
 
 **Pathwise Optimality**: Find strategy that minimizes worst-case error over all paths, subject to cost constraints.
 
-### Rough Bergomi Model
+### 3. Rough Bergomi Model
+
 
 **Model**: Fractional volatility with $H < 1/2$:
 
@@ -864,7 +915,9 @@ $$
 
 ## Case Studies
 
-### Case 1: S&P 500 Options
+
+### 1. Case 1: S&P 500 Options
+
 
 **Setup**: Hedge a one-month ATM call on S&P 500 using pathwise strategy.
 
@@ -880,7 +933,8 @@ $$
 
 **Result**: Pathwise hedge tracks option value closely across multiple historical episodes, validating model-free approach.
 
-### Case 2: FX Barrier Option
+### 2. Case 2: FX Barrier Option
+
 
 **Setup**: Hedge EUR/USD knock-out call with barrier at 1.20.
 
@@ -893,7 +947,8 @@ $$
 
 **Outcome**: Pathwise strategy provides protection across wide range of volatility scenarios without assuming specific model.
 
-### Case 3: Asian Option on Commodity
+### 3. Case 3: Asian Option on Commodity
+
 
 **Setup**: Hedge arithmetic Asian call on crude oil with quarterly averaging.
 
@@ -916,7 +971,9 @@ approximating remaining average.
 
 ## Practical Guidelines
 
-### When to Use Pathwise Hedging
+
+### 1. When to Use Pathwise Hedging
+
 
 **Advantages**:
 - Model-free: Robust to misspecification
@@ -928,7 +985,8 @@ approximating remaining average.
 - Derivatives with functional payoffs (Asian, lookback)
 - Situations where continuous monitoring is feasible
 
-### Implementation Checklist
+### 2. Implementation Checklist
+
 
 1. **Compute Functional Derivative**: Determine $\partial_x F_t(S)$ for the specific payoff
 2. **Choose Rebalancing Frequency**: Balance accuracy vs. transaction costs
@@ -936,7 +994,8 @@ approximating remaining average.
 4. **Set Stop-Loss Limits**: Define thresholds for intervention if hedging error exceeds bounds
 5. **Backtest**: Validate strategy on historical paths before deployment
 
-### Limitations
+### 3. Limitations
+
 
 **Continuous Monitoring**: Many pathwise results assume continuous trading, which is impossible in practice.
 
@@ -948,7 +1007,9 @@ approximating remaining average.
 
 ## Summary and Key Insights
 
-### Fundamental Principles
+
+### 1. Fundamental Principles
+
 
 1. **Path-by-Path**: Pathwise hedging works for **every path**, not just on average under a specific model.
 
@@ -960,7 +1021,8 @@ approximating remaining average.
 
 5. **Quadratic Variation**: Hedging error controlled by accumulated quadratic variation, which is pathwise observable.
 
-### Theoretical Contributions
+### 2. Theoretical Contributions
+
 
 - **Föllmer**: Pathwise Itô formula without probability
 - **Dupire**: Functional Itô calculus for path-dependent options
@@ -968,7 +1030,8 @@ approximating remaining average.
 - **Bayer-Friz-Gatheral**: Rough path techniques for financial mathematics
 - **Vovk**: Game-theoretic probability and outer measure
 
-### Practical Impact
+### 3. Practical Impact
+
 
 Pathwise hedging transforms derivative pricing from probabilistic to deterministic framework, providing:
 - **Robustness**: Works under model uncertainty

@@ -1,10 +1,12 @@
 # Likelihood Ratio and Malliavin-Type Methods
 
+
 Likelihood ratio methods move derivatives from the payoff to the distribution, enabling Greeks for nonsmooth payoffs.
 
 ---
 
 ## Score identity
+
 
 If \(X^\theta\) has density \(p_\theta\),
 
@@ -29,11 +31,13 @@ This avoids \(\Phi'\).
 
 ## Black–Scholes idea
 
+
 \(\log S_T\) is Gaussian, so scores can be computed explicitly for parameters such as \(\sigma\) or \(S\), producing LR estimators of vega or delta.
 
 ---
 
 ## Malliavin perspective (conceptual)
+
 
 For diffusions,
 
@@ -49,6 +53,7 @@ where \(H\) is a weight built using Malliavin derivatives and covariance inverse
 ---
 
 ## What to remember
+
 
 - LR/Malliavin methods handle kinked payoffs well.
 - The cost is potentially high variance from heavy-tailed weights.

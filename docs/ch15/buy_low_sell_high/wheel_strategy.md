@@ -1,5 +1,6 @@
 # The Wheel Strategy
 
+
 **The Wheel Strategy** is a systematic approach to generating income by selling cash-secured puts until assigned stock, then selling covered calls on that stock, continuously "wheeling" between the two states to harvest premium while potentially profiting from capital appreciation.
 
 
@@ -7,6 +8,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true" alt="wheel_strategy_rotation" width="700">
@@ -45,6 +47,7 @@ $$
 
 ## What Is The Wheel Strategy?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true" alt="wheel_strategy_diagram" width="700">
 </p>
@@ -53,6 +56,7 @@ $$
 **Before implementing the Wheel, understand the complete cycle:**
 
 ### 1. The Complete Cycle
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_flow.png?raw=true" alt="wheel_strategy_flow" width="700">
@@ -94,6 +98,7 @@ $$
 - **Never static, always earning**
 
 ### 2. Detailed Breakdown
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/wheel_returns_breakdown.png?raw=true" alt="wheel_returns_breakdown" width="700">
@@ -160,6 +165,7 @@ $$
 
 ### 3. Key Characteristics
 
+
 **Income sources:**
 
 1. **Put premiums** (while waiting to buy)
@@ -193,9 +199,11 @@ $$
 
 ## Economic
 
+
 **Beyond the mechanics, understanding what the Wheel REALLY is economically:**
 
 ### 1. The Business Model Analogy
+
 
 **The deep insight:**
 
@@ -254,6 +262,7 @@ $$
 **The Wheel generates income at EVERY step, not just on the final sale!**
 
 ### 2. Example
+
 
 **Setup:**
 
@@ -348,6 +357,7 @@ Sell $445 puts monthly:
 
 ## Key Terminology
 
+
 **Cash-Secured Put (CSP):**
 
 - Selling a put while holding cash to buy stock
@@ -418,9 +428,11 @@ $$
 
 ## Why Run the Wheel?
 
+
 **Use cases for the Wheel Strategy:**
 
 ### 1. Generate Consistent Income
+
 
 **Best for:**
 
@@ -454,6 +466,7 @@ $$
 
 ### 2. Own Stocks at Discount
 
+
 **Strategic accumulation:**
 
 - Want to own quality stocks
@@ -476,6 +489,7 @@ $$
 
 ### 3. Added Yield
 
+
 **Already own dividend stocks?**
 
 Traditional approach:
@@ -497,6 +511,7 @@ With Wheel (CC phase):
 - **Total yield: 15-20% annualized**
 
 ### 4. Lower Risk Stock Ownership
+
 
 **Compared to buying stock outright:**
 
@@ -524,6 +539,7 @@ With Wheel (CC phase):
 
 ### 5. Capture Volatility Premium
 
+
 **Market inefficiency:**
 
 $$
@@ -550,9 +566,11 @@ $$
 
 ## Stock Selection Criteria
 
+
 **Not all stocks work well for the Wheel:**
 
 ### 1. Quality First
+
 
 **Look for:**
 
@@ -592,6 +610,7 @@ $$
 
 ### 2. Liquidity Requirements
 
+
 **Essential criteria:**
 
 ✓ Average daily volume > 1M shares
@@ -610,6 +629,7 @@ $$
 - Better pricing
 
 ### 3. Volatility Sweet Spot
+
 
 **IV Percentile:**
 
@@ -645,6 +665,7 @@ $$
 
 ### 4. Price Range
 
+
 **Optimal stock price:**
 
 $$
@@ -679,6 +700,7 @@ $$
 
 ### 5. Fundamental Analysis
 
+
 **Check before starting Wheel:**
 
 1. **Earnings:** Positive and growing?
@@ -697,9 +719,11 @@ $$
 
 ## Strike Selection
 
+
 **Critical decision: Where to set your strikes?**
 
 ### 1. For Cash-Secured Puts
+
 
 **The delta approach:**
 
@@ -745,6 +769,7 @@ $$
 
 ### 2. For Covered Calls
 
+
 **The premium target approach:**
 
 **Conservative (lower premium, less likely called away):**
@@ -779,6 +804,7 @@ $$
 
 ### 3. Support/Resistance Levels
 
+
 **Use technical analysis:**
 
 **For puts:**
@@ -808,6 +834,7 @@ $$
 - **Sell $95 put, then $110 call**
 
 ### 4. Time to Expiration
+
 
 **Standard approach:**
 
@@ -851,9 +878,11 @@ $$
 
 ## Management and Adjustments
 
+
 **The Wheel requires active management:**
 
 ### 1. CSP Phase Management
+
 
 **If stock drops toward your strike:**
 
@@ -894,6 +923,7 @@ $$
 - Start new CSP
 
 ### 2. CC Phase Management
+
 
 **If stock rallies toward call strike:**
 
@@ -936,6 +966,7 @@ $$
 - Compound premium faster
 
 ### 3. Handling Large Drops
+
 
 **The challenge: Underwater stock position**
 
@@ -993,6 +1024,7 @@ $$
 
 ### 4. Rolling Techniques
 
+
 **The Roll Forward:**
 
 $$
@@ -1027,7 +1059,9 @@ $$
 
 ## Advanced Considerations
 
+
 ### 1. Running Multiple Wheels
+
 
 **Portfolio approach:**
 
@@ -1056,6 +1090,7 @@ $$
 **Monthly return: 1.68% = ~20% annualized**
 
 ### 2. Tax Optimization
+
 
 **The Wheel can be tax-inefficient:**
 
@@ -1094,6 +1129,7 @@ $$
 - Adds to total return
 
 ### 3. Leverage Considerations
+
 
 **Margin vs. Cash:**
 
@@ -1141,6 +1177,7 @@ $$
 
 ### 4. Earnings Season
 
+
 **Special considerations:**
 
 **Before earnings:**
@@ -1177,9 +1214,11 @@ $$
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -1190,6 +1229,7 @@ $$
 $$
 
 ### 2. Why This Structure Exists
+
 
 Markets create these structures because different participants have different:
 
@@ -1202,6 +1242,7 @@ Markets create these structures because different participants have different:
 - View on volatility vs. direction
 
 ### 3. Institutional Perspective
+
 
 Institutional traders view this strategy as a tool for:
 
@@ -1218,9 +1259,11 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework for the Wheel Strategy:**
 
 ### 1. Preparation
+
 
 **Before starting your first Wheel:**
 
@@ -1275,6 +1318,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 ---
 
 ### 2. Put Entry
+
 
 **CSP selection process:**
 
@@ -1358,6 +1402,7 @@ Example:
 
 ### 3. Put Outcomes
 
+
 **Daily monitoring checklist:**
 
 ☐ Stock still above strike? (Safe)  
@@ -1407,6 +1452,7 @@ Example:
 ---
 
 ### 4. Assignment Transition
+
 
 **You've been assigned! Now what?**
 
@@ -1489,6 +1535,7 @@ Example:
 
 ### 5. Call Income
 
+
 **Daily monitoring checklist:**
 
 ☐ Stock below call strike? (Safe, keeping stock)  
@@ -1534,6 +1581,7 @@ Example:
 ---
 
 ### 6. Deep Drawdowns
+
 
 **When stock drops significantly after assignment:**
 
@@ -1626,6 +1674,7 @@ Example:
 
 ### 7. Early Exit Rules
 
+
 **When to close positions early:**
 
 **CSPs (Phase 1):**
@@ -1688,6 +1737,7 @@ Example:
 
 ### 8. Portfolio Wheels
 
+
 **Running multiple wheels:**
 
 **Account size: $50,000**
@@ -1728,6 +1778,7 @@ Example:
 
 ### 9. Tracking Results
 
+
 **Track every cycle in spreadsheet:**
 
 | Date | Stock | Action | Strike | Premium | DTE | Outcome | P&L | Notes |
@@ -1752,6 +1803,7 @@ Example:
 ---
 
 ### 10. Advanced Variants
+
 
 **Once comfortable with basics:**
 
@@ -1811,6 +1863,7 @@ Target high dividend stocks:
 
 ### 11. Execution Checklist
 
+
 **Before entering ANY position:**
 
 ☐ Stock fundamentally sound? (Would you hold 5 years?)  
@@ -1833,7 +1886,9 @@ The Wheel is systematic. Follow the system!
 
 ## Common Mistakes
 
+
 ### 1. Low-Quality Underlyings
+
 
 **The mistake:**
 
@@ -1869,6 +1924,7 @@ The Wheel is systematic. Follow the system!
 
 ### 2. Capital Overuse
 
+
 **The mistake:**
 
 - Run Wheel with entire account
@@ -1890,6 +1946,7 @@ The Wheel is systematic. Follow the system!
 - Diversify sectors
 
 ### 3. Assignment Avoidance
+
 
 **The mistake:**
 
@@ -1913,6 +1970,7 @@ The Wheel is systematic. Follow the system!
 
 ### 4. Aggressive Strikes
 
+
 **The mistake:**
 
 - Sell $100 put when stock at $98 (ITM)
@@ -1934,6 +1992,7 @@ The Wheel is systematic. Follow the system!
 - Avoid immediate assignment
 
 ### 5. IV Misinterpretation
+
 
 **The mistake:**
 
@@ -1957,6 +2016,7 @@ The Wheel is systematic. Follow the system!
 
 ### 6. Winner Neglect
 
+
 **The mistake:**
 
 - CSP with 80% profit (8 worth $1, sold for $3)
@@ -1978,6 +2038,7 @@ The Wheel is systematic. Follow the system!
 - Compound wins faster
 
 ### 7. Emotional Recovery
+
 
 **The mistake:**
 
@@ -2005,6 +2066,7 @@ The Wheel is systematic. Follow the system!
 
 ### 8. Ignoring Dividends
 
+
 **The mistake:**
 
 - Run Wheel, collect premiums
@@ -2027,7 +2089,9 @@ The Wheel is systematic. Follow the system!
 
 ## Real-World Examples
 
+
 ### 1. Duration Cut via Futures
+
 
 **Setup:**
 
@@ -2101,6 +2165,7 @@ The Wheel is systematic. Follow the system!
 
 ### 2. Transition Risk Hedge
 
+
 **Setup:**
 
 - Boeing (BA) at $200
@@ -2157,6 +2222,7 @@ The Wheel is systematic. Follow the system!
 
 ### 3. Portable Alpha with Futures
 
+
 **Setup:**
 
 - TSLA at $240 (post-split)
@@ -2204,6 +2270,7 @@ The Wheel is systematic. Follow the system!
 **Lesson:** Don't sell calls below cost basis out of panic. Be patient, wait for recovery, keep cost basis in mind.
 
 ### 4. Tactical Duration Extension
+
 
 **Setup:**
 
@@ -2258,9 +2325,11 @@ The Wheel is systematic. Follow the system!
 
 ## Risk Management Rules
 
+
 **Essential guidelines:**
 
 ### 1. Position Sizing
+
 
 **Rule of thumb:**
 
@@ -2289,6 +2358,7 @@ $$
 - Sleep better at night
 
 ### 2. Stop Loss? 
+
 
 **The debate:**
 
@@ -2324,6 +2394,7 @@ $$
 
 ### 3. Quality Over Premium
 
+
 **Always prioritize:**
 
 1. Company quality
@@ -2338,6 +2409,7 @@ $$
 
 ### 4. Diversification
 
+
 **Spread risk across:**
 
 - **Sectors:** No more than 40% in one sector
@@ -2349,6 +2421,7 @@ $$
 - **Expirations:** Stagger by 1-2 weeks (smooth cash flow)
 
 ### 5. Cash Reserve
+
 
 **Always maintain:**
 
@@ -2367,6 +2440,7 @@ $$
 - Peace of mind
 
 ### 6. Review and Adjust
+
 
 **Monthly checklist:**
 
@@ -2389,6 +2463,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "The Wheel Strategy is the closest thing to a 'money machine' in options trading - but it's not magic. It works because you're systematically harvesting the volatility premium while owning quality stocks you'd buy anyway. The secret is discipline: stick to quality companies, manage positions mechanically, and let the strategy work over months and years. Most traders fail not because the Wheel doesn't work, but because they chase premium on junk stocks or panic during normal drawdowns. Run the Wheel on 5-10 blue chips, be patient during assignments, and compound your returns over time. This is a marathon strategy built for wealth accumulation, not a sprint strategy for quick profits."
 

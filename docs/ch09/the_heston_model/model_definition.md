@@ -1,10 +1,12 @@
 # Model Definition
 
+
 The Heston model is one of the most widely used **stochastic volatility models** in equity and FX markets. It extends Black–Scholes by modeling variance as a stochastic process while retaining analytical tractability.
 
 ---
 
-## 1. Dynamics under the risk-neutral measure
+## Dynamics under the risk-neutral measure
+
 
 Under the risk-neutral measure \(\mathbb{Q}\), the Heston model is defined by
 
@@ -29,7 +31,8 @@ where:
 
 ---
 
-## 2. Interpretation of parameters
+## Interpretation of parameters
+
 
 Each parameter has a clear economic meaning:
 
@@ -41,7 +44,8 @@ Each parameter has a clear economic meaning:
 
 ---
 
-## 3. Relation to Black–Scholes
+## Relation to Black–Scholes
+
 
 If variance is deterministic (e.g. \(\xi=0\)), the Heston model collapses to a time-dependent Black–Scholes model.
 
@@ -51,7 +55,8 @@ Thus, Heston can be seen as:
 
 ---
 
-## 4. Key takeaways
+## Key takeaways
+
 
 - Heston introduces stochastic variance with mean reversion.
 - It captures skew, smile, and term-structure effects.
@@ -60,6 +65,7 @@ Thus, Heston can be seen as:
 ---
 
 ## Further reading
+
 
 - Heston (1993), *A Closed-Form Solution for Options with Stochastic Volatility*.
 - Gatheral, *The Volatility Surface*.

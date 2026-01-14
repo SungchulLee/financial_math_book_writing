@@ -1,12 +1,16 @@
 # Skew and Smile
 
+
 ## Introduction
+
 
 The **volatility smile** and **volatility skew** describe how implied volatility varies with strike price $K$ for a fixed maturity $T$. These cross-sectional features of the volatility surface are among the most striking empirical violations of the Black-Scholes model, which predicts constant volatility across all strikes. The shape of the smile reveals fundamental information about the risk-neutral distribution, market beliefs about tail risks, and the dynamics of the underlying asset.
 
 ## Definitions and Terminology
 
-### Volatility Smile
+
+### 1. Volatility Smile
+
 
 A **volatility smile** refers to the U-shaped pattern where:
 
@@ -23,7 +27,8 @@ Both deep in-the-money (ITM) and out-of-the-money (OTM) options have higher impl
 
 **Markets:** Foreign exchange (FX), commodities, interest rates
 
-### Volatility Skew
+### 2. Volatility Skew
+
 
 A **volatility skew** refers to a monotonic pattern where:
 
@@ -54,7 +59,8 @@ Less common; sometimes seen in commodity markets.
 
 **Markets:** Equity indices exhibit strong downward skew
 
-### Smirk
+### 3. Smirk
+
 
 A **smirk** combines skew and smile:
 - Asymmetric smile
@@ -66,7 +72,9 @@ A **smirk** combines skew and smile:
 
 ## Mathematical Characterization
 
-### Moneyness Coordinates
+
+### 1. Moneyness Coordinates
+
 
 To compare across different spot levels and maturities, use **moneyness**:
 
@@ -96,7 +104,8 @@ $$
 
 Common conventions: 25-delta, 10-delta for wings.
 
-### Smile Parametrization
+### 2. Smile Parametrization
+
 
 Define the **smile function**:
 
@@ -137,7 +146,8 @@ $$
 
 Positive $\mathcal{C}$ indicates convexity (smile).
 
-### Taylor Expansion Around ATM
+### 3. Taylor Expansion Around ATM
+
 
 For small $y$ (near ATM):
 
@@ -155,7 +165,9 @@ $$
 
 ## Connection to Risk-Neutral Distribution
 
-### Moments and Smile Shape
+
+### 1. Moments and Smile Shape
+
 
 From the Breeden-Litzenberger relationship, the smile encodes distributional properties:
 
@@ -187,7 +199,8 @@ $$
 
 Positive curvature $\mathcal{C} > 0$ → excess kurtosis (fat tails).
 
-### Tail Behavior
+### 2. Tail Behavior
+
 
 **Left tail (low strikes, $K \ll F$):**  
 High implied volatility indicates the risk-neutral density assigns higher probability to large downward moves than the lognormal distribution.
@@ -201,7 +214,9 @@ High implied volatility indicates higher probability of large upward moves.
 
 ## Empirical Patterns Across Asset Classes
 
-### Equity Indices
+
+### 1. Equity Indices
+
 
 **Pre-1987:** Relatively flat smile (Black-Scholes appeared adequate)
 
@@ -221,7 +236,8 @@ High implied volatility indicates higher probability of large upward moves.
 
 **Interpretation:** Market prices downside protection (put insurance) heavily.
 
-### Individual Equities
+### 2. Individual Equities
+
 
 **Large-cap stocks:** Similar to index (downward skew, less pronounced)
 
@@ -231,7 +247,8 @@ High implied volatility indicates higher probability of large upward moves.
 
 **Earnings announcements:** Temporary symmetric smile around event (binary outcomes)
 
-### Foreign Exchange (FX)
+### 3. Foreign Exchange (FX)
+
 
 **Major pairs (EUR/USD, USD/JPY):**
 - **Symmetric smile:** Both OTM puts and calls have elevated IV
@@ -248,7 +265,8 @@ High implied volatility indicates higher probability of large upward moves.
 - 25-delta call: 11% IV
 - Symmetric shape
 
-### Commodities
+### 4. Commodities
+
 
 **Energy (crude oil):**
 - Variable skew depending on supply/demand
@@ -263,7 +281,8 @@ High implied volatility indicates higher probability of large upward moves.
 - Seasonal patterns
 - Asymmetric based on weather risk direction
 
-### Interest Rates (Swaptions)
+### 5. Interest Rates (Swaptions)
+
 
 **Normal market:**
 - Upward skew (rates can spike but rarely crash below zero)
@@ -274,7 +293,9 @@ High implied volatility indicates higher probability of large upward moves.
 
 ## Economic Drivers of Smile and Skew
 
-### Leverage Effect (Equity Skew)
+
+### 1. Leverage Effect (Equity Skew)
+
 
 **Mechanism:**  
 As stock price $S$ falls, debt-to-equity ratio $D/E$ increases, making equity riskier. Volatility $\sigma$ increases.
@@ -296,7 +317,8 @@ Local volatility $\sigma_{\text{loc}}(K, T)$ is decreasing in $K$, producing dow
 
 **Empirical support:** Observed negative correlation $\rho(dS, d\sigma) < 0$ in equity markets.
 
-### Supply and Demand (Crashophobia)
+### 2. Supply and Demand (Crashophobia)
+
 
 **Mechanism:**  
 Institutional investors buy OTM put options for portfolio insurance, driving up demand and prices.
@@ -306,7 +328,8 @@ Higher prices for OTM puts → higher implied volatility at low strikes.
 
 **Evidence:** Skew steepens during market stress when hedging demand intensifies.
 
-### Jump Risk
+### 3. Jump Risk
+
 
 **Mechanism:**  
 Discontinuous price movements (earnings, geopolitical shocks) add kurtosis to the return distribution.
@@ -329,7 +352,8 @@ Jumps contribute to smile curvature $\mathcal{C} > 0$ (fat tails).
 
 **Asymmetric jumps:** Negative jumps more likely → downward skew (equity)
 
-### Volatility Risk Premium
+### 4. Volatility Risk Premium
+
 
 **Mechanism:**  
 Investors demand compensation for bearing volatility risk, leading to a wedge between risk-neutral and physical probabilities.
@@ -351,7 +375,9 @@ If $\xi(S)$ is decreasing and convex, generates both skew and smile.
 
 ## Parametric Smile Models
 
-### SVI (Stochastic Volatility Inspired)
+
+### 1. SVI (Stochastic Volatility Inspired)
+
 
 The **SVI parametrization** (Gatheral, 2004) models total variance:
 
@@ -386,7 +412,8 @@ $$
 **Limitations:**
 - Single-maturity parametrization (doesn't enforce calendar arbitrage across maturities)
 
-### SSVI (Surface SVI)
+### 2. SSVI (Surface SVI)
+
 
 The **SSVI parametrization** (Gatheral-Jacquier, 2014) extends SVI to the entire surface:
 
@@ -404,7 +431,8 @@ where $\varphi(T)$ controls the ATM curvature as a function of maturity.
 - Smooth across both $K$ and $T$
 - Fits market data well with few parameters
 
-### SABR Model
+### 3. SABR Model
+
 
 The **SABR (Stochastic Alpha Beta Rho)** model:
 
@@ -440,7 +468,9 @@ where $z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K)$ and $x(z) = \ln\left(\
 
 ## Delta Conventions and Quotation
 
-### 25-Delta and 10-Delta Options
+
+### 1. Delta and 10-Delta Options
+
 
 In FX markets, options are quoted by delta rather than strike:
 
@@ -448,7 +478,8 @@ In FX markets, options are quoted by delta rather than strike:
 
 **25-delta put:** Strike $K$ such that $|\Delta_{\text{put}}(K)| = 0.25$
 
-### Risk Reversal
+### 2. Risk Reversal
+
 
 The **risk reversal (RR)** measures the skew:
 
@@ -468,7 +499,8 @@ $$
 - Equity: RR $\approx -3\%$ to $-5\%$ (negative)
 - FX: RR $\approx 0\%$ (near symmetric)
 
-### Butterfly Spread
+### 3. Butterfly Spread
+
 
 The **butterfly (BF)** measures the curvature:
 
@@ -488,7 +520,8 @@ $$
 - FX: BF $\approx 1\%$ to $3\%$
 - Higher during crises
 
-### ATM Definition Ambiguity
+### 4. ATM Definition Ambiguity
+
 
 **ATM conventions:**
 1. **ATM forward:** $K = F = S_0 e^{(r-q)T}$
@@ -499,7 +532,9 @@ Different conventions give slightly different strikes and IVs. Market standard v
 
 ## Smile Dynamics
 
-### Sticky Strike
+
+### 1. Sticky Strike
+
 
 **Definition:** Implied volatility remains constant for each fixed strike as spot moves:
 
@@ -516,7 +551,8 @@ $$
 
 **Implication for hedging:** Vega hedge depends only on the fixed strike structure.
 
-### Sticky Delta
+### 2. Sticky Delta
+
 
 **Definition:** Implied volatility remains constant for each fixed delta as spot moves:
 
@@ -533,7 +569,8 @@ $$
 
 **Implication for hedging:** Vega hedge adjusts dynamically as spot moves.
 
-### Sticky Moneyness
+### 3. Sticky Moneyness
+
 
 **Definition:** Implied volatility depends only on moneyness $K/S$:
 
@@ -550,7 +587,9 @@ $$
 
 ## Asymptotic Analysis
 
-### Small-Maturity Asymptotics
+
+### 1. Small-Maturity Asymptotics
+
 
 For $T \to 0$, the smile is determined by the local volatility at the initial spot:
 
@@ -563,7 +602,8 @@ $$
 
 **Sharp smile:** If $\sigma_{\text{loc}}(K, 0)$ varies steeply with $K$, the short-dated smile is pronounced.
 
-### Large-Strike Asymptotics (Wings)
+### 2. Large-Strike Asymptotics (Wings)
+
 
 For $|y| = |\ln(K/F)| \to \infty$, **Lee's moment formula** gives:
 
@@ -587,9 +627,11 @@ where $p_\pm$ are related to the moments of the risk-neutral density.
 
 ## Summary
 
+
 The volatility smile and skew reveal:
 
-### **Empirical patterns:**
+### 1. **Empirical patterns:**
+
 
 **Equity:** Downward skew (crashophobia, leverage effect)
 
@@ -609,23 +651,27 @@ $$
 
 **Commodities:** Variable (supply/demand asymmetries)
 
-### **Distributional interpretation:**
+### 2. **Distributional interpretation:**
+
 
 **Skew** $\mathcal{S} = \frac{\partial \sigma_{\text{IV}}}{\partial y}\big|_{\text{ATM}}$ ↔ **Third moment (skewness)**
 
 **Curvature** $\mathcal{C} = \frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2}\big|_{\text{ATM}}$ ↔ **Fourth moment (kurtosis)**
 
-### **Economic drivers:**
+### 3. **Economic drivers:**
+
 - Leverage effect
 - Supply/demand for hedging
 - Jump risk
 - Volatility risk premium
 
-### **Parametric models:**
+### 4. **Parametric models:**
+
 - **SVI/SSVI:** Tractable, arbitrage-free parametrization
 - **SABR:** Stochastic vol model with closed-form approximation
 
-### **Dynamics:**
+### 5. **Dynamics:**
+
 - **Sticky strike:** Local volatility behavior
 - **Sticky delta:** Stochastic volatility behavior
 - **Empirical:** Hybrid, closer to sticky-delta

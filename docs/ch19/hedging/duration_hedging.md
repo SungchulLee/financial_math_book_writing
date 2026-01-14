@@ -1,10 +1,12 @@
 # Duration Hedging
 
+
 **Duration hedging** is the practice of neutralizing a bond portfolio's sensitivity to interest rate changes by taking offsetting positions in derivatives or other bonds, protecting the portfolio value from parallel shifts in the yield curve while maintaining exposure to other factors like credit spreads or carry.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -40,9 +42,11 @@ $$
 
 ## What is Duration Hedging?
 
+
 **Before implementing duration hedges, understand the foundation:**
 
 ### 1. Rate Sensitivity
+
 
 **Modified duration definition:**
 
@@ -75,6 +79,7 @@ $$
 
 ### 2. DV01
 
+
 **DV01 (Dollar Value of 01 basis point):**
 
 $$
@@ -104,6 +109,7 @@ $$
 $$
 
 ### 3. Why Hedge Duration?
+
 
 **Reasons portfolio managers hedge duration:**
 
@@ -140,6 +146,7 @@ $$
 
 ### 4. Duration Hedging is NOT
 
+
 **What it doesn't do:**
 
 1. **Protect against credit spread widening:**
@@ -166,9 +173,11 @@ $$
 
 ## Economic
 
+
 **Understanding the economic logic of duration hedging:**
 
 ### 1. Return Decomposition
+
 
 **Total bond return decomposes into:**
 
@@ -209,6 +218,7 @@ $$
 
 ### 2. Duration as Beta
 
+
 **Think of duration as exposure to the "interest rate factor":**
 
 $$
@@ -236,6 +246,7 @@ $$
 
 ### 3. Cash Flow Swap
 
+
 **Economically, a duration hedge is a cash flow swap:**
 
 **Unhedged corporate bond:**
@@ -256,6 +267,7 @@ $$
 **Result:** Receive corporate yield, pay Treasury yield = corporate spread.
 
 ### 4. Basis Risk
+
 
 **Perfect hedge requires:**
 
@@ -298,6 +310,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Duration:**
 
@@ -361,7 +374,9 @@ $$
 
 ## Duration Hedging Strategies
 
+
 ### 1. Futures Duration Hedge
+
 
 **Setup:**
 
@@ -421,6 +436,7 @@ The hedge doesn't protect against credit risk!
 
 ### 2. Swap Duration Extension
 
+
 **Setup:**
 
 **Portfolio:**
@@ -453,6 +469,7 @@ $$
 - More flexible (can unwind swap easily)
 
 ### 3. Proxy Futures Hedge
+
 
 **Setup:**
 
@@ -498,6 +515,7 @@ $$
 
 ### 4. Convexity-Adjusted Hedge
 
+
 **Setup:**
 
 **Portfolio:**
@@ -538,9 +556,11 @@ With convexity:
 
 ## Greeks 
 
+
 **Understanding the risk sensitivities:**
 
 ### 1. Duration
+
 
 $$
 D = -\frac{1}{P} \frac{\partial P}{\partial y}
@@ -568,6 +588,7 @@ $$
 - Both need hedging for neutrality
 
 ### 2. Convexity
+
 
 $$
 C = \frac{1}{P} \frac{\partial^2 P}{\partial y^2}
@@ -615,6 +636,7 @@ Portfolio: $100M bonds, duration 10, convexity 150
 
 ### 3. Key Rate Durations
 
+
 **Standard duration assumes parallel shift:**
 
 $$
@@ -654,6 +676,7 @@ Where $D_i$ = duration sensitivity to maturity bucket $i$.
 
 ### 4. Spread Duration
 
+
 $$
 D_{\text{spread}} = -\frac{1}{P} \frac{\partial P}{\partial s}
 $$
@@ -689,7 +712,9 @@ Where $s$ = credit spread.
 
 ## Duration Hedging Payoff Analysis
 
+
 ### 1. Hedged vs Unhedged
+
 
 **Setup:**
 - $100M corporate bond portfolio
@@ -724,6 +749,7 @@ Where $s$ = credit spread.
 
 ### 2. Rolling Hedge Performance
 
+
 **Hedges need rebalancing as:**
 
 1. **Time passes:** Duration decreases (roll-down)
@@ -749,7 +775,9 @@ Where $s$ = credit spread.
 
 ## Duration Hedging Examples
 
+
 ### 1. Duration Cut via Futures
+
 
 **Setup:**
 
@@ -839,6 +867,7 @@ But: Would have been exposed to rate risk both ways. If rates had risen instead,
 
 ### 2. Transition Risk Hedge
 
+
 **Setup:**
 
 - **Fund:** Corporate pension plan
@@ -905,6 +934,7 @@ But: Would have been exposed to rate risk both ways. If rates had risen instead,
 Over the decade, rates fell from 4.5% to 2.5%. Without the swap, the funding gap would have widened by $350M. With the swap, the funding status remained matched throughout.
 
 ### 3. Portable Alpha with Futures
+
 
 **Setup:**
 
@@ -985,6 +1015,7 @@ Why?
 - Better to hedge with HY index or credit default swaps
 
 ### 4. Tactical Duration Extension
+
 
 **Setup:**
 
@@ -1076,7 +1107,9 @@ Why?
 
 ## Entry and Exit Rules
 
+
 ### 1. Entry Checklist 
+
 
 **Reasons to implement duration hedge:**
 
@@ -1121,6 +1154,7 @@ Why?
 
 ### 2. Ongoing Monitoring
 
+
 **Daily:**
 
 1. **Mark positions:**
@@ -1157,6 +1191,7 @@ Why?
 
 ### 3. Exit Rules
 
+
 **Planned exits:**
 
 1. **View change:**
@@ -1189,6 +1224,7 @@ Why?
 
 ### 4. Rebalancing Rules
 
+
 **Threshold rebalancing:**
 
 $$
@@ -1219,6 +1255,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Duration hedging is not about predicting interest rates—it's about choosing which risks to take. The portfolio manager who hedges duration is saying: 'I have a view on credit spreads, not rates. Let me remove the rate noise and focus on what I understand.' The manager who uses Treasury futures to hedge municipal bonds is saying: 'I don't understand correlation risk and will pay dearly for my ignorance.' Know your portfolio, know your hedge instrument, and above all, know the correlation between them. A good hedge makes you sleep better. A bad hedge makes you wish you'd just sold the bonds."
 

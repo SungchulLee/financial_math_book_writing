@@ -1,10 +1,12 @@
 # Credit Spreads and OAS
 
+
 **Credit spreads** measure the excess yield investors demand for holding a risky bond over a risk-free alternative, compensating for default risk, liquidity risk, and other credit-related factors. **Option-Adjusted Spread (OAS)** refines this measure by stripping out the value of embedded options, providing a cleaner measure of pure credit risk compensation.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -53,9 +55,11 @@ $$
 
 ## What Are Credit Spreads and OAS?
 
+
 **Before trading credit or analyzing bonds, understand the spread framework:**
 
-### The Hierarchy of Spreads
+### 1. The Hierarchy of Spreads
+
 
 **Credit spreads measure excess yield over risk-free rate, but there are multiple definitions:**
 
@@ -155,7 +159,8 @@ $$
 - Pay: LIBOR + spread
 - Net: Floating rate exposure at LIBOR + ASW spread
 
-### Why OAS Matters
+### 2. Why OAS Matters
+
 
 **The problem with Z-spread on callable bonds:**
 
@@ -181,7 +186,8 @@ $$
 
 **OAS reveals true credit value by stripping out option effects.**
 
-### OAS Calculation Process
+### 3. OAS Calculation Process
+
 
 **Step-by-step for callable bond:**
 
@@ -225,9 +231,11 @@ OAS that achieves this: 152 bp
 
 ## Economic Interpretation: Why Credit Spreads Exist
 
+
 **Understanding the fundamental economics of credit spreads:**
 
-### The Credit Spread Decomposition
+### 1. The Credit Spread Decomposition
+
 
 **Credit spread compensates for multiple risks:**
 
@@ -326,7 +334,8 @@ $$
 
 **Conclusion: This bond offers +45 bp of excess value!**
 
-### The Relationship Between Spreads and Default Risk
+### 2. The Relationship Between Spreads and Default Risk
+
 
 **Merton model framework:**
 
@@ -363,7 +372,8 @@ $$
 
 **Credit spreads follow exponential decay with distance to default.**
 
-### OAS as Pure Credit Compensation
+### 3. OAS as Pure Credit Compensation
+
 
 **Think of Z-spread as contaminated:**
 
@@ -394,6 +404,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Credit Spread:**
 
@@ -486,7 +497,9 @@ $$
 
 ## Basic Spread Analysis Strategies
 
-### Strategy 1: Relative Value via OAS Comparison
+
+### 1. Strategy 1: Relative Value via OAS Comparison
+
 
 **Setup:**
 
@@ -521,7 +534,8 @@ $$
 - Buy Bond B (callable): 125 bp OAS, slight pickup over reference
 - Avoid Bond C (putable): Only 100 bp OAS, undercompensated
 
-### Strategy 2: Sector Rotation via Spread Analysis
+### 2. Strategy 2: Sector Rotation via Spread Analysis
+
 
 **Setup:**
 
@@ -551,7 +565,8 @@ $$
 - Underweight Utilities (tight spreads, limited upside)
 - Neutral Energy (wide but risky)
 
-### Strategy 3: Credit Curve Positioning
+### 3. Strategy 3: Credit Curve Positioning
+
 
 **Setup:**
 
@@ -582,7 +597,8 @@ $$
 - Capture carry from long end
 - Benefit from curve normalization (long end tightening)
 
-### Strategy 4: OAS-to-Rating Analysis
+### 4. Strategy 4: OAS-to-Rating Analysis
+
 
 **Setup:**
 
@@ -614,9 +630,11 @@ $$
 
 ## Greeks in Credit Spreads
 
+
 **Understanding the sensitivities:**
 
-### Spread Duration (DV01)
+### 1. Spread Duration (DV01)
+
 
 $$
 \text{Spread Duration} = -\frac{1}{P} \frac{\partial P}{\partial s}
@@ -663,7 +681,8 @@ $$
 
 **Last scenario is typical in flight-to-quality: Rates rally, spreads widen, net flat.**
 
-### Effective Duration for Callables
+### 2. Effective Duration for Callables
+
 
 **Standard duration assumes no cash flow changes:**
 
@@ -699,7 +718,8 @@ $$
 
 **Callable has lower effective duration (8.82 vs. 9.50) because call caps upside.**
 
-### OAS Duration
+### 3. OAS Duration
+
 
 **Duration with respect to OAS changes:**
 
@@ -723,7 +743,8 @@ $$
 - Credit deterioration reduces duration (maturity shortens in default)
 - Expected recovery pulls price toward recovery value
 
-### Spread Convexity
+### 4. Spread Convexity
+
 
 $$
 \text{Convexity} = \frac{1}{P} \frac{\partial^2 P}{\partial s^2}
@@ -752,7 +773,9 @@ $$
 
 ## Credit Spread Payoff Analysis
 
-### Spread Change Impact on Returns
+
+### 1. Spread Change Impact on Returns
+
 
 **Setup:**
 - Corporate bond: Price $100, Duration 7.0, OAS 150 bp
@@ -790,7 +813,8 @@ $$
 </p>
 **Figure 1:** Total return profile showing how credit spread changes impact returns, with carry providing cushion against moderate spread widening.
 
-### OAS vs. Z-spread in Callable Bond Returns
+### 2. OAS vs. Z-spread in Callable Bond Returns
+
 
 **Setup:**
 - Two bonds, same issuer, same maturity (10-year)
@@ -826,7 +850,9 @@ $$
 
 ## Real-World Credit Spread Examples
 
-### Example 1: Investment Grade Spread Tightening (Winner)
+
+### 1. Example 1: Investment Grade Spread Tightening (Winner)
+
 
 **Setup:**
 
@@ -927,7 +953,8 @@ $$
 - No single-name risk
 - Duration hedged (removed rate risk)
 
-### Example 2: OAS Arbitrage - Callable vs. Bullet (Winner)
+### 2. Example 2: OAS Arbitrage - Callable vs. Bullet (Winner)
+
 
 **Setup:**
 
@@ -1019,7 +1046,8 @@ $$
    - No directional interest rate bet
    - Pure relative value trade
 
-### Example 3: Financial Crisis Spread Blowout (Loser)
+### 3. Example 3: Financial Crisis Spread Blowout (Loser)
+
 
 **Setup:**
 
@@ -1164,7 +1192,8 @@ $$
    - 100% financial concentration = disaster
    - Should have been 20-30% max
 
-### Example 4: OAS Misanalysis - Ignored Fundamentals (Loser)
+### 4. Example 4: OAS Misanalysis - Ignored Fundamentals (Loser)
+
 
 **Setup:**
 
@@ -1260,7 +1289,9 @@ $$
 
 ## Best Case Scenario
 
-### The Perfect Credit Cycle Trade
+
+### 1. The Perfect Credit Cycle Trade
+
 
 **Setup:**
 
@@ -1454,7 +1485,9 @@ $$
 
 ## Worst Case Scenario
 
-### The Credit Crisis Spread Explosion
+
+### 1. The Credit Crisis Spread Explosion
+
 
 **Setup:**
 
@@ -1699,7 +1732,9 @@ $$
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Credit spreads measure compensation for credit risk:**
 
@@ -1718,7 +1753,8 @@ $$
 - Spread changes drive majority of corporate bond returns
 - Spreads decompose into default risk, liquidity, tax, and systemic risk
 
-### The Spread Hierarchy
+### 2. The Spread Hierarchy
+
 
 **From simplest to most sophisticated:**
 
@@ -1734,7 +1770,8 @@ $$
 - International: Consider I-spread
 - Relative value: Compare OAS
 
-### Key Equations
+### 3. Key Equations
+
 
 **Z-spread calculation:**
 
@@ -1766,7 +1803,8 @@ $$
 R = \text{Carry} + (\Delta S \times \text{Spread Duration}) + (\Delta r \times \text{Rate Duration})
 $$
 
-### Spread Analysis Framework
+### 4. Spread Analysis Framework
+
 
 **Entry checklist:**
 
@@ -1791,7 +1829,8 @@ $$
    - [ ] No forced sellers in market
    - [ ] Supply/demand balanced
 
-### Position Sizing
+### 5. Position Sizing
+
 
 **Conservative approach:**
 
@@ -1808,7 +1847,8 @@ $$
 - Spread duration: 3.0
 - Max position: min($5M, $0.67M) = $0.67M
 
-### Monitoring Rules
+### 6. Monitoring Rules
+
 
 **Daily:**
 - Mark positions
@@ -1825,7 +1865,8 @@ $$
 - Rebalance if OAS percentile shifted >20 points
 - Review diversification
 
-### Exit Rules
+### 7. Exit Rules
+
 
 **Sell signals:**
 
@@ -1850,7 +1891,8 @@ $$
    - Can't trade full size
    - Market depth evaporating
 
-### Common Mistakes to Avoid
+### 8. Common Mistakes to Avoid
+
 
 1. **Using G-spread instead of OAS** for callables
    - Distorted by option value
@@ -1884,7 +1926,8 @@ $$
    - High yield may signal distress
    - Analyze why spread is wide
 
-### Performance Expectations
+### 9. Performance Expectations
+
 
 **Investment-grade corporates:**
 
@@ -1910,7 +1953,8 @@ $$
 
 **Expected return:** 6-8% annually (after defaults)
 
-### Spread Decomposition (Typical BBB Corporate)
+### 10. Spread Decomposition (Typical BBB Corporate)
+
 
 | Component | Basis Points | % of Total |
 |-----------|--------------|------------|
@@ -1922,7 +1966,8 @@ $$
 | Actual spread | 150 bp | 100% |
 | **Alpha** | **+50 bp** | **33%** |
 
-### OAS vs. Z-spread (When to Use)
+### 11. OAS vs. Z-spread (When to Use)
+
 
 | Bond Type | Metric | Reason |
 |-----------|--------|--------|
@@ -1933,7 +1978,8 @@ $$
 | MBS/ABS | OAS | Prepayment optionality |
 | Convertible | OAS | Conversion option |
 
-### Comparison to Other Assets
+### 12. Comparison to Other Assets
+
 
 **Credit spreads vs. equities:**
 
@@ -1947,7 +1993,8 @@ $$
 
 **Better for:** Income, capital preservation, lower volatility
 
-### Your Learning Path
+### 13. Your Learning Path
+
 
 **Phase 1 (Months 1-3): Foundations**
 - Calculate G-spread, Z-spread manually
@@ -1973,7 +2020,8 @@ $$
 - Capital structure arbitrage
 - Systematic credit strategies
 
-### Final Wisdom
+### 14. Final Wisdom
+
 
 > "Credit spreads are the market's collective assessment of risk. A wide spread tells you the market is worried—your job is to determine if that worry is justified or overdone. OAS strips away the noise of embedded options to reveal the true credit compensation. The investor who understands spread decomposition—default risk, liquidity, tax, systemic risk—can identify where the market is mispricing risk. But never forget: a spread can always go wider. The widest spreads often precede defaults, not mean reversion. Cheap can get cheaper when fundamentals deteriorate. Always know why a spread is wide before calling it an opportunity."
 

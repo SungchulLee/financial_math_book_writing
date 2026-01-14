@@ -1,10 +1,12 @@
 # Yield Curve Dynamics
 
+
 Pricing interest-rate derivatives requires understanding not only today’s yield curve but also how the **entire curve evolves over time**. Yield curve dynamics are central to term-structure modeling.
 
 ---
 
-## 1. From static curves to dynamics
+## From static curves to dynamics
+
 
 A static yield curve specifies \(P(0,T)\) or \(f(0,T)\).
 A dynamic model specifies how these quantities evolve:
@@ -19,7 +21,8 @@ Short-rate models induce dynamics for the full curve through the evolution of \(
 
 ---
 
-## 2. Curve dynamics under short-rate models
+## Curve dynamics under short-rate models
+
 
 Given \(r_t\), bond prices evolve as
 
@@ -36,7 +39,8 @@ Consequences:
 
 ---
 
-## 3. Drift restrictions and no-arbitrage
+## Drift restrictions and no-arbitrage
+
 
 No-arbitrage imposes strong constraints on curve dynamics:
 - drifts of bond prices are determined by volatility,
@@ -46,7 +50,8 @@ These ideas are formalized in HJM theory.
 
 ---
 
-## 4. Implications for derivative pricing
+## Implications for derivative pricing
+
 
 Yield curve dynamics determine:
 - swap and FRA pricing,
@@ -57,7 +62,8 @@ Model choice affects which curve moves are possible.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Yield curve dynamics are essential for IR derivative pricing.
 - Short-rate models generate low-dimensional curve movements.
@@ -66,6 +72,7 @@ Model choice affects which curve moves are possible.
 ---
 
 ## Further reading
+
 
 - Heath, Jarrow & Morton (HJM).
 - Filipović, *Term-Structure Models*.

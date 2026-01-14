@@ -1,10 +1,12 @@
 # From Taylor Expansion to Itô’s Formula
 
+
 The fastest way to understand Itô’s formula is to view it as a **Taylor expansion where the second-order term does not vanish**. The “magic” is not magic at all—it is quadratic variation.
 
 ---
 
-## 1. Deterministic Reminder: Taylor Expansion
+## Deterministic Reminder: Taylor Expansion
+
 
 For a smooth function \(f\) and a small increment \(\Delta x\),
 
@@ -19,7 +21,8 @@ If \(x(t)\) is a smooth path, then \((\Delta x)^2\) is typically much smaller th
 
 ---
 
-## 2. What Changes for Brownian Motion
+## What Changes for Brownian Motion
+
 
 Let \(W_t\) be Brownian motion. Over a small time step \(\Delta t\),
 
@@ -43,7 +46,8 @@ This heuristic is made precise by quadratic variation:
 
 ---
 
-## 3. The “Magic Box” Rules
+## The “Magic Box” Rules
+
 
 In Itô calculus, we summarize the quadratic-variation behavior by the symbolic rules:
 
@@ -59,7 +63,8 @@ These rules encode exactly which second-order terms survive in the limit.
 
 ---
 
-## 4. Heuristic Derivation of Itô’s Formula
+## Heuristic Derivation of Itô’s Formula
+
 
 Apply the second-order Taylor expansion to \(f(W_t)\):
 
@@ -95,7 +100,8 @@ df(t,W_t)
 
 ---
 
-## 5. Why This Is the Correct Intuition
+## Why This Is the Correct Intuition
+
 
 - **Taylor expansion** explains why \(f_x\,dW_t\) appears.
 - **Quadratic variation** explains why the extra drift \(\frac12 f_{xx}\,dt\) appears.

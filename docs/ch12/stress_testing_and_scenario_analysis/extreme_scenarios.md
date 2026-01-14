@@ -1,10 +1,12 @@
 # Extreme Scenarios
 
+
 Extreme scenarios represent severe but plausible market conditions designed to test the resilience of portfolios and institutions.
 
 ---
 
-## 1. What is an extreme scenario?
+## What is an extreme scenario?
+
 
 An extreme scenario involves:
 - large, correlated market moves,
@@ -15,7 +17,8 @@ They often exceed historical extremes.
 
 ---
 
-## 2. Scenario design
+## Scenario design
+
 
 Scenarios can be:
 - historically inspired (e.g., 2008 crisis),
@@ -26,7 +29,8 @@ Design requires judgment and economic insight.
 
 ---
 
-## 3. Portfolio impact
+## Portfolio impact
+
 
 Extreme scenarios reveal:
 - nonlinear payoff effects,
@@ -37,7 +41,8 @@ They are especially important for derivatives portfolios.
 
 ---
 
-## 4. Governance and usage
+## Governance and usage
+
 
 Effective use requires:
 - clear scenario narratives,
@@ -48,7 +53,8 @@ Scenarios should evolve with markets.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Extreme scenarios go beyond historical data.
 - They test robustness under severe stress.
@@ -57,6 +63,7 @@ Scenarios should evolve with markets.
 ---
 
 ## Further reading
+
 
 - BIS, extreme but plausible scenarios.
 - Glasserman et al., stress scenario generation.

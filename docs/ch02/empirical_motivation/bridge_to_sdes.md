@@ -1,12 +1,15 @@
 # Bridge to Stochastic Differential Equations
 
+
 We have now established the empirical motivation for stochastic models: **deterministic ODEs fail to capture the essential features of financial returns**. This final section of our empirical foundation builds a bridge from discrete-time observations to the continuous-time stochastic differential equations that form the mathematical core of modern quantitative finance.
 
 ---
 
-## 1. The Journey: From Data to Theory
+## The Journey: From Data to Theory
 
-### 1.1 Where We've Been
+
+### 1. Where We've Been
+
 
 **Section 1:** Stock Data and Returns
 - Proper data handling (adjusted prices, quality checks)
@@ -28,7 +31,8 @@ We have now established the empirical motivation for stochastic models: **determ
 - No heavy tails
 - Need multiplicative noise
 
-### 1.2 Where We're Going
+### 2. Where We're Going
+
 
 **Chapter 2: Stochastic Differential Equations**
 
@@ -40,11 +44,13 @@ We have now established the empirical motivation for stochastic models: **determ
 
 ---
 
-## 2. The Central Question
+## The Central Question
+
 
 **How do we go from discrete-time observations to continuous-time models?**
 
-### 2.1 The Discrete-Time Random Walk
+### 1. The Discrete-Time Random Walk
+
 
 Suppose stock prices evolve via a **discrete-time random walk**:
 
@@ -64,7 +70,8 @@ $$
 S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)
 $$
 
-### 2.2 Taking the Limit $\Delta t \to 0$
+### 2. Taking the Limit $\Delta t \to 0$
+
 
 **Question:** What happens as we make the time step infinitesimally small?
 
@@ -102,9 +109,11 @@ This is **Geometric Brownian Motion (GBM)**, the foundation of the Black-Scholes
 
 ---
 
-## 3. What is $dW_t$?
+## What is $dW_t$?
 
-### 3.1 Brownian Motion Increments
+
+### 1. Brownian Motion Increments
+
 
 **Brownian motion** $W_t$ is a continuous-time stochastic process with:
 
@@ -133,7 +142,8 @@ $$
 
 **This is the fundamental difference from ordinary calculus!**
 
-### 3.2 Why $(dW_t)^2 = dt$ Matters
+### 2. Why $(dW_t)^2 = dt$ Matters
+
 
 In ordinary calculus, $(dx)^2 = 0$ for infinitesimals. But for Brownian motion:
 
@@ -159,9 +169,11 @@ The second-order term survives because $(dX_t)^2$ is not negligible!
 
 ---
 
-## 4. From Discrete to Continuous: Rigorous Approach
+## From Discrete to Continuous: Rigorous Approach
 
-### 4.1 Donsker's Theorem (Functional CLT)
+
+### 1. Donsker's Theorem (Functional CLT)
+
 
 **Theorem:** Consider the discrete random walk:
 
@@ -187,7 +199,8 @@ where $W_t$ is standard Brownian motion.
 
 **Significance:** This rigorously justifies using Brownian motion as the continuous-time limit of discrete random walks.
 
-### 4.2 Implications for SDEs
+### 2. Implications for SDEs
+
 
 **Discrete-time GBM:**
 
@@ -209,9 +222,11 @@ $$
 
 ---
 
-## 5. The Anatomy of an SDE
+## The Anatomy of an SDE
 
-### 5.1 General Form
+
+### 1. General Form
+
 
 A **stochastic differential equation** has the form:
 
@@ -225,7 +240,8 @@ where:
 - $\sigma(X_t, t)$ is the **diffusion function** (volatility)
 - $W_t$ is **standard Brownian motion**
 
-### 5.2 Components Explained
+### 2. Components Explained
+
 
 **Drift term: $\mu(X_t, t) dt$**
 
@@ -241,7 +257,8 @@ where:
 - Units: [same as $X$] per $\sqrt{\text{time}}$
 - $\text{Var}(dX_t | X_t) = \sigma^2(X_t, t) dt$
 
-### 5.3 Integral Form
+### 3. Integral Form
+
 
 The SDE:
 
@@ -261,9 +278,11 @@ where:
 
 ---
 
-## 6. Why We Need Itô Calculus
+## Why We Need Itô Calculus
 
-### 6.1 The Problem
+
+### 1. The Problem
+
 
 **Question:** How do we make sense of:
 
@@ -276,7 +295,8 @@ This is **not** a standard Riemann or Lebesgue integral because:
 - $dW_t/dt$ does not exist
 - Cannot use $\int f(t) g'(t) dt$ formula
 
-### 6.2 The Solution: Itô Integral
+### 2. The Solution: Itô Integral
+
 
 **Section 2.1** will rigorously define:
 
@@ -302,9 +322,11 @@ where the partition $0 = t_0 < t_1 < \cdots < t_n = t$ gets finer.
 
 ---
 
-## 7. Examples of SDEs in Finance
+## Examples of SDEs in Finance
 
-### 7.1 Geometric Brownian Motion (GBM)
+
+### 1. Geometric Brownian Motion (GBM)
+
 
 **SDE:**
 
@@ -319,7 +341,8 @@ $$
 - Log-normal distribution
 - Constant relative volatility $\sigma$
 
-### 7.2 Ornstein-Uhlenbeck (OU) Process
+### 2. Ornstein-Uhlenbeck (OU) Process
+
 
 **SDE:**
 
@@ -334,7 +357,8 @@ $$
 - Gaussian distribution
 - Stationary in long run
 
-### 7.3 Cox-Ingersoll-Ross (CIR) Model
+### 3. Cox-Ingersoll-Ross (CIR) Model
+
 
 **SDE:**
 
@@ -349,7 +373,8 @@ $$
 - Always non-negative (if $2\kappa\theta \geq \sigma^2$)
 - State-dependent volatility
 
-### 7.4 Heston Stochastic Volatility
+### 4. Heston Stochastic Volatility
+
 
 **System of SDEs:**
 
@@ -371,9 +396,11 @@ with $\text{Corr}(dW_t^S, dW_t^V) = \rho dt$.
 
 ---
 
-## 8. The Road Ahead: Chapter 2 Overview
+## The Road Ahead: Chapter 2 Overview
 
-### 8.1 Section 2.1: Itô Integration
+
+### 1. Section 2.1: Itô Integration
+
 
 **What we'll learn:**
 
@@ -384,7 +411,8 @@ with $\text{Corr}(dW_t^S, dW_t^V) = \rho dt$.
 
 **Why it matters:** Cannot work with SDEs without understanding stochastic integration.
 
-### 8.2 Section 2.2: Itô's Lemma
+### 2. Section 2.2: Itô's Lemma
+
 
 **What we'll learn:**
 
@@ -399,7 +427,8 @@ with $\text{Corr}(dW_t^S, dW_t^V) = \rho dt$.
 - Compute expectations and variances
 - Transform between different representations
 
-### 8.3 Section 2.3: SDE Theory
+### 3. Section 2.3: SDE Theory
+
 
 **What we'll learn:**
 
@@ -411,7 +440,8 @@ with $\text{Corr}(dW_t^S, dW_t^V) = \rho dt$.
 
 **Why it matters:** These are the actual models used in quantitative finance.
 
-### 8.4 Section 2.4: Diffusion Processes
+### 4. Section 2.4: Diffusion Processes
+
 
 **What we'll learn:**
 
@@ -424,9 +454,11 @@ with $\text{Corr}(dW_t^S, dW_t^V) = \rho dt$.
 
 ---
 
-## 9. From Intuition to Rigor
+## From Intuition to Rigor
 
-### 9.1 What We've Established Intuitively
+
+### 1. What We've Established Intuitively
+
 
 **Heuristic understanding:**
 
@@ -441,7 +473,8 @@ means:
 - Fluctuations are proportional to current price
 - Randomness comes from Brownian motion
 
-### 9.2 What We Need to Make Rigorous
+### 2. What We Need to Make Rigorous
+
 
 1. **What does $dW_t$ mean precisely?**
    → Section 2.1 (Itô Integration)
@@ -460,9 +493,11 @@ means:
 
 ---
 
-## 10. Summary: The Complete Journey
+## Summary: The Complete Journey
 
-### 10.1 From Data to Models
+
+### 1. From Data to Models
+
 
 ```
 Stock Price Data
@@ -484,7 +519,8 @@ Stochastic Differential Equations
 Quantitative Finance Models
 ```
 
-### 10.2 The Mathematical Edifice
+### 2. The Mathematical Edifice
+
 
 **Foundation:** Brownian motion (Chapter 1)
 
@@ -498,7 +534,8 @@ Quantitative Finance Models
 
 ---
 
-## 11. Conclusion
+## Conclusion
+
 
 We are now ready to begin the rigorous mathematical development of stochastic differential equations. The empirical foundation has been laid:
 

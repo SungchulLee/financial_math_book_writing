@@ -13,9 +13,11 @@ Z_t := \frac{X_t}{Y_t}.
 
 ---
 
-# 1. Two Equivalent Forms of the Itô Quotient Rule
+# Two Equivalent Forms of the Itô Quotient Rule
+
 
 ## Form A (product rule + inverse rule)
+
 
 Use (Z_t = X_t \cdot (Y_t^{-1})). Then
 [
@@ -30,7 +32,8 @@ X_t,\mathrm{d}(Y_t^{-1})
 ]
 So we need (\mathrm{d}(Y_t^{-1})) and (\mathrm{d}\langle X, Y^{-1}\rangle_t).
 
-### Inverse rule
+### 1. Inverse rule
+
 
 Apply Itô to (g(y)=y^{-1}):
 [
@@ -53,7 +56,8 @@ Since (\mathrm{d}\langle Y\rangle_t = d_t^{\alpha}d_t^{\alpha},\mathrm{d}t),
 }
 ]
 
-### Cross-variation term
+### 2. Cross-variation term
+
 
 The diffusion coefficient of (Y_t^{-1}) is (-d_t^{\alpha}/Y_t^{2}). Hence
 [
@@ -62,6 +66,7 @@ The diffusion coefficient of (Y_t^{-1}) is (-d_t^{\alpha}/Y_t^{2}). Hence
 ====================================
 
 # b_t^{\alpha}\left(-\frac{d_t^{\alpha}}{Y_t^{2}}\right)\mathrm{d}t
+
 
 -\frac{b_t^{\alpha}d_t^{\alpha}}{Y_t^{2}},\mathrm{d}t
 }
@@ -72,6 +77,7 @@ Putting it together gives the quotient rule below.
 ---
 
 ## Form B (final quotient rule, expanded)
+
 
 Substituting (\mathrm{d}X_t), (\mathrm{d}Y_t) and collecting terms:
 
@@ -85,6 +91,7 @@ Substituting (\mathrm{d}X_t), (\mathrm{d}Y_t) and collecting terms:
 ---------------
 
 ## \frac{X_t c_t}{Y_t^{2}}
+
 
 \frac{b_t^{\alpha} d_t^{\alpha}}{Y_t^{2}}
 +
@@ -104,7 +111,8 @@ That is the **Itô quotient rule** in index notation.
 
 ---
 
-# 2. A Compact “Differential Algebra” Version
+# A Compact “Differential Algebra” Version
+
 
 Using the Itô multiplication table
 [
@@ -119,6 +127,7 @@ one may remember the quotient rule as:
 ===================================
 
 ## \frac{1}{Y},\mathrm{d}X
+
 
 \frac{X}{Y^{2}},\mathrm{d}Y
 +
@@ -137,7 +146,8 @@ and then substitute
 
 ---
 
-# 3. Quick Consistency Check (Simple Case)
+# Quick Consistency Check (Simple Case)
+
 
 If (Y_t) has **no Brownian part**, i.e. (d_t^{\alpha}=0), then the rule reduces to the classical-looking one:
 [

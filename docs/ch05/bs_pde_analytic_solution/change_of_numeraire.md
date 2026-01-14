@@ -1,14 +1,17 @@
 # Change of Numeraire: Alternative Derivation of Black-Scholes
 
+
 The **change of numeraire** technique provides an alternative derivation of option pricing formulas by **choosing different reference assets** for valuation. While the standard risk-neutral approach uses the money market account as numeraire, changing to alternative numeraires (e.g., the stock itself) can simplify certain pricing problems and provides deeper insight into measure theory in finance.
 
 This section derives the Black-Scholes formula using numeraire changes and demonstrates applications to forward measures and foreign exchange options.
 
 ---
 
-## 1. Numeraire and Pricing Measures
+## Numeraire and Pricing Measures
 
-### **Definition of Numeraire**
+
+### 1. **Definition of Numeraire**
+
 
 A **numeraire** $N_t$ is a strictly positive traded asset used as a unit of account. All asset prices are expressed **relative to the numeraire**:
 
@@ -20,7 +23,8 @@ $$
 
 **Key property**: In an arbitrage-free market, there exists a probability measure (called the **numeraire measure** or **$N$-measure**) under which all asset prices relative to $N_t$ are martingales.
 
-### **Standard Risk-Neutral Measure**
+### 2. **Standard Risk-Neutral Measure**
+
 
 In the Black-Scholes framework, the standard numeraire is the **money market account**:
 
@@ -44,9 +48,11 @@ $$
 
 ---
 
-## 2. General Numeraire Change
+## General Numeraire Change
 
-### **Fundamental Theorem**
+
+### 1. **Fundamental Theorem**
+
 
 > **Numeraire Change Theorem**: Let $N_t$ be any numeraire (strictly positive traded asset). There exists a unique equivalent probability measure $\mathbb{Q}^N$ under which **all asset prices relative to $N_t$ are martingales**.
 
@@ -58,7 +64,8 @@ $$
 
 
 
-### **Radon-Nikodym Derivative**
+### 2. **Radon-Nikodym Derivative**
+
 
 The measure $\mathbb{Q}^N$ is related to the standard risk-neutral measure $\mathbb{Q}$ via:
 
@@ -70,7 +77,8 @@ $$
 
 **Intuition**: We reweight paths according to the terminal value of the numeraire (discounted).
 
-### **Girsanov Connection**
+### 3. **Girsanov Connection**
+
 
 The change of numeraire induces a **change of Brownian motion** via Girsanov's theorem. If under $\mathbb{Q}$:
 
@@ -92,15 +100,18 @@ The drift of the Brownian motion changes to reflect the numeraire's volatility.
 
 ---
 
-## 3. Stock Numeraire and Forward Measure
+## Stock Numeraire and Forward Measure
 
-### **Setup: Stock as Numeraire**
+
+### 1. **Setup: Stock as Numeraire**
+
 
 Choose $N_t = S_t$ (the underlying stock itself).
 
 The associated measure $\mathbb{Q}^S$ is called the **stock measure** or **forward measure**.
 
-### **Relative Prices Under $\mathbb{Q}^S$**
+### 2. **Relative Prices Under $\mathbb{Q}^S$**
+
 
 Under the stock measure, all assets relative to $S_t$ are martingales.
 
@@ -120,7 +131,8 @@ $$
 
 
 
-### **Radon-Nikodym Derivative**
+### 3. **Radon-Nikodym Derivative**
+
 
 The stock measure is related to $\mathbb{Q}$ by:
 
@@ -130,7 +142,8 @@ $$
 
 
 
-### **Brownian Motion Under $\mathbb{Q}^S$**
+### 4. **Brownian Motion Under $\mathbb{Q}^S$**
+
 
 If $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$ under $\mathbb{Q}$, then by Girsanov:
 
@@ -152,9 +165,11 @@ $$
 
 ---
 
-## 4. Black-Scholes via Stock Numeraire
+## Black-Scholes via Stock Numeraire
 
-### **Call Option Valuation**
+
+### 1. **Call Option Valuation**
+
 
 We want to price a European call with payoff $(S_T - K)^+$.
 
@@ -187,7 +202,8 @@ $$
 
 
 
-### **First Term: $\mathbb{Q}^S(S_T > K)$**
+### 2. **First Term: $\mathbb{Q}^S(S_T > K)$**
+
 
 Under $\mathbb{Q}^S$, from Girsanov:
 
@@ -247,7 +263,8 @@ $$
 
 
 
-### **Second Term: Change to $\mathbb{Q}$**
+### 3. **Second Term: Change to $\mathbb{Q}$**
+
 
 For the second term, we use:
 
@@ -274,7 +291,8 @@ $$
 
 where $d_2 = d_1 - \sigma\sqrt{T}$.
 
-### **Final Result**
+### 4. **Final Result**
+
 
 Combining:
 
@@ -297,9 +315,11 @@ This is the **Black-Scholes formula**, derived via stock numeraire.
 
 ---
 
-## 5. Foreign Exchange Options
+## Foreign Exchange Options
 
-### **Setup: Quanto Options**
+
+### 1. **Setup: Quanto Options**
+
 
 Consider an option on foreign exchange rate $X_t$ (domestic per foreign).
 
@@ -315,7 +335,8 @@ $$
 
 
 
-### **Foreign Numeraire Measure**
+### 2. **Foreign Numeraire Measure**
+
 
 Choose numeraire $N_t = X_t B_t^f = X_t e^{r_f t}$ (foreign money market converted to domestic).
 
@@ -343,7 +364,8 @@ $$
 
 
 
-### **Call on FX Rate**
+### 3. **Call on FX Rate**
+
 
 Using the foreign measure:
 
@@ -365,7 +387,8 @@ This is the **Garman-Kohlhagen formula** for FX options.
 
 ---
 
-## 6. Summary: When to Use Each Numeraire
+## Summary: When to Use Each Numeraire
+
 
 | Numeraire | Measure | Application | Advantage |
 |-----------|---------|-------------|-----------|
@@ -378,7 +401,8 @@ This is the **Garman-Kohlhagen formula** for FX options.
 
 ---
 
-## 7. Connection to Other Solution Methods
+## Connection to Other Solution Methods
+
 
 In the context of solving the Black-Scholes PDE, change of numeraire is:
 
@@ -394,6 +418,7 @@ In the context of solving the Black-Scholes PDE, change of numeraire is:
 ---
 
 ## Summary
+
 
 The change of numeraire technique provides an elegant alternative to standard risk-neutral pricing:
 

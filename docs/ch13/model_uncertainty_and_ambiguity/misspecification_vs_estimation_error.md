@@ -1,6 +1,8 @@
 # Misspecification vs Estimation Error
 
+
 ## Introduction
+
 
 In quantitative finance and econometrics, model uncertainty arises from two fundamentally different sources:
 
@@ -17,7 +19,9 @@ This chapter provides rigorous mathematical treatment of both error types, their
 
 ## Mathematical Framework
 
-### Setup and Notation
+
+### 1. Setup and Notation
+
 
 **Data-Generating Process**: Let $P^*$ denote the true (unknown) probability measure governing observed data $\{X_i\}_{i=1}^n$.
 
@@ -41,7 +45,8 @@ $$
 
 
 
-### Pseudo-True Parameter
+### 2. Pseudo-True Parameter
+
 
 Even under misspecification, we can define a best approximation within the model class.
 
@@ -79,7 +84,8 @@ where $D_{\text{KL}}(P \| Q)$ is the Kullback-Leibler divergence.
 - When misspecified: $\theta_0$ is the "closest" parameter in the KL sense
 - $\theta_0$ is uniquely defined under identifiability conditions
 
-### Estimator and Estimation Error
+### 3. Estimator and Estimation Error
+
 
 **Maximum Likelihood Estimator (MLE)**:
 
@@ -110,7 +116,8 @@ $$
 
 where $\Sigma(\theta_0)$ is the asymptotic covariance matrix.
 
-### Misspecification Error
+### 4. Misspecification Error
+
 
 **Approximation Error**: The distance between the pseudo-true model and the truth:
 
@@ -134,7 +141,9 @@ This decomposition shows that any parameter $\theta \neq \theta_0$ incurs both m
 
 ## Asymptotic Theory
 
-### Consistency Under Misspecification
+
+### 1. Consistency Under Misspecification
+
 
 **Theorem** (Consistency): Under standard regularity conditions:
 
@@ -160,7 +169,8 @@ uniformly in $\theta$. The MLE $\hat{\theta}_n$ maximizes the LHS, which converg
 
 **Interpretation**: The MLE consistently estimates the pseudo-true parameter $\theta_0$, not necessarily the true parameter $\theta^*$ (which may not exist in $\mathcal{M}$).
 
-### Asymptotic Normality
+### 2. Asymptotic Normality
+
 
 **Theorem** (Asymptotic Distribution): Under regularity conditions:
 
@@ -218,7 +228,8 @@ $$
 
 the Cramér-Rao bound.
 
-### Rate of Convergence
+### 3. Rate of Convergence
+
 
 **Parametric Rate**: Both estimation error and convergence rate are $O_p(n^{-1/2})$:
 
@@ -244,7 +255,9 @@ $$
 
 ## Decomposition of Prediction Error
 
-### Expected Loss Framework
+
+### 1. Expected Loss Framework
+
 
 Consider prediction error measured by a loss function $\ell(y, \hat{y})$.
 
@@ -271,7 +284,8 @@ where:
 - $f_{\theta_0}$ is the best predictor in model class $\mathcal{M}$
 - $\hat{f}_n$ is the estimated predictor
 
-### Bias-Variance-Misspecification Tradeoff
+### 2. Bias-Variance-Misspecification Tradeoff
+
 
 For squared error loss $\ell(y, \hat{y}) = (y - \hat{y})^2$:
 
@@ -309,11 +323,14 @@ $$
 
 ## Model Selection Under Misspecification
 
-### Information Criteria
+
+### 1. Information Criteria
+
 
 Information criteria balance goodness-of-fit against model complexity.
 
-#### Akaike Information Criterion (AIC)
+### 2. Akaike Information Criterion (AIC)
+
 
 **Definition**:
 
@@ -337,7 +354,8 @@ $$
 
 **Key Property**: AIC is consistent for selecting the model that minimizes KL divergence to $P^*$, even under misspecification.
 
-#### Bayesian Information Criterion (BIC)
+### 3. Bayesian Information Criterion (BIC)
+
 
 **Definition**:
 
@@ -352,7 +370,8 @@ $$
 
 **Under Misspecification**: BIC tends to select simpler models than AIC due to larger penalty ($\log n$ vs $2$).
 
-#### Takeuchi Information Criterion (TIC)
+### 4. Takeuchi Information Criterion (TIC)
+
 
 **Robust Variant** accounting for misspecification:
 
@@ -367,7 +386,8 @@ where $H$ and $J$ are estimates of $H(\theta_0)$ and $J(\theta_0)$.
 
 **Interpretation**: The trace term $\text{tr}(H^{-1} J)$ reduces to $d$ when well-specified, generalizing AIC.
 
-### Cross-Validation
+### 5. Cross-Validation
+
 
 Cross-validation directly estimates prediction error without assuming correct specification.
 
@@ -400,7 +420,8 @@ $$
 - Computationally intensive
 - High variance for small $n$
 
-### Model Averaging
+### 6. Model Averaging
+
 
 Instead of selecting a single model, average predictions across models.
 
@@ -437,7 +458,9 @@ $$
 
 ## Inference Under Misspecification
 
-### Hypothesis Testing
+
+### 1. Hypothesis Testing
+
 
 **Null Hypothesis**: $H_0: \theta = \theta_0$ (pseudo-true value).
 
@@ -466,7 +489,8 @@ using the sandwich estimator $\hat{\Sigma}$.
 - Invalid p-values
 - Misleading inference
 
-### Confidence Intervals
+### 2. Confidence Intervals
+
 
 **Standard CI** (assuming well-specification):
 
@@ -492,7 +516,8 @@ where $\hat{\Sigma}$ is the sandwich estimator.
 - Standard CI: May have coverage $< 1-\alpha$ under misspecification
 - Robust CI: Maintains nominal coverage asymptotically
 
-### Quasi-Likelihood Methods
+### 3. Quasi-Likelihood Methods
+
 
 **Quasi-Likelihood**: Specify only first two moments:
 
@@ -525,7 +550,9 @@ $$
 
 ## Misspecification Tests
 
-### Moment Tests
+
+### 1. Moment Tests
+
 
 **Idea**: Check if moments implied by the model match empirical moments.
 
@@ -553,7 +580,8 @@ where $r$ is the number of overidentifying restrictions.
 
 **Rejection**: Large $Q_n$ provides evidence of misspecification.
 
-### Hausman Test
+### 2. Hausman Test
+
 
 **Setup**: Two estimators $\hat{\theta}_1$ and $\hat{\theta}_2$ where:
 - $\hat{\theta}_1$ is consistent under both $H_0$ and $H_1$ but inefficient under $H_0$
@@ -579,7 +607,8 @@ $$
 
 **Application**: Test endogeneity, omitted variables, or other forms of misspecification.
 
-### Omnibus Tests
+### 3. Omnibus Tests
+
 
 **Goodness-of-Fit Tests**: 
 
@@ -611,7 +640,9 @@ $$
 
 ## Robustness to Misspecification
 
-### Robust Estimators
+
+### 1. Robust Estimators
+
 
 **M-Estimators**: Minimize a robust loss function:
 
@@ -638,7 +669,8 @@ $$
 
 **Breakdown Point**: Fraction of contamination an estimator can handle before breaking down.
 
-### Influence Functions
+### 2. Influence Functions
+
 
 **Influence Function**: Measures sensitivity to infinitesimal contamination:
 
@@ -664,7 +696,8 @@ $$
 
 **For MLE**: Influence function is unbounded, making it sensitive to outliers and misspecification.
 
-### Empirical Likelihood
+### 3. Empirical Likelihood
+
 
 **Idea**: Nonparametric approach that assigns probabilities $p_i$ to observations.
 
@@ -701,7 +734,9 @@ $$
 
 ## Applications to Quantitative Finance
 
-### Option Pricing Under Misspecification
+
+### 1. Option Pricing Under Misspecification
+
 
 **Setup**: True stock dynamics unknown; use Black-Scholes as working model.
 
@@ -739,7 +774,8 @@ $$
 2. **Estimation Error**: Volatility $\sigma$ estimated from data
 3. **Interaction**: Estimated $\sigma$ may partially compensate for model misspecification
 
-### Risk Management
+### 2. Risk Management
+
 
 **Value-at-Risk (VaR)**: 
 
@@ -779,7 +815,8 @@ $$
 
 Should be close to $\alpha$ if model is well-specified.
 
-### Portfolio Optimization
+### 3. Portfolio Optimization
+
 
 **Mean-Variance Problem**:
 
@@ -810,7 +847,8 @@ $$
 
 **Robust Approach**: Use shrinkage estimators or robust covariance estimators to reduce impact of both estimation error and misspecification.
 
-### Factor Models
+### 4. Factor Models
+
 
 **Model**: Returns generated by factors:
 
@@ -843,7 +881,9 @@ when well-specified. Under misspecification, first term includes structural erro
 
 ## Advanced Theoretical Results
 
-### Semiparametric Efficiency
+
+### 1. Semiparametric Efficiency
+
 
 **Semiparametric Model**: Parametric component $\theta$ and infinite-dimensional nuisance component $\eta$.
 
@@ -876,7 +916,8 @@ $$
 
 **Under Misspecification**: Efficiency bounds still apply, but target is pseudo-true $\theta_0$ rather than true $\theta^*$.
 
-### Double Robustness
+### 2. Double Robustness
+
 
 **Setup**: Two working models:
 1. Outcome regression: $m(X; \alpha)$
@@ -897,7 +938,8 @@ $$
 
 **Interpretation**: Provides insurance against misspecification of one component.
 
-### High-Dimensional Asymptotics
+### 3. High-Dimensional Asymptotics
+
 
 **Setup**: Dimension $d = d_n \to \infty$ as $n \to \infty$.
 
@@ -930,7 +972,9 @@ $$
 
 ## Practical Guidelines
 
-### Detection Strategy
+
+### 1. Detection Strategy
+
 
 **Step 1**: Diagnostic Checks
 - Plot residuals vs. fitted values
@@ -946,7 +990,8 @@ $$
 - Compare in-sample vs. out-of-sample performance
 - Large discrepancy suggests overfitting or misspecification
 
-### Remedial Measures
+### 2. Remedial Measures
+
 
 **When Misspecification Detected**:
 
@@ -964,7 +1009,8 @@ $$
 
 4. **Regularization**: Add penalties to prevent overfitting while allowing for misspecification
 
-### Reporting Standards
+### 3. Reporting Standards
+
 
 **Best Practices**:
 
@@ -978,7 +1024,8 @@ $$
 
 5. **Report information criteria**: AIC, BIC, or TIC to facilitate model comparison
 
-### Balancing Act
+### 4. Balancing Act
+
 
 **Trade-off Triangle**:
 
@@ -1012,7 +1059,9 @@ $$
 
 ## Summary and Key Insights
 
-### Fundamental Distinctions
+
+### 1. Fundamental Distinctions
+
 
 1. **Nature of Error**:
    - Misspecification: Structural, does not vanish with more data
@@ -1026,7 +1075,8 @@ $$
    - Misspecification requires sandwich covariance
    - Standard errors based on Fisher information are invalid under misspecification
 
-### Practical Implications
+### 2. Practical Implications
+
 
 1. **Model Selection**: Use information criteria (AIC/BIC) or cross-validation that account for both error sources
 
@@ -1036,7 +1086,8 @@ $$
 
 4. **High Dimensions**: Regularization helps control estimation error; model selection critical for misspecification
 
-### Research Frontiers
+### 3. Research Frontiers
+
 
 1. **Optimal Model Averaging**: Theory for optimal weights under joint misspecification and estimation error
 

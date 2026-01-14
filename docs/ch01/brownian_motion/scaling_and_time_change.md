@@ -1,6 +1,10 @@
-# Scaling and Time Change
+# Scaling Time Change
+
+
 
 ## Introduction
+
+
 
 In **Brownian Motion Foundations**, we established the fundamental scaling property of Brownian motion (Theorem 1.3.8):
 
@@ -18,9 +22,13 @@ This section explores three interconnected topics that build on this scaling pro
 
 These results form a bridge to stochastic integration (Chapter 1.3) and martingale theory (Chapter 1.2), revealing the universality of Brownian motion among continuous stochastic processes.
 
-## Brownian Scaling (Review and Deeper Consequences)
+## Brownian Scaling
 
-### The Scaling Property
+
+
+### 1. Scaling Property
+
+
 
 Let $\{W_t\}_{t\ge 0}$ be a standard Brownian motion in $\mathbb{R}^d$. For any constant $c>0$, define
 
@@ -49,7 +57,9 @@ $$\boxed{
 
 **Remark:** This is a restatement of Theorem 1.3.8 from Brownian Motion Foundations. We now explore its deeper implications.
 
-### Consequence 1: Typical Size of Increments
+### 2. Consequence 1 Typ
+
+
 
 For small $\Delta t>0$,
 
@@ -86,7 +96,9 @@ $$df(W_t) = f'(W_t) dW_t + \frac{1}{2}f''(W_t) dt$$
 
 The $\frac{1}{2}f''(W_t) dt$ term arises precisely because $(dW_t)^2 = dt$.
 
-### Consequence 2: No Intrinsic Time Scale
+### 3. Consequence 2 No
+
+
 
 The scaling property shows Brownian motion has **no preferred time scale**. 
 
@@ -102,7 +114,9 @@ The scaling property shows Brownian motion has **no preferred time scale**.
 
 This square-root-of-time scaling is fundamental to option pricing.
 
-### Consequence 3: Hurst Exponent $H = 1/2$
+### 4. Consequence 3 Hur
+
+
 
 The scaling exponent $1/2$ in $\sqrt{c}$ is called the **Hurst exponent** for Brownian motion:
 
@@ -122,9 +136,13 @@ $$X_{ct} \overset{d}{=} c^H X_t$$
 
 Only $H = 1/2$ gives processes with independent increments.
 
-## Deterministic Time Change
+## Deterministic Time
 
-### General Setup
+
+
+### 1. General Setup
+
+
 
 Let $\phi:[0,\infty)\to[0,\infty)$ be a function satisfying:
 - **Nondecreasing**: $\phi(s) \le \phi(t)$ for $s < t$
@@ -139,7 +157,9 @@ $$B_t := W_{\phi(t)}$$
 
 **Question:** Is $\{B_t\}$ a Brownian motion?
 
-### Properties of the Time-Changed Process
+### 2. Properties Time C
+
+
 
 **Proposition 1.4.1**
 
@@ -165,7 +185,9 @@ The process is Gaussian because $W$ is Gaussian.
 
 Continuity follows from the continuity of $W$ and $\phi$. $\square$
 
-### When Is $B_t$ a Brownian Motion?
+### 3. When B t Brownian
+
+
 
 **Theorem 1.4.2**
 
@@ -193,7 +215,9 @@ $$\phi(t) - \phi(s) = t - s \quad \text{for all } s < t$$
 
 This implies $\phi(t) = t + c$ for some constant $c$. Combined with $\phi(0) = 0$, we get $\phi(t) = t$. $\square$
 
-### Special Case: Linear Time Change
+### 4. Special Case Line
+
+
 
 If $\phi(t) = ct$ for some constant $c > 0$:
 
@@ -205,7 +229,9 @@ This is Brownian motion up to a **spatial scaling** by $\sqrt{c}$.
 
 **Interpretation:** Speeding up or slowing down time by a constant factor produces Brownian motion in a rescaled space.
 
-### Example: Quadratic Time Change
+### 5. Example Quadratic
+
+
 
 Let $\phi(t) = t^2$. Then:
 
@@ -226,17 +252,23 @@ $$\text{Var}(B_t - B_s) = t^2 - s^2 = (t-s)(t+s) \neq t-s$$
 
 The increments are not stationary.
 
-## Random Time Change: The Quadratic Variation Clock
+## Random Time Change
+
+
 
 We now consider **random time changes**, which lead to one of the most profound results in stochastic calculus.
 
-### Motivation
+### 1. Motivation
+
+
 
 The quadratic variation $\langle W \rangle_t = t$ for Brownian motion suggests that **time itself can be measured by quadratic variation**.
 
 For a general continuous martingale $M_t$ with quadratic variation $\langle M \rangle_t$, can we "run it on a clock" that makes it look like Brownian motion?
 
-### Setup for Random Time Change
+### 2. Setup Random Time
+
+
 
 Let $M=\{M_t\}_{t\ge 0}$ be a continuous local martingale with:
 - $M_0=0$
@@ -252,7 +284,9 @@ This is a **stopping time** for each $u$.
 
 **Interpretation:** $\tau(u)$ is the (random) time at which the quadratic variation of $M$ reaches level $u$.
 
-### Key Property of the Inverse
+### 3. Key Property Inve
+
+
 
 **Proposition 1.4.3**
 
@@ -278,7 +312,9 @@ $$\langle M_{\tau(\cdot)} \rangle_u = \langle M \rangle_{\tau(u)} = u \quad \squ
 
 This shows that "running $M$ on the quadratic variation clock" produces a process with quadratic variation equal to $u$.
 
-### The Dambis-Dubins-Schwarz Theorem
+### 4. Dambis Dubins Sch
+
+
 
 The fundamental result connecting continuous martingales to Brownian motion is:
 
@@ -309,7 +345,9 @@ $\square$
 
 **Remark:** The condition $\langle M \rangle_\infty = \infty$ ensures that $\tau(u) < \infty$ for all $u$, so $B_u$ is well-defined for all $u \ge 0$.
 
-### Interpretation and Significance
+### 5. Interpretation Si
+
+
 
 **The Dambis-Dubins-Schwarz theorem reveals that:**
 
@@ -333,11 +371,15 @@ $$\langle M \rangle_t = \int_0^t H_s^2 ds$$
 
 So $M_t$ is a Brownian motion under the clock $\int_0^t H_s^2 ds$.
 
-## Link to Stochastic Integration
+## Link Stochastic
+
+
 
 The time-change perspective provides deep insight into stochastic integrals.
 
-### Itô Integral as Time-Changed Brownian Motion
+### 1. Integral Time Cha
+
+
 
 For an Itô integral
 
@@ -364,7 +406,9 @@ $$\boxed{
 - When $H_s$ is large, "time speeds up" (high volatility)
 - When $H_s$ is small, "time slows down" (low volatility)
 
-### Example: Constant Integrand
+### 2. Example Constant
+
+
 
 If $H_s = \sigma$ (constant), then:
 
@@ -384,7 +428,9 @@ $$\sigma W_t = B_{\sigma^2 t}$$
 
 This is consistent with the scaling property: $B_{\sigma^2 t} \overset{d}{=} \sigma W_t$.
 
-### Example: Time-Dependent Integrand
+### 3. Example Time Depe
+
+
 
 If $H_s = \sqrt{s}$, then:
 
@@ -404,9 +450,13 @@ $$\int_0^t \sqrt{s} dW_s = B_{t^2/2}$$
 
 The integral accumulates quadratic variation at rate $s$ at time $s$, so the clock runs faster as time progresses.
 
-## Applications in Finance
+## Applications Finance
 
-### 1. Stochastic Volatility Models
+
+
+### 1. Stochastic Volati
+
+
 
 In a stochastic volatility model, the asset price satisfies:
 
@@ -426,6 +476,8 @@ By Dambis-Dubins-Schwarz, the log-return is a Brownian motion run on the "integr
 
 ### 2. Option Pricing
 
+
+
 The Black-Scholes formula uses:
 
 $$\text{Variance} = \sigma^2 T$$
@@ -440,11 +492,15 @@ $$\text{Realized Variance} = \int_0^T \sigma_t^2 dt$$
 
 This is the "true time" as measured by quadratic variation.
 
-### 3. Time-Changed Lévy Processes
+### 3. Time Changed L vy
+
+
 
 More generally, one can time-change **Lévy processes** (not just Brownian motion) to model jumps in asset prices. The "business time" is again measured by some activity clock (e.g., trading volume, information arrival).
 
 ## Summary
+
+
 
 This section explored three levels of time transformation:
 
@@ -466,6 +522,8 @@ These ideas are fundamental to:
 The next sections will make these connections rigorous and develop the full machinery of stochastic calculus.
 
 ## References
+
+
 
 - Dambis, K. E. (1965). On the decomposition of continuous submartingales. *Theory of Probability & Its Applications*, 10(3), 401-410.
 - Dubins, L. E., & Schwarz, G. (1965). On continuous martingales. *Proceedings of the National Academy of Sciences*, 53(5), 913-916.

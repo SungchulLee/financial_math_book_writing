@@ -1,10 +1,12 @@
 # T-Forward Measures
 
+
 Beyond the risk-neutral measure, it is often convenient to price derivatives under a **forward measure**, associated with a specific maturity \(T\).
 
 ---
 
-## 1. Definition of the T-forward measure
+## Definition of the T-forward measure
+
 
 Let \(P(t,T)\) be the zero-coupon bond maturing at \(T\).
 The **T-forward measure** \(\mathbb{Q}^T\) is defined by choosing \(P(t,T)\) as numéraire.
@@ -20,7 +22,8 @@ for any tradable asset \(S_t\) that pays off at or before \(T\).
 
 ---
 
-## 2. Pricing under the forward measure
+## Pricing under the forward measure
+
 
 For a payoff \(V_T\) at time \(T\),
 
@@ -34,7 +37,8 @@ Discounting disappears because the numéraire already matures at \(T\).
 
 ---
 
-## 3. Dynamics under the forward measure
+## Dynamics under the forward measure
+
 
 Changing from \(\mathbb{Q}\) to \(\mathbb{Q}^T\):
 - alters drift terms,
@@ -45,7 +49,8 @@ Many rates become martingales under their natural forward measures.
 
 ---
 
-## 4. Practical importance
+## Practical importance
+
 
 Forward measures are especially useful for:
 - caplets and floorlets,
@@ -54,7 +59,8 @@ Forward measures are especially useful for:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Forward measures use zero-coupon bonds as numeraires.
 - Pricing simplifies to expectation without discounting.
@@ -63,6 +69,7 @@ Forward measures are especially useful for:
 ---
 
 ## Further reading
+
 
 - Brigo & Mercurio, forward measures.
 - Jamshidian, numéraire techniques.

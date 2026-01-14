@@ -1,8 +1,10 @@
 # Infinitesimal Generator and Martingales
 
+
 Dynkin’s formula implies a fundamental martingale characterization.
 
 ## Martingale Associated with a Generator
+
 
 For any \(f\in \mathrm{Dom}(L)\),
 
@@ -14,6 +16,7 @@ M_t := f(X_t) - f(X_0) - \int_0^t Lf(X_s)\,ds
 is a martingale.
 
 ## Harmonic Functions
+
 
 If
 
@@ -32,6 +35,7 @@ f(X_t) \text{ is a martingale}.
 
 ## Converse (Careful!)
 
+
 If \(f(X_t)\) is a martingale, then
 
 \[
@@ -44,6 +48,7 @@ This does **not** automatically imply \(Lf(x)=0\) for all \(x\)
 unless additional regularity and irreducibility assumptions hold.
 
 ## Correct Characterization
+
 
 Under suitable conditions:
 

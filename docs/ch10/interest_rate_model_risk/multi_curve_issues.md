@@ -1,10 +1,12 @@
 # Multi-Curve Issues
 
+
 Modern interest-rate markets operate with **multiple yield curves**, reflecting credit and liquidity effects. This fundamentally alters pricing and hedging compared to single-curve frameworks.
 
 ---
 
-## 1. From single-curve to multi-curve
+## From single-curve to multi-curve
+
 
 Pre-crisis practice used:
 - one curve for discounting and forwarding.
@@ -17,7 +19,8 @@ This separation is essential for arbitrage-free pricing.
 
 ---
 
-## 2. Implications for valuation
+## Implications for valuation
+
 
 Multi-curve pricing affects:
 - swaps and FRAs,
@@ -28,7 +31,8 @@ Cashflows must be discounted and projected using different curves.
 
 ---
 
-## 3. Model extensions
+## Model extensions
+
 
 Classical models must be extended to:
 - handle multiple correlated curves,
@@ -39,7 +43,8 @@ These extensions increase dimensionality and calibration complexity.
 
 ---
 
-## 4. Model risk considerations
+## Model risk considerations
+
 
 Multi-curve models introduce:
 - additional parameters with weak identifiability,
@@ -50,7 +55,8 @@ Curve-building risk becomes part of model risk.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Single-curve models are no longer sufficient.
 - Multi-curve modeling is unavoidable but complex.
@@ -59,6 +65,7 @@ Curve-building risk becomes part of model risk.
 ---
 
 ## Further reading
+
 
 - Henrard, *Interest Rate Modelling in the Multi-Curve Framework*.
 - Brigo et al., collateral and multi-curve modeling.

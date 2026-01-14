@@ -1,10 +1,12 @@
 # Inventory Cycle
 
+
 **Inventory cycle strategies** are options trading approaches that exploit predictable patterns in commodity and equity markets driven by inventory build-up and draw-down cycles, using fundamental supply-demand data to time directional options positions with defined risk.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -36,9 +38,11 @@ $$
 
 ## What Are Inventory
 
+
 **Before executing inventory-based trades, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** Trading strategies that use inventory data releases (crude oil, natural gas, metals, agricultural products, retail stocks) to anticipate price movements and position options accordingly, profiting from the predictable relationship between supply levels and prices.
 
@@ -73,6 +77,7 @@ $$
 
 ### 2. The Inverse
 
+
 **Understanding the price dynamics:**
 
 **For commodities (oil, gas, metals):**
@@ -103,6 +108,7 @@ $$
 - Retail (WMT): High inventory pre-holiday might be good (stocking up)
 
 ### 3. Scheduled vs.
+
 
 **Scheduled reports (most common):**
 
@@ -142,9 +148,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. The
+
 
 **The deep insight:**
 
@@ -199,6 +207,7 @@ $$
 
 ### 2. The Theory of
 
+
 **Academic foundation:**
 
 Commodity prices follow the **theory of storage**:
@@ -246,6 +255,7 @@ $$
 
 ### 3. Seasonal Patterns
 
+
 **Why inventory cycles exist:**
 
 **Crude oil:**
@@ -285,6 +295,7 @@ Where:
 
 ### 4. The Inventory
 
+
 **Market efficiency paradox:**
 
 You'd think scheduled reports are priced in, but:
@@ -316,6 +327,7 @@ You'd think scheduled reports are priced in, but:
 
 ### 5. The Gamma
 
+
 **Why options, not futures?**
 
 **Futures trade:**
@@ -345,6 +357,7 @@ You'd think scheduled reports are priced in, but:
 **Options are superior for inventory cycle trading**
 
 ### 6. Put-Call Parity
+
 
 **Fundamental relationship:**
 
@@ -379,6 +392,7 @@ Commodity options often have:
 - **Buy calls (cheaper) rather than sell puts (expensive)**
 
 ### 7. Why Inventory
+
 
 **The informational edge:**
 
@@ -418,6 +432,7 @@ Commodity options often have:
 ---
 
 ## Key Terminology
+
 
 **Inventory Draw:**
 
@@ -498,7 +513,9 @@ Commodity options often have:
 
 ## Mathematical
 
+
 ### 1. The
+
 
 **Measuring price sensitivity to inventory changes:**
 
@@ -536,6 +553,7 @@ $$
 - **This overreaction creates options opportunity**
 
 ### 2. Expected Value of
+
 
 **Setup:**
 
@@ -589,6 +607,7 @@ $$
 
 ### 3. Optimal Position
 
+
 **Kelly Criterion applied:**
 
 $$
@@ -617,6 +636,7 @@ $$
 **For $50k account: $1,050 per trade (reasonable)**
 
 ### 4. Volatility
+
 
 **IV behavior around inventory releases:**
 
@@ -667,6 +687,7 @@ $$
 
 ### 5. Regression Model
 
+
 **Statistical approach:**
 
 $$
@@ -705,7 +726,9 @@ $$
 
 ## Key ideas
 
+
 ### 1. Phase 1
+
 
 **1. Choose Your Market:**
 
@@ -794,7 +817,8 @@ else:
 - Your model predicts: -4.5M (larger draw)
 - **Setup: Bullish surprise expected → Buy calls**
 
-### 1. Phase 2
+### 2. Phase 2
+
 
 **1. Optimal Entry Day:**
 
@@ -870,7 +894,8 @@ $$
 
 **Never exceed 5% on single inventory trade**
 
-### 2. Phase 3
+### 3. Phase 3
+
 
 **1. Confirm Setup:**
 
@@ -932,7 +957,8 @@ Report: Wednesday 10:30 AM ET
 Exit: Wednesday after report or Friday before expiration
 ```
 
-### 3. Phase 4
+### 4. Phase 4
+
 
 **1. Pre-Report (Tuesday Evening):**
 
@@ -1033,7 +1059,8 @@ Exit: Wednesday after report or Friday before expiration
 - 10:35 AM: Exit all @ $0.15 (cut loss)
 - Preserve $180 (better than holding to zero)
 
-### 4. Phase 5
+### 5. Phase 5
+
 
 **1. Exit Rules:**
 
@@ -1071,7 +1098,8 @@ Exit: Wednesday after report or Friday before expiration
 - Check seasonal patterns
 - Set alert for Monday entry
 
-### 5. Complete Example
+### 6. Complete Example
+
 
 **Background: November 2024**
 
@@ -1170,7 +1198,9 @@ Exit: Wednesday after report or Friday before expiration
 
 ## Greeks Analysis
 
+
 ### 1. Delta
+
 
 **For inventory cycle trades:**
 
@@ -1204,6 +1234,7 @@ Where the second term is the inventory-price sensitivity
 
 ### 2. Theta
 
+
 **What it means for short-term inventory trades:**
 
 $$
@@ -1235,6 +1266,7 @@ $$
 - **Don't hold to Friday (theta accelerates)**
 
 ### 3. Gamma
+
 
 **For inventory trades:**
 
@@ -1284,6 +1316,7 @@ $$
 - **Gamma adds 15% extra profit**
 
 ### 4. Vega
+
 
 **For inventory trades:**
 
@@ -1340,6 +1373,7 @@ $$
 ✅ Never buy Wednesday morning (IV too high)
 
 ### 5. Greeks in Action
+
 
 **Setup:**
 
@@ -1432,7 +1466,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Date: February 7, 2024**
 
@@ -1502,6 +1538,7 @@ $$
 
 ### 2. Transition Risk
 
+
 **Date: November 16, 2023**
 
 **Background:**
@@ -1553,6 +1590,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Date: May 2, 2024**
 
 **Background:**
@@ -1601,6 +1639,7 @@ $$
 **Key lesson: Inventory strategies work both directions - puts for builds, calls for draws**
 
 ### 4. Tactical Duration
+
 
 **Date: August 2024**
 
@@ -1656,6 +1695,7 @@ $$
 - **Inventory strategies have losses - manage risk**
 
 ### 5. Duration Hedge
+
 
 **Date: June 30, 2024**
 
@@ -1714,7 +1754,9 @@ $$
 
 ## Risk Management
 
+
 ### 1. Position Sizing
+
 
 **The weekly trade frequency challenge:**
 
@@ -1746,6 +1788,7 @@ $$
 
 ### 2. Stop Loss
 
+
 **For inventory trades:**
 
 **Pre-report stop:**
@@ -1775,6 +1818,7 @@ $$
 - **But preserved $150 vs. holding to zero**
 
 ### 3. Profit Taking
+
 
 **For inventory trades:**
 
@@ -1809,6 +1853,7 @@ $$
 
 ### 4. Time-Based Exits
 
+
 **Mandatory exit times:**
 
 **Day of report:**
@@ -1834,6 +1879,7 @@ $$
 
 ### 5. Diversification
 
+
 **Don't concentrate:**
 
 - Trade crude oil Wednesdays
@@ -1858,6 +1904,7 @@ $$
 - **Reduces single-report risk**
 
 ### 6. Risk Management
+
 
 **Before entry (Monday):**
 
@@ -1888,6 +1935,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Inventory cycle trading is pure fundamental analysis with options leverage. You're reading real supply-demand data, not sentiment or technicals. The edge exists because most traders ignore fundamentals—they chase momentum or follow charts. But every Wednesday at 10:30 AM, the market gets objective truth: how much oil is actually in storage. When that truth surprises the consensus, prices adjust violently, and options amplify the move 100-500%. The key is developing forecasting skill, sizing conservatively (2% max), and exiting quickly whether you win or lose. Don't fall in love with your forecast—the market doesn't care about your model. Respect geopolitical risk, honor your stops, and remember: it's a 52-week marathon, not a one-trade sprint."
 

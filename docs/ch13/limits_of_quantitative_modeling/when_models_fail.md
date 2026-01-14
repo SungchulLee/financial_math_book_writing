@@ -1,10 +1,12 @@
 # When Models Fail
 
+
 Quantitative models are indispensable in modern finance, but history repeatedly shows that **models can and do fail**, often in systematic ways.
 
 ---
 
-## 1. Sources of model failure
+## Sources of model failure
+
 
 Models fail due to:
 - incorrect assumptions,
@@ -16,7 +18,8 @@ Failures are often structural, not accidental.
 
 ---
 
-## 2. Historical examples
+## Historical examples
+
 
 Notable failures include:
 - Long-Term Capital Management (1998),
@@ -28,7 +31,8 @@ These failures share common patterns.
 
 ---
 
-## 3. Warning signs
+## Warning signs
+
 
 Indicators of impending failure include:
 - unexplained residuals,
@@ -40,7 +44,8 @@ Early detection is critical.
 
 ---
 
-## 4. Lessons learned
+## Lessons learned
+
 
 Robust risk management requires:
 - humility about model limits,
@@ -51,7 +56,8 @@ Models should inform, not dictate, decisions.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - All models are approximations.
 - Failure is inevitable over long horizons.
@@ -60,6 +66,7 @@ Models should inform, not dictate, decisions.
 ---
 
 ## Further reading
+
 
 - Taleb, *The Black Swan*.
 - Danielsson, *Financial Risk Forecasting*.

@@ -1,10 +1,12 @@
 # Intraday Momentum
 
+
 **Intraday momentum** is an options trading strategy that capitalizes on strong directional moves within a single trading session, using short-term options to capture amplified gains from rapid price acceleration with defined risk.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/intraday_momentum_example.png?raw=true" alt="intraday_momentum_example" width="700">
@@ -15,6 +17,7 @@
 ---
 
 ## Economic
+
 
 **Beyond the basic strategy, understanding the REAL economic dynamics:**
 
@@ -52,9 +55,11 @@ Where:
 
 ## Intraday Momentum Trading
 
+
 **Before executing this strategy, understand the mechanics:**
 
 ### 1. Core Strategy
+
 
 **Definition:** Trading options based on strong directional moves that develop during the trading session, typically holding positions for 1-6 hours and exiting before market close.
 
@@ -94,6 +99,7 @@ Where:
 
 ### 2. Put Version
 
+
 **Definition:** Using puts to capture sharp downward moves during the session.
 
 **When you trade bearish momentum:**
@@ -130,6 +136,7 @@ Where:
 
 
 ### 3. Momentum Options
+
 
 **The deep insight:**
 
@@ -181,6 +188,7 @@ $$
 
 ### 4. Example
 
+
 **Setup:**
 
 - AAPL at $180.50 at 10:00 AM
@@ -221,6 +229,7 @@ $$
 
 ### 5. Time Decay vs. Gamma
 
+
 **Key relationship:**
 
 $$
@@ -255,6 +264,7 @@ $$
 
 ### 6. Volatility Expansion
 
+
 **The IV boost effect:**
 
 When strong momentum develops:
@@ -288,6 +298,7 @@ $$
 5. **Your option benefits from both price AND volatility**
 
 ### 7. Strategic Timing Advantage
+
 
 **Why intraday horizon is optimal:**
 
@@ -332,6 +343,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Momentum:**
 
@@ -409,7 +421,9 @@ $$
 
 ## Mathematical Foundation
 
+
 ### 1. The Profit Equation
+
 
 **Intraday P&L decomposition:**
 
@@ -468,6 +482,7 @@ $$
 
 ### 2. Why Short-Dated Options
 
+
 **Gamma comparison across expirations:**
 
 For ATM option on $100 stock:
@@ -495,6 +510,7 @@ $$
 **Conclusion: Shorter DTE → Better for intraday due to higher gamma**
 
 ### 3. Expected Value Framework
+
 
 **For profitable intraday trading:**
 
@@ -532,6 +548,7 @@ $$
 
 ### 4. The Break-Even Move
 
+
 **Minimum move needed for profit:**
 
 $$
@@ -563,6 +580,7 @@ $$
 **Profit = $5.85 - $2.50 = $3.35 per share = $335 per contract**
 
 ### 5. Risk-Reward Ratio
+
 
 **Typical intraday momentum trade:**
 
@@ -596,7 +614,9 @@ $$
 
 ## Step-by-Step Setup
 
+
 ### 1. Pre-Market Scan
+
 
 **1. Identify Candidates (5-10 stocks):**
 
@@ -656,6 +676,7 @@ Bid-Ask Spread < $0.10 on ATM options
 
 ### 2. Opening Setup
 
+
 **1. Observe First 30 Minutes:**
 
 - Let opening volatility settle
@@ -685,6 +706,7 @@ Bid-Ask Spread < $0.10 on ATM options
 - **This is your entry signal**
 
 ### 3. Trade Construction
+
 
 **1. Select Strike and Expiration:**
 
@@ -752,6 +774,7 @@ $$
 
 ### 4. Active Management
 
+
 **1. Monitor Price Action:**
 
 - Check every 15-30 minutes
@@ -810,6 +833,7 @@ $$
 
 ### 5. End-of-Day Exit
 
+
 **1. Plan Exit Time:**
 
 **By 3:30 PM:**
@@ -843,6 +867,7 @@ $$
 - Learn for next trade
 
 ### 6. Worked Example
+
 
 **Pre-Market (8:00 AM):**
 
@@ -914,7 +939,9 @@ $$
 
 ## Greeks Analysis
 
+
 ### 1. Delta
+
 
 **What it means:**
 
@@ -958,6 +985,7 @@ $$
 - **Put gains: 0.55 × $3 = $1.65**
 
 ### 2. Gamma
+
 
 **What it means:**
 
@@ -1006,6 +1034,7 @@ $$
 
 ### 3. Theta
 
+
 **What it means:**
 
 $$
@@ -1048,6 +1077,7 @@ $$
 **Strategy: Exit before close to avoid theta bleed**
 
 ### 4. Vega
+
 
 **What it means:**
 
@@ -1092,6 +1122,7 @@ $$
 **Best practice:** Enter when IV is NORMAL (40-50%), benefit from expansion
 
 ### 5. Greeks in Action
+
 
 **Setup:**
 
@@ -1146,7 +1177,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Duration Cut via Futures
+
 
 **Background:**
 
@@ -1213,6 +1246,7 @@ $$
 
 ### 2. Transition Risk Hedge
 
+
 **Background:**
 
 - Date: June 8, 2024
@@ -1272,6 +1306,7 @@ $$
 **Key lesson:** Bearish momentum can be just as profitable as bullish
 
 ### 3. Portable Alpha with Futures
+
 
 **Background:**
 
@@ -1334,6 +1369,7 @@ $$
 - **Discipline to exit saved $420 more**
 
 ### 4. Tactical Duration Extension
+
 
 **Background:**
 
@@ -1407,6 +1443,7 @@ $$
 
 ### 5. Duration Hedge Failure
 
+
 **Background:**
 
 - Date: July 10, 2024
@@ -1455,7 +1492,9 @@ $$
 
 ## Risk Management
 
+
 ### 1. Position Sizing Framework
+
 
 **The cardinal rule:**
 
@@ -1500,6 +1539,7 @@ $$
 **Never round up! Always round down for safety.**
 
 ### 2. Stop Loss Rules
+
 
 **Mandatory stop loss:**
 
@@ -1547,6 +1587,7 @@ $$
 
 ### 3. Profit Taking Strategy
 
+
 **Scaling out approach (recommended):**
 
 **Level 1 (+100%):**
@@ -1583,6 +1624,7 @@ $$
 
 ### 4. Time-Based Stops
 
+
 **Mandatory exit times:**
 
 **Intraday close rule:**
@@ -1609,6 +1651,7 @@ $$
 
 ### 5. Diversification Rules
 
+
 **Never concentrate:**
 
 - Max 3 positions simultaneously
@@ -1634,6 +1677,7 @@ $$
 - Different sectors → True diversification
 
 ### 6. The Kelly Criterion
+
 
 **Optimal position size:**
 
@@ -1685,6 +1729,7 @@ $$
 
 ### 7. Risk Management Checklist
 
+
 **Before entering trade:**
 
 ✅ Is position size ≤ 2-3% of account?
@@ -1717,6 +1762,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Intraday momentum trading is the most time-intensive but also one of the most rewarding option strategies. It requires you to be right on direction AND timing, demands constant monitoring, and is unforgiving of mistakes. BUT it offers maximum gamma exposure with minimum theta cost, no overnight risk, and the ability to compound capital quickly. Master this and you have a powerful tool in your arsenal. The key is discipline: honor your stops, exit before close, and never let a winner turn into a loser overnight."
 

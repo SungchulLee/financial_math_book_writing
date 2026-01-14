@@ -1,10 +1,12 @@
 # Payoff Engineering
 
+
 **Payoff engineering** is the systematic design and construction of custom financial payoffs by combining vanilla options, forwards, and other building blocks to create precisely tailored risk-return profiles that match specific investment objectives, hedging needs, or market views that cannot be achieved with standard instruments.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is Payoff Engineering?
 
+
 ### 1. Building Block Principle
+
 
 **Fundamental components:**
 
@@ -53,6 +57,7 @@ $$
 
 ### 2. Replication Principle
 
+
 **Any payoff can be replicated:**
 
 **The deep insight:** By the fundamental theorem of asset pricing, any attainable payoff can be replicated by a portfolio of traded securities. If markets are complete (enough options at different strikes), you can replicate ANY payoff function.
@@ -74,6 +79,7 @@ $$
 **The power:** You can build literally any payoff shape by adjusting $(\alpha, \beta, \{c_i\}, \{p_i\})$.
 
 ### 3. Static vs. Dynamic
+
 
 **Two approaches to replication:**
 
@@ -106,6 +112,7 @@ $$
 - Dynamic: When payoff is path-dependent or options not available
 
 ### 4. Piecewise Linearity
+
 
 **Key decomposition technique:**
 
@@ -145,6 +152,7 @@ $$
 - If $S_T > 110$: $V = (S_T - 90) - (S_T - 110) = 20$ ✓
 
 ### 5. Breeden-Litzenberger
+
 
 **Spanning with options:**
 
@@ -189,6 +197,7 @@ $$
 
 ### 6. Digital Options
 
+
 **Sharp payoffs:**
 
 **Definition:** Options that pay a fixed amount if condition is met, zero otherwise. Also called "binary options."
@@ -229,6 +238,7 @@ Want digital that pays $10 if $S_T > 100$:
 
 ### 7. Risk Reversals
 
+
 **Asymmetric positions:**
 
 **Definition:** Combination of call and put, usually OTM on opposite sides, creating directional bias with limited cost.
@@ -262,6 +272,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Strike:**
 - Exercise price of an option
@@ -303,7 +314,9 @@ $$
 
 ## Payoff Construction
 
+
 ### 1. Spread Payoffs
+
 
 **Limited risk, limited reward:**
 
@@ -330,6 +343,7 @@ $$
 - Diagonal spread: Different strikes AND expirations
 
 ### 2. Butterfly Payoffs
+
 
 **Bet on low volatility:**
 
@@ -365,6 +379,7 @@ $$
 - Alternative to short straddle (lower risk)
 
 ### 3. Condor Payoffs
+
 
 **Wider range than butterfly:**
 
@@ -405,6 +420,7 @@ $$
 
 ### 4. Straddle/Strangle
 
+
 **Volatility plays:**
 
 **Long straddle:**
@@ -434,6 +450,7 @@ $$
 - Volatility arbitrage
 
 ### 5. Ratio Spreads
+
 
 **Unbalanced positions:**
 
@@ -470,6 +487,7 @@ $$
 
 ### 6. Collar Payoffs
 
+
 **Protected but capped:**
 
 $$
@@ -502,6 +520,7 @@ $$
 - Executive compensation (protect stock grants)
 
 ### 7. Digital Payoffs
+
 
 **All-or-nothing:**
 
@@ -536,7 +555,9 @@ $$
 
 ## Advanced Techniques
 
+
 ### 1. Convexity Engineering
+
 
 **Curve the payoff:**
 
@@ -570,6 +591,7 @@ $$
 
 ### 2. Moment Matching
 
+
 **Match desired moments:**
 
 **Goal:** Create payoff with specific mean, variance, skewness, kurtosis
@@ -597,6 +619,7 @@ $$
 Options with different strikes contribute differently to each moment. Optimize weights to match target moments.
 
 ### 3. Greeks Engineering
+
 
 **Control sensitivities:**
 
@@ -635,6 +658,7 @@ Want:
 
 ### 4. Variance Swaps
 
+
 **Pure volatility exposure:**
 
 **Payoff:**
@@ -670,6 +694,7 @@ $$
 
 ### 5. Forward Start Options
 
+
 **Option on future option:**
 
 **Payoff:** At time $T_1$, receive option with strike set at-the-money at $T_1$, expiring at $T_2$.
@@ -697,6 +722,7 @@ $$
 - Compensation plans
 
 ### 6. Chooser Options
+
 
 **Decide later if call or put:**
 
@@ -728,6 +754,7 @@ $$
 
 ### 7. Cliquet Options
 
+
 **Ratchet mechanism:**
 
 **Payoff:** Sum of returns, reset periodically, with floor/cap at each reset.
@@ -754,7 +781,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Bid-Ask Spreads
+
 
 **Theory vs. reality:**
 
@@ -779,6 +808,7 @@ $$
 
 ### 2. Forgetting Pin Risk
 
+
 **Settlement headaches:**
 
 - **Mistake:** Design payoff with strikes near expected final price
@@ -800,6 +830,7 @@ Iron condor: 95/100/105/110 with stock at $102.50 at expiration
 **Fix:** Design strikes at 95/100/110/115 if stock near 102-103
 
 ### 3. Leverage Creep
+
 
 **Unintentional amplification:**
 
@@ -827,6 +858,7 @@ If stock gaps down 20%:
 
 ### 4. Path Dependence Oversight
 
+
 **Static assumption failure:**
 
 - **Mistake:** Design payoff assuming static replication works
@@ -848,6 +880,7 @@ Want payoff: "Average of stock price over 12 months"
 - Or accept tracking error from static approximation
 
 ### 5. Correlation Assumptions
+
 
 **Multi-asset errors:**
 
@@ -872,6 +905,7 @@ Payoff: $\max(S_1 - K, 0) + \max(S_2 - K, 0)$
 **Loss:** Paid premium for diversification that disappeared
 
 ### 6. Tail Risk Blindness
+
 
 **Small probability, large impact:**
 
@@ -900,7 +934,9 @@ Payoff: $\max(S_1 - K, 0) + \max(S_2 - K, 0)$
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Structured note with target payoff:**
 
@@ -943,6 +979,7 @@ Target payoff:
 - Perfect payoff match to investor objectives
 
 ### 2. Worst Case: Failure
+
 
 **Exotic option blowup:**
 
@@ -992,7 +1029,9 @@ Target payoff:
 
 ## Risk Management Rules
 
+
 ### 1. Gross Notional Limits
+
 
 **Control leverage:**
 
@@ -1019,6 +1058,7 @@ Capital: $100K
 
 ### 2. Scenario Analysis
 
+
 **Stress test the payoff:**
 
 **Required scenarios:**
@@ -1036,6 +1076,7 @@ Capital: $100K
 - If violated, redesign payoff
 
 ### 3. Greek Limits
+
 
 **Control sensitivities:**
 
@@ -1056,6 +1097,7 @@ $$
 
 ### 4. Liquidity Requirements
 
+
 **Ensure exit capability:**
 
 **Minimum liquidity:**
@@ -1075,6 +1117,7 @@ Want to hold 100 call contracts
 - 100 contracts tradeable in 3 days ✓
 
 ### 5. Complexity Penalty
+
 
 **Simpler is better:**
 
@@ -1100,7 +1143,9 @@ Worst-of barrier note: 2 underlyings, 1 strike, barrier = 6 points (borderline)
 
 ## Real-World Examples
 
+
 ### 1. CPPI (Constant Proportion Portfolio Insurance)
+
 
 **Dynamic payoff engineering:**
 
@@ -1141,6 +1186,7 @@ Initial capital: $100K, Floor: $90K, Multiplier: 4
 
 ### 2. Autocallable Notes
 
+
 **Popular retail structure:**
 
 **Payoff:**
@@ -1179,6 +1225,7 @@ Initial capital: $100K, Floor: $90K, Multiplier: 4
 
 ### 3. Target Redemption Note (TARN)
 
+
 **Accumulated return cap:**
 
 **Payoff:**
@@ -1211,6 +1258,7 @@ Initial capital: $100K, Floor: $90K, Multiplier: 4
 
 ### 4. Range Accrual Note
 
+
 **Daily observation payoff:**
 
 **Payoff:**
@@ -1242,7 +1290,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Define Objective
+
 
 **Start with the problem:**
 
@@ -1264,6 +1314,7 @@ $$
 **Conclusion:** Iron condor fits perfectly
 
 ### 2. Draw Target Payoff
+
 
 **Visualize before building:**
 
@@ -1288,6 +1339,7 @@ Goal: Profit if stock $95-$105, small loss outside
 
 ### 3. Decompose into Building Blocks
 
+
 **Map to instruments:**
 
 **For each kink at strike $K_i$:**
@@ -1308,6 +1360,7 @@ Goal: Profit if stock $95-$105, small loss outside
 - Long 110 call
 
 ### 4. Price Components
+
 
 **Cost analysis:**
 
@@ -1330,6 +1383,7 @@ Get quotes for each leg:
 
 ### 5. Verify Arbitrage-Free
 
+
 **No free money:**
 
 **Checks:**
@@ -1347,6 +1401,7 @@ $$
 If violated, arbitrage exists!
 
 ### 6. Stress Test
+
 
 **What-if analysis:**
 
@@ -1377,6 +1432,7 @@ Iron condor with stock at $100
 
 ### 7. Execute and Monitor
 
+
 **Implementation:**
 
 **Day 1: Execute**
@@ -1402,6 +1458,7 @@ Iron condor with stock at $100
 ---
 
 ## Final Wisdom
+
 
 > "Payoff engineering is both an art and a science. The science is decomposing desired payoffs into option portfolios using mathematics. The art is knowing which payoffs are actually worth creating—just because you CAN build a payoff doesn't mean you SHOULD. The best payoff engineering is invisible: it solves a real problem (hedging, income, leverage) using the simplest possible structure. When payoff engineering becomes exotic and complex, it often means someone is solving a problem that doesn't exist, usually to justify high fees. Build payoffs that serve your investors, not your ego."
 

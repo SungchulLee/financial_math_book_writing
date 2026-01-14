@@ -1,10 +1,12 @@
 # Identifiability Issues
 
+
 Calibration of stochastic volatility models is fundamentally limited by **identifiability**. Even with rich option surfaces, some parameters are only weakly constrained, leading to instability and ambiguity.
 
 ---
 
-## 1. Structural vs practical identifiability
+## Structural vs practical identifiability
+
 
 A model is **structurally identifiable** if distinct parameter sets imply distinct option prices in theory.
 In practice, calibration suffers from:
@@ -17,7 +19,8 @@ Thus, many parameters are only *practically* identifiable within wide confidence
 
 ---
 
-## 2. Typical weakly identifiable parameters
+## Typical weakly identifiable parameters
+
 
 Across stochastic volatility models, common weak points include:
 
@@ -29,7 +32,8 @@ These parameters often affect prices in similar ways over limited horizons.
 
 ---
 
-## 3. Manifestations in calibration
+## Manifestations in calibration
+
 
 Poor identifiability appears as:
 
@@ -42,7 +46,8 @@ These are inverse-problem symptoms, not optimizer failures.
 
 ---
 
-## 4. Diagnostic tools
+## Diagnostic tools
+
 
 Useful diagnostics include:
 
@@ -53,7 +58,8 @@ Useful diagnostics include:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Not all parameters are equally identifiable.
 - Weak identifiability is intrinsic to stochastic volatility models.
@@ -62,6 +68,7 @@ Useful diagnostics include:
 ---
 
 ## Further reading
+
 
 - Engl, Hanke & Neubauer, *Regularization of Inverse Problems*.
 - Gatheral, *The Volatility Surface*.

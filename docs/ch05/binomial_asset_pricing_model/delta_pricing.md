@@ -1,6 +1,8 @@
 # Binomial Option Pricing via Classical Hedging
 
+
 ## Purpose of This Chapter
+
 
 The goal of this chapter is to derive option prices using the following logic:
 
@@ -18,12 +20,14 @@ Risk-neutral probabilities will appear **only as a convenient reformulation**, n
 ---
 
 
-## 1. Market Setup
+## Market Setup
+
 
 We consider a one-period market with times \(t=0,dt\).
 
 
-### Risk-Free Asset
+### 1. Risk-Free Asset
+
 
 
 The bank account evolves according to continuous compounding:
@@ -33,7 +37,8 @@ B_0 = 1, \qquad B_{dt} = e^{r dt}
 \]
 
 
-### Stock
+### 2. Stock
+
 
 The stock price evolves as
 
@@ -49,7 +54,8 @@ $$
 The inequality \(d < e^{r dt} < u\) ensures that neither the stock nor the bank dominates the other, ruling out trivial arbitrage.
 
 
-## 2. The Option Payoff
+## The Option Payoff
+
 
 Let an option have terminal payoff
 
@@ -65,7 +71,8 @@ We denote the option price at time 0 by \(V_0\).
 Our task is to determine \(V_0\).
 
 
-## 3. Hedging Idea
+## Hedging Idea
+
 
 The option payoff depends on the stock price and is therefore risky.
 
@@ -77,7 +84,8 @@ This is the essence of **classical hedging**.
 
 
 
-## 4. Construction of a Hedged Portfolio
+## Construction of a Hedged Portfolio
+
 
 Consider a portfolio consisting of:
 
@@ -98,7 +106,8 @@ $$
 $$
 
 
-## 5. Elimination of Stock Risk
+## Elimination of Stock Risk
+
 
 We choose \(\Delta\) so that the portfolio has the **same value in both states**:
 
@@ -129,7 +138,8 @@ The portfolio is therefore **risk-free**.
 
 
 
-## 6. Risk-Free Pricing Principle
+## Risk-Free Pricing Principle
+
 
 
 A fundamental economic principle is:
@@ -158,7 +168,8 @@ e^{-rdt}\frac{u H_d - d H_u}{u-d}
 $$
 
 
-## 7. Option Pricing Formula
+## Option Pricing Formula
+
 
 Substituting the expression for \(\Delta\) and solving for \(V_0\), we obtain
 
@@ -175,7 +186,8 @@ This is the **arbitrage-free price** of the option.
 
 
 
-## 8. Interpretation: Emergence of Risk-Neutral Probability
+## Interpretation: Emergence of Risk-Neutral Probability
+
 
 
 Define
@@ -193,7 +205,8 @@ $$
 The number \(q\) lies in \((0,1)\) and can be interpreted as a probability.
 
 
-### Important Remark
+### 1. Important Remark
+
 
 The probability \(q\) is **not** a real-world probability and is **not assumed** in advance.
 
@@ -205,7 +218,8 @@ For this reason, \(q\) is called the **risk-neutral probability**.
 
 
 
-## 9. Key Takeaways
+## Key Takeaways
+
 
 
 * Hedging eliminates stock-price risk
@@ -221,7 +235,8 @@ For this reason, \(q\) is called the **risk-neutral probability**.
 
 
 
-## 10. Looking Ahead
+## Looking Ahead
+
 
 In multi-period models, the same hedging argument is applied **locally at each node**, leading to dynamic delta hedging.
 

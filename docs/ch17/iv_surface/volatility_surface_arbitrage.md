@@ -1,5 +1,6 @@
 # Volatility Surface
 
+
 **Volatility surface arbitrage** is the practice of identifying and exploiting mispricings across the entire implied volatility surface by trading combinations of options at different strikes and maturities simultaneously, profiting when the surface returns to fair value or theoretical relationships.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
@@ -42,6 +44,7 @@ Where you're trading the **entire surface relationship**, not just one dimension
 
 ## What Is Volatility
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -49,6 +52,7 @@ Where you're trading the **entire surface relationship**, not just one dimension
 **Before understanding surface arbitrage, we need to understand the surface itself:**
 
 ### 1. The Volatility
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
@@ -114,6 +118,7 @@ The implied volatility surface is a **3-dimensional structure**:
 
 ### 2. The Problem with
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_surface.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -154,7 +159,9 @@ The implied volatility surface is a **3-dimensional structure**:
 
 ## The Structure
 
+
 ### 1. Basic Surface
+
 
 **The general framework:**
 
@@ -169,6 +176,7 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 4. **Risk-controlled:** Often delta/gamma neutral
 
 ### 2. Types of Surface
+
 
 **1. Strike Dimension Arbitrage (Vertical):**
 
@@ -224,6 +232,7 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 
 ### 3. The Visual
 
+
 **Surface Arbitrage "Net" Structure:**
 
 ```
@@ -256,7 +265,9 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 
 ## The Portfolio
 
+
 ### 1. General Surface
+
 
 $$
 \Pi_{\text{surface}} = \sum_{i} n_i \cdot V(S, K_i, T_i, \sigma_i)
@@ -288,6 +299,7 @@ Isolate the surface mispricing while neutralizing directional and gamma risks.
 
 ### 2. Butterfly
 
+
 **Strike dimension example:**
 
 $$
@@ -305,6 +317,7 @@ $$
 **If violated:** Arbitrage opportunity exists!
 
 ### 3. Box Spread
+
 
 **Pure arbitrage structure:**
 
@@ -327,9 +340,11 @@ $$
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -340,6 +355,7 @@ $$
 $$
 
 ### 2. Why This IV
+
 
 Markets create these IV structures because different participants have different:
 
@@ -352,6 +368,7 @@ Markets create these IV structures because different participants have different
 - Hedging needs (portfolio protection vs. income generation)
 
 ### 3. The Volatility
+
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -371,6 +388,7 @@ $$
 
 ### 4. Professional
 
+
 Institutional traders view IV strategies as tools for:
 
 1. **Volatility arbitrage:** Extracting the vol risk premium
@@ -386,7 +404,9 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## The P&L Formula
 
+
 ### 1. General Surface
+
 
 $$
 \delta \Pi \approx \underbrace{\sum_i \text{Vega}_i \cdot \delta\sigma_i}_{\text{IV normalization}} + \underbrace{\theta_{\text{net}} \, \delta t}_{\text{Time decay}} + \underbrace{\frac{1}{2}\Gamma_{\text{net}} \cdot \delta S^2}_{\text{Gamma P\&L}} + \underbrace{\Delta_{\text{net}} \cdot \delta S}_{\text{Directional}}
@@ -395,6 +415,7 @@ $$
 **Breaking it down:**
 
 ### 2. Surface
+
 
 **The main bet:**
 
@@ -420,6 +441,7 @@ $$
 
 ### 3. Theta P&L
 
+
 $$
 \theta_{\text{net}} = \sum_i \theta_i
 $$
@@ -435,6 +457,7 @@ $$
 - Managed to not dominate the trade
 
 ### 4. Gamma P&L (Often
+
 
 **For delta-neutral surface trades:**
 
@@ -454,6 +477,7 @@ $$
 
 ### 5. Delta P&L (Hedged
 
+
 **For arbitrage trades:**
 
 $$
@@ -472,7 +496,9 @@ $$
 
 ## Types of Volatility
 
+
 ### 1. Pure Arbitrage
+
 
 **Characteristics:**
 
@@ -521,6 +547,7 @@ $$
 **Action:** Conversion or reversal arbitrage
 
 ### 2. Statistical
+
 
 **Characteristics:**
 
@@ -594,6 +621,7 @@ $$
 
 ### 3. Relative Value
 
+
 **Characteristics:**
 
 - Trade rich vs cheap areas of surface
@@ -632,6 +660,7 @@ $$
 
 ### 4. Volatility
 
+
 **Characteristics:**
 
 - Trade index surface vs component surfaces
@@ -652,6 +681,7 @@ $$
 
 ### 5. Calendar
 
+
 **Structure:**
 
 - Run butterflies across multiple expirations
@@ -669,6 +699,7 @@ $$
 - Trade calendar spread OF butterflies
 
 ### 6. Diagonal Surface
+
 
 **Structure:**
 
@@ -691,6 +722,7 @@ $$
 ---
 
 ## Concrete Example 1
+
 
 **Setup:**
 
@@ -890,6 +922,7 @@ $$
 
 ## Concrete Example 2
 
+
 **Setup:**
 
 **Stock:** AAPL at $180
@@ -1000,6 +1033,7 @@ $$
 
 ## Concrete Example 3
 
+
 **Setup:**
 
 **Stock:** Tech stock at $100
@@ -1076,7 +1110,9 @@ If 6-month IV increases from 21% → 23% (normalizes):
 
 ## Strike Selection
 
+
 ### 1. For Butterfly
+
 
 **Model-based selection:**
 
@@ -1111,6 +1147,7 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 
 ### 2. For Calendar
 
+
 **Term structure analysis:**
 
 1. **Plot term structure curve**
@@ -1130,6 +1167,7 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 - **LEAPS vs near-term:** 1-year vs 3-month
 
 ### 3. For Box Spreads
+
 
 **Strike selection:**
 
@@ -1151,7 +1189,9 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 
 ## Time Frame Selection
 
+
 ### 1. For Pure
+
 
 **Near-term expirations preferred:**
 
@@ -1170,6 +1210,7 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 - Very long (>90 days): More vega, less clear bounds
 
 ### 2. For Statistical
+
 
 **Medium-term optimal:**
 
@@ -1191,6 +1232,7 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 
 ### 3. For Term
 
+
 **Standard calendar ratios:**
 
 - **Front month:** 30-45 days
@@ -1211,7 +1253,9 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 
 ## Position Management
 
+
 ### 1. Entry Timing
+
 
 **For statistical arbitrage:**
 
@@ -1234,6 +1278,7 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 ✓ Greeks within risk limits
 
 ### 2. Greeks Management
+
 
 **Delta hedging:**
 
@@ -1295,6 +1340,7 @@ $$
 
 ### 3. Position
 
+
 **Daily tasks:**
 
 1. **Recalculate mispricings:** Is arbitrage still there?
@@ -1322,6 +1368,7 @@ $$
 4. Assess capital allocation
 
 ### 4. Exit Strategies
+
 
 **For pure arbitrage:**
 
@@ -1370,7 +1417,9 @@ Time stop: Close at 14 days regardless
 
 ## Greeks Analysis
 
+
 ### 1. Butterfly
+
 
 **Long butterfly (underpriced):**
 
@@ -1395,6 +1444,7 @@ $$
 
 ### 2. Box Spread Greeks
 
+
 **All greeks near zero:**
 
 $$
@@ -1415,6 +1465,7 @@ $$
 - Just need to hold to expiration
 
 ### 3. Calendar
+
 
 **Long calendar (back month cheap):**
 
@@ -1439,7 +1490,9 @@ $$
 
 ## When to Use
 
+
 ### 1. Best Conditions ✓
+
 
 **Market environment:**
 
@@ -1483,6 +1536,7 @@ $$
 
 ### 2. Avoid When ✗
 
+
 **Market conditions:**
 
 ❌ **Extreme volatility** (2008, March 2020)
@@ -1513,9 +1567,11 @@ $$
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -1553,6 +1609,7 @@ $$
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 
 - [Specific IV conditions]
@@ -1574,6 +1631,7 @@ $$
 - [Event risk too high]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -1602,6 +1660,7 @@ $$
 - Risk 2-5% on defined risk strategies
 
 ### 4. Best practices: 1
+
 
 **Best practices:**
 
@@ -1636,6 +1695,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1677,6 +1737,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -1717,6 +1778,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 
 - Entry IV level and percentile
@@ -1745,6 +1807,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
@@ -1762,6 +1825,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 
@@ -1806,9 +1870,11 @@ $$
 
 ## Common Mistakes
 
+
 **The fatal errors that destroy volatility surface arbitrage traders:**
 
 ### 1. The trap: What
+
 
 **The trap:**
 
@@ -1994,7 +2060,8 @@ def calculate_net_edge(theoretical_edge, num_legs, bid_ask_per_leg,
 [ ] Remember: Theoretical edge ≠ realized profit
 ```
 
-### 1. The trap: What
+### 2. The trap: What
+
 
 **The trap:**
 
@@ -2239,7 +2306,8 @@ Otherwise: Trust the market, fix your model
 [ ] Remember: "Model says" ≠ "Truth"
 ```
 
-### 2. The trap: What
+### 3. The trap: What
+
 
 **The trap:**
 
@@ -2499,7 +2567,8 @@ $500,000+ → Advanced surface strategies
 [ ] Remember: Complexity requires compensation
 ```
 
-### 3. The trap: What
+### 4. The trap: What
+
 
 **The trap:**
 
@@ -2776,7 +2845,8 @@ Clear winner: Scenario A (close early)
 [ ] Remember: Greed kills accounts
 ```
 
-### 4. The trap: What
+### 5. The trap: What
+
 
 **The trap:**
 
@@ -3080,7 +3150,8 @@ Be strict: Most "opportunities" are noise
 [ ] Remember: Perfect fit = overfitting
 ```
 
-### 1. The trap: What
+### 6. The trap: What
+
 
 **The trap:**
 
@@ -3338,7 +3409,8 @@ def analyze_hedging_costs(edge_per_day, stock_vol, position_delta, days):
 [ ] Remember: Unhedged delta = gambling, not arbitrage
 ```
 
-### 1. The trap: What
+### 7. The trap: What
+
 
 **The trap:**
 
@@ -3626,7 +3698,9 @@ Never force old model on new regime!
 
 ## Advanced Concepts
 
+
 ### 1. Multi-Dimensional
+
 
 **Beyond simple smile fits:**
 
@@ -3668,6 +3742,7 @@ $$
 
 ### 2. No-Arbitrage
 
+
 **Fundamental constraints:**
 
 **Butterfly spread bounds:**
@@ -3691,6 +3766,7 @@ $$
 **If violated → Pure arbitrage exists!**
 
 ### 3. Statistical
+
 
 **Mean reversion metrics:**
 
@@ -3726,6 +3802,7 @@ $$
 
 ### 4. Volatility Risk
 
+
 **The concept:**
 
 Market IV typically > realized vol
@@ -3747,6 +3824,7 @@ Market IV typically > realized vol
 - Repeat monthly
 
 ### 5. Cross-Asset
+
 
 **SPX vs SPY:**
 
@@ -3773,6 +3851,7 @@ Market IV typically > realized vol
 - Multiple dimensions simultaneously
 
 ### 6. Dynamic Hedging
+
 
 **Gamma scalping on arbitrage:**
 
@@ -3802,7 +3881,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Setup (March 16, 2020):**
 
@@ -3875,6 +3956,7 @@ $$
 - Statistical arb worked!
 
 ### 2. Transition Risk
+
 
 **Setup:**
 
@@ -4000,6 +4082,7 @@ Let me simplify with a clearer example:
 
 ### 3. Portable Alpha
 
+
 **Setup:**
 
 - Stock at $100
@@ -4061,6 +4144,7 @@ Let me simplify with a clearer example:
 This still seems off. Let me use a simpler pure arbitrage example:
 
 ### 4. Tactical Duration
+
 
 **Setup (clearer):**
 
@@ -4132,7 +4216,9 @@ This still seems off. Let me use a simpler pure arbitrage example:
 
 ## Practical
 
+
 ### 1. Model Selection
+
 
 **Step 1: Choose smile model**
 
@@ -4169,7 +4255,8 @@ def calibrate_svi(market_ivs, strikes):
 
 - Out-of-sample test
 
-### 1. Screening for
+### 2. Screening for
+
 
 **Daily workflow:**
 
@@ -4210,7 +4297,8 @@ If abs(z_score) > 2:
 
 - Min volume: 50 contracts/day
 
-### 2. Execution
+### 3. Execution
+
 
 **Order types:**
 
@@ -4246,7 +4334,8 @@ If abs(z_score) > 2:
 
 - But may get worse fill
 
-### 3. Greeks Monitoring
+### 4. Greeks Monitoring
+
 
 **Required metrics:**
 
@@ -4272,7 +4361,8 @@ Alerts:
 - Vega > 2000: REDUCE POSITION
 ```
 
-### 4. Risk Management
+### 5. Risk Management
+
 
 **Position limits:**
 
@@ -4304,7 +4394,9 @@ Alerts:
 
 ## Volatility Surface
 
+
 ### 1. How Surface
+
 
 **Completing the volatility strategy pyramid:**
 
@@ -4338,6 +4430,7 @@ Volatility Trading Evolution:
 - **Scalability** (systematic process)
 
 ### 2. Comparison with
+
 
 | Strategy | Dimensions | Model Required | Risk Type | Capital Needs |
 |----------|------------|----------------|-----------|---------------|

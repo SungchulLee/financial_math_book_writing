@@ -1,10 +1,12 @@
 # Liquidity Risk and Spreads
 
+
 **Liquidity risk and spreads** measure the cost and uncertainty of converting positions to cash, with bid-ask spreads widening during stress as market makers withdraw capacity, creating significant trading costs and potential forced liquidations.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is Liquidity?
 
+
 ### 1. Basic Definition
+
 
 **Liquidity dimensions:**
 
@@ -51,6 +55,7 @@
 - Instant execution = High liquidity
 
 ### 2. Bid-Ask Spread
+
 
 **The basic measure:**
 
@@ -77,6 +82,7 @@ $$
 
 ### 3. Market Impact
 
+
 **Price movement from large trades:**
 
 **Kyle's Lambda:**
@@ -99,6 +105,7 @@ $$
 $$
 
 ### 4. Liquidity by Asset Class
+
 
 **Typical bid-ask spreads (normal markets):**
 
@@ -129,6 +136,7 @@ $$
 
 ### 5. Dealer Inventory Model
 
+
 **Market makers quote bid-ask:**
 
 **Spread components:**
@@ -153,6 +161,7 @@ $$
 
 ### 6. Liquidity Premium
 
+
 **Yield compensation for illiquidity:**
 
 $$
@@ -170,6 +179,7 @@ $$
 - Emerging markets: 100-200 bps
 
 ### 7. Liquidity Indicators
+
 
 **Market-wide measures:**
 
@@ -198,7 +208,9 @@ $$
 
 ## Liquidity Risk Measurement
 
+
 ### 1. Liquidation Horizon
+
 
 **Time to unwind position:**
 
@@ -216,6 +228,7 @@ $$
 - Liquidation time doubles to 20 days!
 
 ### 2. Liquidity-Adjusted VaR
+
 
 **Incorporate liquidation costs:**
 
@@ -239,6 +252,7 @@ $$
 
 ### 3. Bid-Ask Bounce
 
+
 **Volatility from spread:**
 
 Roll's estimator:
@@ -254,6 +268,7 @@ $$
 
 ### 4. Amihud Illiquidity Measure
 
+
 **Price impact per dollar traded:**
 
 $$
@@ -267,6 +282,7 @@ Where:
 **Higher ILLIQ = Less liquid**
 
 ### 5. Turnover Ratio
+
 
 **Trading frequency:**
 
@@ -283,6 +299,7 @@ $$
 
 ### 6. Liquidity Beta
 
+
 **Sensitivity to market liquidity:**
 
 $$
@@ -294,6 +311,7 @@ $$
 - Higher risk
 
 ### 7. Funding Liquidity Risk
+
 
 **Ability to finance positions:**
 
@@ -311,7 +329,9 @@ $$
 
 ## Liquidity in Normal Markets
 
+
 ### 1. Treasury Market
+
 
 **Most liquid asset:**
 
@@ -329,6 +349,7 @@ $$
 
 ### 2. Corporate Bonds
 
+
 **Less liquid than Treasuries:**
 
 **Investment-grade:**
@@ -344,6 +365,7 @@ $$
 - Liquidation: Days to weeks
 
 ### 3. Equities
+
 
 **Varies by market cap:**
 
@@ -361,6 +383,7 @@ $$
 
 ### 4. Derivatives
 
+
 **Exchange-traded vs OTC:**
 
 **Listed futures/options:**
@@ -376,6 +399,7 @@ $$
 - Less liquid
 
 ### 5. Cost of Trading
+
 
 **Round-trip transaction costs:**
 
@@ -395,7 +419,9 @@ $$
 
 ## Liquidity in Stress
 
+
 ### 1. Crisis Dynamics
+
 
 **Normal → Stress transition:**
 
@@ -421,6 +447,7 @@ $$
 
 ### 2. Spread Widening Examples
 
+
 **Corporate bonds (2008 crisis):**
 
 **Normal (2007):**
@@ -436,6 +463,7 @@ $$
 - HY spread: 300-800 bps (5-10× wider)
 
 ### 3. Liquidation Cascade
+
 
 **Forced selling creates spiral:**
 
@@ -454,6 +482,7 @@ $$
 
 ### 4. Commonality in Liquidity
 
+
 **All assets become illiquid together:**
 
 Correlations in stress:
@@ -465,6 +494,7 @@ Correlations in stress:
 - Everything illiquid simultaneously
 
 ### 5. Flight to Quality
+
 
 **Liquidity concentration:**
 
@@ -485,6 +515,7 @@ Correlations in stress:
 
 ### 6. Dealer Balance Sheet
 
+
 **Post-2008 constraints binding:**
 
 **Normal capacity:**
@@ -501,6 +532,7 @@ Correlations in stress:
 **Result: Market-making evaporates**
 
 ### 7. Redemption Pressure
+
 
 **Mutual fund/ETF outflows:**
 
@@ -521,9 +553,11 @@ Correlations in stress:
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Assuming Constant Liquidity
+
 
 **Mistake:** Use normal-market spreads in risk models
 
@@ -538,6 +572,7 @@ Correlations in stress:
 **Fix:** Stress-test liquidity (10× spread widening)
 
 ### 2. Ignoring Market Impact
+
 
 **Mistake:** Think can sell large position at mid-price
 
@@ -555,6 +590,7 @@ Correlations in stress:
 
 ### 3. Crowded Trades
 
+
 **Mistake:** Popular illiquid trade
 
 **Why it fails:** Can't all exit together
@@ -569,6 +605,7 @@ Correlations in stress:
 **Fix:** Avoid crowded illiquid positions
 
 ### 4. Mismatched Liquidity
+
 
 **Mistake:** Liquid liabilities, illiquid assets
 
@@ -585,6 +622,7 @@ Correlations in stress:
 
 ### 5. Neglecting Funding Liquidity
 
+
 **Mistake:** Assume repo always available
 
 **Why it fails:** Funding dries up in stress
@@ -598,6 +636,7 @@ Correlations in stress:
 **Fix:** Use term repo, diversify funding sources
 
 ### 6. Underestimating Liquidation Time
+
 
 **Mistake:** Think can exit in 1 day
 
@@ -616,6 +655,7 @@ Correlations in stress:
 
 ### 7. Ignoring Quarter-End Effects
 
+
 **Mistake:** Don't adjust for reporting dates
 
 **Why it fails:** Liquidity worse at quarter-ends
@@ -629,6 +669,7 @@ Correlations in stress:
 **Fix:** Trade mid-quarter, avoid reporting dates
 
 ### 8. Over-Diversification
+
 
 **Mistake:** Spread across too many illiquid securities
 
@@ -653,7 +694,9 @@ Correlations in stress:
 
 ## Risk Management Rules
 
+
 ### 1. Liquidity Buffers
+
 
 **Maintain cash reserves:**
 
@@ -668,6 +711,7 @@ $$
 
 ### 2. Position Limits
 
+
 **Cap by liquidation horizon:**
 
 $$
@@ -680,6 +724,7 @@ $$
 - **Max position: $\$10M$**
 
 ### 3. Liquidity Classification
+
 
 **Bucket all holdings:**
 
@@ -700,6 +745,7 @@ $$
 
 ### 4. Stress Testing
 
+
 **Monthly liquidity stress test:**
 
 - Widen spreads 5-10×
@@ -712,6 +758,7 @@ $$
 - If cost > 5% → Increase cash buffer
 
 ### 5. Redemption Policies
+
 
 **For funds:**
 
@@ -729,6 +776,7 @@ $$
 
 ### 6. Funding Diversification
 
+
 **Multiple repo counterparties:**
 
 - Minimum 5 dealers
@@ -741,6 +789,7 @@ $$
 - Reduce leverage before stress
 
 ### 7. Monitoring Dashboard
+
 
 **Daily tracking:**
 
@@ -761,7 +810,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Lehman Collapse (Sept 2008)
+
 
 **Setup:**
 - Pre-crisis: IG corporate spreads 15 bps
@@ -782,6 +833,7 @@ $$
 
 ### 2. Flash Crash (May 2010)
 
+
 **Setup:**
 - Normal trading day
 - Large sell algorithm triggered
@@ -800,6 +852,7 @@ $$
 **Lesson:** Algorithms can cause liquidity spirals
 
 ### 3. COVID Dash for Cash (March 2020)
+
 
 **Setup:**
 - Pandemic panic
@@ -820,6 +873,7 @@ $$
 
 ### 4. Woodford Fund Suspension (2019)
 
+
 **Setup:**
 - UK equity income fund
 - $\$4B$ AUM
@@ -839,6 +893,7 @@ $$
 **Lesson:** Asset-liability mismatch fatal
 
 ### 5. GameStop Squeeze (Jan 2021)
+
 
 **Setup:**
 - Heavy short interest (>100% of float)
@@ -861,7 +916,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Measuring Current Liquidity
+
 
 **Build liquidity dashboard:**
 
@@ -891,6 +948,7 @@ avg_liquidation = weighted_average(liquidation_days, weights)
 
 ### 2. Liquidity Stress Test
 
+
 **Monthly scenario analysis:**
 
 1. **Baseline scenario:**
@@ -916,6 +974,7 @@ avg_liquidation = weighted_average(liquidation_days, weights)
 
 ### 3. Position Sizing
 
+
 **Liquidity-adjusted position limits:**
 
 $$
@@ -930,6 +989,7 @@ $$
 - **Max position: $\$20M$ (both limits binding)**
 
 ### 4. Portfolio Construction
+
 
 **Liquidity-aware optimization:**
 
@@ -959,6 +1019,7 @@ def optimize_portfolio(holdings, returns, constraints):
 
 ### 5. Redemption Management
 
+
 **For fund managers:**
 
 1. **Set redemption limits:**
@@ -977,6 +1038,7 @@ def optimize_portfolio(holdings, returns, constraints):
    - $10M+$: 30 days notice
 
 ### 6. Crisis Playbook
+
 
 **Predetermined actions:**
 
@@ -1007,6 +1069,7 @@ def optimize_portfolio(holdings, returns, constraints):
 ---
 
 ## Final Wisdom
+
 
 > "Liquidity is the oxygen of markets - invisible when plentiful but lethal when absent. The fundamental mistake is assuming you can exit positions at will; in reality, liquidity is time-varying, mean-reverting, and prone to disappearing exactly when you need it most. During the 2008 crisis, investment-grade corporate bond spreads widened 10-15× normal levels, not because of credit deterioration but pure illiquidity as dealer balance sheets constrained. The key lessons: (1) measure liquidity in stress not normal times (assume spreads widen 5-10×, volumes fall 70%), (2) maintain cash buffers for redemptions and margin calls, (3) avoid crowded illiquid trades where everyone owns the same thing, and (4) diversify funding sources so you're not forced to sell at the worst moment. Remember: In a crisis, the only thing more painful than selling at bad prices is not being able to sell at all."
 

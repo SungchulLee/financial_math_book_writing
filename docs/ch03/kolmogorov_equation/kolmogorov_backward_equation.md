@@ -1,4 +1,5 @@
-# Kolmogorov Backward Equation
+# Kolmogorov Backward
+
 
 The **Kolmogorov backward equation** describes how quantities evolve **backward in time**.
 It appears naturally in two forms:
@@ -16,7 +17,8 @@ dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dB_t.
 
 ---
 
-## 1. What the Backward Equation Evolves
+## What Backward
+
 
 - **Density viewpoint**: evolution of \(p(x,t\mid x_0,t_0)\) in \((x_0,t_0)\)
 - **Expectation viewpoint**: evolution of conditional expectations backward from terminal data
@@ -25,7 +27,8 @@ The backward equation acts on the **initial state** and **initial time**.
 
 ---
 
-## 2. Density Form: Backward Equation for Transition Probabilities
+## Density Form
+
 
 The backward equation for the transition density is
 
@@ -52,7 +55,8 @@ Equivalently,
 
 
 
-### Examples
+### 1. Examples
+
 
 
 \[
@@ -72,7 +76,8 @@ dX_t=-\kappa X_tdt+\sigma dB_t&
 
 ---
 
-## 3. Expectation Form: Value Function PDE
+## Expectation Form
+
 
 Let
 
@@ -108,7 +113,8 @@ This formulation is the basis for:
 
 ---
 
-## 4. Derivation via Chapman–Kolmogorov
+## Derivation via
+
 
 ??? details "Derivation of the Backward Equation"
 
@@ -128,7 +134,8 @@ This formulation is the basis for:
 
 ---
 
-## 5. Relation to the Forward Equation
+## Relation Forward
+
 
 - Forward equation: evolves **distributions**
 - Backward equation: evolves **values / expectations**
@@ -146,7 +153,8 @@ Together, they form the analytical backbone of diffusion theory.
 
 ---
 
-## 6. Outlook
+## Outlook
+
 
 - Adding a potential term leads to the **Feynman–Kac formula**
 - Control terms lead to **Hamilton–Jacobi–Bellman equations**

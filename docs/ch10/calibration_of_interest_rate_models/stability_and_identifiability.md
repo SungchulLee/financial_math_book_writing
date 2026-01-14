@@ -1,10 +1,12 @@
 # Stability and Identifiability
 
+
 Calibration of interest-rate models faces challenges of **stability** and **identifiability**, especially in multi-factor and infinite-dimensional frameworks.
 
 ---
 
-## 1. Identifiability issues
+## Identifiability issues
+
 
 Some parameters are weakly identifiable due to:
 - limited option maturity coverage,
@@ -15,7 +17,8 @@ This leads to multiple parameter sets fitting the same data.
 
 ---
 
-## 2. Stability across time
+## Stability across time
+
 
 A stable calibration should exhibit:
 - smooth parameter evolution,
@@ -26,7 +29,8 @@ Large day-to-day parameter swings indicate overfitting.
 
 ---
 
-## 3. Diagnostic tools
+## Diagnostic tools
+
 
 Useful diagnostics include:
 - sensitivity and Jacobian analysis,
@@ -37,7 +41,8 @@ These help separate structural issues from numerical ones.
 
 ---
 
-## 4. Practical mitigation strategies
+## Practical mitigation strategies
+
 
 Stability is improved by:
 - reducing model dimensionality,
@@ -49,7 +54,8 @@ Practitioners often prefer stability over perfect fit.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Calibration stability is as important as fit quality.
 - Identifiability problems are intrinsic, not technical.
@@ -58,6 +64,7 @@ Practitioners often prefer stability over perfect fit.
 ---
 
 ## Further reading
+
 
 - Engl et al., inverse problems.
 - Andersen & Piterbarg, calibration practice.

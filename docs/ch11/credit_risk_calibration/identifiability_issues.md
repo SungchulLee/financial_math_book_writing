@@ -1,10 +1,12 @@
 # Identifiability Issues
 
+
 Credit risk calibration suffers from **identifiability problems**, especially when multiple parameters affect prices in similar ways.
 
 ---
 
-## 1. Recovery vs hazard rate trade-off
+## Recovery vs hazard rate trade-off
+
 
 A central identifiability issue is:
 - higher hazard rate + higher recovery
@@ -14,7 +16,8 @@ Both can fit the same CDS spreads.
 
 ---
 
-## 2. Limited market information
+## Limited market information
+
 
 Challenges include:
 - sparse maturity coverage,
@@ -25,7 +28,8 @@ This limits the information content of calibration targets.
 
 ---
 
-## 3. Consequences in practice
+## Consequences in practice
+
 
 Poor identifiability leads to:
 - unstable parameter estimates,
@@ -36,7 +40,8 @@ These are intrinsic inverse-problem features.
 
 ---
 
-## 4. Mitigation strategies
+## Mitigation strategies
+
 
 Stability is improved by:
 - fixing recovery rates,
@@ -46,7 +51,8 @@ Stability is improved by:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Identifiability issues are inherent in credit calibration.
 - Recovery and intensity are weakly separable.
@@ -55,6 +61,7 @@ Stability is improved by:
 ---
 
 ## Further reading
+
 
 - Engl et al., inverse problems.
 - Cont, model uncertainty in credit.

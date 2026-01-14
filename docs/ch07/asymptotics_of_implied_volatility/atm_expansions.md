@@ -1,6 +1,8 @@
 # ATM Expansions
 
+
 ## Introduction
+
 
 The **at-the-money (ATM) expansion** of implied volatility provides a detailed characterization of the smile near the forward price $F = S_0 e^{(r-q)T}$. This region is of paramount importance because:
 - ATM options are the most liquid and actively traded
@@ -12,7 +14,9 @@ This section develops comprehensive asymptotic expansions for implied volatility
 
 ## ATM Definition and Conventions
 
-### Multiple ATM Definitions
+
+### 1. Multiple ATM Definitions
+
 
 **ATM Forward (Delta-Neutral):**
 
@@ -57,7 +61,9 @@ Throughout this section, we use **ATM forward** ($K = F$) unless stated otherwis
 
 ## Taylor Expansion Around ATM
 
-### General Expansion in Log-Moneyness
+
+### 1. General Expansion in Log-Moneyness
+
 
 Define log-moneyness relative to the forward:
 
@@ -92,7 +98,8 @@ where:
 - $\sigma_2 = \frac{\partial^2 \sigma}{\partial y^2}\big|_{y=0}$: Curvature parameter
 - $\sigma_3 = \frac{\partial^3 \sigma}{\partial y^3}\big|_{y=0}$: Asymmetry of curvature
 
-### Interpretation of Coefficients
+### 2. Interpretation of Coefficients
+
 
 **$\sigma_0$ (Level):**  
 The baseline volatility for an ATM option. Reflects the overall uncertainty about the asset return.
@@ -115,7 +122,9 @@ Asymmetry in how the smile curves:
 
 ## Connection to Risk-Neutral Moments
 
-### Moment Expansion
+
+### 1. Moment Expansion
+
 
 The risk-neutral distribution admits a moment expansion around the forward:
 
@@ -132,7 +141,8 @@ where $X = \ln(S_T/F)$ has:
 - Skewness: $\text{Skew}(X) = \gamma_3$
 - Kurtosis: $\text{Kurt}(X) = \gamma_4$
 
-### ATM Volatility and Variance
+### 2. ATM Volatility and Variance
+
 
 **Leading term:**
 
@@ -154,7 +164,8 @@ $$
 
 For short maturities, ATM IV directly measures the variance of log-returns.
 
-### Skew and Third Moment
+### 3. Skew and Third Moment
+
 
 **Theorem 4.4.10** (Skew-Skewness Relationship)  
 For small $T$, the smile skew is related to distributional skewness by:
@@ -187,7 +198,8 @@ we have:
 
 This matches equity markets: left-skewed distribution → downward-sloping IV.
 
-### Curvature and Fourth Moment
+### 4. Curvature and Fourth Moment
+
 
 **Theorem 4.4.11** (Curvature-Kurtosis Relationship)  
 The smile curvature relates to excess kurtosis:
@@ -221,7 +233,9 @@ Significant curvature even for moderately fat tails.
 
 ## Model-Specific ATM Expansions
 
-### Black-Scholes Model
+
+### 1. Black-Scholes Model
+
 
 For constant volatility $\sigma$:
 
@@ -236,7 +250,8 @@ $$
 - $\sigma_0 = \sigma$
 - $\sigma_1 = \sigma_2 = \sigma_3 = \cdots = 0$ (flat smile)
 
-### Local Volatility Model
+### 2. Local Volatility Model
+
 
 For $dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t$:
 
@@ -265,7 +280,8 @@ $$
 
 **Interpretation:** The smile parameters directly reflect the spatial derivatives of local volatility near the forward.
 
-### Heston Model
+### 3. Heston Model
+
 
 For the Heston stochastic volatility model:
 
@@ -317,7 +333,8 @@ $$
 - Fit skew $\sigma_1 \to \rho, \xi$
 - Term structure constrains $\kappa, \theta$
 
-### SABR Model
+### 4. SABR Model
+
 
 For SABR with $\beta$ fixed:
 
@@ -345,7 +362,9 @@ $$
 
 ## Small-Moneyness Regime
 
-### Scaling Limit
+
+### 1. Scaling Limit
+
 
 Consider strikes in the regime:
 
@@ -378,7 +397,8 @@ $$
 
 **Result:** The smile is **parabolic** in the scaling variable $\tilde{y}$, with coefficients that blow up as $T \to 0$.
 
-### Connection to Heat Kernel
+### 2. Connection to Heat Kernel
+
 
 For local volatility models, the transition density:
 
@@ -402,7 +422,9 @@ $$
 
 ## Practical ATM Parametrizations
 
-### Quadratic Approximation
+
+### 1. Quadratic Approximation
+
 
 For short-dated options (e.g., weekly), a quadratic fit suffices:
 
@@ -417,7 +439,8 @@ $$
 - Use ATM and two wing points (e.g., 25-delta put/call)
 - Solve linear system for $(\sigma_0, \sigma_1, \sigma_2)$
 
-### Risk Reversal and Butterfly
+### 2. Risk Reversal and Butterfly
+
 
 Market quotes in terms of:
 - **ATM:** $\sigma_{\text{ATM}}$
@@ -498,7 +521,9 @@ $$
 
 ## ATM Greeks and Sensitivities
 
-### Vega at ATM
+
+### 1. Vega at ATM
+
 
 ATM vega is:
 
@@ -533,7 +558,8 @@ $$
 
 Vega grows as $\sqrt{T}$ for short maturities.
 
-### Gamma at ATM
+### 2. Gamma at ATM
+
 
 ATM gamma is:
 
@@ -555,7 +581,8 @@ $$
 
 Gamma blows up as $T^{-1/2}$ near expiry.
 
-### Volga (Vomma)
+### 3. Volga (Vomma)
+
 
 The sensitivity of vega to volatility:
 
@@ -581,7 +608,9 @@ $$
 
 ## Term Structure of ATM Smile
 
-### ATM Volatility Evolution
+
+### 1. ATM Volatility Evolution
+
 
 Define the **ATM term structure**:
 
@@ -597,7 +626,8 @@ $$
 - Downward sloping: High current volatility, expected to fall
 - Humped: Event risk at intermediate maturity
 
-### Skew Term Structure
+### 2. Skew Term Structure
+
 
 The skew parameter $\sigma_1(T)$ also varies with maturity:
 
@@ -616,7 +646,8 @@ $$
 
 **Interpretation:** Short-dated skew reflects immediate crash risk; long-dated skew is milder as uncertainty dominates.
 
-### Curvature Term Structure
+### 3. Curvature Term Structure
+
 
 The curvature $\sigma_2(T)$ often **increases** with maturity:
 
@@ -631,7 +662,9 @@ $$
 
 ## Asymptotic Matching
 
-### Matching ATM and Wing Asymptotics
+
+### 1. Matching ATM and Wing Asymptotics
+
 
 A complete smile model must consistently match:
 
@@ -650,9 +683,11 @@ Parameters $(a, b, \rho, m, \sigma)$ control the transition.
 
 ## Summary
 
+
 ATM expansions provide:
 
-### **Taylor expansion:**
+### 1. **Taylor expansion:**
+
 
 
 $$
@@ -665,7 +700,8 @@ $$
 - $\sigma_1$: Skew (asymmetry)
 - $\sigma_2$: Curvature (convexity)
 
-### **Moment relationships:**
+### 2. **Moment relationships:**
+
 
 
 $$
@@ -674,7 +710,8 @@ $$
 
 
 
-### **Model-specific formulas:**
+### 3. **Model-specific formulas:**
+
 
 **Heston:**
 
@@ -692,7 +729,8 @@ $$
 
 
 
-### **Market quoting conventions:**
+### 4. **Market quoting conventions:**
+
 
 
 $$
@@ -701,13 +739,15 @@ $$
 
 
 
-### **Greeks near ATM:**
+### 5. **Greeks near ATM:**
+
 
 - Vega: $\mathcal{V} \sim \sqrt{T}$
 - Gamma: $\Gamma \sim T^{-1/2}$ (blows up)
 - Volga: $\approx 0$ at ATM for small $T$
 
-### **Practical workflow:**
+### 6. **Practical workflow:**
+
 
 1. Extract $(\sigma_0, \sigma_1, \sigma_2)$ from ATM, 25Δ put/call
 2. Use for short-dated pricing and hedging

@@ -1,5 +1,6 @@
 # Convertible Bond Arbitrage
 
+
 **Convertible bond arbitrage** is a strategy where you profit from mispriced embedded optionality by buying convertible bonds and hedging away the directional risk through short stock positions.
 
 <p align="center">
@@ -30,6 +31,7 @@
 
 ## The Core Insight
 
+
 **The fundamental idea:**
 
 - A convertible bond is a hybrid security: part bond, part stock option
@@ -54,9 +56,11 @@ $$
 
 ## What Is a Convertible Bond?
 
+
 **Before understanding the arbitrage, you need to understand the instrument:**
 
-### The Basic Structure
+### 1. The Basic Structure
+
 
 **A convertible bond gives the holder:**
 
@@ -116,9 +120,11 @@ $$
 
 ## The Embedded Option
 
+
 **This is CRUCIAL to understand:**
 
-### Decomposing the Convertible Bond
+### 1. Decomposing the Convertible Bond
+
 
 $$
 \boxed{\text{Convertible Bond Value} = \text{Bond Floor} + \text{Conversion Option Value}}
@@ -176,9 +182,11 @@ $$
 
 ## Why Is the Option Underpriced?
 
+
 **Several reasons:**
 
 ### 1. Different Investor Bases
+
 
 **Convertible bond investors:**
 
@@ -200,6 +208,7 @@ $$
 
 ### 2. Structural Features
 
+
 **Complexity:**
 
 - Call provisions (issuer can force conversion)
@@ -218,6 +227,7 @@ $$
 
 ### 3. Supply/Demand Dynamics
 
+
 **Issuance reasons:**
 
 - Companies issue converts for cheaper financing
@@ -227,6 +237,7 @@ $$
 - Creates structural discount
 
 ### 4. Forced Sellers
+
 
 **Hedge fund redemptions:**
 
@@ -240,9 +251,11 @@ $$
 
 ## The Arbitrage Strategy
 
+
 **Now we can understand the trade:**
 
-### The Basic Trade
+### 1. The Basic Trade
+
 
 **What you do:**
 
@@ -285,6 +298,7 @@ $$
 ---
 
 ## The Portfolio
+
 
 Your convertible arbitrage portfolio consists of:
 
@@ -337,9 +351,11 @@ where:
 
 ## Economic Interpretation
 
+
 **Understanding what convertible bond arbitrage REALLY represents economically:**
 
-### The Core Economic Trade-Off
+### 1. The Core Economic Trade-Off
+
 
 Convertible bond arbitrage is fundamentally about **exploiting capital structure inefficiencies**. You're not just trading options—you're trading the **relationship between debt and equity**.
 
@@ -363,7 +379,8 @@ $$
 
 - **Extract multiple alpha sources** (gamma scalping, credit spread, volatility, coupon income)
 
-### Why Convertible Bonds Exist
+### 2. Why Convertible Bonds Exist
+
 
 **The issuer's perspective (company issuing the bond):**
 
@@ -405,7 +422,8 @@ $$
 
 - **But Tesla didn't care** (dilution at high prices is acceptable)
 
-### Why the Embedded Option Is Underpriced
+### 3. Why the Embedded Option Is Underpriced
+
 
 **The mispricing mechanism:**
 
@@ -473,11 +491,13 @@ $$
 
    - Regulatory constraints (insurance companies have bond mandates)
 
-### The Five Profit Sources
+### 4. The Five Profit Sources
+
 
 **Unlike simple option strategies, convertible arbitrage has FIVE independent P&L sources:**
 
-#### 1. Gamma Scalping (Primary Source)
+### 5. Gamma Scalping (Primary Source)
+
 
 **The mechanism:**
 
@@ -515,7 +535,8 @@ $$
 
 - Have credit upside (bond floor can increase)
 
-#### 2. Coupon Income (Unique to Converts)
+### 6. Coupon Income (Unique to Converts)
+
 
 **The steady income:**
 
@@ -547,7 +568,8 @@ Most strategies don't have positive carry. Convertibles do!
 
 - Reduces breakeven hurdle
 
-#### 3. Credit Spread Tightening
+### 7. Credit Spread Tightening
+
 
 **The bond floor can rise:**
 
@@ -585,7 +607,8 @@ Where $s$ = credit spread
 
 - **Structural long credit bias profitable**
 
-#### 4. Volatility Expansion
+### 8. Volatility Expansion
+
 
 **The vega component:**
 
@@ -619,7 +642,8 @@ $$
 
 - **2006-2007:** Vol crushed, hurt many CB arbitrage funds
 
-#### 5. Call Feature Extraction
+### 9. Call Feature Extraction
+
 
 **Many converts have issuer call options:**
 
@@ -649,7 +673,8 @@ $$
 
 - Realize embedded option value immediately
 
-### Capital Structure Arbitrage
+### 10. Capital Structure Arbitrage
+
 
 **Convertible arbitrage is really a form of capital structure arbitrage:**
 
@@ -688,11 +713,13 @@ $$
 
 - **Asymmetric payoff:** Limited downside (bond floor), unlimited upside (gamma profits)
 
-### The Greeks Decomposition
+### 11. The Greeks Decomposition
+
 
 **Unlike pure equity options, convertible bonds have HYBRID greeks:**
 
-#### Delta (Equity Sensitivity)
+### 12. Delta (Equity Sensitivity)
+
 
 $$
 \Delta_{\text{convert}} = \frac{\partial V}{\partial S} = N(d_1) \times \text{Conversion Ratio}
@@ -704,7 +731,8 @@ $$
 
 - **Your hedge:** Short $\Delta \times$ shares
 
-#### Gamma (Convexity)
+### 13. Gamma (Convexity)
+
 
 $$
 \Gamma_{\text{convert}} = \frac{\partial^2 V}{\partial S^2} = \frac{n(d_1)}{S\sigma\sqrt{T}}
@@ -716,7 +744,8 @@ $$
 
 - Need realized volatility to monetize
 
-#### Rho (Interest Rate Sensitivity)
+### 14. Rho (Interest Rate Sensitivity)
+
 
 $$
 \rho_{\text{convert}} = \frac{\partial V}{\partial r} = \underbrace{-\text{Duration} \times V_{\text{bond}}}_{\text{bond component}} + \underbrace{\rho_{\text{option}}}_{\text{option component}}
@@ -738,7 +767,8 @@ $$
 
 - Adds complexity and cost
 
-#### Credit Spread Delta (Unique to Converts!)
+### 15. Credit Spread Delta (Unique to Converts!)
+
 
 $$
 \Delta_{\text{credit}} = \frac{\partial V}{\partial s} < 0
@@ -752,7 +782,8 @@ $$
 
 **Risk:** If company credit deteriorates → bond floor collapses → lose money even if delta hedged!
 
-#### Vega (Volatility Sensitivity)
+### 16. Vega (Volatility Sensitivity)
+
 
 $$
 \nu_{\text{convert}} = \frac{\partial V}{\partial \sigma} = S \times n(d_1) \times \sqrt{T}
@@ -764,7 +795,8 @@ $$
 
 - **Risk:** Vol contraction = loss
 
-### The Financing Economics
+### 17. The Financing Economics
+
 
 **Critical aspect often overlooked:**
 
@@ -826,7 +858,8 @@ $$
 
 - **Many funds blew up**
 
-### Professional Institutional Perspective
+### 18. Professional Institutional Perspective
+
 
 **Market makers / Credit Suisse, Morgan Stanley, etc.:**
 
@@ -890,11 +923,13 @@ $$
 
 - Create arbitrage opportunity for hedge funds
 
-### When Convertible Arbitrage Offers Economic Edge
+### 19. When Convertible Arbitrage Offers Economic Edge
+
 
 **The strategy works best when:**
 
-#### 1. New Issuance (Primary Market)
+### 20. New Issuance (Primary Market)
+
 
 **Why:**
 
@@ -912,7 +947,8 @@ $$
 
 - **Best arbitrage opportunities in heavy issuance periods**
 
-#### 2. Credit Improving / Equity Volatile
+### 21. Credit Improving / Equity Volatile
+
 
 **Perfect setup:**
 
@@ -932,7 +968,8 @@ $$
 
 - **Converts performed excellently**
 
-#### 3. High Volatility Environment
+### 22. High Volatility Environment
+
 
 **Need:**
 
@@ -946,7 +983,8 @@ $$
 
 - 2017-2018: Vol crushed (VIX < 12) → tough environment
 
-#### 4. Positive Carry Regime
+### 23. Positive Carry Regime
+
 
 **Need:**
 
@@ -960,7 +998,8 @@ $$
 
 - **Nice carry environment**
 
-#### 5. Low Correlation Environment
+### 24. Low Correlation Environment
+
 
 **Portfolio benefit:**
 
@@ -970,7 +1009,8 @@ $$
 
 - **Reduce portfolio risk** while maintaining returns
 
-### Why Convertible Arbitrage Has Declined Post-2008
+### 25. Why Convertible Arbitrage Has Declined Post-2008
+
 
 **Pre-2008: Golden age**
 
@@ -1034,7 +1074,8 @@ $$
 
 - Concentrated in specialist funds
 
-### Summary of Economic Insights
+### 26. Summary of Economic Insights
+
 
 **Convertible bond arbitrage is:**
 
@@ -1073,6 +1114,7 @@ Understanding converts means understanding:
 
 ## The P&L Formula
 
+
 For a convertible bond arbitrage position:
 
 $$
@@ -1082,6 +1124,7 @@ $$
 **Breaking it down:**
 
 ### 1. Coupon Income (Steady Income)
+
 
 **The bond pays coupons:**
 
@@ -1099,6 +1142,7 @@ $$
 
 ### 2. Gamma P&L (Like Gamma Scalping)
 
+
 **From delta hedging rebalancing:**
 $$
 \text{Gamma P\&L} = \frac{1}{2}\Gamma(\delta S)^2
@@ -1111,6 +1155,7 @@ $$
 - This is a major profit source
 
 ### 3. Credit P&L (Spread Changes)
+
 
 **Bond credit spread can tighten:**
 
@@ -1130,6 +1175,7 @@ $$
 
 ### 4. Vega P&L (Volatility Changes)
 
+
 **Embedded option has vega:**
 
 - If implied volatility increases → option value increases
@@ -1141,6 +1187,7 @@ $$
 **Similar to vega trading!**
 
 ### 5. Costs (Negative Carry)
+
 
 **You pay several costs:**
 
@@ -1174,6 +1221,7 @@ $$
 ---
 
 ## Concrete Example: Convertible Bond Arbitrage Trade
+
 
 **Setup:**
 
@@ -1341,6 +1389,7 @@ After 1 month:
 
 ## Convertible Arbitrage vs. Other Strategies
 
+
 **Let's see how convertible arbitrage fits with what we've learned:**
 
 | Strategy | Instrument | Primary Exposure | What You Want | Unique Feature |
@@ -1351,7 +1400,8 @@ After 1 month:
 | **Dispersion Trading** | Options (many) | Correlation | Independent moves | Trade structure |
 | **Convertible Arbitrage** | Convertible Bonds | Gamma + Credit + Vega | Multiple sources | Coupon income! |
 
-### Similarities to Gamma Scalping
+### 1. Similarities to Gamma Scalping
+
 
 **Mechanically similar:**
 
@@ -1368,7 +1418,8 @@ $$
 \text{Gamma P\&L} = \frac{1}{2}\Gamma(\delta S)^2
 $$
 
-### Key Differences from Gamma Scalping
+### 2. Key Differences from Gamma Scalping
+
 
 | Aspect | Gamma Scalping | Convertible Arbitrage |
 |--------|---------------|----------------------|
@@ -1393,9 +1444,11 @@ $$
 
 ## Why Convertible Arbitrage Exists
 
+
 **Several structural reasons:**
 
 ### 1. Market Segmentation
+
 
 **Different investors, different goals:**
 
@@ -1406,6 +1459,7 @@ $$
 - **Arbitrageurs:** Bridge the gap
 
 ### 2. Forced Sellers
+
 
 **Issuers use converts strategically:**
 
@@ -1425,6 +1479,7 @@ $$
 
 ### 3. Complexity Premium
 
+
 **Hard to value:**
 
 - Credit risk + equity option + interest rate risk
@@ -1437,6 +1492,7 @@ $$
 
 ### 4. Financing Advantage
 
+
 **Arbitrageurs can finance efficiently:**
 
 - Prime brokers provide leverage
@@ -1446,6 +1502,7 @@ $$
 - Retail/smaller investors can't compete
 
 ### 5. Hedging Infrastructure
+
 
 **Requires sophistication:**
 
@@ -1461,9 +1518,11 @@ $$
 
 ## The Multiple Profit Sources
 
+
 **Unlike pure option strategies, convertible arbitrage has FOUR profit sources:**
 
 ### 1. Cheapness Capture
+
 
 **Initial entry discount:**
 
@@ -1477,6 +1536,7 @@ $$
 
 ### 2. Gamma Scalping
 
+
 **From dynamic hedging:**
 
 - Stock volatility → rebalancing profits
@@ -1486,6 +1546,7 @@ $$
 - Same as pure gamma scalping
 
 ### 3. Credit Spread Capture
+
 
 **Credit improvement:**
 
@@ -1501,6 +1562,7 @@ $$
 
 ### 4. Coupon Income
 
+
 **Steady cash flow:**
 
 - Receive 0-3% annually
@@ -1511,7 +1573,8 @@ $$
 
 **This too is unique!**
 
-### Sum Total
+### 5. Sum Total
+
 
 **Best case scenario:** All four work in your favor
 
@@ -1529,7 +1592,9 @@ $$
 
 ## Risks and Challenges
 
+
 ### 1. Credit Risk (The Big One)
+
 
 **Company goes bankrupt:**
 
@@ -1563,6 +1628,7 @@ $$
 
 ### 2. Borrow Costs (Can Kill Returns)
 
+
 **Stock borrow can be expensive:**
 
 - "Hard to borrow" stocks: 5-10%+ annually
@@ -1591,6 +1657,7 @@ $$
 
 ### 3. Liquidity Risk
 
+
 **Converts are less liquid:**
 
 - Wide bid-ask spreads
@@ -1608,6 +1675,7 @@ $$
 - Forced liquidations at losses
 
 ### 4. Call Risk (Issuer Can Force Conversion)
+
 
 **Issuer has rights too:**
 
@@ -1629,6 +1697,7 @@ $$
 
 ### 5. Multiple Risk Factors
 
+
 **Unlike pure gamma scalping:**
 
 - Exposed to credit, interest rates, equity, volatility
@@ -1649,6 +1718,7 @@ $$
 
 ### 6. Model Risk
 
+
 **Valuation is complex:**
 
 - Need to value embedded option
@@ -1660,6 +1730,7 @@ $$
 - If model is wrong, your hedge is wrong
 
 ### 7. Financing Risk
+
 
 **Leverage is essential:**
 
@@ -1681,7 +1752,9 @@ $$
 
 ## Pros and Cons
 
-### Advantages ✓
+
+### 1. Advantages ✓
+
 
 **1. Multiple profit sources**
 
@@ -1747,7 +1820,8 @@ $$
 
 - Crisis opportunities (if you have capital!)
 
-### Disadvantages ✗
+### 2. Disadvantages ✗
+
 
 **1. Credit risk is unhedged**
 
@@ -1835,7 +1909,9 @@ $$
 
 ## When Convertible Arbitrage Works Best
 
-### Favorable Conditions
+
+### 1. Favorable Conditions
+
 
 **1. Market dislocations**
 
@@ -1887,7 +1963,8 @@ $$
 
 - Sufficient issuance
 
-### Unfavorable Conditions
+### 2. Unfavorable Conditions
+
 
 **1. Credit crisis**
 
@@ -1941,9 +2018,11 @@ $$
 
 ## The Evolution: Pre-2008 vs. Post-2008
 
+
 **The strategy changed dramatically after the financial crisis:**
 
-### Pre-2008 ("The Golden Age")
+### 1. Pre-2008 ("The Golden Age")
+
 
 **Characteristics:**
 
@@ -1965,7 +2044,8 @@ $$
 
 - Complexity premium high
 
-### Post-2008 ("The New Reality")
+### 2. Post-2008 ("The New Reality")
+
 
 **Characteristics:**
 
@@ -2003,7 +2083,9 @@ $$
 
 ## Practical Implementation
 
+
 ### 1. Screening for Opportunities
+
 
 **Look for:**
 
@@ -2029,6 +2111,7 @@ $$
 
 ### 2. Position Sizing
 
+
 **Risk management:**
 
 - Limit per issuer (credit risk)
@@ -2049,6 +2132,7 @@ $$
 
 ### 3. Delta Hedging
 
+
 **Hedge ratios:**
 
 - Calculate option delta
@@ -2066,6 +2150,7 @@ $$
 - Unlike pure gamma scalping (where optimization matters)
 
 ### 4. Monitoring
+
 
 **Daily tasks:**
 
@@ -2087,6 +2172,7 @@ $$
 
 ### 5. Exit Discipline
 
+
 **Exit when:**
 
 - Credit deteriorates
@@ -2106,9 +2192,11 @@ $$
 
 ## Worst Case Scenario
 
+
 **What happens when everything goes wrong with convertible arbitrage:**
 
-### The Nightmare Setup
+### 1. The Nightmare Setup
+
 
 **Example: Large established company facing disruption**
 
@@ -2154,7 +2242,8 @@ $$
 
 - Borrowed: $69M
 
-### The Catastrophic Sequence
+### 2. The Catastrophic Sequence
+
 
 **Week 1: The credit downgrade**
 
@@ -2229,7 +2318,8 @@ $$
 
 - **Effective leverage now: 6×** (worse than before!)
 
-### The Deterioration Continues
+### 3. The Deterioration Continues
+
 
 **Weeks 2-4: Credit death spiral**
 
@@ -2289,7 +2379,8 @@ $$
 
 - Close position
 
-### Maximum Loss Calculation
+### 4. Maximum Loss Calculation
+
 
 **Complete P&L:**
 
@@ -2338,7 +2429,8 @@ $$
 
 **You need to make 1,150% just to get back to even!**
 
-### What Went Wrong: The Five Deadly Factors
+### 5. What Went Wrong: The Five Deadly Factors
+
 
 **1. Wrong credit analysis (Fatal error #1):**
 
@@ -2415,7 +2507,8 @@ $$
 
 - **Liquidity disappeared** exactly when needed
 
-### The Cascade Effect
+### 6. The Cascade Effect
+
 
 **How one loss becomes complete destruction:**
 
@@ -2465,7 +2558,8 @@ $$
 
 - **Psychological destruction:** Complete
 
-### Real Historical Disasters
+### 7. Real Historical Disasters
+
 
 **Actual 2005 Convertible Arbitrage Meltdown:**
 
@@ -2523,7 +2617,8 @@ $$
 
    - Impossible to exit cleanly
 
-### The Greeks Disaster Analysis
+### 8. The Greeks Disaster Analysis
+
 
 **How each Greek hurt:**
 
@@ -2563,7 +2658,8 @@ $$
 
 **Conclusion:** Greeks framework BREAKS DOWN in credit events!
 
-### Psychology of the Disaster
+### 9. Psychology of the Disaster
+
 
 **Stage 1: Denial (Day 1-2)**
 
@@ -2613,7 +2709,8 @@ $$
 
 - **Structural changes:** Lower leverage, better risk management
 
-### Preventing the Worst Case
+### 10. Preventing the Worst Case
+
 
 **The Four Pillars of Survival:**
 
@@ -2723,7 +2820,8 @@ $$
 
 - **Max size:** $100M × 0.02 / 0.30 = $6.67M per convert
 
-### The Ultimate Protection: Stress Testing
+### 11. The Ultimate Protection: Stress Testing
+
 
 **Required monthly stress tests:**
 
@@ -2763,7 +2861,8 @@ $$
 
 - Raise cash
 
-### The Final Wisdom
+### 12. The Final Wisdom
+
 
 **Convertible arbitrage lessons from 2005:**
 
@@ -2792,9 +2891,11 @@ $$
 
 ## Best Case Scenario
 
+
 **What happens when everything goes right with convertible arbitrage:**
 
-### The Perfect Setup
+### 1. The Perfect Setup
+
 
 **Example: Fast-growing tech company, early growth stage**
 
@@ -2848,7 +2949,8 @@ $$
 
 - **Capital deployed (3× leverage): $3.3M equity**
 
-### The Optimal Sequence
+### 2. The Optimal Sequence
+
 
 **Months 1-6: Volatility explosion**
 
@@ -3038,7 +3140,8 @@ Better scenario - company does NOT call:
 
 - **Years 3-5 total: +$170,000**
 
-### Maximum Profit Achievement
+### 3. Maximum Profit Achievement
+
 
 **5-year total P&L breakdown:**
 
@@ -3128,7 +3231,8 @@ Hmm, that's not spectacular. Let me recalculate with better assumptions:
 
 **THIS is the dream scenario!**
 
-### What Makes It Perfect
+### 4. What Makes It Perfect
+
 
 The best case required ALL these factors:
 
@@ -3154,7 +3258,8 @@ The best case required ALL these factors:
 
 - **Bonus:** Capital gain (+$2.87M) from stock appreciation
 
-### Comparison to Alternatives
+### 5. Comparison to Alternatives
+
 
 **Convert arbitrage vs. Just long stock:**
 
@@ -3218,7 +3323,8 @@ The best case required ALL these factors:
 
 **Risk-adjusted:** Convert arb better (lower risk, similar return)
 
-### Professional Profit-Taking
+### 6. Professional Profit-Taking
+
 
 **When professionals take profits:**
 
@@ -3283,9 +3389,11 @@ The best case required ALL these factors:
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
-### Step 1: Market Assessment
+### 1. Step 1: Market Assessment
+
 
 **Before entering, evaluate:**
 
@@ -3313,7 +3421,8 @@ The best case required ALL these factors:
 
    - Transaction cost environment
 
-### Step 2: Strategy Selection Criteria
+### 2. Step 2: Strategy Selection Criteria
+
 
 **Enter this strategy when:**
 
@@ -3335,7 +3444,8 @@ The best case required ALL these factors:
 
 - [Wrong volatility regime]
 
-### Step 3: Position Sizing
+### 3. Step 3: Position Sizing
+
 
 **Calculate maximum position size:**
 
@@ -3353,7 +3463,8 @@ $$
 
 - Margin requirements
 
-### Step 4: Entry Execution
+### 4. Step 4: Entry Execution
+
 
 **Best practices:**
 
@@ -3375,7 +3486,8 @@ $$
 
 - Transaction cost consideration: Balance frequency vs. cost
 
-### Step 5: Position Management
+### 5. Step 5: Position Management
+
 
 **Active management rules:**
 
@@ -3407,7 +3519,8 @@ $$
 
 - Time-based exit: [Time decay considerations]
 
-### Step 6: Risk Management
+### 6. Step 6: Risk Management
+
 
 **Greeks risk limits:**
 
@@ -3429,7 +3542,8 @@ $$
 
 - Worst-case scenario planning
 
-### Step 7: Record Keeping
+### 7. Step 7: Record Keeping
+
 
 **Track for every trade:**
 
@@ -3445,7 +3559,8 @@ $$
 
 - Lessons learned
 
-### Common Execution Mistakes to Avoid
+### 8. Common Execution Mistakes to Avoid
+
 
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 
@@ -3459,7 +3574,8 @@ $$
 
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
-### Professional Implementation Tips
+### 9. Professional Implementation Tips
+
 
 **For delta hedging:**
 
@@ -3488,7 +3604,9 @@ $$
 
 ## Common Mistakes
 
-### Mistake 1: Buying Converts at High Premium
+
+### 1. Mistake 1: Buying Converts at High Premium
+
 
 **The error:**
 
@@ -3576,7 +3694,8 @@ $$
 
 **Professional rule:** "Credit risk kills convert arb. Respect it."
 
-### Mistake 3: Over-Leveraging
+### 2. Mistake 3: Over-Leveraging
+
 
 **The error:**
 
@@ -3627,7 +3746,8 @@ If max expected loss = 20%, then max leverage = 5×
 
 **But:** Use less! Market can exceed "maximum expected" loss!
 
-### Mistake 4: Ignoring Borrow Costs
+### 3. Mistake 4: Ignoring Borrow Costs
+
 
 **The error:**
 
@@ -3677,7 +3797,8 @@ $$
 
 - Net carry: < -5% = **Avoid!** (nearly impossible to profit)
 
-### Mistake 5: Poor Delta Hedging Discipline
+### 4. Mistake 5: Poor Delta Hedging Discipline
+
 
 **The error:**
 
@@ -3741,7 +3862,8 @@ $$
 
 - Use algorithmic execution (minimize market impact)
 
-### Mistake 6: Neglecting Transaction Costs
+### 5. Mistake 6: Neglecting Transaction Costs
+
 
 **The error:**
 
@@ -3804,7 +3926,8 @@ $$
 **Professional rule:**
 "Transaction costs must be < 20% of expected gamma P&L"
 
-### Mistake 7: Chasing Rich Converts
+### 6. Mistake 7: Chasing Rich Converts
+
 
 **The error:**
 
@@ -3852,7 +3975,8 @@ $$
 
 - Don't chase "hot" converts
 
-### Mistake 8: Ignoring Calls and Puts
+### 7. Mistake 8: Ignoring Calls and Puts
+
 
 **The error:**
 
@@ -3918,7 +4042,8 @@ $$
 
 - Forced call = early exit = lower total return
 
-### Mistake 9: Forgetting Interest Rate Risk
+### 8. Mistake 9: Forgetting Interest Rate Risk
+
 
 **The error:**
 
@@ -3984,7 +4109,8 @@ $$
 
 **Cost:** Hedging rates adds complexity and cost (reduces returns)
 
-### Mistake 10: Underestimating Complexity
+### 9. Mistake 10: Underestimating Complexity
+
 
 **The error:**
 
@@ -4078,7 +4204,8 @@ $$
 
 - **Leave to professionals** unless you have infrastructure
 
-### Summary: The Fatal Mistakes
+### 10. Summary: The Fatal Mistakes
+
 
 **Top 3 killers of convert arb:**
 
@@ -4106,7 +4233,9 @@ $$
 
 ## Real-World Examples
 
-### Example 1: Tesla Convert (2014) - The Dream Trade
+
+### 1. Example 1: Tesla Convert (2014) - The Dream Trade
+
 
 **Background (May 2014):**
 
@@ -4298,7 +4427,8 @@ Wait, that's a LOSS! Let me recalculate...
 
 - **But:** Profitable and demonstrated all profit sources working
 
-### Example 2: General Motors Convert (2005) - The Disaster
+### 2. Example 2: General Motors Convert (2005) - The Disaster
+
 
 **Background (March 2005):**
 
@@ -4426,7 +4556,8 @@ Post-2005, convertible arbitrage changed forever:
 
 - Smaller positions per name
 
-### Example 3: Netflix Convert (2013) - The Perfect Setup
+### 3. Example 3: Netflix Convert (2013) - The Perfect Setup
+
 
 **Background (February 2013):**
 
@@ -4568,7 +4699,8 @@ Post-2005, convertible arbitrage changed forever:
 
 **Key insight:** When ALL profit sources align (gamma, credit, vega, carry), returns can be spectacular!
 
-### Example 4: Micron Technology Convert (2020 COVID) - Crisis Opportunity
+### 4. Example 4: Micron Technology Convert (2020 COVID) - Crisis Opportunity
+
 
 **Background (March 2020):**
 
@@ -4674,7 +4806,8 @@ Post-2005, convertible arbitrage changed forever:
 
 **Key insight:** Crisis periods create the BEST convertible arbitrage opportunities due to forced selling and price dislocations!
 
-### Example 5: Zillow Convert (2021) - When It All Goes Wrong
+### 5. Example 5: Zillow Convert (2021) - When It All Goes Wrong
+
 
 **Background (September 2021):**
 
@@ -4798,7 +4931,9 @@ Actually wait, this doesn't make sense. Let me recalculate properly:
 
 ## What to Remember
 
-### Core Concepts
+
+### 1. Core Concepts
+
 
 **Convertible bonds = Bonds + Embedded Call Options**
 
@@ -4812,7 +4947,8 @@ $$
 
 - Extract value from underpriced optionality
 
-### The Arbitrage Structure
+### 2. The Arbitrage Structure
+
 
 **Position:**
 
@@ -4832,7 +4968,8 @@ $$
 
 4. **Coupon income** - positive carry
 
-### Comparison to Gamma Scalping
+### 3. Comparison to Gamma Scalping
+
 
 **Similarities:**
 
@@ -4856,7 +4993,8 @@ $$
 
 - **Profit sources:** Multiple vs. single
 
-### The Big Risk: Credit
+### 4. The Big Risk: Credit
+
 
 **Unhedged credit risk is your tail risk:**
 
@@ -4868,7 +5006,8 @@ $$
 
 - Monitor carefully
 
-### Historical Context
+### 5. Historical Context
+
 
 **Pre-2008:** "Golden age"
 
@@ -4888,7 +5027,8 @@ $$
 
 - Still viable but harder
 
-### Success Factors
+### 6. Success Factors
+
 
 **What you need:**
 
@@ -4904,7 +5044,8 @@ $$
 
 6. **Patience** - let the trade work
 
-### The Deep Insight
+### 7. The Deep Insight
+
 
 **Convertible arbitrage is "multi-factor volatility arbitrage":**
 
@@ -4932,7 +5073,8 @@ Unlike pure gamma scalping (single profit source):
 
 - **Challenge:** Multiple things to manage
 
-### The Complete Hierarchy Now
+### 8. The Complete Hierarchy Now
+
 
 **Your curriculum progression:**
 
@@ -4964,7 +5106,8 @@ Unlike pure gamma scalping (single profit source):
 
 - But the concepts build directly on gamma scalping!
 
-### Final Wisdom
+### 9. Final Wisdom
+
 
 **The beauty of convertible arbitrage:**
 
@@ -5012,7 +5155,8 @@ Let me answer it in layers, starting with the key misconception and then showing
 
 ---
 
-## 1. First: you are right about one thing ⚠️
+## First: you are right about one thing ⚠️
+
 
 > *“If the embedded option is exercised, the bond part disappears.”*
 
@@ -5033,7 +5177,8 @@ They mean something subtler.
 
 ---
 
-## 2. What “cheap option” actually means (economically)
+## What “cheap option” actually means (economically)
+
 
 A convertible bond can be **valued as**:
 
@@ -5056,7 +5201,8 @@ If you:
 
 then what’s left is the **implied price of the option**.
 
-### Key observation:
+### 1. Key observation:
+
 
 That implied option value often corresponds to a **much lower implied volatility** than:
 
@@ -5066,7 +5212,8 @@ That’s what people mean by *“the option is cheap.”*
 
 ---
 
-## 3. But if you can’t sell the option… how do you trade it?
+## But if you can’t sell the option… how do you trade it?
+
 
 You **replicate selling the option** using hedging.
 
@@ -5074,9 +5221,11 @@ This is the crucial idea.
 
 ---
 
-## 4. The core trade: Convertible Arbitrage
+## The core trade: Convertible Arbitrage
 
-### Step 1: Buy the convertible bond
+
+### 1. Step 1: Buy the convertible bond
+
 
 You now own:
 
@@ -5088,7 +5237,8 @@ You now own:
 
 ---
 
-### Step 2: Delta-hedge the equity exposure
+### 2. Step 2: Delta-hedge the equity exposure
+
 
 You **short the underlying stock** in proportion to the convertible’s delta:
 
@@ -5108,7 +5258,8 @@ This removes **directional stock risk**.
 
 ---
 
-### Step 3: What position do you now actually have?
+### 3. Step 3: What position do you now actually have?
+
 
 After delta hedging, your P&L mainly comes from:
 
@@ -5133,7 +5284,8 @@ After delta hedging, your P&L mainly comes from:
 
 ---
 
-## 5. So where did the “bond part” go?
+## So where did the “bond part” go?
+
 
 You didn’t sell it — you **neutralized its risk**.
 
@@ -5155,11 +5307,13 @@ into:
 
 ---
 
-## 6. Why embedded options trade cheaper than listed options
+## Why embedded options trade cheaper than listed options
+
 
 Several structural reasons:
 
-### (a) Natural sellers
+### 1. (a) Natural sellers
+
 
 * Issuers sell convertibles to lower borrowing costs
 
@@ -5168,7 +5322,8 @@ Several structural reasons:
 
 ---
 
-### (b) Complexity & constraints
+### 2. (b) Complexity & constraints
+
 
 * Harder to model (credit + equity + calls)
 
@@ -5180,7 +5335,8 @@ Investors demand a **discount**.
 
 ---
 
-### (c) Supply–demand imbalance
+### 3. (c) Supply–demand imbalance
+
 
 * Few specialists can arbitrage convertibles properly
 
@@ -5188,7 +5344,8 @@ Investors demand a **discount**.
 
 ---
 
-## 7. Important clarification: you never want to exercise
+## Important clarification: you never want to exercise
+
 
 💡 **Exercising destroys time value.**
 
@@ -5206,13 +5363,15 @@ Conversion is usually only done:
 
 ---
 
-## 8. One-sentence intuition
+## One-sentence intuition
+
 
 > You don’t sell the embedded option — you **lock in owning it cheaply** by hedging away everything else and letting volatility do the work.
 
 ---
 
-## 9. Mental model to keep
+## Mental model to keep
+
 
 Think of a convertible arbitrageur as saying:
 

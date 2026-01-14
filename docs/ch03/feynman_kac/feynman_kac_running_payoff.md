@@ -1,4 +1,5 @@
-# Feynman–Kac with Running Payoff (Source Term)
+# Feynman Kac Running
+
 
 Let \(X_t\) be a diffusion with generator \(L\). Let
 
@@ -8,7 +9,8 @@ Let \(X_t\) be a diffusion with generator \(L\). Let
 
 ---
 
-## 1. Statement (General inhomogeneous Feynman–Kac)
+## Statement General
+
 
 Define
 
@@ -35,7 +37,8 @@ u(x,T)=f(x).
 
 ---
 
-## 2. Proof (Itô + augmented martingale)
+## Proof augmented
+
 
 Let
 
@@ -90,7 +93,8 @@ which is exactly the stated representation.
 
 ---
 
-## 3. Interpretation
+## Interpretation
+
 
 - \(g\) acts as a **source term** (like heat generation).
 - \(r\) acts as **discounting** (finance) or **killing** (probability/physics).

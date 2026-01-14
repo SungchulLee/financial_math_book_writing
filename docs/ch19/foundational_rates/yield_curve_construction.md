@@ -1,10 +1,12 @@
 # Yield Curve Construction
 
+
 **Yield curve construction** is the process of building a continuous term structure of interest rates from discrete market instruments (bonds, swaps, futures) that represents the relationship between yield and time to maturity, serving as the foundational pricing benchmark for all fixed income securities and derivatives while revealing market expectations for future interest rates, inflation, and economic growth.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Is Yield Curve?
 
+
 **Before constructing yield curves, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** The systematic process of deriving a complete term structure of interest rates from observable market prices of liquid instruments (Treasury bonds, LIBOR deposits, interest rate swaps, Eurodollar futures) using mathematical techniques like bootstrapping and interpolation to create a continuous function that maps time to maturity to yields, zero rates, or discount factors.
 
@@ -79,6 +83,7 @@ $$
 
 ### 2. Types of Curves
 
+
 **1. Par Curve:**
 
 - Yields on bonds trading at par (price = 100)
@@ -107,6 +112,7 @@ $$
 $$
 
 ### 3. Instruments for Curve
+
 
 **Short end (0-2 years):**
 
@@ -158,9 +164,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. Pure Expectations
+
 
 **The deep insight:**
 
@@ -193,6 +201,7 @@ $$
 - **Flat curve:** Market expects stable rates (equilibrium)
 
 ### 2. Term Premium
+
 
 **Reality: Forward rates ≠ Expected future rates**
 
@@ -233,6 +242,7 @@ $$
 
 ### 3. Term Structure Theories
 
+
 **1. Pure Expectations Theory:**
 
 $$
@@ -261,6 +271,7 @@ $$
 - **Reality: Partially true (Fed QE proved demand matters)**
 
 ### 4. What Curve Shapes Mean
+
 
 **Normal (upward sloping):**
 
@@ -337,6 +348,7 @@ Yield
 
 ### 5. Fed Policy and the Curve
 
+
 **The Fed controls short end directly:**
 
 $$
@@ -374,6 +386,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Zero Rate (Spot Rate):**
 
@@ -449,7 +462,9 @@ $$
 
 ## Mathematical Foundation
 
+
 ### 1. Bootstrapping Zero Rates
+
 
 **Step-by-step derivation:**
 
@@ -551,6 +566,7 @@ Same process, using all previously derived zeros.
 
 ### 2. Interpolation Methods
 
+
 **1. Linear Interpolation (simplest):**
 
 $$
@@ -590,6 +606,7 @@ $$
 
 ### 3. Forward Rate Extraction
 
+
 **Instantaneous forward rate:**
 
 $$
@@ -617,7 +634,9 @@ $$
 
 ## Step-by-Step Setup
 
+
 ### 1. Market Data
+
 
 **1. Gather Market Data:**
 
@@ -664,6 +683,7 @@ validate_data(treasuries)
 ```
 
 ### 2. Bootstrapping Zeros
+
 
 **1. Convert Bills to Zero Rates:**
 
@@ -759,6 +779,7 @@ print(zeros)
 
 ### 3. Curve Interpolation
 
+
 **1. Implement Cubic Spline:**
 
 ```python
@@ -797,6 +818,7 @@ plt.show()
 ```
 
 ### 4. Derived Curves
+
 
 **1. Calculate Par Rates:**
 
@@ -874,6 +896,7 @@ plt.show()
 ```
 
 ### 5. Validation & Use
+
 
 **1. Arbitrage Checks:**
 
@@ -972,7 +995,9 @@ print(f"Duration: {duration:.2f} years")
 
 ## Real-World Examples
 
+
 ### 1. Duration Cut via Futures
+
 
 **Market data:**
 
@@ -1025,6 +1050,7 @@ Actually, if this is December 2024, let me use more realistic data:
 
 ### 2. Transition Risk Hedge
 
+
 **Market data:**
 
 | Maturity | Zero Rate |
@@ -1067,6 +1093,7 @@ $$
 
 ### 3. Portable Alpha with Futures
 
+
 **Market data:**
 
 | Maturity | Zero Rate |
@@ -1101,6 +1128,7 @@ $$
 
 ### 4. Tactical Duration Extension
 
+
 **Market data:**
 
 | Maturity | Zero Rate |
@@ -1129,6 +1157,7 @@ $$
 - **Flat curve was transition, then cuts**
 
 ### 5. Duration Hedge Failure
+
 
 **Market data (December 2024):**
 
@@ -1163,6 +1192,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "The yield curve is the Rosetta Stone of finance—decode it correctly and you understand market expectations for growth, inflation, and Fed policy for the next 30 years. But here's the trap: the curve is only as good as your data and methodology. During normal times (95% of days), bootstrapping on-the-run Treasuries with cubic spline interpolation produces near-perfect results—pricing errors under 2 cents. But during crises (March 2020, October 2008), the same methodology creates garbage—negative rates, wild oscillations, and $4+ pricing errors that can cost millions. The key is knowing when to trust your curve and when to step back. If bid-ask spreads are 50x normal and your last trade was 3 hours ago, you don't have a curve—you have a prayer. Wait for the Fed to intervene, markets to stabilize, and data to clean up. In normal times, build curves aggressively and price everything. In crises, use yesterday's curve, widen your error bars, and above all, don't pretend you have precision when you have chaos."
 

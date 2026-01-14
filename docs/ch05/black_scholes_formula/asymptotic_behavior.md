@@ -1,14 +1,17 @@
 # Asymptotic Behavior of the Black-Scholes Formula
 
+
 The Black-Scholes formula exhibits well-defined **limiting behavior** as parameters approach extreme values. Understanding these limits provides intuition for how options behave in different market conditions and serves as a check for numerical implementations.
 
 This section systematically analyzes the asymptotic behavior of option prices.
 
 ---
 
-## 1. Limits in Stock Price
+## Limits in Stock Price
 
-### **As $S \to \infty$ (Deep In-the-Money Call)**
+
+### 1. **As $S \to \infty$ (Deep In-the-Money Call)**
+
 
 **Behavior of $d_1$ and $d_2$**:
 
@@ -48,7 +51,8 @@ Deep OTM put becomes worthless.
 
 ---
 
-### **As $S \to 0$ (Deep Out-of-the-Money Call)**
+### 2. **As $S \to 0$ (Deep Out-of-the-Money Call)**
+
 
 **Behavior of $d_1$ and $d_2$**:
 
@@ -82,9 +86,11 @@ $$
 
 ---
 
-## 2. Limits in Time to Maturity
+## Limits in Time to Maturity
 
-### **As $T \to 0$ (Approaching Expiration)**
+
+### 1. **As $T \to 0$ (Approaching Expiration)**
+
 
 **Case 1: $S > K$ (ITM call)**
 
@@ -140,7 +146,8 @@ This recovers the **terminal payoff condition**.
 
 ---
 
-### **As $T \to \infty$ (Very Long Maturity)**
+### 2. **As $T \to \infty$ (Very Long Maturity)**
+
 
 **Behavior of $d_1$ and $d_2$**:
 
@@ -180,9 +187,11 @@ Long-dated puts become worthless (stock will almost certainly be above strike ev
 
 ---
 
-## 3. Limits in Volatility
+## Limits in Volatility
 
-### **As $\sigma \to 0$ (Zero Volatility)**
+
+### 1. **As $\sigma \to 0$ (Zero Volatility)**
+
 
 **Deterministic evolution**: Stock grows at risk-free rate:
 
@@ -228,7 +237,8 @@ $$
 
 ---
 
-### **As $\sigma \to \infty$ (Infinite Volatility)**
+### 2. **As $\sigma \to \infty$ (Infinite Volatility)**
+
 
 **Behavior of $d_1$ and $d_2$**:
 
@@ -279,9 +289,11 @@ Infinite volatility gives the put its maximum possible value (present value of s
 
 ---
 
-## 4. Limits in Interest Rate
+## Limits in Interest Rate
 
-### **As $r \to 0$ (Zero Interest Rate)**
+
+### 1. **As $r \to 0$ (Zero Interest Rate)**
+
 
 **Call formula**:
 
@@ -307,7 +319,8 @@ $$
 
 ---
 
-### **As $r \to \infty$ (Infinite Interest Rate)**
+### 2. **As $r \to \infty$ (Infinite Interest Rate)**
+
 
 **Discounting**: $e^{-rT} \to 0$
 
@@ -337,9 +350,11 @@ $$
 
 ---
 
-## 5. Limits in Strike Price
+## Limits in Strike Price
 
-### **As $K \to 0$ (Zero Strike)**
+
+### 1. **As $K \to 0$ (Zero Strike)**
+
 
 **Call**:
 
@@ -363,7 +378,8 @@ $$
 
 ---
 
-### **As $K \to \infty$ (Infinite Strike)**
+### 2. **As $K \to \infty$ (Infinite Strike)**
+
 
 **Call**:
 
@@ -387,11 +403,13 @@ But in practice, $P < Ke^{-rT}$ (never exceeds max theoretical payoff).
 
 ---
 
-## 6. ATM Approximation for Small Time
+## ATM Approximation for Small Time
+
 
 For at-the-money options ($S \approx K$) with small $T$, there's a useful approximation.
 
-### **ATM Call Formula**
+### 1. **ATM Call Formula**
+
 
 When $S = K$ and $T$ is small:
 
@@ -421,7 +439,8 @@ $$
 
 ---
 
-## 7. Summary Table
+## Summary Table
+
 
 | Limit | Call Behavior | Put Behavior |
 |-------|---------------|--------------|
@@ -438,9 +457,11 @@ $$
 
 ---
 
-## 8. Practical Implications
+## Practical Implications
 
-### **1. Sanity Checks**
+
+### 1. **1. Sanity Checks**
+
 
 These limits provide **bounds** for option prices:
 
@@ -449,7 +470,8 @@ These limits provide **bounds** for option prices:
 
 Any pricing model violating these bounds is immediately suspect.
 
-### **2. Numerical Stability**
+### 2. **2. Numerical Stability**
+
 
 When implementing Black-Scholes:
 
@@ -457,7 +479,8 @@ When implementing Black-Scholes:
 - For $T \approx 0$: Use intrinsic value directly
 - For $\sigma$ very small or large: Use limiting formulas
 
-### **3. Greeks Behavior**
+### 3. **3. Greeks Behavior**
+
 
 Limiting behavior of prices determines Greeks:
 
@@ -465,7 +488,8 @@ Limiting behavior of prices determines Greeks:
 - As $T \to 0$ with $S \neq K$: $\Gamma \to \infty$ (curvature spikes)
 - As $\sigma \to 0$: Vega $\to 0$ (no sensitivity to volatility)
 
-### **4. Model Validation**
+### 4. **4. Model Validation**
+
 
 Real market data should respect these asymptotic behaviors. Violations suggest:
 
@@ -476,6 +500,7 @@ Real market data should respect these asymptotic behaviors. Violations suggest:
 ---
 
 ## Summary
+
 
 The Black-Scholes formula exhibits well-defined limiting behavior:
 

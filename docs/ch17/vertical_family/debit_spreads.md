@@ -1,6 +1,8 @@
 # Debit Spreads
 
+
 ## Overview
+
 
 A **debit spread** is a type of **vertical spread** that is entered for a **net premium paid**.  
 It consists of buying one option and selling another option of the **same type** (calls or puts), with:
@@ -16,6 +18,7 @@ They have **defined risk and defined reward**.
 ---
 
 ## Debit Spreads as
+
 
 All debit spreads are **vertical spreads**, but not all vertical spreads are debit spreads.
 
@@ -38,6 +41,7 @@ The key distinction is **cash flow at entry**:
 
 ## Common Structure
 
+
 A debit spread always follows this pattern:
 
 - **Buy the option closer to the money**
@@ -50,16 +54,20 @@ The short option reduces cost but caps the maximum profit.
 
 ## Long Call Spread
 
+
 ### 1. Market Outlook
+
 - **Bullish**
 - Expect the underlying to rise **moderately**
 
 ### 2. Structure
+
 - Buy a call at a lower strike \( K_1 \)
 - Sell a call at a higher strike \( K_2 > K_1 \)
 - Same expiration
 
 ### 3. Payoff
+
 - **Maximum Loss:** Net debit paid
 - **Maximum Profit:**  
   \[
@@ -71,6 +79,7 @@ The short option reduces cost but caps the maximum profit.
   \]
 
 ### 4. Intuition
+
 You are betting on a **controlled upside move**.  
 Compared to buying a naked call, this strategy lowers cost at the expense of capped upside.
 
@@ -78,16 +87,20 @@ Compared to buying a naked call, this strategy lowers cost at the expense of cap
 
 ## Long Put Spread
 
+
 ### 1. Market Outlook
+
 - **Bearish**
 - Expect the underlying to fall **moderately**
 
 ### 2. Structure
+
 - Buy a put at a higher strike \( K_1 \)
 - Sell a put at a lower strike \( K_2 < K_1 \)
 - Same expiration
 
 ### 3. Payoff
+
 - **Maximum Loss:** Net debit paid
 - **Maximum Profit:**  
   \[
@@ -99,6 +112,7 @@ Compared to buying a naked call, this strategy lowers cost at the expense of cap
   \]
 
 ### 4. Intuition
+
 You are betting on a **controlled downside move**.  
 The sold put finances part of the long put while limiting profit.
 
@@ -106,7 +120,9 @@ The sold put finances part of the long put while limiting profit.
 
 ## Risk and Reward
 
+
 ### 1. Key Properties of
+
 
 | Feature | Debit Spreads |
 |------|---------------|
@@ -123,6 +139,7 @@ Debit spreads trade **limited reward for defined and reduced risk**.
 
 ## Comparison
 
+
 | Feature | Long Call Spread | Long Put Spread |
 |------|------------------|----------------|
 | Bias | Bullish | Bearish |
@@ -134,6 +151,7 @@ Debit spreads trade **limited reward for defined and reduced risk**.
 
 ## When to Use Debit
 
+
 Debit spreads are well-suited when:
 
 - You have a **directional conviction**
@@ -144,6 +162,7 @@ Debit spreads are well-suited when:
 ---
 
 ## Key Takeaways
+
 
 - Debit spreads are **vertical spreads entered for a net debit**
 - The two canonical forms are:

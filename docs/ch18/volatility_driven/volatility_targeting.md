@@ -1,10 +1,12 @@
 # Volatility Targeting
 
+
 **Volatility targeting** is a dynamic position sizing strategy that adjusts futures exposure inversely with realized volatility, maintaining constant risk levels across changing market regimes by increasing positions during calm periods and reducing them during turbulent times.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -34,9 +36,11 @@ $$
 
 ## What Is Volatility
 
+
 **Before implementing vol targeting, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** A risk management framework that dynamically adjusts futures position sizes based on recent realized volatility, scaling up exposure when markets are calm and scaling down when markets are turbulent, keeping dollar risk constant.
 
@@ -69,6 +73,7 @@ $$
 
 ### 2. The Inverse
 
+
 **Understanding the mathematics:**
 
 $$
@@ -99,6 +104,7 @@ $$
 **Portfolio volatility stays constant at 15% despite market volatility varying 12%-35%**
 
 ### 3. Fixed Notional
+
 
 **Traditional approach (fixed notional):**
 
@@ -133,9 +139,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. The Risk Budget
+
 
 **The deep insight:**
 
@@ -178,6 +186,7 @@ $$
 
 ### 2. The Sharpe Ratio
 
+
 **Why vol targeting improves risk-adjusted returns:**
 
 **Sharpe ratio:**
@@ -215,6 +224,7 @@ $$
 - **Asymmetric exposure: More upside, less downside**
 
 ### 3. The Volatility
+
 
 **Markets exhibit volatility clustering:**
 
@@ -255,6 +265,7 @@ $$
 
 ### 4. The Leverage
 
+
 **Volatility targeting as dynamic leverage:**
 
 Think of it as **automatic leverage adjustment**:
@@ -292,6 +303,7 @@ $$
 - **Countercyclical, disciplined**
 
 ### 5. The Mean
+
 
 **Long-term property:**
 
@@ -331,6 +343,7 @@ $$
 
 ### 6. The Crash
 
+
 **Critical feature during market crashes:**
 
 **2008 Financial Crisis timeline:**
@@ -363,6 +376,7 @@ $$
 - **Reactive, not predictive**
 
 ### 7. The Rebalancing
+
 
 **Volatility targeting creates systematic rebalancing:**
 
@@ -397,6 +411,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Realized Volatility:**
 
@@ -466,7 +481,9 @@ $$
 
 ## Mathematical
 
+
 ### 1. Volatility
+
 
 **Standard realized volatility calculation:**
 
@@ -501,6 +518,7 @@ $$
 
 ### 2. Position Size
 
+
 **Basic formula:**
 
 $$
@@ -533,6 +551,7 @@ $$
 
 ### 3. Risk Budget
 
+
 **Alternative calculation using dollar risk:**
 
 $$
@@ -558,6 +577,7 @@ $$
 
 ### 4. Optimal Lookback
 
+
 **Trade-off between responsiveness and stability:**
 
 **Mean squared error minimization:**
@@ -578,6 +598,7 @@ $$
 **General rule: Higher vol of vol → Shorter window**
 
 ### 5. Expected Sharpe
+
 
 **Theoretical Sharpe ratio of vol-targeted strategy:**
 
@@ -605,6 +626,7 @@ $$
 **More volatile the volatility, greater the improvement**
 
 ### 6. Rebalancing
+
 
 **Optimal rebalancing balances:**
 
@@ -643,7 +665,9 @@ $$
 
 ## Key ideas
 
+
 ### 1. Phase 1
+
 
 **1. Assess Risk Tolerance:**
 
@@ -704,6 +728,7 @@ $$
 
 ### 2. Phase 2
 
+
 **1. Choose Lookback Window:**
 
 **Standard: 30-day window**
@@ -751,7 +776,8 @@ print(f"Current 30-day realized vol: {current_vol:.1%}")
 
 **Update daily, rebalance per schedule**
 
-### 1. Phase 3
+### 3. Phase 3
+
 
 **1. Calculate Starting Position:**
 
@@ -800,7 +826,8 @@ Expected Daily Risk: ~$10,000
 - Deviation: (1.2 - 1.0) / 1.2 = 17% (no rebalance yet)
 - Wait until 20% threshold
 
-### 2. Phase 4
+### 4. Phase 4
+
 
 **1. Weekly Monitoring:**
 
@@ -898,7 +925,8 @@ else:
 
 **Systematic re-leveraging during recovery**
 
-### 1. Phase 5
+### 5. Phase 5
+
 
 **1. Calculate Realized Portfolio Volatility:**
 
@@ -951,7 +979,8 @@ $$
 
 **Backtest each combination, select highest Sharpe**
 
-### 1. Complete Example
+### 6. Complete Example
+
 
 **Starting: January 2, 2024**
 
@@ -1017,7 +1046,9 @@ $$
 
 ## Risk Metrics
 
+
 ### 1. Position Sizing
+
 
 **For vol-targeted futures:**
 
@@ -1048,6 +1079,7 @@ $$
 
 ### 2. Leverage Tracking
 
+
 **Effective leverage at any time:**
 
 $$
@@ -1066,6 +1098,7 @@ $$
 
 ### 3. Turnover Analysis
 
+
 **Annual turnover from rebalancing:**
 
 $$
@@ -1083,6 +1116,7 @@ $$
 **High turnover but necessary for vol targeting**
 
 ### 4. Drawdown
+
 
 **Max drawdown reduction:**
 
@@ -1111,6 +1145,7 @@ $$
 - Less capital at risk when market falls
 
 ### 5. Tail Risk
+
 
 **Value at Risk (VaR) comparison:**
 
@@ -1146,7 +1181,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Background:**
 
@@ -1207,6 +1244,7 @@ $$
 
 ### 2. Transition Risk
 
+
 **Timeline:**
 
 **Pre-COVID (January 2020):**
@@ -1263,6 +1301,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Background:**
 
 - Extremely low volatility (VIX at 9)
@@ -1318,6 +1357,7 @@ $$
 
 ### 4. Tactical Duration
 
+
 **Long-term vol targeting test:**
 
 **Setup:**
@@ -1357,6 +1397,7 @@ $$
 - Less helpful in grinding bears (2000-2002)
 
 ### 5. Duration Hedge
+
 
 **Background:**
 
@@ -1404,7 +1445,9 @@ $$
 
 ## Risk Management
 
+
 ### 1. Position Sizing
+
 
 **Implement hard limits:**
 
@@ -1445,6 +1488,7 @@ $$
 
 ### 2. Rebalancing
 
+
 **Avoid excessive trading:**
 
 **Threshold rule:**
@@ -1474,6 +1518,7 @@ $$
 
 ### 3. Volatility
 
+
 **Use multiple vol measures:**
 
 **Primary: 30-day realized vol**
@@ -1499,6 +1544,7 @@ With $\lambda = 0.94$ (RiskMetrics standard)
 - **Prevents false signals**
 
 ### 4. Maximum Drawdown
+
 
 **Portfolio-level circuit breaker:**
 
@@ -1536,6 +1582,7 @@ $$
 
 ### 5. Diversification
 
+
 **Don't use single futures contract:**
 
 **Multi-asset vol targeting:**
@@ -1555,6 +1602,7 @@ $$
 - Better risk-adjusted returns
 
 ### 6. Transaction Cost
+
 
 **Estimate total costs:**
 
@@ -1584,6 +1632,7 @@ $$
 
 ### 7. Risk Management
 
+
 **Before starting vol targeting:**
 
 ✅ Target volatility set (based on risk tolerance)
@@ -1610,6 +1659,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Volatility targeting is the institutional investor's secret weapon—it's how smart money maintains constant risk budgets across market regimes. The math is simple: position size equals target vol divided by current vol. But the impact is profound: you automatically lever up when markets are calm and safe, and you automatically de-lever when markets are turbulent and dangerous. This is the opposite of typical investor behavior (panic and leverage at the worst times). Over long horizons, vol targeting improves Sharpe ratios by 20-30%, reduces drawdowns by similar amounts, and creates smoother, more reliable returns. But it's not magic: flash crashes can catch you over-leveraged, persistent high volatility can leave you under-exposed to rebounds, and transaction costs matter. The key to success is systematic discipline, appropriate position limits, and a long-term perspective. Volatility targeting won't make you rich overnight, but over decades, it can dramatically improve your risk-adjusted wealth accumulation."
 

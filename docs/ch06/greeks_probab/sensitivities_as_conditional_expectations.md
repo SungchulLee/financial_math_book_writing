@@ -1,10 +1,12 @@
 # Sensitivities as Conditional Expectations
 
+
 Many Greeks can be expressed as conditional expectations, clarifying their hedging interpretation.
 
 ---
 
 ## Discounted martingale
+
 
 For \(H=\Phi(S_T)\),
 
@@ -36,11 +38,13 @@ Z_t=e^{-rt}\sigma S_t \Delta(t,S_t).
 
 ## Interpretation
 
+
 Delta is the predictable coefficient multiplying the tradable Brownian risk factor in a complete market. This is the precise foundation for “delta is the hedge ratio.”
 
 ---
 
 ## What to remember
+
 
 - Delta arises as a predictable coefficient in the martingale representation.
 - In incomplete markets, not every sensitivity corresponds to a tradable hedge.

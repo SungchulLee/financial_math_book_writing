@@ -1,10 +1,12 @@
 # Open Problems in Financial Mathematics
 
+
 Despite decades of progress, many **open problems** remain at the frontier of financial mathematics and quantitative finance.
 
 ---
 
-## 1. Market microstructure and impact
+## Market microstructure and impact
+
 
 Key open questions include:
 - first-principles models of price formation,
@@ -15,7 +17,8 @@ Understanding these is central to modern markets.
 
 ---
 
-## 2. High-dimensional risk and dependence
+## High-dimensional risk and dependence
+
 
 Challenges remain in:
 - modeling tail dependence,
@@ -26,7 +29,8 @@ High dimensionality limits classical methods.
 
 ---
 
-## 3. Learning in adaptive markets
+## Learning in adaptive markets
+
 
 Open problems include:
 - learning under endogenous feedback,
@@ -37,7 +41,8 @@ Theory lags practice in many areas.
 
 ---
 
-## 4. Robustness and uncertainty
+## Robustness and uncertainty
+
 
 Key questions involve:
 - model uncertainty quantification,
@@ -48,7 +53,8 @@ Robustness remains an organizing principle.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Financial mathematics remains an open field.
 - New markets create new mathematical challenges.
@@ -57,6 +63,7 @@ Robustness remains an organizing principle.
 ---
 
 ## Further reading
+
 
 - Gatheral et al., volatility and impact.
 - Cont & Bouchaud, complexity in markets.

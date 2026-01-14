@@ -1,4 +1,5 @@
-# Kolmogorov Forward Equation (Fokker–Planck Equation)
+# Kolmogorov Forward
+
 
 The **Kolmogorov forward equation** describes how the **probability law** of a diffusion process evolves forward in time.
 It can be formulated either:
@@ -16,7 +17,8 @@ dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dB_t.
 
 ---
 
-## 1. What the Forward Equation Evolves
+## What Forward
+
 
 - **Density viewpoint**: evolves the distribution \(p(x,t\mid x_0,t_0)\) forward in time.
 - **Expectation viewpoint**: evolves expectations of test functions under the law of \(X_t\).
@@ -25,7 +27,8 @@ The forward equation acts on the **current state variable** \(x\) and time \(t\)
 
 ---
 
-## 2. Density Form: Fokker–Planck Equation
+## Density Form Fokker
+
 
 Let \(p(x,t\mid x_0,t_0)\) denote the transition probability density.
 The Kolmogorov forward equation is
@@ -40,7 +43,8 @@ The Kolmogorov forward equation is
 
 
 
-### Examples
+### 1. Examples
+
 
 
 \[
@@ -64,7 +68,8 @@ dX_t=\mu X_tdt+\sigma X_tdB_t&
 
 ---
 
-## 3. Expectation Form (Weak / Dual Form)
+## Expectation Form
+
 
 For any smooth test function \(f\) with suitable decay,
 
@@ -101,7 +106,8 @@ This formulation is **dual** to the density PDE: the generator acts on test func
 
 ---
 
-## 4. Derivation (Itô + Integration by Parts)
+## Derivation
+
 
 ??? details "Derivation of the Forward Equation"
 
@@ -132,7 +138,8 @@ This formulation is **dual** to the density PDE: the generator acts on test func
 
 ---
 
-## 5. Interpretation
+## Interpretation
+
 
 - The forward equation conserves probability mass.
 - It describes **how randomness spreads** over time.

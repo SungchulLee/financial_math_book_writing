@@ -1,10 +1,12 @@
 # Trend Following
 
+
 **Trend following** strategies use options to capitalize on established price momentum by entering positions that profit from the continuation of an existing trend, combining directional exposure with controlled risk through strategic strike selection and position sizing.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_call_payoff.png?raw=true" alt="long_call_payoff" width="400">
@@ -13,6 +15,7 @@
 **Figure 1:** Long call payoff diagram showing limited downside risk (premium paid) and unlimited upside potential for trend-following bullish positions.
 
 ### 1. Downtrend Put Strategy
+
 
 **Setup:**
 
@@ -46,6 +49,7 @@ $$
 
 ## What is Trend Following?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_put_payoff.png?raw=true" alt="long_put_payoff" width="400">
 </p>
@@ -54,11 +58,13 @@ $$
 
 ### 1. Trend vs Buy-and-Hold
 
+
 **Comparison: AAPL uptrend over 60 days**
 
 **Before implementing trend-following option strategies, understand the philosophy:**
 
 ### 2. Trend Philosophy
+
 
 **Core principle:** Don't predict, react. Let the market tell you what's happening, then align with it.
 
@@ -77,6 +83,7 @@ $$
 - **Pyramiding:** Add to winners, not losers
 
 ### 3. Why Use Options?
+
 
 **Traditional trend following uses futures or stocks, but options offer unique advantages:**
 
@@ -105,6 +112,7 @@ $$
 5. **Assignment risk:** If holding ITM at expiration
 
 ### 4. Trend vs. Reversal Trading
+
 
 **Critical distinction:**
 
@@ -140,9 +148,11 @@ $$
 
 ## Economic
 
+
 **Understanding the deeper economic logic of trend following:**
 
 ### 1. Why Trends Persist
+
 
 **Markets trend due to systematic behavioral biases:**
 
@@ -168,6 +178,7 @@ Where $\alpha > 0$ indicates **momentum autocorrelation**.
 
 ### 2. The Trend Premium
 
+
 **Trend following earns a premium for bearing specific risks:**
 
 **Risks you bear:**
@@ -191,6 +202,7 @@ Where $\alpha > 0$ indicates **momentum autocorrelation**.
 - **Market compensates those willing to ride volatility**
 
 ### 3. Options for Trend-Following
+
 
 **An option position in a trend is economically equivalent to:**
 
@@ -230,6 +242,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Trend:**
 
@@ -311,7 +324,9 @@ $$
 
 ## Basic Trend Following Strategies
 
+
 ### 1. Moving Average Trend
+
 
 **Setup:**
 
@@ -356,6 +371,7 @@ $$
 - **Exit:** Price breaks back through MA, or 50% profit, or -50% loss
 
 ### 2. Breakout Momentum
+
 
 **Setup:**
 
@@ -403,6 +419,7 @@ $$
 
 ### 3. Pullback Continuation
 
+
 **Setup:**
 
 **Strong uptrend:**
@@ -449,6 +466,7 @@ $$
 
 ### 4. Strong Momentum Trend
 
+
 **Setup:**
 
 **Strong momentum:**
@@ -487,9 +505,11 @@ $$
 
 ## Greeks in Trend Following
 
+
 **Understanding how Greeks affect trend-following options:**
 
 ### 1. Delta
+
 
 $$
 \Delta = \frac{\partial V}{\partial S}
@@ -528,6 +548,7 @@ AAPL trending upward:
 **Trade-off:** Higher delta = higher premium, less leverage.
 
 ### 2. Theta
+
 
 $$
 \Theta = \frac{\partial V}{\partial t}
@@ -586,6 +607,7 @@ For call with $10 premium, delta 0.50, theta -$0.10:
 - **Trends must be strong enough to overcome this drag**
 
 ### 3. Gamma
+
 
 $$
 \Gamma = \frac{\partial^2 V}{\partial S^2} = \frac{\partial \Delta}{\partial S}
@@ -648,6 +670,7 @@ On reversal:
 - **Gamma works AGAINST you on reversals** (this is why stops are critical)
 
 ### 4. Vega
+
 
 $$
 \text{Vega} = \frac{\partial V}{\partial \sigma}
@@ -725,7 +748,9 @@ TSLA breakout:
 
 ## Trend Identification Tools
 
+
 ### 1. Moving Average
+
 
 **Single MA:**
 
@@ -769,6 +794,7 @@ $$
 
 ### 2. ADX
 
+
 **Formula:**
 
 $$
@@ -803,6 +829,7 @@ Example:
 
 ### 3. MACD
 
+
 **Formula:**
 
 $$
@@ -835,6 +862,7 @@ $$
 
 ### 4. RSI
 
+
 **Formula:**
 
 $$
@@ -856,6 +884,7 @@ $$
 - RSI breaks below 50 from above: Momentum shift bearish
 
 ### 5. Volume Analysis
+
 
 **Volume confirmation:**
 
@@ -881,7 +910,9 @@ $$
 
 ## Trend Following Payoff Diagrams
 
+
 ### 1. Uptrend Call Strategy
+
 
 **Setup:**
 
@@ -982,7 +1013,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Duration Cut via Futures
+
 
 **Setup:**
 
@@ -1054,6 +1087,7 @@ $$
 
 ### 2. Transition Risk Hedge
 
+
 **Setup:**
 
 - **Stock:** JPM (bank stock)
@@ -1123,6 +1157,7 @@ $$
 6. Didn't get greedy, exited near target
 
 ### 3. Portable Alpha with Futures
+
 
 **Setup:**
 
@@ -1208,6 +1243,7 @@ $$
 
 ### 4. Tactical Duration Extension
 
+
 **Setup:**
 
 - **Stock:** META
@@ -1288,7 +1324,9 @@ $$
 
 ## Strike Selection 
 
+
 ### 1. ITM (In-the-Money)
+
 
 **Characteristics:**
 
@@ -1341,6 +1379,7 @@ Stock at $100, strong uptrend:
 - Higher dollar loss if wrong
 
 ### 2. ATM (At-the-Money)
+
 
 **Characteristics:**
 
@@ -1396,6 +1435,7 @@ Stock at $100, confirmed trend:
 
 ### 3. OTM (Out-of-the-Money)
 
+
 **Characteristics:**
 
 - Delta: 0.20-0.40
@@ -1450,6 +1490,7 @@ Stock at $100, breakout setup:
 
 ### 4. Strike Selection Framework
 
+
 **Based on trend strength (ADX):**
 
 $$
@@ -1483,7 +1524,9 @@ $$
 
 ## Time Selection 
 
+
 ### 1. Short-term (< 30 DTE)
+
 
 **Characteristics:**
 
@@ -1537,6 +1580,7 @@ $$
 
 ### 2. Medium-term (30-60 DTE)
 
+
 **Characteristics:**
 
 - Moderate premium
@@ -1588,6 +1632,7 @@ $$
 **Recommendation:** This is the sweet spot for trend following. Start here.
 
 ### 3. Long-term (60+ DTE, LEAPS)
+
 
 **Characteristics:**
 
@@ -1645,6 +1690,7 @@ $$
 
 ### 4. Time Selection Framework
 
+
 **Based on trend maturity:**
 
 | Trend Stage | DTE Choice | Reasoning |
@@ -1669,7 +1715,9 @@ $$
 
 ## Entry and Exit Rules
 
+
 ### 1. Entry Checklist
+
 
 **Must have ALL of the following:**
 
@@ -1718,6 +1766,7 @@ $$
 **If ANY checkbox not checked → DON'T TRADE!**
 
 ### 2. Exit Rules 
+
 
 **Type 1: Stop Loss Exits (Prevent Disaster)**
 
@@ -1779,6 +1828,7 @@ $$
 
 ### 3. Systematic Exit Framework
 
+
 **Exit decision tree (check in this order):**
 
 ```
@@ -1808,6 +1858,7 @@ $$
 
 ### 4. Position Sizing Formula
 
+
 **Conservative approach (recommended):**
 
 $$
@@ -1831,6 +1882,7 @@ Aggressive: (0.05 × $50,000) / $500 = 5 contracts
 **Start with 2 contracts, increase to 5 only with proven track record.**
 
 ### 5. Scaling In/Out Strategy
+
 
 **Scaling in (adding to winners):**
 
@@ -1867,6 +1919,7 @@ Example:
 
 
 ## Final Wisdom
+
 
 > "The trend is your friend, but only if you follow it with discipline. Trend following with options is NOT about predicting the future—it's about reacting to the present and managing risk ruthlessly. Most traders fail not because they can't identify trends, but because they lack the discipline to exit losing trades and the patience to let winners run. Master these two skills, and you'll be in the top 10% of options traders."
 

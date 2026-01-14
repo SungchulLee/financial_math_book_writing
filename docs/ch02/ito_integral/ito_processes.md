@@ -1,10 +1,12 @@
 # Itô Processes
 
+
 An **Itô process** is a stochastic process constructed by combining ordinary (Lebesgue) integration and stochastic (Itô) integration. These processes form the natural class of semimartingales for which Itô's formula applies, and they serve as the foundation for stochastic differential equations in continuous time.
 
 ---
 
 ## Definition
+
 
 An **Itô process** is a continuous adapted process \(X_t\) that can be written in the form:
 
@@ -45,7 +47,9 @@ with the understanding that this is shorthand for the integral equation above.
 
 ## Basic examples
 
-### Example 1: Brownian motion
+
+### 1. Example 1: Brownian motion
+
 
 Standard Brownian motion is the simplest Itô process:
 
@@ -58,7 +62,8 @@ $$
 
 Here, \(\mu_t = 0\) (no drift) and \(\sigma_t = 1\) (unit diffusion).
 
-### Example 2: Brownian motion with drift
+### 2. Example 2: Brownian motion with drift
+
 
 A Brownian motion with constant drift \(\mu\) and volatility \(\sigma\):
 
@@ -80,7 +85,8 @@ In differential form: \(dX_t = \mu \, dt + \sigma \, dB_t\).
 
 This process is widely used in physics (particle motion with constant force) and finance (stock prices under the Black-Scholes model with log-normal returns).
 
-### Example 3: Integrated Brownian motion
+### 3. Example 3: Integrated Brownian motion
+
 
 Define:
 
@@ -111,7 +117,8 @@ $$
 
 (This anticipates Itô's integration by parts formula.)
 
-### Example 4: Quadratic variation as an Itô process
+### 4. Example 4: Quadratic variation as an Itô process
+
 
 The process \(B_t^2 - t\) is a martingale (established in Section 1.2). We can express it as:
 
@@ -147,6 +154,7 @@ confirming the representation.
 ---
 
 ## Differential notation and interpretation
+
 
 The notation \(dX_t = \mu_t dt + \sigma_t dB_t\) should be understood as:
 
@@ -184,7 +192,9 @@ These "multiplication rules" capture the essence of stochastic calculus: determi
 
 ## Properties of Itô processes
 
-### Martingale characterization
+
+### 1. Martingale characterization
+
 
 An Itô process \(X_t = X_0 + \int_0^t \mu_s ds + \int_0^t \sigma_s dB_s\) is:
 
@@ -235,7 +245,8 @@ $$
 
 with \(\mu_t = 0\).
 
-### Quadratic variation
+### 2. Quadratic variation
+
 
 The quadratic variation of an Itô process is determined entirely by its diffusion coefficient.
 
@@ -274,7 +285,8 @@ where the last equality follows from the quadratic variation property of the It�
 
 **Corollary**: The **instantaneous variance** (or **spot volatility**) of \(X_t\) at time \(t\) is \(\sigma_t^2\).
 
-### Path properties
+### 3. Path properties
+
 
 **Theorem (Continuity)**: If \(\mu_t\) and \(\sigma_t\) are continuous adapted processes, then \(X_t\) has continuous sample paths almost surely.
 
@@ -283,6 +295,7 @@ where the last equality follows from the quadratic variation property of the It�
 ---
 
 ## The Doob-Meyer decomposition
+
 
 For an Itô process, the **Doob-Meyer decomposition** is explicit.
 
@@ -308,7 +321,9 @@ This decomposition is **unique** (up to indistinguishability).
 
 ## Examples revisited
 
-### Ornstein-Uhlenbeck process
+
+### 1. Ornstein-Uhlenbeck process
+
 
 The **Ornstein-Uhlenbeck process** is defined by:
 
@@ -334,7 +349,8 @@ This is an Itô process with:
 
 The Ornstein-Uhlenbeck process is used in physics (velocity of a particle under friction) and finance (interest rate models, volatility models).
 
-### Geometric Brownian motion (informal preview)
+### 2. Geometric Brownian motion (informal preview)
+
 
 Consider the process:
 
@@ -361,6 +377,7 @@ This process is widely used in mathematical finance as a model for stock prices 
 ---
 
 ## Extension: Multidimensional Itô processes
+
 
 In applications, we often encounter systems of coupled Itô processes.
 
@@ -410,6 +427,7 @@ This generalizes the scalar case.
 
 ## Connection to stochastic differential equations
 
+
 The notation \(dX_t = \mu_t dt + \sigma_t dB_t\) naturally leads to **stochastic differential equations (SDEs)**:
 
 
@@ -436,6 +454,7 @@ SDEs require existence and uniqueness theorems (Lipschitz conditions, etc.), whi
 ---
 
 ## Summary
+
 
 Itô processes are the fundamental building blocks of stochastic calculus:
 

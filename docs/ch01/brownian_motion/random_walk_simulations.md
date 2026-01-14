@@ -1,6 +1,10 @@
-# Random Walk Simulations 
+# Random Walk
+
+
 
 ## Introduction
+
+
 
 This section provides computational illustrations of the theoretical concepts developed in **Random Walk Foundations**. Through Monte Carlo simulation, we visualize key properties such as:
 
@@ -16,11 +20,15 @@ These examples serve two purposes: (1) building intuition for abstract limit the
 
 **Note:** These simulations are supplementary to the mathematical theory. Understanding the proofs in the previous section is essential; the code merely illustrates the results.
 
-## Example 1: Single Path Simulation
+## Example 1 Single
+
+
 
 This example simulates a single realization of a simple random walk and visualizes the path.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 The simple symmetric random walk is defined as:
 
@@ -36,7 +44,9 @@ Key properties:
 
 - $[S]_n = n$ (quadratic variation)
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -46,19 +56,19 @@ import numpy as np
 num_flips = 100
 p_heads = 0.5
 
-# Simulate coin flips: +1 for heads, -1 for tails
+# Simulate coin flips
 np.random.seed(0)
 flips = np.random.choice([1, -1], size=num_flips, p=[p_heads, 1-p_heads])
 
-# Count heads and tails
+# Count heads tails
 heads_count = np.sum(flips == 1)
 tails_count = np.sum(flips == -1)
 print(f"Heads: {heads_count}, Tails: {tails_count}")
 
-# Cumulative sum as random walk
+# Cumulative sum
 cumsum_flips = np.cumsum(np.insert(flips, 0, 0))
 
-# Plot cumulative sum path
+# Plot cumulative sum
 fig, ax = plt.subplots(figsize=(10, 5))
 ax.plot(cumsum_flips, marker='o', linestyle='-', markersize=3)
 ax.set_xlabel("Number of Flips", fontsize=12)
@@ -70,7 +80,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 - **Path behavior**: The cumulative sum oscillates around zero (since $\mathbb{E}[S_n] = 0$)
 
@@ -78,11 +90,15 @@ plt.show()
 
 - **Irregularity**: The path has a "kink" at every step, foreshadowing the nowhere-differentiability of Brownian motion
 
-## Example 2: Multiple Independent Paths
+## Example 2 Multiple
+
+
 
 This example generates multiple independent random walk realizations to visualize the distribution of paths and confirm variance growth.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 For multiple independent realizations $S_n^{(1)}, \ldots, S_n^{(m)}$:
 
@@ -92,7 +108,9 @@ For multiple independent realizations $S_n^{(1)}, \ldots, S_n^{(m)}$:
 
 - Paths are independent, so observing one path gives no information about others
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -105,13 +123,13 @@ p_heads = 0.5
 
 np.random.seed(0)
 
-# Simulate coin flips for multiple paths
-# Shape: (num_paths, num_flips)
+# Simulate coin flips
+# Shape num paths num
 flips = np.random.choice([1, -1], size=(num_paths, num_flips), 
                         p=[p_heads, 1-p_heads])
 
-# Compute cumulative sums for each path
-# Insert 0 at the beginning: S_0 = 0
+# Compute cumulative
+# Insert 0 beginning S
 cumsum_flips = np.cumsum(np.insert(flips, 0, 0, axis=1), axis=1)
 
 # Plot all paths
@@ -127,7 +145,7 @@ ax.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# Display statistics for each path
+# Display statistics
 print("\nPath Statistics:")
 print("-" * 60)
 heads_count = np.sum(flips == 1, axis=1)
@@ -138,14 +156,16 @@ for i in range(num_paths):
     print(f"Path {i + 1}: Heads = {heads_count[i]:3d}, Tails = {tails_count[i]:3d}, "
           f"Final Position = {final_position[i]:+4d}")
 
-# Verify variance growth
+# Verify variance
 sample_mean = np.mean(final_position)
 sample_var = np.var(final_position, ddof=1)
 print(f"\nSample mean at n={num_flips}: {sample_mean:.2f} (theoretical: 0)")
 print(f"Sample variance at n={num_flips}: {sample_var:.2f} (theoretical: {num_flips})")
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 - **Path diversity**: Each colored line represents an independent realization; they diverge due to randomness
 
@@ -155,11 +175,15 @@ print(f"Sample variance at n={num_flips}: {sample_var:.2f} (theoretical: {num_fl
 
 - **No "memory"**: Past behavior doesn't predict future behavior (Markov property)
 
-## Example 3: Scaled Random Walk Converging to Brownian Motion
+## Example 3 Scaled
+
+
 
 This example demonstrates **Donsker's theorem** by showing how the scaled random walk $S^{(n)}(t) = S_{[nt]}/\sqrt{n}$ converges to Brownian motion as $n \to \infty$.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 **Donsker's Invariance Principle** states:
 
@@ -175,7 +199,9 @@ As $n$ increases:
 
 - Distribution converges to Gaussian: $S^{(n)}(t) \sim \mathcal{N}(0, t)$
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -223,7 +249,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 - **$n = 10$**: Paths are jagged with visible jumps of size $1/\sqrt{10} \approx 0.32$
 
@@ -249,11 +277,15 @@ $$\text{Var}(S^{(n)}(1)) = \frac{[n]}{n} \approx 1$$
 
 which matches $\text{Var}(W_1) = 1$ for Brownian motion.
 
-## Example 4: Visualizing Quadratic Variation
+## Example 4
+
+
 
 This example illustrates the fundamental property that quadratic variation grows linearly with time, not quadratically.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 **Proposition 1.1.3** states that for the simple random walk:
 
@@ -269,7 +301,9 @@ $$\langle W \rangle_t = t$$
 
 This is the foundation for Itô calculus: $(dW_t)^2 = dt$, not 0.
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -281,7 +315,7 @@ num_paths = 20
 
 np.random.seed(0)
 
-# Storage for quadratic variation
+# Storage quadratic
 QV_paths = np.zeros((num_paths, num_steps))
 
 for path_idx in range(num_paths):
@@ -297,7 +331,7 @@ for path_idx in range(num_paths):
 # Plot
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
-# Plot 1: Sample paths of quadratic variation
+# Plot 1 Sample paths
 n_display = 10
 for i in range(n_display):
     ax1.plot(range(1, num_steps+1), QV_paths[i, :], alpha=0.5)
@@ -309,7 +343,7 @@ ax1.set_title('Quadratic Variation Paths', fontsize=13)
 ax1.legend(fontsize=10)
 ax1.grid(alpha=0.3)
 
-# Plot 2: Mean quadratic variation across all paths
+# Plot 2 Mean
 mean_QV = np.mean(QV_paths, axis=0)
 std_QV = np.std(QV_paths, axis=0)
 time_steps = range(1, num_steps+1)
@@ -327,7 +361,7 @@ ax2.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# Verify: quadratic variation equals n almost surely
+# Verify quadratic
 print(f"\nVerification: [S]_n = n for all paths")
 print(f"Mean [S]_{num_steps} = {mean_QV[-1]:.2f}")
 print(f"Theoretical value = {num_steps}")
@@ -335,7 +369,9 @@ print(f"Difference = {abs(mean_QV[-1] - num_steps):.6f}")
 print(f"\nAll paths have [S]_n = n exactly: {np.allclose(QV_paths[:, -1], num_steps)}")
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 **Left plot**: 
 
@@ -369,11 +405,15 @@ $$\lim_{|\Delta t_i| \to 0} \sum_{i=1}^n (W_{t_{i+1}} - W_{t_i})^2 = t \neq 0$$
 
 This is why Itô's formula has the correction term $\frac{1}{2}\sigma^2 S^2 dt$.
 
-## Example 5: Verifying Variance Formulas
+## Example 5 Verifying
+
+
 
 This example numerically confirms the theoretical variance formulas from Proposition 1.1.1.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 For the symmetric random walk:
 
@@ -383,7 +423,9 @@ For the symmetric random walk:
 
 We verify these using Monte Carlo simulation.
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -425,7 +467,7 @@ ax1.set_title(f'Variance of $S_n$ ({num_trials} trials)', fontsize=13)
 ax1.legend(fontsize=11)
 ax1.grid(alpha=0.3)
 
-# Fourth moment plot
+# moment plot
 ax2.plot(n_values, fourth_moment_empirical, 'b-', alpha=0.7, label='Empirical')
 ax2.plot(n_values, fourth_moment_theoretical, 'r--', linewidth=2, 
          label='Theoretical: $3n^2 - 2n$')
@@ -438,7 +480,7 @@ ax2.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# Numerical verification
+# Numerical
 print(f"Verification at n = {max_steps}:")
 print(f"Empirical variance: {variance_empirical[-1]:.4f}")
 print(f"Theoretical variance: {variance_theoretical[-1]}")
@@ -449,7 +491,9 @@ print(f"Theoretical 4th moment: {fourth_moment_theoretical[-1]:.2f}")
 print(f"Relative error: {abs(fourth_moment_empirical[-1] - fourth_moment_theoretical[-1]) / fourth_moment_theoretical[-1] * 100:.2f}%")
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 - **Left plot**: Blue line (empirical variance) closely tracks red line (theoretical $n$)
 
@@ -459,7 +503,9 @@ print(f"Relative error: {abs(fourth_moment_empirical[-1] - fourth_moment_theoret
 
 This confirms Proposition 1.1.1 numerically and demonstrates the power of the Law of Large Numbers.
 
-## Summary and Computational Insights
+## Summary
+
+
 
 These simulations illustrate several key theoretical results:
 
@@ -482,6 +528,8 @@ These simulations illustrate several key theoretical results:
 - Study higher moments or other statistics using the framework above
 
 ## References
+
+
 
 - Glasserman, P. (2003). *Monte Carlo Methods in Financial Engineering*. Springer.
 - Kloeden, P. E., & Platen, E. (1992). *Numerical Solution of Stochastic Differential Equations*. Springer.

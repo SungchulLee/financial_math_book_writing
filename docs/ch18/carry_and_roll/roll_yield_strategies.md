@@ -1,10 +1,12 @@
 # Roll Yield
 
+
 **Roll yield strategies** involve systematically profiting from or managing the cost/benefit of rolling futures positions from expiring contracts to later-dated contracts, exploiting predictable patterns in the futures curve shape (contango or backwardation) to generate returns independent of absolute price movements.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -38,9 +40,11 @@ $$
 
 ## What is Roll Yield?
 
+
 **Before trading roll yield, understand what you're actually capturing:**
 
 ### 1. The Rolling
+
 
 **Definition:** Roll yield is the profit or loss from closing an expiring futures contract and opening the next contract, driven by the difference in price between the two contracts.
 
@@ -65,6 +69,7 @@ $$
 **This $2 cost is negative roll yield in contango.**
 
 ### 2. Contango vs.
+
 
 **Contango (Upward-sloping curve):**
 
@@ -116,6 +121,7 @@ $$
 
 ### 3. The Compounding
 
+
 **Single roll:**
 - Roll cost/benefit: $2/barrel
 - On 1,000 barrels: $2,000
@@ -143,6 +149,7 @@ $$
 This is why understanding roll yield is CRITICAL.
 
 ### 4. Real-World
+
 
 **The commodity ETF trap:**
 
@@ -182,9 +189,11 @@ This is why understanding roll yield is CRITICAL.
 
 ## Economic
 
+
 **Beyond the mechanical explanation, understanding the economic drivers:**
 
 ### 1. The Cost of Carry
+
 
 **For storable commodities, futures prices reflect carry costs:**
 
@@ -219,6 +228,7 @@ If $y > r + u$ (convenience yield > carry costs):
 - **Positive roll yield for longs**
 
 ### 2. Storage Theory
+
 
 **The Theory of Storage (Kaldor, Working, Brennan):**
 
@@ -258,6 +268,7 @@ If $y > r + u$ (convenience yield > carry costs):
 
 ### 3. Why This
 
+
 **Understanding roll yield economics helps you:**
 
 1. **Predict curve shape:**
@@ -285,6 +296,7 @@ If $y > r + u$ (convenience yield > carry costs):
 
 ## Final Wisdom
 
+
 > "In commodity futures, the curve is the trade. You can be right on direction and still lose everything if you ignore roll yield. Contango is a silent killer that compounds monthly, destroying value even when prices are flat. Backwardation is a hidden profit engine that can double your returns. Professional traders who survive know: never fight the curve for long, and always calculate the annual roll cost before entering any commodity position. If you don't understand roll yield, you're not investing in commodities—you're just donating money to those who do."
 
 **Key principles:**
@@ -310,6 +322,7 @@ Roll yield can be +100% or -90% annually. It compounds. It's predictable. It's o
 
 ### 1. Core Concept
 
+
 **Roll yield is the profit or loss from rolling futures contracts:**
 
 $$
@@ -328,6 +341,7 @@ $$
 
 ### 2. The Compounding
 
+
 **Single roll:** Small impact (-3%)
 **Multiple rolls:** MASSIVE impact
 
@@ -338,6 +352,7 @@ $$
 - **Time multiplies roll impact**
 
 ### 3. Contango vs.
+
 
 **Contango (negative roll):**
 
@@ -361,6 +376,7 @@ $$
 
 ### 4. When to Trade for
 
+
 **Enter long when:**
 - Backwardation >5% monthly
 - Seasonal pattern favorable (winter natural gas)
@@ -375,6 +391,7 @@ $$
 
 ### 5. Best Case
 
+
 **Example: 2022 Europe Natural Gas**
 - Entry: €40/MWh (backwardation €5/month)
 - 6 months of rolling: +€34 from roll yield (+85%)
@@ -383,6 +400,7 @@ $$
 
 ### 6. Worst Case
 
+
 **Example: USO 2009-2020**
 - Oil spot: $50 → $40 (-20%)
 - USO: $40 → $2 (-95%)
@@ -390,6 +408,7 @@ $$
 - Persistent contango killed the fund
 
 ### 7. Critical Lessons
+
 
 **From USO disaster:**
 - Never buy commodity ETFs in contango
@@ -405,6 +424,7 @@ $$
 
 ### 8. Alternatives to
 
+
 **In persistent contango (>3% monthly):**
 - Commodity stocks (no roll, dividends)
 - Physical commodity (storage < roll cost)
@@ -412,6 +432,7 @@ $$
 - **Don't use front-month futures!**
 
 ### 9. Key Magnitudes
+
 
 | Commodity | Typical Contango | Typical Backwardation |
 |-----------|-----------------|---------------------|

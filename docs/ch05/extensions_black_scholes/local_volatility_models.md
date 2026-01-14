@@ -1,10 +1,12 @@
 # Local Volatility Models
 
+
 Local volatility replaces constant \(\sigma\) with \(\sigma_{\mathrm{loc}}(t,S)\), allowing calibration to an implied volatility surface.
 
 ---
 
-## 1. Model
+## Model
+
 
 Under \(\mathbb{Q}\),
 
@@ -18,7 +20,8 @@ Under \(\mathbb{Q}\),
 
 ---
 
-## 2. Pricing PDE
+## Pricing PDE
+
 
 
 \[
@@ -35,7 +38,8 @@ Under \(\mathbb{Q}\),
 
 ---
 
-## 3. Dupire (Formal)
+## Dupire (Formal)
+
 
 Given call prices \(C(T,K)\), a formal local variance is
 
@@ -51,7 +55,8 @@ Given call prices \(C(T,K)\), a formal local variance is
 
 ---
 
-## 4. What to Remember
+## What to Remember
+
 
 - Local volatility fits the full surface (idealized).
 - Dynamics of the smile may be unrealistic; hedging can be challenging.

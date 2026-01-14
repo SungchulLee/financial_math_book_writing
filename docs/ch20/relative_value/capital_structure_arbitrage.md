@@ -1,10 +1,12 @@
 # Capital Structure Arbitrage
 
+
 **Capital structure arbitrage** is the practice of exploiting mispricings between different securities issued by the same company—typically between equity and credit, or between senior and subordinated debt—based on the structural relationships that should theoretically bind their values together, profiting when these relationships normalize while the fundamental value of the underlying enterprise remains constant.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -58,9 +60,11 @@ $$
 
 ## What is Capital Structure Arbitrage?
 
+
 **Before implementing these strategies, understand the structural framework:**
 
-### The Capital Structure Hierarchy
+### 1. The Capital Structure Hierarchy
+
 
 **Priority of claims (liquidation):**
 
@@ -121,7 +125,8 @@ Liquidation Value of Assets ($V)
 
 **Senior recovers 60%, junior and equity zero.**
 
-### The Merton Model Foundation
+### 2. The Merton Model Foundation
+
 
 **Equity as a call option:**
 
@@ -185,7 +190,8 @@ $$
 
 **This relationship is the foundation of capital structure arbitrage!**
 
-### Credit Spreads and Equity Volatility
+### 3. Credit Spreads and Equity Volatility
+
 
 **Theoretical relationship:**
 
@@ -222,9 +228,11 @@ Where $\beta \approx 2$ and $\gamma \approx 1.5$ empirically.
 
 ## Economic Interpretation: Why Mispricings Occur
 
+
 **Understanding the structural inefficiencies:**
 
-### Market Segmentation
+### 1. Market Segmentation
+
 
 **Different investor bases:**
 
@@ -248,7 +256,8 @@ Where $\beta \approx 2$ and $\gamma \approx 1.5$ empirically.
 - Credit spreads widen only 10 bp (should widen 30 bp)
 - **Temporary mispricing: Equity cheap vs. credit**
 
-### Leverage Dynamics
+### 2. Leverage Dynamics
+
 
 **As firm value changes, leverage changes:**
 
@@ -276,7 +285,8 @@ $$
 
 If equity rallies but credit doesn't tighten proportionally → Short equity, long credit.
 
-### Volatility Smile and Capital Structure
+### 3. Volatility Smile and Capital Structure
+
 
 **Equity options implied volatility:**
 
@@ -304,7 +314,8 @@ $$
 - Buy CDS protection (cheaper than put vol implies)
 - Profit from mispricing
 
-### Recovery Rate Assumptions
+### 4. Recovery Rate Assumptions
+
 
 **Credit markets assume recovery rates:**
 
@@ -323,6 +334,7 @@ If credit market is too optimistic about recovery (e.g., pricing 50% when realit
 ---
 
 ## Key Terminology
+
 
 **Capital Structure:**
 
@@ -417,7 +429,9 @@ How much CDS to match equity position delta.
 
 ## Basic Capital Structure Arbitrage Strategies
 
-### Strategy 1: Long Credit, Short Equity (Classic)
+
+### 1. Strategy 1: Long Credit, Short Equity (Classic)
+
 
 **Setup:**
 
@@ -533,7 +547,8 @@ $$
 
 **Risk management:** Set stop loss at -50% (-$25k).
 
-### Strategy 2: Senior vs. Subordinated (Credit Curve Trade)
+### 2. Strategy 2: Senior vs. Subordinated (Credit Curve Trade)
+
 
 **Setup:**
 
@@ -622,7 +637,8 @@ Use **spread options or custom structures** that directly bet on differential.
 
 Or **wait for senior to cheapen before entering.**
 
-### Strategy 3: Distressed Long Equity / Short Senior Debt
+### 3. Strategy 3: Distressed Long Equity / Short Senior Debt
+
 
 **Setup:**
 
@@ -707,7 +723,8 @@ Or **wait for senior to cheapen before entering.**
 
 If bullish on distressed company, just buy equity. Don't short credit (it will rally more if you're right).
 
-### Strategy 4: Volatility Arbitrage (Equity Options vs. CDS)
+### 4. Strategy 4: Volatility Arbitrage (Equity Options vs. CDS)
+
 
 **Setup:**
 
@@ -776,9 +793,11 @@ Put vol overpricing default risk OR CDS underpricing it.
 
 ## Greeks in Capital Structure Arbitrage
 
+
 **Understanding cross-asset sensitivities:**
 
-### Equity Delta vs. Credit Delta
+### 1. Equity Delta vs. Credit Delta
+
 
 **From Merton model:**
 
@@ -816,7 +835,8 @@ $$
 
 As company deteriorates, need more credit protection per dollar of equity shorted.
 
-### Vega: Volatility Sensitivity
+### 2. Vega: Volatility Sensitivity
+
 
 **Equity vega:**
 
@@ -849,7 +869,8 @@ If short equity / long credit (betting on deterioration):
 - VIX falls → Equity outperforms credit
 - Can hedge with long VIX or short vol
 
-### Gamma: Convexity
+### 3. Gamma: Convexity
+
 
 **Equity gamma:**
 
@@ -884,7 +905,9 @@ Shorting equity and longing credit in distressed situations faces **negative gam
 
 ## Capital Structure Arbitrage Payoff Analysis
 
-### Long Credit / Short Equity Expected Returns
+
+### 1. Long Credit / Short Equity Expected Returns
+
 
 **Setup:**
 - Short $1M equity
@@ -927,7 +950,8 @@ $$
 </p>
 **Figure 1:** P/L distribution for long credit / short equity capital structure arbitrage showing positive skew with small probability of large gain (default scenario) and higher probability of moderate losses (firm improvement).
 
-### Senior vs. Subordinated Spread Trade
+### 2. Senior vs. Subordinated Spread Trade
+
 
 **Setup:**
 - Long $10M subordinated CDS at 450 bp (overpaying protection)
@@ -978,7 +1002,9 @@ Historical: 1.8x average
 
 ## Real-World Capital Structure Arbitrage Examples
 
-### Example 1: Tesla 2019 - Short Equity / Long Credit (Winner)
+
+### 1. Example 1: Tesla 2019 - Short Equity / Long Credit (Winner)
+
 
 **Setup:**
 
@@ -1114,7 +1140,8 @@ Inputs:
 
 **Moral:** Capital structure arbitrage requires discipline to take profits. Don't get greedy.
 
-### Example 2: GM 2008-2009 - Long Senior / Short Subordinated (Loser)
+### 2. Example 2: GM 2008-2009 - Long Senior / Short Subordinated (Loser)
+
 
 **Setup:**
 
@@ -1240,7 +1267,8 @@ Inputs:
 - **Regime changes invalidate historical relationships**
 - **Take profits in tail events** (don't wait for full normalization)
 
-### Example 3: Hertz 2020 - Equity vs. Credit Dislocation (Winner and Loser)
+### 3. Example 3: Hertz 2020 - Equity vs. Credit Dislocation (Winner and Loser)
+
 
 **Setup:**
 
@@ -1358,7 +1386,9 @@ Inputs:
 
 ## Best Case Scenario
 
-### The Perfect Capital Structure Arbitrage - Lehman Brothers (2008)
+
+### 1. The Perfect Capital Structure Arbitrage - Lehman Brothers (2008)
+
 
 **Setup:**
 
@@ -1560,7 +1590,9 @@ When both hold simultaneously, returns can be extraordinary.
 
 ## Worst Case Scenario
 
-### The Crushing Loss - AMC 2021 Meme Stock Reversal
+
+### 1. The Crushing Loss - AMC 2021 Meme Stock Reversal
+
 
 **Setup:**
 
@@ -1783,7 +1815,9 @@ $$
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Capital structure arbitrage exploits mispricings between securities of the same company:**
 
@@ -1797,7 +1831,8 @@ $$
 - Long undervalued security, short overvalued
 - Market-neutral to firm value
 
-### Merton Model Framework
+### 2. Merton Model Framework
+
 
 **Equity as call option:**
 
@@ -1820,7 +1855,8 @@ $$
 - Healthy firm: $\Delta_E \approx 0.8$, $\Delta_D \approx 0.2$
 - Distressed: $\Delta_E \approx 0.3$, $\Delta_D \approx 0.7$
 
-### Hedge Ratio Calculation
+### 3. Hedge Ratio Calculation
+
 
 $$
 \text{CDS Notional} = \frac{\text{Equity Position} \times \Delta_E}{\Delta_D}
@@ -1831,7 +1867,8 @@ $$
 - $\Delta_E = 0.65$, $\Delta_D = 0.35$
 - CDS notional: $10M × (0.65/0.35) = **$18.6M**
 
-### Entry Checklist
+### 4. Entry Checklist
+
 
 **For long credit / short equity:**
 
@@ -1855,7 +1892,8 @@ $$
    - [ ] Stop loss defined (-25%)
    - [ ] Hedge ratio calculated
 
-### Common Strategies
+### 5. Common Strategies
+
 
 **1. Long credit / Short equity:**
 - When equity overvalued vs. credit
@@ -1877,7 +1915,8 @@ $$
 - Exploit put vol vs. CDS mispricing
 - Advanced
 
-### Exit Rules
+### 6. Exit Rules
+
 
 **Close position when:**
 
@@ -1905,7 +1944,8 @@ $$
    - Borrow costs >10%
    - **Exit before forced liquidation**
 
-### Position Sizing
+### 7. Position Sizing
+
 
 **Conservative:**
 
@@ -1922,7 +1962,8 @@ $$
 - Total notional (equity + CDS): <2x fund
 - Any single position: <10% of fund
 
-### Common Mistakes
+### 8. Common Mistakes
+
 
 1. **Ignoring borrow costs**
    - 5-10% annual drag kills returns
@@ -1958,7 +1999,8 @@ $$
    - Shorting equity with 1-year CDS
    - Maturity mismatch creates basis risk
 
-### Performance Expectations
+### 9. Performance Expectations
+
 
 **Long credit / Short equity:**
 
@@ -1973,7 +2015,8 @@ $$
 **Expected return: 5-15% annually**
 **Sharpe ratio: 0.8-1.2**
 
-### Risk Metrics
+### 10. Risk Metrics
+
 
 **Key risks to monitor:**
 
@@ -1995,7 +2038,8 @@ $$
    - As firm value changes, $\Delta_E$ and $\Delta_D$ change
    - Need to rebalance hedge ratio
 
-### Your Learning Path
+### 11. Your Learning Path
+
 
 **Phase 1 (Months 1-3): Theory**
 - Study Merton model
@@ -2021,7 +2065,8 @@ $$
 - Systematic process
 - Advanced structures
 
-### Final Wisdom
+### 12. Final Wisdom
+
 
 > "Capital structure arbitrage is intellectually beautiful—the Merton model elegantly describes how equity and debt should move together. But the market is messier than theory. Equity can decouple from credit for months or years. Meme stocks can rally 10x despite bankruptcy risk. Borrow costs can reach 50-100% annually. The successful practitioner knows when theory applies (rational markets, information-driven) and when it doesn't (manias, squeezes, retail coordination). The Lehman trade (2008) was perfect because both equity and credit were mispriced, catalysts were clear, and fundamentals dominated. The AMC trade (2021) was catastrophic because technicals trumped fundamentals, retail coordinated against shorts, and timing was everything. Know the difference."
 

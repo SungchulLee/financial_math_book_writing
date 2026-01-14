@@ -1,10 +1,12 @@
 # Properties of the Itô Integral
 
+
 Having constructed the Itô integral \(\int_0^t H_s \, dB_s\) for adapted square-integrable processes, we now establish its fundamental properties. These properties—linearity, martingale structure, path continuity, and quadratic variation—form the foundation for stochastic calculus and reveal the deep connection between integration and martingale theory.
 
 ---
 
 ## Linearity
+
 
 The Itô integral is linear in the integrand.
 
@@ -27,6 +29,7 @@ $$
 ---
 
 ## Martingale property
+
 
 The Itô integral defines a martingale with respect to the natural filtration.
 
@@ -127,6 +130,7 @@ since \(I_0 = \int_0^0 H_s dB_s = 0\). \(\square\)
 
 ## Path continuity
 
+
 Unlike general semimartingales, the Itô integral with respect to Brownian motion has **continuous sample paths**.
 
 **Theorem (Continuity)**: Let \(H \in \mathcal{L}^2([0,T])\). Then the process:
@@ -199,6 +203,7 @@ for some \(\varepsilon > 0\), Kolmogorov's theorem guarantees the existence of a
 ---
 
 ## Quadratic variation
+
 
 The quadratic variation of the Itô integral reveals its fundamental stochastic nature.
 
@@ -299,6 +304,7 @@ $$
 
 ## Itô isometry (revisited)
 
+
 We established the Itô isometry during construction, but it's worth restating in full generality.
 
 **Theorem (Itô Isometry)**: For \(H \in \mathcal{L}^2([0,T])\):
@@ -335,6 +341,7 @@ This follows from polarization of the Itô isometry.
 
 ## Connection to martingale theory
 
+
 The Itô integral provides a **representation theorem** for certain martingales.
 
 **Theorem (Martingale Representation - Preview)**: Every square-integrable martingale \(M_t\) adapted to the Brownian filtration \(\mathcal{F}_t = \sigma(B_s: s \le t)\) can be represented as:
@@ -361,6 +368,7 @@ We will not prove this theorem here, but it highlights the central role of the I
 ---
 
 ## Local martingales and localization
+
 
 For processes that are not globally square-integrable, we can define the Itô integral as a **local martingale**.
 
@@ -409,6 +417,7 @@ only holds locally, not globally, since \(e^{B_s}\) is not globally square-integ
 ---
 
 ## Summary of key properties
+
 
 The Itô integral \(\int_0^t H_s dB_s\) satisfies:
 

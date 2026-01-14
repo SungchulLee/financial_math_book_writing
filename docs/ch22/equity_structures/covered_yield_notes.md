@@ -1,10 +1,12 @@
 # Covered Yield Notes
 
+
 **Covered yield notes** are structured products that combine a bond with a short position in equity options, generating enhanced income through option premium collection while accepting the risk of delivering shares at predetermined levels below current market prices, essentially selling downside insurance to earn above-market yields.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Are Covered Yield Notes?
 
+
 ### 1. Basic Structure
+
 
 **Components of the note:**
 
@@ -49,6 +53,7 @@
 - Maturity: 2 years
 
 ### 2. Payoff at Maturity
+
 
 **Two scenarios:**
 
@@ -76,6 +81,7 @@
 
 ### 3. Decomposition
 
+
 **Equivalent portfolio:**
 
 Covered yield note = Zero-coupon bond + Short put option
@@ -98,6 +104,7 @@ $$
 - Lower payoff: Physical settlement of short put + coupons
 
 ### 4. Risk-Return Profile
+
 
 **Return decomposition:**
 
@@ -130,6 +137,7 @@ $$
 - **Total: -6% (-3% annualized)**
 
 ### 5. Knock-In Barrier
+
 
 **Critical feature:**
 
@@ -175,6 +183,7 @@ Stock at $100, barrier at $80
 
 ### 6. Coupon Enhancement
 
+
 **Where does extra yield come from?**
 
 **Short put premium:**
@@ -201,6 +210,7 @@ Where:
 - $P_{\text{knock-in}}$ = Value of knock-in put option
 
 ### 7. Volatility Impact
+
 
 **Higher vol = higher coupon:**
 
@@ -231,6 +241,7 @@ Stock at $100, barrier at $80, 2 years
 ---
 
 ## Key Terminology
+
 
 **Knock-In Level:**
 - Barrier that triggers conversion feature
@@ -272,7 +283,9 @@ Stock at $100, barrier at $80, 2 years
 
 ## Why Investors Buy
 
+
 ### 1. Income Generation
+
 
 **Seeking yield in low-rate environment:**
 
@@ -298,6 +311,7 @@ Capital: $100,000
 
 ### 2. Bullish Outlook
 
+
 **Conviction stock won't crash:**
 
 **Investor view:**
@@ -313,6 +327,7 @@ Capital: $100,000
 
 ### 3. Neutral Positioning
 
+
 **Range-bound market view:**
 
 **Setup:**
@@ -327,6 +342,7 @@ Capital: $100,000
 - Fits neutral-to-bullish view perfectly
 
 ### 4. Strategic Positioning
+
 
 **Want to own stock at lower price:**
 
@@ -348,6 +364,7 @@ Want to buy Tesla at $200 (current: $250)
 
 ### 5. Leveraged Yield
 
+
 **Boost income on portfolio:**
 
 **Setup:**
@@ -365,6 +382,7 @@ Want to buy Tesla at $200 (current: $250)
 - Effectively ~70% equity risk for ~80% equity return
 
 ### 6. Tax Considerations
+
 
 **Coupon treatment:**
 
@@ -390,6 +408,7 @@ Investor in 35% tax bracket
 
 ### 7. Portfolio Diversification
 
+
 **Uncorrelated income source:**
 
 **Within fixed income:**
@@ -408,7 +427,9 @@ Investor in 35% tax bracket
 
 ## Pricing & Valuation
 
+
 ### 1. Put Premium Calculation
+
 
 **Black-Scholes for the embedded put:**
 
@@ -455,6 +476,7 @@ $$
 
 ### 2. Break-Even Analysis
 
+
 **At what final price do you break even?**
 
 $$
@@ -470,6 +492,7 @@ $$
 **Interpretation:** Stock can fall 16% and investor still breaks even (coupons offset loss).
 
 ### 3. Probability Estimation
+
 
 **Chance of knock-in:**
 
@@ -487,6 +510,7 @@ $$
 **Interpretation:** Roughly 1-in-5 chance of conversion.
 
 ### 4. Expected Return
+
 
 **Probability-weighted outcomes:**
 
@@ -514,6 +538,7 @@ $$
 
 ### 5. Volatility Surface Impact
 
+
 **Real markets have volatility skew:**
 
 **Put options are more expensive than Black-Scholes suggests:**
@@ -532,6 +557,7 @@ Black-Scholes (flat vol = 25%): Put premium = 7%
 **Implication:** Real-world coupons higher than theory due to skew.
 
 ### 6. Credit Spread
+
 
 **Issuer credit affects pricing:**
 
@@ -556,6 +582,7 @@ Issuer: BBB-rated bank, credit spread = 150 bps
 
 ### 7. Comparison to Stock
 
+
 **Risk-adjusted return:**
 
 **Buy stock directly:**
@@ -579,7 +606,9 @@ Issuer: BBB-rated bank, credit spread = 150 bps
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Issuer Credit
+
 
 **Treating as risk-free:**
 
@@ -607,6 +636,7 @@ Issuer: BBB-rated bank, credit spread = 150 bps
 
 ### 2. Misunderstanding Memory
 
+
 **Thinking barrier "heals":**
 
 - **Mistake:** Believe if stock recovers above barrier, conversion canceled
@@ -629,6 +659,7 @@ Stock path: $180 → $140 → $175
 - **Lost $2,778** vs. principal (despite stock only -2.8%)
 
 ### 3. Dividend Oversight
+
 
 **Forgetting dividend impact:**
 
@@ -661,6 +692,7 @@ Stock at $180, dividend yield = 2%
 
 ### 4. Liquidity Assumption
 
+
 **Treating as liquid:**
 
 - **Mistake:** Buy note assuming can sell anytime at fair value
@@ -682,6 +714,7 @@ Investor buys $100K note, needs cash 6 months later
 - Use note as collateral for loan (if issuer permits)
 
 ### 5. Worst-Of Correlation
+
 
 **Underestimating worst-of risk:**
 
@@ -709,6 +742,7 @@ Investor buys $100K note, needs cash 6 months later
 
 ### 6. Reinvestment Timing
 
+
 **Poor timing of reinvestment:**
 
 - **Mistake:** Buy covered yield note at market highs
@@ -734,7 +768,9 @@ Investor buys $100K note, needs cash 6 months later
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Perfect environment:**
 
@@ -783,6 +819,7 @@ Investor buys $100K note, needs cash 6 months later
 - **Success!**
 
 ### 2. Worst Case: Disaster
+
 
 **Crash scenario:**
 
@@ -847,7 +884,9 @@ Investor buys $100K note, needs cash 6 months later
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Maximum allocation:**
 
@@ -870,6 +909,7 @@ $1M portfolio: 60% equity, 40% bonds
 
 ### 2. Diversification
 
+
 **Spread across issuers and underlyings:**
 
 **Rules:**
@@ -885,6 +925,7 @@ $1M portfolio: 60% equity, 40% bonds
 - No concentration risk
 
 ### 3. Barrier Cushion
+
 
 **Require minimum barrier distance:**
 
@@ -908,6 +949,7 @@ Stock at $100
 
 ### 4. Credit Quality
 
+
 **Minimum issuer rating:**
 
 $$
@@ -929,6 +971,7 @@ $$
 
 ### 5. Maturity Ladder
 
+
 **Stagger maturities:**
 
 **Structure:**
@@ -943,6 +986,7 @@ $$
 - Can reassess market conditions yearly
 
 ### 6. Stress Testing
+
 
 **Required scenarios:**
 
@@ -981,7 +1025,9 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 
 ## Real-World Examples
 
+
 ### 1. Bank of America 2010s
+
 
 **Popular issuance:**
 
@@ -1011,6 +1057,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 - Appropriate barrier cushion
 
 ### 2. Worst-Of Disaster (2008)
+
 
 **Complex structure gone wrong:**
 
@@ -1048,6 +1095,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 
 ### 3. Apple Success (2016-2019)
 
+
 **Single-stock note:**
 
 **Setup:**
@@ -1079,6 +1127,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 - Appropriate for conservative investor
 
 ### 4. Oil Crash (2014-2016)
+
 
 **Energy sector note disaster:**
 
@@ -1113,7 +1162,9 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 
 ## Practical Steps
 
+
 ### 1. Initial Assessment
+
 
 **Is this product right for you?**
 
@@ -1128,6 +1179,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 **If all checked → Proceed**
 
 ### 2. Product Selection
+
 
 **Screening criteria:**
 
@@ -1158,6 +1210,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 
 ### 3. Due Diligence
 
+
 **Before investing:**
 
 **Read offering documents:**
@@ -1182,6 +1235,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 
 ### 4. Execution
 
+
 **Placing the order:**
 
 **Primary market:**
@@ -1202,6 +1256,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 - Don't overconcentrate in single note
 
 ### 5. Monitoring
+
 
 **Ongoing surveillance:**
 
@@ -1224,6 +1279,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 - Dividend changes (underlying)
 
 ### 6. Exit Strategy
+
 
 **When to exit early:**
 
@@ -1251,6 +1307,7 @@ $100K note, 10% coupon, 2 years, barrier at 80%
 ---
 
 ## Final Wisdom
+
 
 > "Covered yield notes are the siren song of structured products—the high coupon beckons, but the rocks of equity risk and credit risk lie beneath. They're not bad products, but they're often misused by investors chasing yield without understanding the risks. The coupon is NOT free money—it's compensation for selling downside insurance on stocks and taking credit risk on the issuer. Use covered yield notes when you have a clear bullish view, when you'd be happy to own the underlying stock at the barrier price, and when you've diversified across multiple issuers and underlyings. Never allocate more than 10-20% of your fixed income to these structures. And always remember: in a real crisis, both the equity risk and credit risk can materialize simultaneously, turning your 'enhanced yield' into an actual loss. The best time to buy covered yield notes is when coupons are high (high volatility) but you have conviction the market won't crash. The worst time is when everyone else is buying them (complacency, peak markets). Be contrarian, be diversified, and always know your exit strategy."
 

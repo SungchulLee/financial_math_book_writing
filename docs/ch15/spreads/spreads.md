@@ -1,5 +1,6 @@
 # Options Spreads
 
+
 **Options spreads** are multi-leg strategies that combine buying and selling options at different strikes or expirations, creating defined risk/reward profiles that are more capital-efficient than single options while offering strategic flexibility for any market view.
 
 
@@ -12,6 +13,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/spreads_overview.png?raw=true" alt="spreads_overview" width="700">
@@ -61,6 +63,7 @@ $$
 
 ## What Are Spreads?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vertical_spreads_comparison.png?raw=true" alt="vertical_spreads" width="700">
 </p>
@@ -68,6 +71,7 @@ $$
 **Before trading spreads, understand the landscape:**
 
 ### 1. The Spread Universe
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/spread_types_matrix.png?raw=true" alt="spread_types" width="700">
@@ -110,6 +114,7 @@ $$
 
 ### 2. Vertical Spreads
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/spread_risk_profiles.png?raw=true" alt="spread_risk" width="700">
 </p>
@@ -119,6 +124,7 @@ $$
 **Four main types:**
 
 ### 3. Long Call Spread
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/spread_greeks_comparison.png?raw=true" alt="spread_greeks" width="700">
@@ -173,6 +179,7 @@ $$
 
 ### 4. Short Call Spread
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_dynamics.png?raw=true" alt="calendar_spreads" width="700">
 </p>
@@ -226,6 +233,7 @@ $$
 
 ### 5. Short Put Spread
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/diagonal_spread_flexibility.png?raw=true" alt="diagonal_spreads" width="700">
 </p>
@@ -278,6 +286,7 @@ $$
 - **Vega:** Negative (IV drop helps)
 
 ### 6. Long Put Spread
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vertical_spreads_payoff.png?raw=true" alt="vertical_spreads_payoff" width="700">
@@ -334,11 +343,13 @@ $$
 
 ### 7. Calendar Spreads
 
+
 **Definition:** Buy and sell options at same strike, different expirations.
 
 **Also called:** Time spreads, calendar spreads
 
 ### 8. Diagonal Spreads
+
 
 **Definition:** Buy and sell options at different strikes AND different expirations.
 
@@ -346,9 +357,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic definitions, understanding the ECONOMIC purpose of spreads:**
 
 ### 1. Cost Reduction
+
 
 **Buying single option:**
 
@@ -374,6 +387,7 @@ $$
 
 ### 2. Risk Limitation
 
+
 **Selling single option:**
 
 - Sell $100 call for $5
@@ -397,6 +411,7 @@ $$
 **Key insight:** Buying the further OTM option as "insurance" caps your risk.
 
 ### 3. Vega Control
+
 
 **Long single option:**
 
@@ -422,6 +437,7 @@ $$
 
 ### 4. Theta Capture
 
+
 **Long single call:**
 
 - Buy $105 call for $3 (stock at $100)
@@ -444,6 +460,7 @@ $$
 
 ### 5. Spread Economics
 
+
 **All spreads can be understood as:**
 
 $$
@@ -462,7 +479,9 @@ $$
 
 ## Key Terminology
 
+
 ### 1. Spread Classifications
+
 
 **Vertical spread:**
 
@@ -496,6 +515,7 @@ $$
 
 ### 2. Cash Flow Types
 
+
 **Debit spread:**
 
 - Pay premium to enter
@@ -522,6 +542,7 @@ $$
 
 ### 3. Directional Classifications
 
+
 **Bullish spreads:**
 
 - Profit from stock rising
@@ -547,6 +568,7 @@ $$
 - Examples: Calendar spreads (at-the-money)
 
 ### 4. Spread Width & Strike Terms
+
 
 **Width (spread width):**
 
@@ -582,6 +604,7 @@ For debit spreads (long spreads):
 
 ### 5. Greek Terminology
 
+
 **Net Greeks:**
 
 All spreads have NET Greeks = sum of individual option Greeks.
@@ -606,7 +629,9 @@ Spreads REDUCE exposure to certain Greeks:
 
 ## The Greeks in Detail
 
+
 ### 1. Delta (Δ)
+
 
 **What delta tells you for spreads:**
 
@@ -646,6 +671,7 @@ Near-zero delta if strike = current stock price:
 **Key insight:** Vertical spreads have DIRECTIONAL exposure (delta), while ATM calendar spreads are NEUTRAL (near-zero delta).
 
 ### 2. Theta (Θ)
+
 
 **What theta tells you for spreads:**
 
@@ -702,6 +728,7 @@ $$
 - Calendar spreads earn from DIFFERENTIAL theta (near-term decays faster)
 
 ### 3. Vega (ν)
+
 
 **What vega tells you for spreads:**
 
@@ -771,6 +798,7 @@ $$
 
 ### 4. Gamma (Γ)
 
+
 **What gamma tells you for spreads:**
 
 $$
@@ -829,6 +857,7 @@ $$
 
 ### 5. Greek Comparison Table
 
+
 **Summary of spread Greeks:**
 
 | Spread Type | Delta | Theta | Vega | Gamma | Best Use |
@@ -845,7 +874,9 @@ $$
 
 ## Strike Selection Strategies
 
+
 ### 1. Vertical Spreads
+
 
 **The strike selection determines everything:**
 
@@ -866,6 +897,7 @@ $$
 3. **What DTE?**
 
 ### 2. Strike Distance
+
 
 **For credit spreads (bear call, bull put):**
 
@@ -891,6 +923,7 @@ $$
 - Debit spreads: Closer to ATM = higher cost, better delta, need less movement
 
 ### 3. Spread Width
+
 
 **Width determines risk/reward:**
 
@@ -931,6 +964,7 @@ $$
 
 ### 4. Expiration
 
+
 **DTE affects premium and theta:**
 
 | DTE | Theta/Day | Premium | Use For |
@@ -966,6 +1000,7 @@ $$
 
 ### 5. Volatility Skew
 
+
 **Volatility skew impacts strike selection:**
 
 **Put skew (equity markets):**
@@ -1000,11 +1035,14 @@ $$
 
 ## Risk Management
 
+
 ### 1. Principles
+
 
 **Universal rule: Manage risk at trade and portfolio level.**
 
 ### 2. Trade Risk
+
 
 **Maximum risk per trade:**
 
@@ -1035,6 +1073,7 @@ $$
 - **Position size:** $1,000 / $300 = 3.33 → **3 spreads**
 
 ### 3. Spread Risk
+
 
 **Credit spreads:**
 
@@ -1067,6 +1106,7 @@ $$
 - **Sizing:** Use initial debit as approximate max risk
 
 ### 4. Portfolio Risk
+
 
 **Maximum total risk:**
 
@@ -1119,6 +1159,7 @@ $$
 - Net vega: -$80 (short volatility)
 
 ### 5. Stops
+
 
 **Credit spreads (bear call, bull put):**
 
@@ -1176,6 +1217,7 @@ $$
 
 ### 6. Exits
 
+
 **Universal profit target: 50% of max profit**
 
 **Why 50%?**
@@ -1216,6 +1258,7 @@ $$
 - **Rule of thumb:** If up 30%+, close by 14 DTE
 
 ### 7. Adjustments
+
 
 **When to adjust vs. close:**
 
@@ -1297,9 +1340,11 @@ $$
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework for spread trading:**
 
 ### 1. Market Context
+
 
 **Before entering any spread, evaluate:**
 
@@ -1334,6 +1379,7 @@ $$
    - Approaching or past earnings
 
 ### 2. Strategy Choice
+
 
 **Choose vertical debit spreads when:**
 
@@ -1393,6 +1439,7 @@ $$
 
 ### 3. Risk Sizing
 
+
 **Calculate maximum position size:**
 
 $$
@@ -1420,6 +1467,7 @@ $$
 - **Max size: 4 contracts**
 
 ### 4. Spread Design
+
 
 **For vertical debit spreads:**
 
@@ -1461,6 +1509,7 @@ $$
 
 ### 5. Execution
 
+
 **Best practices:**
 
 1. **Order type:** Always enter as single spread order
@@ -1497,6 +1546,7 @@ $$
 
 ### 6. Management
 
+
 **Active management rules:**
 
 **For credit spreads:**
@@ -1530,6 +1580,7 @@ $$
 - **Direction change:** Exit if stock moves far from strike
 
 ### 7. Adjustments
+
 
 **When to adjust:**
 
@@ -1585,6 +1636,7 @@ $$
 
 ### 8. Review
 
+
 **Track every trade:**
 
 - Entry date, strikes, expiration, cost/credit
@@ -1613,7 +1665,9 @@ $$
 
 ## Common Mistakes 
 
+
 ### 1. No Exit Plan
+
 
 **The mistake:**
 
@@ -1640,6 +1694,7 @@ $$
 - Match strategy to conviction level
 
 ### 2. No Rules
+
 
 **The mistake:**
 
@@ -1671,6 +1726,7 @@ $$
 
 ### 3. Undefined Risk
 
+
 **The mistake:**
 
 - Plan credit spread with $2 mid-price
@@ -1697,6 +1753,7 @@ $$
 
 ### 4. Emotional Trading
 
+
 **The mistake:**
 
 - Risk 10% of account on one spread
@@ -1716,6 +1773,7 @@ $$
 - Track total portfolio risk (< 20% across all positions)
 
 ### 5. Reactive Decisions
+
 
 **The mistake:**
 
@@ -1745,6 +1803,7 @@ $$
 
 ### 6. No Stop Loss
 
+
 **The mistake:**
 
 - Have credit spread, earnings in 3 days
@@ -1772,6 +1831,7 @@ $$
 - Check earnings calendar before entering
 
 ### 7. No Time Stop
+
 
 **The mistake:**
 
@@ -1803,6 +1863,7 @@ $$
 
 ### 8. Trading on Hope
 
+
 **The mistake:**
 
 - VIX at 10 (very low), sell credit spreads
@@ -1824,6 +1885,7 @@ $$
 - **Use IV rank/percentile** for individual stocks too
 
 ### 9. Late Exits
+
 
 **The mistake:**
 
@@ -1852,6 +1914,7 @@ $$
 - **Check volume:** Need >5,000 daily volume
 
 ### 10. Unplanned Trades
+
 
 **The mistake:**
 
@@ -1882,7 +1945,9 @@ $$
 
 ## Psychological Aspects
 
+
 ### 1. Patience for Spreads
+
 
 **The mental game:**
 
@@ -1925,6 +1990,7 @@ $$
 - Be selective (only trade with strong conviction)
 
 ### 2. Managing Expectations
+
 
 **Realistic returns:**
 
@@ -1978,6 +2044,7 @@ $$
 
 ### 3. Handling Losing Streaks
 
+
 **With 65% win rate, expect 3-4 losses in a row occasionally:**
 
 **After 3 losses:**
@@ -2007,6 +2074,7 @@ $$
 - **Consider:** Is market environment changed? Adjust if needed
 
 ### 4. The 50% Profit Rule
+
 
 **Hardest part: Taking profit at 50%**
 
@@ -2042,7 +2110,9 @@ $$
 
 ## Trade Execution Checklist
 
+
 ### 1. Pre-Trade Analysis
+
 
 **Step 1: Market view**
 
@@ -2110,6 +2180,7 @@ $$
 
 ### 2. Trade Structure
 
+
 **Step 7: Strike selection**
 
 - [ ] Long strike (if applicable): ______ (Delta: ______)
@@ -2154,6 +2225,7 @@ $$
 
 ### 3. Position Sizing
 
+
 **Step 11: Account risk**
 
 - [ ] Account size: $______
@@ -2177,6 +2249,7 @@ $$
 - [ ] Correlation check: Diversified by underlying, expiration, sector?
 
 ### 4. Exit Rules
+
 
 **Step 13: Profit target**
 
@@ -2209,6 +2282,7 @@ $$
 - [ ] Max adjustment cost: ______ (typically 30% of original risk)
 
 ### 5. Trade Entry
+
 
 **Step 17: Order entry**
 
@@ -2254,6 +2328,7 @@ $$
 
 ### 6. Trade Management
 
+
 **Daily check (2-3 minutes):**
 
 - [ ] Current stock price: ______
@@ -2285,6 +2360,7 @@ $$
   - [ ] Adjustment needed?
 
 ### 7. Trade Exit
+
 
 **Step 21: Exit decision**
 
@@ -2318,6 +2394,7 @@ $$
 
 ### 8. Post-Trade Review
 
+
 **Step 24: Trade analysis**
 
 - [ ] Win or loss: ______
@@ -2347,6 +2424,7 @@ $$
 ---
 
 ## Final Thoughts
+
 
 Spreads are not magic. They are:
 

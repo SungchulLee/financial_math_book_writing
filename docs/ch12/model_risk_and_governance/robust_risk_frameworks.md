@@ -1,10 +1,12 @@
 # Robust Risk Frameworks
 
+
 **Robust risk frameworks** aim to manage risk effectively despite model uncertainty, data limitations, and unforeseen events.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 No model is correct in all environments.
 Robust frameworks accept:
@@ -16,7 +18,8 @@ The goal is resilience, not precision.
 
 ---
 
-## 2. Elements of robustness
+## Elements of robustness
+
 
 Robust risk management combines:
 - multiple models and metrics,
@@ -27,7 +30,8 @@ Diversity reduces reliance on any single model.
 
 ---
 
-## 3. Governance and culture
+## Governance and culture
+
 
 Robust frameworks require:
 - strong risk culture,
@@ -38,7 +42,8 @@ Human judgment complements quantitative tools.
 
 ---
 
-## 4. Practical implementation
+## Practical implementation
+
 
 In practice:
 - models guide but do not dictate decisions,
@@ -49,7 +54,8 @@ Robustness favors transparency over complexity.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Robustness addresses unavoidable uncertainty.
 - Multiple tools outperform single-model reliance.
@@ -58,6 +64,7 @@ Robustness favors transparency over complexity.
 ---
 
 ## Further reading
+
 
 - Cont, *Model Uncertainty*.
 - BIS, principles for robust risk management.

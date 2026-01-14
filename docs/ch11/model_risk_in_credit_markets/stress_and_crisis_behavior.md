@@ -1,10 +1,12 @@
 # Stress and Crisis Behavior
 
+
 Credit models calibrated in normal markets often fail during **stress and crisis periods**. Understanding these breakdowns is central to credit model risk.
 
 ---
 
-## 1. Regime dependence
+## Regime dependence
+
 
 During crises:
 - default intensities jump,
@@ -15,7 +17,8 @@ Static models cannot capture these regime shifts.
 
 ---
 
-## 2. Model breakdown mechanisms
+## Model breakdown mechanisms
+
 
 Common failure modes include:
 - extrapolation beyond calibration data,
@@ -26,7 +29,8 @@ Models appear stable until stress occurs.
 
 ---
 
-## 3. Stress testing
+## Stress testing
+
 
 Robust credit risk management relies on:
 - scenario analysis,
@@ -37,7 +41,8 @@ Stress tests complement, not replace, models.
 
 ---
 
-## 4. Lessons from crises
+## Lessons from crises
+
 
 Historical crises show:
 - tail risk dominates averages,
@@ -46,7 +51,8 @@ Historical crises show:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Crisis behavior differs qualitatively from normal markets.
 - Stress testing is indispensable.
@@ -55,6 +61,7 @@ Historical crises show:
 ---
 
 ## Further reading
+
 
 - BIS, stress testing frameworks.
 - Cont, model uncertainty and crises.

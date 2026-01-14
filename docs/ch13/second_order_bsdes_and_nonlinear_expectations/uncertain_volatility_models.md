@@ -1,6 +1,8 @@
 # Uncertain Volatility Models
 
+
 ## Introduction
+
 
 **Uncertain volatility models (UVMs)** provide a rigorous framework for option pricing and hedging when the true volatility of the underlying asset is unknown or uncertain. Rather than assuming a specific volatility parameter or stochastic volatility model, UVMs consider a **range** or **set** of possible volatilities and seek prices and hedging strategies that are **robust** to this uncertainty.
 
@@ -17,7 +19,9 @@ This framework has profound implications for:
 
 ## Mathematical Framework
 
-### Setup
+
+### 1. Setup
+
 
 **Asset Price Dynamics**: The underlying asset $S_t$ follows:
 
@@ -44,7 +48,8 @@ $$
 
 **Key Assumption**: No assumptions on $\sigma_t$ dynamics; could be deterministic, stochastic, path-dependent, etc.
 
-### Hedging Portfolio
+### 2. Hedging Portfolio
+
 
 **Portfolio**: At time $t$, hold $\Delta_t$ shares of stock.
 
@@ -72,7 +77,9 @@ $$
 
 ## Avellaneda-Levy-Parás Model
 
-### Super-Replication Price
+
+### 1. Super-Replication Price
+
 
 **Definition**: The **super-replication price** $V^{\text{sup}}(S_0)$ is the minimal initial capital required to construct a hedging portfolio that dominates the option payoff under all volatility scenarios:
 
@@ -85,7 +92,8 @@ $$
 
 **Interpretation**: Conservative pricing from seller's perspective.
 
-### Sub-Replication Price
+### 2. Sub-Replication Price
+
 
 **Definition**: The **sub-replication price** $V^{\text{sub}}(S_0)$ is the maximal initial capital from which a portfolio can be constructed that is dominated by the option payoff:
 
@@ -98,7 +106,8 @@ $$
 
 **Interpretation**: Aggressive pricing from buyer's perspective.
 
-### Bid-Ask Spread
+### 3. Bid-Ask Spread
+
 
 **Arbitrage-Free Range**: The interval:
 
@@ -127,7 +136,9 @@ $$
 
 ## Fully Nonlinear PDE
 
-### Black-Scholes-Barenblatt Equation
+
+### 1. Black-Scholes-Barenblatt Equation
+
 
 **Theorem** (Avellaneda-Parás): The super-replication price $V^{\text{sup}}(t, S)$ satisfies the **Black-Scholes-Barenblatt (BSB) equation**:
 
@@ -158,7 +169,8 @@ $$
 
 **Nonlinearity**: The coefficient $\bar{\sigma}^2(V)$ depends on the **sign of gamma**, making this fully nonlinear.
 
-### Viscosity Solutions
+### 2. Viscosity Solutions
+
 
 **Definition**: Since $V$ may not be $C^2$ (especially at strike for digital options), solutions are understood in the **viscosity sense**.
 
@@ -170,7 +182,8 @@ $$
 
 **Comparison Principle**: If $V_1$ and $V_2$ are respectively sub- and supersolutions with $V_1(T, \cdot) \leq V_2(T, \cdot)$, then $V_1 \leq V_2$ everywhere.
 
-### Examples
+### 3. Examples
+
 
 **Example 1** (European Call): For $\Phi(S) = (S - K)^+$:
 
@@ -211,7 +224,9 @@ $$
 
 ## Optimal Hedging Strategy
 
-### Delta Hedging
+
+### 1. Delta Hedging
+
 
 **Theorem**: The optimal hedging strategy is:
 
@@ -228,7 +243,8 @@ where $V$ is the super-replication price.
 
 **Interpretation**: Classic delta-hedging, but using value function from nonlinear PDE.
 
-### Gamma Adjustment
+### 2. Gamma Adjustment
+
 
 **Gamma Exposure**: The residual gamma exposure is:
 
@@ -260,7 +276,8 @@ $$
 
 
 
-### Vega Hedging
+### 3. Vega Hedging
+
 
 **Question**: Can we hedge against volatility uncertainty using options?
 
@@ -288,7 +305,9 @@ $$
 
 ## Extensions and Generalizations
 
-### Path-Dependent Options
+
+### 1. Path-Dependent Options
+
 
 **Asian Options**: Payoff depends on average:
 
@@ -312,7 +331,8 @@ $$
 
 **Complexity**: Increases with dimension; numerical methods required.
 
-### Barrier Options
+### 2. Barrier Options
+
 
 **Knock-Out Call**: Payoff is:
 
@@ -338,7 +358,8 @@ $$
 - Far from barrier: Use volatility based on gamma sign
 - Near barrier: Critical region where hedging is difficult
 
-### American Options
+### 3. American Options
+
 
 **Early Exercise**: Holder can exercise at any time $\tau \leq T$:
 
@@ -362,7 +383,8 @@ $$
 
 **Optimal Exercise**: Exercise when $S_t$ hits boundary $S^*(t)$.
 
-### Lookback Options
+### 4. Lookback Options
+
 
 **Payoff**: Depends on running maximum:
 
@@ -388,7 +410,9 @@ with boundary condition $V(t, M, M) = $ continuously updated.
 
 ## Multi-Asset Case
 
-### Basket Options
+
+### 1. Basket Options
+
 
 **Assets**: $\mathbf{S}_t = (S_t^{(1)}, \ldots, S_t^{(n)})$
 
@@ -403,7 +427,8 @@ $$
 
 **Correlation Uncertainty**: Cross-correlations $\rho_{ij}(t) \in [\underline{\rho}_{ij}, \overline{\rho}_{ij}]$.
 
-### Nonlinear PDE
+### 2. Nonlinear PDE
+
 
 **Hessian Matrix**: Let $\mathbf{H} = D^2 V$ (Hessian of $V$ in $\mathbf{S}$).
 
@@ -423,7 +448,8 @@ where:
 
 **Optimal Covariance**: Chosen to maximize the quadratic form $\text{tr}[\boldsymbol{\Sigma} \mathbf{H}]$ subject to constraints.
 
-### Correlation Bounds
+### 3. Correlation Bounds
+
 
 **Fréchet-Hoeffding Bounds**: For marginals with volatilities $\{\sigma_i\}$:
 
@@ -449,7 +475,9 @@ where $\mathcal{R}$ is the set of valid correlation matrices.
 
 ## Numerical Methods
 
-### Finite Difference Schemes
+
+### 1. Finite Difference Schemes
+
 
 **Grid**: Discretize $(t, S)$ space:
 - Time: $t \in \{0, \Delta t, 2\Delta t, \ldots, T\}$
@@ -487,7 +515,8 @@ $$
 
 **Monotone Schemes**: Ensure convergence to viscosity solution by using upwind schemes.
 
-### Monte Carlo Simulation
+### 2. Monte Carlo Simulation
+
 
 **Challenge**: Direct Monte Carlo is difficult due to supremum over volatilities.
 
@@ -508,7 +537,8 @@ $$
 
 **Complexity**: $O(M \cdot N)$ where $M$ is number of paths, $N$ is time steps.
 
-### Policy Iteration
+### 3. Policy Iteration
+
 
 **Algorithm**:
 1. **Initialize**: Guess volatility policy $\sigma^{(0)}(t, S)$
@@ -529,7 +559,9 @@ $$
 
 ## Calibration and Market Data
 
-### Implied Volatility Bounds
+
+### 1. Implied Volatility Bounds
+
 
 **Market Information**: Observed call prices $\{C(K_i, T_j)\}$ at various strikes and maturities.
 
@@ -553,7 +585,8 @@ $$
 
 **Refinement**: Use smile dynamics to infer time-varying bounds $\underline{\sigma}(t)$, $\overline{\sigma}(t)$.
 
-### Historical Volatility
+### 2. Historical Volatility
+
 
 **Realized Volatility**: Compute from historical returns:
 
@@ -575,7 +608,8 @@ $$
 
 for some confidence level $k$.
 
-### Combining Information
+### 3. Combining Information
+
 
 **Hybrid Approach**: Combine implied and historical:
 
@@ -590,7 +624,9 @@ $$
 
 ## Model Risk and Stress Testing
 
-### Model Risk Quantification
+
+### 1. Model Risk Quantification
+
 
 **Definition**: The difference between model price and robust price:
 
@@ -603,7 +639,8 @@ $$
 
 **Interpretation**: Additional capital required to protect against model misspecification.
 
-### Stress Testing
+### 2. Stress Testing
+
 
 **Scenarios**: Test portfolio under extreme volatility scenarios:
 1. **Vol Spike**: $\sigma \to \overline{\sigma}$ suddenly
@@ -628,7 +665,8 @@ $$
 
 
 
-### Value-at-Risk (VaR)
+### 3. Value-at-Risk (VaR)
+
 
 **Standard VaR**: Under specific model $\mathcal{M}$:
 
@@ -652,7 +690,9 @@ $$
 
 ## Comparison with Stochastic Volatility Models
 
-### Heston Model
+
+### 1. Heston Model
+
 
 **Dynamics**: 
 
@@ -667,7 +707,8 @@ $$
 
 **Comparison**: Heston is **parametric** and **specific**, while UVM is **nonparametric** and **robust**.
 
-### Local Volatility
+### 2. Local Volatility
+
 
 **Model**: $\sigma = \sigma(S, t)$ determined from market prices via Dupire's formula.
 
@@ -675,7 +716,8 @@ $$
 
 **Comparison**: Local volatility is **model-complete** but not robust to misspecification; UVM provides bounds.
 
-### SABR Model
+### 3. SABR Model
+
 
 **Dynamics**:
 
@@ -690,7 +732,8 @@ $$
 
 **Comparison**: SABR specifies stochastic dynamics; UVM only specifies bounds.
 
-### Pros and Cons
+### 4. Pros and Cons
+
 
 | **Model** | **Pros** | **Cons** |
 |-----------|----------|----------|
@@ -701,7 +744,9 @@ $$
 
 ## Applications in Practice
 
-### Market Making
+
+### 1. Market Making
+
 
 **Two-Way Quotes**: Provide bid and ask prices:
 - **Bid**: $V^{\text{sub}}$ (buying from client)
@@ -718,7 +763,8 @@ $$
 
 **Inventory Management**: Adjust spreads based on position (long/short gamma).
 
-### Exotic Derivatives Desk
+### 2. Exotic Derivatives Desk
+
 
 **Structured Products**: Price complex payoffs using UVM framework.
 
@@ -735,7 +781,8 @@ $$
 
 **Risk**: Quantify model risk using spread width.
 
-### Risk Management
+### 3. Risk Management
+
 
 **Regulatory Capital**: Basel III requires quantification of model risk:
 
@@ -752,7 +799,9 @@ $$
 
 ## Advanced Topics
 
-### Uncertain Jump Risk
+
+### 1. Uncertain Jump Risk
+
 
 **Dynamics**: Add jump component:
 
@@ -778,7 +827,8 @@ where $\nu$ is the jump size distribution.
 
 **Complexity**: Numerical solution requires discretization of integral term.
 
-### Time-Dependent Bounds
+### 2. Time-Dependent Bounds
+
 
 **Time-Varying Uncertainty**:
 
@@ -800,7 +850,8 @@ $$
 
 **Application**: Models regime shifts, earnings announcements, macroeconomic releases.
 
-### Transaction Costs
+### 3. Transaction Costs
+
 
 **Proportional Costs**: Each trade costs $\lambda |$quantity$| \times$ price.
 
@@ -815,7 +866,8 @@ $$
 
 **Interpretation**: Transaction costs increase super-replication price.
 
-### Interest Rate Uncertainty
+### 4. Interest Rate Uncertainty
+
 
 **Stochastic Rates**: Uncertain short rate $r_t \in [\underline{r}, \overline{r}]$.
 
@@ -834,7 +886,9 @@ $$
 
 ## Research Directions
 
-### Deep Learning for UVMs
+
+### 1. Deep Learning for UVMs
+
 
 **Neural Network Approximation**: Represent value function:
 
@@ -856,7 +910,8 @@ $$
 
 **Advantages**: Handles high dimensions, bypasses curse of dimensionality.
 
-### Data-Driven Calibration
+### 2. Data-Driven Calibration
+
 
 **Machine Learning**: Learn volatility bounds from data:
 - Supervised learning: Predict $[\underline{\sigma}, \overline{\sigma}]$ from market features
@@ -864,7 +919,8 @@ $$
 
 **Online Learning**: Update bounds dynamically as new data arrives.
 
-### Rough Volatility
+### 3. Rough Volatility
+
 
 **Fractional Brownian Motion**: Volatility with Hurst exponent $H < 1/2$:
 
@@ -888,7 +944,9 @@ $$
 
 ## Summary and Key Insights
 
-### Fundamental Results
+
+### 1. Fundamental Results
+
 
 1. **Fully Nonlinear PDEs**: Robust pricing under volatility uncertainty leads to Black-Scholes-Barenblatt equation.
 
@@ -900,7 +958,8 @@ $$
 
 5. **Model-Free Bounds**: Provides rigorous bounds without specifying volatility dynamics.
 
-### Practical Implications
+### 2. Practical Implications
+
 
 **For Traders**:
 - Robust pricing: conservative but safe
@@ -917,7 +976,8 @@ $$
 - Viscosity solution theory
 - Robust optimization frameworks
 
-### Theoretical Significance
+### 3. Theoretical Significance
+
 
 Uncertain volatility models bridge:
 - **Stochastic Analysis**: BSDEs and martingale theory

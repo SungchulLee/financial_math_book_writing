@@ -1,10 +1,12 @@
 # Balance Sheet Constraints
 
+
 **Balance sheet constraints** are regulatory and economic limitations on bank and broker-dealer leverage, capital, and liquidity that restrict their ability to intermediate trades, provide financing, and make markets.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## Why Balance Sheet Matters
 
+
 ### 1. Pre-Crisis vs Post-Crisis
+
 
 **Pre-2008:**
 - Banks levered 30-40x
@@ -49,6 +53,7 @@
 - Less market-making
 
 ### 2. Key Regulations
+
 
 **Basel III (2010-2019 implementation):**
 
@@ -80,6 +85,7 @@ $$
 
 ### 3. Economic Impact
 
+
 **Activities constrained:**
 
 - **Repo financing:** Balance sheet intensive
@@ -95,6 +101,7 @@ $$
 - Quarterly/year-end spikes (window dressing)
 
 ### 4. G-SIB Surcharge
+
 
 **Global Systemically Important Banks:**
 
@@ -119,6 +126,7 @@ $$
 **Creates incentive to reduce size and complexity**
 
 ### 5. Leverage Exposure Calculation
+
 
 **What counts as leverage:**
 
@@ -146,6 +154,7 @@ $$
 $$
 
 ### 6. Cost of Capital
+
 
 **Opportunity cost:**
 
@@ -182,6 +191,7 @@ $$
 
 ### 7. Reporting Window Dressing
 
+
 **Quarter-end and year-end:**
 
 Banks temporarily shrink balance sheets:
@@ -203,7 +213,9 @@ Banks temporarily shrink balance sheets:
 
 ## Specific Constraints
 
+
 ### 1. Supplementary Leverage Ratio (SLR)
+
 
 **Most binding constraint:**
 
@@ -234,6 +246,7 @@ $$
 
 ### 2. Liquidity Coverage Ratio (LCR)
 
+
 **30-day stress test:**
 
 $$
@@ -256,6 +269,7 @@ $$
 - Limits matched-book repo (cash outflow in stress)
 
 ### 3. Net Stable Funding Ratio (NSFR)
+
 
 **Long-term structural liquidity:**
 
@@ -281,6 +295,7 @@ $$
 - Affects term repo economics
 
 ### 4. Risk-Based Capital Requirements
+
 
 **Risk-weighting by asset class:**
 
@@ -311,6 +326,7 @@ $$
 
 ### 5. Derivatives Capital
 
+
 **SA-CCR (Standardized Approach for Counterparty Credit Risk):**
 
 Complex calculation including:
@@ -328,6 +344,7 @@ Complex calculation including:
 **More expensive than pre-crisis (was ~$\$1M$)**
 
 ### 6. Client Clearing Costs
+
 
 **Central clearing (Dodd-Frank requirement):**
 
@@ -347,6 +364,7 @@ Banks clear derivatives for clients:
 - Many banks exited client clearing
 
 ### 7. Securities Financing Transactions
+
 
 **Repo and securities lending:**
 
@@ -372,7 +390,9 @@ $$
 
 ## Market Implications
 
+
 ### 1. Reduced Liquidity
+
 
 **Empirical evidence:**
 
@@ -393,6 +413,7 @@ $$
 
 ### 2. Periodic Stress
 
+
 **Quarter-end and year-end spikes:**
 
 **Repo rates:**
@@ -410,6 +431,7 @@ $$
 - Funding scarce
 
 ### 3. Central Bank Intervention
+
 
 **Federal Reserve responses:**
 
@@ -429,6 +451,7 @@ $$
 
 ### 4. Activity Migration
 
+
 **Shift to non-banks:**
 
 - Hedge funds: More Treasury market-making
@@ -442,6 +465,7 @@ $$
 - Different risk management
 
 ### 5. Cost Pass-Through
+
 
 **Higher client costs:**
 
@@ -457,6 +481,7 @@ $$
 - **Extra cost: $\$100-200k per trade**
 
 ### 6. Product Innovation
+
 
 **Capital-efficient alternatives:**
 
@@ -474,6 +499,7 @@ $$
 
 ### 7. Market Structure Changes
 
+
 **Fragmentation:**
 - Less centralized dealer intermediation
 - More peer-to-peer (hedge fund to hedge fund)
@@ -489,9 +515,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Ignoring Quarter-End Effects
+
 
 **Mistake:** Don't plan for periodic stress
 
@@ -510,6 +538,7 @@ $$
 
 ### 2. Underestimating Capital Costs
 
+
 **Mistake:** Compare pre-crisis to post-crisis economics
 
 **Why it fails:** Activities now uneconomic
@@ -526,6 +555,7 @@ $$
 - Focus on high-margin activities
 
 ### 3. Assuming Infinite Liquidity
+
 
 **Mistake:** Expect dealers to always make markets
 
@@ -544,6 +574,7 @@ $$
 
 ### 4. Neglecting Regulatory Calendar
 
+
 **Mistake:** Don't track reporting dates
 
 **Why it fails:** Miss predictable stress
@@ -560,6 +591,7 @@ $$
 - Avoid initiating large trades near dates
 
 ### 5. Overlooking Derivatives Capital
+
 
 **Mistake:** Think derivatives "off balance sheet"
 
@@ -579,6 +611,7 @@ $$
 
 ### 6. Ignoring Netting Limitations
 
+
 **Mistake:** Assume full netting benefit
 
 **Why it fails:** Regulations limit netting
@@ -597,6 +630,7 @@ $$
 
 ### 7. Misjudging Dealer Willingness
 
+
 **Mistake:** Assume dealers compete aggressively
 
 **Why it fails:** Dealers ration balance sheet
@@ -613,6 +647,7 @@ $$
 - Pay for guaranteed capacity
 
 ### 8. Forgetting Liquidity Requirements
+
 
 **Mistake:** Focus only on capital, ignore liquidity
 
@@ -633,7 +668,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Capital Planning
+
 
 **Annual capital allocation:**
 
@@ -652,6 +689,7 @@ $$
 - Volatile earnings
 
 ### 2. Balance Sheet Optimization
+
 
 **Techniques:**
 
@@ -674,6 +712,7 @@ $$
 
 ### 3. Stress Testing
 
+
 **Quarterly scenarios:**
 
 - Extreme market moves (2008-level)
@@ -692,6 +731,7 @@ $$
 
 ### 4. Intraday Monitoring
 
+
 **Real-time dashboards:**
 
 - Current leverage ratio
@@ -705,6 +745,7 @@ $$
 - Concentrated exposures
 
 ### 5. Product Pricing
+
 
 **Include capital cost:**
 
@@ -726,6 +767,7 @@ $$
 
 ### 6. Regulatory Engagement
 
+
 **Active dialogue:**
 
 - Monitor proposed rules
@@ -739,6 +781,7 @@ $$
 - Collective advocacy
 
 ### 7. Technology Investment
+
 
 **Efficiency improvements:**
 
@@ -756,7 +799,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. September 2019 Repo Crisis
+
 
 **Setup:**
 - Quarter-end approaching
@@ -773,6 +818,7 @@ $$
 
 ### 2. COVID-19 Dash for Cash (March 2020)
 
+
 **Setup:**
 - Pandemic panic, everyone selling
 - Even Treasuries dumped (need cash)
@@ -788,6 +834,7 @@ $$
 
 ### 3. Client Clearing Exodus (2014-2016)
 
+
 **Setup:**
 - Basel III derivatives capital rules
 - Client clearing uneconomic for most dealers
@@ -801,6 +848,7 @@ $$
 **Lesson:** Regulations can shrink market provision
 
 ### 4. Goldman Sachs Balance Sheet Reduction (2018)
+
 
 **Setup:**
 - Enhanced SLR requirements (G-SIB surcharge)
@@ -823,7 +871,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Understanding Your Exposures
+
 
 **For users of dealer services:**
 
@@ -845,6 +895,7 @@ $$
 
 ### 2. Dealer Relationship Management
 
+
 **Optimize dealer interactions:**
 
 1. **Diversify counterparties:**
@@ -864,6 +915,7 @@ $$
 
 ### 3. Product Selection
 
+
 **Choose capital-light alternatives:**
 
 - **Financing:** Sponsored repo vs. traditional repo
@@ -872,6 +924,7 @@ $$
 - **Leverage:** Total return swaps vs. margin loans
 
 ### 4. Timing Trades
+
 
 **Avoid quarter/year-end:**
 
@@ -884,6 +937,7 @@ $$
 - After reporting dates (first week of quarter)
 
 ### 5. For Dealers: Capital Allocation
+
 
 **Optimize balance sheet:**
 
@@ -905,6 +959,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Balance sheet constraints are the invisible force shaping modern finance - they determine which markets function smoothly and which periodically seize up. The post-2008 regulations achieved their goal of making banks safer, but at the cost of reduced intermediation capacity. This creates a delicate balance: markets are less liquid but financial institutions are more resilient. The key for market participants is understanding these constraints are real, permanent, and binding - dealers can't simply expand balance sheets to meet demand. Plan around quarter-ends, diversify counterparties, and recognize that the pre-2008 world of infinite dealer liquidity is gone forever. The new normal requires more sophisticated planning and acceptance of higher costs during periodic stress."
 

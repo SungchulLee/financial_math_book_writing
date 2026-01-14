@@ -1,10 +1,12 @@
 # Model Uncertainty in Asset Allocation
 
+
 **Model uncertainty** plays a central role in asset allocation decisions, as long-term investment outcomes depend critically on assumed return dynamics.
 
 ---
 
-## 1. Sources of model uncertainty
+## Sources of model uncertainty
+
 
 Uncertainty arises from:
 - unknown expected returns,
@@ -16,7 +18,8 @@ No single model is universally valid.
 
 ---
 
-## 2. Bayesian and robust approaches
+## Bayesian and robust approaches
+
 
 Two main paradigms address model uncertainty:
 - Bayesian model averaging,
@@ -26,7 +29,8 @@ Both recognize the limits of point estimates.
 
 ---
 
-## 3. Long-horizon effects
+## Long-horizon effects
+
 
 Over long horizons:
 - small misspecifications compound,
@@ -37,7 +41,8 @@ Robustness becomes increasingly important.
 
 ---
 
-## 4. Implications for investors
+## Implications for investors
+
 
 Accounting for model uncertainty leads to:
 - lower leverage,
@@ -48,7 +53,8 @@ Strategic asset allocation benefits most.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Asset allocation is highly model-dependent.
 - Ignoring uncertainty leads to fragile portfolios.
@@ -57,6 +63,7 @@ Strategic asset allocation benefits most.
 ---
 
 ## Further reading
+
 
 - Barberis, belief distortions.
 - Hansen, ambiguity in asset pricing.

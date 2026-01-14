@@ -1,10 +1,12 @@
 # Taylor Expansion I: Linear Approximation
 
+
 This section reviews the **first-order Taylor expansion**, i.e., *linear approximation*. The goal is to build the mindset that “differentials” capture how a function changes under small perturbations—an idea we will later reuse in stochastic calculus.
 
 ---
 
-## 1. Linear Approximation in One Variable
+## Linear Approximation in One Variable
+
 
 For a differentiable function \(f(x)\), the first-order approximation is
 
@@ -20,9 +22,11 @@ f(x) \approx f(x_0) + f_x(x_0)\,(x-x_0).
 
 ---
 
-## 2. Python Example: Linear Approximation in 1D
+## Python Example: Linear Approximation in 1D
 
-### Problem
+
+### 1. Problem
+
 
 Approximate \(f(1.1)\) using the linear approximation of \(f\) at \(x_0=1\), where
 
@@ -30,7 +34,8 @@ Approximate \(f(1.1)\) using the linear approximation of \(f\) at \(x_0=1\), whe
 f(x)=e^{x-1}+(x-1)^2.
 \]
 
-### Solution (by differentials)
+### 2. Solution (by differentials)
+
 
 \[
 \begin{array}{ccccccc}
@@ -83,7 +88,8 @@ plt.show()
 
 ---
 
-## 3. Linear Approximation in Two Variables
+## Linear Approximation in Two Variables
+
 
 For a differentiable function \(f(t,b)\),
 
@@ -99,9 +105,11 @@ f(t,b) \approx f(t_0,b_0)+ f_t(t_0,b_0)(t-t_0) + f_b(t_0,b_0)(b-b_0).
 
 ---
 
-## 4. Python Example: Linear Approximation in 2D
+## Python Example: Linear Approximation in 2D
 
-### Problem
+
+### 1. Problem
+
 
 Approximate \(f(1.1,1.8)\) using the linear approximation at \((t_0,b_0)=(1,2)\), where
 
@@ -109,7 +117,8 @@ Approximate \(f(1.1,1.8)\) using the linear approximation at \((t_0,b_0)=(1,2)\)
 f(t,b)=e^{t-1}+(t-1)^2+(b-2)^2.
 \]
 
-### Solution (by differentials)
+### 2. Solution (by differentials)
+
 
 \[
 \begin{array}{ccccccc}

@@ -1,10 +1,12 @@
 # Distressed Credit Trading
 
+
 **Distressed credit trading** involves purchasing corporate debt trading below 50-80 cents on the dollar (typically CCC-rated or below) of companies in or approaching bankruptcy, with the goal of profiting from recovery through restructuring, asset sales, or operational turnarounds—requiring deep fundamental analysis of asset values, capital structure priority, bankruptcy law, and recovery scenarios, while accepting extreme illiquidity, binary outcomes, and holding periods of 12-36 months until resolution.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -43,9 +45,11 @@ $$
 
 ## What Is Distressed Credit Trading?
 
+
 **Before trading distressed debt, understand the mechanics:**
 
-### Core Concept
+### 1. Core Concept
+
 
 **Definition:** The practice of purchasing debt securities of financially troubled companies trading at deep discounts to par value (typically <80 cents), where the investment thesis centers on recovering more through bankruptcy reorganization, asset sales, or operational turnaround than the current market price implies, with returns driven by accurately estimating asset liquidation values, understanding absolute priority rules in bankruptcy, and identifying situations where forced selling creates mispricing opportunities unrelated to fundamental recovery prospects.
 
@@ -145,7 +149,8 @@ $$
 
 **Key lesson: Secured overpriced at 72 (recovered 92, only +28%), unsecured best value at 28 (recovered 45, +61%)**
 
-### Types of Distressed Investments
+### 2. Types of Distressed Investments
+
 
 **1. Senior Secured Debt:**
 
@@ -204,9 +209,11 @@ $$
 
 ## Economic Interpretation: Why Distressed Opportunities Exist
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### The Forced Seller Problem
+### 1. The Forced Seller Problem
+
 
 **The deep insight:**
 
@@ -260,7 +267,8 @@ Many sellers are forced to sell at any price (creating mispricing):
 
 **But the pattern repeats every crisis, creating opportunities**
 
-### The Information Asymmetry
+### 2. The Information Asymmetry
+
 
 **Distressed debt requires specialized knowledge:**
 
@@ -297,7 +305,8 @@ Many sellers are forced to sell at any price (creating mispricing):
 
 **Information advantage = Huge edge in distressed**
 
-### The Liquidity Premium
+### 3. The Liquidity Premium
+
 
 **Distressed debt is extremely illiquid:**
 
@@ -324,7 +333,8 @@ Many sellers are forced to sell at any price (creating mispricing):
 - Patient buyers: Pay 35, recover 60 (18 months) = +71% return
 - **The 10-point illiquidity discount = Free money for those who can wait**
 
-### The Complexity Premium
+### 4. The Complexity Premium
+
 
 **Multi-dimensional analysis required:**
 
@@ -364,6 +374,7 @@ Many sellers are forced to sell at any price (creating mispricing):
 ---
 
 ## Key Terminology
+
 
 **Distressed:**
 
@@ -437,7 +448,9 @@ Many sellers are forced to sell at any price (creating mispricing):
 
 ## Mathematical Foundation
 
-### Expected Recovery Calculation
+
+### 1. Expected Recovery Calculation
+
 
 **Base case:**
 
@@ -459,7 +472,8 @@ $$
 **If trading at 40 cents:**
 - Expected return: (57 - 40) / 40 = **+42.5%**
 
-### Asset Liquidation Value
+### 2. Asset Liquidation Value
+
 
 **Component-by-component:**
 
@@ -477,7 +491,8 @@ $$
 | Brand/IP | $100M | 30% | $30M |
 | **Total** | **$1,100M** | **47.3%** | **$520M** |
 
-### Recovery by Seniority
+### 3. Recovery by Seniority
+
 
 **Waterfall calculation:**
 
@@ -510,7 +525,8 @@ $$
 R_{\text{unsecured}} = \frac{$70M}{$300M} = 23.3\%
 $$
 
-### Return Calculation with Time Value
+### 4. Return Calculation with Time Value
+
 
 **IRR-adjusted:**
 
@@ -532,7 +548,9 @@ $$
 
 ## Step-by-Step Implementation
 
-### Phase 1: Screening and Sourcing
+
+### 1. Phase 1: Screening and Sourcing
+
 
 **1. Identify Distressed Candidates:**
 
@@ -629,7 +647,8 @@ Pursue: ['Secured at deep discount', 'Tangible assets']
 Avoid: []
 ```
 
-### Phase 2: Deep Fundamental Analysis
+### 2. Phase 2: Deep Fundamental Analysis
+
 
 **1. Asset Valuation:**
 
@@ -773,7 +792,8 @@ Expected Value: 85.0 cents
 Expected Return: 88.9%
 ```
 
-### Phase 3: Execute Purchase
+### 3. Phase 3: Execute Purchase
+
 
 **1. Sourcing and Negotiation:**
 
@@ -813,7 +833,8 @@ for key, value in trade.items():
         print(f"{key}: {value}")
 ```
 
-### Phase 4: Monitor Bankruptcy Process
+### 4. Phase 4: Monitor Bankruptcy Process
+
 
 **1. Track Key Milestones:**
 
@@ -881,7 +902,8 @@ print(f"Updated estimate: {updated_recovery}%")
 print(f"Change: +{updated_recovery - 85}%")
 ```
 
-### Phase 5: Exit and Realize Value
+### 5. Phase 5: Exit and Realize Value
+
 
 **1. Emergence and Distribution:**
 
@@ -943,7 +965,9 @@ IRR: 50.3% (over 2.0 years)
 
 ## Real-World Examples
 
-### Example 1: Hertz 2020-2021 (Unprecedented Success)
+
+### 1. Example 1: Hertz 2020-2021 (Unprecedented Success)
+
 
 **Background:**
 
@@ -1013,7 +1037,8 @@ IRR: 50.3% (over 2.0 years)
 
 **This made some distressed funds 50-100% returns in 2020-2021**
 
-### Example 2: Energy Default Wave - 2015-2016 (Massive Losses)
+### 2. Example 2: Energy Default Wave - 2015-2016 (Massive Losses)
+
 
 **Background:**
 
@@ -1091,7 +1116,8 @@ IRR: 50.3% (over 2.0 years)
 
 **Many distressed funds lost 30-60% in 2015-2016 energy bets**
 
-### Example 3: J.Crew 2020 (Successful Restructure)
+### 3. Example 3: J.Crew 2020 (Successful Restructure)
+
 
 **Background:**
 
@@ -1158,7 +1184,8 @@ IRR: 50.3% (over 2.0 years)
 
 **This was textbook distressed investing: Deep discount, quick restructure, brand value, +61% in 5 months**
 
-### Example 4: Toys R Us 2017-2018 (Liquidation Disaster)
+### 4. Example 4: Toys R Us 2017-2018 (Liquidation Disaster)
+
 
 **Background:**
 
@@ -1235,7 +1262,8 @@ IRR: 50.3% (over 2.0 years)
 
 **Lesson: When DIP market says "no", listen. If they won't lend, company is dead.**
 
-### Example 5: AMC Entertainment 2020-2021 (Volatility Disaster)
+### 5. Example 5: AMC Entertainment 2020-2021 (Volatility Disaster)
+
 
 **Background:**
 
@@ -1284,7 +1312,9 @@ IRR: 50.3% (over 2.0 years)
 
 ## Best Case Scenario
 
-### Perfect Distressed Investment
+
+### 1. Perfect Distressed Investment
+
 
 **Setup for maximum returns:**
 
@@ -1296,7 +1326,8 @@ IRR: 50.3% (over 2.0 years)
 4. **Quick restructure:** Prepack or 6-12 month timeline
 5. **Catalyst:** DIP financing, strategic buyer interest
 
-### Best Case Example: General Motors 2009 (Government Bailout Recovery)
+### 2. Best Case Example: General Motors 2009 (Government Bailout Recovery)
+
 
 **Background:**
 
@@ -1391,7 +1422,9 @@ IRR: 50.3% (over 2.0 years)
 
 ## Worst Case Scenario
 
-### The Distressed Disaster
+
+### 1. The Distressed Disaster
+
 
 **Worst possible conditions:**
 
@@ -1401,7 +1434,8 @@ IRR: 50.3% (over 2.0 years)
 4. **Slow bleed:** Years of losses before bankruptcy
 5. **Liquidation:** No reorganization, assets sold piecemeal
 
-### Worst Case Example: Sears Holdings 2018-2019 (Retail Apocalypse)
+### 2. Worst Case Example: Sears Holdings 2018-2019 (Retail Apocalypse)
+
 
 **Background:**
 
@@ -1560,7 +1594,9 @@ For unsecured ($3.5B claim):
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Distressed credit involves buying deeply discounted debt with recovery potential:**
 
@@ -1574,7 +1610,8 @@ $$
 - Timeline: 12-36 months (illiquid, hold to resolution)
 - Analysis: Deep fundamental (asset values, bankruptcy law, capital structure)
 
-### The Key Metrics
+### 2. The Key Metrics
+
 
 **Recovery by seniority (historical averages):**
 
@@ -1591,7 +1628,8 @@ $$
 - Win rate: 60-70% (if skilled)
 - Average return: 20-40% annually (over full cycle)
 
-### Risk Management
+### 3. Risk Management
+
 
 **Essential rules:**
 
@@ -1604,7 +1642,8 @@ $$
 - Time horizon: 2-3 years minimum (illiquid, can't exit)
 - Capital structure: Identify fulcrum security (where value stops)
 
-### Maximum Profit/Loss
+### 4. Maximum Profit/Loss
+
 
 **Best case:**
 
@@ -1627,7 +1666,8 @@ $$
 - Win rate: 65-70%
 - **Returns: 15-30% annually (net of losses)**
 
-### When to Invest
+### 5. When to Invest
+
 
 **Invest in distressed when:**
 
@@ -1645,7 +1685,8 @@ $$
 - Fraudulent conveyance risk (asset stripping)
 - No catalyst (slow death, zombie company)
 
-### Common Mistakes
+### 6. Common Mistakes
+
 
 1. Overvaluing brands (Sears, Toys R Us "iconic" = $0 in liquidation)
 2. Ignoring seniority (unsecured gets zero in liquidation)
@@ -1656,7 +1697,8 @@ $$
 7. Concentration (one bad position = -30% portfolio)
 8. Slow death (years of losses = liquidation, not restructure)
 
-### Final Wisdom
+### 7. Final Wisdom
+
 
 > "Distressed credit is the ultimate value investing—buying dollars for 30-50 cents when everyone else is panicking. The math is simple: Sears secured debt trading at 30 cents with $500M assets backing $300M debt = free money (100% recovery floor, +233% upside). When it works, returns are spectacular: GM 2009 secured bought at 30 cents recovered 100 in 40 days (+233%), Hertz 2020 unsecured bought at 12 cents recovered 100 (+733%). But distressed has catastrophic failure modes. Sears unsecured bought at 60 cents recovered 0 (-100%), Chesapeake bought at 65 cents recovered 0 (-100%), Toys R Us bought at 35 cents recovered 0 (-100%). The pattern is brutal: win small often (50-100% gains), lose everything occasionally (−100% wipeouts). Success requires three disciplines: (1) Seniority obsession: 70%+ secured positions (recovery floor 60-80%), avoid unsecured in overleveraged situations (recovery often 0). (2) Asset analysis: Calculate liquidation value conservatively (inventory 40%, equipment 35%, real estate 60%), only invest where liquidation covers secured debt (safety margin). (3) Sector avoidance: NEVER invest in secular decline industries (retail 2015-2020 = -100%, energy 2014-2016 = -85%, coal 2012-2018 = -90%). The best distressed investors maintain 60-70% win rates and 20-35% annual returns by portfolio approach (25-30 positions, 3-5% each), secured bias (eliminate wipeout risk), and ruthless sector discipline (avoid dying industries). The worst investors blow up by concentrated bets (30%+ in one position), unsecured in asset-light industries (retail, services), and fighting secular decline (hoping brands save retail = delusion). The industry punishes overconfidence and rewards paranoia: always assume liquidation (calculate recovery), always verify asset values (book values lie), always exit secular decline (no turnarounds in dying industries). Master these rules and distressed becomes a reliable compounding machine (20-30% annually). Violate them and you'll join the hundreds of funds that lost billions on Sears, Toys R Us, and energy defaults."
 

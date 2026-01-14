@@ -1,5 +1,6 @@
 # Finite Difference Methods
 
+
 We consider the Black–Scholes PDE for an option price \(V(t,S)\) (no dividends for simplicity):
 
 \[
@@ -17,7 +18,8 @@ For a European payoff \(V(T,S)=\Phi(S)\), this is a terminal value problem.
 
 ---
 
-## 1. Time-to-Maturity Form
+## Time-to-Maturity Form
+
 
 Set \(\tau:=T-t\) and \(u(\tau,S):=V(T-\tau,S)\). Then
 
@@ -36,7 +38,8 @@ Set \(\tau:=T-t\) and \(u(\tau,S):=V(T-\tau,S)\). Then
 
 ---
 
-## 2. Spatial Grid and Notation
+## Spatial Grid and Notation
+
 
 Choose a grid \(S_i\) on \([0,S_{\max}]\). Let
 
@@ -61,7 +64,8 @@ u_{SS}(\tau_n,S_i)\approx \frac{u_{i+1}^n-2u_i^n+u_{i-1}^n}{(\Delta S)^2}.
 
 ---
 
-## 3. Discrete Operator View
+## Discrete Operator View
+
 
 Write the PDE as
 
@@ -84,7 +88,8 @@ Finite differences yield a matrix \(A\) such that \(\mathcal{A}\approx A\), so t
 
 ---
 
-## 4. Truncation and Boundary Conditions
+## Truncation and Boundary Conditions
+
 
 Truncate \(S\in(0,\infty)\) to \([0,S_{\max}]\). For a call,
 
@@ -107,13 +112,15 @@ V(t,S_{\max})\approx 0.
 
 ---
 
-## 5. Why Log-Price Helps
+## Why Log-Price Helps
+
 
 Using \(x=\log S\) often yields constant diffusion coefficient (after a gauge transform), improving numerical conditioning and enabling uniform grids in \(x\).
 
 ---
 
-## 6. What to Remember
+## What to Remember
+
 
 - Finite differences replace derivatives by local stencil formulas.
 - Boundary treatment is essential and affects stability/accuracy.

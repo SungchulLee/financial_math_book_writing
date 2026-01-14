@@ -1,6 +1,8 @@
 # Model-Free Bounds
 
+
 ## Introduction
+
 
 Model-free bounds represent a fundamental approach to derivative pricing that does not rely on specific assumptions about the underlying asset's dynamics. Instead, these bounds are derived purely from no-arbitrage principles and observable market prices, making them robust to model misspecification.
 
@@ -14,7 +16,9 @@ This approach is particularly valuable because:
 
 ## Mathematical Framework
 
-### Market Setup
+
+### 1. Market Setup
+
 
 **Traded Assets**: Consider a frictionless market with:
 - A riskless asset (bond) with price $B_t = e^{rt}$
@@ -35,7 +39,8 @@ $$
 
 
 
-### Model-Free Setting
+### 2. Model-Free Setting
+
 
 **Given Information**:
 - Current stock price $S_0$
@@ -49,7 +54,9 @@ $$
 
 ## Static Arbitrage Bounds
 
-### Call Option Bounds
+
+### 1. Call Option Bounds
+
 
 **Intrinsic Value Bound** (Lower Bound):
 
@@ -89,7 +96,8 @@ $$
 
 **Proof**: A call option cannot be worth more than the underlying stock itself. If $C(K, T) > S_0$, sell the call and buy the stock for arbitrage.
 
-### Put Option Bounds
+### 2. Put Option Bounds
+
 
 **Lower Bound**:
 
@@ -111,7 +119,8 @@ $$
 
 **Proof**: A put option cannot be worth more than the present value of the strike. If $P(K, T) > Ke^{-rT}$, sell the put and invest the proceeds for arbitrage.
 
-### Put-Call Parity
+### 3. Put-Call Parity
+
 
 **Exact Relationship**:
 
@@ -134,7 +143,9 @@ Since both portfolios have identical payoffs, by no-arbitrage, they must have id
 
 ## Convexity and Monotonicity Constraints
 
-### Convexity in Strike
+
+### 1. Convexity in Strike
+
 
 **Theorem** (Convexity): The call price $C(K)$ is a convex function of the strike $K$:
 
@@ -174,7 +185,8 @@ $$
 
 for any $K_1 < K_2 < K_3$.
 
-### Monotonicity
+### 2. Monotonicity
+
 
 **Theorem** (Decreasing in Strike): Call prices are decreasing in strike:
 
@@ -200,7 +212,8 @@ $$
 - Lower bound: From monotonicity
 - Upper bound: The maximum payoff of a call spread is $K_2 - K_1$, so its present value is at most $e^{-rT}(K_2 - K_1)$
 
-### Slope Constraints
+### 3. Slope Constraints
+
 
 **Theorem**: The call price function satisfies:
 
@@ -256,7 +269,9 @@ $$
 
 ## Breeden-Litzenberger Formula
 
-### Risk-Neutral Density Recovery
+
+### 1. Risk-Neutral Density Recovery
+
 
 **Theorem** (Breeden-Litzenberger, 1978): The risk-neutral density is given by:
 
@@ -305,7 +320,8 @@ $$
 
 
 
-### Practical Implementation
+### 2. Practical Implementation
+
 
 **Discrete Approximation**: With observed call prices $\{C(K_i)\}_{i=1}^n$:
 
@@ -327,7 +343,9 @@ Regularized approaches project observed prices onto the space of arbitrage-free 
 
 ## Carr-Madan Formula
 
-### Derivative Payoff Decomposition
+
+### 1. Derivative Payoff Decomposition
+
 
 **Theorem** (Carr-Madan, 1998): Any twice-differentiable payoff $g(S_T)$ can be decomposed as:
 
@@ -377,7 +395,8 @@ $$
 - The weights are given by the second derivative of the payoff function
 - This is a **static replication strategy**
 
-### Applications
+### 2. Applications
+
 
 **Variance Swap**: For the log-contract $g(S_T) = \log(S_T/F)$:
 
@@ -410,7 +429,9 @@ $$
 
 ## Model-Free Bounds on Path-Dependent Options
 
-### Forward Start Options
+
+### 1. Forward Start Options
+
 
 **Definition**: A forward start call option struck at-the-money at time $t_1$ with maturity $t_2$:
 
@@ -437,7 +458,8 @@ $$
 
 **Proof** (Lower Bound): More subtle, requires constructing sub-replicating portfolio using European options.
 
-### Lookback Options
+### 2. Lookback Options
+
 
 **Fixed Strike Lookback Call**: Payoff is:
 
@@ -470,7 +492,8 @@ $$
 
 This bound can be computed from the market prices of vanilla calls.
 
-### Barrier Options
+### 3. Barrier Options
+
 
 **Up-and-Out Call**: Payoff is:
 
@@ -509,7 +532,9 @@ $$
 
 ## Fundamental Duality
 
-### Primal and Dual Problems
+
+### 1. Primal and Dual Problems
+
 
 **Primal Problem** (Buyer's Perspective): Minimize the super-replication cost:
 
@@ -545,7 +570,8 @@ $$
 - This provides a dual characterization of derivative prices
 - Strong duality holds in frictionless markets
 
-### Sub-Replication
+### 2. Sub-Replication
+
 
 **Sub-Replication Cost**:
 
@@ -587,7 +613,9 @@ with strict inequality reflecting model uncertainty.
 
 ## Advanced Model-Free Results
 
-### Variance Bounds
+
+### 1. Variance Bounds
+
 
 **Model-Free Implied Variance**: Define:
 
@@ -618,7 +646,8 @@ $$
 
 
 
-### Moment Constraints
+### 2. Moment Constraints
+
 
 **European Option Prices** constrain the moments of the risk-neutral distribution.
 
@@ -653,7 +682,9 @@ $$
 
 ## Robust Pricing with Traded Options
 
-### Constrained Martingale Measures
+
+### 1. Constrained Martingale Measures
+
 
 **Setup**: Suppose European calls $\{C(K_i)\}_{i=1}^n$ are traded with observed prices.
 
@@ -677,7 +708,8 @@ $$
 
 **Interpretation**: The robust price interval $[\underline{V}, \overline{V}]$ contains all prices consistent with no-arbitrage and observed vanilla option prices.
 
-### Optimization Formulation
+### 2. Optimization Formulation
+
 
 **Dual Problem**: The robust bounds can be computed by solving:
 
@@ -707,7 +739,8 @@ $$
 
 Then solve a finite-dimensional LP with variables $q_j = q(S_j)$.
 
-### Extremal Measures
+### 3. Extremal Measures
+
 
 **Theorem**: The extremal measures (achieving the supremum or infimum) are typically **discrete** with support on at most $n+2$ points, where $n$ is the number of traded strikes.
 
@@ -717,7 +750,9 @@ Then solve a finite-dimensional LP with variables $q_j = q(S_j)$.
 
 ## Applications and Examples
 
-### Example 1: Digital Option Bounds
+
+### 1. Example 1: Digital Option Bounds
+
 
 **Payoff**: Binary option that pays $1$ if $S_T > K$, zero otherwise.
 
@@ -752,7 +787,8 @@ $$
 
 Bounds can be derived using finite differences of observed call prices.
 
-### Example 2: Variance Swap Replication
+### 2. Example 2: Variance Swap Replication
+
 
 **Variance Swap Payoff**: Pays the realized variance:
 
@@ -774,7 +810,8 @@ $$
 
 The variance can be replicated (approximately) by a portfolio of puts and calls.
 
-### Example 3: Asian Option Bounds
+### 3. Example 3: Asian Option Bounds
+
 
 **Arithmetic Asian Call**: Payoff is:
 
@@ -807,7 +844,9 @@ $$
 
 ## Computational Methods
 
-### Linear Programming Approach
+
+### 1. Linear Programming Approach
+
 
 **Discretization**: Choose a grid $\{S_j\}_{j=1}^M$ and discretize the density:
 
@@ -835,7 +874,8 @@ $$
 
 **Sensitivity**: Solutions are sensitive to grid choice and number of points $M$. Use adaptive grids for better accuracy.
 
-### Semidefinite Programming
+### 2. Semidefinite Programming
+
 
 **Moment-Based Approach**: Instead of discretizing states, work directly with moments.
 
@@ -862,7 +902,8 @@ $$
 
 **Objective**: Compute expectation $\mathbb{E}_{\mathbb{Q}}[g(S_T)]$ as a function of moments.
 
-### Monte Carlo Methods
+### 3. Monte Carlo Methods
+
 
 **Scenario Generation**: Generate scenarios $\{S_T^{(i)}\}_{i=1}^N$ from a reference distribution.
 
@@ -899,7 +940,9 @@ where $\lambda$ is chosen to match constraints.
 
 ## Limitations and Extensions
 
-### Model-Free Bound Limitations
+
+### 1. Model-Free Bound Limitations
+
 
 **Width of Bounds**: For many exotic derivatives, model-free bounds are **wide** – the interval $[\underline{V}, \overline{V}]$ can be large.
 
@@ -919,7 +962,8 @@ $$
 
 which is not very informative.
 
-### Additional Market Information
+### 2. Additional Market Information
+
 
 **Volatility Surface**: Incorporating options at multiple maturities:
 
@@ -936,7 +980,8 @@ tightens bounds significantly for path-dependent options.
 
 **Dividend Information**: Knowledge of dividend payments $\{d_i, t_i\}$ modifies the martingale constraint.
 
-### Extensions to Multiple Assets
+### 3. Extensions to Multiple Assets
+
 
 **Basket Options**: Payoff depends on multiple underlyings:
 
@@ -971,7 +1016,9 @@ subject to marginal constraints.
 
 ## Summary and Key Insights
 
-### Fundamental Principles
+
+### 1. Fundamental Principles
+
 
 1. **No-Arbitrage Foundation**: Model-free bounds rely purely on the absence of arbitrage, not on specific dynamical assumptions.
 
@@ -983,7 +1030,8 @@ subject to marginal constraints.
 
 5. **Information Content**: Vanilla option prices encode the risk-neutral distribution, accessible via the Breeden-Litzenberger formula.
 
-### Practical Implications
+### 2. Practical Implications
+
 
 **For Traders**:
 - Model-free bounds provide arbitrage-free price ranges
@@ -997,7 +1045,8 @@ subject to marginal constraints.
 - Model-free results identify which features are truly necessary for pricing
 - Gaps between model-free bounds and model-specific prices reveal model-dependent risk premiums
 
-### Open Questions
+### 3. Open Questions
+
 
 1. **Tightness**: How to tighten bounds for exotic derivatives using limited additional information?
 

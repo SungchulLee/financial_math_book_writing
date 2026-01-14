@@ -1,5 +1,7 @@
 # Volatility Cone
+
 ## Using Historical
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_cone.png?raw=true" alt="long_call_vs_put" width="700">
@@ -16,6 +18,7 @@ This approach provides a **statistical framework** for volatility trading decisi
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_percentile.png?raw=true" alt="long_call_vs_put" width="700">
@@ -43,11 +46,13 @@ This approach provides a **statistical framework** for volatility trading decisi
 
 ## What Is a Volatility
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_signals.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 ### 1. Definition
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_cone_analysis_term_structure.png?raw=true" alt="long_call_vs_put" width="700">
@@ -74,6 +79,7 @@ Plotting these bands across maturities forms a **cone**.
 
 ### 2. Visual Intuition
 
+
 ```
 Vol
 ↑
@@ -89,6 +95,7 @@ Vol
 ---
 
 ## Why Volatility Cones
+
 
 Volatility cones help answer:
 
@@ -106,7 +113,9 @@ They provide **context**, not predictions.
 
 ## The Structure
 
+
 ### 1. General
+
 
 Cone-based trades typically:
 
@@ -124,7 +133,9 @@ Cone-based trades typically:
 
 ### 2. Common Cone-Based
 
+
 ### 3. Short Volatility
+
 
 - Sell ATM straddles or strangles
 
@@ -136,6 +147,7 @@ Cone-based trades typically:
 
 ### 4. Long Volatility
 
+
 - Buy straddles or strangles
 
 - Long gamma positions
@@ -146,6 +158,7 @@ Cone-based trades typically:
 
 ### 5. Maturity-Selectiv
 
+
 - Sell volatility only at maturities above the cone
 
 - Buy volatility only at maturities below the cone
@@ -155,6 +168,7 @@ Cone-based trades typically:
 ---
 
 ### 6. Cone-Filtered
+
 
 - Apply cone filter to:
 
@@ -169,6 +183,7 @@ Cone-based trades typically:
 ---
 
 ## The Portfolio
+
 
 \[
 \Pi_{\text{cone}} = \sum_i n_i \cdot V(T_i, \sigma_{\text{implied}, i})
@@ -189,9 +204,11 @@ Primary exposure is to **volatility level relative to historical bounds**.
 
 ## Economic
 
+
 **Understanding what volatility cone analysis REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 Volatility cone analysis is fundamentally about **exploiting the statistical regularity in volatility distribution** combined with the **volatility risk premium**. You're trading the **shape and bounds of the probability distribution**, not individual outcomes.
 
@@ -209,7 +226,9 @@ $$
 
 ### 2. Why Volatility
 
+
 ### 3. The Central Limit
+
 
 **Key mathematical insight:**
 
@@ -285,6 +304,7 @@ $$
 Volatility scales with square root of time (standard result from stochastic calculus).
 
 ### 4. Why Mean
+
 
 **The economic forces pulling volatility back to average:**
 
@@ -375,6 +395,7 @@ Volatility CANNOT stay extreme forever:
 
 ### 5. The Volatility
 
+
 **Core observation:**
 
 Implied volatility systematically trades ABOVE the realized volatility distribution:
@@ -456,6 +477,7 @@ Vol (%)
 **Asymmetry:** Buying cheap vol has higher EV but requires patience (theta decay)!
 
 ### 6. The Term
+
 
 **Cones exist for EVERY maturity:**
 
@@ -547,7 +569,9 @@ $$
 
 ### 7. Professional
 
+
 ### 8. Market Makers
+
 
 **How they use cones:**
 
@@ -599,6 +623,7 @@ $$
 - **Target: Near zero** (neutral to percentile extremes)
 
 ### 9. Volatility
+
 
 **Systematic cone-based strategies:**
 
@@ -670,6 +695,7 @@ Exit:
 
 ### 10. Proprietary
 
+
 **High-frequency cone monitoring:**
 
 **Intraday percentile tracking:**
@@ -712,9 +738,11 @@ Monday 9:45 AM:
 
 ### 11. Why Volatility
 
+
 **The four quantifiable edges:**
 
 ### 12. Edge 1
+
 
 **Statistical measurement:**
 
@@ -746,6 +774,7 @@ For each regime, probability of mean reversion:
 - **EV:** 0.78 × $550 - 0.22 × $250 = **+$374**
 
 ### 13. Edge 2
+
 
 **Cone parameters remain stable:**
 
@@ -779,6 +808,7 @@ Only 3 major shifts in 35 years:
 
 ### 14. Edge 3
 
+
 **At high percentiles, collect DOUBLE edge:**
 
 1. **Statistical edge:** Mean reversion probability
@@ -802,6 +832,7 @@ Only 3 major shifts in 35 years:
 - **Percentile positioning adds 75% to edge!**
 
 ### 15. Edge 4
+
 
 **Trade multiple underlyings:**
 
@@ -837,6 +868,7 @@ Even when SPY at 85th percentile, AAPL might be at 45th percentile.
 
 ### 16. Volatility cones
 
+
 **Volatility cones work because:**
 
 1. **Statistical regularity:** RV follows stable distribution with well-defined percentiles
@@ -869,7 +901,9 @@ Even when SPY at 85th percentile, AAPL might be at 45th percentile.
 
 ## The P&L Formula
 
+
 ### 1. Primary P&L
+
 
 \[
 \text{P\&L}_{\text{cone}} =
@@ -882,7 +916,9 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
 ## Concrete Example
 
+
 ### 1. Short Volatility
+
 
 **Underlying:** SPY  
 
@@ -902,6 +938,7 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
 ### 2. Trade Decision
 
+
 - IV is **above historical max**
 
 - Expect volatility normalization
@@ -914,7 +951,9 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
 ## Risk Management
 
+
 ### 1. Key Risks
+
 
 - Structural regime changes
 
@@ -927,6 +966,7 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 ---
 
 ### 2. Risk Controls
+
 
 - Combine cone with macro filters
 
@@ -941,6 +981,7 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 ---
 
 ## Relationship to
+
 
 | Strategy | Role of Cone |
 |--------|---------------|
@@ -959,9 +1000,11 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -999,6 +1042,7 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 
 - [Specific IV conditions]
@@ -1020,6 +1064,7 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 - [Event risk too high]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -1048,6 +1093,7 @@ $$
 - Risk 2-5% on defined risk strategies
 
 ### 4. Best practices: 1
+
 
 **Best practices:**
 
@@ -1082,6 +1128,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1123,6 +1170,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -1163,6 +1211,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 
 - Entry IV level and percentile
@@ -1191,6 +1240,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
@@ -1208,6 +1258,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 
@@ -1252,6 +1303,7 @@ $$
 
 ## Common Mistakes
 
+
 [Common IV strategy errors to avoid]
 
 
@@ -1260,7 +1312,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Background (November 1, 2023):**
 
@@ -1444,6 +1498,7 @@ IV is ABOVE current RV, but **both are in low regime**. Historical pattern:
 
 ### 2. Transition Risk
 
+
 **Background (April 25, 2024, 8 days before earnings):**
 
 - AAPL: $169
@@ -1620,6 +1675,7 @@ Back-month (30-day) pricing normal vol.
 ---
 
 ### 3. Portable Alpha
+
 
 **Background (March 1, 2024):**
 
@@ -1873,6 +1929,7 @@ These three examples show:
 
 ## Key Takeaways
 
+
 - Volatility cones define historical volatility ranges
 
 - IV extremes relative to the cone signal opportunity
@@ -1886,5 +1943,6 @@ These three examples show:
 ---
 
 ## One-Line Summary
+
 
 > **Volatility cone analysis uses historical realized volatility ranges to identify when implied volatility is statistically extreme and potentially mispriced.**

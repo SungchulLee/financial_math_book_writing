@@ -1,5 +1,6 @@
 # Risk Reversals
 
+
 **Risk reversals** are zero-cost or near-zero-cost directional option strategies where you simultaneously sell an out-of-the-money option in one direction and buy an out-of-the-money option in the opposite direction, creating a synthetic long or short stock position with defined risk on one side and unlimited potential on the other.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_delta_comparison.png?raw=true" alt="long_call_vs_put" width="700">
@@ -44,6 +46,7 @@ $$
 
 ## What Are Risk
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_payoff.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -51,6 +54,7 @@ $$
 **Before trading risk reversals, understand the two main types:**
 
 ### 1. Bullish Risk
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_skew_trading.png?raw=true" alt="long_call_vs_put" width="700">
@@ -88,6 +92,7 @@ $$
 - Exploits put-call skew
 
 ### 2. Bearish Risk
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_reversals_use_cases.png?raw=true" alt="long_call_vs_put" width="700">
@@ -130,6 +135,7 @@ $$
 
 ## Economic
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_reversals.png?raw=true" alt="risk_reversals" width="700">
 </p>
@@ -137,6 +143,7 @@ $$
 **Beyond the basic definition, understanding what risk reversals REALLY are economically:**
 
 ### 1. Risk Reversals as
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_reversal_delta.png?raw=true" alt="rr_delta" width="600">
@@ -177,6 +184,7 @@ $$
 **The put premium you collect finances the call premium you pay. This is "free leverage" - but you accept the downside risk as the cost.**
 
 ### 2. Setup: AAPL at
+
 
 **Setup:**
 
@@ -228,6 +236,7 @@ $$
 
 ### 3. The Volatility
 
+
 **Risk reversals exploit an inefficiency in options markets:**
 
 **The skew:**
@@ -268,6 +277,7 @@ You actually GET PAID to take on synthetic long stock exposure!
 - **Get paid to take on bullish position!**
 
 ### 4. Put-Call Parity
+
 
 **The fundamental options equation:**
 
@@ -313,6 +323,7 @@ If risk reversal costs significantly more/less than theoretical:
 
 ### 5. Why This
 
+
 **Understanding risk reversals as synthetic stock helps you:**
 
 1. **Compare to direct stock ownership:**
@@ -344,6 +355,7 @@ If risk reversal costs significantly more/less than theoretical:
    - Collar = RR + actual stock ownership
 
 ### 6. The Strategic
+
 
 **Why traders prefer risk reversals over stock:**
 
@@ -393,6 +405,7 @@ If risk reversal costs significantly more/less than theoretical:
 ---
 
 ## Key Terminology
+
 
 **Risk Reversal (RR):**
 
@@ -448,9 +461,11 @@ If risk reversal costs significantly more/less than theoretical:
 
 ## Why Use Risk
 
+
 **Use cases for different variations:**
 
 ### 1. Bullish Risk
+
 
 **When to use:**
 
@@ -503,6 +518,7 @@ If risk reversal costs significantly more/less than theoretical:
 - Risk if NVDA drops below $478 (put strike + credit)
 
 ### 2. Bearish Risk
+
 
 **When to use:**
 
@@ -558,9 +574,11 @@ If risk reversal costs significantly more/less than theoretical:
 
 ## The Greeks
 
+
 **How Greeks create stock-like behavior:**
 
 ### 1. Delta
+
 
 **Bullish Risk Reversal Delta Evolution:**
 
@@ -596,6 +614,7 @@ Similar pattern but inverted:
 - Above call strike: Delta ≈ -1.0 (like short stock)
 
 ### 2. Gamma (Delta
+
 
 **Risk reversals have complex gamma:**
 
@@ -635,6 +654,7 @@ $$
 - **Sweet spot - profit accelerates**
 
 ### 3. Theta (Time
+
 
 **Risk reversals have offsetting theta:**
 
@@ -686,6 +706,7 @@ Unlike credit spreads where theta helps consistently, risk reversals are theta-n
 
 ### 4. Vega (Volatility
 
+
 **Risk reversals have near-zero net vega:**
 
 $$
@@ -731,6 +752,7 @@ Some traders specifically use RRs to trade the skew:
 
 ### 5. Rho (Interest
 
+
 **Risk reversals have offsetting rho:**
 
 $$
@@ -753,9 +775,11 @@ $$
 
 ## Strike Selection
 
+
 **Where you place strikes determines everything:**
 
 ### 1. The Symmetry
+
 
 **Symmetric Strikes (Equal Distance):**
 
@@ -815,6 +839,7 @@ $$
 
 ### 2. The Delta-Based
 
+
 **Choose strikes by delta, not absolute distance:**
 
 **Conservative (Wide Dead Zone):**
@@ -864,6 +889,7 @@ $$
 
 ### 3. The Credit
 
+
 **Optimize for net credit by exploiting skew:**
 
 **Bullish RR Credit Optimization:**
@@ -908,6 +934,7 @@ Rare, but exploitable when it happens.
 
 ### 4. The
 
+
 **Optimize based on expected move:**
 
 **Calculate expected move:**
@@ -941,6 +968,7 @@ $$
 - **Asymmetric: Call closer (expect downside, not upside)**
 
 ### 5. The Capital
+
 
 **Balance between:**
 
@@ -988,7 +1016,9 @@ $$
 
 ## Time Selection
 
+
 ### 1. Entry Timing
+
 
 **Different from other strategies:**
 
@@ -1031,9 +1061,11 @@ $$
 
 ### 2. Exit Timing
 
+
 **Risk reversals need different exit logic:**
 
 ### 3. Rule 1
+
 
 **If stock breaches long option strike:**
 
@@ -1062,6 +1094,7 @@ $$
 
 ### 4. Rule 2
 
+
 **If stuck in dead zone for >50% of timeframe:**
 
 **Close and redeploy capital elsewhere**
@@ -1081,6 +1114,7 @@ $$
 - Unlikely to breach with <45 days left
 
 ### 5. Rule 3
+
 
 **If stock approaches short option strike (within 2%):**
 
@@ -1105,6 +1139,7 @@ $$
 
 ### 6. Rule 4
 
+
 **If fundamental thesis invalidated:**
 
 **Close immediately regardless of P/L**
@@ -1126,9 +1161,11 @@ $$
 
 ### 7. Rolling
 
+
 **When and how to roll risk reversals:**
 
 ### 8. Situation: Stock
+
 
 **Situation:**
 
@@ -1152,6 +1189,7 @@ $$
 
 ### 9. Situation: Stock
 
+
 **Situation:**
 
 - Stock stuck between strikes
@@ -1172,6 +1210,7 @@ $$
   3. Exit: Close for small loss, move on (usually best)
 
 ### 10. Situation: Stock
+
 
 **Situation:**
 
@@ -1203,7 +1242,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Mathematical
+
 
 **Bullish Risk Reversal:**
 
@@ -1284,6 +1325,7 @@ $$
 
 ### 2. The Dead Zone
 
+
 **Critical concept: Opportunity cost of dead zone**
 
 **Example:**
@@ -1329,6 +1371,7 @@ $$
 
 ### 3. Return on Risk
 
+
 **The leverage comparison:**
 
 **Scenario: Very bullish on AAPL at $180**
@@ -1373,6 +1416,7 @@ $$
 
 ### 4. Skew Value
 
+
 **The "free money" from skew:**
 
 **Example with put skew:**
@@ -1409,11 +1453,14 @@ If options were priced at same IV (32% average):
 
 ## When to Enter Risk
 
+
 ### 1. Market Conditions
+
 
 **Best environments:**
 
 ### 2. Strong Trending
+
 
 **The ideal setup:**
 
@@ -1440,6 +1487,7 @@ If options were priced at same IV (32% average):
 
 ### 3. High Conviction
 
+
 **Before major catalyst:**
 
 - FDA decision, product launch, earnings, etc.
@@ -1461,6 +1509,7 @@ If options were priced at same IV (32% average):
 - Risk if rejection (but would lose anyway)
 
 ### 4. Volatility Skew
+
 
 **When skew is exceptionally wide:**
 
@@ -1489,6 +1538,7 @@ This is insurance companies overpaying for protection!
 
 ### 5. Post-Correction
 
+
 **After market sells off:**
 
 - Stock corrected 10-20%
@@ -1507,7 +1557,9 @@ This is insurance companies overpaying for protection!
 
 ### 6. Technical Setups
 
+
 ### 7. Bullish RR -
+
 
 **1. Breakout confirmations:**
 
@@ -1532,6 +1584,7 @@ This is insurance companies overpaying for protection!
 
 ### 8. Bearish RR -
 
+
 **1. Breakdown confirmations:**
 
 - Stock breaks major support
@@ -1555,9 +1608,11 @@ This is insurance companies overpaying for protection!
 
 ### 9. Volatility-Based
 
+
 **Using IV rank for timing:**
 
 ### 10. Bullish RR Entry
+
 
 **Best when:**
 
@@ -1576,6 +1631,7 @@ This is insurance companies overpaying for protection!
 - Collect credit + directional exposure
 
 ### 11. Bearish RR Entry
+
 
 **Best when:**
 
@@ -1597,7 +1653,9 @@ This is insurance companies overpaying for protection!
 
 ## When to Avoid Risk
 
+
 ### 1. Neutral/Range-Bou
+
 
 **The worst scenario for RR:**
 
@@ -1623,6 +1681,7 @@ This is insurance companies overpaying for protection!
 **Rule:** Only use RR when you have STRONG directional conviction
 
 ### 2. Low Volatility
+
 
 **The problem:**
 
@@ -1653,6 +1712,7 @@ This is insurance companies overpaying for protection!
 
 ### 3. Against Strong
 
+
 **Never fight the trend:**
 
 **The disaster:**
@@ -1674,6 +1734,7 @@ This is insurance companies overpaying for protection!
 **Rule:** Never use RR to fade momentum. Wait for trend break.
 
 ### 4. Insufficient
+
 
 **The wishy-washy RR:**
 
@@ -1703,6 +1764,7 @@ This is insurance companies overpaying for protection!
 
 ### 5. Undercapitalized
 
+
 **The margin problem:**
 
 - RR requires margin for short option
@@ -1729,6 +1791,7 @@ This is insurance companies overpaying for protection!
 **Rule:** Account size > 3x potential assignment value
 
 ### 6. Before Major
+
 
 **The binary risk:**
 
@@ -1765,9 +1828,11 @@ This is insurance companies overpaying for protection!
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -1779,6 +1844,7 @@ $$
 
 ### 2. Why This IV
 
+
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
 - Risk preferences (convexity vs. theta)
@@ -1786,6 +1852,7 @@ Markets create these IV structures because different participants have different
 - Hedging needs (portfolio protection vs. income generation)
 
 ### 3. The Volatility
+
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -1801,6 +1868,7 @@ $$
 
 ### 4. Professional
 
+
 Institutional traders view IV strategies as tools for:
 1. **Volatility arbitrage:** Extracting the vol risk premium
 2. **Term structure trading:** Exploiting mispricings across time
@@ -1812,9 +1880,11 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -1840,6 +1910,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 - [Specific IV conditions]
 - [Term structure requirements]
@@ -1853,6 +1924,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 - [Event risk too high]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -1874,6 +1946,7 @@ $$
 
 ### 4. Best practices: 1
 
+
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1894,6 +1967,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1921,6 +1995,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -1947,6 +2022,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 - Entry IV level and percentile
 - Term structure shape at entry
@@ -1964,6 +2040,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
 3. **Ignoring term structure** - Don't sell front month if in backwardation
@@ -1974,6 +2051,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -2002,7 +2080,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Using RR Without
+
 
 **The casual RR:**
 
@@ -2036,6 +2116,7 @@ $$
 
 ### 2. Ignoring the Dead
 
+
 **The blindness:**
 
 - Focus only on "unlimited upside"
@@ -2066,6 +2147,7 @@ $$
 - **Accept dead zone cost or don't use RR**
 
 ### 3. Underestimating
+
 
 **The surprise:**
 
@@ -2099,6 +2181,7 @@ $$
 - **Never let assignment happen unintentionally**
 
 ### 4. Fighting the
+
 
 **The stubbornness:**
 
@@ -2134,6 +2217,7 @@ $$
 
 ### 5. Overleveraging
 
+
 **The greed:**
 
 - "RRs are free, I'll do 10 of them!"
@@ -2167,6 +2251,7 @@ $$
 - **Never concentrate in one direction**
 
 ### 6. Not Checking Skew
+
 
 **The blindness:**
 
@@ -2209,6 +2294,7 @@ $$
 
 ### 7. Holding Through
 
+
 **The danger:**
 
 - Position near expiration
@@ -2243,7 +2329,9 @@ $$
 
 ## Advanced Concepts
 
+
 ### 1. The Skew Trading
+
 
 **Using RR purely to trade volatility skew:**
 
@@ -2279,6 +2367,7 @@ $$
 
 ### 2. The Collar (RR +
 
+
 **Combining RR with stock ownership:**
 
 **Structure:**
@@ -2311,6 +2400,7 @@ $$
 
 ### 3. The Ratio Risk
 
+
 **Unequal number of contracts:**
 
 **Structure:**
@@ -2340,6 +2430,7 @@ $$
 - **For experienced traders only**
 
 ### 4. Legging Into Risk
+
 
 **Building RR in two steps:**
 
@@ -2380,6 +2471,7 @@ $$
 
 ### 5. The Earnings Risk
 
+
 **Special application around earnings:**
 
 **Strategy:**
@@ -2416,6 +2508,7 @@ $$
 
 ### 6. The Delta-Hedged
 
+
 **Advanced: Using RR for market-neutral skew trade:**
 
 **Concept:**
@@ -2449,7 +2542,9 @@ $$
 
 ## Risk Management
 
+
 ### 1. Position Sizing
+
 
 **More conservative than other strategies:**
 
@@ -2483,6 +2578,7 @@ $$
 
 ### 2. Diversification
 
+
 **Critical for RRs:**
 
 **Directional diversification:**
@@ -2512,9 +2608,11 @@ $$
 
 ### 3. The Two-Level
 
+
 **RRs need special stops:**
 
 ### 4. Level 1
+
 
 **Trigger:**
 
@@ -2536,6 +2634,7 @@ $$
 - **Alert triggered, monitor daily**
 
 ### 5. Level 2
+
 
 **Trigger:**
 
@@ -2560,6 +2659,7 @@ $$
 
 ### 6. Assignment
 
+
 **Never let assignment happen:**
 
 **Rules:**
@@ -2578,6 +2678,7 @@ $$
 - **Avoid at all costs**
 
 ### 7. Portfolio-Level
+
 
 **Aggregate exposure limits:**
 
@@ -2602,6 +2703,7 @@ $$
 
 ### 8. The Conviction
 
+
 **Before entering ANY RR, verify:**
 
 ☐ Conviction level 8/10 or higher
@@ -2622,9 +2724,11 @@ $$
 
 ## Common Mistakes
 
+
 **The fatal errors that destroy risk reversal traders:**
 
 ### 1. The trap: What
+
 
 **The trap:**
 
@@ -2765,6 +2869,7 @@ Don't trade RR!
 
 ### 2. The trap: What
 
+
 **The trap:**
 
 **What traders do:**
@@ -2886,6 +2991,7 @@ Don't:
 ```
 
 ### 3. The trap: What
+
 
 **The trap:**
 
@@ -3056,7 +3162,8 @@ def should_exit_RR(stock_price, short_strike, strike_type, dead_zone_width):
 [ ] Remember: First loss is best loss
 ```
 
-### 1. The trap: What
+### 4. The trap: What
+
 
 **The trap:**
 
@@ -3221,7 +3328,8 @@ Never:
 [ ] Remember: Leverage kills accounts
 ```
 
-### 2. The trap: What
+### 5. The trap: What
+
 
 **The trap:**
 
@@ -3391,7 +3499,8 @@ Advantage:
 [ ] Remember: Events = gambling, not trading
 ```
 
-### 3. The trap: What
+### 6. The trap: What
+
 
 **The trap:**
 
@@ -3571,7 +3680,8 @@ def analyze_skew(put_strike, put_iv, call_strike, call_iv):
 [ ] Remember: Skew = free edge, use it!
 ```
 
-### 1. The trap: What
+### 7. The trap: What
+
 
 **The trap:**
 
@@ -3742,7 +3852,9 @@ Multiple layers = safety net
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Setup (November 2024):**
 
@@ -3831,6 +3943,7 @@ Multiple layers = safety net
 - **Direction + skew = winning combo**
 
 ### 2. Transition Risk
+
 
 **Setup (October 2024):**
 
@@ -3932,6 +4045,7 @@ Multiple layers = safety net
 - **Better to miss trade than force wrong one**
 
 ### 3. Portable Alpha
+
 
 **Setup (December 2024):**
 
@@ -4036,6 +4150,7 @@ Multiple layers = safety net
 - High conviction + extreme skew + post-panic entry
 
 ### 4. Tactical Duration
+
 
 **Scenario: Running 4 RRs Simultaneously**
 
@@ -4163,6 +4278,7 @@ Multiple layers = safety net
 
 
 ## Final Wisdom
+
 
 > "Risk reversals are deceptively simple - sell one option, buy another, pay nothing. But this simplicity hides profound risk: unlimited loss on one side, dead zone opportunity cost, and assignment dangers. Use them ONLY when you have very strong directional conviction - 8 out of 10 or higher. The zero cost is not free; you're accepting insurance obligations in exchange for leverage. The best RR trades exploit extreme volatility skew during panic, entering when puts are absurdly expensive and calls are cheap. You get paid to take a bullish stance you wanted anyway. Master the conviction checklist, respect the dead zone, and never let assignment happen. Remember: RRs are synthetic stock without the capital - powerful when right, devastating when wrong."
 

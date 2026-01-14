@@ -1,10 +1,12 @@
 # CDS Spreads and Hazard Rates
 
+
 CDS spreads encode market-implied default risk and can be mapped to **hazard rates** within reduced-form credit models.
 
 ---
 
-## 1. Relationship between spreads and default risk
+## Relationship between spreads and default risk
+
 
 Intuitively:
 - higher CDS spreads imply higher default intensity,
@@ -20,7 +22,8 @@ s \approx (1 - R) \times \text{average hazard rate}.
 
 ---
 
-## 2. Formal link under intensity models
+## Formal link under intensity models
+
 
 Under recovery of face value and deterministic intensity \(\lambda\),
 
@@ -36,7 +39,8 @@ This equation is inverted to infer \(\lambda\) from market spreads.
 
 ---
 
-## 3. CDS bootstrapping
+## CDS bootstrapping
+
 
 In practice:
 - CDS spreads across maturities are given,
@@ -47,7 +51,8 @@ This is analogous to yield curve construction.
 
 ---
 
-## 4. Limitations
+## Limitations
+
 
 - Recovery assumptions affect inferred hazard rates.
 - Liquidity and counterparty risk affect CDS spreads.
@@ -55,7 +60,8 @@ This is analogous to yield curve construction.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - CDS spreads imply default intensities.
 - Bootstrapping extracts hazard rate curves.
@@ -64,6 +70,7 @@ This is analogous to yield curve construction.
 ---
 
 ## Further reading
+
 
 - Brigo et al., CDS bootstrapping.
 - O'Kane, CDS term structures.

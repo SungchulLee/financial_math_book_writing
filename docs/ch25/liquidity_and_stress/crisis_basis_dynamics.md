@@ -1,10 +1,12 @@
 # Crisis Basis Dynamics
 
+
 **Crisis basis dynamics** describe the breakdown of normal price relationships between cash and derivative instruments during stress, as funding constraints, forced liquidations, and balance sheet pressures create massive dislocations and arbitrage opportunities that are impossible to exploit.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is Crisis Basis?
 
+
 ### 1. Normal Basis Relationships
+
 
 **Pre-crisis equilibrium:**
 
@@ -62,6 +66,7 @@ $$
 
 ### 2. Crisis Breakdown
 
+
 **Stress dynamics:**
 
 **Phase 1: Warning**
@@ -85,6 +90,7 @@ $$
 - Only distressed transactions
 
 ### 3. Why Basis Explodes
+
 
 **Funding liquidity crisis:**
 
@@ -115,6 +121,7 @@ $$
 - Basis dislocates
 
 ### 4. Treasury Basis in Crisis
+
 
 **2008 Financial Crisis:**
 
@@ -152,6 +159,7 @@ $$
 
 ### 5. Credit Basis in Crisis
 
+
 **CDS-bond basis:**
 
 $$
@@ -181,6 +189,7 @@ $$
 
 ### 6. Swap Spread in Crisis
 
+
 **Interest rate swap spread:**
 
 $$
@@ -202,6 +211,7 @@ $$
 - Treasury yields spike relative to swaps
 
 ### 7. FX Basis in Crisis
+
 
 **Cross-currency basis:**
 
@@ -233,7 +243,9 @@ $$
 
 ## Trading Crisis Basis
 
+
 ### 1. Long Basis Trade (Normal)
+
 
 **Pre-crisis setup:**
 
@@ -262,6 +274,7 @@ $$
 
 ### 2. Short Basis Trade (Crisis)
 
+
 **Crisis entry:**
 
 - Basis exploded to 2.00 (very rich)
@@ -275,6 +288,7 @@ $$
 - **Thesis correct but can't implement**
 
 ### 3. Credit Basis Trade
+
 
 **Negative basis opportunity:**
 
@@ -301,6 +315,7 @@ $$
 
 ### 4. Swap Spread Trade
 
+
 **Negative swap spread:**
 
 **Setup (2020):**
@@ -320,6 +335,7 @@ $$
 - **Not risk-free**
 
 ### 5. FX Basis Trade
+
 
 **USD funding shortage:**
 
@@ -348,6 +364,7 @@ $$
 
 ### 6. Basis Unwind
 
+
 **Existing position caught:**
 
 **Pre-crisis:**
@@ -366,6 +383,7 @@ $$
 - **"Arbitrageurs" become forced sellers**
 
 ### 7. Post-Crisis Entry
+
 
 **After seizure passes:**
 
@@ -390,7 +408,9 @@ $$
 
 ## Mathematical Framework
 
+
 ### 1. Basis Explosion Dynamics
+
 
 **Time-series model:**
 
@@ -410,6 +430,7 @@ $$
 
 ### 2. Funding Liquidity Spiral
 
+
 **Feedback loop:**
 
 $$
@@ -425,6 +446,7 @@ $$
 - Patient capital enters
 
 ### 3. Optimal Exit Strategy
+
 
 **Minimize loss during crisis:**
 
@@ -442,6 +464,7 @@ $$
 - Usually best to exit early
 
 ### 4. Arbitrage Bounds
+
 
 **Normal arbitrage bounds:**
 
@@ -461,6 +484,7 @@ $$
 
 ### 5. Liquidation Threshold
 
+
 **Forced exit when:**
 
 $$
@@ -476,6 +500,7 @@ $$
 - **Must exit immediately** (hit threshold)
 
 ### 6. Recovery Time
+
 
 **Mean reversion speed:**
 
@@ -493,6 +518,7 @@ $$
 - If funding stays tight, recovery slower (months)
 
 ### 7. Cross-Market Contagion
+
 
 **Correlation in stress:**
 
@@ -512,9 +538,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. "Picking Up Nickels"
+
 
 **Mistake:** Enter basis trade thinking "can't go wider"
 
@@ -530,6 +558,7 @@ $$
 
 ### 2. Underestimating Funding Risk
 
+
 **Mistake:** Assume repo always available
 
 **Why it fails:** Repo seizes in crisis
@@ -543,6 +572,7 @@ $$
 **Fix:** Use term repo, maintain large cash buffer
 
 ### 3. Insufficient Capital
+
 
 **Mistake:** Fully levered position
 
@@ -559,6 +589,7 @@ $$
 **Fix:** Max 2-3× leverage for basis trades
 
 ### 4. Ignoring Correlation
+
 
 **Mistake:** Diversify across "different" bases
 
@@ -578,6 +609,7 @@ $$
 
 ### 5. Averaging Down
 
+
 **Mistake:** Add to losing position
 
 **Why it fails:** Basis can widen much more
@@ -593,6 +625,7 @@ $$
 
 ### 6. Ignoring Delivery Squeeze
 
+
 **Mistake:** Short basis into delivery month
 
 **Why it fails:** Forced delivery or squeeze
@@ -606,6 +639,7 @@ $$
 **Fix:** Exit 10 days before delivery in stress
 
 ### 7. Overleveraging "Arbitrage"
+
 
 **Mistake:** Massive position in "risk-free arbitrage"
 
@@ -621,6 +655,7 @@ $$
 **Fix:** Even "arbitrage" needs conservative sizing
 
 ### 8. Misunderstanding Fed Put
+
 
 **Mistake:** Assume Fed will save quickly
 
@@ -640,7 +675,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Maximum basis notional:**
 
@@ -663,6 +700,7 @@ $$
 
 ### 2. Stop-Loss Rules
 
+
 **Mandatory exits:**
 
 - **Basis widens > 2× entry level** → Exit immediately
@@ -676,6 +714,7 @@ $$
 
 ### 3. Funding Contingency
 
+
 **Multiple funding sources:**
 
 - Minimum 5 repo dealers
@@ -684,6 +723,7 @@ $$
 - Cash buffer ≥ 30 days funding needs
 
 ### 4. Stress Testing
+
 
 **Weekly basis stress test:**
 
@@ -697,6 +737,7 @@ $$
 
 ### 5. Exposure Limits
 
+
 **By crisis type:**
 
 - **Treasury basis:** Max 20% of capital
@@ -708,6 +749,7 @@ $$
 
 ### 6. Term Structure Management
 
+
 **Avoid front-month exposure:**
 
 - No exposure < 30 days to delivery
@@ -715,6 +757,7 @@ $$
 - Roll early (60 days before expiry)
 
 ### 7. Monitoring Dashboard
+
 
 **Real-time tracking:**
 
@@ -734,7 +777,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. LTCM Collapse (1998)
+
 
 **Setup:**
 - Massive basis trades (levered 30×)
@@ -754,6 +799,7 @@ $$
 **Lesson:** Leverage kills in crisis
 
 ### 2. Lehman Bankruptcy (2008)
+
 
 **Setup:**
 - Basis traders ubiquitous
@@ -779,6 +825,7 @@ $$
 
 ### 3. COVID Dash for Cash (March 2020)
 
+
 **Setup:**
 - Basis trades common (low rates)
 - Balance sheet constraints (SLR)
@@ -803,6 +850,7 @@ $$
 
 ### 4. Basis Whipsaw (2020)
 
+
 **Trade:**
 - Short Treasury basis at 0.40 (Jan 2020)
 - Expect convergence to 0.10
@@ -821,6 +869,7 @@ $$
 **Lesson:** Need capital to survive interim widening
 
 ### 5. FX Basis Blowout (2008)
+
 
 **Setup:**
 - EUR/USD FX basis: -10 bps (normal)
@@ -846,7 +895,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Monitoring Basis Stress
+
 
 **Daily basis tracking:**
 
@@ -872,6 +923,7 @@ for basis_name, current_value in bases.items():
 
 ### 2. Stress Scenario Analysis
 
+
 **Monthly stress test:**
 
 1. **Mild stress (2× widening):**
@@ -895,6 +947,7 @@ for basis_name, current_value in bases.items():
 
 ### 3. Funding Contingency Planning
 
+
 **Prepare for stress:**
 
 1. **Normal times:**
@@ -913,6 +966,7 @@ for basis_name, current_value in bases.items():
    - Prepare to exit positions
 
 ### 4. Position Scaling
+
 
 **Dynamic adjustment:**
 
@@ -936,6 +990,7 @@ def calculate_position_size(current_basis, normal_basis, capital):
 
 ### 5. Exit Strategy
 
+
 **Predetermined rules:**
 
 1. **Stop-loss (any basis):**
@@ -953,6 +1008,7 @@ def calculate_position_size(current_basis, normal_basis, capital):
 ---
 
 ## Final Wisdom
+
 
 > "Crisis basis dynamics reveal the harsh truth that arbitrage isn't arbitrage when you can't fund it, can't hold it, or can't survive the interim volatility. The 2008 crisis showed that Treasury basis could widen 20× normal levels, credit basis could reach -500 bps, and swap spreads could go negative - relationships that 'couldn't happen' based on decades of data. The fundamental lesson: basis trades are leveraged relative value bets that profit in normal times but can destroy capital in crises when funding evaporates, balance sheets constrain, and forced liquidations cascade. Survivors have three attributes: (1) conservative leverage (2-3× max), (2) term funding secured before stress, and (3) enough capital to survive 10-20× basis widening. The worst mistake is treating basis trades as 'low-risk arbitrage' - they're actually highly levered macro bets that blow up exactly when you need liquidity most."
 

@@ -1,10 +1,12 @@
 # Vertical Spreads
 
+
 **Vertical spreads** are directional option strategies where you simultaneously buy and sell options of the same type (both calls or both puts) at different strike prices but the same expiration date, creating defined risk and defined reward.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bull_call_spread.png?raw=true" alt="Bull Call Spread" width="700">
@@ -40,6 +42,7 @@ $$
 
 ## Types of Vertical
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bear_put_spread.png?raw=true" alt="Bear Put Spread" width="700">
 </p>
@@ -47,6 +50,7 @@ $$
 **Four main types:**
 
 ### 1. Bull Call Spread
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bull_put_spread.png?raw=true" alt="Bull Put Spread" width="700">
@@ -83,6 +87,7 @@ $$
 
 ### 2. Bear Put Spread
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/bear_call_spread.png?raw=true" alt="Bear Call Spread" width="700">
 </p>
@@ -118,6 +123,7 @@ $$
 
 ### 3. Bull Put Spread
 
+
 **Bullish, receive net credit**
 
 **Structure:**
@@ -148,6 +154,7 @@ $$
 **Figure 3:** Bull put spread profit/loss diagram illustrating the credit spread structure where selling a higher strike put and buying a lower strike put generates immediate income with defined maximum loss.
 
 ### 4. Bear Call Spread
+
 
 **Bearish, receive net credit**
 
@@ -182,9 +189,11 @@ $$
 
 ## Economic
 
+
 **Understanding what vertical spreads REALLY represent economically:**
 
 ### 1. The Risk
+
 
 **Vertical spreads are fundamentally about:**
 
@@ -201,6 +210,7 @@ $$
 This creates a "bounded position" - you're long the market from strike $K_1$ to strike $K_2$, but neutral outside this range.
 
 ### 2. Debit Spreads
+
 
 **Economic interpretation of debit spreads:**
 
@@ -233,6 +243,7 @@ $$
 - You both want the property to appreciate, but you capped your interest
 
 ### 3. Credit Spreads
+
 
 **Economic interpretation of credit spreads:**
 
@@ -268,6 +279,7 @@ $$
 
 ### 4. The Fundamental
 
+
 **Core economic insight for all vertical spreads:**
 
 $$
@@ -302,6 +314,7 @@ This is why:
 
 ### 5. Spreads as
 
+
 **Beyond directional:**
 
 Vertical spreads are also **volatility trades**:
@@ -332,6 +345,7 @@ All three components matter, not just direction.
 
 ### 6. Why Professionals
 
+
 **The institutional perspective:**
 
 1. **Capital efficiency:** Spreads use less buying power than stock or naked options
@@ -351,9 +365,11 @@ This mindset shift is crucial. You're not losing opportunity - you're **managing
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering
+
 
 **Before entering any spread, determine:**
 
@@ -386,6 +402,7 @@ This mindset shift is crucial. You're not losing opportunity - you're **managing
 
 ### 2. Decision tree:
 
+
 **Decision tree:**
 
 ```
@@ -409,6 +426,7 @@ Bullish view?
 - **Higher win rate?** → Credit spread
 
 ### 3. For debit
+
 
 **For debit spreads:**
 
@@ -462,6 +480,7 @@ Bullish view?
 
 ### 4. Short-term (<30
 
+
 **Short-term (<30 DTE):**
 
 - **Pros:** Fast theta decay (credit spreads), less capital
@@ -493,6 +512,7 @@ Bullish view?
 - Debit spreads: 45-75 DTE
 
 ### 5. Critical
+
 
 **Critical formulas:**
 
@@ -529,6 +549,7 @@ Example: $50,000 portfolio, $10 wide spread, $3 credit
 - Never more than 20% of portfolio in spreads total
 
 ### 6. Best practices:
+
 
 **Best practices:**
 
@@ -568,6 +589,7 @@ Open Interest > 500
 - Never enter minutes before major news
 
 ### 7. For credit
+
 
 **For credit spreads:**
 
@@ -635,6 +657,7 @@ Open new spread:
 
 ### 8. Track for every
 
+
 **Track for every trade:**
 
 | Field | Example |
@@ -664,6 +687,7 @@ Open new spread:
 - Best/worst setups
 
 ### 9. Common Execution
+
 
 **1. Legging into spreads:**
 
@@ -703,6 +727,7 @@ Open new spread:
 
 ### 10. Professional
 
+
 **Spread selection matrix:**
 
 | Market Condition | IV Level | Best Spread | Reasoning |
@@ -737,9 +762,11 @@ Before every spread:
 
 ## Common Mistakes
 
+
 **Top mistakes with spreads:**
 
 ### 1. Wrong Spread
+
 
 - **Mistake:** Always use $5 wide or $10 wide
 
@@ -749,6 +776,7 @@ Before every spread:
 
 ### 2. Ignoring
 
+
 - **Mistake:** Trade illiquid strikes
 
 - **Why fails:** Wide bid-ask, can't exit efficiently
@@ -756,6 +784,7 @@ Before every spread:
 - **Fix:** Only trade liquid options (vol > 100)
 
 ### 3. Holding to
+
 
 - **Mistake:** Wait for max profit on credit spreads
 
@@ -765,6 +794,7 @@ Before every spread:
 
 ### 4. Not Managing
 
+
 - **Mistake:** Let losing spread go to max loss
 
 - **Why fails:** Hope it recovers, usually doesn't
@@ -772,6 +802,7 @@ Before every spread:
 - **Fix:** Close at 2x credit received
 
 ### 5. Wrong Direction
+
 
 - **Mistake:** Selling put spreads in downtrend
 
@@ -781,6 +812,7 @@ Before every spread:
 
 ### 6. Over-Sizing
 
+
 - **Mistake:** "Spreads are safer, I'll do 20 contracts"
 
 - **Why fails:** Max loss × 20 can blow up account
@@ -789,6 +821,7 @@ Before every spread:
 
 ### 7. Spreads in Low IV
 
+
 - **Mistake:** Sell credit spreads when IV at lows
 
 - **Why fails:** Low premium, not worth risk
@@ -796,6 +829,7 @@ Before every spread:
 - **Fix:** Sell spreads when IV > 50th percentile
 
 ### 8. Ignoring Pin Risk
+
 
 - **Mistake:** Hold spread into expiration with stock at short strike
 
@@ -807,7 +841,9 @@ Before every spread:
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Setup:**
 
@@ -868,6 +904,7 @@ Before every spread:
 **Lesson:** Strong trend + catalyst + defined risk = ideal debit spread setup. Take profits at max value.
 
 ### 2. Transition Risk
+
 
 **Setup:**
 
@@ -930,6 +967,7 @@ Before every spread:
 **Lesson:** High IV + support level + credit spread = high probability trade. Take 50-70% profits for capital efficiency.
 
 ### 3. Portable Alpha
+
 
 **Setup:**
 
@@ -1007,6 +1045,7 @@ Before every spread:
 
 ### 4. Tactical Duration
 
+
 **Setup:**
 
 - AAPL at $185 post-earnings
@@ -1064,6 +1103,7 @@ Before every spread:
 **Lesson:** Post-earnings, low-IV environments favor credit spreads. Take 50-70% profits and move on.
 
 ### 5. Duration Hedge
+
 
 **Setup:**
 
@@ -1127,6 +1167,7 @@ Before every spread:
 **Lesson:** Don't hold debit spreads through binary events (Fed, earnings, major news). Gap risk can destroy positions instantly with no chance to manage.
 
 ### 6. Setup: SPY at
+
 
 **Setup:**
 
@@ -1198,6 +1239,7 @@ Before every spread:
 
 ### 7. Setup: $10,000
 
+
 **Setup:**
 
 - $10,000 account (small trader)
@@ -1259,6 +1301,7 @@ Before every spread:
 ---
 
 ## Final Wisdom
+
 
 > "Vertical spreads are the 'Goldilocks' of option strategies - not too risky (like naked), not too expensive (like single longs), but just right. They offer defined risk, reasonable capital requirements, and moderate profit potential. Master these before complex multi-leg strategies. Many professional traders use spreads almost exclusively."
 

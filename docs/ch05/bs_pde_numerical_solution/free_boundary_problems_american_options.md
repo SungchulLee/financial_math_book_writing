@@ -1,12 +1,14 @@
 # Free Boundary Problems (American Options)
 
+
 American options lead to **optimal stopping** and to a **variational inequality** (obstacle problem), not a classical PDE.
 
 We focus on the American put payoff \(\Phi(S)=(K-S)^+\).
 
 ---
 
-## 1. Optimal Stopping Representation
+## Optimal Stopping Representation
+
 
 Under risk-neutral dynamics
 
@@ -27,7 +29,8 @@ V(t,S)=\sup_{\tau\in\mathcal{T}_{t,T}}\mathbb{E}^{t,S}\!\left[e^{-r(\tau-t)}\Phi
 
 ---
 
-## 2. Variational Inequality
+## Variational Inequality
+
 
 Let \(\mathcal{L}\) be the Black–Scholes generator:
 
@@ -54,7 +57,8 @@ Exercise region: \(V=\Phi\).
 
 ---
 
-## 3. Free Boundary and Smooth Pasting (Formal)
+## Free Boundary and Smooth Pasting (Formal)
+
 
 Let \(S^\ast(t)\) be the exercise boundary. Then
 
@@ -66,7 +70,8 @@ Let \(S^\ast(t)\) be the exercise boundary. Then
 
 ---
 
-## 4. Numerical Enforcement
+## Numerical Enforcement
+
 
 Common discrete formulations:
 - projection: \(V^{n+1}\leftarrow\max\{V^{n+1},\Phi\}\),
@@ -74,7 +79,8 @@ Common discrete formulations:
 
 ---
 
-## 5. What to Remember
+## What to Remember
+
 
 - American pricing is optimal stopping.
 - The PDE becomes an obstacle problem with an unknown free boundary.

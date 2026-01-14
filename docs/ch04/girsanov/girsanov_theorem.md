@@ -1,11 +1,13 @@
 # Girsanov’s Theorem 
 
+
 Girsanov’s theorem describes how a change of probability measure modifies the drift
 of a stochastic process while preserving its Brownian structure.
 
 ---
 
 ## Setting
+
 
 Let \((\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})\) be a filtered probability space
 supporting a standard Brownian motion \(W_t\).
@@ -21,6 +23,7 @@ Let \(\theta_t\) be an adapted process satisfying the Novikov condition
 ---
 
 ## Exponential Martingale
+
 
 Define
 
@@ -40,6 +43,7 @@ Then \(Z_t\) is a strictly positive \(\mathbb{P}\)-martingale with
 
 ## Measure Change
 
+
 Define a new probability measure \(\mathbb{Q}\) on \(\mathcal{F}_T\) by
 
 \[
@@ -49,6 +53,7 @@ Define a new probability measure \(\mathbb{Q}\) on \(\mathcal{F}_T\) by
 ---
 
 ## Theorem (Girsanov)
+
 
 Under the measure \(\mathbb{Q}\), the process
 
@@ -61,6 +66,7 @@ is a standard Brownian motion.
 ---
 
 ## Interpretation
+
 
 - Under \(\mathbb{P}\): \(W_t\) is Brownian, \(\widetilde W_t\) has drift
 - Under \(\mathbb{Q}\): \(\widetilde W_t\) is Brownian

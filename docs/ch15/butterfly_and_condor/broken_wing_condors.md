@@ -1,5 +1,6 @@
 # Broken Wing Condors
 
+
 **Broken wing condors** are asymmetric, defined-risk option strategies where one side of an iron condor has unequal strike spacing, creating a directional bias while maintaining credit collection. They offer the income generation of condors with reduced capital requirements and strategic flexibility for traders with moderate directional conviction.
 
 
@@ -12,6 +13,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bearish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
@@ -46,6 +48,7 @@ $$
 
 ## What Are Broken Wing Condors?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_broken_wing_greeks.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -53,6 +56,7 @@ $$
 **Before trading broken wings, understand the variations:**
 
 ### 1. Broken Wing Iron Condor (Call Side Broken)
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_brokenness_levels.png?raw=true" alt="long_call_vs_put" width="700">
@@ -93,6 +97,7 @@ $$
 
 ### 2. Broken Wing Iron Condor (Put Side Broken)
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_bullish_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -132,6 +137,7 @@ $$
 
 ### 3. Skip Strike Broken Wing Condor
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -159,6 +165,7 @@ $$
 
 ## Economic
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_risk_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -166,6 +173,7 @@ $$
 **Beyond the basic definition, understanding what broken wing condors REALLY are economically:**
 
 ### 1. Broken Wing Condors as Directional Insurance Underwriting
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condors_symmetric_vs_broken_wing.png?raw=true" alt="long_call_vs_put" width="700">
@@ -205,6 +213,7 @@ $$
 **The wider call spread costs less in premium but provides the same protection benefit IF you're right about direction.**
 
 ### 2. Example
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_condor.png?raw=true" alt="broken_wing_condor" width="700">
@@ -265,6 +274,7 @@ If you're right about bullish bias:
 
 ### 3. The Conviction-Based Capital Allocation
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/broken_wing_theta.png?raw=true" alt="theta_asymmetry" width="600">
 </p>
@@ -297,6 +307,7 @@ If you're right about bullish bias:
 
 ### 4. Why This Perspective Matters
 
+
 **Understanding broken wings as conviction trades helps you:**
 
 1. **Express directional views with defined risk:**
@@ -325,6 +336,7 @@ If you're right about bullish bias:
    - **Net positive if conviction correct >60% of time**
 
 ### 5. The Strategic Advantage of Asymmetric Risk
+
 
 **Why traders prefer broken wings when they have conviction:**
 
@@ -360,6 +372,7 @@ If you're right about bullish bias:
 ---
 
 ## Key Terminology
+
 
 **Broken Wing:**
 
@@ -406,9 +419,11 @@ If you're right about bullish bias:
 
 ## Why Use Broken Wing Condors?
 
+
 **Use cases for different variations:**
 
 ### 1. Bullish Broken Wing (Wide Call Side)
+
 
 **When to use:**
 
@@ -460,6 +475,7 @@ If you're right about bullish bias:
 - Risk concentrated below $175 (don't expect)
 
 ### 2. Bearish Broken Wing (Wide Put Side)
+
 
 **When to use:**
 
@@ -514,9 +530,11 @@ If you're right about bullish bias:
 
 ## The Greeks
 
+
 **How Greeks differ from regular iron condors:**
 
 ### 1. Delta (Directional Risk)
+
 
 **Bullish Broken Wing:**
 
@@ -561,6 +579,7 @@ The asymmetry creates interesting delta behavior:
 
 ### 2. Theta (Time Decay) - Still Your Friend, But Asymmetric
 
+
 **Broken wing condors have positive theta, but distributed unevenly:**
 
 $$
@@ -600,6 +619,7 @@ Unlike regular ICs where theta is symmetric, broken wings have:
 
 ### 3. Gamma (Delta Risk) - Asymmetric Acceleration
 
+
 **Broken wings have very asymmetric gamma:**
 
 $$
@@ -635,6 +655,7 @@ This is critical to understand:
 - **Risk management must focus on tight spread side!**
 
 ### 4. Vega (Volatility Risk) - Similar to Regular IC
+
 
 **Broken wings have negative vega like all short premium strategies:**
 
@@ -682,6 +703,7 @@ Broken wings can suffer worse than regular ICs during panics:
 
 ### 5. Rho (Interest Rate Risk) - Still Negligible
 
+
 **Impact:** ~$0.01-0.02 per 1% rate change
 
 **Can ignore for most trading**
@@ -690,9 +712,11 @@ Broken wings can suffer worse than regular ICs during panics:
 
 ## Strike Selection Strategy
 
+
 **Where you place strikes determines everything in broken wings:**
 
 ### 1. The Asymmetric Strike Spacing Framework
+
 
 **Core principle:**
 
@@ -724,6 +748,7 @@ $$
 - Strong asymmetry, very bullish
 
 ### 2. The Delta-Based Selection (Recommended)
+
 
 **Professional approach:**
 
@@ -760,6 +785,7 @@ $$
 
 ### 3. The Probability-Weighted Approach
 
+
 **Optimizing expected value:**
 
 $$
@@ -794,6 +820,7 @@ Even though wide side has huge max loss ($13.20), it's so unlikely (5%) that exp
 
 ### 4. Credit Collection Targets
 
+
 **How much credit should you collect?**
 
 **For bullish BWC (tight put side):**
@@ -824,6 +851,7 @@ Ideally:
 - **Good balance**
 
 ### 5. The "Golden Zone" Setup
+
 
 **Optimal strike configuration for bullish BWC:**
 
@@ -856,7 +884,9 @@ Ideally:
 
 ## Time Selection
 
+
 ### 1. Entry Timing
+
 
 **Different from regular ICs:**
 
@@ -899,9 +929,11 @@ Ideally:
 
 ### 2. Exit Timing
 
+
 **Broken wings need more nuanced exits than regular ICs:**
 
 ### 3. Rule 1
+
 
 **Same as regular credit spreads:**
 
@@ -916,6 +948,7 @@ Ideally:
 - Take $1.50 profit, move on
 
 ### 4. Rule 2
+
 
 **Close immediately if stock approaches tight spread short strike:**
 
@@ -948,6 +981,7 @@ Because of asymmetric gamma:
 
 ### 5. Rule 3
 
+
 **Close broken wings at 30 DTE regardless:**
 
 **Rationale:**
@@ -965,9 +999,11 @@ Because of asymmetric gamma:
 
 ### 6. Rolling Positions - When and How
 
+
 **Broken wings require different rolling strategies:**
 
 ### 7. When Stock Threatens Tight Spread
+
 
 **Scenario:** Stock moving toward danger zone
 
@@ -1002,6 +1038,7 @@ Because of asymmetric gamma:
 
 ### 8. When to NOT Roll
 
+
 **Don't roll if:**
 
 - Thesis completely broken (fundamental change)
@@ -1017,6 +1054,7 @@ Because of asymmetric gamma:
 - **Exit, don't roll**
 
 ### 9. The Multi-Month Strategy
+
 
 **Advanced approach: Laddering broken wings**
 
@@ -1046,7 +1084,9 @@ Because of asymmetric gamma:
 
 ## Maximum Profit and Loss Analysis
 
+
 ### 1. Mathematical Formulas
+
 
 **Broken Wing Condor (Bullish):**
 
@@ -1099,6 +1139,7 @@ $$
 
 ### 2. Risk/Reward Asymmetry Analysis
 
+
 **The critical question: Is the asymmetry worth it?**
 
 **Symmetric Iron Condor comparison:**
@@ -1147,6 +1188,7 @@ $$
 - **Broken wing better ONLY if your directional thesis correct**
 
 ### 3. Return on Capital Analysis
+
 
 **The capital efficiency question:**
 
@@ -1201,11 +1243,14 @@ Broken wings make sense when:
 
 ## When to Enter Broken Wing Condors
 
+
 ### 1. Market Conditions
+
 
 **Best environments:**
 
 ### 2. Trending Markets with Pullbacks
+
 
 **The sweet spot for broken wings:**
 
@@ -1232,6 +1277,7 @@ Broken wings make sense when:
 
 ### 3. Post-Event Stabilization
 
+
 **After volatility spike settles:**
 
 - Earnings, FDA, Fed decision, etc.
@@ -1252,6 +1298,7 @@ Broken wings make sense when:
 - Profit from consolidation with bullish bias
 
 ### 4. Range Extension Setups
+
 
 **When range is expanding in your favor:**
 
@@ -1274,9 +1321,11 @@ Broken wings make sense when:
 
 ### 5. Technical Setups
 
+
 **Combining broken wings with technicals:**
 
 ### 6. Bullish BWC - Technical Signals
+
 
 **1. Trendline bounces:**
 
@@ -1304,6 +1353,7 @@ Broken wings make sense when:
 
 ### 7. Bearish BWC - Technical Signals
 
+
 **1. Trendline rejections:**
 
 - Stock bounces to falling trendline
@@ -1329,6 +1379,7 @@ Broken wings make sense when:
 - **Sell calls above flag, wide puts below prior low**
 
 ### 8. Volatility-Based Entry
+
 
 **Using IV rank for timing:**
 
@@ -1363,7 +1414,9 @@ Broken wings work best in moderate IV because:
 
 ## When to Avoid Broken Wing Condors
 
+
 ### 1. Very High IV Environments
+
 
 **The problem:**
 
@@ -1393,6 +1446,7 @@ Broken wings work best in moderate IV because:
 
 ### 2. Parabolic Moves
 
+
 **Never fight momentum with broken wings:**
 
 **The disaster scenario:**
@@ -1414,6 +1468,7 @@ Broken wings work best in moderate IV because:
 **Rule:** Wait for consolidation, never fight parabola
 
 ### 3. Binary Events Approaching
+
 
 **The known-unknown trap:**
 
@@ -1440,6 +1495,7 @@ Events coming in 0-3 days:
 
 ### 4. When You Have No Directional Conviction
 
+
 **The most important rule:**
 
 **If you have NO conviction:**
@@ -1461,6 +1517,7 @@ Events coming in 0-3 days:
 **Rule:** Broken wing = directional strategy. No direction = no broken wing.
 
 ### 5. Low Liquidity Underlyings
+
 
 **The exit problem:**
 
@@ -1492,9 +1549,11 @@ Events coming in 0-3 days:
 
 ## Economic
 
+
 **Understanding what broken wing condors REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 Broken wing condors represent a refined economic proposition: **trading symmetric insurance for asymmetric insurance while collecting premium**, specifically tailored to exploit directional bias within defined ranges.
 
@@ -1515,6 +1574,7 @@ $$
 - **Credit boost:** Extra premium from wider wing compensates for accepting more risk on one side
 
 ### 2. Why This Structure Exists Economically
+
 
 Markets create broken wing condors because participants have **asymmetric risk preferences**:
 
@@ -1592,6 +1652,7 @@ So it's not about higher ROI per se, but about **higher probability-adjusted ret
 
 ### 3. Professional Institutional Perspective
 
+
 **How institutions use broken wing condors:**
 
 **1. Portfolio overlay strategies:**
@@ -1654,6 +1715,7 @@ Professionals know earnings moves follow patterns:
 
 ### 4. The Behavioral Finance Angle
 
+
 **Why BWCs offer edge:**
 
 **1. Investor loss aversion asymmetry:**
@@ -1675,6 +1737,7 @@ Professionals know earnings moves follow patterns:
 
 ### 5. The Information Asymmetry Advantage
 
+
 **When you know something market doesn't:**
 
 **Example: Sector rotation insight**
@@ -1689,6 +1752,7 @@ Professionals know earnings moves follow patterns:
 **Result:** Collect enhanced premium from directional insight
 
 ### 6. Understanding the Economic Foundations
+
 
 **Key insights from broken wing condors:**
 
@@ -1731,9 +1795,11 @@ Understanding economic foundations helps you recognize:
 
 ## Practical Guidance
 
+
 **Step-by-step broken wing condor implementation:**
 
 ### 1. Critical Pre-Trade Checklist
+
 
 ☐ **Directional bias clear?** (Bullish → Wide puts/Narrow calls, Bearish → Wide calls/Narrow puts)  
 ☐ **IV 45-70th percentile?** (Optimal for credit collection + compression)  
@@ -1745,6 +1811,7 @@ Understanding economic foundations helps you recognize:
 ☐ **Calculate max loss:** Wide wing - Credit
 
 ### 2. Step 1
+
 
 **CRITICAL: Match structure to conviction:**
 
@@ -1764,6 +1831,7 @@ Understanding economic foundations helps you recognize:
 
 ### 3. Step 2
 
+
 **Wing width ratios:**
 - **Wide wing:** 8-12 wide (risk side, more room)
 - **Narrow wing:** 2-4 wide (safe side, protection)
@@ -1780,6 +1848,7 @@ Understanding economic foundations helps you recognize:
 - Vega: -10 to -20 (short vol)
 
 ### 4. Step 3
+
 
 $$
 \text{Max Contracts} = \frac{\text{Portfolio} \times 2\%}{\text{(Wide Wing - Credit)} \times 100}
@@ -1799,6 +1868,7 @@ $$
 
 ### 5. Step 4
 
+
 **Order entry:**
 1. **4-leg combo order** (all simultaneously)
 2. **Limit at mid-price** or $0.05 better
@@ -1813,6 +1883,7 @@ $$
 - [ ] Set time stop (50% time elapsed)
 
 ### 6. Step 5
+
 
 **Daily monitoring:**
 - Stock price relative to wings
@@ -1838,6 +1909,7 @@ $$
 - **Exit by 10 DTE if not profitable**
 
 ### 7. Step 6
+
 
 **General rule: BWCs are hard to adjust effectively**
 
@@ -1865,6 +1937,7 @@ $$
 
 ### 8. Step 7
 
+
 | Date | Type | Strikes | Credit | DTE | IV% | Max Loss | Exit | P&L | Win? | Notes |
 |------|------|---------|--------|-----|-----|----------|------|-----|------|-------|
 | 1/15 | Bull | 440/430p, 455/457c | $4.50 | 45 | 55% | $5.50 | Day 38 | +$1.00 | ✓ | Exited at target |
@@ -1884,6 +1957,7 @@ $$
 Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ### 9. The BWC Trading Rules (Non-Negotiable)
+
 
 **Never trade BWC when:**
 1. No clear directional bias
@@ -1907,7 +1981,9 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ## Common Mistakes Beginners Make
 
+
 ### 1. Using Broken Wings for More Credit (No Conviction)
+
 
 **The temptation:**
 
@@ -1940,6 +2016,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ### 2. Making Tight Spread Too Tight
 
+
 **The greed:**
 
 - Want maximum credit
@@ -1969,6 +2046,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 - Don't chase extra $0.50-$1.00 credit
 
 ### 3. Ignoring the Wide Side Risk
+
 
 **The complacency:**
 
@@ -2002,6 +2080,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ### 4. Holding Through Earnings/Events
 
+
 **The gamble:**
 
 - Have BWC on before earnings
@@ -2033,6 +2112,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 - **Never hold defined risk through binary events**
 
 ### 5. Not Closing at 50% Profit
+
 
 **The greed:**
 
@@ -2066,6 +2146,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ### 6. Over-Concentrating in One Direction
 
+
 **The portfolio disaster:**
 
 - Bullish on market
@@ -2097,6 +2178,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 - **Don't bet entire portfolio on one direction**
 
 ### 7. Fighting the Broken Wing Thesis
+
 
 **The stubborn hold:**
 
@@ -2132,7 +2214,9 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ## Advanced Concepts
 
+
 ### 1. The Double Broken Wing
+
 
 **Extreme asymmetry on both sides:**
 
@@ -2163,6 +2247,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 - **Advanced traders only**
 
 ### 2. The Ratio Broken Wing
+
 
 **Unequal number of contracts:**
 
@@ -2195,6 +2280,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 - **Dangerous - know what you're doing!**
 
 ### 3. Converting Losing ICs to Broken Wings
+
 
 **The adjustment strategy:**
 
@@ -2229,6 +2315,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ### 4. Broken Wing Butterflies vs. Broken Wing Condors
 
+
 **Understanding the difference:**
 
 **Broken Wing Butterfly:**
@@ -2251,6 +2338,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 - **Moderate conviction, range:** BWC
 
 ### 5. Time-Based Broken Wing Rolling
+
 
 **The perpetual BWC strategy:**
 
@@ -2282,6 +2370,7 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 - **Each month: close oldest, open newest**
 
 ### 6. Implied Volatility Skew Trading
+
 
 **Using skew to optimize broken wings:**
 
@@ -2319,7 +2408,9 @@ Example: 0.68 × $2.00 - 0.32 × $1.80 = $1.36 - $0.58 = **+$0.78 per trade**
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing for Broken Wings
+
 
 **More conservative than regular ICs due to asymmetric risk:**
 
@@ -2348,6 +2439,7 @@ $$
 - **Need cushion for tail events**
 
 ### 2. Diversification Rules
+
 
 **Even more important for BWCs:**
 
@@ -2379,9 +2471,11 @@ $$
 
 ### 3. The Two-Tier Stop Loss System
 
+
 **Broken wings need special stops:**
 
 ### 4. Tier 1
+
 
 **Trigger:**
 
@@ -2397,6 +2491,7 @@ $$
 - Consider taking loss early
 
 ### 5. Tier 2
+
 
 **Trigger:**
 
@@ -2428,6 +2523,7 @@ $$
 
 ### 6. Wide Side Monitoring
 
+
 **Don't ignore the unlikely:**
 
 **Set alerts:**
@@ -2444,6 +2540,7 @@ $$
 - **1 in 20 trades, wide side will activate**
 
 ### 7. The Conviction Check-In
+
 
 **Weekly thesis review:**
 
@@ -2468,6 +2565,7 @@ $$
 - **Preserve capital for better setup**
 
 ### 8. Portfolio Level Risk
+
 
 **Aggregate exposure limits:**
 
@@ -2498,6 +2596,7 @@ $$
 
 ### 9. The Rebalancing Rule
 
+
 **Quarterly portfolio check:**
 
 **Every quarter:**
@@ -2523,7 +2622,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup (October 2024):**
 
@@ -2616,6 +2717,7 @@ $$
 - **Directional edge + credit collection worked**
 
 ### 2. Transition Risk Hedge
+
 
 **Setup (November 2024):**
 
@@ -2714,6 +2816,7 @@ $$
 - **Better to miss trade than force bad one**
 
 ### 3. Portable Alpha with Futures
+
 
 **Setup (January 2025):**
 
@@ -2818,6 +2921,7 @@ $$
 **This is the IDEAL broken wing setup!**
 
 ### 4. Tactical Duration Extension
+
 
 **Scenario: Running 6 BWCs Simultaneously**
 
@@ -2966,6 +3070,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Broken wing condors are the bridge between neutral income strategies and directional trades. They let you express moderate conviction while still collecting premium - but this flexibility comes with asymmetric risk. The key is matching your conviction to your asymmetry: strong conviction = tighter tight spread, moderate conviction = wider tight spread. Never use a broken wing just because it collects more credit - that extra credit must be justified by a genuine directional edge. Master the 50% profit rule, the tight spread monitoring, and the conviction check-in. Remember: broken wings profit when you're right about direction OR when the stock stays in range - but they hurt badly when you're wrong about direction AND the stock moves against you."
 

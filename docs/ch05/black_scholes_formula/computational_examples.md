@@ -1,12 +1,15 @@
 # Computational Examples
 
+
 This section provides detailed step-by-step calculations for pricing European options using the Black-Scholes formula, along with Python implementations and practical examples. The goal is to bridge the theoretical formulas with numerical computation.
 
 ---
 
-## 1. Manual Calculation: European Call
+## Manual Calculation: European Call
 
-### **Problem Setup**
+
+### 1. **Problem Setup**
+
 
 Price a European call option with:
 
@@ -16,7 +19,8 @@ Price a European call option with:
 - Risk-free rate: $r = 5\%$ per annum
 - Volatility: $\sigma = 30\%$ per annum
 
-### **Step 1: Compute $d_1$ and $d_2$**
+### 2. **Step 1: Compute $d_1$ and $d_2$**
+
 
 $$
 d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
@@ -54,7 +58,8 @@ $$
 d_2 = d_1 - \sigma\sqrt{T} = 0.0391 - 0.2121 = -0.1730
 $$
 
-### **Step 2: Evaluate $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$**
+### 3. **Step 2: Evaluate $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$**
+
 
 Using standard normal CDF tables or calculator:
 
@@ -66,7 +71,8 @@ $$
 \mathcal{N}(-0.1730) \approx 0.4313
 $$
 
-### **Step 3: Calculate Option Price**
+### 4. **Step 3: Calculate Option Price**
+
 
 $$
 C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
@@ -99,17 +105,21 @@ $$
 
 ---
 
-## 2. Manual Calculation: European Put
+## Manual Calculation: European Put
 
-### **Same Setup as Above**
 
-### **Step 1: Use $d_1$ and $d_2$ from Call Calculation**
+### 1. **Same Setup as Above**
+
+
+### 2. **Step 1: Use $d_1$ and $d_2$ from Call Calculation**
+
 
 $$
 d_1 = 0.0391, \quad d_2 = -0.1730
 $$
 
-### **Step 2: Evaluate $\mathcal{N}(-d_1)$ and $\mathcal{N}(-d_2)$**
+### 3. **Step 2: Evaluate $\mathcal{N}(-d_1)$ and $\mathcal{N}(-d_2)$**
+
 
 Using symmetry $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
 
@@ -121,7 +131,8 @@ $$
 \mathcal{N}(-d_2) = 1 - 0.4313 = 0.5687
 $$
 
-### **Step 3: Calculate Put Price**
+### 4. **Step 3: Calculate Put Price**
+
 
 $$
 P_0 = Ke^{-rT}\mathcal{N}(-d_2) - S_0\mathcal{N}(-d_1)
@@ -147,7 +158,8 @@ $$
 
 **Answer**: The European put is worth approximately **$4.62**.
 
-### **Verification via Put-Call Parity**
+### 5. **Verification via Put-Call Parity**
+
 
 $$
 C - P = S - Ke^{-rT}
@@ -165,9 +177,11 @@ Small rounding error confirms parity holds. ✓
 
 ---
 
-## 3. Python Implementation
+## Python Implementation
 
-### **Basic Implementation**
+
+### 1. **Basic Implementation**
+
 
 ```python
 import numpy as np
@@ -245,9 +259,11 @@ Difference: 0.000000
 
 ---
 
-## 4. Greeks Calculation
+## Greeks Calculation
 
-### **Complete Implementation with Greeks**
+
+### 1. **Complete Implementation with Greeks**
+
 
 ```python
 def black_scholes_greeks(S, K, T, r, sigma, option_type='call'):
@@ -342,9 +358,11 @@ Put Option:
 
 ---
 
-## 5. Sensitivity Analysis
+## Sensitivity Analysis
 
-### **Impact of Volatility**
+
+### 1. **Impact of Volatility**
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -365,7 +383,8 @@ plt.grid(True, alpha=0.3)
 plt.show()
 ```
 
-### **Impact of Stock Price**
+### 2. **Impact of Stock Price**
+
 
 ```python
 # Range of stock prices
@@ -407,9 +426,11 @@ plt.show()
 
 ---
 
-## 6. Practical Examples
+## Practical Examples
 
-### **Example 1: ATM Call with Different Maturities**
+
+### 1. **Example 1: ATM Call with Different Maturities**
+
 
 Compare ATM calls with 1 month, 3 months, 6 months, and 1 year to maturity:
 
@@ -445,7 +466,8 @@ Maturity     Price      Time Value
 
 **Observation**: Option value increases with time, but not linearly (roughly proportional to $\sqrt{T}$).
 
-### **Example 2: OTM vs ITM vs ATM**
+### 2. **Example 2: OTM vs ITM vs ATM**
+
 
 Compare options at different moneyness levels:
 
@@ -496,7 +518,8 @@ Strike     Moneyness    Call       Put        Call Δ     Put Δ
 - Deep OTM call has $\Delta \approx 0$, minimal stock sensitivity
 - ATM options have $\Delta \approx 0.5$
 
-### **Example 3: Implied Volatility Calculation**
+### 3. **Example 3: Implied Volatility Calculation**
+
 
 Given a market option price, back out the implied volatility:
 
@@ -540,9 +563,11 @@ BS Price at Implied Vol: $6.00
 
 ---
 
-## 7. Common Numerical Issues
+## Common Numerical Issues
 
-### **Issue 1: Extreme Values of $d_1$ or $d_2$**
+
+### 1. **Issue 1: Extreme Values of $d_1$ or $d_2$**
+
 
 When $d_1$ or $d_2$ are very large (positive or negative), numerical precision issues arise in evaluating $\mathcal{N}(d)$.
 
@@ -551,7 +576,8 @@ When $d_1$ or $d_2$ are very large (positive or negative), numerical precision i
 - If $d_1 > 8$: $\mathcal{N}(d_1) \approx 1$
 - If $d_1 < -8$: $\mathcal{N}(d_1) \approx 0$
 
-### **Issue 2: Near Expiration** ($T \to 0$)
+### 2. **Issue 2: Near Expiration** ($T \to 0$)
+
 
 As $T \to 0$, $d_1$ and $d_2$ can become undefined (division by zero).
 
@@ -561,7 +587,8 @@ $$
 C \approx \max(S - K, 0)
 $$
 
-### **Issue 3: Very Low Volatility** ($\sigma \to 0$)
+### 3. **Issue 3: Very Low Volatility** ($\sigma \to 0$)
+
 
 When $\sigma$ is very small, option behaves like forward contract.
 
@@ -573,9 +600,11 @@ $$
 
 ---
 
-## 8. Complete Working Example
+## Complete Working Example
 
-### **Real-World Scenario**
+
+### 1. **Real-World Scenario**
+
 
 You're analyzing a call option on Apple stock:
 
@@ -661,6 +690,7 @@ Greeks:
 ---
 
 ## Summary
+
 
 This section provided:
 

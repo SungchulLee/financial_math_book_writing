@@ -1,5 +1,6 @@
 # Lebesgue Integration: An Intuitive Introduction
 
+
 Before diving into the rigorous construction of stochastic integrals, we begin with a familiar type of integration—the ordinary (Lebesgue/Riemann) integral of the form:
 
 
@@ -20,6 +21,7 @@ This section builds intuition through:
 
 ## Financial interpretation: Bond portfolio
 
+
 Imagine you are managing a bond portfolio where:
 
 - **Time**: Day \(s\)
@@ -31,7 +33,8 @@ Imagine you are managing a bond portfolio where:
 
 **Key insight**: This is an ordinary integral—the randomness comes from \(B_s\) affecting the bond position \(f(s, B_s)\), but the increment \(ds\) is deterministic.
 
-### Summary table
+### 1. Summary table
+
 
 
 $$
@@ -50,9 +53,11 @@ $$
 
 ## Example 1: Computing \(\int_0^1 B_s \, ds\) by hand
 
+
 We simulate Brownian motion using 10 coin flips, then compute the integral manually.
 
-### Setup
+### 1. Setup
+
 
 **Coin flips**: \(H H T H T T H H H T\)
 
@@ -60,7 +65,8 @@ We simulate Brownian motion using 10 coin flips, then compute the integral manua
 
 **Brownian path**: Cumulative sum scaled by \(1/\sqrt{10}\)
 
-### Computation table
+### 2. Computation table
+
 
 
 $$
@@ -113,9 +119,11 @@ $$
 
 ## Example 2: Computing \(\int_0^1 s \, ds\) by hand
 
+
 Using the same coin flips, we compute the deterministic integral.
 
-### Computation table (abbreviated)
+### 1. Computation table (abbreviated)
+
 
 
 $$
@@ -154,9 +162,11 @@ With only 10 time steps, we get \(0.45\). As we refine the partition (more coin 
 
 ## Example 3: Computing \(\int_0^1 s B_s \, ds\) by hand
 
+
 Now we integrate a function depending on both time and the Brownian path.
 
-### Computation table (abbreviated)
+### 1. Computation table (abbreviated)
+
 
 
 $$
@@ -185,6 +195,7 @@ $$
 ---
 
 ## Python simulation: Monte Carlo verification
+
 
 We now verify these integrals using Monte Carlo simulation with many Brownian paths.
 
@@ -258,7 +269,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-### Observations from simulations
+### 1. Observations from simulations
+
 
 1. **Sample paths**: Each Brownian path yields a different integral \(\int_0^T f(s, B_s) ds\)
 
@@ -279,6 +291,7 @@ plt.show()
 
 ## Key differences from Itô integrals
 
+
 The integrals in this section are **ordinary (Lebesgue) integrals** with respect to time \(ds\). They differ fundamentally from **Itô integrals** \(\int f(s, B_s) dB_s\):
 
 | **Feature** | **Lebesgue integral \(\int f ds\)** | **Itô integral \(\int f dB\)** |
@@ -298,6 +311,7 @@ The integrals in this section are **ordinary (Lebesgue) integrals** with respect
 
 ## Connection to rigorous theory
 
+
 In the next sections, we will:
 
 1. **Prove** that Brownian motion has unbounded variation, making pathwise Riemann-Stieltjes integration impossible for \(\int f dB\)
@@ -311,6 +325,7 @@ The paper-and-pencil examples here serve as computational intuition, but the rig
 ---
 
 ## Summary
+
 
 **Lebesgue integration** \(\int_0^t f(s, B_s) ds\):
 

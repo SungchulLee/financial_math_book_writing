@@ -1,10 +1,12 @@
 # Applications and Examples of Itô Calculus
 
+
 Having developed the machinery of Itô's lemma, the product rule, integration by parts, and the quotient rule, we now showcase these tools through a comprehensive collection of applications. This section demonstrates the computational power of Itô calculus and connects to the martingale theory developed earlier.
 
 ---
 
 ## Example 1: Computing \( \int_0^t B_s \, dB_s \)
+
 
 **Problem**: Evaluate \( \int_0^t B_s \, dB_s \).
 
@@ -64,6 +66,7 @@ This confirms that \( B_t^2 - t \) is a martingale.
 
 ## Example 2: Computing \( \int_0^t s \, dB_s \)
 
+
 **Problem**: Evaluate the Itô integral
 
 \[
@@ -110,6 +113,7 @@ This example illustrates how deterministic time-dependent integrands lead to exp
 ---
 
 ## Example 3: Computing \( \int_0^t s B_s \, dB_s \)
+
 
 **Problem**: Simplify
 
@@ -188,6 +192,7 @@ This example shows how **time dependence in the integrand** introduces additiona
 
 ## Example 4: Computing \( \int_0^t B_s^2 \, dB_s \)
 
+
 **Problem**: Evaluate \( \int_0^t B_s^2 \, dB_s \).
 
 **Method**: Apply Itô's lemma to \( f(x) = x^3 / 3 \).
@@ -227,6 +232,7 @@ Thus,
 
 ## Example 5: Deriving the Exponential Martingale
 
+
 **Problem**: Show that
 
 \[
@@ -264,6 +270,7 @@ This process is fundamental in **Girsanov’s theorem** and **risk-neutral prici
 
 ## Example 6: Geometric Brownian Motion
 
+
 **Problem**: Solve the SDE
 
 \[
@@ -291,6 +298,7 @@ This is the cornerstone of the **Black–Scholes model**.
 
 ## Example 7: Computing \( \int_0^t e^{B_s} \, dB_s \)
 
+
 **Problem**: Relate \( \int_0^t e^{B_s} \, dB_s \) to ordinary integrals.
 
 **Solution**:
@@ -309,6 +317,7 @@ This is the cornerstone of the **Black–Scholes model**.
 
 ## Example 8: Reciprocal of Brownian Motion
 
+
 **Problem**: Let \( Y_t = 1 / B_t \) (assuming \( B_t > 0 \)). Find \( dY_t \).
 
 **Solution**:
@@ -326,6 +335,7 @@ d\!\left(\frac{1}{B_t}\right)
 ---
 
 ## Example 9: Brownian Bridge
+
 
 **Problem**: Show that
 
@@ -351,6 +361,7 @@ dX_t = dB_t - \frac{B_T}{T} \, dt
 ---
 
 ## Summary
+
 
 These examples demonstrate how Itô calculus enables:
 

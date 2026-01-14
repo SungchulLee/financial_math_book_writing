@@ -1,6 +1,10 @@
-# Donsker's Invariance Principle
+# Donsker's Invariance
+
+
 
 ## Introduction
+
+
 
 The **Donsker invariance principle** (also called **Donsker's theorem** or the **functional central limit theorem**) rigorously establishes that appropriately scaled random walks converge to Brownian motion. This is not merely convergence of finite-dimensional distributions, but **weak convergence in the space of continuous functions** $C[0,T]$.
 
@@ -14,7 +18,11 @@ This theorem:
 
 ## Function Space Setup
 
-### The Space $C[0,T]$
+
+
+### 1. Space C 0 T
+
+
 
 Let $C[0,T]$ denote the space of continuous functions $\omega: [0,T] \to \mathbb{R}$ with $\omega(0) = 0$.
 
@@ -32,7 +40,9 @@ $$\sup_{t \in [0,T]} |\omega_n(t) - \omega(t)| \to 0$$
 
 
 
-### Probability Measures on $C[0,T]$
+### 2. Probability Measu
+
+
 
 A **probability measure** $\mathbb{P}$ on $(C[0,T], \mathcal{B}(C[0,T]))$ assigns probabilities to sets of continuous paths.
 
@@ -42,7 +52,11 @@ A **probability measure** $\mathbb{P}$ on $(C[0,T], \mathcal{B}(C[0,T]))$ assign
 
 ## Weak Convergence
 
-### Definition
+
+
+### 1. Definition
+
+
 
 **Definition 1.2.1** (Weak Convergence in $C[0,T]$)
 
@@ -62,7 +76,9 @@ $$\int_{C[0,T]} F(\omega) \, d\mathbb{P}_n(\omega) \to \int_{C[0,T]} F(\omega) \
 
 4. $\lim_n \mathbb{P}_n(A) = \mathbb{P}(A)$ for all continuity sets $A$ (i.e., $\mathbb{P}(\partial A) = 0$)
 
-### Convergence in Distribution
+### 2. Convergence Distr
+
+
 
 If $X_n$ are $C[0,T]$-valued random elements with laws $\mathbb{P}_n$, we write
 
@@ -79,7 +95,11 @@ $$W^{(n)}(t) = \frac{1}{\sqrt{n}} S_{[nt]} + (nt - [nt]) \frac{\xi_{[nt]+1}}{\sq
 
 ## Donsker's Theorem
 
-### Statement
+
+
+### 1. Statement
+
+
 
 **Theorem 1.2.2** (Donsker's Invariance Principle)
 
@@ -108,7 +128,9 @@ where $W$ is a standard Brownian motion on $[0,T]$.
 
 **Remark 3:** For simple random walk ($\xi_i \in \{-1,1\}$ with equal probability), all moment conditions are trivially satisfied.
 
-### Strategy of Proof
+### 2. Strategy Proof
+
+
 
 Proving weak convergence in infinite-dimensional spaces requires two steps:
 
@@ -131,9 +153,13 @@ Step 2. **Tightness:** The sequence $\{W^{(n)}\}$ is tight in $C[0,T]$, i.e., fo
 
 By **Prokhorov's theorem**, tightness plus finite-dimensional convergence implies weak convergence.
 
-## Finite-Dimensional Convergence
+## Finite Dimensional
 
-### Multivariate CLT
+
+
+### 1. Multivariate CLT
+
+
 
 **Lemma 1.2.3**
 
@@ -175,9 +201,13 @@ where $W$ is a Brownian motion. $\square$
 
 ## Tightness
 
+
+
 Establishing tightness requires showing the scaled random walks don't oscillate wildly.
 
-### Kolmogorov-Chentsov Criterion
+### 1. Kolmogorov Chents
+
+
 
 We use a modulus of continuity estimate.
 
@@ -197,7 +227,9 @@ A subset $K \subset C[0,T]$ is compact if and only if:
 1. $K$ is closed and bounded
 2. $K$ is **equicontinuous**: $\lim_{\delta \to 0} \sup_{\omega \in K} w_\omega(\delta) = 0$
 
-### Aldous' Tightness Criterion
+### 2. Aldous Tightness
+
+
 
 For stochastic processes, we use:
 
@@ -241,7 +273,9 @@ Choosing $\delta$ sufficiently small makes this probability small uniformly in $
 
 **Remark:** For a complete proof, one needs a maximal inequality (e.g., Doob's maximal inequality for martingales or Kolmogorov's inequality) to control the supremum over all times, not just a finite net.
 
-### Putting It Together
+### 3. Putting Together
+
+
 
 **Proof of Donsker's Theorem (Sketch):**
 
@@ -259,9 +293,13 @@ Choosing $\delta$ sufficiently small makes this probability small uniformly in $
 
 Therefore: $W^{(n)} \Rightarrow W$ in $C[0,T]$. $\square$
 
-## Consequences of Donsker's Theorem
+## Consequences
 
-### Continuous Mapping Theorem
+
+
+### 1. Continuous Mappin
+
+
 
 **Theorem 1.2.8** (Continuous Mapping Theorem)
 
@@ -291,7 +329,9 @@ Application 2. **Occupation time:** For continuous $f$:
 
 Application 3. **Reflection principle:** Properties of the reflected Brownian motion $|W(t)|$ can be studied via limiting discrete random walks.
 
-### Generalization to Non-Standard Variance
+### 2. Generalization No
+
+
 
 **Corollary 1.2.9**
 
@@ -310,7 +350,9 @@ $$dS_t = \mu S_t dt + \sigma S_t dW_t$$
 
 
 
-## Relation to Brownian Motion Construction
+## Relation Brownian
+
+
 
 Donsker's theorem provides one approach to **constructing** Brownian motion:
 
@@ -326,7 +368,9 @@ Donsker's theorem provides one approach to **constructing** Brownian motion:
 
 **Remark:** While elegant, this construction is less direct than the **Wiener measure** approach (Kolmogorov extension theorem), which we'll cover when introducing Brownian motion axiomatically.
 
-## Monte Carlo Implications
+## Monte Carlo
+
+
 
 Donsker's theorem justifies **Euler-Maruyama discretization** for SDEs.
 
@@ -357,6 +401,8 @@ by Donsker's theorem and continuous mapping arguments.
 
 ## Historical Notes
 
+
+
 - **Donsker (1951, 1952):** Monroe D. Donsker proved the functional CLT for random walks, extending Wiener's 1923 construction of Brownian motion
 
 - **Invariance:** The term "invariance principle" was popularized by Erdős and Kac, emphasizing the universality of the Gaussian limit
@@ -366,6 +412,8 @@ by Donsker's theorem and continuous mapping arguments.
 - **Billingsley (1968):** *Convergence of Probability Measures* systematized weak convergence theory in metric spaces
 
 ## Summary
+
+
 
 Donsker's invariance principle establishes that:
 
@@ -383,6 +431,8 @@ Donsker's invariance principle establishes that:
 
 
 ## References
+
+
 
 - Billingsley, P. (1968). *Convergence of Probability Measures*. Wiley.
 - Donsker, M. D. (1951). An invariance principle for certain probability limit theorems. *Memoirs of the AMS*, 6.

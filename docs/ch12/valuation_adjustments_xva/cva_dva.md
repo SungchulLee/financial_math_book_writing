@@ -1,10 +1,12 @@
 # CVA and DVA
 
+
 **Credit Valuation Adjustment (CVA)** and **Debit Valuation Adjustment (DVA)** account for counterparty and own default risk in derivative pricing.
 
 ---
 
-## 1. Credit Valuation Adjustment (CVA)
+## Credit Valuation Adjustment (CVA)
+
 
 CVA reflects the expected loss due to counterparty default:
 
@@ -19,7 +21,8 @@ It reduces the value of a derivative from the bank’s perspective.
 
 ---
 
-## 2. Debit Valuation Adjustment (DVA)
+## Debit Valuation Adjustment (DVA)
+
 
 DVA reflects the benefit arising from the bank’s own default risk:
 
@@ -34,7 +37,8 @@ Economically controversial, DVA can increase reported profits as credit quality 
 
 ---
 
-## 3. Net valuation adjustment
+## Net valuation adjustment
+
 
 In practice:
 
@@ -48,7 +52,8 @@ Accounting and regulatory treatments differ across jurisdictions.
 
 ---
 
-## 4. Modeling considerations
+## Modeling considerations
+
 
 Key drivers include:
 - exposure profiles,
@@ -58,7 +63,8 @@ Key drivers include:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - CVA reflects counterparty credit risk.
 - DVA reflects own default risk.
@@ -67,6 +73,7 @@ Key drivers include:
 ---
 
 ## Further reading
+
 
 - Gregory, *Counterparty Credit Risk*.
 - Brigo et al., CVA/DVA theory.

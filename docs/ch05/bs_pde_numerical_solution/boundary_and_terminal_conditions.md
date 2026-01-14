@@ -1,12 +1,14 @@
 # Boundary and Terminal Conditions
 
+
 Numerical PDE pricing requires:
 - a **terminal condition** at \(t=T\),
 - **boundary conditions** in \(S\) after truncating \((0,\infty)\) to \([0,S_{\max}]\).
 
 ---
 
-## 1. Terminal Condition
+## Terminal Condition
+
 
 For a European payoff \(\Phi(S)\),
 
@@ -21,13 +23,15 @@ Payoffs often have kinks (e.g. \((S-K)^+\)), affecting accuracy near \(\tau=0\).
 
 ---
 
-## 2. Truncation
+## Truncation
+
 
 Choose \(S_{\max}\) large enough to make truncation error negligible in the region of interest.
 
 ---
 
-## 3. Vanilla Boundary Conditions
+## Vanilla Boundary Conditions
+
 
 Call:
 
@@ -55,7 +59,8 @@ V(t,S_{\max})\approx 0.
 
 ---
 
-## 4. Neumann-Type Alternatives
+## Neumann-Type Alternatives
+
 
 Call delta tends to \(1\) as \(S\to\infty\):
 
@@ -74,13 +79,15 @@ Put delta tends to \(0\):
 
 ---
 
-## 5. Implementation Notes
+## Implementation Notes
+
 
 At boundaries, use one-sided differences, ghost points, or enforce asymptotic formulas. Boundary choices interact with stability and monotonicity.
 
 ---
 
-## 6. What to Remember
+## What to Remember
+
 
 - Terminal payoff regularity matters.
 - Boundary conditions are part of the model numerically.

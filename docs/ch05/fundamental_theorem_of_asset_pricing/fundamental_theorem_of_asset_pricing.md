@@ -1,8 +1,10 @@
 # The Fundamental Theorem of Asset Pricing
 
+
 The **Fundamental Theorem of Asset Pricing (FTAP)** is the cornerstone of modern mathematical finance. It establishes the deep equivalence between economic concepts (no-arbitrage) and probabilistic structures (equivalent martingale measures).
 
 ## Setup and Market Model
+
 
 Consider a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ with a filtration $\{\mathcal{F}_t\}_{t=0}^T$ representing information flow.
 
@@ -42,6 +44,7 @@ $$\tilde{S}^i_t = \frac{S^i_t}{S^0_t}$$
 
 ## Key Definitions
 
+
 **Arbitrage:**
 An **arbitrage opportunity** is a self-financing strategy $\theta$ such that:
 
@@ -70,9 +73,11 @@ A market is **complete** if every contingent claim can be replicated by a self-f
 
 ## The Fundamental Theorem of Asset Pricing
 
+
 The theorem comes in two parts:
 
-### FTAP (First Version): No-Arbitrage and EMM Existence
+### 1. FTAP (First Version): No-Arbitrage and EMM Existence
+
 
 **Theorem 1:** The market admits **no arbitrage** if and only if there exists an **equivalent martingale measure** $\mathbb{Q}$.
 
@@ -81,7 +86,8 @@ $$\text{No Arbitrage} \iff \exists \mathbb{Q} \sim \mathbb{P} \text{ such that }
 
 
 
-### FTAP (Second Version): Completeness and Uniqueness
+### 2. FTAP (Second Version): Completeness and Uniqueness
+
 
 **Theorem 2:** The market is **complete and arbitrage-free** if and only if there exists a **unique** equivalent martingale measure.
 
@@ -92,9 +98,11 @@ $$\text{Complete + No Arbitrage} \iff \exists! \mathbb{Q} \sim \mathbb{P} \text{
 
 ## Proof (Finite State Space)
 
+
 For clarity, I'll prove the finite case. The general continuous-time case requires functional analysis (Hahn-Banach theorem, Riesz representation).
 
-### Setup for Finite Model
+### 1. Setup for Finite Model
+
 
 Consider a one-period model: $t \in \{0, 1\}$ with finite state space $\Omega = \{\omega_1, \ldots, \omega_n\}$.
 
@@ -116,7 +124,8 @@ $$X_{ij} = S^j_1(\omega_i) - S^j_0$$
 
 This is an $n \times d$ matrix where row $i$ represents state $\omega_i$ and column $j$ represents asset $j$.
 
-### Direction 1: No Arbitrage $\Rightarrow$ EMM Exists
+### 2. Direction 1: No Arbitrage $\Rightarrow$ EMM Exists
+
 
 **Proof:**
 
@@ -182,7 +191,8 @@ The separating hyperplane theorem guarantees we can find such a $\theta$, contra
 
 Therefore, an EMM $\mathbb{Q}$ exists. $\square$
 
-### Direction 2: EMM Exists $\Rightarrow$ No Arbitrage
+### 3. Direction 2: EMM Exists $\Rightarrow$ No Arbitrage
+
 
 **Proof:**
 
@@ -215,7 +225,8 @@ Since $\mathbb{Q} \sim \mathbb{P}$, we have $\mathbb{P}(V_1 > 0) = 0$ as well.
 
 Therefore, no arbitrage exists. $\square$
 
-### Completeness and Uniqueness
+### 4. Completeness and Uniqueness
+
 
 **Theorem:** The market is complete $\iff$ the EMM is unique.
 
@@ -228,6 +239,7 @@ Therefore, no arbitrage exists. $\square$
 Rigorously: the dimension of the null space of $X^T$ is $n - d - 1$ if and only if rank of $X$ is $d$ and we need $d = n - 1$ for uniqueness.
 
 ## Proof (Continuous Time Case - Sketch)
+
 
 In continuous time, the proof uses **functional analysis**:
 
@@ -249,13 +261,16 @@ The general continuous-time theory was developed by **Harrison, Kreps, and Plisk
 
 ## Economic Intuition
 
+
 ### 1. **Market Efficiency and Consensus Beliefs**
+
 
 The EMM $\mathbb{Q}$ represents a **consensus probability** under which all assets have the same expected return (the risk-free rate).
 
 If such a consensus exists, there's no "free lunch"—all assets are fairly priced relative to each other.
 
 ### 2. **Risk-Neutral Valuation**
+
 
 Under $\mathbb{Q}$:
 
@@ -268,6 +283,7 @@ Everyone is "risk-neutral" under this measure—they only care about expected va
 
 ### 3. **Arbitrage as Market Inconsistency**
 
+
 Arbitrage represents an **inconsistency** in prices:
 
 - Asset A is "too cheap" relative to Asset B
@@ -277,6 +293,7 @@ Arbitrage represents an **inconsistency** in prices:
 The existence of $\mathbb{Q}$ means prices are **internally consistent**—no such gaps exist.
 
 ### 4. **Why Equivalence Matters**
+
 
 $\mathbb{Q} \sim \mathbb{P}$ ensures:
 
@@ -290,6 +307,7 @@ If $\mathbb{Q}$ were not equivalent to $\mathbb{P}$, we could have arbitrage by 
 
 ### 5. **Completeness = Unique Pricing**
 
+
 When the EMM is unique:
 
 - Every derivative has a **unique arbitrage-free price**
@@ -302,7 +320,9 @@ Multiple EMMs mean **price indeterminacy**—derivatives have a range of no-arbi
 
 ## Mathematical Intuition
 
+
 ### 1. **Duality Between Portfolios and Measures**
+
 
 The FTAP establishes a **duality**:
 
@@ -319,6 +339,7 @@ This is analogous to **duality in optimization**: primal feasibility $\leftright
 
 ### 2. **Martingales as "Fair Games"**
 
+
 A martingale satisfies:
 
 
@@ -331,6 +352,7 @@ This means "no predictable profit"—the best forecast of tomorrow's price is to
 The FTAP says: **No arbitrage $\iff$ Prices are fair games under some measure**.
 
 ### 3. **Connection to Convex Analysis**
+
 
 The proof uses the **separating hyperplane theorem**:
 
@@ -345,6 +367,7 @@ The proof uses the **separating hyperplane theorem**:
 This is the same principle behind **Lagrange multipliers** and **KKT conditions** in optimization.
 
 ### 4. **Change of Measure via Radon-Nikodym**
+
 
 In continuous time, the measure change is given by:
 
@@ -364,6 +387,7 @@ This connects to **Girsanov's theorem**: under $\mathbb{Q}$, the process $W^{\ma
 
 ### 5. **Geometric Interpretation**
 
+
 Think of the state space $\Omega$ as $\mathbb{R}^n$.
 
 - Asset payoffs span a subspace $\mathcal{S} \subset \mathbb{R}^n$
@@ -375,6 +399,7 @@ Think of the state space $\Omega$ as $\mathbb{R}^n$.
 - Uniqueness means $\mathcal{S}$ has codimension 1 (market spans almost everything)
 
 ## Connection to Black-Scholes
+
 
 In the Black-Scholes model:
 
@@ -410,6 +435,7 @@ Since there's only one source of randomness ($W_t$) and one risky asset, the mar
 
 ## Summary
 
+
 The FTAP is profound because it:
 
 1. **Unifies economics and mathematics**: No-arbitrage (economic) $\leftrightarrow$ Martingale measure (probabilistic)
@@ -429,9 +455,11 @@ Would you like me to discuss the **Consumption-Based Asset Pricing** derivation 
 
 # Clarifying the Separating Hyperplane Argument in the FTAP Proof
 
+
 You're absolutely right to question that statement—I was not clear about which sets we're separating and how the separating hyperplane theorem is being applied. Let me give a **much clearer** proof.
 
 ## The Clean Proof
+
 
 We want to show: **No Arbitrage** $\Rightarrow$ **EMM exists**
 
@@ -444,7 +472,8 @@ $$X^T q = 0$$
 
 where $X$ is the payoff matrix ($X_{ij} = S^j_1(\omega_i) - S^j_0$).
 
-### Step 1: Setup - What Are We Trying to Find?
+### 1. Step 1: Setup - What Are We Trying to Find?
+
 
 Define the **probability simplex**:
 
@@ -457,7 +486,8 @@ We want to find $q \in \Delta^n$ such that $X^T q = 0 \in \mathbb{R}^d$.
 
 Equivalently, we're asking: **Does $0 \in \mathbb{R}^d$ lie in the image of $\Delta^n$ under the map $q \mapsto X^T q$?**
 
-### Step 2: Proof by Contradiction
+### 2. Step 2: Proof by Contradiction
+
 
 **Assume:** No such $q$ exists. That is, $0 \notin \{X^T q : q \in \Delta^n\}$.
 
@@ -476,7 +506,8 @@ $$\mathcal{S} = \{X^T q : q \in \Delta^n\} \subset \mathbb{R}^d$$
 
 - **Does not contain $0$** (by our assumption)
 
-### Step 3: Apply Separating Hyperplane Theorem
+### 3. Step 3: Apply Separating Hyperplane Theorem
+
 
 Since $\mathcal{S}$ is a compact convex set and $\{0\}$ is a closed convex set, and they're disjoint, by the **strict separation** version of the separating hyperplane theorem, there exists $\theta \in \mathbb{R}^d$ (with $\theta \neq 0$) such that:
 
@@ -492,7 +523,8 @@ $$\boxed{q^T (X\theta) < 0 \quad \text{for all } q \in \Delta^n}$$
 
 
 
-### Step 4: What Does This Tell Us About $X\theta$?
+### 4. Step 4: What Does This Tell Us About $X\theta$?
+
 
 Let me evaluate $q^T(X\theta)$ for specific probability vectors:
 
@@ -524,7 +556,8 @@ $$\boxed{X\theta < 0 \quad \text{(strictly negative in ALL components)}}$$
 
 
 
-### Step 5: Construct an Arbitrage
+### 5. Step 5: Construct an Arbitrage
+
 
 Now consider the strategy $-\theta$. Its payoff is:
 
@@ -548,7 +581,8 @@ $$V_0(-\theta) = -\sum_{j=1}^d \theta^j S^j_0$$
 
 Hmm, this might not be zero. Let me reconsider the setup.
 
-### Clarification on the Model
+### 6. Clarification on the Model
+
 
 Actually, in the standard setup:
 
@@ -573,7 +607,8 @@ More precisely, in the standard formulation:
 
 But we've constructed $\theta$ with $X\theta < 0$ (all strict), which means $-\theta$ satisfies $X(-\theta) > 0$ (all strict), contradicting no arbitrage.
 
-### Step 6: Contradiction
+### 7. Step 6: Contradiction
+
 
 We've shown:
 
@@ -590,6 +625,7 @@ $$\boxed{\text{No Arbitrage} \Rightarrow \text{EMM exists}}$$
 
 
 ## What Were the Two Sets Being Separated?
+
 
 To directly answer your question:
 
@@ -621,6 +657,7 @@ This means $\mathcal{S}$ lies entirely on one side of the hyperplane $\{x : \the
 
 ## Visual Intuition (for $d = 2$, $n = 3$)
 
+
 Imagine $\mathbb{R}^2$ (two assets). The probability simplex $\Delta^3$ is a triangle in $\mathbb{R}^3$.
 
 The map $q \mapsto X^T q$ takes this triangle and maps it to some region $\mathcal{S}$ in $\mathbb{R}^2$.
@@ -632,6 +669,7 @@ The separating hyperplane theorem says: there's a line through the origin (defin
 The vector $\theta$ then defines a portfolio whose payoffs $X\theta$ have a special property: when weighted by **any** probability distribution, the expected payoff is negative. This is only possible if $X\theta$ is negative in every state!
 
 ## Summary of the Corrected Argument
+
 
 1. **Assume** no EMM exists: $0 \notin \{X^T q : q \in \Delta^n\}$
 
@@ -663,11 +701,13 @@ The key insight is that if the "expected payoff set" $\mathcal{S}$ doesn't conta
 
 # Risk-Free or Risky Numéraire
 
+
 Q. Should Numéraire be risk-free asset? I think bond can be served as Numéraire, but it is risky. In fact, I think any stock, say WMT can be served as Numéraire.
 
 A. You're absolutely correct! This is an excellent observation that highlights a subtle but important point about the FTAP.
 
 ## Numéraire Can Be Any Strictly Positive Traded Asset
+
 
 The **numéraire** need not be risk-free. The only mathematical requirement is:
 
@@ -692,6 +732,7 @@ $$S^0_t > 0 \quad \text{almost surely for all } t$$
 
 ## The Mathematical Framework
 
+
 When you choose asset $S^0_t$ as numéraire, you work with **normalized prices**:
 
 
@@ -709,6 +750,7 @@ $$\tilde{S}^i_t = \mathbb{E}^{\mathbb{Q}^0}\left[\tilde{S}^i_T \mid \mathcal{F}_
 **Key insight:** Each choice of numéraire corresponds to a *different* equivalent martingale measure, but they all give the **same derivative prices** (numéraire-invariant pricing).
 
 ## Example: Stock as Numéraire
+
 
 Suppose you choose WMT stock as numéraire: $S^0_t = S^{\text{WMT}}_t$.
 
@@ -732,6 +774,7 @@ Even the "risk-free" bond, when normalized by WMT, becomes a $\mathbb{Q}^{\text{
 
 ## Why We Usually Choose the Risk-Free Asset
 
+
 The convention $S^0_t = e^{rt}$ is popular because:
 
 1. **Interpretation**: Under $\mathbb{Q}$ (risk-neutral measure), all assets grow *on average* at rate $r$
@@ -745,6 +788,7 @@ The convention $S^0_t = e^{rt}$ is popular because:
 But this is **convention, not necessity**.
 
 ## Change of Numéraire Theorem
+
 
 This is formalized in the **Change of Numéraire Theorem**:
 
@@ -768,6 +812,7 @@ Same price, different representations!
 
 ## Application: Forward Measure (T-Bond as Numéraire)
 
+
 A powerful application uses a **zero-coupon bond** maturing at $T$ as numéraire:
 
 
@@ -790,6 +835,7 @@ So $S_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[S_T | \mathcal{F}_t]$.
 
 ## Why Your Observation Matters
 
+
 Your insight connects to several deep ideas:
 
 1. **Gauge freedom**: The choice of numéraire is like choosing coordinates—physics (prices) is invariant, but calculations may be simpler in one frame
@@ -801,6 +847,7 @@ Your insight connects to several deep ideas:
 4. **Multi-currency models**: Each currency has its own numéraire, and change of numéraire relates domestic and foreign risk-neutral measures
 
 ## Summary
+
 
 The FTAP **does not require** a risk-free asset. The statement should be:
 

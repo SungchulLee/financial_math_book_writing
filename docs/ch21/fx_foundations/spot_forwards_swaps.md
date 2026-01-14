@@ -1,10 +1,12 @@
 # Spot, Forwards, and Swaps
 
+
 **FX spot, forwards, and swaps** are the three fundamental instruments for foreign exchange trading, where spot contracts settle in two business days at the current market rate, forward contracts lock in a future exchange rate determined by the interest rate differential between currencies (covered interest parity), and FX swaps combine a spot transaction with an offsetting forward to temporarily exchange currencies for funding purposes—with these three instruments forming the foundation of a $7.5 trillion daily FX market used for hedging, speculation, carry trades, and cross-currency funding.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -43,9 +45,11 @@ $$
 
 ## What Are Spot, Forwards, and Swaps?
 
+
 **Before trading FX, understand the three core instruments:**
 
-### Spot FX
+### 1. Spot FX
+
 
 **Definition:** An agreement to exchange two currencies at the current market rate with settlement in two business days (T+2), representing the immediate price for currency conversion and serving as the benchmark rate from which forwards and swaps are priced.
 
@@ -85,7 +89,8 @@ Spread: 2 pips (0.0002 = 0.019%)
 - Cost: 1 pip × €1M = $100
 - **Round-trip cost: $200** (buy at ask, sell at bid)
 
-### Forward Contracts
+### 2. Forward Contracts
+
 
 **Definition:** A binding agreement to exchange currencies at a predetermined rate on a specific future date, with the forward rate determined by the interest rate differential between the two currencies (covered interest parity), allowing hedgers to lock in future exchange rates and speculators to express directional views without upfront capital deployment.
 
@@ -140,7 +145,8 @@ US company expects €10M receivable in 3 months:
 - Locked-in proceeds: €10M × 1.0546 = **$10,546,000**
 - No matter where spot trades (1.00, 1.10, etc.)
 
-### FX Swaps
+### 3. FX Swaps
+
 
 **Definition:** A simultaneous spot and forward transaction in opposite directions, where one party exchanges currency A for currency B on the near date (typically spot) and reverses the exchange on the far date (typically forward), with the swap points representing the interest rate differential and serving as a primary tool for short-term FX funding and cash management.
 
@@ -203,9 +209,11 @@ Why cheaper? Bank has €95M collateral (doesn't need unsecured borrowing)
 
 ## Economic Interpretation: Why These Markets Exist
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### Covered Interest Parity (CIP)
+### 1. Covered Interest Parity (CIP)
+
 
 **The fundamental no-arbitrage relationship:**
 
@@ -258,7 +266,8 @@ $$
 - If F = 1.0650: Strategy A earns more → Arbitrageurs exploit
 - Market forces push F → 1.0677 (equilibrium)
 
-### Why FX Swaps Are So Large
+### 2. Why FX Swaps Are So Large
+
 
 **$4.3T daily FX swaps vs $2.1T spot - Why?**
 
@@ -302,7 +311,8 @@ $$
 
 **This basis creates opportunities for carry traders**
 
-### The Cross-Currency Basis
+### 3. The Cross-Currency Basis
+
 
 **Post-2008 phenomenon: CIP violation**
 
@@ -351,6 +361,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Spot Rate:**
 
@@ -426,7 +437,9 @@ $$
 
 ## Mathematical Foundation
 
-### Covered Interest Parity
+
+### 1. Covered Interest Parity
+
 
 **Basic formula:**
 
@@ -456,7 +469,8 @@ $$
 F = 1.0500 \times \frac{1.013125}{1.00875} = 1.0546
 $$
 
-### Forward Points Calculation
+### 2. Forward Points Calculation
+
 
 **Points = (Forward - Spot) × 10,000**
 
@@ -472,7 +486,8 @@ $$
 - Trader says "46 points" not "1.0546"
 - Customer adds to spot: 1.0500 + 0.0046 = 1.0546
 
-### Annualized Forward Premium/Discount
+### 3. Annualized Forward Premium/Discount
+
 
 **Formula:**
 
@@ -492,7 +507,8 @@ $$
 r_d - r_f = 5.25\% - 3.50\% = 1.75\% \checkmark
 $$
 
-### FX Swap Implied Rate
+### 4. FX Swap Implied Rate
+
 
 **From swap points, calculate implied funding rate:**
 
@@ -512,7 +528,8 @@ $$
 
 **This is the synthetic USD borrowing rate**
 
-### Cross-Currency Basis Calculation
+### 5. Cross-Currency Basis Calculation
+
 
 **Basis = Actual swap points - Theoretical CIP points**
 
@@ -536,7 +553,9 @@ $$
 
 ## Step-by-Step Implementation
 
-### Phase 1: Spot FX Trading
+
+### 1. Phase 1: Spot FX Trading
+
 
 **1. Get Market Quote:**
 
@@ -602,7 +621,8 @@ print(f"Rate: {trade['rate']:.4f}")
 print(f"Settlement: {trade['value_date']}")
 ```
 
-### Phase 2: Forward Contract Hedging
+### 2. Phase 2: Forward Contract Hedging
+
 
 **1. Calculate Forward Rate:**
 
@@ -690,7 +710,8 @@ print("\nScenario Analysis:")
 print(scenarios)
 ```
 
-### Phase 3: FX Swap Execution
+### 3. Phase 3: FX Swap Execution
+
 
 **1. Price FX Swap:**
 
@@ -767,7 +788,8 @@ print(f"Far leg: Buy EUR {far_leg['buy_EUR']:,.0f}, Pay USD {far_leg['sell_USD']
 print(f"Funding cost: USD {funding_cost_USD:,.0f} ({funding_cost_pct:.2%} annualized)")
 ```
 
-### Phase 4: Arbitrage Detection
+### 4. Phase 4: Arbitrage Detection
+
 
 **1. Check CIP Violations:**
 
@@ -822,7 +844,8 @@ print(f"Arbitrage: {arb['arbitrage']}")
 print(f"Strategy: {arb['strategy']}")
 ```
 
-### Phase 5: Risk Management
+### 5. Phase 5: Risk Management
+
 
 **1. FX Exposure Tracking:**
 
@@ -861,7 +884,9 @@ print(f"EUR positions: ${pnl_eur:,.0f}")
 
 ## Real-World Examples
 
-### Example 1: Apple Inc. EUR Bond Issuance - 2024 (Perfect Hedge)
+
+### 1. Example 1: Apple Inc. EUR Bond Issuance - 2024 (Perfect Hedge)
+
 
 **Background:**
 
@@ -930,7 +955,8 @@ No matter where EUR/USD trades 2025-2034, Apple's all-in cost = $3.00B (fixed)
 
 **This saved Apple ~$50M in hedging costs vs monthly rolling**
 
-### Example 2: Japanese Life Insurer USD Funding - 2020 (Basis Exploitation)
+### 2. Example 2: Japanese Life Insurer USD Funding - 2020 (Basis Exploitation)
+
 
 **Background:**
 
@@ -1003,7 +1029,8 @@ $$
 
 **Many Japanese institutions used this strategy in 2020, collectively $300B+ USD raised via FX swaps**
 
-### Example 3: Hedge Fund Carry Trade - 2006-2007 (Disaster)
+### 3. Example 3: Hedge Fund Carry Trade - 2006-2007 (Disaster)
+
 
 **Background:**
 
@@ -1087,7 +1114,8 @@ $$
 
 **Thousands of carry trades like this imploded in 2008, losing $100B+ collectively**
 
-### Example 4: Oil Exporter Forward Hedging - 2014 (Saved by Hedges)
+### 4. Example 4: Oil Exporter Forward Hedging - 2014 (Saved by Hedges)
+
 
 **Background:**
 
@@ -1169,7 +1197,8 @@ For oil exporters (receive USD, spend NOK):
 
 Let me revise this example to be clearer:
 
-### Revised Example 4: Oil Exporter Crisis Hedge - 2008 (Saved by Forwards)
+### 5. Revised Example 4: Oil Exporter Crisis Hedge - 2008 (Saved by Forwards)
+
 
 **Background:**
 
@@ -1227,7 +1256,9 @@ Let me revise this example to be clearer:
 
 ## Best Case Scenario
 
-### Perfect FX Hedge Execution
+
+### 1. Perfect FX Hedge Execution
+
 
 **Setup for optimal hedging:**
 
@@ -1239,7 +1270,8 @@ Let me revise this example to be clearer:
 4. **Single execution:** Lock all hedges at once (avoid piecemeal)
 5. **Crisis protection:** Hedge protects during extreme moves
 
-### Best Case Example: Airbus EUR Receivables - 2010-2012 (Euro Crisis Protection)
+### 2. Best Case Example: Airbus EUR Receivables - 2010-2012 (Euro Crisis Protection)
+
 
 **Background:**
 
@@ -1316,7 +1348,8 @@ So locking in 1.4083 when spot fell to 1.25 actually hurt them!
 
 Let me revise to a scenario where hedging actually helped:
 
-### Best Case Revised: Toyota USD Imports - 2012-2013 (Abenomics Protection)
+### 3. Best Case Revised: Toyota USD Imports - 2012-2013 (Abenomics Protection)
+
 
 **Background:**
 
@@ -1369,7 +1402,9 @@ Let me revise to a scenario where hedging actually helped:
 
 ## Worst Case Scenario
 
-### The FX Hedge Disaster
+
+### 1. The FX Hedge Disaster
+
 
 **Worst possible conditions:**
 
@@ -1379,7 +1414,8 @@ Let me revise to a scenario where hedging actually helped:
 4. **Opportunity cost:** Miss huge favorable moves
 5. **Complexity:** Exotic structures blow up
 
-### Worst Case Example: Metallgesellschaft AG - 1993 (Derivatives Disaster)
+### 2. Worst Case Example: Metallgesellschaft AG - 1993 (Derivatives Disaster)
+
 
 **Background:**
 
@@ -1472,7 +1508,9 @@ USD/DEM forwards (hidden disaster):
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Spot, forwards, and swaps are the three foundational FX instruments:**
 
@@ -1486,7 +1524,8 @@ $$
 - Market: $7.5T daily ($2.1T spot, $1.1T forwards, $4.3T swaps)
 - Pricing: Interest rate parity ties all three
 
-### The Key Metrics
+### 2. The Key Metrics
+
 
 **Spot bid-ask spreads:**
 
@@ -1508,7 +1547,8 @@ $$
 - Crisis: -50 to -200 bps (USD shortage)
 - Post-2008: Persistent -20 to -40 bps (structural)
 
-### Risk Management
+### 3. Risk Management
+
 
 **Essential rules for hedging:**
 
@@ -1520,7 +1560,8 @@ $$
 - Counterparty: Use rated banks (AA or better, diversify)
 - Rolling: Plan ahead for forward rollovers (3-6 months before maturity)
 
-### Maximum Profit/Loss
+### 4. Maximum Profit/Loss
+
 
 **Best case (perfect hedge):**
 
@@ -1543,7 +1584,8 @@ $$
 - Budget certainty (predictable outcomes)
 - **Net: Stability > Maximum returns**
 
-### When to Hedge
+### 5. When to Hedge
+
 
 **Hedge when:**
 
@@ -1561,7 +1603,8 @@ $$
 - Natural hedge (revenues/costs in same currency)
 - Small exposure (<5% of balance sheet)
 
-### Common Mistakes
+### 6. Common Mistakes
+
 
 1. Speculative hedging (hedge more than exposure = gambling)
 2. Wrong direction (lock in unfavorable rates = opportunity cost)
@@ -1572,7 +1615,8 @@ $$
 7. Forced exits (margin calls = liquidate at worst time)
 8. Complexity (exotic structures = blow up in crisis)
 
-### Final Wisdom
+### 7. Final Wisdom
+
 
 > "FX spot, forwards, and swaps are the plumbing of global trade—$7.5 trillion daily flowing through these three simple instruments. The math is elegant: forward rate = spot × interest differential, meaning EUR/USD 3-month forward at 1.0546 vs spot 1.0500 simply reflects that USD rates (5.25%) exceed EUR rates (3.50%) by 1.75%, with the 46-point premium compensating the interest gap. For hedgers, this creates certainty: Apple issues €2B bonds, sells EUR spot at 1.0800 and buys EUR forwards for annual coupons at 1.0850-1.1200, locking total USD cost at $3.0B regardless of where EUR/USD trades over 10 years—choosing stability over speculation. For traders, deviations create opportunities: March 2020 COVID saw USD/JPY 3-month forward trade 111.50 vs theoretical 110.17 (133-point basis!), as USD shortage drove synthetic funding costs to 4.60% despite Fed at 0.50%—Japanese insurers borrowed $300B via FX swaps at this elevated rate because unsecured USD borrowing was 9-10% (chose expensive over impossible). The instruments work flawlessly 95% of time: Toyota locks $20B imports at USD/JPY 80.50 in November 2012, Abenomics drives JPY to 105, savings ¥390B ($3.9B)—perfect hedge execution protects massive move. But misuse destroys: Metallgesellschaft sold $3B USD forward at 1.6500 while long 55M barrel oil futures to hedge 160M barrel obligations, oil collapsed $22→$17 creating -$275M margin calls monthly, USD weakened 1.65→1.58 adding -$130M FX loss, forced liquidation December 1993 at -$1.5B total loss nearly bankrupting 120-year company—wrong direction, overleveraged, maturity mismatch = catastrophic. Rules for success: (1) Hedge only real exposures (no naked speculation), (2) Match tenors precisely (3-month receivable = 3-month forward, not 1-month rolled 3 times), (3) Lock during stability (don't wait for crisis, Toyota locked November 2012 before Abenomics), (4) Accept opportunity cost (hedges cost money in hindsight when market moves favorably—that's the price of certainty), (5) Avoid leverage (corporates should never post margin, use delivery forwards only). Master these principles and FX instruments become protective armor (save billions in adverse moves, sleep at night knowing costs locked). Violate them and derivatives become weapons of mass destruction (Metallgesellschaft, Barings, LTCM—overleveraged FX positions destroyed every one)."
 

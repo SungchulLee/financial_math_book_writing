@@ -1,10 +1,12 @@
 # Robust Portfolio Optimization
 
+
 **Robust portfolio optimization** accounts for uncertainty in model inputs, such as expected returns and covariances, by seeking portfolios that perform well across a range of plausible scenarios.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 Classical mean–variance optimization is highly sensitive to:
 - estimation error in expected returns,
@@ -15,7 +17,8 @@ Robust optimization mitigates these weaknesses.
 
 ---
 
-## 2. Robust formulation
+## Robust formulation
+
 
 A typical robust portfolio problem takes the form
 
@@ -31,7 +34,8 @@ The portfolio is optimized against worst-case inputs.
 
 ---
 
-## 3. Uncertainty sets
+## Uncertainty sets
+
 
 Common uncertainty sets include:
 - ellipsoidal sets for means,
@@ -42,7 +46,8 @@ The choice of set determines conservatism.
 
 ---
 
-## 4. Practical implications
+## Practical implications
+
 
 Robust portfolios typically:
 - are more diversified,
@@ -53,7 +58,8 @@ They trade peak performance for reliability.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Robust optimization hedges parameter uncertainty.
 - It improves stability and diversification.
@@ -62,6 +68,7 @@ They trade peak performance for reliability.
 ---
 
 ## Further reading
+
 
 - Goldfarb & Iyengar, robust portfolio optimization.
 - Fabozzi et al., robust asset allocation.

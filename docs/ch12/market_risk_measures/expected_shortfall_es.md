@@ -1,10 +1,12 @@
 # Expected Shortfall (ES)
 
+
 **Expected Shortfall (ES)**, also known as Conditional Value-at-Risk (CVaR), addresses key shortcomings of Value-at-Risk by focusing on tail losses beyond the VaR threshold.
 
 ---
 
-## 1. Definition
+## Definition
+
 
 For confidence level \(\alpha\), the Expected Shortfall of loss \(L\) is
 
@@ -19,7 +21,8 @@ It measures the **average loss in the worst \((1-\alpha)\)% of scenarios**.
 
 ---
 
-## 2. Interpretation
+## Interpretation
+
 
 ES answers the question:
 > “If losses exceed VaR, how large are they on average?”
@@ -28,7 +31,8 @@ This makes ES a more informative tail risk measure than VaR.
 
 ---
 
-## 3. Regulatory relevance
+## Regulatory relevance
+
 
 Modern regulations (e.g. Basel III/IV) favor ES over VaR because:
 - ES captures tail severity,
@@ -37,7 +41,8 @@ Modern regulations (e.g. Basel III/IV) favor ES over VaR because:
 
 ---
 
-## 4. Estimation considerations
+## Estimation considerations
+
 
 Estimating ES requires:
 - accurate modeling of tail behavior,
@@ -48,7 +53,8 @@ ES is generally more sensitive to model error than VaR.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - ES measures expected tail losses beyond VaR.
 - It is more conservative and informative than VaR.
@@ -57,6 +63,7 @@ ES is generally more sensitive to model error than VaR.
 ---
 
 ## Further reading
+
 
 - Acerbi & Tasche, Expected Shortfall properties.
 - Basel Committee on Banking Supervision.

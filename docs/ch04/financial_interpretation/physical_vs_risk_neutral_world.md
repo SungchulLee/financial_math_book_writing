@@ -1,5 +1,6 @@
 # Physical vs Risk-Neutral World
 
+
 The distinction between the physical and risk-neutral probability measures is
 one of the most common sources of confusion in quantitative finance.
 
@@ -8,6 +9,7 @@ This section clarifies their respective roles.
 ---
 
 ## The Physical Measure \(\mathbb{P}\)
+
 
 The physical (or real-world) measure describes how asset prices actually evolve.
 It reflects:
@@ -22,6 +24,7 @@ Under \(\mathbb{P}\), expected returns include risk premia.
 
 ## The Risk-Neutral Measure \(\mathbb{Q}\)
 
+
 The risk-neutral measure is a **pricing tool**, not a description of reality.
 Under \(\mathbb{Q}\):
 
@@ -35,6 +38,7 @@ It is constructed mathematically via Girsanov’s theorem or numéraire techniqu
 
 ## Same Paths, Different Weights
 
+
 A crucial point is that \(\mathbb{P}\) and \(\mathbb{Q}\) are **equivalent measures**:
 
 - they assign positive probability to the same events,
@@ -46,6 +50,7 @@ only how they are weighted.
 ---
 
 ## Why \(\mathbb{Q}\) Is Not “Believed”
+
 
 The risk-neutral measure should not be interpreted as:
 
@@ -61,6 +66,7 @@ Forecasting and risk management must be performed under \(\mathbb{P}\).
 
 ## Practical Implications
 
+
 - Use \(\mathbb{Q}\) for pricing derivatives.
 - Use \(\mathbb{P}\) for risk, forecasting, and portfolio optimization.
 - Mixing the two leads to systematic errors.
@@ -68,6 +74,7 @@ Forecasting and risk management must be performed under \(\mathbb{P}\).
 ---
 
 ## Takeaway
+
 
 > The physical measure explains the world.
 > The risk-neutral measure prices claims in it.

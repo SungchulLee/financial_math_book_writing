@@ -1,10 +1,12 @@
 # Empirical Stylized Facts
 
+
 Empirical studies of implied volatility dynamics reveal robust **stylized facts** that any realistic model should aim to reproduce.
 
 ---
 
-## 1. Skew dynamics
+## Skew dynamics
+
 
 Observed skew behavior:
 - skew steepens after negative spot moves,
@@ -15,7 +17,8 @@ This is often referred to as the leverage effect in implied space.
 
 ---
 
-## 2. Term-structure behavior
+## Term-structure behavior
+
 
 Empirically:
 - short-term smiles react strongly to spot moves,
@@ -24,7 +27,8 @@ Empirically:
 
 ---
 
-## 3. Persistence and mean reversion
+## Persistence and mean reversion
+
 
 Implied volatility exhibits:
 - strong persistence,
@@ -33,7 +37,8 @@ Implied volatility exhibits:
 
 ---
 
-## 4. Cross-asset differences
+## Cross-asset differences
+
 
 Stylized facts vary across markets:
 - FX smiles are closer to sticky delta,
@@ -42,7 +47,8 @@ Stylized facts vary across markets:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Smile dynamics follow robust empirical patterns.
 - These patterns challenge simple models.
@@ -51,6 +57,7 @@ Stylized facts vary across markets:
 ---
 
 ## Further reading
+
 
 - Cont, *Empirical Properties of Asset Returns*.
 - Gatheral, *The Volatility Surface*.

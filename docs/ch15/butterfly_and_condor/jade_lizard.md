@@ -1,5 +1,6 @@
 # Jade Lizard and Big Lizard
 
+
 **Jade Lizard** is an income strategy combining a short put with a short call spread, creating a credit position with no upside risk (cannot lose if stock rallies) but defined downside risk, popular among traders seeking premium collection with asymmetric risk profiles.
 
 
@@ -13,6 +14,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_capital_efficiency.png?raw=true" alt="long_call_vs_put" width="700">
@@ -41,6 +43,7 @@ This ensures **zero upside risk** (credit collected exceeds max call spread loss
 
 ## What Is a Jade Lizard?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_components.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -48,6 +51,7 @@ This ensures **zero upside risk** (credit collected exceeds max call spread loss
 **Before trading Jade Lizards, understand the structure:**
 
 ### 1. Standard Jade Lizard
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_credit_vs_width.png?raw=true" alt="long_call_vs_put" width="700">
@@ -118,6 +122,7 @@ This is the key to Jade Lizard: **Credit must exceed call spread width.**
 
 ### 2. Big Lizard (Variation)
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_greeks.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -153,6 +158,7 @@ This is the key to Jade Lizard: **Credit must exceed call spread width.**
 
 ## Economic
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_payoff.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -160,6 +166,7 @@ This is the key to Jade Lizard: **Credit must exceed call spread width.**
 **Beyond the basic definition, understanding what Jade Lizards REALLY are economically:**
 
 ### 1. Decomposition into Components
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
@@ -189,6 +196,7 @@ $$
 **Key insight:** By ensuring **credit > call spread width**, you eliminate upside risk entirely.
 
 ### 2. Why Eliminate Upside Risk?
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_vs_big_lizard.png?raw=true" alt="long_call_vs_put" width="700">
@@ -226,6 +234,7 @@ Historical data shows:
 
 ### 3. The "Lizard" Name Origin
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -245,6 +254,7 @@ Historical data shows:
 ---
 
 ## Key Terminology
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_payoff.png?raw=true" alt="jade_lizard" width="700">
@@ -291,6 +301,7 @@ $$
 
 ## Why Trade Jade Lizards?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/jade_lizard_theta.png?raw=true" alt="jade_theta" width="700">
 </p>
@@ -302,9 +313,11 @@ $$
 
 ## Economic
 
+
 **Understanding what jade lizards REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 Jade lizards represent a sophisticated economic proposition: **Eliminating upside risk by collecting enough premium to exceed call spread width**. This transforms a traditional short strangle (unlimited risk both sides) into a directionally-optimized income structure with defined upside risk and undefined downside risk.
 
@@ -332,6 +345,7 @@ $$
 - **Trade-off:** Accepted undefined downside in exchange for no upside cap + maximum premium
 
 ### 2. Why This Structure Exists Economically
+
 
 Markets create jade lizards because of **asymmetric risk preferences and directional conviction**:
 
@@ -423,6 +437,7 @@ $$
 
 ### 3. Professional Institutional Perspective
 
+
 **How institutions use jade lizards:**
 
 **1. Enhanced covered call replacement:**
@@ -503,6 +518,7 @@ $$
 
 ### 4. The Behavioral Finance Angle
 
+
 **Why jade lizards offer edge:**
 
 **1. Fear asymmetry:**
@@ -538,6 +554,7 @@ $$
 
 ### 5. The Mathematics of Jade Lizard Economics
 
+
 **Break-even probability:**
 
 For jade lizard to be profitable long-term:
@@ -571,6 +588,7 @@ $$
 **Key insight:** High win rate (90%+) overcomes occasional large downside losses.
 
 ### 6. Understanding the Economic Foundations
+
 
 **Key insights from jade lizards:**
 
@@ -624,6 +642,7 @@ Understanding economic foundations helps you recognize:
 
 ### 7. Bullish-to-Neutral Income (Main Use)
 
+
 **Scenario:** Stock in established uptrend, want income without upside risk
 
 **Setup:**
@@ -672,6 +691,7 @@ Understanding economic foundations helps you recognize:
 
 ### 8. Post-Earnings Implied Volatility Crush
 
+
 **Scenario:** Stock reported earnings, IV elevated, expecting IV crush + consolidation
 
 **Setup:**
@@ -716,6 +736,7 @@ Let me adjust:
 
 ### 9. Low-Volatility Range-Bound Markets
 
+
 **Scenario:** Market in extended low-volatility regime
 
 **Setup:**
@@ -746,6 +767,7 @@ Let me adjust:
 - No upside risk = perfect for slow uptrend
 
 ### 10. Replacing Covered Calls (Capital Efficiency)
+
 
 **Comparison:**
 
@@ -784,7 +806,9 @@ Let me adjust:
 
 ## Greeks Behavior
 
+
 ### 1. Delta
+
 
 **Delta calculation:**
 
@@ -807,6 +831,7 @@ $$
 **Key insight:** Jade Lizard is nearly delta-neutral in target zone, slightly bullish overall.
 
 ### 2. Gamma
+
 
 **Gamma:**
 
@@ -831,6 +856,7 @@ You SOLD options (short gamma). Small moves around strikes hurt.
 
 ### 3. Theta
 
+
 **Theta:**
 
 $$
@@ -853,6 +879,7 @@ $$
 - Exit at 7-14 DTE or 50-70% profit (whichever first)
 
 ### 4. Vega
+
 
 **Vega:**
 
@@ -877,7 +904,9 @@ $$
 
 ## Common Pitfalls
 
+
 ### 1. Violating the "No Upside Risk" Rule
+
 
 **The mistake:**
 
@@ -904,6 +933,7 @@ If credit < call spread width, you have upside risk (no longer a true Jade Lizar
 - If violating this, it's a "Big Lizard" (different strategy, has upside risk)
 
 ### 2. Ignoring Assignment Risk
+
 
 **The mistake:**
 
@@ -936,6 +966,7 @@ Short put can be assigned EARLY (American options), especially if deep ITM near 
 
 ### 3. Wrong Strike Selection (Too Aggressive)
 
+
 **The mistake:**
 
 "I'll sell ATM put for maximum premium."
@@ -966,6 +997,7 @@ ATM put has 50% probability of being ITM. Too risky.
 
 ### 4. Entering at Low IV
 
+
 **The mistake:**
 
 "Jade Lizards work in any volatility environment."
@@ -995,6 +1027,7 @@ Low IV = low premium collected. Not worth the risk.
 - IV crush works in your favor (short vega)
 
 ### 5. No Exit Plan
+
 
 **The mistake:**
 
@@ -1028,7 +1061,9 @@ Last 20% of profit has highest risk (gamma explodes, assignment risk).
 
 ## Risk Management Rules
 
+
 ### 1. Strike Selection
+
 
 **Short put guidelines:**
 
@@ -1060,6 +1095,7 @@ $$
 
 ### 2. Position Sizing
 
+
 **Rule of thumb:**
 
 $$
@@ -1081,6 +1117,7 @@ $$
 
 ### 3. Time Frame
 
+
 **Entry:**
 
 - **30-45 DTE:** Optimal theta decay zone
@@ -1099,6 +1136,7 @@ $$
 
 ### 4. IV Entry Requirements
 
+
 **Check IV percentile:**
 
 $$
@@ -1112,6 +1150,7 @@ $$
 - **>60th:** IDEAL (high premium, IV crush potential)
 
 ### 5. Adjustment Triggers
+
 
 **When to adjust:**
 
@@ -1130,7 +1169,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup (March 2024):**
 
@@ -1169,6 +1210,7 @@ $$
 
 ### 2. Transition Risk Hedge
 
+
 **Setup (November 2024, post-earnings):**
 
 - NVDA at $140, just reported earnings
@@ -1200,6 +1242,7 @@ $$
 **Lesson:** High IV entry + IV crush = perfect Jade Lizard setup. Both short put and short call benefited from vega crush.
 
 ### 3. Portable Alpha with Futures
+
 
 **Setup:**
 
@@ -1235,6 +1278,7 @@ $$
 **Lesson:** Don't "hope" for recovery when short put is ITM. Close or roll before assignment risk escalates.
 
 ### 4. Tactical Duration Extension
+
 
 **Setup:**
 
@@ -1272,6 +1316,7 @@ $$
 
 ## Final Wisdom
 
+
 > "The Jade Lizard is the income trader's answer to covered calls - all the premium, a fraction of the capital, and none of the upside regret. By combining a short put with a short call spread, you're essentially saying 'I don't think the stock will crash, and even if it rallies to the moon, I won't lose.' The magic is in the math: credit > spread width = no upside risk. But discipline matters: sell the put far enough out, enter when IV is rich, and take profits before the last week. The Jade Lizard rewards patience and punishes greed."
 
 **Key to success:**
@@ -1290,9 +1335,11 @@ $$
 
 ## Practical Guidance
 
+
 **Step-by-step jade lizard implementation:**
 
 ### 1. Critical Pre-Trade Checklist
+
 
 ☐ **Bullish conviction?** (Would you own stock at put strike?)  
 ☐ **IV 50-75th percentile?** (Elevated for premium collection)  
@@ -1304,6 +1351,7 @@ $$
 ☐ **Position size for -20% drop?** (Downside risk is UNLIMITED)
 
 ### 2. Step 1
+
 
 **CRITICAL: Jade lizards are BULLISH strategies**
 
@@ -1320,6 +1368,7 @@ $$
 **If NOT bullish:** Use different strategy (not jade lizard)
 
 ### 3. Step 2
+
 
 **The golden rule:**
 
@@ -1355,6 +1404,7 @@ $$
 
 ### 4. Step 3
 
+
 $$
 \text{Max Contracts} = \frac{\text{Portfolio} \times 1.5\%}{(\text{Put Strike} \times 0.20) \times 100}
 $$
@@ -1380,6 +1430,7 @@ For $50k account with $170 put:
 
 ### 5. Step 4
 
+
 **Order entry:**
 1. **3-leg combo order** (all simultaneously)
 2. **Limit at mid-price** or better
@@ -1392,6 +1443,7 @@ For $50k account with $170 put:
 - **Avoid:** Low IV environment (<45th percentile)
 
 ### 6. Step 5
+
 
 **Daily monitoring:**
 - Stock price relative to put strike
@@ -1416,6 +1468,7 @@ For $50k account with $170 put:
 - Exit by 14 DTE if not +30% profitable
 
 ### 7. Step 6
+
 
 **For jade lizards: Generally CLOSE rather than adjust**
 
@@ -1443,6 +1496,7 @@ For $50k account with $170 put:
 
 ### 8. Step 7
 
+
 | Date | Underlying | Put | Call Spread | Credit | Width | Pass? | DTE | Exit | P&L | Win? |
 |------|------------|-----|-------------|--------|-------|-------|-----|------|-----|------|
 | 1/15 | NVDA | $120 | $140/$145 | $8.70 | $5 | ✓ | 35 | D28 | +$6.20 | ✓ |
@@ -1463,6 +1517,7 @@ $$
 Example: 0.77 × $6.00 - 0.23 × $4.00 = $4.62 - $0.92 = **+$3.70 per trade**
 
 ### 9. The Jade Lizard Trading Rules
+
 
 **Never trade when:**
 1. Not bullish (would NOT own stock)

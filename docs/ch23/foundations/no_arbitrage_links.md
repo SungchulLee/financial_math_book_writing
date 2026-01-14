@@ -1,10 +1,12 @@
 # No-Arbitrage Links Across Markets
 
+
 **No-arbitrage links across markets** are the fundamental price relationships that must hold between different asset classes—equities, bonds, currencies, commodities—enforced by arbitrageurs who exploit any deviations, creating a web of interconnected valuations where covered interest parity links FX forwards to interest rates, put-call parity connects options across strikes, commodity storage costs determine futures prices, and quanto adjustments tie foreign assets to domestic currency, making cross-asset arbitrage the invisible force that maintains global market consistency.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -27,7 +29,9 @@
 
 ## What Are No-Arbitrage Links?
 
+
 ### 1. The Law of One Price
+
 
 **Fundamental principle:**
 
@@ -62,6 +66,7 @@ LSE price in USD: £141 × 1.2766 = $180.00 ✓
 **Arbitrage action:** Buy London, sell NY → Prices converge
 
 ### 2. Covered Interest Parity
+
 
 **FX forward pricing:**
 
@@ -155,6 +160,7 @@ Let me recalculate... Actually if forward is overpriced relative to CIP:
 
 ### 3. Put-Call Parity
 
+
 **Link between calls, puts, stock, and bond:**
 
 $$
@@ -243,6 +249,7 @@ Cost: $-100 + 10 + 95.12 = 5.12$
 
 ### 4. Cost of Carry
 
+
 **Link between spot and futures:**
 
 $$
@@ -304,6 +311,7 @@ $$
 
 ### 5. Triangular Arbitrage
 
+
 **FX cross-rate consistency:**
 
 $$
@@ -345,6 +353,7 @@ $$
 
 ### 6. Quanto Adjustments
 
+
 **Link between foreign assets and domestic currency:**
 
 **Quanto call on foreign stock (S) payable in domestic currency:**
@@ -384,6 +393,7 @@ $$
 **Impact:** Quanto call worth **less** than standard call (negative correlation)
 
 ### 7. Commodity Arbitrage
+
 
 **Storage and convenience yield:**
 
@@ -425,6 +435,7 @@ $$
 
 ## Key Terminology
 
+
 **Covered Interest Parity:**
 - FX forward equals spot adjusted for rate differential
 - Core link between FX and rates
@@ -465,7 +476,9 @@ $$
 
 ## Cross-Asset Arbitrage Strategies
 
+
 ### 1. Index Arbitrage
+
 
 **ETF vs. underlying basket:**
 
@@ -495,6 +508,7 @@ $$
 - Execution slippage (500 stocks)
 
 ### 2. Convertible Arbitrage
+
 
 **Convert bond vs. stock + bond:**
 
@@ -534,6 +548,7 @@ $$
 
 ### 3. Capital Structure Arbitrage
 
+
 **Equity vs. debt of same company:**
 
 **Example:**
@@ -570,6 +585,7 @@ But CDS at 300 bps suggests 15% default risk over 5 years
 
 ### 4. Fixed Income Arbitrage
 
+
 **Treasury vs. futures:**
 
 **CTD (Cheapest-to-Deliver) arbitrage:**
@@ -602,6 +618,7 @@ $$
 
 ### 5. Volatility Arbitrage
 
+
 **Options vs. realized volatility:**
 
 **Example:**
@@ -628,6 +645,7 @@ $$
 - Gap risk (can't hedge gaps)
 
 ### 6. Merger Arbitrage
+
 
 **Target vs. acquirer spread:**
 
@@ -661,6 +679,7 @@ $$
 - Typical: 50 deals × 2% each = 100% diversified portfolio
 
 ### 7. Statistical Arbitrage
+
 
 **Pairs trading:**
 
@@ -714,7 +733,9 @@ I need to think about the hedge ratio more carefully. If dollar-neutral:
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Transaction Costs
+
 
 **Thinking small edge is profit:**
 
@@ -732,6 +753,7 @@ Index arbitrage opportunity:
 
 ### 2. Execution Risk
 
+
 **Can't execute all legs simultaneously:**
 
 - **Mistake:** Trade one leg, assume can complete others
@@ -747,6 +769,7 @@ Triangular FX arbitrage:
 - **Execution failure:** Left with unwanted EUR position
 
 ### 3. Financing Cost
+
 
 **Ignoring carry cost:**
 
@@ -764,6 +787,7 @@ Cash-and-carry on index:
 
 ### 4. Model Risk
 
+
 **Using wrong relationship:**
 
 - **Mistake:** Apply Black-Scholes to American options
@@ -779,6 +803,7 @@ Put-call parity for American options:
 - **Apparent "arbitrage" is actually model error**
 
 ### 5. Capacity Constraints
+
 
 **Assuming infinite size:**
 
@@ -796,6 +821,7 @@ Merger arb spread: 2%
 
 ### 6. Regulatory Constraints
 
+
 **Violating rules unknowingly:**
 
 - **Mistake:** Short sell without locate
@@ -812,6 +838,7 @@ Short selling in ETF arbitrage:
 - **Must factor borrow cost into arbitrage**
 
 ### 7. Correlation Breakdown
+
 
 **Assuming stable relationships:**
 
@@ -832,7 +859,9 @@ Oil stocks pairs trade:
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Perfect arbitrage execution:**
 
@@ -903,6 +932,7 @@ No wait, if SPY rises to fair value:
 - **Net: 236%** (incredible, but real for top HFT firms)
 
 ### 2. Worst Case: Disaster
+
 
 **Arbitrage gone wrong:**
 
@@ -978,7 +1008,9 @@ No wait, if SPY rises to fair value:
 
 ## Risk Management Rules
 
+
 ### 1. Gross vs. Net Exposure
+
 
 **Track both:**
 
@@ -1005,6 +1037,7 @@ $$
 
 ### 2. Stop-Loss Discipline
 
+
 **Exit if arbitrage fails to converge:**
 
 **Rules:**
@@ -1020,6 +1053,7 @@ Expected profit: 5 bps
 
 ### 3. Liquidity Reserve
 
+
 **Maintain dry powder:**
 
 $$
@@ -1033,6 +1067,7 @@ $$
 
 ### 4. Diversification
 
+
 **Multiple arbitrage types:**
 
 - Index arb: 30%
@@ -1043,6 +1078,7 @@ $$
 **Never >50% in single strategy** (avoid blow-up risk)
 
 ### 5. Stress Testing
+
 
 **Weekly scenarios:**
 
@@ -1059,6 +1095,7 @@ $$
 
 ### 6. Counterparty Limits
 
+
 **Per prime broker:**
 
 $$
@@ -1068,6 +1105,7 @@ $$
 **Minimum: 3 prime brokers** (avoid single point of failure)
 
 ### 7. Documentation
+
 
 **Required records:**
 
@@ -1083,7 +1121,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. LTCM (1998)
+
 
 **The grandaddy of arbitrage disasters:**
 
@@ -1121,6 +1161,7 @@ $$
 
 ### 2. Amaranth (2006)
 
+
 **Natural gas spread arbitrage:**
 
 **Strategy:**
@@ -1146,6 +1187,7 @@ $$
 
 ### 3. VIX ETN Disaster (2018)
 
+
 **Volatility arbitrage:**
 
 **Product:** XIV (short VIX ETN)
@@ -1170,6 +1212,7 @@ $$
 **Lesson:** Short volatility is picking up pennies in front of steamroller
 
 ### 4. GameStop (2021)
+
 
 **The arbitrage that wasn't:**
 
@@ -1198,7 +1241,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Identify Links
+
 
 **Map price relationships:**
 
@@ -1209,6 +1254,7 @@ $$
 
 ### 2. Monitor Continuously
 
+
 **Automated surveillance:**
 
 - Real-time price feeds (all related assets)
@@ -1217,6 +1263,7 @@ $$
 - Alert system for opportunities
 
 ### 3. Calculate True Edge
+
 
 **Include ALL costs:**
 
@@ -1228,6 +1275,7 @@ $$
 
 ### 4. Execute Simultaneously
 
+
 **Best practices:**
 
 - Use algorithms (minimize execution risk)
@@ -1236,6 +1284,7 @@ $$
 - Verify all fills before booking profit
 
 ### 5. Monitor Position
+
 
 **Daily tracking:**
 
@@ -1246,6 +1295,7 @@ $$
 
 ### 6. Analyze Results
 
+
 **Post-trade:**
 
 - Actual profit vs. expected
@@ -1254,6 +1304,7 @@ $$
 - Document for future
 
 ### 7. Scale Carefully
+
 
 **Gradual increase:**
 
@@ -1265,6 +1316,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "No-arbitrage links are the invisible threads that hold global markets together—covered interest parity connects FX to rates, put-call parity binds options to stocks, and cost-of-carry ties futures to spot. These relationships must hold, or free money appears. But 'must hold' has a big caveat: 'eventually, after transaction costs, if you can execute fast enough, and assuming no liquidity crisis.' The LTCM disaster taught us that leverage transforms 'arbitrage' into 'disaster'—even true relationships take time to converge, and 25:1 leverage means you need them to converge tomorrow, not next month. Modern HFT firms make millions exploiting microsecond violations of these links, proving they exist. But retail traders see the same opportunities in milliseconds, by which time it's gone. The cruel truth: arbitrage is real, but it requires (1) technology (2) speed (3) capital (4) expertise (5) discipline to stay small. Without all five, you're not doing arbitrage—you're doing correlation trades that look like arbitrage until they blow up. The best arbitrage lesson: if it seems obvious and easy, it's not arbitrage—it's a trap. True arbitrage is hard, fast, and requires infrastructure most investors can't access. For the rest of us, understanding these links helps us avoid disasters (like shorting futures below cost-of-carry) and recognize when markets are stressed (when links break). Know the relationships, respect the links, but unless you're Two Sigma or Citadel, don't confuse 'seeing the relationship' with 'being able to arbitrage it.'"
 

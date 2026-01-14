@@ -1,5 +1,6 @@
 # Iron Condors
 
+
 **Iron condors** are neutral, defined-risk option strategies that combine a bull put spread and a bear call spread, profiting from low volatility and time decay with capped maximum loss.
 
 
@@ -13,6 +14,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
@@ -43,6 +45,7 @@ $$
 
 ## What Is an Iron Condor?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -50,6 +53,7 @@ $$
 **Before trading iron condors, understand the structure:**
 
 ### 1. Structure
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
@@ -88,6 +92,7 @@ $$
 
 ### 2. Key Characteristics
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_management_zones.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -120,6 +125,7 @@ $$
 
 ## Economic
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_payoff.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -127,6 +133,7 @@ $$
 **Beyond the basic definition, understanding what iron condors REALLY are economically:**
 
 ### 1. The Reinsurance Analogy
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
@@ -168,6 +175,7 @@ $$
 
 ### 2. Example
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_vs_strangle.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -208,6 +216,7 @@ $$
 
 ### 3. The Risk-Reward Trade-off
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_wing_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -231,6 +240,7 @@ $$
 **This is the fundamental trade-off: Less upside in exchange for defined downside.**
 
 ### 4. Why Professional Traders Prefer Iron Condors
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_payoff.png?raw=true" alt="iron_condor_payoff" width="700">
@@ -273,6 +283,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_condor_greeks.png?raw=true" alt="iron_condor_greeks" width="700">
@@ -331,6 +342,7 @@ $$
 
 ## Why Trade Iron Condors? (Defined-Risk Neutral Strategy)
 
+
 **Use cases for iron condors:**
 
 
@@ -338,9 +350,11 @@ $$
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -352,6 +366,7 @@ $$
 
 ### 2. Why This Structure Exists Economically
 
+
 Markets create these structures because different participants have different:
 - Risk preferences
 - Time horizons
@@ -359,6 +374,7 @@ Markets create these structures because different participants have different:
 - View on volatility vs. direction
 
 ### 3. Professional Institutional Perspective
+
 
 Institutional traders view this strategy as a tool for:
 1. **Risk management:** Precise control over exposure
@@ -370,6 +386,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 
 ### 4. Risk-Defined Premium Selling
+
 
 **When you want income but can't accept unlimited risk:**
 
@@ -387,6 +404,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ### 5. Range-Bound Markets with Safety Net
 
+
 **Stock consolidating but you want protection:**
 
 - Clear range established
@@ -402,6 +420,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - **If Fed surprises, loss capped**
 
 ### 6. High Volatility Environments
+
 
 **When IV elevated but market dangerous:**
 
@@ -419,6 +438,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ### 7. Around Earnings (Post-Event)
 
+
 **After IV crush, transitioning to calm:**
 
 - Earnings just passed
@@ -434,6 +454,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - **Profit from continued theta with safety**
 
 ### 8. Portfolio Management
+
 
 **Part of balanced options portfolio:**
 
@@ -453,9 +474,11 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Strike Selection Strategy
 
+
 **How to construct your iron condor:**
 
 ### 1. Standard Approach
+
 
 **Most common construction:**
 
@@ -479,6 +502,7 @@ $$
 
 ### 2. Delta-Based Selection
 
+
 **Choose short strikes by delta:**
 
 $$
@@ -500,6 +524,7 @@ $$
 - Buy $110 call (protection)
 
 ### 3. Width Optimization
+
 
 **Trade-off: Premium vs. Max Loss**
 
@@ -536,6 +561,7 @@ $$
 
 ### 4. Body Width Selection
 
+
 **Distance between short strikes:**
 
 **Narrow body (short strikes close):**
@@ -568,6 +594,7 @@ $$
 Where $S_0$ is current stock price.
 
 ### 5. Expiration Selection
+
 
 **Optimal timeframes for iron condors:**
 
@@ -603,9 +630,11 @@ Where $S_0$ is current stock price.
 
 ## The Greeks
 
+
 **Understanding the forces affecting your position:**
 
 ### 1. Delta
+
 
 **Iron condor delta dynamics:**
 
@@ -639,6 +668,7 @@ $$
 **Long wings limit delta exposure!**
 
 ### 2. Theta
+
 
 **The primary profit source:**
 
@@ -676,6 +706,7 @@ $$
 
 ### 3. Gamma
 
+
 **The hidden benefit:**
 
 $$
@@ -701,6 +732,7 @@ $$
 **The long wings prevent catastrophe!**
 
 ### 4. Vega
+
 
 **Volatility exposure:**
 
@@ -735,9 +767,11 @@ $$
 
 ## Management and Adjustments
 
+
 **What to do when positions move against you:**
 
 ### 1. Taking Profits Early
+
 
 **When winning: Exit before expiration**
 
@@ -762,6 +796,7 @@ Day 15: Worth $180 (55% profit)
 Action: **Close immediately, bank $220**
 
 ### 2. Managing Tested Sides
+
 
 **When stock approaches a short strike:**
 
@@ -800,6 +835,7 @@ Action: **Close immediately, bank $220**
 
 ### 3. Rolling Strategies
 
+
 **Extending duration when needed:**
 
 **Vertical Roll:**
@@ -835,6 +871,7 @@ Result: Total $6 credit, new max loss $4
 
 ### 4. Managing Winners
 
+
 **Don't be greedy:**
 
 **Example scenario:**
@@ -862,7 +899,9 @@ Result: Total $6 credit, new max loss $4
 
 ## Advanced Concepts
 
+
 ### 1. Optimal Wing Width Selection
+
 
 **Mathematical approach:**
 
@@ -883,6 +922,7 @@ Test different widths:
 **$5 wings optimize risk/reward × probability!**
 
 ### 2. Unbalanced Iron Condors
+
 
 **Adjusting for bias:**
 
@@ -910,6 +950,7 @@ Stock at $100, slightly bullish:
 
 ### 3. Win Rate Analysis
 
+
 **Expected value calculation:**
 
 $$
@@ -931,6 +972,7 @@ $$
 - **Sustainable over many trades**
 
 ### 4. Kelly Criterion for Sizing
+
 
 **Optimal position size:**
 
@@ -960,9 +1002,11 @@ $$
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Step 1
+
 
 **Before entering, evaluate:**
 
@@ -983,6 +1027,7 @@ $$
 
 ### 2. Step 2
 
+
 **Enter this strategy when:**
 - IV rank > 40% (options expensive enough)
 - Stock in established range (no strong trend)
@@ -1001,6 +1046,7 @@ $$
 
 ### 3. Step 3
 
+
 **Calculate maximum position size:**
 
 $$
@@ -1014,6 +1060,7 @@ $$
 
 ### 4. Step 4
 
+
 **Best practices:**
 
 1. **Use limit orders:** Never use market orders
@@ -1022,6 +1069,7 @@ $$
 4. **Single order:** Enter as complete strategy, don't leg in
 
 ### 5. Step 5
+
 
 **Active management rules:**
 
@@ -1043,6 +1091,7 @@ $$
 - Consider early exit if theta gain minimal
 
 ### 6. Step 6
+
 
 **When to adjust:**
 - Stock approaches short strike (delta becomes significant)
@@ -1066,6 +1115,7 @@ $$
 
 ### 7. Step 7
 
+
 Track every trade:
 - Entry/exit dates and prices
 - Rationale for trade
@@ -1073,6 +1123,7 @@ Track every trade:
 - P&L and lessons learned
 
 ### 8. Common Execution Mistakes to Avoid
+
 
 1. **Entering at wrong volatility level**
 2. **Ignoring liquidity**
@@ -1083,7 +1134,9 @@ Track every trade:
 
 ## Common Mistakes and How to Avoid Them
 
+
 ### 1. Mistake 1
+
 
 **The error:**
 
@@ -1107,6 +1160,7 @@ Track every trade:
 
 ### 2. Mistake 2
 
+
 **The error:**
 
 - "Just 10 more days for full profit"
@@ -1129,6 +1183,7 @@ Track every trade:
 
 ### 3. Mistake 3
 
+
 **The error:**
 
 - All condors at same delta
@@ -1149,6 +1204,7 @@ Track every trade:
 - **Spread out breakevens**
 
 ### 4. Mistake 4
+
 
 **The error:**
 
@@ -1172,6 +1228,7 @@ Track every trade:
 - **Cut losses quickly**
 
 ### 5. Mistake 5
+
 
 **The error:**
 
@@ -1198,7 +1255,9 @@ Track every trade:
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup:**
 
@@ -1231,6 +1290,7 @@ Track every trade:
 
 ### 2. Transition Risk Hedge
 
+
 **Setup:**
 
 - AAPL at $175 post-earnings
@@ -1261,6 +1321,7 @@ Track every trade:
 
 ### 3. Portable Alpha with Futures
 
+
 **Setup:**
 
 - QQQ at $370
@@ -1289,6 +1350,7 @@ Track every trade:
 **Lesson:** Rules exist for a reason. 50% profit rule is not optional. Greed destroys accounts. The last $200 of profit cost $600 total.
 
 ### 4. Tactical Duration Extension
+
 
 **Setup:**
 
@@ -1321,9 +1383,11 @@ Track every trade:
 
 ## Risk Management Rules
 
+
 **Essential guidelines for iron condors:**
 
 ### 1. Position Sizing
+
 
 **Capital allocation:**
 
@@ -1346,6 +1410,7 @@ $$
 - Rest in cash or other strategies
 
 ### 2. Stop Loss Discipline
+
 
 **Exit rules (choose before entry):**
 
@@ -1370,6 +1435,7 @@ $$
 - Close entire position
 
 ### 3. Profit Taking Discipline
+
 
 **Exit rules when winning:**
 
@@ -1400,6 +1466,7 @@ Action: Close (50% rule exceeded!)
 ```
 
 ### 4. Diversification Strategy
+
 
 **Spread risk across:**
 
@@ -1435,6 +1502,7 @@ Action: Close (50% rule exceeded!)
 
 ### 5. IV Timing Rules
 
+
 **Only enter when:**
 
 - IVR > 40% (minimum)
@@ -1463,6 +1531,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Iron condors are the thinking trader's premium selling strategy. You sacrifice some upside (compared to short strangles) to buy peace of mind through defined risk. The long wings mean you can sleep at night knowing exactly your maximum loss. Success requires: entering when IV elevated, taking 50% profits religiously, exiting at 21 DTE, and maintaining strict position sizing. This is not maximum income - it's maximum risk-adjusted income. Done right, iron condors can generate consistent returns without the career-ending blow-ups that plague naked option sellers."
 

@@ -1,10 +1,12 @@
 # Risk-Sensitive Control
 
+
 **Risk-sensitive control** extends stochastic control by explicitly penalizing uncertainty and variability in outcomes, closely related to ambiguity-averse preferences.
 
 ---
 
-## 1. Classical vs risk-sensitive control
+## Classical vs risk-sensitive control
+
 
 Classical control maximizes expected payoff:
 
@@ -25,7 +27,8 @@ or equivalent exponential criteria.
 
 ---
 
-## 2. Interpretation
+## Interpretation
+
 
 Risk-sensitive control:
 - penalizes downside risk,
@@ -36,7 +39,8 @@ It is more conservative than risk-neutral control.
 
 ---
 
-## 3. Connection to entropy penalization
+## Connection to entropy penalization
+
 
 Risk-sensitive control is equivalent to:
 - robust control with entropy penalties,
@@ -46,7 +50,8 @@ This links ambiguity aversion to control theory.
 
 ---
 
-## 4. Financial applications
+## Financial applications
+
 
 Applications include:
 - portfolio optimization under uncertainty,
@@ -57,7 +62,8 @@ The resulting controls are smoother and more conservative.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Risk-sensitive control penalizes uncertainty.
 - It connects utility, entropy, and robustness.
@@ -66,6 +72,7 @@ The resulting controls are smoother and more conservative.
 ---
 
 ## Further reading
+
 
 - Jacobson, risk-sensitive control.
 - Fleming & McEneaney, robust control.

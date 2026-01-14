@@ -1,5 +1,6 @@
 # Ratio Calendar
 
+
 **Ratio calendar spreads** are strategies where you use **unequal numbers of contracts** across different expiration dates, creating asymmetric positions that can enhance returns, reduce cost, or create unique risk/reward profiles by trading both term structure differences and quantity ratios simultaneously.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_greeks.png?raw=true" alt="ratio_calendar_spreads_greeks" width="700">
@@ -39,6 +41,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 
 ## What Is a Ratio
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_management.png?raw=true" alt="ratio_calendar_spreads_management" width="700">
 </p>
@@ -47,6 +50,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 **Before understanding ratio calendars, we need to recall standard calendars:**
 
 ### 1. Quick Standard
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_payoff.png?raw=true" alt="ratio_calendar_spreads_payoff" width="700">
@@ -92,12 +96,14 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 
 ## The Structure
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_ratio_comparison.png?raw=true" alt="ratio_calendar_spreads_ratio_comparison" width="700">
 </p>
 <p align="center"><em>Figure 4: Ratio comparison showing theta collection vs. capital efficiency trade-offs across different ratios</em></p>
 
 ### 1. Basic Ratio
+
 
 **Front-heavy ratio (1x2 - most common):**
 
@@ -130,6 +136,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 - Net: $11.00 - $3.00 = **$8.00 debit**
 
 ### 2. The Visual
+
 
 **1x2 Ratio Calendar (Front-heavy):**
 
@@ -185,7 +192,9 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 
 ## The Portfolio
 
+
 ### 1. Front-Heavy Ratio
+
 
 $$
 \Pi_{1x2} = V_{\text{back}}(S, K, T_{\text{back}}) - 2 \times V_{\text{front}}(S, K, T_{\text{front}})
@@ -229,6 +238,7 @@ $$
 - Requires management or hedging
 
 ### 2. Back-Heavy Ratio
+
 
 $$
 \Pi_{2x1} = 2 \times V_{\text{back}}(S, K, T_{\text{back}}) - V_{\text{front}}(S, K, T_{\text{front}})
@@ -276,9 +286,11 @@ $$
 
 ## Economic
 
+
 **Understanding what ratio calendars REALLY represent economically:**
 
 ### 1. The Core Economic
+
 
 **Ratio calendars modify the fundamental calendar spread trade-off through leverage:**
 
@@ -312,6 +324,7 @@ You're creating **leveraged vega exposure** similar to buying options on margin:
 
 ### 2. The Theta-Risk
 
+
 **The fundamental insight:**
 
 $$
@@ -340,6 +353,7 @@ Theta: 0       +            +            ++           +++
 - Ratios let you choose your position on this spectrum
 
 ### 3. The Leverage
+
 
 **For 1x2 ratio:**
 
@@ -373,6 +387,7 @@ Capital efficiency:
 
 ### 4. Why Markets Allow
 
+
 **Supply and demand imbalances:**
 
 **For 1x2 (collecting theta):**
@@ -403,6 +418,7 @@ When is this structure valuable?
 
 ### 5. The Volatility
 
+
 **Enhanced vol risk premium capture (1x2):**
 
 Standard calendar collects vol risk premium:
@@ -423,6 +439,7 @@ $$
 **But:** This 7× enhancement comes with unlimited risk if front month IV explodes.
 
 ### 6. Professional
+
 
 **Institutional use cases:**
 
@@ -450,6 +467,7 @@ $$
 
 ### 7. When Ratio
 
+
 **1x2 edge exists when:**
 
 1. **IVR > 50%:** Front month premiums elevated
@@ -474,7 +492,9 @@ Understanding these economic foundations helps recognize when ratio calendars of
 
 ## The P&L Formula
 
+
 ### 1. For 1x2
+
 
 $$
 \delta \Pi_{1x2} \approx \underbrace{2 \times \Theta_{\text{front}} - \Theta_{\text{back}}}_{\text{Enhanced theta (positive)}} + \underbrace{(2 \times \mathcal{V}_{\text{front}} - \mathcal{V}_{\text{back}}) \delta\sigma}_{\text{Net vega (often negative)}} + \underbrace{\Gamma \text{ P\&L}}_{\text{Usually negative gamma}}
@@ -519,6 +539,7 @@ $$
 
 ### 2. For 2x1
 
+
 $$
 \delta \Pi_{2x1} \approx \underbrace{2 \times \mathcal{V}_{\text{back}} \delta\sigma - \mathcal{V}_{\text{front}} \delta\sigma}_{\text{Leveraged vega (positive)}} + \underbrace{\Theta_{\text{net}} dt}_{\text{Minimal theta}} + \underbrace{\Gamma \text{ P\&L}}_{\text{Positive gamma}}
 $$
@@ -556,7 +577,9 @@ Benefits from movement, more forgiving than 1x2.
 
 ## Concrete Examples
 
+
 ### 1. Pension Duration
+
 
 **Setup (early March 2024):**
 

@@ -1,10 +1,12 @@
 # Synthetic Positions
 
+
 **Synthetic positions** use combinations of options (calls and puts) to **replicate the payoff of other assets or strategies**, most commonly **stock-like exposure**, without directly trading the underlying. They rely on **put–call parity** and are fundamental to understanding how options encode forward prices, leverage, and financing.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/put_call_parity_synthetic_positions.png?raw=true" alt="put_call_parity_synthetic_positions" width="700">
@@ -14,6 +16,7 @@
 ---
 
 ## What Is a Synthetic Position?
+
 
 A **synthetic** is a position constructed from options that **replicates the payoff** of another position at expiration (and often approximately before expiration).
 
@@ -52,6 +55,7 @@ This identity is the mathematical foundation of all synthetic positions.
 
 ### 1. Payoff at Expiration
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_components_breakdown.png?raw=true" alt="synthetic_components_breakdown" width="700">
 </p>
@@ -61,7 +65,9 @@ This identity is the mathematical foundation of all synthetic positions.
 
 ## Why Synthetics Exist
 
+
 ### 1. Capital Efficiency
+
 You may want stock exposure without:
 
 - paying full share price
@@ -72,11 +78,13 @@ Synthetics can replicate exposure with **less upfront cash**.
 
 ### 2. Structural Constraints
 
+
 - Shorting stock may be impossible or expensive
 - Certain accounts may restrict stock transactions
 - Options may be more liquid than shares
 
 ### 3. Hedging and Risk Transfer
+
 
 Institutions frequently use synthetics to:
 - hedge large positions
@@ -87,11 +95,14 @@ Institutions frequently use synthetics to:
 
 ## Core Synthetic Positions
 
+
 ### 1. Synthetic Long Stock
+
 
 **Replicates:** owning the stock
 
 ### 2. Structure
+
 
 - **Buy 1 call**
 
@@ -103,6 +114,7 @@ Linear, stock-like payoff.
 
 ### 3. Interpretation
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_long_stock.png?raw=true" alt="synthetic_long_stock" width="700">
 </p>
@@ -112,9 +124,11 @@ Linear, stock-like payoff.
 
 ### 4. Synthetic Short Stock
 
+
 **Replicates:** shorting the stock
 
 ### 5. Structure
+
 
 - **Sell 1 call**
 
@@ -131,6 +145,7 @@ Linear, stock-like payoff.
 
 ### 6. Payoff at Expiration
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/synthetic_short_stock.png?raw=true" alt="synthetic_short_stock" width="700">
 </p>
@@ -139,6 +154,7 @@ Linear, stock-like payoff.
 ---
 
 ### 7. Synthetic Forward Contract
+
 
 From parity:
 
@@ -155,6 +171,7 @@ So:
 
 ### 8. Interpretation
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/conversion_relationships_synthetic_positions.png?raw=true" alt="conversion_relationships_synthetic_positions" width="700">
 </p>
@@ -165,9 +182,11 @@ So:
 ## The Portfolio View
 
 
+
 ---
 
 ## Economic
+
 
 **Understanding what synthetic positions REALLY represent economically:**
 
@@ -182,6 +201,7 @@ This is heavily used in institutional pricing.
 
 ### 1. The Core Economic Trade-Off
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/concrete_example_synthetic_positions.png?raw=true" alt="concrete_example_synthetic_positions" width="700">
 </p>
@@ -191,7 +211,9 @@ This is heavily used in institutional pricing.
 
 ## Strike Selection
 
+
 ### 1. ATM Synthetics (Most Common)
+
 
 - Best replication of stock
 - Delta ≈ ±1
@@ -199,6 +221,7 @@ This is heavily used in institutional pricing.
 - Most accurate parity behavior
 
 ### 2. ITM / OTM Synthetics
+
 
 - Still work mathematically
 - Different capital requirements
@@ -214,13 +237,16 @@ This is heavily used in institutional pricing.
 
 ## Time Selection
 
+
 ### 1. Short-Dated
+
 
 - Tracks stock closely
 - Higher gamma near expiration
 - More sensitive to price moves
 
 ### 2. Longer-Dated
+
 
 - Smoother behavior
 - Less gamma
@@ -229,6 +255,7 @@ This is heavily used in institutional pricing.
 ---
 
 ## Synthetics vs. Stock
+
 
 | Aspect | Synthetic | Stock |
 |------|-----------|-------|
@@ -249,7 +276,9 @@ This is heavily used in institutional pricing.
 
 ## Practical Applications
 
+
 ### 1. Replacing Stock Exposure
+
 
 - Want delta ≈ 1
 - Less capital tied up
@@ -257,10 +286,12 @@ This is heavily used in institutional pricing.
 
 ### 2. Avoiding Short-Sale Constraints
 
+
 - Hard-to-borrow stock
 - Use synthetic short instead
 
 ### 3. Transition Trades
+
 
 - Convert stock → options exposure (or vice versa)
 - Maintain risk while restructuring portfolio
@@ -269,7 +300,9 @@ This is heavily used in institutional pricing.
 
 ## Risks and Caveats
 
+
 ### 1. Assignment Risk
+
 
 - Short option leg can be assigned
 - Leads to temporary stock position
@@ -277,15 +310,18 @@ This is heavily used in institutional pricing.
 
 ### 2. Dividend Effects
 
+
 - Dividends affect put–call parity
 - Early assignment risk increases near ex-dividend dates
 
 ### 3. Financing Differences
 
+
 - Interest rates embedded in option prices
 - Synthetic may not be exactly free
 
 ### 4. Margin Requirements
+
 
 - Brokers may require margin similar to stock exposure
 - Not “free leverage” in practice
@@ -296,6 +332,7 @@ This is heavily used in institutional pricing.
 ---
 
 ## Practical Guidance
+
 
 **Step-by-step implementation framework:**
 
@@ -323,6 +360,7 @@ $$
 If violated → arbitrageurs immediately exploit → prices converge instantly.
 
 ### 1. Synthetic Long Stock
+
 
 **Structure:**
 $$
@@ -378,9 +416,11 @@ This $1.24 is the **present value of carrying cost** for 3 months.
 
 ### 2. Why Synthetics Exist Economically
 
+
 **Markets create synthetics because different participants have asymmetric needs:**
 
 ### 3. Capital Efficiency
+
 
 **Traditional stock long:**
 - Need $100,000 to buy 1,000 shares at $100
@@ -398,6 +438,7 @@ This $1.24 is the **present value of carrying cost** for 3 months.
 - Deploy remaining $9.5M in alpha-generating strategies
 
 ### 4. Shorting Without Stock Borrow
+
 
 **Traditional short stock:**
 - Must locate shares to borrow
@@ -419,6 +460,7 @@ This $1.24 is the **present value of carrying cost** for 3 months.
 
 ### 5. Tax and Regulatory Advantages
 
+
 **Some institutions face constraints:**
 
 **Pension funds:**
@@ -437,6 +479,7 @@ This $1.24 is the **present value of carrying cost** for 3 months.
 
 ### 6. Speed and Flexibility
 
+
 **Stock trades:**
 - T+2 settlement
 - Must have cash available
@@ -448,6 +491,7 @@ This $1.24 is the **present value of carrying cost** for 3 months.
 - Deep liquidity in liquid names (SPY, QQQ)
 
 ### 7. The Financing Relationship
+
 
 **The key economic insight:**
 
@@ -488,6 +532,7 @@ $$
 **Key insight:** Synthetics are economically equivalent to leveraged stock positions.
 
 ### 8. Dividend Considerations
+
 
 **Critical nuance:** Synthetics do NOT receive dividends.
 
@@ -534,6 +579,7 @@ $$
 
 ### 9. Arbitrage and Market Efficiency
 
+
 **If put-call parity violated:**
 
 **Scenario:** Suppose C - P > S - Ke^{-rT}
@@ -565,6 +611,7 @@ $$
 
 ### 10. Professional Institutional Perspective
 
+
 **Market makers:**
 - Use synthetics for **inventory management**
 - Long too much stock → Convert to synthetic short without selling stock
@@ -582,6 +629,7 @@ $$
 - **Leverage:** Control massive exposure with minimal capital
 
 ### 11. When Synthetics Offer Economic Advantage
+
 
 **Use synthetics when:**
 
@@ -621,6 +669,7 @@ $$
 
 ### 12. The Greeks Perspective
 
+
 **Synthetic long stock Greeks (ATM):**
 
 | Greek | Value | Economic Meaning |
@@ -643,6 +692,7 @@ $$
 - **But:** Exposed to financing cost changes (rising rates hurt synthetic long)
 
 ### 13. The Capital Structure View
+
 
 **Think of synthetics as different layers of capital structure:**
 
@@ -675,6 +725,7 @@ $$
 
 ### 14. Summary of Economic Insights
 
+
 **Synthetics reveal that:**
 
 1. **Options encode forward prices** - Not independent from stock
@@ -699,6 +750,7 @@ Understanding synthetics means understanding:
 
 ## Concrete Example 1
 
+
 **Setup:**
 
 - Stock at \(S = 100\)
@@ -714,6 +766,7 @@ Understanding synthetics means understanding:
 
 ### 1. Outcomes at Expiration
 
+
 | Stock Price | Call | Put | Net Payoff |
 |------------|------|-----|------------|
 | 80 | 0 | -20 | -20 |
@@ -725,6 +778,7 @@ Understanding synthetics means understanding:
 ---
 
 ## Concrete Example 2
+
 
 **Setup:**
 
@@ -738,6 +792,7 @@ Understanding synthetics means understanding:
 
 ### 1. Outcomes
 
+
 | Stock Price | Call | Put | Net Payoff |
 |------------|------|-----|------------|
 | 80 | 0 | +20 | +20 |
@@ -748,6 +803,7 @@ Identical to shorting stock from $100.
 
 
 ### 2. Step 1
+
 
 **Before entering, evaluate:**
 
@@ -768,6 +824,7 @@ Identical to shorting stock from $100.
 
 ### 3. Step 2
 
+
 **Enter this strategy when:**
 - [Specific market conditions]
 - [Volatility requirements]
@@ -780,6 +837,7 @@ Identical to shorting stock from $100.
 - [Insufficient time or liquidity]
 
 ### 4. Step 3
+
 
 **Calculate maximum position size:**
 
@@ -794,6 +852,7 @@ $$
 
 ### 5. Step 4
 
+
 **Best practices:**
 
 1. **Use limit orders:** Never use market orders
@@ -802,6 +861,7 @@ $$
 4. **Single order:** Enter as complete strategy, don't leg in
 
 ### 6. Step 5
+
 
 **Active management rules:**
 
@@ -821,6 +881,7 @@ $$
 
 ### 7. Step 6
 
+
 **When to adjust:**
 - Position threatened
 - Market environment changes  
@@ -833,6 +894,7 @@ $$
 
 ### 8. Step 7
 
+
 Track every trade:
 - Entry/exit dates and prices
 - Rationale for trade
@@ -840,6 +902,7 @@ Track every trade:
 - P&L and lessons learned
 
 ### 9. Common Execution Mistakes to Avoid
+
 
 1. **Entering at wrong volatility level**
 2. **Ignoring liquidity**
@@ -850,17 +913,21 @@ Track every trade:
 
 ## Common Mistakes
 
+
 ### 1. Forgetting Dividends
+
 
 - Parity assumes known dividends.
 - Ignoring them causes mispricing expectations.
 
 ### 2. Treating Synthetics as Limited Risk
 
+
 - Synthetic long stock has **full downside risk**.
 - Synthetic short stock has **unlimited risk**.
 
 ### 3. Ignoring Early Exercise
+
 
 - American options break exact parity before expiration.
 
@@ -868,13 +935,16 @@ Track every trade:
 
 ## When to Use Synthetics
 
+
 ### 1. Best Use Cases
+
 
 - You want stock-like exposure without stock
 - You need flexibility and fast adjustments
 - You understand assignment and margin mechanics
 
 ### 2. Avoid When
+
 
 - You want dividends or voting rights
 - You cannot manage assignment risk
@@ -883,6 +953,7 @@ Track every trade:
 ---
 
 ## Summary
+
 
 Synthetic positions reveal the **true structure of options markets**:
 

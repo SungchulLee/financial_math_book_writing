@@ -1,5 +1,6 @@
 # Gamma Risk and Convexity Effects
 
+
 For a small move \(\delta S\),
 
 \[
@@ -19,6 +20,7 @@ Thus gamma exposure links delta-hedged P\&L to realized variance.
 ---
 
 ## What to remember
+
 
 - Long gamma benefits from volatility (large squared moves).
 - Short gamma earns carry but is exposed to large moves.

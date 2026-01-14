@@ -1,10 +1,12 @@
 # Model Drift vs Market Regimes
 
+
 Adaptive calibration must distinguish between **model drift** and genuine **market regime changes**, a key challenge in online learning.
 
 ---
 
-## 1. Model drift
+## Model drift
+
 
 Model drift refers to:
 - gradual parameter changes,
@@ -15,7 +17,8 @@ Sequential estimators handle drift naturally.
 
 ---
 
-## 2. Market regimes
+## Market regimes
+
 
 Market regimes involve:
 - abrupt structural changes,
@@ -26,7 +29,8 @@ Regimes require discrete model adjustments.
 
 ---
 
-## 3. Detection challenges
+## Detection challenges
+
 
 Distinguishing drift from regime change is difficult because:
 - both affect parameter estimates,
@@ -37,7 +41,8 @@ Statistical tests and filters provide partial solutions.
 
 ---
 
-## 4. Practical approaches
+## Practical approaches
+
 
 Common approaches include:
 - regime-switching models,
@@ -48,7 +53,8 @@ Human oversight remains essential.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Drift and regimes require different responses.
 - Online learning must balance adaptation and stability.
@@ -57,6 +63,7 @@ Human oversight remains essential.
 ---
 
 ## Further reading
+
 
 - Hamilton, regime-switching models.
 - Cont, model instability in finance.

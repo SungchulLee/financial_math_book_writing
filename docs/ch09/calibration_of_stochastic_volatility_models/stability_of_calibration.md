@@ -1,10 +1,12 @@
 # Stability of Calibration
 
+
 Beyond fit quality, a calibration must be **stable**: small changes in market data should not cause large parameter shifts. Stability is a central criterion for production models.
 
 ---
 
-## 1. Sources of instability
+## Sources of instability
+
 
 Calibration instability arises from:
 
@@ -17,7 +19,8 @@ These factors interact nonlinearly.
 
 ---
 
-## 2. Measuring stability
+## Measuring stability
+
 
 Common stability checks include:
 
@@ -30,7 +33,8 @@ Stability should be assessed across market regimes.
 
 ---
 
-## 3. Regularization and constraints
+## Regularization and constraints
+
 
 Stability is improved by:
 
@@ -43,7 +47,8 @@ These reduce variance at the cost of bias.
 
 ---
 
-## 4. Practical acceptance criteria
+## Practical acceptance criteria
+
 
 In practice, desks often require:
 
@@ -55,7 +60,8 @@ A slightly worse fit is often acceptable if stability improves.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Stability is as important as in-sample accuracy.
 - Regularization is essential in stochastic volatility calibration.
@@ -64,6 +70,7 @@ A slightly worse fit is often acceptable if stability improves.
 ---
 
 ## Further reading
+
 
 - Rebonato, *Volatility and Correlation*.
 - Andersen & Piterbarg, calibration stability discussions.

@@ -1,10 +1,12 @@
 # Joint Calibration Across Strikes and Maturities
 
+
 Stochastic volatility parameters influence the **entire implied volatility surface**. Reliable calibration therefore requires fitting **jointly across strikes and maturities**, rather than focusing on individual slices.
 
 ---
 
-## 1. Why joint calibration is necessary
+## Why joint calibration is necessary
+
 
 Single-maturity calibration can:
 - fit the smile locally,
@@ -17,7 +19,8 @@ Joint calibration enforces:
 
 ---
 
-## 2. Objective function across the surface
+## Objective function across the surface
+
 
 A typical joint objective is
 
@@ -37,7 +40,8 @@ Key design choices:
 
 ---
 
-## 3. Surface-wide sensitivities
+## Surface-wide sensitivities
+
 
 Parameters affect different regions:
 
@@ -49,7 +53,8 @@ Joint calibration ensures these effects are reconciled globally.
 
 ---
 
-## 4. Numerical considerations
+## Numerical considerations
+
 
 - pricing speed is critical (FFT, closed forms),
 - gradients/Jacobians improve optimizer robustness,
@@ -57,7 +62,8 @@ Joint calibration ensures these effects are reconciled globally.
 
 ---
 
-## 5. Validation
+## Validation
+
 
 After calibration, validate by:
 - checking per-maturity residual patterns,
@@ -66,7 +72,8 @@ After calibration, validate by:
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Joint calibration improves identifiability and consistency.
 - Weighting and maturity balance are as important as the model.
@@ -75,6 +82,7 @@ After calibration, validate by:
 ---
 
 ## Further reading
+
 
 - Gatheral, *The Volatility Surface*.
 - Lord & Kahl, efficient Heston calibration.

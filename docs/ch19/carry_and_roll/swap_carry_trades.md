@@ -1,10 +1,12 @@
 # Swap Carry Trades
 
+
 **Swap carry trades** are fixed income strategies that exploit the positive carry inherent in upward-sloping yield curves by entering interest rate swaps to receive fixed rates and pay floating rates (typically SOFR), earning the spread between the higher fixed rate received and the lower floating rate paid as daily income, while also benefiting from favorable roll-down effects as time passes and the position ages down the curve toward lower yields.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Are Swap Carry Trades?
 
+
 **Before trading swap carry, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** A strategy involving entering into interest rate swaps—typically as the fixed-rate receiver—to capture the positive spread between the fixed swap rate and the current floating rate (SOFR), generating daily carry income while accepting mark-to-market risk from interest rate movements and benefiting from roll-down effects as the swap ages toward maturity with declining rates if the curve remains stable.
 
@@ -112,6 +116,7 @@ $$
 
 ### 2. Swap Mechanics Review
 
+
 **Interest rate swap basics:**
 
 **Fixed leg (you receive):**
@@ -147,6 +152,7 @@ $$
 **This is the carry income for 6 months**
 
 ### 3. Types of Swap Carry Trades
+
 
 **1. Vanilla Receive-Fixed (most common):**
 
@@ -185,9 +191,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. The Term Premium
+
 
 **The deep insight:**
 
@@ -229,6 +237,7 @@ If you believe:
 Then: **Receiving fixed earns both term premium + expectations error**
 
 ### 2. The Roll-Down Effect
+
 
 **As time passes, magic happens:**
 
@@ -280,6 +289,7 @@ $$
 
 ### 3. The Funding Advantage
 
+
 **Why swaps beat bonds for carry:**
 
 **Bond carry trade:**
@@ -311,6 +321,7 @@ $$
 **This is why professionals use swaps for carry, not bonds**
 
 ### 4. Forward vs. Realized Rates
+
 
 **The key bet:**
 
@@ -347,6 +358,7 @@ Forward rates typically OVERestimate future short rates by 50-100 bps:
 ---
 
 ## Key Terminology
+
 
 **Carry:**
 
@@ -422,7 +434,9 @@ Forward rates typically OVERestimate future short rates by 50-100 bps:
 
 ## Mathematical Foundation
 
+
 ### 1. Carry Calculation
+
 
 **Daily carry (receiving fixed):**
 
@@ -448,6 +462,7 @@ $$
 $$
 
 ### 2. Roll-Down Calculation
+
 
 **Present value of swap (simplified):**
 
@@ -475,6 +490,7 @@ $$
 **This is the roll-down profit from aging 1 year**
 
 ### 3. Total Return Decomposition
+
 
 **1-year total return:**
 
@@ -506,6 +522,7 @@ $$
 
 ### 4. Leverage Calculation
 
+
 **Return on collateral:**
 
 $$
@@ -536,7 +553,9 @@ $$
 
 ## Step-by-Step Setup
 
+
 ### 1. Carry Analysis
+
 
 **1. Examine Current Curve:**
 
@@ -682,6 +701,7 @@ print(results_df)
 
 ### 2. Maturity Selection
 
+
 **Decision matrix:**
 
 ```python
@@ -715,6 +735,7 @@ print(results_df[['maturity', 'composite_score']].sort_values('composite_score',
 **Winner: 5-year swap (best risk-adjusted carry)**
 
 ### 3. Position Sizing
+
 
 **1. Determine Risk Budget:**
 
@@ -790,6 +811,7 @@ Return on collateral: 42.5%
 ```
 
 ### 4. Trade & Risk
+
 
 **1. Enter the Swap:**
 
@@ -903,6 +925,7 @@ print(risk)
 
 ### 5. Exit Rules
 
+
 **1. Profit Target:**
 
 ```python
@@ -938,7 +961,9 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 
 ## Real-World Examples
 
+
 ### 1. Carry Windfall
+
 
 **Background:**
 
@@ -986,6 +1011,7 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 5. **Perfect storm for receive-fixed**
 
 ### 2. Carry Trap
+
 
 **Background:**
 
@@ -1047,6 +1073,7 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 
 ### 3. Curve Transition
 
+
 **Background:**
 
 - Fed pausing after hiking to 5.25%
@@ -1080,6 +1107,7 @@ print(f"Stop loss dollar: ${stop_loss_dollar:,.0f}")
 Let me use a better pure carry example:
 
 ### 4. Short-End Carry
+
 
 **Background:**
 
@@ -1135,6 +1163,7 @@ Let me use a better pure carry example:
 
 ### 5. QE Duration Bet
 
+
 **Background:**
 
 - COVID crash (March 2020)
@@ -1184,6 +1213,7 @@ Let me use a better pure carry example:
 **But note: This required perfect timing and high risk tolerance**
 
 ### 6. Inflation Hedge
+
 
 **Background:**
 
@@ -1240,6 +1270,7 @@ Let me use a better pure carry example:
 
 
 ## Final Wisdom
+
 
 > "Swap carry trades are the institutional investor's bread and butter—you earn 50-100 bps per year by simply receiving fixed on a steep curve while the Fed is on hold. It's the closest thing to free money in finance: collect $200k/year on $10M notional with only $200k collateral posted (100% return on capital!). But here's the brutal truth: carry is an optical illusion. That $200k/year becomes $-2M in losses if rates rise 50 bps, and you can blow up 10 years of carry gains in one bad month (see 2022). The math is simple: your daily carry is $550, your DV01 is $45k, so you break even if rates rise 1.2 bps/day. Sounds safe, right? Until the Fed hikes 75 bps in one meeting, curve inverts, and you're down $3.4M in a week. The key is respecting regime changes: in stable Fed regimes (2009-2021), swap carry was a money machine—65% win rate, 15-25% annual returns. In Fed pivot regimes (1994, 2022), carry trades are widow-makers—positions that printed money for years suddenly lose 5-10 years of gains in months. Trade carry aggressively when the Fed is credibly committed to low rates. Exit IMMEDIATELY when inflation accelerates or Fed turns hawkish. Size conservatively (max 15x leverage), use hard stops (50 bps against you), and never—NEVER—average down into a Fed pivot. The carry will be there tomorrow, but if you're margin called today, you're finished."
 

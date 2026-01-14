@@ -1,10 +1,12 @@
 # Roll-Down in Credit Curves
 
+
 **Roll-down** in credit curves is the phenomenon where bonds gain value over time as they "roll down" the credit spread curve toward shorter maturities, providing positive returns even when credit spreads remain unchanged, creating a predictable source of excess return for investors who position strategically along upward-sloping credit curves.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -47,9 +49,11 @@ Where:
 
 ## What is Credit Curve Roll-Down?
 
+
 **Before implementing roll-down strategies, understand the mechanics:**
 
-### The Credit Spread Curve
+### 1. The Credit Spread Curve
+
 
 **Definition:**
 
@@ -99,7 +103,8 @@ $$
 
 **Inverted by 220 bp!**
 
-### Roll-Down Mechanics
+### 2. Roll-Down Mechanics
+
 
 **The process:**
 
@@ -147,7 +152,8 @@ $$
 
 **Roll-down offset spread widening!**
 
-### Roll vs. Roll-Down
+### 3. Roll vs. Roll-Down
+
 
 **Two distinct concepts often confused:**
 
@@ -194,7 +200,8 @@ $$
 - Spread change: 0%
 - **Net: +0.44%** (in addition to carry)
 
-### Why Credit Curves Slope Upward
+### 4. Why Credit Curves Slope Upward
+
 
 **Economic reasons:**
 
@@ -247,9 +254,11 @@ Where $\alpha$ captures risk premium per $\sqrt{T}$.
 
 ## Economic Interpretation: Roll-Down as Risk Premium Harvesting
 
+
 **Understanding what you're really earning:**
 
-### Roll-Down as Compensation for Risks
+### 1. Roll-Down as Compensation for Risks
+
 
 **The roll-down return compensates for:**
 
@@ -294,7 +303,8 @@ $$
 - Annual: 90 / 8 = 11.25 bp/year
 - **This is your "harvest" for taking the risks**
 
-### Roll-Down vs. Carry
+### 2. Roll-Down vs. Carry
+
 
 **Both are predictable returns, but different:**
 
@@ -349,7 +359,8 @@ $$
 
 **Extra 125 bp annually from choosing 5-year!**
 
-### The Roll-Down Puzzle
+### 3. The Roll-Down Puzzle
+
 
 **Empirical observation:**
 
@@ -384,6 +395,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Credit Spread Curve:**
 
@@ -456,7 +468,9 @@ Amount spreads can widen before losing money over holding period.
 
 ## Basic Roll-Down Strategies
 
-### Strategy 1: Simple Bullet with Roll-Down Capture
+
+### 1. Strategy 1: Simple Bullet with Roll-Down Capture
+
 
 **Setup:**
 
@@ -514,7 +528,8 @@ $$
 
 **Spreads can widen 138 bp before losing money over 1 year.**
 
-### Strategy 2: Rolling Bullet (Systematic Harvesting)
+### 2. Strategy 2: Rolling Bullet (Systematic Harvesting)
+
 
 **Setup:**
 
@@ -559,7 +574,8 @@ $$
 
 **Rolling bullet outperforms by 50 bp annually.**
 
-### Strategy 3: Curve Positioning (Long Belly, Short Wings)
+### 3. Strategy 3: Curve Positioning (Long Belly, Short Wings)
+
 
 **Setup:**
 
@@ -601,7 +617,8 @@ $$
 
 **Total: $450k from curve normalization**
 
-### Strategy 4: Roll-Down Enhanced with CDS
+### 4. Strategy 4: Roll-Down Enhanced with CDS
+
 
 **Setup:**
 
@@ -639,9 +656,11 @@ $$
 
 ## Greeks in Roll-Down Strategies
 
+
 **Understanding sensitivities:**
 
-### Duration Profile Over Time
+### 1. Duration Profile Over Time
+
 
 **As bond ages, duration changes:**
 
@@ -675,7 +694,8 @@ $$
 - Year 5: 130 bp × 4.5 = 5.85
 - **Spread risk decreased by 62%**
 
-### Convexity and Roll-Down
+### 2. Convexity and Roll-Down
+
 
 **Roll-down creates convexity-like effect:**
 
@@ -714,7 +734,8 @@ $$
 
 **This convexity makes roll-down strategies attractive!**
 
-### Carry-Roll Sensitivity
+### 3. Carry-Roll Sensitivity
+
 
 **Combined carry and roll-down:**
 
@@ -743,7 +764,9 @@ $$
 
 ## Roll-Down Payoff Analysis
 
-### Expected Returns Across Different Curve Shapes
+
+### 1. Expected Returns Across Different Curve Shapes
+
 
 **Setup: BBB 5-year bond, 1-year holding period**
 
@@ -792,7 +815,8 @@ $$
 </p>
 **Figure 1:** Expected returns across different credit curve shapes, showing how roll-down enhances returns on upward-sloping curves but becomes a drag on inverted curves.
 
-### Roll-Down Breakeven Analysis
+### 2. Roll-Down Breakeven Analysis
+
 
 **Question: How much can spreads widen before roll-down strategy loses money?**
 
@@ -832,7 +856,9 @@ $$
 
 ## Real-World Roll-Down Examples
 
-### Example 1: BBB Industrial Roll-Down Harvest (Winner)
+
+### 1. Example 1: BBB Industrial Roll-Down Harvest (Winner)
+
 
 **Setup:**
 
@@ -956,7 +982,8 @@ $$
 
 **This is systematic roll-down harvesting!**
 
-### Example 2: High-Yield Curve Steepening Disaster (Loser)
+### 2. Example 2: High-Yield Curve Steepening Disaster (Loser)
+
 
 **Setup:**
 
@@ -1099,7 +1126,8 @@ $$
 - **Leverage kills during drawdowns**
 - **Roll-down is long-term strategy, not short-term trade**
 
-### Example 3: Investment Grade Curve Flattening (Breakeven)
+### 3. Example 3: Investment Grade Curve Flattening (Breakeven)
+
 
 **Setup:**
 
@@ -1232,7 +1260,9 @@ $$
 
 ## Best Case Scenario
 
-### The Perfect Roll-Down Trade - Post-Crisis Steepening (2010-2012)
+
+### 1. The Perfect Roll-Down Trade - Post-Crisis Steepening (2010-2012)
+
 
 **Setup:**
 
@@ -1450,7 +1480,9 @@ $$
 
 ## Worst Case Scenario
 
-### The Inverted Curve Trap - Energy Sector (2015-2016)
+
+### 1. The Inverted Curve Trap - Energy Sector (2015-2016)
+
 
 **Setup:**
 
@@ -1693,7 +1725,9 @@ $$
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Roll-down is price appreciation from aging down credit curve:**
 
@@ -1707,7 +1741,8 @@ $$
 - Amplified by steeper curves
 - Most powerful in belly of curve (5-7 year typically)
 
-### Total Return Decomposition
+### 2. Total Return Decomposition
+
 
 $$
 R_{\text{total}} = R_{\text{carry}} + R_{\text{roll}} + R_{\text{roll-down}} + R_{\text{spread}} + R_{\text{rates}}
@@ -1721,7 +1756,8 @@ $$
 - Rate change: -0.3% (hedged)
 - **Total: 6.3%**
 
-### Curve Requirements
+### 3. Curve Requirements
+
 
 **For positive roll-down:**
 - [ ] Upward-sloping curve
@@ -1735,7 +1771,8 @@ $$
 - [ ] Distressed credits (CCC and below)
 - [ ] Curve steepening expected
 
-### Optimal Maturity Selection
+### 4. Optimal Maturity Selection
+
 
 **Formula for maximum roll-down per unit duration:**
 
@@ -1754,7 +1791,8 @@ $$
 - Liquid
 - **Sweet spot for roll-down/duration tradeoff**
 
-### Position Sizing
+### 5. Position Sizing
+
 
 **Conservative:**
 
@@ -1775,7 +1813,8 @@ $$
 
 **If curve steeper than average, can size larger.**
 
-### Monitoring Metrics
+### 6. Monitoring Metrics
+
 
 **Daily:**
 - Curve slope (track changes)
@@ -1792,7 +1831,8 @@ $$
 - Curve percentile ranking
 - Rebalancing needs
 
-### Entry Checklist
+### 7. Entry Checklist
+
 
 1. **Curve analysis:**
    - [ ] Upward-sloping (positive slope)
@@ -1814,7 +1854,8 @@ $$
    - [ ] Duration appropriate for risk tolerance
    - [ ] Size within limits
 
-### Exit Rules
+### 8. Exit Rules
+
 
 **Close position when:**
 
@@ -1838,7 +1879,8 @@ $$
    - Total return < -5% (carry + roll should prevent this)
    - Spread widening > 100 bp
 
-### Common Mistakes to Avoid
+### 9. Common Mistakes to Avoid
+
 
 1. **Confusing roll with roll-down**
    - Roll = pull to par (price → 100)
@@ -1872,7 +1914,8 @@ $$
    - Rolling strategy has costs
    - Eats into 0.5-1.0% annual roll-down
 
-### Performance Expectations
+### 10. Performance Expectations
+
 
 **Investment grade roll-down strategy (5-7y):**
 
@@ -1887,7 +1930,8 @@ $$
 **Sharpe ratio: 1.2-1.8** (with roll-down)
 **vs. 0.8-1.2** (without roll-down positioning)
 
-### Comparison to Other Strategies
+### 11. Comparison to Other Strategies
+
 
 | Strategy | Carry | Roll-Down | Complexity | Risk |
 |----------|-------|-----------|------------|------|
@@ -1896,7 +1940,8 @@ $$
 | Barbell | Medium | Medium | High | Curve risk |
 | Ladder | Medium | Medium | Low | None special |
 
-### Your Learning Path
+### 12. Your Learning Path
+
 
 **Phase 1 (Months 1-3): Fundamentals**
 - Study credit curves (plot spreads vs. maturity)
@@ -1922,7 +1967,8 @@ $$
 - Combine with other strategies
 - Full portfolio implementation
 
-### Final Wisdom
+### 13. Final Wisdom
+
 
 > "Roll-down is the most predictable source of excess return in credit markets—when the curve cooperates. An upward-sloping curve is your friend, paying you to age down from higher spreads to lower spreads. But the curse of roll-down is curve shape changes. Steep curves flatten, flat curves invert, and the mechanical return you counted on evaporates. The disciplined investor monitors the curve daily, sizes positions by slope, diversifies across issuers, and exits when the curve flattens. The greedy investor buys long-dated bonds on inverted curves thinking 'this can't last,' only to watch negative roll-down compound their losses as the curve inverts further during default cycles. Know your curve, respect its shape, and remember: roll-down is arithmetic until it becomes tragic."
 

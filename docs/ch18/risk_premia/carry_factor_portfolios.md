@@ -1,10 +1,12 @@
 # Carry Factor
 
+
 **Carry factor portfolios** are systematic investment strategies that construct diversified baskets of long and short futures positions across multiple asset classes (commodities, rates, currencies, equities) to harvest the persistent risk premium associated with holding assets in backwardation or high-yielding currencies, exploiting the tendency for positive carry positions to generate excess returns over time.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -39,9 +41,11 @@ $$
 
 ## What Is a Carry
 
+
 **Before building carry portfolios, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** A systematic multi-asset futures portfolio that captures the carry risk premium by going long high-carry contracts (backwardated commodities, high-yielding currencies, steep bond curves) and short low-carry contracts (contango commodities, low-yielding currencies, flat bond curves), with positions sized inversely to volatility to create equal risk contribution across diverse markets.
 
@@ -88,6 +92,7 @@ Short Japanese Yen: Low interest rate (pay to hold)
 **Note:** Carry is the expected return from HOLDING. Actual returns include carry + price changes.
 
 ### 2. Carry Across
+
 
 **How carry manifests in different markets:**
 
@@ -182,6 +187,7 @@ $$
 
 ### 3. Why Carry Exists
 
+
 **Economic rationale:**
 
 **1. Insurance premium (commodities):**
@@ -225,9 +231,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. The Theory of
+
 
 **The deep insight:**
 
@@ -291,6 +299,7 @@ $$
 
 ### 2. The Hedging
 
+
 **Why backwardation persists:**
 
 Commodity producers need to **hedge future production**:
@@ -323,6 +332,7 @@ Commodity producers need to **hedge future production**:
 - **These show less consistent carry**
 
 ### 3. Uncovered
+
 
 **UIP theory (textbook):**
 
@@ -357,6 +367,7 @@ High interest rate currencies tend to **APPRECIATE** (not depreciate)!
 - **Diversification critical to survive crashes**
 
 ### 4. The Carry Risk
+
 
 **The "Peso Problem" (Rietz, 1988):**
 
@@ -402,6 +413,7 @@ Where:
 5. **Accept it:** Carry IS crash risk premium (can't eliminate)
 
 ### 5. Cross-Sectional
+
 
 **Two implementations:**
 
@@ -451,6 +463,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Carry:**
 
@@ -526,7 +539,9 @@ $$
 
 ## Mathematical
 
+
 ### 1. Carry Calculation
+
 
 **Commodities (roll yield):**
 
@@ -579,6 +594,7 @@ $$
 
 ### 2. Portfolio
 
+
 **Standard approach (inverse volatility weighting):**
 
 $$
@@ -626,6 +642,7 @@ Check: Longs = 50%, Shorts = 50% ✓
 **Result: EUR dominates (low vol), NG smallest (high vol)**
 
 ### 3. Expected Return
+
 
 **Expected portfolio return:**
 
@@ -689,6 +706,7 @@ $$
 
 ### 4. Optimal
 
+
 **Trade-off:**
 
 - More frequent: Better tracking, higher costs
@@ -715,7 +733,9 @@ $$
 
 ## Key ideas
 
+
 ### 1. Phase 1
+
 
 **1. Choose Asset Classes:**
 
@@ -833,7 +853,8 @@ print(f"Crude Oil Carry: {cl_carry:.2%}")
 # Output
 ```
 
-### 1. Phase 2
+### 2. Phase 2
+
 
 **Step 1: Rank all assets by carry**
 
@@ -959,7 +980,8 @@ print(f"Natural Gas: {ng_contracts} contracts")
 # Output
 ```
 
-### 1. Phase 3
+### 3. Phase 3
+
 
 **Month 1 (October 1, 2024 - Initial Construction):**
 
@@ -1034,7 +1056,8 @@ Reduce: Natural Gas from 6 to 4 contracts (carry declining)
 - Natural Gas: 2 contracts × $25 = $50
 - **Total costs: $250 (0.025% of capital)**
 
-### 2. Phase 4
+### 4. Phase 4
+
 
 **Quarter 1 Review (December 31):**
 
@@ -1070,7 +1093,8 @@ Reduce: Natural Gas from 6 to 4 contracts (carry declining)
 - Q1 realized vol: 18% (above 15% target)
 - Reduce gross exposure by 15/18 = 83%
 
-### 3. Phase 5
+### 5. Phase 5
+
 
 **Scenario: March 2025 Energy Crisis**
 
@@ -1123,7 +1147,9 @@ close_position('Natural Gas', reason='extraordinary profit, regime shift')
 
 ## Risk Management for
 
+
 ### 1. Position Sizing
+
 
 **The 1/N rule with vol adjustment:**
 
@@ -1148,6 +1174,7 @@ $$
 | Equities | 10% | 3 indices, low weight |
 
 ### 2. Volatility
+
 
 **Daily adjustment:**
 
@@ -1174,6 +1201,7 @@ $$
 - Improves Sharpe ratio
 
 ### 3. Stop Losses and
+
 
 **Portfolio-level stops:**
 
@@ -1205,6 +1233,7 @@ $$
 
 ### 4. Correlation
 
+
 **Risk:** Correlations spike in crises (diversification fails)
 
 **Monitoring:**
@@ -1230,7 +1259,8 @@ if avg_corr > 0.3:
 | Stress | 0.35 | Reduce to 70% |
 | Crisis | 0.60 | Reduce to 40% |
 
-### 1. Crash Risk
+### 5. Crash Risk
+
 
 **The carry "smile" problem:**
 
@@ -1269,7 +1299,9 @@ if avg_corr > 0.3:
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Background:**
 
@@ -1351,6 +1383,7 @@ Short (Low Carry):
 - **Volatility targeting could have helped (reduce leverage as vol spiked)**
 
 ### 2. Transition Risk
+
 
 **Background:**
 
@@ -1436,6 +1469,7 @@ Realized vol: 13% (calm market)
 
 ### 3. Portable Alpha
 
+
 **Setup:**
 
 - Low storage levels entering winter
@@ -1514,6 +1548,7 @@ Risk: Weather turns warm, storage builds
 
 ### 4. Tactical Duration
 
+
 **Background:**
 
 - Australia: Mining boom, high rates (7%)
@@ -1568,6 +1603,7 @@ Target: Collect 6.5% annual carry
 
 ### 5. Duration Hedge
 
+
 **Setup:**
 
 - Institutional implementation
@@ -1620,6 +1656,7 @@ Target: Collect 6.5% annual carry
 
 
 ## Final Wisdom
+
 
 > "Carry factor portfolios are the institutional investor's systematic approach to harvesting risk premia that have persisted for centuries: backwardation compensates speculators for providing insurance to hedgers, interest rate differentials compensate for currency crash risk, and term premia compensate for duration risk. The math is elegant—rank 50 markets by carry, long the top, short the bottom, weight by inverse volatility, rebalance monthly. The edge is real—Sharpe ratios of 0.6-0.8 over decades. But the risk is profound—carry strategies are 'picking up pennies in front of a steamroller.' They earn steady 1-2% monthly, then crash -30-50% in rare crises (1998, 2008, 2020). Survival requires three non-negotiables: (1) Diversification across 30-50 uncorrelated markets—no single-asset concentration, (2) Volatility targeting—cut leverage when vol spikes from 15% to 60%, and (3) Tail hedges—0.5-1% annual cost for VIX calls or OTM puts protects against catastrophic losses. With these safeguards, carry portfolios offer institutional-quality risk-adjusted returns uncorrelated to traditional 60/40 portfolios. Without them, you're naked short volatility waiting for the steamroller."
 

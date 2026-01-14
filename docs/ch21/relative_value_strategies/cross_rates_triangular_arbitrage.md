@@ -1,11 +1,13 @@
 # Cross Rates and Triangular Arbitrage
 
+
 **Cross rates and triangular arbitrage** exploit temporary pricing discrepancies across three currency pairs,
 capturing risk-free profits when the implied cross rate deviates from the quoted market rate through rapid, automated execution.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -28,7 +30,9 @@ with pricing discrepancies creating a closed loop with positive net profit when 
 
 ## Theoretical Foundation
 
+
 ### 1. Cross Rate Definition
+
 
 **The fundamental relationship:**
 
@@ -50,6 +54,7 @@ $$
 - Arbitrage opportunity exists!
 
 ### 2. No-Arbitrage Condition
+
 
 **Triangular consistency:**
 
@@ -82,6 +87,7 @@ $$
 
 ### 3. Arbitrage Profit Formula
 
+
 **Expected profit:**
 
 $$
@@ -105,9 +111,11 @@ $$
 
 ## Cross Rate Mechanics
 
+
 **Understanding the relationships:**
 
 ### 1. Major Cross Rates
+
 
 **Most liquid crosses:**
 
@@ -132,6 +140,7 @@ $$
 - EUR/AUD: Risk on/off
 
 ### 2. Implied vs. Quoted
+
 
 **Two ways to obtain cross rate:**
 
@@ -159,6 +168,7 @@ $$
 **Arbitrage condition:** Direct price ≠ Synthetic price
 
 ### 3. Bid-Ask Considerations
+
 
 **Real-world friction:**
 
@@ -189,9 +199,11 @@ $$
 
 ## Triangular Arbitrage
 
+
 **The core strategy:**
 
 ### 1. Identifying Opportunities
+
 
 **Scanning algorithm:**
 
@@ -239,6 +251,7 @@ if discrepancy > total_transaction_cost:
 
 ### 2. Execution Strategy
 
+
 **Three-leg simultaneous trade:**
 
 **Direction 1: USD → EUR → GBP → USD**
@@ -285,6 +298,7 @@ if discrepancy > total_transaction_cost:
 
 ### 3. Speed Requirements
 
+
 **Time-sensitive execution:**
 
 **Opportunity lifespan:**
@@ -323,9 +337,11 @@ if discrepancy > total_transaction_cost:
 
 ## Greeks and Sensitivities
 
+
 **Understanding risk exposures:**
 
 ### 1. Price Delta (Δ)
+
 
 **Instantaneous price movement:**
 
@@ -362,6 +378,7 @@ $$
 
 ### 2. Gamma (Γ)
 
+
 **Sensitivity to volatility:**
 
 $$
@@ -381,6 +398,7 @@ $$
 - Spreads widen, opportunities vanish
 
 ### 3. Liquidity Theta (θ_L)
+
 
 **Time decay of opportunity:**
 
@@ -405,6 +423,7 @@ $$
 
 ### 4. Correlation (ρ)
 
+
 **Price co-movement:**
 
 **Ideal: ρ = 1 (perfect correlation)**
@@ -424,9 +443,11 @@ $$
 
 ## Implementation Details
 
+
 **Practical execution framework:**
 
 ### 1. Technology Stack
+
 
 **Essential components:**
 
@@ -459,6 +480,7 @@ $$
 - Minimum trading capital: $1M+
 
 ### 2. Opportunity Detection
+
 
 **Real-time monitoring:**
 
@@ -494,6 +516,7 @@ for each (triplet in currency_triplets):
 
 ### 3. Order Execution
 
+
 **Simultaneous order placement:**
 
 **Optimal strategy:**
@@ -523,6 +546,7 @@ Time 1.6 ms: Realize profit
 
 ### 4. Position Management
 
+
 **Handling partial fills:**
 
 **Scenario 1: All legs filled**
@@ -547,6 +571,7 @@ Time 1.6 ms: Realize profit
 - **Better than holding directional risk**
 
 ### 5. Performance Monitoring
+
 
 **Key metrics:**
 
@@ -578,9 +603,11 @@ Time 1.6 ms: Realize profit
 
 ## When It Works Best
 
+
 **Optimal market conditions:**
 
 ### 1. Market Stress
+
 
 **Temporary dislocations:**
 
@@ -607,6 +634,7 @@ Time 1.6 ms: Realize profit
 - **Crisis = bonanza for arbitrage**
 
 ### 2. Low Competition
+
 
 **Before HFT dominance:**
 
@@ -641,6 +669,7 @@ Time 1.6 ms: Realize profit
 
 ### 3. Fragmented Markets
 
+
 **Multiple venues:**
 
 **Regulatory arbitrage:**
@@ -660,9 +689,11 @@ Time 1.6 ms: Realize profit
 
 ## When It Fails
 
+
 **Challenges and limitations:**
 
 ### 1. Technology Arms Race
+
 
 **Speed competition:**
 
@@ -688,6 +719,7 @@ Time 1.6 ms: Realize profit
 - **Market increasingly efficient**
 
 ### 2. Execution Risk
+
 
 **The primary failure mode:**
 
@@ -721,6 +753,7 @@ Time 1.6 ms: Realize profit
 
 ### 3. Market Efficiency
 
+
 **Arbitrage erodes itself:**
 
 **Feedback loop:**
@@ -752,9 +785,11 @@ Time 1.6 ms: Realize profit
 
 ## Common Mistakes
 
+
 **Frequent errors to avoid:**
 
 ### 1. Ignoring Transaction Costs
+
 
 **The mistake:**
 
@@ -779,6 +814,7 @@ Time 1.6 ms: Realize profit
 - Be conservative in estimates
 
 ### 2. Sequential Execution
+
 
 **The mistake:**
 
@@ -805,6 +841,7 @@ Time 1.6 ms: Realize profit
 
 ### 3. Insufficient Speed
 
+
 **The mistake:**
 
 - Retail trader spots 5 bps opportunity
@@ -828,6 +865,7 @@ Time 1.6 ms: Realize profit
 - Accept triangular arbitrage not viable for retail
 
 ### 4. Over-Leveraging
+
 
 **The mistake:**
 
@@ -855,7 +893,9 @@ Time 1.6 ms: Realize profit
 
 ## Risk Management Rules
 
+
 ### 1. Position Limits
+
 
 **Conservative sizing:**
 
@@ -876,6 +916,7 @@ $$
 - **Actual max: $50M** (smaller of two)
 
 ### 2. Execution Monitoring
+
 
 **Real-time checks:**
 
@@ -902,6 +943,7 @@ $$
 
 ### 3. Circuit Breakers
 
+
 **Automatic safeguards:**
 
 **Stop trading when:**
@@ -919,6 +961,7 @@ $$
 - Risk limits reset
 
 ### 4. Diversification
+
 
 **Spread across:**
 
@@ -947,7 +990,9 @@ $$
 
 ## Real-World Examples
 
-### 1. 2008 Crisis Opportunity
+
+### 1. Crisis Opportunity
+
 
 **Setup:**
 
@@ -984,6 +1029,7 @@ $$
 **Lesson:** Crises create massive arbitrage opportunities. But need capital + technology to capture.
 
 ### 2. Brexit Flash Crash (2016)
+
 
 **Setup:**
 
@@ -1028,6 +1074,7 @@ $$
 
 ### 3. Swiss Franc Unpegging (2015)
 
+
 **Setup:**
 
 - January 15, 2015: SNB abandoned 1.20 floor
@@ -1065,6 +1112,7 @@ $$
 - Some markets are "un-arbitrageable" temporarily
 
 ### 4. Algorithmic Competition (2018)
+
 
 **Setup:**
 
@@ -1110,9 +1158,11 @@ $$
 
 ## Practical Steps
 
+
 **Step-by-step implementation (institutional):**
 
 ### 1. Infrastructure Setup
+
 
 **Phase 1: Technology (6-12 months):**
 
@@ -1139,6 +1189,7 @@ $$
 - **Cost: $50-200K annually**
 
 ### 2. Algorithm Development
+
 
 **Core logic:**
 
@@ -1204,6 +1255,7 @@ def execute_arbitrage(path, size):
 
 ### 3. Backtesting and Simulation
 
+
 **Historical analysis:**
 
 **Data collection:**
@@ -1228,6 +1280,7 @@ def execute_arbitrage(path, size):
 - Sharpe ratio (> 5?)
 
 ### 4. Paper Trading
+
 
 **Live testing without risk:**
 
@@ -1254,6 +1307,7 @@ def execute_arbitrage(path, size):
 
 ### 5. Live Trading
 
+
 **Gradual ramp-up:**
 
 **Week 1-2: Small size**
@@ -1277,6 +1331,7 @@ def execute_arbitrage(path, size):
 ---
 
 ## Final Wisdom
+
 
 > "Triangular arbitrage is the purest form of trading—theoretically risk-free, economically sound, and intellectually satisfying. But it's also a technological arms race where milliseconds determine winners and losers. In the 1990s, smart traders made fortunes with simple algorithms. Today, only firms with tens of millions in technology and microsecond execution compete. For retail traders, it's a fascinating concept but practically inaccessible. The lesson: some opportunities exist only for those with the fastest infrastructure. Market efficiency is real, and it's enforced by those who can trade in nanoseconds."
 

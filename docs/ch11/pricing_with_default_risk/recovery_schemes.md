@@ -1,10 +1,12 @@
 # Recovery Schemes
 
+
 Recovery assumptions specify what is paid to investors upon default. They are crucial modeling choices that significantly affect prices and credit spreads.
 
 ---
 
-## 1. Common recovery conventions
+## Common recovery conventions
+
 
 Three standard recovery schemes are widely used:
 
@@ -17,7 +19,8 @@ Three standard recovery schemes are widely used:
 
 ---
 
-## 2. Modeling implications
+## Modeling implications
+
 
 Different recovery schemes imply different pricing formulas:
 - RFV introduces jump losses independent of rates,
@@ -28,7 +31,8 @@ Choice affects calibration and spread term structure.
 
 ---
 
-## 3. Empirical considerations
+## Empirical considerations
+
 
 Empirically:
 - recovery rates vary across sectors and seniority,
@@ -39,7 +43,8 @@ Nonetheless, constant recovery is standard in practice.
 
 ---
 
-## 4. Interaction with intensity
+## Interaction with intensity
+
 
 Under intensity models:
 - recovery assumptions interact with default intensity,
@@ -50,7 +55,8 @@ Often, recovery is fixed to stabilize calibration.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Recovery assumptions materially affect prices.
 - RFV, RMV, and RT are standard conventions.
@@ -59,6 +65,7 @@ Often, recovery is fixed to stabilize calibration.
 ---
 
 ## Further reading
+
 
 - Duffie & Singleton, recovery modeling.
 - O'Kane, recovery assumptions in CDS.

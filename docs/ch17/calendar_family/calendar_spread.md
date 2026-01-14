@@ -1,5 +1,6 @@
 # Calendar Spreads
 
+
 **Calendar spreads** (also called time spreads or horizontal spreads) are strategies where you profit from differences in implied volatility between different expiration dates by simultaneously buying and selling options at the same strike but different maturities.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_entry_timing.png?raw=true" alt="calendar_spread_entry_timing" width="700">
@@ -35,6 +37,7 @@ $$
 
 ## What Is the
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_iv_impact.png?raw=true" alt="calendar_spread_iv_impact" width="700">
 </p>
@@ -43,6 +46,7 @@ $$
 **Before understanding calendar spreads, we need to understand the term structure:**
 
 ### 1. The Concept
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_payoff.png?raw=true" alt="calendar_spread_payoff" width="700">
@@ -99,6 +103,7 @@ Plot IV vs. Time to Maturity → creates a curve
 
 ### 2. Real Examples
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/calendar_spread_time_decay.png?raw=true" alt="calendar_spread_time_decay" width="700">
 </p>
@@ -132,9 +137,11 @@ Plot IV vs. Time to Maturity → creates a curve
 
 ## What Is a Calendar
 
+
 **A calendar spread trades the relationship between two maturities:**
 
 ### 1. Basic Structure
+
 
 **Long Calendar Spread (Most Common):**
 
@@ -151,6 +158,7 @@ Plot IV vs. Time to Maturity → creates a curve
 - Net cost: approximately $2 per share
 
 ### 2. Why This
+
 
 **Time decay asymmetry:**
 
@@ -173,6 +181,7 @@ Plot IV vs. Time to Maturity → creates a curve
 ---
 
 ## The Portfolio
+
 
 Your calendar spread portfolio consists of:
 
@@ -225,9 +234,11 @@ $$
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 **Calendar spreads are fundamentally trading the volatility term structure:**
 
@@ -244,6 +255,7 @@ You're betting that the relationship between front and back month volatilities w
 - **Volatility uncertainty resolution:** Different maturities price uncertainty differently
 
 ### 2. Why Calendar
+
 
 **The term structure reflects different economic forces:**
 
@@ -278,6 +290,7 @@ More time = more cumulative uncertainty. Longer-dated options price this in.
 
 ### 3. The Volatility
 
+
 **Historical observation:**
 
 Calendar spreads have a positive expected return from:
@@ -303,6 +316,7 @@ Studies show:
 
 ### 4. Professional
 
+
 **Institutional traders view calendars as:**
 
 1. **Theta collection with vol protection:**
@@ -325,6 +339,7 @@ Studies show:
    - Large vol spikes: Complex (front gamma negative, back gamma positive)
 
 ### 5. The Time
+
 
 **Calendars reveal that volatility has temporal structure:**
 
@@ -356,6 +371,7 @@ Just as bond traders trade yield curve (interest rates across maturities), optio
 | Curve inversion | Term structure inversion |
 
 ### 6. Fair Value
+
 
 **Theoretical fair value of calendar spread:**
 
@@ -394,6 +410,7 @@ Theta collection is positive and certain. Vega P&L depends on IV path. Gamma cos
 
 ### 7. When Calendar
 
+
 **Genuine edge exists when:**
 
 1. **Term structure extremes:** 
@@ -420,6 +437,7 @@ Understanding economic foundations helps recognize when calendars offer genuine 
 
 ## The P&L Formula
 
+
 For a calendar spread:
 
 $$
@@ -429,6 +447,7 @@ $$
 **Breaking it down:**
 
 ### 1. Term Structure
+
 
 **Two components:**
 
@@ -475,6 +494,7 @@ This is analogous to bond "roll-down yield."
 
 ### 2. Theta P&L
 
+
 $$
 \Theta_{\text{net}} = \Theta_{\text{back}} - \Theta_{\text{front}}
 $$
@@ -505,6 +525,7 @@ Calendar: $\Theta_{\text{net}} = -0.29 - (-0.50) = +\$0.21$/day
 **You collect +$0.21/day!**
 
 ### 3. Gamma P&L
+
 
 **Mixed gamma:**
 
@@ -541,6 +562,7 @@ $$
 
 ### 4. Complete Daily
 
+
 $$
 \text{Daily P\&L} = \underbrace{(\mathcal{V}_{\text{back}} - \mathcal{V}_{\text{front}}) d\sigma}_{\text{Vega}} + \underbrace{\Theta_{\text{net}} dt}_{\text{Theta (+)}} + \underbrace{\frac{1}{2}\Gamma_{\text{net}} (dS)^2}_{\text{Gamma (-)}}
 $$
@@ -553,7 +575,9 @@ $$
 
 ## Types of Calendar
 
+
 ### 1. Standard Calendar
+
 
 **Structure:**
 
@@ -577,6 +601,7 @@ $$
 
 ### 2. Diagonal Calendar
 
+
 **Structure:**
 
 - Different strikes (not same strike)
@@ -597,6 +622,7 @@ $$
 - Combines calendar + vertical spread
 
 ### 3. Double Calendar
+
 
 **Structure:**
 
@@ -619,6 +645,7 @@ $$
 
 ### 4. Reverse Calendar
 
+
 **Structure:**
 
 - **Buy** front month
@@ -635,6 +662,7 @@ $$
 ---
 
 ## Concrete Example
+
 
 **Setup:**
 
@@ -766,6 +794,7 @@ After 30 days:
 
 ## Calendar Spreads vs.
 
+
 | Strategy | What You Trade | Time Dimension | Number of Expiries |
 |----------|---------------|----------------|-------------------|
 | **Delta Hedging** | Nothing (risk mgmt) | N/A | Any |
@@ -777,6 +806,7 @@ After 30 days:
 | **Variance Swaps** | Realized variance | Single maturity | 1 |
 
 ### 1. Key Distinctions
+
 
 **Calendar Spreads vs. Gamma Scalping:**
 
@@ -809,9 +839,11 @@ After 30 days:
 
 ## Why Calendar Spreads
 
+
 **Why is the term structure non-flat?**
 
 ### 1. Mean Reversion of
+
 
 **Volatility reverts to long-term average:**
 
@@ -829,6 +861,7 @@ After 30 days:
 
 ### 2. Events and
 
+
 **Known events create humps:**
 
 - Earnings in 1 month
@@ -844,6 +877,7 @@ After 30 days:
 
 ### 3. Supply and Demand
 
+
 **Hedging patterns:**
 
 - Portfolio managers hedge near-term risk more
@@ -853,6 +887,7 @@ After 30 days:
 
 ### 4. Carry and Cost of
 
+
 **Time value of money:**
 
 - Longer-dated options tie up capital longer
@@ -860,6 +895,7 @@ After 30 days:
 - → Upward sloping (typically)
 
 ### 5. Uncertainty
+
 
 **Information arrival:**
 
@@ -871,7 +907,9 @@ After 30 days:
 
 ## When Calendar
 
+
 ### 1. For Long Calendar
+
 
 **Favorable conditions:**
 
@@ -914,6 +952,7 @@ After 30 days:
 
 ### 2. For Reverse
 
+
 **Favorable conditions:**
 
 **1. Inverted term structure**
@@ -943,7 +982,9 @@ After 30 days:
 
 ## Pros and Cons
 
+
 ### 1. Advantages ✓
+
 
 **1. Positive theta (usually)**
 
@@ -996,6 +1037,7 @@ After 30 days:
 - Reduces bleed risk
 
 ### 2. Disadvantages ✗
+
 
 **1. Limited profit potential**
 

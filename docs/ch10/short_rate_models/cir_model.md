@@ -1,10 +1,12 @@
 # CIR Model
 
+
 The Cox–Ingersoll–Ross (CIR) model is a mean-reverting short-rate model with **square-root diffusion**, designed to keep rates non-negative under appropriate conditions.
 
 ---
 
-## 1. Model dynamics
+## Model dynamics
+
 
 Under the risk-neutral measure \(\mathbb{Q}\),
 
@@ -17,7 +19,8 @@ with parameters \(\kappa,\theta,\sigma>0\).
 
 ---
 
-## 2. Positivity and the Feller condition
+## Positivity and the Feller condition
+
 
 The boundary behavior depends on the **Feller condition**:
 
@@ -32,7 +35,8 @@ If violated, \(r_t\) may hit zero but remains non-negative.
 
 ---
 
-## 3. Bond pricing (affine form)
+## Bond pricing (affine form)
+
 
 Like Vasicek, CIR yields an exponential-affine bond price:
 
@@ -46,7 +50,8 @@ Here \(A\) and \(B\) again have closed forms (more complex than Vasicek), reflec
 
 ---
 
-## 4. Strengths and limitations
+## Strengths and limitations
+
 
 Strengths:
 - non-negativity (under Feller),
@@ -59,7 +64,8 @@ Limitations:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - CIR is mean-reverting with state-dependent volatility.
 - It often preserves non-negativity of rates.
@@ -68,6 +74,7 @@ Limitations:
 ---
 
 ## Further reading
+
 
 - Cox, Ingersoll & Ross (1985).
 - Brigo & Mercurio, CIR and affine term structures.

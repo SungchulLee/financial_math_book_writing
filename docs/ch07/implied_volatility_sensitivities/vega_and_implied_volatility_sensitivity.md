@@ -1,10 +1,12 @@
 # Vega and Implied Volatility Sensitivity
 
+
 Implied volatility sensitivities play a central role in option risk management. Among them, **vega** measures how option prices respond to changes in implied volatility and serves as the primary channel through which volatility risk is transmitted.
 
 ---
 
-## 1. Definition of vega
+## Definition of vega
+
 
 For an option with price \(P\) and implied volatility \(\sigma_{\text{impl}}\), **vega** is defined as
 
@@ -21,7 +23,8 @@ In the Black–Scholes model, vega has a closed-form expression and is:
 
 ---
 
-## 2. Vega as sensitivity to market quotes
+## Vega as sensitivity to market quotes
+
 
 Because implied volatility is the market-quoted variable, vega measures sensitivity to **observable market moves** rather than model parameters.
 
@@ -37,7 +40,8 @@ This linear approximation underlies most day-to-day volatility risk management.
 
 ---
 
-## 3. Dependence on strike and maturity
+## Dependence on strike and maturity
+
 
 Vega depends strongly on:
 - **moneyness:** highest near ATM,
@@ -48,7 +52,8 @@ As a result, vega exposure is distributed unevenly across an option book.
 
 ---
 
-## 4. Beyond Black–Scholes
+## Beyond Black–Scholes
+
 
 Outside Black–Scholes:
 - vega depends on the assumed smile dynamics,
@@ -59,7 +64,8 @@ This motivates careful interpretation of vega hedges.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Vega measures price sensitivity to implied volatility.
 - It is largest near ATM and for intermediate maturities.
@@ -68,6 +74,7 @@ This motivates careful interpretation of vega hedges.
 ---
 
 ## Further reading
+
 
 - Hull, *Options, Futures, and Other Derivatives*.
 - Taleb, *Dynamic Hedging*.

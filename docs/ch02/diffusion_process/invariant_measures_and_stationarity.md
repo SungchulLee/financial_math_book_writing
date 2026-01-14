@@ -1,5 +1,6 @@
 # Invariant Measures and Stationarity
 
+
 Let \((X_t)_{t\ge 0}\) be a Markov process on \(\mathbb{R}^d\) with semigroup \((P_t)_{t\ge 0}\),
 
 \[
@@ -11,6 +12,7 @@ P_t f(x) := \mathbb{E}^x[f(X_t)].
 ---
 
 ## Invariant Measure
+
 
 A probability measure \(\pi\) is **invariant** if for all bounded measurable \(f\) and all \(t\ge 0\),
 
@@ -29,6 +31,7 @@ Equivalently, if \(X_0\sim \pi\) then \(X_t\sim \pi\) for all \(t\ge 0\).
 
 ## Stationarity
 
+
 A process is **stationary** if its finite-dimensional distributions are invariant under time shifts; in particular,
 
 \[
@@ -41,6 +44,7 @@ Starting a Markov process from an invariant measure yields a stationary process.
 ---
 
 ## Generator Characterization
+
 
 Let \(\mathcal{L}\) be the generator. Formally, invariance implies
 
@@ -56,6 +60,7 @@ for a suitable class of test functions \(f\).
 ---
 
 ## Fokker–Planck (Adjoint) View
+
 
 For a diffusion with drift \(b\) and diffusion matrix \(a=\sigma\sigma^\top\), a stationary density \(\pi(x)\) satisfies
 
@@ -76,6 +81,7 @@ i.e. \(\mathcal{L}^\ast \pi = 0\).
 
 ## Reversibility (Detailed Balance)
 
+
 A stationary process is **reversible** w.r.t. \(\pi\) if for all bounded measurable \(f,g\),
 
 \[
@@ -92,6 +98,7 @@ Reversibility is stronger than invariance and connects directly to time reversal
 ---
 
 ## Example: Gradient Diffusion
+
 
 For
 
@@ -113,6 +120,7 @@ a natural invariant density is
 ---
 
 ## What to Remember
+
 
 - Invariance: \(\pi P_t = \pi\).
 - Stationarity is obtained by starting from \(\pi\).

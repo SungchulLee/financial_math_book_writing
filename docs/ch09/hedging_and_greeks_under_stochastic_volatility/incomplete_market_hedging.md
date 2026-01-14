@@ -1,10 +1,12 @@
 # Incomplete Market Hedging
 
+
 Stochastic volatility models operate in **incomplete markets**: not all sources of risk can be hedged using traded assets. This fundamentally changes hedging theory and practice.
 
 ---
 
-## 1. Why markets are incomplete
+## Why markets are incomplete
+
 
 In stochastic volatility models:
 - volatility is not directly tradable,
@@ -15,7 +17,8 @@ As a result, perfect replication is impossible.
 
 ---
 
-## 2. Consequences for hedging
+## Consequences for hedging
+
 
 In an incomplete market:
 - hedging strategies are not unique,
@@ -26,7 +29,8 @@ This contrasts sharply with Black–Scholes replication.
 
 ---
 
-## 3. Common hedging instruments
+## Common hedging instruments
+
 
 Practitioners attempt to reduce incompleteness using:
 - options of different strikes/maturities (vega hedging),
@@ -37,7 +41,8 @@ Still, some risks remain irreducible.
 
 ---
 
-## 4. Hedging error as a random variable
+## Hedging error as a random variable
+
 
 Hedging error should be viewed as:
 
@@ -54,7 +59,8 @@ Risk management focuses on:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Stochastic volatility implies incomplete markets.
 - Hedging aims to reduce, not eliminate, risk.
@@ -63,6 +69,7 @@ Risk management focuses on:
 ---
 
 ## Further reading
+
 
 - Schweizer, mean–variance hedging.
 - Cont, *Model Uncertainty and Its Impact on Pricing*.

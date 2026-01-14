@@ -1,5 +1,6 @@
 # Small Noise and Large Deviations
 
+
 Consider the small-noise diffusion on \([0,T]\):
 
 \[
@@ -29,6 +30,7 @@ Large deviations quantify exponentially small probabilities of atypical paths.
 ---
 
 ## Path-Space Rate Function (Freidlin–Wentzell)
+
 
 Let \(\phi\in C([0,T];\mathbb{R}^d)\). If \(\phi\) is absolutely continuous and \(\sigma(\phi(t))\) is invertible, define
 
@@ -67,6 +69,7 @@ I_{0,T}(\phi)=\frac{1}{2}\int_0^T \|u(t)\|^2\,\mathrm{d}t.
 
 ## LDP Heuristic
 
+
 For a set \(A\) of paths,
 
 \[
@@ -87,6 +90,7 @@ Thus, rare events occur along paths minimizing \(I_{0,T}\) under constraints (�
 
 ## Hamilton–Jacobi Orientation
 
+
 With \(a(x)=\sigma(x)\sigma(x)^\top\), define the Hamiltonian
 
 \[
@@ -106,6 +110,7 @@ in contrast to diffusion expectations, which satisfy linear Kolmogorov equations
 ---
 
 ## What to Remember
+
 
 - Small-noise diffusions satisfy a path-space LDP with speed \(\varepsilon\).
 - The rate function is an action measuring the energy needed to force a path.

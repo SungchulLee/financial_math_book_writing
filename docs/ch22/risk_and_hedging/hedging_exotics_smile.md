@@ -1,10 +1,12 @@
 # Hedging Exotics (Smile and Skew)
 
+
 **Hedging exotic options with volatility smile and skew** requires managing multidimensional Greeks (vanna, volga, vega) that interact with the non-flat implied volatility surface, where standard Black-Scholes delta hedging fails because option values depend not just on spot movement but on how the entire volatility surface shifts dynamically with market moves, creating path-dependent hedge ratios and requiring sophisticated cross-gamma adjustments.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -27,7 +29,9 @@
 
 ## What Is Smile/Skew Risk?
 
+
 ### 1. Surface vs. Flat Vol
+
 
 **Black-Scholes world:**
 
@@ -59,6 +63,7 @@ $$
 
 ### 2. Smile Definition
 
+
 **Volatility smile:**
 
 $$
@@ -79,6 +84,7 @@ $$
 
 ### 3. Skew Definition
 
+
 **Volatility skew:**
 
 $$
@@ -96,6 +102,7 @@ $$
 - Reality: Both present (smile + skew)
 
 ### 4. Sticky Dynamics
+
 
 **How does surface move with spot?**
 
@@ -126,6 +133,7 @@ Stock at $100, 90% strike at 28% vol
 
 ### 5. Vanna
 
+
 **Cross-Greek definition:**
 
 $$
@@ -150,6 +158,7 @@ OTM call with positive vanna:
 
 ### 6. Volga (Vomma)
 
+
 **Volatility convexity:**
 
 $$
@@ -173,6 +182,7 @@ Long straddle with positive volga:
 - Short options: Negative volga (hurt by smile)
 
 ### 7. Term Structure
+
 
 **Volatility across maturities:**
 
@@ -201,6 +211,7 @@ VIX term structure:
 ---
 
 ## Key Terminology
+
 
 **Implied Volatility:**
 - Market's expectation of future volatility
@@ -242,7 +253,9 @@ VIX term structure:
 
 ## Smile Hedging Strategies
 
+
 ### 1. Vanna Hedging
+
 
 **Problem:** Exotic has large vanna exposure
 
@@ -276,6 +289,7 @@ Buy OTM put with positive vanna of +1,000
 
 ### 2. Volga Hedging
 
+
 **Problem:** Exotic sensitive to smile shape
 
 **Example:** Long digital option
@@ -306,6 +320,7 @@ ATM straddle volga: +200 per straddle
 **Cost:** Now have vega exposure from straddles (need to hedge separately)
 
 ### 3. Butterfly Hedging
+
 
 **Smile hedging using butterflies:**
 
@@ -344,6 +359,7 @@ Need volga of +10,000
 
 ### 4. Risk Reversal Hedging
 
+
 **Skew hedging:**
 
 **Structure:** Buy call, sell put (or vice versa)
@@ -374,6 +390,7 @@ Exotic with negative vanna: -5,000
 
 ### 5. Calendar Spread
 
+
 **Term structure hedging:**
 
 **Problem:** Exotic sensitive to vol term structure
@@ -398,6 +415,7 @@ Exotic with negative vanna: -5,000
 
 ### 6. Dispersion Trading
 
+
 **Correlation hedging:**
 
 **Structure:**
@@ -420,6 +438,7 @@ Exotic with negative vanna: -5,000
 **Result:** Comprehensive smile hedge
 
 ### 7. Dynamic Adjustment
+
 
 **Vanna-volga approach:**
 
@@ -448,7 +467,9 @@ $$
 
 ## Exotic-Specific Hedging
 
+
 ### 1. Barrier Options
+
 
 **Challenges:**
 
@@ -488,6 +509,7 @@ Steeper skew → Higher knockout probability
 
 ### 2. Digital Options
 
+
 **Challenges:**
 
 - Infinite gamma at strike at expiration
@@ -523,6 +545,7 @@ Price using skew:
 1 week before expiration: EXIT if near strike
 
 ### 3. Variance Swaps
+
 
 **Challenges:**
 
@@ -561,6 +584,7 @@ Steep smile → High variance swap value
 
 ### 4. Asian Options
 
+
 **Challenges:**
 
 - Lower vega than vanilla (averaging reduces vol)
@@ -596,6 +620,7 @@ Less sensitive than vanilla:
 - Focus on ATM smile
 
 ### 5. Autocallables
+
 
 **Challenges:**
 
@@ -635,6 +660,7 @@ Very sensitive:
 
 ### 6. Cliquet Options
 
+
 **Challenges:**
 
 - Forward-start structure
@@ -669,6 +695,7 @@ $$
 Trade options at $T_1$ and $T_2$ to create forward exposure
 
 ### 7. Worst-Of Options
+
 
 **Challenges:**
 
@@ -709,7 +736,9 @@ Complex:
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Vanna
+
 
 **Flat vol assumption:**
 
@@ -732,6 +761,7 @@ Long down-and-out call, barrier $90$, spot $100$
 - On $10M notional: **$500K unexpected loss**
 
 ### 2. Wrong Sticky Assumption
+
 
 **Sticky strike vs. sticky delta:**
 
@@ -757,6 +787,7 @@ Hedging barrier option
 
 ### 3. Static Hedge
 
+
 **Set-and-forget:**
 
 - **Mistake:** Hedge smile risk once and don't update
@@ -779,6 +810,7 @@ Month 1: Hedge vanna with OTM puts (vanna = -1,000)
 - Unhedged vanna impact: -1,500 × 5% × 5 vol = -$37,500 loss
 
 ### 4. Butterfly Mispricing
+
 
 **Ignoring bid-ask:**
 
@@ -803,6 +835,7 @@ Need to hedge volga using butterflies
 **Solution:** Use fewer, more liquid strikes (even if imperfect hedge)
 
 ### 5. Over-Hedging Tail
+
 
 **Excessive wing hedging:**
 
@@ -831,6 +864,7 @@ Exotic with vega spread across strikes:
 
 ### 6. Correlation Ignorance
 
+
 **Multi-asset smile:**
 
 - **Mistake:** Hedge each asset independently, ignore correlation
@@ -855,7 +889,9 @@ Worst-of option on AAPL and MSFT
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Perfect smile hedge:**
 
@@ -915,6 +951,7 @@ Worst-of option on AAPL and MSFT
 4. Didn't over-hedge (accepted some risk)
 
 ### 2. Worst Case: Disaster
+
 
 **Smile risk ignored:**
 
@@ -983,7 +1020,9 @@ Worst-of option on AAPL and MSFT
 
 ## Risk Management Rules
 
+
 ### 1. Vanna Limits
+
 
 **Maximum unhedged vanna:**
 
@@ -1001,6 +1040,7 @@ Delta: 10,000 shares
 
 ### 2. Volga Limits
 
+
 **Maximum unhedged volga:**
 
 $$
@@ -1017,6 +1057,7 @@ Vega: $50,000 per 1% vol
 
 ### 3. Rehedge Triggers
 
+
 **Smile hedge rebalancing:**
 
 1. **Time-based:** Every month minimum
@@ -1027,6 +1068,7 @@ Vega: $50,000 per 1% vol
 **Exception:** Exit instead of rehedge if near barriers
 
 ### 4. Position Limits
+
 
 **Exotic notional limits:**
 
@@ -1044,6 +1086,7 @@ Comfortable with $100M vanilla options
 
 ### 5. Smile Stress Tests
 
+
 **Required scenarios:**
 
 1. **Parallel shift:** ±10 vol points
@@ -1060,6 +1103,7 @@ $$
 
 ### 6. Exit Discipline
 
+
 **Mandatory exits:**
 
 **For barriers:**
@@ -1075,6 +1119,7 @@ $$
 
 ### 7. Documentation
 
+
 **Required records:**
 
 - Vanna/volga at trade inception
@@ -1088,7 +1133,9 @@ $$
 
 ## Real-World Examples
 
-### 1. 2008 Crisis Vol Spike
+
+### 1. Crisis Vol Spike
+
 
 **FX barrier options:**
 
@@ -1110,6 +1157,7 @@ $$
 **Lesson:** Vanna matters most in crisis (when spot and vol move together)
 
 ### 2. Oil Digitals (2014-2016)
+
 
 **Oil binary options:**
 
@@ -1137,6 +1185,7 @@ $$
 
 ### 3. Variance Swap Blow-Up
 
+
 **Volatility arbitrage fund (2015):**
 
 **Strategy:**
@@ -1161,6 +1210,7 @@ $$
 - Forced to liquidate
 
 ### 4. FX Vanna Success (Ongoing)
+
 
 **FX options desk:**
 
@@ -1188,7 +1238,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Calculate Exposures
+
 
 **Step-by-step:**
 
@@ -1209,6 +1261,7 @@ $$
 
 ### 2. Design Hedge
 
+
 **Based on exposures:**
 
 **If large vanna:**
@@ -1225,6 +1278,7 @@ $$
 - Add correlation overlay
 
 ### 3. Implement Hedge
+
 
 **Execution:**
 
@@ -1244,6 +1298,7 @@ $$
 
 ### 4. Monitor Daily
 
+
 **Daily surveillance:**
 
 - Spot price vs. strikes
@@ -1253,6 +1308,7 @@ $$
 - Mark-to-market hedge
 
 ### 5. Rebalance
+
 
 **When to rehedge:**
 
@@ -1270,6 +1326,7 @@ $$
 - Document rehedge
 
 ### 6. P&L Attribution
+
 
 **Decompose P&L:**
 
@@ -1292,6 +1349,7 @@ Daily P&L: +$50K
 
 ### 7. Review and Learn
 
+
 **Post-trade analysis:**
 
 - Did hedge work as intended?
@@ -1303,6 +1361,7 @@ Daily P&L: +$50K
 ---
 
 ## Final Wisdom
+
 
 > "Hedging exotics with smile and skew is the difference between surviving as a derivatives dealer and blowing up spectacularly. Black-Scholes is a beautiful lie—it assumes one volatility for all strikes, when reality shows us a complex surface that shifts and twists with every market move. Vanna and volga aren't academic curiosities; they're the cross-Greeks that will either save your P&L or destroy it when markets stress. The cruel irony: smile risk matters most precisely when you can't hedge it well—near barriers, near expiration, near strikes where gamma explodes. Every blow-up in exotic options traces back to the same mistake: treating the vol surface as flat when it's actually a living, breathing, multi-dimensional beast. Delta-hedge alone is like trying to sail a ship by only watching the compass, ignoring the wind and waves. You need vanna hedges (OTM options), volga hedges (butterflies), and the discipline to exit positions that become unhedgeable. The market makers who survive decades aren't the ones with the fanciest models—they're the ones who respect the smile, hedge it systematically, and know when to exit rather than hero their way through a gamma explosion near a barrier. When in doubt, remember: vanna will kill you in crashes (when spot and vol move together), and volga will kill you when smile steepens (which also happens in crashes). So hedge both, or don't trade exotics at all."
 

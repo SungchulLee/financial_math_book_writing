@@ -1,10 +1,12 @@
 # Fourier Pricing Methods
 
+
 Fourier methods convert option pricing into numerical integration problems using characteristic functions. They are widely used for stochastic volatility models because they are fast and accurate for repeated evaluations during calibration.
 
 ---
 
-## 1. Basic idea
+## Basic idea
+
 
 Let \(X_T = \log S_T\). Many models provide \(\varphi(u) = \mathbb{E}[e^{iuX_T}]\).
 Option prices can be expressed via Fourier inversion of:
@@ -13,7 +15,8 @@ Option prices can be expressed via Fourier inversion of:
 
 ---
 
-## 2. Fourier inversion for densities
+## Fourier inversion for densities
+
 
 If \(f_{X_T}(x)\) is the density of \(X_T\), then
 
@@ -27,7 +30,8 @@ In principle, one could compute prices by integrating payoff \(g(e^x)\) against 
 
 ---
 
-## 3. Carr–Madan approach (damped payoff)
+## Carr–Madan approach (damped payoff)
+
 
 A common practical method dampens the call payoff to ensure integrability:
 
@@ -46,7 +50,8 @@ This yields fast pricing across many strikes in one run.
 
 ---
 
-## 4. Numerical integration choices
+## Numerical integration choices
+
 
 Common quadrature/inversion methods:
 - standard quadrature (Gauss–Legendre, Simpson),
@@ -60,7 +65,8 @@ Key numerical parameters:
 
 ---
 
-## 5. Practical stability considerations
+## Practical stability considerations
+
 
 - ensure the integrand decays sufficiently (choose \(\alpha\) appropriately),
 - control oscillatory integrals (step size and truncation),
@@ -70,7 +76,8 @@ For calibration, consistent numerical settings across maturities matter to avoid
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Fourier pricing uses characteristic functions to compute option prices efficiently.
 - Carr–Madan and FFT methods are standard for stochastic volatility calibration.
@@ -79,6 +86,7 @@ For calibration, consistent numerical settings across maturities matter to avoid
 ---
 
 ## Further reading
+
 
 - Carr & Madan (1999), FFT pricing.
 - Lee (2004), moment formulas and tail behavior.

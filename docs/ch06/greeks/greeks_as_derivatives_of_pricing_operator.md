@@ -1,10 +1,12 @@
 # Greeks as Derivatives of the Pricing Operator
 
+
 A mathematically clean viewpoint is: pricing is an **operator** that maps a payoff to a function of \((t,S)\), and Greeks are derivatives of that operator with respect to inputs.
 
 ---
 
 ## Pricing as an operator
+
 
 For a European payoff \(\Phi(S_T)\) under a risk-neutral model, define the pricing operator
 
@@ -30,6 +32,7 @@ V(t,S) = (\mathcal{P}\Phi)(t,S)
 
 ## State derivatives vs parameter derivatives
 
+
 - **State derivatives**: \(\partial_S(\mathcal{P}\Phi)\), \(\partial_S^2(\mathcal{P}\Phi)\) correspond to \(\Delta,\Gamma\).
 - **Parameter derivatives**: \(\partial_\sigma(\mathcal{P}\Phi)\), \(\partial_r(\mathcal{P}\Phi)\) correspond to vega and rho.
 
@@ -41,6 +44,7 @@ This separation matters because:
 ---
 
 ## Differentiation under the expectation
+
 
 Formally, for a parameter \(\theta\),
 
@@ -66,6 +70,7 @@ Each method leads to a distinct “representation formula” for Greeks.
 
 ## Functional-analytic analogy
 
+
 Think of \(\mathcal{P}\) as a linear map (for fixed model) acting on payoffs:
 
 
@@ -83,6 +88,7 @@ Greeks are then derivatives of \(\mathcal{P}\Phi\) with respect to:
 ---
 
 ## What to remember
+
 
 - The pricing map is an operator \(\mathcal{P}\).
 - Greeks are derivatives of \(\mathcal{P}\Phi\) with respect to state variables and model parameters.

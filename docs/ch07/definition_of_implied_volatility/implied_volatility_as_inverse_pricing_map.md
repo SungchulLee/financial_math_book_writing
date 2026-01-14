@@ -1,12 +1,16 @@
 # Implied Volatility as Inverse Pricing Map
 
+
 ## Introduction
+
 
 Implied volatility represents one of the most fundamental concepts in modern option pricing theory. Rather than viewing volatility as a model parameter, we invert the pricing relationship to extract the market's "implied" volatility from observable option prices. This perspective transforms the Black-Scholes formula from a pricing mechanism into a coordinate transformation on the space of option prices.
 
 ## The Black-Scholes Pricing Map
 
-### Forward Direction: Price as Function of Volatility
+
+### 1. Forward Direction: Price as Function of Volatility
+
 
 Consider the Black-Scholes pricing functional for a European call option:
 
@@ -40,7 +44,8 @@ $$
 
 and $\Phi(\cdot)$ denoting the standard normal cumulative distribution function.
 
-### Mathematical Properties of the Pricing Map
+### 2. Mathematical Properties of the Pricing Map
+
 
 **Proposition 4.1.1** (Monotonicity in Volatility)  
 The Black-Scholes call price $C_{\text{BS}}$ is strictly increasing in $\sigma$ for all $(S, K, T, r)$ with $S > 0$, $K > 0$, $T > 0$.
@@ -83,7 +88,8 @@ For the upper limit, as $\sigma \to \infty$:
 - $d_2 = d_1 - \sigma\sqrt{T} \to -\infty$
 - Thus $\Phi(d_1) \to 1$ and $\Phi(d_2) \to 0$, giving $C_{\text{BS}} \to S$ □
 
-### Domain and Codomain Characterization
+### 3. Domain and Codomain Characterization
+
 
 The pricing map operates between specific spaces:
 
@@ -107,7 +113,9 @@ The strict inequalities reflect the time value of optionality.
 
 ## The Inverse Map: Definition of Implied Volatility
 
-### Formal Definition
+
+### 1. Formal Definition
+
 
 Given an observed market price $C_{\text{market}}$ satisfying the no-arbitrage bounds, the **implied volatility** $\sigma_{\text{IV}}$ is defined as the unique solution to:
 
@@ -129,7 +137,8 @@ $$
 
 where $\mathcal{C}^{-1}: (C_{\text{intrinsic}}, S) \to (0, \infty)$ is the functional inverse.
 
-### Well-Posedness of the Inverse Problem
+### 2. Well-Posedness of the Inverse Problem
+
 
 The existence and uniqueness of the inverse map follows from:
 
@@ -150,7 +159,8 @@ $$
 
 Uniqueness follows from strict monotonicity. □
 
-### Regularity of the Inverse Map
+### 3. Regularity of the Inverse Map
+
 
 **Theorem 4.1.2** (Smoothness of Implied Volatility)  
 The implied volatility map $\mathcal{C}^{-1}$ is $C^\infty$ smooth on its domain $(C_{\text{intrinsic}}, S)$.
@@ -177,7 +187,9 @@ Higher derivatives exist by repeated application. □
 
 ## Interpretation as Change of Coordinates
 
-### From Price Space to Volatility Space
+
+### 1. From Price Space to Volatility Space
+
 
 The Black-Scholes formula establishes a diffeomorphism:
 
@@ -199,7 +211,8 @@ $$
 
 This perspective reveals implied volatility as a **coordinate transformation**: rather than quoting option prices in dollars, we quote them in units of volatility.
 
-### Advantages of Volatility Coordinates
+### 2. Advantages of Volatility Coordinates
+
 
 **Normalization across strikes and maturities:**  
 Option prices vary wildly with $(S, K, T)$ parameters, making comparison difficult. Implied volatility provides a normalized measure that:
@@ -215,7 +228,9 @@ Small errors in option prices can correspond to small errors in implied volatili
 
 ## Connection to the Model-Free Perspective
 
-### Implied Volatility Without the Black-Scholes Model
+
+### 1. Implied Volatility Without the Black-Scholes Model
+
 
 While we defined $\sigma_{\text{IV}}$ using the Black-Scholes formula, it's crucial to note:
 
@@ -225,7 +240,8 @@ Implied volatility is simply a **quoting convention**: given any price $C \in (C
 
 This leads to the empirical phenomenon of **volatility smile**: if the market truly followed Black-Scholes, all options on the same underlying with the same maturity would have identical implied volatilities. The observation that $\sigma_{\text{IV}}(K, T)$ varies with strike $K$ and maturity $T$ indicates model misspecification.
 
-### Implied Volatility as Market Observable
+### 2. Implied Volatility as Market Observable
+
 
 From this perspective:
 - **Price** $C_{\text{market}}$ is the primitive observable
@@ -234,7 +250,9 @@ From this perspective:
 
 ## Mathematical Formalism: Pricing Functional in General
 
-### Extension to General Payoffs
+
+### 1. Extension to General Payoffs
+
 
 The inversion concept extends beyond vanilla calls. For any path-independent payoff $\Psi(S_T)$, under Black-Scholes we have:
 
@@ -256,7 +274,8 @@ $$
 
 
 
-### Monotonicity Conditions for General Payoffs
+### 2. Monotonicity Conditions for General Payoffs
+
 
 **Proposition 4.1.3**  
 The Black-Scholes price $V_{\text{BS}}$ is strictly increasing in $\sigma$ if and only if $\Psi$ is not a linear function.
@@ -274,7 +293,9 @@ Using $\partial \ln S_T / \partial \sigma = -\sigma T + W_T$, this becomes a cov
 
 ## Numerical Considerations
 
-### Root-Finding for Implied Volatility
+
+### 1. Root-Finding for Implied Volatility
+
 
 In practice, $\sigma_{\text{IV}}$ is computed by solving:
 
@@ -290,7 +311,8 @@ Standard methods include:
 - **Bisection:** Robust but slower
 - **Rational approximations:** Explicit formulas for rapid computation
 
-### Newton-Raphson Iteration
+### 2. Newton-Raphson Iteration
+
 
 Given current iterate $\sigma_n$:
 
@@ -304,6 +326,7 @@ $$
 **Convergence:** Quadratic convergence is guaranteed due to $C_{\text{BS}}$ being strictly convex in $\sigma$ (positive vega derivative, i.e., vomma $> 0$).
 
 ## Summary
+
 
 The implied volatility establishes a fundamental coordinate transformation:
 

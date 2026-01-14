@@ -1,5 +1,6 @@
 # Double Calendars
 
+
 **Double calendars** (also called iron calendars or double time spreads) are strategies where you simultaneously run calendar spreads on both the call side and put side, creating a defined-risk structure that profits from the stock staying within a range while exploiting term structure differences across two strikes.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_calendars_iv_scenarios.png?raw=true" alt="long_call_vs_put" width="700">
@@ -35,6 +37,7 @@ $$
 
 ## What Is a Double
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_calendars_structure.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -42,6 +45,7 @@ $$
 **Before understanding double calendars, we need to recall single calendars:**
 
 ### 1. Quick Calendar
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_calendars_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
@@ -71,11 +75,13 @@ $$
 
 ## The Structure
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_calendars_vs_iron_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 ### 1. Basic Double
+
 
 **Components:**
 
@@ -98,6 +104,7 @@ $$
 - Net cost: approximately $4 per share
 
 ### 2. The Visual
+
 
 ```
               Double Calendar "Tent"
@@ -124,6 +131,7 @@ $$
 ---
 
 ## The Portfolio
+
 
 Your double calendar portfolio consists of:
 
@@ -158,9 +166,11 @@ where:
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -172,6 +182,7 @@ $$
 
 ### 2. Why This IV
 
+
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
 - Risk preferences (convexity vs. theta)
@@ -179,6 +190,7 @@ Markets create these IV structures because different participants have different
 - Hedging needs (portfolio protection vs. income generation)
 
 ### 3. The Volatility
+
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -194,6 +206,7 @@ $$
 
 ### 4. Professional
 
+
 Institutional traders view IV strategies as tools for:
 1. **Volatility arbitrage:** Extracting the vol risk premium
 2. **Term structure trading:** Exploiting mispricings across time
@@ -205,6 +218,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## The P&L Formula
 
+
 For a double calendar:
 
 $$
@@ -214,6 +228,7 @@ $$
 **Breaking it down:**
 
 ### 1. Theta P&L (Your
+
 
 **Double theta collection:**
 
@@ -229,6 +244,7 @@ $$
 - **This is your edge: collecting from both sides**
 
 ### 2. Vega P&L (Term
+
 
 **Call side vega:**
 
@@ -248,6 +264,7 @@ $$
 
 ### 3. Gamma P&L
 
+
 **The tricky part:**
 
 - Near center: Net gamma can be positive (good)
@@ -259,7 +276,9 @@ $$
 
 ## Types of Double
 
+
 ### 1. Standard Double
+
 
 **Structure:**
 
@@ -283,6 +302,7 @@ $$
 
 ### 2. Asymmetrical
 
+
 **Structure:**
 
 - Unequal strike spacing
@@ -304,6 +324,7 @@ $$
 
 ### 3. Wide vs. Narrow
 
+
 **Wide tent (e.g., $90/$110 on $100 stock):**
 
 - Higher probability of success
@@ -320,6 +341,7 @@ $$
 
 ### 4. Unbalanced Double
 
+
 **Structure:**
 
 - Different ratios on each side
@@ -335,6 +357,7 @@ $$
 ---
 
 ## Concrete Example
+
 
 **Setup:**
 
@@ -380,6 +403,7 @@ $$
 
 ### 1. Analysis at Front
 
+
 **Scenario 1: Stock at $100 (optimal)**
 
 - Both short options expire worthless
@@ -422,6 +446,7 @@ $$
 
 ### 2. Greeks Evolution
 
+
 **At entry (30 days to front expiration):**
 
 - Delta: 0
@@ -449,7 +474,9 @@ $$
 
 ## Strike Selection
 
+
 ### 1. Upper Strike
+
 
 **Common approaches:**
 
@@ -472,6 +499,7 @@ $$
 - Delta-based: short call delta ≈ 0.20-0.30
 
 ### 2. Lower Strike (Put
+
 
 **Common approaches:**
 
@@ -496,6 +524,7 @@ $$
 - Short put delta ≈ -0.20 to -0.30
 
 ### 3. Strike Width
+
 
 **Narrow tent (5-7% of stock price):**
 
@@ -527,7 +556,9 @@ $$
 
 ## Time Frame Selection
 
+
 ### 1. Front Month
+
 
 **Typical choices:**
 
@@ -545,6 +576,7 @@ Why?
 - Liquid strikes available
 
 ### 2. Back Month
+
 
 **Typical choices:**
 
@@ -571,7 +603,9 @@ Why?
 
 ## Position Management
 
+
 ### 1. Entry Timing
+
 
 **Best entry conditions:**
 
@@ -598,6 +632,7 @@ Why?
 
 ### 2. Monitoring During
 
+
 **Daily checks:**
 
 **Price position:**
@@ -619,6 +654,7 @@ Why?
 - Any IV changes?
 
 ### 3. Adjustment
+
 
 **When stock approaches a wing ($±2 from strike):**
 
@@ -649,6 +685,7 @@ Why?
 - Wider tent, more breathing room
 
 ### 4. Closing Decisions
+
 
 **Target profit:** 25-50% of maximum profit
 
@@ -685,7 +722,9 @@ Why?
 
 ## Greeks Analysis
 
+
 ### 1. Delta Profile
+
 
 **At initiation (symmetrical tent):**
 
@@ -706,6 +745,7 @@ Why?
 
 ### 2. Theta Profile
 
+
 **The main edge:**
 
 $$
@@ -724,6 +764,7 @@ $$
 **Theta accelerates as front expiration approaches!**
 
 ### 3. Vega Profile
+
 
 **Both calendars are net long vega:**
 
@@ -747,6 +788,7 @@ $$
 | Term structure flattens | **Strong loss** (both calendars) |
 
 ### 4. Gamma Profile
+
 
 **Complex gamma behavior:**
 
@@ -788,7 +830,9 @@ $$
 
 ## When to Use Double
 
+
 ### 1. Ideal Conditions
+
 
 **Market environment:**
 
@@ -820,6 +864,7 @@ $$
 
 ### 2. Avoid When ✗
 
+
 **Dangerous conditions:**
 
 **Binary events:**
@@ -850,9 +895,11 @@ $$
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -878,6 +925,7 @@ $$
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 - Front month IV > back month IV (normal term structure)
 - IV percentile > 50% overall (options expensive)
@@ -895,6 +943,7 @@ $$
 - Unable to actively manage position daily
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -916,6 +965,7 @@ $$
 
 ### 4. Best practices: 1
 
+
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -936,6 +986,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -963,6 +1014,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -989,6 +1041,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 - Entry IV level and percentile
 - Term structure shape at entry
@@ -1006,6 +1059,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
 3. **Ignoring term structure** - Don't sell front month if in backwardation
@@ -1016,6 +1070,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -1044,7 +1099,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Wrong Strike
+
 
 **Too narrow:**
 
@@ -1066,6 +1123,7 @@ $$
 
 ### 2. Ignoring Front
 
+
 **The error:**
 
 - Entering with earnings in 3 weeks
@@ -1076,6 +1134,7 @@ $$
 **Fix:** Always check earnings calendar and major events
 
 ### 3. Holding Too Close
+
 
 **The error:**
 
@@ -1088,6 +1147,7 @@ $$
 
 ### 4. Not Taking
 
+
 **The error:**
 
 - Position up 40% at day 20
@@ -1098,6 +1158,7 @@ $$
 **Fix:** Take 25-50% of max profit and be happy
 
 ### 5. Wrong Term
+
 
 **The error:**
 
@@ -1110,6 +1171,7 @@ $$
 
 ### 6. Oversizing
 
+
 **The error:**
 
 - "It's defined risk, so I can do 10 contracts"
@@ -1120,6 +1182,7 @@ $$
 **Fix:** Size so max loss = 1-2% of portfolio
 
 ### 7. Asymmetric IV
+
 
 **The error:**
 
@@ -1134,7 +1197,9 @@ $$
 
 ## Advanced Concepts
 
+
 ### 1. Rolling Strategy
+
 
 **The approach:**
 
@@ -1163,6 +1228,7 @@ $$
 - Lower variance than single trades
 
 ### 2. Volatility
+
 
 **Double calendars trade TWO dimensions:**
 
@@ -1199,6 +1265,7 @@ $$
 
 ### 3. Dynamic Strike
 
+
 **Adjust strikes based on:**
 
 **Realized volatility:**
@@ -1220,6 +1287,7 @@ $$
 - Adaptive positioning
 
 ### 4. Correlation with
+
 
 **Similarities:**
 
@@ -1246,6 +1314,7 @@ $$
 
 ### 5. Earnings Strategy
 
+
 **The "Earnings Double Calendar":**
 
 **Setup:**
@@ -1267,6 +1336,7 @@ $$
 - Sophisticated timing required
 
 ### 6. Portfolio Context
+
 
 **Double calendars complement:**
 
@@ -1292,7 +1362,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Setup (Day 0):**
 
@@ -1337,6 +1409,7 @@ $$
 
 ### 2. Transition Risk
 
+
 **Setup (dangerous but instructive):**
 
 - SPY at $300 (before crash)
@@ -1374,6 +1447,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Strategy:**
 
 - Run double calendars systematically
@@ -1407,7 +1481,9 @@ $$
 
 ## Practical
 
+
 ### 1. Screening for
+
 
 **Stock scanner criteria:**
 
@@ -1434,6 +1510,7 @@ $$
 | SPY | $480 | 52% | Upward | N/A |
 
 ### 2. Strike Selection
+
 
 **Step 1: Analyze distribution**
 
@@ -1468,6 +1545,7 @@ $$
 - Ensure both strikes have good open interest
 
 ### 3. Entry Execution
+
 
 **Best practices:**
 
@@ -1511,6 +1589,7 @@ Limit: $4.50 debit
 
 ### 4. Position Tracking
 
+
 **Daily monitoring:**
 
 **Track in spreadsheet:**
@@ -1532,6 +1611,7 @@ Day21| $104       | 10        | +$180| +$600          | Consider close
 - Gamma: Watch as expiration nears
 
 ### 5. Management Rules
+
 
 **Profit taking:**
 
@@ -1565,7 +1645,9 @@ Day21| $104       | 10        | +$180| +$600          | Consider close
 
 ## Double Calendars in
 
+
 ### 1. How Double
+
 
 **Complete the range-trading toolkit:**
 
@@ -1592,6 +1674,7 @@ Range Trading Strategies:
 - Net long vega (unusual for range trades)
 
 ### 2. Comparison with
+
 
 | Strategy | Theta | Vega | Term Structure | Risk |
 |----------|-------|------|----------------|------|

@@ -1,5 +1,6 @@
 # Martingale Representation Theorem
 
+
 The **Martingale Representation Theorem (MRT)** states that, under a Brownian filtration, every square–integrable martingale can be expressed as a stochastic integral with respect to the driving Brownian motion.
 
 Rather than repeating basic definitions already covered in earlier chapters, this section focuses on:
@@ -10,11 +11,13 @@ Rather than repeating basic definitions already covered in earlier chapters, thi
 
 ---
 
-## 1. Statement of the Theorem
+## Statement of the Theorem
+
 
 Let \((\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})\) be a filtered probability space supporting a Brownian motion \(W_t\), and assume \(\{\mathcal{F}_t\}\) is the Brownian filtration (augmented).
 
-### Martingale Representation Theorem
+### 1. Martingale Representation Theorem
+
 
 If \(X_t\) is a square–integrable \(\mathcal{F}_t\)-martingale, then there exists a **unique** predictable process \(\phi_t\) such that
 
@@ -37,7 +40,8 @@ Uniqueness is understood up to indistinguishability.
 
 ---
 
-## 2. Why This Is a Strong Result
+## Why This Is a Strong Result
+
 
 This theorem asserts that:
 
@@ -49,14 +53,17 @@ This property is often called the **predictable representation property (PRP)**.
 
 ---
 
-## 3. Proof Sketch (Structure, Not Full Details)
+## Proof Sketch (Structure, Not Full Details)
+
 
 The proof relies on Hilbert–space ideas.
 
-### Step 1: Simple Integrands
+### 1. Step 1: Simple Integrands
+
 For simple predictable processes, the stochastic integral is explicitly defined.
 
-### Step 2: Density
+### 2. Step 2: Density
+
 Simple predictable processes are dense in
 
 \[
@@ -65,7 +72,8 @@ L^2(\Omega \times [0,T]).
 
 
 
-### Step 3: Itô Isometry
+### 3. Step 3: Itô Isometry
+
 The map
 
 \[
@@ -83,12 +91,14 @@ is an isometry:
 
 
 
-### Step 4: Completion and Uniqueness
+### 4. Step 4: Completion and Uniqueness
+
 Completeness of the Hilbert space ensures existence, and the isometry implies uniqueness.
 
 ---
 
-## 4. Interpretation: Geometry of Martingales
+## Interpretation: Geometry of Martingales
+
 
 The theorem shows that the space of square–integrable martingales is isomorphic to a subspace of
 
@@ -102,7 +112,8 @@ Each martingale corresponds to a unique “direction” \(\phi_t\) along which B
 
 ---
 
-## 5. Connection to Hedging and Black–Scholes
+## Connection to Hedging and Black–Scholes
+
 
 In a risk–neutral setting, discounted asset prices are martingales.
 By the MRT:
@@ -115,7 +126,8 @@ This is the mathematical statement of **market completeness** for Brownian model
 
 ---
 
-## 6. Relation to Change of Measure
+## Relation to Change of Measure
+
 
 The Martingale Representation Theorem works *within* a fixed probability measure.
 Girsanov’s theorem explains *how the Brownian motion itself changes* under a new measure.
@@ -126,17 +138,21 @@ Together, they provide:
 
 ---
 
-## 7. Beyond the Basic Setting (Optional)
+## Beyond the Basic Setting (Optional)
 
-### Clark–Ocone Formula
+
+### 1. Clark–Ocone Formula
+
 In Malliavin calculus, the integrand \(\phi_t\) can sometimes be written explicitly using conditional expectations of derivatives.
 
-### Incomplete Markets
+### 2. Incomplete Markets
+
 With multiple sources of randomness, martingales may admit only partial representations, leading to orthogonal decompositions (Kunita–Watanabe).
 
 ---
 
-## 8. Summary
+## Summary
+
 
 - MRT characterizes all square–integrable martingales in a Brownian filtration.
 - It formalizes the idea that Brownian motion generates all randomness.

@@ -1,10 +1,12 @@
 # Greeks via Feynman–Kac
 
+
 Feynman–Kac represents prices as expectations and can yield expectation representations for Greeks.
 
 ---
 
 ## Price
+
 
 Under \(\mathbb{Q}\),
 
@@ -19,6 +21,7 @@ V(t,S)=\mathbb{E}^{t,S}\!\left[e^{-r(T-t)}\Phi(S_T)\right].
 ---
 
 ## Delta via the stochastic flow (formal)
+
 
 In Black–Scholes,
 
@@ -49,11 +52,13 @@ For sufficiently smooth \(\Phi\),
 
 ## Gamma is delicate
 
+
 For kinked \(\Phi\), \(\Phi''\) is distributional. One often prefers PDE-based gamma or likelihood ratio identities.
 
 ---
 
 ## What to remember
+
 
 - Delta can often be written as an expectation involving the Jacobian \(\partial S_T/\partial S\).
 - Gamma requires more care when payoffs are nonsmooth.

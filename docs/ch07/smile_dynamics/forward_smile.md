@@ -1,10 +1,12 @@
 # Forward Smile
 
+
 The **forward smile** describes the implied volatility surface of forward-start options or, equivalently, the conditional distribution of future returns implied by today’s option prices. It plays a key role in understanding smile dynamics over time.
 
 ---
 
-## 1. From spot smile to forward smile
+## From spot smile to forward smile
+
 
 The spot implied volatility smile \(\sigma_{\text{impl}}(K,T)\) reflects the marginal distribution of \(S_T\).
 The forward smile captures the distribution of returns over \([T_1,T_2]\) conditional on information at time \(T_1\).
@@ -19,7 +21,8 @@ Formally, it is linked to the law of
 
 ---
 
-## 2. Forward-start options
+## Forward-start options
+
 
 Forward smiles can be accessed through **forward-start options**, whose payoff depends on future spot levels:
 
@@ -33,7 +36,8 @@ Their implied volatility surface reveals how today’s model extrapolates smile 
 
 ---
 
-## 3. Model implications
+## Model implications
+
 
 Different models imply different forward smiles:
 
@@ -45,7 +49,8 @@ Thus, forward smiles are powerful model discriminators.
 
 ---
 
-## 4. Practical relevance
+## Practical relevance
+
 
 Forward smiles matter for:
 - cliquets and forward-start products,
@@ -54,7 +59,8 @@ Forward smiles matter for:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Forward smiles encode conditional future volatility distributions.
 - They are not directly observable but model-implied.
@@ -63,6 +69,7 @@ Forward smiles matter for:
 ---
 
 ## Further reading
+
 
 - Bergomi, *Smile Dynamics*.
 - Gatheral, *The Volatility Surface*.

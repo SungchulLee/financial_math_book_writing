@@ -1,10 +1,12 @@
 # Discount Factors and Zero Rates
 
+
 Yield curves summarize the time value of money and are foundational for pricing fixed-income instruments and for discounting cashflows in derivatives. This section introduces **discount factors** and **zero (spot) rates**, along with key conventions.
 
 ---
 
-## 1. Discount factors
+## Discount factors
+
 
 A **discount factor** \(P(0,T)\) is the time-0 price of a zero-coupon bond paying 1 unit of currency at maturity \(T\):
 
@@ -23,7 +25,8 @@ In modern markets, negative rates can occur, but discount factors remain positiv
 
 ---
 
-## 2. Zero (spot) rates
+## Zero (spot) rates
+
 
 The **continuously compounded zero rate** \(z(0,T)\) is defined by
 
@@ -44,7 +47,8 @@ Converting between conventions is routine but must be handled consistently.
 
 ---
 
-## 3. Interpretation and uses
+## Interpretation and uses
+
 
 Zero rates and discount factors are used to:
 - discount deterministic cashflows,
@@ -55,7 +59,8 @@ In practice, a full curve is built by **bootstrapping** from liquid market instr
 
 ---
 
-## 4. Short rate intuition (optional)
+## Short rate intuition (optional)
+
 
 If \(r_t\) is the instantaneous short rate under the risk-neutral measure, then
 
@@ -68,7 +73,8 @@ In deterministic-rate settings, this reduces to \(P(0,T)=e^{-\int_0^T r(s)ds}\).
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Discount factors \(P(0,T)\) are the primitives of the yield curve.
 - Zero rates are logarithmic transforms of discount factors.
@@ -77,6 +83,7 @@ In deterministic-rate settings, this reduces to \(P(0,T)=e^{-\int_0^T r(s)ds}\).
 ---
 
 ## Further reading
+
 
 - Brigo & Mercurio, *Interest Rate Models*.
 - Hull, *Options, Futures, and Other Derivatives* (yield curve basics).

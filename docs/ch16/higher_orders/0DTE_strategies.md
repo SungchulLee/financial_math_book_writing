@@ -1,5 +1,6 @@
 # DTE Strategies
 
+
 **0DTE strategies** involve trading options on their expiration day when time value approaches zero, Greeks reach extreme levels, and price movements create asymmetric opportunities driven by gamma explosions and theta acceleration.
 
 <p align="center">
@@ -30,6 +31,7 @@
 
 ## The Core Insight
 
+
 **The fundamental idea:**
 
 - Options with zero days to expiration behave RADICALLY different from longer-dated options
@@ -56,9 +58,11 @@ $$
 
 ## What Are 0DTE
 
+
 **Before trading 0DTE, understand what makes them unique:**
 
 ### 1. Definition and
+
 
 **0DTE = Zero Days To Expiration**
 
@@ -84,6 +88,7 @@ $$
 - All expire 4:00 PM ET (AM settlement at open for SPX)
 
 ### 2. How 0DTE Differs
+
 
 **Time dimension:**
 
@@ -129,9 +134,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic definition, understanding what 0DTE options REALLY are economically:**
 
 ### 1. Why 0DTE Exploded
+
 
 **The market structure shift (2020-2024):**
 
@@ -164,6 +171,7 @@ $$
 - Institutional AND retail participation
 
 ### 2. The Fundamental
+
 
 **What 0DTE sellers (short premium) are doing:**
 
@@ -201,6 +209,7 @@ $$
 
 ### 3. The Gamma
 
+
 **Institutional observation:**
 
 Market makers notice massive 0DTE volume creates **dealer gamma imbalance**.
@@ -230,6 +239,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **0DTE (Zero DTE):**
 
@@ -286,9 +296,11 @@ $$
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -300,6 +312,7 @@ $$
 
 ### 2. Why This
 
+
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
 - Time horizons (short-term vs. long-term)
@@ -307,6 +320,7 @@ Markets create these strategies because different participants have different:
 - View on volatility vs. direction
 
 ### 3. Professional
+
 
 Institutional traders view this strategy as a tool for:
 1. **Greeks arbitrage:** Extracting value from Greeks mispricing
@@ -319,9 +333,11 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Why Trade 0DTE?
 
+
 **Use cases for 0DTE strategies:**
 
 ### 1. Income Generation
+
 
 **Scenario:** SPX at 4500, market calm, want daily income
 
@@ -356,6 +372,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ### 2. Leverage for
 
+
 **Scenario:** Fed announcement at 2 PM, expecting dovish surprise (bullish)
 
 **Strategy:** Buy 0DTE ATM calls (lottery ticket)
@@ -388,6 +405,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Can risk small amount for huge payoff
 
 ### 3. Earnings Day
+
 
 **Scenario:** Stock reports earnings pre-market, opened up 5%, volatility high
 
@@ -426,6 +444,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ### 4. Hedging Overnight
 
+
 **Scenario:** Own 1,000 shares SPY, worried about afternoon selloff
 
 **Strategy:** Buy 0DTE OTM puts (temporary insurance)
@@ -457,6 +476,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Can repeat daily if needed
 
 ### 5. Gamma Scalping
+
 
 **Scenario:** Professional trader, expecting high volatility day
 
@@ -505,7 +525,9 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Greeks Behavior (The
 
+
 ### 1. Gamma
+
 
 **Gamma formula near expiration:**
 
@@ -577,6 +599,7 @@ At 3:45 PM (15 minutes to expiration):
    - No middle ground (digital option behavior)
 
 ### 2. Theta
+
 
 **Theta formula:**
 
@@ -651,6 +674,7 @@ $$
 
 ### 3. Delta
 
+
 **Delta evolution (ATM option):**
 
 $$
@@ -706,6 +730,7 @@ $$
    - Market makers scramble to hedge
 
 ### 4. Vega
+
 
 **Vega formula:**
 
@@ -764,7 +789,9 @@ $$
 
 ## When Greeks Destroy
 
+
 ### 1. The Gamma
+
 
 **Scenario:** Sold 0DTE iron condor, feeling confident
 
@@ -812,6 +839,7 @@ $$
 
 ### 2. The Theta Trap
 
+
 **Scenario:** Bought 0DTE calls expecting rally
 
 **Setup (11 AM):**
@@ -855,6 +883,7 @@ $$
 
 ### 3. The Pin Risk
 
+
 **Scenario:** Sold 0DTE straddle, SPX pins exactly at strike
 
 **Setup (10 AM):**
@@ -895,6 +924,7 @@ $$
 
 ### 4. The Liquidity
 
+
 **Scenario:** Bought 0DTE OTM calls, market moving against you
 
 **Setup (3 PM):**
@@ -932,7 +962,9 @@ $$
 
 ## Common Pitfalls
 
+
 ### 1. Underestimating
+
 
 **The mistake:**
 
@@ -964,6 +996,7 @@ Probability calculations assume NORMAL distribution. 0DTE has fat tails (crash r
 - **Avoid news days:** Don't trade 0DTE on Fed, CPI, NFP days
 
 ### 2. Holding Past 3
+
 
 **The mistake:**
 
@@ -997,6 +1030,7 @@ $$
 - **General rule:** If position profitable, close before 3:30 PM
 
 ### 3. Buying 0DTE in
+
 
 **The mistake:**
 
@@ -1034,6 +1068,7 @@ You're paying MAXIMUM theta with 6 hours to decay.
 
 ### 4. Ignoring News
 
+
 **The mistake:**
 
 "I'll sell 0DTE premium every day for consistent income."
@@ -1068,6 +1103,7 @@ Certain days have high event risk (Fed, CPI, NFP, etc.)
 - **Consider buying:** Events = buying opportunity (gamma > theta on these days)
 
 ### 5. Using Market
+
 
 **The mistake:**
 
@@ -1108,9 +1144,11 @@ Certain days have high event risk (Fed, CPI, NFP, etc.)
 
 ## Risk Management
 
+
 **Essential guidelines:**
 
 ### 1. Position Sizing
+
 
 **Rule of thumb for 0DTE:**
 
@@ -1132,6 +1170,7 @@ $$
 
 ### 2. Time-Based Exit
 
+
 **Non-negotiable timing:**
 
 1. **Close all winners by 3:30 PM** (capture 70-80% max profit)
@@ -1146,6 +1185,7 @@ $$
 - **Don't:** Wait for last $0.80 (gamma risk > reward)
 
 ### 3. Stop-Loss Rules
+
 
 **For sellers (short premium):**
 
@@ -1173,6 +1213,7 @@ $$
 
 ### 4. Strike Selection
 
+
 **For sellers (iron condors, credit spreads):**
 
 **Expected move formula:**
@@ -1194,6 +1235,7 @@ $$
 - **Avoid:** Deep OTM (>2% away, liquidity vanishes)
 
 ### 5. Avoid These Days
+
 
 **Never sell 0DTE premium on:**
 
@@ -1218,9 +1260,11 @@ These days have 2-3× normal volatility → Gamma risk explodes.
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework for trading 0DTE successfully:**
 
 ### 1. Before market
+
 
 **Before market opens, complete this checklist:**
 
@@ -1265,6 +1309,7 @@ $$
 
 ### 2. Watch first 30
 
+
 **Watch first 30 minutes (DON'T trade yet):**
 
 **Observe:**
@@ -1288,6 +1333,7 @@ $$
 - No news
 
 ### 3. For iron condor
+
 
 **For iron condor sellers:**
 
@@ -1339,6 +1385,7 @@ $$
 
 ### 4. Use limit orders
 
+
 **Use limit orders (NEVER market):**
 
 **For iron condor:**
@@ -1358,6 +1405,7 @@ Ask: $4.20
 **Don't chase!** If market isn't giving your price, there's a reason (hidden risk).
 
 ### 5. Monitoring
+
 
 **Monitoring schedule:**
 
@@ -1417,6 +1465,7 @@ Collected $4? Stop at $8 (down $4)
 
 ### 6. CRITICAL PERIOD -
 
+
 **CRITICAL PERIOD - Close ALL positions by 3:30 PM**
 
 **3:00 PM:** Assess all positions
@@ -1449,6 +1498,7 @@ $$
 Last 15 minutes: Gamma 5-10× higher!
 
 ### 7. Journal every
+
 
 **Journal every trade:**
 
@@ -1500,6 +1550,7 @@ Trade Again?: [Yes/No and why]
 - **Adjust strategy based on data**
 
 ### 8. A
+
 
 **A. Iron Condor Selling (Most Common)**
 
@@ -1562,6 +1613,7 @@ Trade Again?: [Yes/No and why]
 
 ### 9. Platform-Specific
 
+
 **Think or Swim (TDA):**
 - Use "Analyze" tab for Greeks
 - Set alerts at strikes
@@ -1583,6 +1635,7 @@ Trade Again?: [Yes/No and why]
 - Upgrade to professional platform
 
 ### 10. Risk Management
+
 
 **Portfolio-level limits:**
 
@@ -1622,6 +1675,7 @@ Maximum premium per contract: $5-6
 
 ### 11. The Optimal
 
+
 **Monday:**
 - **Skip** (weekend news risk, unpredictable opens)
 - Observe only
@@ -1655,6 +1709,7 @@ Maximum premium per contract: $5-6
 
 ### 12. Success Metrics
 
+
 **Track these monthly:**
 
 $$
@@ -1684,6 +1739,7 @@ $$
 **If any metric falls below target for 2 consecutive months: Stop and reassess.**
 
 ### 13. Final Pre-Trade
+
 
 **Before clicking "Submit Order", verify:**
 
@@ -1716,9 +1772,11 @@ $$
 
 ## Common Mistakes
 
+
 **Critical errors that destroy 0DTE traders - unique to same-day expiration:**
 
 ### 1. Sell iron condor
+
 
 **What it looks like:**
 
@@ -1764,6 +1822,7 @@ As time → 0, losses → ∞ for same move!
 
 ### 2. AM: Buy SPX $4500
 
+
 **What it looks like:**
 
 - 10 AM: Buy SPX $4500 calls for $15
@@ -1802,6 +1861,7 @@ For $15 premium, 0.50 delta: Need 60-point move just to break even!
 ---
 
 ### 3. See Fed meeting
+
 
 **What it looks like:**
 
@@ -1843,6 +1903,7 @@ For $15 premium, 0.50 delta: Need 60-point move just to break even!
 ---
 
 ### 4. Want to close
+
 
 **What it looks like:**
 
@@ -1887,6 +1948,7 @@ Market order: Filled at $1.18 (near ask)
 ---
 
 ### 5. Normal position
+
 
 **What it looks like:**
 
@@ -1947,6 +2009,7 @@ $50,000 account → Max risk $250 per trade
 
 ### 6. Sell iron condor:
 
+
 **What it looks like:**
 
 - Sell iron condor: $4450/$4475 puts, $4525/$4550 calls
@@ -1984,6 +2047,7 @@ Even $0.05 ITM = full assignment!
 ---
 
 ### 7. Experience with
+
 
 **What it looks like:**
 
@@ -2034,6 +2098,7 @@ $$
 ---
 
 ### 8. Sell iron condor
+
 
 **What it looks like:**
 
@@ -2089,6 +2154,7 @@ In regular options, can wait days for recovery. In 0DTE, hours evaporate.
 ---
 
 ### 9. SPX at 4500
+
 
 **What it looks like:**
 
@@ -2149,6 +2215,7 @@ $$
 
 ### 10. Trade 0DTE every
 
+
 **What it looks like:**
 
 - Trade 0DTE every single day
@@ -2200,6 +2267,7 @@ $$
 
 ### 11. Have $5,000
 
+
 **What it looks like:**
 
 - Have $5,000 account
@@ -2244,6 +2312,7 @@ $$
 
 ### 12. Wake up, open
 
+
 **What it looks like:**
 
 - Wake up, open platform
@@ -2281,6 +2350,7 @@ One news event = wipes out week of profits
 ---
 
 ### 13. Sell iron condor
+
 
 **What it looks like:**
 
@@ -2326,6 +2396,7 @@ Rare, but happens (especially when emotional).
 
 ### 14. Sell iron condor
 
+
 **What it looks like:**
 
 - Sell iron condor for $4 credit ($400)
@@ -2356,6 +2427,7 @@ Rare, but happens (especially when emotional).
 ---
 
 ### 15. Trade 0DTE for 3
+
 
 **What it looks like:**
 
@@ -2408,6 +2480,7 @@ Lessons: [What learned?]
 
 ### 16. **Summary
 
+
 Before entering ANY 0DTE trade, verify:
 
 ☐ **Not holding past 3:30 PM** (set alarm!)
@@ -2437,7 +2510,9 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Setup (Tuesday, no major events):**
 
@@ -2489,6 +2564,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 - **Annualized:** ~4,050% (if repeatable, which it's not!)
 
 ### 2. Transition Risk
+
 
 **Setup (Wednesday, expecting volatility):**
 
@@ -2551,6 +2627,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 
 ### 3. Portable Alpha
 
+
 **Setup (Thursday, trader expecting rally):**
 
 - 11 AM: SPX at 4500
@@ -2591,6 +2668,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 3. Cut loss at 2:30 PM ($2.50 loss vs. $7 loss)
 
 ### 4. Tactical Duration
+
 
 **Setup (Friday expiration):**
 
@@ -2645,6 +2723,7 @@ The market doesn't care about your stops, your hopes, or your need to make back 
 
 
 ## Final Wisdom
+
 
 > "0DTE options are like driving a Formula 1 car - incredible power, but one mistake at 200mph and you're in the wall. The same Greeks that create opportunity (gamma, theta) also create catastrophic risk. You're trading against market makers with billion-dollar systems who can hedge in milliseconds. Your edge isn't information or speed - it's discipline: entering at the right time, sizing appropriately, and GETTING OUT by 3:30 PM. The traders who succeed at 0DTE aren't the ones who make the most profit - they're the ones who survive to trade another day."
 

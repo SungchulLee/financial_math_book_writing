@@ -1,10 +1,12 @@
 # Statistical RV Across Assets
 
+
 **Statistical relative value across assets** uses quantitative models to identify and exploit mean-reverting price relationships between instruments across different asset classes—including pairs trading (two correlated stocks), basket arbitrage (index vs components), cross-commodity spreads (oil vs gas), and multi-asset statistical arbitrage—by estimating fair value relationships through cointegration, principal component analysis, or machine learning, then trading deviations with the expectation of reversion to the statistical equilibrium, generating alpha from temporary dislocations while managing the risk that relationships fundamentally break.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -27,7 +29,9 @@
 
 ## What Is Statistical RV?
 
+
 ### 1. Pairs Trading
+
 
 **Classic stat arb:**
 
@@ -67,6 +71,7 @@ Coca-Cola (KO) vs PepsiCo (PEP):
 
 ### 2. Cointegration
 
+
 **Statistical test for mean reversion:**
 
 **Definition:**
@@ -103,6 +108,7 @@ Gold (GLD) and gold miners (GDX):
 
 ### 3. Principal Component Analysis
 
+
 **Factor extraction:**
 
 **Method:** Decompose correlation matrix into eigenvectors
@@ -130,6 +136,7 @@ Gold (GLD) and gold miners (GDX):
 
 ### 4. Kalman Filter
 
+
 **Dynamic hedge ratio estimation:**
 
 **State-space model:**
@@ -155,6 +162,7 @@ S&P 500 vs Nasdaq:
 
 ### 5. Machine Learning Clustering
 
+
 **Unsupervised learning:**
 
 **K-means clustering:**
@@ -175,6 +183,7 @@ S&P 500 vs Nasdaq:
 - Exploit intra-cluster mean reversion
 
 ### 6. Ornstein-Uhlenbeck Process
+
 
 **Mean-reverting process:**
 
@@ -207,6 +216,7 @@ Gold-silver ratio:
 
 ### 7. Cross-Sectional Momentum
 
+
 **Relative strength:**
 
 **Method:**
@@ -229,6 +239,7 @@ Gold-silver ratio:
 ---
 
 ## Key Terminology
+
 
 **Cointegration:**
 - Long-run equilibrium relationship
@@ -276,7 +287,9 @@ Gold-silver ratio:
 
 ## Statistical RV Strategies
 
+
 ### 1. Classic Pairs Trading
+
 
 **Implementation:**
 
@@ -308,6 +321,7 @@ Gold-silver ratio:
 
 ### 2. Index Arbitrage
 
+
 **Statistical vs fundamental:**
 
 **Statistical approach:**
@@ -332,6 +346,7 @@ S&P 500 statistical model:
 **Expected:** Revert in 2-3 days
 
 ### 3. Cross-Commodity Spreads
+
 
 **Energy complex:**
 
@@ -358,6 +373,7 @@ $$
 
 ### 4. Volatility Surface Arbitrage
 
+
 **Implied vol relationships:**
 
 **Model:** ATM vol predicts OTM vol via smile
@@ -379,6 +395,7 @@ Expected 25-delta put vol: 23%
 
 ### 5. Multi-Asset PCA
 
+
 **Cross-asset factors:**
 
 **Universe:**
@@ -398,6 +415,7 @@ Expected 25-delta put vol: 23%
 - Factor-neutral exposure
 
 ### 6. Mean Reversion with Momentum
+
 
 **Combine signals:**
 
@@ -419,6 +437,7 @@ Stock XYZ:
 
 ### 7. Regime-Switching Pairs
 
+
 **Conditional on volatility regime:**
 
 **Low vol (VIX < 15):**
@@ -439,7 +458,9 @@ Stock XYZ:
 
 ## Common Mistakes
 
+
 ### 1. Overfitting
+
 
 **Too many parameters:**
 
@@ -458,6 +479,7 @@ Backtest pairs strategy:
 
 ### 2. Ignoring Transaction Costs
 
+
 **High turnover kills:**
 
 - **Mistake:** Strategy trades daily, ignore costs
@@ -474,6 +496,7 @@ Pairs strategy:
 - **Net return: 13%** (costs ate 13% of return!)
 
 ### 3. Structural Breaks
+
 
 **Relationship changes permanently:**
 
@@ -493,6 +516,7 @@ Retail pairs (2015):
 
 ### 4. Regime Changes
 
+
 **Market structure shifts:**
 
 - **Mistake:** Use parameters estimated in low-vol regime
@@ -510,6 +534,7 @@ Pairs trading:
 - **Missed profits, took small losses**
 
 ### 5. Look-Ahead Bias
+
 
 **Using future information:**
 
@@ -531,6 +556,7 @@ Backtest shows:
 
 ### 6. Survivorship Bias
 
+
 **Only using stocks that survived:**
 
 - **Mistake:** Backtest on current index constituents
@@ -546,6 +572,7 @@ S&P 500 pairs (backtested):
 - **30% overstatement** from survivorship bias
 
 ### 7. Leverage Miscalculation
+
 
 **Underestimating risk:**
 
@@ -567,7 +594,9 @@ Pair position:
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Statistical arbitrage fund (2010-2020):**
 
@@ -633,6 +662,7 @@ Pair position:
 5. Transaction cost awareness (10 bps per trade assumed)
 
 ### 2. Worst Case: Disaster
+
 
 **Statistical arbitrage blow-up (2007):**
 
@@ -719,7 +749,9 @@ Pair position:
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Per pair/spread:**
 
@@ -737,6 +769,7 @@ Capital: $10M
 
 ### 2. Leverage Limits
 
+
 **Maximum gross leverage:**
 
 $$
@@ -750,6 +783,7 @@ $$
 **Regime definition:** VIX > 25 = high-vol
 
 ### 3. Stop-Loss Discipline
+
 
 **Per pair:**
 
@@ -765,6 +799,7 @@ Spread std dev: 2%
 
 ### 4. Cointegration Monitoring
 
+
 **Daily test:**
 
 - Rolling 252-day ADF test
@@ -772,6 +807,7 @@ Spread std dev: 2%
 - Retest weekly for re-entry
 
 ### 5. Correlation Matrix
+
 
 **Monitor pairwise correlations:**
 
@@ -782,6 +818,7 @@ $$
 **Indicates:** Crowded trades, correlation spike
 
 ### 6. Half-Life Check
+
 
 **Monthly recalculation:**
 
@@ -794,6 +831,7 @@ $$
 **If half-life < 1 day:** Reduce size (too noisy)
 
 ### 7. Drawdown Circuit Breaker
+
 
 **Maximum drawdown:**
 
@@ -809,7 +847,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Renaissance Technologies
+
 
 **Medallion Fund (1988-present):**
 
@@ -832,6 +872,7 @@ $$
 
 ### 2. LTCM Statistical Arbitrage
 
+
 **Not all stat arb, but some:**
 
 **Convergence trades:**
@@ -847,11 +888,13 @@ $$
 
 ### 3. Quant Quake (August 2007)
 
+
 Described in Worst Case above.
 
 **Industry-wide:** $100B+ lost in week
 
 ### 4. COVID Dislocation (March 2020)
+
 
 **Stat arb opportunity:**
 
@@ -867,7 +910,9 @@ Described in Worst Case above.
 
 ## Practical Steps
 
+
 ### 1. Data Collection
+
 
 **Requirements:**
 - Tick or minute data (for HFT)
@@ -878,6 +923,7 @@ Described in Worst Case above.
 **Minimum:** 5 years of daily data
 
 ### 2. Pair Selection
+
 
 **Process:**
 
@@ -890,6 +936,7 @@ Described in Worst Case above.
 **Result:** 50-200 tradeable pairs
 
 ### 3. Parameter Estimation
+
 
 **For each pair:**
 
@@ -909,6 +956,7 @@ $$
 
 ### 4. Signal Generation
 
+
 **Z-score:**
 
 $$
@@ -921,6 +969,7 @@ $$
 - Stop: |z| > 3 (wrong direction)
 
 ### 5. Position Sizing
+
 
 **Volatility-scaled:**
 
@@ -939,6 +988,7 @@ Beta: 1.2
 
 ### 6. Execution
 
+
 **Best practices:**
 - Simultaneous execution (both legs)
 - Limit orders (avoid market impact)
@@ -946,6 +996,7 @@ Beta: 1.2
 - Time execution (avoid open/close)
 
 ### 7. Monitoring
+
 
 **Daily:**
 - P&L per pair
@@ -966,6 +1017,7 @@ Beta: 1.2
 ---
 
 ## Final Wisdom
+
 
 > "Statistical relative value is the industrialization of pattern recognition—instead of finding one or two pairs intuitively, you systematically screen thousands of relationships, test them rigorously for cointegration, and trade them mechanically with strict risk management. Renaissance Technologies proved it can generate 66% annual returns for 30 years, but their edge comes from (1) proprietary data that retail can't access, (2) PhDs in mathematics finding obscure patterns, (3) nanosecond execution speed, and (4) absolute secrecy. For the rest of us, stat arb is a different game: you're competing against RenTech, Two Sigma, Citadel, and DE Shaw, all with billion-dollar technology budgets. The realistic Sharpe ratio for retail stat arb today is 1.0-1.5, not 6.0, and that's only if you avoid the seven deadly sins: overfitting (memorizing noise), ignoring costs (turnover kills), missing structural breaks (Blockbuster-Netflix), assuming stable regimes (2007 Quant Quake), look-ahead bias (using information you wouldn't have), survivorship bias (ignoring failures), and overleveraging (5× turns -10% into -50%). The August 2007 Quant Quake revealed stat arb's dark secret: when everyone uses PCA, everyone owns the same trades, and unwinding becomes a death spiral. Cointegration is the foundation—without it, you're not doing stat arb, you're gambling on correlation that can break overnight. Half-life matters: 5-day reversion is tradeable, 90-day reversion ties up capital too long. The deepest truth: mean reversion is real and testable, but it's a weak force—it works over thousands of trades with small edges (0.1-0.5% per trade), not on individual bets. Success requires diversification (50+ pairs), discipline (exit failed trades), and patience (Sharpe 1.5 over decades beats Sharpe 3.0 for 3 years then blow-up). For retail investors, the lesson isn't 'build your own stat arb system' but 'understand that market efficiency is enforced by thousands of quants running cointegration tests every millisecond'—which is why obvious mispricings don't exist."
 

@@ -1,6 +1,8 @@
-# Optional Sampling Theorem
+# Optional Sampling
 
-## Statement (basic bounded stopping times)
+
+## Statement basic
+
 
 Let \(\{M_t\}_{t\ge 0}\) be a martingale with respect to \((\mathcal{F}_t)\). Let \(\sigma\) and \(\tau\) be stopping times such that
 
@@ -42,7 +44,8 @@ This is the **optional sampling theorem** in its cleanest bounded form.
 
 ---
 
-## Proof idea (stopping and approximation)
+## Proof idea stopping
+
 
 Define the stopped martingale
 
@@ -68,7 +71,8 @@ Choosing \(s=\sigma\) and \(t=T\) yields the result since \(T\wedge \tau=\tau\) 
 
 ---
 
-## Why boundedness matters
+## Why boundedness
+
 
 Without boundedness (or other integrability conditions), optional sampling may fail. Typical sufficient conditions include:
 
@@ -81,6 +85,7 @@ A standard counterexample uses the martingale \(W_t\) and an unbounded hitting t
 ---
 
 ## Application template
+
 
 Optional sampling is often used in this pattern:
 

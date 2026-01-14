@@ -1,10 +1,12 @@
 # Forward Consistency
 
+
 **Forward consistency** aims to ensure that a model calibrated today remains internally consistent when viewed from tomorrow’s perspective. It provides a theoretical framework for mitigating the recalibration problem.
 
 ---
 
-## 1. Definition of forward consistency
+## Definition of forward consistency
+
 
 A model is forward consistent if:
 - parameters calibrated at time \(t\),
@@ -15,7 +17,8 @@ In other words, recalibration should not contradict the model’s implied evolut
 
 ---
 
-## 2. Forward consistency in interest-rate models
+## Forward consistency in interest-rate models
+
 
 In Heath–Jarrow–Morton (HJM) frameworks:
 - the entire forward curve is modeled as a state variable,
@@ -25,7 +28,8 @@ This eliminates parameter jumps by construction.
 
 ---
 
-## 3. Challenges in equity and volatility models
+## Challenges in equity and volatility models
+
 
 Equity volatility models typically:
 - have low-dimensional parameters,
@@ -37,7 +41,8 @@ As a result:
 
 ---
 
-## 4. Approaches to restore consistency
+## Approaches to restore consistency
+
 
 Methods include:
 - **state-extended models** (add latent factors),
@@ -49,7 +54,8 @@ These approaches trade model simplicity for dynamic coherence.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Forward consistency links calibration across time.
 - Static models are generally not forward consistent.
@@ -58,6 +64,7 @@ These approaches trade model simplicity for dynamic coherence.
 ---
 
 ## Further reading
+
 
 - Björk & Christensen, consistent recalibration.
 - Filipović, *Term-Structure Models*.

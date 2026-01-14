@@ -1,10 +1,12 @@
 # Cash Bond vs CDS Basis
 
+
 **Cash bond vs CDS basis trading** involves exploiting the price differential between corporate bonds (cash instruments) and credit default swaps (CDS) on the same reference entity, where the basis—calculated as the bond's asset swap spread minus the CDS spread—should theoretically be zero but diverges due to funding costs, repo market dynamics, technical supply-demand imbalances, and regulatory constraints, creating arbitrage opportunities for relative value traders who can capture basis convergence while managing funding risk, credit risk, and counterparty risk.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -43,9 +45,11 @@ $$
 
 ## What Is the Cash-CDS Basis?
 
+
 **Before trading the basis, understand the mechanics:**
 
-### Core Concept
+### 1. Core Concept
+
 
 **Definition:** The cash-CDS basis is the spread differential between a corporate bond's asset swap spread (the fixed rate above LIBOR/SOFR that equates the bond's cash flows to par) and the credit default swap spread for the same reference entity and maturity, representing the relative richness or cheapness of cash bonds versus synthetic credit exposure and typically driven by technical factors including repo rates, balance sheet costs, and supply-demand imbalances rather than fundamental credit differences.
 
@@ -151,7 +155,8 @@ This makes more sense. The basis trade captures the 13 bp differential.
 - Net: $4M + $6M = $10M (protected!)
 - **P&L: $0** (credit-neutral position)
 
-### Types of Basis
+### 2. Types of Basis
+
 
 **1. Positive Basis (Bond Cheap):**
 
@@ -190,9 +195,11 @@ This makes more sense. The basis trade captures the 13 bp differential.
 
 ## Economic Interpretation: Why the Basis Exists
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
-### The Funding Cost Differential
+### 1. The Funding Cost Differential
+
 
 **The deep insight:**
 
@@ -239,7 +246,8 @@ Bonds require funding (repo), CDS doesn't (unfunded):
 
 **Basis = -20 bps means: Bonds trade 20 bps tighter than CDS despite funding disadvantage**
 
-### The Cheapest-to-Deliver Option
+### 2. The Cheapest-to-Deliver Option
+
 
 **CDS contracts have CTD optionality:**
 
@@ -261,7 +269,8 @@ Suppose AT&T defaults:
 
 **Empirical estimate: CTD option worth 5-10 bps**
 
-### The Balance Sheet Constraint (Basel III)
+### 3. The Balance Sheet Constraint (Basel III)
+
 
 **Post-2008 regulation changed basis dynamics:**
 
@@ -292,7 +301,8 @@ Suppose AT&T defaults:
 
 **Result: Bonds trade cheaper (wider spreads) → Positive basis in stress**
 
-### The Technical Supply-Demand
+### 4. The Technical Supply-Demand
+
 
 **Bond issuance vs CDS demand creates imbalances:**
 
@@ -328,6 +338,7 @@ Suppose AT&T defaults:
 ---
 
 ## Key Terminology
+
 
 **Basis:**
 
@@ -403,7 +414,9 @@ Suppose AT&T defaults:
 
 ## Mathematical Foundation
 
-### Basis Calculation
+
+### 1. Basis Calculation
+
 
 **Simplified (G-spread basis):**
 
@@ -436,7 +449,8 @@ Where ASW = Asset swap spread (calculated via bootstrapping)
 - CDS spread: 55 bps
 - **Basis: +13 bps**
 
-### P&L from Basis Change
+### 2. P&L from Basis Change
+
 
 **For DV01-matched trade:**
 
@@ -478,7 +492,8 @@ For our example (long basis):
 - Change: -18 bps (narrowing)
 - **P&L: +18 × $4,300 = +$77,400 profit**
 
-### Hedge Ratio for DV01 Matching
+### 3. Hedge Ratio for DV01 Matching
+
 
 **Accounts for duration differences:**
 
@@ -497,7 +512,8 @@ $$
 
 **Use $9.6M CDS to match bond DV01**
 
-### Carry Calculation
+### 4. Carry Calculation
+
 
 **Daily carry from basis position:**
 
@@ -549,7 +565,9 @@ So this basis trade has negative carry of 17 bps, but profit comes from basis co
 
 ## Step-by-Step Implementation
 
-### Phase 1: Identify Basis Opportunities
+
+### 1. Phase 1: Identify Basis Opportunities
+
 
 **1. Screen Bond-CDS Pairs:**
 
@@ -625,7 +643,8 @@ plt.grid(True, alpha=0.3)
 plt.show()
 ```
 
-### Phase 2: Structure the Trade
+### 2. Phase 2: Structure the Trade
+
 
 **1. Calculate Hedge Ratios:**
 
@@ -682,7 +701,8 @@ print(f"Receive: SOFR + {asset_swap['swap_spread']} bps")
 print(f"Net: SOFR + {asset_swap['net_receive']} bps")
 ```
 
-### Phase 3: Execute and Monitor
+### 3. Phase 3: Execute and Monitor
+
 
 **1. Trade Execution:**
 
@@ -807,7 +827,8 @@ Total P&L: $31,797
 
 **Basis narrowed 8 bps in 60 days, profit $34.4k minus $2.6k carry cost**
 
-### Phase 4: Risk Management
+### 4. Phase 4: Risk Management
+
 
 **1. Stop-Loss Rules:**
 
@@ -838,7 +859,8 @@ Stop-loss: 23 bps (max loss $43,000)
 
 **Risk/reward: $77.4k upside / $43k downside = 1.8:1**
 
-### Phase 5: Exit Strategy
+### 5. Phase 5: Exit Strategy
+
 
 **1. Convergence Exit:**
 
@@ -872,7 +894,9 @@ print(f"Reason: {reason}")
 
 ## Real-World Examples
 
-### Example 1: COVID Basis Trade - March 2020 (Spectacular)
+
+### 1. Example 1: COVID Basis Trade - March 2020 (Spectacular)
+
 
 **Background:**
 
@@ -941,7 +965,8 @@ print(f"Reason: {reason}")
 
 **Many hedge funds made 30-80% returns on basis trades in Q2 2020**
 
-### Example 2: Index Basis Arbitrage - 2018 (Steady Grind)
+### 2. Example 2: Index Basis Arbitrage - 2018 (Steady Grind)
+
 
 **Background:**
 
@@ -1007,7 +1032,8 @@ In this example, basis stayed flat at -13 bps, so no MTM profit. With -27 bps ca
 
 Let me reconsider the example to make it accurate:
 
-### Corrected Example 2: Index Basis Arbitrage - 2019 (Convergence)
+### 3. Corrected Example 2: Index Basis Arbitrage - 2019 (Convergence)
+
 
 **Setup (January 2019):**
 
@@ -1043,7 +1069,8 @@ Basis normalized: +13 → 0 bps (bonds cheapened 13 bps relative to index)
 
 This makes more sense for a profitable basis trade.
 
-### Example 3: Fallen Angel Basis - 2020 Ford (Opportunity)
+### 4. Example 3: Fallen Angel Basis - 2020 Ford (Opportunity)
+
 
 **Background:**
 
@@ -1101,7 +1128,8 @@ This makes more sense for a profitable basis trade.
 4. **Patient capital:** Held 18 months for full convergence
 5. **Fallen angel class:** Known pattern (basis normalizes 12-24 months)
 
-### Example 4: Negative Basis Disaster - 2011 European Sovereign
+### 5. Example 4: Negative Basis Disaster - 2011 European Sovereign
+
 
 **Background:**
 
@@ -1167,7 +1195,8 @@ This makes more sense for a profitable basis trade.
 
 **Lesson: Basis trades on sovereign debt during crisis = disaster. Funding can disappear, basis widens dramatically, forced liquidation at worst prices.**
 
-### Example 5: Curve Basis - 2022 (Moderate Success)
+### 6. Example 5: Curve Basis - 2022 (Moderate Success)
+
 
 **Background:**
 
@@ -1226,7 +1255,9 @@ This makes more sense for a profitable basis trade.
 
 ## Best Case Scenario
 
-### Perfect Basis Trade
+
+### 1. Perfect Basis Trade
+
 
 **Setup for maximum profit:**
 
@@ -1238,7 +1269,8 @@ This makes more sense for a profitable basis trade.
 4. **Cheap funding:** Repo available despite stress
 5. **Fast convergence:** 3-6 months to normalize
 
-### Best Case Example: GE Basis Trade - Post-Crisis 2009
+### 2. Best Case Example: GE Basis Trade - Post-Crisis 2009
+
 
 **Background:**
 
@@ -1336,7 +1368,9 @@ Over 21 months: 70 bps × 21/12 × $100M = $1,225k
 
 ## Worst Case Scenario
 
-### The Basis Trade Disaster
+
+### 1. The Basis Trade Disaster
+
 
 **Worst possible conditions:**
 
@@ -1346,7 +1380,8 @@ Over 21 months: 70 bps × 21/12 × $100M = $1,225k
 4. **Forced exit:** Liquidity dries up, can't hold
 5. **Credit event:** Reference entity actually defaults
 
-### Worst Case Example: Lehman Brothers Basis - 2008 (Total Loss)
+### 2. Worst Case Example: Lehman Brothers Basis - 2008 (Total Loss)
+
 
 **Background:**
 
@@ -1517,7 +1552,9 @@ But there's a catch:
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Cash-CDS basis exploits price differentials between bonds and CDS on same credit:**
 
@@ -1531,7 +1568,8 @@ $$
 - Crisis: +50 to +150 bps (bonds trade cheap)
 - Convergence: Basis mean-reverts to historical average
 
-### The Key Metrics
+### 2. The Key Metrics
+
 
 **Normal basis ranges:**
 
@@ -1547,7 +1585,8 @@ $$
 - Convergence: 60 bps capture
 - Duration: 6-18 months
 
-### Risk Management
+### 3. Risk Management
+
 
 **Essential rules:**
 
@@ -1560,7 +1599,8 @@ $$
 - Position size: Max 10-15% of capital per trade
 - Diversification: 10+ different issuers (no concentration)
 
-### Maximum Profit/Loss
+### 4. Maximum Profit/Loss
+
 
 **Best case:**
 
@@ -1583,7 +1623,8 @@ $$
 - 12-month hold
 - **Returns: 10-30% annually**
 
-### When to Trade
+### 5. When to Trade
+
 
 **Trade basis when:**
 
@@ -1601,7 +1642,8 @@ $$
 - Counterparty risk (CDS from risky entities)
 - Illiquid bonds (can't exit if wrong)
 
-### Common Mistakes
+### 6. Common Mistakes
+
 
 1. Trading normal basis levels (no margin of safety)
 2. Assuming survival (credit events destroy basis trades)
@@ -1612,7 +1654,8 @@ $$
 7. Credit deterioration (basis widens as credit worsens)
 8. No stop-loss (holding through +100+ bp widening)
 
-### Final Wisdom
+### 7. Final Wisdom
+
 
 > "Cash-CDS basis trading is the purest form of relative value arbitrage—buying the same credit exposure in two forms (bond vs CDS) and capturing the price differential. The math is elegant: AT&T bond at 68 bps, AT&T CDS at 55 bps, pocket the 13 bp basis when they converge. In normal times, this is a low-risk grind: basis mean-reverts -10 to -30 bps (bonds trade rich due to QE, regulations, collateral demand), trades make 5-15% annually, Sharpe ratios 1.5-2.5. But basis trading has catastrophic failure modes. Best case: GE 2009 entry at +395 bps basis (40x normal), Fed support, converged to +110 bps in 21 months, +120% return. This made careers. Worst case: Lehman 2008 entry at +200 bps basis, company failed, counterparty defaulted on CDS, repo disappeared, margin calls forced liquidation, -273% loss (wiped out + owed money). This ended careers. The difference is 100% about credit selection and entry timing. Rules for survival: (1) Only trade quality credits (IG BBB+ and above, never distressed), (2) Enter at extreme dislocations (+50+ bps for IG, +100+ for HY), (3) Buy CDS from AAA counterparties (not banks in same sector), (4) Secure term repo (not overnight rollover), (5) Hard stop at 50% basis widening (if +50 bps entry, exit at +75 bps), (6) Max 10-15% per trade (diversify across 10+ names). The basis exists for real reasons (funding costs, balance sheet constraints, technical flows), and it reliably mean-reverts 70-80% of the time, delivering 10-20% annual returns. But the 20-30% of time it fails (credit events, funding crises, correlation breakdowns), it fails catastrophically, destroying funds that were overleveraged, concentrated, or wrong on credit. Master the discipline: wide entry, quality credits, funded positions, diversification, stop-losses. Do this and basis trading becomes a reliable income stream. Violate any rule and you'll join the Lehman prop desks that lost everything in 2008."
 

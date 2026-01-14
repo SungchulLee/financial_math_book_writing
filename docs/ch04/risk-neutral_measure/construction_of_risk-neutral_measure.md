@@ -1,5 +1,6 @@
 # Construction of the Risk-Neutral Measure
 
+
 The risk-neutral measure is a probability measure under which discounted asset prices
 are martingales. Its existence is the mathematical expression of the absence of arbitrage.
 
@@ -8,6 +9,7 @@ This section explains how the risk-neutral measure is constructed using Girsanov
 ---
 
 ## Market Model
+
 
 Consider a financial market consisting of:
 - a risk-free asset \(B_t\),
@@ -24,6 +26,7 @@ where \(\mu_t\), \(\sigma_t\), and \(r_t\) are adapted processes.
 ---
 
 ## Discounted Asset Price
+
 
 Define the discounted price process
 \[
@@ -43,6 +46,7 @@ a martingale under \(\mathbb{P}\).
 ---
 
 ## Measure Change
+
 
 Define the process
 \[
@@ -66,6 +70,7 @@ probability measure \(\mathbb{Q}\) by
 
 ## Risk-Neutral Dynamics
 
+
 By Girsanov’s theorem, the process
 \[
 W_t^{\mathbb{Q}} := W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds
@@ -81,6 +86,7 @@ and is therefore a martingale.
 ---
 
 ## Definition
+
 
 A **risk-neutral measure** is a probability measure \(\mathbb{Q}\) equivalent to
 \(\mathbb{P}\) under which all discounted traded asset prices are martingales.

@@ -1,10 +1,12 @@
 # Stress vs Historical Simulation
 
+
 Stress testing and historical simulation are two complementary approaches to assessing portfolio risk. Understanding their differences is essential for robust risk management.
 
 ---
 
-## 1. Historical simulation
+## Historical simulation
+
 
 Historical simulation estimates risk by:
 - reusing past market returns,
@@ -15,7 +17,8 @@ It is simple and intuitive, but limited by the historical sample.
 
 ---
 
-## 2. Stress testing
+## Stress testing
+
 
 Stress testing evaluates portfolio losses under **hypothetical or extreme scenarios**, often outside historical experience.
 
@@ -26,7 +29,8 @@ Key features:
 
 ---
 
-## 3. Comparison
+## Comparison
+
 
 | Aspect | Historical Simulation | Stress Testing |
 |------|----------------------|----------------|
@@ -37,7 +41,8 @@ Key features:
 
 ---
 
-## 4. Complementary roles
+## Complementary roles
+
 
 - Historical simulation captures typical market behavior.
 - Stress testing probes vulnerabilities and nonlinearities.
@@ -45,7 +50,8 @@ Key features:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Historical simulation is backward-looking.
 - Stress testing is forward-looking.
@@ -54,6 +60,7 @@ Key features:
 ---
 
 ## Further reading
+
 
 - McNeil et al., stress testing methods.
 - Basel Committee stress testing guidance.

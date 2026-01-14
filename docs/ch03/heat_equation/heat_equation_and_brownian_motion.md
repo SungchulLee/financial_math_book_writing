@@ -1,10 +1,12 @@
-# Heat Equation and Brownian Motion
+# Heat Equation
+
 
 The heat equation provides the analytical description of Brownian motion.
 
 ---
 
 ## Transition Density
+
 
 Let \((B_t)_{t \ge 0}\) be a standard Brownian motion.
 Then \(B_t\) has density
@@ -18,7 +20,8 @@ Thus, the law of Brownian motion evolves according to the heat equation.
 
 ---
 
-## Expectation Representation
+## Expectation
+
 
 For a bounded measurable function \(f\), define
 \[
@@ -36,6 +39,7 @@ This provides the first example of a **probabilistic representation of PDE solut
 ---
 
 ## Conceptual Bridge
+
 
 This connection establishes a fundamental principle:
 

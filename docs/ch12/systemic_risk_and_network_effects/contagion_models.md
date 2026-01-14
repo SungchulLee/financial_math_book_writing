@@ -1,10 +1,12 @@
 # Contagion Models
 
+
 **Contagion models** study how financial distress spreads across institutions through networks, markets, and behavioral channels.
 
 ---
 
-## 1. Types of contagion
+## Types of contagion
+
 
 Contagion can occur via:
 - direct exposure losses,
@@ -15,7 +17,8 @@ These mechanisms often interact.
 
 ---
 
-## 2. Network contagion models
+## Network contagion models
+
 
 Common modeling approaches include:
 - default cascade models,
@@ -26,7 +29,8 @@ They focus on solvency and payment spillovers.
 
 ---
 
-## 3. Market-based contagion
+## Market-based contagion
+
 
 Beyond balance sheets:
 - correlated asset sales depress prices,
@@ -37,7 +41,8 @@ Market contagion is fast and nonlinear.
 
 ---
 
-## 4. Policy implications
+## Policy implications
+
 
 Contagion models inform:
 - capital and liquidity requirements,
@@ -48,7 +53,8 @@ They motivate system-wide oversight.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Contagion is multi-channel and nonlinear.
 - Network models reveal hidden fragilities.
@@ -57,6 +63,7 @@ They motivate system-wide oversight.
 ---
 
 ## Further reading
+
 
 - Gai & Kapadia, contagion in networks.
 - Glasserman & Young, systemic risk models.

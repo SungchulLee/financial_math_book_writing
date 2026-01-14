@@ -1,5 +1,6 @@
 # Time Reversal of Diffusions
 
+
 Time reversal studies the law of a diffusion when observed backward in time.
 
 Let \((X_t)_{0\le t\le T}\) solve
@@ -24,6 +25,7 @@ Define the reversed process
 ---
 
 ## Key Message: Score Correction
+
 
 A central (formal) phenomenon is that the reversed drift involves the **score**
 
@@ -59,6 +61,7 @@ Precise statements require careful regularity assumptions and filtration choices
 
 ## Reversible Stationary Case
 
+
 If \(X_t\) is stationary with invariant measure \(\pi\) and **reversible** w.r.t. \(\pi\), then
 
 \[
@@ -73,6 +76,7 @@ In this case time reversal produces no new dynamics.
 ---
 
 ## What to Remember
+
 
 - Time reversal typically introduces a correction term involving \(\nabla\log p\).
 - Under detailed balance (reversibility), the process is symmetric in time.

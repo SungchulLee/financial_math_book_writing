@@ -1,14 +1,17 @@
 # Why Deterministic Models Fail
 
+
 Having documented the empirical properties of financial returns in the previous sections, we now confront a fundamental question: **Can deterministic models adequately describe asset price dynamics?**
 
 The answer, as we shall demonstrate rigorously, is **no**. Deterministic ordinary differential equations (ODEs), while elegant and mathematically tractable, are fundamentally incompatible with the stylized facts observed in real financial data. This section explains why deterministic approaches fail and motivates the need for stochastic differential equations.
 
 ---
 
-## 1. The Deterministic Growth Model
+## The Deterministic Growth Model
 
-### 1.1 Exponential Growth ODE
+
+### 1. Exponential Growth ODE
+
 
 The simplest model for asset prices is exponential growth:
 
@@ -28,7 +31,8 @@ $$
 
 This is a **smooth, deterministic trajectory** with no randomness.
 
-### 1.2 Properties of the Deterministic Model
+### 2. Properties of the Deterministic Model
+
 
 **1. Perfect predictability:**
 
@@ -60,7 +64,8 @@ $$
 - If $\mu < 0$: $S(t)$ strictly decreases  
 - If $\mu = 0$: $S(t) = S_0$ (constant)
 
-### 1.3 Comparison with Real Data
+### 3. Comparison with Real Data
+
 
 Let's compare the deterministic model with actual stock prices:
 
@@ -124,9 +129,11 @@ compare_deterministic_vs_real("AAPL", "2023-01-01", "2023-12-31")
 
 ---
 
-## 2. Fundamental Incompatibilities
+## Fundamental Incompatibilities
 
-### 2.1 Failure 1: No Randomness
+
+### 1. Failure 1: No Randomness
+
 
 **Stylized Fact:** Returns exhibit unpredictable fluctuations.
 
@@ -146,7 +153,8 @@ $$
 
 **Conclusion:** Deterministic models have **zero variance** → Cannot match observed volatility.
 
-### 2.2 Failure 2: Too Smooth
+### 2. Failure 2: Too Smooth
+
 
 **Stylized Fact:** Stock prices have **nowhere-differentiable paths** (like Brownian motion).
 
@@ -210,7 +218,8 @@ def demonstrate_nondifferentiability(df):
     print("  → Returns / √Δt converge to a stable distribution")
 ```
 
-### 2.3 Failure 3: Cannot Capture Volatility Clustering
+### 3. Failure 3: Cannot Capture Volatility Clustering
+
 
 **Stylized Fact:** Volatility clusters (GARCH effects).
 
@@ -230,7 +239,8 @@ Periods of high volatility followed by high volatility, etc.
 
 **Fundamental impossibility:** A deterministic ODE **cannot** generate time-varying volatility because it has **no volatility** to begin with.
 
-### 2.4 Failure 4: No Heavy Tails
+### 4. Failure 4: No Heavy Tails
+
 
 **Stylized Fact:** Returns have fat-tailed distributions (excess kurtosis).
 
@@ -244,7 +254,8 @@ This is **infinitely peaked** at one point with **no tails** whatsoever.
 
 **Reality:** Returns have continuous distribution with heavy tails.
 
-### 2.5 Failure 5: No Leverage Effect
+### 5. Failure 5: No Leverage Effect
+
 
 **Stylized Fact:** Negative returns correlate with increased volatility.
 
@@ -256,9 +267,11 @@ This is **infinitely peaked** at one point with **no tails** whatsoever.
 
 ---
 
-## 3. Adding Noise: The Naive Approach
+## Adding Noise: The Naive Approach
 
-### 3.1 Attempt: Add Random Shocks
+
+### 1. Attempt: Add Random Shocks
+
 
 **Idea:** Modify the deterministic model by adding random "shocks":
 
@@ -268,7 +281,8 @@ $$
 
 where $\epsilon_t \sim \mathcal{N}(0, \sigma^2 \Delta t)$ is random noise.
 
-### 3.2 Problems with This Approach
+### 2. Problems with This Approach
+
 
 **Problem 1: Non-positive prices**
 
@@ -306,9 +320,11 @@ But $\frac{\epsilon_t}{\Delta t} \to \infty$ as $\Delta t \to 0$ (noise grows wi
 
 ---
 
-## 4. Better Attempt: Multiplicative Noise
+## Better Attempt: Multiplicative Noise
 
-### 4.1 Discrete-Time Model
+
+### 1. Discrete-Time Model
+
 
 **Improved idea:** Make noise proportional to price:
 
@@ -323,7 +339,8 @@ where $\epsilon_t \sim \mathcal{N}(0, \Delta t)$.
 - ✅ Volatility **scales with price** level
 - ✅ Log-returns are additive
 
-### 4.2 Taking the Continuous-Time Limit
+### 2. Taking the Continuous-Time Limit
+
 
 **Question:** What happens as $\Delta t \to 0$?
 
@@ -355,7 +372,8 @@ $$
 \frac{W(t + \Delta t) - W(t)}{\sqrt{\Delta t}} \sim \mathcal{N}(0, 1)
 $$
 
-### 4.3 Heuristic Continuous-Time Limit
+### 3. Heuristic Continuous-Time Limit
+
 
 Formally (heuristically):
 
@@ -377,9 +395,11 @@ $$
 
 ---
 
-## 5. Why We Need Stochastic Calculus
+## Why We Need Stochastic Calculus
 
-### 5.1 The Problem with Ordinary Calculus
+
+### 1. The Problem with Ordinary Calculus
+
 
 **Ordinary calculus assumes:**
 
@@ -401,7 +421,8 @@ $$
 
 The term $(dS)^2 = \sigma^2 S^2 dt$ is **not zero** in stochastic calculus!
 
-### 5.2 Fundamental Difference: $(dW_t)^2 = dt$
+### 2. Fundamental Difference: $(dW_t)^2 = dt$
+
 
 **In ordinary calculus:**
 
@@ -421,9 +442,11 @@ This is the **quadratic variation** of Brownian motion, a fundamental result.
 
 ---
 
-## 6. Summary: The Path to SDEs
+## Summary: The Path to SDEs
 
-### 6.1 The Logical Flow
+
+### 1. The Logical Flow
+
 
 ```
 Empirical Observations
@@ -449,7 +472,8 @@ NEED: Stochastic Differential Equations
 NEED: Stochastic Calculus (Itô)
 ```
 
-### 6.2 What We Need to Learn
+### 2. What We Need to Learn
+
 
 To properly model financial returns, we must develop:
 
@@ -473,7 +497,8 @@ To properly model financial returns, we must develop:
    - Existence and uniqueness
    - Connection to PDEs
 
-### 6.3 The Geometric Brownian Motion Model
+### 3. The Geometric Brownian Motion Model
+
 
 The correct continuous-time model is:
 
@@ -498,7 +523,8 @@ $$
 
 ---
 
-## 7. Comparison Table
+## Comparison Table
+
 
 | Property | Deterministic ODE | Real Stock Returns | Stochastic SDE |
 |----------|------------------|-------------------|----------------|
@@ -513,7 +539,8 @@ $$
 
 ---
 
-## 8. Conclusion
+## Conclusion
+
 
 **The verdict is clear:**
 

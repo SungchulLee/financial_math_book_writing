@@ -1,4 +1,5 @@
-# Doob–Meyer Decomposition
+# Doob Meyer
+
 
 This section explains the **Doob–Meyer decomposition**, a structural theorem stating that (under mild hypotheses) every submartingale can be written as the sum of a **martingale** and a **predictable increasing** process.
 
@@ -16,7 +17,8 @@ satisfying the usual conditions.
 
 ---
 
-## Motivation: “Drift + Noise”
+## Motivation Drift
+
 
 For an Itô process
 
@@ -32,7 +34,8 @@ we can see explicitly a finite-variation “drift” and a martingale “noise�
 
 ---
 
-## Submartingales and Class \((D)\)
+## Submartingales Class
+
 
 A càdlàg adapted process \((X_t)_{t\ge 0}\) is a **submartingale** if for all \(0\le s\le t\),
 
@@ -59,7 +62,8 @@ is uniformly integrable.
 
 ---
 
-## Predictable Increasing Processes
+## Predictable
+
 
 A process \((A_t)_{t\ge 0}\) is
 - **increasing** if \(A_s \le A_t\) a.s. for \(s\le t\),
@@ -68,7 +72,8 @@ A process \((A_t)_{t\ge 0}\) is
 
 ---
 
-## Theorem (Doob–Meyer)
+## Theorem Doob Meyer
+
 
 **Theorem.** If \((X_t)_{t\ge 0}\) is a càdlàg submartingale of class \((D)\), then there exist:
 - a càdlàg martingale \((M_t)_{t\ge 0}\),
@@ -104,6 +109,7 @@ $$
 
 ## Uniqueness
 
+
 If
 
 
@@ -132,7 +138,8 @@ Reason: \(A-\widetilde{A}=\widetilde{M}-M\) is both finite variation and a marti
 
 ---
 
-## Example: \(W_t^2\)
+## Example W t 2
+
 
 For Brownian motion \(W_t\), Itô’s formula gives
 
@@ -158,7 +165,8 @@ yields the Doob–Meyer decomposition of the submartingale \(W_t^2\).
 
 ---
 
-## Connection to Optional Sampling
+## Connection Optional
+
 
 Doob–Meyer is a **structural** theorem (what a submartingale is made of). Optional Sampling is a **behavioral** theorem (how martingales behave when stopped). A common pattern is:
 1. Decompose \(X=M+A\) via Doob–Meyer,
@@ -166,7 +174,8 @@ Doob–Meyer is a **structural** theorem (what a submartingale is made of). Opti
 
 ---
 
-## What to Remember
+## What Remember
+
 
 - **Submartingale** \(=\) **martingale** \(+\) **predictable increasing**.
 - The predictable increasing part is unique and captures the “drift” relative to the filtration.

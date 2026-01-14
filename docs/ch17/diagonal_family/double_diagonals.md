@@ -1,5 +1,6 @@
 # Double Diagonals
 
+
 **Double diagonals** are option strategies where you **simultaneously run diagonal spreads on both the call side and put side**, combining **different strike prices AND different expiration dates** on both wings. They create positions that can profit from **directional movement within a range, time decay on both sides, and term structure advantages** with **defined (or mostly-defined) risk**.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_flexibility.png?raw=true" alt="long_call_vs_put" width="700">
@@ -36,11 +38,13 @@ You're essentially betting:
 
 ## What Is a Double
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_management.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 ### 1. The Structure
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_structure.png?raw=true" alt="long_call_vs_put" width="700">
@@ -71,11 +75,13 @@ This creates a **"diagonal tent"** with directional bias possibilities.
 
 ## Why Double Diagonals
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/double_diagonals_vs_double_calendar.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 ### 1. Directional
+
 Unlike single diagonals (one direction only), double diagonals allow:
 - **Moderate bullish moves** to profit (call side wins)
 - **Moderate bearish moves** to profit (put side wins)
@@ -83,17 +89,20 @@ Unlike single diagonals (one direction only), double diagonals allow:
 - You don't need to be perfectly right on direction
 
 ### 2. Enhanced Theta
+
 - Two short options decaying (call and put)
 - Both collect premium
 - Works even if stock drifts in either direction
 - **Double the income potential** vs. single diagonal
 
 ### 3. Term Structure
+
 - Front month decays faster on **both** call and put
 - Back month more stable on **both** sides
 - You exploit time structure **twice**
 
 ### 4. Better Than
+
 - **Double calendar:** Strikes at the same level, pure range bet
 - **Double diagonal:** **Strikes spread wider**, allows directional profit
 - More flexible, more forgiving structure
@@ -102,7 +111,9 @@ Unlike single diagonals (one direction only), double diagonals allow:
 
 ## Types of Double
 
+
 ### 1. Symmetrical
+
 
 **Structure:**
 
@@ -121,6 +132,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 
 ### 2. Bullish Double
 
+
 **Structure:**
 
 - Call diagonal: Closer to the money, larger size
@@ -137,6 +149,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 
 ### 3. Bearish Double
 
+
 **Structure:**
 
 - Call diagonal: Further from money, smaller size
@@ -152,6 +165,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 **Goal:** profit from moderate downward move while maintaining upside protection.
 
 ### 4. Aggressive Double
+
 
 **Structure:**
 
@@ -172,7 +186,9 @@ Unlike single diagonals (one direction only), double diagonals allow:
 
 ## The Portfolio
 
+
 ### 1. Call Diagonal
+
 
 $$
 \Pi_{\text{call}} = C(S, K_{\text{long,call}}, T_{\text{long}}) - C(S, K_{\text{short,call}}, T_{\text{short}})
@@ -180,11 +196,13 @@ $$
 
 ### 2. Put Diagonal
 
+
 $$
 \Pi_{\text{put}} = P(S, K_{\text{long,put}}, T_{\text{long}}) - P(S, K_{\text{short,put}}, T_{\text{short}})
 $$
 
 ### 3. Combined Position
+
 
 $$
 \Pi_{\text{total}} = \Pi_{\text{call}} + \Pi_{\text{put}}
@@ -209,9 +227,11 @@ where:
 
 ## Economic
 
+
 **Understanding what double diagonals REALLY represent economically:**
 
 ### 1. The Core Economic
+
 
 Double diagonals are fundamentally about **exploiting the volatility term structure and skew simultaneously on both sides of the market**. You're not just trading time decay—you're trading the **three-dimensional volatility surface**.
 
@@ -229,9 +249,11 @@ $$
 
 ### 2. Why Double
 
+
 **The market creates this opportunity because of structural inefficiencies in THREE dimensions:**
 
 ### 3. Term Structure
+
 
 **The fundamental asymmetry:**
 
@@ -271,6 +293,7 @@ $$
 **Economic insight:** You're exploiting the **convexity of theta** with respect to time.
 
 ### 4. Volatility Risk
+
 
 **The empirical fact:**
 
@@ -343,6 +366,7 @@ You're **NOT purely selling the vol risk premium**. Instead, you're:
 
 ### 5. Skew Exploitation
 
+
 **The volatility skew for equities:**
 
 $$
@@ -385,6 +409,7 @@ Put diagonal benefits more from skew than call diagonal, creating **asymmetric p
 
 ### 6. The
 
+
 **Option prices live on a 3D surface:**
 
 $$
@@ -415,9 +440,11 @@ You're arbitraging **relative mispricing** across the surface.
 
 ### 7. Professional
 
+
 **How different players use double diagonals:**
 
 ### 8. Retail Traders
+
 
 **Typical use:**
 - Monthly income generation
@@ -437,6 +464,7 @@ You're arbitraging **relative mispricing** across the surface.
 
 ### 9. Professional
 
+
 **Use case:**
 - Hedge inventory imbalances
 - Capture bid-ask spread
@@ -454,6 +482,7 @@ You're arbitraging **relative mispricing** across the surface.
 - **Target:** Bid-ask spread + theta, no directional risk
 
 ### 10. Volatility
+
 
 **Sophisticated approach:**
 - Identify term structure anomalies
@@ -478,6 +507,7 @@ You're arbitraging **relative mispricing** across the surface.
 
 ### 11. Pension Funds /
 
+
 **Use case:**
 - Generate income on equity portfolios
 - Reduce portfolio volatility
@@ -497,9 +527,11 @@ You're arbitraging **relative mispricing** across the surface.
 
 ### 12. Why Double
 
+
 **The strategy works when these conditions align:**
 
 ### 13. Normal Term
+
 
 **Required:** Front month IV ≥ Back month IV (normal state)
 
@@ -521,6 +553,7 @@ $$
 - **Still positive!**
 
 ### 14. Mean-Reverting
+
 
 **Required:** Stock oscillates around a mean (not trending strongly)
 
@@ -552,6 +585,7 @@ Empirically, stocks spend:
 
 ### 15. Elevated Implied
 
+
 **Sweet spot:** IV percentile rank 40-70
 
 **Why:**
@@ -567,6 +601,7 @@ Empirically, stocks spend:
 - **Asymmetric:** More upside from IV spike than downside from crush (you're long vega!)
 
 ### 16. Absence of
+
 
 **Avoid:**
 - Earnings in front month expiration week
@@ -592,9 +627,11 @@ Binary events create **IV term structure inversion**:
 
 ### 17. The Greeks
 
+
 **Understanding the risk exposures:**
 
 ### 18. Delta
+
 
 **Typical delta:** -5 to +5 (nearly neutral)
 
@@ -619,6 +656,7 @@ At initiation (stock at $450):
 
 ### 19. Gamma
 
+
 **Typical gamma:** Slightly positive early, negative as expiration approaches
 
 **Why:**
@@ -641,6 +679,7 @@ At initiation (stock at $450):
 Roll the short options with 7-14 days remaining to avoid negative gamma hell.
 
 ### 20. Theta (Time
+
 
 **Typical theta:** +$20 to +$50 per day (primary profit source)
 
@@ -669,6 +708,7 @@ If stock moves far away from either short strike:
 
 ### 21. Vega (Volatility
 
+
 **Typical vega:** +40 to +80 (long volatility!)
 
 **This surprises people!**
@@ -692,11 +732,13 @@ IV spike **helps** you (contrary to intuition)!
 
 ### 22. Rho (Interest
 
+
 **Typically:** Small positive (< $10)
 
 **Not a significant factor** unless rates moving 1%+ quickly.
 
 ### 23. The Economic
+
 
 **Why sell front-month OTM options:**
 - **Theta decay fastest** as expiration nears
@@ -725,6 +767,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ### 24. Double diagonals
 
+
 **Double diagonals exist because:**
 
 1. **Term structure advantage** - Front month decays 70% faster per day
@@ -751,6 +794,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 
 ## Concrete Example 1
+
 
 **Setup:**
 
@@ -830,6 +874,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ## Concrete Example 2
 
+
 **Setup:**
 
 - Stock at $S = 100$
@@ -867,7 +912,9 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ## Strike Selection
 
+
 ### 1. Long Legs (Back
+
 
 **Call diagonal - long call:**
 
@@ -903,6 +950,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ### 2. Short Legs (Front
 
+
 **Call diagonal - short call:**
 
 **Standard approach:**
@@ -933,6 +981,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ### 3. Strike Width
 
+
 **Narrow tent (5-8% total width):**
 
 - Call: Buy $102, Sell $107
@@ -961,7 +1010,9 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ## Time Frame Selection
 
+
 ### 1. Typical
+
 
 **Long legs (back month):**
 
@@ -984,6 +1035,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ### 2. Common Time
 
+
 | Long Leg | Short Leg | Ratio | Character | Use Case |
 |----------|-----------|-------|-----------|----------|
 | 60 days | 30 days | 2:1 | Aggressive | Active traders |
@@ -1002,7 +1054,9 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ## Position Management
 
+
 ### 1. Entry Timing
+
 
 **Best conditions to enter:**
 
@@ -1029,6 +1083,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ### 2. During the Life
 
+
 **Weekly monitoring:**
 
 **Check position:**
@@ -1052,6 +1107,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 - Decision point approaching
 
 ### 3. Adjustment
+
 
 **When stock approaches upper short call:**
 
@@ -1092,6 +1148,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ### 4. Management at
 
+
 **Decision tree (7-14 days before expiration):**
 
 **If both short options OTM and stock near center:**
@@ -1120,6 +1177,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 - Keep winning side if it can recover losses
 
 ### 5. Rolling Mechanics
+
 
 **Standard monthly roll (perpetual strategy):**
 
@@ -1178,7 +1236,9 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ## Pros and Cons
 
+
 ### 1. Double Diagonals
+
 
 **1. Directional flexibility**
 - Can profit from moves in **either direction**
@@ -1211,6 +1271,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 - Better than naked options
 
 ### 2. Double Diagonals
+
 
 **1. Complex to manage**
 - **Four option legs** to track
@@ -1261,7 +1322,9 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Market Context (August 1, 2023):**
 - SPY at $448
@@ -1363,6 +1426,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 ---
 
 ### 2. Transition Risk
+
 
 **Market Context (August 25, 2022):**
 - AAPL at $158
@@ -1468,6 +1532,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 ---
 
 ### 3. Portable Alpha
+
 
 **Market Context (February 1, 2024):**
 - QQQ at $420
@@ -1642,9 +1707,11 @@ These three examples show:
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -1670,6 +1737,7 @@ These three examples show:
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 - [Specific IV conditions]
 - [Term structure requirements]
@@ -1683,6 +1751,7 @@ These three examples show:
 - [Event risk too high]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -1704,6 +1773,7 @@ $$
 
 ### 4. Best practices: 1
 
+
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1724,6 +1794,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1751,6 +1822,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -1777,6 +1849,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 - Entry IV level and percentile
 - Term structure shape at entry
@@ -1794,6 +1867,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
 3. **Ignoring term structure** - Don't sell front month if in backwardation
@@ -1804,6 +1878,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -1832,7 +1907,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Entering with
+
 
 **The error:**
 
@@ -1849,6 +1926,7 @@ $$
 
 ### 2. Wrong Long Leg
 
+
 **The error:**
 
 - Buying only 45-day long legs
@@ -1863,6 +1941,7 @@ $$
 - LEAPS (180+ days) for true PMCC-style
 
 ### 3. Holding Short
+
 
 **The error:**
 
@@ -1879,6 +1958,7 @@ $$
 
 ### 4. Ignoring One Side
 
+
 **The error:**
 
 - Focus only on threatened side
@@ -1893,6 +1973,7 @@ $$
 - Don't tie both sides together artificially
 
 ### 5. Over-Adjusting
+
 
 **The error:**
 
@@ -1910,6 +1991,7 @@ $$
 
 ### 6. Wrong Position
 
+
 **The error:**
 
 - "It's defined risk, so 10 contracts!"
@@ -1926,6 +2008,7 @@ $$
 
 ### 7. Entering Before
 
+
 **The error:**
 
 - Earnings in 3 weeks
@@ -1941,6 +2024,7 @@ $$
 - No exceptions
 
 ### 8. Expecting
+
 
 **The error:**
 
@@ -1960,7 +2044,9 @@ $$
 
 ## When to Use Double
 
+
 ### 1. Best Conditions ✓
+
 
 **Market environment:**
 
@@ -1999,6 +2085,7 @@ $$
 - Willing to manage actively
 
 ### 2. Avoid When ✗
+
 
 **Dangerous conditions:**
 
@@ -2046,6 +2133,7 @@ $$
 
 
 ## Double diagonals are
+
 
 Double diagonals are a sophisticated "hybrid of hybrids" strategy:
 

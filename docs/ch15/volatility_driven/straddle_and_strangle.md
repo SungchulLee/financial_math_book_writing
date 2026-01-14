@@ -1,5 +1,6 @@
 # Straddles and Strangles
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_straddle_pnl.png?raw=true" alt="long_straddle_pnl" width="700">
 </p>
@@ -87,6 +88,7 @@
 
 ## The Core Insight
 
+
 **The fundamental idea:**
 
 - You don't know which way the market will move
@@ -106,9 +108,11 @@ $$
 
 ## The Simplest Volatility Trade
 
+
 **This is THE most basic volatility strategy:**
 
 ### 1. Why Start Here?
+
 
 **Before learning complex strategies (gamma scalping, dispersion, etc.), understand straddles:**
 
@@ -132,9 +136,11 @@ $$
 
 ## What Is a Straddle?
 
+
 **A straddle is buying (or selling) both a call and a put at the SAME strike:**
 
 ### 1. Long Straddle Structure
+
 
 **What you do:**
 
@@ -176,6 +182,7 @@ $$
 
 ### 2. The Math
 
+
 **At expiration:**
 
 If stock at $S$:
@@ -199,9 +206,11 @@ $$
 
 ## What Is a Strangle?
 
+
 **A strangle is buying (or selling) both a call and put at DIFFERENT strikes:**
 
 ### 1. Long Strangle Structure
+
 
 **What you do:**
 
@@ -242,6 +251,7 @@ $$
 
 ### 2. Straddle vs. Strangle Comparison
 
+
 | Aspect | Straddle | Strangle |
 |--------|----------|----------|
 | **Strikes** | Same (ATM) | Different (OTM) |
@@ -260,7 +270,9 @@ $$
 
 ## Long vs. Short
 
+
 ### 1. Long Straddle/Strangle (Buy Volatility)
+
 
 **Structure:**
 
@@ -286,6 +298,7 @@ $$
 **Your view:** "Realized volatility will exceed implied volatility"
 
 ### 2. Short Straddle/Strangle (Sell Volatility)
+
 
 **Structure:**
 
@@ -316,7 +329,9 @@ $$
 
 ## The Portfolio
 
+
 ### 1. Long Straddle Portfolio
+
 
 $$
 \Pi = C(K) + P(K)
@@ -346,6 +361,7 @@ $$
 
 ### 2. Long Strangle Portfolio
 
+
 $$
 \Pi = C(K_{\text{call}}) + P(K_{\text{put}})
 $$
@@ -369,6 +385,7 @@ $$
 $$
 
 ### 3. Short Straddle Portfolio
+
 
 $$
 \Pi = -C(K) - P(K)
@@ -402,9 +419,11 @@ First term is gamma loss from movement (quadratic in move size!), second is thet
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 **For long straddle:**
 
@@ -436,6 +455,7 @@ $$
 
 ### 2. Why This Structure Exists Economically
 
+
 Markets create these structures because different participants have different:
 
 **Risk preferences:**
@@ -460,6 +480,7 @@ Markets create these structures because different participants have different:
 
 ### 3. Professional Institutional Perspective
 
+
 **Institutional traders view straddles as:**
 
 1. **Variance exposure:** 
@@ -475,6 +496,7 @@ Markets create these structures because different participants have different:
    If your estimate of realized vol differs from market's implied vol
 
 ### 4. The Fair Value Perspective
+
 
 **Break-even analysis:**
 
@@ -504,6 +526,7 @@ where $E^Q$ is risk-neutral expectation. You profit if actual moves exceed this 
 
 ### 5. Volatility Risk Premium
 
+
 **Key concept:** Markets typically overprice options (positive volatility risk premium):
 
 $$
@@ -530,7 +553,9 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Greek Dynamics
 
+
 ### 1. Delta Evolution
+
 
 **Initial state:**
 $$
@@ -551,6 +576,7 @@ $$
 
 ### 2. Gamma Behavior
 
+
 **Straddle gamma:**
 $$
 \Gamma_{\text{straddle}} = \Gamma_{\text{call}} + \Gamma_{\text{put}}
@@ -570,6 +596,7 @@ $$
 As expiration approaches ($T-t \to 0$), gamma explodes near ATM but collapses away from ATM.
 
 ### 3. Vega Profile
+
 
 **Straddle vega:**
 $$
@@ -593,6 +620,7 @@ $$
 Example: If $\mathcal{V} = 100$ and IV increases by 5 points (0.05), profit = $100 \times 0.05 = \$5$.
 
 ### 4. Theta Decay
+
 
 **Straddle theta:**
 $$
@@ -624,6 +652,7 @@ $$
 But actual theta near expiry can be $-\$0.50$ or more per day!
 
 ### 5. Greek Interactions
+
 
 **P&L attribution over small time interval:**
 $$
@@ -657,6 +686,7 @@ Stock needs to move $3.46 just to break even on theta that day!
 
 ### 6. Greek Changes Over Time
 
+
 **Gamma evolution near expiry:**
 
 ```
@@ -683,7 +713,9 @@ Days to Expiry:
 
 ## Time Evolution
 
+
 ### 1. The Life Cycle of a Straddle
+
 
 **T-30 days (Entry):**
 
@@ -727,7 +759,8 @@ If stock unchanged:
 - Total loss: $8.64 (100%)
 - Game over
 
-### 2. 
+### 2. Topic 
+
 
 **T-25 days:** Stock jumps to $108 (+8%)
 
@@ -749,7 +782,8 @@ Remaining 25 days will cost $0.30/day × 25 = $7.50 in theta. Stock needs to sta
 
 **Professional approach:** Take profit! Don't fight theta.
 
-### 3. 
+### 3. Topic 
+
 
 **T-5 days:** Stock finally moves to $106 (+6%)
 
@@ -777,6 +811,7 @@ $$
 
 ### 4. The Theta Race
 
+
 **Visual representation:**
 
 ```
@@ -796,6 +831,7 @@ $10 |●
 
 ### 5. The Optimal Exit Timing
 
+
 **Framework for deciding when to exit:**
 
 **Exit immediately if:**
@@ -814,6 +850,7 @@ Current position worth $12 (profit = $3.36):
 Current value ($12) > Expected future value ($6.50) → **Exit now!**
 
 ### 6. Time to Expiration Sweet Spot
+
 
 **Optimal horizon for long straddles:**
 
@@ -846,6 +883,7 @@ Historical win rates:
 
 ### 7. The Event-Driven Advantage
 
+
 **Best setup:** Buy straddle 3-7 days before known event
 
 **Timeline:**
@@ -873,7 +911,9 @@ You experience only 7 days of theta but capture the full event move. Optimal ris
 
 ## P&L Sources Decomposition
 
+
 ### 1. The Three Components
+
 
 **Every dollar of P&L comes from exactly three sources:**
 
@@ -884,6 +924,7 @@ $$
 **Let's analyze each:**
 
 ### 2. Gamma P&L (Movement)
+
 
 **Formula:**
 $$
@@ -913,6 +954,7 @@ $$
 This is why many small moves can add up, even if net price change is small!
 
 ### 3. Vega P&L (IV Changes)
+
 
 **Formula:**
 $$
@@ -945,6 +987,7 @@ You can be RIGHT about movement but WRONG about timing of IV changes. If IV crus
 
 ### 4. Theta P&L (Time Decay)
 
+
 **Formula:**
 $$
 \text{Theta P\&L} = \Theta \times \Delta t
@@ -970,6 +1013,7 @@ $$
 This is your maximum loss if stock doesn't move!
 
 ### 5. Complete P&L Example
+
 
 **Day 0:** Buy straddle for $8.64
 
@@ -1001,6 +1045,7 @@ $$
 
 ### 6. The Critical Trade-Offs
 
+
 **Daily decision:**
 
 Every day you hold, you face:
@@ -1022,6 +1067,7 @@ If this inequality doesn't hold, close the position!
 
 ### 7. Why Most Straddles Lose
 
+
 **Statistical reality:**
 
 On average:
@@ -1040,6 +1086,7 @@ $$
 When gamma P&L or vega P&L is large enough (events, crashes, rallies), straddles can be very profitable. You're betting on EXCEPTIONAL moves, not average outcomes.
 
 ### 8. Professional P&L Attribution
+
 
 **Traders track each component separately:**
 
@@ -1066,6 +1113,7 @@ Consider exit if IV expected to drop further.
 
 ### 9. The Vega-Gamma Synergy
 
+
 **Best case:** Both work in your favor
 
 **Event anticipation:**
@@ -1090,7 +1138,9 @@ This is the ideal straddle scenario: ride IV expansion, capture movement, exit b
 
 ## Volatility Impact
 
+
 ### 1. The Vega Equation
+
 
 **Straddle value sensitivity to IV:**
 $$
@@ -1102,6 +1152,7 @@ where $\phi$ is standard normal PDF and $d_1$ depends on moneyness.
 **Key insight:** Straddle value is HIGHLY sensitive to IV changes, often more than to stock movement in short term.
 
 ### 2. IV Changes vs. Stock Movement
+
 
 **Comparison:**
 
@@ -1120,6 +1171,7 @@ where $\phi$ is standard normal PDF and $d_1$ depends on moneyness.
 You can profit from straddle WITHOUT stock moving, just from IV increasing. Conversely, stock can move but you still lose if IV crashes.
 
 ### 3. The Volatility Smile Effect
+
 
 **ATM vs. OTM vega:**
 
@@ -1144,6 +1196,7 @@ During market stress:
 - Strangles can actually outperform straddles!
 
 ### 4. Implied vs. Realized Volatility
+
 
 **The fundamental bet:**
 
@@ -1181,6 +1234,7 @@ Implied vol = 35%, Realized vol = 20%:
 
 ### 5. The Volatility Risk Premium
 
+
 **Historical observation:**
 
 $$
@@ -1210,6 +1264,7 @@ Despite negative expectation, long straddles profit when:
 3. IV expansion before events (sell before move happens)
 
 ### 6. IV Term Structure
+
 
 **IV varies by expiration:**
 
@@ -1243,6 +1298,7 @@ IV by Tenor:
 
 ### 7. Event-Driven Volatility Patterns
 
+
 **Typical earnings pattern:**
 
 ```
@@ -1275,6 +1331,7 @@ T+1:  20% (crush!)
 - Exit before full vol crush
 
 ### 8. Volatility Mean Reversion
+
 
 **Statistical property:**
 
@@ -1311,6 +1368,7 @@ If current IV < 20th percentile → Consider buying
 
 ### 9. Volatility Clustering
 
+
 **Stylized fact:**
 
 High vol tends to follow high vol. Low vol tends to follow low vol.
@@ -1330,6 +1388,7 @@ After a volatile day:
 - But be aware IV may have already adjusted
 
 ### 10. The IV-HV Spread
+
 
 **Key metric for straddle traders:**
 
@@ -1357,6 +1416,7 @@ This suggests options are expensive. Short straddle may be attractive IF you bel
 
 ### 11. Professional Vol Trading Perspective
 
+
 **Volatility traders monitor:**
 
 1. **IV levels** (absolute)
@@ -1381,7 +1441,9 @@ Understanding volatility dynamics is crucial. Stock movement alone doesn't deter
 
 ## Analysis
 
+
 ### 1. 1
+
 
 **Setup:**
 
@@ -1415,6 +1477,7 @@ Position value:
 
 ### 2. 2
 
+
 **Setup:**
 
 - Buy straddle for $8.64
@@ -1445,6 +1508,7 @@ Move happened too slowly! Theta consumed more value than gamma generated.
 
 ### 3. 3
 
+
 **Setup:**
 
 - Buy straddle for $8.64
@@ -1472,6 +1536,7 @@ Position value:
 
 ### 4. 4
 
+
 **Setup:**
 
 - Buy straddle 1 day before earnings for $10
@@ -1493,6 +1558,7 @@ Theta P&L: -$0.50 (1 day)
 **Lesson:** Consider exiting BEFORE event if IV has already expanded enough.
 
 ### 5. 5
+
 
 **Setup:**
 
@@ -1526,6 +1592,7 @@ Each large move generated gamma P&L:
 
 ### 6. 6
 
+
 **Setup:**
 
 - Buy straddle for $8.64
@@ -1551,6 +1618,7 @@ Stock moved slightly but not enough:
 **Lesson:** If stock isn't moving enough, exit early. Don't hope for a miracle.
 
 ### 7. 7
+
 
 **Setup:**
 
@@ -1579,6 +1647,7 @@ During market crashes:
 
 ### 8. 8
 
+
 **Setup:**
 
 - Buy straddle 2 weeks before known event
@@ -1604,6 +1673,7 @@ Theta cost: -$4.20
 
 ### 9. Comparison Matrix
 
+
 | Scenario | Stock Move | IV Change | Duration | P&L | Key Lesson |
 |----------|-----------|-----------|----------|-----|------------|
 | Immediate move | +8% | Neutral | 1 day | +30% | Take profit fast |
@@ -1616,6 +1686,7 @@ Theta cost: -$4.20
 | IV expansion | +2% | +15pts | 14 days | +23% | Trade the vol, not event |
 
 ### 10. Professional Planning
+
 
 **Before entering straddle, map out:**
 
@@ -1656,7 +1727,9 @@ Your job is to maximize exposure to first category, minimize exposure to third c
 
 ## Real-World Trading Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup (T-7 days before earnings):**
 
@@ -1703,6 +1776,7 @@ Position value:
 
 ### 2. Transition Risk Hedge
 
+
 **Setup (T-2 days before FOMC):**
 
 - SPY at $450
@@ -1744,6 +1818,7 @@ Position value:
 
 ### 3. Portable Alpha with Futures
 
+
 **Setup (T-3 days before FDA decision):**
 
 - Biotech stock at $40
@@ -1780,6 +1855,7 @@ Position value:
 3. This was a bet, not a trade (massive uncertainty)
 
 ### 4. Tactical Duration Extension
+
 
 **Setup:**
 
@@ -1822,6 +1898,7 @@ Stock stayed in $98-$102 range entire time:
 3. Range-bound stocks stay range-bound
 
 ### 5. Duration Hedge Failure in Crisis
+
 
 **Setup (T-10 before earnings):**
 
@@ -1869,6 +1946,7 @@ Straddle would have been worth $10 (only +$1 from entry)
 
 ### 6. Example 6
 
+
 **Setup:**
 
 - Volatile tech stock at $100
@@ -1915,6 +1993,7 @@ Position value at Day 5: $7.50
 
 ### 7. Key Patterns Across Examples
 
+
 **Winners had:**
 
 - Specific catalyst for movement
@@ -1944,7 +2023,9 @@ If any answer is no, reconsider the trade.
 
 ## Common Pitfalls
 
+
 ### 1. Pitfall 1
+
 
 **The mistake:**
 
@@ -1973,6 +2054,7 @@ Set calendar-based exit:
 - Exception: Very specific event on expiration day
 
 ### 2. Pitfall 2
+
 
 **The mistake:**
 
@@ -2003,6 +2085,7 @@ Stock moves 10% (large move!):
 Buy when IV is LOW relative to expected move, not HIGH.
 
 ### 3. Pitfall 3
+
 
 **The mistake:**
 
@@ -2039,6 +2122,7 @@ $$
 $$
 
 ### 4. Pitfall 4
+
 
 **The mistake:**
 
@@ -2077,6 +2161,7 @@ If position down 30-40% AND:
 
 ### 5. Pitfall 5
 
+
 **The mistake:**
 
 "This straddle can't lose more than premium, so I'll risk 20% of portfolio!"
@@ -2105,6 +2190,7 @@ Straddles have ~60-70% loss rate. You need MANY attempts to hit the big winners.
 
 ### 6. Pitfall 6
 
+
 **The mistake:**
 
 Buying 90-day straddles thinking "More time = safer"
@@ -2130,6 +2216,7 @@ Still 60 days left but already down 33%!
 **Lesson:** Optimal horizon is 30-45 days for most straddles. Longer is not safer.
 
 ### 7. Pitfall 7
+
 
 **The mistake:**
 
@@ -2165,6 +2252,7 @@ Straddle expires worthless
 
 ### 8. Pitfall 8
 
+
 **The mistake:**
 
 After losing on straddle, immediately buying another to "make it back"
@@ -2189,6 +2277,7 @@ Total loss: $7k (could have been $2k)
 4. Never increase size after loss
 
 ### 9. Pitfall 9
+
 
 **The mistake:**
 
@@ -2215,6 +2304,7 @@ Saved: $3 to redeploy elsewhere
 **Lesson:** If not working by mid-point, unlikely to work. Cut losses.
 
 ### 10. Pitfall 10
+
 
 **The mistake:**
 
@@ -2244,6 +2334,7 @@ High-quality setups only:
 **Lesson:** Quality > Quantity. Be selective.
 
 ### 11. Summary
+
 
 **Risk management:**
 
@@ -2275,7 +2366,9 @@ Professional traders avoid these through discipline and checklist adherence.
 
 ## Position Management
 
+
 ### 1. Entry Checklist
+
 
 **Before placing any straddle trade, verify:**
 
@@ -2327,6 +2420,7 @@ Breakeven: ±4.7%
 ```
 
 ### 2. Monitoring Framework
+
 
 **Daily check (5 minutes):**
 
@@ -2380,6 +2474,7 @@ Decision: HOLD, thesis intact
 ```
 
 ### 3. Exit Decision Framework
+
 
 **Exit immediately if ANY of:**
 
@@ -2467,6 +2562,7 @@ Rationale:
 
 ### 4. Adjustment Strategies
 
+
 **Question:** "Can I adjust a losing straddle?"
 
 **Answer:** Generally NO for directional straddles, but here are rare exceptions:
@@ -2522,6 +2618,7 @@ Example:
 
 ### 5. Multi-Leg Position Management
 
+
 **If running multiple straddles simultaneously:**
 
 **Correlation risk:**
@@ -2565,6 +2662,7 @@ Never allocate >15% of portfolio to straddles simultaneously:
 
 ### 6. The Day-Before Decision
 
+
 **You're holding straddle with earnings tomorrow. What do you do?**
 
 **Decision tree:**
@@ -2599,6 +2697,7 @@ Never allocate >15% of portfolio to straddles simultaneously:
 **Professional rule:** Bias toward exiting profitable positions before events. Vol crush often exceeds directional gain.
 
 ### 7. Post-Trade Review
+
 
 **After every straddle trade (win or lose), document:**
 
@@ -2662,6 +2761,7 @@ Next time:
 
 ### 8. Advanced
 
+
 **Professional traders monitor real-time Greeks:**
 
 ```
@@ -2701,6 +2801,7 @@ Alerts:
 
 
 ## Pedagogical Note
+
 
 **Where this fits in your curriculum:**
 

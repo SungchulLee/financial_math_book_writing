@@ -1,5 +1,6 @@
 # Binomial to Black-Scholes Limit
 
+
 The **binomial option pricing model** provides an intuitive discrete-time framework for option valuation. A fundamental result is that as the number of time steps increases to infinity, the binomial model **converges** to the **Black-Scholes model**. This connection demonstrates that the sophisticated continuous-time theory emerges naturally from simple discrete approximations.
 
 This section rigorously establishes the convergence of the binomial model to the Black-Scholes framework.
@@ -7,6 +8,7 @@ This section rigorously establishes the convergence of the binomial model to the
 ---
 
 ## Notation Summary
+
 
 Throughout this section, we maintain a clear distinction between discrete and continuous time:
 
@@ -26,9 +28,11 @@ Throughout this section, we maintain a clear distinction between discrete and co
 
 ---
 
-## 1. Binomial Model Setup
+## Binomial Model Setup
 
-### **Discrete Time Structure**
+
+### 1. **Discrete Time Structure**
+
 
 Consider a time interval $[0, T]$ divided into $n$ steps:
 
@@ -52,7 +56,8 @@ where:
 - $0 < d < 1$: **down factor** (multiplicative decrease)  
 - $q$: **risk-neutral probability** of upward move
 
-### **Parameter Specification**
+### 2. **Parameter Specification**
+
 
 To ensure convergence to geometric Brownian motion with volatility $\sigma$, the standard choice is:
 
@@ -66,7 +71,8 @@ $$
 2. The tree is recombining (up-then-down equals down-then-up)
 3. The model is well-defined for all $dt > 0$
 
-### **Risk-Neutral Probability**
+### 3. **Risk-Neutral Probability**
+
 
 Under the risk-neutral measure, the expected return equals the risk-free rate:
 
@@ -90,9 +96,11 @@ As $dt \to 0$, the probability approaches $\frac{1}{2}$ with a small drift corre
 
 ---
 
-## 2. Convergence of Stock Price Process
+## Convergence of Stock Price Process
 
-### **Log-Price Representation**
+
+### 1. **Log-Price Representation**
+
 
 After $n$ steps, the stock price is:
 
@@ -118,7 +126,8 @@ $$
 \ln(S_n) = \ln(S_0) + \sigma\sqrt{dt}(N_u - N_d)
 $$
 
-### **Drift and Diffusion Decomposition**
+### 2. **Drift and Diffusion Decomposition**
+
 
 Define:
 
@@ -145,7 +154,8 @@ $$
 \text{Var}^{\mathbb{Q}}[X_i] = 1 - (2q-1)^2 = 1 - O(dt)
 $$
 
-### **Central Limit Theorem**
+### 3. **Central Limit Theorem**
+
 
 As $n \to \infty$ (equivalently $dt \to 0$), by the **Central Limit Theorem**:
 
@@ -159,7 +169,8 @@ $$
 \sum_{i=1}^n X_i \xrightarrow{d} \mathcal{N}\left(\frac{r T}{\sigma}, n\right) = \mathcal{N}\left(\frac{r T}{\sigma}, \frac{T}{dt}\right)
 $$
 
-### **Log-Price Distribution**
+### 4. **Log-Price Distribution**
+
 
 Therefore:
 
@@ -177,7 +188,8 @@ where $S(T)$ denotes the stock price at continuous time $T$.
 
 **Drift correction**: The term $-\frac{1}{2}\sigma^2$ appears due to **Itô's lemma** conversion from $dS/S$ to $d\ln S$.
 
-### **Geometric Brownian Motion**
+### 5. **Geometric Brownian Motion**
+
 
 This log-normal distribution characterizes the solution to the stochastic differential equation:
 
@@ -189,9 +201,11 @@ where $t \in [0,T]$ is continuous time. This is the **risk-neutral geometric Bro
 
 ---
 
-## 3. Matching Variance
+## Matching Variance
 
-### **Instantaneous Variance**
+
+### 1. **Instantaneous Variance**
+
 
 In one time step, the stock return is:
 
@@ -208,7 +222,8 @@ $$
 \text{Var}\left(\frac{S_{i+1} - S_i}{S_i}\right) \approx \sigma^2 dt
 $$
 
-### **Continuous-Time Limit**
+### 2. **Continuous-Time Limit**
+
 
 Over the full period $[0, T]$, the total variance accumulates:
 
@@ -226,9 +241,11 @@ $$
 
 ---
 
-## 4. Risk-Neutral Drift Convergence
+## Risk-Neutral Drift Convergence
 
-### **Expected Growth Rate**
+
+### 1. **Expected Growth Rate**
+
 
 Under the risk-neutral measure, the expected stock price after one step is:
 
@@ -248,7 +265,8 @@ $$
 \mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i] = S_i e^{r dt} \approx S_i(1 + rdt)
 $$
 
-### **Continuous-Time Equivalent**
+### 2. **Continuous-Time Equivalent**
+
 
 As $dt \to 0$, this discrete expectation converges to the infinitesimal increment:
 
@@ -266,9 +284,11 @@ $$
 
 ---
 
-## 5. Convergence of Option Pricing
+## Convergence of Option Pricing
 
-### **Binomial Option Valuation**
+
+### 1. **Binomial Option Valuation**
+
 
 In the binomial model, option value at node $i$ is:
 
@@ -282,7 +302,8 @@ $$
 V_n = \text{Payoff}(S_n)
 $$
 
-### **Continuous Discounting**
+### 2. **Continuous Discounting**
+
 
 As $dt \to 0$:
 
@@ -302,7 +323,8 @@ $$
 \frac{V_{i+1} - V_i}{dt} \approx rV_i - \text{(second derivative terms)}
 $$
 
-### **PDE Limit**
+### 3. **PDE Limit**
+
 
 As $n \to \infty$ and $dt \to 0$, this discrete recursion converges to the **Black-Scholes PDE**:
 
@@ -318,7 +340,8 @@ $$
 
 where $t$ is now continuous time and $V = V(S,t)$ is the option value as a function.
 
-### **Formula Convergence**
+### 4. **Formula Convergence**
+
 
 For a European call option, the binomial price:
 
@@ -344,9 +367,11 @@ where $f(S)$ is the log-normal density and $S(T)$ is the stock price at time $T$
 
 ---
 
-## 6. Replication Argument Carries Over
+## Replication Argument Carries Over
 
-### **Discrete-Time Hedging**
+
+### 1. **Discrete-Time Hedging**
+
 
 In the binomial model, at each node the option is replicated by a portfolio:
 
@@ -359,7 +384,8 @@ where:
 - $\Delta_i = \frac{V_{i+1}^{\text{up}} - V_{i+1}^{\text{down}}}{S_i(u - d)}$ (delta at node $i$)
 - $B_i$ = cash position at node $i$
 
-### **Continuous-Time Limit**
+### 2. **Continuous-Time Limit**
+
 
 As $dt \to 0$:
 
@@ -379,9 +405,11 @@ where $(S,t)$ denotes continuous time and space.
 
 ---
 
-## 7. Convergence Rate
+## Convergence Rate
 
-### **Error Analysis**
+
+### 1. **Error Analysis**
+
 
 The error between binomial and Black-Scholes prices is:
 
@@ -391,7 +419,8 @@ $$
 
 **Implication**: To achieve 3 decimal places of accuracy, approximately $n \geq 10^6$ steps may be required.
 
-### **Practical Considerations**
+### 2. **Practical Considerations**
+
 
 For practical implementations:
 
@@ -401,9 +430,11 @@ For practical implementations:
 
 ---
 
-## 8. Extensions and Generalizations
+## Extensions and Generalizations
 
-### **American Options**
+
+### 1. **American Options**
+
 
 The binomial method extends naturally to American options (with early exercise):
 
@@ -413,14 +444,16 @@ $$
 
 There is **no closed-form** Black-Scholes formula for American options, so numerical methods remain essential.
 
-### **Dividends**
+### 2. **Dividends**
+
 
 For dividend-paying stocks:
 
 - **Continuous dividends**: Replace $r$ with $r - \delta$ in the drift
 - **Discrete dividends**: Subtract PV of dividends from stock price at each ex-dividend date
 
-### **Alternative Parameterizations**
+### 3. **Alternative Parameterizations**
+
 
 Other choices of $u, d$ exist:
 
@@ -431,7 +464,8 @@ All converge to the same Black-Scholes limit but may have different convergence 
 
 ---
 
-## 9. Summary: Binomial vs. Black-Scholes
+## Summary: Binomial vs. Black-Scholes
+
 
 | Feature | Binomial Model | Black-Scholes Model |
 |---------|----------------|---------------------|
@@ -449,23 +483,27 @@ All converge to the same Black-Scholes limit but may have different convergence 
 
 ---
 
-## 10. Practical Takeaway
+## Practical Takeaway
+
 
 The binomial tree remains **highly valuable** even after learning the Black-Scholes formula:
 
-### **Advantages of Binomial**
+### 1. **Advantages of Binomial**
+
 
 1. **Intuitive**: Easy to understand and explain to non-quants
 2. **Flexible**: Handles American options, dividends, time-varying parameters
 3. **Robust**: Works even when Black-Scholes assumptions fail
 4. **Pedagogical**: Teaches replication and risk-neutral pricing clearly
 
-### **When to Use Each**
+### 2. **When to Use Each**
+
 
 - **Black-Scholes**: European options, quick calculations, theoretical analysis
 - **Binomial**: American options, exotic features, educational purposes, quick prototyping
 
-### **Complementary Roles**
+### 3. **Complementary Roles**
+
 
 - **Binomial** provides intuition and numerical approximation
 - **Black-Scholes** provides analytical precision and mathematical elegance
@@ -474,6 +512,7 @@ The binomial tree remains **highly valuable** even after learning the Black-Scho
 ---
 
 ## Conclusion
+
 
 The binomial-to-Black-Scholes convergence is more than a mathematical curiosity—it reveals that:
 

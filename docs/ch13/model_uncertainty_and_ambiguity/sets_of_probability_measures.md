@@ -1,6 +1,8 @@
 # Sets of Probability Measures
 
+
 ## Introduction
+
 
 When facing model uncertainty, decision makers and financial analysts work with **sets of probability measures** rather than a single canonical measure. This mathematical framework provides the foundation for robust optimization, ambiguity-averse preferences, and stress testing in quantitative finance.
 
@@ -8,7 +10,9 @@ This chapter develops the mathematical theory of sets of probability measures, t
 
 ## Mathematical Foundations
 
-### Probability Spaces and Measures
+
+### 1. Probability Spaces and Measures
+
 
 **Setup**: Let $(\Omega, \mathcal{F})$ be a measurable space where:
 - $\Omega$ is the state space
@@ -33,7 +37,8 @@ $$
 
 
 
-### Weak Topology
+### 2. Weak Topology
+
 
 The space $\mathcal{M}_1(\Omega)$ is endowed with the **weak topology** (or weak-* topology).
 
@@ -59,7 +64,8 @@ for all bounded continuous functions $f: \Omega \to \mathbb{R}$.
 - $\mathcal{M}_1(\Omega)$ is complete and separable in the weak topology
 - A subset $\mathcal{P} \subseteq \mathcal{M}_1(\Omega)$ is relatively compact iff it is tight
 
-### Total Variation Distance
+### 3. Total Variation Distance
+
 
 **Definition** (Total Variation): The total variation distance between probability measures $P$ and $Q$ is:
 
@@ -90,7 +96,9 @@ but the converse is generally false.
 
 ## Specification of Sets of Probability Measures
 
-### Parametric Uncertainty Sets
+
+### 1. Parametric Uncertainty Sets
+
 
 **$\varepsilon$-Contamination**: Given a reference measure $P_0$ and contamination level $\varepsilon \in [0,1]$:
 
@@ -133,7 +141,8 @@ $$
 
 
 
-### Density-Based Sets
+### 2. Density-Based Sets
+
 
 **Density Ratio Bounds**: For a reference measure $P_0$:
 
@@ -155,7 +164,8 @@ $$
 
 
 
-### Moment-Based Sets
+### 3. Moment-Based Sets
+
 
 **Mean-Variance Uncertainty**: For a random vector $X$:
 
@@ -179,7 +189,8 @@ $$
 
 for constraint sets $\mathcal{C}_i \subseteq \mathbb{R}$.
 
-### Rectangularity
+### 4. Rectangularity
+
 
 A fundamental concept for dynamic consistency in multi-period models.
 
@@ -209,7 +220,9 @@ where $\mathcal{P}_t$ are measurable families of conditional distributions.
 
 ## Convexity and Compactness Properties
 
-### Convex Sets of Measures
+
+### 1. Convex Sets of Measures
+
 
 **Convex Combination**: For $P, Q \in \mathcal{M}_1(\Omega)$ and $\lambda \in [0,1]$:
 
@@ -234,7 +247,8 @@ $$
 2. Total variation balls: $\mathcal{P}_{\text{TV}}(\delta)$ is convex
 3. Moment-constrained sets: $\mathcal{P}_{\text{moment}}$ is convex (under convex constraints)
 
-### Compactness
+### 2. Compactness
+
 
 **Theorem** (Compact Sets): Under weak topology, $\mathcal{P} \subseteq \mathcal{M}_1(\Omega)$ is compact if:
 1. $\mathcal{P}$ is closed
@@ -253,7 +267,8 @@ $$
 - $\min_{P \in \mathcal{P}} \mathbb{E}_P[f]$ is attained for continuous $f$
 - Sequential minimizing procedures converge
 
-### Extreme Points and Choquet's Theorem
+### 3. Extreme Points and Choquet's Theorem
+
 
 **Extreme Point**: $P \in \mathcal{P}$ is an **extreme point** if it cannot be written as a strict convex combination:
 
@@ -290,7 +305,9 @@ reducing the optimization to extreme points.
 
 ## Robust Optimization Framework
 
-### General Robust Problem
+
+### 1. General Robust Problem
+
 
 Consider the robust optimization problem:
 
@@ -315,7 +332,8 @@ $$
 
 
 
-### Duality and Conjugate Functions
+### 2. Duality and Conjugate Functions
+
 
 **Conjugate Function**: For a convex function $\phi: \mathbb{R}^n \to \mathbb{R}$:
 
@@ -346,9 +364,11 @@ $$
 
 can be reformulated using the conjugate of the indicator function of $\mathcal{P}$.
 
-### Specific Examples
+### 3. Specific Examples
 
-#### Robust Mean-Variance Portfolio
+
+### 4. Robust Mean-Variance Portfolio
+
 
 **Problem**: 
 
@@ -381,7 +401,8 @@ $$
 
 where $\mu_0 = \mathbb{E}_{P_0}[R]$.
 
-#### Robust Option Pricing
+### 5. Robust Option Pricing
+
 
 **Problem**: Price a European option with payoff $\Phi(S_T)$ under model uncertainty.
 
@@ -416,7 +437,9 @@ where $\mathcal{L}^{\sigma}$ is the Black-Scholes operator with volatility $\sig
 
 ## Contraction and Expansion of Uncertainty Sets
 
-### Conditional Updating
+
+### 1. Conditional Updating
+
 
 **Question**: How should $\mathcal{P}$ be updated upon observing information $\mathcal{F}_t$?
 
@@ -451,7 +474,8 @@ $$
 
 for appropriately chosen threshold $\ell_t$.
 
-### Learning and Contraction
+### 2. Learning and Contraction
+
 
 As more data is observed, uncertainty should decrease.
 
@@ -479,7 +503,9 @@ in appropriate metrics.
 
 ## Entropic Penalty and Relative Entropy
 
-### Relative Entropy
+
+### 1. Relative Entropy
+
 
 **Definition**: For $P \ll Q$:
 
@@ -501,7 +527,8 @@ $$
 
 
 
-### Entropic Constraint
+### 2. Entropic Constraint
+
 
 The KL divergence naturally penalizes deviation from a reference measure.
 
@@ -527,7 +554,8 @@ where:
 - $\lambda^*$ is chosen so that $D_{\text{KL}}(P^* \| P_0) = \theta$
 - $Z(\lambda) = \mathbb{E}_{P_0}[e^{-\lambda X}]$ is the moment generating function
 
-### Connection to Exponential Utility
+### 3. Connection to Exponential Utility
+
 
 **Entropic Risk Measure**:
 
@@ -562,7 +590,9 @@ linking risk-sensitive preferences to model uncertainty.
 
 ## Applications in Continuous Time
 
-### Drift Uncertainty in Brownian Motion
+
+### 1. Drift Uncertainty in Brownian Motion
+
 
 **Setup**: Observed process:
 
@@ -595,7 +625,8 @@ $$
 
 
 
-### Volatility Uncertainty
+### 2. Volatility Uncertainty
+
 
 **Setup**: Stock price:
 
@@ -628,7 +659,8 @@ $$
 
 
 
-### Stochastic Control with Model Uncertainty
+### 3. Stochastic Control with Model Uncertainty
+
 
 **Controlled SDE**:
 
@@ -663,7 +695,9 @@ where $V$ is the value function.
 
 ## Comparison of Uncertainty Specifications
 
-### Trade-offs Between Uncertainty Sets
+
+### 1. Trade-offs Between Uncertainty Sets
+
 
 | **Type** | **Advantages** | **Disadvantages** |
 |----------|---------------|-------------------|
@@ -673,7 +707,8 @@ where $V$ is the value function.
 | **Moment-Based** | Uses observable quantities (mean, variance) | May include unrealistic measures |
 | **$\varepsilon$-Contamination** | Simple parametrization | Limited modeling flexibility |
 
-### Computational Complexity
+### 2. Computational Complexity
+
 
 **KL Divergence**: Often leads to closed-form solutions via exponential tilting.
 
@@ -685,7 +720,9 @@ where $V$ is the value function.
 
 ## Extreme Scenarios and Stress Testing
 
-### Worst-Case Measure
+
+### 1. Worst-Case Measure
+
 
 **Definition**: The **worst-case measure** for a loss function $\ell$ is:
 
@@ -698,7 +735,8 @@ $$
 
 **Characterization**: For convex $\mathcal{P}$ and convex $\ell$, $P^*$ often lies on the boundary of $\mathcal{P}$.
 
-### Stress Testing Framework
+### 2. Stress Testing Framework
+
 
 **Objective**: Identify extreme but plausible scenarios.
 
@@ -738,7 +776,8 @@ $$
 
 
 
-### Scenario Generation
+### 3. Scenario Generation
+
 
 **Monte Carlo from Worst-Case Measure**: Sample paths from $P^*$ to generate stress scenarios.
 
@@ -755,7 +794,9 @@ with reduced variance for rare events.
 
 ## Connections to Information Theory
 
-### Mutual Information Under Uncertainty
+
+### 1. Mutual Information Under Uncertainty
+
 
 **Mutual Information**: For joint measure $P_{XY}$:
 
@@ -786,7 +827,8 @@ $$
 
 **Application**: Robust portfolio diversification seeks to minimize $I_{\max}$ between asset returns.
 
-### Channel Capacity
+### 2. Channel Capacity
+
 
 **Definition**: Maximum information transmission rate:
 
@@ -801,7 +843,9 @@ $$
 
 ## Advanced Topics
 
-### Wasserstein Distance and Optimal Transport
+
+### 1. Wasserstein Distance and Optimal Transport
+
 
 **Wasserstein Distance**: For $p \geq 1$:
 
@@ -837,7 +881,8 @@ $$
 
 
 
-### $\phi$-Divergences
+### 2. $\phi$-Divergences
+
 
 **General Family**: For convex $\phi: [0, \infty) \to \mathbb{R}$ with $\phi(1) = 0$:
 
@@ -859,7 +904,8 @@ $$
 - Joint convexity
 - Data processing inequality
 
-### Robustness and Minimax Theorems
+### 3. Robustness and Minimax Theorems
+
 
 **Sion's Minimax Theorem**: If $\mathcal{X}$ is compact convex, $\mathcal{P}$ is convex, and $f(x, P)$ is:
 - Convex-continuous in $x$ for fixed $P$
@@ -876,7 +922,8 @@ $$
 
 **Application**: Ensures existence of saddle points in robust optimization.
 
-### Capacities and Non-Additive Measures
+### 4. Capacities and Non-Additive Measures
+
 
 **Capacity** (Non-additive measure): $\nu: \mathcal{F} \to [0,1]$ satisfying:
 1. $\nu(\emptyset) = 0$, $\nu(\Omega) = 1$
@@ -904,7 +951,9 @@ establishing connection between non-additive integration and maxmin preferences.
 
 ## Summary and Practical Guidelines
 
-### Key Theoretical Results
+
+### 1. Key Theoretical Results
+
 
 1. **Topological Structure**: $\mathcal{M}_1(\Omega)$ with weak topology is a complete separable metric space (for Polish $\Omega$)
 
@@ -916,7 +965,8 @@ establishing connection between non-additive integration and maxmin preferences.
 
 5. **Entropic Penalty**: KL divergence provides tractable penalty function with exponential tilting solutions
 
-### Practical Recommendations
+### 2. Practical Recommendations
+
 
 **Specifying $\mathcal{P}$**:
 1. Start with moment-based sets using observable statistics
@@ -934,7 +984,8 @@ establishing connection between non-additive integration and maxmin preferences.
 3. Total variation: For conservative worst-case analysis
 4. Moment constraints: When statistical data is primary input
 
-### Open Research Questions
+### 3. Open Research Questions
+
 
 1. **High-Dimensional Uncertainty**: How to specify and compute with $\mathcal{P}$ in high dimensions without curse of dimensionality?
 

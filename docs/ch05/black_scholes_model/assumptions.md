@@ -1,12 +1,14 @@
 # Black-Scholes Model Assumptions
 
+
 The Black-Scholes model, while revolutionary in its implications, relies on a set of **simplifying assumptions** that make the mathematics tractable and enable closed-form solutions. Understanding these assumptions is essential for both appreciating the model's elegance and recognizing its practical limitations.
 
 This section systematically examines each assumption, explains its role, and discusses its realism.
 
 ---
 
-## 1. The Six Core Assumptions
+## The Six Core Assumptions
+
 
 The Black-Scholes framework rests on six fundamental assumptions about asset price dynamics and market structure.
 
@@ -14,7 +16,9 @@ The Black-Scholes framework rests on six fundamental assumptions about asset pri
 
 ## Assumption 1: Geometric Brownian Motion with Constant Parameters
 
-### **Statement**
+
+### 1. **Statement**
+
 
 The underlying asset price $S_t$ follows **geometric Brownian motion** with constant drift $\mu$ and constant volatility $\sigma$:
 
@@ -28,7 +32,8 @@ where:
 - $\sigma$ = constant volatility (standard deviation of returns, annualized)
 - $W_t$ = standard Brownian motion (Wiener process)
 
-### **Equivalent Representation**
+### 2. **Equivalent Representation**
+
 
 By Itô's lemma, this implies:
 $$
@@ -40,7 +45,8 @@ $$
 \ln(S_t) = \ln(S_0) + \left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t
 $$
 
-### **Implications**
+### 3. **Implications**
+
 
 **1. Log-normal distribution**: Stock prices are log-normally distributed
 $$
@@ -59,7 +65,8 @@ $$
 
 **4. Constant parameters**: $\mu$ and $\sigma$ do not change over time or with price level
 
-### **Why This Assumption?**
+### 4. **Why This Assumption?**
+
 
 **Mathematical convenience**:
 - Allows analytical solutions via PDE methods
@@ -81,14 +88,17 @@ $$
 
 ## Assumption 2: Frictionless Markets
 
-### **Statement**
+
+### 1. **Statement**
+
 
 The market operates without **transaction costs, bid-ask spreads, or market impact**:
 - Buying and selling assets is **costless**
 - The same price applies to both purchases and sales (no spread)
 - Trading any quantity does not affect prices (perfect liquidity)
 
-### **Implications**
+### 2. **Implications**
+
 
 **1. Perfect replication**: Derivative payoffs can be exactly replicated via continuous trading
 
@@ -96,7 +106,8 @@ The market operates without **transaction costs, bid-ask spreads, or market impa
 
 **3. No penalty for frequent trading**: Continuous hedging is feasible without cost accumulation
 
-### **Why This Assumption?**
+### 3. **Why This Assumption?**
+
 
 **Mathematical necessity**:
 - Dynamic hedging requires continuous rebalancing
@@ -123,14 +134,17 @@ The market operates without **transaction costs, bid-ask spreads, or market impa
 
 ## Assumption 3: Continuous Trading
 
-### **Statement**
+
+### 1. **Statement**
+
 
 Traders can adjust their positions **at any instant in continuous time**:
 - Portfolio rebalancing can occur at infinitesimally small time intervals
 - There are no restrictions on trading frequency
 - Markets are open 24/7 (conceptually)
 
-### **Implications**
+### 2. **Implications**
+
 
 **1. Perfect hedging**: Delta can be maintained exactly by continuous adjustment
 
@@ -138,7 +152,8 @@ Traders can adjust their positions **at any instant in continuous time**:
 
 **3. Theoretical replication**: Options can be replicated exactly (in theory)
 
-### **Why This Assumption?**
+### 3. **Why This Assumption?**
+
 
 **Mathematical framework**:
 - Continuous-time stochastic calculus (Itô calculus) requires continuous trading
@@ -164,14 +179,17 @@ Traders can adjust their positions **at any instant in continuous time**:
 
 ## Assumption 4: Constant Risk-Free Rate
 
-### **Statement**
+
+### 1. **Statement**
+
 
 The risk-free interest rate $r$ is **constant and known** over the option's life:
 - $r$ does not vary with time: $r(t) = r$ for all $t$
 - $r$ is non-stochastic (deterministic)
 - Borrowing and lending both occur at rate $r$ (no spread)
 
-### **Implications**
+### 2. **Implications**
+
 
 **1. Deterministic discounting**: Future cash flows are discounted by $e^{-rT}$
 
@@ -182,7 +200,8 @@ $$
 
 **3. Simplified PDE**: The $-rV$ term in the Black-Scholes PDE is constant
 
-### **Why This Assumption?**
+### 3. **Why This Assumption?**
+
 
 **Mathematical simplification**:
 - Constant $r$ allows separation of discounting from stochastic dynamics
@@ -204,11 +223,13 @@ $$
 - **Stochastic rates**: Hull-White, CIR models for interest rate derivatives
 - **Foreign exchange options**: Two interest rates (domestic and foreign)
 
-### **Practical Implementation: What is $r$ in Practice?**
+### 4. **Practical Implementation: What is $r$ in Practice?**
+
 
 While the Black-Scholes model assumes a constant risk-free rate, practitioners must choose an appropriate rate from observable market data. The choice depends on the option's maturity, underlying asset, and market conventions.
 
-#### **Historical Choice: LIBOR (Deprecated)**
+### 5. **Historical Choice: LIBOR (Deprecated)**
+
 
 **What it was**:
 - **LIBOR** (London Interbank Offered Rate): Rate at which banks borrowed from each other
@@ -221,7 +242,8 @@ While the Black-Scholes model assumes a constant risk-free rate, practitioners m
 - Regulatory pressure to phase out
 - **Officially discontinued**: December 31, 2021 (most tenors)
 
-#### **Modern Benchmark: Overnight Rates**
+### 6. **Modern Benchmark: Overnight Rates**
+
 
 **Secured Overnight Financing Rate (SOFR)** - United States:
 - Based on **actual overnight transactions** in US Treasury repo market
@@ -242,7 +264,8 @@ While the Black-Scholes model assumes a constant risk-free rate, practitioners m
 - Transparent methodology
 - Lower manipulation risk
 
-#### **Treasury Yields**
+### 7. **Treasury Yields**
+
 
 **When used**:
 - Long-term options (years to maturity)
@@ -263,7 +286,8 @@ While the Black-Scholes model assumes a constant risk-free rate, practitioners m
 - Slightly lower than interbank rates (credit spread)
 - May not reflect actual funding costs for banks/hedge funds
 
-#### **Forward Rate Agreements (FRA) and Swap Rates**
+### 8. **Forward Rate Agreements (FRA) and Swap Rates**
+
 
 **When used**:
 - Medium-term options (months)
@@ -285,7 +309,8 @@ While the Black-Scholes model assumes a constant risk-free rate, practitioners m
 - Match option maturity to corresponding forward rate
 - Accounts for rate expectations over option's life
 
-#### **Repo Rates**
+### 9. **Repo Rates**
+
 
 **When used**:
 - Very short-term options (intraday to weekly)
@@ -301,7 +326,8 @@ While the Black-Scholes model assumes a constant risk-free rate, practitioners m
 - **General Collateral (GC) Repo**: Average rate across all Treasury collateral
 - **Special Repo**: Rate for specific security (can deviate from GC)
 
-#### **Practical Selection Guide**
+### 10. **Practical Selection Guide**
+
 
 | Option Maturity | Recommended Rate | Rationale |
 |-----------------|------------------|-----------|
@@ -315,7 +341,8 @@ While the Black-Scholes model assumes a constant risk-free rate, practitioners m
 **FX options**: Differential between domestic and foreign rates (e.g., SOFR vs. €STR)  
 **Index options**: T-bill/T-note yields matching expiration  
 
-#### **Term Structure Matching**
+### 11. **Term Structure Matching**
+
 
 For accuracy, match the risk-free rate to the option's time to maturity:
 
@@ -328,7 +355,8 @@ For accuracy, match the risk-free rate to the option's time to maturity:
 - Linear interpolation for short maturities (< 1 year)
 - Spline or polynomial for longer maturities
 
-#### **Dividend-Adjusted Rates**
+### 12. **Dividend-Adjusted Rates**
+
 
 For equity options on dividend-paying stocks, use:
 $$
@@ -341,7 +369,8 @@ where:
 
 The model uses $r_{\text{effective}}$ as the drift rate.
 
-#### **Why It Matters**
+### 13. **Why It Matters**
+
 
 **Impact on option prices**:
 - Call options: Higher $r$ → Higher value (larger forward price)
@@ -360,7 +389,8 @@ The model uses $r_{\text{effective}}$ as the drift rate.
 - **Credit spreads**: Corporate borrowers face $r + \text{spread}$
 - **Collateral effects**: Posted collateral may earn different rate
 
-#### **Market Conventions**
+### 14. **Market Conventions**
+
 
 **Equity options**:
 - Use swap curve or interpolated SOFR
@@ -378,7 +408,8 @@ The model uses $r_{\text{effective}}$ as the drift rate.
 - Use forward rates derived from swap curve
 - Internally consistent with underlying rate
 
-#### **Dynamic Adjustment**
+### 15. **Dynamic Adjustment**
+
 
 In practice, $r$ changes over time:
 - **Re-mark daily**: Update $r$ based on current market rates
@@ -391,14 +422,17 @@ In practice, $r$ changes over time:
 
 ## Assumption 5: No Arbitrage
 
-### **Statement**
+
+### 1. **Statement**
+
 
 The market is **arbitrage-free**:
 - There exist no riskless profit opportunities
 - Any mispricing is immediately exploited by arbitrageurs
 - Law of one price holds: identical payoffs have identical prices
 
-### **Implications**
+### 2. **Implications**
+
 
 **1. Unique pricing**: Replicable payoffs have a unique price (the replication cost)
 
@@ -406,7 +440,8 @@ The market is **arbitrage-free**:
 
 **3. PDE derivation**: The hedged portfolio must earn the risk-free rate (no excess return)
 
-### **Why This Assumption?**
+### 3. **Why This Assumption?**
+
 
 **Fundamental principle**:
 - No-arbitrage is the **foundation** of quantitative finance
@@ -438,14 +473,17 @@ The market is **arbitrage-free**:
 
 ## Assumption 6: No Dividends
 
-### **Statement**
+
+### 1. **Statement**
+
 
 The underlying asset pays **no dividends or cash distributions** during the option's life:
 - No dividend payments before maturity $T$
 - No stock splits, special dividends, or return of capital
 - All return comes from price appreciation
 
-### **Implications**
+### 2. **Implications**
+
 
 **1. Simplified PDE**: No dividend term in the Black-Scholes equation
 
@@ -453,7 +491,8 @@ The underlying asset pays **no dividends or cash distributions** during the opti
 
 **3. Put-call parity**: Simpler form without dividend adjustments
 
-### **Why This Assumption?**
+### 3. **Why This Assumption?**
+
 
 **Mathematical simplicity**:
 - Dividends create discontinuities in price dynamics
@@ -468,11 +507,13 @@ The underlying asset pays **no dividends or cash distributions** during the opti
 - **Ex-dividend price drops**: Stock falls by dividend amount on ex-date
 - **Strategic exercise**: American calls may be exercised just before dividends
 
-### **Theoretical Discussion: The Dividend-Adjusted Model**
+### 4. **Theoretical Discussion: The Dividend-Adjusted Model**
+
 
 In many realistic financial markets, the assumption of zero dividends is overly restrictive. Stocks, particularly those of established companies, often pay dividends at regular intervals. Incorporating a continuous dividend yield into the Black-Scholes framework makes the model more applicable to real-world financial instruments.
 
-#### **Why Non-Zero Dividends Make Sense**
+### 5. **Why Non-Zero Dividends Make Sense**
+
 
 The rationale for introducing a non-zero dividend yield $q$ stems from the fact that **dividends reduce the value of the underlying asset over time**. When a stock pays dividends, the expected return to investors comes not only from capital appreciation but also from dividend payments. This introduces an opportunity cost for holding the underlying asset rather than selling it to capture the dividend.
 
@@ -516,7 +557,8 @@ $$
 
 **Key change**: The drift term $rS\frac{\partial V}{\partial S}$ becomes $(r-q)S\frac{\partial V}{\partial S}$.
 
-#### **Why Continuous Dividends May Not Hold**
+### 6. **Why Continuous Dividends May Not Hold**
+
 
 Although including dividends enhances model realism, it introduces complications and limitations:
 
@@ -541,7 +583,8 @@ Although including dividends enhances model realism, it introduces complications
 - After-tax returns differ from pre-tax models
 - Investors in different tax brackets value dividends differently
 
-#### **Impact on Option Pricing**
+### 7. **Impact on Option Pricing**
+
 
 The dividend yield has opposite effects on calls and puts:
 
@@ -563,7 +606,8 @@ The dividend yield has opposite effects on calls and puts:
 - **With dividends** ($q = 3\%$): $C \approx 8.92$, $P \approx 6.97$
 - Call decreases by ~15%, put increases by ~25%
 
-#### **Practical Relevance**
+### 8. **Practical Relevance**
+
 
 The dividend effect depends critically on option maturity:
 
@@ -589,7 +633,8 @@ The dividend effect depends critically on option maturity:
 - American calls may be optimally exercised just before ex-dividend date
 - Discrete dividends create complex free boundary problems
 
-#### **Summary**
+### 9. **Summary**
+
 
 The introduction of a continuous dividend yield into the Black-Scholes model:
 
@@ -615,7 +660,8 @@ For precise pricing around ex-dividend dates or for options highly sensitive to 
 
 ---
 
-### **Extensions to Include Dividends**
+### 10. **Extensions to Include Dividends**
+
 
 **1. Continuous dividend yield $q$**:
 
@@ -647,9 +693,11 @@ Use $S'$ in the Black-Scholes formula.
 
 ---
 
-## 2. Why These Assumptions Matter
+## Why These Assumptions Matter
 
-### **Analytical Tractability**
+
+### 1. **Analytical Tractability**
+
 
 The six assumptions enable **closed-form solutions**:
 - Constant parameters → time-homogeneous PDE
@@ -661,7 +709,8 @@ The six assumptions enable **closed-form solutions**:
 
 **Result**: The elegant Black-Scholes formula for European options.
 
-### **Practical Limitations**
+### 2. **Practical Limitations**
+
 
 Real-world deviations create:
 
@@ -681,7 +730,8 @@ Real-world deviations create:
 - Local volatility (Dupire)
 - Transaction cost models (Leland)
 
-### **The Role of Idealization**
+### 3. **The Role of Idealization**
+
 
 Like any scientific model, Black-Scholes **simplifies reality to capture essence**:
 - Physics uses frictionless planes and point masses
@@ -698,7 +748,8 @@ The assumptions are best viewed as **starting points** for more realistic models
 
 ---
 
-## 3. Summary Table
+## Summary Table
+
 
 | Assumption | Statement | Implication | Main Violation |
 |------------|-----------|-------------|----------------|
@@ -712,6 +763,7 @@ The assumptions are best viewed as **starting points** for more realistic models
 ---
 
 ## Summary
+
 
 The Black-Scholes model rests on six core assumptions:
 

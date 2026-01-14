@@ -1,10 +1,12 @@
 # Girsanov for Jump Processes
 
+
 Girsanov’s theorem extends beyond diffusions to **jump processes**, providing the mathematical foundation for changing measures in credit risk models.
 
 ---
 
-## 1. Jumps and compensators
+## Jumps and compensators
+
 
 Default is modeled as a jump process with compensator
 
@@ -18,7 +20,8 @@ Under a measure change, both the compensator and intensity may change.
 
 ---
 
-## 2. Girsanov theorem for jumps
+## Girsanov theorem for jumps
+
 
 Girsanov’s theorem states that, under suitable integrability conditions:
 - the compensated jump process remains a martingale,
@@ -28,7 +31,8 @@ This generalizes the drift adjustment in diffusion models.
 
 ---
 
-## 3. Application to default modeling
+## Application to default modeling
+
 
 In credit models:
 - the likelihood of default paths is reweighted,
@@ -39,7 +43,8 @@ This formalism justifies using different intensities under \(\mathbb{P}\) and \(
 
 ---
 
-## 4. Combined diffusion–jump models
+## Combined diffusion–jump models
+
 
 Many models include:
 - diffusive market factors,
@@ -49,7 +54,8 @@ Girsanov’s theorem applies jointly to both parts.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Girsanov extends to jump processes.
 - Default intensities change under measure change.
@@ -58,6 +64,7 @@ Girsanov’s theorem applies jointly to both parts.
 ---
 
 ## Further reading
+
 
 - Jacod & Shiryaev, jump processes.
 - Cont & Tankov, financial modeling with jumps.

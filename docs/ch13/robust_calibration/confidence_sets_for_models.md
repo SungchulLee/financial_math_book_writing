@@ -1,10 +1,12 @@
 # Confidence Sets for Models
 
+
 In robust calibration, model parameters are not treated as point estimates but as belonging to **confidence sets** reflecting statistical uncertainty.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 Market data is:
 - noisy,
@@ -15,7 +17,8 @@ Point calibration often overfits noise. Confidence sets provide uncertainty awar
 
 ---
 
-## 2. Construction of confidence sets
+## Construction of confidence sets
+
 
 Confidence sets can be built using:
 - asymptotic likelihood theory,
@@ -26,7 +29,8 @@ They define a family of models statistically consistent with observed data.
 
 ---
 
-## 3. Interpretation
+## Interpretation
+
 
 A confidence set represents:
 - plausible parameter values,
@@ -37,7 +41,8 @@ Robust decisions hedge against all models in the set.
 
 ---
 
-## 4. Financial relevance
+## Financial relevance
+
 
 Confidence-set calibration is used in:
 - option surface fitting,
@@ -48,7 +53,8 @@ It improves stability under data perturbations.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Parameters should be treated as uncertain.
 - Confidence sets formalize estimation risk.
@@ -57,6 +63,7 @@ It improves stability under data perturbations.
 ---
 
 ## Further reading
+
 
 - Hansen, robust inference.
 - Andrews, confidence sets under misspecification.

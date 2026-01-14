@@ -1,12 +1,16 @@
 # Static Arbitrage-Free Conditions
 
+
 ## Introduction
+
 
 An **arbitrage-free implied volatility surface** must satisfy a set of structural constraints that prevent the construction of portfolios with guaranteed riskless profits. These conditions arise from the fundamental requirement that the risk-neutral probability density derived from option prices must be non-negative, integrate to one, and be consistent with the pricing of more complex derivatives. This section provides a complete mathematical characterization of static arbitrage-free conditions.
 
 ## Fundamental No-Arbitrage Principles
 
-### Static Arbitrage
+
+### 1. Static Arbitrage
+
 
 A **static arbitrage** is a portfolio of options and cash that:
 1. Has non-positive initial cost: $V_0 \leq 0$
@@ -15,7 +19,8 @@ A **static arbitrage** is a portfolio of options and cash that:
 
 **Absence of static arbitrage** requires that no such portfolio exists.
 
-### Call Spread Arbitrage
+### 2. Call Spread Arbitrage
+
 
 Consider a **call spread**:
 - Long 1 call at strike $K_1$
@@ -53,7 +58,8 @@ $$
 
 
 
-### Butterfly Spread Arbitrage
+### 3. Butterfly Spread Arbitrage
+
 
 Consider a **butterfly spread**:
 - Long 1 call at strike $K_1$
@@ -93,7 +99,8 @@ $$
 
 
 
-### Calendar Spread Arbitrage
+### 4. Calendar Spread Arbitrage
+
 
 Consider a **calendar spread**:
 - Short 1 call at strike $K$ maturing at $T_1$
@@ -121,7 +128,9 @@ $$
 
 ## Mathematical Formulation
 
-### Breeden-Litzenberger Density Constraint
+
+### 1. Breeden-Litzenberger Density Constraint
+
 
 From the Breeden-Litzenberger formula:
 
@@ -145,7 +154,8 @@ $$
 
 This is the **butterfly arbitrage-free condition**.
 
-### Normalization: Probability Sums to One
+### 2. Normalization: Probability Sums to One
+
 
 The density must integrate to unity:
 
@@ -177,7 +187,9 @@ $$
 
 ## Constraints in Total Variance Space
 
-### Total Variance Definition
+
+### 1. Total Variance Definition
+
 
 Define **total variance**:
 
@@ -195,7 +207,8 @@ $$
 
 
 
-### Durrleman's Complete Characterization
+### 2. Durrleman's Complete Characterization
+
 
 **Theorem 4.3.1** (Durrleman, 2010)  
 An implied volatility surface $\sigma_{\text{IV}}(K, T)$ is arbitrage-free if and only if:
@@ -223,7 +236,8 @@ where subscripts denote partial derivatives: $w_y = \frac{\partial w}{\partial y
 - Calendar condition ensures $\frac{\partial C}{\partial T} \geq 0$
 - Together, these guarantee a valid probability measure exists
 
-### Gatheral's Simplified Condition
+### 3. Gatheral's Simplified Condition
+
 
 For **fixed maturity** $T$, a sufficient (but not necessary) condition:
 
@@ -242,7 +256,9 @@ i.e., total variance is convex in log-moneyness.
 
 ## Constraints on Implied Volatility Derivatives
 
-### Bounds on Skew
+
+### 1. Bounds on Skew
+
 
 The **slope of implied volatility** in log-moneyness coordinates:
 
@@ -267,7 +283,8 @@ where the bound depends on maturity and the level of IV.
 
 **Heuristic:** Extremely steep skew (e.g., $\frac{\partial \sigma_{\text{IV}}}{\partial y} = -100$) would imply unrealistic densities with most probability concentrated at a single point.
 
-### Bounds on Curvature
+### 2. Bounds on Curvature
+
 
 The **curvature of implied volatility**:
 
@@ -292,7 +309,9 @@ where $f$ is a function of the current smile level.
 
 ## Lee's Moment Formula
 
-### Wing Behavior Constraint
+
+### 1. Wing Behavior Constraint
+
 
 **Theorem 4.3.2** (Lee, 2004)  
 For the risk-neutral distribution to have finite variance:
@@ -313,7 +332,8 @@ $$
 
 **Interpretation:** The wings of the implied volatility smile cannot be too flat. As strike moves away from ATM, IV must grow approximately as $\sqrt{|y|/T}$ to prevent infinite variance.
 
-### Left and Right Wing Slopes
+### 2. Left and Right Wing Slopes
+
 
 Define the **left wing slope**:
 
@@ -345,7 +365,9 @@ $$
 
 ## Practical Arbitrage Detection
 
-### Discrete Grid Checks
+
+### 1. Discrete Grid Checks
+
 
 Given option prices on a discrete grid $(K_i, T_j)$:
 
@@ -387,7 +409,8 @@ $$
 
 If IV is too flat in the wings, the distribution has infinite variance (pathological).
 
-### Visualization Tools
+### 2. Visualization Tools
+
 
 **Density plot:** Compute $q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}$ and verify $q(K) \geq 0$ everywhere.
 
@@ -397,7 +420,9 @@ If IV is too flat in the wings, the distribution has infinite variance (patholog
 
 ## Arbitrage-Free Interpolation and Extrapolation
 
-### Interpolation Problem
+
+### 1. Interpolation Problem
+
 
 **Given:** Observed option prices at discrete strikes $\{K_i\}$ for maturity $T$
 
@@ -406,7 +431,8 @@ If IV is too flat in the wings, the distribution has infinite variance (patholog
 2. Satisfies arbitrage constraints
 3. Is smooth enough for numerical differentiation
 
-### Cubic Spline with Constraints
+### 2. Cubic Spline with Constraints
+
 
 Standard cubic splines can introduce spurious oscillations violating convexity.
 
@@ -416,7 +442,8 @@ Standard cubic splines can introduce spurious oscillations violating convexity.
 
 **Implementation:** Quadratic programming with inequality constraints.
 
-### Arbitrage-Free Parametrizations
+### 3. Arbitrage-Free Parametrizations
+
 
 **SVI (Stochastic Volatility Inspired):**
 
@@ -439,7 +466,8 @@ Fit parameters $(a, b, \rho, m, \sigma)$ to market data with these constraints.
 
 **SSVI (Surface SVI):** Extends SVI across maturities with joint no-arbitrage constraints.
 
-### Extrapolation to Wings
+### 4. Extrapolation to Wings
+
 
 **Problem:** Options trade only in a limited strike range; need to extrapolate to $K \to 0$ and $K \to \infty$ for density integration.
 
@@ -468,7 +496,9 @@ $$
 
 ## Higher-Order Constraints
 
-### Smoothness of Density
+
+### 1. Smoothness of Density
+
 
 While $q(K) \geq 0$ is necessary, real densities are smooth (continuous derivatives). 
 
@@ -490,7 +520,8 @@ $$
 
 **Implication:** The call price surface should be $C^3$ smooth, not just $C^2$.
 
-### Higher Butterflies
+### 2. Higher Butterflies
+
 
 Consider a **condor spread** (4 strikes):
 - Long $K_1, K_4$
@@ -502,7 +533,9 @@ This imposes additional (weaker) constraints on higher derivatives of $C$.
 
 ## Calendar-Butterfly Joint Constraints
 
-### Cross-Derivative Constraints
+
+### 1. Cross-Derivative Constraints
+
 
 Durrleman's condition involves both $w_T$ (calendar) and $w_{yy}$ (butterfly) simultaneously.
 
@@ -518,7 +551,9 @@ can still violate Durrleman's joint condition $g(y, T) \geq 0$.
 
 ## Relationship to Model Calibration
 
-### Local Volatility Extraction
+
+### 1. Local Volatility Extraction
+
 
 If the call price surface violates arbitrage, **Dupire's formula** can produce:
 - Negative local volatility $\sigma_{\text{loc}}^2 < 0$
@@ -529,7 +564,8 @@ If the call price surface violates arbitrage, **Dupire's formula** can produce:
 
 **Solution:** Enforce arbitrage-free constraints before extracting local vol.
 
-### Stochastic Volatility Models
+### 2. Stochastic Volatility Models
+
 
 Arbitrage violations also prevent calibration of parametric models (Heston, SABR):
 - Optimization may not converge
@@ -539,7 +575,9 @@ Arbitrage violations also prevent calibration of parametric models (Heston, SABR
 
 ## Empirical Violations and Causes
 
-### Bid-Ask Spreads
+
+### 1. Bid-Ask Spreads
+
 
 Using **mid prices** can create apparent arbitrage:
 
@@ -557,7 +595,8 @@ But using ask for long, bid for short: $5.10 - 4.95 = 0.15$ (costly, no arbitrag
 
 **Solution:** Use consistent bid/ask convention or conservative estimates.
 
-### Illiquidity and Stale Quotes
+### 2. Illiquidity and Stale Quotes
+
 
 Deep OTM or far-dated options may have:
 - Wide bid-ask spreads
@@ -568,13 +607,15 @@ Deep OTM or far-dated options may have:
 
 **Solution:** Filter based on volume, open interest, bid-ask width.
 
-### Microstructure Noise
+### 3. Microstructure Noise
+
 
 High-frequency fluctuations in prices can temporarily violate arbitrage on a tick-by-tick basis.
 
 **Solution:** Use time-averaged or volume-weighted prices.
 
-### Discrete Dividends
+### 4. Discrete Dividends
+
 
 Anticipated discrete dividends create discontinuities in the forward price, complicating arbitrage analysis.
 
@@ -582,9 +623,11 @@ Anticipated discrete dividends create discontinuities in the forward price, comp
 
 ## Summary of Arbitrage-Free Conditions
 
+
 An implied volatility surface is arbitrage-free if and only if:
 
-### **Pointwise bounds:**
+### 1. **Pointwise bounds:**
+
 
 $$
 \max(S e^{-qT} - K e^{-rT}, 0) < C(K, T) < S e^{-qT}
@@ -592,7 +635,8 @@ $$
 
 
 
-### **Monotonicity in strike:**
+### 2. **Monotonicity in strike:**
+
 
 $$
 \frac{\partial C}{\partial K} \leq 0 \quad \text{(call spreads)}
@@ -600,7 +644,8 @@ $$
 
 
 
-### **Convexity in strike:**
+### 3. **Convexity in strike:**
+
 
 $$
 \frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{(butterflies, Breeden-Litzenberger)}
@@ -608,7 +653,8 @@ $$
 
 
 
-### **Monotonicity in maturity:**
+### 4. **Monotonicity in maturity:**
+
 
 $$
 \frac{\partial C}{\partial T} \geq 0 \quad \text{(calendar spreads)}
@@ -616,7 +662,8 @@ $$
 
 
 
-### **Durrleman's joint condition:**
+### 5. **Durrleman's joint condition:**
+
 
 $$
 g(y, T) = \left(1 - \frac{y w_y}{2w}\right)^2 - \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) + \frac{w_{yy}}{2} \geq 0
@@ -624,7 +671,8 @@ $$
 
 
 
-### **Wing behavior (Lee):**
+### 6. **Wing behavior (Lee):**
+
 
 $$
 \lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 \quad \text{(finite variance)}
@@ -632,7 +680,8 @@ $$
 
 
 
-### **Practical workflow:**
+### 7. **Practical workflow:**
+
 
 1. **Collect market data:** Option prices or implied volatilities
 2. **Clean data:** Remove stale quotes, filter illiquidity

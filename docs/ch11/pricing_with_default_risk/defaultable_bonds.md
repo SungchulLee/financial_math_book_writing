@@ -1,10 +1,12 @@
 # Defaultable Bonds
 
+
 Defaultable bonds are bonds subject to issuer default risk. Their pricing reflects both interest-rate discounting and the possibility of default with partial recovery.
 
 ---
 
-## 1. Payoff structure
+## Payoff structure
+
 
 A defaultable zero-coupon bond pays:
 - 1 at maturity \(T\) if no default occurs before \(T\),
@@ -14,7 +16,8 @@ Thus, cashflows depend on the random default time.
 
 ---
 
-## 2. Pricing principle
+## Pricing principle
+
 
 Under the risk-neutral measure,
 
@@ -31,7 +34,8 @@ where \(R_{\tau}\) is the recovery payoff.
 
 ---
 
-## 3. Credit spread interpretation
+## Credit spread interpretation
+
 
 The yield on a defaultable bond exceeds the risk-free yield.
 The difference, the **credit spread**, compensates for:
@@ -43,14 +47,16 @@ In reduced-form models, spreads are driven by intensity and recovery assumptions
 
 ---
 
-## 4. Coupon-bearing bonds
+## Coupon-bearing bonds
+
 
 Coupon bonds are priced as sums of defaultable zero-coupon components.
 Default typically accelerates remaining cashflows and triggers recovery.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Defaultable bonds combine interest-rate and credit risk.
 - Pricing requires modeling default timing and recovery.
@@ -59,6 +65,7 @@ Default typically accelerates remaining cashflows and triggers recovery.
 ---
 
 ## Further reading
+
 
 - Duffie & Singleton, defaultable term structures.
 - Bielecki & Rutkowski, credit bond pricing.

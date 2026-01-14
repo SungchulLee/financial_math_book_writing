@@ -1,14 +1,17 @@
 # Properties and Bounds of Option Prices
 
+
 Option prices satisfy fundamental mathematical properties that follow from no-arbitrage principles. These properties—monotonicity, convexity, and bounds—provide constraints that any valid pricing model must respect and enable arbitrage detection in practice.
 
 This section rigorously establishes these properties for European options under the Black-Scholes framework.
 
 ---
 
-## 1. Fundamental Bounds
+## Fundamental Bounds
 
-### **Call Option Bounds**
+
+### 1. **Call Option Bounds**
+
 
 For a European call option on a non-dividend-paying stock:
 
@@ -28,7 +31,8 @@ $$
 
 This is the **no-arbitrage lower bound**.
 
-### **Put Option Bounds**
+### 2. **Put Option Bounds**
+
 
 For a European put:
 
@@ -40,7 +44,8 @@ $$
 
 **Upper bound**: Put cannot exceed present value of strike (max possible payoff)
 
-### **Verification for Black-Scholes**
+### 3. **Verification for Black-Scholes**
+
 
 **Lower bound for call**:
 
@@ -68,9 +73,11 @@ Both bounds satisfied. ✓
 
 ---
 
-## 2. Monotonicity in Stock Price
+## Monotonicity in Stock Price
 
-### **Call Options**
+
+### 1. **Call Options**
+
 
 $$
 \boxed{\frac{\partial C}{\partial S} = \mathcal{N}(d_1) > 0}
@@ -100,7 +107,8 @@ $$
 
 Since $\mathcal{N}(d_1) \in (0,1)$ for all finite $d_1$, the call is strictly increasing in $S$. ✓
 
-### **Put Options**
+### 2. **Put Options**
+
 
 $$
 \boxed{\frac{\partial P}{\partial S} = -\mathcal{N}(-d_1) = \mathcal{N}(d_1) - 1 < 0}
@@ -124,9 +132,11 @@ Since $\mathcal{N}(d_1) < 1$, we have $\frac{\partial P}{\partial S} < 0$. ✓
 
 ---
 
-## 3. Monotonicity in Time
+## Monotonicity in Time
 
-### **Time Decay (Theta)**
+
+### 1. **Time Decay (Theta)**
+
 
 For European calls on non-dividend-paying stocks:
 
@@ -146,7 +156,8 @@ Since both terms are negative, $\Theta < 0$ (time decay).
 
 **Exception**: Deep ITM European calls can have slightly positive theta near expiration due to interest earned on deferred strike payment.
 
-### **Increasing with Time to Maturity**
+### 2. **Increasing with Time to Maturity**
+
 
 $$
 \boxed{\frac{\partial C}{\partial T} > 0}
@@ -168,9 +179,11 @@ $$
 
 ---
 
-## 4. Monotonicity in Volatility
+## Monotonicity in Volatility
 
-### **Vega (Volatility Sensitivity)**
+
+### 1. **Vega (Volatility Sensitivity)**
+
 
 $$
 \boxed{\frac{\partial C}{\partial \sigma} = S\sqrt{T-t}\,\mathcal{N}'(d_1) > 0}
@@ -196,9 +209,11 @@ This follows from put-call parity (volatility affects both equally).
 
 ---
 
-## 5. Monotonicity in Strike
+## Monotonicity in Strike
 
-### **Call Options**
+
+### 1. **Call Options**
+
 
 $$
 \boxed{\frac{\partial C}{\partial K} = -e^{-r(T-t)}\mathcal{N}(d_2) < 0}
@@ -217,7 +232,8 @@ $$
 \frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) - \text{(other terms that sum to zero)}
 $$
 
-### **Put Options**
+### 2. **Put Options**
+
 
 $$
 \boxed{\frac{\partial P}{\partial K} = e^{-r(T-t)}\mathcal{N}(-d_2) > 0}
@@ -227,9 +243,11 @@ $$
 
 ---
 
-## 6. Convexity in Stock Price
+## Convexity in Stock Price
 
-### **Second Derivative (Gamma)**
+
+### 1. **Second Derivative (Gamma)**
+
 
 $$
 \boxed{\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T-t}} > 0}
@@ -257,7 +275,8 @@ $$
 
 Both calls and puts have the same gamma.
 
-### **Graphical Interpretation**
+### 2. **Graphical Interpretation**
+
 
 The option value curve $C(S)$ is:
 
@@ -269,9 +288,11 @@ This convexity property is fundamental to option hedging and risk management.
 
 ---
 
-## 7. Convexity in Strike (Butterfly Spread)
+## Convexity in Strike (Butterfly Spread)
 
-### **Butterfly Constraint**
+
+### 1. **Butterfly Constraint**
+
 
 For strikes $K_1 < K_2 < K_3$ with $K_2 - K_1 = K_3 - K_2 = \Delta K$:
 
@@ -308,7 +329,8 @@ $$
 
 This is the **convexity constraint** for call prices. ✓
 
-### **Continuous Version**
+### 2. **Continuous Version**
+
 
 For infinitesimally close strikes:
 
@@ -326,9 +348,11 @@ Strict convexity holds. ✓
 
 ---
 
-## 8. Calendar Spread Inequality
+## Calendar Spread Inequality
 
-### **Time Spread Constraint**
+
+### 1. **Time Spread Constraint**
+
 
 For maturities $T_1 < T_2$ with identical strike $K$:
 
@@ -350,9 +374,11 @@ This flexibility makes it at least as valuable.
 
 ---
 
-## 9. Arbitrage Bounds Summary
+## Arbitrage Bounds Summary
 
-### **Comprehensive Bounds**
+
+### 1. **Comprehensive Bounds**
+
 
 For European options on non-dividend-paying stocks:
 
@@ -369,9 +395,11 @@ For European options on non-dividend-paying stocks:
 
 ---
 
-## 10. Practical Implications
+## Practical Implications
 
-### **Arbitrage Detection**
+
+### 1. **Arbitrage Detection**
+
 
 Market prices violating these properties suggest:
 
@@ -380,7 +408,8 @@ Market prices violating these properties suggest:
 3. **Dividend effects**: Non-dividend assumptions violated
 4. **Early exercise**: American features not captured
 
-### **Model Validation**
+### 2. **Model Validation**
+
 
 Any pricing model must satisfy:
 
@@ -390,7 +419,8 @@ Any pricing model must satisfy:
 
 Black-Scholes satisfies all of these (as verified above).
 
-### **Greeks Consistency**
+### 3. **Greeks Consistency**
+
 
 The properties imply relationships among Greeks:
 
@@ -403,11 +433,13 @@ These must be consistent for any valid pricing model.
 
 ---
 
-## 11. Comparison: American vs. European
+## Comparison: American vs. European
+
 
 For American options on non-dividend-paying stocks:
 
-### **Call Options**
+### 1. **Call Options**
+
 
 $$
 C_{\text{American}} = C_{\text{European}}
@@ -415,7 +447,8 @@ $$
 
 **Reason**: Never optimal to exercise early (forgo time value and interest on strike).
 
-### **Put Options**
+### 2. **Put Options**
+
 
 $$
 P_{\text{American}} \geq P_{\text{European}}
@@ -434,6 +467,7 @@ Note: American put lower bound is *intrinsic value*, not discounted intrinsic va
 ---
 
 ## Summary
+
 
 European option prices under Black-Scholes satisfy rigorous mathematical properties:
 

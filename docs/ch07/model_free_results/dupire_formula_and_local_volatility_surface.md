@@ -1,12 +1,16 @@
 # Dupire's Formula and Local Volatility Surface
 
+
 ## Introduction
+
 
 Dupire's formula (1994) provides a fundamental model-free relationship between observable European option prices and the **local volatility function** $\sigma_{\text{loc}}(S, t)$. This remarkable result shows that there exists a unique diffusion process consistent with all observed option prices, and the instantaneous volatility of this process can be directly computed from option prices without model calibration.
 
 ## The Local Volatility Model
 
-### Model Specification
+
+### 1. Model Specification
+
 
 The **local volatility model** assumes the underlying asset follows:
 
@@ -25,7 +29,8 @@ where:
 
 **Key distinction from Black-Scholes:** Volatility depends on both $(S, t)$ rather than being constant.
 
-### Forward Kolmogorov Equation
+### 2. Forward Kolmogorov Equation
+
 
 The probability density $p(S, t; S_0, 0)$ of $S_t$ given $S_0$ at time 0 satisfies the **forward Kolmogorov equation** (Fokker-Planck equation):
 
@@ -38,7 +43,8 @@ $$
 
 This describes the evolution of the probability distribution forward in time.
 
-### Connection to Option Pricing
+### 3. Connection to Option Pricing
+
 
 The call option price is:
 
@@ -53,7 +59,9 @@ The key insight: if we know $C(K, T)$ for all strikes and maturities, we can inv
 
 ## Dupire's Formula: Main Result
 
-### Theorem Statement
+
+### 1. Theorem Statement
+
 
 **Theorem 4.2.2** (Dupire's Formula)  
 The local volatility function can be extracted from the call price surface via:
@@ -80,7 +88,8 @@ when expressed in forward coordinates.
 - Time derivative of call price (theta)
 - Second strike derivative (gamma via Breeden-Litzenberger)
 
-### Alternative Forms
+### 2. Alternative Forms
+
 
 **Form 1** (Spot-based):
 
@@ -115,7 +124,9 @@ where $d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_{\text{IV}}^2/2)T}{\sigma_{\text
 
 ## Derivation via Forward Kolmogorov Equation
 
-### Step 1: Call Price PDE
+
+### 1. Step 1: Call Price PDE
+
 
 The call option price satisfies the backward Kolmogorov equation:
 
@@ -128,7 +139,8 @@ $$
 
 with terminal condition $C(S, T, T) = \max(S - K, 0)$.
 
-### Step 2: Differentiate with Respect to Maturity
+### 2. Step 2: Differentiate with Respect to Maturity
+
 
 Fix strike $K$ and differentiate the PDE with respect to $T$ (treating $T$ as a parameter):
 
@@ -139,7 +151,8 @@ $$
 
 
 
-### Step 3: Evaluate at $S = K$, $t = T$
+### 3. Step 3: Evaluate at $S = K$, $t = T$
+
 
 At expiry, the call payoff creates a kink at $S = K$:
 - $C(S, T, T) = \max(S - K, 0)$
@@ -164,7 +177,8 @@ $$
 
 
 
-### Step 4: Include Drift Terms (Full Formula)
+### 4. Step 4: Include Drift Terms (Full Formula)
+
 
 For general $(S, t)$, the complete derivation includes drift corrections:
 
@@ -179,7 +193,9 @@ The numerator adjusts for the fact that the underlying drifts at rate $r - q$ un
 
 ## Alternative Derivation: Tanaka's Formula
 
-### Occupation Density Approach
+
+### 1. Occupation Density Approach
+
 
 Consider the **local time** $L_t^K$ of the process $S_t$ at level $K$. Tanaka's formula gives:
 
@@ -221,7 +237,9 @@ This recovers Dupire's formula. □
 
 ## Properties of the Local Volatility Surface
 
-### Uniqueness
+
+### 1. Uniqueness
+
 
 **Theorem 4.2.3** (Uniqueness of Local Volatility)  
 Given a complete arbitrage-free European call price surface $C(K, T)$ for all $K > 0$, $T > 0$, there exists a unique local volatility function $\sigma_{\text{loc}}(S, t)$ such that the diffusion:
@@ -237,7 +255,8 @@ reproduces the entire call price surface.
 
 *Proof sketch.* The forward Kolmogorov equation is a parabolic PDE with unique solution given smooth initial and boundary conditions. The call prices determine the terminal distribution uniquely via Breeden-Litzenberger. Dupire's formula inverts this relationship. □
 
-### Calibration to Market Prices
+### 2. Calibration to Market Prices
+
 
 The local volatility model is **perfectly calibrated** to vanilla options by construction:
 - Input: Market call prices $C_{\text{market}}(K, T)$
@@ -246,7 +265,8 @@ The local volatility model is **perfectly calibrated** to vanilla options by con
 
 This is in stark contrast to parametric models (e.g., Heston) which minimize pricing errors but rarely achieve exact fit.
 
-### Relationship to Implied Volatility
+### 3. Relationship to Implied Volatility
+
 
 The local volatility at strike $K$ and maturity $T$ is **not** equal to the implied volatility $\sigma_{\text{IV}}(K, T)$:
 
@@ -263,7 +283,8 @@ $$
 
 The relationship is complex and involves the entire smile surface.
 
-### Smile-Consistent Dynamics
+### 4. Smile-Consistent Dynamics
+
 
 In Black-Scholes, all options on the same underlying have the same implied volatility. In local volatility:
 - Each strike-maturity pair has its own implied volatility
@@ -272,7 +293,9 @@ In Black-Scholes, all options on the same underlying have the same implied volat
 
 ## Numerical Implementation
 
-### Finite Difference Formula
+
+### 1. Finite Difference Formula
+
 
 On a discrete grid $(K_i, T_j)$, approximate derivatives using centered differences:
 
@@ -299,7 +322,8 @@ $$
 
 
 
-### Stability Issues
+### 2. Stability Issues
+
 
 **Problem 1: Noise amplification**  
 Taking derivatives of noisy data amplifies errors. Small errors in $C$ lead to large errors in $\sigma_{\text{loc}}$.
@@ -317,7 +341,8 @@ Near the wings, $\frac{\partial^2 C}{\partial K^2} \approx 0$, causing $\sigma_{
 - Cap local volatility at reasonable bounds
 - Use regularization penalties for extreme values
 
-### Interpolation of Call Prices
+### 3. Interpolation of Call Prices
+
 
 To compute Dupire's formula, we need smooth $C(K, T)$:
 
@@ -334,7 +359,9 @@ To compute Dupire's formula, we need smooth $C(K, T)$:
 
 ## Connection to Implied Volatility
 
-### Converting Implied Volatility to Local Volatility
+
+### 1. Converting Implied Volatility to Local Volatility
+
 
 Given the implied volatility surface $\sigma_{\text{IV}}(K, T)$, compute local volatility via:
 
@@ -350,7 +377,8 @@ $$
 
 **Step 3:** Apply Dupire's formula
 
-### Explicit Formula in IV Space
+### 2. Explicit Formula in IV Space
+
 
 Gyöngy's formula provides a direct relationship:
 
@@ -363,7 +391,8 @@ $$
 
 This is computationally convenient when starting from implied volatility data.
 
-### ATM Approximation
+### 3. ATM Approximation
+
 
 At-the-money ($K = F = S_0 e^{(r-q)T}$), a useful approximation:
 
@@ -378,7 +407,9 @@ $$
 
 ## Forward Equation Perspective
 
-### Forward Kolmogorov PDE
+
+### 1. Forward Kolmogorov PDE
+
 
 The density $p(K, T)$ satisfies:
 
@@ -402,7 +433,8 @@ $$
 
 This is a PDE for $C$ in terms of $\sigma_{\text{loc}}$. Dupire's formula inverts this PDE to solve for $\sigma_{\text{loc}}$ given $C$.
 
-### Existence of Solution
+### 2. Existence of Solution
+
 
 **Theorem 4.2.4** (Well-Posedness)  
 If $C(K, T)$ is:
@@ -417,14 +449,17 @@ then the local volatility $\sigma_{\text{loc}}(K, T)$ given by Dupire's formula 
 
 ## Applications and Limitations
 
-### Advantages of Local Volatility
+
+### 1. Advantages of Local Volatility
+
 
 1. **Perfect calibration:** Matches all vanilla option prices exactly
 2. **Model-free:** No parameters to estimate (given the surface)
 3. **Tractable:** Amenable to PDE and Monte Carlo methods
 4. **Complete market:** Unique pricing for exotics (in theory)
 
-### Limitations
+### 2. Limitations
+
 
 1. **Smile dynamics mismatch:**  
    Local volatility generates **sticky-strike** smile dynamics (smile is constant in strike space). Market exhibits **sticky-delta** or hybrid behavior.
@@ -441,7 +476,8 @@ then the local volatility $\sigma_{\text{loc}}(K, T)$ given by Dupire's formula 
 5. **Leverage effect:**  
    The negative correlation between returns and volatility (leverage effect) is not captured—local vol is purely deterministic.
 
-### Hybrid Models
+### 3. Hybrid Models
+
 
 To address limitations, practitioners use:
 
@@ -450,6 +486,7 @@ To address limitations, practitioners use:
 - **Jump-diffusion + local vol:** Add jumps to capture tail risk
 
 ## Comparison with Implied Volatility
+
 
 | Feature | Implied Volatility | Local Volatility |
 |---------|-------------------|------------------|
@@ -460,6 +497,7 @@ To address limitations, practitioners use:
 | **Computation** | Newton-Raphson on BS formula | Differentiate entire call surface |
 
 ## Summary
+
 
 Dupire's formula:
 

@@ -1,10 +1,12 @@
 # Variance Swaps
 
+
 **Variance swaps** are forward contracts on realized variance where you exchange a fixed strike (agreed upfront) for the realized variance of an underlying asset over a specified period, providing pure volatility exposure without directional risk.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Are Variance Swaps?
 
+
 ### 1. Pure Vol Exposure
+
 
 **No directional contamination:**
 
@@ -50,6 +54,7 @@ Where:
 - Settlement based on actual realized variance
 
 ### 2. Variance vs Volatility
+
 
 **Critical distinction:**
 
@@ -82,6 +87,7 @@ $$
 **You're long variance when you receive realized and pay strike.**
 
 ### 3. Realized Variance Calc
+
 
 **How realized variance is computed:**
 
@@ -121,6 +127,7 @@ $$
 
 ### 4. Strike Setting
 
+
 **How strike variance is set:**
 
 At inception, strike is set so that swap has zero value:
@@ -150,6 +157,7 @@ $$
 - Long variance historically loses money (like insurance)
 
 ### 5. Variance Notional
+
 
 **Converting volatility views to variance notional:**
 
@@ -186,6 +194,7 @@ $$
 - **Payoff:** $\$2,500 \times 225 = \$562,500$
 
 ### 6. Mark-to-Market
+
 
 **Daily P&L before settlement:**
 
@@ -226,6 +235,7 @@ $$
 
 ### 7. Replication Portfolio
 
+
 **How dealers hedge variance swaps:**
 
 A variance swap can be replicated by a portfolio of options:
@@ -260,9 +270,11 @@ $$
 
 ## Why Trade Variance?
 
+
 **Use cases for variance exposure:**
 
 ### 1. Pure Vol Speculation
+
 
 **Directional volatility views:**
 
@@ -295,6 +307,7 @@ $$
 
 ### 2. Vol Arbitrage
 
+
 **Exploit relative mispricings:**
 
 **Variance swap vs. straddle:**
@@ -317,6 +330,7 @@ $$
 - Example: Short 1-month, long 6-month variance
 
 ### 3. VRP Harvesting
+
 
 **Systematic short volatility:**
 
@@ -342,6 +356,7 @@ Historical pattern: Realized vol < Implied vol
 - Diversify across assets and maturities
 
 ### 4. Portfolio Hedging
+
 
 **Pure volatility insurance:**
 
@@ -376,6 +391,7 @@ Traditional put buying has disadvantages:
 
 ### 5. Dispersion Trading
 
+
 **Trade correlation structure:**
 
 **Setup:**
@@ -403,6 +419,7 @@ Traditional put buying has disadvantages:
 
 ### 6. Vol Curve Trading
 
+
 **Exploit term structure:**
 
 **Contango trade:**
@@ -428,6 +445,7 @@ Traditional put buying has disadvantages:
 **Profit if:** Near-term vol stays elevated, long-term normalizes
 
 ### 7. Event-Driven Trades
+
 
 **Before binary events:**
 
@@ -455,7 +473,9 @@ Traditional put buying has disadvantages:
 
 ## Mathematical Framework
 
+
 ### 1. Payoff Structure
+
 
 **At maturity $T$:**
 
@@ -477,6 +497,7 @@ $$
 - Settlement in cash at maturity
 
 ### 2. Fair Value Pricing
+
 
 **Variance swap fair value:**
 
@@ -504,6 +525,7 @@ Where skew adjustment depends on option smile structure.
 
 ### 3. Convexity Adjustment
 
+
 **Variance vs. volatility notional:**
 
 Since payoff is linear in variance but traders think in volatility:
@@ -527,6 +549,7 @@ $$
 **Higher strike volatility → lower variance notional needed for same vega.**
 
 ### 4. Greeks
+
 
 **Variance vega (sensitivity to vol):**
 
@@ -558,6 +581,7 @@ Where $r_{\text{today}}$ is today's log return.
 
 ### 5. Realized Variance Process
 
+
 **Under physical measure:**
 
 Realized variance follows approximately:
@@ -582,6 +606,7 @@ $$
 **Estimation error decreases with more observations.**
 
 ### 6. Variance Risk Premium
+
 
 **Definition:**
 
@@ -608,6 +633,7 @@ Where:
 - Supply/demand imbalance
 
 ### 7. Replication Error
+
 
 **Discrete strike replication:**
 
@@ -639,9 +665,11 @@ Where $w_i = \frac{2e^{rT}}{TK_i^2}\Delta K_i$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Confusing Variance/Vol
+
 
 **Mistake:** Think payoff linear in volatility
 
@@ -658,6 +686,7 @@ $$
 $$
 
 ### 2. Ignoring Var Notional
+
 
 **Mistake:** Use vega notional directly in calculations
 
@@ -689,6 +718,7 @@ $$
 
 ### 3. Overlooking Tail Risk
 
+
 **Mistake:** Sell variance without position limits
 
 **Why it fails:** Unlimited downside if volatility explodes
@@ -714,6 +744,7 @@ $$
 
 ### 4. Mispricing Jumps
 
+
 **Mistake:** Assume continuous diffusion only
 
 **Why it fails:** Jumps contribute disproportionately to variance
@@ -732,6 +763,7 @@ $$
 - Use variance swaps (not vol swaps) to capture jumps
 
 ### 5. Neglecting MTM
+
 
 **Mistake:** Ignore interim P&L volatility
 
@@ -760,6 +792,7 @@ $$
 
 ### 6. Wrong Notional Scaling
 
+
 **Mistake:** Size position in dollars, not variance notional
 
 **Why it fails:** Leverage varies with volatility level
@@ -783,6 +816,7 @@ $$
 
 ### 7. Ignoring VRP
 
+
 **Mistake:** Systematically long variance without edge
 
 **Why it fails:** Variance buyers historically lose money
@@ -805,6 +839,7 @@ $$
 - Or size very small, treat as cheap insurance
 
 ### 8. Misunderstanding Settlement
+
 
 **Mistake:** Expect daily realized variance to match strike
 
@@ -837,7 +872,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Conservative guideline:**
 
@@ -861,6 +898,7 @@ $$
 
 ### 2. Hedging Tail Risk
 
+
 **For short variance positions:**
 
 - Buy OTM puts (3-4 standard deviations)
@@ -875,6 +913,7 @@ $$
 - Take profits at 100-200% gain
 
 ### 3. Monitoring
+
 
 **Daily risk checks:**
 
@@ -891,6 +930,7 @@ $$
 - Realized variance tracking far from strike → Adjust expectations
 
 ### 4. Diversification
+
 
 **Spread risk across:**
 
@@ -909,7 +949,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. VIX Spike (Feb 2018)
+
 
 **Setup:**
 
@@ -930,6 +972,7 @@ $$
 
 ### 2. COVID Crash (Mar 2020)
 
+
 **Setup:**
 
 - February 2020: SPX at 3,400
@@ -946,6 +989,7 @@ $$
 **Lesson:** Variance swaps are ultimate tail hedge
 
 ### 3. VRP Harvest Strategy
+
 
 **Setup:**
 
@@ -965,6 +1009,7 @@ $$
 **Lesson:** Short vol harvesting works but requires strict risk management
 
 ### 4. Dispersion Trade (2021)
+
 
 **Setup:**
 
@@ -986,7 +1031,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Pre-Trade Analysis
+
 
 **Before entering, evaluate:**
 
@@ -1006,6 +1053,7 @@ $$
    - Check option smile for jump risk
 
 ### 2. Contract Specification
+
 
 **Key parameters to set:**
 
@@ -1028,6 +1076,7 @@ $$
 
 ### 3. Execution
 
+
 **Best practices:**
 
 - Request quotes from multiple dealers
@@ -1044,6 +1093,7 @@ $$
 
 ### 4. Monitoring
 
+
 **Daily tracking:**
 
 - Realized variance accrued so far
@@ -1059,6 +1109,7 @@ $$
 - Custom spreadsheets for accrual
 
 ### 5. Exit Strategies
+
 
 **When to exit early:**
 
@@ -1084,6 +1135,7 @@ $$
 
 ### 6. Settlement Prep
 
+
 **Final week checklist:**
 
 - Verify realized variance calculation
@@ -1095,6 +1147,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Variance swaps are the purest form of volatility trading - linear exposure to realized variance with no delta contamination. They're powerful tools for directional vol bets, dispersion trades, and tail hedging, but the leverage is extreme. A seemingly small move in volatility translates to massive variance changes. Master the variance-volatility relationship before trading, size positions conservatively, and never short variance without tail hedges. The variance risk premium tempts systematic shorting, but one volatility explosion can wipe out years of premiums."
 

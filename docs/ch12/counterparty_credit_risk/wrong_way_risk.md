@@ -1,10 +1,12 @@
 # Wrong-Way Risk
 
+
 In counterparty credit risk, **wrong-way risk (WWR)** occurs when exposure to a counterparty increases as the counterparty’s credit quality deteriorates.
 
 ---
 
-## 1. Definition
+## Definition
+
 
 Wrong-way risk arises when:
 - exposure and default probability are positively correlated,
@@ -14,7 +16,8 @@ It is a key driver of tail counterparty losses.
 
 ---
 
-## 2. Examples
+## Examples
+
 
 Examples include:
 - FX derivatives where currency depreciation weakens the counterparty,
@@ -23,7 +26,8 @@ Examples include:
 
 ---
 
-## 3. Modeling challenges
+## Modeling challenges
+
 
 Standard CCR models often assume independence between:
 - market factors driving exposure,
@@ -33,7 +37,8 @@ This assumption understates WWR.
 
 ---
 
-## 4. Practical treatment
+## Practical treatment
+
 
 WWR is addressed through:
 - stressed exposure scenarios,
@@ -42,7 +47,8 @@ WWR is addressed through:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Wrong-way risk magnifies CCR losses.
 - Independence assumptions are dangerous.
@@ -51,6 +57,7 @@ WWR is addressed through:
 ---
 
 ## Further reading
+
 
 - Basel III WWR guidance.
 - Gregory, wrong-way risk modeling.

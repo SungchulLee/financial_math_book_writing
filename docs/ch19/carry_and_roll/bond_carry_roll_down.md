@@ -1,10 +1,12 @@
 # Bond Carry and Roll-Down
 
+
 **Bond carry and roll-down** are fundamental fixed income return sources where carry represents the income earned from holding a bond (coupon payments plus financing costs), while roll-down captures the price appreciation that occurs as a bond ages and "rolls down" the yield curve toward shorter maturities, together forming a predictable, low-volatility return stream that works best in stable, upward-sloping curve environments and forms the foundation of many institutional fixed income strategies.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -42,9 +44,11 @@ $$
 
 ## Bond Carry and Roll-Down
 
+
 **Before trading carry and roll, understand the fundamental mechanics:**
 
 ### 1. Carry Component
+
 
 **Definition:**
 
@@ -97,6 +101,7 @@ $$
 **Small positive carry**
 
 ### 2. Roll-Down Component
+
 
 **Definition:**
 
@@ -157,6 +162,7 @@ $$
 
 ### 3. Total Return Decomposition
 
+
 **Complete framework:**
 
 $$
@@ -193,6 +199,7 @@ $$
 **Loss from yield rise dominates**
 
 ### 4. Forward Rates and Roll-Down
+
 
 **Forward rate formula:**
 
@@ -241,9 +248,11 @@ Roll-down profits accrue if future yields are lower than forward rates predict.
 
 ## Economic
 
+
 **Beyond the mechanics, understanding the economic rationale:**
 
 ### 1. Term Premium
+
 
 **The deep insight:**
 
@@ -279,6 +288,7 @@ As the 3-year bond becomes a 2-year bond, it loses some term premium, causing th
 
 ### 2. Risk-Return Trade-Off
 
+
 **Duration risk compensation:**
 
 **Short bonds (2-year):**
@@ -302,6 +312,7 @@ As the 3-year bond becomes a 2-year bond, it loses some term premium, causing th
 **This risk premium is the source of roll-down returns.**
 
 ### 3. Supply and Demand
+
 
 **Issuance patterns:**
 
@@ -328,6 +339,7 @@ Long-end yields higher to attract buyers → Upward-sloping curve → Roll-down 
 - **Persistent term premium**
 
 ### 4. Fed Policy and Curve Shape
+
 
 **Fed funds rate as anchor:**
 
@@ -374,6 +386,7 @@ As 10-year → 9-year → 8-year, it moves down the curve toward lower yields.
 
 ### 5. Convexity Effects
 
+
 **Positive convexity helps roll-down:**
 
 **Linear approximation:**
@@ -413,6 +426,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Carry:**
 
@@ -522,9 +536,11 @@ $$
 
 ## The Greeks 
 
+
 **Carry and roll strategies have specific risk characteristics:**
 
 ### 1. Delta
+
 
 **Directional exposure:**
 
@@ -565,6 +581,7 @@ $$
 
 ### 2. Gamma (Convexity)
 
+
 **Second-order effect:**
 
 $$
@@ -597,6 +614,7 @@ As yields fall during roll-down, convexity enhances the price gain beyond linear
 
 ### 3. Theta (Time Decay / Carry)
 
+
 **Time value:**
 
 $$
@@ -628,6 +646,7 @@ This is the beauty of carry/roll strategies!
 
 ### 4. Vega (Volatility Sensitivity)
 
+
 **Not traditional vega (no options), but volatility impacts:**
 
 **High yield volatility (bad for carry/roll):**
@@ -647,6 +666,7 @@ This is the beauty of carry/roll strategies!
 **Carry/roll prefers low volatility environments.**
 
 ### 5. Rho (Rate Level Sensitivity)
+
 
 **Financing cost sensitivity:**
 
@@ -679,9 +699,11 @@ $$
 
 ## Strategy Selection
 
+
 **Different bonds offer different carry/roll profiles:**
 
 ### 1. Maximum Roll Strategy
+
 
 **Optimal maturity for roll-down:**
 
@@ -714,6 +736,7 @@ Empirically, the 10-year maturity point typically offers the best roll-down per 
 
 ### 2. High Carry Strategy
 
+
 **Maximize carry component:**
 
 **Investment-grade corporates:**
@@ -740,6 +763,7 @@ Empirically, the 10-year maturity point typically offers the best roll-down per 
 - **Total expected: +2.00%**
 
 ### 3. Leveraged Carry/Roll
+
 
 **Amplify returns via leverage:**
 
@@ -784,6 +808,7 @@ That's better! Leverage amplifies the roll-down component significantly.
 
 ### 4. Barbell vs Bullet for Roll
 
+
 **Bullet (concentrated):**
 
 - 100% in 10-year bonds
@@ -821,9 +846,11 @@ That's better! Leverage amplifies the roll-down component significantly.
 
 ## Time Selection
 
+
 **Carry/roll strategies are time-sensitive:**
 
 ### 1. Ideal Market Conditions
+
 
 **1. Stable yield environment:**
 
@@ -897,6 +924,7 @@ $$
 
 ### 2. Entry Signals
 
+
 **1. Fed pause after hiking cycle:**
 
 $$
@@ -938,6 +966,7 @@ $$
 **Stable environment indicator**
 
 ### 3. Exit Signals
+
 
 **1. Fed tightening cycle beginning:**
 
@@ -982,7 +1011,9 @@ $$
 
 ## Maximum Profit and Loss
 
+
 ### 1. 2010-2011 QE2 Era
+
 
 **Setup:**
 
@@ -1044,7 +1075,8 @@ $$
 6. ✅ Perfect alignment of factors
 7. **Once-in-decade opportunity**
 
-### 2. 2022 Fed Hiking Cycle
+### 2. Fed Hiking Cycle
+
 
 **Setup:**
 
@@ -1125,7 +1157,9 @@ $$
 
 ## When to Use Carry/Roll
 
+
 ### 1. Ideal Applications
+
 
 **1. Stable macro environment:**
 
@@ -1170,6 +1204,7 @@ $$
 - **Favorable backdrop**
 
 ### 2. Specific Use Cases
+
 
 **Use Case 1: Pension fund liability matching**
 
@@ -1231,7 +1266,9 @@ $$
 
 ## When NOT to Use Carry/Roll
 
+
 ### 1. Avoid These Situations
+
 
 **1. Fed hiking cycle:**
 
@@ -1342,7 +1379,9 @@ $$
 
 ## Sizing and Risk
 
+
 ### 1. The Golden Rule
+
 
 **Position sizing formula:**
 
@@ -1375,6 +1414,7 @@ $$
 
 ### 2. Leverage Guidelines
 
+
 **Conservative (pension fund):**
 
 - 0× leverage (unleveraged)
@@ -1405,6 +1445,7 @@ $$
 
 ### 3. Diversification Requirements
 
+
 **Don't concentrate:**
 
 **Bad:**
@@ -1427,6 +1468,7 @@ $$
 - **Curve diversification**
 
 ### 4. Stop-Loss Discipline
+
 
 **Yield-based stop:**
 
@@ -1462,6 +1504,7 @@ $$
 
 ### 5. Rebalancing Strategy
 
+
 **Monthly roll-down harvest:**
 
 **Process:**
@@ -1487,7 +1530,9 @@ $$
 
 ## Common Mistakes 
 
+
 ### 1. Ignoring Financing
+
 
 **The error:**
 
@@ -1516,6 +1561,7 @@ $$
 
 ### 2. Fighting the Fed
 
+
 **The error:**
 
 - See steep curve (good roll)
@@ -1543,6 +1589,7 @@ $$
 
 ### 3. Overleverage
 
+
 **The error:**
 
 - "Carry/roll is low risk, I can lever 10×"
@@ -1566,6 +1613,7 @@ $$
 - **Prudent sizing**
 
 ### 4. Duration Inefficiency
+
 
 **The error:**
 
@@ -1593,6 +1641,7 @@ $$
 - **Optimization**
 
 ### 5. Ignoring Convexity
+
 
 **The error:**
 
@@ -1622,6 +1671,7 @@ $$
 
 ### 6. No Exit Discipline
 
+
 **The error:**
 
 - Enter carry/roll
@@ -1647,6 +1697,7 @@ $$
 
 ### 7. Yield ≠ Return
 
+
 **The error:**
 
 - Bond yields 4.50%
@@ -1670,6 +1721,7 @@ $$
 
 ### 8. Timing the Curve
 
+
 **The error:**
 
 - Try to time exact curve movements
@@ -1685,6 +1737,7 @@ $$
 - **Mechanical**
 
 ### 9. MIgnoring Pull-to-Par
+
 
 **The error:**
 
@@ -1713,6 +1766,7 @@ $$
 
 ### 10. Liquidity Blindness
 
+
 **The error:**
 
 - Buy off-the-run bonds (cheap!)
@@ -1737,6 +1791,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Carry and roll-down are the most reliable sources of fixed income returns—mechanical, predictable, and harvestable without forecasting yield changes. A 10-year Treasury on a 150 bps upward-sloping curve delivers 1.5-2.0% annual roll-down automatically if the curve stays unchanged, combining with coupon income (minus financing) to generate steady returns that formed the foundation of successful hedge fund strategies for decades. But this reliability exists ONLY in specific regimes: stable curves (yield volatility <15 bps/month), Fed on hold (no aggressive hiking), and positive term premium (upward slope >100 bps). The 2003-2006 period delivered 15%+ annually on 3× leveraged carry/roll, while 2022 destroyed -30% to -40% when the Fed hiked 425 bps in nine months. Carry/roll is simultaneously 'safe' income generation (in right environment) and catastrophic blowup risk (in wrong environment). Success requires ruthless regime awareness: exit immediately when Fed turns hawkish, avoid during hiking cycles entirely, size positions by duration × yield volatility, cap leverage at 3-5×, and maintain disciplined stop-losses at 50 bps yield rise. The strategy works beautifully 70% of the time (stable periods) and fails catastrophically 30% (hiking cycles, crises). Know which regime you're in—that's the entire game. 📊💰"
 

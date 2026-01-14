@@ -1,5 +1,6 @@
 # Martingale and No-Arbitrage
 
+
 This section explains the deep connection between **no-arbitrage**, **martingale
 pricing**, and **change of probability measure**. The goal is conceptual rather
 than technical: to understand *why* measure change removes arbitrage, before
@@ -7,7 +8,8 @@ learning *how* such a change of measure is constructed.
 
 ---
 
-## 1. Arbitrage and Discounted Asset Prices
+## Arbitrage and Discounted Asset Prices
+
 
 An **arbitrage opportunity** is a trading strategy that:
 - requires zero initial cost,
@@ -26,7 +28,8 @@ probability measure \( P \), arbitrage opportunities may arise.
 
 ---
 
-## 2. Martingales and Local Martingales
+## Martingales and Local Martingales
+
 
 In discrete time, no-arbitrage is closely related to discounted prices being
 **martingales**. In continuous time, however, the martingale condition is often
@@ -43,7 +46,8 @@ once properly adjusted, even if expectations are not globally well-behaved.
 
 ---
 
-## 3. No-Arbitrage and Martingale Property
+## No-Arbitrage and Martingale Property
+
 
 A central insight of modern asset pricing is:
 
@@ -59,7 +63,8 @@ prices behave like martingales.
 
 ---
 
-## 4. Why Measure Change Removes Arbitrage
+## Why Measure Change Removes Arbitrage
+
 
 A **change of measure** does not alter:
 - the paths of asset prices,
@@ -78,7 +83,8 @@ that events of zero probability remain impossible.
 
 ---
 
-## 5. Economic Interpretation
+## Economic Interpretation
+
 
 From an economic viewpoint:
 - Under the physical measure \( P \), asset prices reflect risk preferences and
@@ -92,7 +98,8 @@ This distinction clarifies the difference between:
 
 ---
 
-## 6. Relation to the Fundamental Theorem of Asset Pricing
+## Relation to the Fundamental Theorem of Asset Pricing
+
 
 The ideas developed here lead directly to the **Fundamental Theorem of Asset
 Pricing (FTAP)**:
@@ -105,7 +112,8 @@ where the FTAP is studied in detail using functional-analytic tools.
 
 ---
 
-## 7. What Comes Next
+## What Comes Next
+
 
 - **Girsanov’s theorem** explains how probability measures are changed in
   continuous-time stochastic models.

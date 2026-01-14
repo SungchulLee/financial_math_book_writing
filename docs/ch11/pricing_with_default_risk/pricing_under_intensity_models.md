@@ -1,10 +1,12 @@
 # Pricing under Intensity Models
 
+
 Intensity-based models provide tractable pricing formulas for defaultable claims by modeling default via a hazard rate process.
 
 ---
 
-## 1. Pricing framework
+## Pricing framework
+
 
 Assume:
 - default intensity \(\lambda_t\),
@@ -15,7 +17,8 @@ Pricing reduces to computing discounted expectations involving survival probabil
 
 ---
 
-## 2. Defaultable zero-coupon bond
+## Defaultable zero-coupon bond
+
 
 Under recovery of treasury (RT), the price simplifies to
 
@@ -33,7 +36,8 @@ Default risk acts like an additional discount rate.
 
 ---
 
-## 3. General recovery case
+## General recovery case
+
 
 With recovery of face value or market value, pricing involves:
 - integrals over default times,
@@ -44,7 +48,8 @@ Closed forms exist for simple intensity models.
 
 ---
 
-## 4. Relation to CDS pricing
+## Relation to CDS pricing
+
 
 The same framework prices:
 - credit default swaps (premium vs protection legs),
@@ -55,7 +60,8 @@ Consistency across products is essential.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Intensity models yield tractable pricing formulas.
 - Default risk enters through survival probabilities.
@@ -64,6 +70,7 @@ Consistency across products is essential.
 ---
 
 ## Further reading
+
 
 - Duffie & Singleton, intensity-based pricing.
 - Brigo et al., credit derivatives pricing.

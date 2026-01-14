@@ -1,12 +1,15 @@
 # Similarity Solutions: Complete Mathematical Treatment
 
+
 Similarity solutions exploit **scale invariance** and **dimensional analysis** to reduce PDEs to ODEs by identifying the "right" combination of variables. This reveals the **deep symmetry structure** underlying option pricing.
 
 ---
 
 ## **1. Dimensional Analysis Foundation**
 
-### **Physical Dimensions**
+
+### 1. **Physical Dimensions**
+
 
 In the Black-Scholes problem, the **dimensional quantities** are:
 - $S$: stock price $[$ \$ $]$
@@ -16,11 +19,13 @@ In the Black-Scholes problem, the **dimensional quantities** are:
 - $r$: interest rate $[T^{-1}]$
 - $V$: option value $[$ \$ $]$
 
-### **Buckingham Pi Theorem**
+### 2. **Buckingham Pi Theorem**
+
 
 With $n = 6$ variables and $m = 2$ fundamental dimensions ($[\$], [T]$), we get $n - m = 4$ **dimensionless groups**.
 
-### **Dimensionless Variables**
+### 3. **Dimensionless Variables**
+
 
 Define:
 
@@ -43,7 +48,8 @@ $$\boxed{\pi_4 = \frac{V}{K} \quad \text{(normalized value)}}$$
 
 
 
-### **Dimensional Reduction**
+### 4. **Dimensional Reduction**
+
 
 The option value must have the form:
 
@@ -57,14 +63,17 @@ This is the **most general form** consistent with dimensional analysis!
 
 ## **2. Scale Invariance of Black-Scholes**
 
-### **The PDE**
+
+### 1. **The PDE**
+
 
 
 $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0}$$
 
 
 
-### **Scaling Transformation**
+### 2. **Scaling Transformation**
+
 
 Consider the **one-parameter family** of transformations:
 
@@ -74,7 +83,8 @@ $$S \to \lambda S, \quad K \to \lambda K, \quad V \to \lambda V$$
 
 with $t, \sigma, r$ unchanged.
 
-### **Invariance**
+### 3. **Invariance**
+
 
 Substituting into the PDE:
 
@@ -89,7 +99,8 @@ $$= \lambda\left[\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S}
 
 The PDE is **homogeneous of degree 1** in $(S, K, V)$.
 
-### **Economic Interpretation**
+### 4. **Economic Interpretation**
+
 
 If all dollar amounts scale by $\lambda$ (change of currency), the **form** of the PDE doesn't change. This is the **scale invariance** or **homogeneity** of the market.
 
@@ -97,7 +108,9 @@ If all dollar amounts scale by $\lambda$ (change of currency), the **form** of t
 
 ## **3. Similarity Variable for Black-Scholes**
 
-### **Log-Moneyness Variable**
+
+### 1. **Log-Moneyness Variable**
+
 
 The most natural similarity variable combines space and time:
 
@@ -108,7 +121,8 @@ $$\boxed{\xi = \frac{\ln(S/K)}{\sigma\sqrt{\tau}} = \frac{x}{\sigma\sqrt{\tau}}}
 
 where $x = \ln(S/K)$ and $\tau = T - t$.
 
-### **Physical Meaning**
+### 2. **Physical Meaning**
+
 
 - Numerator: **log-moneyness** (how far from strike in log terms)
 - Denominator: **volatility × time scale** (uncertainty measure)
@@ -117,7 +131,8 @@ where $x = \ln(S/K)$ and $\tau = T - t$.
 For $|\xi| \approx 1$: option is at-the-money over the relevant time scale
 For $|\xi| \gg 1$: option is deep in/out of the money
 
-### **Alternative Variables**
+### 3. **Alternative Variables**
+
 
 Other common choices:
 
@@ -136,7 +151,9 @@ Each has advantages for different problems.
 
 ## **4. Reduction to ODE**
 
-### **Similarity Ansatz**
+
+### 1. **Similarity Ansatz**
+
 
 Seek a solution of the form:
 
@@ -144,7 +161,8 @@ $$\boxed{V(S,t) = K \cdot g(\xi) = K \cdot g\left(\frac{\ln(S/K)}{\sigma\sqrt{\t
 
 
 
-### **Computing Derivatives**
+### 2. **Computing Derivatives**
+
 
 **Partial derivatives**:
 
@@ -178,7 +196,8 @@ $$\frac{\partial^2 V}{\partial S^2} = K g''(\xi) \cdot \frac{1}{S^2\sigma^2\tau}
 
 
 
-### **Substituting into PDE**
+### 3. **Substituting into PDE**
+
 
 
 $$Kg'(\xi)\frac{\xi}{2\tau} + rS \cdot Kg'(\xi)\frac{1}{S\sigma\sqrt{\tau}} + \frac{\sigma^2 S^2}{2}\left[Kg''(\xi)\frac{1}{S^2\sigma^2\tau} - Kg'(\xi)\frac{1}{S^2\sigma\sqrt{\tau}}\right] - rKg(\xi) = 0$$
@@ -197,7 +216,8 @@ $$\frac{g'(\xi)\xi}{2} + \frac{rg'(\xi)\sqrt{\tau}}{\sigma} + \frac{g''(\xi)}{2}
 
 
 
-### **Problem: Non-Similarity**
+### 4. **Problem: Non-Similarity**
+
 
 The presence of $\tau$ prevents complete reduction to ODE!
 
@@ -207,7 +227,9 @@ The issue: $r$ introduces a **scale** that breaks perfect similarity.
 
 ## **5. Modified Similarity Variables**
 
-### **Dimensionless Time**
+
+### 1. **Dimensionless Time**
+
 
 Include the interest rate scaling:
 
@@ -217,7 +239,8 @@ $$\xi = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}$$
 
 This is related to $d_2$ in Black-Scholes!
 
-### **Modified Ansatz**
+### 2. **Modified Ansatz**
+
 
 Try:
 
@@ -238,7 +261,8 @@ $$\xi_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_
 
 This is the **Black-Scholes structure**!
 
-### **The ODE for $h$**
+### 3. **The ODE for $h$**
+
 
 Both $h(\xi_1)$ and $h(\xi_2)$ satisfy:
 
@@ -246,7 +270,8 @@ $$\boxed{\frac{d^2h}{d\xi^2} + \xi\frac{dh}{d\xi} = 0}$$
 
 
 
-### **Solution**
+### 4. **Solution**
+
 
 Integrate once:
 
@@ -266,7 +291,9 @@ where $N(\xi) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\xi}e^{-s^2/2}ds$ is the st
 
 ## **6. Heat Equation Similarity**
 
-### **Transformed PDE**
+
+### 1. **Transformed PDE**
+
 
 In variables $x = \ln(S/K)$ and $\tau = T - t$, after removing drift and decay:
 
@@ -276,7 +303,8 @@ $$\frac{\partial w}{\partial \tau} = \frac{\partial^2 w}{\partial x^2}$$
 
 This is the **heat equation**.
 
-### **Self-Similar Solution**
+### 2. **Self-Similar Solution**
+
 
 The fundamental solution (heat kernel) has the form:
 
@@ -286,7 +314,8 @@ $$\boxed{w(x,\tau) = \frac{1}{\sqrt{\tau}}G\left(\frac{x}{\sqrt{\tau}}\right)}$$
 
 where $\eta = \frac{x}{\sqrt{\tau}}$ is the **similarity variable**.
 
-### **Reduction to ODE**
+### 3. **Reduction to ODE**
+
 
 Substitute:
 
@@ -311,7 +340,8 @@ $$\boxed{G''(\eta) + \frac{\eta}{2}G'(\eta) + \frac{1}{2}G(\eta) = 0}$$
 
 
 
-### **Solution: Gaussian**
+### 4. **Solution: Gaussian**
+
 
 The solution is:
 
@@ -331,7 +361,9 @@ This is the **heat kernel** or **fundamental solution**!
 
 ## **7. Lie Group Methods**
 
-### **Infinitesimal Generators**
+
+### 1. **Infinitesimal Generators**
+
 
 The Black-Scholes PDE admits **symmetry transformations** forming a Lie group.
 
@@ -353,7 +385,8 @@ $$X_3 = r\frac{\partial}{\partial r} + \frac{1}{\tau}\frac{\partial}{\partial\ta
 
 
 
-### **Invariant Solutions**
+### 2. **Invariant Solutions**
+
 
 Solutions invariant under a symmetry generator satisfy:
 
@@ -375,7 +408,8 @@ $$f(S,K,V) = F\left(\frac{S}{K}, \frac{V}{K}\right)$$
 
 The similarity structure!
 
-### **Optimal System**
+### 3. **Optimal System**
+
 
 The **optimal system** of one-dimensional subalgebras gives all **inequivalent** similarity reductions.
 
@@ -388,7 +422,9 @@ For Black-Scholes, this recovers:
 
 ## **8. Traveling Wave Solutions**
 
-### **Wave Ansatz**
+
+### 1. **Wave Ansatz**
+
 
 For PDEs with translation symmetry, try:
 
@@ -398,7 +434,8 @@ $$u(x,t) = f(x - ct)$$
 
 where $c$ is the **wave speed**.
 
-### **Black-Scholes Context**
+### 2. **Black-Scholes Context**
+
 
 The drift term $\left(r - \frac{\sigma^2}{2}\right)\frac{\partial V}{\partial x}$ suggests traveling wave:
 
@@ -406,7 +443,8 @@ $$V(x,\tau) = F\left(x - \left(r - \frac{\sigma^2}{2}\right)\tau\right)$$
 
 
 
-### **Moving Frame**
+### 3. **Moving Frame**
+
 
 In the frame moving with velocity $v = r - \frac{\sigma^2}{2}$:
 
@@ -420,7 +458,9 @@ The PDE simplifies, revealing the **stationary structure**.
 
 ## **9. Explicit Example: European Call**
 
-### **Terminal Condition**
+
+### 1. **Terminal Condition**
+
 
 
 $$V(S,T) = (S - K)^+ = K(e^x - 1)^+$$
@@ -439,11 +479,13 @@ $$e^{\sigma\sqrt{\tau}\xi} \approx 1 + \sigma\sqrt{\tau}\xi \to \begin{cases} 1 
 
 
 
-### **Problem**
+### 2. **Problem**
+
 
 The terminal condition is **not self-similar**! It doesn't have the form $g(\xi)$ at $\tau = 0$.
 
-### **Resolution**
+### 3. **Resolution**
+
 
 The **full solution** is not purely self-similar—it's a **superposition**:
 
@@ -453,7 +495,8 @@ $$V(x,\tau) = \int_{-\infty}^{\infty}G(x-y,\tau)\Phi(y)dy$$
 
 where $G$ is the self-similar fundamental solution.
 
-### **Black-Scholes Formula**
+### 4. **Black-Scholes Formula**
+
 
 After transformation and integration:
 
@@ -478,7 +521,9 @@ The structure $N(d_1), N(d_2)$ reflects the underlying **similarity symmetry**!
 
 ## **10. Self-Similar Barrier Options**
 
-### **Absorbing Barrier**
+
+### 1. **Absorbing Barrier**
+
 
 For a barrier at $S = B$, the condition $V(B,t) = 0$ in similarity variables:
 
@@ -494,7 +539,8 @@ $$g\left(\frac{\ln(B/K)}{\sigma\sqrt{\tau}}\right) = 0 \quad \forall \tau$$
 
 This is **impossible** unless $B = K$ (barrier at strike)!
 
-### **Power-Law Similarity**
+### 2. **Power-Law Similarity**
+
 
 Try modified ansatz:
 
@@ -512,7 +558,8 @@ $$\alpha = \frac{2r}{\sigma^2}$$
 
 gives the correct scaling.
 
-### **Method of Images**
+### 3. **Method of Images**
+
 
 The similarity structure suggests:
 
@@ -526,7 +573,9 @@ The exponent $2r/\sigma^2$ comes from **dimensional analysis** and **scale invar
 
 ## **11. Higher-Dimensional Similarity**
 
-### **Two-Asset Problem**
+
+### 1. **Two-Asset Problem**
+
 
 For options on $S_1, S_2$ with **uncorrelated** dynamics:
 
@@ -534,7 +583,8 @@ $$\frac{\partial V}{\partial t} + \sum_{i=1,2}\left[rS_i\frac{\partial V}{\parti
 
 
 
-### **Similarity Variables**
+### 2. **Similarity Variables**
+
 
 Define:
 
@@ -542,7 +592,8 @@ $$\xi_1 = \frac{\ln(S_1/K_1)}{\sigma_1\sqrt{\tau}}, \quad \xi_2 = \frac{\ln(S_2/
 
 
 
-### **Product Form**
+### 3. **Product Form**
+
 
 Try:
 
@@ -570,14 +621,17 @@ approximates the solution structure.
 
 ## **12. Asymptotics and Similarity**
 
-### **Short-Time Asymptotics**
+
+### 1. **Short-Time Asymptotics**
+
 
 As $\tau \to 0$, the similarity variable $\xi = \frac{\ln(S/K)}{\sigma\sqrt{\tau}}$ becomes:
 - $\xi \to +\infty$ if $S > K$ (ITM)
 - $\xi \to -\infty$ if $S < K$ (OTM)
 - $\xi = O(1)$ if $S \approx K$ (ATM)
 
-### **ATM Expansion**
+### 2. **ATM Expansion**
+
 
 For $S \approx K$ (so $\xi = O(1)$):
 
@@ -587,7 +641,8 @@ $$V \approx K\left[N(d_1) - N(d_2)\right] \approx \frac{K\sigma\sqrt{\tau}}{\sqr
 
 This is the **ATM approximation**: $V \sim \sigma\sqrt{\tau}$ (time-value decay).
 
-### **Deep OTM/ITM**
+### 3. **Deep OTM/ITM**
+
 
 For $|\xi| \gg 1$:
 
@@ -607,7 +662,9 @@ This gives **exponential decay** in $\xi$.
 
 ## **13. Connection to Probability Theory**
 
-### **Central Limit Theorem**
+
+### 1. **Central Limit Theorem**
+
 
 The heat kernel:
 
@@ -625,7 +682,8 @@ $$\xi = \frac{x}{\sqrt{2\tau}}$$
 
 is the **standardized variable** for the CLT.
 
-### **Large Deviations**
+### 2. **Large Deviations**
+
 
 For $\tau \to \infty$ with $x/\tau = v$ fixed:
 
@@ -635,7 +693,8 @@ $$-\frac{1}{\tau}\ln G(x,\tau) \approx \frac{v^2}{4} + \frac{1}{2}\ln(4\pi\tau)$
 
 The **rate function** $I(v) = v^2/4$ governs large deviations.
 
-### **Scaling Limits**
+### 3. **Scaling Limits**
+
 
 As $\tau \to 0$ with $\xi = x/\sqrt{\tau}$ fixed, the distribution **concentrates** on $\{\xi = 0\}$, i.e., $S = K$.
 
@@ -645,14 +704,17 @@ This is the **zero-diffusion limit** or **small-noise asymptotics**.
 
 ## **14. Numerical Methods via Similarity**
 
-### **Sparse Grids**
+
+### 1. **Sparse Grids**
+
 
 Using similarity variable $\xi$ instead of $(S,t)$:
 - Fewer grid points needed near ATM
 - Natural boundary conditions at $\xi \to \pm\infty$
 - Adaptive refinement based on $|\xi|$
 
-### **Transformation of Domain**
+### 2. **Transformation of Domain**
+
 
 Map $(S,t) \in (0,\infty) \times [0,T]$ to $(\xi, \tau) \in \mathbb{R} \times [0,T]$.
 
@@ -664,7 +726,8 @@ $$\xi \in [-\xi_{\max}, \xi_{\max}]$$
 
 where $\xi_{\max} \approx 5$ captures $99.99\%$ of the distribution.
 
-### **Initial Condition**
+### 3. **Initial Condition**
+
 
 Terminal payoff $\Phi(S)$ becomes:
 
@@ -678,7 +741,9 @@ As $\tau \to 0$, this is **singular** but well-defined in distributional sense.
 
 ## **15. Similarity in Stochastic Volatility**
 
-### **Heston Model**
+
+### 1. **Heston Model**
+
 
 
 $$dS_t = rS_t dt + \sqrt{v_t}S_t dW_t^{(1)}$$
@@ -689,7 +754,8 @@ $$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^{(2)}$$
 
 
 
-### **Quasi-Similarity**
+### 2. **Quasi-Similarity**
+
 
 Define:
 
@@ -705,7 +771,8 @@ $$V(S, v, t) \approx K f(\xi_S, \xi_v, \kappa\tau, \xi\sqrt{\tau})$$
 
 Not purely self-similar due to mean-reversion $\kappa$.
 
-### **Long-Time Limit**
+### 3. **Long-Time Limit**
+
 
 As $\tau \to \infty$, $v_t \to \theta$ (mean-reversion), so:
 
@@ -719,7 +786,9 @@ The similarity structure **emerges** in the long-time limit.
 
 ## **16. Fractional Diffusion and Anomalous Scaling**
 
-### **Fractional Heat Equation**
+
+### 1. **Fractional Heat Equation**
+
 
 
 $$\frac{\partial u}{\partial t} = (-\Delta)^{\alpha/2}u$$
@@ -728,7 +797,8 @@ $$\frac{\partial u}{\partial t} = (-\Delta)^{\alpha/2}u$$
 
 where $(-\Delta)^{\alpha/2}$ is the **fractional Laplacian**.
 
-### **Scaling**
+### 2. **Scaling**
+
 
 The fundamental solution:
 
@@ -746,7 +816,8 @@ $$\boxed{\xi = \frac{x}{t^{1/\alpha}}}$$
 
 reflects **anomalous diffusion** (subdiffusion $\alpha < 2$, superdiffusion $\alpha > 2$).
 
-### **Rough Volatility**
+### 3. **Rough Volatility**
+
 
 For **fractional Brownian motion** with Hurst parameter $H$:
 
@@ -764,7 +835,9 @@ $$\xi \sim \frac{x}{t^H}$$
 
 ## **17. Similarity Solutions for American Options**
 
-### **Free Boundary Problem**
+
+### 1. **Free Boundary Problem**
+
 
 
 $$\max\left\{-\frac{\partial V}{\partial t} - \mathcal{L}V, V - \Phi(S)\right\} = 0$$
@@ -773,7 +846,8 @@ $$\max\left\{-\frac{\partial V}{\partial t} - \mathcal{L}V, V - \Phi(S)\right\} 
 
 with free boundary $S^*(t)$ (optimal exercise).
 
-### **Similarity Variable**
+### 2. **Similarity Variable**
+
 
 The free boundary has scaling:
 
@@ -783,7 +857,8 @@ $$S^*(t) = K h(\tau)$$
 
 where $h(\tau)$ satisfies an ODE derived from similarity.
 
-### **Perpetual American Put**
+### 3. **Perpetual American Put**
+
 
 For $T \to \infty$ (**perpetual**), time-independence gives:
 
@@ -805,7 +880,8 @@ $$\boxed{\alpha = \frac{1}{2} - \frac{r}{\sigma^2} \pm \sqrt{\left(\frac{1}{2} -
 
 Choose $\alpha < 0$ for boundedness as $S \to \infty$.
 
-### **Optimal Exercise Boundary**
+### 4. **Optimal Exercise Boundary**
+
 
 At $S = S^*$:
 - **Value matching**: $V(S^*) = K - S^*$
@@ -823,7 +899,9 @@ The ratio $S^*/K$ is **constant** (time-independent similarity).
 
 ## **18. Dimensional Analysis for Exotic Options**
 
-### **Lookback Option**
+
+### 1. **Lookback Option**
+
 
 Payoff: $S_{\max} - S_T$ where $S_{\max} = \max_{0 \leq t \leq T}S_t$.
 
@@ -839,7 +917,8 @@ $$V = S_{\max} \cdot f\left(\frac{S}{S_{\max}}, \sigma\sqrt{\tau}, r\tau\right)$
 
 
 
-### **Asian Option**
+### 2. **Asian Option**
+
 
 Payoff depends on average $A = \frac{1}{T}\int_0^T S_t dt$.
 
@@ -861,7 +940,9 @@ The average $A$ introduces an **additional state variable**, breaking simple sim
 
 ## **19. Group Invariants and Similarity**
 
-### **Invariant Theory**
+
+### 1. **Invariant Theory**
+
 
 Under the scaling group $G$:
 
@@ -877,7 +958,8 @@ $$I_1 = \frac{S}{K}, \quad I_2 = \frac{V}{K}, \quad I_3 = t$$
 
 All functions of these invariants are invariant under $G$.
 
-### **Complete Set**
+### 2. **Complete Set**
+
 
 The **fundamental theorem**: Any $G$-invariant function can be expressed as a function of the complete set of invariants.
 
@@ -889,7 +971,8 @@ $$V = K \cdot f\left(\frac{S}{K}, \sigma\sqrt{T-t}, r(T-t)\right)$$
 
 is the **most general form**.
 
-### **Differential Invariants**
+### 3. **Differential Invariants**
+
 
 Higher-order invariants:
 
@@ -903,7 +986,9 @@ The Greeks $\Delta, \Gamma$ are **differential invariants**!
 
 ## **20. Comparison with Other Methods**
 
-### **Similarity vs. Fourier**
+
+### 1. **Similarity vs. Fourier**
+
 
 | **Aspect** | **Similarity** | **Fourier** |
 |------------|----------------|-------------|
@@ -913,7 +998,8 @@ The Greeks $\Delta, \Gamma$ are **differential invariants**!
 | Solution | Asymptotic structure | Exact formula |
 | Intuition | Scaling/geometry | Spectral decomposition |
 
-### **Similarity vs. Separation**
+### 2. **Similarity vs. Separation**
+
 
 | **Aspect** | **Similarity** | **Separation** |
 |------------|----------------|----------------|
@@ -922,7 +1008,8 @@ The Greeks $\Delta, \Gamma$ are **differential invariants**!
 | Spectrum | N/A | Discrete/continuous |
 | Generality | Special solutions | Complete basis |
 
-### **When Similarity Works**
+### 3. **When Similarity Works**
+
 
 **Best for**:
 1. **Scale-invariant problems** (homogeneous PDEs)
@@ -941,7 +1028,9 @@ The Greeks $\Delta, \Gamma$ are **differential invariants**!
 
 ## **21. The Deep Structure**
 
-### **Why Similarity Exists**
+
+### 1. **Why Similarity Exists**
+
 
 Similarity solutions arise when the PDE admits a **one-parameter group** of transformations:
 
@@ -956,7 +1045,8 @@ For Black-Scholes:
 - **Time translation**: $t \to t + c$
 - **Combined**: Similarity variables
 
-### **Noether's Theorem Analog**
+### 2. **Noether's Theorem Analog**
+
 
 In PDE theory, **symmetries** ↔ **conservation laws** ↔ **similarity reductions**.
 
@@ -965,7 +1055,8 @@ Each symmetry gives:
 2. A **similarity reduction** (reduction of variables)
 3. **Invariant solutions** (special solution families)
 
-### **The Fundamental Principle**
+### 3. **The Fundamental Principle**
+
 
 
 $$\boxed{\text{Scaling symmetry} \iff \text{Homogeneity} \iff \text{Similarity variable} \iff \text{Dimensional analysis}}$$
@@ -978,7 +1069,9 @@ These are **four perspectives** on the **same mathematical structure**.
 
 ## **22. Summary: The Similarity Paradigm**
 
-### **Key Insights**
+
+### 1. **Key Insights**
+
 
 1. **Black-Scholes is scale-invariant**: Multiply all dollar amounts by $\lambda$, solution scales proportionally
 
@@ -990,7 +1083,8 @@ These are **four perspectives** on the **same mathematical structure**.
 
 5. **Greeks are invariants**: $\Delta, \Gamma$ scale correctly under transformations
 
-### **The Master Formulas**
+### 2. **The Master Formulas**
+
 
 **Similarity variable**:
 
@@ -1018,7 +1112,8 @@ $$\boxed{C = SN(d_1) - Ke^{-r\tau}N(d_2)}$$
 
 where $d_1, d_2$ are **similarity coordinates**.
 
-### **The Philosophy**
+### 3. **The Philosophy**
+
 
 Similarity solutions reveal that **option prices depend on ratios, not absolutes**:
 - Not $S$ and $K$ separately, but $S/K$ (moneyness)

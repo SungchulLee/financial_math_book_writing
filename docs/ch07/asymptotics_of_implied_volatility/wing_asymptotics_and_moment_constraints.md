@@ -1,6 +1,8 @@
 # Wing Asymptotics and Moment Constraints
 
+
 ## Introduction
+
 
 The **wings** of the implied volatility smile refer to the behavior of $\sigma_{\text{IV}}(K, T)$ as the strike $K$ moves far from the current spot $S_0$ or forward $F$. Understanding wing asymptotics is crucial for:
 - Ensuring arbitrage-free extrapolation beyond traded strikes
@@ -12,7 +14,9 @@ This section develops the complete theory of wing asymptotics and establishes fu
 
 ## Lee's Moment Formula
 
-### Statement of the Theorem
+
+### 1. Statement of the Theorem
+
 
 **Theorem 4.4.7** (Lee, 2004)  
 Let $q(S_T)$ be the risk-neutral probability density at maturity $T$. Define the growth rate of total implied variance in the wings:
@@ -46,7 +50,8 @@ where $m_+$ is the largest $p$ such that $\mathbb{E}^\mathbb{Q}[S_T^p] < \infty$
 
 **Interpretation:** The slope of the implied variance in the wings is inversely proportional to the maximum finite moment.
 
-### Proof Sketch
+### 2. Proof Sketch
+
 
 The call option price for large strikes admits the tail expansion:
 
@@ -86,7 +91,8 @@ $$
 
 where $p = \alpha - 1$ is the moment exponent. □
 
-### Special Cases
+### 3. Special Cases
+
 
 **Finite variance ($p_+ = p_- = 2$):**
 
@@ -116,7 +122,9 @@ Very steep wings, thin tails.
 
 ## Right Wing: Large-Strike Asymptotics
 
-### Power Law Tails
+
+### 1. Power Law Tails
+
 
 Assume the risk-neutral density has a power law right tail:
 
@@ -133,7 +141,8 @@ for some $\alpha > 1$ (to ensure normalization).
 - Finite $p$-th moment: $\mathbb{E}[S_T^p] < \infty$ iff $p < \alpha - 1$
 - Maximum finite moment: $m_+ = \alpha - 1$
 
-### Implied Volatility Asymptotics
+### 2. Implied Volatility Asymptotics
+
 
 **Theorem 4.4.8** (Right Wing Asymptotics)  
 If $q(S) \sim C_+ S^{-\alpha}$ as $S \to \infty$, then:
@@ -156,7 +165,8 @@ $$
 
 **Proof:** From Lee's formula with $m_+ = \alpha - 1$, we have $p_+ = \frac{2}{\alpha - 1}$. The result follows by definition of $p_+$. □
 
-### Exponential Tails
+### 3. Exponential Tails
+
 
 If instead the density has exponential decay:
 
@@ -205,7 +215,9 @@ $$
 
 ## Left Wing: Small-Strike Asymptotics
 
-### Put-Call Symmetry
+
+### 1. Put-Call Symmetry
+
 
 By put-call parity:
 
@@ -227,7 +239,8 @@ $$
 
 Thus, left wing analysis proceeds analogously using puts.
 
-### Small-Strike Behavior
+### 2. Small-Strike Behavior
+
 
 Define the left wing slope:
 
@@ -260,7 +273,8 @@ $$
 **Special case (Black-Scholes):**  
 Lognormal density has $q(S) \sim S^{-1}$ as $S \to 0$, giving $\beta = -1$. However, this is **boundary case**—technically infinite $p_-$ due to exponential correction.
 
-### Absorbing Barrier at Zero
+### 3. Absorbing Barrier at Zero
+
 
 If there is **probability mass** at $S_T = 0$ (complete default):
 
@@ -293,7 +307,9 @@ $$
 
 ## Symmetric vs Asymmetric Wings
 
-### Symmetric Distribution
+
+### 1. Symmetric Distribution
+
 
 If the risk-neutral density is symmetric around $F$:
 
@@ -317,7 +333,8 @@ Both wings have finite variance tails.
 
 **Markets:** Foreign exchange options often exhibit near-symmetric wings.
 
-### Asymmetric Distribution (Skewed)
+### 2. Asymmetric Distribution (Skewed)
+
 
 **Equity markets:** Typically exhibit:
 
@@ -338,7 +355,9 @@ Left wing flatter (higher IV) than right wing.
 
 ## Connections to Variance Swaps
 
-### Variance Swap Pricing
+
+### 1. Variance Swap Pricing
+
 
 The fair strike for a variance swap is:
 
@@ -349,7 +368,8 @@ $$
 
 
 
-### Wing Contribution
+### 2. Wing Contribution
+
 
 The integral is dominated by the wings:
 
@@ -378,7 +398,9 @@ If $\alpha = m_+ + 1 < 3$ (infinite variance), the variance swap integral **dive
 
 ## Arbitrage Constraints on Wings
 
-### Minimum Wing Slope
+
+### 1. Minimum Wing Slope
+
 
 For the density to be a valid probability measure:
 
@@ -420,7 +442,8 @@ $$
 
 Similarly for the left wing.
 
-### Calibration Constraints
+### 2. Calibration Constraints
+
 
 When fitting parametric smile models (SVI, SSVI), the wing slopes must satisfy:
 
@@ -440,7 +463,9 @@ Violations indicate:
 
 ## Empirical Observations
 
-### Equity Index Wings
+
+### 1. Equity Index Wings
+
 
 **S&P 500 typical values:**
 - $p_- \approx 1.0$ to $1.5$ (fat left tail, crash risk)
@@ -448,7 +473,8 @@ Violations indicate:
 
 **Interpretation:** Market prices put insurance heavily (left wing flat), while call side is closer to Gaussian.
 
-### FX Wings
+### 2. FX Wings
+
 
 **Major currency pairs (EUR/USD, USD/JPY):**
 - $p_- \approx 2.0$
@@ -456,7 +482,8 @@ Violations indicate:
 
 **Interpretation:** Symmetric finite-variance distribution, two-sided jump risk.
 
-### Commodity Wings
+### 3. Commodity Wings
+
 
 **Crude oil:**
 - $p_- \approx 1.5$ (supply disruption)
@@ -467,7 +494,9 @@ Violations indicate:
 
 ## Wing Approximations in Practice
 
-### Polynomial Extrapolation
+
+### 1. Polynomial Extrapolation
+
 
 For strikes beyond the last traded option, fit:
 
@@ -480,7 +509,8 @@ $$
 
 **Constraint:** The linear coefficient $b$ should match $p_{\pm}$ from Lee's formula.
 
-### Power Law Tails (SVI)
+### 2. Power Law Tails (SVI)
+
 
 The SVI parametrization:
 
@@ -504,7 +534,8 @@ $$
 
 **Limitation:** SVI cannot model infinite variance distributions ($p < 2$ arbitrary).
 
-### Rational Function Extrapolation
+### 3. Rational Function Extrapolation
+
 
 For more flexible wing behavior:
 
@@ -521,7 +552,9 @@ This allows for:
 
 ## Moment-Constrained Calibration
 
-### Imposing Known Moments
+
+### 1. Imposing Known Moments
+
 
 If external information provides moment bounds:
 
@@ -551,7 +584,9 @@ This constrains the wings to decay at least as fast as $p_+ = p_- = 2$.
 
 ## Extreme Wing Behavior: Pathological Cases
 
-### Flat Wings ($p \to 0$)
+
+### 1. Flat Wings ($p \to 0$)
+
 
 If $\sigma_{\text{IV}}(y, T)$ is constant for large $|y|$:
 
@@ -566,7 +601,8 @@ $$
 
 **Interpretation:** Extremely heavy tails—unrealistic for most assets.
 
-### Steep Wings ($p \to \infty$)
+### 2. Steep Wings ($p \to \infty$)
+
 
 If IV grows faster than $\sqrt{|y|/T}$:
 
@@ -583,7 +619,9 @@ $$
 
 ## Relationship to Greeks
 
-### Wing Vega
+
+### 1. Wing Vega
+
 
 The vega in the wings is:
 
@@ -598,7 +636,8 @@ For large $K$, $d_1 \to -\infty$, so $\phi(d_1) \to 0$ exponentially.
 
 **Implication:** Deep OTM options have very low vega—changes in wing IV have limited P&L impact unless positions are large.
 
-### Wing Delta
+### 2. Wing Delta
+
 
 Deep OTM call delta:
 
@@ -622,7 +661,9 @@ $$
 
 ## Computational Aspects
 
-### Numerical Stability
+
+### 1. Numerical Stability
+
 
 Computing $\sigma_{\text{IV}}$ for deep OTM options:
 
@@ -633,7 +674,8 @@ Computing $\sigma_{\text{IV}}$ for deep OTM options:
 - Work in log-space: compute $\log C$ directly
 - Extrapolate from traded strikes using wing asymptotics
 
-### Wing Interpolation Algorithms
+### 2. Wing Interpolation Algorithms
+
 
 **Algorithm:**
 
@@ -651,9 +693,11 @@ Computing $\sigma_{\text{IV}}$ for deep OTM options:
 
 ## Summary
 
+
 Wing asymptotics reveal:
 
-### **Lee's moment formula:**
+### 1. **Lee's moment formula:**
+
 
 
 $$
@@ -664,7 +708,8 @@ $$
 
 Wing slope inversely proportional to maximum finite moment.
 
-### **Arbitrage constraints:**
+### 2. **Arbitrage constraints:**
+
 
 
 $$
@@ -675,20 +720,23 @@ $$
 
 Finite variance requires wings grow at least linearly in $|y|$.
 
-### **Asymptotic behavior:**
+### 3. **Asymptotic behavior:**
+
 
 **Power law tail:** $q(S) \sim S^{-\alpha} \Rightarrow \sigma_{\text{IV}}^2 T \sim \frac{2|y|}{\alpha - 1}$
 
 **Exponential tail:** $q(S) \sim e^{-\lambda S} \Rightarrow \sigma_{\text{IV}}^2 T \gg |y|$ (steep)
 
-### **Practical applications:**
+### 4. **Practical applications:**
+
 
 - **Extrapolation:** Use power law wings beyond traded strikes
 - **Calibration:** Constrain wing slopes to ensure valid density
 - **Variance swaps:** Require finite variance ($p_{\pm} = 2$)
 - **Moment inference:** Extract tail behavior from observed wings
 
-### **Empirical patterns:**
+### 5. **Empirical patterns:**
+
 
 - **Equity:** Asymmetric ($p_- < p_+$), fat left tail
 - **FX:** Symmetric ($p_- \approx p_+ \approx 2$)

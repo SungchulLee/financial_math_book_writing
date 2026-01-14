@@ -1,5 +1,6 @@
 # Risk-Neutral Pricing
 
+
 Risk-neutral pricing is one of the central principles of modern asset pricing:
 
 > **In an arbitrage-free market, the price of a contingent claim equals the discounted expectation of its payoff under a risk-neutral measure.**
@@ -8,7 +9,8 @@ In the binomial model, this principle emerges naturally from no-arbitrage and pr
 
 ---
 
-## 1. From Replication to Expectation
+## From Replication to Expectation
+
 
 Earlier, prices were obtained by **replication**:
 
@@ -24,9 +26,11 @@ The answer is **yes**, and that measure is uniquely determined by no-arbitrage.
 
 ---
 
-## 2. Risk-Neutral Probability
+## Risk-Neutral Probability
 
-### Definition
+
+### 1. Definition
+
 
 In a one-period binomial model with
 
@@ -42,7 +46,8 @@ q = \frac{e^{r dt} - d}{u - d}
 }
 $$
 
-### Properties
+### 2. Properties
+
 
 * \(0 < q < 1\) if and only if $d < e^{r dt} < u$
 
@@ -52,7 +57,8 @@ $$
 
 ---
 
-## 3. Martingale Interpretation
+## Martingale Interpretation
+
 
 Under the probability measure $\mathbb{Q}$ defined by
 
@@ -76,7 +82,8 @@ This property extends to *all* attainable payoffs.
 
 ---
 
-## 4. Risk-Neutral Pricing Formula
+## Risk-Neutral Pricing Formula
+
 
 For any one-period contingent claim with payoffs $H_u, H_d$,
 
@@ -98,9 +105,11 @@ This formula:
 
 ---
 
-## 5. Example 1: European Call Option
+## Example 1: European Call Option
 
-### Setup
+
+### 1. Setup
+
 
 Let
 
@@ -123,7 +132,8 @@ C_u = (120 - 105)^+ = 15,
 C_d = (90 - 105)^+ = 0
 $$
 
-### Pricing
+### 2. Pricing
+
 
 First compute
 
@@ -149,9 +159,11 @@ $$
 
 ---
 
-## 6. Example 2: European Put Option
+## Example 2: European Put Option
 
-### Setup
+
+### 1. Setup
+
 
 Using the same parameters as Example 1:
 
@@ -172,7 +184,8 @@ P_u = (105 - 120)^+ = 0,
 P_d = (105 - 90)^+ = 15
 $$
 
-### Pricing
+### 2. Pricing
+
 
 $$
 \boxed{
@@ -184,7 +197,8 @@ $$
 
 ---
 
-## 7. Example 3: Digital (Binary) Option
+## Example 3: Digital (Binary) Option
+
 
 Consider a digital claim paying
 
@@ -196,7 +210,8 @@ H =
 \end{cases}
 $$
 
-### Pricing
+### 1. Pricing
+
 
 $$
 \boxed{
@@ -214,7 +229,8 @@ $$
 
 ---
 
-## 8. Example 4: Forward Contract
+## Example 4: Forward Contract
+
 
 A forward payoff is
 
@@ -222,7 +238,8 @@ $$
 H = S_1 - K
 $$
 
-### Pricing
+### 1. Pricing
+
 
 $$
 \begin{aligned}
@@ -237,7 +254,8 @@ This recovers the standard forward price directly from expectation.
 
 ---
 
-## 9. Example 5: Put–Call Parity
+## Example 5: Put–Call Parity
+
 
 Using risk-neutral pricing,
 
@@ -259,7 +277,8 @@ Put–call parity is therefore a **risk-neutral identity**, not a separate assum
 
 ---
 
-## 10. Linearity of Risk-Neutral Pricing
+## Linearity of Risk-Neutral Pricing
+
 
 For any payoffs $H_1, H_2$ and scalars $\alpha, \beta$,
 
@@ -278,9 +297,11 @@ This linearity explains why:
 
 ---
 
-## 11. What Risk-Neutral Probability Is (and Is Not)
+## What Risk-Neutral Probability Is (and Is Not)
 
-### It **is**
+
+### 1. It **is**
+
 
 * a pricing device,
 
@@ -288,7 +309,8 @@ This linearity explains why:
 
 * uniquely pinned down by no-arbitrage.
 
-### It **is not**
+### 2. It **is not**
+
 
 * a real-world probability,
 
@@ -300,7 +322,8 @@ This linearity explains why:
 
 ---
 
-## 12. Multi-Period Preview
+## Multi-Period Preview
+
 
 In an $N$-period binomial tree, let $H_{Ndt}$ denote the random payoff at time $Ndt$, and let $H_j$ denote the **specific payoff value** at the terminal node reached after exactly $j$ up moves:
 
@@ -331,6 +354,7 @@ This leads directly to **backward induction** and tree-based pricing.
 ---
 
 ## Summary
+
 
 Risk-neutral pricing reframes asset valuation as:
 

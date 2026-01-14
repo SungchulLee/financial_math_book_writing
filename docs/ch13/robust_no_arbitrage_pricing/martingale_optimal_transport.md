@@ -1,6 +1,8 @@
 # Martingale Optimal Transport
 
+
 ## Introduction
+
 
 Martingale Optimal Transport (MOT) represents a powerful synthesis of optimal transport theory and martingale theory, providing a framework for robust derivative pricing that combines geometric insights with financial constraints. This theory addresses the fundamental question: **What is the optimal distribution of a martingale given its marginal distributions?**
 
@@ -14,7 +16,9 @@ The key insight is that observed option prices at different maturities constrain
 
 ## Mathematical Foundations
 
-### Classical Optimal Transport
+
+### 1. Classical Optimal Transport
+
 
 **Monge Problem** (1781): Given probability measures $\mu$ on $\mathbb{R}^d$ and $\nu$ on $\mathbb{R}^d$, find a transport map $T: \mathbb{R}^d \to \mathbb{R}^d$ such that $T_{\#}\mu = \nu$ (meaning $\nu(B) = \mu(T^{-1}(B))$ for all Borel sets $B$) that minimizes:
 
@@ -56,7 +60,8 @@ $$
 
 
 
-### Kantorovich Duality
+### 2. Kantorovich Duality
+
 
 **Dual Problem**: 
 
@@ -94,7 +99,9 @@ where $\phi^c$ is the $c$-transform of $\phi$.
 
 ## Martingale Optimal Transport Problem
 
-### Problem Formulation
+
+### 1. Problem Formulation
+
 
 **Setup**: Consider two time points $0 < T$ with:
 - Initial distribution $\mu$ on $\mathbb{R}_+$ (current asset prices)
@@ -147,7 +154,8 @@ $$
 
 where $\Phi_c^M$ incorporates both the cost constraint and martingale structure.
 
-### Martingale Duality
+### 2. Martingale Duality
+
 
 **Theorem** (Martingale Duality): Under appropriate conditions:
 
@@ -171,7 +179,8 @@ The second constraint reflects the martingale restriction.
 
 **Proof Sketch**: Uses convex analysis and Lagrangian duality. The martingale constraint is incorporated via the subdifferential condition.
 
-### Beiglböck-Henry-Penkner-Schachermayer Theorem
+### 3. Beiglböck-Henry-Penkner-Schachermayer Theorem
+
 
 **General Duality** (BHPS 2013): For one-dimensional marginals and martingale constraint:
 
@@ -197,7 +206,9 @@ $$
 
 ## Robust Pricing via MOT
 
-### Setup
+
+### 1. Setup
+
 
 **Given Information**:
 - Current stock price $S_0$
@@ -213,7 +224,8 @@ $$
 
 
 
-### Model-Free Upper Bound
+### 2. Model-Free Upper Bound
+
 
 **Problem**: Price an exotic derivative with payoff $g(S_0, S_T)$ using only marginal information.
 
@@ -242,7 +254,8 @@ subject to $\phi(x) + \phi^*(y) \geq g(x, y)$ for all $x, y$.
 - The bound is achieved by a static portfolio of vanilla options plus cash
 - This provides a super-replication strategy
 
-### Model-Free Lower Bound
+### 3. Model-Free Lower Bound
+
 
 **Lower Bound**:
 
@@ -262,7 +275,8 @@ $$
 
 
 
-### Static Replication
+### 4. Static Replication
+
 
 **Theorem** (Static Replication): The optimal dual potentials $\phi^*$ and $\psi^*$ correspond to portfolios of vanilla options that super-replicate (for upper bound) or sub-replicate (for lower bound) the exotic payoff.
 
@@ -282,7 +296,9 @@ $$
 
 ## Multi-Period MOT
 
-### Nested Martingales
+
+### 1. Nested Martingales
+
 
 **Setup**: Consider times $0 < T_1 < T_2 < \cdots < T_n$.
 
@@ -301,7 +317,8 @@ $$
 
 
 
-### Weak vs Strong Duality
+### 2. Weak vs Strong Duality
+
 
 **Weak Duality**: Always holds:
 
@@ -323,7 +340,9 @@ $$
 
 ## Computational Methods
 
-### Discretization Approach
+
+### 1. Discretization Approach
+
 
 **Grid Setup**: Discretize state spaces:
 - $S_0 \in \{s_1^0, s_2^0, \ldots, s_{N_0}^0\}$
@@ -350,7 +369,8 @@ $$
 
 **Refinement**: Adaptive grid refinement around regions where optimal coupling concentrates.
 
-### Entropic Regularization
+### 2. Entropic Regularization
+
 
 **Regularized Problem**: Add entropy term to stabilize and smooth:
 
@@ -386,7 +406,8 @@ $$
 
 **Martingale Extension**: Modify Sinkhorn to incorporate martingale constraint by projecting onto martingale subspace at each iteration.
 
-### Neural Network Approaches
+### 3. Neural Network Approaches
+
 
 **Parameterization**: Represent dual potentials $\phi$ and $\psi$ using neural networks.
 
@@ -408,7 +429,8 @@ where Penalty enforces the constraints $\phi + \psi \leq c$ and martingale condi
 - Can handle complex cost functions
 - Amortized computation across multiple queries
 
-### Duality-Based Methods
+### 4. Duality-Based Methods
+
 
 **Dual LP**: Instead of optimizing over couplings, solve the dual problem:
 
@@ -429,7 +451,9 @@ $$
 
 ## Applications in Quantitative Finance
 
-### Variance Swap Pricing
+
+### 1. Variance Swap Pricing
+
 
 **Variance Swap Payoff**:
 
@@ -462,7 +486,8 @@ $$
 
 using multi-period MOT.
 
-### Forward Start Options
+### 2. Forward Start Options
+
 
 **Payoff**: Option struck at-the-money at future time $T_1$, maturing at $T_2$:
 
@@ -481,7 +506,8 @@ $$
 
 **Extremal Measures**: Optimal couplings often correspond to specific scenarios (e.g., maximum correlation, minimum correlation).
 
-### Barrier Options
+### 3. Barrier Options
+
 
 **Up-and-Out Call**: Payoff is:
 
@@ -507,7 +533,8 @@ This can be computed via MOT since the barrier event is approximated by terminal
 
 **Path-Dependent Barrier**: For exact treatment, need continuous monitoring, which requires additional information beyond marginals. MOT provides bounds but may be wide.
 
-### Robust VIX Derivatives
+### 4. Robust VIX Derivatives
+
 
 **VIX Definition**: Model-free implied volatility:
 
@@ -527,7 +554,8 @@ $$
 - Use MOT to find worst-case/best-case scenarios for VIX option values
 - Construct static hedges using S&P 500 options
 
-### Basket Option Bounds
+### 5. Basket Option Bounds
+
 
 **Basket Call**: Payoff is:
 
@@ -564,7 +592,9 @@ MOT tightens these bounds using martingale constraints.
 
 ## Advanced Theoretical Results
 
-### Monge-Kantorovich and Strassen Theorems
+
+### 1. Monge-Kantorovich and Strassen Theorems
+
 
 **Strassen's Theorem**: A coupling $\pi \in \Pi(\mu, \nu)$ is a martingale coupling if and only if:
 
@@ -581,7 +611,8 @@ for all convex functions $f$ for which both integrals exist.
 
 **MOT Connection**: This characterizes $\mathcal{M}(\mu, \nu)$ in terms of moment constraints.
 
-### Irreducible Convex Paving (ICP)
+### 2. Irreducible Convex Paving (ICP)
+
 
 **ICP Property**: A cost function $c$ satisfies ICP if every optimal coupling in $\mathcal{M}(\mu, \nu)$ is supported on a "paving" of $\mathbb{R} \times \mathbb{R}$ by convex sets.
 
@@ -594,7 +625,8 @@ for all convex functions $f$ for which both integrals exist.
 
 **Application**: Allows closed-form solutions or efficient computation for many financial payoffs.
 
-### Shadow Measures
+### 3. Shadow Measures
+
 
 **Definition**: A measure $\lambda$ on $\mathbb{R}$ is a **shadow measure** for $\mathcal{M}(\mu, \nu)$ if there exist left-monotone and right-monotone couplings $\pi_L, \pi_R \in \mathcal{M}(\mu, \nu)$ such that:
 
@@ -616,7 +648,8 @@ $$
 
 **Application**: Shadow measures yield extremal martingale couplings, providing explicit constructions for optimal transport plans.
 
-### Peacock Property
+### 4. Peacock Property
+
 
 **Peacock** (PCOC - Processus Croissant pour l'Ordre Convexe): A process $(X_t)_{t \geq 0}$ is a peacock if:
 
@@ -635,7 +668,8 @@ where $\preceq_c$ denotes convex order.
 
 **MOT Connection**: Provides necessary and sufficient conditions for existence of martingale couplings.
 
-### Root and Barrier Embeddings
+### 5. Root and Barrier Embeddings
+
 
 **Root Embedding**: Given marginals $\mu$ and $\nu$ with $\mu \preceq_c \nu$, construct a martingale $(M_t)_{t \in [0, 1]}$ with:
 - $M_0 \sim \mu$
@@ -649,7 +683,9 @@ where $\preceq_c$ denotes convex order.
 
 ## Connections to Other Theories
 
-### Optimal Stopping
+
+### 1. Optimal Stopping
+
 
 **Connection**: MOT problems can be reformulated as optimal stopping problems for suitably defined processes.
 
@@ -666,7 +702,8 @@ where the supremum is over stopping times.
 
 **Application**: Numerical methods for optimal stopping (e.g., Longstaff-Schwartz) can be adapted to solve MOT problems.
 
-### Stochastic Control
+### 2. Stochastic Control
+
 
 **Control Problem**: Equivalent formulation as:
 
@@ -690,7 +727,8 @@ $$
 
 **MOT Correspondence**: Under specific cost structures, MOT duals correspond to HJB equations with martingale constraints.
 
-### Rough Path Theory
+### 3. Rough Path Theory
+
 
 **Robust Integration**: MOT provides a framework for integrating against rough paths (paths with low regularity).
 
@@ -700,7 +738,9 @@ $$
 
 ## Practical Implementation Guide
 
-### Step 1: Data Preparation
+
+### 1. Step 1: Data Preparation
+
 
 **Input Data**:
 - Current spot price $S_0$
@@ -718,7 +758,8 @@ $$
 - Interpolate/extrapolate to obtain continuous density
 - Regularize to ensure no-arbitrage (monotonicity, convexity)
 
-### Step 2: Problem Formulation
+### 2. Step 2: Problem Formulation
+
 
 **Define Payoff**: Specify exotic derivative payoff $g(S_0, S_T)$.
 
@@ -726,7 +767,8 @@ $$
 
 **Discretize**: Choose grid points $\{s_i\}$ and discretize marginals.
 
-### Step 3: Optimization
+### 3. Step 3: Optimization
+
 
 **Primal LP**:
 ```
@@ -741,7 +783,8 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 
 **Solver Selection**: Use commercial solvers (Gurobi, CPLEX) for accuracy; open-source (GLPK, HiGHS) for research.
 
-### Step 4: Hedging Strategy
+### 4. Step 4: Hedging Strategy
+
 
 **Extract Hedge**: From optimal dual potentials:
 - Stock position: $\theta_S = \phi'(S_0)$
@@ -751,7 +794,8 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 
 **Verification**: Check that portfolio value dominates payoff under all scenarios.
 
-### Step 5: Sensitivity Analysis
+### 5. Step 5: Sensitivity Analysis
+
 
 **Parameter Variation**: 
 - Perturb strike prices
@@ -764,7 +808,9 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 
 ## Numerical Examples
 
-### Example 1: Digital Option
+
+### 1. Example 1: Digital Option
+
 
 **Payoff**: $g(S_T) = \mathbb{1}_{\{S_T > K\}}$
 
@@ -783,7 +829,8 @@ $$
 
 **Interpretation**: Model-free bounds are tight for digital options when sufficient market data available.
 
-### Example 2: Lookback Option
+### 2. Example 2: Lookback Option
+
 
 **Payoff**: $g = \max(S_T - S_0, 0) + \alpha \cdot \text{(excess over initial)}$
 
@@ -800,7 +847,8 @@ $$
 
 **Result**: Bounds may be wide due to limited information, suggesting need for multi-period MOT.
 
-### Example 3: Correlation Bounds for Spread Options
+### 3. Example 3: Correlation Bounds for Spread Options
+
 
 **Payoff**: $(S_T^{(1)} - S_T^{(2)} - K)^+$
 
@@ -819,7 +867,9 @@ $$
 
 ## Current Research Directions
 
-### High-Dimensional MOT
+
+### 1. High-Dimensional MOT
+
 
 **Challenge**: Curse of dimensionality for $d > 2$ assets.
 
@@ -828,7 +878,8 @@ $$
 - **Tensor methods**: Exploit structure in high-dimensional couplings
 - **Neural networks**: Parameterize couplings or potentials with deep networks
 
-### Continuous-Time MOT
+### 2. Continuous-Time MOT
+
 
 **Martingale Diffusion**: Given marginals $(\mu_t)_{t \in [0,T]}$, construct diffusion process $(X_t)$ with:
 - Prescribed marginals
@@ -845,7 +896,8 @@ $$
 
 with $\int x v \rho dx = 0$ (martingale).
 
-### Robust Calibration
+### 3. Robust Calibration
+
 
 **Problem**: Fit volatility surface ensuring:
 - No calendar arbitrage
@@ -856,7 +908,8 @@ with $\int x v \rho dx = 0$ (martingale).
 
 **Algorithms**: Iterative projection algorithms to enforce MOT conditions while minimizing fitting error.
 
-### Machine Learning and MOT
+### 4. Machine Learning and MOT
+
 
 **Generative Models**: Use MOT to train generative adversarial networks (GANs) with martingale constraints.
 
@@ -869,7 +922,9 @@ with $\int x v \rho dx = 0$ (martingale).
 
 ## Summary and Key Insights
 
-### Fundamental Contributions
+
+### 1. Fundamental Contributions
+
 
 1. **Unification**: MOT unifies optimal transport and martingale theory, providing a geometric framework for financial mathematics.
 
@@ -879,7 +934,8 @@ with $\int x v \rho dx = 0$ (martingale).
 
 4. **Static Hedging**: Optimal dual solutions correspond to static portfolios of vanilla options that replicate or dominate exotic payoffs.
 
-### Practical Impact
+### 2. Practical Impact
+
 
 **For Traders**:
 - Robust pricing bounds quantify model uncertainty
@@ -893,7 +949,8 @@ with $\int x v \rho dx = 0$ (martingale).
 - Calibration algorithms ensuring arbitrage-free surfaces
 - New product design guided by MOT bounds
 
-### Theoretical Significance
+### 3. Theoretical Significance
+
 
 MOT represents a profound synthesis of:
 - **Probability Theory**: Martingales and stochastic processes

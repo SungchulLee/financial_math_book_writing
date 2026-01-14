@@ -1,5 +1,6 @@
 # Theta and Carry
 
+
 **Theta and carry** are strategies where you profit from the passage of time itself by systematically collecting option premium as options decay toward expiration.
 
 
@@ -27,6 +28,7 @@ $$
 ---
 
 ## What Is Theta?
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/theta_and_carry_by_strike.png?raw=true" alt="long_call_vs_put" width="700">
@@ -56,11 +58,13 @@ $$
 
 ## The Core Insight
 
+
 **The fundamental idea:**
 
 **Before understanding carry trades, understand theta:**
 
 ### 1. The Definition
+
 
 **Theta (Θ)** is the rate of time decay of an option:
 
@@ -83,6 +87,7 @@ $$
 - You lost $0.20 to time decay
 
 ### 2. The Decay Curve
+
 
 **Time decay is NOT linear - it accelerates near expiration:**
 
@@ -107,6 +112,7 @@ Option Value
 - Theta accelerates as expiration approaches
 
 ### 3. Theta for
+
 
 **ATM options:**
 
@@ -136,9 +142,11 @@ Option Value
 
 ## Time Value vs.
 
+
 **Understanding this split is crucial:**
 
 ### 1. The Components
+
 
 $$
 \boxed{\text{Option Price} = \text{Intrinsic Value} + \text{Time Value}}
@@ -159,6 +167,7 @@ $$
 - This ALWAYS decays to zero at expiration
 
 ### 2. Examples
+
 
 **ATM Option (S = K = $100):**
 
@@ -190,9 +199,11 @@ $$
 
 ## What Are Carry
 
+
 **Carry trades systematically profit from positive theta:**
 
 ### 1. The Basic Concept
+
 
 **In options:**
 
@@ -214,6 +225,7 @@ $$
 
 ### 2. Why "Carry"?
 
+
 **Term comes from interest rate markets:**
 
 - Borrow low-rate currency, invest in high-rate currency
@@ -229,9 +241,11 @@ $$
 
 ## The Theta vs. Gamma
 
+
 **This is THE fundamental trade-off in options:**
 
 ### 1. The Relationship
+
 
 $$
 \text{High Theta} \Leftrightarrow \text{High Gamma}
@@ -254,6 +268,7 @@ $$
 - Must choose: collect carry OR benefit from movement
 
 ### 2. The Mathematical
+
 
 **From Black-Scholes PDE:**
 
@@ -282,7 +297,9 @@ $$
 
 ## Common Carry Trade
 
+
 ### 1. Short
+
 
 **Structure:**
 
@@ -315,6 +332,7 @@ $$
 
 ### 2. Iron Condors
 
+
 **Structure:**
 
 - Sell OTM call spread + OTM put spread
@@ -341,6 +359,7 @@ $$
 
 ### 3. Calendar Spreads
 
+
 **Structure:**
 
 - Short front month (high theta)
@@ -364,6 +383,7 @@ $$
 
 ### 4. Ratio Spreads
 
+
 **Structure:**
 
 - Sell more options than you buy
@@ -384,6 +404,7 @@ $$
 - Maximize theta collection
 
 ### 5. Covered Calls
+
 
 **Structure:**
 
@@ -414,6 +435,7 @@ $$
 
 ### 6. Cash-Secured Puts
 
+
 **Structure:**
 
 - Sell OTM puts
@@ -443,6 +465,7 @@ $$
 
 ## The Carry Trade P&L
 
+
 **For a typical short options carry trade:**
 
 $$
@@ -452,6 +475,7 @@ $$
 **Breaking it down:**
 
 ### 1. Theta Collection
+
 
 **Steady, predictable income:**
 
@@ -468,6 +492,7 @@ $$
 
 ### 2. Gamma Loss (Your
 
+
 **From price movements:**
 
 - Stock moves → position loses value
@@ -483,6 +508,7 @@ $$
 
 ### 3. Vega Loss (IV
 
+
 **From volatility increases:**
 
 - Short options = short vega
@@ -497,6 +523,7 @@ $$
 - Especially bad if combined with price move
 
 ### 4. The Math
+
 
 **Expected daily P&L:**
 
@@ -520,9 +547,11 @@ $$
 
 ## The Volatility Risk
 
+
 **Why do carry trades work? The vol risk premium:**
 
 ### 1. Empirical
+
 
 **Historical data shows:**
 
@@ -538,6 +567,7 @@ $$
 - **Short vol earns this premium over time**
 
 ### 2. Why Does This
+
 
 **Three reasons:**
 
@@ -563,6 +593,7 @@ $$
 - **Not a free lunch - earn premium but risk blowup**
 
 ### 3. The Trade-off
+
 
 **Carry trades exploit this premium:**
 
@@ -594,9 +625,11 @@ Frequency Distribution of Returns:
 
 ## Managing Carry
 
+
 **How to survive as a theta collector:**
 
 ### 1. Position Sizing
+
 
 **Golden rule:**
 
@@ -619,6 +652,7 @@ $$
 
 ### 2. Defined Risk
 
+
 **Use spreads instead of naked shorts:**
 
 - Iron condors (not short straddles)
@@ -633,6 +667,7 @@ $$
 - **Choose safety over greed**
 
 ### 3. Stop Losses and
+
 
 **Pre-defined exits:**
 
@@ -650,6 +685,7 @@ $$
 
 ### 4. Diversification
 
+
 **Don't concentrate:**
 
 - Multiple underlyings (not just one stock)
@@ -666,6 +702,7 @@ $$
 
 ### 5. Volatility Regime
 
+
 **Know the environment:**
 
 - VIX < 15: dangerous time to sell vol (premium low)
@@ -680,6 +717,7 @@ $$
 
 ### 6. Roll and Adjust
 
+
 **Don't be static:**
 
 - As positions move, adjust
@@ -688,6 +726,7 @@ $$
 - **Active management required**
 
 ### 7. Event Awareness
+
 
 **Avoid carry trades around:**
 
@@ -701,9 +740,11 @@ $$
 
 ## Concrete Example
 
+
 **A systematic theta collection strategy:**
 
 ### 1. Setup
+
 
 - **Stock:** SPY at $450
 - **Market:** VIX at 18 (normal)
@@ -729,6 +770,7 @@ $$
 **Margin requirement:** ~$500 per contract
 
 ### 2. The Trade Over
+
 
 **Day 1:**
 
@@ -769,6 +811,7 @@ $$
 
 ### 3. Risk
 
+
 **Alternative: Surprise Fed announcement Day 10:**
 
 - SPY gaps to $465 (+3.3%)
@@ -787,6 +830,7 @@ $$
 ---
 
 ## Carry Trades Across
+
 
 **How theta fits into strategies we've covered:**
 
@@ -814,9 +858,11 @@ $$
 
 ## The "Picking Up
 
+
 **Often used to describe carry trades:**
 
 ### 1. The Analogy
+
 
 > "Selling options is like picking up nickels in front of a steamroller"
 
@@ -828,6 +874,7 @@ $$
 - Rare days: steamroller runs you over (gamma losses)
 
 ### 2. The Reality
+
 
 **It's not quite that grim IF:**
 1. **Position sizing:** Don't pick up too many nickels at once
@@ -854,9 +901,11 @@ $$
 
 ## Historical Blowups
 
+
 **Famous carry trade disasters:**
 
 ### 1. Option Sellers,
+
 
 **Structure:**
 
@@ -880,6 +929,7 @@ $$
 
 ### 2. James Cordier
 
+
 **Same fund, November 2018:**
 
 - Natural gas volatility again
@@ -899,6 +949,7 @@ $$
 
 ### 3. Victor
 
+
 **Famous trader, sold puts on crash:**
 
 - October 1997 Asian crisis
@@ -914,6 +965,7 @@ $$
 - Can't predict crashes
 
 ### 4. Many Hedge Funds
+
 
 **Financial crisis and COVID:**
 
@@ -933,7 +985,9 @@ $$
 
 ## Pros and Cons of
 
+
 ### 1. Advantages ✓
+
 
 **1. Positive carry (time is your friend)**
 
@@ -978,6 +1032,7 @@ $$
 - Accessible
 
 ### 2. Disadvantages ✗
+
 
 **1. Tail risk (steamroller!)**
 
@@ -1039,7 +1094,9 @@ $$
 
 ## When Carry Trades
 
+
 ### 1. Favorable
+
 
 **1. High implied volatility (post-event)**
 
@@ -1077,6 +1134,7 @@ $$
 - **Most important!**
 
 ### 2. Unfavorable
+
 
 **1. Very low vol (VIX < 12)**
 
@@ -1117,7 +1175,9 @@ $$
 
 ## Practical
 
+
 ### 1. Conservative
+
 
 **Conservative (recommended for most):**
 
@@ -1134,6 +1194,7 @@ $$
 - **Requires discipline**
 
 ### 2. Before entering
+
 
 **Before entering any trade:**
 
@@ -1155,6 +1216,7 @@ $$
 
 ### 3. When to enter:
 
+
 **When to enter:**
 
 - 30-45 days to expiration (sweet spot)
@@ -1170,6 +1232,7 @@ $$
 - Capture vol crush + theta
 
 ### 4. Daily: Check
+
 
 **Daily:**
 
@@ -1192,6 +1255,7 @@ $$
 
 ### 5. Exit when: Profit
 
+
 **Exit when:**
 
 - Profit target hit (50% of max)
@@ -1211,9 +1275,11 @@ $$
 
 ## Systematic Carry
 
+
 **A professional approach:**
 
 ### 1. The "Monthly Iron
+
 
 **Strategy:**
 
@@ -1272,9 +1338,11 @@ $$
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -1286,6 +1354,7 @@ $$
 
 ### 2. Why This
 
+
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
 - Time horizons (short-term vs. long-term)
@@ -1293,6 +1362,7 @@ Markets create these strategies because different participants have different:
 - View on volatility vs. direction
 
 ### 3. Professional
+
 
 Institutional traders view this strategy as a tool for:
 1. **Greeks arbitrage:** Extracting value from Greeks mispricing
@@ -1305,9 +1375,11 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -1328,6 +1400,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 - [Specific Greeks conditions]
 - [Volatility requirements]
@@ -1341,6 +1414,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - [Wrong volatility regime]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -1356,6 +1430,7 @@ $$
 
 ### 4. Best practices: 1
 
+
 **Best practices:**
 
 1. **Greeks analysis:** Calculate all relevant Greeks before entry
@@ -1370,6 +1445,7 @@ $$
 - Transaction cost consideration: Balance frequency vs. cost
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1392,6 +1468,7 @@ $$
 
 ### 6. Greeks risk
 
+
 **Greeks risk limits:**
 - Max delta exposure: [Limit]
 - Max gamma concentration: [Limit]
@@ -1406,6 +1483,7 @@ $$
 
 ### 7. Track for every
 
+
 **Track for every trade:**
 - Entry Greeks (delta, gamma, vega, theta)
 - Rebalancing frequency and costs
@@ -1416,6 +1494,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 2. **Wrong rebalancing frequency** - Too often or too infrequent
 3. **Insufficient liquidity** - Cannot execute rebalances efficiently
@@ -1424,6 +1503,7 @@ $$
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
 ### 9. Professional
+
 
 **For delta hedging:**
 - Use delta bands (don't chase every move)
@@ -1443,6 +1523,7 @@ $$
 
 ## Common Mistakes
 
+
 [Common errors to avoid]
 
 
@@ -1451,10 +1532,12 @@ $$
 
 ## Real-World Examples
 
+
 [Concrete examples]
 
 
 ## Final Wisdom
+
 
 **Carry trades can work, but:**
 
@@ -1486,6 +1569,7 @@ $$
 ---
 
 ## Where This Fits in
+
 
 **This is a CROSS-CUTTING theme that ties together:**
 

@@ -2,9 +2,11 @@ Excellent question! The notation $\mathcal{E}(X)_t$ denotes the **stochastic exp
 
 ---
 
-## 1. Definition of Stochastic Exponential
+## Definition of Stochastic Exponential
 
-### For a Continuous Local Martingale
+
+### 1. For a Continuous Local Martingale
+
 
 Given a continuous semimartingale $X_t$ (starting at $X_0 = 0$), the **stochastic exponential** $\mathcal{E}(X)_t$ is defined as the unique solution to:
 
@@ -13,7 +15,8 @@ $$\boxed{d\mathcal{E}(X)_t = \mathcal{E}(X)_t \, dX_t, \quad \mathcal{E}(X)_0 = 
 
 
 
-### Explicit Formula
+### 2. Explicit Formula
+
 
 
 $$\boxed{\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}\langle X \rangle_t\right)}$$
@@ -24,7 +27,8 @@ where $\langle X \rangle_t$ is the **quadratic variation** of $X_t$.
 
 ---
 
-## 2. Special Case: When $X_t$ is a Stochastic Integral
+## Special Case: When $X_t$ is a Stochastic Integral
+
 
 If $X_t = \int_0^t \sigma_s \, dW_s$ (a stochastic integral with respect to Brownian motion), then:
 
@@ -42,9 +46,11 @@ $$\boxed{\mathcal{E}(X)_t = \exp\left(\int_0^t \sigma_s \, dW_s - \frac{1}{2}\in
 
 ---
 
-## 3. Why is it Called "Stochastic Exponential"?
+## Why is it Called "Stochastic Exponential"?
 
-### Analogy with Ordinary Exponential
+
+### 1. Analogy with Ordinary Exponential
+
 
 For a deterministic function $x(t)$, the ordinary exponential $e^{x(t)}$ satisfies:
 
@@ -66,7 +72,8 @@ $$d\mathcal{E}(X)_t = \mathcal{E}(X)_t \, dX_t$$
 
 
 
-### The Crucial Difference: The $-\frac{1}{2}\langle X \rangle_t$ Term
+### 2. The Crucial Difference: The $-\frac{1}{2}\langle X \rangle_t$ Term
+
 
 In the ordinary case:
 
@@ -85,9 +92,11 @@ The $-\frac{1}{2}\langle X \rangle_t$ appears because of the second-order term i
 
 ---
 
-## 4. Derivation Using Itô's Lemma
+## Derivation Using Itô's Lemma
 
-### Why the Formula Works
+
+### 1. Why the Formula Works
+
 
 Let $Y_t = \exp(X_t - \frac{1}{2}\langle X \rangle_t)$. We want to show $dY_t = Y_t \, dX_t$.
 
@@ -125,9 +134,11 @@ The two terms involving $d\langle X \rangle_t$ **cancel exactly**! ✓
 
 ---
 
-## 5. Key Properties
+## Key Properties
 
-### Property 1: No Drift Term
+
+### 1. Property 1: No Drift Term
+
 
 Since $d\mathcal{E}(X)_t = \mathcal{E}(X)_t \, dX_t$ and if $X_t$ is a local martingale (no $dt$ term), then:
 
@@ -136,7 +147,8 @@ $$\boxed{\mathcal{E}(X)_t \text{ is a local martingale}}$$
 
 
 
-### Property 2: Positivity
+### 2. Property 2: Positivity
+
 
 
 $$\mathcal{E}(X)_t > 0 \quad \text{for all } t$$
@@ -145,7 +157,8 @@ $$\mathcal{E}(X)_t > 0 \quad \text{for all } t$$
 
 The stochastic exponential is always strictly positive (unlike $X_t$ itself, which can be negative).
 
-### Property 3: Multiplication Rule
+### 3. Property 3: Multiplication Rule
+
 
 
 $$\mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \rangle)_t$$
@@ -154,7 +167,8 @@ $$\mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \ra
 
 Compare to: $e^x \cdot e^y = e^{x+y}$ (no correction term in deterministic case).
 
-### Property 4: Reciprocal
+### 4. Property 4: Reciprocal
+
 
 
 $$\frac{1}{\mathcal{E}(X)_t} = \mathcal{E}(-X - \langle X \rangle)_t$$
@@ -163,9 +177,11 @@ $$\frac{1}{\mathcal{E}(X)_t} = \mathcal{E}(-X - \langle X \rangle)_t$$
 
 ---
 
-## 6. Examples
+## Examples
 
-### Example 1: Geometric Brownian Motion
+
+### 1. Example 1: Geometric Brownian Motion
+
 
 Consider:
 
@@ -208,7 +224,8 @@ $$\mathcal{E}(\sigma W)_t = \exp\left(\sigma W_t - \frac{\sigma^2 t}{2}\right)$$
 
 
 
-### Example 2: Pure Stochastic Exponential
+### 2. Example 2: Pure Stochastic Exponential
+
 
 
 $$dM_t = M_t \, dW_t, \quad M_0 = 1$$
@@ -227,7 +244,8 @@ $$M_t = \exp\left(W_t - \frac{t}{2}\right)$$
 
 $$\mathcal{E}(W)_t = \exp\left(W_t - \frac{1}{2} \cdot t\right) = \exp\left(W_t - \frac{t}{2}\right)$$ ✓
 
-### Example 3: Novikov's Condition Revisited
+### 3. Example 3: Novikov's Condition Revisited
+
 
 For $X_t = \int_0^t \sigma_s \, dW_s$, we have:
 
@@ -246,11 +264,13 @@ then $\mathcal{E}(X)_t$ is a **true martingale** (not just a local martingale).
 
 ---
 
-## 7. Connection to Girsanov Theorem
+## Connection to Girsanov Theorem
+
 
 The stochastic exponential is **central to change of measure** in stochastic calculus.
 
-### Radon-Nikodym Derivative
+### 1. Radon-Nikodym Derivative
+
 
 If we want to change probability measure from $\mathbb{P}$ to $\mathbb{Q}$, the Radon-Nikodym derivative is often:
 
@@ -261,7 +281,8 @@ $$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = \mathcal{E}(X)_t$$
 
 for some appropriate process $X_t$.
 
-### Girsanov Theorem Application
+### 2. Girsanov Theorem Application
+
 
 Under $\mathbb{P}$: $W_t$ is a Brownian motion
 
@@ -276,9 +297,11 @@ $$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = \mathcal{E}\left(-\int
 
 ---
 
-## 8. Why the $-\frac{1}{2}\langle X \rangle_t$ Term Matters
+## Why the $-\frac{1}{2}\langle X \rangle_t$ Term Matters
 
-### Without the Correction
+
+### 1. Without the Correction
+
 
 If we naively defined $Z_t = e^{X_t}$ for a stochastic integral $X_t = \int_0^t dW_s = W_t$:
 
@@ -296,7 +319,8 @@ $$dZ_t = e^{W_t} dW_t + \frac{1}{2}e^{W_t} dt$$
 
 This has a **drift term**! So $e^{W_t}$ is **not a local martingale**.
 
-### With the Correction
+### 2. With the Correction
+
 
 
 $$\mathcal{E}(W)_t = e^{W_t - t/2}$$
@@ -316,7 +340,8 @@ The correction term $-\frac{1}{2}\langle X \rangle_t$ is precisely what's needed
 
 ---
 
-## 9. Summary
+## Summary
+
 
 
 $$\boxed{\begin{align}

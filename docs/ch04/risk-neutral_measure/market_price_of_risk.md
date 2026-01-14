@@ -1,5 +1,6 @@
 # Market Price of Risk
 
+
 The market price of risk quantifies how much excess return investors demand per unit
 of risk. It plays a central role in the change of measure from the physical to the
 risk-neutral world.
@@ -7,6 +8,7 @@ risk-neutral world.
 ---
 
 ## Definition
+
 
 For a risky asset with dynamics
 \[
@@ -23,6 +25,7 @@ It measures excess drift relative to volatility.
 
 ## Interpretation
 
+
 - Large \(\theta_t\): high compensation required for bearing risk
 - Small \(\theta_t\): low risk premium
 
@@ -32,6 +35,7 @@ The market price of risk determines how probabilities are tilted when moving fro
 ---
 
 ## Role in Measure Change
+
 
 The drift adjustment in Girsanov’s theorem is precisely \(\theta_t\):
 \[
@@ -46,6 +50,7 @@ Thus:
 
 ## Multi-Asset Case
 
+
 In a market with \(n\) risky assets driven by a \(d\)-dimensional Brownian motion,
 the market price of risk becomes a vector \(\boldsymbol{\theta}_t \in \mathbb{R}^d\),
 satisfying
@@ -58,6 +63,7 @@ where \(\Sigma_t\) is the volatility matrix.
 ---
 
 ## Summary
+
 
 The market price of risk:
 - encodes risk premia,

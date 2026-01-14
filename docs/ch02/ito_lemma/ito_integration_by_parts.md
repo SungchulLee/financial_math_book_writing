@@ -1,10 +1,12 @@
 # Itô Integration by Parts
 
+
 The **integration by parts formula** is one of the fundamental computational tools in calculus. In stochastic calculus, integration by parts takes a modified form that includes an additional term arising from the quadratic variation of Brownian motion. This formula is essential for computing products of Itô processes and plays a central role in applications ranging from option pricing to filtering theory.
 
 ---
 
 ## Classical integration by parts (review)
+
 
 In ordinary calculus, for differentiable functions \(f(t)\) and \(g(t)\):
 
@@ -36,6 +38,7 @@ This formula expresses the relationship between the product \(f \cdot g\) and th
 ---
 
 ## Stochastic integration by parts
+
 
 For Itô processes \(X_t\) and \(Y_t\), the integration by parts formula includes an **additional term** involving their quadratic covariation:
 
@@ -72,6 +75,7 @@ The term \(d[X, Y]_t\) is the **differential of the quadratic covariation** and 
 ---
 
 ## Quadratic covariation review
+
 
 For two Itô processes:
 
@@ -137,6 +141,7 @@ From these rules:
 ---
 
 ## Derivation from Itô's product rule
+
 
 The integration by parts formula is a direct consequence of **Itô's product rule**.
 
@@ -209,7 +214,9 @@ This is the **stochastic integration by parts formula**. \(\square\)
 
 ## Special cases
 
-### Case 1: Both processes are martingales
+
+### 1. Case 1: Both processes are martingales
+
 
 If \(X_t\) and \(Y_t\) are martingales driven by the same Brownian motion:
 
@@ -275,7 +282,8 @@ $$
 
 This recovers the classic result.
 
-### Case 2: One deterministic, one stochastic
+### 2. Case 2: One deterministic, one stochastic
+
 
 If \(X_t = t\) (deterministic) and \(Y_t\) is an Itô process:
 
@@ -304,7 +312,8 @@ $$
 
 This is the **classical integration by parts** formula—no correction term needed when one process is deterministic.
 
-### Case 3: Independent Brownian motions
+### 3. Case 3: Independent Brownian motions
+
 
 If \(X_t\) and \(Y_t\) are driven by **independent** Brownian motions \(B_t^{(1)}\) and \(B_t^{(2)}\):
 
@@ -337,7 +346,9 @@ Again, no correction term.
 
 ## Worked examples
 
-### Example 1: Computing \(\int_0^t s \, dB_s\)
+
+### 1. Example 1: Computing \(\int_0^t s \, dB_s\)
+
 
 **Goal**: Evaluate \(\int_0^t s \, dB_s\) using integration by parts.
 
@@ -383,7 +394,8 @@ $$
 
 **Interpretation**: This expresses the stochastic integral in terms of an ordinary integral. The result is a **continuous martingale** (since the ordinary integral \(\int B_s ds\) is adapted and continuous).
 
-### Example 2: Computing \(\int_0^t e^{B_s} \, dB_s\)
+### 2. Example 2: Computing \(\int_0^t e^{B_s} \, dB_s\)
+
 
 **Goal**: Evaluate \(\int_0^t e^{B_s} dB_s\).
 
@@ -425,7 +437,8 @@ $$
 
 **Note**: This is not a closed-form solution (the ordinary integral \(\int e^{B_s} ds\) has no explicit form), but it relates the stochastic integral to a deterministic integral.
 
-### Example 3: \(\int_0^t B_s^2 \, dB_s\)
+### 3. Example 3: \(\int_0^t B_s^2 \, dB_s\)
+
 
 **Goal**: Compute \(\int_0^t B_s^2 dB_s\).
 
@@ -510,9 +523,11 @@ Simplifying yields the same result.
 
 ## Application: Solving linear SDEs
 
+
 Integration by parts is instrumental in solving **linear stochastic differential equations**.
 
-### Example: Ornstein-Uhlenbeck process
+### 1. Example: Ornstein-Uhlenbeck process
+
 
 Consider the SDE:
 
@@ -622,6 +637,7 @@ This is the **explicit solution** to the Ornstein-Uhlenbeck SDE, obtained via in
 
 ## General formula for product of Itô integrals
 
+
 Let \(I_t^{(1)} = \int_0^t H_s^{(1)} dB_s^{(1)}\) and \(I_t^{(2)} = \int_0^t H_s^{(2)} dB_s^{(2)}\) be Itô integrals (possibly with different Brownian motions). Then:
 
 
@@ -665,6 +681,7 @@ This formula generalizes integration by parts to arbitrary Itô integrals.
 
 ## Connection to Itô's product rule
 
+
 The integration by parts formula is equivalent to **Itô's product rule**:
 
 
@@ -694,6 +711,7 @@ $$
 ---
 
 ## Summary
+
 
 The **stochastic integration by parts formula** is:
 

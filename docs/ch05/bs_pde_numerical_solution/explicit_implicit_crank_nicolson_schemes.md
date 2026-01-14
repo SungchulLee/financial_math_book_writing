@@ -1,5 +1,6 @@
 # Explicit, Implicit, and Crank–Nicolson Schemes
 
+
 After spatial discretization, write the semidiscrete system
 
 \[
@@ -13,7 +14,8 @@ where \(A\) approximates the Black–Scholes spatial operator and \(u^n\approx u
 
 ---
 
-## 1. Explicit (Forward Euler)
+## Explicit (Forward Euler)
+
 
 
 \[
@@ -27,7 +29,8 @@ Simple, but typically requires a CFL restriction such as \(\Delta\tau\le C(\Delt
 
 ---
 
-## 2. Implicit (Backward Euler)
+## Implicit (Backward Euler)
+
 
 
 \[
@@ -41,7 +44,8 @@ Robust and often unconditionally stable (parabolic problems), but requires a lin
 
 ---
 
-## 3. Crank–Nicolson (Trapezoidal Rule)
+## Crank–Nicolson (Trapezoidal Rule)
+
 
 
 \[
@@ -57,13 +61,15 @@ Second-order in time (formally) and widely used, but can oscillate near \(\tau=0
 
 ---
 
-## 4. Rannacher Smoothing (Practical)
+## Rannacher Smoothing (Practical)
+
 
 Take a few initial backward Euler steps before switching to Crank–Nicolson to damp high-frequency error created by nonsmooth payoffs.
 
 ---
 
-## 5. Theta-Scheme
+## Theta-Scheme
+
 
 
 \[
@@ -77,7 +83,8 @@ Take a few initial backward Euler steps before switching to Crank–Nicolson to 
 
 ---
 
-## 6. What to Remember
+## What to Remember
+
 
 - Explicit: cheap but time-step restricted.
 - Implicit: stable but needs solves.

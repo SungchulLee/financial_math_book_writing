@@ -1,10 +1,12 @@
 # Greeks and Martingale Representation
 
+
 In complete diffusion models, martingale representation yields a conceptual foundation for delta hedging: delta is the integrand in the stochastic integral representation of the discounted price.
 
 ---
 
 ## Discounted asset and wealth
+
 
 In Black–Scholes under \(\mathbb{Q}\),
 
@@ -32,6 +34,7 @@ so \(\widetilde{S}\) is a \(\mathbb{Q}\)-martingale.
 
 ## Discounted option price is a martingale
 
+
 Let \(V(t,S_t)\) be the price process and define \(\widetilde{V}_t := B_t^{-1}V(t,S_t)\). Under \(\mathbb{Q}\),
 
 
@@ -49,6 +52,7 @@ so \(\widetilde{V}\) is a martingale.
 
 ## Martingale representation
 
+
 In a Brownian filtration, any square-integrable martingale can be represented as
 
 
@@ -65,6 +69,7 @@ for some predictable \(Z\) with \(\mathbb{E}\int_0^T Z_s^2\,\mathrm{d}s<\infty\)
 ---
 
 ## Identification of delta
+
 
 By Itô’s formula and the PDE cancellation of drift,
 
@@ -92,6 +97,7 @@ Z_t = B_t^{-1}\sigma S_t\,\Delta(t,S_t),
 ---
 
 ## What to remember
+
 
 - Discounted option prices are martingales under \(\mathbb{Q}\).
 - Martingale representation gives the stochastic integrand.

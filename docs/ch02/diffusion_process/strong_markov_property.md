@@ -1,10 +1,12 @@
 # Strong Markov Property
 
+
 This section states the **strong Markov property** for Brownian motion and (under standard assumptions) for diffusions. It is conceptually different from the **Optional Sampling Theorem**, which concerns expectations of martingales rather than conditional laws of future paths.
 
 ---
 
 ## Markov vs Strong Markov
+
 
 A process \((X_t)\) is (time-inhomogeneous) Markov if for bounded measurable \(\varphi\) and \(0\le s\le t\),
 
@@ -21,6 +23,7 @@ It is **strong Markov** if the same property holds when \(s\) is replaced by a s
 ---
 
 ## Strong Markov Property (Stopping-Time Form)
+
 
 Let \(\tau\) be a stopping time. For bounded measurable \(\varphi\) and \(t\ge 0\),
 
@@ -39,6 +42,7 @@ Equivalently, conditionally on \(X_\tau\), the post-\(\tau\) evolution is indepe
 ---
 
 ## Brownian Motion Case
+
 
 If \(W_t\) is Brownian motion and \(\tau\) is a stopping time, define
 
@@ -61,6 +65,7 @@ Then
 
 ## Diffusion Case (Under Standard Conditions)
 
+
 If \(X_t\) solves an SDE
 
 \[
@@ -74,6 +79,7 @@ with assumptions ensuring existence and uniqueness of strong solutions (e.g. loc
 
 ## Application: Exit Times
 
+
 For an open set \(D\subset \mathbb{R}^d\), the exit time
 
 \[
@@ -86,6 +92,7 @@ is a stopping time. Strong Markov allows “restart at \(\tau_D\)” arguments, 
 ---
 
 ## What to Remember
+
 
 - Markov: memoryless at deterministic times.
 - Strong Markov: memoryless at stopping times.

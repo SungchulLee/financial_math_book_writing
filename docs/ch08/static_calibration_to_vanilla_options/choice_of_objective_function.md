@@ -1,5 +1,6 @@
 # Choice of Objective Function
 
+
 Calibration is typically formulated as an optimization problem:
 
 \[
@@ -11,11 +12,13 @@ where the loss \(\mathcal{L}\) measures misfit between model outputs and market 
 
 ---
 
-## 1. Targets: prices vs implied vols
+## Targets: prices vs implied vols
+
 
 Two standard choices are:
 
-### 1.1 Price-space objective
+### 1. Price-space objective
+
 
 
 \[
@@ -33,7 +36,8 @@ Cons:
 - prices differ wildly in magnitude across strikes/maturities (requires careful scaling),
 - deep OTM prices can be tiny but still informative about tails.
 
-### 1.2 Implied-vol objective
+### 2. Implied-vol objective
+
 
 
 \[
@@ -53,7 +57,8 @@ Cons:
 
 ---
 
-## 2. Statistical interpretation
+## Statistical interpretation
+
 
 If we model observations as
 
@@ -71,11 +76,13 @@ This suggests:
 
 ---
 
-## 3. Robust objectives (outliers and stale quotes)
+## Robust objectives (outliers and stale quotes)
+
 
 Real data contain outliers. Robust alternatives include:
 
-### 3.1 \(\ell_1\) loss
+### 1. \(\ell_1\) loss
+
 
 \[
 \mathcal{L}(\theta)=\sum_{j} w_j\,|r_j(\theta)|,
@@ -84,7 +91,8 @@ Real data contain outliers. Robust alternatives include:
 
 
 
-### 3.2 Huber loss
+### 2. Huber loss
+
 Quadratic near zero, linear in the tails. It often improves stability without sacrificing too much smoothness for optimizers.
 
 Robust losses can be especially useful when:
@@ -94,7 +102,8 @@ Robust losses can be especially useful when:
 
 ---
 
-## 4. Vega-weighted and “relative” errors
+## Vega-weighted and “relative” errors
+
 
 Because implied vol errors correspond approximately to price errors scaled by Vega,
 
@@ -114,7 +123,8 @@ Each choice changes which parts of the surface dominate the calibration.
 
 ---
 
-## 5. Multi-objective calibration
+## Multi-objective calibration
+
 
 Sometimes you need to fit multiple data types:
 
@@ -134,7 +144,8 @@ with hyperparameters \(\lambda_i\) chosen by stability/validation.
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - The objective function defines *what it means* to “fit the market”.
 - Price-space and vol-space objectives can yield materially different parameters.
@@ -144,6 +155,7 @@ with hyperparameters \(\lambda_i\) chosen by stability/validation.
 ---
 
 ## Further reading
+
 
 - Inverse problems and regularization: Engl, Hanke & Neubauer.
 - Practical calibration choices: Gatheral; Cont & Tankov; Andersen & Piterbarg.

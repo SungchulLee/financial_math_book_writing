@@ -1,10 +1,12 @@
 # Producer-Consumer
 
+
 **Producer-consumer hedging** is an options and futures strategy where businesses lock in future prices to eliminate price uncertainty, protecting profit margins against adverse price movements while maintaining core business operations.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Is
 
+
 **Before implementing hedging strategies, understand the business need:**
 
 ### 1. Producer Hedging
+
 
 **Definition:** A producer hedges by selling futures or buying puts to lock in a minimum selling price for their product, protecting against price declines.
 
@@ -74,6 +78,7 @@ $$
 - **Price locked, profit stable, business predictable**
 
 ### 2. Consumer Hedging
+
 
 **Definition:** A consumer hedges by buying futures or buying calls to lock in a maximum purchase price for their inputs, protecting against price increases.
 
@@ -116,9 +121,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics of hedging:**
 
 ### 1. Hedging as
+
 
 **The deep insight:**
 
@@ -173,6 +180,7 @@ $$
 
 ### 2. The Producer's
 
+
 **Consider a coffee producer (Colombia):**
 
 **Scenario: September, harvest in March**
@@ -208,6 +216,7 @@ $$
 - **Rational business decision for survival**
 
 ### 3. The Consumer's
+
 
 **Consider an airline (Southwest):**
 
@@ -255,6 +264,7 @@ $$
 
 ### 4. Put-Call Parity
 
+
 **The fundamental relationship applies to hedging:**
 
 $$
@@ -291,6 +301,7 @@ A consumer can hedge with:
 
 ### 5. Why Businesses
 
+
 **The survival equation:**
 
 $$
@@ -321,6 +332,7 @@ $$
 **This is why CFOs hedge: Survival > Speculation**
 
 ### 6. The Speculator's
+
 
 **Who takes the other side of hedges?**
 
@@ -357,6 +369,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Hedge:**
 
@@ -419,7 +432,9 @@ $$
 
 ## Mathematical
 
+
 ### 1. The Perfect Hedge
+
 
 **For a producer with quantity $Q$ and hedge ratio $h$:**
 
@@ -463,6 +478,7 @@ $$
 
 ### 2. Optimal Hedge
 
+
 **The variance-minimizing hedge ratio:**
 
 $$
@@ -501,6 +517,7 @@ $$
 **Why?** Jet fuel ≠ crude perfectly, so over-hedging adds risk
 
 ### 3. Options vs.
+
 
 **Producer choice:**
 
@@ -543,6 +560,7 @@ $$
 
 ### 4. Consumer Hedge
 
+
 **For a consumer needing quantity $Q$ at future time $T$:**
 
 $$
@@ -576,6 +594,7 @@ $$
 
 ### 5. Hedge
 
+
 **Measuring hedge quality:**
 
 $$
@@ -598,6 +617,7 @@ $$
 **Interpretation: Hedge eliminated 90% of profit variance**
 
 ### 6. Expected Profit
+
 
 **In reality, hedgers pay risk premium to speculators:**
 
@@ -637,7 +657,9 @@ $$
 
 ## Key ideas
 
+
 ### 1. Phase 1
+
 
 **1. Identify Price Risk:**
 
@@ -709,6 +731,7 @@ $$
 
 ### 2. Phase 2
 
+
 **Decision tree:**
 
 **For producers:**
@@ -739,6 +762,7 @@ Minimize cost? → Collar (call + sell put, near-zero cost)
 **Most common choice: Futures for simplicity**
 
 ### 3. Phase 3
+
 
 **Determine contracts needed:**
 
@@ -780,6 +804,7 @@ $$
 - Margin requirements
 
 ### 4. Phase 4
+
 
 **Timing considerations:**
 
@@ -841,6 +866,7 @@ $$
 
 ### 5. Phase 5
 
+
 **Daily monitoring:**
 
 ✅ Mark-to-market P&L
@@ -884,6 +910,7 @@ $$
 - Maintains hedge through year
 
 ### 6. Complete Example
+
 
 **Background:**
 
@@ -939,7 +966,9 @@ $$
 
 ## Greeks Analysis
 
+
 ### 1. Delta
+
 
 **What it means:**
 
@@ -977,6 +1006,7 @@ $$
 
 ### 2. Gamma
 
+
 **What it means:**
 
 $$
@@ -1010,6 +1040,7 @@ $$
 **Hedging preference: Long-dated (stable delta)**
 
 ### 3. Theta
+
 
 **What it means:**
 
@@ -1053,6 +1084,7 @@ $$
 - **Insurance premiums are supposed to decay**
 
 ### 4. Vega
+
 
 **What it means:**
 
@@ -1100,7 +1132,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Background:**
 
@@ -1164,6 +1198,7 @@ $$
 - **Uncertainty, potential missed loan payment**
 
 ### 2. Transition Risk
+
 
 **Background:**
 
@@ -1248,6 +1283,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Background:**
 
 - Company: Medium gold miner
@@ -1292,6 +1328,7 @@ $$
 **Lesson:** Hedging is about survival, not profit elimination. Partial hedges preserve upside.
 
 ### 4. Tactical Duration
+
 
 **Background:**
 
@@ -1342,6 +1379,7 @@ $$
 **Lesson:** Cross-hedging (hedging one commodity with another) has basis risk. Better to hedge exact exposure or accept partial coverage.
 
 ### 5. Duration Hedge
+
 
 **Background:**
 
@@ -1402,7 +1440,9 @@ $$
 
 ## Risk Management
 
+
 ### 1. Position Sizing
+
 
 **The fundamental principle:**
 
@@ -1450,6 +1490,7 @@ $$
 - Volatility tolerance (low → More hedge)
 
 ### 2. Margin Management
+
 
 **Critical for futures hedgers:**
 
@@ -1513,6 +1554,7 @@ $$
    - Options alternative (no margin calls)
 
 ### 3. Basis Risk
+
 
 **Understanding basis:**
 
@@ -1586,6 +1628,7 @@ $$
 
 ### 4. Stop-Loss for
 
+
 **Critical distinction:**
 
 **Speculators:** Use stop-losses
@@ -1619,6 +1662,7 @@ $$
 **Rule:** Hedge losses are offset by business gains. Stay the course.
 
 ### 5. Accounting
+
 
 **Hedge accounting (very important):**
 
@@ -1665,6 +1709,7 @@ Reported earnings: Volatile ($60M → $55M → $45M)
 
 
 ## Final Wisdom
+
 
 > "Hedging is not about making money—it's about surviving to make money another day. The best hedge is the one you never regret because your business is still operating ten years from now. Accept that you'll sometimes 'lose' by foregoing gains, but remember: every time prices move against you, your hedge is the reason you're still in business. The goal isn't maximum profit; it's sustainable profit over decades."
 

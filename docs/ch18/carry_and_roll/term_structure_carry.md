@@ -1,10 +1,12 @@
 # Term Structure Carry
 
+
 **Term structure carry** is a futures strategy that profits from the natural price decay or roll yield in futures markets by selling expensive near-term contracts and buying cheaper far-term contracts, exploiting predictable convergence patterns in contango or backwardation structures while remaining market-neutral.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Are Futures
 
+
 **Before trading term structure carry, understand the mechanics:**
 
 ### 1. Futures Term
+
 
 **Definition:** The relationship between futures prices across different expiration dates for the same underlying commodity or financial instrument.
 
@@ -89,6 +93,7 @@ $$
 
 ### 2. The Cost of Carry
 
+
 **For financial futures:**
 
 $$
@@ -119,6 +124,7 @@ Where:
 **When $r + s < c$:** Backwardation (convenience yield dominates)
 
 ### 3. Calendar Spreads
+
 
 **Definition:** The price difference between two futures contracts on the same underlying with different expiration dates.
 
@@ -151,6 +157,7 @@ Where:
 - **Profit if spread narrows to +$0.20**
 
 ### 4. Roll Yield
+
 
 **Roll yield:** The profit or loss from continuously rolling futures positions as contracts approach expiration.
 
@@ -190,9 +197,11 @@ Instead of rolling at expiration, you trade the spread itself:
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the economic rationale:**
 
 ### 1. Calendar Spreads
+
 
 **The deep insight:**
 
@@ -230,6 +239,7 @@ $$
 **You profit from the RATE of convergence, not the direction!**
 
 ### 2. Why Term
+
 
 **Economic forces creating term structure:**
 
@@ -296,6 +306,7 @@ Benefit of physical ownership:
 
 ### 3. The Convergence
 
+
 **Why convergence is profitable:**
 
 **Mathematical certainty:**
@@ -333,6 +344,7 @@ $$
 **Spread narrows predictably!**
 
 ### 4. Setup: Crude oil
+
 
 **Setup:**
 
@@ -387,6 +399,7 @@ $$
 
 ### 5. Institutional Use
 
+
 **Why professionals trade calendars:**
 
 **1. Hedgers managing roll costs:**
@@ -432,6 +445,7 @@ Oil company needs continuous long exposure:
 - **Multi-strategy approach**
 
 ### 6. The Roll Yield
+
 
 **Continuous calendar trading:**
 
@@ -480,6 +494,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Term Structure:**
 
@@ -612,9 +627,11 @@ $$
 
 ## The Greeks (Calendar
 
+
 **While futures don't have traditional Greeks like options, we can define analogous sensitivities:**
 
 ### 1. Delta
+
 
 **Definition:** How spread value changes with absolute price movement.
 
@@ -660,6 +677,7 @@ Spot moves $1.00:
 
 ### 2. Gamma (Convexity
 
+
 **Definition:** How delta changes as price moves (second-order effect).
 
 $$
@@ -685,6 +703,7 @@ $$
 - **Simpler risk profile**
 
 ### 3. Theta (Time Decay
+
 
 **Definition:** Daily profit from spread narrowing due to time passage.
 
@@ -729,6 +748,7 @@ As front month approaches expiry:
 
 ### 4. Vega (Volatility
 
+
 **Futures don't have vega (no volatility component in pricing).**
 
 **But calendar spreads affected by volatility indirectly:**
@@ -764,6 +784,7 @@ Volatile market:
 **Vega effect is INDIRECT and smaller than theta.**
 
 ### 5. Rho (Interest
+
 
 **Definition:** How spread value changes with interest rate changes.
 
@@ -814,9 +835,11 @@ Interest rate effect mixed with storage costs:
 
 ## Contract Selection
 
+
 **Just as stock traders select securities, calendar traders select optimal spreads:**
 
 ### 1. Crude Oil (CL) -
+
 
 **Characteristics:**
 
@@ -856,6 +879,7 @@ Interest rate effect mixed with storage costs:
 - **Needs monitoring**
 
 ### 2. Natural Gas (NG)
+
 
 **Characteristics:**
 
@@ -903,6 +927,7 @@ Interest rate effect mixed with storage costs:
 
 ### 3. S&P 500 E-mini
 
+
 **Characteristics:**
 
 - Ticker: /ES
@@ -943,6 +968,7 @@ Interest rate effect mixed with storage costs:
 
 ### 4. Gold (GC) - The
 
+
 **Characteristics:**
 
 - Ticker: /GC
@@ -982,6 +1008,7 @@ Interest rate effect mixed with storage costs:
 - **Boring but safe**
 
 ### 5. Agricultural
+
 
 **Characteristics:**
 
@@ -1034,6 +1061,7 @@ Interest rate effect mixed with storage costs:
 
 ### 6. Comparison Table
 
+
 | Futures | Typical Spread | Margin/Spread | Liquidity | Volatility | Difficulty | Best For |
 |---------|---------------|---------------|-----------|------------|------------|----------|
 | Crude Oil (CL) | $1-3/barrel | $4,000 | Excellent | High | Medium | Most traders |
@@ -1048,9 +1076,11 @@ Interest rate effect mixed with storage costs:
 
 ## Time Selection
 
+
 **Just as options traders select expiration dates, calendar traders must time their entries:**
 
 ### 1. Optimal Entry
+
 
 **Best time to enter calendar spreads:**
 
@@ -1139,6 +1169,7 @@ $$
 
 ### 2. When NOT to Enter
 
+
 **Avoid entering calendar spreads when:**
 
 **1. Just before major reports:**
@@ -1203,6 +1234,7 @@ Front month expires Friday:
 - **Wide spreads, poor execution**
 
 ### 3. Exit Strategy
+
 
 **Three exit approaches:**
 
@@ -1297,6 +1329,7 @@ $$
 
 ### 4. Management During
 
+
 **Daily monitoring checklist:**
 
 **1. Spread width:**
@@ -1355,7 +1388,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Calendar Spread
+
 
 **Setup:**
 
@@ -1423,6 +1458,7 @@ No convergence, no divergence → No profit, no loss
 
 ### 2. Realistic
 
+
 **Scenario 1: Normal Convergence (70% of trades)**
 
 **Day 0 (Entry):**
@@ -1487,6 +1523,7 @@ $$
 
 ### 3. Position Sizing
 
+
 **Conservative (3 contracts):**
 
 - Margin: $12,000
@@ -1524,7 +1561,9 @@ $$
 
 ## When to Use Term
 
+
 ### 1. Ideal Market
+
 
 **Use calendar spreads when:**
 
@@ -1585,6 +1624,7 @@ $$
 
 ### 2. Best Markets for
 
+
 **Energy (Crude Oil, Natural Gas):**
 
 **Why best:**
@@ -1636,6 +1676,7 @@ $$
 **But profitable if you understand the cycles.**
 
 ### 3. Specific Use
+
 
 **Use Case 1: Hedging roll costs**
 
@@ -1692,7 +1733,9 @@ You want exposure to futures markets without directional risk:
 
 ## When NOT to Use Term
 
+
 ### 1. Avoid These
+
 
 **1. Inverted or flat term structures:**
 
@@ -1814,7 +1857,9 @@ $$
 
 ## Position Sizing and
 
+
 ### 1. The Golden Rule
+
 
 **Critical misunderstanding:**
 
@@ -1860,6 +1905,7 @@ $$
 
 ### 2. Portfolio
 
+
 **Conservative approach:**
 
 - 30% of account in margin for calendars
@@ -1888,6 +1934,7 @@ $$
 **Learn the mechanics before scaling up!**
 
 ### 3. Diversification
+
 
 **Don't concentrate in one commodity:**
 
@@ -1919,6 +1966,7 @@ $$
 **Low correlations = good diversification!**
 
 ### 4. Stop Loss
+
 
 **Calendar spreads need stops despite being "carry trades":**
 
@@ -1972,6 +2020,7 @@ Exit if ANY trigger hits:
 
 ### 5. Profit Targets
 
+
 **Realistic expectations:**
 
 $$
@@ -1994,6 +2043,7 @@ $$
 - **Professional profit taking**
 
 ### 6. Leverage
+
 
 **Futures are inherently leveraged:**
 
@@ -2029,6 +2079,7 @@ $$
 **This limits maximum drawdown to manageable levels**
 
 ### 7. Account: $200,000
+
 
 **Account: $200,000**
 
@@ -2094,7 +2145,9 @@ $$
 
 ## Examples
 
+
 ### 1. Pension Duration
+
 
 **Background:**
 
@@ -2188,6 +2241,7 @@ $$
 
 ### 2. Transition Risk
 
+
 **Background:**
 
 - Date: November 1, 2024
@@ -2265,6 +2319,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Background:**
 
 - Date: March 1, 2025
@@ -2317,6 +2372,7 @@ $$
 5. **Great for risk-averse traders**
 
 ### 4. Tactical Duration
+
 
 **Background:**
 
@@ -2400,7 +2456,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. The error:
+
 
 **The error:**
 
@@ -2434,6 +2492,7 @@ $$
 **If ANY are elevated: Reduce size or skip**
 
 ### 2. The error: Enter
+
 
 **The error:**
 
@@ -2469,6 +2528,7 @@ $$
 
 ### 3. The error:
 
+
 **The error:**
 
 - Margin: $4,000 per spread
@@ -2497,6 +2557,7 @@ $$
 Position size based on RISK, not margin!
 
 ### 4. The error:
+
 
 **The error:**
 
@@ -2529,6 +2590,7 @@ $$
 - **Patience pays**
 
 ### 5. The error: Entry
+
 
 **The error:**
 
@@ -2567,6 +2629,7 @@ $$
 
 ### 6. The error: Sees
 
+
 **The error:**
 
 - Sees "amazing" spread in far-dated contracts
@@ -2594,6 +2657,7 @@ Only trade:
 - **Liquid markets only**
 
 ### 7. The error: Trade
+
 
 **The error:**
 
@@ -2627,6 +2691,7 @@ Only trade:
 
 ### 8. The error:
 
+
 **The error:**
 
 - Entered crude calendar in contango
@@ -2657,6 +2722,7 @@ $$
 - **Market regime changed → Strategy invalid**
 
 ### 9. The error:
+
 
 **The error:**
 
@@ -2693,6 +2759,7 @@ $$
 - **Diversified**
 
 ### 10. The error: Made
+
 
 **The error:**
 
@@ -2731,6 +2798,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Term structure carry is one of the few remaining structural edges in markets—the mechanical convergence of futures to spot creates predictable profit opportunities. But this edge comes with a price: geopolitical risk, margin calls, and the potential for catastrophic losses if over-leveraged. The successful calendar trader is paranoid about risk, diversified across markets, and disciplined about sizing. They enter when term structures are wide, exit when convergence targets are hit, and NEVER bet the farm on one trade. Master these principles, and calendar spreads can generate consistent double-digit monthly returns. Violate them, and you'll join the graveyard of over-leveraged traders who thought convergence was guaranteed. It's not the strategy that determines success—it's the risk management."
 

@@ -1,5 +1,6 @@
 # Itô Integration: An Intuitive Introduction
 
+
 Having explored ordinary (Lebesgue) integrals \(\int_0^t f(s, B_s) ds\), we now turn to the centerpiece of stochastic calculus: the **Itô integral**
 
 
@@ -15,6 +16,7 @@ The key difference is that we integrate with respect to **Brownian increments \(
 
 ## Financial interpretation: Stock portfolio
 
+
 Imagine you are trading a stock whose price follows Brownian motion:
 
 - **Time**: Day \(s\)
@@ -26,7 +28,8 @@ Imagine you are trading a stock whose price follows Brownian motion:
 
 **Key insight**: The increment \(dB_s\) is **random**—the stock price fluctuates unpredictably. Your P&L depends on both your position \(f(s, B_s)\) and the random price movements.
 
-### Summary table
+### 1. Summary table
+
 
 
 $$
@@ -45,15 +48,18 @@ $$
 
 ## Example 1: Computing \(\int_0^1 B_s \, dB_s\) by hand
 
+
 We use the same 10 coin flips from the Lebesgue integration section.
 
-### Setup
+### 1. Setup
+
 
 **Coin flips**: \(H H T H T T H H H T\)
 
 **Strategy**: Hold \(B_{s}\) shares of stock at time \(s\) (the "follow the price" strategy)
 
-### Computation table
+### 2. Computation table
+
 
 
 $$
@@ -100,7 +106,8 @@ $$
 
 
 
-### Key observations
+### 3. Key observations
+
 
 1. **Random increments**: Unlike \(\int B_s ds\), the increments \(dB_s\) are random: \(+1/\sqrt{10}\) or \(-1/\sqrt{10}\)
 
@@ -123,9 +130,11 @@ $$
 
 ## Example 2: Computing \(\int_0^1 s \, dB_s\) by hand
 
+
 Now we hold \(s\) shares at time \(s\) (a time-dependent strategy).
 
-### Computation table (abbreviated)
+### 1. Computation table (abbreviated)
+
 
 
 $$
@@ -159,9 +168,11 @@ $$
 
 ## Example 3: Computing \(\int_0^1 s B_s \, dB_s\) by hand
 
+
 Combining time and price dependence: hold \(s B_s\) shares at time \(s\).
 
-### Computation table (final rows only)
+### 1. Computation table (final rows only)
+
 
 
 $$
@@ -191,6 +202,7 @@ $$
 ---
 
 ## Python simulation: Monte Carlo verification
+
 
 We verify these integrals with 10,000 simulated Brownian paths.
 
@@ -269,7 +281,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-### Observations from simulations
+### 1. Observations from simulations
+
 
 1. **Martingale property**: The mean of \(\int_0^T f(s, B_s) dB_s\) is approximately zero across all paths:
    
@@ -290,6 +303,7 @@ plt.show()
 
 ## Key differences: Itô vs. Lebesgue
 
+
 | **Property** | **Lebesgue integral \(\int f ds\)** | **Itô integral \(\int f dB\)** |
 |--------------|-------------------------------------|--------------------------------|
 | **Integrator** | Deterministic time \(ds\) | Random Brownian \(dB_s\) |
@@ -302,6 +316,7 @@ plt.show()
 ---
 
 ## The martingale property: Why zero mean?
+
 
 For any adapted process \(f(s, B_s)\):
 
@@ -339,6 +354,7 @@ All values are close to zero (deviations due to finite sampling).
 ---
 
 ## The Itô isometry: Variance formula
+
 
 A remarkable property of the Itô integral is the **Itô isometry**:
 
@@ -385,6 +401,7 @@ These should match (up to Monte Carlo error).
 
 ## Why left-endpoint evaluation matters
 
+
 In Itô integration, we **must** evaluate the integrand at the **left endpoint** (beginning of the interval):
 
 
@@ -402,6 +419,7 @@ $$
 ---
 
 ## Connection to Itô's formula
+
 
 The surprising result from Example 1:
 
@@ -447,6 +465,7 @@ The \(-t\) term comes from the **second-order correction** due to the quadratic 
 ---
 
 ## Summary
+
 
 **Itô integration** \(\int_0^t f(s, B_s) dB_s\):
 

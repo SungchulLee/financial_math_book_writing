@@ -1,10 +1,12 @@
 # Numéraire Techniques
 
+
 **Numéraire techniques** provide a unified framework for changing probability measures and simplifying derivative pricing by choosing an appropriate reference asset.
 
 ---
 
-## 1. What is a numéraire?
+## What is a numéraire?
+
 
 A **numéraire** is a strictly positive tradable asset \(N_t\) used to measure value.
 Prices expressed in units of \(N_t\) are
@@ -17,7 +19,8 @@ Prices expressed in units of \(N_t\) are
 
 ---
 
-## 2. Fundamental theorem of numéraire change
+## Fundamental theorem of numéraire change
+
 
 For any admissible numéraire \(N_t\), there exists a probability measure \(\mathbb{Q}^N\) such that
 
@@ -31,7 +34,8 @@ This generalizes the risk-neutral measure concept.
 
 ---
 
-## 3. Examples of numeraires
+## Examples of numeraires
+
 
 Common choices include:
 - money-market account \(B_t\) → risk-neutral measure,
@@ -42,7 +46,8 @@ Each choice simplifies pricing of specific products.
 
 ---
 
-## 4. Pricing with numéraires
+## Pricing with numéraires
+
 
 If payoff \(V_T\) is measurable at \(T\),
 
@@ -58,7 +63,8 @@ Choosing \(N_t\) wisely can remove discounting or complex drifts.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Numéraire choice determines the pricing measure.
 - Forward measures are special cases of numéraire techniques.
@@ -67,6 +73,7 @@ Choosing \(N_t\) wisely can remove discounting or complex drifts.
 ---
 
 ## Further reading
+
 
 - Geman, El Karoui & Rochet, numéraire theory.
 - Brigo & Mercurio, change of measure methods.

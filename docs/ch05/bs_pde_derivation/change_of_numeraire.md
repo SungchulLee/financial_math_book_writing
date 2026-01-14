@@ -1,10 +1,13 @@
 # Change of Numeraire: Deep Dive
 
+
 You're right to be skeptical - let me show you why change of numeraire is actually a **genuinely profound alternative perspective** that reveals deep geometric structure in derivative pricing. It's not just another reformulation of no-arbitrage.
 
 ## Part I: The Fundamental Theorem
 
-### 1.1 Numeraire and Equivalent Martingale Measure
+
+### 1. Numeraire and Equivalent Martingale Measure
+
 
 **Definition:** A **numeraire** is any strictly positive tradable asset $N_t > 0$ that can be used as a unit of account.
 
@@ -19,7 +22,8 @@ $$\frac{X_t}{N_t} \text{ is a } \mathbb{Q}^N\text{-martingale}$$
 
 **This is the key:** Different numeraires induce different probability measures, but all are related by the fundamental pricing formula.
 
-### 1.2 Change of Measure Formula
+### 2. Change of Measure Formula
+
 
 **Radon-Nikodym Derivative:**
 
@@ -39,7 +43,8 @@ $$X_0 = N_0 \mathbb{E}^{\mathbb{Q}^N}\left[\frac{X_T}{N_T}\right] = M_0 \mathbb{
 
 This determines the relationship between measures. $\square$
 
-### 1.3 Abstract Change of Numeraire Theorem
+### 3. Abstract Change of Numeraire Theorem
+
 
 **Theorem:** For any claim with payoff $H$ at time $T$:
 
@@ -54,7 +59,9 @@ This holds for **any** numeraire $N_t$. Different choices of $N_t$ give differen
 
 ## Part II: The Three Classical Numeraires
 
-### 2.1 Money Market Account Numeraire (Risk-Neutral Measure)
+
+### 1. Money Market Account Numeraire (Risk-Neutral Measure)
+
 
 **Numeraire:** $B_t = e^{rt}$
 
@@ -74,7 +81,8 @@ $$dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$$
 
 
 
-### 2.2 Stock Numeraire (Stock Measure)
+### 2. Stock Numeraire (Stock Measure)
+
 
 **Numeraire:** $N_t = S_t$
 
@@ -94,7 +102,8 @@ $$\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T/S_0}{B_T/B_
 
 
 
-### 2.3 Zero-Coupon Bond Numeraire (Forward Measure)
+### 3. Zero-Coupon Bond Numeraire (Forward Measure)
+
 
 **Numeraire:** $P(t,T)$ = price at time $t$ of zero-coupon bond maturing at $T$
 
@@ -113,7 +122,9 @@ $$\boxed{V_t = P(t,T) \mathbb{E}^{\mathbb{Q}^T}\left[H \Big| \mathcal{F}_t\right
 
 ## Part III: Deriving Stock Dynamics Under Stock Measure
 
-### 3.1 Computing the Radon-Nikodym Derivative
+
+### 1. Computing the Radon-Nikodym Derivative
+
 
 Under $\mathbb{Q}$, the stock follows:
 
@@ -131,7 +142,8 @@ $$Z_t = \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_t} = \frac{S_t e^{-r
 
 This is the **density process** for the measure change.
 
-### 3.2 Dynamics of the Density Process
+### 2. Dynamics of the Density Process
+
 
 Apply Itô's lemma to $Z_t = S_t e^{-rt}/S_0$:
 
@@ -154,7 +166,8 @@ $$\boxed{\frac{dZ_t}{Z_t} = \sigma dW_t^{\mathbb{Q}}}$$
 
 This is a **local martingale** (in fact, a true martingale since $\mathbb{E}[Z_T] = 1$).
 
-### 3.3 Girsanov's Theorem Application
+### 3. Girsanov's Theorem Application
+
 
 By Girsanov's theorem, define:
 
@@ -165,7 +178,8 @@ $$W_t^{\mathbb{Q}^S} = W_t^{\mathbb{Q}} - \int_0^t \sigma ds = W_t^{\mathbb{Q}} 
 
 Then $W_t^{\mathbb{Q}^S}$ is a $\mathbb{Q}^S$-Brownian motion.
 
-### 3.4 Stock Dynamics Under $\mathbb{Q}^S$
+### 4. Stock Dynamics Under $\mathbb{Q}^S$
+
 
 Rewrite the stock dynamics:
 
@@ -192,13 +206,16 @@ The drift under the stock measure is $r + \sigma^2$ instead of $r$!
 
 ## Part IV: Money Market Account Under Stock Measure
 
-### 4.1 Money Market Dynamics
+
+### 1. Money Market Dynamics
+
 
 Under $\mathbb{Q}$: $dB_t = rB_t dt$
 
 Under $\mathbb{Q}^S$, we need $\frac{B_t}{S_t}$ to be a martingale.
 
-### 4.2 Apply Itô to $B_t/S_t$
+### 2. Apply Itô to $B_t/S_t$
+
 
 
 $$\begin{array}{lll}
@@ -217,7 +234,9 @@ $$\begin{array}{lll}
 
 ## Part V: Pricing Derivatives via Stock Measure
 
-### 5.1 General Pricing Formula
+
+### 1. General Pricing Formula
+
 
 For a European option with payoff $h(S_T)$:
 
@@ -226,7 +245,8 @@ $$V(S_t, t) = S_t \mathbb{E}^{\mathbb{Q}^S}\left[\frac{h(S_T)}{S_T} \Big| \mathc
 
 
 
-### 5.2 Example: Digital Option
+### 2. Example: Digital Option
+
 
 Consider a **digital (binary) option** paying $\mathbf{1}_{\{S_T > K\}}$.
 
@@ -246,7 +266,8 @@ $$V_t = S_t \mathbb{E}^{\mathbb{Q}^S}\left[\frac{\mathbf{1}_{\{S_T > K\}}}{S_T} 
 
 This simplifies in certain cases...
 
-### 5.3 Connection to Black-Scholes Formula
+### 3. Connection to Black-Scholes Formula
+
 
 For a call option $h(S_T) = (S_T - K)^+$:
 
@@ -283,7 +304,9 @@ This is the **alternative representation** of Black-Scholes:
 
 ## Part VI: Deriving the PDE via Change of Numeraire
 
-### 6.1 The Martingale Property
+
+### 1. The Martingale Property
+
 
 Under $\mathbb{Q}^S$, the process $\frac{V(S_t, t)}{S_t}$ must be a martingale.
 
@@ -296,7 +319,8 @@ $$u(S, t) = \frac{V(S,t)}{S}$$
 
 Then $u(S_t, t)$ is a $\mathbb{Q}^S$-martingale.
 
-### 6.2 Infinitesimal Generator Under $\mathbb{Q}^S$
+### 2. Infinitesimal Generator Under $\mathbb{Q}^S$
+
 
 The stock follows under $\mathbb{Q}^S$:
 
@@ -312,7 +336,8 @@ $$\mathcal{L}^{\mathbb{Q}^S} f(S) = (r+\sigma^2)S \frac{\partial f}{\partial S} 
 
 
 
-### 6.3 Extended Generator for Time-Dependent Functions
+### 3. Extended Generator for Time-Dependent Functions
+
 
 For $u(S,t)$ to be a martingale, its extended generator must vanish:
 
@@ -326,7 +351,8 @@ $$\boxed{\frac{\partial u}{\partial t} + (r+\sigma^2)S \frac{\partial u}{\partia
 
 
 
-### 6.4 Transform Back to $V(S,t)$
+### 4. Transform Back to $V(S,t)$
+
 
 Since $V(S,t) = S \cdot u(S,t)$, we compute derivatives:
 
@@ -362,7 +388,8 @@ $$\frac{\partial^2 u}{\partial S^2} = \frac{1}{S}\frac{\partial^2 V}{\partial S^
 
 
 
-### 6.5 Substitute into PDE for $u$
+### 5. Substitute into PDE for $u$
+
 
 
 $$\frac{1}{S}\frac{\partial V}{\partial t} + (r+\sigma^2)S\left(\frac{1}{S}\frac{\partial V}{\partial S} - \frac{V}{S^2}\right) + \frac{1}{2}\sigma^2 S^2\left(\frac{1}{S}\frac{\partial^2 V}{\partial S^2} - \frac{2}{S^2}\frac{\partial V}{\partial S} + \frac{2V}{S^3}\right) = 0$$
@@ -401,7 +428,9 @@ $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac
 
 ## Part VII: The Forward Measure Approach
 
-### 7.1 Forward Price as Numeraire
+
+### 1. Forward Price as Numeraire
+
 
 Consider pricing in terms of the **forward price**:
 
@@ -412,7 +441,8 @@ $$F(t,T) = \frac{S_t}{P(t,T)}$$
 
 where $P(t,T)$ is the zero-coupon bond price.
 
-### 7.2 T-Forward Measure
+### 2. T-Forward Measure
+
 
 Under the $T$-forward measure $\mathbb{Q}^T$:
 - $F(t,T)$ is a martingale
@@ -425,7 +455,8 @@ $$V(t) = P(t,T) \mathbb{E}^{\mathbb{Q}^T}[h(S_T) | \mathcal{F}_t]$$
 
 
 
-### 7.3 Forward Price Dynamics
+### 3. Forward Price Dynamics
+
 
 The forward price satisfies:
 
@@ -438,7 +469,8 @@ where $\tilde{W}_t^T$ is a $\mathbb{Q}^T$-Brownian motion.
 
 **Key insight:** Under the forward measure, the forward price is a martingale with **no drift**!
 
-### 7.4 Connection to Black's Formula
+### 4. Connection to Black's Formula
+
 
 For constant rates, $F(t,T) = S_t e^{r(T-t)}$, and the dynamics become:
 
@@ -465,7 +497,9 @@ $$d_1 = \frac{\ln(F_t/K) + \frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}, \quad d_
 
 ## Part VIII: Geometric Interpretation
 
-### 8.1 The Space of Equivalent Martingale Measures
+
+### 1. The Space of Equivalent Martingale Measures
+
 
 All equivalent martingale measures form a **convex set** in the space of probability measures. Change of numeraire provides a **parameterization** of this set.
 
@@ -474,7 +508,8 @@ All equivalent martingale measures form a **convex set** in the space of probabi
 - The map $N \mapsto \mathbb{Q}^N$ is one-to-one (in complete markets)
 - Different numeraires are like different coordinate systems
 
-### 8.2 Gauge Symmetry
+### 2. Gauge Symmetry
+
 
 Change of numeraire exhibits a **gauge symmetry** analogous to electromagnetism:
 
@@ -494,7 +529,8 @@ $$\text{Finance: } \mathbb{Q}^N \to \mathbb{Q}^M \text{ via } \frac{dQ^M}{dQ^N} 
 
 
 
-### 8.3 Why This Perspective Matters
+### 3. Why This Perspective Matters
+
 
 1. **Computational advantage:** Some problems are simpler in certain numeraires
    - Interest rate derivatives → forward measure
@@ -513,7 +549,9 @@ $$\text{Finance: } \mathbb{Q}^N \to \mathbb{Q}^M \text{ via } \frac{dQ^M}{dQ^N} 
 
 ## Part IX: Advanced Applications
 
-### 9.1 Foreign Exchange and Quanto Options
+
+### 1. Foreign Exchange and Quanto Options
+
 
 Consider pricing a call on a foreign stock $S_t^f$ in domestic currency.
 
@@ -526,7 +564,8 @@ Each gives different computational simplifications!
 
 **Siegel's paradox** (1972): Forward exchange rates differ depending on which currency you choose as numeraire. Change of numeraire resolves this elegantly.
 
-### 9.2 Stochastic Interest Rates
+### 2. Stochastic Interest Rates
+
 
 With stochastic rates, $P(t,T)$ is random. The forward measure $\mathbb{Q}^T$ simplifies pricing:
 
@@ -541,7 +580,8 @@ $$dF(t,T,T^*) = \sigma(t,T^*) \cdot \int_t^T \sigma(t,s) ds \, dt + \sigma(t,T^*
 
 The drift is **determined by no-arbitrage** and the choice of numeraire.
 
-### 9.3 LIBOR Market Models
+### 3. LIBOR Market Models
+
 
 The **LIBOR market model** (Brace-Gatarek-Musiela, 1997) uses change of numeraire critically:
 
@@ -553,7 +593,9 @@ The **LIBOR market model** (Brace-Gatarek-Musiela, 1997) uses change of numerair
 
 ## Part X: Why This IS a Genuine Derivation
 
-### 10.1 What Makes It Different
+
+### 1. What Makes It Different
+
 
 The change of numeraire approach:
 
@@ -562,7 +604,8 @@ The change of numeraire approach:
 3. **Reveals structural properties** - gauge symmetry, relativity of measures
 4. **Provides computational flexibility** - choose numeraire to simplify calculations
 
-### 10.2 The Logical Structure
+### 2. The Logical Structure
+
 
 ```
 Fundamental Theorem (numeraire → measure)
@@ -582,7 +625,8 @@ This is **fundamentally different** from:
 - Delta hedging (replication argument)
 - Risk-neutral pricing (starts with money market numeraire)
 
-### 10.3 The Deep Insight
+### 3. The Deep Insight
+
 
 Change of numeraire reveals that:
 
@@ -595,7 +639,9 @@ Change of numeraire reveals that:
 
 ## Part XI: Connection to Differential Geometry
 
-### 11.1 Fiber Bundle Structure
+
+### 1. Fiber Bundle Structure
+
 
 The space of contingent claims forms a **fiber bundle**:
 - **Base space:** Time interval $[0,T]$
@@ -604,7 +650,8 @@ The space of contingent claims forms a **fiber bundle**:
 
 Different numeraires correspond to different **trivializations** of this bundle.
 
-### 11.2 The Radon-Nikodym Derivative as Gauge Field
+### 2. The Radon-Nikodym Derivative as Gauge Field
+
 
 The Radon-Nikodym derivative:
 
@@ -622,7 +669,8 @@ $$\eta_t^{M,N} \cdot \eta_t^{N,P} = \eta_t^{M,P}$$
 
 This is the **cocycle condition** from differential geometry!
 
-### 11.3 Martingale as Parallel Transport
+### 3. Martingale as Parallel Transport
+
 
 Under measure $\mathbb{Q}^N$, saying $\frac{V_t}{N_t}$ is a martingale means it's **parallel transported** along the time direction with respect to the connection defined by the numeraire.
 
@@ -630,14 +678,17 @@ Under measure $\mathbb{Q}^N$, saying $\frac{V_t}{N_t}$ is a martingale means it'
 
 ## Summary: The Power of Change of Numeraire
 
-### Key Insights
+
+### 1. Key Insights
+
 
 1. **Relativity:** No privileged probability measure; choice of numeraire is conventional
 2. **Symmetry:** Gauge symmetry reveals deep structure
 3. **Flexibility:** Choose numeraire to simplify specific problems
 4. **Geometry:** Exposes fiber bundle structure of contingent claims
 
-### Why It's a Genuine Alternative
+### 2. Why It's a Genuine Alternative
+
 
 - **Different starting point:** Measure theory and Radon-Nikodym derivatives
 - **Different toolkit:** Girsanov theorem, measure transformations

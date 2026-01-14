@@ -1,10 +1,12 @@
-# Martingale Properties of Brownian Motion
+# Martingale
+
 
 The martingale property is one of the defining features of Brownian motion and underpins its role in stochastic calculus, financial modeling, and diffusion theory. In this section, we explore the various martingales associated with Brownian motion, beginning with foundational definitions and gradually building up to polynomial and exponential martingales.
 
 ---
 
-## Definition of martingales
+## Definition
+
 
 Recall that a filtered probability space \((\Omega, \mathcal{F}, (\mathcal{F}_t)_{t\ge 0}, \mathbb{P})\) consists of a probability space together with a filtration—an increasing family of \(\sigma\)-algebras representing information available up to time \(t\).
 
@@ -27,7 +29,8 @@ A stochastic process \(X = \{X_t\}_{t\ge 0}\) is a **martingale** with respect t
 
 ---
 
-## Brownian motion as a martingale
+## Brownian motion
+
 
 Let \(B_t\) be a standard Brownian motion with respect to its natural filtration \(\mathcal{F}_t = \sigma(B_s: 0 \le s \le t)\). We verify that \(B_t\) is a martingale.
 
@@ -71,11 +74,13 @@ This fundamental property—that Brownian motion is a martingale—is central to
 
 ---
 
-## Polynomial martingales
+## Polynomial
+
 
 Simple polynomial functions of Brownian motion can be adjusted to yield martingales. We establish two key examples.
 
-### $B_t^2 - t$ is a martingale
+### 1. B t 2 t
+
 
 **Claim**: The process \(M_t = B_t^2 - t\) is a martingale.
 
@@ -136,7 +141,8 @@ $$
 
 **Interpretation**: While \(B_t^2\) grows on average (since \(\mathbb{E}[B_t^2] = t\)), subtracting the deterministic term \(t\) removes this trend, yielding a martingale.
 
-### $B_t^3 - 3tB_t$ is a martingale
+### 2. B t 3 3tB
+
 
 **Claim**: The process \(M_t = B_t^3 - 3tB_t\) is a martingale.
 
@@ -192,7 +198,8 @@ $$
 
 ---
 
-## Exponential martingale
+## Exponential
+
 
 One of the most important martingales in stochastic analysis is the **exponential martingale**:
 
@@ -262,7 +269,8 @@ $$
 
 ---
 
-## Connection via Taylor expansion
+## Connection via
+
 
 The polynomial and exponential martingales are intimately connected. Expanding the exponential martingale in powers of \(\theta\):
 
@@ -305,6 +313,7 @@ This connection extends to Itô's formula, where the exponential martingale's fo
 ---
 
 ## Summary
+
 
 The martingale properties of Brownian motion form a cornerstone of stochastic analysis:
 

@@ -1,10 +1,12 @@
 # Jump-Diffusion Models
 
+
 Jump-diffusions incorporate discontinuous moves and generate heavy tails and short-maturity smiles.
 
 ---
 
-## 1. Merton-Type Model
+## Merton-Type Model
+
 
 
 \[
@@ -18,7 +20,8 @@ with Poisson intensity \(\lambda\), jump multiplier \(Y\), and \(\kappa=\mathbb{
 
 ---
 
-## 2. Pricing PIDE
+## Pricing PIDE
+
 
 
 \[
@@ -35,7 +38,8 @@ with Poisson intensity \(\lambda\), jump multiplier \(Y\), and \(\kappa=\mathbb{
 
 ---
 
-## 3. What to Remember
+## What to Remember
+
 
 - Jumps lead to integro-differential pricing equations.
 - Jumps naturally create implied volatility smiles, especially at short maturities.

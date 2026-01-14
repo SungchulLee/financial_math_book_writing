@@ -1,5 +1,6 @@
 # Volatility Arbitrage
 
+
 **Volatility arbitrage via vega asymptotics** exploits the mathematical fact that vega scales non-linearly with time to maturity, creating opportunities to trade volatility more efficiently by carefully selecting option maturities based on vega concentration.
 
 The key insight: **mid-maturity options often provide maximum vega per dollar invested**, making them the most capital-efficient instruments for pure volatility bets.
@@ -11,6 +12,7 @@ The key insight: **mid-maturity options often provide maximum vega per dollar in
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_scaling.png?raw=true" alt="vega_asymptotics_scaling" width="700">
@@ -38,12 +40,14 @@ $$
 
 ## The Mathematical
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_efficiency.png?raw=true" alt="vega_asymptotics_efficiency" width="700">
 </p>
 <p align="center"><em>Figure 2: Vega per dollar invested comparison demonstrating capital efficiency advantage of mid-term options</em></p>
 
 ### 1. Vega Scaling Law
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_gamma_tradeoff.png?raw=true" alt="vega_asymptotics_gamma_tradeoff" width="700">
@@ -81,6 +85,7 @@ $$
 **Critical insight:** Vega scales as **√τ**, not **τ**.
 
 ### 2. Vega Efficiency
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_asymptotics_arbitrage.png?raw=true" alt="vega_asymptotics_arbitrage" width="700">
@@ -123,6 +128,7 @@ Mid-term (30-90 days) balances:
 
 ### 3. The Optimal
 
+
 Maximizing **net vega exposure per unit theta cost**:
 
 $$
@@ -147,6 +153,7 @@ $$
 - **Sweet spot: 30-90 days**
 
 ### 4. The Gamma-Vega
+
 
 As maturity varies:
 
@@ -175,7 +182,9 @@ $$
 
 ## The Structure
 
+
 ### 1. Basic Vega
+
 
 **Objective:** Maximize vega exposure while managing other Greeks.
 
@@ -225,7 +234,9 @@ Instead of buying 1 back / selling 1 front, buy 1.73 back / sell 1 front for veg
 
 ## The Portfolio
 
+
 ### 1. Mid-Maturity Vega
+
 
 $$
 \Pi_{\text{vega}} = \sum_{i=1}^{N} n_i \cdot V_i(\tau_{\text{opt}})
@@ -277,9 +288,11 @@ $$
 
 ## Economic
 
+
 **Understanding what vega asymptotics REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 **Vega arbitrage via asymptotics exploits maturity-dependent pricing inefficiencies:**
 
@@ -297,6 +310,7 @@ You're NOT betting on volatility direction alone—you're betting on:
 3. **Capital efficiency** (vega per dollar)
 
 ### 2. Why Vega
+
 
 **1. Mathematical asymmetry:**
 
@@ -352,6 +366,7 @@ Typical VRP by maturity:
 
 ### 3. The Term
 
+
 **Forward vega concept:**
 
 Define forward vega as:
@@ -374,6 +389,7 @@ $$
 - Capture convergence
 
 ### 4. Professional
+
 
 **Institutional vega arbitrage strategies:**
 
@@ -420,6 +436,7 @@ $$
 **Capital savings:** 40-60% less capital vs. full replication.
 
 ### 5. The Empirical
+
 
 **Historical vega asymptotic patterns (SPX options 2015-2024):**
 
@@ -470,6 +487,7 @@ Win rate: 64%
 
 ### 6. When Vega
 
+
 **Genuine edge exists when:**
 
 **1. Term structure mispricing:**
@@ -515,7 +533,9 @@ Understanding these economic foundations helps recognize when vega asymptotic st
 
 ## The P&L Formula
 
+
 ### 1. Primary P&L
+
 
 $$
 \text{P&L}_{\text{vega}} = \mathcal{V}_{\text{net}} \cdot (\sigma_{\text{exit}} - \sigma_{\text{entry}})
@@ -535,6 +555,7 @@ $$
 
 ### 2. Secondary Effect
 
+
 $$
 \text{P&L}_{\text{theta}} = \Theta_{\text{net}} \cdot t
 $$
@@ -551,6 +572,7 @@ $$
 - **Total theta cost: -$30**
 
 ### 3. Complete P&L
+
 
 $$
 \text{Total P&L} = \underbrace{\mathcal{V} \cdot \Delta\sigma}_{\text{Vega}} + \underbrace{\Theta \cdot t}_{\text{Theta}} + \underbrace{\Gamma \text{ P&L}}_{\text{Gamma}} + \underbrace{\Delta \text{ P&L}}_{\text{Delta (hedged)}}
@@ -586,7 +608,9 @@ $$
 
 ## Concrete Example
 
+
 ### 1. Pension Duration
+
 
 **Setup (SPX at 4500):**
 
@@ -673,6 +697,7 @@ Let me redo with realistic scenario:
 
 ### 2. Transition Risk
 
+
 **Compare 3 maturities for same volatility bet:**
 
 **Bet:** Long volatility (expect IV to rise 5%)
@@ -697,6 +722,7 @@ Let me redo with realistic scenario:
 ---
 
 ### 3. Portable Alpha
+
 
 **Setup:**
 
@@ -740,9 +766,11 @@ As term structure normalizes, 90-day IV rises faster than 30-day, profit from th
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Objective: Choose
+
 
 **Objective:** Choose maturity that maximizes vega per unit theta.
 
@@ -767,6 +795,7 @@ $$
 
 ### 2. Choose structure
 
+
 **Choose structure based on goal:**
 
 **Pure vega bet:**
@@ -786,6 +815,7 @@ $$
 - Concentrated vega in narrow range
 
 ### 3. Maximum vega
+
 
 **Maximum vega exposure:**
 
@@ -813,6 +843,7 @@ Example:
 
 ### 4. Entry checklist:
 
+
 **Entry checklist:**
 
 - [ ] IV at extreme (IVR > 70 or < 20)
@@ -831,6 +862,7 @@ Example:
 4. **Avoid earnings week** (unless that's the catalyst)
 
 ### 5. Daily monitoring:
+
 
 **Daily monitoring:**
 
@@ -853,6 +885,7 @@ Example:
 - **Cut losses quickly**
 
 ### 6. Exit triggers: 1
+
 
 **Exit triggers:**
 
@@ -883,6 +916,7 @@ Example:
 
 ### 7. Common Mistakes
 
+
 1. **Using wrong maturity**
    - Too short: Theta overwhelms vega
    - Too long: Capital tied up unnecessarily
@@ -904,6 +938,7 @@ Example:
    - Always exit early
 
 ### 8. Professional Tips
+
 
 **Vega traders' wisdom:**
 
@@ -928,6 +963,7 @@ Example:
 
 ## Final Wisdom
 
+
 > **"Vega scales as √τ—this is mathematics. But profiting from it requires matching maturity to catalyst timing—that's art."**
 
 **The strategy:**
@@ -943,5 +979,6 @@ Example:
 ---
 
 ## One-Line Summary
+
 
 > **Volatility arbitrage via vega asymptotics exploits the √τ scaling law by concentrating positions in 60-90 day maturities where vega efficiency, volatility risk premium, and capital deployment optimally align—but only when paired with identified catalysts.**

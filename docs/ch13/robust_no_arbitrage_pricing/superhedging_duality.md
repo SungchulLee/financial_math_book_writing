@@ -1,6 +1,8 @@
 # Superhedging Duality
 
+
 ## Introduction
+
 
 Superhedging duality establishes a fundamental connection between dynamic hedging strategies and equivalent martingale measures in derivative pricing. This duality provides both theoretical foundations and computational methods for pricing under model uncertainty.
 
@@ -8,7 +10,9 @@ The **superhedging price** is the minimum initial capital required to construct 
 
 ## Mathematical Framework
 
-### Market Model
+
+### 1. Market Model
+
 
 **Filtered Probability Space**: Consider $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}_{t \in [0,T]}, \mathbb{P})$ where:
 - $\Omega$ is the sample space
@@ -58,7 +62,8 @@ $$
 
 
 
-### Admissible Strategies
+### 2. Admissible Strategies
+
 
 **Definition**: A trading strategy $\theta$ is **admissible** if:
 1. It is self-financing
@@ -71,7 +76,9 @@ Denote the set of admissible strategies by $\mathcal{A}$.
 
 ## Superhedging Problem
 
-### Definition
+
+### 1. Definition
+
 
 **Contingent Claim**: A random variable $\xi$ measurable with respect to $\mathcal{F}_T$ representing the derivative's payoff at maturity.
 
@@ -98,7 +105,8 @@ $$
 - Any price above $\pi^{\text{sup}}(\xi)$ allows the seller to lock in arbitrage profit
 - Any price below $\pi^{\text{sup}}(\xi)$ exposes the seller to unbounded loss
 
-### Sub-Replication
+### 2. Sub-Replication
+
 
 **Sub-Replicating Strategy**: A strategy $\theta$ **sub-replicates** $\xi$ if:
 
@@ -122,7 +130,8 @@ $$
 - $\pi^{\text{sub}}(\xi)$ is the maximum amount a buyer can guarantee from selling a portfolio that is dominated by $\xi$
 - Any price below $\pi^{\text{sub}}(\xi)$ allows the buyer to lock in arbitrage profit
 
-### No-Arbitrage and Price Bounds
+### 3. No-Arbitrage and Price Bounds
+
 
 **Proposition**: Under no-arbitrage:
 
@@ -155,7 +164,9 @@ and this common value is the unique arbitrage-free price.
 
 ## Equivalent Martingale Measures
 
-### Definition
+
+### 1. Definition
+
 
 **Equivalent Martingale Measure** (EMM): A probability measure $\mathbb{Q}$ on $(\Omega, \mathcal{F}_T)$ is an EMM if:
 1. $\mathbb{Q} \sim \mathbb{P}$ (equivalent to the physical measure)
@@ -176,7 +187,8 @@ $$
 
 
 
-### Fundamental Theorem of Asset Pricing
+### 2. Fundamental Theorem of Asset Pricing
+
 
 **First Fundamental Theorem**: The market admits no arbitrage if and only if $\mathcal{M} \neq \emptyset$.
 
@@ -188,7 +200,9 @@ $$
 
 ## Dual Representation of Superhedging Price
 
-### Main Duality Theorem
+
+### 1. Main Duality Theorem
+
 
 **Theorem** (Superhedging Duality): Under appropriate technical conditions:
 
@@ -231,7 +245,8 @@ $$
    
    This direction requires showing that for $v = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]$, there exists a superhedging strategy starting with capital $v$. This typically requires separation theorems and the Hahn-Banach theorem in functional analysis.
 
-### Technical Conditions
+### 2. Technical Conditions
+
 
 For the duality to hold, we typically require:
 
@@ -247,7 +262,9 @@ For the duality to hold, we typically require:
 
 ## Sub-Replication Duality
 
-### Dual Representation
+
+### 1. Dual Representation
+
 
 **Theorem**: Under similar conditions:
 
@@ -260,7 +277,8 @@ $$
 
 **Proof**: Similar to superhedging case, with inequalities reversed.
 
-### Bid-Ask Spread
+### 2. Bid-Ask Spread
+
 
 **Arbitrage-Free Price Interval**:
 
@@ -286,7 +304,9 @@ $$
 
 ## Applications and Examples
 
-### Example 1: Binary Option in Binomial Model
+
+### 1. Example 1: Binary Option in Binomial Model
+
 
 **Model**: Single-period binomial tree:
 - $S_0 = 100$
@@ -315,7 +335,8 @@ $$
 
 
 
-### Example 2: Incomplete Market with Volatility Uncertainty
+### 2. Example 2: Incomplete Market with Volatility Uncertainty
+
 
 **Model**: Stock follows:
 
@@ -361,7 +382,8 @@ $$
 
 
 
-### Example 3: Barrier Option
+### 3. Example 3: Barrier Option
+
 
 **Claim**: Up-and-out call with barrier $H > S_0$ and strike $K < H$:
 
@@ -402,7 +424,9 @@ where $C^{\text{UO}}$ is the up-and-out call price under constant volatility $\s
 
 ## Computational Methods
 
-### Linear Programming Formulation
+
+### 1. Linear Programming Formulation
+
 
 **Discrete State Space**: Approximate $\Omega$ by a finite set $\{\omega_1, \ldots, \omega_N\}$.
 
@@ -431,7 +455,8 @@ $$
 
 **Dual Problem**: Corresponds to finding the superhedging strategy (portfolio weights).
 
-### Monte Carlo with Linear Programming
+### 2. Monte Carlo with Linear Programming
+
 
 **Scenario Generation**: Generate $N$ paths $\{S^{(i)}(t_j)\}_{j=0}^M$ for $i = 1, \ldots, N$.
 
@@ -448,7 +473,8 @@ where $p_{ik}(j)$ represents transition probabilities.
 
 **Optimization**: Solve LP to find probabilities that maximize expected payoff while satisfying martingale constraints.
 
-### Dynamic Programming
+### 3. Dynamic Programming
+
 
 **Bellman Equation**: For Markovian models, the superhedging price satisfies:
 
@@ -476,7 +502,9 @@ with terminal condition $V(T, S) = \xi(S)$.
 
 ## Advanced Topics
 
-### Gamma Hedging and Viscosity Solutions
+
+### 1. Gamma Hedging and Viscosity Solutions
+
 
 **Gamma Constraint**: In models with volatility uncertainty, the superhedging strategy involves controlling the portfolio's gamma exposure.
 
@@ -484,7 +512,8 @@ with terminal condition $V(T, S) = \xi(S)$.
 
 **Theorem** (Uniqueness): Under appropriate conditions, the viscosity solution to the HJB equation is unique and equals the superhedging price.
 
-### Quadratic Hedging
+### 2. Quadratic Hedging
+
 
 **Alternative Objective**: Instead of perfect replication, minimize expected squared hedging error:
 
@@ -499,7 +528,8 @@ $$
 
 **Relationship to Superhedging**: Quadratic hedging provides an approximation when perfect hedging is too expensive.
 
-### Convex Duality
+### 3. Convex Duality
+
 
 **Fenchel-Rockafellar Duality**: The superhedging problem can be formulated as:
 
@@ -518,7 +548,9 @@ where $\mathcal{C}$ is the cone of claims attainable with non-negative cost.
 
 ## Comparison with Other Pricing Approaches
 
-### Black-Scholes Pricing
+
+### 1. Black-Scholes Pricing
+
 
 **Assumption**: Unique EMM under geometric Brownian motion with constant volatility.
 
@@ -551,7 +583,8 @@ $$
 
 for $\sigma \in [\sigma_{\min}, \sigma_{\max}]$.
 
-### Utility-Based Pricing
+### 2. Utility-Based Pricing
+
 
 **Indifference Price**: The price $p$ at which an agent is indifferent between trading and not trading:
 
@@ -568,7 +601,8 @@ $$
 
 **Asymptotic Equivalence**: For small claims, utility indifference prices converge to martingale prices, which lie in $[\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)]$.
 
-### Good-Deal Bounds
+### 3. Good-Deal Bounds
+
 
 **Setup**: Restrict EMMs to those satisfying additional constraints, e.g., Sharpe ratio bounds:
 
@@ -599,7 +633,9 @@ $$
 
 ## Extensions and Generalizations
 
-### Transaction Costs
+
+### 1. Transaction Costs
+
 
 **Proportional Transaction Costs**: Buying costs $(1+\lambda)S$, selling receives $(1-\mu)S$.
 
@@ -625,7 +661,8 @@ $$
 
 under regular conditions.
 
-### Discrete-Time Models
+### 2. Discrete-Time Models
+
 
 **Discrete Trading**: Trade only at times $0 = t_0 < t_1 < \cdots < t_N = T$.
 
@@ -647,7 +684,8 @@ $$
 
 
 
-### Multiple Assets
+### 3. Multiple Assets
+
 
 **Multi-Dimensional Model**: $S_t = (S_t^1, \ldots, S_t^d) \in \mathbb{R}^d$.
 
@@ -664,7 +702,8 @@ remains valid.
 
 **Correlation Uncertainty**: When correlation structure is uncertain, $\mathcal{M}$ contains measures with different correlation matrices, widening the bid-ask spread.
 
-### Path-Dependent Claims
+### 4. Path-Dependent Claims
+
 
 **General Path-Dependent Payoff**: 
 
@@ -690,7 +729,9 @@ $$
 
 ## Case Studies
 
-### Case Study 1: VIX Options
+
+### 1. Case Study 1: VIX Options
+
 
 **VIX**: Volatility index measuring implied volatility of S&P 500 options.
 
@@ -711,7 +752,8 @@ $$
 
 
 
-### Case Study 2: Credit Default Swaps (CDS)
+### 2. Case Study 2: Credit Default Swaps (CDS)
+
 
 **CDS Payoff**: Pays $1-R$ if default occurs before $T$, where $R$ is the recovery rate.
 
@@ -730,7 +772,8 @@ $$
 
 where $\tau$ is the default time.
 
-### Case Study 3: Energy Derivatives
+### 3. Case Study 3: Energy Derivatives
+
 
 **Power Swing Options**: Allow buyer to exercise multiple times, subject to constraints.
 
@@ -744,34 +787,40 @@ where $\tau$ is the default time.
 
 ## Practical Implementation
 
-### Step 1: Model Specification
+
+### 1. Step 1: Model Specification
+
 
 Define the set of martingale measures $\mathcal{M}$:
 - Identify sources of uncertainty (volatility, correlation, jumps, etc.)
 - Specify ranges or sets for uncertain parameters
 
-### Step 2: Discretization
+### 2. Step 2: Discretization
+
 
 Discretize state space and time:
 - Choose grid points for asset prices
 - Select time steps for rebalancing
 - Ensure sufficient granularity for accurate approximation
 
-### Step 3: Optimization
+### 3. Step 3: Optimization
+
 
 Solve the optimization problem:
 - Formulate as LP, QP, or SDP depending on structure
 - Use specialized solvers (CPLEX, Gurobi, MOSEK)
 - Verify convergence and numerical stability
 
-### Step 4: Validation
+### 4. Step 4: Validation
+
 
 Check results against:
 - Known analytical solutions (when available)
 - Monte Carlo simulations
 - Market prices (for calibration and reality check)
 
-### Step 5: Hedging Strategy
+### 5. Step 5: Hedging Strategy
+
 
 Extract optimal hedging strategy from dual solution:
 - Identify portfolio weights $\theta_t$
@@ -780,7 +829,9 @@ Extract optimal hedging strategy from dual solution:
 
 ## Summary and Key Insights
 
-### Fundamental Results
+
+### 1. Fundamental Results
+
 
 1. **Duality Principle**: Dynamic superhedging price equals static optimization over martingale measures:
 
@@ -802,7 +853,8 @@ Extract optimal hedging strategy from dual solution:
 
 4. **Robustness**: Superhedging provides model-independent pricing, robust to misspecification within the set $\mathcal{M}$
 
-### Practical Implications
+### 2. Practical Implications
+
 
 **For Pricing**:
 - Superhedging gives upper bound on fair price
@@ -819,7 +871,8 @@ Extract optimal hedging strategy from dual solution:
 - Robust pricing quantifies model risk
 - Sensitivity analysis identifies key model parameters
 
-### Theoretical Significance
+### 3. Theoretical Significance
+
 
 Superhedging duality bridges:
 - Dynamic portfolio optimization (primal problem)

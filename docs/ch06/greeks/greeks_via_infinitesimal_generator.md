@@ -1,10 +1,12 @@
 # Greeks via the Infinitesimal Generator
 
+
 In Markov models, the infinitesimal generator provides a structural link between pricing, PDEs, and sensitivity analysis.
 
 ---
 
 ## Setup: risk-neutral diffusion
+
 
 Under \(\mathbb{Q}\), consider
 
@@ -30,6 +32,7 @@ so the generator acting on smooth test functions \(f\) is
 
 ## Pricing PDE
 
+
 For a European payoff \(\Phi\), the price
 
 
@@ -54,6 +57,7 @@ solves the backward equation
 ---
 
 ## Parameter sensitivity as generator sensitivity
+
 
 Treat the generator as parameterized by \(\sigma\):
 
@@ -91,6 +95,7 @@ This suggests a PDE for \(\nu\) of the form
 ---
 
 ## What to remember
+
 
 - The generator \(\mathcal{L}\) determines the pricing PDE.
 - Parameter Greeks can be viewed as sensitivities of \(\mathcal{L}\) itself.

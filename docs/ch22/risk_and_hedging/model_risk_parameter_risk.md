@@ -1,10 +1,12 @@
 # Model Risk and Parameter Risk
 
+
 **Model risk and parameter risk** represent the uncertainty in derivatives valuation arising from incorrect model selection (model risk) and imprecise estimation of model inputs like volatility, correlation, and interest rates (parameter risk), where small errors in assumptions can compound into massive pricing errors and hedge failures, particularly for path-dependent exotics where model choice fundamentally affects valuation and Greeks, requiring rigorous model validation, parameter sensitivity analysis, and prudent reserves against model uncertainty.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -27,7 +29,9 @@
 
 ## What Is Model Risk?
 
+
 ### 1. Definition
+
 
 **Model risk:**
 
@@ -54,6 +58,7 @@ Barrier option valued using Black-Scholes vs. jump-diffusion model
 **Model risk: At least $1.20** (could be more if both wrong)
 
 ### 2. Sources of Model Risk
+
 
 **Dynamics specification:**
 
@@ -93,6 +98,7 @@ $$
 
 ### 3. Missing Factors
 
+
 **Example: Interest rate risk**
 
 **Standard:** Use constant risk-free rate $r$
@@ -123,6 +129,7 @@ $$
 
 ### 4. Distributional Assumptions
 
+
 **Normal vs. reality:**
 
 **Model assumes:** Returns ~ $N(\mu, \sigma^2)$
@@ -145,6 +152,7 @@ OTM put (3σ):
 - **Model error: 75% undervaluation**
 
 ### 5. Calibration Risk
+
 
 **Fitting model to market:**
 
@@ -171,6 +179,7 @@ Both fit vanilla options within 1% (good calibration)
 **Calibration doesn't eliminate model risk**
 
 ### 6. Numerical Approximations
+
 
 **Monte Carlo error:**
 
@@ -199,6 +208,7 @@ Time steps: $\Delta t$, space steps: $\Delta S$
 
 ### 7. Model Validation
 
+
 **Required checks:**
 
 1. **Implementation testing:**
@@ -226,7 +236,9 @@ Time steps: $\Delta t$, space steps: $\Delta S$
 
 ## What Is Parameter Risk?
 
+
 ### 1. Definition
+
 
 **Parameter risk:**
 
@@ -252,6 +264,7 @@ Where:
 - Mean reversion speed: $\kappa$
 
 ### 2. Volatility Risk
+
 
 **Estimation error:**
 
@@ -280,6 +293,7 @@ ATM call, 3 months:
 - **Range: $1.50 (36% of mid)**
 
 ### 3. Correlation Risk
+
 
 **Estimation uncertainty:**
 
@@ -310,6 +324,7 @@ Best-of call on AAPL and MSFT:
 
 ### 4. Interest Rate Risk
 
+
 **Rate uncertainty:**
 
 **Risk-free rate:** Which rate?
@@ -333,6 +348,7 @@ For derivatives on credit:
 - Uncertainty propagates to valuation
 
 ### 5. Jump Parameters
+
 
 **For jump-diffusion models:**
 
@@ -358,6 +374,7 @@ Barrier option near barrier:
 - **Massive difference**
 
 ### 6. Parameter Sensitivity
+
 
 **Vega risk:**
 
@@ -393,6 +410,7 @@ Dispersion trade:
 
 ### 7. Time-Varying Parameters
 
+
 **Non-stationarity:**
 
 **Problem:** Parameters change over time
@@ -413,6 +431,7 @@ Hedge using historical estimates:
 ---
 
 ## Key Terminology
+
 
 **Model Risk:**
 - Risk from wrong model choice
@@ -460,7 +479,9 @@ Hedge using historical estimates:
 
 ## Model Selection
 
+
 ### 1. Black-Scholes
+
 
 **When appropriate:**
 
@@ -479,6 +500,7 @@ Hedge using historical estimates:
 **Typical error:** 2-5% for vanillas, 10-30% for exotics
 
 ### 2. Local Volatility
+
 
 **When appropriate:**
 
@@ -502,6 +524,7 @@ Hedge using historical estimates:
 **Typical error:** 5-10% for barriers, 15-25% for variance-sensitive
 
 ### 3. Stochastic Volatility
+
 
 **When appropriate:**
 
@@ -527,6 +550,7 @@ Hedge using historical estimates:
 
 ### 4. Jump-Diffusion
 
+
 **When appropriate:**
 
 - Crash protection (OTM puts)
@@ -550,6 +574,7 @@ Hedge using historical estimates:
 
 ### 5. Model Comparison
 
+
 **Quantitative:**
 
 **Root mean squared error (RMSE):**
@@ -572,6 +597,7 @@ $$
 
 ### 6. Model Hierarchy
 
+
 **Progressive complexity:**
 
 **Level 1:** Black-Scholes (baseline)
@@ -591,6 +617,7 @@ $$
 
 ### 7. Model Validation Process
 
+
 **Steps:**
 
 1. **Choose model** based on risk factors
@@ -605,7 +632,9 @@ $$
 
 ## Parameter Estimation
 
+
 ### 1. Historical Estimation
+
 
 **Volatility:**
 
@@ -629,6 +658,7 @@ $$
 
 ### 2. Implied Parameters
 
+
 **Implied volatility:**
 
 Solve for $\sigma$ in Black-Scholes:
@@ -651,6 +681,7 @@ $$
 
 ### 3. Maximum Likelihood
 
+
 **For parametric models:**
 
 Given data $D = \{S_1, ..., S_T\}$, find $\theta$ that maximizes:
@@ -668,6 +699,7 @@ $$
 **Cons:** Requires distributional assumption, computationally intensive
 
 ### 4. Calibration to Market
+
 
 **Match model to observed prices:**
 
@@ -689,6 +721,7 @@ Parameters: $\kappa, \theta, \sigma_v, \rho, V_0$
 **Issue:** Non-convex optimization, multiple local minima
 
 ### 5. Bayesian Estimation
+
 
 **Incorporate prior beliefs:**
 
@@ -715,6 +748,7 @@ Estimate jump intensity $\lambda$
 
 ### 6. Rolling Windows
 
+
 **Handle time-variation:**
 
 **Exponentially-weighted moving average (EWMA):**
@@ -736,6 +770,7 @@ Use last $N$ observations (e.g., 60 days)
 **Cons:** Drops old data abruptly
 
 ### 7. Confidence Intervals
+
 
 **Quantify uncertainty:**
 
@@ -759,7 +794,9 @@ Volatility estimate: $\hat{\sigma} = 22\%$
 
 ## Common Mistakes
 
+
 ### 1. Model Overconfidence
+
 
 **Treating model as truth:**
 
@@ -782,6 +819,7 @@ Exotic valued at $100K using Heston
 **Should have:** Booked at midpoint ($101.5K) with $6.5K reserve
 
 ### 2. Ignoring Parameter Uncertainty
+
 
 **Point estimates only:**
 
@@ -807,6 +845,7 @@ Vol estimate: 22% ± 3% (95% CI: [19%, 25%])
 
 ### 3. Stale Calibration
 
+
 **Infrequent recalibration:**
 
 - **Mistake:** Calibrate model once, use for months
@@ -826,6 +865,7 @@ Vol estimate: 22% ± 3% (95% CI: [19%, 25%])
 **Error:** Exotic mispriced by 12% (accumulates over 6 months)
 
 ### 4. In-Sample Overfitting
+
 
 **Perfect fit to training data:**
 
@@ -849,6 +889,7 @@ Fitting smile with polynomial:
 
 ### 5. Wrong Sticky Assumption
 
+
 **Mismodeling surface dynamics:**
 
 - **Mistake:** Assume sticky strike when market is sticky delta
@@ -871,6 +912,7 @@ Hedge barrier option using local vol (implies sticky strike)
 
 ### 6. Tail Underestimation
 
+
 **Using normal when fat-tailed:**
 
 - **Mistake:** Assume normal distribution for returns
@@ -892,6 +934,7 @@ Selling OTM puts (3σ)
 - **Underpriced by 90%**
 
 ### 7. Ignoring Jumps
+
 
 **Continuous path assumption:**
 
@@ -917,7 +960,9 @@ Barrier option expiring after earnings
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Rigorous model validation:**
 
@@ -985,6 +1030,7 @@ Stressed volatility ±10%:
 4. Rigorous monitoring (catch problems early)
 
 ### 2. Worst Case: Disaster
+
 
 **Model risk blow-up:**
 
@@ -1072,7 +1118,9 @@ Stressed volatility ±10%:
 
 ## Risk Management Rules
 
+
 ### 1. Model Reserves
+
 
 **Reserve against model uncertainty:**
 
@@ -1096,6 +1144,7 @@ Where:
 
 ### 2. Parameter Stress
 
+
 **Minimum stress scenarios:**
 
 1. Vol ± 20% from current
@@ -1114,6 +1163,7 @@ $$
 
 ### 3. Recalibration Frequency
 
+
 **Daily:** For actively traded books
 **Weekly:** For less active positions
 **After events:** Always (earnings, Fed, crises)
@@ -1124,6 +1174,7 @@ $$
 - Unexplained P&L > 2% of position
 
 ### 4. Multiple Models
+
 
 **Minimum 2 models:**
 - Primary: For pricing and hedging
@@ -1137,6 +1188,7 @@ If models diverge > 10%:
 - Consider exiting position
 
 ### 5. Model Validation
+
 
 **Annual review:**
 
@@ -1153,6 +1205,7 @@ If models diverge > 10%:
 
 ### 6. Documentation
 
+
 **Required records:**
 
 - Model specification (equations)
@@ -1165,6 +1218,7 @@ If models diverge > 10%:
 **Retention:** 7 years minimum
 
 ### 7. Limits by Model Confidence
+
 
 **Position limits:**
 
@@ -1184,7 +1238,9 @@ Trading limit: $100M
 
 ## Real-World Examples
 
+
 ### 1. LTCM (1998)
+
 
 **Model risk disaster:**
 
@@ -1208,6 +1264,7 @@ Trading limit: $100M
 
 ### 2. Greek Banks (2008-2010)
 
+
 **Local vol mispricing:**
 
 **Product:** Long-dated FX barriers (sold to corporates)
@@ -1229,6 +1286,7 @@ Trading limit: $100M
 
 ### 3. JP Morgan CIO (2012)
 
+
 **Parameter estimation failure:**
 
 **Position:** Credit derivatives (IG9 index)
@@ -1249,6 +1307,7 @@ Trading limit: $100M
 **Lesson:** Parameter estimation matters enormously
 
 ### 4. Quant Quake (August 2007)
+
 
 **Model correlation:**
 
@@ -1272,7 +1331,9 @@ Trading limit: $100M
 
 ## Practical Steps
 
+
 ### 1. Choose Models
+
 
 **Based on risk factors:**
 
@@ -1290,6 +1351,7 @@ Trading limit: $100M
 
 ### 2. Calibrate Carefully
 
+
 **Process:**
 
 1. Collect market data (vanilla options)
@@ -1300,6 +1362,7 @@ Trading limit: $100M
 6. Validate stability (recalibrate tomorrow, similar parameters?)
 
 ### 3. Validate Results
+
 
 **Sanity checks:**
 
@@ -1317,6 +1380,7 @@ Trading limit: $100M
 
 ### 4. Compute Ranges
 
+
 **Use multiple models:**
 
 $$
@@ -1331,6 +1395,7 @@ If parameter $\theta \sim N(\hat{\theta}, \sigma^2_{\theta})$:
 
 ### 5. Set Reserves
 
+
 **Conservative:**
 
 $$
@@ -1344,6 +1409,7 @@ $$
 $$
 
 ### 6. Monitor and Update
+
 
 **Daily:**
 - Recalibrate if market moved
@@ -1362,6 +1428,7 @@ $$
 
 ### 7. Governance
 
+
 **Approval process:**
 
 - New model: Risk committee + Model validation group
@@ -1379,6 +1446,7 @@ If model shows issue:
 ---
 
 ## Final Wisdom
+
 
 > "Model risk and parameter risk are the silent killers of derivatives trading. Every blow-up traces back to one of two mistakes: believing your model is reality (model risk) or believing your parameter estimates are exact (parameter risk). The cruel irony: we need models to price exotics, but the very complexity that makes exotics interesting also makes them impossible to model perfectly. Black-Scholes was revolutionary not because it's correct—it's deeply wrong on every assumption—but because it's useful and we know exactly how it's wrong. When you add stochastic volatility, jumps, local vol, and multi-factor dynamics, you're not getting closer to truth—you're adding more parameters to fit, more ways to be wrong, and more false confidence. The best derivatives traders are philosophical skeptics: they use models but don't believe them, they estimate parameters but stress test them, they price to the cent but quote in ranges. Set reserves like a pessimist, trade like a realist, and always remember George Box: 'All models are wrong, but some are useful.' The question isn't whether your model is wrong (it is), but whether you've reserved enough for how wrong it might be. Sleep-at-night test: if your model gives $10.5M, can you afford to be wrong by $2M? If not, don't take the position."
 

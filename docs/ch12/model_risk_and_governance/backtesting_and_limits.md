@@ -1,10 +1,12 @@
 # Backtesting and Limits
 
+
 **Backtesting** compares model predictions with realized outcomes, while **limits** translate model outputs into actionable risk controls.
 
 ---
 
-## 1. Purpose of backtesting
+## Purpose of backtesting
+
 
 Backtesting evaluates:
 - predictive accuracy,
@@ -15,7 +17,8 @@ It is essential for detecting model breakdowns.
 
 ---
 
-## 2. Common backtesting approaches
+## Common backtesting approaches
+
 
 Typical tests include:
 - VaR exceedance tests,
@@ -26,7 +29,8 @@ Statistical significance and economic relevance both matter.
 
 ---
 
-## 3. Risk limits
+## Risk limits
+
 
 Risk limits define:
 - maximum acceptable exposures,
@@ -37,7 +41,8 @@ Limits operationalize model outputs.
 
 ---
 
-## 4. Limit breaches
+## Limit breaches
+
 
 When limits are breached:
 - causes must be investigated,
@@ -48,7 +53,8 @@ Persistent breaches indicate model or strategy issues.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Backtesting assesses model performance.
 - Limits convert risk measures into controls.
@@ -57,6 +63,7 @@ Persistent breaches indicate model or strategy issues.
 ---
 
 ## Further reading
+
 
 - Basel traffic-light VaR backtesting.
 - McNeil et al., backtesting ES.

@@ -1,10 +1,12 @@
 # Valuation Adjustments
 
+
 Credit derivatives pricing in practice requires **valuation adjustments** that go beyond idealized default models. These adjustments reflect counterparty risk, funding costs, and collateralization.
 
 ---
 
-## 1. Motivation for adjustments
+## Motivation for adjustments
+
 
 Classical pricing assumes:
 - default-free counterparties,
@@ -15,7 +17,8 @@ Real markets violate these assumptions.
 
 ---
 
-## 2. Credit Valuation Adjustment (CVA)
+## Credit Valuation Adjustment (CVA)
+
 
 **CVA** accounts for counterparty default risk:
 
@@ -29,7 +32,8 @@ It reduces the value of a derivative due to counterparty credit risk.
 
 ---
 
-## 3. Other XVA components
+## Other XVA components
+
 
 Common adjustments include:
 - **DVA:** own default risk,
@@ -40,7 +44,8 @@ Together, these are known as **XVA**.
 
 ---
 
-## 4. Interaction with CDS pricing
+## Interaction with CDS pricing
+
 
 For CDS:
 - counterparty risk affects premium valuation,
@@ -49,7 +54,8 @@ For CDS:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Valuation adjustments are essential for realistic pricing.
 - CVA, DVA, and FVA materially affect values.
@@ -58,6 +64,7 @@ For CDS:
 ---
 
 ## Further reading
+
 
 - Gregory, *Counterparty Credit Risk*.
 - Brigo, Morini & Pallavicini, XVA theory.

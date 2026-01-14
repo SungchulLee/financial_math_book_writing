@@ -1,10 +1,12 @@
 # Butterfly Spreads
 
+
 **Butterfly spreads** are neutral options strategies that profit from low volatility by combining multiple vertical spreads to create a position with limited risk, limited profit, and maximum gain when the stock stays near a target price.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -36,9 +38,11 @@ $$
 
 ## What Is a Butterfly Spread?
 
+
 **The classic neutral strategy:**
 
 ### 1. The Structure
+
 
 **Long Call Butterfly (most common):**
 
@@ -74,6 +78,7 @@ $$
 
 ### 2. The Name Origin
 
+
 **Visual representation of payoff:**
 
 ```
@@ -98,6 +103,7 @@ $$
 - Maximum "wingspan" = max profit
 
 ### 3. Why Use a Butterfly?
+
 
 **You use butterflies when:**
 
@@ -127,13 +133,16 @@ $$
 ## Types of Butterflies
 
 
+
 ---
 
 ## Economic
 
+
 **Understanding what butterfly spreads REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 Butterfly spreads represent a fundamental economic proposition: **trading probability of profit for magnitude of profit**. Unlike directional strategies (high risk, high reward) or credit spreads (high probability, small reward), butterflies occupy a unique middle ground.
 
@@ -160,6 +169,7 @@ $$
 - **Trade-off:** Gave up probability (must land in narrow range) for lower cost and defined risk
 
 ### 2. Why This Structure Exists Economically
+
 
 Markets create butterflies because of **fundamental disagreements about future volatility**:
 
@@ -237,6 +247,7 @@ $$
 **If stock moves:** Gamma/vega overwhelm theta → Loss (but capped!)
 
 ### 3. Professional Institutional Perspective
+
 
 **How institutions actually use butterflies:**
 
@@ -356,6 +367,7 @@ $$
 
 ### 4. The Volatility Smile and Butterfly Pricing
 
+
 **Key insight:** Butterfly pricing depends heavily on volatility skew.
 
 **In equity markets (put skew):**
@@ -400,6 +412,7 @@ $$
 
 ### 5. The Behavioral Finance Angle
 
+
 **Why butterflies offer edge:**
 
 **1. Volatility overestimation:**
@@ -435,6 +448,7 @@ $$
 **Professional edge:** Know WHEN butterflies have genuine edge (post-spike, in mean-reversion regimes).
 
 ### 6. The Mathematics of Butterfly Economics
+
 
 **Break-even probability calculation:**
 
@@ -501,6 +515,7 @@ $$
 - **Expected value:** 0.42 × $3.00 - 0.58 × $2.00 = $1.26 - $1.16 = **+$0.10** (positive edge!)
 
 ### 7. Understanding the Economic Foundations
+
 
 **Key insights from butterflies:**
 
@@ -571,6 +586,7 @@ Understanding economic foundations helps you recognize:
 
 ### 8. Long Call Butterfly (Most Common)
 
+
 **Structure:**
 
 - Buy 1 ITM call
@@ -611,6 +627,7 @@ Understanding economic foundations helps you recognize:
 
 ### 9. Long Put Butterfly
 
+
 **Structure:**
 
 - Buy 1 OTM put (low strike)
@@ -640,6 +657,7 @@ Understanding economic foundations helps you recognize:
 **Put-call parity:** Call and put butterflies at same strikes have same payoff!
 
 ### 10. Iron Butterfly
+
 
 **Structure:**
 
@@ -685,6 +703,7 @@ Understanding economic foundations helps you recognize:
 
 ### 11. Broken Wing Butterfly
 
+
 **Structure:**
 
 - Unequal spacing of strikes
@@ -710,6 +729,7 @@ Understanding economic foundations helps you recognize:
 - Advanced variation
 
 ### 12. Reverse (Short) Butterfly
+
 
 **Structure:**
 
@@ -743,9 +763,11 @@ Understanding economic foundations helps you recognize:
 
 ## Concrete Example
 
+
 **Complete walkthrough:**
 
 ### 1. Setup
+
 
 - **Stock:** SPY at $450
 
@@ -764,6 +786,7 @@ Understanding economic foundations helps you recognize:
 | $455 | $2.50 | $7.50 |
 
 ### 2. The Trade
+
 
 **Execute:**
 
@@ -788,6 +811,7 @@ Understanding economic foundations helps you recognize:
 - Breakevens: $446, $454
 
 ### 3. The Math
+
 
 **At each strike:**
 
@@ -855,6 +879,7 @@ Understanding economic foundations helps you recognize:
 
 ### 4. 1
 
+
 **At expiration:**
 
 - SPY exactly at $450
@@ -868,6 +893,7 @@ Understanding economic foundations helps you recognize:
 **Why it worked:** Stock pinned exactly at middle strike (rare but beautiful)
 
 ### 5. 2
+
 
 **At expiration:**
 
@@ -887,6 +913,7 @@ Understanding economic foundations helps you recognize:
 
 ### 6. 3
 
+
 **At expiration:**
 
 - SPY at $460 (big move up)
@@ -903,6 +930,7 @@ Understanding economic foundations helps you recognize:
 
 ### 7. 4
 
+
 **At expiration:**
 
 - SPY at $440 (moved down)
@@ -918,6 +946,7 @@ Understanding economic foundations helps you recognize:
 **Wrong:** Stock moved too much (other direction)
 
 ### 8. 5
+
 
 **After 15 days:**
 
@@ -943,7 +972,9 @@ Understanding economic foundations helps you recognize:
 
 ## Butterfly Mechanics
 
+
 ### 1. Strike Spacing
+
 
 **Equal spacing required (for standard butterfly):**
 
@@ -993,6 +1024,7 @@ Understanding economic foundations helps you recognize:
 
 ### 2. The Greeks
 
+
 **Delta:**
 
 - Near zero (neutral)
@@ -1035,15 +1067,18 @@ Understanding economic foundations helps you recognize:
 
 ## Iron Butterfly Example
 
+
 **The credit version:**
 
 ### 1. Setup
+
 
 - **Stock:** AAPL at $180
 
 - **Strategy:** 45-day iron butterfly
 
 ### 2. The Trade
+
 
 **Execute:**
 
@@ -1070,6 +1105,7 @@ Understanding economic foundations helps you recognize:
 - Risk/reward: Risk $300 to make $700
 
 ### 3. Payoff Analysis
+
 
 **At $180 (max profit):**
 
@@ -1107,6 +1143,7 @@ Understanding economic foundations helps you recognize:
 
 ### 4. Iron Butterfly vs. Iron Condor
 
+
 | Aspect | Iron Butterfly | Iron Condor |
 |--------|---------------|-------------|
 | **Short strikes** | Same (ATM both) | Different (OTM both) |
@@ -1121,7 +1158,9 @@ Understanding economic foundations helps you recognize:
 
 ## When to Use Butterflies
 
+
 ### 1. Favorable Conditions
+
 
 **1. Low volatility expected:**
 
@@ -1173,6 +1212,7 @@ Understanding economic foundations helps you recognize:
 
 ### 2. Unfavorable Conditions
 
+
 **1. High volatility expected:**
 
 - Earnings coming
@@ -1215,6 +1255,7 @@ Understanding economic foundations helps you recognize:
 
 ## Butterfly vs. Straddle (The Opposite)
 
+
 **The fundamental contrast:**
 
 | Aspect | Butterfly | Straddle |
@@ -1250,7 +1291,9 @@ Understanding economic foundations helps you recognize:
 
 ## Advanced Variations
 
+
 ### 1. Unbalanced Butterfly
+
 
 **Structure:**
 
@@ -1272,6 +1315,7 @@ Understanding economic foundations helps you recognize:
 
 ### 2. Skip-Strike Butterfly
 
+
 **Structure:**
 
 - Skipped strikes in middle
@@ -1288,6 +1332,7 @@ Understanding economic foundations helps you recognize:
 
 ### 3. Double Butterfly
 
+
 **Structure:**
 
 - Two butterflies at different centers
@@ -1303,6 +1348,7 @@ Understanding economic foundations helps you recognize:
 - Bimodal expectations
 
 ### 4. Condor (Related Strategy)
+
 
 **Structure:**
 
@@ -1325,9 +1371,11 @@ Understanding economic foundations helps you recognize:
 
 ## Practical Guidance
 
+
 **Step-by-step butterfly implementation:**
 
 ### 1. Critical Pre-Trade Checklist
+
 
 ☐ **Consolidation confirmed?** (3+ days range-bound)  
 ☐ **IV 45-70th percentile?** (Sweet spot)  
@@ -1338,6 +1386,7 @@ Understanding economic foundations helps you recognize:
 ☐ **Technical support/resistance?** (Wings align with key levels)
 
 ### 2. Step 1
+
 
 **Only enter butterflies when:**
 
@@ -1357,6 +1406,7 @@ Understanding economic foundations helps you recognize:
 
 ### 3. Step 2
 
+
 **Center strike:** At current price or expected target  
 **Wing width:** $5-$10 for stocks, $5-$25 for indices  
 **Target cost:** 40-60% of wing width
@@ -1373,6 +1423,7 @@ Understanding economic foundations helps you recognize:
 
 ### 4. Step 3
 
+
 $$
 \text{Max Contracts} = \frac{\text{Portfolio} \times 2\%}{\text{Debit} \times 100}
 $$
@@ -1381,6 +1432,7 @@ $$
 **Max:** $1,000 / $250 = **4 contracts**
 
 ### 5. Step 4
+
 
 1. **Multi-leg order** (all 3-4 legs simultaneously)
 
@@ -1391,6 +1443,7 @@ $$
 4. **Set alerts:** Breakevens, 50% profit, 80% loss
 
 ### 6. Step 5
+
 
 **Profit targets:**
 
@@ -1412,6 +1465,7 @@ $$
 
 ### 7. Step 6
 
+
 **Generally:** Close butterflies rather than adjust
 
 **Only adjust if:**
@@ -1432,6 +1486,7 @@ $$
 
 ### 8. Step 7
 
+
 | Date | Center | Width | Cost | DTE | IV% | Exit | P&L | Win? |
 |------|--------|-------|------|-----|-----|------|-----|------|
 | 1/15 | $180 | $5 | $2.50 | 45 | 58% | D30 | +$1.20 | ✓ |
@@ -1447,6 +1502,7 @@ $$
 - **Expectancy:** +$0.30-0.50 per trade
 
 ### 9. The Butterfly Trading Rules
+
 
 **Never trade when:**
 
@@ -1479,7 +1535,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Mistake 1
+
 
 ❌ **Wrong:**
 
@@ -1507,6 +1565,7 @@ $$
 
 ### 2. Mistake 2
 
+
 ❌ **Wrong:**
 
 - Buy butterfly before earnings
@@ -1532,6 +1591,7 @@ $$
 - Avoid high IV entry
 
 ### 3. Mistake 3
+
 
 ❌ **Wrong:**
 
@@ -1561,6 +1621,7 @@ $$
 
 ### 4. Mistake 4
 
+
 ❌ **Wrong:**
 
 - Too long (60+ days): expensive, theta slow
@@ -1576,6 +1637,7 @@ $$
 - Enough time to work
 
 ### 5. Mistake 5
+
 
 ❌ **Wrong:**
 
@@ -1605,7 +1667,9 @@ $$
 
 ## Position Management
 
+
 ### 1. Taking Profits
+
 
 **Guidelines:**
 
@@ -1643,6 +1707,7 @@ $$
 
 ### 2. Managing Losers
 
+
 **If stock moves outside range:**
 
 **Early in trade:**
@@ -1668,6 +1733,7 @@ $$
 - Or exit at 7-14 days before expiry
 
 ### 3. Rolling
+
 
 **If stock drifts slightly:**
 

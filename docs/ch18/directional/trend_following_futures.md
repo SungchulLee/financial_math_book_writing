@@ -1,6 +1,8 @@
 # Trend Following with
 
+
 ## Overview
+
 Trend following in futures focuses on capturing sustained directional moves using liquid, leveraged instruments across asset classes. Unlike options-based trend strategies, futures trend following relies on **price momentum, volatility targeting, and risk-managed position sizing**, rather than convexity or implied volatility.
 
 This chapter presents a **systematic, asset-agnostic framework** used by CTAs and managed futures funds.
@@ -8,6 +10,7 @@ This chapter presents a **systematic, asset-agnostic framework** used by CTAs an
 ---
 
 ## Instruments
+
 - Equity index futures (ES, NQ, RTY, DAX)
 - Rates futures (TY, US, Bund)
 - FX futures (6E, 6J, 6B)
@@ -23,6 +26,7 @@ Key properties:
 
 ## Trend Definition
 
+
 Common trend signals:
 - Moving average crossovers (time-series momentum)
 - Breakout rules (e.g. 20–55 day highs/lows)
@@ -37,6 +41,7 @@ Trends are **directional, persistent, and regime-dependent**.
 ---
 
 ## Position Sizing
+
 
 Risk is controlled via **volatility targeting**:
 
@@ -57,6 +62,7 @@ This ensures:
 
 ## Portfolio
 
+
 - Cross-asset diversification
 - Correlation-aware aggregation
 - Dynamic scaling
@@ -71,6 +77,7 @@ Trend following profits primarily from **crisis convexity and tail persistence**
 ---
 
 ## Risk Management
+
 
 Key risks:
 - Trend reversals
@@ -87,6 +94,7 @@ Controls:
 
 ## Carry and Roll Yield
 
+
 Futures PnL decomposes into:
 - Spot return
 - Roll yield
@@ -97,6 +105,7 @@ Backwardation benefits long trends; contango penalizes them.
 ---
 
 ## Regime Behavior
+
 
 Trend following performs best during:
 - Macro dislocations
@@ -111,6 +120,7 @@ Underperforms during:
 
 ## Comparison with
 
+
 | Aspect | Futures | Options |
 |------|--------|---------|
 | Payoff | Linear | Convex |
@@ -121,6 +131,7 @@ Underperforms during:
 ---
 
 ## Institutional
+
 
 Used by:
 - CTAs
@@ -133,6 +144,7 @@ Trend following futures are often deployed as **portfolio insurance** rather tha
 ---
 
 ## Futures trend
+
 
 Futures trend following is:
 - Systematic

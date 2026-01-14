@@ -1,10 +1,12 @@
 # Market Impact
 
+
 **Market impact** refers to the price movement caused by executing trades. It is a key component of liquidity risk and trading cost.
 
 ---
 
-## 1. Types of market impact
+## Types of market impact
+
 
 Market impact is often decomposed into:
 - **temporary impact:** short-lived price pressure,
@@ -14,7 +16,8 @@ Both affect realized execution prices.
 
 ---
 
-## 2. Determinants of impact
+## Determinants of impact
+
 
 Market impact depends on:
 - trade size relative to market depth,
@@ -25,7 +28,8 @@ Impact is nonlinear in trade size.
 
 ---
 
-## 3. Modeling market impact
+## Modeling market impact
+
 
 Common models include:
 - linear impact models,
@@ -36,7 +40,8 @@ These models guide execution strategies.
 
 ---
 
-## 4. Risk management implications
+## Risk management implications
+
 
 Ignoring market impact:
 - understates liquidation losses,
@@ -47,7 +52,8 @@ Market impact is critical in stress scenarios.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Trading itself moves prices.
 - Market impact is nonlinear and state-dependent.
@@ -56,6 +62,7 @@ Market impact is critical in stress scenarios.
 ---
 
 ## Further reading
+
 
 - Almgren & Chriss, optimal execution.
 - Bouchaud et al., market impact studies.

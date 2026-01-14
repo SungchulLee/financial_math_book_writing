@@ -1,10 +1,12 @@
 # Fitting Initial Yield Curves
 
+
 A fundamental requirement of any interest-rate model is the **exact fit of the initial yield curve**. Since discount factors are directly observable from the market, a model must reproduce them to avoid static arbitrage.
 
 ---
 
-## 1. Market input and bootstrapping
+## Market input and bootstrapping
+
 
 The market provides quotes for liquid instruments such as:
 - deposits and short-term rates,
@@ -15,7 +17,8 @@ From these, a discount curve \(P(0,T)\) is constructed via **bootstrapping**, en
 
 ---
 
-## 2. Curve fitting vs model fitting
+## Curve fitting vs model fitting
+
 
 Two conceptually distinct steps are involved:
 
@@ -26,7 +29,8 @@ Modern practice treats curve construction as a pre-model step.
 
 ---
 
-## 3. Exact fit techniques
+## Exact fit techniques
+
 
 Common approaches to enforce exact fit include:
 
@@ -38,7 +42,8 @@ Exact fit is essential for pricing curve-sensitive products.
 
 ---
 
-## 4. Consequences of poor curve fit
+## Consequences of poor curve fit
+
 
 Failure to match the initial curve leads to:
 - immediate arbitrage,
@@ -49,7 +54,8 @@ Thus, curve fitting is non-negotiable in practice.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - The initial yield curve must be fitted exactly.
 - Curve construction and model calibration are separate tasks.
@@ -58,6 +64,7 @@ Thus, curve fitting is non-negotiable in practice.
 ---
 
 ## Further reading
+
 
 - Brigo & Mercurio, curve construction.
 - Andersen & Piterbarg, interest-rate modeling practice.

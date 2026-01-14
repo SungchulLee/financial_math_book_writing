@@ -1,10 +1,12 @@
 # Bond Pricing via Feynman–Kac
 
+
 An alternative and often more intuitive approach to bond pricing uses the **Feynman–Kac formula**, which expresses prices as expectations of discounted cashflows under the risk-neutral measure.
 
 ---
 
-## 1. Risk-neutral valuation
+## Risk-neutral valuation
+
 
 The fundamental pricing relation is
 
@@ -21,7 +23,8 @@ This holds for any arbitrage-free short-rate model under \(\mathbb{Q}\).
 
 ---
 
-## 2. Feynman–Kac theorem
+## Feynman–Kac theorem
+
 
 The Feynman–Kac theorem states that the function
 
@@ -41,7 +44,8 @@ Thus:
 
 ---
 
-## 3. Closed-form evaluation
+## Closed-form evaluation
+
 
 For affine short-rate models:
 - the integral \(\int_t^T r_s ds\) is Gaussian (Vasicek) or non-central chi-square (CIR),
@@ -50,7 +54,8 @@ For affine short-rate models:
 
 ---
 
-## 4. Monte Carlo interpretation
+## Monte Carlo interpretation
+
 
 The Feynman–Kac form enables:
 - Monte Carlo pricing of bonds,
@@ -61,7 +66,8 @@ However, Monte Carlo is usually inefficient for plain bonds compared to closed f
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Bond prices are discounted expectations under \(\mathbb{Q}\).
 - Feynman–Kac links PDEs and probabilistic pricing.
@@ -70,6 +76,7 @@ However, Monte Carlo is usually inefficient for plain bonds compared to closed f
 ---
 
 ## Further reading
+
 
 - Karatzas & Shreve, *Brownian Motion and Stochastic Calculus*.
 - Björk, *Arbitrage Theory in Continuous Time*.

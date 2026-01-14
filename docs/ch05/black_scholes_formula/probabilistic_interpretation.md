@@ -1,14 +1,17 @@
 # Probabilistic Interpretation of the Black-Scholes Formula
 
+
 The Black-Scholes formula is not merely a mathematical expression—it has deep **probabilistic meaning**. The terms $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ represent probabilities under different measures, and the formula can be understood as a weighted average of terminal payoffs.
 
 This section reveals the probabilistic structure underlying the option pricing formula.
 
 ---
 
-## 1. Risk-Neutral Expectation
+## Risk-Neutral Expectation
 
-### **Fundamental Pricing Formula**
+
+### 1. **Fundamental Pricing Formula**
+
 
 Under the risk-neutral measure $\mathbb{Q}$, the option price is:
 
@@ -22,7 +25,8 @@ $$
 C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]
 $$
 
-### **Terminal Stock Price Distribution**
+### 2. **Terminal Stock Price Distribution**
+
 
 Under $\mathbb{Q}$, the terminal stock price is:
 
@@ -38,7 +42,8 @@ $$
 \log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \frac{1}{2}\sigma^2\right)T, \sigma^2 T\right)
 $$
 
-### **Decomposition of Call Expectation**
+### 3. **Decomposition of Call Expectation**
+
 
 $$
 \begin{aligned}
@@ -51,9 +56,11 @@ This reveals two key probabilities we need to evaluate.
 
 ---
 
-## 2. The Meaning of $\mathcal{N}(d_2)$
+## The Meaning of $\mathcal{N}(d_2)$
 
-### **Exercise Probability Under $\mathbb{Q}$**
+
+### 1. **Exercise Probability Under $\mathbb{Q}$**
+
 
 $$
 \boxed{\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)}
@@ -61,7 +68,8 @@ $$
 
 **Interpretation**: $\mathcal{N}(d_2)$ is the **risk-neutral probability** that the option expires in-the-money.
 
-### **Derivation**
+### 2. **Derivation**
+
 
 Under $\mathbb{Q}$:
 
@@ -85,7 +93,8 @@ $$
 d_2 = \frac{\log(S_0/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = -\frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
 $$
 
-### **Intuition**
+### 3. **Intuition**
+
 
 - If $d_2 > 0$: More than 50% probability of finishing ITM
 - If $d_2 = 0$: Exactly 50% probability (ATM forward)
@@ -101,9 +110,11 @@ $$
 
 ---
 
-## 3. The Meaning of $\mathcal{N}(d_1)$
+## The Meaning of $\mathcal{N}(d_1)$
 
-### **Stock Measure Probability**
+
+### 1. **Stock Measure Probability**
+
 
 $\mathcal{N}(d_1)$ is the probability of exercise under the **stock measure** $\mathbb{Q}^S$ (where the stock is used as numeraire):
 
@@ -111,7 +122,8 @@ $$
 \boxed{\mathcal{N}(d_1) = \mathbb{Q}^S(S_T > K)}
 $$
 
-### **Derivation via Measure Change**
+### 2. **Derivation via Measure Change**
+
 
 Under the stock measure, the Radon-Nikodym derivative is:
 
@@ -133,7 +145,8 @@ $$
 \mathbb{Q}^S(S_T > K) = \mathcal{N}\left(\frac{\log(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_1)
 $$
 
-### **Alternative Interpretation: Delta**
+### 3. **Alternative Interpretation: Delta**
+
 
 $\mathcal{N}(d_1)$ also equals the option's **delta** (hedge ratio):
 
@@ -143,7 +156,8 @@ $$
 
 This is **not a coincidence**—the delta naturally emerges as the stock-measure probability through the replication argument.
 
-### **Relationship Between $d_1$ and $d_2$**
+### 4. **Relationship Between $d_1$ and $d_2$**
+
 
 $$
 d_1 = d_2 + \sigma\sqrt{T}
@@ -155,9 +169,11 @@ The difference $\sigma\sqrt{T}$ represents the **volatility-time effect** that s
 
 ---
 
-## 4. The Two-Term Structure
+## The Two-Term Structure
 
-### **Call Option**
+
+### 1. **Call Option**
+
 
 $$
 C_0 = \underbrace{S_0\mathcal{N}(d_1)}_{\text{Expected stock receipt}} - \underbrace{Ke^{-rT}\mathcal{N}(d_2)}_{\text{Expected strike payment}}
@@ -174,7 +190,8 @@ $$
    - This is **not** simply $\mathbb{E}^{\mathbb{Q}}[S_T | S_T > K]$
    - Rather, it equals $e^{-rT}\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T > K\}}]$ after evaluation
 
-### **Conditional Expectation Decomposition**
+### 2. **Conditional Expectation Decomposition**
+
 
 Define:
 - $p = \mathbb{Q}(S_T > K) = \mathcal{N}(d_2)$
@@ -200,7 +217,8 @@ $$
 
 which simplifies to the BS formula.
 
-### **Put Option**
+### 3. **Put Option**
+
 
 $$
 P_0 = \underbrace{Ke^{-rT}\mathcal{N}(-d_2)}_{\text{Expected strike receipt}} - \underbrace{S_0\mathcal{N}(-d_1)}_{\text{Expected stock surrender}}
@@ -218,7 +236,8 @@ $$
 
 ---
 
-## 5. Summary of Probabilities
+## Summary of Probabilities
+
 
 | Term | Formula | Meaning | Measure |
 |------|---------|---------|---------|
@@ -231,7 +250,8 @@ $$
 
 ---
 
-## 6. Numerical Example
+## Numerical Example
+
 
 Consider:
 - $S_0 = 100$, $K = 100$ (ATM)
@@ -276,9 +296,11 @@ $$
 
 ---
 
-## 7. Why Two Different Probabilities?
+## Why Two Different Probabilities?
 
-### **The Measure Change Effect**
+
+### 1. **The Measure Change Effect**
+
 
 The shift from $\mathbb{Q}$ to $\mathbb{Q}^S$ changes the drift of the stock price:
 
@@ -298,7 +320,8 @@ Expected return = $r + \sigma^2$ (higher!)
 
 The stock measure gives more weight to paths where $S_T$ is large, increasing the probability of $S_T > K$.
 
-### **Girsanov's Theorem**
+### 2. **Girsanov's Theorem**
+
 
 The Brownian motions under the two measures are related by:
 
@@ -312,7 +335,8 @@ $$
 d_1 = d_2 + \sigma\sqrt{T}
 $$
 
-### **Economic Intuition**
+### 3. **Economic Intuition**
+
 
 - **Risk-neutral measure**: Used for pricing—treats all investors as risk-neutral
 - **Stock measure**: Used for hedging—gives the delta (hedge ratio)
@@ -321,7 +345,8 @@ The difference captures the **risk premium** embedded in the stock.
 
 ---
 
-## 8. Connection to Delta Hedging
+## Connection to Delta Hedging
+
 
 The hedge ratio (delta) for a call is:
 
@@ -341,9 +366,11 @@ The $\Delta$ that replicates the option is exactly the probability under the mea
 
 ---
 
-## 9. Limiting Cases
+## Limiting Cases
 
-### **Deep In-the-Money** ($S \gg K$)
+
+### 1. **Deep In-the-Money** ($S \gg K$)
+
 
 - $d_1, d_2 \to +\infty$
 - $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1$
@@ -356,7 +383,8 @@ C \to S - Ke^{-rT}
 $$
 (intrinsic value plus cost of carry)
 
-### **Deep Out-of-the-Money** ($S \ll K$)
+### 2. **Deep Out-of-the-Money** ($S \ll K$)
+
 
 - $d_1, d_2 \to -\infty$
 - $\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0$
@@ -368,7 +396,8 @@ $$
 C \to 0
 $$
 
-### **At-the-Money Forward** ($S = Ke^{-rT}$)
+### 3. **At-the-Money Forward** ($S = Ke^{-rT}$)
+
 
 - $d_1 = \frac{\sigma\sqrt{T}}{2}$, $d_2 = -\frac{\sigma\sqrt{T}}{2}$
 - $\mathcal{N}(d_1) = \mathcal{N}(-d_2) \approx 0.5 + \delta$
@@ -379,6 +408,7 @@ Both probabilities are near 50%, symmetrically distributed around 0.5.
 ---
 
 ## Summary
+
 
 The Black-Scholes formula has a deep probabilistic structure:
 

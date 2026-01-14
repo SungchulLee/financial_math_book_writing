@@ -1,5 +1,6 @@
 # Dispersion Trading
 
+
 **Dispersion trading** is a strategy where you profit from the difference between index volatility and the weighted average of individual stock volatilities by exploiting the correlation structure of the market.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_correlation.png?raw=true" alt="dispersion_trading_correlation" width="700">
@@ -48,6 +50,7 @@ $$
 
 ## The
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_pnl.png?raw=true" alt="dispersion_trading_pnl" width="700">
 </p>
@@ -56,6 +59,7 @@ $$
 **This is CRUCIAL to understand:**
 
 ### 1. A Simple Example
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_realized_implied.png?raw=true" alt="dispersion_trading_realized_implied" width="700">
@@ -106,6 +110,7 @@ $$
 
 ## What Is Dispersion
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_vol_comparison.png?raw=true" alt="dispersion_trading_vol_comparison" width="700">
 </p>
@@ -114,6 +119,7 @@ $$
 **Dispersion trading is betting on the CORRELATION structure:**
 
 ### 1. The Fundamental
+
 
 **Classic "Long Dispersion" (Most Common):**
 
@@ -145,6 +151,7 @@ $$
 
 ## The Basic Idea
 
+
 **What you do (Long Dispersion):**
 
 1. **Choose an index** (e.g., S&P 500, but often use a smaller basket like 10-20 stocks)
@@ -166,6 +173,7 @@ $$
 ---
 
 ## The Portfolio
+
 
 Your dispersion trading portfolio consists of:
 
@@ -228,9 +236,11 @@ Approximately market-cap weighted, adjusted for vega matching.
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 **Dispersion trading is fundamentally trading the value of diversification.**
 
@@ -258,6 +268,7 @@ When you go **short dispersion**, you're betting:
 
 ### 2. The Dispersion
 
+
 **Historical observation:**
 
 $$
@@ -283,6 +294,7 @@ Just as $\sigma^{\text{implied}} > \sigma^{\text{realized}}$ (vol risk premium),
 **Long dispersion collects this premium** (similar to selling volatility collects vol risk premium).
 
 ### 3. Why This
+
 
 **Market participants with different needs:**
 
@@ -316,6 +328,7 @@ Just as $\sigma^{\text{implied}} > \sigma^{\text{realized}}$ (vol risk premium),
 
 ### 4. The Correlation
 
+
 **Professional perspective:** Options market has a full **correlation surface**:
 
 $$
@@ -333,6 +346,7 @@ Different strikes, expirations, and basket compositions imply different correlat
 - **Cross-sectional dispersion:** Sector vs. index correlation
 
 ### 5. Fair Value
+
 
 **Theoretical fair value of dispersion trade:**
 
@@ -357,6 +371,7 @@ $$
 If realized correlation falls below this, long dispersion profits.
 
 ### 6. The Macro
+
 
 **Correlation is NOT constant:**
 
@@ -383,6 +398,7 @@ $$
 **Strategic implication:** Enter long dispersion in high-correlation regimes (expecting mean reversion), exit in low-correlation regimes.
 
 ### 7. Professional
+
 
 **Institutional traders view dispersion as:**
 
@@ -436,9 +452,11 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Understanding
 
+
 **Before we can understand dispersion trading P&L, we need implied correlation:**
 
 ### 1. What Is Implied
+
 
 **From options, we observe:**
 
@@ -455,6 +473,7 @@ $$
 **This is the correlation that the market is pricing in!**
 
 ### 2. Market data: SPX
+
 
 **Market data:**
 
@@ -514,6 +533,7 @@ $$
 
 ### 3. Implied
 
+
 **Typical values:**
 
 ```
@@ -534,6 +554,7 @@ Crisis (VIX 50+):    Implied ρ ≈ 70-90%
 
 ### 4. The Correlation
 
+
 **Just like vol has term structure, so does correlation:**
 
 ```
@@ -549,6 +570,7 @@ Tenor:
 
 ## The P&L Formula
 
+
 **For a dispersion trade, the P&L is complex, but conceptually:**
 
 $$
@@ -558,6 +580,7 @@ $$
 **Breaking it down:**
 
 ### 1. Correlation P&L
+
 
 **This is what you're trading:**
 
@@ -597,6 +620,7 @@ If stocks move together (high correlation):
 
 ### 2. Vega P&L (Side
 
+
 **Changes in implied volatilities affect position value:**
 
 $$
@@ -623,6 +647,7 @@ Market selloff:
 
 ### 3. Gamma P&L
 
+
 **Daily profit/loss from delta rebalancing:**
 
 $$
@@ -634,6 +659,7 @@ $$
 **Key insight:** The more stocks move independently, the more gamma P&L you make from rebalancing individual positions.
 
 ### 4. Theta P&L (Time
+
 
 **Daily cost of holding options:**
 
@@ -653,6 +679,7 @@ $$
 
 ### 5. Complete Daily
 
+
 **Putting it together:**
 
 $$
@@ -665,7 +692,9 @@ $$
 
 ## Long vs. Short
 
+
 ### 1. Long Dispersion
+
 
 **Structure:**
 
@@ -709,6 +738,7 @@ $$
 
 ### 2. Short Dispersion
 
+
 **Structure:**
 
 - Long index options
@@ -749,6 +779,7 @@ $$
 
 ### 3. Comparison
 
+
 | Aspect | Long Dispersion | Short Dispersion |
 |--------|----------------|------------------|
 | **Position** | Long stocks, short index | Short stocks, long index |
@@ -765,9 +796,11 @@ $$
 
 ## Let's make this
 
+
 **Let's make this concrete with a simplified example:**
 
 ### 1. Setup
+
 
 **Choose basket:**
 
@@ -787,6 +820,7 @@ $$
 
 ### 2. Index options:
 
+
 **Index options:**
 
 - Sell 1 ATM call (25 IV)
@@ -804,6 +838,7 @@ $$
 - $\Theta_{\text{index}} = +15$ /day
 
 ### 3. For each stock
+
 
 **For each stock (A, B, C, D, E):**
 
@@ -831,6 +866,7 @@ $$
 
 ### 4. Net Greeks:
 
+
 **Net Greeks:**
 
 - $\Gamma_{\text{net}} = 0.075 - 0.05 = 0.025$ (long gamma)
@@ -849,6 +885,7 @@ $$
 
 ### 5. Initial deltas:
 
+
 **Initial deltas:**
 
 - Index: $\Delta_{\text{index}} = 0$ (sold ATM straddle)
@@ -858,6 +895,7 @@ $$
 **Hedge needed:** None initially (already delta neutral).
 
 ### 6. Day 1 moves:
+
 
 **Day 1 moves:**
 
@@ -941,6 +979,7 @@ $$
 
 ### 7. Day 1 moves: All
 
+
 **Day 1 moves: All stocks move together**
 
 - Stock A, B, C, D, E: All +5%
@@ -979,7 +1018,9 @@ Or could even lose if theta dominates.
 
 ## Time Evolution and
 
+
 ### 1. Entry Timing
+
 
 **Best times to enter long dispersion:**
 
@@ -1017,6 +1058,7 @@ Or could even lose if theta dominates.
 
 ### 2. Position
 
+
 **Daily tasks:**
 
 1. **Delta rebalance**
@@ -1046,6 +1088,7 @@ Or could even lose if theta dominates.
    - Theta bleed acceptable?
 
 ### 3. Rebalancing
+
 
 **Delta rebalancing:**
 
@@ -1082,6 +1125,7 @@ Each rebalance costs bid-ask spread + commissions:
 **Professional approach:** Rebalance when delta exceeds threshold, not on fixed schedule.
 
 ### 4. Exit Strategies
+
 
 **Take profit when:**
 
@@ -1125,6 +1169,7 @@ Each rebalance costs bid-ask spread + commissions:
 
 ### 5. Roll Strategy
 
+
 **As expiration approaches:**
 
 Option 1: **Close entire position**
@@ -1161,7 +1206,9 @@ Option 2: **Roll forward**
 
 ## Analysis
 
+
 ### 1. Setup: VIX spike
+
 
 **Setup:**
 
@@ -1198,6 +1245,7 @@ Theta P&L: Slightly negative
 
 ### 2. Setup: Enter long
 
+
 **Setup:**
 
 - Enter long dispersion after initial VIX spike
@@ -1230,6 +1278,7 @@ Theta P&L: Negative
 - "All correlations go to 1" in crisis
 
 ### 3. Setup: Enter long
+
 
 **Setup:**
 
@@ -1268,6 +1317,7 @@ Theta P&L: Negative (-$15/day × 60 = -$900)
 
 ### 4. Setup: Enter long
 
+
 **Setup:**
 
 - Enter long dispersion
@@ -1298,6 +1348,7 @@ Theta P&L: Negative
 - Unintended profit source
 
 ### 5. Setup: Enter
+
 
 **Setup:**
 
@@ -1333,7 +1384,9 @@ Theta P&L: -$100
 
 ## Risk Management
 
+
 ### 1. Position Sizing
+
 
 **Maximum size calculation:**
 
@@ -1358,6 +1411,7 @@ $$
 3. **Correlation to other trades:** Consider correlations with other strategies
 
 ### 2. Greeks Limits
+
 
 **Set hard limits on Greeks exposure:**
 
@@ -1387,6 +1441,7 @@ $$
 
 ### 3. Correlation Risk
 
+
 **Monitor correlation exposure:**
 
 $$
@@ -1409,6 +1464,7 @@ $$
 
 ### 4. Stop Loss Rules
 
+
 **Hard stops:**
 
 1. **Portfolio-level:** Exit if position down 20-30%
@@ -1420,6 +1476,7 @@ $$
 4. **Time-based:** Exit if no progress after 50% of time elapsed
 
 ### 5. Operational Risk
+
 
 **Dispersion is operationally complex:**
 
@@ -1442,6 +1499,7 @@ $$
 - Have backup systems
 
 ### 6. Crisis Risk (The
+
 
 **"All correlations go to 1 in a crisis"**
 
@@ -1477,7 +1535,9 @@ $$
 
 ## Advanced Topics
 
+
 ### 1. Dispersion vs.
+
 
 **Dispersion trading:** Options-based, delta hedged
 
@@ -1507,6 +1567,7 @@ $$
 
 ### 2. Sector vs. Index
 
+
 **Instead of index vs. stocks, trade sector vs. stocks:**
 
 Example:
@@ -1531,6 +1592,7 @@ Example:
 
 ### 3. Cross-Asset
 
+
 **Extend concept across asset classes:**
 
 - Short multi-asset index (e.g., balanced fund)
@@ -1542,6 +1604,7 @@ Example:
 **Professional application:** Risk parity funds use this to manage correlation exposure.
 
 ### 4. Implied vs. Local
+
 
 **Two types of correlation:**
 
@@ -1561,7 +1624,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. The error:
+
 
 **The error:**
 "Correlation edge is 5%, so I'll make 5%!"
@@ -1590,6 +1655,7 @@ $$
 
 ### 2. The error: "Max
 
+
 **The error:**
 "Max loss is premium, so I can size large"
 
@@ -1612,6 +1678,7 @@ In crisis, correlation spikes:
 - Have stop losses
 
 ### 3. The error:
+
 
 **The error:**
 "Correlation is low (20%), let me go long dispersion"
@@ -1637,6 +1704,7 @@ Low correlation can stay low or go lower:
 - Trade the reversion, not the level
 
 ### 4. The error: "I
+
 
 **The error:**
 "I matched notionals, so I'm vega neutral"
@@ -1667,6 +1735,7 @@ Even with equal notionals, vegas differ by:
 
 ### 5. The error: "More
 
+
 **The error:**
 "More stocks = more diversification = better"
 
@@ -1694,6 +1763,7 @@ Even with equal notionals, vegas differ by:
 
 ### 6. The error:
 
+
 **The error:**
 "Correlation is rising, but my thesis says it should fall. Hold!"
 
@@ -1719,6 +1789,7 @@ Correlation can stay high longer than you can stay solvent:
 
 ### 7. The error:
 
+
 **The error:**
 "Options are for volatility, dividends don't matter"
 
@@ -1743,6 +1814,7 @@ Stock options affected by dividends:
 - Account for dividend in pricing
 
 ### 8. The error: "Vega
+
 
 **The error:**
 "Vega neutral means no exposure to volatility changes"
@@ -1774,6 +1846,7 @@ But you still have exposure to:
 
 ### 9. The error: "ATM
 
+
 **The error:**
 "ATM index options and ATM stock options, all set"
 
@@ -1796,6 +1869,7 @@ Skew differs between index and stocks:
 - Consider using multiple strikes
 
 ### 10. The error: "I'll
+
 
 **The error:**
 "I'll just see what happens and adjust"
@@ -1832,7 +1906,9 @@ Before entry, define:
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Setup:**
 
@@ -1898,6 +1974,7 @@ Before entry, define:
 
 ### 2. Transition Risk
 
+
 **Setup:**
 
 - June 2016, Brexit vote imminent
@@ -1949,6 +2026,7 @@ Before entry, define:
 **Key lesson:** Don't enter before binary events. Correlation can spike violently.
 
 ### 3. Portable Alpha
+
 
 **Setup:**
 
@@ -2004,6 +2082,7 @@ Day 5: -$4k
 **Key lesson:** Long dispersion is disastrous in beginning of crisis. Only enter AFTER peak.
 
 ### 4. Tactical Duration
+
 
 **Setup:**
 
@@ -2070,6 +2149,7 @@ Day 5: -$4k
 
 ### 5. Duration Hedge
 
+
 **Setup:**
 
 - Late 2019, trade war cooling
@@ -2128,6 +2208,7 @@ Day 5: -$4k
 
 ### 6. Common Patterns
 
+
 **Winners had:**
 
 1. Correct timing relative to correlation cycle
@@ -2154,9 +2235,11 @@ Day 5: -$4k
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -2206,6 +2289,7 @@ Calculate:
 
 ### 2. Enter LONG
 
+
 **Enter LONG dispersion when:**
 
 1. VIX >30 after spike (crisis aftermath)
@@ -2237,6 +2321,7 @@ Calculate:
 4. Mean reversion setup (correlation too low)
 
 ### 3. Select 10-20
+
 
 **Select 10-20 stocks:**
 
@@ -2272,6 +2357,7 @@ Use market-cap weighted or equal-weighted:
 
 ### 4. Calculate maximum
 
+
 **Calculate maximum position size:**
 
 $$
@@ -2299,6 +2385,7 @@ Before entering, verify:
 - $|\Theta_{\text{net}}| < \$50/\text{day per } \$100k$
 
 ### 5. Order of
+
 
 **Order of operations:**
 
@@ -2362,6 +2449,7 @@ Step 5: Delta hedge
 
 ### 6. Daily checklist
 
+
 **Daily checklist (5-10 minutes):**
 
 □ Check all deltas (should be near 0)
@@ -2399,6 +2487,7 @@ Step 5: Delta hedge
 - Let it fluctuate
 
 ### 7. Take profit
+
 
 **Take profit triggers (any one):**
 
@@ -2454,6 +2543,7 @@ VS. holding all: Might hit +60%, might fall to +30%
 
 ### 8. Track every
 
+
 **Track every trade:**
 
 ```
@@ -2493,6 +2583,7 @@ Lessons:
 ---
 
 ## Common Mistakes
+
 
 [Content as provided in original document]
 

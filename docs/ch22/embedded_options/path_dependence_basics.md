@@ -1,10 +1,12 @@
 # Path Dependence Basics
 
+
 **Path-dependent options** are derivatives whose payoff depends not just on the final price of the underlying asset at expiration, but on the entire path the asset price took to get there, including features like maximum, minimum, average prices, or whether certain barriers were crossed during the option's life.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is Path Dependence?
 
+
 ### 1. Strong vs. Weak
+
 
 **Two types of path dependence:**
 
@@ -52,6 +56,7 @@
 
 ### 2. Static vs. Dynamic Replication
 
+
 **Can we replicate without trading?**
 
 **Static replication (rare for path-dependent):**
@@ -71,6 +76,7 @@
 Path-dependent payoff at expiration depends on $S_t$ for all $t \in [0,T]$. A static portfolio of vanilla options only depends on $S_T$. Mathematically, the space of functions $V(S_0, S_1, ..., S_T)$ is much larger than $V(S_T)$, so vanilla options can't span path-dependent payoffs.
 
 ### 3. Memory in Pricing
+
 
 **State variables beyond current price:**
 
@@ -97,6 +103,7 @@ This is why path-dependent options are multidimensional in nature.
 
 ### 4. Volatility Smile Impact
 
+
 **Path dependence affects implied volatility:**
 
 **Observation:** Path-dependent options have different sensitivity to volatility skew than vanilla options.
@@ -120,6 +127,7 @@ This is why path-dependent options are multidimensional in nature.
 - Can be cheaper OR more expensive than vanilla
 
 ### 5. Computation Methods
+
 
 **How to price path-dependent options:**
 
@@ -152,6 +160,7 @@ This is why path-dependent options are multidimensional in nature.
 
 ### 6. Transaction Costs
 
+
 **Path dependence amplifies trading costs:**
 
 **Why:**
@@ -179,6 +188,7 @@ This is why path-dependent options are multidimensional in nature.
 
 ### 7. Early Exercise Considerations
 
+
 **American path-dependent options:**
 
 **Complexity multiplier:** Early exercise adds another dimension
@@ -203,6 +213,7 @@ Decision at time $t$:
 ---
 
 ## Key Terminology
+
 
 **Monitoring Frequency:**
 - Continuous: Path observed continuously (theoretical)
@@ -242,7 +253,9 @@ Decision at time $t$:
 
 ## Asian Options
 
+
 ### 1. Definition and Payoff
+
 
 **Average price options:**
 
@@ -267,6 +280,7 @@ $$
 $$
 
 ### 2. Why Use Asian Options?
+
 
 **Advantages:**
 
@@ -297,6 +311,7 @@ Airlines hedging fuel costs:
 - Vanilla option has basis risk (final ≠ average)
 
 ### 3. Pricing Methods
+
 
 **No closed form for arithmetic average:**
 
@@ -332,6 +347,7 @@ $$
 
 ### 4. Greeks for Asian Options
 
+
 **Delta:**
 
 $$
@@ -366,6 +382,7 @@ Because averaging reduces effective volatility.
 
 ### 5. Trading Strategies
 
+
 **Buy Asian calls when:**
 - Need to hedge average price exposure (natural matching)
 - Want cheaper option than vanilla (budget constraint)
@@ -386,7 +403,9 @@ Because averaging reduces effective volatility.
 
 ## Barrier Options
 
+
 ### 1. Definition and Types
+
 
 **Options that activate or deactivate at barriers:**
 
@@ -428,6 +447,7 @@ Example: $\text{Call} = \text{Down-and-out call} + \text{Down-and-in call}$
 
 ### 2. Pricing Formulas
 
+
 **Closed-form solutions exist!**
 
 **Down-and-out call (Black-Scholes framework):**
@@ -459,6 +479,7 @@ $$
 
 ### 3. Why Use Barrier Options?
 
+
 **Cost reduction:**
 
 **Example:**
@@ -484,6 +505,7 @@ Stock at $100, want call option
 - Pass savings to investor (higher coupons)
 
 ### 4. Risk Characteristics
+
 
 **Discontinuous Greeks near barrier:**
 
@@ -515,6 +537,7 @@ Down-and-out call, barrier at $95, stock at $96
 
 ### 5. Barrier Monitoring
 
+
 **Continuous vs. discrete:**
 
 **Continuous monitoring (theoretical):**
@@ -543,6 +566,7 @@ Stock at $100, down-and-out call with barrier at $90
 Why: Stock can dip to $89 intraday but close at $91 (survives under daily monitoring)
 
 ### 6. Rebates
+
 
 **Compensation for knockout:**
 
@@ -582,6 +606,7 @@ $$
 
 ### 7. Double Barriers
 
+
 **Two barriers (upper and lower):**
 
 **Double knock-out call:**
@@ -614,7 +639,9 @@ Stock at $100, double knock-out call
 
 ## Lookback Options
 
+
 ### 1. Definition
+
 
 **Payoff depends on maximum or minimum:**
 
@@ -644,6 +671,7 @@ You get to "look back" and sell at the HIGHEST price observed.
 
 ### 2. Why Lookback Options?
 
+
 **Perfect hindsight:**
 
 - Payoff as if you knew the future
@@ -665,6 +693,7 @@ Stock path: $100 → $110 → $95 → $105$
 
 ### 3. Closed-Form Pricing
 
+
 **Formulas exist (Goldman-Sosin-Gatto 1979):**
 
 **Floating strike lookback call:**
@@ -685,6 +714,7 @@ $$
 **Practical:** Again, use software - formulas are complex.
 
 ### 4. Greeks
+
 
 **Delta of lookback:**
 
@@ -714,6 +744,7 @@ $$
 
 ### 5. Partial Lookback
 
+
 **Reduce cost with caps/floors:**
 
 **Capped lookback call:**
@@ -738,6 +769,7 @@ Lookback call on stock at $100
 **Trade-off:** Give up extreme upside for cost savings
 
 ### 6. Shout Options
+
 
 **One-time reset:**
 
@@ -769,7 +801,9 @@ Stock path: $100 → $130 → $110$
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Monitoring Frequency
+
 
 **Continuous vs. discrete assumption:**
 
@@ -789,6 +823,7 @@ Down-and-out call, barrier at $90, stock at $100
 **Error:** If you paid $8.50 thinking continuous, you underpaid for what you got. Seller loses money. If you're the seller and priced at $8.50, **you lose $0.70 per contract**.
 
 ### 2. Barrier Option Delta Hedging
+
 
 **Impossible near barriers:**
 
@@ -816,6 +851,7 @@ Short 1000 down-and-out calls, barrier $95, stock at $96
 
 ### 3. Asian Option Timing Error
 
+
 **Early average vs. late average:**
 
 - **Mistake:** Buy Asian option late in its life (most of average already determined)
@@ -842,6 +878,7 @@ Short 1000 down-and-out calls, barrier $95, stock at $96
 
 ### 4. Forgetting Path Can't Be Undone
 
+
 **History is permanent:**
 
 - **Mistake:** Think barrier option that knocked out can "knock back in"
@@ -862,6 +899,7 @@ Down-and-out call, barrier $90
 **Loss:** Hold dead option instead of reinvesting
 
 ### 5. Lookback Vega Underestimation
+
 
 **Extreme vol sensitivity:**
 
@@ -887,6 +925,7 @@ Sell lookback call for $25
 - Remaining $20 vega exposure manageable
 
 ### 6. Over-Complicating Structures
+
 
 **Complexity for complexity's sake:**
 
@@ -918,7 +957,9 @@ Sell lookback call for $25
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Corporate hedging with Asian options:**
 
@@ -979,6 +1020,7 @@ Sell lookback call for $25
 **Lesson:** Asian options perfect for hedging average exposure, especially over long periods. Cheaper AND better match to actual exposure.
 
 ### 2. Worst Case: Failure
+
 
 **Barrier option disaster:**
 
@@ -1053,7 +1095,9 @@ Sell lookback call for $25
 
 ## Risk Management Rules
 
+
 ### 1. Path Variable Limits
+
 
 **Track state variables:**
 
@@ -1079,6 +1123,7 @@ $$
 
 ### 2. Buffer Zones for Barriers
 
+
 **Never let price reach barrier:**
 
 $$
@@ -1096,6 +1141,7 @@ Down-and-out call, barrier $90, daily vol = 1.5%
 **Why:** Price can gap through $90, leaving unhedgeable exposure
 
 ### 3. Complexity Budget
+
 
 **Limit path-dependent features:**
 
@@ -1117,6 +1163,7 @@ Down-and-out call, barrier $90, daily vol = 1.5%
 
 ### 4. Monte Carlo Convergence
 
+
 **Ensure sufficient samples:**
 
 $$
@@ -1135,6 +1182,7 @@ Run pricing multiple times with different seeds:
 - Target: Standard error < 0.5% of option value
 
 ### 5. Scenario Analysis
+
 
 **Stress test path-dependent features:**
 
@@ -1156,7 +1204,9 @@ Run pricing multiple times with different seeds:
 
 ## Real-World Examples
 
+
 ### 1. FX Hedging with Asian Options
+
 
 **Exporter hedging:**
 
@@ -1194,6 +1244,7 @@ Run pricing multiple times with different seeds:
 
 ### 2. Commodity Producer Using Lookback
 
+
 **Gold miner:**
 
 **Setup:**
@@ -1226,6 +1277,7 @@ Run pricing multiple times with different seeds:
 
 ### 3. Autocallable Note Disaster
 
+
 **Retail structured product:**
 
 **Setup:**
@@ -1252,6 +1304,7 @@ Run pricing multiple times with different seeds:
 - Mass lawsuits followed (banks paid billions in settlements)
 
 ### 4. Corporate Bond with Lookback Feature
+
 
 **Reverse convertible:**
 
@@ -1284,7 +1337,9 @@ Run pricing multiple times with different seeds:
 
 ## Practical Steps
 
+
 ### 1. Identify Path Dependence
+
 
 **Before trading, ask:**
 
@@ -1304,6 +1359,7 @@ Run pricing multiple times with different seeds:
    - Otherwise → Need path-dependent pricing
 
 ### 2. Choose Monitoring Frequency
+
 
 **Trade-off: Accuracy vs. cost**
 
@@ -1332,6 +1388,7 @@ Run pricing multiple times with different seeds:
 
 ### 3. Estimate Fair Value
 
+
 **Pricing workflow:**
 
 1. **Vanilla benchmark:**
@@ -1354,6 +1411,7 @@ Run pricing multiple times with different seeds:
    - Reflects hedging difficulty
 
 ### 4. Implement Monitoring System
+
 
 **Track state variables:**
 
@@ -1393,6 +1451,7 @@ class BarrierOption:
 
 ### 5. Hedge Dynamically
 
+
 **Greeks-based hedging:**
 
 1. **Calculate Greeks:**
@@ -1414,6 +1473,7 @@ class BarrierOption:
    - Use options to flatten gamma if needed
 
 ### 6. Settlement Process
+
 
 **At expiration:**
 
@@ -1439,6 +1499,7 @@ class BarrierOption:
 ---
 
 ## Final Wisdom
+
 
 > "Path-dependent options are powerful tools that can reduce costs and better target exposures—but only if you truly understand the path features you're embedding. The path from here to expiration matters as much as the destination. Asian options are elegant for hedging average exposures, barriers can reduce costs dramatically, and lookbacks guarantee optimal execution—but each comes with unique risks. The moment you lose track of the path variables (average, barriers, extremes), or fail to understand how Greeks behave along different paths, you've turned sophisticated hedging into speculation. Respect the path, monitor it religiously, and never hold barrier options near barriers unless you enjoy financial Russian roulette."
 

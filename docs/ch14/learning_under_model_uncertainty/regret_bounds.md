@@ -1,10 +1,12 @@
 # Regret Bounds
 
+
 **Regret** measures the performance loss of a learning algorithm relative to the best fixed strategy in hindsight.
 
 ---
 
-## 1. Definition of regret
+## Definition of regret
+
 
 For a sequence of losses \(\ell_t\),
 
@@ -20,7 +22,8 @@ Low regret means the algorithm learns effectively.
 
 ---
 
-## 2. Types of regret
+## Types of regret
+
 
 Common notions include:
 - static regret (vs best fixed action),
@@ -31,7 +34,8 @@ Each reflects different learning goals.
 
 ---
 
-## 3. Regret bounds
+## Regret bounds
+
 
 Typical guarantees are:
 - \(O(\sqrt{T})\) regret for convex losses,
@@ -41,7 +45,8 @@ Bounds are often worst-case.
 
 ---
 
-## 4. Financial interpretation
+## Financial interpretation
+
 
 In finance:
 - regret corresponds to opportunity cost,
@@ -50,7 +55,8 @@ In finance:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Regret quantifies learning performance.
 - Sublinear regret implies convergence.
@@ -59,6 +65,7 @@ In finance:
 ---
 
 ## Further reading
+
 
 - Shalev-Shwartz, online learning.
 - Bubeck & Cesa-Bianchi, regret analysis.

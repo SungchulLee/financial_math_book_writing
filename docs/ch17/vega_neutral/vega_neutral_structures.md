@@ -1,5 +1,6 @@
 # Vega-Neutral
 
+
 **Vega-neutral multi-leg structures** are sophisticated options positions constructed with multiple strikes and/or expirations designed to have zero (or minimal) net vega exposure, allowing traders to isolate and profit from other dimensions—such as gamma, theta, realized volatility, or time decay—while eliminating sensitivity to changes in implied volatility levels.
 
 
@@ -9,6 +10,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_construction.png?raw=true" alt="long_call_vs_put" width="700">
@@ -44,6 +46,7 @@ where:
 
 ## What Are
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_greeks.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -51,6 +54,7 @@ where:
 **Before understanding vega-neutral construction, we need to understand vega:**
 
 ### 1. Vega
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_implementation.png?raw=true" alt="long_call_vs_put" width="700">
@@ -101,6 +105,7 @@ Vega and gamma are connected through the Greeks structure.
 
 ### 2. The Problem with
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/vega_neutral_structures_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -128,6 +133,7 @@ Vega and gamma are connected through the Greeks structure.
 
 ### 3. What Does
 
+
 **Mathematically:**
 
 For a position with multiple options:
@@ -151,6 +157,7 @@ P&L should NOT depend on IV changes, only on:
 - Realized vs implied (scalping edge)
 
 ### 4. How to Create
+
 
 **The basic mechanics:**
 
@@ -186,7 +193,9 @@ Mix strikes, times, calls/puts:
 
 ## The Structure
 
+
 ### 1. Categories of
+
 
 **Based on what you're isolating:**
 
@@ -240,6 +249,7 @@ Structures:
 
 ### 2. The Framework
 
+
 **Visual decision tree:**
 
 ```
@@ -265,6 +275,7 @@ Structures:
 ```
 
 ### 3. The Math of
+
 
 **Starting position (long gamma example):**
 
@@ -306,7 +317,9 @@ Remaining: +$80 - $100 = -$20 (close enough!)
 
 ## The Portfolio
 
+
 ### 1. Vega-Neutral
+
 
 **Example: Long Gamma, Zero Vega**
 
@@ -334,6 +347,7 @@ $$
 
 ### 2. Vega-Neutral
 
+
 **Example: Time Decay, Zero Vega**
 
 $$
@@ -359,6 +373,7 @@ $$
 - Gamma near zero (ideal)
 
 ### 3. Vega-Neutral Skew
+
 
 **Example: Trade Smile Shape, Zero Total Vega**
 
@@ -391,9 +406,11 @@ $$
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
@@ -405,6 +422,7 @@ $$
 
 ### 2. Why This IV
 
+
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
 - Risk preferences (convexity vs. theta)
@@ -412,6 +430,7 @@ Markets create these IV structures because different participants have different
 - Hedging needs (portfolio protection vs. income generation)
 
 ### 3. The Volatility
+
 
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
@@ -427,6 +446,7 @@ $$
 
 ### 4. Professional
 
+
 Institutional traders view IV strategies as tools for:
 1. **Volatility arbitrage:** Extracting the vol risk premium
 2. **Term structure trading:** Exploiting mispricings across time
@@ -438,7 +458,9 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ## The P&L Formula
 
+
 ### 1. For Vega-Neutral
+
 
 $$
 \delta \Pi \approx \underbrace{\Delta_{\text{net}} \cdot \delta S}_{\text{Delta}} + \underbrace{\frac{1}{2}\Gamma_{\text{net}} (\delta S)^2}_{\text{Gamma (often the bet)}} + \underbrace{\Theta_{\text{net}} \, \delta t}_{\text{Theta}} + \underbrace{\cancelto{0}{\text{Vega}_{\text{net}} \cdot \delta\sigma}}_{\text{Vega ≈ 0!}}
@@ -453,6 +475,7 @@ $$
 3. **Time decay (theta)** - Can be positive or negative
 
 ### 2. For Gamma-Focused
+
 
 $$
 \delta \Pi \approx \underbrace{\frac{1}{2}\Gamma (\delta S)^2}_{\text{Gamma P\&L (PRIMARY)}} + \underbrace{\Theta \, \delta t}_{\text{Theta cost}} + \underbrace{[\text{Delta hedging costs}]}_{\text{Friction}}
@@ -512,6 +535,7 @@ If realized vol low:
 
 ### 3. For Theta-Focused
 
+
 $$
 \delta \Pi \approx \underbrace{\Theta_{\text{net}} \, \delta t}_{\text{Theta P\&L (PRIMARY)}} + \underbrace{\frac{1}{2}\Gamma_{\text{net}} (\delta S)^2}_{\text{Gamma (minimized)}}
 $$
@@ -533,7 +557,9 @@ $$
 
 ## Types of
 
+
 ### 1. Gamma-Focused
+
 
 **Philosophy:**
 
@@ -542,6 +568,7 @@ $$
 - Neutralize vega precisely
 
 ### 2. A. Vega-Neutral
+
 
 **Structure:**
 
@@ -582,6 +609,7 @@ $$
 
 ### 3. B. Ratio Call/Put
 
+
 **Structure:**
 
 - Buy multiple OTM options
@@ -604,6 +632,7 @@ $$
 
 ### 4. C. Calendar
 
+
 **Structure:**
 
 - Actually this is typically NOT vega-neutral
@@ -623,6 +652,7 @@ $$
 
 ### 5. Theta-Focused
 
+
 **Philosophy:**
 
 - Want positive theta
@@ -630,6 +660,7 @@ $$
 - Minimize gamma (don't want moves)
 
 ### 6. A. Vega-Neutral
+
 
 **Structure:**
 
@@ -662,6 +693,7 @@ Add long vega from further-dated options:
 
 ### 7. B. Time Butterfly
 
+
 **Structure:**
 
 - Sell near-term options (2×)
@@ -684,6 +716,7 @@ Add long vega from further-dated options:
 
 ### 8. Skew-Focused
 
+
 **Philosophy:**
 
 - Want to trade smile shape
@@ -691,6 +724,7 @@ Add long vega from further-dated options:
 - Isolate skew sensitivity
 
 ### 9. A. Vega-Neutral
+
 
 **Standard risk reversal:**
 
@@ -712,6 +746,7 @@ Add calendar component:
 - Isolated exposure
 
 ### 10. B. Vega-Neutral
+
 
 **Structure:**
 
@@ -740,7 +775,9 @@ Add calendar component:
 
 ### 11. Realized Vol
 
+
 ### 12. A. Gamma
+
 
 **Structure:**
 
@@ -769,6 +806,7 @@ $$
 
 ### 13. B. Variance Swap
 
+
 **Advanced structure:**
 
 - Replicate variance swap payoff
@@ -793,6 +831,7 @@ Where $K_{\text{var}}$ is strike variance
 ---
 
 ## Concrete Example 1
+
 
 **Setup:**
 
@@ -891,6 +930,7 @@ Where $K_{\text{var}}$ is strike variance
 
 ### 1. Outcome 1
 
+
 **Market activity (20 days):**
 
 - SPY moves: $452, $447, $454, $448, $451...
@@ -914,6 +954,7 @@ Where $K_{\text{var}}$ is strike variance
 - Realize profit
 
 ### 2. Outcome 2
+
 
 **Market activity:**
 
@@ -942,6 +983,7 @@ Where $K_{\text{var}}$ is strike variance
 ---
 
 ## Concrete Example 2
+
 
 **Setup:**
 
@@ -1022,6 +1064,7 @@ Where $K_{\text{var}}$ is strike variance
 
 ### 1. Outcome
 
+
 **Day 10:**
 
 Market panic, IV spikes:
@@ -1050,6 +1093,7 @@ Market panic, IV spikes:
 ---
 
 ## Concrete Example 3
+
 
 **Setup:**
 
@@ -1133,6 +1177,7 @@ $$
 
 ### 1. Outcome
 
+
 **20 days later:**
 
 **Skew change:**
@@ -1169,7 +1214,9 @@ Only skew change mattered ✓
 
 ## Strike Selection
 
+
 ### 1. For Vega-Neutral
+
 
 **Goal:** Maximize gamma while achieving vega neutrality
 
@@ -1201,6 +1248,7 @@ Only skew change mattered ✓
 
 ### 2. For Vega-Neutral
 
+
 **Goal:** Maximize theta while neutralizing vega
 
 **Short positions:**
@@ -1222,6 +1270,7 @@ Only skew change mattered ✓
 - **Vega neutral, net theta positive**
 
 ### 3. For Vega-Neutral
+
 
 **Goal:** Isolate skew exposure
 
@@ -1247,7 +1296,9 @@ Only skew change mattered ✓
 
 ## Time Frame Selection
 
+
 ### 1. For Gamma
+
 
 **Front leg (long gamma):**
 
@@ -1271,6 +1322,7 @@ Only skew change mattered ✓
 
 ### 2. For Theta
 
+
 **Front leg (short theta):**
 
 - **30-45 days**
@@ -1285,6 +1337,7 @@ Only skew change mattered ✓
 - Provides hedge without cost
 
 ### 3. For Skew
+
 
 **Primary position:**
 
@@ -1302,7 +1355,9 @@ Only skew change mattered ✓
 
 ## Position Management
 
+
 ### 1. Maintaining Vega
+
 
 **Initial construction:**
 
@@ -1342,6 +1397,7 @@ $$
 
 ### 2. Managing
 
+
 **Delta hedging protocol:**
 
 **Trigger:** Delta reaches threshold
@@ -1370,6 +1426,7 @@ $$
 
 ### 3. Managing
 
+
 **Entry checklist:**
 
 ✓ Vega neutrality verified
@@ -1394,6 +1451,7 @@ $$
 - Better opportunity identified
 
 ### 4. Managing
+
 
 **Entry checklist:**
 
@@ -1422,7 +1480,9 @@ Track convergence to target.
 
 ## Greeks Analysis
 
+
 ### 1. Vega Behavior in
+
 
 **Vega and strike:**
 
@@ -1447,6 +1507,7 @@ $$
 
 ### 2. Gamma-Vega
 
+
 **Cross-Greek sensitivity:**
 
 $$
@@ -1466,6 +1527,7 @@ $$
 - Need periodic adjustments
 
 ### 3. Theta-Vega
+
 
 **In vega-neutral structures:**
 
@@ -1489,7 +1551,9 @@ $$
 
 ## When to Use
 
+
 ### 1. Use Gamma-Focused
+
 
 **Market conditions ✓**
 
@@ -1523,6 +1587,7 @@ $$
 
 ### 2. Use Theta-Focused
 
+
 **Market conditions ✓**
 
 - **Want theta without IV bet**
@@ -1545,6 +1610,7 @@ $$
 - Need simplicity
 
 ### 3. Use Skew-Focused
+
 
 **Market conditions ✓**
 
@@ -1574,9 +1640,11 @@ $$
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -1602,6 +1670,7 @@ $$
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 - [Specific IV conditions]
 - [Term structure requirements]
@@ -1615,6 +1684,7 @@ $$
 - [Event risk too high]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -1636,6 +1706,7 @@ $$
 
 ### 4. Best practices: 1
 
+
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1656,6 +1727,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1683,6 +1755,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -1709,6 +1782,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 - Entry IV level and percentile
 - Term structure shape at entry
@@ -1726,6 +1800,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
 3. **Ignoring term structure** - Don't sell front month if in backwardation
@@ -1736,6 +1811,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -1764,7 +1840,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Vega
+
 
 **The error:**
 
@@ -1783,6 +1861,7 @@ $$
 
 ### 2. Over-Hedging
 
+
 **The error:**
 
 - Want vega = 0.00 exactly
@@ -1800,6 +1879,7 @@ $$
 
 ### 3. Wrong Hedge Ratio
 
+
 **The error:**
 
 - Calculate: Need 6.3 contracts to hedge
@@ -1815,6 +1895,7 @@ $$
 - Or size differently
 
 ### 4. Ignoring
+
 
 **The error:**
 
@@ -1833,6 +1914,7 @@ $$
 
 ### 5. Neglecting
 
+
 **The error:**
 
 - Focus only on vega neutrality
@@ -1850,6 +1932,7 @@ $$
 
 ### 6. Event Risk
 
+
 **The error:**
 
 - Construct vega-neutral gamma structure
@@ -1866,6 +1949,7 @@ $$
 - Event IV different
 
 ### 7. Misunderstanding
+
 
 **The error:**
 
@@ -1888,6 +1972,7 @@ $$
 
 ### 8. Expiration
 
+
 **The error:**
 
 - Long 30-day options for gamma (gamma position)
@@ -1905,6 +1990,7 @@ $$
 
 ### 9. Ignoring Dividend
 
+
 **The error:**
 
 - Vega-neutral butterfly on high-dividend stock
@@ -1921,6 +2007,7 @@ $$
 - Dividends distort Greeks
 
 ### 10. Over-Trading to
+
 
 **The error:**
 
@@ -1944,7 +2031,9 @@ $$
 
 ## Advanced Concepts
 
+
 ### 1. Higher-Order Vega
+
 
 **Vega is not constant:**
 
@@ -1978,6 +2067,7 @@ How vega changes with stock price.
 
 ### 2. Optimal
 
+
 **Trade-off:**
 
 **More frequent:**
@@ -2008,6 +2098,7 @@ $$
 
 ### 3. Correlation
 
+
 **Not all IV moves are parallel:**
 
 **Scenario 1: Parallel shift**
@@ -2028,6 +2119,7 @@ $$
 Where $w_i$ considers correlation structure
 
 ### 4. Vega-Neutral with
+
 
 **Real-world constraints:**
 
@@ -2052,6 +2144,7 @@ Subject to:
 
 ### 5. Dynamic Vega
 
+
 **Static hedge (basic):**
 
 - Set vega = 0 at entry
@@ -2071,6 +2164,7 @@ If expecting large move:
 - Reduce rebalancing needs
 
 ### 6. Multi-Asset Vega
+
 
 **Cross-asset correlation:**
 
@@ -2093,7 +2187,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Trader:** Proprietary desk, $5M capital
 
@@ -2166,6 +2262,7 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 - **Neutrality worked perfectly!**
 
 ### 2. Transition Risk
+
 
 **Retail trader:** $50k account
 
@@ -2240,6 +2337,7 @@ Day | SPX Move | Gamma P&L | Theta | Net Daily
 
 ### 3. Portable Alpha
 
+
 **Institution:** Hedge fund desk
 
 **Goal:** Pure realized vol exposure, zero vega
@@ -2284,7 +2382,9 @@ $$
 
 ## Practical
 
+
 ### 1. Vega Calculation
+
 
 **Spreadsheet tracker:**
 
@@ -2310,6 +2410,7 @@ NET VEGA: +400 +400 -420 -420 = -40 ✓ (nearly zero)
 
 ### 2. Rebalancing
 
+
 **Daily check:**
 
 ```python
@@ -2330,6 +2431,7 @@ def calculate_adjustment(current_vega):
 ```
 
 ### 3. Greeks Dashboard
+
 
 **Real-time monitoring:**
 
@@ -2353,6 +2455,7 @@ NEXT CHECK: Daily at close
 ```
 
 ### 4. Trade Worksheet
+
 
 ```
 === VEGA-NEUTRAL STRUCTURE BUILDER ===
@@ -2385,6 +2488,7 @@ Proceed: Y/N
 ```
 
 ### 5. Performance
+
 
 **Monthly analysis:**
 
@@ -2423,7 +2527,9 @@ LESSONS:
 
 ## Vega-Neutral
 
+
 ### 1. How Vega-Neutral
+
 
 **The complete options toolkit:**
 
@@ -2458,6 +2564,7 @@ Options Trading Dimensions:
 - **Professional:** Institutional-grade approach
 
 ### 2. Comparison with
+
 
 | Structure | Vega Exposure | Isolation | Complexity | When to Use |
 |-----------|---------------|-----------|------------|-------------|

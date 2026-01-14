@@ -1,10 +1,12 @@
 # Vol vs Rates Interaction
 
+
 **Volatility and interest rates interact** through multiple channels where rising rates typically increase equity volatility (higher discount rates, tighter financial conditions), decrease bond prices while increasing bond volatility (duration effect), affect option pricing directly through the risk-free rate term in Black-Scholes, and create complex cross-asset dynamics where Fed policy drives both rate and volatility regimes, making swaption volatility, MOVE index (bond market VIX), and rate-vol correlation critical for cross-asset positioning and risk management.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -27,7 +29,9 @@
 
 ## What Is the Rate-Vol Link?
 
+
 ### 1. Fed Policy Channel
+
 
 **Central bank affects both:**
 
@@ -61,6 +65,7 @@
 
 ### 2. Discount Rate Channel
 
+
 **Equity valuation:**
 
 $$
@@ -84,6 +89,7 @@ Where $r$ = discount rate (risk-free rate + equity premium)
 - VIX elevated throughout transition
 
 ### 3. Bond Duration Channel
+
 
 **Bond price sensitivity:**
 
@@ -110,6 +116,7 @@ $$
 - **MOVE index doubles**
 
 ### 4. Option Pricing Channel
+
 
 **Black-Scholes formula:**
 
@@ -145,6 +152,7 @@ ATM call, strike $100, 1 year, vol 25%
 
 ### 5. MOVE Index
 
+
 **Bond market volatility gauge:**
 
 $$
@@ -168,6 +176,7 @@ $$
 **Crisis times:** $\rho_{\text{VIX, MOVE}} \approx 0.8$ (strongly correlated)
 
 ### 6. Swaption Volatility
+
 
 **Volatility of interest rate swaps:**
 
@@ -196,6 +205,7 @@ Positive correlation (0.4-0.6) because:
 
 ### 7. Volatility Surface Skew
 
+
 **Rates affect skew:**
 
 **Low rate environment:**
@@ -223,6 +233,7 @@ Positive correlation (0.4-0.6) because:
 ---
 
 ## Key Terminology
+
 
 **MOVE Index:**
 - Bond market volatility gauge
@@ -270,7 +281,9 @@ Positive correlation (0.4-0.6) because:
 
 ## Rate-Vol Strategies
 
+
 ### 1. Equity Vol + Rate Positioning
+
 
 **Exploit positive correlation:**
 
@@ -295,6 +308,7 @@ Positive correlation (0.4-0.6) because:
 **Rationale:** Fed uncertainty drives both volatilities
 
 ### 2. Duration-Adjusted Equity Hedging
+
 
 **Account for rate impact:**
 
@@ -325,6 +339,7 @@ Positive correlation (0.4-0.6) because:
 
 ### 3. Volatility Carry with Rate Hedging
 
+
 **Sell vol, hedge rate risk:**
 
 **Strategy:**
@@ -343,6 +358,7 @@ Positive correlation (0.4-0.6) because:
 - Reduced tail risk
 
 ### 4. Rate-Vol Dispersion
+
 
 **Index rate vol vs. single-maturity:**
 
@@ -364,6 +380,7 @@ Positive correlation (0.4-0.6) because:
 - **Dispersion trade wins**
 
 ### 5. Options on Bond Futures
+
 
 **Trade bond vol directly:**
 
@@ -387,6 +404,7 @@ Positive correlation (0.4-0.6) because:
 
 ### 6. Cross-Asset Volatility Arbitrage
 
+
 **Relative value across assets:**
 
 **Observation:** Equity vol rich, bond vol cheap
@@ -406,6 +424,7 @@ Positive correlation (0.4-0.6) because:
 **Risk:** Correlations unstable (can diverge further)
 
 ### 7. Fed Meeting Volatility
+
 
 **Event-driven:**
 
@@ -436,7 +455,9 @@ Week before FOMC:
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Rate Impact on Options
+
 
 **Forgetting risk-free rate:**
 
@@ -458,6 +479,7 @@ Week before FOMC:
 
 ### 2. Assuming Stable Correlation
 
+
 **Rate-vol correlation time-varying:**
 
 - **Mistake:** Use average correlation (0.3)
@@ -474,6 +496,7 @@ Hedged equity with bonds (assuming negative correlation)
 
 ### 3. Duration Mismatch
 
+
 **Tenor mismatch:**
 
 - **Mistake:** Hedge 10-year equity risk with 2-year rate vol
@@ -489,6 +512,7 @@ Equity sensitive to growth (10Y real rates)
 - **Hedge ineffective**
 
 ### 4. Ignoring Convexity
+
 
 **Linear approximation breaks:**
 
@@ -513,6 +537,7 @@ Bond portfolio, duration = 10, convexity = 100
 
 ### 5. Fed Put Overconfidence
 
+
 **Assuming Fed always eases:**
 
 - **Mistake:** "Equity crash = Fed cuts = long duration always works"
@@ -531,6 +556,7 @@ Equity -20%, bought duration expecting Fed cuts
 
 ### 6. MOVE vs. VIX Spread Trading
 
+
 **Naive correlation trades:**
 
 - **Mistake:** Trade MOVE/VIX ratio mechanically
@@ -547,6 +573,7 @@ MOVE/VIX historically 0.18, currently 0.25
 - **Loss on carry while waiting**
 
 ### 7. Event Premium Misjudgment
+
 
 **Wrong side of event vol:**
 
@@ -566,7 +593,9 @@ Sold 1-week straddle before FOMC for 1.5%
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **2022 rate-vol trade:**
 
@@ -625,6 +654,7 @@ Sold 1-week straddle before FOMC for 1.5%
 5. Used spreads to cap cost
 
 ### 2. Worst Case: Disaster
+
 
 **Long duration + short vol disaster (2022):**
 
@@ -699,7 +729,9 @@ Sold 1-week straddle before FOMC for 1.5%
 
 ## Risk Management Rules
 
+
 ### 1. Rate Sensitivity Monitoring
+
 
 **Daily tracking:**
 
@@ -720,6 +752,7 @@ $$
 
 ### 2. Correlation Regime Detection
 
+
 **Monitor rolling correlation:**
 
 $$
@@ -735,6 +768,7 @@ $$
 
 ### 3. Fed Policy Tracking
 
+
 **Monitor:**
 - Fed dots (rate projections)
 - Fed minutes (policy direction)
@@ -747,6 +781,7 @@ $$
 - Expect higher equity vol
 
 ### 4. Duration Limits
+
 
 **By strategy:**
 
@@ -762,6 +797,7 @@ Equity portfolio $10M
 
 ### 5. Event Risk Management
 
+
 **FOMC meetings:**
 
 - Reduce short vol positions 1 week before
@@ -774,6 +810,7 @@ Equity portfolio $10M
 - Fed speeches
 
 ### 6. Cross-Asset Stress Testing
+
 
 **Scenarios:**
 
@@ -790,6 +827,7 @@ $$
 
 ### 7. Volatility Budget
 
+
 **Allocate vol risk across assets:**
 
 - Equity vol risk: 50%
@@ -802,7 +840,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Taper Tantrum (2013)
+
 
 **Fed announces QE taper:**
 
@@ -823,6 +863,7 @@ $$
 - Short rate vol: -60%
 
 ### 2. COVID Response (2020)
+
 
 **Fed cuts to zero + QE infinity:**
 
@@ -846,13 +887,15 @@ $$
 - Long duration: +30% (rates pinned)
 - Short vol (if started after panic): +40%
 
-### 3. 2022 Hiking Cycle
+### 3. Hiking Cycle
+
 
 Described in detail in Worst Case above.
 
 **Key lesson:** Rate vol and equity vol both spike in aggressive hiking
 
-### 4. 2018 Q4 Correction
+### 4. Q4 Correction
+
 
 **Fed hiking despite equity weakness:**
 
@@ -876,7 +919,9 @@ Described in detail in Worst Case above.
 
 ## Practical Steps
 
+
 ### 1. Monitor Key Indicators
+
 
 **Daily:**
 - VIX level and term structure
@@ -890,6 +935,7 @@ Described in detail in Worst Case above.
 - Credit spreads (financial conditions)
 
 ### 2. Calculate Sensitivities
+
 
 **Portfolio rho:**
 
@@ -910,6 +956,7 @@ $$
 
 ### 3. Set Hedge Ratios
 
+
 **Based on correlation regime:**
 
 **Normal ($\rho = 0.3$):**
@@ -922,11 +969,13 @@ $$
 
 ### 4. Implement Hedges
 
+
 **Equity vol:** VIX call spreads or put options
 **Rate vol:** Swaptions or bond options
 **Combined:** Straddles on rate-sensitive sectors (banks, REITs)
 
 ### 5. Rebalance
+
 
 **Triggers:**
 - Correlation crosses threshold (±0.2)
@@ -935,6 +984,7 @@ $$
 - Rate move > 50 bps in month
 
 ### 6. Attribution
+
 
 **Decompose P&L:**
 
@@ -956,6 +1006,7 @@ Monthly: +1.5%
 
 ### 7. Review and Learn
 
+
 **Quarterly:**
 - Were rate-vol correlations as expected?
 - Did hedges perform as designed?
@@ -966,6 +1017,7 @@ Monthly: +1.5%
 ---
 
 ## Final Wisdom
+
 
 > "The rate-volatility interaction is the axis around which modern cross-asset markets rotate—Fed policy simultaneously drives interest rates and uncertainty, creating a fundamental coupling that most investors understand intellectually but fail to internalize operationally. Rising rates don't just mechanically reduce bond prices through duration and equity valuations through discount rates; they increase volatility across all assets by tightening financial conditions and introducing uncertainty about the path forward. The 2022 debacle taught us that the classic 60/40 portfolio can fail catastrophically when rate shocks are large enough—both stocks and bonds fell together, a correlation regime that shattered decades of diversification assumptions. The VIX-MOVE correlation is time-varying and regime-dependent: it's 0.3 in normal times (different drivers), but spikes to 0.8 in crisis (common macro fear factor). Option pricing formulas embed this dependency through the risk-free rate term, but practitioners often forget that a 300 bps rate rise changes option values by 10-20% even holding volatility constant. Swaptions and the MOVE index are the unsung heroes of cross-asset volatility trading—they allow pure bets on rate uncertainty decoupled from direction, creating triangulation opportunities with equity vol. The deepest insight: short volatility strategies—whether equity vol, rate vol, or both—are structurally short the Fed put, meaning they profit from stability but catastrophically lose when the Fed must tighten or ease aggressively. Every major vol blow-up (LTCM, 2008, XIV 2018, 2022 60/40) traces back to underestimating the Fed's impact on volatility across assets. Manage rate-vol interaction not as two separate risks but as a unified macro regime: track Fed policy, monitor correlation regimes, diversify vol exposure across equity and rates, and never, ever short both simultaneously without understanding you're making a massive bet on stable, predictable Fed policy—which history shows is the exception, not the rule."
 

@@ -1,12 +1,15 @@
 # The Separating Hyperplane Theorem
 
+
 The **Separating Hyperplane Theorem** is a fundamental result in **convex analysis** that formalizes the geometric intuition: if two disjoint convex sets exist, you can "draw a line (or hyperplane) between them" that separates them.
 
 This theorem is the bridge between **geometry** and **duality theory**, and it's essential for proving the FTAP, optimization theory (Lagrange multipliers, KKT conditions), and game theory (minimax theorems).
 
 ## Statement of the Theorem
 
-### Version 1: Separating Hyperplane Theorem (Basic)
+
+### 1. Version 1: Separating Hyperplane Theorem (Basic)
+
 
 **Theorem:** Let $C$ and $D$ be non-empty, disjoint convex sets in $\mathbb{R}^n$ (i.e., $C \cap D = \emptyset$). If at least one of them is **open**, then there exists a non-zero vector $p \in \mathbb{R}^n$ and a scalar $\alpha \in \mathbb{R}$ such that:
 
@@ -22,7 +25,8 @@ $$p^T x \geq \alpha \quad \text{for all } x \in D$$
 
 The hyperplane $H = \{x \in \mathbb{R}^n : p^T x = \alpha\}$ **separates** $C$ and $D$.
 
-### Version 2: Strict Separation
+### 2. Version 2: Strict Separation
+
 
 **Theorem:** If $C$ is a non-empty, **closed** convex set and $D$ is a non-empty, **compact** convex set with $C \cap D = \emptyset$, then there exists a **strict separation**: there exist $p \in \mathbb{R}^n$ and $\alpha, \beta \in \mathbb{R}$ with $\alpha < \beta$ such that:
 
@@ -33,7 +37,8 @@ $$p^T x \leq \alpha < \beta \leq p^T y \quad \text{for all } x \in C, y \in D$$
 
 This is a **strong separation** with a "gap" between the sets.
 
-### Version 3: Supporting Hyperplane Theorem
+### 3. Version 3: Supporting Hyperplane Theorem
+
 
 **Theorem:** Let $C$ be a non-empty convex set in $\mathbb{R}^n$ and let $x_0 \in \partial C$ (boundary of $C$). Then there exists a non-zero vector $p \in \mathbb{R}^n$ such that:
 
@@ -46,9 +51,11 @@ The hyperplane $H = \{x : p^T x = p^T x_0\}$ is called a **supporting hyperplane
 
 ## Proof (Finite Dimensional Case)
 
+
 I'll prove Version 1 in detail. The key is to reduce it to the case of separating a convex set from a point.
 
-### Lemma: Separation of a Point from a Closed Convex Set
+### 1. Lemma: Separation of a Point from a Closed Convex Set
+
 
 **Lemma:** Let $C \subset \mathbb{R}^n$ be a non-empty, closed convex set, and let $y \notin C$. Then there exists $p \in \mathbb{R}^n$ with $p \neq 0$ such that:
 
@@ -180,7 +187,8 @@ $$p^T x < p^T y$$
 
 $\square$
 
-### Proof of Main Theorem (Version 1)
+### 2. Proof of Main Theorem (Version 1)
+
 
 Let $C$ and $D$ be disjoint convex sets with $D$ open.
 
@@ -253,13 +261,16 @@ Therefore, the hyperplane $\{x : p^T x = \alpha\}$ separates $C$ and $D$. $\squa
 
 ## Geometric Intuition
 
+
 ### 1. **The Hyperplane as a "Fence"**
+
 
 Imagine two disjoint convex shapes in 3D space (say, two convex polyhedra). The theorem guarantees you can place a flat plane between them so that one shape is entirely on one side and the other shape is entirely on the other side.
 
 The vector $p$ is the **normal vector** to the hyperplane—it points "perpendicular" to the separating plane.
 
 ### 2. **Why Convexity Matters**
+
 
 Consider two non-convex sets:
 
@@ -272,9 +283,11 @@ If they "wrap around" each other, no straight line can separate them. Convexity 
 
 ### 3. **Supporting Hyperplanes**
 
+
 At any boundary point of a convex set, you can place a hyperplane that "touches" the set at that point but doesn't penetrate it. This is like placing a table (hyperplane) under a convex object—it supports it at a point.
 
 ### 4. **Dual Interpretation**
+
 
 The separating vector $p$ defines a **linear functional** $f(x) = p^T x$.
 
@@ -288,9 +301,11 @@ This connects geometry to **functional analysis**.
 
 ## The Hahn-Banach Theorem (Infinite Dimensions)
 
+
 In infinite-dimensional spaces, we need the **Hahn-Banach theorem**, which generalizes the separating hyperplane theorem.
 
-### Hahn-Banach Theorem (Analytic Form)
+### 1. Hahn-Banach Theorem (Analytic Form)
+
 
 **Theorem:** Let $X$ be a real vector space, $Y \subset X$ a linear subspace, and $p: X \to \mathbb{R}$ a sublinear functional (i.e., $p(\lambda x) = \lambda p(x)$ for $\lambda \geq 0$ and $p(x + y) \leq p(x) + p(y)$).
 
@@ -300,7 +315,8 @@ If $f: Y \to \mathbb{R}$ is a linear functional with $f(y) \leq p(y)$ for all $y
 
 2. $F(x) \leq p(x)$ for all $x \in X$
 
-### Hahn-Banach Theorem (Geometric Form)
+### 2. Hahn-Banach Theorem (Geometric Form)
+
 
 **Theorem:** Let $X$ be a normed vector space, and let $C, D \subset X$ be non-empty convex sets with $C \cap D = \emptyset$.
 
@@ -317,9 +333,11 @@ The proof uses the **axiom of choice** (via Zorn's lemma) to extend linear funct
 
 ## Connection to the FTAP
 
+
 Now let's see how this applies to the Fundamental Theorem of Asset Pricing.
 
-### Setup
+### 1. Setup
+
 
 Recall the finite state space model:
 
@@ -354,7 +372,8 @@ $$\mathcal{C} \cap \mathbb{R}^n_+ = \{0\}$$
 
 (No portfolio with zero initial cost has non-negative payoff everywhere and positive payoff somewhere.)
 
-### Applying the Separating Hyperplane Theorem
+### 2. Applying the Separating Hyperplane Theorem
+
 
 Since $\mathcal{C}$ is a linear subspace (hence convex and closed) and $\mathbb{R}^n_{++} = \{v : v_i > 0\}$ is an open convex cone, and they're disjoint (by no-arbitrage), the separating hyperplane theorem gives us a vector $q \in \mathbb{R}^n$ with $q \neq 0$ such that:
 
@@ -405,7 +424,8 @@ $$\mathbb{E}^{\mathbb{Q}}[S^j_1] = S^j_0$$
 
 This is exactly the **equivalent martingale measure**!
 
-### The Geometric Picture
+### 3. The Geometric Picture
+
 
 - $\mathcal{C}$ = achievable payoffs = hyperplane through origin
 - $\mathbb{R}^n_+$ = non-negative payoffs = positive cone
@@ -415,13 +435,16 @@ This is exactly the **equivalent martingale measure**!
 
 ## Additional Theorems and Variants
 
-### Minkowski's Theorem (Alternative Form)
+
+### 1. Minkowski's Theorem (Alternative Form)
+
 
 **Theorem:** Two non-empty convex sets $C, D \subset \mathbb{R}^n$ can be strictly separated if and only if their **relative interiors** are disjoint.
 
 The relative interior $\text{ri}(C)$ is the interior of $C$ relative to its affine hull.
 
-### Farkas' Lemma (Finite Dimensional)
+### 2. Farkas' Lemma (Finite Dimensional)
+
 
 **Lemma:** Let $A$ be an $m \times n$ matrix and $b \in \mathbb{R}^m$. Exactly one of the following holds:
 
@@ -433,7 +456,8 @@ This is the **linear programming** version of the separating hyperplane theorem.
 
 **Proof sketch:** Statement 1 says $b \in \text{cone}(A)$ (the cone generated by columns of $A$). Statement 2 says there exists a hyperplane through the origin that separates $b$ from $\text{cone}(A)$. By the separating hyperplane theorem, exactly one can be true.
 
-### Krein-Milman Theorem
+### 3. Krein-Milman Theorem
+
 
 **Theorem:** Every non-empty compact convex set in a locally convex topological vector space is the **closed convex hull** of its extreme points.
 
@@ -441,7 +465,9 @@ This is used in optimization theory and economics (e.g., representing mixed stra
 
 ## Visualization in $\mathbb{R}^2$ and $\mathbb{R}^3$
 
-### Example 1: Two Disjoint Disks in $\mathbb{R}^2$
+
+### 1. Example 1: Two Disjoint Disks in $\mathbb{R}^2$
+
 
 Let $C = \{x : \|x - (0, 0)\| \leq 1\}$ and $D = \{x : \|x - (3, 0)\| \leq 1\}$.
 
@@ -453,7 +479,8 @@ We have:
 
 - $p^T x \geq 1.5$ for all $x \in D$
 
-### Example 2: Cone and Point in $\mathbb{R}^3$
+### 2. Example 2: Cone and Point in $\mathbb{R}^3$
+
 
 Let $C = \{(x, y, z) : z \geq \sqrt{x^2 + y^2}\}$ (upward cone) and consider the point $(-1, 0, 0) \notin C$.
 
@@ -462,6 +489,7 @@ The supporting hyperplane at the closest point on the cone boundary has normal v
 The separating plane would have equation $p_1 x_1 + p_2 x_2 + p_3 x_3 = \alpha$ for appropriate $p$ and $\alpha$.
 
 ## Summary
+
 
 The separating hyperplane theorem is fundamental because it:
 

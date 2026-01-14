@@ -1,10 +1,12 @@
 # Volatility Swaps
 
+
 **Volatility swaps** are forward contracts on realized volatility where you exchange a fixed strike (agreed upfront) for the realized volatility of an underlying asset over a specified period, providing convex exposure to volatility movements.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Are Vol Swaps?
 
+
 ### 1. Pure Vol Exposure
+
 
 **Linear in volatility:**
 
@@ -50,6 +54,7 @@ Where:
 - Settlement based on square root of realized variance
 
 ### 2. Vol vs Variance Swaps
+
 
 **Critical comparison:**
 
@@ -81,6 +86,7 @@ $$
 **The convexity premium makes vol swaps more expensive.**
 
 ### 3. Realized Vol Calculation
+
 
 **How realized volatility is computed:**
 
@@ -115,6 +121,7 @@ Where:
 - **Realized volatility:** $\sigma_{\text{realized}} = \sqrt{506} = 22.5\%$
 
 ### 4. Strike Determination
+
 
 **How volatility strike is set:**
 
@@ -151,6 +158,7 @@ $$
 
 ### 5. Vega Notional
 
+
 **Converting between notionals:**
 
 For volatility swaps, vega notional is direct:
@@ -181,6 +189,7 @@ $$
 **Volatility swap pays less due to square root transformation!**
 
 ### 6. Mark-to-Market
+
 
 **Daily P&L before settlement:**
 
@@ -221,6 +230,7 @@ $$
 
 ### 7. Replication Portfolio
 
+
 **How dealers hedge volatility swaps:**
 
 Volatility swaps harder to replicate than variance swaps:
@@ -255,9 +265,11 @@ $$
 
 ## Why Trade Vol Swaps?
 
+
 **Use cases for volatility exposure:**
 
 ### 1. Intuitive Vol Bets
+
 
 **Think in volatility terms:**
 
@@ -288,6 +300,7 @@ $$
 
 ### 2. Convexity Preference
 
+
 **Long volatility benefits from convexity:**
 
 Volatility swaps have built-in convexity vs. variance swaps:
@@ -315,6 +328,7 @@ Volatility swaps have built-in convexity vs. variance swaps:
 
 ### 3. Downside Protection
 
+
 **Long vol swaps for hedging:**
 
 When buying volatility for protection:
@@ -338,6 +352,7 @@ $$
 **Offsets 10% portfolio drawdown.**
 
 ### 4. Vol Spread Trades
+
 
 **Bet on vol differentials:**
 
@@ -363,6 +378,7 @@ Volatility swaps easier for relative value:
 
 ### 5. Cross-Asset Vol Trades
 
+
 **Trade relative volatility:**
 
 **Example:** Equity vol vs. FX vol
@@ -378,6 +394,7 @@ Volatility swaps easier for relative value:
 - Divergence in vol regimes
 
 ### 6. Tail Risk Hedging
+
 
 **Pure tail protection:**
 
@@ -395,6 +412,7 @@ Vol swaps provide clean tail hedge:
 - Natural language: "vol spikes to X%"
 
 ### 7. Vol Arbitrage
+
 
 **Exploit vol mispricing:**
 
@@ -414,7 +432,9 @@ Vol swaps provide clean tail hedge:
 
 ## Mathematical Framework
 
+
 ### 1. Payoff Structure
+
 
 **At maturity $T$:**
 
@@ -436,6 +456,7 @@ $$
 - Concave in variance terms
 
 ### 2. Fair Value Pricing
+
 
 **Volatility swap fair value:**
 
@@ -467,6 +488,7 @@ $$
 
 ### 3. Convexity Adjustment
 
+
 **Relationship to variance:**
 
 Using Taylor expansion around $\mathbb{E}[\sigma^2]$:
@@ -490,6 +512,7 @@ $$
 **Higher variance of variance → larger convexity adjustment**
 
 ### 4. Greeks
+
 
 **Volatility vega:**
 
@@ -523,6 +546,7 @@ Where the partial derivative depends on new returns added.
 
 ### 5. Vol of Vol Exposure
 
+
 **Sensitivity to vol changes:**
 
 Volatility swaps have exposure to volatility of volatility:
@@ -540,6 +564,7 @@ $$
 - Convexity is priced into initial strike
 
 ### 6. Relationship to Variance
+
 
 **Converting between instruments:**
 
@@ -563,6 +588,7 @@ $$
 
 ### 7. Skew Impact
 
+
 **Option smile affects pricing:**
 
 Volatility swaps more sensitive to skew:
@@ -583,9 +609,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Confusing Vol/Variance
+
 
 **Mistake:** Treat vol and variance swaps identically
 
@@ -614,6 +642,7 @@ $$
 
 ### 2. Ignoring Convexity Cost
 
+
 **Mistake:** Don't account for higher strike
 
 **Why it fails:** Vol swaps more expensive than $\sqrt{\text{variance strike}}$
@@ -634,6 +663,7 @@ $$
 
 ### 3. Wrong Notional Comparison
 
+
 **Mistake:** Use same dollar notional for var and vol swaps
 
 **Why it fails:** Different exposures
@@ -652,6 +682,7 @@ $$
 **Fix:** Convert properly using $N_{\text{vega}} = N_{\text{var}} \times 2\sigma$
 
 ### 4. Mispricing Convexity
+
 
 **Mistake:** Underestimate convexity value
 
@@ -677,6 +708,7 @@ $$
 
 ### 5. Neglecting Vol-of-Vol
 
+
 **Mistake:** Ignore volatility path dependence
 
 **Why it fails:** Realized vol depends on path
@@ -695,6 +727,7 @@ $$
 - Long vol benefits from stable paths
 
 ### 6. Ignoring Settlement
+
 
 **Mistake:** Confuse interim MTM with final payoff
 
@@ -722,6 +755,7 @@ $$
 
 ### 7. Overpaying for Hedges
 
+
 **Mistake:** Buy vol swaps without checking basis
 
 **Why it fails:** Vol swaps expensive vs. alternatives
@@ -741,6 +775,7 @@ $$
 - Only use vol swaps if simplicity worth premium
 
 ### 8. Wrong Time Horizon
+
 
 **Mistake:** Trade long-dated vol swaps
 
@@ -762,7 +797,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Conservative guideline:**
 
@@ -785,6 +822,7 @@ $$
 
 ### 2. Comparing Instruments
 
+
 **Before trading, compare costs:**
 
 1. **Vol swap strike:** $K_{\text{vol}}$ (quoted)
@@ -805,6 +843,7 @@ $$
 
 ### 3. Hedging Tail Risk
 
+
 **For short vol positions:**
 
 - Buy OTM puts for crash protection
@@ -819,6 +858,7 @@ $$
 - Consider taking profits if implied vol spikes
 
 ### 4. Monitoring
+
 
 **Daily checklist:**
 
@@ -835,6 +875,7 @@ $$
 - Realized vol diverging far from strike → Adjust
 
 ### 5. Diversification
+
 
 **Spread risk across:**
 
@@ -853,7 +894,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Brexit Vote (June 2016)
+
 
 **Setup:**
 
@@ -872,6 +915,7 @@ $$
 
 ### 2. VIX Spike (Feb 2018)
 
+
 **Setup:**
 
 - SPX at highs, VIX at 9%
@@ -887,6 +931,7 @@ $$
 **Lesson:** Cheap vol before crisis extremely profitable
 
 ### 3. Vol Spread Trade (2019)
+
 
 **Setup:**
 
@@ -904,6 +949,7 @@ $$
 **Lesson:** Vol curve trades work in stable environments
 
 ### 4. Tail Hedge (COVID 2020)
+
 
 **Setup:**
 
@@ -923,7 +969,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Pre-Trade Analysis
+
 
 **Evaluate before entering:**
 
@@ -944,6 +992,7 @@ $$
    - Convexity premium justified?
 
 ### 2. Instrument Selection
+
 
 **Choose between alternatives:**
 
@@ -969,6 +1018,7 @@ $$
 
 ### 3. Execution
 
+
 **Best practices:**
 
 - Get quotes from multiple dealers
@@ -984,6 +1034,7 @@ $$
 - Emerging markets: 2-4% vol above
 
 ### 4. Monitoring
+
 
 **Daily tracking:**
 
@@ -1001,6 +1052,7 @@ $$
 
 ### 5. Exit Discipline
 
+
 **Exit rules for long vol:**
 
 - Take profit at 100% gain
@@ -1016,6 +1068,7 @@ $$
 
 ### 6. Post-Trade Review
 
+
 **Document for learning:**
 
 - Entry/exit levels
@@ -1027,6 +1080,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Volatility swaps offer the most intuitive way to trade volatility - linear payoffs in the vol units you naturally think in. But this simplicity comes at a cost: the convexity adjustment makes vol swaps more expensive than variance swaps, sometimes significantly. For short-dated trades and directional vol views, this premium is worth paying for clarity and ease of communication. For tail hedging or long-dated positions, variance swaps are more economical. Master the vol-variance relationship, understand the convexity cost, and choose your instrument wisely."
 

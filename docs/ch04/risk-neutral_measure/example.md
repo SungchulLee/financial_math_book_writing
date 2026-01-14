@@ -1,10 +1,12 @@
 # Examples: Black–Scholes and Multi-Asset Models
 
+
 This section illustrates the construction of the risk-neutral measure in standard models.
 
 ---
 
 ## Black–Scholes Model
+
 
 Under \(\mathbb{P}\),
 \[
@@ -31,6 +33,7 @@ and the discounted price is a martingale.
 
 ## Multi-Asset Model
 
+
 Let \(S_t = (S_t^1,\dots,S_t^n)\) satisfy
 \[
 dS_t^i = \mu_i S_t^i\,dt + \sum_{j=1}^d \sigma_{ij} S_t^i\,dW_t^{j,\mathbb{P}}.
@@ -46,6 +49,7 @@ If \(\Sigma\) has full rank, the market is complete and \(\boldsymbol{\theta}\) 
 ---
 
 ## Interpretation
+
 
 - Uniqueness of \(\mathbb{Q}\) ⇔ market completeness
 - Multiple solutions ⇔ incomplete markets

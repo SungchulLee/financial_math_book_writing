@@ -1,5 +1,6 @@
 # Moment Analysis of SDEs
 
+
 This section presents **rigorous analytical derivations** of moments for fundamental stochastic differential equations. Understanding moments is essential for:
 
 - Characterizing distributions of stochastic processes
@@ -11,9 +12,11 @@ We develop complete derivations using stochastic calculus tools including **Itô
 
 ---
 
-## 1. Standard Brownian Motion
+## Standard Brownian Motion
 
-### 1.1 Definition
+
+### 1. Definition
+
 
 The **standard Brownian motion** (Wiener process) $B_t$ satisfies:
 
@@ -21,7 +24,8 @@ $$
 dB_t = dW_t, \quad B_0 = 0
 $$
 
-### 1.2 Basic Moments
+### 2. Basic Moments
+
 
 Since $B_t \sim \mathcal{N}(0, t)$ by construction:
 
@@ -31,7 +35,8 @@ $$
 }
 $$
 
-### 1.3 Higher Moments
+### 3. Higher Moments
+
 
 For a Gaussian random variable $X \sim \mathcal{N}(0, \sigma^2)$:
 
@@ -63,7 +68,8 @@ $$
 - $\mathbb{E}[B_t^6] = 15t^3$
 - $\mathbb{E}[B_t^8] = 105t^4$
 
-### 1.4 Moment Generating Function
+### 4. Moment Generating Function
+
 
 $$
 M_B(u, t) = \mathbb{E}[e^{uB_t}] = e^{u^2 t/2}
@@ -77,9 +83,11 @@ $$
 
 ---
 
-## 2. Brownian Motion with Drift and Volatility
+## Brownian Motion with Drift and Volatility
 
-### 2.1 SDE
+
+### 1. SDE
+
 
 Let $X_t$ satisfy:
 
@@ -87,7 +95,8 @@ $$
 dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}
 $$
 
-### 2.2 Solution
+### 2. Solution
+
 
 This is a linear SDE. Integrating:
 
@@ -95,7 +104,8 @@ $$
 X_t = X_0 + \mu t + \sigma B_t
 $$
 
-### 2.3 First Two Moments
+### 3. First Two Moments
+
 
 Since $B_t \sim \mathcal{N}(0, t)$:
 
@@ -107,7 +117,8 @@ $$
 
 **Distribution:** $X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)$
 
-### 2.4 Higher Moments
+### 4. Higher Moments
+
 
 Since $X_t$ is Gaussian:
 
@@ -118,13 +129,15 @@ $$
 \end{cases}
 $$
 
-### 2.5 Moment Generating Function
+### 5. Moment Generating Function
+
 
 $$
 M_X(u, t) = \mathbb{E}[e^{uX_t}] = \exp\left[u(X_0 + \mu t) + \frac{u^2 \sigma^2 t}{2}\right]
 $$
 
-### 2.6 Conditional Moments
+### 6. Conditional Moments
+
 
 For $s < t$:
 
@@ -138,9 +151,11 @@ $$
 
 ---
 
-## 3. Geometric Brownian Motion
+## Geometric Brownian Motion
 
-### 3.1 SDE
+
+### 1. SDE
+
 
 The GBM process satisfies:
 
@@ -148,7 +163,8 @@ $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 > 0
 $$
 
-### 3.2 Solution
+### 2. Solution
+
 
 Define $Y_t = \log S_t$ and apply **Itô's lemma**:
 
@@ -176,7 +192,8 @@ S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right]
 }
 $$
 
-### 3.3 First Two Moments
+### 3. First Two Moments
+
 
 Let $Z = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t \sim \mathcal{N}\left(\left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)$.
 
@@ -230,7 +247,8 @@ $$
 }
 $$
 
-### 3.4 Higher Moments
+### 4. Higher Moments
+
 
 **General $n$-th moment:**
 
@@ -250,7 +268,8 @@ $$
 - $n=1$: $\mathbb{E}[S_t] = S_0 e^{\mu t}$ ✓
 - $n=2$: $\mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}$ ✓
 
-### 3.5 Moment Generating Function
+### 5. Moment Generating Function
+
 
 $$
 \boxed{
@@ -269,7 +288,8 @@ $$
 \mathbb{E}[e^{u \log S_t}] = \mathbb{E}[S_t^u] = S_0^u e^{u\mu t + u(u-1)\sigma^2 t/2}
 $$
 
-### 3.6 Conditional Moments
+### 6. Conditional Moments
+
 
 For $s < t$:
 
@@ -283,7 +303,8 @@ $$
 
 **Derivation:** Since $S_t = S_s \exp[(drifts) + \sigma(B_t - B_s)]$, conditioning on $S_s$ gives independent increments.
 
-### 3.7 Skewness and Kurtosis
+### 7. Skewness and Kurtosis
+
 
 The log-normal distribution is **right-skewed** and **heavy-tailed**.
 
@@ -303,9 +324,11 @@ Both increase with $\sigma^2 t$, showing heavier tails for higher volatility or 
 
 ---
 
-## 4. Vasicek Model
+## Vasicek Model
 
-### 4.1 SDE
+
+### 1. SDE
+
 
 The Vasicek model is defined by:
 
@@ -318,7 +341,8 @@ where:
 - $b$ is the long-term mean
 - $\sigma$ is the volatility
 
-### 4.2 Solution via Integrating Factor
+### 2. Solution via Integrating Factor
+
 
 Rewrite as:
 
@@ -354,7 +378,8 @@ r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
 }
 $$
 
-### 4.3 Expectation
+### 3. Expectation
+
 
 Using linearity of expectation and $\mathbb{E}[\int e^{as}\,dW_s] = 0$:
 
@@ -372,7 +397,8 @@ $$
 
 The process **mean-reverts** to $b$ with speed $a$.
 
-### 4.4 Variance
+### 4. Variance
+
 
 The only stochastic term is:
 
@@ -406,7 +432,8 @@ $$
 
 **Stationary distribution:** $r_\infty \sim \mathcal{N}\left(b, \frac{\sigma^2}{2a}\right)$
 
-### 4.5 Complete Moment Summary
+### 5. Complete Moment Summary
+
 
 $$
 \boxed{
@@ -417,7 +444,8 @@ $$
 }
 $$
 
-### 4.6 Conditional Moments
+### 6. Conditional Moments
+
 
 For $s < t$, the increment $r_t - r_s$ depends on $r_s$.
 
@@ -437,7 +465,8 @@ $$
 \text{Var}(r_t | r_s) = \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})
 $$
 
-### 4.7 Covariance Function
+### 7. Covariance Function
+
 
 For $s < t$:
 
@@ -467,9 +496,11 @@ This is an **exponentially decaying autocorrelation**, characteristic of OU proc
 
 ---
 
-## 5. Cox-Ingersoll-Ross (CIR) Model
+## Cox-Ingersoll-Ross (CIR) Model
 
-### 5.1 SDE
+
+### 1. SDE
+
 
 The CIR model is defined by:
 
@@ -483,7 +514,8 @@ where:
 - $\sigma > 0$ is the volatility parameter
 - **Feller condition:** $2ab \geq \sigma^2$ ensures $r_t > 0$ for all $t$
 
-### 5.2 Expectation
+### 2. Expectation
+
 
 Let $m(t) = \mathbb{E}[r_t]$. Taking expectations of both sides:
 
@@ -507,7 +539,8 @@ $$
 
 **Note:** Same as Vasicek! The state-dependent volatility doesn't affect the mean.
 
-### 5.3 Variance via Second Moment
+### 3. Variance via Second Moment
+
 
 To find variance, we need $\mathbb{E}[r_t^2]$.
 
@@ -538,7 +571,8 @@ $$
 \frac{dm_2}{dt} + 2am_2 = (2ab + \sigma^2)m(t)
 $$
 
-### 5.4 Solving the Second Moment ODE
+### 4. Solving the Second Moment ODE
+
 
 **Integrating factor:** $\mu(t) = e^{2at}$
 
@@ -574,7 +608,8 @@ $$
 m_2(t) = r_0^2 e^{-2at} + \frac{\sigma^2}{a}r_0 e^{-at}(1 - e^{-at}) + b^2(1 - e^{-at})^2 + \frac{\sigma^2 b}{2a}(1 - e^{-at})^2
 $$
 
-### 5.5 Variance Formula
+### 5. Variance Formula
+
 
 $$
 \text{Var}(r_t) = m_2(t) - m(t)^2
@@ -594,7 +629,8 @@ $$
 \text{Var}(r_t) = r_0\frac{\sigma^2}{a}(e^{-at} - e^{-2at}) + \frac{b\sigma^2}{2a}(1 - e^{-at})^2
 $$
 
-### 5.6 Long-Term Variance
+### 6. Long-Term Variance
+
 
 $$
 \lim_{t \to \infty} \text{Var}(r_t) = \frac{b\sigma^2}{2a}
@@ -602,7 +638,8 @@ $$
 
 **Stationary distribution:** $r_\infty$ follows a scaled non-central chi-squared distribution with mean $b$ and variance $\frac{b\sigma^2}{2a}$.
 
-### 5.7 Conditional Moments
+### 7. Conditional Moments
+
 
 For $s < t$:
 
@@ -616,9 +653,11 @@ $$
 
 ---
 
-## 6. Ornstein-Uhlenbeck Process (General Form)
+## Ornstein-Uhlenbeck Process (General Form)
 
-### 6.1 SDE
+
+### 1. SDE
+
 
 $$
 dX_t = -\gamma X_t\,dt + \sigma\,dW_t, \quad X_0 = x
@@ -626,7 +665,8 @@ $$
 
 This is a **centered** version of Vasicek with $b = 0$.
 
-### 6.2 Moments
+### 2. Moments
+
 
 $$
 \mathbb{E}[X_t] = x e^{-\gamma t}
@@ -636,7 +676,8 @@ $$
 \text{Var}(X_t) = \frac{\sigma^2}{2\gamma}(1 - e^{-2\gamma t})
 $$
 
-### 6.3 Stationary Distribution
+### 3. Stationary Distribution
+
 
 For $t \to \infty$ starting from the stationary distribution:
 
@@ -646,15 +687,18 @@ $$
 
 ---
 
-## 7. General Techniques for Moment Computation
+## General Techniques for Moment Computation
 
-### 7.1 Method 1: Direct from Solution
+
+### 1. Method 1: Direct from Solution
+
 
 If an **explicit solution** exists, compute moments directly using properties of Gaussian or log-normal distributions.
 
 **Example:** GBM, Vasicek, OU
 
-### 7.2 Method 2: Itô's Lemma for Powers
+### 2. Method 2: Itô's Lemma for Powers
+
 
 To find $\mathbb{E}[X_t^n]$, apply Itô's lemma to $f(x) = x^n$:
 
@@ -666,7 +710,8 @@ Take expectations to get an ODE for $m_n(t) = \mathbb{E}[X_t^n]$.
 
 **Example:** CIR second moment
 
-### 7.3 Method 3: Moment ODEs from Generator
+### 3. Method 3: Moment ODEs from Generator
+
 
 For SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator is:
 
@@ -688,7 +733,8 @@ $$
 
 This gives a **hierarchy of moment ODEs**.
 
-### 7.4 Method 4: Characteristic Functions
+### 4. Method 4: Characteristic Functions
+
 
 The **characteristic function** is:
 
@@ -706,7 +752,8 @@ For affine processes (Vasicek, CIR, Heston), $\phi$ satisfies a Riccati ODE.
 
 ---
 
-## 8. Comparison Table
+## Comparison Table
+
 
 | Model | $\mathbb{E}[X_t]$ | $\text{Var}(X_t)$ | Distribution |
 |-------|-------------------|-------------------|--------------|
@@ -718,9 +765,11 @@ For affine processes (Vasicek, CIR, Heston), $\phi$ satisfies a Riccati ODE.
 
 ---
 
-## 9. Verification via Simulation
+## Verification via Simulation
 
-### 9.1 Python Implementation
+
+### 1. Python Implementation
+
 
 ```python
 import numpy as np
@@ -792,7 +841,8 @@ def verify_CIR_moments(a, b, sigma, r0, T, N, num_paths=10000):
 verify_CIR_moments(a=2.0, b=0.05, sigma=0.1, r0=0.03, T=2.0, N=1000)
 ```
 
-### 9.2 Verification for GBM
+### 2. Verification for GBM
+
 
 ```python
 def verify_GBM_moments(mu, sigma, S0, T, N, num_paths=10000):
@@ -822,21 +872,26 @@ def verify_GBM_moments(mu, sigma, S0, T, N, num_paths=10000):
 
 ---
 
-## 10. Applications
+## Applications
 
-### 10.1 Option Pricing
+
+### 1. Option Pricing
+
 
 **Black-Scholes formula** uses $\mathbb{E}[S_T]$ under risk-neutral measure.
 
-### 10.2 Risk Management
+### 2. Risk Management
+
 
 **Value-at-Risk (VaR)** depends on distribution quantiles, which are determined by moments.
 
-### 10.3 Model Calibration
+### 3. Model Calibration
+
 
 Match theoretical moments to market-implied moments (e.g., from option prices).
 
-### 10.4 Parameter Estimation
+### 4. Parameter Estimation
+
 
 **Method of moments:** Equate sample moments to theoretical moments and solve for parameters.
 
@@ -848,9 +903,11 @@ $$
 
 ---
 
-## 11. Summary
+## Summary
 
-### 11.1 Key Takeaways
+
+### 1. Key Takeaways
+
 
 1. **Gaussian processes** (BM, Vasicek, OU) have simple moment formulas
 2. **Log-normal processes** (GBM) require MGF techniques
@@ -858,14 +915,16 @@ $$
 4. **Mean reversion** leads to stationary distributions
 5. **Itô isometry** is essential for computing variances of stochastic integrals
 
-### 11.2 Computational Strategy
+### 2. Computational Strategy
+
 
 1. **Try explicit solution first** (works for linear SDEs)
 2. **Use Itô's lemma** for powers to get moment ODEs
 3. **Solve ODE hierarchy** for higher moments
 4. **Verify via simulation** for complex models
 
-### 11.3 Connection to Other Topics
+### 3. Connection to Other Topics
+
 
 - **Feynman-Kac:** Moments relate to PDE solutions
 - **Characteristic functions:** Fourier transform of distribution

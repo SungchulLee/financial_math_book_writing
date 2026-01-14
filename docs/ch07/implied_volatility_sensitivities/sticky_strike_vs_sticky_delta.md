@@ -1,10 +1,12 @@
 # Sticky Strike vs Sticky Delta
 
+
 When the underlying price moves, the implied volatility surface changes. Two stylized assumptions—**sticky strike** and **sticky delta**—describe how implied volatility responds to spot movements and have major implications for hedging.
 
 ---
 
-## 1. Sticky strike assumption
+## Sticky strike assumption
+
 
 Under **sticky strike**:
 - implied volatility is assumed constant at a fixed strike,
@@ -22,7 +24,8 @@ This assumption is simple but often unrealistic for equities.
 
 ---
 
-## 2. Sticky delta assumption
+## Sticky delta assumption
+
 
 Under **sticky delta**:
 - implied volatility is constant at a fixed delta,
@@ -40,7 +43,8 @@ This behavior is commonly observed in FX markets.
 
 ---
 
-## 3. Impact on Greeks
+## Impact on Greeks
+
 
 The choice between sticky strike and sticky delta affects:
 - delta hedging,
@@ -51,7 +55,8 @@ In particular, delta under sticky delta is typically smaller than under sticky s
 
 ---
 
-## 4. Empirical considerations
+## Empirical considerations
+
 
 Empirical smile dynamics often lie **between** the two extremes:
 - short-term equity smiles are closer to sticky strike,
@@ -62,7 +67,8 @@ Thus, these assumptions should be viewed as benchmarks, not truths.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Sticky strike and sticky delta describe smile response to spot moves.
 - They imply different Greeks and hedging behavior.
@@ -71,6 +77,7 @@ Thus, these assumptions should be viewed as benchmarks, not truths.
 ---
 
 ## Further reading
+
 
 - Derman, *The Volatility Smile*.
 - Bergomi, *Stochastic Volatility Modeling*.

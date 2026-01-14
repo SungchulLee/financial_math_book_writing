@@ -1,6 +1,10 @@
-# Random Walk Foundations
+# Random Walk
+
+
 
 ## Introduction
+
+
 
 Before introducing Brownian motion axiomatically, we begin with the discrete-time simple random walk. This serves three purposes: 
 
@@ -14,7 +18,11 @@ The simple random walk is a canonical example of a stochastic process, character
 
 ## Simple Random Walk
 
-### Formal Definition
+
+
+### 1. Formal Definition
+
+
 
 Let $\{S_n\}_{n \geq 0}$ be a discrete-time stochastic process defined recursively as: for $n \geq 1$
 
@@ -35,9 +43,9 @@ $$S_n = \sum_{i=1}^n X_i$$
 
 
 
-### Symmetric vs. Asymmetric Random Walks
+### 2. Symmetric Random Walk
 
-#### Symmetric Random Walk
+
 
 A **symmetric random walk** corresponds to $p = 1/2$, ensuring an equal probability of moving in either direction. For the remainder of this section, unless otherwise specified, we focus on this symmetric case.
 
@@ -59,7 +67,9 @@ $$S_n = \sum_{i=1}^n \xi_i$$
 - Displacement of a particle undergoing random collisions  
 - Price changes in a discrete-time market model (Bachelier, 1900)
 
-#### Asymmetric Random Walk
+### 3. Asymmetric Random Walk
+
+
 
 For $p \neq 1/2$, the random walk exhibits directional bias, resulting in a nonzero drift. Specifically:
 
@@ -69,9 +79,13 @@ For $p \neq 1/2$, the random walk exhibits directional bias, resulting in a nonz
 
 The recurrence behavior differs markedly from the symmetric case, particularly in higher-dimensional settings.
 
-## Fundamental Properties
+## Fundamental
 
-### Expectation and Variance
+
+
+### 1. Moments of Random Walk
+
+
 
 The first two moments of $S_n$ provide key insights into its asymptotic behavior.
 
@@ -131,7 +145,9 @@ $$\mathbb{E}[S_n^4] = n + 6\binom{n}{2} = n + 3n(n-1) = 3n^2 - 2n \quad \square$
 
 
 
-### Quadratic Variation
+### 2. Quadratic Variation
+
+
 
 A crucial property that distinguishes random walks from smooth paths is their quadratic variation.
 
@@ -157,7 +173,9 @@ $$[S]_n = \sum_{i=1}^n X_i^2 = n \quad \square$$
 
 **Remark:** This deterministic quadratic variation is fundamental. It shows that the "accumulated squared displacement" grows linearly with time, not quadratically as for smooth functions. This property persists in the continuous limit and underlies Itô's lemma.
 
-### Recurrence and Transience
+### 3. Recurrence vs Transiency
+
+
 
 The probability of return to the origin depends crucially on dimensionality. These results, first established by Pólya, underscore the role of dimensionality in determining long-term behavior.
 
@@ -188,11 +206,15 @@ proving recurrence. $\square$
 
 **Remark:** The distinction between recurrence and transience has profound implications in statistical mechanics, polymer physics, and random graph theory. For asymmetric walks ($p \neq 1/2$), even in one dimension, the walk can be transient if the drift is sufficiently strong.
 
-## Continuous-Time Interpolation
+## Continuous Time
+
+
 
 To connect discrete random walks to continuous-time processes, we introduce appropriate scaling.
 
-### Scaled Random Walk
+### 1. Scaled Random Walk
+
+
 
 For a fixed time horizon $T > 0$ and discretization parameter $n \in \mathbb{N}$, define the **scaled random walk** by, for $t \in [0, T]$:
 
@@ -220,7 +242,9 @@ $$\text{Var}(S_n) = n \implies \text{Var}\left(\frac{S_n}{\sqrt{n}}\right) = 1$$
 
 Thus, the scaling $1/\sqrt{n}$ is the correct normalization to obtain a non-trivial limit.
 
-### Piecewise Linear Interpolation
+### 2. PL Interpolation
+
+
 
 For technical reasons (to obtain processes in $C[0,T]$), we use piecewise linear interpolation:
 
@@ -232,7 +256,9 @@ This defines $W^{(n)} \in C[0,T]$ for each $n$, where $C[0,T]$ is the space of c
 
 **Geometric Interpretation:** Between integer multiples of $1/n$, we linearly interpolate using the next random increment $\xi_{[nt]+1}$.
 
-### Asymptotic Properties
+### 3. Asymptotic Properties
+
+
 
 **Proposition 1.1.5** (Convergence of Moments)
 
@@ -263,7 +289,9 @@ $$\begin{array}{lll}
 
 
 
-## Central Limit Theorem
+## Central Limit
+
+
 
 The CLT for i.i.d. sequences is the engine driving convergence to Brownian motion.
 
@@ -286,7 +314,9 @@ This implies that for fixed $t$, $S^{(n)}(t) \xrightarrow{d} \mathcal{N}(0, t)$.
 
 **However:** Finite-dimensional convergence is insufficient! We need **functional convergence** in the space $C[0,T]$.
 
-### Scaling Limit and Convergence to Brownian Motion
+### 1. Scaling Limit
+
+
 
 A fundamental result in probability theory, **Donsker's Invariance Principle** (proven rigorously in the next section), states that as the number of steps grows, the properly rescaled simple random walk converges in distribution to a standard Wiener process:
 
@@ -295,9 +325,13 @@ $$\frac{S_{[nt]}}{\sqrt{n}} \Rightarrow W_t$$
 
 where $W_t$ denotes Brownian motion. This limit theorem establishes a bridge between discrete and continuous-time stochastic processes and has far-reaching implications in fields such as statistical mechanics and financial modeling.
 
-## Structural Properties
+## Structural
 
-### Independent Increments
+
+
+### 1. Independent Increments
+
+
 
 A property that transfers cleanly from discrete to continuous time.
 
@@ -316,7 +350,9 @@ Each increment $S^{(n)}(t_{i+1}) - S^{(n)}(t_i)$ depends on disjoint sets of $\{
 
 **Remark:** This property is preserved in the limit, making Brownian motion a **Lévy process** (stochastic process with stationary independent increments).
 
-### Markov Property
+### 2. Markov Property
+
+
 
 **Proposition 1.1.8**
 
@@ -339,7 +375,11 @@ The scaled version $S^{(n)}(t)$ inherits this Markov property, which persists in
 
 ## Path Properties
 
-### Non-Differentiability Heuristic
+
+
+### 1. Non Differentiability
+
+
 
 **Observation:** The random walk has "corners" at every integer time $n$. The slope between $n-1$ and $n$ is $\xi_n \in \{-1, 1\}$, which changes randomly.
 
@@ -354,7 +394,9 @@ which diverges as $n \to \infty$.
 
 **Rigorous Statement:** Brownian motion is almost surely continuous everywhere but differentiable nowhere. This was proven by Wiener using Fourier analysis.
 
-### Quadratic Variation in Continuous Time
+### 2. Quadratic Variation
+
+
 
 For the scaled random walk:
 
@@ -378,7 +420,9 @@ $$\langle W \rangle_t = t \quad \text{(non-zero quadratic variation)}$$
 
 This is the foundation for Itô's formula: when we compute $(dW_t)^2$, we get $dt$, not 0.
 
-## Applications and Theoretical Significance
+## Applications
+
+
 
 1. **Gambler's Ruin Problem**: Models the probability of a gambler going bankrupt when repeatedly wagering in a fair or biased game.
 
@@ -390,9 +434,13 @@ This is the foundation for Itô's formula: when we compute $(dW_t)^2$, we get $d
 
 5. **Markov Chains and Reinforcement Learning**: Random walks serve as prototypical examples of Markovian state transitions, with applications in dynamic programming and artificial intelligence.
 
-## Connection to Finance
+## Connection Finance
 
-### Historical Note
+
+
+### 1. Historical Note
+
+
 
 Louis Bachelier's 1900 PhD thesis *Théorie de la Spéculation* used random walks to model stock prices, predating Einstein's 1905 work on physical Brownian motion. Bachelier's model:
 
@@ -401,7 +449,9 @@ $$S_n = S_0 + \sum_{i=1}^n \xi_i$$
 
 where $S_n$ represents the price at time $n$.
 
-### Scaling to Continuous Time
+### 2. Scaling Continuou
+
+
 
 The continuous limit
 
@@ -419,6 +469,8 @@ remains positive and is the foundation of Black-Scholes theory.
 
 ## Summary
 
+
+
 The simple random walk provides:
 
 1. **Intuitive picture** of random motion in discrete time
@@ -434,6 +486,8 @@ The natural question: **Can we make the limiting procedure rigorous?** Yes—via
 For computational illustrations of these concepts, see the accompanying section on **Random Walk Simulations**.
 
 ## References
+
+
 
 - Bachelier, L. (1900). *Théorie de la spéculation*. Annales scientifiques de l'École normale supérieure.
 - Einstein, A. (1905). *Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten suspendierten Teilchen*. Annalen der Physik.

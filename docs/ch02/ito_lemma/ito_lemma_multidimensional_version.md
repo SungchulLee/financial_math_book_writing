@@ -43,6 +43,7 @@ we get
 
 # \sigma^{i\alpha}(t,X_t)\sigma^{j\beta}(t,X_t),\mathrm{d}\langle W^{\alpha},W^{\beta}\rangle_t
 
+
 \sigma^{i\alpha}(t,X_t)\sigma^{j\alpha}(t,X_t),\mathrm{d}t.
 }
 ]
@@ -92,6 +93,7 @@ b^{i}(t,X_t),f_i(t,X_t)
 
 ## Generator in Index Notation
 
+
 Define
 [
 a^{ij}(t,x) := \sigma^{i\alpha}(t,x)\sigma^{j\alpha}(t,x).
@@ -125,6 +127,7 @@ So Itô can be written compactly as
 ---
 
 ## Vector-Valued Version (Optional but Often Used)
+
 
 If (f:[0,T]\times\mathbb{R}^d\to\mathbb{R}^k) with components (f^r) ((r=1,\dots,k)), apply the scalar formula componentwise:
 

@@ -1,12 +1,15 @@
 # Stock Data and Return Computation
 
+
 The quantitative rigor of any financial modeling exercise is predicated upon the fidelity and precision of its underlying data inputs. Before constructing theoretical frameworks involving stochastic differential equations, we must first establish a robust empirical foundation through proper data retrieval, preprocessing, and statistical characterization. This section provides a technically detailed exposition of the procedures required for extracting and transforming asset price data—procedures that establish the empirical substrate on which theoretical constructs are operationalized in practice.
 
 ---
 
-## 1. Historical Data Retrieval
+## Historical Data Retrieval
 
-### 1.1 Data Sources and Quality
+
+### 1. Data Sources and Quality
+
 
 A robust empirical foundation begins with the acquisition of high-resolution and appropriately adjusted time series data. In contemporary computational finance workflows, historical financial data are commonly retrieved through automated APIs. 
 
@@ -16,7 +19,8 @@ A robust empirical foundation begins with the acquisition of high-resolution and
 - **Yahoo Finance:** Freely accessible via `yfinance` library
 - **CRSP/Compustat:** Academic research databases with survivorship-bias corrections
 
-### 1.2 The Adjusted Close Price
+### 2. The Adjusted Close Price
+
 
 Of particular relevance is the **adjusted closing price**, a field that retroactively corrects for events such as:
 
@@ -39,7 +43,8 @@ $$
 
 This ensures that returns computed from adjusted prices are economically meaningful.
 
-### 1.3 Data Retrieval Implementation
+### 3. Data Retrieval Implementation
+
 
 ```python
 import yfinance as yf
@@ -85,7 +90,8 @@ apple = USStock("AAPL")
 df = apple.get_data(start_date="2023-01-01", end_date="2023-12-31")
 ```
 
-### 1.4 Data Quality Checks
+### 4. Data Quality Checks
+
 
 Before proceeding, verify:
 
@@ -119,11 +125,13 @@ def data_quality_check(df):
 
 ---
 
-## 2. Return Metrics: Discrete and Continuous Formulations
+## Return Metrics: Discrete and Continuous Formulations
+
 
 Transforming raw price data into return series is a critical intermediate step that recasts the time series from levels to increments. Two principal forms of returns are widely utilized, each with distinct mathematical properties and applications.
 
-### 2.1 Discrete (Arithmetic) Return
+### 1. Discrete (Arithmetic) Return
+
 
 **Definition:**
 
@@ -147,7 +155,8 @@ $$
 1 + r_{[t, t+n]} = \prod_{i=1}^n (1 + r_{t+i})
 $$
 
-### 2.2 Continuous (Logarithmic) Return
+### 2. Continuous (Logarithmic) Return
+
 
 **Definition:**
 
@@ -176,7 +185,8 @@ $$
 
 For $|r^{(D)}| < 0.10$, the approximation $r^{(C)} \approx r^{(D)}$ is accurate to within 0.5%.
 
-### 2.3 Implementation
+### 3. Implementation
+
 
 ```python
 def compute_returns(df):
@@ -208,7 +218,8 @@ def compute_returns(df):
     return df
 ```
 
-### 2.4 Which Return Measure to Use?
+### 4. Which Return Measure to Use?
+
 
 | Context | Preferred Return |
 |---------|------------------|
@@ -223,11 +234,13 @@ def compute_returns(df):
 
 ---
 
-## 3. Statistical Characterization: Moment Estimation
+## Statistical Characterization: Moment Estimation
+
 
 With return series in hand, we proceed to estimate their empirical moments—quantities that underpin subsequent modeling and optimization procedures.
 
-### 3.1 Sample Moments
+### 1. Sample Moments
+
 
 **First moment (sample mean):**
 
@@ -256,7 +269,8 @@ $$
 - **Skewness:** $\hat{\gamma}_1 = \frac{1}{T}\sum_{t=1}^T \left(\frac{r_t - \hat{\mu}}{\hat{\sigma}}\right)^3$
 - **Excess kurtosis:** $\hat{\gamma}_2 = \frac{1}{T}\sum_{t=1}^T \left(\frac{r_t - \hat{\mu}}{\hat{\sigma}}\right)^4 - 3$
 
-### 3.2 Assumptions and Limitations
+### 2. Assumptions and Limitations
+
 
 These estimators assume:
 
@@ -273,7 +287,8 @@ These estimators assume:
 
 Despite these violations, sample moments serve as the default estimators in classical theory.
 
-### 3.3 Implementation
+### 3. Implementation
+
 
 ```python
 def compute_statistics(df, return_col='Return_Log'):
@@ -309,11 +324,13 @@ def compute_statistics(df, return_col='Return_Log'):
 
 ---
 
-## 4. Annualization
+## Annualization
+
 
 To enable alignment with decision-making horizons, daily estimates are converted to annualized quantities under the i.i.d. assumption.
 
-### 4.1 Time Scaling Under Independence
+### 1. Time Scaling Under Independence
+
 
 **Assumption:** Returns are i.i.d. across time.
 
@@ -333,7 +350,8 @@ $$
 
 This is the famous **square-root-of-time rule**.
 
-### 4.2 Annualization Formulas
+### 2. Annualization Formulas
+
 
 **Trading days per year:** $N = 252$ (U.S. equity markets)
 
@@ -351,7 +369,8 @@ $$
 
 **Note:** Some practitioners use $N = 250$ or $N = 365$ (calendar days). The choice depends on context and convention.
 
-### 4.3 When Annualization Fails
+### 3. When Annualization Fails
+
 
 The square-root rule breaks down when:
 
@@ -362,7 +381,8 @@ The square-root rule breaks down when:
 
 In these cases, empirical scaling may deviate from $\sqrt{N}$.
 
-### 4.4 Implementation
+### 4. Implementation
+
 
 ```python
 def annualize_statistics(daily_stats, N=252):
@@ -416,11 +436,13 @@ Annual volatility: 0.1984  (19.84% per year)
 
 ---
 
-## 5. Diagnostics and Statistical Validation
+## Diagnostics and Statistical Validation
+
 
 Prior to engaging in modeling, it is imperative to subject the empirical return series to rigorous diagnostic scrutiny. The reliability of any model is only as sound as the statistical properties of its inputs.
 
-### 5.1 Visual Diagnostics
+### 1. Visual Diagnostics
+
 
 **1. Price time series:**
 
@@ -502,7 +524,8 @@ def plot_return_distribution(df, return_col='Return_Log'):
 - **Skewness:** Asymmetry (left tail often heavier for equities)
 - **Peakedness:** Returns more concentrated around mean than Gaussian
 
-### 5.2 Quantitative Tests
+### 2. Quantitative Tests
+
 
 **1. Normality tests:**
 
@@ -562,7 +585,8 @@ def plot_autocorrelation(df, return_col='Return_Log', lags=40):
 - Returns: Little to no autocorrelation (markets are efficient)
 - Squared returns: **Strong autocorrelation** (volatility clustering)
 
-### 5.3 Rolling Window Statistics
+### 3. Rolling Window Statistics
+
 
 ```python
 def plot_rolling_statistics(df, return_col='Return_Log', window=60):
@@ -603,7 +627,8 @@ def plot_rolling_statistics(df, return_col='Return_Log', window=60):
 
 ---
 
-## 6. Complete Example Workflow
+## Complete Example Workflow
+
 
 ```python
 # Complete analysis pipeline
@@ -655,7 +680,8 @@ df, daily, annual = analyze_stock("AAPL", "2020-01-01", "2023-12-31")
 
 ---
 
-## 7. Summary
+## Summary
+
 
 This section has articulated a methodologically rigorous pathway for transforming raw financial data into statistically validated return series. The combination of:
 
@@ -666,7 +692,8 @@ This section has articulated a methodologically rigorous pathway for transformin
 
 ensures that the inputs to subsequent modeling are both theoretically sound and empirically credible.
 
-### Key Takeaways
+### 1. Key Takeaways
+
 
 **Empirical observations that motivate stochastic models:**
 

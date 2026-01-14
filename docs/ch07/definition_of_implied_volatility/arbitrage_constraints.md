@@ -1,12 +1,16 @@
 # Arbitrage Constraints on Implied Volatility
 
+
 ## Introduction
+
 
 The existence of implied volatility requires that market prices satisfy fundamental no-arbitrage bounds. These constraints arise from static replication arguments and ensure that the pricing map $\sigma \mapsto C_{\text{BS}}(\sigma)$ has the correct domain and range for inversion. Beyond simple bounds, arbitrage-free conditions impose structural requirements on the implied volatility surface across strikes and maturities.
 
 ## Static No-Arbitrage Bounds
 
-### Point-Wise Bounds for Call Options
+
+### 1. Point-Wise Bounds for Call Options
+
 
 For a European call option with spot $S$, strike $K$, maturity $T$, risk-free rate $r$, and dividend yield $q$:
 
@@ -66,7 +70,8 @@ Net payoff: $S_T - \max(S_T - K, 0) = \min(S_T, K) \geq 0$
 
 If $C > S e^{-qT}$, initial wealth is $C - S e^{-qT} > 0$ with non-negative terminal payoff—arbitrage. □
 
-### Implications for Implied Volatility Domain
+### 2. Implications for Implied Volatility Domain
+
 
 **Corollary 4.3.1** (Admissible Price Domain)  
 The domain of the implied volatility inverse map is:
@@ -84,7 +89,8 @@ Any price outside this interval either:
 1. Admits arbitrage (economically infeasible)
 2. Corresponds to $\sigma_{\text{IV}} \in \{0, \infty\}$ (boundary cases)
 
-### Put Option Bounds
+### 3. Put Option Bounds
+
 
 For European puts, by symmetry and put-call parity:
 
@@ -115,7 +121,9 @@ $$
 
 ## Monotonicity Constraints Across Strikes
 
-### Call Prices Decreasing in Strike
+
+### 1. Call Prices Decreasing in Strike
+
 
 **Theorem 4.3.2** (Monotonicity in Strike)  
 For fixed maturity $T$, the call price function $C(K)$ is non-increasing in strike $K$:
@@ -147,7 +155,8 @@ $$
 
 If $C(K_1) < C(K_2)$, buy call at $K_1$, sell call at $K_2$—guaranteed non-negative payoff with negative initial cost. □
 
-### Implications for Implied Volatility
+### 2. Implications for Implied Volatility
+
 
 **Proposition 4.3.1**  
 Monotonicity of call prices in strike does **not** imply monotonicity of implied volatility in strike.
@@ -158,7 +167,8 @@ The volatility smile/skew empirically exhibits:
 
 This is consistent with arbitrage-free pricing because the transformation $C \leftrightarrow \sigma_{\text{IV}}$ is non-linear.
 
-### Convexity: Butterfly Spread Constraint
+### 3. Convexity: Butterfly Spread Constraint
+
 
 **Theorem 4.3.3** (Convexity in Strike)  
 The call price function $C(K)$ is convex in $K$:
@@ -223,7 +233,8 @@ $$
 
 This is the **Breeden-Litzenberger** density constraint: the second derivative of call price with respect to strike equals the discounted risk-neutral density, which must be non-negative.
 
-### Implications for Implied Volatility Surface
+### 4. Implications for Implied Volatility Surface
+
 
 Convexity of $C(K)$ imposes constraints on $\sigma_{\text{IV}}(K)$. Define the **total variance**:
 
@@ -250,7 +261,9 @@ where $y = \ln(K/F)$ is log-moneyness ($F$ is the forward price).
 
 ## Calendar Spread Constraints
 
-### Monotonicity in Maturity
+
+### 1. Monotonicity in Maturity
+
 
 **Theorem 4.3.5** (Call Prices Increasing in Maturity)  
 For fixed strike $K$, the call price function $C(T)$ is non-decreasing in maturity $T$ (assuming zero dividends):
@@ -275,7 +288,8 @@ Alternatively, note that the $T_2$ option dominates the $T_1$ option (same payof
 
 **Remark:** With dividends, the monotonicity can be violated for sufficiently high dividend yield.
 
-### Implications for Total Variance
+### 2. Implications for Total Variance
+
 
 **Proposition 4.3.2**  
 Monotonicity $C(T_1) \leq C(T_2)$ does **not** immediately imply $\sigma_{\text{IV}}(T_1) \leq \sigma_{\text{IV}}(T_2)$.
@@ -289,7 +303,9 @@ This is a weaker statement than monotonicity of implied volatility itself, which
 
 ## Durrleman's Necessary and Sufficient Conditions
 
-### General Arbitrage-Free Conditions
+
+### 1. General Arbitrage-Free Conditions
+
 
 Durrleman (2010) established the complete characterization of arbitrage-free implied volatility surfaces.
 
@@ -314,7 +330,8 @@ An implied volatility surface $\sigma_{\text{IV}}(K, T)$ is arbitrage-free if an
 
 where the partial derivatives are computed while $\sigma_{\text{IV}}(K, T)$ may vary with $T$ or $K$.
 
-### Conversion to Total Variance Space
+### 2. Conversion to Total Variance Space
+
 
 In terms of total variance $w(K, T) = \sigma_{\text{IV}}^2 T$:
 
@@ -341,7 +358,9 @@ where subscripts denote partial derivatives.
 
 ## Constraints on Implied Volatility Derivatives
 
-### Bounds on Skew
+
+### 1. Bounds on Skew
+
 
 **Proposition 4.3.3** (Skew Bounds)  
 For the surface to be arbitrage-free, the **skew** (derivative of IV with respect to log-strike) satisfies:
@@ -355,7 +374,8 @@ $$
 
 for some constant $C_{\max}$ depending on the specific no-arbitrage formulation.
 
-### Bounds on Curvature
+### 2. Bounds on Curvature
+
 
 **Proposition 4.3.4** (Convexity of Total Variance)  
 A sufficient (but not necessary) condition for no butterfly arbitrage is:
@@ -373,7 +393,9 @@ This is **stronger** than the Gatheral constraint but easier to verify.
 
 ## Connection to Risk-Neutral Density
 
-### Breeden-Litzenberger Formula
+
+### 1. Breeden-Litzenberger Formula
+
 
 The arbitrage-free condition $\partial^2 C / \partial K^2 \geq 0$ arises from:
 
@@ -395,7 +417,8 @@ $$
 
 
 
-### Moment Explosion Constraints
+### 2. Moment Explosion Constraints
+
 
 **Theorem 4.3.7** (Lee's Moment Formula)  
 For the implied volatility surface to admit a finite-variance risk-neutral density:
@@ -425,7 +448,9 @@ for some constant $C > 0$, ensuring finite variance.
 
 ## Practical Arbitrage Detection
 
-### Discrete Strike Grid
+
+### 1. Discrete Strike Grid
+
 
 In practice, option prices are observed on a discrete grid $(K_i, T_j)$. Arbitrage violations manifest as:
 
@@ -446,7 +471,8 @@ In practice, option prices are observed on a discrete grid $(K_i, T_j)$. Arbitra
 
 
 
-### Arbitrage-Free Interpolation
+### 2. Arbitrage-Free Interpolation
+
 
 To construct an arbitrage-free surface from discrete data:
 
@@ -462,7 +488,9 @@ To construct an arbitrage-free surface from discrete data:
 
 ## High-Order Constraints
 
-### Higher-Derivative Bounds
+
+### 1. Higher-Derivative Bounds
+
 
 Beyond second-order convexity, market data suggests:
 
@@ -471,7 +499,8 @@ The fourth derivative $\partial^4 C / \partial K^4$ is typically small and chang
 - Butterfly spreads are concave in strike spacing (approximate quadratic behavior)
 - Risk-neutral density has bounded derivatives
 
-### Smoothness and Regularity
+### 2. Smoothness and Regularity
+
 
 **Conjecture (Phenomenological):**  
 Real implied volatility surfaces are $C^2$ in both $(K, T)$ with occasional jumps (e.g., earnings announcements, dividends).
@@ -480,9 +509,11 @@ Mathematical models (local vol, stochastic vol) typically generate $C^\infty$ sm
 
 ## Summary of Arbitrage Constraints
 
+
 The implied volatility surface must satisfy:
 
-### **Point-wise bounds:**
+### 1. **Point-wise bounds:**
+
 
 $$
 \max(S e^{-qT} - K e^{-rT}, 0) < C < S e^{-qT}
@@ -490,7 +521,8 @@ $$
 
 
 
-### **Strike monotonicity:**
+### 2. **Strike monotonicity:**
+
 
 $$
 \frac{\partial C}{\partial K} \leq 0
@@ -498,7 +530,8 @@ $$
 
 
 
-### **Strike convexity (Butterfly):**
+### 3. **Strike convexity (Butterfly):**
+
 
 $$
 \frac{\partial^2 C}{\partial K^2} \geq 0
@@ -506,7 +539,8 @@ $$
 
 
 
-### **Maturity monotonicity (Calendar):**
+### 4. **Maturity monotonicity (Calendar):**
+
 
 $$
 \frac{\partial C}{\partial T} \geq 0
@@ -514,7 +548,8 @@ $$
 
 
 
-### **Total variance monotonicity:**
+### 5. **Total variance monotonicity:**
+
 
 $$
 \frac{\partial w}{\partial T} \geq 0
@@ -522,7 +557,8 @@ $$
 
 
 
-### **Wing behavior (Lee's constraint):**
+### 6. **Wing behavior (Lee's constraint):**
+
 
 $$
 \lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty

@@ -1,12 +1,14 @@
 # Why Itô’s Lemma Matters: From Direct Computation to a Fundamental Theorem
 
+
 Before the development of **Itô’s lemma**, computing stochastic integrals often meant wrestling directly with the **definition** (Riemann-sum limits), hoping for telescoping tricks, and carefully tracking **quadratic variation**.  
 
 **Analogy**: Just as the Fundamental Theorem of Calculus turns painful Riemann sums into simple antiderivative evaluations, **Itô’s lemma turns painful stochastic integral computations into systematic applications of a chain rule**.
 
 ---
 
-## 1. The Definition of the Itô Integral (Hard Way)
+## The Definition of the Itô Integral (Hard Way)
+
 
 Recall the Itô integral is defined as an \(L^2\)-limit of Riemann sums:
 
@@ -30,7 +32,8 @@ To see why this becomes unpleasant quickly, we compute a few integrals directly.
 
 ---
 
-## 2. Example: Computing \(\int_0^1 B_s\,dB_s\) Directly
+## Example: Computing \(\int_0^1 B_s\,dB_s\) Directly
+
 
 By definition,
 
@@ -84,7 +87,8 @@ Even this “simple” integral required a special trick and knowledge of quadra
 
 ---
 
-## 3. Example: Computing \(\int_0^1 sB_s\,dB_s\) Directly (Messy)
+## Example: Computing \(\int_0^1 sB_s\,dB_s\) Directly (Messy)
+
 
 The definition gives
 
@@ -118,7 +122,8 @@ This computation is *far* more error-prone than Example 1 and already produces a
 
 ---
 
-## 4. Why Direct Computation Breaks Down Quickly
+## Why Direct Computation Breaks Down Quickly
+
 
 Try to compute
 
@@ -136,11 +141,13 @@ This becomes rapidly intractable as the integrand’s algebraic complexity incre
 
 # The Easy Way: Itô’s Lemma as a Fundamental Theorem
 
+
 The point of Itô’s lemma is that it *automatically* accounts for quadratic variation, turning stochastic integration into a systematic procedure.
 
 ---
 
-## 5. Ordinary Integrals: The Classical Analogy
+## Ordinary Integrals: The Classical Analogy
+
 
 Without the Fundamental Theorem of Calculus,
 
@@ -162,7 +169,8 @@ With it,
 
 ---
 
-## 6. Itô Integrals Without Itô’s Lemma
+## Itô Integrals Without Itô’s Lemma
+
 
 By definition,
 
@@ -181,11 +189,13 @@ Exact—but usually not computable by hand.
 
 ---
 
-## 7. The “Fundamental Theorem” Recipe via Itô’s Lemma
+## The “Fundamental Theorem” Recipe via Itô’s Lemma
+
 
 To compute an Itô integral \(\int_0^t g(s,B_s)\,dB_s\), do this:
 
-### Step 1: Identify the integrand
+### 1. Step 1: Identify the integrand
+
 
 \[
 \int_0^t g(s,B_s)\,dB_s.
@@ -193,7 +203,8 @@ To compute an Itô integral \(\int_0^t g(s,B_s)\,dB_s\), do this:
 
 
 
-### Step 2: Find \(f\) such that \(f_b = g\)
+### 2. Step 2: Find \(f\) such that \(f_b = g\)
+
 Find a function \(f(t,b)\) satisfying
 
 \[
@@ -202,7 +213,8 @@ f_b(s,b)=g(s,b).
 
 
 
-### Step 3: Apply Itô’s lemma to \(f(t,B_t)\)
+### 3. Step 3: Apply Itô’s lemma to \(f(t,B_t)\)
+
 
 \[
 f(t,B_t)-f(0,B_0)
@@ -214,7 +226,8 @@ f(t,B_t)-f(0,B_0)
 
 
 
-### Step 4: Solve for the Itô integral
+### 4. Step 4: Solve for the Itô integral
+
 
 \[
 \boxed{
@@ -232,9 +245,11 @@ This is the stochastic analogue of “\(\int g = G - G(0)\)”.
 
 ---
 
-## 8. Re-doing the Earlier Examples (Fast)
+## Re-doing the Earlier Examples (Fast)
 
-### Example A: \(\int_0^1 B_s\,dB_s\)
+
+### 1. Example A: \(\int_0^1 B_s\,dB_s\)
+
 Choose \(f(b)=\frac12 b^2\). Then \(f_b=b\), \(f_{bb}=1\). Itô’s lemma gives
 
 \[
@@ -253,7 +268,8 @@ so
 
 
 
-### Example B: \(\int_0^1 sB_s\,dB_s\)
+### 2. Example B: \(\int_0^1 sB_s\,dB_s\)
+
 Choose \(f(t,b)=\frac12 t b^2\). Then \(f_b=tb\), \(f_t=\frac12 b^2\), \(f_{bb}=t\). Itô’s lemma yields
 
 \[
@@ -265,7 +281,8 @@ Choose \(f(t,b)=\frac12 t b^2\). Then \(f_b=tb\), \(f_t=\frac12 b^2\), \(f_{bb}=
 
 
 
-### Example C: \(\int_0^1 B_s^2\,dB_s\)
+### 3. Example C: \(\int_0^1 B_s^2\,dB_s\)
+
 Choose \(f(b)=\frac13 b^3\). Then \(f_b=b^2\), \(f_{bb}=2b\). Itô’s lemma gives
 
 \[
@@ -287,7 +304,8 @@ so
 
 ---
 
-## 9. Summary
+## Summary
+
 
 - **Direct computation** of Itô integrals (via Riemann sums) quickly becomes a technical maze.
 - **Itô’s lemma** packages all quadratic-variation effects into a clean rule.

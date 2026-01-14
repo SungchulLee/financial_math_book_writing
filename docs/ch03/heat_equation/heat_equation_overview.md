@@ -1,4 +1,5 @@
-# Heat Equation Overview
+# Heat Equation
+
 
 The heat equation is the canonical partial differential equation describing diffusion.
 It plays a central role in probability theory, stochastic processes, and mathematical finance.
@@ -20,6 +21,7 @@ and position \(x\).
 
 ## Diffusive Nature
 
+
 The heat equation is **parabolic**, reflecting irreversible spreading over time.
 Unlike hyperbolic equations, information propagates instantaneously and solutions become
 smooth for any positive time.
@@ -33,7 +35,8 @@ These features mirror the behavior of Brownian motion.
 
 ---
 
-## Why the Factor \( \tfrac12 \)?
+## Why Factor tfrac12
+
 
 The coefficient \( \tfrac12 \) is chosen to align the equation with standard Brownian motion,
 whose variance satisfies

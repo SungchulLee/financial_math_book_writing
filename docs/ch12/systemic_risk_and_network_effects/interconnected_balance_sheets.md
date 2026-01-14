@@ -1,10 +1,12 @@
 # Interconnected Balance Sheets
 
+
 Systemic risk arises when financial institutions are **interconnected** through balance sheets, contracts, and markets, so that distress at one entity can propagate to others.
 
 ---
 
-## 1. Sources of interconnectedness
+## Sources of interconnectedness
+
 
 Interconnections arise from:
 - interbank lending and funding markets,
@@ -15,7 +17,8 @@ These links create channels for shock transmission.
 
 ---
 
-## 2. Balance-sheet amplification
+## Balance-sheet amplification
+
 
 Losses can be amplified through:
 - leverage constraints,
@@ -26,7 +29,8 @@ Small shocks may trigger large system-wide effects.
 
 ---
 
-## 3. Network perspective
+## Network perspective
+
 
 Viewing the system as a network:
 - nodes represent institutions,
@@ -37,7 +41,8 @@ Dense networks can be robust or fragile depending on structure.
 
 ---
 
-## 4. Measurement challenges
+## Measurement challenges
+
 
 Systemic exposure is hard to measure due to:
 - opacity of bilateral exposures,
@@ -48,7 +53,8 @@ Stress tests often approximate these effects.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Balance-sheet links transmit shocks.
 - Leverage and margins amplify losses.
@@ -57,6 +63,7 @@ Stress tests often approximate these effects.
 ---
 
 ## Further reading
+
 
 - Allen & Gale, financial contagion.
 - Brunnermeier & Oehmke, the financial system as a network.

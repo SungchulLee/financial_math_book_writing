@@ -1,10 +1,12 @@
 # Long and Short
 
+
 **Long and short futures** are standardized contracts to buy or sell an asset at a predetermined price on a future date, giving you direct linear exposure to price movements with symmetrical unlimited risk and reward.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -31,9 +33,11 @@ $$
 
 ## What Are Futures?
 
+
 **Before trading futures, understand what you're entering:**
 
 ### 1. Long Futures
+
 
 **Definition:** An obligation to BUY the underlying asset at price $F$ on delivery date $T$ (or cash settle).
 
@@ -61,6 +65,7 @@ $$
 - Price → 4450: Loss = (4450 - 4500) × $50 = -$2,500
 
 ### 2. Short Futures
+
 
 **Definition:** An obligation to SELL the underlying asset at price $F$ on delivery date $T$ (or cash settle).
 
@@ -96,9 +101,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic definition, understanding what futures REALLY are economically:**
 
 ### 1. The Fundamental
+
 
 **A futures contract is a pure price exposure instrument:**
 
@@ -115,6 +122,7 @@ $$
 5. **No ownership:** No dividends, voting rights, storage costs (until delivery)
 
 ### 2. Futures vs. Spot
+
 
 **The no-arbitrage relationship:**
 
@@ -156,6 +164,7 @@ $$
 
 ### 3. The Cost of Carry
 
+
 **The fundamental arbitrage:**
 
 **If $F > S \cdot e^{(r-q)T}$ (futures overpriced):**
@@ -177,6 +186,7 @@ $$
 **Market makers constantly monitor this to prevent arbitrage opportunities!**
 
 ### 4. Futures vs.
+
 
 **Forward contracts (OTC, customized):**
 - Credit risk (counterparty can default)
@@ -205,6 +215,7 @@ $$
 $$
 
 ### 5. The Margin System
+
 
 **Initial margin:** Performance bond deposited at entry
 
@@ -248,6 +259,7 @@ $$
 
 ### 6. Convergence at
 
+
 **The fundamental theorem of futures:**
 
 $$
@@ -272,6 +284,7 @@ $$
 
 ### 7. Why This
 
+
 **Understanding futures as pure price commitments helps you:**
 
 1. **Compare to spot markets:**
@@ -293,6 +306,7 @@ $$
    - Futures are building blocks for complex strategies
 
 ### 8. The Strategic
+
 
 **Why traders prefer futures over spot:**
 
@@ -324,6 +338,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Contract Specifications:**
 
@@ -453,9 +468,11 @@ $$
 
 ## Contract
 
+
 **Understanding specifications is crucial for proper risk management:**
 
 ### 1. Popular Financial
+
 
 **E-mini S&P 500 (ES):**
 - Underlying: S&P 500 Index
@@ -501,6 +518,7 @@ $$
 
 ### 2. Popular Commodity
 
+
 **Crude Oil (CL):**
 - Contract size: 1,000 barrels
 - Tick size: $0.01/barrel = $10
@@ -542,6 +560,7 @@ $$
 
 ### 3. Currency Futures
 
+
 **Euro FX (6E):**
 - Contract size: €125,000
 - Tick size: $0.00005/€ = $6.25
@@ -555,6 +574,7 @@ $$
 - Loss: (1.0900 - 1.1000) × 125,000 = **-$1,250**
 
 ### 4. Micro Contracts
+
 
 **Many futures now have "micro" versions:**
 
@@ -579,7 +599,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Understanding the
+
 
 **Unlike options, futures have symmetric unlimited risk:**
 
@@ -598,6 +620,7 @@ Where:
 - $N$ = Number of contracts
 
 ### 2. Long Futures
+
 
 **Maximum profit:**
 
@@ -635,6 +658,7 @@ $$
 
 ### 3. Short Futures
 
+
 **Maximum profit:**
 
 $$
@@ -666,6 +690,7 @@ $$
 - **Owe $118,000 beyond margin**
 
 ### 4. The Margin Call
+
 
 **Critical understanding: Futures losses can EXCEED your account balance!**
 
@@ -712,6 +737,7 @@ $$
 
 ### 5. Comparing to
 
+
 **Long Call (for comparison):**
 - Max loss: Premium paid ($500)
 - Max profit: Unlimited
@@ -750,7 +776,9 @@ $$
 
 ## Entry and Exit
 
+
 ### 1. Entry Strategies
+
 
 **1. Trend Following Entry**
 
@@ -853,6 +881,7 @@ $$
 - Net: +$0.50 × 1,000 = **+$500 per spread**
 
 ### 2. Exit Strategies
+
 
 **1. Profit Targets (Planned Exits)**
 
@@ -989,6 +1018,7 @@ $$
 
 ### 3. Exit Discipline
 
+
 **The biggest mistake: Not having exit plan before entry**
 
 **Professional approach:**
@@ -1039,6 +1069,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Futures are the purest expression of market opinion—no time decay, no premium, just you versus price. This simplicity is both their power and their danger. With 10-20× leverage and unlimited risk, futures demand ironclad discipline. They reward the skilled and disciplined, and ruthlessly punish the reckless. Master risk management before seeking returns, or the market will teach you at the cost of your capital."
 

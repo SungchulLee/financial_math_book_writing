@@ -1,5 +1,6 @@
 # Empirical Implied Volatility Smile (SPX Example)
 
+
 This section illustrates the **implied volatility smile** using real market data for S&P 500 (SPX) index options.
 
 ```python

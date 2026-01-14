@@ -1,10 +1,12 @@
 # Pricing with XVAs
 
+
 Modern derivative pricing integrates **XVAs** directly into valuation, moving beyond the classical risk-neutral pricing paradigm.
 
 ---
 
-## 1. XVA-inclusive pricing equation
+## XVA-inclusive pricing equation
+
 
 Pricing with XVAs leads to nonlinear valuation equations:
 
@@ -18,7 +20,8 @@ This breaks linearity and additivity of prices.
 
 ---
 
-## 2. BSDE and PDE formulations
+## BSDE and PDE formulations
+
 
 XVA pricing can be formulated using:
 - backward stochastic differential equations (BSDEs),
@@ -28,7 +31,8 @@ These frameworks unify pricing, funding, and credit risk.
 
 ---
 
-## 3. Impact on hedging
+## Impact on hedging
+
 
 With XVAs:
 - hedging strategies are institution-specific,
@@ -37,7 +41,8 @@ With XVAs:
 
 ---
 
-## 4. Organizational implications
+## Organizational implications
+
 
 XVA pricing affects:
 - deal pricing and profitability,
@@ -48,7 +53,8 @@ It blurs the line between pricing and risk management.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - XVAs fundamentally alter derivative pricing.
 - Valuation becomes nonlinear and institution-specific.
@@ -57,6 +63,7 @@ It blurs the line between pricing and risk management.
 ---
 
 ## Further reading
+
 
 - Brigo, Morini & Pallavicini, XVA theory.
 - Crépey, BSDE approaches to XVA.

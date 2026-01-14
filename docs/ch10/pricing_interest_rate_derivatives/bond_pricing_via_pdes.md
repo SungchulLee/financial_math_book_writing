@@ -1,10 +1,12 @@
 # Bond Pricing via PDEs
 
+
 In short-rate models, zero-coupon bond prices can be characterized as solutions of **partial differential equations (PDEs)**. The PDE approach provides intuition about boundary conditions and links interest-rate pricing to diffusion theory.
 
 ---
 
-## 1. Setup
+## Setup
+
 
 Let \(r_t\) follow a risk-neutral short-rate diffusion
 
@@ -25,7 +27,8 @@ given \(r_t=r\).
 
 ---
 
-## 2. Pricing PDE
+## Pricing PDE
+
 
 By standard arbitrage arguments, \(P(t,T,r)\) satisfies
 
@@ -49,7 +52,8 @@ This PDE is backward in time.
 
 ---
 
-## 3. Boundary conditions
+## Boundary conditions
+
 
 Appropriate boundary conditions depend on the model:
 
@@ -61,7 +65,8 @@ Correct boundary treatment is crucial for numerical stability.
 
 ---
 
-## 4. Analytical solutions
+## Analytical solutions
+
 
 For affine models (Vasicek, CIR):
 - the PDE admits closed-form solutions,
@@ -72,7 +77,8 @@ For more general models, numerical PDE methods are required.
 
 ---
 
-## 5. Numerical PDE methods
+## Numerical PDE methods
+
 
 Common schemes include:
 - finite differences (implicit, Crank–Nicolson),
@@ -83,7 +89,8 @@ Bond PDEs are one-dimensional and relatively tractable.
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Bond prices satisfy linear parabolic PDEs.
 - PDEs clarify boundary behavior and numerical issues.
@@ -92,6 +99,7 @@ Bond PDEs are one-dimensional and relatively tractable.
 ---
 
 ## Further reading
+
 
 - Wilmott, *Derivatives*.
 - Brigo & Mercurio, bond pricing PDEs.

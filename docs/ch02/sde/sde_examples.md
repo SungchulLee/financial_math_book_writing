@@ -1,12 +1,15 @@
 # SDE Examples in Quantitative Finance
 
+
 This section presents canonical SDEs used in quantitative finance, with complete mathematical derivations and properties.
 
 ---
 
-## 1. Geometric Brownian Motion (GBM)
+## Geometric Brownian Motion (GBM)
 
-### 1.1 The Model
+
+### 1. The Model
+
 
 **SDE:**
 
@@ -22,7 +25,8 @@ where:
 - $\sigma$ = volatility (standard deviation of returns)
 - $W_t$ = standard Brownian motion
 
-### 1.2 Derivation of the Solution
+### 2. Derivation of the Solution
+
 
 Apply Itô's lemma to $f(S) = \log S$:
 
@@ -55,7 +59,8 @@ S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 }
 $$
 
-### 1.3 Properties
+### 3. Properties
+
 
 **Distribution:** $\log S_t$ is normally distributed:
 
@@ -107,14 +112,16 @@ $$
 \text{Var}[S_t] = \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
 $$
 
-### 1.4 Financial Interpretation
+### 4. Financial Interpretation
+
 
 - GBM is the foundation of the **Black-Scholes model**
 - Assumes **constant volatility** and **log-normal returns**
 - **Self-financing property:** Relative changes $dS_t/S_t$ are independent of the level
 - Returns over non-overlapping intervals are independent (Markov property)
 
-### 1.5 Limitations
+### 5. Limitations
+
 
 - Cannot model **mean reversion** (e.g., interest rates, volatility)
 - Cannot guarantee **positivity constraints** for all processes
@@ -122,9 +129,11 @@ $$
 
 ---
 
-## 2. Ornstein-Uhlenbeck (OU) Process
+## Ornstein-Uhlenbeck (OU) Process
 
-### 2.1 The Model
+
+### 1. The Model
+
 
 **SDE:**
 
@@ -139,7 +148,8 @@ where:
 - $\theta$ = long-term mean (equilibrium level)
 - $\sigma$ = volatility
 
-### 2.2 Derivation of the Solution
+### 2. Derivation of the Solution
+
 
 This is a **linear SDE** that can be solved using an **integrating factor**.
 
@@ -194,7 +204,8 @@ $$
 X_t = e^{-\kappa t}X_0 + \theta(1 - e^{-\kappa t}) + \sigma e^{-\kappa t}\int_0^t e^{\kappa s}\,dW_s
 $$
 
-### 2.3 Properties
+### 3. Properties
+
 
 **Conditional Mean:**
 
@@ -244,7 +255,8 @@ $$
 
 This is an **exponentially decaying autocorrelation**.
 
-### 2.4 Financial Applications
+### 4. Financial Applications
+
 
 - **Interest rate models** (e.g., Vasicek model)
 - **Pairs trading** (spread between two assets)
@@ -253,9 +265,11 @@ This is an **exponentially decaying autocorrelation**.
 
 ---
 
-## 3. Vasicek Model (Interest Rates)
+## Vasicek Model (Interest Rates)
 
-### 3.1 The Model
+
+### 1. The Model
+
 
 **SDE:**
 
@@ -267,13 +281,15 @@ $$
 
 This is structurally identical to the OU process with $\kappa = a$ and $\theta = b$.
 
-### 3.2 Solution
+### 2. Solution
+
 
 $$
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma \int_0^t e^{-a(t-s)}\,dW_s
 $$
 
-### 3.3 Bond Pricing
+### 3. Bond Pricing
+
 
 The price at time $t$ of a zero-coupon bond maturing at $T$ is:
 
@@ -297,7 +313,8 @@ $$
 A(t, T) = \exp\left[\left(b - \frac{\sigma^2}{2a^2}\right)(B(t, T) - (T-t)) - \frac{\sigma^2}{4a}B(t, T)^2\right]
 $$
 
-### 3.4 Advantages and Disadvantages
+### 4. Advantages and Disadvantages
+
 
 **Advantages:**
 - Analytically tractable
@@ -310,9 +327,11 @@ $$
 
 ---
 
-## 4. Cox-Ingersoll-Ross (CIR) Model
+## Cox-Ingersoll-Ross (CIR) Model
 
-### 4.1 The Model
+
+### 1. The Model
+
 
 **SDE:**
 
@@ -328,13 +347,15 @@ where:
 - $\sigma > 0$ = volatility parameter
 - $r_t \geq 0$ (interest rate remains non-negative)
 
-### 4.2 Non-negativity: Feller Condition
+### 2. Non-negativity: Feller Condition
+
 
 **Theorem (Feller Condition):** If $2\kappa\theta \geq \sigma^2$, then $r_t > 0$ for all $t > 0$ almost surely.
 
 If $2\kappa\theta < \sigma^2$, $r_t$ can reach $0$, but it is a reflecting boundary.
 
-### 4.3 Transformation to Bessel Process
+### 3. Transformation to Bessel Process
+
 
 Let $X_t = \sqrt{r_t}$. Apply Itô's lemma:
 
@@ -353,7 +374,8 @@ $$
 
 This is related to the **squared Bessel process**.
 
-### 4.4 Distribution
+### 4. Distribution
+
 
 The CIR process does not have a simple closed-form solution like GBM or Vasicek. However, the **conditional distribution** is known:
 
@@ -365,7 +387,8 @@ where $\chi_{\nu}^2(\lambda)$ is a **non-central chi-squared distribution** with
 - Degrees of freedom: $\nu = \frac{4\kappa\theta}{\sigma^2}$
 - Non-centrality parameter: $\lambda = \frac{4\kappa e^{-\kappa t}}{\sigma^2(1 - e^{-\kappa t})}r_0$
 
-### 4.5 Moments
+### 5. Moments
+
 
 **Conditional Mean:**
 
@@ -381,7 +404,8 @@ $$
 \text{Var}[r_t | r_0] = r_0 \frac{\sigma^2}{\kappa}(e^{-\kappa t} - e^{-2\kappa t}) + \theta\frac{\sigma^2}{2\kappa}(1 - e^{-\kappa t})^2
 $$
 
-### 4.6 Bond Pricing
+### 6. Bond Pricing
+
 
 Zero-coupon bond price:
 
@@ -401,7 +425,8 @@ $$
 
 with $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$.
 
-### 4.7 Advantages over Vasicek
+### 7. Advantages over Vasicek
+
 
 - **Non-negative interest rates** (more realistic)
 - **State-dependent volatility**: higher rates → higher volatility
@@ -409,9 +434,11 @@ with $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$.
 
 ---
 
-## 5. Constant Elasticity of Variance (CEV) Model
+## Constant Elasticity of Variance (CEV) Model
 
-### 5.1 The Model
+
+### 1. The Model
+
 
 **SDE:**
 
@@ -423,13 +450,15 @@ $$
 
 where $\beta \in \mathbb{R}$ is the **elasticity parameter**.
 
-### 5.2 Special Cases
+### 2. Special Cases
+
 
 - $\beta = 1$: **Geometric Brownian Motion** (Black-Scholes)
 - $\beta = 0$: **Bachelier model** (arithmetic Brownian motion)
 - $\beta = 1/2$: **Square-root process** (volatility decreases with price)
 
-### 5.3 Properties
+### 3. Properties
+
 
 For $\beta < 1$, the model exhibits **leverage effect**: volatility increases as price decreases.
 
@@ -441,15 +470,18 @@ $$
 
 This is similar to the CIR process and can reach zero but is reflecting.
 
-### 5.4 Implied Volatility Smile
+### 4. Implied Volatility Smile
+
 
 The CEV model can produce an **implied volatility skew**, making it more realistic than GBM for equity options.
 
 ---
 
-## 6. Heston Stochastic Volatility Model
+## Heston Stochastic Volatility Model
 
-### 6.1 The Model
+
+### 1. The Model
+
 
 **System of SDEs:**
 
@@ -476,7 +508,8 @@ where:
 - $\xi$ = volatility of volatility (vol-of-vol)
 - $\rho$ = correlation between price and volatility shocks
 
-### 6.2 Implementation of Correlation
+### 2. Implementation of Correlation
+
 
 In practice, we write:
 
@@ -495,7 +528,8 @@ dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,
 \end{cases}
 $$
 
-### 6.3 Feller Condition
+### 3. Feller Condition
+
 
 To ensure $V_t > 0$ for all $t$:
 
@@ -503,14 +537,16 @@ $$
 2\kappa\theta \geq \xi^2
 $$
 
-### 6.4 Advantages
+### 4. Advantages
+
 
 - **Stochastic volatility** captures volatility clustering
 - **Correlation $\rho < 0$** produces **leverage effect** (volatility increases when price drops)
 - **Semi-analytical option pricing** via characteristic functions
 - Can fit the **volatility surface** better than Black-Scholes
 
-### 6.5 Characteristic Function
+### 5. Characteristic Function
+
 
 The Heston model has a **semi-closed-form characteristic function**, which enables efficient option pricing via Fourier inversion.
 
@@ -524,9 +560,11 @@ This can be computed in closed form using the solution to a system of Riccati OD
 
 ---
 
-## 7. Merton Jump-Diffusion Model
+## Merton Jump-Diffusion Model
 
-### 7.1 The Model
+
+### 1. The Model
+
 
 **SDE with jumps:**
 
@@ -546,13 +584,15 @@ with:
 - $N_t$ = Poisson process with intensity $\lambda$
 - $Y_i$ = i.i.d. jump sizes with $\log Y_i \sim \mathcal{N}(\mu_J, \sigma_J^2)$
 
-### 7.2 Interpretation
+### 2. Interpretation
+
 
 - Between jumps, $S_t$ follows GBM
 - At random times (Poisson arrivals), the price **jumps** by a random percentage
 - Models **rare events** (crashes, earnings announcements)
 
-### 7.3 Compensated Jump Process
+### 3. Compensated Jump Process
+
 
 To make $S_t$ a martingale under $\mathbb{Q}$, we use:
 
@@ -564,9 +604,11 @@ where $k = \mathbb{E}[Y - 1]$ is the expected jump size.
 
 ---
 
-## 8. SABR Model
+## SABR Model
 
-### 8.1 The Model
+
+### 1. The Model
+
 
 Used extensively for **interest rate derivatives** and **FX options**:
 
@@ -588,15 +630,18 @@ where:
 - $\alpha$ = volatility of volatility
 - $\rho$ = correlation
 
-### 8.2 SABR Implied Volatility Formula
+### 2. SABR Implied Volatility Formula
+
 
 The SABR model has an **approximate closed-form formula** for implied volatility, making it highly practical for calibration to market data.
 
 ---
 
-## 9. Hull-White Model (Extended Vasicek)
+## Hull-White Model (Extended Vasicek)
 
-### 9.1 The Model
+
+### 1. The Model
+
 
 **Time-dependent parameters:**
 
@@ -608,21 +653,25 @@ $$
 
 This extends Vasicek to allow **calibration to the current yield curve**.
 
-### 9.2 Solution
+### 2. Solution
+
 
 $$
 r_t = r_0 e^{-\int_0^t a(s)\,ds} + \int_0^t \theta(s) e^{-\int_s^t a(u)\,du}\,ds + \int_0^t \sigma(s) e^{-\int_s^t a(u)\,du}\,dW_s
 $$
 
-### 9.3 Calibration
+### 3. Calibration
+
 
 By choosing $\theta(t)$ appropriately, the model can **perfectly fit the initial term structure**.
 
 ---
 
-## 10. Black-Karasinski Model
+## Black-Karasinski Model
 
-### 10.1 The Model
+
+### 1. The Model
+
 
 **Log-normal short rate:**
 
@@ -632,7 +681,8 @@ $$
 
 This ensures $r_t > 0$ for all $t$.
 
-### 10.2 Properties
+### 2. Properties
+
 
 - **Non-negative rates** (advantage over Vasicek and Hull-White)
 - **No closed-form bond prices** (requires numerical methods)
@@ -640,7 +690,8 @@ This ensures $r_t > 0$ for all $t$.
 
 ---
 
-## 11. Summary Table
+## Summary Table
+
 
 | Model | SDE | Key Feature | Application |
 |-------|-----|-------------|-------------|
@@ -656,7 +707,8 @@ This ensures $r_t > 0$ for all $t$.
 
 ---
 
-## 12. Choosing the Right Model
+## Choosing the Right Model
+
 
 **Considerations:**
 

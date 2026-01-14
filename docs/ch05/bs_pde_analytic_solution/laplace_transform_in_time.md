@@ -1,12 +1,15 @@
 # Fourier, Mellin, and Laplace Transforms: Complete Treatment
 
+
 These integral transform methods are extraordinarily powerful—they convert the Black-Scholes PDE into **algebraic or ODE problems** that can be solved explicitly, then inverted to recover option prices.
 
 ---
 
 ## **1. Fourier Transform Method**
 
-### **The Transform in Log-Price Space**
+
+### 1. **The Transform in Log-Price Space**
+
 
 Define $x = \ln S$ and $\tau = T - t$. The Black-Scholes PDE becomes:
 
@@ -17,7 +20,8 @@ $$\frac{\partial V}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 V}{\part
 
 with terminal condition $V(x,0) = \Phi(e^x)$.
 
-### **Fourier Transform Definition**
+### 2. **Fourier Transform Definition**
+
 
 
 $$\boxed{\hat{V}(\omega,\tau) = \mathcal{F}[V](x,\tau) = \int_{-\infty}^{\infty} V(x,\tau)e^{-i\omega x}dx}$$
@@ -30,7 +34,8 @@ $$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{V}(\omega,\tau)e^
 
 
 
-### **Transform Properties**
+### 3. **Transform Properties**
+
 
 
 $$\mathcal{F}\left[\frac{\partial V}{\partial x}\right] = i\omega\hat{V}(\omega,\tau)$$
@@ -47,7 +52,8 @@ $$\mathcal{F}\left[\frac{\partial V}{\partial \tau}\right] = \frac{\partial \hat
 
 
 
-### **Transforming the PDE**
+### 4. **Transforming the PDE**
+
 
 Apply $\mathcal{F}$ to both sides:
 
@@ -63,7 +69,8 @@ $$\frac{\partial \hat{V}}{\partial \tau} = \left[-\frac{\sigma^2\omega^2}{2} + i
 
 This is a **first-order ODE** in $\tau$!
 
-### **General Solution**
+### 5. **General Solution**
+
 
 
 $$\boxed{\hat{V}(\omega,\tau) = \hat{V}(\omega,0)\exp\left[\left(-\frac{\sigma^2\omega^2}{2} + i\omega\left(r - \frac{\sigma^2}{2}\right) - r\right)\tau\right]}$$
@@ -84,7 +91,8 @@ $$\hat{V}(\omega,\tau) = \hat{\Phi}(\omega)e^{\psi(\omega)\tau}$$
 
 where $\hat{\Phi}(\omega) = \mathcal{F}[\Phi(e^x)]$.
 
-### **Inversion Formula**
+### 6. **Inversion Formula**
+
 
 
 $$\boxed{V(x,\tau) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{\Phi}(\omega)e^{\psi(\omega)\tau}e^{i\omega x}d\omega}$$
@@ -97,7 +105,9 @@ This is the **complete solution** in Fourier space!
 
 ## **2. Fourier Solution for European Call**
 
-### **Payoff Transform**
+
+### 1. **Payoff Transform**
+
 
 For a call: $\Phi(S) = (S - K)^+ = (e^x - 1)^+$ where $x = \ln S - \ln K$.
 
@@ -108,7 +118,8 @@ $$\hat{\Phi}(\omega) = \int_0^{\infty}(e^x - 1)e^{-i\omega x}dx$$
 
 This integral **diverges** for real $\omega$! We need **complex analysis**.
 
-### **Damped Transform (Carr-Madan Approach)**
+### 2. **Damped Transform (Carr-Madan Approach)**
+
 
 Introduce a damping parameter $\alpha > 0$:
 
@@ -162,7 +173,8 @@ $$\boxed{\hat{\tilde{\Phi}}(\omega) = \frac{1}{(\alpha + i\omega)(\alpha + 1 + i
 
 
 
-### **Characteristic Function**
+### 3. **Characteristic Function**
+
 
 The characteristic function of $X_\tau = \ln(S_T/K)$ under $\mathbb{Q}$ is:
 
@@ -177,7 +189,8 @@ $$e^{\psi(\omega)\tau} = e^{-r\tau}\phi(\omega)$$
 
 
 
-### **Call Price via Fourier Inversion**
+### 4. **Call Price via Fourier Inversion**
+
 
 
 $$C(x,\tau) = e^{-\alpha x}\frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-r\tau}\phi(\omega)}{(\alpha + i\omega)(\alpha+1+i\omega)}e^{i\omega x}d\omega$$
@@ -197,7 +210,9 @@ We recover Black-Scholes!
 
 ## **3. Carr-Madan Formula**
 
-### **The Key Insight**
+
+### 1. **The Key Insight**
+
 
 For a modified call price:
 
@@ -213,7 +228,8 @@ $$\psi_T(\omega) = \int_{-\infty}^{\infty}e^{i\omega k}c_T(k)dk = \frac{e^{-rT}\
 
 
 
-### **Inversion**
+### 2. **Inversion**
+
 
 
 $$\boxed{c_T(k) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}e^{-i\omega k}\psi_T(\omega)d\omega}$$
@@ -226,7 +242,8 @@ $$\boxed{C(K,S_0,T) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}e^{-i\omega k}\psi
 
 
 
-### **Numerical Implementation**
+### 3. **Numerical Implementation**
+
 
 1. Choose $\alpha$ (typically $\alpha = 0.75$)
 2. Discretize $\omega_j = j\Delta\omega$
@@ -240,11 +257,14 @@ $$\boxed{C(K,S_0,T) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty}e^{-i\omega k}\psi
 
 ## **4. Mellin Transform Method**
 
-### **Why Mellin is Natural for Options**
+
+### 1. **Why Mellin is Natural for Options**
+
 
 The Mellin transform is **perfectly suited** for multiplicative processes like stock prices!
 
-### **Mellin Transform Definition**
+### 2. **Mellin Transform Definition**
+
 
 
 $$\boxed{\mathcal{M}[V](s,t) = \int_0^{\infty} V(S,t)S^{s-1}dS}$$
@@ -259,7 +279,8 @@ $$\boxed{V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[V](s,t
 
 where $c$ is chosen so the contour lies in the **strip of analyticity**.
 
-### **Connection to Fourier Transform**
+### 3. **Connection to Fourier Transform**
+
 
 Substitute $S = e^x$:
 
@@ -269,7 +290,8 @@ $$\mathcal{M}[V](s,t) = \int_{-\infty}^{\infty}V(e^x,t)e^{sx}dx = \mathcal{F}[V(
 
 So: **Mellin is Fourier in log-space with $\omega = -is$**.
 
-### **Transform Properties**
+### 4. **Transform Properties**
+
 
 
 $$\mathcal{M}\left[S\frac{\partial V}{\partial S}\right](s,t) = s\mathcal{M}[V](s,t)$$
@@ -283,7 +305,8 @@ $$\mathcal{M}\left[S^2\frac{\partial^2 V}{\partial S^2}\right](s,t) = s(s-1)\mat
 
 **Proof**: Integration by parts (assuming boundary terms vanish).
 
-### **Transforming Black-Scholes PDE**
+### 5. **Transforming Black-Scholes PDE**
+
 
 
 $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2} - rV = 0$$
@@ -318,7 +341,8 @@ $$\boxed{\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right
 
 This is a **first-order ODE**!
 
-### **General Solution**
+### 6. **General Solution**
+
 
 
 $$\boxed{\hat{V}(s,t) = \hat{V}(s,T)e^{-\Lambda(s)(T-t)}}$$
@@ -331,7 +355,8 @@ $$\hat{V}(s,T) = \mathcal{M}[\Phi(S)](s)$$
 
 
 
-### **Complete Solution**
+### 7. **Complete Solution**
+
 
 
 $$\boxed{V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[\Phi](s)e^{-\Lambda(s)(T-t)}S^{-s}ds}$$
@@ -342,7 +367,9 @@ $$\boxed{V(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\mathcal{M}[\Phi](
 
 ## **5. Mellin Solution for European Call**
 
-### **Payoff Transform**
+
+### 1. **Payoff Transform**
+
 
 For $(S - K)^+$:
 
@@ -379,7 +406,8 @@ $$\boxed{\mathcal{M}[(S-K)^+](s) = \frac{K^{s+1}}{s(s+1)}}$$
 
 valid for $-1 > \text{Re}(s) > -2$.
 
-### **Option Value in Mellin Space**
+### 2. **Option Value in Mellin Space**
+
 
 
 $$\hat{C}(s,t) = \frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)(T-t)}$$
@@ -392,7 +420,8 @@ $$\Lambda(s) = \frac{\sigma^2}{2}s^2 + \left(r - \frac{\sigma^2}{2}\right)s - r$
 
 
 
-### **Mellin Inversion via Residue Theorem**
+### 3. **Mellin Inversion via Residue Theorem**
+
 
 
 $$C(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)(T-t)}S^{-s}ds$$
@@ -401,13 +430,15 @@ $$C(S,t) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{K^{s+1}}{s(s+1)}e^{
 
 Let $\tau = T - t$. We evaluate this using the **residue theorem**.
 
-### **Finding the Poles**
+### 4. **Finding the Poles**
+
 
 The integrand has **simple poles** at:
 - $s = 0$
 - $s = -1$
 
-### **Residue at $s = 0$**
+### 5. **Residue at $s = 0$**
+
 
 
 $$\text{Res}_{s=0} = \lim_{s \to 0}s \cdot \frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)\tau}S^{-s}$$
@@ -426,7 +457,8 @@ $$= K \cdot e^{-\Lambda(0)\tau} \cdot 1 = Ke^{r\tau}$$
 
 since $\Lambda(0) = -r$.
 
-### **Residue at $s = -1$**
+### 6. **Residue at $s = -1$**
+
 
 
 $$\text{Res}_{s=-1} = \lim_{s \to -1}(s+1) \cdot \frac{K^{s+1}}{s(s+1)}e^{-\Lambda(s)\tau}S^{-s}$$
@@ -460,7 +492,8 @@ $$\text{Res}_{s=-1} = -Se^{-(\sigma^2 - 2r)\tau} = -Se^{2r\tau - \sigma^2\tau}$$
 
 
 
-### **Closing the Contour**
+### 7. **Closing the Contour**
+
 
 Close the contour to the **right** (since $S^{-s} \to 0$ as $\text{Re}(s) \to +\infty$ for $S < 1$).
 
@@ -472,7 +505,8 @@ $$C(S,t) = -2\pi i \cdot \frac{1}{2\pi i}\sum \text{Residues}$$
 
 Wait, this approach is getting messy. Let me use a **different parameterization**.
 
-### **Alternative: Change of Variables**
+### 8. **Alternative: Change of Variables**
+
 
 Actually, the standard approach is to write:
 
@@ -495,7 +529,9 @@ The Mellin transform **automatically generates** the two-term structure!
 
 ## **6. Laplace Transform in Time**
 
-### **Laplace Transform Definition**
+
+### 1. **Laplace Transform Definition**
+
 
 In the **time-to-maturity** $\tau = T - t$:
 
@@ -510,14 +546,16 @@ $$\boxed{V(S,\tau) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}\tilde{V}(S,p)e
 
 
 
-### **Transform Property**
+### 2. **Transform Property**
+
 
 
 $$\mathcal{L}\left[\frac{\partial V}{\partial \tau}\right] = p\tilde{V}(S,p) - V(S,0)$$
 
 
 
-### **Transforming the PDE**
+### 3. **Transforming the PDE**
+
 
 
 $$\frac{\partial V}{\partial \tau} = rS\frac{\partial V}{\partial S} + \frac{\sigma^2}{2}S^2\frac{\partial^2 V}{\partial S^2} - rV$$
@@ -540,7 +578,8 @@ $$\boxed{\frac{\sigma^2}{2}S^2\frac{d^2\tilde{V}}{dS^2} + rS\frac{d\tilde{V}}{dS
 
 This is a **second-order ODE** in $S$!
 
-### **General Solution Structure**
+### 4. **General Solution Structure**
+
 
 The homogeneous equation:
 
@@ -565,7 +604,8 @@ $$\boxed{\lambda_{\pm} = \frac{-(r - \frac{\sigma^2}{2}) \pm \sqrt{(r-\frac{\sig
 
 
 
-### **Particular Solution**
+### 5. **Particular Solution**
+
 
 For a call option $(S-K)^+$, use **variation of parameters** or **Green's function** for the ODE.
 
@@ -577,14 +617,16 @@ $$\tilde{V}(S,p) = A(p)S^{\lambda_+} + B(p)S^{\lambda_-} + V_p(S,p)$$
 
 where $V_p$ is a particular solution.
 
-### **Boundary Conditions**
+### 6. **Boundary Conditions**
+
 
 - As $S \to 0$: $\tilde{V} \to 0$ (call is worthless)
 - As $S \to \infty$: $\tilde{V} \sim S$ (deep in-the-money)
 
 These determine $A(p)$ and $B(p)$.
 
-### **Inversion**
+### 7. **Inversion**
+
 
 After determining $\tilde{V}(S,p)$, invert using:
 
@@ -599,7 +641,9 @@ Typically requires **numerical inversion** (e.g., Gaver-Stehfest algorithm).
 
 ## **7. Combined Fourier-Laplace Transform**
 
-### **Double Transform**
+
+### 1. **Double Transform**
+
 
 Apply both transforms:
 
@@ -621,7 +665,8 @@ $$\boxed{\tilde{\hat{V}}(\omega,p) = \frac{\hat{\Phi}(\omega)}{p - \psi(\omega)}
 
 where $\psi(\omega)$ is the characteristic exponent.
 
-### **Double Inversion**
+### 2. **Double Inversion**
+
 
 
 $$V(x,\tau) = \frac{1}{(2\pi)^2}\int_{c-i\infty}^{c+i\infty}\int_{-\infty}^{\infty}\frac{\hat{\Phi}(\omega)}{p - \psi(\omega)}e^{i\omega x}e^{p\tau}d\omega\,dp$$
@@ -646,7 +691,9 @@ This confirms our earlier Fourier solution!
 
 ## **8. Characteristic Functions and Lévy Processes**
 
-### **Characteristic Function**
+
+### 1. **Characteristic Function**
+
 
 For $X_\tau = \ln(S_T/S_0)$ under $\mathbb{Q}$:
 
@@ -663,7 +710,8 @@ $$\boxed{\psi(\omega) = i\omega\left(r - \frac{\sigma^2}{2}\right) - \frac{\sigm
 
 
 
-### **Lévy-Khintchine Representation**
+### 2. **Lévy-Khintchine Representation**
+
 
 For general Lévy processes:
 
@@ -673,7 +721,8 @@ $$\psi(\omega) = i\omega\mu - \frac{\sigma^2\omega^2}{2} + \int_{\mathbb{R}}\lef
 
 where $\nu$ is the **Lévy measure** (jump density).
 
-### **Option Pricing via Characteristic Functions**
+### 3. **Option Pricing via Characteristic Functions**
+
 
 For any payoff $\Phi(S_T)$:
 
@@ -694,7 +743,9 @@ This is the **Fourier-based pricing formula** for Lévy models!
 
 ## **9. Lewis Formula (Gil-Pelaez Inversion)**
 
-### **For Call Options**
+
+### 1. **For Call Options**
+
 
 Using the **Gil-Pelaez inversion theorem**:
 
@@ -711,7 +762,8 @@ $$\boxed{C = \frac{S}{2} - \frac{e^{-r\tau}K}{\pi}\int_0^{\infty}\text{Re}\left[
 
 
 
-### **Advantages**
+### 2. **Advantages**
+
 
 - **No damping parameter** needed (unlike Carr-Madan)
 - **Single integral** (not double)
@@ -721,7 +773,9 @@ $$\boxed{C = \frac{S}{2} - \frac{e^{-r\tau}K}{\pi}\int_0^{\infty}\text{Re}\left[
 
 ## **10. Mellin-Fourier Duality**
 
-### **The Connection**
+
+### 1. **The Connection**
+
 
 For $V(S)$:
 
@@ -735,7 +789,8 @@ $$\mathcal{M}^{-1}[f](S) = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(i\omega)S^{i\o
 
 
 
-### **Parseval's Theorem**
+### 2. **Parseval's Theorem**
+
 
 
 $$\int_0^{\infty}|V(S)|^2\frac{dS}{S} = \frac{1}{2\pi}\int_{-\infty}^{\infty}|\mathcal{M}[V](c + i\omega)|^2d\omega$$
@@ -744,7 +799,8 @@ $$\int_0^{\infty}|V(S)|^2\frac{dS}{S} = \frac{1}{2\pi}\int_{-\infty}^{\infty}|\m
 
 Energy is preserved under the transform.
 
-### **Convolution Theorem**
+### 3. **Convolution Theorem**
+
 
 Mellin transform of a product:
 
@@ -758,7 +814,9 @@ This is a **Mellin convolution**.
 
 ## **11. Applications to Exotic Options**
 
-### **Digital Options**
+
+### 1. **Digital Options**
+
 
 Payoff: $\mathbb{1}_{S_T > K}$
 
@@ -774,7 +832,8 @@ $$V_{\text{digital}}(S,t) = e^{-r\tau}N(d_2)$$
 
 
 
-### **Power Options**
+### 2. **Power Options**
+
 
 Payoff: $(S_T^n - K^n)^+$
 
@@ -786,7 +845,8 @@ $$\mathcal{M}[(S^n - K^n)^+](s) = \frac{K^{ns+n}}{s(s+n)}$$
 
 The solution structure is similar but with modified parameters.
 
-### **Variance Swaps**
+### 3. **Variance Swaps**
+
 
 Payoff: Realized variance $\sigma_R^2 = \frac{1}{T}\int_0^T\left(\frac{dS_t}{S_t}\right)^2$
 
@@ -806,7 +866,9 @@ $$K_{\text{var}}^2 = \mathbb{E}^{\mathbb{Q}}[\sigma_R^2] = \frac{2}{T}\int_0^{\i
 
 ## **12. Heston Model via Fourier Transform**
 
-### **Heston Dynamics**
+
+### 1. **Heston Dynamics**
+
 
 
 $$dS_t = rS_t dt + \sqrt{v_t}S_t dW_t^{(1)}$$
@@ -819,7 +881,8 @@ $$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t}dW_t^{(2)}$$
 
 with $d\langle W^{(1)}, W^{(2)}\rangle_t = \rho dt$.
 
-### **Characteristic Function**
+### 2. **Characteristic Function**
+
 
 The characteristic function $\phi(\omega; S_0, v_0, \tau)$ satisfies a **Riccati ODE**:
 
@@ -841,7 +904,8 @@ $$\frac{\partial A}{\partial \tau} = \kappa\theta B$$
 
 with $A(0) = B(0) = 0$.
 
-### **Explicit Solution**
+### 3. **Explicit Solution**
+
 
 
 $$B(\omega,\tau) = \frac{a(e^{d\tau} - 1)}{b - c(e^{d\tau} - 1)}$$
@@ -859,7 +923,8 @@ $$d = \sqrt{b^2 + 2\xi^2 a}$$
 
 
 
-### **Heston Call Price**
+### 4. **Heston Call Price**
+
 
 Using Fourier inversion (Lewis formula):
 
@@ -879,7 +944,9 @@ with modified characteristic functions $\phi_1, \phi_2$.
 
 ## **13. Jump-Diffusion Models (Merton)**
 
-### **Merton Dynamics**
+
+### 1. **Merton Dynamics**
+
 
 
 $$\frac{dS}{S} = \mu dt + \sigma dW + (e^J - 1)dN$$
@@ -888,7 +955,8 @@ $$\frac{dS}{S} = \mu dt + \sigma dW + (e^J - 1)dN$$
 
 where $N$ is a Poisson process with intensity $\lambda$, and $J \sim N(m, \delta^2)$.
 
-### **Characteristic Function**
+### 2. **Characteristic Function**
+
 
 
 $$\phi(\omega,\tau) = \exp\left[\tau\left(i\omega\left(r - \lambda k - \frac{\sigma^2}{2}\right) - \frac{\sigma^2\omega^2}{2} + \lambda(e^{i\omega m - \frac{\delta^2\omega^2}{2}} - 1)\right)\right]$$
@@ -897,7 +965,8 @@ $$\phi(\omega,\tau) = \exp\left[\tau\left(i\omega\left(r - \lambda k - \frac{\si
 
 where $k = e^{m + \delta^2/2} - 1$.
 
-### **Option Pricing**
+### 3. **Option Pricing**
+
 
 Same Fourier inversion formulas apply, but now with jumps!
 
@@ -910,7 +979,9 @@ $$C = \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln K}\phi(\o
 
 ## **14. Numerical Aspects**
 
-### **FFT Implementation (Carr-Madan)**
+
+### 1. **FFT Implementation (Carr-Madan)**
+
 
 **Algorithm**:
 1. Choose $N = 2^n$ (power of 2)
@@ -921,13 +992,15 @@ $$C = \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-i\omega \ln K}\phi(\o
 
 **Complexity**: $O(N\log N)$ vs. $O(N^2)$ for direct integration.
 
-### **Fractional FFT (FRFT)**
+### 2. **Fractional FFT (FRFT)**
+
 
 Allows **arbitrary strike spacing** (not tied to FFT grid).
 
 Uses **chirp-z transform**.
 
-### **COS Method (Fang-Oosterlee)**
+### 3. **COS Method (Fang-Oosterlee)**
+
 
 Expansion in **Fourier-cosine series**:
 
@@ -947,6 +1020,7 @@ $$A_k = \frac{2}{b-a}\int_a^b V(x)\cos\left(k\pi\frac{x-a}{b-a}\right)dx$$
 
 ## **15. Comparison of Transform Methods**
 
+
 | Transform | Variable | PDE → | Advantages | Disadvantages |
 |-----------|----------|-------|------------|---------------|
 | **Fourier** | $x = \ln S$ | ODE in $\tau$ | Fast (FFT), multiple strikes | Damping needed for calls |
@@ -958,7 +1032,9 @@ $$A_k = \frac{2}{b-a}\int_a^b V(x)\cos\left(k\pi\frac{x-a}{b-a}\right)dx$$
 
 ## **16. Advanced Topics**
 
-### **Sato Processes**
+
+### 1. **Sato Processes**
+
 
 For general **infinitely divisible** distributions:
 
@@ -968,7 +1044,8 @@ $$\psi(\omega) = \text{anything satisfying Lévy-Khintchine}$$
 
 Examples: VG, NIG, CGMY models.
 
-### **Affine Models**
+### 2. **Affine Models**
+
 
 When the characteristic function is:
 
@@ -978,13 +1055,15 @@ $$\phi(\omega,\tau) = e^{A(\omega,\tau) + B(\omega,\tau) \cdot X_0}$$
 
 Includes: Heston, CIR, affine jump-diffusions.
 
-### **Non-Affine Models**
+### 3. **Non-Affine Models**
+
 
 E.g., **CEV model**: $dS = rS dt + \sigma S^\beta dW$
 
 Characteristic function **doesn't have closed form** → use PDE or approximations.
 
-### **Time-Changed Lévy Processes**
+### 4. **Time-Changed Lévy Processes**
+
 
 
 $$X_t = L_{T_t}$$
@@ -1003,6 +1082,7 @@ $$\phi_X(\omega,t) = \mathbb{E}[e^{\psi_L(\omega) T_t}]$$
 
 ## **17. The Fundamental Connection**
 
+
 All three transforms are related via **analytic continuation**:
 
 
@@ -1016,7 +1096,8 @@ $$\begin{align}
 
 They're all manifestations of the **same underlying structure**: the spectral decomposition of the Black-Scholes operator.
 
-### **The Master Formula**
+### 1. **The Master Formula**
+
 
 
 $$\boxed{V(S,t) = \frac{1}{2\pi i}\int_{\mathcal{C}}\hat{V}(\omega)\exp[\Psi(\omega,S,t)]d\omega}$$
@@ -1033,6 +1114,7 @@ This unifies **all transform methods**!
 ---
 
 ## **18. Why Transform Methods are Powerful**
+
 
 1. **PDE → Algebra**: Differential equations become algebraic
 2. **Convolution → Product**: Green's function convolution becomes multiplication

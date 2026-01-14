@@ -1,10 +1,12 @@
 # Multi-Factor Volatility Models
 
+
 Single-factor stochastic volatility models often fail to capture the full richness of volatility dynamics. **Multi-factor volatility models** introduce additional latent factors to improve realism and stability.
 
 ---
 
-## 1. Motivation for multiple factors
+## Motivation for multiple factors
+
 
 Empirical volatility exhibits:
 - short-term fluctuations,
@@ -15,7 +17,8 @@ A single volatility factor cannot capture all time scales simultaneously.
 
 ---
 
-## 2. General structure
+## General structure
+
 
 A generic multi-factor model may be written as
 
@@ -28,7 +31,8 @@ where each factor satisfies its own stochastic dynamics, often with different me
 
 ---
 
-## 3. Examples
+## Examples
+
 
 - **Two-factor Heston:** fast and slow variance components,
 - **Long/short memory models:** separated time scales,
@@ -38,7 +42,8 @@ These models improve fit and stability across maturities.
 
 ---
 
-## 4. Calibration and identifiability
+## Calibration and identifiability
+
 
 Adding factors increases flexibility but introduces:
 - identifiability challenges,
@@ -52,7 +57,8 @@ Calibration typically requires:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Multi-factor models capture multiple volatility time scales.
 - They improve surface fit and dynamic consistency.
@@ -61,6 +67,7 @@ Calibration typically requires:
 ---
 
 ## Further reading
+
 
 - Bergomi, *Stochastic Volatility Modeling*.
 - Fouque et al., multiscale volatility models.

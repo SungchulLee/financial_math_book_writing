@@ -1,10 +1,12 @@
 # SABR Model
 
+
 The SABR model is a widely used **stochastic volatility model** designed to capture smile dynamics with a parsimonious parameterization. It is especially popular in interest-rate and FX markets, but its concepts generalize to equity volatility modeling.
 
 ---
 
-## 1. Model definition
+## Model definition
+
 
 Under the risk-neutral measure, the SABR model is defined by
 
@@ -26,7 +28,8 @@ where:
 
 ---
 
-## 2. Interpretation of parameters
+## Interpretation of parameters
+
 
 - **\(\beta\):** interpolates between normal (\(\beta=0\)) and lognormal (\(\beta=1\)) dynamics,
 - **\(\nu\):** controls smile curvature,
@@ -37,7 +40,8 @@ This makes SABR intuitive and flexible.
 
 ---
 
-## 3. Approximate implied volatility formula
+## Approximate implied volatility formula
+
 
 A key feature of SABR is the **asymptotic implied volatility formula** (Hagan et al.), which provides:
 - fast pricing,
@@ -48,7 +52,8 @@ Although approximate, it is highly accurate for many markets.
 
 ---
 
-## 4. Strengths and limitations
+## Strengths and limitations
+
 
 Strengths:
 - parsimonious (few parameters),
@@ -62,7 +67,8 @@ Limitations:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - SABR is a practical smile model.
 - Its popularity stems from analytical tractability.
@@ -71,6 +77,7 @@ Limitations:
 ---
 
 ## Further reading
+
 
 - Hagan et al., *Managing Smile Risk*.
 - Rebonato, *Interest-Rate Option Models*.

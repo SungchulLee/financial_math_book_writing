@@ -1,10 +1,12 @@
 # PDE Formulation
 
+
 Stochastic volatility models also admit a **partial differential equation (PDE)** formulation for option pricing. The PDE perspective is useful for theoretical analysis, boundary conditions, and for pricing products not well-suited to Fourier methods.
 
 ---
 
-## 1. Risk-neutral pricing PDE
+## Risk-neutral pricing PDE
+
 
 Let \(V(t,s,v)\) be the price at time \(t\) when \(S_t=s\) and \(V_t=v\).
 Under standard regularity conditions and risk-neutral dynamics, \(V\) satisfies
@@ -18,7 +20,8 @@ with terminal condition \(V(T,s,v)=\Phi(s)\), where \(\Phi\) is the payoff.
 
 ---
 
-## 2. Generator for a two-factor diffusion
+## Generator for a two-factor diffusion
+
 
 For a generic two-factor model
 
@@ -47,7 +50,8 @@ the generator \(\mathcal{L}\) typically takes the form
 
 ---
 
-## 3. Boundary conditions
+## Boundary conditions
+
 
 PDE pricing requires boundary conditions in:
 - asset price \(s\),
@@ -61,7 +65,8 @@ Typical choices:
 
 ---
 
-## 4. When PDE methods are preferred
+## When PDE methods are preferred
+
 
 PDE methods are useful for:
 - American-style features (early exercise),
@@ -71,7 +76,8 @@ PDE methods are useful for:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Stochastic volatility pricing can be expressed as a two-dimensional PDE.
 - PDE methods complement Fourier methods, especially for complex payoffs.
@@ -80,6 +86,7 @@ PDE methods are useful for:
 ---
 
 ## Further reading
+
 
 - Wilmott, *Derivatives* (PDE methods).
 - Itkin, *Pricing Derivatives Under Stochastic Volatility*.

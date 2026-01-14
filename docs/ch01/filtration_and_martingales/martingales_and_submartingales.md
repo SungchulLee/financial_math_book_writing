@@ -1,6 +1,8 @@
 # Martingales
 
-## Conditional expectation (minimal recap)
+
+## Conditional
+
 
 Let \(\mathcal{G}\subseteq\mathcal{F}\) be a sub-\(\sigma\)-algebra and \(X\in L^1(\Omega)\). The conditional expectation \(\mathbb{E}[X\mid \mathcal{G}]\) is the unique (a.s.) \(\mathcal{G}\)-measurable random variable satisfying
 
@@ -19,6 +21,7 @@ $$
 ---
 
 ## Martingale
+
 
 An integrable adapted process \(M=\{M_t\}_{t\ge 0}\) is a **martingale** if for all \(0\le s\le t\),
 
@@ -59,7 +62,9 @@ $$
 
 ## Examples
 
-### Brownian motion
+
+### 1. Brownian motion
+
 
 
 $$
@@ -72,7 +77,8 @@ $$
 
 so \(\{W_t\}\) is a martingale.
 
-### Quadratic martingale
+### 2. Quadratic marting
+
 Using Itô calculus later, one shows
 
 
@@ -86,7 +92,8 @@ $$
 
 
 
-### Conditional expectation martingales
+### 3. Conditional expec
+
 For fixed \(X\in L^1(\Omega)\), the process
 
 
@@ -101,7 +108,8 @@ is a martingale (Doob martingale).
 
 ---
 
-## Martingale increments
+## Martingale
+
 
 For a martingale \(M_t\),
 
@@ -117,7 +125,8 @@ The increments need not be independent; martingales generalize independence.
 
 ---
 
-## Doob decomposition (discrete-time intuition)
+## Doob decomposition
+
 
 In discrete time, every integrable adapted process \(X_n\) can be decomposed as
 
@@ -133,7 +142,8 @@ where \(M_n\) is a martingale and \(A_n\) is predictable with finite variation. 
 
 ---
 
-## Martingale inequalities (named, not proved)
+## Martingale
+
 
 Martingale theory is powerful because of maximal inequalities and convergence theorems. Examples include:
 

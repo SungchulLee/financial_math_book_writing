@@ -1,10 +1,12 @@
 # Robust Calibration Criteria
 
+
 Given the inevitability of model and calibration uncertainty, one should not aim for a single “best fit” but for **robust calibration**: parameter estimates that perform reasonably well across scenarios and over time.
 
 ---
 
-## 1. What does robustness mean?
+## What does robustness mean?
+
 
 A robust calibration:
 - is stable under small data perturbations,
@@ -14,7 +16,8 @@ A robust calibration:
 
 ---
 
-## 2. Robust objectives
+## Robust objectives
+
 
 Robust calibration criteria include:
 - regularized objectives (see Chapter 5.3),
@@ -24,7 +27,8 @@ Robust calibration criteria include:
 
 ---
 
-## 3. Stability-based validation
+## Stability-based validation
+
 
 Rather than minimizing residuals alone, validate by:
 - day-to-day parameter stability,
@@ -34,7 +38,8 @@ Rather than minimizing residuals alone, validate by:
 
 ---
 
-## 4. Model risk governance
+## Model risk governance
+
 
 In institutional settings, robust calibration supports:
 - model risk limits,
@@ -45,7 +50,8 @@ Robustness is therefore both a technical and governance requirement.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Perfect fit is neither achievable nor desirable.
 - Robust calibration prioritizes stability and interpretability.
@@ -54,6 +60,7 @@ Robustness is therefore both a technical and governance requirement.
 ---
 
 ## Further reading
+
 
 - Cont, *Model Uncertainty and Its Impact on Pricing*.
 - Glasserman & Xu, robust risk measurement.

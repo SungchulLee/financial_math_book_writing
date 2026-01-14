@@ -1,10 +1,12 @@
 # Calendar Spread
 
+
 **Calendar spread carry** involves simultaneously buying one futures contract month and selling another month of the same commodity to profit from changes in the price differential (spread) between the two contracts, capturing the carry (cost or benefit of holding the spread) while being market-neutral to absolute price movements.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Are Calendar
 
+
 **Before trading calendar spreads, understand what you're actually trading:**
 
 ### 1. Calendar Spread
+
 
 **Definition:** A calendar spread (also called time spread or horizontal spread) is a position where you simultaneously hold opposite positions in two different expiration months of the same futures contract.
 
@@ -66,6 +70,7 @@ $$
 - Bet: June will gain relative to March
 
 ### 2. Simple Example
+
 
 **Setup:**
 
@@ -105,6 +110,7 @@ $$
 **Notice:** Scenario A made money despite both legs moving. The spread change is what matters, not the absolute price direction!
 
 ### 3. Why Calendar
+
 
 **The spread reflects:**
 
@@ -149,9 +155,11 @@ $$
 
 ## Economic
 
+
 **Beyond the mechanical definition, understanding the economic drivers:**
 
 ### 1. The Theory of
+
 
 **Full carry market:**
 
@@ -183,6 +191,7 @@ $$
 - **Backwardation (positive spread)**
 
 ### 2. Inventory
+
 
 **High inventory → Contango → Negative spread:**
 
@@ -216,6 +225,7 @@ With $\beta < 0$ typically (higher inventory → wider contango)
 
 ### 3. Seasonal Patterns
 
+
 **Agricultural commodities:**
 
 **Harvest period:**
@@ -243,6 +253,7 @@ With $\beta < 0$ typically (higher inventory → wider contango)
 
 ### 4. Natural Gas
 
+
 **Summer (injection season):**
 - Near month: Low demand
 - Winter months: Expected high demand
@@ -268,6 +279,7 @@ With $\beta < 0$ typically (higher inventory → wider contango)
 **Spread moved from -$1.00 to +$0.30 = +$1.30 widening!**
 
 ### 5. The Convergence
+
 
 **Critical feature of calendar spreads:**
 
@@ -298,6 +310,7 @@ $$
 
 ### 6. Why This
 
+
 **Understanding spread economics helps you:**
 
 1. **Predict spread movements:**
@@ -325,6 +338,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Calendar Spread Fundamentals:**
 
@@ -512,9 +526,11 @@ $$
 
 ## Contract
 
+
 **Understanding which commodities have the best spread trading opportunities:**
 
 ### 1. Energy
+
 
 **Crude Oil (WTI - NYMEX):**
 
@@ -578,6 +594,7 @@ $$
 
 ### 2. Agricultural
 
+
 **Corn (CBOT):**
 
 **The harvest spread:**
@@ -613,6 +630,7 @@ $$
 - **Less pronounced seasonality than corn**
 
 ### 3. Precious Metals
+
 
 **Gold (COMEX):**
 
@@ -654,6 +672,7 @@ $$
 
 ### 4. Livestock
 
+
 **Live Cattle (CME):**
 
 **Production cycle driven:**
@@ -678,6 +697,7 @@ $$
 
 ### 5. Spread Liquidity
 
+
 **Most liquid spreads:**
 
 1. **Crude oil:** 1-2, 1-3, 1-6 month spreads
@@ -700,7 +720,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Understanding
+
 
 **The profit/loss equation:**
 
@@ -719,6 +741,7 @@ $$
 **Key insight: Maximum profit/loss is LIMITED compared to outrights!**
 
 ### 2. Maximum Profit
+
 
 **Theoretical maximum:**
 
@@ -762,6 +785,7 @@ $$
 
 ### 3. Maximum Loss
 
+
 **Theoretical maximum:**
 
 If near goes to zero and far stays positive:
@@ -800,6 +824,7 @@ $$
 - **Profit range: -$6 to +$12** (much narrower!)
 
 ### 4. Real-World
+
 
 **Trade: Sell Dec-Mar spread**
 
@@ -844,6 +869,7 @@ $$
 
 ### 5. Calendar Spread
 
+
 **Volatility comparison:**
 
 **Example: Crude oil (monthly data)**
@@ -872,7 +898,9 @@ $$
 
 ## Entry and Exit
 
+
 ### 1. Entry Strategies
+
 
 **1. Mean Reversion Entry**
 
@@ -1002,6 +1030,7 @@ $$
 
 ### 2. Exit Strategies
 
+
 **1. Target Profit Exit**
 
 **Set target based on entry thesis:**
@@ -1084,6 +1113,7 @@ $$
 
 ### 3. Position
 
+
 **1. Scaling Into Spreads**
 
 **Build position in stages:**
@@ -1141,6 +1171,7 @@ Four legs across different months
 
 
 ## Final Wisdom
+
 
 > "Calendar spreads are the professional's tool for trading commodity market structure without taking directional risk. You're not betting on oil going to $100 or $50—you're betting on whether the curve is too steep or too flat. When the spread is at 3-sigma, the market structure is dislocated, and reversion is highly probable. But don't confuse 'lower risk' with 'no risk'—spreads can still blow up if you ignore fundamentals, over-leverage, or lack discipline. Trade the structure, size appropriately, and always have an exit plan."
 

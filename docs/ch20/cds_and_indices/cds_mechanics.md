@@ -1,10 +1,12 @@
 # CDS Mechanics
 
+
 **Credit Default Swaps (CDS)** are derivative contracts that transfer the credit risk of a reference entity from a protection buyer to a protection seller, allowing investors to isolate, hedge, or speculate on credit risk without owning the underlying bonds, fundamentally transforming how credit risk is priced and traded in global markets.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -51,9 +53,11 @@ $$
 
 ## What Are Credit Default Swaps?
 
+
 **Before trading CDS, understand the fundamental structure:**
 
-### The Basic CDS Contract
+### 1. The Basic CDS Contract
+
 
 **A CDS contract has two legs:**
 
@@ -89,7 +93,8 @@ Protection Seller pays:
 - Loss = (1 - 0.40) × $10M = $6,000,000
 ```
 
-### Credit Events (ISDA Definitions)
+### 2. Credit Events (ISDA Definitions)
+
 
 **What triggers the CDS contract:**
 
@@ -123,7 +128,8 @@ Protection Seller pays:
 - 15 members (dealers and buy-side)
 - Supermajority (80%) required to declare credit event
 
-### Settlement Methods
+### 3. Settlement Methods
+
 
 **Two ways to settle after credit event:**
 
@@ -167,7 +173,8 @@ Protection seller:
 - More efficient
 - Standard since 2009 (Big Bang Protocol)
 
-### The Big Bang Protocol (2009)
+### 4. The Big Bang Protocol (2009)
+
 
 **Standardization changes:**
 
@@ -205,7 +212,8 @@ Protection seller:
 
 **This made CDS more liquid and standardized!**
 
-### Mark-to-Market and P&L
+### 5. Mark-to-Market and P&L
+
 
 **CDS positions are marked daily:**
 
@@ -246,9 +254,11 @@ $$
 
 ## Economic Interpretation: Why CDS Exist
 
+
 **Understanding the fundamental economics:**
 
-### CDS as Pure Credit Derivatives
+### 1. CDS as Pure Credit Derivatives
+
 
 **Bond ownership bundles multiple risks:**
 
@@ -288,7 +298,8 @@ $$
    - Long Treasuries, sell CDS protection
    - **Pure rates vs. credit positioning**
 
-### CDS as Insurance with a Twist
+### 2. CDS as Insurance with a Twist
+
 
 **Unlike traditional insurance:**
 
@@ -319,7 +330,8 @@ $$
 - Proponents: Price discovery, liquidity, risk management
 - Critics: Destabilizing, incentivizes defaults, "financial weapons of mass destruction" (Buffett)
 
-### CDS Pricing Relationship to Bonds
+### 3. CDS Pricing Relationship to Bonds
+
 
 **Theoretical arbitrage relationship:**
 
@@ -376,6 +388,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Reference Entity:**
 
@@ -488,7 +501,9 @@ $$
 
 ## Basic CDS Strategies
 
-### Strategy 1: Credit Hedge (Long Protection)
+
+### 1. Strategy 1: Credit Hedge (Long Protection)
+
 
 **Setup:**
 
@@ -568,7 +583,8 @@ Annual: $500,000
 
 **Perfect hedge of default risk!**
 
-### Strategy 2: Short Credit (Sell Protection)
+### 2. Strategy 2: Short Credit (Sell Protection)
+
 
 **Setup:**
 
@@ -628,7 +644,8 @@ Annual: $500,000
 
 **This is the risk of selling protection—unlimited downside!**
 
-### Strategy 3: Curve Trade (Long/Short)
+### 3. Strategy 3: Curve Trade (Long/Short)
+
 
 **Setup:**
 
@@ -703,7 +720,8 @@ Actually need:
 - 5-year: 150 → 165 bp (+15 bp)
 - 10y outperformed by 5 bp (widened less)
 
-### Strategy 4: Index vs. Single-Name Arbitrage
+### 4. Strategy 4: Index vs. Single-Name Arbitrage
+
 
 **Setup:**
 
@@ -755,9 +773,11 @@ Actually need:
 
 ## Greeks in CDS
 
+
 **Understanding CDS sensitivities:**
 
-### CS01 (Credit Spread 01)
+### 1. CS01 (Credit Spread 01)
+
 
 **Definition:**
 
@@ -802,7 +822,8 @@ $$
 - Spreads widen 50 bp: Lose $210,000
 - Spreads tighten 50 bp: Gain $210,000
 
-### Carry (Theta)
+### 2. Carry (Theta)
+
 
 **For protection buyer:**
 
@@ -844,7 +865,8 @@ Over 30 days: 0.065 × 30 = 1.95 bp
 
 **Protection seller needs spreads to stay within 1.95 bp (not widen more) to breakeven over 30 days.**
 
-### Jump-to-Default Risk (Gamma)
+### 3. Jump-to-Default Risk (Gamma)
+
 
 **CDS have discontinuous payoff at default:**
 
@@ -892,7 +914,8 @@ $$
 
 **Protection seller must earn at least $300k/year from carry to compensate for jump risk.**
 
-### Recovery Rate Sensitivity
+### 4. Recovery Rate Sensitivity
+
 
 **CDS value depends on assumed recovery:**
 
@@ -931,7 +954,9 @@ $$
 
 ## CDS Payoff Analysis
 
-### Protection Buyer Payoff
+
+### 1. Protection Buyer Payoff
+
 
 **Setup:**
 - Buy $10M protection
@@ -994,7 +1019,8 @@ $$
 </p>
 **Figure 1:** Protection buyer P/L profile showing limited downside (premium paid) and large upside from spread widening or default, similar to long put option on credit.
 
-### Protection Seller Payoff
+### 2. Protection Seller Payoff
+
 
 **Same setup, opposite side:**
 
@@ -1039,7 +1065,9 @@ $$
 
 ## Real-World CDS Examples
 
-### Example 1: Corporate Hedge - Ford Motor (Winner)
+
+### 1. Example 1: Corporate Hedge - Ford Motor (Winner)
+
 
 **Setup:**
 
@@ -1153,7 +1181,8 @@ $$
 3. **Survived crisis:** Pension fund didn't face redemptions
 4. **Discipline:** Paid premium even when hurt (cost drag)
 
-### Example 2: Basis Trade - Lehman Disaster (Loser)
+### 2. Example 2: Basis Trade - Lehman Disaster (Loser)
+
 
 **Setup:**
 
@@ -1279,7 +1308,8 @@ $$
 - **Never buy protection from the reference entity**
 - **Systemic risk affects all hedges**
 
-### Example 3: Naked CDS Speculation - Tesla (Winner)
+### 3. Example 3: Naked CDS Speculation - Tesla (Winner)
+
 
 **Setup:**
 
@@ -1366,7 +1396,9 @@ $$
 
 ## Best Case Scenario
 
-### The Perfect CDS Trade - AIG Rescue (2008)
+
+### 1. The Perfect CDS Trade - AIG Rescue (2008)
+
 
 **Setup:**
 
@@ -1465,7 +1497,9 @@ If AIG had defaulted:
 
 ## Worst Case Scenario
 
-### The CDS Seller Apocalypse - Magnetar (2008-2009)
+
+### 1. The CDS Seller Apocalypse - Magnetar (2008-2009)
+
 
 **Setup:**
 
@@ -1647,7 +1681,9 @@ $$
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **CDS transfers credit risk from buyer to seller:**
 
@@ -1664,7 +1700,8 @@ $$
 - Liquid market for pure credit risk
 - Enables hedging, speculation, arbitrage
 
-### Key Equations
+### 2. Key Equations
+
 
 **CDS spread approximation:**
 
@@ -1692,7 +1729,8 @@ $$
 PV_{\text{premium leg}} = PV_{\text{protection leg}}
 $$
 
-### Contract Structure
+### 3. Contract Structure
+
 
 **Standard terms (post-Big Bang):**
 
@@ -1707,7 +1745,8 @@ $$
 - Failure to pay
 - Restructuring (regional)
 
-### Payoff Profiles
+### 4. Payoff Profiles
+
 
 **Protection buyer (long protection):**
 - Limited downside: Premium paid
@@ -1719,7 +1758,8 @@ $$
 - Large downside: Spread widening or default
 - **Analogous to: Short put on credit**
 
-### Position Sizing
+### 5. Position Sizing
+
 
 **Conservative (recommended):**
 
@@ -1741,7 +1781,8 @@ $$
 - **Max leverage: 5x** (conservative)
 - Absolute max: 10x (aggressive)
 
-### Risk Metrics
+### 6. Risk Metrics
+
 
 **Daily monitoring:**
 
@@ -1757,7 +1798,8 @@ $$
 - Max leverage: 5-10x
 - Min liquidity: 3 months premium coverage
 
-### Entry Checklist
+### 7. Entry Checklist
+
 
 **For buying protection (shorting credit):**
 
@@ -1775,7 +1817,8 @@ $$
 4. [ ] Portfolio not overleveraged
 5. [ ] Understand jump-to-default risk
 
-### Exit Rules
+### 8. Exit Rules
+
 
 **Stop losses:**
 
@@ -1801,7 +1844,8 @@ $$
 - Upgrade announced → Take profit
 - Collected >75% of potential premium → Close
 
-### Common Mistakes to Avoid
+### 9. Common Mistakes to Avoid
+
 
 1. **Selling protection without understanding jump risk**
    - Can lose far more than premium collected
@@ -1835,7 +1879,8 @@ $$
    - Set stops and targets before entry
    - Don't marry positions
 
-### Comparison to Cash Bonds
+### 10. Comparison to Cash Bonds
+
 
 | CDS | Cash Bonds |
 |-----|------------|
@@ -1848,7 +1893,8 @@ $$
 | Easy to exit | May be illiquid |
 | Jump-to-default risk | Gradual price changes |
 
-### Performance Expectations
+### 11. Performance Expectations
+
 
 **Protection seller (typical):**
 
@@ -1866,7 +1912,8 @@ $$
 - Avg win: 200-500 bp
 - **Positive expectancy if good credit selection**
 
-### Regulation Post-2008
+### 12. Regulation Post-2008
+
 
 **Dodd-Frank Act changes:**
 
@@ -1885,7 +1932,8 @@ $$
 - Less flexibility
 - Some basis risk (standardization)
 
-### Your Learning Path
+### 13. Your Learning Path
+
 
 **Phase 1 (Months 1-3): Fundamentals**
 - Understand contract mechanics
@@ -1911,7 +1959,8 @@ $$
 - Structured credit
 - Portfolio management
 
-### Final Wisdom
+### 14. Final Wisdom
+
 
 > "CDS are the most powerful credit instruments ever created—and the most dangerous. They allow precise isolation of credit risk, but they also enable catastrophic leverage. The protection buyer pays a modest premium for potentially enormous gains. The protection seller collects steady income until the day they don't, and that one day can erase years of profits and more. Master the mechanics, respect the leverage, understand the counterparty risk, and never forget: you're not trading statistics, you're trading the risk of real companies defaulting. When they do, the losses are not theoretical—they're very, very real."
 

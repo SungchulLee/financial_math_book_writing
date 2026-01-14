@@ -1,14 +1,17 @@
 # Put-Call Parity
 
+
 **Put-call parity** is a fundamental relationship between European call and put option prices. It is a **no-arbitrage condition** that must hold in frictionless markets, and provides a powerful tool for pricing, hedging, and detecting arbitrage opportunities.
 
 This section derives put-call parity, verifies it for the Black-Scholes formula, and explores its applications.
 
 ---
 
-## 1. Statement of Put-Call Parity
+## Statement of Put-Call Parity
 
-### **The Parity Relationship**
+
+### 1. **The Parity Relationship**
+
 
 For European options on a non-dividend-paying stock with the same strike $K$ and maturity $T$:
 
@@ -24,7 +27,8 @@ $$
 
 **In words**: The difference between call and put prices equals the difference between the current stock price and the present value of the strike.
 
-### **Alternative Forms**
+### 2. **Alternative Forms**
+
 
 Rearranging gives equivalent expressions:
 
@@ -48,11 +52,13 @@ Each form is useful for different applications.
 
 ---
 
-## 2. No-Arbitrage Derivation
+## No-Arbitrage Derivation
+
 
 Put-call parity can be derived purely from **no-arbitrage arguments**, independent of any model assumptions (like constant volatility or log-normal returns).
 
-### **Portfolio Construction**
+### 1. **Portfolio Construction**
+
 
 Consider two portfolios at time $t=0$:
 
@@ -64,7 +70,8 @@ Consider two portfolios at time $t=0$:
 - Long 1 put with strike $K$
 - Long 1 share of stock
 
-### **Initial Values**
+### 2. **Initial Values**
+
 
 $$
 V_0^A = C_0 + Ke^{-rT}
@@ -74,7 +81,8 @@ $$
 V_0^B = P_0 + S_0
 $$
 
-### **Terminal Values**
+### 3. **Terminal Values**
+
 
 At maturity $T$, consider two cases:
 
@@ -108,7 +116,8 @@ At maturity $T$, consider two cases:
 
 **Observation**: In both cases, $V_T^A = V_T^B$.
 
-### **No-Arbitrage Conclusion**
+### 4. **No-Arbitrage Conclusion**
+
 
 Since the two portfolios have **identical terminal payoffs** in all states, they must have **identical initial values** (otherwise arbitrage exists):
 
@@ -126,9 +135,11 @@ This is put-call parity.
 
 ---
 
-## 3. Verification with Black-Scholes
+## Verification with Black-Scholes
 
-### **Black-Scholes Formulas**
+
+### 1. **Black-Scholes Formulas**
+
 
 Recall:
 
@@ -140,7 +151,8 @@ $$
 P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
 $$
 
-### **Compute $C - P$**
+### 2. **Compute $C - P$**
+
 
 $$
 \begin{aligned}
@@ -150,7 +162,8 @@ C - P &= \left[S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)\right] - \left[Ke^{-
 \end{aligned}
 $$
 
-### **Use Symmetry Property**
+### 3. **Use Symmetry Property**
+
 
 For the standard normal CDF:
 
@@ -168,11 +181,13 @@ $$
 
 ---
 
-## 4. Arbitrage Opportunities
+## Arbitrage Opportunities
+
 
 If put-call parity is violated, **arbitrage opportunities** exist.
 
-### **Case 1: $C - P > S - Ke^{-rT}$** (Call overpriced relative to put)
+### 1. **Case 1: $C - P > S - Ke^{-rT}$** (Call overpriced relative to put)
+
 
 **Arbitrage strategy**:
 
@@ -196,7 +211,8 @@ $$
 
 **Result**: Guaranteed profit at $t=0$, zero cash flow at $T$ → **Arbitrage**
 
-### **Case 2: $C - P < S - Ke^{-rT}$** (Put overpriced relative to call)
+### 2. **Case 2: $C - P < S - Ke^{-rT}$** (Put overpriced relative to call)
+
 
 **Arbitrage strategy** (reverse of above):
 
@@ -217,9 +233,11 @@ $$
 
 ---
 
-## 5. Applications
+## Applications
 
-### **Application 1: Synthetic Positions**
+
+### 1. **Application 1: Synthetic Positions**
+
 
 Put-call parity allows creation of **synthetic** positions:
 
@@ -234,7 +252,8 @@ $$
 
 **Use case**: If an option is illiquid or mispriced, create it synthetically using other instruments.
 
-### **Application 2: Pricing One Option from Another**
+### 2. **Application 2: Pricing One Option from Another**
+
 
 If you know the call price, you can immediately determine the put price:
 
@@ -244,7 +263,8 @@ $$
 
 This is useful when only one option trades actively.
 
-### **Application 3: Early Exercise of American Options**
+### 3. **Application 3: Early Exercise of American Options**
+
 
 For American options on **non-dividend-paying stocks**, put-call parity implies:
 
@@ -254,7 +274,8 @@ $$
 
 Since $C_{\text{Am}} = C_{\text{Eu}}$ (call not exercised early), this shows American puts can trade at a premium to European puts.
 
-### **Application 4: Arbitrage Detection**
+### 4. **Application 4: Arbitrage Detection**
+
 
 In practice, compare observed market prices to put-call parity:
 
@@ -265,7 +286,8 @@ $$
 - If $|\Delta| > \text{transaction costs}$: Potential arbitrage
 - If $|\Delta| < \text{transaction costs}$: No arbitrage after costs
 
-### **Application 5: Implied Interest Rate**
+### 5. **Application 5: Implied Interest Rate**
+
 
 If call, put, and stock prices are known, solve for the **implied risk-free rate**:
 
@@ -277,9 +299,11 @@ This can be used to infer market expectations of interest rates.
 
 ---
 
-## 6. Generalizations
+## Generalizations
 
-### **With Continuous Dividends**
+
+### 1. **With Continuous Dividends**
+
 
 If the stock pays dividends at continuous rate $q$:
 
@@ -289,7 +313,8 @@ $$
 
 **Derivation**: Replace $S$ with $Se^{-qT}$ (present value of stock after dividend payments).
 
-### **With Discrete Dividends**
+### 2. **With Discrete Dividends**
+
 
 If the stock pays known dividends $D$ at time $t_d < T$:
 
@@ -299,7 +324,8 @@ $$
 
 **Derivation**: Subtract the present value of dividends from the stock price.
 
-### **Foreign Currency Options (Garman-Kohlhagen)**
+### 3. **Foreign Currency Options (Garman-Kohlhagen)**
+
 
 For options on foreign exchange rate $X$ (domestic per foreign):
 
@@ -309,7 +335,8 @@ $$
 
 where $r_d$ = domestic rate, $r_f$ = foreign rate.
 
-### **Futures Options**
+### 4. **Futures Options**
+
 
 For options on futures contracts with futures price $F$:
 
@@ -321,7 +348,8 @@ Since futures require no initial payment, this simplifies further.
 
 ---
 
-## 7. Numerical Example
+## Numerical Example
+
 
 **Market data**:
 
@@ -363,9 +391,11 @@ $$
 
 ---
 
-## 8. Put-Call Parity and Option Strategies
+## Put-Call Parity and Option Strategies
 
-### **Conversion**
+
+### 1. **Conversion**
+
 
 Buy stock + Buy put + Sell call = Synthetic bond position
 
@@ -378,7 +408,8 @@ Buy stock + Buy put + Sell call = Synthetic bond position
 
 **Profit**: $(S_0 + P_0 - C_0) - Ke^{-rT}$ should be zero by parity.
 
-### **Reversal**
+### 2. **Reversal**
+
 
 Short stock + Sell put + Buy call = Negative bond position
 
@@ -386,7 +417,8 @@ Short stock + Sell put + Buy call = Negative bond position
 
 **Relation to parity**: The reverse of conversion.
 
-### **Box Spread**
+### 3. **Box Spread**
+
 
 Combination of conversion and reversal with different strikes:
 - Buy call at $K_1$ + Sell call at $K_2$
@@ -398,7 +430,8 @@ Combination of conversion and reversal with different strikes:
 
 ---
 
-## 9. Historical Note
+## Historical Note
+
 
 Put-call parity was first rigorously derived by **Hans Stoll** in 1969, before the Black-Scholes model. Key insights:
 
@@ -411,6 +444,7 @@ In practice, put-call parity holds very tightly for liquid, exchange-traded opti
 ---
 
 ## Summary
+
 
 Put-call parity establishes the fundamental relationship:
 

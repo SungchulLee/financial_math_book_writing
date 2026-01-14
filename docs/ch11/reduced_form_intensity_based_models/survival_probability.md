@@ -1,10 +1,12 @@
 # Survival Probability
 
+
 Survival probabilities are central objects in reduced-form credit models. They describe the likelihood that default has not occurred by a given time.
 
 ---
 
-## 1. Definition
+## Definition
+
 
 The **survival probability** up to time \(T\) is
 
@@ -18,7 +20,8 @@ It is the complement of the cumulative default probability.
 
 ---
 
-## 2. Relation to intensity
+## Relation to intensity
+
 
 Under standard regularity assumptions,
 
@@ -42,7 +45,8 @@ S(t,T) = \exp\left(-\int_t^T \lambda_s ds\right).
 
 ---
 
-## 3. Term structure of default probabilities
+## Term structure of default probabilities
+
 
 Survival probabilities define a **credit term structure**:
 - short maturities reflect near-term credit risk,
@@ -52,7 +56,8 @@ Market instruments (CDS, bonds) reveal this structure.
 
 ---
 
-## 4. Calibration implications
+## Calibration implications
+
 
 In practice:
 - piecewise-constant intensities are often calibrated to CDS spreads,
@@ -61,7 +66,8 @@ In practice:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Survival probability is the key state variable in reduced-form models.
 - It is determined by the integrated intensity.
@@ -70,6 +76,7 @@ In practice:
 ---
 
 ## Further reading
+
 
 - O'Kane, *Modelling Single-name and Multi-name Credit Derivatives*.
 - Brigo et al., credit curve construction.

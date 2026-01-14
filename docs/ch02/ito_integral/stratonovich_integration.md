@@ -1,6 +1,8 @@
 # The Stratonovich Integral
 
+
 ## Introduction
+
 
 Stochastic calculus provides a fundamental framework for modeling systems influenced by randomness. Financial mathematics, physics, and engineering all rely on stochastic processes to describe the evolution of complex systems over time. Among these processes, **Brownian motion** (or Wiener process) plays a central role.
 
@@ -8,7 +10,8 @@ Two principal notions of stochastic integration with respect to Brownian motion 
 
 ---
 
-## 1. Step-Function Approximations of Stochastic Integrals
+## Step-Function Approximations of Stochastic Integrals
+
 
 Let \( \{B_t\}_{t \ge 0} \) be a standard Brownian motion. Consider the following two piecewise constant processes:
 
@@ -31,9 +34,11 @@ Such step functions are fundamental in the construction of stochastic integrals,
 
 ---
 
-## 2. Expected Values of the Corresponding Stochastic Integrals
+## Expected Values of the Corresponding Stochastic Integrals
 
-### 2.1 Left-Endpoint Approximation (Itô)
+
+### 1. Left-Endpoint Approximation (Itô)
+
 
 For \( \phi_1 \), the stochastic integral satisfies
 
@@ -58,7 +63,8 @@ This reflects the **martingale property** of the Itô integral when the integran
 
 ---
 
-### 2.2 Right-Endpoint Approximation
+### 2. Right-Endpoint Approximation
+
 
 For \( \phi_2 \), we compute
 
@@ -85,11 +91,13 @@ This calculation reveals the accumulation of **quadratic variation**, which does
 
 ---
 
-## 3. Itô versus Stratonovich Integrals
+## Itô versus Stratonovich Integrals
+
 
 The difference between Itô and Stratonovich integration arises from the choice of evaluation point within each partition interval.
 
-### 3.1 Itô Integral
+### 1. Itô Integral
+
 
 If the integrand is evaluated at the **left endpoint**,
 
@@ -111,7 +119,8 @@ Key properties include:
 
 ---
 
-### 3.2 Stratonovich Integral
+### 2. Stratonovich Integral
+
 
 If the integrand is evaluated at the **midpoint**,
 
@@ -129,7 +138,8 @@ This integral obeys the **classical chain rule**, making it resemble ordinary Ri
 
 ---
 
-## 4. Quadratic Variation and Its Role
+## Quadratic Variation and Its Role
+
 
 Brownian motion satisfies
 
@@ -147,7 +157,8 @@ This nonzero quadratic variation distinguishes Brownian paths from smooth functi
 
 ---
 
-## 5. Numerical Illustration: Itô vs. Stratonovich
+## Numerical Illustration: Itô vs. Stratonovich
+
 
 Both integrals may be viewed as limits of discrete sums approximating
 

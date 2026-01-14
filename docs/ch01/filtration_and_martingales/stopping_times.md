@@ -1,6 +1,8 @@
 # Stopping Times
 
+
 ## Definition
+
 
 A random time \(\tau:\Omega\to[0,\infty]\) is a **stopping time** with respect to \((\mathcal{F}_t)\) if
 
@@ -25,10 +27,13 @@ Equivalent characterizations:
 
 ## Examples
 
-### Deterministic times
+
+### 1. Deterministic tim
+
 For fixed \(t_0\ge 0\), \(\tau(\omega)=t_0\) is a stopping time.
 
-### Hitting times
+### 2. Hitting times
+
 For an adapted continuous process \(X_t\) and a Borel set \(A\subset\mathbb{R}^d\), define
 
 
@@ -57,6 +62,7 @@ is a stopping time.
 
 ## Stopped processes
 
+
 Given a process \(X_t\) and a stopping time \(\tau\), define the **stopped process**
 
 
@@ -71,7 +77,8 @@ If \(X\) is adapted, then \(X^{\tau}\) is adapted. If \(X\) is a (local) marting
 
 ---
 
-## \(\sigma\)-algebra at a stopping time
+## sigma algebra
+
 
 Define
 
@@ -89,7 +96,8 @@ A key fact: if \(X\) is adapted and right-continuous, then \(X_{\tau}\) is \(\ma
 
 ---
 
-## Strong Markov property (for Brownian motion)
+## Strong Markov
+
 
 If \(\tau\) is a stopping time, then Brownian motion satisfies:
 

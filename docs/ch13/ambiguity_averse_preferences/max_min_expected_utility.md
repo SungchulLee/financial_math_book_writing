@@ -1,10 +1,12 @@
 # Max–Min Expected Utility
 
+
 **Max–min expected utility** is a foundational model for decision-making under ambiguity, capturing ambiguity-averse preferences when probabilities are not uniquely specified.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 In many financial settings:
 - probabilities are ambiguous,
@@ -15,7 +17,8 @@ Max–min utility reflects a cautious, worst-case attitude.
 
 ---
 
-## 2. Model formulation
+## Model formulation
+
 
 Let \(\mathcal{P}\) be a set of plausible probability measures.
 Preferences are defined by
@@ -31,7 +34,8 @@ The decision-maker optimizes against the worst-case model.
 
 ---
 
-## 3. Economic interpretation
+## Economic interpretation
+
 
 Max–min utility implies:
 - extreme ambiguity aversion,
@@ -42,7 +46,8 @@ It generalizes classical expected utility.
 
 ---
 
-## 4. Financial implications
+## Financial implications
+
 
 Applications include:
 - portfolio choice under Knightian uncertainty,
@@ -53,7 +58,8 @@ The approach often reduces leverage and risk-taking.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Max–min utility captures ambiguity aversion.
 - Decisions hedge against worst-case models.
@@ -62,6 +68,7 @@ The approach often reduces leverage and risk-taking.
 ---
 
 ## Further reading
+
 
 - Gilboa & Schmeidler, max–min expected utility.
 - Hansen & Sargent, robust decision theory.

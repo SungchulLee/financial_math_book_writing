@@ -1,10 +1,12 @@
 # Covered Calls and Cash-Secured Puts
 
+
 **Covered calls and cash-secured puts** are income-generating strategies where you sell options against existing positions (stock or cash) to collect premium, accepting the obligation to potentially sell your stock or buy more stock.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/covered_call_pnl.png?raw=true" alt="covered_call_pnl" width="700">
@@ -37,6 +39,7 @@ $$
 
 ## What Is a Covered Call?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/cash_secured_put_pnl.png?raw=true" alt="cash_secured_put_pnl" width="700">
 </p>
@@ -47,6 +50,7 @@ $$
 **Refined concept:** Sell at a target price you're happy with, and get paid while waiting.
 
 ### 1. The Structure
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/cc_csp_framework.png?raw=true" alt="cc_csp_framework" width="700">
@@ -76,6 +80,7 @@ $$
 - "Rent out" the upside above strike
 
 ### 2. Example
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/covered_call_csp_symmetry.png?raw=true" alt="covered_call_csp_symmetry" width="700">
@@ -139,6 +144,7 @@ $$
 
 ## What Is a Cash-Secured Put?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/covered_call_strike_selection.png?raw=true" alt="covered_call_strike_selection" width="700">
 </p>
@@ -149,6 +155,7 @@ $$
 **Refined concept:** Get paid to place a limit order at a lower price.
 
 ### 1. The Structure
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/csp_strike_selection.png?raw=true" alt="csp_strike_selection" width="700">
@@ -178,6 +185,7 @@ $$
 - "Get paid to place limit order"
 
 ### 2. Example
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iv_impact_premiums.png?raw=true" alt="iv_impact_premiums" width="700">
@@ -246,6 +254,7 @@ $$
 
 ## The Symmetry
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_rotation.png?raw=true" alt="wheel_strategy_rotation" width="700">
 </p>
@@ -270,6 +279,7 @@ Covered calls and cash-secured puts are **mirror images** of each other. This is
 
 ## Why These Strategies Exist
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/wheel_strategy_diagram.png?raw=true" alt="wheel_strategy_diagram" width="700">
 </p>
@@ -280,6 +290,7 @@ Covered calls and cash-secured puts are **mirror images** of each other. This is
 
 ## Economic
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_return_comparison.png?raw=true" alt="risk_return_comparison" width="700">
 </p>
@@ -288,6 +299,7 @@ Covered calls and cash-secured puts are **mirror images** of each other. This is
 **Understanding what these strategies REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/tesla_covered_call_example.png?raw=true" alt="tesla_covered_call_example" width="700">
@@ -318,6 +330,7 @@ $$
 
 ### 2. The Volatility Sale
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/microsoft_csp_example.png?raw=true" alt="microsoft_csp_example" width="700">
 </p>
@@ -338,6 +351,7 @@ What you're really selling is **volatility exposure**:
 - **Cash-Secured Put:** "I'm willing to own this stock at a lower price"
 
 ### 3. Why This Structure Exists
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/strategy_comparison.png?raw=true" alt="strategy_comparison" width="700">
@@ -372,6 +386,7 @@ Markets create these opportunities because participants have different:
 
 ### 4. Income Decomposition
 
+
 Premium collected can be decomposed into:
 
 $$
@@ -389,6 +404,7 @@ $$
 **Economic insight:** You're primarily selling time decay and volatility. The stock doesn't need to move for you to profit—you win if it stays relatively stable.
 
 ### 5. Opportunity Cost Analysis
+
 
 **For Covered Calls:**
 
@@ -409,6 +425,7 @@ $$
 $$
 
 ### 6. Institutional Perspective
+
 
 Institutional traders view these strategies as:
 
@@ -438,6 +455,7 @@ Institutional traders view these strategies as:
 
 ### 7. Risk Transfer Economics
 
+
 You're acting as an **insurance company**:
 
 - **Covered Call:** Insuring buyers against missing big rallies
@@ -451,6 +469,7 @@ $$
 $$
 
 ### 8. Market Microstructure
+
 
 **Why buyers pay premiums:**
 
@@ -474,6 +493,7 @@ $$
 
 ### 9. The Fair Value Question
 
+
 **When is selling attractive?**
 
 $$
@@ -491,6 +511,7 @@ Where:
 **Practical guideline:** If IV percentile > 50%, selling is historically favorable.
 
 ### 10. Put-Call Parity Insight
+
 
 The symmetry between covered calls and cash-secured puts comes from:
 
@@ -514,6 +535,7 @@ $$
 
 ### 11. Vol Smile Implication
 
+
 Options at different strikes have different implied volatilities (the "smile"). This creates:
 
 **For Covered Calls:**
@@ -536,6 +558,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 
 ### 12. For Covered Calls
+
 
 **1. Generate Income on Existing Holdings**
 
@@ -578,6 +601,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - **Profit from stagnation**
 
 ### 13. For Cash-Secured Puts
+
 
 **1. Get Paid to Buy Stock**
 
@@ -624,9 +648,11 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ## Practical Guidance
 
+
 **Actionable steps for implementing these strategies successfully:**
 
 ### 1. Getting Started
+
 
 **For Covered Calls:**
 
@@ -714,6 +740,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ### 2. Position Sizing Framework
 
+
 **Conservative approach (recommended for beginners):**
 
 $$
@@ -744,6 +771,7 @@ This limits any single position to 5% of account.
 
 ### 3. Strike Selection Tree
 
+
 **Question 1: What's your primary goal?**
 
 → **Maximum income:** ATM strikes (0.50 delta)
@@ -770,6 +798,7 @@ This limits any single position to 5% of account.
 → **Low IV (<30 percentile):** May need to go closer to ATM for meaningful premium
 
 ### 4. Time Management System
+
 
 **Weekly schedule:**
 
@@ -810,6 +839,7 @@ This limits any single position to 5% of account.
 - Friday: Let expire or close
 
 ### 5. The Roll Decision Framework
+
 
 **When to roll (extend duration, adjust strike):**
 
@@ -877,6 +907,7 @@ Only roll if Roll Benefit > 0.
 
 ### 6. IV Strategy Adjustment
 
+
 **High IV (>50 percentile):**
 
 - Sell MORE aggressively
@@ -915,6 +946,7 @@ $$
 
 ### 7. Platform and Tools
 
+
 **Recommended platforms:**
 
 1. **Tastyworks:** Best for options, low commissions
@@ -937,6 +969,7 @@ $$
 
 ### 8. Record Keeping Template
 
+
 **For each trade, log:**
 
 ```
@@ -957,6 +990,7 @@ Return: [% return]
 
 ### 9. Risk Management Checklist
 
+
 **Before entering ANY position:**
 
 ☐ Position size ≤ 5% of account (beginner) or ≤ 10% (advanced)
@@ -969,6 +1003,7 @@ Return: [% return]
 ☐ Stop loss level defined (if applicable)
 
 ### 10. The Monthly Routine
+
 
 **Day 1-5: Planning**
 
@@ -1005,6 +1040,7 @@ Return: [% return]
 - Prepare for next cycle
 
 ### 11. Scaling Up
+
 
 **Stage 1: Master 1 position**
 
@@ -1048,6 +1084,7 @@ Return: [% return]
 
 ### 12. Common Troubleshootings
 
+
 **Problem: Stock drops 20% after selling covered call**
 
 - **Reality:** You'd lose 20% whether you had call or not
@@ -1082,6 +1119,7 @@ Return: [% return]
 
 ### 13. Advanced Techniques
 
+
 **1. Pairs Management:**
 
 - Run covered call on half position
@@ -1115,6 +1153,7 @@ Return: [% return]
 - Diversify temporal risk
 
 ### 14. Investor Mindset
+
 
 **The right mindset:**
 
@@ -1151,9 +1190,11 @@ Losers: Chase premium, panic on assignment, overtrade, ignore IV
 
 ## Real-World Examples
 
+
 **Detailed walkthroughs showing how these strategies play out in practice:**
 
 ### 1. Covered Call Income
+
 
 **Setup:**
 
@@ -1280,6 +1321,7 @@ $$
 ---
 
 ### 2. Put-to-Call Transition
+
 
 **Setup:**
 
@@ -1447,6 +1489,7 @@ $$
 
 ### 3. SPY Wheel
 
+
 **Setup:**
 
 - **Start date:** January 2, 2024
@@ -1546,6 +1589,7 @@ $$
 ---
 
 ### 4. Calls in a Crash
+
 
 **Setup:**
 
@@ -1660,6 +1704,7 @@ Loss would be: $194,000 - $155,200 = $38,800
 
 ### 5. High-IV Premium Harvest
 
+
 **Setup:**
 
 - **Date:** August 1, 2024
@@ -1767,6 +1812,7 @@ Market stabilized over next 3 weeks:
 ---
 
 ### 6. Assignment Done Right
+
 
 **Setup:**
 
@@ -1880,9 +1926,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid that can turn solid strategies into losing trades:**
 
 ### 1. Premium Chasing
+
 
 **What it looks like:**
 
@@ -1936,6 +1984,7 @@ $$
 
 ### 2. IV Blindness
 
+
 **What it looks like:**
 
 - See $3 premium available
@@ -1987,6 +2036,7 @@ $$
 ---
 
 ### 3. Expiration Errors
+
 
 **Too Short (<21 DTE):**
 
@@ -2046,6 +2096,7 @@ $$
 
 ### 4. Assignment Risk
 
+
 **What happens:**
 
 Friday expiration:
@@ -2102,6 +2153,7 @@ Weekend:
 
 ### 5. Over-Leverage
 
+
 **What it looks like:**
 
 - Have $50,000 account
@@ -2149,6 +2201,7 @@ Trader with $100,000:
 ---
 
 ### 6. Earnings Exposure
+
 
 **What happens:**
 
@@ -2207,6 +2260,7 @@ NVDA at $500:
 ---
 
 ### 7. Profit Greed
+
 
 **What it looks like:**
 
@@ -2270,6 +2324,7 @@ $$
 
 ### 8. Bad Underlyings
 
+
 **Bad choices:**
 
 - **Meme stocks:** AMC, GME, etc.
@@ -2325,6 +2380,7 @@ Trader sells 10 puts on bankrupt company at $2 strike:
 ---
 
 ### 9. Emotional Trading
+
 
 **What it looks like:**
 
@@ -2382,6 +2438,7 @@ Trader sells 10 puts on bankrupt company at $2 strike:
 
 ### 10. Hidden Costs
 
+
 **What it looks like:**
 
 - Sell option for $0.50
@@ -2434,6 +2491,7 @@ Weekly covered calls:
 
 ### 11. Concentration Risk
 
+
 **What it looks like:**
 
 - Sell 10 covered calls on AAPL
@@ -2477,6 +2535,7 @@ Weekly covered calls:
 ---
 
 ### 12. Roll Addiction
+
 
 **What it looks like:**
 
@@ -2530,6 +2589,7 @@ $$
 
 ### 13. No Records
 
+
 **What it looks like:**
 
 - Open multiple positions
@@ -2579,6 +2639,7 @@ $$
 
 ### 14. ITM Misuse
 
+
 **Why people do it:**
 
 - ITM options have huge premiums
@@ -2624,6 +2685,7 @@ Sell AAPL $190 call when stock at $200:
 ---
 
 ### 15. Greek Ignorance
+
 
 **What happens:**
 
@@ -2680,7 +2742,9 @@ Sell AAPL $190 call when stock at $200:
 
 ## The Portfolio Structures
 
+
 ### 1. Covered Call
+
 
 $$
 \Pi = \text{Long Stock} - \text{Short Call}
@@ -2716,6 +2780,7 @@ $$
 - Gamma: Negative (from short call)
 
 ### 2. Cash-Secured Put
+
 
 $$
 \Pi = - \text{Short Put} + \text{Cash Reserve}
@@ -2754,7 +2819,9 @@ $$
 
 ## Strike Selection
 
+
 ### 1. For Covered Calls
+
 
 **OTM (Stock < Strike) - Most Common:**
 
@@ -2793,6 +2860,7 @@ $$
 
 ### 2. For Cash-Secured Puts
 
+
 **OTM (Stock > Strike):**
 
 - Strike below current price
@@ -2821,6 +2889,7 @@ $$
 ---
 
 ## Time Frame Selection
+
 
 **Both strategies:**
 
@@ -2859,6 +2928,7 @@ $$
 ---
 
 ## The Role of Implied Volatility
+
 
 **Critical factor in premium collection:**
 
@@ -2905,6 +2975,7 @@ Implied volatility (IV) directly determines the premium you collect. Understandi
 
 
 ## The Wheel Strategy
+
 
 **The complete income cycle:**
 
@@ -2971,7 +3042,9 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 
 ## When to Use Each Strategy
 
+
 ### 1. Covered Calls
+
 
 **Market environment:**
 
@@ -3044,6 +3117,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 - Need flexibility to sell quickly
 
 ### 2. Cash-Secured Puts
+
 
 **Market environment:**
 
@@ -3130,9 +3204,11 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Setup Checklist
+
 
 **Before entering, evaluate:**
 
@@ -3162,6 +3238,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 
 ### 2. Entry Criteria
 
+
 **Enter this strategy when:**
 
 - [Specific market conditions]
@@ -3182,6 +3259,7 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 
 ### 3. Position Sizing
 
+
 **Calculate maximum position size:**
 
 $$
@@ -3198,6 +3276,7 @@ $$
 
 ### 4. Execution Rules
 
+
 **Best practices:**
 
 1. **Use limit orders:** Never use market orders
@@ -3209,6 +3288,7 @@ $$
 4. **Single order:** Enter as complete strategy, don't leg in
 
 ### 5. Risk & Exits
+
 
 **Active management rules:**
 
@@ -3236,6 +3316,7 @@ $$
 
 ### 6. Adjustments
 
+
 **When to adjust:**
 
 - Position threatened
@@ -3254,6 +3335,7 @@ $$
 
 ### 7. Trade Review
 
+
 Track every trade:
 
 - Entry/exit dates and prices
@@ -3267,7 +3349,9 @@ Track every trade:
 
 ## Risk Management
 
+
 ### 1. For Covered Calls
+
 
 **Position sizing:**
 
@@ -3302,6 +3386,7 @@ Track every trade:
 - Don't let tax tail wag investment dog
 
 ### 2. For Cash-Secured Puts
+
 
 **Position sizing:**
 
@@ -3340,7 +3425,9 @@ Track every trade:
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup:**
 
@@ -3382,6 +3469,7 @@ Track every trade:
 
 
 ### 2. Transition Risk Hedge
+
 
 **Setup:**
 
@@ -3440,6 +3528,7 @@ Track every trade:
 
 
 ## Final Wisdom
+
 
 > "Covered calls and cash-secured puts are the most conservative options strategies besides protective puts. They generate income from assets you already have (stock or cash) and have defined risks. Many retail investors use these exclusively and never touch complex strategies. Master these before attempting anything riskier. The wheel strategy can be an entire trading system by itself."
 

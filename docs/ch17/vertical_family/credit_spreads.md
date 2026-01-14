@@ -1,6 +1,8 @@
 # Credit Spreads
 
+
 ## Overview
+
 
 A **credit spread** is a type of **vertical spread** that is entered for a **net premium received**.  
 It consists of selling one option and buying another option of the **same type** (calls or puts), with:
@@ -18,6 +20,7 @@ They have **defined risk and defined reward**.
 ---
 
 ## Credit Spreads as
+
 
 All credit spreads are **vertical spreads**, but not all vertical spreads are credit spreads.
 
@@ -40,6 +43,7 @@ The key distinction is **cash flow at entry**:
 
 ## Common Structure
 
+
 A credit spread always follows this pattern:
 
 - **Sell the option closer to the money**
@@ -52,16 +56,20 @@ The long option limits risk by capping potential losses.
 
 ## Short Call Spread
 
+
 ### 1. Market Outlook
+
 - Neutral to **bearish**
 - Expect the underlying to stay **below the short call strike**
 
 ### 2. Structure
+
 - Sell a call at a lower strike \( K_1 \)
 - Buy a call at a higher strike \( K_2 > K_1 \)
 - Same expiration
 
 ### 3. Payoff
+
 - **Maximum Profit:** Net credit received
 - **Maximum Loss:**  
   \[
@@ -73,6 +81,7 @@ The long option limits risk by capping potential losses.
   \]
 
 ### 4. Intuition
+
 You are betting that the underlying will **not rise significantly**.  
 Time decay works in your favor as long as price stays below the short call.
 
@@ -80,16 +89,20 @@ Time decay works in your favor as long as price stays below the short call.
 
 ## Short Put Spread
 
+
 ### 1. Market Outlook
+
 - Neutral to **bullish**
 - Expect the underlying to stay **above the short put strike**
 
 ### 2. Structure
+
 - Sell a put at a higher strike \( K_1 \)
 - Buy a put at a lower strike \( K_2 < K_1 \)
 - Same expiration
 
 ### 3. Payoff
+
 - **Maximum Profit:** Net credit received
 - **Maximum Loss:**  
   \[
@@ -101,6 +114,7 @@ Time decay works in your favor as long as price stays below the short call.
   \]
 
 ### 4. Intuition
+
 You are betting that the underlying will **not fall significantly**.  
 Time decay benefits you as long as price remains above the short put.
 
@@ -108,7 +122,9 @@ Time decay benefits you as long as price remains above the short put.
 
 ## Risk and Reward
 
+
 ### 1. Key Properties of
+
 
 | Feature | Credit Spreads |
 |------|---------------|
@@ -125,6 +141,7 @@ Credit spreads trade **high probability for limited reward**.
 
 ## Comparison
 
+
 | Feature | Short Call Spread | Short Put Spread |
 |------|------------------|------------------|
 | Bias | Bearish / Neutral | Bullish / Neutral |
@@ -136,6 +153,7 @@ Credit spreads trade **high probability for limited reward**.
 
 ## When to Use Credit
 
+
 Credit spreads are well-suited when:
 
 - You expect **range-bound** or mildly trending markets
@@ -146,6 +164,7 @@ Credit spreads are well-suited when:
 ---
 
 ## Key Takeaways
+
 
 - Credit spreads are **vertical spreads entered for a net credit**
 - The two canonical forms are:

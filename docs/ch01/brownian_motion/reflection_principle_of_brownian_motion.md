@@ -1,6 +1,10 @@
-# Reflection Principle of Brownian Motion
+# Reflection Principle
+
+
 
 ## Introduction
+
+
 
 In **Brownian Motion Foundations**, we briefly introduced the reflection principle (Theorem 1.3.19) and established that:
 
@@ -25,9 +29,13 @@ This section provides a comprehensive treatment:
 
 Throughout, we include Python visualizations that illustrate the geometric intuition behind the reflection principle.
 
-## The Reflection Principle for Maximum
+## Reflection Principle
 
-### Statement and Geometric Intuition
+
+
+### 1. Statement Geometr
+
+
 
 Let $W_t$ be standard Brownian motion and $a > 0$. Define the **maximum up to time $t$**:
 
@@ -53,7 +61,9 @@ The proof constructs a **pathwise bijection** between two sets of paths:
 
 The bijection works by **reflecting** the portion of the path after the first hitting time $\tau_a$ across the level $a$.
 
-### Detailed Proof
+### 2. Detailed Proof
+
+
 
 **Proof:**
 
@@ -123,7 +133,9 @@ $$= \mathbb{P}(W_t \ge a) + \mathbb{P}(W_t > a) = 2\mathbb{P}(W_t \ge a) \quad \
 
 
 
-### Explicit Formula
+### 3. Explicit Formula
+
+
 
 Since $W_t \sim \mathcal{N}(0, t)$:
 
@@ -133,7 +145,9 @@ $$\mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a) = 2\left[1 - \Phi\left(\frac{a}
 
 where $\Phi$ is the standard normal CDF.
 
-### Python Visualization
+### 4. Python Visualizat
+
+
 
 The following code visualizes the reflection principle by showing an original path that hits level $a$ and its reflected counterpart.
 
@@ -147,7 +161,7 @@ T = 5
 num_steps = 1000
 dt = T / num_steps
 
-# Search for a valid path (one that hits level a)
+# Search valid path
 np.random.seed(0)
 found = False
 seed = 0
@@ -165,7 +179,7 @@ while not found:
     else:
         seed += 1
 
-# Reflect path after hitting a
+# Reflect path after
 reflected_path = path.copy()
 reflected_path[hit_index + 1:] = 2 * a - path[hit_index + 1:]
 
@@ -208,9 +222,13 @@ print(f"Sum: {path[-1] + reflected_path[-1]:.4f} (should be close to {2*a})")
 - Note: $W_t + \tilde{W}_t = 2a$ (the endpoints are symmetric about level $a$)
 - Exactly one of the original or reflected path ends above level $a$
 
-## Joint Distribution: Maximum and Endpoint
+## Joint Distribution
 
-### Statement
+
+
+### 1. Statement
+
+
 
 **Theorem 1.6.2** (Reflection Principle for Joint Events)
 
@@ -242,7 +260,9 @@ $$\mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b) \quad \square$$
 
 
 
-### Explicit Formula
+### 2. Explicit Formula
+
+
 
 Since $W_t \sim \mathcal{N}(0, t)$:
 
@@ -252,7 +272,9 @@ $$\boxed{
 
 
 
-### Python Visualization
+### 3. Python Visualizat
+
+
 
 This code shows a path that hits $a$ and ends below $b < a$, along with its reflection.
 
@@ -267,7 +289,7 @@ T = 5
 num_steps = 1000
 dt = T / num_steps
 
-# Search for a valid path (hits a and ends below b)
+# Search valid path
 np.random.seed(0)
 found = False
 seed = 0
@@ -285,7 +307,7 @@ while not found:
     else:
         seed += 1
 
-# Reflect path after hitting a
+# Reflect path after
 reflected_path = path.copy()
 reflected_path[hit_index + 1:] = 2 * a - path[hit_index + 1:]
 
@@ -329,9 +351,13 @@ print(f"Reflected path ends at: {reflected_path[-1]:.4f} (above {2*a - b:.1f})")
 - Reflected path (red) ends above the mirror level $2a - b$
 - This bijection proves $\mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b)$
 
-## First Passage Time Distribution
+## Passage Time
 
-### Distribution via Reflection Principle
+
+
+### 1. Distribution via
+
+
 
 Define the **first passage time** (first hitting time) to level $a > 0$:
 
@@ -359,7 +385,9 @@ $$\mathbb{P}(\tau_a \le t) = \mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a) = 2\
 
 
 
-### Probability Density Function
+### 2. Probability Densi
+
+
 
 **Theorem 1.6.4** (PDF of First Passage Time - Lévy Distribution)
 
@@ -395,7 +423,9 @@ $$= \frac{a}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right) \quad \square$$
 
 
 
-### Properties of First Passage Time
+### 3. Properties First
+
+
 
 **Proposition 1.6.5**
 
@@ -422,9 +452,13 @@ The exponent $-1/2$ is marginally non-integrable at infinity. $\square$
 
 **Remark:** This paradoxical result—certain to hit, but taking infinite time on average—reflects the heavy-tailed nature of the Lévy distribution.
 
-## Alternative Derivation via Exponential Martingale
+## Alternative
 
-### Laplace Transform Method
+
+
+### 1. Laplace Transform
+
+
 
 We now derive the distribution of $\tau_a$ using **exponential martingales** and optional stopping.
 
@@ -498,7 +532,9 @@ $$\mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}} \quad \square$$
 
 
 
-### Moments via Laplace Transform
+### 2. Moments via Lapla
+
+
 
 **Corollary 1.6.7**
 
@@ -534,11 +570,15 @@ $$\mathbb{E}[\tau_a e^{-\alpha \tau_a}] = \frac{a}{\sqrt{2\alpha}} e^{-a\sqrt{2\
 
 
 
-## Joint Distribution of Maximum and Endpoint
+## Joint Distribution
+
+
 
 We now derive the complete **joint density** $f_{M_t, W_t}(m, w)$.
 
-### Main Result
+### 1. Main Result
+
+
 
 **Theorem 1.6.8** (Joint PDF of Maximum and Endpoint)
 
@@ -550,7 +590,9 @@ f_{M_t, W_t}(m, w) = \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^
 
 
 
-### Derivation
+### 2. Derivation
+
+
 
 **Step 1: CDF via reflection.**
 
@@ -617,7 +659,9 @@ $$= \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^2}{2t}\right) \qu
 
 
 
-### Conditional Distribution
+### 3. Conditional Distr
+
+
 
 **Corollary 1.6.9** (Conditional PDF of Maximum Given Endpoint)
 
@@ -653,9 +697,13 @@ $$f_{M_t | W_t}(m | w) = \frac{2(2m - w)}{t} e^{-2m(m-w)/t} \quad \square$$
 
 
 
-## Applications to Mathematical Finance
+## Applications
 
-### Application 1: Barrier Option Pricing
+
+
+### 1. Application 1 Bar
+
+
 
 A **knock-out barrier option** pays off only if the underlying asset never crosses a barrier $B > S_0$ before maturity.
 
@@ -677,7 +725,9 @@ $$\mathbb{P}(\text{knock-out}) = \mathbb{P}(M_T < a) = 1 - 2\Phi\left(-\frac{a}{
 
 
 
-### Application 2: Survival Probabilities
+### 2. Application 2 Sur
+
+
 
 In **credit risk**, the default time can be modeled as the first passage of a log-asset value to a default boundary.
 
@@ -693,7 +743,9 @@ $$\mathbb{P}(\tau_D > T) = 1 - 2\Phi\left(-\frac{D}{\sqrt{T}}\right)$$
 
 
 
-### Application 3: Drawdown Analysis
+### 3. Application 3 Dra
+
+
 
 The **maximum drawdown** from peak to trough is:
 
@@ -703,7 +755,9 @@ $$DD_t = M_t - W_t$$
 
 The joint distribution $f_{M_t, W_t}(m, w)$ allows computation of drawdown probabilities for portfolio risk management.
 
-### Application 4: Perpetual American Options
+### 4. Application 4 Per
+
+
 
 For a **perpetual American put** with strike $K$, the optimal exercise boundary $b^*$ satisfies:
 
@@ -714,6 +768,8 @@ $$\mathbb{E}[e^{-r\tau_b}(K - S_{\tau_b})^+]$$
 Using the Laplace transform $\mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}}$, one can derive the optimal stopping rule.
 
 ## Summary
+
+
 
 The reflection principle is a fundamental tool for analyzing path-dependent properties of Brownian motion:
 
@@ -734,6 +790,8 @@ The reflection principle is a fundamental tool for analyzing path-dependent prop
 
 ## Exercises
 
+
+
 1. Verify that $\int_0^\infty f_{\tau_a}(t) dt = 1$ for the Lévy distribution.
 
 2. Show that $\mathbb{P}(\tau_a \le t, \tau_b \le t) = 0$ for $a, b > 0$ with $a \neq b$.
@@ -747,6 +805,8 @@ The reflection principle is a fundamental tool for analyzing path-dependent prop
 6. Show that the joint density integrates to 1: $\int_0^\infty \int_{-\infty}^m f_{M_t, W_t}(m, w) dw \, dm = 1$.
 
 ## References
+
+
 
 - Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer. (Chapter 3, Section 6)
 - Revuz, D., & Yor, M. (1999). *Continuous Martingales and Brownian Motion*, 3rd ed. Springer. (Chapter VI)

@@ -1,10 +1,12 @@
 # No-Arbitrage Constraints in Learning
 
+
 Learning-based financial models must respect **no-arbitrage constraints** to ensure economic consistency and prevent pathological behavior.
 
 ---
 
-## 1. Why constraints matter
+## Why constraints matter
+
 
 Unconstrained learning may produce:
 - negative option prices,
@@ -15,7 +17,8 @@ Such outputs are unacceptable in pricing applications.
 
 ---
 
-## 2. Types of no-arbitrage constraints
+## Types of no-arbitrage constraints
+
 
 Common constraints include:
 - monotonicity in strike and maturity,
@@ -26,7 +29,8 @@ These constraints encode fundamental financial laws.
 
 ---
 
-## 3. Enforcing constraints in learning
+## Enforcing constraints in learning
+
 
 Approaches include:
 - constrained optimization,
@@ -37,7 +41,8 @@ Constraints improve robustness and generalization.
 
 ---
 
-## 4. Trade-offs
+## Trade-offs
+
 
 Imposing constraints:
 - reduces hypothesis space,
@@ -48,7 +53,8 @@ This mirrors regularization effects.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - No-arbitrage constraints are essential.
 - Learning must respect financial structure.
@@ -57,6 +63,7 @@ This mirrors regularization effects.
 ---
 
 ## Further reading
+
 
 - Ackerer et al., arbitrage-free learning.
 - Buehler et al., deep hedging constraints.

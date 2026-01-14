@@ -1,10 +1,12 @@
 # Curve Butterfly Trades
 
+
 **Curve butterfly trades** are fixed income relative value strategies that exploit mispricings in the curvature of the yield curve by simultaneously taking positions in three different maturities—typically buying (or selling) the "body" (middle maturity) while selling (or buying) equal amounts of the "wings" (shorter and longer maturities)—profiting when the body becomes relatively cheaper or richer compared to a linear interpolation between the wings, while maintaining minimal exposure to parallel shifts in rates.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Are Curve Butterfly Trades?
 
+
 **Before trading curve butterflies, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** A three-legged fixed income trade structure involving a position in a "body" (middle maturity point on the yield curve) combined with offsetting positions in two "wings" (shorter and longer maturity points), typically sized to be duration-neutral, that profits from changes in the curvature or convexity of the yield curve rather than from parallel shifts in overall rate levels.
 
@@ -108,6 +112,7 @@ Target: $10,000 DV01 in 5-year
 
 ### 2. Butterfly Naming Convention
 
+
 **Standard notation: XsYsZs**
 
 - First number (X): Short wing maturity
@@ -121,6 +126,7 @@ Target: $10,000 DV01 in 5-year
 - **3m2s5s:** 3-month wing, 2-year body, 5-year wing (front end)
 
 ### 3. Types of Butterflies
+
 
 **1. Long Butterfly (Buy the Fly):**
 
@@ -159,9 +165,11 @@ Target: $10,000 DV01 in 5-year
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. The Curvature Premium
+
 
 **The deep insight:**
 
@@ -197,6 +205,7 @@ Yield
 **Body (5-year) is BELOW straight line = negative butterfly = cheap**
 
 ### 2. Fed Policy and Butterfly
+
 
 **How Fed policy affects curvature:**
 
@@ -236,6 +245,7 @@ Butterfly goes from -25 to 0 (25 bp improvement)
 
 ### 3. Rich/Cheap Analysis
 
+
 **Identifying mispricing:**
 
 **Historical butterfly average:**
@@ -272,6 +282,7 @@ $$
 
 ### 4. The Role of Convexity
 
+
 **Why body behaves differently:**
 
 **Convexity by maturity:**
@@ -306,6 +317,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Butterfly Spread:**
 
@@ -381,7 +393,9 @@ $$
 
 ## Mathematical Foundation
 
+
 ### 1. DV01-Weighted Butterfly
+
 
 **Goal: Create position with zero DV01**
 
@@ -449,6 +463,7 @@ $$
 - **Net DV01: +$43,500 - $21,756 - $21,730 = $14 (≈0, rounding)**
 
 ### 2. Butterfly P&L Calculation
+
 
 **P&L from butterfly move:**
 
@@ -546,6 +561,7 @@ $$
 
 ### 3. Regression-Based Weights
 
+
 **More sophisticated: Use historical beta**
 
 $$
@@ -574,7 +590,9 @@ $$
 
 ## Step-by-Step Setup
 
+
 ### 1. Signal Analysis
+
 
 **1. Calculate Current Butterfly:**
 
@@ -668,6 +686,7 @@ if signal in ["strong", "moderate"]:
 
 ### 2. DV01 Construction
 
+
 **1. Gather DV01s:**
 
 ```python
@@ -720,6 +739,7 @@ Net DV01: $0 (should be ~0)
 ```
 
 ### 3. Trade Execution
+
 
 **1. Prepare Orders:**
 
@@ -785,6 +805,7 @@ def execute_butterfly(orders, execution_style='simultaneous'):
 ```
 
 ### 4. Monitoring & Exit
+
 
 **1. Daily P&L Tracking:**
 
@@ -895,6 +916,7 @@ print(f"Exit: {should_exit}, Reason: {reason}")
 
 ### 5. Unwind & Review
 
+
 **1. Exit Execution:**
 
 ```python
@@ -936,7 +958,9 @@ print(f"Annualized return: {annualized_return:.2%}")
 
 ## Real-World Examples
 
+
 ### 1. Duration Cut via Futures
+
 
 **Background:**
 
@@ -1007,6 +1031,7 @@ $$
 4. Body cheapened as expected
 
 ### 2. Transition Risk Hedge
+
 
 **Background:**
 
@@ -1122,6 +1147,7 @@ $$
 
 ### 3. Portable Alpha with Futures
 
+
 **Background:**
 
 - Fed cutting for first time in 4 years
@@ -1187,6 +1213,7 @@ $$
 4. **2-year richened vs. wings as expected**
 
 ### 4. Tactical Duration Extension
+
 
 **Background:**
 
@@ -1272,6 +1299,7 @@ Minimal, but negative.
 
 ### 5. Duration Hedge Failure
 
+
 **Background:**
 
 - US Treasury issuing record amounts of long-dated debt (COVID stimulus)
@@ -1346,6 +1374,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Butterfly trades are the fixed income equivalent of picking up nickels in front of a steamroller—most of the time you collect the nickels (small mean-reversion profits), but occasionally the steamroller runs you over (Fed QE, structural shift). The math is elegant: buy the body at -15 bps butterfly, sell at -5 bps, pocket 10 bps × your DV01. But here's the trap: the mean can shift. In 2010-2020, Fed QE permanently altered curvature relationships. Butterflies that 'always' mean-reverted to +2 bps suddenly lived at +15 bps for years. Traders who sold that fly at +7 bps thinking it was rich got steamrolled to +20 bps before Fed finally tapered. The key is respecting regime changes: during normal times (no QE, stable Fed), butterflies are reliable mean-reversion trades with 65% win rates. During QE or structural shifts, all bets are off—historical means are meaningless, and fighting the Fed is financial suicide. Trade butterflies when the regime is stable, size conservatively (2-3% DV01), use hard stops (2x initial mispricing), and for God's sake, don't average down when the Fed is distorting curves. The butterfly will mean-revert... eventually. Just make sure you're still solvent when it does."
 

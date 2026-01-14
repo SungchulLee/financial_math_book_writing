@@ -1,10 +1,12 @@
 # Stylized Facts of Financial Returns
 
+
 Having established proper data handling and return computation in the previous section, we now turn to the **empirical regularities** observed across financial markets. These "stylized facts" are robust statistical patterns that appear consistently across different assets, time periods, and markets. Understanding these regularities is essential because they reveal the limitations of simple models and motivate the sophisticated stochastic frameworks developed in subsequent chapters.
 
 ---
 
-## 1. The Importance of Stylized Facts
+## The Importance of Stylized Facts
+
 
 **Definition:** A **stylized fact** is an empirical regularity that:
 1. Appears consistently across multiple datasets
@@ -23,9 +25,11 @@ Having established proper data handling and return computation in the previous s
 
 ---
 
-## 2. Stylized Fact 1: Heavy Tails (Leptokurtosis)
+## Stylized Fact 1: Heavy Tails (Leptokurtosis)
 
-### 2.1 Observation
+
+### 1. Observation
+
 
 **Empirical finding:** The distribution of financial returns has **fatter tails** than the Gaussian (normal) distribution.
 
@@ -42,7 +46,8 @@ Having established proper data handling and return computation in the previous s
 | $\|r\| > 4\sigma$ | Once per 31,000 days | Once per year |
 | $\|r\| > 3\sigma$ | Once per 370 days | Once per 3 months |
 
-### 2.2 Visualization
+### 2. Visualization
+
 
 ```python
 import numpy as np
@@ -96,7 +101,8 @@ def compare_tail_behavior(df, return_col='Return_Log'):
 
 **Interpretation:** Deviation from 45-degree line in Q-Q plot indicates fat tails.
 
-### 2.3 Mathematical Characterization
+### 3. Mathematical Characterization
+
 
 **Power-law tails:** Empirical evidence suggests:
 
@@ -114,7 +120,8 @@ $$
 
 with degrees of freedom $\nu \approx 4-6$ for S&P 500.
 
-### 2.4 Implications
+### 4. Implications
+
 
 1. **Risk management:** VaR underestimated if Gaussian assumed
 2. **Option pricing:** Out-of-the-money options more valuable
@@ -123,9 +130,11 @@ with degrees of freedom $\nu \approx 4-6$ for S&P 500.
 
 ---
 
-## 3. Stylized Fact 2: Volatility Clustering
+## Stylized Fact 2: Volatility Clustering
 
-### 3.1 Observation
+
+### 1. Observation
+
 
 **Mandelbrot (1963):** "Large changes tend to be followed by large changes—of either sign—and small changes tend to be followed by small changes."
 
@@ -135,7 +144,8 @@ with degrees of freedom $\nu \approx 4-6$ for S&P 500.
 - **Squared returns** show strong autocorrelation: $\text{Corr}(r_t^2, r_{t+k}^2) > 0$ for $k \leq 100$
 - **Absolute returns** also autocorrelated: $\text{Corr}(|r_t|, |r_{t+k}|) > 0$
 
-### 3.2 Visualization
+### 2. Visualization
+
 
 ```python
 def plot_volatility_clustering(df, return_col='Return_Log'):
@@ -168,7 +178,8 @@ def plot_volatility_clustering(df, return_col='Return_Log'):
     plt.show()
 ```
 
-### 3.3 Autocorrelation Analysis
+### 3. Autocorrelation Analysis
+
 
 ```python
 from statsmodels.graphics.tsaplots import plot_acf
@@ -199,7 +210,8 @@ def analyze_autocorrelation(df, return_col='Return_Log', lags=100):
     plt.show()
 ```
 
-### 3.4 ARCH/GARCH Effects
+### 4. ARCH/GARCH Effects
+
 
 **ARCH test:** Tests null hypothesis of no ARCH effects.
 
@@ -221,7 +233,8 @@ def test_arch_effects(df, return_col='Return_Log', nlags=10):
 
 **Expected result:** Strong rejection of null hypothesis → volatility clustering present.
 
-### 3.5 Implications
+### 5. Implications
+
 
 1. **Conditional heteroskedasticity:** Variance changes over time
 2. **GARCH models:** Essential for volatility forecasting
@@ -230,9 +243,11 @@ def test_arch_effects(df, return_col='Return_Log', nlags=10):
 
 ---
 
-## 4. Stylized Fact 3: Leverage Effect
+## Stylized Fact 3: Leverage Effect
 
-### 4.1 Observation
+
+### 1. Observation
+
 
 **Black (1976):** Negative correlation between returns and volatility changes.
 
@@ -242,7 +257,8 @@ def test_arch_effects(df, return_col='Return_Log', nlags=10):
 
 **Quantitative evidence:** Correlation between $r_t$ and $\sigma_{t+1}$ typically $\rho \approx -0.5$ to $-0.7$ for equity indices.
 
-### 4.2 Visualization
+### 2. Visualization
+
 
 ```python
 def plot_leverage_effect(df, return_col='Return_Log', window=20):
@@ -280,7 +296,8 @@ def plot_leverage_effect(df, return_col='Return_Log', window=20):
     print(f"Correlation(return, future volatility): {corr:.4f}")
 ```
 
-### 4.3 Explanations
+### 3. Explanations
+
 
 **Original (Black):** Financial leverage hypothesis
 - Stock price ↓ → Debt/Equity ↑ → Financial risk ↑ → Volatility ↑
@@ -291,7 +308,8 @@ def plot_leverage_effect(df, return_col='Return_Log', window=20):
 **Behavioral:** Risk aversion and loss aversion
 - Losses trigger panic selling → Volatility ↑
 
-### 4.4 Implications
+### 4. Implications
+
 
 1. **Asymmetric models needed:** EGARCH, GJR-GARCH
 2. **Option pricing:** Skewed implied volatility surface
@@ -300,9 +318,11 @@ def plot_leverage_effect(df, return_col='Return_Log', window=20):
 
 ---
 
-## 5. Stylized Fact 4: Absence of Autocorrelation in Returns
+## Stylized Fact 4: Absence of Autocorrelation in Returns
 
-### 5.1 Observation
+
+### 1. Observation
+
 
 **Efficient Market Hypothesis (EMH):** Asset prices reflect all available information.
 
@@ -316,7 +336,8 @@ $$
 
 (with minor exceptions at very short horizons due to microstructure effects)
 
-### 5.2 Testing
+### 2. Testing
+
 
 ```python
 from statsmodels.stats.diagnostic import acorr_ljungbox
@@ -341,7 +362,8 @@ def test_return_predictability(df, return_col='Return_Log', lags=20):
     print(f"\nSignificant autocorrelations (5% level): {significant} out of {lags}")
 ```
 
-### 5.3 Implications
+### 3. Implications
+
 
 1. **Market efficiency:** Past returns don't predict future returns
 2. **Technical analysis limited:** Trend-following strategies face challenges
@@ -350,9 +372,11 @@ def test_return_predictability(df, return_col='Return_Log', lags=20):
 
 ---
 
-## 6. Stylized Fact 5: Aggregational Gaussianity
+## Stylized Fact 5: Aggregational Gaussianity
 
-### 6.1 Observation
+
+### 1. Observation
+
 
 **Time-scaling property:** As aggregation horizon increases, returns become **more Gaussian**.
 
@@ -364,7 +388,8 @@ def test_return_predictability(df, return_col='Return_Log', lags=20):
 
 **But:** Volatility clustering violates independence, slowing convergence.
 
-### 6.2 Demonstration
+### 2. Demonstration
+
 
 ```python
 def demonstrate_aggregational_gaussianity(df, return_col='Return_Log'):
@@ -403,7 +428,8 @@ def demonstrate_aggregational_gaussianity(df, return_col='Return_Log'):
     plt.show()
 ```
 
-### 6.3 Implications
+### 3. Implications
+
 
 1. **Long-horizon modeling:** Gaussian approximation more justified
 2. **Short-horizon risks:** Non-Gaussian models essential
@@ -411,9 +437,11 @@ def demonstrate_aggregational_gaussianity(df, return_col='Return_Log'):
 
 ---
 
-## 7. Stylized Fact 6: Slow Decay of Autocorrelation in Absolute Returns
+## Stylized Fact 6: Slow Decay of Autocorrelation in Absolute Returns
 
-### 7.1 Observation
+
+### 1. Observation
+
 
 **Long memory in volatility:** The autocorrelation function of $|r_t|$ decays **slowly** (power-law rather than exponential).
 
@@ -423,7 +451,8 @@ $$
 
 This is **slower** than exponential decay $e^{-\lambda k}$.
 
-### 7.2 Implications
+### 2. Implications
+
 
 1. **Long-memory models:** Fractionally integrated processes
 2. **FIGARCH models:** Capture long-range dependence
@@ -431,9 +460,11 @@ This is **slower** than exponential decay $e^{-\lambda k}$.
 
 ---
 
-## 8. Stylized Fact 7: Volume-Volatility Correlation
+## Stylized Fact 7: Volume-Volatility Correlation
 
-### 8.1 Observation
+
+### 1. Observation
+
 
 **Positive correlation** between trading volume and volatility:
 
@@ -442,7 +473,8 @@ This is **slower** than exponential decay $e^{-\lambda k}$.
 
 **Sequential information arrival:** Both driven by information flow to market.
 
-### 8.2 Implications
+### 2. Implications
+
 
 1. **Market microstructure:** Information-based trading models
 2. **Liquidity risk:** Volume-dependent transaction costs
@@ -450,9 +482,11 @@ This is **slower** than exponential decay $e^{-\lambda k}$.
 
 ---
 
-## 9. Stylized Fact 8: Asymmetry in Time Scales
+## Stylized Fact 8: Asymmetry in Time Scales
 
-### 9.1 Observation
+
+### 1. Observation
+
 
 **Different behavior at different frequencies:**
 
@@ -461,13 +495,15 @@ This is **slower** than exponential decay $e^{-\lambda k}$.
 - **Weekly/Monthly:** More Gaussian, mean reversion possible
 - **Yearly:** Fundamental factors dominate
 
-### 9.2 Implications
+### 2. Implications
+
 
 Model selection depends critically on time horizon of analysis.
 
 ---
 
-## 10. Summary of Stylized Facts
+## Summary of Stylized Facts
+
 
 | Stylized Fact | Implication | Model Feature Needed |
 |--------------|-------------|---------------------|
@@ -481,7 +517,8 @@ Model selection depends critically on time horizon of analysis.
 
 ---
 
-## 11. Complete Diagnostic Code
+## Complete Diagnostic Code
+
 
 ```python
 def complete_stylized_facts_analysis(df, return_col='Return_Log'):
@@ -538,7 +575,8 @@ complete_stylized_facts_analysis(df, 'Return_Log')
 
 ---
 
-## 12. Conclusion
+## Conclusion
+
 
 These stylized facts reveal that financial returns are **far more complex** than simple i.i.d. Gaussian processes. Key challenges for modeling:
 

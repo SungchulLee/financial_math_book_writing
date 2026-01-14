@@ -1,5 +1,6 @@
 # Intuitive Introduction and Motivation
 
+
 Girsanov’s theorem is one of the most important results in stochastic calculus,
 yet it is often misunderstood at first encounter.
 
@@ -13,6 +14,7 @@ The resolution lies in understanding the difference between **paths** and
 ---
 
 ## Paths vs Probability Measures
+
 
 A stochastic process such as Brownian motion generates random paths
 
@@ -35,6 +37,7 @@ It is a property of how probabilities are distributed across paths.
 
 ## A Thought Experiment
 
+
 Imagine observing many random paths over time.
 
 Under one probability measure, paths that trend upward may be more likely.
@@ -51,6 +54,7 @@ Only the probability weights have changed.
 ---
 
 ## Continuous-Time Perspective
+
 
 Let \(W_t\) be Brownian motion under a measure \(\mathbb{P}\).
 The process
@@ -72,6 +76,7 @@ The drift can be absorbed into the probability measure.
 
 ## Why This Matters in Finance
 
+
 In financial markets:
 
 - under the **physical measure**, asset prices contain risk premia,
@@ -83,6 +88,7 @@ viewpoints.
 ---
 
 ## The Central Idea
+
 
 > **Drift lives in the probability measure, not in the paths.**
 

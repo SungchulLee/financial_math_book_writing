@@ -1,14 +1,17 @@
 # Feynman-Kac Formula and the Black-Scholes Solution
 
+
 The **Feynman-Kac formula** provides a profound connection between **partial differential equations** and **probability theory**. It transforms a parabolic PDE into a probabilistic expectation, enabling the derivation of the Black-Scholes formula through stochastic analysis rather than PDE methods.
 
 This section presents the general Feynman-Kac theorem, applies it rigorously to the Black-Scholes PDE, and derives the closed-form option pricing formulas through detailed probabilistic calculations.
 
 ---
 
-## 1. The General Feynman-Kac Theorem
+## The General Feynman-Kac Theorem
 
-### **Statement**
+
+### 1. **Statement**
+
 
 Consider a stochastic process $X_t$ satisfying the stochastic differential equation:
 
@@ -33,7 +36,8 @@ $$
 \boxed{u(x,t) = \mathbb{E}\left[\int_t^T e^{-\int_t^s r(X_\tau,\tau)d\tau}f(X_s,s)ds + e^{-\int_t^T r(X_\tau,\tau)d\tau}\Phi(X_T) \mid X_t = x\right]}
 $$
 
-### **Interpretation of Terms**
+### 2. **Interpretation of Terms**
+
 
 **1. Terminal condition term**:
 $$
@@ -63,9 +67,11 @@ This is the **risk-neutral valuation formula**.
 
 ---
 
-## 2. Application to Black-Scholes
+## Application to Black-Scholes
 
-### **The Setup**
+
+### 1. **The Setup**
+
 
 Under the **risk-neutral measure** $\mathbb{Q}$, the stock price dynamics are:
 
@@ -78,7 +84,8 @@ where:
 - $\sigma$ = constant volatility
 - $W_t^{\mathbb{Q}}$ = Brownian motion under $\mathbb{Q}$
 
-### **The Black-Scholes PDE**
+### 2. **The Black-Scholes PDE**
+
 
 The option value $V(S,t)$ satisfies:
 
@@ -95,7 +102,8 @@ where $\Phi(S)$ is the option payoff:
 - European call: $\Phi(S) = (S-K)^+$
 - European put: $\Phi(S) = (K-S)^+$
 
-### **Feynman-Kac Representation**
+### 3. **Feynman-Kac Representation**
+
 
 By the Feynman-Kac formula:
 
@@ -109,11 +117,13 @@ This converts the PDE problem into a probabilistic expectation problem.
 
 ---
 
-## 3. Rigorous Derivation of Feynman-Kac
+## Rigorous Derivation of Feynman-Kac
+
 
 We now prove the Feynman-Kac formula rigorously using Itô's lemma and martingale theory.
 
-### **Step 1: Apply Itô's Lemma to $u(X_t, t)$**
+### 1. **Step 1: Apply Itô's Lemma to $u(X_t, t)$**
+
 
 For a function $u(X_t, t)$ where $dX_t = \mu dt + \sigma dW_t$, Itô's lemma gives:
 
@@ -127,7 +137,8 @@ $$
 du = \left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right]dt + \sigma\frac{\partial u}{\partial x}dW_t
 $$
 
-### **Step 2: Introduce Discounting**
+### 2. **Step 2: Introduce Discounting**
+
 
 Define the **discounted value**:
 $$
@@ -160,7 +171,8 @@ $$
 dY_t = e^{-\int_0^t r ds}\left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} - ru\right]dt + e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t
 $$
 
-### **Step 3: Use the PDE Condition**
+### 3. **Step 3: Use the PDE Condition**
+
 
 If $u$ satisfies the Feynman-Kac PDE (with $f=0$):
 
@@ -176,7 +188,8 @@ $$
 
 **Key observation**: $Y_t$ is a **martingale** (has no $dt$ term, only $dW_t$ term).
 
-### **Step 4: Take Conditional Expectation**
+### 4. **Step 4: Take Conditional Expectation**
+
 
 Since $Y_t$ is a martingale:
 
@@ -204,7 +217,8 @@ $$
 
 **This is the Feynman-Kac representation.**
 
-### **Application to Black-Scholes**
+### 5. **Application to Black-Scholes**
+
 
 For the Black-Scholes case with constant $r$:
 - $X_t = S_t$
@@ -226,18 +240,21 @@ with terminal conditions:
 
 ---
 
-## 4. Solving the SDE: Distribution of $S_T$
+## Solving the SDE: Distribution of $S_T$
+
 
 To evaluate the expectation in the Feynman-Kac formula, we need the distribution of $S_T$.
 
-### **The Stochastic Differential Equation**
+### 1. **The Stochastic Differential Equation**
+
 
 Under the risk-neutral measure:
 $$
 dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
 $$
 
-### **Apply Itô's Lemma to $\ln S_t$**
+### 2. **Apply Itô's Lemma to $\ln S_t$**
+
 
 Let $f(S) = \ln S$. Then:
 $$
@@ -263,7 +280,8 @@ $$
 = \left(r - \frac{1}{2}\sigma^2\right)dt + \sigma dW_t^{\mathbb{Q}}
 $$
 
-### **Integrate from $t$ to $T$**
+### 3. **Integrate from $t$ to $T$**
+
 
 $$
 \ln S_T - \ln S_t = \left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma(W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}})
@@ -276,13 +294,15 @@ $$
 
 where $Z \sim \mathcal{N}(0,1)$.
 
-### **Explicit Solution**
+### 4. **Explicit Solution**
+
 
 $$
 \boxed{S_T = S_t \exp\left[\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma\sqrt{T-t} \cdot Z\right]}
 $$
 
-### **Distribution of $S_T$**
+### 5. **Distribution of $S_T$**
+
 
 Define $\tau = T - t$. Then:
 
@@ -302,9 +322,11 @@ $$
 
 ---
 
-## 5. European Call Option: Detailed Derivation
+## European Call Option: Detailed Derivation
 
-### **The Pricing Formula via Feynman-Kac**
+
+### 1. **The Pricing Formula via Feynman-Kac**
+
 
 For a European call with payoff $\Phi(S) = (S-K)^+$:
 
@@ -314,13 +336,15 @@ $$
 
 where $\tau = T - t$.
 
-### **Step 1: Rewrite as Integral**
+### 2. **Step 1: Rewrite as Integral**
+
 
 $$
 C(S,t) = e^{-r\tau}\int_K^{\infty}(S_T - K)p(S_T \mid S)dS_T
 $$
 
-### **Step 2: Split the Integral**
+### 3. **Step 2: Split the Integral**
+
 
 $$
 C(S,t) = e^{-r\tau}\left[\int_K^{\infty}S_T p(S_T \mid S)dS_T - K\int_K^{\infty}p(S_T \mid S)dS_T\right]
@@ -332,7 +356,8 @@ $$
 
 We need to evaluate two integrals.
 
-### **Step 3: Change to Log-Normal Variable**
+### 4. **Step 3: Change to Log-Normal Variable**
+
 
 Since $\ln S_T \sim \mathcal{N}(m, v^2)$ where:
 - $m = \ln S + (r - \frac{\sigma^2}{2})\tau$
@@ -357,7 +382,8 @@ $$
 I_1 = \int_K^{\infty}S_T p(S_T)dS_T = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
 $$
 
-### **Step 4: Evaluate $I_2$ (Probability Term)**
+### 5. **Step 4: Evaluate $I_2$ (Probability Term)**
+
 
 Standardize the integral. Let:
 $$
@@ -393,7 +419,8 @@ $$
 
 **Interpretation**: $\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)$ is the **risk-neutral probability** that the option expires in-the-money.
 
-### **Step 5: Evaluate $I_1$ (Stock Term)**
+### 6. **Step 5: Evaluate $I_1$ (Stock Term)**
+
 
 $$
 I_1 = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
@@ -464,7 +491,8 @@ $$
 I_1 = Se^{r\tau}\mathcal{N}(d_1)
 $$
 
-### **Step 6: Combine Results**
+### 7. **Step 6: Combine Results**
+
 
 $$
 C(S,t) = e^{-r\tau}[I_1 - KI_2]
@@ -488,9 +516,11 @@ $$
 
 ---
 
-## 6. European Put Option
+## European Put Option
 
-### **Method 1: Direct Calculation**
+
+### 1. **Method 1: Direct Calculation**
+
 
 For a European put with payoff $\Phi(S) = (K-S)^+$:
 
@@ -510,7 +540,8 @@ $$
 
 where $d_1$ and $d_2$ are the same as for the call.
 
-### **Method 2: Put-Call Parity**
+### 2. **Method 2: Put-Call Parity**
+
 
 From the no-arbitrage relationship:
 $$
@@ -544,15 +575,18 @@ Both methods yield the same formula. ✓
 
 ---
 
-## 7. Probabilistic Interpretation
+## Probabilistic Interpretation
 
-### **The Two Terms in the Call Formula**
+
+### 1. **The Two Terms in the Call Formula**
+
 
 $$
 C = \underbrace{S\mathcal{N}(d_1)}_{\text{Stock term}} - \underbrace{Ke^{-r\tau}\mathcal{N}(d_2)}_{\text{Strike term}}
 $$
 
-### **Meaning of $\mathcal{N}(d_2)$**
+### 2. **Meaning of $\mathcal{N}(d_2)$**
+
 
 $$
 \boxed{\mathcal{N}(d_2) = \mathbb{Q}(S_T > K \mid S_t = S)}
@@ -565,7 +599,8 @@ $$
 \int_K^{\infty}p(S_T)dS_T = \mathbb{Q}(S_T > K) = \mathcal{N}(d_2)
 $$
 
-### **Meaning of $\mathcal{N}(d_1)$**
+### 3. **Meaning of $\mathcal{N}(d_1)$**
+
 
 $\mathcal{N}(d_1)$ represents the probability of exercise under the **stock measure** $\mathbb{Q}^S$:
 
@@ -589,7 +624,8 @@ $$
 \Delta_{\text{call}} = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
 $$
 
-### **Decomposition of Call Value**
+### 4. **Decomposition of Call Value**
+
 
 The call formula can be written as:
 
@@ -605,9 +641,11 @@ The difference between the two measures accounts for the convexity of the payoff
 
 ---
 
-## 8. Connection to Kolmogorov Equations
+## Connection to Kolmogorov Equations
 
-### **Backward Equation**
+
+### 1. **Backward Equation**
+
 
 The Black-Scholes PDE is the **Kolmogorov backward equation** for the process $S_t$ under $\mathbb{Q}$:
 
@@ -620,7 +658,8 @@ $$
 - We solve backward in time to find $V(S,t)$ for $t < T$
 - The PDE describes how the option value evolves as we move backward from maturity
 
-### **Forward Equation (Fokker-Planck)**
+### 2. **Forward Equation (Fokker-Planck)**
+
 
 The transition density $p(S_T, T \mid S_t, t)$ satisfies the **Kolmogorov forward equation**:
 
@@ -633,7 +672,8 @@ $$
 - We evolve forward in time to find distribution at time $T$
 - The PDE describes how the probability distribution evolves forward
 
-### **Duality Relationship**
+### 3. **Duality Relationship**
+
 
 The option value can be expressed as:
 
@@ -648,9 +688,11 @@ $$
 
 ---
 
-## 9. Why Feynman-Kac Works: Deep Intuition
+## Why Feynman-Kac Works: Deep Intuition
 
-### **The Martingale Property**
+
+### 1. **The Martingale Property**
+
 
 Under the risk-neutral measure, the **discounted stock price** is a martingale:
 
@@ -665,7 +707,8 @@ $$
 
 This is a martingale (no drift).
 
-### **Extension to Option Value**
+### 2. **Extension to Option Value**
+
 
 By extension, the **discounted option value** must also be a martingale:
 
@@ -689,7 +732,8 @@ $$
 
 **This is the Feynman-Kac representation.**
 
-### **No-Arbitrage = Martingale Measure**
+### 3. **No-Arbitrage = Martingale Measure**
+
 
 The Feynman-Kac formula is the **mathematical manifestation of no-arbitrage pricing**:
 
@@ -705,9 +749,11 @@ The risk-neutral measure $\mathbb{Q}$ is the unique measure under which:
 
 ---
 
-## 10. Extensions and Generalizations
+## Extensions and Generalizations
 
-### **With Continuous Dividend Yield**
+
+### 1. **With Continuous Dividend Yield**
+
 
 If the stock pays continuous dividends at rate $q$:
 
@@ -729,7 +775,8 @@ $$
 
 **Application**: Foreign exchange options (treat foreign interest rate as dividend yield).
 
-### **With Time-Dependent Parameters**
+### 2. **With Time-Dependent Parameters**
+
 
 For time-varying $r(t)$, $\sigma(t)$, $q(t)$:
 
@@ -749,7 +796,8 @@ The log-return is normally distributed with:
 
 **Modified $d_1$ and $d_2$**: Replace $r\tau$ with $\int_t^T r(s)ds$ and $\sigma^2\tau$ with $\int_t^T\sigma^2(s)ds$.
 
-### **Multi-Dimensional Case**
+### 3. **Multi-Dimensional Case**
+
 
 For basket options with $n$ assets $S_1, \ldots, S_n$:
 
@@ -768,11 +816,13 @@ where $\mathbf{S}_T = (S_1^T, \ldots, S_n^T)$ follows a **multivariate log-norma
 
 ---
 
-## 11. Summary: Why Feynman-Kac is Powerful
+## Summary: Why Feynman-Kac is Powerful
+
 
 The Feynman-Kac formula provides a profound bridge between analysis and probability:
 
-### **Key Advantages**
+### 1. **Key Advantages**
+
 
 **1. Converts PDE to probability**: 
 - Often easier to compute expectations than solve PDEs
@@ -797,7 +847,8 @@ The Feynman-Kac formula provides a profound bridge between analysis and probabil
 - Unifies discrete (binomial) and continuous (BS) models
 - Foundation for modern derivative pricing
 
-### **The Big Picture**
+### 2. **The Big Picture**
+
 
 The Feynman-Kac formula demonstrates that:
 
@@ -814,6 +865,7 @@ This trinity underlies modern quantitative finance and enables both theoretical 
 ---
 
 ## Summary
+
 
 The Feynman-Kac formula establishes the fundamental connection:
 

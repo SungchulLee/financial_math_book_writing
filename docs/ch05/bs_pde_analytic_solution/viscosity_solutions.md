@@ -1,12 +1,15 @@
 # Viscosity Solutions: Complete Mathematical Treatment
 
+
 Viscosity solutions provide a **rigorous framework** for nonlinear PDEs that handles **non-smooth data**, **degenerate equations**, and **optimal control problems**—all central to modern mathematical finance.
 
 ---
 
 ## **1. Motivation: Why Classical Solutions Fail**
 
-### **The Problem with Non-Smooth Payoffs**
+
+### 1. **The Problem with Non-Smooth Payoffs**
+
 
 Consider a digital option with payoff:
 
@@ -22,7 +25,8 @@ $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma
 
 with terminal condition $V(S,T) = \mathbb{1}_{S > K}$ has **no classical solution**—the payoff is discontinuous!
 
-### **American Options**
+### 2. **American Options**
+
 
 The free boundary problem:
 
@@ -32,7 +36,8 @@ $$\max\left\{-\frac{\partial V}{\partial t} - rS\frac{\partial V}{\partial S} - 
 
 The solution $V$ is typically **not $C^2$** at the free boundary, so classical derivatives don't exist.
 
-### **Transaction Costs**
+### 3. **Transaction Costs**
+
 
 With proportional transaction costs, the Hamilton-Jacobi-Bellman equation:
 
@@ -42,7 +47,8 @@ $$\frac{\partial V}{\partial t} + \sup_{\alpha}\left[\alpha \sigma S \frac{\part
 
 involves a **non-smooth Hamiltonian** (absolute value).
 
-### **The Gap**
+### 4. **The Gap**
+
 
 **Classical theory**: Requires $C^2$ solutions
 **Reality**: Financial PDEs rarely have $C^2$ solutions
@@ -53,7 +59,9 @@ involves a **non-smooth Hamiltonian** (absolute value).
 
 ## **2. Fundamental Definitions**
 
-### **General Parabolic PDE**
+
+### 1. **General Parabolic PDE**
+
 
 Consider:
 
@@ -69,7 +77,8 @@ where:
 
 **Boundary condition**: $u(x,T) = g(x)$
 
-### **Upper/Lower Semicontinuity**
+### 2. **Upper/Lower Semicontinuity**
+
 
 A function $u$ is:
 - **Upper semicontinuous (USC)** if $\limsup_{y \to x}u(y) \leq u(x)$
@@ -77,7 +86,8 @@ A function $u$ is:
 
 **Intuition**: USC functions don't have upward jumps; LSC functions don't have downward jumps.
 
-### **Test Functions**
+### 3. **Test Functions**
+
 
 A function $\phi \in C^2(\Omega \times [0,T])$ is a **test function** for $u$ at $(x_0, t_0)$ if:
 
@@ -89,7 +99,9 @@ $$u(x,t) - \phi(x,t) \text{ has a local maximum (or minimum) at } (x_0,t_0)$$
 
 ## **3. Viscosity Subsolutions**
 
-### **Definition**
+
+### 1. **Definition**
+
 
 A USC function $u$ is a **viscosity subsolution** of $F(x,t,u,Du,D^2u) = 0$ if:
 
@@ -100,11 +112,13 @@ $$\boxed{F(x_0, t_0, u(x_0,t_0), D\phi(x_0,t_0), D^2\phi(x_0,t_0)) \leq 0}$$
 
 
 
-### **Intuition**
+### 2. **Intuition**
+
 
 At points where we can "touch from above" with a smooth function, the PDE inequality $F \leq 0$ holds in the **viscosity sense**.
 
-### **Why "Viscosity"?**
+### 3. **Why "Viscosity"?**
+
 
 Historically, this notion arose from adding **artificial viscosity** $\epsilon \Delta u$ to make the equation:
 
@@ -114,7 +128,8 @@ $$F(x,t,u,Du,D^2u) - \epsilon \Delta u = 0$$
 
 which has smooth solutions. Taking $\epsilon \to 0$ gives the viscosity solution.
 
-### **Black-Scholes Example**
+### 4. **Black-Scholes Example**
+
 
 For the operator:
 
@@ -134,7 +149,9 @@ at the touching point.
 
 ## **4. Viscosity Supersolutions**
 
-### **Definition**
+
+### 1. **Definition**
+
 
 A LSC function $u$ is a **viscosity supersolution** of $F(x,t,u,Du,D^2u) = 0$ if:
 
@@ -145,7 +162,8 @@ $$\boxed{F(x_0, t_0, u(x_0,t_0), D\phi(x_0,t_0), D^2\phi(x_0,t_0)) \geq 0}$$
 
 
 
-### **Intuition**
+### 2. **Intuition**
+
 
 At points where we can "touch from below" with a smooth function, $F \geq 0$ in the viscosity sense.
 
@@ -153,7 +171,9 @@ At points where we can "touch from below" with a smooth function, $F \geq 0$ in 
 
 ## **5. Viscosity Solutions**
 
-### **Definition**
+
+### 1. **Definition**
+
 
 A continuous function $u$ is a **viscosity solution** if it is both:
 1. A viscosity subsolution
@@ -164,7 +184,8 @@ $$\boxed{u \text{ is a viscosity solution} \iff \text{subsolution AND supersolut
 
 
 
-### **Equivalent Definition (Semijets)**
+### 2. **Equivalent Definition (Semijets)**
+
 
 Define the **second-order superdifferential**:
 
@@ -180,7 +201,8 @@ $$F(x_0,t_0,u(x_0,t_0), p, A) \leq 0 \quad \forall (p,A) \in \overline{D^2}u(x_0
 
 Similarly for supersolutions using the **subdifferential** $\underline{D^2}u$.
 
-### **Classical Solutions are Viscosity Solutions**
+### 3. **Classical Solutions are Viscosity Solutions**
+
 
 **Proposition**: If $u \in C^2$ is a classical solution, then $u$ is a viscosity solution.
 
@@ -196,7 +218,9 @@ This satisfies both $F \leq 0$ (subsolution) and $F \geq 0$ (supersolution).
 
 ## **6. Comparison Principle**
 
-### **Statement**
+
+### 1. **Statement**
+
 
 The **comparison principle** is the cornerstone of uniqueness theory.
 
@@ -218,7 +242,8 @@ $$\boxed{u \leq v \quad \text{in } \Omega \times [0,T]}$$
 
 
 
-### **Degenerate Ellipticity**
+### 2. **Degenerate Ellipticity**
+
 
 This means adding more "convexity" (larger $D^2u$) makes $F$ larger. For Black-Scholes:
 
@@ -228,7 +253,8 @@ $$F = u_t + rSu_S + \frac{\sigma^2 S^2}{2}u_{SS} - ru$$
 
 We have $\frac{\partial F}{\partial u_{SS}} = \frac{\sigma^2 S^2}{2} \geq 0$, so it's degenerate elliptic.
 
-### **Uniqueness Corollary**
+### 3. **Uniqueness Corollary**
+
 
 If viscosity solutions exist, the comparison principle implies **uniqueness**:
 
@@ -238,7 +264,9 @@ If $u_1$ and $u_2$ are both viscosity solutions with the same boundary data, the
 
 ## **7. Existence Theory**
 
-### **Perron's Method**
+
+### 1. **Perron's Method**
+
 
 Define:
 
@@ -256,7 +284,8 @@ $$\overline{u}(x,t) = \inf\{w(x,t) : w \text{ is a viscosity supersolution with 
 2. $\overline{u}$ is a viscosity supersolution
 3. If $\underline{u} = \overline{u}$, then $u = \underline{u} = \overline{u}$ is the **unique** viscosity solution
 
-### **Vanishing Viscosity Method**
+### 2. **Vanishing Viscosity Method**
+
 
 Add artificial viscosity:
 
@@ -272,7 +301,8 @@ $$u^\epsilon \to u \quad \text{as } \epsilon \to 0$$
 
 and $u$ is the viscosity solution.
 
-### **Approximation by Smooth Functions**
+### 3. **Approximation by Smooth Functions**
+
 
 Replace the terminal data $g(x)$ by smooth approximations $g_n \in C^\infty$ with $g_n \to g$ uniformly.
 
@@ -284,7 +314,9 @@ Then $u_n \to u$ where $u$ is the viscosity solution with terminal data $g$.
 
 ## **8. Connection to Stochastic Control**
 
-### **Dynamic Programming Principle (DPP)**
+
+### 1. **Dynamic Programming Principle (DPP)**
+
 
 For the stochastic control problem:
 
@@ -304,7 +336,8 @@ $$V(x,t) = \sup_{\alpha}\mathbb{E}\left[\int_t^{t+h}f(X_s^\alpha,\alpha_s)e^{-\i
 
 
 
-### **HJB Equation**
+### 2. **HJB Equation**
+
 
 Taking $h \to 0$ formally gives the **Hamilton-Jacobi-Bellman equation**:
 
@@ -312,7 +345,8 @@ $$\boxed{\frac{\partial V}{\partial t} + \sup_{\alpha \in A}\left[b(x,\alpha) \c
 
 
 
-### **Viscosity Solution Connection**
+### 3. **Viscosity Solution Connection**
+
 
 **Theorem**: The value function $V$ defined via the stochastic control problem is a **viscosity solution** of the HJB equation.
 
@@ -332,7 +366,9 @@ This is why viscosity solutions are **natural** for finance!
 
 ## **9. American Options**
 
-### **Obstacle Problem**
+
+### 1. **Obstacle Problem**
+
 
 For an American option with payoff $\Phi(S)$:
 
@@ -342,7 +378,8 @@ $$V(S,t) = \sup_{\tau \in [t,T]}\mathbb{E}^{\mathbb{Q}}[e^{-r(\tau-t)}\Phi(S_\ta
 
 This is an **optimal stopping problem**.
 
-### **Variational Inequality**
+### 2. **Variational Inequality**
+
 
 The value function satisfies:
 
@@ -356,7 +393,8 @@ $$\mathcal{L}V = rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\
 
 
 
-### **Regions**
+### 3. **Regions**
+
 
 - **Continuation region**: $\mathcal{C} = \{(S,t) : V(S,t) > \Phi(S)\}$
   - Here: $-\frac{\partial V}{\partial t} - \mathcal{L}V = 0$
@@ -364,13 +402,15 @@ $$\mathcal{L}V = rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\
 - **Stopping region**: $\mathcal{S} = \{(S,t) : V(S,t) = \Phi(S)\}$
   - Here: $-\frac{\partial V}{\partial t} - \mathcal{L}V \leq 0$
 
-### **Free Boundary**
+### 4. **Free Boundary**
+
 
 The boundary $\partial \mathcal{C}$ is the **optimal exercise boundary** $S^*(t)$.
 
 At $S = S^*(t)$, $V$ is typically **not $C^2$**—only $C^1$ (smooth fit).
 
-### **Viscosity Solution**
+### 5. **Viscosity Solution**
+
 
 $V$ is the unique viscosity solution of the variational inequality with terminal condition $V(S,T) = \Phi(S)$.
 
@@ -384,7 +424,9 @@ $V$ is the unique viscosity solution of the variational inequality with terminal
 
 ## **10. Detailed Example: American Put**
 
-### **Setup**
+
+### 1. **Setup**
+
 
 Payoff: $\Phi(S) = (K - S)^+$
 
@@ -394,13 +436,15 @@ $$\min\left\{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \
 
 
 
-### **Properties**
+### 2. **Properties**
+
 
 1. **Early exercise**: Optimal to exercise when $S \leq S^*(t)$ for some boundary $S^*(t)$
 2. **Smooth fit**: $V(S^*(t), t) = K - S^*(t)$ and $\frac{\partial V}{\partial S}(S^*(t), t) = -1$
 3. **Non-smooth second derivative**: $\frac{\partial^2 V}{\partial S^2}$ jumps at $S^*(t)$
 
-### **Viscosity Formulation**
+### 3. **Viscosity Formulation**
+
 
 For $S > S^*(t)$ (continuation region):
 - Test functions touching from above: $F(\phi) \leq 0$
@@ -415,7 +459,8 @@ For $S < S^*(t)$ (stopping region):
 - $V = K - S$ (payoff)
 - Any test function must satisfy the obstacle constraint
 
-### **Comparison Principle**
+### 4. **Comparison Principle**
+
 
 Ensures uniqueness: any two viscosity solutions must coincide.
 
@@ -429,7 +474,9 @@ $$V_{\text{viscosity}} = V_{\text{probabilistic}} = \sup_\tau \mathbb{E}[e^{-r\t
 
 ## **11. Regularity Theory**
 
-### **When is the Viscosity Solution Classical?**
+
+### 1. **When is the Viscosity Solution Classical?**
+
 
 **Theorem**: If:
 1. The payoff $\Phi$ is $C^2$
@@ -438,13 +485,15 @@ $$V_{\text{viscosity}} = V_{\text{probabilistic}} = \sup_\tau \mathbb{E}[e^{-r\t
 
 Then the viscosity solution is **classical** ($C^{2,1}$).
 
-### **Degenerate Case**
+### 2. **Degenerate Case**
+
 
 For Black-Scholes, $\sigma^2 S^2 \to 0$ as $S \to 0$ (**degeneracy**).
 
 The solution may fail to be $C^2$ at $S = 0$ even with smooth payoffs.
 
-### **Hölder Continuity**
+### 3. **Hölder Continuity**
+
 
 **Theorem**: Under mild conditions, viscosity solutions are **locally Hölder continuous**:
 
@@ -454,7 +503,8 @@ $$|u(x,t) - u(y,s)| \leq C(|x-y|^\alpha + |t-s|^{\alpha/2})$$
 
 for some $\alpha \in (0,1)$.
 
-### **$C^{2,\alpha}$ Interior Regularity**
+### 4. **$C^{2,\alpha}$ Interior Regularity**
+
 
 Away from boundaries and degeneracies, viscosity solutions are typically **$C^{2,\alpha}$** (classical).
 
@@ -468,7 +518,9 @@ Singularities only occur at:
 
 ## **12. Numerical Methods**
 
-### **Finite Difference Schemes**
+
+### 1. **Finite Difference Schemes**
+
 
 For the scheme:
 
@@ -482,7 +534,8 @@ $$\frac{V_j^{n+1} - V_j^n}{\Delta t} + \mathcal{L}_h V_j^{n+1} = 0$$
 
 **Theorem (Barles-Souganidis)**: A consistent, monotone, stable scheme **converges** to the viscosity solution.
 
-### **Monotone Schemes**
+### 2. **Monotone Schemes**
+
 
 For Black-Scholes, a **monotone scheme** might be:
 
@@ -492,7 +545,8 @@ $$\frac{V_j^{n+1} - V_j^n}{\Delta t} + r S_j \frac{V_{j+1}^{n+1} - V_{j-1}^{n+1}
 
 provided the **CFL condition** ensures monotonicity.
 
-### **American Options**
+### 3. **American Options**
+
 
 At each time step:
 
@@ -502,7 +556,8 @@ $$V_j^{n+1} = \max\left\{\Phi(S_j), \text{continuation value}\right\}$$
 
 This automatically enforces the obstacle constraint.
 
-### **Convergence**
+### 4. **Convergence**
+
 
 **Theorem**: The discrete scheme converges to the viscosity solution of the continuous variational inequality.
 
@@ -515,7 +570,9 @@ This justifies **practical algorithms** like:
 
 ## **13. Obstacle Problems and Penalization**
 
-### **Penalization Method**
+
+### 1. **Penalization Method**
+
 
 Replace the obstacle problem:
 
@@ -531,7 +588,8 @@ $$-u_t^\epsilon - \mathcal{L}u^\epsilon - \frac{1}{\epsilon}(u^\epsilon - g)^- =
 
 where $(x)^- = \max(-x, 0)$.
 
-### **Convergence**
+### 2. **Convergence**
+
 
 As $\epsilon \to 0$:
 
@@ -546,7 +604,8 @@ where $u$ is the viscosity solution of the obstacle problem.
 - Comparison principle for penalized equation
 - Stability under limits
 
-### **Regularization by Penalty**
+### 3. **Regularization by Penalty**
+
 
 The penalty term $-\frac{1}{\epsilon}(u^\epsilon - g)^-$ acts as:
 - A large negative force when $u^\epsilon < g$ (pushing $u^\epsilon$ up)
@@ -558,7 +617,9 @@ As $\epsilon \to 0$, this enforces $u \geq g$ exactly.
 
 ## **14. Transaction Costs**
 
-### **Hodges-Neuberger Model**
+
+### 1. **Hodges-Neuberger Model**
+
 
 With proportional transaction costs, the value function satisfies:
 
@@ -568,7 +629,8 @@ $$\frac{\partial V}{\partial t} + \sup_{\alpha \in \mathbb{R}}\left\{\alpha\left
 
 where $c$ is the transaction cost rate.
 
-### **Hamilton-Jacobi-Bellman Structure**
+### 2. **Hamilton-Jacobi-Bellman Structure**
+
 
 The supremum over $\alpha$ gives:
 
@@ -587,7 +649,8 @@ $$\boxed{\left|\sigma S\frac{\partial V}{\partial S}\right| \leq c}$$
 
 in the viscosity sense—a **gradient constraint**.
 
-### **No-Transaction Region**
+### 3. **No-Transaction Region**
+
 
 There's a region where:
 
@@ -599,7 +662,8 @@ and no trading occurs.
 
 Outside this region, trade to return to the boundary.
 
-### **Viscosity Solution**
+### 4. **Viscosity Solution**
+
 
 The value function is the unique viscosity solution satisfying:
 1. The gradient constraint
@@ -610,7 +674,9 @@ The value function is the unique viscosity solution satisfying:
 
 ## **15. Portfolio Optimization**
 
-### **Merton Problem**
+
+### 1. **Merton Problem**
+
 
 Maximize expected utility:
 
@@ -624,14 +690,16 @@ $$dX_t = [rX_t + \pi_t(\mu - r)]dt + \pi_t \sigma dW_t$$
 
 
 
-### **HJB Equation**
+### 2. **HJB Equation**
+
 
 
 $$\boxed{\frac{\partial V}{\partial t} + \sup_\pi\left[rx\frac{\partial V}{\partial x} + \pi(\mu-r)\frac{\partial V}{\partial x} + \frac{\pi^2\sigma^2}{2}\frac{\partial^2 V}{\partial x^2}\right] = 0}$$
 
 
 
-### **First-Order Condition**
+### 3. **First-Order Condition**
+
 
 The supremum is achieved at:
 
@@ -641,7 +709,8 @@ $$\pi^* = -\frac{(\mu-r)\frac{\partial V}{\partial x}}{\sigma^2\frac{\partial^2 
 
 provided $\frac{\partial^2 V}{\partial x^2} < 0$ (concavity).
 
-### **Non-Smooth Terminal Utility**
+### 4. **Non-Smooth Terminal Utility**
+
 
 For non-smooth $U$ (e.g., power utility with constraints), classical solutions may not exist.
 
@@ -651,28 +720,33 @@ The value function is a **viscosity solution** of the HJB equation.
 
 ## **16. Comparison with Other Solution Concepts**
 
-### **Classical Solutions**
+
+### 1. **Classical Solutions**
+
 
 - **Requires**: $C^2$ regularity
 - **Applies**: Smooth data, non-degenerate operators
 - **Unique**: Yes, when exists
 - **Finance**: European options with smooth payoffs
 
-### **Weak Solutions**
+### 2. **Weak Solutions**
+
 
 - **Requires**: $H^1$ (Sobolev space)
 - **Applies**: Variational formulations
 - **Unique**: Not always
 - **Finance**: Less common
 
-### **Viscosity Solutions**
+### 3. **Viscosity Solutions**
+
 
 - **Requires**: Only continuity
 - **Applies**: Non-smooth data, degenerate/singular operators, optimal control
 - **Unique**: Yes, under comparison principle
 - **Finance**: American options, transaction costs, stochastic control
 
-### **Strong vs. Viscosity**
+### 4. **Strong vs. Viscosity**
+
 
 If $u \in C^2$ solves the PDE classically, then:
 
@@ -686,7 +760,9 @@ But the converse is false—viscosity solutions are **more general**.
 
 ## **17. User's Guide to Viscosity Solutions**
 
-### **When to Use Viscosity Theory**
+
+### 1. **When to Use Viscosity Theory**
+
 
 Use viscosity solutions when:
 1. **Non-smooth payoffs**: Digital options, barriers
@@ -696,7 +772,8 @@ Use viscosity solutions when:
 5. **Degenerate operators**: $\sigma \to 0$ near boundaries
 6. **Transaction costs**: Gradient constraints
 
-### **How to Verify a Solution**
+### 2. **How to Verify a Solution**
+
 
 To show $u$ is a viscosity solution:
 
@@ -713,7 +790,8 @@ To show $u$ is a viscosity solution:
 
 **Step 5**: Apply comparison principle for uniqueness
 
-### **Common Pitfalls**
+### 3. **Common Pitfalls**
+
 
 1. **Forgetting semi-continuity**: Subsolutions must be USC, supersolutions LSC
 2. **Using global test functions**: Only need local max/min
@@ -724,7 +802,9 @@ To show $u$ is a viscosity solution:
 
 ## **18. Advanced Topics**
 
-### **Fully Nonlinear Equations**
+
+### 1. **Fully Nonlinear Equations**
+
 
 For general $F(D^2u, Du, u, x)$, the Bellman equation:
 
@@ -736,7 +816,8 @@ Each $F_\alpha$ corresponds to a control choice.
 
 Viscosity theory handles **fully nonlinear** operators naturally.
 
-### **Geometric Flows**
+### 2. **Geometric Flows**
+
 
 The **mean curvature flow**:
 
@@ -746,7 +827,8 @@ $$u_t = |\nabla u|\text{div}\left(\frac{\nabla u}{|\nabla u|}\right)$$
 
 can develop singularities. Viscosity solutions extend through singularities.
 
-### **Differential Games**
+### 3. **Differential Games**
+
 
 For two-player zero-sum games:
 
@@ -756,7 +838,8 @@ $$\frac{\partial V}{\partial t} + \sup_{\alpha}\inf_{\beta}[F(x,\alpha,\beta,V,D
 
 The value function is a viscosity solution.
 
-### **Singular Control**
+### 4. **Singular Control**
+
 
 For impulse control or singular control problems, the HJB involves **quasi-variational inequalities**:
 
@@ -770,7 +853,9 @@ where $Mu$ is the **intervention operator**.
 
 ## **19. Probabilistic Interpretation**
 
-### **Perron-Frobenius Formula**
+
+### 1. **Perron-Frobenius Formula**
+
 
 For the obstacle problem:
 
@@ -780,7 +865,8 @@ $$u(x,t) = \sup_{\tau \leq T-t}\mathbb{E}\left[\int_t^\tau f(X_s)e^{-r(s-t)}ds +
 
 The viscosity solution $u$ **is** the value function.
 
-### **Comparison via Probability**
+### 2. **Comparison via Probability**
+
 
 To prove comparison, use:
 
@@ -794,7 +880,8 @@ $$v(x,t) \geq \mathbb{E}[\cdots] \quad \text{for optimal strategy}$$
 
 Therefore $u \leq v$.
 
-### **Martingale Characterization**
+### 3. **Martingale Characterization**
+
 
 A function $u$ is a viscosity solution iff the process:
 
@@ -808,7 +895,9 @@ is a **supermartingale** for all strategies and a **martingale** for optimal str
 
 ## **20. The Deep Beauty**
 
-### **Unified Framework**
+
+### 1. **Unified Framework**
+
 
 Viscosity theory **unifies**:
 - PDE theory (analysis)
@@ -816,7 +905,8 @@ Viscosity theory **unifies**:
 - Optimal stopping (decision theory)
 - Game theory (strategic interaction)
 
-### **The Fundamental Equivalence**
+### 2. **The Fundamental Equivalence**
+
 
 
 $$\boxed{\text{Viscosity solution of HJB} \iff \text{Value function of stochastic control}}$$
@@ -825,7 +915,8 @@ $$\boxed{\text{Viscosity solution of HJB} \iff \text{Value function of stochasti
 
 This is the **modern foundation** of mathematical finance.
 
-### **Why It Works**
+### 3. **Why It Works**
+
 
 The genius of viscosity solutions:
 1. **Weak enough**: Applies to non-smooth functions
@@ -834,7 +925,8 @@ The genius of viscosity solutions:
 4. **Computable**: Numerical schemes work
 5. **Probabilistically meaningful**: Connects to value functions
 
-### **The Philosophy**
+### 4. **The Philosophy**
+
 
 Classical PDE theory asks: "What is the smoothest solution?"
 
@@ -852,6 +944,7 @@ which is **always** a viscosity solution, even when it's not classical.
 
 ## **21. Summary: The Viscosity Toolkit**
 
+
 | **Problem** | **Classical Approach** | **Viscosity Approach** |
 |-------------|------------------------|------------------------|
 | European call (smooth) | PDE + Feynman-Kac | Same (viscosity = classical) |
@@ -861,7 +954,8 @@ which is **always** a viscosity solution, even when it's not classical.
 | Stochastic control | Verify HJB formally | Value function is viscosity solution |
 | Numerical methods | Ad hoc convergence | Barles-Souganidis theorem |
 
-### **The Master Theorem**
+### 1. **The Master Theorem**
+
 
 For a stochastic control problem with value function $V$:
 

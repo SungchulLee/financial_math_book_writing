@@ -1,10 +1,12 @@
 # PDEs Satisfied by Greeks
 
+
 A clean way to obtain PDEs for Greeks is to treat Greeks as solutions of **sensitivity PDEs**.
 
 ---
 
 ## Operator form
+
 
 Define the Black–Scholes operator
 
@@ -24,6 +26,7 @@ Then \(V\) solves \(\mathcal{A}V=0\).
 
 ## Vega
 
+
 Let \(\nu=V_\sigma\). Differentiate \(\mathcal{A}V=0\) in \(\sigma\):
 
 \[
@@ -42,6 +45,7 @@ With payoff independent of \(\sigma\),
 ---
 
 ## Rho
+
 
 Let \(\rho=V_r\). Differentiating in \(r\) yields
 
@@ -63,6 +67,7 @@ V - S V_S,
 
 ## Theta identity
 
+
 From the PDE,
 
 \[
@@ -80,6 +85,7 @@ From the PDE,
 ---
 
 ## What to remember
+
 
 - Vega and rho satisfy inhomogeneous parabolic PDEs with zero terminal data.
 - Theta can be computed directly from \(V,\Delta,\Gamma\) using the PDE.

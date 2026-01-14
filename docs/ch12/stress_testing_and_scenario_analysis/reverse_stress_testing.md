@@ -1,10 +1,12 @@
 # Reverse Stress Testing
 
+
 Reverse stress testing starts from **undesirable outcomes** and works backward to identify scenarios that would cause them. It is a powerful complement to traditional stress testing.
 
 ---
 
-## 1. Concept
+## Concept
+
 
 Instead of asking:
 > “What happens under this scenario?”
@@ -16,7 +18,8 @@ This shifts focus to vulnerabilities rather than probabilities.
 
 ---
 
-## 2. Methodology
+## Methodology
+
 
 Typical steps:
 1. Define a failure threshold (e.g., capital breach).
@@ -27,7 +30,8 @@ Probability is secondary to plausibility.
 
 ---
 
-## 3. Benefits
+## Benefits
+
 
 Reverse stress testing:
 - exposes hidden assumptions,
@@ -38,7 +42,8 @@ It is emphasized in regulatory frameworks.
 
 ---
 
-## 4. Challenges
+## Challenges
+
 
 - Scenario construction is subjective.
 - Results can be uncomfortable.
@@ -48,7 +53,8 @@ Despite this, it provides deep insight.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Reverse stress testing focuses on failure modes.
 - It complements forward stress tests.
@@ -57,6 +63,7 @@ Despite this, it provides deep insight.
 ---
 
 ## Further reading
+
 
 - Basel III reverse stress testing guidance.
 - Glasserman & Xu, reverse stress methods.

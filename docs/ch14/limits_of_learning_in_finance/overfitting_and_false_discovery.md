@@ -1,10 +1,12 @@
 # Overfitting and False Discovery
 
+
 **Overfitting** and **false discovery** are pervasive risks in financial learning due to noisy data and multiple testing.
 
 ---
 
-## 1. Overfitting in finance
+## Overfitting in finance
+
 
 Overfitting occurs when a model:
 - fits noise rather than signal,
@@ -15,7 +17,8 @@ Limited data and heavy noise exacerbate the problem.
 
 ---
 
-## 2. Multiple testing and data snooping
+## Multiple testing and data snooping
+
 
 Financial research often involves:
 - testing many strategies,
@@ -26,7 +29,8 @@ This leads to false discoveries.
 
 ---
 
-## 3. Consequences
+## Consequences
+
 
 False discoveries result in:
 - spurious trading strategies,
@@ -37,7 +41,8 @@ They undermine confidence in models.
 
 ---
 
-## 4. Mitigation techniques
+## Mitigation techniques
+
 
 Common defenses include:
 - out-of-sample validation,
@@ -49,7 +54,8 @@ Discipline is crucial.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Overfitting is endemic in finance.
 - Multiple testing inflates false positives.
@@ -58,6 +64,7 @@ Discipline is crucial.
 ---
 
 ## Further reading
+
 
 - Bailey et al., backtest overfitting.
 - Harvey, Liu & Zhu, false discoveries.

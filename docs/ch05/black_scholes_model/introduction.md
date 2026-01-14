@@ -1,14 +1,17 @@
 # Introduction to the Black-Scholes Model
 
+
 The **Black-Scholes model**, developed independently by Fischer Black and Myron Scholes (1973) and Robert Merton (1973), constitutes a cornerstone of modern financial mathematics. It provides a robust framework for pricing European options under the assumption that the underlying asset follows **geometric Brownian motion**—a continuous-time stochastic process.
 
 This section introduces the Black-Scholes model, its historical significance, and its relationship to the discrete-time binomial framework studied in Section 2.1.
 
 ---
 
-## 1. Historical Context and Significance
+## Historical Context and Significance
 
-### **The Problem Before Black-Scholes**
+
+### 1. **The Problem Before Black-Scholes**
+
 
 Prior to 1973, option pricing was largely heuristic:
 - Traders used rules of thumb and intuition
@@ -17,7 +20,8 @@ Prior to 1973, option pricing was largely heuristic:
 
 The key challenge: How to price the **volatility risk** embedded in options?
 
-### **The Breakthrough**
+### 2. **The Breakthrough**
+
 
 Black, Scholes, and Merton showed that:
 1. **Perfect hedging is possible** (in theory) through continuous rebalancing
@@ -29,7 +33,8 @@ Black, Scholes, and Merton showed that:
 - Foundation for the modern derivatives industry (trillions in notional value)
 - Sparked development of quantitative finance as a discipline
 
-### **Why It Matters**
+### 3. **Why It Matters**
+
 
 The Black-Scholes model elegantly captures the interplay between:
 - **Stochastic dynamics**: Random asset price movements
@@ -39,9 +44,11 @@ It demonstrates that derivative pricing can be **model-based and systematic** ra
 
 ---
 
-## 2. From Discrete to Continuous Time
+## From Discrete to Continuous Time
 
-### **The Binomial Model as Foundation**
+
+### 1. **The Binomial Model as Foundation**
+
 
 Recall from Section 2.1 that the **binomial model** provides a discrete-time framework:
 - Time divided into finite steps $\Delta t$
@@ -53,7 +60,8 @@ Recall from Section 2.1 that the **binomial model** provides a discrete-time fra
 2. Risk-neutral valuation
 3. No-arbitrage principle
 
-### **The Continuous-Time Limit**
+### 2. **The Continuous-Time Limit**
+
 
 The Black-Scholes model emerges as the **continuous-time limit** of the binomial framework:
 
@@ -71,7 +79,8 @@ where $n$ is the number of time steps and $\Delta t = T/n$.
 
 This connection shows that Black-Scholes is the **natural extension** of simpler discrete models, not a separate theory.
 
-### **Why Go to Continuous Time?**
+### 3. **Why Go to Continuous Time?**
+
 
 **Advantages**:
 1. **Analytical tractability**: Closed-form solutions via PDE theory
@@ -86,9 +95,11 @@ This connection shows that Black-Scholes is the **natural extension** of simpler
 
 ---
 
-## 3. The Black-Scholes Framework
+## The Black-Scholes Framework
 
-### **Core Components**
+
+### 1. **Core Components**
+
 
 The Black-Scholes model consists of three interrelated elements:
 
@@ -129,9 +140,11 @@ By constructing this portfolio to be **locally risk-free**, we eliminate uncerta
 
 ---
 
-## 4. Key Insights from the Model
+## Key Insights from the Model
 
-### **No Expected Return in Pricing**
+
+### 1. **No Expected Return in Pricing**
+
 
 **Remarkable fact**: The option price depends on $\sigma$ but **not on $\mu$**.
 
@@ -142,7 +155,8 @@ By constructing this portfolio to be **locally risk-free**, we eliminate uncerta
 
 **Implication**: Investors with different return expectations still agree on option prices.
 
-### **Risk-Neutral Valuation**
+### 2. **Risk-Neutral Valuation**
+
 
 Under the **risk-neutral measure** $\mathbb{Q}$:
 $$
@@ -159,7 +173,8 @@ $$
 - Pricing as if risk-neutral simplifies calculations
 - The replication argument justifies this "artificial" probability measure
 
-### **Dynamic Hedging**
+### 3. **Dynamic Hedging**
+
 
 Unlike buy-and-hold strategies, option replication requires **continuous rebalancing**:
 - Delta changes as $S$ and $t$ change
@@ -170,9 +185,11 @@ Unlike buy-and-hold strategies, option replication requires **continuous rebalan
 
 ---
 
-## 5. The Black-Scholes PDE
+## The Black-Scholes PDE
 
-### **Derivation Idea** (Details in Section 2.5)
+
+### 1. **Derivation Idea** (Details in Section 2.5)
+
 
 **Step 1**: Construct a hedged portfolio
 $$
@@ -201,7 +218,8 @@ $$
 
 **Result**: The Black-Scholes PDE.
 
-### **Trivial Solutions**
+### 2. **Trivial Solutions**
+
 
 Before solving for option prices, observe that simple portfolios satisfy the PDE:
 
@@ -233,9 +251,11 @@ $$
 
 ---
 
-## 6. Scope and Applications
+## Scope and Applications
 
-### **What the Model Prices**
+
+### 1. **What the Model Prices**
+
 
 **Primary applications**:
 - European call and put options
@@ -249,7 +269,8 @@ $$
 - Time-varying parameters
 - Multiple underlying assets
 
-### **What It Doesn't Cover**
+### 2. **What It Doesn't Cover**
+
 
 **Requires other methods**:
 - **American options**: Early exercise creates free boundary problem (no closed form)
@@ -264,9 +285,11 @@ $$
 
 ---
 
-## 7. Beyond Black-Scholes
+## Beyond Black-Scholes
 
-### **The Model's Legacy**
+
+### 1. **The Model's Legacy**
+
 
 The Black-Scholes framework spawned:
 
@@ -287,7 +310,8 @@ The Black-Scholes framework spawned:
 - Trading systems and risk platforms
 - Regulatory frameworks (VaR, stress testing)
 
-### **When to Use Black-Scholes**
+### 2. **When to Use Black-Scholes**
+
 
 **Appropriate for**:
 - Liquid European options with short maturities
@@ -303,7 +327,8 @@ The Black-Scholes framework spawned:
 
 ---
 
-## 8. Roadmap for Remaining Sections
+## Roadmap for Remaining Sections
+
 
 The subsequent sections build on this foundation:
 
@@ -334,6 +359,7 @@ The subsequent sections build on this foundation:
 ---
 
 ## Summary
+
 
 The Black-Scholes model represents the transition from discrete to continuous time in derivative pricing:
 

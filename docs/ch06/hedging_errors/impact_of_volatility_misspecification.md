@@ -1,5 +1,6 @@
 # Impact of Volatility Misspecification
 
+
 If the hedger uses \(\hat{\sigma}\) while true volatility is \(\sigma\), replication fails systematically. A classical heuristic term is
 
 \[
@@ -14,6 +15,7 @@ For \(\Gamma>0\), underestimating volatility tends to lose money and overestimat
 ---
 
 ## What to remember
+
 
 - Gamma converts variance mismatch into systematic hedging P\&L drift.
 - This motivates implied-vs-realized volatility trading intuition.

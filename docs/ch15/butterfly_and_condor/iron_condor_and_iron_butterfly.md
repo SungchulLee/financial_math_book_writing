@@ -1,10 +1,12 @@
 # Iron Condors and Iron Butterflies
 
+
 **Iron condors and iron butterflies** are neutral income strategies combining credit spreads on both sides (calls and puts) to profit from range-bound markets while maintaining defined risk.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iron_butterfly.png?raw=true" alt="iron_butterfly" width="700">
@@ -35,6 +37,7 @@ $$
 
 ## Why Called "Iron"?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_call_butterfly.png?raw=true" alt="long_call_butterfly" width="700">
 </p>
@@ -44,6 +47,7 @@ $$
 In options, **"iron"** means the strategy uses **both calls AND puts together** (mixed instruments), rather than just one type.
 
 ### 1. The Naming Pattern
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_vs_short_butterfly.png?raw=true" alt="long_vs_short_butterfly" width="700">
@@ -57,6 +61,7 @@ In options, **"iron"** means the strategy uses **both calls AND puts together** 
 | **Bear Call Spread** | Only calls | **Iron Bear** | Calls + puts |
 
 ### 2. Why "Iron"?
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/butterfly_type_comparison.png?raw=true" alt="butterfly_type_comparison" width="700">
@@ -90,6 +95,7 @@ Buy  110 call    ← call
 
 ## What Is an Iron Condor?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/butterfly_wing_width_comparison.png?raw=true" alt="butterfly_wing_width_comparison" width="700">
 </p>
@@ -97,6 +103,7 @@ Buy  110 call    ← call
 **Definition:** Combination of bull put spread + bear call spread
 
 ### 1. The Structure
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/realistic_butterfly_trade.png?raw=true" alt="realistic_butterfly_trade" width="700">
@@ -139,9 +146,11 @@ Buy  110 call    ← call
 
 ## What Is an Iron Butterfly?
 
+
 **Definition:** Combination of put spread + call spread, both centered at same strike (ATM)
 
 ### 1. The Structure
+
 
 **Four legs (all same expiration):**
 
@@ -180,13 +189,16 @@ Buy  110 call    ← call
 
 ## Iron Butterfly vs Regular Butterfly
 
+
 **A fascinating fact:** Iron butterflies and regular butterflies have **identical P&L at expiration**, but **opposite cash flows** at entry!
 
 ### 1. The Three Equivalent Strategies
 
+
 Using strikes 95/100/105, all three create the **exact same payoff**:
 
 ### 2. Long Call Butterfly (Debit $1.00)
+
 ```
 Buy  95 call  @ $7.50  →  -$7.50
 Sell 100 call @ $4.50  →  +$4.50
@@ -197,6 +209,7 @@ Net:                      -$1.00 (you PAY)
 ```
 
 ### 3. Long Put Butterfly (Debit $1.00)
+
 ```
 Buy  95 put   @ $2.50  →  -$2.50
 Sell 100 put  @ $4.50  →  +$4.50
@@ -207,6 +220,7 @@ Net:                      -$1.00 (you PAY)
 ```
 
 ### 4. Iron Butterfly (Credit $4.00)
+
 ```
 Buy  95 put   @ $2.50  →  -$2.50  (protection)
 Sell 100 put  @ $4.50  →  +$4.50  (income)
@@ -217,6 +231,7 @@ Net:                      +$4.00 (you RECEIVE)
 ```
 
 ### 5. Why Same P&L at Expiration?
+
 
 Let's trace what happens:
 
@@ -238,6 +253,7 @@ Let's trace what happens:
 
 ### 6. The Magic Formula
 
+
 **Total P&L = (Final Option Values) + (Initial Cash Flow)**
 
 All three strategies end up at:
@@ -249,6 +265,7 @@ The difference is **when** you get/pay the money!
 
 ### 7. Put-Call Parity
 
+
 This works because of the **put-call parity** relationship. The strategies are **synthetically equivalent**:
 
 - **Long Butterfly**: Pay $1 now, get up to $5 later → Net up to $4
@@ -258,6 +275,7 @@ Different paths, identical destination!
 
 ### 8. Understanding What the P&L Diagram Actually Shows
 
+
 **Critical clarification:** The P&L diagrams you see include BOTH components:
 
 $$\boxed{\text{Total P\&L} = \text{Terminal Option Payoff} + \text{Initial Cash Flow}}$$
@@ -265,6 +283,7 @@ $$\boxed{\text{Total P\&L} = \text{Terminal Option Payoff} + \text{Initial Cash 
 This is why Long Butterfly and Iron Butterfly show identical P&L curves even though their underlying structures are **mirror images**!
 
 ### 9. Separating the Components
+
 
 Let's break down each strategy into its two parts:
 
@@ -312,6 +331,7 @@ Let's break down each strategy into its two parts:
 
 ### 10. Visual Breakdown
 
+
 **Long Butterfly:**
 ```
 Terminal Payoff:         Initial Cash:         Total P&L (shown):
@@ -336,6 +356,7 @@ Terminal Payoff:         Initial Cash:         Total P&L (shown):
 
 ### 11. The Key Mathematical Insight
 
+
 The terminal option payoffs are **upside down** (mirror images):
 
 | Stock Price | Long Butterfly Terminal | Iron Butterfly Terminal |
@@ -356,6 +377,7 @@ But the initial cash flows are **also opposite**:
 $$\underbrace{+5}_{\text{Long terminal}} + \underbrace{(-1)}_{\text{Long initial}} = \underbrace{-5}_{\text{Iron terminal}} + \underbrace{(+4)}_{\text{Iron initial}} = +4$$
 
 ### 12. Why This Matters
+
 
 Understanding this separation is crucial:
 
@@ -386,6 +408,7 @@ Understanding this separation is crucial:
 
 ### 13. The Put-Call Parity Connection
 
+
 This works because of **put-call parity**. The strategies are **synthetic equivalents**:
 
 - **Long Butterfly Structure:**
@@ -408,6 +431,7 @@ But the **timing** of cash flows differs, creating practical advantages!
 
 ### 14. The Bottom Line on P&L Diagrams
 
+
 **What you see in the P&L diagram:**
 
 - ✓ Total combined effect (terminal + initial)
@@ -427,6 +451,7 @@ But the **timing** of cash flows differs, creating practical advantages!
 
 ### 15. Why Choose Iron Butterfly?
 
+
 Even though P&L is identical, many traders prefer iron butterflies:
 
 1. **✓ Positive cash flow** - You receive money upfront
@@ -443,9 +468,11 @@ Same net result, opposite cash flow!
 
 ### 16. The Time Value of Money Advantage
 
+
 **Critical insight:** Having more money upfront with the same terminal P&L is **financially superior**. The P&L diagram doesn't tell the whole story—**cash flow timing matters**!
 
 ### 17. The Basic Argument
+
 
 **Iron Butterfly (Credit $4):**
 ```
@@ -462,6 +489,7 @@ Day 30:  P&L = +$4 (if stock at $100)
 ```
 
 ### 18. Real Numbers Example
+
 
 **Assume:** 30-day trade, risk-free rate = 5% annually
 
@@ -482,6 +510,7 @@ Day 30:  P&L = +$4 (if stock at $100)
 **Iron Butterfly wins by the interest earned!**
 
 ### 19. Beyond Interest
+
 
 You can use that credit in multiple powerful ways:
 
@@ -516,6 +545,7 @@ Iron Butterflies:
 
 ### 20. The Complete Financial Comparison
 
+
 | Factor | Long Butterfly | Iron Butterfly | Winner |
 |--------|---------------|----------------|---------|
 | **P&L at expiration** | Same | Same | Tie |
@@ -528,6 +558,7 @@ Iron Butterflies:
 | **Reinvestment potential** | None | High | **Iron** ✓ |
 
 ### 21. The Math of Superior Returns
+
 
 **Example with $10,000 capital:**
 
@@ -551,6 +582,7 @@ Iron Butterflies:
 - **PLUS:** Earn interest on the $40,000 credit
 
 ### 22. Why Would Anyone Trade Long Butterfly Then?
+
 
 Despite the financial advantages of Iron Butterfly, some traders still use Long Butterfly:
 
@@ -584,6 +616,7 @@ Despite the financial advantages of Iron Butterfly, some traders still use Long 
 
 ### 23. The Bottom Line
 
+
 **If you have access to credit spreads and margin:**
 
 ✓ **Iron Butterfly is financially superior**
@@ -606,6 +639,7 @@ This is why sophisticated traders and institutions typically prefer:
 
 ## Iron Butterfly − Regular Butterfly = Risk-Free Cash Position
 
+
 **Key insight (important):**
 
 > **Iron Butterfly − Regular Butterfly produces a positive upfront cash flow and zero terminal option payoff.**
@@ -613,6 +647,7 @@ This is why sophisticated traders and institutions typically prefer:
 This does **not** represent arbitrage. Instead, it is **economically equivalent to a pure risk-free borrowing/lending position**.
 
 ### 1. What is really happening
+
 
 Because regular and iron butterflies have **identical terminal option payoffs**, subtracting one from the other removes all option risk:
 
@@ -634,6 +669,7 @@ $$
 This is exactly the payoff profile of **borrowing (or lending) cash today and repaying it at maturity**.
 
 ### 2. Financing at the risk-free rate
+
 
 In a no-arbitrage framework, any positive upfront cash must be:
 
@@ -660,6 +696,7 @@ $$
 
 ### 3. Why this is NOT arbitrage
 
+
 Arbitrage would require:
 
 1. Positive cash today ✔  
@@ -671,16 +708,19 @@ The upfront gain is therefore **not free money**, but simply a cash position pri
 
 ### 4. One-line takeaway
 
+
 > **Iron butterfly minus regular butterfly equals cash today minus cash tomorrow — a risk-free funding position, not arbitrage.**
 
 
 ### 5. Do Different Upfronts Violate No-Arbitrage?
+
 
 **Question:** If Iron Butterfly and Long Butterfly have the same terminal P&L but different upfront cash flows, doesn't this violate the Black-Scholes no-arbitrage principle?
 
 **Answer:** **NO!** This is a subtle but important point. Let's examine why.
 
 ### 6. What Would Be Arbitrage?
+
 
 True arbitrage would be:
 ```
@@ -693,12 +733,14 @@ That's NOT what's happening here.
 
 ### 7. The No-Arbitrage Principle
 
+
 The key is that **present values must be equal**, not nominal cash flows at different times.
 
 **Black-Scholes ensures:**
 $$\text{PV}_0(\text{All Future Cash Flows}) \text{ is equal across equivalent strategies}$$
 
 ### 8. The Math with Discounting
+
 
 Let's be precise with r = 5% annually, T = 30 days = 1/12 year:
 
@@ -724,6 +766,7 @@ PV = +$4 - E[Payout] × e^(-rT)
 
 ### 9. How Put-Call Parity Works
 
+
 The relationship:
 $$C - P = S - Ke^{-rT}$$
 
@@ -741,6 +784,7 @@ This **forces** equivalent strategies to have equal present values, even when:
 
 ### 10. The Key Insight
 
+
 **Theoretically (Black-Scholes/No-Arbitrage):**
 
 - ✓ Present values are equal
@@ -756,6 +800,7 @@ This **forces** equivalent strategies to have equal present values, even when:
   - Real-world rates/margins differ from model assumptions
 
 ### 11. An Analogy
+
 
 Think of two payment plans for a $1000 TV:
 
@@ -775,6 +820,7 @@ But if you can invest at 8%:
 **Same present value, different practical value!**
 
 ### 12. Where the Advantage Comes From
+
 
 **Iron Butterfly's advantage is NOT arbitrage. It's:**
 
@@ -808,6 +854,7 @@ Benefit: Can adapt to opportunities
 
 ### 13. The Reconciliation
 
+
 **Theoretical Equivalence (No-Arbitrage):**
 $$\text{PV}(\text{Long Butterfly}) = \text{PV}(\text{Iron Butterfly})$$
 
@@ -820,6 +867,7 @@ The difference comes from:
 - Real-world portfolio management considerations
 
 ### 14. The Bottom Line on Arbitrage
+
 
 **Is there arbitrage?**
 ✗ No - present values are equal when discounted at risk-free rate
@@ -846,6 +894,7 @@ These differences create preference for one structure over another, **without vi
 ---
 
 ## Iron Condor vs. Iron Butterfly
+
 
 **Key differences:**
 
@@ -883,13 +932,16 @@ These differences create preference for one structure over another, **without vi
 ## Why These Strategies Exist
 
 
+
 ---
 
 ## Economic
 
+
 **Understanding what iron condors and iron butterflies REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 **What you're actually trading:**
 
@@ -921,6 +973,7 @@ $$
 
 ### 2. The Volatility-Time Trade
 
+
 **Iron condors/butterflies are really betting on:**
 
 $$
@@ -948,6 +1001,7 @@ When you sell options:
 
 ### 3. The Risk Transfer Mechanism
 
+
 **Who's on the other side?**
 
 1. **Hedgers:** Companies/investors protecting portfolios
@@ -966,6 +1020,7 @@ You're providing **liquidity and risk transfer** to the market:
 - Markets need people willing to sell insurance
 
 ### 4. Why This Structure Exists Economically
+
 
 **The market creates these opportunities because:**
 
@@ -990,6 +1045,7 @@ You're providing **liquidity and risk transfer** to the market:
    - Systematic sellers earn this premium
 
 ### 5. The Economic Cost-Benefit
+
 
 **What you gain:**
 
@@ -1026,6 +1082,7 @@ You're providing **liquidity and risk transfer** to the market:
 
 ### 6. The Probability-Payoff Trade
 
+
 **Economic reality:**
 
 $$
@@ -1047,6 +1104,7 @@ You're trading:
 - Lower win rate ↔ Bigger wins (but still defined risk)
 
 ### 7. Professional Institutional Perspective
+
 
 **Market makers view iron condors as:**
 
@@ -1084,6 +1142,7 @@ You're trading:
 
 ### 8. Economic Rationale for Iron Butterfly vs Iron Condor
 
+
 **Iron Butterfly:**
 - **Higher premium** → Compensates for lower probability
 - **Narrower range** → Higher risk of touch
@@ -1105,6 +1164,7 @@ Typically choose butterfly when:
 - High conviction in narrow range
 
 ### 9. The Time Value Extraction Model
+
 
 **Iron condors/butterflies are fundamentally time decay businesses:**
 
@@ -1132,6 +1192,7 @@ Iron condor with $50 credit, 30 days:
 - **Annualized return**: ($25/$25 margin) × (365/15) = 2433% (before considering losses)
 
 ### 10. Risk Premium Harvesting
+
 
 **The fundamental economic engine:**
 
@@ -1164,6 +1225,7 @@ By systematically selling options:
 
 ### 11. The Capital Efficiency Angle
 
+
 **Leverage consideration:**
 
 Iron condors use margin efficiently:
@@ -1186,6 +1248,7 @@ $$
 - Don't confuse ROC with safety
 
 ### 12. Economic Summary
+
 
 **Iron condors/butterflies are economically:**
 
@@ -1223,7 +1286,9 @@ Understanding these economic foundations helps you recognize when market conditi
 
 ## The Portfolio
 
+
 ### 1. Iron Condor
+
 
 $$
 \Pi = -P(K_2) + P(K_1) - C(K_3) + C(K_4)
@@ -1251,6 +1316,7 @@ $$
 
 ### 2. Iron Butterfly
 
+
 $$
 \Pi = -P(K_2) + P(K_1) - C(K_2) + C(K_3)
 $$
@@ -1263,9 +1329,11 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 
 ## Strike Selection
 
+
 **Critical for success:**
 
 ### 1. For Iron Condors
+
 
 **Standard approach:**
 
@@ -1296,6 +1364,7 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 
 ### 2. Wing Width
 
+
 **Narrow wings (5 points):**
 
 - Lower capital requirement
@@ -1316,9 +1385,11 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 
 ## Time Frame Selection
 
+
 **Iron condors/butterflies are time-decay strategies:**
 
 ### 1. 30-45 Days (Most Common)
+
 
 **Pros:**
 
@@ -1334,6 +1405,7 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 
 ### 2. Weekly (7-14 days)
 
+
 **Pros:**
 
 - Very high theta decay
@@ -1348,6 +1420,7 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 - Pin risk
 
 ### 3. 45-60 Days
+
 
 **Pros:**
 
@@ -1366,6 +1439,7 @@ where $K_1 < K_2 < K_3$ and both shorts at $K_2$
 ---
 
 ## Concrete Example 1
+
 
 **Setup:**
 
@@ -1448,6 +1522,7 @@ After 45 days:
 ---
 
 ## Concrete Example 2
+
 
 **Setup:**
 
@@ -1553,9 +1628,11 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ## Managing Iron Condors/Butterflies
 
+
 **Active management critical:**
 
 ### 1. Close at 50% Profit
+
 
 **Rule:**
 
@@ -1573,6 +1650,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 **Win rate compounds:** Getting 50% wins more often beats occasional 100% wins
 
 ### 2. Defend or Close Losing Sides
+
 
 **If stock approaches short strike:**
 
@@ -1597,6 +1675,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ### 3. Time-Based Exits
 
+
 **Rule:**
 
 - Enter at 45 days
@@ -1604,6 +1683,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 - Avoid gamma risk in last 3 weeks
 
 ### 4. Take Max Loss
+
 
 **If position hits max loss:**
 
@@ -1615,6 +1695,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 ---
 
 ## Iron Condors vs. Other Strategies
+
 
 | Strategy | Setup | Profit If | Risk |
 |----------|-------|-----------|------|
@@ -1635,7 +1716,9 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ## Pros and Cons
 
+
 ### 1. Advantages ✓
+
 
 **1. Defined risk**
 
@@ -1674,6 +1757,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 - Very flexible
 
 ### 2. Disadvantages ✗
+
 
 **1. Limited profit potential**
 
@@ -1727,7 +1811,9 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ## When Iron Condors/Butterflies Work Best
 
+
 ### 1. Iron Condors
+
 
 **Favorable conditions:**
 
@@ -1771,6 +1857,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ### 2. Iron Butterflies
 
+
 **Favorable conditions:**
 
 **1. Very low volatility**
@@ -1798,9 +1885,11 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework for profitable iron condor and iron butterfly trading:**
 
 ### 1. Step 1
+
 
 **Before entering, evaluate all three dimensions:**
 
@@ -1864,6 +1953,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ### 2. Step 2
 
+
 **Choose Iron Condor when:**
 
 1. **Market conditions:**
@@ -1919,6 +2009,7 @@ Actually, I think the max loss is $0 for an iron butterfly when wings are equidi
 
 ### 3. Step 3
 
+
 **The golden formula:**
 
 $$
@@ -1960,6 +2051,7 @@ $$
 If answer is "No" → Position is too large
 
 ### 4. Step 4
+
 
 **Best practices for fills:**
 
@@ -2005,6 +2097,7 @@ Time in Force: Day Order
 ```
 
 ### 5. Step 5
+
 
 **Active management is KEY to success with iron condors:**
 
@@ -2054,6 +2147,7 @@ Time in Force: Day Order
 | 7-0 | **Close everything**. Pin risk not worth it |
 
 ### 6. Step 6
+
 
 **When to adjust (early warning signs):**
 
@@ -2119,6 +2213,7 @@ Example:
 
 ### 7. Step 7
 
+
 **Track EVERY trade in a spreadsheet:**
 
 **Required fields:**
@@ -2156,6 +2251,7 @@ Max Drawdown = Largest peak-to-trough decline
 
 ### 8. Common Execution Mistakes to Avoid
 
+
 **The deadly eight:**
 
 1. **Entering when VIX < 12**
@@ -2192,6 +2288,7 @@ Max Drawdown = Largest peak-to-trough decline
 
 ### 9. The Checklist Approach
 
+
 **Before every trade, verify:**
 
 - [ ] VIX > 15 (or IV > 30th percentile)?
@@ -2207,6 +2304,7 @@ Max Drawdown = Largest peak-to-trough decline
 **If ANY checkbox is "No" → Do not enter trade**
 
 ### 10. The Professional Mindset
+
 
 **Successful iron condor trading requires:**
 
@@ -2229,9 +2327,11 @@ Max Drawdown = Largest peak-to-trough decline
 
 ## Common Mistakes
 
+
 **Top mistakes:**
 
 ### 1. Selling Too Close
+
 
 - **Mistake:** Short strikes 0.3 SD out (for higher premium)
 - **Why fails:** Low probability (40-50% win rate)
@@ -2239,11 +2339,13 @@ Max Drawdown = Largest peak-to-trough decline
 
 ### 2. Holding Through Max Loss
 
+
 - **Mistake:** Stock breaks through, hope it comes back
 - **Why fails:** Rarely does, max loss realized
 - **Fix:** Close at 2x credit received
 
 ### 3. Not Taking 50% Profits
+
 
 - **Mistake:** Hold for 100% (full expiration worthless)
 - **Why fails:** Risk reversal, pin risk
@@ -2251,11 +2353,13 @@ Max Drawdown = Largest peak-to-trough decline
 
 ### 4. Too Many Positions
 
+
 - **Mistake:** "I'll do 20 iron condors!"
 - **Why fails:** One bad month wipes out gains
 - **Fix:** Max 5-10% of portfolio in ICs
 
 ### 5. Ignoring Vol Environment
+
 
 - **Mistake:** Sell iron condors when VIX at 10
 - **Why fails:** Tiny premium, not worth risk
@@ -2263,17 +2367,20 @@ Max Drawdown = Largest peak-to-trough decline
 
 ### 6. Same Stock Repeatedly
 
+
 - **Mistake:** "AAPL iron condors always work"
 - **Why fails:** Eventually it breaks out
 - **Fix:** Diversify across stocks/sectors
 
 ### 7. Trading Illiquid Options
 
+
 - **Mistake:** Small-cap iron condors
 - **Why fails:** Wide spreads, can't exit
 - **Fix:** Only liquid stocks (SPY, QQQ, AAPL, etc.)
 
 ### 8. Ignoring Earnings
+
 
 - **Mistake:** Sell IC with earnings in cycle
 - **Why fails:** Gap risk
@@ -2283,7 +2390,9 @@ Max Drawdown = Largest peak-to-trough decline
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **July 2023:**
 
@@ -2310,6 +2419,7 @@ Max Drawdown = Largest peak-to-trough decline
 - **Total: $4,100 in 3 months** (48% return on ~$8,500 BP used)
 
 ### 2. Transition Risk Hedge
+
 
 **January 2024:**
 
@@ -2346,6 +2456,7 @@ Max Drawdown = Largest peak-to-trough decline
 
 
 ## Final Wisdom
+
 
 > "Iron condors are the workhorse of neutral income strategies. They offer defined risk, high win rates, and consistent income in range-bound markets. However, they require active management and discipline. The key is taking 50% profits consistently rather than holding for max gain. Many traders make their entire income from iron condors alone - but it's a grind, not a get-rich-quick scheme."
 

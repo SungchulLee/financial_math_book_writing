@@ -1,10 +1,13 @@
 # Martingale Representation via Infinitesimal Generator: Deep Dive
 
+
 This is indeed one of the most mathematically rigorous approaches. Let me develop it comprehensively from the theory of infinitesimal generators for diffusion processes.
 
 ## Part I: Infinitesimal Generator Theory
 
-### 1.1 Transition Semigroup
+
+### 1. Transition Semigroup
+
 
 **Definition:** For a Markov process $X_t$ with transition probability $P(t, x, dy)$, define the transition semigroup operator $T_t$ acting on bounded measurable functions:
 
@@ -20,7 +23,8 @@ $$T_{t+s} = T_t \circ T_s, \quad T_0 = I$$
 
 
 
-### 1.2 Infinitesimal Generator
+### 2. Infinitesimal Generator
+
 
 **Definition:** The infinitesimal generator $\mathcal{A}$ of the semigroup $\{T_t\}$ is:
 
@@ -33,7 +37,8 @@ with domain $\mathcal{D}(\mathcal{A}) = \{f : \text{limit exists}\}$.
 
 **Intuition:** The generator captures the "instantaneous rate of change" of the expectation.
 
-### 1.3 Generator for Diffusion Processes
+### 3. Generator for Diffusion Processes
+
 
 **Theorem (Dynkin):** For a one-dimensional Itô diffusion:
 
@@ -66,7 +71,9 @@ Dividing by $h$ and taking $h \to 0$ gives the generator.
 
 ## Part II: Dynkin's Formula and Martingale Characterization
 
-### 2.1 Dynkin's Formula
+
+### 1. Dynkin's Formula
+
 
 **Theorem (Dynkin, 1965):** For a diffusion process $X_t$ with generator $\mathcal{A}$ and stopping time $\tau$ with $\mathbb{E}[\tau] < \infty$:
 
@@ -84,7 +91,8 @@ $$\mathbb{E}[f(X_t) | X_0 = x] = f(x) + \mathbb{E}\left[\int_0^t (\mathcal{A}f)(
 
 
 
-### 2.2 Martingale Characterization
+### 2. Martingale Characterization
+
 
 **Key Result:** A process $M_t = f(X_t)$ is a martingale if and only if:
 
@@ -110,7 +118,9 @@ $(\Leftarrow)$ If $\mathcal{A}f = 0$, Dynkin's formula gives $\mathbb{E}[f(X_t) 
 
 ## Part III: Application to Option Pricing
 
-### 3.1 Physical Measure Dynamics
+
+### 1. Physical Measure Dynamics
+
 
 Under the physical measure $\mathbb{P}$, the stock price follows:
 
@@ -126,7 +136,8 @@ $$\mathcal{L}^{\mathbb{P}}f(S) = \mu S \frac{\partial f}{\partial S} + \frac{1}{
 
 
 
-### 3.2 Change of Measure via Girsanov
+### 2. Change of Measure via Girsanov
+
 
 **Fundamental Theorem of Asset Pricing:** In an arbitrage-free complete market, there exists a unique equivalent martingale measure $\mathbb{Q}$ such that discounted asset prices are martingales.
 
@@ -144,7 +155,8 @@ $$dS_t = rS_t dt + \sigma S_t dW_t^*$$
 
 
 
-### 3.3 Generator Under Risk-Neutral Measure
+### 3. Generator Under Risk-Neutral Measure
+
 
 Under $\mathbb{Q}$, the infinitesimal generator is:
 
@@ -159,7 +171,9 @@ $$\mathcal{L}^{\mathbb{Q}}f(S) = rS \frac{\partial f}{\partial S} + \frac{1}{2}\
 
 ## Part IV: Derivation of Black-Scholes PDE
 
-### 4.1 Time-Inhomogeneous Process
+
+### 1. Time-Inhomogeneous Process
+
 
 Consider the time-dependent function $V(S, t)$ representing the option value. Define:
 
@@ -170,7 +184,8 @@ $$M_t = e^{-rt} V(S_t, t)$$
 
 We seek conditions under which $M_t$ is a $\mathbb{Q}$-martingale.
 
-### 4.2 Extended Generator
+### 2. Extended Generator
+
 
 For time-dependent functions $g(x, t)$, we need the **extended generator**:
 
@@ -188,7 +203,8 @@ $$\mathcal{A}[e^{-rt}V(S,t)] = \frac{\partial}{\partial t}[e^{-rt}V(S,t)] + \mat
 
 
 
-### 4.3 Computing the Extended Generator
+### 3. Computing the Extended Generator
+
 
 **Time derivative:**
 
@@ -212,7 +228,8 @@ $$\mathcal{A}[e^{-rt}V(S,t)] = e^{-rt}\left[\frac{\partial V}{\partial t} + rS\f
 
 
 
-### 4.4 Martingale Condition
+### 4. Martingale Condition
+
 
 **Theorem:** $M_t = e^{-rt}V(S_t, t)$ is a $\mathbb{Q}$-martingale if and only if:
 
@@ -230,7 +247,8 @@ $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac
 
 This is the **Black-Scholes PDE**.
 
-### 4.5 Terminal Condition
+### 5. Terminal Condition
+
 
 The option pays $h(S_T)$ at maturity $T$, so:
 
@@ -243,7 +261,9 @@ $$V(S, T) = h(S)$$
 
 ## Part V: Why This is a Genuine Derivation
 
-### 5.1 Logical Flow
+
+### 1. Logical Flow
+
 
 1. **Starting point:** Fundamental theorem of asset pricing guarantees existence of $\mathbb{Q}$
 2. **Generator theory:** Rigorously characterizes the dynamics under $\mathbb{Q}$
@@ -254,7 +274,8 @@ This doesn't assume the PDE form; it **derives** it from:
 - The martingale requirement (no-arbitrage)
 - The generator characterization (stochastic process theory)
 
-### 5.2 Connection to Dynkin's Formula
+### 2. Connection to Dynkin's Formula
+
 
 We can verify this using Dynkin's formula. For $M_t = e^{-rt}V(S_t, t)$:
 
@@ -283,7 +304,9 @@ Which is satisfied if $\mathcal{A}[e^{-rs}V(S_s,s)] = 0$ for all $s, S_s$.
 
 ## Part VI: Connection to Kolmogorov Equations
 
-### 6.1 Backward Kolmogorov Equation
+
+### 1. Backward Kolmogorov Equation
+
 
 The transition density $p(s, x; t, y)$ (probability of being at $y$ at time $t$ starting from $x$ at time $s$) satisfies the **backward Kolmogorov equation** in the initial variables $(s, x)$:
 
@@ -294,7 +317,8 @@ $$\frac{\partial p}{\partial s} + \mathcal{L}_x p = 0$$
 
 where $\mathcal{L}_x$ is the generator acting on the $x$ variable.
 
-### 6.2 Solution Representation
+### 2. Solution Representation
+
 
 The option price can be written:
 
@@ -319,7 +343,9 @@ This shows the **deep connection** between:
 
 ## Part VII: Generalizations
 
-### 7.1 Multi-Dimensional Case
+
+### 1. Multi-Dimensional Case
+
 
 For $d$-dimensional diffusion $dX_t = b(X_t, t)dt + \Sigma(X_t, t)dW_t$, the generator is:
 
@@ -330,7 +356,8 @@ $$\mathcal{L}f(x) = \sum_{i=1}^d b_i(x,t) \frac{\partial f}{\partial x_i} + \fra
 
 The martingale condition gives multi-asset Black-Scholes PDE.
 
-### 7.2 Jump-Diffusion Processes
+### 2. Jump-Diffusion Processes
+
 
 For Lévy processes with jumps, the generator includes an integral term:
 
@@ -344,6 +371,7 @@ where $\nu$ is the Lévy measure. This gives Partial Integro-Differential Equati
 ---
 
 ## Summary: The Mathematical Architecture
+
 
 ```
 Stock Dynamics (SDE)

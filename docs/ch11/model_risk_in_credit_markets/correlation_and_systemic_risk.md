@@ -1,10 +1,12 @@
 # Correlation and Systemic Risk
 
+
 Credit risk is inherently correlated across firms and sectors. Ignoring **correlation and systemic risk** is a major source of model error, especially for portfolio credit products.
 
 ---
 
-## 1. Sources of correlation
+## Sources of correlation
+
 
 Credit correlations arise from:
 - macroeconomic shocks,
@@ -15,7 +17,8 @@ These effects intensify during crises.
 
 ---
 
-## 2. Modeling correlation
+## Modeling correlation
+
 
 Approaches include:
 - copula-based default correlation,
@@ -26,7 +29,8 @@ Each approach balances tractability and realism.
 
 ---
 
-## 3. Systemic risk
+## Systemic risk
+
 
 Systemic risk refers to:
 - joint default events,
@@ -37,7 +41,8 @@ Single-name models cannot capture these effects.
 
 ---
 
-## 4. Implications for pricing
+## Implications for pricing
+
 
 Ignoring correlation leads to:
 - underpricing of portfolio credit risk,
@@ -48,7 +53,8 @@ This was evident during the global financial crisis.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Credit risk is strongly correlated.
 - Systemic risk dominates in crises.
@@ -57,6 +63,7 @@ This was evident during the global financial crisis.
 ---
 
 ## Further reading
+
 
 - Li, Gaussian copula model.
 - Duffie et al., correlated defaults.

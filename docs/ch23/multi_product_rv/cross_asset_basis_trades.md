@@ -1,10 +1,12 @@
 # Cross-Asset Basis Trades
 
+
 **Cross-asset basis trades** exploit persistent or temporary mispricings between economically linked instruments across different asset classes—such as equity-credit (CDS vs stock), equity-rates (dividend futures vs bonds), commodity-equity (oil vs energy stocks), and FX-rates (currency forwards vs interest rate differentials)—by simultaneously taking opposite positions in related assets and profiting when the basis (spread) converges to fair value, with typical drivers including liquidity imbalances, regulatory constraints, funding costs, and technical flows that create wedges between theoretically linked prices.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -28,7 +30,9 @@
 
 ## What Are Basis Trades?
 
+
 ### 1. The Basis Concept
+
 
 **Definition:**
 
@@ -57,6 +61,7 @@ $$
 **Reality:** Often diverge by 50-200 bps
 
 ### 2. Equity-Credit Basis
+
 
 **Relationship:**
 
@@ -96,6 +101,7 @@ Company XYZ:
 
 ### 3. Commodity-Equity Basis
 
+
 **Relationship:**
 
 **Oil price affects energy stocks:**
@@ -119,6 +125,7 @@ If correlation breaks down:
 - Profit when basis normalizes
 
 ### 4. FX-Rates Basis
+
 
 **Covered Interest Parity:**
 
@@ -147,6 +154,7 @@ EUR/USD:
 **Interpretation:** EUR forward expensive (or FX hedging demand high)
 
 ### 5. Dividend-Rates Basis
+
 
 **Relationship:**
 
@@ -177,6 +185,7 @@ S&P 500 dividend futures (1Y):
 
 ### 6. Convertible-Equity Basis
 
+
 **Relationship:**
 
 **Convert bond = Bond + Embedded call:**
@@ -205,6 +214,7 @@ Convert bond:
 **Basis:** $1,050 - $1,020 = **+$30** (3% rich)
 
 ### 7. Index-Sector Basis
+
 
 **Relationship:**
 
@@ -235,6 +245,7 @@ S&P 500: 4,500
 ---
 
 ## Key Terminology
+
 
 **Basis:**
 - Spread between related assets
@@ -282,7 +293,9 @@ S&P 500: 4,500
 
 ## Cross-Asset Basis Strategies
 
+
 ### 1. Equity-CDS Arbitrage
+
 
 **Capital structure trade:**
 
@@ -325,6 +338,7 @@ Bank XYZ:
 
 ### 2. Oil-Energy Stock Basis
 
+
 **Commodity-equity linkage:**
 
 **Setup:**
@@ -351,6 +365,7 @@ Energy stocks catch up:
 - Sector-specific issues (not oil-related)
 
 ### 3. FX Basis Arbitrage
+
 
 **Post-2008 persistent basis:**
 
@@ -390,6 +405,7 @@ Energy stocks catch up:
 
 ### 4. Dividend Future Arbitrage
 
+
 **Dividend vs index:**
 
 **Setup:**
@@ -416,6 +432,7 @@ S&P 500 dividend future (2025):
 - **Net: $2 profit** (2.9% on $70 notional)
 
 ### 5. Convertible Arbitrage
+
 
 **Convert vs stock + bond:**
 
@@ -454,6 +471,7 @@ Company ABC convertible:
 
 ### 6. Sector Rotation Basis
 
+
 **Index vs sector ETFs:**
 
 **Setup:**
@@ -480,6 +498,7 @@ Historical relationship:
 
 ### 7. Term Structure Basis
 
+
 **Front vs back contracts:**
 
 **Setup:**
@@ -500,7 +519,9 @@ Historical relationship:
 
 ## Common Mistakes
 
+
 ### 1. Ignoring Funding Costs
+
 
 **Forgetting cost of carry:**
 
@@ -521,6 +542,7 @@ Equity-CDS arbitrage:
 **Net:** $100K - $500K - $50K = **-$450K loss!**
 
 ### 2. Wrong Hedge Ratio
+
 
 **Misestimating beta:**
 
@@ -545,6 +567,7 @@ Oil-energy stock trade:
 
 ### 3. Structural Basis Persistence
 
+
 **Assuming mean reversion:**
 
 - **Mistake:** Think all basis reverts quickly
@@ -561,6 +584,7 @@ FX basis post-2008:
 - **Basis never reverted** (regulatory capital constraints)
 
 ### 4. Tail Risk Ignorance
+
 
 **Not hedging credit risk:**
 
@@ -581,6 +605,7 @@ Capital structure arb on weak company:
 - **Total loss: $1.6M** (more than stock alone!)
 
 ### 5. Correlation Breakdown
+
 
 **Assuming stable relationship:**
 
@@ -604,6 +629,7 @@ Oil-energy stock basis:
 
 ### 6. Liquidity Trap
 
+
 **Can't exit at favorable prices:**
 
 - **Mistake:** Trade illiquid cross-asset pair
@@ -619,6 +645,7 @@ EM equity-credit basis:
 - **Net: -10 bp loss**
 
 ### 7. Dividend Risk
+
 
 **Unexpected dividend cuts:**
 
@@ -639,7 +666,9 @@ Long S&P dividend future: $70
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Equity-credit arbitrage (2016):**
 
@@ -691,6 +720,7 @@ Long S&P dividend future: $70
 5. Patient (3-month hold)
 
 ### 2. Worst Case: Disaster
+
 
 **Oil-energy stock basis (2014-2016):**
 
@@ -782,7 +812,9 @@ Long S&P dividend future: $70
 
 ## Risk Management Rules
 
+
 ### 1. Basis Threshold
+
 
 **Minimum profitable basis:**
 
@@ -800,6 +832,7 @@ Transaction costs: 5 bps each leg = 10 bps total
 
 ### 2. Correlation Monitoring
 
+
 **Track rolling correlation:**
 
 $$
@@ -811,6 +844,7 @@ $$
 - Or $\rho$ spikes above 0.95 (correlation to 1)
 
 ### 3. Position Limits
+
 
 **Per basis trade:**
 
@@ -824,6 +858,7 @@ $$
 - Max 2 FX basis trades
 
 ### 4. Stop-Loss Discipline
+
 
 **Exit if basis widens:**
 
@@ -839,6 +874,7 @@ Expected profit: 20 bps
 
 ### 5. Leverage Limits
 
+
 **Maximum leverage per strategy:**
 
 - Equity-credit: 2× max
@@ -846,6 +882,7 @@ Expected profit: 20 bps
 - FX basis: 3× max (low vol)
 
 ### 6. Funding Management
+
 
 **Ensure positive carry:**
 
@@ -861,6 +898,7 @@ Basis profit: 50 bps
 - **Net: +10 bps** ✓
 
 ### 7. Stress Testing
+
 
 **Monthly scenarios:**
 
@@ -879,7 +917,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. GM Bankruptcy (2009)
+
 
 **Equity-credit disconnect:**
 
@@ -897,6 +937,7 @@ $$
 
 ### 2. FX Basis Post-2008
 
+
 **Persistent CIP violation:**
 
 **2008-present:**
@@ -912,6 +953,7 @@ $$
 **Lesson:** Some basis is structural, not temporary
 
 ### 3. Oil-MLP Basis (2015-2016)
+
 
 **Energy MLPs vs oil:**
 
@@ -930,6 +972,7 @@ $$
 - **Basis trade: Very profitable for patient investors**
 
 ### 4. Tesla Convertible (2013-2014)
+
 
 **Convert premium collapse:**
 
@@ -952,7 +995,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Identify Linkage
+
 
 **Economic relationship:**
 
@@ -968,6 +1013,7 @@ $$
 
 ### 2. Calculate Fair Value
 
+
 **Theoretical spread:**
 
 $$
@@ -981,6 +1027,7 @@ $$
 
 ### 3. Measure Basis
 
+
 **Actual vs theoretical:**
 
 $$
@@ -992,6 +1039,7 @@ $$
 - Trade if in top/bottom 10%
 
 ### 4. Assess Costs
+
 
 **All-in costs:**
 
@@ -1006,6 +1054,7 @@ $$
 $$
 
 ### 5. Size Position
+
 
 **Risk-based sizing:**
 
@@ -1022,6 +1071,7 @@ Basis std dev: 20 bps
 
 ### 6. Execute Hedges
 
+
 **Simultaneous execution:**
 
 1. Buy cheap asset
@@ -1030,6 +1080,7 @@ Basis std dev: 20 bps
 4. Verify hedge ratios
 
 ### 7. Monitor and Rebalance
+
 
 **Daily:**
 - Mark-to-market
@@ -1048,6 +1099,7 @@ Basis std dev: 20 bps
 ---
 
 ## Final Wisdom
+
 
 > "Cross-asset basis trades are the most intellectually satisfying strategies in finance—they require deep understanding of how different asset classes relate, mathematical models to price fair value, and the patience to wait for convergence. The equity-credit basis embodies the Merton model's elegance: equity and debt are both claims on the same firm value, so their implied default probabilities MUST converge, or you can arbitrage the capital structure. But here's the brutal truth: basis can stay irrational longer than you can stay solvent. The FX basis post-2008 taught an entire generation that 'no-arbitrage relationships' can be violated persistently when structural forces (regulatory capital, balance sheet constraints) dominate. Deutsche Bank's equity-credit basis in 2016 was a 20% dislocation that reversed in three months—classic mean reversion. But Energy MLPs' basis in 2015 took two years to normalize, and many funds didn't survive. The deepest insight: basis trades require three things most investors lack: (1) understanding of cross-asset linkages beyond correlations, (2) patience to wait for convergence without margin calls, and (3) dry powder to add when basis widens (the 'widening before narrowing' curse). Every basis trade is a bet on two things: (1) the relationship is real and will reassert, and (2) you have enough time and capital to survive the path. The commodity-equity basis killed funds in 2015 not because the relationship broke permanently, but because beta shifted from 0.5 to 0.7 and margin calls forced liquidation. Risk management is paramount: size at 10-15% per trade, diversify across basis types, use options for tail risk, and always ask 'why is this basis here?'—if you can't answer, it might be structural, not temporary. The greatest basis trades come when markets panic and throw out correlations (2008, 2020)—that's when 20-50% dislocations appear and patient capital wins."
 

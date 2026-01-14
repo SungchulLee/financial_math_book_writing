@@ -1,12 +1,15 @@
-# Discounting and Killing Term
+# Discounting Killing
 
-## 1. Discounting in Continuous Time
+
+## Discounting
+
 Future cash flows must be discounted to reflect the time value of money.
 In continuous time, discounting enters pricing equations structurally.
 
 ---
 
-## 2. Pricing PDE with Interest Rates
+## Pricing PDE Interest
+
 For a diffusion \(X_t\), the pricing PDE takes the form:
 \[
 \partial_t u + \mathcal{L}u - r u = 0.
@@ -16,7 +19,8 @@ The term \(-ru\) is called the **killing term**.
 
 ---
 
-## 3. Probabilistic Interpretation
+## Probabilistic
+
 Consider the discounted process:
 \[
 e^{-rt} u(t,X_t).
@@ -34,19 +38,22 @@ e^{-\int_t^T r ds} \Phi(X_T)
 
 ---
 
-## 4. Killed Processes
+## Killed Processes
+
 Mathematically, discounting corresponds to a process that is:
 - terminated at rate \(r\)
 - weighted by survival probability
 
 ---
 
-## 5. Financial Interpretation
+## Financial
+
 - Higher interest rates reduce present values
 - Discounting modifies the generator
 - Credit risk and default introduce additional killing terms
 
 ---
 
-## 6. Connection Forward
+## Connection Forward
+
 This structure extends naturally to running payoffs and defaultable claims.

@@ -1,10 +1,12 @@
 # First-Passage Models
 
+
 First-passage models extend Merton by allowing default to occur **at any time**, when firm value hits a default barrier.
 
 ---
 
-## 1. Default as barrier crossing
+## Default as barrier crossing
+
 
 Default time is defined as
 
@@ -21,7 +23,8 @@ This captures early default due to distress.
 
 ---
 
-## 2. Barrier specifications
+## Barrier specifications
+
 
 Common choices include:
 - constant barriers,
@@ -32,7 +35,8 @@ Barrier choice strongly affects default probabilities.
 
 ---
 
-## 3. Analytical properties
+## Analytical properties
+
 
 In simple cases (constant barrier, GBM assets):
 - default probabilities have closed forms,
@@ -42,7 +46,8 @@ However, pricing becomes more complex than in Merton.
 
 ---
 
-## 4. Advantages and limitations
+## Advantages and limitations
+
 
 Advantages:
 - economically intuitive,
@@ -56,7 +61,8 @@ Limitations:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Default occurs at first passage below a barrier.
 - Models generalize Merton’s framework.
@@ -65,6 +71,7 @@ Limitations:
 ---
 
 ## Further reading
+
 
 - Black & Cox (1976).
 - Leland & Toft, endogenous barriers.

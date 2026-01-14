@@ -1,10 +1,12 @@
 # Forward Pricing Map vs Inverse Calibration Map
 
+
 Calibration is best understood as an **inverse problem**: we observe market prices (or implied volatilities) and seek model parameters that reproduce them. This section formalizes the *forward* and *inverse* maps and highlights why the inverse map is delicate.
 
 ---
 
-## 1. The forward pricing map
+## The forward pricing map
+
 
 Let a parametric model be indexed by a parameter vector
 
@@ -30,7 +32,8 @@ F(\theta) := (P_1(\theta),\dots,P_m(\theta)).
 
 
 
-### Practical choices of data space
+### 1. Practical choices of data space
+
 
 Depending on conventions and numerical stability, calibration may target:
 
@@ -50,7 +53,8 @@ denote the chosen market data representation, and let \(F(\theta)\) output the m
 
 ---
 
-## 2. The inverse calibration map
+## The inverse calibration map
+
 
 In an ideal world, calibration would mean “invert the map”:
 
@@ -90,7 +94,8 @@ Common choices include:
 
 ---
 
-## 3. Local linearization and sensitivity
+## Local linearization and sensitivity
+
 
 A key lens is the Jacobian of the forward map:
 
@@ -112,7 +117,8 @@ If \(J\) has small singular values, small perturbations in data (e.g., bid/ask n
 
 ---
 
-## 4. Typical “inverse” workflow (static)
+## Typical “inverse” workflow (static)
+
 
 1. **Choose instruments** (smile slices, maturities, liquidity filters)
 2. **Choose data representation** (prices vs implied vols)
@@ -122,7 +128,8 @@ If \(J\) has small singular values, small perturbations in data (e.g., bid/ask n
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Pricing is the **forward** map \(F(\theta)\); calibration seeks the **inverse**.
 - The inverse is usually posed as **optimization**, not explicit inversion.
@@ -131,6 +138,7 @@ If \(J\) has small singular values, small perturbations in data (e.g., bid/ask n
 ---
 
 ## Further reading
+
 
 - Inverse problems and regularization: Tikhonov & Arsenin; Engl, Hanke & Neubauer.
 - Calibration in quantitative finance: Gatheral (*The Volatility Surface*); Cont & Tankov (*Financial Modelling with Jump Processes*).

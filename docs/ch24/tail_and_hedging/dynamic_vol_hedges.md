@@ -1,10 +1,12 @@
 # Dynamic Vol Hedges
 
+
 **Dynamic volatility hedges** are adaptive risk management strategies that adjust hedge intensity, strikes, and maturities in response to changing market conditions, volatility regimes, and portfolio exposures.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## Why Dynamic Hedging?
 
+
 ### 1. Static Hedge Problems
+
 
 **Fixed protection inadequacies:**
 
@@ -52,6 +56,7 @@
 
 ### 2. Volatility Clustering
 
+
 **Key empirical fact:**
 
 $$
@@ -74,6 +79,7 @@ $$
 
 ### 3. Cost Reduction
 
+
 **Empirical cost savings:**
 
 **Static hedge:**
@@ -92,6 +98,7 @@ $$
 - Net: Lower cost, better protection
 
 ### 4. Improved Hedge Ratio
+
 
 **Optimal hedge varies with regime:**
 
@@ -113,6 +120,7 @@ $$
 
 ### 5. Gamma Scalping Integration
 
+
 **Active hedge management:**
 
 **Static approach:**
@@ -126,6 +134,7 @@ $$
 - **Reduces net cost**
 
 ### 6. Path Dependency
+
 
 **Returns path matters:**
 
@@ -145,6 +154,7 @@ $$
 
 ### 7. Asymmetric Payoffs
 
+
 **Dynamic strategy payoff:**
 
 **Bull market (low vol):**
@@ -163,9 +173,11 @@ $$
 
 ## Dynamic Hedge Strategies
 
+
 **Different adaptive approaches:**
 
 ### 1. VIX-Triggered Scaling
+
 
 **Rule-based adjustment:**
 
@@ -192,6 +204,7 @@ $$
 
 ### 2. Realized Vol Feedback
 
+
 **Adjust based on actual volatility:**
 
 $$
@@ -209,6 +222,7 @@ $$
 - Adapts to actual risk
 
 ### 3. Conditional Hedging
+
 
 **Binary on/off approach:**
 
@@ -230,6 +244,7 @@ $$
 - Still capture most crashes (VIX spikes first)
 
 ### 4. Term Structure Strategy
+
 
 **Adjust based on VIX curve:**
 
@@ -253,6 +268,7 @@ Where $F_1$ = 1M VIX future, $F_3$ = 3M VIX future.
 
 ### 5. Correlation-Adjusted Hedging
 
+
 **Scale with realized correlation:**
 
 $$
@@ -270,6 +286,7 @@ $$
 
 ### 6. Drawdown-Triggered
 
+
 **Increase hedge after losses:**
 
 $$
@@ -286,6 +303,7 @@ $$
 - Let winners run (low hedge when up)
 
 ### 7. Option Greeks Rebalancing
+
 
 **Delta-weighted dynamic hedge:**
 
@@ -309,7 +327,9 @@ $$
 
 ## Mathematical Framework
 
+
 ### 1. Optimal Dynamic Rule
+
 
 **Minimize expected cost + expected crash loss:**
 
@@ -332,6 +352,7 @@ Where $\lambda(t)$ = Current crash intensity (from VIX, vol, etc.)
 
 ### 2. VIX-Based Scaling Function
 
+
 **Empirically calibrated:**
 
 $$
@@ -348,6 +369,7 @@ $$
 - Continuous adjustment
 
 ### 3. Cost-Benefit Analysis
+
 
 **Static hedge cost:**
 
@@ -367,6 +389,7 @@ $$
 
 ### 4. Hedge Effectiveness Ratio
 
+
 **Measure of protection:**
 
 $$
@@ -382,6 +405,7 @@ $$
 
 ### 5. Gamma P&L Integration
 
+
 **Expected gamma profit:**
 
 $$
@@ -394,6 +418,7 @@ $$
 - **Net cost lower**
 
 ### 6. Transition Probabilities
+
 
 **Regime switching model:**
 
@@ -413,6 +438,7 @@ $$
 
 ### 7. Sharpe Ratio Improvement
 
+
 **Portfolio Sharpe with dynamic hedge:**
 
 $$
@@ -431,9 +457,11 @@ Where $\rho$ = Correlation between portfolio and hedge.
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Over-Optimization
+
 
 **Mistake:** Complex rules with many parameters
 
@@ -457,6 +485,7 @@ $$
 
 ### 2. Too Frequent Rebalancing
 
+
 **Mistake:** Adjust hedge daily
 
 **Why it fails:** Transaction costs explode
@@ -473,6 +502,7 @@ $$
 - Only adjust if meaningful change
 
 ### 3. Ignoring Transaction Costs
+
 
 **Mistake:** Assume frictionless trading
 
@@ -491,6 +521,7 @@ $$
 
 ### 4. Whipsaw Losses
 
+
 **Mistake:** React to every VIX move
 
 **Why it fails:** False signals
@@ -508,6 +539,7 @@ $$
 
 ### 5. Neglecting Hedge Decay
 
+
 **Mistake:** Dynamic hedge with short-dated options
 
 **Why it fails:** Theta still bites
@@ -523,6 +555,7 @@ $$
 - Balance flexibility vs. cost
 
 ### 6. Backtest Overfitting
+
 
 **Mistake:** Optimize on same data as test
 
@@ -541,6 +574,7 @@ $$
 
 ### 7. Missing Regime Shifts
 
+
 **Mistake:** Assume stationary vol dynamics
 
 **Why it fails:** Regimes change
@@ -558,6 +592,7 @@ $$
 - Use percentile-based rules (adaptive)
 
 ### 8. Correlation Blindness
+
 
 **Mistake:** Ignore hedge-portfolio correlation
 
@@ -578,7 +613,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Rebalancing Thresholds
+
 
 **Trigger adjustments when:**
 
@@ -598,6 +635,7 @@ $$
 
 ### 2. Maximum Hedge Limit
 
+
 **Cap dynamic hedge:**
 
 $$
@@ -615,6 +653,7 @@ $$
 - Don't chase tail
 
 ### 3. Minimum Hedge Floor
+
 
 **Always maintain baseline:**
 
@@ -634,6 +673,7 @@ $$
 
 ### 4. Cost Budget Constraint
 
+
 **Annual cost cap:**
 
 $$
@@ -646,6 +686,7 @@ $$
 - Don't blow budget on dynamic adjustments
 
 ### 5. Monitoring Frequency
+
 
 **Review schedule:**
 
@@ -666,6 +707,7 @@ $$
 
 ### 6. Diversification
 
+
 **Dynamic hedges across:**
 
 - Multiple indices (SPX, NDX, Russell)
@@ -677,6 +719,7 @@ $$
 - Ignore idiosyncratic risks
 
 ### 7. Backtesting Standards
+
 
 **Required checks:**
 
@@ -695,7 +738,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. VIX-Scaled Hedge (2017-2020)
+
 
 **Setup:**
 - $\$50M$ portfolio
@@ -725,6 +770,7 @@ $$
 
 ### 2. Conditional Hedge (2012-2018)
 
+
 **Setup:**
 - Only hedge when VIX > 20
 - $\$20M$ portfolio
@@ -752,6 +798,7 @@ $$
 
 ### 3. Gamma Scalping (2019)
 
+
 **Setup:**
 - $\$30M$ portfolio
 - Dynamic delta hedging (daily)
@@ -772,6 +819,7 @@ $$
 **Lesson:** Active gamma management can offset costs
 
 ### 4. Term Structure Strategy (2016-2017)
+
 
 **Setup:**
 - Persistent contango (VIX futures upward)
@@ -794,7 +842,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Design Dynamic Rule
+
 
 **Choose simple rule:**
 
@@ -821,6 +871,7 @@ N_{\text{base}} & \text{if } 15 < \text{VIX} \leq 25 \\
 $$
 
 ### 2. Backtest the Rule
+
 
 **Historical simulation:**
 
@@ -853,6 +904,7 @@ print(f"Sharpe: {np.mean(hedge_pnl) / np.std(hedge_pnl)}")
 
 ### 3. Set Rebalancing Rules
 
+
 **Define triggers:**
 
 - VIX moves > 3 points from last rebalance
@@ -871,6 +923,7 @@ def should_rebalance(vix_now, vix_last, days_since):
 
 ### 4. Implement Execution
 
+
 **Enter initial hedge:**
 
 - Calculate base notional
@@ -884,6 +937,7 @@ def should_rebalance(vix_now, vix_last, days_since):
 - Initial notional: $\$1,000 × (18-12)/10 = \$600$ vega
 
 ### 5. Monitor and Adjust
+
 
 **Daily monitoring:**
 
@@ -905,6 +959,7 @@ def should_rebalance(vix_now, vix_last, days_since):
 
 ### 6. Performance Review
 
+
 **Monthly analysis:**
 
 - Hedge P&L (gains vs. losses)
@@ -921,6 +976,7 @@ def should_rebalance(vix_now, vix_last, days_since):
 ---
 
 ## Final Wisdom
+
 
 > "Dynamic volatility hedging is the evolution from fixed insurance to adaptive protection - adjusting to market conditions like a thermostat rather than a static shield. The key is balancing responsiveness with stability: too reactive and you whipsaw yourself to death; too static and you miss regime changes. The best dynamic rules are simple (VIX-based scaling), require infrequent rebalancing (weekly not daily), and reduce costs by 30-50% while improving protection when it matters most. Think of it as turning off the air conditioning when it's cold outside and cranking it up when it's hot - common sense risk management that compounds into significant savings over time."
 

@@ -1,10 +1,12 @@
 # Yield, Duration, and Convexity
 
+
 **Yield, duration, and convexity** are the fundamental quantitative measures for understanding and managing fixed income securities, where yield captures the expected return, duration measures linear interest rate sensitivity (first-order risk), and convexity measures the curvature of the price-yield relationship (second-order risk), together forming the complete framework for bond pricing, hedging, and portfolio construction.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -42,9 +44,11 @@ $$
 
 ## Yield, Duration, and Convexity
 
+
 **Before trading bonds, understand the fundamental metrics:**
 
 ### 1. Bond Pricing Fundamentals
+
 
 **Present value framework:**
 
@@ -80,6 +84,7 @@ $$
 **Trading at discount (below par) because yield > coupon**
 
 ### 2. Yield Measures
+
 
 **Multiple yield concepts:**
 
@@ -130,6 +135,7 @@ $$
 **Conservative measure (worst-case yield)**
 
 ### 3. Duration
+
 
 **Macaulay Duration (original concept):**
 
@@ -199,6 +205,7 @@ $$
 
 ### 4. Convexity
 
+
 **Mathematical definition:**
 
 $$
@@ -252,9 +259,11 @@ $$
 
 ## Economic
 
+
 **Beyond the mathematics, understanding the economics:**
 
 ### 1. Duration as WAM
+
 
 **The deep insight:**
 
@@ -300,6 +309,7 @@ $$
 
 ### 2. Duration as Elasticity
 
+
 **Economic parallel:**
 
 $$
@@ -325,6 +335,7 @@ $$
 - **Analogous to economics**
 
 ### 3. Convexity as Optionality
+
 
 **The deep insight:**
 
@@ -395,6 +406,7 @@ $$
 
 ### 4. Term Structure and Econ
 
+
 **Duration changes with yield curve:**
 
 **Flat curve (all yields 5%):**
@@ -430,6 +442,7 @@ $$
 - **Recessionary positioning**
 
 ### 5. Immunization Theory
+
 
 **Pioneering concept (Redington, 1952):**
 
@@ -489,6 +502,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Yield to Maturity (YTM):**
 
@@ -602,9 +616,11 @@ $$
 
 ## The Greeks (Bond Risk Metrics)
 
+
 **Fixed income has its own "Greeks" analogous to options:**
 
 ### 1. Delta (Duration)
+
 
 **Definition:** Price sensitivity to parallel yield curve shifts.
 
@@ -644,6 +660,7 @@ $$
 - **Inverse relationship**
 
 ### 2. Gamma (Convexity)
+
 
 **Definition:** Rate of change of duration as yields change.
 
@@ -697,6 +714,7 @@ $$
 
 ### 3. Theta (Carry/Roll-down)
 
+
 **Definition:** Price change as time passes (assuming unchanged yields).
 
 **Positive theta for premium bonds:**
@@ -742,6 +760,7 @@ $$
 
 ### 4. Vega (Volatility Risk)
 
+
 **Bonds have no volatility Greek in traditional sense:**
 
 **But analogous concept:**
@@ -765,6 +784,7 @@ $$
 
 ### 5. Rho (Level Risk)
 
+
 **In bonds, rho = duration:**
 
 - Interest rate is the underlying
@@ -777,9 +797,11 @@ $$
 
 ## Strategy Selection
 
+
 **Different duration strategies for different views:**
 
 ### 1. Long Duration 
+
 
 **When to use:**
 
@@ -825,6 +847,7 @@ $$
 
 ### 2. Short Duration 
 
+
 **When to use:**
 
 **Expect rising rates:**
@@ -868,6 +891,7 @@ $$
 - **Duration protected**
 
 ### 3. Barbell Strategy 
+
 
 **Structure:**
 
@@ -922,6 +946,7 @@ $$
 
 ### 4. Bullet Strategy 
 
+
 **Structure:**
 
 $$
@@ -948,6 +973,7 @@ $$
 - **Less optionality**
 
 ### 5. Ladder Strategy 
+
 
 **Structure:**
 
@@ -984,6 +1010,7 @@ $$
 
 ### 6. Comparison Table
 
+
 | Strategy | Duration | Convexity | Yield | Best For |
 |----------|----------|-----------|-------|----------|
 | Long Duration | High (15-20) | High (300+) | Low | Falling rates |
@@ -998,9 +1025,11 @@ $$
 
 ## Time Selection
 
+
 **Duration management is tactical:**
 
 ### 1. Economic Cycle Timing
+
 
 **Recession → Recovery:**
 
@@ -1049,6 +1078,7 @@ $$
 
 ### 2. Federal Reserve Policy
 
+
 **Fed tightening cycle:**
 
 $$
@@ -1093,6 +1123,7 @@ $$
 
 ### 3. Inflation Regime
 
+
 **High inflation (>3%):**
 
 $$
@@ -1120,6 +1151,7 @@ $$
 - **Bullish bonds**
 
 ### 4. Yield Curve Signals
+
 
 **Inverted curve:**
 
@@ -1161,7 +1193,9 @@ $$
 
 ## Maximum Profit and Loss
 
-### 1. 2008 Crisis
+
+### 1. Crisis
+
 
 **Setup:**
 
@@ -1250,6 +1284,7 @@ $$
 
 ### 2. Duration-Neutral Barbell
 
+
 **Setup:**
 
 - Portfolio: $2M
@@ -1309,7 +1344,9 @@ $$
 
 ## When to Use Duration/Convexity
 
+
 ### 1. Ideal Applications
+
 
 **Use duration when:**
 
@@ -1370,6 +1407,7 @@ $$
 - **Advanced hedging**
 
 ### 2. Specific Use Cases
+
 
 **Use Case 1: Pension fund liability matching**
 
@@ -1435,7 +1473,9 @@ $$
 
 ## When Duration/Convexity Fails
 
+
 ### 1. Limitations and Failures
+
 
 **Avoid duration-only analysis when:**
 
@@ -1508,6 +1548,7 @@ $$
 
 ### 2. Warning Signs to Avoid
 
+
 **1. Extremely low yields:**
 
 $$
@@ -1550,7 +1591,9 @@ $$
 
 ## Sizing and Risk
 
+
 ### 1. The Golden Rule
+
 
 **Position sizing by DV01:**
 
@@ -1598,6 +1641,7 @@ $$
 
 ### 2. Duration Management
 
+
 **Target duration approach:**
 
 $$
@@ -1637,6 +1681,7 @@ $$
 **Rebalanced to target**
 
 ### 3. Hedging with Futures
+
 
 **Treasury futures for duration hedging:**
 
@@ -1688,6 +1733,7 @@ $$
 
 ### 4. Convexity Budgeting
 
+
 **Allocate convexity across portfolio:**
 
 **Example: $500M multi-asset fund**
@@ -1722,6 +1768,7 @@ $$
 
 ### 5. Stop-Loss Strategies
 
+
 **Duration-based stop:**
 
 $$
@@ -1746,6 +1793,7 @@ $$
 - **Risk management**
 
 ### 6. Example
+
 
 **Portfolio: $100M pension fund**
 
@@ -1806,7 +1854,9 @@ $$
 
 ## Common Mistakes 
 
+
 ### 1. Ignoring Convexity
+
 
 **The error:**
 
@@ -1842,6 +1892,7 @@ $$
 - **Both terms matter**
 
 ### 2. Wrong Duration for Calls
+
 
 **The error:**
 
@@ -1881,6 +1932,7 @@ $$
 - **OAS analysis**
 
 ### 3. Parallel Shift Assumption
+
 
 **The error:**
 
@@ -1930,6 +1982,7 @@ $$
 
 ### 4. Ignoring Pull-to-Par
 
+
 **The error:**
 
 - Buy premium bond at $110
@@ -1959,6 +2012,7 @@ $$
 
 ### 5. Leveraging Low Duration
 
+
 **The error:**
 
 - Short-duration bond (Duration 2)
@@ -1984,6 +2038,7 @@ $$
 - **Holistic risk view**
 
 ### 6. Negative Convexity Risk
+
 
 **The error:**
 
@@ -2013,6 +2068,7 @@ $$
 
 ### 7. Wrong Duration Measure
 
+
 **The error:**
 
 - Macaulay duration: 5.0 years
@@ -2040,6 +2096,7 @@ $$
 - **Use correct measure**
 
 ### 8. Frequency Mismatch
+
 
 **The error:**
 
@@ -2069,6 +2126,7 @@ $$
 
 ### 9. Duration Drift
 
+
 **The error:**
 
 - Calculate duration at purchase
@@ -2091,6 +2149,7 @@ $$
 - **Active management**
 
 ### 10. Ignoring Spread Duration
+
 
 **The error:**
 
@@ -2126,6 +2185,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Duration and convexity are the foundation of all fixed income analysis—duration quantifies linear interest rate risk (first derivative), while convexity captures the valuable curvature that makes bonds superior to linear instruments (second derivative). Every bond investor must master these metrics: a 10-year bond with duration 8.5 will lose 8.5% when yields rise 100 bps, but convexity of 95 adds back +0.5%, creating asymmetry that favors long positions. This mathematics enabled pension funds to immunize liabilities since 1952 (Redington), guided institutional portfolios through rate cycles, and quantified the exact risk-return trade-offs in barbell vs bullet strategies. But mathematics alone isn't enough—2022 proved that -38% losses occur when duration is maximized exactly when rates are rising. Master the math, understand the economics (yield curve expectations, Fed policy, inflation), and manage dynamically. Duration is simultaneously your most important risk measure and your primary tool for expressing rate views. Use it wisely, update it constantly, and never forget that duration works both ways—helping in rallies, hurting in selloffs. The asymmetry from convexity is valuable, but can't overcome directional mistakes. Know your duration, manage your risk, adjust to environment. 📊📐"
 

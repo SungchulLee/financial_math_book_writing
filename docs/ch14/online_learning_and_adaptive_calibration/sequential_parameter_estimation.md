@@ -1,10 +1,12 @@
 # Sequential Parameter Estimation
 
+
 **Sequential parameter estimation** updates model parameters incrementally as new data arrives, rather than refitting models from scratch. This is essential for real-time financial applications.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 Financial markets evolve continuously:
 - parameters change over time,
@@ -15,7 +17,8 @@ Sequential methods provide adaptability and computational efficiency.
 
 ---
 
-## 2. Recursive estimation
+## Recursive estimation
+
 
 A generic recursive update takes the form
 
@@ -33,7 +36,8 @@ Examples include:
 
 ---
 
-## 3. Stability–adaptivity trade-off
+## Stability–adaptivity trade-off
+
 
 - Large learning rates adapt quickly but are noisy.
 - Small learning rates are stable but slow to adapt.
@@ -42,7 +46,8 @@ Choosing the update rule reflects a bias–variance trade-off over time.
 
 ---
 
-## 4. Applications in finance
+## Applications in finance
+
 
 Sequential estimation is used for:
 - online volatility estimation,
@@ -51,7 +56,8 @@ Sequential estimation is used for:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Sequential estimation updates parameters online.
 - It balances stability and responsiveness.
@@ -60,6 +66,7 @@ Sequential estimation is used for:
 ---
 
 ## Further reading
+
 
 - Ljung, recursive identification.
 - Bottou, stochastic gradient methods.

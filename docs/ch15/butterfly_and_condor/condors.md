@@ -1,5 +1,6 @@
 # Condors (Call and Put Condors)
 
+
 **Condors** are four-legged spreads combining two vertical spreads with a gap between them, creating a flat-top profit zone that's wider than a butterfly but with lower maximum profit, offering higher probability of success at the cost of reduced profit potential.
 
 
@@ -13,6 +14,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_body_width_comparison.png?raw=true" alt="long_call_vs_put" width="700">
@@ -43,6 +45,7 @@ $$
 
 ## What Is a Condor?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_decomposition.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -50,6 +53,7 @@ $$
 **Before trading condors, understand the structure:**
 
 ### 1. Call Condor (Bullish to Neutral)
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_greeks.png?raw=true" alt="long_call_vs_put" width="700">
@@ -96,6 +100,7 @@ $$
 
 ### 2. Put Condor (Bearish to Neutral)
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_iv_impact.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -126,6 +131,7 @@ $$
 
 ## Economic
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_time_decay.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -133,6 +139,7 @@ $$
 **Beyond the basic definition, understanding what condors REALLY are economically:**
 
 ### 1. From Butterfly to Condor
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_vs_butterfly.png?raw=true" alt="long_call_vs_put" width="700">
@@ -172,6 +179,7 @@ Both have same debit and same wing widths. The condor just "spreads out" the but
 
 ### 2. Condor as Two Vertical Spreads
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_whipsaw.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -205,6 +213,7 @@ This decomposition helps with adjustment strategies (can exit one side independe
 
 ### 3. The Gaussian Distribution Bet
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/long_call_condor.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -234,6 +243,7 @@ Stock returns follow (approximately) normal distribution. Condor profits from st
 ---
 
 ## Key Terminology
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_vs_butterfly.png?raw=true" alt="condor_butterfly" width="700">
@@ -288,6 +298,7 @@ $$
 
 ## Why Trade Condors?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_delta_profile.png?raw=true" alt="condor_delta" width="700">
 </p>
@@ -296,6 +307,7 @@ $$
 
 
 ### 1. Why This Structure Exists Economically
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/condor_theta_decay.png?raw=true" alt="condor_theta" width="700">
@@ -309,6 +321,7 @@ Markets create these structures because different participants have different:
 
 ### 2. Professional Institutional Perspective
 
+
 Institutional traders view this strategy as a tool for:
 1. **Risk management:** Precise control over exposure
 2. **Capital efficiency:** Optimal use of buying power
@@ -319,6 +332,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 
 ### 3. Moderate Directional Bias with Range
+
 
 **Scenario:** Bullish on AAPL but expect consolidation in $170-$180 range
 
@@ -344,6 +358,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Still limited risk (only risk $1.50)
 
 ### 4. Earnings Consolidation Play
+
 
 **Scenario:** Stock gapped on earnings, expect rest of day/week to consolidate
 
@@ -373,6 +388,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - **Return: 200%** (on $2.50 debit)
 
 ### 5. Low-Volatility Income Strategy
+
 
 **Scenario:** Market in low-volatility regime, want income from range-bound trading
 
@@ -405,6 +421,7 @@ Let me fix this example:
 
 ### 6. Low-Volatility Mean Reversion
 
+
 **Scenario:** Stock has broken out, expect mean reversion back to range
 
 **Setup:**
@@ -433,6 +450,7 @@ Let me fix this example:
 - Max profit: $5 - $2.08 = $2.92 (140% return)
 
 ### 7. Volatility Crush Post-Event
+
 
 **Scenario:** IV elevated before earnings, expect crush after
 
@@ -467,7 +485,9 @@ Let me fix this example:
 
 ## Greeks Behavior
 
+
 ### 1. Delta
+
 
 **Delta profile:**
 
@@ -501,6 +521,7 @@ $$
 
 ### 2. Gamma
 
+
 **Gamma profile:**
 
 $$
@@ -531,6 +552,7 @@ Unlike butterfly where you want stock to PIN at center, condor wants stock to ST
 
 ### 3. Theta
 
+
 **Theta (time decay):**
 
 $$
@@ -558,6 +580,7 @@ You sold 2 options (short $100 and $105 calls) and bought 2 options (long $95 an
 - **Exit:** 7-14 days remaining (captured majority, avoid gamma risk)
 
 ### 4. Vega
+
 
 **Vega (IV sensitivity):**
 
@@ -588,7 +611,9 @@ The two short strikes (at $100 and $105) have higher vega than the two long stri
 
 ## When Greeks Hurt You
 
+
 ### 1. The Whipsaw at Body Edges
+
 
 **Scenario:** Stock oscillates around lower body edge
 
@@ -618,6 +643,7 @@ The two short strikes (at $100 and $105) have higher vega than the two long stri
 
 ### 2. The IV Spike Disaster
 
+
 **Scenario:** Entered condor at low IV, unexpected event spikes IV
 
 **Setup:**
@@ -639,6 +665,7 @@ The two short strikes (at $100 and $105) have higher vega than the two long stri
 **Lesson:** Negative vega position vulnerable to IV spikes. Enter condors when IV high, not low.
 
 ### 3. The Early Exit Regret
+
 
 **Scenario:** Took profit too early, missed bigger gains
 
@@ -668,7 +695,9 @@ The two short strikes (at $100 and $105) have higher vega than the two long stri
 
 ## Common Pitfalls
 
+
 ### 1. Confusing Condor with Iron Condor
+
 
 **The mistake:**
 
@@ -691,6 +720,7 @@ The two short strikes (at $100 and $105) have higher vega than the two long stri
 - **Iron condor:** Use for income when expecting continued range-bound
 
 ### 2. Wrong Body Width Selection
+
 
 **The mistake:**
 
@@ -727,6 +757,7 @@ Wider body = Same max profit but higher debit = Lower ROI
 
 ### 3. Holding Through High-Impact Events
 
+
 **The mistake:**
 
 "My condor has 30 days left, I'll hold through earnings"
@@ -761,6 +792,7 @@ Earnings cause large moves that can blow through body.
 - Never "hope" stock won't move on earnings
 
 ### 4. Not Adjusting Losing Positions
+
 
 **The mistake:**
 
@@ -803,6 +835,7 @@ Once stock exits body, probability of returning diminishes. Early adjustment sav
 
 ### 5. Ignoring Dividend Events
 
+
 **The mistake:**
 
 Trading condors through ex-dividend dates without adjustment
@@ -834,9 +867,11 @@ Dividends cause early assignment risk on short calls if ITM.
 
 ## Common Mistakes
 
+
 **Detailed analysis of specific errors and how to avoid them:**
 
 ### 1. Mistake #1
+
 
 **The error:** "They're basically the same thing, right?"
 
@@ -855,6 +890,7 @@ Dividends cause early assignment risk on short calls if ITM.
 ---
 
 ### 2. Mistake #2
+
 
 **The error:** Stock at $100, IV at 15% (10th percentile)
 
@@ -875,6 +911,7 @@ Dividends cause early assignment risk on short calls if ITM.
 
 ### 3. Mistake #3
 
+
 **The sweet spot:**
 $$
 \text{Body Width} = (0.8 \text{ to } 1.2) \times \text{ATR(14)}
@@ -889,6 +926,7 @@ $$
 
 ### 4. Mistake #4
 
+
 **The error:** "Stock is in the body. Earnings tomorrow. I'll hold."
 
 **Why it's DEADLY:**
@@ -900,6 +938,7 @@ $$
 ---
 
 ### 5. Mistake #5
+
 
 **Exit rules:**
 - Stock exits body by 25% of wing → Watch
@@ -914,6 +953,7 @@ $$
 ---
 
 ### 6. Mistake #6
+
 
 **Too early (25%):** Leave 75% of profits on table
 
@@ -930,6 +970,7 @@ $$
 
 ### 7. Mistake #7
 
+
 **The cost:** Can lose 20-30% to slippage alone
 
 **Rules:**
@@ -941,6 +982,7 @@ $$
 
 ### 8. Mistake #8
 
+
 **Too short (< 21 DTE):** Gamma risk explodes
 
 **Too long (> 60 DTE):** Capital tied up, lower returns
@@ -950,6 +992,7 @@ $$
 ---
 
 ### 9. Mistake #9
+
 
 **The error:** Entering four legs separately
 
@@ -961,6 +1004,7 @@ $$
 
 ### 10. Mistake #10
 
+
 **The error:** Holding calls through ex-dividend date
 
 **Risk:** Early assignment, unexpected capital requirements
@@ -971,9 +1015,11 @@ $$
 
 ## Risk Management Rules
 
+
 **Essential guidelines:**
 
 ### 1. Position Sizing
+
 
 **Rule of thumb:**
 
@@ -990,6 +1036,7 @@ $$
 
 ### 2. Body Width Selection
 
+
 **Guidelines:**
 
 - **Narrow ($5):** High ROI (80-100%), Lower probability (~50-60%)
@@ -1004,6 +1051,7 @@ $$
 
 ### 3. Time Frame Selection
 
+
 **Optimal entry:**
 
 - **30-45 DTE:** Capture most theta, avoid early gamma risk
@@ -1016,6 +1064,7 @@ $$
 - **Example:** Max profit $3, exit when position worth $4.50-$5 (50-70% captured)
 
 ### 4. Adjustment Triggers
+
 
 **When to adjust:**
 
@@ -1032,6 +1081,7 @@ $$
 
 ### 5. Avoid These
 
+
 - Never enter condor in LOW IV (<30th percentile)
 - Never hold through earnings if in body
 - Never let winners turn to losers (take profit at 50-70%)
@@ -1043,7 +1093,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup (September 2024):**
 
@@ -1088,6 +1140,7 @@ $$
 
 ### 2. Transition Risk Hedge
 
+
 **Setup (Post-Election 2024):**
 
 - Election creates uncertainty, IV elevated
@@ -1118,6 +1171,7 @@ $$
 
 ### 3. Portable Alpha with Futures
 
+
 **Setup (November 2024):**
 
 - TSLA at $240
@@ -1144,6 +1198,7 @@ Each cross of body edge (negative gamma) caused small losses:
 **Lesson:** Condors HATE whipsaw around body edges. If stock volatile, exit early. Better for stocks that STAY in range, not oscillate into it.
 
 ### 4. Tactical Duration Extension
+
 
 **Setup (October 2024):**
 
@@ -1181,6 +1236,7 @@ Each cross of body edge (negative gamma) caused small losses:
 
 ## Final Wisdom
 
+
 > "Condors are the pragmatist's butterfly - you sacrifice the romantic notion of pinpoint accuracy for the realistic acknowledgment that markets are messy. Instead of predicting the stock lands at exactly $100, you say 'somewhere between $100 and $105 works for me.' That humility is rewarded with higher probability, but the market still demands discipline: exit before earnings, don't chase the last dollar, and respect the whipsaw risk at the edges. Condors teach you that being approximately right is more profitable than being precisely wrong."
 
 **Key to success:**
@@ -1199,9 +1255,11 @@ Each cross of body edge (negative gamma) caused small losses:
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Step 1
+
 
 **Before entering, evaluate:**
 
@@ -1224,6 +1282,7 @@ Each cross of body edge (negative gamma) caused small losses:
 
 ### 2. Step 2
 
+
 **Enter condors when:**
 - IV > 50th percentile (ideally > 60th)
 - Stock consolidating or range-bound
@@ -1241,6 +1300,7 @@ Each cross of body edge (negative gamma) caused small losses:
 ---
 
 ### 3. Step 3
+
 
 **Body width calculation:**
 $$
@@ -1260,6 +1320,7 @@ $$
 ---
 
 ### 4. Step 4
+
 
 **Calculate maximum position size:**
 
@@ -1282,6 +1343,7 @@ $$
 ---
 
 ### 5. Step 5
+
 
 **Best practices:**
 
@@ -1308,6 +1370,7 @@ $$
 
 ### 6. Step 6
 
+
 **Daily monitoring:**
 - Check stock price (in body?)
 - Monitor Greeks (Delta, Theta, Vega)
@@ -1332,6 +1395,7 @@ $$
 ---
 
 ### 7. Step 7
+
 
 **When to adjust:**
 - Stock exits body by 50% of wing
@@ -1360,6 +1424,7 @@ $$
 
 ### 8. Step 8
 
+
 **Track every trade in spreadsheet:**
 
 | Date | Symbol | Strikes | Entry | Exit | DTE In | DTE Out | P&L | % | IV In | IV Out | Notes |
@@ -1375,6 +1440,7 @@ $$
 
 ### 9. Common Execution Mistakes to Avoid
 
+
 1. **Entering at wrong volatility level** → Use IV rank tool
 2. **Ignoring liquidity** → Check bid-ask spread
 3. **Over-sizing positions** → Stick to 1-2% risk
@@ -1384,6 +1450,7 @@ $$
 ---
 
 ### 10. Your Pre-Trade Checklist
+
 
 **Before every condor entry:**
 
@@ -1406,6 +1473,7 @@ $$
 
 ### 11. Step 1
 
+
 **Before entering, evaluate:**
 
 1. **Market environment:**
@@ -1425,6 +1493,7 @@ $$
 
 ### 12. Step 2
 
+
 **Enter this strategy when:**
 - [Specific market conditions]
 - [Volatility requirements]
@@ -1437,6 +1506,7 @@ $$
 - [Insufficient time or liquidity]
 
 ### 13. Step 3
+
 
 **Calculate maximum position size:**
 
@@ -1451,6 +1521,7 @@ $$
 
 ### 14. Step 4
 
+
 **Best practices:**
 
 1. **Use limit orders:** Never use market orders
@@ -1459,6 +1530,7 @@ $$
 4. **Single order:** Enter as complete strategy, don't leg in
 
 ### 15. Step 5
+
 
 **Active management rules:**
 
@@ -1478,6 +1550,7 @@ $$
 
 ### 16. Step 6
 
+
 **When to adjust:**
 - Position threatened
 - Market environment changes  
@@ -1490,6 +1563,7 @@ $$
 
 ### 17. Step 7
 
+
 Track every trade:
 - Entry/exit dates and prices
 - Rationale for trade
@@ -1497,6 +1571,7 @@ Track every trade:
 - P&L and lessons learned
 
 ### 18. Common Execution Mistakes to Avoid
+
 
 1. **Entering at wrong volatility level**
 2. **Ignoring liquidity**

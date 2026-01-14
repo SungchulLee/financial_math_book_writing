@@ -1,10 +1,12 @@
 # Correlation and Factor Exposure
 
+
 **Correlation and factor exposure** measure how assets move together (correlation) and their sensitivity to common underlying drivers (factors), where correlations are unstable and spike to one during crises while factor models decompose returns into systematic components like market beta, size, value, and momentum, allowing investors to understand true diversification, identify hidden concentrated risks, and construct portfolios that isolate desired exposures while hedging unwanted systematic risk.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -27,7 +29,9 @@
 
 ## What Is Correlation?
 
+
 ### 1. Definition
+
 
 **Statistical measure of co-movement:**
 
@@ -62,6 +66,7 @@ $$
 
 ### 2. Sample vs. True Correlation
 
+
 **Estimation uncertainty:**
 
 **Sample correlation (what we compute):**
@@ -90,6 +95,7 @@ $$
 
 ### 3. Time-Varying Correlation
 
+
 **Correlations are not constant:**
 
 **Periods of stability:** $\rho \approx 0.5$ (normal times)
@@ -111,6 +117,7 @@ $$
 
 ### 4. Conditional Correlation
 
+
 **Correlation depends on regime:**
 
 **Conditional on market state:**
@@ -130,6 +137,7 @@ Tech stocks (AAPL, MSFT, GOOGL):
 **Asymmetry:** Downside correlation >> Upside correlation
 
 ### 5. Copulas
+
 
 **Beyond linear correlation:**
 
@@ -158,6 +166,7 @@ Two assets with returns:
 
 ### 6. Realized Correlation
 
+
 **From high-frequency data:**
 
 $$
@@ -177,6 +186,7 @@ Realized (288 5-min bars): $\hat{\rho} = 0.68$ with SE = 0.04
 **3× reduction in standard error**
 
 ### 7. Correlation Matrices
+
 
 **For $n$ assets, need $n(n-1)/2$ correlations**
 
@@ -207,6 +217,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Correlation:**
 - Linear co-movement measure
@@ -254,7 +265,9 @@ $$
 
 ## Factor Models
 
+
 ### 1. Single-Factor CAPM
+
 
 **Market model:**
 
@@ -292,6 +305,7 @@ Market returns (S&P 500): $R_M$
 
 ### 2. Fama-French Three-Factor
 
+
 **Extended model:**
 
 $$
@@ -318,6 +332,7 @@ Value stock regression:
 
 ### 3. Carhart Four-Factor
 
+
 **Add momentum:**
 
 $$
@@ -340,6 +355,7 @@ Momentum stock:
 
 ### 4. Fama-French Five-Factor
 
+
 **Add profitability and investment:**
 
 $$
@@ -353,6 +369,7 @@ $$
 **Modern best practice:** Explains ~85% of stock return variation
 
 ### 5. Macro Factors
+
 
 **Economy-wide drivers:**
 
@@ -379,6 +396,7 @@ $$
 
 ### 6. Statistical Factors (PCA)
 
+
 **Principal Component Analysis:**
 
 **No economic interpretation, purely statistical**
@@ -399,6 +417,7 @@ $$
 **Disadvantage:** Hard to interpret economically
 
 ### 7. Custom Factor Models
+
 
 **Industry-specific:**
 
@@ -424,7 +443,9 @@ $$
 
 ## Decomposing Portfolio Risk
 
+
 ### 1. Total Risk Decomposition
+
 
 **Variance formula:**
 
@@ -441,6 +462,7 @@ $$
 **Implication:** Cannot diversify away systematic risk
 
 ### 2. Factor Risk vs. Specific Risk
+
 
 **Factor model variance:**
 
@@ -468,6 +490,7 @@ $$
 
 ### 3. Portfolio Factor Exposure
 
+
 **Weighted average of individual betas:**
 
 $$
@@ -489,6 +512,7 @@ $$
 **Market-neutral:** Portfolio moves ~1:1 with market
 
 ### 4. Marginal Risk Contribution
+
 
 **How much does asset $i$ contribute to portfolio risk?**
 
@@ -518,6 +542,7 @@ $$
 
 ### 5. Risk Parity
 
+
 **Equal risk contribution:**
 
 **Objective:** Each asset contributes equally to portfolio risk
@@ -542,6 +567,7 @@ $$
 
 ### 6. Factor Risk Contribution
 
+
 **Decompose by factor:**
 
 $$
@@ -557,6 +583,7 @@ $$
 **Insight:** Market risk dominates (60% of total risk)
 
 ### 7. Stress Testing
+
 
 **Scenario-based factor shocks:**
 
@@ -583,7 +610,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Assuming Stable Correlation
+
 
 **Using historical average:**
 
@@ -604,6 +633,7 @@ Portfolio: 50% US stocks, 50% EM stocks
 
 ### 2. Ignoring Tail Correlation
 
+
 **Normal periods vs. extremes:**
 
 - **Mistake:** Measure correlation using all data (including normal times)
@@ -619,6 +649,7 @@ Portfolio: 50% US stocks, 50% EM stocks
 **Crisis:** Both assets fall together much more than average suggests
 
 ### 3. Collinearity in Factors
+
 
 **Correlated factors:**
 
@@ -636,6 +667,7 @@ Portfolio: 50% US stocks, 50% EM stocks
 
 ### 4. Sample Size Issues
 
+
 **Too few observations:**
 
 - **Mistake:** Estimate 100-stock correlation matrix from 1 year data
@@ -650,6 +682,7 @@ Portfolio: 50% US stocks, 50% EM stocks
 - **Vastly underdetermined** (20× more parameters than data)
 
 ### 5. Survivorship Bias
+
 
 **Only using surviving assets:**
 
@@ -667,6 +700,7 @@ Fama-French SMB factor:
 
 ### 6. Look-Ahead Bias
 
+
 **Using future information:**
 
 - **Mistake:** Use end-of-year financials available in March for January portfolio
@@ -682,6 +716,7 @@ Value factor using P/B ratios:
 - Reality: Use prior year's data (9-month lag)
 
 ### 7. Factor Timing
+
 
 **Thinking you can time factors:**
 
@@ -701,7 +736,9 @@ Value factor underperforms 2017-2020 (growth rally)
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Factor-based risk management:**
 
@@ -750,6 +787,7 @@ Value factor underperforms 2017-2020 (growth rally)
 5. Factor model explained 85% of returns (well understood risk)
 
 ### 2. Worst Case: Disaster
+
 
 **Correlation meltdown:**
 
@@ -827,7 +865,9 @@ Value factor underperforms 2017-2020 (growth rally)
 
 ## Risk Management Rules
 
+
 ### 1. Correlation Stress Testing
+
 
 **Required scenarios:**
 
@@ -843,6 +883,7 @@ $$
 $$
 
 ### 2. Factor Exposure Limits
+
 
 **Per factor:**
 
@@ -862,6 +903,7 @@ Market-neutral fund:
 - $\beta_{\text{momentum}}$: [-0.5, +0.5] ✓
 
 ### 3. Diversification Minimum
+
 
 **Number of positions:**
 
@@ -883,6 +925,7 @@ $$
 
 ### 4. Rebalancing Frequency
 
+
 **Factor exposures:**
 
 - Check daily
@@ -896,6 +939,7 @@ Target $\beta_M = 0$, actual $\beta_M = 0.12$
 **Action:** Rebalance to bring back to 0
 
 ### 5. Model Validation
+
 
 **Out-of-sample testing:**
 
@@ -911,6 +955,7 @@ Target $\beta_M = 0$, actual $\beta_M = 0.12$
 
 ### 6. Rolling Correlation
 
+
 **Estimate using rolling windows:**
 
 $$
@@ -924,6 +969,7 @@ $$
 **Monitor changes:** Alert if $|\Delta \rho| > 0.2$
 
 ### 7. Maximum Leverage
+
 
 **Based on correlation:**
 
@@ -955,7 +1001,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Quant Quake (August 2007)
+
 
 **Correlation convergence:**
 
@@ -983,6 +1031,7 @@ $$
 
 ### 2. LTCM (1998)
 
+
 **Correlation misjudgment:**
 
 **Strategy:** Convergence trades (spread arbitrage)
@@ -1002,6 +1051,7 @@ $$
 **Leverage:** 25:1 (amplified correlation spike)
 
 ### 3. Risk Parity 2020
+
 
 **COVID crash then recovery:**
 
@@ -1024,6 +1074,7 @@ $$
 **Lesson:** Even negative correlation can break
 
 ### 4. Factor ETF Proliferation
+
 
 **2010s: Factor investing boom:**
 
@@ -1051,7 +1102,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Estimate Factors
+
 
 **Choose model:**
 
@@ -1070,6 +1123,7 @@ $$
 **Output:** Factor loadings $\beta_{i,k}$ for each asset
 
 ### 2. Construct Portfolio
+
 
 **Optimization with factor constraints:**
 
@@ -1094,6 +1148,7 @@ Target: Market-neutral, value tilt
 
 ### 3. Monitor Exposures
 
+
 **Daily factor exposure calculation:**
 
 $$
@@ -1110,6 +1165,7 @@ $$
 
 ### 4. Rebalance
 
+
 **When drift exceeds threshold:**
 
 1. Recalculate optimal weights (with current betas)
@@ -1123,6 +1179,7 @@ $$
 - Event-driven: When drift > threshold
 
 ### 5. Attribution
+
 
 **Decompose return:**
 
@@ -1150,6 +1207,7 @@ Month return: +2.5%
 
 ### 6. Risk Reporting
 
+
 **Daily/weekly report:**
 
 - Factor exposures (current vs. target)
@@ -1159,6 +1217,7 @@ Month return: +2.5%
 - VaR (95%, 99%)
 
 ### 7. Model Review
+
 
 **Quarterly:**
 
@@ -1177,6 +1236,7 @@ Month return: +2.5%
 ---
 
 ## Final Wisdom
+
 
 > "Correlation and factor exposure are the hidden architecture of portfolio risk—the invisible threads that connect asset returns and ensure that 'diversification' is often an illusion. The correlation coefficient is a seductive number: ρ = 0.5 suggests moderate co-movement, implying diversification works. But correlations are unstable, regime-dependent, and asymmetric—they spike to 1 precisely when you need diversification most (crashes). Worse, observed correlation is just the manifestation of deeper common factors: when you think you're diversified across 10 strategies, you might actually have one exposure (liquidity risk) expressed 10 different ways. Factor models are the antidote: they decompose returns into systematic components (market, value, size) and idiosyncratic noise, revealing true diversification. The tragedy of modern finance: retail chases 'diversification' by adding more stocks, while institutions know the truth—you need uncorrelated *factors*, not uncorrelated *stocks*. With 30 stocks, you've diversified idiosyncratic risk (the easy part); the hard part is managing systematic factor exposure (the part that matters). Every major blow-up—LTCM, quant quake, 2008 crisis—traces back to hidden factor concentration masked by apparent diversification. The golden rule: measure factor exposures explicitly, stress test correlations to 1, and never lever beyond 2-3× when correlations are high. Modern portfolio theory promised risk reduction through diversification; modern portfolio reality shows that in crisis, correlations converge and diversification disappears. Know your factors, respect correlation instability, and remember that 'market-neutral' doesn't mean 'risk-neutral'—it just means you've neutralized one factor while keeping all the others."
 

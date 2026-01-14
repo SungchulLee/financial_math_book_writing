@@ -1,10 +1,12 @@
 # Time-Consistency
 
+
 Dynamic risk measures extend static risk measures to a multi-period setting. **Time-consistency** is a fundamental requirement ensuring that risk assessments remain logically coherent over time.
 
 ---
 
-## 1. Motivation
+## Motivation
+
 
 In a dynamic setting, risk is evaluated at multiple times \(t < T\).
 A risk measure should not lead to decisions that are optimal today but suboptimal tomorrow.
@@ -13,7 +15,8 @@ Time-consistency formalizes this requirement.
 
 ---
 
-## 2. Definition
+## Definition
+
 
 Let \(\rho_t(\cdot)\) be a conditional risk measure at time \(t\).
 The family \((\rho_t)_{t \ge 0}\) is **time-consistent** if
@@ -31,7 +34,8 @@ Equivalently, preferences should not reverse over time.
 
 ---
 
-## 3. Economic interpretation
+## Economic interpretation
+
 
 Time-consistency implies:
 - no preference reversals,
@@ -42,7 +46,8 @@ Without time-consistency, dynamic risk control becomes unstable.
 
 ---
 
-## 4. Examples and non-examples
+## Examples and non-examples
+
 
 - Dynamic Expected Shortfall can be time-consistent under suitable constructions.
 - Dynamic VaR is typically **not** time-consistent.
@@ -51,7 +56,8 @@ This mirrors the static coherence distinction.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Time-consistency is essential for dynamic risk management.
 - It prevents preference reversals.
@@ -60,6 +66,7 @@ This mirrors the static coherence distinction.
 ---
 
 ## Further reading
+
 
 - Artzner et al., dynamic risk measures.
 - Föllmer & Schied, time-consistency.

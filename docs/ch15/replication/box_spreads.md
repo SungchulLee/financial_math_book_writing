@@ -1,10 +1,12 @@
 # Box Spreads
 
+
 **Box spreads** are arbitrage structures combining a bull call spread and a bear put spread at the same strikes, creating a synthetic long zero-coupon bond with guaranteed payoff equal to the strike width.
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/box_spread_payoff.png?raw=true" alt="box_spread" width="700">
@@ -12,6 +14,7 @@
 **Figure 1:** Box spread payoff diagram showing flat payoff equal to strike width regardless of underlying stock price at expiration.
 
 ### 1. Short Box (Reverse Position)
+
 
 **When to use:** Sell box if market price > theoretical value
 
@@ -43,6 +46,7 @@ $$
 
 ## What Is a Box Spread?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/box_theta_convergence.png?raw=true" alt="box_theta" width="700">
 </p>
@@ -53,6 +57,7 @@ $$
 **Before trading boxes, understand what you're creating:**
 
 ### 1. The Box
+
 
 **Definition:** Combination of bull call spread and bear put spread at identical strikes.
 
@@ -107,9 +112,11 @@ $110 | $5 ($105 - $100) | $0 (both OTM) | **$5**
 
 ## Economic
 
+
 **Beyond the basic definition, understanding what boxes REALLY are economically:**
 
 ### 1. Put-Call Parity
+
 
 **The fundamental arbitrage relationship:**
 
@@ -155,6 +162,7 @@ $$
 
 ### 2. The Box as a Zero-Coupon Bond
 
+
 **Economic interpretation:**
 
 A long box is equivalent to:
@@ -182,6 +190,7 @@ A long box is equivalent to:
 
 ### 3. Why Arbitrage Opportunities Exist
 
+
 **Reasons boxes can be mispriced:**
 
 1. **Dividend uncertainty:** American options + uncertain dividends
@@ -194,6 +203,7 @@ A long box is equivalent to:
 **Most important:** Market makers know about boxes! They actively keep prices aligned. Retail arbitrage rare.
 
 ### 4. Box Spread vs. Treasury Bills
+
 
 **Comparison:**
 
@@ -222,6 +232,7 @@ A long box is equivalent to:
 ---
 
 ## Key Terminology
+
 
 **Box Spread:**
 
@@ -263,6 +274,7 @@ A long box is equivalent to:
 
 ## Why Trade Box Spreads?
 
+
 **Use cases for boxes:**
 
 
@@ -270,9 +282,11 @@ A long box is equivalent to:
 
 ## Economic
 
+
 **Understanding what box spreads REALLY represent economically:**
 
 ### 1. The Core Economic Trade-Off
+
 
 Box spreads represent a fundamental economic proposition: **creating synthetic fixed-income securities using option derivatives**. This isn't a "trade-off" in the traditional sense - it's a structural equivalence that reveals deep truths about option pricing.
 
@@ -285,6 +299,7 @@ $$
 This equation says: The sum of two vertical spreads must equal the present value of their strike width. **Always.** If not, arbitrage exists.
 
 ### 2. Why This Structure Exists Economically
+
 
 Markets create box spreads not because anyone "wants" them, but because **put-call parity must hold** or arbitrageurs will force it to hold.
 
@@ -321,6 +336,7 @@ Markets create box spreads not because anyone "wants" them, but because **put-ca
 - **Time horizon:** Weeks (too slow vs. HFTs)
 
 ### 3. Professional Institutional Perspective
+
 
 **How institutions actually use boxes:**
 
@@ -381,6 +397,7 @@ $$
 
 ### 4. The Box as Cross-Market Arbitrage
 
+
 **Box spreads link three markets:**
 
 1. **Options market** (box price)
@@ -408,6 +425,7 @@ $$
 **This is pure arbitrage:** Zero risk, guaranteed profit (in theory)
 
 ### 5. Why Arbitrage Opportunities Still Exist (Briefly)
+
 
 Despite efficient markets, boxes occasionally misprice due to:
 
@@ -458,6 +476,7 @@ Within this band, no profitable arbitrage exists.
 
 ### 6. Understanding the Economic Foundations
 
+
 **Key insights from box spreads:**
 
 **1. Options are not independent:**
@@ -487,6 +506,7 @@ Within this band, no profitable arbitrage exists.
 
 ### 7. The Efficient Market Lesson
 
+
 Box spreads teach the most important lesson in finance:
 
 > **Markets are efficient. When you find "free money," you're either:**
@@ -510,6 +530,7 @@ Understanding the economic foundations helps you recognize when box spreads offe
 
 
 ### 8. Pure Arbitrage (Rare for Retail)
+
 
 **Scenario:** Put-call parity temporarily violated
 
@@ -542,6 +563,7 @@ Temporary mispricing, someone desperately needs one leg, market maker adjusting 
 
 ### 9. Financing at Below-Market Rates
 
+
 **Scenario:** Need to finance a position, box spread offers better rate than margin loan
 
 **Example:**
@@ -572,6 +594,7 @@ $$
 
 ### 10. Locking in High Implied Rates (Institutional)
 
+
 **Scenario:** Options imply high financing cost (put prices rich relative to calls)
 
 **Setup:**
@@ -596,6 +619,7 @@ Market makers, hedge funds use boxes to:
 **Retail relevance:** Mostly academic, but good to understand.
 
 ### 11. Understanding Synthetic Positions
+
 
 **Scenario:** Learning tool to understand put-call parity
 
@@ -627,7 +651,9 @@ $$
 
 ## Greeks Behavior
 
+
 ### 1. Delta
+
 
 **Delta analysis:**
 
@@ -649,6 +675,7 @@ $$
 
 ### 2. Gamma
 
+
 **Gamma profile:**
 
 $$
@@ -668,6 +695,7 @@ $$
 - Box value only changes via time decay (toward strike width)
 
 ### 3. Theta
+
 
 **Theta (time decay):**
 
@@ -697,6 +725,7 @@ Box value moves from PV of strike width → strike width as expiration approache
 
 ### 4. Vega
 
+
 **Vega (IV sensitivity):**
 
 $$
@@ -718,6 +747,7 @@ $$
 **This is critical for arbitrage:** Box value immune to volatility surprises.
 
 ### 5. Rho
+
 
 **Rho (interest rate sensitivity):**
 
@@ -747,7 +777,9 @@ Box is a zero-coupon bond. Higher rates → Lower PV.
 
 ## When Greeks Don't Apply (Assignment Risk)
 
+
 ### 1. Early Assignment
+
 
 **The problem:**
 
@@ -788,6 +820,7 @@ American options can be exercised BEFORE expiration. If one leg gets assigned ea
 
 ### 2. Pin Risk at Expiration
 
+
 **The problem:**
 
 Stock price exactly at one strike at expiration. Uncertain if option will be exercised.
@@ -820,7 +853,9 @@ Stock price exactly at one strike at expiration. Uncertain if option will be exe
 
 ## Common Pitfalls
 
+
 ### 1. Ignoring Transaction Costs
+
 
 **The mistake:**
 
@@ -844,6 +879,7 @@ Transaction costs eat small edges.
 - Focus on larger strike widths (bigger dollar edges)
 
 ### 2. American Option Early Assignment
+
 
 **The mistake:**
 
@@ -872,6 +908,7 @@ Early assignment can blow up the trade.
 
 ### 3. Illiquid Strikes
 
+
 **The mistake:**
 
 "I'll trade any box that shows arbitrage."
@@ -895,6 +932,7 @@ Illiquid options have wide bid-ask spreads. "Arbitrage" is an illusion.
 - Avoid weekly options (less liquid than monthlies)
 
 ### 4. Confusing Long vs. Short Box
+
 
 **The mistake:**
 
@@ -925,6 +963,7 @@ Mixing up which position to take.
 - Double-check position before submitting
 
 ### 5. Ignoring Interest Rate Risk (Rho)
+
 
 **The mistake:**
 
@@ -958,9 +997,11 @@ Rho is NOT zero. Interest rate changes affect box value.
 
 ## Risk Management Rules
 
+
 **Essential guidelines:**
 
 ### 1. Position Sizing
+
 
 **Rule of thumb:**
 
@@ -984,6 +1025,7 @@ $$
 
 ### 2. Strike Selection
 
+
 **Optimal strikes:**
 
 - **Strike width:** $5 or $10 (liquid, tight spreads)
@@ -996,6 +1038,7 @@ $$
 - Bad: $400/$500 (too wide, illiquid), $449/$450 (too narrow, no edge)
 
 ### 3. Time Frame Selection
+
 
 **Optimal expirations:**
 
@@ -1010,6 +1053,7 @@ $$
 
 ### 4. Assignment Risk Management
 
+
 **Critical rules:**
 
 1. **Use European options when possible** (SPX, RUT, NDX)
@@ -1019,6 +1063,7 @@ $$
 5. **Close early** (1-2 days before expiration)
 
 ### 5. Exit Strategy
+
 
 **When to close:**
 
@@ -1031,7 +1076,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration Cut via Futures
+
 
 **Setup (March 2023, post-SVB bank crisis):**
 
@@ -1100,6 +1147,7 @@ Let me fix the example:
 
 ### 2. Transition Risk Hedge
 
+
 **Setup (Retail trader, 2020):**
 
 - Stock at $45
@@ -1124,6 +1172,7 @@ Let me fix the example:
 **Lesson:** American options + dividends = assignment risk. Use European (index) options for boxes.
 
 ### 3. Portable Alpha with Futures
+
 
 **Setup (Beginner retail trader):**
 
@@ -1152,9 +1201,11 @@ Let me fix the example:
 
 ## Common Mistakes
 
+
 **The mistakes that destroy box spread "arbitrage" trades:**
 
 ### 1. Mistake #1
+
 
 **The error:**
 "I found a great box on AAPL stock - $5 wide box trading at $4.85, theoretical is $4.95!"
@@ -1186,6 +1237,7 @@ Let me fix the example:
 - If you see an "amazing" box on a stock → **Skip it, it's a trap**
 
 ### 2. Mistake #2
+
 
 **The error:**
 "I found a $0.15 edge on a box - free money!"
@@ -1223,6 +1275,7 @@ Let me fix the example:
 
 ### 3. Mistake #3
 
+
 **The error:**
 "Box is mispriced! I'll buy it!"
 
@@ -1251,6 +1304,7 @@ Let me fix the example:
 - Remember: You want to pay LESS than what you'll receive!
 
 ### 4. Mistake #4
+
 
 **The error:**
 "Found huge $2 edge on deep OTM box!"
@@ -1290,6 +1344,7 @@ Let me fix the example:
 
 ### 5. Mistake #5
 
+
 **The error:**
 "It's an index (SPX), dividends don't matter."
 
@@ -1318,6 +1373,7 @@ Let me fix the example:
 - **For stocks:** Never trade boxes (see Mistake #1)
 
 ### 6. Mistake #6
+
 
 **The error:**
 "I'll make a living trading box spread arbitrage!"
@@ -1355,6 +1411,7 @@ Let me fix the example:
 
 ### 7. Mistake #7
 
+
 **The error:**
 "This is risk-free arbitrage, I'll trade 500 contracts!"
 
@@ -1388,6 +1445,7 @@ Let me fix the example:
 - **Never exceed:** What you can exit in one order without moving market
 
 ### 8. Mistake #8
+
 
 **The error:**
 "Box pays $10 at expiration, so it's worth $10 now."
@@ -1423,6 +1481,7 @@ $$
 
 ### 9. Mistake #9
 
+
 **The error:**
 "I'll buy the calls first when they're cheap, then add puts later."
 
@@ -1456,6 +1515,7 @@ $$
 - **Zero directional risk** between legs
 
 ### 10. Mistake #10
+
 
 **The error:**
 "My box expires Friday, I need to close it or I'll get assigned shares."
@@ -1494,6 +1554,7 @@ $$
 
 ### 11. Mistake #11
 
+
 **The error:**
 "Box spreads are riskless arbitrage, I can't lose!"
 
@@ -1531,6 +1592,7 @@ $$
 
 ### 12. The Cost of Mistakes
 
+
 **One mistake can wipe out 100 successful boxes:**
 
 **Scenario:**
@@ -1564,6 +1626,7 @@ The beauty of boxes is in the theory (put-call parity). The reality is that prof
 
 ## Final Wisdom
 
+
 > "Box spreads are the Rosetta Stone of options arbitrage. They teach you put-call parity, synthetic positions, and why 'free money' is almost never free once you account for transaction costs and assignment risk. For retail traders, boxes are more valuable as learning tools than profit generators. But if you ever spot a true edge, understand you're competing with HFT algorithms that can execute in microseconds. The real value of boxes is understanding how options are priced - not trying to arbitrage them."
 
 **Key to success:**
@@ -1581,9 +1644,11 @@ The beauty of boxes is in the theory (put-call parity). The reality is that prof
 
 ## Practical Guidance
 
+
 **Step-by-step box spread arbitrage framework:**
 
 ### 1. Step 1
+
 
 **Box spreads require different analysis than directional strategies:**
 
@@ -1687,6 +1752,7 @@ $$
 
 ### 2. Step 2
 
+
 **Enter box spreads when:**
 
 ✓ **European options available** (SPX, RUT, NDX only)  
@@ -1708,6 +1774,7 @@ $$
 ✗ **Normal markets** (no mispricings exist)
 
 ### 3. Step 3
+
 
 **Calculate maximum position size:**
 
@@ -1740,6 +1807,7 @@ Yes! Box spreads have **large notional risk** even though actual risk is small.
 - **Position size limited by notional, not actual**
 
 ### 4. Step 4
+
 
 **Best practices:**
 
@@ -1783,6 +1851,7 @@ Boxes don't care much about time of day:
 - **If ANY doubt:** Don't trade
 
 ### 5. Step 5
+
 
 **Active management rules:**
 
@@ -1828,6 +1897,7 @@ For European boxes:
 
 ### 6. Step 6
 
+
 **When to adjust:**
 
 **Boxes typically have NO adjustments:**
@@ -1863,6 +1933,7 @@ Trick question - **you don't adjust boxes!**
 
 ### 7. Step 7
 
+
 **Track every box trade:**
 
 **Essential data (spreadsheet template):**
@@ -1897,6 +1968,7 @@ After each box, document:
 
 ### 8. Common Execution Mistakes to Avoid
 
+
 **1. Trading American options**
 - **Mistake:** "AAPL box looks mispriced!"
 - **Reality:** Assignment risk will destroy you
@@ -1923,6 +1995,7 @@ After each box, document:
 - **Fix:** Always verify option type before entry
 
 ### 9. The Box Spread Checklist
+
 
 **Before EVERY trade, verify:**
 

@@ -1,10 +1,12 @@
 # Taylor Expansion II: Quadratic Approximation
 
+
 Linear approximation captures the first-order change in a function. For many applications (including Itô calculus), we must keep **second-order terms**.
 
 ---
 
-## 1. Quadratic Approximation in One Variable
+## Quadratic Approximation in One Variable
+
 
 For a twice differentiable function \(f(x)\),
 
@@ -20,9 +22,11 @@ f(x)\approx f(x_0)+f_x(x_0)(x-x_0)+\frac12 f_{xx}(x_0)(x-x_0)^2.
 
 ---
 
-## 2. Python Example: Quadratic Approximation in 1D
+## Python Example: Quadratic Approximation in 1D
 
-### Problem
+
+### 1. Problem
+
 
 Approximate \(f(1.1)\) using the quadratic approximation at \(x_0=1\), where
 
@@ -30,7 +34,8 @@ Approximate \(f(1.1)\) using the quadratic approximation at \(x_0=1\), where
 f(x)=e^{x-1}+(x-1)^2.
 \]
 
-### Solution (by differentials)
+### 2. Solution (by differentials)
+
 
 \[
 \begin{array}{ccccccccccccccc}
@@ -83,7 +88,8 @@ plt.show()
 
 ---
 
-## 3. Quadratic Approximation in Two Variables
+## Quadratic Approximation in Two Variables
+
 
 For a twice differentiable function \(f(t,b)\), the second-order expansion is
 
@@ -95,9 +101,11 @@ df
 
 ---
 
-## 4. Python Example: Quadratic Approximation in 2D
+## Python Example: Quadratic Approximation in 2D
 
-### Problem
+
+### 1. Problem
+
 
 Approximate \(f(1.1,1.8)\) using the quadratic approximation at \((t_0,b_0)=(1,2)\), where
 
@@ -105,7 +113,8 @@ Approximate \(f(1.1,1.8)\) using the quadratic approximation at \((t_0,b_0)=(1,2
 f(t,b)=e^{t-1}+(t-1)^2+(b-2)^2.
 \]
 
-### Solution (by expansion)
+### 2. Solution (by expansion)
+
 
 First-order terms:
 

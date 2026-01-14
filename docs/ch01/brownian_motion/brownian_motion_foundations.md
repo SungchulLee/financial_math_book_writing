@@ -1,6 +1,10 @@
-# Brownian Motion Foundations
+# Brownian Motion
+
+
 
 ## Introduction
+
+
 
 Having established the discrete random walk and its scaling limit via Donsker's theorem, we now define **Brownian motion** axiomatically. Brownian motion (also called the **Wiener process**) is the canonical continuous-time random motion that serves as the foundation for:
 
@@ -17,11 +21,15 @@ Brownian motion is the **only** stochastic process that is simultaneously:
 
 This uniqueness makes it the fundamental building block for continuous-time stochastic modeling.
 
-## Intuitive Construction: Paper and Pencil Brownian Motion
+## Intuitive
+
+
 
 Before giving the formal definition, we develop intuition through discrete approximations that can be performed "by hand."
 
-### Construction via Standard Normal Coin Flips
+### 1. Construction via
+
+
 
 Consider the following discrete-to-continuous procedure:
 
@@ -37,7 +45,9 @@ where $X_k \stackrel{\text{iid}}{\sim} \mathcal{N}(0,1)$.
 
 **Key observation:** As $n \to \infty$, by the central limit theorem (more precisely, Donsker's theorem), $B_t$ converges to Brownian motion.
 
-### Construction via Fair Coin Flips
+### 2. Construction via
+
+
 
 Equivalently, using $\{-1, +1\}$ random variables:
 
@@ -51,7 +61,9 @@ Equivalently, using $\{-1, +1\}$ random variables:
 
 where $\mathbb{P}(X_k = 1) = \mathbb{P}(X_k = -1) = 1/2$.
 
-### Construction via Arbitrary i.i.d. Sequences
+### 3. Construction via
+
+
 
 More generally, for any i.i.d. sequence $\{X_k\}$ with $\mathbb{E}[X_k] = \mu$ and $\text{Var}(X_k) = \sigma^2$:
 
@@ -71,7 +83,9 @@ $$\mathbb{E}[X_k]=\mu, \quad \text{Var}(X_k)=\sigma^2$$
 
 By Donsker's invariance principle, all three constructions yield the same limit: **Brownian motion**.
 
-### Example: Concrete Path Construction
+### 4. Example Concrete
+
+
 
 **Problem:** We flip a fair coin 10 times and get:
 
@@ -108,11 +122,15 @@ Numerically:
 
 This piecewise linear path is an approximation to a true Brownian path. As $n \to \infty$, such approximations converge to continuous Brownian motion.
 
-## Axiomatic Definition of Brownian Motion
+## Axiomatic Definition
+
+
 
 Having built intuition, we now define Brownian motion rigorously.
 
-### Definition 1.3.1 (Standard Brownian Motion / Wiener Process)
+### 1. Definition 1 3 1
+
+
 
 A **standard Brownian motion** $\{W_t\}_{t \ge 0}$ on a probability space $(\Omega,\mathcal{F},\mathbb{P})$ is a stochastic process satisfying:
 
@@ -145,7 +163,9 @@ $$t \mapsto W_t(\omega) \quad \text{is continuous for almost every } \omega \in 
 
 **Remark 2:** Properties (ii) and (iii) together make Brownian motion a **Lévy process** (continuous-time analog of random walk with independent, stationary increments).
 
-### Intuition Behind the Definition
+### 2. Intuition Behind
+
+
 
 **(1) Initial condition $W_0 = 0$:** At time 0, we haven't flipped any coins, so the cumulative sum is zero.
 
@@ -171,9 +191,13 @@ W_t-W_s=\frac{1}{\sqrt{n}}\sum_{k=ns+1}^{nt}\frac{X_k-\mu}{\sigma}\quad\overset{
 
 **(4) Continuity:** As $n \to \infty$, the piecewise linear interpolation converges uniformly to a continuous path (Donsker's theorem).
 
-## Finite-Dimensional Distributions
+## Finite Dimensional
 
-### Joint Distribution
+
+
+### 1. Joint Distributio
+
+
 
 **Proposition 1.3.2**
 
@@ -222,7 +246,9 @@ $$\mathbb{E}[W_t] = 0, \quad \mathbb{E}[W_t^2] = t, \quad \mathbb{E}[W_s W_t] = 
 
 
 
-### Characteristic Function
+### 2. Characteristic Fu
+
+
 
 **Proposition 1.3.4**
 
@@ -248,6 +274,8 @@ with $\mu = 0$ and $\sigma^2 = t-s$. $\square$
 This characteristic function uniquely characterizes the Gaussian increment structure.
 
 ## Covariance Structure
+
+
 
 The covariance function contains rich information about Brownian motion's path properties.
 
@@ -288,11 +316,15 @@ $$\mathbb{E}[W_s W_t] = \mathbb{E}[W_s^2] = s = \min(s,t) \quad \square$$
 2. **Long-range correlation**: $W_s$ and $W_t$ are correlated for all $s, t$ (not just nearby times)
 3. **Self-similarity**: The $\min$ structure is scale-invariant (see Scaling Property below)
 
-## Construction via Kolmogorov Extension Theorem
+## Construction via
+
+
 
 We now sketch the rigorous construction of Brownian motion.
 
-### Step 1: Specify Finite-Dimensional Distributions
+### 1. Specify Finite Di
+
+
 
 For any finite collection of times $0 \le t_1 < \cdots < t_n$, define:
 
@@ -300,7 +332,9 @@ $$(W_{t_1}, \ldots, W_{t_n}) \sim \mathcal{N}(0, \Sigma), \quad \Sigma_{ij} = \m
 
 
 
-### Step 2: Verify Consistency
+### 2. Verify Consistenc
+
+
 
 **Kolmogorov consistency conditions:** For any permutation and any subcollection of times, the marginal distributions must agree.
 
@@ -309,7 +343,9 @@ $$(W_{t_1}, \ldots, W_{t_n}) \sim \mathcal{N}(0, \Sigma), \quad \Sigma_{ij} = \m
 - **Symmetry**: Permuting indices doesn't change the $\min$ structure
 - **Marginalization**: Integrating out variables preserves the Gaussian $\min$ covariance structure
 
-### Step 3: Apply Kolmogorov Extension Theorem
+### 3. Apply Kolmogorov
+
+
 
 **Theorem 1.3.6** (Kolmogorov Extension)
 
@@ -317,7 +353,9 @@ If the finite-dimensional distributions $\{\mu_{t_1,\ldots,t_n}\}$ are consisten
 
 **Proof:** See Billingsley (1995), Kallenberg (2002). $\square$
 
-### Step 4: Ensure Continuity
+### 4. Ensure Continuity
+
+
 
 The Kolmogorov extension theorem gives a process, but doesn't guarantee continuous paths. We need:
 
@@ -343,7 +381,9 @@ Thus, we can take $\beta = 1$ and $C = 3$, satisfying the criterion with $\alpha
 
 **Conclusion:** There exists a continuous version of the Wiener process, which we call **Brownian motion**.
 
-## Scaling Property (Self-Similarity)
+## Scaling Property
+
+
 
 **Theorem 1.3.8** (Scaling / Self-Similarity)
 
@@ -379,7 +419,9 @@ Since they have the same finite-dimensional distributions, they are equal in dis
 1. **Time inversion**: $tW_{1/t} \overset{d}{=} W_t$ for $t > 0$
 2. **Time reversal**: If $W$ is Brownian motion, so is $W_t - W_T$ on $[0,T]$
 
-## Nowhere Differentiability
+## Nowhere
+
+
 
 One of the most striking properties of Brownian motion is its nowhere differentiability.
 
@@ -429,6 +471,8 @@ $$\limsup_{h \to 0} \frac{|W_{t+h} - W_t|}{\sqrt{2h \log(1/h)}} = 1$$
 - Classical calculus (e.g., chain rule) fails; we need **Itô calculus**
 
 ## Quadratic Variation
+
+
 
 While first-order variation is infinite, second-order variation (quadratic variation) is finite.
 
@@ -496,6 +540,8 @@ $$\sum_{i=0}^{n-1} (f(t_{i+1}) - f(t_i))^2 = O(|\Pi_n|) \to 0$$
 
 ## Martingale Property
 
+
+
 **Theorem 1.3.11** (Martingale Property)
 
 Brownian motion is a martingale with respect to its natural filtration $\mathcal{F}_t = \sigma(W_s : s \le t)$:
@@ -554,7 +600,9 @@ This martingale property is essential for:
 - Itô isometry
 - Option pricing theory
 
-## Strong Markov Property
+## Strong Markov
+
+
 
 The Markov property extends to random stopping times.
 
@@ -594,7 +642,9 @@ and has the same distribution as $W_t$ (i.e., $\mathcal{N}(0, t)$).
 - Reflected Brownian motion
 - Barrier options in finance
 
-## Connection to the Heat Equation
+## Connection Heat
+
+
 
 Brownian motion is intimately connected to the **heat equation** (diffusion PDE).
 
@@ -653,7 +703,9 @@ $$\frac{\partial u}{\partial t} = Lu$$
 
 where $L$ is a differential operator, the corresponding stochastic process is a **diffusion process** (Chapter 1.6).
 
-## First Passage Times and Reflection Principle
+## Passage Times
+
+
 
 **Definition 1.3.16** (Hitting Time)
 
@@ -697,7 +749,9 @@ But $W_{\tau_a} = a$ by definition, giving $a = 0$, a contradiction. $\square$
 
 **Remark:** This shows the difference between recurrence (certain to occur) and positive recurrence (finite expected time).
 
-### Reflection Principle
+### 1. Reflection Princi
+
+
 
 **Theorem 1.3.19** (Reflection Principle)
 
@@ -753,6 +807,8 @@ The reverse inequality follows similarly. $\square$
 
 ## Summary
 
+
+
 Brownian motion is uniquely characterized by:
 
 1. **Continuous paths** (nowhere differentiable, infinite variation)
@@ -774,6 +830,8 @@ The rigorous construction via Kolmogorov extension theorem shows that such a pro
 For computational verification of these properties, see the accompanying section on **Brownian Motion Simulations**.
 
 ## References
+
+
 
 - Billingsley, P. (1995). *Probability and Measure*, 3rd ed. Wiley.
 - Karatzas, I., & Shreve, S. E. (1991). *Brownian Motion and Stochastic Calculus*, 2nd ed. Springer.

@@ -1,10 +1,12 @@
 # Potential Future Exposure (PFE)
 
+
 **Potential Future Exposure (PFE)** measures the worst-case exposure at a given confidence level, complementing average exposure measures.
 
 ---
 
-## 1. Definition
+## Definition
+
 
 For confidence level \(\alpha\),
 
@@ -19,7 +21,8 @@ PFE is a quantile of the exposure distribution.
 
 ---
 
-## 2. Interpretation
+## Interpretation
+
 
 A statement such as:
 > “The 95% PFE at 1 year is 20 million”
@@ -29,7 +32,8 @@ PFE focuses on tail exposure rather than averages.
 
 ---
 
-## 3. Relation to EE
+## Relation to EE
+
 
 - EE measures average exposure.
 - PFE measures extreme but plausible exposure.
@@ -39,7 +43,8 @@ PFE is not additive across portfolios.
 
 ---
 
-## 4. Computation
+## Computation
+
 
 PFE is typically computed via:
 - Monte Carlo simulation,
@@ -50,7 +55,8 @@ Model assumptions strongly influence PFE.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - PFE is a high-quantile exposure measure.
 - It complements Expected Exposure.
@@ -59,6 +65,7 @@ Model assumptions strongly influence PFE.
 ---
 
 ## Further reading
+
 
 - Basel CCR capital framework.
 - Glasserman, Monte Carlo exposure models.

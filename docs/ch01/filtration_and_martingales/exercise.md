@@ -1,10 +1,12 @@
-# Exercises: Filtrations and Martingales
+# Exercises
+
 
 Throughout these exercises, let \( (\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P}) \) be a filtered probability space satisfying the usual conditions.
 
 ---
 
-## 1. Filtrations and Information Flow
+## Filtrations
+
 
 1. Give an intuitive explanation of what a filtration represents.
 2. Show that if \( s \le t \), then \( \mathcal{F}_s \subseteq \mathcal{F}_t \).
@@ -12,7 +14,8 @@ Throughout these exercises, let \( (\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 
 
 ---
 
-## 2. Natural Filtration of Brownian Motion
+## Natural Filtration
+
 
 Let \( (W_t)_{t \ge 0} \) be a Brownian motion.
 
@@ -22,7 +25,8 @@ Let \( (W_t)_{t \ge 0} \) be a Brownian motion.
 
 ---
 
-## 3. Adapted, Predictable, and Progressive Processes
+## Adapted Predictable
+
 
 1. Define what it means for a process to be adapted.
 2. Define a predictable process.
@@ -31,7 +35,8 @@ Let \( (W_t)_{t \ge 0} \) be a Brownian motion.
 
 ---
 
-## 4. Definition of a Martingale
+## Definition
+
 
 Let \( (X_t)_{t \ge 0} \) be an integrable adapted process.
 
@@ -41,7 +46,8 @@ Let \( (X_t)_{t \ge 0} \) be an integrable adapted process.
 
 ---
 
-## 5. Simple Martingale Examples
+## Simple Martingale
+
 
 Determine whether the following processes are martingales with respect to their natural filtrations:
 
@@ -54,7 +60,8 @@ Justify each answer.
 
 ---
 
-## 6. Conditional Expectation and Martingales
+## Conditional
+
 
 Let \( X \in L^1(\Omega) \) and define
 
@@ -70,7 +77,8 @@ M_t := \mathbb{E}[X \mid \mathcal{F}_t].
 
 ---
 
-## 7. Stopping Times
+## Stopping Times
+
 
 1. Define a stopping time with respect to a filtration.
 2. Show that the hitting time
@@ -85,7 +93,8 @@ is a stopping time.
 
 ---
 
-## 8. Optional Stopping Theorem (Qualitative)
+## Optional Stopping
+
 
 Let \( (M_t)_{t \ge 0} \) be a martingale and \( \tau \) a stopping time.
 
@@ -95,7 +104,8 @@ Let \( (M_t)_{t \ge 0} \) be a martingale and \( \tau \) a stopping time.
 
 ---
 
-## 9. Doob Decomposition
+## Doob Decomposition
+
 
 Let \( (X_t)_{t \ge 0} \) be a submartingale.
 
@@ -105,7 +115,8 @@ Let \( (X_t)_{t \ge 0} \) be a submartingale.
 
 ---
 
-## 10. Uniform Integrability
+## Uniform
+
 
 1. Define uniform integrability.
 2. Explain why uniform integrability is important for martingale convergence.
@@ -113,7 +124,8 @@ Let \( (X_t)_{t \ge 0} \) be a submartingale.
 
 ---
 
-## 11. Martingale Convergence Theorem
+## Martingale
+
 
 1. State the martingale convergence theorem.
 2. What role does uniform integrability play?
@@ -121,7 +133,8 @@ Let \( (X_t)_{t \ge 0} \) be a submartingale.
 
 ---
 
-## 12. Doob’s Inequalities
+## Doob s Inequalities
+
 
 Let \( (M_t)_{t \ge 0} \) be a martingale.
 
@@ -137,7 +150,8 @@ Let \( (M_t)_{t \ge 0} \) be a martingale.
 
 ---
 
-## 13. Discrete-Time Martingales
+## Discrete Time
+
 
 Let \( (X_n, \mathcal{F}_n)_{n \ge 0} \) be a discrete-time process.
 
@@ -147,7 +161,8 @@ Let \( (X_n, \mathcal{F}_n)_{n \ge 0} \) be a discrete-time process.
 
 ---
 
-## 14. Martingales and Fair Games
+## Martingales Fair
+
 
 1. Explain the interpretation of martingales as “fair games.”
 2. Why does increasing expected wealth contradict the martingale property?
@@ -155,7 +170,8 @@ Let \( (X_n, \mathcal{F}_n)_{n \ge 0} \) be a discrete-time process.
 
 ---
 
-## 15. Challenge Problems (Optional)
+## Challenge Problems
+
 
 1. Show that every bounded martingale is uniformly integrable.
 2. Prove that if \( (M_t) \) is a martingale, then \( \mathbb{E}[M_t] \) is constant in time.

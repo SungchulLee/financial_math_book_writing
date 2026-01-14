@@ -1,10 +1,12 @@
 # Futures Momentum
 
+
 **Futures momentum strategies** are systematic trading approaches that exploit the empirically-validated tendency for assets with strong recent performance to continue outperforming (or underperforming) in the near future, capturing persistent trends across diversified futures markets while harvesting risk premia through rules-based position sizing and disciplined rebalancing.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -38,9 +40,11 @@ $$
 
 ## What Is Futures
 
+
 **Before trading momentum, understand the fundamental mechanics:**
 
 ### 1. Academic
+
 
 **Seminal research:**
 
@@ -68,6 +72,7 @@ $$
 - **Persistent risk premium**
 
 ### 2. Time-Series vs
+
 
 **Two distinct approaches:**
 
@@ -117,6 +122,7 @@ $$
 
 ### 3. Standard TSMOM
 
+
 **Classic specification:**
 
 **1. Signal calculation:**
@@ -163,6 +169,7 @@ $$
 - Position: $\frac{-1}{0.60} \times 0.12 = -0.20$ (short 20%)
 
 ### 4. Why Momentum
+
 
 **Academic explanations:**
 
@@ -216,6 +223,7 @@ $$
 
 ### 5. Historical
 
+
 **Moskowitz et al. (2012) results:**
 
 **1985-2009 (25 years):**
@@ -254,9 +262,11 @@ $$
 
 ## Economic
 
+
 **Beyond the signals, understanding the economic rationale:**
 
 ### 1. Momentum as
+
 
 **The deep insight:**
 
@@ -307,6 +317,7 @@ $$
 $$
 
 ### 2. Information
+
 
 **Academic model (Hong and Stein, 1999):**
 
@@ -360,6 +371,7 @@ Where $\alpha < 1$ (incomplete incorporation)
 
 ### 3. Momentum vs Mean
 
+
 **Critical distinction:**
 
 $$
@@ -410,6 +422,7 @@ $$
 
 ### 4. Commodity
 
+
 **Commodity-specific driver:**
 
 $$
@@ -450,6 +463,7 @@ $$
 
 ### 5. Currency Momentum
 
+
 **FX momentum driven by carry:**
 
 **High interest rate currency:**
@@ -482,6 +496,7 @@ $$
 **But crashed 2008 (momentum risk!)**
 
 ### 6. Portfolio
+
 
 **Why diversified momentum outperforms single-market:**
 
@@ -527,6 +542,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Momentum:**
 
@@ -653,9 +669,11 @@ $$
 
 ## The Greeks (Momentum
 
+
 **While momentum isn't options, we can define analogous sensitivities:**
 
 ### 1. Delta
+
 
 **Definition:** Exposure to absolute price movements.
 
@@ -685,6 +703,7 @@ $$
 **Unlike spreads (delta-neutral), momentum is pure trend-following!**
 
 ### 2. Gamma (Trend
+
 
 **Definition:** How delta changes as trends accelerate/decelerate.
 
@@ -717,6 +736,7 @@ $$
 
 ### 3. Theta (Time Decay
 
+
 **Definition:** How signal strength changes over time.
 
 $$
@@ -748,6 +768,7 @@ $$
 - **Why monthly rebalancing critical**
 
 ### 4. Vega (Volatility
+
 
 **Definition:** How strategy performs in different volatility regimes.
 
@@ -789,6 +810,7 @@ $$
 
 ### 5. Rho (Interest
 
+
 **Definition:** Sensitivity to interest rate changes.
 
 $$
@@ -810,6 +832,7 @@ When trading bond futures:
 - **Indirect effect**
 
 ### 6. Beta (Market
+
 
 **Definition:** Correlation to equity markets.
 
@@ -845,9 +868,11 @@ $$
 
 ## Strategy Selection
 
+
 **Not all momentum implementations are equal:**
 
 ### 1. Classic 12-1
+
 
 **Specification:**
 
@@ -885,6 +910,7 @@ $$
 - **Trade-off for stability**
 
 ### 2. Fast Momentum
+
 
 **Specification:**
 
@@ -924,6 +950,7 @@ $$
 
 ### 3. Slow Momentum
 
+
 **Specification:**
 
 $$
@@ -961,6 +988,7 @@ $$
 **When to use: Low-cost, passive implementation**
 
 ### 4. Combined Signal
+
 
 **Specification:**
 
@@ -1004,6 +1032,7 @@ $$
 
 ### 5. Comparison Table
 
+
 | Strategy | Lookback | Sharpe | Max DD | Turnover | Best For |
 |----------|----------|--------|--------|----------|----------|
 | Classic 12-1 | 12 months | 0.77 | -25% | 35%/yr | Most traders |
@@ -1017,9 +1046,11 @@ $$
 
 ## Time Selection
 
+
 **Momentum is SYSTEMATIC, not discretionary:**
 
 ### 1. Entry Timing
+
 
 **Standard approach:**
 
@@ -1076,6 +1107,7 @@ $$
 
 ### 2. Exit Timing
 
+
 **No discretionary exits:**
 
 $$
@@ -1095,6 +1127,7 @@ $$
 
 ### 3. Intra-Month
 
+
 **Standard: Do nothing**
 
 - Hold positions
@@ -1111,6 +1144,7 @@ $$
 **But generally: Trust the system**
 
 ### 4. Handling
+
 
 **Momentum's biggest risk: Rapid reversals**
 
@@ -1142,6 +1176,7 @@ $$
 
 ### 5. Alternative
 
+
 **Some traders use weekly/daily:**
 
 **Weekly rebalancing:**
@@ -1170,7 +1205,9 @@ $$
 
 ## Maximum Profit and
 
+
 ### 1. Diversified
+
 
 **Setup:**
 
@@ -1257,6 +1294,7 @@ $$
 
 ### 2. Single-Market
 
+
 **Setup:**
 
 - Account: $500,000
@@ -1286,6 +1324,7 @@ $$
 **Much higher risk than diversified!**
 
 ### 3. Real Example
+
 
 **Hypothetical managed futures fund:**
 
@@ -1336,7 +1375,9 @@ $$
 
 ## When to Use Momentum
 
+
 ### 1. Ideal Market
+
 
 **Use momentum when:**
 
@@ -1392,6 +1433,7 @@ $$
 - **Patience rewarded**
 
 ### 2. Specific Use
+
 
 **Use Case 1: Portfolio diversification**
 
@@ -1472,7 +1514,9 @@ $$
 
 ## When NOT to Use
 
+
 ### 1. Avoid These
+
 
 **1. Choppy, range-bound markets:**
 
@@ -1568,6 +1612,7 @@ $$
 
 ### 2. Warning Signs to
 
+
 **1. All signals aligned (crowded trade):**
 
 **Example:**
@@ -1616,7 +1661,9 @@ $$
 
 ## Position Sizing and
 
+
 ### 1. The Golden Rule
+
 
 **Core principle:**
 
@@ -1667,6 +1714,7 @@ $$
 
 ### 2. Portfolio
 
+
 **Conservative (5-10% of total portfolio):**
 
 **Example: $1M total portfolio**
@@ -1698,6 +1746,7 @@ $$
 - **Professional implementation**
 
 ### 3. Diversification
+
 
 **Minimum markets:**
 
@@ -1735,6 +1784,7 @@ $$
 $$
 
 ### 4. Stop Loss
+
 
 **No traditional stops for momentum:**
 
@@ -1779,6 +1829,7 @@ $$
 
 ### 5. Leverage
 
+
 **Futures allow massive leverage:**
 
 $$
@@ -1808,6 +1859,7 @@ $$
 **Beyond this: Unmanageable risk**
 
 ### 6. Account:
+
 
 **Account: $1,000,000**
 
@@ -1850,7 +1902,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. The error: "Crude
+
 
 **The error:**
 
@@ -1879,6 +1933,7 @@ N \geq 20 \text{ markets minimum}
 $$
 
 ### 2. The error: Signal
+
 
 **The error:**
 
@@ -1911,6 +1966,7 @@ $$
 
 ### 3. The error:
 
+
 **The error:**
 
 - Backtest 100 lookback periods
@@ -1935,6 +1991,7 @@ $$
 - **Robust > optimal**
 
 ### 4. The error:
+
 
 **The error:**
 
@@ -1968,6 +2025,7 @@ $$
 
 ### 5. The error: $100k
 
+
 **The error:**
 
 - $100k in crude oil
@@ -1995,6 +2053,7 @@ $$
 - **Equal risk contribution**
 
 ### 6. The error:
+
 
 **The error:**
 
@@ -2027,6 +2086,7 @@ $$
 
 ### 7. The error:
 
+
 **The error:**
 
 **Observation:**
@@ -2051,6 +2111,7 @@ $$
 - **Smooth timing**
 
 ### 8. The error: Use
+
 
 **The error:**
 
@@ -2082,6 +2143,7 @@ $$
 
 ### 9. The error: Set
 
+
 **The error:**
 
 - Set positions in January
@@ -2106,6 +2168,7 @@ $$
 - **Fresh signals**
 
 ### 10. The error: Use
+
 
 **The error:**
 
@@ -2143,6 +2206,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Momentum is the premier risk premium in futures markets—academically validated across 100+ years, robust across all asset classes, and exhibiting a Sharpe ratio of 0.77 that puts most strategies to shame. But momentum is NOT a free lunch. It comes with catastrophic drawdown risk (25% max historically), violent reversals during market turning points (March 2009 -24% in 2 months), and the psychological challenge of following mechanical signals through drawdowns. The successful momentum trader is ruthlessly systematic (no discretion), properly diversified (20-30 markets minimum), volatility-aware (scale positions inversely), and patient (accepts drawdowns as cost of premium). Momentum works because behavioral biases (underreaction, herding) and structural forces (slow supply response, gradual information diffusion) create persistent trends. But these same forces can reverse violently when markets panic or capitulate. Trade momentum as a long-term portfolio diversifier with institutional discipline, not as a get-rich-quick scheme. The strategy's Sharpe ratio is earned through surviving multiple cycles, not chasing every trend."
 

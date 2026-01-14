@@ -1,10 +1,12 @@
 # Sensitivity of Prices to Calibration Error
 
+
 Calibration error translates directly into **model risk**: even small mis-estimation of parameters can lead to non-negligible pricing errors, especially for nonlinear or path-dependent payoffs.
 
 ---
 
-## 1. From parameter error to price error
+## From parameter error to price error
+
 
 Let \(\hat\theta\) be the calibrated parameter vector and \(\theta^\star\) the (unknown) true parameter.
 A first-order expansion yields
@@ -21,7 +23,8 @@ Thus, price sensitivity depends on:
 
 ---
 
-## 2. Linear versus nonlinear effects
+## Linear versus nonlinear effects
+
 
 For vanilla options near calibration points, first-order effects may dominate.
 For exotics:
@@ -32,7 +35,8 @@ This explains why exotics often exhibit much larger model risk than vanillas.
 
 ---
 
-## 3. Concentration of sensitivity
+## Concentration of sensitivity
+
 
 Price sensitivity is typically concentrated in:
 - long maturities (term-structure uncertainty),
@@ -43,7 +47,8 @@ Calibration error in weakly identified parameters can therefore dominate pricing
 
 ---
 
-## 4. Practical measurement
+## Practical measurement
+
 
 Common approaches include:
 - bump-and-reprice in parameter space,
@@ -54,7 +59,8 @@ These approaches provide *ranges* rather than point estimates.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Calibration error propagates directly into price uncertainty.
 - Linear approximations may understate risk for nonlinear payoffs.
@@ -63,6 +69,7 @@ These approaches provide *ranges* rather than point estimates.
 ---
 
 ## Further reading
+
 
 - Cont, *Model Uncertainty and Its Impact on Pricing*.
 - Glasserman, *Monte Carlo Methods in Financial Engineering*.

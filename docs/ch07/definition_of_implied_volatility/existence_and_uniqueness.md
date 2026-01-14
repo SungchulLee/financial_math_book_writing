@@ -1,12 +1,16 @@
 # Existence and Uniqueness of Implied Volatility
 
+
 ## Introduction
+
 
 The well-posedness of implied volatility—existence and uniqueness of the inverse pricing map—is fundamental to using volatility as a quoting convention. This section rigorously establishes conditions under which the equation $C_{\text{BS}}(\sigma) = C_{\text{market}}$ admits a unique solution, examines boundary behavior, and explores failure modes when no-arbitrage conditions are violated.
 
 ## General Framework for Existence and Uniqueness
 
-### Abstract Formulation
+
+### 1. Abstract Formulation
+
 
 Consider a pricing functional:
 
@@ -29,7 +33,8 @@ $$
 
 
 
-### Conditions for Well-Posedness
+### 2. Conditions for Well-Posedness
+
 
 **Theorem 4.2.1** (Existence and Uniqueness via Monotonicity)  
 Let $F: (a, b) \to \mathbb{R}$ be continuous and strictly monotone. Then for any $P \in (\inf_{\sigma \in (a,b)} F(\sigma), \sup_{\sigma \in (a,b)} F(\sigma))$, there exists a unique $\sigma_* \in (a, b)$ such that $F(\sigma_*) = P$.
@@ -38,7 +43,8 @@ Let $F: (a, b) \to \mathbb{R}$ be continuous and strictly monotone. Then for any
 - **Existence:** By the Intermediate Value Theorem, since $F$ is continuous and $P$ lies in the range of $F$
 - **Uniqueness:** Strict monotonicity prevents multiple solutions □
 
-### Application to Black-Scholes
+### 3. Application to Black-Scholes
+
 
 For the Black-Scholes call pricing function:
 
@@ -59,7 +65,9 @@ We establish:
 
 ## Detailed Analysis of Range and Limits
 
-### Lower Bound: Intrinsic Value Limit
+
+### 1. Lower Bound: Intrinsic Value Limit
+
 
 **Theorem 4.2.2** (Zero Volatility Limit)
 
@@ -102,7 +110,8 @@ $$
 - Requires more careful analysis using $\Phi(x) = \frac{1}{2} + \frac{1}{\sqrt{2\pi}} x + O(x^3)$ for small $x$
 - Limit gives $0$ (zero time value at zero volatility) □
 
-### Upper Bound: Infinite Volatility Limit
+### 2. Upper Bound: Infinite Volatility Limit
+
 
 **Theorem 4.2.3** (Infinite Volatility Limit)
 
@@ -138,7 +147,8 @@ Therefore:
 
 **Economic interpretation:** At infinite volatility, the option has value equal to the discounted spot (assuming immediate exercise), as the optionality dominates completely.
 
-### Characterization of Admissible Prices
+### 3. Characterization of Admissible Prices
+
 
 **Corollary 4.2.1** (Necessary and Sufficient Conditions for Existence)  
 Implied volatility exists for a market price $C_{\text{market}}$ if and only if:
@@ -154,7 +164,9 @@ These are precisely the **static no-arbitrage bounds** on European call prices.
 
 ## Strict Monotonicity: Vega Analysis
 
-### Vega Formula
+
+### 1. Vega Formula
+
 
 The derivative of the Black-Scholes price with respect to volatility:
 
@@ -167,7 +179,8 @@ $$
 
 where $\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$ is the standard normal density.
 
-### Positivity and Implications
+### 2. Positivity and Implications
+
 
 **Proposition 4.2.1** (Strict Positivity of Vega)  
 For all $(S, K, T, r, q, \sigma)$ with $S > 0$, $T > 0$, $\sigma > 0$:
@@ -187,7 +200,8 @@ $$
 **Corollary 4.2.2** (Strict Monotonicity)  
 The map $\sigma \mapsto C_{\text{BS}}(\sigma)$ is strictly increasing on $(0, \infty)$.
 
-### Uniform Lower Bound on Vega
+### 3. Uniform Lower Bound on Vega
+
 
 While vega is always positive, its magnitude varies with moneyness and maturity. 
 
@@ -214,7 +228,9 @@ $$
 
 ## Continuity and Differentiability of the Inverse Map
 
-### Continuous Dependence on Price
+
+### 1. Continuous Dependence on Price
+
 
 **Theorem 4.2.4** (Continuity of Implied Volatility)  
 The implied volatility map:
@@ -245,7 +261,8 @@ $$
 
 By uniqueness, $\sigma_* = \mathcal{I}(C)$. Full sequence converges by uniqueness of limit. □
 
-### Smoothness via Implicit Function Theorem
+### 2. Smoothness via Implicit Function Theorem
+
 
 **Theorem 4.2.5** (Differentiability of Implied Volatility)  
 The implied volatility is $C^\infty$ smooth with:
@@ -281,7 +298,8 @@ $$
 
 Higher derivatives follow by differentiation. □
 
-### Second Derivative: Curvature of Inverse Map
+### 3. Second Derivative: Curvature of Inverse Map
+
 
 Differentiating the relation $C_{\text{BS}}(\sigma_{\text{IV}}(C)) = C$:
 
@@ -319,7 +337,9 @@ $$
 
 ## Boundary Behavior and Non-Existence Cases
 
-### Behavior Near Intrinsic Value
+
+### 1. Behavior Near Intrinsic Value
+
 
 As $C \to C_{\text{intrinsic}}^+$:
 
@@ -344,7 +364,8 @@ $$
 
 as $C \to C_{\text{intrinsic}}^+$.
 
-### Behavior Near Upper Bound
+### 2. Behavior Near Upper Bound
+
 
 As $C \to (S e^{-qT})^-$:
 
@@ -365,7 +386,8 @@ $$
 
 
 
-### Non-Existence: Arbitrage Violations
+### 3. Non-Existence: Arbitrage Violations
+
 
 Implied volatility fails to exist when:
 
@@ -388,7 +410,9 @@ These cases are handled by:
 
 ## Stability Analysis
 
-### Lipschitz Continuity
+
+### 1. Lipschitz Continuity
+
 
 **Theorem 4.2.6** (Local Lipschitz Continuity)  
 On any compact interval $[C_1, C_2] \subset (C_{\text{intrinsic}}, S e^{-qT})$, the implied volatility map is Lipschitz continuous:
@@ -420,7 +444,8 @@ $$
 
 for some $\xi \in (C, C')$. The Lipschitz constant is the supremum of the derivative. □
 
-### Condition Number Analysis
+### 2. Condition Number Analysis
+
 
 The **condition number** for the inversion problem:
 
@@ -442,7 +467,9 @@ This indicates that implied volatility extraction becomes increasingly sensitive
 
 ## Extension to Other Instruments
 
-### Put Options
+
+### 1. Put Options
+
 
 For European puts, by put-call parity:
 
@@ -464,7 +491,8 @@ $$
 
 for the same $(K, T)$. The existence and uniqueness analysis is identical, with modified intrinsic value bounds.
 
-### Binary Options
+### 2. Binary Options
+
 
 For digital (binary) calls with payoff $\mathbb{1}_{S_T > K}$:
 
@@ -487,6 +515,7 @@ $$
 This can be positive or negative depending on moneyness, destroying uniqueness of implied volatility for digitals.
 
 ## Summary
+
 
 The existence and uniqueness of implied volatility rests on:
 

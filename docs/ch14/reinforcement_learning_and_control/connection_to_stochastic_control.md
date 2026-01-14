@@ -1,10 +1,12 @@
 # Connection to Stochastic Control
 
+
 Reinforcement learning is closely related to **stochastic control**, a classical framework in mathematical finance and economics.
 
 ---
 
-## 1. Stochastic control formulation
+## Stochastic control formulation
+
 
 Stochastic control problems involve:
 - controlled stochastic dynamics,
@@ -15,7 +17,8 @@ The goal is to maximize expected utility or reward.
 
 ---
 
-## 2. Hamilton–Jacobi–Bellman equation
+## Hamilton–Jacobi–Bellman equation
+
 
 In continuous time, optimal control leads to the HJB equation:
 
@@ -30,7 +33,8 @@ This is the continuous-time analogue of Bellman equations.
 
 ---
 
-## 3. RL as data-driven control
+## RL as data-driven control
+
 
 Reinforcement learning can be viewed as:
 - approximating value functions,
@@ -39,7 +43,8 @@ Reinforcement learning can be viewed as:
 
 ---
 
-## 4. Financial applications
+## Financial applications
+
 
 Connections appear in:
 - optimal trading and execution,
@@ -50,7 +55,8 @@ RL generalizes stochastic control to unknown environments.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - RL and stochastic control share the Bellman principle.
 - HJB equations connect continuous-time finance to RL.
@@ -59,6 +65,7 @@ RL generalizes stochastic control to unknown environments.
 ---
 
 ## Further reading
+
 
 - Fleming & Soner, *Controlled Markov Processes*.
 - Pham, continuous-time RL connections.

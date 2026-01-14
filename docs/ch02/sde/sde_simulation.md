@@ -1,12 +1,15 @@
 # SDE Simulation
 
+
 Most SDEs lack closed-form solutions, making **numerical simulation** essential for practical applications. This section develops simulation methods from first principles, starting with an intuitive discrete approximation and progressing to rigorous numerical schemes.
 
 ---
 
-## 1. From Coin Flips to Brownian Motion
+## From Coin Flips to Brownian Motion
 
-### 1.1 Discrete Random Walk
+
+### 1. Discrete Random Walk
+
 
 Before simulating continuous SDEs, we build intuition through a **discrete random walk** that approximates Brownian motion.
 
@@ -19,7 +22,8 @@ t_0 & < & t_1 & < & t_2 & < & \cdots & < & t_n
 \end{array}
 $$
 
-### 1.2 Discretizing GBM
+### 2. Discretizing GBM
+
 
 For the geometric Brownian motion SDE:
 
@@ -41,7 +45,8 @@ where $\Delta B_n = B_{t_{n+1}} - B_{t_n} \sim \mathcal{N}(0, \Delta t)$.
 
 **Key insight:** $\Delta B_n \approx \pm\sqrt{\Delta t}$ with equal probability (coin flip).
 
-### 1.3 Paper-and-Pencil Simulation
+### 3. Paper-and-Pencil Simulation
+
 
 **Example:** Simulate GBM with $S_0 = 100$, $\mu = 0.10$, $\sigma = 0.30$, $T = 1$, $n = 10$ (so $\Delta t = 1/10$).
 
@@ -96,7 +101,8 @@ $$
 
 **Result:** Starting from $S_0 = 100$, we end at $S_T \approx 127.58$ after 10 coin flips.
 
-### 1.4 From Discrete to Continuous
+### 4. From Discrete to Continuous
+
 
 As $n \to \infty$ (i.e., $\Delta t \to 0$):
 
@@ -108,9 +114,11 @@ This limiting process is the foundation of **Euler-Maruyama discretization**.
 
 ---
 
-## 2. Euler-Maruyama Scheme
+## Euler-Maruyama Scheme
 
-### 2.1 Derivation
+
+### 1. Derivation
+
 
 For a general SDE:
 
@@ -140,7 +148,8 @@ X_{n+1} = X_n + b(t_n, X_n)\Delta t + \sigma(t_n, X_n)\Delta W_n
 }
 $$
 
-### 2.2 Implementation
+### 2. Implementation
+
 
 **Algorithm:**
 
@@ -150,7 +159,8 @@ $$
    - Generate $\Delta W_n \sim \mathcal{N}(0, \Delta t)$
    - Update: $X_{n+1} = X_n + b(t_n, X_n)\Delta t + \sigma(t_n, X_n)\Delta W_n$
 
-### 2.3 Python Implementation: General SDE
+### 3. Python Implementation: General SDE
+
 
 ```python
 import numpy as np
@@ -197,7 +207,8 @@ def euler_maruyama(b, sigma, X0, T, N, num_paths=1):
     return t, X
 ```
 
-### 2.4 Example: Geometric Brownian Motion
+### 4. Example: Geometric Brownian Motion
+
 
 ```python
 # GBM parameters
@@ -230,7 +241,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-### 2.5 Example: Ornstein-Uhlenbeck Process
+### 5. Example: Ornstein-Uhlenbeck Process
+
 
 ```python
 # OU parameters
@@ -263,9 +275,11 @@ plt.show()
 
 ---
 
-## 3. Convergence Analysis
+## Convergence Analysis
 
-### 3.1 Strong Convergence
+
+### 1. Strong Convergence
+
 
 **Definition:** A numerical scheme has **strong convergence of order $\gamma$** if:
 
@@ -283,7 +297,8 @@ $$
 
 **Interpretation:** To reduce error by factor of 10, we need $\Delta t \to \Delta t / 100$ (100× more steps).
 
-### 3.2 Weak Convergence
+### 2. Weak Convergence
+
 
 **Definition:** A scheme has **weak convergence of order $\beta$** if for all sufficiently smooth functions $g$:
 
@@ -299,7 +314,8 @@ $$
 
 **Practical implication:** For computing expectations (e.g., option prices), Euler-Maruyama converges faster than for pathwise accuracy.
 
-### 3.3 Numerical Verification of Convergence
+### 3. Numerical Verification of Convergence
+
 
 ```python
 def convergence_test_GBM():
@@ -350,15 +366,18 @@ def convergence_test_GBM():
 
 ---
 
-## 4. Milstein Scheme
+## Milstein Scheme
 
-### 4.1 Motivation
+
+### 1. Motivation
+
 
 Euler-Maruyama has strong order 0.5. Can we do better?
 
 **Idea:** Include more terms from the **Itô-Taylor expansion**.
 
-### 4.2 Itô-Taylor Expansion
+### 2. Itô-Taylor Expansion
+
 
 For $Y_t = X_{t+\Delta t}$, expand using Itô's lemma:
 
@@ -376,7 +395,8 @@ $$
 X_{t+\Delta t} = X_t + b(X_t)\Delta t + \sigma(X_t)\Delta W + \frac{1}{2}\sigma(X_t)\sigma'(X_t)[(\Delta W)^2 - \Delta t]
 $$
 
-### 4.3 Milstein Scheme
+### 3. Milstein Scheme
+
 
 $$
 \boxed{
@@ -386,13 +406,15 @@ $$
 
 **Key term:** $(\Delta W_n)^2 - \Delta t$ captures the **quadratic variation** correction.
 
-### 4.4 Convergence
+### 4. Convergence
+
 
 **Theorem:** The Milstein scheme has:
 - **Strong order** $\gamma = 1.0$ (vs. 0.5 for Euler-Maruyama)
 - **Weak order** $\beta = 1.0$ (same as Euler-Maruyama)
 
-### 4.5 Python Implementation
+### 5. Python Implementation
+
 
 ```python
 def milstein(b, sigma, sigma_prime, X0, T, N, num_paths=1):
@@ -443,7 +465,8 @@ def milstein(b, sigma, sigma_prime, X0, T, N, num_paths=1):
     return t, X
 ```
 
-### 4.6 Example: GBM with Milstein
+### 6. Example: GBM with Milstein
+
 
 ```python
 # GBM: sigma(S) = sig * S, so sigma'(S) = sig
@@ -480,9 +503,11 @@ plt.show()
 
 ---
 
-## 5. Exact Simulation (When Possible)
+## Exact Simulation (When Possible)
 
-### 5.1 Geometric Brownian Motion
+
+### 1. Geometric Brownian Motion
+
 
 For GBM, we have the **exact solution**:
 
@@ -510,7 +535,8 @@ def exact_GBM(S0, mu, sigma, T, N, num_paths):
 
 **Advantage:** No discretization error; only Monte Carlo error remains.
 
-### 5.2 Ornstein-Uhlenbeck Process
+### 2. Ornstein-Uhlenbeck Process
+
 
 The OU process also has an exact solution:
 
@@ -549,7 +575,8 @@ def exact_OU(X0, kappa, theta, sigma, T, N, num_paths):
     return t, X
 ```
 
-### 5.3 Comparison: Exact vs. Euler-Maruyama
+### 3. Comparison: Exact vs. Euler-Maruyama
+
 
 ```python
 # Parameters
@@ -580,9 +607,11 @@ print(f"E-M:   mean={np.mean(X_em[:,-1]):.4f}, std={np.std(X_em[:,-1]):.4f}")
 
 ---
 
-## 6. Advanced Schemes
+## Advanced Schemes
 
-### 6.1 Stochastic Runge-Kutta Methods
+
+### 1. Stochastic Runge-Kutta Methods
+
 
 Higher-order schemes based on Runge-Kutta ideas.
 
@@ -596,7 +625,8 @@ X_{n+1} &= X_n + \frac{1}{2}[b(X_n) + b(\bar{X})]\Delta t + \sigma(X_n)\Delta W_
 \end{align}
 $$
 
-### 6.2 Predictor-Corrector Methods
+### 2. Predictor-Corrector Methods
+
 
 **Idea:** Use Euler to predict, then correct using midpoint rule.
 
@@ -627,9 +657,11 @@ def predictor_corrector(b, sigma, X0, T, N, num_paths=1):
 
 ---
 
-## 7. Multidimensional SDEs
+## Multidimensional SDEs
 
-### 7.1 System of SDEs
+
+### 1. System of SDEs
+
 
 For $X_t = (X_t^1, \ldots, X_t^d)$ driven by $W_t = (W_t^1, \ldots, W_t^m)$:
 
@@ -637,7 +669,8 @@ $$
 dX_t^i = b^i(t, X_t)\,dt + \sum_{j=1}^m \sigma^{ij}(t, X_t)\,dW_t^j
 $$
 
-### 7.2 Correlated Brownian Motions
+### 2. Correlated Brownian Motions
+
 
 **Correlation structure:** $d\langle W^i, W^j \rangle_t = \rho_{ij}\,dt$
 
@@ -688,7 +721,8 @@ def correlated_BM(rho, T, N, num_paths):
     return t, W
 ```
 
-### 7.3 Example: Heston Model
+### 3. Example: Heston Model
+
 
 $$
 \begin{cases}
@@ -736,9 +770,11 @@ def heston_euler(S0, V0, mu, kappa, theta, xi, rho, T, N, num_paths):
 
 ---
 
-## 8. Error Sources and Mitigation
+## Error Sources and Mitigation
 
-### 8.1 Two Types of Error
+
+### 1. Two Types of Error
+
 
 **Total error = Discretization error + Monte Carlo error**
 
@@ -750,7 +786,8 @@ where:
 - $\gamma$ = strong convergence order
 - $M$ = number of Monte Carlo paths
 
-### 8.2 Optimal Allocation
+### 2. Optimal Allocation
+
 
 To minimize computational cost for fixed error $\varepsilon$:
 
@@ -766,7 +803,8 @@ $$
 - $\Delta t \sim \varepsilon^{2/3}$
 - $M \sim \varepsilon^{-4/3}$
 
-### 8.3 Variance Reduction Techniques
+### 3. Variance Reduction Techniques
+
 
 **Antithetic variates:** For each path with increments $\Delta W_n$, simulate another with $-\Delta W_n$.
 
@@ -805,9 +843,11 @@ def euler_maruyama_antithetic(b, sigma, X0, T, N, num_paths):
 
 ---
 
-## 9. Practical Considerations
+## Practical Considerations
 
-### 9.1 Choosing the Time Step
+
+### 1. Choosing the Time Step
+
 
 **Guidelines:**
 
@@ -816,7 +856,8 @@ def euler_maruyama_antithetic(b, sigma, X0, T, N, num_paths):
 3. **Non-negativity:** For CIR/Heston, use small $\Delta t$ or special schemes
 4. **Computational budget:** Balance $N$ and $M$
 
-### 9.2 Monitoring Numerical Stability
+### 2. Monitoring Numerical Stability
+
 
 ```python
 def check_stability(X, threshold=1e10):
@@ -826,7 +867,8 @@ def check_stability(X, threshold=1e10):
     return True
 ```
 
-### 9.3 Comparing Schemes
+### 3. Comparing Schemes
+
 
 ```python
 def compare_schemes():
@@ -859,9 +901,11 @@ def compare_schemes():
 
 ---
 
-## 10. Summary
+## Summary
 
-### 10.1 Scheme Selection Guide
+
+### 1. Scheme Selection Guide
+
 
 | Scheme | Strong Order | Weak Order | When to Use |
 |--------|--------------|------------|-------------|
@@ -871,7 +915,8 @@ def compare_schemes():
 | **Predictor-Corrector** | ~1.0 | ~1.5 | Better stability |
 | **Runge-Kutta** | 1.5+ | 2.0+ | High accuracy needed |
 
-### 10.2 Key Takeaways
+### 2. Key Takeaways
+
 
 1. **Euler-Maruyama** is the workhorse: simple, robust, works for most SDEs
 2. **Milstein** improves accuracy when diffusion derivative is tractable
@@ -881,7 +926,8 @@ def compare_schemes():
 6. **Multidimensional SDEs** require careful treatment of correlation
 7. **Variance reduction** can dramatically improve efficiency
 
-### 10.3 Computational Complexity
+### 3. Computational Complexity
+
 
 For error $\varepsilon$ using Euler-Maruyama:
 - Time steps: $N \sim \varepsilon^{-2/3}$
@@ -891,7 +937,8 @@ For error $\varepsilon$ using Euler-Maruyama:
 For Milstein (strong order 1.0):
 - **Total cost:** $\sim \varepsilon^{-5/3}$ (better!)
 
-### 10.4 From Discrete to Continuous
+### 4. From Discrete to Continuous
+
 
 The journey from coin flips to sophisticated numerical schemes illustrates a fundamental principle:
 

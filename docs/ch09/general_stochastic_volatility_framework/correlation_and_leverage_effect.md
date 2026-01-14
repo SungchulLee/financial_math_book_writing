@@ -1,10 +1,12 @@
 # Correlation and Leverage Effect
 
+
 A defining feature of equity markets is the **leverage effect**: negative returns are associated with rising volatility. In stochastic volatility models, this is captured by **correlation** between price and volatility shocks.
 
 ---
 
-## 1. Correlated Brownian motions
+## Correlated Brownian motions
+
 
 In two-factor models, we allow
 
@@ -19,7 +21,8 @@ This single parameter has a profound impact on option prices.
 
 ---
 
-## 2. Leverage effect in equity markets
+## Leverage effect in equity markets
+
 
 Empirically:
 - equity returns and volatility changes are negatively correlated,
@@ -30,7 +33,8 @@ Negative \(\rho\) reproduces this behavior.
 
 ---
 
-## 3. Impact on implied volatility smile
+## Impact on implied volatility smile
+
 
 Correlation primarily controls **skew**:
 
@@ -42,7 +46,8 @@ This explains why skew is persistent even in calm markets.
 
 ---
 
-## 4. Dynamic interpretation
+## Dynamic interpretation
+
 
 Economically, the leverage effect reflects:
 - balance-sheet effects,
@@ -53,7 +58,8 @@ Stochastic volatility models encode these effects parsimoniously via correlation
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Correlation between price and volatility is essential.
 - It explains skew in implied volatility surfaces.
@@ -62,6 +68,7 @@ Stochastic volatility models encode these effects parsimoniously via correlation
 ---
 
 ## Further reading
+
 
 - Black (1976), leverage effect.
 - Bouchaud et al., empirical studies of skew.

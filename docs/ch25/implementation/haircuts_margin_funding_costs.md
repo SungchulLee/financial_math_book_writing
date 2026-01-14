@@ -1,10 +1,12 @@
 # Haircuts, Margin, and Funding Costs
 
+
 **Haircuts, margin, and funding costs** are the collateral requirements, daily cash flows, and interest expenses that determine the true cost and leverage available for trading strategies, with costs rising dramatically during stress periods.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## Haircuts
 
+
 ### 1. Basic Definition
+
 
 **Haircut:**
 
@@ -46,6 +50,7 @@ $$
 
 ### 2. Effective Leverage
 
+
 **Maximum leverage from haircut:**
 
 $$
@@ -64,6 +69,7 @@ $$
 - Haircut: 50% → Max leverage: 2×
 
 ### 3. Haircut Levels by Asset
+
 
 **Normal market haircuts:**
 
@@ -100,6 +106,7 @@ $$
 
 ### 4. Stress Haircuts
 
+
 **Crisis increases:**
 
 **2008 Financial Crisis:**
@@ -128,6 +135,7 @@ Similar patterns:
 - HY corporate: 30% → 75%
 
 ### 5. Haircut Calculation
+
 
 **Risk-based formula:**
 
@@ -158,6 +166,7 @@ $$
 
 ### 6. Impact on Returns
 
+
 **Cost of haircut:**
 
 $$
@@ -172,6 +181,7 @@ $$
 - **Annual cost: $\$10 × 0.15 = $\$1.50$ (1.5% of position)**
 
 ### 7. Procyclicality
+
 
 **Feedback loop:**
 
@@ -191,7 +201,9 @@ $$
 
 ## Margin Requirements
 
+
 ### 1. Initial Margin
+
 
 **Upfront collateral:**
 
@@ -212,6 +224,7 @@ $$
 
 ### 2. Variation Margin
 
+
 **Daily settlement:**
 
 $$
@@ -230,6 +243,7 @@ $$
 - Can create liquidity stress
 
 ### 3. Maintenance Margin
+
 
 **Minimum account balance:**
 
@@ -250,6 +264,7 @@ $$
 - **Margin call: Must add $\$3,000$ to get back to IM**
 
 ### 4. Portfolio Margining
+
 
 **Cross-collateralization:**
 
@@ -281,6 +296,7 @@ $$
 
 ### 5. Margin in Stress
 
+
 **Crisis increases:**
 
 **Normal (2019):**
@@ -296,6 +312,7 @@ $$
 - Or reduce position (forced deleveraging)
 
 ### 6. Margin Calls
+
 
 **Frequency and size:**
 
@@ -317,6 +334,7 @@ $$
 - **Need to post $\$50M$ cash (or sell $\$100M$)**
 
 ### 7. Margin Models
+
 
 **Risk-based calculation:**
 
@@ -350,7 +368,9 @@ $$
 
 ## Funding Costs
 
+
 ### 1. Repo Financing
+
 
 **Cost of borrowing cash:**
 
@@ -373,6 +393,7 @@ $$
 
 ### 2. Repo Rate Components
 
+
 **Total repo rate:**
 
 $$
@@ -387,6 +408,7 @@ $$
 - **Total repo rate: 2.65%**
 
 ### 3. Funding Cost Impact
+
 
 **Return reduction:**
 
@@ -415,6 +437,7 @@ $$
 
 ### 4. Negative Carry
 
+
 **When funding > asset yield:**
 
 $$
@@ -438,6 +461,7 @@ $$
 
 ### 5. Stress Funding Costs
 
+
 **Crisis spikes:**
 
 **Normal (2019):**
@@ -454,6 +478,7 @@ $$
 - Forces deleveraging
 
 ### 6. Quarter-End Effects
+
 
 **Reporting date spikes:**
 
@@ -474,6 +499,7 @@ $$
 **Not huge but predictable**
 
 ### 7. Funding Diversification
+
 
 **Multiple sources:**
 
@@ -501,7 +527,9 @@ $$
 
 ## Combined Impact
 
+
 ### 1. True Cost of Leverage
+
 
 **All-in cost:**
 
@@ -531,6 +559,7 @@ $$
 
 ### 2. Leverage Ratio Calculation
 
+
 **Effective leverage:**
 
 $$
@@ -549,6 +578,7 @@ $$
 **Not $\$10M / $\$500K = 20×$ (naïve calculation)**
 
 ### 3. Break-Even Analysis
+
 
 **Required return:**
 
@@ -571,6 +601,7 @@ $$
 
 ### 4. Stress Impact
 
+
 **Normal → Crisis change:**
 
 **Normal case:**
@@ -591,9 +622,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Ignoring Haircut Costs
+
 
 **Mistake:** Focus only on funding rate
 
@@ -609,6 +642,7 @@ $$
 
 ### 2. Underestimating Margin Calls
 
+
 **Mistake:** Only budget for initial margin
 
 **Why it fails:** Variation margin unpredictable
@@ -622,6 +656,7 @@ $$
 **Fix:** Reserve 3-5× initial margin for VM
 
 ### 3. Assuming Constant Haircuts
+
 
 **Mistake:** Use normal-market haircuts in models
 
@@ -638,6 +673,7 @@ $$
 
 ### 4. Quarter-End Blindness
 
+
 **Mistake:** Don't plan for reporting dates
 
 **Why it fails:** Funding costs spike
@@ -652,6 +688,7 @@ $$
 **Fix:** Mark calendar, budget for 2-3× costs
 
 ### 5. Overleveraging
+
 
 **Mistake:** Max out leverage capacity
 
@@ -668,6 +705,7 @@ $$
 
 ### 6. Funding Concentration
 
+
 **Mistake:** Single repo dealer
 
 **Why it fails:** Dealer pulls back in stress
@@ -681,6 +719,7 @@ $$
 
 ### 7. Ignoring Negative Carry
 
+
 **Mistake:** Hold negative carry position too long
 
 **Why it fails:** Bleed from carry compounds
@@ -693,6 +732,7 @@ $$
 **Fix:** Exit negative carry trades quickly or have strong directional view
 
 ### 8. Poor Margin Forecasting
+
 
 **Mistake:** Don't model worst-case VM
 
@@ -711,7 +751,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Haircut Limits
+
 
 **Maximum leverage by asset class:**
 
@@ -727,6 +769,7 @@ $$
 
 ### 2. Margin Reserves
 
+
 **Cash buffer sizing:**
 
 $$
@@ -739,6 +782,7 @@ $$
 - **Reserve: $\$50K × 3 + $\$200K = $\$350K$**
 
 ### 3. Funding Cost Budget
+
 
 **Maximum annual funding cost:**
 
@@ -753,6 +797,7 @@ $$
 
 ### 4. Leverage Ratio
 
+
 **Conservative target:**
 
 $$
@@ -766,6 +811,7 @@ $$
 
 ### 5. Diversification
 
+
 **Funding sources:**
 - Minimum 5 repo dealers
 - No single dealer > 30% of funding
@@ -778,6 +824,7 @@ $$
 - Treasuries always valuable (flight to quality)
 
 ### 6. Stress Testing
+
 
 **Quarterly stress scenarios:**
 
@@ -799,6 +846,7 @@ $$
 
 ### 7. Monitoring Dashboard
 
+
 **Daily tracking:**
 - Current leverage ratio
 - Available borrowing capacity
@@ -816,7 +864,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. LTCM Collapse (1998)
+
 
 **Setup:**
 - 30× leverage (tiny haircuts)
@@ -833,6 +883,7 @@ $$
 
 ### 2. Lehman Repo Run (2008)
 
+
 **Setup:**
 - Funded via overnight repo
 - Collateral: Diverse (some illiquid)
@@ -847,6 +898,7 @@ $$
 
 ### 3. COVID Margin Calls (March 2020)
 
+
 **Setup:**
 - Many funds running levered strategies
 - Normal margins: $\$100K$ per fund
@@ -860,6 +912,7 @@ $$
 **Lesson:** Margin reserves essential
 
 ### 4. Basis Trade Blowup (2020)
+
 
 **Setup:**
 - Treasury basis trades (levered 10-15×)
@@ -881,6 +934,7 @@ $$
 
 ### 5. GameStop Margin Freeze (Jan 2021)
 
+
 **Setup:**
 - Retail buying frenzy
 - Brokers allowing margin
@@ -897,7 +951,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Calculate True Cost
+
 
 **Comprehensive cost model:**
 
@@ -946,6 +1002,7 @@ print(f"Cost %: {costs['cost_pct']:.2%}")
 
 ### 2. Margin Reserve Planning
 
+
 **Buffer calculation:**
 
 ```python
@@ -979,6 +1036,7 @@ print(f"As % of notional: {reserve['reserve_pct']:.1%}")
 ```
 
 ### 3. Stress Testing
+
 
 **Haircut shock scenario:**
 
@@ -1018,6 +1076,7 @@ print(f"Must sell: ${stress['excess_position']:,.0f}")
 
 ### 4. Position Sizing
 
+
 **Maximum safe position:**
 
 ```python
@@ -1054,6 +1113,7 @@ print(f"Leverage: {sizing['recommended_leverage']:.1f}×")
 ---
 
 ## Final Wisdom
+
 
 > "Haircuts, margin, and funding costs are the friction that converts theoretical leverage into real-world returns - and this friction increases 3-10× during stress when you need it most. The 2008 crisis showed that 2% Treasury haircuts can become 10%, 10% corporate haircuts can become 50%, and 2% funding costs can become 7%. LTCM's 30× leverage worked beautifully until haircuts spiked and it didn't. The key lessons: (1) stress-test assuming haircuts triple and funding costs double, (2) maintain margin reserves of 3-5× initial margin to handle variation margin shocks, (3) diversify funding across 5+ dealers so no single relationship is critical, and (4) use 50-70% of maximum leverage capacity to keep buffer for stress. Remember: Leverage is rented not owned - the landlord (your prime broker) can change terms dramatically when markets turn."
 

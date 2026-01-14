@@ -1,6 +1,8 @@
 # Applications of Dynkin’s Formula
 
+
 ## Expected First Exit Time of Brownian Motion
+
 
 Let
 
@@ -27,6 +29,7 @@ u(x)=\mathbb E_x[\tau].
 
 ## PDE from Dynkin’s Formula
 
+
 Using Dynkin’s formula and boundary conditions,
 
 \[
@@ -46,9 +49,11 @@ u''(x)=-2.
 
 ## Solution
 
+
 [Your full solution, unchanged]
 
 ## Interpretation
+
 
 - Expected exit time is maximal at the midpoint
 - Quadratic profile reflects diffusive scaling

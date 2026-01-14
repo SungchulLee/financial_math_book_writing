@@ -1,6 +1,8 @@
 # Binomial Asset Pricing Model
 
+
 ## Introduction
+
 
 The **binomial asset pricing model**, developed by **Cox, Ross, and Rubinstein (1979)**, provides a discrete-time framework for modeling stock price evolution and pricing derivative securities. At each time step, the stock price can move to one of two possible values — **up** or **down** — by predetermined factors.
 
@@ -48,7 +50,8 @@ We proceed deliberately in this discrete framework to understand arbitrage-free 
 ---
 
 
-## 1. Market Setup
+## Market Setup
+
 
 We begin with a **one-period market** on the time grid \(t = 0,1\).
 
@@ -57,7 +60,8 @@ We begin with a **one-period market** on the time grid \(t = 0,1\).
     Throughout this chapter, we use **continuous compounding** for the risk-free rate. In a one-period model, the risk-free asset grows by the factor \(e^{r dt}\), ensuring consistency with the Black–Scholes framework and simplifying the limiting arguments.
 
 
-### Assets
+### 1. Assets
+
 
 
 * **Risk-free asset (bank account)**: with \(B_0 = 1\)
@@ -79,7 +83,8 @@ d S_0 & \text{(down state)}
 $$
 
 
-### Portfolios
+### 2. Portfolios
+
 
 A **self-financing portfolio** is described by holdings \((\Delta, \beta)\), where:
 
@@ -98,7 +103,8 @@ V_0 = \Delta S_0 + \beta B_0, \qquad
 V_{dt} = \Delta S_{dt} + \beta B_{dt}
 $$
 
-## 2. Contingent Claims and the Pricing Problem
+## Contingent Claims and the Pricing Problem
+
 
 A **contingent claim** (or derivative) is any payoff measurable with respect to the terminal stock price:
 
@@ -121,10 +127,12 @@ We will answer this question through several equivalent perspectives:
 
 
 
-## 3. No-Arbitrage and Its Meaning
+## No-Arbitrage and Its Meaning
 
 
-### Definition (Arbitrage)
+
+### 1. Definition (Arbitrage)
+
 
 A portfolio \((\Delta, \beta)\) is an **arbitrage** if:
 
@@ -137,7 +145,8 @@ A market is **arbitrage-free** if no such portfolio exists.
 
 
 
-### Derivation of the No-Arbitrage Condition
+### 2. Derivation of the No-Arbitrage Condition
+
 
 
 Consider the **discounted stock price**
@@ -158,7 +167,8 @@ $$
 \boxed{d < e^{r dt} < u}
 $$
 
-## 4. Geometric Interpretation
+## Geometric Interpretation
+
 
 Under the no-arbitrage condition,
 
@@ -175,7 +185,8 @@ $$
 This convexity property is the key to everything that follows.
 
 
-## 5. Preview: Risk-Neutral Probability
+## Preview: Risk-Neutral Probability
+
 
 
 When \(d < e^{r dt} < u\), there exists a unique number \(q \in (0,1)\) given by
@@ -193,7 +204,8 @@ S_0 = e^{-rdt}\big( q u S_0 + (1-q) d S_0 \big)
 $$
 
 
-### Risk-Neutral Measure
+### 1. Risk-Neutral Measure
+
 
 
 Define a probability measure \(\mathbb Q\) on the one-period state space by
@@ -208,7 +220,8 @@ This probability measure \(\mathbb Q\) is called the **risk-neutral measure**.
 
 
 
-### Martingale Interpretation
+### 2. Martingale Interpretation
+
 
 Under \(\mathbb Q\), the stock price satisfies
 

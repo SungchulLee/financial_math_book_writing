@@ -1,10 +1,12 @@
 # Interest Rate Parity
 
+
 **Interest rate parity (IRP)** is the fundamental no-arbitrage relationship in foreign exchange markets that links spot exchange rates, forward exchange rates, and interest rate differentials between two currencies, stating that the forward premium/discount must equal the interest rate differential to prevent risk-free arbitrage, while deviations from parity (basis) create trading opportunities for those who can identify mispricing or structural inefficiencies.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -75,9 +77,11 @@ Expected currency depreciation equals interest rate differential.
 
 ## What is Interest Rate Parity?
 
+
 **Before trading IRP violations, understand the framework:**
 
-### Covered Interest Rate Parity (CIP)
+### 1. Covered Interest Rate Parity (CIP)
+
 
 **The no-arbitrage condition:**
 
@@ -213,7 +217,8 @@ $$
 - USD depreciated from 110 → 105.82 (need fewer JPY per USD)
 - Compensates for 4% interest rate advantage
 
-### Uncovered Interest Rate Parity (UIP)
+### 2. Uncovered Interest Rate Parity (UIP)
+
 
 **Without hedging:**
 
@@ -245,7 +250,8 @@ $$
 3. Safe haven flows
 4. Peso problems (rare crashes)
 
-### Forward Points and Swap Points
+### 3. Forward Points and Swap Points
+
 
 **Market convention: Quote forward as points (pips) from spot**
 
@@ -277,9 +283,11 @@ $$
 
 ## Economic Interpretation: Why Deviations Occur
 
+
 **Understanding when and why CIP breaks down:**
 
-### The Pre-2008 World: CIP Held
+### 1. The Pre-2008 World: CIP Held
+
 
 **Before financial crisis:**
 - CIP deviations tiny (< 5 bp)
@@ -305,7 +313,8 @@ $$
 
 **This kept CIP tight.**
 
-### Post-2008: CIP Breakdown
+### 2. Post-2008: CIP Breakdown
+
 
 **After 2008 crisis:**
 - CIP violations persistent (up to 100+ bp!)
@@ -359,7 +368,8 @@ European bank with USD assets:
 
 **This structural demand keeps basis negative.**
 
-### The Cross-Currency Basis Trade
+### 3. The Cross-Currency Basis Trade
+
 
 **Exploiting persistent basis:**
 
@@ -391,6 +401,7 @@ European bank with USD assets:
 ---
 
 ## Key Terminology
+
 
 **Spot Exchange Rate:**
 
@@ -477,7 +488,9 @@ $$
 
 ## Basic Interest Rate Parity Strategies
 
-### Strategy 1: Classic Covered Interest Arbitrage
+
+### 1. Strategy 1: Classic Covered Interest Arbitrage
+
 
 **Setup:**
 
@@ -523,7 +536,8 @@ $$
 
 **Realistic basis: -30 bp (not +32 bp)**
 
-### Strategy 2: Cross-Currency Basis Trade (EUR/USD)
+### 2. Strategy 2: Cross-Currency Basis Trade (EUR/USD)
+
 
 **Setup:**
 
@@ -622,7 +636,8 @@ $$
 2. **Rollover risk** (3M basis changes when rolling)
 3. **Funding risk** (can't refinance EUR borrow)
 
-### Strategy 3: Carry Trade with Forward Hedge (Modified)
+### 3. Strategy 3: Carry Trade with Forward Hedge (Modified)
+
 
 **Setup:**
 
@@ -678,7 +693,8 @@ $$
 
 **This shows: Covered carry trades need large basis to work when borrowing currency has higher rate.**
 
-### Strategy 4: Basis Convergence Trade
+### 4. Strategy 4: Basis Convergence Trade
+
 
 **Setup:**
 
@@ -732,9 +748,11 @@ $$
 
 ## Greeks in Interest Rate Parity Trading
 
+
 **Understanding sensitivities:**
 
-### Delta: FX Spot Sensitivity
+### 1. Delta: FX Spot Sensitivity
+
 
 **For covered arbitrage or basis trades:**
 
@@ -763,7 +781,8 @@ $$
 
 **Full FX exposure!**
 
-### Interest Rate Duration
+### 2. Interest Rate Duration
+
 
 **Covered positions have duration risk:**
 
@@ -795,7 +814,8 @@ $$
 
 **Hedging:** Use interest rate swaps to offset duration.
 
-### Basis Risk (Specific to Cross-Currency Basis)
+### 3. Basis Risk (Specific to Cross-Currency Basis)
+
 
 **Basis can be volatile:**
 
@@ -828,7 +848,8 @@ $$
 
 **Risk management:** Reduce position size before quarter/year-end.
 
-### Cross-Currency Correlation
+### 4. Cross-Currency Correlation
+
 
 **Multiple basis positions:**
 
@@ -857,7 +878,9 @@ $$
 
 ## Interest Rate Parity Payoff Analysis
 
-### Covered Arbitrage Expected Returns
+
+### 1. Covered Arbitrage Expected Returns
+
 
 **Setup:**
 - Positive basis: +50 bp
@@ -896,7 +919,8 @@ $$
 </p>
 **Figure 1:** P/L distribution for basis trade showing moderate positive expected return with tail risk from extreme basis widening in crisis scenarios.
 
-### Uncovered Carry Trade Distribution
+### 2. Uncovered Carry Trade Distribution
+
 
 **Setup:**
 - Borrow USD at 5%, invest AUD at 4%
@@ -943,7 +967,9 @@ $$
 
 ## Real-World Interest Rate Parity Examples
 
-### Example 1: Swiss Franc Negative Rates (2015) - Basis Explosion
+
+### 1. Example 1: Swiss Franc Negative Rates (2015) - Basis Explosion
+
 
 **Setup:**
 
@@ -1045,7 +1071,8 @@ $$
 
 **Basis can spike 100-300 bp in crisis!**
 
-### Example 2: Year-End Dollar Funding Squeeze (2018) - Basis Trade Winner
+### 2. Example 2: Year-End Dollar Funding Squeeze (2018) - Basis Trade Winner
+
 
 **Setup:**
 
@@ -1138,7 +1165,8 @@ $$
 - Regulatory impact on FX markets
 - Exploiting predictable stress
 
-### Example 3: Emerging Market Carry Crash - Turkey (2018) - Loser
+### 3. Example 3: Emerging Market Carry Crash - Turkey (2018) - Loser
+
 
 **Setup:**
 
@@ -1284,7 +1312,8 @@ $$
 - Size conservatively (<10% of portfolio)
 - **Don't fight fundamentals**
 
-### Example 4: Brexit Vote - GBP Basis Arbitrage (2016) - Winner
+### 4. Example 4: Brexit Vote - GBP Basis Arbitrage (2016) - Winner
+
 
 **Setup:**
 
@@ -1443,7 +1472,9 @@ $$
 
 ## Best Case Scenario
 
-### The Perfect Basis Trade - USD Shortage (March 2020 COVID)
+
+### 1. The Perfect Basis Trade - USD Shortage (March 2020 COVID)
+
 
 **Setup:**
 
@@ -1651,7 +1682,9 @@ $$
 
 ## Worst Case Scenario
 
-### The Basis Convergence Trap - SNB Floor Removal (2015)
+
+### 1. The Basis Convergence Trap - SNB Floor Removal (2015)
+
 
 **Setup:**
 
@@ -1869,7 +1902,9 @@ When spot moves dramatically, even "hedged" basis positions have leakage.
 
 ## What to Remember
 
-### Core Concept
+
+### 1. Core Concept
+
 
 **Interest rate parity links spot, forward, and interest rates:**
 
@@ -1883,7 +1918,8 @@ $$
 - Basis = deviation from CIP
 - Post-2008: Basis persistently non-zero (funding, regulation)
 
-### Forward Pricing
+### 2. Forward Pricing
+
 
 **Fair forward rate:**
 
@@ -1898,7 +1934,8 @@ $$
 
 **EUR at premium (forward > spot) because USD rates higher.**
 
-### Cross-Currency Basis
+### 3. Cross-Currency Basis
+
 
 $$
 \text{Basis} = \frac{F - S}{S} \times \frac{1}{T} - (r_d - r_f)
@@ -1911,7 +1948,8 @@ $$
 
 **Negative basis = Foreign currency "cheap" in FX swap market**
 
-### Entry Checklist - Basis Trade
+### 4. Entry Checklist - Basis Trade
+
 
 **For long basis (bet on tightening):**
 
@@ -1935,7 +1973,8 @@ $$
    - [ ] Liquidity buffer (30%+ cash)
    - [ ] Correlation to other positions <0.5
 
-### Entry Checklist - Carry Trade
+### 5. Entry Checklist - Carry Trade
+
 
 **For uncovered carry (high risk):**
 
@@ -1958,7 +1997,8 @@ $$
    - [ ] No upcoming elections/events
    - [ ] Liquidity normal
 
-### Common Strategies Summary
+### 6. Common Strategies Summary
+
 
 | Strategy | Risk | Expected Return | Sharpe | Holding Period |
 |----------|------|-----------------|--------|----------------|
@@ -1967,7 +2007,8 @@ $$
 | Uncovered carry | High | 5-15% | 0.4-0.7 | Months-years |
 | Event-driven basis | Medium | 5-20% | 1.0-1.5 | Weeks |
 
-### Exit Rules
+### 7. Exit Rules
+
 
 **Basis trades:**
 
@@ -1991,7 +2032,8 @@ $$
    - VIX >30: Reduce 50%
    - Carry differential narrows 50%: Exit
 
-### Position Sizing
+### 8. Position Sizing
+
 
 **Conservative:**
 
@@ -2010,7 +2052,8 @@ $$
 \text{Position Size} = \min\left(10\% \text{ of capital}, \frac{3\%}{\text{FX Vol}}\right)
 $$
 
-### Common Mistakes
+### 9. Common Mistakes
+
 
 1. **Assuming CIP always holds**
    - Post-2008: Persistent deviations
@@ -2044,7 +2087,8 @@ $$
    - Basis spikes predictably
    - Reduce before, re-enter after
 
-### Performance Expectations
+### 10. Performance Expectations
+
 
 **Basis trades (conservative):**
 
@@ -2070,7 +2114,8 @@ $$
 **Sharpe: 0.4-0.7**
 **Max drawdown: 25-40%**
 
-### Your Learning Path
+### 11. Your Learning Path
+
 
 **Phase 1 (Months 1-3): Fundamentals**
 - Study CIP, UIP relationships
@@ -2096,7 +2141,8 @@ $$
 - Risk management framework
 - Scale capital
 
-### Final Wisdom
+### 12. Final Wisdom
+
 
 > "Interest rate parity is the physics of FX markets—the fundamental law that governs exchange rates. Before 2008, it held with iron discipline. Post-crisis, it breaks persistently, creating opportunities for those with funding and balance sheet. The EUR/USD basis has been negative for 15 years, widening to -100 bp during COVID. Patient arbitrageurs collect 20-50 bp annually by lending USD and borrowing EUR. But the SNB 2015 proved: no arbitrage is truly risk-free. Central banks can change policy overnight, basis can blow out 10x, and 'hedged' positions can wipe you out if overleveraged. Respect the basis. Size conservatively. Always have a stop loss. The market can stay irrational longer than you can stay solvent—and more irrational than you can imagine."
 

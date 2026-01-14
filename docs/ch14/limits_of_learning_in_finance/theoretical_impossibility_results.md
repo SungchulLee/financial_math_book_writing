@@ -1,10 +1,12 @@
 # Theoretical Impossibility Results
 
+
 Beyond practical challenges, there are **theoretical limits** to what learning algorithms can achieve in financial markets.
 
 ---
 
-## 1. No-free-lunch principles
+## No-free-lunch principles
+
 
 No-free-lunch theorems state that:
 - averaged over all data-generating processes,
@@ -14,7 +16,8 @@ Assumptions drive performance, not algorithms alone.
 
 ---
 
-## 2. Market efficiency arguments
+## Market efficiency arguments
+
 
 Under strong forms of market efficiency:
 - predictable excess returns cannot persist,
@@ -24,7 +27,8 @@ Any discovered pattern may vanish once exploited.
 
 ---
 
-## 3. Adversarial and adaptive markets
+## Adversarial and adaptive markets
+
 
 In adaptive markets:
 - strategies change the environment,
@@ -35,7 +39,8 @@ This limits long-term learnability.
 
 ---
 
-## 4. Implications for practice
+## Implications for practice
+
 
 Impossibility results imply:
 - performance guarantees are fragile,
@@ -46,7 +51,8 @@ Learning must be combined with judgment.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - There are fundamental limits to learning.
 - Efficiency and adaptivity constrain predictability.
@@ -55,6 +61,7 @@ Learning must be combined with judgment.
 ---
 
 ## Further reading
+
 
 - Wolpert & Macready, no-free-lunch theorems.
 - Farmer, markets as adaptive systems.

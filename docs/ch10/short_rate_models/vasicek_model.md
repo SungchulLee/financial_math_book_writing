@@ -1,10 +1,12 @@
 # Vasicek Model
 
+
 The Vasicek model is a classic Gaussian short-rate model with mean reversion. It is analytically tractable and leads to closed-form zero-coupon bond prices.
 
 ---
 
-## 1. Model dynamics
+## Model dynamics
+
 
 Under the risk-neutral measure \(\mathbb{Q}\), Vasicek assumes
 
@@ -22,7 +24,8 @@ This is an Ornstein–Uhlenbeck (OU) process.
 
 ---
 
-## 2. Key properties
+## Key properties
+
 
 - **Gaussian rates:** \(r_t\) is normally distributed.
 - **Mean reversion:** \(\mathbb{E}[r_t]\) reverts to \(\theta\).
@@ -30,7 +33,8 @@ This is an Ornstein–Uhlenbeck (OU) process.
 
 ---
 
-## 3. Bond pricing (affine form)
+## Bond pricing (affine form)
+
 
 Vasicek implies an exponential-affine bond price:
 
@@ -52,7 +56,8 @@ The function \(A(t,T)\) has a closed form involving \(\kappa,\theta,\sigma\) (an
 
 ---
 
-## 4. Calibration notes
+## Calibration notes
+
 
 - Vasicek can be shifted (Hull–White) to fit the initial yield curve exactly.
 - Pure Vasicek often cannot fit the observed term structure without such shifting.
@@ -60,7 +65,8 @@ The function \(A(t,T)\) has a closed form involving \(\kappa,\theta,\sigma\) (an
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Vasicek is the simplest mean-reverting short-rate diffusion.
 - It yields closed-form bond prices in affine form.
@@ -69,6 +75,7 @@ The function \(A(t,T)\) has a closed form involving \(\kappa,\theta,\sigma\) (an
 ---
 
 ## Further reading
+
 
 - Vasicek (1977).
 - Hull & White (1990), time-dependent extension.

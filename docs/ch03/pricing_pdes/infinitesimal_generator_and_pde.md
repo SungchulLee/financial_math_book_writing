@@ -1,6 +1,8 @@
-# Infinitesimal Generator and Pricing PDE
+# Infinitesimal
 
-## 1. Motivation
+
+## Motivation
+
 In continuous-time finance, derivative prices are functions of time and the current state of the underlying assets.
 The evolution of these prices is governed by partial differential equations (PDEs).
 The central mathematical object linking stochastic dynamics to PDEs is the **infinitesimal generator**.
@@ -9,7 +11,8 @@ This section explains why *every arbitrage-free pricing PDE is determined by the
 
 ---
 
-## 2. Diffusion Models and the Generator
+## Diffusion Models
+
 Let \((X_t)_{t \ge 0}\) be a one-dimensional Itô diffusion:
 \[
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t.
@@ -30,7 +33,8 @@ The generator captures the *local drift and volatility structure* of the process
 
 ---
 
-## 3. Backward Kolmogorov Equation
+## Backward Kolmogorov
+
 Let
 \[
 u(t,x) = \mathbb{E}[\Phi(X_T) \mid X_t = x].
@@ -46,7 +50,8 @@ This PDE describes the evolution of conditional expectations backward in time.
 
 ---
 
-## 4. Pricing PDE with Discounting
+## Pricing PDE
+
 In finance, future payoffs must be discounted.
 If the short rate is constant \(r\), the price is
 \[
@@ -63,13 +68,15 @@ Applying Feynman–Kac yields the **pricing PDE**:
 
 ---
 
-## 5. Financial Interpretation
+## Financial
+
 - The generator encodes the **economic dynamics** of the underlying asset.
 - The discount term \(-rV\) reflects time value of money.
 - Pricing reduces to solving a backward PDE.
 
 ---
 
-## 6. Connection Forward
+## Connection Forward
+
 Understanding the generator explains why pricing PDEs take a universal form.
 Next, we investigate how **martingale conditions** eliminate arbitrage.

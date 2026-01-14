@@ -1,4 +1,5 @@
-# Feynman–Kac Overview
+# Feynman Kac Overview
+
 
 Feynman–Kac is the key bridge between:
 
@@ -18,9 +19,11 @@ dX_t = \mu(X_t,t)\,dt + \sigma(X_t,t)\,dW_t,
 
 ---
 
-## 1. Three levels of generality
+## Three levels
 
-### (A) Kolmogorov backward equation (no discount, no running payoff)
+
+### 1. Kolmogorov backwa
+
 
 Define
 
@@ -39,7 +42,8 @@ u(x,T)=f(x).
 
 
 
-### (B) Discounted terminal payoff
+### 2. B Discounted term
+
 
 Let \(r(x,t)\) be a (possibly state-dependent) discount / killing rate. Define
 
@@ -58,7 +62,8 @@ u(x,T)=f(x).
 
 
 
-### (C) Discounted terminal payoff + running payoff (source term)
+### 3. C Discounted term
+
 
 Let \(g(x,t)\) be a running payoff/source term. Define
 
@@ -84,7 +89,8 @@ u(x,T)=f(x).
 
 ---
 
-## 2. How this connects to forward vs backward equations
+## How connects forward
+
 
 - The **backward PDE** tells you how \(u(x,t)\) evolves backward from terminal data.
 - The **forward PDE** tells you how the transition density \(p(x,t;y,T)\) evolves forward.

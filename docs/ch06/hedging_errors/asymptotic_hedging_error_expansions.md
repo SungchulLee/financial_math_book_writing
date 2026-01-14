@@ -1,5 +1,6 @@
 # Asymptotic Hedging Error Expansions
 
+
 One seeks expansions of hedging error in small parameters.
 
 Examples:
@@ -16,6 +17,7 @@ Examples:
 ---
 
 ## What to remember
+
 
 - Leading terms are often gamma- and quadratic-variation-driven.
 - These expansions connect asymptotics to practical P\&L attribution.

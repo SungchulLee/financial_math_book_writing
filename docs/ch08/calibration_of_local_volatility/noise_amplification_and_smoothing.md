@@ -1,10 +1,12 @@
 # Noise Amplification and Smoothing
 
+
 Local volatility calibration is notoriously sensitive because the Dupire inversion uses **second derivatives in strike** and **first derivatives in maturity**. Differentiation amplifies noise, so smoothing is not optional—it is the core of a stable pipeline.
 
 ---
 
-## 1. Why differentiation amplifies noise
+## Why differentiation amplifies noise
+
 
 Suppose market call prices are observed with noise:
 
@@ -30,7 +32,8 @@ Thus, “more data points” can paradoxically make the raw Dupire estimate *wor
 
 ---
 
-## 2. Smoothing as regularization
+## Smoothing as regularization
+
 
 Instead of differentiating raw quotes, one typically:
 
@@ -54,7 +57,8 @@ Common smoothing approaches:
 
 ---
 
-## 3. Arbitrage-aware smoothing
+## Arbitrage-aware smoothing
+
 
 Smoothing must respect no-arbitrage conditions, otherwise the denominator \(\partial_{KK}C\) can become negative or near-zero, producing unstable or imaginary local vol.
 
@@ -71,7 +75,8 @@ In practice:
 
 ---
 
-## 4. Smoothing in total variance coordinates
+## Smoothing in total variance coordinates
+
 
 A common stabilization trick is to smooth **total implied variance**
 
@@ -90,7 +95,8 @@ One can:
 
 ---
 
-## 5. Practical pipeline (robust version)
+## Practical pipeline (robust version)
+
 
 1. convert raw quotes to consistent coordinates (forward, discounting, log-moneyness),
 2. filter illiquid/outlier points,
@@ -101,7 +107,8 @@ One can:
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Dupire inversion is derivative-heavy; noise is amplified strongly.
 - Smoothing is a *regularization step*, not cosmetic.
@@ -111,6 +118,7 @@ One can:
 ---
 
 ## Further reading
+
 
 - Gatheral, *The Volatility Surface*.
 - Fengler, *Semiparametric Modeling of Implied Volatility*.

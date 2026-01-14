@@ -1,10 +1,12 @@
 # Adversarial Environments
 
+
 In **adversarial environments**, data-generating processes may react strategically to the learner’s actions, invalidating classical statistical assumptions.
 
 ---
 
-## 1. From stochastic to adversarial settings
+## From stochastic to adversarial settings
+
 
 Traditional learning assumes:
 - i.i.d. or stationary data.
@@ -17,7 +19,8 @@ This provides strong performance guarantees.
 
 ---
 
-## 2. Online adversarial learning
+## Online adversarial learning
+
 
 Algorithms are designed to minimize regret:
 - Hedge / multiplicative weights,
@@ -28,7 +31,8 @@ They perform well against any adversarial sequence.
 
 ---
 
-## 3. Financial relevance
+## Financial relevance
+
 
 Markets can behave adversarially:
 - crowding effects,
@@ -39,7 +43,8 @@ Adversarial models capture these phenomena.
 
 ---
 
-## 4. Costs and conservatism
+## Costs and conservatism
+
 
 Adversarial guarantees are:
 - pessimistic,
@@ -50,7 +55,8 @@ Hybrid stochastic–adversarial models are often preferred.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Adversarial models assume worst-case data.
 - They provide strong guarantees.
@@ -59,6 +65,7 @@ Hybrid stochastic–adversarial models are often preferred.
 ---
 
 ## Further reading
+
 
 - Cesa-Bianchi & Lugosi, adversarial bandits.
 - Hazan, online convex optimization.

@@ -1,6 +1,10 @@
-# Brownian Motion Simulations 
+# Brownian Motion
+
+
 
 ## Introduction
+
+
 
 This section provides computational illustrations of the theoretical properties of Brownian motion developed in **Brownian Motion Foundations**. Through Monte Carlo simulation, we verify and visualize:
 
@@ -14,9 +18,13 @@ These examples serve two purposes: (1) building intuition for abstract propertie
 
 **Note:** These simulations are supplementary to the mathematical theory. Understanding the proofs in the previous section is essential; the code merely illustrates the results.
 
-## Monte Carlo Simulation Methodology
+## Monte Carlo
 
-### Discrete Approximation of Brownian Motion
+
+
+### 1. Discrete Approxim
+
+
 
 To simulate Brownian motion on $[0, T]$ with $n$ time steps:
 
@@ -26,11 +34,15 @@ To simulate Brownian motion on $[0, T]$ with $n$ time steps:
 
 **Convergence:** As $n \to \infty$ (i.e., $\Delta t \to 0$), the discrete approximation converges to true Brownian motion.
 
-## Example 1: Basic Path Generation and Distribution Verification
+## Example 1 Basic Path
+
+
 
 This example simulates multiple Brownian motion paths and verifies the Gaussian distribution at maturity.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 **Theorem:** Brownian motion satisfies:
 
@@ -38,31 +50,33 @@ This example simulates multiple Brownian motion paths and verifies the Gaussian 
 - $W_t \sim \mathcal{N}(0, t)$ for each $t > 0$
 - Paths are continuous
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as stats
 
-# Simulation parameters
+# Simulation
 num_paths = 10_000   # Number of Brownian motion paths
 num_steps = 1_000    # Number of time steps
 maturity_time = 2    # Maturity time for Brownian motion (T = 2)
 
-# Set random seed for reproducibility
+# Set random seed
 np.random.seed(0)
 
-# Generate time discretization
+# Generate time
 dt = maturity_time / num_steps
 time_steps = np.linspace(0, maturity_time, num_steps + 1)
 
-# Generate Brownian motion paths
-# Each increment is N(0, dt), cumsum gives Brownian motion
+# Generate Brownian
+# Each increment N 0
 dW = np.random.normal(0, np.sqrt(dt), size=(num_paths, num_steps))
 brownian_paths = np.cumsum(np.hstack([np.zeros((num_paths, 1)), dW]), axis=1)
 
-# Create figure with two subplots
+# Create figure two
 fig, (ax_paths, ax_distribution) = plt.subplots(1, 2, figsize=(12, 4))
 
 # Plot 10 sample paths
@@ -74,7 +88,7 @@ ax_paths.set_ylabel('$W_t$', fontsize=11)
 ax_paths.axhline(0, color='black', linestyle='--', linewidth=0.8, alpha=0.5)
 ax_paths.grid(alpha=0.3)
 
-# Plot distribution at maturity
+# Plot distribution
 ax_distribution.set_title(f'Distribution of $W_{{{maturity_time}}}$', fontsize=13)
 counts, bin_edges, patches = ax_distribution.hist(
     brownian_paths[:, -1], 
@@ -85,7 +99,7 @@ counts, bin_edges, patches = ax_distribution.hist(
     label=f"$W_{{{maturity_time}}}$ Samples"
 )
 
-# Overlay theoretical N(0, T) density
+# Overlay theoretical
 x_range = np.linspace(bin_edges[0], bin_edges[-1], 200)
 theoretical_pdf = stats.norm(loc=0, scale=np.sqrt(maturity_time)).pdf(x_range)
 ax_distribution.plot(x_range, theoretical_pdf, '--r', linewidth=2, 
@@ -98,7 +112,7 @@ ax_distribution.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# Verify mean and variance
+# Verify mean variance
 sample_mean = np.mean(brownian_paths[:, -1])
 sample_var = np.var(brownian_paths[:, -1], ddof=1)
 theoretical_mean = 0
@@ -110,7 +124,7 @@ print(f"Sample variance: {sample_var:.6f} (theoretical: {theoretical_var})")
 print(f"Mean error: {abs(sample_mean - theoretical_mean):.6f}")
 print(f"Variance error: {abs(sample_var - theoretical_var):.6f}")
 
-# Kolmogorov-Smirnov test for normality
+# Kolmogorov Smirnov
 ks_statistic, p_value = stats.kstest(
     brownian_paths[:, -1] / np.sqrt(maturity_time),
     'norm'
@@ -121,7 +135,9 @@ print(f"p-value: {p_value:.6f}")
 print(f"Result: {'PASS' if p_value > 0.05 else 'FAIL'} (normality at 5% significance)")
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 **Left plot (Sample Paths):**
 - Paths start at origin ($W_0 = 0$)
@@ -139,11 +155,15 @@ print(f"Result: {'PASS' if p_value > 0.05 else 'FAIL'} (normality at 5% signific
 - $\text{Var}(W_T) = T$
 - $W_T \sim \mathcal{N}(0, T)$
 
-## Example 2: Quadratic Variation Verification
+## Example 2 Quadratic
+
+
 
 This example verifies that quadratic variation equals $t$, a fundamental property for Itô calculus.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 **Theorem 1.3.10:** For any partition with mesh $|\Pi_n| \to 0$:
 
@@ -153,7 +173,9 @@ $$\sum_{i=0}^{n-1} (W_{t_{i+1}} - W_{t_i})^2 \xrightarrow{\mathbb{P}} T$$
 
 This distinguishes Brownian motion from smooth functions (which have zero quadratic variation).
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -166,7 +188,7 @@ num_trials = 1000  # Number of independent Brownian paths
 
 np.random.seed(42)
 
-# Storage for quadratic variation
+# Storage quadratic
 qv_results = []
 
 for num_steps in num_steps_list:
@@ -192,7 +214,7 @@ for num_steps in num_steps_list:
 # Plot results
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
-# Plot 1: Convergence of mean quadratic variation
+# Plot 1 Convergence
 means = [r['mean'] for r in qv_results]
 stds = [r['std'] for r in qv_results]
 steps = [r['num_steps'] for r in qv_results]
@@ -208,7 +230,7 @@ ax1.set_xscale('log')
 ax1.legend(fontsize=10)
 ax1.grid(alpha=0.3)
 
-# Plot 2: Distribution of quadratic variation for finest discretization
+# Plot 2 Distribution
 finest_qv = qv_results[-1]['paths']
 ax2.hist(finest_qv, bins=50, density=True, alpha=0.6, 
          color='steelblue', label=f'$n = {num_steps_list[-1]}$ steps')
@@ -225,7 +247,7 @@ ax2.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# Numerical verification
+# Numerical
 print("Quadratic Variation Convergence:")
 print("-" * 70)
 print(f"{'Steps':>10} {'Mean QV':>12} {'Std Dev':>12} {'Error':>12}")
@@ -237,7 +259,9 @@ print("-" * 70)
 print(f"Theoretical value: {maturity_time}")
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 **Left plot (Convergence):**
 - As $n$ increases (finer discretization), mean quadratic variation converges to $T = 1$
@@ -254,11 +278,15 @@ print(f"Theoretical value: {maturity_time}")
 - Stochastic integration theory
 - Correction terms in stochastic calculus
 
-## Example 3: Self-Similarity (Scaling Property)
+## Example 3 Self
+
+
 
 This example verifies the scaling property: $W_{ct} \overset{d}{=} \sqrt{c} W_t$.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 **Theorem 1.3.8:** For any $c > 0$:
 
@@ -268,7 +296,9 @@ $$W_{ct} \overset{d}{=} \sqrt{c} W_t$$
 
 This means Brownian motion has no intrinsic time scale.
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -283,7 +313,7 @@ c_values = [0.25, 1, 4]  # Scaling factors
 
 np.random.seed(0)
 
-# Generate base Brownian motion paths
+# Generate base
 dt = T / num_steps
 dW = np.random.normal(0, np.sqrt(dt), size=(num_paths, num_steps))
 W = np.cumsum(np.hstack([np.zeros((num_paths, 1)), dW]), axis=1)
@@ -352,7 +382,9 @@ for c in c_values:
     print()
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 **Three panels show different scaling factors:**
 - $c = 0.25$: Compressed time $\leftrightarrow$ Compressed space
@@ -366,11 +398,15 @@ for c in c_values:
 
 **Implication:** You cannot distinguish "zooming in time" from "zooming in space" — Brownian motion looks the same at all scales. This is why volatility in finance scales as $\sqrt{T}$.
 
-## Example 4: First Passage Time Distribution
+## Example 4 First
+
+
 
 This example simulates the first hitting time $\tau_a = \inf\{t : W_t = a\}$ and verifies its distribution.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 **Theorem:** The first passage time $\tau_a$ has density:
 
@@ -382,7 +418,9 @@ $$f_{\tau_a}(t) = \frac{|a|}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), 
 - $\mathbb{P}(\tau_a < \infty) = 1$ (recurrence)
 - $\mathbb{E}[\tau_a] = \infty$ (infinite expected hitting time)
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -396,7 +434,7 @@ num_steps = 5_000
 
 np.random.seed(0)
 
-# Storage for first passage times
+# Storage first
 first_passage_times = []
 
 dt = T_max / num_steps
@@ -413,13 +451,13 @@ for _ in range(num_paths):
         first_crossing_index = crossing_indices[0]
         first_passage_times.append(time_grid[first_crossing_index])
 
-# Convert to array
+# Convert array
 first_passage_times = np.array(first_passage_times)
 
 # Plot distribution
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
-# Histogram of first passage times
+# Histogram first
 counts, bins, _ = ax1.hist(first_passage_times, bins=50, density=True, 
                             alpha=0.6, color='steelblue', 
                             label='Simulated')
@@ -438,7 +476,7 @@ ax1.legend(fontsize=11)
 ax1.grid(alpha=0.3)
 ax1.set_xlim(0, 5)
 
-# Sample paths showing first passage
+# Sample paths showing
 ax2.set_title(f'Sample Paths Hitting Level $a = {a}$', fontsize=13)
 np.random.seed(0)
 for i in range(10):
@@ -476,7 +514,9 @@ print(f"\nNote: Theoretical E[τ_a] = ∞, but conditional on hitting by T_max,"
 print(f"      the sample mean is finite.")
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 **Left plot (Distribution):**
 - Simulated histogram (blue) matches theoretical density (red dashed)
@@ -498,11 +538,15 @@ print(f"      the sample mean is finite.")
 - Credit risk modeling (default time)
 - Risk management (Value-at-Risk)
 
-## Example 5: Covariance Structure Verification
+## Example 5 Covariance
+
+
 
 This example verifies the covariance formula $\mathbb{E}[W_s W_t] = \min(s,t)$.
 
-### Theory Recap
+### 1. Theory Recap
+
+
 
 **Theorem 1.3.5:** For all $s, t \ge 0$:
 
@@ -510,7 +554,9 @@ $$\mathbb{E}[W_s W_t] = \min(s,t)$$
 
 
 
-### Python Implementation
+### 2. Python Implementa
+
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -527,14 +573,14 @@ np.random.seed(0)
 time_points = np.linspace(0, T, num_time_points + 1)
 dt = T / num_time_points
 
-# Generate Brownian motion paths
+# Generate Brownian
 dW = np.random.normal(0, np.sqrt(dt), size=(num_paths, num_time_points))
 W = np.cumsum(np.hstack([np.zeros((num_paths, 1)), dW]), axis=1)
 
-# Compute sample covariance matrix
+# Compute sample
 sample_cov = np.cov(W.T)
 
-# Compute theoretical covariance matrix
+# Compute theoretical
 theoretical_cov = np.minimum(time_points[:, None], time_points[None, :])
 
 # Plot
@@ -548,7 +594,7 @@ ax1.set_xlabel('Time $t$', fontsize=11)
 ax1.set_ylabel('Time $s$', fontsize=11)
 plt.colorbar(im1, ax=ax1)
 
-# Theoretical covariance
+# Theoretical
 im2 = ax2.imshow(theoretical_cov, cmap='RdBu_r', origin='lower', 
                  extent=[0, T, 0, T], vmin=0, vmax=T)
 ax2.set_title('Theoretical Covariance: $\min(s,t)$', fontsize=12)
@@ -556,7 +602,7 @@ ax2.set_xlabel('Time $t$', fontsize=11)
 ax2.set_ylabel('Time $s$', fontsize=11)
 plt.colorbar(im2, ax=ax2)
 
-# Difference (error)
+# Difference error
 diff = sample_cov - theoretical_cov
 im3 = ax3.imshow(diff, cmap='RdBu_r', origin='lower', 
                  extent=[0, T, 0, T], vmin=-0.1, vmax=0.1)
@@ -568,7 +614,7 @@ plt.colorbar(im3, ax=ax3)
 plt.tight_layout()
 plt.show()
 
-# Numerical verification at specific points
+# Numerical
 test_pairs = [(0.5, 1.0), (1.0, 1.5), (0.25, 1.75)]
 print("Covariance Verification at Specific Points:")
 print("-" * 70)
@@ -591,7 +637,9 @@ print(f"RMSE: {rmse:.6f}")
 print(f"Max absolute error: {max_error:.6f}")
 ```
 
-### Interpretation
+### 3. Interpretation
+
+
 
 **Three heatmaps:**
 1. **Sample covariance** (left): Estimated from 10,000 simulated paths
@@ -611,7 +659,9 @@ print(f"Max absolute error: {max_error:.6f}")
 - Underlies the construction via Kolmogorov extension theorem
 - Determines the geometry of Brownian paths
 
-## Summary and Computational Insights
+## Summary
+
+
 
 These simulations verify key theoretical properties of Brownian motion:
 
@@ -639,6 +689,8 @@ For deeper exploration, consider:
 - Exploring Brownian bridge and other conditioned processes
 
 ## References
+
+
 
 - Glasserman, P. (2003). *Monte Carlo Methods in Financial Engineering*. Springer.
 - Kloeden, P. E., & Platen, E. (1992). *Numerical Solution of Stochastic Differential Equations*. Springer.

@@ -1,5 +1,6 @@
 # Scaling Laws for Greeks
 
+
 Near-the-money Black–Scholes scalings (heuristic):
 
 
@@ -17,6 +18,7 @@ Far from the money, Greeks may be exponentially small in \(1/\tau\) for short ti
 ---
 
 ## What to remember
+
 
 - Short-dated options: large gamma, unstable higher Greeks.
 - Mid maturities: larger vega exposure.

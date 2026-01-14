@@ -1,10 +1,12 @@
-# Scaling and Invariance Properties
+# Scaling Invariance
+
 
 The heat equation possesses a characteristic scaling that reflects the nature of diffusion.
 
 ---
 
 ## Parabolic Scaling
+
 
 If \(u(t,x)\) solves the heat equation, then for any \(\lambda > 0\),
 \[
@@ -18,7 +20,8 @@ This scaling shows that:
 
 ---
 
-## Connection to Brownian Scaling
+## Connection Brownian
+
 
 Brownian motion satisfies the scaling property
 \[
@@ -32,7 +35,8 @@ of Brownian distributions.
 
 ---
 
-## Dimensional Interpretation
+## Dimensional
+
 
 Diffusion is fundamentally different from transport:
 - Transport: \(x \sim t\)

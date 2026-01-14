@@ -1,10 +1,12 @@
 # Feller Condition and Boundary Behavior
 
+
 The variance process in the Heston model is a **square-root diffusion**, whose behavior near zero is critical for both theory and numerics.
 
 ---
 
-## 1. The CIR variance process
+## The CIR variance process
+
 
 The variance follows
 
@@ -18,7 +20,8 @@ This is a Cox–Ingersoll–Ross (CIR) process.
 
 ---
 
-## 2. The Feller condition
+## The Feller condition
+
 
 The **Feller condition**
 
@@ -37,7 +40,8 @@ If the condition fails:
 
 ---
 
-## 3. Practical relevance
+## Practical relevance
+
 
 In practice:
 - many calibrated Heston parameters violate the Feller condition,
@@ -48,7 +52,8 @@ Thus, the Feller condition is sufficient but not necessary.
 
 ---
 
-## 4. Boundary behavior and numerics
+## Boundary behavior and numerics
+
 
 Near-zero variance can cause:
 - numerical instability in simulations,
@@ -61,7 +66,8 @@ Common remedies:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - The Feller condition guarantees strict positivity.
 - Violations are common in market calibration.
@@ -70,6 +76,7 @@ Common remedies:
 ---
 
 ## Further reading
+
 
 - Cox, Ingersoll & Ross (1985).
 - Andersen, efficient simulation of Heston.

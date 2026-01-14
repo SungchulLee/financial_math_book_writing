@@ -1,10 +1,12 @@
 # Vega Risk and Vol-of-Vol
 
+
 Under stochastic volatility, option risk is no longer captured by delta alone. **Vega risk** and, more subtly, **volatility-of-volatility (vol-of-vol) risk** become central drivers of P&L and hedging performance.
 
 ---
 
-## 1. Vega in stochastic volatility models
+## Vega in stochastic volatility models
+
 
 In Black–Scholes, vega measures sensitivity to a single volatility parameter:
 
@@ -23,7 +25,8 @@ Thus, vega is model- and state-dependent.
 
 ---
 
-## 2. Vol-of-vol risk
+## Vol-of-vol risk
+
 
 The parameter (or process) controlling volatility fluctuations—often denoted \(\xi\)—introduces **second-order volatility risk**.
 
@@ -36,7 +39,8 @@ This risk cannot be hedged by delta or vega alone.
 
 ---
 
-## 3. Greeks beyond vega
+## Greeks beyond vega
+
 
 Common higher-order sensitivities include:
 - **Volga (vomma):** sensitivity of vega to volatility,
@@ -47,7 +51,8 @@ These Greeks are typically large for long-dated or exotic options.
 
 ---
 
-## 4. Practical implications
+## Practical implications
+
 
 - Vega hedging with a single option is insufficient.
 - Smile dynamics cause residual P&L even for delta–vega neutral portfolios.
@@ -55,7 +60,8 @@ These Greeks are typically large for long-dated or exotic options.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Vega risk is richer under stochastic volatility.
 - Vol-of-vol introduces unhedgeable second-order effects.
@@ -64,6 +70,7 @@ These Greeks are typically large for long-dated or exotic options.
 ---
 
 ## Further reading
+
 
 - Taleb, *Dynamic Hedging*.
 - Bergomi, *Stochastic Volatility Modeling*.

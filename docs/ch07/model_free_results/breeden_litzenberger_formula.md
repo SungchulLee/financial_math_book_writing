@@ -1,12 +1,16 @@
 # Breeden–Litzenberger Formula
 
+
 ## Introduction
+
 
 The Breeden-Litzenberger formula (1978) establishes a fundamental model-free relationship between European option prices and the risk-neutral probability density of the underlying asset. This remarkable result shows that the entire risk-neutral distribution can be recovered from observable option prices without specifying any particular model for asset dynamics.
 
 ## The Fundamental Result
 
-### Statement of the Theorem
+
+### 1. Statement of the Theorem
+
 
 **Theorem 4.2.1** (Breeden-Litzenberger Formula)  
 Let $C(K, T)$ denote the price of a European call option with strike $K$ and maturity $T$. The risk-neutral probability density function $q(S_T)$ of the terminal asset price $S_T$ is given by:
@@ -27,7 +31,8 @@ $$
 
 
 
-### Interpretation
+### 2. Interpretation
+
 
 The second derivative of the call price with respect to strike extracts the **discounted** risk-neutral density:
 
@@ -42,7 +47,9 @@ This is a **model-free** result: it holds regardless of whether the underlying f
 
 ## Derivation via Risk-Neutral Pricing
 
-### Starting Point: Call Price Formula
+
+### 1. Starting Point: Call Price Formula
+
 
 Under the risk-neutral measure $\mathbb{Q}$, the call price is:
 
@@ -62,7 +69,8 @@ $$
 
 
 
-### First Derivative: Delta with Respect to Strike
+### 2. First Derivative: Delta with Respect to Strike
+
 
 Differentiating under the integral sign:
 
@@ -100,7 +108,8 @@ $$
 
 
 
-### Second Derivative: Extracting the Density
+### 3. Second Derivative: Extracting the Density
+
 
 Differentiating once more:
 
@@ -124,7 +133,9 @@ This completes the derivation. □
 
 ## Regularity Conditions
 
-### Assumptions for Validity
+
+### 1. Assumptions for Validity
+
 
 The Breeden-Litzenberger formula requires:
 
@@ -132,7 +143,8 @@ The Breeden-Litzenberger formula requires:
 2. **No-arbitrage:** Call prices satisfy monotonicity and convexity constraints
 3. **Integrability:** The risk-neutral density $q(K)$ must integrate to 1
 
-### Smoothness of Option Prices
+### 2. Smoothness of Option Prices
+
 
 In reality, option prices are observed on a discrete grid and may contain noise. For the formula to apply:
 
@@ -153,7 +165,8 @@ $$
 
 is continuous in $K$ by dominated convergence. First derivative exists by fundamental theorem of calculus. Second derivative exists where $q$ is continuous. □
 
-### Violation of Smoothness
+### 3. Violation of Smoothness
+
 
 In practice, two issues arise:
 
@@ -170,7 +183,9 @@ In practice, two issues arise:
 
 ## Connection to Arrow-Debreu Securities
 
-### Digital Options as Building Blocks
+
+### 1. Digital Options as Building Blocks
+
 
 An **Arrow-Debreu security** (digital option) pays \$1 if $S_T \in [K, K + dK]$ and 0 otherwise. Its price is:
 
@@ -181,7 +196,8 @@ $$
 
 
 
-### Static Replication via Butterflies
+### 2. Static Replication via Butterflies
+
 
 A digital option can be replicated using a **butterfly spread**:
 - Long 1 call at $K - \Delta K$
@@ -219,7 +235,9 @@ $$
 
 ## Discrete Strike Grid: Finite Differences
 
-### Practical Implementation
+
+### 1. Practical Implementation
+
 
 In practice, options trade at discrete strikes $K_1 < K_2 < \cdots < K_n$. The density is approximated using finite differences:
 
@@ -232,7 +250,8 @@ $$
 
 where $\Delta K = K_{i+1} - K_i$ (assuming equal spacing for simplicity).
 
-### Second-Order Accurate Formula
+### 2. Second-Order Accurate Formula
+
 
 For non-uniform grids, use:
 
@@ -245,7 +264,8 @@ $$
 
 This is exact for quadratic functions and $O((\Delta K)^2)$ for smooth $C$.
 
-### Interpolation and Smoothing
+### 3. Interpolation and Smoothing
+
 
 To obtain density at arbitrary strikes:
 
@@ -257,7 +277,9 @@ To obtain density at arbitrary strikes:
 
 ## Extension to Put Options
 
-### Put-Call Symmetry
+
+### 1. Put-Call Symmetry
+
 
 By put-call parity:
 
@@ -286,13 +308,16 @@ $$
 
 
 
-### Practical Advantage of Puts
+### 2. Practical Advantage of Puts
+
 
 For low strikes ($K \ll S_0$), put prices have higher liquidity and tighter spreads than calls. Using puts for the left wing and calls for the right wing provides more accurate density estimation.
 
 ## Consistency Conditions
 
-### Non-Negativity Constraint
+
+### 1. Non-Negativity Constraint
+
 
 Since $q(K) \geq 0$ is a probability density, we require:
 
@@ -308,7 +333,8 @@ This is the **no-butterfly-arbitrage condition**. Violation indicates:
 - Bid-ask spread effects
 - Model-free arbitrage opportunity
 
-### Normalization: Probability Sums to One
+### 2. Normalization: Probability Sums to One
+
 
 The density must integrate to unity:
 
@@ -352,7 +378,9 @@ $$
 
 ## Applications
 
-### Extracting Risk-Neutral Moments
+
+### 1. Extracting Risk-Neutral Moments
+
 
 Once the density is known, compute moments:
 
@@ -378,7 +406,8 @@ $$
 
 **Skewness and kurtosis:** Higher moments characterize tail behavior.
 
-### Model-Free Implied Volatility
+### 2. Model-Free Implied Volatility
+
 
 The Breeden-Litzenberger density can be used to define a **model-free implied variance**:
 
@@ -391,7 +420,8 @@ $$
 
 This integral of option prices across all strikes provides a volatility estimate independent of Black-Scholes.
 
-### Testing Model Assumptions
+### 3. Testing Model Assumptions
+
 
 Compare the empirical density $q_{\text{market}}(K)$ extracted from option prices to model-implied densities:
 - **Black-Scholes:** $q_{\text{BS}}$ is lognormal
@@ -402,7 +432,9 @@ Deviations indicate model misspecification.
 
 ## Relationship to Characteristic Function
 
-### Fourier Inversion
+
+### 1. Fourier Inversion
+
 
 The risk-neutral density can also be expressed via the characteristic function:
 
@@ -415,7 +447,8 @@ $$
 
 where $\phi(\omega) = \mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}]$ is the characteristic function.
 
-### Carr-Madan Formula
+### 2. Carr-Madan Formula
+
 
 Carr and Madan (1999) show that call prices can be recovered from the characteristic function:
 
@@ -430,7 +463,9 @@ Combining with Breeden-Litzenberger provides an alternative path: $\phi \to C \t
 
 ## Numerical Examples
 
-### Example 1: Black-Scholes Density
+
+### 1. Example 1: Black-Scholes Density
+
 
 For $S_T \sim \text{Lognormal}(\mu, \sigma^2 T)$ with $\mu = (r - q - \sigma^2/2)T$:
 
@@ -475,7 +510,8 @@ $$
 
 
 
-### Example 2: Discrete Grid Recovery
+### 2. Example 2: Discrete Grid Recovery
+
 
 Given market call prices $\{(K_i, C_i)\}_{i=1}^n$:
 
@@ -486,7 +522,9 @@ Given market call prices $\{(K_i, C_i)\}_{i=1}^n$:
 
 ## Extensions and Generalizations
 
-### Time-Dependent Interest Rates
+
+### 1. Time-Dependent Interest Rates
+
 
 For stochastic interest rates, the discount factor $e^{-rT}$ is replaced by the price of a zero-coupon bond $B(0, T)$:
 
@@ -497,11 +535,13 @@ $$
 
 
 
-### Dividends and Jumps
+### 2. Dividends and Jumps
+
 
 Discrete dividends create point masses in the density. Continuous dividend yield $q$ modifies the forward price but preserves the Breeden-Litzenberger structure.
 
-### Multi-Asset Options
+### 3. Multi-Asset Options
+
 
 For basket options, the joint risk-neutral density can be extracted using higher-dimensional derivatives:
 
@@ -516,25 +556,30 @@ This requires options on the basket at a two-dimensional grid of strikes.
 
 ## Limitations and Practical Considerations
 
-### Sparse Strike Grid
+
+### 1. Sparse Strike Grid
+
 
 Real markets have limited strike coverage, especially in the wings. Extrapolation is required, introducing model dependence.
 
-### Bid-Ask Spreads
+### 2. Bid-Ask Spreads
+
 
 Using mid-prices can lead to inconsistencies. Best practice:
 - Use bid prices for sold options (butterfly short legs)
 - Use ask prices for bought options (butterfly long legs)
 - Result: Conservative density estimate
 
-### Negative Probabilities
+### 3. Negative Probabilities
+
 
 If $\partial^2 C / \partial K^2 < 0$ at some strike, the extracted "density" is negative—indicating arbitrage or measurement error. Solutions:
 - Regularization (smooth to enforce convexity)
 - Projection onto arbitrage-free space
 - Discard suspect data points
 
-### Tail Behavior
+### 4. Tail Behavior
+
 
 Breeden-Litzenberger requires knowledge of $C(K)$ for all $K \in [0, \infty)$. In practice:
 - Lower tail: $K \to 0$ may have no traded options
@@ -543,6 +588,7 @@ Breeden-Litzenberger requires knowledge of $C(K)$ for all $K \in [0, \infty)$. I
 Standard approach: assume parametric tail (e.g., power law, exponential decay).
 
 ## Summary
+
 
 The Breeden-Litzenberger formula:
 

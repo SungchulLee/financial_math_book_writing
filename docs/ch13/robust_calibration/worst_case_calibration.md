@@ -1,10 +1,12 @@
 # Worst-Case Calibration
 
+
 **Worst-case calibration** selects model parameters that perform acceptably under the most adverse plausible market scenarios.
 
 ---
 
-## 1. Concept
+## Concept
+
 
 Instead of minimizing average error, worst-case calibration solves:
 
@@ -19,7 +21,8 @@ This emphasizes robustness over best fit.
 
 ---
 
-## 2. Relation to robust optimization
+## Relation to robust optimization
+
 
 Worst-case calibration:
 - mirrors max–min optimization,
@@ -30,7 +33,8 @@ It is conservative by design.
 
 ---
 
-## 3. Practical implementation
+## Practical implementation
+
 
 Approaches include:
 - penalty methods,
@@ -41,7 +45,8 @@ Computational cost is higher than classical calibration.
 
 ---
 
-## 4. Benefits and limitations
+## Benefits and limitations
+
 
 Benefits:
 - stable parameters,
@@ -53,7 +58,8 @@ Limitations:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Worst-case calibration prioritizes stability.
 - It protects against adverse data realizations.
@@ -62,6 +68,7 @@ Limitations:
 ---
 
 ## Further reading
+
 
 - Ben-Tal et al., robust optimization.
 - Cont, robust calibration.

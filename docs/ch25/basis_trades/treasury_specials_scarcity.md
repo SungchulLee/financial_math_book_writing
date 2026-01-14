@@ -1,10 +1,12 @@
 # Treasury Specials and Scarcity
 
+
 **Treasury specials and scarcity** refers to high-demand Treasury securities that trade at premium repo rates (lower than general collateral), creating arbitrage opportunities and funding challenges for those who need to borrow these specific securities.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Are Treasury Specials?
 
+
 ### 1. Basic Definition
+
 
 **General Collateral (GC):**
 - Any Treasury acceptable as repo collateral
@@ -51,6 +55,7 @@ $$
 - **Specialness: 1.5% (150 bps)**
 
 ### 2. Why Securities Go Special
+
 
 **High borrowing demand:**
 
@@ -81,6 +86,7 @@ $$
 
 ### 3. On-the-Run vs Off-the-Run
 
+
 **On-the-run (OTR):**
 - Most recently issued Treasury of each maturity
 - Highest liquidity (benchmark)
@@ -100,6 +106,7 @@ $$
 
 ### 4. Measurement
 
+
 **Repo rate levels:**
 
 - **At GC:** Special rate = GC rate (0 bps special)
@@ -115,6 +122,7 @@ $$
 - COVID (March 2020): OTR 10Y at 300 bps special
 
 ### 5. Duration Patterns
+
 
 **By maturity:**
 
@@ -135,6 +143,7 @@ $$
 - Typical: 50-200 bps special
 
 ### 6. Time Patterns
+
 
 **Auction cycle:**
 
@@ -157,6 +166,7 @@ $$
 
 ### 7. Quarter-End Effects
 
+
 **Reporting date impact:**
 
 **Normal days:**
@@ -177,9 +187,11 @@ $$
 
 ## Trading Strategies
 
+
 **How to profit from specials:**
 
 ### 1. Lend Specials
+
 
 **Most straightforward:**
 
@@ -209,6 +221,7 @@ $$
 - Net: GC rate + specialness
 
 ### 2. Buy and Lend
+
 
 **Active strategy:**
 
@@ -247,6 +260,7 @@ $$
 
 ### 3. Relative Value Trade
 
+
 **Exploit specialness differential:**
 
 **Setup:**
@@ -273,6 +287,7 @@ $$
 
 ### 4. CTD Arbitrage
 
+
 **Exploit futures basis:**
 
 **Setup:**
@@ -293,6 +308,7 @@ $$
 
 ### 5. Securities Lending Program
 
+
 **For asset owners:**
 
 **Setup:**
@@ -312,6 +328,7 @@ $$
 **Enhances portfolio return by 35 bps**
 
 ### 6. Fails Arbitrage
+
 
 **Exploit settlement fails:**
 
@@ -337,6 +354,7 @@ $$
 
 ### 7. Auction Flipping
 
+
 **Short-term special trade:**
 
 **Pre-auction:**
@@ -358,7 +376,9 @@ $$
 
 ## Mathematical Framework
 
+
 ### 1. Specialness Value
+
 
 **Annual value of lending special:**
 
@@ -379,6 +399,7 @@ $$
 $$
 
 ### 2. Implied Specialness from Price
+
 
 **Bond premium due to scarcity:**
 
@@ -410,6 +431,7 @@ $$
 
 ### 3. Optimal Lending Strategy
 
+
 **Maximize expected revenue:**
 
 $$
@@ -421,6 +443,7 @@ $$
 - Keep unlent if: Near corporate action (vote, tender)
 
 ### 4. Fails Charge P&L
+
 
 **Value of fails:**
 
@@ -434,6 +457,7 @@ $$
 
 ### 5. Box Trade Analysis
 
+
 **Locked-in profit:**
 
 $$
@@ -443,6 +467,7 @@ $$
 **Only works if you own the bond already (no acquisition cost)**
 
 ### 6. Carry from Basis Trade
+
 
 **With special financing:**
 
@@ -457,6 +482,7 @@ $$
 - Net carry: $(1.8\% - 0.5\%) × $10M = $130,000$ annually
 
 ### 7. Duration-Neutral Hedge
+
 
 **OTR vs OFR trade:**
 
@@ -475,9 +501,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Ignoring Financing Costs
+
 
 **Mistake:** Think special rate is what you earn
 
@@ -499,6 +527,7 @@ $$
 
 ### 2. Buying Expensive Bonds
 
+
 **Mistake:** Buy OTR expecting to profit from lending
 
 **Why it fails:** Pay premium in cash market
@@ -512,6 +541,7 @@ $$
 **Fix:** Buy OFR securities (cheaper), lend those instead
 
 ### 3. Neglecting Recall Risk
+
 
 **Mistake:** Lend securities, forget can be recalled
 
@@ -531,6 +561,7 @@ $$
 
 ### 4. Misunderstanding Securities Lending
 
+
 **Mistake:** Confuse with repo
 
 **Why it fails:** Different economics
@@ -548,6 +579,7 @@ $$
 
 ### 5. Ignoring Fails Charges
 
+
 **Mistake:** Accept fails without collecting
 
 **Why it fails:** Free money left on table
@@ -563,6 +595,7 @@ $$
 - Monitor settlement
 
 ### 6. Over-Reliance on Specialness
+
 
 **Mistake:** Build entire strategy on specials
 
@@ -581,6 +614,7 @@ $$
 
 ### 7. Quarter-End Surprise
 
+
 **Mistake:** Don't prepare for quarter-end scarcity
 
 **Why it fails:** Specialness spikes dramatically
@@ -597,6 +631,7 @@ $$
 - Budget for higher costs
 
 ### 8. Concentration Risk
+
 
 **Mistake:** Lend entire portfolio
 
@@ -617,7 +652,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Lending Limits
+
 
 **Maximum to lend:**
 
@@ -632,6 +669,7 @@ $$
 
 ### 2. Counterparty Limits
 
+
 **Diversify borrowers:**
 
 - No single borrower > 20% of lent securities
@@ -645,6 +683,7 @@ $$
 
 ### 3. Recall Procedures
 
+
 **Establish protocols:**
 
 - Standard recall: 1-2 business days
@@ -653,6 +692,7 @@ $$
 - Monitor corporate actions calendar
 
 ### 4. Collateral Management
+
 
 **For cash collateral:**
 
@@ -667,6 +707,7 @@ $$
 - Daily revaluation
 
 ### 5. Monitoring
+
 
 **Daily:**
 - Repo rates (GC and specials)
@@ -688,6 +729,7 @@ $$
 
 ### 6. Auction Calendar
 
+
 **Pre-auction preparation:**
 
 - Identify which holdings become OTR
@@ -701,6 +743,7 @@ $$
 - Monitor normalization (1-2 weeks)
 
 ### 7. Quarter-End Planning
+
 
 **Prepare 2 weeks before:**
 
@@ -718,7 +761,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. COVID Dash for Cash (March 2020)
+
 
 **Setup:**
 - Panic selling, everyone needs cash
@@ -734,6 +779,7 @@ $$
 **Lesson:** Crisis → extreme specialness → lender bonanza
 
 ### 2. 10Y Auction Flip (2019)
+
 
 **Setup:**
 - 10Y auction oversubscribed
@@ -756,6 +802,7 @@ $$
 
 ### 3. CTD Special (2018)
 
+
 **Setup:**
 - 10Y futures CTD goes 200 bps special
 - Basis traders need CTD to hedge
@@ -775,6 +822,7 @@ $$
 
 ### 4. Quarter-End Squeeze (Dec 2019)
 
+
 **Setup:**
 - Year-end approaching
 - Bank balance sheet constraints
@@ -793,6 +841,7 @@ $$
 **Lesson:** Year-end effects are extreme, plan accordingly
 
 ### 5. TIPS Scarcity (2020-2021)
+
 
 **Setup:**
 - Inflation fears, high TIPS demand
@@ -816,7 +865,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Monitoring Specialness
+
 
 **Daily tracking:**
 
@@ -842,6 +893,7 @@ OTR 30Y     | 2.50%   | 1.80%       | 70 bps      | 60th
 
 ### 2. Securities Lending Setup
 
+
 **For asset owners ($50M+ portfolio):**
 
 1. **Select agent:**
@@ -863,6 +915,7 @@ OTR 30Y     | 2.50%   | 1.80%       | 70 bps      | 60th
 
 ### 3. Exploiting Specials (For Traders)
 
+
 **Identify opportunities:**
 
 1. **Scan for rich specials:**
@@ -882,6 +935,7 @@ OTR 30Y     | 2.50%   | 1.80%       | 70 bps      | 60th
 
 ### 4. Managing Financing
 
+
 **For repo borrowers:**
 
 1. **Identify needs:**
@@ -899,6 +953,7 @@ OTR 30Y     | 2.50%   | 1.80%       | 70 bps      | 60th
    - Reduce leverage before reporting dates
 
 ### 5. Auction Strategy
+
 
 **Around auction dates:**
 
@@ -922,6 +977,7 @@ OTR 30Y     | 2.50%   | 1.80%       | 70 bps      | 60th
 ---
 
 ## Final Wisdom
+
 
 > "Treasury specials are the plumbing of the market - invisible to most but critical to understanding financing costs and arbitrage opportunities. Securities that go special create wealth for those who own them (lenders profit) and pain for those who need them (borrowers pay up). The key insights: (1) on-the-run Treasuries are always somewhat special due to hedging demand, (2) specialness spikes around auctions and quarter-ends when scarcity intensifies, and (3) the value of owning specials is real but temporary - every OTR eventually becomes OFR and specialness evaporates. Smart investors lend their Treasury holdings through securities lending programs, earning 20-100 bps annually with minimal risk. Smart traders avoid shorting OTR securities unless absolutely necessary, and always budget for special repo rates."
 

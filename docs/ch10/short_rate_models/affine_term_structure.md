@@ -1,10 +1,12 @@
 # Affine Term Structure
 
+
 Many short-rate models (including Vasicek and CIR) belong to the **affine term structure** class. Affine structure explains why bond prices have closed forms and provides a framework for multi-factor generalizations.
 
 ---
 
-## 1. Affine bond prices
+## Affine bond prices
+
 
 A term structure model is affine if zero-coupon bond prices can be written as
 
@@ -21,7 +23,8 @@ In the one-factor case, \(X_t=r_t\).
 
 ---
 
-## 2. Why affine models are tractable
+## Why affine models are tractable
+
 
 Affine models lead to:
 - exponential-affine characteristic functions,
@@ -32,7 +35,8 @@ This is analogous to affine stochastic volatility (e.g., Heston).
 
 ---
 
-## 3. Examples
+## Examples
+
 
 - **Vasicek:** Gaussian affine model.
 - **CIR:** square-root affine model.
@@ -42,7 +46,8 @@ These models are widely used for curve and swaption pricing (often with shifts).
 
 ---
 
-## 4. Fitting the initial yield curve
+## Fitting the initial yield curve
+
 
 A common practical extension is **time-dependent drift** (e.g., Hull–White):
 - preserves affine structure,
@@ -51,7 +56,8 @@ A common practical extension is **time-dependent drift** (e.g., Hull–White):
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Affine structure yields exponential-affine bond prices.
 - Vasicek and CIR are key affine examples.
@@ -60,6 +66,7 @@ A common practical extension is **time-dependent drift** (e.g., Hull–White):
 ---
 
 ## Further reading
+
 
 - Duffie & Kan, affine term structure models.
 - Filipović, *Term-Structure Models*.

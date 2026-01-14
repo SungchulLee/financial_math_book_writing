@@ -1,10 +1,12 @@
 # Endogenous Price Dynamics
 
+
 In modern financial markets, prices are not purely exogenous processes. **Endogenous price dynamics** arise when trading activity itself influences prices.
 
 ---
 
-## 1. Exogenous vs endogenous views
+## Exogenous vs endogenous views
+
 
 Traditional models assume:
 - prices driven by external information,
@@ -17,7 +19,8 @@ In reality:
 
 ---
 
-## 2. Market impact as endogeneity
+## Market impact as endogeneity
+
 
 Trading generates:
 - temporary impact through order-book pressure,
@@ -27,7 +30,8 @@ As a result, price dynamics depend on market participants’ actions.
 
 ---
 
-## 3. Implications for modeling
+## Implications for modeling
+
 
 Endogenous dynamics imply:
 - violations of martingale assumptions,
@@ -38,7 +42,8 @@ Models must incorporate impact and feedback.
 
 ---
 
-## 4. Financial applications
+## Financial applications
+
 
 Endogeneity matters for:
 - optimal execution,
@@ -49,7 +54,8 @@ Ignoring it leads to underestimated risk.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Prices are shaped by trading behavior.
 - Market impact creates feedback loops.
@@ -58,6 +64,7 @@ Ignoring it leads to underestimated risk.
 ---
 
 ## Further reading
+
 
 - Bouchaud et al., market impact.
 - Farmer et al., endogenous markets.

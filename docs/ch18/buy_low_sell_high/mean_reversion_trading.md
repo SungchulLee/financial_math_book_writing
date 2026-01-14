@@ -1,10 +1,12 @@
 # Mean Reversion
 
+
 **Mean reversion trading** is a strategy that exploits the statistical tendency of prices to return to their average levels, using options to profit from oversold or overbought conditions while managing risk through defined entry and exit criteria.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -33,9 +35,11 @@ $$
 
 ## What Is Mean
 
+
 **Before executing mean reversion strategies, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** Trading based on the statistical principle that prices oscillate around a mean and tend to revert after extreme moves, using options to capture the return with defined risk.
 
@@ -69,6 +73,7 @@ $$
 - Exit at $11.50 → Profit $800 per contract
 
 ### 2. Put Version
+
 
 **Definition:** Using puts to profit from downward mean reversion when price is extended above average.
 
@@ -109,9 +114,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic strategy, understanding the REAL economics:**
 
 ### 1. The Behavioral
+
 
 **The deep insight:**
 
@@ -154,6 +161,7 @@ $$
 
 ### 2. The Rubber Band
 
+
 **Visualizing mean reversion:**
 
 Imagine price is attached to mean by a rubber band:
@@ -182,6 +190,7 @@ Where $k$ is the "spring constant" (speed of reversion)
 **This is why we wait for 2σ+ moves: Maximum force, fastest reversion**
 
 ### 3. Statistical
+
 
 **The mathematical model:**
 
@@ -220,6 +229,7 @@ $$
 
 ### 4. Why Extremes
 
+
 **The inefficiency at extremes:**
 
 **Normal distribution assumption:**
@@ -256,6 +266,7 @@ Historical analysis (2020-2024):
 
 ### 5. The Role of
 
+
 **IV and mean reversion:**
 
 $$
@@ -282,6 +293,7 @@ $$
 - **Solution: Trade when IV at 50-70th percentile, not 90th+**
 
 ### 6. The Strategic
+
 
 **Why options for mean reversion?**
 
@@ -314,6 +326,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Mean (μ):**
 
@@ -377,7 +390,9 @@ $$
 
 ## Mathematical
 
+
 ### 1. The Mean
+
 
 **Testing if a stock exhibits mean reversion:**
 
@@ -412,6 +427,7 @@ $$
 **Trade only stocks with strong mean reversion (p < 0.05)**
 
 ### 2. Entry Signal
+
 
 **Calculating entry threshold:**
 
@@ -457,6 +473,7 @@ $$
 
 ### 3. Expected Return
 
+
 **For mean-reverting process:**
 
 $$
@@ -494,6 +511,7 @@ $$
 
 ### 4. Probability of
 
+
 **Using normal distribution:**
 
 $$
@@ -522,6 +540,7 @@ $$
 
 ### 5. Optimal Holding
 
+
 **Time to reversion:**
 
 $$
@@ -546,6 +565,7 @@ Where $\epsilon$ = acceptable distance from mean (e.g., 0.5σ)
 - Balances theta decay vs. time needed
 
 ### 6. Portfolio Kelly
+
 
 **Optimal position size for mean reversion:**
 
@@ -583,7 +603,9 @@ $$
 
 ## Key ideas
 
+
 ### 1. Phase 1
+
 
 **1. Identify Mean-Reverting Candidates:**
 
@@ -669,7 +691,8 @@ overbought = z_score > 2.0
 - Between earnings
 - No major news pending
 
-### 1. Phase 2
+### 2. Phase 2
+
 
 **1. Wait for Extreme Deviation:**
 
@@ -740,7 +763,8 @@ $$
 
 **Never exceed 5% per trade**
 
-### 2. Phase 3
+### 3. Phase 3
+
 
 **1. Confirm Entry Conditions:**
 
@@ -794,7 +818,8 @@ Thesis: Stock oversold after sector rotation,
 no fundamental change, expect revert to $850-870
 ```
 
-### 3. Phase 4
+### 4. Phase 4
+
 
 **1. Set Mental Stops and Targets:**
 
@@ -854,7 +879,8 @@ no fundamental change, expect revert to $850-870
 
 **Don't wait for perfection (mean exactly). Close enough is good enough.**
 
-### 4. Phase 5
+### 5. Phase 5
+
 
 **1. Exit Triggers:**
 
@@ -900,7 +926,8 @@ no fundamental change, expect revert to $850-870
 
 **Update trading journal with lessons**
 
-### 5. Complete Example
+### 6. Complete Example
+
 
 **Phase 1: Analysis (June 1, 2024)**
 
@@ -983,7 +1010,9 @@ no fundamental change, expect revert to $850-870
 
 ## Greeks Analysis
 
+
 ### 1. Delta
+
 
 **What it means for mean reversion:**
 
@@ -1013,6 +1042,7 @@ $$
 - **Sweet spot: 0.35-0.50 delta (1-2 strikes OTM)**
 
 ### 2. Gamma
+
 
 **What it means:**
 
@@ -1061,6 +1091,7 @@ $$
 **This is the "bonus" beyond delta**
 
 ### 3. Theta
+
 
 **What it means:**
 
@@ -1112,6 +1143,7 @@ $$
 **NEVER hold mean reversion trades into last week**
 
 ### 4. Vega
+
 
 **What it means:**
 
@@ -1172,6 +1204,7 @@ $$
 
 ### 5. Greeks in Action
 
+
 **Setup:**
 
 - MSFT at $380 (mean $410, z = -2.0)
@@ -1230,7 +1263,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Date: August 5, 2024 (real event)**
 
@@ -1288,6 +1323,7 @@ $$
 
 ### 2. Transition Risk
 
+
 **Date: November 2023**
 
 **Background:**
@@ -1342,6 +1378,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Date: March 2024**
 
 **Background:**
@@ -1385,6 +1422,7 @@ $$
 - Cutting loss at -80% saved from -100%
 
 ### 4. Tactical Duration
+
 
 **Date: May 2024**
 
@@ -1430,6 +1468,7 @@ $$
 - IV crush can destroy directionally correct trades
 
 ### 5. Duration Hedge
+
 
 **Date: July 2024**
 
@@ -1482,7 +1521,9 @@ $$
 
 ## Risk Management
 
+
 ### 1. Position Sizing
+
 
 **The cardinal rule:**
 
@@ -1517,6 +1558,7 @@ $$
 
 ### 2. Stop Loss
 
+
 **Mandatory stop:**
 
 $$
@@ -1546,6 +1588,7 @@ $$
 
 ### 3. Profit Taking
 
+
 **Three-tier exit plan:**
 
 **Level 1 (25% of position): +50% gain**
@@ -1570,6 +1613,7 @@ $$
 
 ### 4. Time-Based Stops
 
+
 **Rule: Exit if reversion hasn't started in 33% of DTE**
 
 **Example:**
@@ -1581,6 +1625,7 @@ $$
 
 ### 5. Diversification
 
+
 **Maximum positions:**
 
 - Max 5 mean reversion trades simultaneously
@@ -1590,6 +1635,7 @@ $$
 - **Uncorrelated as possible**
 
 ### 6. Risk Management
+
 
 **Before entry:**
 
@@ -1607,6 +1653,7 @@ $$
 
 
 ## Final Wisdom
+
 
 > "Mean reversion is the most mathematically sound options strategy—price extremes have statistical pull toward average. But statistics require sample size: one trade proves nothing, but 50 trades reveal the edge. The key is discipline: enter only at extremes (z > 2), exit at stops (-50%) or targets (z ≈ 0), and never let ego override math. The market doesn't care about your thesis; it only cares about supply and demand. When stretched rubber bands snap back, you profit. When means shift, you lose. Know the difference."
 

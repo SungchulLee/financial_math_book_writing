@@ -1,6 +1,8 @@
 # g-Expectations
 
+
 ## Introduction
+
 
 The theory of **g-expectations** represents a fundamental generalization of classical linear expectation to **nonlinear expectations** that arise naturally in financial mathematics under model uncertainty, transaction costs, and risk aversion. Introduced by Shige Peng in 1997, g-expectations provide a unified framework for:
 
@@ -13,7 +15,9 @@ The mathematical foundation lies in the theory of **backward stochastic differen
 
 ## Mathematical Foundations
 
-### Classical Expectation
+
+### 1. Classical Expectation
+
 
 **Linear Expectation**: Given a probability space $(\Omega, \mathcal{F}, P)$ and random variable $\xi \in L^2(\Omega, \mathcal{F}, P)$:
 
@@ -48,7 +52,8 @@ $$
 
 
 
-### Backward Stochastic Differential Equations
+### 2. Backward Stochastic Differential Equations
+
 
 **BSDE Definition**: A pair of processes $(Y_t, Z_t)_{t \in [0,T]}$ satisfying:
 
@@ -75,7 +80,8 @@ $$
 
 
 
-### Well-Posedness
+### 3. Well-Posedness
+
 
 **Theorem** (Pardoux-Peng, 1990): Suppose:
 1. $g$ is uniformly Lipschitz in $(y, z)$
@@ -95,7 +101,9 @@ $$
 
 ## g-Expectation Definition
 
-### Conditional g-Expectation
+
+### 1. Conditional g-Expectation
+
 
 **Definition**: Given generator $g$ and terminal condition $\xi$, the **conditional g-expectation** is:
 
@@ -129,7 +137,8 @@ $$
 - Depends on entire path through generator $g$
 - Nonlinear in general
 
-### Properties
+### 2. Properties
+
 
 **Proposition** (Basic Properties): For g-expectation $\mathcal{E}_g$:
 
@@ -158,7 +167,8 @@ $$
 
 This BSDE with terminal condition $Y_t$ has solution $Y_s$ at time $s$, establishing time consistency.
 
-### Examples
+### 3. Examples
+
 
 **Example 1** (Linear Case): If $g(t, y, z) = 0$, then:
 
@@ -195,7 +205,9 @@ where $\mathcal{P}_{\alpha}$ is a set of probability measures with bounded densi
 
 ## Generators and Their Properties
 
-### Lipschitz Generators
+
+### 1. Lipschitz Generators
+
 
 **Definition**: Generator $g$ is **Lipschitz** if there exists $K > 0$ such that:
 
@@ -210,7 +222,8 @@ for all $(t, y_1, z_1), (t, y_2, z_2)$.
 
 **Consequence**: Lipschitz generators ensure unique solutions to BSDEs and well-defined g-expectations.
 
-### Convexity
+### 2. Convexity
+
 
 **Definition**: Generator $g(t, y, z)$ is **convex** in $(y, z)$ if:
 
@@ -234,7 +247,8 @@ $$
 
 **Risk Aversion**: Convexity in $z$ corresponds to risk aversion in the associated valuation.
 
-### Positive Homogeneity
+### 3. Positive Homogeneity
+
 
 **Definition**: Generator $g(t, y, z)$ is **positively homogeneous** in $(y, z)$ if:
 
@@ -258,7 +272,8 @@ $$
 
 for $\lambda > 0$.
 
-### Subadditivity
+### 4. Subadditivity
+
 
 **Definition**: Generator $g$ induces **subadditive** g-expectation if:
 
@@ -273,7 +288,9 @@ $$
 
 ## Comparison Theorems
 
-### Comparison of Terminal Conditions
+
+### 1. Comparison of Terminal Conditions
+
 
 **Theorem** (Comparison): Let $(Y_t, Z_t)$ and $(\bar{Y}_t, \bar{Z}_t)$ be solutions to BSDEs with the same generator $g$ but terminal conditions $\xi$ and $\bar{\xi}$ respectively.
 
@@ -297,7 +314,8 @@ $$
 
 Apply Itô's formula to $(\Delta Y_t)^-$ (negative part) and use Lipschitz property to show $(\Delta Y_t)^- = 0$.
 
-### Comparison of Generators
+### 2. Comparison of Generators
+
 
 **Theorem**: Let $(Y_t, Z_t)$ and $(\bar{Y}_t, \bar{Z}_t)$ be solutions to BSDEs with generators $g$ and $\bar{g}$ respectively, both with the same terminal condition $\xi$.
 
@@ -321,7 +339,8 @@ $$
 
 
 
-### Strict Comparison
+### 3. Strict Comparison
+
 
 **Theorem** (Strict Comparison): Under additional regularity (strict inequality on a set of positive measure), strict inequalities hold:
 
@@ -334,7 +353,9 @@ $$
 
 ## Representation Theorems
 
-### Minimal and Maximal Representations
+
+### 1. Minimal and Maximal Representations
+
 
 **Theorem** (Peng): For convex and positively homogeneous generator $g$, the g-expectation admits representations:
 
@@ -351,7 +372,8 @@ where:
 
 **Construction**: The set $\mathcal{Q}$ is characterized through the generator $g$ via Girsanov's theorem.
 
-### Entropic Representation
+### 2. Entropic Representation
+
 
 **Exponential Utility Case**: For $g(t, y, z) = -\frac{\gamma}{2} |z|^2$:
 
@@ -384,7 +406,8 @@ $$
 
 where $Z_t$ comes from the BSDE solution.
 
-### Choquet Capacity Representation
+### 3. Choquet Capacity Representation
+
 
 **Non-Additive Measure**: For certain generators, g-expectations correspond to integration with respect to Choquet capacities.
 
@@ -405,7 +428,9 @@ $$
 
 ## Dynamic Risk Measures
 
-### Coherent Risk Measures
+
+### 1. Coherent Risk Measures
+
 
 **Definition** (Artzner et al., 1999): A functional $\rho: L^{\infty} \to \mathbb{R}$ is a **coherent risk measure** if:
 
@@ -423,7 +448,8 @@ $$
 
 
 
-### Dynamic Coherent Risk Measures
+### 2. Dynamic Coherent Risk Measures
+
 
 **Definition**: A family $\{\rho_t\}_{t \in [0,T]}$ is a **dynamic coherent risk measure** if each $\rho_t$ is coherent and satisfies **time consistency**:
 
@@ -447,7 +473,8 @@ $$
 
 for appropriate generator $g$.
 
-### Connection to BSDEs
+### 3. Connection to BSDEs
+
 
 **Theorem**: If $\rho_t$ is a dynamic coherent risk measure, then $Y_t = \rho_t(X)$ satisfies a BSDE:
 
@@ -464,7 +491,9 @@ where $g$ is convex and positively homogeneous in $(y, z)$.
 
 ## Applications to Finance
 
-### Option Pricing Under Model Uncertainty
+
+### 1. Option Pricing Under Model Uncertainty
+
 
 **Setup**: Uncertain volatility $\sigma \in [\underline{\sigma}, \overline{\sigma}]$.
 
@@ -499,7 +528,8 @@ $$
 
 **Hedging Strategy**: The optimal hedge is $\Delta_t = Z_t$.
 
-### Utility Indifference Pricing
+### 2. Utility Indifference Pricing
+
 
 **Setup**: Agent with exponential utility $u(x) = -e^{-\gamma x}$ and risk aversion $\gamma > 0$.
 
@@ -532,7 +562,8 @@ $$
 
 
 
-### Optimal Investment with Ambiguity
+### 3. Optimal Investment with Ambiguity
+
 
 **Problem**: Maximize worst-case expected utility:
 
@@ -565,7 +596,8 @@ $$
 
 
 
-### Credit Risk and CVA
+### 4. Credit Risk and CVA
+
 
 **Credit Valuation Adjustment (CVA)**: Adjustment for counterparty default risk.
 
@@ -584,7 +616,9 @@ with generator reflecting uncertainty about default intensity and recovery rates
 
 ## Numerical Methods
 
-### Discrete-Time Approximation
+
+### 1. Discrete-Time Approximation
+
 
 **Euler Scheme**: Partition $[0, T]$ into $N$ intervals with $\Delta t = T/N$.
 
@@ -615,7 +649,8 @@ $$
 
 
 
-### Monte Carlo Methods
+### 2. Monte Carlo Methods
+
 
 **Algorithm**:
 1. Simulate $M$ paths of Brownian motion: $\{W^{(m)}_t\}_{m=1}^M$
@@ -633,7 +668,8 @@ $$
 
 **Complexity**: $O(MNK)$ where $M$ is paths, $N$ is time steps, $K$ is basis functions.
 
-### Deep Learning Approaches
+### 3. Deep Learning Approaches
+
 
 **Neural Network Parameterization**: Represent $(Y_t, Z_t)$ using neural networks:
 
@@ -660,7 +696,9 @@ $$
 
 ## Advanced Topics
 
-### Reflected BSDEs
+
+### 1. Reflected BSDEs
+
 
 **Definition**: A triple $(Y_t, Z_t, K_t)$ satisfying:
 
@@ -680,7 +718,8 @@ with:
 
 **Application**: American option pricing, optimal stopping problems.
 
-### Mean-Field BSDEs
+### 2. Mean-Field BSDEs
+
 
 **Setup**: Large population of agents, each influenced by others.
 
@@ -699,7 +738,8 @@ where $\bar{Y}_t = \frac{1}{N} \sum_{i=1}^N Y_t^i$ is the empirical mean.
 
 **Application**: Systemic risk, large portfolio optimization, crowd behavior in markets.
 
-### Forward-Backward SDEs
+### 3. Forward-Backward SDEs
+
 
 **Coupled System**: $(X_t, Y_t, Z_t)$ satisfying:
 
@@ -723,7 +763,8 @@ with $X_0 = x$ and $Y_T = \Phi(X_T)$.
 
 **Well-Posedness**: Requires careful analysis; solutions exist under monotonicity or small-time conditions.
 
-### Quadratic BSDEs
+### 4. Quadratic BSDEs
+
 
 **Generator**: Quadratic growth in $z$:
 
@@ -745,7 +786,9 @@ $$
 
 ## Connections to PDEs
 
-### Feynman-Kac Formula for BSDEs
+
+### 1. Feynman-Kac Formula for BSDEs
+
 
 **Theorem**: If $Y_t = v(t, X_t)$ for some function $v$ and state process $X_t$, then $v$ satisfies the PDE:
 
@@ -762,7 +805,8 @@ with terminal condition $v(T, x) = \Phi(x)$, where $\mathcal{L}$ is the infinite
 
 **Interpretation**: BSDEs provide probabilistic representation for nonlinear PDEs.
 
-### Viscosity Solutions
+### 2. Viscosity Solutions
+
 
 **Definition**: A function $v$ is a **viscosity solution** if it satisfies the PDE in the viscosity sense (comparison with smooth test functions).
 
@@ -770,7 +814,8 @@ with terminal condition $v(T, x) = \Phi(x)$, where $\mathcal{L}$ is the infinite
 
 **Advantage**: Viscosity solutions exist even when classical solutions don't (e.g., non-smooth payoffs).
 
-### Hamilton-Jacobi-Bellman Equations
+### 3. Hamilton-Jacobi-Bellman Equations
+
 
 **Stochastic Control**: Consider:
 
@@ -801,7 +846,9 @@ $$
 
 ## Convergence and Stability
 
-### Continuous Dependence
+
+### 1. Continuous Dependence
+
 
 **Theorem**: Let $(Y_t^n, Z_t^n)$ be solutions to BSDEs with generators $g_n$ and terminal conditions $\xi_n$.
 
@@ -820,7 +867,8 @@ in $L^2$ norm.
 
 **Application**: Justifies numerical approximations and perturbation analysis.
 
-### Convergence of Discretizations
+### 2. Convergence of Discretizations
+
 
 **Theorem**: The discrete-time approximation converges to the continuous-time BSDE solution:
 
@@ -835,7 +883,8 @@ under appropriate regularity conditions.
 
 **Higher-Order Schemes**: Milstein-type schemes achieve $O((\Delta t)^{3/2})$ or better.
 
-### Robustness to Model Perturbations
+### 3. Robustness to Model Perturbations
+
 
 **g-Expectations Stability**: Small changes in generator lead to small changes in g-expectation:
 
@@ -850,7 +899,9 @@ for some constant $C$ depending on $T$ and Lipschitz constants.
 
 ## Summary and Key Insights
 
-### Fundamental Contributions
+
+### 1. Fundamental Contributions
+
 
 1. **Nonlinear Expectations**: g-expectations extend classical expectations to nonlinear frameworks, capturing risk aversion, ambiguity, and model uncertainty.
 
@@ -862,7 +913,8 @@ for some constant $C$ depending on $T$ and Lipschitz constants.
 
 5. **Dynamic Risk Measures**: Provide mathematical foundation for coherent, time-consistent risk measures used in finance and insurance.
 
-### Practical Implications
+### 2. Practical Implications
+
 
 **For Pricing**:
 - Robust pricing under model uncertainty
@@ -879,7 +931,8 @@ for some constant $C$ depending on $T$ and Lipschitz constants.
 - Robust optimal control
 - Mean-field game equilibria
 
-### Theoretical Significance
+### 3. Theoretical Significance
+
 
 g-Expectations unify:
 - **Stochastic Analysis**: BSDEs and martingale theory

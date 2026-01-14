@@ -1,10 +1,12 @@
 # Hybrid Model-Based / Data-Driven Approaches
 
+
 **Hybrid approaches** combine traditional financial models with data-driven learning to leverage the strengths of both paradigms.
 
 ---
 
-## 1. Motivation for hybrid models
+## Motivation for hybrid models
+
 
 Pure model-based approaches:
 - offer interpretability and structure,
@@ -18,7 +20,8 @@ Hybrid models bridge this gap.
 
 ---
 
-## 2. Forms of hybridization
+## Forms of hybridization
+
 
 Common strategies include:
 - learning residuals on top of parametric models,
@@ -27,7 +30,8 @@ Common strategies include:
 
 ---
 
-## 3. Benefits in practice
+## Benefits in practice
+
 
 Hybrid approaches:
 - improve data efficiency,
@@ -38,7 +42,8 @@ They are widely adopted in practice.
 
 ---
 
-## 4. Applications
+## Applications
+
 
 Examples include:
 - volatility surface modeling,
@@ -49,7 +54,8 @@ Hybrid models often outperform purely data-driven ones.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Hybrid models balance structure and flexibility.
 - They respect financial constraints.
@@ -58,6 +64,7 @@ Hybrid models often outperform purely data-driven ones.
 ---
 
 ## Further reading
+
 
 - Sirignano & Cont, universal features.
 - Buehler et al., hybrid ML in finance.

@@ -1,10 +1,12 @@
 # Differentiating the Black–Scholes PDE
 
+
 Greeks can be characterized by differentiating the Black–Scholes PDE satisfied by the option price.
 
 ---
 
 ## Black–Scholes PDE
+
 
 For a European option \(V(t,S)\),
 
@@ -24,6 +26,7 @@ For a European option \(V(t,S)\),
 
 ## Delta equation (formal)
 
+
 Let \(\Delta=V_S\). Differentiate the PDE with respect to \(S\):
 
 \[
@@ -42,6 +45,7 @@ This produces a linear PDE involving higher derivatives; it is most useful for:
 ---
 
 ## What to remember
+
 
 - Differentiating the pricing PDE yields PDEs for Greeks.
 - For stable computation, combine PDE identities with transformations or expectation formulas.

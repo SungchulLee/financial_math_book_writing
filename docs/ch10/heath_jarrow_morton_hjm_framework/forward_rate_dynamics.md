@@ -1,10 +1,12 @@
 # Forward Rate Dynamics
 
+
 The Heath–Jarrow–Morton (HJM) framework models the **entire forward rate curve** directly. Instead of specifying a short rate, HJM postulates dynamics for instantaneous forward rates.
 
 ---
 
-## 1. Instantaneous forward rates
+## Instantaneous forward rates
+
 
 Recall the instantaneous forward rate
 
@@ -25,7 +27,8 @@ In HJM, \(f(t,T)\) for all maturities \(T\ge t\) is the state variable.
 
 ---
 
-## 2. Stochastic dynamics
+## Stochastic dynamics
+
 
 Under the risk-neutral measure, HJM postulates
 
@@ -43,7 +46,8 @@ Crucially, the drift is *not arbitrary*.
 
 ---
 
-## 3. Interpretation
+## Interpretation
+
 
 - Volatility structures determine how different maturities move together.
 - The model is **infinite-dimensional** because \(T\) is continuous.
@@ -51,7 +55,8 @@ Crucially, the drift is *not arbitrary*.
 
 ---
 
-## 4. Advantages of forward modeling
+## Advantages of forward modeling
+
 
 - Exact fit to the initial yield curve by construction.
 - Transparent no-arbitrage conditions.
@@ -59,7 +64,8 @@ Crucially, the drift is *not arbitrary*.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - HJM models forward rates directly.
 - The entire yield curve is the state variable.
@@ -68,6 +74,7 @@ Crucially, the drift is *not arbitrary*.
 ---
 
 ## Further reading
+
 
 - Heath, Jarrow & Morton (1992).
 - Filipović, *Term-Structure Models*.

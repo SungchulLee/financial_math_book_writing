@@ -1,12 +1,14 @@
 # Limitations and Extensions of the Black-Scholes Model
 
+
 While the Black-Scholes model provides an elegant framework for option pricing, its simplifying assumptions often **do not fully hold in practice**. Real markets exhibit volatility clustering, jumps, transaction costs, and other phenomena not captured by the standard model.
 
 This section examines the gap between Black-Scholes assumptions and market reality, and surveys extensions that address these limitations.
 
 ---
 
-## 1. Reality vs. Assumptions: Where the Model Fails
+## Reality vs. Assumptions: Where the Model Fails
+
 
 The following table summarizes the main discrepancies between Black-Scholes assumptions and empirical evidence:
 
@@ -24,13 +26,16 @@ We now examine each discrepancy in detail and present modeling solutions.
 
 ---
 
-## 2. Limitation 1: Constant Volatility
+## Limitation 1: Constant Volatility
 
-### **What Black-Scholes Assumes**
+
+### 1. **What Black-Scholes Assumes**
+
 
 ✅ Volatility $\sigma$ is constant over the option's life and across all strike prices.
 
-### **What Reality Shows**
+### 2. **What Reality Shows**
+
 
 ❌ **Empirical violations**:
 
@@ -52,7 +57,8 @@ We now examine each discrepancy in detail and present modeling solutions.
 - Negative correlation between returns and volatility changes
 - Asymmetric response to up/down moves
 
-### **Market Evidence**
+### 3. **Market Evidence**
+
 
 **Volatility smile example** (S&P 500 options):
 ```
@@ -66,7 +72,8 @@ Strike/Spot   Implied Vol
 
 The "smile" shape contradicts constant $\sigma$.
 
-### **Modeling Extensions**
+### 4. **Modeling Extensions**
+
 
 🔧 **Extension 1: Stochastic Volatility Models**
 
@@ -130,13 +137,16 @@ where $C(K,T)$ is the market price of call option with strike $K$ and maturity $
 
 ---
 
-## 3. Limitation 2: Continuous Paths (No Jumps)
+## Limitation 2: Continuous Paths (No Jumps)
 
-### **What Black-Scholes Assumes**
+
+### 1. **What Black-Scholes Assumes**
+
 
 ✅ Asset prices evolve continuously with no discontinuous jumps.
 
-### **What Reality Shows**
+### 2. **What Reality Shows**
+
 
 ❌ **Empirical violations**:
 
@@ -153,7 +163,8 @@ where $C(K,T)$ is the market price of call option with strike $K$ and maturity $
 - Downward jumps larger and more common
 - Tail risk asymmetry
 
-### **Market Evidence**
+### 3. **Market Evidence**
+
 
 **Kurtosis of S&P 500 daily returns**: ~6-8 (normal distribution has kurtosis = 3)
 
@@ -161,7 +172,8 @@ where $C(K,T)$ is the market price of call option with strike $K$ and maturity $
 - Theory (normal): Prob(|return| > 4%) ≈ 0.003%
 - Reality: Occurs ~0.1-0.3% of days (100x more frequent)
 
-### **Modeling Extensions**
+### 4. **Modeling Extensions**
+
 
 🔧 **Extension: Jump-Diffusion Models**
 
@@ -205,14 +217,17 @@ where:
 
 ---
 
-## 4. Limitation 3: Frictionless Markets and Continuous Trading
+## Limitation 3: Frictionless Markets and Continuous Trading
 
-### **What Black-Scholes Assumes**
+
+### 1. **What Black-Scholes Assumes**
+
 
 ✅ **Frictionless**: No transaction costs, bid-ask spreads, or market impact  
 ✅ **Continuous**: Can trade at any instant
 
-### **What Reality Shows**
+### 2. **What Reality Shows**
+
 
 ❌ **Empirical violations**:
 
@@ -231,7 +246,8 @@ where:
 - Position limits for large traders
 - Margin requirements
 
-### **Modeling Extensions**
+### 3. **Modeling Extensions**
+
 
 🔧 **Extension 1: Transaction Cost Models**
 
@@ -267,13 +283,16 @@ where $U$ is utility function.
 
 ---
 
-## 5. Limitation 4: Constant Risk-Free Rate
+## Limitation 4: Constant Risk-Free Rate
 
-### **What Black-Scholes Assumes**
+
+### 1. **What Black-Scholes Assumes**
+
 
 ✅ Risk-free rate $r$ is constant over time.
 
-### **What Reality Shows**
+### 2. **What Reality Shows**
+
 
 ❌ **Empirical violations**:
 
@@ -286,7 +305,8 @@ where $U$ is utility function.
 - Future rates are stochastic, not deterministic
 - Interest rate derivatives exist precisely because $r$ is random
 
-### **Market Evidence**
+### 3. **Market Evidence**
+
 
 **US Treasury yield curve** (example from 2023):
 ```
@@ -299,7 +319,8 @@ Maturity    Yield
 
 Clearly not a single constant $r$.
 
-### **Modeling Extensions**
+### 4. **Modeling Extensions**
+
 
 🔧 **Extension 1: Deterministic $r(t)$**
 
@@ -336,13 +357,16 @@ Combine stock price dynamics with stochastic rates for long-dated equity options
 
 ---
 
-## 6. Limitation 5: No Dividends
+## Limitation 5: No Dividends
 
-### **What Black-Scholes Assumes**
+
+### 1. **What Black-Scholes Assumes**
+
 
 ✅ No dividends paid during option life.
 
-### **What Reality Shows**
+### 2. **What Reality Shows**
+
 
 ❌ **Empirical violations**:
 
@@ -355,7 +379,8 @@ Combine stock price dynamics with stochastic rates for long-dated equity options
 - Stock price drops by dividend amount on ex-dividend date
 - Creates jump in price path
 
-### **Modeling Extensions**
+### 3. **Modeling Extensions**
+
 
 🔧 **Extension 1: Continuous Dividend Yield**
 
@@ -393,13 +418,16 @@ Use $S'$ in Black-Scholes formula.
 
 ---
 
-## 7. Limitation 6: No Arbitrage
+## Limitation 6: No Arbitrage
 
-### **What Black-Scholes Assumes**
+
+### 1. **What Black-Scholes Assumes**
+
 
 ✅ No arbitrage opportunities exist.
 
-### **What Reality Shows**
+### 2. **What Reality Shows**
+
 
 ❌ **Empirical violations**:
 
@@ -414,7 +442,8 @@ Use $S'$ in Black-Scholes formula.
 - **Short-sale restrictions**: Borrowing stocks can be costly or impossible
 - **Execution risk**: Trades may not execute at expected prices
 
-### **Modeling Extensions**
+### 3. **Modeling Extensions**
+
 
 🔧 **Extension: Incomplete Markets**
 
@@ -437,7 +466,8 @@ Instead of unique price, derive **bid-ask bounds**.
 
 ---
 
-## 8. Summary of Extensions
+## Summary of Extensions
+
 
 | Limitation | Extension Model | Key Feature | Complexity |
 |------------|----------------|-------------|------------|
@@ -453,9 +483,11 @@ Instead of unique price, derive **bid-ask bounds**.
 
 ---
 
-## 9. Practical Implications
+## Practical Implications
 
-### **When Black-Scholes is Sufficient**
+
+### 1. **When Black-Scholes is Sufficient**
+
 
 The standard model works reasonably well for:
 - **Liquid European options** on major indices/stocks
@@ -464,7 +496,8 @@ The standard model works reasonably well for:
 - **Quick approximations** and benchmarking
 - **Implied volatility** extraction
 
-### **When Extensions are Needed**
+### 2. **When Extensions are Needed**
+
 
 Use more sophisticated models for:
 - **Long-dated options** (volatility and rates vary significantly)
@@ -474,7 +507,8 @@ Use more sophisticated models for:
 - **Structured products** (multiple risk factors)
 - **Risk management** (capturing all Greeks accurately)
 
-### **Model Selection Hierarchy**
+### 3. **Model Selection Hierarchy**
+
 
 **Level 1** (Simple): Black-Scholes with strike-dependent implied vol  
 **Level 2** (Intermediate): Local volatility or jump-diffusion  
@@ -485,9 +519,11 @@ Use more sophisticated models for:
 
 ---
 
-## 10. The Role of Black-Scholes Today
+## The Role of Black-Scholes Today
 
-### **Still Relevant Despite Limitations**
+
+### 1. **Still Relevant Despite Limitations**
+
 
 **1. Benchmark and baseline**: Universal language for option pricing
 
@@ -503,7 +539,8 @@ Use more sophisticated models for:
 - Builds intuition for no-arbitrage
 - Foundation for more complex models
 
-### **Modern Usage Pattern**
+### 2. **Modern Usage Pattern**
+
 
 **Vanilla options**:
 - Price using Black-Scholes with **strike-dependent implied volatility**
@@ -523,6 +560,7 @@ Use more sophisticated models for:
 ---
 
 ## Summary
+
 
 Black-Scholes assumptions face numerous real-world violations:
 

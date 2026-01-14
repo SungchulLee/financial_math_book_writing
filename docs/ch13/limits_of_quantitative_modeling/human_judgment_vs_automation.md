@@ -1,10 +1,12 @@
 # Human Judgment vs Automation
 
+
 The increasing automation of financial decision-making raises the question of **how to balance human judgment and quantitative models**.
 
 ---
 
-## 1. Strengths of automation
+## Strengths of automation
+
 
 Automated models excel at:
 - processing large datasets,
@@ -15,7 +17,8 @@ They reduce behavioral biases and execution delays.
 
 ---
 
-## 2. Limits of automation
+## Limits of automation
+
 
 Automation struggles with:
 - rare or unprecedented events,
@@ -26,7 +29,8 @@ Blind automation can amplify systemic risk.
 
 ---
 
-## 3. Role of human judgment
+## Role of human judgment
+
 
 Human judgment contributes:
 - contextual understanding,
@@ -38,7 +42,8 @@ Humans provide adaptability beyond algorithms.
 
 ---
 
-## 4. Hybrid decision frameworks
+## Hybrid decision frameworks
+
 
 Effective systems combine:
 - model-driven recommendations,
@@ -49,7 +54,8 @@ This hybrid approach balances speed and wisdom.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Automation enhances efficiency but lacks judgment.
 - Human oversight is essential.
@@ -58,6 +64,7 @@ This hybrid approach balances speed and wisdom.
 ---
 
 ## Further reading
+
 
 - Kahneman, *Thinking, Fast and Slow*.
 - BIS, principles for model governance.

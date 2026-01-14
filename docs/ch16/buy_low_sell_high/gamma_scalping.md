@@ -1,5 +1,6 @@
 # Gamma Scalping
 
+
 **Gamma scalping** is a trading strategy that systematically profits by **buying low and selling high** through frequent rebalancing of a hedged option position.
 
 
@@ -14,6 +15,7 @@
 ---
 
 ## The Basic Idea
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/gamma_scalping_mechanism.png?raw=true" alt="long_call_vs_put" width="700">
@@ -43,6 +45,7 @@
 
 ## The Core Insight
 
+
 **The fundamental idea is simple:**
 
 **What you do:**
@@ -58,6 +61,7 @@
 ---
 
 ## The Portfolio
+
 
 Your gamma scalping portfolio consists of:
 
@@ -85,9 +89,11 @@ where $V(S,t)$ is the option value and you short $\Delta$ shares.
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -99,6 +105,7 @@ $$
 
 ### 2. Why This
 
+
 Markets create these strategies because different participants have different:
 - Risk preferences (directional vs. convexity)
 - Time horizons (short-term vs. long-term)
@@ -106,6 +113,7 @@ Markets create these strategies because different participants have different:
 - View on volatility vs. direction
 
 ### 3. Professional
+
 
 Institutional traders view this strategy as a tool for:
 1. **Greeks arbitrage:** Extracting value from Greeks mispricing
@@ -117,6 +125,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 
 ## The P&L Formula
+
 
 Over a short time interval $\delta t$ with stock price move $\delta S$, your portfolio P&L is:
 
@@ -142,9 +151,11 @@ $$
 
 ## Understanding the
 
+
 $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low, sell high profits}} - \underbrace{\theta\,\delta t}_{\text{option time decay}}}$$
 
 ### 1. The Two
+
 
 **$-\theta\,\delta t$:** Loss from time decay of the option
 
@@ -162,6 +173,7 @@ $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low,
 
 ### 2. How "Buy Low,
 
+
 **The mechanism:**
 
 1. Stock moves (say, drops)
@@ -176,6 +188,7 @@ $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low,
 **You're not trying to time the market—the rebalancing rules force you to buy low and sell high!**
 
 ### 3. Concrete Example
+
 
 **Setup:**
 
@@ -210,6 +223,7 @@ $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low,
 
 ### 4. The Trade-off
 
+
 Think of it as:
 
 - **Revenue:** "Buy low, sell high" profits from volatility = $\frac{1}{2}\Gamma(\delta S)^2$
@@ -221,6 +235,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 ---
 
 ## The Sign of Gamma
+
 
 **Important:** Gamma's sign depends on your position:
 
@@ -252,6 +267,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ## Why You Need the
 
+
 **Natural question:** "If the profit comes from buying low and selling high, why do I need the option? Can't I just trade the stock directly?"
 
 **The answer:** Yes, the profit comes from "buy low, sell high"—but the option provides something invaluable that makes this strategy actually work.
@@ -259,6 +275,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 ---
 
 ### 1. The Problem
+
 
 **If you just trade stock directly:**
 
@@ -276,9 +293,11 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ### 2. The Option's Role
 
+
 **The option (via gamma) provides an automatic, mathematical rule that tells you exactly when and how much to trade—no prediction needed.**
 
 ### 3. How It Works
+
 
 **With the option:**
 
@@ -304,7 +323,9 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ### 4. Why This Is
 
+
 ### 5. Without Option
+
 
 - **When to buy?** "I think the stock has dropped enough" ← subjective guess
 - **How much to buy?** "I'll buy $10,000 worth" ← arbitrary decision
@@ -313,6 +334,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 - **Result:** Requires skill, prediction, discipline, and luck
 
 ### 6. With Option
+
 
 - **When to buy?** "Delta changed, so I rebalance now" ← mechanical rule
 - **How much to buy?** "Exactly $(\Delta_{\text{new}} - \Delta_{\text{old}}) \times 100$ shares" ← precise calculation
@@ -323,6 +345,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 ---
 
 ### 7. The Option's
+
 
 Think of the option as providing a **mathematical framework** that:
 
@@ -354,9 +377,11 @@ Think of the option as providing a **mathematical framework** that:
 
 ### 8. Concrete
 
+
 **Scenario:** Stock at $100, drops to $98, rises back to $100
 
 ### 9. Strategy A
+
 
 - **Stock at $100:** "Should I wait for a dip? But what if it goes up?"
 - **Stock drops to $98:** "Is this the bottom? Or will it drop to $95? Should I buy now or wait?"
@@ -366,6 +391,7 @@ Think of the option as providing a **mathematical framework** that:
 - **Problem:** Every decision requires prediction and judgment. High stress, lots of uncertainty.
 
 ### 10. Strategy B
+
 
 - **Stock at $100:** Delta = 0.5, hedge with 50 shares short. Done. No decision needed.
 - **Stock drops to $98:** Delta automatically changes to 0.45 (this is a mathematical fact from gamma)
@@ -379,6 +405,7 @@ Think of the option as providing a **mathematical framework** that:
 ---
 
 ### 11. What You're
+
 
 **Theta (time decay) is the price you pay for this automatic signal service:**
 
@@ -395,6 +422,7 @@ Think of it like:
 ---
 
 ### 12. The Key Insight
+
 
 **The option doesn't just let you "buy low, sell high"—it tells you WHEN and HOW MUCH to buy and sell, without requiring any market prediction or timing skill.**
 
@@ -415,6 +443,7 @@ Think of it like:
 
 ## Why It Works
 
+
 The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high" pattern:
 
 - When the stock drops, your delta decreases → you need fewer short shares → **buy signal**
@@ -428,7 +457,9 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 ## Pros and Cons
 
+
 ### 1. Advantages ✓
+
 
 **1. Direction-neutral strategy**
 
@@ -469,6 +500,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 - Can be automated or semi-automated
 
 ### 2. Disadvantages ✗
+
 
 **1. Transaction costs eat into profits**
 
@@ -527,6 +559,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 ## When Gamma Scalping
 
+
 **Favorable conditions:**
 
 - You bought options when implied volatility was low
@@ -554,9 +587,11 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -577,6 +612,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 - [Specific Greeks conditions]
 - [Volatility requirements]
@@ -590,6 +626,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 - [Wrong volatility regime]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -605,6 +642,7 @@ $$
 
 ### 4. Best practices: 1
 
+
 **Best practices:**
 
 1. **Greeks analysis:** Calculate all relevant Greeks before entry
@@ -619,6 +657,7 @@ $$
 - Transaction cost consideration: Balance frequency vs. cost
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -641,6 +680,7 @@ $$
 
 ### 6. Greeks risk
 
+
 **Greeks risk limits:**
 - Max delta exposure: [Limit]
 - Max gamma concentration: [Limit]
@@ -655,6 +695,7 @@ $$
 
 ### 7. Track for every
 
+
 **Track for every trade:**
 - Entry Greeks (delta, gamma, vega, theta)
 - Rebalancing frequency and costs
@@ -665,6 +706,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 2. **Wrong rebalancing frequency** - Too often or too infrequent
 3. **Insufficient liquidity** - Cannot execute rebalances efficiently
@@ -673,6 +715,7 @@ $$
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
 ### 9. Professional
+
 
 **For delta hedging:**
 - Use delta bands (don't chase every move)
@@ -692,9 +735,11 @@ $$
 
 ## Common Mistakes
 
+
 **Critical errors that destroy gamma scalping profits:**
 
 ### 1. The error: "Stock
+
 
 **The error:**
 "Stock is volatile lately. Perfect for gamma scalping!"
@@ -722,6 +767,7 @@ When IV < Realized vol:
 ---
 
 ### 2. The error: "Gamma
+
 
 **The error:**
 "Gamma is +0.50, I'll rebalance every hour!"
@@ -760,6 +806,7 @@ Transaction costs include:
 ---
 
 ### 3. The error: "Set
+
 
 **The error:**
 "Set and forget. I'll rebalance once a day at close."
@@ -806,6 +853,7 @@ Too frequent:
 ---
 
 ### 4. The error: "Gamma
+
 
 **The error:**
 "Gamma scalping is 'market neutral.' I'll use 50% of my account!"
@@ -856,6 +904,7 @@ $$
 
 ### 5. The error: "High
 
+
 **The error:**
 "High IV before earnings = perfect for gamma scalping!"
 
@@ -896,6 +945,7 @@ Earnings create:
 ---
 
 ### 6. The error: "Gamma
+
 
 **The error:**
 "Gamma scalping is about gamma. I don't need to worry about vega."
@@ -943,6 +993,7 @@ Long straddle = long vega:
 
 ### 7. The error: "I
 
+
 **The error:**
 "I understand the math. I don't need stops."
 
@@ -984,6 +1035,7 @@ Gamma scalping can bleed slowly:
 
 ### 8. The error: "Vol
 
+
 **The error:**
 "Vol died. Let me add more contracts to make up for it!"
 
@@ -1021,6 +1073,7 @@ Averaging down in gamma scalping:
 ---
 
 ### 9. The error: "I'm
+
 
 **The error:**
 "I'm up $500. Great!"
@@ -1075,6 +1128,7 @@ $$
 
 ### 10. The error: "Set
 
+
 **The error:**
 "Set up the straddle, rebalance daily. Passive income!"
 
@@ -1127,6 +1181,7 @@ $$
 
 ### 11. | | Mistake |
 
+
 | # | Mistake | Fix |
 |---|---------|-----|
 | 1 | Entering at low IV | Only when IV > realized vol |
@@ -1146,9 +1201,11 @@ $$
 
 ## Real-World Examples
 
+
 **Concrete scenarios showing gamma scalping in practice:**
 
 ### 1. Pension Duration
+
 
 **Setup:**
 - SPY: $440
@@ -1190,6 +1247,7 @@ $$
 ---
 
 ### 2. Transition Risk
+
 
 **Setup:**
 - AAPL: $180 post-earnings
@@ -1239,6 +1297,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Setup:**
 - TSLA: $240
 - Earnings: Tomorrow after close
@@ -1282,6 +1341,7 @@ $$
 ---
 
 ### 4. Tactical Duration
+
 
 **Setup:**
 - SPY: $480
@@ -1329,6 +1389,7 @@ Trader: "Just one slow week. Vol will pick up."
 ---
 
 ### 5. Duration Hedge
+
 
 **Setup:**
 - Trader: Professional, 10 years experience
@@ -1385,6 +1446,7 @@ Trader: "Just one slow week. Vol will pick up."
 ---
 
 ### 6. Setup: Trader:
+
 
 **Setup:**
 - Trader: Retail, using Robinhood
@@ -1444,6 +1506,7 @@ If using limit orders:
 
 ### 7. Winners share:
 
+
 **Winners share:**
 - Entered when IV > realized vol (edge)
 - Choppy markets (not trending)
@@ -1468,6 +1531,7 @@ Miss any one → Disaster!
 ---
 
 ## Real-World Examples
+
 
 [Concrete examples]
 

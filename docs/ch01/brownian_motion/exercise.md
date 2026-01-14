@@ -1,10 +1,14 @@
-# Exercises: Brownian Motion
+# Exercises Brownian
+
+
 
 Throughout these exercises, let \( \{W_t\}_{t \ge 0} \) be a standard Brownian motion defined on a filtered probability space satisfying the usual conditions.
 
 ---
 
-## 1. Basic Properties of Brownian Motion
+## Basic Properties
+
+
 
 1. Show that \( \mathbb{E}[W_t] = 0 \) and \( \operatorname{Var}(W_t) = t \).
 2. Compute \( \mathbb{E}[W_s W_t] \) for \( 0 \le s \le t \).
@@ -12,7 +16,9 @@ Throughout these exercises, let \( \{W_t\}_{t \ge 0} \) be a standard Brownian m
 
 ---
 
-## 2. Gaussian Increments
+## Gaussian Increments
+
+
 
 Let \( 0 \le s < t \).
 
@@ -22,7 +28,9 @@ Let \( 0 \le s < t \).
 
 ---
 
-## 3. Continuity and Path Properties
+## Continuity Path
+
+
 
 1. Show that \( \mathbb{E}[(W_t - W_s)^2] = |t - s| \).
 2. Use Kolmogorov’s continuity theorem to justify the existence of a continuous modification.
@@ -30,7 +38,9 @@ Let \( 0 \le s < t \).
 
 ---
 
-## 4. Scaling Property
+## Scaling Property
+
+
 
 Let \( a > 0 \) and define
 
@@ -46,7 +56,9 @@ X_t := \frac{1}{\sqrt{a}} W_{a t}.
 
 ---
 
-## 5. Reflection Principle
+## Reflection Principle
+
+
 
 Let
 
@@ -69,7 +81,9 @@ M_t := \sup_{0 \le s \le t} W_s.
 
 ---
 
-## 6. Hitting Times
+## Hitting Times
+
+
 
 Define the stopping time
 
@@ -86,7 +100,9 @@ Define the stopping time
 
 ---
 
-## 7. Martingales Associated with Brownian Motion
+## Martingales
+
+
 
 1. Show that \( (W_t)_{t \ge 0} \) is a martingale.
 2. Show that \( (W_t^2 - t)_{t \ge 0} \) is a martingale.
@@ -94,7 +110,9 @@ Define the stopping time
 
 ---
 
-## 8. Quadratic Variation
+## Quadratic Variation
+
+
 
 Let \( \Pi_n \) be a partition of \( [0,t] \) with mesh going to zero. Consider
 
@@ -110,7 +128,9 @@ Q_n := \sum_{i} (W_{t_{i+1}} - W_{t_i})^2.
 
 ---
 
-## 9. Covariation of Brownian Motion
+## Covariation Brownian
+
+
 
 Let \( W_t \) and \( \widetilde{W}_t \) be independent Brownian motions.
 
@@ -120,7 +140,9 @@ Let \( W_t \) and \( \widetilde{W}_t \) be independent Brownian motions.
 
 ---
 
-## 10. Exponential Martingales
+## Exponential
+
+
 
 Define
 
@@ -137,7 +159,9 @@ M_t := \exp\left( \lambda W_t - \frac12 \lambda^2 t \right),
 
 ---
 
-## 11. Law of the Iterated Logarithm (Qualitative)
+## Law Iterated
+
+
 
 The law of the iterated logarithm states that
 
@@ -155,7 +179,9 @@ The law of the iterated logarithm states that
 
 ---
 
-## 12. Challenge Problems (Optional)
+## Challenge Problems
+
+
 
 1. Show that Brownian motion has infinite total variation on any interval.
 2. Prove that Brownian motion is Hölder continuous of any order \( \alpha < \tfrac12 \), but of no higher order.

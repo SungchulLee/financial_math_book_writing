@@ -1,12 +1,16 @@
 # Term Structure of Implied Volatility
 
+
 ## Introduction
+
 
 The **term structure of implied volatility** describes how implied volatility varies with option maturity $T$ while holding the strike $K$ (or moneyness) fixed. This temporal dimension of the volatility surface reveals market expectations about future volatility levels, mean reversion dynamics, and uncertainty about uncertainty. Unlike the smile (cross-sectional variation), the term structure encodes information about the time evolution of volatility.
 
 ## Definition and Notation
 
-### ATM Term Structure
+
+### 1. ATM Term Structure
+
 
 The most commonly analyzed term structure is at-the-money (ATM):
 
@@ -21,7 +25,8 @@ where $K_{\text{ATM}}(T) = F(T) = S_0 e^{(r-q)T}$ is the forward price at maturi
 
 **Interpretation:** $\sigma_{\text{ATM}}(T)$ represents the market's implied volatility for an option that is currently at-the-money with maturity $T$.
 
-### Constant-Moneyness Term Structure
+### 2. Constant-Moneyness Term Structure
+
 
 For fixed moneyness $m = K/F$:
 
@@ -34,7 +39,8 @@ $$
 
 This controls for the fact that "at-the-money" means different strike levels for different maturities.
 
-### Fixed-Strike Term Structure
+### 3. Fixed-Strike Term Structure
+
 
 For a fixed strike $K_0$:
 
@@ -51,7 +57,9 @@ $$
 
 ## Typical Term Structure Shapes
 
-### Upward Sloping (Normal)
+
+### 1. Upward Sloping (Normal)
+
 
 **Characteristics:**
 
@@ -81,7 +89,8 @@ $$
 
 The ATM IV for small $T$ reflects $v_0$, while large $T$ reflects $\theta$.
 
-### Downward Sloping (Inverted)
+### 2. Downward Sloping (Inverted)
+
 
 **Characteristics:**
 
@@ -102,7 +111,8 @@ Short-dated options have higher implied volatility than long-dated options.
 
 **Example:** After the 2008 financial crisis, 1-month IV was 60%+ while 1-year IV was 30-40%, reflecting expected calm-down.
 
-### Humped (Non-Monotonic)
+### 3. Humped (Non-Monotonic)
+
 
 **Characteristics:**
 
@@ -126,7 +136,8 @@ Implied volatility peaks at intermediate maturities (e.g., 3-6 months).
 
 **Example:** Options expiring just after an earnings release have elevated IV compared to shorter and longer maturities.
 
-### Flat (Rare)
+### 4. Flat (Rare)
+
 
 **Characteristics:**
 
@@ -143,7 +154,9 @@ $$
 
 ## Mathematical Analysis of Term Structure
 
-### Relationship to Variance Curve
+
+### 1. Relationship to Variance Curve
+
 
 Define **total variance**:
 
@@ -182,7 +195,8 @@ $$
 
 
 
-### Calendar Spread Constraint
+### 2. Calendar Spread Constraint
+
 
 The no-arbitrage condition for calendar spreads:
 
@@ -208,7 +222,8 @@ but does **not** directly constrain $\sigma_{\text{ATM}}(T)$.
 1. $\sigma_{\text{ATM}}(T_1) = 20\%$, $\sigma_{\text{ATM}}(T_2) = 25\%$ (upward)
 2. $\sigma_{\text{ATM}}(T_1) = 30\%$, $\sigma_{\text{ATM}}(T_2) = 22\%$ (downward, but $w(T_2) = 0.22^2 \cdot T_2 > w(T_1) = 0.30^2 \cdot T_1$ if $T_2$ is large enough)
 
-### Forward Volatility
+### 3. Forward Volatility
+
 
 The **forward implied volatility** between $T_1$ and $T_2$ is defined by:
 
@@ -237,7 +252,8 @@ $$
 
 
 
-### Instantaneous Forward Volatility
+### 4. Instantaneous Forward Volatility
+
 
 Taking $T_2 \to T_1$:
 
@@ -265,7 +281,9 @@ $$
 
 ## Connection to Volatility Models
 
-### Constant Volatility (Black-Scholes)
+
+### 1. Constant Volatility (Black-Scholes)
+
 
 If $\sigma(t) = \sigma_0$ (constant), then:
 
@@ -278,7 +296,8 @@ $$
 
 **Flat term structure:** $\sigma_{\text{ATM}}(T)$ is independent of $T$.
 
-### Deterministic Local Volatility
+### 2. Deterministic Local Volatility
+
 
 For a time-dependent local volatility $\sigma_{\text{loc}}(t)$:
 
@@ -316,7 +335,8 @@ $$
 
 For $\alpha > 0$, term structure is upward sloping.
 
-### Stochastic Volatility (Heston)
+### 3. Stochastic Volatility (Heston)
+
 
 The Heston model:
 
@@ -355,7 +375,8 @@ $$
 - If $v_0 < \theta$: Upward sloping (mean reversion from below)
 - If $v_0 > \theta$: Downward sloping (mean reversion from above)
 
-### Jump-Diffusion Models
+### 4. Jump-Diffusion Models
+
 
 With jumps in the underlying:
 
@@ -383,7 +404,9 @@ The term structure remains flat (both components scale linearly with $T$), but t
 
 ## Empirical Stylized Facts
 
-### Equity Indices (S&P 500, EURO STOXX)
+
+### 1. Equity Indices (S&P 500, EURO STOXX)
+
 
 **Normal regime (VIX < 20):**
 - Upward sloping term structure
@@ -401,7 +424,8 @@ The term structure remains flat (both components scale linearly with $T$), but t
 - Humped around known events (FOMC, elections)
 - Peak at event maturity
 
-### FX Markets
+### 2. FX Markets
+
 
 **G10 currencies (EUR/USD, USD/JPY):**
 - Relatively flat term structure
@@ -412,7 +436,8 @@ The term structure remains flat (both components scale linearly with $T$), but t
 - More volatile term structure
 - Steeper slopes reflecting sovereign risk, capital controls
 
-### Commodities
+### 3. Commodities
+
 
 **Energy (crude oil, natural gas):**
 - Highly seasonal term structure
@@ -425,7 +450,9 @@ The term structure remains flat (both components scale linearly with $T$), but t
 
 ## Variance Swaps and Term Structure
 
-### Variance Swap Basics
+
+### 1. Variance Swap Basics
+
 
 A **variance swap** pays the difference between realized variance and a fixed strike $K_{\text{var}}$:
 
@@ -449,7 +476,8 @@ $$
 
 This integral of option prices across strikes gives a **model-free implied variance**.
 
-### Variance Term Structure
+### 2. Variance Term Structure
+
 
 Define the variance swap rate for maturity $T$:
 
@@ -480,7 +508,8 @@ $$
 
 due to the smile (variance swaps weight OTM options more heavily).
 
-### Forward Variance
+### 3. Forward Variance
+
 
 The **forward variance** between $T_1$ and $T_2$:
 
@@ -511,7 +540,9 @@ $$
 
 ## Asymptotic Analysis
 
-### Short-Maturity Limit ($T \to 0$)
+
+### 1. Short-Maturity Limit ($T \to 0$)
+
 
 As $T \to 0$, the ATM implied volatility converges to the **spot instantaneous volatility**:
 
@@ -558,7 +589,8 @@ $$
 
 
 
-### Large-Maturity Limit ($T \to \infty$)
+### 2. Large-Maturity Limit ($T \to \infty$)
+
 
 As $T \to \infty$, the ATM implied volatility converges to the **long-run average volatility**:
 
@@ -592,7 +624,9 @@ where $\lambda$ is the mean-reversion speed (e.g., $\lambda = \kappa$ in Heston)
 
 ## Practical Implications
 
-### Hedging and Risk Management
+
+### 1. Hedging and Risk Management
+
 
 **Vega exposure:**  
 A portfolio with options across maturities has **term structure risk**:
@@ -603,7 +637,8 @@ A portfolio with options across maturities has **term structure risk**:
 
 **Hedging strategy:** Use variance swaps or options at multiple maturities to hedge term structure risk separately from level risk.
 
-### Volatility Arbitrage
+### 2. Volatility Arbitrage
+
 
 **Carry trades:**  
 - If term structure is upward sloping, sell short-dated options, buy long-dated options
@@ -613,7 +648,8 @@ A portfolio with options across maturities has **term structure risk**:
 - If term structure shows hump at known event, compare realized volatility around event to implied
 - Trade forward variance swaps to isolate event-specific vol
 
-### Model Selection
+### 3. Model Selection
+
 
 **Flat term structure:** Suggests constant or slowly varying volatility → Local volatility or simple Heston sufficient
 
@@ -623,14 +659,17 @@ A portfolio with options across maturities has **term structure risk**:
 
 ## Summary
 
+
 The term structure of implied volatility $\sigma_{\text{ATM}}(T)$ encodes:
 
-### **Market expectations:**
+### 1. **Market expectations:**
+
 - Upward sloping: Volatility expected to increase (mean reversion from below)
 - Downward sloping: Volatility expected to decrease (mean reversion from above)
 - Humped: Event risk at intermediate maturity
 
-### **Mathematical relationships:**
+### 2. **Mathematical relationships:**
+
 
 $$
 w(T) = \sigma_{\text{ATM}}^2(T) \cdot T \quad \text{(total variance)}
@@ -652,7 +691,8 @@ $$
 
 
 
-### **No-arbitrage constraints:**
+### 3. **No-arbitrage constraints:**
+
 
 $$
 \frac{dw}{dT} \geq 0 \quad \text{(calendar spreads)}
@@ -660,7 +700,8 @@ $$
 
 
 
-### **Limits:**
+### 4. **Limits:**
+
 
 $$
 \lim_{T \to 0} \sigma_{\text{ATM}}(T) = \sigma_{\text{spot}} \quad (\text{spot vol})
@@ -675,7 +716,8 @@ $$
 
 
 
-### **Connections:**
+### 5. **Connections:**
+
 - **Variance swaps:** Provide model-free measure of variance term structure
 - **Stochastic vol models:** Generate realistic term structure dynamics via mean reversion
 - **Calibration:** Term structure slope constrains model parameters ($\kappa, \theta$ in Heston)

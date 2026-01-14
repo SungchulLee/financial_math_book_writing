@@ -2,16 +2,19 @@ Excellent intuition! Your guess is exactly right - a local martingale is indeed 
 
 ---
 
-## 1. Definitions
+## Definitions
 
-### Martingale
+
+### 1. Martingale
+
 
 A process $\{M_t\}$ is a **martingale** if:
 
 1. **Integrability:** $\mathbb{E}[|M_t|] < \infty$ for all $t$
 2. **Martingale property:** $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ for all $s \leq t$
 
-### Local Martingale
+### 2. Local Martingale
+
 
 A process $\{M_t\}$ is a **local martingale** if there exists a sequence of **stopping times** $\{\tau_n\}_{n=1}^{\infty}$ such that:
 
@@ -26,14 +29,16 @@ Here $t \wedge \tau_n = \min(t, \tau_n)$ means we stop the process at time $\tau
 
 ---
 
-## 2. Key Differences
+## Key Differences
+
 
 
 $$\boxed{\text{Every martingale is a local martingale, but NOT every local martingale is a martingale}}$$
 
 
 
-### What Can Go Wrong?
+### 1. What Can Go Wrong?
+
 
 A local martingale fails to be a martingale when:
 
@@ -45,9 +50,11 @@ Even though $M_{t \wedge \tau_n}$ is a martingale for each $n$, we cannot necess
 
 ---
 
-## 3. Concrete Examples
+## Concrete Examples
 
-### Example 1: Stochastic Exponential (Strict Local Martingale)
+
+### 1. Example 1: Stochastic Exponential (Strict Local Martingale)
+
 
 Consider Brownian motion $W_t$ and define:
 
@@ -75,7 +82,8 @@ $$\mathbb{E}[M_t] = \mathbb{E}[e^{2W_t - 2t}] = e^{-2t} \mathbb{E}[e^{2W_t}] = e
 
 Wait, this IS a martingale! Let me use a better example.
 
-### Example 1 (Corrected): Reciprocal of Exponential
+### 2. Example 1 (Corrected): Reciprocal of Exponential
+
 
 Consider:
 
@@ -93,7 +101,8 @@ $$dM_t = -\frac{1}{(1+W_t)^2} dW_t + \frac{1}{(1+W_t)^3} dt$$
 
 This has a drift, so it's not even a local martingale. Let me try again.
 
-### Example 1 (Better): Geometric Brownian Motion Without Drift Correction
+### 3. Example 1 (Better): Geometric Brownian Motion Without Drift Correction
+
 
 Consider the process satisfying:
 
@@ -117,7 +126,8 @@ $$Y_t = \exp(\sigma W_t) = \exp\left(\sigma W_t + \frac{\sigma^2 t}{2}\right) \c
 
 No wait, let me use the canonical example.
 
-### Example 1 (Canonical): Explosion Example
+### 4. Example 1 (Canonical): Explosion Example
+
 
 Consider the SDE:
 
@@ -139,7 +149,8 @@ Then:
 - As $t$ increases, probability mass "escapes to infinity"
 - $\mathbb{E}[X_t] < X_0 = 1$ because some scenarios exploded
 
-### Example 2: Three-Dimensional Bessel Process
+### 5. Example 2: Three-Dimensional Bessel Process
+
 
 Let $R_t$ be a 3-dimensional Bessel process (think: distance from origin in 3D Brownian motion).
 
@@ -160,7 +171,8 @@ $$\mathbb{E}[M_t] = \mathbb{E}\left[\frac{1}{R_t}\right] > \frac{1}{R_0} = 1$$
 
 The expectation grows because $R_t$ can get very close to 0, making $1/R_t$ very large.
 
-### Example 3: Simple Intuitive Example
+### 6. Example 3: Simple Intuitive Example
+
 
 Consider a gambler with fortune $X_t$ who bets a fraction proportional to wealth. The game is "locally fair" but:
 
@@ -187,9 +199,11 @@ the volatility grows superlinearly, allowing explosion, making it only a local m
 
 ---
 
-## 4. The Integrability Issue
+## The Integrability Issue
 
-### Classic Example: Doubling Strategy
+
+### 1. Classic Example: Doubling Strategy
+
 
 Consider a martingale betting strategy where you double your bet after each loss. Locally (over finite time), your net position is a martingale. But:
 
@@ -197,7 +211,8 @@ Consider a martingale betting strategy where you double your bet after each loss
 - $\mathbb{E}[\text{capital at time } t]$ might be infinite
 - It's a local martingale but not a martingale
 
-### Mathematical Phenomenon
+### 2. Mathematical Phenomenon
+
 
 For a local martingale $M_t$:
 
@@ -217,9 +232,11 @@ $$\mathbb{E}[M_t] = M_0$$
 
 ---
 
-## 5. Connection to $\mathcal{L}f = 0$
+## Connection to $\mathcal{L}f = 0$
 
-### Why I Said "Local Martingale"
+
+### 1. Why I Said "Local Martingale"
+
 
 When $\mathcal{L}f(x) = 0$, Dynkin's formula gives:
 
@@ -238,7 +255,8 @@ But for $f(X_t)$ to be a true martingale, we need:
 
 Without these conditions, $f(X_t)$ might only be a local martingale.
 
-### Example Where This Matters
+### 2. Example Where This Matters
+
 
 Consider $X_t = e^{W_t}$ (note: this is NOT the solution to $dX_t = X_t dW_t$; I'm just defining $X_t$ this way).
 
@@ -260,7 +278,8 @@ For the process $X_t = e^{W_t - t/2}$, we have $g(X_t) = e^{W_t - t/2}(W_t - t/2
 
 ---
 
-## 6. Summary Table
+## Summary Table
+
 
 | Property | Martingale | Local Martingale |
 |----------|-----------|------------------|
@@ -273,7 +292,8 @@ For the process $X_t = e^{W_t - t/2}$, we have $g(X_t) = e^{W_t - t/2}(W_t - t/2
 
 ---
 
-## 7. Precise Statement for $\mathcal{L}f = 0$
+## Precise Statement for $\mathcal{L}f = 0$
+
 
 
 $$\boxed{\begin{align}

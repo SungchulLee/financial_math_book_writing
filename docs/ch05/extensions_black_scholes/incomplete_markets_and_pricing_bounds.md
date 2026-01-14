@@ -1,10 +1,12 @@
 # Incomplete Markets and Pricing Bounds
 
+
 In incomplete markets, equivalent martingale measures are not unique, so arbitrage-free prices form an interval.
 
 ---
 
-## 1. Bounds via Martingale Measures
+## Bounds via Martingale Measures
+
 
 Let \(\mathcal{Q}\) be the set of equivalent martingale measures. For a claim \(H\),
 
@@ -20,7 +22,8 @@ Let \(\mathcal{Q}\) be the set of equivalent martingale measures. For a claim \(
 
 ---
 
-## 2. Superhedging Interpretation
+## Superhedging Interpretation
+
 
 The upper bound often matches the superhedging price:
 
@@ -35,13 +38,15 @@ The upper bound often matches the superhedging price:
 
 ---
 
-## 3. Selecting a Price
+## Selecting a Price
+
 
 A specific price requires an additional criterion (e.g. minimal martingale measure, variance-optimal, utility-indifference, entropy minimization).
 
 ---
 
-## 4. What to Remember
+## What to Remember
+
 
 - Incompleteness yields bounds, not a single price.
 - Choosing a price needs extra structure beyond no-arbitrage.

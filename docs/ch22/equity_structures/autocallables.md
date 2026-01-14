@@ -1,10 +1,12 @@
 # Autocallables
 
+
 **Autocallable notes** are structured products that automatically mature early ("call") if the underlying asset reaches predetermined trigger levels at observation dates, paying accumulated coupons plus principal, while offering downside protection through barriers but exposing investors to significant losses if barriers are breached, creating asymmetric risk-return profiles that favor stable or moderately rising markets.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Are Autocallables?
 
+
 ### 1. Core Structure
+
 
 **Essential components:**
 
@@ -51,6 +55,7 @@
 - Barrier: 3,375 (75% of initial)
 
 ### 2. Observation Schedule
+
 
 **When does it check for autocall?**
 
@@ -82,6 +87,7 @@
 - Month 24: Final maturity (Observation #8)
 
 ### 3. Autocall Payoff
+
 
 **What happens when it calls?**
 
@@ -116,6 +122,7 @@ Note calls at Month 12 (Observation #4)
 
 ### 4. Barrier Feature
 
+
 **Downside protection level:**
 
 **European barrier (at maturity only):**
@@ -142,6 +149,7 @@ $$
 Where $H$ = Barrier level (e.g., 75% of initial)
 
 ### 5. Maturity Scenarios
+
 
 **If never autocalled, three outcomes:**
 
@@ -174,6 +182,7 @@ Where $H$ = Barrier level (e.g., 75% of initial)
 
 ### 6. Step-Down Feature
 
+
 **Call level decreases over time:**
 
 **Example:**
@@ -203,6 +212,7 @@ Stock at 4,400 throughout
 - **Returns capital 1 year early**
 
 ### 7. Memory Feature
+
 
 **Accumulated coupons:**
 
@@ -236,6 +246,7 @@ Note with 3% quarterly coupon
 ---
 
 ## Key Terminology
+
 
 **Call Trigger:**
 - Price level that causes early maturity
@@ -277,7 +288,9 @@ Note with 3% quarterly coupon
 
 ## Why Investors Buy
 
+
 ### 1. High Income
+
 
 **Enhanced coupons in low-yield environment:**
 
@@ -302,6 +315,7 @@ Capital: $100K
 
 ### 2. Early Return of Capital
 
+
 **Fast turnaround if market cooperates:**
 
 **Scenario:**
@@ -325,6 +339,7 @@ Buy autocallable, market rallies 5% in first quarter
 
 ### 3. Moderate Market View
 
+
 **Perfect for sideways-to-up markets:**
 
 **View:**
@@ -340,6 +355,7 @@ Buy autocallable, market rallies 5% in first quarter
 - **Ideal for neutral investors**
 
 ### 4. Downside Cushion
+
 
 **Barrier provides safety net:**
 
@@ -362,6 +378,7 @@ Stock at $100, barrier at $75
 - Full downside exposure
 
 ### 5. Tax Efficiency
+
 
 **Coupon deferral strategies:**
 
@@ -389,6 +406,7 @@ $100K note, 11% coupon, 2 years
 
 ### 6. Principal Protection Perception
 
+
 **Psychological appeal:**
 
 **Investor thinking:**
@@ -407,6 +425,7 @@ $100K note, 11% coupon, 2 years
 - "Best of both worlds"
 
 ### 7. Portfolio Diversification
+
 
 **Uncorrelated strategy:**
 
@@ -427,7 +446,9 @@ Traditional portfolio: 60/40 stocks/bonds
 
 ## Pricing & Valuation
 
+
 ### 1. Component Breakdown
+
 
 **Autocallable = Bond + Options:**
 
@@ -447,6 +468,7 @@ Where:
 - PV = Present value
 
 ### 2. Monte Carlo Pricing
+
 
 **Path-dependent valuation:**
 
@@ -485,6 +507,7 @@ Stock $S_0 = \$100$, risk-free rate $r = 4\%$, vol $\sigma = 25\%$
 
 ### 3. Key Greeks
 
+
 **Delta:**
 
 $$
@@ -520,6 +543,7 @@ $$
 
 ### 4. Autocall Probability
 
+
 **Chance of early redemption:**
 
 **Historical estimation:**
@@ -550,6 +574,7 @@ $S_0 = 4,500$, $K = 4,500$ (ATM), $\sigma = 20\%$, $t = 3$ months
 
 ### 5. Barrier Breach Probability
 
+
 **Chance of downside conversion:**
 
 $$
@@ -571,6 +596,7 @@ $S_0 = 4,500$, $H = 3,375$ (75%), $\sigma = 20\%$, $T = 2$ years
 **Interpretation:** ~1-in-7 chance of equity conversion
 
 ### 6. Expected Return
+
 
 **Probability-weighted outcomes:**
 
@@ -596,6 +622,7 @@ $$
 **vs. stock expected return: 8-10%**
 
 ### 7. Skew Impact
+
 
 **Volatility smile matters:**
 
@@ -623,7 +650,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Misunderstanding "Safe"
+
 
 **Barrier ≠ Principal protection:**
 
@@ -656,6 +685,7 @@ $$
 
 ### 2. Ignoring Autocall Timing
 
+
 **Early call = reinvestment risk:**
 
 - **Mistake:** Don't plan for early return of capital
@@ -679,6 +709,7 @@ Buy autocallable at 12% coupon (vol was high)
 - **Reinvestment risk:** 12% → 7% (5% yield drop)
 
 ### 3. Correlation Misjudgment
+
 
 **Worst-of autocallables:**
 
@@ -707,6 +738,7 @@ Buy autocallable at 12% coupon (vol was high)
 
 ### 4. Forgetting Issuer Credit
 
+
 **Unsecured debt obligation:**
 
 - **Mistake:** Focus only on equity risk, ignore credit risk
@@ -731,6 +763,7 @@ Buy autocallable at 12% coupon (vol was high)
 **Lesson:** Issuer credit risk can dominate equity risk
 
 ### 5. Chasing High Coupons
+
 
 **High coupon = high risk:**
 
@@ -766,6 +799,7 @@ Buy autocallable at 12% coupon (vol was high)
 
 ### 6. Path Dependence Surprise
 
+
 **Barrier memory:**
 
 - **Mistake:** Think barrier "resets" if stock recovers
@@ -797,7 +831,9 @@ Stock path: $100 → $70 → $110
 
 ## Best vs. Worst Case
 
+
 ### 1. Best Case: Success
+
 
 **Perfect autocallable environment:**
 
@@ -854,6 +890,7 @@ Never autocalls, S&P stays 3,900-4,000 range
 - **Outperformed by 25.7%** in sideways market
 
 ### 2. Worst Case: Disaster
+
 
 **2008-style crisis:**
 
@@ -927,7 +964,9 @@ Never autocalls, S&P stays 3,900-4,000 range
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Maximum allocation:**
 
@@ -951,6 +990,7 @@ $1M portfolio: 60% equity ($600K), 40% bonds ($400K)
 
 ### 2. Diversification
 
+
 **Spread risk:**
 
 **Rules:**
@@ -968,6 +1008,7 @@ $1M portfolio: 60% equity ($600K), 40% bonds ($400K)
 **No concentration:** ✓
 
 ### 3. Barrier Requirements
+
 
 **Minimum cushion:**
 
@@ -990,6 +1031,7 @@ Stock/Index at $100
 **Rationale:** Need substantial buffer for normal market volatility (20% corrections are common)
 
 ### 4. Coupon Reasonableness
+
 
 **Sanity check:**
 
@@ -1020,6 +1062,7 @@ Offered autocallable with 25% coupon
 
 ### 5. Observation Frequency
 
+
 **Balance autocall chance with complexity:**
 
 **Monthly observations:**
@@ -1040,6 +1083,7 @@ Offered autocallable with 25% coupon
 **Prefer: Quarterly**
 
 ### 6. Issuer Credit
+
 
 **Minimum standards:**
 
@@ -1063,6 +1107,7 @@ $$
 **Rationale:** Issuer default risk > equity risk
 
 ### 7. Stress Testing
+
 
 **Required scenarios:**
 
@@ -1097,7 +1142,9 @@ $100K autocallable, 11% coupon, barrier 75%
 
 ## Real-World Examples
 
+
 ### 1. Korean Market Dominance
+
 
 **Largest autocallable market globally:**
 
@@ -1129,6 +1176,7 @@ $100K autocallable, 11% coupon, barrier 75%
 
 ### 2. European Reverse Convertible
 
+
 **Conservative variant:**
 
 **Setup:**
@@ -1151,6 +1199,7 @@ $100K autocallable, 11% coupon, barrier 75%
 - Reasonable expectations
 
 ### 3. Wall Street Retail Distribution
+
 
 **Mass market autocallables (2010s):**
 
@@ -1184,6 +1233,7 @@ $100K autocallable, 11% coupon, barrier 75%
 - Complaints about suitability
 
 ### 4. Worst-Of Disaster (2018)
+
 
 **Complex structure:**
 
@@ -1229,7 +1279,9 @@ $100K autocallable, 11% coupon, barrier 75%
 
 ## Practical Steps
 
+
 ### 1. Suitability Assessment
+
 
 **Is this product right for you?**
 
@@ -1245,6 +1297,7 @@ $100K autocallable, 11% coupon, barrier 75%
 **If all checked → Proceed**
 
 ### 2. Product Screening
+
 
 **Evaluation criteria:**
 
@@ -1269,6 +1322,7 @@ $100K autocallable, 11% coupon, barrier 75%
 - Memory: Yes (mandatory)
 
 ### 3. Valuation Check
+
 
 **Is it fairly priced?**
 
@@ -1304,6 +1358,7 @@ Offered autocallable at par
 
 ### 4. Execution
 
+
 **How to invest:**
 
 **Primary market (new issue):**
@@ -1326,6 +1381,7 @@ Offered autocallable at par
 
 ### 5. Monitoring
 
+
 **Ongoing surveillance:**
 
 **Monthly:**
@@ -1347,6 +1403,7 @@ Offered autocallable at par
 - News on underlying
 
 ### 6. Exit Strategy
+
 
 **When to exit early:**
 
@@ -1381,6 +1438,7 @@ Offered autocallable at par
 ---
 
 ## Final Wisdom
+
 
 > "Autocallables are the structured product industry's most successful creation—and for good reason. They offer high income, early call optionality, and downside cushions that appeal to conservative investors. But don't confuse a 75% barrier with 'safety'—it's just the point where you start losing real money. The high coupon is payment for selling equity downside insurance, not free money. These products work beautifully in sideways-to-up markets (which is most of the time), but can devastate portfolios in severe crashes. The 2008 crisis proved that 70-75% barriers offer little protection when markets fall 50%+. Use autocallables when you have conviction the market won't crash (not just 'probably won't crash') and when you truly understand that you're selling earthquake insurance on stocks to collect premium. The best buyers are sophisticated investors who use these tactically, size them appropriately (10-15% of portfolio max), diversify across issuers and underlyings, and monitor religiously. The worst buyers are retail investors chasing yield without understanding that the 13% coupon comes with real equity risk. If it seems too good to be true—high income, principal protection, upside participation—remember: it IS too good to be true. You're making trade-offs, and the market always prices those trade-offs fairly (plus a profit margin for the issuer)."
 

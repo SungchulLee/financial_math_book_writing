@@ -1,12 +1,14 @@
 # Itô Isometry
 
+
 In stochastic calculus, the **Itô integral** plays the role of a *random sum* of products of a strategy and noise. Unlike deterministic integrals—where Riemann sums converge smoothly under refinement—stochastic integrals already exhibit rich probabilistic structure at the level of the sum itself.
 
 This section explains the **Itô isometry**, first heuristically and then conceptually, highlighting why it is the fundamental identity underlying the construction of the Itô integral.
 
 ---
 
-## 1. Heuristic Setup: Sums of Gains from Trading
+## Heuristic Setup: Sums of Gains from Trading
+
 
 Let \( W_t \) be a standard Brownian motion and let \( \beta(t) \) be a **simple adapted process**, representing (for intuition) a trading strategy: the number of shares held at each time.
 
@@ -36,7 +38,8 @@ Each term \( \beta_i (W_{t_{i+1}} - W_{t_i}) \) can be interpreted as the **gain
 
 ---
 
-## 2. Squaring the Sum: Toward Variance
+## Squaring the Sum: Toward Variance
+
 
 To understand the *size* of the Itô integral, we examine its second moment. Squaring the sum gives
 
@@ -69,7 +72,8 @@ The key step is to understand **why the cross terms vanish**.
 
 ---
 
-## 3. Why the Cross Terms Vanish
+## Why the Cross Terms Vanish
+
 
 Let \( (\mathcal{F}_t)_{t \ge 0} \) denote the natural filtration of the Brownian motion. Fix indices \( i < j \). Then:
 
@@ -116,7 +120,8 @@ Therefore,
 
 
 
-### Intuition
+### 1. Intuition
+
 
 - \( \Delta W_j \) represents **future noise**, independent of everything known at time \( t_j \).
 - Conditional expectation *kills the future noise*.
@@ -124,7 +129,8 @@ Therefore,
 
 ---
 
-## 4. The Remaining Diagonal Terms
+## The Remaining Diagonal Terms
+
 
 We are left with
 
@@ -165,7 +171,8 @@ As the partition is refined, this Riemann sum converges to
 
 ---
 
-## 5. The Itô Isometry
+## The Itô Isometry
+
 
 Putting everything together yields the **Itô isometry**:
 
@@ -186,7 +193,8 @@ This identity shows that the Itô integral preserves the \( L^2 \) norm:
 
 ---
 
-## 6. Why This Result Is Intuitive but Nontrivial
+## Why This Result Is Intuitive but Nontrivial
+
 
 - **Orthogonality**: Brownian increments have zero covariance on disjoint intervals.
 - **Geometry**: The magnitude of a stochastic integral is measured by *variance*, not path length.
@@ -203,7 +211,8 @@ The Itô isometry is the stochastic analogue of **Parseval’s identity**: energ
 
 ---
 
-## 7. From Heuristics to a Rigorous Theory
+## From Heuristics to a Rigorous Theory
+
 
 To make the argument fully rigorous:
 
@@ -216,6 +225,7 @@ This equips stochastic integration with a **Hilbert space structure**, forming t
 ---
 
 ## Summary
+
 
 - The Itô isometry explains why stochastic integrals are well-defined in \( L^2 \).
 - Cross terms vanish due to independence and conditional expectation.

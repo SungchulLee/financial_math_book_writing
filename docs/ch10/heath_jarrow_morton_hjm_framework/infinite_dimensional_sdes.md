@@ -1,10 +1,12 @@
 # Infinite-Dimensional SDEs
 
+
 Because HJM models the forward rate curve for all maturities, it naturally leads to **infinite-dimensional stochastic differential equations**.
 
 ---
 
-## 1. Infinite-dimensional state space
+## Infinite-dimensional state space
+
 
 At each time \(t\), the state is the function
 
@@ -19,7 +21,8 @@ This contrasts with finite-dimensional short-rate models.
 
 ---
 
-## 2. Mathematical formulation
+## Mathematical formulation
+
 
 Formally, HJM can be written as an SDE in a function space:
 
@@ -36,7 +39,8 @@ Rigorous treatment uses stochastic calculus in Hilbert spaces.
 
 ---
 
-## 3. Finite-dimensional realizations
+## Finite-dimensional realizations
+
 
 In practice, one often restricts to:
 - separable volatility structures,
@@ -47,7 +51,8 @@ These yield **finite-dimensional realizations** consistent with HJM.
 
 ---
 
-## 4. Numerical implementation
+## Numerical implementation
+
 
 Common approaches include:
 - maturity discretization (time–maturity grids),
@@ -58,7 +63,8 @@ Trade-offs arise between realism and tractability.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - HJM is intrinsically infinite-dimensional.
 - Practical models use finite-factor approximations.
@@ -67,6 +73,7 @@ Trade-offs arise between realism and tractability.
 ---
 
 ## Further reading
+
 
 - Filipović, *Consistency Problems for HJM Models*.
 - Da Prato & Zabczyk, infinite-dimensional SDEs.

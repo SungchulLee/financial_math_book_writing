@@ -1,10 +1,12 @@
 # Dispersion Trading
 
+
 **Dispersion trading** is a volatility arbitrage strategy that exploits the difference between index implied volatility and the weighted average of constituent stock implied volatilities, profiting from changes in correlation structure.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is Dispersion Trading?
 
+
 ### 1. Basic Definition
+
 
 **The mathematical setup:**
 
@@ -52,6 +56,7 @@ $$
 
 ### 2. The Trade Structure
 
+
 **Classic dispersion trade:**
 
 **Short leg (sell index volatility):**
@@ -70,6 +75,7 @@ $$
 - Delta-neutral (hedged continuously)
 
 ### 3. Implied vs Realized Correlation
+
 
 **Implied correlation:**
 
@@ -99,6 +105,7 @@ $$
 
 ### 4. Why Dispersion Exists
 
+
 **Structural reasons for the gap:**
 
 **Supply/demand imbalance:**
@@ -125,6 +132,7 @@ $$
 
 ### 5. Historical Patterns
 
+
 **Empirical evidence (SPX, 1996-2023):**
 
 **Average implied correlation:**
@@ -149,6 +157,7 @@ $$
 
 ### 6. Trade Sizing
 
+
 **Vega-neutral dispersion:**
 
 To neutralize overall volatility exposure:
@@ -169,6 +178,7 @@ $$
 - Express mild short volatility bias
 
 ### 7. Basket Selection
+
 
 **Choosing which stocks:**
 
@@ -193,9 +203,11 @@ $$
 
 ## Dispersion Trade Variants
 
+
 **Different ways to express the trade:**
 
 ### 1. Vanilla Dispersion
+
 
 **Structure:**
 
@@ -219,6 +231,7 @@ $$
 
 ### 2. Straddle Dispersion
 
+
 **Structure:**
 
 - Short ATM index straddles
@@ -239,6 +252,7 @@ $$
 
 ### 3. Calendar Dispersion
 
+
 **Structure:**
 
 - Short near-term index straddles
@@ -253,6 +267,7 @@ $$
 
 ### 4. Skew Dispersion
 
+
 **Structure:**
 
 - Focus on put skew differential
@@ -266,6 +281,7 @@ $$
 - Capture skew + correlation premium
 
 ### 5. Dynamic Dispersion
+
 
 **Structure:**
 
@@ -287,6 +303,7 @@ $$
 
 ### 6. Cross-Sector Dispersion
 
+
 **Structure:**
 
 - Trade dispersion within sectors
@@ -299,6 +316,7 @@ $$
 - Less exposure to market-wide correlation shifts
 
 ### 7. International Dispersion
+
 
 **Structure:**
 
@@ -315,7 +333,9 @@ $$
 
 ## Mathematical Framework
 
+
 ### 1. Correlation Decomposition
+
 
 **Index variance formula:**
 
@@ -339,6 +359,7 @@ $$
 
 ### 2. Dispersion P&L
 
+
 **Net P&L from dispersion:**
 
 $$
@@ -358,6 +379,7 @@ $$
 
 ### 3. Optimal Hedge Ratio
 
+
 **Minimize variance of P&L:**
 
 $$
@@ -376,6 +398,7 @@ $$
 - Balance risk/return
 
 ### 4. Greeks Exposure
+
 
 **Delta:**
 
@@ -409,6 +432,7 @@ $$
 
 ### 5. Correlation Sensitivity
 
+
 **P&L sensitivity to correlation:**
 
 $$
@@ -427,6 +451,7 @@ $$
 
 ### 6. Expected Return
 
+
 **Theoretical expected return:**
 
 $$
@@ -440,6 +465,7 @@ $$
 - **Net: +1-5% annually (small edge)**
 
 ### 7. Risk Decomposition
+
 
 **Sources of risk:**
 
@@ -458,9 +484,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Ignoring Correlation Spikes
+
 
 **Mistake:** Assume correlation stable
 
@@ -484,6 +512,7 @@ $$
 
 ### 2. Oversizing Positions
 
+
 **Mistake:** Large notional on dispersion
 
 **Why it fails:** Correlation risk extreme
@@ -500,6 +529,7 @@ $$
 - Scale down when correlation elevated
 
 ### 3. Poor Stock Selection
+
 
 **Mistake:** Include illiquid or uncorrelated stocks
 
@@ -519,6 +549,7 @@ $$
 
 ### 4. Neglecting Hedging Costs
 
+
 **Mistake:** Ignore daily delta hedging friction
 
 **Why it fails:** Costs compound
@@ -536,6 +567,7 @@ $$
 - Larger trades (lower per-unit cost)
 
 ### 5. Wrong Hedge Ratio
+
 
 **Mistake:** Full 100% vega hedge
 
@@ -556,6 +588,7 @@ $$
 
 ### 6. Ignoring Skew
 
+
 **Mistake:** Trade ATM only, ignore skew
 
 **Why it fails:** Miss valuable skew premium
@@ -573,6 +606,7 @@ $$
 
 ### 7. No Exit Plan
 
+
 **Mistake:** Hold to maturity regardless
 
 **Why it fails:** Correlation can stay elevated
@@ -589,6 +623,7 @@ $$
 - Time stop: exit if no profit after 50% of duration
 
 ### 8. Forgetting Dividends
+
 
 **Mistake:** Ignore dividend impact
 
@@ -609,7 +644,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Maximum allocation:**
 
@@ -628,6 +665,7 @@ Where $\Delta \rho_{\text{max}}$ is maximum expected correlation move (e.g., 20%
 
 ### 2. Entry Conditions
 
+
 **Only enter when:**
 
 - Implied correlation > 50%
@@ -643,6 +681,7 @@ Where $\Delta \rho_{\text{max}}$ is maximum expected correlation move (e.g., 20%
 
 ### 3. Stop-Loss Rules
 
+
 **Hard stops:**
 
 - **Correlation > 60% → Exit immediately**
@@ -653,6 +692,7 @@ Where $\Delta \rho_{\text{max}}$ is maximum expected correlation move (e.g., 20%
 **No waiting for mean reversion**
 
 ### 4. Dynamic Hedging
+
 
 **Adjust hedge ratio based on realized correlation:**
 
@@ -673,6 +713,7 @@ $$
 
 ### 5. Monitoring
 
+
 **Daily checklist:**
 
 - Realized correlation (rolling 20-day)
@@ -690,6 +731,7 @@ $$
 
 ### 6. Diversification
 
+
 **Spread risk across:**
 
 - Multiple baskets (tech, financials, healthcare)
@@ -703,6 +745,7 @@ $$
 - Still benefits from some diversification
 
 ### 7. Hedging Tail Risk
+
 
 **For extreme correlation spikes:**
 
@@ -721,7 +764,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. The FANG Era (2014-2016)
+
 
 **Setup:**
 
@@ -749,6 +794,7 @@ $$
 
 ### 2. Post-Crisis (2010-2011)
 
+
 **Setup:**
 
 - Post-2008, markets calming
@@ -767,6 +813,7 @@ $$
 **Lesson:** Post-crisis normalization ideal for dispersion
 
 ### 3. COVID Crash (March 2020)
+
 
 **Setup:**
 
@@ -791,6 +838,7 @@ $$
 
 ### 4. Skew-Enhanced Dispersion (2018-2019)
 
+
 **Setup:**
 
 - Standard dispersion not working (low edge)
@@ -814,7 +862,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Pre-Trade Setup
+
 
 **Before entering dispersion:**
 
@@ -834,6 +884,7 @@ $$
 
 ### 2. Stock Selection
 
+
 **Choose basket:**
 
 - 10-20 large-cap stocks
@@ -850,6 +901,7 @@ $$
 - TSLA (consumer)
 
 ### 3. Position Sizing
+
 
 **Calculate notionals:**
 
@@ -869,6 +921,7 @@ $$
 
 ### 4. Execution
 
+
 **Enter positions:**
 
 - Sell index variance swap or straddles
@@ -883,6 +936,7 @@ $$
 - Vega-weighted to 70% hedge
 
 ### 5. Ongoing Management
+
 
 **Daily tasks:**
 
@@ -899,6 +953,7 @@ $$
 - Adjust hedge ratio if correlation shifted
 
 ### 6. Exit Discipline
+
 
 **Exit immediately if:**
 
@@ -921,6 +976,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Dispersion trading is a sophisticated correlation arbitrage that works beautifully when markets transition from risk-on to stock-picking environments. The correlation risk premium is real and persistent, but it's overwhelmed by correlation spikes during crises. The key is rigorous risk management: small position sizes, hard stop-losses when correlation rises above 60%, and constant monitoring of the correlation gap. This is not a 'set and forget' trade - it requires active management, daily hedging, and the discipline to exit when the correlation regime shifts. Treat it as harvesting a small, steady edge rather than a home-run trade."
 

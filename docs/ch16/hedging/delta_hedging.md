@@ -1,5 +1,6 @@
 # Delta Hedging
 
+
 **Delta hedging** is a risk management strategy that eliminates directional exposure by continuously adjusting a hedge position to keep your portfolio delta-neutral.
 
 
@@ -20,6 +21,7 @@
 ---
 
 ## Delta Hedging as
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/delta_hedging_concept.png?raw=true" alt="long_call_vs_put" width="700">
@@ -49,11 +51,13 @@
 
 ## The Core Insight
 
+
 **The fundamental idea:**
 
 **This is the key to understanding delta hedging:**
 
 ### 1. The Insurance
+
 
 **Traditional Insurance:**
 
@@ -76,6 +80,7 @@
 - **Other risks remain** (gamma, vega, theta)
 
 ### 2. Situation:
+
 
 **Situation:**
 
@@ -119,6 +124,7 @@
 
 ## The Basic Idea
 
+
 **What you do:**
 
 1. Own an option (or other derivative position)
@@ -133,6 +139,7 @@
 ---
 
 ## The Portfolio
+
 
 Your delta-hedged portfolio consists of:
 
@@ -165,9 +172,11 @@ where $V(S,t)$ is the option value, $\Delta$ is the option's delta, and you shor
 
 ## Economic
 
+
 **Understanding what this strategy REALLY represents economically:**
 
 ### 1. The Core Economic
+
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
@@ -178,6 +187,7 @@ $$
 $$
 
 ### 2. Economic
+
 
 Markets create these strategies because different participants have different:
 
@@ -191,6 +201,7 @@ Markets create these strategies because different participants have different:
 
 ### 3. Institutional
 
+
 Institutional traders view this strategy as a tool for:
 1. **Greeks arbitrage:** Extracting value from Greeks mispricing
 2. **Risk transformation:** Converting one type of risk into another
@@ -201,6 +212,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 
 ## The P&L Formula
+
 
 For a delta-hedged portfolio, over a short time interval $\delta t$ with stock price move $\delta S$:
 
@@ -242,9 +254,11 @@ $$
 
 ## Understanding Delta
 
+
 $$\boxed{\delta \Pi \approx \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{tracking error}} + \underbrace{\text{Vega} \cdot \delta\sigma}_{\text{vol risk}} - \underbrace{\theta\,\delta t}_{\text{time decay}}}$$
 
 ### 1. The Goal
+
 
 **Delta hedging aims to make your portfolio delta-neutral:**
 
@@ -260,6 +274,7 @@ $$\boxed{\delta \Pi \approx \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{tr
 
 ### 2. Post-Delta
 
+
 Once you've eliminated directional risk, you're still exposed to:
 
 1. **Gamma risk** - delta keeps changing, creating tracking error (the "deductible")
@@ -271,6 +286,7 @@ Once you've eliminated directional risk, you're still exposed to:
 ---
 
 ## Concrete Example
+
 
 **Setup:**
 
@@ -330,7 +346,9 @@ Once you've eliminated directional risk, you're still exposed to:
 
 ## Rebalancing
 
+
 ### 1. The Theoretical
+
 
 **If you could rebalance continuously** (every instant):
 
@@ -351,6 +369,7 @@ $$
 $$
 
 ### 2. The Reality
+
 
 **In practice, you rebalance at intervals:**
 
@@ -374,9 +393,11 @@ $$
 
 ## Delta vs Gamma
 
+
 **This is crucial to understand - mechanically identical, philosophically opposite:**
 
 ### 1. The Shocking
+
 
 **MECHANICALLY, they are THE SAME:**
 
@@ -391,6 +412,7 @@ $$
 **The ONLY differences are conceptual: intent, optimization, and mindset!**
 
 ### 2. The Conceptual
+
 
 | Aspect | Delta Hedging (Risk Mgmt) | Gamma Scalping (Profit) |
 |--------|---------------------------|-------------------------|
@@ -421,7 +443,9 @@ $$
 
 ## Why You Delta Hedge
 
+
 ### 1. You sold a call
+
 
 **Scenario:** You sold a call option to a customer
 
@@ -445,6 +469,7 @@ $$
 
 ### 2. You want to bet
 
+
 **Scenario:** You want to bet on implied volatility, not stock direction
 
 **Problem:**
@@ -465,6 +490,7 @@ $$
 
 ### 3. You own a large
 
+
 **Scenario:** You own a large stock position and buy protective puts
 
 **Problem:**
@@ -484,6 +510,7 @@ $$
 ---
 
 ## How Delta Hedging
+
 
 The mechanism is simple:
 
@@ -523,6 +550,7 @@ The mechanism is simple:
 
 ## What You Get vs.
 
+
 **What you get (insurance benefits):**
 
 - ✓ Protection from directional risk
@@ -557,7 +585,9 @@ The mechanism is simple:
 
 ## Pros and Cons
 
+
 ### 1. Advantages ✓
+
 
 **1. Eliminates directional market risk**
 
@@ -604,6 +634,7 @@ The mechanism is simple:
 - Essential skill for derivatives traders
 
 ### 2. Disadvantages ✗
+
 
 **1. Transaction costs can be substantial**
 
@@ -695,7 +726,9 @@ The mechanism is simple:
 
 ## When Delta Hedging
 
+
 ### 1. Essential Uses
+
 
 **1. Option market making**
 
@@ -729,6 +762,7 @@ The mechanism is simple:
 
 ### 2. Strategic Uses
 
+
 **4. Volatility arbitrage**
 
 - Buy underpriced options, sell overpriced ones
@@ -759,9 +793,11 @@ The mechanism is simple:
 
 ## Rebalancing
 
+
 **How often should you rebalance? (How often to renew insurance?)**
 
 ### 1. Time-Based
+
 
 - Rebalance every hour, day, or week
 
@@ -773,6 +809,7 @@ The mechanism is simple:
 
 ### 2. Delta-Threshold
 
+
 - Rebalance when portfolio delta exceeds a threshold (e.g., |delta| > 10)
 
 - More efficient—only trade when necessary
@@ -783,6 +820,7 @@ The mechanism is simple:
 
 ### 3. Gamma-Based
 
+
 - High gamma positions need frequent rebalancing
 
 - Low gamma positions can wait longer
@@ -792,6 +830,7 @@ The mechanism is simple:
 - Like adjusting insurance based on asset value
 
 ### 4. Cost-Benefit
+
 
 - Balance tracking error vs. transaction costs
 
@@ -805,9 +844,11 @@ The mechanism is simple:
 
 ## The Deep Truth
 
+
 **A profound insight:**
 
 ### 1. The Mechanical
+
 
 **Consider this:**
 
@@ -826,6 +867,7 @@ $$
 **This ALWAYS creates "buy low, sell high" profits (if $\Gamma > 0$), regardless of your intent!**
 
 ### 2. The Stunning
+
 
 **Dynamic Delta Hedging (with long option) IS mechanically identical to Gamma Scalping!**
 
@@ -850,6 +892,7 @@ $$
 
 ### 3. The Four Key
 
+
 | Aspect | Delta Hedging (Risk Mgmt) | Gamma Scalping (Profit) |
 |--------|---------------------------|-------------------------|
 | **1. Intent at Entry** | "I entered for OTHER reasons (client trade, portfolio hedge, etc.)" | "I entered SPECIFICALLY to profit from realized volatility" |
@@ -858,6 +901,7 @@ $$
 | **4. Rebalancing Strategy** | Minimize frequency (control costs) | Optimize frequency (harvest profit) |
 
 ### 4. Understanding the
+
 
 **This is crucial:**
 
@@ -898,6 +942,7 @@ $$
 ---
 
 ### 5. Real-World
+
 
 **Example 1: Market Maker (Delta Hedging)**
 
@@ -969,6 +1014,7 @@ $$
 
 ### 6. The Restaurant
 
+
 **Two people cooking the exact same meal:**
 
 **Person A (Home Cook):**
@@ -1007,6 +1053,7 @@ $$
 
 ### 7. The Mathematical
 
+
 **Here's the profound truth:**
 
 **Anyone who holds a long option and dynamically delta hedges is MECHANICALLY performing gamma scalping, whether they realize it or not!**
@@ -1030,6 +1077,7 @@ But the **math is the same**, the **actions are the same**, and the **outcome is
 ---
 
 ### 8. Why Do We Have
+
 
 **If they're mechanically identical, why distinguish them?**
 
@@ -1071,6 +1119,7 @@ But the **math is the same**, the **actions are the same**, and the **outcome is
 
 ### 9. Visual Summary
 
+
 ```
 Long Option + Dynamic Rebalancing
               ↓
@@ -1098,6 +1147,7 @@ Long Option + Dynamic Rebalancing
 ---
 
 ### 10. The Key Insight
+
 
 **This is one of the most subtle and sophisticated insights in derivatives trading:**
 
@@ -1128,6 +1178,7 @@ Long Option + Dynamic Rebalancing
 ---
 
 ## Relationship to
+
 
 **Delta hedging is the foundation for:**
 
@@ -1168,9 +1219,11 @@ All sophisticated volatility strategies build on delta hedging as the core risk 
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -1200,6 +1253,7 @@ All sophisticated volatility strategies build on delta hedging as the core risk 
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 
 - [Specific Greeks conditions]
@@ -1222,6 +1276,7 @@ All sophisticated volatility strategies build on delta hedging as the core risk 
 
 ### 3. Calculate maximum
 
+
 **Calculate maximum position size:**
 
 $$
@@ -1239,6 +1294,7 @@ $$
 - Margin requirements
 
 ### 4. Best practices: 1
+
 
 **Best practices:**
 
@@ -1258,6 +1314,7 @@ $$
 - Transaction cost consideration: Balance frequency vs. cost
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -1291,6 +1348,7 @@ $$
 
 ### 6. Greeks risk
 
+
 **Greeks risk limits:**
 
 - Max delta exposure: [Limit]
@@ -1313,6 +1371,7 @@ $$
 
 ### 7. Track for every
 
+
 **Track for every trade:**
 
 - Entry Greeks (delta, gamma, vega, theta)
@@ -1329,6 +1388,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
 2. **Wrong rebalancing frequency** - Too often or too infrequent
 3. **Insufficient liquidity** - Cannot execute rebalances efficiently
@@ -1337,6 +1397,7 @@ $$
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
 ### 9. Professional
+
 
 **For delta hedging:**
 
@@ -1365,9 +1426,11 @@ $$
 
 ## Common Mistakes
 
+
 **The fatal errors that destroy delta hedging strategies:**
 
 ### 1. Over-Rebalancing
+
 
 **The trap:**
 
@@ -1507,7 +1570,8 @@ Rebalance only if: Benefit > Cost × Safety Factor (e.g., 2×)
 [ ] Adjust threshold if costs too high
 ```
 
-### 1. Expiry Gamma
+### 2. Expiry Gamma
+
 
 **The trap:**
 
@@ -1679,7 +1743,8 @@ def max_position_size(days_to_expiration, gamma):
 [ ] Never hold ATM through last 3 days
 ```
 
-### 2. Wrong Hedge
+### 3. Wrong Hedge
+
 
 **The trap:**
 
@@ -1808,7 +1873,8 @@ Daily calculation:
 [ ] Accept tracking error vs. transaction costs
 ```
 
-### 1. Vega/Theta Blind
+### 4. Vega/Theta Blind
+
 
 **The trap:**
 
@@ -1963,7 +2029,8 @@ Accept: Delta hedging ≠ full hedging
 [ ] Remember: You're still long/short volatility!
 ```
 
-### 2. Static Hedge
+### 5. Static Hedge
+
 
 **The trap:**
 
@@ -2150,7 +2217,8 @@ Risk: Acceptable tracking error
 [ ] Review monthly: Am I rebalancing enough?
 ```
 
-### 1. Illiquid Options
+### 6. Illiquid Options
+
 
 **The trap:**
 
@@ -2359,7 +2427,8 @@ Option 4: Accept tracking error
 [ ] Remember: Liquidity = ability to manage
 ```
 
-### 2. Emotional Hedging
+### 7. Emotional Hedging
+
 
 **The trap:**
 
@@ -2582,9 +2651,11 @@ When tempted to emotional adjust:
 
 ## Real-World Examples
 
+
 **Detailed scenarios showing delta hedging in practice:**
 
 ### 1. Pension Duration
+
 
 **Setup:**
 
@@ -2836,6 +2907,7 @@ Volatility: Low P&L volatility (hedge worked)
 **Lesson:** Market makers profit from spreads + theta + gamma, protected by systematic delta hedging. Professional execution with disciplined rebalancing creates consistent edge.
 
 ### 2. Transition Risk
+
 
 **Setup:**
 
@@ -3140,6 +3212,7 @@ Key insight:
 **Takeaway:** Delta hedging enabled isolation of volatility bet. Strategy profitable due to IV expansion and volatility spike. Would have failed in persistent low vol environment. Professional timing on exit preserved gains.
 
 ### 3. Portable Alpha
+
 
 **Setup:**
 
@@ -3507,6 +3580,7 @@ Trader aftermath:
 **Takeaway:** Delta hedging is NOT easy money. Requires proper capital, systematic approach, emotional discipline. What looks simple on paper is hard in practice. Most retail traders better off with simpler strategies. If attempting, start very small, expect to pay tuition.
 
 ### 4. Tactical Duration
+
 
 **Setup:**
 

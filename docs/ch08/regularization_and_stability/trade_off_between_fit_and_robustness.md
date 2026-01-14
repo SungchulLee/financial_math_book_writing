@@ -1,10 +1,12 @@
 # Trade-Off Between Fit and Robustness
 
+
 Regularization introduces an unavoidable **trade-off**: improving robustness and stability typically worsens in-sample fit. Understanding and managing this trade-off is central to practical calibration.
 
 ---
 
-## 1. Bias–variance trade-off
+## Bias–variance trade-off
+
 
 Regularization reduces variance at the cost of bias:
 
@@ -15,7 +17,8 @@ The optimal point depends on data quality, model purpose, and downstream use (pr
 
 ---
 
-## 2. Diagnostics for the trade-off
+## Diagnostics for the trade-off
+
 
 Useful diagnostics include:
 
@@ -26,7 +29,8 @@ Useful diagnostics include:
 
 ---
 
-## 3. Economic versus statistical fit
+## Economic versus statistical fit
+
 
 A statistically optimal fit may be economically undesirable:
 
@@ -38,7 +42,8 @@ Robust calibration prioritizes *economic behavior* over minimal residuals.
 
 ---
 
-## 4. Time stability as a criterion
+## Time stability as a criterion
+
 
 In practice, many desks judge calibration quality by:
 
@@ -50,7 +55,8 @@ This implicitly favors stronger regularization than pure in-sample metrics.
 
 ---
 
-## 5. Choosing robustness deliberately
+## Choosing robustness deliberately
+
 
 Guiding principles:
 - start with strong regularization,
@@ -59,7 +65,8 @@ Guiding principles:
 
 ---
 
-## 6. Key takeaways
+## Key takeaways
+
 
 - Perfect fit is not the goal; *robust behavior* is.
 - Regularization controls the fit–robustness balance.
@@ -68,6 +75,7 @@ Guiding principles:
 ---
 
 ## Further reading
+
 
 - Hastie, Tibshirani & Friedman, *The Elements of Statistical Learning*.
 - Tarantola, *Inverse Problem Theory*.

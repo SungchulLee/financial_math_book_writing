@@ -1,6 +1,8 @@
 # Risk-Neutral Valuation Principle
 
-## 1. Central Pricing Principle
+
+## Central Pricing Principle
+
 In arbitrage-free markets:
 
 \[
@@ -15,14 +17,16 @@ e^{-r(T-t)} \Phi(X_T)
 
 ---
 
-## 2. Meaning of Risk Neutrality
+## Meaning of Risk Neutrality
+
 
 - Investors behave as if risk preferences do not matter
 - Expected returns equal the risk-free rate
 
 ---
 
-## 3. PDE Equivalence
+## PDE Equivalence
+
 Risk-neutral valuation is equivalent to solving:
 
 \[
@@ -31,18 +35,21 @@ Risk-neutral valuation is equivalent to solving:
 
 ---
 
-## 4. Why the Drift Changes
+## Why the Drift Changes
+
 Changing measure removes risk premia.
 Only volatility remains.
 
 ---
 
-## 5. Financial Interpretation
+## Financial Interpretation
+
 
 - Pricing independent of preferences
 - Market prices of risk absorbed into the measure
 
 ---
 
-## 6. Connection Forward
+## Connection Forward
+
 The mathematical tool enabling this change is **Girsanov’s theorem**.

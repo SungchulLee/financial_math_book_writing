@@ -1,5 +1,6 @@
 # Reverse Jade Lizard
 
+
 **Reverse Jade Lizard** is a bullish debit strategy combining a long call for unlimited upside profit with a long put spread for limited downside protection, creating a defined-risk position with strong directional bias and strategic profit characteristics.
 
 
@@ -13,6 +14,7 @@
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_greeks.png?raw=true" alt="reverse_jade_lizard_greeks" width="700">
@@ -46,6 +48,7 @@ where $K_1 < K_2 < K_3$ (typically $K_2$ near current price, $K_3$ OTM, $K_1$ fa
 
 ## What Is Reverse Jade Lizard?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_components.png?raw=true" alt="reverse_jade_lizard_components" width="700">
 </p>
@@ -53,6 +56,7 @@ where $K_1 < K_2 < K_3$ (typically $K_2$ near current price, $K_3$ OTM, $K_1$ fa
 **Before trading reverse jade lizard, understand the structure:**
 
 ### 1. Core Structure
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_scenarios.png?raw=true" alt="reverse_jade_lizard_scenarios" width="700">
@@ -102,6 +106,7 @@ where $K_1 < K_2 < K_3$ (typically $K_2$ near current price, $K_3$ OTM, $K_1$ fa
 
 ### 2. Why "Reverse" Jade Lizard?
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_vs_long_call.png?raw=true" alt="reverse_jade_lizard_vs_long_call" width="700">
 </p>
@@ -139,6 +144,7 @@ $$
 
 ## Economic
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_risk_profile.png?raw=true" alt="reverse_jade_lizard_risk_profile" width="700">
 </p>
@@ -146,6 +152,7 @@ $$
 **Beyond the basic definition, understanding what reverse jade lizard REALLY is economically:**
 
 ### 1. Decomposition 1
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/iv_impact_reverse_jade_lizard.png?raw=true" alt="iv_impact_reverse_jade_lizard" width="700">
@@ -173,6 +180,7 @@ $$
 - **Trade-off:** Accept defined max loss for cheaper entry
 
 ### 2. Decomposition 2
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/theta_decay_reverse_jade_lizard.png?raw=true" alt="theta_decay_reverse_jade_lizard" width="700">
@@ -209,6 +217,7 @@ This becomes a **modified bullish straddle** with downside risk capped by short 
 3. Asymmetric reward (unlimited upside, limited downside protection)
 
 ### 3. Decomposition 3
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/strike_selection_reverse_jade_lizard.png?raw=true" alt="strike_selection_reverse_jade_lizard" width="700">
@@ -300,6 +309,7 @@ So **max loss occurs at $K_2$ (the long put strike) = -$4.50**.
 
 ### 4. Comparison to Other Bullish Strategies
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_payoff.png?raw=true" alt="reverse_jade_lizard_payoff" width="700">
 </p>
@@ -332,6 +342,7 @@ So **max loss occurs at $K_2$ (the long put strike) = -$4.50**.
 4. Accept higher breakeven (vs. plain call)
 
 ### 5. Advanced Professional Perspectives
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/reverse_jade_lizard_risk_reward.png?raw=true" alt="reverse_jade_lizard_risk_reward" width="700">
@@ -551,6 +562,7 @@ Understanding these foundations helps recognize:
 
 ## Key Terminology
 
+
 **Reverse Jade Lizard:**
 - Bullish debit strategy
 - Three-legged: Long call + long put spread
@@ -609,7 +621,9 @@ Understanding these foundations helps recognize:
 
 ## Greeks Analysis
 
+
 ### 1. Delta
+
 
 **Position delta:**
 
@@ -664,6 +678,7 @@ As stock drops toward $90:
 
 ### 2. Gamma
 
+
 **Gamma measures how delta changes as stock moves:**
 
 $$
@@ -712,6 +727,7 @@ $$
 **Key insight:** Gamma is most favorable above current price (where long call dominates), making the position well-suited for strong bullish moves but less favorable for oscillation near entry.
 
 ### 3. Theta
+
 
 **Theta measures daily time decay:**
 
@@ -765,6 +781,7 @@ Theta is not linear - it accelerates as expiration approaches:
 - **Better to roll position** than suffer late theta
 
 ### 4. Vega
+
 
 **Vega measures sensitivity to implied volatility changes:**
 
@@ -846,6 +863,7 @@ $$
 
 ### 5. Greeks Summary
 
+
 **Net Greeks (typical values):**
 
 | Greek | Value | Interpretation |
@@ -881,7 +899,9 @@ $$
 
 ## Risk Profile and Profit Zones
 
+
 ### 1. Maximum Loss
+
 
 **Where max loss occurs:**
 
@@ -939,6 +959,7 @@ If you enter with stock at $100:
 
 ### 2. Maximum Profit (Downside)
 
+
 **Downside profit is LIMITED:**
 
 When stock crashes below $K_1$ (short put strike), the put spread reaches max value:
@@ -975,6 +996,7 @@ $$
 - **Real goal: Unlimited upside**
 
 ### 3. Maximum Profit (Upside)
+
 
 **Upside profit is UNLIMITED:**
 
@@ -1029,6 +1051,7 @@ At $130:
 
 ### 4. Breakeven Analysis
 
+
 **Upper breakeven:**
 
 $$
@@ -1066,6 +1089,7 @@ Assuming 30 DTE, 15% annual volatility:
 - Best with specific catalyst (earnings, FDA approval, etc.)
 
 ### 5. Risk-Reward Ratios
+
 
 **Upside risk-reward:**
 
@@ -1116,7 +1140,9 @@ Given probabilities:
 
 ## Optimal Market Conditions
 
+
 ### 1. Volatility Environment
+
 
 **Best entry: LOW IMPLIED VOLATILITY**
 
@@ -1184,6 +1210,7 @@ Given probabilities:
 - Even if stock flat, vega can offset theta
 
 ### 2. Price Action Setup
+
 
 **Best technical setup: Bullish consolidation**
 
@@ -1267,6 +1294,7 @@ Price:
 
 ### 3. Catalysts
 
+
 **Best catalysts: Binary events with upside surprise potential**
 
 **Earnings (specific types):**
@@ -1315,6 +1343,7 @@ Price:
 - **Avoid unless very specific thesis**
 
 ### 4. Time Horizon
+
 
 **Optimal holding period: 2-4 weeks**
 
@@ -1376,6 +1405,7 @@ Price:
 
 ### 5. Market Regime
 
+
 **Best in: Bullish trending market**
 
 **Bull market characteristics:**
@@ -1409,6 +1439,7 @@ Price:
 - But risky - rallies often fail
 
 ### 6. Combining Indicators
+
 
 **Ideal confluence for entry:**
 
@@ -1466,7 +1497,9 @@ Price:
 
 ## Comparison with Related Strategies
 
+
 ### 1. Reverse Jade Lizard vs. Jade Lizard
+
 
 **Jade Lizard (Bearish credit):**
 
@@ -1536,6 +1569,7 @@ $$
 
 ### 2. Reverse Jade Lizard vs. Long Call
 
+
 **Long Call (Simple bullish):**
 
 $$
@@ -1586,6 +1620,7 @@ $$
 - Accept higher breakeven for peace of mind
 
 ### 3. Reverse Jade Lizard vs. Bull Call Spread
+
 
 **Bull Call Spread (Defined risk and reward):**
 
@@ -1639,6 +1674,7 @@ $$
 
 ### 4. Reverse Jade Lizard vs. Collar
 
+
 **Collar (Protective structure for stock owners):**
 
 $$
@@ -1677,6 +1713,7 @@ $$
 **Key difference:** Collar is for stock owners who want protection. Reverse jade lizard is for option traders who want bullish leverage.
 
 ### 5. Reverse Jade Lizard vs. Risk Reversal
+
 
 **Risk Reversal (Pure directional bet):**
 
@@ -1730,7 +1767,9 @@ $$
 
 ## Practical Trading Guide
 
+
 ### 1. Entry Checklist
+
 
 **Before entering any reverse jade lizard, verify:**
 
@@ -1802,6 +1841,7 @@ $$
 - **Write down rules before entering!**
 
 ### 2. Step-by-Step Execution
+
 
 **Step 1: Identify candidate**
 
@@ -1975,6 +2015,7 @@ Hmm, this is actually a small profit! The put spread did its job.
 
 ### 3. Step 6
 
+
 **Exit scenario 1: Hit profit target**
 
 **Day 18 (10 DTE remaining):**
@@ -2051,6 +2092,7 @@ Hmm, this is actually a small profit! The put spread did its job.
 
 ### 4. Step 7
 
+
 **Record keeping (mandatory for improvement):**
 
 **Trade log entry:**
@@ -2094,6 +2136,7 @@ Grade: A (excellent execution)
 ```
 
 ### 5. Common Mistakes to Avoid
+
 
 **1. Entering at high IV**
 
@@ -2218,6 +2261,7 @@ Grade: A (excellent execution)
 - **Vega crush can wipe out 20-30% of value**
 
 ### 6. Real-World Example
+
 
 **Trade: AAPL Reverse Jade Lizard (Hypothetical)**
 
@@ -2360,7 +2404,9 @@ Grade: A (excellent execution)
 
 ## Advanced Concepts
 
+
 ### 1. Strike Selection Strategies
+
 
 **Strategy 1: Aggressive structure (higher risk-reward)**
 
@@ -2452,6 +2498,7 @@ Grade: A (excellent execution)
 - **Risk:** High cost, need IV expansion to profit
 
 ### 2. Adjustments and Management
+
 
 **Adjustment 1: Roll up (stock rallying)**
 
@@ -2565,6 +2612,7 @@ Grade: A (excellent execution)
 
 ### 3. Volatility Skew Exploitation
 
+
 **Understanding put skew:**
 
 In equity markets, puts trade at higher IV than calls:
@@ -2629,6 +2677,7 @@ In equity markets, puts trade at higher IV than calls:
 - **Less advantageous** (can't exploit skew)
 
 ### 4. Rolling Strategies
+
 
 **When to roll (vs. close):**
 
@@ -2706,6 +2755,7 @@ In equity markets, puts trade at higher IV than calls:
 
 ### 5. Tax Considerations
 
+
 **Holding period:**
 
 **Short-term capital gains (<1 year):**
@@ -2752,6 +2802,7 @@ In equity markets, puts trade at higher IV than calls:
 - Losses can offset gains, but not worth taking bad loss to save taxes
 
 ### 6. Position Sizing Across Portfolio
+
 
 **Kelly Criterion (advanced):**
 
@@ -2863,6 +2914,7 @@ If you have 3 positions:
 
 
 ## Summary and Key Takeaways
+
 
 **Reverse jade lizard is a bullish debit strategy combining:**
 - Long call (unlimited upside)

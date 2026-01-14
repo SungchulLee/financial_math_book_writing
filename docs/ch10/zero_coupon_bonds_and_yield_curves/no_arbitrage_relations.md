@@ -1,10 +1,12 @@
 # No-Arbitrage Relations
 
+
 No-arbitrage principles link discount factors, zero rates, and forward rates. These relations are the foundation of curve construction and fixed-income pricing.
 
 ---
 
-## 1. Replication argument for forwards
+## Replication argument for forwards
+
 
 Consider lending 1 unit from 0 to \(T_2\) via:
 - buying a \(T_2\) zero-coupon bond, cost \(P(0,T_2)\).
@@ -23,7 +25,8 @@ No-arbitrage implies equality of terminal payoffs, yielding
 
 ---
 
-## 2. Discount factor monotonicity and positivity
+## Discount factor monotonicity and positivity
+
 
 Under absence of arbitrage with non-negative rates:
 - \(P(0,T)\) is decreasing in \(T\),
@@ -33,7 +36,8 @@ With negative rates, discount factors can still be decreasing but forwards/zeros
 
 ---
 
-## 3. Coupon bond pricing by discounting
+## Coupon bond pricing by discounting
+
 
 A coupon bond with cashflows \(c_i\) at times \(T_i\) has price
 
@@ -47,7 +51,8 @@ This is a direct consequence of linearity and absence of arbitrage: each cashflo
 
 ---
 
-## 4. Basic arbitrage checks for a curve
+## Basic arbitrage checks for a curve
+
 
 A constructed curve should satisfy:
 - \(P(0,0)=1\),
@@ -59,7 +64,8 @@ In practice, these checks guide interpolation and smoothing choices.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - No-arbitrage links forwards and discount factors via replication.
 - Discounting prices coupon bonds and deterministic cashflows.
@@ -68,6 +74,7 @@ In practice, these checks guide interpolation and smoothing choices.
 ---
 
 ## Further reading
+
 
 - Björk, *Arbitrage Theory in Continuous Time*.
 - Brigo & Mercurio, *Interest Rate Models*.

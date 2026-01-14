@@ -1,10 +1,12 @@
 # Correlation Trading
 
+
 **Correlation trading** is the practice of taking directional or relative value positions on the correlation structure between assets, profiting from changes in how assets move together or independently.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is Correlation Trading?
 
+
 ### 1. Basic Definition
+
 
 **Correlation between two assets:**
 
@@ -52,6 +56,7 @@ $$
 
 ### 2. Implied vs Realized Correlation
 
+
 **Implied correlation:**
 
 Backed out from option prices using:
@@ -75,6 +80,7 @@ $$
 $$
 
 ### 3. Why Correlation Changes
+
 
 **Regime shifts:**
 
@@ -111,6 +117,7 @@ $$
 
 ### 4. Correlation Products
 
+
 **Ways to trade correlation:**
 
 **Variance swaps (indirect):**
@@ -133,6 +140,7 @@ $$
 - Most liquid approach
 
 ### 5. Historical Patterns
+
 
 **Empirical evidence (SPX, 1996-2023):**
 
@@ -159,6 +167,7 @@ $$
 
 ### 6. Correlation vs Volatility
 
+
 **Strong empirical relationship:**
 
 $$
@@ -178,6 +187,7 @@ $$
 - Trading correlation = Trading vol regime
 
 ### 7. Cross-Asset Correlation
+
 
 **Beyond equities:**
 
@@ -200,9 +210,11 @@ $$
 
 ## Correlation Trade Strategies
 
+
 **How to profit from correlation:**
 
 ### 1. Long Correlation Trade
+
 
 **Betting correlation will rise:**
 
@@ -231,6 +243,7 @@ $$
 
 ### 2. Short Correlation Trade
 
+
 **Betting correlation will fall:**
 
 **Setup:**
@@ -258,6 +271,7 @@ $$
 
 ### 3. Correlation Spreads
 
+
 **Relative value on correlation:**
 
 **Setup:**
@@ -275,6 +289,7 @@ $$
 - **Profit on spread widening**
 
 ### 4. Correlation Mean Reversion
+
 
 **Fade extremes:**
 
@@ -295,6 +310,7 @@ $$
 
 ### 5. Event-Driven Correlation
 
+
 **Trade around events:**
 
 **Before major events:**
@@ -313,6 +329,7 @@ $$
 - **Profit from cycle**
 
 ### 6. Volatility-Adjusted Correlation
+
 
 **Account for vol regime:**
 
@@ -333,6 +350,7 @@ $$
 
 ### 7. Cross-Asset Correlation
 
+
 **Trade correlation between asset classes:**
 
 **Equity-Bond correlation:**
@@ -352,7 +370,9 @@ $$
 
 ## Mathematical Framework
 
+
 ### 1. Correlation Dynamics
+
 
 **Stochastic correlation model:**
 
@@ -368,6 +388,7 @@ Where:
 **Bounded between -1 and 1 (by construction)**
 
 ### 2. Index Variance Decomposition
+
 
 **Exact formula:**
 
@@ -389,6 +410,7 @@ $$
 
 ### 3. Correlation Risk Premium
 
+
 **Expected return from shorting correlation:**
 
 $$
@@ -405,6 +427,7 @@ Where:
 - **Sharpe: 0.2-0.3 (modest)**
 
 ### 4. Greeks Exposure
+
 
 **For dispersion (short correlation):**
 
@@ -430,6 +453,7 @@ $$
 
 ### 5. Optimal Hedge Ratio
 
+
 **Minimize P&L variance:**
 
 $$
@@ -445,6 +469,7 @@ $$
 **Not 100% due to correlation risk premium**
 
 ### 6. Correlation Carry
+
 
 **Expected P&L from correlation term structure:**
 
@@ -462,6 +487,7 @@ $$
 - Long long-term correlation
 
 ### 7. Correlation Beta
+
 
 **Sensitivity to market factors:**
 
@@ -481,9 +507,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Assuming Stable Correlation
+
 
 **Mistake:** Treat correlation as constant
 
@@ -502,6 +530,7 @@ $$
 
 ### 2. Ignoring Vol-Correlation Link
 
+
 **Mistake:** Trade correlation without considering volatility
 
 **Why it fails:** $\rho$ and $\sigma$ strongly correlated
@@ -519,6 +548,7 @@ $$
 
 ### 3. Overleveraging
 
+
 **Mistake:** Large correlation notional
 
 **Why it fails:** Correlation moves can be huge
@@ -534,6 +564,7 @@ $$
 - Reduce leverage in elevated vol regimes
 
 ### 4. Poor Timing
+
 
 **Mistake:** Short correlation right after spike
 
@@ -552,6 +583,7 @@ $$
 
 ### 5. Ignoring Sector Correlation
 
+
 **Mistake:** Assume all stocks have same correlation
 
 **Why it fails:** Sector correlations differ
@@ -569,6 +601,7 @@ $$
 
 ### 6. Forgetting Hedging Costs
 
+
 **Mistake:** Ignore daily delta hedging friction
 
 **Why it fails:** Costs compound quickly
@@ -584,6 +617,7 @@ $$
 - Use larger position sizes (lower per-unit costs)
 
 ### 7. No Exit Plan
+
 
 **Mistake:** Hold correlation trade to maturity
 
@@ -601,6 +635,7 @@ $$
 - Take profit at 10% gain (correlation mean-reverts slowly)
 
 ### 8. Misunderstanding Correlation Products
+
 
 **Mistake:** Treat dispersion = pure correlation bet
 
@@ -620,7 +655,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Maximum allocation:**
 
@@ -638,6 +675,7 @@ $$
 - 5% safer for retail
 
 ### 2. Entry Conditions
+
 
 **Long correlation (bet on increase):**
 - Current $\rho < 35\%$ (low)
@@ -658,6 +696,7 @@ $$
 
 ### 3. Stop-Loss Rules
 
+
 **For short correlation:**
 - **Realized $\rho > 65\%$ → Exit immediately**
 - P&L loss > -20% → Exit
@@ -673,6 +712,7 @@ $$
 - Don't hold to maturity hoping
 
 ### 4. Dynamic Hedging
+
 
 **Adjust hedge ratio based on realized correlation:**
 
@@ -692,6 +732,7 @@ $$
 
 ### 5. Monitoring
 
+
 **Daily checklist:**
 - Realized correlation (20-day rolling)
 - Implied correlation (from option prices)
@@ -707,6 +748,7 @@ $$
 
 ### 6. Diversification
 
+
 **Spread risk across:**
 - Multiple markets (US, Europe, Asia)
 - Multiple sectors (tech, financials, healthcare)
@@ -719,6 +761,7 @@ $$
 - Still benefits from diversification
 
 ### 7. Hedging Tail Risk
+
 
 **For short correlation positions:**
 - Buy OTM index calls (hedge against correlation spike)
@@ -735,7 +778,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Brexit Vote (June 2016)
+
 
 **Setup:**
 - Pre-Brexit: Correlation at 45% (normal)
@@ -757,6 +802,7 @@ $$
 
 ### 2. Post-2008 Normalization (2010-2011)
 
+
 **Setup:**
 - 2009: Correlation at 80% (crisis peak)
 - 2010: Starting to normalize
@@ -774,6 +820,7 @@ $$
 **Lesson:** Post-crisis normalization ideal for short correlation
 
 ### 3. COVID Crash (March 2020)
+
 
 **Setup:**
 - Feb 2020: Correlation at 40%
@@ -796,6 +843,7 @@ $$
 
 ### 4. Tech Bubble Burst (2000-2001)
 
+
 **Setup:**
 - Late 1999: Tech stocks highly correlated (bubble)
 - $\rho_{\text{tech}} = 70\%$
@@ -817,7 +865,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Measuring Correlation
+
 
 **Calculate realized correlation:**
 
@@ -843,6 +893,7 @@ avg_corr = corr_matrix.values[np.triu_indices_from(corr_matrix.values, 1)].mean(
 
 ### 2. Entry Analysis
 
+
 **Before entering:**
 
 1. **Check correlation level:**
@@ -862,6 +913,7 @@ avg_corr = corr_matrix.values[np.triu_indices_from(corr_matrix.values, 1)].mean(
 
 ### 3. Position Construction
 
+
 **For short correlation:**
 
 - Sell index variance or straddles
@@ -874,6 +926,7 @@ avg_corr = corr_matrix.values[np.triu_indices_from(corr_matrix.values, 1)].mean(
 - Check vega: Index $\$50k$, stocks $\$35k$ (70%)
 
 ### 4. Execution
+
 
 **Enter positions:**
 - Use limit orders (never market)
@@ -888,6 +941,7 @@ avg_corr = corr_matrix.values[np.triu_indices_from(corr_matrix.values, 1)].mean(
 
 ### 5. Management
 
+
 **Daily tasks:**
 - Compute realized correlation
 - Check P&L attribution
@@ -901,6 +955,7 @@ avg_corr = corr_matrix.values[np.triu_indices_from(corr_matrix.values, 1)].mean(
 - Review stop-losses
 
 ### 6. Exit Execution
+
 
 **Exit when:**
 
@@ -922,6 +977,7 @@ avg_corr = corr_matrix.values[np.triu_indices_from(corr_matrix.values, 1)].mean(
 ---
 
 ## Final Wisdom
+
 
 > "Correlation trading is the art of betting on how assets move together - a subtle but powerful concept that drives portfolio diversification, risk management, and volatility arbitrage. Correlation is mean-reverting around 40% but spikes violently during crises, rising from 30% to 80% in days. The key to success is recognizing correlation regimes: short when elevated after crises, long when depressed before events, and always respect the correlation-volatility link. This is not a 'set and forget' trade - it requires constant monitoring, disciplined stops, and the humility to exit when the regime shifts against you."
 

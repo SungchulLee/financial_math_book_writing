@@ -1,5 +1,7 @@
 # Event Calendar
+
 ## Trading Event-Driven
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_by_event.png?raw=true" alt="long_call_vs_put" width="700">
@@ -16,6 +18,7 @@ These strategies trade **when volatility occurs**, not whether price goes up or 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_exit_timing.png?raw=true" alt="long_call_vs_put" width="700">
@@ -35,11 +38,13 @@ These strategies trade **when volatility occurs**, not whether price goes up or 
 
 ## What Is Event
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_payoff.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 ### 1. Discrete Events
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/event_calendar_spreads_timing.png?raw=true" alt="long_call_vs_put" width="700">
@@ -61,6 +66,7 @@ These events create:
 ---
 
 ### 2. Event vs
+
 
 For a known event at time $t_E$:
 
@@ -86,6 +92,7 @@ IV
 
 ## Why Event Volatility
 
+
 Event-related IV is often:
 
 - Overestimated (fear premium)
@@ -102,7 +109,9 @@ Event-related IV is often:
 
 ## The Structure
 
+
 ### 1. General Event
+
 
 Event calendar spreads typically:
 
@@ -117,7 +126,9 @@ Event calendar spreads typically:
 
 ### 2. Common Event
 
+
 ### 3. Classic Earnings
+
 
 \[
 \text{Calendar} = +C(K, T_{\text{after}}) - C(K, T_{\text{before}})
@@ -133,6 +144,7 @@ Event calendar spreads typically:
 
 ### 4. Double Calendar
 
+
 - Calendar spreads at multiple strikes
 - Covers a price range
 - Reduces directional sensitivity
@@ -141,6 +153,7 @@ Event calendar spreads typically:
 
 ### 5. Reverse Calendar
 
+
 - Buy near-term event volatility
 - Sell longer-dated volatility
 - Used when market underestimates event risk
@@ -148,6 +161,7 @@ Event calendar spreads typically:
 ---
 
 ## The Portfolio
+
 
 \[
 \Pi_{\text{event}} = V(K, T_{\text{after}}, \sigma_{\text{after}})
@@ -169,9 +183,11 @@ Primary exposure is to **relative IV across maturities**.
 
 ## Economic
 
+
 **Understanding what event calendar spreads REALLY represent economically:**
 
 ### 1. The Core Economic
+
 
 Event calendar spreads trade a fundamental market phenomenon:
 
@@ -198,6 +214,7 @@ $$
 $$
 
 ### 2. Why Event IV
+
 
 **Economic foundation - The Insurance Market for Binary Events:**
 
@@ -232,6 +249,7 @@ For typical earnings:
 4. **Model risk:** Dealers charge extra for event risk
 
 ### 3. The Term
+
 
 **Normal volatility term structure:**
 
@@ -280,6 +298,7 @@ Sharp IV jump right at event expiration:
 
 ### 4. The Post-Event IV
 
+
 **What happens after event:**
 
 **T-1:** Uncertainty maximum, IV 80%
@@ -310,6 +329,7 @@ After: Market knows earnings
 **This collapse is predictable and tradable.**
 
 ### 5. Calendar Spread
+
 
 **Economic structure:**
 
@@ -343,6 +363,7 @@ Theta (time decay): +$200
 
 ### 6. The Market-Making
 
+
 **Why dealers quote wide spreads on event calendars:**
 
 **Risk for dealer selling event calendar to customer:**
@@ -368,6 +389,7 @@ Example:
 - **Only profitable if actual collapse >10 points**
 
 ### 7. The Volatility
+
 
 **Decomposing total volatility:**
 
@@ -398,6 +420,7 @@ Earnings options sellers collect massive premium:
 Calendar spreads harvest this premium with **less binary risk** (have back-month protection).
 
 ### 8. Behavioral
+
 
 **Why investors overpay for event protection:**
 
@@ -432,6 +455,7 @@ Event options priced by fear, not fundamentals.
 
 ### 9. Dispersion Around
 
+
 **Index vs. Single Stock dynamics:**
 
 **Single stock earnings:**
@@ -457,6 +481,7 @@ $$
 
 ### 10. The Timing Value
 
+
 **Economic value of knowing WHEN:**
 
 **Uncertain timing:** Volatility spreads across days
@@ -481,6 +506,7 @@ $$
 **This is pure timing value** - you profit from knowing when information arrives.
 
 ### 11. Professional
+
 
 **1. Earnings Trading Desks**
 
@@ -520,6 +546,7 @@ $$
 
 ### 12. Economic
 
+
 **Calendar spread vs. Outright short:**
 
 | Metric | Short Front Only | Calendar Spread |
@@ -534,6 +561,7 @@ $$
 **Economic choice:** Calendar spread = **insurance on your insurance selling.**
 
 ### 13. The Zero-Sum
+
 
 **Who's on other side of event calendar trades?**
 
@@ -556,6 +584,7 @@ If realized move > implied move:
 **Long-run:** Sellers win through VRP collection
 
 ### 14. Event calendar
+
 
 **Event calendar spreads exist because:**
 
@@ -587,7 +616,9 @@ $$
 
 ## The P&L Formula
 
+
 ### 1. Primary P&L
+
 
 \[
 \text{P\&L}_{\text{event}} =
@@ -606,6 +637,7 @@ Typical pattern:
 
 ### 2. Secondary Effects
 
+
 - **Theta:** Usually positive
 - **Gamma:** Concentrated near event
 - **Delta:** Must be actively managed
@@ -614,7 +646,9 @@ Typical pattern:
 
 ## Concrete Example
 
+
 ### 1. Earnings Calendar
+
 
 **Stock:** XYZ  
 **Spot:** $100  
@@ -629,6 +663,7 @@ Typical pattern:
 
 ### 2. Trade
 
+
 - Sell 2-week ATM call
 - Buy 6-week ATM call
 - Delta hedge
@@ -637,7 +672,9 @@ Typical pattern:
 
 ## Risk Management
 
+
 ### 1. Key Risks
+
 
 - Gap risk at the event
 - Incorrect event magnitude
@@ -649,6 +686,7 @@ Typical pattern:
 
 ### 2. Risk Controls
 
+
 - Use defined-risk calendars
 - Avoid extremely short-dated options
 - Size conservatively
@@ -658,6 +696,7 @@ Typical pattern:
 ---
 
 ## Relationship to
+
 
 | Strategy | Primary Dimension |
 |--------|-------------------|
@@ -672,6 +711,7 @@ Typical pattern:
 ---
 
 ## When Event Calendars
+
 
 ✅ Known, scheduled events  
 ✅ Liquid single-name options  
@@ -692,9 +732,11 @@ Typical pattern:
 
 ## Practical Guidance
 
+
 **Step-by-step framework for trading event calendar spreads:**
 
 ### 1. High-probability
+
 
 **High-probability event calendar opportunities:**
 
@@ -744,6 +786,7 @@ Why avoid:
 
 ### 2. Critical: The
 
+
 **Critical:** The calendar spread only works if front-month IV elevated relative to back-month.
 
 **Calculate the IV spread:**
@@ -782,6 +825,7 @@ $$
 
 ### 3. Front-month
 
+
 **Front-month (sell):**
 
 **Expiration:** 1-3 days after event
@@ -813,6 +857,7 @@ Front: Sell March 17 $100 call (2 days post-earnings)
 Back: Buy April 7 $100 call (3 weeks later)
 
 ### 4. Calculate maximum
+
 
 **Calculate maximum loss:**
 
@@ -853,6 +898,7 @@ $$
 - Never: >5% risk on single event
 
 ### 5. Timing of entry:
+
 
 **Timing of entry:**
 
@@ -898,6 +944,7 @@ Limit: $2.45 (if mid is $2.50)
 
 ### 6. Daily monitoring
 
+
 **Daily monitoring routine:**
 
 **Before event (days 1-5):**
@@ -923,6 +970,7 @@ Most important period!
 - If front IV doesn't collapse: Close for loss
 
 ### 7. Primary exit:
+
 
 **Primary exit: Front-month IV collapse**
 
@@ -963,6 +1011,7 @@ Day after earnings: Front IV 32%
    - Close for 30-50% loss
 
 ### 8. A
+
 
 **A. Delta Management**
 
@@ -1020,6 +1069,7 @@ Too complex for beginners; skip until mastered basic calendar.
 
 ### 9. Don't rely on
 
+
 **Don't rely on single event - diversify:**
 
 **Calendar spread portfolio approach:**
@@ -1045,6 +1095,7 @@ Week 4: Prepare for next month
 
 ### 10. Required:
 
+
 **Required:**
 - **Options analytics:** ThinkorSwim, Tastyworks, Interactive Brokers
 - **IV tracking:** optionistics.com, marketchameleon.com
@@ -1060,6 +1111,7 @@ Week 4: Prepare for next month
 5. **Calculate max loss** (manual or platform)
 
 ### 11. Performance
+
 
 **Track for every trade:**
 
@@ -1099,6 +1151,7 @@ Exit Log:
 - **Target expectancy: >$50 per trade**
 
 ### 12. Pre-Trade
+
 
 **Before entering ANY event calendar spread:**
 
@@ -1158,6 +1211,7 @@ Exit Log:
 
 ### 13. Track every
 
+
 **Track every trade:**
 - Entry IV level and percentile
 - Term structure shape at entry
@@ -1175,6 +1229,7 @@ Exit Log:
 
 ### 14. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
 3. **Ignoring term structure** - Don't sell front month if in backwardation
@@ -1185,6 +1240,7 @@ Exit Log:
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 15. Professional
+
 
 **For volatility selling (short vega):**
 - Enter when IVR > 50, ideally > 70
@@ -1213,9 +1269,11 @@ Exit Log:
 
 ## Common Mistakes
 
+
 **Critical errors in event calendar spread trading:**
 
 ### 1. Earnings tomorrow
+
 
 **What it looks like:**
 
@@ -1242,6 +1300,7 @@ Front IV trajectory:
 ---
 
 ### 2. Enter calendar
+
 
 **What it looks like:**
 
@@ -1276,6 +1335,7 @@ Sold NVDA Mar17 $800 call calendar
 
 ### 3. Front IV: 42%
 
+
 **What it looks like:**
 
 - Front IV: 42%
@@ -1302,6 +1362,7 @@ Need IV collapse: 4+ points just to break even
 
 ### 4. $50K account
 
+
 **What it looks like:**
 
 - $50K account
@@ -1324,6 +1385,7 @@ Even "perfect" setups have 30-40% loss rate:
 ---
 
 ### 5. Earnings passed,
+
 
 **What it looks like:**
 
@@ -1352,6 +1414,7 @@ Saturday morning:
 ---
 
 ### 6. Apple product
+
 
 **What it looks like:**
 
@@ -1389,6 +1452,7 @@ Product launches rarely move stocks significantly:
 
 ### 7. Enter calendar:
 
+
 **What it looks like:**
 
 - Enter calendar: $2.50 debit
@@ -1415,6 +1479,7 @@ Slippage: $0.20
 ---
 
 ### 8. Enter calendar
+
 
 **What it looks like:**
 
@@ -1451,6 +1516,7 @@ Day after earnings:
 
 ### 9. Enter $100
 
+
 **What it looks like:**
 
 - Enter $100 calendar spread
@@ -1479,6 +1545,7 @@ Both calls OTM
 ---
 
 ### 10. See small-cap
+
 
 **What it looks like:**
 
@@ -1513,6 +1580,7 @@ Sell at bid: $3.00
 
 ### 11. Earnings morning
 
+
 **What it looks like:**
 
 - Earnings morning (before market)
@@ -1540,6 +1608,7 @@ Sell at bid: $3.00
 ---
 
 ### 12. Stock drops -8%
+
 
 **What it looks like:**
 
@@ -1569,6 +1638,7 @@ Stock drops -8% but:
 ---
 
 ### 13. Monday: Enter
+
 
 **What it looks like:**
 
@@ -1600,6 +1670,7 @@ META reports bad earnings Thu night
 
 ### 14. New to stock,
 
+
 **What it looks like:**
 
 - New to stock, see high IV
@@ -1627,6 +1698,7 @@ META reports bad earnings Thu night
 ---
 
 ### 15. Trade 20
+
 
 **What it looks like:**
 
@@ -1661,6 +1733,7 @@ TSLA  | 3/12      | 3/17      | 95%     | 52%    | $4.20  | $2.10 | -$2.10 | Too
 
 ### 16. **Summary
 
+
 ```
 □ Don't enter day before event (too late)
 □ Don't forget to check event timing (before/after hours)
@@ -1689,9 +1762,11 @@ TSLA  | 3/12      | 3/17      | 95%     | 52%    | $4.20  | $2.10 | -$2.10 | Too
 
 ## Real-World Examples
 
+
 **Detailed case studies of event calendar spread trades:**
 
 ### 1. Pension Duration
+
 
 **Background:**
 
@@ -1758,6 +1833,7 @@ TSLA  | 3/12      | 3/17      | 95%     | 52%    | $4.20  | $2.10 | -$2.10 | Too
 ---
 
 ### 2. Transition Risk
+
 
 **Background:**
 
@@ -1832,6 +1908,7 @@ TSLA  | 3/12      | 3/17      | 95%     | 52%    | $4.20  | $2.10 | -$2.10 | Too
 
 ### 3. Portable Alpha
 
+
 **Background:**
 
 - Trader: Systematic event calendar trader
@@ -1885,6 +1962,7 @@ Expectancy: (0.73 × $1,827) - (0.27 × $1,025) = **+$1,057 per trade**
 ---
 
 ### 4. Tactical Duration
+
 
 **Background:**
 
@@ -1949,6 +2027,7 @@ Late entry still profitable BUT:
 ---
 
 ### 5. Duration Hedge
+
 
 **Background:**
 
@@ -2016,6 +2095,7 @@ Stick to liquid options:
 ---
 
 ### 6. Background:
+
 
 **Background:**
 
@@ -2090,6 +2170,7 @@ Stick to liquid options:
 
 ## Key Takeaways
 
+
 - Event calendars exploit volatility concentration
 - Front-month IV often overprices events
 - Profit comes from IV collapse, not direction
@@ -2099,5 +2180,6 @@ Stick to liquid options:
 ---
 
 ## One-Line Summary
+
 
 > **Event calendar spreads profit from mispricing in the timing of volatility around discrete market events.**

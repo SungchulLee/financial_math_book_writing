@@ -1,10 +1,12 @@
 # Markov Decision Processes
 
+
 Reinforcement learning is built on the framework of **Markov Decision Processes (MDPs)**, which formalize sequential decision-making under uncertainty.
 
 ---
 
-## 1. Definition of an MDP
+## Definition of an MDP
+
 
 An MDP consists of:
 - a state space \(\mathcal{S}\),
@@ -17,7 +19,8 @@ The system evolves according to the Markov property.
 
 ---
 
-## 2. Policies and value functions
+## Policies and value functions
+
 
 A **policy** \(\pi(a\mid s)\) specifies how actions are chosen.
 The value function is
@@ -32,7 +35,8 @@ Optimal policies maximize expected cumulative reward.
 
 ---
 
-## 3. Bellman equations
+## Bellman equations
+
 
 Optimal value functions satisfy the Bellman equation:
 
@@ -46,7 +50,8 @@ This recursion underlies dynamic programming and RL algorithms.
 
 ---
 
-## 4. Financial interpretation
+## Financial interpretation
+
 
 In finance:
 - states represent market and portfolio conditions,
@@ -55,7 +60,8 @@ In finance:
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - MDPs formalize sequential decisions under uncertainty.
 - Value functions encode long-term objectives.
@@ -64,6 +70,7 @@ In finance:
 ---
 
 ## Further reading
+
 
 - Puterman, *Markov Decision Processes*.
 - Sutton & Barto, *Reinforcement Learning*.

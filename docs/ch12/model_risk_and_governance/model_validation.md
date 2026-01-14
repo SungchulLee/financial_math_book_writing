@@ -1,10 +1,12 @@
 # Model Validation
 
+
 **Model validation** ensures that risk models are conceptually sound, correctly implemented, and fit for their intended purpose.
 
 ---
 
-## 1. Objectives of model validation
+## Objectives of model validation
+
 
 Model validation aims to verify:
 - theoretical consistency,
@@ -15,7 +17,8 @@ Validation is independent from model development.
 
 ---
 
-## 2. Components of validation
+## Components of validation
+
 
 A comprehensive validation covers:
 - model assumptions and limitations,
@@ -26,7 +29,8 @@ Each component can materially affect outputs.
 
 ---
 
-## 3. Ongoing validation
+## Ongoing validation
+
 
 Models must be reviewed regularly to:
 - reflect market evolution,
@@ -37,7 +41,8 @@ Validation is a continuous process, not a one-off event.
 
 ---
 
-## 4. Governance role
+## Governance role
+
 
 Independent validation functions:
 - challenge model developers,
@@ -48,7 +53,8 @@ Strong governance underpins credible risk management.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Validation ensures models are fit for purpose.
 - Independence and documentation are essential.
@@ -57,6 +63,7 @@ Strong governance underpins credible risk management.
 ---
 
 ## Further reading
+
 
 - Basel model risk management guidance.
 - Federal Reserve SR 11-7.

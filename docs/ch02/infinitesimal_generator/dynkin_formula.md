@@ -1,9 +1,11 @@
 # Dynkin’s Formula
 
+
 Dynkin’s formula expresses expectations of functionals of a diffusion
 in terms of its infinitesimal generator.
 
 ## Statement
+
 
 Let \(X_t\) solve
 
@@ -36,9 +38,11 @@ provided
 
 ## Proof (Itô’s Formula)
 
+
 [Your full proof here, unchanged]
 
 ## Intuition
+
 
 Dynkin’s formula is a **stochastic fundamental theorem of calculus**:
 - \(f(x)\): initial value

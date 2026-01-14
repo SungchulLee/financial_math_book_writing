@@ -1,10 +1,13 @@
 # Consumption-Based Asset Pricing: Deep Dive
 
+
 This is genuinely different because it derives asset prices from **economic equilibrium** - agent optimization plus market clearing - rather than starting with no-arbitrage. The Black-Scholes PDE emerges as a consequence of optimal behavior in general equilibrium.
 
 ## Part I: The Representative Agent Framework
 
-### 1.1 The Optimization Problem
+
+### 1. The Optimization Problem
+
 
 Consider a representative agent in a continuous-time economy with preferences over consumption streams. The agent maximizes expected lifetime utility:
 
@@ -24,7 +27,8 @@ where:
 
 where $\gamma$ is the coefficient of relative risk aversion.
 
-### 1.2 Budget Constraint
+### 2. Budget Constraint
+
 
 The agent has wealth $W_t$ which can be invested in:
 - A risky asset (stock) with price $S_t$ following $dS_t = \mu S_t dt + \sigma S_t dW_t$
@@ -44,7 +48,8 @@ $$dW_t = [r W_t + \pi_t W_t(\mu - r) - C_t] dt + \pi_t W_t \sigma dW_t$$
 
 
 
-### 1.3 The Control Problem
+### 3. The Control Problem
+
 
 The agent chooses $(C_t, \pi_t)$ to maximize expected utility subject to the wealth dynamics. This is a **stochastic optimal control problem**.
 
@@ -52,7 +57,9 @@ The agent chooses $(C_t, \pi_t)$ to maximize expected utility subject to the wea
 
 ## Part II: Dynamic Programming and HJB Equation
 
-### 2.1 Value Function
+
+### 1. Value Function
+
 
 Define the value function:
 
@@ -68,7 +75,8 @@ $$J(W) = \max_{(C_s, \pi_s)} \mathbb{E}\left[\int_0^\infty e^{-\rho s} U(C_s) ds
 
 
 
-### 2.2 Hamilton-Jacobi-Bellman Equation
+### 2. Hamilton-Jacobi-Bellman Equation
+
 
 The value function must satisfy the HJB equation:
 
@@ -91,7 +99,8 @@ $$\boxed{\rho J(W) = \max_{C, \pi} \left\{U(C) + [rW + \pi W(\mu - r) - C] J'(W)
 
 
 
-### 2.3 First-Order Conditions
+### 3. First-Order Conditions
+
 
 **Optimality with respect to $C$:**
 
@@ -144,7 +153,9 @@ This is the **Merton portfolio rule**.
 
 ## Part III: Solving for Specific Utility Functions
 
-### 3.1 Power Utility Case
+
+### 1. Power Utility Case
+
 
 For $U(C) = \frac{C^{1-\gamma}}{1-\gamma}$, guess a solution of the form:
 
@@ -176,7 +187,8 @@ $$R_J(W) = -\frac{W J''(W)}{J'(W)} = -\frac{W(-\gamma A W^{-\gamma-1})}{A W^{-\g
 
 So the value function has constant relative risk aversion equal to $\gamma$!
 
-### 3.2 Optimal Portfolio and Consumption
+### 2. Optimal Portfolio and Consumption
+
 
 **Optimal portfolio fraction:**
 
@@ -199,7 +211,8 @@ $$\boxed{C^* = A^{-1/\gamma} W}$$
 
 The optimal consumption is **proportional to wealth**, with propensity to consume $A^{-1/\gamma}$.
 
-### 3.3 Determining the Constant $A$
+### 3. Determining the Constant $A$
+
 
 Substitute optimal controls into the HJB equation:
 
@@ -233,7 +246,9 @@ This is a nonlinear equation for $A$, but the key point is that $A$ is determine
 
 ## Part IV: The Stochastic Discount Factor (Pricing Kernel)
 
-### 4.1 Fundamental Asset Pricing Equation
+
+### 1. Fundamental Asset Pricing Equation
+
 
 In equilibrium, any asset with price $P_t$ and dividend yield $\delta_t$ must satisfy:
 
@@ -253,7 +268,8 @@ $$\boxed{M_{t,s} = e^{-\rho(s-t)} \frac{U'(C_s)}{U'(C_t)}}$$
 1. Time preference: $e^{-\rho(s-t)}$
 2. Marginal utility ratio: $\frac{U'(C_s)}{U'(C_t)}$ (high consumption tomorrow means lower marginal value)
 
-### 4.2 Pricing Kernel for Power Utility
+### 2. Pricing Kernel for Power Utility
+
 
 For $U(C) = \frac{C^{1-\gamma}}{1-\gamma}$:
 
@@ -276,7 +292,8 @@ $$\boxed{M_{t,s} = e^{-\rho(s-t)} \left(\frac{W_s}{W_t}\right)^{-\gamma}}$$
 
 
 
-### 4.3 Market Equilibrium Condition
+### 3. Market Equilibrium Condition
+
 
 In a **representative agent economy**, the agent holds all assets. Market clearing requires:
 
@@ -300,7 +317,9 @@ This is the **key equilibrium relationship**.
 
 ## Part V: Dynamics of the Pricing Kernel
 
-### 5.1 Applying Itô's Lemma
+
+### 1. Applying Itô's Lemma
+
 
 The stock follows $dS_t = \mu S_t dt + \sigma S_t dW_t$. We need to find the dynamics of:
 
@@ -333,7 +352,8 @@ $$= S_t^{-\gamma}\left[\left(-\gamma \mu + \frac{1}{2}\gamma(\gamma+1)\sigma^2\r
 
 
 
-### 5.2 Full Pricing Kernel Dynamics
+### 2. Full Pricing Kernel Dynamics
+
 
 
 $$M_t = e^{-\rho t} S_t^{-\gamma}$$
@@ -377,7 +397,9 @@ This is a crucial result: the pricing kernel follows a geometric Brownian motion
 
 ## Part VI: Risk-Free Rate in Equilibrium
 
-### 6.1 Pricing the Risk-Free Bond
+
+### 1. Pricing the Risk-Free Bond
+
 
 A risk-free bond with price $B_t = e^{rt}$ must satisfy:
 
@@ -421,7 +443,9 @@ This is the **equilibrium risk-free rate**. It increases with:
 
 ## Part VII: Deriving Asset Prices and the PDE
 
-### 7.1 General Asset Pricing Formula
+
+### 1. General Asset Pricing Formula
+
 
 For any asset with terminal payoff $h(S_T)$ at time $T$, the price at time $t$ is:
 
@@ -435,7 +459,8 @@ $$= \mathbb{E}\left[e^{-\rho(T-t)} \left(\frac{S_T}{S_t}\right)^{-\gamma} h(S_T)
 
 
 
-### 7.2 Rewrite Using Change of Measure
+### 2. Rewrite Using Change of Measure
+
 
 Define:
 
@@ -457,7 +482,8 @@ $$d(M_t V_t) = M_t dV_t + V_t dM_t + dM_t dV_t$$
 
 must have zero drift.
 
-### 7.3 Computing $d(M_t V_t)$
+### 3. Computing $d(M_t V_t)$
+
 
 **From Itô:** 
 
@@ -478,7 +504,8 @@ $$dM_t dV_t = (-\gamma\sigma M_t)(\sigma S \frac{\partial V}{\partial S}) dt = -
 
 
 
-### 7.4 Martingale Condition
+### 4. Martingale Condition
+
 
 
 $$d(M_t V_t) = M_t dV_t + V_t dM_t + dM_t dV_t$$
@@ -511,7 +538,8 @@ $$\boxed{\frac{\partial V}{\partial t} + S(\mu - \gamma\sigma^2) \frac{\partial 
 
 
 
-### 7.5 Connection to Black-Scholes
+### 5. Connection to Black-Scholes
+
 
 Wait! This doesn't look quite like Black-Scholes yet. We have $(\mu - \gamma\sigma^2)$ instead of $r$ in the drift term.
 
@@ -549,7 +577,9 @@ $$\boxed{\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \fra
 
 ## Part VIII: Economic Insights
 
-### 8.1 The Risk Premium
+
+### 1. The Risk Premium
+
 
 The equilibrium condition $\mu - r = \gamma\sigma^2$ says:
 
@@ -558,7 +588,8 @@ The equilibrium condition $\mu - r = \gamma\sigma^2$ says:
 
 This is the **consumption CAPM** prediction: risk premia are proportional to covariance with consumption growth (here, consumption = wealth = stock).
 
-### 8.2 Why This Derivation is Fundamentally Different
+### 2. Why This Derivation is Fundamentally Different
+
 
 This approach:
 
@@ -572,7 +603,8 @@ In contrast, Black-Scholes derivation:
 - Uses no-arbitrage (doesn't need to know $\mu$!)
 - Doesn't explain where $r$ comes from
 
-### 8.3 The Lucas Tree Economy
+### 3. The Lucas Tree Economy
+
 
 This is essentially the **Lucas (1978) asset pricing model** in continuous time:
 
@@ -585,7 +617,9 @@ This is essentially the **Lucas (1978) asset pricing model** in continuous time:
 
 ## Part IX: Extensions and Generalizations
 
-### 9.1 With Dividends
+
+### 1. With Dividends
+
 
 If the stock pays continuous dividends $\delta S_t dt$, the equilibrium condition becomes:
 
@@ -601,7 +635,8 @@ $$\frac{\partial V}{\partial t} + (r - \delta)S \frac{\partial V}{\partial S} + 
 
 
 
-### 9.2 Multi-Good Economy
+### 2. Multi-Good Economy
+
 
 With multiple consumption goods and a CES aggregator:
 
@@ -612,7 +647,8 @@ $$U(C_1, C_2) = \left[\sum_i \omega_i C_i^{(\epsilon-1)/\epsilon}\right]^{\epsil
 
 where $\epsilon$ is the elasticity of substitution, we get multi-dimensional PDEs.
 
-### 9.3 Heterogeneous Agents
+### 3. Heterogeneous Agents
+
 
 With heterogeneous agents (different $\gamma_i, \rho_i$), we need to:
 1. Solve each agent's problem
@@ -621,7 +657,8 @@ With heterogeneous agents (different $\gamma_i, \rho_i$), we need to:
 
 This can generate richer dynamics and explain phenomena like the equity premium puzzle.
 
-### 9.4 Production Economy
+### 4. Production Economy
+
 
 If firms make investment decisions, $\mu$ and $\sigma$ become endogenous:
 
@@ -632,6 +669,7 @@ If firms make investment decisions, $\mu$ and $\sigma$ become endogenous:
 ---
 
 ## Summary: The Complete Picture
+
 
 ```
 Agent Preferences (ρ, γ)

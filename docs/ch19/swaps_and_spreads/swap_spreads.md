@@ -1,10 +1,12 @@
 # Swap Spreads
 
+
 **Swap spreads** are the difference between interest rate swap fixed rates and equivalent-maturity Treasury yields, representing the credit, liquidity, and supply/demand premium embedded in swap rates relative to risk-free government securities, with traders profiting from mean reversion, relative value arbitrage, or directional views on the spread widening or tightening based on credit conditions, regulatory changes, and technical factors.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -37,9 +39,11 @@ $$
 
 ## What Are Swap Spreads?
 
+
 **Before trading swap spreads, understand the mechanics:**
 
 ### 1. Core Concept
+
 
 **Definition:** The spread between the fixed rate on an interest rate swap and the yield on an equivalent-maturity Treasury security, measured in basis points, representing the additional compensation investors demand for taking swap exposure (SOFR/LIBOR-based, bank credit quality) versus risk-free Treasury exposure, influenced by credit conditions, supply/demand dynamics, regulatory capital requirements, and technical factors.
 
@@ -89,6 +93,7 @@ $$
 
 ### 2. Why Swap Spreads Exist
 
+
 **The spread compensates for:**
 
 **1. Credit risk:**
@@ -122,6 +127,7 @@ $$
 - Heavy receiver demand → Swaps richen (spread tightens)
 
 ### 3. Swap Spread Trade
+
 
 **Basic structure:**
 
@@ -173,9 +179,11 @@ $$
 
 ## Economic
 
+
 **Beyond the basic mechanics, understanding the REAL economics:**
 
 ### 1. Credit Premium Component
+
 
 **The deep insight:**
 
@@ -220,6 +228,7 @@ When bank credit deteriorates:
 4. Regulatory capital costs
 
 ### 2. Regulatory Arbitrage
+
 
 **Basel III impact (post-2008):**
 
@@ -271,6 +280,7 @@ $$
 
 ### 3. Convexity Hedging Effect
 
+
 **Mortgage-backed securities (MBS) create swap demand:**
 
 **MBS negative convexity:**
@@ -307,6 +317,7 @@ When rates rise → Prepayments slow → MBS duration extends
 
 ### 4. Supply and Demand
 
+
 **Treasury supply:**
 
 $$
@@ -338,6 +349,7 @@ $$
 ---
 
 ## Key Terminology
+
 
 **Swap Spread:**
 
@@ -404,7 +416,9 @@ $$
 
 ## Mathematical Foundation
 
+
 ### 1. Swap Spread Calculation
+
 
 **Basic formula:**
 
@@ -419,6 +433,7 @@ $$
 - **Spread: 33 bps**
 
 ### 2. DV01-Neutral Position Sizing
+
 
 **Goal: Match duration exposure**
 
@@ -442,6 +457,7 @@ $$
 $$
 
 ### 3. P&L from Spread Changes
+
 
 **DV01-neutral trade P&L:**
 
@@ -681,6 +697,7 @@ For spread widening +12 bps: +12 × $90k = +$1,080,000
 
 ### 4. Historical Spread Distribution
 
+
 **Statistical analysis (1990-2024):**
 
 **10-year swap spread:**
@@ -710,7 +727,9 @@ $$
 
 ## Step-by-Step Setup
 
+
 ### 1. Spread Analysis
+
 
 **1. Calculate Spreads Across Curve:**
 
@@ -807,6 +826,7 @@ plt.show()
 
 ### 2. Trade Selection
 
+
 **Decision matrix:**
 
 ```python
@@ -872,6 +892,7 @@ print(f"Trade: {trade['direction']}")
 
 ### 3. DV01 Neutral Setup
 
+
 **1. Calculate DV01s:**
 
 ```python
@@ -930,6 +951,7 @@ print(pd.DataFrame([trade_ticket]).T)
 ```
 
 ### 4. P&L & Risk
+
 
 **1. Daily P&L Tracking:**
 
@@ -1013,6 +1035,7 @@ for alert in alerts:
 
 ### 5. Exit Rules
 
+
 **1. Profit Target:**
 
 ```python
@@ -1055,7 +1078,9 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 ## Real-World Examples
 
+
 ### 1. Crisis Spread Blowout
+
 
 **Background:**
 
@@ -1101,6 +1126,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 **Lesson: Never short spreads during financial crisis**
 
 ### 2. Broken Mean Reversion
+
 
 **Background:**
 
@@ -1165,6 +1191,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 ### 3. MBS Hedging Win
 
+
 **Background:**
 
 - Fed cuts to 0% (March 2020)
@@ -1213,6 +1240,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 **Profit on $2M collateral = 675% return!**
 
 ### 4. Short-End Reversion
+
 
 **Background:**
 
@@ -1263,6 +1291,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 ### 5. TED Spread Crisis
 
+
 **Background:**
 
 - TED spread = 3M LIBOR - 3M T-bill
@@ -1312,6 +1341,7 @@ print(f"Max loss $: ${max_loss_dollar:,.0f}")
 
 
 ## Final Wisdom
+
 
 > "Swap spreads are the ultimate mean-reversion trade—except when they're not. For 30 years (1980-2010), swap spreads oscillated reliably around +45 bps, providing low-risk arbitrage profits of 8-15% annually for those who traded the 1-2 std dev excursions. Then 2008 happened, and everything changed. Basel III made dealers capital-constrained, QE programs flooded markets with Treasuries, and the 'impossible' occurred: spreads went negative for 5+ years. Funds that had profitably traded swap spreads for decades were wiped out fighting this structural shift, convinced that 'mean reversion must win' while the mean itself was shifting. The math is elegant: current spread -10 bps, historical mean +35 bps, trade for +45 bps reversion = 45 bps × your DV01 profit. But the trap is brutal: if you're overleveraged at 10x with $200M DV01, and spreads go -10 → -35 bps (another -25 bps), you lose $5 billion and your fund vaporizes before mean reversion occurs. The key is respecting regime changes: in stable regulatory regimes, trade swap spreads aggressively (60-70% win rate, excellent Sharpe). In regime shifts (new regulations, structural QE, negative spreads persisting 12+ months), step aside entirely—that's not mean reversion, that's a new mean. Size conservatively (max 5x leverage), use hard stops (20 bps max adverse), and for God's sake, if you're wrong for 6+ months, re-examine your thesis rather than doubling down. The market doesn't care about your 30-year track record; it will happily bankrupt you in year 31."
 

@@ -1,6 +1,8 @@
 # Semi-Static Hedging
 
+
 ## Introduction
+
 
 Semi-static hedging represents a middle ground between fully dynamic hedging (continuous rebalancing) and purely static hedging (buy-and-hold). This approach constructs hedging portfolios that require:
 1. **Initial setup**: A static portfolio of vanilla options and underlying asset
@@ -17,7 +19,9 @@ The mathematical foundations draw from optimal control, PDE theory, and function
 
 ## Mathematical Framework
 
-### Portfolio Structure
+
+### 1. Portfolio Structure
+
 
 **Components**: A semi-static hedging portfolio consists of:
 
@@ -39,7 +43,8 @@ $$
 
 where $n_i^C, n_j^P$ are (typically) fixed quantities of options.
 
-### Target Payoff
+### 2. Target Payoff
+
 
 **Exotic Derivative**: Consider payoff $\Phi(S_T)$ or more generally $\Phi((S_t)_{0 \leq t \leq T})$.
 
@@ -54,7 +59,8 @@ $$
 
 with minimal adjustments to $\theta_t$.
 
-### Trading Times
+### 3. Trading Times
+
 
 **Scheduled Times**: Predetermined rebalancing dates $\{t_1, \ldots, t_M\}$.
 
@@ -67,7 +73,9 @@ with minimal adjustments to $\theta_t$.
 
 ## Static Replication Techniques
 
-### Carr-Madan Decomposition
+
+### 1. Carr-Madan Decomposition
+
 
 **Theorem** (Carr-Madan): Any twice-differentiable payoff $g(S_T)$ can be decomposed as:
 
@@ -93,7 +101,8 @@ where $F = S_0 e^{rT}$ is the forward price.
 - Requires complete options market (continuum of strikes)
 - Sensitive to bid-ask spreads for far-out-of-money options
 
-### Breeden-Litzenberger Construction
+### 2. Breeden-Litzenberger Construction
+
 
 **Risk-Neutral Density**: From call prices:
 
@@ -124,7 +133,9 @@ $$
 
 ## Barrier Options
 
-### Static Replication (Black-Scholes World)
+
+### 1. Static Replication (Black-Scholes World)
+
 
 **Up-and-Out Call**: Payoff $(S_T - K)^+ \mathbb{1}_{\{M_T < H\}}$ where $M_T = \max_{0 \leq t \leq T} S_t$.
 
@@ -145,7 +156,8 @@ where $\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}$.
 
 **Model Dependence**: This replication is exact only under specific model assumptions (constant volatility, no jumps).
 
-### Semi-Static Adjustment for Model Uncertainty
+### 2. Semi-Static Adjustment for Model Uncertainty
+
 
 **Challenge**: Static replication fails when:
 - Volatility is stochastic
@@ -163,7 +175,8 @@ where $\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}$.
 
 **Frequency**: Typically 1-5 adjustments over the life of the option, triggered by proximity to barrier.
 
-### Carr-Lee Semi-Static Formula
+### 3. Carr-Lee Semi-Static Formula
+
 
 **General Framework** (Carr-Lee 2010): For barrier options under local volatility:
 
@@ -181,7 +194,9 @@ $$
 
 ## Lookback Options
 
-### Fixed Strike Lookback Call
+
+### 1. Fixed Strike Lookback Call
+
 
 **Payoff**: $\Phi = M_T - K$ where $M_T = \max_{0 \leq t \leq T} S_t$.
 
@@ -189,7 +204,8 @@ $$
 - Standard call: $(S_T - K)^+$
 - Plus: $(M_T - S_T)^+$ (gain from maximum exceeding terminal value)
 
-### Goldman-Sosin-Gatto Static Replication
+### 2. Goldman-Sosin-Gatto Static Replication
+
 
 **Theorem** (GSG 1979): Under geometric Brownian motion, the lookback can be replicated using:
 
@@ -211,7 +227,8 @@ involving a continuum of vanilla calls.
 - Add calls with strikes in $[M_{t^-}, M_t]$
 - Adjust position sizes to match continuous limit
 
-### Floating Strike Lookback
+### 3. Floating Strike Lookback
+
 
 **Payoff**: $S_T - m_T$ where $m_T = \min_{0 \leq t \leq T} S_t$.
 
@@ -224,7 +241,9 @@ involving a continuum of vanilla calls.
 
 ## Asian Options
 
-### Arithmetic Average
+
+### 1. Arithmetic Average
+
 
 **Payoff**: 
 
@@ -237,7 +256,8 @@ $$
 
 for discrete monitoring dates $\{t_1, \ldots, t_n\}$.
 
-### Static Lower Bound
+### 2. Static Lower Bound
+
 
 **Convexity**: By Jensen's inequality:
 
@@ -252,7 +272,8 @@ $$
 - Long $1/n$ calls at each averaging date with strike $nK$
 - This portfolio sub-replicates the Asian option
 
-### Semi-Static Upper Bound
+### 3. Semi-Static Upper Bound
+
 
 **Carr-Madan Moment-Matching**: Use static portfolio that matches first few moments of the average.
 
@@ -263,7 +284,8 @@ $$
 
 **Frequency**: Rebalance at each averaging date (typically 12-252 times per year for monthly/daily averaging).
 
-### Rogers-Shi Static Bounds
+### 4. Rogers-Shi Static Bounds
+
 
 **Theorem** (Rogers-Shi 1995): For arithmetic Asian options, tight static bounds can be constructed using:
 
@@ -282,7 +304,9 @@ where bounds involve portfolios of standard calls.
 
 ## Discrete Monitoring
 
-### Bermudan Options
+
+### 1. Bermudan Options
+
 
 **Structure**: Option exercisable at discrete times $\{t_1, \ldots, t_n\}$ with payoff $g(S_{t_i})$ if exercised at $t_i$.
 
@@ -306,7 +330,8 @@ $$
 
 **Frequency**: Exactly $n$ potential rebalancing times (at exercise opportunities).
 
-### Discrete Barrier
+### 2. Discrete Barrier
+
 
 **Knock-Out**: Option knocks out if $S_{t_i} \geq H$ for any $i \in \{1, \ldots, n\}$.
 
@@ -325,7 +350,9 @@ $$
 
 ## Volatility Derivatives
 
-### Variance Swaps
+
+### 1. Variance Swaps
+
 
 **Payoff**: 
 
@@ -372,7 +399,8 @@ $$
 
 which is typically small.
 
-### VIX Options
+### 2. VIX Options
+
 
 **VIX Definition**: Model-free implied volatility from S&P 500 options.
 
@@ -386,7 +414,8 @@ which is typically small.
 
 **Frequency**: Typically weekly or when VIX moves by threshold amount.
 
-### Volatility Swaps
+### 3. Volatility Swaps
+
 
 **Payoff**: 
 
@@ -414,7 +443,9 @@ where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 
 ## Transaction Cost Optimization
 
-### Cost Model
+
+### 1. Cost Model
+
 
 **Proportional Costs**: Each trade incurs cost $\lambda |$quantity$| \times$ price.
 
@@ -429,7 +460,8 @@ $$
 
 **Trade-off**: Hedging accuracy vs. transaction costs.
 
-### Optimal Rebalancing Times
+### 2. Optimal Rebalancing Times
+
 
 **Problem**: Choose trading times $\{t_1, \ldots, t_M\}$ optimally.
 
@@ -464,7 +496,8 @@ $$
 
 
 
-### Option Rebalancing
+### 3. Option Rebalancing
+
 
 **Question**: When to adjust the static option portfolio?
 
@@ -485,7 +518,9 @@ $$
 
 ## Robust Semi-Static Strategies
 
-### Model Uncertainty
+
+### 1. Model Uncertainty
+
 
 **Setup**: Uncertain about true dynamics; consider set of models $\mathcal{M}$.
 
@@ -500,7 +535,8 @@ $$
 
 subject to transaction cost constraints.
 
-### Volatility Bounds
+### 2. Volatility Bounds
+
 
 **Assumption**: Volatility lies in range $[\underline{\sigma}, \overline{\sigma}]$.
 
@@ -513,7 +549,8 @@ subject to transaction cost constraints.
 
 **Adaptation**: Strategy adapts to observed path characteristics without assuming specific model.
 
-### Uncertain Jump Risk
+### 3. Uncertain Jump Risk
+
 
 **Setup**: Underlying may jump, but jump intensity and size are uncertain.
 
@@ -528,7 +565,9 @@ subject to transaction cost constraints.
 
 ## Practical Implementation
 
-### Step 1: Initial Portfolio Design
+
+### 1. Step 1: Initial Portfolio Design
+
 
 **Identify Static Component**: Determine which options to include:
 - Strikes: Choose based on payoff structure and liquidity
@@ -539,7 +578,8 @@ subject to transaction cost constraints.
 - Static portfolio: Tight call spread around strike $K$
 - Spread width $\Delta K$ chosen based on liquidity and cost
 
-### Step 2: Define Adjustment Triggers
+### 2. Step 2: Define Adjustment Triggers
+
 
 **Specify Rules**: Clear conditions for rebalancing:
 - **Time triggers**: "Rebalance every month"
@@ -548,7 +588,8 @@ subject to transaction cost constraints.
 
 **Backtest**: Validate trigger rules on historical data to ensure they balance cost and accuracy.
 
-### Step 3: Implement Monitoring System
+### 3. Step 3: Implement Monitoring System
+
 
 **Real-Time Tracking**:
 - Portfolio value $V_t$
@@ -558,7 +599,8 @@ subject to transaction cost constraints.
 
 **Alerts**: Automated notifications when triggers are met.
 
-### Step 4: Execute Adjustments
+### 4. Step 4: Execute Adjustments
+
 
 **Pre-Adjustment Check**:
 - Verify trigger condition
@@ -575,7 +617,8 @@ subject to transaction cost constraints.
 - Document rationale and costs
 - Update tracking error statistics
 
-### Step 5: Performance Analysis
+### 5. Step 5: Performance Analysis
+
 
 **Metrics**:
 - **Hedging Error**: $|V_T - \Phi|$ at maturity
@@ -587,7 +630,9 @@ subject to transaction cost constraints.
 
 ## Case Studies
 
-### Case 1: Down-and-Out Put on Equity Index
+
+### 1. Case 1: Down-and-Out Put on Equity Index
+
 
 **Setup**:
 - Underlying: S&P 500
@@ -603,7 +648,8 @@ subject to transaction cost constraints.
 
 **Result**: 3 adjustments over 3 months; total hedging error < 0.5% of notional.
 
-### Case 2: Asian Call on FX Rate
+### 2. Case 2: Asian Call on FX Rate
+
 
 **Setup**:
 - Underlying: EUR/USD
@@ -617,7 +663,8 @@ subject to transaction cost constraints.
 
 **Result**: 6 adjustments; hedging error < 1% with transaction costs 0.3% of notional.
 
-### Case 3: Variance Swap on Commodity
+### 3. Case 3: Variance Swap on Commodity
+
 
 **Setup**:
 - Underlying: Crude oil (WTI)
@@ -636,7 +683,9 @@ subject to transaction cost constraints.
 
 ## Advanced Topics
 
-### Multi-Asset Semi-Static Hedging
+
+### 1. Multi-Asset Semi-Static Hedging
+
 
 **Basket Options**: Payoff depends on multiple underlyings:
 
@@ -656,7 +705,8 @@ $$
 
 **Greeks**: Manage delta, gamma, and cross-gammas ($\Gamma_{ij} = \frac{\partial^2 V}{\partial S_i \partial S_j}$).
 
-### American Options
+### 2. American Options
+
 
 **Optimal Exercise**: Holder can exercise at any time before maturity.
 
@@ -667,7 +717,8 @@ $$
 
 **Challenge**: Exercise boundary is model-dependent; semi-static hedge must be robust to boundary misspecification.
 
-### Stochastic Volatility
+### 3. Stochastic Volatility
+
 
 **Model**: Volatility follows its own stochastic process:
 
@@ -685,7 +736,8 @@ $$
 
 **Greeks to Monitor**: Delta, gamma, vega, and volga ($\frac{\partial^2 V}{\partial \sigma^2}$).
 
-### Path-Dependent Interest Rates
+### 4. Path-Dependent Interest Rates
+
 
 **Floaters and Path-Dependent Coupons**: Options on bonds where payoff depends on interest rate path.
 
@@ -695,6 +747,7 @@ $$
 3. **Curve Risk**: Manage exposure to different points on yield curve
 
 ## Comparison with Other Hedging Approaches
+
 
 | **Approach** | **Adjustments** | **Transaction Costs** | **Model Dependence** | **Hedging Error** |
 |--------------|-----------------|----------------------|---------------------|-------------------|
@@ -711,7 +764,9 @@ $$
 
 ## Current Research Directions
 
-### Machine Learning for Trigger Optimization
+
+### 1. Machine Learning for Trigger Optimization
+
 
 **Objective**: Use ML to learn optimal adjustment triggers from data.
 
@@ -724,7 +779,8 @@ $$
 
 **Output**: Probability of rebalancing or optimal adjustment size.
 
-### Robust Optimization
+### 2. Robust Optimization
+
 
 **Formulation**: 
 
@@ -742,7 +798,8 @@ where $\mathcal{P}$ is a set of probability measures.
 - Scenario optimization
 - Distributionally robust optimization
 
-### Neural Networks for Semi-Static Strategies
+### 3. Neural Networks for Semi-Static Strategies
+
 
 **Deep Hedging**: Train neural networks to output:
 - Option quantities $\{n_i^C, n_j^P\}$
@@ -755,7 +812,9 @@ where $\mathcal{P}$ is a set of probability measures.
 
 ## Summary and Key Insights
 
-### Fundamental Principles
+
+### 1. Fundamental Principles
+
 
 1. **Balance**: Semi-static hedging balances accuracy, cost, and simplicity.
 
@@ -767,7 +826,8 @@ where $\mathcal{P}$ is a set of probability measures.
 
 5. **Transaction Efficiency**: Significantly reduces trading costs compared to continuous hedging.
 
-### Practical Guidelines
+### 2. Practical Guidelines
+
 
 **When to Use Semi-Static**:
 - Transaction costs are non-negligible
@@ -781,14 +841,16 @@ where $\mathcal{P}$ is a set of probability measures.
 - **Cost-aware**: Explicitly account for transaction costs in optimization
 - **Adaptive**: Monitor performance and refine strategy over time
 
-### Theoretical Contributions
+### 3. Theoretical Contributions
+
 
 - **Carr-Madan**: Static replication formulas for European payoffs
 - **Rogers-Shi**: Static bounds for Asian options
 - **Carr-Lee**: Semi-static hedging for barrier options under local volatility
 - **Derman-Ergener-Kani**: Static hedging of exotic options in general
 
-### Future Directions
+### 4. Future Directions
+
 
 Semi-static hedging continues to evolve with:
 - **Machine learning**: Automated discovery of optimal adjustment rules

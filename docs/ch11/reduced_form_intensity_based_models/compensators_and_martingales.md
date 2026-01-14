@@ -1,10 +1,12 @@
 # Compensators and Martingales
 
+
 The martingale structure of default processes is formalized using **compensators**. This perspective is essential for rigorous pricing in reduced-form credit models.
 
 ---
 
-## 1. Default indicator process
+## Default indicator process
+
 
 Define the default indicator
 
@@ -18,7 +20,8 @@ This is an increasing jump process that jumps from 0 to 1 at default.
 
 ---
 
-## 2. Compensator of the default process
+## Compensator of the default process
+
 
 Under intensity \(\lambda_t\), the **compensator** of \(H_t\) is
 
@@ -39,7 +42,8 @@ is a \((\mathcal{G}_t, \mathbb{Q})\)-martingale.
 
 ---
 
-## 3. Role in pricing
+## Role in pricing
+
 
 Martingale representation allows:
 - construction of arbitrage-free pricing formulas,
@@ -50,14 +54,16 @@ This parallels drift removal in diffusion models.
 
 ---
 
-## 4. Link to enlargement of filtration
+## Link to enlargement of filtration
+
 
 Compensators arise naturally under progressive enlargement.
 Immersion ensures that default does not introduce spurious drifts in market assets.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Default indicators admit compensators under intensity models.
 - Compensated processes are martingales.
@@ -66,6 +72,7 @@ Immersion ensures that default does not introduce spurious drifts in market asse
 ---
 
 ## Further reading
+
 
 - Jeanblanc & Le Cam, compensators in credit risk.
 - Elliott et al., hidden intensity models.

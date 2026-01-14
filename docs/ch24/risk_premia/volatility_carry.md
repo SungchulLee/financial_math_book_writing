@@ -1,10 +1,12 @@
 # Volatility Carry
 
+
 **Volatility carry** is the return from systematic exposure to the difference between implied and realized volatility, captured through rolling positions in volatility instruments while harvesting the term structure premium.
 
 ---
 
 ## The Core Insight
+
 
 **The fundamental idea:**
 
@@ -26,7 +28,9 @@
 
 ## What Is Vol Carry?
 
+
 ### 1. Definition
+
 
 **The formal definition:**
 
@@ -56,6 +60,7 @@ $$
 **Units:** Percentage points annually
 
 ### 2. Term Structure Basics
+
 
 **Normal state (contango):**
 
@@ -89,6 +94,7 @@ VIX futures curve slopes downward:
 
 ### 3. Sources of Carry
 
+
 **Volatility carry comes from:**
 
 **Mean reversion of volatility:**
@@ -119,6 +125,7 @@ VIX futures curve slopes downward:
 
 ### 4. Measurement
 
+
 **Daily carry calculation:**
 
 Given VIX futures prices:
@@ -146,6 +153,7 @@ $$
 Positive carry of +93% annually (if term structure unchanged)
 
 ### 5. Carry vs VRP
+
 
 **Two distinct concepts:**
 
@@ -177,6 +185,7 @@ $$
 
 ### 6. VIX Futures Mechanics
 
+
 **How VIX futures roll:**
 
 VIX futures settle to VIX spot:
@@ -202,6 +211,7 @@ As maturity approaches, futures converge to spot.
 - **Short position loses from roll (negative carry)**
 
 ### 7. Historical Patterns
+
 
 **Empirical evidence (2006-2023):**
 
@@ -233,9 +243,11 @@ As maturity approaches, futures converge to spot.
 
 ## Carry Trading Strategies
 
+
 **How to profit from vol carry:**
 
 ### 1. Short VIX Futures
+
 
 **Basic strategy:**
 
@@ -273,6 +285,7 @@ As maturity approaches, futures converge to spot.
 
 ### 2. VIX Calendar Spreads
 
+
 **Long/short spread:**
 
 **Strategy:**
@@ -302,6 +315,7 @@ As maturity approaches, futures converge to spot.
 
 ### 3. Short Vol ETPs
 
+
 **Levered ETPs:**
 
 **Instruments:**
@@ -327,6 +341,7 @@ As maturity approaches, futures converge to spot.
 - Better to trade futures directly
 
 ### 4. VIX Call Spreads
+
 
 **Sell near-term, buy far-term:**
 
@@ -358,6 +373,7 @@ As maturity approaches, futures converge to spot.
 
 ### 5. Variance Swap Term Spread
 
+
 **Exploit variance curve:**
 
 **Strategy:**
@@ -386,6 +402,7 @@ As maturity approaches, futures converge to spot.
 
 ### 6. Dynamic Allocation
 
+
 **Adaptive carry strategy:**
 
 **Rules:**
@@ -412,6 +429,7 @@ $$
 - Still vulnerable to sudden inversions
 
 ### 7. Volatility Momentum
+
 
 **Combine carry with momentum:**
 
@@ -447,7 +465,9 @@ $$
 
 ## Mathematical Framework
 
+
 ### 1. Carry Decomposition
+
 
 **Components of volatility carry:**
 
@@ -468,6 +488,7 @@ $$
 - **Need VIX to stay flat or fall for positive total return**
 
 ### 2. Convergence Model
+
 
 **Futures convergence to spot:**
 
@@ -496,6 +517,7 @@ Where $T$ is days to expiration.
 
 ### 3. Term Structure Slope
 
+
 **Measuring carry:**
 
 $$
@@ -520,6 +542,7 @@ $$
 
 ### 4. Optimal Maturity
 
+
 **Which maturity to trade?**
 
 Expected return for maturity $\tau$:
@@ -543,6 +566,7 @@ Where $\beta_\tau$ is exposure to VIX changes.
 
 ### 5. Kelly Criterion
 
+
 **Optimal position size:**
 
 $$
@@ -561,6 +585,7 @@ $$
 - Actual optimal: 10-20% (much smaller!)
 
 ### 6. Sharpe Ratio
+
 
 **Risk-adjusted return:**
 
@@ -581,6 +606,7 @@ $$
 - **Risk-adjusted return overstated by Sharpe**
 
 ### 7. Correlation Structure
+
 
 **Vol carry correlation with assets:**
 
@@ -606,9 +632,11 @@ $$
 
 ## Common Mistakes
 
+
 **Pitfalls to avoid:**
 
 ### 1. Static Short Position
+
 
 **Mistake:** Always short VIX futures
 
@@ -629,6 +657,7 @@ $$
 - Use stop-losses
 
 ### 2. Ignoring Term Structure Shape
+
 
 **Mistake:** Don't check contango level
 
@@ -655,6 +684,7 @@ $$
 
 ### 3. Overleveraging
 
+
 **Mistake:** Max leverage on carry trade
 
 **Why it fails:** Spikes destroy leveraged positions
@@ -674,6 +704,7 @@ $$
 
 ### 4. No Stop-Losses
 
+
 **Mistake:** Hold through drawdowns
 
 **Why it fails:** Drawdowns can be -90%+
@@ -691,6 +722,7 @@ $$
 - Exit immediately, no excuses
 
 ### 5. Ignoring Roll Timing
+
 
 **Mistake:** Wait until last day to roll
 
@@ -710,6 +742,7 @@ $$
 - Use limit orders
 
 ### 6. Forgetting Compounding
+
 
 **Mistake:** Assume linear returns from carry
 
@@ -734,6 +767,7 @@ $$
 
 ### 7. Chasing After Crashes
 
+
 **Mistake:** Short vol immediately after spike
 
 **Why it fails:** Elevated vol persists (clustering)
@@ -752,6 +786,7 @@ $$
 - Don't catch falling knives
 
 ### 8. Neglecting Macro Events
+
 
 **Mistake:** Hold through known catalysts
 
@@ -774,7 +809,9 @@ $$
 
 ## Risk Management Rules
 
+
 ### 1. Position Sizing
+
 
 **Conservative sizing:**
 
@@ -796,6 +833,7 @@ $$
 
 ### 2. Entry Rules
 
+
 **Only enter when:**
 
 - Contango > 5%/month (strong carry)
@@ -813,6 +851,7 @@ $$
 
 ### 3. Stop-Loss Discipline
 
+
 **Hard stops:**
 
 - **VIX > 30 → Exit all positions**
@@ -823,6 +862,7 @@ $$
 **No exceptions, no waiting**
 
 ### 4. Dynamic Scaling
+
 
 **VIX-based adjustment:**
 
@@ -840,6 +880,7 @@ $$
 
 ### 5. Diversification
 
+
 **Spread across:**
 
 - Multiple maturities (1M, 2M, 3M)
@@ -853,6 +894,7 @@ $$
 - Diversification helps in normal times only
 
 ### 6. Hedging
+
 
 **Tail protection:**
 
@@ -869,6 +911,7 @@ $$
 - Max loss capped at ~$\$40,000$ (vs. unlimited)
 
 ### 7. Monitoring
+
 
 **Daily checklist:**
 
@@ -889,7 +932,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. The Golden Years (2012-2017)
+
 
 **Setup:**
 
@@ -912,6 +957,7 @@ $$
 **Lesson:** Vol carry works beautifully in low-vol regimes
 
 ### 2. VIXplosion (Feb 2018)
+
 
 **Setup:**
 
@@ -940,6 +986,7 @@ $$
 **Lesson:** Tail risk is real, manage it or die
 
 ### 3. COVID Crash (March 2020)
+
 
 **Setup:**
 
@@ -970,6 +1017,7 @@ $$
 
 ### 4. Calendar Spread Success (2019)
 
+
 **Setup:**
 
 - Steady contango throughout 2019
@@ -994,7 +1042,9 @@ $$
 
 ## Practical Steps
 
+
 ### 1. Pre-Trade Setup
+
 
 **Before trading vol carry:**
 
@@ -1015,6 +1065,7 @@ $$
 
 ### 2. Entry Execution
 
+
 **How to enter:**
 
 - Use limit orders (never market)
@@ -1030,6 +1081,7 @@ $$
 - Set stop at VIX 30
 
 ### 3. Rolling Mechanics
+
 
 **When to roll:**
 
@@ -1052,6 +1104,7 @@ $$
 
 ### 4. Monitoring
 
+
 **Daily tasks:**
 
 - Check VIX open/close
@@ -1068,6 +1121,7 @@ $$
 
 ### 5. Exit Discipline
 
+
 **Exit immediately if:**
 
 - VIX > 30 (stop-loss triggered)
@@ -1083,6 +1137,7 @@ $$
 
 ### 6. Post-Trade Review
 
+
 **After each roll:**
 
 - Profit/loss on closed position
@@ -1094,6 +1149,7 @@ $$
 ---
 
 ## Final Wisdom
+
 
 > "Volatility carry is seductive - it works 70-80% of the time, generating steady profits that feel like 'free money.' But the other 20-30% of the time, it destroys accounts. The term structure of volatility exists for a reason: it compensates sellers for bearing tail risk. That risk will manifest eventually, and when it does, it's savage. Trade vol carry with extreme discipline: small positions, hard stop-losses, dynamic scaling based on VIX, and mandatory tail hedges. Respect the fact that you're selling insurance against market crashes, and occasionally those crashes happen. If you can't afford to lose it all in a single spike, your position is too large."
 

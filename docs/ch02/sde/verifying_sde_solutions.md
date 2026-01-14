@@ -1,12 +1,16 @@
 # How to Check SDE Solutions
 
+
 ## Introduction
+
 
 Given a stochastic differential equation (SDE) and a proposed solution, we need to verify whether the solution indeed satisfies the SDE. This verification process is fundamental in stochastic calculus and quantitative finance, as it confirms the correctness of analytical solutions before using them in applications.
 
 ## General Framework
 
-### The SDE Problem
+
+### 1. The SDE Problem
+
 
 Consider a general SDE of the form:
 
@@ -20,7 +24,8 @@ where:
 - $\sigma(X_t, t)$ is the diffusion coefficient
 - $W_t$ is a standard Brownian motion
 
-### Verification Strategy
+### 2. Verification Strategy
+
 
 To verify that a proposed solution $X_t = f(W_t, t)$ satisfies the SDE, we:
 
@@ -29,6 +34,7 @@ To verify that a proposed solution $X_t = f(W_t, t)$ satisfies the SDE, we:
 3. Check if the drift and diffusion coefficients match
 
 ## Itô's Lemma
+
 
 **Theorem (Itô's Lemma):** Let $X_t$ be an Itô process satisfying:
 
@@ -50,7 +56,9 @@ $$
 
 ## Example 1: Geometric Brownian Motion (Stock Price Model)
 
-### The SDE
+
+### 1. The SDE
+
 
 The geometric Brownian motion (GBM) model for stock prices is:
 
@@ -60,7 +68,8 @@ $$
 
 where $\mu$ is the drift rate and $\sigma$ is the volatility.
 
-### Proposed Solution
+### 2. Proposed Solution
+
 
 The analytical solution is claimed to be:
 
@@ -68,7 +77,8 @@ $$
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 $$
 
-### Verification
+### 3. Verification
+
 
 Let $f(x, t) = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right]$ where $x = W_t$.
 
@@ -99,13 +109,16 @@ $$
 
 **Conclusion:** The solution matches the original SDE. ✓
 
-### Interpretation
+### 4. Interpretation
+
 
 The presence of the $-\frac{\sigma^2}{2}$ term in the exponent is the **Itô correction**, which arises from the second-order term in Itô's lemma. This is a fundamental difference from ordinary calculus and reflects the quadratic variation of Brownian motion.
 
 ## Example 2: Ornstein-Uhlenbeck Process
 
-### The SDE
+
+### 1. The SDE
+
 
 The Ornstein-Uhlenbeck (OU) process describes mean-reverting behavior:
 
@@ -118,7 +131,8 @@ where:
 - $\mu$ is the long-term mean
 - $\sigma$ is the volatility
 
-### Proposed Solution
+### 2. Proposed Solution
+
 
 The solution is:
 
@@ -126,7 +140,8 @@ $$
 X_t = X_0 e^{-\theta t} + \mu(1 - e^{-\theta t}) + \sigma \int_0^t e^{-\theta(t-s)} dW_s
 $$
 
-### Verification
+### 3. Verification
+
 
 Define $Y_t = X_t - \mu$, so the SDE becomes:
 
@@ -175,7 +190,9 @@ $$
 
 ## Example 3: Vasicek Model (Interest Rate)
 
-### The SDE
+
+### 1. The SDE
+
 
 The Vasicek model for short-term interest rates is:
 
@@ -190,13 +207,15 @@ where:
 
 This is structurally identical to the OU process.
 
-### Proposed Solution
+### 2. Proposed Solution
+
 
 $$
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma \int_0^t e^{-a(t-s)} dW_s
 $$
 
-### Verification
+### 3. Verification
+
 
 Following the same approach as the OU process, let $Y_t = r_t - b$:
 
@@ -218,7 +237,8 @@ $$
 
 **Conclusion:** Verified. ✓
 
-### Properties of the Solution
+### 4. Properties of the Solution
+
 
 **Conditional Mean:**
 
@@ -240,7 +260,9 @@ $$
 
 ## Example 4: Cox-Ingersoll-Ross (CIR) Model
 
-### The SDE
+
+### 1. The SDE
+
 
 The CIR model extends Vasicek by making volatility state-dependent:
 
@@ -250,7 +272,8 @@ $$
 
 where $a, b, \sigma > 0$ and the **Feller condition** $2ab \geq \sigma^2$ ensures $r_t \geq 0$.
 
-### Proposed Solution via Transformation
+### 2. Proposed Solution via Transformation
+
 
 The CIR model doesn't have a simple closed-form solution like GBM or Vasicek. However, we can verify transformations.
 
@@ -275,7 +298,8 @@ $$
 
 This transformation is useful for numerical methods and analytical approximations.
 
-### Alternative: Non-central Chi-squared Distribution
+### 3. Alternative: Non-central Chi-squared Distribution
+
 
 For the CIR model, the solution at time $t$ conditional on $r_0$ is not explicit but follows a scaled non-central chi-squared distribution:
 
@@ -295,7 +319,9 @@ where $p(r, t)$ is the probability density function.
 
 ## Example 5: Black-Scholes with Dividends
 
-### The SDE
+
+### 1. The SDE
+
 
 A stock paying continuous dividends at rate $q$ follows:
 
@@ -303,13 +329,15 @@ $$
 dS_t = (\mu - q) S_t dt + \sigma S_t dW_t
 $$
 
-### Proposed Solution
+### 2. Proposed Solution
+
 
 $$
 S_t = S_0 \exp\left[\left(\mu - q - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 $$
 
-### Verification
+### 3. Verification
+
 
 Let $f(x, t) = S_0 \exp\left[\left(\mu - q - \frac{\sigma^2}{2}\right)t + \sigma x\right]$.
 
@@ -338,7 +366,9 @@ $$
 
 ## Example 6: Change of Measure (Risk-Neutral Pricing)
 
-### Physical vs. Risk-Neutral Measure
+
+### 1. Physical vs. Risk-Neutral Measure
+
 
 Under the physical measure $\mathbb{P}$:
 
@@ -354,7 +384,8 @@ $$
 
 where $r$ is the risk-free rate.
 
-### Girsanov's Theorem
+### 2. Girsanov's Theorem
+
 
 The two Brownian motions are related by:
 
@@ -362,7 +393,8 @@ $$
 W_t^\mathbb{Q} = W_t^\mathbb{P} + \frac{\mu - r}{\sigma}t
 $$
 
-### Verification
+### 3. Verification
+
 
 The market price of risk is $\lambda = \frac{\mu - r}{\sigma}$. Under $\mathbb{Q}$:
 
@@ -386,14 +418,17 @@ $$
 
 ## General Verification Checklist
 
+
 When verifying an SDE solution, follow these steps:
 
 ### 1. Identify the Structure
+
 
 - Write down the SDE explicitly: $dX_t = \mu(X_t, t) dt + \sigma(X_t, t) dW_t$
 - Identify the proposed solution: $X_t = f(W_t, t)$ or $X_t = f(Y_t, t)$ for some process $Y_t$
 
 ### 2. Compute Partial Derivatives
+
 
 For $f(x, t)$, compute:
 - $\frac{\partial f}{\partial t}$
@@ -401,6 +436,7 @@ For $f(x, t)$, compute:
 - $\frac{\partial^2 f}{\partial x^2}$
 
 ### 3. Apply Itô's Lemma
+
 
 If $X_t$ depends on Brownian motion directly:
 
@@ -416,35 +452,44 @@ $$
 
 ### 4. Match Coefficients
 
+
 Compare the computed $dX_t$ with the original SDE:
 - **Drift coefficient:** The $dt$ terms must match
 - **Diffusion coefficient:** The $dW_t$ terms must match
 
 ### 5. Check Initial/Boundary Conditions
 
+
 Verify that $X_0 = f(W_0, 0) = f(0, 0)$ matches the specified initial condition.
 
 ## Common Pitfalls
 
+
 ### 1. Forgetting the Itô Correction
+
 
 The $\frac{1}{2}\sigma^2 \frac{\partial^2 f}{\partial x^2}$ term is essential and distinguishes stochastic from ordinary calculus.
 
 ### 2. Incorrect Chain Rule Application
 
+
 Remember that $(dW_t)^2 = dt$ in Itô calculus, leading to second-order terms.
 
 ### 3. Sign Errors in Mean Reversion
+
 
 In mean-reverting models, ensure the sign of $\theta(X_t - \mu)$ vs. $\theta(\mu - X_t)$ is correct.
 
 ### 4. Mismatched Measures
 
+
 When working with risk-neutral pricing, ensure consistency between physical and risk-neutral measures.
 
 ## Advanced Topics
 
-### Multi-dimensional SDEs
+
+### 1. Multi-dimensional SDEs
+
 
 For a system of SDEs:
 
@@ -460,7 +505,8 @@ $$
 
 where $dX_t^i dX_t^j = \sum_{k=1}^d \sigma^{ik}\sigma^{jk} dt$ (using $dW_t^k dW_t^l = \delta_{kl} dt$).
 
-### Jump-Diffusion Models
+### 2. Jump-Diffusion Models
+
 
 For SDEs with jumps (e.g., Merton model):
 
@@ -471,6 +517,7 @@ $$
 where $J_t$ is a jump process, verification requires extended Itô's lemma with jump terms.
 
 ## Conclusion
+
 
 Verifying SDE solutions is a fundamental skill in stochastic calculus and quantitative finance. The key tool is **Itô's lemma**, which accounts for the quadratic variation of Brownian motion through the second-order correction term. By systematically:
 

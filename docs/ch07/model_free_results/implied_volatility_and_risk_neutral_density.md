@@ -1,12 +1,16 @@
 # Implied Volatility and Risk-Neutral Density
 
+
 ## Introduction
+
 
 While implied volatility is defined through the Black-Scholes formula (a model-specific construct), it serves as a powerful **coordinate system** for describing the risk-neutral distribution. The shape of the implied volatility surface—its smile, skew, and term structure—directly encodes information about the risk-neutral density's moments, asymmetry, and tail behavior. This section establishes the deep connection between implied volatility and distributional properties.
 
 ## Implied Volatility as Distributional Coordinate
 
-### Coordinate Transformation
+
+### 1. Coordinate Transformation
+
 
 The map from option prices to implied volatilities:
 
@@ -31,7 +35,8 @@ $$
 2. **Risk-neutral density** $q(S_T)$: Probabilistic description
 3. **Implied volatility** $\sigma_{\text{IV}}(K, T)$: Normalized quoting convention
 
-### Why Use Implied Volatility?
+### 2. Why Use Implied Volatility?
+
 
 While the density $q(S_T)$ is the fundamental object, implied volatility offers advantages:
 
@@ -42,7 +47,9 @@ While the density $q(S_T)$ is the fundamental object, implied volatility offers 
 
 ## Relating Implied Volatility to Moments
 
-### Moment-Based Characterization
+
+### 1. Moment-Based Characterization
+
 
 The risk-neutral density is completely characterized by its moments:
 
@@ -55,7 +62,8 @@ $$
 
 The implied volatility surface encodes these moments through option prices.
 
-### First Moment: Forward Price
+### 2. First Moment: Forward Price
+
 
 The first moment is fixed by no-arbitrage:
 
@@ -68,7 +76,8 @@ $$
 
 This is the forward price and is **independent** of the volatility smile. All arbitrage-free models agree on the first moment.
 
-### Second Moment: Variance
+### 3. Second Moment: Variance
+
 
 The second moment (variance) is related to the **model-free implied variance**:
 
@@ -101,7 +110,8 @@ $$
 
 
 
-### Third Moment: Skewness
+### 4. Third Moment: Skewness
+
 
 The third central moment measures asymmetry:
 
@@ -127,7 +137,8 @@ $$
 
 This integral weights OTM options, which are directly affected by the skew.
 
-### Fourth Moment: Kurtosis
+### 5. Fourth Moment: Kurtosis
+
 
 The fourth moment measures tail heaviness:
 
@@ -155,7 +166,9 @@ Deep OTM options contribute heavily, reflecting tail risk.
 
 ## Smile Patterns and Distributional Shapes
 
-### Flat Smile: Lognormal Distribution
+
+### 1. Flat Smile: Lognormal Distribution
+
 
 If $\sigma_{\text{IV}}(K, T) = \sigma_0$ (constant), the risk-neutral density is lognormal:
 
@@ -171,7 +184,8 @@ This is the Black-Scholes assumption. Properties:
 - **Skewness:** Zero
 - **Kurtosis:** $3$ (mesokurtic, same as normal)
 
-### Downward Skew: Negative Skewness
+### 2. Downward Skew: Negative Skewness
+
 
 If $\frac{\partial \sigma_{\text{IV}}}{\partial K} < 0$ (volatility decreases with strike), the density exhibits:
 - **Left tail fatter than lognormal:** Higher probability of large drops
@@ -182,7 +196,8 @@ If $\frac{\partial \sigma_{\text{IV}}}{\partial K} < 0$ (volatility decreases wi
 
 **Typical in:** Equity indices (S&P 500, etc.)
 
-### Smile (U-shape): Excess Kurtosis
+### 3. Smile (U-shape): Excess Kurtosis
+
 
 If $\sigma_{\text{IV}}(K)$ is convex in $K$ (minimum at ATM, increases in wings), the density has:
 - **Fat tails:** Both extreme outcomes more likely than lognormal predicts
@@ -193,7 +208,8 @@ If $\sigma_{\text{IV}}(K)$ is convex in $K$ (minimum at ATM, increases in wings)
 
 **Typical in:** FX markets, commodities
 
-### Smirk (Asymmetric Smile)
+### 4. Smirk (Asymmetric Smile)
+
 
 Combination of skew and smile:
 - OTM puts have much higher IV than ATM
@@ -208,7 +224,9 @@ Corresponds to:
 
 ## Quantitative Relationships
 
-### ATM Implied Volatility and Second Moment
+
+### 1. ATM Implied Volatility and Second Moment
+
 
 At-the-money implied volatility (forward strike $K = F$):
 
@@ -230,7 +248,8 @@ $$
 
 where $\sigma_{\text{spot}}$ is the instantaneous volatility at the current spot.
 
-### Skew and Third Moment
+### 2. Skew and Third Moment
+
 
 The **slope of the skew** at ATM:
 
@@ -254,7 +273,8 @@ for small $T$ (asymptotic expansion).
 
 **Interpretation:** Steeper downward skew → more negative skewness.
 
-### Curvature and Fourth Moment
+### 3. Curvature and Fourth Moment
+
 
 The **curvature of the smile** at ATM:
 
@@ -278,7 +298,9 @@ $$
 
 ## Asymptotic Expansions
 
-### Small-Time Asymptotics
+
+### 1. Small-Time Asymptotics
+
 
 For $T \to 0$, the implied volatility admits an expansion:
 
@@ -302,7 +324,8 @@ Higher-order terms $\sigma_1(K), \sigma_2(K)$ depend on derivatives of $\sigma_{
 
 **Connection to density:** As $T \to 0$, the density concentrates around $S_0$, and the smile encodes information about the local volatility function.
 
-### Large Deviation Principle
+### 2. Large Deviation Principle
+
 
 For large strikes ($K \gg F$), the implied volatility behaves as:
 
@@ -326,7 +349,9 @@ $$
 
 ## Using IV to Infer Market Beliefs
 
-### Risk-Neutral vs Physical Measure
+
+### 1. Risk-Neutral vs Physical Measure
+
 
 The risk-neutral density $q(S_T)$ differs from the physical (real-world) density $p(S_T)$ due to risk premia. However, $q$ reflects **market-implied** probabilities.
 
@@ -336,7 +361,8 @@ The risk-neutral density $q(S_T)$ differs from the physical (real-world) density
 
 While not true probabilities, IV reveals market sentiment and hedging demand.
 
-### Extracting Tail Probabilities
+### 2. Extracting Tail Probabilities
+
 
 Define the **implied tail probability** of large moves:
 
@@ -360,7 +386,8 @@ $$
 
 Example: If 1-month 10%-OTM put has $\sigma_{\text{IV}} = 30\%$ vs ATM $\sigma_{\text{IV}} = 20\%$, the market implies higher tail probability than lognormal with $20\%$ vol.
 
-### Implied Density Plots
+### 3. Implied Density Plots
+
 
 Construct $q(K)$ by:
 1. Collecting IV across strikes for fixed maturity
@@ -374,7 +401,9 @@ Construct $q(K)$ by:
 
 ## Connection Between IV Surface and Density Evolution
 
-### Static vs Dynamic
+
+### 1. Static vs Dynamic
+
 
 The IV surface $\sigma_{\text{IV}}(K, T)$ at a fixed time $t = 0$ encodes the **marginal densities** $q(S_T)$ for various $T$:
 
@@ -389,7 +418,8 @@ However, the surface does **not** uniquely determine the **joint distribution** 
 
 **Limitation:** Knowing all marginals $q(S_T)$ is insufficient to price path-dependent exotics without additional assumptions (local vol, stochastic vol, etc.).
 
-### Forward Density
+### 2. Forward Density
+
 
 The **forward density** (conditional on survival to time $t$):
 
@@ -413,7 +443,9 @@ The forward IV surface $\sigma_{\text{IV}}^{\text{fwd}}(K; t, T)$ encodes $q(S_T
 
 ## Smile and Distributional Summary Statistics
 
-### Moment Summary Table
+
+### 1. Moment Summary Table
+
 
 | IV Feature | Density Property | Typical Market |
 |------------|------------------|----------------|
@@ -423,7 +455,8 @@ The forward IV surface $\sigma_{\text{IV}}^{\text{fwd}}(K; t, T)$ encodes $q(S_T
 | $\sigma_{\text{IV}}(K_{\text{low}}) \gg \sigma_{\text{IV}}(F)$ | Fat left tail | Post-crash equity |
 | $\sigma_{\text{IV}}(K_{\text{high}}) \approx \sigma_{\text{IV}}(F)$ | Thin right tail | Bounded upside |
 
-### Stylized Patterns
+### 2. Stylized Patterns
+
 
 **Black-Scholes (flat IV):**
 - Density: Lognormal
@@ -447,7 +480,9 @@ The forward IV surface $\sigma_{\text{IV}}^{\text{fwd}}(K; t, T)$ encodes $q(S_T
 
 ## Model Consistency
 
-### Implied Volatility in Different Models
+
+### 1. Implied Volatility in Different Models
+
 
 Different models generate different IV surfaces even with the same marginal density $q(S_T)$:
 
@@ -486,7 +521,8 @@ $$
 
 - Smile curvature increases with jump intensity
 
-### Which Model to Use?
+### 2. Which Model to Use?
+
 
 The choice depends on:
 1. **Vanilla pricing:** All models can fit the smile (Dupire guarantees perfect fit)
@@ -497,7 +533,9 @@ The choice depends on:
 
 ## Practical Workflow: From Market Data to Density
 
-### Step-by-Step Procedure
+
+### 1. Step-by-Step Procedure
+
 
 **Step 1: Collect IV data**  
 Observe implied volatilities $\{\sigma_{\text{IV}}(K_i, T_j)\}$ from market quotes
@@ -533,7 +571,8 @@ $$
 **Step 6: Analyze distributional properties**  
 Compute skewness, kurtosis, tail probabilities, VaR, etc.
 
-### Example: S&P 500 Options
+### 2. Example: S&P 500 Options
+
 
 **Observed:** Downward-sloping skew with $\sigma_{\text{IV}}(K)$ decreasing approximately linearly for $K < F$
 
@@ -546,9 +585,11 @@ Compute skewness, kurtosis, tail probabilities, VaR, etc.
 
 ## Summary
 
+
 The implied volatility surface $\sigma_{\text{IV}}(K, T)$ provides a **normalized coordinate system** for the risk-neutral density $q(S_T)$:
 
-### **Key relationships:**
+### 1. **Key relationships:**
+
 
 **Variance:**
 
@@ -574,7 +615,8 @@ $$
 
 
 
-### **Practical insights:**
+### 2. **Practical insights:**
+
 
 1. **Smile shape encodes tail risk:** U-shaped smile = fat tails, skew = asymmetry
 2. **Model-free inference:** Extract moments and probabilities without assuming a model

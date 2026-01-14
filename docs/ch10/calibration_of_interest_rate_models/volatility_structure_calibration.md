@@ -1,10 +1,12 @@
 # Volatility Structure Calibration
 
+
 Beyond fitting today’s curve, interest-rate models must specify and calibrate a **volatility structure** that governs the dynamics of rates and prices of interest-rate options.
 
 ---
 
-## 1. What is being calibrated?
+## What is being calibrated?
+
 
 Depending on the model, calibration targets include:
 - short-rate volatility parameters,
@@ -15,7 +17,8 @@ The volatility structure determines smile, skew, and term-structure dynamics.
 
 ---
 
-## 2. Typical calibration instruments
+## Typical calibration instruments
+
 
 Common calibration instruments are:
 - caplets and floorlets,
@@ -26,7 +29,8 @@ These instruments are liquid and sensitive to rate volatility.
 
 ---
 
-## 3. Model-dependent considerations
+## Model-dependent considerations
+
 
 - **Short-rate models:** limited flexibility, often need extensions or multi-factor versions.
 - **HJM models:** volatility functions calibrated directly to market data.
@@ -36,7 +40,8 @@ Model choice strongly affects calibration quality.
 
 ---
 
-## 4. Regularization and smoothing
+## Regularization and smoothing
+
 
 Volatility calibration is an inverse problem and often ill-posed.
 Stability is improved by:
@@ -48,7 +53,8 @@ Overfitting leads to poor out-of-sample behavior.
 
 ---
 
-## 5. Key takeaways
+## Key takeaways
+
 
 - Volatility structure drives option prices and dynamics.
 - Calibration relies on caps and swaptions.
@@ -57,6 +63,7 @@ Overfitting leads to poor out-of-sample behavior.
 ---
 
 ## Further reading
+
 
 - Rebonato, *Interest-Rate Option Models*.
 - Brigo & Mercurio, volatility calibration.

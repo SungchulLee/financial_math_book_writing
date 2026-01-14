@@ -1,11 +1,13 @@
 # Horizontal vs
 
+
 **Horizontal vs vertical IV relationships** refer to the two fundamental dimensions along which implied volatility varies: the **term structure** (horizontal, across time) and the **smile/skew** (vertical, across strikes). Understanding and trading the relationship between these dimensions—how they interact, diverge, and normalize—is essential for sophisticated volatility trading and surface arbitrage.
 
 
 ---
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_dimensions.png?raw=true" alt="long_call_vs_put" width="700">
@@ -14,6 +16,7 @@
 
 
 ## The Core Insight
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_divergence.png?raw=true" alt="long_call_vs_put" width="700">
@@ -57,6 +60,7 @@ Where:
 
 ## What Are Horizontal
 
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -64,6 +68,7 @@ Where:
 **Before understanding their relationship, we need to define each dimension:**
 
 ### 1. The Horizontal
+
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="long_call_vs_put" width="700">
@@ -120,6 +125,7 @@ The **term structure** shows how IV changes with time to expiration (holding str
 
 ### 2. The Vertical
 
+
 **What is it?**
 
 The **smile/skew** shows how IV changes with strike price (holding time constant):
@@ -169,6 +175,7 @@ The **smile/skew** shows how IV changes with strike price (holding time constant
 
 ### 3. The Problem
 
+
 **Theoretical relationship:**
 
 In a simple Black-Scholes world:
@@ -217,7 +224,9 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 
 ## The Structure
 
+
 ### 1. How to Express
+
 
 **1. Pure Horizontal Trades (Term Structure Only):**
 
@@ -311,6 +320,7 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 
 ### 2. The Visual
 
+
 **Horizontal vs Vertical Dimensions:**
 
 ```
@@ -342,7 +352,9 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 
 ## The Portfolio
 
+
 ### 1. General Framework
+
 
 For a position trading both dimensions:
 
@@ -363,6 +375,7 @@ where:
 Construct portfolios that isolate or exploit the relationship between dimensions.
 
 ### 2. Pure Horizontal
+
 
 **Structure:**
 
@@ -392,6 +405,7 @@ $$
 $$
 
 ### 3. Pure Vertical
+
 
 **Structure:**
 
@@ -423,6 +437,7 @@ $$
 
 ### 4. Combined Exposure
 
+
 **Structure:**
 
 $$
@@ -448,9 +463,11 @@ where $K_2 \neq K_1$ and $T_2 > T_1$.
 
 ## Economic
 
+
 **Understanding what horizontal vs vertical IV relationships REALLY represent economically:**
 
 ### 1. The Core Economic
+
 
 The IV surface is not random—it reflects deep economic realities:
 
@@ -482,6 +499,7 @@ $$
 
 ### 2. Why This IV
 
+
 **The fundamental question:** Why isn't IV just one number?
 
 **Answer:** Different market participants have different:
@@ -511,6 +529,7 @@ $$
 - **Creates dislocation opportunities** when events pass
 
 ### 3. The Volatility
+
 
 **Critical empirical fact:**
 
@@ -550,6 +569,7 @@ Historical data (S&P 500, 20 years):
 
 ### 4. Correlation
 
+
 **Measured empirically:**
 
 $$
@@ -584,6 +604,7 @@ High stress → Everything correlated
 Low stress → Dimensions independent
 
 ### 5. The Leverage
+
 
 **Fundamental economic mechanism:**
 
@@ -630,6 +651,7 @@ $$
 2. Stock drops (increases skew they're short)
 
 ### 6. Term Structure
+
 
 **Economic decomposition:**
 
@@ -681,6 +703,7 @@ $$
 
 ### 7. Market
 
+
 **Why aren't arbitrages eliminated instantly?**
 
 **1. Transaction costs:**
@@ -731,6 +754,7 @@ $$
 
 ### 8. The Smile
 
+
 **Theoretical no-arbitrage condition:**
 
 $$
@@ -760,6 +784,7 @@ $$
 - During crises (hedging costs too high)
 
 ### 9. Calendar Spread
+
 
 **Why calendar spreads make money:**
 
@@ -811,6 +836,7 @@ $$
 
 ### 10. Butterfly
 
+
 **Why butterflies profit from smile normalization:**
 
 **Setup:** Long wings, short body
@@ -844,6 +870,7 @@ $$
 $$
 
 ### 11. The Vol Surface
+
 
 **Modern perspective:** IV surface is tradeable asset
 
@@ -895,6 +922,7 @@ Sophisticated traders don't just trade options for directional views—they trad
 
 ### 12. Professional
 
+
 **Dealer book management:**
 
 Dealers maintain massive IV surface exposure:
@@ -942,6 +970,7 @@ Typical dealer spread:
 - **Professional infrastructure**
 
 ### 13. The Arbitrage
+
 
 **Why don't arbitrageurs eliminate all mispricings?**
 
@@ -999,6 +1028,7 @@ Large dislocations (> 5% IV) get arbitraged:
 
 ### 14. Horizontal vs
 
+
 **Horizontal vs Vertical IV trading exists because:**
 
 1. **Different time preferences** create term structure
@@ -1040,7 +1070,9 @@ This is why sophisticated volatility traders focus on **relationships between di
 
 ## The P&L Formula
 
+
 ### 1. For Pure
+
 
 $$
 \delta \Pi_H \approx \underbrace{\text{Vega}_{T_2} \cdot \delta\sigma_{T_2} - \text{Vega}_{T_1} \cdot \delta\sigma_{T_1}}_{\text{Term structure P\&L}} + \underbrace{\theta_{\text{net}} \, \delta t}_{\text{Time decay}}
@@ -1075,6 +1107,7 @@ $$
 Typically: $|\theta_{T_1}| > |\theta_{T_2}|$ (front decays faster)
 
 ### 2. For Pure Vertical
+
 
 $$
 \delta \Pi_V \approx \sum_{K} \text{Vega}_K \cdot \delta\sigma_K + \Theta_{\text{net}} \, \delta t + \frac{1}{2}\Gamma_{\text{net}} (\delta S)^2
@@ -1119,6 +1152,7 @@ Important for butterflies:
 
 ### 3. For Combined
 
+
 $$
 \delta \Pi_D \approx \underbrace{\text{Vega}_{K_2,T_2} \cdot \delta\sigma_{K_2,T_2}}_{\text{Back month, different strike}} - \underbrace{\text{Vega}_{K_1,T_1} \cdot \delta\sigma_{K_1,T_1}}_{\text{Front month, different strike}} + \theta_{\text{net}} \, \delta t
 $$
@@ -1147,6 +1181,7 @@ $$
 
 ### 4. The Relationship
 
+
 **Key insight:** 
 
 The P&L from diagonal/combined trades depends on the **correlation** between horizontal and vertical IV changes:
@@ -1167,7 +1202,9 @@ $$
 
 ## Types of Horizontal
 
+
 ### 1. Pure Horizontal
+
 
 **When to use:**
 
@@ -1209,6 +1246,7 @@ $$
 
 ### 2. Pure Vertical
 
+
 **When to use:**
 
 - Trading strike dimension only
@@ -1249,6 +1287,7 @@ $$
 
 ### 3. Horizontal-Heavy
 
+
 **Structure:**
 
 - Emphasize term structure
@@ -1274,6 +1313,7 @@ $$
 - Want some directional flexibility
 
 ### 4. Vertical-Heavy
+
 
 **Structure:**
 
@@ -1301,6 +1341,7 @@ $$
 
 ### 5. Balanced Diagonal
 
+
 **Structure:**
 
 - Equal emphasis on both dimensions
@@ -1326,6 +1367,7 @@ $$
 - Directional + term structure bet
 
 ### 6. Horizontal vs
+
 
 **Structure:**
 
@@ -1362,6 +1404,7 @@ $$
 ---
 
 ## Concrete Example 1
+
 
 **Setup:**
 
@@ -1458,6 +1501,7 @@ $$
 ---
 
 ## Concrete Example 2
+
 
 **Setup:**
 
@@ -1599,6 +1643,7 @@ This makes more sense.
 
 ## Concrete Example 3
 
+
 **Setup:**
 
 **Stock:** Tech stock at $100
@@ -1712,6 +1757,7 @@ The diagonal profits from:
 ---
 
 ## Concrete Example 4
+
 
 **Setup:**
 
@@ -1871,7 +1917,9 @@ This is cleaner and works!
 
 ## Strike Selection
 
+
 ### 1. For Horizontal
+
 
 **Goal:** Isolate term structure bet
 
@@ -1910,6 +1958,7 @@ This is cleaner and works!
 - High liquidity essential
 
 ### 2. For Vertical
+
 
 **Goal:** Isolate smile/skew bet
 
@@ -1969,6 +2018,7 @@ This is cleaner and works!
 
 ### 3. For Diagonal
 
+
 **Goal:** Express views on both dimensions
 
 **Strike selection:**
@@ -2017,7 +2067,9 @@ This is cleaner and works!
 
 ## Time Frame Selection
 
+
 ### 1. For Horizontal
+
 
 **Front month:**
 
@@ -2063,6 +2115,7 @@ This is cleaner and works!
 
 ### 2. For Vertical
 
+
 **Standard expirations:**
 
 - **30-60 days:** Most common
@@ -2103,6 +2156,7 @@ This is cleaner and works!
 
 ### 3. For Diagonal
 
+
 **Time spread:**
 
 - **2:1 to 3:1 ratio** (back:front)
@@ -2123,7 +2177,9 @@ This is cleaner and works!
 
 ## Position Management
 
+
 ### 1. Managing
+
 
 **Entry checklist:**
 
@@ -2173,6 +2229,7 @@ This is cleaner and works!
 
 ### 2. Managing Vertical
 
+
 **Entry checklist:**
 
 ✓ Smile shape analyzed
@@ -2221,6 +2278,7 @@ This is cleaner and works!
 
 ### 3. Managing Diagonal
 
+
 **Entry checklist:**
 
 ✓ Views on both dimensions clear
@@ -2268,6 +2326,7 @@ This is cleaner and works!
 - Adjust based on P&L
 
 ### 4. Managing
+
 
 **Entry checklist:**
 
@@ -2319,7 +2378,9 @@ This is cleaner and works!
 
 ## Greeks Analysis
 
+
 ### 1. Horizontal
+
 
 **Delta:**
 
@@ -2356,6 +2417,7 @@ $$
 Can be positive or negative
 
 ### 2. Vertical
+
 
 **Delta:**
 
@@ -2397,6 +2459,7 @@ Positive (at center)
 
 ### 3. Diagonal Greeks
 
+
 **Delta:**
 
 Varies significantly based on strikes:
@@ -2431,6 +2494,7 @@ Complex, depends on both strikes and times
 
 ### 4. Relationship
 
+
 **Key insight:**
 
 Greeks from horizontal and vertical dimensions **combine non-linearly**:
@@ -2455,7 +2519,9 @@ Where $\rho$ = correlation between dimension moves
 
 ## When to Use
 
+
 ### 1. Use Horizontal
+
 
 **Market conditions ✓**
 
@@ -2489,6 +2555,7 @@ Where $\rho$ = correlation between dimension moves
 
 ### 2. Use Vertical
 
+
 **Market conditions ✓**
 
 - Clear view on **smile/skew**
@@ -2521,6 +2588,7 @@ Where $\rho$ = correlation between dimension moves
 
 ### 3. Use Diagonal When
 
+
 **Market conditions ✓**
 
 - Views on **both dimensions**
@@ -2552,6 +2620,7 @@ Where $\rho$ = correlation between dimension moves
 - First time with spreads
 
 ### 4. Use Relationship
+
 
 **Market conditions ✓**
 
@@ -2590,9 +2659,11 @@ Where $\rho$ = correlation between dimension moves
 
 ## Practical Guidance
 
+
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
+
 
 **Before entering, evaluate:**
 
@@ -2630,6 +2701,7 @@ Where $\rho$ = correlation between dimension moves
 
 ### 2. Enter this
 
+
 **Enter this strategy when:**
 
 - [Specific IV conditions]
@@ -2651,6 +2723,7 @@ Where $\rho$ = correlation between dimension moves
 - [Event risk too high]
 
 ### 3. Calculate maximum
+
 
 **Calculate maximum position size:**
 
@@ -2679,6 +2752,7 @@ $$
 - Risk 2-5% on defined risk strategies
 
 ### 4. Best practices: 1
+
 
 **Best practices:**
 
@@ -2713,6 +2787,7 @@ $$
 - [ ] Exit plan defined
 
 ### 5. Active management
+
 
 **Active management rules:**
 
@@ -2754,6 +2829,7 @@ $$
 
 ### 6. When to adjust:
 
+
 **When to adjust:**
 
 **For short vol strategies:**
@@ -2794,6 +2870,7 @@ $$
 
 ### 7. Track every
 
+
 **Track every trade:**
 
 - Entry IV level and percentile
@@ -2822,6 +2899,7 @@ $$
 
 ### 8. Common Execution
 
+
 1. **Selling vol at low IV** - IVR < 30 usually poor for short vol
 
 2. **Buying vol at high IV** - IVR > 70 often too expensive for long vol
@@ -2839,6 +2917,7 @@ $$
 8. **Ignoring skew** - Put skew can make bearish trades expensive
 
 ### 9. Professional
+
 
 **For volatility selling (short vega):**
 
@@ -2883,7 +2962,9 @@ $$
 
 ## Common Mistakes
 
+
 ### 1. Confusing
+
 
 **The error:**
 
@@ -2932,6 +3013,7 @@ Trading both? → Diagonal (advanced)
 
 ### 2. Ignoring
 
+
 **The error:**
 
 - "I'll trade term structure, skew won't matter"
@@ -2973,6 +3055,7 @@ Long ATM calendar (trading term structure):
 ---
 
 ### 3. Wrong Strike for
+
 
 **The error:**
 
@@ -3018,6 +3101,7 @@ Trading term structure with OTM calendar:
 
 ### 4. Wrong Expiration
 
+
 **The error:**
 
 - Using different expirations for butterfly
@@ -3061,6 +3145,7 @@ Trading smile with different expirations:
 ---
 
 ### 5. Ignoring Theta in
+
 
 **The error:**
 
@@ -3112,6 +3197,7 @@ $$
 
 ### 6. Over-Complicating
 
+
 **The error:**
 
 - Using diagonal when simple calendar better
@@ -3153,6 +3239,7 @@ Want to trade term structure steepening:
 ---
 
 ### 7. Fighting Regime
+
 
 **The error:**
 
@@ -3204,6 +3291,7 @@ Pre-COVID (2019):
 
 ### 8. Selling Vol at
 
+
 **The error:**
 
 - IV rank/percentile at 20
@@ -3248,6 +3336,7 @@ $$
 
 ### 9. Buying Vol at
 
+
 **The error:**
 
 - IV rank at 85
@@ -3287,6 +3376,7 @@ VIX at 35 (IVR 90):
 ---
 
 ### 10. Holding Through
+
 
 **The error:**
 
@@ -3336,6 +3426,7 @@ Earnings in 2 days:
 
 ### 11. Ignoring Bid-Ask
 
+
 **The error:**
 
 - Enter 4-leg iron butterfly
@@ -3378,6 +3469,7 @@ $$
 
 ### 12. Wrong Calendar
 
+
 **The error:**
 
 - Long calendar with wrong ratio
@@ -3419,6 +3511,7 @@ Stock at $100:
 ---
 
 ### 13. Not
+
 
 **The error:**
 
@@ -3463,6 +3556,7 @@ Long ATM calendar:
 ---
 
 ### 14. Trading With No
+
 
 **The error:**
 
@@ -3524,6 +3618,7 @@ Time stop:
 
 ### 15. Confusing
 
+
 **The error:**
 
 - Sell volatility because "realized is low"
@@ -3575,6 +3670,7 @@ Where VRP ≈ 2-3% historically
 
 ### 16. **Summary
 
+
 **Before any horizontal/vertical IV trade:**
 
 ```
@@ -3605,7 +3701,9 @@ Where VRP ≈ 2-3% historically
 
 ## Advanced Concepts
 
+
 ### 1. Quantifying the
+
 
 **Correlation metric:**
 
@@ -3635,6 +3733,7 @@ Current correlation: 0.35
 **Divergence:** Trade for convergence
 
 ### 2. Principal
+
 
 **The method:**
 
@@ -3668,6 +3767,7 @@ Decompose surface movements into independent factors:
 
 ### 3. Local Volatility
 
+
 **Local volatility:**
 
 $$
@@ -3691,6 +3791,7 @@ $$
 - Discrepancies = opportunities
 
 ### 4. Volatility
+
 
 **Sticky strike:**
 
@@ -3730,6 +3831,7 @@ $$
 
 ### 5. Variance
 
+
 **The concept:**
 
 Variance can differ across dimensions:
@@ -3762,6 +3864,7 @@ $$
 
 ### 6. Cross-Asset
 
+
 **Horizontal relationships across assets:**
 
 - SPX term structure vs VIX term structure
@@ -3790,7 +3893,9 @@ $$
 
 ## Real-World Examples
 
+
 ### 1. Pension Duration
+
 
 **Observation:**
 
@@ -3865,6 +3970,7 @@ $$
 - **Timing and risk management critical**
 
 ### 2. Transition Risk
+
 
 **Setup:**
 
@@ -3944,6 +4050,7 @@ $$
 
 ### 3. Portable Alpha
 
+
 **Setup:**
 
 **Stock:** SPY at $420 (post-COVID recovery)
@@ -4020,7 +4127,9 @@ $$
 
 ## Practical
 
+
 ### 1. Daily Analysis
+
 
 **Morning routine:**
 
@@ -4082,6 +4191,7 @@ Prioritize by:
 
 ### 2. Metrics to Track
 
+
 **Horizontal metrics:**
 
 ```
@@ -4137,6 +4247,7 @@ Surface consistency:
 ```
 
 ### 3. Position Sizing
+
 
 **For horizontal trades:**
 
@@ -4194,6 +4305,7 @@ Capital allocation:
 
 ### 4. Risk Management
 
+
 **Stop losses:**
 
 **Horizontal trades:**
@@ -4229,6 +4341,7 @@ Capital allocation:
 - Or: Regime change evident
 
 ### 5. Technology and
+
 
 **Required tools:**
 
@@ -4303,7 +4416,9 @@ if correlation < historical_avg - 2*std:
 
 ## Horizontal vs
 
+
 ### 1. How These
+
 
 **The complete volatility framework:**
 
@@ -4339,6 +4454,7 @@ Volatility Trading Hierarchy:
 - **Combination opportunities** (trade relationships)
 
 ### 2. Comparison with
+
 
 | Strategy | Horizontal | Vertical | Complexity | When to Use |
 |----------|------------|----------|------------|-------------|
