@@ -26,6 +26,7 @@ nav:
           - 1.1 Brownian Motion:
               - Random Walk: ch01/brownian_motion/random_walk_foundations.md
               - Donsker's Theorem: ch01/brownian_motion/donsker_theorem.md
+              - Bit of History: ch01/brownian_motion/bit_of_history.md
               - Random Walk Simulations: ch01/brownian_motion/random_walk_simulations.md
               - Brownian Motion: ch01/brownian_motion/brownian_motion_foundations.md
               - Moments of BM: ch01/brownian_motion/moments_of_brownian_motion.md
