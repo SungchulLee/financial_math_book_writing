@@ -1,310 +1,264 @@
-Excellent intuition! Your guess is exactly right - a local martingale is indeed "a martingale locally." Let me explain the precise distinction and why it matters.
+# Local Martingales
+
+A **local martingale** is a process that behaves like a martingale "locally"—when stopped at appropriate times—but may fail to be a true martingale globally. This distinction is crucial in continuous-time finance, where many natural price processes are local martingales but not martingales.
 
 ---
 
 ## Definitions
 
+### Martingale
 
-### 1. Martingale
+A process $\{M_t\}_{t \geq 0}$ is a **martingale** with respect to filtration $\{\mathcal{F}_t\}$ if:
 
+1. **Adaptedness**: $M_t$ is $\mathcal{F}_t$-measurable for all $t$
+2. **Integrability**: $\mathbb{E}[|M_t|] < \infty$ for all $t$
+3. **Martingale property**: $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ for all $s \leq t$
 
-A process $\{M_t\}$ is a **martingale** if:
+### Local Martingale
 
-1. **Integrability:** $\mathbb{E}[|M_t|] < \infty$ for all $t$
-2. **Martingale property:** $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ for all $s \leq t$
+A process $\{M_t\}_{t \geq 0}$ is a **local martingale** if there exists a sequence of stopping times $\{\tau_n\}_{n=1}^{\infty}$ such that:
 
-### 2. Local Martingale
+1. $\tau_n \uparrow \infty$ almost surely (stopping times increase to infinity)
+2. The **stopped process** $M_{t \wedge \tau_n}$ is a martingale for each $n$
 
-
-A process $\{M_t\}$ is a **local martingale** if there exists a sequence of **stopping times** $\{\tau_n\}_{n=1}^{\infty}$ such that:
-
-1. $\tau_n \uparrow \infty$ almost surely (the stopping times increase to infinity)
-2. The **stopped process** $M_{t \wedge \tau_n}$ is a **martingale** for each fixed $n$
-
-Here $t \wedge \tau_n = \min(t, \tau_n)$ means we stop the process at time $\tau_n$.
-
-**Interpretation:** The process is a martingale "up to any finite stopping time" 
-
-- It is a martingale over any finite time window, but possibly not globally.
+The sequence $\{\tau_n\}$ is called a **localizing sequence**.
 
 ---
 
-## Key Differences
+## The Key Relationship
 
+$$
+\boxed{
+\text{Every martingale is a local martingale, but NOT every local martingale is a martingale}
+}
+$$
 
+A local martingale that is not a true martingale is called a **strict local martingale**.
 
-$$\boxed{\text{Every martingale is a local martingale, but NOT every local martingale is a martingale}}$$
+---
 
-
-
-### 1. What Can Go Wrong?
-
+## What Can Go Wrong?
 
 A local martingale fails to be a martingale when:
 
-1. **Integrability fails:** $\mathbb{E}[|M_t|] = \infty$ for some $t$
-2. **Explosion:** The process can blow up to $\pm \infty$ in finite time
-3. **"Leaking probability":** Mass escapes to infinity
+### 1. Integrability Failure
 
-Even though $M_{t \wedge \tau_n}$ is a martingale for each $n$, we cannot necessarily pass to the limit to conclude $M_t$ is a martingale.
+$\mathbb{E}[|M_t|] = \infty$ for some $t$
+
+### 2. Explosion
+
+The process can blow up to $\pm\infty$ in finite time
+
+### 3. Mass Leakage
+
+Probability mass "escapes to infinity"—the expectation $\mathbb{E}[M_t]$ can decrease over time
 
 ---
 
-## Concrete Examples
+## Canonical Examples
 
+### Example 1: Itô Integrals
 
-### 1. Example 1: Stochastic Exponential (Strict Local Martingale)
+Any Itô integral of the form:
 
+$$
+M_t = \int_0^t \sigma_s\,dW_s
+$$
 
-Consider Brownian motion $W_t$ and define:
+is a **local martingale** (assuming $\sigma$ is adapted and locally square-integrable).
 
+It is a **true martingale** if additionally:
 
-$$M_t = e^{2W_t - 2t}$$
+$$
+\mathbb{E}\left[\int_0^T \sigma_s^2\,ds\right] < \infty
+$$
 
+### Example 2: Stochastic Exponential
 
+The stochastic exponential:
 
-**Check if it's a local martingale:**
+$$
+Z_t = \exp\left(W_t - \frac{t}{2}\right) = \mathcal{E}(W)_t
+$$
 
-By Itô's lemma:
+satisfies $dZ_t = Z_t\,dW_t$ and is a **true martingale** with $\mathbb{E}[Z_t] = 1$.
 
-$$dM_t = 2M_t \, dW_t$$
+### Example 3: Reciprocal of 3D Bessel Process
 
-
-
-No drift term! So $M_t$ is a **local martingale**.
-
-**Check if it's a martingale:**
-
-
-$$\mathbb{E}[M_t] = \mathbb{E}[e^{2W_t - 2t}] = e^{-2t} \mathbb{E}[e^{2W_t}] = e^{-2t} \cdot e^{2t} = 1$$
-
-
-
-Wait, this IS a martingale! Let me use a better example.
-
-### 2. Example 1 (Corrected): Reciprocal of Exponential
-
-
-Consider:
-
-$$M_t = \frac{1}{1 + W_t}$$
-
-
-
-for $W_t$ starting from $W_0 = 0$ (so $M_0 = 1$).
-
-By Itô's lemma:
-
-$$dM_t = -\frac{1}{(1+W_t)^2} dW_t + \frac{1}{(1+W_t)^3} dt$$
-
-
-
-This has a drift, so it's not even a local martingale. Let me try again.
-
-### 3. Example 1 (Better): Geometric Brownian Motion Without Drift Correction
-
-
-Consider the process satisfying:
-
-$$dX_t = \sigma X_t \, dW_t, \quad X_0 = 1$$
-
-
-
-The solution is:
-
-$$X_t = \exp\left(\sigma W_t - \frac{\sigma^2 t}{2}\right)$$
-
-
-
-**This IS a martingale** because $\mathbb{E}[X_t] = 1$.
-
-But now consider:
-
-$$Y_t = \exp(\sigma W_t) = \exp\left(\sigma W_t + \frac{\sigma^2 t}{2}\right) \cdot \exp\left(-\frac{\sigma^2 t}{2}\right)$$
-
-
-
-No wait, let me use the canonical example.
-
-### 4. Example 1 (Canonical): Explosion Example
-
-
-Consider the SDE:
-
-$$dX_t = X_t^{3/2} \, dW_t, \quad X_0 = 1$$
-
-
-
-This process **explodes to infinity in finite time** with positive probability.
-
-Define stopping times:
-
-$$\tau_n = \inf\{t : |X_t| \geq n\}$$
-
-
-
-Then:
-- $X_{t \wedge \tau_n}$ is a **martingale** for each $n$ (stopped before explosion)
-- But $X_t$ itself is only a **local martingale**, not a martingale
-- As $t$ increases, probability mass "escapes to infinity"
-- $\mathbb{E}[X_t] < X_0 = 1$ because some scenarios exploded
-
-### 5. Example 2: Three-Dimensional Bessel Process
-
-
-Let $R_t$ be a 3-dimensional Bessel process (think: distance from origin in 3D Brownian motion).
+Let $R_t$ be the 3-dimensional Bessel process (distance from origin of 3D Brownian motion).
 
 The process:
 
-$$M_t = \frac{1}{R_t}$$
+$$
+M_t = \frac{1}{R_t}
+$$
 
+is a **strict local martingale** (local martingale but NOT a true martingale).
 
+**Why?** As $R_t$ can get arbitrarily close to 0, the expectation $\mathbb{E}[1/R_t]$ grows unboundedly, violating integrability.
 
-is a **local martingale** but **NOT a martingale**.
+### Example 4: Explosion Example
 
-**Why?** Define $\tau_n = \inf\{t : R_t \geq n\}$. Then $M_{t \wedge \tau_n}$ is a martingale, but:
+Consider the SDE:
 
+$$
+dX_t = X_t^{3/2}\,dW_t, \quad X_0 = 1
+$$
 
-$$\mathbb{E}[M_t] = \mathbb{E}\left[\frac{1}{R_t}\right] > \frac{1}{R_0} = 1$$
+This process can **explode to infinity** in finite time.
 
+Define stopping times $\tau_n = \inf\{t : X_t \geq n\}$.
 
-
-The expectation grows because $R_t$ can get very close to 0, making $1/R_t$ very large.
-
-### 6. Example 3: Simple Intuitive Example
-
-
-Consider a gambler with fortune $X_t$ who bets a fraction proportional to wealth. The game is "locally fair" but:
-
-
-$$dX_t = X_t \, dW_t$$
-
-
-
-gives:
-
-$$X_t = X_0 e^{W_t - t/2}$$
-
-
-
-This IS a martingale with $\mathbb{E}[X_t] = X_0$.
-
-But if we modify to:
-
-$$dX_t = X_t^{1.5} \, dW_t$$
-
-
-
-the volatility grows superlinearly, allowing explosion, making it only a local martingale.
+- $X_{t \wedge \tau_n}$ is a martingale for each $n$
+- But $X_t$ itself is only a local martingale
+- $\mathbb{E}[X_t] < X_0 = 1$ because probability mass escapes
 
 ---
 
-## The Integrability Issue
+## Mathematical Characterization
 
+### The Supermartingale Property
 
-### 1. Classic Example: Doubling Strategy
+**Theorem**: Every non-negative local martingale is a **supermartingale**:
 
+$$
+\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s \quad \text{for } s \leq t
+$$
 
-Consider a martingale betting strategy where you double your bet after each loss. Locally (over finite time), your net position is a martingale. But:
+**Consequence**: For non-negative local martingales:
 
-- The strategy can require infinite capital
-- $\mathbb{E}[\text{capital at time } t]$ might be infinite
-- It's a local martingale but not a martingale
+$$
+\mathbb{E}[M_t] \leq \mathbb{E}[M_0]
+$$
 
-### 2. Mathematical Phenomenon
+with equality if and only if $M$ is a true martingale.
 
+### The Fatou Property
 
-For a local martingale $M_t$:
+For a non-negative local martingale:
 
+$$
+\mathbb{E}[M_{t \wedge \tau_n}] = M_0 \quad \text{for all } n
+$$
 
-$$\mathbb{E}[M_{t \wedge \tau_n}] = M_0 \quad \text{for all } n$$
+But taking $n \to \infty$, Fatou's lemma only gives:
 
+$$
+\mathbb{E}[M_t] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n}] = M_0
+$$
 
-
-But we **cannot** always take $n \to \infty$ to get:
-
-
-$$\mathbb{E}[M_t] = M_0$$
-
-
-
-**Why not?** We need **uniform integrability** to exchange limit and expectation.
+Strict inequality is possible!
 
 ---
 
-## Connection to $\mathcal{L}f = 0$
+## Sufficient Conditions for True Martingale
 
+A local martingale $M$ is a true martingale if any of the following hold:
 
-### 1. Why I Said "Local Martingale"
+### 1. Bounded
 
+$$
+|M_t| \leq C \quad \text{almost surely for all } t
+$$
 
-When $\mathcal{L}f(x) = 0$, Dynkin's formula gives:
+### 2. Dominated
 
+$$
+|M_t| \leq Y \quad \text{for some integrable } Y
+$$
 
-$$f(X_t) = f(X_0) + M_t$$
+### 3. $L^p$ Bounded ($p > 1$)
 
+$$
+\sup_{t \leq T} \mathbb{E}[|M_t|^p] < \infty
+$$
 
+### 4. Square-Integrable Quadratic Variation
 
-where $M_t$ is a martingale. So $f(X_t)$ is at least a **local martingale**.
+For continuous local martingales:
 
-But for $f(X_t)$ to be a true martingale, we need:
+$$
+\mathbb{E}[\langle M \rangle_T] < \infty \Rightarrow M \text{ is a true martingale}
+$$
 
-1. **Integrability:** $\mathbb{E}[|f(X_t)|] < \infty$
-2. **No explosion:** The process doesn't blow up
-3. **Uniform integrability** or appropriate growth conditions on $f$
+### 5. Novikov's Condition (for stochastic exponentials)
 
-Without these conditions, $f(X_t)$ might only be a local martingale.
+$$
+\mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right] < \infty \Rightarrow \mathcal{E}(M) \text{ is a true martingale}
+$$
 
-### 2. Example Where This Matters
+---
 
+## Connection to Generators
 
-Consider $X_t = e^{W_t}$ (note: this is NOT the solution to $dX_t = X_t dW_t$; I'm just defining $X_t$ this way).
+If $X_t$ is a diffusion with generator $\mathcal{L}$ and $f \in C^2$, then:
 
-Then:
+$$
+\mathcal{L}f(x) = 0 \quad \text{for all } x
+$$
 
-$$f(x) = \log x$$
+implies $f(X_t)$ is a **local martingale**.
 
+For $f(X_t)$ to be a **true martingale**, we additionally need:
+- Integrability: $\mathbb{E}[|f(X_t)|] < \infty$
+- No explosion
+- Appropriate growth conditions on $f$
 
+---
 
-satisfies (formally) the equation related to the generator, but $f(X_t) = W_t$ is a martingale.
+## Financial Implications
 
-However, if we consider:
+### Discounted Asset Prices
 
-$$g(x) = x \log x$$
+In financial mathematics, discounted asset prices should be (local) martingales under the risk-neutral measure $\mathbb{Q}$.
 
+### Strict Local Martingales and Bubbles
 
+If the discounted price is a **strict local martingale** (not a true martingale):
 
-For the process $X_t = e^{W_t - t/2}$, we have $g(X_t) = e^{W_t - t/2}(W_t - t/2)$. This can fail to be a martingale even if $\mathcal{L}g = 0$ along paths, due to integrability issues.
+$$
+\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] < S_0
+$$
+
+This corresponds to a **financial bubble**—the price exceeds the "fundamental value" given by the expectation.
+
+### Put-Call Parity Failure
+
+In bubble models, put-call parity can fail because:
+
+$$
+C - P \neq S_0 - Ke^{-rT}
+$$
+
+when the stock price is a strict local martingale.
 
 ---
 
 ## Summary Table
 
-
 | Property | Martingale | Local Martingale |
 |----------|-----------|------------------|
-| **Definition** | $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ | $M_{t\wedge\tau_n}$ is martingale for stopping times $\tau_n \uparrow \infty$ |
-| **Integrability** | Required: $\mathbb{E}[\|M_t\|] < \infty$ | Not required |
-| **Mean preservation** | $\mathbb{E}[M_t] = \mathbb{E}[M_0]$ | **May fail:** $\mathbb{E}[M_t] \neq \mathbb{E}[M_0]$ |
-| **Explosion** | Cannot explode | Can explode in finite time |
+| **Definition** | $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ | $M_{t\wedge\tau_n}$ is martingale |
+| **Integrability** | Required: $\mathbb{E}[|M_t|] < \infty$ | Not required |
+| **Mean preservation** | $\mathbb{E}[M_t] = \mathbb{E}[M_0]$ | May fail: $\mathbb{E}[M_t] \leq \mathbb{E}[M_0]$ |
+| **Explosion** | Cannot explode | Can explode |
 | **"Locally fair"** | Yes | Yes |
-| **"Globally fair"** | Yes | **No** (mass can escape) |
+| **"Globally fair"** | Yes | Not necessarily |
 
 ---
 
-## Precise Statement for $\mathcal{L}f = 0$
+## Key Takeaway
 
+$$
+\boxed{
+\mathcal{L}f = 0 \Rightarrow f(X_t) \text{ is a local martingale}
+}
+$$
 
+$$
+\boxed{
+\mathcal{L}f = 0 \text{ and integrability} \Rightarrow f(X_t) \text{ is a true martingale}
+}
+$$
 
-$$\boxed{\begin{align}
-\mathcal{L}f(x) = 0 \text{ for all } x &\Longrightarrow f(X_t) \text{ is a local martingale} \\[5pt]
-\text{If additionally } \mathbb{E}[|f(X_t)|] < \infty &\Longrightarrow f(X_t) \text{ is a martingale}
-\end{align}}$$
-
-
-
-The integrability condition is crucial for the upgrade from local martingale to martingale!
-
----
-
-Your intuition was spot on - a local martingale is indeed "a martingale locally." The subtlety is that this local property doesn't always extend globally due to integrability or explosion issues.
+**The distinction between local martingales and true martingales is essential for rigorous financial modeling, particularly when dealing with explosive processes or bubbles.**

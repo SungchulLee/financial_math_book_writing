@@ -132,16 +132,18 @@ nav:
               - Risk-Neutral Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
               - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md
               - Martingale Repr Theorem: ch04/martingale_foundations/martingale_representation_theorem.md
+              - Novikov & Kazamaki: ch04/martingale_foundations/novikov_kazamaki_conditions.md
           - 4.2 Girsanov Theorem:
               - Intuitive Intro: ch04/girsanov/girsanov_intuition.md
-              - Girsanov’s Theorem: ch04/girsanov/girsanov_theorem.md
+              - Girsanov's Theorem: ch04/girsanov/girsanov_theorem.md
               - Proof: ch04/girsanov/girsanov_proof.md
               - Financial Meaning: ch04/girsanov/girsanov_drift_adjustment.md
           - 4.3 Risk-Neutral Measure:
               - Construction of Q: ch04/risk-neutral_measure/construction_of_risk-neutral_measure.md
               - Market Price of Risk: ch04/risk-neutral_measure/market_price_of_risk.md
               - Examples: ch04/risk-neutral_measure/example.md
-              - Change of Measure: ch04/risk-neutral_measure/numeraire_and_measure_change.md
+              - Numéraire and Measure: ch04/risk-neutral_measure/numeraire_and_measure_change.md
+              - Forward Measure: ch04/risk-neutral_measure/forward_measure.md
           - 4.4 Financial Interp:
               - Pricing vs Hedging: ch04/financial_interpretation/pricing_vs_hedging.md
               - P vs Q: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
