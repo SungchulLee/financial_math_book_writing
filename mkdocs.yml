@@ -109,6 +109,7 @@ nav:
               - Fundamental Solution: ch03/heat_equation/fundamental_solution.md
               - Scaling and Invariance: ch03/heat_equation/scaling_and_invariance.md
               - Heat Eq and BM: ch03/heat_equation/heat_equation_and_brownian_motion.md
+              - Maximum Principle: ch03/heat_equation/maximum_principle.md
           - 3.2 Kolmogorov Equation:
               - Kolmogorov Forward Eq: ch03/kolmogorov_equation/kolmogorov_forward_equation.md
               - Kolmogorov Backward Eq: ch03/kolmogorov_equation/kolmogorov_backward_equation.md
@@ -122,6 +123,7 @@ nav:
               - Discounting and Killing: ch03/pricing_pdes/discounting_and_killing_term.md
               - Boundary and Terminal: ch03/pricing_pdes/terminal_and_boundary_conditions.md
               - SDE to Black–Scholes PDE: ch03/pricing_pdes/black_scholes_pde_from_sde.md
+              - Greeks from PDE: ch03/pricing_pdes/greeks_from_pde.md
 
       - 4 Measure Change:
           - 4.1 Martingale Basics:
