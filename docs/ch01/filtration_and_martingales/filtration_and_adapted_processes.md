@@ -1,153 +1,210 @@
-# Filtration
+# Filtration and Adapted Processes
 
+## The Philosophy of Information Flow
 
-## Filtered probability
+Before diving into formal definitions, it is worth pausing to appreciate the conceptual leap that filtrations represent. In deterministic mathematics, we work with fixed quantities. In probability theory, we work with random variables—quantities whose values are determined by an underlying experiment. But in stochastic processes, we face a subtler challenge: how do we model the **gradual revelation of information over time**?
 
+Consider a stock price observed throughout a trading day. At 9:00 AM, we know nothing beyond the opening price. By noon, we have observed the morning's trajectory. By market close, the entire day's path is revealed. The filtration $(\mathcal{F}_t)$ formalizes this progression: $\mathcal{F}_t$ encodes precisely what can be known at time $t$—no more, no less.
+
+This framework is not merely technical bookkeeping. It fundamentally shapes what questions we can ask and what strategies we can implement. A trading strategy that uses tomorrow's closing price to decide today's position is not just impractical—it is **mathematically incoherent** within this framework.
+
+---
+
+## Filtered Probability Spaces
 
 A **filtered probability space** is a quadruple
 
-
-
 $$
-(\Omega,\mathcal{F},(\mathcal{F}_t)_{t\ge 0},\mathbb{P}),
+(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P}),
 $$
 
+where:
 
-
-
-
-
-where \((\Omega,\mathcal{F},\mathbb{P})\) is a probability space and \((\mathcal{F}_t)_{t\ge 0}\) is an increasing family of sub-\(\sigma\)-algebras:
-
-
+- $(\Omega, \mathcal{F}, \mathbb{P})$ is a probability space,
+- $(\mathcal{F}_t)_{t \ge 0}$ is a **filtration**: an increasing family of sub-$\sigma$-algebras satisfying
 
 $$
-\mathcal{F}_s \subseteq \mathcal{F}_t \subseteq \mathcal{F}\quad \text{for } 0\le s\le t.
+\mathcal{F}_s \subseteq \mathcal{F}_t \subseteq \mathcal{F} \quad \text{for all } 0 \le s \le t.
 $$
 
+**Interpretation**: $\mathcal{F}_t$ represents the information available up to time $t$. The monotonicity condition captures the irreversibility of information: what is known cannot be unknown.
 
-
-
-
-
-Interpretation: \(\mathcal{F}_t\) represents the information available up to time \(t\).
+**Remark on notation**: We write $(\mathcal{F}_t)$ for continuous-time filtrations (indexed by $t \in [0, \infty)$) and $(\mathcal{F}_n)$ for discrete-time filtrations (indexed by $n \in \mathbb{N}$). The discrete case offers cleaner intuition, while the continuous case introduces analytical subtleties.
 
 ---
 
-## Usual conditions
+## The Usual Conditions
 
+In continuous-time stochastic analysis, technical pathologies can arise without additional regularity assumptions. A filtration $(\mathcal{F}_t)$ satisfies the **usual conditions** (or **usual hypotheses**) if:
 
-A filtration \((\mathcal{F}_t)\) satisfies the **usual conditions** if:
+1. **Right-continuity**: $\mathcal{F}_t = \mathcal{F}_{t+} := \bigcap_{u > t} \mathcal{F}_u$ for all $t \ge 0$.
 
-1. (**Right-continuity**) \(\mathcal{F}_t=\bigcap_{u>t}\mathcal{F}_u\) for all \(t\ge 0\).
-2. (**Completeness**) \(\mathcal{F}_0\) contains all \(\mathbb{P}\)-null sets in \(\mathcal{F}\).
+2. **Completeness**: $\mathcal{F}_0$ contains all $\mathbb{P}$-null sets in $\mathcal{F}$.
 
-These conditions simplify stopping-time arguments and ensure good path properties for martingales.
+**Why right-continuity?** Consider the stopping time "the first time Brownian motion exceeds level $a$." Without right-continuity, the event $\{\tau \le t\}$ might fail to be $\mathcal{F}_t$-measurable, creating technical obstacles. Right-continuity ensures that "stopping just after time $t$" is equivalent to "stopping at time $t$" from a measurability standpoint.
+
+**Why completeness?** Probability theory operates "up to null sets." If we cannot distinguish an event $A$ from a null event $N$, we should treat $A \cup N$ and $A \setminus N$ as equivalent. Completeness ensures that all negligible events are properly handled from time zero.
+
+**Convention**: Throughout stochastic calculus, we tacitly assume the usual conditions unless stated otherwise.
 
 ---
 
-## Measurability
+## Measurability Concepts for Stochastic Processes
 
-
-Let \(X=\{X_t\}_{t\ge 0}\) be a process with values in \(\mathbb{R}^d\).
+Let $X = \{X_t\}_{t \ge 0}$ be a stochastic process with values in $\mathbb{R}^d$. Several measurability notions capture different aspects of the relationship between $X$ and the filtration.
 
 ### 1. Adaptedness
 
-\(X\) is **adapted** to \((\mathcal{F}_t)\) if, for each \(t\ge 0\),
-
-
+$X$ is **adapted** to $(\mathcal{F}_t)$ if, for each $t \ge 0$,
 
 $$
 X_t \text{ is } \mathcal{F}_t\text{-measurable}.
 $$
 
+**Interpretation**: The value $X_t$ is determined by information available at time $t$. One cannot "see into the future."
 
+**Example**: If $W_t$ is Brownian motion and $\mathcal{F}_t = \sigma(W_s : 0 \le s \le t)$, then $W_t$ is adapted by construction. However, $W_{t+1}$ is **not** $\mathcal{F}_t$-measurable.
 
+### 2. Progressive Measurability
 
-
-
-Interpretation: \(X_t\) is known at time \(t\).
-
-### 2. Progressively mea
-
-\(X\) is **progressively measurable** if, for each \(t\ge 0\), the map
-
-
+$X$ is **progressively measurable** if, for each $t \ge 0$, the map
 
 $$
-(s,\omega)\mapsto X_s(\omega)\mathbf{1}_{[0,t]}(s)
+(s, \omega) \mapsto X_s(\omega)
 $$
 
+restricted to $[0, t] \times \Omega$ is measurable with respect to $\mathcal{B}([0, t]) \otimes \mathcal{F}_t$.
 
+**Why it matters**: Progressive measurability ensures that stopped processes $X_\tau$ are well-defined and measurable for stopping times $\tau$. It is the natural measurability class for integrands in stochastic integration.
 
+**Key fact**: Every adapted process with **càdlàg** (right-continuous with left limits) or **càglàd** (left-continuous with right limits) paths is progressively measurable.
 
+### 3. Predictability
 
+A process $X$ is **predictable** if it is measurable with respect to the **predictable $\sigma$-algebra** $\mathcal{P}$ on $\Omega \times [0, \infty)$, defined as the $\sigma$-algebra generated by all left-continuous adapted processes.
 
-is measurable with respect to \(\mathcal{B}([0,t])\otimes\mathcal{F}_t\).
+**Equivalent characterization**: $\mathcal{P}$ is generated by sets of the form
 
-This condition is natural for stochastic integration. In particular, adapted processes with suitable regularity (e.g. left-continuous with right limits) are progressively measurable.
+$$
+\{0\} \times F_0 \quad \text{and} \quad (s, t] \times F_s, \quad F_0 \in \mathcal{F}_0, \, F_s \in \mathcal{F}_s, \, 0 \le s < t.
+$$
 
-### 3. Predictable
+**Interpretation**: A predictable process at time $t$ is determined by information strictly before $t$. This "no peeking" property is essential for Itô integration, where the integrand must not anticipate the integrator's jumps.
 
-A process is **predictable** if it is measurable with respect to the predictable \(\sigma\)-algebra (generated by left-continuous adapted processes). Predictability is the most common integrand class for Itô integration.
+### 4. Optional Processes
+
+A process is **optional** if it is measurable with respect to the **optional $\sigma$-algebra** $\mathcal{O}$, generated by all right-continuous adapted processes.
+
+**Hierarchy**: 
+$$
+\text{Predictable} \subset \text{Optional} \subset \text{Progressively measurable} \subset \text{Adapted (+ measurable in } t \text{)}
+$$
+
+For processes with continuous paths (like Brownian motion), these distinctions often collapse, but they become crucial for jump processes.
 
 ---
 
-## Brownian motion
+## Natural Filtrations
 
-
-A standard Brownian motion \(\{W_t\}\) generates a natural filtration
-
-
+Given a stochastic process $X$, its **natural filtration** (or **canonical filtration**) is
 
 $$
-\mathcal{F}_t^W := \sigma(W_s:0\le s\le t).
+\mathcal{F}_t^X := \sigma(X_s : 0 \le s \le t).
 $$
 
+This is the smallest filtration to which $X$ is adapted—it contains exactly the information generated by observing $X$ up to time $t$.
 
-
-
-
-
-One often uses its augmentation (completion + right-continuity):
-
-
+**Brownian motion**: For standard Brownian motion $\{W_t\}$, the natural filtration is
 
 $$
-\mathcal{F}_t := \bigcap_{u>t}\left(\mathcal{F}_u^W \vee \mathcal{N}\right),
+\mathcal{F}_t^W := \sigma(W_s : 0 \le s \le t).
 $$
 
-
-
-
-
-
-where \(\mathcal{N}\) is the collection of \(\mathbb{P}\)-null sets.
-
-With respect to this filtration, Brownian motion has the **independent increments** property in the conditional form:
-
-
+This filtration does **not** automatically satisfy the usual conditions. The standard remedy is to take its **augmentation**:
 
 $$
-W_t-W_s \text{ is independent of } \mathcal{F}_s,\quad 0\le s<t.
+\mathcal{F}_t := \bigcap_{u > t} \sigma\left( \mathcal{F}_u^W \cup \mathcal{N} \right),
 $$
 
-
-
-
-
-
+where $\mathcal{N}$ denotes the collection of $\mathbb{P}$-null sets.
 
 ---
 
+## The Independent Increments Property
 
-## Why filtrations
+For Brownian motion with its (augmented) natural filtration, a fundamental property holds:
 
+$$
+W_t - W_s \text{ is independent of } \mathcal{F}_s \quad \text{for all } 0 \le s < t.
+$$
 
-Stochastic calculus depends critically on information flow:
+This says that the increment $W_t - W_s$ is independent not just of $W_s$, but of the **entire history** up to time $s$.
 
-- In Itô integration \(\int_0^t H_s\,\mathrm{d}W_s\), the integrand \(H_s\) must be determined by information available at time \(s\) (typically predictable).
-- **Martingales** formalize "fair game" behavior relative to \((\mathcal{F}_t)\). We explore the rich martingale structure of Brownian motion in the next section.
-- **Stopping times** formalize random times that can be decided using current information.
+**Why this matters**: This property, combined with the Gaussian nature of increments, makes Brownian motion the canonical "noise" in stochastic calculus. It ensures that:
 
-The framework established here—filtered probability spaces, adapted processes, and information flow—forms the foundation for understanding martingales, stopping times, and ultimately stochastic integration.
+1. The best prediction of $W_t$ given $\mathcal{F}_s$ is simply $W_s$ (martingale property).
+2. Itô integrals have zero mean when the integrand is square-integrable.
+3. The strong Markov property holds.
+
+---
+
+## Enlargement of Filtrations
+
+Sometimes we need to work with filtrations larger than the natural filtration. Common scenarios include:
+
+**Initial enlargement**: Add information about a random variable $G$ to the entire filtration:
+
+$$
+\mathcal{G}_t := \mathcal{F}_t \vee \sigma(G).
+$$
+
+This arises in insider trading models, where an agent knows the terminal stock price from the start.
+
+**Progressive enlargement**: Add information about a random time $\tau$ as it becomes known:
+
+$$
+\mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau \wedge t, \mathbf{1}_{\{\tau \le t\}}).
+$$
+
+This models situations where an event time (like a default) is observed when it occurs.
+
+**Warning**: Enlargement can destroy the martingale property. A key question in enlargement theory: under what conditions does a martingale remain a semimartingale (or even a martingale) in the enlarged filtration?
+
+---
+
+## Why Filtrations Matter: A Preview
+
+The framework of filtered probability spaces is not just abstract scaffolding—it is essential for:
+
+1. **Martingale theory**: A process is a martingale only relative to a specific filtration. The same process may be a martingale under one filtration but not another.
+
+2. **Stochastic integration**: The Itô integral $\int_0^t H_s \, dW_s$ requires the integrand $H_s$ to be predictable (or at least progressively measurable) with respect to the underlying filtration.
+
+3. **Stopping times**: The definition of a stopping time explicitly references the filtration. This determines which random times are "observable" and allows for the optional sampling theorem.
+
+4. **Markov processes**: The Markov property states that the future is independent of the past **given the present**. The filtration specifies what "the past" means.
+
+5. **Mathematical finance**: No-arbitrage theory relies crucially on the filtration. A trading strategy must be predictable—it cannot use future information.
+
+---
+
+## Historical Note
+
+The systematic use of filtrations in probability theory emerged in the mid-20th century, particularly through the work of Joseph Doob and Paul-André Meyer. Doob's monumental treatise *Stochastic Processes* (1953) established martingale theory, while Meyer's school in Strasbourg refined the general theory of processes throughout the 1960s–70s.
+
+The phrase "usual conditions" (or "conditions habituelles" in French) became standard terminology in the Strasbourg school's work. These conditions, while seemingly technical, resolved numerous pathological examples and enabled a clean, unified theory.
+
+---
+
+## Summary
+
+| Concept | Definition | Interpretation |
+|---------|------------|----------------|
+| Filtration $(\mathcal{F}_t)$ | Increasing family of $\sigma$-algebras | Information available over time |
+| Adapted | $X_t$ is $\mathcal{F}_t$-measurable | Present value depends only on past/present |
+| Progressively measurable | Joint measurability in $(t, \omega)$ | Needed for stopping and integration |
+| Predictable | Determined by "strictly past" information | Required for Itô integrands |
+| Natural filtration | $\sigma(X_s : s \le t)$ | Minimal information from observing $X$ |
+| Usual conditions | Right-continuous + complete | Technical regularity for clean theory |
+
+The framework established here—filtered probability spaces, adapted processes, and the hierarchy of measurability concepts—forms the foundation for all that follows: martingales, stopping times, stochastic integration, and the rich interplay between probability and analysis.

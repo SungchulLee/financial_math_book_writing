@@ -22,25 +22,27 @@ nav:
   - Home: index.md
 
   - Part I Math Foundations:
+
       - 1 Stochastic Process:
           - 1.1 Brownian Motion:
-              - Random Walk: ch01/brownian_motion/random_walk_foundations.md
-              - Donsker's Theorem: ch01/brownian_motion/donsker_theorem.md
-              - Bit of History: ch01/brownian_motion/bit_of_history.md
+              - Random Walk Foundations: ch01/brownian_motion/random_walk_foundations.md
               - Random Walk Simulations: ch01/brownian_motion/random_walk_simulations.md
-              - Brownian Motion: ch01/brownian_motion/brownian_motion_foundations.md
-              - Moments of BM: ch01/brownian_motion/moments_of_brownian_motion.md
+              - Donsker's Theorem: ch01/brownian_motion/donsker_theorem.md
+              - Brownian Motion Foundations: ch01/brownian_motion/brownian_motion_foundations.md
+              - Moments of Brownian Motion: ch01/brownian_motion/moments_of_brownian_motion.md
               - Scaling and Time Change: ch01/brownian_motion/scaling_and_time_change.md
               - Reflection Principle: ch01/brownian_motion/reflection_principle_of_brownian_motion.md
-              - BM Simulations: ch01/brownian_motion/brownian_motion_simulations.md
+              - Brownian Motion Simulations: ch01/brownian_motion/brownian_motion_simulations.md
               - Exercise: ch01/brownian_motion/exercise.md
           - 1.2 Martingale:
-              - Filtration: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
-              - Martingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
-              - BM Martingales: ch01/filtration_and_martingales/brownian_motion_martingales.md
-              - Doob–Meyer Decomp: ch01/filtration_and_martingales/doob_meyer_decomposition.md
+              - Filtration and Adapted Processes: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
+              - Martingales and Submartingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
+              - Brownian Motion Martingales: ch01/filtration_and_martingales/brownian_motion_martingales.md
+              - Doob's Maximal Inequality: ch01/filtration_and_martingales/doob_maximal_inequality.md  # NEW
+              - Martingale Convergence: ch01/filtration_and_martingales/martingale_convergence.md  # NEW
               - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
               - Optional Sampling Theorem: ch01/filtration_and_martingales/optional_sampling_theorem.md
+              - Doob–Meyer Decomposition: ch01/filtration_and_martingales/doob_meyer_decomposition.md
               - Exercise: ch01/filtration_and_martingales/exercise.md
 
       - 2 SDE:
@@ -76,8 +78,12 @@ nav:
               - Verifying SDE Solution: ch02/sde/verifying_sde_solutions.md
               - Moment Analysis: ch02/sde/sde_moment_analysis.md
               - SDE Simulation: ch02/sde/sde_simulation.md
-          - 2.5 Exist & Uniq:
-              - Existence and Uniqueness: ch02/diffusion_process/existence_and_uniqueness_of_sdes.md
+
+          - 2.5 Existence & Uniqueness:  # EXPAND
+              - Lipschitz and Growth Conditions: ch02/existence_uniqueness/lipschitz_conditions.md
+              - Picard Iteration: ch02/existence_uniqueness/picard_iteration.md
+              - Strong vs Weak Solutions: ch02/existence_uniqueness/strong_vs_weak.md
+
           - 2.6 Diffusion Process:
               - Diffusion Process Overview: ch02/diffusion_process/diffusion_process_overview.md
               - Strong Markov Property: ch02/diffusion_process/strong_markov_property.md
@@ -85,7 +91,13 @@ nav:
               - Invariant Measures: ch02/diffusion_process/invariant_measures_and_stationarity.md
               - Time Reversal of Diffusions: ch02/diffusion_process/time_reversal_of_diffusions.md
               - Large Deviations: ch02/diffusion_process/small_noise_and_large_deviations.md
-          - 2.7 Infinitesimal Gen:
+
+          - 2.7 Infinitesimal Generator:  # ADD
+              - Kolmogorov Backward Equation: ch02/infinitesimal_generator/kolmogorov_backward.md
+              - Fokker-Planck Equation: ch02/infinitesimal_generator/fokker_planck.md
+              - Feynman-Kac Formula: ch02/infinitesimal_generator/feynman_kac.md
+
+          - 2.8 Infinitesimal Gen:
               - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
               - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
               - Generator and Martingale: ch02/infinitesimal_generator/generator_and_martingales.md

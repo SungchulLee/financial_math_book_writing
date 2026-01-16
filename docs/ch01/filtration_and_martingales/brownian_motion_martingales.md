@@ -1,350 +1,318 @@
-# Martingale
+# Brownian Motion Martingales
 
+## Introduction
 
-The martingale property is one of the defining features of Brownian motion and underpins its role in stochastic calculus, financial modeling, and diffusion theory. In this section, we explore the various martingales associated with Brownian motion, beginning with foundational definitions and gradually building up to polynomial and exponential martingales.
+Brownian motion occupies a unique position in probability theory: it is simultaneously the simplest continuous-time stochastic process and the most fundamental. Its martingale properties are not merely technical facts but reveal deep structural truths about the nature of randomness.
 
----
-
-## Definition
-
-
-Recall that a filtered probability space \((\Omega, \mathcal{F}, (\mathcal{F}_t)_{t\ge 0}, \mathbb{P})\) consists of a probability space together with a filtration—an increasing family of \(\sigma\)-algebras representing information available up to time \(t\).
-
-A stochastic process \(X = \{X_t\}_{t\ge 0}\) is a **martingale** with respect to the filtration \(\{\mathcal{F}_t\}\) if:
-
-1. **Adaptedness**: \(X_t\) is \(\mathcal{F}_t\)-measurable for all \(t \ge 0\),
-2. **Integrability**: \(\mathbb{E}|X_t| < \infty\) for all \(t \ge 0\),
-3. **Martingale property**: For all \(0 \le s < t\):
-
-
-   $$
-   \mathbb{E}[X_t \mid \mathcal{F}_s] = X_s
-   $$
-
-
-
-**Interpretation**: A martingale represents a "fair game"—the best prediction of the future value \(X_t\), given all information up to time \(s\), is simply the current value \(X_s\).
-
-**Submartingales and supermartingales**: If the equality is replaced by \(\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s\), we have a **submartingale** (drifts upward on average). If \(\mathbb{E}[X_t \mid \mathcal{F}_s] \le X_s\), we have a **supermartingale** (drifts downward on average).
+In this section, we systematically develop the martingale structure of Brownian motion, proceeding from the basic martingale property through polynomial martingales to the exponential martingale. A remarkable fact emerges: these seemingly disparate martingales are all manifestations of a single underlying structure.
 
 ---
 
-## Brownian motion
+## Brownian Motion as a Martingale
 
+Let $W = \{W_t\}_{t \ge 0}$ be a standard Brownian motion on a filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})$, where $(\mathcal{F}_t)$ is the natural filtration augmented to satisfy the usual conditions.
 
-Let \(B_t\) be a standard Brownian motion with respect to its natural filtration \(\mathcal{F}_t = \sigma(B_s: 0 \le s \le t)\). We verify that \(B_t\) is a martingale.
+**Theorem**: $W_t$ is a martingale with respect to $(\mathcal{F}_t)$.
 
-**Proof**: For \(0 \le s < t\), write:
+**Proof**: We verify the three requirements:
 
+1. **Adaptedness**: By construction, $W_t$ is $\mathcal{F}_t$-measurable.
 
-$$
-\mathbb{E}[B_t \mid \mathcal{F}_s]
-= \mathbb{E}[B_s + (B_t - B_s) \mid \mathcal{F}_s]
-= B_s + \mathbb{E}[B_t - B_s \mid \mathcal{F}_s]
-$$
+2. **Integrability**: Since $W_t \sim N(0, t)$, we have $\mathbb{E}|W_t| = \sqrt{2t/\pi} < \infty$.
 
-
-
-Since \(B_t - B_s\) is independent of \(\mathcal{F}_s\) (by the independent increments property) and has zero mean:
-
+3. **Martingale property**: For $0 \le s < t$, decompose $W_t = W_s + (W_t - W_s)$. Then:
 
 $$
-\mathbb{E}[B_t - B_s \mid \mathcal{F}_s] = \mathbb{E}[B_t - B_s] = 0
+\mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s \mid \mathcal{F}_s] + \mathbb{E}[W_t - W_s \mid \mathcal{F}_s].
 $$
 
+Since $W_s$ is $\mathcal{F}_s$-measurable, $\mathbb{E}[W_s \mid \mathcal{F}_s] = W_s$. Since $W_t - W_s$ is independent of $\mathcal{F}_s$ (by the independent increments property) and $\mathbb{E}[W_t - W_s] = 0$:
 
+$$
+\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] = \mathbb{E}[W_t - W_s] = 0.
+$$
+
+Therefore, $\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s$. $\square$
+
+$$
+\boxed{W_t \text{ is a martingale}}
+$$
+
+**Remark**: The martingale property encodes that Brownian motion has "no drift." The best prediction of where the particle will be in the future is its current position. This is the mathematical formalization of "pure noise."
+
+---
+
+## Polynomial Martingales: First Examples
+
+Simple transformations of Brownian motion, when properly compensated, yield new martingales. These compensated processes reveal the moment structure of Brownian motion.
+
+### The Quadratic Martingale: $W_t^2 - t$
+
+**Theorem**: The process $M_t = W_t^2 - t$ is a martingale.
+
+**Proof**: For $0 \le s < t$, we compute $\mathbb{E}[W_t^2 \mid \mathcal{F}_s]$. Writing $W_t = W_s + (W_t - W_s)$:
+
+$$
+W_t^2 = W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2.
+$$
+
+Taking conditional expectations:
+
+$$
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s] + \mathbb{E}[(W_t - W_s)^2].
+$$
+
+Using $\mathbb{E}[W_t - W_s] = 0$ and $\mathbb{E}[(W_t - W_s)^2] = \text{Var}(W_t - W_s) = t - s$:
+
+$$
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t - s).
+$$
 
 Therefore:
 
-
 $$
-\mathbb{E}[B_t \mid \mathcal{F}_s] = B_s
-$$
-
-
-
-
-$$
-\boxed{B_t \text{ is a martingale with respect to its natural filtration.}}
+\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s.
 $$
 
+$$
+\boxed{W_t^2 - t \text{ is a martingale}}
+$$
 
+**Interpretation**: While $\mathbb{E}[W_t^2] = t$ grows linearly, the martingale $W_t^2 - t$ oscillates around zero with no expected drift. The compensation term $t$ exactly cancels the deterministic growth in the second moment.
 
-This fundamental property—that Brownian motion is a martingale—is central to stochastic calculus and mathematical finance. It formalizes the idea that Brownian motion has "no drift" and exhibits purely random fluctuations.
+**Connection to quadratic variation**: This martingale foreshadows the quadratic variation $[W]_t = t$. The process $W_t^2 - [W]_t$ being a martingale is a general fact for continuous local martingales.
+
+### The Cubic Martingale: $W_t^3 - 3tW_t$
+
+**Theorem**: The process $M_t = W_t^3 - 3tW_t$ is a martingale.
+
+**Proof**: We need the third moment of a Gaussian: if $Z \sim N(0, \sigma^2)$, then $\mathbb{E}[Z^3] = 0$ by symmetry.
+
+Expanding $(W_s + (W_t - W_s))^3$ and using the binomial theorem:
+
+$$
+W_t^3 = W_s^3 + 3W_s^2(W_t - W_s) + 3W_s(W_t - W_s)^2 + (W_t - W_s)^3.
+$$
+
+Taking conditional expectations:
+
+$$
+\mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s^2 \cdot 0 + 3W_s \cdot (t-s) + 0 = W_s^3 + 3W_s(t-s).
+$$
+
+Also, $\mathbb{E}[tW_t \mid \mathcal{F}_s] = t \cdot W_s$. Therefore:
+
+$$
+\mathbb{E}[W_t^3 - 3tW_t \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s) - 3tW_s = W_s^3 - 3sW_s.
+$$
+
+$$
+\boxed{W_t^3 - 3tW_t \text{ is a martingale}}
+$$
 
 ---
 
-## Polynomial
+## The Pattern: Hermite Polynomials
 
+The polynomial martingales are not arbitrary—they follow a beautiful pattern connected to **Hermite polynomials**.
 
-Simple polynomial functions of Brownian motion can be adjusted to yield martingales. We establish two key examples.
-
-### 1. B t 2 t
-
-
-**Claim**: The process \(M_t = B_t^2 - t\) is a martingale.
-
-**Proof**: For \(0 \le s < t\), we compute:
-
+Define the probabilist's Hermite polynomials $H_n(x)$ by the generating function:
 
 $$
-\mathbb{E}[B_t^2 \mid \mathcal{F}_s]
-= \mathbb{E}[(B_s + (B_t - B_s))^2 \mid \mathcal{F}_s]
+\exp\left(tx - \frac{t^2}{2}\right) = \sum_{n=0}^\infty \frac{t^n}{n!} H_n(x).
 $$
 
-
-
-Expanding:
-
+The first few are:
 
 $$
-= \mathbb{E}[B_s^2 + 2B_s(B_t - B_s) + (B_t - B_s)^2 \mid \mathcal{F}_s]
+H_0(x) = 1, \quad H_1(x) = x, \quad H_2(x) = x^2 - 1, \quad H_3(x) = x^3 - 3x.
 $$
 
-
-
-Since \(B_s\) is \(\mathcal{F}_s\)-measurable and \(B_t - B_s\) is independent of \(\mathcal{F}_s\):
-
+**Theorem**: For each $n \ge 0$, the process
 
 $$
-= B_s^2 + 2B_s \cdot \mathbb{E}[B_t - B_s] + \mathbb{E}[(B_t - B_s)^2]
+M_t^{(n)} = t^{n/2} H_n\left(\frac{W_t}{\sqrt{t}}\right)
 $$
 
-
-
-Using \(\mathbb{E}[B_t - B_s] = 0\) and \(\text{Var}(B_t - B_s) = t - s\):
-
+is a martingale. Equivalently, if we write $H_n(W_t, t)$ for the process obtained by replacing $x^k$ with $W_t^k$ and multiplying by appropriate powers of $t$:
 
 $$
-= B_s^2 + 0 + (t - s) = B_s^2 + (t - s)
+H_n(W_t, t) = \sum_{k=0}^{\lfloor n/2 \rfloor} \frac{(-1)^k n!}{k!(n-2k)!} W_t^{n-2k} t^k
 $$
 
+is a martingale.
 
+**Examples**:
+
+- $n = 1$: $H_1(W_t, t) = W_t$
+- $n = 2$: $H_2(W_t, t) = W_t^2 - t$  
+- $n = 3$: $H_3(W_t, t) = W_t^3 - 3tW_t$
+- $n = 4$: $H_4(W_t, t) = W_t^4 - 6tW_t^2 + 3t^2$
+
+This pattern continues indefinitely, with each polynomial martingale encoding higher-order moment information.
+
+---
+
+## The Exponential Martingale
+
+The most important Brownian martingale is the **exponential martingale**:
+
+$$
+\boxed{Z_t^\theta = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right)}
+$$
+
+**Theorem**: For any $\theta \in \mathbb{R}$, the process $Z_t^\theta$ is a strictly positive martingale with $\mathbb{E}[Z_t^\theta] = 1$.
+
+**Proof**: For $0 \le s < t$, write:
+
+$$
+Z_t^\theta = \exp\left(\theta W_s - \frac{\theta^2 s}{2}\right) \cdot \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right) = Z_s^\theta \cdot Y,
+$$
+
+where $Y = \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right)$.
+
+Since $W_t - W_s \sim N(0, t-s)$ is independent of $\mathcal{F}_s$:
+
+$$
+\mathbb{E}[Y] = \mathbb{E}\left[\exp(\theta \cdot N(0, t-s))\right] \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right).
+$$
+
+Using the moment generating function $\mathbb{E}[e^{\theta Z}] = e^{\theta^2 \sigma^2/2}$ for $Z \sim N(0, \sigma^2)$:
+
+$$
+\mathbb{E}[Y] = \exp\left(\frac{\theta^2(t-s)}{2}\right) \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right) = 1.
+$$
 
 Therefore:
 
-
 $$
-\mathbb{E}[B_t^2 - t \mid \mathcal{F}_s] = B_s^2 + (t - s) - t = B_s^2 - s
-$$
-
-
-
-Hence:
-
-
-$$
-\boxed{B_t^2 - t \text{ is a martingale.}}
+\mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta \cdot \mathbb{E}[Y] = Z_s^\theta.
 $$
 
-
-
-**Interpretation**: While \(B_t^2\) grows on average (since \(\mathbb{E}[B_t^2] = t\)), subtracting the deterministic term \(t\) removes this trend, yielding a martingale.
-
-### 2. B t 3 3tB
-
-
-**Claim**: The process \(M_t = B_t^3 - 3tB_t\) is a martingale.
-
-**Sketch of proof**: Using the binomial expansion and properties of Brownian increments:
-
-
 $$
-\mathbb{E}[B_t^3 \mid \mathcal{F}_s]
-= \mathbb{E}[(B_s + (B_t - B_s))^3 \mid \mathcal{F}_s]
+\boxed{Z_t^\theta = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) \text{ is a martingale}}
 $$
 
-
-
-Expanding and using independence:
-
-
-$$
-= B_s^3 + 3B_s^2 \cdot \mathbb{E}[B_t - B_s] + 3B_s \cdot \mathbb{E}[(B_t - B_s)^2] + \mathbb{E}[(B_t - B_s)^3]
-$$
-
-
-
-Since \(\mathbb{E}[B_t - B_s] = 0\), \(\mathbb{E}[(B_t - B_s)^2] = t - s\), and \(\mathbb{E}[(B_t - B_s)^3] = 0\) (by symmetry):
-
-
-$$
-= B_s^3 + 3B_s(t - s)
-$$
-
-
-
-Therefore:
-
-
-$$
-\mathbb{E}[B_t^3 - 3tB_t \mid \mathcal{F}_s]
-= B_s^3 + 3B_s(t - s) - 3tB_s
-= B_s^3 - 3sB_s
-$$
-
-
-
-Hence:
-
-
-$$
-\boxed{B_t^3 - 3tB_t \text{ is a martingale.}}
-$$
-
-
-
-**General pattern**: Higher-order polynomial martingales follow similar constructions. The correction terms arise from the moments of Brownian increments.
+**Remark on the compensator**: The term $-\frac{\theta^2 t}{2}$ is exactly what is needed to cancel the exponential growth. This is an instance of a general principle: $\exp(M_t - \frac{1}{2}[M]_t)$ is a local martingale for any continuous local martingale $M_t$.
 
 ---
 
-## Exponential
+## The Generating Function Principle
 
+The exponential martingale is not just another example—it **generates all polynomial martingales**.
 
-One of the most important martingales in stochastic analysis is the **exponential martingale**:
-
-
-$$
-\boxed{Z_t = \exp\left( \theta B_t - \frac{1}{2} \theta^2 t \right)}
-$$
-
-
-
-For any \(\theta \in \mathbb{R}\), the process \(Z_t\) is a strictly positive \(\mathcal{F}_t\)-martingale.
-
-**Verification**: For \(0 \le s < t\), write:
-
+**Theorem**: Expanding $Z_t^\theta$ as a power series in $\theta$:
 
 $$
-Z_t = \exp\left( \theta(B_s + (B_t - B_s)) - \frac{1}{2}\theta^2 t \right)
-= Z_s \cdot \exp\left( \theta(B_t - B_s) - \frac{1}{2}\theta^2(t - s) \right)
+\exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t),
 $$
 
+each coefficient $H_n(W_t, t)$ is a martingale.
 
-
-Taking conditional expectation:
-
-
-$$
-\mathbb{E}[Z_t \mid \mathcal{F}_s]
-= Z_s \cdot \mathbb{E}\left[\exp\left( \theta(B_t - B_s) - \frac{1}{2}\theta^2(t - s) \right)\right]
-$$
-
-
-
-Since \(B_t - B_s \sim N(0, t-s)\) is independent of \(\mathcal{F}_s\):
-
+**Proof**: Since $Z_t^\theta$ is a martingale for each $\theta$, and conditional expectation is linear:
 
 $$
-\mathbb{E}\left[\exp(\theta(B_t - B_s))\right] = \exp\left(\frac{1}{2}\theta^2(t - s)\right)
+\mathbb{E}\left[\sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t) \,\Big|\, \mathcal{F}_s\right] = \sum_{n=0}^\infty \frac{\theta^n}{n!} \mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s].
 $$
 
-
-
-(This is the moment-generating function of a normal random variable.) Therefore:
-
+For this to equal $Z_s^\theta = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_s, s)$ for all $\theta$, we need:
 
 $$
-\mathbb{E}[Z_t \mid \mathcal{F}_s]
-= Z_s \cdot \exp\left(\frac{1}{2}\theta^2(t - s) - \frac{1}{2}\theta^2(t - s)\right)
-= Z_s
+\mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s] = H_n(W_s, s) \quad \text{for each } n. \quad \square
 $$
 
+**Consequences**:
 
+| Power of $\theta$ | Coefficient | Martingale |
+|-------------------|-------------|------------|
+| $\theta^0$ | $1$ | Trivially a martingale |
+| $\theta^1$ | $W_t$ | Brownian motion |
+| $\theta^2$ | $\frac{1}{2}(W_t^2 - t)$ | Compensated square |
+| $\theta^3$ | $\frac{1}{6}(W_t^3 - 3tW_t)$ | Compensated cube |
 
-Thus:
-
-
-$$
-\boxed{Z_t = \exp\left( \theta B_t - \frac{1}{2} \theta^2 t \right) \text{ is a martingale.}}
-$$
-
-
-
-**Applications**:
-
-- **Girsanov's theorem**: \(Z_t\) serves as the Radon–Nikodym derivative for measure changes, allowing us to transform drift in stochastic differential equations.
-- **Risk-neutral pricing**: In financial mathematics, exponential martingales are used to change from the physical measure to the risk-neutral measure.
-- **Wald's identity**: The exponential martingale plays a key role in optional stopping theorems and the analysis of first-passage times.
+This unification is elegant: the exponential martingale encodes **all** moment information about Brownian motion in a single object.
 
 ---
 
-## Connection via
+## Applications of the Exponential Martingale
 
+### 1. Girsanov's Theorem
 
-The polynomial and exponential martingales are intimately connected. Expanding the exponential martingale in powers of \(\theta\):
-
-
-$$
-\exp\left( \theta B_t - \frac{1}{2} \theta^2 t \right)
-= \sum_{n=0}^\infty \frac{1}{n!} \left( \theta B_t - \frac{1}{2} \theta^2 t \right)^n
-$$
-
-
-
-Since the entire expression is a martingale, **the coefficient of each power of \(\theta\) must also be a martingale** (by linearity of conditional expectation). Collecting terms:
-
+The exponential martingale is the **Radon–Nikodym derivative** for changing probability measures. Under the measure $\mathbb{Q}$ defined by
 
 $$
-\begin{array}{lll}
-\displaystyle
-\text{Power of } \theta^0:&&\displaystyle 1&&\text{Martingale}\\
-\\
-\text{Power of } \theta^1:&&\displaystyle B_t&&\text{Martingale}\\
-\\
-\text{Power of } \theta^2:&&\displaystyle \frac{B_t^2}{2} - \frac{t}{2} \quad \Rightarrow \quad B_t^2 - t&&\text{Martingale}\\
-\\
-\text{Power of } \theta^3:&&\displaystyle \frac{B_t^3}{6} - \frac{3tB_t}{6} \quad \Rightarrow \quad B_t^3 - 3tB_t&&\text{Martingale}\\
-\\
-\vdots
-\end{array}
+\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_t} = Z_t^\theta,
 $$
 
+the process $\widetilde{W}_t = W_t - \theta t$ is a $\mathbb{Q}$-Brownian motion. This is the heart of Girsanov's theorem.
 
+**Financial interpretation**: Girsanov allows us to transform a real-world measure (with drift) to a risk-neutral measure (without drift), enabling derivative pricing.
 
-This elegant observation shows that:
+### 2. Moment Generating Functions
 
-1. All polynomial martingales arise naturally from the exponential martingale,
-2. The correction terms (like \(-t\) in \(B_t^2 - t\)) are determined by the variance structure,
-3. Higher-order polynomial martingales follow a systematic pattern.
+For any stopping time $\tau$, the optional sampling theorem (when applicable) gives:
 
-This connection extends to Itô's formula, where the exponential martingale's form reveals the quadratic variation structure of Brownian motion.
+$$
+\mathbb{E}\left[\exp\left(\theta W_\tau - \frac{\theta^2 \tau}{2}\right)\right] = 1.
+$$
+
+This yields the joint Laplace transform of $(W_\tau, \tau)$ and is the key to computing hitting time distributions.
+
+### 3. Large Deviations
+
+The exponential martingale structure underlies **Cramér's theorem** and large deviation estimates for Brownian motion:
+
+$$
+\mathbb{P}(W_t \ge a) \le \exp\left(-\frac{a^2}{2t}\right) \quad \text{for } a > 0.
+$$
+
+This follows by applying Markov's inequality to the exponential martingale.
 
 ---
 
-## Summary
+## The Stochastic Exponential
 
+The exponential martingale is a special case of the **stochastic exponential** (or Doléans-Dade exponential). For any continuous local martingale $M_t$ with $M_0 = 0$, define:
 
-The martingale properties of Brownian motion form a cornerstone of stochastic analysis:
+$$
+\mathcal{E}(M)_t := \exp\left(M_t - \frac{1}{2}[M]_t\right),
+$$
 
-- **Brownian motion itself**: \(B_t\) is a martingale, formalizing its "fair game" nature.
-- **Polynomial martingales**: Simple polynomials corrected by deterministic drift terms:
+where $[M]_t$ is the quadratic variation.
 
+**Theorem**: $\mathcal{E}(M)_t$ is a local martingale. It is the unique solution to:
 
-  $$
-  B_t^2 - t, \quad B_t^3 - 3t B_t, \quad \ldots
-  $$
+$$
+dZ_t = Z_t \, dM_t, \quad Z_0 = 1.
+$$
 
+For Brownian motion, $[W]_t = t$, recovering our exponential martingale:
 
+$$
+\mathcal{E}(\theta W)_t = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right).
+$$
 
-- **Exponential martingale**: The process
+---
 
+## Summary Table
 
-  $$
-  Z_t = \exp\left( \theta B_t - \frac{1}{2} \theta^2 t \right)
-  $$
+| Martingale | Expression | Key Property |
+|------------|------------|--------------|
+| Brownian motion | $W_t$ | Fundamental; "pure noise" |
+| Compensated square | $W_t^2 - t$ | Encodes variance growth |
+| Compensated cube | $W_t^3 - 3tW_t$ | Encodes third moment |
+| Hermite polynomial | $H_n(W_t, t)$ | General $n$-th moment |
+| Exponential | $\exp(\theta W_t - \frac{\theta^2 t}{2})$ | Generates all polynomial martingales |
 
+---
 
+## Looking Ahead
 
-  is central to measure change (Girsanov's theorem) and risk-neutral pricing.
+The martingale structure of Brownian motion is the foundation for:
 
-- **Unified structure**: All polynomial martingales emerge as coefficients in the Taylor expansion of the exponential martingale, revealing deep connections between seemingly different constructions.
+- **Stopping times and optional sampling**: Evaluating martingales at random times
+- **Girsanov's theorem**: Changing probability measures via exponential martingales
+- **Itô calculus**: The exponential martingale satisfies $dZ_t = \theta Z_t \, dW_t$
+- **Risk-neutral pricing**: Discounted prices are martingales under the risk-neutral measure
 
-These martingales serve as building blocks for:
-
-- Stochastic integration (Itô calculus)
-- Change of measure techniques
-- Option pricing and hedging strategies
-- Analysis of stopping times and first-passage problems
-
-In the sections that follow, we develop the theory of stopping times and the Optional Sampling Theorem, which allow us to systematically study these martingales at random times.
+In the next sections, we develop the theory of stopping times and the Optional Sampling Theorem, which allow us to exploit these martingale identities at random times—crucial for boundary value problems and option pricing.
