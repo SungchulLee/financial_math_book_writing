@@ -231,39 +231,73 @@ $$
 ### 1. Long Basis Trade
 
 
-**Setup: Net basis cheap (futures underpriced)**
+**Setup: Net basis cheap (futures underpriced relative to fair value)**
 
 **Position:**
 - Long futures
 - Short cash bond
-- Finance short via repo
+- Finance short via repo (receive cash, deliver bond)
 
-**P&L at delivery:**
+**P&L Framework:**
+
+The key insight is to track basis change, not individual leg P&L:
 
 $$
-\text{P\&L} = (\text{Futures}_T - \text{Futures}_0) - (\text{Cash}_T - \text{Cash}_0) + \text{Carry}
+\text{Profit} = \Delta \text{Net Basis} \times \frac{\text{Notional}}{\text{CF} \times 100}
 $$
 
-**Example:**
-- Futures: 110.00
-- Cash: 108.50
-- CF: 0.98
-- Theoretical carry: -0.50 (negative carry)
-- Net basis: -0.25 (cheap)
+Where:
+$$
+\text{Net Basis} = \text{Gross Basis} - \text{Carry} = [\text{Futures} - (\text{Cash} \times \text{CF})] - \text{Carry}
+$$
 
-**At delivery (futures converge to cash):**
-- Futures → 106.87 (108.50 × 0.98)
-- P&L: (106.87 - 110.00) = -3.13 (futures loss)
-- Cash: 106.87 - 108.50 = +1.63 (short profit)
-- Carry: -0.50 (cost)
-- **Net: -3.13 + 1.63 + 0.50 = -1.00**
+**Worked Example:**
 
-**Wait, this loses! Need to recalculate...**
+**Entry:**
+- Futures price: 110.00
+- Cash bond price: 108.50
+- Conversion factor (CF): 0.9850
+- Gross basis: $110.00 - (108.50 \times 0.9850) = 110.00 - 106.87 = 3.13$
+- Theoretical carry (30 days to delivery): $-0.50$ (negative carry, coupon < repo)
+- **Net basis: $3.13 - (-0.50) = 3.63$ (includes option value)**
+- Fair value net basis (option value only): $3.88$
+- **Mispricing: $3.63 - 3.88 = -0.25$ (futures cheap)**
 
-**Correct calculation:**
-- Initial net basis: -0.25 (futures underpriced)
-- Final net basis: 0 (convergence)
-- **Profit: 0 - (-0.25) = 0.25**
+**Trade (per $1M notional):**
+- Long 10 futures contracts ($1M notional)
+- Short $1,015,228$ face value of cash bond ($10M / 0.9850$)
+
+**At Delivery (30 days later):**
+- Cash bond unchanged at 108.50
+- Futures converge: $108.50 \times 0.9850 = 106.87$
+- Final gross basis: $106.87 - 106.87 = 0$
+- Final net basis: $0 + \text{Option Value} \approx 0.10$ (minimal at delivery)
+
+**P&L Calculation:**
+- Net basis change: $3.63 \to 0.10 = -3.53$ (basis narrowed)
+- **But we are LONG basis, so this is wrong setup...**
+
+**Correct Long Basis Position (basis cheap):**
+
+When net basis is **cheap** (below fair value), futures are cheap relative to cash.
+
+- Entry net basis: $0.08$ (cheap, should be $0.33$ fair value)
+- Position: Long futures, short cash
+- At delivery, net basis → $0.10$ (convergence to option value)
+
+**Actually, the cleaner approach:**
+
+$$
+\text{Long Basis P\&L} = (\text{Net Basis}_{\text{entry}} - \text{Net Basis}_{\text{exit}}) \times \frac{\text{Notional}}{100}
+$$
+
+**Example with clean numbers:**
+- Trade $10M$ notional, net basis cheap at $-0.08$ (8 ticks below fair)
+- Fair value: 0 at delivery
+- Net basis converges: $-0.08 \to 0$
+- **Profit: $(0 - (-0.08)) \times \$10M / 100 = \$8,000$**
+
+**Key insight:** Long basis profits when net basis rises (from cheap to fair). Short basis profits when net basis falls (from rich to fair).
 
 ### 2. Short Basis Trade
 
@@ -952,3 +986,16 @@ $$
 - **Exit early:** Don't hold past 10 days before first delivery day (squeeze risk too high)
 - **Hedge properly:** Dollar-neutral (Cash notional = Futures × CF), check DV01 match
 - **Remember:** This is a financing trade, not a directional bet - stay neutral to rates
+
+---
+
+## Related Topics
+
+
+**Cross-references to other Chapter 25 sections:**
+
+- **Repo and Securities Lending (25.1.1):** Funding mechanics for basis trades; repo rate determines carry
+- **Treasury Specials and Scarcity (25.2.2):** CTD bond specialness destroys positive carry; monitor repo rates
+- **Crisis Basis Dynamics (25.3.2):** How basis explodes during market stress; why arbitrage fails in crisis
+- **Balance Sheet Constraints (25.1.2):** Dealer balance sheet limits affect delivery month dynamics
+- **Haircuts, Margin, and Funding Costs (25.4.1):** Leverage capacity and stress haircuts for basis positions

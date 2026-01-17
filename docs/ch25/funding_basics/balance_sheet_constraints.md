@@ -972,3 +972,16 @@ $$
 - **Monitor regulations:** New rules constantly evolving, stay informed
 - **Accept new reality:** Pre-crisis liquidity isn't coming back, adjust strategies accordingly
 - **Remember:** These constraints make the system safer but markets less liquid - trade-off is permanent
+
+---
+
+## Related Topics
+
+
+**Cross-references to other Chapter 25 sections:**
+
+- **Repo and Securities Lending (25.1.1):** How regulatory constraints affect repo market capacity and pricing
+- **Treasury Specials and Scarcity (25.2.2):** Quarter-end balance sheet reduction creates Treasury scarcity
+- **Liquidity Risk and Spreads (25.3.1):** How dealer constraints translate to wider bid-ask spreads
+- **Crisis Basis Dynamics (25.3.2):** SLR constraint role in 2020 Treasury market dysfunction
+- **Haircuts, Margin, and Funding Costs (25.4.1):** How capital charges affect leverage capacity and funding costs

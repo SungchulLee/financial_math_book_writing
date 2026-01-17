@@ -1084,3 +1084,15 @@ def optimize_portfolio(holdings, returns, constraints):
 - **Plan for stress:** Predetermined actions when spreads double, VIX spikes, volumes collapse
 - **Remember:** Price you see ≠ price you get (especially for large positions in illiquid markets)
 
+---
+
+## Related Topics
+
+
+**Cross-references to other Chapter 25 sections:**
+
+- **Balance Sheet Constraints (25.1.2):** Why dealer intermediation capacity is limited; SLR impact on liquidity provision
+- **Crisis Basis Dynamics (25.3.2):** How illiquidity cascades through basis relationships; correlation breakdown
+- **Haircuts, Margin, and Funding Costs (25.4.1):** Stress haircuts increase when liquidity evaporates
+- **Risk Controls for Leverage (25.4.2):** Liquidity-adjusted position limits; drawdown management
+- **Repo and Securities Lending (25.1.1):** Funding liquidity as driver of market liquidity

@@ -1022,3 +1022,17 @@ def calculate_position_size(current_basis, normal_basis, capital):
 - **Don't average down in crisis** (basis can always widen more, adding to losers fatal)
 - **Exit before delivery month** (last 30 days create squeeze risk, exit 60+ days before)
 - **Remember:** "Arbitrage" opportunities in crisis are unexploitable (no funding, no balance sheet, no capital)
+
+---
+
+## Related Topics
+
+
+**Cross-references to other Chapter 25 sections:**
+
+- **Cash-Futures Basis Trades (25.2.1):** Normal basis dynamics and convergence; delivery month mechanics
+- **Repo and Securities Lending (25.1.1):** Funding mechanics that fail during crises; repo market seizure dynamics
+- **Balance Sheet Constraints (25.1.2):** Why dealers can't arbitrage away crisis dislocations; SLR binding
+- **Liquidity Risk and Spreads (25.3.1):** Bid-ask spread explosion during crises; market impact
+- **Risk Controls for Leverage (25.4.2):** Stop-loss rules and dynamic deleveraging during stress
+- **Haircuts, Margin, and Funding Costs (25.4.1):** Procyclical haircut increases during crises

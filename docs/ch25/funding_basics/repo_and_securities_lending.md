@@ -672,6 +672,418 @@ $$
 
 ---
 
+## Computational Tools
+
+
+**Python implementations for repo and securities lending analysis:**
+
+### 1. Repo Return Calculator
+
+```python
+import numpy as np
+
+def calculate_repo_return(principal, repo_rate, days, haircut):
+    """
+    Calculate repo financing cost and effective leverage.
+    
+    Parameters:
+    -----------
+    principal : float
+        Cash borrowed via repo
+    repo_rate : float
+        Annualized repo rate (e.g., 0.025 for 2.5%)
+    days : int
+        Term of repo in days
+    haircut : float
+        Haircut percentage (e.g., 0.05 for 5%)
+    
+    Returns:
+    --------
+    dict : Contains interest cost, collateral required, effective leverage
+    """
+    # Interest calculation (Actual/360 convention)
+    interest = principal * repo_rate * days / 360
+    
+    # Collateral calculation
+    collateral_required = principal / (1 - haircut)
+    equity_posted = collateral_required - principal
+    
+    # Effective leverage
+    effective_leverage = collateral_required / equity_posted
+    
+    # Cost as percentage of position (annualized)
+    annualized_cost_pct = repo_rate * 360 / days * days / 360  # = repo_rate
+    
+    return {
+        'interest': interest,
+        'collateral_required': collateral_required,
+        'equity_posted': equity_posted,
+        'effective_leverage': effective_leverage,
+        'repurchase_price': principal + interest,
+        'annualized_cost': annualized_cost_pct
+    }
+
+# Example: $10M overnight repo at 2.5% with 5% haircut
+result = calculate_repo_return(
+    principal=10_000_000,
+    repo_rate=0.025,
+    days=1,
+    haircut=0.05
+)
+
+print(f"Interest (1 day): ${result['interest']:,.2f}")
+print(f"Collateral required: ${result['collateral_required']:,.0f}")
+print(f"Effective leverage: {result['effective_leverage']:.1f}×")
+print(f"Repurchase price: ${result['repurchase_price']:,.2f}")
+```
+
+### 2. Specialness and Carry Calculator
+
+```python
+def calculate_carry_and_specialness(bond_price, coupon_rate, days_held,
+                                     gc_rate, special_rate=None):
+    """
+    Calculate carry for holding a bond and specialness premium.
+    
+    Parameters:
+    -----------
+    bond_price : float
+        Clean price of bond
+    coupon_rate : float
+        Annual coupon rate (e.g., 0.04 for 4%)
+    days_held : int
+        Holding period in days
+    gc_rate : float
+        General collateral repo rate
+    special_rate : float, optional
+        Special repo rate if bond is special
+    
+    Returns:
+    --------
+    dict : Carry components and specialness value
+    """
+    # Accrued interest earned
+    coupon_income = bond_price * coupon_rate * days_held / 360
+    
+    # Funding cost (if financing at GC)
+    gc_funding_cost = bond_price * gc_rate * days_held / 360
+    
+    # Net carry at GC
+    carry_at_gc = coupon_income - gc_funding_cost
+    carry_at_gc_bps = carry_at_gc / bond_price * 360 / days_held * 10000
+    
+    result = {
+        'coupon_income': coupon_income,
+        'gc_funding_cost': gc_funding_cost,
+        'carry_at_gc': carry_at_gc,
+        'carry_at_gc_bps': carry_at_gc_bps
+    }
+    
+    # If bond is special
+    if special_rate is not None:
+        special_funding_cost = bond_price * special_rate * days_held / 360
+        carry_at_special = coupon_income - special_funding_cost
+        
+        # Specialness value
+        specialness_bps = (gc_rate - special_rate) * 10000
+        specialness_dollar = bond_price * (gc_rate - special_rate) * days_held / 360
+        
+        result.update({
+            'special_funding_cost': special_funding_cost,
+            'carry_at_special': carry_at_special,
+            'specialness_bps': specialness_bps,
+            'specialness_dollar_value': specialness_dollar
+        })
+    
+    return result
+
+# Example: 10Y Treasury at 98, 4% coupon, held 30 days
+# GC rate 2.5%, special rate 1.0%
+result = calculate_carry_and_specialness(
+    bond_price=98,
+    coupon_rate=0.04,
+    days_held=30,
+    gc_rate=0.025,
+    special_rate=0.01
+)
+
+print(f"Coupon income (30 days): ${result['coupon_income']:,.2f}")
+print(f"Carry at GC: {result['carry_at_gc_bps']:.1f} bps annualized")
+print(f"Carry at special: ${result['carry_at_special']:,.2f}")
+print(f"Specialness: {result['specialness_bps']:.0f} bps")
+print(f"Specialness value: ${result['specialness_dollar_value']:,.2f}")
+```
+
+### 3. Securities Lending Revenue Estimator
+
+```python
+def estimate_lending_revenue(portfolio, lending_params):
+    """
+    Estimate annual securities lending revenue for a portfolio.
+    
+    Parameters:
+    -----------
+    portfolio : list of dict
+        Each dict: {'security': str, 'value': float, 'utilization': float, 
+                    'fee_bps': float}
+    lending_params : dict
+        {'agent_split': float, 'collateral_spread': float}
+    
+    Returns:
+    --------
+    dict : Revenue breakdown and totals
+    """
+    results = []
+    
+    for holding in portfolio:
+        value = holding['value']
+        utilization = holding['utilization']
+        fee_bps = holding['fee_bps']
+        
+        # Gross lending revenue
+        lent_value = value * utilization
+        gross_revenue = lent_value * fee_bps / 10000
+        
+        # Agent takes their cut
+        agent_fee = gross_revenue * lending_params['agent_split']
+        net_revenue = gross_revenue - agent_fee
+        
+        # Collateral reinvestment (if cash collateral)
+        collateral = lent_value * 1.02  # 102% collateralization
+        reinvest_income = collateral * lending_params['collateral_spread']
+        
+        total_revenue = net_revenue + reinvest_income
+        yield_enhancement_bps = total_revenue / value * 10000
+        
+        results.append({
+            'security': holding['security'],
+            'value': value,
+            'lent_value': lent_value,
+            'gross_revenue': gross_revenue,
+            'net_revenue': net_revenue,
+            'reinvest_income': reinvest_income,
+            'total_revenue': total_revenue,
+            'yield_enhancement_bps': yield_enhancement_bps
+        })
+    
+    # Portfolio totals
+    total_value = sum(r['value'] for r in results)
+    total_revenue = sum(r['total_revenue'] for r in results)
+    portfolio_yield_enhancement = total_revenue / total_value * 10000
+    
+    return {
+        'holdings': results,
+        'total_value': total_value,
+        'total_revenue': total_revenue,
+        'portfolio_yield_enhancement_bps': portfolio_yield_enhancement
+    }
+
+# Example portfolio
+portfolio = [
+    {'security': 'OTR 10Y Treasury', 'value': 50_000_000, 
+     'utilization': 0.80, 'fee_bps': 100},
+    {'security': 'OFR 10Y Treasury', 'value': 30_000_000, 
+     'utilization': 0.40, 'fee_bps': 25},
+    {'security': 'Corporate Bond', 'value': 20_000_000, 
+     'utilization': 0.60, 'fee_bps': 75}
+]
+
+params = {
+    'agent_split': 0.30,  # Agent takes 30%
+    'collateral_spread': 0.002  # 20 bps reinvestment spread
+}
+
+result = estimate_lending_revenue(portfolio, params)
+
+print(f"\nPortfolio Lending Revenue Analysis")
+print("=" * 60)
+for h in result['holdings']:
+    print(f"{h['security']:20s}: ${h['total_revenue']:>12,.0f} "
+          f"({h['yield_enhancement_bps']:.1f} bps)")
+print("-" * 60)
+print(f"{'Total':20s}: ${result['total_revenue']:>12,.0f} "
+      f"({result['portfolio_yield_enhancement_bps']:.1f} bps)")
+```
+
+### 4. Haircut Stress Test
+
+```python
+def haircut_stress_test(positions, normal_haircuts, stress_multiplier=3):
+    """
+    Test portfolio leverage capacity under stress haircuts.
+    
+    Parameters:
+    -----------
+    positions : dict
+        Asset class -> market value
+    normal_haircuts : dict
+        Asset class -> normal haircut %
+    stress_multiplier : float
+        How much haircuts increase in stress (typically 2-3×)
+    
+    Returns:
+    --------
+    dict : Normal vs stress borrowing capacity
+    """
+    results = {'normal': {}, 'stress': {}}
+    
+    total_value = sum(positions.values())
+    
+    normal_borrowing = 0
+    stress_borrowing = 0
+    
+    for asset, value in positions.items():
+        normal_haircut = normal_haircuts.get(asset, 0.20)  # Default 20%
+        stress_haircut = min(normal_haircut * stress_multiplier, 0.80)
+        
+        normal_borrow = value * (1 - normal_haircut)
+        stress_borrow = value * (1 - stress_haircut)
+        
+        normal_borrowing += normal_borrow
+        stress_borrowing += stress_borrow
+        
+        results['normal'][asset] = {
+            'value': value,
+            'haircut': normal_haircut,
+            'borrowing_capacity': normal_borrow
+        }
+        results['stress'][asset] = {
+            'value': value,
+            'haircut': stress_haircut,
+            'borrowing_capacity': stress_borrow
+        }
+    
+    equity_needed_normal = total_value - normal_borrowing
+    equity_needed_stress = total_value - stress_borrowing
+    
+    max_leverage_normal = total_value / equity_needed_normal
+    max_leverage_stress = total_value / equity_needed_stress
+    
+    return {
+        'normal': results['normal'],
+        'stress': results['stress'],
+        'total_value': total_value,
+        'normal_borrowing': normal_borrowing,
+        'stress_borrowing': stress_borrowing,
+        'equity_normal': equity_needed_normal,
+        'equity_stress': equity_needed_stress,
+        'max_leverage_normal': max_leverage_normal,
+        'max_leverage_stress': max_leverage_stress,
+        'leverage_reduction': (max_leverage_normal - max_leverage_stress) / max_leverage_normal
+    }
+
+# Example: $100M portfolio
+positions = {
+    'Treasuries': 50_000_000,
+    'IG Corporates': 30_000_000,
+    'HY Corporates': 20_000_000
+}
+
+haircuts = {
+    'Treasuries': 0.02,
+    'IG Corporates': 0.10,
+    'HY Corporates': 0.25
+}
+
+stress = haircut_stress_test(positions, haircuts, stress_multiplier=3)
+
+print(f"\nHaircut Stress Test Results")
+print("=" * 60)
+print(f"Total portfolio: ${stress['total_value']:,.0f}")
+print(f"\nNormal conditions:")
+print(f"  Borrowing capacity: ${stress['normal_borrowing']:,.0f}")
+print(f"  Equity required: ${stress['equity_normal']:,.0f}")
+print(f"  Max leverage: {stress['max_leverage_normal']:.1f}×")
+print(f"\nStress conditions (3× haircuts):")
+print(f"  Borrowing capacity: ${stress['stress_borrowing']:,.0f}")
+print(f"  Equity required: ${stress['equity_stress']:,.0f}")
+print(f"  Max leverage: {stress['max_leverage_stress']:.1f}×")
+print(f"\nLeverage reduction in stress: {stress['leverage_reduction']:.1%}")
+```
+
+---
+
+## Rehypothecation and Collateral Chains
+
+
+**Understanding collateral reuse:**
+
+### 1. What Is Rehypothecation?
+
+
+**Definition:**
+
+Rehypothecation is the practice where a broker-dealer or bank reuses collateral posted by clients for their own financing or trading purposes.
+
+**Example chain:**
+1. Hedge fund posts $\$100M$ Treasuries to Prime Broker A
+2. Prime Broker A uses those Treasuries as collateral for repo with Bank B
+3. Bank B uses same Treasuries for repo with Money Fund C
+4. **Same $\$100M$ appears 3 times in the system!**
+
+**Mathematical representation:**
+
+$$
+\text{Collateral Velocity} = \frac{\text{Total Pledged Collateral}}{\text{Original Collateral}}
+$$
+
+**Example:**
+- Original: $\$100M$
+- Total pledged: $\$280M$ (across 3 uses)
+- **Velocity: 2.8**
+
+### 2. Benefits and Risks
+
+
+**Benefits:**
+- Increases market liquidity
+- Reduces funding costs
+- Efficient use of high-quality collateral
+
+**Systemic risks:**
+- **Interconnectedness:** One default triggers chain of margin calls
+- **Scarcity in stress:** Everyone recalls collateral simultaneously
+- **Opacity:** Hard to track true ownership and claims
+- **Velocity contraction:** In crisis, rehypothecation stops, funding evaporates
+
+**2008 experience:**
+- Lehman's failure triggered massive collateral disputes
+- Clients couldn't recover rehypothecated assets
+- $\$105B$ in customer assets at Lehman UK frozen for years
+
+### 3. Regulatory Limits
+
+
+**Post-2008 reforms:**
+
+| Jurisdiction | Rehypothecation Limit |
+|--------------|----------------------|
+| US (Reg T) | 140% of client debit balance |
+| UK (pre-2008) | Unlimited |
+| UK (post-2015) | Limited to value of client borrowing |
+| EU (SFTR) | Explicit consent required |
+
+**Practical implications:**
+- Client can limit rehypothecation rights
+- Lower rehypothecation → Higher fees (prime broker charges more)
+- Trade-off between cost and safety
+
+### 4. Risk Management
+
+
+**For hedge funds:**
+- **Negotiate rehypothecation caps:** Limit what PB can reuse
+- **Excess margin protection:** Keep excess above 140%
+- **Diversify prime brokers:** Don't concentrate with single PB
+- **Monitor collateral location:** Know where your assets are
+
+**For asset owners:**
+- **Prohibit rehypothecation:** In securities lending, can prohibit
+- **Segregated accounts:** Assets in separate custody, not rehypothecated
+- **Right of substitution:** Require immediate return, not "equivalent"
+
+---
+
 ## Common Mistakes
 
 
@@ -1102,3 +1514,15 @@ $$
 - **Securities lending:** Conservative cash reinvestment (Treasuries only), negotiate fair fee splits (70/30+), maintain recall rights for corporate actions
 - **Risk management:** Daily mark-to-market, enforce fails charges (3% penalty), diversify counterparties, match funding duration to position duration
 - **Remember:** These are secured transactions but not risk-free - collateral can decline, counterparties can default, and markets can seize
+
+---
+
+## Related Topics
+
+
+**Cross-references to other Chapter 25 sections:**
+
+- **Balance Sheet Constraints (25.1.2):** Why dealer capacity for repo is limited post-Basel III; SLR impact on financing availability
+- **Treasury Specials and Scarcity (25.2.2):** When specific securities command premium repo rates; specialness creates carry opportunities
+- **Haircuts, Margin, and Funding Costs (25.4.1):** Detailed haircut calculation methods; stress testing framework for collateral
+- **Crisis Basis Dynamics (25.3.2):** How repo market stress affects basis trades; funding liquidity during crises

@@ -364,6 +364,122 @@ $$
 - 99% confidence
 - Stressed period calibration
 
+### 8. SIMM (Standard Initial Margin Model)
+
+
+**For uncleared OTC derivatives (post-2016 UMR rules):**
+
+**Overview:**
+
+The Standard Initial Margin Model (SIMM) is an industry-standard model developed by ISDA for calculating initial margin on non-centrally cleared derivatives. Required under Uncleared Margin Rules (UMR) for counterparties above certain thresholds.
+
+**SIMM Formula:**
+
+$$
+\text{SIMM} = \sqrt{\sum_{r} \left(\sum_k \text{WS}_k\right)^2 + \sum_{r}\sum_{k \ne l} \rho_{kl} \cdot \text{WS}_k \cdot \text{WS}_l}
+$$
+
+Where:
+- $\text{WS}_k$ = Weighted sensitivity for risk factor $k$
+- $\rho_{kl}$ = Correlation between risk factors
+- $r$ = Risk class (interest rate, credit, equity, commodity, FX)
+
+**Sensitivity Types:**
+
+| Risk Class | Sensitivities | Typical Risk Weight |
+|------------|--------------|---------------------|
+| Interest Rate | Delta, Vega, Curvature | 50-150 bps per $1M DV01 |
+| Credit | Delta (spread), Vega | 200-600 bps by rating |
+| Equity | Delta, Vega, Curvature | 15-70% depending on bucket |
+| Commodity | Delta, Vega, Curvature | 15-55% by commodity type |
+| FX | Delta, Vega, Curvature | 4-8% by currency pair |
+
+**Example Calculation (Interest Rate Swap):**
+
+$50M notional 10Y IRS:
+- DV01: $45,000$
+- IR Delta Risk Weight: 0.60%
+- Weighted Sensitivity: $45,000 \times 0.60\% \times 100 = \$27,000$
+- Add vega if options embedded
+- **SIMM ≈ $\$500,000 - \$1,000,000$** (depending on portfolio offsets)
+
+**Key Features:**
+
+1. **Regulatory transparency:** Approved by regulators globally
+2. **Netting benefit:** Reduces margin vs. add-on approaches for hedged portfolios
+3. **Risk-sensitive:** Reflects actual risk profile, not just notional
+4. **Calibration:** Updated annually (ISDA SIMM versions)
+
+**Comparison to Grid/Schedule Approaches:**
+
+| Approach | Margin Level | Netting | Complexity |
+|----------|-------------|---------|------------|
+| Grid/Schedule | Higher (conservative) | Limited | Low |
+| SIMM | Lower (risk-sensitive) | Full | High |
+| Internal Models | Lowest | Full | Highest |
+
+**Practical implications:**
+- Threshold: Counterparties with $\$50M+$ AANA (average aggregate notional amount) subject to UMR
+- Posting frequency: Daily
+- Eligible collateral: Cash, government bonds (with haircuts)
+- Segregation: Required at third-party custodian
+
+**Python approximation:**
+
+```python
+def estimate_simm_ir_swap(notional, tenor, dv01_per_bp):
+    """
+    Simplified SIMM estimate for vanilla IRS.
+    
+    Parameters:
+    -----------
+    notional : float
+        Notional in millions
+    tenor : int
+        Swap tenor in years
+    dv01_per_bp : float
+        DV01 per basis point
+    
+    Returns:
+    --------
+    float : Estimated SIMM in dollars
+    """
+    # Risk weights by tenor bucket (simplified)
+    risk_weights = {
+        2: 0.0045,  # 45 bps
+        5: 0.0060,  # 60 bps
+        10: 0.0072,  # 72 bps
+        30: 0.0090   # 90 bps
+    }
+    
+    # Select closest bucket
+    tenor_bucket = min(risk_weights.keys(), 
+                       key=lambda x: abs(x - tenor))
+    rw = risk_weights[tenor_bucket]
+    
+    # Delta sensitivity
+    delta_sens = abs(dv01_per_bp) * 100  # Convert to per 100 bps
+    weighted_sens = delta_sens * rw
+    
+    # Add concentration threshold (~10% uplift)
+    concentration_factor = 1.10
+    
+    # Add vega estimate (~15% of delta for vanilla)
+    vega_adder = 0.15
+    
+    simm_estimate = weighted_sens * concentration_factor * (1 + vega_adder)
+    
+    return simm_estimate
+
+# Example: $50M 10Y swap with $45,000 DV01
+simm = estimate_simm_ir_swap(
+    notional=50,
+    tenor=10,
+    dv01_per_bp=450  # $450 per bp per $1M, so $45,000 for $50M
+)
+print(f"Estimated SIMM: ${simm:,.0f}")
+```
+
 ---
 
 ## Funding Costs
@@ -1127,3 +1243,16 @@ print(f"Leverage: {sizing['recommended_leverage']:.1f}×")
 - **Quarter-end planning:** Repo rates spike 100-250 bps for 3 days each quarter/year, budget accordingly
 - **Monitor daily:** Track leverage ratio, available capacity, funding costs, margin utilization, cash reserves
 - **Remember:** Stress makes everything worse simultaneously - haircuts up, funding costs up, margin calls up, leverage down
+
+---
+
+## Related Topics
+
+
+**Cross-references to other Chapter 25 sections:**
+
+- **Repo and Securities Lending (25.1.1):** Haircuts in repo transactions; how collateral quality affects borrowing capacity
+- **Balance Sheet Constraints (25.1.2):** How regulatory capital requirements interact with margin and leverage
+- **Risk Controls for Leverage (25.4.2):** Leverage limits and dynamic adjustment based on margin capacity
+- **Crisis Basis Dynamics (25.3.2):** Procyclical haircuts and margin calls during market stress
+- **Liquidity Risk and Spreads (25.3.1):** How funding costs reflect market liquidity conditions

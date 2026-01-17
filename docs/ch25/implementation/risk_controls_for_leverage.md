@@ -1072,3 +1072,16 @@ dashboard = risk_dashboard(
 - **Monitor continuously:** Daily dashboard, real-time alerts, don't wait for month-end
 - **Preemptive deleveraging:** Reduce at 80% of limits (don't wait for forced margin call)
 - **Remember:** More funds die from overleveraging than bad strategy - survival beats optimization
+
+---
+
+## Related Topics
+
+
+**Cross-references to other Chapter 25 sections:**
+
+- **Haircuts, Margin, and Funding Costs (25.4.1):** How leverage capacity is determined by haircuts and margin requirements
+- **Balance Sheet Constraints (25.1.2):** Regulatory leverage limits (SLR) and their impact on market function
+- **Crisis Basis Dynamics (25.3.2):** Why leveraged positions blow up during crises; LTCM case study
+- **Liquidity Risk and Spreads (25.3.1):** Liquidity-adjusted leverage limits; position sizing for exit capacity
+- **Repo and Securities Lending (25.1.1):** Funding sources for leverage; diversification requirements
