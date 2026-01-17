@@ -272,6 +272,7 @@ nav:
               - Forward Pricing Map vs Inverse Calibration Map: ch08/calibration_as_inverse_problem/forward_pricing_map_vs_inverse_calibration_map.md
               - Ill-Posedness and Non-Uniqueness: ch08/calibration_as_inverse_problem/ill_posedness_and_non_uniqueness.md
               - Identifiability of Model Parameters: ch08/calibration_as_inverse_problem/identifiability_of_model_parameters.md
+              - Optimization Algorithms: ch08/calibration_as_inverse_problem/optimization_algorithms.md
           - 8.2 Static C to Vanilla Option:
               - Calibration to Implied Volatility Surface: ch08/static_calibration_to_vanilla_options/calibration_to_implied_volatility_surface.md
               - Choice of Objective Function: ch08/static_calibration_to_vanilla_options/choice_of_objective_function.md
@@ -284,10 +285,13 @@ nav:
               - Dupire Equation as an Inverse Problem: ch08/calibration_of_local_volatility/dupire_equation_as_inverse_problem.md
               - Noise Amplification and Smoothing: ch08/calibration_of_local_volatility/noise_amplification_and_smoothing.md
               - Stability Issues: ch08/calibration_of_local_volatility/stability_issues.md
+              - SVI Parameterization: ch08/calibration_of_local_volatility/svi_parameterization.md
+              - Numerical Differentiation: ch08/calibration_of_local_volatility/numerical_differentiation.md
           - 8.5 Dynamic C and Consistency:
               - Recalibration Problem: ch08/dynamic_calibration_and_time_consistency/recalibration_problem.md
               - Forward Consistency: ch08/dynamic_calibration_and_time_consistency/forward_consistency.md
               - Model Drift vs Parameter Drift: ch08/dynamic_calibration_and_time_consistency/model_drift_vs_parameter_drift.md
+              - Filtering for Time-Varying Parameters: ch08/dynamic_calibration_and_time_consistency/filtering_time_varying_parameters.md
           - 8.6 Model Risk from C:
               - Sensitivity of Prices to Calibration Error: ch08/model_risk_from_calibration/sensitivity_of_prices_to_calibration_error.md
               - Impact on Greeks and Hedging: ch08/model_risk_from_calibration/impact_on_greeks_and_hedging.md
