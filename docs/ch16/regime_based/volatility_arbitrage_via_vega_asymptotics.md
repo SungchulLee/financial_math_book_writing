@@ -38,7 +38,7 @@ $$
 
 ---
 
-## The Mathematical
+## The Mathematical Foundation
 
 
 <p align="center">
@@ -46,7 +46,7 @@ $$
 </p>
 <p align="center"><em>Figure 2: Vega per dollar invested comparison demonstrating capital efficiency advantage of mid-term options</em></p>
 
-### 1. Vega Scaling Law
+### 1. Vega Scaling Law: The Square Root Relationship
 
 
 <p align="center">
@@ -84,7 +84,7 @@ $$
 
 **Critical insight:** Vega scales as **√τ**, not **τ**.
 
-### 2. Vega Efficiency
+### 2. Vega Efficiency Per Dollar
 
 
 <p align="center">
@@ -126,7 +126,7 @@ Mid-term (30-90 days) balances:
 - Acceptable capital efficiency (1/√τ decay not too severe)
 - Reasonable theta cost
 
-### 3. The Optimal
+### 3. The Optimal Maturity Selection
 
 
 Maximizing **net vega exposure per unit theta cost**:
@@ -152,7 +152,7 @@ $$
 - But not too long (capital tied up, liquidity poor)
 - **Sweet spot: 30-90 days**
 
-### 4. The Gamma-Vega
+### 4. The Gamma-Vega Trade-Off
 
 
 As maturity varies:
@@ -180,10 +180,10 @@ $$
 
 ---
 
-## The Structure
+## The Strategy Structure
 
 
-### 1. Basic Vega
+### 1. Basic Vega Position
 
 
 **Objective:** Maximize vega exposure while managing other Greeks.
@@ -232,10 +232,10 @@ Instead of buying 1 back / selling 1 front, buy 1.73 back / sell 1 front for veg
 
 ---
 
-## The Portfolio
+## Portfolio Construction
 
 
-### 1. Mid-Maturity Vega
+### 1. Mid-Maturity Vega Strategy
 
 
 $$
@@ -286,12 +286,12 @@ $$
 
 ---
 
-## Economic
+## Economic Foundations
 
 
 **Understanding what vega asymptotics REALLY represents economically:**
 
-### 1. The Core Economic
+### 1. The Core Economic Trade-Offs
 
 
 **Vega arbitrage via asymptotics exploits maturity-dependent pricing inefficiencies:**
@@ -309,7 +309,7 @@ You're NOT betting on volatility direction alone—you're betting on:
 2. **Optimal maturity selection** (asymptotic advantage)
 3. **Capital efficiency** (vega per dollar)
 
-### 2. Why Vega
+### 2. Why Vega Asymptotic Strategies Exist
 
 
 **1. Mathematical asymmetry:**
@@ -364,7 +364,7 @@ Typical VRP by maturity:
 
 **Vega arbitrage captures the 30-90 day premium sweet spot.**
 
-### 3. The Term
+### 3. The Term Structure of Volatility
 
 
 **Forward vega concept:**
@@ -388,7 +388,7 @@ $$
 - Short fairly-priced maturity
 - Capture convergence
 
-### 4. Professional
+### 4. Professional Perspective
 
 
 **Institutional vega arbitrage strategies:**
@@ -435,7 +435,7 @@ $$
 
 **Capital savings:** 40-60% less capital vs. full replication.
 
-### 5. The Empirical
+### 5. The Empirical Evidence
 
 
 **Historical vega asymptotic patterns (SPX options 2015-2024):**
@@ -485,7 +485,7 @@ Win rate: 64%
 
 **Conclusion:** Mid-term vega positions historically profitable with reasonable risk.
 
-### 6. When Vega
+### 6. When Vega Asymptotic Strategies Work
 
 
 **Genuine edge exists when:**
@@ -534,7 +534,7 @@ Understanding these economic foundations helps recognize when vega asymptotic st
 ## The P&L Formula
 
 
-### 1. Primary P&L
+### 1. Primary P&L: Vega Component
 
 
 $$
@@ -553,7 +553,7 @@ $$
 - IV change: 25% → 30% (+5 points)
 - **Vega P&L: 4.2 × 5 = +$21 per contract = +$210 total**
 
-### 2. Secondary Effect
+### 2. Secondary Effect: Theta and Gamma
 
 
 $$
@@ -571,7 +571,7 @@ $$
 - Theta cost: -$0.30 × 10 = -$3 per contract
 - **Total theta cost: -$30**
 
-### 3. Complete P&L
+### 3. Complete P&L Decomposition
 
 
 $$
@@ -609,7 +609,7 @@ $$
 ## Concrete Example
 
 
-### 1. Pension Duration
+### 1. Case Study: Term Structure Arbitrage
 
 
 **Setup (SPX at 4500):**
@@ -695,7 +695,7 @@ Let me redo with realistic scenario:
 
 ---
 
-### 2. Transition Risk
+### 2. Case Study: Vega Roll
 
 
 **Compare 3 maturities for same volatility bet:**
@@ -721,7 +721,7 @@ Let me redo with realistic scenario:
 
 ---
 
-### 3. Portable Alpha
+### 3. Case Study: Institutional Vega Trade
 
 
 **Setup:**
@@ -769,7 +769,7 @@ As term structure normalizes, 90-day IV rises faster than 30-day, profit from th
 
 **Step-by-step implementation framework:**
 
-### 1. Objective: Choose
+### 1. Objective: Choose Your Vega Exposure
 
 
 **Objective:** Choose maturity that maximizes vega per unit theta.
@@ -793,7 +793,7 @@ $$
 
 **Empirically:** 60-90 days for most vega trades.
 
-### 2. Choose structure
+### 2. Choose Structure Based on View
 
 
 **Choose structure based on goal:**
@@ -814,7 +814,7 @@ $$
 - Lower cost than straddle
 - Concentrated vega in narrow range
 
-### 3. Maximum vega
+### 3. Maximum Vega Position Sizing
 
 
 **Maximum vega exposure:**
@@ -841,7 +841,7 @@ Example:
 
 **Conservative: Start with 50% of max, scale into full size.**
 
-### 4. Entry checklist:
+### 4. Entry Checklist
 
 
 **Entry checklist:**
@@ -861,7 +861,7 @@ Example:
 3. **Monitor skew** (can affect ATM pricing)
 4. **Avoid earnings week** (unless that's the catalyst)
 
-### 5. Daily monitoring:
+### 5. Daily Monitoring
 
 
 **Daily monitoring:**
@@ -884,7 +884,7 @@ Example:
 - Time stop: 50% of time elapsed with no favorable IV move
 - **Cut losses quickly**
 
-### 6. Exit triggers: 1
+### 6. Exit Triggers
 
 
 **Exit triggers:**

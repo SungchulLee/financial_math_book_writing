@@ -28,10 +28,10 @@ $$
 
 ---
 
-## What Are Market
+## What Are Market Regimes
 
 
-### 1. Definition
+### 1. Definition of Market Regimes
 
 
 A **market regime** is a persistent pattern of market behavior characterized by:
@@ -43,7 +43,7 @@ A **market regime** is a persistent pattern of market behavior characterized by:
 
 **Regimes are not static:** Markets transition between regimes based on macro conditions, policy changes, and structural shifts.
 
-### 2. The Three Core
+### 2. The Three Core Volatility Regimes
 
 
 **1. Low Volatility Regime (Grinding):**
@@ -72,10 +72,10 @@ A **market regime** is a persistent pattern of market behavior characterized by:
 
 ---
 
-## Regime
+## Regime Identification
 
 
-### 1. Quantitative
+### 1. Quantitative Indicators
 
 
 **Primary metrics:**
@@ -109,7 +109,7 @@ Skew 5-12:  Normal
 Skew > 15:  Fear regime
 ```
 
-### 2. Regime Transition
+### 2. Regime Transition Signals
 
 
 **Low → Medium:**
@@ -138,10 +138,10 @@ Skew > 15:  Fear regime
 
 ---
 
-## Economic
+## Economic Foundations
 
 
-### 1. The Core Economic
+### 1. The Core Economic Framework
 
 
 **Each regime rewards different exposures:**
@@ -161,7 +161,7 @@ Skew > 15:  Fear regime
 - Punishes: Short gamma (gets run over), naked short vol
 - Why: Realized vol exceeds implied, gaps destroy short positions
 
-### 2. Why These Regime
+### 2. Why These Regime Categories Work
 
 
 **1. Volatility clustering:**
@@ -179,7 +179,7 @@ Skew > 15:  Fear regime
 - High vol: Panic buying, forced liquidations
 - Flow imbalances create tradable dislocations
 
-### 3. Professional
+### 3. Professional Perspective
 
 
 **Market makers:**
@@ -199,10 +199,10 @@ Skew > 15:  Fear regime
 
 ---
 
-## Strategy Selection
+## Strategy Selection by Regime
 
 
-### 1. Low Volatility
+### 1. Low Volatility Regime Strategies
 
 
 **Favored strategies:**
@@ -218,7 +218,7 @@ Skew > 15:  Fear regime
 
 **Position sizing:** Conservative (3-5% risk) - blow-ups happen here
 
-### 2. Medium Volatility
+### 2. Medium Volatility Regime Strategies
 
 
 **Favored strategies:**
@@ -233,7 +233,7 @@ Skew > 15:  Fear regime
 
 **Position sizing:** Moderate (2-3% risk)
 
-### 3. High Volatility
+### 3. High Volatility Regime Strategies
 
 
 **Favored strategies:**
@@ -256,7 +256,7 @@ Skew > 15:  Fear regime
 
 **Step-by-step implementation framework:**
 
-### 1. Daily regime
+### 1. Daily Regime Assessment
 
 
 **Daily regime check:**
@@ -283,7 +283,7 @@ Skew > 15:  Fear regime
    - Are correlations increasing?
    - Regime stable or transitioning?
 
-### 2. Enter
+### 2. Entry Criteria by Regime
 
 
 **Enter regime-appropriate strategies:**
@@ -309,7 +309,7 @@ Skew > 15:  Fear regime
 - Aggressive profit taking (vol mean-reverts)
 - **Stop:** When VIX drops below 20 (regime normalizing)
 
-### 3. Risk allocation
+### 3. Risk Allocation by Regime
 
 
 **Risk allocation rules:**
@@ -335,7 +335,7 @@ $$
 - Can go 5-10% on long vol if RV > IV
 - **Opportunity:** Size up when edge clear
 
-### 4. Regime-specific
+### 4. Regime-Specific Position Management
 
 
 **Regime-specific entry rules:**
@@ -357,7 +357,7 @@ $$
 - Enter quickly when opportunity appears
 - Don't wait for "perfect" entry
 
-### 5. Active regime
+### 5. Active Regime Monitoring
 
 
 **Active regime monitoring:**
@@ -381,7 +381,7 @@ $$
 - Accept small loss to avoid regime mismatch
 - **Example:** Short strangles in Low → High transition = close NOW
 
-### 6. When regime
+### 6. When Regime Changes: Transition Protocol
 
 
 **When regime shifts:**
@@ -400,7 +400,7 @@ $$
 
 **Critical rule:** When regime changes, strategy MUST change. No exceptions.
 
-### 7. Track by regime:
+### 7. Track Performance by Regime
 
 
 **Track by regime:**
@@ -416,7 +416,7 @@ $$
 - Position sizing appropriate?
 - Transition timing good?
 
-### 8. Common Execution
+### 8. Common Execution Errors
 
 
 1. **Fighting the regime** - Selling vol in high vol regime
@@ -428,7 +428,7 @@ $$
 7. **Not tracking regime performance** - Can't learn without data
 8. **Assuming regime will persist** - All regimes end eventually
 
-### 9. Professional
+### 9. Professional Tips
 
 
 **For systematic traders:**
@@ -469,7 +469,7 @@ $$
 - Adapt strategy immediately
 - **Regime IS what it IS, not what you want**
 
-### 2. Over-Trading
+### 2. Over-Trading on Regime Signals
 
 
 **The error:**
@@ -484,7 +484,7 @@ $$
 - Don't react to noise
 - **Regime changes are rare, not daily**
 
-### 3. Mechanical
+### 3. Mechanical Rule Following
 
 
 **The error:**
@@ -498,7 +498,7 @@ $$
 - Rotate as regime changes
 - **Strategy must match regime**
 
-### 4. Ignoring
+### 4. Ignoring Transition Periods
 
 
 **The error:**
@@ -513,7 +513,7 @@ $$
 - Don't hope for regime reversal
 - **Transition days are highest risk**
 
-### 5. Wrong Position
+### 5. Wrong Position Sizing for Regime
 
 
 **The error:**
@@ -528,7 +528,7 @@ $$
 - 1-2% max in unfavorable regimes
 - **Regime determines risk appetite**
 
-### 6. Assuming Mean
+### 6. Assuming Mean Reversion
 
 
 **The error:**
@@ -543,7 +543,7 @@ $$
 - Wait for actual regime change
 - **Don't anticipate, react**
 
-### 7. Not Tracking
+### 7. Not Tracking Regime Performance
 
 
 **The error:**
@@ -563,7 +563,7 @@ $$
 ## Real-World Examples
 
 
-### 1. Pension Duration
+### 1. Case Study: 2017 Low Vol Regime
 
 
 **Setup:**
@@ -607,7 +607,7 @@ $$
 - Perfect regime identification
 - **Regime persistence = consistent profits**
 
-### 2. Transition Risk
+### 2. Case Study: February 2018 Volmageddon
 
 
 **Setup:**
@@ -656,7 +656,7 @@ $$
 - Accept small loss to avoid large loss
 - **Respect regime changes**
 
-### 3. Portable Alpha
+### 3. Case Study: COVID-19 Regime Shift
 
 
 **Setup:**
@@ -706,7 +706,7 @@ $$
 - Size up when regime matches strategy
 - **Regime match = explosive returns**
 
-### 4. Tactical Duration
+### 4. Case Study: 2022 Rate Hiking Regime
 
 
 **Setup:**

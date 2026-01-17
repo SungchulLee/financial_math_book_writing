@@ -87,12 +87,12 @@ where $V(S,t)$ is the option value and you short $\Delta$ shares.
 
 ---
 
-## Economic
+## Economic Foundations
 
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
+### 1. The Core Economic Trade-Offs
 
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
@@ -103,7 +103,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This
+### 2. Why This Strategy Exists
 
 
 Markets create these strategies because different participants have different:
@@ -112,7 +112,7 @@ Markets create these strategies because different participants have different:
 - Capital constraints (leverage limitations)
 - View on volatility vs. direction
 
-### 3. Professional
+### 3. Professional Perspective
 
 
 Institutional traders view this strategy as a tool for:
@@ -149,12 +149,12 @@ $$
 
 ---
 
-## Understanding the
+## Understanding the Mechanics
 
 
 $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low, sell high profits}} - \underbrace{\theta\,\delta t}_{\text{option time decay}}}$$
 
-### 1. The Two
+### 1. The Two Components of P&L
 
 
 **$-\theta\,\delta t$:** Loss from time decay of the option
@@ -171,7 +171,7 @@ $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low,
 - The $(\delta S)^2$ term shows that bigger moves create more profit
 - This is an **active gain** from trading
 
-### 2. How "Buy Low,
+### 2. How "Buy Low, Sell High" Works
 
 
 **The mechanism:**
@@ -187,7 +187,7 @@ $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low,
 
 **You're not trying to time the market—the rebalancing rules force you to buy low and sell high!**
 
-### 3. Concrete Example
+### 3. Concrete Example of Gamma Scalping
 
 
 **Setup:**
@@ -221,7 +221,7 @@ $$\boxed{\delta \Pi = \underbrace{\frac{1}{2}\Gamma(\delta S)^2}_{\text{buy low,
 
 **This is gamma scalping in action!** The more the stock bounces around, the more "buy low, sell high" opportunities you get.
 
-### 4. The Trade-off
+### 4. The Trade-off Between Gamma and Theta
 
 
 Think of it as:
@@ -265,7 +265,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-## Why You Need the
+## Why You Need the Option
 
 
 **Natural question:** "If the profit comes from buying low and selling high, why do I need the option? Can't I just trade the stock directly?"
@@ -274,7 +274,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-### 1. The Problem
+### 1. The Problem Without Options
 
 
 **If you just trade stock directly:**
@@ -291,12 +291,12 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-### 2. The Option's Role
+### 2. The Option's Critical Role
 
 
 **The option (via gamma) provides an automatic, mathematical rule that tells you exactly when and how much to trade—no prediction needed.**
 
-### 3. How It Works
+### 3. How It Works Mechanically
 
 
 **With the option:**
@@ -321,10 +321,10 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-### 4. Why This Is
+### 4. Why This Is Profitable
 
 
-### 5. Without Option
+### 5. Without Option: No Gamma
 
 
 - **When to buy?** "I think the stock has dropped enough" ← subjective guess
@@ -333,7 +333,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 - **Emotion:** Fear and greed influence your decisions
 - **Result:** Requires skill, prediction, discipline, and luck
 
-### 6. With Option
+### 6. With Option: Gamma Creates Profit
 
 
 - **When to buy?** "Delta changed, so I rebalance now" ← mechanical rule
@@ -344,7 +344,7 @@ You win when volatility is high enough that your "buy low, sell high" profits ex
 
 ---
 
-### 7. The Option's
+### 7. The Option's Mathematical Role
 
 
 Think of the option as providing a **mathematical framework** that:
@@ -375,12 +375,12 @@ Think of the option as providing a **mathematical framework** that:
 
 ---
 
-### 8. Concrete
+### 8. Concrete Comparison
 
 
 **Scenario:** Stock at $100, drops to $98, rises back to $100
 
-### 9. Strategy A
+### 9. Strategy A: No Option
 
 
 - **Stock at $100:** "Should I wait for a dip? But what if it goes up?"
@@ -390,7 +390,7 @@ Think of the option as providing a **mathematical framework** that:
 - **Decision at $100:** You *guess* it's a good exit and sell (lucky timing!)
 - **Problem:** Every decision requires prediction and judgment. High stress, lots of uncertainty.
 
-### 10. Strategy B
+### 10. Strategy B: With Option
 
 
 - **Stock at $100:** Delta = 0.5, hedge with 50 shares short. Done. No decision needed.
@@ -404,7 +404,7 @@ Think of the option as providing a **mathematical framework** that:
 
 ---
 
-### 11. What You're
+### 11. What You're Really Paying For
 
 
 **Theta (time decay) is the price you pay for this automatic signal service:**
@@ -421,7 +421,7 @@ Think of it like:
 
 ---
 
-### 12. The Key Insight
+### 12. The Key Insight: Convexity Creates Value
 
 
 **The option doesn't just let you "buy low, sell high"—it tells you WHEN and HOW MUCH to buy and sell, without requiring any market prediction or timing skill.**
@@ -557,7 +557,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 ---
 
-## When Gamma Scalping
+## When Gamma Scalping Works
 
 
 **Favorable conditions:**
@@ -590,7 +590,7 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
 
 **Step-by-step implementation framework:**
 
-### 1. Before entering,
+### 1. Before Entering: Pre-Trade Evaluation
 
 
 **Before entering, evaluate:**
@@ -610,22 +610,22 @@ The gamma term $\frac{1}{2}\Gamma(\delta S)^2$ captures the "buy low, sell high"
    - Bid-ask spreads
    - Transaction cost environment
 
-### 2. Enter this
+### 2. Entry Criteria
 
 
-**Enter this strategy when:**
-- [Specific Greeks conditions]
-- [Volatility requirements]
-- [Liquidity sufficient for rebalancing]
-- [Expected Greeks P&L > costs]
+**Enter gamma scalping when:**
+- Implied volatility is at or below the 30th percentile (options are cheap)
+- You expect realized volatility to exceed implied volatility by at least 20%
+- Bid-ask spreads are tight enough for cost-effective rebalancing (< 2% of option premium)
+- Underlying has sufficient daily volume for hedge adjustments (> 1M shares/day)
 
-**Avoid this strategy when:**
-- [Unfavorable Greeks environment]
-- [High transaction costs]
-- [Insufficient liquidity]
-- [Wrong volatility regime]
+**Avoid gamma scalping when:**
+- IV is elevated (> 70th percentile)—you'll overpay for gamma
+- Realized volatility is trending down or mean-reverting to low levels
+- Transaction costs exceed 1% of expected daily gamma P&L
+- Major events (earnings, Fed) that could cause IV crush
 
-### 3. Calculate maximum
+### 3. Calculate Maximum Position Size
 
 
 **Calculate maximum position size:**
@@ -640,7 +640,7 @@ $$
 - Capital for hedge adjustments
 - Margin requirements
 
-### 4. Best practices: 1
+### 4. Best Practices for Execution
 
 
 **Best practices:**
@@ -656,7 +656,7 @@ $$
 - Gamma management when: Position size changes
 - Transaction cost consideration: Balance frequency vs. cost
 
-### 5. Active management
+### 5. Active Management Rules
 
 
 **Active management rules:**
@@ -674,18 +674,18 @@ $$
 - Theta: Monitor daily decay
 
 **Profit/loss targets:**
-- Take profit at: [Greeks P&L target]
-- Cut losses at: [Max acceptable Greeks loss]
-- Time-based exit: [Time decay considerations]
+- Take profit at: When cumulative gamma P&L reaches 3× initial theta cost
+- Cut losses at: Exit if position loses 50% of premium paid (theta has eaten too much)
+- Time-based exit: Roll or close by 14 DTE to avoid gamma explosion risk
 
-### 6. Greeks risk
+### 6. Greeks Risk Limits
 
 
 **Greeks risk limits:**
-- Max delta exposure: [Limit]
-- Max gamma concentration: [Limit]
-- Max vega exposure: [Limit]
-- Theta bleed tolerance: [Limit]
+- Max delta exposure: Keep portfolio delta within ±200 shares per $100k (retail) or ±2% NAV (institutional)
+- Max gamma concentration: No more than 0.10 gamma per dollar of underlying on any single position
+- Max vega exposure: < 3% of portfolio value per 1 vol point move
+- Theta bleed tolerance: Daily theta should not exceed 0.5% of position value
 
 **Portfolio-level controls:**
 - Correlation of Greeks across positions
@@ -693,7 +693,7 @@ $$
 - Stress testing for market moves
 - Worst-case scenario planning
 
-### 7. Track for every
+### 7. Track for Every Trade
 
 
 **Track for every trade:**
@@ -704,7 +704,7 @@ $$
 - Transaction costs vs. Greeks P&L
 - Lessons learned
 
-### 8. Common Execution
+### 8. Common Execution Errors
 
 
 1. **Ignoring transaction costs** - Frequent rebalancing eats profits
@@ -714,7 +714,7 @@ $$
 5. **Neglecting other Greeks** - Focus on one Greek, ignore others
 6. **Poor hedge timing** - Waiting too long or reacting too quickly
 
-### 9. Professional
+### 9. Professional Tips
 
 
 **For delta hedging:**
@@ -738,7 +738,7 @@ $$
 
 **Critical errors that destroy gamma scalping profits:**
 
-### 1. The error: "Stock
+### 1. The Error: "Stock Volatility Is High, I Should Gamma Scalp"
 
 
 **The error:**
@@ -766,7 +766,7 @@ When IV < Realized vol:
 
 ---
 
-### 2. The error: "Gamma
+### 2. The Error: "Gamma Scalping Is Free Money"
 
 
 **The error:**
@@ -805,7 +805,7 @@ Transaction costs include:
 
 ---
 
-### 3. The error: "Set
+### 3. The Error: "Set It and Forget It"
 
 
 **The error:**
@@ -852,7 +852,7 @@ Too frequent:
 
 ---
 
-### 4. The error: "Gamma
+### 4. The Error: "Gamma Is Always Good"
 
 
 **The error:**
@@ -902,7 +902,7 @@ $$
 
 ---
 
-### 5. The error: "High
+### 5. The Error: "High IV Means Good Entry"
 
 
 **The error:**
@@ -944,7 +944,7 @@ Earnings create:
 
 ---
 
-### 6. The error: "Gamma
+### 6. The Error: "Gamma Scalping Works in All Conditions"
 
 
 **The error:**
@@ -991,7 +991,7 @@ Long straddle = long vega:
 
 ---
 
-### 7. The error: "I
+### 7. The Error: "I Can Rebalance My Way to Profit"
 
 
 **The error:**
@@ -1033,7 +1033,7 @@ Gamma scalping can bleed slowly:
 
 ---
 
-### 8. The error: "Vol
+### 8. The Error: "Vol Risk Can Be Ignored"
 
 
 **The error:**
@@ -1072,7 +1072,7 @@ Averaging down in gamma scalping:
 
 ---
 
-### 9. The error: "I'm
+### 9. The Error: "I'm Losing, Let Me Rebalance More"
 
 
 **The error:**
@@ -1126,7 +1126,7 @@ $$
 
 ---
 
-### 10. The error: "Set
+### 10. The Error: "Set Fixed Rebalancing Rules"
 
 
 **The error:**
@@ -1179,7 +1179,7 @@ $$
 
 ---
 
-### 11. | | Mistake |
+### 11. Summary Table of Common Mistakes
 
 
 | # | Mistake | Fix |
@@ -1204,7 +1204,7 @@ $$
 
 **Concrete scenarios showing gamma scalping in practice:**
 
-### 1. Pension Duration
+### 1. Pension Fund Case Study
 
 
 **Setup:**
@@ -1246,7 +1246,7 @@ $$
 
 ---
 
-### 2. Transition Risk
+### 2. Transition Risk Case Study
 
 
 **Setup:**
@@ -1295,7 +1295,7 @@ $$
 
 ---
 
-### 3. Portable Alpha
+### 3. Portable Alpha Case Study
 
 
 **Setup:**
@@ -1340,7 +1340,7 @@ $$
 
 ---
 
-### 4. Tactical Duration
+### 4. Tactical Duration Case Study
 
 
 **Setup:**
@@ -1388,7 +1388,7 @@ Trader: "Just one slow week. Vol will pick up."
 
 ---
 
-### 5. Duration Hedge
+### 5. Duration Hedge Overlay Case Study
 
 
 **Setup:**
@@ -1445,7 +1445,7 @@ Trader: "Just one slow week. Vol will pick up."
 
 ---
 
-### 6. Setup: Trader:
+### 6. Setup and Trader Profile
 
 
 **Setup:**
@@ -1504,7 +1504,7 @@ If using limit orders:
 
 ---
 
-### 7. Winners share:
+### 7. Winners Share These Characteristics
 
 
 **Winners share:**
@@ -1530,8 +1530,13 @@ Miss any one → Disaster!
 
 ---
 
-## Real-World Examples
+## Additional Real-World Examples
 
+The detailed case studies in subsections 1-7 above provide comprehensive real-world examples of gamma scalping across different market conditions and trader profiles. Key lessons from these examples:
 
-[Concrete examples]
+1. **Volatility regime is critical:** Gamma scalping profits when realized vol > implied vol; loses when the reverse is true
+2. **Transaction costs matter:** Even small per-trade costs compound quickly with frequent rebalancing
+3. **Position sizing is essential:** Oversizing leads to margin calls during adverse moves
+4. **Theta is relentless:** Without sufficient realized volatility, theta decay will erode the position
 
+**Cross-Reference:** For additional examples of Greeks-based strategies, see Section 16.4 on regime-based strategies and Section 16.5 on higher-order Greeks applications.

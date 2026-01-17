@@ -1,4 +1,4 @@
-# DTE Strategies
+# 0DTE Strategies: Trading Options on Expiration Day
 
 
 **0DTE strategies** involve trading options on their expiration day when time value approaches zero, Greeks reach extreme levels, and price movements create asymmetric opportunities driven by gamma explosions and theta acceleration.
@@ -56,12 +56,12 @@ $$
 
 ---
 
-## What Are 0DTE
+## What Are 0DTE Options
 
 
 **Before trading 0DTE, understand what makes them unique:**
 
-### 1. Definition and
+### 1. Definition and Market Structure
 
 
 **0DTE = Zero Days To Expiration**
@@ -87,7 +87,7 @@ $$
 - **Fri expiry:** "SPXW" (if not 3rd Friday) or "SPX" (if monthly)
 - All expire 4:00 PM ET (AM settlement at open for SPX)
 
-### 2. How 0DTE Differs
+### 2. How 0DTE Differs from Standard Options
 
 
 **Time dimension:**
@@ -132,12 +132,12 @@ $$
 
 ---
 
-## Economic
+## Economic Foundations
 
 
 **Beyond the basic definition, understanding what 0DTE options REALLY are economically:**
 
-### 1. Why 0DTE Exploded
+### 1. Why 0DTE Exploded in Popularity
 
 
 **The market structure shift (2020-2024):**
@@ -170,7 +170,7 @@ $$
 - Billions in notional traded daily
 - Institutional AND retail participation
 
-### 2. The Fundamental
+### 2. The Fundamental Trade-Off
 
 
 **What 0DTE sellers (short premium) are doing:**
@@ -207,7 +207,7 @@ $$
 - But if market moves → Massive payoff (gamma works for you)
 - Cheap entry (low premium = lottery ticket pricing)
 
-### 3. The Gamma
+### 3. The Gamma-Theta Relationship
 
 
 **Institutional observation:**
@@ -294,12 +294,12 @@ $$
 
 ---
 
-## Economic
+## Economic Foundations
 
 
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
+### 1. The Core Economic Framework
 
 
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
@@ -310,7 +310,7 @@ $$
 \text{Strategy P\&L} = \text{Greeks Exposure} + \text{Rebalancing} - \text{Costs}
 $$
 
-### 2. Why This
+### 2. Why This Market Segment Exists
 
 
 Markets create these strategies because different participants have different:
@@ -319,7 +319,7 @@ Markets create these strategies because different participants have different:
 - Capital constraints (leverage limitations)
 - View on volatility vs. direction
 
-### 3. Professional
+### 3. Professional Perspective
 
 
 Institutional traders view this strategy as a tool for:
@@ -336,7 +336,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Use cases for 0DTE strategies:**
 
-### 1. Income Generation
+### 1. Income Generation Through Theta
 
 
 **Scenario:** SPX at 4500, market calm, want daily income
@@ -370,7 +370,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Theta decay is YOUR friend (accelerating all day)
 - High win rate (80-90%) if range is wide enough
 
-### 2. Leverage for
+### 2. Leverage for Directional Bets
 
 
 **Scenario:** Fed announcement at 2 PM, expecting dovish surprise (bullish)
@@ -404,7 +404,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Immediate result (know by 4 PM)
 - Can risk small amount for huge payoff
 
-### 3. Earnings Day
+### 3. Earnings Day Strategies
 
 
 **Scenario:** Stock reports earnings pre-market, opened up 5%, volatility high
@@ -442,7 +442,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Post-earnings consolidation is common pattern
 - Can be profitable even if directionally wrong (if move small)
 
-### 4. Hedging Overnight
+### 4. Hedging Overnight Event Risk
 
 
 **Scenario:** Own 1,000 shares SPY, worried about afternoon selloff
@@ -475,7 +475,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 - Expires same day (no overnight theta bleed)
 - Can repeat daily if needed
 
-### 5. Gamma Scalping
+### 5. Gamma Scalping Opportunities
 
 
 **Scenario:** Professional trader, expecting high volatility day
@@ -523,10 +523,10 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-## Greeks Behavior (The
+## Greeks Behavior on Expiration Day
 
 
-### 1. Gamma
+### 1. Gamma: The Explosive Greek
 
 
 **Gamma formula near expiration:**
@@ -598,7 +598,7 @@ At 3:45 PM (15 minutes to expiration):
    - At 3:55 PM, ATM option is either $0 or intrinsic value
    - No middle ground (digital option behavior)
 
-### 2. Theta
+### 2. Theta: Accelerated Decay
 
 
 **Theta formula:**
@@ -672,7 +672,7 @@ $$
 
 **Conclusion:** Hold if confident SPX stays range-bound, close if uncertain.
 
-### 3. Delta
+### 3. Delta: Binary Behavior
 
 
 **Delta evolution (ATM option):**
@@ -729,7 +729,7 @@ $$
    - Unclear if assigned or not
    - Market makers scramble to hedge
 
-### 4. Vega
+### 4. Vega: Negligible but Dangerous
 
 
 **Vega formula:**
@@ -787,10 +787,10 @@ $$
 
 ---
 
-## When Greeks Destroy
+## When Greeks Destroy Traders
 
 
-### 1. The Gamma
+### 1. The Gamma Explosion Trap
 
 
 **Scenario:** Sold 0DTE iron condor, feeling confident
@@ -881,7 +881,7 @@ $$
 
 **Lesson:** Theta decay is RELENTLESS in 0DTE. Even if directionally correct (ended $4 ITM), theta destroyed most value. Needed move EARLIER in day, not at close.
 
-### 3. The Pin Risk
+### 3. The Pin Risk Nightmare
 
 
 **Scenario:** Sold 0DTE straddle, SPX pins exactly at strike
@@ -922,7 +922,7 @@ $$
 
 **Lesson:** Pin risk in 0DTE is EXTREME. Even $0.10 difference causes assignment. Should have closed by 3:30 PM to avoid this nightmare.
 
-### 4. The Liquidity
+### 4. The Liquidity Vanishes Trap
 
 
 **Scenario:** Bought 0DTE OTM calls, market moving against you
@@ -963,7 +963,7 @@ $$
 ## Common Pitfalls
 
 
-### 1. Underestimating
+### 1. Underestimating Gamma Risk
 
 
 **The mistake:**
@@ -995,7 +995,7 @@ Probability calculations assume NORMAL distribution. 0DTE has fat tails (crash r
 - **Exit discipline:** Close at -200% credit (e.g., sold for $3, close at -$6)
 - **Avoid news days:** Don't trade 0DTE on Fed, CPI, NFP days
 
-### 2. Holding Past 3
+### 2. Holding Past 3:00 PM
 
 
 **The mistake:**
@@ -1029,7 +1029,7 @@ $$
 - **Close losers:** Don't hope for miracle in last 30 min (gamma will destroy you)
 - **General rule:** If position profitable, close before 3:30 PM
 
-### 3. Buying 0DTE in
+### 3. Buying 0DTE in Low Vol
 
 
 **The mistake:**
@@ -1066,7 +1066,7 @@ You're paying MAXIMUM theta with 6 hours to decay.
 - **Only buy if:** Expecting move >0.5% in next 1-2 hours
 - **Alternative:** Buy 1-2 DTE instead (less theta, still cheap)
 
-### 4. Ignoring News
+### 4. Ignoring News and Events
 
 
 **The mistake:**
@@ -1102,7 +1102,7 @@ Certain days have high event risk (Fed, CPI, NFP, etc.)
 - **Reduce size:** Half normal position on event days
 - **Consider buying:** Events = buying opportunity (gamma > theta on these days)
 
-### 5. Using Market
+### 5. Using Market Orders
 
 
 **The mistake:**
@@ -1147,7 +1147,7 @@ Certain days have high event risk (Fed, CPI, NFP, etc.)
 
 **Essential guidelines:**
 
-### 1. Position Sizing
+### 1. Position Sizing for 0DTE
 
 
 **Rule of thumb for 0DTE:**
@@ -1168,7 +1168,7 @@ $$
 - Regular options: Risk 2-3% per trade
 - **0DTE: Risk 0.5-1% per trade** (gamma risk too high)
 
-### 2. Time-Based Exit
+### 2. Time-Based Exit Rules
 
 
 **Non-negotiable timing:**
@@ -1211,7 +1211,7 @@ $$
 - **Stop loss:** Close if value drops to $5 (50% loss)
 - Don't let options decay to zero (preserve capital)
 
-### 4. Strike Selection
+### 4. Strike Selection Guidelines
 
 
 **For sellers (iron condors, credit spreads):**
@@ -1234,7 +1234,7 @@ $$
 - **OTM:** If expecting move >1% (lottery ticket, cheaper)
 - **Avoid:** Deep OTM (>2% away, liquidity vanishes)
 
-### 5. Avoid These Days
+### 5. Days to Avoid Trading 0DTE
 
 
 **Never sell 0DTE premium on:**
@@ -1263,7 +1263,7 @@ These days have 2-3× normal volatility → Gamma risk explodes.
 
 **Step-by-step implementation framework for trading 0DTE successfully:**
 
-### 1. Before market
+### 1. Before Market Open Checklist
 
 
 **Before market opens, complete this checklist:**
@@ -1307,7 +1307,7 @@ $$
 
 **Use 2× this for strike selection.**
 
-### 2. Watch first 30
+### 2. Watch First 30 Minutes
 
 
 **Watch first 30 minutes (DON'T trade yet):**
@@ -1332,7 +1332,7 @@ $$
 - Range-bound price action
 - No news
 
-### 3. For iron condor
+### 3. For Iron Condor Strategies
 
 
 **For iron condor sellers:**
@@ -1383,7 +1383,7 @@ $$
 
 **Don't round up! Stay at 1.**
 
-### 4. Use limit orders
+### 4. Use Limit Orders Only
 
 
 **Use limit orders (NEVER market):**
@@ -1404,7 +1404,7 @@ Ask: $4.20
 
 **Don't chase!** If market isn't giving your price, there's a reason (hidden risk).
 
-### 5. Monitoring
+### 5. Monitoring During the Day
 
 
 **Monitoring schedule:**
@@ -1463,7 +1463,7 @@ Collected $4? Stop at $8 (down $4)
 
 **Exit immediately when hit!** No hoping.
 
-### 6. CRITICAL PERIOD -
+### 6. Critical Period: 3:00-4:00 PM
 
 
 **CRITICAL PERIOD - Close ALL positions by 3:30 PM**
@@ -1497,7 +1497,7 @@ $$
 
 Last 15 minutes: Gamma 5-10× higher!
 
-### 7. Journal every
+### 7. Journal Every Trade
 
 
 **Journal every trade:**
@@ -1549,7 +1549,7 @@ Trade Again?: [Yes/No and why]
 - Do you lose in certain market conditions (high IV)?
 - **Adjust strategy based on data**
 
-### 8. A
+### 8. Advanced Techniques
 
 
 **A. Iron Condor Selling (Most Common)**
@@ -1611,7 +1611,7 @@ Trade Again?: [Yes/No and why]
 
 **Not for beginners!**
 
-### 9. Platform-Specific
+### 9. Platform-Specific Considerations
 
 
 **Think or Swim (TDA):**
@@ -1634,7 +1634,7 @@ Trade Again?: [Yes/No and why]
 - Use for learning only
 - Upgrade to professional platform
 
-### 10. Risk Management
+### 10. Risk Management Integration
 
 
 **Portfolio-level limits:**
@@ -1673,7 +1673,7 @@ Maximum premium per contract: $5-6
 4. Adjust strategy
 5. Paper trade 5 successful trades before resuming
 
-### 11. The Optimal
+### 11. The Optimal 0DTE Workflow
 
 
 **Monday:**
@@ -1738,7 +1738,7 @@ $$
 
 **If any metric falls below target for 2 consecutive months: Stop and reassess.**
 
-### 13. Final Pre-Trade
+### 13. Final Pre-Trade Checklist
 
 
 **Before clicking "Submit Order", verify:**
@@ -1775,7 +1775,7 @@ $$
 
 **Critical errors that destroy 0DTE traders - unique to same-day expiration:**
 
-### 1. Sell iron condor
+### 1. Mistake: Wide Iron Condor in Low Vol
 
 
 **What it looks like:**
@@ -1820,7 +1820,7 @@ As time → 0, losses → ∞ for same move!
 
 ---
 
-### 2. AM: Buy SPX $4500
+### 2. Mistake: Buying Calls Into Resistance
 
 
 **What it looks like:**
@@ -1860,7 +1860,7 @@ For $15 premium, 0.50 delta: Need 60-point move just to break even!
 
 ---
 
-### 3. See Fed meeting
+### 3. Mistake: Trading Event Days
 
 
 **What it looks like:**
@@ -1902,7 +1902,7 @@ For $15 premium, 0.50 delta: Need 60-point move just to break even!
 
 ---
 
-### 4. Want to close
+### 4. Mistake: Market Orders in Illiquid Options
 
 
 **What it looks like:**
@@ -1947,7 +1947,7 @@ Market order: Filled at $1.18 (near ask)
 
 ---
 
-### 5. Normal position
+### 5. Mistake: Normal Position Sizing
 
 
 **What it looks like:**
@@ -2007,7 +2007,7 @@ $50,000 account → Max risk $250 per trade
 
 ---
 
-### 6. Sell iron condor:
+### 6. Mistake: Not Adjusting Strikes
 
 
 **What it looks like:**
@@ -2046,7 +2046,7 @@ Even $0.05 ITM = full assignment!
 
 ---
 
-### 7. Experience with
+### 7. Mistake: Translating Monthly Experience
 
 
 **What it looks like:**
@@ -2097,7 +2097,7 @@ $$
 
 ---
 
-### 8. Sell iron condor
+### 8. Mistake: Holding Through Events
 
 
 **What it looks like:**
@@ -2153,7 +2153,7 @@ In regular options, can wait days for recovery. In 0DTE, hours evaporate.
 
 ---
 
-### 9. SPX at 4500
+### 9. Mistake: Pin Risk Ignorance
 
 
 **What it looks like:**
@@ -2213,7 +2213,7 @@ $$
 
 ---
 
-### 10. Trade 0DTE every
+### 10. Mistake: Trading Every Day
 
 
 **What it looks like:**
@@ -2265,7 +2265,7 @@ $$
 
 ---
 
-### 11. Have $5,000
+### 11. Mistake: Inadequate Account Size
 
 
 **What it looks like:**
@@ -2310,7 +2310,7 @@ $$
 
 ---
 
-### 12. Wake up, open
+### 12. Mistake: No Pre-Market Preparation
 
 
 **What it looks like:**
@@ -2349,7 +2349,7 @@ One news event = wipes out week of profits
 
 ---
 
-### 13. Sell iron condor
+### 13. Mistake: Betting the Farm
 
 
 **What it looks like:**
@@ -2394,7 +2394,7 @@ Rare, but happens (especially when emotional).
 
 ---
 
-### 14. Sell iron condor
+### 14. Mistake: No Exit Plan
 
 
 **What it looks like:**
