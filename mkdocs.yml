@@ -149,6 +149,7 @@ nav:
               - P vs Q: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
 
   - Part II Pricing Models:
+
       - 5 BS Model:
           - 5.1 Binomial Model:
               - Binomial Model: ch05/binomial_asset_pricing_model/binomial_asset_pricing_model.md
@@ -389,6 +390,7 @@ nav:
               - Stress and Crisis Behavior: ch11/model_risk_in_credit_markets/stress_and_crisis_behavior.md
 
   - Part III Risk & AI:
+
       - 12 Risk Management:
           - 12.1 Market Risk Measures:
               - Value-at-Risk (VaR): ch12/market_risk_measures/value_at_risk_var.md
@@ -488,6 +490,7 @@ nav:
               - Theoretical Impossibility Results: ch14/limits_of_learning_in_finance/theoretical_impossibility_results.md
 
   - Part IV Trading Strategies:
+  
       - 15 Options:
           - 15.1 Directional:
               - Long Calls and Puts: ch15/directional/long_calls_and_puts.md
