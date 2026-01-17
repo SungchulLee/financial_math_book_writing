@@ -124,98 +124,39 @@ $$
 - Convert to JPY: $1,000,000 × 110 = ¥110,000,000
 - Invest JPY: ¥110,000,000 × 1.005 = ¥110,550,000
 - Forward rate (from CIP): $F = 110 \times \frac{1.045}{1.005} = 114.37$
-- Convert back: ¥110,550,000 / 114.37 = **$966,689**
+- Convert back via forward: ¥110,550,000 / 114.37 = **$966,689**
 
-**Wait, Strategy B lost money!**
+> **Common Pitfall: Quote Convention Confusion**
+>
+> The calculation above produces a counterintuitive result because of quote convention confusion. USD/JPY = 110 means 1 USD = 110 JPY (or equivalently, ¥1 = $0.00909). When USD has higher interest rates than JPY, the USD must **depreciate** in the forward market to eliminate arbitrage—meaning the forward JPY/USD rate should be **lower** than spot, not higher.
 
-**Problem: I used spot rate to convert back. Should use FORWARD rate locked in at start.**
+**Correct calculation using consistent notation:**
 
-**Strategy B (correct):**
-- Lock in forward at 114.37
-- After 1 year: ¥110,550,000 / 114.37 = **$966,689**
-
-**Still losing! What's wrong?**
-
-**Ah! Forward rate calculation is wrong. Let me recalculate:**
-
-**Correct forward rate:**
-
-$$
-F = 110 \times \frac{1.045}{1.005} = 114.37
-$$
-
-**But if I lock in 114.37 forward today:**
-- Pay $1M today, get ¥110M
-- Invest ¥110M at 0.5%, get ¥110.55M
-- Forward contract: Sell ¥110.55M at 114.37, get $966,689
-
-**This is WRONG! The forward contract is for the PRINCIPAL, not principal + interest!**
-
-**Let me restart with correct understanding:**
-
-**Strategy B (correct understanding):**
-
-1. **Today:** 
-   - Borrow $1M at 4.5% for 1 year (owe $1.045M)
-   - Convert to JPY at spot: ¥110M
-   - Invest ¥110M at 0.5%
-   - Sell forward: ¥110.55M at rate $F$
-
-2. **1 year later:**
-   - Receive: ¥110.55M (investment matures)
-   - Forward settles: Receive ¥110.55M / $F$ = dollars
-   - Repay loan: $1.045M
-
-**For no-arbitrage (zero profit):**
-
-$$
-\frac{110.55M}{F} = 1.045M
-$$
-
-$$
-F = \frac{110.55}{1.045} = 105.74
-$$
-
-**Wait, this gives forward LOWER than spot (110), but JPY rates are lower than USD!**
-
-**I'm confusing quote conventions. Let me use consistent notation:**
-
-**USD/JPY = 110 means: 1 USD = 110 JPY, or equivalently, 1 JPY = 1/110 USD**
-
-**Let me use $S$ = USD per JPY (0.00909) instead:**
-
-**Given:**
-- $S$ = 0.00909 USD/JPY (or equivalently, JPY/USD = 110)
-- $r_{\text{USD}}$ = 4.5%
-- $r_{\text{JPY}}$ = 0.5%
+Let $S_{\text{USD/JPY}} = 0.00909$ (USD per JPY), with $r_{\text{USD}} = 4.5\%$ and $r_{\text{JPY}} = 0.5\%$.
 
 **CIP formula:**
 
 $$
-F_{\text{USD/JPY}} = S_{\text{USD/JPY}} \times \frac{1 + r_{\text{USD}}}{1 + r_{\text{JPY}}}
+F_{\text{USD/JPY}} = S_{\text{USD/JPY}} \times \frac{1 + r_{\text{USD}}}{1 + r_{\text{JPY}}} = 0.00909 \times \frac{1.045}{1.005} = 0.00945
 $$
 
-$$
-F = 0.00909 \times \frac{1.045}{1.005} = 0.00945 \text{ USD/JPY}
-$$
-
-**Equivalently in JPY/USD:**
+**Converting back to JPY/USD:**
 
 $$
 F_{\text{JPY/USD}} = 1/0.00945 = 105.82 \text{ JPY/USD}
 $$
 
-**So forward JPY/USD = 105.82 (less than spot 110)**
+**Interpretation:**
 
-**JPY strengthens in forward (105.82 < 110 means you need fewer JPY to buy $1)**
-
-**This makes sense! USD has higher rates, so USD weakens in forward to offset rate advantage.**
-
-**Summary:**
 - Spot: 110 JPY/USD
-- Forward: 105.82 JPY/USD
-- USD depreciated from 110 → 105.82 (need fewer JPY per USD)
-- Compensates for 4% interest rate advantage
+- Forward: 105.82 JPY/USD  
+- JPY **strengthens** in forward (fewer JPY needed to buy $1)
+- USD depreciation (110 → 105.82 ≈ -4%) offsets the 4% USD interest rate advantage
+
+**Strategy B (correctly hedged):**
+- Today: Convert $1M to ¥110M, invest at 0.5%, sell forward ¥110.55M at 105.82
+- 1 year: Receive ¥110.55M, deliver via forward, receive $1,044,990
+- **Result: ≈ $1,045,000** (matches Strategy A, no arbitrage)
 
 ### 2. Uncovered Interest Rate Parity (UIP)
 
@@ -561,30 +502,18 @@ $$
 \text{Basis} = \frac{1.1075 - 1.10}{1.10} \times \frac{1}{0.25} - 0.02 = 0.0273 - 0.02 = 0.73\%
 $$
 
-**Wait, positive basis? Let me recalculate...**
+> **Note on Typical Basis Levels**
+>
+> The calculation above yields a positive 73bp basis, which would be unusual. Post-2008, EUR/USD basis has typically been **negative** (-30 to -50 bp), reflecting persistent USD funding premium in cross-currency markets.
 
-**Actually, let's compute basis correctly:**
+**Realistic EUR/USD 3-month example:**
 
-Annual forward premium:
-$$
-\text{Premium} = \frac{1.1075 - 1.10}{1.10} \times \frac{1}{0.25} = 2.73\%
-$$
-
-Interest differential: 5.5% - 3.5% = 2.0%
-
-**Basis = 2.73% - 2.0% = +0.73%** (positive, unusual)
-
-**Typically post-2008, EUR/USD basis is NEGATIVE (-30 to -50 bp).**
-
-**Let me use realistic example:**
-
-**Realistic EUR/USD 3-month:**
-- Forward: 1.1045 (not 1.1075)
-- Premium: (1.1045 - 1.10) / 1.10 × 4 = 1.64% annualized
-- Differential: 2.0%
+- Forward: 1.1045 (market-observed)
+- Annual forward premium: $(1.1045 - 1.10) / 1.10 \times 4 = 1.64\%$
+- Interest differential: 5.5% - 3.5% = 2.0%
 - **Basis: 1.64% - 2.0% = -0.36% or -36 bp**
 
-**Negative basis means EUR is "cheap" in FX swap market.**
+**Negative basis interpretation:** EUR is "cheap" in FX swap market—synthetic USD funding via EUR swaps costs less than the interest rate differential alone would suggest.
 
 **Trade (exploiting negative basis):**
 
@@ -2164,3 +2093,13 @@ $$
 $$
 
 Even 10 bp daily basis vol × 20x leverage = 200 bp ($2M) daily swing on $100M position. One bad week with 100 bp widening = $10M loss. SNB 2015 showed 360 bp widening in 10 minutes. At 300% leverage, fund lost 80% of capital instantly. **Never leverage arbitrage >2x.** The basis market is treacherous. Trade it wisely. 🎯📊
+
+---
+
+## Related Chapters
+
+- **Chapter 10 (Term Structure):** Yield curve dynamics underlying interest rate differentials in CIP calculations
+- **Section 21.1 (Spot, Forwards, Swaps):** Instrument mechanics for implementing interest rate parity trades
+- **Section 21.2 (Carry and Funding):** Carry trade strategies exploiting UIP failures and forward premium puzzle
+- **Section 21.3 (Central Bank Divergence):** Policy divergence trades building on interest rate differential analysis
+- **Section 21.4 (Value/PPP Reversion):** Long-term equilibrium exchange rate concepts complementing short-term IRP framework

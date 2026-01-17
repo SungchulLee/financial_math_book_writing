@@ -1,7 +1,9 @@
 # FX Carry Trades
 
 
-**FX carry trades** systematically exploit interest rate differentials across currencies by borrowing low-yielding currencies (JPY at 0-0.5%, CHF at 0-1%, historically) and investing in high-yielding currencies (BRL at 10-13%, TRY at 15-45%, MXN at 10-11%), capturing the carry (interest differential, typically 5-15% annually) while exposed to currency appreciation/depreciation risk, with historical Sharpe ratios of 0.4-0.8 making it attractive despite catastrophic drawdowns during risk-off episodes (2008: -20% in months, 2015 CHF un-peg: -30% overnight), requiring careful risk management through position sizing (volatility targeting at 10-15% annual vol), diversification across currency pairs (8-12 positions), stop-losses during regime changes (VIX >30 = exit), and recognition that carry strategies are effectively short volatility (collect premium in calm periods, crash in panics).
+**FX carry trades** systematically exploit interest rate differentials across currencies by borrowing low-yielding currencies (JPY at 0-0.5%, CHF at 0-1%) and investing in high-yielding currencies (BRL at 10-13%, TRY at 15-45%, MXN at 10-11%). The strategy captures the carry—the interest differential, typically 5-15% annually—while exposing investors to currency appreciation/depreciation risk.
+
+Historical Sharpe ratios of 0.4-0.8 make carry trades attractive, despite catastrophic drawdowns during risk-off episodes: 2008 saw -20% losses in months, while the 2015 CHF un-peg delivered -30% overnight. Successful implementation requires careful risk management through position sizing (volatility targeting at 10-15% annual vol), diversification across 8-12 currency pairs, and stop-losses during regime changes (exit when VIX exceeds 30). Fundamentally, carry strategies are short volatility—collecting premium in calm periods while facing crash risk during panics.
 
 ---
 
@@ -1418,3 +1420,13 @@ $$
 - Momentum filter: Only long pairs with positive 3-month trend (Sharpe 0.5 → 0.7-0.8)
 - Stop-loss: -15% per pair, -10% portfolio-wide (exit and reassess)
 - Monthly rebalancing: Rates change, correlations shift, re-rank and reweight
+
+---
+
+## Related Chapters
+
+- **Chapter 10 (Term Structure):** Interest rate dynamics driving carry differentials
+- **Section 21.1 (Interest Rate Parity):** UIP failure as the theoretical foundation for carry trade profitability
+- **Section 21.2 (Funding and Safe Havens):** Safe haven currency dynamics during carry trade unwinds
+- **Section 21.3 (Central Bank Divergence):** Policy divergence creating carry opportunities across currency pairs
+- **Chapter 6 (Greeks):** Sensitivity analysis for option overlays on carry positions

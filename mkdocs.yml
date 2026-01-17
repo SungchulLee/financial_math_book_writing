@@ -683,6 +683,7 @@ nav:
           - 21.5 Hedging:
               - FX Hedging Programs: ch21/hedging/fx_hedging_programs.md
               - Overlay Strategies: ch21/hedging/overlay_strategies.md
+          - 21.6 FX Glossary: ch21/glossary/fx_glossary.md
 
       - 22 Structured Product:
           - 22.1 Embedded Options:
