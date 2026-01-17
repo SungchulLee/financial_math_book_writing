@@ -699,6 +699,13 @@ nav:
           - 22.4 Risk and Hedging:
               - Hedging Exotics (Smile and Skew): ch22/risk_and_hedging/hedging_exotics_smile.md
               - Model Risk and Parameter Risk: ch22/risk_and_hedging/model_risk_parameter_risk.md
+              - Correlation Structures: ch22/risk_and_hedging/correlation_structures.md
+          - 22.5 Python Appendix:
+              - Barrier Option Pricing: ch22/python_appendix/structured_products_BARRIER_PRICING.py
+              - Autocallable Monte Carlo: ch22/python_appendix/structured_products_AUTOCALLABLE_MC.py
+              - Asian Option Pricing: ch22/python_appendix/structured_products_ASIAN_OPTION.py
+              - Vanna-Volga Hedging: ch22/python_appendix/structured_products_VANNA_VOLGA.py
+              - Range Accrual Pricing: ch22/python_appendix/structured_products_RANGE_ACCRUAL.py
 
       - 23 Cross-Asset:
           - 23.1 Foundations:

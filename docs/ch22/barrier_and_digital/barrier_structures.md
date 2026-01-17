@@ -921,6 +921,268 @@ Knocked out at Month 3 of 12-month option
 
 ---
 
+## Gap Risk and Discrete Monitoring Adjustments
+
+
+### 1. The Gap Risk Problem
+
+
+**What is gap risk?**
+
+Gap risk arises when the underlying asset price jumps discontinuously across the barrier level without triggering detection under discrete monitoring, or conversely, jumps through a barrier during non-trading hours causing unexpected knockout events.
+
+**Mathematical formulation:**
+
+Under continuous monitoring, the probability of touching barrier $H$ is computed assuming continuous paths. But real markets exhibit:
+- Overnight gaps (US close → Asia open)
+- Weekend gaps (Friday → Monday)
+- Earnings announcement gaps
+- Flash crashes and discontinuous moves
+
+**Probability difference:**
+
+$$
+P(\text{hit barrier})_{\text{continuous}} > P(\text{hit barrier})_{\text{discrete}}
+$$
+
+For knock-out options: Discrete monitoring is MORE valuable (harder to knockout)
+For knock-in options: Discrete monitoring is LESS valuable (harder to knockin)
+
+**Example:**
+
+Stock at $100, down-and-out call with barrier at $90
+
+**Continuous monitoring scenario:**
+- Stock drops intraday to $89.50 for 5 minutes
+- Option knocked out permanently
+- Final stock price: $102
+- **Payoff: $0** (knocked out despite recovery)
+
+**Daily close monitoring scenario:**
+- Same intraday move to $89.50
+- But closes at $91
+- Option survives
+- Final stock price: $102
+- **Payoff: $2** (survived because close > barrier)
+
+### 2. Broadie-Glasserman-Kou Adjustment
+
+
+**The BDK correction:**
+
+Broadie, Glasserman, and Kou (1997) derived the key adjustment for pricing discrete monitoring as if continuous, then correcting:
+
+$$
+H_{\text{adj}} = H \cdot \exp\left(\beta \sigma \sqrt{\Delta t}\right)
+$$
+
+For down barriers (adjust upward):
+$$
+H_{\text{adj}}^{\text{down}} = H \cdot \exp\left(+\beta \sigma \sqrt{\Delta t}\right)
+$$
+
+For up barriers (adjust downward):
+$$
+H_{\text{adj}}^{\text{up}} = H \cdot \exp\left(-\beta \sigma \sqrt{\Delta t}\right)
+$$
+
+Where:
+- $\beta = -\zeta(1/2) / \sqrt{2\pi} \approx 0.5826$
+- $\zeta(1/2) \approx -1.4604$ is the Riemann zeta function at $1/2$
+- $\sigma$ is annualized volatility
+- $\Delta t$ is the monitoring interval (in years)
+
+**Intuition:** The correction accounts for the expected overshoot when a discretely-monitored process crosses a barrier.
+
+**Numerical example:**
+
+Stock at $S_0 = 100$, barrier $H = 90$, $\sigma = 25\%$
+
+**Daily monitoring ($\Delta t = 1/252$):**
+$$
+H_{\text{adj}} = 90 \times \exp\left(0.5826 \times 0.25 \times \sqrt{1/252}\right) = 90 \times \exp(0.00918) = 90.83
+$$
+
+**Weekly monitoring ($\Delta t = 1/52$):**
+$$
+H_{\text{adj}} = 90 \times \exp\left(0.5826 \times 0.25 \times \sqrt{1/52}\right) = 90 \times \exp(0.0202) = 91.84
+$$
+
+**Monthly monitoring ($\Delta t = 1/12$):**
+$$
+H_{\text{adj}} = 90 \times \exp\left(0.5826 \times 0.25 \times \sqrt{1/12}\right) = 90 \times \exp(0.0421) = 93.87
+$$
+
+**Pricing implication:**
+- Use adjusted barrier in continuous-monitoring formula
+- Approximation error typically < 0.5% for daily monitoring
+- Degrades for weekly/monthly (consider Monte Carlo instead)
+
+### 3. Weekend and Holiday Gaps
+
+
+**Sources of gap risk:**
+
+| Gap Type | Typical Magnitude | Frequency |
+|----------|-------------------|-----------|
+| Overnight (US) | 0.3-0.5% | Daily |
+| Weekend | 0.8-1.5% | Weekly |
+| Long holiday | 1.5-3% | Occasional |
+| Earnings | 3-15% | Quarterly |
+| Flash crash | 5-20% | Rare |
+
+**Adjusted effective volatility:**
+
+For positions held over gaps, effective volatility increases:
+
+$$
+\sigma_{\text{eff}}^2 = \sigma_{\text{intraday}}^2 + \sigma_{\text{gap}}^2
+$$
+
+**Example:**
+
+Stock with 20% annualized intraday vol, 10% annualized gap vol
+
+$$
+\sigma_{\text{eff}} = \sqrt{0.20^2 + 0.10^2} = \sqrt{0.05} = 22.4\%
+$$
+
+**Barrier placement rule:** Include gap risk in safety margin:
+
+$$
+\text{Minimum Buffer} = 2 \times \sigma_{\text{eff}} \times \sqrt{T_{\text{gap}}}
+$$
+
+**Example:**
+
+Holding over weekend, $\sigma_{\text{eff}} = 22.4\%$, $T_{\text{gap}} = 2/252$ years
+
+$$
+\text{Buffer} = 2 \times 0.224 \times \sqrt{2/252} = 2 \times 0.224 \times 0.089 = 4.0\%
+$$
+
+Stock at $100 → Barrier should be at least at $96 or below for down barrier.
+
+### 4. Earnings Announcement Gaps
+
+
+**The earnings problem:**
+
+Earnings announcements create predictable windows of extreme gap risk:
+- Pre-announcement: ATM vol spikes (event vol)
+- Post-announcement: Large gap (usually 3-15%)
+- Direction: Unpredictable
+
+**Risk management approaches:**
+
+**Approach 1: Avoid earnings exposure**
+- Close barrier positions before earnings
+- Reenter after announcement
+- Pay transaction costs to avoid gap risk
+
+**Approach 2: Widen barriers**
+- Extend barrier distance by expected earnings move
+- Use historical earnings gap distribution
+- Add 2σ of earnings moves
+
+**Example:**
+
+Stock at $100 with down-and-out call, barrier at $90
+
+**Earnings history:**
+- Average absolute move: 8%
+- Standard deviation of moves: 5%
+- 2σ downside: -18%
+
+**Adjusted barrier:** Move to $82 or close position
+
+**Approach 3: Combination hedging**
+- Buy OTM vanilla puts as gap protection
+- Cost vs. barrier position savings
+
+### 5. Flash Crash Scenarios
+
+
+**The extreme gap problem:**
+
+Flash crashes (May 2010, August 2015) demonstrate that even "safe" barriers can be breached instantaneously:
+
+**May 6, 2010 Flash Crash:**
+- S&P 500 dropped 9% in minutes
+- Many barrier positions knocked out
+- Recovery within 20 minutes
+- **Barriers at 5-8% triggered, then market recovered**
+
+**Lessons:**
+1. "Safe" 10% buffer insufficient for tail events
+2. Intraday monitoring creates discontinuous exposure
+3. End-of-day monitoring protects against flash crashes
+
+**Mitigation strategies:**
+
+| Strategy | Pros | Cons |
+|----------|------|------|
+| EOD monitoring | Avoids flash knockout | Higher premium |
+| Wider barriers | More protection | More expensive |
+| Maximum 1-day move barrier | Statistical protection | Still can fail |
+| Stop-loss at 50% premium | Limits loss | May stop out prematurely |
+
+### 6. Practical Gap Risk Management
+
+
+**Pre-trade checklist:**
+
+1. **Identify gap events:**
+   - Earnings dates
+   - Fed meetings
+   - Major data releases
+   - Ex-dividend dates
+
+2. **Calculate gap-adjusted buffer:**
+   $$
+   \text{Buffer} = \max\left(10\%, 2\sigma_{\text{eff}}\sqrt{T_{\text{max gap}}}\right)
+   $$
+
+3. **Choose monitoring frequency:**
+   - Daily close: Standard, avoids intraday noise
+   - Continuous: Cheaper premium, more knockout risk
+   - Weekly: Significant premium increase
+
+4. **Document assumptions:**
+   - Assumed gap distribution
+   - Monitoring convention
+   - Event calendar
+
+**Position sizing with gap risk:**
+
+$$
+\text{Max Notional} = \frac{\text{Risk Budget}}{\text{Max Gap Loss}}
+$$
+
+**Example:**
+
+Risk budget: $100,000
+Barrier position: Down-and-out put, barrier 10% below spot
+Worst-case gap: 15% overnight crash through barrier
+
+**Max gap loss per $100 notional:**
+- If barrier hit: Put activates with 15% intrinsic = $15
+- Actually knocked out: Loss of premium paid = $3
+
+**More conservative:** Assume knocked out at worst level:
+- Hedge disappears at barrier
+- Naked delta exposure at barrier
+- Gap loss = 5% × delta at barrier
+
+If delta at barrier = 0.80, gap continuation = 5%:
+$$
+\text{Gap Loss} = 0.80 \times 5\% \times \text{Notional} = 4\%
+$$
+
+**Max Notional:** $100,000 / 4% = $2,500,000
+
+---
+
 ## Risk Management Rules
 
 

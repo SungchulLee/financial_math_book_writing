@@ -317,13 +317,118 @@ Airlines hedging fuel costs:
 
 **Geometric average (closed form exists):**
 
-For geometric Asian, Black-Scholes formula applies with adjusted volatility:
+For geometric Asian options, a closed-form solution exists because the geometric average of lognormal random variables is itself lognormal.
+
+**Continuous geometric average:**
 
 $$
-\sigma_{\text{geo}} = \frac{\sigma}{\sqrt{3}}
+G_T = \exp\left(\frac{1}{T}\int_0^T \ln S_t \, dt\right)
 $$
 
-**Why $\sqrt{3}$:** Variance of geometric average is 1/3 of variance of terminal price.
+**Discrete geometric average (n observations):**
+
+$$
+G_n = \left(\prod_{i=1}^{n} S_{t_i}\right)^{1/n} = \exp\left(\frac{1}{n}\sum_{i=1}^{n} \ln S_{t_i}\right)
+$$
+
+**Kemna-Vorst (1990) Closed-Form Formula:**
+
+For a geometric Asian call with continuous averaging:
+
+$$
+C_{\text{geo}} = S_0 e^{(b-r)T} N(d_1) - K e^{-rT} N(d_2)
+$$
+
+where:
+$$
+\begin{align*}
+b &= \frac{1}{2}\left(r - q - \frac{\sigma^2}{6}\right) \\
+\sigma_{\text{adj}} &= \frac{\sigma}{\sqrt{3}} \\
+d_1 &= \frac{\ln(S_0/K) + (b + \sigma_{\text{adj}}^2/2)T}{\sigma_{\text{adj}}\sqrt{T}} \\
+d_2 &= d_1 - \sigma_{\text{adj}}\sqrt{T}
+\end{align*}
+$$
+
+**Why $\sqrt{3}$:** 
+
+For continuous geometric average, the variance is:
+$$
+\text{Var}\left(\frac{1}{T}\int_0^T \ln S_t \, dt\right) = \frac{\sigma^2 T}{3}
+$$
+
+compared to $\sigma^2 T$ for terminal price, hence $\sigma_{\text{geo}} = \sigma/\sqrt{3}$.
+
+**Discrete geometric Asian formula:**
+
+For $n$ equally-spaced observations at $t_i = iT/n$:
+
+$$
+C_{\text{geo}}^{(n)} = S_0 e^{(b_n - r)T} N(d_1^{(n)}) - K e^{-rT} N(d_2^{(n)})
+$$
+
+where:
+$$
+\begin{align*}
+b_n &= \frac{1}{2}\left[\left(r - q - \frac{\sigma^2}{2}\right)\frac{n+1}{n} + \frac{\sigma^2}{6}\frac{(n+1)(2n+1)}{n^2}\right] - r \\
+\sigma_n^2 &= \frac{\sigma^2}{n^2}\left[\frac{(n+1)(2n+1)}{6}\right] \\
+d_1^{(n)} &= \frac{\ln(S_0/K) + (b_n + \sigma_n^2/2)T}{\sigma_n\sqrt{T}} \\
+d_2^{(n)} &= d_1^{(n)} - \sigma_n\sqrt{T}
+\end{align*}
+$$
+
+**Numerical example:**
+
+$S_0 = 100$, $K = 100$, $T = 1$, $r = 5\%$, $q = 2\%$, $\sigma = 20\%$
+
+**Vanilla call:** $C = 10.45$
+
+**Continuous geometric Asian call:**
+$$
+\begin{align*}
+b &= \frac{1}{2}\left(0.05 - 0.02 - \frac{0.04}{6}\right) = 0.01167 \\
+\sigma_{\text{adj}} &= \frac{0.20}{\sqrt{3}} = 0.1155 \\
+d_1 &= \frac{\ln(1) + (0.01167 + 0.00667) \times 1}{0.1155} = 0.159 \\
+d_2 &= 0.159 - 0.1155 = 0.044 \\
+C_{\text{geo}} &= 100 \times e^{(0.01167 - 0.05)} \times N(0.159) - 100 \times e^{-0.05} \times N(0.044) \\
+&= 96.24 \times 0.563 - 95.12 \times 0.518 = 54.18 - 49.27 = \$4.91
+\end{align*}
+$$
+
+**Key insight:** Geometric Asian ≈ 47% of vanilla value due to averaging effect.
+
+**Geometric vs. Arithmetic Asian Comparison:**
+
+| Feature | Geometric Average | Arithmetic Average |
+|---------|------------------|-------------------|
+| Closed-form | Yes | No |
+| Distribution | Lognormal | Not lognormal |
+| Average value | $\leq$ Arithmetic | $\geq$ Geometric |
+| Option price | Lower | Higher |
+| Use case | Approximation, control variate | Practical hedging |
+
+**Relationship:**
+$$
+G \leq A \quad \text{(always, by AM-GM inequality)}
+$$
+
+Therefore:
+$$
+C_{\text{geo}} \leq C_{\text{arith}}
+$$
+
+The geometric Asian serves as a lower bound for arithmetic Asian pricing.
+
+**Control variate technique:**
+
+Use geometric Asian as control variate in Monte Carlo:
+
+$$
+\hat{C}_{\text{arith}}^{\text{CV}} = \hat{C}_{\text{arith}}^{\text{MC}} - \beta\left(\hat{C}_{\text{geo}}^{\text{MC}} - C_{\text{geo}}^{\text{exact}}\right)
+$$
+
+where $\beta$ is chosen to minimize variance (typically $\beta \approx 1$).
+
+**Variance reduction:** 90-99% variance reduction achievable.
 
 **Arithmetic average (numerical methods):**
 
@@ -332,6 +437,20 @@ $$
 - Match first two moments
 - Use Black-Scholes with adjusted parameters
 - Error typically < 1%
+
+**Turnbull-Wakeman approximation:**
+
+Approximate the first two moments of arithmetic average:
+
+$$
+M_1 = \mathbb{E}[A] = \frac{e^{(r-q)T} - 1}{(r-q)T} S_0
+$$
+
+$$
+M_2 = \mathbb{E}[A^2] = \frac{2S_0^2 e^{(2(r-q)+\sigma^2)T}}{(r-q+\sigma^2)(2r-2q+\sigma^2)T^2} + \frac{2S_0^2}{(r-q)T^2}\left[\frac{1}{2(r-q)+\sigma^2} - \frac{e^{(r-q)T}}{r-q+\sigma^2}\right]
+$$
+
+Then solve for adjusted parameters $F_A$ and $\sigma_A$ matching these moments.
 
 **Monte Carlo:**
 - Simulate $N$ paths: $S_0, S_1, ..., S_n$
