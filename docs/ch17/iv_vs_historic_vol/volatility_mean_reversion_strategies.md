@@ -1,5 +1,4 @@
-# Volatility Mean
-
+# Volatility Mean Reversion Strategies
 ## Trading the Cyclical
 
 
@@ -119,9 +118,7 @@ Mean reversion strategies attempt to **fade extremes**, not predict exact turnin
 
 ---
 
-## The Structure
-
-
+## The Structure and Mechanics
 ### 1. General Mean
 
 
@@ -200,9 +197,7 @@ Used when:
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 $$
 \Pi_{\text{MR}} = \sum_i n_i \cdot V(T_i, \sigma_i)
 $$
@@ -217,14 +212,10 @@ with exposure concentrated in **volatility level**, not direction.
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what mean reversion strategies REALLY represent economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 **Mean reversion strategies are fundamentally trading volatility overshoots:**
 
 $$
@@ -539,9 +530,7 @@ Understanding these economic foundations helps recognize when mean reversion str
 
 ---
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. Primary P&L
 
 
@@ -652,9 +641,7 @@ If vega = $100/\%, then Expected P&L = $100 × 3.8 = $380
 
 ---
 
-## Risk Management
-
-
+## Risk Management Framework
 ### 1. Key Risks
 
 
@@ -719,9 +706,7 @@ At IVR 20%: Position = Base / 1.30 = 77% of normal
 
 
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 [Continue with existing practical guidance sections...]
 
 
@@ -813,9 +798,7 @@ At IVR 20%: Position = Base / 1.30 = 77% of normal
 
 - Markets trending calmly
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -850,9 +833,7 @@ $$
 
 - At extremes (IVR > 80 or < 20): Reduce to $50-100
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV percentile confirmation:** Check 252-day IVR
@@ -1345,9 +1326,7 @@ Lessons:
 
 ---
 
-## Key Takeaways
-
-
+## Key Takeaways and Summary
 ### 1. Core Principles
 
 
@@ -1436,9 +1415,7 @@ Lessons:
 
 ---
 
-## Final Wisdom
-
-
+## Final Wisdom and Key Takeaways
 > **"Sell fear, buy complacency—but size for the possibility you're wrong about which one it is."**
 
 **Mean reversion is the most reliable phenomenon in volatility markets, yet the hardest to time. Trade it with humility, not hubris.**

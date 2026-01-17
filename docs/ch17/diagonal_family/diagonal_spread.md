@@ -122,9 +122,7 @@ Strikes chosen closer to spot, aiming to profit primarily from **time decay** an
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 ### 1. Call Diagonal
 
 
@@ -155,14 +153,10 @@ where \(T_{\text{long}} > T_{\text{short}}\).
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
 **Economic equivalence:**
@@ -171,18 +165,14 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV
-
-
+### 2. Why This IV Structure Exists
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
 - Risk preferences (convexity vs. theta)
 - Event views (known catalysts vs. unknown volatility)
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility
-
-
+### 3. The Volatility Risk Premium
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
 $$
@@ -257,9 +247,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ---
 
-## Strike Selection
-
-
+## Strike Selection Strategy
 ### 1. Long Leg (Back
 
 
@@ -311,9 +299,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ---
 
-## Position Management
-
-
+## Position Management Rules
 ### 1. Close or Roll the
 
 
@@ -1081,9 +1067,7 @@ What would have saved $280:
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1111,24 +1095,22 @@ What would have saved $280:
    - Fed meetings, economic data
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
-- [Specific IV conditions]
-- [Term structure requirements]
-- [Skew positioning]
-- [Time to event/expiration]
+- IV Rank above 50% (selling premium is more attractive)
+- Front month IV higher than back month (positive term structure spread)
+- Skew is moderately elevated (favoring put diagonals for income)
+- 30-45 days to front month expiration (optimal theta decay zone)
+- No unexpected binary events within front month timeframe
 
 **Avoid this strategy when:**
-- [Unfavorable IV environment]
-- [Wrong term structure shape]
-- [Insufficient IV edge]
-- [Event risk too high]
+- IV Rank below 30% (premium too cheap to sell)
+- Inverted term structure (back month IV > front month) unless trading reversal
+- Earnings or major catalysts within front month timeframe unexpectedly
+- Bid-ask spreads exceed 10% of spread value (poor liquidity)
+- High correlation with existing portfolio positions (concentration risk)
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1147,9 +1129,7 @@ $$
 - Risk 1-2% on undefined risk strategies
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1169,9 +1149,7 @@ $$
 - [ ] Max loss understood
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -1281,9 +1259,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 ### 1. Buying a Long Leg
 
 If the long option expires soon, theta decay can overwhelm the strategy.

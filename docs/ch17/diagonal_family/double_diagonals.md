@@ -184,9 +184,7 @@ Unlike single diagonals (one direction only), double diagonals allow:
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 ### 1. Call Diagonal
 
 
@@ -225,14 +223,10 @@ where:
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what double diagonals REALLY represent economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 Double diagonals are fundamentally about **exploiting the volatility term structure and skew simultaneously on both sides of the market**. You're not just trading time decay—you're trading the **three-dimensional volatility surface**.
 
 **What you're really doing:**
@@ -438,9 +432,7 @@ You're arbitraging **relative mispricing** across the surface.
 - Buy reasonably-priced back-month vol (insurance)
 - Collect the term structure premium
 
-### 7. Professional
-
-
+### 7. Professional Implementation
 **How different players use double diagonals:**
 
 ### 8. Retail Traders
@@ -910,9 +902,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ---
 
-## Strike Selection
-
-
+## Strike Selection Strategy
 ### 1. Long Legs (Back
 
 
@@ -1052,9 +1042,7 @@ You collect theta like a calendar, but have directional flexibility like a stran
 
 ---
 
-## Position Management
-
-
+## Position Management Rules
 ### 1. Entry Timing
 
 
@@ -1705,9 +1693,7 @@ These three examples show:
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1735,24 +1721,21 @@ These three examples show:
    - Fed meetings, economic data
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
-- [Specific IV conditions]
-- [Term structure requirements]
-- [Skew positioning]
-- [Time to event/expiration]
+- IV Rank above 40-50% (premium is relatively rich)
+- Term structure supports your view (normal for calendars, inverted for reverse calendars)
+- Skew is at appropriate levels for your structure
+- 30-60 days to front month expiration (optimal theta/gamma balance)
+- No unexpected binary events in your trade horizon
 
 **Avoid this strategy when:**
-- [Unfavorable IV environment]
-- [Wrong term structure shape]
-- [Insufficient IV edge]
-- [Event risk too high]
+- IV Rank below 25% (insufficient premium to justify risk)
+- Term structure shape contradicts your thesis
+- Major earnings or events within trade timeframe (unless trading event specifically)
+- Bid-ask spreads exceed 10% of spread value (poor liquidity)
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1771,9 +1754,7 @@ $$
 - Risk 1-2% on undefined risk strategies
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1793,9 +1774,7 @@ $$
 - [ ] Max loss understood
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -1905,9 +1884,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 ### 1. Entering with
 
 

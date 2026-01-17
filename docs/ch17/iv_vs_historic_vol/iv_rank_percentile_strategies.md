@@ -1,6 +1,4 @@
-# IV Rank & Percentile
-
-
+# IV Rank and Percentile Strategies
 **IV Rank & Percentile strategies** are systematic approaches to options trading based on statistical measures of implied volatility relative to historical ranges, enabling traders to identify when options are expensive or cheap and deploy appropriate strategies that profit from mean reversion of volatility levels.
 
 
@@ -257,9 +255,7 @@ $$
 
 ---
 
-## The Structure
-
-
+## The Structure and Mechanics
 ### 1. Strategy
 
 
@@ -365,9 +361,7 @@ where:
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 ### 1. High IV Strategy
 
 
@@ -467,14 +461,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what IV Rank/Percentile strategies REALLY represent economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 IV Rank and IV Percentile strategies are fundamentally about **exploiting the mean-reversion property of implied volatility**. You're not trading direction or time—you're trading the **cyclicality of fear and complacency**.
 
 **What you're really doing:**
@@ -1237,9 +1227,7 @@ When front-month IVR > back-month IVR by 20+ points:
 
 
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. For High IV
 
 
@@ -2335,9 +2323,7 @@ $$
 
 ---
 
-## Strike Selection
-
-
+## Strike Selection Strategy
 ### 1. For High IV
 
 
@@ -2525,9 +2511,7 @@ $$
 
 ---
 
-## Position Management
-
-
+## Position Management Rules
 ### 1. Managing High IV
 
 
@@ -2854,9 +2838,7 @@ Total: +$3,000
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -2896,32 +2878,28 @@ Total: +$3,000
 
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 
-- [Specific IV conditions]
+- IV Rank above 50% for selling strategies (premium rich, mean reversion likely)
 
-- [Term structure requirements]
+- IV Rank below 25% for buying strategies (premium cheap, expansion potential)
 
-- [Skew positioning]
+- Term structure supports your view (normal for time spreads, steep for butterflies)
 
-- [Time to event/expiration]
+- 30-60 days to expiration for optimal theta/gamma balance
 
 **Avoid this strategy when:**
 
-- [Unfavorable IV environment]
+- IV Rank is in the 30-50% neutral zone (no clear edge)
 
-- [Wrong term structure shape]
+- Term structure is flat or contradicts your thesis
 
-- [Insufficient IV edge]
+- Bid-ask spreads exceed 10% of spread value
 
-- [Event risk too high]
+- Major binary events imminent unless trading the event specifically
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -2948,9 +2926,7 @@ $$
 
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -2983,9 +2959,7 @@ $$
 
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -3157,9 +3131,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 ### 1. Ignoring the
 
 
@@ -3315,9 +3287,7 @@ $$
 
 ---
 
-## Advanced Concepts
-
-
+## Advanced Concepts and Variations
 ### 1. IV Mean Reversion
 
 

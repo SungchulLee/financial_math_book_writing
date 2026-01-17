@@ -1,4 +1,4 @@
-# Horizontal vs
+# Horizontal vs Vertical IV Relationships
 
 
 **Horizontal vs vertical IV relationships** refer to the two fundamental dimensions along which implied volatility varies: the **term structure** (horizontal, across time) and the **smile/skew** (vertical, across strikes). Understanding and trading the relationship between these dimensions—how they interact, diverge, and normalize—is essential for sophisticated volatility trading and surface arbitrage.
@@ -6,20 +6,15 @@
 
 ---
 
-## The Core Insight
+## The Core Insight: Two Dimensions of Implied Volatility
 
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_dimensions.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_dimensions.png?raw=true" alt="IV Surface Dimensions" width="700">
 </p>
 
-
-
-## The Core Insight
-
-
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_divergence.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_divergence.png?raw=true" alt="IV Dimension Divergence" width="700">
 </p>
 
 **The fundamental idea:**
@@ -58,20 +53,20 @@ Where:
 
 
 
-## What Are Horizontal
+## What Are Horizontal and Vertical IV Dimensions?
 
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_opportunities.png?raw=true" alt="IV Trading Opportunities" width="700">
 </p>
 
 **Before understanding their relationship, we need to define each dimension:**
 
-### 1. The Horizontal
+### 1. The Horizontal Dimension: Term Structure
 
 
 <p align="center">
-<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="long_call_vs_put" width="700">
+<img src="https://github.com/SungchulLee/img/blob/main/horizontal_vs_vertical_iv_surface.png?raw=true" alt="IV Surface 3D" width="700">
 </p>
 
 **What is it?**
@@ -123,7 +118,7 @@ The **term structure** shows how IV changes with time to expiration (holding str
 
 - Event-driven (earnings, FDA)
 
-### 2. The Vertical
+### 2. The Vertical Dimension: Smile and Skew
 
 
 **What is it?**
@@ -173,7 +168,7 @@ The **smile/skew** shows how IV changes with strike price (holding time constant
 
 - Or very low volatility environment
 
-### 3. The Problem
+### 3. The Problem: Black-Scholes vs Reality
 
 
 **Theoretical relationship:**
@@ -222,10 +217,10 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 
 
 
-## The Structure
+## The Structure of Horizontal vs Vertical Trades
 
 
-### 1. How to Express
+### 1. How to Express Horizontal and Vertical Views
 
 
 **1. Pure Horizontal Trades (Term Structure Only):**
@@ -318,9 +313,7 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 
 - Bet: Relationship normalizes
 
-### 2. The Visual
-
-
+### 2. The Visual Representation
 **Horizontal vs Vertical Dimensions:**
 
 ```
@@ -350,12 +343,8 @@ Trade when the relationship between horizontal and vertical IV **diverges from n
 
 ---
 
-## The Portfolio
-
-
-### 1. General Framework
-
-
+## The Portfolio Construction
+### 1. General Framework for Analysis
 For a position trading both dimensions:
 
 $$
@@ -374,9 +363,7 @@ where:
 
 Construct portfolios that isolate or exploit the relationship between dimensions.
 
-### 2. Pure Horizontal
-
-
+### 2. Pure Horizontal Exposure
 **Structure:**
 
 $$
@@ -404,9 +391,7 @@ $$
 \end{align}
 $$
 
-### 3. Pure Vertical
-
-
+### 3. Pure Vertical Exposure
 **Structure:**
 
 $$
@@ -435,9 +420,7 @@ $$
 \end{align}
 $$
 
-### 4. Combined Exposure
-
-
+### 4. Combined Exposure Analysis
 **Structure:**
 
 $$
@@ -461,12 +444,12 @@ where $K_2 \neq K_1$ and $T_2 > T_1$.
 
 ---
 
-## Economic
+## Economic Foundations of Horizontal and Vertical IV
 
 
 **Understanding what horizontal vs vertical IV relationships REALLY represent economically:**
 
-### 1. The Core Economic
+### 1. The Core Economic Reality
 
 
 The IV surface is not random—it reflects deep economic realities:
@@ -497,7 +480,7 @@ $$
 \boxed{\text{Trading the relationship} = \text{Betting these two dimensions will recouple}}
 $$
 
-### 2. Why This IV
+### 2. Why This IV Structure Exists
 
 
 **The fundamental question:** Why isn't IV just one number?
@@ -528,7 +511,7 @@ $$
 
 - **Creates dislocation opportunities** when events pass
 
-### 3. The Volatility
+### 3. The Volatility Risk Premium Across Dimensions
 
 
 **Critical empirical fact:**
@@ -567,9 +550,7 @@ Historical data (S&P 500, 20 years):
 
 **Economic insight:** Selling OTM put spreads harvests maximum VRP
 
-### 4. Correlation
-
-
+### 4. Correlation Between Dimensions
 **Measured empirically:**
 
 $$
@@ -603,9 +584,7 @@ $$
 High stress → Everything correlated
 Low stress → Dimensions independent
 
-### 5. The Leverage
-
-
+### 5. The Leverage Effect
 **Fundamental economic mechanism:**
 
 **Stock drops → Leverage ratio increases → Equity volatility increases → Put skew steepens**
@@ -650,9 +629,7 @@ $$
 
 2. Stock drops (increases skew they're short)
 
-### 6. Term Structure
-
-
+### 6. Term Structure Dynamics
 **Economic decomposition:**
 
 $$
@@ -701,9 +678,7 @@ $$
 
 - Profit from premium decay
 
-### 7. Market
-
-
+### 7. Market Microstructure
 **Why aren't arbitrages eliminated instantly?**
 
 **1. Transaction costs:**
@@ -752,9 +727,7 @@ $$
 
 - **Opportunities persist**
 
-### 8. The Smile
-
-
+### 8. The Smile Evolution
 **Theoretical no-arbitrage condition:**
 
 $$
@@ -783,9 +756,7 @@ $$
 
 - During crises (hedging costs too high)
 
-### 9. Calendar Spread
-
-
+### 9. Calendar Spread Mechanics
 **Why calendar spreads make money:**
 
 **Theta differential:**
@@ -834,9 +805,7 @@ $$
 
 - Bet that relationship stays normal
 
-### 10. Butterfly
-
-
+### 10. Butterfly Spread Analysis
 **Why butterflies profit from smile normalization:**
 
 **Setup:** Long wings, short body
@@ -869,9 +838,7 @@ $$
 \text{Butterfly Profit} \propto \text{Smile Mean Reversion}
 $$
 
-### 11. The Vol Surface
-
-
+### 11. The Vol Surface Dynamics
 **Modern perspective:** IV surface is tradeable asset
 
 **Properties:**
@@ -920,9 +887,7 @@ Sophisticated traders don't just trade options for directional views—they trad
 
 - Strategies (horizontal, vertical, diagonal)
 
-### 12. Professional
-
-
+### 12. Professional Trading Approaches
 **Dealer book management:**
 
 Dealers maintain massive IV surface exposure:
@@ -969,9 +934,7 @@ Typical dealer spread:
 
 - **Professional infrastructure**
 
-### 13. The Arbitrage
-
-
+### 13. The Arbitrage Framework
 **Why don't arbitrageurs eliminate all mispricings?**
 
 **Limits to arbitrage:**
@@ -1026,9 +989,7 @@ Large dislocations (> 5% IV) get arbitraged:
 
 **This creates the tradeable opportunity zone: 2-5% IV dislocations**
 
-### 14. Horizontal vs
-
-
+### 14. Horizontal vs Vertical Trade Selection
 **Horizontal vs Vertical IV trading exists because:**
 
 1. **Different time preferences** create term structure
@@ -1068,12 +1029,8 @@ This is why sophisticated volatility traders focus on **relationships between di
 
 
 
-## The P&L Formula
-
-
-### 1. For Pure
-
-
+## The P&L Formula and Components
+### 1. For Pure Directional Exposure
 $$
 \delta \Pi_H \approx \underbrace{\text{Vega}_{T_2} \cdot \delta\sigma_{T_2} - \text{Vega}_{T_1} \cdot \delta\sigma_{T_1}}_{\text{Term structure P\&L}} + \underbrace{\theta_{\text{net}} \, \delta t}_{\text{Time decay}}
 $$
@@ -1106,9 +1063,7 @@ $$
 
 Typically: $|\theta_{T_1}| > |\theta_{T_2}|$ (front decays faster)
 
-### 2. For Pure Vertical
-
-
+### 2. For Pure Vertical Spread Exposure
 $$
 \delta \Pi_V \approx \sum_{K} \text{Vega}_K \cdot \delta\sigma_K + \Theta_{\text{net}} \, \delta t + \frac{1}{2}\Gamma_{\text{net}} (\delta S)^2
 $$
@@ -1150,9 +1105,7 @@ Important for butterflies:
 
 - Long butterfly: Positive gamma
 
-### 3. For Combined
-
-
+### 3. For Combined Strategies
 $$
 \delta \Pi_D \approx \underbrace{\text{Vega}_{K_2,T_2} \cdot \delta\sigma_{K_2,T_2}}_{\text{Back month, different strike}} - \underbrace{\text{Vega}_{K_1,T_1} \cdot \delta\sigma_{K_1,T_1}}_{\text{Front month, different strike}} + \theta_{\text{net}} \, \delta t
 $$
@@ -1179,9 +1132,7 @@ $$
 
   * **Combined effect**
 
-### 4. The Relationship
-
-
+### 4. The Relationship Between Greeks
 **Key insight:** 
 
 The P&L from diagonal/combined trades depends on the **correlation** between horizontal and vertical IV changes:
@@ -1200,12 +1151,8 @@ $$
 
 ---
 
-## Types of Horizontal
-
-
-### 1. Pure Horizontal
-
-
+## Types of Horizontal and Vertical Trades
+### 1. Pure Horizontal Strategies
 **When to use:**
 
 - Trading time dimension only
@@ -1244,9 +1191,7 @@ $$
 
 - **Strike-independent**
 
-### 2. Pure Vertical
-
-
+### 2. Pure Vertical Strategies
 **When to use:**
 
 - Trading strike dimension only
@@ -1285,9 +1230,7 @@ $$
 
 - **Time-independent** (same expiration)
 
-### 3. Horizontal-Heavy
-
-
+### 3. Horizontal-Heavy Diagonal Strategies
 **Structure:**
 
 - Emphasize term structure
@@ -1312,9 +1255,7 @@ $$
 
 - Want some directional flexibility
 
-### 4. Vertical-Heavy
-
-
+### 4. Vertical-Heavy Diagonal Strategies
 **Structure:**
 
 - Emphasize smile/skew
@@ -1339,9 +1280,7 @@ $$
 
 - Want some theta benefit
 
-### 5. Balanced Diagonal
-
-
+### 5. Balanced Diagonal Combinations
 **Structure:**
 
 - Equal emphasis on both dimensions
@@ -1366,9 +1305,7 @@ $$
 
 - Directional + term structure bet
 
-### 6. Horizontal vs
-
-
+### 6. Horizontal vs Vertical Trade Comparison
 **Structure:**
 
 - Explicitly trade the correlation
@@ -1915,9 +1852,7 @@ This is cleaner and works!
 
 ---
 
-## Strike Selection
-
-
+## Strike Selection Strategy
 ### 1. For Horizontal
 
 
@@ -2175,9 +2110,7 @@ This is cleaner and works!
 
 ---
 
-## Position Management
-
-
+## Position Management Rules
 ### 1. Managing
 
 
@@ -2376,9 +2309,7 @@ This is cleaner and works!
 
 ---
 
-## Greeks Analysis
-
-
+## Greeks Analysis and Hedging
 ### 1. Horizontal
 
 
@@ -2657,9 +2588,7 @@ Where $\rho$ = correlation between dimension moves
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -2699,32 +2628,28 @@ Where $\rho$ = correlation between dimension moves
 
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 
-- [Specific IV conditions]
+- Horizontal IV (term structure) is unusually steep or inverted
 
-- [Term structure requirements]
+- Vertical IV (skew) is at extreme levels vs. history
 
-- [Skew positioning]
+- Relationship between horizontal and vertical is dislocated
 
-- [Time to event/expiration]
+- 30-60 days to front expiration for term structure trades
 
 **Avoid this strategy when:**
 
-- [Unfavorable IV environment]
+- Both dimensions are at normal/average levels
 
-- [Wrong term structure shape]
+- Correlation between dimensions is behaving normally
 
-- [Insufficient IV edge]
+- Liquidity is poor across the strike/time matrix
 
-- [Event risk too high]
+- Major events could justify current surface shape
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -2751,9 +2676,7 @@ $$
 
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -2786,9 +2709,7 @@ $$
 
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -2960,9 +2881,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 ### 1. Confusing
 
 
@@ -3699,9 +3618,7 @@ Where VRP ≈ 2-3% historically
 
 ---
 
-## Advanced Concepts
-
-
+## Advanced Concepts and Variations
 ### 1. Quantifying the
 
 

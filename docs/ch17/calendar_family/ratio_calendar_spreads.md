@@ -1,6 +1,4 @@
-# Ratio Calendar
-
-
+# Ratio Calendar Spreads
 **Ratio calendar spreads** are strategies where you use **unequal numbers of contracts** across different expiration dates, creating asymmetric positions that can enhance returns, reduce cost, or create unique risk/reward profiles by trading both term structure differences and quantity ratios simultaneously.
 
 
@@ -94,9 +92,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 
 ---
 
-## The Structure
-
-
+## The Structure and Mechanics
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/ratio_calendar_spreads_ratio_comparison.png?raw=true" alt="ratio_calendar_spreads_ratio_comparison" width="700">
 </p>
@@ -135,9 +131,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 - Sell 1 one-month $100 call @ $3.00
 - Net: $11.00 - $3.00 = **$8.00 debit**
 
-### 2. The Visual
-
-
+### 2. The Visual Representation
 **1x2 Ratio Calendar (Front-heavy):**
 
 ```
@@ -190,9 +184,7 @@ where $n_{\text{back}} \neq n_{\text{front}}$ (the ratio is not 1:1)
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 ### 1. Front-Heavy Ratio
 
 
@@ -284,14 +276,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what ratio calendars REALLY represent economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 **Ratio calendars modify the fundamental calendar spread trade-off through leverage:**
 
 $$
@@ -490,9 +478,7 @@ Understanding these economic foundations helps recognize when ratio calendars of
 
 ---
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. For 1x2
 
 

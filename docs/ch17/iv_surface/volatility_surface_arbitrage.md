@@ -1,6 +1,4 @@
-# Volatility Surface
-
-
+# Volatility Surface Arbitrage
 **Volatility surface arbitrage** is the practice of identifying and exploiting mispricings across the entire implied volatility surface by trading combinations of options at different strikes and maturities simultaneously, profiting when the surface returns to fair value or theoretical relationships.
 
 
@@ -42,18 +40,14 @@ Where you're trading the **entire surface relationship**, not just one dimension
 
 ---
 
-## What Is Volatility
-
-
+## What Is Volatility Surface Arbitrage?
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_heatmap.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
 
 **Before understanding surface arbitrage, we need to understand the surface itself:**
 
-### 1. The Volatility
-
-
+### 1. The Volatility Surface Components
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_opportunities.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -116,9 +110,7 @@ The implied volatility surface is a **3-dimensional structure**:
 
 - Reflects market views on future volatility path
 
-### 2. The Problem with
-
-
+### 2. The Problem with Real Markets
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/volatility_surface_arbitrage_surface.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -157,12 +149,8 @@ The implied volatility surface is a **3-dimensional structure**:
 
 ---
 
-## The Structure
-
-
-### 1. Basic Surface
-
-
+## The Structure and Mechanics
+### 1. Basic Surface Arbitrage Principles
 **The general framework:**
 
 Surface arbitrage trades exploit relationships by constructing portfolios that are:
@@ -175,9 +163,7 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 
 4. **Risk-controlled:** Often delta/gamma neutral
 
-### 2. Types of Surface
-
-
+### 2. Types of Surface Arbitrage
 **1. Strike Dimension Arbitrage (Vertical):**
 
 **Butterfly arbitrage:**
@@ -263,9 +249,7 @@ Surface arbitrage trades exploit relationships by constructing portfolios that a
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 ### 1. General Surface
 
 
@@ -338,14 +322,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
 **Economic equivalence:**
@@ -354,9 +334,7 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV
-
-
+### 2. Why This IV Structure Exists
 Markets create these IV structures because different participants have different:
 
 - Volatility expectations (near-term vs. long-term)
@@ -367,9 +345,7 @@ Markets create these IV structures because different participants have different
 
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility
-
-
+### 3. The Volatility Risk Premium
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
 $$
@@ -402,9 +378,7 @@ Institutional traders view IV strategies as tools for:
 Understanding the economic foundations helps you recognize when IV offers genuine edge versus when market pricing is fair.
 
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. General Surface
 
 
@@ -1108,9 +1082,7 @@ If 6-month IV increases from 21% → 23% (normalizes):
 
 ---
 
-## Strike Selection
-
-
+## Strike Selection Strategy
 ### 1. For Butterfly
 
 
@@ -1190,9 +1162,7 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 ## Time Frame Selection
 
 
-### 1. For Pure
-
-
+### 1. For Pure Directional Exposure
 **Near-term expirations preferred:**
 
 - **7-30 days:** Clearest arbitrage bounds
@@ -1251,9 +1221,7 @@ $105   | 31%      | 29%      | +2%       | Rich (sell)
 
 ---
 
-## Position Management
-
-
+## Position Management Rules
 ### 1. Entry Timing
 
 
@@ -1415,9 +1383,7 @@ Time stop: Close at 14 days regardless
 
 ---
 
-## Greeks Analysis
-
-
+## Greeks Analysis and Hedging
 ### 1. Butterfly
 
 
@@ -1565,9 +1531,7 @@ $$
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1607,32 +1571,28 @@ $$
 
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 
-- [Specific IV conditions]
+- Surface shows clear arbitrage violations (butterfly, calendar, box)
 
-- [Term structure requirements]
+- Statistical deviation from fair value exceeds transaction costs
 
-- [Skew positioning]
+- Multiple points on the surface are dislocated (not just noise)
 
-- [Time to event/expiration]
+- Sufficient time for surface normalization (14-45 days)
 
 **Avoid this strategy when:**
 
-- [Unfavorable IV environment]
+- Dislocation is within normal bid-ask noise
 
-- [Wrong term structure shape]
+- Structural reasons exist for surface shape (corporate actions, events)
 
-- [Insufficient IV edge]
+- Liquidity is insufficient across required strikes/expirations
 
-- [Event risk too high]
+- Transaction costs would exceed expected arbitrage profit
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1659,9 +1619,7 @@ $$
 
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1694,9 +1652,7 @@ $$
 
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -1868,9 +1824,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 **The fatal errors that destroy volatility surface arbitrage traders:**
 
 ### 1. The trap: What
@@ -3696,9 +3650,7 @@ Never force old model on new regime!
 
 ---
 
-## Advanced Concepts
-
-
+## Advanced Concepts and Variations
 ### 1. Multi-Dimensional
 
 
@@ -3982,21 +3934,7 @@ $$
 
 - **Overpriced front month**
 
-**The trade:**
-
-**Sell front month calendar (reverse calendar):**
-
-- **Buy** 1-month $150 call @ IV=65% = $9.50
-
-- **Sell** 3-month $150 call @ IV=42% = $8.20
-
-- **Net: Pay $1.30**
-
-**Wait, this is backward. Let me reconsider:**
-
-Actually, for term structure arbitrage when front is rich:
-
-**The correct trade (standard calendar):**
+**The trade (standard calendar when front IV is rich):**
 
 - **Sell** 1-month $150 call @ IV=65% (rich) = $9.50
 
@@ -4016,71 +3954,34 @@ Actually, for term structure arbitrage when front is rich:
 
 **After earnings (30 days later):**
 
-- Stock moved 9% (in line with historical)
+Scenario: Stock moved 9% to $163.50 (in line with historical)
 
-- Front month expired
+- Front month expired worthless (stock below $150 strike) OR
+- Front month expired ITM, assigned at $150
 
-- Front IV collapsed to 40%
+Let's assume stock at $146 (6% decline, within normal range):
 
-- Back month now 2-month IV: 42% (unchanged)
+- Front $150 call expires worthless: **Keep full $950 premium**
+- Back month $150 call now worth $4.50 (60 days remaining, IV=38%)
 
-- **Kept $9.50 from short front month**
+**P&L Calculation:**
 
-- Back month worth $7.80 (stock moved to $164)
+- Received from short front: +$950
+- Long back worth: +$450
+- Paid for back initially: -$820
 
-- **Net: $9.50 + $7.80 - $8.20 = $9.10**
+**Net value: +$950 + $450 - $820 = +$580 profit**
 
-- **Profit: $9.10 - $1.30 credit = $7.80**
+Alternatively, if stock rallies to $158:
 
-Wait, that's wrong math. If we received credit initially:
+- Front $150 call worth $8 ITM at expiration: -$800 (assignment cost)
+- Back month $150 call worth $11.20 (deeper ITM, 60 days left)
 
-- Initial: RECEIVED $1.30
+**Net value: -$800 + $1,120 - $820 + $950 (initial credit) = +$450 profit**
 
-- Front expired: Kept the $9.50
+The key insight: Calendar spreads profit when front month IV was overpriced relative to back, regardless of moderate directional moves.
 
-- Back month current value: $7.80
-
-- We owe: $8.20 - $7.80 if we close back month
-
-- Actually this doesn't work out right.
-
-Let me recalculate properly:
-
-**Initial trade (receive credit):**
-
-- Sell front @ $9.50: **+$950**
-
-- Buy back @ $8.20: **-$820**
-
-- **Net cash: +$130**
-
-**At front expiration:**
-
-- Front option expires (stock at $154)
-
-- Short $150 call: $4 ITM, pay **-$400**
-
-- Long back option worth $7.20
-
-- Sell back option: **+$720**
-
-**Total P&L:**
-
-- Initial: +$130
-
-- Front assignment: -$400
-
-- Sell back: +$720
-
-- Paid for back: -$820
-
-- **Net: $130 - $400 + $720 - $820 = -$370 LOSS**
-
-Hmm, this doesn't work either. The issue is I need to be more careful about what happens at expiration.
-
-Let me simplify with a clearer example:
-
-### 3. Portable Alpha
+### 3. Portable Alpha Through Calendar Spreads
 
 
 **Setup:**
@@ -4105,45 +4006,58 @@ Let me simplify with a clearer example:
 
 - **Front month overpriced relative to back**
 
-**The trade (reverse calendar):**
+**The trade (reverse calendar for earnings IV crush):**
 
-- **Sell** 2-month call @ $7.80 (back month)
+When front month IV is inflated due to earnings, a reverse calendar can profit from the IV crush:
 
-- **Buy** 1-month call @ $6.50 (front month)
+- **Buy** 1-month call @ $6.50 (front month, inflated IV)
+
+- **Sell** 2-month call @ $7.80 (back month, normal IV)
 
 - **Net: Receive $1.30 CREDIT**
 
 **After earnings (28 days later):**
 
-- Earnings passed
+Scenario: Earnings passed, stock at $102 (moderate 2% move)
 
-- Stock at $102 (moderate move)
+- Front month (2 days left, $100 strike): Worth $2.10 (intrinsic $2 + small time value)
+- Back month (32 days left, $100 strike, stock now $102): Worth $5.80
 
-- Front month (2 days left) worth $2.10
+**Close position:**
 
-- Back month (32 days left) worth $5.50
+- Sell front month call: +$210
+- Buy back (close) short back month call: -$580
 
-- **Close position:**
+**P&L Calculation:**
 
-  - Sell front: +$210
+| Component | Cash Flow |
+|-----------|-----------|
+| Initial credit (sold back - bought front) | +$130 |
+| Sell front at close | +$210 |
+| Buy back short back month | -$580 |
+| **Net P&L** | **-$240 LOSS** |
 
-  - Buy back back month: -$550
+**Wait—this shows the reverse calendar lost money!** This is actually correct for this scenario:
 
-**P&L:**
+- The front month didn't decay enough (stock moved ITM)
+- The back month didn't decline as much as the front
 
-- Initial credit: +$130
+**The key lesson:** Reverse calendars profit when:
+1. Front month decays rapidly (IV crush + theta)
+2. Stock stays near the strike (minimal intrinsic value)
+3. Back month holds its value or increases
 
-- Close front: +$210
+**Better scenario for reverse calendar:**
 
-- Close back: -$550
+Stock stays at $100 after earnings:
+- Front month worth $0.15 (near expiration, ATM, crushed IV)
+- Back month worth $4.50 (theta decay but no intrinsic loss)
 
-- Initial back: +$780
+**P&L: +$130 + $15 - $450 = -$305 LOSS**
 
-- **Net: $130 + $210 - $550 + $780 = $570 profit**
+This illustrates why reverse calendars are difficult: you need the IV crush to be dramatic AND the stock to move significantly for the trade to work. Standard calendars (selling front, buying back) are generally more forgiving.
 
-This still seems off. Let me use a simpler pure arbitrage example:
-
-### 4. Tactical Duration
+### 4. Box Spread Arbitrage Example
 
 
 **Setup (clearer):**

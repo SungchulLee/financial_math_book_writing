@@ -1,6 +1,4 @@
-# Backspreads (Call
-
-
+# Backspreads (Call and Put)
 **Backspreads** are reverse ratio spreads where you buy more options than you sell at different strikes, creating unlimited profit potential in the favored direction while often collecting a credit or paying minimal debit, combining directional bias with volatility exposure.
 
 
@@ -44,9 +42,7 @@ $$
 
 ---
 
-## What Are
-
-
+## What Are These Structures?
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/backspread_ratio_comparison.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -147,9 +143,7 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/call_backspread.png?raw=true" alt="long_call_vs_put" width="700">
 </p>
@@ -248,9 +242,7 @@ $$
 
 ---
 
-## Key Terminology
-
-
+## Key Terminology and Definitions
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/backspread_payoff.png?raw=true" alt="backspread" width="700">
 </p>
@@ -309,9 +301,7 @@ $$
 
 ---
 
-## Why Trade
-
-
+## Why Trade These Structures?
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/backspread_theta.png?raw=true" alt="backspread_theta" width="700">
 </p>
@@ -321,14 +311,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 Backspreads represent a specific economic proposition: **trading high probability of small losses for low probability of unlimited gains**, funded by selling nearer-to-the-money options to finance buying further-out-of-the-money options.
 
 **Economic equivalence:**
@@ -613,9 +599,7 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 ---
 
-## Greeks Behavior
-
-
+## Greeks Behavior and Analysis
 ### 1. Delta
 
 
@@ -951,12 +935,8 @@ Skew makes put backspreads EASIER to enter for credit (steep put skew in equitie
 
 ---
 
-## Risk Management
-
-
-### 1. Position Sizing
-
-
+## Risk Management Framework
+### 1. Position Sizing Rules
 **Rule of thumb:**
 
 $$
@@ -1163,9 +1143,7 @@ Actually, let me reconsider:
 
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 **The mistakes that cost traders the most money:**
 
 ### 1. The error: "Stock
@@ -1619,9 +1597,7 @@ Follow the rules, avoid mistakes, and backspreads become profitable! 🎯
 
 ---
 
-## Final Wisdom
-
-
+## Final Wisdom and Key Takeaways
 > "Backspreads are for traders who want the lottery ticket but are smart enough to get paid for it - or at least not overpay. By selling one option to finance buying two, you're creating unlimited profit potential for minimal cost. But make no mistake: this is not a 'set and forget' trade. Backspreads need BIG moves and they need them FAST. Theta doesn't care about your thesis, and IV crush doesn't respect your directional correctness. Enter when IV is low, have a specific catalyst, and don't fall in love with the position. If the move doesn't materialize in 2-3 weeks, cut it and move on. The best backspreads are often the ones you close early for a small loss rather than holding for the home run that never comes."
 
 **Key to success:**
@@ -1638,9 +1614,7 @@ Follow the rules, avoid mistakes, and backspreads become profitable! 🎯
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1756,9 +1730,7 @@ Check:
 ✗ **Earnings same day** (too binary, IV collapse)  
 ✗ **After big move** (already extended, less room)
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1811,9 +1783,7 @@ $$
 - If max loss per backspread: $10
 - **Contracts per position:** $2,000 / $10 = 200 contracts (subject to liquidity)
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 **1. Use limit orders (NEVER market orders):**
@@ -1884,9 +1854,7 @@ $$
 - Stock might move before second leg filled
 - Single order = **no directional risk**, both legs simultaneously
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **Profit targets:**

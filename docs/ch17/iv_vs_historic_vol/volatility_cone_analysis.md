@@ -1,5 +1,4 @@
-# Volatility Cone
-
+# Volatility Cone Analysis
 ## Using Historical
 
 
@@ -111,9 +110,7 @@ They provide **context**, not predictions.
 
 ---
 
-## The Structure
-
-
+## The Structure and Mechanics
 ### 1. General
 
 
@@ -182,9 +179,7 @@ Cone-based trades typically:
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 \[
 \Pi_{\text{cone}} = \sum_i n_i \cdot V(T_i, \sigma_{\text{implied}, i})
 \]
@@ -202,14 +197,10 @@ Primary exposure is to **volatility level relative to historical bounds**.
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what volatility cone analysis REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 Volatility cone analysis is fundamentally about **exploiting the statistical regularity in volatility distribution** combined with the **volatility risk premium**. You're trading the **shape and bounds of the probability distribution**, not individual outcomes.
 
 **What you're really doing:**
@@ -567,9 +558,7 @@ $$
 
 - Average hold time: 35 days
 
-### 7. Professional
-
-
+### 7. Professional Implementation
 ### 8. Market Makers
 
 
@@ -899,9 +888,7 @@ Even when SPY at 85th percentile, AAPL might be at 45th percentile.
 
 
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. Primary P&L
 
 
@@ -949,9 +936,7 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
 ---
 
-## Risk Management
-
-
+## Risk Management Framework
 ### 1. Key Risks
 
 
@@ -998,9 +983,7 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
 
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1040,32 +1023,28 @@ Cone analysis does not generate P&L itself; it **identifies favorable entry poin
 
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 
-- [Specific IV conditions]
+- Current IV is at extreme percentiles of the volatility cone (>80th or <20th)
 
-- [Term structure requirements]
+- Historical realized vol supports mean reversion thesis
 
-- [Skew positioning]
+- Term structure aligns with your expected IV path
 
-- [Time to event/expiration]
+- 30-90 day horizon to allow for mean reversion to occur
 
 **Avoid this strategy when:**
 
-- [Unfavorable IV environment]
+- IV is in the middle of the cone range (no clear edge)
 
-- [Wrong term structure shape]
+- Structural regime change may be occurring (new volatility regime)
 
-- [Insufficient IV edge]
+- Near-term catalysts could justify elevated/depressed IV
 
-- [Event risk too high]
+- Liquidity is insufficient for the required position size
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1092,9 +1071,7 @@ $$
 
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1127,9 +1104,7 @@ $$
 
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -1301,9 +1276,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 [Common IV strategy errors to avoid]
 
 
@@ -1927,9 +1900,7 @@ These three examples show:
 
 
 
-## Key Takeaways
-
-
+## Key Takeaways and Summary
 - Volatility cones define historical volatility ranges
 
 - IV extremes relative to the cone signal opportunity

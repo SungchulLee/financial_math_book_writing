@@ -133,9 +133,7 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/risk_reversals.png?raw=true" alt="risk_reversals" width="700">
 </p>
@@ -234,9 +232,7 @@ $$
 3. No dividends
 4. Assignment risk
 
-### 3. The Volatility
-
-
+### 3. The Volatility Risk Premium
 **Risk reversals exploit an inefficiency in options markets:**
 
 **The skew:**
@@ -404,9 +400,7 @@ If risk reversal costs significantly more/less than theoretical:
 
 ---
 
-## Key Terminology
-
-
+## Key Terminology and Definitions
 **Risk Reversal (RR):**
 
 - Also called "collar without stock" or "synthetic long/short"
@@ -572,9 +566,7 @@ If risk reversal costs significantly more/less than theoretical:
 
 ---
 
-## The Greeks
-
-
+## The Greeks Profile
 **How Greeks create stock-like behavior:**
 
 ### 1. Delta
@@ -773,9 +765,7 @@ $$
 
 ---
 
-## Strike Selection
-
-
+## Strike Selection Strategy
 **Where you place strikes determines everything:**
 
 ### 1. The Symmetry
@@ -1014,9 +1004,7 @@ $$
 
 ---
 
-## Time Selection
-
-
+## Time Selection and Expiration
 ### 1. Entry Timing
 
 
@@ -1826,14 +1814,10 @@ This is insurance companies overpaying for protection!
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
 **Economic equivalence:**
@@ -1842,18 +1826,14 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV
-
-
+### 2. Why This IV Structure Exists
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
 - Risk preferences (convexity vs. theta)
 - Event views (known catalysts vs. unknown volatility)
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility
-
-
+### 3. The Volatility Risk Premium
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
 $$
@@ -1878,9 +1858,7 @@ Institutional traders view IV strategies as tools for:
 Understanding the economic foundations helps you recognize when IV offers genuine edge versus when market pricing is fair.
 
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1908,24 +1886,21 @@ Understanding the economic foundations helps you recognize when IV offers genuin
    - Fed meetings, economic data
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
-- [Specific IV conditions]
-- [Term structure requirements]
-- [Skew positioning]
-- [Time to event/expiration]
+- IV Rank above 40-50% (premium is relatively rich)
+- Term structure supports your view (normal for calendars, inverted for reverse calendars)
+- Skew is at appropriate levels for your structure
+- 30-60 days to front month expiration (optimal theta/gamma balance)
+- No unexpected binary events in your trade horizon
 
 **Avoid this strategy when:**
-- [Unfavorable IV environment]
-- [Wrong term structure shape]
-- [Insufficient IV edge]
-- [Event risk too high]
+- IV Rank below 25% (insufficient premium to justify risk)
+- Term structure shape contradicts your thesis
+- Major earnings or events within trade timeframe (unless trading event specifically)
+- Bid-ask spreads exceed 10% of spread value (poor liquidity)
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1944,9 +1919,7 @@ $$
 - Risk 1-2% on undefined risk strategies
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1966,9 +1939,7 @@ $$
 - [ ] Max loss understood
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -2078,9 +2049,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 ### 1. Using RR Without
 
 
@@ -2327,9 +2296,7 @@ $$
 
 ---
 
-## Advanced Concepts
-
-
+## Advanced Concepts and Variations
 ### 1. The Skew Trading
 
 
@@ -2540,12 +2507,8 @@ $$
 
 ---
 
-## Risk Management
-
-
-### 1. Position Sizing
-
-
+## Risk Management Framework
+### 1. Position Sizing Rules
 **More conservative than other strategies:**
 
 $$
@@ -2722,9 +2685,7 @@ $$
 
 ---
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 **The fatal errors that destroy risk reversal traders:**
 
 ### 1. The trap: What
@@ -4277,9 +4238,7 @@ Multiple layers = safety net
 
 
 
-## Final Wisdom
-
-
+## Final Wisdom and Key Takeaways
 > "Risk reversals are deceptively simple - sell one option, buy another, pay nothing. But this simplicity hides profound risk: unlimited loss on one side, dead zone opportunity cost, and assignment dangers. Use them ONLY when you have very strong directional conviction - 8 out of 10 or higher. The zero cost is not free; you're accepting insurance obligations in exchange for leverage. The best RR trades exploit extreme volatility skew during panic, entering when puts are absurdly expensive and calls are cheap. You get paid to take a bullish stance you wanted anyway. Master the conviction checklist, respect the dead zone, and never let assignment happen. Remember: RRs are synthetic stock without the capital - powerful when right, devastating when wrong."
 
 **Key to success:**

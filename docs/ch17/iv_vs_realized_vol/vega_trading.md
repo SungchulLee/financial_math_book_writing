@@ -1,6 +1,4 @@
-# Vega Trading
-
-
+# Vega Trading Strategies
 **Vega trading** is a strategy where you profit from changes in implied volatility by holding options positions while hedging away directional risk.
 
 <p align="center">
@@ -140,9 +138,7 @@ $$
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 Your vega trading portfolio consists of:
 
 $$
@@ -172,14 +168,10 @@ where $V(S,t,\sigma)$ is the option value (function of stock price, time, AND vo
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 This strategy involves specific economic trade-offs that determine when it's most valuable. The key is understanding what you're giving up versus what you're gaining in economic terms.
 
 **Economic equivalence:**
@@ -217,9 +209,7 @@ Institutional traders view this strategy as a tool for:
 Understanding the economic foundations helps you recognize when the strategy offers genuine edge versus when market pricing is fair.
 
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 For a vega-hedged portfolio, over a short time interval $\delta t$:
 
 $$
@@ -1129,9 +1119,7 @@ risk      realized   changes
 
 
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1163,18 +1151,16 @@ risk      realized   changes
 
    - Transaction cost environment
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 
-- [Specific Greeks conditions]
+- Vega exposure aligns with your IV directional view
 
-- [Volatility requirements]
+- IV is at extreme percentiles (>70th for short, <30th for long)
 
-- [Liquidity sufficient for rebalancing]
+- Liquidity sufficient for position sizing and adjustments
 
-- [Expected Greeks P&L > costs]
+- Expected vega P&L exceeds theta decay and transaction costs
 
 ### 3. Enter LONG vega
 
@@ -1250,15 +1236,15 @@ risk      realized   changes
 ---
 
 
-**Avoid this strategy when:**
+**Avoid vega trading when:**
 
-- [Unfavorable Greeks environment]
+- IV is in the 40-60% neutral range (no directional edge)
 
-- [High transaction costs]
+- Transaction costs exceed expected profit potential
 
-- [Insufficient liquidity]
+- Liquidity is insufficient for your position size
 
-- [Wrong volatility regime]
+- Volatility regime is uncertain or transitioning
 
 ### 4. Calculate maximum
 
@@ -1418,9 +1404,7 @@ $$
 - Consider vega cross-effects (vanna, volga)
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 **Critical errors that destroy vega trading profits:**
 
 ### 1. The error: "I'll

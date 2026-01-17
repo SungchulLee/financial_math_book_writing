@@ -1,6 +1,4 @@
-# Earnings IV Crush
-
-
+# Earnings IV Crush Strategies
 **Earnings IV Crush strategies** are options approaches designed to exploit the predictable phenomenon where implied volatility spikes before earnings announcements and then collapses immediately afterward, regardless of the actual stock move, creating systematic profit opportunities from volatility mean reversion rather than directional bets.
 
 
@@ -192,9 +190,7 @@ Even if $S' > S$ (stock moved favorably), the crush in $\sigma$ can dominate!
 
 ---
 
-## The Structure
-
-
+## The Structure and Mechanics
 ### 1. Types of Earnings
 
 
@@ -294,9 +290,7 @@ $$
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 ### 1. Pre-Earnings
 
 
@@ -382,14 +376,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
 **Economic equivalence:**
@@ -398,18 +388,14 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV
-
-
+### 2. Why This IV Structure Exists
 Markets create these IV structures because different participants have different:
 - Volatility expectations (near-term vs. long-term)
 - Risk preferences (convexity vs. theta)
 - Event views (known catalysts vs. unknown volatility)
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility
-
-
+### 3. The Volatility Risk Premium
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
 $$
@@ -434,9 +420,7 @@ Institutional traders view IV strategies as tools for:
 Understanding the economic foundations helps you recognize when IV offers genuine edge versus when market pricing is fair.
 
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. For Pre-Earnings
 
 
@@ -1146,9 +1130,7 @@ $$
 
 ---
 
-## Strike Selection
-
-
+## Strike Selection Strategy
 ### 1. For Pre-Earnings
 
 
@@ -1297,9 +1279,7 @@ Days Before | IV Level | Entry Quality
 
 ---
 
-## Position Management
-
-
+## Position Management Rules
 ### 1. Managing
 
 
@@ -1393,9 +1373,7 @@ Days Before | IV Level | Entry Quality
 
 ---
 
-## Greeks Analysis
-
-
+## Greeks Analysis and Hedging
 ### 1. Pre-Earnings
 
 
@@ -1535,9 +1513,7 @@ $$
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1565,9 +1541,7 @@ $$
    - Fed meetings, economic data
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 - Pre-earnings IV has elevated significantly (IVR > 60%)
 - 5-15 days before earnings announcement
@@ -1584,9 +1558,7 @@ $$
 - Erratic historical crush patterns
 - Major non-earnings catalyst present
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1605,9 +1577,7 @@ $$
 - Risk 1-2% on undefined risk strategies
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -1627,9 +1597,7 @@ $$
 - [ ] Max loss understood
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -1739,9 +1707,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 ### 1. Entering Too Late
 
 
@@ -1866,9 +1832,7 @@ $$
 
 ---
 
-## Advanced Concepts
-
-
+## Advanced Concepts and Variations
 ### 1. Quantifying
 
 

@@ -1,5 +1,4 @@
-# Implied vs Realized
-
+# Implied vs Realized Volatility Trading
 ## Trading the
 
 
@@ -134,9 +133,7 @@ The IV–RV gap is:
 
 ---
 
-## The Structure
-
-
+## The Structure and Mechanics
 ### 1. General IV–RV
 
 
@@ -211,9 +208,7 @@ IV–RV trades typically involve:
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 ### 1. Generic IV–RV
 
 
@@ -234,14 +229,10 @@ The portfolio’s P&L depends primarily on **realized volatility**.
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 This IV strategy involves specific economic trade-offs around volatility exposure. The key is understanding what you're giving up versus what you're gaining in terms of implied volatility positioning.
 
 **Economic equivalence:**
@@ -250,9 +241,7 @@ $$
 \text{Strategy P\&L} = \text{IV Change Component} + \text{Term Structure Component} + \text{Skew Component}
 $$
 
-### 2. Why This IV
-
-
+### 2. Why This IV Structure Exists
 Markets create these IV structures because different participants have different:
 
 - Volatility expectations (near-term vs. long-term)
@@ -263,9 +252,7 @@ Markets create these IV structures because different participants have different
 
 - Hedging needs (portfolio protection vs. income generation)
 
-### 3. The Volatility
-
-
+### 3. The Volatility Risk Premium
 Most IV strategies exploit the **volatility risk premium** - the empirical observation that:
 
 $$
@@ -298,9 +285,7 @@ Institutional traders view IV strategies as tools for:
 Understanding the economic foundations helps you recognize when IV offers genuine edge versus when market pricing is fair.
 
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. Core P&L Driver
 
 
@@ -377,9 +362,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 ---
 
-## Risk Management
-
-
+## Risk Management Framework
 ### 1. Key Risks
 
 
@@ -445,9 +428,7 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
 
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -487,32 +468,28 @@ Understanding the economic foundations helps you recognize when IV offers genuin
 
    - Product launches, regulatory decisions
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 
-- [Specific IV conditions]
+- IV is significantly higher than recent realized vol (IV/RV ratio > 1.2 for selling vol)
 
-- [Term structure requirements]
+- IV is significantly lower than recent realized vol (IV/RV ratio < 0.8 for buying vol)
 
-- [Skew positioning]
+- Term structure supports your view (sell when front > back, buy when inverted)
 
-- [Time to event/expiration]
+- 30-60 days to expiration for optimal gamma/theta balance
 
 **Avoid this strategy when:**
 
-- [Unfavorable IV environment]
+- IV and realized vol are closely aligned (no edge)
 
-- [Wrong term structure shape]
+- Major binary events imminent (earnings, FDA, elections)
 
-- [Insufficient IV edge]
+- IV/RV relationship is ambiguous or at historical midpoint
 
-- [Event risk too high]
+- Liquidity is poor (bid-ask > 5% of option price)
 
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -539,9 +516,7 @@ $$
 
 - Risk 2-5% on defined risk strategies
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **IV analysis first:** Check IV percentile before entry
@@ -574,9 +549,7 @@ $$
 
 - [ ] Exit plan defined
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **IV monitoring:**
@@ -748,9 +721,7 @@ $$
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 **Critical errors that destroy IV-RV traders:**
 
 ### 1. The error: "VIX
@@ -1954,12 +1925,50 @@ $$
 ## Real-World Examples
 
 
-[Concrete IV strategy examples]
+**Example 1: Short Volatility Trade (Selling Rich IV)**
+
+Setup:
+- Stock XYZ trading at $100
+- 30-day IV: 45% (IV Rank = 85th percentile)
+- 30-day realized vol: 28%
+- IV/RV ratio: 1.61 (significantly overpriced)
+
+Trade: Sell iron condor
+- Sell $95 put / Buy $90 put
+- Sell $105 call / Buy $110 call
+- Credit received: $2.20
+
+Outcome scenarios:
+- Stock stays between $95-$105: Keep full $2.20 (max profit)
+- Stock at $92: Loss = $3.00 - $2.20 = $0.80
+- Stock at $108: Loss = $3.00 - $2.20 = $0.80
+- Stock beyond wings: Max loss = $2.80
+
+**Example 2: Long Volatility Trade (Buying Cheap IV)**
+
+Setup:
+- Stock ABC trading at $50
+- 30-day IV: 18% (IV Rank = 8th percentile)
+- Historical 30-day realized vol: 32%
+- Earnings in 3 weeks
+- IV/RV ratio: 0.56 (significantly underpriced)
+
+Trade: Long straddle
+- Buy $50 call @ $1.80
+- Buy $50 put @ $1.70
+- Total cost: $3.50
+
+Break-even: Stock must move ±7% ($3.50/$50)
+- If realized vol matches historical (32% annualized ≈ 5.8% monthly move)
+- Expected move exceeds break-even → Profitable
+
+Outcome:
+- Stock moves to $58 (+16%): Call worth $8, put worthless → $4.50 profit
+- Stock drops to $43 (-14%): Put worth $7, call worthless → $3.50 profit
+- Stock stays at $50: Both expire worthless → $3.50 loss
 
 
-## Key Takeaways
-
-
+## Key Takeaways and Summary
 - IV usually exceeds RV due to risk premium
 
 - The IV–RV spread is persistent but risky

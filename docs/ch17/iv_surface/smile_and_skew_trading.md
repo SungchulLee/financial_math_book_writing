@@ -12,7 +12,7 @@
 
 ---
 
-# Volatility Smile and
+## Volatility Smile and Skew Trading Overview
 
 
 **Volatility smile and skew trading** is a strategy where you profit from mispricing across different option strikes by exploiting the fact that options at different strikes trade at different implied volatilities.
@@ -337,9 +337,7 @@ Equity Skew (typical):          FX Smile (typical):
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 Your smile/skew trading portfolio consists of:
 
 $$
@@ -375,14 +373,10 @@ where you hold options at multiple strikes $K_i$ with weights $w_i$.
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what volatility smile/skew trading REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 Volatility smile and skew trading is fundamentally about **exploiting market inefficiencies in how tail risk is priced across strikes**. You're not just trading volatility levels—you're trading the **shape of the fear distribution**.
 
 **What you're really doing:**
@@ -1907,9 +1901,7 @@ $$
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -1941,32 +1933,20 @@ $$
 
    - Transaction cost environment
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
-
-- [Specific Greeks conditions]
-
-- [Volatility requirements]
-
-- [Liquidity sufficient for rebalancing]
-
-- [Expected Greeks P&L > costs]
+- Delta exposure matches your directional view
+- Vega exposure aligns with your volatility forecast
+- Theta is favorable or acceptable for your time horizon
+- Gamma risk is manageable given position size
 
 **Avoid this strategy when:**
+- Greeks profile contradicts your market view
+- Position would create unmanageable tail risk
+- Liquidity is insufficient for adjustments
+- Correlation with existing positions is too high
 
-- [Unfavorable Greeks environment]
-
-- [High transaction costs]
-
-- [Insufficient liquidity]
-
-- [Wrong volatility regime]
-
-### 3. Calculate maximum
-
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -1983,9 +1963,7 @@ $$
 
 - Margin requirements
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **Greeks analysis:** Calculate all relevant Greeks before entry
@@ -2006,9 +1984,7 @@ $$
 
 - Transaction cost consideration: Balance frequency vs. cost
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **Greeks monitoring:**
@@ -2122,9 +2098,7 @@ $$
 - Consider vega cross-effects (vanna, volga)
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 [Common errors to avoid]
 
 
@@ -2287,7 +2261,7 @@ $$
 
 ---
 
-# Smile Trading and
+## Smile Trading and Skew Bets: Advanced Framework
 
 
 **Smile trading and skew bets** target relative mispricings across strikes (skew/curvature) and maturities (term structure), exploiting the fact that the **volatility surface is not flat** and its shape changes predictably over time.
@@ -2327,14 +2301,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what smile/skew trading REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 Smile and skew trading is fundamentally about **exploiting the supply/demand imbalances and behavioral biases** that create non-uniform pricing across the volatility surface. You're trading **fear asymmetry** and **structural hedging flows**.
 
 **What you're really doing:**

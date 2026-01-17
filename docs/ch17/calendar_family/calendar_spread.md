@@ -180,9 +180,7 @@ Plot IV vs. Time to Maturity → creates a curve
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 Your calendar spread portfolio consists of:
 
 $$
@@ -232,14 +230,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 **Calendar spreads are fundamentally trading the volatility term structure:**
 
 $$
@@ -288,9 +282,7 @@ $$
 
 More time = more cumulative uncertainty. Longer-dated options price this in.
 
-### 3. The Volatility
-
-
+### 3. The Volatility Risk Premium
 **Historical observation:**
 
 Calendar spreads have a positive expected return from:
@@ -435,9 +427,7 @@ Understanding economic foundations helps recognize when calendars offer genuine 
 
 ---
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 For a calendar spread:
 
 $$

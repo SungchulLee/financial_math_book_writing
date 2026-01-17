@@ -1,5 +1,4 @@
-# Event Calendar
-
+# Event Calendar Spreads
 ## Trading Event-Driven
 
 
@@ -107,9 +106,7 @@ Event-related IV is often:
 
 ---
 
-## The Structure
-
-
+## The Structure and Mechanics
 ### 1. General Event
 
 
@@ -160,9 +157,7 @@ Event calendar spreads typically:
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 \[
 \Pi_{\text{event}} = V(K, T_{\text{after}}, \sigma_{\text{after}})
 - V(K, T_{\text{before}}, \sigma_{\text{before}})
@@ -181,14 +176,10 @@ Primary exposure is to **relative IV across maturities**.
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what event calendar spreads REALLY represent economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 Event calendar spreads trade a fundamental market phenomenon:
 
 $$
@@ -614,9 +605,7 @@ $$
 
 
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 ### 1. Primary P&L
 
 
@@ -670,9 +659,7 @@ Typical pattern:
 
 ---
 
-## Risk Management
-
-
+## Risk Management Framework
 ### 1. Key Risks
 
 
@@ -730,9 +717,7 @@ Typical pattern:
 
 
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step framework for trading event calendar spreads:**
 
 ### 1. High-probability
@@ -1267,9 +1252,7 @@ Exit Log:
 - Monitor skew changes daily
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 **Critical errors in event calendar spread trading:**
 
 ### 1. Earnings tomorrow
@@ -2168,9 +2151,7 @@ Stick to liquid options:
 
 
 
-## Key Takeaways
-
-
+## Key Takeaways and Summary
 - Event calendars exploit volatility concentration
 - Front-month IV often overprices events
 - Profit comes from IV collapse, not direction

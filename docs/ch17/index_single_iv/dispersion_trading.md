@@ -58,9 +58,7 @@ $$
 
 **This is CRUCIAL to understand:**
 
-### 1. A Simple Example
-
-
+### 1. A Simple Example to Illustrate
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/dispersion_trading_realized_implied.png?raw=true" alt="dispersion_trading_realized_implied" width="700">
 </p>
@@ -118,9 +116,7 @@ $$
 
 **Dispersion trading is betting on the CORRELATION structure:**
 
-### 1. The Fundamental
-
-
+### 1. The Fundamental Concept
 **Classic "Long Dispersion" (Most Common):**
 
 1. Sell index options (short index volatility) 
@@ -172,9 +168,7 @@ $$
 
 ---
 
-## The Portfolio
-
-
+## The Portfolio Construction
 Your dispersion trading portfolio consists of:
 
 $$
@@ -234,14 +228,10 @@ Approximately market-cap weighted, adjusted for vega matching.
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 **Dispersion trading is fundamentally trading the value of diversification.**
 
 **Economic meaning:**
@@ -266,9 +256,7 @@ When you go **short dispersion**, you're betting:
 
 - Diversification will fail
 
-### 2. The Dispersion
-
-
+### 2. The Dispersion Premium
 **Historical observation:**
 
 $$
@@ -293,9 +281,7 @@ Just as $\sigma^{\text{implied}} > \sigma^{\text{realized}}$ (vol risk premium),
 
 **Long dispersion collects this premium** (similar to selling volatility collects vol risk premium).
 
-### 3. Why This
-
-
+### 3. Why This Works
 **Market participants with different needs:**
 
 **Index put buyers (create long dispersion opportunity):**
@@ -326,9 +312,7 @@ Just as $\sigma^{\text{implied}} > \sigma^{\text{realized}}$ (vol risk premium),
 
 - Provide liquidity to both sides
 
-### 4. The Correlation
-
-
+### 4. The Correlation Trade
 **Professional perspective:** Options market has a full **correlation surface**:
 
 $$
@@ -345,9 +329,7 @@ Different strikes, expirations, and basket compositions imply different correlat
 
 - **Cross-sectional dispersion:** Sector vs. index correlation
 
-### 5. Fair Value
-
-
+### 5. Fair Value Calculation
 **Theoretical fair value of dispersion trade:**
 
 $$
@@ -370,9 +352,7 @@ $$
 
 If realized correlation falls below this, long dispersion profits.
 
-### 6. The Macro
-
-
+### 6. The Macro Environment
 **Correlation is NOT constant:**
 
 $$
@@ -397,9 +377,7 @@ $$
 
 **Strategic implication:** Enter long dispersion in high-correlation regimes (expecting mean reversion), exit in low-correlation regimes.
 
-### 7. Professional
-
-
+### 7. Professional Implementation
 **Institutional traders view dispersion as:**
 
 1. **Correlation arbitrage:** 
@@ -552,9 +530,7 @@ Crisis (VIX 50+):    Implied ρ ≈ 70-90%
 
 - **Low implied correlation** (Bull market) → Enter short dispersion or avoid
 
-### 4. The Correlation
-
-
+### 4. The Correlation Trade
 **Just like vol has term structure, so does correlation:**
 
 ```
@@ -568,9 +544,7 @@ Tenor:
 
 ---
 
-## The P&L Formula
-
-
+## The P&L Formula and Components
 **For a dispersion trade, the P&L is complex, but conceptually:**
 
 $$
@@ -1382,12 +1356,8 @@ Theta P&L: -$100
 
 ---
 
-## Risk Management
-
-
-### 1. Position Sizing
-
-
+## Risk Management Framework
+### 1. Position Sizing Rules
 **Maximum size calculation:**
 
 $$
@@ -1410,9 +1380,7 @@ $$
 
 3. **Correlation to other trades:** Consider correlations with other strategies
 
-### 2. Greeks Limits
-
-
+### 2. Greeks Limits and Thresholds
 **Set hard limits on Greeks exposure:**
 
 **Gamma:**
@@ -1439,9 +1407,7 @@ $$
 
 - Maintain direction neutrality
 
-### 3. Correlation Risk
-
-
+### 3. Correlation Risk Management
 **Monitor correlation exposure:**
 
 $$
@@ -1462,9 +1428,7 @@ $$
 
    - Diversify across sectors, regions, time horizons
 
-### 4. Stop Loss Rules
-
-
+### 4. Stop Loss Rules and Triggers
 **Hard stops:**
 
 1. **Portfolio-level:** Exit if position down 20-30%
@@ -1475,9 +1439,7 @@ $$
 
 4. **Time-based:** Exit if no progress after 50% of time elapsed
 
-### 5. Operational Risk
-
-
+### 5. Operational Risk Controls
 **Dispersion is operationally complex:**
 
 1. **Number of positions:** 10-20+ individual stocks + index
@@ -1498,9 +1460,7 @@ $$
 
 - Have backup systems
 
-### 6. Crisis Risk (The
-
-
+### 6. Crisis Risk (The Tail Scenario)
 **"All correlations go to 1 in a crisis"**
 
 **Long dispersion is SHORT a crisis:**
@@ -1533,12 +1493,8 @@ $$
 
 ---
 
-## Advanced Topics
-
-
-### 1. Dispersion vs.
-
-
+## Advanced Topics and Extensions
+### 1. Dispersion vs. Correlation Trading
 **Dispersion trading:** Options-based, delta hedged
 
 **Correlation swaps:** Direct derivative on correlation
@@ -1565,9 +1521,7 @@ $$
 
 **Most institutions:** Use dispersion (options) because liquidity and ability to lever.
 
-### 2. Sector vs. Index
-
-
+### 2. Sector vs. Index Dispersion
 **Instead of index vs. stocks, trade sector vs. stocks:**
 
 Example:
@@ -1590,9 +1544,7 @@ Example:
 
 - Smaller dispersion premium
 
-### 3. Cross-Asset
-
-
+### 3. Cross-Asset Applications
 **Extend concept across asset classes:**
 
 - Short multi-asset index (e.g., balanced fund)
@@ -1603,9 +1555,7 @@ Example:
 
 **Professional application:** Risk parity funds use this to manage correlation exposure.
 
-### 4. Implied vs. Local
-
-
+### 4. Implied vs. Local Correlation
 **Two types of correlation:**
 
 1. **Implied correlation:** Backed out from current option prices
@@ -1622,12 +1572,8 @@ $$
 
 ---
 
-## Common Mistakes
-
-
-### 1. The error:
-
-
+## Common Mistakes and How to Avoid Them
+### 1. The Error: Ignoring Correlation
 **The error:**
 "Correlation edge is 5%, so I'll make 5%!"
 
@@ -1653,9 +1599,7 @@ $$
 
 - Calculate break-even considering costs
 
-### 2. The error: "Max
-
-
+### 2. The Error: Maximizing Returns Only
 **The error:**
 "Max loss is premium, so I can size large"
 
@@ -2233,9 +2177,7 @@ Day 5: -$4k
 
 
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -2582,9 +2524,7 @@ Lessons:
 
 ---
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 [Content as provided in original document]
 
 ---

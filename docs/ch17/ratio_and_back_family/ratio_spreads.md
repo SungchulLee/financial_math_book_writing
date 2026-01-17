@@ -372,14 +372,10 @@ $$
 
 ---
 
-## Economic
-
-
+## Economic Foundations
 **Understanding what this strategy REALLY represents economically:**
 
-### 1. The Core Economic
-
-
+### 1. The Core Economic Logic
 **What you're trading:**
 
 Ratio spreads represent a fundamental bargain with the market:
@@ -1859,9 +1855,7 @@ $$
 
 ---
 
-## Risk Management
-
-
+## Risk Management Framework
 **Ratio spreads require strict discipline:**
 
 ### 1. Rule 1
@@ -2081,9 +2075,7 @@ $$
 
 ---
 
-## Practical Guidance
-
-
+## Practical Guidance for Implementation
 **Step-by-step implementation framework:**
 
 ### 1. Before entering,
@@ -2115,30 +2107,28 @@ $$
 
    - Macro environment
 
-### 2. Enter this
-
-
+### 2. Entry Timing and Conditions
 **Enter this strategy when:**
 
-- [Specific market conditions]
+- IV is elevated (IV Rank > 40%) making sold options relatively rich
 
-- [Volatility requirements]
+- You have a directional view but expect limited move magnitude
 
-- [Time horizon matches]
+- 30-60 days to expiration for optimal theta collection
 
-- [Risk tolerance appropriate]
+- Underlying has sufficient liquidity (tight bid-ask spreads)
 
 **Avoid this strategy when:**
 
-- [Unfavorable conditions]
+- IV is very low (IV Rank < 20%) – premium not worth the risk
 
-- [Wrong volatility environment]
+- Expecting large directional moves (backspreads better)
 
-- [Insufficient time or liquidity]
+- Less than 14 days to expiration (gamma risk too high)
 
-### 3. Calculate maximum
+- Major events pending that could cause gap moves
 
-
+### 3. Calculate Maximum Position Size
 **Calculate maximum position size:**
 
 $$
@@ -2153,9 +2143,7 @@ $$
 
 - Never more than 20% of portfolio in options
 
-### 4. Best practices: 1
-
-
+### 4. Best Practices for Entry
 **Best practices:**
 
 1. **Use limit orders:** Never use market orders
@@ -2166,14 +2154,12 @@ $$
 
 4. **Single order:** Enter as complete strategy, don't leg in
 
-### 5. Active management
-
-
+### 5. Active Management Rules
 **Active management rules:**
 
 **Profit targets:**
 
-- Take profit at [X]% of max profit
+- Take profit at 50-75% of max profit
 
 - Scale out if appropriate
 
@@ -2239,9 +2225,7 @@ Track every trade:
 5. **Emotional decision-making**
 
 
-## Common Mistakes
-
-
+## Common Mistakes and How to Avoid Them
 ### 1. ❌ Wrong: "Stock
 
 
