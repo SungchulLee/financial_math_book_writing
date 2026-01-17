@@ -665,7 +665,7 @@ nav:
           - 20.7 Credit Volatility:
               - Vol Trading and Tranches: ch20/advanced_topics/credit_volatility.md
           - 20.8 Python Credit Analysis:
-              - CDS Pricing and Credit Tools: ch20/python_credit_analysis.md
+              - CDS Pricing and Credit Tools: ch20/python_credit_analysis/python_credit_analysis.md
 
       - 21 FX:
           - 21.1 FX Foundations:
