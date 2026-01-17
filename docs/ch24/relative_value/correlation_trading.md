@@ -125,9 +125,49 @@ $$
 - Implicit correlation bet
 
 **Correlation swaps (direct):**
-- Payoff: $N \times (\rho^{\text{realized}} - K_\rho)$
-- Direct exposure to correlation level
-- Less common, illiquid
+
+Correlation swaps provide pure exposure to realized correlation:
+
+$$
+\text{Payoff} = N \times (\rho_{\text{realized}} - K_\rho)
+$$
+
+Where:
+- $N$ = Correlation notional (currency per 1% correlation)
+- $\rho_{\text{realized}}$ = Realized average pairwise correlation
+- $K_\rho$ = Strike correlation
+
+**Correlation swap mechanics:**
+
+1. **At inception:** Strike set so swap has zero value
+2. **During life:** Mark-to-market based on forward correlation
+3. **At maturity:** Settlement based on realized correlation
+
+**Fair correlation strike:**
+
+$$
+K_\rho = \frac{\sigma_{\text{index}}^2 - \sum_i w_i^2 \sigma_i^2}{2\sum_{i<j} w_i w_j \sigma_i \sigma_j}
+$$
+
+**Example:**
+- Notional: $\$100,000$ per 1% correlation
+- Strike: $K_\rho = 50\%$
+- Realized correlation: $\rho_{\text{realized}} = 35\%$
+
+**Payoff:**
+
+$$
+\text{Payoff} = \$100,000 \times (35\% - 50\%) = -\$1,500,000
+$$
+
+(Long correlation position lost money as correlation fell)
+
+**Market characteristics:**
+
+- OTC market only (no exchange-traded correlation swaps)
+- Bid-ask spread: 3-5% correlation points
+- Liquidity: Limited, primarily inter-dealer
+- Maturities: 3M, 6M, 1Y most common
 
 **Options on correlation:**
 - Call/put options on correlation index
@@ -138,6 +178,69 @@ $$
 - Index straddles vs. stock straddles
 - Delta-hedge and manage gamma
 - Most liquid approach
+
+### 4a. Correlation Term Structure
+
+
+**Implied correlation varies by maturity:**
+
+$$
+\rho^{\text{implied}}(T) = f(\sigma_{\text{index}}(T), \sigma_i(T), w_i)
+$$
+
+**Typical term structure patterns:**
+
+| Regime | Short-term (1M) | Medium-term (3M) | Long-term (6M+) |
+|--------|-----------------|------------------|-----------------|
+| Normal | 45-55% | 40-50% | 35-45% |
+| Crisis | 75-85% | 65-75% | 55-65% |
+| Recovery | 50-60% | 45-55% | 40-50% |
+
+**Why term structure exists:**
+
+1. **Short-term correlation higher:**
+   - Common macro shocks dominate short-term
+   - Idiosyncratic news averages out over time
+   - Markets move together on "risk-on/risk-off" days
+
+2. **Long-term correlation lower:**
+   - Fundamentals drive long-term returns
+   - Company-specific factors accumulate
+   - Mean reversion kicks in
+
+**Trading the correlation term structure:**
+
+**Calendar spread:**
+- Short near-term correlation (sell 1M index vol, buy stocks)
+- Long far-term correlation (buy 3M index vol, sell stocks)
+- Profit if correlation term structure steepens
+
+**Steepener trade:**
+- When term structure flat (post-crisis)
+- Bet on normalization (short-term falls, long-term stable)
+- Example: $\rho_{\text{1M}} = 65\%$, $\rho_{\text{6M}} = 60\%$ → both normalize
+
+**Flattener trade:**
+- When term structure steep (normal markets)
+- Bet on convergence or crisis (short-term rises toward long-term)
+- Pre-event positioning
+
+**Example term structure trade:**
+
+Setup (normal market):
+- 1M implied correlation: 55%
+- 6M implied correlation: 40%
+- Spread: 15%
+
+Trade:
+- Short 1M correlation (dispersion trade)
+- Long 6M correlation (reverse dispersion)
+- Bet: 1M correlation falls toward 6M level
+
+Outcome (3 months later):
+- 1M realized: 35% (fell 20%)
+- 6M realized: 42% (rose 2%)
+- **Profit on both legs**
 
 ### 5. Historical Patterns
 

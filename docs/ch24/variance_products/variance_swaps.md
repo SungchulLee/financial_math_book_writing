@@ -156,6 +156,86 @@ $$
 - Variance risk premium ranges from 100-400 variance points
 - Long variance historically loses money (like insurance)
 
+### 4a. Theoretical Fair Strike (Log-Contract Derivation)
+
+
+**Model-free implied variance:**
+
+The theoretical foundation for variance swap pricing comes from the log-contract approach (Carr & Madan, Demeterfi et al.). The fair variance strike equals:
+
+$$
+K_{\text{var}} = \frac{2e^{rT}}{T}\left[\int_0^{F_0} \frac{P(K)}{K^2}dK + \int_{F_0}^{\infty} \frac{C(K)}{K^2}dK\right]
+$$
+
+Where:
+- $F_0$ = Forward price of the underlying
+- $P(K)$ = OTM put prices at strike $K$
+- $C(K)$ = OTM call prices at strike $K$
+- $T$ = Time to maturity
+- $r$ = Risk-free rate
+
+**Why this works:**
+
+The key insight is that the payoff of a log-contract can be replicated by a portfolio of options weighted by $1/K^2$:
+
+$$
+-\ln\left(\frac{S_T}{S_0}\right) = -\frac{S_T - S_0}{S_0} + \int_0^{S_0} \frac{(K - S_T)^+}{K^2}dK + \int_{S_0}^{\infty} \frac{(S_T - K)^+}{K^2}dK
+$$
+
+Taking expectations under the risk-neutral measure and using Itô's lemma:
+
+$$
+\mathbb{E}^Q\left[\int_0^T \sigma_t^2 dt\right] = 2\mathbb{E}^Q\left[\ln\left(\frac{S_T}{S_0}\right) + \frac{S_T - S_0}{S_0}\right]
+$$
+
+This connects variance swaps to model-free implied variance extracted from option prices.
+
+**Practical discretization:**
+
+In practice, the integral is discretized using available strikes:
+
+$$
+K_{\text{var}} \approx \frac{2e^{rT}}{T}\sum_{i} \frac{\Delta K_i}{K_i^2} \times Q(K_i)
+$$
+
+Where $Q(K_i)$ is the OTM option price (put if $K_i < F_0$, call if $K_i > F_0$).
+
+### 4b. Discrete Monitoring Adjustment
+
+
+**Real-world sampling:**
+
+Variance swaps in practice use discrete sampling (daily closing prices) rather than continuous monitoring. This introduces a bias that requires adjustment:
+
+$$
+K_{\text{var}}^{\text{discrete}} \approx K_{\text{var}}^{\text{continuous}} \times \left(1 + \frac{\kappa_3^2}{12n}\right)
+$$
+
+Where:
+- $\kappa_3$ = Skewness of the log-return distribution
+- $n$ = Number of observation periods
+
+**Why this matters:**
+
+- Discrete sampling misses intraday variance
+- Overnight gaps can be significant (earnings, news)
+- The adjustment is typically small (0.1-0.5%) but matters for precision pricing
+- Higher frequency sampling (hourly) reduces the adjustment
+
+**Example:**
+
+- Continuous variance strike: $K_{\text{var}} = 400$
+- Skewness: $\kappa_3 = -0.5$ (typical for equities)
+- Observations: $n = 63$ (3-month quarterly)
+
+**Discrete adjustment:**
+
+$$
+K_{\text{var}}^{\text{discrete}} = 400 \times \left(1 + \frac{(-0.5)^2}{12 \times 63}\right) = 400 \times 1.00033 = 400.13
+$$
+
+**Adjustment is minimal for monthly+ horizons with daily sampling.**
+
 ### 5. Variance Notional
 
 

@@ -739,6 +739,13 @@ nav:
           - 24.4 Tail and Hedging:
               - Crash Protection with Variance: ch24/tail_and_hedging/crash_protection_variance.md
               - Dynamic Vol Hedges: ch24/tail_and_hedging/dynamic_vol_hedges.md
+          - 24.5 Python Appendix:
+              - Overview: ch24/python_appendix/README.md
+              - Variance Swap Pricing: ch24/python_appendix/variance_swap_pricing.py
+              - Dispersion Backtest: ch24/python_appendix/dispersion_backtest.py
+              - VRP Measurement: ch24/python_appendix/vrp_measurement.py
+              - Dynamic Hedge Backtest: ch24/python_appendix/dynamic_hedge_backtest.py
+              - Correlation Analysis: ch24/python_appendix/correlation_analysis.py
 
       - 25 Funding and Liquidity:
           - 25.1 Funding Basics:

@@ -184,6 +184,110 @@ $$
 - 30-day options → 30-day realized variance
 - Avoid mixing horizons
 
+### 5a. HAR-RV Model Specification
+
+
+**The industry-standard forecasting model:**
+
+The Heterogeneous Autoregressive model of Realized Volatility (HAR-RV) by Corsi (2009) captures volatility persistence at multiple frequencies:
+
+$$
+\text{RV}_{t+h} = \alpha + \beta_d \text{RV}_t + \beta_w \text{RV}_{t}^{(w)} + \beta_m \text{RV}_{t}^{(m)} + \epsilon_{t+h}
+$$
+
+Where:
+- $\text{RV}_t$ = Daily realized variance (most recent day)
+- $\text{RV}_{t}^{(w)} = \frac{1}{5}\sum_{i=0}^{4} \text{RV}_{t-i}$ = Weekly average (past 5 days)
+- $\text{RV}_{t}^{(m)} = \frac{1}{22}\sum_{i=0}^{21} \text{RV}_{t-i}$ = Monthly average (past 22 days)
+- $h$ = Forecast horizon
+- $\epsilon_{t+h}$ = Error term
+
+**Typical coefficient estimates (SPX):**
+
+| Parameter | Estimate | Interpretation |
+|-----------|----------|----------------|
+| $\alpha$ | 0.02-0.05 | Long-run variance level |
+| $\beta_d$ | 0.30-0.40 | Short-term persistence |
+| $\beta_w$ | 0.20-0.30 | Medium-term persistence |
+| $\beta_m$ | 0.20-0.40 | Long-term persistence |
+| $R^2$ | 0.40-0.60 | Explanatory power |
+
+**Why HAR-RV works:**
+
+1. **Captures volatility clustering:** High $\beta_d$ means today's vol predicts tomorrow's
+2. **Multi-frequency dynamics:** Different traders (day traders, weekly rebalancers, monthly fund managers) contribute to different persistence horizons
+3. **Simple and robust:** Linear regression, easy to estimate, performs well out-of-sample
+4. **Dominates GARCH:** HAR-RV typically outperforms GARCH(1,1) for variance forecasting
+
+**VRP measurement with HAR-RV:**
+
+$$
+\text{VRP}_t = \text{IV}^2_t - \widehat{\text{RV}}_{t+h}^{\text{HAR}}
+$$
+
+**Where:**
+
+$$
+\widehat{\text{RV}}_{t+h}^{\text{HAR}} = \hat{\alpha} + \hat{\beta}_d \text{RV}_t + \hat{\beta}_w \text{RV}_{t}^{(w)} + \hat{\beta}_m \text{RV}_{t}^{(m)}
+$$
+
+**Example calculation:**
+
+- Current daily RV: $\text{RV}_t = 256$ (16% vol)
+- Weekly RV: $\text{RV}^{(w)} = 225$ (15% vol)
+- Monthly RV: $\text{RV}^{(m)} = 196$ (14% vol)
+- Implied variance: $\text{IV}^2 = 361$ (19% vol)
+
+Using typical coefficients:
+
+$$
+\widehat{\text{RV}}_{t+22} = 0.03 + 0.35 \times 256 + 0.25 \times 225 + 0.30 \times 196 = 205
+$$
+
+**VRP estimate:**
+
+$$
+\text{VRP}_t = 361 - 205 = 156 \text{ variance points}
+$$
+
+**Extensions:**
+
+1. **HAR-RV-J:** Add jump component (squared returns > threshold)
+2. **HAR-RV-SJ:** Separate positive and negative jumps (leverage effect)
+3. **Log-HAR:** Use log-variance for better distributional properties
+
+### 5b. VRP Decomposition
+
+
+**Modern research (Bollerslev, Tauchen, Zhou 2009) decomposes VRP:**
+
+$$
+\text{VRP} = \text{VRP}^{\text{jump}} + \text{VRP}^{\text{diffusive}} + \text{VRP}^{\text{leverage}}
+$$
+
+**Components:**
+
+1. **Jump risk premium** ($\text{VRP}^{\text{jump}}$):
+   - Compensation for bearing rare, large moves
+   - Dominates during high-uncertainty periods
+   - Typically 40-60% of total VRP
+
+2. **Diffusive variance premium** ($\text{VRP}^{\text{diffusive}}$):
+   - Compensation for continuous volatility risk
+   - Related to volatility-of-volatility
+   - Typically 30-40% of total VRP
+
+3. **Leverage effect premium** ($\text{VRP}^{\text{leverage}}$):
+   - Related to stock-volatility correlation (negative)
+   - Volatility rises when stocks fall
+   - Typically 10-20% of total VRP
+
+**Trading implication:**
+
+- Jump risk premium can be partially hedged with OTM options
+- Diffusive premium captured by variance swaps
+- Leverage premium exploited via skew trades
+
 ### 6. VRP Across Maturities
 
 

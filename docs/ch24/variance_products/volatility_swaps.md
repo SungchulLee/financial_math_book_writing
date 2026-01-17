@@ -235,6 +235,29 @@ $$
 
 Volatility swaps harder to replicate than variance swaps:
 
+**Fundamental limitation:**
+
+Unlike variance swaps, volatility swaps **cannot be perfectly replicated with a static portfolio** of options. This is a critical distinction that drives market structure:
+
+- Variance swaps: Static replication via $1/K^2$-weighted option strip
+- Volatility swaps: No perfect static hedge exists
+
+**Why replication is impossible:**
+
+The issue stems from the square root function. For variance swaps:
+
+$$
+\mathbb{E}[X] = \int X \, dP \quad \text{(linear, replicable)}
+$$
+
+For volatility swaps:
+
+$$
+\mathbb{E}[\sqrt{X}] \neq \sqrt{\mathbb{E}[X]} \quad \text{(Jensen's inequality)}
+$$
+
+The non-linear transformation prevents static replication.
+
 **Approximate replication:**
 
 - Start with variance swap replication
@@ -254,12 +277,78 @@ $$
 - More expensive to hedge (dealers charge more)
 - Convexity harder to capture
 
+**Market implications:**
+
+- Volatility swap bid-ask spreads: 1-2% vol (wider than variance swaps)
+- Dealers charge convexity premium
+- Less liquidity in vol swaps vs. variance swaps
+- Longer-dated vol swaps especially expensive (convexity grows with time)
+
 **Dealer perspective:**
 
 - Sell volatility swap to client
 - Approximate hedge with variance swap
 - Dynamic overlay for convexity
 - Profit from bid-ask and convexity premium
+
+### 7a. Convexity Adjustment Derivation
+
+
+**Mathematical foundation:**
+
+The convexity adjustment arises from Taylor expansion of the square root function around the expected variance:
+
+Let $X = \sigma^2$ (realized variance), and we want $\mathbb{E}[\sqrt{X}]$.
+
+**Second-order Taylor expansion:**
+
+$$
+\sqrt{X} \approx \sqrt{\mathbb{E}[X]} + \frac{1}{2\sqrt{\mathbb{E}[X]}}(X - \mathbb{E}[X]) - \frac{1}{8(\mathbb{E}[X])^{3/2}}(X - \mathbb{E}[X])^2
+$$
+
+Taking expectations:
+
+$$
+\mathbb{E}[\sqrt{X}] \approx \sqrt{\mathbb{E}[X]} - \frac{\text{Var}(X)}{8(\mathbb{E}[X])^{3/2}}
+$$
+
+Since $\mathbb{E}[(X - \mathbb{E}[X])] = 0$ and $\mathbb{E}[(X - \mathbb{E}[X])^2] = \text{Var}(X)$.
+
+**For volatility swap strike:**
+
+The fair strike for a zero-value volatility swap is:
+
+$$
+K_{\text{vol}} = \mathbb{E}^Q[\sigma_{\text{realized}}] \approx \sqrt{K_{\text{var}}} - \frac{\text{Var}^Q(\sigma^2)}{8K_{\text{var}}^{3/2}}
+$$
+
+**Wait - the adjustment is negative?**
+
+Yes, but there's a subtlety. The above gives the **expected volatility** under the risk-neutral measure. The volatility swap **strike** is set higher to account for the fact that the swap payer (long volatility) benefits from convexity. The actual quoted strike includes a premium:
+
+$$
+K_{\text{vol}} \approx \sqrt{K_{\text{var}}} + \frac{\text{Var}(\sigma^2)}{8K_{\text{var}}^{3/2}}
+$$
+
+**Why positive adjustment for strike?**
+
+The strike must be set so that:
+
+$$
+\mathbb{E}^Q[\sigma_{\text{realized}} - K_{\text{vol}}] = 0
+$$
+
+Since $\mathbb{E}^Q[\sigma_{\text{realized}}] < \sqrt{K_{\text{var}}}$ (convexity of square root), and dealers must hedge the convexity exposure, they add a premium to the strike.
+
+**Higher-order terms:**
+
+The second-order approximation ignores kurtosis. The full expansion includes:
+
+$$
+K_{\text{vol}} \approx \sqrt{K_{\text{var}}} + \frac{\text{Var}(\sigma^2)}{8K_{\text{var}}^{3/2}} - \frac{\kappa_4 \cdot \text{Var}(\sigma^2)^2}{128K_{\text{var}}^{5/2}} + O(\text{Var}^3)
+$$
+
+Where $\kappa_4$ is the excess kurtosis of variance. In practice, the first-order correction dominates.
 
 ---
 

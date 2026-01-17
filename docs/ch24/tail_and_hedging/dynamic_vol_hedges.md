@@ -350,6 +350,95 @@ $$
 
 Where $\lambda(t)$ = Current crash intensity (from VIX, vol, etc.)
 
+### 1a. HJB Equation and Optimal Control Solution
+
+
+**Hamilton-Jacobi-Bellman formulation:**
+
+The optimal hedge ratio problem can be formulated as a stochastic control problem. Let $V(t, W, \sigma)$ be the value function where $W$ is wealth and $\sigma$ is volatility state.
+
+**HJB equation:**
+
+$$
+0 = \min_{N} \left\{ C(N) + \mathcal{L} V + \lambda(t) [V^{\text{crash}} - V] \right\}
+$$
+
+Where:
+- $C(N)$ = Running cost of hedge (proportional to $N$)
+- $\mathcal{L}V$ = Infinitesimal generator (drift + diffusion terms)
+- $\lambda(t)$ = Crash intensity (Poisson arrival rate)
+- $V^{\text{crash}}$ = Value function post-crash
+
+**Linear-quadratic case (closed-form solution):**
+
+For a quadratic cost function and constant intensity:
+
+$$
+C(N) = c_1 N + c_2 N^2
+$$
+
+$$
+\lambda(t) = \lambda_0 \times f(\text{VIX}_t)
+$$
+
+**First-order condition:**
+
+$$
+\frac{\partial}{\partial N}\left\{c_1 N + c_2 N^2 + \lambda \cdot N \cdot L_{\text{crash}}\right\} = 0
+$$
+
+$$
+c_1 + 2c_2 N^* - \lambda \cdot L_{\text{crash}} \cdot \frac{\partial}{\partial N}[\text{Hedge Payoff}] = 0
+$$
+
+**Optimal hedge ratio:**
+
+$$
+N^*(t) = \frac{\lambda(t) \cdot \Delta V_{\text{crash}} - c_1}{2c_2}
+$$
+
+Where $\Delta V_{\text{crash}}$ = Hedge payoff per unit notional in crash scenario.
+
+**Simplified closed-form:**
+
+With constant crash intensity $\lambda_0$ and linear cost:
+
+$$
+N^*(t) = \frac{\lambda_0 \cdot L_{\text{portfolio}} \cdot h(\sigma_t)}{C_{\text{hedge}}(\sigma_t)}
+$$
+
+Where:
+- $L_{\text{portfolio}}$ = Expected portfolio loss in crash
+- $h(\sigma_t)$ = Hedge effectiveness given volatility state
+- $C_{\text{hedge}}(\sigma_t)$ = Hedge cost given volatility state
+
+**Practical approximation:**
+
+For VIX-dependent crash intensity:
+
+$$
+\lambda(\text{VIX}) = \lambda_0 \times e^{\beta(\text{VIX} - \text{VIX}_{\text{avg}})}
+$$
+
+The optimal hedge becomes:
+
+$$
+N^*(\text{VIX}) \approx N_{\text{base}} \times \left(1 + \beta(\text{VIX} - \text{VIX}_{\text{avg}})\right)
+$$
+
+**Example parameters:**
+- $\lambda_0 = 0.05$ (5% annual crash probability at average VIX)
+- $\beta = 0.1$ (10% increase in probability per VIX point)
+- $\text{VIX}_{\text{avg}} = 18$
+
+**At VIX = 28:**
+
+$$
+N^*(28) = N_{\text{base}} \times (1 + 0.1 \times (28 - 18)) = 2 \times N_{\text{base}}
+$$
+
+**Key insight:** The optimal control solution justifies VIX-scaled hedging rules commonly used in practice.
+
 ### 2. VIX-Based Scaling Function
 
 

@@ -196,6 +196,25 @@ $$
 
 As maturity approaches, futures converge to spot.
 
+**Formal basis definition:**
+
+The VIX futures basis is explicitly defined as:
+
+$$
+\text{Basis}_t = F_t^{\text{VIX}}(T) - \text{VIX}_t = \mathbb{E}^Q_t[\text{VIX}_T] - \text{VIX}_t
+$$
+
+Where:
+- $F_t^{\text{VIX}}(T)$ = VIX futures price at time $t$ for maturity $T$
+- $\text{VIX}_t$ = Spot VIX at time $t$
+- $\mathbb{E}^Q_t$ = Risk-neutral expectation at time $t$
+
+**Basis decomposition:**
+
+$$
+\text{Basis} = \underbrace{\mathbb{E}^P[\text{VIX}_T] - \text{VIX}_t}_{\text{Expected VIX change}} + \underbrace{\mathbb{E}^Q[\text{VIX}_T] - \mathbb{E}^P[\text{VIX}_T]}_{\text{Volatility risk premium}}
+$$
+
 **In contango:**
 
 - $F_1 > \text{VIX}$
@@ -209,6 +228,48 @@ As maturity approaches, futures converge to spot.
 - As time passes, $F_1 \to \text{VIX}$ (appreciates up)
 - **Long position gains from roll (positive carry)**
 - **Short position loses from roll (negative carry)**
+
+### 6a. VIX Futures Convexity
+
+
+**Convexity effect in VIX futures:**
+
+VIX futures exhibit positive convexity due to the square root in VIX calculation:
+
+$$
+\text{VIX} = 100 \times \sqrt{\frac{2e^{rT}}{T}\sum_i \frac{\Delta K_i}{K_i^2}Q(K_i)}
+$$
+
+**Why convexity matters:**
+
+1. **Non-linear response:** VIX futures react more to volatility increases than decreases
+2. **Roll dynamics affected:** Convexity contributes to the basis
+3. **Expected VIX vs. VIX of expected variance:**
+
+$$
+\mathbb{E}[\text{VIX}] = \mathbb{E}\left[\sqrt{\text{Variance}}\right] < \sqrt{\mathbb{E}[\text{Variance}]}
+$$
+
+By Jensen's inequality. This creates a "convexity drag" for long VIX futures positions.
+
+**Practical implications:**
+
+| Position | Convexity Effect | Net Impact |
+|----------|------------------|------------|
+| Long VIX futures | Negative (convexity drag) | Adds to contango cost |
+| Short VIX futures | Positive (convexity benefit) | Adds to roll profit |
+| Long VIX calls | Positive (gamma) | Benefits from vol-of-vol |
+| Short VIX puts | Negative (gamma) | Hurt by vol-of-vol |
+
+**Convexity adjustment for fair value:**
+
+For accurate VIX futures pricing:
+
+$$
+F_t^{\text{VIX}}(T) = \sqrt{\mathbb{E}^Q_t[\text{VIX}_T^2]} \approx \sqrt{K_{\text{var}}(T)} - \frac{\text{Var}^Q(\text{VIX}_T^2)}{8(K_{\text{var}}(T))^{3/2}}
+$$
+
+This is analogous to the volatility swap convexity adjustment.
 
 ### 7. Historical Patterns
 

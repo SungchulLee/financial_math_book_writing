@@ -177,6 +177,127 @@ $$
 - Reduce hedging costs
 - Express mild short volatility bias
 
+### 6a. Gaussian Copula Approximation
+
+
+**Quick sizing formula:**
+
+Practitioners use a simplified Gaussian copula approximation for rapid position sizing:
+
+$$
+\sigma_{\text{index}} \approx \bar{\sigma} \sqrt{\bar{\rho} + \frac{1-\bar{\rho}}{N}}
+$$
+
+Where:
+- $\bar{\sigma}$ = Average constituent volatility (weighted or equal)
+- $\bar{\rho}$ = Average pairwise correlation
+- $N$ = Number of constituents
+
+**Derivation:**
+
+Assuming equal weights ($w_i = 1/N$) and uniform correlation ($\rho_{ij} = \bar{\rho}$ for $i \neq j$):
+
+$$
+\sigma_{\text{index}}^2 = \sum_i w_i^2 \sigma_i^2 + 2\sum_{i<j} w_i w_j \bar{\rho} \sigma_i \sigma_j
+$$
+
+$$
+= \frac{\bar{\sigma}^2}{N} + \frac{N-1}{N} \bar{\rho} \bar{\sigma}^2 = \bar{\sigma}^2 \left(\frac{1}{N} + \frac{N-1}{N}\bar{\rho}\right)
+$$
+
+$$
+= \bar{\sigma}^2 \left(\bar{\rho} + \frac{1-\bar{\rho}}{N}\right)
+$$
+
+**Practical use:**
+
+**Quick dispersion sizing:**
+
+Given target vega exposure $V_{\text{target}}$:
+
+1. Estimate $\bar{\sigma}$ and $\bar{\rho}$ from market data
+2. Compute implied index vol from approximation
+3. Size positions to be vega-neutral
+
+**Example:**
+- $\bar{\sigma} = 30\%$ (average stock vol)
+- $\bar{\rho} = 50\%$ (average correlation)
+- $N = 20$ stocks
+
+**Implied index vol:**
+
+$$
+\sigma_{\text{index}} \approx 30\% \times \sqrt{0.50 + \frac{0.50}{20}} = 30\% \times \sqrt{0.525} = 21.7\%
+$$
+
+**Dispersion ratio:**
+
+$$
+\text{Ratio} = \frac{\bar{\sigma}}{\sigma_{\text{index}}} = \frac{30\%}{21.7\%} = 1.38
+$$
+
+For every $\$1$ of index vega sold, buy $\$1.38$ of stock vega (before applying the 70% hedge factor).
+
+### 6b. Correlation Swap Pricing
+
+
+**Direct correlation exposure:**
+
+The fair strike for a correlation swap can be derived from variance swaps:
+
+$$
+K_\rho = \frac{\sigma_{\text{index}}^2 - \sum_i w_i^2 \sigma_i^2}{2\sum_{i<j} w_i w_j \sigma_i \sigma_j}
+$$
+
+**Derivation:**
+
+From the index variance decomposition:
+
+$$
+\sigma_{\text{index}}^2 = \sum_i w_i^2 \sigma_i^2 + 2\sum_{i<j} w_i w_j \rho_{ij} \sigma_i \sigma_j
+$$
+
+Assuming uniform correlation $\rho_{ij} = \rho$:
+
+$$
+\sigma_{\text{index}}^2 = \sum_i w_i^2 \sigma_i^2 + 2\rho \sum_{i<j} w_i w_j \sigma_i \sigma_j
+$$
+
+Solving for $\rho$:
+
+$$
+\rho = \frac{\sigma_{\text{index}}^2 - \sum_i w_i^2 \sigma_i^2}{2\sum_{i<j} w_i w_j \sigma_i \sigma_j}
+$$
+
+**Correlation swap payoff:**
+
+$$
+\text{Payoff}_{\rho\text{-swap}} = N \times (\rho_{\text{realized}} - K_\rho)
+$$
+
+Where:
+- $N$ = Correlation notional
+- $\rho_{\text{realized}}$ = Realized average correlation over the period
+- $K_\rho$ = Strike correlation (agreed at inception)
+
+**Example:**
+- Index implied vol: $\sigma_{\text{index}} = 18\%$
+- Weighted stock variance term: $\sum w_i^2 \sigma_i^2 = 0.09$ (equiv. to 30% for single stock)
+- Cross term: $2\sum_{i<j} w_i w_j \sigma_i \sigma_j = 0.06$
+
+**Implied correlation strike:**
+
+$$
+K_\rho = \frac{0.0324 - 0.09}{0.06} = \frac{0.0324 - 0.0036}{0.06} = \frac{0.0288}{0.06} = 48\%
+$$
+
+**Trading correlation directly:**
+
+Correlation swaps exist in OTC markets but are less liquid than variance swaps. They provide:
+- Pure correlation exposure (no volatility component)
+- Direct bet on correlation level
+- Useful for hedging dispersion trades
+
 ### 7. Basket Selection
 
 

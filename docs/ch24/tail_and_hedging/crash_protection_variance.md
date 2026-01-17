@@ -155,6 +155,109 @@ $$
 
 **Payoff grows quadratically with volatility increase!**
 
+### 5a. Vol-of-Vol Risk
+
+
+**Mark-to-market volatility during extreme events:**
+
+During major crashes like COVID (March 2020), the mark-to-market volatility of variance swap positions can exceed risk limits even for correctly-sized hedges:
+
+**Vol-of-vol defined:**
+
+$$
+\text{Vol-of-Vol} = \sigma(\sigma_t) = \sqrt{\text{Var}(\sigma_t)}
+$$
+
+**Why it matters for crash protection:**
+
+1. **MTM swings:** Variance swap values fluctuate wildly during crises
+2. **Margin calls:** Dealers may demand additional collateral
+3. **Risk limit breaches:** Position may exceed VaR/stress limits
+4. **Forced selling:** May need to reduce hedge at worst time
+
+**Empirical evidence:**
+
+| Event | Peak VIX | Intraday VIX Range | Vol-of-Vol Impact |
+|-------|----------|--------------------|--------------------|
+| Aug 2015 | 53 | 20-53 (same day) | Extreme MTM swings |
+| Feb 2018 | 50 | 17-50 (2 days) | XIV termination |
+| Mar 2020 | 82 | 30-82 (2 weeks) | Unprecedented levels |
+
+**Managing vol-of-vol risk:**
+
+1. **Size conservatively:** Account for MTM volatility in position limits
+2. **Maintain margin cushion:** Extra collateral for crisis scenarios
+3. **Diversify timing:** Multiple variance swaps with staggered maturities
+4. **Set internal limits:** MTM loss limits separate from final payoff
+
+**Example:**
+
+- Long variance, notional = $\$1,000$/point
+- Strike = 225 (15% vol)
+- VIX spikes to 80 (variance = 6,400)
+- **MTM gain: $\$1,000 × (6,400 - 225) = $\$6,175,000**
+
+But the next day VIX falls to 50:
+- **New MTM: $\$1,000 × (2,500 - 225) = $\$2,275,000**
+- **One-day MTM swing: -$\$3,900,000** (63% of position value!)
+
+**Key insight:** The hedge is working as designed, but the path volatility can trigger unintended consequences.
+
+### 5b. Jump Risk in Variance Swaps
+
+
+**Jumps contribute disproportionately to realized variance:**
+
+The realized variance formula captures both continuous and jump components:
+
+$$
+\text{Realized Variance} = \int_0^T \sigma_t^2 dt + \sum_{i: \tau_i \leq T} J_i^2
+$$
+
+Where:
+- $\int_0^T \sigma_t^2 dt$ = Continuous (diffusive) variance
+- $\sum J_i^2$ = Sum of squared jump sizes
+- $\tau_i$ = Jump times
+
+**Why jumps matter:**
+
+1. **Squared magnification:** A 10% jump contributes 100 variance points
+2. **Infrequent but dominant:** Single large jump can dominate monthly variance
+3. **Positive for long variance:** Large jumps help crash protection
+4. **Pricing implications:** Jump risk premium embedded in variance strike
+
+**Example: Flash Crash contribution**
+
+- May 6, 2010: Market dropped 9% intraday
+- Normal daily variance: ~1 point (0.8% vol)
+- Flash crash contribution: $(9\%)^2 = 81$ variance points
+- **Single day = 80+ times normal variance**
+
+**Jump risk premium:**
+
+Variance swap strikes include compensation for jump risk:
+
+$$
+K_{\text{var}} = \mathbb{E}^Q\left[\int_0^T \sigma_t^2 dt\right] + \mathbb{E}^Q\left[\sum J_i^2\right]
+$$
+
+Studies estimate the jump component is 20-40% of total variance strike.
+
+**Implications for crash protection:**
+
+| Scenario | Continuous Vol | Jump Contribution | Total RV |
+|----------|---------------|-------------------|----------|
+| Normal month | 200 | 5 | 205 |
+| Volatile month | 400 | 50 | 450 |
+| Crash month | 600 | 1,500 | 2,100 |
+
+**During crashes:**
+- Continuous vol rises 3x (200 → 600)
+- Jump contribution rises 300x (5 → 1,500)
+- **Jumps dominate crash protection payoff**
+
+**This is exactly what you want:** Long variance positions benefit most when you need protection most.
+
 ### 6. Historical Performance
 
 
