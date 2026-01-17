@@ -341,12 +341,45 @@ $$
 
 **Figure 1:** Payoff diagrams for all four vertical spreads showing defined risk/reward profiles: bull call (bullish debit), bear call (bearish credit), bull put (bullish credit), bear put (bearish debit).
 
-### 7. Calendar Spreads
+### 7. Calendar Spreads (Time Spreads)
 
 
 **Definition:** Buy and sell options at same strike, different expirations.
 
-**Also called:** Time spreads, calendar spreads
+**Also called:** Time spreads, horizontal spreads
+
+**Structure:**
+- Sell near-term option (e.g., 30 DTE)
+- Buy far-term option (e.g., 60-90 DTE)
+- Same strike price
+- Same option type (both calls or both puts)
+
+**Example: ATM Calendar Call Spread**
+- Stock at $100
+- Sell $100 call expiring in 30 days for $3
+- Buy $100 call expiring in 60 days for $5
+- **Net debit: $2**
+
+**Characteristics:**
+- **Max profit:** When stock at strike at near-term expiration
+- **Max loss:** Net debit paid (if stock moves far from strike)
+- **Greeks:** Long vega, long theta differential, near-zero delta at ATM
+- **Best environment:** Low realized volatility, high IV environment
+
+**Profit mechanics:**
+- Near-term option decays faster (higher theta)
+- Far-term option retains value longer
+- Spread widens as near-term expires worthless
+- Stock needs to stay near strike
+
+$$
+\text{Theoretical Max Profit} \approx \text{Far-term value at near-term expiration} - \text{Net Debit}
+$$
+
+**Key risks:**
+- Large stock movement in either direction
+- IV decline (hurts long vega position)
+- Early assignment on short leg (American options)
 
 ### 8. Diagonal Spreads
 
@@ -354,6 +387,42 @@ $$
 **Definition:** Buy and sell options at different strikes AND different expirations.
 
 **Structure:** Hybrid of vertical and horizontal spreads.
+
+**Types:**
+
+**1. Poor Man's Covered Call (PMCC)**
+- Buy deep ITM LEAPS call (6-12 months, delta ~0.80)
+- Sell OTM short-term call (30-45 days)
+- Acts like covered call with less capital
+
+**Example:**
+- Stock at $100
+- Buy $80 call (delta 0.85), 6 months, for $25
+- Sell $105 call, 30 days, for $2
+- **Capital deployed: $2,300 vs $10,000 for stock**
+
+**2. Diagonal Put Spread**
+- Buy far-term OTM put
+- Sell near-term closer-to-ATM put
+- Provides hedging with income generation
+
+**Diagonal Greeks:**
+- Delta: Variable (depends on strike selection)
+- Theta: Usually positive (if short leg closer to ATM)
+- Vega: Usually positive (long leg has more vega)
+- Gamma: Variable, can be managed by strike selection
+
+**Advantages over verticals:**
+- More flexible structure
+- Can be managed over multiple cycles
+- Capital efficient directional plays
+
+**Disadvantages:**
+- More complex Greeks to manage
+- Wider bid-ask on combined position
+- Assignment risk on short leg
+
+---
 
 ## Economic
 
@@ -940,6 +1009,50 @@ $$
 \text{Max loss} = \text{Debit}
 \end{cases}
 $$
+
+### Probability of Profit (POP) Formulas
+
+
+**For debit spreads (buying spreads):**
+
+$$
+\text{POP}_{\text{debit}} \approx 1 - \frac{\text{Debit Paid}}{\text{Spread Width}}
+$$
+
+**Example:** Buy $100/$105 call spread for $2 debit
+- Spread width = $5
+- POP ≈ 1 - ($2 / $5) = 1 - 0.40 = **60%**
+
+**For credit spreads (selling spreads):**
+
+$$
+\text{POP}_{\text{credit}} \approx \frac{\text{Credit Received}}{\text{Spread Width}} + (1 - \Delta_{\text{short}})
+$$
+
+Alternatively, a simpler approximation:
+
+$$
+\text{POP}_{\text{credit}} \approx 100\% - |\Delta_{\text{short strike}}|
+$$
+
+**Example:** Sell $105/$110 call spread for $1.50 credit, short strike delta = 0.30
+- POP ≈ 100% - 30% = **70%**
+
+**Delta as probability proxy:**
+
+| Short Strike Delta | Approximate POP |
+|-------------------|-----------------|
+| 0.15 (15 delta) | ~85% |
+| 0.25 (25 delta) | ~75% |
+| 0.30 (30 delta) | ~70% |
+| 0.40 (40 delta) | ~60% |
+| 0.50 (50 delta) | ~50% |
+
+**Important caveats:**
+- These are approximations, not exact probabilities
+- Real-world POP affected by volatility smile/skew
+- Does not account for early assignment risk
+- Assumes holding to expiration
 
 **Width options:**
 

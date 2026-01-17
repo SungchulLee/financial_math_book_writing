@@ -32,15 +32,7 @@ showing symmetric payoff structures with limited downside (premium paid) and unl
 ## What Are Calls and Puts?
 
 
-### 1. Leverage
-
-
-**Control more shares with less capital:**
-
-### 2. Portfolio Hedge (Insurance)
-
-
-**Protect stock portfolio from crash:**
+### Call Options
 
 **Definition:** The right (not obligation) to BUY stock at strike price $K$ by expiration date $T$.
 
@@ -52,10 +44,7 @@ showing symmetric payoff structures with limited downside (premium paid) and unl
 - Max loss = premium paid
 - Max profit = unlimited
 
-### 3. Cheaper Than Shorting
-
-
-**Bearish play without margin:**
+### Put Options
 
 **Definition:** The right (not obligation) to SELL stock at strike price $K$ by expiration date $T$.
 
@@ -67,10 +56,55 @@ showing symmetric payoff structures with limited downside (premium paid) and unl
 - Max loss = premium paid
 - Max profit = strike - premium (stock can't go below $0)
 
+---
+
+## Why Use Options? Key Advantages
+
+
+### 1. Leverage
+
+**Control more shares with less capital:**
+
+- $10,000 in stock: 67 shares at $150
+- $10,000 in calls: 12 contracts = 1,200 shares of exposure!
+- **18x leverage**
+
+### 2. Portfolio Hedge (Insurance)
+
+**Protect stock portfolio from crash:**
+
+- Own $100,000 stock portfolio (SPY)
+- Worried about downturn
+- Buy OTM puts for $2,000 (2%)
+
+**If market crashes 20%:**
+
+- Portfolio value: $80,000 (-$20,000)
+- Puts gain: ~$18,000
+- **Net loss: $4,000 (4%) instead of 20%**
+
+**This is how pros hedge!**
+
+### 3. Cheaper Than Shorting
+
+**Bearish play without margin:**
+
+- Shorting requires margin account
+- Unlimited loss potential
+- Borrowing costs
+- **Puts: No margin, defined risk, similar upside**
+
 ### 4. Theta (Θ)
 
-
 **How much option loses per day (all else equal):**
+
+- All long options have negative theta
+- You pay theta every day
+- Accelerates near expiration
+
+---
+
+## The Deep Insight: Options as Financing Structures
 
 **The deep insight:**
 
@@ -345,8 +379,14 @@ $$
 - Put expires worthless
 - Loss: $10/share (100%)
 - Max loss capped
+
+### 2. Portfolio Insurance (Hedging)
+
+
+**Protect existing long positions:**
+
 - Own $100,000 stock portfolio (SPY)
-- Worried about downturn
+- Worried about market downturn
 - Buy OTM puts for $2,000 (2%)
 
 **If market crashes 20%:**
@@ -355,14 +395,9 @@ $$
 - Puts gain: ~$18,000
 - **Net loss: $4,000 (4%) instead of 20%**
 
-**This is how pros hedge!**
+**This is how institutional investors hedge!**
 
-- Shorting requires margin account
-- Unlimited loss potential
-- Borrowing costs
-- **Puts: No margin, defined risk, similar upside**
-
-### 2. Cannot Short
+### 3. Cannot Short
 
 
 **Some stocks hard to borrow:**
@@ -500,6 +535,12 @@ $$
 - Buy $100 ATM call for $5
 - Delta = 0.50
 - Stock to $110 → call to $10 (100% gain)
+
+### 3. OTM Calls/Puts
+
+
+**Characteristics:**
+
 - **Lowest premium** (cheap!)
 - **Low delta** (0.20-0.40) - needs big move
 - **Highest leverage** - huge % gains if right
@@ -514,7 +555,7 @@ $$
 - Stock to $120 → call to $10 (900% gain!)
 - But 75% chance expires worthless
 
-### 3. The Trade-off
+### 4. The Trade-off
 
 
 **Strike selection is probability vs. payout:**

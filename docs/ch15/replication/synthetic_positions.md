@@ -826,15 +826,16 @@ Identical to shorting stock from $100.
 
 
 **Enter this strategy when:**
-- [Specific market conditions]
-- [Volatility requirements]
-- [Time horizon matches]
-- [Risk tolerance appropriate]
+- Put-call parity deviations create arbitrage opportunities (conversion/reversal)
+- Borrowing costs or short-sale restrictions make synthetic positions more efficient
+- Tax or regulatory considerations favor options over direct stock ownership
+- Capital efficiency is paramount and margin requirements favor synthetics
 
 **Avoid this strategy when:**
-- [Unfavorable conditions]
-- [Wrong volatility environment]
-- [Insufficient time or liquidity]
+- Wide bid-ask spreads in options erode the cost advantage
+- Options liquidity is poor (< 500 daily volume)
+- Early exercise risk is significant (American options near dividends)
+- Complexity isn't justified by capital or tax savings
 
 ### 4. Step 3
 
@@ -866,18 +867,18 @@ $$
 **Active management rules:**
 
 **Profit targets:**
-- Take profit at [X]% of max profit
+- Take profit at 50-75% of max profit for directional synthetics
 - Scale out if appropriate
 - Don't be greedy
 
 **Loss limits:**
-- Cut losses at [Y]% of max loss
+- Cut losses at 2x the initial debit paid (if applicable)
 - Don't hope for recovery
 - Preserve capital
 
 **Time-based exits:**
-- Monitor theta decay
-- Exit if [time-based trigger]
+- Monitor pin risk as expiration approaches
+- Exit with 7-14 days remaining to avoid gamma spikes
 
 ### 7. Step 6
 
@@ -888,9 +889,14 @@ $$
 - New information emerges
 
 **How to adjust:**
-- [Adjustment technique 1]
-- [Adjustment technique 2]
-- [When to take loss instead]
+- **Roll the entire position:** Move both legs to new expiration, same strikes
+- **Convert to different synthetic:** Adjust to change directional bias
+- **Unwind one leg:** If thesis changes, may close one side to capture remaining value
+
+**When to take loss instead:**
+- Underlying fundamentals have changed
+- Options liquidity has deteriorated
+- Better opportunities exist elsewhere
 
 ### 8. Step 7
 
@@ -917,8 +923,42 @@ Track every trade:
 ### 1. Forgetting Dividends
 
 
-- Parity assumes known dividends.
-- Ignoring them causes mispricing expectations.
+**Standard put-call parity (no dividends):**
+
+$$
+C - P = S - Ke^{-rT}
+$$
+
+**Put-call parity with discrete dividends:**
+
+$$
+C - P = S - D - Ke^{-rT}
+$$
+
+where $D$ is the present value of expected dividends during the option's life:
+
+$$
+D = \sum_{i} d_i \cdot e^{-r t_i}
+$$
+
+**Put-call parity with continuous dividend yield $q$:**
+
+$$
+C - P = Se^{-qT} - Ke^{-rT}
+$$
+
+**Practical implications:**
+
+| Dividend Status | Effect on Synthetic Long | Effect on Synthetic Short |
+|-----------------|-------------------------|---------------------------|
+| Ex-div during option life | Synthetic is cheaper than stock | Synthetic is more expensive |
+| High dividend yield | Calls cheaper, puts more expensive | Favors conversion (long stock + long put + short call) |
+| No dividend | Parity holds cleanly | Standard arbitrage applies |
+
+**Example: Stock at $100, $2 dividend in 30 days**
+- Without dividend adjustment: Synthetic appears mispriced
+- With dividend adjustment: Synthetic correctly priced at $98 equivalent
+- **Ignoring dividends causes apparent arbitrage that doesn't exist**
 
 ### 2. Treating Synthetics as Limited Risk
 
@@ -930,6 +970,8 @@ Track every trade:
 
 
 - American options break exact parity before expiration.
+- Deep ITM puts may be exercised early for interest capture
+- Deep ITM calls may be exercised early before ex-dividend date
 
 ---
 

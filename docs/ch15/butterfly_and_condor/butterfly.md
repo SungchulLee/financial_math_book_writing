@@ -149,13 +149,13 @@ Butterfly spreads represent a fundamental economic proposition: **trading probab
 **Economic equivalence:**
 
 $$
-\text{Butterfly} = \underbrace{\text{Bull Spread}}\_{\text{Lower Half}} + \underbrace{\text{Bear Spread}}\_{\text{Upper Half}}
+\text{Butterfly} = \underbrace{\text{Bull Spread}}_{\text{Lower Half}} + \underbrace{\text{Bear Spread}}_{\text{Upper Half}}
 $$
 
 Or alternatively:
 
 $$
-\text{Butterfly} = \underbrace{\text{Long Strike at Wings}}\_{\text{Insurance}} - \underbrace{2 \times \text{Short Strike at Body}}\_{\text{Premium Sale}}
+\text{Butterfly} = \underbrace{\text{Long Strike at Wings}}_{\text{Insurance}} - \underbrace{2 \times \text{Short Strike at Body}}_{\text{Premium Sale}}
 $$
 
 **Why this matters economically:**

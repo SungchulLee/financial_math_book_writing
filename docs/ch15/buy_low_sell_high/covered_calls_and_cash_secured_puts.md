@@ -140,6 +140,35 @@ $$
 
 - Premium collected partially offsets potential losses
 
+### 3. Covered Call Profit/Loss Formulas
+
+
+**Key formulas:**
+
+$$
+\text{Max Profit} = (K - S_0) + C
+$$
+
+where $K$ is the strike price, $S_0$ is the stock purchase price, and $C$ is the premium collected.
+
+$$
+\text{Breakeven} = S_0 - C
+$$
+
+$$
+\text{P\&L at Expiration} = \begin{cases}
+(S_T - S_0) + C & \text{if } S_T \leq K \\
+(K - S_0) + C & \text{if } S_T > K
+\end{cases}
+$$
+
+**Example calculation:**
+- Bought stock at $150, sold $160 call for $2
+- Max profit: ($160 - $150) + $2 = **$12/share**
+- Breakeven: $150 - $2 = **$148**
+- If stock at $145: P&L = ($145 - $150) + $2 = **-$3/share**
+- If stock at $170: P&L = ($160 - $150) + $2 = **$12/share** (capped)
+
 ---
 
 ## What Is a Cash-Secured Put?
@@ -3241,21 +3270,27 @@ The wheel strategy combines covered calls and cash-secured puts into a continuou
 
 **Enter this strategy when:**
 
-- [Specific market conditions]
+- IV rank is elevated (above 30th percentile) making premium collection attractive
 
-- [Volatility requirements]
+- Stock is range-bound or mildly bullish (not strongly trending)
 
-- [Time horizon matches]
+- You're comfortable owning the underlying at the strike price
 
-- [Risk tolerance appropriate]
+- Time horizon matches your investment thesis (typically 30-45 DTE optimal)
+
+- Underlying has sufficient liquidity (bid-ask spread < 5% of premium)
 
 **Avoid this strategy when:**
 
-- [Unfavorable conditions]
+- Strong directional move expected (earnings, FDA decisions, major announcements)
 
-- [Wrong volatility environment]
+- IV rank is extremely low (below 20th percentile) - premium not worth the risk
 
-- [Insufficient time or liquidity]
+- You wouldn't want to own the stock at any price (CSP) or wouldn't want to sell at strike (CC)
+
+- Wide bid-ask spreads indicate poor liquidity
+
+- Dividend ex-date falls within option period (early assignment risk for calls)
 
 ### 3. Position Sizing
 
@@ -3294,7 +3329,7 @@ $$
 
 **Profit targets:**
 
-- Take profit at [X]% of max profit
+- Take profit at 50-75% of max profit (don't wait for full decay)
 
 - Scale out if appropriate
 
@@ -3302,7 +3337,7 @@ $$
 
 **Loss limits:**
 
-- Cut losses at [Y]% of max loss
+- Cut losses at 150-200% of premium received (i.e., if you collected $2, exit at $4-6 loss)
 
 - Don't hope for recovery
 
@@ -3310,9 +3345,9 @@ $$
 
 **Time-based exits:**
 
-- Monitor theta decay
+- Monitor theta decay curve
 
-- Exit if [time-based trigger]
+- Exit with 7-14 days remaining if profit target not reached (gamma risk increases)
 
 ### 6. Adjustments
 
@@ -3327,11 +3362,17 @@ $$
 
 **How to adjust:**
 
-- [Adjustment technique 1]
+- **Roll out:** Extend expiration to collect more premium (same strike)
 
-- [Adjustment technique 2]
+- **Roll out and down/up:** Extend time and adjust strike for better positioning
 
-- [When to take loss instead]
+- **Close and reassess:** Sometimes best to take the loss and find better opportunities
+
+**When to take loss instead:**
+
+- Stock has fundamentally changed (bad earnings, guidance cut)
+- Better opportunities exist elsewhere
+- Position requires excessive capital to roll
 
 ### 7. Trade Review
 
@@ -3426,7 +3467,7 @@ Track every trade:
 ## Real-World Examples
 
 
-### 1. Pension Duration Cut via Futures
+### 1. TSLA Covered Call Income Generation
 
 
 **Setup:**

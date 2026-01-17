@@ -37,9 +37,18 @@ $$
 \text{Total Return} = \underbrace{\text{Put Premiums}}_{\text{While waiting}} + \underbrace{\text{Call Premiums}}_{\text{While holding}} + \underbrace{\text{Capital Gains}}_{\text{If called away}} + \underbrace{\text{Dividends}}_{\text{If any}}
 $$
 
-$$
-\text{Annualized Return} \approx 15\% \text{ to } 40\% \text{ in ideal conditions}
-$$
+**Realistic Return Expectations:**
+
+- **Conservative estimates:** 8-15% annualized in normal market conditions
+- **Favorable conditions:** 15-25% annualized when IV is elevated and stock cooperates
+- **Best-case scenarios:** 25-40% possible but rare, requiring optimal timing and stock selection
+- **Warning:** Published returns of 40%+ typically cherry-pick favorable periods or ignore drawdowns
+
+**Important caveats:**
+- Returns are NOT guaranteed and depend heavily on stock selection
+- Significant drawdowns possible if assigned on falling stock
+- Premium income may not offset capital losses in bear markets
+- Backtests often overstate returns by ignoring slippage and assignment friction
 
 **You're essentially running: "A stock acquisition and sales business that gets paid at every step."**
 

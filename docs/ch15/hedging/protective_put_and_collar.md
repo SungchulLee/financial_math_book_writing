@@ -8,6 +8,14 @@
 ## The Core Insight
 
 
+**The fundamental idea:**
+
+- You own stock and want to protect it
+- Buy put = insurance (pay premium, get protection)
+- Collar = put + call (free insurance, cap upside)
+- Accept cost or opportunity cost for peace of mind
+- Static hedge (set and forget until expiration)
+
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/protective_put_pnl.png?raw=true" alt="protective_put_pnl" width="700">
 </p>
@@ -18,18 +26,10 @@
 ## Protective Put
 
 
-### 1. Setup
+### 1. Definition and Setup
 
 
-**Your position:**
-
-**The fundamental idea:**
-
-- You own stock and want to protect it
-- Buy put = insurance (pay premium, get protection)
-- Collar = put + call (free insurance, cap upside)
-- Accept cost or opportunity cost for peace of mind
-- Static hedge (set and forget until expiration)
+**Protective Put = Long Stock + Long Put**
 
 **The key equation:**
 
@@ -39,26 +39,10 @@ $$
 
 **You're essentially saying: "I want to own this stock long-term, but I need downside protection for the next few months."**
 
----
+### 2. Example
 
 
----
-
-## Collar
-
-
-**Free insurance by giving up upside:**
-
-**The simplest portfolio insurance:**
-
-### 1. Setup
-
-
-**Your position:**
-
-**Protective Put = Long Stock + Long Put**
-
-**Example:**
+**Setup:**
 
 - Own 100 shares of AAPL at $150
 - Buy 1 put contract, strike $145, expiration 3 months
@@ -70,15 +54,8 @@ $$
 - Limited downside (protected below $145)
 - Cost: $500 premium
 
+### 3. When to Use Protective Puts
 
-
-## Strike Selection Strategies
-
-
-### 1. For Protective Puts
-
-
-**1. Deep ITM (Conservative):**
 
 **Scenarios:**
 
@@ -109,38 +86,80 @@ $$
 - Not ready to sell
 - **"Insure" your gains**
 
-### 2. The Payoff Diagram
+---
 
+## Collar
+
+
+### 1. Definition and Setup
+
+
+**Collar = Long Stock + Long Put + Short Call**
+
+**Free insurance by giving up upside:**
+
+- Buy protective put (costs premium)
+- Sell covered call (receives premium)
+- If premiums offset → "Zero-cost collar"
+
+**Example:**
+
+- Own 100 shares AAPL at $150
+- Buy $145 put for $5
+- Sell $160 call for $5
+- **Net cost: $0**
+
+**What you've created:**
+
+- Downside protected below $145
+- Upside capped at $160
+- No cash outlay
+
+### 2. When to Use Collars
+
+
+**Ideal scenarios:**
+
+- Want protection but unwilling to pay premium
+- Comfortable capping upside for defined period
+- Concentrated stock position from employer grants
+- Estate planning (lock in value range)
+
+---
+
+## Strike Selection Strategies
+
+
+### 1. For Protective Puts
+
+
+**Strike selection comparison:**
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/protective_put_strike_selection.png?raw=true" alt="protective_put_strike_selection" width="700">
 </p>
 **Figure 5:** Protective put strike selection comparison showing the trade-off between ITM (expensive, maximum protection), ATM (balanced), and OTM (economical, deductible) strikes, illustrating how strike choice affects both premium cost and protection level with typical 5-10% OTM being the optimal balance.
 
-### 3. For Collars
+**1. Deep ITM (Conservative):**
+
+- Maximum protection, highest cost
+- Stock effectively sold at strike
+- Use when: Absolute downside protection needed
+
+**2. ATM (Balanced):**
+
+- Moderate cost, full protection from current level
+- Most common choice
+
+**3. OTM (Economical):**
+
+- Lower cost, deductible before protection kicks in
+- Use when: Want cheap insurance, accept some downside
+
+### 2. Strike Selection Example
 
 
-**Symmetric collar:**
-
-```
-    Profit
-      ↑
-      |        /
-      |       / (Stock rises)
-      |      /
-      |     /
-  ────┼────/────────────
-      |   /|
-      |  / |
-      | /  | Protected
-      |/___|____________→ Stock Price
-         $145 (Put Strike)
-         
-Max Loss = ($150 - $145) + $5 premium = $10 per share
-```
-
-**Key feature:** Downside capped at put strike (minus premium paid)
-
+**Position:**
 
 - Own 100 shares AAPL, bought at $130
 - Current price: $150
@@ -162,13 +181,25 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 | $145 | $3.50 | 3.3% below | -$500 + premium = -$850 |
 | $140 | $2.00 | 6.7% below | -$1,000 + premium = -$1,200 |
 
-### 4. Decision
+### 3. For Collars
 
+
+**Collar variations:**
 
 <p align="center">
 <img src="https://github.com/SungchulLee/img/blob/main/collar_variations.png?raw=true" alt="collar_variations" width="700">
 </p>
 **Figure 6:** Collar variations showing symmetric collars (balanced range), skewed collars with more upside (pay debit), and skewed collars with more protection (receive credit), demonstrating how adjusting strike distances allows customization of the risk-reward profile to match specific market outlooks and cost preferences.
+
+**Symmetric collar:**
+
+- Put and call equidistant from current price
+- Zero-cost structure common
+
+**Skewed collars:**
+
+- More upside room (pay debit): Put closer to current, call further
+- More protection (receive credit): Put at ATM, call closer
 
 ---
 
@@ -193,7 +224,7 @@ Max Loss = ($150 - $145) + $5 premium = $10 per share
 - Long 1 AAPL $145 put (cost $3.50)
 - Total capital: $13,000 (stock) + $350 (put) = $13,350
 
-### 2. Put vs Collar
+### 2. Put vs Collar Comparison
 
 
 <p align="center">
@@ -575,16 +606,18 @@ Understanding the economic foundations helps you recognize when the strategy off
 
 **Enter this strategy when:**
 
-- [Specific market conditions]
-- [Volatility requirements]
-- [Time horizon matches]
-- [Risk tolerance appropriate]
+- You have a valuable long stock position you want to protect
+- Elevated market uncertainty (earnings, macro events, geopolitical risk)
+- IV is not excessively high (puts not prohibitively expensive)
+- Tax considerations make selling stock undesirable
+- Concentrated position risk needs to be managed
 
 **Avoid this strategy when:**
 
-- [Unfavorable conditions]
-- [Wrong volatility environment]
-- [Insufficient time or liquidity]
+- IV is extremely elevated (puts very expensive)
+- You're willing to sell the stock anyway (just sell it)
+- Short-term catalyst already passed (insurance after the fact)
+- Position is small relative to portfolio (not worth hedging cost)
 
 ### 3. Position Sizing
 
@@ -618,20 +651,20 @@ $$
 
 **Profit targets:**
 
-- Take profit at [X]% of max profit
-- Scale out if appropriate
-- Don't be greedy
+- For collars: No active profit management needed (both sides offset)
+- For protective puts: Consider selling put if stock rallies significantly
+- If protection no longer needed, close put to recoup some premium
 
 **Loss limits:**
 
-- Cut losses at [Y]% of max loss
-- Don't hope for recovery
-- Preserve capital
+- Protective puts: Accept that premium may be lost if stock rises
+- Collars: Manage assignment risk if stock approaches call strike
+- If thesis changes, close hedge early to redeploy capital
 
 **Time-based exits:**
 
-- Monitor theta decay
-- Exit if [time-based trigger]
+- Roll protection forward before expiration if still needed
+- As expiration approaches, decide: extend protection or let expire
 
 ### 6. Adjust or Exit
 
@@ -644,9 +677,15 @@ $$
 
 **How to adjust:**
 
-- [Adjustment technique 1]
-- [Adjustment technique 2]
-- [When to take loss instead]
+- **Roll down puts:** If stock has fallen, roll puts to lower strike to reduce cost
+- **Roll out in time:** Extend expiration to maintain protection longer
+- **Adjust collar width:** Widen or narrow based on updated outlook
+
+**When to remove hedge instead:**
+
+- Catalyst has passed (earnings reported, uncertainty resolved)
+- Stock has moved significantly and outlook changed
+- Hedge cost no longer justified by remaining risk
 
 ### 7. Trade Review
 

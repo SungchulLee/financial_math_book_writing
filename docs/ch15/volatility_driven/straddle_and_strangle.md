@@ -325,6 +325,73 @@ $$
 
 **WARNING:** Short straddles are VERY risky! Unlimited loss potential.
 
+### Margin Requirements for Short Straddles
+
+
+**Typical broker margin calculation (greater of):**
+
+$$
+\text{Margin} = \max\left(\text{Call Margin}, \text{Put Margin}\right) + \text{Other Side Premium}
+$$
+
+**For the short side (higher requirement):**
+
+$$
+\text{Option Margin} = 20\% \times S + \text{Premium} - \text{OTM Amount}
+$$
+
+**Example: Short ATM straddle on $100 stock**
+- Sell $100 call for $4
+- Sell $100 put for $4
+- Total premium received: $8 × 100 = $800
+
+**Margin calculation:**
+- Call margin: 20% × $10,000 + $400 - $0 = $2,400
+- Put margin: 20% × $10,000 + $400 - $0 = $2,400
+- **Total margin required: ~$2,400 + $400 = $2,800**
+
+**Margin as percentage of potential loss:**
+- If stock moves to $80: Loss = $20 - $8 = $12/share = $1,200
+- If stock moves to $120: Loss = $20 - $8 = $12/share = $1,200
+- If stock moves to $60: Loss = $40 - $8 = $32/share = $3,200 (exceeds margin!)
+
+**Key insight:** Margin requirements can change as position moves against you (margin calls).
+
+### Typical IV Crush Magnitudes
+
+
+**Earnings events (typical IV crush):**
+
+| Stock Type | Pre-Earnings IV | Post-Earnings IV | Crush % |
+|------------|-----------------|------------------|---------|
+| Large cap tech (AAPL, MSFT) | 35-45% | 20-25% | 40-50% |
+| High-growth (TSLA, NFLX) | 55-75% | 35-45% | 35-45% |
+| Biotech (FDA events) | 80-150% | 40-60% | 50-60% |
+| Stable dividend (JNJ, PG) | 20-30% | 15-20% | 25-35% |
+
+**Binary events:**
+- FDA approval/rejection: 60-80% crush
+- M&A announcements: 50-70% crush
+- Major litigation outcomes: 40-60% crush
+
+**Economic events:**
+- FOMC meetings: 10-20% crush (VIX)
+- CPI/Jobs reports: 5-15% crush
+- Quarterly rebalancing: 5-10% crush
+
+**Example: TSLA earnings play**
+- Pre-earnings IV: 65%
+- ATM straddle price: $20 (stock at $250)
+- Implied move: $20/$250 = 8%
+
+- Post-earnings IV: 40% (38% crush)
+- Stock moves +5% to $262.50
+- Call intrinsic: $12.50, but time value destroyed
+- Put: worthless
+- **Straddle now worth ~$15 despite being right on direction**
+
+**Lesson:** IV crush can erase directional gains. Long straddle buyers need movement GREATER than implied move PLUS IV crush impact.
+
 ---
 
 ## The Portfolio

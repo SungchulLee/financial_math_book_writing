@@ -1074,6 +1074,19 @@ $$
 
 - Weekend: Lose $0.90 (3 days of decay)
 
+**Important: When does theta actually accrue?**
+
+Theta is a continuous mathematical concept, but in practice:
+- Options markets are only open ~6.5 hours per day
+- Theta decay is priced into market hours, not overnight
+- However, overnight theta "catches up" at market open
+- Weekend decay (Friday to Monday) is often priced in by Friday close
+
+**Practical implication:**
+- Friday afternoon options often cheaper (weekend decay priced in)
+- Monday morning may not see additional decay beyond Friday's price
+- This creates tactical opportunities for Friday afternoon shorts
+
 **Strategy: Exit before close to avoid theta bleed**
 
 ### 4. Vega

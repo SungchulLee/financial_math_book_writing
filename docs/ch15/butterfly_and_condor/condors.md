@@ -1495,15 +1495,16 @@ $$
 
 
 **Enter this strategy when:**
-- [Specific market conditions]
-- [Volatility requirements]
-- [Time horizon matches]
-- [Risk tolerance appropriate]
+- IV rank is elevated (above 50th percentile) - condors profit from IV contraction
+- Stock is range-bound with clear support/resistance levels
+- No major catalysts expected during the trade duration
+- You have a neutral outlook and want to collect premium
 
 **Avoid this strategy when:**
-- [Unfavorable conditions]
-- [Wrong volatility environment]
-- [Insufficient time or liquidity]
+- Major earnings, FDA decisions, or other binary events pending
+- IV rank is low (below 30th percentile) - not enough premium to justify risk
+- Stock is trending strongly in one direction
+- Insufficient liquidity makes entry/exit expensive
 
 ### 13. Step 3
 
@@ -1535,18 +1536,18 @@ $$
 **Active management rules:**
 
 **Profit targets:**
-- Take profit at [X]% of max profit
+- Take profit at 50-75% of max profit (don't wait for full decay)
 - Scale out if appropriate
 - Don't be greedy
 
 **Loss limits:**
-- Cut losses at [Y]% of max loss
+- Cut losses at 100-150% of premium received
 - Don't hope for recovery
 - Preserve capital
 
 **Time-based exits:**
-- Monitor theta decay
-- Exit if [time-based trigger]
+- Monitor theta decay curve
+- Exit with 7-14 days remaining if profit target not reached (gamma risk increases)
 
 ### 16. Step 6
 
@@ -1557,9 +1558,14 @@ $$
 - New information emerges
 
 **How to adjust:**
-- [Adjustment technique 1]
-- [Adjustment technique 2]
-- [When to take loss instead]
+- **Roll the tested side:** If price approaches one wing, roll that spread further OTM
+- **Close the winning side:** If one side is nearly worthless, close it and reduce risk
+- **Convert to iron butterfly:** Narrow the wings if you become more confident in pinning
+
+**When to take loss instead:**
+- Stock has broken through your wing strike
+- Adjustment costs more than remaining potential profit
+- Better opportunities exist elsewhere
 
 ### 17. Step 7
 
