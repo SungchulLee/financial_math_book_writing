@@ -1367,6 +1367,306 @@ $$
 
 ---
 
+## Python Implementation
+
+
+### 1. Swap Pricing Function
+
+```python
+import numpy as np
+from scipy.interpolate import CubicSpline
+
+def price_swap(notional, fixed_rate, tenor, zero_curve_maturities, zero_curve_rates,
+               pay_or_receive='receive', payment_freq=4):
+    """
+    Price a vanilla interest rate swap.
+    
+    Parameters:
+    -----------
+    notional : float
+        Notional principal amount
+    fixed_rate : float
+        Annual fixed rate (e.g., 0.045 for 4.5%)
+    tenor : float
+        Swap tenor in years
+    zero_curve_maturities : array
+        Maturities for zero curve
+    zero_curve_rates : array
+        Zero rates (continuous compounding)
+    pay_or_receive : str
+        'pay' for pay fixed, 'receive' for receive fixed
+    payment_freq : int
+        Payments per year (4=quarterly, 2=semi-annual)
+    
+    Returns:
+    --------
+    dict with swap value, PV fixed leg, PV floating leg, DV01
+    """
+    
+    # Create interpolated zero curve
+    cs = CubicSpline(zero_curve_maturities, zero_curve_rates)
+    
+    # Generate payment dates
+    n_payments = int(tenor * payment_freq)
+    payment_times = np.array([(i+1) / payment_freq for i in range(n_payments)])
+    
+    # Calculate discount factors
+    discount_factors = np.exp(-cs(payment_times) * payment_times)
+    
+    # PV of fixed leg (annuity + notional cancels with floating reset)
+    fixed_payment = notional * fixed_rate / payment_freq
+    pv_fixed = np.sum(fixed_payment * discount_factors)
+    
+    # PV of floating leg = notional (resets to par at each date)
+    # At inception or just after reset, PV_floating = Notional × DF_next
+    # For simplicity at valuation time, approximate as notional × DF_1
+    pv_floating = notional * discount_factors[0]
+    
+    # For more accurate valuation accounting for accrued:
+    # pv_floating = (notional + next_payment) × DF_next
+    
+    # Swap value
+    if pay_or_receive == 'receive':
+        swap_value = pv_fixed - pv_floating + notional * discount_factors[-1]
+    else:
+        swap_value = pv_floating - pv_fixed - notional * discount_factors[-1]
+    
+    # Calculate DV01 (shift curve by 1bp)
+    rates_up = zero_curve_rates + 0.0001
+    cs_up = CubicSpline(zero_curve_maturities, rates_up)
+    df_up = np.exp(-cs_up(payment_times) * payment_times)
+    pv_fixed_up = np.sum(fixed_payment * df_up)
+    
+    if pay_or_receive == 'receive':
+        swap_value_up = pv_fixed_up - notional * df_up[0] + notional * df_up[-1]
+    else:
+        swap_value_up = notional * df_up[0] - pv_fixed_up - notional * df_up[-1]
+    
+    dv01 = swap_value - swap_value_up
+    
+    return {
+        'swap_value': swap_value,
+        'pv_fixed_leg': pv_fixed,
+        'pv_floating_leg': pv_floating,
+        'dv01': dv01,
+        'duration': abs(dv01 / notional) * 10000  # Modified duration
+    }
+
+# Example usage
+zero_maturities = np.array([0.25, 0.5, 1, 2, 3, 5, 7, 10])
+zero_rates = np.array([0.048, 0.047, 0.046, 0.045, 0.044, 0.043, 0.042, 0.041])
+
+result = price_swap(
+    notional=100_000_000,
+    fixed_rate=0.045,
+    tenor=5,
+    zero_curve_maturities=zero_maturities,
+    zero_curve_rates=zero_rates,
+    pay_or_receive='receive'
+)
+
+print(f"Swap Value: ${result['swap_value']:,.0f}")
+print(f"DV01: ${result['dv01']:,.0f}")
+print(f"Duration: {result['duration']:.2f} years")
+```
+
+### 2. Fair Swap Rate Calculation
+
+```python
+def calculate_fair_swap_rate(tenor, zero_curve_maturities, zero_curve_rates, 
+                              payment_freq=4):
+    """
+    Calculate the fair (par) swap rate for a given tenor.
+    
+    The fair swap rate makes the swap value = 0 at inception.
+    
+    Formula: R_swap = (1 - DF_n) / sum(DF_i × delta_i)
+    """
+    
+    cs = CubicSpline(zero_curve_maturities, zero_curve_rates)
+    
+    n_payments = int(tenor * payment_freq)
+    payment_times = np.array([(i+1) / payment_freq for i in range(n_payments)])
+    
+    # Discount factors
+    discount_factors = np.exp(-cs(payment_times) * payment_times)
+    
+    # Annuity factor (sum of DF × period)
+    period = 1 / payment_freq
+    annuity_factor = np.sum(discount_factors * period)
+    
+    # Final discount factor
+    final_df = discount_factors[-1]
+    
+    # Fair swap rate
+    fair_rate = (1 - final_df) / annuity_factor
+    
+    return fair_rate
+
+# Calculate fair swap rates for various tenors
+tenors = [2, 3, 5, 7, 10]
+print("Fair Swap Rates:")
+print("-" * 30)
+for t in tenors:
+    rate = calculate_fair_swap_rate(t, zero_maturities, zero_rates)
+    print(f"{t}-year: {rate*100:.3f}%")
+```
+
+### 3. Mark-to-Market Valuation
+
+```python
+def mtm_swap(original_rate, original_tenor, time_elapsed, notional,
+             current_zero_maturities, current_zero_rates, pay_or_receive='receive'):
+    """
+    Mark-to-market an existing swap.
+    
+    Parameters:
+    -----------
+    original_rate : float
+        Fixed rate at inception
+    original_tenor : float
+        Original tenor in years
+    time_elapsed : float
+        Time since inception in years
+    notional : float
+        Notional amount
+    current_zero_maturities : array
+        Current zero curve maturities
+    current_zero_rates : array
+        Current zero rates
+    pay_or_receive : str
+        Original position direction
+    
+    Returns:
+    --------
+    dict with current value, unrealized P&L, and Greeks
+    """
+    
+    remaining_tenor = original_tenor - time_elapsed
+    
+    if remaining_tenor <= 0:
+        return {'swap_value': 0, 'unrealized_pnl': 0}
+    
+    # Current fair rate for remaining tenor
+    current_fair_rate = calculate_fair_swap_rate(
+        remaining_tenor, 
+        current_zero_maturities, 
+        current_zero_rates
+    )
+    
+    # Swap value = (Fixed Rate - Current Fair Rate) × Annuity × Notional
+    cs = CubicSpline(current_zero_maturities, current_zero_rates)
+    
+    n_payments = int(remaining_tenor * 4)
+    payment_times = np.array([(i+1) / 4 for i in range(n_payments)])
+    discount_factors = np.exp(-cs(payment_times) * payment_times)
+    annuity_factor = np.sum(discount_factors * 0.25)
+    
+    rate_diff = original_rate - current_fair_rate
+    
+    if pay_or_receive == 'receive':
+        swap_value = rate_diff * annuity_factor * notional
+    else:
+        swap_value = -rate_diff * annuity_factor * notional
+    
+    return {
+        'swap_value': swap_value,
+        'remaining_tenor': remaining_tenor,
+        'original_rate': original_rate,
+        'current_fair_rate': current_fair_rate,
+        'rate_change': current_fair_rate - original_rate,
+        'annuity_factor': annuity_factor
+    }
+
+# Example: MTM a 5-year swap after 1 year with rates rising
+original_zero_rates = np.array([0.048, 0.047, 0.046, 0.045, 0.044, 0.043, 0.042, 0.041])
+new_zero_rates = np.array([0.053, 0.052, 0.051, 0.050, 0.049, 0.048, 0.047, 0.046])  # +50bp
+
+mtm = mtm_swap(
+    original_rate=0.045,
+    original_tenor=5,
+    time_elapsed=1,
+    notional=100_000_000,
+    current_zero_maturities=zero_maturities,
+    current_zero_rates=new_zero_rates,
+    pay_or_receive='receive'
+)
+
+print(f"MTM Value: ${mtm['swap_value']:,.0f}")
+print(f"Rate Change: {mtm['rate_change']*10000:.0f} bps")
+print(f"Current Fair Rate: {mtm['current_fair_rate']*100:.3f}%")
+```
+
+### 4. Swap Curve Construction
+
+```python
+def build_swap_curve(swap_rates, tenors, overnight_rate):
+    """
+    Bootstrap zero curve from swap rates.
+    
+    Parameters:
+    -----------
+    swap_rates : array
+        Par swap rates for each tenor
+    tenors : array
+        Swap tenors in years
+    overnight_rate : float
+        Overnight rate (e.g., SOFR)
+    
+    Returns:
+    --------
+    tuple of (maturities, zero_rates)
+    """
+    
+    maturities = [0, 0.25]  # Start with overnight
+    zero_rates = [overnight_rate, overnight_rate]
+    
+    for i, tenor in enumerate(tenors):
+        swap_rate = swap_rates[i]
+        
+        # Bootstrap zero rate
+        # Swap rate = (1 - DF_n) / sum(DF_i)
+        # Solve for DF_n, then zero rate
+        
+        n_payments = int(tenor * 4)
+        payment_times = [(j+1) / 4 for j in range(n_payments)]
+        
+        # Sum of known discount factors
+        cs = CubicSpline(maturities, zero_rates)
+        known_sum = 0
+        for t in payment_times[:-1]:
+            if t <= maturities[-1]:
+                df = np.exp(-cs(t) * t)
+                known_sum += df * 0.25
+        
+        # Solve for final DF
+        # swap_rate × (known_sum + DF_n × 0.25) = 1 - DF_n
+        # swap_rate × known_sum + swap_rate × DF_n × 0.25 = 1 - DF_n
+        # DF_n × (swap_rate × 0.25 + 1) = 1 - swap_rate × known_sum
+        final_df = (1 - swap_rate * known_sum) / (1 + swap_rate * 0.25)
+        
+        # Convert to zero rate
+        zero_rate = -np.log(final_df) / tenor
+        
+        maturities.append(tenor)
+        zero_rates.append(zero_rate)
+    
+    return np.array(maturities), np.array(zero_rates)
+
+# Example: Build curve from swap rates
+swap_rates = np.array([0.045, 0.044, 0.043, 0.042, 0.041])  # 2y, 3y, 5y, 7y, 10y
+swap_tenors = np.array([2, 3, 5, 7, 10])
+
+mats, zeros = build_swap_curve(swap_rates, swap_tenors, overnight_rate=0.048)
+
+print("Bootstrapped Zero Curve:")
+print("-" * 30)
+for m, z in zip(mats, zeros):
+    print(f"{m:.2f}y: {z*100:.3f}%")
+```
+
+---
+
 ## Common Mistakes
 
 

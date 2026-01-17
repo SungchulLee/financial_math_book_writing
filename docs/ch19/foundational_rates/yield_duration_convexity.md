@@ -614,6 +614,283 @@ $$
 
 ---
 
+## Key Rate Duration (KRD) Analysis
+
+
+**Beyond parallel shift risk: Capturing non-parallel curve movements**
+
+### 1. The Limitation of Modified Duration
+
+
+**Modified duration assumes parallel shifts:**
+
+$$
+\Delta P \approx -D_{\text{Mod}} \times P \times \Delta y
+$$
+
+**But real curves don't shift in parallel:**
+
+**Example - 2022 Fed tightening:**
+
+| Maturity | Yield Change |
+|----------|--------------|
+| 2-year | +370 bps |
+| 5-year | +280 bps |
+| 10-year | +235 bps |
+| 30-year | +205 bps |
+
+**Curve flattened dramatically (short end rose more)**
+
+**Portfolio with duration 7.5 years:**
+
+- Modified duration predicted: -7.5 × 2.35% = -17.6%
+- Actual loss depended on WHERE the duration was allocated
+- Short-duration bonds lost more per unit duration
+- **Parallel assumption failed**
+
+### 2. Key Rate Duration Formulation
+
+
+**Decompose curve into key rate points:**
+
+$$
+P = P(y_1, y_2, y_3, \ldots, y_K)
+$$
+
+Where $y_k$ represents yields at key maturities (typically 2, 5, 10, 30 years).
+
+**Key Rate Duration at point $k$:**
+
+$$
+KRD_k = -\frac{1}{P} \frac{\partial P}{\partial y_k}
+$$
+
+**Total duration constraint:**
+
+$$
+D_{\text{Mod}} = \sum_{k=1}^{K} KRD_k
+$$
+
+**The sum of all KRDs equals modified duration.**
+
+**Enhanced price change formula:**
+
+$$
+\Delta P \approx -P \sum_{k=1}^{K} KRD_k \times \Delta y_k
+$$
+
+**This captures non-parallel shifts!**
+
+### 3. KRD Calculation Example
+
+
+**Bond: 10-year 5% coupon, Price $100**
+
+**Cash flow profile:**
+
+| Year | Cash Flow | PV Weight |
+|------|-----------|-----------|
+| 1-2 | $5/year | 9% |
+| 3-5 | $5/year | 12% |
+| 6-10 | $5/year + $100 principal | 79% |
+
+**KRD decomposition:**
+
+| Key Rate | KRD | Interpretation |
+|----------|-----|----------------|
+| 2-year | 0.45 | 5.6% of duration |
+| 5-year | 1.20 | 15.0% of duration |
+| 10-year | 6.35 | 79.4% of duration |
+| **Total** | **8.00** | Modified duration |
+
+**Most exposure is at the 10-year point (makes sense for 10-year bond).**
+
+### 4. Non-Parallel Shift Hedging
+
+
+**Goal: Hedge portfolio against ALL curve movements, not just parallel.**
+
+**Portfolio: $100M 10-year bonds**
+
+| KRD Point | Portfolio KRD | DV01 (per bp) |
+|-----------|---------------|---------------|
+| 2-year | 0.45 | $4,500 |
+| 5-year | 1.20 | $12,000 |
+| 10-year | 6.35 | $63,500 |
+| Total | 8.00 | $80,000 |
+
+**Hedging instruments:**
+
+| Hedge | Amount | KRD Profile |
+|-------|--------|-------------|
+| 2-year Treasury | $23.7M | KRD₂ = 1.9 |
+| 5-year Treasury | $25.0M | KRD₅ = 4.8 |
+| 10-year Treasury | $74.8M | KRD₁₀ = 8.5 |
+
+**Hedge ratios (duration-neutral at each key rate):**
+
+$$
+\text{Hedge Amount}_k = \frac{\text{Portfolio } DV01_k}{\text{Hedge Instrument } DV01_k}
+$$
+
+**Result: Portfolio immunized against 2s, 5s, 10s, AND non-parallel shifts**
+
+### 5. KRD Applications
+
+
+**1. Liability-Driven Investing (LDI):**
+
+- Match KRD profile of assets to liabilities
+- Better immunization than duration matching alone
+- Standard for pension funds
+
+**2. Active curve positioning:**
+
+| View | KRD Positioning |
+|------|-----------------|
+| Expect curve flattening | Overweight long KRDs, underweight short |
+| Expect curve steepening | Overweight short KRDs, underweight long |
+| Expect belly richening | Underweight 5-year KRD |
+
+**3. Mortgage portfolio hedging:**
+
+- MBS have complex KRD profiles (negative convexity)
+- Hedge with Treasury futures at each key rate
+- Critical for agency MBS managers
+
+---
+
+## Option-Adjusted Spread (OAS) Analysis
+
+
+**Valuing bonds with embedded options**
+
+### 1. The Problem with Nominal Spread
+
+
+**Corporate bond with call feature:**
+
+- Yield: 6.00%
+- Treasury yield: 4.50%
+- Nominal spread: 150 bps
+
+**But this spread includes:**
+
+1. Credit risk premium
+2. Liquidity premium
+3. **Option cost (issuer's call option value)**
+
+**Nominal spread overstates true credit compensation!**
+
+### 2. OAS Definition
+
+
+**Option-Adjusted Spread:**
+
+$$
+\text{OAS} = \text{Nominal Spread} - \text{Option Cost}
+$$
+
+**Alternatively:**
+
+$$
+P_{\text{market}} = \sum_{i} \frac{E[CF_i]}{(1 + r_i + \text{OAS})^{t_i}}
+$$
+
+Where:
+- $E[CF_i]$ = Expected cash flow under interest rate scenarios
+- $r_i$ = Risk-free rate (from zero curve)
+- OAS = Constant spread added to ALL discount rates
+
+**OAS is the spread that equates model price to market price after accounting for option value.**
+
+### 3. OAS Calculation Framework
+
+
+**Step 1: Build interest rate tree (binomial or trinomial)**
+
+```
+                    6.50%
+                   /
+            5.75% 
+           /      \
+     5.00%         5.50%
+           \      /
+            4.75%
+                   \
+                    4.25%
+```
+
+**Step 2: Simulate cash flows under each path**
+
+**For callable bond:**
+- At each node, check if call is optimal for issuer
+- If call value > continuation value → Bond called
+- If not → Continue receiving coupons
+
+**Step 3: Calculate expected cash flows**
+
+**Step 4: Solve for OAS**
+
+$$
+\text{Market Price} = \sum_{\text{paths}} \frac{\text{Prob}_i \times CF_i}{(1 + r_i + \text{OAS})^{t_i}}
+$$
+
+**Iterate until model price = market price**
+
+### 4. OAS Example
+
+
+**Callable corporate bond:**
+
+- Coupon: 5.5%
+- Maturity: 10 years
+- Call: Callable at par after 5 years
+- Price: $102.50
+- Comparable Treasury yield: 4.25%
+
+**Nominal spread: YTM - Treasury = 5.15% - 4.25% = 90 bps**
+
+**OAS calculation:**
+
+| Component | Value |
+|-----------|-------|
+| Nominal spread | 90 bps |
+| Option cost (model) | 25 bps |
+| **OAS** | **65 bps** |
+
+**Interpretation:**
+
+- Investor earns 65 bps for credit/liquidity risk
+- Gives up 25 bps to issuer's call option
+- OAS is "option-free equivalent spread"
+
+### 5. OAS Applications
+
+
+**1. Relative value analysis:**
+
+| Bond | Nominal Spread | OAS | Call Feature |
+|------|----------------|-----|--------------|
+| Corp A | 120 bps | 85 bps | Callable |
+| Corp B | 95 bps | 90 bps | Non-callable |
+
+**Corp B is CHEAPER despite lower nominal spread!**
+
+**2. MBS valuation:**
+
+- MBS have embedded prepayment option (homeowner's right to refinance)
+- OAS captures spread after modeling prepayment scenarios
+- Critical for MBS relative value
+
+**3. Risk management:**
+
+- Effective duration uses OAS framework
+- Option-adjusted Greeks capture embedded option effects
+- Better risk estimation for callable securities
+
+---
+
 ## The Greeks (Bond Risk Metrics)
 
 

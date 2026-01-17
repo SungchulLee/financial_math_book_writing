@@ -111,6 +111,48 @@ $$
 \text{Par Rate} \xrightarrow{\text{Bootstrap}} \text{Zero Rate} \xrightarrow{\text{Differentiate}} \text{Forward Rate}
 $$
 
+**Mathematical Relationships Between Rates:**
+
+**Discount factor from zero rate (continuous compounding):**
+
+$$
+P(t,T) = e^{-r(t,T) \times (T-t)}
+$$
+
+**Instantaneous forward rate:**
+
+$$
+f(t,T) = -\frac{\partial \ln P(t,T)}{\partial T}
+$$
+
+This fundamental relationship shows that the forward rate is the negative derivative of the log discount factor with respect to maturity. Equivalently:
+
+$$
+f(t,T) = r(t,T) + (T-t) \frac{\partial r(t,T)}{\partial T}
+$$
+
+**Relationship between spot and forward rates:**
+
+$$
+r(t,T) = \frac{1}{T-t} \int_t^T f(t,u) \, du
+$$
+
+The spot rate is the average of forward rates over the period.
+
+**Discrete forward rate formula:**
+
+For non-overlapping periods, the forward rate from $T_1$ to $T_2$:
+
+$$
+f(T_1, T_2) = \frac{(1 + r(T_2))^{T_2} - (1 + r(T_1))^{T_1}}{(T_2 - T_1)(1 + r(T_1))^{T_1}}
+$$
+
+Or equivalently using discount factors:
+
+$$
+f(T_1, T_2) = \frac{P(0,T_1) - P(0,T_2)}{(T_2 - T_1) \times P(0,T_2)}
+$$
+
 ### 3. Instruments for Curve
 
 
@@ -1076,7 +1118,7 @@ Actually, if this is December 2024, let me use more realistic data:
 **Calculation:**
 
 $$
-f(2,3) = \frac{(1.04)^{10}}{(1.046)^2}^{1/8} - 1 \approx 3.85\%
+f(2,3) = \left(\frac{(1.04)^{10}}{(1.046)^2}\right)^{1/8} - 1 \approx 3.85\%
 $$
 
 Actually, let me recalculate properly:
