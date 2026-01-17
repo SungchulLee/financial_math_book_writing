@@ -644,19 +644,28 @@ nav:
       - 20 Credit and Default:
           - 20.1 Credit Basics:
               - Credit Spreads and OAS: ch20/credit_basics/credit_spreads_oas.md
+              - Spread Convexity and OAS Sensitivity: ch20/credit_basics/credit_spreads_addendum.md
               - Default Risk and Recovery: ch20/credit_basics/default_risk_recovery.md
+              - Recovery Volatility and Distress Indicators: ch20/credit_basics/default_recovery_addendum.md
           - 20.2 CDS and Indices:
               - CDS Mechanics: ch20/cds_and_indices/cds_mechanics.md
               - Credit Index Trading: ch20/cds_and_indices/credit_index_trading.md
+              - Tranches Skew and ISDA Model: ch20/cds_and_indices/cds_indices_addendum.md
           - 20.3 Carry and Roll:
               - Credit Carry Trades: ch20/carry_and_roll/credit_carry_trades.md
-              - Roll-Down in Credit Curves: ch20/carry_and_roll/credit_roll_down.md
+              - Credit Roll Down: ch20/carry_and_roll/credit_roll_down.md
           - 20.4 Relative Value:
               - Cash Bond vs CDS Basis: ch20/relative_value/cash_bond_vs_cds_basis.md
               - Capital Structure Arbitrage: ch20/relative_value/capital_structure_arbitrage.md
-          - 20.5 Event-Driven:
+          - 20.5 Event Driven:
               - Distressed Credit Trading: ch20/event_driven/distressed_credit_trading.md
-              - Ratings and Downgrade Risk: ch20/event_driven/ratings_downgrade_risk.md
+              - Ratings Downgrade Risk: ch20/event_driven/ratings_downgrade_risk.md
+          - 20.6 Credit Curve Trading:
+              - Curve Steepeners and Flatteners: ch20/advanced_topics/credit_curve_trading.md
+          - 20.7 Credit Volatility:
+              - Vol Trading and Tranches: ch20/advanced_topics/credit_volatility.md
+          - 20.8 Python Credit Analysis:
+              - CDS Pricing and Credit Tools: ch20/python_credit_analysis.md
 
       - 21 FX:
           - 21.1 FX Foundations:
