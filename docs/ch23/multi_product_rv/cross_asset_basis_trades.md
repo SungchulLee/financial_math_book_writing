@@ -3,6 +3,8 @@
 
 **Cross-asset basis trades** exploit persistent or temporary mispricings between economically linked instruments across different asset classes—such as equity-credit (CDS vs stock), equity-rates (dividend futures vs bonds), commodity-equity (oil vs energy stocks), and FX-rates (currency forwards vs interest rate differentials)—by simultaneously taking opposite positions in related assets and profiting when the basis (spread) converges to fair value, with typical drivers including liquidity imbalances, regulatory constraints, funding costs, and technical flows that create wedges between theoretically linked prices.
 
+> **Prerequisites:** No-arbitrage fundamentals (Section 23.1.1), covered interest parity, and credit-equity linkages. For the Merton model connecting equity volatility to credit spreads, see credit risk fundamentals in Chapter 12.
+
 ---
 
 ## The Core Insight

@@ -717,8 +717,12 @@ nav:
           - 23.3 Index:
               - Index vs Basket Arbitrage: ch23/index/index_basket_arbitrage.md
               - ETF vs Futures vs Cash: ch23/index/etf_futures_cash.md
-          - 23.4 Multi-Product RV:
-              - CB Arbitrage: ch23/multi_product_rv/convertible_bond_arbitrage.md
+          - 23.4 CB Arbitrage:
+              - Overview: ch23/cb_arbitrage/convertible_bond_arbitrage.md
+              - Mechanics & Valuation: ch23/cb_arbitrage/convertible_bond_mechanics.md
+              - Implementation: ch23/cb_arbitrage/convertible_bond_arbitrage_implementation.md
+              - Risk & Performance: ch23/cb_arbitrage/convertible_bond_arbitrage_risk.md
+          - 23.5 Multi-Product RV:
               - Cross-Asset Basis Trades: ch23/multi_product_rv/cross_asset_basis_trades.md
               - Statistical RV Across Assets: ch23/multi_product_rv/statistical_rv_across_assets.md
 

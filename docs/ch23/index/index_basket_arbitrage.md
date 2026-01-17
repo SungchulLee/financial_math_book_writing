@@ -3,6 +3,8 @@
 
 **Index vs basket arbitrage** exploits temporary mispricings between index products (ETFs, futures) and their underlying constituent stocks by simultaneously buying the cheap side and selling the expensive side, capturing the basis difference when convergence occurs through market mechanisms like ETF creation/redemption, futures roll, or algorithmic rebalancing, with typical opportunities arising from supply-demand imbalances, dividend timing, rebalancing flows, and index inclusion events that create predictable convergence patterns.
 
+> **Prerequisites:** Understanding of no-arbitrage pricing (Section 23.1.1) and cost-of-carry relationships. See Section 23.3.2 for ETF vs. futures vs. cash vehicle comparison.
+
 ---
 
 ## The Core Insight

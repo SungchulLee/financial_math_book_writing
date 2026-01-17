@@ -3,6 +3,8 @@
 
 **Volatility and interest rates interact** through multiple channels where rising rates typically increase equity volatility (higher discount rates, tighter financial conditions), decrease bond prices while increasing bond volatility (duration effect), affect option pricing directly through the risk-free rate term in Black-Scholes, and create complex cross-asset dynamics where Fed policy drives both rate and volatility regimes, making swaption volatility, MOVE index (bond market VIX), and rate-vol correlation critical for cross-asset positioning and risk management.
 
+> **Prerequisites:** This section builds on Black-Scholes rate sensitivity (Chapter 5: rho), volatility surface dynamics (Chapter 7), and interest rate derivatives fundamentals. For VIX mechanics, see Section 23.2.1.
+
 ---
 
 ## The Core Insight

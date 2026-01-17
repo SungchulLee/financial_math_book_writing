@@ -3,6 +3,8 @@
 
 **Correlation and factor exposure** measure how assets move together (correlation) and their sensitivity to common underlying drivers (factors), where correlations are unstable and spike to one during crises while factor models decompose returns into systematic components like market beta, size, value, and momentum, allowing investors to understand true diversification, identify hidden concentrated risks, and construct portfolios that isolate desired exposures while hedging unwanted systematic risk.
 
+> **Prerequisites:** Basic statistics (covariance, regression). This section provides foundations for statistical RV strategies (Section 23.4.3) and cross-asset basis trades (Section 23.4.2).
+
 ---
 
 ## The Core Insight

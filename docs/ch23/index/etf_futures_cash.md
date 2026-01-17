@@ -3,6 +3,8 @@
 
 **ETF vs futures vs cash comparison** evaluates three primary ways to gain index exposure—physical stock baskets (cash), exchange-traded funds (ETFs), and index futures—each with distinct characteristics: cash requires full capital and dividend management but offers precise tracking, ETFs provide instant liquidity and fractional exposure with 1-2 bp tracking error and tax efficiency through creation/redemption, while futures offer massive leverage (10-20×) and capital efficiency but carry roll costs, basis risk, and margin management complexity, making the optimal choice dependent on time horizon, capital availability, tax status, and desired leverage.
 
+> **Prerequisites:** Understanding of cost-of-carry (Section 23.1.1) and index-basket arbitrage mechanics (Section 23.3.1).
+
 ---
 
 ## The Core Insight

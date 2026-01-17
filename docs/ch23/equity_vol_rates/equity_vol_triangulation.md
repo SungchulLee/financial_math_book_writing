@@ -3,6 +3,8 @@
 
 **Equity vs volatility triangulation** exploits the asymmetric inverse relationship where equity declines strongly predict volatility spikes (correlation ≈ -0.7) but equity rallies only weakly predict volatility declines (correlation ≈ -0.3), creating structural opportunities through VIX futures, variance swaps, volatility ETPs, and dispersion trades that profit from the volatility risk premium, mean reversion patterns, and the leverage effect where falling stock prices mechanically increase equity volatility through higher debt-to-equity ratios.
 
+> **Prerequisites:** This section builds on implied volatility and VIX construction (Chapter 7), variance swaps (Chapter 24), and stochastic volatility models (Chapter 9: Heston). See Chapter 6 for Greeks mechanics used in hedging strategies.
+
 ---
 
 ## The Core Insight

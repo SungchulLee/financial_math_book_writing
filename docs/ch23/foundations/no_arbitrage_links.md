@@ -3,6 +3,8 @@
 
 **No-arbitrage links across markets** are the fundamental price relationships that must hold between different asset classes—equities, bonds, currencies, commodities—enforced by arbitrageurs who exploit any deviations, creating a web of interconnected valuations where covered interest parity links FX forwards to interest rates, put-call parity connects options across strikes, commodity storage costs determine futures prices, and quanto adjustments tie foreign assets to domestic currency, making cross-asset arbitrage the invisible force that maintains global market consistency.
 
+> **Prerequisites:** This section assumes familiarity with option pricing fundamentals (Chapter 5: Black-Scholes), Greeks and hedging mechanics (Chapter 6), and implied volatility concepts (Chapter 7).
+
 ---
 
 ## The Core Insight
@@ -139,24 +141,25 @@ $$
 - Net: €0, $0
 
 **One year (T=1):**
-- Repay: -€1.035M
-- Receive: +$1.1394M ($1.08M × 1.055)
-- Forward: Convert $1.1394M at 1.1050 = **€1.0311M**
-- Net: €1.0311M - €1.035M = **-€0.0039M** (wait, loss?)
-
-Let me recalculate... Actually if forward is overpriced relative to CIP:
-
-**Correct arbitrage (forward overpriced):**
-1. Borrow USD 1.08M at 5.5%
-2. Convert to EUR at spot: €1M
-3. Invest EUR at 3.5%
-4. Buy forward (lock in selling EUR at 1.1050)
-
-**One year:**
 - EUR investment: €1M × 1.035 = €1.035M
-- Sell at forward: €1.035M × 1.1050 = $1.1437M
-- Repay USD loan: $1.08M × 1.055 = $1.1394M
-- **Profit: $1.1437M - $1.1394M = $4.3K** (40 bps)
+- Sell EUR at forward: €1.035M × 1.1050 = **$1.1437M**
+- Repay USD loan: $1.08M × 1.055 = **$1.1394M**
+- **Profit: $1.1437M − $1.1394M = $4.3K** (40 bps)
+
+**Why this works:**
+
+The forward rate (1.1050) implies EUR appreciation relative to what CIP predicts. The fair forward under CIP would be:
+
+$$
+F_{\text{CIP}} = 1.08 \times \frac{1.035}{1.055} = 1.0598
+$$
+
+Since market forward (1.1050) > CIP fair value (1.0598), the EUR is overpriced in the forward market. Arbitrageurs:
+- Borrow the currency that's cheap to borrow (USD at 5.5%)
+- Invest in the currency with lower rates (EUR at 3.5%)
+- Lock in favorable forward sale of EUR
+
+The 40 bps profit represents the mispricing between the forward market and interest rate differential.
 
 ### 3. Put-Call Parity
 
@@ -213,39 +216,26 @@ $$
 
 **Cash flows:**
 
-**Today:** $6 - $10 + $100 = $96$ net (need to borrow $4 more to invest $100)
+**Arbitrage (put overpriced at $6 vs. fair value $5.12):**
 
-Wait, let me recalculate more carefully:
+The strategy exploits put-call parity by constructing a synthetic put and comparing to the market put.
 
-**Correct arbitrage (put overpriced):**
-1. Sell put: +$6
-2. Buy call: -$10
-3. Buy stock: -$100
-4. Borrow: $100 at 5%
-
-**Net today:** $6 - $10 - $100 + $100 = -$4$ (borrow extra)
-
-**At expiration:**
-
-**If $S_T > 100$:**
-- Put expires worthless: $0
-- Call pays: $S_T - 100$
-- Stock worth: $S_T$
-- Repay loan: -$100 \times 1.05 = -$105$
-- Sell stock: +$S_T$
-- **Net: $(S_T - 100) + 0 + S_T - 105 - S_T = S_T - 205$**
-
-Hmm, this is getting complicated. Let me use the synthetic relationship properly:
-
-**Arbitrage (put overpriced at $6 vs. fair $5.12):**
-
-**Synthetic put:** Short stock + Long call + Lend cash = Put
-Cost: $-100 + 10 + 95.12 = 5.12$
+**Synthetic put:** Short stock + Long call + Lend PV(K) = Put
+- Cost: $-100 + 10 + 95.12 = 5.12$
 
 **Market put:** $6
 
-**Strategy:** Sell market put ($6), buy synthetic put ($5.12)
-**Profit: $0.88** per share
+**Strategy:** Sell market put (+$6), buy synthetic put (−$5.12)
+- **Riskless profit: $0.88 per share**
+
+**Verification at expiration:**
+
+| Stock Price $S_T$ | Sold Put Payoff | Long Call Payoff | Stock Position | Bond Matures | Net |
+|-------------------|-----------------|------------------|----------------|--------------|-----|
+| $S_T > 100$ (e.g., 120) | $0$ | $+(S_T - 100)$ | $-S_T$ | $+100$ | $0$ |
+| $S_T < 100$ (e.g., 80) | $-(100 - S_T)$ | $0$ | $-S_T$ | $+100$ | $0$ |
+
+In both cases, the portfolio has zero terminal value. Since we collected $0.88 upfront, this is a riskless arbitrage profit.
 
 ### 4. Cost of Carry
 
@@ -698,36 +688,31 @@ $$
 2. Short $310K PEP (overvalued relatively)
 3. Wait for ratio to return to 3.1
 
-**Convergence:**
-- KO rises to $61 (+1.7%)
-- PEP falls to $189.1 (-4.9%)? No, that's too much...
+**Convergence scenario:**
 
-Let me recalculate for ratio returning to 3.1:
+For proper pairs trading, use a **dollar-neutral** hedge:
 
-If KO at $61, PEP should be at $61 × 3.1 = $189.1
-If PEP at $177, KO should be at $177 / 3.1 = $57.10
+**Setup:**
+- Long $100K KO (1,667 shares at $60)
+- Short $100K PEP (556 shares at $180)
+- Net market exposure: $0
 
-**More realistic:**
-- KO rises to $61 (+1.7%)
-- PEP rises to $189.1 (+5%)
-- New ratio: 189.1 / 61 = 3.1 ✓
+**Scenario 1: Ratio reverts, both rise**
+- KO rises 5% to $63 → Position worth $105K → **Gain: +$5K**
+- PEP rises 3% to $185.4 → Owe $103K → **Loss: −$3K**
+- **Net P&L: +$2K**
 
-**P&L:**
-- Long KO: +$1.7K
-- Short PEP: -$15.5K
-- **Net: -$13.8K** (wait, loss!)
+**Scenario 2: Ratio reverts, both fall**
+- KO falls 2% to $58.8 → Position worth $98K → **Loss: −$2K**
+- PEP falls 5% to $171 → Owe $95K → **Gain: +$5K**
+- **Net P&L: +$3K**
 
-I need to think about the hedge ratio more carefully. If dollar-neutral:
+**Scenario 3: Ratio diverges further (adverse)**
+- KO falls 3% to $58.2 → Position worth $97K → **Loss: −$3K**
+- PEP rises 2% to $183.6 → Owe $102K → **Loss: −$2K**
+- **Net P&L: −$5K**
 
-**Better hedge:**
-- Long $100K KO (1,667 shares)
-- Short $100K PEP (556 shares)
-- Betting on ratio reversion, not absolute prices
-
-**If KO outperforms PEP by 5%:**
-- KO: +$5K
-- PEP: -$0 (no change)
-- **Net: +$5K**
+**Key insight:** Dollar-neutral pairs trading profits from *relative* outperformance regardless of market direction. The hedge ratio ensures approximately equal dollar exposure to each leg, isolating the relative value bet from broad market moves.
 
 ---
 
