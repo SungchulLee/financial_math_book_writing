@@ -330,22 +330,30 @@ nav:
 
       - 10 Term Structure:
           - 10.1 Yield Curves:
-              - Zero Rates: ch10/zero_coupon_bonds_and_yield_curves/discount_factors_and_zero_rates.md
-              - Forward Rates: ch10/zero_coupon_bonds_and_yield_curves/forward_rates_and_term_structures.md
+              - Discount Factors and Zero Rates: ch10/zero_coupon_bonds_and_yield_curves/discount_factors_and_zero_rates.md
+              - Forward Rates and Term Structures: ch10/zero_coupon_bonds_and_yield_curves/forward_rates_and_term_structures.md
               - No-Arbitrage Relations: ch10/zero_coupon_bonds_and_yield_curves/no_arbitrage_relations.md
+              - Bootstrapping Algorithms: ch10/zero_coupon_bonds_and_yield_curves/bootstrapping_algorithms.md
+              - Interpolation Methods: ch10/zero_coupon_bonds_and_yield_curves/interpolation_methods.md
           - 10.2 Short-Rate Models:
-              - Short-Rate Framework: ch10/short_rate_models/general_short_rate_framework.md
+              - General Short-Rate Framework: ch10/short_rate_models/general_short_rate_framework.md
               - Vasicek Model: ch10/short_rate_models/vasicek_model.md
               - CIR Model: ch10/short_rate_models/cir_model.md
-              - Affine Model: ch10/short_rate_models/affine_term_structure.md
-          - 10.3 Pricing IR Deriv:
-              - Pricing via PDEs: ch10/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
-              - Pricing via Feynman–Kac: ch10/pricing_interest_rate_derivatives/bond_pricing_via_feynman_kac.md
+              - Affine Term Structure: ch10/short_rate_models/affine_term_structure.md
+              - Hull-White Model: ch10/short_rate_models/hull_white_model.md
+          - 10.3 Pricing IR Derivatives:
+              - Bond Pricing via PDEs: ch10/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
+              - Bond Pricing via Feynman–Kac: ch10/pricing_interest_rate_derivatives/bond_pricing_via_feynman_kac.md
               - Yield Curve Dynamics: ch10/pricing_interest_rate_derivatives/yield_curve_dynamics.md
+              - Bond Options: ch10/pricing_interest_rate_derivatives/bond_options.md
+              - Caps and Floors: ch10/pricing_interest_rate_derivatives/caps_and_floors.md
+              - Swaptions: ch10/pricing_interest_rate_derivatives/swaptions.md
+              - Duration and Convexity: ch10/pricing_interest_rate_derivatives/duration_and_convexity.md
           - 10.4 HJM Framework:
               - Forward Rate Dynamics: ch10/heath_jarrow_morton_hjm_framework/forward_rate_dynamics.md
               - No-Arbitrage Drift Condition: ch10/heath_jarrow_morton_hjm_framework/no_arbitrage_drift_condition.md
               - Infinite-Dimensional SDEs: ch10/heath_jarrow_morton_hjm_framework/infinite_dimensional_sdes.md
+              - LIBOR Market Model: ch10/heath_jarrow_morton_hjm_framework/libor_market_model.md
           - 10.5 Forward Measures:
               - Risk-Neutral Measure: ch10/change_of_measure_and_forward_measures/risk_neutral_measure.md
               - T-Forward Measures: ch10/change_of_measure_and_forward_measures/t_forward_measures.md
