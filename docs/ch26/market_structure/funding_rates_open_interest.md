@@ -160,7 +160,7 @@ Total funding = Market premium + Base rate
 
 **Market premium dominates:**
 
-In practice, the interest rate component is small (0.01%) and relatively stable. The premium component (perpet ual vs spot difference) drives funding variability.
+In practice, the interest rate component is small (0.01%) and relatively stable. The premium component (perpetual vs spot difference) drives funding variability.
 
 **Why premium exists:**
 

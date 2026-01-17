@@ -765,6 +765,7 @@ nav:
           - 26.1 Market Structure:
               - Spot vs Perpetuals: ch26/market_structure/spot_vs_perpetuals.md
               - Funding Rates and Open Interest: ch26/market_structure/funding_rates_open_interest.md
+              - DeFi Perpetuals: ch26/market_structure/defi_perpetuals.md
           - 26.2 Basis and Carry:
               - Cash-and-Carry Arbitrage: ch26/basis_and_carry/cash_and_carry_arbitrage.md
               - Funding-Rate Harvesting: ch26/basis_and_carry/funding_rate_harvesting.md
@@ -774,6 +775,13 @@ nav:
           - 26.4 Operational Risk:
               - Exchange and Custody Risk: ch26/operational_risk/exchange_custody_risk.md
               - Slippage and Market Impact: ch26/operational_risk/slippage_market_impact.md
+          - 26.5 Python Implementations:
+              - Code Examples: ch26/python_code/ch26_python_implementations.md
+          - 26.A Appendices:
+              - Notation and Conventions: ch26/appendices/notation_and_conventions.md
+              - Market Impact Theory: ch26/appendices/market_impact_theory.md
+              - Crypto-TradFi Correlation: ch26/appendices/crypto_tradfi_correlation.md
+              - Regulatory Landscape: ch26/appendices/regulatory_landscape.md
 
   - Appendix Python Codes:
       - 1 Stochastic Process:
