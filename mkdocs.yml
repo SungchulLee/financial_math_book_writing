@@ -777,11 +777,54 @@ nav:
               - Slippage and Market Impact: ch26/operational_risk/slippage_market_impact.md
           - 26.5 Python Implementations:
               - Code Examples: ch26/python_code/ch26_python_implementations.md
-          - 26.A Appendices:
+          - 26.6 Appendices:
               - Notation and Conventions: ch26/appendices/notation_and_conventions.md
               - Market Impact Theory: ch26/appendices/market_impact_theory.md
               - Crypto-TradFi Correlation: ch26/appendices/crypto_tradfi_correlation.md
               - Regulatory Landscape: ch26/appendices/regulatory_landscape.md
+
+#   - Part V Market Structure:  # NEW
+  
+#       - 27 Money Markets:
+#           - 27.1 Short-Term Instruments:
+#               - Treasury Bills: ch27/short_term/treasury_bills.md
+#               - Commercial Paper: ch27/short_term/commercial_paper.md
+#               - Certificates of Deposit: ch27/short_term/certificates_of_deposit.md
+#               - Bankers Acceptances: ch27/short_term/bankers_acceptances.md
+#           - 27.2 Corporate and Sovereign Bonds:
+#               - Bond Market Overview: ch27/bonds/bond_market_overview.md
+#               - Investment Grade vs High Yield: ch27/bonds/ig_vs_hy.md
+          
+#       - 28 Structured Credit:
+#           - 28.1 Mortgage-Backed Securities:
+#               - Agency MBS: ch28/mbs/agency_mbs.md
+#               - Non-Agency and CMBS: ch28/mbs/non_agency_cmbs.md
+#               - Prepayment and Extension Risk: ch28/mbs/prepayment_risk.md
+#           - 28.2 CLOs and CDOs:
+#               - CLO Structure: ch28/structured/clo_structure.md
+#               - CDO Mechanics: ch28/structured/cdo_mechanics.md
+#               - ABS Overview: ch28/structured/abs_overview.md
+#           - 28.3 Synthetic Structures:
+#               - Total Return Swaps: ch28/synthetic/total_return_swaps.md
+#               - Synthetic CDOs: ch28/synthetic/synthetic_cdos.md
+#               - Credit-Linked Notes: ch28/synthetic/credit_linked_notes.md
+              
+#       - 29 Market Infrastructure:
+#           - 29.1 Clearing and Settlement:
+#               - Central Counterparties: ch29/clearing/central_counterparties.md
+#               - Margining Mechanics: ch29/clearing/margining_mechanics.md
+#           - 29.2 Collateral Management:
+#               - CSA Overview: ch29/collateral/csa_overview.md
+#               - Initial and Variation Margin: ch29/collateral/im_vm.md
+#           - 29.3 Market Microstructure:
+#               - High-Frequency Trading: ch29/microstructure/hft_overview.md
+#               - Electronic Trading Platforms: ch29/microstructure/electronic_platforms.md
+
+#       - 30 Digital Asset:  # ADD to existing
+#           - 30.1 Stablecoins:
+#               - Stablecoin Mechanics: ch30/stablecoins/stablecoin_mechanics.md
+#               - USDT vs USDC vs DAI: ch30/stablecoins/stablecoin_comparison.md
+#               - Regulatory Considerations: ch30/stablecoins/stablecoin_regulation.md
 
   - Appendix Python Codes:
       - 1 Stochastic Process:
@@ -899,7 +942,10 @@ nav:
               - Vasicek Usage: python_codes/vasicek_USAGE.py
           - 10.3 CIR Model:
               - CIR Usage: python_codes/cir_USAGE.py
-      - Appendix:
+      - Appendix on KOSPI200:
+        #   - Overview: appendix_krx/kospi200_overview.md
+        #   - PER Analysis: appendix_krx/kospi200_per.md
+        #   - Dividend Yield Analysis: appendix_krx/kospi200_dividend.md
           - KRX Main: python_codes/krx_MAIN.py
           - Debug Test: python_codes/debug_v110_test.py
           - Detailed Plot Test: python_codes/detailed_plot_test.py
