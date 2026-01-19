@@ -41,8 +41,7 @@ nav:
               - Martingale Convergence: ch01/filtration_and_martingales/martingale_convergence.md  # NEW
               - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
               - Optional Sampling Theorem: ch01/filtration_and_martingales/optional_sampling_theorem.md
-              - Doob–Meyer Decomposition: ch01/filtration_and_martingales/doob_meyer_decomposition.md
-              - Exercise: ch01/filtration_and_martingales/exercise.md
+              - Doob–Meyer Decomposition: ch01/filtration_and_martingales/doob_meyer_decomposition.md          
 
       - 2 SDE:
           - 2.1 Empirical Motivation:

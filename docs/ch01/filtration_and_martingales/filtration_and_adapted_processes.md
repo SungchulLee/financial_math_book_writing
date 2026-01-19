@@ -208,3 +208,39 @@ The phrase "usual conditions" (or "conditions habituelles" in French) became sta
 | Usual conditions | Right-continuous + complete | Technical regularity for clean theory |
 
 The framework established here—filtered probability spaces, adapted processes, and the hierarchy of measurability concepts—forms the foundation for all that follows: martingales, stopping times, stochastic integration, and the rich interplay between probability and analysis.
+
+---
+
+## Exercises
+
+### Exercise 1: Filtration Basics
+
+(a) Prove that if $\mathcal{F}_s \subseteq \mathcal{F}_t$ for all $s \le t$, then $\bigcup_{t \ge 0} \mathcal{F}_t$ is an algebra but not necessarily a $\sigma$-algebra.
+
+(b) Show that the natural filtration $\mathcal{F}_t^W = \sigma(W_s : 0 \le s \le t)$ satisfies $\mathcal{F}_s^W \subseteq \mathcal{F}_t^W$ for $s \le t$.
+
+(c) Give an example of a random variable that is $\mathcal{F}_1$-measurable but not $\mathcal{F}_0$-measurable.
+
+### Exercise 2: Adapted Processes
+
+(a) Prove that if $X_t$ and $Y_t$ are adapted to $(\mathcal{F}_t)$, then so is $X_t + Y_t$.
+
+(b) Show that $W_{t+1}$ is **not** adapted to the natural filtration $(\mathcal{F}_t^W)$.
+
+(c) Let $X_t = \int_0^t W_s \, ds$. Prove that $X_t$ is adapted to $(\mathcal{F}_t^W)$.
+
+### Exercise 3: Right-Continuity
+
+(a) Explain intuitively why right-continuity of filtrations ($\mathcal{F}_t = \bigcap_{s > t} \mathcal{F}_s$) is useful for stopping time theory.
+
+(b) Give an example of a filtration that is not right-continuous.
+
+(c) Prove that if $\tau$ is a stopping time with respect to a right-continuous filtration, then $\{\tau < t\} \in \mathcal{F}_t$ for all $t$.
+
+### Exercise 4: Progressive Measurability
+
+(a) State the definition of a progressively measurable process.
+
+(b) Prove that every left-continuous adapted process is progressively measurable.
+
+(c) Why is progressive measurability sufficient (but predictability preferred) for defining stochastic integrals?

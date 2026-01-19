@@ -274,3 +274,45 @@ $$
 - Martingale convergence
 - Concentration inequalities
 - Numerical analysis of stochastic algorithms
+
+---
+
+## Exercises
+
+### Exercise 1: Maximal Inequality Applications
+
+(a) Use Doob's $L^2$ inequality to show $\mathbb{E}[\sup_{t \le T} W_t^2] \le 4T$.
+
+(b) Find an upper bound for $\mathbb{P}(\sup_{t \le 1} |W_t| \ge 3)$.
+
+(c) Compare your bound in (b) with the exact value from the reflection principle.
+
+### Exercise 2: $L^p$ Bounds
+
+Let $M_t$ be a martingale with $\mathbb{E}[|M_T|^4] = C$.
+
+(a) Use Doob's inequality to bound $\mathbb{E}[\sup_{t \le T} |M_t|^4]$.
+
+(b) What happens to the constant as $p \to 1$?
+
+(c) State and prove Doob's $L^1$ weak inequality.
+
+### Exercise 3: Convergence Application
+
+Let $M_n$ be a discrete martingale with $\sup_n \mathbb{E}[M_n^2] < \infty$.
+
+(a) Use Doob's inequality to show $\sup_n |M_n| < \infty$ a.s.
+
+(b) Deduce that $M_n$ converges a.s.
+
+(c) Give an example where $\sup_n \mathbb{E}[|M_n|] < \infty$ but $M_n$ does not converge in $L^1$.
+
+### Exercise 4: Maximum of Brownian Motion
+
+Let $M_t = \sup_{s \le t} W_s$.
+
+(a) Prove that $M_t - W_t \ge 0$ and is increasing in $t$.
+
+(b) Show that $M_t$ and $M_t - W_t$ have the same distribution.
+
+(c) Use this to find $\mathbb{P}(M_t \ge a, W_t \le b)$ for $a > b$.

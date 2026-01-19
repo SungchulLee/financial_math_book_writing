@@ -316,3 +316,47 @@ The martingale structure of Brownian motion is the foundation for:
 - **Risk-neutral pricing**: Discounted prices are martingales under the risk-neutral measure
 
 In the next sections, we develop the theory of stopping times and the Optional Sampling Theorem, which allow us to exploit these martingale identities at random times—crucial for boundary value problems and option pricing.
+
+---
+
+## Exercises
+
+### Exercise 1: Exponential Martingale Verification
+
+(a) Prove directly that $Z_t^\theta = \exp(\theta W_t - \frac{\theta^2 t}{2})$ is a martingale for any $\theta \in \mathbb{R}$.
+
+(b) Compute $\mathbb{E}[Z_t^\theta]$ and $\text{Var}(Z_t^\theta)$.
+
+(c) Show that $Z_t^\theta \to 0$ almost surely as $t \to \infty$ for $\theta \neq 0$.
+
+### Exercise 2: Generating Polynomial Martingales
+
+(a) Expand $\exp(\theta W_t - \frac{\theta^2 t}{2})$ as a power series in $\theta$ up to order 4.
+
+(b) Identify the coefficient of $\theta^4$ and verify it is a martingale.
+
+(c) State the general pattern: what is the martingale corresponding to $\theta^n$?
+
+### Exercise 3: Two-Sided Exponential
+
+Consider $Z_t = \cosh(\theta W_t) \exp(-\frac{\theta^2 t}{2})$.
+
+(a) Prove that $Z_t$ is a martingale.
+
+(b) Express $Z_t$ in terms of exponential martingales with parameters $\pm\theta$.
+
+(c) Find the analogous martingale involving $\sinh$.
+
+### Exercise 4: Martingale Characterization of Brownian Motion
+
+Prove **Lévy's characterization**: If $M_t$ is a continuous martingale with $M_0 = 0$ and $[M]_t = t$, then $M_t$ is a standard Brownian motion.
+
+*Hint*: Show that $\exp(\theta M_t - \frac{\theta^2 t}{2})$ is a martingale for all $\theta$ and use uniqueness of moment generating functions.
+
+### Exercise 5: The Martingale Problem
+
+(a) State the martingale problem for Brownian motion: for which functions $f$ is $f(W_t) - \frac{1}{2}\int_0^t f''(W_s) \, ds$ a local martingale?
+
+(b) Verify this for $f(x) = x^2$ and $f(x) = e^{\theta x}$.
+
+(c) Explain the connection to the heat equation $\partial_t u = \frac{1}{2} \partial_{xx} u$.

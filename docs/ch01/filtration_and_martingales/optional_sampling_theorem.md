@@ -307,3 +307,67 @@ holds when:
 **Failure modes**: Unbounded stopping times without integrability control lead to counterexamples (doubling strategy, first passage times with infinite mean).
 
 **Power**: Optional sampling transforms martingale identities into computational tools for hitting probabilities, expected hitting times, Laplace transforms, and boundary value problems.
+
+---
+
+## Exercises
+
+### Exercise 1: Bounded Stopping Times
+
+Let $\tau = \inf\{t : W_t \notin (-1, 1)\}$.
+
+(a) Apply the optional sampling theorem to $W_t$ to find $\mathbb{E}[W_\tau]$.
+
+(b) Apply optional sampling to $W_t^2 - t$ to find $\mathbb{E}[\tau]$.
+
+(c) Find $\mathbb{P}(W_\tau = 1)$.
+
+### Exercise 2: Gambler's Ruin
+
+A gambler starts with $\$k$ and bets $\$1$ on each fair coin flip. They stop when they reach $\$0$ or $\$N$.
+
+(a) Model this as a martingale problem and find the probability of reaching $\$N$.
+
+(b) Find the expected number of bets.
+
+(c) Generalize to an unfair coin with $\mathbb{P}(\text{heads}) = p \neq 1/2$.
+
+### Exercise 3: Wald's Identities
+
+Let $S_n = \sum_{k=1}^n X_k$ where $X_k$ are i.i.d. with $\mathbb{E}[X_1] = 0$ and $\text{Var}(X_1) = \sigma^2$. Let $\tau$ be a stopping time with $\mathbb{E}[\tau] < \infty$.
+
+(a) Prove Wald's first identity: $\mathbb{E}[S_\tau] = 0$.
+
+(b) Prove Wald's second identity: $\mathbb{E}[S_\tau^2] = \sigma^2 \mathbb{E}[\tau]$.
+
+(c) Apply these to the symmetric random walk stopped at $\pm a$.
+
+### Exercise 4: Laplace Transform of Hitting Times
+
+Let $\tau_a = \inf\{t : W_t = a\}$ for $a > 0$.
+
+(a) Apply optional sampling to $\exp(\theta W_t - \frac{\theta^2 t}{2})$ with $\theta = \sqrt{2\lambda}$ to derive $\mathbb{E}[e^{-\lambda \tau_a}] = e^{-a\sqrt{2\lambda}}$.
+
+(b) Invert the Laplace transform to find the density of $\tau_a$.
+
+(c) Show that $\mathbb{E}[\tau_a] = \infty$ despite $\mathbb{P}(\tau_a < \infty) = 1$.
+
+### Exercise 5: First Passage with Drift
+
+Let $X_t = W_t + \mu t$ (Brownian motion with drift $\mu > 0$). Let $\tau_a = \inf\{t : X_t = a\}$ for $a > 0$.
+
+(a) Find a martingale involving $X_t$ by exponential tilting.
+
+(b) Use optional sampling to find $\mathbb{E}[e^{-\lambda \tau_a}]$.
+
+(c) Find $\mathbb{P}(\tau_a < \infty)$ for $\mu < 0$.
+
+### Exercise 6: Two-Sided Exit
+
+Let $\tau = \inf\{t : W_t \notin (-a, b)\}$ where $a, b > 0$.
+
+(a) Find $\mathbb{P}(W_\tau = b)$.
+
+(b) Find $\mathbb{E}[\tau]$.
+
+(c) Find $\mathbb{E}[e^{-\lambda \tau}]$.

@@ -267,3 +267,35 @@ This extends the optional sampling theorem to unbounded stopping times, using co
 4. **Backward martingales always converge in $L^1$**—no additional conditions needed.
 
 The convergence theory completes the structural picture of martingales: they are processes that, under boundedness conditions, settle down to limiting values, preserving the martingale property even at "time infinity."
+
+---
+
+## Exercises
+
+### Exercise 1: Upcrossings
+
+Let $M_n$ be a submartingale and let $U_N^{[a,b]}$ denote the number of upcrossings of $[a,b]$ by $M_0, \ldots, M_N$.
+
+(a) State Doob's upcrossing inequality.
+
+(b) Use the upcrossing inequality to prove: if $\sup_n \mathbb{E}[M_n^+] < \infty$, then $M_n$ converges a.s.
+
+(c) Explain why the condition involves $M_n^+$ rather than $|M_n|$.
+
+### Exercise 2: Uniform Integrability
+
+(a) Prove that a family $\{X_\alpha\}$ is uniformly integrable if and only if it is $L^1$-bounded and satisfies: for all $\epsilon > 0$, there exists $\delta > 0$ such that $\mathbb{P}(A) < \delta$ implies $\sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_A] < \epsilon$.
+
+(b) Show that $\{W_t : t \le T\}$ is uniformly integrable for any $T < \infty$.
+
+(c) Show that $\{e^{W_t - t/2} : t \ge 0\}$ is **not** uniformly integrable.
+
+### Exercise 3: Backward Martingales
+
+Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and let $\bar{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$.
+
+(a) Define $\mathcal{F}_{-n} = \sigma(\bar{X}_n, \bar{X}_{n+1}, \ldots)$. Show this is a decreasing sequence of $\sigma$-algebras.
+
+(b) Prove that $(\bar{X}_n, \mathcal{F}_{-n})$ is a backward martingale.
+
+(c) Use backward martingale convergence to prove the strong law of large numbers.

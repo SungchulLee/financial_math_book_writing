@@ -239,3 +239,49 @@ The martingale framework is central to modern probability and its applications:
 | Jensen's inequality | Convex of martingale is submartingale | Nonlinear transformations introduce drift |
 
 The martingale property—the absence of predictable drift—is one of the most powerful structural assumptions in stochastic analysis. In the following sections, we explore the rich consequences: maximal inequalities, convergence theorems, stopping time analysis, and the Doob–Meyer decomposition.
+
+---
+
+## Exercises
+
+### Exercise 1: Verifying Martingales
+
+Determine whether each process is a martingale, submartingale, or supermartingale. Prove your answers.
+
+(a) $M_t = W_t^2 - t$
+
+(b) $M_t = e^{W_t}$
+
+(c) $M_t = W_t^3 - 3tW_t$
+
+(d) $M_t = \sin(W_t)$
+
+(e) $M_t = W_t^4 - 6tW_t^2 + 3t^2$
+
+### Exercise 2: The Doob Martingale
+
+Let $X \in L^1(\mathcal{F})$ and define $M_t = \mathbb{E}[X \mid \mathcal{F}_t]$.
+
+(a) Prove that $(M_t)$ is a martingale using the tower property.
+
+(b) Show that if $X = W_T$ for some $T > 0$, then $M_t = W_{t \wedge T}$.
+
+(c) Find $M_t$ when $X = W_T^2$ for $t \le T$.
+
+### Exercise 3: Transforms of Martingales
+
+(a) Prove that if $M_t$ is a martingale and $\varphi$ is a convex function with $\mathbb{E}|\varphi(M_t)| < \infty$, then $\varphi(M_t)$ is a submartingale.
+
+(b) Deduce that $|W_t|$, $W_t^2$, and $(W_t)^+$ are all submartingales.
+
+(c) Is $\log(1 + W_t^2)$ a submartingale? Prove or disprove.
+
+### Exercise 4: Discrete Martingales
+
+Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\mathbb{P}(\xi_i = -1) = 1-p$.
+
+(a) For what value of $p$ is $S_n = \sum_{k=1}^n \xi_k$ a martingale?
+
+(b) For general $p$, find a function $f$ such that $f(S_n, n)$ is a martingale.
+
+(c) Show that $M_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale when $p \neq 1/2$.

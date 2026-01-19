@@ -268,3 +268,49 @@ This is equivalent to $\{\tau \le n\} \in \mathcal{F}_n$.
 - Boundary value problems (exit times from domains)  
 - Sequential analysis (optimal stopping)
 - Financial mathematics (exercise times of options)
+
+---
+
+## Exercises
+
+### Exercise 1: Stopping Time Verification
+
+Determine which of the following are stopping times. Justify your answers.
+
+(a) $\tau = \inf\{t \ge 0 : W_t = 1\}$
+
+(b) $\tau = \sup\{t \le 1 : W_t = 0\}$
+
+(c) $\tau = \inf\{t \ge 0 : W_t > W_s \text{ for all } s < t\}$
+
+(d) $\tau = \inf\{t \ge 0 : \int_0^t W_s \, ds \ge 1\}$
+
+(e) $\tau = \inf\{t \ge 1 : W_t = W_{t-1}\}$
+
+### Exercise 2: Operations on Stopping Times
+
+Let $\sigma$ and $\tau$ be stopping times.
+
+(a) Prove that $\sigma \wedge \tau$ is a stopping time.
+
+(b) Prove that $\sigma + \tau$ is a stopping time (assuming both are finite a.s.).
+
+(c) Give a counterexample showing that $\sigma - \tau$ need not be a stopping time.
+
+### Exercise 3: The $\sigma$-Algebra $\mathcal{F}_\tau$
+
+Let $\tau = \inf\{t : W_t = 1\}$.
+
+(a) Show that $W_\tau$ is $\mathcal{F}_\tau$-measurable.
+
+(b) Is $W_{\tau + 1}$ $\mathcal{F}_\tau$-measurable?
+
+(c) Describe $\mathcal{F}_\tau$ in words.
+
+### Exercise 4: Strong Markov Property
+
+(a) State the strong Markov property for Brownian motion.
+
+(b) Let $\tau_a = \inf\{t : W_t = a\}$. Use the strong Markov property to show that $\tau_a + \tau_b \circ \theta_{\tau_a}$ has the same distribution as $\tau_{a+b}$, where $\theta$ is the shift operator.
+
+(c) Derive the reflection principle: $\mathbb{P}(\sup_{s \le t} W_s \ge a) = 2\mathbb{P}(W_t \ge a)$ for $a > 0$.

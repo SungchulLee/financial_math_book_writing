@@ -314,3 +314,45 @@ $$
 - Provides the foundation for Itô calculus and beyond
 
 The decomposition tells us that every submartingale is secretly a martingale plus predictable drift—separating what can be anticipated from what cannot.
+
+---
+
+## Exercises
+
+### Exercise 1: Discrete Decomposition
+
+Let $X_n = \sum_{k=1}^n Y_k$ where $Y_k \ge 0$ and $\mathbb{E}[Y_k \mid \mathcal{F}_{k-1}] = c$ for some constant $c > 0$.
+
+(a) Find the Doob decomposition $X_n = M_n + A_n$.
+
+(b) Verify that $A_n$ is predictable and increasing.
+
+(c) What is $X_n$ if not a martingale?
+
+### Exercise 2: Compensator of Squared Brownian Motion
+
+(a) Use Itô's formula to write $W_t^2 = M_t + A_t$ where $M_t$ is a martingale and $A_t$ is predictable increasing.
+
+(b) Identify $A_t$ explicitly.
+
+(c) Explain the connection to quadratic variation.
+
+### Exercise 3: Compensator of $|W_t|$
+
+The process $|W_t|$ is a submartingale.
+
+(a) Explain why its Doob–Meyer compensator involves local time.
+
+(b) State Tanaka's formula: $|W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0$.
+
+(c) Identify the martingale and increasing parts.
+
+### Exercise 4: General Submartingale
+
+Let $M_t$ be a continuous martingale and $f$ a convex $C^2$ function. Then $f(M_t)$ is a submartingale.
+
+(a) Use Itô's formula to find the Doob–Meyer decomposition of $f(M_t)$.
+
+(b) Verify your answer for $f(x) = x^2$ and $M_t = W_t$.
+
+(c) What is the compensator when $f(x) = e^x$ and $M_t = W_t$?
