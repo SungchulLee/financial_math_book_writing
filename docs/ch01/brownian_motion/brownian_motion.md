@@ -83,13 +83,17 @@ This piecewise linear path approximates a true Brownian path. As $n \to \infty$,
 A **standard Brownian motion** $\{W_t\}_{t \ge 0}$ on a probability space $(\Omega,\mathcal{F},\mathbb{P})$ is a stochastic process satisfying:
 
 **(i) Initial condition:**
+
 $$W_0 = 0 \quad \text{almost surely}$$
 
 **(ii) Independent increments:** For $0 \le t_0 < t_1 < \cdots < t_n$, the increments
+
 $$W_{t_1}-W_{t_0},\quad W_{t_2}-W_{t_1},\quad \ldots,\quad W_{t_n}-W_{t_{n-1}}$$
+
 are independent random variables.
 
 **(iii) Stationary increments:** For $0 \le s < t$,
+
 $$W_t - W_s \sim \mathcal{N}(0,t-s)$$
 
 **(iv) Continuity of paths:** The map $t \mapsto W_t(\omega)$ is continuous for almost every $\omega \in \Omega$.
@@ -110,7 +114,7 @@ $$\Sigma_{ij} = \mathbb{E}[W_{t_i} W_{t_j}] = \min(t_i,t_j)$$
 
 **Proof:**
 
-Write the vector in terms of independent increments:
+Write the vector in terms of independent increments. Define $\Delta W_k = W_{t_k} - W_{t_{k-1}}$ and $\Delta t_k = t_k - t_{k-1}$ for $k = 1, \ldots, n$ (with $t_0 = 0$):
 
 $$\begin{pmatrix} W_{t_1} \\ W_{t_2} \\ \vdots \\ W_{t_n} \end{pmatrix}
 = 
@@ -120,11 +124,11 @@ $$\begin{pmatrix} W_{t_1} \\ W_{t_2} \\ \vdots \\ W_{t_n} \end{pmatrix}
 \vdots & \vdots & \ddots & \vdots \\
 1 & 1 & \cdots & 1
 \end{pmatrix}
-\begin{pmatrix} W_{t_1} - W_0 \\ W_{t_2} - W_{t_1} \\ \vdots \\ W_{t_n} - W_{t_{n-1}} \end{pmatrix}$$
+\begin{pmatrix} \Delta W_1 \\ \Delta W_2 \\ \vdots \\ \Delta W_n \end{pmatrix}$$
 
-Since the increments are independent Gaussians, their linear combination is Gaussian. The covariance is:
+Since the increments $\Delta W_k \sim \mathcal{N}(0, \Delta t_k)$ are independent Gaussians, their linear combination is Gaussian. The covariance is:
 
-$$\mathbb{E}[W_{t_i} W_{t_j}] = \sum_{k=1}^{\min(i,j)} \mathbb{E}[(\Delta W_k)^2] = \sum_{k=1}^{\min(i,j)} \Delta t_k = \min(t_i, t_j) \quad \square$$
+$$\mathbb{E}[W_{t_i} W_{t_j}] = \sum_{k=1}^{\min(i,j)} \mathbb{E}[(\Delta W_k)^2] = \sum_{k=1}^{\min(i,j)} \Delta t_k = t_{\min(i,j)} = \min(t_i, t_j) \quad \square$$
 
 **Corollary 1.3.3**
 
@@ -147,14 +151,17 @@ $$\boxed{
 **Theorem 1.3.5** (Covariance Formula)
 
 For all $s,t \ge 0$:
+
 $$\boxed{\mathbb{E}[W_s W_t] = \min(s,t)}$$
 
 **Proof:**
 
 Without loss of generality, assume $s \le t$. Then:
+
 $$\mathbb{E}[W_s W_t] = \mathbb{E}[W_s (W_s + (W_t - W_s))] = \mathbb{E}[W_s^2] + \mathbb{E}[W_s(W_t - W_s)]$$
 
 By independent increments, $W_s$ and $W_t - W_s$ are independent, so:
+
 $$\mathbb{E}[W_s(W_t - W_s)] = \mathbb{E}[W_s]\mathbb{E}[W_t - W_s] = 0$$
 
 Therefore: $\mathbb{E}[W_s W_t] = \mathbb{E}[W_s^2] = s = \min(s,t) \quad \square$
@@ -187,7 +194,7 @@ num_paths = 10_000
 num_steps = 1_000
 maturity_time = 2
 
-np.random.seed(0)
+np.random.seed(42)  # Fixed seed for reproducibility
 
 # Generate time grid
 dt = maturity_time / num_steps
@@ -230,6 +237,14 @@ print(f"Sample mean: {np.mean(brownian_paths[:, -1]):.6f} (theoretical: 0)")
 print(f"Sample variance: {np.var(brownian_paths[:, -1], ddof=1):.6f} (theoretical: {maturity_time})")
 ```
 
+**Output:**
+```
+Sample mean: -0.002860 (theoretical: 0)
+Sample variance: 1.931260 (theoretical: 2)
+```
+
+![Basic Brownian Motion Paths and Distribution](figures/fig01_basic_paths.png)
+
 **Interpretation:**
 
 - **Left plot**: Paths start at origin, are continuous but "wiggly", and diverge as time increases
@@ -240,6 +255,7 @@ print(f"Sample variance: {np.var(brownian_paths[:, -1], ddof=1):.6f} (theoretica
 ### Step 1: Specify Finite-Dimensional Distributions
 
 For any finite collection of times $0 \le t_1 < \cdots < t_n$, define:
+
 $$(W_{t_1}, \ldots, W_{t_n}) \sim \mathcal{N}(0, \Sigma), \quad \Sigma_{ij} = \min(t_i, t_j)$$
 
 ### Step 2: Verify Consistency
@@ -257,16 +273,19 @@ If the finite-dimensional distributions are consistent, there exists a probabili
 **Theorem 1.3.7** (Kolmogorov-Chentsov Continuity Theorem)
 
 If there exist constants $\alpha, \beta, C > 0$ such that
+
 $$\mathbb{E}[|W_t - W_s|^\alpha] \le C|t - s|^{1+\beta}$$
+
 then $W$ has a continuous modification.
 
-**Verification:** For $\alpha = 4$: $\mathbb{E}[|W_t - W_s|^4] = 3(t-s)^2$, so $\beta = 1$ works. $\square$
+**Verification:** For $\alpha = 4$: $\mathbb{E}[|W_t - W_s|^4] = 3(t-s)^2$, so we can take $\beta = 1$ (since $2 = 1 + \beta$). By the theorem, this guarantees the existence of a continuous modification with Hölder continuity of any exponent $\gamma < \frac{\beta}{\alpha} = \frac{1}{4}$. In fact, Brownian motion is Hölder continuous with any exponent $\gamma < 1/2$. $\square$
 
 ## Scaling Property
 
 **Theorem 1.3.8** (Scaling / Self-Similarity)
 
 For any $c > 0$:
+
 $$\boxed{W_{ct} \overset{d}{=} \sqrt{c} \, W_t}$$
 
 **Proof:**
@@ -282,23 +301,33 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as stats
 
-T, num_paths, num_steps = 1.0, 5000, 1000
+T = 1.0
+num_paths = 5000
 c_values = [0.25, 1, 4]
+max_c = max(c_values)
 
-np.random.seed(0)
-dt = T / num_steps
+# Need to simulate up to time max_c * T = 4
+num_steps = 4000  # 1000 steps per unit time
+np.random.seed(42)  # Fixed seed for reproducibility
+
+dt = (max_c * T) / num_steps
 dW = np.random.normal(0, np.sqrt(dt), size=(num_paths, num_steps))
 W = np.cumsum(np.hstack([np.zeros((num_paths, 1)), dW]), axis=1)
 
 fig, axes = plt.subplots(1, 3, figsize=(15, 4))
 for idx, c in enumerate(c_values):
     ax = axes[idx]
-    scaled_idx = min(int(c * num_steps), num_steps)
-    W_ct = W[:, scaled_idx]
-    sqrt_c_W_T = np.sqrt(c) * W[:, -1]
+    
+    # W_{cT}: value at time c*T
+    cT_idx = int(c * T / dt)
+    W_cT = W[:, cT_idx]
+    
+    # sqrt(c) * W_T: value at time T, scaled by sqrt(c)
+    T_idx = int(T / dt)
+    sqrt_c_W_T = np.sqrt(c) * W[:, T_idx]
     
     bins = np.linspace(-3*np.sqrt(c*T), 3*np.sqrt(c*T), 50)
-    ax.hist(W_ct, bins=bins, density=True, alpha=0.5, color='blue', label=f'$W_{{{c}T}}$')
+    ax.hist(W_cT, bins=bins, density=True, alpha=0.5, color='blue', label=f'$W_{{{c}T}}$')
     ax.hist(sqrt_c_W_T, bins=bins, density=True, alpha=0.5, color='red', label=f'$\\sqrt{{{c}}} W_T$')
     ax.plot(np.linspace(bins[0], bins[-1], 200), 
             stats.norm(0, np.sqrt(c*T)).pdf(np.linspace(bins[0], bins[-1], 200)), 
@@ -311,16 +340,26 @@ plt.tight_layout()
 plt.show()
 ```
 
+![Self-Similarity of Brownian Motion](figures/fig02_self_similarity.png)
+
+**Interpretation:** The blue and red histograms overlap almost perfectly for each value of $c$, confirming that $W_{ct}$ and $\sqrt{c} W_t$ have the same distribution. The black dashed line shows the theoretical $\mathcal{N}(0, cT)$ density.
+
 ## Nowhere Differentiability
 
 **Theorem 1.3.9** (Nowhere Differentiability)
 
-With probability one, $\limsup_{h \to 0} \frac{|W_{t+h}-W_t|}{|h|} = \infty$ for every $t \ge 0$.
+With probability one, for every $t \ge 0$
 
-**Rigorous statement (Paley-Wiener-Zygmund):**
-$$\limsup_{h \to 0} \frac{|W_{t+h} - W_t|}{\sqrt{2h \log(1/h)}} = 1 \quad \text{a.s.}$$
+$$\limsup_{h \to 0} \frac{|W_{t+h}-W_t|}{|h|} = \infty$$
+
+**Lévy's modulus of continuity:** The precise local behavior is given by:
+
+$$\limsup_{h \to 0^+} \frac{|W_{t+h} - W_t|}{\sqrt{2h \log(1/h)}} = 1 \quad \text{a.s.}$$
+
+This result, due to Paul Lévy, quantifies the exact rate of oscillation of Brownian paths.
 
 **Implications:**
+
 - Brownian paths are continuous but nowhere differentiable
 - Total variation is infinite: $\int_0^T |dW_t| = \infty$ a.s.
 - Classical calculus fails; we need **Itô calculus**
@@ -330,15 +369,19 @@ $$\limsup_{h \to 0} \frac{|W_{t+h} - W_t|}{\sqrt{2h \log(1/h)}} = 1 \quad \text{
 **Theorem 1.3.10** (Quadratic Variation)
 
 For any partition $\Pi_n$ with mesh $|\Pi_n| \to 0$:
+
 $$\boxed{\sum_{i=0}^{n-1} (W_{t_{i+1}}-W_{t_i})^2 \xrightarrow{\mathbb{P}} T}$$
 
 **Proof:**
 
-Let $Q_n = \sum (W_{t_{i+1}} - W_{t_i})^2$. Then:
-- $\mathbb{E}[Q_n] = T$
-- $\text{Var}(Q_n) = 2|\Pi_n| T \to 0$
+Let $Q_n = \sum_{i=0}^{n-1} (W_{t_{i+1}} - W_{t_i})^2$. For a uniform partition with mesh $|\Pi_n| = T/n$:
 
-By Chebyshev: $Q_n \xrightarrow{\mathbb{P}} T$. $\square$
+- $\mathbb{E}[Q_n] = \sum_{i=0}^{n-1} \mathbb{E}[(W_{t_{i+1}} - W_{t_i})^2] = \sum_{i=0}^{n-1} (t_{i+1} - t_i) = T$
+- $\text{Var}(Q_n) = \sum_{i=0}^{n-1} \text{Var}((W_{t_{i+1}} - W_{t_i})^2) = \sum_{i=0}^{n-1} 2(t_{i+1} - t_i)^2 = 2n \cdot \frac{T^2}{n^2} = \frac{2T^2}{n} \to 0$
+
+where we used $\text{Var}(Z^2) = 2\sigma^4$ for $Z \sim \mathcal{N}(0, \sigma^2)$.
+
+By Chebyshev's inequality: $Q_n \xrightarrow{\mathbb{P}} T$. $\square$
 
 **Notation:** $\langle W \rangle_T = T$ or $d\langle W \rangle_t = dt$
 
@@ -354,7 +397,7 @@ maturity_time = 1.0
 num_steps_list = [10, 50, 100, 500, 1000, 5000]
 num_trials = 1000
 
-np.random.seed(42)
+np.random.seed(42)  # Fixed seed for reproducibility
 qv_results = []
 
 for num_steps in num_steps_list:
@@ -379,9 +422,32 @@ ax.set_xscale('log')
 ax.legend()
 ax.grid(alpha=0.3)
 plt.show()
+
+print("Quadratic Variation Convergence:")
+for r in qv_results:
+    print(f"  n = {r['num_steps']:4d}: mean = {r['mean']:.4f}, std = {r['std']:.4f}")
 ```
 
+**Output:**
+```
+Quadratic Variation Convergence:
+  n =   10: mean = 1.0068, std = 0.4524
+  n =   50: mean = 1.0028, std = 0.2036
+  n =  100: mean = 0.9967, std = 0.1396
+  n =  500: mean = 1.0025, std = 0.0626
+  n = 1000: mean = 1.0017, std = 0.0444
+  n = 5000: mean = 0.9997, std = 0.0198
+```
+
+![Quadratic Variation Convergence](figures/fig03_quadratic_variation.png)
+
+**Interpretation:** As the number of time steps increases, the quadratic variation converges to $T = 1$ with decreasing standard deviation proportional to $1/\sqrt{n}$.
+
 ## Martingale Property
+
+**Definition 1.3.10a** (Natural Filtration)
+
+The **natural filtration** of Brownian motion is $\mathcal{F}_t = \sigma(W_s : 0 \leq s \leq t)$, the $\sigma$-algebra generated by the process up to time $t$. This represents the information available by observing the Brownian path up to time $t$.
 
 **Theorem 1.3.11** (Martingale Property)
 
@@ -398,7 +464,9 @@ A random variable $\tau: \Omega \to [0, \infty]$ is a **stopping time** if $\{\t
 **Theorem 1.3.14** (Strong Markov Property)
 
 For any stopping time $\tau$ with $\mathbb{P}(\tau < \infty) = 1$:
+
 $$\boxed{W_{\tau+t} - W_\tau \text{ is independent of } \mathcal{F}_\tau}$$
+
 and has the same distribution as $W_t$.
 
 ## Connection to Heat Equation
@@ -406,7 +474,9 @@ and has the same distribution as $W_t$.
 **Theorem 1.3.15** (Feynman-Kac for Heat Equation)
 
 Define $u(x,t) = \mathbb{E}[f(x + W_t)]$. Then $u$ satisfies:
+
 $$\boxed{\frac{\partial u}{\partial t} = \frac{1}{2} \frac{\partial^2 u}{\partial x^2}}$$
+
 with initial condition $u(x, 0) = f(x)$.
 
 ## First Passage Times
@@ -420,6 +490,7 @@ For $a \in \mathbb{R}$: $\tau_a = \inf\{t \ge 0 : W_t = a\}$
 **Theorem 1.3.18** (Expected Hitting Time): $\mathbb{E}[\tau_a] = \infty$ for $a \neq 0$.
 
 The first passage time has density:
+
 $$f_{\tau_a}(t) = \frac{|a|}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), \quad t > 0$$
 
 ### Simulation: First Passage Times
@@ -433,7 +504,7 @@ num_paths = 10_000
 T_max = 5.0
 num_steps = 5_000
 
-np.random.seed(0)
+np.random.seed(42)  # Fixed seed for reproducibility
 first_passage_times = []
 dt = T_max / num_steps
 time_grid = np.linspace(0, T_max, num_steps + 1)
@@ -460,7 +531,18 @@ ax.grid(alpha=0.3)
 plt.show()
 
 print(f"Hitting probability by t = {T_max}: {len(first_passage_times)/num_paths:.4f}")
+print(f"Mean first passage time (conditional on hitting): {np.mean(first_passage_times):.4f}")
 ```
+
+**Output:**
+```
+Hitting probability by t = 5.0: 0.6437
+Mean first passage time (conditional on hitting): 1.5146
+```
+
+![First Passage Time Distribution](figures/fig04_first_passage.png)
+
+**Interpretation:** The hitting probability increases with the time horizon. The theoretical hitting probability is $\mathbb{P}(\tau_a \leq T) = 2(1 - \Phi(a/\sqrt{T}))$ where $\Phi$ is the standard normal CDF.
 
 ## Simulation: Covariance Structure
 
@@ -474,7 +556,7 @@ T = 2.0
 num_paths = 10_000
 num_time_points = 20
 
-np.random.seed(0)
+np.random.seed(42)  # Fixed seed for reproducibility
 time_points = np.linspace(0, T, num_time_points + 1)
 dt = T / num_time_points
 
@@ -496,7 +578,18 @@ plt.tight_layout()
 plt.show()
 
 print(f"RMSE: {np.sqrt(np.mean((sample_cov - theoretical_cov)**2)):.6f}")
+print(f"Max absolute error: {np.max(np.abs(sample_cov - theoretical_cov)):.6f}")
 ```
+
+**Output:**
+```
+RMSE: 0.011630
+Max absolute error: 0.032415
+```
+
+![Covariance Structure Verification](figures/fig05_covariance.png)
+
+**Interpretation:** The sample covariance matrix closely matches the theoretical $\min(s,t)$ structure, with small errors due to finite sample size.
 
 ## Summary
 
@@ -518,6 +611,82 @@ The simulations in this section have verified these properties numerically:
 - Covariance structure matches $\min(s, t)$
 
 The rigorous construction via Kolmogorov extension theorem shows that such a process exists and is unique (up to modification).
+
+## Exercises
+
+### Basic Properties
+
+1. Show that $\mathbb{E}[W_t] = 0$ and $\text{Var}(W_t) = t$ directly from the axiomatic definition.
+
+2. Compute $\mathbb{E}[W_s W_t]$ for $0 \le s \le t$ using the independent increments property.
+
+3. Deduce that $(W_t)_{t \ge 0}$ has stationary increments, i.e., $W_t - W_s \overset{d}{=} W_{t-s}$.
+
+### Gaussian Increments
+
+Let $0 \le s < t$.
+
+4. Show that $W_t - W_s \sim \mathcal{N}(0, t - s)$ from the definition.
+
+5. Prove that $W_t - W_s$ is independent of $\mathcal{F}_s = \sigma(W_u : u \le s)$.
+
+6. Compute the characteristic function $\mathbb{E}[e^{i\lambda(W_t - W_s)}]$.
+
+### Path Continuity
+
+7. Show that $\mathbb{E}[(W_t - W_s)^2] = |t - s|$.
+
+8. Use Kolmogorov's continuity theorem to justify the existence of a continuous modification. (Hint: Show $\mathbb{E}[|W_t - W_s|^4] = 3(t-s)^2$.)
+
+9. Why does Brownian motion fail to be differentiable almost surely? (Hint: Consider what differentiability would imply for $\mathbb{E}[(W_{t+h} - W_t)^2]/h^2$ as $h \to 0$.)
+
+### Martingale Properties
+
+10. Show that $(W_t)_{t \ge 0}$ is a martingale with respect to its natural filtration.
+
+11. Show that $(W_t^2 - t)_{t \ge 0}$ is a martingale.
+
+12. Is $(W_t^3)_{t \ge 0}$ a martingale? Justify your answer by computing $\mathbb{E}[W_t^3 | \mathcal{F}_s]$.
+
+### Covariation
+
+Let $W_t$ and $\widetilde{W}_t$ be independent Brownian motions.
+
+13. Compute the quadratic covariation $\langle W, \widetilde{W} \rangle_t$.
+
+14. What is $\langle W, \widetilde{W} \rangle_t$ if $\widetilde{W}_t = \rho W_t + \sqrt{1-\rho^2} B_t$, where $B_t$ is independent of $W_t$?
+
+15. Interpret the result in terms of correlation between the two processes.
+
+### Exponential Martingale
+
+Define $M_t := \exp\left( \lambda W_t - \frac{1}{2} \lambda^2 t \right)$ for $\lambda \in \mathbb{R}$.
+
+16. Show that $(M_t)_{t \ge 0}$ is a martingale.
+
+17. Compute $\mathbb{E}[M_t]$.
+
+18. Explain why this exponential martingale is fundamental in stochastic calculus and mathematical finance (hint: Girsanov theorem, risk-neutral pricing).
+
+### Law of the Iterated Logarithm
+
+The law of the iterated logarithm states that
+
+$$\limsup_{t \to 0^+} \frac{W_t}{\sqrt{2 t \log \log (1/t)}} = 1 \quad \text{a.s.}$$
+
+19. Interpret this result intuitively in terms of path oscillation.
+
+20. What does it say about the "roughness" of Brownian paths near $t = 0$?
+
+21. Why is this result incompatible with differentiability?
+
+### Challenge Problems
+
+22. Show that Brownian motion has infinite total variation on any interval $[0, T]$ almost surely.
+
+23. Prove that Brownian motion is Hölder continuous of any order $\alpha < 1/2$, but of no order $\alpha \ge 1/2$.
+
+24. (Time Reversal) Let $\tilde{W}_t = W_T - W_{T-t}$ for $t \in [0, T]$. Show that $\tilde{W}$ is also a Brownian motion on $[0, T]$.
 
 ## References
 

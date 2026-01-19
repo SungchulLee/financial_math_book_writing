@@ -18,7 +18,7 @@ Let $\{S_n\}_{n \geq 0}$ be a discrete-time stochastic process defined recursive
 
 $$S_n = S_{n-1} + X_n$$
 
-where $S_0 = 0$ and $\{X_n\}$ is a sequence of independent Bernoulli-distributed random variables such that:
+where $S_0 = 0$ and $\{X_n\}$ is a sequence of independent random variables taking values $\pm 1$ such that:
 
 $$\mathbb{P}(X_n = +1) = p, \quad \mathbb{P}(X_n = -1) = 1 - p$$
 
@@ -96,13 +96,20 @@ For the symmetric case, this simplifies to $\text{Var}(S_n) = n$, reinforcing th
 
 *Symmetric case - fourth moment:*
 
-(3) For $p = 1/2$, we have $\xi_i \in \{-1, 1\}$ with $\xi_i^2 = 1$ and $\xi_i^4 = 1$. Expanding:
+(3) For $p = 1/2$, we have $\xi_i \in \{-1, 1\}$ with $\xi_i^2 = 1$. We compute:
 
-$$S_n^4 = \left(\sum_{i=1}^n \xi_i\right)^4 = \sum_{i=1}^n \xi_i^4 + 6\sum_{i<j}\xi_i^2\xi_j^2 + \text{(cross terms)}$$
+$$\mathbb{E}[S_n^4] = \sum_{i,j,k,l} \mathbb{E}[\xi_i \xi_j \xi_k \xi_l]$$
 
-Since $\mathbb{E}[\xi_i\xi_j] = 0$ for $i \neq j$:
+Since $\mathbb{E}[\xi_i] = 0$ and the $\xi_i$ are independent, the only nonzero contributions occur when indices pair up:
 
-$$\mathbb{E}[S_n^4] = n + 6\binom{n}{2} = n + 3n(n-1) = 3n^2 - 2n \quad \square$$
+- **Case $i = j = k = l$:** Contributes $\sum_{i=1}^n \mathbb{E}[\xi_i^4] = n$
+- **Case $i = j \neq k = l$:** Contributes $\sum_{i \neq k} \mathbb{E}[\xi_i^2]\mathbb{E}[\xi_k^2] = n(n-1)$
+- **Case $i = k \neq j = l$:** Contributes $n(n-1)$
+- **Case $i = l \neq j = k$:** Contributes $n(n-1)$
+
+Therefore:
+
+$$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n \quad \square$$
 
 ### Quadratic Variation
 
@@ -165,7 +172,7 @@ num_flips = 100
 p_heads = 0.5
 
 # Simulate coin flips
-np.random.seed(0)
+np.random.seed(42)  # Fixed seed for reproducibility
 flips = np.random.choice([1, -1], size=num_flips, p=[p_heads, 1-p_heads])
 
 # Count heads and tails
@@ -186,12 +193,22 @@ ax.axhline(0, color='black', linestyle='--', linewidth=1)
 ax.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
+
+print(f"Final position S_100 = {cumsum_flips[-1]}")
 ```
+
+**Output:**
+```
+Heads: 53, Tails: 47
+Final position S_100 = 6
+```
+
+![Single Realization of Simple Random Walk](figures/fig01_single_path.png)
 
 **Interpretation:**
 
 - **Path behavior**: The cumulative sum oscillates around zero (since $\mathbb{E}[S_n] = 0$)
-- **Typical displacement**: After $n=100$ steps, $S_n$ is typically of order $\sqrt{n} \approx 10$ (consistent with $\text{Var}(S_n) = n$)
+- **Typical displacement**: After $n=100$ steps, $S_n = 6$, which is of order $\sqrt{n} \approx 10$ (consistent with $\text{Var}(S_n) = n$)
 - **Irregularity**: The path has a "kink" at every step, foreshadowing the nowhere-differentiability of Brownian motion
 
 ## Simulation: Multiple Paths
@@ -213,7 +230,7 @@ num_flips = 100
 num_paths = 10
 p_heads = 0.5
 
-np.random.seed(0)
+np.random.seed(42)  # Fixed seed for reproducibility
 
 # Simulate coin flips: shape (num_paths, num_flips)
 flips = np.random.choice([1, -1], size=(num_paths, num_flips), 
@@ -236,7 +253,7 @@ plt.tight_layout()
 plt.show()
 
 # Display statistics
-print("\nPath Statistics:")
+print("Path Statistics:")
 print("-" * 60)
 heads_count = np.sum(flips == 1, axis=1)
 tails_count = np.sum(flips == -1, axis=1)
@@ -253,11 +270,32 @@ print(f"\nSample mean at n={num_flips}: {sample_mean:.2f} (theoretical: 0)")
 print(f"Sample variance at n={num_flips}: {sample_var:.2f} (theoretical: {num_flips})")
 ```
 
+**Output:**
+```
+Path Statistics:
+------------------------------------------------------------
+Path 1: Heads =  53, Tails =  47, Final Position =   +6
+Path 2: Heads =  49, Tails =  51, Final Position =   -2
+Path 3: Heads =  42, Tails =  58, Final Position =  -16
+Path 4: Heads =  49, Tails =  51, Final Position =   -2
+Path 5: Heads =  48, Tails =  52, Final Position =   -4
+Path 6: Heads =  47, Tails =  53, Final Position =   -6
+Path 7: Heads =  60, Tails =  40, Final Position =  +20
+Path 8: Heads =  44, Tails =  56, Final Position =  -12
+Path 9: Heads =  57, Tails =  43, Final Position =  +14
+Path 10: Heads =  54, Tails =  46, Final Position =   +8
+
+Sample mean at n=100: 0.60 (theoretical: 0)
+Sample variance at n=100: 128.04 (theoretical: 100)
+```
+
+![Multiple Independent Simple Random Walks](figures/fig02_multiple_paths.png)
+
 **Interpretation:**
 
 - **Path diversity**: Each colored line represents an independent realization; they diverge due to randomness
 - **Variance growth**: The "spread" of paths increases with $n$, consistent with $\text{Var}(S_n) = n$
-- **Zero mean**: Although individual paths wander far from zero, the average across paths is close to 0
+- **Zero mean**: Although individual paths wander far from zero, the average across paths is close to 0 (sample mean = 0.60)
 - **No "memory"**: Past behavior doesn't predict future behavior (Markov property)
 
 ## Continuous-Time Embedding
@@ -315,7 +353,11 @@ For fixed $t \in [0,T]$ and the symmetric random walk:
 
 $$\text{Var}(S^{(n)}(t)) = \frac{1}{n}\text{Var}(S_{\lfloor nt \rfloor}) = \frac{\lfloor nt \rfloor}{n} = t - \frac{\{nt\}}{n} \to t$$
 
-(3) For $s < t$:
+(3) For $s < t$, we first note that for $m \leq k$. Since $\mathbb{E}[S_m] = 0$, we have $\text{Cov}(S_m, S_k) = \mathbb{E}[S_m S_k]$:
+
+$$\mathbb{E}[S_m S_k] = \mathbb{E}\left[\sum_{i=1}^m \xi_i \sum_{j=1}^k \xi_j\right] = \sum_{i=1}^m \sum_{j=1}^k \mathbb{E}[\xi_i \xi_j] = \sum_{i=1}^{m} \mathbb{E}[\xi_i^2] = m = \min(m,k)$$
+
+where we used $\mathbb{E}[\xi_i \xi_j] = 0$ for $i \neq j$. Therefore:
 
 $$\text{Cov}(S^{(n)}(s), S^{(n)}(t)) = \frac{1}{n}\text{Cov}(S_{\lfloor ns \rfloor}, S_{\lfloor nt \rfloor}) = \frac{1}{n} \min(\lfloor ns \rfloor, \lfloor nt \rfloor) = \frac{\lfloor ns \rfloor}{n} \to s = \min(s,t) \quad \square$$
 
@@ -339,10 +381,10 @@ import numpy as np
 
 # Parameters
 T = 1.0  # Time horizon
-num_steps_list = [10, 50, 100, 500, 1000]  # Different discretization levels
+num_steps_list = [10, 100, 1000]  # Different discretization levels
 num_paths = 5  # Number of paths per discretization level
 
-fig, axes = plt.subplots(2, 3, figsize=(15, 8))
+fig, axes = plt.subplots(1, 3, figsize=(15, 4))
 axes = axes.flatten()
 
 for idx, n in enumerate(num_steps_list):
@@ -370,21 +412,19 @@ for idx, n in enumerate(num_steps_list):
     ax.grid(alpha=0.3)
     ax.set_ylim(-2.5, 2.5)
 
-# Remove extra subplot
-axes[-1].axis('off')
-
 plt.suptitle('Scaled Random Walk Converging to Brownian Motion (Donsker\'s Theorem)', 
              fontsize=14, fontweight='bold')
 plt.tight_layout()
 plt.show()
 ```
 
+![Scaled Random Walk Converging to Brownian Motion](figures/fig03_scaled_convergence.png)
+
 **Interpretation:**
 
-- **$n = 10$**: Paths are jagged with visible jumps of size $1/\sqrt{10} \approx 0.32$
-- **$n = 50$**: Smoother, jumps are $1/\sqrt{50} \approx 0.14$ 
-- **$n = 100$**: Even smoother, jumps are $1/\sqrt{100} = 0.1$
-- **$n = 500, 1000$**: Paths resemble continuous Brownian motion with jumps $\approx 0.05, 0.03$
+- **$n = 10$**: Paths are jagged with visible jumps of size $1/\sqrt{10} \approx 0.316$
+- **$n = 100$**: Smoother, jumps are $1/\sqrt{100} = 0.100$
+- **$n = 1000$**: Paths resemble continuous Brownian motion with jumps $\approx 0.032$
 
 **Key observations**:
 
@@ -478,7 +518,7 @@ which diverges as $n \to \infty$.
 
 **Heuristic Conclusion:** In the limit, Brownian motion should be continuous but nowhere differentiable.
 
-**Rigorous Statement:** Brownian motion is almost surely continuous everywhere but differentiable nowhere. This was proven by Wiener using Fourier analysis.
+**Rigorous Statement:** Brownian motion is almost surely continuous everywhere but differentiable nowhere. This was proven by Paley, Wiener, and Zygmund (1933) using Fourier analysis.
 
 ### Quadratic Variation of Scaled Walk
 
@@ -488,9 +528,9 @@ $$[S^{(n)}]_t = \sum_{i=1}^{\lfloor nt \rfloor} (S^{(n)}(i/n) - S^{(n)}((i-1)/n)
 
 This suggests that in the limit, the **quadratic variation equals $t$**, not $t^2$ as for smooth functions.
 
-**Key Insight:** If $f(t)$ is differentiable with derivative $f'(t)$, then
+**Key Insight:** If $f(t)$ is differentiable with bounded derivative $f'(t)$, then
 
-$$\sum_{i=0}^{n-1} (f(t_{i+1}) - f(t_i))^2 \approx \sum_{i=0}^{n-1} (f'(t_i))^2 (\Delta t)^2 = O((\Delta t)^2) \to 0$$
+$$\sum_{i=1}^{n} (f(t_{i}) - f(t_{i-1}))^2 \approx \sum_{i=1}^{n} (f'(t_{i}))^2 (\Delta t)^2 = (\Delta t) \cdot \underbrace{\frac{1}{n}\sum_{i=1}^{n} (f'(t_{i}))^2}_{\to \int_0^1 (f'(t))^2 dt} = O(1/n) \to 0$$
 
 But for Brownian motion:
 
@@ -520,7 +560,7 @@ import numpy as np
 num_steps = 1000
 num_paths = 20
 
-np.random.seed(0)
+np.random.seed(42)  # Fixed seed for reproducibility
 
 # Storage for quadratic variation paths
 QV_paths = np.zeros((num_paths, num_steps))
@@ -569,36 +609,50 @@ plt.tight_layout()
 plt.show()
 
 # Verify quadratic variation equals n exactly
-print(f"\nVerification: [S]_n = n for all paths")
+print(f"Verification: [S]_n = n for all paths")
 print(f"Mean [S]_{num_steps} = {mean_QV[-1]:.2f}")
 print(f"Theoretical value = {num_steps}")
 print(f"Difference = {abs(mean_QV[-1] - num_steps):.6f}")
 print(f"\nAll paths have [S]_n = n exactly: {np.allclose(QV_paths[:, -1], num_steps)}")
 ```
 
+**Output:**
+```
+Verification: [S]_n = n for all paths
+Mean [S]_1000 = 1000.00
+Theoretical value = 1000
+Difference = 0.000000
+
+All paths have [S]_n = n exactly: True
+```
+
+![Quadratic Variation of Random Walk](figures/fig04_quadratic_variation.png)
+
 **Interpretation:**
 
 **Left plot**: 
+
 - All paths (colored lines) lie **exactly** on the red dashed line $[S]_n = n$
 - This confirms Proposition 1.1.3: quadratic variation is deterministic, not random
 - Unlike the random walk itself (which fluctuates), $[S]_n$ has zero variance
 
 **Right plot**:
+
 - Mean across paths equals $n$ (blue line matches red dashed line)
 - Standard deviation is zero (the blue shaded region has zero width)
 - This is unique to random walks; smooth functions have $[f]_n \to 0$
 
 **Contrast with smooth functions:**
 
-For a differentiable function $f(t)$:
+For a differentiable function $f(t)$ with bounded derivative:
 
-$$\sum_{i=1}^n (f(i/n) - f((i-1)/n))^2 \approx \sum_{i=1}^n (f'(i/n))^2 (1/n)^2 = O(1/n) \to 0$$
+$$\sum_{i=1}^n (f(i/n) - f((i-1)/n))^2 \approx (1/n) \cdot \underbrace{\frac{1}{n}\sum_{i=1}^n (f'(i/n))^2}_{\to \int_0^1 (f'(t))^2 dt} = O(1/n) \to 0$$
 
 For Brownian motion:
 
 $$\lim_{|\Delta t_i| \to 0} \sum_{i=1}^n (W_{t_{i+1}} - W_{t_i})^2 = t \neq 0$$
 
-This is why Itô's formula has the correction term $\frac{1}{2}\sigma^2 S^2 dt$.
+This is the foundation for Itô's formula: $(dW_t)^2 = dt$, which introduces a second-order correction absent in ordinary calculus.
 
 ## Simulation: Verifying Moment Formulas
 
@@ -617,7 +671,7 @@ import numpy as np
 num_trials = 10000  # Number of independent random walks
 max_steps = 100
 
-np.random.seed(0)
+np.random.seed(42)  # Fixed seed for reproducibility
 
 # Storage
 variance_empirical = np.zeros(max_steps)
@@ -654,7 +708,7 @@ ax2.plot(n_values, fourth_moment_empirical, 'b-', alpha=0.7, label='Empirical')
 ax2.plot(n_values, fourth_moment_theoretical, 'r--', linewidth=2, 
          label='Theoretical: $3n^2 - 2n$')
 ax2.set_xlabel('Number of steps $n$', fontsize=12)
-ax2.set_ylabel('Fourth moment $\mathbb{E}[S_n^4]$', fontsize=12)
+ax2.set_ylabel('Fourth moment $\\mathbb{E}[S_n^4]$', fontsize=12)
 ax2.set_title(f'Fourth Moment of $S_n$ ({num_trials} trials)', fontsize=13)
 ax2.legend(fontsize=11)
 ax2.grid(alpha=0.3)
@@ -673,11 +727,25 @@ print(f"Theoretical 4th moment: {fourth_moment_theoretical[-1]:.2f}")
 print(f"Relative error: {abs(fourth_moment_empirical[-1] - fourth_moment_theoretical[-1]) / fourth_moment_theoretical[-1] * 100:.2f}%")
 ```
 
+**Output:**
+```
+Verification at n = 100:
+Empirical variance: 99.3838
+Theoretical variance: 100
+Relative error: 0.62%
+
+Empirical 4th moment: 29432.66
+Theoretical 4th moment: 29800.00
+Relative error: 1.23%
+```
+
+![Verification of Moment Formulas](figures/fig05_moment_verification.png)
+
 **Interpretation:**
 
 - **Left plot**: Blue line (empirical variance) closely tracks red line (theoretical $n$)
 - **Right plot**: Fourth moment follows $3n^2 - 2n$ curve accurately
-- **Convergence**: With 10,000 trials, relative error is typically < 1%
+- **Convergence**: With 10,000 trials, relative error is typically < 2%
 
 This confirms Proposition 1.1.1 numerically and demonstrates the power of the Law of Large Numbers.
 
@@ -738,6 +806,32 @@ The simulations in this section have verified these theoretical properties numer
 
 The natural question: **Can we make the limiting procedure rigorous?** Yes—via **Donsker's invariance principle**, which we prove in the next section.
 
+## Exercises
+
+1. Let $\Pi_n$ be a partition of $[0,n]$ with mesh going to zero. Consider
+
+$$Q_n := \sum_{i} (S_{t_{i+1}} - S_{t_i})^2$$
+
+   (a) Show that $\mathbb{E}[Q_n] = n$.
+   
+   (b) Show that $Q_n = n$ almost surely (not just in expectation).
+   
+   (c) Explain why this deterministic quadratic variation distinguishes random walks from smooth functions.
+
+2. For the symmetric random walk $S_n = \sum_{i=1}^n \xi_i$ where $\xi_i \in \{-1, +1\}$ with equal probability:
+
+   (a) Verify that $\mathbb{E}[S_n^2] = n$ by direct calculation.
+   
+   (b) Compute $\mathbb{E}[S_n^6]$ using the pairing argument from Proposition 1.1.1.
+   
+   (c) Show that $\mathbb{E}[S_n^{2k}] = (2k-1)!! \cdot n^k$ for large $n$ (hint: compare with Brownian motion moments).
+
+3. (Gambler's Ruin) A gambler starts with $\$a$ and bets $\$1$ on each fair coin flip. Let $\tau_0$ be the first time the gambler is ruined (reaches $\$0$) and $\tau_b$ be the first time to reach $\$b > a$.
+
+   (a) Using the martingale property of $S_n$, show that $\mathbb{P}(\tau_b < \tau_0) = a/b$.
+   
+   (b) What happens as $b \to \infty$?
+
 ## References
 
 - Bachelier, L. (1900). *Théorie de la spéculation*. Annales scientifiques de l'École normale supérieure.
@@ -746,4 +840,5 @@ The natural question: **Can we make the limiting procedure rigorous?** Yes—via
 - Glasserman, P. (2003). *Monte Carlo Methods in Financial Engineering*. Springer.
 - Kloeden, P. E., & Platen, E. (1992). *Numerical Solution of Stochastic Differential Equations*. Springer.
 - Lawler, G. F., & Limic, V. (2010). *Random Walk: A Modern Introduction*. Cambridge University Press.
+- Paley, R. E. A. C., Wiener, N., & Zygmund, A. (1933). Notes on random functions. *Mathematische Zeitschrift*, 37(1), 647-668.
 - Pólya, G. (1921). *Über eine Aufgabe der Wahrscheinlichkeitsrechnung betreffend die Irrfahrt im Straßennetz*. Mathematische Annalen, 84(1-2), 149-160.

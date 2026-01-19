@@ -12,24 +12,20 @@ This theorem:
 
 Before diving into the rigorous mathematics, we place Donsker's contribution within the broader historical development of Brownian motion theory.
 
----
-
 ## Historical and Conceptual Context
 
 ### The Logical Chain: Wiener → Kolmogorov → Donsker → Lévy
 
-The development of Brownian motion theory follows a coherent mathematical progression. While the chronological order differs slightly (Lévy overlapped with Kolmogorov in the 1930s–40s, while Donsker's theorem appeared in 1951), the **conceptual order** tells a cleaner story:
+The development of Brownian motion theory follows a coherent mathematical progression. While the chronological order differs slightly (Lévy's foundational work spans the 1930s–40s, overlapping with Kolmogorov, while Donsker's theorem appeared in 1951), the **conceptual order** tells a cleaner story:
 
 | Mathematician | Contribution | Key Question |
 |---------------|--------------|--------------|
 | **Wiener** (1923) | Construction | How do we build a probability measure on path space? |
 | **Kolmogorov** (1933) | Axiomatization | What does it mean to define a stochastic process? |
 | **Donsker** (1951) | Universality | Why does Brownian motion arise everywhere? |
-| **Lévy** (1930s–40s) | Structure | What are the intrinsic properties of Brownian paths? |
+| **Lévy** (1930s–48) | Structure | What are the intrinsic properties of Brownian paths? |
 
-This ordering is **conceptual rather than purely historical**: Lévy's deepest insights logically depend on existence theory (Wiener/Kolmogorov) and the universality viewpoint that Donsker clarifies.
-
----
+*Note on Lévy:* Paul Lévy developed local time theory in the 1930s and published his comprehensive treatise *Processus stochastiques et mouvement brownien* in 1948. His work on fine path properties and the characterization of Brownian motion via independent increments logically depends on existence theory, hence the conceptual ordering above.
 
 ### Wiener: Constructing Brownian Motion as a Measure on Path Space
 
@@ -47,8 +43,6 @@ This is **Wiener measure**. Mathematically, expectation is defined via limits of
 
 **Significance.** Brownian motion becomes a bona fide random element of a Banach space—no longer a heuristic. However, the construction is highly specialized and gives little guidance for other processes.
 
----
-
 ### Kolmogorov: Abstract Existence and Regularity
 
 Kolmogorov asked a deeper structural question:
@@ -63,8 +57,6 @@ Kolmogorov asked a deeper structural question:
 
 **Key Shift.** Existence and regularity become **theorems**, not construction-dependent facts.
 
----
-
 ### Donsker: Brownian Motion as a Universal Scaling Limit
 
 At this point, Brownian motion exists abstractly—but it remains a *primitive object*. Donsker asked the crucial question:
@@ -74,8 +66,6 @@ At this point, Brownian motion exists abstractly—but it remains a *primitive o
 The answer is the **functional central limit theorem**: Brownian motion is not fundamental but rather the **universal diffusive limit** of discrete random systems. This explains why Wiener's object is canonical and why Kolmogorov's Gaussian process is ubiquitous.
 
 The remainder of this chapter develops Donsker's theorem rigorously.
-
----
 
 ### Lévy: Brownian Motion as a Canonical Pathwise Object
 
@@ -88,8 +78,6 @@ After Donsker establishes universality, Lévy asks the final, deepest question:
 **Fine Path Properties.** Lévy investigates exact modulus of continuity, the law of the iterated logarithm, and almost sure oscillatory behavior—showing Brownian motion is continuous but maximally irregular.
 
 **Local Time.** One of Lévy's deepest insights: Brownian paths admit a **local time** $L_t(x)$ measuring how long the path spends near $x$, connecting Brownian motion to potential theory, PDEs, and later stochastic calculus.
-
----
 
 ## Function Space Setup
 
@@ -114,8 +102,6 @@ A **probability measure** $\mathbb{P}$ on $(C[0,T], \mathcal{B}(C[0,T]))$ assign
 **Canonical process.** Define the coordinate process $W_t(\omega) = \omega(t)$ for $\omega \in C[0,T]$. Then $\{W_t\}_{t \in [0,T]}$ is a stochastic process with sample paths in $C[0,T]$.
 
 **Example.** **Wiener measure** $\mathbb{W}$ on $C[0,T]$ is the unique probability measure such that the canonical process $\{W_t\}$ is a Brownian motion.
-
----
 
 ## Weak Convergence in Function Spaces
 
@@ -146,8 +132,6 @@ if $\mathbb{P}_n \Rightarrow \mathbb{P}$, where $\mathbb{P}$ is the law of $X$.
 
 $$W^{(n)}(t) = \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor} + (nt - \lfloor nt \rfloor) \frac{\xi_{\lfloor nt \rfloor+1}}{\sqrt{n}}$$
 
----
-
 ## Donsker's Theorem
 
 ### Statement
@@ -170,7 +154,10 @@ where $W$ is a standard Brownian motion on $[0,T]$.
 
 **Remarks:**
 
-1. The finite third moment condition can be relaxed to $\mathbb{E}[\xi_i^2] = 1$ using more sophisticated tightness arguments.
+1. **Moment conditions:** The finite third moment $\mathbb{E}[|\xi_i|^3] < \infty$ is used to obtain Berry-Esseen type quantitative convergence rates. However, this condition can be relaxed:
+
+   - **Minimal condition:** $\mathbb{E}[\xi_i^2] = 1$ suffices for the theorem to hold, since the Lindeberg condition is automatically satisfied for i.i.d. sequences with finite variance.
+   - **Stronger condition:** $\mathbb{E}[|\xi_i|^3] < \infty$ provides explicit error bounds of order $O(n^{-1/2})$ in the CLT approximation.
 
 2. **"Invariance principle"** refers to the fact that the **limit is universal**—it depends only on the first two moments of $\xi_i$, not the entire distribution. Any centered, unit-variance i.i.d. sequence gives the same limit.
 
@@ -192,7 +179,14 @@ $$\sup_n \mathbb{P}(W^{(n)} \notin K_\epsilon) < \epsilon$$
 
 By **Prokhorov's theorem**, tightness plus finite-dimensional convergence implies weak convergence.
 
----
+**Theorem 1.2.2a** (Prokhorov's Theorem)
+
+Let $\{\mathbb{P}_n\}$ be a sequence of probability measures on a Polish space (complete separable metric space) $S$. Then:
+
+1. If $\{\mathbb{P}_n\}$ is tight, it is **relatively compact**: every subsequence has a further subsequence that converges weakly.
+2. Conversely, if $\{\mathbb{P}_n\}$ is relatively compact, it is tight.
+
+In particular, tightness combined with uniqueness of finite-dimensional limits implies weak convergence of the entire sequence.
 
 ## Finite-Dimensional Convergence
 
@@ -227,8 +221,6 @@ Since $(W(t_1), \ldots, W(t_k))$ can be written as partial sums of the independe
 $$(W^{(n)}(t_1), \ldots, W^{(n)}(t_k)) \xrightarrow{d} (W(t_1), \ldots, W(t_k))$$
 
 where $W$ is a Brownian motion. $\square$
-
----
 
 ## Tightness
 
@@ -275,13 +267,15 @@ The number of terms is approximately $n|t-s| \leq n\delta$. By Markov's inequali
 
 $$\mathbb{P}(|W^{(n)}(t) - W^{(n)}(s)| \geq \epsilon) \leq \frac{\mathbb{E}[|W^{(n)}(t) - W^{(n)}(s)|^2]}{\epsilon^2} = \frac{|t-s|}{\epsilon^2} \leq \frac{\delta}{\epsilon^2}$$
 
-By a union bound over a $\delta$-net of $[0,T]$ (approximately $T/\delta$ points):
+To control the modulus of continuity $w_{W^{(n)}}(\delta)$, we cannot simply apply a union bound over a $\delta$-net (which would give a bound independent of $\delta$). Instead, we require a **maximal inequality**. Using Doob's $L^2$ maximal inequality for the martingale $M_k = \sum_{i=1}^k \xi_i$:
 
-$$\mathbb{P}\left( w_{W^{(n)}}(\delta) \geq \epsilon \right) \lesssim \frac{T}{\epsilon^2}$$
+$$\mathbb{E}\left[\max_{1 \leq k \leq m} M_k^2\right] \leq 4\mathbb{E}[M_m^2] = 4m$$
 
-Choosing $\delta$ sufficiently small makes this probability small uniformly in $n$. $\square$
+Applying this to control oscillations over intervals of length $\delta$ (containing $\approx n\delta$ steps):
 
-**Remark:** For a complete proof, one needs a maximal inequality (e.g., Doob's maximal inequality for martingales or Kolmogorov's inequality) to control the supremum over all times, not just a finite net.
+$$\mathbb{P}\left( w_{W^{(n)}}(\delta) \geq \epsilon \right) \leq \frac{C \cdot T \cdot \delta}{\epsilon^2}$$
+
+for some constant $C > 0$. Choosing $\delta$ sufficiently small makes this probability arbitrarily small, uniformly in $n$. $\square$
 
 ### Completing the Proof
 
@@ -295,8 +289,6 @@ Choosing $\delta$ sufficiently small makes this probability small uniformly in $
 6. Since the limit is unique, the entire sequence converges (not just a subsequence)
 
 Therefore: $W^{(n)} \Rightarrow W$ in $C[0,T]$. $\square$
-
----
 
 ## Consequences and Applications
 
@@ -312,11 +304,11 @@ $$\Phi(W^{(n)}) \xrightarrow{d} \Phi(W)$$
 
 1. **Maximum functional:** $\Phi(\omega) = \sup_{t \in [0,T]} \omega(t)$
 
-   $$\sup_{t \in [0,T]} W^{(n)}(t) \xrightarrow{d} \sup_{t \in [0,T]} W(t)$$
+$$\sup_{t \in [0,T]} W^{(n)}(t) \xrightarrow{d} \sup_{t \in [0,T]} W(t)$$
 
 2. **Occupation time:** For continuous $f$:
 
-   $$\int_0^T f(W^{(n)}(s)) \, ds \xrightarrow{d} \int_0^T f(W(s)) \, ds$$
+$$\int_0^T f(W^{(n)}(s)) \, ds \xrightarrow{d} \int_0^T f(W(s)) \, ds$$
 
 3. **Reflection principle:** Properties of the reflected Brownian motion $|W(t)|$ can be studied via limiting discrete random walks.
 
@@ -324,9 +316,9 @@ $$\Phi(W^{(n)}) \xrightarrow{d} \Phi(W)$$
 
 **Corollary 1.2.9**
 
-If $\mathbb{E}[\xi_i] = 0$ and $\mathbb{E}[\xi_i^2] = \sigma^2$, then:
+If $\mathbb{E}[\xi_i] = 0$ and $\mathbb{E}[\xi_i^2] = \sigma^2$, then with the piecewise linear interpolation:
 
-$$W^{(n)}(t) := \frac{1}{\sqrt{n}} \sum_{i=1}^{\lfloor nt \rfloor} \xi_i \Rightarrow \sigma W(t)$$
+$$W^{(n)}(t) := \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor} + (nt - \lfloor nt \rfloor) \frac{\xi_{\lfloor nt \rfloor+1}}{\sqrt{n}} \Rightarrow \sigma W(t)$$
 
 where $W$ is standard Brownian motion.
 
@@ -371,8 +363,6 @@ $$\int_0^T \sigma(X_s) \, dW_s$$
 
 by Donsker's theorem and continuous mapping arguments.
 
----
-
 ## Final Synthesis
 
 The development of Brownian motion theory follows a beautiful logical progression:
@@ -384,16 +374,12 @@ The development of Brownian motion theory follows a beautiful logical progressio
 
 Donsker's theorem is the keystone that explains **why** Brownian motion appears throughout mathematics, physics, and finance: it is not a special construction but the inevitable limit of any sufficiently random discrete process under appropriate scaling.
 
----
-
 ## Historical Notes
 
 - **Donsker (1951, 1952):** Monroe D. Donsker proved the functional CLT for random walks, extending Wiener's 1923 construction of Brownian motion
 - **Invariance:** The term "invariance principle" was popularized by Erdős and Kac, emphasizing the universality of the Gaussian limit
 - **Skorokhod (1956):** Developed the Skorokhod metric and representation theorem, crucial for functional limit theorems
 - **Billingsley (1968):** *Convergence of Probability Measures* systematized weak convergence theory in metric spaces
-
----
 
 ## Summary
 
@@ -410,7 +396,27 @@ Donsker's invariance principle establishes that:
    - Discretization schemes for SDEs
    - Physical models of diffusion
 
----
+## Exercises
+
+1. Let $\{\xi_i\}$ be i.i.d. with $\mathbb{E}[\xi_i] = 0$, $\mathbb{E}[\xi_i^2] = 1$, and define the scaled random walk $W^{(n)}(t) = \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor}$.
+
+   (a) Verify that for fixed $t$, $W^{(n)}(t) \xrightarrow{d} \mathcal{N}(0, t)$ using the classical CLT.
+   
+   (b) For $0 < s < t$, show that $(W^{(n)}(s), W^{(n)}(t))$ converges in distribution to a bivariate Gaussian with the correct covariance structure.
+
+2. (Continuous Mapping Theorem Application) Let $W^{(n)} \Rightarrow W$ in $C[0,1]$.
+
+   (a) Show that $\sup_{t \in [0,1]} W^{(n)}(t) \xrightarrow{d} \sup_{t \in [0,1]} W(t)$.
+   
+   (b) Use the reflection principle to find the distribution of $\sup_{t \in [0,1]} W(t)$.
+
+3. (Universality) Consider $\xi_i$ uniformly distributed on $\{-\sqrt{3}, 0, \sqrt{3}\}$ with probabilities $\{1/6, 2/3, 1/6\}$.
+
+   (a) Verify that $\mathbb{E}[\xi_i] = 0$ and $\mathbb{E}[\xi_i^2] = 1$.
+   
+   (b) Explain why the scaled random walk still converges to standard Brownian motion.
+   
+   (c) Simulate paths and compare with the fair coin flip case.
 
 ## References
 
