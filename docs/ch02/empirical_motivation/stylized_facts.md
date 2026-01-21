@@ -9,6 +9,7 @@ Having established proper data handling and return computation in the previous s
 
 
 **Definition:** A **stylized fact** is an empirical regularity that:
+
 1. Appears consistently across multiple datasets
 2. Is robust to different measurement methods
 3. Cannot be explained by simple deterministic or i.i.d. models
@@ -252,6 +253,7 @@ def test_arch_effects(df, return_col='Return_Log', nlags=10):
 **Black (1976):** Negative correlation between returns and volatility changes.
 
 **Asymmetry:**
+
 - **Negative returns** → volatility **increases** (strong effect)
 - **Positive returns** → volatility **decreases** (weaker effect)
 
@@ -300,12 +302,15 @@ def plot_leverage_effect(df, return_col='Return_Log', window=20):
 
 
 **Original (Black):** Financial leverage hypothesis
+
 - Stock price ↓ → Debt/Equity ↑ → Financial risk ↑ → Volatility ↑
 
 **Alternative (Campbell-Hentschel):** Volatility feedback
+
 - Expected volatility ↑ → Required return ↑ → Price ↓
 
 **Behavioral:** Risk aversion and loss aversion
+
 - Losses trigger panic selling → Volatility ↑
 
 ### 4. Implications

@@ -1,5 +1,7 @@
 # 0DTE Strategies: Trading Options on Expiration Day
 
+[메르 - 하루짜리 베팅의 세계, 0DTE가 뭘까?](https://blog.naver.com/ranto28/224150141295)
+
 
 **0DTE strategies** involve trading options on their expiration day when time value approaches zero, Greeks reach extreme levels, and price movements create asymmetric opportunities driven by gamma explosions and theta acceleration.
 

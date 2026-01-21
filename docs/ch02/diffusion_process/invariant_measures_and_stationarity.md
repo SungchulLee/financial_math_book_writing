@@ -4,7 +4,7 @@
 Let \((X_t)_{t\ge 0}\) be a Markov process on \(\mathbb{R}^d\) with semigroup \((P_t)_{t\ge 0}\),
 
 \[
-P_t f(x) := \mathbb{E}^x[f(X_t)].
+P_t f(x) := \mathbb{E}^x[f(X_t)]
 \]
 
 
@@ -35,7 +35,7 @@ Equivalently, if \(X_0\sim \pi\) then \(X_t\sim \pi\) for all \(t\ge 0\).
 A process is **stationary** if its finite-dimensional distributions are invariant under time shifts; in particular,
 
 \[
-X_t \stackrel{d}{=} X_0\quad \text{for all }t\ge 0.
+X_t \stackrel{d}{=} X_0\quad \text{for all }t\ge 0
 \]
 
 
@@ -70,7 +70,7 @@ For a diffusion with drift \(b\) and diffusion matrix \(a=\sigma\sigma^\top\), a
 =
 -\frac{\partial}{\partial x_i}\!\bigl(b^{i}(x)\pi(x)\bigr)
 +
-\frac{1}{2}\frac{\partial^2}{\partial x_i\partial x_j}\!\bigl(a^{ij}(x)\pi(x)\bigr),
+\frac{1}{2}\frac{\partial^2}{\partial x_i\partial x_j}\!\bigl(a^{ij}(x)\pi(x)\bigr)
 }
 \]
 
@@ -88,7 +88,7 @@ A stationary process is **reversible** w.r.t. \(\pi\) if for all bounded measura
 \boxed{
 \int f\,P_t g\,\mathrm{d}\pi
 =
-\int g\,P_t f\,\mathrm{d}\pi.
+\int g\,P_t f\,\mathrm{d}\pi
 }
 \]
 
@@ -103,7 +103,7 @@ Reversibility is stronger than invariance and connects directly to time reversal
 For
 
 \[
-\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t,
+\mathrm{d}X_t = -\nabla V(X_t)\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t
 \]
 
 
@@ -111,7 +111,7 @@ a natural invariant density is
 
 \[
 \boxed{
-\pi(x) = Z^{-1}e^{-V(x)},\qquad Z=\int_{\mathbb{R}^d} e^{-V(x)}\,\mathrm{d}x.
+\pi(x) = Z^{-1}e^{-V(x)},\qquad Z=\int_{\mathbb{R}^d} e^{-V(x)}\,\mathrm{d}x
 }
 \]
 

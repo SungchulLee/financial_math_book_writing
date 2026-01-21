@@ -8,32 +8,32 @@ This section states the **strong Markov property** for Brownian motion and (unde
 ## Markov vs Strong Markov
 
 
-A process \((X_t)\) is (time-inhomogeneous) Markov if for bounded measurable \(\varphi\) and \(0\le s\le t\),
+A process $(X_t)$ is (time-inhomogeneous) Markov if for bounded measurable $\varphi$ and $0\le s\le t$,
 
-\[
+$$
 \boxed{
-\mathbb{E}[\varphi(X_t)\mid \mathcal{F}_s] = \mathbb{E}[\varphi(X_t)\mid X_s].
+\mathbb{E}[\varphi(X_t)\mid \mathcal{F}_s] = \mathbb{E}[\varphi(X_t)\mid X_s]
 }
-\]
+$$
 
 
 
-It is **strong Markov** if the same property holds when \(s\) is replaced by a stopping time \(\tau\).
+It is **strong Markov** if the same property holds when $s$ is replaced by a stopping time $\tau$.
 
 ---
 
 ## Strong Markov Property (Stopping-Time Form)
 
 
-Let \(\tau\) be a stopping time. For bounded measurable \(\varphi\) and \(t\ge 0\),
+Let $\tau$ be a stopping time. For bounded measurable $\varphi$ and $t\ge 0$,
 
-\[
+$$
 \boxed{
 \mathbb{E}[\varphi(X_{\tau+t})\mid \mathcal{F}_\tau]
 =
-\mathbb{E}^{X_\tau}[\varphi(X_t)].
+\mathbb{E}^{X_\tau}[\varphi(X_t)]
 }
-\]
+$$
 
 
 
@@ -47,7 +47,7 @@ Equivalently, conditionally on \(X_\tau\), the post-\(\tau\) evolution is indepe
 If \(W_t\) is Brownian motion and \(\tau\) is a stopping time, define
 
 \[
-B_t := W_{\tau+t} - W_\tau.
+B_t := W_{\tau+t} - W_\tau
 \]
 
 
@@ -55,7 +55,7 @@ Then
 
 \[
 \boxed{
-(B_t)_{t\ge 0} \text{ is Brownian motion and is independent of }\mathcal{F}_\tau.
+(B_t)_{t\ge 0} \text{ is Brownian motion and is independent of }\mathcal{F}_\tau
 }
 \]
 

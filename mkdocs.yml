@@ -34,14 +34,15 @@ nav:
               - Reflection Principle: ch01/brownian_motion/reflection_principle.md
 
           - 1.2 Martingale:
-              - Filtration and Adapted Processes: ch01/filtration_and_martingales/filtration_and_adapted_processes.md
-              - Martingales and Submartingales: ch01/filtration_and_martingales/martingales_and_submartingales.md
-              - Brownian Motion Martingales: ch01/filtration_and_martingales/brownian_motion_martingales.md
+              - Filtration: ch01/filtration_and_martingales/filtration.md
+              - Adapted Processes: ch01/filtration_and_martingales/adapted_processes.md
+              - Martingales: ch01/filtration_and_martingales/martingales.md
+              - Brownian Martingales: ch01/filtration_and_martingales/brownian_motion_martingales.md
               - Doob's Maximal Inequality: ch01/filtration_and_martingales/doob_maximal_inequality.md  # NEW
               - Martingale Convergence: ch01/filtration_and_martingales/martingale_convergence.md  # NEW
               - Stopping Times: ch01/filtration_and_martingales/stopping_times.md
               - Optional Sampling Theorem: ch01/filtration_and_martingales/optional_sampling_theorem.md
-              - Doob–Meyer Decomposition: ch01/filtration_and_martingales/doob_meyer_decomposition.md          
+              - Doob–Meyer Decomp: ch01/filtration_and_martingales/doob_meyer_decomposition.md          
 
       - 2 SDE:
           - 2.1 Empirical Motivation:
@@ -76,12 +77,10 @@ nav:
               - Verifying SDE Solution: ch02/sde/verifying_sde_solutions.md
               - Moment Analysis: ch02/sde/sde_moment_analysis.md
               - SDE Simulation: ch02/sde/sde_simulation.md
-
-          - 2.5 Existence & Uniqueness:  # EXPAND
-              - Lipschitz and Growth Conditions: ch02/existence_uniqueness/lipschitz_conditions.md
+          - 2.5 Exist–Unique:  # EXPAND
+              - Lipschitz & Growth: ch02/existence_uniqueness/lipschitz_conditions.md
               - Picard Iteration: ch02/existence_uniqueness/picard_iteration.md
               - Strong vs Weak Solutions: ch02/existence_uniqueness/strong_vs_weak.md
-
           - 2.6 Diffusion Process:
               - Diffusion Process Overview: ch02/diffusion_process/diffusion_process_overview.md
               - Strong Markov Property: ch02/diffusion_process/strong_markov_property.md
@@ -89,13 +88,11 @@ nav:
               - Invariant Measures: ch02/diffusion_process/invariant_measures_and_stationarity.md
               - Time Reversal of Diffusions: ch02/diffusion_process/time_reversal_of_diffusions.md
               - Large Deviations: ch02/diffusion_process/small_noise_and_large_deviations.md
-
-          - 2.7 Infinitesimal Generator:  # ADD
-              - Kolmogorov Backward Equation: ch02/infinitesimal_generator/kolmogorov_backward.md
-              - Fokker-Planck Equation: ch02/infinitesimal_generator/fokker_planck.md
-              - Feynman-Kac Formula: ch02/infinitesimal_generator/feynman_kac.md
-
-          - 2.8 Infinitesimal Gen:
+          - 2.7 Generator (PDE):  # ADD
+              - Kolmogorov Forward: ch02/infinitesimal_generator/fokker_planck.md
+              - Kolmogorov Backward: ch02/infinitesimal_generator/kolmogorov_backward.md
+              - Feynman-Kac: ch02/infinitesimal_generator/feynman_kac.md
+          - 2.8 Generator (Probab):
               - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
               - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
               - Generator and Martingale: ch02/infinitesimal_generator/generator_and_martingales.md
@@ -108,9 +105,9 @@ nav:
               - Scaling and Invariance: ch03/heat_equation/scaling_and_invariance.md
               - Heat Eq and BM: ch03/heat_equation/heat_equation_and_brownian_motion.md
               - Maximum Principle: ch03/heat_equation/maximum_principle.md
-          - 3.2 Kolmogorov Equation:
-              - Kolmogorov Forward Eq: ch03/kolmogorov_equation/kolmogorov_forward_equation.md
-              - Kolmogorov Backward Eq: ch03/kolmogorov_equation/kolmogorov_backward_equation.md
+          - 3.2 Kolmogorov:
+              - Kolmogorov Forward: ch03/kolmogorov_equation/kolmogorov_forward_equation.md
+              - Kolmogorov Backward: ch03/kolmogorov_equation/kolmogorov_backward_equation.md
           - 3.3 Feynman–Kac:
               - Feynman–Kac Overview: ch03/feynman_kac/feynman_kac_overview.md
               - FK Terminal Payoff: ch03/feynman_kac/feynman_kac_discounted_terminal.md
@@ -142,7 +139,7 @@ nav:
               - Examples: ch04/risk-neutral_measure/example.md
               - Numéraire and Measure: ch04/risk-neutral_measure/numeraire_and_measure_change.md
               - Forward Measure: ch04/risk-neutral_measure/forward_measure.md
-          - 4.4 Financial Interp:
+          - 4.4 Financial Intuition:
               - Pricing vs Hedging: ch04/financial_interpretation/pricing_vs_hedging.md
               - P vs Q: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
 

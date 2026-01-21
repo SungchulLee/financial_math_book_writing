@@ -23,13 +23,13 @@ Let $W = \{W_t\}_{t \ge 0}$ be a standard Brownian motion on a filtered probabil
 3. **Martingale property**: For $0 \le s < t$, decompose $W_t = W_s + (W_t - W_s)$. Then:
 
 $$
-\mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s \mid \mathcal{F}_s] + \mathbb{E}[W_t - W_s \mid \mathcal{F}_s].
+\mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s \mid \mathcal{F}_s] + \mathbb{E}[W_t - W_s \mid \mathcal{F}_s]
 $$
 
 Since $W_s$ is $\mathcal{F}_s$-measurable, $\mathbb{E}[W_s \mid \mathcal{F}_s] = W_s$. Since $W_t - W_s$ is independent of $\mathcal{F}_s$ (by the independent increments property) and $\mathbb{E}[W_t - W_s] = 0$:
 
 $$
-\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] = \mathbb{E}[W_t - W_s] = 0.
+\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] = \mathbb{E}[W_t - W_s] = 0
 $$
 
 Therefore, $\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s$. $\square$
@@ -53,25 +53,25 @@ Simple transformations of Brownian motion, when properly compensated, yield new 
 **Proof**: For $0 \le s < t$, we compute $\mathbb{E}[W_t^2 \mid \mathcal{F}_s]$. Writing $W_t = W_s + (W_t - W_s)$:
 
 $$
-W_t^2 = W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2.
+W_t^2 = W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2
 $$
 
 Taking conditional expectations:
 
 $$
-\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s] + \mathbb{E}[(W_t - W_s)^2].
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s] + \mathbb{E}[(W_t - W_s)^2]
 $$
 
 Using $\mathbb{E}[W_t - W_s] = 0$ and $\mathbb{E}[(W_t - W_s)^2] = \text{Var}(W_t - W_s) = t - s$:
 
 $$
-\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t - s).
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t - s)
 $$
 
 Therefore:
 
 $$
-\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s.
+\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s
 $$
 
 $$
@@ -91,19 +91,19 @@ $$
 Expanding $(W_s + (W_t - W_s))^3$ and using the binomial theorem:
 
 $$
-W_t^3 = W_s^3 + 3W_s^2(W_t - W_s) + 3W_s(W_t - W_s)^2 + (W_t - W_s)^3.
+W_t^3 = W_s^3 + 3W_s^2(W_t - W_s) + 3W_s(W_t - W_s)^2 + (W_t - W_s)^3
 $$
 
 Taking conditional expectations:
 
 $$
-\mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s^2 \cdot 0 + 3W_s \cdot (t-s) + 0 = W_s^3 + 3W_s(t-s).
+\mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s^2 \cdot 0 + 3W_s \cdot (t-s) + 0 = W_s^3 + 3W_s(t-s)
 $$
 
 Also, $\mathbb{E}[tW_t \mid \mathcal{F}_s] = t \cdot W_s$. Therefore:
 
 $$
-\mathbb{E}[W_t^3 - 3tW_t \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s) - 3tW_s = W_s^3 - 3sW_s.
+\mathbb{E}[W_t^3 - 3tW_t \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s) - 3tW_s = W_s^3 - 3sW_s
 $$
 
 $$
@@ -119,13 +119,13 @@ The polynomial martingales are not arbitrary—they follow a beautiful pattern c
 Define the probabilist's Hermite polynomials $H_n(x)$ by the generating function:
 
 $$
-\exp\left(tx - \frac{t^2}{2}\right) = \sum_{n=0}^\infty \frac{t^n}{n!} H_n(x).
+\exp\left(tx - \frac{t^2}{2}\right) = \sum_{n=0}^\infty \frac{t^n}{n!} H_n(x)
 $$
 
 The first few are:
 
 $$
-H_0(x) = 1, \quad H_1(x) = x, \quad H_2(x) = x^2 - 1, \quad H_3(x) = x^3 - 3x.
+H_0(x) = 1, \quad H_1(x) = x, \quad H_2(x) = x^2 - 1, \quad H_3(x) = x^3 - 3x
 $$
 
 **Theorem**: For each $n \ge 0$, the process
@@ -166,7 +166,7 @@ $$
 **Proof**: For $0 \le s < t$, write:
 
 $$
-Z_t^\theta = \exp\left(\theta W_s - \frac{\theta^2 s}{2}\right) \cdot \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right) = Z_s^\theta \cdot Y,
+Z_t^\theta = \exp\left(\theta W_s - \frac{\theta^2 s}{2}\right) \cdot \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right) = Z_s^\theta \cdot Y
 $$
 
 where $Y = \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right)$.
@@ -174,19 +174,19 @@ where $Y = \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right)$.
 Since $W_t - W_s \sim N(0, t-s)$ is independent of $\mathcal{F}_s$:
 
 $$
-\mathbb{E}[Y] = \mathbb{E}\left[\exp(\theta \cdot N(0, t-s))\right] \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right).
+\mathbb{E}[Y] = \mathbb{E}\left[\exp(\theta \cdot N(0, t-s))\right] \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right)
 $$
 
 Using the moment generating function $\mathbb{E}[e^{\theta Z}] = e^{\theta^2 \sigma^2/2}$ for $Z \sim N(0, \sigma^2)$:
 
 $$
-\mathbb{E}[Y] = \exp\left(\frac{\theta^2(t-s)}{2}\right) \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right) = 1.
+\mathbb{E}[Y] = \exp\left(\frac{\theta^2(t-s)}{2}\right) \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right) = 1
 $$
 
 Therefore:
 
 $$
-\mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta \cdot \mathbb{E}[Y] = Z_s^\theta.
+\mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta \cdot \mathbb{E}[Y] = Z_s^\theta
 $$
 
 $$
@@ -204,7 +204,7 @@ The exponential martingale is not just another example—it **generates all poly
 **Theorem**: Expanding $Z_t^\theta$ as a power series in $\theta$:
 
 $$
-\exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t),
+\exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t)
 $$
 
 each coefficient $H_n(W_t, t)$ is a martingale.
@@ -212,13 +212,13 @@ each coefficient $H_n(W_t, t)$ is a martingale.
 **Proof**: Since $Z_t^\theta$ is a martingale for each $\theta$, and conditional expectation is linear:
 
 $$
-\mathbb{E}\left[\sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t) \,\Big|\, \mathcal{F}_s\right] = \sum_{n=0}^\infty \frac{\theta^n}{n!} \mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s].
+\mathbb{E}\left[\sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t) \,\Big|\, \mathcal{F}_s\right] = \sum_{n=0}^\infty \frac{\theta^n}{n!} \mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s]
 $$
 
 For this to equal $Z_s^\theta = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_s, s)$ for all $\theta$, we need:
 
 $$
-\mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s] = H_n(W_s, s) \quad \text{for each } n. \quad \square
+\mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s] = H_n(W_s, s) \quad \text{for each } n \quad \square
 $$
 
 **Consequences**:
@@ -241,7 +241,7 @@ This unification is elegant: the exponential martingale encodes **all** moment i
 The exponential martingale is the **Radon–Nikodym derivative** for changing probability measures. Under the measure $\mathbb{Q}$ defined by
 
 $$
-\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_t} = Z_t^\theta,
+\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_t} = Z_t^\theta
 $$
 
 the process $\widetilde{W}_t = W_t - \theta t$ is a $\mathbb{Q}$-Brownian motion. This is the heart of Girsanov's theorem.
@@ -253,7 +253,7 @@ the process $\widetilde{W}_t = W_t - \theta t$ is a $\mathbb{Q}$-Brownian motion
 For any stopping time $\tau$, the optional sampling theorem (when applicable) gives:
 
 $$
-\mathbb{E}\left[\exp\left(\theta W_\tau - \frac{\theta^2 \tau}{2}\right)\right] = 1.
+\mathbb{E}\left[\exp\left(\theta W_\tau - \frac{\theta^2 \tau}{2}\right)\right] = 1
 $$
 
 This yields the joint Laplace transform of $(W_\tau, \tau)$ and is the key to computing hitting time distributions.
@@ -263,7 +263,7 @@ This yields the joint Laplace transform of $(W_\tau, \tau)$ and is the key to co
 The exponential martingale structure underlies **Cramér's theorem** and large deviation estimates for Brownian motion:
 
 $$
-\mathbb{P}(W_t \ge a) \le \exp\left(-\frac{a^2}{2t}\right) \quad \text{for } a > 0.
+\mathbb{P}(W_t \ge a) \le \exp\left(-\frac{a^2}{2t}\right) \quad \text{for } a > 0
 $$
 
 This follows by applying Markov's inequality to the exponential martingale.
@@ -275,7 +275,7 @@ This follows by applying Markov's inequality to the exponential martingale.
 The exponential martingale is a special case of the **stochastic exponential** (or Doléans-Dade exponential). For any continuous local martingale $M_t$ with $M_0 = 0$, define:
 
 $$
-\mathcal{E}(M)_t := \exp\left(M_t - \frac{1}{2}[M]_t\right),
+\mathcal{E}(M)_t := \exp\left(M_t - \frac{1}{2}[M]_t\right)
 $$
 
 where $[M]_t$ is the quadratic variation.
@@ -283,13 +283,13 @@ where $[M]_t$ is the quadratic variation.
 **Theorem**: $\mathcal{E}(M)_t$ is a local martingale. It is the unique solution to:
 
 $$
-dZ_t = Z_t \, dM_t, \quad Z_0 = 1.
+dZ_t = Z_t \, dM_t, \quad Z_0 = 1
 $$
 
 For Brownian motion, $[W]_t = t$, recovering our exponential martingale:
 
 $$
-\mathcal{E}(\theta W)_t = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right).
+\mathcal{E}(\theta W)_t = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right)
 $$
 
 ---

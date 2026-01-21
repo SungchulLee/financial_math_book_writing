@@ -41,7 +41,7 @@ where $(x)^+ = \max(x, 0)$.
 **Theorem (Doob's Martingale Convergence Theorem)**: Let $\{M_n\}_{n \ge 0}$ be a martingale (or submartingale) satisfying:
 
 $$
-\sup_n \mathbb{E}[|M_n|] < \infty \quad \text{(}L^1\text{-bounded)}.
+\sup_n \mathbb{E}[|M_n|] < \infty \quad \text{(}L^1\text{-bounded)}
 $$
 
 Then there exists a random variable $M_\infty$ with $\mathbb{E}|M_\infty| < \infty$ such that:
@@ -55,7 +55,7 @@ $$
 *Step 1*: For any rational $a < b$, the upcrossing inequality gives:
 
 $$
-\mathbb{E}[U_\infty^{[a,b]}] = \lim_N \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a} < \infty.
+\mathbb{E}[U_\infty^{[a,b]}] = \lim_N \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a} < \infty
 $$
 
 Therefore $U_\infty^{[a,b]} < \infty$ almost surely.
@@ -63,7 +63,7 @@ Therefore $U_\infty^{[a,b]} < \infty$ almost surely.
 *Step 2*: The event "$(M_n)$ oscillates infinitely often" equals:
 
 $$
-\bigcup_{a < b, \, a,b \in \mathbb{Q}} \{U_\infty^{[a,b]} = \infty\}.
+\bigcup_{a < b, \, a,b \in \mathbb{Q}} \{U_\infty^{[a,b]} = \infty\}
 $$
 
 This is a countable union of null sets, hence null.
@@ -73,7 +73,7 @@ This is a countable union of null sets, hence null.
 *Step 4*: To show $M_\infty$ is finite a.s., note that $(|M_n|)$ is a submartingale and:
 
 $$
-\mathbb{P}(|M_\infty| = \infty) \le \lim_K \mathbb{P}\left(\sup_n |M_n| \ge K\right) \le \lim_K \frac{\sup_n \mathbb{E}|M_n|}{K} = 0. \quad \square
+\mathbb{P}(|M_\infty| = \infty) \le \lim_K \mathbb{P}\left(\sup_n |M_n| \ge K\right) \le \lim_K \frac{\sup_n \mathbb{E}|M_n|}{K} = 0 \quad \square
 $$
 
 ---
@@ -85,7 +85,7 @@ Almost sure convergence does **not** imply $L^1$ convergence. The canonical coun
 **Example**: Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2$. Define:
 
 $$
-M_n = \prod_{i=1}^n \xi_i.
+M_n = \prod_{i=1}^n \xi_i
 $$
 
 Then $M_n$ is a martingale with $\mathbb{E}[M_n] = 1$ for all $n$. However, $M_n \to 0$ almost surely (since $\mathbb{P}(\text{at least one } \xi_i = 0) = 1$), but $\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]$.
@@ -97,7 +97,7 @@ The gap is filled by **uniform integrability**.
 A family of random variables $\{X_\alpha\}_{\alpha \in A}$ is **uniformly integrable (UI)** if:
 
 $$
-\lim_{K \to \infty} \sup_{\alpha \in A} \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] = 0.
+\lim_{K \to \infty} \sup_{\alpha \in A} \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] = 0
 $$
 
 **Equivalent conditions**:
@@ -137,7 +137,7 @@ $(1) \Rightarrow (3)$: By the basic convergence theorem, $M_n \to M_\infty$ a.s.
 $(3) \Rightarrow (4)$: For any $A \in \mathcal{F}_n$, by dominated convergence:
 
 $$
-\mathbb{E}[M_\infty \mathbf{1}_A] = \lim_m \mathbb{E}[M_m \mathbf{1}_A] = \mathbb{E}[M_n \mathbf{1}_A],
+\mathbb{E}[M_\infty \mathbf{1}_A] = \lim_m \mathbb{E}[M_m \mathbf{1}_A] = \mathbb{E}[M_n \mathbf{1}_A]
 $$
 
 showing $M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]$. $\square$
@@ -155,7 +155,7 @@ $$
 **Proof**: $L^p$-boundedness with $p > 1$ implies UI, so $L^1$ (hence a.s.) convergence follows. For $L^p$ convergence, Doob's maximal inequality gives:
 
 $$
-\mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}|M_n|^p < \infty.
+\mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}|M_n|^p < \infty
 $$
 
 Since $|M_n - M_\infty|^p \le 2^p \sup_n |M_n|^p$ which is integrable, dominated convergence yields $L^p$ convergence. $\square$
@@ -169,7 +169,7 @@ Since $|M_n - M_\infty|^p \le 2^p \sup_n |M_n|^p$ which is integrable, dominated
 A **backward martingale** (or reverse martingale) is a sequence $(M_n, \mathcal{F}_n)_{n \le 0}$ with $\mathcal{F}_n \supseteq \mathcal{F}_{n-1}$ (decreasing filtration) and:
 
 $$
-\mathbb{E}[M_n \mid \mathcal{F}_{n-1}] = M_{n-1} \quad \text{for } n \le 0.
+\mathbb{E}[M_n \mid \mathcal{F}_{n-1}] = M_{n-1} \quad \text{for } n \le 0
 $$
 
 **Theorem (Backward Martingale Convergence)**: If $(M_n)_{n \le 0}$ is a backward martingale with $\sup_n \mathbb{E}|M_n| < \infty$, then:
@@ -185,7 +185,7 @@ where $M_{-\infty} = \mathbb{E}[M_0 \mid \mathcal{F}_{-\infty}]$ and $\mathcal{F
 **Application (Strong Law of Large Numbers)**: Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}|X_1| < \infty$. Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ and $M_n = \frac{S_n}{n}$. Then $(M_n)$ is a backward martingale, and:
 
 $$
-\frac{S_n}{n} \to \mathbb{E}[X_1] \quad \text{a.s. and in } L^1.
+\frac{S_n}{n} \to \mathbb{E}[X_1] \quad \text{a.s. and in } L^1
 $$
 
 ---
@@ -197,7 +197,7 @@ The convergence theorems extend to continuous time with appropriate modification
 **Theorem**: Let $(M_t)_{t \ge 0}$ be a right-continuous martingale with:
 
 $$
-\sup_t \mathbb{E}|M_t| < \infty.
+\sup_t \mathbb{E}|M_t| < \infty
 $$
 
 Then $M_\infty := \lim_{t \to \infty} M_t$ exists almost surely and is finite a.s.
@@ -240,7 +240,7 @@ Martingale convergence and optional sampling are deeply connected:
 **Theorem**: Let $(M_n)$ be a UI martingale with limit $M_\infty$. For any stopping time $\tau$ (possibly infinite):
 
 $$
-\mathbb{E}[M_\tau] = \mathbb{E}[M_0] \quad \text{and} \quad M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau].
+\mathbb{E}[M_\tau] = \mathbb{E}[M_0] \quad \text{and} \quad M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]
 $$
 
 This extends the optional sampling theorem to unbounded stopping times, using convergence to handle the limit.

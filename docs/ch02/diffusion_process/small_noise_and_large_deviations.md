@@ -10,7 +10,7 @@ Consider the small-noise diffusion on \([0,T]\):
 b(X_t^\varepsilon)\,\mathrm{d}t
 +
 \sqrt{\varepsilon}\,\sigma(X_t^\varepsilon)\,\mathrm{d}W_t,
-\qquad X_0^\varepsilon=x_0.
+\qquad X_0^\varepsilon=x_0
 }
 \]
 
@@ -19,7 +19,7 @@ As \(\varepsilon\downarrow 0\), \(X^\varepsilon\) concentrates near the ODE solu
 
 \[
 \boxed{
-\dot{\bar{x}}(t)=b(\bar{x}(t)),\qquad \bar{x}(0)=x_0.
+\dot{\bar{x}}(t)=b(\bar{x}(t)),\qquad \bar{x}(0)=x_0
 }
 \]
 
@@ -41,7 +41,7 @@ I_{0,T}(\phi)
 \frac{1}{2}\int_0^T
 \left\|
 \sigma(\phi(t))^{-1}\bigl(\dot{\phi}(t)-b(\phi(t))\bigr)
-\right\|^2\,\mathrm{d}t,
+\right\|^2\,\mathrm{d}t
 }
 \]
 
@@ -51,7 +51,7 @@ and set \(I_{0,T}(\phi)=+\infty\) otherwise.
 Equivalently, using a control \(u\in L^2([0,T];\mathbb{R}^m)\) with
 
 \[
-\dot{\phi}(t)=b(\phi(t))+\sigma(\phi(t))u(t),
+\dot{\phi}(t)=b(\phi(t))+\sigma(\phi(t))u(t)
 \]
 
 
@@ -59,7 +59,7 @@ we have
 
 \[
 \boxed{
-I_{0,T}(\phi)=\frac{1}{2}\int_0^T \|u(t)\|^2\,\mathrm{d}t.
+I_{0,T}(\phi)=\frac{1}{2}\int_0^T \|u(t)\|^2\,\mathrm{d}t
 }
 \]
 
@@ -79,7 +79,7 @@ For a set \(A\) of paths,
 \exp\!\left(
 -\frac{1}{\varepsilon}\inf_{\phi\in A} I_{0,T}(\phi)
 \right)
-\quad (\varepsilon\downarrow 0).
+\quad (\varepsilon\downarrow 0)
 }
 \]
 
@@ -94,14 +94,14 @@ Thus, rare events occur along paths minimizing \(I_{0,T}\) under constraints (â€
 With \(a(x)=\sigma(x)\sigma(x)^\top\), define the Hamiltonian
 
 \[
-H(x,p)=b(x)\cdot p+\frac{1}{2}p^\top a(x)p.
+H(x,p)=b(x)\cdot p+\frac{1}{2}p^\top a(x)p
 \]
 
 
 Large deviations are closely tied to Hamiltonâ€“Jacobi equations of the form
 
 \[
-\frac{\partial V}{\partial t}+H(x,\nabla V)=0,
+\frac{\partial V}{\partial t}+H(x,\nabla V)=0
 \]
 
 

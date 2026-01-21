@@ -1,5 +1,7 @@
 # Iron Condors
 
+[메르 - 어렵다고 아우성인 글에 재도전을 하다 (feat 아이언콘도어)](https://blog.naver.com/ranto28/224152797786)
+
 
 **Iron condors** are neutral, defined-risk option strategies that combine a bull put spread and a bear call spread, profiting from low volatility and time decay with capped maximum loss.
 

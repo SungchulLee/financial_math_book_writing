@@ -1,5 +1,7 @@
 # Covered Calls and Cash-Secured Puts
 
+[메르 - 최소한 이건 알고 커버드콜 ETF를 하더라도 하자](https://blog.naver.com/ranto28/224150851444)
+
 
 **Covered calls and cash-secured puts** are income-generating strategies where you sell options against existing positions (stock or cash) to collect premium, accepting the obligation to potentially sell your stock or buy more stock.
 

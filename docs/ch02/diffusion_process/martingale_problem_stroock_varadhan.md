@@ -16,7 +16,7 @@ Let \(b:\mathbb{R}^d\to\mathbb{R}^d\) and \(a:\mathbb{R}^d\to\mathbb{R}^{d\times
 =
 b^{i}(x)\,\frac{\partial f}{\partial x_i}(x)
 +
-\frac{1}{2}a^{ij}(x)\,\frac{\partial^2 f}{\partial x_i\partial x_j}(x),
+\frac{1}{2}a^{ij}(x)\,\frac{\partial^2 f}{\partial x_i\partial x_j}(x)
 }
 \]
 
@@ -53,7 +53,7 @@ If \(X_t\) solves
 
 \[
 \mathrm{d}X_t^{i}=b^{i}(X_t)\,\mathrm{d}t+\sigma^{i\alpha}(X_t)\,\mathrm{d}W_t^\alpha,
-\quad a^{ij}=\sigma^{i\alpha}\sigma^{j\alpha},
+\quad a^{ij}=\sigma^{i\alpha}\sigma^{j\alpha}
 \]
 
 
