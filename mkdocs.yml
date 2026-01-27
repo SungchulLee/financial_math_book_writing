@@ -778,6 +778,25 @@ nav:
               - Crypto-TradFi Correlation: ch26/appendices/crypto_tradfi_correlation.md
               - Regulatory Landscape: ch26/appendices/regulatory_landscape.md
 
+      - 27 Commodity & Weather:
+          - 27.1 Weather Basics:
+              - Weather & Commodities: ch27/weather_fundamentals/weather_and_commodity_markets.md
+              - Jet Stream & Polar Vortex: ch27/weather_fundamentals/jet_stream_polar_vortex.md
+              - Trading Weather Forecasts: ch27/weather_fundamentals/weather_forecasting_for_traders.md
+          - 27.2 Natural Gas Markets:
+              - NG Weather Sensitivity: ch27/natural_gas/why_ng_is_weather_sensitive.md
+              - Henry Hub Market Structure: ch27/natural_gas/henry_hub_market_structure.md
+              - Storage and Inventory: ch27/natural_gas/storage_and_inventory.md
+          - 27.3 Trading Strategies:
+              - Seasonal Spread Strategies: ch27/trading_strategies/seasonal_spread_strategies.md
+              - Weather Event Trading: ch27/trading_strategies/event_driven_weather_trading.md
+              - Systematic vs Discretionary: ch27/trading_strategies/systematic_vs_discretionary.md
+          - 27.4 Risk Management:
+              - Weather Trading Risk: ch27/risk_management/weather_trading_risk_management.md
+              - Trading Pitfalls: ch27/risk_management/weather_trading_risk_management.md
+          - 27.5 Python Code:
+              - Weather Trading System: ch27/python_appendix/weather_trading_system.py
+
 #   - Part V Market Structure:  # NEW
   
 #       - 27 Money Markets:
