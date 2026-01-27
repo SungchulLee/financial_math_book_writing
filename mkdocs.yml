@@ -793,7 +793,7 @@ nav:
               - Systematic vs Discretionary: ch27/trading_strategies/systematic_vs_discretionary.md
           - 27.4 Risk Management:
               - Weather Trading Risk: ch27/risk_management/weather_trading_risk_management.md
-              - Trading Pitfalls: ch27/risk_management/weather_trading_risk_management.md
+              - Trading Pitfalls: ch27/risk_management/trading_pitfalls.md
           - 27.5 Python Code:
               - Weather Trading System: ch27/python_appendix/weather_trading_system.py
 
