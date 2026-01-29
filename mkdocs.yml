@@ -9,6 +9,7 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.superfences
+  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
 
@@ -77,7 +78,7 @@ nav:
               - Verifying SDE Solution: ch02/sde/verifying_sde_solutions.md
               - Moment Analysis: ch02/sde/sde_moment_analysis.md
               - SDE Simulation: ch02/sde/sde_simulation.md
-          - 2.5 Exist–Unique:  # EXPAND
+          - 2.5 Exist & Unique:  # EXPAND
               - Lipschitz & Growth: ch02/existence_uniqueness/lipschitz_conditions.md
               - Picard Iteration: ch02/existence_uniqueness/picard_iteration.md
               - Strong vs Weak Solutions: ch02/existence_uniqueness/strong_vs_weak.md
@@ -88,15 +89,15 @@ nav:
               - Invariant Measures: ch02/diffusion_process/invariant_measures_and_stationarity.md
               - Time Reversal of Diffusions: ch02/diffusion_process/time_reversal_of_diffusions.md
               - Large Deviations: ch02/diffusion_process/small_noise_and_large_deviations.md
-          - 2.7 Generator (PDE):  # ADD
-              - Kolmogorov Forward: ch02/infinitesimal_generator/fokker_planck.md
-              - Kolmogorov Backward: ch02/infinitesimal_generator/kolmogorov_backward.md
-              - Feynman-Kac: ch02/infinitesimal_generator/feynman_kac.md
-          - 2.8 Generator (Probab):
+          - 2.7 Generator (Probab):
               - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
               - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
               - Generator and Martingale: ch02/infinitesimal_generator/generator_and_martingales.md
               - Applications of Dynkin: ch02/infinitesimal_generator/applications_of_dynkin.md
+          - 2.8 Generator (PDE):  # ADD
+              - Kolmogorov Forward: ch02/infinitesimal_generator/fokker_planck.md
+              - Kolmogorov Backward: ch02/infinitesimal_generator/kolmogorov_backward.md
+              - Feynman-Kac: ch02/infinitesimal_generator/feynman_kac.md
 
       - 3 PDE:
           - 3.1 Heat Equation:
