@@ -12,11 +12,29 @@ The **Fokker–Planck equation** (also called the **Kolmogorov forward equation*
 
 ## Setting
 
+### Time-Homogeneous Case
+
 Consider the Itô diffusion:
 
 $$
 dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t
 $$
+
+### Time-Inhomogeneous Case
+
+For time-dependent coefficients:
+
+$$
+dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
+$$
+
+the Fokker–Planck equation becomes:
+
+$$
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x,t)p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t)p]
+$$
+
+### Notation
 
 Let $p(x, t \mid x_0, t_0)$ denote the **transition density**:
 
@@ -24,10 +42,19 @@ $$
 \mathbb{P}(X_t \in dx \mid X_{t_0} = x_0) = p(x, t \mid x_0, t_0)\,dx
 $$
 
-**Notation convention:**
+**Convention:**
 
 - $(x_0, t_0)$: initial state and time (fixed parameters)
 - $(x, t)$: current state and time (variables the PDE acts on)
+
+!!! note "Notation Variants"
+    Different texts use different notations:
+    
+    - $p(x, t \mid x_0, t_0)$ — conditional notation (used here)
+    - $p(t; x_0, x)$ — semicolon separating time from space
+    - $p_{t_0, x_0}(x, t)$ — subscript for initial condition
+    
+    All describe the same object: the probability density of $X_t = x$ given $X_{t_0} = x_0$.
 
 ---
 
@@ -55,7 +82,7 @@ $$
 **Regularity conditions**: The theorem requires:
 
 - $\mu(x)$ and $\sigma(x)$ are sufficiently smooth (typically $C^1$)
-- $\sigma(x) > 0$ (uniform ellipticity)
+- $\sigma(x) > 0$ (strict positivity; for uniform ellipticity, need $\sigma(x) \geq c > 0$)
 - Appropriate boundary conditions (natural, reflecting, or absorbing)
 
 ---
@@ -106,39 +133,40 @@ The Fokker–Planck equation arises from the adjoint relationship between the ge
 
 ## Expanded Form
 
-Expanding the derivatives explicitly using the product rule:
-
-**Drift term:**
-
-$$
--\frac{\partial}{\partial x}[\mu(x) p] = -\mu(x)\frac{\partial p}{\partial x} - \mu'(x)p
-$$
-
-**Diffusion term:** Let $D(x) = \sigma^2(x)$. Then:
-
-$$
-\frac{1}{2}\frac{\partial^2}{\partial x^2}[D(x) p] = \frac{1}{2}D(x)\frac{\partial^2 p}{\partial x^2} + D'(x)\frac{\partial p}{\partial x} + \frac{1}{2}D''(x)p
-$$
-
-Since $D' = 2\sigma\sigma'$ and $D'' = 2(\sigma')^2 + 2\sigma\sigma''$:
-
-$$
-\frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p] = \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \sigma(x)\sigma'(x)\frac{\partial p}{\partial x} + \left[(\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
-$$
-
-**Combined:**
-
-$$
-\frac{\partial p}{\partial t} = \left[-\mu(x) + \sigma(x)\sigma'(x)\right]\frac{\partial p}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \left[-\mu'(x) + (\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
-$$
-
-For **constant coefficients** ($\mu, \sigma = \text{const}$), this simplifies to:
+For **constant coefficients** ($\mu, \sigma = \text{const}$), the Fokker–Planck equation simplifies to:
 
 $$
 \frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
 $$
 
 This is the **advection–diffusion equation**: probability advects with velocity $\mu$ and diffuses with coefficient $\sigma^2/2$.
+
+??? note "Full Expansion for Variable Coefficients"
+    Expanding the derivatives explicitly using the product rule:
+
+    **Drift term:**
+
+    $$
+    -\frac{\partial}{\partial x}[\mu(x) p] = -\mu(x)\frac{\partial p}{\partial x} - \mu'(x)p
+    $$
+
+    **Diffusion term:** Let $D(x) = \sigma^2(x)$. Then:
+
+    $$
+    \frac{1}{2}\frac{\partial^2}{\partial x^2}[D(x) p] = \frac{1}{2}D(x)\frac{\partial^2 p}{\partial x^2} + D'(x)\frac{\partial p}{\partial x} + \frac{1}{2}D''(x)p
+    $$
+
+    Since $D' = 2\sigma\sigma'$ and $D'' = 2(\sigma')^2 + 2\sigma\sigma''$:
+
+    $$
+    \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p] = \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \sigma(x)\sigma'(x)\frac{\partial p}{\partial x} + \left[(\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
+    $$
+
+    **Combined:**
+
+    $$
+    \frac{\partial p}{\partial t} = \left[-\mu(x) + \sigma(x)\sigma'(x)\right]\frac{\partial p}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \left[-\mu'(x) + (\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
+    $$
 
 ---
 
@@ -305,17 +333,26 @@ $$
     1. $\sigma(x) > 0$ for all $x$ in the domain
     2. The integral converges (normalizability)
     3. Boundary conditions are compatible (reflecting or natural)
+    4. The process is **positive recurrent** (returns to compact sets in finite expected time)
     
-    For example, standard Brownian motion on $\mathbb{R}$ has **no** stationary distribution.
+    For example, standard Brownian motion on $\mathbb{R}$ has **no** stationary distribution (it is null recurrent).
 
 ---
 
 ## Comparison: Backward vs Forward
 
+The backward and forward equations describe the **same transition density** $p$ from different perspectives:
+
+- **Backward**: $p$ as a function of initial point $(x_0, t_0)$, with terminal point $(x, t)$ fixed
+- **Forward**: $p$ as a function of terminal point $(x, t)$, with initial point $(x_0, t_0)$ fixed
+
+They are **adjoint PDEs** — the forward equation uses $\mathcal{L}^*$, the adjoint of the backward generator $\mathcal{L}$.
+
 | Aspect | Backward (Kolmogorov) | Forward (Fokker–Planck) |
 |--------|----------------------|------------------------|
 | **Equation** | $\partial_{t_0} p + \mathcal{L}_{x_0} p = 0$ | $\partial_t p = \mathcal{L}_x^* p$ |
 | **Acts on** | Initial point $(x_0, t_0)$ | Current point $(x, t)$ |
+| **Operator** | Generator $\mathcal{L}$ | Adjoint $\mathcal{L}^*$ |
 | **Question answered** | "What's the expected payoff starting from here?" | "Where will the process be?" |
 | **Time direction** | Backward from terminal | Forward from initial |
 | **Used for** | Option pricing, expected values | Density evolution, long-time behavior |
@@ -334,9 +371,11 @@ where the diffusion matrix is $a^{ij} = \sum_{\alpha}\sigma^{i\alpha}\sigma^{j\a
 
 ---
 
-## Connection to Score Functions
+## Connection to Score Functions (Advanced)
 
 !!! tip "Relevance to Generative Models"
+    This section connects classical Fokker–Planck theory to modern machine learning. It can be skipped on first reading.
+    
     Given a **marginal density** $p(x, t)$ (obtained by integrating the transition density against a data distribution), the **score function** is:
 
     $$
@@ -349,7 +388,7 @@ where the diffusion matrix is $a^{ij} = \sum_{\alpha}\sigma^{i\alpha}\sigma^{j\a
     - **Reverse-time SDEs** for diffusion models
     - **Denoising score matching** in modern generative AI
 
-    The Fokker–Planck equation governs the evolution of $p(x, t)$, which determines the score. For time-reversal of diffusions, one needs:
+    The Fokker–Planck equation governs the evolution of $p(x, t)$, which determines the score. For time-reversal of diffusions, the reverse-time SDE is (Anderson, 1982):
 
     $$
     dX_t = \left[\mu(X_t) - \sigma^2(X_t) \nabla_x \log p(X_t, t)\right] dt + \sigma(X_t)\,d\bar{W}_t

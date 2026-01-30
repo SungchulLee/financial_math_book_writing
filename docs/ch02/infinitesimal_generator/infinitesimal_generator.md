@@ -2,6 +2,11 @@
 
 The **infinitesimal generator** is the fundamental object that characterizes a Markov process. It captures the local dynamics of the process and connects stochastic differential equations to partial differential equations. Understanding generators is essential for Dynkin's formula, Kolmogorov equations, the Feynman–Kac formula, and the martingale problem.
 
+!!! warning "Scope of This Document"
+    This document focuses on **diffusion processes**—continuous Markov processes driven by Brownian motion. The generator takes the form of a second-order differential operator.
+    
+    For **jump processes** (Lévy processes, compound Poisson), the generator includes an integral term and becomes an integro-differential operator. See [Lévy Processes and Jump Diffusions](../levy_processes/generator_levy.md) for that generalization.
+
 !!! tip "Related Content"
     - [Dynkin's Formula](dynkin_formula.md) — integral form of the generator
     - [Generator and Martingales](generator_and_martingales.md) — martingale characterization
@@ -22,18 +27,34 @@ $$
 
 The answer is the **generator** acting on $f$.
 
+### Why Should You Care? A Financial Example
+
+Consider **geometric Brownian motion** $dS_t = \mu S_t \, dt + \sigma S_t \, dW_t$ modeling a stock price. Its generator is:
+
+$$
+\mathcal{L} = \mu S \frac{\partial}{\partial S} + \frac{\sigma^2 S^2}{2} \frac{\partial^2}{\partial S^2}
+$$
+
+The **Black–Scholes PDE** for option pricing is:
+
+$$
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
+$$
+
+This is precisely $\partial_t V + \mathcal{L}^{(r)} V - rV = 0$, where $\mathcal{L}^{(r)}$ is the generator under the risk-neutral measure. The generator is the **bridge** connecting the stochastic model to the pricing PDE.
+
 ---
 
 ## Definition
 
-Let $X_t$ be a Markov process on $\mathbb{R}^d$.
+Let $X_t$ be a time-inhomogeneous Markov process on $\mathbb{R}^d$ with dynamics that may depend on time.
 
-!!! abstract "Definition (Infinitesimal Generator)"
-    The **infinitesimal generator** $\mathcal{L}$ is the operator defined by:
+!!! abstract "Definition (Infinitesimal Generator — Pointwise)"
+    The **infinitesimal generator** $\mathcal{L}_t$ at time $t_0$ is the operator defined by:
 
     $$
     \boxed{
-    (\mathcal{L}f)(x_0) := \lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] - f(x_0)}{h}
+    (\mathcal{L}_{t_0} f)(x_0) := \lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] - f(x_0)}{h}
     }
     $$
 
@@ -43,12 +64,7 @@ Let $X_t$ be a Markov process on $\mathbb{R}^d$.
     \mathrm{Dom}(\mathcal{L}) = \left\{ f : \text{the limit exists for all } x_0 \right\}
     $$
 
-**Interpretation**: $(\mathcal{L}f)(x_0)$ is the **instantaneous expected rate of change** of $f$ at position $x_0$.
-
-!!! note "Notation"
-    For time-homogeneous processes, the generator does not depend on $t_0$, so we simply write $(\mathcal{L}f)(x)$. The subscript notation $\mathbb{E}_{x}[\cdot]$ is also common:
-    
-    $$(\mathcal{L}f)(x) = \lim_{h \downarrow 0} \frac{\mathbb{E}_x[f(X_h)] - f(x)}{h}$$
+**Interpretation**: $(\mathcal{L}_{t_0} f)(x_0)$ is the **instantaneous expected rate of change** of $f$ at position $x_0$, starting at time $t_0$.
 
 ---
 
@@ -68,16 +84,31 @@ $$
 }
 $$
 
-The subscript $t$ on $\mathcal{L}_t$ indicates that the generator may depend on time through the coefficients $\mu(x,t)$ and $\sigma(x,t)$.
+!!! info "Meaning of the Subscript $t$"
+    The subscript $t$ on $\mathcal{L}_t$ indicates that the coefficients are **evaluated at time $t$**. Specifically, when computing $(\mathcal{L}_{t_0} f)(x_0)$, we use:
+    
+    - Drift: $\mu(x_0, t_0)$
+    - Diffusion: $\sigma(x_0, t_0)$
+    
+    The generator acts on the **spatial variable** $x$ while the subscript specifies the **time at which coefficients are frozen**.
 
 !!! note "Time-Homogeneous Case"
     When coefficients are independent of time, i.e., $\mu(x,t) = \mu(x)$ and $\sigma(x,t) = \sigma(x)$, the generator simplifies to:
     
     $$(\mathcal{L}f)(x) = \mu(x)f'(x) + \frac{1}{2}\sigma^2(x)f''(x)$$
     
-    and we drop the subscript $t$.
+    and we drop the subscript $t$. The subscript notation $\mathbb{E}_{x}[\cdot]$ is also common:
+    
+    $$(\mathcal{L}f)(x) = \lim_{h \downarrow 0} \frac{\mathbb{E}_x[f(X_h)] - f(x)}{h}$$
 
 ### Derivation via Itô's Lemma
+
+!!! warning "Regularity Assumptions"
+    The following derivation requires:
+    
+    1. **Smoothness**: $f \in C^2(\mathbb{R})$ (twice continuously differentiable)
+    2. **Integrability**: $\mathbb{E}\left[\int_{t_0}^{t_0+h} |f'(X_s)|^2 \sigma^2(X_s, s) \, ds\right] < \infty$ for the Itô integral to be a martingale
+    3. **Coefficient regularity**: $\mu$ and $\sigma$ satisfy conditions ensuring the SDE has a strong solution
 
 Apply Itô's lemma to $f(X_t)$:
 
@@ -93,7 +124,7 @@ $$
 = \underbrace{\left[\mu(X_t, t)f'(X_t) + \frac{1}{2}\sigma^2(X_t, t)f''(X_t)\right]}_{(\mathcal{L}_t f)(X_t)}dt + f'(X_t)\sigma(X_t, t)\,dW_t
 $$
 
-Taking expectations (the Itô integral has zero expectation):
+Taking expectations (the Itô integral has zero expectation under the integrability condition):
 
 $$
 \frac{d}{dh}\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0]\Big|_{h=0} = (\mathcal{L}_{t_0} f)(x_0)
@@ -107,15 +138,49 @@ $$
 
 ---
 
+## Extended Generator for Time-Dependent Functions
+
+When working with functions $f(x, t)$ that depend explicitly on both space and time, we need the **extended generator**.
+
+!!! abstract "Definition (Extended Generator)"
+    For $f: \mathbb{R}^d \times [0, T] \to \mathbb{R}$ with $f \in C^{2,1}$ (twice differentiable in $x$, once in $t$), the **extended generator** is:
+
+    $$
+    \boxed{
+    (\tilde{\mathcal{L}} f)(x, t) = \frac{\partial f}{\partial t}(x, t) + (\mathcal{L}_t f)(x, t)
+    }
+    $$
+
+    Explicitly:
+
+    $$
+    (\tilde{\mathcal{L}} f)(x, t) = \frac{\partial f}{\partial t} + \mu(x, t)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2 f}{\partial x^2}
+    $$
+
+**Why this matters**: The extended generator appears naturally in:
+
+- **Feynman–Kac formula**: The PDE $\tilde{\mathcal{L}} u - r u = 0$ connects to discounted expectations
+- **Dynkin's formula for time-dependent functions**: $f(X_t, t) - f(X_{t_0}, t_0) - \int_{t_0}^t (\tilde{\mathcal{L}} f)(X_s, s) \, ds$ is a martingale
+- **Kolmogorov backward equation**: Written compactly as $\tilde{\mathcal{L}} u = 0$
+
+See [Feynman–Kac Formula](feynman_kac.md) for the primary application.
+
+---
+
 ## Multidimensional Generator
 
-For a $d$-dimensional diffusion:
+For a $d$-dimensional diffusion driven by $m$ independent Brownian motions:
 
 $$
-dX_t^i = \mu^i(X_t, t)\,dt + \sum_{\alpha}\sigma^{i\alpha}(X_t, t)\,dW_t^\alpha
+dX_t^i = \mu^i(X_t, t)\,dt + \sum_{\alpha=1}^{m}\sigma^{i\alpha}(X_t, t)\,dW_t^\alpha, \quad i = 1, \ldots, d
 $$
 
-the generator is:
+!!! info "Index Convention"
+    - $i, j \in \{1, \ldots, d\}$: indices for state-space dimensions
+    - $\alpha \in \{1, \ldots, m\}$: indices for independent Brownian motions
+    - $\sigma$ is a $d \times m$ matrix: $\sigma^{i\alpha}$ is the sensitivity of $X^i$ to $W^\alpha$
+
+The generator is:
 
 $$
 \boxed{
@@ -123,12 +188,16 @@ $$
 }
 $$
 
-where $a^{ij}(x,t) = \sum_{\alpha}\sigma^{i\alpha}(x,t)\sigma^{j\alpha}(x,t)$ is the diffusion matrix.
+where the **diffusion matrix** (or covariance matrix) is:
+
+$$
+a^{ij}(x,t) = \sum_{\alpha=1}^{m}\sigma^{i\alpha}(x,t)\sigma^{j\alpha}(x,t) = (\sigma \sigma^\top)^{ij}
+$$
 
 **In vector notation**:
 
 $$
-\mathcal{L}_t f = \mu \cdot \nabla f + \frac{1}{2} a : \nabla^2 f
+\mathcal{L}_t f = \mu \cdot \nabla f + \frac{1}{2} a : \nabla^2 f = \mu \cdot \nabla f + \frac{1}{2} \mathrm{tr}(a \cdot \nabla^2 f)
 $$
 
 ---
@@ -163,6 +232,22 @@ $$
 \mathcal{L} = -\kappa x\frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}
 $$
 
+??? example "Worked Example: Computing $\mathcal{L}f$ for $f(x) = x^2$"
+    For the OU process with $f(x) = x^2$:
+    
+    - $f'(x) = 2x$
+    - $f''(x) = 2$
+    
+    Therefore:
+    
+    $$(\mathcal{L}f)(x) = -\kappa x \cdot 2x + \frac{\sigma^2}{2} \cdot 2 = -2\kappa x^2 + \sigma^2$$
+    
+    **Verification**: For small $h$, Dynkin's formula gives:
+    
+    $$\mathbb{E}[X_h^2 \mid X_0 = x_0] \approx x_0^2 + h(-2\kappa x_0^2 + \sigma^2) = x_0^2(1 - 2\kappa h) + \sigma^2 h$$
+    
+    This matches the exact formula $\mathbb{E}[X_h^2 \mid X_0 = x_0] = x_0^2 e^{-2\kappa h} + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa h})$ to first order in $h$.
+
 ### Example 4: Geometric Brownian Motion
 
 For $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$:
@@ -171,85 +256,90 @@ $$
 \mathcal{L} = \mu S\frac{d}{dS} + \frac{\sigma^2 S^2}{2}\frac{d^2}{dS^2}
 $$
 
+!!! warning "Domain Restriction"
+    GBM lives on the positive half-line $(0, \infty)$. The generator is only defined for $S > 0$, and functions in $\mathrm{Dom}(\mathcal{L})$ must satisfy appropriate boundary conditions as $S \to 0^+$ and $S \to \infty$. This is important for option pricing where payoffs may not be smooth at $S = 0$.
+
 ---
 
-## The Semigroup and Generator
+## Domain Considerations
 
-The generator is intimately connected to the **transition operators**.
+The generator is only defined for functions where the limit exists. This is not just a technicality—it affects which functions can be used in Dynkin's formula and related results.
 
-### Time-Homogeneous Case
+**Typical function spaces**:
 
-For time-homogeneous processes, define the **semigroup** $P_h$:
+| Space | Notation | Description |
+|-------|----------|-------------|
+| Smooth compact support | $C_c^\infty(\mathbb{R}^d)$ | Infinitely differentiable, zero outside a compact set |
+| Vanishing at infinity | $C_0^2(\mathbb{R}^d)$ | Twice differentiable, $f(x) \to 0$ as $\|x\| \to \infty$ |
+| Schwartz space | $\mathcal{S}(\mathbb{R}^d)$ | Rapidly decreasing with all derivatives |
+
+For diffusions with smooth coefficients, the generator is well-defined on $C^2$ functions satisfying appropriate growth conditions.
+
+!!! warning "Boundary and Growth Conditions"
+    The precise domain depends on:
+    
+    - **Boundary behavior**: reflection, absorption, or killing at boundaries
+    - **Coefficient degeneracy**: when $\sigma(x) \to 0$ at some points
+    - **Growth conditions**: behavior of $\mu$ and $\sigma$ at infinity
+    
+    For example, the generator of reflecting Brownian motion on $[0, \infty)$ requires boundary conditions at $x = 0$ (Neumann condition: $f'(0) = 0$).
+
+??? example "Functions Where the Generator Fails"
+    Consider Brownian motion with $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$.
+    
+    - $f(x) = |x|$ — $f''$ doesn't exist at $x = 0$
+    - $f(x) = e^{x^2}$ — may fail growth conditions at infinity
+    - $f(x) = \mathbf{1}_{[0,1]}(x)$ (indicator function) — not differentiable
+
+---
+
+## Transition Operators
+
+The generator describes **local** (infinitesimal) dynamics. The **transition operator** describes **global** (finite-time) evolution.
+
+!!! abstract "Definition (Transition Operator)"
+    The **transition operator** $P_{t_0, t}$ is defined by:
+
+    $$
+    (P_{t_0, t} f)(x_0) = \mathbb{E}[f(X_t) \mid X_{t_0} = x_0]
+    $$
+
+    It maps a function $f$ to its expected value at time $t$, given the process starts at $x_0$ at time $t_0$.
+
+The generator is the infinitesimal version:
 
 $$
-(P_h f)(x_0) = \mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0]
+(\mathcal{L}_{t_0} f)(x_0) = \lim_{h \downarrow 0} \frac{(P_{t_0, t_0+h} f)(x_0) - f(x_0)}{h}
 $$
 
-**Semigroup property**: $P_{h_1+h_2} = P_{h_1} \circ P_{h_2}$
+### Chapman–Kolmogorov Equation
 
-**Generator as derivative**:
-
-$$
-\mathcal{L} = \lim_{h \downarrow 0} \frac{P_h - I}{h} = \frac{d}{dh}\Big|_{h=0} P_h
-$$
-
-**Exponential relationship**:
-
-$$
-P_h = e^{h\mathcal{L}}
-$$
-
-This means:
-
-$$
-\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] = (e^{h\mathcal{L}}f)(x_0) = f(x_0) + h(\mathcal{L}f)(x_0) + \frac{h^2}{2}(\mathcal{L}^2 f)(x_0) + \cdots
-$$
-
-where $\mathcal{L}^2 f = \mathcal{L}(\mathcal{L}f)$ means applying the generator twice.
-
-### Time-Inhomogeneous Case
-
-For time-inhomogeneous processes, the semigroup property **fails** because $\mathcal{L}_t$ changes with time. Instead, we have a **two-parameter family** of operators:
-
-$$
-(P_{t_0, t} f)(x_0) = \mathbb{E}[f(X_t) \mid X_{t_0} = x_0]
-$$
-
-**Chapman–Kolmogorov equation**: For $t_0 < s < t$:
+The transition operators satisfy the **Chapman–Kolmogorov equation**: for $t_0 < s < t$,
 
 $$
 P_{t_0, t} = P_{s, t} \circ P_{t_0, s}
 $$
 
-**Time-ordered exponential (Dyson series)**:
+This is simply the **Markov property** in operator form: to compute the expectation at time $t$, we can first evolve to any intermediate time $s$, then continue from $s$ to $t$.
 
-The simple exponential $e^{(t-t_0)\mathcal{L}}$ no longer works. Instead:
-
-$$
-P_{t_0, t} = \mathcal{T} \exp\left(\int_{t_0}^{t} \mathcal{L}_s \, ds\right)
-$$
-
-where $\mathcal{T}$ denotes **time-ordering**. Expanding this gives:
-
-$$
-P_{t_0, t} = I + \int_{t_0}^{t} \mathcal{L}_{s_1} \, ds_1 + \int_{t_0}^{t} \int_{t_0}^{s_1} \mathcal{L}_{s_1} \mathcal{L}_{s_2} \, ds_2 \, ds_1 + \cdots
-$$
-
-!!! info "Why Time-Ordering?"
-    In the time-homogeneous case, $\mathcal{L}$ commutes with itself at different times (trivially, since it's the same operator). But when $\mathcal{L}_t$ depends on $t$, we generally have:
+!!! info "Operator Composition Order"
+    The composition $P_{s,t} \circ P_{t_0, s}$ means: **first** apply $P_{t_0, s}$ (evolve from $t_0$ to $s$), **then** apply $P_{s,t}$ (evolve from $s$ to $t$). In operator notation, the rightmost operator acts first:
     
-    $$\mathcal{L}_{t_1} \mathcal{L}_{t_2} \neq \mathcal{L}_{t_2} \mathcal{L}_{t_1}$$
-    
-    The time-ordering $\mathcal{T}$ ensures operators are applied in the correct chronological sequence: later times act first (to the left).
+    $$(P_{s,t} \circ P_{t_0, s})f = P_{s,t}(P_{t_0, s} f)$$
 
-### Comparison
+### Time-Homogeneous Case
 
-| Aspect | Time-Homogeneous | Time-Inhomogeneous |
-|--------|------------------|-------------------|
-| Operator family | One-parameter $P_h$ | Two-parameter $P_{t_0, t}$ |
-| Key property | Semigroup: $P_{h_1+h_2} = P_{h_1} P_{h_2}$ | Chapman–Kolmogorov: $P_{t_0,t} = P_{s,t} P_{t_0,s}$ |
-| Exponential formula | $P_h = e^{h\mathcal{L}}$ | $P_{t_0,t} = \mathcal{T}\exp\left(\int_{t_0}^t \mathcal{L}_s \, ds\right)$ |
-| Generator | Constant $\mathcal{L}$ | Time-dependent $\mathcal{L}_t$ |
+When coefficients don't depend on time, the transition operator depends only on the **time difference** $h = t - t_0$:
+
+$$
+P_{t_0, t_0 + h} = P_h \quad \text{(independent of } t_0\text{)}
+$$
+
+In this case, the Chapman–Kolmogorov equation becomes:
+
+$$
+P_{h_1 + h_2} = P_{h_1} \circ P_{h_2}
+$$
 
 ---
 
@@ -261,9 +351,9 @@ $$
 \mathcal{L}(\alpha f + \beta g) = \alpha \mathcal{L}f + \beta \mathcal{L}g
 $$
 
-### 2. Maximum Principle
+### 2. Maximum Principle (Diffusions Only)
 
-If $f$ attains a maximum at $x^*$ and $f \in \mathrm{Dom}(\mathcal{L})$:
+For **diffusion generators** (no jumps), if $f$ attains a maximum at $x^*$ and $f \in \mathrm{Dom}(\mathcal{L})$:
 
 $$
 (\mathcal{L}f)(x^*) \leq 0
@@ -275,6 +365,13 @@ $$
     $$(\mathcal{L}f)(x^*) = \mu(x^*) \cdot 0 + \frac{1}{2}\sigma^2(x^*) \cdot f''(x^*) \leq 0$$
 
     since $\sigma^2(x^*) \geq 0$.
+
+!!! warning "Failure for Jump Processes"
+    This maximum principle is **specific to diffusion generators**. For processes with jumps (e.g., Lévy processes), the generator includes an integral term:
+    
+    $$\mathcal{L}f(x) = \mu(x) f'(x) + \frac{\sigma^2(x)}{2}f''(x) + \int_{\mathbb{R}} \left[f(x+y) - f(x) - y f'(x) \mathbf{1}_{|y|<1}\right] \nu(dy)$$
+    
+    The integral term can be positive even at a maximum of $f$, violating the principle. This has important consequences for optimal stopping and free boundary problems with jumps.
 
 ### 3. Characterizes the Process
 
@@ -302,15 +399,15 @@ See [Martingale Problem](../diffusion_process/martingale_problem_stroock_varadha
 ## The Generator and Martingales
 
 !!! abstract "Theorem (Dynkin's Martingale)"
-    For $f \in \mathrm{Dom}(\mathcal{L})$, the process:
+    For $f \in C^2$ with appropriate integrability conditions, the process:
 
     $$
-    M_t^f := f(X_t) - f(X_{t_0}) - \int_{t_0}^t (\mathcal{L}f)(X_s)\,ds
+    M_t^f := f(X_t) - f(X_{t_0}) - \int_{t_0}^t (\mathcal{L}_s f)(X_s)\,ds
     $$
 
     is a **martingale** with respect to the natural filtration.
 
-**Proof**: This follows directly from Itô's lemma—the drift term is $(\mathcal{L}f)(X_s)\,ds$, and the Itô integral $\int f'(X_s)\sigma(X_s)\,dW_s$ is a martingale.
+**Proof**: This follows directly from Itô's lemma—the drift term is $(\mathcal{L}_s f)(X_s)\,ds$, and the Itô integral $\int f'(X_s)\sigma(X_s, s)\,dW_s$ is a martingale (under the square-integrability condition).
 
 See [Generator and Martingales](generator_and_martingales.md) for details.
 
@@ -323,6 +420,9 @@ $$
 $$
 
 **Consequence**: If $\mathcal{L}f = 0$, then $f(X_t)$ is a martingale.
+
+!!! note "Terminology"
+    The term "$\mathcal{L}$-harmonic" generalizes the classical notion of harmonic functions (satisfying $\Delta f = 0$). For standard Brownian motion where $\mathcal{L} = \frac{1}{2}\Delta$, a function is $\mathcal{L}$-harmonic if and only if it is classically harmonic. However, for other processes (e.g., OU process), $\mathcal{L}$-harmonic functions differ from classically harmonic functions.
 
 ---
 
@@ -339,6 +439,11 @@ $$
 $$
 
 where $\mathcal{L}_{t_0}$ acts on $x_0$ with coefficients evaluated at time $t_0$.
+
+!!! info "Sign Convention"
+    The equation is written with $t_0$ as the **initial time** variable, running backward from the terminal time $T$. As $t_0$ increases toward $T$, we have less time for the process to evolve, so $u$ approaches the terminal condition $g$.
+    
+    Some texts use $t$ as a forward time variable with $u(x, t) = \mathbb{E}[g(X_T) \mid X_t = x]$, yielding the same equation. The key point: the derivative is with respect to the **conditioning time**, and the generator acts on the **conditioning position**.
 
 See [Kolmogorov Backward Equation](kolmogorov_backward.md).
 
@@ -366,6 +471,8 @@ $$
 \frac{\partial u}{\partial t_0} + \mathcal{L}_{t_0} u - r(x_0, t_0) u = 0, \quad u(x_0, T) = g(x_0)
 $$
 
+Using the extended generator notation: $\tilde{\mathcal{L}} u - r u = 0$ where $\tilde{\mathcal{L}} = \partial_t + \mathcal{L}_t$.
+
 See [Feynman–Kac Formula](feynman_kac.md).
 
 ---
@@ -388,6 +495,37 @@ $$
 }
 $$
 
+??? abstract "Derivation via Integration by Parts"
+    Starting from the duality requirement, we compute $\int f \cdot \mathcal{L}_t g \, dx$ and integrate by parts to move derivatives onto $f$.
+    
+    **First-order term** (drift):
+    
+    $$\int_{-\infty}^{\infty} f(x) \cdot \mu(x,t) g'(x) \, dx$$
+    
+    Integrate by parts ($u = f \mu$, $dv = g' dx$):
+    
+    $$= \underbrace{[f \mu g]_{-\infty}^{\infty}}_{= 0} - \int_{-\infty}^{\infty} (f \mu)' g \, dx = -\int_{-\infty}^{\infty} \frac{\partial}{\partial x}[\mu f] \cdot g \, dx$$
+    
+    **Second-order term** (diffusion):
+    
+    $$\int_{-\infty}^{\infty} f(x) \cdot \frac{1}{2}\sigma^2(x,t) g''(x) \, dx$$
+    
+    Integrate by parts twice ($u = f \sigma^2/2$, $dv = g'' dx$):
+    
+    First integration:
+    $$= \underbrace{\left[\frac{\sigma^2 f}{2} g'\right]_{-\infty}^{\infty}}_{= 0} - \int_{-\infty}^{\infty} \frac{\partial}{\partial x}\left[\frac{\sigma^2 f}{2}\right] g' \, dx$$
+    
+    Second integration:
+    $$= -\underbrace{\left[\frac{\partial}{\partial x}\left(\frac{\sigma^2 f}{2}\right) g\right]_{-\infty}^{\infty}}_{= 0} + \int_{-\infty}^{\infty} \frac{\partial^2}{\partial x^2}\left[\frac{\sigma^2 f}{2}\right] g \, dx$$
+    
+    **Combining**:
+    
+    $$\int f \cdot \mathcal{L}_t g \, dx = \int \left( -\frac{\partial}{\partial x}[\mu f] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2 f] \right) g \, dx$$
+    
+    Therefore:
+    
+    $$\mathcal{L}^*_t f = -\frac{\partial}{\partial x}[\mu(x,t) f] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t) f]$$
+
 | Operator | Acts on | Formula |
 |----------|---------|---------|
 | $\mathcal{L}_t$ | Test functions | $\mu(x,t) f'(x) + \frac{1}{2}\sigma^2(x,t) f''(x)$ |
@@ -400,18 +538,38 @@ The adjoint appears in:
 
 ---
 
----
+## Beyond Diffusions: Jump Process Generators
 
-## Domain Considerations
+This document focuses on diffusion processes, but generators extend naturally to processes with jumps.
 
-The generator is only defined on its **domain** $\mathrm{Dom}(\mathcal{L})$.
+### Lévy Process Generator
 
-**Typical domains**:
+For a Lévy process with drift $b$, diffusion $\sigma$, and Lévy measure $\nu$, the generator is:
 
-- $C_0^2(\mathbb{R}^d)$: twice continuously differentiable functions vanishing at infinity
-- $C_c^\infty(\mathbb{R}^d)$: smooth compactly supported functions
+$$
+\mathcal{L}f(x) = b f'(x) + \frac{\sigma^2}{2}f''(x) + \int_{\mathbb{R} \setminus \{0\}} \left[f(x+y) - f(x) - y f'(x) \mathbf{1}_{|y|<1}\right] \nu(dy)
+$$
 
-**Core**: A subset $D \subset \mathrm{Dom}(\mathcal{L})$ is a **core** if $\mathcal{L}$ is uniquely determined by its values on $D$. Finding a core is important for the well-posedness of the martingale problem.
+The integral term captures the contribution of jumps:
+
+- $f(x+y) - f(x)$: change in $f$ due to a jump of size $y$
+- $-yf'(x)\mathbf{1}_{|y|<1}$: compensator for small jumps (ensures integrability)
+- $\nu(dy)$: Lévy measure giving the intensity of jumps of size $y$
+
+### Jump-Diffusion Generator
+
+For a jump-diffusion $dX_t = \mu(X_t)dt + \sigma(X_t)dW_t + dJ_t$ where $J_t$ is a compound Poisson process with intensity $\lambda$ and jump size distribution $F$:
+
+$$
+\mathcal{L}f(x) = \mu(x)f'(x) + \frac{\sigma^2(x)}{2}f''(x) + \lambda \int_{\mathbb{R}} [f(x+y) - f(x)] F(dy)
+$$
+
+!!! tip "Further Reading"
+    For a complete treatment of generators for jump processes, see [Lévy Processes and Jump Diffusions](../levy_processes/generator_levy.md). Key differences include:
+    
+    - The maximum principle fails (integral term can be positive at maxima)
+    - Domain requirements are different (smoothness conditions depend on $\nu$)
+    - The martingale problem requires different techniques
 
 ---
 
@@ -419,8 +577,9 @@ The generator is only defined on its **domain** $\mathrm{Dom}(\mathcal{L})$.
 
 | Object | Definition | Role |
 |--------|------------|------|
-| Generator $\mathcal{L}_t$ | $\lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0}=x_0] - f(x_0)}{h}$ | Local dynamics |
-| Semigroup $P_{t_0, t}$ | $\mathbb{E}[f(X_t) \mid X_{t_0} = x_0]$ | Global evolution |
+| Generator $\mathcal{L}_t$ | $\lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0}=x_0] - f(x_0)}{h}$ | Local (infinitesimal) dynamics |
+| Extended generator $\tilde{\mathcal{L}}$ | $\partial_t + \mathcal{L}_t$ | Time-dependent functions |
+| Transition operator $P_{t_0, t}$ | $\mathbb{E}[f(X_t) \mid X_{t_0} = x_0]$ | Global (finite-time) evolution |
 | Adjoint $\mathcal{L}^*_t$ | Defined by duality | Density evolution |
 
 $$
@@ -430,6 +589,33 @@ $$
 $$
 
 **The infinitesimal generator is the bridge between stochastic processes (SDEs) and partial differential equations (PDEs).**
+
+---
+
+??? note "Quick Reference: Key Formulas"
+    **1D Generator**:
+    $$\mathcal{L}_t f = \mu(x,t) f'(x) + \frac{\sigma^2(x,t)}{2} f''(x)$$
+    
+    **Extended Generator** (for $f(x,t)$):
+    $$\tilde{\mathcal{L}} f = \partial_t f + \mathcal{L}_t f$$
+    
+    **Multi-D Generator**:
+    $$\mathcal{L}_t f = \sum_i \mu^i \partial_i f + \frac{1}{2}\sum_{i,j} a^{ij} \partial_i \partial_j f$$
+    
+    **Adjoint**:
+    $$\mathcal{L}^*_t f = -\partial_x[\mu f] + \frac{1}{2}\partial_x^2[\sigma^2 f]$$
+    
+    **Transition Operator**:
+    $$(P_{t_0, t} f)(x_0) = \mathbb{E}[f(X_t) \mid X_{t_0} = x_0]$$
+    
+    **Dynkin's Martingale**:
+    $$M_t = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}_s f)(X_s) \, ds$$
+    
+    **Kolmogorov Backward**:
+    $$\partial_{t_0} u + \mathcal{L}_{t_0} u = 0$$
+    
+    **Fokker–Planck**:
+    $$\partial_t p = \mathcal{L}^*_t p$$
 
 ---
 

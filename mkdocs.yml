@@ -92,12 +92,13 @@ nav:
           - 2.7 Generator (Probab):
               - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
               - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
-              - Generator and Martingale: ch02/infinitesimal_generator/generator_and_martingales.md
+              - Generator and Martingales: ch02/infinitesimal_generator/generator_and_martingales.md
               - Applications of Dynkin: ch02/infinitesimal_generator/applications_of_dynkin.md
-          - 2.8 Generator (PDE):  # ADD
-              - Kolmogorov Forward: ch02/infinitesimal_generator/fokker_planck.md
+          - 2.8 Generator (PDE):
+              - Fokker–Planck (Forward): ch02/infinitesimal_generator/fokker_planck.md
               - Kolmogorov Backward: ch02/infinitesimal_generator/kolmogorov_backward.md
-              - Feynman-Kac: ch02/infinitesimal_generator/feynman_kac.md
+              - Feynman–Kac: ch02/infinitesimal_generator/feynman_kac.md
+              - Synthesis: Generator & PDEs: ch02/infinitesimal_generator/generator_pde_synthesis.md
 
       - 3 PDE:
           - 3.1 Heat Equation:
