@@ -5,7 +5,7 @@ The **infinitesimal generator** is the fundamental object that characterizes a M
 !!! warning "Scope of This Document"
     This document focuses on **diffusion processes**—continuous Markov processes driven by Brownian motion. The generator takes the form of a second-order differential operator.
     
-    For **jump processes** (Lévy processes, compound Poisson), the generator includes an integral term and becomes an integro-differential operator. See [Lévy Processes and Jump Diffusions](../levy_processes/generator_levy.md) for that generalization.
+    For **jump processes** (Lévy processes, compound Poisson), the generator includes an integral term and becomes an integro-differential operator.
 
 !!! tip "Related Content"
     - [Dynkin's Formula](dynkin_formula.md) — integral form of the generator
@@ -564,12 +564,11 @@ $$
 \mathcal{L}f(x) = \mu(x)f'(x) + \frac{\sigma^2(x)}{2}f''(x) + \lambda \int_{\mathbb{R}} [f(x+y) - f(x)] F(dy)
 $$
 
-!!! tip "Further Reading"
-    For a complete treatment of generators for jump processes, see [Lévy Processes and Jump Diffusions](../levy_processes/generator_levy.md). Key differences include:
+**Key differences for jump processes include**:
     
-    - The maximum principle fails (integral term can be positive at maxima)
-    - Domain requirements are different (smoothness conditions depend on $\nu$)
-    - The martingale problem requires different techniques
+- The maximum principle fails (integral term can be positive at maxima)
+- Domain requirements are different (smoothness conditions depend on $\nu$)
+- The martingale problem requires different techniques
 
 ---
 
