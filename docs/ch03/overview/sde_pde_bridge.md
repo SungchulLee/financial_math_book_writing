@@ -120,7 +120,7 @@ $$\frac{\partial u}{\partial t} = \mathcal{L} u, \quad u(0, x) = g(x)$$
 - Heat equation (for Brownian motion)
 - Expected hitting times
 
-See [Kolmogorov Backward Equation](kolmogorov_equations/kolmogorov_backward.md).
+See [Kolmogorov Backward Equation](../kolmogorov_equations/kolmogorov_backward.md).
 
 ### 2. Kolmogorov Forward Equation (Fokker–Planck)
 
@@ -136,7 +136,7 @@ $$\frac{\partial p}{\partial t} = \mathcal{L}^* p, \quad p(x, 0) = \delta(x - x_
 - Stationary distributions ($\mathcal{L}^* p_\infty = 0$)
 - Score functions in diffusion models
 
-See [Kolmogorov Forward Equation](kolmogorov_equations/kolmogorov_forward.md).
+See [Kolmogorov Forward Equation](../kolmogorov_equations/kolmogorov_forward.md).
 
 ### 3. Feynman–Kac Formula
 
@@ -152,7 +152,7 @@ $$\frac{\partial u}{\partial t} + \mathcal{L} u - r(x)u = 0, \quad u(T, x) = g(x
 - Bond pricing with stochastic rates
 - Optimal stopping problems
 
-See [Feynman–Kac Formula](feynman_kac/feynman_kac_formula.md).
+See [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md).
 
 ---
 
@@ -179,7 +179,7 @@ $$\mathbb{E}[g(X_T)] = \int g(x) p(x, T) \, dx$$
 
 The backward equation gives $\mathbb{E}[g(X_T)]$ directly; the forward equation gives the density $p$ which you integrate against $g$.
 
-See [Forward–Backward Duality](kolmogorov_equations/forward_backward_duality.md).
+See [Forward–Backward Duality](../kolmogorov_equations/forward_backward_duality.md).
 
 ---
 
@@ -247,36 +247,36 @@ This chapter develops the SDE–PDE connection systematically:
 
 The simplest case: Brownian motion and the heat equation.
 
-- [Heat Equation Overview](heat_equation/heat_equation_overview.md)
-- [Fundamental Solution](heat_equation/fundamental_solution.md)
-- [Scaling and Invariance](heat_equation/scaling_and_invariance.md)
-- [Maximum Principle](heat_equation/maximum_principle.md)
-- [Heat Equation and Brownian Motion](heat_equation/heat_equation_and_brownian_motion.md)
+- [Heat Equation Overview](../heat_equation/heat_equation_overview.md)
+- [Fundamental Solution](../heat_equation/fundamental_solution.md)
+- [Scaling and Invariance](../heat_equation/scaling_and_invariance.md)
+- [Maximum Principle](../heat_equation/maximum_principle.md)
+- [Heat Equation and Brownian Motion](../heat_equation/heat_equation_and_brownian_motion.md)
 
 ### Kolmogorov Equations (Section 3.3)
 
 The general theory for diffusion processes.
 
-- [Kolmogorov Forward (Fokker–Planck)](kolmogorov_equations/kolmogorov_forward.md)
-- [Kolmogorov Backward](kolmogorov_equations/kolmogorov_backward.md)
-- [Forward–Backward Duality](kolmogorov_equations/forward_backward_duality.md)
+- [Kolmogorov Forward (Fokker–Planck)](../kolmogorov_equations/kolmogorov_forward.md)
+- [Kolmogorov Backward](../kolmogorov_equations/kolmogorov_backward.md)
+- [Forward–Backward Duality](../kolmogorov_equations/forward_backward_duality.md)
 
 ### Feynman–Kac Formula (Section 3.4)
 
 Discounting, killing, and the connection to finance.
 
-- [Feynman–Kac Formula](feynman_kac/feynman_kac_formula.md)
-- [Running Payoff Extension](feynman_kac/feynman_kac_running_payoff.md)
-- [Applications](feynman_kac/feynman_kac_applications.md)
+- [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md)
+- [Running Payoff Extension](../feynman_kac/feynman_kac_running_payoff.md)
+- [Applications](../feynman_kac/feynman_kac_applications.md)
 
 ### Pricing PDEs (Section 3.5)
 
 Applications to derivative pricing.
 
-- [Black–Scholes PDE Derivation](pricing_pdes/black_scholes_pde_from_sde.md)
-- [Discounting and Killing](pricing_pdes/discounting_and_killing_term.md)
-- [Greeks from PDE](pricing_pdes/greeks_from_pde.md)
-- [Boundary Conditions](pricing_pdes/terminal_and_boundary_conditions.md)
+- [Black–Scholes PDE Derivation](../pricing_pdes/black_scholes_pde_from_sde.md)
+- [Discounting and Killing](../pricing_pdes/discounting_and_killing_term.md)
+- [Greeks from PDE](../pricing_pdes/greeks_from_pde.md)
+- [Boundary Conditions](../pricing_pdes/terminal_and_boundary_conditions.md)
 
 ---
 

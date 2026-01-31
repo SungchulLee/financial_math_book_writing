@@ -3,7 +3,7 @@
 The **Fokker–Planck equation** (also called the **Kolmogorov forward equation**) describes the time evolution of the probability density of a diffusion process. While the backward equation acts on initial conditions $(x_0, t_0)$, the forward equation acts on current state $(x, t)$—tracking how probability mass spreads over time.
 
 !!! tip "Related Content"
-    - [Kolmogorov Forward (PDE Methods)](../../ch03/kolmogorov_equation/kolmogorov_forward_equation.md) — analytical solution techniques
+    - [Kolmogorov Forward (PDE Methods)](../../ch03/kolmogorov_equations/kolmogorov_forward.md) — analytical solution techniques
     - [Kolmogorov Backward Equation](kolmogorov_backward.md) — the dual equation
     - [Infinitesimal Generator](infinitesimal_generator.md) — probabilistic foundations
     - [Invariant Measures](../diffusion_process/invariant_measures_and_stationarity.md) — stationary distributions
@@ -420,7 +420,7 @@ The Fokker–Planck equation describes how probability density evolves forward i
 
 ## See Also
 
-- [Kolmogorov Forward (PDE Methods)](../../ch03/kolmogorov_equation/kolmogorov_forward_equation.md) — analytical and numerical solutions
+- [Kolmogorov Forward (PDE Methods)](../../ch03/kolmogorov_equations/kolmogorov_forward.md) — analytical and numerical solutions
 - [Kolmogorov Backward Equation](kolmogorov_backward.md) — the dual equation for expectations
 - [Heat Equation](../../ch03/heat_equation/heat_equation_overview.md) — Fokker–Planck for standard Brownian motion
 - [Infinitesimal Generator](infinitesimal_generator.md) — the operator $\mathcal{L}$
