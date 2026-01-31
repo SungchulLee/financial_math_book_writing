@@ -10,8 +10,8 @@ The **infinitesimal generator** is the fundamental object that characterizes a M
 !!! tip "Related Content"
     - [Dynkin's Formula](dynkin_formula.md) — integral form of the generator
     - [Generator and Martingales](generator_and_martingales.md) — martingale characterization
-    - [Fokker–Planck Equation](fokker_planck.md) — the adjoint generator and density evolution
-    - [Kolmogorov Backward Equation](kolmogorov_backward.md) — PDE for expectations
+    - [Fokker–Planck Equation](../../ch03/kolmogorov_equations/kolmogorov_forward.md) — the adjoint generator and density evolution
+    - [Kolmogorov Backward Equation](../../ch03/kolmogorov_equations/kolmogorov_backward.md) — PDE for expectations
 
 ---
 
@@ -163,7 +163,7 @@ When working with functions $f(x, t)$ that depend explicitly on both space and t
 - **Dynkin's formula for time-dependent functions**: $f(X_t, t) - f(X_{t_0}, t_0) - \int_{t_0}^t (\tilde{\mathcal{L}} f)(X_s, s) \, ds$ is a martingale
 - **Kolmogorov backward equation**: Written compactly as $\tilde{\mathcal{L}} u = 0$
 
-See [Feynman–Kac Formula](feynman_kac.md) for the primary application.
+See [Feynman–Kac Formula](../../ch03/feynman_kac/feynman_kac_formula.md) for the primary application.
 
 ---
 
@@ -445,7 +445,7 @@ where $\mathcal{L}_{t_0}$ acts on $x_0$ with coefficients evaluated at time $t_0
     
     Some texts use $t$ as a forward time variable with $u(x, t) = \mathbb{E}[g(X_T) \mid X_t = x]$, yielding the same equation. The key point: the derivative is with respect to the **conditioning time**, and the generator acts on the **conditioning position**.
 
-See [Kolmogorov Backward Equation](kolmogorov_backward.md).
+See [Kolmogorov Backward Equation](../../ch03/kolmogorov_equations/kolmogorov_backward.md).
 
 ### Kolmogorov Forward (Fokker–Planck) Equation
 
@@ -455,7 +455,7 @@ $$
 \frac{\partial p}{\partial t} = \mathcal{L}^*_t p
 $$
 
-where $\mathcal{L}^*_t$ is the **adjoint** of $\mathcal{L}_t$, acting on $x$ with coefficients evaluated at time $t$. See [Fokker–Planck Equation](fokker_planck.md).
+where $\mathcal{L}^*_t$ is the **adjoint** of $\mathcal{L}_t$, acting on $x$ with coefficients evaluated at time $t$. See [Fokker–Planck Equation](../../ch03/kolmogorov_equations/kolmogorov_forward.md).
 
 ### Feynman–Kac Formula
 
@@ -623,6 +623,6 @@ $$
 - [Dynkin's Formula](dynkin_formula.md) — integral form connecting generator to expectations
 - [Generator and Martingales](generator_and_martingales.md) — martingale characterization
 - [Fokker–Planck Equation](fokker_planck.md) — forward equation using $\mathcal{L}^*$
-- [Kolmogorov Backward Equation](kolmogorov_backward.md) — backward equation using $\mathcal{L}$
-- [Feynman–Kac Formula](feynman_kac.md) — discounted expectations
+- [Kolmogorov Backward Equation](../../ch03/kolmogorov_equations/kolmogorov_backward.md) — backward equation using $\mathcal{L}$
+- [Feynman–Kac Formula](../../ch03/feynman_kac/feynman_kac_formula.md) — discounted expectations
 - [Martingale Problem](../diffusion_process/martingale_problem_stroock_varadhan.md) — characterization via generator
