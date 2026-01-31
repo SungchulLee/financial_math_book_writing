@@ -311,7 +311,7 @@ The mathematics developed for physics became the foundation of quantitative fina
 
 ## See Also
 
-- [Infinitesimal Generator](../ch02/infinitesimal_generator/infinitesimal_generator.md) — the operator that starts it all
-- [Dynkin's Formula](../ch02/infinitesimal_generator/dynkin_formula.md) — integral form of the backward equation
-- [Generator and Martingales](../ch02/infinitesimal_generator/generator_and_martingales.md) — martingale characterization
-- [Invariant Measures](../ch02/diffusion_process/invariant_measures_and_stationarity.md) — long-time behavior from Fokker–Planck
+- [Infinitesimal Generator](.../ch02/infinitesimal_generator/infinitesimal_generator.md) — the operator that starts it all
+- [Dynkin's Formula](.../ch02/infinitesimal_generator/dynkin_formula.md) — integral form of the backward equation
+- [Generator and Martingales](.../ch02/infinitesimal_generator/generator_and_martingales.md) — martingale characterization
+- [Invariant Measures](.../ch02/diffusion_process/invariant_measures_and_stationarity.md) — long-time behavior from Fokker–Planck
