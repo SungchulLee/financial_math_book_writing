@@ -273,9 +273,9 @@ Discounting, killing, and the connection to finance.
 
 Applications to derivative pricing.
 
-- [Discounting and Killing](../bs_pde_structure/discounting_and_killing_term.md)
-- [Greeks from PDE](../bs_pde_structure/greeks_from_pde.md)
-- [Boundary Conditions](../bs_pde_structure/terminal_and_boundary_conditions.md)
+- [Discounting and Killing](../../ch05/bs_pde_structure/discounting_and_killing_term.md)
+- [Greeks from PDE](../../ch05/bs_pde_structure/greeks_from_pde.md)
+- [Boundary Conditions](../../ch05/bs_pde_structure/terminal_and_boundary_conditions.md)
 
 ---
 
