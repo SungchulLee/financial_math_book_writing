@@ -94,12 +94,6 @@ nav:
               - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
               - Generator and Martingales: ch02/infinitesimal_generator/generator_and_martingales.md
               - Applications of Dynkin: ch02/infinitesimal_generator/applications_of_dynkin.md
-          # NOTE: Section 2.8 (Generator PDE) has been moved to Chapter 3
-          # The following files should be MOVED to ch03:
-          #   - fokker_planck.md -> ch03/kolmogorov_equations/kolmogorov_forward.md (merged)
-          #   - kolmogorov_backward.md -> ch03/kolmogorov_equations/kolmogorov_backward.md
-          #   - feynman_kac.md -> ch03/feynman_kac/feynman_kac_formula.md
-          #   - generator_pde_synthesis.md -> absorbed into ch03/overview/sde_pde_bridge.md
 
       - 3 PDE:
           - 3.1 Overview:
@@ -118,88 +112,6 @@ nav:
               - Feynman–Kac Theorem: ch03/feynman_kac/feynman_kac_formula.md
               - Running Payoff Extension: ch03/feynman_kac/feynman_kac_running_payoff.md
               - Applications: ch03/feynman_kac/feynman_kac_applications.md
-          - 3.5 Pricing PDEs:
-              - BS PDE Derivation: ch03/pricing_pdes/black_scholes_pde_from_sde.md
-              - Discounting and Killing: ch03/pricing_pdes/discounting_and_killing_term.md
-              - Greeks from PDE: ch03/pricing_pdes/greeks_from_pde.md
-              - Boundary Conditions: ch03/pricing_pdes/terminal_and_boundary_conditions.md
-
-    #   - 2 SDE:
-    #       - 2.1 Empirical Motivation:
-    #           - Real Stock Returns: ch02/empirical_motivation/stock_data_and_returns.md
-    #           - Stylized Facts: ch02/empirical_motivation/stylized_facts.md
-    #           - Why Deterministic Fails: ch02/empirical_motivation/why_deterministic_fails.md
-    #           - Bridge to SDEs: ch02/empirical_motivation/bridge_to_sdes.md
-    #       - 2.2 Itô Integration:
-    #           - Quadratic Variation: ch02/ito_integral/quadratic_variation.md
-    #           - Lebesgue Integral (Intuitive): ch02/ito_integral/lebesgue_integration_intuitive.md
-    #           - Itô Integral (Intuitive): ch02/ito_integral/ito_integration_intuitive.md
-    #           - Construction of Itô Integral: ch02/ito_integral/ito_integral_construction.md
-    #           - Itô Isometry: ch02/ito_integral/ito_isometry.md
-    #           - Properties of Itô Integrals: ch02/ito_integral/ito_integral_properties.md
-    #           - Itô Processes: ch02/ito_integral/ito_processes.md
-    #           - Stratonovich Integral: ch02/ito_integral/stratonovich_integration.md
-    #       - 2.3 Itô Formula:
-    #           - Taylor Expansion (Linear): ch02/ito_lemma/taylor_expansion_linear.md
-    #           - Taylor Expansion (Quad): ch02/ito_lemma/taylor_expansion_quadratic.md
-    #           - from Taylor to Itô: ch02/ito_lemma/from_taylor_to_ito.md
-    #           - Itô Lemma: ch02/ito_lemma/ito_lemma.md
-    #           - Why Itô Lemma Matters: ch02/ito_lemma/ito_lemma_why_it_matters.md
-    #           - Itô Lemma (Multi-Dim): ch02/ito_lemma/ito_lemma_multidimensional_version.md
-    #           - Itô Product Rule: ch02/ito_lemma/ito_product_rule.md
-    #           - Integration by Parts: ch02/ito_lemma/ito_integration_by_parts.md
-    #           - Itô Quotient Rule: ch02/ito_lemma/ito_quotient_rule.md
-    #           - Applications and Examples: ch02/ito_lemma/ito_calculus_applications.md
-    #       - 2.4 SDE:
-    #           - SDE: ch02/sde/stochastic_differential_equations.md
-    #           - Examples: ch02/sde/sde_examples.md
-    #           - Solving SDE: ch02/sde/solving_sde.md
-    #           - Verifying SDE Solution: ch02/sde/verifying_sde_solutions.md
-    #           - Moment Analysis: ch02/sde/sde_moment_analysis.md
-    #           - SDE Simulation: ch02/sde/sde_simulation.md
-    #       - 2.5 Exist & Unique:  # EXPAND
-    #           - Lipschitz & Growth: ch02/existence_uniqueness/lipschitz_conditions.md
-    #           - Picard Iteration: ch02/existence_uniqueness/picard_iteration.md
-    #           - Strong vs Weak Solutions: ch02/existence_uniqueness/strong_vs_weak.md
-    #       - 2.6 Diffusion Process:
-    #           - Diffusion Process Overview: ch02/diffusion_process/diffusion_process_overview.md
-    #           - Strong Markov Property: ch02/diffusion_process/strong_markov_property.md
-    #           - Stroock–Varadhan Problem: ch02/diffusion_process/martingale_problem_stroock_varadhan.md
-    #           - Invariant Measures: ch02/diffusion_process/invariant_measures_and_stationarity.md
-    #           - Time Reversal of Diffusions: ch02/diffusion_process/time_reversal_of_diffusions.md
-    #           - Large Deviations: ch02/diffusion_process/small_noise_and_large_deviations.md
-    #       - 2.7 Generator (Probab):
-    #           - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
-    #           - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
-    #           - Generator and Martingales: ch02/infinitesimal_generator/generator_and_martingales.md
-    #           - Applications of Dynkin: ch02/infinitesimal_generator/applications_of_dynkin.md
-    #       - 2.8 Generator (PDE):
-    #           - Fokker–Planck (Forward): ch02/infinitesimal_generator/fokker_planck.md
-    #           - Kolmogorov Backward: ch02/infinitesimal_generator/kolmogorov_backward.md
-    #           - Feynman–Kac: ch02/infinitesimal_generator/feynman_kac.md
-    #           - Synthesis: ch02/infinitesimal_generator/generator_pde_synthesis.md
-
-    #   - 3 PDE:
-    #       - 3.1 Heat Equation:
-    #           - Heat Equation Overview: ch03/heat_equation/heat_equation_overview.md
-    #           - Fundamental Solution: ch03/heat_equation/fundamental_solution.md
-    #           - Scaling and Invariance: ch03/heat_equation/scaling_and_invariance.md
-    #           - Heat Eq and BM: ch03/heat_equation/heat_equation_and_brownian_motion.md
-    #           - Maximum Principle: ch03/heat_equation/maximum_principle.md
-    #       - 3.2 Kolmogorov:
-    #           - Kolmogorov Forward: ch03/kolmogorov_equation/kolmogorov_forward_equation.md
-    #           - Kolmogorov Backward: ch03/kolmogorov_equation/kolmogorov_backward_equation.md
-    #       - 3.3 Feynman–Kac:
-    #           - Feynman–Kac Overview: ch03/feynman_kac/feynman_kac_overview.md
-    #           - FK Terminal Payoff: ch03/feynman_kac/feynman_kac_discounted_terminal.md
-    #           - FK Running Payoff: ch03/feynman_kac/feynman_kac_running_payoff.md
-    #           - Feynman–Kac Applications: ch03/feynman_kac/feynman_kac_applications_and_duality.md
-    #       - 3.4 SDE to PDE:
-    #           - Generator and Pricing PDE: ch03/pricing_pdes/infinitesimal_generator_and_pde.md
-    #           - Discounting and Killing: ch03/pricing_pdes/discounting_and_killing_term.md
-    #           - Boundary and Terminal: ch03/pricing_pdes/terminal_and_boundary_conditions.md
-    #           - SDE to Black–Scholes PDE: ch03/pricing_pdes/black_scholes_pde_from_sde.md
-    #           - Greeks from PDE: ch03/pricing_pdes/greeks_from_pde.md
 
       - 4 Measure Change:
           - 4.1 Martingale Basics:
@@ -247,7 +159,11 @@ nav:
               - Risk-Neutral Measure: ch05/bs_pde_derivation/risk_neutral_martingale_measure.md
               - Change of Numéraire: ch05/bs_pde_derivation/change_of_numeraire.md
               - Equilibrium: ch05/bs_pde_derivation/equilibrium.md
-          - 5.5 BS PDE Analytic Sol:
+          - 5.5 BS PDE Structure:
+              - Discounting and Killing: ch05/bs_pde_structure/discounting_and_killing_term.md
+              - Greeks from PDE: ch05/bs_pde_structure/greeks_from_pde.md
+              - Boundary Conditions: ch05/bs_pde_structure/terminal_and_boundary_conditions.md
+          - 5.6 BS PDE Analytic Sol:
               - Heat Equation: ch05/bs_pde_analytic_solution/heat_equation.md
               - Separation of Variables: ch05/bs_pde_analytic_solution/separation_of_variables.md
               - Similarity Solutions: ch05/bs_pde_analytic_solution/similarity_solutions.md
@@ -257,21 +173,21 @@ nav:
               - Feynman-Kac Formula: ch05/bs_pde_analytic_solution/feynman_kac.md
               - Change of Numéraire: ch05/bs_pde_analytic_solution/change_of_numeraire.md
               - Viscosity Solutions: ch05/bs_pde_analytic_solution/viscosity_solutions.md
-          - 5.6 BS Formula:
+          - 5.7 BS Formula:
               - The Formula: ch05/black_scholes_formula/bs_formula_statement.md
               - Probabilistic Interpretation: ch05/black_scholes_formula/probabilistic_interpretation.md
               - Put-Call Parity: ch05/black_scholes_formula/put_call_parity.md
               - Asymptotic Behavior: ch05/black_scholes_formula/asymptotic_behavior.md
               - Properties and Bounds: ch05/black_scholes_formula/properties_and_bounds.md
               - Computational Examples: ch05/black_scholes_formula/computational_examples.md
-          - 5.7 BS PDE Numerical Sol:
+          - 5.8 BS PDE Numerical Sol:
               - Boundary & Terminal Cond.: ch05/bs_pde_numerical_solution/boundary_and_terminal_conditions.md
               - Finite Difference Method: ch05/bs_pde_numerical_solution/finite_difference_methods.md
               - Explicit, Implicit, and CN: ch05/bs_pde_numerical_solution/explicit_implicit_crank_nicolson_schemes.md
               - Stab, Consis & Conv: ch05/bs_pde_numerical_solution/stability_consistency_convergence.md
               - Free Boundary Problem: ch05/bs_pde_numerical_solution/free_boundary_problems_american_options.md
               - Monotone & Viscosity Sol: ch05/bs_pde_numerical_solution/monotone_schemes_and_viscosity_solutions.md
-          - 5.8 BS Model Extensions:
+          - 5.9 BS Model Extensions:
               - Limitations and Extensions: ch05/extensions_black_scholes/limitations_extensions.md
               - Local Volatility Model: ch05/extensions_black_scholes/local_volatility_models.md
               - Stochastic Volatility Model: ch05/extensions_black_scholes/stochastic_volatility_models.md
