@@ -375,5 +375,5 @@ $$
 
 - [Dynkin's Formula](dynkin_formula.md) — the core formula
 - [Generator and Martingales](generator_and_martingales.md) — martingale characterization
-- [Feynman–Kac Formula](feynman_kac.md) — discounted expectations, killing
-- [Kolmogorov Backward Equation](kolmogorov_backward.md) — PDE for transition probabilities
+- [Feynman–Kac Formula](../../ch03/feynman_kac/feynman_kac_formula.md) — discounted expectations, killing
+- [Kolmogorov Backward Equation](../../ch03/kolmogorov_equations/kolmogorov_backward.md) — PDE for transition probabilities

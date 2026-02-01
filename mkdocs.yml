@@ -78,7 +78,7 @@ nav:
               - Verifying SDE Solution: ch02/sde/verifying_sde_solutions.md
               - Moment Analysis: ch02/sde/sde_moment_analysis.md
               - SDE Simulation: ch02/sde/sde_simulation.md
-          - 2.5 Existence & Uniqueness:
+          - 2.5 Exist & Unique:
               - Lipschitz & Growth: ch02/existence_uniqueness/lipschitz_conditions.md
               - Picard Iteration: ch02/existence_uniqueness/picard_iteration.md
               - Strong vs Weak Solutions: ch02/existence_uniqueness/strong_vs_weak.md
@@ -89,7 +89,7 @@ nav:
               - Invariant Measures: ch02/diffusion_process/invariant_measures_and_stationarity.md
               - Time Reversal of Diffusions: ch02/diffusion_process/time_reversal_of_diffusions.md
               - Large Deviations: ch02/diffusion_process/small_noise_and_large_deviations.md
-          - 2.7 Infinitesimal Generator:
+          - 2.7 Generator:
               - Infinitesimal Generator: ch02/infinitesimal_generator/infinitesimal_generator.md
               - Dynkin's Formula: ch02/infinitesimal_generator/dynkin_formula.md
               - Generator and Martingales: ch02/infinitesimal_generator/generator_and_martingales.md
@@ -109,17 +109,17 @@ nav:
               - Fundamental Solution: ch03/heat_equation/fundamental_solution.md
               - Scaling and Invariance: ch03/heat_equation/scaling_and_invariance.md
               - Maximum Principle: ch03/heat_equation/maximum_principle.md
-              - Heat Equation and Brownian Motion: ch03/heat_equation/heat_equation_and_brownian_motion.md
-          - 3.3 Kolmogorov Equations:
-              - Kolmogorov Forward (Fokker–Planck): ch03/kolmogorov_equations/kolmogorov_forward.md
+              - Heat Eq and BM: ch03/heat_equation/heat_equation_and_brownian_motion.md
+          - 3.3 Kolmogorov:
+              - Kolmogorov Forward: ch03/kolmogorov_equations/kolmogorov_forward.md
               - Kolmogorov Backward: ch03/kolmogorov_equations/kolmogorov_backward.md
               - Forward–Backward Duality: ch03/kolmogorov_equations/forward_backward_duality.md
-          - 3.4 Feynman–Kac Formula:
+          - 3.4 Feynman–Kac:
               - Feynman–Kac Theorem: ch03/feynman_kac/feynman_kac_formula.md
               - Running Payoff Extension: ch03/feynman_kac/feynman_kac_running_payoff.md
               - Applications: ch03/feynman_kac/feynman_kac_applications.md
           - 3.5 Pricing PDEs:
-              - Black–Scholes PDE Derivation: ch03/pricing_pdes/black_scholes_pde_from_sde.md
+              - BS PDE Derivation: ch03/pricing_pdes/black_scholes_pde_from_sde.md
               - Discounting and Killing: ch03/pricing_pdes/discounting_and_killing_term.md
               - Greeks from PDE: ch03/pricing_pdes/greeks_from_pde.md
               - Boundary Conditions: ch03/pricing_pdes/terminal_and_boundary_conditions.md

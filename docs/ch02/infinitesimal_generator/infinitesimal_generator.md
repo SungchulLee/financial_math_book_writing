@@ -473,7 +473,7 @@ $$
 
 Using the extended generator notation: $\tilde{\mathcal{L}} u - r u = 0$ where $\tilde{\mathcal{L}} = \partial_t + \mathcal{L}_t$.
 
-See [Feynman–Kac Formula](feynman_kac.md).
+See [Feynman–Kac Formula](../../ch03/feynman_kac/feynman_kac_formula.md).
 
 ---
 
@@ -622,7 +622,7 @@ $$
 
 - [Dynkin's Formula](dynkin_formula.md) — integral form connecting generator to expectations
 - [Generator and Martingales](generator_and_martingales.md) — martingale characterization
-- [Fokker–Planck Equation](fokker_planck.md) — forward equation using $\mathcal{L}^*$
+- [Fokker–Planck Equation](../../ch03/kolmogorov_equations/kolmogorov_forward.md) — forward equation using $\mathcal{L}^*$
 - [Kolmogorov Backward Equation](../../ch03/kolmogorov_equations/kolmogorov_backward.md) — backward equation using $\mathcal{L}$
 - [Feynman–Kac Formula](../../ch03/feynman_kac/feynman_kac_formula.md) — discounted expectations
 - [Martingale Problem](../diffusion_process/martingale_problem_stroock_varadhan.md) — characterization via generator
