@@ -9,6 +9,7 @@ The **$T$-forward measure** is a probability measure that uses the zero-coupon b
 ### The Numéraire
 
 The **$T$-maturity zero-coupon bond** has price process $P(t,T)$ satisfying:
+
 - $P(T,T) = 1$ (pays 1 at maturity)
 - $P(t,T) > 0$ for $t < T$
 

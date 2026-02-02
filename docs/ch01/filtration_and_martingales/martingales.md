@@ -29,11 +29,11 @@ $$
 
 2. **Linearity**: $\mathbb{E}[aX + bY \mid \mathcal{G}] = a\mathbb{E}[X \mid \mathcal{G}] + b\mathbb{E}[Y \mid \mathcal{G}]$.
 
-3. **Taking out what is known**: If $Y$ is $\mathcal{G}$-measurable and $XY \in L^1$, then $\mathbb{E}[XY \mid \mathcal{G}] = Y \cdot \mathbb{E}[X \mid \mathcal{G}]$.
+3. **Taking out what is known**: If $Y$ is $\mathcal{G}$-measurable and bounded (or more generally, if $XY \in L^1$), then $\mathbb{E}[XY \mid \mathcal{G}] = Y \cdot \mathbb{E}[X \mid \mathcal{G}]$.
 
 4. **Independence**: If $X$ is independent of $\mathcal{G}$, then $\mathbb{E}[X \mid \mathcal{G}] = \mathbb{E}[X]$.
 
-5. **Jensen's inequality**: If $\varphi$ is convex and $\varphi(X) \in L^1$, then $\varphi(\mathbb{E}[X \mid \mathcal{G}]) \le \mathbb{E}[\varphi(X) \mid \mathcal{G}]$.
+5. **Jensen's inequality**: If $X \in L^1$, $\varphi$ is convex, and $\varphi(X) \in L^1$, then $\varphi(\mathbb{E}[X \mid \mathcal{G}]) \le \mathbb{E}[\varphi(X) \mid \mathcal{G}]$.
 
 **Geometric interpretation**: $\mathbb{E}[X \mid \mathcal{G}]$ is the orthogonal projection of $X$ onto $L^2(\mathcal{G})$ (when $X \in L^2$). It is the best $\mathcal{G}$-measurable approximation to $X$ in the least-squares sense.
 
@@ -110,10 +110,25 @@ using that $W_s$ is $\mathcal{F}_s$-measurable and $W_t - W_s$ is independent of
 **Proof**: We compute $\mathbb{E}[W_t^2 \mid \mathcal{F}_s]$. Writing $W_t = W_s + (W_t - W_s)$:
 
 $$
-\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = \mathbb{E}[(W_s + (W_t - W_s))^2 \mid \mathcal{F}_s] = W_s^2 + 2W_s \cdot 0 + (t-s) = W_s^2 + (t-s)
+\begin{aligned}
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] &= \mathbb{E}[(W_s + (W_t - W_s))^2 \mid \mathcal{F}_s] \\
+&= \mathbb{E}[W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2 \mid \mathcal{F}_s] \\
+&= W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s \mid \mathcal{F}_s] + \mathbb{E}[(W_t - W_s)^2 \mid \mathcal{F}_s]
+\end{aligned}
 $$
 
-Therefore, $\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s$. $\square$
+Now, $W_t - W_s$ is independent of $\mathcal{F}_s$, so:
+
+- $\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] = \mathbb{E}[W_t - W_s] = 0$
+- $\mathbb{E}[(W_t - W_s)^2 \mid \mathcal{F}_s] = \mathbb{E}[(W_t - W_s)^2] = \text{Var}(W_t - W_s) = t - s$
+
+Therefore:
+
+$$
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 0 + (t-s) = W_s^2 + (t-s)
+$$
+
+Hence $\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s$. $\square$
 
 **Insight**: $W_t^2$ grows on average at rate 1 (since $\mathbb{E}[W_t^2] = t$). Subtracting this deterministic drift $t$ yields a martingale.
 
@@ -246,7 +261,7 @@ The martingale property—the absence of predictable drift—is one of the most 
 
 ### Exercise 1: Verifying Martingales
 
-Determine whether each process is a martingale, submartingale, or supermartingale. Prove your answers.
+Determine whether each process is a martingale, submartingale, supermartingale, or none of these. Prove your answers.
 
 (a) $M_t = W_t^2 - t$
 
@@ -254,7 +269,7 @@ Determine whether each process is a martingale, submartingale, or supermartingal
 
 (c) $M_t = W_t^3 - 3tW_t$
 
-(d) $M_t = \sin(W_t)$
+(d) $M_t = \sin(W_t)$ *(Hint: Apply Itô's formula and examine the drift.)*
 
 (e) $M_t = W_t^4 - 6tW_t^2 + 3t^2$
 
@@ -282,6 +297,6 @@ Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 1) = p$ and $\math
 
 (a) For what value of $p$ is $S_n = \sum_{k=1}^n \xi_k$ a martingale?
 
-(b) For general $p$, find a function $f$ such that $f(S_n, n)$ is a martingale.
+(b) For general $p \in (0,1)$, find a function $f$ such that $f(S_n, n)$ is a martingale.
 
-(c) Show that $M_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale when $p \neq 1/2$.
+(c) Show that $M_n = \left(\frac{1-p}{p}\right)^{S_n}$ is a martingale when $p \neq 1/2$. *(Note: This also holds trivially when $p = 1/2$ since the ratio equals 1.)*

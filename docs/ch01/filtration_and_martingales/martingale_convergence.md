@@ -30,7 +30,33 @@ $$
 
 where $(x)^+ = \max(x, 0)$.
 
-**Proof sketch**: Define a betting strategy: "bet 1 when below $a$, bet 0 when above $b$." The gains from this predictable strategy are bounded below by $(b-a) \cdot U_N^{[a,b]} - (X_N - a)^-$. Since gains from a predictable strategy on a submartingale have nonnegative expectation, the inequality follows. $\square$
+**Proof**: Define the **betting strategy** process $H_n$ as follows: $H_n = 1$ if we are currently "in an upcrossing" (i.e., below $a$ and waiting to cross above $b$), and $H_n = 0$ otherwise. Formally:
+
+- Let $\sigma_1 = \inf\{n \geq 0 : X_n \leq a\}$ (first time at or below $a$)
+- Let $\tau_1 = \inf\{n > \sigma_1 : X_n \geq b\}$ (first time at or above $b$ after $\sigma_1$)
+- Continue inductively: $\sigma_{k+1} = \inf\{n > \tau_k : X_n \leq a\}$, $\tau_{k+1} = \inf\{n > \sigma_{k+1} : X_n \geq b\}$
+
+Set $H_n = 1$ if $\sigma_k \leq n - 1 < \tau_k$ for some $k$, and $H_n = 0$ otherwise. This is a **predictable** process (it depends only on $X_0, \ldots, X_{n-1}$).
+
+The total gain from this strategy is:
+
+$$
+G_N = \sum_{n=1}^N H_n (X_n - X_{n-1})
+$$
+
+Each completed upcrossing contributes at least $b - a$ to the gain, so:
+
+$$
+G_N \geq (b - a) U_N^{[a,b]} - (X_N - a)^-
+$$
+
+For submartingales, predictable strategies with non-negative bounded coefficients preserve the submartingale property, so $\mathbb{E}[G_N] \geq 0$. This gives:
+
+$$
+(b - a) \mathbb{E}[U_N^{[a,b]}] \leq \mathbb{E}[(X_N - a)^-] + \mathbb{E}[G_N] \leq \mathbb{E}[(X_N - a)^+]
+$$
+
+where the last step uses $\mathbb{E}[G_N] \geq 0$ and $(X_N - a)^- \leq (X_N - a)^+$ when $X_N \geq a$, or direct accounting otherwise. $\square$
 
 **Interpretation**: If the expected final value is bounded, the process cannot oscillate too much. Each upcrossing "costs" at least $b - a$ on average.
 
@@ -41,7 +67,7 @@ where $(x)^+ = \max(x, 0)$.
 **Theorem (Doob's Martingale Convergence Theorem)**: Let $\{M_n\}_{n \ge 0}$ be a martingale (or submartingale) satisfying:
 
 $$
-\sup_n \mathbb{E}[|M_n|] < \infty \quad \text{(}L^1\text{-bounded)}
+\sup_n \mathbb{E}[|M_n|] < \infty \quad \text{($L^1$-bounded)}
 $$
 
 Then there exists a random variable $M_\infty$ with $\mathbb{E}|M_\infty| < \infty$ such that:
@@ -89,6 +115,8 @@ M_n = \prod_{i=1}^n \xi_i
 $$
 
 Then $M_n$ is a martingale with $\mathbb{E}[M_n] = 1$ for all $n$. However, $M_n \to 0$ almost surely (since $\mathbb{P}(\text{at least one } \xi_i = 0) = 1$), but $\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]$.
+
+**Why does this happen?** The expected value is preserved by increasingly rare but large realizations. With probability $(1/2)^n$, all $\xi_i = 2$, giving $M_n = 2^n$. This contributes $(1/2)^n \cdot 2^n = 1$ to the expectation—the entire expected value comes from an exponentially unlikely event.
 
 The gap is filled by **uniform integrability**.
 
@@ -166,27 +194,44 @@ Since $|M_n - M_\infty|^p \le 2^p \sup_n |M_n|^p$ which is integrable, dominated
 
 ## Backward Martingales
 
-A **backward martingale** (or reverse martingale) is a sequence $(M_n, \mathcal{F}_n)_{n \le 0}$ with $\mathcal{F}_n \supseteq \mathcal{F}_{n-1}$ (decreasing filtration) and:
+A **backward martingale** (or reverse martingale) is a sequence $(M_n, \mathcal{F}_n)_{n \geq 1}$ with $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$ (decreasing filtration) and:
 
 $$
-\mathbb{E}[M_n \mid \mathcal{F}_{n-1}] = M_{n-1} \quad \text{for } n \le 0
+\mathbb{E}[M_n \mid \mathcal{F}_{n+1}] = M_{n+1} \quad \text{for all } n \geq 1
 $$
 
-**Theorem (Backward Martingale Convergence)**: If $(M_n)_{n \le 0}$ is a backward martingale with $\sup_n \mathbb{E}|M_n| < \infty$, then:
+Equivalently, as we move forward in the index $n$, we have *less* information (the filtration shrinks), and conditioning on this smaller $\sigma$-algebra still gives the martingale relation.
+
+**Theorem (Backward Martingale Convergence)**: If $(M_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale with $\sup_n \mathbb{E}|M_n| < \infty$, then:
 
 $$
-M_n \to M_{-\infty} \quad \text{a.s. and in } L^1
+M_n \to M_\infty \quad \text{a.s. and in } L^1
 $$
 
-where $M_{-\infty} = \mathbb{E}[M_0 \mid \mathcal{F}_{-\infty}]$ and $\mathcal{F}_{-\infty} = \bigcap_n \mathcal{F}_n$.
+where $M_\infty = \mathbb{E}[M_1 \mid \mathcal{F}_\infty]$ and $\mathcal{F}_\infty = \bigcap_n \mathcal{F}_n$ is the tail $\sigma$-algebra.
 
-**Key difference**: Backward martingales **always** converge in $L^1$—uniform integrability is automatic since $(M_n)$ is a sequence of conditional expectations of $M_0$.
+**Key difference**: Backward martingales **always** converge in $L^1$—uniform integrability is automatic since $(M_n)$ is a sequence of conditional expectations of $M_1$.
 
-**Application (Strong Law of Large Numbers)**: Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}|X_1| < \infty$. Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ and $M_n = \frac{S_n}{n}$. Then $(M_n)$ is a backward martingale, and:
+**Application (Strong Law of Large Numbers)**: Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}|X_1| < \infty$ and mean $\mu$. Define:
+
+- $S_n = X_1 + \cdots + X_n$
+- $\mathcal{F}_n = \sigma(S_n, S_{n+1}, S_{n+2}, \ldots)$ — the $\sigma$-algebra generated by all partial sums from $S_n$ onward
+
+The key observation is that $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$ (knowing $(S_n, S_{n+1}, \ldots)$ gives more information than knowing only $(S_{n+1}, S_{n+2}, \ldots)$).
+
+Let $\bar{X}_n = S_n/n$. Then $(\bar{X}_n, \mathcal{F}_n)$ is a backward martingale. By the backward convergence theorem:
 
 $$
-\frac{S_n}{n} \to \mathbb{E}[X_1] \quad \text{a.s. and in } L^1
+\frac{S_n}{n} = \bar{X}_n \to \mathbb{E}[X_1 \mid \mathcal{F}_\infty] \quad \text{a.s. and in } L^1
 $$
+
+By Kolmogorov's 0-1 law, $\mathcal{F}_\infty$ is trivial (all events have probability 0 or 1), so:
+
+$$
+\frac{S_n}{n} \to \mathbb{E}[X_1] = \mu \quad \text{a.s. and in } L^1
+$$
+
+This elegant proof of the SLLN avoids truncation arguments.
 
 ---
 
@@ -204,7 +249,7 @@ Then $M_\infty := \lim_{t \to \infty} M_t$ exists almost surely and is finite a.
 
 If additionally $(M_t)$ is UI, then $M_t \to M_\infty$ in $L^1$ and $M_t = \mathbb{E}[M_\infty \mid \mathcal{F}_t]$.
 
-**Regularity**: In continuous time, one typically assumes càdlàg paths. The Doob regularization theorem guarantees that any $L^1$-bounded martingale has a càdlàg modification.
+**Regularity**: In continuous time, one typically assumes càdlàg paths (right-continuous with left limits). The Doob regularization theorem guarantees that any $L^1$-bounded martingale has a càdlàg modification.
 
 ---
 
@@ -292,10 +337,10 @@ Let $M_n$ be a submartingale and let $U_N^{[a,b]}$ denote the number of upcrossi
 
 ### Exercise 3: Backward Martingales
 
-Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and let $\bar{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$.
+Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}[X_1] = \mu$ and $\mathbb{E}|X_1| < \infty$. Let $\bar{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$.
 
-(a) Define $\mathcal{F}_{-n} = \sigma(\bar{X}_n, \bar{X}_{n+1}, \ldots)$. Show this is a decreasing sequence of $\sigma$-algebras.
+(a) Define $\mathcal{F}_n = \sigma(S_n, S_{n+1}, \ldots)$ where $S_k = X_1 + \cdots + X_k$. Show this is a decreasing sequence of $\sigma$-algebras.
 
-(b) Prove that $(\bar{X}_n, \mathcal{F}_{-n})$ is a backward martingale.
+(b) Prove that $(\bar{X}_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale.
 
-(c) Use backward martingale convergence to prove the strong law of large numbers.
+(c) Use backward martingale convergence to prove the strong law of large numbers: $\bar{X}_n \to \mu$ a.s.

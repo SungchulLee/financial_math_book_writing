@@ -1,159 +1,292 @@
 # Martingale Representation Theorem
 
-
-The **Martingale Representation Theorem (MRT)** states that, under a Brownian filtration, every square–integrable martingale can be expressed as a stochastic integral with respect to the driving Brownian motion.
+The **Martingale Representation Theorem (MRT)** states that, under a Brownian filtration, every square-integrable martingale can be expressed as a stochastic integral with respect to the driving Brownian motion.
 
 Rather than repeating basic definitions already covered in earlier chapters, this section focuses on:
-- the precise statement of the theorem,
-- its structural meaning,
-- why it is fundamental for hedging and PDE connections,
-- and how it fits into change-of-measure theory.
+
+- The precise statement of the theorem
+- Its structural meaning
+- Why it is fundamental for hedging and PDE connections
+- How it fits into change-of-measure theory
+
+!!! info "Prerequisites"
+    This section assumes familiarity with:
+    
+    - [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md)
+    - [Itô Isometry](../../ch02/ito_integral/ito_isometry.md)
+    - [Martingales](../../ch01/filtration_and_martingales/martingales.md)
 
 ---
 
 ## Statement of the Theorem
 
+Let $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}_{0 \leq t \leq T}, \mathbb{P})$ be a filtered probability space supporting a standard Brownian motion $W_t$, and assume $\{\mathcal{F}_t\}$ is the **augmented Brownian filtration**—that is, $\mathcal{F}_t = \sigma(W_s : s \leq t) \vee \mathcal{N}$, where $\mathcal{N}$ contains all $\mathbb{P}$-null sets.
 
-Let \((\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})\) be a filtered probability space supporting a Brownian motion \(W_t\), and assume \(\{\mathcal{F}_t\}\) is the Brownian filtration (augmented).
+### Definition: Square-Integrable Martingale
 
-### 1. Martingale Representation Theorem
+A martingale $M_t$ is **square-integrable** on $[0,T]$ if:
 
+$$
+\mathbb{E}[M_T^2] < \infty
+$$
 
-If \(X_t\) is a square–integrable \(\mathcal{F}_t\)-martingale, then there exists a **unique** predictable process \(\phi_t\) such that
+Equivalently (by the martingale property and Doob's $L^2$ inequality): $\sup_{t \leq T} \mathbb{E}[M_t^2] < \infty$.
 
+### Recall: Itô Integrals Are Martingales
 
-\[
-X_t = X_0 + \int_0^t \phi_s \, dW_s,
-\]
+Before stating the main theorem, recall the converse direction (proved in [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md)):
 
+!!! note "Itô Integrals Are Martingales"
+    If $\phi_t$ is a predictable process with $\mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right] < \infty$, then the Itô integral:
+    
+    $$
+    I_t = \int_0^t \phi_s \, dW_s
+    $$
+    
+    is a **square-integrable martingale** with $I_0 = 0$.
 
+This tells us that stochastic integrals produce martingales. The Martingale Representation Theorem is the **converse**: every martingale arises this way.
 
-with
+### Martingale Representation Theorem
 
-\[
-\mathbb{E}\left[ \int_0^t \phi_s^2 \, ds \right] < \infty.
-\]
+!!! theorem "Martingale Representation Theorem"
+    Let $M_t$ be a square-integrable $\mathcal{F}_t$-martingale on $[0,T]$. Then there exists a **unique** predictable process $\phi_t$ such that:
 
+    $$
+    \boxed{M_t = M_0 + \int_0^t \phi_s \, dW_s \quad \text{for all } t \in [0,T]}
+    $$
 
+    with
 
-Uniqueness is understood up to indistinguishability.
+    $$
+    \mathbb{E}\left[ \int_0^T \phi_s^2 \, ds \right] < \infty
+    $$
+
+    Uniqueness is understood up to indistinguishability (i.e., $\phi$ is unique in $L^2(\Omega \times [0,T])$).
 
 ---
 
 ## Why This Is a Strong Result
 
-
 This theorem asserts that:
 
-- Brownian motion is the *only source of randomness* in its own filtration.
-- Any martingale adapted to this filtration must be built entirely from Brownian increments.
-- There are no “hidden” or orthogonal martingale components.
+1. **Brownian motion is the only source of randomness** in its own filtration
+2. **Any martingale** adapted to this filtration must be built entirely from Brownian increments
+3. **There are no "hidden" or orthogonal martingale components**
 
 This property is often called the **predictable representation property (PRP)**.
 
+!!! note "Intuition"
+    If you observe only Brownian motion, then every "fair game" (martingale) you can construct must come from betting on Brownian increments. There's no other source of uncertainty to bet on.
+
 ---
 
-## Proof Sketch (Structure, Not Full Details)
+## Proof Sketch
 
+The proof relies on Hilbert space ideas and the Itô isometry.
 
-The proof relies on Hilbert–space ideas.
+### Step 1: The Space of Stochastic Integrals
 
-### 1. Step 1: Simple Integrands
+Define the space of stochastic integrals:
 
-For simple predictable processes, the stochastic integral is explicitly defined.
+$$
+\mathcal{I} = \left\{ \int_0^T \phi_s \, dW_s : \phi \text{ predictable}, \, \mathbb{E}\left[\int_0^T \phi_s^2\,ds\right] < \infty \right\}
+$$
 
-### 2. Step 2: Density
+By the **Itô isometry**, this is isometrically isomorphic to $L^2(\Omega \times [0,T], \mathcal{P}, \mathbb{P} \otimes dt)$:
 
-Simple predictable processes are dense in
+$$
+\mathbb{E}\left[\left(\int_0^T \phi_s \, dW_s\right)^2\right] = \mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right]
+$$
 
-\[
-L^2(\Omega \times [0,T]).
-\]
+### Step 2: Density of Simple Processes
 
+Simple predictable processes (piecewise constant, adapted) are dense in $L^2(\Omega \times [0,T])$. Therefore, stochastic integrals of simple processes are dense in $\mathcal{I}$.
 
+### Step 3: $\mathcal{I}$ Is Closed
 
-### 3. Step 3: Itô Isometry
+Since the Itô isometry preserves the $L^2$ norm, $\mathcal{I}$ is a closed subspace of $L^2(\Omega, \mathcal{F}_T, \mathbb{P})$.
 
-The map
+### Step 4: $\mathcal{I}$ Equals All Mean-Zero Square-Integrable Martingales
 
-\[
-\phi \mapsto \int_0^T \phi_s \, dW_s
-\]
+The key step is showing that $\mathcal{I}$ contains **all** mean-zero square-integrable $\mathcal{F}_T$-measurable random variables.
 
+**Idea**: If there existed a square-integrable random variable $X$ orthogonal to $\mathcal{I}$, then $\mathbb{E}[X \cdot \int_0^T \phi_s\,dW_s] = 0$ for all $\phi$. Taking $\phi_s = \mathbb{E}[X \mid \mathcal{F}_s]$, one can show $X$ must be constant. Since $\mathcal{F}_T$ is generated by $W$, no non-trivial orthogonal complement exists.
 
-is an isometry:
+### Step 5: Extend to Martingales
 
-\[
-\mathbb{E}\left[\left(\int_0^T \phi_s dW_s\right)^2\right]
-=
-\mathbb{E}\left[\int_0^T \phi_s^2 ds\right].
-\]
+For a square-integrable martingale $M_t$ with terminal value $M_T$, we have $M_T - M_0 \in \mathcal{I}$, so:
 
+$$
+M_T - M_0 = \int_0^T \phi_s\,dW_s
+$$
 
+By the martingale property, $M_t = \mathbb{E}[M_T \mid \mathcal{F}_t] = M_0 + \int_0^t \phi_s\,dW_s$. $\square$
 
-### 4. Step 4: Completion and Uniqueness
-
-Completeness of the Hilbert space ensures existence, and the isometry implies uniqueness.
+**Reference**: For the complete proof, see Karatzas–Shreve, *Brownian Motion and Stochastic Calculus*, Theorem 3.4.15, or Revuz–Yor, *Continuous Martingales and Brownian Motion*, Theorem V.3.4.
 
 ---
 
 ## Interpretation: Geometry of Martingales
 
+The theorem reveals a beautiful geometric structure:
 
-The theorem shows that the space of square–integrable martingales is isomorphic to a subspace of
+- The space of square-integrable martingales (with $M_0 = 0$) is a **Hilbert space**
+- This space is **isometrically isomorphic** to $L^2(\Omega \times [0,T])$
+- Each martingale corresponds to a unique "direction" $\phi_t$ along which Brownian noise is accumulated
+- The Itô isometry is the **inner product preserving map**
 
-\[
-L^2(\Omega \times [0,T]).
-\]
-
-
-
-Each martingale corresponds to a unique “direction” \(\phi_t\) along which Brownian noise is accumulated.
+This is why stochastic calculus has such strong parallels with Fourier analysis and functional analysis.
 
 ---
 
 ## Connection to Hedging and Black–Scholes
 
+In a complete market, the MRT provides the mathematical foundation for hedging.
 
-In a risk–neutral setting, discounted asset prices are martingales.
-By the MRT:
+### Setup
 
-- Any discounted contingent claim payoff can be represented as a stochastic integral.
-- The integrand \(\phi_t\) is interpreted as the **hedging strategy**.
-- Identifying \(\phi_t\) leads directly to the Black–Scholes PDE.
+Under the risk-neutral measure $\mathbb{Q}$, the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ is a martingale. For a European claim with payoff $\Phi(S_T)$, the discounted claim value:
 
-This is the mathematical statement of **market completeness** for Brownian models.
+$$
+\tilde{V}_t = e^{-rt}V_t = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t]
+$$
+
+is also a martingale.
+
+### Applying MRT
+
+By the Martingale Representation Theorem:
+
+$$
+\tilde{V}_t = \tilde{V}_0 + \int_0^t \psi_s \, dW_s^{\mathbb{Q}}
+$$
+
+for some predictable process $\psi_t$.
+
+### Identifying the Hedge
+
+Since $d\tilde{S}_t = \sigma \tilde{S}_t \, dW_t^{\mathbb{Q}}$ (under $\mathbb{Q}$), we can write:
+
+$$
+dW_t^{\mathbb{Q}} = \frac{d\tilde{S}_t}{\sigma \tilde{S}_t}
+$$
+
+Substituting:
+
+$$
+d\tilde{V}_t = \psi_t \, dW_t^{\mathbb{Q}} = \frac{\psi_t}{\sigma \tilde{S}_t} \, d\tilde{S}_t
+$$
+
+The **hedging strategy** (number of shares) is:
+
+$$
+\boxed{\Delta_t = \frac{\psi_t}{\sigma \tilde{S}_t} = \frac{\psi_t}{\sigma S_t} e^{rt}}
+$$
+
+### Connection to Delta
+
+For the Black–Scholes model, one can show:
+
+$$
+\Delta_t = \frac{\partial V}{\partial S}(t, S_t)
+$$
+
+The MRT integrand $\psi_t$ encodes the sensitivity of the option value to Brownian shocks, which translates to delta hedging.
+
+**This is the mathematical statement of market completeness**: every contingent claim can be replicated by dynamic trading in the underlying asset.
 
 ---
 
 ## Relation to Change of Measure
 
+The Martingale Representation Theorem and Girsanov's Theorem play complementary roles:
 
-The Martingale Representation Theorem works *within* a fixed probability measure.
-Girsanov’s theorem explains *how the Brownian motion itself changes* under a new measure.
+| Theorem | What It Does |
+|---------|--------------|
+| **Girsanov** | Changes the measure; explains how drift of $W$ changes under $\mathbb{Q}$ |
+| **MRT** | Works within a fixed measure; represents all martingales as stochastic integrals |
 
 Together, they provide:
-- existence of an equivalent martingale measure (Girsanov),
-- uniqueness of hedging strategies (MRT).
+
+1. **Existence** of an equivalent martingale measure (Girsanov)
+2. **Uniqueness** of the replicating/hedging strategy (MRT)
+3. **Completeness** of the market (combined)
 
 ---
 
-## Beyond the Basic Setting (Optional)
+## Multi-Dimensional Extension
 
+For a $d$-dimensional Brownian motion $W_t = (W_t^1, \ldots, W_t^d)$ with independent components:
 
-### 1. Clark–Ocone Formula
+!!! theorem "Multi-Dimensional MRT"
+    Every square-integrable $\mathcal{F}_t^W$-martingale $M_t$ can be written as:
 
-In Malliavin calculus, the integrand \(\phi_t\) can sometimes be written explicitly using conditional expectations of derivatives.
+    $$
+    M_t = M_0 + \sum_{i=1}^d \int_0^t \phi_s^i \, dW_s^i = M_0 + \int_0^t \boldsymbol{\phi}_s \cdot d\mathbf{W}_s
+    $$
 
-### 2. Incomplete Markets
+    where $\boldsymbol{\phi}_t = (\phi_t^1, \ldots, \phi_t^d)$ is a predictable $\mathbb{R}^d$-valued process.
 
-With multiple sources of randomness, martingales may admit only partial representations, leading to orthogonal decompositions (Kunita–Watanabe).
+This extends to markets with multiple sources of risk (multiple stocks, stochastic volatility, etc.).
+
+---
+
+## Beyond the Basic Setting
+
+### Clark–Ocone Formula
+
+In **Malliavin calculus**, the integrand $\phi_t$ can be written explicitly using conditional expectations of Malliavin derivatives.
+
+!!! theorem "Clark–Ocone Formula"
+    If $F \in \mathbb{D}^{1,2}$ (the Malliavin–Sobolev space), then:
+
+    $$
+    F = \mathbb{E}[F] + \int_0^T \mathbb{E}[D_t F \mid \mathcal{F}_t] \, dW_t
+    $$
+
+    where $D_t F$ is the **Malliavin derivative** of $F$ at time $t$.
+
+**Application**: For $F = \Phi(S_T)$, the Clark–Ocone formula can sometimes give explicit expressions for the hedging strategy $\phi_t = \mathbb{E}[D_t \Phi(S_T) \mid \mathcal{F}_t]$.
+
+### Kunita–Watanabe Decomposition (Incomplete Markets)
+
+When the filtration is larger than the Brownian filtration (e.g., jump processes, stochastic volatility with unhedgeable risk), the MRT fails. Instead, we have:
+
+!!! theorem "Kunita–Watanabe Decomposition"
+    Let $M_t$ be a square-integrable martingale and $N_t$ a given martingale (e.g., a traded asset). Then:
+
+    $$
+    M_t = M_0 + \int_0^t \phi_s \, dN_s + L_t
+    $$
+
+    where:
+    
+    - $\int_0^t \phi_s \, dN_s$ is the **hedgeable part**
+    - $L_t$ is a martingale **orthogonal** to $N$: $\langle L, N \rangle_t = 0$
+
+The orthogonal component $L_t$ represents **unhedgeable risk**. This decomposition is fundamental for:
+
+- Variance-optimal hedging
+- Mean-variance portfolio theory
+- Incomplete market pricing
 
 ---
 
 ## Summary
 
+$$
+\boxed{M_t = M_0 + \int_0^t \phi_s \, dW_s}
+$$
 
-- MRT characterizes all square–integrable martingales in a Brownian filtration.
-- It formalizes the idea that Brownian motion generates all randomness.
-- It underpins hedging, PDE connections, and modern financial mathematics.
+| Aspect | Description |
+|--------|-------------|
+| **What it says** | Every square-integrable martingale is a stochastic integral |
+| **Key requirement** | Filtration must be generated by Brownian motion (augmented) |
+| **Uniqueness** | The integrand $\phi_t$ is unique (in $L^2$) |
+| **Financial meaning** | Hedging strategies exist and are unique (market completeness) |
+| **Proof method** | Hilbert space theory + Itô isometry |
+| **Extensions** | Clark–Ocone (explicit $\phi$), Kunita–Watanabe (incomplete markets) |
+
+!!! summary "Key Takeaway"
+    The Martingale Representation Theorem formalizes the idea that Brownian motion generates all randomness in its filtration. In finance, this translates to **market completeness**: every derivative can be perfectly hedged, and the hedging strategy is unique. When the theorem fails (incomplete markets), unhedgeable risk remains, and pricing/hedging become more complex.

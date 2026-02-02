@@ -5,9 +5,9 @@ A **local martingale** is a process that behaves like a martingale "locally"—w
 !!! info "Prerequisites"
     This section assumes familiarity with:
     
-    - [Stopping Times](../../ch01/filtration_and_martingales/stopping_times.md) (§1.2)
-    - [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md) (§2.2)
-    - [Quadratic Variation](../../ch02/ito_integral/quadratic_variation.md) (§2.2)
+    - [Stopping Times](../../ch01/filtration_and_martingales/stopping_times.md)
+    - [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md)
+    - [Quadratic Variation](../../ch02/ito_integral/quadratic_variation.md)
 
 ---
 
@@ -46,7 +46,7 @@ $$
 }
 $$
 
-where **UI** denotes uniformly integrable. A local martingale that is not a true martingale is called a **strict local martingale**.
+where **UI** denotes uniformly integrable. The inclusions go from strongest (UI martingales, the smallest class) to weakest (local martingales, the largest class). A local martingale that is not a true martingale is called a **strict local martingale**.
 
 !!! note "Connection to Convergence Theory"
     Uniformly integrable martingales converge in $L^1$, not just almost surely. See [Martingale Convergence](../../ch01/filtration_and_martingales/martingale_convergence.md) for the full hierarchy of convergence results.
@@ -87,15 +87,20 @@ $$
 M_t = \int_0^t \sigma_s\,dW_s
 $$
 
-where $\sigma$ is an adapted process satisfying the **local integrability condition**:
+where $\sigma$ is an adapted process.
 
-$$
-\int_0^t \sigma_s^2\,ds < \infty \quad \text{almost surely for all } t \geq 0
-$$
+!!! note "Integrability Hierarchy for Itô Integrals"
+    | Condition | Result |
+    |-----------|--------|
+    | $\int_0^t \sigma_s^2 \, ds < \infty$ a.s. | Integral exists; **local martingale** |
+    | $\mathbb{E}\left[\int_0^T \sigma_s^2 \, ds\right] < \infty$ | **True martingale** on $[0,T]$ |
+    | Neither | Integral **not defined** |
+    
+    The a.s. condition is the **existence requirement**—without it, the Itô integral is not even defined. The $L^1$ condition upgrades local martingale to true martingale.
 
-**Claim**: $M_t$ is a local martingale.
+**Intuition**: A driftless SDE $dM_t = \sigma_t dW_t$ looks like a martingale—it's "pure noise" with no systematic drift. And usually it is a true martingale. But technically, Itô calculus only guarantees a local martingale; upgrading to true martingale requires verifying integrability.
 
-**Proof**: Define the localizing sequence:
+**Proof that it's a local martingale**: Define the localizing sequence:
 
 $$
 \tau_n = \inf\left\{t \geq 0 : \int_0^t \sigma_s^2\,ds \geq n\right\} \wedge n
@@ -108,14 +113,6 @@ $$
 $$
 
 By the Itô isometry criterion, $M_{t \wedge \tau_n}$ is a true martingale for each $n$. $\square$
-
-**Upgrade to true martingale**: $M$ is a true martingale on $[0,T]$ if:
-
-$$
-\mathbb{E}\left[\int_0^T \sigma_s^2\,ds\right] < \infty
-$$
-
-This is the standard $L^2$ integrability condition.
 
 ---
 
@@ -158,7 +155,15 @@ $$
 
 **Proof that $M_t$ is a local martingale**:
 
-By Itô's formula applied to $f(r) = 1/r$ and using the SDE for the Bessel process $dR_t = \frac{1}{R_t}dt + dW_t$ (where $W$ is a 1D Brownian motion):
+The $d$-dimensional Bessel process satisfies the SDE:
+
+$$
+dR_t = \frac{d-1}{2R_t}dt + dW_t
+$$
+
+where $W$ is a 1-dimensional Brownian motion. For $d = 3$, this gives $dR_t = \frac{1}{R_t}dt + dW_t$.
+
+By Itô's formula applied to $f(r) = 1/r$:
 
 $$
 d\left(\frac{1}{R_t}\right) = -\frac{1}{R_t^2}dR_t + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}\left(\frac{1}{R_t}dt + dW_t\right) + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}dW_t
@@ -170,56 +175,51 @@ $$
 dM_t = -\frac{1}{R_t^2}dW_t
 $$
 
-This is an Itô integral, hence a local martingale.
+This is an Itô integral (no drift), hence a local martingale.
 
 **Proof that $M_t$ is NOT a true martingale**:
 
-The key computation is:
+Using the transition density of the 3D Bessel process (see Revuz–Yor, Chapter VI, or Karatzas–Shreve §3.3.C), one can compute:
 
 $$
-\mathbb{E}\left[\frac{1}{R_t}\right] = \frac{1}{r_0}\left(1 - \frac{2}{\sqrt{2\pi t}}\int_0^{r_0} e^{-u^2/(2t)}du\right) < \frac{1}{r_0} = M_0
+\mathbb{E}\left[\frac{1}{R_t}\right] = \frac{1}{r_0} - \frac{2}{r_0}\Phi\left(-\frac{r_0}{\sqrt{t}}\right) < \frac{1}{r_0} = M_0
 $$
 
-The strict inequality shows $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, violating the martingale property.
+where $\Phi$ is the standard normal CDF. The strict inequality shows $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, violating the martingale property.
 
 **Intuition**: As $t \to \infty$, the Bessel process drifts to $+\infty$, so $1/R_t \to 0$. The "probability mass" that would be needed to maintain $\mathbb{E}[M_t] = M_0$ has "leaked to infinity."
 
 ---
 
-### Example 4: Explosive Diffusion
+### Example 4: CEV Model with $\beta > 1$ (Strict Local Martingale)
 
-Consider the SDE:
-
-$$
-dX_t = X_t^2\,dW_t, \quad X_0 = 1
-$$
-
-**Claim**: $X_t$ is a strict local martingale that can explode to $+\infty$ in finite time.
-
-**Why explosion occurs**: 
-
-The solution (up to explosion) is:
+The **constant elasticity of variance (CEV)** model provides a clean example of a strict local martingale arising in finance. Consider:
 
 $$
-X_t = \frac{1}{1 - W_t + \frac{1}{2}\langle W \rangle_t} = \frac{1}{1 - W_t + \frac{t}{2}}
+dX_t = \sigma X_t^\beta \, dW_t, \quad X_0 = x_0 > 0
 $$
 
-Wait—this doesn't explode. Let me reconsider. For the SDE $dX_t = X_t^\gamma dW_t$ with $\gamma > 1$, explosion can occur. A cleaner example is:
+where $\sigma > 0$ and $\beta > 1$.
 
-**Revised Example**: Consider the **inverse Bessel process** $Y_t = 1/R_t^{(1)}$ where $R^{(1)}$ is the 1-dimensional Bessel process (absolute value of 1D Brownian motion). This process explodes when $R^{(1)}_t$ hits zero.
+**Claim**: For $\beta > 1$, the process $X_t$ is a strict local martingale.
 
-Alternatively, the process:
+**Why this is a local martingale**: The process is clearly a local martingale since it is an Itô integral with no drift term. The localizing sequence:
 
 $$
-dX_t = X_t^2 dW_t, \quad X_0 = x > 0
+\tau_n = \inf\{t \geq 0 : X_t \geq n \text{ or } X_t \leq 1/n\} \wedge n
 $$
 
-has solution that remains positive but exhibits **strict local martingale** behavior due to mass leakage, similar to Example 3.
+ensures $X_{t \wedge \tau_n}$ is bounded and hence a true martingale.
 
-**Localizing sequence**: Define $\tau_n = \inf\{t : X_t \geq n\} \wedge n$. Then:
+**Why this is NOT a true martingale**: For $\beta > 1$, the process can reach infinity in finite time with positive probability. More precisely, the scale function analysis shows that infinity is an accessible boundary. Even when we define $X_t = \infty$ for $t \geq \zeta$ (the explosion time), we have:
 
-- $X_{t \wedge \tau_n}$ is bounded by $n$, hence a true martingale
-- $X_t$ itself satisfies $\mathbb{E}[X_t] \leq X_0$ with potential strict inequality
+$$
+\mathbb{E}[X_t] < x_0 \quad \text{for all } t > 0
+$$
+
+The "missing mass" corresponds to paths that have exploded.
+
+**Financial interpretation**: The CEV model with $\beta > 1$ exhibits explosive behavior inconsistent with limited liability. This is why practitioners typically use $\beta < 1$ (which gives absorption at zero rather than explosion at infinity).
 
 ---
 
@@ -312,7 +312,7 @@ $$
 \mathbb{E}[\langle M \rangle_T] < \infty \implies M \text{ is a true martingale on } [0,T]
 $$
 
-**Proof sketch**: By the Burkholder-Davis-Gundy inequality:
+**Proof sketch**: By the Burkholder–Davis–Gundy inequality:
 
 $$
 \mathbb{E}\left[\sup_{t \leq T} |M_t|\right] \leq C \cdot \mathbb{E}\left[\langle M \rangle_T^{1/2}\right] \leq C \cdot \mathbb{E}[\langle M \rangle_T]^{1/2} < \infty
@@ -330,13 +330,27 @@ $$
 
 where $\mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)$ is the stochastic exponential.
 
-### 6. Kazamaki's Condition (Weaker)
+### 6. Kazamaki's Condition (Weaker than Novikov's Condition)
 
-$$
-\mathbb{E}\left[\exp\left(\frac{1}{2}M_T\right)\right] < \infty \implies \mathcal{E}(M) \text{ is a true martingale on } [0,T]
-$$
+If $\mathcal{E}(M/2)$ is a submartingale, then $\mathcal{E}(M)$ is a true martingale on $[0,T]$.
 
 Kazamaki's condition is strictly weaker than Novikov's. See [Novikov & Kazamaki Conditions](novikov_kazamaki_conditions.md) for details and proofs.
+
+---
+
+### Logical Relationships Between Conditions
+
+!!! note "How the Conditions Relate"
+    The conditions above are not independent. For continuous local martingales:
+    
+    | Implication | Mechanism |
+    |-------------|-----------|
+    | **(1) ⟹ (2)** | Boundedness is domination with $Y = C$ |
+    | **(3) ⟹ (2)** | Doob's maximal inequality: $\mathbb{E}[\sup_t \|M_t\|^p] \leq \left(\frac{p}{p-1}\right)^p \mathbb{E}[\|M_T\|^p]$, so $Y = \sup_t \|M_t\|$ works |
+    | **(4) ⟹ (2)** | BDG inequality: $\mathbb{E}[\sup_t \|M_t\|] \leq C \cdot \mathbb{E}[\langle M \rangle_T^{1/2}] < \infty$ |
+    | **(5) ⟹ (6)** | Novikov implies Kazamaki (see [proof](novikov_kazamaki_conditions.md)) |
+    
+    The common thread: all conditions ultimately ensure **[uniform integrability](../../ch01/filtration_and_martingales/martingale_convergence.md#uniform-integrability)**, which prevents mass from escaping to infinity.
 
 ---
 
@@ -353,13 +367,14 @@ For $f \in C^2$, define the process $Y_t = f(X_t)$.
 !!! theorem "Generator Criterion"
     If $\mathcal{L}f(x) = 0$ for all $x$ in the state space, then $f(X_t)$ is a **local martingale**.
     
-    If additionally:
+    To upgrade to a **true martingale**, verify any of the [six sufficient conditions above](#sufficient-conditions-for-true-martingale)—for example:
     
-    1. $\mathbb{E}[|f(X_t)|] < \infty$ for all $t$
-    2. $X_t$ does not explode
-    3. $f$ satisfies appropriate growth conditions
-    
-    then $f(X_t)$ is a **true martingale**.
+    - 1. Boundedness: $|f(X_t)| \leq C$
+    - 2. Domination: $|f(X_t)| \leq Y$ with $\mathbb{E}[Y] < \infty$
+    - 3. $L^p$ Boundedness ($p > 1$): $\sup_{t \in [0,T]} \mathbb{E}[|f(X_t)|^p] < \infty$
+    - 4. Finite Expected Quadratic Variation: $\mathbb{E}[\langle f(X) \rangle_T] < \infty$
+    - 5. Novikov's Condition (for Stochastic Exponentials)
+    - 6. Kazamaki's Condition (Weaker than Novikov's Condition)
 
 **Connection to Dynkin's formula**: By Itô's formula:
 
@@ -418,7 +433,7 @@ Put-call parity fails, and the put price includes a "bubble premium."
 
 ### Connection to Girsanov's Theorem
 
-When performing measure changes via Girsanov's theorem, the Radon-Nikodym derivative:
+When performing measure changes via Girsanov's theorem, the Radon–Nikodym derivative:
 
 $$
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = Z_t = \mathcal{E}\left(-\int_0^\cdot \theta_s\,dW_s\right)_t
@@ -435,7 +450,7 @@ See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the full treatment
 | Property | Martingale | Local Martingale | Strict Local Martingale |
 |----------|-----------|------------------|------------------------|
 | **Definition** | $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ | $M_{t\wedge\tau_n}$ is martingale | Local mart., not true mart. |
-| **Integrability** | Required: $\mathbb{E}[\lvert M_t\rvert] < \infty$ | Not required globally | Typically fails |
+| **Integrability** | Required: $\mathbb{E}[|M_t|] < \infty$ | Not required globally | Typically fails |
 | **Mean preservation** | $\mathbb{E}[M_t] = \mathbb{E}[M_0]$ | $\mathbb{E}[M_t] \leq \mathbb{E}[M_0]$ | $\mathbb{E}[M_t] < \mathbb{E}[M_0]$ |
 | **If $M \geq 0$** | Supermartingale | Supermartingale | Strict supermartingale |
 | **Explosion** | Cannot explode | Can explode | May or may not explode |
@@ -453,7 +468,7 @@ $$
 
 $$
 \boxed{
-\mathcal{L}f = 0 \text{ + integrability conditions} \implies f(X_t) \text{ is a true martingale}
+\mathcal{L}f = 0 \text{ + sufficient condition (1–6)} \implies f(X_t) \text{ is a true martingale}
 }
 $$
 
@@ -475,7 +490,7 @@ $$
     1. **Rigorous Itô calculus**: Ensuring stochastic integrals have the expected properties
     2. **Measure changes**: Validating Girsanov transformations via Novikov/Kazamaki
     3. **Financial modeling**: Detecting and modeling asset price bubbles
-    4. **PDE connections**: Understanding when Feynman-Kac representations hold
+    4. **PDE connections**: Understanding when Feynman–Kac representations hold
 
 ---
 
@@ -562,4 +577,14 @@ print(f"E[M_T] at T={T}: {E_M[-1]:.4f}")
 print(f"Mass leakage: {(M0 - E_M[-1])/M0 * 100:.2f}%")
 ```
 
-**Expected output**: The plot shows $\mathbb{E}[M_t]$ decreasing below $M_0 = 1$, demonstrating the strict local martingale property. The "leaked mass" corresponds to paths where $R_t$ has drifted far from the origin.
+**Output**:
+
+```
+Initial value M_0 = 1/r_0 = 1.0000
+E[M_T] at T=5.0: 0.3471
+Mass leakage: 65.29%
+```
+
+![Strict Local Martingale Simulation](./image/strict_local_martingale_simulation.png)
+
+**Interpretation**: The plot shows $\mathbb{E}[M_t]$ decreasing below $M_0 = 1$, demonstrating the strict local martingale property. The "leaked mass" corresponds to paths where $R_t$ has drifted far from the origin—as the 3D Bessel process is transient and escapes to infinity, $1/R_t \to 0$, but the expectation cannot be preserved because the probability mass needed to compensate has "escaped to infinity."
