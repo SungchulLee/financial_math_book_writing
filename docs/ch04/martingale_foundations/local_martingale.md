@@ -5,7 +5,7 @@ A **local martingale** is a process that behaves like a martingale "locally"—w
 !!! info "Prerequisites"
     This section assumes familiarity with:
     
-    - [Stopping Times](../filtration_and_martingales/stopping_times.md) (§1.2)
+    - [Stopping Times](../../ch01/filtration_and_martingales/stopping_times.md) (§1.2)
     - [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md) (§2.2)
     - [Quadratic Variation](../../ch02/ito_integral/quadratic_variation.md) (§2.2)
 
