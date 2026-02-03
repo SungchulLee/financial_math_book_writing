@@ -1,299 +1,540 @@
-# Binomial to Black-Scholes Limit
+# Binomial to Black–Scholes Limit
 
+## Introduction
 
-The **binomial option pricing model** provides an intuitive discrete-time framework for option valuation. A fundamental result is that as the number of time steps increases to infinity, the binomial model **converges** to the **Black-Scholes model**. This connection demonstrates that the sophisticated continuous-time theory emerges naturally from simple discrete approximations.
+The **binomial option pricing model** provides an intuitive discrete-time framework for option valuation. A fundamental result is that as the number of time steps increases to infinity, the binomial model **converges** to the **Black–Scholes model**. This connection demonstrates that the sophisticated continuous-time theory emerges naturally from simple discrete approximations.
 
-This section rigorously establishes the convergence of the binomial model to the Black-Scholes framework.
+This section rigorously establishes the convergence of the binomial model to the Black–Scholes framework, connecting the discrete random walk to geometric Brownian motion via the **functional central limit theorem** (Donsker's theorem).
+
+!!! info "Prerequisites"
+    - [Binomial Model](binomial_model.md) and [Risk-Neutral Pricing](risk_neutral_pricing.md)
+    - [Donsker's Theorem](../../ch01/brownian_motion/donsker_theorem.md)
+    - [Itô's Lemma](../../ch02/ito_lemma/ito_lemma.md)
+    - Central Limit Theorem (basic probability)
+
+!!! abstract "Learning Objectives"
+    By the end of this section, you will be able to:
+    
+    1. Parameterize the binomial model to match Black–Scholes volatility
+    2. Apply the CLT to show convergence of log-prices to normal distribution
+    3. Derive the Itô correction term $-\frac{1}{2}\sigma^2$ from discrete principles
+    4. Understand how the binomial recursion converges to the Black–Scholes PDE
+    5. Explain the convergence of discrete delta hedging to continuous hedging
 
 ---
 
 ## Notation Summary
 
-
 Throughout this section, we maintain a clear distinction between discrete and continuous time:
 
 **Discrete binomial model:**
 
-- Node index: $i = 0, 1, 2, \ldots, n$
-- Stock price at node $i$: $S_i$
-- Option value at node $i$: $V_i$
-- Time step: $dt = T/n$
+| Symbol | Meaning |
+|--------|---------|
+| $n$ | Number of time steps |
+| $\Delta t = T/n$ | Length of each time step |
+| $i = 0, 1, \ldots, n$ | Node index (time step number) |
+| $S_i$ | Stock price at node $i$ (time $t_i = i \cdot \Delta t$) |
+| $V_i$ | Option value at node $i$ |
+| $u, d$ | Up and down multiplicative factors |
+| $q$ | Risk-neutral probability of up move |
 
-**Continuous Black-Scholes model:**
+**Continuous Black–Scholes model:**
 
-- Continuous time: $t \in [0,T]$
-- Stock price at time $t$: $S(t)$
-- Option value: $V(S,t)$ (as a function)
-- Differentials: $dS(t)$, $dW(t)$, $dt$
+| Symbol | Meaning |
+|--------|---------|
+| $t \in [0, T]$ | Continuous time |
+| $S(t)$ or $S_t$ | Stock price at time $t$ |
+| $V(S, t)$ | Option value as function of $(S, t)$ |
+| $dS_t$, $dW_t$ | Stochastic differentials |
+| $\sigma$ | Volatility parameter |
+| $r$ | Risk-free rate |
+
+!!! warning "Notation Convention"
+    We use $\Delta t$ (not $dt$) for the discrete time step to clearly distinguish from the infinitesimal $dt$ in continuous-time stochastic calculus. As $n \to \infty$, we have $\Delta t \to 0$.
 
 ---
 
 ## Binomial Model Setup
 
+### Discrete Time Structure
 
-### 1. **Discrete Time Structure**
-
-
-Consider a time interval $[0, T]$ divided into $n$ steps:
+Consider a time interval $[0, T]$ divided into $n$ equal steps:
 
 $$
-dt = \frac{T}{n}
+\Delta t = \frac{T}{n}
 $$
 
 At each time step, the stock price evolves multiplicatively:
 
 $$
-S_{i+1} = \begin{cases}
-uS_i & \text{with probability } q \\
-dS_i & \text{with probability } 1-q
+S_{i+1} = 
+\begin{cases}
+u S_i & \text{with probability } q \\[4pt]
+d S_i & \text{with probability } 1-q
 \end{cases}
 $$
 
-where:
+where $u > 1$ is the **up factor** and $0 < d < 1$ is the **down factor**.
 
-- $i = 0, 1, 2, \ldots, n$: **node index** (time step number)
-- $u > 1$: **up factor** (multiplicative increase)
-- $0 < d < 1$: **down factor** (multiplicative decrease)  
-- $q$: **risk-neutral probability** of upward move
+### Parameter Specification (Cox–Ross–Rubinstein)
 
-### 2. **Parameter Specification**
-
-
-To ensure convergence to geometric Brownian motion with volatility $\sigma$, the standard choice is:
+To ensure convergence to geometric Brownian motion with volatility $\sigma$, the standard **Cox–Ross–Rubinstein (CRR)** parameterization is:
 
 $$
-\boxed{u = e^{\sigma\sqrt{dt}}, \quad d = e^{-\sigma\sqrt{dt}}}
+\boxed{u = e^{\sigma\sqrt{\Delta t}}, \quad d = e^{-\sigma\sqrt{\Delta t}} = \frac{1}{u}}
 $$
 
-**Rationale**: These choices ensure that:
+!!! note "Why These Parameters?"
+    These choices ensure:
+    
+    1. **Variance matching**: The variance of log-returns over $\Delta t$ equals $\sigma^2 \Delta t$
+    2. **Recombining tree**: An up move followed by down equals a down move followed by up ($ud = 1$)
+    3. **Centering**: $\ln u = -\ln d$, so the tree is symmetric in log-space
+    4. **Well-defined**: Valid for all $\Delta t > 0$ and $\sigma > 0$
 
-1. The variance of log-returns matches the continuous-time model
-2. The tree is recombining (up-then-down equals down-then-up)
-3. The model is well-defined for all $dt > 0$
+### Risk-Neutral Probability
 
-### 3. **Risk-Neutral Probability**
-
-
-Under the risk-neutral measure, the expected return equals the risk-free rate:
+Under the risk-neutral measure, the discounted stock price is a martingale:
 
 $$
-q \cdot u + (1-q) \cdot d = e^{r dt}
+S_i = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i]
+$$
+
+This requires:
+
+$$
+S_i = e^{-r\Delta t}(q \cdot u S_i + (1-q) \cdot d S_i)
+$$
+
+Simplifying:
+
+$$
+e^{r\Delta t} = qu + (1-q)d
 $$
 
 Solving for $q$:
 
 $$
-\boxed{q = \frac{e^{r dt} - d}{u - d}}
+\boxed{q = \frac{e^{r\Delta t} - d}{u - d}}
 $$
 
-For small $dt$, using Taylor expansion $e^x \approx 1 + x + \frac{x^2}{2}$:
+### Taylor Expansion of $q$
+
+For small $\Delta t$, we expand each term:
 
 $$
-q = \frac{(1 + rdt) - (1 - \sigma\sqrt{dt})}{2\sigma\sqrt{dt}} + O(dt) = \frac{1}{2} + \frac{r\sqrt{dt}}{2\sigma} + O(dt)
+e^{r\Delta t} \approx 1 + r\Delta t + \frac{(r\Delta t)^2}{2} + O(\Delta t^{3/2})
 $$
 
-As $dt \to 0$, the probability approaches $\frac{1}{2}$ with a small drift correction.
+$$
+u = e^{\sigma\sqrt{\Delta t}} \approx 1 + \sigma\sqrt{\Delta t} + \frac{\sigma^2 \Delta t}{2} + O(\Delta t^{3/2})
+$$
+
+$$
+d = e^{-\sigma\sqrt{\Delta t}} \approx 1 - \sigma\sqrt{\Delta t} + \frac{\sigma^2 \Delta t}{2} + O(\Delta t^{3/2})
+$$
+
+Therefore:
+
+$$
+u - d \approx 2\sigma\sqrt{\Delta t}
+$$
+
+$$
+e^{r\Delta t} - d \approx (1 + r\Delta t) - (1 - \sigma\sqrt{\Delta t}) = \sigma\sqrt{\Delta t} + r\Delta t
+$$
+
+Thus:
+
+$$
+q = \frac{\sigma\sqrt{\Delta t} + r\Delta t}{2\sigma\sqrt{\Delta t}} = \frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma} + O(\Delta t)
+$$
+
+!!! success "Risk-Neutral Probability Limit"
+    As $\Delta t \to 0$:
+    
+    $$
+    q \to \frac{1}{2}
+    $$
+    
+    The probability approaches $\frac{1}{2}$ with a small drift correction of order $\sqrt{\Delta t}$.
 
 ---
 
 ## Convergence of Stock Price Process
 
+### Log-Price Representation
 
-### 1. **Log-Price Representation**
-
-
-After $n$ steps, the stock price is:
+After $n$ steps, starting from $S_0$, the stock price is:
 
 $$
-S_n = S_0 u^{N_u} d^{N_d}
+S_n = S_0 \cdot u^{N_u} \cdot d^{N_d}
 $$
 
 where:
 
 - $N_u$ = number of up moves
-- $N_d$ = number of down moves
-- $N_u + N_d = n$
+- $N_d = n - N_u$ = number of down moves
 
 Taking logarithms:
 
 $$
-\ln(S_n) = \ln(S_0) + N_u \ln(u) + N_d \ln(d)
+\ln S_n = \ln S_0 + N_u \ln u + N_d \ln d
 $$
 
-Substituting $u = e^{\sigma\sqrt{dt}}$ and $d = e^{-\sigma\sqrt{dt}}$:
+With $u = e^{\sigma\sqrt{\Delta t}}$ and $d = e^{-\sigma\sqrt{\Delta t}}$:
 
 $$
-\ln(S_n) = \ln(S_0) + \sigma\sqrt{dt}(N_u - N_d)
+\ln S_n = \ln S_0 + N_u \cdot \sigma\sqrt{\Delta t} - N_d \cdot \sigma\sqrt{\Delta t}
 $$
 
-### 2. **Drift and Diffusion Decomposition**
+$$
+\ln S_n = \ln S_0 + \sigma\sqrt{\Delta t}(N_u - N_d)
+$$
 
+### Random Walk Representation
 
-Define:
+Define the **step random variables**:
 
 $$
-X_i = \begin{cases}
-+1 & \text{if up move at step } i \\
--1 & \text{if down move at step } i
+X_i = 
+\begin{cases}
++1 & \text{if up move at step } i \quad (\text{prob } q) \\[4pt]
+-1 & \text{if down move at step } i \quad (\text{prob } 1-q)
 \end{cases}
 $$
 
 Then:
 
 $$
-N_u - N_d = \sum_{i=1}^n X_i
+N_u - N_d = \sum_{i=1}^{n} X_i
 $$
+
+and the log-price becomes:
+
+$$
+\ln S_n = \ln S_0 + \sigma\sqrt{\Delta t} \sum_{i=1}^{n} X_i
+$$
+
+### Moments of $X_i$
 
 Under the risk-neutral measure $\mathbb{Q}$:
 
+**Mean:**
 $$
-\mathbb{E}^{\mathbb{Q}}[X_i] = 2q - 1 = \frac{r\sqrt{dt}}{\sigma} + O(dt)
-$$
-
-$$
-\text{Var}^{\mathbb{Q}}[X_i] = 1 - (2q-1)^2 = 1 - O(dt)
+\mathbb{E}^{\mathbb{Q}}[X_i] = (+1) \cdot q + (-1) \cdot (1-q) = 2q - 1
 $$
 
-### 3. **Central Limit Theorem**
-
-
-As $n \to \infty$ (equivalently $dt \to 0$), by the **Central Limit Theorem**:
+Using $q = \frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma} + O(\Delta t)$:
 
 $$
-\frac{1}{\sqrt{n}}\sum_{i=1}^n (X_i - \mathbb{E}[X_i]) \xrightarrow{d} \mathcal{N}(0, 1)
+\mathbb{E}^{\mathbb{Q}}[X_i] = 2\left(\frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma}\right) - 1 + O(\Delta t) = \frac{r\sqrt{\Delta t}}{\sigma} + O(\Delta t)
 $$
 
-Since $n = T/dt$ and $\sqrt{n \cdot dt} = \sqrt{T}$:
-
+**Variance:**
 $$
-\sum_{i=1}^n X_i \xrightarrow{d} \mathcal{N}\left(\frac{r T}{\sigma}, n\right) = \mathcal{N}\left(\frac{r T}{\sigma}, \frac{T}{dt}\right)
-$$
-
-### 4. **Log-Price Distribution**
-
-
-Therefore:
-
-$$
-\ln(S_n) = \ln(S_0) + \sigma\sqrt{dt} \sum_{i=1}^n X_i
+\mathbb{E}^{\mathbb{Q}}[X_i^2] = (+1)^2 \cdot q + (-1)^2 \cdot (1-q) = 1
 $$
 
-converges in distribution to:
-
 $$
-\ln(S(T)) \sim \mathcal{N}\left(\ln(S_0) + \left(r - \frac{1}{2}\sigma^2\right)T, \sigma^2 T\right)
+\text{Var}^{\mathbb{Q}}(X_i) = \mathbb{E}[X_i^2] - (\mathbb{E}[X_i])^2 = 1 - O(\Delta t) \approx 1
 $$
 
-where $S(T)$ denotes the stock price at continuous time $T$.
+### Central Limit Theorem Application
 
-**Drift correction**: The term $-\frac{1}{2}\sigma^2$ appears due to **Itô's lemma** conversion from $dS/S$ to $d\ln S$.
-
-### 5. **Geometric Brownian Motion**
-
-
-This log-normal distribution characterizes the solution to the stochastic differential equation:
+Define the **scaled log-return**:
 
 $$
-\boxed{dS(t) = rS(t) \, dt + \sigma S(t) \, dW(t)}
+Y_n := \ln S_n - \ln S_0 = \sigma\sqrt{\Delta t} \sum_{i=1}^{n} X_i
 $$
 
-where $t \in [0,T]$ is continuous time. This is the **risk-neutral geometric Brownian motion** underlying the Black-Scholes model.
+**Mean of $Y_n$:**
+
+$$
+\mathbb{E}^{\mathbb{Q}}[Y_n] = \sigma\sqrt{\Delta t} \sum_{i=1}^{n} \mathbb{E}^{\mathbb{Q}}[X_i] = \sigma\sqrt{\Delta t} \cdot n \cdot \frac{r\sqrt{\Delta t}}{\sigma} + O(n \Delta t^{3/2})
+$$
+
+Since $n \cdot \Delta t = T$:
+
+$$
+\mathbb{E}^{\mathbb{Q}}[Y_n] = rT + O(\sqrt{\Delta t})
+$$
+
+**Variance of $Y_n$:**
+
+Since $X_i$ are independent:
+
+$$
+\text{Var}^{\mathbb{Q}}(Y_n) = \sigma^2 \Delta t \sum_{i=1}^{n} \text{Var}^{\mathbb{Q}}(X_i) = \sigma^2 \Delta t \cdot n \cdot (1 + O(\Delta t))
+$$
+
+$$
+\text{Var}^{\mathbb{Q}}(Y_n) = \sigma^2 T + O(\Delta t)
+$$
+
+**CLT Convergence:**
+
+By the **Central Limit Theorem**, as $n \to \infty$:
+
+$$
+Y_n = \ln(S_n/S_0) \xrightarrow{d} \mathcal{N}(rT, \sigma^2 T)
+$$
+
+!!! warning "This Is Not Quite Right!"
+    The calculation above gives $\mathbb{E}[\ln(S_n/S_0)] \to rT$, but the correct Black–Scholes result is:
+    
+    $$\mathbb{E}^{\mathbb{Q}}[\ln(S_T/S_0)] = \left(r - \frac{1}{2}\sigma^2\right)T$$
+    
+    Where does the $-\frac{1}{2}\sigma^2$ term come from? This is the **Itô correction**, which we derive next.
+
+---
+
+## The Itô Correction: Where Does $-\frac{1}{2}\sigma^2$ Come From?
+
+The discrepancy arises from a subtle point: the risk-neutral condition constrains the **arithmetic** return, not the **logarithmic** return.
+
+### The Martingale Condition
+
+The risk-neutral measure is defined so that the **discounted stock price** is a martingale:
+
+$$
+\mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i] = S_i \cdot e^{r\Delta t}
+$$
+
+This says something about $S_{i+1}$, not about $\ln S_{i+1}$.
+
+### Jensen's Inequality
+
+For a concave function $f(x) = \ln x$, Jensen's inequality states:
+
+$$
+\mathbb{E}[\ln X] \leq \ln \mathbb{E}[X]
+$$
+
+with equality only if $X$ is constant.
+
+Since $S_{i+1}/S_i$ is random (not constant), we have:
+
+$$
+\mathbb{E}^{\mathbb{Q}}\left[\ln\frac{S_{i+1}}{S_i}\right] < \ln \mathbb{E}^{\mathbb{Q}}\left[\frac{S_{i+1}}{S_i}\right] = \ln(e^{r\Delta t}) = r\Delta t
+$$
+
+The gap is the **Itô correction**.
+
+### Explicit Calculation
+
+Let $R_i = S_{i+1}/S_i$ be the gross return at step $i$. Then:
+
+$$
+R_i = 
+\begin{cases}
+u = e^{\sigma\sqrt{\Delta t}} & \text{with prob } q \\[4pt]
+d = e^{-\sigma\sqrt{\Delta t}} & \text{with prob } 1-q
+\end{cases}
+$$
+
+The log-return is:
+
+$$
+\ln R_i = 
+\begin{cases}
+\sigma\sqrt{\Delta t} & \text{with prob } q \\[4pt]
+-\sigma\sqrt{\Delta t} & \text{with prob } 1-q
+\end{cases}
+$$
+
+**Expected log-return:**
+
+$$
+\mathbb{E}^{\mathbb{Q}}[\ln R_i] = q \cdot \sigma\sqrt{\Delta t} + (1-q) \cdot (-\sigma\sqrt{\Delta t}) = (2q-1)\sigma\sqrt{\Delta t}
+$$
+
+Using $q = \frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma} + O(\Delta t)$:
+
+$$
+2q - 1 = \frac{r\sqrt{\Delta t}}{\sigma} + O(\Delta t)
+$$
+
+$$
+\mathbb{E}^{\mathbb{Q}}[\ln R_i] = \frac{r\sqrt{\Delta t}}{\sigma} \cdot \sigma\sqrt{\Delta t} + O(\Delta t^{3/2}) = r\Delta t + O(\Delta t^{3/2})
+$$
+
+This gives $\mathbb{E}[\ln R_i] \approx r\Delta t$, which would sum to $rT$ over $n$ steps.
+
+**But wait—we need a more careful expansion!**
+
+### Second-Order Correction
+
+The issue is that we need to track the $O(\Delta t)$ terms more carefully. Let's use a different approach.
+
+The martingale condition gives:
+
+$$
+\mathbb{E}^{\mathbb{Q}}[R_i] = e^{r\Delta t}
+$$
+
+Now, for any random variable $R > 0$ with small variance, we have the approximation:
+
+$$
+\mathbb{E}[\ln R] \approx \ln \mathbb{E}[R] - \frac{\text{Var}(R)}{2(\mathbb{E}[R])^2}
+$$
+
+This is a second-order Taylor expansion of $\ln$ around $\mathbb{E}[R]$.
+
+**Variance of $R_i$:**
+
+$$
+\mathbb{E}^{\mathbb{Q}}[R_i^2] = q \cdot u^2 + (1-q) \cdot d^2 = q \cdot e^{2\sigma\sqrt{\Delta t}} + (1-q) \cdot e^{-2\sigma\sqrt{\Delta t}}
+$$
+
+For small $\Delta t$:
+
+$$
+\mathbb{E}^{\mathbb{Q}}[R_i^2] \approx q(1 + 2\sigma\sqrt{\Delta t} + 2\sigma^2\Delta t) + (1-q)(1 - 2\sigma\sqrt{\Delta t} + 2\sigma^2\Delta t)
+$$
+
+$$
+= 1 + 2\sigma\sqrt{\Delta t}(2q-1) + 2\sigma^2\Delta t
+$$
+
+$$
+\approx 1 + 2r\Delta t + 2\sigma^2\Delta t + O(\Delta t^{3/2})
+$$
+
+Since $\mathbb{E}[R_i] = e^{r\Delta t} \approx 1 + r\Delta t$:
+
+$$
+\text{Var}(R_i) = \mathbb{E}[R_i^2] - (\mathbb{E}[R_i])^2 \approx (1 + 2r\Delta t + 2\sigma^2\Delta t) - (1 + 2r\Delta t) = 2\sigma^2\Delta t
+$$
+
+Wait, this gives variance $\approx 2\sigma^2\Delta t$, but the correct variance of $R_i - 1$ should be $\sigma^2\Delta t$. Let me redo this more carefully.
+
+**Correct variance calculation:**
+
+$$
+R_i = e^{\pm\sigma\sqrt{\Delta t}} \approx 1 \pm \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2}
+$$
+
+$$
+\text{Var}(R_i) \approx \text{Var}(\pm\sigma\sqrt{\Delta t}) = \sigma^2\Delta t \cdot \text{Var}(\pm 1) = \sigma^2\Delta t \cdot 1 = \sigma^2\Delta t
+$$
+
+(since $\text{Var}(\text{sign}) = 1 - (2q-1)^2 \approx 1$)
+
+**Applying the correction:**
+
+$$
+\mathbb{E}[\ln R_i] \approx \ln \mathbb{E}[R_i] - \frac{\text{Var}(R_i)}{2(\mathbb{E}[R_i])^2}
+$$
+
+$$
+\approx r\Delta t - \frac{\sigma^2\Delta t}{2 \cdot 1} = \left(r - \frac{\sigma^2}{2}\right)\Delta t
+$$
+
+**Summing over $n$ steps:**
+
+$$
+\mathbb{E}^{\mathbb{Q}}[\ln(S_n/S_0)] = \sum_{i=1}^{n} \mathbb{E}^{\mathbb{Q}}[\ln R_i] \approx n \cdot \left(r - \frac{\sigma^2}{2}\right)\Delta t = \left(r - \frac{\sigma^2}{2}\right)T
+$$
+
+!!! success "Itô Correction Derived"
+    The $-\frac{1}{2}\sigma^2$ term arises from the **convexity of the logarithm** (Jensen's inequality). In continuous time, this is captured by Itô's lemma:
+    
+    $$d\ln S_t = \frac{dS_t}{S_t} - \frac{1}{2}\frac{(dS_t)^2}{S_t^2} = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t$$
+    
+    The discrete calculation reproduces this correction in the limit.
+
+---
+
+## Log-Price Distribution and Geometric Brownian Motion
+
+### Final Distribution
+
+Combining the CLT with the Itô correction, as $n \to \infty$:
+
+$$
+\ln S_n \xrightarrow{d} \mathcal{N}\left(\ln S_0 + \left(r - \frac{1}{2}\sigma^2\right)T, \, \sigma^2 T\right)
+$$
+
+Equivalently, $S_n$ converges in distribution to a **log-normal** random variable:
+
+$$
+S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T\right)
+$$
+
+where $W_T \sim \mathcal{N}(0, T)$.
+
+### Connection to Geometric Brownian Motion
+
+This log-normal distribution is exactly the solution to the **risk-neutral SDE**:
+
+$$
+\boxed{dS_t = rS_t \, dt + \sigma S_t \, dW_t}
+$$
+
+where $W_t$ is a standard Brownian motion under $\mathbb{Q}$.
+
+!!! note "Donsker's Theorem"
+    The convergence of the scaled random walk to Brownian motion is a special case of **Donsker's theorem** (the functional central limit theorem). See [Donsker's Theorem](../../ch01/brownian_motion/donsker_theorem.md) for the general statement.
+    
+    Donsker's theorem gives convergence of the entire **path** $\{S_{[nt]/n}\}_{t \in [0,T]}$ to $\{S_t\}_{t \in [0,T]}$, not just the terminal distribution.
 
 ---
 
 ## Matching Variance
 
+### Per-Step Variance
 
-### 1. **Instantaneous Variance**
-
-
-In one time step, the stock return is:
+In one time step, the log-return is:
 
 $$
-\frac{S_{i+1} - S_i}{S_i} = \begin{cases}
-u - 1 \approx \sigma\sqrt{dt} & \text{with prob. } q \\
-d - 1 \approx -\sigma\sqrt{dt} & \text{with prob. } 1-q
+\ln\frac{S_{i+1}}{S_i} = 
+\begin{cases}
++\sigma\sqrt{\Delta t} & \text{with prob } q \\[4pt]
+-\sigma\sqrt{\Delta t} & \text{with prob } 1-q
 \end{cases}
 $$
 
-The **variance** of the return over $dt$:
+The variance:
 
 $$
-\text{Var}\left(\frac{S_{i+1} - S_i}{S_i}\right) \approx \sigma^2 dt
+\text{Var}\left(\ln\frac{S_{i+1}}{S_i}\right) = \sigma^2\Delta t \cdot \text{Var}(\pm 1) = \sigma^2\Delta t \cdot (1 - (2q-1)^2)
 $$
 
-### 2. **Continuous-Time Limit**
-
-
-Over the full period $[0, T]$, the total variance accumulates:
+Since $(2q-1)^2 = O(\Delta t)$:
 
 $$
-\text{Var}(\ln(S_n/S_0)) = n \cdot \sigma^2 dt = \sigma^2 T
+\text{Var}\left(\ln\frac{S_{i+1}}{S_i}\right) = \sigma^2\Delta t + O(\Delta t^2)
 $$
 
-This matches the variance in the Black-Scholes model:
+### Total Variance
+
+Over $n$ independent steps:
 
 $$
-\text{Var}^{\mathbb{Q}}(\ln(S(T)/S_0)) = \sigma^2 T
+\text{Var}(\ln(S_n/S_0)) = n \cdot \sigma^2\Delta t = \sigma^2 T
 $$
 
-**Conclusion**: The binomial parameterization $u = e^{\sigma\sqrt{dt}}$, $d = e^{-\sigma\sqrt{dt}}$ ensures that the discrete model has the **same volatility structure** as the continuous model.
-
----
-
-## Risk-Neutral Drift Convergence
-
-
-### 1. **Expected Growth Rate**
-
-
-Under the risk-neutral measure, the expected stock price after one step is:
+This matches the Black–Scholes variance exactly:
 
 $$
-\mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i] = S_i(qu + (1-q)d)
+\text{Var}^{\mathbb{Q}}(\ln(S_T/S_0)) = \sigma^2 T
 $$
 
-Substituting $q = \frac{e^{r dt} - d}{u - d}$:
-
-$$
-qu + (1-q)d = e^{r dt}
-$$
-
-Therefore:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i] = S_i e^{r dt} \approx S_i(1 + rdt)
-$$
-
-### 2. **Continuous-Time Equivalent**
-
-
-As $dt \to 0$, this discrete expectation converges to the infinitesimal increment:
-
-$$
-\mathbb{E}^{\mathbb{Q}}[dS(t) | S(t)] = rS(t) \, dt
-$$
-
-which is exactly the **drift term** in the Black-Scholes SDE:
-
-$$
-dS(t) = rS(t) \, dt + \sigma S(t) \, dW(t)
-$$
-
-**Interpretation**: The binomial model's risk-neutral probability is calibrated so that the discrete expected return matches the continuous risk-free rate.
+!!! success "Variance Matching"
+    The CRR parameterization $u = e^{\sigma\sqrt{\Delta t}}$, $d = e^{-\sigma\sqrt{\Delta t}}$ ensures that the discrete model has the **same volatility structure** as the continuous model for any number of steps $n$.
 
 ---
 
 ## Convergence of Option Pricing
 
+### Binomial Backward Recursion
 
-### 1. **Binomial Option Valuation**
-
-
-In the binomial model, option value at node $i$ is:
+In the binomial model, the option value at node $i$ satisfies:
 
 $$
-V_i = e^{-r dt}\left[qV_{i+1}^{\text{up}} + (1-q)V_{i+1}^{\text{down}}\right]
+V_i = e^{-r\Delta t}\left[q V_{i+1}^{u} + (1-q) V_{i+1}^{d}\right]
 $$
 
 with terminal condition:
@@ -302,232 +543,295 @@ $$
 V_n = \text{Payoff}(S_n)
 $$
 
-### 2. **Continuous Discounting**
+where $V_{i+1}^u$ (resp. $V_{i+1}^d$) is the option value at the up (resp. down) successor node.
 
+### Taylor Expansion Approach
 
-As $dt \to 0$:
+To derive the PDE limit, we expand $V$ as a smooth function $V(S, t)$ and examine the discrete recursion.
 
-$$
-e^{-r dt} \approx 1 - rdt + O((dt)^2)
-$$
-
-The discrete recursion becomes:
+At node $i$, let $S = S_i$ and $t = i \cdot \Delta t$. The successor values are:
 
 $$
-V_i \approx V_{i+1} - rdt \cdot V_i + \text{(variance term)}
+V_{i+1}^u = V(uS, t + \Delta t), \quad V_{i+1}^d = V(dS, t + \Delta t)
 $$
 
-Rearranging:
+**Taylor expand in time:**
 
 $$
-\frac{V_{i+1} - V_i}{dt} \approx rV_i - \text{(second derivative terms)}
+V(uS, t + \Delta t) = V(uS, t) + \frac{\partial V}{\partial t}(uS, t)\Delta t + O(\Delta t^2)
 $$
 
-### 3. **PDE Limit**
-
-
-As $n \to \infty$ and $dt \to 0$, this discrete recursion converges to the **Black-Scholes PDE**:
+**Taylor expand in space** around $S$:
 
 $$
-\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+V(uS, t) = V(S, t) + \frac{\partial V}{\partial S}(S, t)(uS - S) + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(S, t)(uS - S)^2 + O((uS-S)^3)
 $$
 
-with terminal condition:
+Since $u = e^{\sigma\sqrt{\Delta t}} \approx 1 + \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2}$:
 
 $$
-V(S, T) = \text{Payoff}(S)
+uS - S = S(u - 1) \approx S\sigma\sqrt{\Delta t} + O(\Delta t)
 $$
 
-where $t$ is now continuous time and $V = V(S,t)$ is the option value as a function.
+$$(uS - S)^2 \approx S^2\sigma^2\Delta t$$
 
-### 4. **Formula Convergence**
-
-
-For a European call option, the binomial price:
+Similarly for the down node:
 
 $$
-C_{\text{binomial}} = e^{-rT}\sum_{k=0}^n \binom{n}{k} q^k (1-q)^{n-k} (S_0 u^k d^{n-k} - K)^+
+dS - S \approx -S\sigma\sqrt{\Delta t} + O(\Delta t)
 $$
 
-converges to the Black-Scholes formula:
+$$(dS - S)^2 \approx S^2\sigma^2\Delta t$$
+
+### Computing the Expectation
+
+The risk-neutral expected successor value is:
 
 $$
-C_{\text{BS}} = S_0 \mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+q V(uS, t) + (1-q) V(dS, t)
 $$
 
-as $n \to \infty$.
-
-**Proof idea**: The binomial sum is a discrete approximation to the integral:
+**First-order terms:**
 
 $$
-\mathbb{E}^{\mathbb{Q}}[(S(T) - K)^+] = \int_0^\infty (S - K)^+ f(S) \, dS
+q(uS - S) + (1-q)(dS - S) = S[q(u-1) + (1-q)(d-1)] = S[qu + (1-q)d - 1]
 $$
 
-where $f(S)$ is the log-normal density and $S(T)$ is the stock price at time $T$.
+Since $qu + (1-q)d = e^{r\Delta t} \approx 1 + r\Delta t$:
+
+$$
+q(uS - S) + (1-q)(dS - S) \approx rS\Delta t
+$$
+
+**Second-order terms:**
+
+$$
+q(uS - S)^2 + (1-q)(dS - S)^2 \approx S^2\sigma^2\Delta t \cdot [q + (1-q)] = S^2\sigma^2\Delta t
+$$
+
+### Assembling the PDE
+
+The backward recursion becomes:
+
+$$
+V(S, t) = e^{-r\Delta t}\left[V(S, t) + \frac{\partial V}{\partial S} \cdot rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} \cdot S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t + O(\Delta t^{3/2})\right]
+$$
+
+Using $e^{-r\Delta t} \approx 1 - r\Delta t$:
+
+$$
+V = (1 - r\Delta t)\left[V + \frac{\partial V}{\partial S} rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t\right] + O(\Delta t^{3/2})
+$$
+
+Expanding and keeping terms up to $O(\Delta t)$:
+
+$$
+V = V - rV\Delta t + \frac{\partial V}{\partial S} rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t + O(\Delta t^{3/2})
+$$
+
+Canceling $V$ and dividing by $\Delta t$:
+
+$$
+0 = -rV + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + \frac{\partial V}{\partial t} + O(\sqrt{\Delta t})
+$$
+
+Taking $\Delta t \to 0$:
+
+!!! success "Black–Scholes PDE"
+    $$
+    \boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+    $$
+    
+    with terminal condition $V(S, T) = \text{Payoff}(S)$.
 
 ---
 
-## Replication Argument Carries Over
+## Convergence of Option Prices
 
+### Binomial Formula for European Call
 
-### 1. **Discrete-Time Hedging**
-
-
-In the binomial model, at each node the option is replicated by a portfolio:
+For a European call with strike $K$, the binomial price is:
 
 $$
-V_i = \Delta_i S_i + B_i
+C_n = e^{-rT}\sum_{k=0}^{n} \binom{n}{k} q^k (1-q)^{n-k} (S_0 u^k d^{n-k} - K)^+
 $$
 
-where:
-
-- $\Delta_i = \frac{V_{i+1}^{\text{up}} - V_{i+1}^{\text{down}}}{S_i(u - d)}$ (delta at node $i$)
-- $B_i$ = cash position at node $i$
-
-### 2. **Continuous-Time Limit**
-
-
-As $dt \to 0$:
+The payoff is positive only when $S_0 u^k d^{n-k} > K$, i.e., when:
 
 $$
-\Delta_i \to \frac{\partial V}{\partial S}
+k > k^* := \frac{\ln(K/S_0) - n\ln d}{\ln(u/d)} = \frac{\ln(K/S_0) + n\sigma\sqrt{\Delta t}}{2\sigma\sqrt{\Delta t}}
 $$
 
-The discrete hedging strategy converges to the **continuous delta hedging** in Black-Scholes:
+So the sum effectively runs from $k = \lceil k^* \rceil$ to $n$.
+
+### Black–Scholes Formula
+
+The continuous limit is the **Black–Scholes formula**:
 
 $$
-\Delta(S,t) = \frac{\partial V}{\partial S} = \mathcal{N}(d_1)
+C_{BS} = S_0 \Phi(d_1) - Ke^{-rT}\Phi(d_2)
 $$
 
-where $(S,t)$ denotes continuous time and space.
+where $\Phi$ is the standard normal CDF and:
 
-**Self-financing**: The portfolio remains self-financing in the limit, meaning no additional cash is injected or withdrawn.
+$$
+d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+$$
+
+### Convergence
+
+As $n \to \infty$:
+
+$$
+C_n \to C_{BS}
+$$
+
+**Proof sketch:** The binomial sum is a Riemann sum approximation to:
+
+$$
+C_{BS} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = e^{-rT}\int_K^\infty (S - K) f_{S_T}(S) \, dS
+$$
+
+where $f_{S_T}$ is the log-normal density of $S_T$. By the CLT, the discrete distribution of $S_n$ converges to this log-normal, so the expectation converges.
+
+---
+
+## Convergence of Delta Hedging
+
+### Discrete Delta
+
+In the binomial model, at node $(i, j)$ with stock price $S$, the replicating portfolio holds:
+
+$$
+\Delta_i = \frac{V_{i+1}^u - V_{i+1}^d}{S(u - d)} = \frac{V(uS, t+\Delta t) - V(dS, t+\Delta t)}{S(u - d)}
+$$
+
+### Taylor Expansion
+
+Expanding around $(S, t)$:
+
+$$
+V(uS, t+\Delta t) - V(dS, t+\Delta t) \approx \frac{\partial V}{\partial S}(S, t) \cdot S(u - d) + O(\Delta t)
+$$
+
+Therefore:
+
+$$
+\Delta_i \approx \frac{\partial V}{\partial S}(S, t) + O(\sqrt{\Delta t})
+$$
+
+### Continuous Limit
+
+As $\Delta t \to 0$:
+
+$$
+\Delta_i \to \frac{\partial V}{\partial S}(S, t)
+$$
+
+For a European call, this is the **Black–Scholes delta**:
+
+$$
+\Delta = \frac{\partial C}{\partial S} = \Phi(d_1)
+$$
+
+!!! success "Hedging Convergence"
+    The discrete binomial hedging strategy converges to continuous **delta hedging**. The replicating portfolio remains self-financing in the limit.
 
 ---
 
 ## Convergence Rate
 
+### Error Behavior
 
-### 1. **Error Analysis**
-
-
-The error between binomial and Black-Scholes prices is:
+For the CRR binomial model pricing European options:
 
 $$
-|C_{\text{binomial}} - C_{\text{BS}}| = O\left(\frac{1}{\sqrt{n}}\right)
+|C_n - C_{BS}| = O\left(\frac{1}{n}\right)
 $$
 
-**Implication**: To achieve 3 decimal places of accuracy, approximately $n \geq 10^6$ steps may be required.
+with **oscillations** between odd and even $n$.
 
-### 2. **Practical Considerations**
+!!! warning "Common Misconception"
+    Some sources state $O(1/\sqrt{n})$ convergence, but for smooth payoffs (European calls/puts), the CRR model achieves $O(1/n)$ convergence. The $O(1/\sqrt{n})$ rate applies to certain path-dependent options or non-smooth payoffs.
 
+### Practical Guidance
 
-For practical implementations:
+| Steps $n$ | Typical Error | Use Case |
+|-----------|---------------|----------|
+| 50–100 | ~1% | Quick estimates, American options |
+| 500–1000 | ~0.1% | Production pricing |
+| 10,000+ | ~0.01% | High-precision benchmarks |
 
-- **Small $n$** (e.g., $n = 50-100$): Fast computation, reasonable accuracy for ATM options
-- **Large $n$** (e.g., $n = 1000+$): Higher accuracy but computationally expensive
-- **Richardson extrapolation**: Can improve convergence rate to $O(1/n)$
+### Acceleration Techniques
+
+- **Richardson extrapolation**: Combine $C_n$ and $C_{2n}$ to cancel leading error term, achieving $O(1/n^2)$
+- **Smoothing**: Use $C_n^{smooth} = \frac{1}{2}(C_n + C_{n+1})$ to reduce oscillations
+- **Adaptive mesh**: Concentrate nodes near strike for barrier/digital options
 
 ---
 
-## Extensions and Generalizations
+## Extensions
 
+### American Options
 
-### 1. **American Options**
-
-
-The binomial method extends naturally to American options (with early exercise):
+The binomial method handles American options naturally:
 
 $$
-V_i^{\text{American}} = \max\left(\text{Payoff}(S_i), e^{-r dt}[qV_{i+1}^{\text{up}} + (1-q)V_{i+1}^{\text{down}}]\right)
+V_i^{American} = \max\left(\text{Payoff}(S_i), \, e^{-r\Delta t}[qV_{i+1}^u + (1-q)V_{i+1}^d]\right)
 $$
 
-There is **no closed-form** Black-Scholes formula for American options, so numerical methods remain essential.
+The early exercise boundary emerges from the recursion. There is **no closed-form** Black–Scholes formula for American options.
 
-### 2. **Dividends**
+### Dividends
 
+**Continuous dividend yield $\delta$:** Replace $r$ with $r - \delta$ in the drift:
 
-For dividend-paying stocks:
+$$
+q = \frac{e^{(r-\delta)\Delta t} - d}{u - d}
+$$
 
-- **Continuous dividends**: Replace $r$ with $r - \delta$ in the drift
-- **Discrete dividends**: Subtract PV of dividends from stock price at each ex-dividend date
+**Discrete dividends:** At ex-dividend dates, reduce $S$ by the dividend amount.
 
-### 3. **Alternative Parameterizations**
+### Alternative Parameterizations
 
+| Method | $u$ | $d$ | Notes |
+|--------|-----|-----|-------|
+| **CRR** | $e^{\sigma\sqrt{\Delta t}}$ | $e^{-\sigma\sqrt{\Delta t}}$ | Symmetric, recombining |
+| **Jarrow–Rudd** | $e^{(r-\sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}}$ | $e^{(r-\sigma^2/2)\Delta t - \sigma\sqrt{\Delta t}}$ | Equal probabilities $q = \frac{1}{2}$ |
+| **Tian** | Various | Various | Third-moment matching |
 
-Other choices of $u, d$ exist:
-
-- **Cox-Ross-Rubinstein**: $u = e^{\sigma\sqrt{dt}}$, $d = 1/u$
-- **Jarrow-Rudd**: $u = e^{(r - \sigma^2/2)dt + \sigma\sqrt{dt}}$, $d = e^{(r - \sigma^2/2)dt - \sigma\sqrt{dt}}$
-
-All converge to the same Black-Scholes limit but may have different convergence rates.
+All converge to Black–Scholes but with different convergence rates and oscillation patterns.
 
 ---
 
-## Summary: Binomial vs. Black-Scholes
+## Summary: Binomial vs. Black–Scholes
 
-
-| Feature | Binomial Model | Black-Scholes Model |
+| Feature | Binomial Model | Black–Scholes Model |
 |---------|----------------|---------------------|
-| **Time** | Discrete (finite steps) | Continuous |
-| **Indexing** | Node index $i = 0, \ldots, n$ | Continuous time $t \in [0,T]$ |
-| **Price moves** | $u$ or $d$ per step | Infinitesimal $dW(t)$ |
-| **Stock price** | $S_i$ at node $i$ | $S(t)$ at time $t$ |
+| **Time** | Discrete: $t_i = i\Delta t$ | Continuous: $t \in [0,T]$ |
+| **Price process** | Multiplicative jumps $u, d$ | GBM: $dS = rS\,dt + \sigma S\,dW$ |
 | **Probability** | Risk-neutral $q$ | Measure $\mathbb{Q}$ |
-| **Valuation** | Backward recursion | PDE or expectation |
-| **Formula** | Summation over paths | Closed-form (European) |
-| **Convergence** | $n \to \infty$ | Limit as $dt \to 0$ |
-| **American options** | Easily handled | No closed form |
-| **Intuition** | Very clear | Requires SDE theory |
-| **Computation** | $O(n^2)$ | Instant (if closed form) |
+| **Valuation** | Backward recursion | PDE or $\mathbb{E}^{\mathbb{Q}}$ |
+| **European options** | Summation formula | Closed-form (BS formula) |
+| **American options** | Early exercise check | No closed form |
+| **Computation** | $O(n^2)$ time, $O(n)$ space | Instant (if closed form) |
+| **Flexibility** | High (dividends, barriers, etc.) | Limited without extensions |
 
 ---
 
-## Practical Takeaway
+## Key Takeaways
 
+!!! abstract "Summary"
+    1. **Parameter matching**: $u = e^{\sigma\sqrt{\Delta t}}$, $d = 1/u$ ensures variance $\sigma^2\Delta t$ per step
+    
+    2. **CLT convergence**: The scaled random walk $\sum X_i$ converges to Brownian motion
+    
+    3. **Itô correction**: The $-\frac{1}{2}\sigma^2$ drift adjustment arises from Jensen's inequality (convexity of log)
+    
+    4. **PDE emergence**: Taylor expansion of the binomial recursion yields the Black–Scholes PDE
+    
+    5. **Delta convergence**: Discrete hedge ratio $\to \frac{\partial V}{\partial S}$
+    
+    6. **Practical value**: Binomial remains essential for American options and exotic features
 
-The binomial tree remains **highly valuable** even after learning the Black-Scholes formula:
-
-### 1. **Advantages of Binomial**
-
-
-1. **Intuitive**: Easy to understand and explain to non-quants
-2. **Flexible**: Handles American options, dividends, time-varying parameters
-3. **Robust**: Works even when Black-Scholes assumptions fail
-4. **Pedagogical**: Teaches replication and risk-neutral pricing clearly
-
-### 2. **When to Use Each**
-
-
-- **Black-Scholes**: European options, quick calculations, theoretical analysis
-- **Binomial**: American options, exotic features, educational purposes, quick prototyping
-
-### 3. **Complementary Roles**
-
-
-- **Binomial** provides intuition and numerical approximation
-- **Black-Scholes** provides analytical precision and mathematical elegance
-- Together they form a complete toolkit for option pricing
-
----
-
-## Conclusion
-
-
-The binomial-to-Black-Scholes convergence is more than a mathematical curiosity—it reveals that:
-
-1. **Discrete intuition generalizes**: Simple up/down moves lead to sophisticated continuous models
-2. **No-arbitrage is universal**: The same principle governs both discrete and continuous time
-3. **Replication works everywhere**: Delta hedging emerges naturally from discrete rebalancing
-4. **Limiting processes are powerful**: Many properties (variance, drift, valuation) pass to the limit
-
-This connection demonstrates the **unity of option pricing theory** across time scales and provides confidence that the seemingly abstract Black-Scholes framework rests on solid discrete foundations.
-
-Understanding this limit is essential for:
-
-- Appreciating where Black-Scholes comes from
-- Knowing when binomial approximations suffice
-- Extending models beyond Black-Scholes assumptions
-- Building intuition for continuous-time finance
-
-The binomial model thus serves as both a **practical tool** and a **theoretical bridge** to the continuous-time world of modern quantitative finance.
+The binomial-to-Black–Scholes limit demonstrates the **unity of option pricing theory**: the same no-arbitrage principles govern both discrete and continuous time, and sophisticated continuous models emerge naturally from simple discrete foundations.

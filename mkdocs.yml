@@ -141,11 +141,10 @@ nav:
       - 5 BS Model:
           - 5.1 Binomial Model:
               - Binomial Model: ch05/binomial_model/binomial_model.md
-              - Replicating Pricing: ch05/binomial_model/replicating_portfolio_pricing.md
-              - Delta Pricing: ch05/binomial_model/delta_pricing.md
-              - Risk-Neutral Pricing: ch05/binomial_model/risk_neutral_pricing.md
-              - Multi-Period Option Pricing: ch05/binomial_model/multi_period_option_pricing.md
+              - Replicating Portfolio: ch05/binomial_model/replicating_portfolio.md
               - Delta Hedging: ch05/binomial_model/delta_hedging.md
+              - Risk-Neutral Measure: ch05/binomial_model/risk_neutral_measure.md
+              - Multi-Period Model: ch05/binomial_model/multi_period_binomial_model.md
               - Binomial to Black–Scholes: ch05/binomial_model/binomial_to_black_scholes_limit.md
           - 5.2 FTAP:
               - FTAP: ch05/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
