@@ -135,8 +135,8 @@ The central question of asset pricing is:
 We will answer this question through three equivalent perspectives:
 
 1. **No-arbitrage** (existence of admissible prices)
-2. **Replication** (uniqueness of prices) — covered in [Replicating Portfolio Pricing](replicating_portfolio_pricing.md)
-3. **Risk-neutral pricing** (valuation by expectation) — covered in [Risk-Neutral Pricing](risk_neutral_pricing.md)
+2. **Replication** (uniqueness of prices) — covered in [Replicating Portfolio Pricing](replicating_portfolio.md)
+3. **Risk-neutral pricing** (valuation by expectation) — covered in [Risk-Neutral Pricing](risk_neutral_measure.md)
 
 ---
 
@@ -341,7 +341,7 @@ $$
 V_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[H]
 $$
 
-The derivation of this formula via replication is the subject of the [next section](replicating_portfolio_pricing.md).
+The derivation of this formula via replication is the subject of the [next section](replicating_portfolio.md).
 
 ---
 

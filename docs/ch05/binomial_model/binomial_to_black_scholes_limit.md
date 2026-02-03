@@ -7,7 +7,7 @@ The **binomial option pricing model** provides an intuitive discrete-time framew
 This section rigorously establishes the convergence of the binomial model to the Black–Scholes framework, connecting the discrete random walk to geometric Brownian motion via the **functional central limit theorem** (Donsker's theorem).
 
 !!! info "Prerequisites"
-    - [Binomial Model](binomial_model.md) and [Risk-Neutral Pricing](risk_neutral_pricing.md)
+    - [Binomial Model](binomial_model.md) and [Risk-Neutral Pricing](risk_neutral_measure.md)
     - [Donsker's Theorem](../../ch01/brownian_motion/donsker_theorem.md)
     - [Itô's Lemma](../../ch02/ito_lemma/ito_lemma.md)
     - Central Limit Theorem (basic probability)

@@ -262,7 +262,7 @@ $$
 !!! success "European Call Price"
     $$C_0 = 7.19$$
     
-    This matches the replication price from [Replicating Portfolio Pricing](replicating_portfolio_pricing.md).
+    This matches the replication price from [Replicating Portfolio Pricing](replicating_portfolio.md).
 
 ---
 
