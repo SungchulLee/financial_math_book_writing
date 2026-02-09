@@ -25,7 +25,7 @@ We take the **stock** $S_t$ as numéraire and derive the associated measure $\ma
 
 ### Radon–Nikodym Derivative
 
-By the [change-of-numéraire theorem](../fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md#change-of-numéraire-theorem), the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is
+By the [change-of-numéraire theorem](../fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md), the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is
 
 $$Z_t = \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{S_t / S_0}{B_t / B_0} = \frac{S_t e^{-rt}}{S_0}$$
 
