@@ -15,7 +15,7 @@ $$dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$$
 
 with constants $\mu$, $\sigma > 0$, and a money market account $B_t = e^{rt}$.
 
-**Equivalent martingale measure.** By the [fundamental theorem of asset pricing](fundamental_theorem_of_asset_pricing.md), the absence of arbitrage and completeness of the market guarantee a unique probability measure $\mathbb{Q} \sim \mathbb{P}$ such that $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale. By Girsanov's theorem, the process
+**Equivalent martingale measure.** By the [fundamental theorem of asset pricing](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md), the absence of arbitrage and completeness of the market guarantee a unique probability measure $\mathbb{Q} \sim \mathbb{P}$ such that $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale. By Girsanov's theorem, the process
 
 $$W^{\mathbb{Q}}_t = W_t + \frac{\mu - r}{\sigma}\, t$$
 

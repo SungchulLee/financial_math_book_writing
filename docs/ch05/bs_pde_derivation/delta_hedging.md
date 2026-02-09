@@ -120,7 +120,7 @@ The dividend yield replaces $r$ by $r - q$ in the first-order (drift) term, whil
 
 The derivation holds $\Delta$ fixed over each infinitesimal interval $[t, t+dt]$ and then rebalances. This is not the same as a self-financing portfolio in the strict sense of stochastic calculus, where the portfolio weights change continuously and the wealth process satisfies $d\Pi = \Delta^V\, dV + \Delta^S\, dS$ with no external cash flows. The two formulations are equivalent in the continuous-time limit, but the distinction matters conceptually: the delta-hedging argument is a "freeze-and-rebalance" construction that avoids the machinery of self-financing strategies, which is part of its appeal as a direct, intuitive derivation.
 
-In the rigorous formulation, one constructs a self-financing strategy $(\alpha_t, \beta_t)$ in the stock and bond that replicates the derivative payoff. The replication condition $\alpha_T S_T + \beta_T B_T = \Phi(S_T)$ a.s., combined with the self-financing constraint, leads to the same PDE. This is the approach taken in the [FTAP framework](fundamental_theorem_of_asset_pricing.md).
+In the rigorous formulation, one constructs a self-financing strategy $(\alpha_t, \beta_t)$ in the stock and bond that replicates the derivative payoff. The replication condition $\alpha_T S_T + \beta_T B_T = \Phi(S_T)$ a.s., combined with the self-financing constraint, leads to the same PDE. This is the approach taken in the [FTAP framework](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
 
 
 ## Summary
@@ -135,7 +135,7 @@ The derivation proceeds in four steps:
 
 The Black–Scholes PDE with terminal condition $V(T, S) = \Phi(S)$ is a **backward parabolic equation**: it is solved from $t = T$ back to $t = 0$.
 
-For alternative derivations that arrive at the same PDE via different reasoning, see [Black–Scholes PDE via Change of Numéraire](change_of_numeraire.md) (martingale condition on $V/S$) and [Risk-Neutral Pricing](numeraire_and_change_of_measure.md) (Feynman–Kac representation under the equivalent martingale measure).
+For alternative derivations that arrive at the same PDE via different reasoning, see [Black–Scholes PDE via Change of Numéraire](change_of_numeraire.md) (martingale condition on $V/S$) and [Risk-Neutral Pricing](../fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md) (Feynman–Kac representation under the equivalent martingale measure).
 
 
 ## References
