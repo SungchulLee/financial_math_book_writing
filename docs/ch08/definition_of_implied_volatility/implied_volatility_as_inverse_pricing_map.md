@@ -306,12 +306,50 @@ $$
 
 
 
-Standard methods include:
-- **Newton-Raphson:** Fast convergence using vega as derivative
-- **Bisection:** Robust but slower
-- **Rational approximations:** Explicit formulas for rapid computation
+Equivalently, we seek:
 
-### 2. Newton-Raphson Iteration
+$$
+\sigma_{\text{imp}} = \arg\min_\sigma \left| C_{\text{BS}}(S, K, T, r, \sigma) - C^{\text{mkt}} \right|
+$$
+
+
+
+Standard methods include:
+- **Newton-Raphson:** Fast quadratic convergence using vega as the Jacobian
+- **Brent's method:** Combines bisection, secant, and inverse quadratic interpolation; robust without requiring derivatives
+- **Bisection:** Simple and robust but slower (linear convergence)
+- **Rational approximations:** Explicit closed-form approximations for rapid initial guesses (e.g., Brenner-Subrahmanyam, Corrado-Miller)
+
+### 2. Practical Computation Workflow
+
+
+The practical procedure for computing implied volatility proceeds as follows:
+
+**Given inputs:**
+
+- Current underlying price $S$
+- Strike price $K$
+- Time to maturity $T$
+- Risk-free rate $r$
+- Observed market option price $C^{\text{mkt}}$
+
+**Algorithm:**
+
+**Step 1.** Select an initial guess $\sigma_0$ (a common choice is $\sigma_0 = 0.20$ or the previous day's IV).
+
+**Step 2.** Compute the Black-Scholes model price $C_{\text{BS}}(S, K, T, r, \sigma_0)$.
+
+**Step 3.** Adjust $\sigma$ iteratively until convergence:
+
+$$
+C_{\text{BS}}(S, K, T, r, \sigma_{\text{imp}}) \approx C^{\text{mkt}}
+$$
+
+
+
+The result gives the **market-implied expectation of volatility** over the remaining life of the option. This is distinct from historical or realized volatility, which is computed from past returns.
+
+### 3. Newton-Raphson Iteration
 
 
 Given current iterate $\sigma_n$:
@@ -324,6 +362,29 @@ $$
 
 
 **Convergence:** Quadratic convergence is guaranteed due to $C_{\text{BS}}$ being strictly convex in $\sigma$ (positive vega derivative, i.e., vomma $> 0$).
+
+### 4. Brent's Method
+
+
+Brent's method is often preferred in production systems because it:
+- Does not require derivative (vega) evaluation
+- Guarantees convergence within a bracketing interval $[\sigma_{\text{lo}}, \sigma_{\text{hi}}]$
+- Achieves superlinear convergence in practice
+
+The bracketing interval is typically initialized as $\sigma \in [0.001, 5.0]$, which is guaranteed to contain the solution for any admissible market price.
+
+### 5. Implied Volatility vs. Realized Volatility
+
+
+A critical distinction:
+
+| Concept | Definition | Source |
+|---------|-----------|--------|
+| Implied volatility $\sigma_{\text{IV}}$ | Volatility that equates BS price to market price | Option prices (forward-looking) |
+| Historical volatility $\hat{\sigma}$ | Standard deviation of past log-returns | Price history (backward-looking) |
+| Realized volatility $\sigma_{\text{RV}}$ | Actual volatility over option's life | Future prices (known ex-post) |
+
+Comparing $\sigma_{\text{IV}}$ vs. $\hat{\sigma}$ informs relative value trades: if $\sigma_{\text{IV}} > \hat{\sigma}$, options may be "expensive" (volatility risk premium).
 
 ## Summary
 
