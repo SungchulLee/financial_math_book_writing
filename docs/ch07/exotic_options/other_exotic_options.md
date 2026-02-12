@@ -5,8 +5,8 @@
 Beyond barrier, Asian, and lookback options, a rich variety of exotic structures exists to serve specialized financial needs. This section surveys **chooser options**, **rainbow options**, **cliquet options**, **compound options**, and **digital (binary) options**. Each introduces a distinctive payoff mechanism that addresses specific hedging, speculation, or product design requirements.
 
 !!! info "Prerequisites"
-    - [Black–Scholes Formula](../black_scholes_formula/bs_formula_statement.md) (vanilla pricing)
-    - [Put–Call Parity](../black_scholes_formula/put_call_parity.md) (relationship between calls and puts)
+    - [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md) (vanilla pricing)
+    - [Put–Call Parity](../../ch06/black_scholes_formula/put_call_parity.md) (relationship between calls and puts)
     - [Exotic Options Overview](exotic_options_overview.md) (classification)
 
 !!! abstract "Learning Objectives"

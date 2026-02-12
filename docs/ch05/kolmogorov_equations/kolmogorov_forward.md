@@ -6,7 +6,7 @@ The **Kolmogorov forward equation**, also known as the **Fokker–Planck equatio
     - [Kolmogorov Backward Equation](kolmogorov_backward.md) — the dual equation for expectations
     - [Forward–Backward Duality](forward_backward_duality.md) — the adjoint relationship
     - [Heat Equation](../heat_equation/heat_equation_overview.md) — Fokker–Planck for Brownian motion
-    - [Invariant Measures](../../ch02/diffusion_process/invariant_measures_and_stationarity.md) — stationary distributions
+    - [Invariant Measures](../../ch03/diffusion_process/invariant_measures_and_stationarity.md) — stationary distributions
 
 ---
 
@@ -604,6 +604,6 @@ The Fokker–Planck equation describes how probability density evolves **forward
 - [Forward–Backward Duality](forward_backward_duality.md) — the adjoint relationship in detail
 - [Heat Equation Overview](../heat_equation/heat_equation_overview.md) — fundamental solutions
 - [Heat Equation and Brownian Motion](../heat_equation/heat_equation_and_brownian_motion.md) — probabilistic connection
-- [Invariant Measures](../../ch02/diffusion_process/invariant_measures_and_stationarity.md) — stationary distributions
-- [Time Reversal of Diffusions](../../ch02/diffusion_process/time_reversal_of_diffusions.md) — connection to score functions
+- [Invariant Measures](../../ch03/diffusion_process/invariant_measures_and_stationarity.md) — stationary distributions
+- [Time Reversal of Diffusions](../../ch03/diffusion_process/time_reversal_of_diffusions.md) — connection to score functions
 - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — discounted expectations

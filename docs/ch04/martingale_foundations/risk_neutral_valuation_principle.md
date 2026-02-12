@@ -5,9 +5,9 @@ The **risk-neutral valuation principle** is the central pricing formula of mathe
 !!! info "Prerequisites"
     This section assumes familiarity with:
     
-    - [Martingales](../../ch01/filtration_and_martingales/martingales.md)
+    - [Martingales](../../ch02/filtration_and_martingales/martingales.md)
     - [Girsanov's Theorem](../girsanov/girsanov_theorem.md)
-    - [Fundamental Theorem of Asset Pricing](../../ch05/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)
+    - [Fundamental Theorem of Asset Pricing](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md)
 
 ---
 
@@ -51,7 +51,7 @@ The risk-neutral valuation principle rests on the **Fundamental Theorem of Asset
 2. In complete markets, there is exactly one no-arbitrage price for every derivative
 3. In incomplete markets, multiple equivalent martingale measures exist, leading to price bounds rather than unique prices
 
-See [Fundamental Theorem of Asset Pricing](../../ch05/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) for proofs and details.
+See [Fundamental Theorem of Asset Pricing](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) for proofs and details.
 
 ---
 
@@ -186,7 +186,7 @@ $$
 1. **Solve the PDE** (analytical methods, finite differences)
 2. **Compute the expectation** (Monte Carlo simulation)
 
-See [Feynman–Kac Formula](../../ch03/feynman_kac/feynman_kac_formula.md) for the rigorous statement and proof.
+See [Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md) for the rigorous statement and proof.
 
 ---
 
@@ -212,7 +212,7 @@ $$
 S_T = S_t \exp\left(\left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma\sqrt{T-t}\,Z\right)
 $$
 
-where $Z \sim N(0,1)$ under $\mathbb{Q}$. The expectation of $(S_T - K)^+$ for lognormal $S_T$ can be evaluated explicitly (see [Black–Scholes Formula](../../ch05/black_scholes_formula/bs_formula_statement.md)), yielding:
+where $Z \sim N(0,1)$ under $\mathbb{Q}$. The expectation of $(S_T - K)^+$ for lognormal $S_T$ can be evaluated explicitly (see [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md)), yielding:
 
 $$
 C_t = S_t\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
@@ -305,7 +305,7 @@ When markets are incomplete (unhedgeable risks exist):
     - **Minimal entropy measure**: closest to $\mathbb{P}$ in relative entropy
     - **Superhedging**: worst-case bound
 
-See [Incomplete Markets and Pricing Bounds](../../ch05/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md).
+See [Incomplete Markets and Pricing Bounds](../../ch07/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md).
 
 ### Model Dependence
 

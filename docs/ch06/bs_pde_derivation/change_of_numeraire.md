@@ -3,7 +3,7 @@
 
 The Black–Scholes PDE can be derived without any delta-hedging or replication argument. Instead, one chooses the **stock as numéraire**, constructs the associated martingale measure via Girsanov's theorem, and imposes the condition that the normalized option price is a martingale. The PDE then emerges from setting the drift of this martingale to zero.
 
-This derivation is conceptually distinct from the classical approaches (self-financing replication, risk-neutral pricing with the money market numéraire) and demonstrates the power of the [change-of-numéraire framework](../fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md). The fact that a different numéraire and a different measure yield the same PDE is a concrete manifestation of pricing invariance.
+This derivation is conceptually distinct from the classical approaches (self-financing replication, risk-neutral pricing with the money market numéraire) and demonstrates the power of the [change-of-numéraire framework](../../ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md). The fact that a different numéraire and a different measure yield the same PDE is a concrete manifestation of pricing invariance.
 
 
 ## Setup
@@ -25,7 +25,7 @@ We take the **stock** $S_t$ as numéraire and derive the associated measure $\ma
 
 ### Radon–Nikodym Derivative
 
-By the [change-of-numéraire theorem](../fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md), the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is
+By the [change-of-numéraire theorem](../../ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md), the density process from $\mathbb{Q}$ to $\mathbb{Q}^S$ is
 
 $$Z_t = \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{S_t / S_0}{B_t / B_0} = \frac{S_t e^{-rt}}{S_0}$$
 
@@ -200,7 +200,7 @@ The logical structure is:
 5. **Impose the martingale condition**: $u = V/S$ satisfies $\partial_t u + \mathcal{L}^S u = 0$.
 6. **Transform back to $V$**: the $\sigma^2$ terms cancel, yielding the Black–Scholes PDE.
 
-This derivation is fundamentally different from the replication approach. It begins with measure theory (Girsanov's theorem, Radon–Nikodym derivatives) rather than self-financing portfolios, and obtains the PDE from a martingale condition rather than a hedging argument. The fact that both approaches yield the same equation reflects the deep connection between no-arbitrage pricing and martingale theory established by the [FTAP](../fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
+This derivation is fundamentally different from the replication approach. It begins with measure theory (Girsanov's theorem, Radon–Nikodym derivatives) rather than self-financing portfolios, and obtains the PDE from a martingale condition rather than a hedging argument. The fact that both approaches yield the same equation reflects the deep connection between no-arbitrage pricing and martingale theory established by the [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md).
 
 
 ## References

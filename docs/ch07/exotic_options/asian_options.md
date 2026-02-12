@@ -7,7 +7,7 @@
 Asian options are among the most common exotic options in commodity and FX markets, where exposure accumulates gradually over time.
 
 !!! info "Prerequisites"
-    - [Black–Scholes Formula](../black_scholes_formula/bs_formula_statement.md) (vanilla pricing baseline)
+    - [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md) (vanilla pricing baseline)
     - [Exotic Options Overview](exotic_options_overview.md) (classification of exotics)
 
 !!! abstract "Learning Objectives"

@@ -8,8 +8,8 @@ This section rigorously establishes the convergence of the binomial model to the
 
 !!! info "Prerequisites"
     - [Binomial Model](binomial_model.md) and [Risk-Neutral Pricing](risk_neutral_measure.md)
-    - [Donsker's Theorem](../../ch01/brownian_motion/donsker_theorem.md)
-    - [Itô's Lemma](../../ch02/ito_lemma/ito_lemma.md)
+    - [Donsker's Theorem](../../ch02/brownian_motion/donsker_theorem.md)
+    - [Itô's Lemma](../../ch03/ito_lemma/ito_lemma.md)
     - Central Limit Theorem (basic probability)
 
 !!! abstract "Learning Objectives"
@@ -476,7 +476,7 @@ $$
 where $W_t$ is a standard Brownian motion under $\mathbb{Q}$.
 
 !!! note "Donsker's Theorem"
-    The convergence of the scaled random walk to Brownian motion is a special case of **Donsker's theorem** (the functional central limit theorem). See [Donsker's Theorem](../../ch01/brownian_motion/donsker_theorem.md) for the general statement.
+    The convergence of the scaled random walk to Brownian motion is a special case of **Donsker's theorem** (the functional central limit theorem). See [Donsker's Theorem](../../ch02/brownian_motion/donsker_theorem.md) for the general statement.
     
     Donsker's theorem gives convergence of the entire **path** $\{S_{[nt]/n}\}_{t \in [0,T]}$ to $\{S_t\}_{t \in [0,T]}$, not just the terminal distribution.
 

@@ -12,9 +12,9 @@ Rather than repeating basic definitions already covered in earlier chapters, thi
 !!! info "Prerequisites"
     This section assumes familiarity with:
     
-    - [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md)
-    - [Itô Isometry](../../ch02/ito_integral/ito_isometry.md)
-    - [Martingales](../../ch01/filtration_and_martingales/martingales.md)
+    - [Itô Integral Construction](../../ch03/ito_integral/ito_integral_construction.md)
+    - [Itô Isometry](../../ch03/ito_integral/ito_isometry.md)
+    - [Martingales](../../ch02/filtration_and_martingales/martingales.md)
 
 ---
 
@@ -34,7 +34,7 @@ Equivalently (by the martingale property and Doob's $L^2$ inequality): $\sup_{t 
 
 ### Recall: Itô Integrals Are Martingales
 
-Before stating the main theorem, recall the converse direction (proved in [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md)):
+Before stating the main theorem, recall the converse direction (proved in [Itô Integral Construction](../../ch03/ito_integral/ito_integral_construction.md)):
 
 !!! note "Itô Integrals Are Martingales"
     If $\phi_t$ is a predictable process with $\mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right] < \infty$, then the Itô integral:

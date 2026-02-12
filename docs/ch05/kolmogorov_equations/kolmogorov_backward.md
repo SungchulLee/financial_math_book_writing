@@ -6,7 +6,7 @@ The **Kolmogorov backward equation** describes how expected values of functions 
     - [Kolmogorov Forward Equation](kolmogorov_forward.md) — the dual equation for densities
     - [Forward–Backward Duality](forward_backward_duality.md) — the adjoint relationship
     - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — extension with discounting
-    - [Infinitesimal Generator](../../ch02/infinitesimal_generator/infinitesimal_generator.md) — defines $\mathcal{L}$
+    - [Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md) — defines $\mathcal{L}$
 
 ---
 
@@ -464,7 +464,7 @@ $$\boxed{\frac{\partial u}{\partial t} = \mathcal{L}_x u = \mu(x)\frac{\partial 
 
 - [Kolmogorov Forward Equation](kolmogorov_forward.md) — the dual equation for densities
 - [Forward–Backward Duality](forward_backward_duality.md) — the adjoint relationship
-- [Infinitesimal Generator](../../ch02/infinitesimal_generator/infinitesimal_generator.md) — defines $\mathcal{L}$
-- [Dynkin's Formula](../../ch02/infinitesimal_generator/dynkin_formula.md) — integral form
+- [Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md) — defines $\mathcal{L}$
+- [Dynkin's Formula](../../ch03/infinitesimal_generator/dynkin_formula.md) — integral form
 - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — extension with potential/discounting
 - [Heat Equation](../heat_equation/heat_equation_overview.md) — backward equation for Brownian motion

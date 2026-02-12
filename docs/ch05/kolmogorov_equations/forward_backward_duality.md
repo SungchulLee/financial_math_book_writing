@@ -5,7 +5,7 @@ The Kolmogorov forward and backward equations are **adjoint** to each other. Thi
 !!! tip "Related Content"
     - [Kolmogorov Forward Equation](kolmogorov_forward.md) — density evolution
     - [Kolmogorov Backward Equation](kolmogorov_backward.md) — expected values
-    - [Infinitesimal Generator](../../ch02/infinitesimal_generator/infinitesimal_generator.md) — the operator $\mathcal{L}$
+    - [Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md) — the operator $\mathcal{L}$
 
 ---
 
@@ -333,7 +333,7 @@ This symmetry between test functions and densities underlies much of diffusion t
 
 - [Kolmogorov Forward Equation](kolmogorov_forward.md) — the forward equation in detail
 - [Kolmogorov Backward Equation](kolmogorov_backward.md) — the backward equation in detail
-- [Infinitesimal Generator](../../ch02/infinitesimal_generator/infinitesimal_generator.md) — definition and properties
-- [Invariant Measures](../../ch02/diffusion_process/invariant_measures_and_stationarity.md) — fixed points of $\mathcal{L}^*$
-- [Time Reversal of Diffusions](../../ch02/diffusion_process/time_reversal_of_diffusions.md) — reversed dynamics
+- [Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md) — definition and properties
+- [Invariant Measures](../../ch03/diffusion_process/invariant_measures_and_stationarity.md) — fixed points of $\mathcal{L}^*$
+- [Time Reversal of Diffusions](../../ch03/diffusion_process/time_reversal_of_diffusions.md) — reversed dynamics
 - [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md) — discounted expectations

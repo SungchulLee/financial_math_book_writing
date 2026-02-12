@@ -285,7 +285,7 @@ The converse is also true: if there's no arbitrage, then a martingale measure mu
 
 **Direction 1** (ELMM ⟹ No Arbitrage): Proved above using the supermartingale argument.
 
-**Direction 2** (No Arbitrage ⟹ ELMM): This is the hard direction, requiring functional analysis (Hahn–Banach theorem, separating hyperplanes). See [FTAP](../../ch05/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) for the full proof.
+**Direction 2** (No Arbitrage ⟹ ELMM): This is the hard direction, requiring functional analysis (Hahn–Banach theorem, separating hyperplanes). See [FTAP](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md) for the full proof.
 
 ---
 
@@ -478,7 +478,7 @@ $$
     - [**Risk-Neutral Valuation Principle**](risk_neutral_valuation_principle.md): How to use $\mathbb{Q}$ for pricing
     - [**Girsanov's Theorem**](../girsanov/girsanov_theorem.md): The technical machinery for measure change
     - [**Novikov & Kazamaki**](novikov_kazamaki_conditions.md): When is the stochastic exponential a true martingale?
-    - [**FTAP (Ch5)**](../../ch05/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md): The complete proof
+    - [**FTAP (Ch5)**](../../ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md): The complete proof
 
 ---
 

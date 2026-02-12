@@ -7,8 +7,8 @@ The **binomial tree** is the most natural numerical framework for American optio
 This section develops the full binomial pricing algorithm for American options, demonstrates convergence, and shows how the method naturally identifies the early-exercise boundary.
 
 !!! info "Prerequisites"
-    - [Multi-Period Binomial Model](../binomial_model/multi_period_binomial_model.md) (backward induction)
-    - [Risk-Neutral Measure](../binomial_model/risk_neutral_measure.md) (binomial risk-neutral pricing)
+    - [Multi-Period Binomial Model](../../ch01/binomial_model/multi_period_binomial_model.md) (backward induction)
+    - [Risk-Neutral Measure](../../ch01/binomial_model/risk_neutral_measure.md) (binomial risk-neutral pricing)
     - [Early Exercise](early_exercise.md) (when exercise is optimal)
 
 !!! abstract "Learning Objectives"

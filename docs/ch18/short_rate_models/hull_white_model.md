@@ -3,7 +3,7 @@
 The **Hull-White model** (1990) extends Vasicek by introducing a time-dependent drift that enables **exact calibration to the initial yield curve**. This makes it the workhorse model for interest rate derivatives in practice.
 
 !!! note "Detailed Treatment"
-    This page provides an overview of the Hull-White model within the short-rate framework. For complete derivations, proofs, named function references, and Python implementations, see [§17.9 Hull-White Detailed](../hull_white_detailed/named_functions.md).
+    This page provides an overview of the Hull-White model within the short-rate framework. For complete derivations, proofs, named function references, and Python implementations, see [§17.9 Hull-White Detailed](../../ch20/hull_white_detailed/named_functions.md).
 
 ---
 
@@ -35,7 +35,7 @@ $$
 \boxed{\theta(t) = \frac{\partial f(0, t)}{\partial t} + \kappa f(0, t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})}
 $$
 
-where $f(0, t) = -\frac{\partial}{\partial t} \log P(0, t)$ is the market instantaneous forward rate. See [§17.9 Short Rate](../hull_white_detailed/short_rate.md) for the full HJM-based derivation.
+where $f(0, t) = -\frac{\partial}{\partial t} \log P(0, t)$ is the market instantaneous forward rate. See [§17.9 Short Rate](../../ch20/hull_white_detailed/short_rate.md) for the full HJM-based derivation.
 
 ---
 
@@ -51,15 +51,15 @@ $$
 P(t, T) = A(t, T) \exp(-B(t, T) \cdot r_t), \qquad B(t, T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}
 $$
 
-where $B(t,T)$ is identical to Vasicek. The function $A(t,T)$ incorporates market bond prices to ensure exact calibration. See [§17.9 Zero Bond Pricing](../hull_white_detailed/zero_bond_pricing.md) for explicit formulas and proofs.
+where $B(t,T)$ is identical to Vasicek. The function $A(t,T)$ incorporates market bond prices to ensure exact calibration. See [§17.9 Zero Bond Pricing](../../ch20/hull_white_detailed/zero_bond_pricing.md) for explicit formulas and proofs.
 
 ### Closed-Form Derivative Prices
 
 The Hull-White model provides analytical formulas for European bond options, caplets/floorlets, and swaptions (via Jamshidian's trick). See:
 
-- [§17.9 Zero Bond Options](../hull_white_detailed/zero_bond_options.md) — bond option pricing under the $T$-forward measure
-- [§17.9 Caplet and Floor Formula](../hull_white_detailed/caplet_formula.md) — caplet pricing as ZCB put options
-- [§17.9 Swaption Formula](../hull_white_detailed/swaption_formula.md) — Jamshidian decomposition and proof
+- [§17.9 Zero Bond Options](../../ch20/hull_white_detailed/zero_bond_options.md) — bond option pricing under the $T$-forward measure
+- [§17.9 Caplet and Floor Formula](../../ch20/hull_white_detailed/caplet_formula.md) — caplet pricing as ZCB put options
+- [§17.9 Swaption Formula](../../ch20/hull_white_detailed/swaption_formula.md) — Jamshidian decomposition and proof
 
 ---
 
@@ -79,7 +79,7 @@ $$
 
 **Time-dependent volatility:** Allow $\sigma(t)$ to vary for additional flexibility in fitting the volatility term structure.
 
-**Two-factor Hull-White (G2++):** $r_t = x_t + y_t + \phi(t)$ where $x_t, y_t$ are correlated OU processes, enabling richer yield curve dynamics including twists and butterfly shifts. See [§17.9 Two-Factor Model](../hull_white_detailed/two_factor_model.md).
+**Two-factor Hull-White (G2++):** $r_t = x_t + y_t + \phi(t)$ where $x_t, y_t$ are correlated OU processes, enabling richer yield curve dynamics including twists and butterfly shifts. See [§17.9 Two-Factor Model](../../ch20/hull_white_detailed/two_factor_model.md).
 
 ---
 

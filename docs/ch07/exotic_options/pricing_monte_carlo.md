@@ -5,8 +5,8 @@
 **Monte Carlo simulation** is the most versatile and widely used method for pricing exotic options. By simulating complete price paths under the risk-neutral measure, Monte Carlo naturally handles **path dependency**, **multi-asset dependencies**, and **complex payoff structures** without the state-space explosion that plagues tree methods. Combined with **variance reduction techniques**, Monte Carlo provides an efficient and flexible pricing framework for virtually any exotic derivative.
 
 !!! info "Prerequisites"
-    - [Black–Scholes Formula](../black_scholes_formula/bs_formula_statement.md) (risk-neutral pricing)
-    - [Computational Examples](../black_scholes_formula/computational_examples.md) (basic Monte Carlo for vanillas)
+    - [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md) (risk-neutral pricing)
+    - [Computational Examples](../../ch06/black_scholes_formula/computational_examples.md) (basic Monte Carlo for vanillas)
     - [LSM Monte Carlo](../american_options/lsm_monte_carlo.md) (simulation with early exercise)
     - [Asian Options](asian_options.md) and [Lookback Options](lookback_options.md) (payoff definitions)
 

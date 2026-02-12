@@ -7,9 +7,9 @@ An **American option** is a derivative contract that grants the holder the right
 The early-exercise feature has profound consequences for pricing: the holder faces an **optimal stopping problem** at every point in time, and the additional flexibility guarantees that an American option is worth **at least as much** as its European counterpart.
 
 !!! info "Prerequisites"
-    - [Binomial Model](../binomial_model/binomial_model.md) (discrete-time pricing)
-    - [Black–Scholes Model](../black_scholes_model/introduction.md) (continuous-time framework)
-    - [Free Boundary Problems](../bs_pde_numerical_solution/free_boundary_problems_american_options.md) (variational inequality formulation)
+    - [Binomial Model](../../ch01/binomial_model/binomial_model.md) (discrete-time pricing)
+    - [Black–Scholes Model](../../ch06/black_scholes_model/introduction.md) (continuous-time framework)
+    - [Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md) (variational inequality formulation)
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
@@ -122,7 +122,7 @@ $$
 }
 $$
 
-where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ is the Black–Scholes generator. This formulation is studied in detail in [Free Boundary Problems](../bs_pde_numerical_solution/free_boundary_problems_american_options.md).
+where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ is the Black–Scholes generator. This formulation is studied in detail in [Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md).
 
 ---
 

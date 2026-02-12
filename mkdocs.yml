@@ -352,6 +352,7 @@ nav:
                 - Stochastic Volatility Model: ch07/extensions_black_scholes/stochastic_volatility_models.md
                 - Jump-Diffusion Model: ch07/extensions_black_scholes/jump_diffusion_models.md
                 - Incomplete Market Model: ch07/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md
+                - Local Volatility Models: ch07/extensions_black_scholes/local_volatility_models.md
             - 7.2 American Options:
                 - Definition and Classification: ch07/american_options/american_option_definition.md
                 - Early Exercise Analysis: ch07/american_options/early_exercise.md
@@ -383,6 +384,7 @@ nav:
                 - Calibration to Implied Volatility Smile: ch07/merton_jump_diffusion/calibration_to_smile.md
                 - Connection to Bates Model (Heston + Jumps): ch07/merton_jump_diffusion/connection_to_bates_model.md
                 - Python Implementation: ch07/merton_jump_diffusion/python_implementation.py
+                - Python Implementation (Guide): ch07/merton_jump_diffusion/python_implementation.md
             - 7.5 Python Examples:
                 - American Put (Binomial Tree): ch07/codes/black_scholes_american_put_binomial.py
                 - Early Exercise Boundary: ch07/codes/black_scholes_early_exercise.py
@@ -459,6 +461,10 @@ nav:
                 - COS Pricing Formula for European Options: ch09/cos_method/cos_pricing_formula.md
                 - Error Analysis and Convergence: ch09/cos_method/error_analysis_and_convergence.md
                 - Density Recovery Examples: ch09/cos_method/density_recovery_examples.md
+                - COS Method Overview: ch09/cos_method/cos_method.md
+                - Cosine Series: ch09/cos_method/cosine_series.md
+                - Density Recovery: ch09/cos_method/density_recovery.md
+                - Fourier Series: ch09/cos_method/fourier_series.md
             - 9.3 Alternative Fourier Pricing Methods:
                 - Carr–Madan FFT Method: ch09/alternative_fourier/carr_madan_fft.md
                 - Lewis Integration Formula: ch09/alternative_fourier/lewis_integration_formula.md
@@ -506,6 +512,8 @@ nav:
             - 10.6 Python Examples:
                 - Greeks Computation: ch10/codes/greeks_computation_and_visualization.py
                 - P&L Simulation: ch10/codes/pnl_simulation_under_hedging.py
+                - Greeks Computation (Guide): ch10/codes/greeks_computation_and_visualization.md
+                - P&L Simulation (Guide): ch10/codes/pnl_simulation_under_hedging.md
                 - Greeks (Basic): ch10/codes/black_scholes_greeks.py
                 - Sensitivity Analysis: ch10/codes/black_scholes_sensitivity.py
                 - Theta Income from Short Call: ch10/codes/black_scholes_theta_income.py
@@ -558,6 +566,7 @@ nav:
                 - Implied Volatility and Risk-Neutral Density: ch12/model_free_results/implied_volatility_and_risk_neutral_density.md
                 - Variance Swaps and Model-Free Vol: ch12/model_free_results/variance_swaps_and_model_free_volatility.md
                 - VIX Formula Derivation: ch12/model_free_results/vix_formula_derivation.md
+                - Dupire Formula and Local Vol Surface: ch12/model_free_results/dupire_formula_and_local_volatility_surface.md
             - 12.3 Implied Volatility Surface:
                 - Term Structure: ch12/implied_volatility_surface/term_structure.md
                 - Skew and Smile: ch12/implied_volatility_surface/skew_and_smile.md
@@ -662,7 +671,11 @@ nav:
                 - Finite Difference Methods: ch14/sabr_model/finite_difference_methods.md
                 - Python Implementation: ch14/sabr_model/python_implementation.py
                 - End-to-End Worked Examples: ch14/sabr_model/end_to_end_worked_examples.md
-            - 14.9 Python Examples:
+                - Python Implementation (Guide): ch14/sabr_model/python_implementation.md
+            - 14.9 Heston Supplementary:
+                - Stochastic Volatility Overview: ch14/heston/stochastic_volatility_overview.md
+                - Heston COS Method: ch14/heston/heston_cos_method.md
+            - 14.10 Python Examples:
                 - Heston Path Simulation (Euler): ch14/codes/heston_path_simulation_euler.py
                 - Heston Path Simulation (QE Scheme): ch14/codes/heston_path_simulation_qe.py
                 - SV Implied Volatility Surface: ch14/codes/sv_implied_volatility_surface.py
@@ -720,6 +733,9 @@ nav:
                 - CIR Process Simulation and Density: ch15/codes/cir_process_simulation.py
                 - Affine Yield Curve Construction: ch15/codes/affine_yield_curve.py
                 - Multi-Factor Affine Model: ch15/codes/multi_factor_affine_model.py
+            - 15.10 Affine Process Supplementary:
+                - Affine Process: ch15/affine_process/affine_process.md
+                - Discounted Characteristic Function: ch15/affine_process/discounted_characteristic_function.md
 
         - 16 Heston Model in Detail:
             - Chapter Overview: ch16/index.md
@@ -792,13 +808,50 @@ nav:
                 - Joint Calibration Across Maturities: ch16/calibration/joint_calibration_across_maturities.md
             - 16.12 Python Implementation:
                 - Heston Model Class: ch16/codes/heston_model_class.py
+                - Heston Model Class (Guide): ch16/codes/heston_model_class.md
                 - Characteristic Function Engine: ch16/codes/characteristic_function_engine.py
+                - Characteristic Function Engine (Guide): ch16/codes/characteristic_function_engine.md
                 - COS and FFT Pricing Engines: ch16/codes/cos_and_fft_pricing_engines.py
+                - COS and FFT Pricing Engines (Guide): ch16/codes/cos_and_fft_pricing_engines.md
                 - Monte Carlo Engine (QE Scheme): ch16/codes/monte_carlo_engine_qe.py
+                - Monte Carlo Engine (Guide): ch16/codes/monte_carlo_engine_qe.md
                 - FDM Engine (ADI): ch16/codes/fdm_engine_adi.py
+                - FDM Engine (Guide): ch16/codes/fdm_engine_adi.md
                 - Calibration Pipeline: ch16/codes/calibration_pipeline.py
+                - Calibration Pipeline (Guide): ch16/codes/calibration_pipeline.md
                 - End-to-End Worked Examples: ch16/codes/end_to_end_worked_examples.py
+                - End-to-End Worked Examples (Guide): ch16/codes/end_to_end_worked_examples.md
                 - Heston COS Method: ch16/codes/heston_cos_method.py
+            - 16.13 Stochastic Volatility Foundations (Supplementary):
+                - Motivation Beyond Black–Scholes:
+                    - Empirical Failures of Constant Volatility: ch16/motivation_beyond_black_scholes/empirical_failures_of_constant_volatility.md
+                    - Smile and Term Structure Revisited: ch16/motivation_beyond_black_scholes/smile_and_term_structure_revisited.md
+                    - Incompleteness of Equity Markets: ch16/motivation_beyond_black_scholes/incompleteness_of_equity_markets.md
+                - General Stochastic Volatility Framework:
+                    - Two-Factor Diffusion Models: ch16/general_stochastic_volatility_framework/two_factor_diffusion_models.md
+                    - Correlation and Leverage Effect: ch16/general_stochastic_volatility_framework/correlation_and_leverage_effect.md
+                    - Risk-Neutral vs Physical Measure: ch16/general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md
+                - The Heston Model (Alternative Formulation):
+                    - Model Definition: ch16/the_heston_model/model_definition.md
+                    - Feller Condition and Boundary Behavior: ch16/the_heston_model/feller_condition_and_boundary_behavior.md
+                    - Affine Structure: ch16/the_heston_model/affine_structure.md
+                - Pricing Under Stochastic Volatility:
+                    - Characteristic Functions: ch16/pricing_under_stochastic_volatility/characteristic_functions.md
+                    - Fourier Pricing Methods: ch16/pricing_under_stochastic_volatility/fourier_pricing_methods.md
+                    - PDE Formulation: ch16/pricing_under_stochastic_volatility/pde_formulation.md
+                - Calibration of Stochastic Volatility Models:
+                    - Parameter Identifiability Issues: ch16/calibration_of_stochastic_volatility_models/identifiability_issues.md
+                    - Volatility Risk Premium: ch16/calibration_of_stochastic_volatility_models/volatility_risk_premium.md
+                    - Stability of Calibration: ch16/calibration_of_stochastic_volatility_models/stability_of_calibration.md
+                    - Joint Calibration Across Strikes and Maturities: ch16/calibration_of_stochastic_volatility_models/joint_calibration_across_strikes_and_maturities.md
+                - Hedging and Greeks Under Stochastic Volatility:
+                    - Vega Risk and Vol-of-Vol: ch16/hedging_and_greeks_under_stochastic_volatility/vega_risk_and_vol_of_vol.md
+                    - Incomplete Market Hedging: ch16/hedging_and_greeks_under_stochastic_volatility/incomplete_market_hedging.md
+                    - Optimal Hedging Criteria: ch16/hedging_and_greeks_under_stochastic_volatility/optimal_hedging_criteria.md
+                - Extensions and Variants:
+                    - SABR Model: ch16/extensions_and_variants/sabr_model.md
+                    - Rough Volatility (Overview): ch16/extensions_and_variants/rough_volatility_overview.md
+                    - Multi-Factor Volatility Models: ch16/extensions_and_variants/multi_factor_volatility_models.md
 
         - 17 Calibration:
             - Chapter Overview: ch17/index.md
@@ -880,6 +933,7 @@ nav:
                 - Monte Carlo Simulation: ch18/vasicek_model/monte_carlo_simulation.md
                 - Calibration to Yield Curve and Caps: ch18/vasicek_model/calibration.md
                 - Python Implementation: ch18/vasicek_model/python_implementation.py
+                - Python Implementation (Guide): ch18/vasicek_model/python_implementation.md
             - 18.5 CIR Model in Detail:
                 - CIR SDE and Square-Root Process: ch18/cir_model/cir_sde_and_square_root_process.md
                 - Feller Condition and Boundary Classification: ch18/cir_model/feller_condition_and_boundary.md
@@ -894,6 +948,7 @@ nav:
                 - Monte Carlo Simulation: ch18/cir_model/monte_carlo_simulation.md
                 - Calibration: ch18/cir_model/calibration.md
                 - Python Implementation: ch18/cir_model/python_implementation.py
+                - Python Implementation (Guide): ch18/cir_model/python_implementation.md
             - 18.6 Short-Rate Model Comparison:
                 - Vasicek vs CIR vs Hull-White: ch18/model_comparison/vasicek_vs_cir_vs_hull_white.md
                 - Analytical Tractability Comparison: ch18/model_comparison/analytical_tractability.md
@@ -908,6 +963,7 @@ nav:
                 - Comparison with Hull-White: ch18/black_karasinski/comparison_with_hull_white.md
                 - Calibration to Cap Volatilities: ch18/black_karasinski/calibration_to_cap_volatilities.md
                 - Python Implementation: ch18/black_karasinski/python_implementation.py
+                - Python Implementation (Guide): ch18/black_karasinski/python_implementation.md
             - 18.8 Python Examples:
                 - Vasicek Usage: ch18/codes/vasicek_usage.py
                 - CIR Usage: ch18/codes/cir_usage.py
@@ -931,6 +987,7 @@ nav:
                 - Infinite-Dimensional SDEs: ch19/hjm/infinite_dimensional_sdes.md
                 - Volatility Structures and Factor Models: ch19/hjm/volatility_structures_and_factor_models.md
                 - Short-Rate Models as HJM Special Cases: ch19/hjm/short_rate_models_as_hjm_special_cases.md
+                - LIBOR Market Model: ch19/hjm/libor_market_model.md
             - 19.3 LIBOR Market Model:
                 - LIBOR Market Model: ch19/lmm/libor_market_model.md
                 - Forward LIBOR Dynamics: ch19/lmm/forward_libor_dynamics.md
@@ -1020,9 +1077,13 @@ nav:
                 - Calibration Advantages of Two Factors: ch20/two_factor/calibration_advantages.md
             - 20.9 Trinomial Tree Implementation:
                 - Tree Construction for Hull-White: ch20/tree_implementation/tree_construction.py
+                - Tree Construction (Guide): ch20/tree_implementation/tree_construction.md
                 - Calibration to Yield Curve on Tree: ch20/tree_implementation/calibration_to_yield_curve.py
+                - Calibration to Yield Curve (Guide): ch20/tree_implementation/calibration_to_yield_curve.md
                 - Pricing Derivatives on Tree: ch20/tree_implementation/pricing_derivatives_on_tree.py
+                - Pricing Derivatives on Tree (Guide): ch20/tree_implementation/pricing_derivatives_on_tree.md
                 - American and Bermudan Exercise on Tree: ch20/tree_implementation/american_bermudan_exercise.py
+                - American and Bermudan Exercise (Guide): ch20/tree_implementation/american_bermudan_exercise.md
             - 20.10 Monte Carlo Simulation:
                 - Exact Simulation of Short Rate: ch20/monte_carlo/exact_simulation.md
                 - Simulation of Bond Prices: ch20/monte_carlo/simulation_of_bond_prices.md
@@ -1035,12 +1096,31 @@ nav:
                 - Parameter Stability and Identifiability: ch20/calibration/parameter_stability.md
             - 20.12 Python Implementation:
                 - Hull-White Model Class: ch20/codes/hull_white_model_class.py
+                - Hull-White Model Class (Guide): ch20/codes/hull_white_model_class.md
                 - Named Functions Implementation: ch20/codes/named_functions_implementation.py
+                - Named Functions Implementation (Guide): ch20/codes/named_functions_implementation.md
                 - Bond and Derivative Pricing Classes: ch20/codes/bond_derivative_pricing_classes.py
+                - Bond and Derivative Pricing Classes (Guide): ch20/codes/bond_derivative_pricing_classes.md
                 - Tree and Monte Carlo Engines: ch20/codes/tree_and_monte_carlo_engines.py
+                - Tree and Monte Carlo Engines (Guide): ch20/codes/tree_and_monte_carlo_engines.md
                 - Calibration Pipeline: ch20/codes/calibration_pipeline.py
+                - Calibration Pipeline (Guide): ch20/codes/calibration_pipeline.md
                 - End-to-End Worked Examples: ch20/codes/end_to_end_worked_examples.py
-            - 20.13 Python Examples:
+                - End-to-End Worked Examples (Guide): ch20/codes/end_to_end_worked_examples.md
+            - 20.13 Hull-White Detailed Analysis:
+                - Short Rate Dynamics: ch20/hull_white_detailed/short_rate.md
+                - Short Rate Decomposition: ch20/hull_white_detailed/short_rate_decomposition.md
+                - Forward Rate: ch20/hull_white_detailed/forward_rate.md
+                - Named Functions: ch20/hull_white_detailed/named_functions.md
+                - Zero Bond Pricing: ch20/hull_white_detailed/zero_bond_pricing.md
+                - Zero Bond Options: ch20/hull_white_detailed/zero_bond_options.md
+                - Change of Numeraire Q to T: ch20/hull_white_detailed/change_of_numeraire_q_to_t.md
+                - Caplet Formula: ch20/hull_white_detailed/caplet_formula.md
+                - Swaption Formula: ch20/hull_white_detailed/swaption_formula.md
+                - Swap Pricing: ch20/hull_white_detailed/swap_pricing.md
+                - Two-Factor Model: ch20/hull_white_detailed/two_factor_model.md
+                - Python Classes: ch20/hull_white_detailed/python_classes.md
+            - 20.14 Python Examples:
                 - Hull-White Short Rate Simulation: ch20/codes/hull_white_short_rate_simulation.py
                 - Zero-Coupon Bond Pricing: ch20/codes/hull_white_zcb_pricing.py
                 - Yield Curve Fitting (θ Calibration): ch20/codes/hull_white_theta_calibration.py

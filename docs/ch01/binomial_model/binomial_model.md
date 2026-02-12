@@ -25,7 +25,7 @@ We proceed deliberately in this discrete framework to understand arbitrage-free 
 
 !!! info "Prerequisites"
     - Basic probability (expectation, conditional expectation)
-    - [Martingales](../../ch01/filtration_and_martingales/martingales.md) (discrete-time definition)
+    - [Martingales](../../ch02/filtration_and_martingales/martingales.md) (discrete-time definition)
     - Familiarity with present value and compounding
 
 !!! abstract "Learning Objectives"
@@ -333,7 +333,7 @@ $$
     \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t} \mid \mathcal{F}_0] = \tilde{S}_0
     $$
     
-    This is the discrete-time analog of the continuous-time result. See [Martingales](../../ch01/filtration_and_martingales/martingales.md) for the general definition.
+    This is the discrete-time analog of the continuous-time result. See [Martingales](../../ch02/filtration_and_martingales/martingales.md) for the general definition.
 
 This martingale property is the key to pricing contingent claims: if discounted asset prices are martingales under $\mathbb{Q}$, then by no-arbitrage, discounted derivative prices must also be martingales. This leads to the **risk-neutral pricing formula**:
 

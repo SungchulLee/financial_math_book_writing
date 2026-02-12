@@ -273,9 +273,9 @@ Discounting, killing, and the connection to finance.
 
 Applications to derivative pricing.
 
-- [Discounting and Killing](../../ch05/bs_pde_structure/discounting_and_killing_term.md)
-- [Greeks from PDE](../../ch05/bs_pde_structure/greeks_from_pde.md)
-- [Boundary Conditions](../../ch05/bs_pde_structure/terminal_and_boundary_conditions.md)
+- [Discounting and Killing](../../ch06/bs_pde_structure/discounting_and_killing_term.md)
+- [Greeks from PDE](../../ch06/bs_pde_structure/greeks_from_pde.md)
+- [Boundary Conditions](../../ch06/bs_pde_structure/terminal_and_boundary_conditions.md)
 
 ---
 
@@ -310,7 +310,7 @@ The mathematics developed for physics became the foundation of quantitative fina
 
 ## See Also
 
-- [Infinitesimal Generator](../../ch02/infinitesimal_generator/infinitesimal_generator.md) — the operator that starts it all
-- [Dynkin's Formula](../../ch02/infinitesimal_generator/dynkin_formula.md) — integral form of the backward equation
-- [Generator and Martingales](../../ch02/infinitesimal_generator/generator_and_martingales.md) — martingale characterization
-- [Invariant Measures](../../ch02/diffusion_process/invariant_measures_and_stationarity.md) — long-time behavior from Fokker–Planck
+- [Infinitesimal Generator](../../ch03/infinitesimal_generator/infinitesimal_generator.md) — the operator that starts it all
+- [Dynkin's Formula](../../ch03/infinitesimal_generator/dynkin_formula.md) — integral form of the backward equation
+- [Generator and Martingales](../../ch03/infinitesimal_generator/generator_and_martingales.md) — martingale characterization
+- [Invariant Measures](../../ch03/diffusion_process/invariant_measures_and_stationarity.md) — long-time behavior from Fokker–Planck

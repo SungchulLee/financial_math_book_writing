@@ -5,8 +5,8 @@ The **stochastic exponential** (or **Doléans-Dade exponential**) is the stochas
 !!! info "Prerequisites"
     This section assumes familiarity with:
     
-    - [Itô's Lemma](../../ch02/ito_lemma/ito_lemma.md)
-    - [Quadratic Variation](../../ch02/ito_integral/quadratic_variation.md)
+    - [Itô's Lemma](../../ch03/ito_lemma/ito_lemma.md)
+    - [Quadratic Variation](../../ch03/ito_integral/quadratic_variation.md)
     - [Local Martingales](local_martingale.md)
 
 ---

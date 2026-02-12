@@ -80,7 +80,7 @@ $$
 
 ### Pricing via the Joint Density
 
-Using the joint density $f_{M_T, W_T}(m, w)$ from the reflection principle (see [Reflection Principle](../../ch01/brownian_motion/reflection_principle.md)):
+Using the joint density $f_{M_T, W_T}(m, w)$ from the reflection principle (see [Reflection Principle](../../ch02/brownian_motion/reflection_principle.md)):
 
 $$
 f_{M_T, W_T}(m, w) = \frac{2(2m - w)}{T\sqrt{2\pi T}} \exp\!\left( -\frac{(2m - w)^2}{2T} \right), \quad m \ge 0,\; w \le m
@@ -173,7 +173,7 @@ where $w_{\min}$ is chosen so that the payoff is negligible below it (typically 
 
 A complete implementation is available in the appendix:
 
-- [Barrier Call (Joint Law Pricing)](../../python_codes/exotic_options_BARRIER_CALL_JOINT_LAW.py)
+- [Barrier Call (Joint Law Pricing)](../../ch07/codes/exotic_barrier_call_joint_law.py)
 
 The implementation includes:
 

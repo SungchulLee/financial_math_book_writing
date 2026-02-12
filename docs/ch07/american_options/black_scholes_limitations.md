@@ -7,10 +7,10 @@ The Black–Scholes formula provides a closed-form solution for European options
 This section explains precisely why the analytical framework breaks down and how the problem transforms from a standard PDE to a **free-boundary PDE** (variational inequality).
 
 !!! info "Prerequisites"
-    - [Black–Scholes PDE](../bs_pde_derivation/delta_hedging.md) (derivation and structure)
-    - [Terminal and Boundary Conditions](../bs_pde_structure/terminal_and_boundary_conditions.md) (PDE boundary conditions)
+    - [Black–Scholes PDE](../../ch06/bs_pde_derivation/delta_hedging.md) (derivation and structure)
+    - [Terminal and Boundary Conditions](../../ch06/bs_pde_structure/terminal_and_boundary_conditions.md) (PDE boundary conditions)
     - [American Option Definition](american_option_definition.md) (optimal stopping formulation)
-    - [Free Boundary Problems](../bs_pde_numerical_solution/free_boundary_problems_american_options.md) (variational inequality)
+    - [Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md) (variational inequality)
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
@@ -157,7 +157,7 @@ Since closed-form solutions are unavailable, American options require numerical 
 | Method | Approach | See Also |
 |---|---|---|
 | Binomial/trinomial trees | Backward induction with $\max$ | [Binomial Pricing](binomial_pricing.md) |
-| Finite differences + projection | Discretize PDE, enforce constraint | [American Options Implementation](../bs_pde_numerical_solution/american_options_early_exercise_implementation.md) |
+| Finite differences + projection | Discretize PDE, enforce constraint | [American Options Implementation](../../ch08/american_options/american_options_early_exercise_implementation.md) |
 | Penalty methods | Soft constraint via large penalty | [Penalty and FD Methods](penalty_and_finite_difference.md) |
 | LSM Monte Carlo | Regression-based optimal stopping | [LSM Monte Carlo](lsm_monte_carlo.md) |
 

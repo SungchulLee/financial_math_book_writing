@@ -8,8 +8,8 @@ Understanding the conditions under which early exercise is rational is essential
 
 !!! info "Prerequisites"
     - [American Option Definition](american_option_definition.md) (optimal stopping formulation)
-    - [Put-Call Parity](../black_scholes_formula/put_call_parity.md) (parity relations)
-    - [Properties and Bounds](../black_scholes_formula/properties_and_bounds.md) (option value bounds)
+    - [Put-Call Parity](../../ch06/black_scholes_formula/put_call_parity.md) (parity relations)
+    - [Properties and Bounds](../../ch06/black_scholes_formula/properties_and_bounds.md) (option value bounds)
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:

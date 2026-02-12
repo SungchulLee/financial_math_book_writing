@@ -5,9 +5,9 @@ A **local martingale** is a process that behaves like a martingale "locally"—w
 !!! info "Prerequisites"
     This section assumes familiarity with:
     
-    - [Stopping Times](../../ch01/filtration_and_martingales/stopping_times.md)
-    - [Itô Integral Construction](../../ch02/ito_integral/ito_integral_construction.md)
-    - [Quadratic Variation](../../ch02/ito_integral/quadratic_variation.md)
+    - [Stopping Times](../../ch02/filtration_and_martingales/stopping_times.md)
+    - [Itô Integral Construction](../../ch03/ito_integral/ito_integral_construction.md)
+    - [Quadratic Variation](../../ch03/ito_integral/quadratic_variation.md)
 
 ---
 
@@ -49,7 +49,7 @@ $$
 where **UI** denotes uniformly integrable. The inclusions go from strongest (UI martingales, the smallest class) to weakest (local martingales, the largest class). A local martingale that is not a true martingale is called a **strict local martingale**.
 
 !!! note "Connection to Convergence Theory"
-    Uniformly integrable martingales converge in $L^1$, not just almost surely. See [Martingale Convergence](../../ch01/filtration_and_martingales/martingale_convergence.md) for the full hierarchy of convergence results.
+    Uniformly integrable martingales converge in $L^1$, not just almost surely. See [Martingale Convergence](../../ch02/filtration_and_martingales/martingale_convergence.md) for the full hierarchy of convergence results.
 
 ---
 
@@ -350,7 +350,7 @@ Kazamaki's condition is strictly weaker than Novikov's. See [Novikov & Kazamaki 
     | **(4) ⟹ (2)** | BDG inequality: $\mathbb{E}[\sup_t \|M_t\|] \leq C \cdot \mathbb{E}[\langle M \rangle_T^{1/2}] < \infty$ |
     | **(5) ⟹ (6)** | Novikov implies Kazamaki (see [proof](novikov_kazamaki_conditions.md)) |
     
-    The common thread: all conditions ultimately ensure **[uniform integrability](../../ch01/filtration_and_martingales/martingale_convergence.md#uniform-integrability)**, which prevents mass from escaping to infinity.
+    The common thread: all conditions ultimately ensure **[uniform integrability](../../ch02/filtration_and_martingales/martingale_convergence.md#uniform-integrability)**, which prevents mass from escaping to infinity.
 
 ---
 
@@ -384,7 +384,7 @@ $$
 
 When $\mathcal{L}f = 0$, the drift integral vanishes, leaving only the stochastic integral (which is a local martingale).
 
-See [Generator and Martingales](../../ch02/infinitesimal_generator/generator_and_martingales.md) for the full treatment.
+See [Generator and Martingales](../../ch03/infinitesimal_generator/generator_and_martingales.md) for the full treatment.
 
 ---
 

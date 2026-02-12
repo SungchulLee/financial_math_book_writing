@@ -248,4 +248,4 @@ Once paths are gone (jumps, weak solutions), Itô disappears — Dynkin survives
 - [Infinitesimal Generator](infinitesimal_generator.md)
 - [Generator and Martingales](generator_and_martingales.md)
 - [Applications of Dynkin](applications_of_dynkin.md)
-- [Feynman–Kac Formula](../../ch03/feynman_kac/feynman_kac_formula.md)
+- [Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md)

@@ -5,7 +5,7 @@
 The **binomial tree** method extends naturally to price exotic options by tracking **additional state variables** at each node. For barrier options, we track whether the barrier has been breached; for Asian options, we track the running average; for lookback options, we track the running maximum or minimum. While conceptually straightforward, the state-space expansion introduces computational challenges that limit the method's applicability to low-dimensional exotics.
 
 !!! info "Prerequisites"
-    - [Multi-Period Binomial Model](../binomial_model/multi_period_binomial_model.md) (backward induction)
+    - [Multi-Period Binomial Model](../../ch01/binomial_model/multi_period_binomial_model.md) (backward induction)
     - [Binomial Pricing of American Options](../american_options/binomial_pricing.md) (early-exercise on trees)
     - [Barrier Options](barrier_options.md) (payoff definitions)
 

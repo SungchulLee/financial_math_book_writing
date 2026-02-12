@@ -7,8 +7,8 @@
 The pricing of exotic options demands more sophisticated mathematical tools than the closed-form Black–Scholes formula, requiring **binomial trees with state tracking**, **Monte Carlo simulation**, or **PDE methods with extended state spaces**.
 
 !!! info "Prerequisites"
-    - [Multi-Period Binomial Model](../binomial_model/multi_period_binomial_model.md) (backward induction on trees)
-    - [Black–Scholes Formula](../black_scholes_formula/bs_formula_statement.md) (vanilla pricing baseline)
+    - [Multi-Period Binomial Model](../../ch01/binomial_model/multi_period_binomial_model.md) (backward induction on trees)
+    - [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md) (vanilla pricing baseline)
     - [LSM Monte Carlo](../american_options/lsm_monte_carlo.md) (simulation-based pricing)
 
 !!! abstract "Learning Objectives"

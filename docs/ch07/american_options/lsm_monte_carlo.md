@@ -9,7 +9,7 @@ The key insight is that the optimal exercise decision at each time step requires
 !!! info "Prerequisites"
     - [American Option Definition](american_option_definition.md) (optimal stopping formulation)
     - [Early Exercise](early_exercise.md) (when exercise is optimal)
-    - [Monte Carlo Pricing](../black_scholes_formula/computational_examples.md) (basic simulation methods)
+    - [Monte Carlo Pricing](../../ch06/black_scholes_formula/computational_examples.md) (basic simulation methods)
 
 !!! abstract "Learning Objectives"
     By the end of this section, you will be able to:
