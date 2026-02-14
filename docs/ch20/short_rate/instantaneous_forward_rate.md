@@ -1,34 +1,34 @@
-# Instantaneous Forward Rate
+# Hull-White Instantaneous Forward Rate
 
-*This section covers instantaneous forward rate in the context of Instantaneous Forward Rate in Chapter 20.*
+## Hull-White Volatility of Instantaneous Forward Rate
 
-!!! abstract "Learning Objectives"
-    By the end of this section, you will be able to:
-    
-    1. Understand the key concepts of instantaneous forward rate
-    2. Apply the mathematical framework presented
-    3. Connect this topic to related areas in quantitative finance
+$$\begin{array}{lllll}
+\displaystyle
+\sigma(t,T)=\sigma e^{-\lambda(T-t)}
+\end{array}$$
 
----
+## Hull-White Instantaneous Forward Rate Dynamics
 
-## Overview
+$$\begin{array}{lllll}
+\displaystyle
+df(t,T)
+=
+\mu^\mathbb{Q}(t,T)dt+\sigma(t,T)dW^{\mathbb{Q}}(t)
+\end{array}$$
 
-This section introduces the fundamental concepts of instantaneous forward rate. We will explore its theoretical foundations and practical applications in quantitative finance.
+where
 
----
+$$\begin{array}{lllll}
+\displaystyle
+\mu^\mathbb{Q}(t,T)
+=\frac{\sigma^2}{\lambda}e^{-\lambda(T-t)}\left(1-e^{-\lambda(T-t)}\right)
+\end{array}$$
 
-## Key Concepts
+???+ note "Proof"
 
-*Content under development.*
-
----
-
-## Mathematical Framework
-
-*Content under development.*
-
----
-
-## Summary
-
-This section presented the fundamental concepts of instantaneous forward rate. The material connects to subsequent sections in this chapter.
+    $$\begin{array}{lllll}
+    \displaystyle
+    \mu(t,T)
+    =\sigma(t,T)\int_t^T\sigma(t,T')dT'
+    =\frac{\sigma^2}{\lambda}e^{-\lambda(T-t)}\left(1-e^{-\lambda(T-t)}\right)
+    \end{array}$$

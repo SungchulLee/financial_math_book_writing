@@ -550,7 +550,7 @@ nav:
             - 11.2 Practical Limitations:
                 - Higher-Order Instability: ch11/model_risk/instability_of_higher_order_greeks.md
                 - Transaction Costs and Liquidity: ch11/model_risk/transaction_costs_and_liquidity_effects.md
-                - Discrete-Time Hedging Error: ch11/model_risk/breakdown_of_continuous_time_hedging.md
+                - Breakdown of Continuous-Time Hedging: ch11/model_risk/breakdown_of_continuous_time_hedging.md
                 - Bid–Ask Spread Effects: ch11/model_risk/bid_ask_spread_effects.md
                 - Robustness vs Optimality: ch11/model_risk/robustness_vs_optimality.md
             - 11.3 Hedging Strategies:
@@ -614,7 +614,6 @@ nav:
                 - Implied Volatility (Comprehensive Workflow): ch12/codes/black_scholes_iv_comprehensive.py
                 - Implied Volatility (Custom Analysis): ch12/codes/black_scholes_iv_custom_filter.py
                 - Implied Volatility (Figures): ch12/codes/black_scholes_iv_figures.py
-                - VSTOXX Implied Volatility Demo: ch12/codes/implied_volatility_vstoxx_demo.py
 
         - 13 Local Volatility:
             - Chapter Overview: ch13/index.md
@@ -694,10 +693,7 @@ nav:
                 - Python Implementation: ch14/sabr_model/python_implementation.py
                 - End-to-End Worked Examples: ch14/sabr_model/end_to_end_worked_examples.md
                 - Python Implementation (Guide): ch14/sabr_model/python_implementation.md
-            - 14.9 Heston Supplementary:
-                - Stochastic Volatility Overview: ch14/heston/stochastic_volatility_overview.md
-                - Heston COS Method: ch14/heston/heston_cos_method.md
-            - 14.10 Python Examples:
+            - 14.9 Python Examples:
                 - Heston Path Simulation (Euler): ch14/codes/heston_path_simulation_euler.py
                 - Heston Path Simulation (QE Scheme): ch14/codes/heston_path_simulation_qe.py
                 - SV Implied Volatility Surface: ch14/codes/sv_implied_volatility_surface.py
@@ -756,9 +752,6 @@ nav:
                 - CIR Process Simulation and Density: ch15/codes/cir_process_simulation.py
                 - Affine Yield Curve Construction: ch15/codes/affine_yield_curve.py
                 - Multi-Factor Affine Model: ch15/codes/multi_factor_affine_model.py
-            - 15.10 Affine Process Supplementary:
-                - Affine Process: ch15/affine_process/affine_process.md
-                - Discounted Characteristic Function: ch15/affine_process/discounted_characteristic_function.md
 
         - 16 Heston Model in Detail:
             - Chapter Overview: ch16/index.md
@@ -988,7 +981,6 @@ nav:
                 - Infinite-Dimensional SDEs: ch19/hjm/infinite_dimensional_sdes.md
                 - Volatility Structures and Factor Models: ch19/hjm/volatility_structures_and_factor_models.md
                 - Short-Rate Models as HJM Special Cases: ch19/hjm/short_rate_models_as_hjm_special_cases.md
-                - LIBOR Market Model: ch19/hjm/libor_market_model.md
             - 19.3 LIBOR Market Model:
                 - LIBOR Market Model: ch19/lmm/libor_market_model.md
                 - Forward LIBOR Dynamics: ch19/lmm/forward_libor_dynamics.md
@@ -1120,20 +1112,8 @@ nav:
                 - Calibration Pipeline (Guide): ch20/codes/calibration_pipeline.md
                 - End-to-End Worked Examples: ch20/codes/end_to_end_worked_examples.py
                 - End-to-End Worked Examples (Guide): ch20/codes/end_to_end_worked_examples.md
-            - 20.13 Hull-White Detailed Analysis:
-                - Short Rate Dynamics: ch20/hull_white_detailed/short_rate.md
-                - Short Rate Decomposition: ch20/hull_white_detailed/short_rate_decomposition.md
-                - Forward Rate: ch20/hull_white_detailed/forward_rate.md
-                - Named Functions: ch20/hull_white_detailed/named_functions.md
-                - Zero Bond Pricing: ch20/hull_white_detailed/zero_bond_pricing.md
-                - Zero Bond Options: ch20/hull_white_detailed/zero_bond_options.md
-                - Change of Numeraire Q to T: ch20/hull_white_detailed/change_of_numeraire_q_to_t.md
-                - Caplet Formula: ch20/hull_white_detailed/caplet_formula.md
-                - Swaption Formula: ch20/hull_white_detailed/swaption_formula.md
-                - Swap Pricing: ch20/hull_white_detailed/swap_pricing.md
-                - Two-Factor Model: ch20/hull_white_detailed/two_factor_model.md
-                - Python Classes: ch20/hull_white_detailed/python_classes.md
-            - 20.14 Python Examples:
+                - Hull-White Python Classes (Guide): ch20/codes/hull_white_python_classes.md
+            - 20.13 Python Examples:
                 - Core Hull-White:
                     - Short Rate Simulation: ch20/codes/hull_white_short_rate_simulation.py
                     - Zero-Coupon Bond Pricing: ch20/codes/hull_white_zcb_pricing.py

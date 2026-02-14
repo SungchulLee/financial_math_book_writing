@@ -1,34 +1,115 @@
-# Named Functions A(t,T), B(t,T), V(t,T)
+# Hull-White Named Functions
 
-*This section covers named functions a(t,t), b(t,t), v(t,t) in the context of Named Functions Definition in Chapter 20.*
+This page collects all the named functions used in the Hull-White model for quick reference.
 
-!!! abstract "Learning Objectives"
-    By the end of this section, you will be able to:
-    
-    1. Understand the key concepts of named functions a(t,t), b(t,t), v(t,t)
-    2. Apply the mathematical framework presented
-    3. Connect this topic to related areas in quantitative finance
+## $\tau$
 
----
+$$\tau=T-t$$
 
-## Overview
+## $\theta$
 
-This section introduces the fundamental concepts of named functions a(t,t), b(t,t), v(t,t). We will explore its theoretical foundations and practical applications in quantitative finance.
+$$\begin{array}{lllllll}
+\displaystyle
+\theta(t)
+&=&\displaystyle
+f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
++
+\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)\\
+\displaystyle
+\theta^\mathbb{T}(t)
+&=&\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\\
+\end{array}$$
 
----
+## $\psi$
 
-## Key Concepts
+$$\begin{array}{lllllll}
+\psi(t)
+&=&\displaystyle
+r(0)e^{-\lambda t}+\lambda\int_0^t\theta(t')e^{-\lambda(t-t')}dt'
+&=&\displaystyle
+f(0,t)+\frac{\lambda\sigma^2}{2}B^2(t)\\
+\psi(t_0,t)
+&=&\displaystyle
+r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta(t')e^{-\lambda(t-t')}dt'
+\\
+\psi^\mathbb{T}(t_0,t)
+&=&\displaystyle
+r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t-t')}dt'
+\\
+\end{array}$$
 
-*Content under development.*
+## $\sigma_r^2$, $\mu_r$
 
----
+$$\begin{array}{lllll}
+\displaystyle
+\sigma_r^2(t)
+&=&\displaystyle
+-\frac{1}{2}\sigma^2 B(2t)\\
+\displaystyle
+\sigma_r^2(t_0,t)
+&=&\displaystyle
+-\frac{1}{2}\sigma^2 B(2(t-t_0))
+\end{array}$$
 
-## Mathematical Framework
+$$\begin{array}{lllll}
+\displaystyle
+\mu_r(t)
+&=&\displaystyle
+\psi(t)\\
+\displaystyle
+\mu_r(t_0,t)
+&=&\displaystyle
+\psi(t_0,t)\\
+\displaystyle
+\mu^\mathbb{T}_r(t_0,t)
+&=&\displaystyle
+\psi^\mathbb{T}(t_0,t)\\
+\end{array}$$
 
-*Content under development.*
+## $A$, $B$
 
----
+$$\begin{array}{lllllll}
+A(\tau)&=&A(0,\tau)
+&=&\displaystyle
+-\frac{\sigma^2}{4\lambda^3}
+\left(3-2\lambda\tau-4e^{-\lambda\tau}+e^{-2\lambda\tau}\right)
++
+\lambda\int_0^\tau\theta(T-\tau')B(\tau')d\tau'
+\\
+B(\tau)&=&B(0,\tau)
+&=&\displaystyle
+-\frac{1-e^{-\lambda\tau}}{\lambda}
+\\
+\end{array}$$
 
-## Summary
+### Characteristic Function Version
 
-This section presented the fundamental concepts of named functions a(t,t), b(t,t), v(t,t). The material connects to subsequent sections in this chapter.
+$$\begin{array}{lllll}
+\displaystyle
+A(u,\tau)
+&=&\displaystyle
+-\frac{\sigma^2}{4\lambda^3}\left[(1+iu\lambda)\left[
+    3-4e^{-\lambda \tau}+e^{-2\lambda \tau}
+    - iu\lambda\left(1-e^{-2\lambda \tau}\right)
+    \right]-2\lambda\tau\right]
++\lambda\int_0^\tau\theta(T-\tau')B(u,\tau')d\tau'\\
+\displaystyle
+B(u,\tau)
+&=&\displaystyle
+-\frac{1-(1+iu\lambda) e^{-\lambda \tau}}{\lambda}
+=iue^{-\lambda\tau}+B(\tau)\\
+\end{array}$$
+
+### Decomposition Version
+
+$$\begin{array}{lllll}
+\displaystyle
+\tilde{A}(u,\tau)
+&=&\displaystyle
+-\frac{\sigma^2}{4\lambda^3}\left(3-2\lambda\tau-4e^{-\lambda\tau}+e^{-2\lambda\tau}+2iu\lambda\left(1-e^{-\lambda\tau}\right)^2+u^2\lambda^2\left(1-e^{-2\lambda\tau}\right)\right)
+\\
+\displaystyle
+\tilde{B}(u,\tau)
+&=&\displaystyle
+B(u,\tau)\\
+\end{array}$$
