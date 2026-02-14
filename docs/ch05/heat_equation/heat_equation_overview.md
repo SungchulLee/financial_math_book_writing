@@ -191,8 +191,90 @@ $$
 
 The heat equation describes:
 - Diffusion of heat, particles, or probability
-- Smoothing of initial irregularities  
+- Smoothing of initial irregularities
 - Conservation of total mass
 - The analytical side of Brownian motion
 
 **The heat equation is the simplest parabolic PDE and the gateway to understanding diffusion processes.**
+
+---
+
+## QuantPie Derivation
+
+### Derivation from Particle Conservation
+
+The heat equation emerges naturally from modeling particle diffusion. Consider particles randomly moving in space, where the position change $\Delta$ has probability density $\phi(\Delta)$.
+
+**Number of particles at time $t + \tau$:**
+
+$$
+f(x, t+\tau) = \int_{-\infty}^{\infty} f(x-\Delta, t) \phi(\Delta) d\Delta
+$$
+
+**Taylor expansion:**
+- Time: $f(x, t+\tau) = f(x, t) + \frac{\partial f}{\partial t}\tau$
+- Position: $f(x-\Delta, t) = f(x, t) - \frac{\partial f}{\partial x}\Delta + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\Delta^2$
+
+**Substituting and using the fact that $\phi$ is even** (symmetric distribution):
+
+$$
+f(x, t) + \frac{\partial f}{\partial t}\tau = f(x, t) \int \phi(\Delta)d\Delta - \frac{\partial f}{\partial x}\int \Delta\phi(\Delta)d\Delta + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta
+$$
+
+Since $\int \phi(\Delta)d\Delta = 1$ and $\int \Delta\phi(\Delta)d\Delta = 0$ (by symmetry):
+
+$$
+\frac{\partial f}{\partial t}\tau = \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta
+$$
+
+**Defining diffusion coefficient** $D = \frac{1}{\tau}\int \Delta^2\phi(\Delta)d\Delta$ (variance per unit time):
+
+$$
+\frac{\partial f}{\partial t} = \frac{D}{2}\frac{\partial^2 f}{\partial x^2}
+$$
+
+**Physical interpretation:** If neighboring regions have more particles on average, particles diffuse in to increase the local density. Conversely, if neighbors are depleted, the region loses particles.
+
+### Fundamental Solution via Similarity Method
+
+The heat equation admits a self-similar solution. Under the transformation:
+- $z = e^a x$
+- $s = e^b t$
+- $v(z, s) = e^c u(e^a x, e^b t)$
+
+For the heat equation to remain invariant, we need $b = 2a$.
+
+**Similarity solution ansatz:**
+
+$$
+u(x, t) = t^{c/b} f\left(\frac{x}{\sqrt{t}}\right)
+$$
+
+where $\xi = \frac{x}{\sqrt{t}}$ is the similarity variable.
+
+**Substituting into the heat equation** with $c/b = -1/2$:
+
+$$
+\kappa f''(\xi) + \frac{1}{2}\xi f'(\xi) + \frac{1}{2}f(\xi) = 0
+$$
+
+This simplifies to:
+$$
+\frac{df}{f} = -\frac{1}{2\kappa}\xi d\xi \quad \Rightarrow \quad f(\xi) = e^{-\xi^2/(4\kappa)}
+$$
+
+**Fundamental solution (Green's function):**
+
+$$
+\boxed{
+G(x, t; x_0) = \frac{1}{\sqrt{4\pi\kappa t}} \exp\left(-\frac{(x-x_0)^2}{4\kappa t}\right)
+}
+$$
+
+**General solution by superposition:**
+
+$$
+u(x, t) = \int_{-\infty}^{\infty} u(x_0, 0) \cdot G(x, t; x_0) dx_0
+$$
+
+The fundamental solution is the Gaussian kernel - the transition density of diffusion processes. This connects the PDE theory to probability: the solution represents how an initial distribution $u(x, 0)$ spreads according to Brownian motion.

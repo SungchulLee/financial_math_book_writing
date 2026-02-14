@@ -375,3 +375,112 @@ $$
 | $g(x)$ | Terminal condition | Final payoff |
 
 **The Feynman–Kac formula is the fundamental bridge between stochastic analysis and partial differential equations.**
+
+---
+
+## QuantPie Derivation
+
+### Proof via Martingale Methods
+
+**Define the process:**
+
+$$
+Y(s) = e^{-\int_t^s V(X_\tau, \tau)d\tau} u(X_s, s) + \int_t^s e^{-\int_t^r V(X_\tau, \tau)d\tau} f(X_r, r)dr
+$$
+
+where $u$ solves the PDE:
+
+$$
+\frac{\partial u}{\partial t} + \mu(t,x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} - V(t,x)u + f(t,x) = 0
+$$
+
+**Applying Itô's Lemma** to the first term:
+
+$$
+d\left(e^{-\int_t^s V d\tau}\right) = -V(X_s, s)e^{-\int_t^s V d\tau}ds
+$$
+
+$$
+du(X_s, s) = \left(\frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right)ds + \sigma\frac{\partial u}{\partial x}dW_s
+$$
+
+**Computing $dY$:**
+
+$$
+dY = e^{-\int_t^s V d\tau}\left[-Vu + du\right] + e^{-\int_t^s V d\tau}f ds + (\text{higher order})
+$$
+
+$$
+= e^{-\int_t^s V d\tau}\left[-Vu + \frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + f\right]ds + (\text{martingale})
+$$
+
+**The bracketed term equals zero by the PDE**, leaving only the martingale part:
+
+$$
+dY = e^{-\int_t^s V d\tau}\sigma\frac{\partial u}{\partial x}dW_s
+$$
+
+**Therefore $Y(s)$ is a martingale:**
+
+$$
+Y(t) = \mathbb{E}[Y(T) | \mathcal{F}_t]
+$$
+
+$$
+u(t, x) = \mathbb{E}\left[e^{-\int_t^T V d\tau}u(X_T, T) + \int_t^T e^{-\int_t^s V d\tau}f(X_s, s)ds \,\Big|\, X_t = x\right]
+$$
+
+### Examples: Diffusion Equations
+
+**Example 1: Pure Diffusion (No Drift, No Discounting)**
+
+$$
+\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} = 0, \quad u(T, x) = x^2
+$$
+
+**Stochastic process:** $dX = \sigma dB_t$
+
+$$
+X_T = X_t + \sigma(B_T - B_t)
+$$
+
+**Solution by Feynman-Kac:**
+
+$$
+\begin{aligned}
+u(t, X_t) &= \mathbb{E}[X_T^2 | X_t] \\
+&= \mathbb{E}[(X_t + \sigma(B_T - B_t))^2] \\
+&= X_t^2 + \sigma^2(T - t)
+\end{aligned}
+$$
+
+**Example 2: Diffusion with Drift**
+
+$$
+\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + \mu\frac{\partial u}{\partial x} = 0, \quad u(T, x) = x^2
+$$
+
+**Stochastic process:** $dX = \mu dt + \sigma dB_t$
+
+$$
+X_T = X_t + \mu(T - t) + \sigma(B_T - B_t)
+$$
+
+**Solution:**
+
+$$
+\begin{aligned}
+u(t, X_t) &= \mathbb{E}[X_T^2] \\
+&= \mathbb{E}[(X_t + \mu(T-t) + \sigma(B_T - B_t))^2] \\
+&= (X_t + \mu(T-t))^2 + \sigma^2(T-t)
+\end{aligned}
+$$
+
+### Key Insight
+
+The Feynman-Kac formula shows that **solving the PDE is equivalent to computing an expectation**. This opens two computational paths:
+
+1. **Analytical:** Solve the PDE directly (finite differences, separation of variables)
+2. **Probabilistic:** Simulate the SDE and average payoffs (Monte Carlo)
+
+Each approach has advantages depending on dimensionality and problem structure.

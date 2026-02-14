@@ -63,3 +63,170 @@ Swap measure drift is different from terminal measure, optimized for swaption pr
     - Intuitive interpretation: numeraire is final cash received
     - Stability in long-dated simulations
     - Effective handling of multiple correlated rates simultaneously
+
+## QuantPie Derivation: LIBOR Market Model Spot Measure
+
+### Definition of LIBOR and Spot Measure
+
+**LIBOR Definition**
+
+$$\begin{array}{ccccccc}
+\displaystyle
+L_n\left(t\right)P\left(t,T_{n}\right)
+=
+\frac{1}{\delta}
+\left(
+P\left(t,T_{n-1}\right)-P\left(t,T_{n}\right)
+\right)
+&\Rightarrow&\displaystyle
+L_n\left(t\right)
+=
+\frac{1}{\delta}
+\left(
+\frac{P\left(t,T_{n-1}\right)-P\left(t,T_{n}\right)}{P\left(t,T_{n}\right)}
+\right)\\
+\end{array}$$
+
+is tradable, where $L_n\left(t\right)P\left(t,T_{n}\right)$ is the value of tradable assets.
+
+### Bank Account (Spot Measure Numeraire)
+
+$$\begin{array}{llllllll}
+\displaystyle
+M(t)
+&:=&
+\displaystyle
+\frac{P(t,T_{\bar{m}(t)})}{\prod_{k=1}^{\bar{m}(t)}P(T_{k-1},T_k)}\\
+\end{array}$$
+
+where
+
+$$
+\bar{m}(t)=\text{min}\left(i:t\le T_i\right)
+$$
+
+### Bond Price and Accrual
+
+When current time $t$ is $T_0$ or $T_k$:
+
+$$\begin{array}
+\displaystyle
+B(T_n)=\prod_{i=0}^{n-1}\left(1+\delta L(T_i,T_i)\right)\\
+\displaystyle
+P(T_0,T_n)=\prod_{i=0}^{n-1}\frac{1}{1+\delta L(T_0,T_i)}\\
+\displaystyle
+P(T_k,T_n)=\prod_{i=k}^{n-1}\frac{1}{1+\delta L(T_k,T_i)}\\
+\end{array}$$
+
+When current time $t$ is $T_{q(t)-1}-\delta<t<T_{q(t)}$:
+
+$$\begin{array}{lll}
+\displaystyle
+B(t)=P\left(t,T_{q(t)}\right)\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i)\right)\\
+\displaystyle
+P(t,T_n)=P\left(t,T_{q(t)}\right)\prod_{i=q(t)}^{n-1}\frac{1}{1+\delta L\left(T_{q(t)},T_i\right)}\\
+\end{array}$$
+
+### Radon-Nikodym Derivative for Spot Measure
+
+$$\begin{array}{llllllll}
+\displaystyle
+\lambda_M^{\bar{n}(t)}(t)
+&=&\displaystyle
+\left.\frac{d\mathbb{Q}^{M}}{d\mathbb{Q}^{\bar{n}(t)}}\Big{|}{\cal F}(t)\right)\\
+&=&\displaystyle
+\frac{M(t)/M(t_0)}{P(t,T_{\bar{n}(t)})/P(t_0,T_{\bar{n}(t)})}\\
+&=&\displaystyle
+\frac{P(t,T_{\bar{m}(t)})}{P(t,T_{\bar{n}(t)})}
+\frac{P(t_0,T_{\bar{n}(t)})}{M(t_0)}
+\prod_{k=1}^{\bar{m}(t)}\frac{1}{P(T_{k-1},T_k)}\\
+&:=&\displaystyle
+\frac{P(t,T_{\bar{m}(t)})}{P(t,T_{\bar{n}(t)})}
+\bar{P}\\
+\end{array}$$
+
+### Girsanov Transformation to Spot Measure
+
+$$\begin{array}{lllll}
+\displaystyle
+dW_{\bar{n}(t)}^{M}(t)
+&=&\displaystyle
+-\frac{\tau_{\bar{n}(t)}\bar{\sigma}_{\bar{n}(t)}(t)}{\tau_{\bar{n}(t)}l_{\bar{n}(t)}(t)+1}dt
++dW_{\bar{n}(t)}^{\bar{n}(t)}(t)\\
+\end{array}$$
+
+### LIBOR Drift in Spot Measure
+
+$$\begin{array}{lllll}
+\displaystyle
+dl_i(t)
+&=&\displaystyle
+\bar{\sigma}_i(t)\sum_{k=\bar{m}(t)+1}^{i}\frac{\tau_{k}\bar{\sigma}_{k}(t)}{\tau_{k}l_{k}(t)+1}dt
++\bar{\sigma}_i(t)dW_i^{M}(t)\\
+\end{array}$$
+
+### Special Case: Spot Measure Equals Forward Measure
+
+**Spot Measure Radon-Nikodym Derivative**
+
+$$\begin{array}{llllll}
+\displaystyle
+Z_t
+:=
+\mathbb{E}^{q(t)}\left[\frac{d\mathbb{P}_{S}}{d\mathbb{P}_{q(t)}}\Big{|}{\cal F}_t\right]
+=
+\frac{B(t)/B(0)}{P\left(t,T_{q(t)}\right)/P\left(0,T_{q(t)}\right)}\\
+\end{array}$$
+
+Since $\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i,T_{i+1})\right)$ is known at time $t$, let's call this constant $C_1$.
+
+$$\begin{array}{llll}
+\displaystyle
+\frac{B(t)}{B(0)}
+=
+P(t,T_{q(t)})\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i,T_{i+1})\right)
+=
+C_1P(t,T_{q(t)})
+\end{array}$$
+
+Since $\prod_{i=0}^{q(t)-1}\left(1+\delta L(0,T_i,T_{i+1})\right)$ is known at time $t$,
+let's call this constant $C_2$.
+
+$$\begin{array}{llll}
+\displaystyle
+\frac{P(t,T_{q(t)})}{P(0,T_{q(t)})}
+=
+P(t,T_{q(t)})\prod_{i=0}^{q(t)-1}\left(1+\delta L(0,T_i,T_{i+1})\right)
+=
+C_2P(t,T_{q(t)})
+\\
+\end{array}$$
+
+Since $Z_t$ is a Radon-Nykodym derivative, in particular we have $\mathbb{E}^{q(t)}[Z_t]=1$. Therefore,
+
+$$\begin{array}{llllll}
+\displaystyle
+Z_t
+=
+\mathbb{E}^{q(t)}\left[\frac{d\mathbb{P}_{S}}{d\mathbb{P}_{q(t)}}\Big{|}{\cal F}_t\right]
+=
+\frac{B(t)/B(0)}{P\left(t,T_{q(t)}\right)/P\left(0,T_{q(t)}\right)}=\frac{C_1}{C_2}=1\\
+\end{array}$$
+
+This means
+
+$$\begin{array}{lll}
+\displaystyle
+dW_t^{S}
+=
+dW_t^{q(t)}
+\end{array}$$
+
+### Equivalence of Spot and Forward Measures
+
+$$\begin{array}{lll}
+\displaystyle
+\mathbb{P}_{S}
+=
+\mathbb{P}_{q(t)}
+\end{array}$$

@@ -623,6 +623,7 @@ nav:
                 - Dupire Formula and Local Volatility Surface: ch13/local_volatility_framework/dupire_formula_and_local_volatility_surface.md
                 - Implied Volatility and Risk-Neutral Density: ch13/local_volatility_framework/implied_volatility_and_risk_neutral_density.md
                 - Dupire Formula Derivation: ch13/local_volatility_framework/dupire_formula_derivation.md
+                - Tanaka Formula and Payoff Distributions: ch13/local_volatility_framework/tanaka_formula_and_payoff_distributions.md
             - 13.2 Properties of Local Volatility:
                 - Smile Dynamics Under Local Volatility: ch13/properties/smile_dynamics_under_local_volatility.md
                 - Forward PDE and Fokker–Planck: ch13/properties/forward_pde_and_fokker_planck.md
@@ -703,6 +704,7 @@ nav:
                 - Vol-of-Vol Sensitivity Analysis: ch14/codes/vol_of_vol_sensitivity.py
                 - SV Model Comparison (Heston vs SABR): ch14/codes/sv_model_comparison.py
                 - Correlated BM (Grzelak): ch14/codes/grzelak_correlated_bm.py
+                - Empirical Volatility Analysis (QuantPie): ch14/codes/quantpie_empirical_volatility_analysis.py
 
         - 15 Affine Processes:
             - Chapter Overview: ch15/index.md
@@ -962,6 +964,7 @@ nav:
                 - Bond Price Quote: ch18/codes/bond_price_quote.py
                 - CIR Interest Rate Paths (Grzelak): ch18/codes/grzelak_cir_ir_paths.py
                 - Ho-Lee ZCBs (Grzelak): ch18/codes/grzelak_ho_lee_zcbs.py
+                - Ho-Lee Model (QuantPie): ch18/codes/quantpie_ho_lee_model.py
 
         - 19 Interest Rate Derivatives and HJM:
             - Chapter Overview: ch19/index.md

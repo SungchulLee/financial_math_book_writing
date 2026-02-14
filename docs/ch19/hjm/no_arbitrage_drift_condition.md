@@ -204,6 +204,78 @@ where $\Sigma(t, T) = \int_t^T \sigma(t, u) \, du$.
 
 ---
 
+## QuantPie Alternative Proof: Zero-Coupon Bond Dynamics
+
+### ZCB Dynamics
+
+An alternative derivation uses the dynamics of zero-coupon bonds directly. Since $f(t,T) = -\frac{d}{dT}\log P(t,T)$:
+
+$$
+df(t,T) = -\frac{d}{dT}d\log P(t,T)
+$$
+
+The log bond price satisfies:
+
+$$
+d\log P(t,T) = \frac{1}{P(t,T)}dP(t,T) - \frac{1}{2}\frac{1}{P(t,T)^2}(dP(t,T))^2
+$$
+
+### Bond Volatility Structure
+
+Under risk-neutral pricing, the bond price dynamics are:
+
+$$
+\frac{dP(t,T)}{P(t,T)} = r(t)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)
+$$
+
+where the bond volatility is:
+
+$$
+\sigma_P(t,T) = -\int_t^T\sigma(t,T')dT'
+$$
+
+### Deriving Forward Rate Dynamics
+
+Applying Itô's lemma:
+
+$$
+d\log P(t,T) = \left(r(t) - \frac{1}{2}\sigma_P^2(t,T)\right)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)
+$$
+
+Taking the derivative with respect to $T$:
+
+$$
+df(t,T) = -\frac{d}{dT}d\log P(t,T) = \frac{1}{2}\frac{d\sigma_P^2(t,T)}{dT}dt - \frac{d\sigma_P(t,T)}{dT}dW^{\mathbb{Q}}(t)
+$$
+
+### Computing Derivatives
+
+Since $\sigma_P(t,T) = -\int_t^T\sigma(t,T')dT'$:
+
+$$
+\frac{d\sigma_P(t,T)}{dT} = -\sigma(t,T)
+$$
+
+$$
+\frac{d\sigma_P^2(t,T)}{dT} = 2\sigma_P(t,T)\frac{d\sigma_P(t,T)}{dT} = -2\sigma_P(t,T)\sigma(t,T)
+$$
+
+### Final Result
+
+$$
+df(t,T) = \sigma(t,T)\left(\int_t^T\sigma(t,T')dT'\right)dt + \sigma(t,T)dW^{\mathbb{Q}}(t)
+$$
+
+This gives:
+
+$$
+\mu^{\mathbb{Q}}(t,T) = \sigma(t,T)\int_t^T\sigma(t,T')dT'
+$$
+
+This confirms the HJM no-arbitrage drift condition through an alternative approach based on ZCB dynamics.
+
+---
+
 ## Interpretation
 
 ### Drift is Determined by Volatility
@@ -376,6 +448,7 @@ The drift condition involves **integration**, which smooths out volatility irreg
 - Initial yield curve fit is automatic
 - Multi-factor extension: sum over factors
 - Known models (Ho-Lee, Hull-White) are recovered as special cases
+- Alternative ZCB-based proof confirms the result
 
 ---
 

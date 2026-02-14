@@ -154,3 +154,213 @@ N\sum_{k=m+1}^n c_k\cdot{\bf\text{ZBP}}(t_0,T_m,T_k;K_k)
     &=&\displaystyle
     N\sum_{k=m+1}^n c_k\cdot{\bf\text{ZBP}}(t_0,T_m,T_k;K_k)
     \end{array}$$
+
+## QuantPie Derivation: Hull-White Swaption Formula
+
+### Change of Numeraire
+
+$$\begin{array}{lll}
+\displaystyle
+\text{PAYOFF}^\text{Swaption}(T_m)
+&=&\displaystyle
+N\max\left(
+\sum_{k=m+1}^n
+\tau_k P(T_m,T_k)
+\left(l_k(T_m)-K\right),0\right)
+\end{array}$$
+
+$$\begin{array}{lll}
+\displaystyle
+V^\text{Swaption}(t_0)
+&=&\displaystyle
+\mathbb{E}^\mathbb{Q}
+\left[
+\frac{M(t_0)}{M(T_m)}N\max\left(
+\sum_{k=m+1}^n
+\tau_k P(T_m,T_k)
+\left(l_k(T_m)-K\right),0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+\sum_{k=m+1}^n
+\tau_k P(T_m,T_k)
+\left(l_k(T_m)-K\right),0\right)
+\Big|{\cal F}(t_0)\right]\\
+\end{array}$$
+
+### Crucial Expression
+
+$$\begin{array}{lll}
+\displaystyle
+\sum_{k=m+1}^n
+\tau_k P(T_m,T_k)
+\left(l_k(T_m)-K\right)
+&=&\displaystyle
+\sum_{k=m+1}^n
+\tau_k P(T_m,T_k)
+\left(\frac{1}{\tau_k}\left(\frac{P(T_m,T_{k-1})}{P(T_m,T_{k}))}-1\right)-K\right)\\
+&=&\displaystyle
+\sum_{k=m+1}^n
+P(T_m,T_k)
+\left(\left(\frac{P(T_m,T_{k-1})}{P(T_m,T_{k}))}-1\right)-K\tau_k\right)\\
+&=&\displaystyle
+\sum_{k=m+1}^n
+\left(\left(P(T_m,T_{k-1})-P(T_m,T_k)\right)-K\tau_k P(T_m,T_k)\right)\\
+&=&\displaystyle
+1-P(T_m,T_n)
+-K\sum_{k=m+1}^n \tau_k P(T_m,T_k)\\
+&=&\displaystyle
+1-\sum_{k=m+1}^n c_k P(T_m,T_k)\\
+\end{array}$$
+
+where
+
+$$\begin{array}{lll}
+c_k&=&
+\left\{\begin{array}{lll}
+K\tau_k&&\text{for $k\neq n$}\\
+K\tau_k+1&&\text{for $k= n$}\\
+\end{array}\right.
+\end{array}$$
+
+### Hull-White ZCB Price
+
+$$\begin{array}{lll}
+\displaystyle
+V^\text{Swaption}(t_0)
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+\sum_{k=m+1}^n
+\tau_k P(T_m,T_k)
+\left(l_k(T_m)-K\right),0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+1-\sum_{k=m+1}^n c_k P(T_m,T_k),0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+\end{array}$$
+
+### Jamshidian Trick
+
+The ZCB price $P(T_m,T_k)=e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}$ at the swaption maturity $T_m$ is a function of the short rate $r(T_m)$ at $T_m$. Actually, the functions $r(T_m)\rightarrow P(T_m,T_k)$ are strictly decreasing. So, there is an $r^*$ such that
+
+$$
+\displaystyle
+1=\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}
+$$
+
+Then
+
+$$\begin{array}{lll}
+&&\displaystyle
+\max\left(
+1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)\\
+&=&\displaystyle
+\max\left(
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)\\
+&=&\displaystyle
+\left(
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)>r^*\right)\\
+&=&\displaystyle
+\sum_{k=m+1}^n
+c_k\left(e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)>r^*\right)\\
+\end{array}$$
+
+### Proof
+
+$$\begin{array}{lll}
+\displaystyle
+V^\text{Swaption}(t_0)
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\sum_{k=m+1}^n
+c_k\left(e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)>r^*\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
+\left[
+\left(e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)>r^*\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
+\left[
+\max\left(
+e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
+\left[
+\max\left(
+K_k-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+\end{array}$$
+
+where
+
+$$
+\displaystyle
+K_k=e^{A(T_k-T_m)+B(T_k-T_m)r^*}
+$$
+
+Note that
+
+$$\begin{array}{lll}
+\displaystyle
+V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)=P(t_0,T_m)\mathbb{E}^{T_m}
+\left[
+\max\left(
+K_k-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+\end{array}$$
+
+is a European put option price on a zero-coupon bond with
+option maturity $T_m$, bond maturity $T_k$, and strike $K_k$.
+So,
+
+$$\begin{array}{lll}
+\displaystyle
+V^\text{Swaption}(t_0)
+&=&\displaystyle
+NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
+\left[
+\max\left(
+K_k-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
+&=&\displaystyle
+N\sum_{k=m+1}^n c_k V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)\\
+\end{array}$$

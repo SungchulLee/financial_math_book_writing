@@ -155,3 +155,111 @@ $$
 
 !!! note "Key Insight"
     The real-world drift $\mu$ does **not** appear in the final pricing formula. Girsanov's theorem absorbs the drift difference $\mu - r$ into the change of measure, so that option prices depend only on $r$, $\sigma$, $S_0$, $K$, and $T$.
+
+---
+
+## QuantPie Derivation via Feynman-Kac
+
+### Connection to the Black-Scholes PDE
+
+The **Black-Scholes PDE** and risk-neutral pricing are connected through the Feynman-Kac formula. For a European option with payoff $\Phi(S_T)$:
+
+$$
+\begin{array}{lcc}
+\text{Black-Scholes Equation} & & \displaystyle \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0\\
+\\
+\text{Terminal Condition} & & \displaystyle V(T, S_T) = \Phi(S_T)\\
+\\
+\text{Risk-Neutral SDE} & & \displaystyle dS = rS\,dt + \sigma S\,dB^{\mathbb{Q}}\\
+\\
+\text{Feynman-Kac Result} & & \displaystyle V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | S_t = S]
+\end{array}
+$$
+
+### Verification via Itô's Lemma
+
+**Starting from the PDE**, assume $V$ satisfies:
+$$
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+$$
+
+**Apply Itô's Lemma** to $V(t, S_t)$ under the risk-neutral dynamics:
+
+$$
+dV = V_t dt + V_S dS + \frac{1}{2}V_{SS}(dS)^2
+$$
+
+$$
+= V_t dt + V_S(rS\,dt + \sigma S\,dB^{\mathbb{Q}}) + \frac{1}{2}V_{SS}\sigma^2 S^2 dt
+$$
+
+$$
+= \left(V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS}\right)dt + \sigma SV_S dB^{\mathbb{Q}}
+$$
+
+**Substituting the PDE constraint** ($V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS} = rV$):
+
+$$
+dV = rV\,dt + \sigma SV_S dB^{\mathbb{Q}}
+$$
+
+### Discounted Value is a Martingale
+
+Define the **discounted option value:**
+
+$$
+\tilde{V}(t) = \frac{V(t, S_t)}{e^{rt}}
+$$
+
+**Computing the differential:**
+
+$$
+d\tilde{V} = \frac{dV}{e^{rt}} - r\frac{V}{e^{rt}}dt = \frac{rV\,dt + \sigma SV_S dB^{\mathbb{Q}}}{e^{rt}} - r\frac{V}{e^{rt}}dt
+$$
+
+$$
+= \frac{\sigma SV_S}{e^{rt}}dB^{\mathbb{Q}} = \sigma S\left(\frac{V_S}{e^{rt}}\right)dB^{\mathbb{Q}}
+$$
+
+**The drift term vanishes!** Therefore $\tilde{V}(t)$ is a **martingale under** $\mathbb{Q}$.
+
+### Martingale Property Implies Risk-Neutral Pricing
+
+Since $\tilde{V}(t)$ is a martingale:
+
+$$
+\tilde{V}(t) = \mathbb{E}^{\mathbb{Q}}[\tilde{V}(T) | \mathcal{F}_t]
+$$
+
+$$
+\frac{V(t, S_t)}{e^{rt}} = \mathbb{E}^{\mathbb{Q}}\left[\frac{V(T, S_T)}{e^{rT}} \,\Big|\, \mathcal{F}_t\right]
+$$
+
+$$
+\frac{V(t, S_t)}{e^{rt}} = \mathbb{E}^{\mathbb{Q}}\left[\frac{\Phi(S_T)}{e^{rT}} \,\Big|\, S_t = S\right]
+$$
+
+$$
+\boxed{V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | S_t = S]}
+$$
+
+### Why the Real-World Drift Doesn't Matter
+
+Under the real-world measure $\mathbb{P}$:
+$$
+dS = \mu S\,dt + \sigma S\,dW
+$$
+
+Under the risk-neutral measure $\mathbb{Q}$ defined by Girsanov:
+$$
+dS = rS\,dt + \sigma S\,d\tilde{W}^{\mathbb{Q}}
+$$
+
+**The change of measure** via the Radon-Nikodym derivative:
+$$
+\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = \exp\left(-\frac{\mu - r}{\sigma}W_T - \frac{1}{2}\left(\frac{\mu-r}{\sigma}\right)^2 T\right)
+$$
+
+**Key observation:** The martingale property of $\tilde{V}(t)$ holds under $\mathbb{Q}$, not $\mathbb{P}$. The drift $\mu$ appears in the Radon-Nikodym derivative but not in the final formula because we compute the expectation under $\mathbb{Q}$.
+
+This is why option prices are **drift-neutral**: they depend only on the volatility $\sigma$, the risk-free rate $r$, and the option structure, not on traders' expectations ($\mu$) about future stock returns.

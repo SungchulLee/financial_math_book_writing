@@ -114,6 +114,18 @@ $$
 - Volatility proportional to price level ($\sigma S_t$)
 - Foundation of Black-Scholes-Merton theory
 
+**Motivation: Comparison with Deterministic Case**
+
+If there were **no random term**, we would solve via separation of variables:
+
+$$
+\frac{dS_t}{S_t} = \mu\,dt \quad \Rightarrow \quad \int_0^T \frac{dS_t}{S_t} = \mu T \quad \Rightarrow \quad \log S_T - \log S_0 = \mu T
+$$
+
+$$
+S_T = S_0 e^{\mu T}
+$$
+
 **Attempt 1: Direct integration?**
 
 $$
@@ -124,26 +136,45 @@ This doesn't help because $S_s$ appears inside the integrals!
 
 **Key insight:** The **multiplicative** structure suggests a **logarithmic transformation**.
 
-**Solution via transformation:**
+**Solution via Itô's Lemma:**
 
-Define $Y_t = \log S_t$. By Itô's lemma:
+Define $Y_t = \log S_t$. Compute partial derivatives:
 
 $$
-\begin{align}
-dY_t &= \frac{1}{S_t}dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2 \\
-&= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2S_t^2} \cdot \sigma^2 S_t^2\,dt \\
-&= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt \\
-&= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
-\end{align}
+\frac{\partial}{\partial S}(\log S) = \frac{1}{S}, \quad \frac{\partial^2}{\partial S^2}(\log S) = -\frac{1}{S^2}
 $$
 
-This is now **linear** like Example 1! Integrating:
+Apply Itô's lemma:
+
+$$
+d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
+$$
+
+Substitute $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$:
+
+$$
+d(\log S_t) = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2S_t^2} \cdot (\sigma S_t)^2\,dt
+$$
+
+$$
+= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt
+$$
+
+$$
+= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
+$$
+
+This is now **linear** like Example 1! Use **Method 1: Direct Integration**:
+
+$$
+\log S_t - \log S_0 = \int_0^t \left(\mu - \frac{\sigma^2}{2}\right)ds + \int_0^t \sigma\,dW_s
+$$
 
 $$
 \log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
 $$
 
-Exponentiating:
+Exponentiate to solve for $S_t$:
 
 $$
 \boxed{
@@ -151,25 +182,50 @@ S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 }
 $$
 
-**Distribution:**
+**Distribution Analysis:**
+
+Since $W_t \sim \mathcal{N}(0, t)$, we have:
+
+$$
+\sigma W_t \sim \mathcal{N}(0, \sigma^2 t)
+$$
+
+Therefore:
 
 $$
 \log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)
 $$
 
-Therefore $S_t$ is **log-normally distributed**.
-
-**The Itô correction term:**
-
-The $-\frac{\sigma^2}{2}$ term is not arbitrary—it arises from the quadratic variation:
+So $S_t$ is **log-normally distributed** with PDF:
 
 $$
-(dS_t)^2 = \sigma^2 S_t^2\,dt
+f_{S_t}(x) = \frac{1}{x\sqrt{2\pi\sigma^2 t}}\exp\left(-\frac{(\log x - \log S_0 - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)
 $$
 
-This is unique to stochastic calculus and does not appear in ordinary calculus.
+**The Itô Correction Term:**
 
-**Why this matters:** This example motivates **Method 2: Itô's Lemma (Change of Variables)**.
+The crucial term $-\frac{\sigma^2}{2}$ is not a typo—it emerges from the quadratic variation:
+
+$$
+(dS_t)^2 = (\sigma S_t\,dW_t)^2 = \sigma^2 S_t^2\,(dW_t)^2 = \sigma^2 S_t^2\,dt
+$$
+
+By Itô's lemma, this contributes:
+
+$$
+-\frac{1}{2}\frac{1}{S_t^2} \cdot \sigma^2 S_t^2\,dt = -\frac{\sigma^2}{2}\,dt
+$$
+
+This is **unique to stochastic calculus** and does not appear in ordinary deterministic calculus.
+
+**Properties of the Solution:**
+
+- **Mean:** $\mathbb{E}[S_t] = S_0 e^{\mu t}$ (exponential growth at rate $\mu$)
+- **Variance:** $\text{Var}[S_t] = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)$ (grows exponentially)
+- **Moments:** All positive integer moments are finite
+- **Non-negativity:** $S_t > 0$ almost surely for all $t > 0$
+
+**Why this matters:** This example motivates **Method 2: Itô's Lemma (Change of Variables)**. It shows how transformations can convert multiplicative SDEs into additive ones, enabling analytical solutions.
 
 ### 3. Example 3: Vasicek Model (Mean-Reverting Process)
 

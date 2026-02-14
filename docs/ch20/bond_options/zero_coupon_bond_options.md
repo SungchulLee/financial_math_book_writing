@@ -123,3 +123,143 @@ def main():
     print(f"Analytic: {price_analytic:.6f}")
     print(f"Monte Carlo: {price_mc:.6f}")
 ```
+
+## QuantPie Derivation: Hull-White ZCB Option Formula
+
+### ZCB Call ($\alpha=1$) and Put ($\alpha=-1$)
+
+Let $t_0$, $T$, $T_S$ be current, option maturity, ZCB maturity, respectively.
+For the call
+
+$$\begin{array}{lllll}
+\displaystyle
+V^\text{ZCB}(t_0,T)
+=
+P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)v_r^2(t_0,T)+B(\tau)\mu_r(t_0,T)}N(d_1)-\hat{K}N(d_2)\right]\\
+\end{array}$$
+
+where $A(\tau)$ and $B(\tau)$ are related with
+the underlying ZCB price $P(T,T_s)$ at option maturity $T$, $\tau=T_S-T$, by
+
+$$\begin{array}{lll}
+\displaystyle
+\theta(t)
+&=&\displaystyle
+f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
+-
+\frac{\sigma^2}{2\lambda^2}\left(e^{-2\lambda t}-1\right)\\
+\displaystyle
+A(\tau)
+&=&\displaystyle
+-\frac{\sigma^2}{4\lambda^3}
+\left(3-2\lambda\tau-4e^{-\lambda\tau}+e^{-2\lambda\tau}\right)
++
+\lambda\int_0^\tau\theta(T_S-\tau')B(\tau')d\tau'
+\\
+\displaystyle
+B(\tau)
+&=&\displaystyle
+\frac{e^{-\lambda\tau}-1}{\lambda}
+\\
+\displaystyle
+P(T,T_s)
+&=&\displaystyle e^{A(\tau)+B(\tau)r(T)}\\
+\end{array}$$
+
+where $\mu_r(t_0,T)$ and $v_r^2(t_0,T)$ are related with
+the short rate $r(T)$ at option maturity $T$ under $\mathbb{Q}^T$ measure by
+
+$$\begin{array}{lll}
+\displaystyle
+\theta^T(t)
+&=&\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\\
+dr(t)&=&\displaystyle
+\lambda\left(\theta^T(t)-r(t)\right) dt+\sigma dW^T(t)\\
+\displaystyle
+r(T)|r(t_0)&\sim&\displaystyle
+N\left(\mu_r(t_0,T),v_r^2(t_0,T)\right)\\
+\mu_r(t_0,T)&=&\displaystyle
+r(t_0)e^{-\lambda(T-t_0)}
++\lambda\int_{t_0}^{T}\theta^T(t')e^{-\lambda(T-t')}dt'\\
+v_r^2(t_0,T)&=&\displaystyle
+-\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T-t_0)}-1\right)\\
+\end{array}$$
+
+and where $\hat{K}$, $d_1$ and $d_2$ are constants from Black Scholes type integration computation:
+
+$$\begin{array}{lll}
+\hat{K}&=&Ke^{-A(\tau)}\\
+d_2&=&\displaystyle
+\frac{\log\hat{K}-B(\tau)\mu_r(t_0,T)}{B(\tau)v_r(t_0,T)}\\
+d_1&=&\displaystyle
+d_2-B(\tau)v_r(t_0,T)\\
+\end{array}$$
+
+### Proof
+
+$$\begin{array}{lllll}
+\displaystyle
+V^\text{ZCB}(t_0,T)
+&=&\displaystyle
+\mathbb{E^Q}\left[\frac{M(t_0)}{M(T)}\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
+&=&\displaystyle
+P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
+&=&\displaystyle
+P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(e^{A(\tau)+B(\tau)r(T)}-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
+&=&\displaystyle
+P(t_0,T)e^{A(\tau)}\mathbb{E}^T\left[\text{max}\left(\alpha\left(e^{B(\tau)r(T)}-\hat{K}\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
+\end{array}$$
+
+Now, by solving $dr(t)=\lambda\left(\theta^T(t)-r(t)\right) dt+\sigma dW^T(t)$
+
+$$
+\displaystyle
+r(T)|r(t_0)\sim N\left(\mu_r(t_0,T),v_r^2(t_0,T)\right)
+$$
+
+where
+
+$$\begin{array}{lll}
+\displaystyle
+\mu_r(t_0,T)&=&\displaystyle
+r(t_0)e^{-\lambda(T-t_0)}
++\lambda\int_{t_0}^{T}\theta^T(t')e^{-\lambda(T-t')}dt'\\
+\displaystyle
+v_r^2(t_0,T)&=&\displaystyle
+-\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T-t_0)}-1\right)\\
+\end{array}$$
+
+With $B(\tau)=(e^{-\lambda\tau}-1)/\lambda$
+
+$$
+\displaystyle
+B(\tau)r(T)|r(t_0)\sim N\left(B(\tau)\mu_r(t_0,T),B^2(\tau)v_r^2(t_0,T)\right)
+$$
+
+Following Black Scholes computation, we have for the call
+(remember $B(\tau)=(e^{-\lambda\tau}-1)/\lambda<0$)
+
+$$\begin{array}{lllll}
+\displaystyle
+V^\text{ZCB}(t_0,T)
+&=&\displaystyle
+P(t_0,T)e^{A(\tau)}\mathbb{E}^T\left[\text{max}\left(e^{B(\tau)r(T)}-\hat{K},0\right)\Big{|}{\cal F}(t_0)\right]\\
+&=&\displaystyle
+P(t_0,T)e^{A(\tau)}\int_{e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}>\hat{K}}\left(e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\\
+&=&\displaystyle
+P(t_0,T)e^{A(\tau)}\int^a_{-\infty}
+\left(e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\\
+&=&\displaystyle
+P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)v_r^2(t_0,T)+B(\tau)\mu_r(t_0,T)}N(d_1)-\hat{K}N(d_2)\right]\\
+\end{array}$$
+
+where
+
+$$\begin{array}{lll}
+a&=&\displaystyle
+\frac{\log\hat{K}-B(\tau)\mu_r(t_0,T)}{B(\tau)v_r(t_0,T)}\\
+d_1&=&\displaystyle
+a-B(\tau)v_r(t_0,T)\\
+d_2&=&\displaystyle
+a\\
+\end{array}$$

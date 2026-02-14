@@ -257,6 +257,50 @@ $$
 
 where $a, b, c, d$ are deterministic functions. These can be solved explicitly using **variation of constants**.
 
+## What Is a Solution? (Detailed Classification)
+
+### 1. Strong vs. Weak Solutions
+
+**Strong Solution:** A solution adapted to the given Brownian motion $W_t$, constructed on the original probability space.
+
+**Weak Solution:** A solution where we can choose both the probability space and the Brownian motion. Weak solutions are more general and can exist when strong solutions do not.
+
+**Yamada-Watanabe Theorem:** Pathwise uniqueness plus weak existence implies strong uniqueness. This theorem connects the two concepts.
+
+### 2. Fundamental Conditions for Existence and Uniqueness
+
+For the SDE
+
+$$
+dX_t = b(t,X_t)\,dt + \sigma(t,X_t)\,dW_t, \quad X_0 = x
+$$
+
+to have a unique strong solution, we require:
+
+**Lipschitz Condition (in space):**
+
+$$
+|b(t,x) - b(t,y)| + \|\sigma(t,x) - \sigma(t,y)\| \leq K|x - y|, \quad \forall x,y \in \mathbb{R}^d, t \in [0,T]
+$$
+
+**Linear Growth Condition (polynomial growth bound):**
+
+$$
+|b(t,x)| + \|\sigma(t,x)\| \leq C(1 + |x|), \quad \forall x \in \mathbb{R}^d, t \in [0,T]
+$$
+
+Under these two conditions, there exists a unique strong solution $X_t$ on any finite time interval $[0,T]$ with $\mathbb{E}[|X_0|^2] < \infty$.
+
+### 3. The Role of Novikov Condition
+
+In the context of Girsanov's theorem and change of measure, we require the **Novikov Condition:**
+
+$$
+\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] < \infty
+$$
+
+This ensures that the exponential martingale (Radon-Nikodym derivative) is indeed a true martingale with unit expectation.
+
 ---
 
 ## Existence and Uniqueness

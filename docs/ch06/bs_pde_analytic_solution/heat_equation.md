@@ -620,3 +620,72 @@ Stochastic Processes (Brownian motion)
 ```
 
 The heat equation method demonstrates that these three perspectives are **mathematically equivalent**, each providing complementary insights into derivative pricing.
+
+---
+
+## QuantPie Derivation Summary
+
+### Three Key Transformations
+
+The Black-Scholes PDE is converted to the heat equation through three clever changes of variables:
+
+$$
+\begin{array}{ccc}
+\text{Original Variables} & \text{Transformed Variables} & \text{Purpose} \\
+\hline
+\tau = T - t & \text{Time to maturity} & \text{Convert backward problem to forward} \\
+x = \log S + (r - \frac{\sigma^2}{2})\tau & \text{Expected log-price} & \text{Remove drift, eliminate } S \text{ factors} \\
+F = Ve^{r\tau} & \text{Forward option value} & \text{Remove discounting term } -rV
+\end{array}
+$$
+
+### Transformation Details
+
+**Original BS PDE:**
+$$
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+$$
+
+**After all transformations, the heat equation emerges:**
+$$
+\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}
+$$
+
+The remarkable cancellation occurs because:
+1. The drift term $rS\frac{\partial V}{\partial S}$ exactly cancels the drift implicit in the $x$ transformation
+2. The discounting $-rV$ is eliminated by the forward value transformation $F = Ve^{r\tau}$
+
+This leaves only the diffusion term, which is the pure heat equation.
+
+### Solution Method: Green's Function and Superposition
+
+**For call option payoff** $\psi(x) = (e^x - K)^+$:
+
+$$
+F(x, \tau) = \int_{-\infty}^{\infty} \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}} \exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+$$
+
+Split into two Gaussian integrals (one with $e^z$ in the integrand):
+
+$$
+F(x, \tau) = e^{x + \frac{\sigma^2\tau}{2}} \mathcal{N}(d_1) - K\mathcal{N}(d_2)
+$$
+
+**Transform back to original variables:**
+- Since $e^{x + \frac{\sigma^2\tau}{2}} = Se^{r\tau}$ and $V = Fe^{-r\tau}$:
+
+$$
+\boxed{V(S, t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
+$$
+
+where:
+$$
+d_1 = \frac{\log(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+$$
+
+### Advantages of the Heat Equation Approach
+
+1. **Reduces complexity:** Variable coefficients become constant; terminal condition becomes initial condition
+2. **Leverages classical PDE theory:** Uses well-known Green's function and superposition principle
+3. **Reveals structure:** The Gaussian kernel connects to Brownian motion transition densities
+4. **Generalizable:** Extends to other parabolic PDEs and non-standard payoffs
