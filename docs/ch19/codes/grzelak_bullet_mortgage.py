@@ -1,64 +1,102 @@
-#%%
 """
-Created on July 05  2021
-Bullet mortgage- payment profile
+Bullet mortgage payment profile computation.
 
-This code is purely educational and comes from "Financial Engineering" course by L.A. Grzelak
-The course is based on the book “Mathematical Modeling and Computation
-in Finance: With Exercises and Python and MATLAB Computer Codes”,
+Based on "Financial Engineering" course by L.A. Grzelak and Emanuele Casamassima.
+The course is based on the book "Mathematical Modeling and Computation
+in Finance: With Exercises and Python and MATLAB Computer Codes",
 by C.W. Oosterlee and L.A. Grzelak, World Scientific Publishing Europe Ltd, 2019.
 @author: Lech A. Grzelak and Emanuele Casamassima
 """
 import numpy as np
 import matplotlib.pyplot as plt
 
-def Bullet(rate,notional,periods,CPR):
-    # it returns a matrix M such that
-    # M = [t  notional(t)  prepayment(t)  notional_quote(t)  interest_(t)  installment(t)]
-    # WARNING! here "rate" and "periods" are quite general, the choice of getting year/month/day.. steps, depends on the rate
-    # that the function receives. So, it is necessary to pass the correct rate to the function
-    M = np.zeros((periods + 1,6))
-    M[:,0] = np.arange(periods + 1) # we define the times
-    M[0,1] = notional
-    for t in range(1,periods):
-        M[t,4] = rate*M[t-1,1]      # interest quote
-        M[t,3] = 0                  # repayment, 0 for bullet mortgage
-        scheduled_oustanding = M[t-1,1] - M[t,3]
-        M[t,2] = scheduled_oustanding * CPR    # prepayment
-        M[t,1] = scheduled_oustanding - M[t,2] # notional(t) = notional(t-1) - (repayment + prepayment)
-        M[t,5] = M[t,4] + M[t,2] + M[t,3]
-        
-    M[periods,4] = rate*M[periods-1,1] # interest quote
-    M[periods,3] = M[periods-1,1]      # notional quote
-    M[periods,5] = M[periods,4] + M[periods,2] + M[periods,3]
-    return M
 
-def mainCode():
+def bullet(rate, notional, periods, cpr):
+    """
+    Compute bullet mortgage payment profile.
 
-    # Initial notional
-    N0     = 1000000
-    
-    # Interest rates from a bank
-    r = 0.05
-    
-    # Prepayment rate, 0.1 = 10%
-    Lambda = 0.01
+    Returns a matrix M where each row contains:
+    [t, notional(t), prepayment(t), notional_quote(t), interest_(t), installment(t)]
 
-    # For simplicity we assume 1 as unit (yearly payments of mortgage)
-    T_end = 30
-    M = Bullet(r,N0,T_end,Lambda)
-    
-    for i in range(0,T_end+1):
-        print("Ti={0}, Notional={1:.0f}, Prepayment={2:.0f}, Notional Repayment={3:.0f}, Interest Rate={4:.0f}, Installment={5:.0f} ".format(M[i,0],M[i,1],M[i,2],M[i,3],M[i,4],M[i,5]))
-    
+    Note: 'rate' and 'periods' are general. The choice of year/month/day steps
+    depends on the rate provided. Pass the correct rate to match the time step.
+
+    Parameters
+    ----------
+    rate : float
+        Periodic interest rate
+    notional : float
+        Initial loan amount
+    periods : int
+        Number of periods
+    cpr : float
+        Conditional prepayment rate
+
+    Returns
+    -------
+    ndarray
+        Shape (periods+1, 6) containing payment profile over time
+    """
+    m = np.zeros((periods + 1, 6))
+    m[:, 0] = np.arange(periods + 1)
+    m[0, 1] = notional
+
+    for t in range(1, periods):
+        m[t, 4] = rate * m[t - 1, 1]      # Interest quote
+        m[t, 3] = 0                       # Notional quote (zero for bullet)
+        scheduled_outstanding = m[t - 1, 1] - m[t, 3]
+        m[t, 2] = scheduled_outstanding * cpr     # Prepayment
+        # Notional at next time
+        m[t, 1] = scheduled_outstanding - m[t, 2]
+        m[t, 5] = m[t, 4] + m[t, 2] + m[t, 3]    # Installment
+
+    # Final period: principal and all interest due
+    m[periods, 4] = rate * m[periods - 1, 1]     # Interest quote
+    m[periods, 3] = m[periods - 1, 1]            # Notional quote (full principal)
+    m[periods, 5] = m[periods, 4] + m[periods, 2] + m[periods, 3]
+
+    return m
+
+
+def plot_notional(m, periods):
+    """
+    Plot notional balance over time.
+
+    Parameters
+    ----------
+    m : ndarray
+        Payment profile matrix from bullet() function
+    periods : int
+        Number of periods
+    """
     plt.figure(1)
-    plt.plot(M[:,0],M[:,1],'-r')
+    plt.plot(m[:, 0], m[:, 1], '-r')
     plt.grid()
     plt.xlabel('time')
     plt.ylabel('notional')
-    
-    return 0.0
 
-mainCode()
-    
-    
+
+def main():
+    """Run bullet mortgage analysis."""
+    # ============= Parameters =============
+    n0 = 1000000  # Initial notional
+    r = 0.05      # Interest rate
+    cpr = 0.01    # Conditional prepayment rate (1%)
+    t_end = 30    # Number of periods (yearly payments)
+
+    # ============= Computation =============
+    m = bullet(r, n0, t_end, cpr)
+
+    # ============= Output =============
+    for i in range(0, t_end + 1):
+        print("Ti={0}, Notional={1:.0f}, Prepayment={2:.0f}, "
+              "Notional Repayment={3:.0f}, Interest Rate={4:.0f}, "
+              "Installment={5:.0f}".format(m[i, 0], m[i, 1], m[i, 2],
+                                           m[i, 3], m[i, 4], m[i, 5]))
+
+    # ============= Plotting =============
+    plot_notional(m, t_end)
+
+
+if __name__ == "__main__":
+    main()

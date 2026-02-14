@@ -178,49 +178,56 @@ nav:
                 - Generator and Martingales: ch03/infinitesimal_generator/generator_and_martingales.md
                 - Applications of Dynkin: ch03/infinitesimal_generator/applications_of_dynkin.md
             - 3.8 Python Examples:
-                - Taylor Expansion (Linear, One Variable): ch03/codes/approx_1var_linear.py
-                - Taylor Expansion (Quadratic, One Variable): ch03/codes/approx_1var_quadratic.py
-                - Taylor Expansion (Linear, Two Variables): ch03/codes/approx_2var_linear.py
-                - Taylor Expansion (Quadratic, Two Variables): ch03/codes/approx_2var_quadratic.py
-                - Stock Analysis (AAPL Single Stock): ch03/codes/stock_analysis_single_aapl.py
-                - Stock Analysis (WMT Comprehensive): ch03/codes/stock_analysis_comprehensive_wmt.py
-                - Stock Analysis (WMT Basic Statistics): ch03/codes/stock_analysis_basic_stats_wmt.py
-                - Stock Analysis (WMT Histogram): ch03/codes/stock_analysis_histogram_wmt.py
-                - Stock Analysis (WMT Candlestick): ch03/codes/stock_analysis_candlestick_wmt.py
-                - Stock Analysis (WMT Continuous vs Discrete Return): ch03/codes/stock_analysis_cont_vs_disc_wmt.py
-                - Stock Analysis (AAPL Daily Return Distribution): ch03/codes/stock_analysis_daily_return_aapl.py
-                - Stock Analysis (Daily vs Log Return): ch03/codes/stock_analysis_daily_vs_log_return.py
-                - Stock Analysis (FAANG Comparison): ch03/codes/stock_analysis_faang_compare.py
-                - Stock Analysis (FAANG Comprehensive): ch03/codes/stock_analysis_faang_comprehensive.py
-                - Stock Analysis (FAANG Manual): ch03/codes/stock_analysis_faang_manual.py
-                - Stock Analysis (FAANG Rolling Volatility): ch03/codes/stock_analysis_rolling_vol_faang.py
-                - Stock Analysis (FAANG Correlation Heatmap): ch03/codes/stock_analysis_corr_heatmap_faang.py
-                - Stock Analysis (Crypto Comparison): ch03/codes/stock_analysis_crypto_compare.py
-                - Stock Analysis (VIX): ch03/codes/stock_analysis_vix_compare.py
-                - Stock Analysis (Korea Defense): ch03/codes/stock_analysis_korea_defence.py
-                - Stock Analysis (Korea Shipbuilding): ch03/codes/stock_analysis_korea_shipbuilding.py
-                - Stock Analysis (Korea Semiconductors): ch03/codes/stock_analysis_korea_semiconductors.py
-                - Stock Analysis (Japan Stocks): ch03/codes/stock_analysis_japan_stocks.py
-                - Stock Analysis (S&P 500 Basic Download): ch03/codes/stock_analysis_sp500_basic.py
-                - Stock Analysis (S&P 500 Download): ch03/codes/stock_analysis_sp500_download.py
-                - Stock Analysis (S&P 500 Download & Save): ch03/codes/stock_analysis_sp500_save.py
-                - Stock Analysis (S&P 500 Load & Display): ch03/codes/stock_analysis_sp500_load.py
-                - Stock Analysis (S&P 500 Correlation): ch03/codes/stock_analysis_sp500_corr.py
-                - Stock Analysis (MSFT Financial Data): ch03/codes/stock_analysis_sp500_msft.py
-                - Stock Analysis (SPY Options): ch03/codes/stock_analysis_spy_options.py
-                - Stock Analysis (ETF Tracking Error): ch03/codes/stock_analysis_etf_tracking.py
-                - Stock Analysis (Sector Rotation): ch03/codes/stock_analysis_sector_rotation.py
-                - Stock Analysis (Crisis Exposure): ch03/codes/stock_analysis_crisis_exposure.py
-                - Stock Analysis (Defensive Strategy): ch03/codes/stock_analysis_defensive_strategy.py
-                - Stock Analysis (Market Entry Timing): ch03/codes/stock_analysis_market_entry.py
-                - Stock Analysis (Momentum Study): ch03/codes/stock_analysis_momentum_study.py
-                - Stock Analysis (Historical S&P 500 Portfolio): ch03/codes/stock_analysis_sp500_portfolio.py
-                - Stock Analysis (Portfolio Compliance Validation): ch03/codes/stock_analysis_sp500_compliance.py
-                - Stock Analysis (Survivorship Bias Study): ch03/codes/stock_analysis_survivorship_bias.py
-                - Stock Analysis (Backtest Without Bias): ch03/codes/stock_analysis_backtest_no_bias.py
-                - Stock Analysis (Financial History Lesson): ch03/codes/stock_analysis_financial_history.py
-                - Stock Analysis (Create Financial History): ch03/codes/stock_analysis_create_history.py
-                - Stock Analysis (Journalism Fact Check): ch03/codes/stock_analysis_journalism_check.py
+                - Taylor Expansion:
+                    - Linear (1 Variable): ch03/codes/approx_1var_linear.py
+                    - Quadratic (1 Variable): ch03/codes/approx_1var_quadratic.py
+                    - Linear (2 Variables): ch03/codes/approx_2var_linear.py
+                    - Quadratic (2 Variables): ch03/codes/approx_2var_quadratic.py
+                - Single Stock Analysis:
+                    - AAPL Single Stock: ch03/codes/stock_analysis_single_aapl.py
+                    - AAPL Daily Return Distribution: ch03/codes/stock_analysis_daily_return_aapl.py
+                    - WMT Comprehensive: ch03/codes/stock_analysis_comprehensive_wmt.py
+                    - WMT Basic Statistics: ch03/codes/stock_analysis_basic_stats_wmt.py
+                    - WMT Histogram: ch03/codes/stock_analysis_histogram_wmt.py
+                    - WMT Candlestick: ch03/codes/stock_analysis_candlestick_wmt.py
+                    - WMT Continuous vs Discrete Return: ch03/codes/stock_analysis_cont_vs_disc_wmt.py
+                    - Daily vs Log Return: ch03/codes/stock_analysis_daily_vs_log_return.py
+                    - MSFT Financial Data: ch03/codes/stock_analysis_sp500_msft.py
+                - Multi-Stock Comparison:
+                    - FAANG Comparison: ch03/codes/stock_analysis_faang_compare.py
+                    - FAANG Comprehensive: ch03/codes/stock_analysis_faang_comprehensive.py
+                    - FAANG Manual: ch03/codes/stock_analysis_faang_manual.py
+                    - FAANG Rolling Volatility: ch03/codes/stock_analysis_rolling_vol_faang.py
+                    - FAANG Correlation Heatmap: ch03/codes/stock_analysis_corr_heatmap_faang.py
+                    - Crypto Comparison: ch03/codes/stock_analysis_crypto_compare.py
+                    - VIX: ch03/codes/stock_analysis_vix_compare.py
+                - Sector and Regional:
+                    - Korea Defense: ch03/codes/stock_analysis_korea_defence.py
+                    - Korea Shipbuilding: ch03/codes/stock_analysis_korea_shipbuilding.py
+                    - Korea Semiconductors: ch03/codes/stock_analysis_korea_semiconductors.py
+                    - Japan Stocks: ch03/codes/stock_analysis_japan_stocks.py
+                    - Sector Rotation: ch03/codes/stock_analysis_sector_rotation.py
+                - S&P 500 and Index:
+                    - Basic Download: ch03/codes/stock_analysis_sp500_basic.py
+                    - Download: ch03/codes/stock_analysis_sp500_download.py
+                    - Download and Save: ch03/codes/stock_analysis_sp500_save.py
+                    - Load and Display: ch03/codes/stock_analysis_sp500_load.py
+                    - S&P 500 Correlation: ch03/codes/stock_analysis_sp500_corr.py
+                    - SPY Options: ch03/codes/stock_analysis_spy_options.py
+                    - ETF Tracking Error: ch03/codes/stock_analysis_etf_tracking.py
+                - Portfolio and Strategy:
+                    - Historical S&P 500 Portfolio: ch03/codes/stock_analysis_sp500_portfolio.py
+                    - Portfolio Compliance Validation: ch03/codes/stock_analysis_sp500_compliance.py
+                    - Momentum Study: ch03/codes/stock_analysis_momentum_study.py
+                    - Crisis Exposure: ch03/codes/stock_analysis_crisis_exposure.py
+                    - Defensive Strategy: ch03/codes/stock_analysis_defensive_strategy.py
+                    - Market Entry Timing: ch03/codes/stock_analysis_market_entry.py
+                    - Survivorship Bias Study: ch03/codes/stock_analysis_survivorship_bias.py
+                    - Backtest Without Bias: ch03/codes/stock_analysis_backtest_no_bias.py
+                - Financial History and Data:
+                    - Financial History Lesson: ch03/codes/stock_analysis_financial_history.py
+                    - Create Financial History: ch03/codes/stock_analysis_create_history.py
+                    - Journalism Fact Check: ch03/codes/stock_analysis_journalism_check.py
 
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
@@ -436,25 +443,31 @@ nav:
                 - Comparison Principle: ch08/monotone/comparison_principle.md
                 - Barles–Souganidis Theorem: ch08/monotone/barles_souganidis_theorem.md
             - 8.7 Python Examples:
-                - Finite Difference Grid Visualization: ch08/codes/black_scholes_fdm_grid_viz.py
-                - Explicit Scheme (European Call): ch08/codes/black_scholes_explicit_euro_call.py
-                - Explicit Scheme (European Put): ch08/codes/black_scholes_explicit_euro_put.py
-                - Explicit Scheme (American Call): ch08/codes/black_scholes_explicit_amer_call.py
-                - Explicit Scheme (American Put): ch08/codes/black_scholes_explicit_amer_put.py
-                - Implicit Scheme (European Call): ch08/codes/black_scholes_implicit_euro_call.py
-                - Implicit Scheme (European Put): ch08/codes/black_scholes_implicit_euro_put.py
-                - Implicit Scheme (American Call): ch08/codes/black_scholes_implicit_amer_call.py
-                - Implicit Scheme (American Put): ch08/codes/black_scholes_implicit_amer_put.py
-                - Crank-Nicolson Scheme (European Call): ch08/codes/black_scholes_cn_euro_call.py
-                - Crank-Nicolson Scheme (European Put): ch08/codes/black_scholes_cn_euro_put.py
-                - Crank-Nicolson Scheme (American Call): ch08/codes/black_scholes_cn_amer_call.py
-                - Crank-Nicolson Scheme (American Put): ch08/codes/black_scholes_cn_amer_put.py
-                - Convergence Analysis (Space Grid): ch08/codes/black_scholes_cn_convergence_space.py
-                - Convergence Analysis (Time Grid): ch08/codes/black_scholes_cn_convergence_time.py
-                - Convergence Analysis (General): ch08/codes/black_scholes_convergence.py
-                - Comprehensive Summary: ch08/codes/black_scholes_summary.py
-                - Euler Convergence GBM (Grzelak): ch08/codes/grzelak_euler_convergence_gbm.py
-                - Milstein Convergence GBM (Grzelak): ch08/codes/grzelak_milstein_convergence_gbm.py
+                - Grid Visualization:
+                    - Finite Difference Grid: ch08/codes/black_scholes_fdm_grid_viz.py
+                - Explicit Scheme:
+                    - European Call: ch08/codes/black_scholes_explicit_euro_call.py
+                    - European Put: ch08/codes/black_scholes_explicit_euro_put.py
+                    - American Call: ch08/codes/black_scholes_explicit_amer_call.py
+                    - American Put: ch08/codes/black_scholes_explicit_amer_put.py
+                - Implicit Scheme:
+                    - European Call: ch08/codes/black_scholes_implicit_euro_call.py
+                    - European Put: ch08/codes/black_scholes_implicit_euro_put.py
+                    - American Call: ch08/codes/black_scholes_implicit_amer_call.py
+                    - American Put: ch08/codes/black_scholes_implicit_amer_put.py
+                - Crank-Nicolson Scheme:
+                    - European Call: ch08/codes/black_scholes_cn_euro_call.py
+                    - European Put: ch08/codes/black_scholes_cn_euro_put.py
+                    - American Call: ch08/codes/black_scholes_cn_amer_call.py
+                    - American Put: ch08/codes/black_scholes_cn_amer_put.py
+                - Convergence and Summary:
+                    - Convergence (Space Grid): ch08/codes/black_scholes_cn_convergence_space.py
+                    - Convergence (Time Grid): ch08/codes/black_scholes_cn_convergence_time.py
+                    - Convergence (General): ch08/codes/black_scholes_convergence.py
+                    - Comprehensive Summary: ch08/codes/black_scholes_summary.py
+                - SDE Discretization (Grzelak):
+                    - Euler Convergence GBM: ch08/codes/grzelak_euler_convergence_gbm.py
+                    - Milstein Convergence GBM: ch08/codes/grzelak_milstein_convergence_gbm.py
 
         - 9 Fourier Pricing Methods:
             - Chapter Overview: ch09/index.md
@@ -470,10 +483,6 @@ nav:
                 - COS Pricing Formula for European Options: ch09/cos_method/cos_pricing_formula.md
                 - Error Analysis and Convergence: ch09/cos_method/error_analysis_and_convergence.md
                 - Density Recovery Examples: ch09/cos_method/density_recovery_examples.md
-                - COS Method Overview: ch09/cos_method/cos_method.md
-                - Cosine Series: ch09/cos_method/cosine_series.md
-                - Density Recovery: ch09/cos_method/density_recovery.md
-                - Fourier Series: ch09/cos_method/fourier_series.md
             - 9.3 Alternative Fourier Pricing Methods:
                 - Carr–Madan FFT Method: ch09/alternative_fourier/carr_madan_fft.md
                 - Lewis Integration Formula: ch09/alternative_fourier/lewis_integration_formula.md
@@ -821,55 +830,28 @@ nav:
                 - Parameter Stability and Identifiability: ch16/calibration/parameter_stability.md
                 - Joint Calibration Across Maturities: ch16/calibration/joint_calibration_across_maturities.md
             - 16.12 Python Implementation:
-                - Heston Model Class: ch16/codes/heston_model_class.py
-                - Heston Model Class (Guide): ch16/codes/heston_model_class.md
-                - Characteristic Function Engine: ch16/codes/characteristic_function_engine.py
-                - Characteristic Function Engine (Guide): ch16/codes/characteristic_function_engine.md
-                - COS and FFT Pricing Engines: ch16/codes/cos_and_fft_pricing_engines.py
-                - COS and FFT Pricing Engines (Guide): ch16/codes/cos_and_fft_pricing_engines.md
-                - Monte Carlo Engine (QE Scheme): ch16/codes/monte_carlo_engine_qe.py
-                - Monte Carlo Engine (Guide): ch16/codes/monte_carlo_engine_qe.md
-                - FDM Engine (ADI): ch16/codes/fdm_engine_adi.py
-                - FDM Engine (Guide): ch16/codes/fdm_engine_adi.md
-                - Calibration Pipeline: ch16/codes/calibration_pipeline.py
-                - Calibration Pipeline (Guide): ch16/codes/calibration_pipeline.md
-                - End-to-End Worked Examples: ch16/codes/end_to_end_worked_examples.py
-                - End-to-End Worked Examples (Guide): ch16/codes/end_to_end_worked_examples.md
-                - Heston COS Method: ch16/codes/heston_cos_method.py
-                - CIR Exact Simulation (Grzelak): ch16/codes/grzelak_cir_exact_simulation.py
-                - CIR Paths Boundary (Grzelak): ch16/codes/grzelak_cir_paths_boundary.py
-                - Heston Discretization (Grzelak): ch16/codes/grzelak_heston_discretization.py
-            - 16.13 Stochastic Volatility Foundations (Supplementary):
-                - Motivation Beyond Black–Scholes:
-                    - Empirical Failures of Constant Volatility: ch16/motivation_beyond_black_scholes/empirical_failures_of_constant_volatility.md
-                    - Smile and Term Structure Revisited: ch16/motivation_beyond_black_scholes/smile_and_term_structure_revisited.md
-                    - Incompleteness of Equity Markets: ch16/motivation_beyond_black_scholes/incompleteness_of_equity_markets.md
-                - General Stochastic Volatility Framework:
-                    - Two-Factor Diffusion Models: ch16/general_stochastic_volatility_framework/two_factor_diffusion_models.md
-                    - Correlation and Leverage Effect: ch16/general_stochastic_volatility_framework/correlation_and_leverage_effect.md
-                    - Risk-Neutral vs Physical Measure: ch16/general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md
-                - The Heston Model (Alternative Formulation):
-                    - Model Definition: ch16/the_heston_model/model_definition.md
-                    - Feller Condition and Boundary Behavior: ch16/the_heston_model/feller_condition_and_boundary_behavior.md
-                    - Affine Structure: ch16/the_heston_model/affine_structure.md
-                - Pricing Under Stochastic Volatility:
-                    - Characteristic Functions: ch16/pricing_under_stochastic_volatility/characteristic_functions.md
-                    - Fourier Pricing Methods: ch16/pricing_under_stochastic_volatility/fourier_pricing_methods.md
-                    - PDE Formulation: ch16/pricing_under_stochastic_volatility/pde_formulation.md
-                - Calibration of Stochastic Volatility Models:
-                    - Parameter Identifiability Issues: ch16/calibration_of_stochastic_volatility_models/identifiability_issues.md
-                    - Volatility Risk Premium: ch16/calibration_of_stochastic_volatility_models/volatility_risk_premium.md
-                    - Stability of Calibration: ch16/calibration_of_stochastic_volatility_models/stability_of_calibration.md
-                    - Joint Calibration Across Strikes and Maturities: ch16/calibration_of_stochastic_volatility_models/joint_calibration_across_strikes_and_maturities.md
-                - Hedging and Greeks Under Stochastic Volatility:
-                    - Vega Risk and Vol-of-Vol: ch16/hedging_and_greeks_under_stochastic_volatility/vega_risk_and_vol_of_vol.md
-                    - Incomplete Market Hedging: ch16/hedging_and_greeks_under_stochastic_volatility/incomplete_market_hedging.md
-                    - Optimal Hedging Criteria: ch16/hedging_and_greeks_under_stochastic_volatility/optimal_hedging_criteria.md
-                - Extensions and Variants:
-                    - SABR Model: ch16/extensions_and_variants/sabr_model.md
-                    - Rough Volatility (Overview): ch16/extensions_and_variants/rough_volatility_overview.md
-                    - Multi-Factor Volatility Models: ch16/extensions_and_variants/multi_factor_volatility_models.md
-
+                - Model and Engines:
+                    - Heston Model Class: ch16/codes/heston_model_class.py
+                    - Heston Model Class (Guide): ch16/codes/heston_model_class.md
+                    - Characteristic Function Engine: ch16/codes/characteristic_function_engine.py
+                    - Characteristic Function Engine (Guide): ch16/codes/characteristic_function_engine.md
+                - Pricing Engines:
+                    - COS and FFT Pricing Engines: ch16/codes/cos_and_fft_pricing_engines.py
+                    - COS and FFT Pricing Engines (Guide): ch16/codes/cos_and_fft_pricing_engines.md
+                    - Monte Carlo Engine (QE Scheme): ch16/codes/monte_carlo_engine_qe.py
+                    - Monte Carlo Engine (Guide): ch16/codes/monte_carlo_engine_qe.md
+                    - FDM Engine (ADI): ch16/codes/fdm_engine_adi.py
+                    - FDM Engine (Guide): ch16/codes/fdm_engine_adi.md
+                    - Heston COS Method: ch16/codes/heston_cos_method.py
+                - Calibration and Examples:
+                    - Calibration Pipeline: ch16/codes/calibration_pipeline.py
+                    - Calibration Pipeline (Guide): ch16/codes/calibration_pipeline.md
+                    - End-to-End Worked Examples: ch16/codes/end_to_end_worked_examples.py
+                    - End-to-End Worked Examples (Guide): ch16/codes/end_to_end_worked_examples.md
+                - Simulation (Grzelak):
+                    - CIR Exact Simulation: ch16/codes/grzelak_cir_exact_simulation.py
+                    - CIR Paths Boundary: ch16/codes/grzelak_cir_paths_boundary.py
+                    - Heston Discretization: ch16/codes/grzelak_heston_discretization.py
         - 17 Calibration:
             - Chapter Overview: ch17/index.md
             - 17.1 Calibration as Inverse Problem:
@@ -1040,21 +1022,26 @@ nav:
                 - SOFR Transition: ch19/interest_rate_model_risk/sofr_transition.md
                 - Practical Limitations: ch19/interest_rate_model_risk/practical_limitations.md
             - 19.8 Python Examples:
-                - Yield Curve Bootstrapping: ch19/codes/yield_curve_bootstrapping.py
-                - Cap and Floor Pricing (Black's Formula): ch19/codes/cap_floor_pricing_black.py
-                - Swaption Pricing (Black's Formula): ch19/codes/swaption_pricing_black.py
-                - HJM Simulation (Multi-Factor): ch19/codes/hjm_simulation_multi_factor.py
-                - LMM Forward Rate Simulation: ch19/codes/lmm_forward_rate_simulation.py
-                - LMM Caplet Pricing: ch19/codes/lmm_caplet_pricing.py
-                - Convexity Adjustment (CMS): ch19/codes/convexity_adjustment_cms.py
-                - Duration and Key Rate Duration: ch19/codes/duration_key_rate.py
-                - Multi-Curve Construction (Grzelak): ch19/codes/grzelak_multi_curve_build.py
-                - Yield Curve with Greeks (Grzelak): ch19/codes/grzelak_yield_curve_greeks.py
-                - Treasury Yield Curve (Grzelak): ch19/codes/grzelak_yield_curve_treasury.py
-                - Convexity Correction (Grzelak): ch19/codes/grzelak_convexity_correction.py
-                - Annuity Mortgage (Grzelak): ch19/codes/grzelak_annuity_mortgage.py
-                - Bullet Mortgage (Grzelak): ch19/codes/grzelak_bullet_mortgage.py
-                - Stochastic Amortizing Swap (Grzelak): ch19/codes/grzelak_stochastic_amortizing_swap.py
+                - Yield Curve and Duration:
+                    - Yield Curve Bootstrapping: ch19/codes/yield_curve_bootstrapping.py
+                    - Duration and Key Rate Duration: ch19/codes/duration_key_rate.py
+                - Caps, Floors, and Swaptions:
+                    - Cap and Floor Pricing (Black's Formula): ch19/codes/cap_floor_pricing_black.py
+                    - Swaption Pricing (Black's Formula): ch19/codes/swaption_pricing_black.py
+                    - Convexity Adjustment (CMS): ch19/codes/convexity_adjustment_cms.py
+                - HJM and LMM:
+                    - HJM Simulation (Multi-Factor): ch19/codes/hjm_simulation_multi_factor.py
+                    - LMM Forward Rate Simulation: ch19/codes/lmm_forward_rate_simulation.py
+                    - LMM Caplet Pricing: ch19/codes/lmm_caplet_pricing.py
+                - Curve Construction (Grzelak):
+                    - Multi-Curve Construction: ch19/codes/grzelak_multi_curve_build.py
+                    - Yield Curve with Greeks: ch19/codes/grzelak_yield_curve_greeks.py
+                    - Treasury Yield Curve: ch19/codes/grzelak_yield_curve_treasury.py
+                    - Convexity Correction: ch19/codes/grzelak_convexity_correction.py
+                - Mortgages and Swaps (Grzelak):
+                    - Annuity Mortgage: ch19/codes/grzelak_annuity_mortgage.py
+                    - Bullet Mortgage: ch19/codes/grzelak_bullet_mortgage.py
+                    - Stochastic Amortizing Swap: ch19/codes/grzelak_stochastic_amortizing_swap.py
 
         - 20 Hull-White Model in Detail:
             - Chapter Overview: ch20/index.md
@@ -1147,28 +1134,33 @@ nav:
                 - Two-Factor Model: ch20/hull_white_detailed/two_factor_model.md
                 - Python Classes: ch20/hull_white_detailed/python_classes.md
             - 20.14 Python Examples:
-                - Hull-White Short Rate Simulation: ch20/codes/hull_white_short_rate_simulation.py
-                - Zero-Coupon Bond Pricing: ch20/codes/hull_white_zcb_pricing.py
-                - Yield Curve Fitting (θ Calibration): ch20/codes/hull_white_theta_calibration.py
-                - Trinomial Tree Construction: ch20/codes/hull_white_trinomial_tree.py
-                - Cap and Floor Pricing: ch20/codes/hull_white_cap_floor_pricing.py
-                - Swaption Pricing: ch20/codes/hull_white_swaption_pricing.py
-                - Bermudan Swaption (Tree): ch20/codes/hull_white_bermudan_swaption.py
-                - Calibration to Cap Vols: ch20/codes/hull_white_calibration_caps.py
-                - Two-Factor Hull-White Simulation: ch20/codes/hull_white_two_factor.py
-                - Hull-White Paths (Grzelak): ch20/codes/grzelak_hull_white_paths.py
-                - Hull-White ZCBs (Grzelak): ch20/codes/grzelak_hull_white_zcbs.py
-                - Hull-White Compounding Rate Sim (Grzelak): ch20/codes/grzelak_hull_white_comprate_sim.py
-                - Hull-White 1F vs 2F Comparison (Grzelak): ch20/codes/grzelak_hull_white_1f_2f_comparison.py
-                - HW Caplets (Grzelak): ch20/codes/grzelak_hw_caplets.py
-                - HW Options on ZCBs (Grzelak): ch20/codes/grzelak_hw_options_on_zcbs.py
-                - Swaps under Hull-White (Grzelak): ch20/codes/grzelak_swaps_hw.py
-                - Jamshidian Trick (Grzelak): ch20/codes/grzelak_jamshidian_trick.py
-                - Shifted Lognormal (Grzelak): ch20/codes/grzelak_shifted_lognormal.py
-                - HW Caplets and Floorlets (Grzelak): ch20/codes/grzelak_hw_caplets_floorlets.py
-                - BS-HW Comparison (Grzelak): ch20/codes/grzelak_bshw_comparison.py
-                - BS-HW Implied Volatility (Grzelak): ch20/codes/grzelak_bshw_implied_volatility.py
-                - Heston-HW COS vs MC (Grzelak): ch20/codes/grzelak_heston_hw_cos_vs_mc.py
+                - Core Hull-White:
+                    - Short Rate Simulation: ch20/codes/hull_white_short_rate_simulation.py
+                    - Zero-Coupon Bond Pricing: ch20/codes/hull_white_zcb_pricing.py
+                    - Yield Curve Fitting (θ Calibration): ch20/codes/hull_white_theta_calibration.py
+                    - Trinomial Tree Construction: ch20/codes/hull_white_trinomial_tree.py
+                    - Two-Factor Simulation: ch20/codes/hull_white_two_factor.py
+                - Derivatives Pricing:
+                    - Cap and Floor Pricing: ch20/codes/hull_white_cap_floor_pricing.py
+                    - Swaption Pricing: ch20/codes/hull_white_swaption_pricing.py
+                    - Bermudan Swaption (Tree): ch20/codes/hull_white_bermudan_swaption.py
+                    - Calibration to Cap Vols: ch20/codes/hull_white_calibration_caps.py
+                - Simulation and Bonds (Grzelak):
+                    - Hull-White Paths: ch20/codes/grzelak_hull_white_paths.py
+                    - Hull-White ZCBs: ch20/codes/grzelak_hull_white_zcbs.py
+                    - Compounding Rate Sim: ch20/codes/grzelak_hull_white_comprate_sim.py
+                    - 1F vs 2F Comparison: ch20/codes/grzelak_hull_white_1f_2f_comparison.py
+                - Caps, Floors, and Swaps (Grzelak):
+                    - HW Caplets: ch20/codes/grzelak_hw_caplets.py
+                    - HW Caplets and Floorlets: ch20/codes/grzelak_hw_caplets_floorlets.py
+                    - Options on ZCBs: ch20/codes/grzelak_hw_options_on_zcbs.py
+                    - Swaps under Hull-White: ch20/codes/grzelak_swaps_hw.py
+                    - Jamshidian Trick: ch20/codes/grzelak_jamshidian_trick.py
+                    - Shifted Lognormal: ch20/codes/grzelak_shifted_lognormal.py
+                - Hybrid Models (Grzelak):
+                    - BS-HW Comparison: ch20/codes/grzelak_bshw_comparison.py
+                    - BS-HW Implied Volatility: ch20/codes/grzelak_bshw_implied_volatility.py
+                    - Heston-HW COS vs MC: ch20/codes/grzelak_heston_hw_cos_vs_mc.py
 
         - 21 Credit Risk:
             - Chapter Overview: ch21/index.md

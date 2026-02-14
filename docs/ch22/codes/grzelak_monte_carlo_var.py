@@ -1,268 +1,567 @@
-#%%
 """
-Created on August 25  2021
-Value-At-Risk computation based on Monte Carlo simulation of the Hull-White model
+Monte Carlo Value-at-Risk (VaR) computation using Hull-White model.
 
-This code is purely educational and comes from "Financial Engineering" course by L.A. Grzelak
-The course is based on the book “Mathematical Modeling and Computation
-in Finance: With Exercises and Python and MATLAB Computer Codes”,
+This educational code demonstrates VaR estimation using Monte Carlo simulation
+of interest rate paths under the Hull-White single-factor model. It builds
+realization of yield curve shifts and revalues an interest rate derivatives
+portfolio under those scenarios. Based on "Financial Engineering" course by L.A. Grzelak.
+The course is based on the book "Mathematical Modeling and Computation
+in Finance: With Exercises and Python and MATLAB Computer Codes",
 by C.W. Oosterlee and L.A. Grzelak, World Scientific Publishing Europe Ltd, 2019.
+
 @author: Lech A. Grzelak
 """
 
+import enum
+
 import numpy as np
-import enum 
 import matplotlib.pyplot as plt
 import scipy.stats as st
 import scipy.integrate as integrate
-import scipy.optimize as optimize
 
-# This class defines puts and calls
+
+# ============= Option Type Enum =============
 class OptionTypeSwap(enum.Enum):
+    """Defines swap option types: receiver or payer."""
     RECEIVER = 1.0
     PAYER = -1.0
 
-def GeneratePathsHWEuler(NoOfPaths,NoOfSteps,T,P0T, lambd, eta):    
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
-    theta = lambda t: 1.0/lambd * (f0T(t+dt)-f0T(t-dt))/(2.0*dt) + f0T(t) + eta*eta/(2.0*lambd*lambd)*(1.0-np.exp(-2.0*lambd*t))      
-    
-    #theta = lambda t: 0.1 +t -t
-    #print("changed theta")
-    
-    Z = np.random.normal(0.0,1.0,[NoOfPaths,NoOfSteps])
-    W = np.zeros([NoOfPaths, NoOfSteps+1])
-    R = np.zeros([NoOfPaths, NoOfSteps+1])
-    R[:,0]=r0
-    time = np.zeros([NoOfSteps+1])
-        
-    dt = T / float(NoOfSteps)
-    for i in range(0,NoOfSteps):
-        # making sure that samples from normal have mean 0 and variance 1
-        if NoOfPaths > 1:
-            Z[:,i] = (Z[:,i] - np.mean(Z[:,i])) / np.std(Z[:,i])
-        W[:,i+1] = W[:,i] + np.power(dt, 0.5)*Z[:,i]
-        R[:,i+1] = R[:,i] + lambd*(theta(time[i]) - R[:,i]) * dt + eta* (W[:,i+1]-W[:,i])
-        time[i+1] = time[i] +dt
-        
-    # Outputs
-    paths = {"time":time,"R":R}
+
+# ============= Path Generation =============
+def generate_paths_hw_euler(num_paths, num_steps, t_end, p0t, lambd, eta):
+    """
+    Generate Hull-White interest rate paths using Euler scheme.
+
+    Parameters
+    ----------
+    num_paths : int
+        Number of Monte Carlo paths to generate.
+    num_steps : int
+        Number of time steps per path.
+    t_end : float
+        Terminal time.
+    p0t : callable
+        Zero coupon bond price function P(0, T).
+    lambd : float
+        Mean reversion speed parameter.
+    eta : float
+        Volatility parameter.
+
+    Returns
+    -------
+    dict
+        Dictionary with 'time' array and 'R' array of interest rate paths.
+    """
+    dt_diff = 0.0001
+    f0t = lambda t: -(np.log(p0t(t + dt_diff)) - np.log(p0t(t - dt_diff))) / (2 * dt_diff)
+
+    # Initial interest rate is forward rate at time t -> 0
+    r0 = f0t(0.00001)
+    theta = lambda t: (
+        1.0 / lambd * (f0t(t + dt_diff) - f0t(t - dt_diff)) / (2.0 * dt_diff)
+        + f0t(t)
+        + eta * eta / (2.0 * lambd * lambd) * (1.0 - np.exp(-2.0 * lambd * t))
+    )
+
+    z = np.random.normal(0.0, 1.0, (num_paths, num_steps))
+    w = np.zeros((num_paths, num_steps + 1))
+    r = np.zeros((num_paths, num_steps + 1))
+    r[:, 0] = r0
+    time = np.zeros(num_steps + 1)
+
+    dt = t_end / float(num_steps)
+    for i in range(0, num_steps):
+        # Normalize samples to ensure mean 0 and variance 1
+        if num_paths > 1:
+            z[:, i] = (z[:, i] - np.mean(z[:, i])) / np.std(z[:, i])
+        w[:, i + 1] = w[:, i] + np.sqrt(dt) * z[:, i]
+        r[:, i + 1] = (
+            r[:, i]
+            + lambd * (theta(time[i]) - r[:, i]) * dt
+            + eta * (w[:, i + 1] - w[:, i])
+        )
+        time[i + 1] = time[i] + dt
+
+    paths = {"time": time, "R": r}
     return paths
 
-def HW_theta(lambd,eta,P0T):
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    theta = lambda t: 1.0/lambd * (f0T(t+dt)-f0T(t-dt))/(2.0*dt) + f0T(t) + eta*eta/(2.0*lambd*lambd)*(1.0-np.exp(-2.0*lambd*t))
-    #print("CHANGED THETA")
-    return theta#lambda t: 0.1+t-t
-    
-def HW_A(lambd,eta,P0T,T1,T2):
-    tau = T2-T1
-    zGrid = np.linspace(0.0,tau,250)
-    B_r = lambda tau: 1.0/lambd * (np.exp(-lambd *tau)-1.0)
-    theta = HW_theta(lambd,eta,P0T)    
-    temp1 = lambd * integrate.trapz(theta(T2-zGrid)*B_r(zGrid),zGrid)
-    
-    temp2 = eta*eta/(4.0*np.power(lambd,3.0)) * (np.exp(-2.0*lambd*tau)*(4*np.exp(lambd*tau)-1.0) -3.0) + eta*eta*tau/(2.0*lambd*lambd)
-    
+
+# ============= Hull-White Model Functions =============
+def hw_theta(lambd, eta, p0t):
+    """
+    Compute the theta parameter for Hull-White model.
+
+    Parameters
+    ----------
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+    p0t : callable
+        Zero coupon bond price function.
+
+    Returns
+    -------
+    callable
+        Theta function of time.
+    """
+    dt_diff = 0.0001
+    f0t = lambda t: -(np.log(p0t(t + dt_diff)) - np.log(p0t(t - dt_diff))) / (2 * dt_diff)
+    theta = lambda t: (
+        1.0 / lambd * (f0t(t + dt_diff) - f0t(t - dt_diff)) / (2.0 * dt_diff)
+        + f0t(t)
+        + eta * eta / (2.0 * lambd * lambd) * (1.0 - np.exp(-2.0 * lambd * t))
+    )
+    return theta
+
+
+def hw_a(lambd, eta, p0t, t1, t2):
+    """
+    Compute the 'A' coefficient for Hull-White ZCB formula.
+
+    Parameters
+    ----------
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+    p0t : callable
+        Zero coupon bond price function.
+    t1, t2 : float
+        Maturity times.
+
+    Returns
+    -------
+    float
+        Coefficient A.
+    """
+    tau = t2 - t1
+    z_grid = np.linspace(0.0, tau, 250)
+    b_r = lambda tau: 1.0 / lambd * (np.exp(-lambd * tau) - 1.0)
+    theta = hw_theta(lambd, eta, p0t)
+    temp1 = lambd * integrate.trapz(theta(t2 - z_grid) * b_r(z_grid), z_grid)
+
+    temp2 = (
+        eta * eta / (4.0 * np.power(lambd, 3.0))
+        * (np.exp(-2.0 * lambd * tau) * (4 * np.exp(lambd * tau) - 1.0) - 3.0)
+        + eta * eta * tau / (2.0 * lambd * lambd)
+    )
+
     return temp1 + temp2
 
-def HW_B(lambd,eta,T1,T2):
-    return 1.0/lambd *(np.exp(-lambd*(T2-T1))-1.0)
 
-def HW_ZCB(lambd,eta,P0T,T1,T2,rT1):
-    n = np.size(rT1) 
-        
-    if T1<T2:
-        B_r = HW_B(lambd,eta,T1,T2)
-        A_r = HW_A(lambd,eta,P0T,T1,T2)
-        return np.exp(A_r + B_r *rT1)
+def hw_b(lambd, eta, t1, t2):
+    """
+    Compute the 'B' coefficient for Hull-White ZCB formula.
+
+    Parameters
+    ----------
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility (unused but kept for signature consistency).
+    t1, t2 : float
+        Maturity times.
+
+    Returns
+    -------
+    float
+        Coefficient B.
+    """
+    return 1.0 / lambd * (np.exp(-lambd * (t2 - t1)) - 1.0)
+
+
+def hw_zcb(lambd, eta, p0t, t1, t2, rt1):
+    """
+    Compute Hull-White zero coupon bond price.
+
+    Parameters
+    ----------
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+    p0t : callable
+        Zero coupon bond price function.
+    t1, t2 : float
+        Evaluation time and maturity.
+    rt1 : float or ndarray
+        Interest rate(s) at time t1.
+
+    Returns
+    -------
+    float or ndarray
+        ZCB price(s).
+    """
+    n = np.size(rt1)
+
+    if t1 < t2:
+        b_r = hw_b(lambd, eta, t1, t2)
+        a_r = hw_a(lambd, eta, p0t, t1, t2)
+        return np.exp(a_r + b_r * rt1)
     else:
-        return np.ones([n])
+        return np.ones(n)
 
 
-def HWMean_r(P0T,lambd,eta,T):
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2.0*dt)
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
-    theta = HW_theta(lambd,eta,P0T)
-    zGrid = np.linspace(0.0,T,2500)
-    temp =lambda z: theta(z) * np.exp(-lambd*(T-z))
-    r_mean = r0*np.exp(-lambd*T) + lambd * integrate.trapz(temp(zGrid),zGrid)
+def hw_mean_r(p0t, lambd, eta, t):
+    """
+    Compute mean of Hull-White interest rate at time T.
+
+    Parameters
+    ----------
+    p0t : callable
+        Zero coupon bond price function.
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+    t : float
+        Time.
+
+    Returns
+    -------
+    float
+        Mean interest rate.
+    """
+    dt_diff = 0.0001
+    f0t = lambda t: -(np.log(p0t(t + dt_diff)) - np.log(p0t(t - dt_diff))) / (2.0 * dt_diff)
+    r0 = f0t(0.00001)
+    theta = hw_theta(lambd, eta, p0t)
+    z_grid = np.linspace(0.0, t, 2500)
+    temp = lambda z: theta(z) * np.exp(-lambd * (t - z))
+    r_mean = r0 * np.exp(-lambd * t) + lambd * integrate.trapz(temp(z_grid), z_grid)
     return r_mean
 
-def HW_r_0(P0T,lambd,eta):
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
+
+def hw_r_0(p0t, lambd, eta):
+    """
+    Compute initial Hull-White interest rate.
+
+    Parameters
+    ----------
+    p0t : callable
+        Zero coupon bond price function.
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+
+    Returns
+    -------
+    float
+        Initial interest rate r0.
+    """
+    dt_diff = 0.0001
+    f0t = lambda t: -(np.log(p0t(t + dt_diff)) - np.log(p0t(t - dt_diff))) / (2 * dt_diff)
+    r0 = f0t(0.00001)
     return r0
 
-def HW_Mu_FrwdMeasure(P0T,lambd,eta,T):
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
-    theta = HW_theta(lambd,eta,P0T)
-    zGrid = np.linspace(0.0,T,500)
-    
-    theta_hat =lambda t,T:  theta(t) + eta*eta / lambd *1.0/lambd * (np.exp(-lambd*(T-t))-1.0)
-    
-    temp =lambda z: theta_hat(z,T) * np.exp(-lambd*(T-z))
-    
-    r_mean = r0*np.exp(-lambd*T) + lambd * integrate.trapz(temp(zGrid),zGrid)
-    
+
+def hw_mu_frwd_measure(p0t, lambd, eta, t):
+    """
+    Compute mean under forward measure for Hull-White model.
+
+    Parameters
+    ----------
+    p0t : callable
+        Zero coupon bond price function.
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+    t : float
+        Time.
+
+    Returns
+    -------
+    float
+        Mean under forward measure.
+    """
+    dt_diff = 0.0001
+    f0t = lambda t: -(np.log(p0t(t + dt_diff)) - np.log(p0t(t - dt_diff))) / (2 * dt_diff)
+    r0 = f0t(0.00001)
+    theta = hw_theta(lambd, eta, p0t)
+    z_grid = np.linspace(0.0, t, 500)
+
+    theta_hat = lambda t, t_mat: theta(t) + eta * eta / lambd * 1.0 / lambd * (
+        np.exp(-lambd * (t_mat - t)) - 1.0
+    )
+
+    temp = lambda z: theta_hat(z, t) * np.exp(-lambd * (t - z))
+
+    r_mean = r0 * np.exp(-lambd * t) + lambd * integrate.trapz(temp(z_grid), z_grid)
+
     return r_mean
 
-def HWVar_r(lambd,eta,T):
-    return eta*eta/(2.0*lambd) *( 1.0-np.exp(-2.0*lambd *T))
 
-def HWDensity(P0T,lambd,eta,T):
-    r_mean = HWMean_r(P0T,lambd,eta,T)
-    r_var = HWVar_r(lambd,eta,T)
-    return lambda x: st.norm.pdf(x,r_mean,np.sqrt(r_var))
+def hw_var_r(lambd, eta, t):
+    """
+    Compute variance of Hull-White interest rate at time T.
 
-def HW_SwapPrice(CP,notional,K,t,Ti,Tm,n,r_t,P0T,lambd,eta):
-    # CP- payer of receiver
-    # n- notional
-    # K- strike
-    # t- today's date
-    # Ti- beginning of the swap
-    # Tm- end of Swap
-    # n- number of dates payments between Ti and Tm
-    # r_t -interest rate at time t
+    Parameters
+    ----------
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+    t : float
+        Time.
 
+    Returns
+    -------
+    float
+        Variance.
+    """
+    return eta * eta / (2.0 * lambd) * (1.0 - np.exp(-2.0 * lambd * t))
+
+
+def hw_density(p0t, lambd, eta, t):
+    """
+    Compute probability density function for Hull-White interest rate.
+
+    Parameters
+    ----------
+    p0t : callable
+        Zero coupon bond price function.
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+    t : float
+        Time.
+
+    Returns
+    -------
+    callable
+        PDF function.
+    """
+    r_mean = hw_mean_r(p0t, lambd, eta, t)
+    r_var = hw_var_r(lambd, eta, t)
+    return lambda x: st.norm.pdf(x, r_mean, np.sqrt(r_var))
+
+
+# ============= Swap Pricing =============
+def hw_swap_price(option_type, notional, strike, t, ti, tm, n, r_t, p0t, lambd, eta):
+    """
+    Compute Hull-White swap price.
+
+    Parameters
+    ----------
+    option_type : OptionTypeSwap
+        Payer or receiver swap.
+    notional : float
+        Notional amount.
+    strike : float
+        Strike rate.
+    t : float
+        Evaluation time.
+    ti, tm : float
+        Swap start and end times.
+    n : int
+        Number of payment dates.
+    r_t : float or ndarray
+        Interest rate(s) at time t.
+    p0t : callable
+        Zero coupon bond price function.
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+
+    Returns
+    -------
+    float or ndarray
+        Swap price(s).
+    """
     if n == 1:
-        ti_grid =np.array([Ti,Tm])
+        ti_grid = np.array([ti, tm])
     else:
-        ti_grid = np.linspace(Ti,Tm,n)
-    tau = ti_grid[1]- ti_grid[0]
-    
-    # overwrite Ti if t>Ti
-    prevTi = ti_grid[np.where(ti_grid<t)]
-    if np.size(prevTi) > 0: #prevTi != []:
-        Ti = prevTi[-1]
-    
-    # Now we need to handle the case when some payments are already done
-    ti_grid = ti_grid[np.where(ti_grid>t)]          
+        ti_grid = np.linspace(ti, tm, n)
+    tau = ti_grid[1] - ti_grid[0]
 
-    temp= np.zeros(np.size(r_t));
-    
-    P_t_TiLambda = lambda Ti : HW_ZCB(lambd,eta,P0T,t,Ti,r_t)
-    
-    for (idx,ti) in enumerate(ti_grid):
-        if ti>Ti:
-            temp = temp + tau * P_t_TiLambda(ti)
-            
-    P_t_Ti = P_t_TiLambda(Ti)
-    P_t_Tm = P_t_TiLambda(Tm)
-    
-    if CP==OptionTypeSwap.PAYER:
-        swap = (P_t_Ti - P_t_Tm) - K * temp
-    elif CP==OptionTypeSwap.RECEIVER:
-        swap = K * temp- (P_t_Ti - P_t_Tm)
-    
-    return swap*notional
+    # Overwrite Ti if t > Ti
+    prev_ti = ti_grid[np.where(ti_grid < t)]
+    if np.size(prev_ti) > 0:
+        ti = prev_ti[-1]
 
-def Portfolio(P0T,r_t,lambd,eta):
-    
-            #IRSwap(CP,           notional,          K,   t,   Ti,  Tm,   n,      P0T):
-    value = HW_SwapPrice(OptionTypeSwap.RECEIVER,1000000,0.02,0.0, 0.0,  20,  20,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.PAYER, 500000,   0.01,0.0, 0.0,  10,  20,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.RECEIVER,25000,0.02,0.0, 0.0,  30,  60,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.PAYER,74000,0.005,0.0, 0.0,  5,  10,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.RECEIVER,254000,0.032,0.0, 0.0,  15,  10,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.RECEIVER,854000,0.01,0.0, 0.0,  7,  20,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.PAYER,900000,0.045,0.0, 0.0,  10,  20,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.PAYER,400000,0.02,0.0, 0.0,  10,  20,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.RECEIVER,1000000,0.01,0.0, 0.0,  14,  20,r_t,  P0T,lambd,eta) +\
-            HW_SwapPrice(OptionTypeSwap.PAYER,115000,0.06,0.0, 0.0,  9,  10,r_t,  P0T,lambd,eta) 
-            #HW_SwapPrice(CP,notional,K,t,Ti,Tm,n,r_t,P0T,lambd,eta)
+    # Handle case when some payments are already done
+    ti_grid = ti_grid[np.where(ti_grid > t)]
+
+    temp = np.zeros(np.size(r_t))
+
+    p_t_ti_lambda = lambda ti_arg: hw_zcb(lambd, eta, p0t, t, ti_arg, r_t)
+
+    for idx, ti_val in enumerate(ti_grid):
+        if ti_val > ti:
+            temp = temp + tau * p_t_ti_lambda(ti_val)
+
+    p_t_ti = p_t_ti_lambda(ti)
+    p_t_tm = p_t_ti_lambda(tm)
+
+    if option_type == OptionTypeSwap.PAYER:
+        swap = (p_t_ti - p_t_tm) - strike * temp
+    elif option_type == OptionTypeSwap.RECEIVER:
+        swap = strike * temp - (p_t_ti - p_t_tm)
+
+    return swap * notional
+
+
+# ============= Portfolio =============
+def portfolio(p0t, r_t, lambd, eta):
+    """
+    Compute portfolio value from collection of interest rate swaps.
+
+    Parameters
+    ----------
+    p0t : callable
+        Zero coupon bond price function.
+    r_t : float or ndarray
+        Interest rate(s) at current time.
+    lambd : float
+        Mean reversion speed.
+    eta : float
+        Volatility.
+
+    Returns
+    -------
+    float or ndarray
+        Total portfolio value(s).
+    """
+    value = (
+        hw_swap_price(OptionTypeSwap.RECEIVER, 1000000, 0.02, 0.0, 0.0, 20, 20, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.PAYER, 500000, 0.01, 0.0, 0.0, 10, 20, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.RECEIVER, 25000, 0.02, 0.0, 0.0, 30, 60, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.PAYER, 74000, 0.005, 0.0, 0.0, 5, 10, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.RECEIVER, 254000, 0.032, 0.0, 0.0, 15, 10, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.RECEIVER, 854000, 0.01, 0.0, 0.0, 7, 20, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.PAYER, 900000, 0.045, 0.0, 0.0, 10, 20, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.PAYER, 400000, 0.02, 0.0, 0.0, 10, 20, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.RECEIVER, 1000000, 0.01, 0.0, 0.0, 14, 20, r_t, p0t, lambd, eta)
+        + hw_swap_price(OptionTypeSwap.PAYER, 115000, 0.06, 0.0, 0.0, 9, 10, r_t, p0t, lambd, eta)
+    )
     return value
 
-def mainCalculation():
-    NoOfPaths = 2000
-    NoOfSteps = 100
-    lambd     = 0.5
-    eta       = 0.03
-    
-    # We define a ZCB curve (obtained from the market)
-    P0T = lambda T: np.exp(-0.001*T)
-    r0 = HW_r_0(P0T,lambd,eta)
-    
-    # In this experiment we compare ZCB from the Market and Analytical expression
-    N = 25
-    T_end = 50
-    Tgrid= np.linspace(0,T_end,N)
-    
-    Exact = np.zeros([N,1])
-    Proxy= np.zeros ([N,1])
-    for i,Ti in enumerate(Tgrid):
-        Proxy[i] = HW_ZCB(lambd,eta,P0T,0.0,Ti,r0)
-        Exact[i] = P0T(Ti)
-        
+
+# ============= VaR Plotting =============
+def plot_zcb_comparison(t_grid, exact, proxy):
+    """
+    Plot ZCB prices from Monte Carlo vs analytical expression.
+
+    Parameters
+    ----------
+    t_grid : ndarray
+        Maturity times.
+    exact : ndarray
+        Analytical ZCB prices.
+    proxy : ndarray
+        Monte Carlo ZCB prices.
+    """
     plt.figure(1)
     plt.grid()
-    plt.plot(Tgrid,Exact,'-k')
-    plt.plot(Tgrid,Proxy,'--r')
-    plt.legend(["Analytcal ZCB","Monte Carlo ZCB"])
-    plt.title('P(0,T) from Monte Carlo vs. Analytical expression')
-    
-    
-    # Here we simulate the exposure profiles for a swap, using the HW model    
-    T_end = 20    
-    paths= GeneratePathsHWEuler(NoOfPaths,NoOfSteps,T_end ,P0T, lambd, eta)
-    r = paths["R"]
-    timeGrid = paths["time"]
-    dt = timeGrid[1]-timeGrid[0]
-    
-    # Here we compare the price of an option on a ZCB from Monte Carlo and Analytical expression    
-    M_t = np.zeros([NoOfPaths,NoOfSteps])
-            
-    for i in range(0,NoOfPaths):
-        M_t[i,:] = np.exp(np.cumsum(r[i,0:-1])*dt)
-        
-    # Compute exposure profile
-    r0 = r[0,0]
-    
-    stepSize = 10
-    V_M = np.zeros([NoOfPaths,NoOfSteps-stepSize])
-    
-    for i in range(0,NoOfSteps-stepSize):
-        dr = r[:,i + stepSize] - r[:,i]
-        V_t0 = Portfolio(P0T, r[:,0] + dr,lambd,eta)
-        V_M[:,i] = V_t0
-    
+    plt.plot(t_grid, exact, "-k")
+    plt.plot(t_grid, proxy, "--r")
+    plt.legend(["Analytical ZCB", "Monte Carlo ZCB"])
+    plt.title("P(0,T) from Monte Carlo vs. Analytical expression")
+
+
+def plot_pnl_histogram(pnl_data, var_estimate, es_estimate):
+    """
+    Plot histogram of portfolio P&L with VaR and ES markers.
+
+    Parameters
+    ----------
+    pnl_data : ndarray
+        Portfolio P&L values flattened.
+    var_estimate : float
+        Value-at-Risk estimate.
+    es_estimate : float
+        Expected shortfall estimate.
+    """
     plt.figure(2)
-    V_t0_vec = np.matrix.flatten(V_M)
-    plt.hist(V_t0_vec,100)
+    plt.hist(pnl_data, 100)
     plt.grid()
-    
-    print('Value V(t_0)= ',Portfolio(P0T,r[0,0],lambd,eta))
-        
-    # VaR calculation
+    plt.plot(var_estimate, 0, "or")
+    plt.plot(es_estimate, 0, "ok")
+    plt.legend(["VaR", "ES", "P&L"])
+
+
+# ============= Main Calculation =============
+def main():
+    """
+    Main computation: compute Monte Carlo VaR using Hull-White model.
+    """
+    # --------- Configuration ---------
+    num_paths = 2000  # Number of Monte Carlo paths
+    num_steps = 100  # Number of time steps per path
+    lambd = 0.5  # Hull-White mean reversion speed
+    eta = 0.03  # Hull-White volatility
+
+    # Define zero coupon bond curve (market data)
+    p0t = lambda t: np.exp(-0.001 * t)
+    r0 = hw_r_0(p0t, lambd, eta)
+
+    # --------- ZCB Validation ---------
+    # Compare ZCB from Market and Analytical expression
+    n_zcb = 25
+    t_end_zcb = 50
+    t_grid_zcb = np.linspace(0, t_end_zcb, n_zcb)
+
+    exact = np.zeros((n_zcb, 1))
+    proxy = np.zeros((n_zcb, 1))
+    for i, ti in enumerate(t_grid_zcb):
+        proxy[i] = hw_zcb(lambd, eta, p0t, 0.0, ti, r0)
+        exact[i] = p0t(ti)
+
+    plot_zcb_comparison(t_grid_zcb, exact, proxy)
+
+    # --------- Path Simulation ---------
+    # Simulate interest rate paths
+    t_end = 20
+    paths = generate_paths_hw_euler(num_paths, num_steps, t_end, p0t, lambd, eta)
+    r = paths["R"]
+    time_grid = paths["time"]
+    dt = time_grid[1] - time_grid[0]
+
+    # Compute money market account for discounting (money-back numéraire)
+    m_t = np.zeros((num_paths, num_steps))
+    for i in range(0, num_paths):
+        m_t[i, :] = np.exp(np.cumsum(r[i, 0:-1]) * dt)
+
+    # --------- Portfolio Exposure Computation ---------
+    # Compute portfolio value P&L from rate shifts
+    r0_val = r[0, 0]
+
+    step_size = 10  # Time step for computing P&L
+    v_m = np.zeros((num_paths, num_steps - step_size))
+
+    for i in range(0, num_steps - step_size):
+        dr = r[:, i + step_size] - r[:, i]
+        v_t0 = portfolio(p0t, r[:, 0] + dr, lambd, eta)
+        v_m[:, i] = v_t0
+
+    # --------- VaR Calculation ---------
+    # Flatten P&L vector for statistics
+    v_t0_vec = np.matrix.flatten(v_m)
+
+    print("Value V(t_0)= ", portfolio(p0t, r[0, 0], lambd, eta))
+
+    # Confidence level
     alpha = 0.05
-    HVaR_estimate = np.quantile(V_t0_vec,alpha)
-    print('(H)VaR for alpha = ', alpha, ' is equal to=', HVaR_estimate)
-    
-    # Expected shortfal
-    condLosses = V_t0_vec[V_t0_vec < HVaR_estimate]
-    print('P&L which < VaR_alpha =',condLosses)
-    ES = np.mean(condLosses)
-    
-    print('Expected shortfal = ', ES)
-    
-    plt.plot(HVaR_estimate,0,'or')
-    plt.plot(ES,0,'ok')
-    plt.legend(['VaR','ES','P&L'])
-    
-    
-mainCalculation()
+
+    # Value-at-Risk estimate
+    hvar_estimate = np.quantile(v_t0_vec, alpha)
+    print("(H)VaR for alpha = ", alpha, " is equal to=", hvar_estimate)
+
+    # Expected shortfall (conditional VaR)
+    cond_losses = v_t0_vec[v_t0_vec < hvar_estimate]
+    print("P&L which < VaR_alpha =", cond_losses)
+    es = np.mean(cond_losses)
+
+    print("Expected shortfall = ", es)
+
+    # --------- Generate Plots ---------
+    plot_pnl_histogram(v_t0_vec, hvar_estimate, es)
+
+
+if __name__ == "__main__":
+    main()

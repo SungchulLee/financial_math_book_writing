@@ -1,128 +1,144 @@
-#%%
+# -*- coding: utf-8 -*-
 """
-Created on Feb 11 2019
-The Heston model discretization, Euler scheme vs. AES scheme
-@author: Lech A. Grzelak
+CIR process paths using Euler discretization with two boundary conditions.
+
+Demonstrates the Cox-Ingersoll-Ross (CIR) interest rate model with Euler
+discretization, comparing truncated and reflecting boundary conditions
+to ensure non-negativity of the variance process.
+
+Reference:
+    Oosterlee & Grzelak (2019). Mathematical Modeling and Computation in
+    Finance. World Scientific.
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.stats as st
-import enum 
 
-def CIR_Sample(NoOfPaths,kappa,gamma,vbar,s,t,v_s):
-    delta = 4.0 *kappa*vbar/gamma/gamma
-    c= 1.0/(4.0*kappa)*gamma*gamma*(1.0-np.exp(-kappa*(t-s)))
-    kappaBar = 4.0*kappa*v_s*np.exp(-kappa*(t-s))/(gamma*gamma*(1.0-np.exp(-kappa*(t-s))))
-    sample = c* np.random.noncentral_chisquare(delta,kappaBar,NoOfPaths)
-    return  sample
 
-def GeneratePathsHestonAES(NoOfPaths,NoOfSteps,T,r,S_0,kappa,gamma,rho,vbar,v0):    
-    Z1 = np.random.normal(0.0,1.0,[NoOfPaths,NoOfSteps])
-    W1 = np.zeros([NoOfPaths, NoOfSteps+1])
-    V = np.zeros([NoOfPaths, NoOfSteps+1])
-    X = np.zeros([NoOfPaths, NoOfSteps+1])
-    V[:,0]=v0
-    X[:,0]=np.log(S_0)
-    
-    time = np.zeros([NoOfSteps+1])
-        
-    dt = T / float(NoOfSteps)
-    for i in range(0,NoOfSteps):
-        # making sure that samples from normal have mean 0 and variance 1
-        if NoOfPaths > 1:
-            Z1[:,i] = (Z1[:,i] - np.mean(Z1[:,i])) / np.std(Z1[:,i])
-        W1[:,i+1] = W1[:,i] + np.power(dt, 0.5)*Z1[:,i]
-        
-        # Exact samles for the variance process
-        V[:,i+1] = CIR_Sample(NoOfPaths,kappa,gamma,vbar,0,dt,V[:,i])
-        k0 = (r -rho/gamma*kappa*vbar)*dt
-        k1 = (rho*kappa/gamma -0.5)*dt - rho/gamma
-        k2 = rho / gamma
-        X[:,i+1] = X[:,i] + k0 + k1*V[:,i] + k2 *V[:,i+1] + np.sqrt((1.0-rho**2)*V[:,i])*(W1[:,i+1]-W1[:,i])
-        time[i+1] = time[i] +dt
-        
-    #Compute exponent
-    S = np.exp(X)
-    paths = {"time":time,"S":S}
+# =============================================================================
+# 1. Core Computation
+# =============================================================================
+
+def generate_paths_cir_euler_2schemes(num_paths, num_steps, t, kappa, v0,
+                                       vbar, gamma):
+    """
+    Generate CIR process paths using two boundary condition schemes.
+
+    Parameters
+    ----------
+    num_paths : int
+        Number of Monte Carlo paths.
+    num_steps : int
+        Number of time steps.
+    t : float
+        Terminal time.
+    kappa : float
+        Mean reversion speed.
+    v0 : float
+        Initial variance level.
+    vbar : float
+        Long-term mean variance.
+    gamma : float
+        Volatility of variance (vol of vol).
+
+    Returns
+    -------
+    paths : dict
+        Dictionary containing:
+        - 'time': time grid of shape (num_steps+1,)
+        - 'Vtruncated': truncated boundary CIR paths of shape
+                        (num_paths, num_steps+1)
+        - 'Vreflected': reflecting boundary CIR paths of shape
+                        (num_paths, num_steps+1)
+    """
+    z = np.random.normal(0.0, 1.0, (num_paths, num_steps))
+    w = np.zeros((num_paths, num_steps + 1))
+    v1 = np.zeros((num_paths, num_steps + 1))
+    v2 = np.zeros((num_paths, num_steps + 1))
+    v1[:, 0] = v0
+    v2[:, 0] = v0
+    time = np.zeros(num_steps + 1)
+
+    dt = t / float(num_steps)
+
+    for i in range(0, num_steps):
+        # Ensure samples from normal have mean 0 and variance 1
+        if num_paths > 1:
+            z[:, i] = (z[:, i] - np.mean(z[:, i])) / np.std(z[:, i])
+
+        w[:, i + 1] = w[:, i] + np.sqrt(dt) * z[:, i]
+
+        # Truncated boundary condition
+        v1[:, i + 1] = (v1[:, i] + kappa * (vbar - v1[:, i]) * dt +
+                        gamma * np.sqrt(v1[:, i]) * (w[:, i + 1] - w[:, i]))
+        v1[:, i + 1] = np.maximum(v1[:, i + 1], 0.0)
+
+        # Reflecting boundary condition
+        v2[:, i + 1] = (v2[:, i] + kappa * (vbar - v2[:, i]) * dt +
+                        gamma * np.sqrt(v2[:, i]) * (w[:, i + 1] - w[:, i]))
+        v2[:, i + 1] = np.absolute(v2[:, i + 1])
+
+        time[i + 1] = time[i] + dt
+
+    # Outputs
+    paths = {"time": time, "Vtruncated": v1, "Vreflected": v2}
     return paths
 
 
-def mainCalculation():
-    NoOfPaths = 1000
-    NoOfSteps = 500
-    
-    # Heston model parameters
-    gamma = 1.0
-    kappa = 0.5
-    vbar  = 0.04
-    rho   = -0.9
-    v0    = 0.04
-    T     = 1.0
-    S_0   = 100.0
-    r     = 0.1
-    CP    = OptionType.CALL
-    
-    # First we define a range of strikes and check the convergence
-    K = np.linspace(0.1,S_0*2.0,30)
-    
-    # Exact solution with the COS method
-    cf = ChFHestonModel(r,T,kappa,gamma,vbar,v0,rho)
-    
-    # The COS method
-    optValueExact = CallPutOptionPriceCOSMthd(cf, CP, S_0, r, T, K, 1000, 8)
-    
-    # Euler simulation
-    pathsEULER = GeneratePathsHestonEuler(NoOfPaths,NoOfSteps,T,r,S_0,kappa,gamma,rho,vbar,v0)
-    S_Euler = pathsEULER["S"]
-    
-    # Almost exact simulation
-    pathsAES = GeneratePathsHestonAES(NoOfPaths,NoOfSteps,T,r,S_0,kappa,gamma,rho,vbar,v0)
-    S_AES = pathsAES["S"]
-    
-        
-    OptPrice_EULER = EUOptionPriceFromMCPathsGeneralized(CP,S_Euler[:,-1],K,T,r)
-    OptPrice_AES   = EUOptionPriceFromMCPathsGeneralized(CP,S_AES[:,-1],K,T,r)
-    
-    plt.figure(1)
-    plt.plot(K,optValueExact,'-r')
-    plt.plot(K,OptPrice_EULER,'--k')
-    plt.plot(K,OptPrice_AES,'.b')
-    plt.legend(['Exact (COS)','Euler','AES'])
+# =============================================================================
+# 2. Plotting Functions
+# =============================================================================
+
+def plot_cir_paths(time_grid, v_truncated, v_reflected):
+    """
+    Plot CIR paths with both boundary conditions.
+
+    Parameters
+    ----------
+    time_grid : ndarray
+        Time grid of shape (num_steps+1,).
+    v_truncated : ndarray
+        CIR paths with truncated boundary of shape (num_paths, num_steps+1).
+    v_reflected : ndarray
+        CIR paths with reflecting boundary of shape (num_paths, num_steps+1).
+
+    Returns
+    -------
+    None
+    """
+    plt.figure()
+    plt.plot(time_grid, np.transpose(v_truncated), 'b')
+    plt.plot(time_grid, np.transpose(v_reflected), '--r')
     plt.grid()
-    plt.xlabel('strike, K')
-    plt.ylabel('option price')
-    
-    # Here we will analyze the convergence for particular dt
-    dtV = np.array([1.0, 1.0/4.0, 1.0/8.0,1.0/16.0,1.0/32.0,1.0/64.0])
-    NoOfStepsV = [int(T/x) for x in dtV]
-    
-    # Specify strike for analysis
-    K = np.array([100.0])
-    
-    # Exact
-    optValueExact = CallPutOptionPriceCOSMthd(cf, CP, S_0, r, T, K, 1000, 8)
-    errorEuler = np.zeros([len(dtV),1])
-    errorAES = np.zeros([len(dtV),1])
-    
-    for (idx,NoOfSteps) in enumerate(NoOfStepsV):
-        # Euler
-        np.random.seed(3)
-        pathsEULER = GeneratePathsHestonEuler(NoOfPaths,NoOfSteps,T,r,S_0,kappa,gamma,rho,vbar,v0)
-        S_Euler = pathsEULER["S"]
-        OptPriceEULER = EUOptionPriceFromMCPathsGeneralized(CP,S_Euler[:,-1],K,T,r)
-        errorEuler[idx] = OptPriceEULER-optValueExact
-        # AES
-        np.random.seed(3)
-        pathsAES = GeneratePathsHestonAES(NoOfPaths,NoOfSteps,T,r,S_0,kappa,gamma,rho,vbar,v0)
-        S_AES = pathsAES["S"]
-        OptPriceAES   = EUOptionPriceFromMCPathsGeneralized(CP,S_AES[:,-1],K,T,r)
-        errorAES[idx] = OptPriceAES-optValueExact
-    
-    # Print the results
-    for i in range(0,len(NoOfStepsV)):
-        print("Euler Scheme, K ={0}, dt = {1} = {2}".format(K,dtV[i],errorEuler[i]))
-        
-    for i in range(0,len(NoOfStepsV)):
-        print("AES Scheme, K ={0}, dt = {1} = {2}".format(K,dtV[i],errorAES[i]))
-        
-mainCalculation()
+    plt.xlabel("time")
+    plt.ylabel("V(t)")
+    plt.legend(['truncated scheme', 'reflecting scheme'])
+
+
+# =============================================================================
+# 3. Main Computation
+# =============================================================================
+
+def main():
+    """Run demonstration of CIR process with boundary conditions."""
+    # Parameters
+    num_paths = 1
+    num_steps = 20
+    t = 1.0
+    kappa = 0.5
+    v0 = 0.1
+    vbar = 0.1
+    gamma = 0.8
+
+    np.random.seed(210)
+    paths = generate_paths_cir_euler_2schemes(num_paths, num_steps, t, kappa,
+                                              v0, vbar, gamma)
+    time_grid = paths["time"]
+    v_truncated = paths["Vtruncated"]
+    v_reflected = paths["Vreflected"]
+
+    plot_cir_paths(time_grid, v_truncated, v_reflected)
+
+
+if __name__ == "__main__":
+    main()

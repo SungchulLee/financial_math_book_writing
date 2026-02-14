@@ -1,239 +1,270 @@
-#%%
 """
-Created on July 12 2021
-Caplets under the Hull-White Model
+Caplets under the Hull-White Model.
 
-This code is purely educational and comes from "Financial Engineering" course by L.A. Grzelak
-The course is based on the book “Mathematical Modeling and Computation
-in Finance: With Exercises and Python and MATLAB Computer Codes”,
+This code is purely educational and comes from the Financial Engineering
+course by L.A. Grzelak, based on the book "Mathematical Modeling and Computation
+in Finance: With Exercises and Python and MATLAB Computer Codes",
 by C.W. Oosterlee and L.A. Grzelak, World Scientific Publishing Europe Ltd, 2019.
+
 @author: Lech A. Grzelak
 """
+
 import numpy as np
-import enum 
+import enum
 import matplotlib.pyplot as plt
 import scipy.stats as st
 import scipy.integrate as integrate
 
-# This class defines puts and calls
+
 class OptionType(enum.Enum):
+    """Option type enumeration."""
     CALL = 1.0
     PUT = -1.0
 
-def GeneratePathsHWEuler(NoOfPaths,NoOfSteps,T,P0T, lambd, eta):    
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
-    theta = lambda t: 1.0/lambd * (f0T(t+dt)-f0T(t-dt))/(2.0*dt) + f0T(t) + eta*eta/(2.0*lambd*lambd)*(1.0-np.exp(-2.0*lambd*t))      
-    
-    #theta = lambda t: 0.1 +t -t
-    #print("changed theta")
-    
-    Z = np.random.normal(0.0,1.0,[NoOfPaths,NoOfSteps])
-    W = np.zeros([NoOfPaths, NoOfSteps+1])
-    R = np.zeros([NoOfPaths, NoOfSteps+1])
-    R[:,0]=r0
-    time = np.zeros([NoOfSteps+1])
-        
-    dt = T / float(NoOfSteps)
-    for i in range(0,NoOfSteps):
-        # making sure that samples from normal have mean 0 and variance 1
-        if NoOfPaths > 1:
-            Z[:,i] = (Z[:,i] - np.mean(Z[:,i])) / np.std(Z[:,i])
-        W[:,i+1] = W[:,i] + np.power(dt, 0.5)*Z[:,i]
-        R[:,i+1] = R[:,i] + lambd*(theta(time[i]) - R[:,i]) * dt + eta* (W[:,i+1]-W[:,i])
-        time[i+1] = time[i] +dt
-        
-    # Outputs
-    paths = {"time":time,"R":R}
-    return paths
 
-def HW_theta(lambd,eta,P0T):
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    theta = lambda t: 1.0/lambd * (f0T(t+dt)-f0T(t-dt))/(2.0*dt) + f0T(t) + eta*eta/(2.0*lambd*lambd)*(1.0-np.exp(-2.0*lambd*t))
-    #print("CHANGED THETA")
-    return theta#lambda t: 0.1+t-t
-    
-def HW_A(lambd,eta,P0T,T1,T2):
-    tau = T2-T1
-    zGrid = np.linspace(0.0,tau,250)
-    B_r = lambda tau: 1.0/lambd * (np.exp(-lambd *tau)-1.0)
-    theta = HW_theta(lambd,eta,P0T)    
-    temp1 = lambd * integrate.trapz(theta(T2-zGrid)*B_r(zGrid),zGrid)
-    
-    temp2 = eta*eta/(4.0*np.power(lambd,3.0)) * (np.exp(-2.0*lambd*tau)*(4*np.exp(lambd*tau)-1.0) -3.0) + eta*eta*tau/(2.0*lambd*lambd)
-    
+# ============= Forward Rate and Theta Functions =============
+
+def f0t(tau, p0t):
+    """Compute forward rate."""
+    dt = 0.0001
+    return -(np.log(p0t(tau + dt)) - np.log(p0t(tau - dt))) / (2 * dt)
+
+
+def hw_theta(lambd, eta, p0t):
+    """Compute Hull-White theta function."""
+    dt = 0.0001
+
+    def theta(tau):
+        return (1.0 / lambd * (f0t(tau + dt, p0t) - f0t(tau - dt, p0t)) / (2.0 * dt) +
+                f0t(tau, p0t) + eta * eta / (2.0 * lambd * lambd) * (1.0 - np.exp(-2.0 * lambd * tau)))
+
+    return theta
+
+
+# ============= HW Functions =============
+
+def hw_a(lambd, eta, p0t, t1, t2):
+    """Compute HW A function."""
+    tau = t2 - t1
+    z_grid = np.linspace(0.0, tau, 250)
+
+    def b_r(tau_val):
+        return 1.0 / lambd * (np.exp(-lambd * tau_val) - 1.0)
+
+    theta = hw_theta(lambd, eta, p0t)
+    temp1 = lambd * integrate.trapz(theta(t2 - z_grid) * b_r(z_grid), z_grid)
+    temp2 = (eta * eta / (4.0 * np.power(lambd, 3.0)) *
+             (np.exp(-2.0 * lambd * tau) * (4 * np.exp(lambd * tau) - 1.0) - 3.0) +
+             eta * eta * tau / (2.0 * lambd * lambd))
     return temp1 + temp2
 
-def HW_B(lambd,eta,T1,T2):
-    return 1.0/lambd *(np.exp(-lambd*(T2-T1))-1.0)
 
-def HW_ZCB(lambd,eta,P0T,T1,T2,rT1):
-    B_r = HW_B(lambd,eta,T1,T2)
-    A_r = HW_A(lambd,eta,P0T,T1,T2)
-    return np.exp(A_r + B_r *rT1)
+def hw_b(lambd, eta, t1, t2):
+    """Compute HW B function."""
+    return 1.0 / lambd * (np.exp(-lambd * (t2 - t1)) - 1.0)
 
-def HWMean_r(P0T,lambd,eta,T):
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2.0*dt)
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
-    theta = HW_theta(lambd,eta,P0T)
-    zGrid = np.linspace(0.0,T,2500)
-    temp =lambda z: theta(z) * np.exp(-lambd*(T-z))
-    r_mean = r0*np.exp(-lambd*T) + lambd * integrate.trapz(temp(zGrid),zGrid)
+
+def hw_zcb(lambd, eta, p0t, t1, t2, r_t1):
+    """Compute ZCB price."""
+    b_r = hw_b(lambd, eta, t1, t2)
+    a_r = hw_a(lambd, eta, p0t, t1, t2)
+    return np.exp(a_r + b_r * r_t1)
+
+
+def hw_mean_r(p0t, lambd, eta, t):
+    """Compute mean of interest rate."""
+    dt = 0.0001
+
+    def f0t_local(tau):
+        return -(np.log(p0t(tau + dt)) - np.log(p0t(tau - dt))) / (2.0 * dt)
+
+    r0 = f0t_local(0.00001)
+    theta = hw_theta(lambd, eta, p0t)
+    z_grid = np.linspace(0.0, t, 2500)
+
+    def temp(z):
+        return theta(z) * np.exp(-lambd * (t - z))
+
+    r_mean = r0 * np.exp(-lambd * t) + lambd * integrate.trapz(temp(z_grid), z_grid)
     return r_mean
 
-def HW_r_0(P0T,lambd,eta):
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
-    return r0
 
-def HW_Mu_FrwdMeasure(P0T,lambd,eta,T):
-    # time-step needed for differentiation
-    dt = 0.0001    
-    f0T = lambda t: - (np.log(P0T(t+dt))-np.log(P0T(t-dt)))/(2*dt)
-    # Initial interest rate is a forward rate at time t->0
-    r0 = f0T(0.00001)
-    theta = HW_theta(lambd,eta,P0T)
-    zGrid = np.linspace(0.0,T,500)
-    
-    theta_hat =lambda t,T:  theta(t) + eta*eta / lambd *1.0/lambd * (np.exp(-lambd*(T-t))-1.0)
-    
-    temp =lambda z: theta_hat(z,T) * np.exp(-lambd*(T-z))
-    
-    r_mean = r0*np.exp(-lambd*T) + lambd * integrate.trapz(temp(zGrid),zGrid)
-    
+def hw_var_r(lambd, eta, t):
+    """Compute variance of interest rate."""
+    return eta * eta / (2.0 * lambd) * (1.0 - np.exp(-2.0 * lambd * t))
+
+
+def hw_r_0(p0t, lambd, eta):
+    """Get initial interest rate."""
+    dt = 0.0001
+    return -(np.log(p0t(dt)) - np.log(p0t(-dt))) / (2 * dt)
+
+
+def hw_mu_frwd_measure(p0t, lambd, eta, t):
+    """Compute mean under forward measure."""
+    dt = 0.0001
+
+    def f0t_local(tau):
+        return -(np.log(p0t(tau + dt)) - np.log(p0t(tau - dt))) / (2 * dt)
+
+    r0 = f0t_local(0.00001)
+    theta = hw_theta(lambd, eta, p0t)
+    z_grid = np.linspace(0.0, t, 500)
+
+    def theta_hat(tau, t_end):
+        return theta(tau) + eta * eta / lambd * 1.0 / lambd * (np.exp(-lambd * (t_end - tau)) - 1.0)
+
+    def temp(z):
+        return theta_hat(z, t) * np.exp(-lambd * (t - z))
+
+    r_mean = r0 * np.exp(-lambd * t) + lambd * integrate.trapz(temp(z_grid), z_grid)
     return r_mean
 
-def HWVar_r(lambd,eta,T):
-    return eta*eta/(2.0*lambd) *( 1.0-np.exp(-2.0*lambd *T))
 
-def HWDensity(P0T,lambd,eta,T):
-    r_mean = HWMean_r(P0T,lambd,eta,T)
-    r_var = HWVar_r(lambd,eta,T)
-    return lambda x: st.norm.pdf(x,r_mean,np.sqrt(r_var))
+def hw_zcb_call_put_price(cp, k, lambd, eta, p0t, t1, t2):
+    """Compute call/put price on ZCB."""
+    b_r = hw_b(lambd, eta, t1, t2)
+    a_r = hw_a(lambd, eta, p0t, t1, t2)
 
-def HW_CapletFloorletPrice(CP,N,K,lambd,eta,P0T,T1,T2):
-    if CP == OptionType.CALL:
-        N_new = N * (1.0+(T2-T1)*K)
-        K_new = 1.0 + (T2-T1)*K
-        caplet = N_new*HW_ZCB_CallPutPrice(OptionType.PUT,1.0/K_new,lambd,eta,P0T,T1,T2)
-        value= caplet
-    elif CP==OptionType.PUT:
-        value = 0.0 # In the homework assignmnet you need to fill this part in
-    return value
-    
-def HW_ZCB_CallPutPrice(CP,K,lambd,eta,P0T,T1,T2):
-    B_r = HW_B(lambd,eta,T1,T2)
-    A_r = HW_A(lambd,eta,P0T,T1,T2)
-    
-    mu_r = HW_Mu_FrwdMeasure(P0T,lambd,eta,T1)
-    v_r =  np.sqrt(HWVar_r(lambd,eta,T1))
-    
-    K_hat = K * np.exp(-A_r)
-    
-    a = (np.log(K_hat) - B_r*mu_r)/(B_r*v_r)
-    
-    d1 = a - B_r*v_r
-    d2 = d1 +  B_r*v_r
-    
-    term1 = np.exp(0.5* B_r*B_r*v_r*v_r + B_r*mu_r)*st.norm.cdf(d1) - K_hat * st.norm.cdf(d2)    
-    value =P0T(T1) * np.exp(A_r) * term1 
-    
-    if CP == OptionType.CALL:
+    mu_r = hw_mu_frwd_measure(p0t, lambd, eta, t1)
+    v_r = np.sqrt(hw_var_r(lambd, eta, t1))
+
+    k_hat = k * np.exp(-a_r)
+    a_coef = (np.log(k_hat) - b_r * mu_r) / (b_r * v_r)
+
+    d1 = a_coef - b_r * v_r
+    d2 = d1 + b_r * v_r
+
+    term1 = (np.exp(0.5 * b_r * b_r * v_r * v_r + b_r * mu_r) * st.norm.cdf(d1) -
+             k_hat * st.norm.cdf(d2))
+    value = p0t(t1) * np.exp(a_r) * term1
+
+    if cp == OptionType.CALL:
         return value
-    elif CP==OptionType.PUT:
-        return value - P0T(T2) + K*P0T(T1)
+    elif cp == OptionType.PUT:
+        return value - p0t(t2) + k * p0t(t1)
 
 
-def mainCalculation():
-    CP= OptionType.CALL
-    NoOfPaths = 20000
-    NoOfSteps = 1000
-        
-    lambd     = 0.02
+def hw_caplet_price(cp, notional, k, lambd, eta, p0t, t1, t2):
+    """Compute caplet price."""
+    if cp == OptionType.CALL:
+        n_new = notional * (1.0 + (t2 - t1) * k)
+        k_new = 1.0 + (t2 - t1) * k
+        caplet = n_new * hw_zcb_call_put_price(OptionType.PUT, 1.0 / k_new, lambd, eta, p0t, t1, t2)
+        return caplet
+    elif cp == OptionType.PUT:
+        return 0.0
 
-    eta       = 0.02
-    
-    # We define a ZCB curve (obtained from the market)
-    P0T = lambda T: np.exp(-0.1*T)#np.exp(-0.03*T*T-0.1*T)
-    r0 = HW_r_0(P0T,lambd,eta)
-    
-    # In this experiment we compare ZCB from the Market and Analytical expression
-    N = 25
-    T_end = 50
-    Tgrid= np.linspace(0,T_end,N)
-    
-    Exact = np.zeros([N,1])
-    Proxy= np.zeros ([N,1])
-    for i,Ti in enumerate(Tgrid):
-        Proxy[i] = HW_ZCB(lambd,eta,P0T,0.0,Ti,r0)
-        Exact[i] = P0T(Ti)
-        
+
+def generate_paths_hw_euler(num_paths, num_steps, t, p0t, lambd, eta):
+    """Generate HW paths."""
+    dt_diff = 0.0001
+
+    def f0t_local(tau):
+        return -(np.log(p0t(tau + dt_diff)) - np.log(p0t(tau - dt_diff))) / (2 * dt_diff)
+
+    r0 = f0t_local(0.00001)
+    theta = hw_theta(lambd, eta, p0t)
+
+    z = np.random.normal(0.0, 1.0, (num_paths, num_steps))
+    w = np.zeros((num_paths, num_steps + 1))
+    r = np.zeros((num_paths, num_steps + 1))
+    r[:, 0] = r0
+    time = np.zeros(num_steps + 1)
+
+    dt = t / float(num_steps)
+    for i in range(0, num_steps):
+        if num_paths > 1:
+            z[:, i] = (z[:, i] - np.mean(z[:, i])) / np.std(z[:, i])
+
+        w[:, i + 1] = w[:, i] + np.sqrt(dt) * z[:, i]
+        r[:, i + 1] = r[:, i] + lambd * (theta(time[i]) - r[:, i]) * dt + eta * (w[:, i + 1] - w[:, i])
+        time[i + 1] = time[i] + dt
+
+    return {"time": time, "R": r}
+
+
+# ============= Main =============
+
+def main():
+    """Main computation for caplet pricing."""
+    cp = OptionType.CALL
+    num_paths = 20000
+    num_steps = 1000
+    lambd = 0.02
+    eta = 0.02
+
+    # ZCB curve
+    p0t = lambda t: np.exp(-0.1 * t)
+    r0 = hw_r_0(p0t, lambd, eta)
+
+    # ZCB pricing
+    n = 25
+    t_end = 50
+    tgrid = np.linspace(0, t_end, n)
+
+    exact = np.zeros((n, 1))
+    proxy = np.zeros((n, 1))
+    for i, ti in enumerate(tgrid):
+        proxy[i] = hw_zcb(lambd, eta, p0t, 0.0, ti, r0)
+        exact[i] = p0t(ti)
+
     plt.figure(1)
     plt.grid()
-    plt.plot(Tgrid,Exact,'-k')
-    plt.plot(Tgrid,Proxy,'--r')
-    plt.legend(["Analytcal ZCB","Monte Carlo ZCB"])
+    plt.plot(tgrid, exact, '-k')
+    plt.plot(tgrid, proxy, '--r')
+    plt.legend(["Analytical ZCB", "Monte Carlo ZCB"])
     plt.title('P(0,T) from Monte Carlo vs. Analytical expression')
 
-    # In this experiment we compare Monte Carlo results for 
-    T1 = 4.0
-    T2 = 8.0
-    
-    paths= GeneratePathsHWEuler(NoOfPaths,NoOfSteps,T1 ,P0T, lambd, eta)
+    # Caplet pricing
+    t1 = 4.0
+    t2 = 8.0
+
+    paths = generate_paths_hw_euler(num_paths, num_steps, t1, p0t, lambd, eta)
     r = paths["R"]
-    timeGrid = paths["time"]
-    dt = timeGrid[1]-timeGrid[0]
-    
-    # Here we compare the price of an option on a ZCB from Monte Carlo and Analytical expression    
-    M_t = np.zeros([NoOfPaths,NoOfSteps])
-    for i in range(0,NoOfPaths):
-        M_t[i,:] = np.exp(np.cumsum(r[i,:-1])*dt)
-        
-    KVec = np.linspace(0.01,1.7,50)
-    Price_MC_V = np.zeros([len(KVec),1])
-    Price_Th_V =np.zeros([len(KVec),1])
-    P_T1_T2 = HW_ZCB(lambd,eta,P0T,T1,T2,r[:,-1])
-    for i,K in enumerate(KVec):
-        if CP==OptionType.CALL:
-            Price_MC_V[i] =np.mean( 1.0/M_t[:,-1] * np.maximum(P_T1_T2-K,0.0)) 
-        elif CP==OptionType.PUT:
-            Price_MC_V[i] =np.mean( 1.0/M_t[:,-1] * np.maximum(K-P_T1_T2,0.0)) 
-        Price_Th_V[i] =HW_ZCB_CallPutPrice(CP,K,lambd,eta,P0T,T1,T2)#HW_ZCB_CallPrice(K,lambd,eta,P0T,T1,T2)
-        
+    time_grid = paths["time"]
+    dt = time_grid[1] - time_grid[0]
+
+    m_t = np.zeros((num_paths, num_steps))
+    for i in range(0, num_paths):
+        m_t[i, :] = np.exp(np.cumsum(r[i, :-1]) * dt)
+
+    kvec = np.linspace(0.01, 1.7, 50)
+    price_mc_v = np.zeros((len(kvec), 1))
+    price_th_v = np.zeros((len(kvec), 1))
+    p_t1_t2 = hw_zcb(lambd, eta, p0t, t1, t2, r[:, -1])
+
+    for i, k in enumerate(kvec):
+        if cp == OptionType.CALL:
+            price_mc_v[i] = np.mean(1.0 / m_t[:, -1] * np.maximum(p_t1_t2 - k, 0.0))
+        elif cp == OptionType.PUT:
+            price_mc_v[i] = np.mean(1.0 / m_t[:, -1] * np.maximum(k - p_t1_t2, 0.0))
+
+        price_th_v[i] = hw_zcb_call_put_price(cp, k, lambd, eta, p0t, t1, t2)
+
     plt.figure(2)
     plt.grid()
-    plt.plot(KVec,Price_MC_V)
-    plt.plot(KVec,Price_Th_V,'--r')
-    plt.legend(['Monte Carlo','Theoretical'])
+    plt.plot(kvec, price_mc_v)
+    plt.plot(kvec, price_th_v, '--r')
+    plt.legend(['Monte Carlo', 'Theoretical'])
     plt.title('Option on ZCB')
 
-    # Effect of the HW model parameters on Implied Volatilities
-    # define a forward rate between T1 and T2
-    frwd = 1.0/(T2-T1) *(P0T(T1)/P0T(T2)-1.0)
-    K = np.linspace(frwd/2.0,3.0*frwd,25)
-    Notional = 1.0
-    
-    capletPrice = np.zeros(len(K))
-    for idx in range(0,len(K)):
-           capletPrice[idx] = HW_CapletFloorletPrice(CP,Notional,K[idx],lambd,eta,P0T,T1,T2)
-           
+    # Caplet pricing
+    frwd = 1.0 / (t2 - t1) * (p0t(t1) / p0t(t2) - 1.0)
+    k = np.linspace(frwd / 2.0, 3.0 * frwd, 25)
+    notional = 1.0
+
+    caplet_price = np.zeros(len(k))
+    for idx in range(0, len(k)):
+        caplet_price[idx] = hw_caplet_price(cp, notional, k[idx], lambd, eta, p0t, t1, t2)
+
     plt.figure(3)
     plt.title('Caplet Price')
-    plt.plot(K,capletPrice)
+    plt.plot(k, caplet_price)
     plt.xlabel('strike')
     plt.ylabel('Caplet Price')
     plt.grid()
-    
-    
-mainCalculation()
+
+
+if __name__ == "__main__":
+    main()
