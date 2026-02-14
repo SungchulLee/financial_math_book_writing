@@ -1,4 +1,0 @@
-/* Left-align figure captions (but keep images centered) */
-.md-typeset figure figcaption {
-  text-align: left;
-}

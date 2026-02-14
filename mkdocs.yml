@@ -254,6 +254,7 @@ nav:
                 - Risk-Neutral vs Physical Paths: ch04/codes/risk_neutral_vs_physical_paths.py
                 - Market Price of Risk Estimation: ch04/codes/market_price_of_risk.py
                 - Measure Change for GBM: ch04/codes/measure_change_gbm.py
+                - Martingale Verification (Grzelak): ch04/codes/grzelak_martingale_verification.py
 
         - 5 PDE:
             - Chapter Overview: ch05/index.md
@@ -394,6 +395,12 @@ nav:
                 - Asian Call (Antithetic Variates): ch07/codes/exotic_asian_call_antithetic.py
                 - Asian Call (Control Variates): ch07/codes/exotic_asian_call_control_var.py
                 - Barrier Call (Joint Law Pricing): ch07/codes/exotic_barrier_call_joint_law.py
+                - Merton Process Paths (Grzelak): ch07/codes/grzelak_merton_process_paths.py
+                - Poisson Process Paths (Grzelak): ch07/codes/grzelak_poisson_process_paths.py
+                - Bates Implied Volatility (Grzelak): ch07/codes/grzelak_bates_implied_volatility.py
+                - Heston Forward Start (Grzelak): ch07/codes/grzelak_heston_forward_start.py
+                - Asian Option (Grzelak): ch07/codes/grzelak_asian_option.py
+                - Digital Payoffs Cost Reduction (Grzelak): ch07/codes/grzelak_digital_payoffs_cost_reduction.py
 
         - 8 Numerical Methods for BS PDE:
             - Chapter Overview: ch08/index.md
@@ -446,6 +453,8 @@ nav:
                 - Convergence Analysis (Time Grid): ch08/codes/black_scholes_cn_convergence_time.py
                 - Convergence Analysis (General): ch08/codes/black_scholes_convergence.py
                 - Comprehensive Summary: ch08/codes/black_scholes_summary.py
+                - Euler Convergence GBM (Grzelak): ch08/codes/grzelak_euler_convergence_gbm.py
+                - Milstein Convergence GBM (Grzelak): ch08/codes/grzelak_milstein_convergence_gbm.py
 
         - 9 Fourier Pricing Methods:
             - Chapter Overview: ch09/index.md
@@ -480,6 +489,7 @@ nav:
                 - Log-Normal PDF Recovery: ch09/codes/cos_method_lognormal_pdf.py
                 - Call and Put COS Method: ch09/codes/cos_method_call_put.py
                 - Cash or Nothing COS Method: ch09/codes/cos_method_cash_or_nothing.py
+                - Density Recovery FFT (Grzelak): ch09/codes/grzelak_density_recovery_fft.py
 
         - 10 Greeks and Asymptotics:
             - Chapter Overview: ch10/index.md
@@ -518,6 +528,7 @@ nav:
                 - Sensitivity Analysis: ch10/codes/black_scholes_sensitivity.py
                 - Theta Income from Short Call: ch10/codes/black_scholes_theta_income.py
                 - Time Decay of Option Values: ch10/codes/black_scholes_time_decay.py
+                - Pathwise Sensitivities (Grzelak): ch10/codes/grzelak_pathwise_sensitivities.py
 
         - 11 Hedging:
             - Chapter Overview: ch11/index.md
@@ -552,6 +563,8 @@ nav:
                 - Transaction Cost Analysis: ch11/codes/transaction_cost_analysis.py
                 - Delta-Gamma-Vega Hedging: ch11/codes/delta_gamma_vega_hedging.py
                 - Hedging Error Distribution: ch11/codes/hedging_error_distribution.py
+                - BS Hedging (Grzelak): ch11/codes/grzelak_bs_hedging.py
+                - Hedging with Jumps (Grzelak): ch11/codes/grzelak_hedging_with_jumps.py
 
     - Part III Volatility and Calibration:
 
@@ -684,6 +697,7 @@ nav:
                 - Leverage Effect Visualization: ch14/codes/leverage_effect_visualization.py
                 - Vol-of-Vol Sensitivity Analysis: ch14/codes/vol_of_vol_sensitivity.py
                 - SV Model Comparison (Heston vs SABR): ch14/codes/sv_model_comparison.py
+                - Correlated BM (Grzelak): ch14/codes/grzelak_correlated_bm.py
 
         - 15 Affine Processes:
             - Chapter Overview: ch15/index.md
@@ -822,6 +836,9 @@ nav:
                 - End-to-End Worked Examples: ch16/codes/end_to_end_worked_examples.py
                 - End-to-End Worked Examples (Guide): ch16/codes/end_to_end_worked_examples.md
                 - Heston COS Method: ch16/codes/heston_cos_method.py
+                - CIR Exact Simulation (Grzelak): ch16/codes/grzelak_cir_exact_simulation.py
+                - CIR Paths Boundary (Grzelak): ch16/codes/grzelak_cir_paths_boundary.py
+                - Heston Discretization (Grzelak): ch16/codes/grzelak_heston_discretization.py
             - 16.13 Stochastic Volatility Foundations (Supplementary):
                 - Motivation Beyond Black–Scholes:
                     - Empirical Failures of Constant Volatility: ch16/motivation_beyond_black_scholes/empirical_failures_of_constant_volatility.md
@@ -968,6 +985,8 @@ nav:
                 - Vasicek Usage: ch18/codes/vasicek_usage.py
                 - CIR Usage: ch18/codes/cir_usage.py
                 - Bond Price Quote: ch18/codes/bond_price_quote.py
+                - CIR Interest Rate Paths (Grzelak): ch18/codes/grzelak_cir_ir_paths.py
+                - Ho-Lee ZCBs (Grzelak): ch18/codes/grzelak_ho_lee_zcbs.py
 
         - 19 Interest Rate Derivatives and HJM:
             - Chapter Overview: ch19/index.md
@@ -1029,6 +1048,13 @@ nav:
                 - LMM Caplet Pricing: ch19/codes/lmm_caplet_pricing.py
                 - Convexity Adjustment (CMS): ch19/codes/convexity_adjustment_cms.py
                 - Duration and Key Rate Duration: ch19/codes/duration_key_rate.py
+                - Multi-Curve Construction (Grzelak): ch19/codes/grzelak_multi_curve_build.py
+                - Yield Curve with Greeks (Grzelak): ch19/codes/grzelak_yield_curve_greeks.py
+                - Treasury Yield Curve (Grzelak): ch19/codes/grzelak_yield_curve_treasury.py
+                - Convexity Correction (Grzelak): ch19/codes/grzelak_convexity_correction.py
+                - Annuity Mortgage (Grzelak): ch19/codes/grzelak_annuity_mortgage.py
+                - Bullet Mortgage (Grzelak): ch19/codes/grzelak_bullet_mortgage.py
+                - Stochastic Amortizing Swap (Grzelak): ch19/codes/grzelak_stochastic_amortizing_swap.py
 
         - 20 Hull-White Model in Detail:
             - Chapter Overview: ch20/index.md
@@ -1130,6 +1156,19 @@ nav:
                 - Bermudan Swaption (Tree): ch20/codes/hull_white_bermudan_swaption.py
                 - Calibration to Cap Vols: ch20/codes/hull_white_calibration_caps.py
                 - Two-Factor Hull-White Simulation: ch20/codes/hull_white_two_factor.py
+                - Hull-White Paths (Grzelak): ch20/codes/grzelak_hull_white_paths.py
+                - Hull-White ZCBs (Grzelak): ch20/codes/grzelak_hull_white_zcbs.py
+                - Hull-White Compounding Rate Sim (Grzelak): ch20/codes/grzelak_hull_white_comprate_sim.py
+                - Hull-White 1F vs 2F Comparison (Grzelak): ch20/codes/grzelak_hull_white_1f_2f_comparison.py
+                - HW Caplets (Grzelak): ch20/codes/grzelak_hw_caplets.py
+                - HW Options on ZCBs (Grzelak): ch20/codes/grzelak_hw_options_on_zcbs.py
+                - Swaps under Hull-White (Grzelak): ch20/codes/grzelak_swaps_hw.py
+                - Jamshidian Trick (Grzelak): ch20/codes/grzelak_jamshidian_trick.py
+                - Shifted Lognormal (Grzelak): ch20/codes/grzelak_shifted_lognormal.py
+                - HW Caplets and Floorlets (Grzelak): ch20/codes/grzelak_hw_caplets_floorlets.py
+                - BS-HW Comparison (Grzelak): ch20/codes/grzelak_bshw_comparison.py
+                - BS-HW Implied Volatility (Grzelak): ch20/codes/grzelak_bshw_implied_volatility.py
+                - Heston-HW COS vs MC (Grzelak): ch20/codes/grzelak_heston_hw_cos_vs_mc.py
 
         - 21 Credit Risk:
             - Chapter Overview: ch21/index.md
@@ -1239,6 +1278,9 @@ nav:
                 - Stress Testing Scenarios: ch22/codes/stress_testing_scenarios.py
                 - CVA Calculation (Monte Carlo): ch22/codes/cva_monte_carlo.py
                 - VaR Backtesting: ch22/codes/var_backtesting.py
+                - Exposures HW Netting (Grzelak): ch22/codes/grzelak_exposures_hw_netting.py
+                - Historical VaR (Grzelak): ch22/codes/grzelak_historical_var.py
+                - Monte Carlo VaR (Grzelak): ch22/codes/grzelak_monte_carlo_var.py
 
         - 23 Robust Pricing:
             - Chapter Overview: ch23/index.md
