@@ -48,6 +48,10 @@ extra_css:
 
 nav:
     - Home: index.md
+    - Getting Started: getting_started.md
+    - Study Paths: study_paths.md
+    - Grzelak Textbook Reference: grzelak_textbook_reference.md
+    - Advanced Lectures Guide: advanced_lectures_guide.md
 
     - Part I Math Foundations:
 
@@ -84,6 +88,7 @@ nav:
                 - Binomial to BS Convergence: ch01/codes/binomial_to_bs_convergence.py
                 - No-Arbitrage Check: ch01/codes/ftap_no_arbitrage_check.py
                 - Arrow–Debreu Price Extraction: ch01/codes/arrow_debreu_prices.py
+                - Characteristic Function of Normal (Grzelak): ch01/codes/grzelak_char_function_normal.py
 
         - 2 Stochastic Process:
             - Chapter Overview: ch02/index.md
@@ -115,6 +120,7 @@ nav:
                 - Doob–Meyer Decomposition: ch02/filtration_and_martingales/doob_meyer_decomposition.md
                 - Uniform Integrability: ch02/filtration_and_martingales/uniform_integrability.md
             - 2.4 Python Examples:
+                - Brownian Motion Beginner Tutorial: ch02/codes/brownian_motion_beginner_tutorial.py
                 - Brownian Motion Simulation: ch02/codes/brownian_motion_simulation.py
                 - Cumulative Sum of dB²: ch02/codes/brownian_motion_cumsum_db_sq.py
                 - High School Integral: ch02/codes/brownian_motion_high_school_integral.py
@@ -126,6 +132,7 @@ nav:
                 - Simple Random Walk (Normal Coin): ch02/codes/simple_random_walk_normal_coin.py
                 - Coin Flip Paths (One Path): ch02/codes/coin_flip_one_path.py
                 - Coin Flip Paths (Two Paths): ch02/codes/coin_flip_two_paths.py
+                - Integrated Brownian Motion (Grzelak): ch02/codes/grzelak_integrated_brownian_motion.py
 
         - 3 SDE:
             - Chapter Overview: ch03/index.md
@@ -228,6 +235,7 @@ nav:
                     - Financial History Lesson: ch03/codes/stock_analysis_financial_history.py
                     - Create Financial History: ch03/codes/stock_analysis_create_history.py
                     - Journalism Fact Check: ch03/codes/stock_analysis_journalism_check.py
+                    - GBM Paths and Strikes (Grzelak): ch03/codes/grzelak_gbm_paths_and_strikes.py
 
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
@@ -408,6 +416,7 @@ nav:
                 - Heston Forward Start (Grzelak): ch07/codes/grzelak_heston_forward_start.py
                 - Asian Option (Grzelak): ch07/codes/grzelak_asian_option.py
                 - Digital Payoffs Cost Reduction (Grzelak): ch07/codes/grzelak_digital_payoffs_cost_reduction.py
+                - BS with Jump Volatility (Grzelak): ch07/codes/grzelak_bs_jump_volatility.py
 
         - 8 Numerical Methods for BS PDE:
             - Chapter Overview: ch08/index.md
@@ -1033,10 +1042,12 @@ nav:
                     - Yield Curve with Greeks: ch19/codes/grzelak_yield_curve_greeks.py
                     - Treasury Yield Curve: ch19/codes/grzelak_yield_curve_treasury.py
                     - Convexity Correction: ch19/codes/grzelak_convexity_correction.py
+                    - Displaced Diffusion Implied Vol: ch19/codes/grzelak_dd_implied_volatility.py
                 - Mortgages and Swaps (Grzelak):
                     - Annuity Mortgage: ch19/codes/grzelak_annuity_mortgage.py
                     - Bullet Mortgage: ch19/codes/grzelak_bullet_mortgage.py
                     - Stochastic Amortizing Swap: ch19/codes/grzelak_stochastic_amortizing_swap.py
+                    - Mortgage Prepayment Incentives: ch19/codes/grzelak_mortgage_incentives.py
 
         - 20 Hull-White Model in Detail:
             - Chapter Overview: ch20/index.md
@@ -1140,10 +1151,15 @@ nav:
                     - Swaps under Hull-White: ch20/codes/grzelak_swaps_hw.py
                     - Jamshidian Trick: ch20/codes/grzelak_jamshidian_trick.py
                     - Shifted Lognormal: ch20/codes/grzelak_shifted_lognormal.py
+                - Simulation and Bonds (Grzelak) — Additional:
+                    - Hull-White ZCBs (Variant): ch20/codes/grzelak_hull_white_zcbs_v2.py
                 - Hybrid Models (Grzelak):
                     - BS-HW Comparison: ch20/codes/grzelak_bshw_comparison.py
                     - BS-HW Implied Volatility: ch20/codes/grzelak_bshw_implied_volatility.py
                     - Heston-HW COS vs MC: ch20/codes/grzelak_heston_hw_cos_vs_mc.py
+                    - Heston-HW FX COS vs MC: ch20/codes/grzelak_heston_hw_fx_cos_vs_mc.py
+                    - SZHW Implied Volatilities: ch20/codes/grzelak_szhw_implied_volatilities.py
+                    - SZHW MC Diversification Product: ch20/codes/grzelak_szhw_mc_diversification.py
 
         - 21 Credit Risk:
             - Chapter Overview: ch21/index.md
