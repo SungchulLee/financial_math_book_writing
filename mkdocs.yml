@@ -48,10 +48,6 @@ extra_css:
 
 nav:
     - Home: index.md
-    - Getting Started: getting_started.md
-    - Study Paths: study_paths.md
-    - Grzelak Textbook Reference: grzelak_textbook_reference.md
-    - Advanced Lectures Guide: advanced_lectures_guide.md
 
     - Part I Math Foundations:
 
