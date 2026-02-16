@@ -49,7 +49,7 @@ extra_css:
 nav:
     - Home: index.md
 
-    - Part I Math Foundations:
+    - I Math Foundations:
 
         - 1 Discrete Models and FTAP:
             - Chapter Overview: ch01/index.md
@@ -312,7 +312,7 @@ nav:
                 - Visualize FFT: ch05/codes/visualize_fft.py
                 - Visualize FFT Low Pass Filter: ch05/codes/visualize_fft_low_pass.py
 
-    - Part II Black-Scholes and Extensions:
+    - II Black-Scholes and Extensions:
 
         - 6 Black-Scholes Model:
             - Chapter Overview: ch06/index.md
@@ -580,7 +580,7 @@ nav:
                 - BS Hedging (Grzelak): ch11/codes/grzelak_bs_hedging.py
                 - Hedging with Jumps (Grzelak): ch11/codes/grzelak_hedging_with_jumps.py
 
-    - Part III Volatility and Calibration:
+    - III Volatility and Calibration:
 
         - 12 Implied Volatility:
             - Chapter Overview: ch12/index.md
@@ -898,7 +898,7 @@ nav:
                 - Objective Function Comparison: ch17/codes/objective_function_comparison.py
                 - Regularization Effect Demo: ch17/codes/regularization_effect_demo.py
 
-    - Part IV Interest Rates and Credit:
+    - IV Interest Rates and Credit:
 
         - 18 Term Structure and Short-Rate Models:
             - Chapter Overview: ch18/index.md
@@ -1210,7 +1210,7 @@ nav:
                 - Credit Spread Term Structure: ch21/codes/credit_spread_term_structure.py
                 - Default Correlation (Gaussian Copula): ch21/codes/default_correlation_copula.py
 
-    - Part V Risk & AI:
+    - V Risk & AI:
 
         - 22 Risk Management:
             - Chapter Overview: ch22/index.md
@@ -1370,9 +1370,6 @@ nav:
                 - Kalman Filter for Stochastic Vol: ch24/codes/kalman_filter_stochastic_vol.py
                 - Deep BSDE for BS PDE: ch24/codes/deep_bsde_black_scholes.py
                 - Feature Importance (Shapley): ch24/codes/feature_importance_shapley.py
-
-    - Exams:
-        - Exam Papers: exams/exam_papers.md
 
 plugins:
     - search
