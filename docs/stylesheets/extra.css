@@ -2,3 +2,16 @@
 .md-typeset figure figcaption {
   text-align: left;
 }
+
+/* Collapse all nav items by default, including the active one */
+.md-nav__item--nested > .md-nav__toggle {
+    display: none;
+}
+
+.md-nav__item--nested > .md-nav {
+    display: none;
+}
+
+.md-nav__item--nested > .md-nav__toggle:checked ~ .md-nav {
+    display: block;
+}

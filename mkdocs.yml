@@ -1,41 +1,13 @@
 site_name: Quant Finance with Python
 site_description: A comprehensive textbook on quantitative finance with Python implementations
-
 theme:
     name: material
-    features:
-        - navigation.tabs
-        - navigation.sections
-        - navigation.top
-        - navigation.indexes
-        #- toc.integrate
-        - search.suggest
-        - search.highlight
-    palette:
-        - scheme: default
-          primary: indigo
-          accent: indigo
-          toggle:
-              icon: material/brightness-7
-              name: Switch to dark mode
-        - scheme: slate
-          primary: indigo
-          accent: indigo
-          toggle:
-              icon: material/brightness-4
-              name: Switch to light mode
-    font:
-        text: Roboto
-        code: Roboto Mono
 
 markdown_extensions:
-    - attr_list
-    - pymdownx.blocks.caption
     - admonition
     - toc:
         permalink: true
     - pymdownx.superfences
-    - pymdownx.details
     - pymdownx.arithmatex:
         generic: true
 
@@ -43,8 +15,46 @@ extra_javascript:
     - javascripts/mathjax.js
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-extra_css:
-    - stylesheets/extra.css
+# theme:
+#     name: material
+#     features:
+#         - navigation.tabs
+#         #- navigation.sections
+#         - navigation.top
+#         - navigation.indexes
+#         #- toc.integrate
+#         - search.suggest
+#         - search.highlight
+#     palette:
+#         - scheme: default
+#           primary: indigo
+#           accent: indigo
+#           toggle:
+#               icon: material/brightness-7
+#               name: Switch to dark mode
+#         - scheme: slate
+#           primary: indigo
+#           accent: indigo
+#           toggle:
+#               icon: material/brightness-4
+#               name: Switch to light mode
+#     font:
+#         text: Roboto
+#         code: Roboto Mono
+
+# markdown_extensions:
+#     - attr_list
+#     - pymdownx.blocks.caption
+#     - admonition
+#     - toc:
+#         permalink: true
+#     - pymdownx.superfences
+#     - pymdownx.details
+#     - pymdownx.arithmatex:
+#         generic: true
+
+# extra_css:
+#     - stylesheets/extra.css
 
 nav:
     - Home: index.md
@@ -53,7 +63,7 @@ nav:
 
         - 1 Discrete Models and FTAP:
             - Chapter Overview: ch01/index.md
-            - 1.1 Discrete-Time Finance Foundations:
+            - 1.1 Discrete Models:
                 - One-Period Market Model: ch01/discrete_time_foundations/one_period_market_model.md
                 - Portfolios and Payoffs: ch01/discrete_time_foundations/portfolios_and_payoffs.md
                 - Arbitrage and Dominance: ch01/discrete_time_foundations/arbitrage_and_dominance.md
@@ -89,7 +99,7 @@ nav:
 
         - 2 Stochastic Process:
             - Chapter Overview: ch02/index.md
-            - 2.1 Discrete-Time Stochastic Processes:
+            - 2.1 DT Processes:
                 - Random Variables and Probability Spaces: ch02/discrete_time/random_variables_and_probability_spaces.md
                 - Conditional Expectation: ch02/discrete_time/conditional_expectation.md
                 - Markov Chains: ch02/discrete_time/markov_chains.md
@@ -165,7 +175,7 @@ nav:
                 - Verifying SDE Solution: ch03/sde/verifying_sde_solutions.md
                 - Moment Analysis: ch03/sde/sde_moment_analysis.md
                 - SDE Simulation: ch03/sde/sde_simulation.md
-            - 3.5 Existence and Uniqueness:
+            - 3.5 Existence & Uniqueness:
                 - Lipschitz & Growth: ch03/existence_uniqueness/lipschitz_conditions.md
                 - Picard Iteration: ch03/existence_uniqueness/picard_iteration.md
                 - Strong vs Weak Solutions: ch03/existence_uniqueness/strong_vs_weak.md
@@ -233,6 +243,8 @@ nav:
                     - Create Financial History: ch03/codes/stock_analysis_create_history.py
                     - Journalism Fact Check: ch03/codes/stock_analysis_journalism_check.py
                     - GBM Paths and Strikes (Grzelak): ch03/codes/grzelak_gbm_paths_and_strikes.py
+                - Statistical Analysis:
+                    - Normality Tests on Log-Returns: ch03/codes/stock_analysis_normality_tests.py
 
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
@@ -282,7 +294,7 @@ nav:
                 - Maximum Principle: ch05/heat_equation/maximum_principle.md
                 - Uniqueness via Energy Methods: ch05/heat_equation/uniqueness_via_energy_methods.md
                 - Heat Equation and Brownian Motion: ch05/heat_equation/heat_equation_and_brownian_motion.md
-            - 5.3 Green's Functions and Transition Densities:
+            - 5.3 Transition Densities:
                 - Green's Function for Parabolic PDEs: ch05/greens_functions/greens_function_parabolic.md
                 - Transition Density as Green's Function: ch05/greens_functions/transition_density_as_greens_function.md
                 - Spectral Decomposition: ch05/greens_functions/spectral_decomposition.md
@@ -313,7 +325,7 @@ nav:
                 - Visualize FFT: ch05/codes/visualize_fft.py
                 - Visualize FFT Low Pass Filter: ch05/codes/visualize_fft_low_pass.py
 
-    - II Black-Scholes and Extensions:
+    - II Black-Scholes:
 
         - 6 Black-Scholes Model:
             - Chapter Overview: ch06/index.md
@@ -332,7 +344,7 @@ nav:
                 - Discounting and Killing: ch06/bs_pde_structure/discounting_and_killing_term.md
                 - Greeks from PDE: ch06/bs_pde_structure/greeks_from_pde.md
                 - Boundary Conditions: ch06/bs_pde_structure/terminal_and_boundary_conditions.md
-            - 6.4 BS PDE Analytic Solution:
+            - 6.4 BS PDE Analytic Sol:
                 - Heat Equation: ch06/bs_pde_analytic_solution/heat_equation.md
                 - Separation of Variables: ch06/bs_pde_analytic_solution/separation_of_variables.md
                 - Similarity Solutions: ch06/bs_pde_analytic_solution/similarity_solutions.md
@@ -358,8 +370,9 @@ nav:
                 - Option Prices (Using Monte Carlo): ch06/codes/black_scholes_prices_mc.py
                 - Option Prices (Using Put-Call Parity): ch06/codes/black_scholes_prices_parity.py
                 - BSM Analytical Functions (Call, Put, Vega, IV): ch06/codes/bsm_functions.py
+                - BSM Static vs Dynamic Monte Carlo: ch06/codes/bsm_static_vs_dynamic_mc.py
 
-        - 7 Extensions, American, and Exotic Options:
+        - 7 Extensions & Exotics:
             - Chapter Overview: ch07/index.md
             - 7.1 BS Model Extensions:
                 - Limitations and Extensions: ch07/extensions_black_scholes/limitations_extensions.md
@@ -385,7 +398,7 @@ nav:
                 - Graduate-Level Insights: ch07/exotic_options/graduate_level_insights.md
                 - Barrier Options (Joint Law): ch07/exotic_options/barrier_options_joint_law.md
                 - Barrier Options (Girsanov): ch07/exotic_options/barrier_options_girsanov.md
-            - 7.4 Merton Jump-Diffusion in Detail:
+            - 7.4 Jump-Diffusion Model:
                 - Jump-Diffusion SDE: ch07/merton_jump_diffusion/jump_diffusion_sde.md
                 - Poisson Process and Jump Size Distribution: ch07/merton_jump_diffusion/poisson_process_and_jump_size.md
                 - Itô Formula for Jump Processes: ch07/merton_jump_diffusion/ito_formula_for_jump_processes.md
@@ -416,13 +429,13 @@ nav:
                 - Digital Payoffs Cost Reduction (Grzelak): ch07/codes/grzelak_digital_payoffs_cost_reduction.py
                 - BS with Jump Volatility (Grzelak): ch07/codes/grzelak_bs_jump_volatility.py
 
-        - 8 Numerical Methods for BS PDE:
+        - 8 BS PDE Numerical Sol:
             - Chapter Overview: ch08/index.md
-            - 8.1 Finite Difference Methods:
+            - 8.1 FDM:
                 - Boundary and Terminal Conditions: ch08/fdm/boundary_and_terminal_conditions.md
                 - Finite Difference Method: ch08/fdm/finite_difference_methods.md
                 - Explicit, Implicit, and Crank-Nicolson: ch08/fdm/explicit_implicit_crank_nicolson_schemes.md
-            - 8.2 Scheme Implementations:
+            - 8.2 Implementations:
                 - Explicit Scheme: ch08/implementation/explicit_scheme_implementation.md
                 - Implicit Scheme: ch08/implementation/implicit_scheme_implementation.md
                 - Crank-Nicolson: ch08/implementation/crank_nicolson_implementation.md
@@ -432,7 +445,7 @@ nav:
                 - CFL Condition and Time Step Restrictions: ch08/analysis/cfl_condition_and_time_step.md
                 - Grid Convergence and Error Analysis: ch08/analysis/grid_convergence_and_error_analysis.md
                 - Richardson Extrapolation: ch08/analysis/richardson_extrapolation.md
-            - 8.4 Greeks and Sensitivity Estimation:
+            - 8.4 Greeks & Sensitivities:
                 - FDM Greeks Overview: ch08/estimation/greeks_sensitivity_estimation.md
                 - Delta and Gamma via Finite Differences: ch08/estimation/delta_gamma_finite_differences.md
                 - Theta from Time Stepping: ch08/estimation/theta_from_time_stepping.md
@@ -444,7 +457,7 @@ nav:
                 - PSOR Algorithm: ch08/american_options/psor_algorithm.md
                 - Penalty Method: ch08/american_options/penalty_method.md
                 - American Options Implementation: ch08/american_options/american_options_early_exercise_implementation.md
-            - 8.6 Monotone Schemes and Viscosity Solutions:
+            - 8.6 Viscosity Solutions:
                 - Viscosity Solution Framework: ch08/monotone/viscosity_solution_framework.md
                 - Monotone Schemes and Convergence: ch08/monotone/monotone_schemes_and_viscosity_solutions.md
                 - Comparison Principle: ch08/monotone/comparison_principle.md
@@ -581,6 +594,7 @@ nav:
                 - Hedging Error Distribution: ch11/codes/hedging_error_distribution.py
                 - BS Hedging (Grzelak): ch11/codes/grzelak_bs_hedging.py
                 - Hedging with Jumps (Grzelak): ch11/codes/grzelak_hedging_with_jumps.py
+                - SMA Trading Strategy (Backtest & Grid Search): ch11/codes/sma_trading_strategy.py
 
     - III Volatility and Calibration:
 
@@ -899,6 +913,7 @@ nav:
                 - Calibration Stability Analysis: ch17/codes/calibration_stability_analysis.py
                 - Objective Function Comparison: ch17/codes/objective_function_comparison.py
                 - Regularization Effect Demo: ch17/codes/regularization_effect_demo.py
+                - Jump-Diffusion Calibration to Options: ch17/codes/jump_diffusion_calibration.py
 
     - IV Interest Rates and Credit:
 
@@ -1270,6 +1285,7 @@ nav:
                 - Exposures HW Netting (Grzelak): ch22/codes/grzelak_exposures_hw_netting.py
                 - Historical VaR (Grzelak): ch22/codes/grzelak_historical_var.py
                 - Monte Carlo VaR (Grzelak): ch22/codes/grzelak_monte_carlo_var.py
+                - Portfolio Optimisation & Efficient Frontier: ch22/codes/portfolio_optimization_frontier.py
 
         - 23 Robust Pricing:
             - Chapter Overview: ch23/index.md
@@ -1372,28 +1388,8 @@ nav:
                 - Kalman Filter for Stochastic Vol: ch24/codes/kalman_filter_stochastic_vol.py
                 - Deep BSDE for BS PDE: ch24/codes/deep_bsde_black_scholes.py
                 - Feature Importance (Shapley): ch24/codes/feature_importance_shapley.py
-
-    - Appendix – DX Derivatives Analytics Library:
-
-        - DX Library Overview: appendix_dx/index.md
-        - A.1 Frame Components:
-            - Market Environment: appendix_dx/codes/dx_market_environment.py
-            - Year-Fraction Utility: appendix_dx/codes/dx_get_year_deltas.py
-            - Constant Short Rate Discounting: appendix_dx/codes/dx_constant_short_rate.py
-            - Variance-Reduced Random Numbers: appendix_dx/codes/dx_sn_random_numbers.py
-        - A.2 Simulation Classes:
-            - Simulation Base Class: appendix_dx/codes/dx_simulation_class.py
-            - Geometric Brownian Motion: appendix_dx/codes/dx_geometric_brownian_motion.py
-            - Square-Root Diffusion (CIR): appendix_dx/codes/dx_square_root_diffusion.py
-            - Jump Diffusion (Merton): appendix_dx/codes/dx_jump_diffusion.py
-        - A.3 Valuation Classes:
-            - Valuation Base Class: appendix_dx/codes/dx_valuation_class.py
-            - European Option (MC): appendix_dx/codes/dx_valuation_mcs_european.py
-            - American Option (LSM): appendix_dx/codes/dx_valuation_mcs_american.py
-            - Option Statistics Plotter: appendix_dx/codes/dx_plot_option_stats.py
-        - A.4 Portfolio Management:
-            - Derivatives Position: appendix_dx/codes/dx_derivatives_position.py
-            - Derivatives Portfolio: appendix_dx/codes/dx_derivatives_portfolio.py
+                - Bayesian Regression for Finance: ch24/codes/bayesian_regression_finance.py
+                - ML Classification Survey: ch24/codes/ml_classification_survey.py
 
 plugins:
     - search
