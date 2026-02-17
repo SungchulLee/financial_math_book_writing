@@ -8,7 +8,7 @@ theme:
         - navigation.sections
         - navigation.top
         - navigation.indexes
-        - toc.integrate
+        #- toc.integrate
         - search.suggest
         - search.highlight
     palette:
@@ -85,6 +85,7 @@ nav:
                 - No-Arbitrage Check: ch01/codes/ftap_no_arbitrage_check.py
                 - Arrow–Debreu Price Extraction: ch01/codes/arrow_debreu_prices.py
                 - Characteristic Function of Normal (Grzelak): ch01/codes/grzelak_char_function_normal.py
+                - BSM Monte Carlo European (Intro): ch01/codes/bsm_mcs_euro.py
 
         - 2 Stochastic Process:
             - Chapter Overview: ch02/index.md
@@ -356,6 +357,7 @@ nav:
                 - Option Prices (Using Formula): ch06/codes/black_scholes_prices_formula.py
                 - Option Prices (Using Monte Carlo): ch06/codes/black_scholes_prices_mc.py
                 - Option Prices (Using Put-Call Parity): ch06/codes/black_scholes_prices_parity.py
+                - BSM Analytical Functions (Call, Put, Vega, IV): ch06/codes/bsm_functions.py
 
         - 7 Extensions, American, and Exotic Options:
             - Chapter Overview: ch07/index.md
@@ -1370,6 +1372,28 @@ nav:
                 - Kalman Filter for Stochastic Vol: ch24/codes/kalman_filter_stochastic_vol.py
                 - Deep BSDE for BS PDE: ch24/codes/deep_bsde_black_scholes.py
                 - Feature Importance (Shapley): ch24/codes/feature_importance_shapley.py
+
+    - Appendix – DX Derivatives Analytics Library:
+
+        - DX Library Overview: appendix_dx/index.md
+        - A.1 Frame Components:
+            - Market Environment: appendix_dx/codes/dx_market_environment.py
+            - Year-Fraction Utility: appendix_dx/codes/dx_get_year_deltas.py
+            - Constant Short Rate Discounting: appendix_dx/codes/dx_constant_short_rate.py
+            - Variance-Reduced Random Numbers: appendix_dx/codes/dx_sn_random_numbers.py
+        - A.2 Simulation Classes:
+            - Simulation Base Class: appendix_dx/codes/dx_simulation_class.py
+            - Geometric Brownian Motion: appendix_dx/codes/dx_geometric_brownian_motion.py
+            - Square-Root Diffusion (CIR): appendix_dx/codes/dx_square_root_diffusion.py
+            - Jump Diffusion (Merton): appendix_dx/codes/dx_jump_diffusion.py
+        - A.3 Valuation Classes:
+            - Valuation Base Class: appendix_dx/codes/dx_valuation_class.py
+            - European Option (MC): appendix_dx/codes/dx_valuation_mcs_european.py
+            - American Option (LSM): appendix_dx/codes/dx_valuation_mcs_american.py
+            - Option Statistics Plotter: appendix_dx/codes/dx_plot_option_stats.py
+        - A.4 Portfolio Management:
+            - Derivatives Position: appendix_dx/codes/dx_derivatives_position.py
+            - Derivatives Portfolio: appendix_dx/codes/dx_derivatives_portfolio.py
 
 plugins:
     - search
