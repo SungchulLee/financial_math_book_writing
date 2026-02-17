@@ -59,9 +59,9 @@ extra_javascript:
 nav:
     - Home: index.md
 
-    - I Math Foundations:
+    - I Math Foundation:
 
-        - 1 Discrete Models and FTAP:
+        - 1 Discrete Model:
             - Chapter Overview: ch01/index.md
             - 1.1 Discrete Models:
                 - One-Period Market Model: ch01/discrete_time_foundations/one_period_market_model.md
@@ -99,7 +99,7 @@ nav:
 
         - 2 Stochastic Process:
             - Chapter Overview: ch02/index.md
-            - 2.1 DT Processes:
+            - 2.1 DT Process:
                 - Random Variables and Probability Spaces: ch02/discrete_time/random_variables_and_probability_spaces.md
                 - Conditional Expectation: ch02/discrete_time/conditional_expectation.md
                 - Markov Chains: ch02/discrete_time/markov_chains.md
@@ -126,7 +126,7 @@ nav:
                 - Martingale Convergence: ch02/filtration_and_martingales/martingale_convergence.md
                 - Doob–Meyer Decomposition: ch02/filtration_and_martingales/doob_meyer_decomposition.md
                 - Uniform Integrability: ch02/filtration_and_martingales/uniform_integrability.md
-            - 2.4 Python Examples:
+            - 2.4 Python Example:
                 - Brownian Motion Beginner Tutorial: ch02/codes/brownian_motion_beginner_tutorial.py
                 - Brownian Motion Simulation: ch02/codes/brownian_motion_simulation.py
                 - Cumulative Sum of dB²: ch02/codes/brownian_motion_cumsum_db_sq.py
@@ -191,7 +191,7 @@ nav:
                 - Dynkin's Formula: ch03/infinitesimal_generator/dynkin_formula.md
                 - Generator and Martingales: ch03/infinitesimal_generator/generator_and_martingales.md
                 - Applications of Dynkin: ch03/infinitesimal_generator/applications_of_dynkin.md
-            - 3.8 Python Examples:
+            - 3.8 Python Example:
                 - Taylor Expansion:
                     - Linear (1 Variable): ch03/codes/approx_1var_linear.py
                     - Quadratic (1 Variable): ch03/codes/approx_1var_quadratic.py
@@ -248,7 +248,7 @@ nav:
 
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
-            - 4.1 Martingale Basics:
+            - 4.1 Martingale Basic:
                 - Local Martingale: ch04/martingale_foundations/local_martingale.md
                 - Martingale & No-Arbitrage: ch04/martingale_foundations/martingale_and_no_arbitrage.md
                 - Risk-Neutral Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
@@ -272,7 +272,7 @@ nav:
                 - Risk Premium Decomposition: ch04/financial_interpretation/risk_premium_decomposition.md
                 - When Measure Change Fails: ch04/financial_interpretation/when_measure_change_fails.md
                 - Practitioner Perspective: ch04/financial_interpretation/practitioner_perspective.md
-            - 4.5 Python Examples:
+            - 4.5 Python Example:
                 - Girsanov Drift Change Visualization: ch04/codes/girsanov_drift_change.py
                 - Radon–Nikodym Density Simulation: ch04/codes/radon_nikodym_density.py
                 - Risk-Neutral vs Physical Paths: ch04/codes/risk_neutral_vs_physical_paths.py
@@ -294,7 +294,7 @@ nav:
                 - Maximum Principle: ch05/heat_equation/maximum_principle.md
                 - Uniqueness via Energy Methods: ch05/heat_equation/uniqueness_via_energy_methods.md
                 - Heat Equation and Brownian Motion: ch05/heat_equation/heat_equation_and_brownian_motion.md
-            - 5.3 Transition Densities:
+            - 5.3 Transition Density:
                 - Green's Function for Parabolic PDEs: ch05/greens_functions/greens_function_parabolic.md
                 - Transition Density as Green's Function: ch05/greens_functions/transition_density_as_greens_function.md
                 - Spectral Decomposition: ch05/greens_functions/spectral_decomposition.md
@@ -312,7 +312,7 @@ nav:
                 - Discounted Feynman–Kac: ch05/feynman_kac/discounted_feynman_kac.md
                 - Applications to Option Pricing: ch05/feynman_kac/feynman_kac_option_pricing.md
                 - Applications: ch05/feynman_kac/feynman_kac_applications.md
-            - 5.6 Python Examples:
+            - 5.6 Python Example:
                 - Heat Equation 1D (Fundamental Solution): ch05/codes/heat_equation_1d_fundamental.py
                 - Heat Equation 1D (Eigenfunction Expansion): ch05/codes/heat_equation_1d_eigenfunction.py
                 - Heat Equation 1D (FFT): ch05/codes/heat_equation_1d_fft.py
@@ -363,7 +363,7 @@ nav:
                 - Asymptotic Behavior: ch06/black_scholes_formula/asymptotic_behavior.md
                 - Properties and Bounds: ch06/black_scholes_formula/properties_and_bounds.md
                 - Computational Examples: ch06/black_scholes_formula/computational_examples.md
-            - 6.6 Python Examples:
+            - 6.6 Python Example:
                 - GBM Simulation: ch06/codes/black_scholes_gbm.py
                 - Option Prices (Comprehensive): ch06/codes/black_scholes_option_prices.py
                 - Option Prices (Using Formula): ch06/codes/black_scholes_prices_formula.py
@@ -917,7 +917,7 @@ nav:
 
     - IV Interest Rates and Credit:
 
-        - 18 Term Structure and Short-Rate Models:
+        - 18 Term Structure:
             - Chapter Overview: ch18/index.md
             - 18.1 Yield Curves:
                 - Discount Factors and Zero Rates: ch18/yield_curves/discount_factors_and_zero_rates.md
@@ -988,7 +988,7 @@ nav:
                 - Ho-Lee ZCBs (Grzelak): ch18/codes/grzelak_ho_lee_zcbs.py
                 - Ho-Lee Model (QuantPie): ch18/codes/quantpie_ho_lee_model.py
 
-        - 19 Interest Rate Derivatives and HJM:
+        - 19 HJM:
             - Chapter Overview: ch19/index.md
             - 19.1 Pricing Interest Rate Derivatives:
                 - Bond Pricing via PDEs: ch19/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
@@ -1062,7 +1062,7 @@ nav:
                     - Stochastic Amortizing Swap: ch19/codes/grzelak_stochastic_amortizing_swap.py
                     - Mortgage Prepayment Incentives: ch19/codes/grzelak_mortgage_incentives.py
 
-        - 20 Hull-White Model in Detail:
+        - 20 Hull-White:
             - Chapter Overview: ch20/index.md
             - 20.1 Model Definition and HJM Derivation:
                 - Hull-White SDE and Mean Reversion: ch20/model_definition/hull_white_sde_and_mean_reversion.md
