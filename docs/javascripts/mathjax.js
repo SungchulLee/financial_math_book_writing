@@ -3,11 +3,15 @@ window.MathJax = {
     inlineMath: [["\\(", "\\)"]],
     displayMath: [["\\[", "\\]"]],
     processEscapes: true,
-    processEnvironments: true
+    processEnvironments: true,
+    packages: {'[+]': ['ams', 'boldsymbol']}
   },
   options: {
     ignoreHtmlClass: ".*|",
     processHtmlClass: "arithmatex"
+  },
+  loader: {
+    load: ['[tex]/ams', '[tex]/boldsymbol']
   }
 };
 

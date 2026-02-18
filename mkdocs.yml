@@ -1,5 +1,4 @@
 site_name: Quant Finance with Python
-site_description: A comprehensive textbook on quantitative finance with Python implementations
 theme:
     name: material
 
@@ -15,59 +14,18 @@ extra_javascript:
     - javascripts/mathjax.js
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-# theme:
-#     name: material
-#     features:
-#         - navigation.tabs
-#         #- navigation.sections
-#         - navigation.top
-#         - navigation.indexes
-#         #- toc.integrate
-#         - search.suggest
-#         - search.highlight
-#     palette:
-#         - scheme: default
-#           primary: indigo
-#           accent: indigo
-#           toggle:
-#               icon: material/brightness-7
-#               name: Switch to dark mode
-#         - scheme: slate
-#           primary: indigo
-#           accent: indigo
-#           toggle:
-#               icon: material/brightness-4
-#               name: Switch to light mode
-#     font:
-#         text: Roboto
-#         code: Roboto Mono
-
-# markdown_extensions:
-#     - attr_list
-#     - pymdownx.blocks.caption
-#     - admonition
-#     - toc:
-#         permalink: true
-#     - pymdownx.superfences
-#     - pymdownx.details
-#     - pymdownx.arithmatex:
-#         generic: true
-
-# extra_css:
-#     - stylesheets/extra.css
-
 nav:
     - Home: index.md
 
-    - I Math Foundation:
+    - I Mathematical Foundations:
 
-        - 1 Discrete Model:
+        - 1 Discrete Models and Binomial Pricing:
             - Chapter Overview: ch01/index.md
-            - 1.1 Discrete Models:
+            - 1.1 Discrete Time Foundations:
                 - One-Period Market Model: ch01/discrete_time_foundations/one_period_market_model.md
                 - Portfolios and Payoffs: ch01/discrete_time_foundations/portfolios_and_payoffs.md
                 - Arbitrage and Dominance: ch01/discrete_time_foundations/arbitrage_and_dominance.md
-                - State Prices and Arrow–Debreu Securities: ch01/discrete_time_foundations/state_prices_arrow_debreu.md
+                - Arrow–Debreu Securities and State Prices: ch01/discrete_time_foundations/state_prices_arrow_debreu.md
             - 1.2 Binomial Model:
                 - Binomial Model: ch01/binomial_model/binomial_model.md
                 - Replicating Portfolio: ch01/binomial_model/replicating_portfolio.md
@@ -77,11 +35,11 @@ nav:
                 - American Options on Trees: ch01/binomial_model/american_options_on_trees.md
                 - Trinomial Model: ch01/binomial_model/trinomial_model.md
                 - Binomial to Black–Scholes: ch01/binomial_model/binomial_to_black_scholes_limit.md
-            - 1.3 FTAP:
-                - FTAP: ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
-                - Separating Hyperplane Thm: ch01/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
+            - 1.3 Fundamental Theorem of Asset Pricing:
+                - Fundamental Theorem of Asset Pricing: ch01/fundamental_theorem_of_asset_pricing/fundamental_theorem_of_asset_pricing.md
+                - Separating Hyperplane Theorem: ch01/fundamental_theorem_of_asset_pricing/separating_hyperplane_theorem.md
                 - Complete Markets and Uniqueness: ch01/fundamental_theorem_of_asset_pricing/complete_markets_and_uniqueness.md
-                - Numéraire with FTAP: ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md
+                - Numéraire and Change of Measure with FTAP: ch01/fundamental_theorem_of_asset_pricing/numeraire_and_change_of_measure.md
                 - Finite Market Examples: ch01/fundamental_theorem_of_asset_pricing/finite_market_examples.md
             - 1.4 Python Examples:
                 - One-Period Binomial Pricing: ch01/codes/binomial_one_period_pricing.py
@@ -97,9 +55,9 @@ nav:
                 - Characteristic Function of Normal (Grzelak): ch01/codes/grzelak_char_function_normal.py
                 - BSM Monte Carlo European (Intro): ch01/codes/bsm_mcs_euro.py
 
-        - 2 Stochastic Process:
+        - 2 Stochastic Processes and Brownian Motion:
             - Chapter Overview: ch02/index.md
-            - 2.1 DT Process:
+            - 2.1 Discrete-Time Processes:
                 - Random Variables and Probability Spaces: ch02/discrete_time/random_variables_and_probability_spaces.md
                 - Conditional Expectation: ch02/discrete_time/conditional_expectation.md
                 - Markov Chains: ch02/discrete_time/markov_chains.md
@@ -108,14 +66,14 @@ nav:
                 - Random Walk: ch02/brownian_motion/random_walk.md
                 - Donsker's Theorem: ch02/brownian_motion/donsker_theorem.md
                 - Brownian Motion: ch02/brownian_motion/brownian_motion.md
-                - Moments: ch02/brownian_motion/moments_of_brownian_motion.md
+                - Moments of Brownian Motion: ch02/brownian_motion/moments_of_brownian_motion.md
                 - Scaling and Time Change: ch02/brownian_motion/scaling_and_time_change.md
                 - Hölder Continuity and Non-Differentiability: ch02/brownian_motion/holder_continuity_and_non_differentiability.md
                 - Quadratic Variation of Brownian Motion: ch02/brownian_motion/quadratic_variation_of_brownian_motion.md
                 - Reflection Principle: ch02/brownian_motion/reflection_principle.md
                 - First Passage Times: ch02/brownian_motion/first_passage_times.md
-            - 2.3 Martingale:
-                - Filtration: ch02/filtration_and_martingales/filtration.md
+            - 2.3 Filtrations and Martingales:
+                - Filtrations: ch02/filtration_and_martingales/filtration.md
                 - Adapted Processes: ch02/filtration_and_martingales/adapted_processes.md
                 - Martingales: ch02/filtration_and_martingales/martingales.md
                 - Brownian Martingales: ch02/filtration_and_martingales/brownian_motion_martingales.md
@@ -126,7 +84,7 @@ nav:
                 - Martingale Convergence: ch02/filtration_and_martingales/martingale_convergence.md
                 - Doob–Meyer Decomposition: ch02/filtration_and_martingales/doob_meyer_decomposition.md
                 - Uniform Integrability: ch02/filtration_and_martingales/uniform_integrability.md
-            - 2.4 Python Example:
+            - 2.4 Python Examples:
                 - Brownian Motion Beginner Tutorial: ch02/codes/brownian_motion_beginner_tutorial.py
                 - Brownian Motion Simulation: ch02/codes/brownian_motion_simulation.py
                 - Cumulative Sum of dB²: ch02/codes/brownian_motion_cumsum_db_sq.py
@@ -141,7 +99,7 @@ nav:
                 - Coin Flip Paths (Two Paths): ch02/codes/coin_flip_two_paths.py
                 - Integrated Brownian Motion (Grzelak): ch02/codes/grzelak_integrated_brownian_motion.py
 
-        - 3 SDE:
+        - 3 Stochastic Differential Equations:
             - Chapter Overview: ch03/index.md
             - 3.1 Empirical Motivation:
                 - Real Stock Returns: ch03/empirical_motivation/stock_data_and_returns.md
@@ -157,41 +115,41 @@ nav:
                 - Properties of Itô Integrals: ch03/ito_integral/ito_integral_properties.md
                 - Itô Processes: ch03/ito_integral/ito_processes.md
                 - Stratonovich Integral: ch03/ito_integral/stratonovich_integration.md
-            - 3.3 Itô Formula:
+            - 3.3 Itô's Formula and Itô Calculus:
                 - Taylor Expansion (Linear): ch03/ito_lemma/taylor_expansion_linear.md
-                - Taylor Expansion (Quad): ch03/ito_lemma/taylor_expansion_quadratic.md
-                - from Taylor to Itô: ch03/ito_lemma/from_taylor_to_ito.md
+                - Taylor Expansion (Quadratic): ch03/ito_lemma/taylor_expansion_quadratic.md
+                - From Taylor to Itô: ch03/ito_lemma/from_taylor_to_ito.md
                 - Itô Lemma: ch03/ito_lemma/ito_lemma.md
                 - Why Itô Lemma Matters: ch03/ito_lemma/ito_lemma_why_it_matters.md
-                - Itô Lemma (Multi-Dim): ch03/ito_lemma/ito_lemma_multidimensional_version.md
+                - Itô Lemma (Multidimensional Version): ch03/ito_lemma/ito_lemma_multidimensional_version.md
                 - Itô Product Rule: ch03/ito_lemma/ito_product_rule.md
                 - Integration by Parts: ch03/ito_lemma/ito_integration_by_parts.md
                 - Itô Quotient Rule: ch03/ito_lemma/ito_quotient_rule.md
                 - Applications and Examples: ch03/ito_lemma/ito_calculus_applications.md
-            - 3.4 SDE:
-                - SDE: ch03/sde/stochastic_differential_equations.md
-                - Examples: ch03/sde/sde_examples.md
-                - Solving SDE: ch03/sde/solving_sde.md
-                - Verifying SDE Solution: ch03/sde/verifying_sde_solutions.md
-                - Moment Analysis: ch03/sde/sde_moment_analysis.md
-                - SDE Simulation: ch03/sde/sde_simulation.md
-            - 3.5 Existence & Uniqueness:
-                - Lipschitz & Growth: ch03/existence_uniqueness/lipschitz_conditions.md
+            - 3.4 Stochastic Differential Equations:
+                - Stochastic Differential Equations: ch03/sde/stochastic_differential_equations.md
+                - Examples of SDEs: ch03/sde/sde_examples.md
+                - Solving SDEs: ch03/sde/solving_sde.md
+                - Verifying SDE Solutions: ch03/sde/verifying_sde_solutions.md
+                - Moment Analysis of SDEs: ch03/sde/sde_moment_analysis.md
+                - SDE Simulation Methods: ch03/sde/sde_simulation.md
+            - 3.5 Existence and Uniqueness of Solutions:
+                - Lipschitz Conditions and Linear Growth: ch03/existence_uniqueness/lipschitz_conditions.md
                 - Picard Iteration: ch03/existence_uniqueness/picard_iteration.md
                 - Strong vs Weak Solutions: ch03/existence_uniqueness/strong_vs_weak.md
-            - 3.6 Diffusion Process:
+            - 3.6 Diffusion Processes:
                 - Diffusion Process Overview: ch03/diffusion_process/diffusion_process_overview.md
                 - Strong Markov Property: ch03/diffusion_process/strong_markov_property.md
-                - Stroock–Varadhan Problem: ch03/diffusion_process/martingale_problem_stroock_varadhan.md
-                - Invariant Measures: ch03/diffusion_process/invariant_measures_and_stationarity.md
+                - Stroock–Varadhan Martingale Problem: ch03/diffusion_process/martingale_problem_stroock_varadhan.md
+                - Invariant Measures and Stationarity: ch03/diffusion_process/invariant_measures_and_stationarity.md
                 - Time Reversal of Diffusions: ch03/diffusion_process/time_reversal_of_diffusions.md
-                - Large Deviations: ch03/diffusion_process/small_noise_and_large_deviations.md
-            - 3.7 Generator:
+                - Small Noise and Large Deviations: ch03/diffusion_process/small_noise_and_large_deviations.md
+            - 3.7 Infinitesimal Generator:
                 - Infinitesimal Generator: ch03/infinitesimal_generator/infinitesimal_generator.md
                 - Dynkin's Formula: ch03/infinitesimal_generator/dynkin_formula.md
                 - Generator and Martingales: ch03/infinitesimal_generator/generator_and_martingales.md
-                - Applications of Dynkin: ch03/infinitesimal_generator/applications_of_dynkin.md
-            - 3.8 Python Example:
+                - Applications of Dynkin's Formula: ch03/infinitesimal_generator/applications_of_dynkin.md
+            - 3.8 Python Examples:
                 - Taylor Expansion:
                     - Linear (1 Variable): ch03/codes/approx_1var_linear.py
                     - Quadratic (1 Variable): ch03/codes/approx_1var_quadratic.py
@@ -246,33 +204,33 @@ nav:
                 - Statistical Analysis:
                     - Normality Tests on Log-Returns: ch03/codes/stock_analysis_normality_tests.py
 
-        - 4 Measure Change:
+        - 4 Measure Change and Girsanov's Theorem:
             - Chapter Overview: ch04/index.md
-            - 4.1 Martingale Basic:
+            - 4.1 Martingale Foundations:
                 - Local Martingale: ch04/martingale_foundations/local_martingale.md
-                - Martingale & No-Arbitrage: ch04/martingale_foundations/martingale_and_no_arbitrage.md
-                - Risk-Neutral Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
+                - Martingale and No-Arbitrage: ch04/martingale_foundations/martingale_and_no_arbitrage.md
+                - Risk-Neutral Valuation Principle: ch04/martingale_foundations/risk_neutral_valuation_principle.md
                 - Stochastic Exponential: ch04/martingale_foundations/stochastic_exponential.md
                 - Martingale Representation Theorem: ch04/martingale_foundations/martingale_representation_theorem.md
-                - Novikov & Kazamaki: ch04/martingale_foundations/novikov_kazamaki_conditions.md
+                - Novikov and Kazamaki Conditions: ch04/martingale_foundations/novikov_kazamaki_conditions.md
             - 4.2 Girsanov Theorem:
-                - Intuitive Intro: ch04/girsanov/girsanov_intuition.md
+                - Intuitive Introduction: ch04/girsanov/girsanov_intuition.md
                 - Girsanov's Theorem: ch04/girsanov/girsanov_theorem.md
-                - Proof: ch04/girsanov/girsanov_proof.md
-                - Financial Meaning: ch04/girsanov/girsanov_drift_adjustment.md
+                - Proof of Girsanov's Theorem: ch04/girsanov/girsanov_proof.md
+                - Financial Meaning of Drift Adjustment: ch04/girsanov/girsanov_drift_adjustment.md
             - 4.3 Risk-Neutral Measure:
-                - Construction of Q: ch04/risk-neutral_measure/construction_of_risk-neutral_measure.md
+                - Construction of the Risk-Neutral Measure: ch04/risk-neutral_measure/construction_of_risk-neutral_measure.md
                 - Market Price of Risk: ch04/risk-neutral_measure/market_price_of_risk.md
-                - Examples: ch04/risk-neutral_measure/example.md
-                - Numéraire and Measure: ch04/risk-neutral_measure/numeraire_and_measure_change.md
+                - Examples of Measure Change: ch04/risk-neutral_measure/example.md
+                - Numéraire and Measure Change: ch04/risk-neutral_measure/numeraire_and_measure_change.md
                 - Forward Measure: ch04/risk-neutral_measure/forward_measure.md
-            - 4.4 Financial Intuition:
+            - 4.4 Financial Interpretation:
                 - Pricing vs Hedging: ch04/financial_interpretation/pricing_vs_hedging.md
-                - P vs Q: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
+                - Physical vs Risk-Neutral World: ch04/financial_interpretation/physical_vs_risk_neutral_world.md
                 - Risk Premium Decomposition: ch04/financial_interpretation/risk_premium_decomposition.md
                 - When Measure Change Fails: ch04/financial_interpretation/when_measure_change_fails.md
                 - Practitioner Perspective: ch04/financial_interpretation/practitioner_perspective.md
-            - 4.5 Python Example:
+            - 4.5 Python Examples:
                 - Girsanov Drift Change Visualization: ch04/codes/girsanov_drift_change.py
                 - Radon–Nikodym Density Simulation: ch04/codes/radon_nikodym_density.py
                 - Risk-Neutral vs Physical Paths: ch04/codes/risk_neutral_vs_physical_paths.py
@@ -280,7 +238,7 @@ nav:
                 - Measure Change for GBM: ch04/codes/measure_change_gbm.py
                 - Martingale Verification (Grzelak): ch04/codes/grzelak_martingale_verification.py
 
-        - 5 PDE:
+        - 5 Partial Differential Equations in Finance:
             - Chapter Overview: ch05/index.md
             - 5.1 Overview:
                 - The SDE–PDE Bridge: ch05/overview/sde_pde_bridge.md
@@ -292,27 +250,27 @@ nav:
                 - Fundamental Solution: ch05/heat_equation/fundamental_solution.md
                 - Scaling and Invariance: ch05/heat_equation/scaling_and_invariance.md
                 - Maximum Principle: ch05/heat_equation/maximum_principle.md
-                - Uniqueness via Energy Methods: ch05/heat_equation/uniqueness_via_energy_methods.md
+                - Energy-Based Uniqueness: ch05/heat_equation/uniqueness_via_energy_methods.md
                 - Heat Equation and Brownian Motion: ch05/heat_equation/heat_equation_and_brownian_motion.md
-            - 5.3 Transition Density:
+            - 5.3 Transition Densities and Green's Functions:
                 - Green's Function for Parabolic PDEs: ch05/greens_functions/greens_function_parabolic.md
                 - Transition Density as Green's Function: ch05/greens_functions/transition_density_as_greens_function.md
                 - Spectral Decomposition: ch05/greens_functions/spectral_decomposition.md
                 - Free vs Bounded Domains: ch05/greens_functions/free_vs_bounded_domains.md
-            - 5.4 Kolmogorov:
+            - 5.4 Kolmogorov Equations:
                 - Kolmogorov Forward: ch05/kolmogorov_equations/kolmogorov_forward.md
                 - Kolmogorov Backward: ch05/kolmogorov_equations/kolmogorov_backward.md
                 - Forward–Backward Duality: ch05/kolmogorov_equations/forward_backward_duality.md
                 - Fokker–Planck for Financial Models: ch05/kolmogorov_equations/fokker_planck_financial_models.md
                 - Transition Densities for Standard SDEs: ch05/kolmogorov_equations/transition_densities_standard_sdes.md
-            - 5.5 Feynman–Kac:
+            - 5.5 Feynman–Kac Formula:
                 - Feynman–Kac Theorem: ch05/feynman_kac/feynman_kac_formula.md
-                - Proof Sketch: ch05/feynman_kac/feynman_kac_proof_sketch.md
+                - Proof Sketch of Feynman–Kac: ch05/feynman_kac/feynman_kac_proof_sketch.md
                 - Running Payoff Extension: ch05/feynman_kac/feynman_kac_running_payoff.md
                 - Discounted Feynman–Kac: ch05/feynman_kac/discounted_feynman_kac.md
                 - Applications to Option Pricing: ch05/feynman_kac/feynman_kac_option_pricing.md
-                - Applications: ch05/feynman_kac/feynman_kac_applications.md
-            - 5.6 Python Example:
+                - Applications of Feynman–Kac: ch05/feynman_kac/feynman_kac_applications.md
+            - 5.6 Python Examples:
                 - Heat Equation 1D (Fundamental Solution): ch05/codes/heat_equation_1d_fundamental.py
                 - Heat Equation 1D (Eigenfunction Expansion): ch05/codes/heat_equation_1d_eigenfunction.py
                 - Heat Equation 1D (FFT): ch05/codes/heat_equation_1d_fft.py
@@ -325,7 +283,7 @@ nav:
                 - Visualize FFT: ch05/codes/visualize_fft.py
                 - Visualize FFT Low Pass Filter: ch05/codes/visualize_fft_low_pass.py
 
-    - II Black-Scholes:
+    - II Black-Scholes Theory:
 
         - 6 Black-Scholes Model:
             - Chapter Overview: ch06/index.md
@@ -335,27 +293,27 @@ nav:
                 - Historical Context: ch06/black_scholes_model/historical_context.md
                 - GBM as Asset Price Model: ch06/black_scholes_model/gbm_as_asset_price_model.md
                 - Self-Financing Portfolios: ch06/black_scholes_model/self_financing_portfolios.md
-            - 6.2 BS PDE Derivation:
+            - 6.2 Black-Scholes PDE Derivation:
                 - Delta Hedging: ch06/bs_pde_derivation/delta_hedging.md
                 - Risk-Neutral Measure: ch06/bs_pde_derivation/risk_neutral_measure.md
                 - Change of Numéraire: ch06/bs_pde_derivation/change_of_numeraire.md
-                - Equilibrium: ch06/bs_pde_derivation/equilibrium.md
-            - 6.3 BS PDE Structure:
+                - Equilibrium Derivation: ch06/bs_pde_derivation/equilibrium.md
+            - 6.3 Black-Scholes PDE Structure:
                 - Discounting and Killing: ch06/bs_pde_structure/discounting_and_killing_term.md
                 - Greeks from PDE: ch06/bs_pde_structure/greeks_from_pde.md
                 - Boundary Conditions: ch06/bs_pde_structure/terminal_and_boundary_conditions.md
-            - 6.4 BS PDE Analytic Sol:
+            - 6.4 Black-Scholes PDE Analytic Solutions:
                 - Heat Equation: ch06/bs_pde_analytic_solution/heat_equation.md
                 - Separation of Variables: ch06/bs_pde_analytic_solution/separation_of_variables.md
                 - Similarity Solutions: ch06/bs_pde_analytic_solution/similarity_solutions.md
                 - Fourier Transform: ch06/bs_pde_analytic_solution/fourier_transform.md
                 - Mellin Transform: ch06/bs_pde_analytic_solution/mellin_transform.md
                 - Laplace Transform (Time): ch06/bs_pde_analytic_solution/laplace_transform_in_time.md
-                - Feynman-Kac Formula: ch06/bs_pde_analytic_solution/feynman_kac.md
+                - Feynman–Kac Formula: ch06/bs_pde_analytic_solution/feynman_kac.md
                 - Change of Numéraire: ch06/bs_pde_analytic_solution/change_of_numeraire.md
                 - Viscosity Solutions: ch06/bs_pde_analytic_solution/viscosity_solutions.md
-            - 6.5 BS Formula:
-                - The Formula: ch06/black_scholes_formula/bs_formula_statement.md
+            - 6.5 Black-Scholes Formula:
+                - The Black-Scholes Formula: ch06/black_scholes_formula/bs_formula_statement.md
                 - Probabilistic Interpretation: ch06/black_scholes_formula/probabilistic_interpretation.md
                 - Girsanov Derivation: ch06/black_scholes_formula/girsanov_derivation.md
                 - Digital Option Pricing: ch06/black_scholes_formula/digital_option_pricing.md
@@ -363,7 +321,7 @@ nav:
                 - Asymptotic Behavior: ch06/black_scholes_formula/asymptotic_behavior.md
                 - Properties and Bounds: ch06/black_scholes_formula/properties_and_bounds.md
                 - Computational Examples: ch06/black_scholes_formula/computational_examples.md
-            - 6.6 Python Example:
+            - 6.6 Python Examples:
                 - GBM Simulation: ch06/codes/black_scholes_gbm.py
                 - Option Prices (Comprehensive): ch06/codes/black_scholes_option_prices.py
                 - Option Prices (Using Formula): ch06/codes/black_scholes_prices_formula.py
@@ -372,13 +330,13 @@ nav:
                 - BSM Analytical Functions (Call, Put, Vega, IV): ch06/codes/bsm_functions.py
                 - BSM Static vs Dynamic Monte Carlo: ch06/codes/bsm_static_vs_dynamic_mc.py
 
-        - 7 Extensions & Exotics:
+        - 7 Extensions and Exotic Options:
             - Chapter Overview: ch07/index.md
-            - 7.1 BS Model Extensions:
+            - 7.1 Black-Scholes Model Extensions:
                 - Limitations and Extensions: ch07/extensions_black_scholes/limitations_extensions.md
-                - Stochastic Volatility Model: ch07/extensions_black_scholes/stochastic_volatility_models.md
-                - Jump-Diffusion Model: ch07/extensions_black_scholes/jump_diffusion_models.md
-                - Incomplete Market Model: ch07/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md
+                - Stochastic Volatility Models: ch07/extensions_black_scholes/stochastic_volatility_models.md
+                - Jump-Diffusion Models: ch07/extensions_black_scholes/jump_diffusion_models.md
+                - Incomplete Markets and Pricing Bounds: ch07/extensions_black_scholes/incomplete_markets_and_pricing_bounds.md
                 - Local Volatility Models: ch07/extensions_black_scholes/local_volatility_models.md
             - 7.2 American Options:
                 - Definition and Classification: ch07/american_options/american_option_definition.md
@@ -388,7 +346,7 @@ nav:
                 - Penalty and FD Methods: ch07/american_options/penalty_and_finite_difference.md
                 - LSM Monte Carlo: ch07/american_options/lsm_monte_carlo.md
             - 7.3 Exotic Options:
-                - Overview: ch07/exotic_options/exotic_options_overview.md
+                - Exotic Options Overview: ch07/exotic_options/exotic_options_overview.md
                 - Barrier Options: ch07/exotic_options/barrier_options.md
                 - Asian Options: ch07/exotic_options/asian_options.md
                 - Lookback Options: ch07/exotic_options/lookback_options.md
@@ -398,7 +356,7 @@ nav:
                 - Graduate-Level Insights: ch07/exotic_options/graduate_level_insights.md
                 - Barrier Options (Joint Law): ch07/exotic_options/barrier_options_joint_law.md
                 - Barrier Options (Girsanov): ch07/exotic_options/barrier_options_girsanov.md
-            - 7.4 Jump-Diffusion Model:
+            - 7.4 Merton Jump-Diffusion Model:
                 - Jump-Diffusion SDE: ch07/merton_jump_diffusion/jump_diffusion_sde.md
                 - Poisson Process and Jump Size Distribution: ch07/merton_jump_diffusion/poisson_process_and_jump_size.md
                 - Itô Formula for Jump Processes: ch07/merton_jump_diffusion/ito_formula_for_jump_processes.md
@@ -429,24 +387,24 @@ nav:
                 - Digital Payoffs Cost Reduction (Grzelak): ch07/codes/grzelak_digital_payoffs_cost_reduction.py
                 - BS with Jump Volatility (Grzelak): ch07/codes/grzelak_bs_jump_volatility.py
 
-        - 8 BS PDE Numerical Sol:
+        - 8 Black-Scholes PDE Numerical Solutions:
             - Chapter Overview: ch08/index.md
-            - 8.1 FDM:
+            - 8.1 Finite Difference Methods:
                 - Boundary and Terminal Conditions: ch08/fdm/boundary_and_terminal_conditions.md
                 - Finite Difference Method: ch08/fdm/finite_difference_methods.md
                 - Explicit, Implicit, and Crank-Nicolson: ch08/fdm/explicit_implicit_crank_nicolson_schemes.md
-            - 8.2 Implementations:
-                - Explicit Scheme: ch08/implementation/explicit_scheme_implementation.md
-                - Implicit Scheme: ch08/implementation/implicit_scheme_implementation.md
-                - Crank-Nicolson: ch08/implementation/crank_nicolson_implementation.md
+            - 8.2 Scheme Implementations:
+                - Explicit Scheme Implementation: ch08/implementation/explicit_scheme_implementation.md
+                - Implicit Scheme Implementation: ch08/implementation/implicit_scheme_implementation.md
+                - Crank-Nicolson Implementation: ch08/implementation/crank_nicolson_implementation.md
             - 8.3 Convergence Analysis:
                 - Stability, Consistency, and Convergence: ch08/analysis/stability_consistency_convergence.md
                 - Von Neumann Stability Analysis: ch08/analysis/von_neumann_stability_analysis.md
                 - CFL Condition and Time Step Restrictions: ch08/analysis/cfl_condition_and_time_step.md
                 - Grid Convergence and Error Analysis: ch08/analysis/grid_convergence_and_error_analysis.md
                 - Richardson Extrapolation: ch08/analysis/richardson_extrapolation.md
-            - 8.4 Greeks & Sensitivities:
-                - FDM Greeks Overview: ch08/estimation/greeks_sensitivity_estimation.md
+            - 8.4 Greeks and Sensitivity Estimation:
+                - Finite Difference Greeks Overview: ch08/estimation/greeks_sensitivity_estimation.md
                 - Delta and Gamma via Finite Differences: ch08/estimation/delta_gamma_finite_differences.md
                 - Theta from Time Stepping: ch08/estimation/theta_from_time_stepping.md
                 - Vega and Rho via Bumping: ch08/estimation/vega_rho_bumping.md
@@ -459,7 +417,7 @@ nav:
                 - American Options Implementation: ch08/american_options/american_options_early_exercise_implementation.md
             - 8.6 Viscosity Solutions:
                 - Viscosity Solution Framework: ch08/monotone/viscosity_solution_framework.md
-                - Monotone Schemes and Convergence: ch08/monotone/monotone_schemes_and_viscosity_solutions.md
+                - Monotone Schemes and Viscosity Solutions: ch08/monotone/monotone_schemes_and_viscosity_solutions.md
                 - Comparison Principle: ch08/monotone/comparison_principle.md
                 - Barles–Souganidis Theorem: ch08/monotone/barles_souganidis_theorem.md
             - 8.7 Python Examples:
@@ -507,7 +465,7 @@ nav:
                 - Carr–Madan FFT Method: ch09/alternative_fourier/carr_madan_fft.md
                 - Lewis Integration Formula: ch09/alternative_fourier/lewis_integration_formula.md
                 - Comparison of Fourier Methods: ch09/alternative_fourier/comparison_of_fourier_methods.md
-            - 9.4 COS Method Extensions:
+            - 9.4 COS Method Extensions and Beyond Heston:
                 - COS Method for Other Affine Models: ch09/beyond_heston/cos_for_other_affine_models.md
                 - COS Method for Interest Rate Models: ch09/beyond_heston/cos_for_interest_rate_models.md
                 - Limitations and When COS Fails: ch09/beyond_heston/limitations_and_failure_cases.md
@@ -523,13 +481,13 @@ nav:
         - 10 Greeks and Asymptotics:
             - Chapter Overview: ch10/index.md
             - 10.1 Definition of Greeks:
-                - Greeks: ch10/greeks/delta_gamma_vega_theta_rho.md
+                - Delta, Gamma, Vega, Theta, and Rho: ch10/greeks/delta_gamma_vega_theta_rho.md
                 - Greeks as Derivatives of Pricing Operator: ch10/greeks/greeks_as_derivatives_of_pricing_operator.md
                 - Greeks via Infinitesimal Generator: ch10/greeks/greeks_via_infinitesimal_generator.md
                 - Greeks and Martingale Representation: ch10/greeks/greeks_and_martingale_representation.md
-                - Greeks in BS Model: ch10/greeks/greeks_in_black_scholes_model.md
+                - Greeks in the Black-Scholes Model: ch10/greeks/greeks_in_black_scholes_model.md
             - 10.2 PDE Characterization of Greeks:
-                - Differentiating BS PDE: ch10/greeks_pde/differentiating_black_scholes_pde.md
+                - Differentiating the Black-Scholes PDE: ch10/greeks_pde/differentiating_black_scholes_pde.md
                 - PDEs Satisfied by Greeks: ch10/greeks_pde/pdes_satisfied_by_greeks.md
                 - Greeks at Boundary and Maturity: ch10/greeks_pde/boundary_and_terminal_behavior_of_greeks.md
                 - Smoothness and Regularity Issues: ch10/greeks_pde/smoothness_and_regularity_issues.md
@@ -601,24 +559,24 @@ nav:
         - 12 Implied Volatility:
             - Chapter Overview: ch12/index.md
             - 12.1 Definition of Implied Volatility:
-                - Implied Volatility as Inverse Problem: ch12/definition_of_implied_volatility/implied_volatility_as_inverse_pricing_map.md
+                - Implied Volatility as Inverse Pricing Map: ch12/definition_of_implied_volatility/implied_volatility_as_inverse_pricing_map.md
                 - Existence and Uniqueness: ch12/definition_of_implied_volatility/existence_and_uniqueness.md
                 - Arbitrage Constraints: ch12/definition_of_implied_volatility/arbitrage_constraints.md
             - 12.2 Model-Free Results:
-                - Breeden–Litzenberger: ch12/model_free_results/breeden_litzenberger_formula.md
+                - Breeden–Litzenberger Formula: ch12/model_free_results/breeden_litzenberger_formula.md
                 - Implied Volatility and Risk-Neutral Density: ch12/model_free_results/implied_volatility_and_risk_neutral_density.md
-                - Variance Swaps and Model-Free Vol: ch12/model_free_results/variance_swaps_and_model_free_volatility.md
+                - Variance Swaps and Model-Free Volatility: ch12/model_free_results/variance_swaps_and_model_free_volatility.md
                 - VIX Formula Derivation: ch12/model_free_results/vix_formula_derivation.md
                 - Dupire Formula and Local Vol Surface: ch12/model_free_results/dupire_formula_and_local_volatility_surface.md
             - 12.3 Implied Volatility Surface:
                 - Term Structure: ch12/implied_volatility_surface/term_structure.md
                 - Skew and Smile: ch12/implied_volatility_surface/skew_and_smile.md
-                - Empirical Smile: ch12/implied_volatility_surface/empirical_smile_spx.md
+                - Empirical Smile (S&P 500): ch12/implied_volatility_surface/empirical_smile_spx.md
                 - Static No-Arbitrage Conditions: ch12/implied_volatility_surface/static_arbitrage_free_conditions.md
             - 12.4 Asymptotics of Implied Volatility:
-                - Short-Maturity Asymptotics: ch12/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
-                - Wing Asymptotics: ch12/asymptotics_of_implied_volatility/wing_asymptotics_and_moment_constraints.md
-                - ATM Expansions: ch12/asymptotics_of_implied_volatility/atm_expansions.md
+                - Short-Maturity Smile Asymptotics: ch12/asymptotics_of_implied_volatility/short_maturity_smile_asymptotics.md
+                - Wing Asymptotics and Moment Constraints: ch12/asymptotics_of_implied_volatility/wing_asymptotics_and_moment_constraints.md
+                - ATM Volatility Expansions: ch12/asymptotics_of_implied_volatility/atm_expansions.md
             - 12.5 Implied Volatility Sensitivities:
                 - Vega and Implied Volatility Sensitivity: ch12/implied_volatility_sensitivities/vega_and_implied_volatility_sensitivity.md
                 - Sticky Strike vs Sticky Delta: ch12/implied_volatility_sensitivities/sticky_strike_vs_sticky_delta.md
@@ -679,7 +637,7 @@ nav:
                 - Correlation and Leverage Effect: ch14/general_stochastic_volatility_framework/correlation_and_leverage_effect.md
                 - Risk-Neutral vs Physical Measure: ch14/general_stochastic_volatility_framework/risk_neutral_vs_physical_measure.md
             - 14.3 The Heston Model:
-                - Model Definition: ch14/the_heston_model/model_definition.md
+                - Heston Model Definition: ch14/the_heston_model/model_definition.md
                 - Feller Condition and Boundary Behavior: ch14/the_heston_model/feller_condition_and_boundary_behavior.md
                 - Affine Structure: ch14/the_heston_model/affine_structure.md
             - 14.4 Pricing Under Stochastic Volatility:
@@ -697,7 +655,7 @@ nav:
                 - Optimal Hedging Criteria: ch14/hedging_and_greeks_under_stochastic_volatility/optimal_hedging_criteria.md
             - 14.7 Extensions and Variants:
                 - SABR Model: ch14/extensions_and_variants/sabr_model.md
-                - Rough Volatility (Overview): ch14/extensions_and_variants/rough_volatility_overview.md
+                - Rough Volatility Overview: ch14/extensions_and_variants/rough_volatility_overview.md
                 - Multi-Factor Volatility Models: ch14/extensions_and_variants/multi_factor_volatility_models.md
             - 14.8 SABR Model in Detail:
                 - SABR SDE and Parameters: ch14/sabr_model/sabr_sde_and_parameters.md
@@ -826,7 +784,7 @@ nav:
             - 16.8 Multi-Factor and Extensions:
                 - Double Heston Model: ch16/extensions/double_heston_model.md
                 - Heston with Jumps (Bates Model): ch16/extensions/bates_model.md
-                - Rough Heston (Overview): ch16/extensions/rough_heston_overview.md
+                - Rough Heston Overview: ch16/extensions/rough_heston_overview.md
                 - Time-Dependent Parameters: ch16/extensions/time_dependent_parameters.md
             - 16.9 Finite Difference Methods:
                 - 2D PDE Formulation (S, v): ch16/fdm/two_dimensional_pde_formulation.md
@@ -915,9 +873,9 @@ nav:
                 - Regularization Effect Demo: ch17/codes/regularization_effect_demo.py
                 - Jump-Diffusion Calibration to Options: ch17/codes/jump_diffusion_calibration.py
 
-    - IV Interest Rates and Credit:
+    - IV Interest Rates and Credit Risk:
 
-        - 18 Term Structure:
+        - 18 Term Structure and Short-Rate Models:
             - Chapter Overview: ch18/index.md
             - 18.1 Yield Curves:
                 - Discount Factors and Zero Rates: ch18/yield_curves/discount_factors_and_zero_rates.md
@@ -988,7 +946,7 @@ nav:
                 - Ho-Lee ZCBs (Grzelak): ch18/codes/grzelak_ho_lee_zcbs.py
                 - Ho-Lee Model (QuantPie): ch18/codes/quantpie_ho_lee_model.py
 
-        - 19 HJM:
+        - 19 Heath-Jarrow-Morton Framework:
             - Chapter Overview: ch19/index.md
             - 19.1 Pricing Interest Rate Derivatives:
                 - Bond Pricing via PDEs: ch19/pricing_interest_rate_derivatives/bond_pricing_via_pdes.md
@@ -1007,7 +965,7 @@ nav:
                 - Volatility Structures and Factor Models: ch19/hjm/volatility_structures_and_factor_models.md
                 - Short-Rate Models as HJM Special Cases: ch19/hjm/short_rate_models_as_hjm_special_cases.md
             - 19.3 LIBOR Market Model:
-                - LIBOR Market Model: ch19/lmm/libor_market_model.md
+                - LIBOR Market Model Overview: ch19/lmm/libor_market_model.md
                 - Forward LIBOR Dynamics: ch19/lmm/forward_libor_dynamics.md
                 - LMM Drift in Terminal Measure: ch19/lmm/lmm_drift_terminal_measure.md
                 - Caplet Pricing (Black's Formula): ch19/lmm/caplet_pricing_black_formula.md
@@ -1062,7 +1020,7 @@ nav:
                     - Stochastic Amortizing Swap: ch19/codes/grzelak_stochastic_amortizing_swap.py
                     - Mortgage Prepayment Incentives: ch19/codes/grzelak_mortgage_incentives.py
 
-        - 20 Hull-White:
+        - 20 Hull-White Model:
             - Chapter Overview: ch20/index.md
             - 20.1 Model Definition and HJM Derivation:
                 - Hull-White SDE and Mean Reversion: ch20/model_definition/hull_white_sde_and_mean_reversion.md
@@ -1227,7 +1185,7 @@ nav:
                 - Credit Spread Term Structure: ch21/codes/credit_spread_term_structure.py
                 - Default Correlation (Gaussian Copula): ch21/codes/default_correlation_copula.py
 
-    - V Risk & AI:
+    - V Risk Management and AI in Finance:
 
         - 22 Risk Management:
             - Chapter Overview: ch22/index.md
@@ -1287,14 +1245,14 @@ nav:
                 - Monte Carlo VaR (Grzelak): ch22/codes/grzelak_monte_carlo_var.py
                 - Portfolio Optimisation & Efficient Frontier: ch22/codes/portfolio_optimization_frontier.py
 
-        - 23 Robust Pricing:
+        - 23 Robust Pricing and Model Uncertainty:
             - Chapter Overview: ch23/index.md
             - 23.1 Model Uncertainty and Ambiguity:
                 - Knightian Uncertainty: ch23/model_uncertainty_and_ambiguity/knightian_uncertainty.md
                 - Sets of Probability Measures: ch23/model_uncertainty_and_ambiguity/sets_of_probability_measures.md
                 - Wasserstein Balls and Distributional Robustness: ch23/model_uncertainty_and_ambiguity/wasserstein_balls_distributional_robustness.md
                 - Misspecification vs Estimation Error: ch23/model_uncertainty_and_ambiguity/misspecification_vs_estimation_error.md
-            - 23.2 Robust Pricing:
+            - 23.2 Robust No-Arbitrage Pricing:
                 - Model-Free Bounds: ch23/robust_no_arbitrage_pricing/model_free_bounds.md
                 - Superhedging Duality: ch23/robust_no_arbitrage_pricing/superhedging_duality.md
                 - Martingale Optimal Transport: ch23/robust_no_arbitrage_pricing/martingale_optimal_transport.md
@@ -1324,7 +1282,7 @@ nav:
                 - Confidence Sets for Models: ch23/robust_calibration/confidence_sets_for_models.md
                 - Worst-Case Calibration: ch23/robust_calibration/worst_case_calibration.md
                 - Stability vs Fit Trade-Off: ch23/robust_calibration/stability_vs_fit_trade_off.md
-            - 23.8 Limits of Quant Modeling:
+            - 23.8 Limits of Quantitative Modeling:
                 - When Models Fail: ch23/limits_of_quantitative_modeling/when_models_fail.md
                 - Case Studies in Model Failure: ch23/limits_of_quantitative_modeling/case_studies_in_model_failure.md
                 - Human Judgment vs Automation: ch23/limits_of_quantitative_modeling/human_judgment_vs_automation.md
