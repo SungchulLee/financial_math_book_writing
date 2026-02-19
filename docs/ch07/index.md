@@ -5,10 +5,26 @@ This chapter extends the Black-Scholes framework beyond European vanilla options
 ## Key Concepts
 
 **Black-Scholes Extensions and Limitations**
-The classical model's assumptions---constant volatility, frictionless markets, no dividends, continuous trading, Gaussian returns---are systematically confronted with empirical evidence and then relaxed. Market data reveals volatility smiles and skews (implied volatility varies with strike and maturity), fat tails (excess kurtosis of 6--8 for S&P 500 daily returns), volatility clustering, the leverage effect (negative correlation between returns and volatility), and price jumps from earnings announcements or crashes. A continuous dividend yield $q$ modifies the risk-neutral drift to $(r - q)S$, producing the Garman-Kohlhagen adjustment $C = Se^{-qT}N(d_1) - Ke^{-rT}N(d_2)$ with $d_{1,2} = (\ln(S/K) + (r - q \pm \frac{1}{2}\sigma^2)T)/(\sigma\sqrt{T})$. Discrete dividends require subtracting the present value of future dividends from the spot price. Transaction costs introduce the Leland correction $\tilde{\sigma}^2 = \sigma^2(1 + \sqrt{2/\pi}\,k/(\sigma\sqrt{\Delta t}))$ and the Hoggard-Whalley-Wilmott optimal hedging bandwidth. Stochastic interest rates (Vasicek, CIR) and incomplete market pricing bounds further extend the framework. A practical model selection hierarchy ranges from Black-Scholes with strike-dependent implied volatility (Level 1) through local and jump-diffusion models (Level 2) to stochastic volatility (Level 3, Heston/SABR) and rough volatility (Level 4).
+The classical model's assumptions---constant volatility, frictionless markets, no dividends, continuous trading, Gaussian returns---are systematically confronted with empirical evidence and then relaxed. Market data reveals volatility smiles and skews (implied volatility varies with strike and maturity), fat tails (excess kurtosis of 6--8 for S&P 500 daily returns), volatility clustering, the leverage effect (negative correlation between returns and volatility), and price jumps from earnings announcements or crashes. A continuous dividend yield $q$ modifies the risk-neutral drift to $(r - q)S$, producing the Garman-Kohlhagen adjustment 
+
+$$C = Se^{-qT}N(d_1) - Ke^{-rT}N(d_2)$$ 
+
+with 
+
+$$d_{1,2} = \frac{\ln(S/K) + (r - q \pm \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$$ 
+
+Discrete dividends require subtracting the present value of future dividends from the spot price. Transaction costs introduce the Leland correction 
+
+$$\tilde{\sigma}^2 = \sigma^2\left(1 + \sqrt{2/\pi}\,\frac{k}{\sigma\sqrt{\Delta t}}\right)$$ 
+
+and the Hoggard-Whalley-Wilmott optimal hedging bandwidth. Stochastic interest rates (Vasicek, CIR) and incomplete market pricing bounds further extend the framework. A practical model selection hierarchy ranges from Black-Scholes with strike-dependent implied volatility (Level 1) through local and jump-diffusion models (Level 2) to stochastic volatility (Level 3, Heston/SABR) and rough volatility (Level 4).
 
 **Local Volatility Models**
-Local volatility replaces constant $\sigma$ with a state-dependent function $\sigma_{\text{loc}}(t, S)$, so that $dS_t = rS_t\,dt + \sigma_{\text{loc}}(t,S_t)S_t\,dW_t^{\mathbb{Q}}$. Dupire's inversion formula recovers local volatility from observed call prices:
+Local volatility replaces constant $\sigma$ with a state-dependent function $\sigma_{\text{loc}}(t, S)$, so that 
+
+$$dS_t = rS_t\,dt + \sigma_{\text{loc}}(t,S_t)S_t\,dW_t^{\mathbb{Q}}$$ 
+
+Dupire's inversion formula recovers local volatility from observed call prices:
 
 $$\sigma_{\text{loc}}^2(T, K) = \frac{\partial_T C + rK\,\partial_K C}{\frac{1}{2}K^2\,\partial_{KK}C}$$
 
