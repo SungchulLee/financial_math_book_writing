@@ -29,6 +29,11 @@ $$
 
 where row $j$ represents the payoffs of asset $j$ across all states, and column $s$ represents the payoffs of all assets in state $s$.
 
+<figure markdown="span">
+  ![State Economy Diagram](./image/state_economy_diagram.svg)
+  <figcaption markdown="span">Figure 1: A single-period economy. From the current state at $t = 0$, the economy transitions with probabilities $p_1, p_2, \ldots, p_S$ into one of $S$ possible states at $t = 1$. Each state $\omega_s$ determines a column of the payoff matrix $\mathbf{X}$, giving the payoffs $(X_{1s}, X_{2s}, \ldots, X_{Ns})^\top$ for all $N$ assets.</figcaption>
+</figure>
+
 ---
 
 ## Arrow-Debreu Securities

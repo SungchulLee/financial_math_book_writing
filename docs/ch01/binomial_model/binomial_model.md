@@ -79,6 +79,11 @@ where:
 - $0 < d < 1$ is the **down factor** (stock decreases by factor $d$)
 - $p \in (0,1)$ is the **physical probability** of an up move
 
+<figure markdown="span">
+  ![One-Period Binomial Model](./image/binomial_one_period.svg)
+  <figcaption markdown="span">Figure 1: One-period binomial model. The stock price evolves from $S_0$ to either $uS_0$ (up) or $dS_0$ (down) with physical probabilities $p$ and $1 - p$. The bank account grows deterministically from 1 to $e^{r\Delta t}$.</figcaption>
+</figure>
+
 !!! example "Numerical Example"
     Let $S_0 = 100$, $u = 1.1$, $d = 0.9$, $r = 0.05$, $\Delta t = 1$ year.
     

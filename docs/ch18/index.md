@@ -1,15 +1,53 @@
-# Term Structure and Short-Rate Models
+# Chapter 18: Term Structure and Short-Rate Models
 
-This chapter provides a comprehensive treatment of the foundational concepts and methodologies in financial mathematics, covering both theoretical frameworks and practical implementations.
+This chapter develops the theory and practice of fixed-income modeling from first principles. Starting from the interest rate market and its instruments, we construct yield curves via bootstrapping and interpolation, then build continuous-time short-rate models—Vasicek, Cox–Ingersoll–Ross, Hull–White, and Black–Karasinski—that price bonds and interest rate derivatives within a unified no-arbitrage framework. The chapter connects market observables to model dynamics and compares tractability, calibration fit, and practical suitability across the model landscape.
 
-## Section Objectives
+## Key Concepts
 
-This chapter covers:
+**Interest Rate Market and Instruments**
+The fixed-income market is organized around **discount factors** $P(t,T)$, the price at time $t$ of one unit of currency at $T$. Zero-coupon bond prices determine all other quantities: the continuously compounded zero rate $R(t,T) = -\ln P(t,T)/(T-t)$, the simply compounded spot rate $L(t,T) = (1/P(t,T) - 1)/(T-t)$, and the instantaneous forward rate $f(t,T) = -\partial_T \ln P(t,T)$. Bond prices are quoted in 1/32 increments in US Treasury markets, with the dirty price (clean plus accrued interest) determining the actual cash flow. A **coupon bond** with coupon rate $c$ and face value $N$ prices as $CB(t) = N\sum_{i} c_i\, P(t,T_i) + N\,P(t,T_n)$, while a **floating-rate note** resetting at Libor satisfies $FRN(t) = N\,P(t,T_m)$ immediately after a reset, a consequence of the telescoping property $\sum P(t,T_{i-1}) - P(t,T_i) = P(t,T_m) - P(t,T_n)$. A **forward rate agreement** (FRA) exchanging fixed rate $K$ for floating rate $L(T_{k-1},T_k)$ has value $V_{\text{FRA}}(t) = N\tau_k(l_k(t) - K)P(t,T_k)$ where $l_k(t) = (P(t,T_{k-1})/P(t,T_k) - 1)/\tau_k$ is the forward Libor rate, which is a martingale under the $T_k$-forward measure. An **interest rate swap** decomposes as a portfolio of FRAs, with the par swap rate $S_{m,n}(t) = (P(t,T_m) - P(t,T_n))/A_{m,n}(t)$ determined by the **annuity factor** $A_{m,n}(t) = \sum_{k=m+1}^{n} \tau_k P(t,T_k)$.
 
-- Core theoretical principles and mathematical foundations
-- Fundamental models and their applications
-- Computational techniques and numerical methods
-- Practical implementations and code examples
-- Real-world applications in derivatives pricing and risk management
+**Yield Curve Construction**
+The yield curve is built from market instruments via **bootstrapping**, a sequential procedure in three stages: short-term rates from deposit quotes, medium-term rates from futures (with convexity adjustments), and long-term rates from swap rates. The bootstrap solves for discount factors iteratively: deposits give $P(0,T) = 1/(1 + L\tau)$ directly; futures imply forward rates after a convexity correction $f^{\text{futures}} - f^{\text{forward}} \approx \frac{1}{2}\sigma^2 T_1 T_2$; swap rates determine longer discount factors from $S = (1 - P(0,T_n))/\sum \tau_k P(0,T_k)$. The modern **multi-curve framework** separates the discounting curve (OIS) from projection curves (tenor-specific Libor/SOFR), reflecting post-2008 basis spreads. **Interpolation** between bootstrap nodes profoundly affects forward rates and hedging: linear interpolation on zero rates produces discontinuous forwards; **cubic spline** interpolation on discount factors gives smooth forwards but may introduce spurious oscillations; **monotone convex** interpolation on the forward curve (Hagan–West) preserves positivity and locality. No-arbitrage requires discount factors to be positive, decreasing, and convex in maturity, with **calendar arbitrage** ($\partial_T w \geq 0$ in total variance) and **butterfly arbitrage** (non-negative forward rates) as the binding constraints.
+
+**General Short-Rate Framework**
+A short-rate model specifies the instantaneous rate $r_t$ as a diffusion $dr_t = \mu(t,r_t)\,dt + \sigma(t,r_t)\,dW_t$ under the risk-neutral measure $\mathbb{Q}$. The **money-market account** $\beta_t = \exp(\int_0^t r_s\,ds)$ serves as the natural numéraire, and bond prices satisfy $P(t,T) = \mathbb{E}^{\mathbb{Q}}_t[\exp(-\int_t^T r_s\,ds)]$. Substituting $P = F(t,r)$ into the Itô formula and imposing the martingale condition yields the **bond pricing PDE**
+
+$$\frac{\partial P}{\partial t} + \mu^{\mathbb{Q}}(t,r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2(t,r)\frac{\partial^2 P}{\partial r^2} = rP$$
+
+with terminal condition $P(T,T) = 1$. The connection between physical and risk-neutral dynamics involves the **market price of risk** $\lambda(t,r) = (\mu^{\mathbb{P}} - \mu^{\mathbb{Q}})/\sigma$, which is not directly observable and must be specified or estimated. Models are classified by volatility structure (level-independent, proportional, square-root), analytical tractability (affine vs. non-affine), and number of factors.
+
+**The Vasicek Model**
+The Vasicek (1977) model specifies $dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}$, an **Ornstein–Uhlenbeck process** with mean-reversion speed $\kappa$, long-run mean $\theta$, and constant volatility $\sigma$. The explicit solution via the integrating factor $e^{\kappa t}$ is
+
+$$r_t = \theta + (r_0 - \theta)e^{-\kappa t} + \sigma e^{-\kappa t}\int_0^t e^{\kappa s}\,dW_s$$
+
+so $r_t \mid r_0 \sim \mathcal{N}\!\left(\theta + (r_0 - \theta)e^{-\kappa t},\; \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})\right)$. The stationary distribution is $\mathcal{N}(\theta, \sigma^2/(2\kappa))$. Bond prices are **exponential-affine**: $P(t,T) = A(\tau)\,e^{-B(\tau)\,r_t}$ where $\tau = T - t$,
+
+$$B(\tau) = \frac{1 - e^{-\kappa\tau}}{\kappa}, \qquad \ln A(\tau) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(\tau) - \tau) - \frac{\sigma^2}{4\kappa}B(\tau)^2$$
+
+The Gaussian distribution permits negative rates—a theoretical deficiency that nevertheless allows closed-form bond option pricing via the **Jamshidian decomposition**, which reduces coupon bond options to portfolios of zero-coupon bond options. Exact simulation uses $r_{t+\Delta t} = e^{-\kappa\Delta t}r_t + (1 - e^{-\kappa\Delta t})\theta + \sigma\sqrt{(1 - e^{-2\kappa\Delta t})/(2\kappa)}\;Z$ with $Z \sim \mathcal{N}(0,1)$.
+
+**The Cox–Ingersoll–Ross Model**
+The CIR (1985) model replaces constant volatility with a **square-root diffusion**: $dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t^{\mathbb{Q}}$. The **Feller condition** $2\kappa\theta \geq \sigma^2$ guarantees that $r_t > 0$ for all $t$, preventing negative rates. The transition density is a scaled **non-central chi-squared** distribution with degrees of freedom $\nu = 4\kappa\theta/\sigma^2$ and non-centrality parameter proportional to $r_t e^{-\kappa\tau}$. Bond prices retain the affine form $P(t,T) = A(\tau)\,e^{-B(\tau)\,r_t}$ but with
+
+$$B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}, \qquad \gamma = \sqrt{\kappa^2 + 2\sigma^2}$$
+
+where $A(\tau)$ and $B(\tau)$ solve **Riccati ODEs** arising from the affine structure. The auxiliary parameter $\gamma > \kappa$ reflects the risk-adjusted mean-reversion speed. Compared with Vasicek, CIR achieves rate positivity at the cost of more complex analytics (non-central $\chi^2$ rather than Gaussian), and Euler discretization requires care to avoid negative rates—exact simulation via the non-central chi-squared distribution or the Broadie–Kaya algorithm is preferred.
+
+**The Hull–White Model**
+The Hull–White (1990) extension $dr_t = (\theta(t) - \kappa\, r_t)\,dt + \sigma\,dW_t$ introduces a **time-dependent drift** $\theta(t)$ chosen to exactly match the initial term structure: $\theta(t) = \partial_t f^M(0,t) + \kappa f^M(0,t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})$ where $f^M(0,t)$ is the market instantaneous forward rate. This ensures $P^{\text{model}}(0,T) = P^{\text{market}}(0,T)$ for all $T$, eliminating the static calibration error that plagues time-homogeneous models. Closed-form pricing of caps, floors, and swaptions is preserved. The two-factor **G2++ extension** adds a second OU factor for richer correlation structure and humped volatility.
+
+**The Black–Karasinski Model**
+The Black–Karasinski (1991) model specifies $d\ln r_t = \kappa(t)(\theta(t) - \ln r_t)\,dt + \sigma(t)\,dW_t$, making the short rate **log-normally distributed** and strictly positive by construction. The logarithmic transformation destroys the affine structure: bond prices $P(t,T) = \mathbb{E}_t^{\mathbb{Q}}[\exp(-\int_t^T r_s\,ds)]$ have **no closed-form solution** because $e^{r_t}$ is not affine in $r_t$. Pricing therefore requires numerical methods—**trinomial trees** (with mean-reversion-adjusted branching) or **Monte Carlo simulation** with log-Euler discretization. Despite the computational cost, Black–Karasinski is widely used in practice for its realistic rate distribution and flexibility in fitting cap volatility smiles, particularly when the log-normal assumption better matches market dynamics than the Gaussian (Hull–White) alternative.
+
+**Affine Term Structure Models**
+The Vasicek and CIR models are special cases of the **affine class**: if the drift and squared diffusion of the state vector $X_t \in \mathbb{R}^n$ are affine in $X_t$, then bond prices take the form $P(t,T) = \exp(A(T-t) - B(T-t)^\top X_t)$ where $A$ and $B$ satisfy a system of Riccati ODEs. This structure yields semi-analytic pricing for a wide range of derivatives via Fourier transform methods, and encompasses multi-factor extensions (Dai–Singleton $A_m(n)$ classification), with the number of factors driving the square-root components determining the model sub-family.
+
+**Model Comparison and Selection**
+The choice among short-rate models involves trade-offs across multiple dimensions. *Analytical tractability*: Vasicek and CIR offer full closed-form bond and option prices; Hull–White preserves these while fitting the curve; Black–Karasinski sacrifices analytics for distributional realism. *Rate distribution*: Vasicek/Hull–White permit negative rates (Gaussian); CIR ensures positivity (Feller condition); Black–Karasinski ensures positivity (log-normal). *Calibration*: time-homogeneous models (Vasicek, CIR) cannot match the initial curve exactly; Hull–White and Black–Karasinski fit perfectly via $\theta(t)$. *Practical guidance*: Vasicek for pedagogical clarity and rapid prototyping; CIR when rate positivity and level-dependent volatility matter; Hull–White as the standard production model for vanilla rate derivatives; Black–Karasinski when log-normal dynamics or cap smile calibration are priorities.
+
+!!! note "Role in the Book"
+    The term structure models developed here build on the stochastic calculus (Chapter 3), Feynman–Kac theory (Chapter 5), and PDE methods (Chapter 6) from earlier chapters. The bond pricing PDE parallels the Black–Scholes equation with the short rate replacing the stock price. Calibration techniques from Chapter 17 apply directly to fitting these models to market data, and the HJM framework (Chapter 19) generalizes the short-rate approach by modeling the entire forward curve.
 
 ---

@@ -1,139 +1,28 @@
-# Introduction and Overview
+# Chapter 8: Numerical Solutions of the Black-Scholes PDE
 
-Analytical (closed-form) solutions of the Black-Scholes PDE exist only under idealized assumptions. For American options, exotic derivatives, or complex payoffs, we must turn to **numerical methods**. The **Finite Difference Method (FDM)** is one of the most widely used numerical methods for solving PDEs in finance.
+This chapter develops finite difference methods (FDM) for solving the Black-Scholes PDE numerically, covering the complete pipeline from grid discretization and scheme construction through stability analysis, convergence theory, and practical implementation. Starting from the parabolic structure of the pricing PDE, we implement explicit, implicit, and Crank-Nicolson schemes, analyze their stability via von Neumann analysis and the CFL condition, extend to American options through free boundary formulations, and establish the rigorous convergence framework of viscosity solutions and the Barles-Souganidis theorem.
 
----
+## Key Concepts
 
-## Why Finite Difference Methods?
+**Finite Difference Discretization**
+The Black-Scholes PDE $\partial_t V + \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S - rV = 0$ is solved on a rectangular grid $(S_i, t_n) = (i\Delta S, n\Delta t)$ for $i = 0,\ldots,M$ and $n = 0,\ldots,N$, with $\Delta S = S_{\max}/M$ and $\Delta t = T/N$. Derivatives are replaced by finite differences: the central difference $V_S \approx (V_{i+1}^n - V_{i-1}^n)/(2\Delta S)$, the second central difference $V_{SS} \approx (V_{i+1}^n - 2V_i^n + V_{i-1}^n)/(\Delta S)^2$, and the backward time difference $V_t \approx (V_i^{n+1} - V_i^n)/\Delta t$. The terminal condition $V(S,T) = \Phi(S)$ provides starting values, and boundary conditions at $S = 0$ and $S = S_{\max}$ close the system. The PDE's parabolic structure—analogous to the heat equation but backward in time—makes it naturally suited to backward time-stepping from maturity to the present.
 
-Finite difference methods approximate derivatives in the Black-Scholes PDE using finite changes in function values at discrete points. Instead of solving the PDE continuously, we **discretize the domain** and solve a system of algebraic equations over a grid.
+**Three Core Schemes**
+The **explicit scheme** evaluates spatial derivatives at the known time level $t_{n+1}$, giving $V_i^n = a_i V_{i-1}^{n+1} + b_i V_i^{n+1} + c_i V_{i+1}^{n+1}$ with tridiagonal coefficients depending on $\sigma$, $r$, $\Delta S$, and $\Delta t$. This is simple to implement but conditionally stable, requiring $\Delta t \leq (\Delta S)^2/(\sigma^2 S_{\max}^2)$, which severely restricts the time step for fine spatial grids. The **implicit scheme** evaluates spatial derivatives at the unknown time level $t_n$, producing a tridiagonal linear system $\mathbf{A}\mathbf{V}^n = \mathbf{V}^{n+1}$ solved by Thomas's algorithm at each step. This is unconditionally stable but only first-order accurate in time. The **Crank-Nicolson scheme** averages explicit and implicit contributions with weight $\theta = 1/2$, achieving $\mathcal{O}((\Delta t)^2 + (\Delta S)^2)$ accuracy while maintaining unconditional stability, making it the standard choice for production implementations.
 
-This approach is well-suited to:
+**Stability, Consistency, and Convergence**
+The **Lax equivalence theorem** states that for a consistent finite difference scheme, stability is equivalent to convergence. **Von Neumann stability analysis** inserts a Fourier mode $V_i^n = g^n e^{ik i\Delta S}$ into the scheme and requires the amplification factor $|g(\xi)| \leq 1$ for all frequencies $\xi$. For the explicit scheme, this yields the **CFL condition** $\Delta t \leq (\Delta S)^2/(2\sigma^2 S_{\max}^2)$; the implicit and Crank-Nicolson schemes satisfy $|g| \leq 1$ unconditionally. **Grid convergence** is verified by refining $\Delta S$ and $\Delta t$ simultaneously and measuring the error against known Black-Scholes prices: the explicit and implicit schemes converge as $\mathcal{O}(\Delta t + (\Delta S)^2)$, while Crank-Nicolson achieves $\mathcal{O}((\Delta t)^2 + (\Delta S)^2)$. **Richardson extrapolation** combines solutions at two different grid spacings to cancel leading-order error terms, effectively boosting accuracy by one order.
 
-- European and American options
-- Barrier and other exotic options
-- Time- or price-dependent coefficients (e.g., stochastic volatility)
+**Greeks via Finite Differences**
+Greeks are extracted directly from the solution grid. **Delta** and **gamma** use central differences at the current time: $\Delta \approx (V_{i+1}^0 - V_{i-1}^0)/(2\Delta S)$ and $\Gamma \approx (V_{i+1}^0 - 2V_i^0 + V_{i-1}^0)/(\Delta S)^2$. **Theta** is read from the time-stepping: $\Theta \approx (V_i^1 - V_i^0)/\Delta t$. **Vega** and **rho** require solving the PDE twice with bumped parameters $\sigma \pm \delta\sigma$ or $r \pm \delta r$ and taking finite differences of the resulting prices. Grid placement relative to the strike $K$ critically affects accuracy—staggering the grid so that $K$ falls on a node avoids interpolation error. The theta-gamma relation $\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma = rV$ serves as a consistency check on the computed Greeks.
 
----
+**American Options and Free Boundaries**
+American option pricing requires enforcing the early exercise constraint $V \geq \Phi$ at every grid point and time step. The **linear complementarity** formulation $\min(\mathcal{L}V,\, V - \Phi) = 0$ replaces the PDE in the exercise region with the constraint $V = \Phi$. The **projected successive over-relaxation** (PSOR) algorithm iterates the implicit scheme update and projects onto the constraint set: $V_i^{n,\text{new}} = \max(\Phi(S_i),\, V_i^{n,\text{SOR}})$. The **penalty method** adds a large penalty term $\rho\max(\Phi - V, 0)$ to the PDE, converting the free boundary problem into a nonlinear PDE on a fixed domain; as $\rho \to \infty$, the penalized solution converges to the American option price. The optimal exercise boundary $S^*(t)$ is recovered as the locus where $V(S,t) = \Phi(S)$ transitions to $V(S,t) > \Phi(S)$.
 
-## Visualizing the Finite Difference Grid
+**Viscosity Solutions and Convergence Theory**
+When payoffs have kinks (vanilla options) or the PDE degenerates (at $S = 0$), classical solutions may not exist. **Viscosity solutions** replace pointwise PDE satisfaction with inequalities tested against smooth test functions touching the solution from above (supersolution) or below (subsolution). The **comparison principle** guarantees uniqueness: if a viscosity subsolution lies below a supersolution at the boundary, the ordering holds everywhere. The **Barles-Souganidis theorem** provides the rigorous convergence framework: a finite difference scheme converges to the viscosity solution if and only if it is *monotone* (preserves the comparison principle discretely), *stable* (uniformly bounded), and *consistent* (recovers the PDE in the limit). This theorem justifies the use of upwind schemes and monotone discretizations for degenerate PDEs, and explains why naive high-order schemes can converge to wrong solutions when monotonicity is violated.
 
-To understand how FDM works, visualize the $(S, t)$ domain as a grid.
-
-**`visualize_finite_difference_grid.py`**
-
-```python
-from black_scholes import draw_finite_difference_grid
-
-draw_finite_difference_grid()
-```
-
-In this grid:
-
-- The **horizontal axis** represents the stock price $S$, discretized into $M$ steps of size $\Delta S$.
-- The **vertical axis** represents time $t$, going **backward from $T$ to 0**, discretized into $N$ steps of size $\Delta t$.
-- Each node represents a point $(S_i, t_n)$ where the option value $V(S_i, t_n)$ will be computed.
-
-The goal is to start from the **terminal condition** at maturity (top row), and use one of the finite difference schemes (explicit, implicit, or Crank-Nicolson) to compute the values row-by-row **backward in time** down to $t=0$.
+!!! note "Role in the Book"
+    Finite difference methods provide the computational backbone for pricing problems throughout the book. The schemes developed here extend directly to local volatility PDEs (Chapter 13), two-dimensional ADI methods for Heston (Chapter 16), and tree-based implementations for Hull-White (Chapter 20). The viscosity solution framework connects to the PDE theory of Chapter 5 and provides rigorous foundations for American option pricing introduced in Chapter 7.
 
 ---
-
-## Key Idea
-
-By replacing derivatives in the Black-Scholes PDE with difference approximations:
-
-- First derivatives (e.g., $\partial V/\partial S$) are approximated by differences between neighboring nodes.
-- Second derivatives (e.g., $\partial^2 V/\partial S^2$) are approximated by combining nearby nodes symmetrically.
-- The PDE becomes a **system of equations** that can be iteratively solved on the grid.
-
----
-
-## Black-Scholes Equation Recap
-
-The Black-Scholes PDE for the value $V(S,t)$ of a European option is:
-
-$$
-\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0
-$$
-
-where $V(S,t)$ is the option price, $\sigma$ is volatility, $r$ is the risk-free rate, and $t \in [0, T]$.
-
-### Terminal Condition (at maturity $t = T$)
-
-$$
-V(S, T) = \max(S - K, 0)
-$$
-
-This serves as the **initial condition** for backward time-stepping.
-
-### Boundary Conditions
-
-**As $S \to 0$:** The call becomes worthless: $V(0, t) = 0$.
-
-**As $S \to \infty$:** The call behaves like the underlying minus discounted strike:
-
-$$
-V(S, t) \approx S - K e^{-r(T - t)}
-$$
-
-### Nature of the PDE
-
-The Black-Scholes PDE is **parabolic** (similar to the heat equation), **backward in time**, and **second-order in space**. This structure is well-suited to finite difference techniques.
-
----
-
-## Grid Discretization
-
-We consider a rectangular computational domain $S \in [0, S_{\max}]$, $t \in [0, T]$, discretized into $M$ intervals in stock price and $N$ intervals in time.
-
-$$
-\Delta S = \frac{S_{\max}}{M}, \quad \Delta t = \frac{T}{N}
-$$
-
-Grid points: $S_i = i \Delta S$ for $i = 0, 1, \ldots, M$ and $t_n = n \Delta t$ for $n = 0, 1, \ldots, N$.
-
-Let $V_i^n$ denote the numerical approximation to $V(S_i, t_n)$.
-
----
-
-## Finite Difference Approximations
-
-### Time Derivative (backward difference)
-
-$$
-\frac{\partial V}{\partial t} \approx \frac{V_i^{n+1} - V_i^n}{\Delta t}
-$$
-
-### First Spatial Derivative (central difference)
-
-$$
-\frac{\partial V}{\partial S} \approx \frac{V_{i+1}^n - V_{i-1}^n}{2 \Delta S}
-$$
-
-### Second Spatial Derivative (central difference)
-
-$$
-\frac{\partial^2 V}{\partial S^2} \approx \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2}
-$$
-
-### Discrete Grid Notation Summary
-
-| Quantity                | Continuous Form               | Discrete Approximation               |
-|-------------------------|-------------------------------|--------------------------------------|
-| Stock price             | $S \in [0, S_{\max}]$         | $S_i = i \Delta S$, $i = 0,\dots,M$  |
-| Time                    | $t \in [0, T]$                | $t_n = n \Delta t$, $n = 0,\dots,N$  |
-| Time derivative         | $\frac{\partial V}{\partial t}$ | $\frac{V_i^{n+1} - V_i^n}{\Delta t}$ |
-| First derivative in $S$ | $\frac{\partial V}{\partial S}$ | $\frac{V_{i+1}^n - V_{i-1}^n}{2\Delta S}$ |
-| Second derivative in $S$| $\frac{\partial^2 V}{\partial S^2}$ | $\frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2}$ |
-
----
-
-## Section Objectives
-
-In this section, we will:
-
-- Understand the mathematical foundation of finite difference schemes.
-- Implement three key methods: **explicit**, **implicit**, and **Crank-Nicolson**.
-- Learn how to set up boundary and initial conditions relevant for option pricing.
-- Explore the numerical stability and accuracy of each scheme.
-- Implement a working Python program to compute option prices using FDM.
