@@ -4,7 +4,8 @@ This chapter develops the Black-Scholes option pricing framework from first prin
 
 ## Key Concepts
 
-**The Black-Scholes Model** The model, introduced by Black, Scholes (1973) and Merton (1973), assumes the underlying asset follows geometric Brownian motion with constant drift and volatility:
+### **The Black-Scholes Model** 
+The model, introduced by Black, Scholes (1973) and Merton (1973), assumes the underlying asset follows geometric Brownian motion with constant drift and volatility:
 
 $$dS_t = \mu S_t\, dt + \sigma S_t\, dW_t$$
 
@@ -14,7 +15,8 @@ $$S_t = S_0 \exp\bigl((\mu - \tfrac{1}{2}\sigma^2)t + \sigma W_t\bigr)$$
 
 The model emerges as the continuous-time limit of the binomial framework, inheriting the key insights of dynamic hedging and risk-neutral valuation. The self-financing portfolio condition constrains admissible trading strategies and underpins the hedging arguments that follow.
 
-**Four Derivations of the Black-Scholes PDE** The pricing PDE
+### **Four Derivations of the Black-Scholes PDE** 
+The pricing PDE
 
 $$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV$$
 
@@ -25,7 +27,8 @@ is derived via four conceptually distinct routes:
 - *Change of numeraire*: use the stock as numeraire with its associated measure $\mathbb{Q}^S$ via the Radon-Nikodym derivative $Z_t = S_t e^{-rt}/S_0$, and derive the PDE from pricing invariance
 - *Equilibrium*: derive the PDE from a representative-agent economy with CRRA preferences, where market clearing yields the equilibrium risk premium $\mu - r = \gamma \sigma^2$ and the stochastic discount factor $M_t = e^{-\rho t} S_t^{-\gamma}$
 
-**PDE Structure and Conditions** The killing term $-rV$ encodes continuous discounting and connects to the Feynman-Kac probabilistic representation 
+### **PDE Structure and Conditions** 
+The killing term $-rV$ encodes continuous discounting and connects to the Feynman-Kac probabilistic representation 
 
 $$V(t,x) = \mathbb{E}[e^{-r(T-t)}\Phi(X_T) \mid X_t = x]$$ 
 
@@ -35,7 +38,8 @@ $$\Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2 \Gamma = rV$$
 
 Terminal conditions $V(T,S) = \Phi(S)$ specify the contract payoff (calls, puts, digitals, straddles), while boundary conditions -- Dirichlet, Neumann, or Robin -- select the unique solution from the family of PDE solutions. The PDE smooths non-smooth and discontinuous terminal data for $t < T$.
 
-**Analytic Solution Methods** The Black-Scholes PDE is solved through multiple techniques:
+### **Analytic Solution Methods** 
+The Black-Scholes PDE is solved through multiple techniques:
 
 - *Heat equation reduction*: variable substitutions ($\tau = T - t$, $x = \ln S + (r - \tfrac{1}{2}\sigma^2)\tau$, and an exponential scaling) transform the PDE into the classical heat equation, whose fundamental solution is known 
 
@@ -54,7 +58,8 @@ $$u(x,t) = \mathbb{E}[e^{-r(T-t)}\Phi(X_T) \mid X_t = x]$$
 - *Change of numeraire*: provide alternative derivations using forward measures and stock-numeraire techniques, with the Radon-Nikodym derivative connecting different pricing measures
 - *Viscosity solutions*: handle non-smooth payoffs (digital options with $\Phi(S) = \mathbf{1}_{S>K}$) and free-boundary problems (American options) where classical $C^2$ solutions fail, using test-function-based sub/supersolution definitions
 
-**The Black-Scholes Formula** For a European call with strike $K$ and maturity $T$:
+### **The Black-Scholes Formula** 
+For a European call with strike $K$ and maturity $T$:
 
 $$C = S_0\,\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)$$
 
@@ -77,7 +82,15 @@ relates call and put prices as a model-independent no-arbitrage condition derive
 
 $$\max(S - Ke^{-rT}, 0) \leq C \leq S$$ 
 
-monotonicity, and convexity properties. Asymptotic analysis in the limits $S \to 0, \infty$ and $\sigma \to 0, \infty$ confirms financial intuition: deep ITM calls behave like forward contracts ($C \to S - Ke^{-rT}$) and deep OTM calls become worthless. Digital option pricing $D_0 = e^{-rT}\Phi(d_2)$ illustrates the framework applied to discontinuous payoffs.
+monotonicity, and convexity properties. Asymptotic analysis in the limits $S \to 0, \infty$ and $\sigma \to 0, \infty$ confirms financial intuition: deep ITM calls behave like forward contracts 
+
+$$C \to S - Ke^{-rT}$$ 
+
+and deep OTM calls become worthless. Digital option pricing 
+
+$$D_0 = e^{-rT}\Phi(d_2)$$ 
+
+illustrates the framework applied to discontinuous payoffs.
 
 !!! note "Role in the Book"
     This chapter unifies the stochastic calculus tools from earlier chapters into a complete pricing framework. The four PDE derivations highlight how no-arbitrage, martingale theory, numeraire invariance, and general equilibrium all converge on the same equation. The analytic solution methods -- from heat equation reduction to viscosity solutions -- form the mathematical toolkit extended in later chapters to local volatility, stochastic volatility, jump-diffusion models, and numerical PDE methods.
