@@ -93,6 +93,71 @@ The SDE–PDE connection unfolds through a hierarchy:
 └─────────────────────────────────────┘
 ```
 
+### Why Does the Generator Lead to the Backward Equation?
+
+The arrow labeled "Markov property extends to finite time" deserves explanation — it is the logical core of the entire hierarchy.
+
+**Setup.** Define:
+
+$$u(x_0, t_0) = \mathbb{E}[g(X_t) \mid X_{t_0} = x_0]$$
+
+This is a function of the starting point $(x_0, t_0)$. We want to find what PDE it satisfies.
+
+**The generator is purely infinitesimal.** By definition, $\mathcal{L}_{x_0}$ captures only what happens as $h \to 0$, with the time argument frozen:
+
+$$(\mathcal{L}_{x_0} f)(x_0) = \lim_{h \downarrow 0} \frac{\mathbb{E}_{x_0}[f(X_{t_0+h})] - f(x_0)}{h}$$
+
+This is a *local* rule — it tells you the instantaneous rate of change in the spatial variable $x_0$, but says nothing directly about finite time horizons.
+
+**Step 1: Apply the Markov property (tower property).**
+
+Take a small step $h > 0$ forward from $t_0$. By the Markov property, once you know where the process is at $t_0 + h$, the earlier history is irrelevant:
+
+$$u(x_0, t_0) = \mathbb{E}\!\left[\mathbb{E}[g(X_t) \mid X_{t_0+h}] \;\Big|\; X_{t_0} = x_0\right] = \mathbb{E}_{x_0}\!\left[u(X_{t_0+h},\, t_0+h)\right]$$
+
+**Step 2: Rewrite as a difference and take $h \to 0$.**
+
+Since $u(x_0, t_0) = \mathbb{E}_{x_0}[u(X_{t_0+h}, t_0+h)]$, we can write:
+
+$$\frac{\partial u}{\partial t_0} = \lim_{h \to 0} \frac{\mathbb{E}_{x_0}[u(X_{t_0+h},\, t_0+h)] - u(x_0, t_0)}{h}$$
+
+**Step 3: Split the increment into spatial and temporal parts.**
+
+Add and subtract $\mathbb{E}_{x_0}[u(X_{t_0+h}, t_0)]$ to separate the two effects:
+
+$$\frac{\partial u}{\partial t_0} = \lim_{h \to 0} \frac{\mathbb{E}_{x_0}[u(X_{t_0+h},\, t_0)] - u(x_0, t_0)}{h} + \lim_{h \to 0} \frac{\mathbb{E}_{x_0}[u(X_{t_0+h},\, t_0+h) - u(X_{t_0+h},\, t_0)]}{h}$$
+
+The **first term** is exactly the generator applied to $u(\cdot, t_0)$ as a function of $x_0$:
+
+$$\lim_{h \to 0} \frac{\mathbb{E}_{x_0}[u(X_{t_0+h},\, t_0)] - u(x_0, t_0)}{h} = \mathcal{L}_{x_0}\, u(x_0, t_0)$$
+
+The **second term**: expanding $u(X_{t_0+h}, t_0+h) - u(X_{t_0+h}, t_0) = \partial_{t_0} u \cdot h + O(h^2)$, so after dividing by $h$ and taking the limit this contributes $\mathbb{E}_{x_0}[\partial_{t_0} u(X_{t_0+h}, t_0)] \to \partial_{t_0} u(x_0, t_0)$.
+
+!!! note "Why the second term cannot be ignored"
+    The difference $u(X_{t_0+h}, t_0+h) - u(X_{t_0+h}, t_0)$ is $O(h)$ — it is of leading order in $h$ and does **not** vanish in the limit. This is why you cannot simply substitute $u(X_{t_0+h}, t_0)$ for $u(X_{t_0+h}, t_0+h)$ and read off the generator directly. The two-step split is necessary.
+
+Combining both terms and rearranging:
+
+$$\frac{\partial u}{\partial t_0} - \partial_{t_0} u(x_0, t_0) = \mathcal{L}_{x_0}\, u(x_0, t_0)$$
+
+which gives the backward equation with the correct sign convention (since $t_0$ runs backward toward the terminal condition at $t$):
+
+$$\boxed{-\partial_{t_0} u = \mathcal{L}_{x_0} u, \qquad u(x_0, t) = g(x_0)}$$
+
+!!! note "Why Markov is essential"
+    Without the Markov property, $\mathbb{E}[g(X_t) \mid X_{t_0+h}]$ would depend on the full history before $t_0 + h$, not just the current state $X_{t_0+h}$. The tower step in Step 1 would collapse, and you could not reduce a finite-time expectation to a single application of $\mathcal{L}_{x_0}$.
+
+**In summary:**
+
+| Step | Role |
+|------|------|
+| Generator $\mathcal{L}_{x_0}$ | Encodes local dynamics in the spatial variable $x_0$ at each instant |
+| Markov property | Enables tower property: $u(x_0,t_0) = \mathbb{E}_{x_0}[u(X_{t_0+h}, t_0+h)]$ |
+| Two-step split | Separates spatial increment (→ generator) from temporal increment (→ $\partial_{t_0} u$) |
+| Result | $-\partial_{t_0} u = \mathcal{L}_{x_0} u$ holds for all $t_0 < t$ |
+
+---
+
 Each level answers a different question:
 
 | Level | Object | Equation | Question Answered |
