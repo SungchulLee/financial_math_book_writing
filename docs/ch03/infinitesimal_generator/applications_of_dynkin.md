@@ -234,6 +234,7 @@ $$\boxed{f(x) = \mathbb{E}_x[g(X_\tau)]}$$
 where $\tau = \inf\{t : X_t \notin D\}$.
 
 ??? note "Why This Works"
+
     By Dynkin with $\mathcal{L}f = 0$:
     $$\mathbb{E}_x[f(X_\tau)] = f(x) + 0 = f(x)$$
     
@@ -253,6 +254,7 @@ $$\mathcal{L}f = -h \text{ in } D, \quad f = 0 \text{ on } \partial D$$
 $$\boxed{f(x) = \mathbb{E}_x\left[\int_0^\tau h(X_s)\,ds\right]}$$
 
 ??? note "Why This Works"
+
     By Dynkin:
 
     $$\mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau \mathcal{L}f(X_s)\,ds\right]$$

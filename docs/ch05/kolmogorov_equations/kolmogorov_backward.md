@@ -181,6 +181,7 @@ This confirms $v(0,x) = u(T, x) = \mathbb{E}_x[g(X_T)]$. ✓
 ### Method 3: Chapman–Kolmogorov Approach
 
 ??? abstract "Derivation via Chapman–Kolmogorov"
+
     The transition density satisfies the Chapman–Kolmogorov equation:
     
     $$p(t+h; x, y) = \int p(h; x, z) p(t; z, y) \, dz$$

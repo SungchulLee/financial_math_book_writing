@@ -160,6 +160,7 @@ This is the **advection–diffusion equation**: probability advects with velocit
 ### Variable Coefficients
 
 ??? note "Full Expansion for Variable Coefficients"
+
     Expanding the derivatives explicitly using the product rule:
 
     **Drift term:**

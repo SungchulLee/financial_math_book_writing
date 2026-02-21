@@ -233,6 +233,7 @@ $$
 $$
 
 ??? example "Worked Example: Computing $\mathcal{L}f$ for $f(x) = x^2$"
+
     For the OU process with $f(x) = x^2$:
     
     - $f'(x) = 2x$
@@ -285,6 +286,7 @@ For diffusions with smooth coefficients, the generator is well-defined on $C^2$ 
     For example, the generator of reflecting Brownian motion on $[0, \infty)$ requires boundary conditions at $x = 0$ (Neumann condition: $f'(0) = 0$).
 
 ??? example "Functions Where the Generator Fails"
+
     Consider Brownian motion with $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$.
     
     - $f(x) = |x|$ — $f''$ doesn't exist at $x = 0$
@@ -360,6 +362,7 @@ $$
 $$
 
 ??? abstract "Proof"
+
     At a maximum, $f'(x^*) = 0$ and $f''(x^*) \leq 0$. Therefore:
 
     $$(\mathcal{L}f)(x^*) = \mu(x^*) \cdot 0 + \frac{1}{2}\sigma^2(x^*) \cdot f''(x^*) \leq 0$$
@@ -496,6 +499,7 @@ $$
 $$
 
 ??? abstract "Derivation via Integration by Parts"
+
     Starting from the duality requirement, we compute $\int f \cdot \mathcal{L}_t g \, dx$ and integrate by parts to move derivatives onto $f$.
     
     **First-order term** (drift):
@@ -592,6 +596,7 @@ $$
 ---
 
 ??? note "Quick Reference: Key Formulas"
+
     **1D Generator**:
     $$\mathcal{L}_t f = \mu(x,t) f'(x) + \frac{\sigma^2(x,t)}{2} f''(x)$$
     

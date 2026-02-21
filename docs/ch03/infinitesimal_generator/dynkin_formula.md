@@ -36,6 +36,7 @@ and stopping time $\tau$ with $\mathbb{E}_x[\tau] < \infty$.
 ## Proof
 
 ??? note "Via Itô's Lemma"
+
     **Step 1**: Apply Itô's lemma
     
     $$df(X_t) = (\mathcal{L}f)(X_t)\,dt + \sigma(X_t)f'(X_t)\,dW_t$$
