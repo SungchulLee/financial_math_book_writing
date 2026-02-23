@@ -43,6 +43,8 @@ Over an infinitesimal interval $[t, t + dt]$, hold $\Delta$ **fixed** (it will b
 
 $$d\Pi = dV - \Delta\, dS$$
 
+This implicitly assumes that any cash required to rebalance the hedge is borrowed or lent at the risk-free rate $r$. The precise relationship between this "freeze-and-rebalance" construction and the self-financing formulation is discussed in the section [On Self-Financing and Rebalancing](#on-self-financing-and-rebalancing) below.
+
 Substituting the expressions for $dV$ and $dS$:
 
 $$d\Pi = \left(\frac{\partial V}{\partial t} + \mu S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - \Delta \mu S\right) dt + \left(\sigma S \frac{\partial V}{\partial S} - \Delta \sigma S\right) dW$$
@@ -59,7 +61,7 @@ This is the **delta** of the derivative. With this choice, the stochastic term v
 
 $$d\Pi = \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right) dt$$
 
-The drift $\mu$ has cancelled. The portfolio's instantaneous return depends only on the passage of time ($V_t$) and the convexity of $V$ with respect to $S$ ($V_{SS}$, the gamma), not on the stock's expected return.
+The drift $\mu$ has cancelled. The portfolio's instantaneous return depends only on the theta $\partial V/\partial t$ (time decay) and the gamma $\partial^2 V/\partial S^2$ (convexity of the price function), not on the stock's expected return.
 
 
 ## Step 4: No-Arbitrage Condition
@@ -91,6 +93,23 @@ This means investors with different views on the stock's future return all agree
 ## Extension: Continuous Dividend Yield
 
 
+### Why a Continuous Yield?
+
+Real dividends are discrete cash payments on scheduled dates. For a single stock, modeling dividends as a continuous yield is a crude approximation: a company like Apple might pay quarterly dividends of known (or forecastable) size, and an option expiring between two ex-dividend dates sees at most one or two discrete jumps in the stock price. In practice, single-stock option pricing often handles dividends explicitly—either by adjusting the stock price downward at each ex-dividend date or by using a tree/PDE with discrete dividend nodes.
+
+The continuous dividend yield $q$ becomes a genuinely natural model for **broad equity indices and ETFs**. An index such as the S&P 500 comprises hundreds of constituent stocks, each paying dividends on its own schedule. At the index level, dividends arrive on nearly every business day, and the aggregate flow is smooth enough to be well approximated by a constant yield. For example, if the S&P 500 has a trailing dividend yield of roughly 1.5% per annum, setting $q = 0.015$ captures the steady leakage of value from the index level to the dividend stream. The same logic applies to ETFs that track such indices (e.g., SPY, IVV), since their prices reflect the cum-dividend index value minus the accumulated distributions.
+
+Beyond equity indices, the continuous-yield framework applies directly to two other important asset classes:
+
+- **Foreign exchange options.** Holding a foreign currency earns interest at the foreign risk-free rate $r_f$. This is economically identical to a continuous dividend yield $q = r_f$, and leads to the Garman–Kohlhagen formula.
+
+- **Futures and forwards.** An option on a futures contract can be priced by setting $q = r$ (the cost of carry is zero for a futures position), recovering the Black (1976) model.
+
+The continuous dividend yield is therefore best understood not as a literal description of how any single stock pays dividends, but as an effective parameter for assets whose cash flows are frequent enough to be treated as a smooth rate.
+
+
+### Derivation
+
 When the stock pays a continuous dividend yield $q$, two modifications are needed.
 
 **Modified stock dynamics.** The stock price appreciates at rate $\mu - q$ (dividends reduce the capital gain):
@@ -113,7 +132,20 @@ Rearranging:
 
 $$\boxed{\frac{\partial V}{\partial t} + (r - q)S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0}$$
 
-The dividend yield replaces $r$ by $r - q$ in the first-order (drift) term, while the discounting term $-rV$ is unchanged. This same PDE applies to foreign exchange options (with $q = r_f$, the foreign interest rate), yielding the Garman–Kohlhagen formula.
+The dividend yield replaces $r$ by $r - q$ in the first-order (drift) term, while the discounting term $-rV$ is unchanged.
+
+
+### Discrete vs. Continuous: When the Approximation Breaks Down
+
+For individual stock options, especially short-dated ones near an ex-dividend date, the continuous-yield approximation can introduce meaningful pricing errors. A discrete dividend of size $D$ causes the stock price to drop by approximately $D$ on the ex-date, which creates a discontinuity that a smooth yield $q$ cannot capture. The effect is most pronounced for deep in-the-money calls (where early exercise to capture the dividend may be optimal for American options) and for short maturities (where a single dividend constitutes a large fraction of the total expected yield).
+
+In practice, the most common approaches for individual stock options are:
+
+- **Escrowed dividend model**: subtract the present value of known dividends from the current stock price, then apply the Black–Scholes formula to the adjusted price.
+- **Piecewise constant yield**: use different effective yields for different periods between ex-dates.
+- **Tree or finite-difference methods** with explicit dividend nodes that impose the price drop at each ex-date.
+
+The continuous dividend yield $q$ should therefore be viewed as exact for the idealized case of a truly continuous cash flow (foreign interest, index dividends in aggregate) and as a convenient but approximate device for individual equities.
 
 
 ## On Self-Financing and Rebalancing
@@ -126,12 +158,11 @@ In the rigorous formulation, one constructs a self-financing strategy $(\alpha_t
 ## Summary
 
 
-The derivation proceeds in four steps:
+The derivation proceeds in three steps:
 
 1. **Itô's formula** gives the dynamics of $V(t, S_t)$, decomposed into drift and diffusion.
-2. **Portfolio construction**: $\Pi = V - \frac{\partial V}{\partial S}\, S$ eliminates the $dW$ term.
-3. **Drift cancellation**: the choice $\Delta = V_S$ also cancels the physical drift $\mu$.
-4. **No-arbitrage**: the deterministic portfolio earns rate $r$, yielding the PDE.
+2. **Portfolio construction and delta choice**: forming $\Pi = V - \frac{\partial V}{\partial S}\, S$ and choosing $\Delta = V_S$ simultaneously eliminates the $dW$ term and cancels the physical drift $\mu$—two consequences of a single choice.
+3. **No-arbitrage**: the resulting deterministic portfolio must earn rate $r$, yielding the PDE.
 
 The Black–Scholes PDE with terminal condition $V(T, S) = \Phi(S)$ is a **backward parabolic equation**: it is solved from $t = T$ back to $t = 0$.
 
@@ -139,6 +170,8 @@ For alternative derivations that arrive at the same PDE via different reasoning,
 
 
 ## References
+
+- Black, F. (1976). *The pricing of commodity contracts.* Journal of Financial Economics, 3(1–2), 167–179.
 
 - Black, F. and Scholes, M. (1973). *The pricing of options and corporate liabilities.* Journal of Political Economy, 81(3), 637–654.
 
