@@ -60,7 +60,7 @@ The martingale condition on $P(t, T)/B_t$ translates to conditions on the dynami
 
 ## Dynamics of the Log Bond Price
 
-### Computing $dZ(t, T)$
+### Computing dZ(t, T)
 
 We need to find $dZ(t, T)$ where:
 
@@ -136,7 +136,7 @@ $$
 
 ## The Discounted Bond Price
 
-### Dynamics of $P(t, T)/B_t$
+### Dynamics of P(t, T)/B_t
 
 Let $\tilde{P}(t, T) = P(t, T)/B_t$. Using the product rule:
 
@@ -301,7 +301,7 @@ The drift follows automatically.
 
 ## Multi-Factor Extension
 
-### $n$-Factor HJM
+### n-Factor HJM
 
 With $n$ driving Brownian motions:
 

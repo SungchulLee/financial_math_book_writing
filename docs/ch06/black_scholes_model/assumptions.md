@@ -248,7 +248,7 @@ $$
 - **Stochastic rates**: Hull-White, CIR models for interest rate derivatives
 - **Foreign exchange options**: Two interest rates (domestic and foreign)
 
-### 4. **Practical Implementation: What is $r$ in Practice?**
+### 4. **Practical Implementation: What is r in Practice?**
 
 
 While the Black-Scholes model assumes a constant risk-free rate, practitioners must choose an appropriate rate from observable market data. The choice depends on the option's maturity, underlying asset, and market conventions.

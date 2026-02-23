@@ -67,7 +67,7 @@ $$
 
 ## Dynamics Under the Terminal Measure
 
-### Terminal Measure $\mathbb{Q}^{T_n}$
+### Terminal Measure Q^T_n
 
 Under the **terminal forward measure** $\mathbb{Q}^{T_n}$ (with numéraire $P(t, T_n)$), the forward rates have lognormal dynamics:
 
@@ -97,7 +97,7 @@ Under $\mathbb{Q}^{T_n}$, the forward rate $L_i(t)$ is a **martingale** for $i =
 
 ## Dynamics Under the Spot Measure
 
-### The Spot Measure $\mathbb{Q}^B$
+### The Spot Measure Q^B
 
 A practically useful measure is the **spot (rolling) measure** $\mathbb{Q}^B$, which uses the continuously-rolled money market account as numéraire.
 
@@ -125,7 +125,7 @@ and $\eta(t) = \min\{k : T_k > t\}$ is the index of the next reset date.
 
 ## Dynamics Under Individual Forward Measures
 
-### $T_{i+1}$-Forward Measure
+### T_i+1-Forward Measure
 
 Under the measure $\mathbb{Q}^{T_{i+1}}$ (with numéraire $P(t, T_{i+1})$), the forward rate $L_i(t)$ is a **martingale**:
 

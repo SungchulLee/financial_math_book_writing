@@ -59,7 +59,7 @@ In both cases, $r_t \geq 0$ for all $t$.
 
 ---
 
-## Distribution of $r_t$
+## Distribution of r_t
 
 ### Transition Density
 
@@ -125,13 +125,13 @@ $$
 \gamma = \sqrt{\kappa^2 + 2\sigma^2}
 $$
 
-### Solution for $B(\tau)$
+### Solution for B(τ)
 
 $$
 \boxed{B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}}
 $$
 
-### Solution for $A(\tau)$
+### Solution for A(τ)
 
 $$
 \boxed{A(\tau) = \left[\frac{2\gamma \exp\left(\frac{(\kappa + \gamma)\tau}{2}\right)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}}

@@ -12,7 +12,11 @@ Classical Riemann-Stieltjes integration fails for Brownian motion because its pa
 
 $$\mathbb{E}\!\left[\left(\int_0^t H_s\, dW_s\right)^{\!2}\right] = \mathbb{E}\!\left[\int_0^t H_s^2\, ds\right]$$
 
-The Ito isometry arises because cross terms $\mathbb{E}[\beta_i \beta_j \Delta W_i \Delta W_j] = 0$ for $i < j$ vanish by the independence of Brownian increments from adapted integrands. The resulting integral is a **continuous martingale** with zero expectation, is linear in the integrand, and has **quadratic variation** $\langle \int H\, dW \rangle_t = \int_0^t H_s^2\, ds$. Financial interpretation: the Ito integral represents cumulative profit/loss from holding $H_s$ shares of a stock whose price follows $dB_s$, with the key distinction from ordinary integration being that the increments $dB_s$ are random.
+The Ito isometry arises because cross terms $\mathbb{E}[\beta_i \beta_j \Delta W_i \Delta W_j] = 0$ for $i < j$ vanish by the independence of Brownian increments from adapted integrands. The resulting integral is a **continuous martingale** with zero expectation, is linear in the integrand, and has **quadratic variation** 
+
+$$\left\langle \int H\, dW \right\rangle_t = \int_0^t H_s^2\, ds$$
+
+Financial interpretation: the Ito integral represents cumulative profit/loss from holding $H_s$ shares of a stock whose price follows $dB_s$, with the key distinction from ordinary integration being that the increments $dB_s$ are random.
 
 ### **Ito Processes and Stratonovich Integration**
 The general **Ito process** $X_t = X_0 + \int_0^t b_s\, ds + \int_0^t \sigma_s\, dW_s$ (written $dX_t = b_t\, dt + \sigma_t\, dW_t$) decomposes into a drift term (deterministic, predictable, finite variation) and a martingale term (stochastic integral, zero-mean fluctuations). This decomposition makes Ito processes the natural class of semimartingales for stochastic calculus. The **Stratonovich integral** $\int_0^t H_s \circ dW_s$ uses midpoint evaluation instead of left-endpoint evaluation, satisfies the classical chain rule, but loses the martingale property; the two conventions are related by

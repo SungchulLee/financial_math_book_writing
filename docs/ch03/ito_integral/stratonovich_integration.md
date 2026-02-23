@@ -228,7 +228,7 @@ $$
 
 where $[f, W]_t$ is the quadratic covariation between $f$ and $W$.
 
-### Example: $\int B_t \circ dB_t$
+### Example: ∫ B_t ∘ dB_t
 
 Using the conversion formula with $f(x) = x$ and $\sigma = 1$:
 

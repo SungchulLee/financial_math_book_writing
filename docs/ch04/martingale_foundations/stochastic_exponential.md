@@ -203,7 +203,7 @@ This property is essential for measure changes but requires verification via Nov
 
 ## Special Cases
 
-### Case 1: $X_t = \sigma W_t$ (Constant Volatility)
+### Case 1: X_t = σ W_t (Constant Volatility)
 
 For $\sigma \in \mathbb{R}$ constant:
 
@@ -213,7 +213,7 @@ $$
 
 This is the fundamental **exponential martingale**. It satisfies $\mathbb{E}[\mathcal{E}(\sigma W)_t] = 1$ for all $t$ (Novikov is trivially satisfied since $\sigma$ is constant).
 
-### Case 2: $X_t = \int_0^t \sigma_s\,dW_s$ (Stochastic Integrand)
+### Case 2: X_t = ∫_0^t σ_s dW_s (Stochastic Integrand)
 
 $$
 \mathcal{E}(X)_t = \exp\left(\int_0^t \sigma_s\,dW_s - \frac{1}{2}\int_0^t \sigma_s^2\,ds\right)
@@ -277,7 +277,7 @@ See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the complete treat
 
 ## Why the Correction Term Matters
 
-### Without Correction: $e^{W_t}$ Has Drift
+### Without Correction: e^W_t Has Drift
 
 If we naively define $Z_t = e^{W_t}$, then by Itô's lemma:
 
@@ -291,7 +291,7 @@ $$
 \mathbb{E}[e^{W_t}] = e^{t/2} > 1 = e^{W_0}
 $$
 
-### With Correction: $\mathcal{E}(W)_t$ Is a Martingale
+### With Correction: E(W)_t Is a Martingale
 
 $$
 \mathcal{E}(W)_t = e^{W_t - t/2}
@@ -309,7 +309,7 @@ The correction $-\frac{1}{2}\langle X \rangle_t$ precisely removes the drift int
 
 ---
 
-## When Is $\mathcal{E}(X)$ a True Martingale?
+## When Is E(X) a True Martingale?
 
 The stochastic exponential of a local martingale is always a local martingale, but may be a **strict local martingale** (local martingale that is not a true martingale).
 

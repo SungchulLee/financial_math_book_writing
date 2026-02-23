@@ -35,13 +35,13 @@ This is the **distribution** perspective. We fix a starting point and track wher
 
 For the SDE $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$:
 
-### The Generator $\mathcal{L}$
+### The Generator L
 
 $$\mathcal{L} f = \mu(x) \frac{\partial f}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2 f}{\partial x^2}$$
 
 Acts on **test functions** (payoffs, value functions).
 
-### The Adjoint Generator $\mathcal{L}^*$
+### The Adjoint Generator L^*
 
 $$\mathcal{L}^* f = -\frac{\partial}{\partial x}[\mu(x) f] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) f]$$
 
@@ -91,7 +91,7 @@ for suitable test functions $f, g$ with vanishing boundary terms.
 
 ---
 
-## Comparison: $\mathcal{L}$ vs $\mathcal{L}^*$
+## Comparison: L vs L^*
 
 | Aspect | Generator $\mathcal{L}$ | Adjoint $\mathcal{L}^*$ |
 |--------|------------------------|------------------------|

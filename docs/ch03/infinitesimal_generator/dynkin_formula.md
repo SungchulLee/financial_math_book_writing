@@ -19,7 +19,13 @@ $$\mathcal{L}f = \mu f' + \frac{\sigma^2}{2}f''$$
 and stopping time $\tau$ with $\mathbb{E}_x[\tau] < \infty$.
 
 !!! warning "Integrability Condition"
-    Requires $\mathbb{E}_x\left[\int_0^\tau |(\mathcal{L}f)(X_s)|\,ds\right] < \infty$
+    Requires $\mathbb{E}_x\left[\int_0^\tau |(\mathcal{L}f)(X_s)|\,ds\right] < \infty$.
+
+    A convenient sufficient condition: if $\mathcal{L}f$ is bounded on the state space and $\mathbb{E}_x[\tau] < \infty$, then the condition holds automatically, since
+
+    $$\mathbb{E}_x\left[\int_0^\tau |(\mathcal{L}f)(X_s)|\,ds\right] \leq \|\mathcal{L}f\|_\infty \cdot \mathbb{E}_x[\tau] < \infty$$
+
+    This covers all the examples below: in each case $\mathcal{L}f$ is a polynomial evaluated on a bounded domain, or the process has finite expected exit time.
 
 ---
 
@@ -38,16 +44,18 @@ and stopping time $\tau$ with $\mathbb{E}_x[\tau] < \infty$.
 ??? note "Via Itô's Lemma"
 
     **Step 1**: Apply Itô's lemma
-    
+
     $$df(X_t) = (\mathcal{L}f)(X_t)\,dt + \sigma(X_t)f'(X_t)\,dW_t$$
-    
+
     **Step 2**: Integrate $0 \to \tau$
-    
+
     $$f(X_\tau) - f(x) = \int_0^\tau (\mathcal{L}f)(X_s)\,ds + \int_0^\tau \sigma f'\,dW_s$$
-    
+
     **Step 3**: Take expectation (Itô integral vanishes)
-    
+
     $$\mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau (\mathcal{L}f)(X_s)\,ds\right]$$
+
+
 
 ---
 
@@ -61,7 +69,7 @@ is a martingale. Dynkin's formula follows from optional stopping: $\mathbb{E}_x[
 
 ## Examples
 
-### Brownian Motion: $\mathbb{E}_x[X_\tau]$
+### Brownian Motion: E[X_τ]
 
 | Item | Value |
 |------|-------|
@@ -74,7 +82,7 @@ $$\mathbb{E}_x[X_\tau] = x + \mathbb{E}_x\left[\int_0^\tau 0\,ds\right] = x$$
 
 ---
 
-### Brownian Motion: $\mathbb{E}_x[X_\tau^2]$
+### Brownian Motion: E[X_τ²]
 
 | Item | Value |
 |------|-------|
@@ -89,17 +97,31 @@ $$\mathbb{E}_x[X_\tau^2] = x^2 + \mathbb{E}_x[\tau]$$
 
 **Problem**: BM starts at $x \in (a,b)$. Find $\mathbb{E}_x[\tau]$ where $\tau = \inf\{t: X_t \notin (a,b)\}$.
 
-**Strategy**: Find $f$ with $\mathcal{L}f = -1$, i.e., $\frac{1}{2}f'' = -1$.
+**Strategy**: Find $f$ with $\mathcal{L}f = -1$, i.e., $\frac{1}{2}f'' = -1$, so $f'' = -2$.
 
-**Solution**: $f(x) = -x^2$
+**Solution**: $f(x) = -x^2$ (linear terms may be added freely; they vanish in the final computation).
 
-From $\mathbb{E}_x[X_\tau] = x$ (martingale property):
+**Step 1 — Exit probabilities.** Since $X_t$ is a BM, it is a martingale, so $\mathbb{E}_x[X_\tau] = x$ by optional stopping. The process exits at $a$ or $b$ only, so:
 
 $$\mathbb{P}_x(X_\tau = b) = \frac{x-a}{b-a}, \quad \mathbb{P}_x(X_\tau = a) = \frac{b-x}{b-a}$$
 
-Applying Dynkin with $f(x) = -x^2$:
+**Step 2 — Compute $\mathbb{E}_x[X_\tau^2]$.** Using the exit probabilities:
 
-$$\mathbb{E}_x[-X_\tau^2] = -x^2 - \mathbb{E}_x[\tau]$$
+$$\mathbb{E}_x[X_\tau^2] = b^2 \cdot \frac{x-a}{b-a} + a^2 \cdot \frac{b-x}{b-a} = \frac{b^2(x-a) + a^2(b-x)}{b-a}$$
+
+**Step 3 — Apply Dynkin with $f(x) = -x^2$**, where $\mathcal{L}f = \frac{1}{2}(-2) = -1$:
+
+$$\mathbb{E}_x[-X_\tau^2] = -x^2 + \mathbb{E}_x\left[\int_0^\tau (-1)\,ds\right] = -x^2 - \mathbb{E}_x[\tau]$$
+
+Therefore:
+
+$$\mathbb{E}_x[\tau] = \mathbb{E}_x[X_\tau^2] - x^2 = \frac{b^2(x-a) + a^2(b-x)}{b-a} - x^2$$
+
+Expanding and simplifying:
+
+$$\mathbb{E}_x[\tau] = \frac{b^2 x - ab^2 + a^2 b - a^2 x - x^2(b-a)}{b-a} = \frac{(b^2 - a^2)(x) - ab(b-a) - x^2(b-a)}{b-a}$$
+
+$$= (a+b)x - ab - x^2 = -(x^2 - (a+b)x + ab) = -(x-a)(x-b)$$
 
 $$
 \boxed{\mathbb{E}_x[\tau] = (x-a)(b-x)}
@@ -112,7 +134,9 @@ $$
 
 ---
 
-### Ornstein–Uhlenbeck: $\mathbb{E}_x[X_t]$
+### Ornstein–Uhlenbeck: E[X_t]
+
+> **Note**: This example uses a fixed time $t$ rather than a stopping time $\tau$. Dynkin's formula applies to both — simply replace $\tau$ with a deterministic $t$.
 
 | Item | Value |
 |------|-------|
@@ -127,7 +151,7 @@ $$\boxed{m(t) = x e^{-\kappa t}}$$
 
 ---
 
-### GBM: $\mathbb{E}[S_t]$
+### GBM: E[S_t]
 
 | Item | Value |
 |------|-------|
@@ -137,6 +161,9 @@ $$\boxed{m(t) = x e^{-\kappa t}}$$
 $$\mathbb{E}_{s_0}[S_t] = s_0 + \mu \int_0^t \mathbb{E}_{s_0}[S_u]\,du$$
 
 $$\boxed{\mathbb{E}_{s_0}[S_t] = s_0 e^{\mu t}}$$
+
+!!! note "Remark"
+    This result can also be obtained directly from $S_t = s_0 e^{(\mu - \sigma^2/2)t + \sigma W_t}$ and taking expectations. The Dynkin derivation is more instructive as a method, showing how the ODE for $\mathbb{E}[S_t]$ emerges from the generator.
 
 ---
 
@@ -204,9 +231,9 @@ Dynkin's formula:
 
 $$\mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau \mathcal{L}f(X_s)\,ds\right]$$
 
-often holds under **much weaker assumptions**.
+can hold under **weaker assumptions** in certain settings — for instance, for processes with jumps or weak solutions where pathwise Itô calculus breaks down. That said, Dynkin carries its own integrability requirement (see above), so neither formula is universally stronger. The key advantage of Dynkin is robustness when the path structure is unavailable or inconvenient.
 
-So Dynkin is not just a corollary — it is **more robust**.
+So Dynkin is not just a corollary — it is **more robust in the settings that matter most**.
 
 ---
 

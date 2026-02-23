@@ -54,7 +54,7 @@ For an American option, the constraint $V(S, t) \geq \Phi(S)$ must hold for all 
     - The option is worth exactly its intrinsic value
     - The holder should exercise immediately
 
-### The Free Boundary $S^*(t)$
+### The Free Boundary S^*(t)
 
 The boundary between $\mathcal{C}$ and $\mathcal{E}$ is an **unknown curve** $S^*(t)$ that must be determined as part of the solution:
 

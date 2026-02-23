@@ -122,7 +122,7 @@ This converts the PDE problem into a probabilistic expectation problem.
 
 We now prove the Feynman-Kac formula rigorously using Itô's lemma and martingale theory.
 
-### 1. **Step 1: Apply Itô's Lemma to $u(X_t, t)$**
+### 1. **Step 1: Apply Itô's Lemma to u(X_t, t)**
 
 
 For a function $u(X_t, t)$ where $dX_t = \mu dt + \sigma dW_t$, Itô's lemma gives:
@@ -240,7 +240,7 @@ with terminal conditions:
 
 ---
 
-## Solving the SDE: Distribution of $S_T$
+## Solving the SDE: Distribution of S_T
 
 
 To evaluate the expectation in the Feynman-Kac formula, we need the distribution of $S_T$.
@@ -253,7 +253,7 @@ $$
 dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
 $$
 
-### 2. **Apply Itô's Lemma to $\ln S_t$**
+### 2. **Apply Itô's Lemma to ln S_t**
 
 
 Let $f(S) = \ln S$. Then:
@@ -280,7 +280,7 @@ $$
 = \left(r - \frac{1}{2}\sigma^2\right)dt + \sigma dW_t^{\mathbb{Q}}
 $$
 
-### 3. **Integrate from $t$ to $T$**
+### 3. **Integrate from t to T**
 
 
 $$
@@ -301,7 +301,7 @@ $$
 \boxed{S_T = S_t \exp\left[\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma\sqrt{T-t} \cdot Z\right]}
 $$
 
-### 5. **Distribution of $S_T$**
+### 5. **Distribution of S_T**
 
 
 Define $\tau = T - t$. Then:
@@ -382,7 +382,7 @@ $$
 I_1 = \int_K^{\infty}S_T p(S_T)dS_T = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
 $$
 
-### 5. **Step 4: Evaluate $I_2$ (Probability Term)**
+### 5. **Step 4: Evaluate I_2 (Probability Term)**
 
 
 Standardize the integral. Let:
@@ -419,7 +419,7 @@ $$
 
 **Interpretation**: $\mathcal{N}(d_2) = \mathbb{Q}(S_T > K)$ is the **risk-neutral probability** that the option expires in-the-money.
 
-### 6. **Step 5: Evaluate $I_1$ (Stock Term)**
+### 6. **Step 5: Evaluate I_1 (Stock Term)**
 
 
 $$
@@ -585,7 +585,7 @@ $$
 C = \underbrace{S\mathcal{N}(d_1)}_{\text{Stock term}} - \underbrace{Ke^{-r\tau}\mathcal{N}(d_2)}_{\text{Strike term}}
 $$
 
-### 2. **Meaning of $\mathcal{N}(d_2)$**
+### 2. **Meaning of N(d_2)**
 
 
 $$
@@ -599,7 +599,7 @@ $$
 \int_K^{\infty}p(S_T)dS_T = \mathbb{Q}(S_T > K) = \mathcal{N}(d_2)
 $$
 
-### 3. **Meaning of $\mathcal{N}(d_1)$**
+### 3. **Meaning of N(d_1)**
 
 
 $\mathcal{N}(d_1)$ represents the probability of exercise under the **stock measure** $\mathbb{Q}^S$:

@@ -1,4 +1,4 @@
-# Pricing Barrier Options via the Joint Law of $(W_t, M_t)$
+# Pricing Barrier Options via the Joint Law of (W_t, M_t)
 
 ## Barrier Option Overview
 

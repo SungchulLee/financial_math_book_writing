@@ -186,7 +186,7 @@ function BootstrapHazardRates(spreads[], maturities[], R, discountCurve):
 
 Assume: $R = 40\%$, flat risk-free rate $r = 3\%$, annual premium payments.
 
-### Step 1: Bootstrap $\lambda_1$ (1Y CDS)
+### Step 1: Bootstrap λ_1 (1Y CDS)
 
 **Approximate:** $\lambda_1 \approx s_1 / (1-R) = 80 / 60 = 133$ bp
 
@@ -204,7 +204,7 @@ $$
 
 $S(0,1) = e^{-0.0135} = 0.9866$
 
-### Step 2: Bootstrap $\lambda_2$ (3Y CDS)
+### Step 2: Bootstrap λ_2 (3Y CDS)
 
 Given $\lambda_1 = 135$ bp and $S(0,1) = 0.9866$:
 
@@ -219,7 +219,7 @@ $$
 
 $S(0,3) = 0.9866 \times e^{-0.0115 \times 2} = 0.9866 \times 0.9772 = 0.9641$
 
-### Step 3: Bootstrap $\lambda_3$ (5Y CDS)
+### Step 3: Bootstrap λ_3 (5Y CDS)
 
 Given $\lambda_1, \lambda_2$ and $S(0,3) = 0.9641$:
 

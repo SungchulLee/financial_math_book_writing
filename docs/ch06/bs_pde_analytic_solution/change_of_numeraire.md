@@ -110,7 +110,7 @@ Choose $N_t = S_t$ (the underlying stock itself).
 
 The associated measure $\mathbb{Q}^S$ is called the **stock measure** or **forward measure**.
 
-### 2. **Relative Prices Under $\mathbb{Q}^S$**
+### 2. **Relative Prices Under Q^S**
 
 
 Under the stock measure, all assets relative to $S_t$ are martingales.
@@ -142,7 +142,7 @@ $$
 
 
 
-### 4. **Brownian Motion Under $\mathbb{Q}^S$**
+### 4. **Brownian Motion Under Q^S**
 
 
 If $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$ under $\mathbb{Q}$, then by Girsanov:
@@ -202,7 +202,7 @@ $$
 
 
 
-### 2. **First Term: $\mathbb{Q}^S(S_T > K)$**
+### 2. **First Term: Q^S(S_T > K)**
 
 
 Under $\mathbb{Q}^S$, from Girsanov:
@@ -263,7 +263,7 @@ $$
 
 
 
-### 3. **Second Term: Change to $\mathbb{Q}$**
+### 3. **Second Term: Change to Q**
 
 
 For the second term, we use:

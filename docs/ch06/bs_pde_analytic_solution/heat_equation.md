@@ -201,7 +201,7 @@ $$
 -\frac{\partial V}{\partial \tau} + \frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - rV = 0
 $$
 
-### 3. **Step 3: Eliminate $-rV$ Term**
+### 3. **Step 3: Eliminate -rV Term**
 
 
 Since $V = Fe^{-r\tau}$, compute derivatives:
@@ -386,7 +386,7 @@ We evaluate each integral separately.
 
 ---
 
-## Evaluation of $I_2$ (Strike Term)
+## Evaluation of I_2 (Strike Term)
 
 
 $$
@@ -421,7 +421,7 @@ $$
 
 ---
 
-## Evaluation of $I_1$ (Stock Term)
+## Evaluation of I_1 (Stock Term)
 
 
 $$

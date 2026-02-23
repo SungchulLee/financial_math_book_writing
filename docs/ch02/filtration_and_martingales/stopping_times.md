@@ -105,7 +105,7 @@ For a discrete filtration $(\mathcal{F}_n)_{n \ge 0}$:
 
 ---
 
-## The $\sigma$-Algebra $\mathcal{F}_\tau$
+## The σ-Algebra F_τ
 
 For a stopping time $\tau$, the **$\sigma$-algebra at time $\tau$** captures information available at the random time $\tau$:
 
@@ -297,7 +297,7 @@ Let $\sigma$ and $\tau$ be stopping times.
 
 (c) Give a counterexample showing that $\sigma - \tau$ need not be a stopping time.
 
-### Exercise 3: The $\sigma$-Algebra $\mathcal{F}_\tau$
+### Exercise 3: The σ-Algebra F_τ
 
 Let $\tau = \inf\{t : W_t = 1\}$.
 

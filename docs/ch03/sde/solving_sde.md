@@ -551,7 +551,7 @@ $$
 X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)a(s)\,ds + \int_0^t \mu(s)c(s)\,dW_s\right]
 $$
 
-### 4. When There's Diffusion in $X_t$
+### 4. When There's Diffusion in X_t
 
 
 For:

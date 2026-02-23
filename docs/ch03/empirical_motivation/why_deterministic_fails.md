@@ -421,7 +421,7 @@ $$
 
 The term $(dS)^2 = \sigma^2 S^2 dt$ is **not zero** in stochastic calculus!
 
-### 2. Fundamental Difference: $(dW_t)^2 = dt$
+### 2. Fundamental Difference: (dW_t)² = dt
 
 
 **In ordinary calculus:**

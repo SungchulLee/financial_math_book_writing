@@ -143,7 +143,7 @@ The process is Gaussian because $W$ is Gaussian.
 
 Continuity follows from the continuity of $W$ and $\phi$. $\square$
 
-### 3. When Is $B_t$ a Brownian Motion?
+### 3. When Is B_t a Brownian Motion?
 
 **Theorem 1.4.2**
 

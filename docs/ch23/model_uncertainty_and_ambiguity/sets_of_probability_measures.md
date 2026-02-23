@@ -881,7 +881,7 @@ $$
 
 
 
-### 2. $\phi$-Divergences
+### 2. φ-Divergences
 
 
 **General Family**: For convex $\phi: [0, \infty) \to \mathbb{R}$ with $\phi(1) = 0$:

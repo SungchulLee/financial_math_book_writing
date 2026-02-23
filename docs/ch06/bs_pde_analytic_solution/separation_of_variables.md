@@ -507,7 +507,7 @@ $$V(S_1, S_2, t) = V_1(S_1)V_2(S_2)T(t)$$
 
 The **mixed derivative term** $\frac{\partial^2 V}{\partial S_1 \partial S_2}$ prevents simple separation unless $\rho = 0$ (uncorrelated assets).
 
-### 3. **Uncorrelated Case ($\rho = 0$)**
+### 3. **Uncorrelated Case (ρ = 0)**
 
 
 With $\rho = 0$:
@@ -528,7 +528,7 @@ $$\boxed{V(S_1,S_2,t) = \sum_{m,n}c_{mn}X_m(S_1)Y_n(S_2)e^{-(\lambda_m + \lambda
 
 
 
-### 4. **Correlated Case ($\rho \neq 0$)**
+### 4. **Correlated Case (ρ ≠ 0)**
 
 
 Need to **diagonalize** the covariance matrix first via rotation/principal components, then separate in the new coordinates.

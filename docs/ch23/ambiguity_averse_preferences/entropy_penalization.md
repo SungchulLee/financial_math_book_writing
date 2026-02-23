@@ -184,7 +184,7 @@ $$
 
 At the optimum, the constraint binds: $D_{\text{KL}}(P^* \| P_0) = \eta$.
 
-### 2. Relationship Between $\theta$ and $\eta$
+### 2. Relationship Between θ and η
 
 
 **Theorem**: For the entropy-constrained problem, the constraint level $\eta$ and multiplier $\theta$ are related by:

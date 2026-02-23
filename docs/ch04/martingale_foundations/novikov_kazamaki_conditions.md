@@ -203,7 +203,7 @@ $$
 
 ## Practical Verification
 
-### Case 1: Deterministic $\theta$
+### Case 1: Deterministic θ
 
 If $\theta_t = \theta(t)$ is deterministic:
 
@@ -213,7 +213,7 @@ $$
 
 The exponential of a constant is finite, so the condition reduces to $\theta \in L^2[0,T]$.
 
-### Case 2: Bounded $\theta$
+### Case 2: Bounded θ
 
 If $|\theta_t| \leq M$ almost surely for all $t \in [0,T]$:
 

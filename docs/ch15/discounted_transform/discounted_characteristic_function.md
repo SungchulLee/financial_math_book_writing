@@ -60,7 +60,7 @@ U(X,t)
 \end{array}
 $$
 
-##### $U(X,t)$ Satisfies Black-Scholes PDE
+##### U(X,t) Satisfies Black-Scholes PDE
 
 
 

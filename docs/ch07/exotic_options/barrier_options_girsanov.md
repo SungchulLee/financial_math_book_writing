@@ -12,7 +12,7 @@ This is a **path-dependent** payoff: the option value depends not only on the te
 
 ---
 
-## Log-Price Representation under $\mathbb{Q}$
+## Log-Price Representation under Q
 
 Under the risk-neutral measure $\mathbb{Q}$ (obtained via Girsanov's theorem), the stock price satisfies:
 
@@ -114,7 +114,7 @@ where:
 
 ## Properties and Limiting Cases
 
-### As $H \to \infty$
+### As H → ∞
 
 $$
 C_{\text{UO}} \to C_{\text{BS}}(S_0, K, T)
@@ -122,7 +122,7 @@ $$
 
 The barrier becomes unreachable and the option reduces to a standard European call.
 
-### As $H \to S_0^+$
+### As H → S_0^+
 
 $$
 C_{\text{UO}} \to 0

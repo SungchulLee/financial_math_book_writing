@@ -68,7 +68,7 @@ This form has constant coefficients in the second-order $x$ terms, simplifying n
 
 ## Boundary Conditions
 
-### In Asset Price ($S$)
+### In Asset Price (S)
 
 **As $S \to 0$:**
 - Call: $V \to 0$
@@ -78,7 +78,7 @@ This form has constant coefficients in the second-order $x$ terms, simplifying n
 - Call: $V \sim Se^{-q(T-t)} - Ke^{-r(T-t)}$
 - Put: $V \to 0$
 
-### In Variance ($v$)
+### In Variance (v)
 
 **As $v \to 0$:**
 

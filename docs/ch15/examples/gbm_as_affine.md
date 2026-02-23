@@ -36,7 +36,7 @@ This is **Geometric Brownian Motion (GBM)**.
 
 ---
 
-## Why $S_t$ is NOT Affine
+## Why S_t is NOT Affine
 
 ### Checking the Affine Conditions
 
@@ -76,7 +76,7 @@ The diffusion matrix $\bar{\sigma}(S_t)\bar{\sigma}(S_t)^T = \sigma^2 S_t^2$ is 
 
 ---
 
-## Transformation: $X_t = \log S_t$
+## Transformation: X_t = log S_t
 
 ### Applying Itô's Lemma
 
@@ -118,7 +118,7 @@ This is a simple arithmetic Brownian motion with drift.
 
 ---
 
-## Why $X_t = \log S_t$ IS Affine
+## Why X_t = log S_t IS Affine
 
 ### Checking the Affine Conditions
 

@@ -79,7 +79,7 @@ dW_i^\mathbb{P}(t)dW_j^\mathbb{P}(t)
 =\rho_{ij}dt
 \end{array}$$
 
-### LIBOR is an $T_i$-Martingale
+### LIBOR is an T_i-Martingale
 
 Since $P\left(t,T_{i-1}\right)-P\left(t,T_{i}\right)$ is a price of tradable assets,
 $l_i\left(t\right)$ is an $T_i$-martingale.

@@ -191,7 +191,7 @@ where $\Phi$ is the standard normal CDF. The strict inequality shows $\mathbb{E}
 
 ---
 
-### Example 4: CEV Model with $\beta > 1$ (Strict Local Martingale)
+### Example 4: CEV Model with β > 1 (Strict Local Martingale)
 
 The **constant elasticity of variance (CEV)** model provides a clean example of a strict local martingale arising in finance. Consider:
 
@@ -296,7 +296,7 @@ $$
 
 for some integrable random variable $Y$ (i.e., $\mathbb{E}[Y] < \infty$).
 
-### 3. $L^p$ Boundedness ($p > 1$)
+### 3. L^p Boundedness (p > 1)
 
 $$
 \sup_{t \in [0,T]} \mathbb{E}[|M_t|^p] < \infty

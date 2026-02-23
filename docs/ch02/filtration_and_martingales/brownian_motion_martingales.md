@@ -46,7 +46,7 @@ $$
 
 Simple transformations of Brownian motion, when properly compensated, yield new martingales. These compensated processes reveal the moment structure of Brownian motion.
 
-### The Quadratic Martingale: $W_t^2 - t$
+### The Quadratic Martingale: W_t² - t
 
 **Theorem**: The process $M_t = W_t^2 - t$ is a martingale.
 
@@ -82,7 +82,7 @@ $$
 
 **Connection to quadratic variation**: This martingale foreshadows the quadratic variation $[W]_t = t$. The process $W_t^2 - [W]_t$ being a martingale is a general fact for continuous local martingales.
 
-### The Cubic Martingale: $W_t^3 - 3tW_t$
+### The Cubic Martingale: W_t³ - 3tW_t
 
 **Theorem**: The process $M_t = W_t^3 - 3tW_t$ is a martingale.
 

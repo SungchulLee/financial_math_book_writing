@@ -76,7 +76,7 @@ and the exponential martingale
 
 $$\exp(\theta W_t - \tfrac{1}{2}\theta^2 t)$$
 
-### **Submartingales** ($\mathbb{E}[M_t \mid \mathcal{F}_s] \geq M_s$) and **supermartingales** ($\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s$) model systematically favorable and unfavorable games respectively. Jensen's inequality connects these: if $M_t$ is a martingale and $\varphi$ is convex, then $\varphi(M_t)$ is a submartingale.
+### **Submartingales** (E[M_t | F_s] ≥ M_s) and **supermartingales** (E[M_t | F_s] ≤ M_s) model systematically favorable and unfavorable games respectively. Jensen's inequality connects these: if M_t is a martingale and φ is convex, then φ(M_t) is a submartingale.
 
 ### **Stopping Times and Optional Sampling**
 A **stopping time** $\tau$ satisfies $\{\tau \leq t\} \in \mathcal{F}_t$ for all $t$---the decision to stop can be made using only currently available information. The **Optional Sampling Theorem** extends the martingale property to bounded stopping times $\sigma \leq \tau \leq T$:

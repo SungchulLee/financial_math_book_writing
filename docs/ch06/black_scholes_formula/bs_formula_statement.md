@@ -106,7 +106,7 @@ $$
 ## Component Analysis
 
 
-### 1. **The $d_1$ Parameter**
+### 1. **The d_1 Parameter**
 
 
 $$
@@ -131,7 +131,7 @@ $$
 
 3. $\sigma\sqrt{T-t}$: Total uncertainty (volatility × $\sqrt{\text{time}}$)
 
-### 2. **The $d_2$ Parameter**
+### 2. **The d_2 Parameter**
 
 
 $$
@@ -144,7 +144,7 @@ $$
 
 **Interpretation**: Related to the risk-neutral probability of exercise (explained in next section).
 
-### 3. **The Normal CDF $\mathcal{N}(\cdot)$**
+### 3. **The Normal CDF N(·)**
 
 
 **Properties**:
@@ -231,7 +231,7 @@ For a call option with strike $K$:
 
 For a put: ITM when $S < K$, OTM when $S > K$.
 
-### 2. **Relationship to $d_1$ and $d_2$**
+### 2. **Relationship to d_1 and d_2**
 
 
 | Moneyness | $\ln(S/K)$ | $d_1, d_2$ | $\mathcal{N}(d_1), \mathcal{N}(d_2)$ |
@@ -262,7 +262,7 @@ $$
 
 The call and put have **symmetric probabilities** around $\mathcal{N}(0) = 0.5$.
 
-### 2. **At Maturity** ($T - t = 0$)
+### 2. **At Maturity** (T - t = 0)
 
 
 As $t \to T$:
@@ -272,7 +272,7 @@ As $t \to T$:
 
 This recovers the **terminal payoff**: $C(S,T) = (S-K)^+$, $P(S,T) = (K-S)^+$.
 
-### 3. **Zero Volatility** ($\sigma \to 0$)
+### 3. **Zero Volatility** (σ → 0)
 
 
 The formulas reduce to the **intrinsic value discounted at the risk-free rate**:

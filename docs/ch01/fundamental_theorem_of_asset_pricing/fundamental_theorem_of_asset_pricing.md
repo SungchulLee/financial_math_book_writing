@@ -70,7 +70,7 @@ A market is **complete** if every $\mathcal{F}_T$-measurable contingent claim $\
 
 The FTAP comes in two parts.
 
-### First FTAP: No-Arbitrage $\iff$ EMM Existence
+### First FTAP: No-Arbitrage ⟺ EMM Existence
 
 **Theorem 1 (First FTAP, finite case).**
 *In a finite-state market, there are no arbitrage opportunities if and only if there exists an equivalent martingale measure $\mathbb{Q}$.*
@@ -78,7 +78,7 @@ The FTAP comes in two parts.
 $$\text{No Arbitrage} \iff \exists\, \mathbb{Q} \sim \mathbb{P} \text{ such that } \tilde{S}^i_t \text{ is a } \mathbb{Q}\text{-martingale for all } i$$
 
 
-### Second FTAP: Completeness $\iff$ Uniqueness
+### Second FTAP: Completeness ⟺ Uniqueness
 
 **Theorem 2 (Second FTAP).**
 *Assume no arbitrage. The market is complete if and only if the equivalent martingale measure is unique.*
@@ -109,7 +109,7 @@ $$\text{No } \theta \text{ with } X\theta \geq 0, \; X\theta \neq 0 \quad \iff \
 where $\operatorname{int}(\Delta_n)$ is the interior of the probability simplex.
 
 
-### Direction 1: EMM Exists $\Rightarrow$ No Arbitrage
+### Direction 1: EMM Exists ⇒ No Arbitrage
 
 This is the easier direction.
 
@@ -126,7 +126,7 @@ with each term $q_i(X\theta)_i \geq 0$. For the sum to equal zero, every term mu
 Therefore, no strategy can produce a non-negative payoff that is strictly positive in any state. No arbitrage exists. $\square$
 
 
-### Direction 2: No Arbitrage $\Rightarrow$ EMM Exists
+### Direction 2: No Arbitrage ⇒ EMM Exists
 
 This direction uses the separating hyperplane theorem.
 
@@ -191,14 +191,14 @@ $$\mathcal{K} = \{q \in \bar{\Delta}_n : X^T q = 0\}$$
 This is a non-empty (by Step 5) compact convex set. We claim it intersects $\operatorname{int}(\Delta_n)$. To see this, suppose instead that every $q \in \mathcal{K}$ has some zero component. Partition the states into $I = \{i : q^*_i > 0\}$ and $I^c = \{i : q^*_i = 0\}$ for some extremal $q^* \in \mathcal{K}$. The no-arbitrage condition, restricted to the sub-model on states $I^c$, implies (by the same separation argument applied to the reduced model) that there exists a probability vector supported on $I^c$ that makes the restricted payoff matrix a martingale. Combining this with $q^*$ (supported on $I$) yields a vector in $\mathcal{K}$ with strictly larger support. Repeating finitely many times (since $|\Omega| = n$ is finite), we obtain $q \in \mathcal{K}$ with full support, i.e., $q \in \operatorname{int}(\Delta_n)$. $\square$
 
 
-### Visual Intuition (for $d = 2$, $n = 3$)
+### Visual Intuition (for d = 2, n = 3)
 
 Consider two risky assets ($d = 2$) and three states ($n = 3$). The closed simplex $\bar{\Delta}_3$ is a triangle in $\mathbb{R}^3$. The linear map $q \mapsto X^T q$ projects this triangle into $\mathbb{R}^2$, producing a convex region $\mathcal{S}$.
 
 If $0 \in \mathcal{S}$, some probability weighting makes the expected excess return vanish—an EMM exists. If $0 \notin \mathcal{S}$, a line through the origin (the separating hyperplane, with normal vector $\theta$) separates $\mathcal{S}$ from the origin. The portfolio $\theta$ then has the property that its expected payoff is negative under *every* probability measure on $\Omega$, which forces its payoff to be negative in every state. Flipping the sign gives an arbitrage.
 
 
-## Proof of the Second FTAP (Completeness $\iff$ Uniqueness)
+## Proof of the Second FTAP (Completeness ⟺ Uniqueness)
 
 
 We continue in the one-period finite-state model.

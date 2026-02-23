@@ -175,7 +175,7 @@ Appropriate boundary conditions depend on the model:
 
 ## Physical vs. Risk-Neutral Dynamics
 
-### Physical Measure $\mathbb{P}$
+### Physical Measure P
 
 Under the real-world (physical) measure, the short rate follows:
 
@@ -185,7 +185,7 @@ $$
 
 The drift $\mu^{\mathbb{P}}$ reflects actual rate dynamics observed historically.
 
-### Risk-Neutral Measure $\mathbb{Q}$
+### Risk-Neutral Measure Q
 
 Under $\mathbb{Q}$, the dynamics become:
 

@@ -120,7 +120,7 @@ $$
 
 ## Solving the Riccati Equations
 
-### The $D$ Equation (Riccati)
+### The D Equation (Riccati)
 
 $$
 \dot{D} = \frac{\xi^2}{2}D^2 + (\rho\xi iu - \kappa)D - \frac{1}{2}(iu + u^2)
@@ -144,7 +144,7 @@ $$
 g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}
 $$
 
-### The $C$ Equation (Linear)
+### The C Equation (Linear)
 
 $$
 \dot{C} = -(r-q)iu - \kappa\theta D

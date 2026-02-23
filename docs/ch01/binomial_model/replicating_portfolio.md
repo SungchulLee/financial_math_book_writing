@@ -143,7 +143,7 @@ We use these parameters throughout:
 | $\Delta t$ | $1$ year |
 | $e^{r\Delta t}$ | $1.0513$ |
 
-### Example 1: European Call (Strike $K = 105$)
+### Example 1: European Call (Strike K = 105)
 
 **Payoffs:**
 $$
@@ -166,7 +166,7 @@ $$
 
 **Interpretation**: Buy 0.5 shares, borrow \$42.80.
 
-### Example 2: European Put (Strike $K = 105$)
+### Example 2: European Put (Strike K = 105)
 
 **Payoffs:**
 $$
@@ -185,7 +185,7 @@ $$
 
 **Interpretation**: Short 0.5 shares, lend \$57.07.
 
-### Example 3: Forward Contract (Forward Price $F$)
+### Example 3: Forward Contract (Forward Price F)
 
 **Payoffs:**
 $$
@@ -405,7 +405,7 @@ $$
     
     State prices are **discounted risk-neutral probabilities**. The risk-neutral measure $\mathbb{Q}$ encodes the state prices in probability form.
 
-### Why $q$ Is Called "Risk-Neutral"
+### Why q Is Called "Risk-Neutral"
 
 Under the measure $\mathbb{Q}$ with $\mathbb{Q}(up) = q$:
 
@@ -421,13 +421,13 @@ The stock's expected return equals the risk-free rate—as if investors were neu
 
 Using state prices $\psi_u = 0.4797$ and $\psi_d = 0.4716$:
 
-### European Call (Strike $K = 105$)
+### European Call (Strike K = 105)
 
 $$
 C_0 = \psi_u \cdot 15 + \psi_d \cdot 0 = 0.4797 \times 15 = 7.20 \text{ ✓}
 $$
 
-### European Put (Strike $K = 105$)
+### European Put (Strike K = 105)
 
 $$
 P_0 = \psi_u \cdot 0 + \psi_d \cdot 15 = 0.4716 \times 15 = 7.07 \text{ ✓}

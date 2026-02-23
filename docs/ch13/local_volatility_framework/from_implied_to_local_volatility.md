@@ -46,7 +46,7 @@ $$
 
 ---
 
-## Change of Variables: From $(K, T)$ to $(y, w)$
+## Change of Variables: From (K, T) to (y, w)
 
 To bridge implied and local volatility, we perform a change of variables from strike-maturity coordinates to log-moneyness and variance coordinates. The partial derivatives transform as follows:
 

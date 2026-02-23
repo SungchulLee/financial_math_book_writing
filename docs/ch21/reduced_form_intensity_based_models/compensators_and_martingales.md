@@ -257,7 +257,7 @@ $$
 
 ---
 
-## Stochastic Integration with $M_t$
+## Stochastic Integration with M_t
 
 ### Integrating Against the Compensated Martingale
 

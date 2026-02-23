@@ -151,7 +151,7 @@ $$
 
 
 
-### 3. Step 3: Evaluate at $S = K$, $t = T$
+### 3. Step 3: Evaluate at S = K, t = T
 
 
 At expiry, the call payoff creates a kink at $S = K$:

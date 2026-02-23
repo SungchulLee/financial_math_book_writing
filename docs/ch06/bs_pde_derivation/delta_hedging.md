@@ -48,7 +48,7 @@ Substituting the expressions for $dV$ and $dS$:
 $$d\Pi = \left(\frac{\partial V}{\partial t} + \mu S \frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - \Delta \mu S\right) dt + \left(\sigma S \frac{\partial V}{\partial S} - \Delta \sigma S\right) dW$$
 
 
-## Step 3: Choose $\Delta$ to Eliminate Risk
+## Step 3: Choose Δ to Eliminate Risk
 
 
 Set the coefficient of $dW$ to zero:
@@ -80,7 +80,7 @@ $$\boxed{\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac
 This is the **Black–Scholes PDE**, subject to the terminal condition $V(T, S) = \Phi(S)$.
 
 
-## Why the Drift $\mu$ Disappears
+## Why the Drift μ Disappears
 
 
 The absence of $\mu$ from the PDE is the central economic insight of the derivation. The hedging portfolio eliminates all exposure to the stock's random fluctuations, so the stock's expected return becomes irrelevant—only the volatility (which determines the magnitude of fluctuations, and hence the cost of hedging) and the risk-free rate (which determines the opportunity cost) enter the equation.

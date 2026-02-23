@@ -26,7 +26,7 @@ N\tau_kP(t_0,T_k)\mathbb{E}^{\mathbb{T_k}}\left[
 \right]
 \end{array}$$
 
-## Forward Rate $l_k$ is a $\mathbb{T_k}$-Martingale
+## Forward Rate l_k is a T_k-Martingale
 
 Since $l_k(t)=\frac{1}{\tau_k}\frac{P(t,T_{k-1})-P(t,T_k)}{P(t,T_k)}$ and since $P(t,T_{k-1})$ and $P(t,T_{k})$ are prices of tradable assets,
 
@@ -77,7 +77,7 @@ d_2&=&\displaystyle
 v_k&=&\sigma_k\sqrt{T_{k-1}-t}\\
 \end{array}$$
 
-## Hull-White Caplet Formula (Using $\mathbb{T_{k}}$ Measure)
+## Hull-White Caplet Formula (Using T_k Measure)
 
 Let $t_0$, $T_{k-1}$, $T_k$ be current, reset date, maturity, respectively.
 
@@ -135,7 +135,7 @@ def main():
 
 ## QuantPie Derivation: Caplet as ZCB Put
 
-### Caplet is ZCB Put (Using $T_{k-1}$ Measure)
+### Caplet is ZCB Put (Using T_k-1 Measure)
 
 $$\begin{array}{lll}
 \displaystyle
@@ -211,9 +211,9 @@ N(1+\tau_k K)P(t_0,T_{k-1})\mathbb{E}^{T_{k-1}}\left[
 \right]
 \end{array}$$
 
-## QuantPie Derivation: Hull-White Caplet Formula (Using $T_k$ Measure)
+## QuantPie Derivation: Hull-White Caplet Formula (Using T_k Measure)
 
-### Hull-White Caplet Formula (Using $T_k$ Measure)
+### Hull-White Caplet Formula (Using T_k Measure)
 
 Let $t_0$, $T_{k-1}$, $T_k$ be current, reset date, maturity, respectively.
 

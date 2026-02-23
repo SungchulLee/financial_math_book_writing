@@ -78,7 +78,7 @@ $$
 C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty} \text{Re}\left[e^{-iuk}\hat{c}(u)\right]du
 $$
 
-### Choosing $\alpha$
+### Choosing α
 
 The damping parameter $\alpha$ must satisfy:
 

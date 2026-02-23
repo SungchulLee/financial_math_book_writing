@@ -257,7 +257,7 @@ $$
 
 and $\mathcal{P} = \text{core}(\nu)$ when $\nu$ is a **convex** capacity.
 
-### 3. $\varepsilon$-Contamination
+### 3. ε-Contamination
 
 
 **Definition**: The $\varepsilon$-contamination model specifies:

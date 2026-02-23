@@ -40,7 +40,7 @@ Crucially, they do **not** know the future default time if $\tau > t$.
 3. **Causality preserved:** Information arrives as events unfold
 4. **Natural for market models:** Reflects how default information actually propagates
 
-### Characterization of $\mathcal{G}_t$-Measurability
+### Characterization of G_t-Measurability
 
 A random variable $X$ is $\mathcal{G}_t$-measurable if and only if it has the form
 

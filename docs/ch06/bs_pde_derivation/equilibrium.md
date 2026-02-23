@@ -53,7 +53,7 @@ Since market clearing gives $C^*_t \propto W_t = S_t$, we have (up to a positive
 
 $$M_t = e^{-\rho t}\, S_t^{-\gamma}$$
 
-### Dynamics of $M_t$
+### Dynamics of M_t
 
 Apply Itô's formula to $S_t^{-\gamma}$ with $f(S) = S^{-\gamma}$:
 
@@ -83,7 +83,7 @@ This is the **equilibrium risk-free rate**. It increases with impatience ($\rho$
 
 Let $V(t, S)$ be the price of a European derivative with payoff $\Phi(S_T)$ at maturity $T$. The equilibrium pricing condition requires that $M_t\, V(t, S_t)$ is a martingale.
 
-### Itô Expansion of $d(M_t V_t)$
+### Itô Expansion of d(M_t V_t)
 
 By Itô's formula applied to $V(t, S_t)$:
 

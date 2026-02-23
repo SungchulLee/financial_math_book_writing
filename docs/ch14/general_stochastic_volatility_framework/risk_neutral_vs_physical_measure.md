@@ -6,7 +6,7 @@ Stochastic volatility models distinguish between **physical (real-world)** dynam
 
 ## Two Probability Measures
 
-### Physical Measure ($\mathbb{P}$)
+### Physical Measure (P)
 
 The **physical** or **real-world** measure governs actual asset evolution:
 
@@ -22,7 +22,7 @@ Under $\mathbb{P}$:
 - $a^{\mathbb{P}}(V)$ reflects how volatility actually evolves
 - This is the measure relevant for **forecasting** and **risk management**
 
-### Risk-Neutral Measure ($\mathbb{Q}$)
+### Risk-Neutral Measure (Q)
 
 The **risk-neutral** or **pricing** measure is constructed for derivative valuation:
 
@@ -213,7 +213,7 @@ Estimating from historical data (realized variance, returns) yields **physical p
 
 ---
 
-## Discrepancies Between $\mathbb{P}$ and $\mathbb{Q}$
+## Discrepancies Between P and Q
 
 ### Mean Reversion Speed
 

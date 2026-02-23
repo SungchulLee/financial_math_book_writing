@@ -269,7 +269,7 @@ Filtering produces:
 
 ## Choosing filter hyperparameters
 
-### State noise covariance $Q$
+### State noise covariance Q
 
 $Q$ controls how much parameters are allowed to change between observations:
 
@@ -282,7 +282,7 @@ $Q$ controls how much parameters are allowed to change between observations:
 - Cross-validation: choose $Q$ minimizing out-of-sample prediction error.
 - Expert judgment based on expected parameter stability.
 
-### Observation noise covariance $R$
+### Observation noise covariance R
 
 $R$ reflects uncertainty in market data:
 

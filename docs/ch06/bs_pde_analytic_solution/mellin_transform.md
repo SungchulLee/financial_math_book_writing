@@ -437,7 +437,7 @@ The integrand has **simple poles** at:
 - $s = 0$
 - $s = -1$
 
-### 5. **Residue at $s = 0$**
+### 5. **Residue at s = 0**
 
 
 
@@ -457,7 +457,7 @@ $$= K \cdot e^{-\Lambda(0)\tau} \cdot 1 = Ke^{r\tau}$$
 
 since $\Lambda(0) = -r$.
 
-### 6. **Residue at $s = -1$**
+### 6. **Residue at s = -1**
 
 
 

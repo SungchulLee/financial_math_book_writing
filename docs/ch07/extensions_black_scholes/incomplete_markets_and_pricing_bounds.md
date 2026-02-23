@@ -158,7 +158,7 @@ $$
 - $\theta_t^{(1)} = (\mu - r)/\sqrt{v_t}$ is determined by no-arbitrage
 - $\theta_t^{(2)} = \lambda(t, v_t)$ is **free** (volatility risk premium)
 
-### Different Choices of $\lambda$
+### Different Choices of λ
 
 | Choice | Measure | Effect |
 |--------|---------|--------|

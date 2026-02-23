@@ -503,7 +503,7 @@ $$|u(x,t) - u(y,s)| \leq C(|x-y|^\alpha + |t-s|^{\alpha/2})$$
 
 for some $\alpha \in (0,1)$.
 
-### 4. **$C^{2,\alpha}$ Interior Regularity**
+### 4. **C²,α Interior Regularity**
 
 
 Away from boundaries and degeneracies, viscosity solutions are typically **$C^{2,\alpha}$** (classical).

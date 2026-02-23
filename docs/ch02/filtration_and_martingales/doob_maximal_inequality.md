@@ -32,7 +32,7 @@ For general processes, there is no control: the maximum could be arbitrarily lar
 
 ---
 
-## Doob's $L^p$ Maximal Inequality
+## Doob's L^p Maximal Inequality
 
 **Theorem (Doob's $L^p$ Maximal Inequality)**: Let $\{M_t\}_{0 \le t \le T}$ be a right-continuous martingale (or nonnegative submartingale). Then for $p > 1$:
 
@@ -61,7 +61,7 @@ $$
 
 The proof proceeds in two steps:
 
-### Step 1: Doob's $L^1$ Maximal Inequality (Weak Form)
+### Step 1: Doob's L¹ Maximal Inequality (Weak Form)
 
 **Lemma**: For a nonnegative submartingale $\{X_t\}$ and any $\lambda > 0$:
 
@@ -83,7 +83,7 @@ $$
 \mathbb{E}[X_T \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \mathbb{E}[X_\tau \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \lambda \cdot \mathbb{P}(X_T^* \ge \lambda) \quad \square
 $$
 
-### Step 2: From Weak $L^1$ to Strong $L^p$
+### Step 2: From Weak L¹ to Strong L^p
 
 Using the layer cake formula and the weak inequality:
 
@@ -117,7 +117,7 @@ $$
 
 ---
 
-## Doob's $L^1$ Inequality
+## Doob's L¹ Inequality
 
 The case $p = 1$ requires separate treatment since $\frac{p}{p-1} \to \infty$ as $p \to 1$.
 
@@ -287,7 +287,7 @@ $$
 
 (c) Compare your bound in (b) with the exact value from the reflection principle.
 
-### Exercise 2: $L^p$ Bounds
+### Exercise 2: L^p Bounds
 
 Let $M_t$ be a martingale with $\mathbb{E}[|M_T|^4] = C$.
 

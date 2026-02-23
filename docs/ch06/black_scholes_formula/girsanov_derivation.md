@@ -64,7 +64,7 @@ This is the **risk-neutral dynamic**. The drift has been shifted from $\mu$ to $
 
 ---
 
-## 3 Step 2: Explicit Distribution of $S_T$ under $\mathbb{Q}$
+## 3 Step 2: Explicit Distribution of S_T under Q
 
 Solving the SDE under $\mathbb{Q}$:
 

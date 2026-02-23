@@ -13,7 +13,7 @@ The **$T$-maturity zero-coupon bond** has price process $P(t,T)$ satisfying:
 - $P(T,T) = 1$ (pays 1 at maturity)
 - $P(t,T) > 0$ for $t < T$
 
-### The $T$-Forward Measure
+### The T-Forward Measure
 
 The $T$-forward measure $\mathbb{Q}^T$ is defined by the Radon-Nikodym derivative:
 
@@ -122,7 +122,7 @@ $$
 1 + \delta L(t;T,T+\delta) = \frac{P(t,T)}{P(t,T+\delta)}
 $$
 
-### Under the $(T+\delta)$-Forward Measure
+### Under the (T+δ)-Forward Measure
 
 The forward LIBOR rate is a $\mathbb{Q}^{T+\delta}$-martingale:
 
@@ -204,7 +204,7 @@ $$
 \sigma_P(t,T) = -B(t,T)\sigma_r
 $$
 
-### Interest Rate Under $\mathbb{Q}^T$
+### Interest Rate Under Q^T
 
 $$
 dr_t = [\kappa(\bar{r} - r_t) - \sigma_r^2 B(t,T)]\,dt + \sigma_r\,dW_t^{\mathbb{Q}^T}

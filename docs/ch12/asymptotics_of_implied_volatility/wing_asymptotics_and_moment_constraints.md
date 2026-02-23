@@ -585,7 +585,7 @@ This constrains the wings to decay at least as fast as $p_+ = p_- = 2$.
 ## Extreme Wing Behavior: Pathological Cases
 
 
-### 1. Flat Wings ($p \to 0$)
+### 1. Flat Wings (p → 0)
 
 
 If $\sigma_{\text{IV}}(y, T)$ is constant for large $|y|$:
@@ -601,7 +601,7 @@ $$
 
 **Interpretation:** Extremely heavy tails—unrealistic for most assets.
 
-### 2. Steep Wings ($p \to \infty$)
+### 2. Steep Wings (p → ∞)
 
 
 If IV grows faster than $\sqrt{|y|/T}$:

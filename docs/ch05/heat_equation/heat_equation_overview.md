@@ -27,7 +27,7 @@ Here $u(t,x)$ represents:
 
 ---
 
-## Why the Factor $\frac{1}{2}$?
+## Why the Factor 1/2?
 
 The coefficient $\frac{1}{2}$ is chosen to align with **standard Brownian motion**, whose variance satisfies:
 

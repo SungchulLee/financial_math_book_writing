@@ -261,7 +261,7 @@ $$\xi_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_
 
 This is the **Black-Scholes structure**!
 
-### 3. **The ODE for $h$**
+### 3. **The ODE for h**
 
 
 Both $h(\xi_1)$ and $h(\xi_2)$ satisfy:

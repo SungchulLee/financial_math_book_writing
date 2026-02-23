@@ -2,11 +2,11 @@
 
 This page collects all the named functions used in the Hull-White model for quick reference.
 
-## $\tau$
+## τ
 
 $$\tau=T-t$$
 
-## $\theta$
+## θ
 
 $$\begin{array}{lllllll}
 \displaystyle
@@ -20,7 +20,7 @@ f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
 &=&\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\\
 \end{array}$$
 
-## $\psi$
+## ψ
 
 $$\begin{array}{lllllll}
 \psi(t)
@@ -38,7 +38,7 @@ r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t
 \\
 \end{array}$$
 
-## $\sigma_r^2$, $\mu_r$
+## σ_r², μ_r
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -66,7 +66,7 @@ $$\begin{array}{lllll}
 \psi^\mathbb{T}(t_0,t)\\
 \end{array}$$
 
-## $A$, $B$
+## A, B
 
 $$\begin{array}{lllllll}
 A(\tau)&=&A(0,\tau)

@@ -16,7 +16,7 @@ V^\text{Swaption}(t_0)
 \mathbb{E}^\mathbb{Q}\left[\frac{M(t_0)}{M(T_m)}N\max\left(A_{mn}(T_m)(S_{mn}(T_m)-K),0\right)\Big{|}{\cal F}(t_0)\right]
 \end{array}$$
 
-## Swap Rate $S_{mn}$ is a $\mathbb{Q}^{mn}$-Martingale
+## Swap Rate S_mn is a Q^mn-Martingale
 
 Since $S_{mn}(t)=\sum_{k=m+1}^n \omega_k(t)l_k(t)=\frac{P(t,T_{m})-P(t,T_n)}{A_{mn}(t)}$ and since $P(t,T_{m})$ and $P(t,T_{n})$ are prices of tradable assets,
 

@@ -574,7 +574,7 @@ $$\boxed{V_k = \frac{K}{1+\left(\frac{k\pi}{b-a}\right)^2}\left[\cos\left(k\pi\f
 3. **Flexible payoffs**: Any payoff with computable $V_k$
 4. **Barrier options**: Easy to incorporate by restricting $[a,b]$
 
-### 6. **Choosing $[a,b]$**
+### 6. **Choosing [a,b]**
 
 
 Typically choose:

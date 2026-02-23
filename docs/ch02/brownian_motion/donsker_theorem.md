@@ -81,7 +81,7 @@ After Donsker establishes universality, Lévy asks the final, deepest question:
 
 ## Function Space Setup
 
-### The Space $C[0,T]$
+### The Space C[0,T]
 
 Let $C[0,T]$ denote the space of continuous functions $\omega: [0,T] \to \mathbb{R}$ with $\omega(0) = 0$.
 

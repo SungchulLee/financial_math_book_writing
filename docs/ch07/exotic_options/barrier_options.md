@@ -109,7 +109,7 @@ $$
 
 Under geometric Brownian motion with continuous barrier monitoring, closed-form solutions exist. The key mathematical tool is the **reflection principle** for Brownian motion, which provides the joint distribution of $(S_T, \min_{t} S_t)$ or $(S_T, \max_{t} S_t)$.
 
-### Down-and-Out Call ($H < K$, $H < S_0$)
+### Down-and-Out Call (H < K, H < S_0)
 
 The Rubinstein–Reiner (1991) formula gives:
 

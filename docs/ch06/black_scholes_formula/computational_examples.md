@@ -19,7 +19,7 @@ Price a European call option with:
 - Risk-free rate: $r = 5\%$ per annum
 - Volatility: $\sigma = 30\%$ per annum
 
-### 2. **Step 1: Compute $d_1$ and $d_2$**
+### 2. **Step 1: Compute d_1 and d_2**
 
 
 $$
@@ -58,7 +58,7 @@ $$
 d_2 = d_1 - \sigma\sqrt{T} = 0.0391 - 0.2121 = -0.1730
 $$
 
-### 3. **Step 2: Evaluate $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$**
+### 3. **Step 2: Evaluate N(d_1) and N(d_2)**
 
 
 Using standard normal CDF tables or calculator:
@@ -111,14 +111,14 @@ $$
 ### 1. **Same Setup as Above**
 
 
-### 2. **Step 1: Use $d_1$ and $d_2$ from Call Calculation**
+### 2. **Step 1: Use d_1 and d_2 from Call Calculation**
 
 
 $$
 d_1 = 0.0391, \quad d_2 = -0.1730
 $$
 
-### 3. **Step 2: Evaluate $\mathcal{N}(-d_1)$ and $\mathcal{N}(-d_2)$**
+### 3. **Step 2: Evaluate N(-d_1) and N(-d_2)**
 
 
 Using symmetry $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
@@ -566,7 +566,7 @@ BS Price at Implied Vol: $6.00
 ## Common Numerical Issues
 
 
-### 1. **Issue 1: Extreme Values of $d_1$ or $d_2$**
+### 1. **Issue 1: Extreme Values of d_1 or d_2**
 
 
 When $d_1$ or $d_2$ are very large (positive or negative), numerical precision issues arise in evaluating $\mathcal{N}(d)$.
@@ -576,7 +576,7 @@ When $d_1$ or $d_2$ are very large (positive or negative), numerical precision i
 - If $d_1 > 8$: $\mathcal{N}(d_1) \approx 1$
 - If $d_1 < -8$: $\mathcal{N}(d_1) \approx 0$
 
-### 2. **Issue 2: Near Expiration** ($T \to 0$)
+### 2. **Issue 2: Near Expiration** (T → 0)
 
 
 As $T \to 0$, $d_1$ and $d_2$ can become undefined (division by zero).
@@ -587,7 +587,7 @@ $$
 C \approx \max(S - K, 0)
 $$
 
-### 3. **Issue 3: Very Low Volatility** ($\sigma \to 0$)
+### 3. **Issue 3: Very Low Volatility** (σ → 0)
 
 
 When $\sigma$ is very small, option behaves like forward contract.

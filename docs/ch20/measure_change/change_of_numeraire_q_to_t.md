@@ -1,4 +1,4 @@
-# Change of Numeraire from $\mathbb{Q}$ to $\mathbb{T}$
+# Change of Numeraire from Q to T
 
 ## Change of Measure
 
@@ -35,7 +35,7 @@ $$
 
     By Girsanov's theorem, $dW^\mathbb{T}(t)=dW^{\mathbb{Q}}(t)-\sigma_P(t,T)dt$ is a Brownian motion under $\mathbb{T}$.
 
-## $df$ under $\mathbb{T}$
+## df under T
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -61,7 +61,7 @@ df(t,T)
 
     since $\sigma_P(t,T)=-\int_t^T\sigma(t,T')dT'$.
 
-## $dP$ under $\mathbb{T}$
+## dP under T
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -83,7 +83,7 @@ $$\begin{array}{lllll}
     \left(r(t)+\sigma_P^2(t,T)\right)dt+\sigma_P(t,T)dW^\mathbb{T}(t)\\
     \end{array}$$
 
-## $dr$ under $\mathbb{T}$
+## dr under T
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -107,7 +107,7 @@ dr(t)
     \lambda\left(\theta^\mathbb{T}(t)-r(t)\right) dt+\sigma dW^\mathbb{T}(t)
     \end{array}$$
 
-## Hull-White Short Rate under $\mathbb{T}$
+## Hull-White Short Rate under T
 
 $$\begin{array}{lllll}
 \displaystyle

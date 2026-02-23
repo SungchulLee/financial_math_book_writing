@@ -74,7 +74,7 @@ This form shows that $r_t$ is a weighted average of:
 
 ## Distribution of Short Rates
 
-### Conditional Distribution Given $r_0$
+### Conditional Distribution Given r_0
 
 Since the solution is a linear combination of the initial condition, a constant, and a Gaussian integral, $r_t$ is **normally distributed** conditional on $r_0$:
 
@@ -128,7 +128,7 @@ $$\text{Var}(r_t | r_0) = \sigma^2 \cdot \frac{1}{2\alpha}(1 - e^{-2\alpha t})$$
 
 ## Asymptotic Distribution
 
-### As $t \to \infty$
+### As t → ∞
 
 As time progresses to infinity, the effect of the initial condition $r_0$ vanishes, and the conditional distribution converges to the **stationary distribution**:
 

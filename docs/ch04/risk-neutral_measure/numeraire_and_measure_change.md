@@ -73,7 +73,7 @@ $$
 
 ---
 
-## The $T$-Forward Measure
+## The T-Forward Measure
 
 ### Definition
 
@@ -105,7 +105,7 @@ $$
 
 Price a European call on a forward contract with strike $K$ and maturity $T$.
 
-### Under Risk-Neutral Measure $\mathbb{Q}$
+### Under Risk-Neutral Measure Q
 
 $$
 C_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}(F_T - K)^+ \mid \mathcal{F}_t\right]
@@ -113,7 +113,7 @@ $$
 
 This requires modeling the joint distribution of $r$ and $F$.
 
-### Under Forward Measure $\mathbb{Q}^T$
+### Under Forward Measure Q^T
 
 $$
 C_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(F_T - K)^+ \mid \mathcal{F}_t]
@@ -147,7 +147,7 @@ $$
 \Phi_T = (S_T^1 - S_T^2)^+
 $$
 
-### Using $S^2$ as Numéraire
+### Using S² as Numéraire
 
 Under $\mathbb{Q}^{S^2}$, the ratio $S_t^1/S_t^2$ is a martingale.
 
@@ -177,13 +177,13 @@ and $\sigma^2 = \sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2$.
 
 ## Dynamics Under Different Measures
 
-### Under Money Market Numéraire ($\mathbb{Q}$)
+### Under Money Market Numéraire (Q)
 
 $$
 dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
 $$
 
-### Under Forward Measure ($\mathbb{Q}^T$)
+### Under Forward Measure (Q^T)
 
 $$
 dS_t = (r + \sigma\sigma_P\rho_{SP})S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^T}
@@ -191,7 +191,7 @@ $$
 
 where $\sigma_P$ is bond volatility and $\rho_{SP}$ is stock-bond correlation.
 
-### Under Stock Measure ($\mathbb{Q}^S$)
+### Under Stock Measure (Q^S)
 
 $$
 dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^S}

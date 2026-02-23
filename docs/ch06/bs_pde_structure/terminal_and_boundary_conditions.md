@@ -84,7 +84,7 @@ A linear combination is specified.
 
 ## Boundary Conditions for Standard Options
 
-### As $S \to 0$
+### As S → 0
 
 **Call option**: The call is worthless if the stock goes to zero:
 
@@ -100,7 +100,7 @@ $$
 
 (Present value of receiving $K$ at maturity)
 
-### As $S \to \infty$
+### As S → ∞
 
 **Call option**: Behaves like the forward:
 
@@ -158,7 +158,7 @@ $$
 
 Boundary conditions correspond to **stopping rules** for the underlying process.
 
-### Dirichlet at $S = B$
+### Dirichlet at S = B
 
 $$
 V(t, S) = \mathbb{E}\left[e^{-r(\tau \wedge T - t)}\Phi(S_{\tau \wedge T}) \mid S_t = S\right]

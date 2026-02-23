@@ -94,7 +94,7 @@ For k = 0, 1, 2, ... until convergence:
     3. Check convergence: ||u^{k+1} - u^k|| < ε
 ```
 
-### Choice of $\lambda$
+### Choice of λ
 
 | $\lambda$ | Behavior |
 |---|---|

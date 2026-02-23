@@ -337,7 +337,7 @@ Let $X_n = \sum_{k=1}^n Y_k$ where $Y_k \ge 0$ and $\mathbb{E}[Y_k \mid \mathcal
 
 (c) Explain the connection to quadratic variation.
 
-### Exercise 3: Compensator of $|W_t|$
+### Exercise 3: Compensator of |W_t|
 
 The process $|W_t|$ is a submartingale.
 

@@ -46,7 +46,7 @@ The pair $(X_t, V_t)$ is a **two-dimensional affine diffusion**.
 
 ## Interpretation of Parameters
 
-### Mean Reversion Speed ($\kappa$)
+### Mean Reversion Speed (κ)
 
 The parameter $\kappa > 0$ controls how quickly variance returns to its long-run level:
 
@@ -57,7 +57,7 @@ The parameter $\kappa > 0$ controls how quickly variance returns to its long-run
 
 **Calibration insight:** $\kappa$ primarily affects the **term structure** of implied volatility. Higher $\kappa$ flattens the term structure faster.
 
-### Long-Run Variance ($\theta$)
+### Long-Run Variance (θ)
 
 The parameter $\theta > 0$ is the **stationary mean** of the variance process:
 
@@ -71,7 +71,7 @@ $$
 \sigma_{\text{impl}}^2(T \to \infty) \approx \theta
 $$
 
-### Volatility of Volatility ($\xi$)
+### Volatility of Volatility (ξ)
 
 The parameter $\xi > 0$ controls the magnitude of variance fluctuations:
 
@@ -84,7 +84,7 @@ $$
 \frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2} \propto \xi^2
 $$
 
-### Correlation ($\rho$)
+### Correlation (ρ)
 
 The parameter $\rho \in (-1, 1)$ controls the correlation between price and variance shocks:
 
@@ -98,7 +98,7 @@ $$
 \frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \propto \rho
 $$
 
-### Initial Variance ($V_0$)
+### Initial Variance (V_0)
 
 The parameter $V_0 > 0$ is the **current** instantaneous variance:
 

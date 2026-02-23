@@ -114,7 +114,7 @@ $$
 
 **Theorem**: If $|M_{t \wedge \tau}| \le Y$ for all $t$ where $\mathbb{E}[Y] < \infty$, then $\mathbb{E}[M_\tau] = \mathbb{E}[M_0]$.
 
-### Condition 3: $L^p$ Bound with Stopping Time Moment
+### Condition 3: L^p Bound with Stopping Time Moment
 
 **Theorem**: If $\sup_t \mathbb{E}|M_t|^p < \infty$ for some $p > 1$ and $\mathbb{E}[\tau^{p/(2(p-1))}] < \infty$, then optional sampling holds.
 

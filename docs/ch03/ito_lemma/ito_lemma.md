@@ -205,7 +205,7 @@ Taking the limit as $\|\Delta\| \to 0$:
 
 ## Key Examples
 
-### Example 1: $f(x) = x^2$
+### Example 1: f(x) = x²
 
 $$
 d(B_t^2) = 2B_t\,dB_t + \frac{1}{2}\cdot 2\,dt = 2B_t\,dB_t + dt
@@ -223,7 +223,7 @@ $$
 \int_0^t B_s\,dB_s = \frac{1}{2}(B_t^2 - t)
 $$
 
-### Example 2: $f(x) = e^x$
+### Example 2: f(x) = e^x
 
 $$
 d(e^{B_t}) = e^{B_t}\,dB_t + \frac{1}{2}e^{B_t}\,dt
@@ -231,7 +231,7 @@ $$
 
 **Note**: $e^{B_t}$ is **not** a martingale (the $dt$ term has non-zero drift).
 
-### Example 3: Exponential Martingale $f(t,x) = e^{x - t/2}$
+### Example 3: Exponential Martingale f(t,x) = e^x - t/2
 
 $$
 df = \left(-\frac{1}{2}e^{x-t/2} + \frac{1}{2}e^{x-t/2}\right)dt + e^{x-t/2}\,dB_t = e^{B_t - t/2}\,dB_t

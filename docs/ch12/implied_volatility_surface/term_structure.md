@@ -541,7 +541,7 @@ $$
 ## Asymptotic Analysis
 
 
-### 1. Short-Maturity Limit ($T \to 0$)
+### 1. Short-Maturity Limit (T → 0)
 
 
 As $T \to 0$, the ATM implied volatility converges to the **spot instantaneous volatility**:
@@ -589,7 +589,7 @@ $$
 
 
 
-### 2. Large-Maturity Limit ($T \to \infty$)
+### 2. Large-Maturity Limit (T → ∞)
 
 
 As $T \to \infty$, the ATM implied volatility converges to the **long-run average volatility**:

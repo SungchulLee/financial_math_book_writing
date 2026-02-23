@@ -29,7 +29,7 @@ By the [change-of-numéraire theorem](../../ch01/fundamental_theorem_of_asset_pr
 
 $$Z_t = \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{S_t / S_0}{B_t / B_0} = \frac{S_t e^{-rt}}{S_0}$$
 
-### Dynamics of $Z_t$
+### Dynamics of Z_t
 
 Apply Itô's product rule to $Z_t = (e^{-rt}/S_0) \cdot S_t$. Since $e^{-rt}$ is of bounded variation (zero quadratic variation), the cross-variation vanishes:
 
@@ -63,7 +63,7 @@ $$dS_t = rS_t\, dt + \sigma S_t\bigl(dW^S_t + \sigma\, dt\bigr) = (r + \sigma^2)
 
 Under $\mathbb{Q}^S$, the stock drift increases from $r$ to $r + \sigma^2$. This is natural: the density $Z_T \propto S_T e^{-rT}$ up-weights paths where the stock performs well, increasing its expected growth rate.
 
-### Verification: $B_t / S_t$ Is a $\mathbb{Q}^S$-Martingale
+### Verification: B_t / S_t Is a Q^S-Martingale
 
 The defining property of $\mathbb{Q}^S$ is that all asset prices normalized by $S_t$ are martingales. We verify this for $B_t / S_t$.
 
@@ -106,7 +106,7 @@ This gives the **PDE for the normalized price**:
 $$\frac{\partial u}{\partial t} + (r + \sigma^2)S\, \frac{\partial u}{\partial S} + \frac{1}{2}\sigma^2 S^2\, \frac{\partial^2 u}{\partial S^2} = 0 \qquad (\star)$$
 
 
-## Step 4: Transform Back to $V$
+## Step 4: Transform Back to V
 
 
 Since $V = S \cdot u$, express the derivatives of $u$ in terms of $V$:
@@ -168,7 +168,7 @@ Therefore:
 
 $$C_t = S_t\, \mathbb{Q}^S(S_T > K \mid \mathcal{F}_t) - Ke^{-r(T-t)}\, \mathbb{Q}(S_T > K \mid \mathcal{F}_t)$$
 
-### Identification with $N(d_1)$ and $N(d_2)$
+### Identification with N(d_1) and N(d_2)
 
 Under $\mathbb{Q}$, the stock drift is $r$, so $\ln S_T \mid \mathcal{F}_t \sim \mathcal{N}\!\left(\ln S_t + (r - \tfrac{1}{2}\sigma^2)\tau,\; \sigma^2\tau\right)$ where $\tau = T - t$. Therefore
 

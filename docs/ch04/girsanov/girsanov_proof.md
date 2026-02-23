@@ -74,7 +74,7 @@ $$
 
 ---
 
-## Step 3: The Shifted Process is a $\mathbb{Q}$-Martingale
+## Step 3: The Shifted Process is a Q-Martingale
 
 **Goal:** Show that $\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds$ is a martingale under $\mathbb{Q}$.
 

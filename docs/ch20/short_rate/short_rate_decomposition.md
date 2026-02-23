@@ -109,7 +109,7 @@ $$
     -\int_0^T\left[r_0e^{-\lambda z}+\lambda\int_0^z\theta(z')e^{-\lambda(z-z')}dz'\right]dz+\tilde{A}(0,\tau)\right)
     \end{array}$$
 
-## Final Form of $\psi$
+## Final Form of ψ
 
 $$\begin{array}{lllll}
 \displaystyle

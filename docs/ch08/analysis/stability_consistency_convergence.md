@@ -219,7 +219,7 @@ Option payoffs like $(S-K)^+$ are not smooth at $S = K$. This affects:
 
 The **Courant-Friedrichs-Lewy (CFL) condition** is a necessary condition for stability of explicit schemes.
 
-### For Advection Equation $u_t + cu_x = 0$
+### For Advection Equation u_t + cu_x = 0
 
 $$
 \boxed{
@@ -229,7 +229,7 @@ $$
 
 **Interpretation**: The numerical domain of dependence must contain the physical domain of dependence.
 
-### For Diffusion Equation $u_t = Du_{xx}$
+### For Diffusion Equation u_t = Du_xx
 
 $$
 \boxed{

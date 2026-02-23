@@ -151,7 +151,7 @@ $$
 P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
 $$
 
-### 2. **Compute $C - P$**
+### 2. **Compute C - P**
 
 
 $$
@@ -186,7 +186,7 @@ $$
 
 If put-call parity is violated, **arbitrage opportunities** exist.
 
-### 1. **Case 1: $C - P > S - Ke^{-rT}$** (Call overpriced relative to put)
+### 1. **Case 1: C - P > S - Ke^-rT** (Call overpriced relative to put)
 
 
 **Arbitrage strategy**:
@@ -211,7 +211,7 @@ $$
 
 **Result**: Guaranteed profit at $t=0$, zero cash flow at $T$ → **Arbitrage**
 
-### 2. **Case 2: $C - P < S - Ke^{-rT}$** (Put overpriced relative to call)
+### 2. **Case 2: C - P < S - Ke^-rT** (Put overpriced relative to call)
 
 
 **Arbitrage strategy** (reverse of above):

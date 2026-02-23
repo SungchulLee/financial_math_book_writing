@@ -124,7 +124,7 @@ where:
 - $\theta_T = \sigma_{\text{ATM}}^2(T) \cdot T$ is ATM total variance.
 - $\phi(\theta)$ is a function controlling the smile shape.
 
-### Common choices for $\phi(\theta)$
+### Common choices for φ(θ)
 
 **Power-law:**
 $$

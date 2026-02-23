@@ -30,7 +30,7 @@ $$
 R(t,T_{k-1},T_k)=\frac{1}{T_k-T_{k-1}}\log(1+\tau_kK)
 $$
 
-## Libor Rate $l_k(t)$ is a $\mathbb{T_k}$-Martingale
+## Libor Rate l_k(t) is a T_k-Martingale
 
 With tenor $\tau_k=T_k-T_{k-1}$
 

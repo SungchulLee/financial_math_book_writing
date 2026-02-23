@@ -68,7 +68,7 @@ $$
 r_t = Y_t e^{-\kappa t} = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma e^{-\kappa t} \int_0^t e^{\kappa s} dW_s
 $$
 
-### Distribution of $r_t$
+### Distribution of r_t
 
 Since $r_t$ is a linear functional of Brownian motion, it is **normally distributed**:
 
@@ -167,7 +167,7 @@ Collecting terms in $r$:
 - Coefficient of $r$: $B' + \kappa B = 1$
 - Constant term: $-\frac{A'}{A} - \kappa \theta B + \frac{1}{2}\sigma^2 B^2 = 0$
 
-### ODE for $B(\tau)$
+### ODE for B(τ)
 
 $$
 \frac{dB}{d\tau} = 1 - \kappa B, \quad B(0) = 0
@@ -179,7 +179,7 @@ $$
 \boxed{B(\tau) = \frac{1 - e^{-\kappa \tau}}{\kappa}}
 $$
 
-### ODE for $A(\tau)$
+### ODE for A(τ)
 
 $$
 \frac{d \log A}{d\tau} = \kappa \theta B - \frac{1}{2}\sigma^2 B^2, \quad A(0) = 1

@@ -287,7 +287,7 @@ $$
     q = \frac{e^{r \Delta t} - d}{u - d}, \qquad 1 - q = \frac{u - e^{r \Delta t}}{u - d}
     $$
 
-### Verification that $q \in (0,1)$
+### Verification that q ∈ (0,1)
 
 The no-arbitrage condition guarantees $q$ is a valid probability:
 

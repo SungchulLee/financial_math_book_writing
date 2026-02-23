@@ -70,7 +70,7 @@ $$
 S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)
 $$
 
-### 2. Taking the Limit $\Delta t \to 0$
+### 2. Taking the Limit Δ t → 0
 
 
 **Question:** What happens as we make the time step infinitesimally small?
@@ -109,7 +109,7 @@ This is **Geometric Brownian Motion (GBM)**, the foundation of the Black-Scholes
 
 ---
 
-## What is $dW_t$?
+## What is dW_t?
 
 
 ### 1. Brownian Motion Increments
@@ -142,7 +142,7 @@ $$
 
 **This is the fundamental difference from ordinary calculus!**
 
-### 2. Why $(dW_t)^2 = dt$ Matters
+### 2. Why (dW_t)² = dt Matters
 
 
 In ordinary calculus, $(dx)^2 = 0$ for infinitesimals. But for Brownian motion:

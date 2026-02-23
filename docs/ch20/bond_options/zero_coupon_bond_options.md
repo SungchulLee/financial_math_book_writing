@@ -1,6 +1,6 @@
 # Hull-White Zero Bond Options
 
-## $x(t)$ under $\mathbb{Q}$
+## x(t) under Q
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -17,7 +17,7 @@ x(t)
 x(s)e^{-\lambda (t-s)}+\sigma \int_{s}^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')
 \end{array}$$
 
-## $x(t)$ under $\mathbb{T}$
+## x(t) under T
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -35,7 +35,7 @@ dW^{\mathbb{T}}(t)
 dW^{\mathbb{Q}}(t)
 $$
 
-## $r(t)$ under $\mathbb{T}$
+## r(t) under T
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -54,7 +54,7 @@ $$\begin{array}{lllll}
 \sigma_r^2(s,t)
 \end{array}$$
 
-## ZCB Call ($\alpha=1$) and Put ($\alpha=-1$)
+## ZCB Call (α=1) and Put (α=-1)
 
 Let $t_0$, $T$, $T_S$ be current, ZCB option maturity, ZCB maturity, respectively.
 For the call:
@@ -90,7 +90,7 @@ with $\tau = T_S - T$.
 
     Since $P(T,T_S)=e^{A(\tau)+B(\tau)r(T)}$ and $r(T)\sim N(\mu^\mathbb{T}_r(t_0,T), \sigma_r^2(t_0,T))$ under $\mathbb{T}$, the expectation reduces to a standard lognormal integral, yielding a Black-Scholes-type formula.
 
-## Discounted Characteristic Function of $r(T)$
+## Discounted Characteristic Function of r(T)
 
 $$\begin{array}{lllll}
 \displaystyle
@@ -126,7 +126,7 @@ def main():
 
 ## QuantPie Derivation: Hull-White ZCB Option Formula
 
-### ZCB Call ($\alpha=1$) and Put ($\alpha=-1$)
+### ZCB Call (α=1) and Put (α=-1)
 
 Let $t_0$, $T$, $T_S$ be current, option maturity, ZCB maturity, respectively.
 For the call

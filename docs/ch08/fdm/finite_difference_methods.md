@@ -180,13 +180,13 @@ $$
 
 ## Boundary Conditions
 
-### At $S = 0$ (or $x \to -\infty$)
+### At S = 0 (or x → -∞)
 
 **Call**: $V(t, 0) = 0$
 
 **Put**: $V(t, 0) = Ke^{-r(T-t)}$
 
-### At $S = S_{\max}$ (or $x = x_{\max}$)
+### At S = S_max (or x = x_max)
 
 **Call**: $V(t, S_{\max}) \approx S_{\max} - Ke^{-r(T-t)}$
 

@@ -10,7 +10,7 @@ This section systematically analyzes the asymptotic behavior of option prices.
 ## Limits in Stock Price
 
 
-### 1. **As $S \to \infty$ (Deep In-the-Money Call)**
+### 1. **As S → ∞ (Deep In-the-Money Call)**
 
 
 **Behavior of $d_1$ and $d_2$**:
@@ -51,7 +51,7 @@ Deep OTM put becomes worthless.
 
 ---
 
-### 2. **As $S \to 0$ (Deep Out-of-the-Money Call)**
+### 2. **As S → 0 (Deep Out-of-the-Money Call)**
 
 
 **Behavior of $d_1$ and $d_2$**:
@@ -89,7 +89,7 @@ $$
 ## Limits in Time to Maturity
 
 
-### 1. **As $T \to 0$ (Approaching Expiration)**
+### 1. **As T → 0 (Approaching Expiration)**
 
 
 **Case 1: $S > K$ (ITM call)**
@@ -146,7 +146,7 @@ This recovers the **terminal payoff condition**.
 
 ---
 
-### 2. **As $T \to \infty$ (Very Long Maturity)**
+### 2. **As T → ∞ (Very Long Maturity)**
 
 
 **Behavior of $d_1$ and $d_2$**:
@@ -190,7 +190,7 @@ Long-dated puts become worthless (stock will almost certainly be above strike ev
 ## Limits in Volatility
 
 
-### 1. **As $\sigma \to 0$ (Zero Volatility)**
+### 1. **As σ → 0 (Zero Volatility)**
 
 
 **Deterministic evolution**: Stock grows at risk-free rate:
@@ -237,7 +237,7 @@ $$
 
 ---
 
-### 2. **As $\sigma \to \infty$ (Infinite Volatility)**
+### 2. **As σ → ∞ (Infinite Volatility)**
 
 
 **Behavior of $d_1$ and $d_2$**:
@@ -292,7 +292,7 @@ Infinite volatility gives the put its maximum possible value (present value of s
 ## Limits in Interest Rate
 
 
-### 1. **As $r \to 0$ (Zero Interest Rate)**
+### 1. **As r → 0 (Zero Interest Rate)**
 
 
 **Call formula**:
@@ -319,7 +319,7 @@ $$
 
 ---
 
-### 2. **As $r \to \infty$ (Infinite Interest Rate)**
+### 2. **As r → ∞ (Infinite Interest Rate)**
 
 
 **Discounting**: $e^{-rT} \to 0$
@@ -353,7 +353,7 @@ $$
 ## Limits in Strike Price
 
 
-### 1. **As $K \to 0$ (Zero Strike)**
+### 1. **As K → 0 (Zero Strike)**
 
 
 **Call**:
@@ -378,7 +378,7 @@ $$
 
 ---
 
-### 2. **As $K \to \infty$ (Infinite Strike)**
+### 2. **As K → ∞ (Infinite Strike)**
 
 
 **Call**:

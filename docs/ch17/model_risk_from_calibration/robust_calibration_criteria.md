@@ -204,7 +204,7 @@ $$
 
 This penalizes large parameter changes, promoting continuity.
 
-### Choosing $\lambda$
+### Choosing λ
 
 - Large $\lambda$: very stable parameters, potentially stale (under-reactive).
 - Small $\lambda$: responsive to data, potentially noisy (over-reactive).

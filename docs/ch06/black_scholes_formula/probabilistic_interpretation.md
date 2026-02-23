@@ -56,10 +56,10 @@ This reveals two key probabilities we need to evaluate.
 
 ---
 
-## The Meaning of $\mathcal{N}(d_2)$
+## The Meaning of N(d_2)
 
 
-### 1. **Exercise Probability Under $\mathbb{Q}$**
+### 1. **Exercise Probability Under Q**
 
 
 $$
@@ -110,7 +110,7 @@ $$
 
 ---
 
-## The Meaning of $\mathcal{N}(d_1)$
+## The Meaning of N(d_1)
 
 
 ### 1. **Stock Measure Probability**
@@ -156,7 +156,7 @@ $$
 
 This is **not a coincidence**—the delta naturally emerges as the stock-measure probability through the replication argument.
 
-### 4. **Relationship Between $d_1$ and $d_2$**
+### 4. **Relationship Between d_1 and d_2**
 
 
 $$
@@ -369,7 +369,7 @@ The $\Delta$ that replicates the option is exactly the probability under the mea
 ## Limiting Cases
 
 
-### 1. **Deep In-the-Money** ($S \gg K$)
+### 1. **Deep In-the-Money** (S ≫ K)
 
 
 - $d_1, d_2 \to +\infty$
@@ -383,7 +383,7 @@ C \to S - Ke^{-rT}
 $$
 (intrinsic value plus cost of carry)
 
-### 2. **Deep Out-of-the-Money** ($S \ll K$)
+### 2. **Deep Out-of-the-Money** (S ≪ K)
 
 
 - $d_1, d_2 \to -\infty$
@@ -396,7 +396,7 @@ $$
 C \to 0
 $$
 
-### 3. **At-the-Money Forward** ($S = Ke^{-rT}$)
+### 3. **At-the-Money Forward** (S = Ke^-rT)
 
 
 - $d_1 = \frac{\sigma\sqrt{T}}{2}$, $d_2 = -\frac{\sigma\sqrt{T}}{2}$

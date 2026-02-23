@@ -291,7 +291,7 @@ The converse is also true: if there's no arbitrage, then a martingale measure mu
 
 ## How Measure Change Removes Drift
 
-### What Changes Under $\mathbb{Q}$
+### What Changes Under Q
 
 A change from $\mathbb{P}$ to $\mathbb{Q}$ does **not** alter:
 
@@ -338,7 +338,7 @@ Girsanov's theorem says: shifting Brownian motion by $\int \theta\,dt$ removes t
 
 ## Example: Black–Scholes Model
 
-### Under the Physical Measure $\mathbb{P}$
+### Under the Physical Measure P
 
 $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
@@ -352,7 +352,7 @@ $$
 
 This has drift $\mu - r \neq 0$ (typically), so the martingale property fails under $\mathbb{P}$.
 
-### Under the Risk-Neutral Measure $\mathbb{Q}$
+### Under the Risk-Neutral Measure Q
 
 The market price of risk is constant: $\theta = (\mu - r)/\sigma$.
 
@@ -401,7 +401,7 @@ See [Novikov and Kazamaki Conditions](novikov_kazamaki_conditions.md) for genera
 | $\mathbb{P}$ (Physical) | Real-world probabilities; reflects beliefs and risk preferences | Forecasting, risk management |
 | $\mathbb{Q}$ (Risk-Neutral) | Pricing probabilities; reflects no-arbitrage constraints | Derivative pricing |
 
-### What $\mathbb{Q}$ Does NOT Mean
+### What Q Does NOT Mean
 
 The risk-neutral measure $\mathbb{Q}$ does **not** imply:
 
@@ -409,7 +409,7 @@ The risk-neutral measure $\mathbb{Q}$ does **not** imply:
 - Expected returns equal the risk-free rate in reality
 - $\mathbb{Q}$-probabilities are "correct" forecasts
 
-### What $\mathbb{Q}$ DOES Mean
+### What Q DOES Mean
 
 The measure $\mathbb{Q}$ encodes the **prices** that prevent arbitrage:
 

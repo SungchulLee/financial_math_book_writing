@@ -254,7 +254,7 @@ where $d_2$ is as defined above, and $\Phi$ is the standard normal CDF.
 
 ---
 
-## What Changes Under $\mathbb{Q}$?
+## What Changes Under Q?
 
 | Quantity | Under $\mathbb{P}$ | Under $\mathbb{Q}$ |
 |----------|-------------------|-------------------|

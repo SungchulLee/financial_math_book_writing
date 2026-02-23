@@ -72,7 +72,7 @@ $$\boxed{\mathcal{L}u = -1 \text{ in } D, \quad u = 0 \text{ on } \partial D}$$
 
 ---
 
-### Brownian Motion on $(a, b)$
+### Brownian Motion on (a, b)
 
 **Process**: $dX_t = dW_t$, generator $\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}$
 
@@ -105,7 +105,7 @@ $$\boxed{\mathbb{E}_x[\tau] = (x - a)(b - x)}$$
 
 ---
 
-### Brownian Motion on $(0, \infty)$: Hitting Zero
+### Brownian Motion on (0, ∞): Hitting Zero
 
 **Setup**: $X_0 = x > 0$, $\tau_0 = \inf\{t : X_t = 0\}$
 
@@ -159,7 +159,7 @@ This ODE does not have a simple closed form.
 
 ## Exit Probabilities
 
-### Hitting $b$ Before $a$ (Brownian Motion)
+### Hitting b Before a (Brownian Motion)
 
 **Setup**: $X_0 = x \in (a, b)$, find $p(x) = \mathbb{P}_x(X_\tau = b)$
 
@@ -280,7 +280,7 @@ $$\mathcal{L}f = \lambda f \text{ in } D, \quad f = 1 \text{ on target boundary}
 
 Then $f(x) = \mathbb{E}_x[e^{-\lambda\tau}]$.
 
-### BM Hitting Time of Level $a$
+### BM Hitting Time of Level a
 
 Let $\tau_a = \inf\{t : X_t = a\}$ for BM starting at $x > a$.
 

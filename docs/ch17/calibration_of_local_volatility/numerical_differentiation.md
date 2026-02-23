@@ -233,7 +233,7 @@ $$
 
 This is the butterfly arbitrage condition.
 
-### What to do if $\partial_{KK} C \le 0$
+### What to do if ∂_KK C ≤ 0
 
 1. **Pre-filter data:** Remove arbitrage violations before differentiation.
 2. **Constrained smoothing:** Fit a convex spline.

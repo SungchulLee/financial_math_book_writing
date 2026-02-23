@@ -104,7 +104,7 @@ $$
 
 ---
 
-## $L^1$ Convergence and Uniform Integrability
+## L¹ Convergence and Uniform Integrability
 
 Almost sure convergence does **not** imply $L^1$ convergence. The canonical counterexample:
 
@@ -172,7 +172,7 @@ showing $M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]$. $\square$
 
 ---
 
-## $L^p$ Convergence
+## L^p Convergence
 
 **Theorem**: Let $p > 1$ and let $(M_n)$ be a martingale with $\sup_n \mathbb{E}|M_n|^p < \infty$. Then:
 

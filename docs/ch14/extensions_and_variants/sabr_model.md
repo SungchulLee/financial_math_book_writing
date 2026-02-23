@@ -41,7 +41,7 @@ with initial conditions $F_0 = F$ and $\sigma_0 = \alpha$.
 
 ## Interpretation of Parameters
 
-### The CEV Exponent ($\beta$)
+### The CEV Exponent (β)
 
 The parameter $\beta$ controls the **backbone** of the smile—how ATM volatility changes with the forward level:
 
@@ -56,13 +56,13 @@ The parameter $\beta$ controls the **backbone** of the smile—how ATM volatilit
 - FX: $\beta = 1$ (lognormal)
 - Equity: $\beta = 1$ typically
 
-### Volatility of Volatility ($\nu$)
+### Volatility of Volatility (ν)
 
 The parameter $\nu$ controls **smile curvature**:
 - Higher $\nu$ → more convex smile
 - $\nu = 0$ → no smile (CEV model only)
 
-### Correlation ($\rho$)
+### Correlation (ρ)
 
 The parameter $\rho$ controls **smile skew**:
 - $\rho < 0$ → negative skew (equity-like)
@@ -71,7 +71,7 @@ The parameter $\rho$ controls **smile skew**:
 
 **Typical equity values:** $\rho \in [-0.5, -0.9]$
 
-### Initial Volatility ($\alpha$)
+### Initial Volatility (α)
 
 The parameter $\alpha$ sets the **ATM implied volatility level**:
 - Directly calibrated to ATM market quote
@@ -106,7 +106,7 @@ $$
 x(z) = \log\left(\frac{\sqrt{1-2\rho z + z^2} + z - \rho}{1-\rho}\right)
 $$
 
-### ATM Formula ($K = F$)
+### ATM Formula (K = F)
 
 At the money, the formula simplifies significantly:
 
@@ -161,7 +161,7 @@ $$
 | FX | 1 | $-0.3$ to $-0.1$ | 0.2–0.5 |
 | Equity | 1 | $-0.7$ to $-0.4$ | 0.3–0.6 |
 
-### Dealing with $\beta$
+### Dealing with β
 
 **Fixing $\beta$:** Reduces degrees of freedom; improves stability
 
@@ -225,7 +225,7 @@ The shifted forward $\tilde{F} = F + s$ remains positive if $s$ is large enough.
 
 **Calibration:** Choose $s$ such that $F_{\min} + s > 0$.
 
-### Normal SABR ($\beta = 0$)
+### Normal SABR (β = 0)
 
 Setting $\beta = 0$:
 

@@ -103,11 +103,11 @@ $$
 
 Simple predictable processes (piecewise constant, adapted) are dense in $L^2(\Omega \times [0,T])$. Therefore, stochastic integrals of simple processes are dense in $\mathcal{I}$.
 
-### Step 3: $\mathcal{I}$ Is Closed
+### Step 3: I Is Closed
 
 Since the Itô isometry preserves the $L^2$ norm, $\mathcal{I}$ is a closed subspace of $L^2(\Omega, \mathcal{F}_T, \mathbb{P})$.
 
-### Step 4: $\mathcal{I}$ Equals All Mean-Zero Square-Integrable Martingales
+### Step 4: I Equals All Mean-Zero Square-Integrable Martingales
 
 The key step is showing that $\mathcal{I}$ contains **all** mean-zero square-integrable $\mathcal{F}_T$-measurable random variables.
 

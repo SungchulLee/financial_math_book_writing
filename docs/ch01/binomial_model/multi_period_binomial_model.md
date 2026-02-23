@@ -65,7 +65,7 @@ $$
 
 An up-then-down path reaches the same price as a down-then-up path. The tree **recombines**, giving only $n+1$ nodes at time $n$ (not $2^n$).
 
-### Tree Visualization ($N = 3$)
+### Tree Visualization (N = 3)
 
 ```
 Time:     0           1           2           3
@@ -216,7 +216,7 @@ $$
 | $S_{3,1}$ | $89.09$ |
 | $S_{3,0}$ | $70.72$ |
 
-### Option Values (European Call, $K = 100$)
+### Option Values (European Call, K = 100)
 
 **Terminal payoffs** ($n = 3$):
 $$

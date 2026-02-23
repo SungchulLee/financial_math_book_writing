@@ -208,7 +208,7 @@ $$
 
 ---
 
-### Example 2: Brownian Motion in $\mathbb{R}^d$
+### Example 2: Brownian Motion in R^d
 
 **Generator**: $\mathcal{L} = \frac{1}{2}\Delta$ (half-Laplacian)
 

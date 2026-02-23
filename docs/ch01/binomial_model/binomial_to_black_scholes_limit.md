@@ -119,7 +119,7 @@ $$
 \boxed{q = \frac{e^{r\Delta t} - d}{u - d}}
 $$
 
-### Taylor Expansion of $q$
+### Taylor Expansion of q
 
 For small $\Delta t$, we expand each term:
 
@@ -217,7 +217,7 @@ $$
 \ln S_n = \ln S_0 + \sigma\sqrt{\Delta t} \sum_{i=1}^{n} X_i
 $$
 
-### Moments of $X_i$
+### Moments of X_i
 
 Under the risk-neutral measure $\mathbb{Q}$:
 
@@ -290,7 +290,7 @@ $$
 
 ---
 
-## The Itô Correction: Where Does $-\frac{1}{2}\sigma^2$ Come From?
+## The Itô Correction: Where Does -1/2σ² Come From?
 
 The discrepancy arises from a subtle point: the risk-neutral condition constrains the **arithmetic** return, not the **logarithmic** return.
 

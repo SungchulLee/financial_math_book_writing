@@ -34,7 +34,7 @@ $$
 
 ---
 
-## The Scaling Relation: $x \sim \sqrt{t}$
+## The Scaling Relation: x ~ √t
 
 Parabolic scaling reveals the fundamental relationship:
 

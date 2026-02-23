@@ -21,7 +21,7 @@ D_0 := \mathbb{E}^{\mathbb{Q}}\left[ e^{-rT} \mathbf{1}_{\{S_T > K\}} \right]
 = e^{-rT} \mathbb{Q}(S_T > K)
 $$
 
-### Distribution of $S_T$ under $\mathbb{Q}$
+### Distribution of S_T under Q
 
 By Girsanov's theorem, the stock price dynamics under $\mathbb{Q}$ are:
 
@@ -41,7 +41,7 @@ $$
 \log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \tfrac{1}{2}\sigma^2\right)T, \; \sigma^2 T\right)
 $$
 
-### Computing $\mathbb{Q}(S_T > K)$
+### Computing Q(S_T > K)
 
 $$
 \mathbb{Q}(S_T > K) = \mathbb{Q}(\log S_T > \log K)

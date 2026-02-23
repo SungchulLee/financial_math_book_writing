@@ -27,7 +27,7 @@ The forward rate $F(0; T_1, T_2)$ is:
 - The rate that makes a **forward-starting loan** have zero initial value
 - The **break-even rate** for the period, given the current term structure
 
-### Time-$t$ Forward Rates
+### Time-t Forward Rates
 
 More generally, the forward rate observed at time $t$ for the period $[T_1, T_2]$ is:
 

@@ -180,7 +180,7 @@ $$
 
 ---
 
-## $L^p$ Martingales and Uniform Integrability
+## L^p Martingales and Uniform Integrability
 
 A martingale $M$ is called an **$L^p$-martingale** if $\sup_t \mathbb{E}|M_t|^p < \infty$.
 
