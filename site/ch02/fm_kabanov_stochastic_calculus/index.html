@@ -49961,14 +49961,13 @@ studied in the literature, see, e.g., [1], [2], [7] and the references therein. 
 aim is to investigate a numerical scheme for this equation. We study the
 following space-discretization of problem (1.1)–(1.2):
 dun(t, xn
-k) =
-
-∆nun(t, xn
+k) =</p>
+<p>∆nun(t, xn
 k) + f(u(t, xn
 k)) + 1
 2∂−
-n <a href="xn
-k">[un(t)]</a></p>
+n [[un(t)]](xn
+k)</p>
 <p>dt
 +d∂nW(t, xn
 k) ,
@@ -49983,32 +49982,29 @@ over the grid Gn := {xn
 k = k/n : k = 0, 1, 2, ..., n}, where d stands for the
 differential in t, and
 ∆nh(xn
-k) := n2
+k) := n2
 h(xn
 k+1) −2h(xn
 k) + h(xn
 k−1)</p>
 <p>,
 ∂nh(xn
-k) := n
-
-h(xn
+k) := n</p>
+<p>h(xn
 k+1) −h(xn
 k)</p>
 <p>,
 ∂−
 n h(xn
-k) :=
-
-h(xn
+k) :=</p>
+<p>h(xn
 k) −h(xn
 k−1)</p>
 <p>,
-<a href="xn
-k">[h]</a> := 1
-3
-
-h2(xn
+[[h]](xn
+k) := 1
+3</p>
+<p>h2(xn
 k+1) + h2(xn
 k) + h(xn
 k+1)h(xn
@@ -50106,9 +50102,8 @@ Gy(t −s, x, y)u2(s, y) dy ds +
 G(t −s, x, y) dW(s, y), (2.6)
 where
 G(t, x, y) :=
-∞
-
-j=1
+∞</p>
+<p>j=1
 exp{−j2π2t}ϕj(x)ϕj(y),
 ϕj(x) :=
 √
@@ -50116,9 +50111,8 @@ exp{−j2π2t}ϕj(x)ϕj(y),
 (2.7)
 is the heat kernel, and
 Gy(t, x, y) =
-∞
-
-j=1
+∞</p>
+<p>j=1
 jπ exp{−j2π2t}ϕj(x)ψj(y),
 ψj(x) :=
 √
@@ -50147,17 +50141,15 @@ sup
 t≤T
 1
 n
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 |un(t, xn
 j )|2 ≤ξ
 
 1
 n
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 |an
 k|2 + 1
 
@@ -50195,13 +50187,12 @@ preliminary estimates in Section 4, we prove Theorem 2.2 in Section 5.
 Using the notation
 un
 k(t) := un(t, xn
-k) = un
+k) = un
 t, k
 n</p>
 <p>W n
-k (t) := √n
-
-W(t, xn
+k (t) := √n</p>
+<p>W(t, xn
 k+1) −W(t, xn
 k)</p>
 <p>for k = 1, 2, . . . , n −1, we can write equations (1.4)–(1.5) as</p>
@@ -50209,16 +50200,14 @@ k)</p>
 5
 dun
 k(t) = n2
-n−1
-
-i=1
+n−1</p>
+<p>i=1
 Dkiun
 i (t) dt + f(un
 k(t)) dt
 +n
-6
-
-|un
+6</p>
+<p>|un
 k+1|2(t) −|un
 k−1|2(t) + un
 k+1(t)un
@@ -50262,34 +50251,30 @@ that
 (x, Dx) = −x2
 1 −x2
 n−1 −
-n−2
-
-k=1
+n−2</p>
+<p>k=1
 (xk+1 −xk)2,
 (3.16)
 (x, H(x)) = 0,
 (3.17)
 (x, F(x)) =
-n−1
-
-k=1
+n−1</p>
+<p>k=1
 xkf(xk) ≤C</p>
 <p>n +
-n−1
-
-k=1
+n−1</p>
+<p>k=1
 x2
 k</p>
 <p>(3.18)
-for all x ∈Rn−1, where (x, y) := n−1
+for all x ∈Rn−1, where (x, y) := n−1
 k=1 xkzk is the inner product of vectors
 x, y ∈Rn−1, C := L+f 2(0), and L is the Lipschitz constant from Assumption
 2.1. Hence A satisfies the following growth condition:
 (x, A(x)) = n2(x, Dx) + (x, F(x)) ≤C</p>
 <p>n +
-n−1
-
-k=1
+n−1</p>
+<p>k=1
 x2
 k</p>
 <p>for all x ∈Rn−1 and for every integer n ≥2. Clearly, A is locally Lipschitz in
@@ -50304,7 +50289,7 @@ for the solution un in the form
 un(t) = en2tDan +
  t
 0
-en2(t−s)D
+en2(t−s)D
 F(un(s)) + nH(un(s))</p>
 <p>ds
 +√n
@@ -50319,12 +50304,11 @@ and consider the Rn−1-valued random processes
 en2(t−s)D dW n(s),
 v(t) := vn(t) := un(t) −ηn(t).
 Then from equation (3.19) we get that v satisfies
-dv(t) =
-
-n2Dv(t) + F(v(t) + η(t)) + nH(v(t) + ηn(t))</p>
+dv(t) =</p>
+<p>n2Dv(t) + F(v(t) + η(t)) + nH(v(t) + ηn(t))</p>
 <p>dt,
 v(0) = an.
-Hence for |v(t)|2 := n−1
+Hence for |v(t)|2 := n−1
 k=1 |vk(t)|2 we get
 d|v(t)|2 = 2n2
 v(t), Dv(t)</p>
@@ -50335,9 +50319,8 @@ v(t), Dv(t)</p>
 <p>v(t), H(v(t) + ηn(t))</p>
 <p>dt
 ≤−2n2
-n
-
-k=1
+n</p>
+<p>k=1
 (vk+1(t) −vk(t))2 dt + 4C(n + |v(t)|2)
 +2n</p>
 <p>v(t), H(v(t) + ηn(t)) −H(v(t))</p>
@@ -50359,29 +50342,24 @@ we have
 <p>v(t), H(v(t) + η(t)) −H(v(t))</p>
 <p>| =
 2|
-n−1
-
-k=0
+n−1</p>
+<p>k=0
 (vk+1(t) −vk(t)){[[v(t) + ηn(t)]]k −[[v(t)]]k}|</p>
 <p>Approximation of Burgers’ Equation
 7
 ≤n
-n−1
-
-k=0
+n−1</p>
+<p>k=0
 (vk+1(t) −vk(t))2 + n−1
-n−1
-
-k=0
+n−1</p>
+<p>k=0
 {[[v(t) + ηn(t)]]k −[[v(t)]]k}2
 ≤n
-n−1
-
-k=0
+n−1</p>
+<p>k=0
 (vk+1(t) −vk(t))2 + 100n−1
-n−1
-
-k=1</p>
+n−1</p>
+<p>k=1</p>
 <p>|¯ηn|2|vk|2(t) + |¯ηn|4
 ,
 (3.21)
@@ -50404,25 +50382,22 @@ sup
 t≤T
 1
 n|v(t)|2 ≤e(100|¯ηn|2+4C)T
- 1
-n|v(0)|2 + 100|¯ηn|4 + 4CT
-
-,
+ 1
+n|v(0)|2 + 100|¯ηn|4 + 4CT</p>
+<p>,
 which implies
 sup
 t≤T
 1
 n
-n−1
-
-k=1
+n−1</p>
+<p>k=1
 |un
 k(t)|2 ≤ξn</p>
 <p>1
 n
-n−1
-
-k=1
+n−1</p>
+<p>k=1
 |an
 k|2 + 1</p>
 <p>(3.22)
@@ -50430,29 +50405,26 @@ with
 ξn := e(100|¯ηn|2+4C)T + 100|¯ηn|4 + 4CT + 2|¯ηn|2.
 We are going to show that ξ := supn≥2 ξn is a finite random variable. To this
 end note that the vectors e1, . . . , en−1 defined by
-ej = (ej(k)) =
-
-2
-n sin
-
-j k
-nπ
-
-,
+ej = (ej(k)) =</p>
+<p>2
+n sin</p>
+<p>j k
+nπ</p>
+<p>,
 k = 1, 2, . . . , n −1,
 form an orthonormal basis in Rn−1, and that they are eigenvectors of the
 matrix n2D, with eigenvalues
 λn
-j := −4 sin2  j
+j := −4 sin2  j
 2nπ</p>
 <p>n2 = −j2π2cn
 j ,
 where
 4
 π2 ≤cn
-j := sin2 jπ
+j := sin2 jπ
 2n
-  jπ
+  jπ
 2n
 2
 ≤1
@@ -50479,9 +50451,8 @@ we have
 Gn(t, x, y) dW(t, y),
 for all t ≥0, x ∈[0, 1], where
 Gn(t, x, y) :=
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 exp(λn
 j t)ϕn
 j (κn(x))ϕj(κn(y)),
@@ -50507,9 +50478,8 @@ Gn
 y(t, x, y) := ∂nGn(t, x, y) := n(Gn(t, x, y + 1
 n) −Gn(t, x, y))
 =
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 exp{−j2π2cn
 j t}ϕj(κn(x))n</p>
 <p>ϕj(κ+
@@ -50533,40 +50503,30 @@ y −Gy = A1 + A2 + A3 + A4 ,
 (4.26)
 where
 A1 :=
-∞
-
-j=1
-exp{−j2π2s}
-
-ϕj(x) −ϕj(κn(x))
-
-jπψj(y) ,
+∞</p>
+<p>j=1
+exp{−j2π2s}</p>
+<p>ϕj(x) −ϕj(κn(x))</p>
+<p>jπψj(y) ,
 A2 :=
-∞
-
-j=n
+∞</p>
+<p>j=n
 exp{−j2π2s}ϕj(κn(x))jπψj(y) ,
 A3 :=
-n−1
-
-j=1
-exp{−j2π2s}ϕj(κn(x))
-
-jπψj(y) −n</p>
+n−1</p>
+<p>j=1
+exp{−j2π2s}ϕj(κn(x))</p>
+<p>jπψj(y) −n</p>
 <p>ϕj(κ+
 n (y)) −ϕj(κn(y))</p>
-<p>
-,
+<p>,
 A4 :=
-n−1
-
-j=1
-{
-
-exp(−j2π2s) −exp(−j2π2cn
-j s)
-
-×ϕj(κn(x))n</p>
+n−1</p>
+<p>j=1
+{</p>
+<p>exp(−j2π2s) −exp(−j2π2cn
+j s)</p>
+<p>×ϕj(κn(x))n</p>
 <p>ϕj(κ+
 n (y)) −ϕj(κn(y))</p>
 <p>}.
@@ -50577,66 +50537,57 @@ Then notice that
 ∥A1∥2 =
  1
 0
-Gy(s, x, y) −Gy(s, x, y)
-2 dx
+Gy(s, x, y) −Gy(s, x, y)
+2 dx
 ≤Kn−2
  1
 0
-Gyx(s, x, y)
-2 dx = Kn−2s−5/2,
+Gyx(s, x, y)
+2 dx = Kn−2s−5/2,
 (4.27)
 by the well-known estimate
 |Gyx(s, x, y)| ≤Ks−3/2e−(x−y)2/s,
 s ∈[0, T], x, y ∈[0, 1],
 on the heat kernel. By the orthogonality of {ϕj} in L2([0, 1]),
 ∥A2∥2 =
-∞
-
-j=n
+∞</p>
+<p>j=n
 exp{−2j2π2s}j2π2ψj(y)2
 ≤
-∞
-
-j=n
+∞</p>
+<p>j=n
 j2 exp{−j2s} ≤32
-∞
-
-j=n
+∞</p>
+<p>j=n
 j2
 1
 (js1/2)5 ≤Kn−2s−5/2.
 (4.28)
 By the mean-value theorem
 ∥A3∥2 =
-n−1
-
-j=1
-exp{−2j2π2s}
-
-jπψj(y) −n</p>
+n−1</p>
+<p>j=1
+exp{−2j2π2s}</p>
+<p>jπψj(y) −n</p>
 <p>ϕj(κ+
 n (y)) −ϕj(κn(y))</p>
-<p>2</p>
+<p>2</p>
 <p>10
 A. Albert and I. Gy¨ongy
 =
-n−1
-
-j=1
-exp{−2j2π2s}
-
-jπψj(y) −jπψj(θn(y))
-2 ,
+n−1</p>
+<p>j=1
+exp{−2j2π2s}</p>
+<p>jπψj(y) −jπψj(θn(y))
+2 ,
 where θn(y) ∈[κn(y), κ+
 n (y)]. Hence
 ∥A3∥2 ≤Kn−2
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 j4 exp{−j2s} ≤Kn−2s−2
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 j4s2 exp{−j2s}
 ≤Kn−2s−2
  n√s
@@ -50645,37 +50596,32 @@ x4 exp{−x2}s−1/2 dx ≤Kn−2s−5/2.
 (4.29)
 Finally,
 ∥A4∥2 =
-n−1
-
-j=1
-
-exp{−j2π2s} −exp{−j2π2cn
+n−1</p>
+<p>j=1</p>
+<p>exp{−j2π2s} −exp{−j2π2cn
 j s}
-2n2
+2n2
 ϕj(κ+
 n (y)) −ϕj(κn(y))
-2
+2
 ≤K
-n−1
-
-j=1
-j2
+n−1</p>
+<p>j=1
+j2
 exp{−j2π2s} −exp{−j2π2cn
 j s}
-2
+2
 ≤K
-n−1
-
-j=1
-j2
+n−1</p>
+<p>j=1
+j2
 j2π2 exp{−j2π2cn
 j s}(1 −cn
 j )s
-2
+2
 ≤K
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 j6(1 −cn
 j )2s2 exp{−j2s}
 by the mean-value theorem and the fact that cn
@@ -50683,22 +50629,18 @@ j ≤1. Hence by the definition
 of cn
 j in (3.23), using sin x = x + O(x3), we have
 ∥A4∥2 ≤K
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 j6(jπ/2n)4s2 exp{−j2s} ≤K
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 j6(j/n)4s2 exp{−j2s}
 ≤Kn−4
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 j10s2 exp{−j2s} ≤Kn−2s−2
-n−1
-
-j=1
+n−1</p>
+<p>j=1
 j8s4 exp{−j2s}
 ≤Kn−2s−2
  s√n
@@ -50712,7 +50654,7 @@ Lemma 4.2. For each T &gt; 0 there exists a constant K such that
 I :=
  T
 0
-  1
+  1
 0
 |Gn
 y −Gy|2(s, x, y) dx
@@ -50726,7 +50668,7 @@ Proof. Clearly, I ≤I1 + I2 + I3, where
 I1 :=
  ε
 0
-  1
+  1
 0
 Gy(s, x, y)2 dx
 1/2
@@ -50734,7 +50676,7 @@ ds,
 I2 :=
  ε
 0
-  1
+  1
 0
 Gn
 y(s, x, y)2 dx
@@ -50751,23 +50693,20 @@ y −Gy)2(s, x, y) dx
 ds dy.
 From
 Gy(s, x, y) =
-∞
-
-j=1
+∞</p>
+<p>j=1
 exp(−j2π2s)ϕj(x)jπψj(y),
 using the orthogonality of {ϕj}, we get
  1
 0
 Gy(s, x, y)2 dx ≤
-∞
-
-j=1
+∞</p>
+<p>j=1
 exp(−2j2π2s)j2π2ψ2
 j (y)
 ≤20
-∞
-
-j=1
+∞</p>
+<p>j=1
 exp(−j2s)j2 ≤Cs−3/2
 for some constant C. Therefore,
 I1 ≤
@@ -50796,7 +50735,7 @@ Gn(t, x, y)u(0, κn(y)) dy
  1
 0
 Gn
-y(t −s, x, y)<a href="κn(y)">[un(s)]</a>dy ds
+y(t −s, x, y)[[un(s)]](κn(y))dy ds
 +
  t
 0
@@ -50833,7 +50772,7 @@ Gy(t −s, ·, y)u(s, y)2 dy ds
  1
 0
 Gn
-y(t −s, ·, y)<a href="κn(y)">[un(s)]</a> dy ds∥,
+y(t −s, ·, y)[[un(s)]](κn(y)) dy ds∥,
 C(t) := ∥
  t
 0
@@ -50851,44 +50790,44 @@ B2
 1(t) :=
  1
 0
-  t
+  t
 0
  1
 0
 (Gn
-y −Gy)(t −s, x, y)<a href="y">[un(s)]</a> dy ds
+y −Gy)(t −s, x, y)[[un(s)]](y) dy ds
 2
 dx,
 B2
 2(t) :=
  1
 0
-  t
+  t
 0
  1
 0
-Gy(t −s, x, y)(<a href="y">[un(s)]</a> −|u(s, y)|2) dy ds
+Gy(t −s, x, y)([[un(s)]](y) −|u(s, y)|2) dy ds
 2
 dx.
 By Minkowski’s inequality, Lemma 4.2 and Theorem 2.1 we get
 B2
 1(t) ≤
-  1
+  1
 0
  t
 0
-  1
+  1
 0
 (Gn
 y −Gy)2(s, x, y) dx
 1/2
-<a href="y">[un(t −s)]</a> ds dy
+[[un(t −s)]](y) ds dy
 2
-≤Kn−1  t
+≤Kn−1  t
 0
  1
 0
-<a href="y">[un(s)]</a> dy ds
+[[un(s)]](y) dy ds
 2
 ≤ξn−1
 (5.36)
@@ -50897,7 +50836,7 @@ independent of t and n. By Lemma 3.1 (i) from [7], (take q = 1, ρ = 2,
 κ = 1/2 there), we have
 B2
 2(t) ≤K
-  t
+  t
 0
 (t −s)−3/4∥[[un(s, ·)]] −|u(s, ·)|2∥1 ds
 2
@@ -50927,30 +50866,24 @@ s≤T
 (5.40)
 and ξ is a finite random variable independent of t and n. By Burkholder’s
 inequality for every p ≥1 there exists a constant Kp such that
-E
-
-sup
+E</p>
+<p>sup
 t≤T
-|C(t)|2p
-
-≤Kp
-
- t
+|C(t)|2p</p>
+<p>≤Kp</p>
+<p>t
 0
  1
 0
-(Gn −G)2(t −s, ·, y) dy ds
-
-p,
+(Gn −G)2(t −s, ·, y) dy ds</p>
+<p>p,
 where ∥· ∥p stands for the Lp([0, 1]) norm. Consequently, for each p ≥1 there
 exists a constant Cp such that
-E
-
-sup
+E</p>
+<p>sup
 t≤T
-|C(t)|2p
-
-≤Cpn−p,
+|C(t)|2p</p>
+<p>≤Cpn−p,
 since
 sup
 x∈[0,1]
@@ -50981,13 +50914,11 @@ almost surely</p>
 A. Albert and I. Gy¨ongy
 sup
 t≤T
-∥un(t, ·) −u(t, ·)∥2 ≤ξ
-
-ζn + sup
+∥un(t, ·) −u(t, ·)∥2 ≤ξ</p>
+<p>ζn + sup
 t≤T
-|A(t)|2 + n−1 + ξαn−α
-
-(5.42)
+|A(t)|2 + n−1 + ξαn−α</p>
+<p>(5.42)
 Now we are going to investigate the behaviour of A(t) and ζn as n →∞. Set
 vn(t, x) :=
  1
@@ -51211,18 +51142,15 @@ interval (following the time of firm’s creation) during which the accumulated
 discounted expected profits exceed the initial investment required for creating
 the firm.
 For the firm created at time τ, we define the payback period ντ as follows:
-ντ = inf
-
-ν ≥0 : E
-
-ν</p>
+ντ = inf</p>
+<p>ν ≥0 : E</p>
+<p>ν</p>
 <p>0
 πτ
 τ+te−ρtdt
-Fτ</p>
-<p>≥Iτ
-
-(2.2)
+Fτ</p>
+<p>≥Iτ</p>
+<p>(2.2)
 where ρ is discount rate.
 Note that ντ is an Fτ-measurable random variable not necessarily finite
 a.s. Further we will often refer to the set of finite payback periods:
@@ -51243,9 +51171,8 @@ Vτ = E
 <p>ντ
 [(1 −γ)πτ
 τ+t + γDτ
-t+τ]e−ρt dt
-
-Fτ
+t+τ]e−ρt dt</p>
+<p>Fτ
 
 , (2.4)
 where χΩτ (ω) is the indicator function of the event Ωτ defined in (2.3).
@@ -51370,7 +51297,7 @@ E(πτ
 τ+t|Fτ) = πτBt,
 where Bt = E(πtξ0
 t )/π0.
-Proof. Recall that the process wt = w1
+Proof. Recall that the process wt = w1
 t+τ −w1
 τ, t ≥0 is a Wiener process
 independent on Fτ. Using the explicit formula for the geometric Brownian
@@ -51381,7 +51308,7 @@ t+τ,
 where Πτ
 t+τ = exp{(α1 −1
 2σ2
-1)t + σ1 wt}ξτ
+1)t + σ1 wt}ξτ
 τ+t.
 Homogeneity of the family (3.8) in τ implies that the process ξτ
 τ+t coincides
@@ -51392,13 +51319,13 @@ t</p>
 a(s, ξs) ds +
 t</p>
 <p>0
-b(s, ξs) d ws.
+b(s, ξs) d ws.
 Since (ξt, t ≥0) is independent on Fτ, the process Πτ
 t+τ is independent also.
 Moreover, Πτ
 t+τ has the same distribution as exp{(α1 −1
 2σ2
-1)t + σ1 wt}ξt, or
+1)t + σ1 wt}ξt, or
 as (πt/π0)ξ0
 t . Therefore, E(πτ
 τ+t|Fτ) = πτEΠτ
@@ -51477,9 +51404,8 @@ Vτ = Eτ
 (3.15)
 Combining (3.11) and (3.15) we can write the following formula for the
 present value of the created firm:
-Vτ =
-
-γIτ(1 + A(ν(πτ/Iτ))) + (1 −γ)πτB,
+Vτ =</p>
+<p>γIτ(1 + A(ν(πτ/Iτ))) + (1 −γ)πτB,
 if ν(πτ/Iτ) &lt; ∞
 πτB,
 if ν(πτ/Iτ) = ∞,
@@ -51495,14 +51421,13 @@ E(Vτ −Iτ)e−ρτ →max
 (3.17)
 where M is the class of all Markov times with values in R+ ∪{∞}.
 Let us define the following function: for p ≥0
-A(p) =
-
-A(ν(p)),
+A(p) =</p>
+<p>A(ν(p)),
 if ν(p) &lt; ∞,
 0,
 if ν(p) = ∞,
 where ν(p) is specified in (3.14), and put
-g(π, I) = (1 −γ)(πB −I) + γI A(π/I).
+g(π, I) = (1 −γ)(πB −I) + γI A(π/I).
 (3.18)
 Obviously, g(π, I) is a homogeneous, i.e. g(λπ, λI) = λg(π, I) for all λ ≥0,
 but non-linear, function. It follows from (3.16) that Vτ −Iτ ≤g(πτ, Iτ). More
@@ -51642,30 +51567,24 @@ X2
 t
 = x1
 x2
-exp
-
-α1−α2 + σ2
+exp</p>
+<p>α1−α2 + σ2
 21+σ2
 22−σ2
 1
-2
-
-t + (σ1−σ21)w1
-t −σ22w2
-
-= x1
+2</p>
+<p>t + (σ1−σ21)w1
+t −σ22w2</p>
+<p>= x1
 x2
-exp
-
-α1−α2 + σ2
+exp</p>
+<p>α1−α2 + σ2
 21+σ2
 22−σ2
 1
-2
-
-t + ˜σ ˜wt
-
-,
+2</p>
+<p>t + ˜σ ˜wt</p>
+<p>,
 (4.25)
 where ˜wt = σ1−σ21
 ˜σ
@@ -51674,9 +51593,8 @@ t −σ22
 ˜σ w2 is a standard Wiener process. According to
 the law of iterated logarithm for Wiener process
 lim sup
-t→∞| ˜wt|/
-
-2t log log t = 1
+t→∞| ˜wt|/</p>
+<p>2t log log t = 1
 a.s.</p>
 <p>Optimal Time to Invest
 27
@@ -51696,9 +51614,8 @@ any x ∈R2
 ⊓⊔
 Now we can derive the functional Fp(x).
 Lemma 4.4. If ρ &gt; max(α1, α2) and (3.22) holds, then
-Fp(x1, x2) =
-
-h(p)xβ
+Fp(x1, x2) =</p>
+<p>h(p)xβ
 1x1−β
 2
 , if x1 &lt; px2
@@ -51820,14 +51737,13 @@ t ≥p∗X2
 t } is the optimal stopping time for the
 problem (4.31) for all x ∈R2
 ++;
-2) If, in addition, τp(x) &gt; 0 a.s. for some x ∈R2
-++, p &gt; 0, and h(p)
-strictly decreases for p &gt; p∗, then τp(x) is the optimal stopping time for the
-problem (4.31) if and only if p = p∗;
+2) If, in addition, τp(x) &gt; 0 a.s. for some x ∈R2
+++, p &gt; 0, and h(p)
+strictly decreases for p &gt; p∗, then τp(x) is the optimal stopping time for the
+problem (4.31) if and only if p = p∗;
 3) The optimal value of the functional in the problem (4.31) is
-Φ(x1, x2) =
-
-h(p∗)xβ
+Φ(x1, x2) =</p>
+<p>h(p∗)xβ
 1x1−β
 2
 , if x1 &lt; p∗x2
@@ -51881,19 +51797,19 @@ Thus, Fp(x) ≤Fp∗(x) for all x ∈R2
 ++ and p &gt; 0. Hence, maximum at
 the problem (4.32) is attained at p = p∗. From this and the definition of class
 M1(x) follows statement 1).
-2) Since τp(x) &gt; 0 a.s., x1 &lt; px2. Let us show that the optimality of τp(x)
-implies that p = p∗.
-Assume that p &lt; p∗. Then we have inequality (4.34) with p = p, that
-contradicts to the optimality of τp(x). Assume now that p &gt; p∗. For x1 &lt; p∗x2
-we have (4.35) with p = p, i.e. the contradiction with the optimality. And if
-p∗x2≤x1&lt;px2, then Fp(x)=h(p)xβ
+2) Since τp(x) &gt; 0 a.s., x1 &lt; px2. Let us show that the optimality of τp(x)
+implies that p = p∗.
+Assume that p &lt; p∗. Then we have inequality (4.34) with p = p, that
+contradicts to the optimality of τp(x). Assume now that p &gt; p∗. For x1 &lt; p∗x2
+we have (4.35) with p = p, i.e. the contradiction with the optimality. And if
+p∗x2≤x1<px2, then Fp(x)=h(p)xβ
 1x1−β
 2
-<h(x1/x2)xβ
+\<h(x1/x2)xβ
 1x1−β
 2
 =g(x)=Fp∗(x) due
-to strict decreasing of h(p) for p > p∗. So, p = p∗that proves (together with
+to strict decreasing of h(p) for p > p∗. So, p = p∗that proves (together with
 the optimality of p∗) statement 2) of the lemma.
 Statement 3) follows directly from Lemma 4 for p = p∗.
 ⊓⊔
@@ -51907,15 +51823,15 @@ Exg(Xτ)e−ρτ →max
 τ∈M
 (4.36)
 (over all Markov times M) we use the following “verification theorem”, based
-on variational inequalities method (see, e.g. [4], [13]). Below we formulated it
+on variational inequalities method (see, e.g. \[4], \[13]). Below we formulated it
 for our case.
-Theorem 4.2 (Øksendal [13], Hu, Øksendal [8]). Suppose, there exists
+Theorem 4.2 (Øksendal \[13], Hu, Øksendal \[8]). Suppose, there exists
 a function Φ : R2
 ++ →R, satisfying the following conditions:
 1) Φ ∈C1(R2
 ++) ∩C2(R2
 ++ \ ∂G) where G = {x∈R2
-++ : Φ(x)&gt;g(x)};</p>
+++ : Φ(x)>g(x)};</p>
 <p>30
 V. Arkin and A. Slastnikov
 2) ∂G is locally the graph of Lipschitz function and Ex
@@ -51976,10 +51892,10 @@ Let us show that condition 7) of Theorem 4.4 holds if ρ &gt; α2. Indeed, if
 τ and, therefore,
 Φ(Xτ)e−ρτ=h(p∗)X2
 τ
-X1
+X1
 τ
 X2τ
-β
+β
 e−ρτ≤h(p∗)(p∗)βX2
 τ e−ρτ=CX2
 τ e−ρτ,
@@ -52021,11 +51937,10 @@ take x=(x1, x2)/∈¯G, i.e. x1&gt;p∗x2. For this case p(x)&gt;p∗and Φ(x1, 
 g(x1, x2) = x2f(p(x)). Repeating arguments, similar to those in the proof
 of Lemma 4.2, we have:
 Lg(x) −ρg(x) = x2
-1
+1
 2p2(x)f ′′(p(x))˜σ2 + p(x)f ′(p(x))(α1 −α2)
-−f(p(x))(ρ −α2)
-
-.
+−f(p(x))(ρ −α2)</p>
+<p>.
 The condition (3.23) is equivalent to the inequality pf ′′(p) ≤(β −1)f ′(p)
 for p &gt; p∗. Integrating both sides of the latter relation from p∗to p one can
 obtain that pf ′(p) ≤p∗f ′(p∗) −βf(p∗) + βf(p) = βf(p), since h′(p∗) = 0.
@@ -52035,12 +51950,10 @@ x2
 = 1
 2p2f ′′(p)˜σ2 + pf ′(p)(α1 −α2) −f(p)(ρ −α2)
 ≤1
-2p2f ′′(p)˜σ2 + pf ′(p)
-
-α1 −α2 −1
-β (ρ −α2)
-
-= 1
+2p2f ′′(p)˜σ2 + pf ′(p)</p>
+<p>α1 −α2 −1
+β (ρ −α2)</p>
+<p>= 1
 2p2f ′′(p)˜σ2 −pf ′(p)1
 2 ˜σ2(β −1) ≤0,
 where p = p(x)
@@ -52117,8 +52030,8 @@ Universit¨atstrasse 150, 44801 Bochum, Germany.
 podolski@cityweb.de
 5 Nuffield College, Oxford OX1 1NF, UK.
 neil.shephard@nuf.ox.ac.uk
-Summary. Consider a semimartingale of the form Yt = Y0 + t
-0 asds+ t
+Summary. Consider a semimartingale of the form Yt = Y0 + t
+0 asds+ t
 0 σs−dWs,
 where a is a locally bounded predictable process and σ (the “volatility”) is an
 adapted right–continuous process with left limits and W is a Brownian motion. We
@@ -52128,9 +52041,8 @@ t = n
 r+s
 2
 −1
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 |Y i
 n −Y i−1
 n |r|Y i+1
@@ -52159,9 +52071,8 @@ For a wide class of real–valued processes Y , including all semimartingales, t
 “approximate (or, realised) quadratic variation processes”
 V (Y ; 2)n
 t =
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 (Y i
 n −Y i−1
 n )2,
@@ -52194,9 +52105,8 @@ V (Y ; r, s)n
 t = n
 r+s
 2 −1
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 |Y i
 n −Y i−1
 n |r |Y i+1
@@ -52231,9 +52141,8 @@ V (Y j, Y k; r, s)n
 t = n
 r+s
 2 −1
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 |Y j
 i
 n −Y j
@@ -52266,9 +52175,8 @@ t
 r1+...+rN
 2
 −1
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 |Y j1
 i
 n −Y j1
@@ -52302,9 +52210,8 @@ less remain quite complicated, sorry for that !), we introduce the following
 processes:
 Xn(g, h)t = 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 g(√n ∆n
 i Y )h(√n ∆n
 i+1Y ),
@@ -52360,7 +52267,7 @@ where the convergence is local uniform in time, and in probability.
 This result is essentially taken from [4]. The assumption (H) could be
 weakened, of course, but probably not in any essential way. For instance the
 c<code>adl</code>ag hypothesis on σ can be relaxed, but we need at least the functions
-u →|σjj
+u →|σjj
 u |r to be Riemann–integrable, for all (or P–almost all) ω. The fact
 that the driving terms in (2.3) are t and Wt is closely related to the fact that
 the discretization in time has a constant step 1/n. If we replace (2.3) by
@@ -52532,12 +52439,10 @@ iting process U(g, h) given componentwise by
 U(g, h)jk
 t
 =
-d1
-
-j′=1
-d3
-
-k′=1
+d1</p>
+<p>j′=1
+d3</p>
+<p>k′=1
  t
 0
 α(σs, g, h)jk,j′k′ dW ′j′k′
@@ -52546,15 +52451,14 @@ s
 <p>40
 O. E. Barndorff–Nielsen et al.
 where
-d1
+d1
 l=1
-d3
+d3
 m=1 α(Σ, g, h)jk,lmα(Σ, g, h)j′k′,lm = A(Σ, g, h)jk,j′k′
 and
-A(Σ, g, h)jk,j′k′ = d2
-l,l′=1
-
-ρΣ(gjlgj′l′)ρΣ(hlkhl′k′)
+A(Σ, g, h)jk,j′k′ = d2
+l,l′=1</p>
+<p>ρΣ(gjlgj′l′)ρΣ(hlkhl′k′)
 +ρΣ(gjl)ρΣ(hl′k′)ρΣ(gj′l′hlk) + ρΣ(gj′l′)ρΣ(hlk)ρΣ(gjlhl′k′)
 −3ρΣ(gjl)ρΣ(gj′l′)ρΣ(hlk)ρΣ(hl′k′)</p>
 <p>,
@@ -52580,15 +52484,14 @@ and W ′ is a d1d3–dimensional Wiener process which is defined on an extensio
 of the space (Ω, F, (Ft)t≥0, P) and is independent of the σ–field F.
 The first formula in (2.14) means that α is a square–root of the d1d3×d1d3–
 matrix A, which is symmetric semi–definite positive. Observe that the right
-sides of (2.4) and (2.13) always make sense, due to the fact that t →σt is
+sides of (2.4) and (2.13) always make sense, due to the fact that t →σt is
 c<code>adl</code>ag and thus with all powers locally integrable w.r.t. Lebesgue measure.
 Under (H) and if both g and h are even and continuous, the processes
 U n(f, g)t =
 1
 √n
-[nt]
-
-i=1</p>
+[nt]</p>
+<p>i=1</p>
 <p>g(√n ∆n
 i Y )h(√n ∆n
 i+1Y )
@@ -52613,9 +52516,8 @@ see [8].
 lent to the convergence of
 1
 √n
-[nt]
-
-i=1</p>
+[nt]</p>
+<p>i=1</p>
 <p>E(g(√n ∆n
 i Y )|F i−1
 n ) −n</p>
@@ -52630,11 +52532,9 @@ n
 41
 1
 √n
-[nt]
-
-i=1
-
-E(g(√n ∆n
+[nt]</p>
+<p>i=1</p>
+<p>E(g(√n ∆n
 i Y )|F i−1
 n ) −E(g(√n σ i−1
 n ∆n
@@ -52644,9 +52544,8 @@ n )</p>
 (2.16)
 1
 √n
-[nt]
-
-i=1</p>
+[nt]</p>
+<p>i=1</p>
 <p>ρσ i−1
 n (g) −n</p>
 <p>i
@@ -52656,7 +52555,7 @@ n
 ρσu(g)du</p>
 <p>.
 (2.17)
-3. For (2.17) we need some smoothness of σ: e.g. u →σu is H¨older with
+3. For (2.17) we need some smoothness of σ: e.g. u →σu is H¨older with
 some index &gt; 1/2. Hypothesis (H1) is of this kind (although σ can have
 jumps, (2.8) sort of implies that it is ”H¨older” of order 1/2 and further
 some compensation arises).
@@ -52675,9 +52574,8 @@ Theorem 2.4. Let r, s ≥0 and assume that d = d′ = 1. Assume (H1)
 and also that either r, s ∈{0} ∪(1, ∞) or (H’) holds. Then the processes
 (√n (V (Y ; r, s)n −V (Y ; r, s))) converge stably in law to a process U(r, s) of
 the form
-U(r, s)t =
-
-µ2rµ2s + 2µrµsµr+s −3µ2rµ2s
+U(r, s)t =</p>
+<p>µ2rµ2s + 2µrµsµr+s −3µ2rµ2s
  t
 0
 |σu|r+s dW ′
@@ -52702,15 +52600,12 @@ the L × d × d–dimensional processes
 converge stably in law to a process (U(rl, sl, j, k) : 1 ≤l ≤L, 1 ≤j, k ≤d)
 having the form
 U(rl, sl, j, k)t =
-L
-
-l′=1
-d
-
-j′=1
-d
-
-k′=1
+L</p>
+<p>l′=1
+d</p>
+<p>j′=1
+d</p>
+<p>k′=1
  t
 0
 α(σu)ljk,l′j′k′ dW ′l′j′k′
@@ -52718,11 +52613,11 @@ u
 ,
 (2.19)
 where
-L
+L
 l′′=1
-d
+d
 j′′=1
-d
+d
 k′′=1 α(Σ)ljk,l′′j′′k′′α(Σ)l′j′k′,l′′j′′k′′ = Aljk,l′j′k
 and
 A(Σ)ljk,l′j′k′ = µ(Σ; rl, rl′; j, j′)µ(Σ; sl, sl′; k, k′)
@@ -52757,9 +52652,8 @@ This result readily follows from Theorem 2.3, upon taking d1 = Ld, d2 = L,
 d3 = d, g(x)lj,l′ = |xj|rlεll′ (εll′ is the Kronecker symbol) and h(x)l,j = |xj|sl.
 Apart from Theorem 2.4, several particular cases are worth being mentioned
 (recall that c = σσ∗):
-1. If j = k then √n (V (Y j; r, s)n −V (Y j; r, s)) stably converges to
-
-µ2rµ2s + 2µrµsµr+s −3µ2rµ2s
+1. If j = k then √n (V (Y j; r, s)n −V (Y j; r, s)) stably converges to</p>
+<p>µ2rµ2s + 2µrµsµr+s −3µ2rµ2s
  t
 0
 |cjj
@@ -52776,13 +52670,13 @@ C11
 t
 = (µ2r −µ2
 r)
- t
+ t
 0 |cjj
 u |r du
 C12
 t
 =
- t
+ t
 0(µ(σu; r, s; j, k) −µrµs|cjj
 u |r/2|ckk
 u |s/2) du
@@ -52790,7 +52684,7 @@ C22
 t
 = (µ2s −µ2
 s)
- t
+ t
 0 |cjj
 u |s du
 
@@ -52809,7 +52703,7 @@ V (Y j; r, 0)) and √n (V (Y k; s, 0)n −V (Y k; s, 0)). When j = k we get
 C12
 t
 = (µr+s −µrµs)
- t
+ t
 0 |cjj
 u |
 r+s
@@ -52841,9 +52735,8 @@ N
 l=1
 µ2
 rl + 2
-N−1
-
-k=1
+N−1</p>
+<p>k=1
 k
 (
 l=1
@@ -52933,15 +52826,14 @@ s ≤Tk
 ∥as∥+ ∥σs−∥+ ∥a′
 s∥+ ∥σ′
 s−∥+ ∥vs−∥≤Ck,
-µ((0, Tk) × Ek,lk) = 0.
-
-.
+µ((0, Tk) × Ek,lk) = 0.</p>
+<p>.
 (3.1)
 Set
 a′(k)
 s
 =
-a′
+a′
 s if s ≤Tk
 0 if s &gt; Tk
 (a(k)
@@ -52949,7 +52841,7 @@ s , σ′(k)
 s
 , v(k)
 s , w(k)(s, x)) =
-(as, σ′
+(as, σ′
 s, vs, w(s, x)) if s &lt; Tk
 (0, 0, 0, 0)
 if s ≥Tk,
@@ -53012,9 +52904,8 @@ w(k)(s−, x)(µ(k) −ν(k))(ds, dx),
 (3.3)
 provided α(k)
 s
-=
-
-E(w(k)−ϕ◦w(k))(s−, x)Fk(dx). Then σ(k)
+=</p>
+<p>E(w(k)−ϕ◦w(k))(s−, x)Fk(dx). Then σ(k)
 s
 = σs when s &lt; Tk
 and ∥α(k)
@@ -53072,9 +52963,8 @@ under (SH) we have
 under (SH’) we have
 Σ ∈M′
 ⇒
-∥(ΣΣ⋆)−1∥≤A0.
-
-(3.6)
+∥(ΣΣ⋆)−1∥≤A0.</p>
+<p>(3.6)
 In view of the previous results, we can and will assume in the sequel either
 (SH), or (SH1), and sometimes (SH’).
 Let us also fix some conventions. We write V n
@@ -53084,7 +52974,7 @@ of processes and a continuous process V when sups≤t ∥V n
 s −Vs∥goes to 0
 in probability for all t &gt; 0. When V n takes the form V n
 t
-= [nt]
+= [nt]
 i=1 ζn
 i for an
 array of variables (ζn
@@ -53119,9 +53009,8 @@ U n
 t =
 1
 √n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 δ i−1
 n</p>
 <p>f(βn
@@ -53135,9 +53024,8 @@ t
 =
 1
 √n
-[nt]
-
-i=1</p>
+[nt]</p>
+<p>i=1</p>
 <p>g(βn
 i )h(β′n
 i ) −ρn
@@ -53154,12 +53042,10 @@ verges stably in law to the process U defined componentwise by</p>
 U jk
 t
 =
-d1
-
-j′=1
-d3
-
-k′=1
+d1</p>
+<p>j′=1
+d3</p>
+<p>k′=1
  t
 0
 δ′jk,j′k′
@@ -53169,22 +53055,18 @@ u
 ,
 (4.4)
 where
-d1
-
-l=1
-d3
-
-m=1
+d1</p>
+<p>l=1
+d3</p>
+<p>m=1
 δ′jk,lm
 u
 δ′j′k′,lm
 u
 =
-d2
-
-l,l′=1
-
-ρσu(f lkf l′k′) −ρσu(f lk)ρσu(f l′k′)</p>
+d2</p>
+<p>l,l′=1</p>
+<p>ρσu(f lkf l′k′) −ρσu(f lk)ρσu(f l′k′)</p>
 <p>δjl
 u δj′l′
 u ,
@@ -53210,9 +53092,8 @@ x ∈Rd
 Observe also that Propositions 4.1 and 4.2 imply respectively
 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 δ i−1
 n
 f(βn
@@ -53225,9 +53106,8 @@ P
 (4.8)
 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 g(βn
 i )h(β′n
 i )
@@ -53240,7 +53120,7 @@ P
 Proof of Proposition 4.1. We have U n
 t
 =
-[nt]
+[nt]
 i=1 ζn
 i , where ζn
 i
@@ -53270,13 +53150,12 @@ n
 where ∆jk,j′k′
 u
 is the right side of (4.5). Moreover since σ is c<code>adl</code>ag we deduce
-from (4.7) that s →ρσs(f) also is c<code>adl</code>ag. Thus by the Riemann integrability
+from (4.7) that s →ρσs(f) also is c<code>adl</code>ag. Thus by the Riemann integrability
 we get</p>
 <p>48
 O. E. Barndorff–Nielsen et al.
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(ζn,jk
 i
 ζn,j′k′
@@ -53300,9 +53179,8 @@ i
 ∆n
 i W l|F i−1
 n ) =
-d2
-
-m=1
+d2</p>
+<p>m=1
 δjm
 i−1
 n E(∆n
@@ -53324,7 +53202,7 @@ Wt −W i−1
 n . By the martingale representation theorem the process M is thus
 of the form Mt = M i−1
 n +
- t
+ t
 i−1
 n ηsdWs for an appropriate predictable process η.
 It follows that M is orthogonal to the process N ′
@@ -53357,7 +53235,7 @@ from Theorem IX.7.28 of [9].
 Proof of Proposition 4.2. A simple computation shows that U ′n
 t
 =
-[nt]+1
+[nt]+1
 i=2
 ζn
 i + γn
@@ -53366,9 +53244,8 @@ i + γn
 ζn
 i =
 1
-√n
-
-g(βn
+√n</p>
+<p>g(βn
 i−1)(h(β′n
 i−1) −ρn
 i−2(h)) + (g(βn
@@ -53386,9 +53263,8 @@ i−1(h).
 We trivially have (4.10), while (4.12) and (4.13) (for any bounded martin-
 gale N orthogonal to W) are proved exactly as in the previous proposition. We
 will write ρn
-i−2,i−1(g, h) =
-
-g(σ i−1
+i−2,i−1(g, h) =</p>
+<p>g(σ i−1
 n x)h(σ i−2
 n x)ρ(dx), where ρ is the N(0, Id′)
 law. An easy computation shows that</p>
@@ -53402,51 +53278,45 @@ i
 n )
 = 1
 n
-d2
-
-l,l′=1
+d2</p>
+<p>l,l′=1
 )
 g(βn
 i−1)jlg(βn
-i−1)j′l′ 
+i−1)j′l′ 
 ρn
 i−2(hlkhl′k′) −ρn
 i−2(hlk)ρn
 i−2(hl′k′)</p>
 <p>+g(βn
 i−1)jl ρn
-i−1(hl′k′)
-
-ρn
+i−1(hl′k′)</p>
+<p>ρn
 i−2,i−1(gj′l′, hlk) −ρn
 i−2(hlk)ρn
 i−1(gj′l′)</p>
 <p>+g(βn
 i−1)j′l′ ρn
-i−1(hlk)
-
-ρn
+i−1(hlk)</p>
+<p>ρn
 i−2,i−1(gjl, hl′k′) −ρn
 i−2(hl′k′)ρn
 i−1(gjl)</p>
 <p>+ρn
 i−1(hl′k′)ρn
-i−1(hlk)
-
-ρn
+i−1(hlk)</p>
+<p>ρn
 i−1(gjlgj′l′) −ρn
 i−1(gjl)ρn
-i−1(gj′l′)
- 
-.
+i−1(gj′l′)</p>
+<p>.
 and thus by (4.8) and since the components of g and h satisfy (4.7) and are
 continuous and σ is c<code>adl</code>ag (hence in particular ρn
 i−2,i−1(g, h) −ρn
 i−2(gh) goes
 to 0, uniformly in i ≤[nt] + 1), we get with the notation (2.14):
-[nt]+1
-
-i=2
+[nt]+1</p>
+<p>i=2
 E(ζn,jk
 i
 ζn,j′k′
@@ -53456,7 +53326,7 @@ n ) →
  t
 0
 A(σu, g, h)jk,k′j′ du.
-Then exactly as in the previous proof we deduce that the processes [nt]
+Then exactly as in the previous proof we deduce that the processes [nt]
 i=1 ζn
 i
 are C–tight, and that they converge stably in law to the process U(g, h) of
@@ -53517,9 +53387,8 @@ ther g and h are even, it converges stably in law to the processes U(g, h) of
 We first prove three lemmas. The first one is very simple:
 Lemma 5.1. Let (ζn
 i ) be an array of random variables satisfying for all t:
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(∥ζn
 i ∥2 | F i−1
 n )
@@ -53541,7 +53410,7 @@ i is Fi/n–measurable: so the array (ηn
 i −E(ηn
 i | F(i−1)/n)) is AN.
 Next, (5.3) and Lenglart’s inequality (see e.g. I-3.30 in [9]) yield
-[nt]
+[nt]
 i=1 E(∥ζn
 i ∥2 | Fi/n)
 P
@@ -53553,9 +53422,8 @@ i ) is AN, and the result follows.
 Lemma 5.2. Under (SH) we have for all t &gt; 0:
 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E</p>
 <p>∥ξn
 i ∥2 + ∥βn
@@ -53585,25 +53453,22 @@ n ∥2)
 <p>i
 n
 i−1
-n
-
-∥σu−−σ i−1
+n</p>
+<p>∥σu−−σ i−1
 n ∥2 + ∥σu−−σ i
 n ∥2
 du</p>
 <p>.
 Hence the left side of (5.4) is smaller than
 C
- t
+ t
 n +
  t
 0
-E
-
-∥σu−−σ[nu]/n∥2 + ∥σu−−σ([nu]+1)/n∥2
-du
-
-.
+E</p>
+<p>∥σu−−σ[nu]/n∥2 + ∥σu−−σ([nu]+1)/n∥2
+du</p>
+<p>.
 Since σ is c<code>adl</code>ag, the expectation above goes to 0 for all u except the fixed
 times of discontinuity of the process σ, that is for almost all u, and it stays</p>
 <p>CLT for bipower variations
@@ -53635,9 +53500,8 @@ i )p) ≤Cp.
 Lemma 5.3. Under (5.5) and if further k is continuous and
 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(∥γ′n
 i −γ′′n
 i ∥2) →0,
@@ -53645,12 +53509,10 @@ i ∥2) →0,
 then we have for all t &gt; 0:
 1
 n
-[nt]
-
-i=1
-E
-
-f(γn
+[nt]</p>
+<p>i=1
+E</p>
+<p>f(γn
 i )2(k(γ′n
 i ) −k(γ′′n
 i ))2
@@ -53663,9 +53525,8 @@ i ) −k(γ′′n
 i )))2 and mA(ε) = sup(|k(x) −k(y)| :
 ∥x −y∥≤ε, ∥x∥≤A). For all ε ∈(0, 1] and A &gt; 1 we have
 θn
-i ≤C
-
-A2pmA(ε)2 + A4p1{∥γ′n
+i ≤C</p>
+<p>A2pmA(ε)2 + A4p1{∥γ′n
 i −γ′′n
 i
 ∥&gt;ε}
@@ -53675,32 +53536,28 @@ i ∥&gt;A} + 1{∥γ′n
 i ∥&gt;A} + 1{∥γ′′n
 i
 ∥&gt;A})</p>
-<p>≤C
-
-A2pmA(ε)2 + A4p∥γ′n
+<p>≤C</p>
+<p>A2pmA(ε)2 + A4p∥γ′n
 i −γ′′n
 i ∥2
 ε2
 + (Zn
 i )4p+1
-A
-
-.
+A</p>
+<p>.
 Then in view of (5.5) we get
 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(θn
 i ) ≤C
 
 A2pmA(ε)2 + 1
 A + A4p
 nε2
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(∥γ′n
 i −γ′′n
 i ∥2)
@@ -53716,9 +53573,8 @@ P
 ζn
 i =
 1
-√n
-
-g(√n∆n
+√n</p>
+<p>g(√n∆n
 i Y )h(√n ∆n
 i+1Y ) −g(βn
 i )h(β′n
@@ -53726,10 +53582,9 @@ i )</p>
 <p>(5.8)
 and observe that U n(g, h)t −U ′n
 t
-= [nt]
-i=1
-
-ζn
+= [nt]
+i=1</p>
+<p>ζn
 i −E(ζn
 i | F(i−1)/n)</p>
 <p>and that
@@ -53737,9 +53592,8 @@ i | F(i−1)/n)</p>
 i is F(i+1)/n-measurable. Then by Lemma 5.1 it suffices to prove that</p>
 <p>52
 O. E. Barndorff–Nielsen et al.
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(∥ζn
 i ∥2) →0.
 (5.9)
@@ -53750,9 +53604,8 @@ i + ξn
 i , we then have
 ∥ζn
 i ∥2 ≤C
-n
-
-h(√n ∆n
+n</p>
+<p>h(√n ∆n
 i+1Y )2 (g(βn
 i + ξn
 i ) −g(βn
@@ -53774,9 +53627,8 @@ As stated in Section 2, we can and will assume (SH). We use the notation ζn
 i
 of (5.8), and set
 ηn
-i = E
-
-g(√n ∆n
+i = E</p>
+<p>g(√n ∆n
 i Y )h(√n ∆n
 i+1Y ) | F i−1
 n</p>
@@ -53789,13 +53641,13 @@ i−1(h)
 and V n
 t
 =
-[nt]
+[nt]
 i=1ηn
 i
 and V ′n
 t
 =
-[nt]
+[nt]
 i=1η′n
 i . Theorem 5.6 implies that
 1
@@ -53815,15 +53667,13 @@ i | F(i−1)/n), it clearly suf-
 fices to prove that
 1
 √n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(∥ζn
 i ∥) →0.
 (6.1)
-By the Cauchy–Schwarz inequality, the left side of (6.1) is smaller than
-
-t [nt]
+By the Cauchy–Schwarz inequality, the left side of (6.1) is smaller than</p>
+<p>t [nt]
 i=1 E(∥ζn
 i ∥2)
 1/2
@@ -53838,9 +53688,8 @@ t. This amounts to proving that the array
 ζn
 i =
 1
-√n E
-
-g(√n ∆n
+√n E</p>
+<p>g(√n ∆n
 i Y )h(√n ∆n
 i+1Y ) | F i−1
 n</p>
@@ -53862,21 +53711,17 @@ i , where
 i
 =
 1
-√n
-
-E
-
-g(√n ∆n
+√n</p>
+<p>E</p>
+<p>g(√n ∆n
 i Y )h(√n ∆n
 i+1Y ) | F i−1
 n</p>
-<p>−E
-
-g(βn
+<p>−E</p>
+<p>g(βn
 i ) | F i−1
-n ) E
-
-h(β′n
+n ) E</p>
+<p>h(β′n
 i ) | F i−1
 n</p>
 <p>, (7.1)
@@ -53947,9 +53792,8 @@ sds +</p>
 <p>i
 n
 i−1
-n
-
-σ′
+n</p>
+<p>σ′
 s−−σ′
 i−1
 n</p>
@@ -53986,9 +53830,8 @@ n
 n )dWu</p>
 <p>,
 ζ(2)′n
-i = √n
-
-σ′
+i = √n</p>
+<p>σ′
 i−1
 n ∆n
 i W + v i−1
@@ -54031,14 +53874,12 @@ n
      u
 i−1
 n</p>
-<p>En
-
-w(s−, x) −w
-i −1
+<p>En</p>
+<p>w(s−, x) −w
+i −1
 n
-, x
-
-ν(ds, dx)</p>
+, x</p>
+<p>ν(ds, dx)</p>
 <p>dWu,
 ζ(4)′n
 i = −√n</p>
@@ -54046,14 +53887,12 @@ i = −√n</p>
 n
 i−1
 n</p>
-<p>En
-
-w(s−, x) −w
-i −1
+<p>En</p>
+<p>w(s−, x) −w
+i −1
 n
-, x
-
-ν(ds, dx)</p>
+, x</p>
+<p>ν(ds, dx)</p>
 <p>∆n
 i+1W,
 ζ(5)n
@@ -54067,7 +53906,7 @@ i−1
 n</p>
 <p>En
 w
-i −1
+i −1
 n
 , x</p>
 <p>ν(ds, dx)</p>
@@ -54080,7 +53919,7 @@ i−1
 n</p>
 <p>En
 w
-i −1
+i −1
 n
 , x</p>
 <p>ν(ds, dx)</p>
@@ -54095,14 +53934,12 @@ n
      u
 i−1
 n</p>
-<p>En
-
-w(s−, x) −w
-i −1
+<p>En</p>
+<p>w(s−, x) −w
+i −1
 n
-, x
-
-µ(ds, dx)</p>
+, x</p>
+<p>µ(ds, dx)</p>
 <p>dWu,
 ζ(6)′n
 i = √n</p>
@@ -54110,14 +53947,12 @@ i = √n</p>
 n
 i−1
 n</p>
-<p>En
-
-w(s−, x) −w
-i −1
+<p>En</p>
+<p>w(s−, x) −w
+i −1
 n
-, x
-
-µ(ds, dx)</p>
+, x</p>
+<p>µ(ds, dx)</p>
 <p>∆n
 i+1W,
 ζ(7)n
@@ -54131,7 +53966,7 @@ i−1
 n</p>
 <p>En
 w
-i −1
+i −1
 n
 , x</p>
 <p>µ(ds, dx)</p>
@@ -54144,14 +53979,14 @@ i−1
 n</p>
 <p>En
 w
-i −1
+i −1
 n
 ,</p>
 <p>µ(ds, dx)</p>
 <p>∆n
 i+1W.
 We also set
-ξn
+ξn
 i = ζ(1)n
 i + ζ(3)n
 i + ζ(4)n
@@ -54162,7 +53997,7 @@ i = ζ(2)n
 i + ζ(5)n
 i + ζ(7)n
 i
-ξ′′n
+ξ′′n
 i
 = ζ(1)′n
 i + ζ(3)′n
@@ -54175,10 +54010,10 @@ i
 i + ζ(5)′n
 i + ζ(7)′n
 i
-ξ′n
+ξ′n
 i
-= ξn
-i+1 + ξ′′n
+= ξn
+i+1 + ξ′′n
 i ,
 <em>ξ′n
 i
@@ -54205,7 +54040,7 @@ In view of (5.1), a tedious but simple computation shows that
 √n ∆n
 i Y −βn
 i = ξn
-i = ξn
+i = ξn
 i + </em>ξn
 i ,
 √n ∆n
@@ -54213,26 +54048,23 @@ i+1Y −β′n
 i
 = ξ′n
 i
-= ξ′n
+= ξ′n
 i + *ξ′n
 i .
 (7.4)
-Next, we put ϕ(ε) =
-
-{∥ψ(x)∥≤ε} ψ(x)2F(dx), so that
+Next, we put ϕ(ε) =</p>
+<p>{∥ψ(x)∥≤ε} ψ(x)2F(dx), so that
 ε ↓0
 ⇒
 ϕ(ε) →0
 θ ∈[0, 2]
-⇒
-
-{ψ(x)&gt;ε} ψ(x)θF(dx) ≤
+⇒</p>
+<p>{ψ(x)&gt;ε} ψ(x)θF(dx) ≤
 C
 ε2−θ ,
 θ ≥2
-⇒
-
-{ψ(x)≤ε} ψ(x)θF(dx) ≤ϕ(ε) εθ−2.
+⇒</p>
+<p>{ψ(x)≤ε} ψ(x)θF(dx) ≤ϕ(ε) εθ−2.
 
 
 
@@ -54254,9 +54086,8 @@ nq/2
 <p>i
 n
 i−1
-n
-
-∥au −a i−1
+n</p>
+<p>∥au −a i−1
 n ∥2 + ∥σ′
 u−−σ′
 i−1
@@ -54264,12 +54095,11 @@ n ∥2 + ∥vu−−v i−1
 n ∥2
 +</p>
 <p>En
-w(u−, x) −w
-i −1
+w(u−, x) −w
+i −1
 n
-, x
-
-2
+, x</p>
+<p>2
 F(dx)</p>
 <p>du</p>
 <p>q/2
@@ -54289,9 +54119,8 @@ i
 /nq/2,
 E(∥ζ(2)n
 i ∥q) + E(∥ζ(2)′n
-i ∥q) ≤Cq/nq/2.
-
-(7.7)
+i ∥q) ≤Cq/nq/2.</p>
+<p>(7.7)
 Lemma 7.4. Under (SH1), and for any even integer q ≥2, we have
 E(∥ζ(3)n
 i ∥q) + E(∥ζ(3)′n
@@ -54310,16 +54139,14 @@ i ∥q) ≤CqE
 <p>i
 n
 i−1
-n
-
- u
+n</p>
+<p>u
 i−1
 n</p>
 <p>Ec
 n
-w(s, x)(µ −ν)(ds, dx)
-
-2
+w(s, x)(µ −ν)(ds, dx)</p>
+<p>2
 du
 
 
@@ -54331,16 +54158,14 @@ q/2
 n
 i−1
 n
-E
-    
- u
+E</p>
+<p>u
 i−1
 n</p>
 <p>Ec
 n
-w(s, x)(µ −ν)(ds, dx)
-
-q
+w(s, x)(µ −ν)(ds, dx)</p>
+<p>q
 du</p>
 <p>≤Cq n</p>
 <p>i
@@ -54377,19 +54202,17 @@ i−1
 n )q/2),
 where Zn
 t =
- t
-0
-
-Ec
+ t
+0</p>
+<p>Ec
 n ψ(x)2µ(ds, dx) is an increasing pure jump L´evy process,
 whose Laplace transform is
-λ →E(e−λ(Zn
+λ →E(e−λ(Zn
 s+t−Zn
 s )) = exp t</p>
 <p>Ec
-n
-
-e−λψ(x)2 −1</p>
+n</p>
+<p>e−λψ(x)2 −1</p>
 <p>F(dx).</p>
 <p>56
 O. E. Barndorff–Nielsen et al.
@@ -54397,11 +54220,10 @@ We compute the q/2–moment of Zn
 s+t−Zn
 s by differentiating q/2 times the
 Laplace transform at 0: this is the sum, over all choices u1, . . . , uk of positive
-integers with k
+integers with k
 i=1 ui = q/2, of suitable constants times the product for all
-i = 1, . . . , k of the terms t
-
-Ec
+i = 1, . . . , k of the terms t</p>
+<p>Ec
 n ψ(x)2uiF(dx); moreover this term is smaller
 than tε2ui−2
 n
@@ -54409,9 +54231,8 @@ n
 E((Zn
 s+t −Zn
 s )q/2) ≤Cqϕ(εn)
-q/2
-
-k=1
+q/2</p>
+<p>k=1
 tkεq−2k
 n
 ≤Cqϕ(εn)(tεq−2
@@ -54469,11 +54290,10 @@ ds</p>
 ψ(x)F(dx)</p>
 <p>q
 ≤Cq
-nq
-
-En
+nq</p>
+<p>En
 ψ(x)F(dx)
-q
+q
 . (7.10)
 The result readily follows from (7.5).
 ⊓⊔
@@ -54486,11 +54306,11 @@ enough for our purposes, and we need a bit more. Below, we consider a pair
 0, and such that (2.11) holds when r &lt; 1 and that r = 1 if B = ∅. Let also
 r = 1
 ⇒
-γn
+γn
 i = 1
 r &lt; 1
 ⇒
-γn
+γn
 i = 1 +
 1
 d(γn
@@ -54508,11 +54328,11 @@ holds whenever r &lt; 1, for any q ∈(1, 2) and l ∈[0, 1) we can find u &gt; 
 (depending on q and l) such that
 E</p>
 <p>∥ζ(6)n
-i ∥q (γn
+i ∥q (γn
 i )l
 + E</p>
 <p>∥ζ(6)′n
-i ∥q (γn
+i ∥q (γn
 i )l
 ≤
 Cl,q (αn,2
@@ -54522,11 +54342,11 @@ nq/2
 ,
 E</p>
 <p>∥ζ(7)n
-i ∥q (γn
+i ∥q (γn
 i )l
 + E</p>
 <p>∥ζ(7)′n
-i ∥q (γn
+i ∥q (γn
 i )l
 ≤Cl,q
 nq/2 .
@@ -54572,9 +54392,8 @@ n −Z′n
 i−1
 n ).
 Set u′ = 1
-2
-
-1 + 1
+2</p>
+<p>1 + 1
 l
 -
 1
@@ -54582,13 +54401,12 @@ q−1</p>
 <p>, which satisfies u′ &gt; 1 because l &lt; 1 and q ∈(1, 2).
 With δn
 i = (√n M n
-i )u′q (γn
+i )u′q (γn
 i )u′l we then have (since u′ &gt; 1 and u′q−u′+1 &gt; 0):
 ∥ζ(6)n
-i ∥q (γn
-i )l ≤Cq
-
-δn
+i ∥q (γn
+i )l ≤Cq</p>
+<p>δn
 i (Zn
 i
 n −Zn
@@ -54604,19 +54422,17 @@ u′ ,
 and H¨older’s inequality yields
 E</p>
 <p>∥ζ(6)n
-i ∥q(γn
+i ∥q(γn
 i )l
-≤Cq
-
-E
-
-δn
+≤Cq</p>
+<p>E</p>
+<p>δn
 i (Zn
 i
 n −Zn
 i−1
 n )u′q−u′+1 1
-u′ 
+u′ 
 E(Z′n
 i
 n −Z′n
@@ -54627,7 +54443,7 @@ u′ . (7.13)
 Now, if we combine (2.11) and (3.6), we see that when r &lt; 1 (so (SH’)
 holds) the variable d(γn
 i , B) has a conditional law knowing F(i−1)/n which has
-a density which is bounded uniformly in n, i and ω, so E((γn
+a density which is bounded uniformly in n, i and ω, so E((γn
 i )s | F(i−1)/n)
 is bounded by a constant Cs for all s ∈[0, 1), whether r = 1 or r &lt; 1. Also,
 E((√n M n
@@ -54641,9 +54457,8 @@ i/n −Zn
 independent of δn
 i , conditionally on F i−1
 n , we deduce
-E
-
-δn
+E</p>
+<p>δn
 i (Zn
 i
 n −Zn
@@ -54681,11 +54496,10 @@ n</p>
 n
 i−1
 n
-ds
-
-En
+ds</p>
+<p>En
 ∥wn(s, x)∥F(dx)
-2
+2
 ≤1
 n</p>
 <p>i
@@ -54706,9 +54520,8 @@ ds</p>
 <p>58
 O. E. Barndorff–Nielsen et al.
 On the other hand N ′n is a square–integrable martingale, and thus
-E
-
-(N ′n
+E</p>
+<p>(N ′n
 i
 n −N ′n
 i−1
@@ -54723,9 +54536,8 @@ ds</p>
 ∥wn(s, x)∥2F(dx)</p>
 <p>,
 and thus
-E
-
-(Z′n
+E</p>
+<p>(Z′n
 i
 n −Z′n
 i−1
@@ -54736,9 +54548,8 @@ n
 .
 (7.15)
 If we replace ∥wn(s, x)∥by ψ(x), we obtain in a similar fashion
-E
-
-(Zn
+E</p>
+<p>(Zn
 i
 n −Zn
 i−1
@@ -54762,7 +54573,7 @@ i .
 ⊓⊔
 7.3 Estimates for the variables of (7.3)
 Here we derive estimates on the variables defined in (7.3). Below, the pair
-(B, r) and the variable γn
+(B, r) and the variable γn
 i are like in Lemma 7.6. We also consider positive
 random variables Zn
 i which satisfy
@@ -54773,25 +54584,23 @@ i )q) ≤Cq
 Observe that ξn
 i and ξ′n
 i
-do not depend on the sequence εn, but ξn
-i and ξ′n
+do not depend on the sequence εn, but ξn
+i and ξ′n
 i
 do. Remember also the variables αn,q
 i
 defined ibn (7.6).
 Lemma 7.7. Assume (SH1) and (SH’) and (7.11) and (7.17). Let p ≥2 and
 l ∈(0, 1). Then if θ ∈(1, 2) we have
-E
-
-(Zn
-i )p ∥<em>ξn
-i ∥θ (γn
+E</p>
+<p>(Zn
+i )p ∥*ξn
+i ∥θ (γn
 i )l
-+ E
-
-(Zn
-i )p ∥</em>ξ′n
-i ∥θ (γn
++ E</p>
+<p>(Zn
+i )p ∥*ξ′n
+i ∥θ (γn
 i )l
 ≤Cp,θ,l
 nθ/2 ,
@@ -54801,24 +54610,22 @@ n ≥1 and a sequence zn &gt; 0
 with zn →0, both sequences depending on l only, and also two numbers q, q′ ≥
 1 depending on l only, such that
 E((Zn
-i )p∥ξn
-i ∥(γn
+i )p∥ξn
+i ∥(γn
 i )l) ≤Cp,l
-√n
-
-zn + (αn,q
+√n</p>
+<p>zn + (αn,q
 i
 )1/q + (αn,2
 i
 )1/q′
 ,
 E((Zn
-i )p∥ξ′n
-i ∥(γn
+i )p∥ξ′n
+i ∥(γn
 i )l)) ≤Cp,l
-√n
-
-zn + (αn,q
+√n</p>
+<p>zn + (αn,q
 i
 )1/q + (αn,q
 i+1)1/q
@@ -54842,16 +54649,16 @@ i+1)1/q′
 <p>CLT for bipower variations
 59
 Proof. We prove (7.18) and (7.19) for ξn
-i and ξn
+i and ξn
 i only, the proofs for ξ′n
 i
 and
-ξ′n
+ξ′n
 i
 being similar. We have seen in the proof of Lemma 7.6 that, by (7.11),
 s ∈[0, 1)
 ⇒
-E((γn
+E((γn
 i )s) ≤Cs.
 (7.20)
 Although ξn
@@ -54867,19 +54674,18 @@ l
 <p>, by (7.17) and H´older’s inequality we get
 E((Zn
 i )p ∥ξn
-i ∥θ (γn
+i ∥θ (γn
 i )l) ≤Cp,θ,l</p>
 <p>E(∥ξn
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl)</p>
 <p>1/t ,
 E((Zn
-i )p ∥ξn
-i ∥(γn
-i )l) ≤Cp,l
-
-E(∥ξn
-i ∥t (γn
+i )p ∥ξn
+i ∥(γn
+i )l) ≤Cp,l</p>
+<p>E(∥ξn
+i ∥t (γn
 i )tl)
 1/t
 .
@@ -54907,7 +54713,7 @@ both sequences εn and an only depend on θ and l.
 Now we apply (7.8) and (7.9) with q and εn as above, plus (7.20) and
 H¨older’s inequality, to get</p>
 <p>E(∥ζ(3)n
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl
 1/t ≤Cθ,l ϕ(εn)1/s′t aθ−2/s′t
 n
@@ -54919,11 +54725,11 @@ n
 ≤Cθ,l
 nθ/2 ,</p>
 <p>E(∥ζ(4)n
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl
 1/t +</p>
 <p>E(∥ζ(5)n
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl
 1/t ≤
 Cθ,l
@@ -54938,7 +54744,7 @@ nθ/2 .
 In a similar way, (7.20) and (7.7) and H´older’s inequality give (with the same
 q as above):</p>
 <p>E(∥ζ(1)n
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl
 1/t ≤
 Cθ,l (αn,q
@@ -54947,7 +54753,7 @@ i
 nθ/2
 ,</p>
 <p>E(∥ζ(2)n
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl
 1/t ≤Cθ,l
 nθ/2 .
@@ -54957,7 +54763,7 @@ nθ/2 .
 (7.23)
 Finally applying (7.12) and tθ &lt; 2 yields</p>
 <p>E(∥ζ(6)n
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl
 1/t ≤
 Cθ,l (αn,2
@@ -54966,7 +54772,7 @@ i
 nθ/2
 ,</p>
 <p>E(∥ζ(7)n
-i ∥tθ (γn
+i ∥tθ (γn
 i )tl
 1/t ≤Cθ,l
 nθ/2
@@ -54995,9 +54801,8 @@ i
 ≤Cq,
 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 (αn,q
 i
 )1/q′ →0.
@@ -55009,19 +54814,17 @@ u−−σ′
 [nu]/n∥2 + ∥vu−−v[nu]/n∥2
 +</p>
 <p>E
-w(u−, x) −w
-i −1
+w(u−, x) −w
+i −1
 n
-, x
-
-2
+, x</p>
+<p>2
 F(dx).
 Then the H¨older inequality yields
 1
 n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 (αn,q
 i
 )1/q′ ≤[nt]
@@ -55029,9 +54832,8 @@ n
 
 1
 [nt]
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E
 
 </p>
@@ -55051,9 +54853,8 @@ n
 
 1
 [nt]
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E</p>
 <p>n</p>
 <p>i
@@ -55066,13 +54867,12 @@ n
 1/q′
 ≤t
 q′−1
-q′
-
-E
- t
+q′</p>
+<p>E
+ t
 0
 γn(u)q/2du
-1/q′
+1/q′
 .
 Since γn is uniformly bounded and converges pointwise to 0, we get the result.
 ⊓⊔
@@ -55084,13 +54884,11 @@ is differentiable on the complement Bc. Below, each ΨA,ε is an increasing
 continuous function on R+ with ΨA,ε(0) = 0.
 x ∈Bc
 ⇒
-|∇f(x)| ≤C(1 + ∥x∥p)
-
-1 +
+|∇f(x)| ≤C(1 + ∥x∥p)</p>
+<p>1 +
 1
-d(x, B)1−r
-
-,
+d(x, B)1−r</p>
+<p>,
 (7.26)
 x, y ∈Rd
 ⇒
@@ -55130,15 +54928,14 @@ i be an auxiliary variable which
 for each ω is on the segment joining γ′n
 i
 and γ′′n
-i , and let γn
+i , and let γn
 i be 1 when r = 1
 and 1 + 1/d(γ′′n
 i , B) when r &lt; 1. Then we set
 Φn
 i = f(γn
-i )
-
-(k(γ′n
+i )</p>
+<p>(k(γ′n
 i ) −k(γ′′n
 i ))1An
 i −∇k(γ′′n
@@ -55154,7 +54951,7 @@ i )1(An
 i )c</p>
 <p>,
 (7.33)
-Φn
+Φn
 i = f(γn
 i ) ∇k(γ′′n
 i )(γ′n
@@ -55190,9 +54987,8 @@ i , we
 have for all t &gt; 0:
 1
 √n
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(|Φn
 i |) →0.
 (7.35)
@@ -55202,7 +54998,7 @@ i
 i and γ′n
 i −γ′′n
 i
-= ξn
+= ξn
 i , or if γ′′n
 i
 = β′n
@@ -55210,15 +55006,14 @@ i
 and γ′n
 i −γ′′n
 i
-= ξ′n
+= ξ′n
 i , we
 have for all t &gt; 0:
 1
 √n
-[nt]
-
-i=1
-E(|Φn
+[nt]</p>
+<p>i=1
+E(|Φn
 i |) →0.
 (7.36)</p>
 <p>62
@@ -55240,25 +55035,24 @@ i −γ′′n
 i ∥≥ε/2} yield
 for all A &gt; 0, ε &gt; 2ε′ &gt; 0:
 |Φn
-i | + |Φn
+i | + |Φn
 i | ≤C(Zn
-i )2p
-
-ΨA,ε′(ε) + ∥γ′′n
+i )2p</p>
+<p>ΨA,ε′(ε) + ∥γ′′n
 i ∥
 A
 +∥γ′n
 i −γ′′n
 i ∥
-1
+1
 ε + 1
-ε′
-
-+ 1{d(γ′′n
+ε′</p>
+<ul>
+<li>1{d(γ′′n
 i
-,B)≤ε}
-
-∥γ′n
+,B)≤ε}</li>
+</ul>
+<p>∥γ′n
 i −γ′′n
 i ∥. (7.38)
 If B = ∅the indicator function above vanishes. Otherwise, the variable γ′′n
@@ -55274,27 +55068,26 @@ i , B) ≤ε) ≤αε :=</p>
 and limε→0 αε = 0. Then (5.5), (7.37), (7.38) and the multivariate H¨older
 inequality yield
 E(|Φn
-i |) + E(|Φn
+i |) + E(|Φn
 i |) ≤C
-√n
-
-ΨA,ε(ε′) + 1
+√n</p>
+<p>ΨA,ε(ε′) + 1
 A +
 1
 n1/4
-1
+1
 ε + 1
-ε′
-
-+ α1/4
-ε
-
-.
+ε′</p>
+<ul>
+<li>α1/4
+ε</li>
+</ul>
+<p>.
 Hence (7.35) readily follows: choose A big, then ε small, then ε′ small.
 2) Now we suppose that r &lt; 1, hence B ̸= ∅. We have
 |Φn
 i | ≤(Zn
-i )2p
+i )2p
 ∥γ′n
 i −γ′′n
 i ∥r 1An
@@ -55312,12 +55105,11 @@ i −γ′′n
 i ∥2
 d(γ′′n
 i , B)2−r 1(An
-i )c
-
-≤C(Zn
+i )c</p>
+<p>≤C(Zn
 i )2p ∥γ′n
 i −γ′′n
-i ∥1+r/2 (γn
+i ∥1+r/2 (γn
 i )1−r/2,
 (7.39)
 where the first inequality follows from (7.26), (7.27) and (7.29) for k, while the
@@ -55325,11 +55117,11 @@ second one is obtained by using the definition of the set An
 i . Hence Lemmas
 7.7 and 7.8 readily give (7.35).
 3) Finally, in all cases we have
-|Φn
+|Φn
 i | ≤C(Zn
 i )2p ∥γ′n
 i −γ′′n
-i ∥(γn
+i ∥(γn
 i )1−r.
 (7.40)
 Therefore (7.36) follows from Lemmas 7.7 (see (7.19)) and 7.8 again.
@@ -55344,7 +55136,7 @@ satisfies (K’) instead of (K), and we need to prove that the arrays defined in
 2) Let us prove first that (ζ′′n
 i ) is AN. If f is continuously differentiable, and f
 and ∇f have polynomial growth, we readily deduce from Lebesgue’s theorem
-that Σ →ρΣ(f) = E(f(ΣU)) (where U is an N(0, Id)–random vector) is
+that Σ →ρΣ(f) = E(f(ΣU)) (where U is an N(0, Id)–random vector) is
 bounded, continuously differentiable and with bounded derivatives over the
 set M′ defined in connection with formula (3.6). Hence if both g and h satisfy
 (K) we have (recall the notation (3.6), and set ϕ(Σ) = ρΣ(g)ρΣ(h)):
@@ -55371,19 +55163,17 @@ for some constant C (depending on A0 in (3.6)) and some increasing function
 If g or h (or both) satisfy (K’) only we also have (SH’), and since
 ρΣ(f) =</p>
 <p>1
-(2π)d/2det(ΣΣ⋆)1/2 f(x) exp
-
-−1
-2 x⋆(ΣΣ⋆)−1x
-
-dx
-we see that as soon as f has polynomial growth the function Σ →ρΣ(f) is
+(2π)d/2det(ΣΣ⋆)1/2 f(x) exp</p>
+<p>−1
+2 x⋆(ΣΣ⋆)−1x</p>
+<p>dx
+we see that as soon as f has polynomial growth the function Σ →ρΣ(f) is
 C∞with bounded derivatives of all orders on the set M′. Hence we also have
 (8.1), which thus holds in all cases.
 Since we can write (7.2) as ζ′′n
 i
 = √n
- i/n
+ i/n
 (i−1)/n(ϕ(σu) −ϕ(σ(i−1)/n)du, we
 have ζ′′n
 i
@@ -55406,9 +55196,8 @@ i
 <p>i
 n
 i−
-n
-
-ϕ(σu) −ϕ(σ i−1
+n</p>
+<p>ϕ(σu) −ϕ(σ i−1
 n ) −∇ϕ(σ i−1
 n )(σu −σ i−1
 n )</p>
@@ -55463,15 +55252,13 @@ i | ≤C/n3/2 by (8.1) and the boundedness of a′,
 so the array (µn
 i ) is AN. On the other hand, we also get by (SH1) and (8.1)
 and Cauchy–Schwarz applied twice:
-E
-
-µ′n
+E</p>
+<p>µ′n
 i | F i−1
 n</p>
 <p>= 0,
-E
-
-(µ′n
+E</p>
+<p>(µ′n
 i )2 | F i−1
 n</p>
 <p>≤C
@@ -55505,17 +55292,14 @@ n
 n ∥2 du.
 Since E(∥σu −σ i−1
 n ∥2) ≤C/n when u ∈((i −1)/n, i/n], we deduce that
-[nt]
-
-i=1
+[nt]</p>
+<p>i=1
 E(|η′n
-i |) ≤Ct
-
-Ψ(ε) +
+i |) ≤Ct</p>
+<p>Ψ(ε) +
 1
-ε√n
-
-.
+ε√n</p>
+<p>.
 From this we deduce the AN property of the array (η′n
 i ) because ε &gt; 0 is
 arbitrarily small and limε→0 Ψ(ε) = 0. Hence, finally, the array (ζ′′n
@@ -55531,9 +55315,8 @@ i | F(i−1)/n), where
 δn
 i =
 1
-√n
-
-g(√n ∆n
+√n</p>
+<p>g(√n ∆n
 i Y )h(√n ∆n
 i+1Y ) −g(βn
 i )h(β′n
@@ -55610,24 +55393,22 @@ Now observe that
 i =
 1
 √n g(√n ∆n
-i Y )
-
-h(√n ∆n
+i Y )</p>
+<p>h(√n ∆n
 i+1Y ) −h(β′n
 i )</p>
 <ul>
 <li>1
-√n
-
-g(√n ∆n
-i Y ) −g(βn
-i )</li>
+√n</li>
 </ul>
+<p>g(√n ∆n
+i Y ) −g(βn
+i )</p>
 <p>h(β′n
 i ),
 Therefore we deduce from the decomposition (8.2) and the analogous one for
 h, and also from (7.3) and (7.4), that δn
-i = 6
+i = 6
 k=1 δn
 i (k), where
 δn
@@ -55654,23 +55435,21 @@ i ,
 δn
 i (4) =
 1
-√n
-
-g(√n ∆n
+√n</p>
+<p>g(√n ∆n
 i Y )∇h(β′n
-i )ξ′n
+i )ξ′n
 i + h(β′n
 i )∇g(βn
-i )ξn
+i )ξn
 i</p>
 <p>,
 δn
 i (5) =
 1
 √n g(√n ∆n
-i Y )
-
-(h(√n ∆n
+i Y )</p>
+<p>(h(√n ∆n
 i+1Y ) −h(β′n
 i ))1A′n
 i
@@ -55690,9 +55469,8 @@ i )c</p>
 i (6) =
 1
 √n h(β′n
-i )
-
-(g(√n ∆n
+i )</p>
+<p>(g(√n ∆n
 i Y ) −g(βn
 i ))1An
 i
@@ -55710,16 +55488,15 @@ i )c</p>
 <p>.</p>
 <p>66
 O. E. Barndorff–Nielsen et al.
-If we combine (5.2) with Lemma 7.9, we readily get [nt]
+If we combine (5.2) with Lemma 7.9, we readily get [nt]
 i=1 E(∥δn
 i (k)∥) →0
 when k = 4, 5, 6. So we are left to proving that
 the array
 /
 µn
-i (k) = E
-
-δn
+i (k) = E</p>
+<p>δn
 i (k) | F i−1
 n
 0
@@ -55737,11 +55514,10 @@ n
 v i−1
 n (Vt −V i−1
 n ) +
- t
+ t
 i−1
-n
-
-En w( i−1
+n</p>
+<p>En w( i−1
 n , x)(µ −ν)(ds, dx) otherwise.
 We see that *ξn
 i = ζ(2)n
@@ -55778,9 +55554,8 @@ dM(n, i)u Wu.
 Now we can write
 µn
 i (3) = ρn
-i−1(h) E
-
-∇g(√n σ i−1
+i−1(h) E</p>
+<p>∇g(√n σ i−1
 n ∆n
 i W)(ηn
 i + η′n
@@ -55794,9 +55569,8 @@ i is multiplied
 by −1 if we change the sign of the process (Ws −W(i−1)/n)s≥(i−1)/n, and
 this sign change does not affect the F(i−1)/n–conditional distribution of this
 process. Hence we get
-E
-
-∇g(√n σ i−1
+E</p>
+<p>∇g(√n σ i−1
 n ∆n
 i W)ηn
 i | F i−1
@@ -55812,9 +55586,8 @@ s ∈((i −1)/n, i/n], and thus E(η′n
 i |F0
 i/n) = 0. By successive conditioning, we
 immediately deduce that
-E
-
-∇g(√n σ i−1
+E</p>
+<p>∇g(√n σ i−1
 n ∆n
 i W)η′n
 i
@@ -55827,9 +55600,8 @@ i
 is the product of
 an F(i−1)/n–measurable variable, times ∆n
 i+1W. So exactly as above we have
-E
-
-∇h(β′n
+E</p>
+<p>∇h(β′n
 i ) *ξn
 i+1 | F i
 n</p>
@@ -55846,17 +55618,14 @@ i (1)
 =
 1
 √n
-d
-
-l=1
-d′
-
-m=1
+d</p>
+<p>l=1
+d′</p>
+<p>m=1
 zn,lm
 i
-E
-
-g(√n ∆n
+E</p>
+<p>g(√n ∆n
 i Y )(σ′
 i−1
 n ∆n
@@ -55867,53 +55636,45 @@ n</p>
 <p>,
 where zn,lm
 i
-=
-
-∂xlh(σ i−1
+=</p>
+<p>∂xlh(σ i−1
 n x) xm ρ(dx) and ρ is N(0, Id′) (the law of W1), so
 ∥zn,lm
 i
 ∥≤C. Recalling once more √n ∆n
 i Y = βn
-i + ξn
+i + ξn
 i + *ξn
 i , we see that
 µn
 i (1) =
-d
-
-l=1
-d′
-
-m=1
-
-E
-
-µn
+d</p>
+<p>l=1
+d′</p>
+<p>m=1</p>
+<p>E</p>
+<p>µn
 i (l, m) | F i−1
 n</p>
 <ul>
-<li>E
-
-µ′n
-i (l, m) | F i−1
-n</li>
+<li>E</li>
 </ul>
+<p>µ′n
+i (l, m) | F i−1
+n</p>
 <p>,
 where
 µn
 i (l, m) =
 1
 √n zn,lm
-i
-
-g(βn
-i + ξn
+i</p>
+<p>g(βn
+i + ξn
 i + *ξn
 i )−g(βn
-i )
-
-σ′
+i )</p>
+<p>σ′
 i−1
 n ∆n
 i W +∆n
@@ -55926,9 +55687,8 @@ i (l, m) =
 √n zn,lm
 i
 g(βn
-i )
-
-σ′
+i )</p>
+<p>σ′
 i−1
 n ∆n
 i W + ∆n
@@ -55938,7 +55698,7 @@ lm
 Use (5.2) and (7.37) and the property E(∥∆n
 i W∥q) + E(∥∆n
 i M(n, i)∥q) ≤
-Cq/n for all q ≥2 to get that [nt]
+Cq/n for all q ≥2 to get that [nt]
 i=1 E(|µn
 i (l, m)|) →0. Finally, since g is
 even and ∆n
@@ -56265,9 +56025,8 @@ i )′, i = 1, . . . , n}. Then the corresponding (lower) empirical copula is
 defined by
 Cn(u1, u2) = 1
 n
-n
-
-i=1
+n</p>
+<p>i=1
 1{F1,n(X1
 i ) ≤u1, F2,n(X2
 i ) ≤u2},
@@ -56311,14 +56070,13 @@ by:</p>
 N.H. Bingham and R. Schmidt
 ˆΛL,n(x1, x2) := n
 k Cn
-kx1
+kx1
 n , kx2
 n</p>
 <p>= 1
 k
-n
-
-i=1
+n</p>
+<p>i=1
 1{R1
 in ≤kx1 and R2
 in ≤kx2}
@@ -56409,9 +56167,8 @@ been addresses in several publications, see [52], [45], [5], [20], and [37]. Con
 the following nonparametric estimator for the lower TDC:
 ˆλL,n(k) = ˆΛL,n(1, 1) = 1
 k ·
-n
-
-j=1
+n</p>
+<p>j=1
 1{R1
 in ≤k ∧R2
 in ≤k}
@@ -56428,17 +56185,17 @@ with GλL being centered and normally distributed, i.e. GλL ∼N(0, σ2
 L) with
 σ2
 L = λL +
- ∂
+ ∂
 ∂xΛL(1, 1)
 2
 +
- ∂
+ ∂
 ∂y ΛL(1, 1)
 2
 + 2λL
- ∂
+ ∂
 ∂xΛL(1, 1) −1
- ∂
+ ∂
 ∂y ΛL(1, 1) −1</p>
 <p>−1</p>
 <p>.
@@ -56684,9 +56441,8 @@ i )2 by
 (vj
 i )2 = 1
 nτ
-nτ
-
-k=1</p>
+nτ</p>
+<p>k=1</p>
 <p>Rj
 k·τ(i)</p>
 <p>2
@@ -57377,13 +57133,11 @@ locally stable almost surely (a.s.), if for any s ≥0, η &gt; 0 and β &gt; 0,
 exists δ &gt; 0 such that the inequality
 sup
 y∈Rm, z∈G
-P
-
-sup
+P</p>
+<p>sup
 t≥s
-|xε(s, t, x, y, z)| &gt; η
-
-&lt; β
+|xε(s, t, x, y, z)| &gt; η</p>
+<p>&lt; β
 (1.3)
 is satisfied for all x in the ball Bδ(0) := {u ∈Rn : |u| &lt; δ};</p>
 <p>Stability Analysis of Markov Dynamical Systems
@@ -57402,13 +57156,11 @@ lim
 T →∞
 sup
 y∈Rm, z∈G
-P
-
-sup
+P</p>
+<p>sup
 t&gt;T
-|xε(s, t, x, y, z)| &gt; c
-
-= 0;
+|xε(s, t, x, y, z)| &gt; c</p>
+<p>= 0;
 (1.4)
 •
 exponentially p-stable, if there are numbers M &gt; 0, γ &gt; 0 such that for
@@ -57447,9 +57199,8 @@ tees ergodicity of Markov processes defined by infinitesimal operators
 and with the same invariant measure µ. To avoid cumbersome formulas an
 averaging in the Markov phase coordinate z ∈G of any function f(x, y, z)
 with respect to the invariant measure µ will be denoted by ¯f, that is,
-¯f(x, y) :=
-
-G f(x, y, z)µ(dz). In Section 4 we discuss some results for the fast
+¯f(x, y) :=</p>
+<p>G f(x, y, z)µ(dz). In Section 4 we discuss some results for the fast
 motion assuming that ¯h−1(y) ≡0. In this case, under some assumptions, the
 stability analysis is based on an averaging procedure for the slow motion (1.6)
 with a diffusion approximation of the fast motion (1.7):</p>
@@ -57523,13 +57274,11 @@ notation:
 gk :=
 sup
 |x|≤1, y∈Y
-P
-
-sup
+P</p>
+<p>sup
 t≥0
-| X(0, t, y)x| ≥2kα
-
-.
+| X(0, t, y)x| ≥2kα</p>
+<p>.
 The pair {x(t), y(t)}, t ∈R+ is a stochastically continuous Markov process.
 Therefore for any x ∈B1(0) there exits a time τ1(x) such that the trajectory
 x(0, t, x, y) leaves the ball B1(0). Hence
@@ -57540,22 +57289,18 @@ sup
 <p>s=0</p>
 <p>|u|=2kα, v∈Y
 Px,y(τ1(x) ∈ds, x(s) ∈du, y(s) ∈dv)
-× P
-
-sup
+× P</p>
+<p>sup
 t≥0
-|X(0, t, v)u| &gt; 2(k+1)α
-
-≤
+|X(0, t, v)u| &gt; 2(k+1)α</p>
+<p>≤
 sup
 |x|≤2kα, y∈Y
-P
-
-sup
+P</p>
+<p>sup
 t≥0
-|X(0, t, y)x| &gt; 2(k+1)α
-
-×
+|X(0, t, y)x| &gt; 2(k+1)α</p>
+<p>×
 sup
 |x|≤1, y∈Y
 ∞</p>
@@ -57566,30 +57311,25 @@ Px,y(τ1(x) ∈ds, x(s) ∈du, y(s) ∈dv)
 2
 sup
 |x|≤1, y∈Y
-P
-
-sup
+P</p>
+<p>sup
 t≥0
-|X(0, t, y)x| ≥2kα
-
-= 1
+|X(0, t, y)x| ≥2kα</p>
+<p>= 1
 2gk
 and therefore gk ≤2−k for any k ∈N. Define ζ(x, y) := supt≥0 |x(0, t, x, y)|p.
 It is easy to see that for all p &gt; 0, x ∈Rn and y ∈Y one can write
 E[ζ(x, y)] ≤|x|p sup
 |x|≤1
 E[ζ(x, y)] ≤
-∞
-
-k=1
-2kαpP
-
-sup
+∞</p>
+<p>k=1
+2kαpP</p>
+<p>sup
 t≥0
-|x(0, t, x, y)| ≥2(k−1)α
-
-.
-Therefore E[ζ(x, y)] ≤∞
+|x(0, t, x, y)| ≥2(k−1)α</p>
+<p>.
+Therefore E[ζ(x, y)] ≤∞
 k=1 2kαp2−k|x|p := K1|x|p for all x ∈Rn, y ∈Y
 and p ∈(0, α−1). The assumption in Lemma 2.1 implies that the solu-
 tion x(0, t, x, y), t ≥0 of (2.1) tends to 0 a.s. as t →∞uniformly in
@@ -57630,12 +57370,10 @@ x,y[v(t, x(t), y(t))] = v(u, x, y) +
 u
 E(u)
 x,y
- ∂
-∂s + L0
-
-v(s, x(s), y(s))
-
-ds.
+ ∂
+∂s + L0</p>
+<p>v(s, x(s), y(s))</p>
+<p>ds.
 (2.6)
 Lemma 2.2. The trivial solution of equation (2.1) is exponentially p-stable
 if and only if there exists a Lyapunov function v(x, y) and a number p &gt; 0
@@ -57691,63 +57429,51 @@ see that the random process θ(t) := v(x(t), y(t)) ec3t/c2, t ≥0 is a positive
 supermartingale. Hence
 sup
 y∈Y
-P
-
-sup
+P</p>
+<p>sup
 t≥0
-|x(0, t, x, y| &gt; ε
-
-≤sup
+|x(0, t, x, y| &gt; ε</p>
+<p>≤sup
 y∈Y
-Px,y
-
-sup
+Px,y</p>
+<p>sup
 t≥0
 { 1
 c1
-v(x(t), y(t))} &gt; εp
-
-≤sup
+v(x(t), y(t))} &gt; εp</p>
+<p>≤sup
 y∈Y
-Px,y
-
-sup
+Px,y</p>
+<p>sup
 t≥0
-θ(t) &gt; εpc1
-
-≤(1/εpc1)Ex,y[θ(0)] ≤(c2/εpc1) |x|p
+θ(t) &gt; εpc1</p>
+<p>≤(1/εpc1)Ex,y[θ(0)] ≤(c2/εpc1) |x|p
 and the trivial solution of (2.1) is a.s. stochastically stable. Now, to prove the
 asymptotic stochastic stability, we apply the supermartingale inequality [3]:
 sup
 y∈Y
-P
-
-sup
+P</p>
+<p>sup
 t≥u
-|x(u, t, x, y| &gt; c
-
-≤sup
+|x(u, t, x, y| &gt; c</p>
+<p>≤sup
 y∈Y
 P(u)
-x,y
-
-sup
+x,y</p>
+<p>sup
 t≥u
 { 1
-c1 v(x(t), y(t))} &gt; cp
-
-≤sup
+c1 v(x(t), y(t))} &gt; cp</p>
+<p>≤sup
 y∈Y
 P(u)
-x,y
-
-sup
+x,y</p>
+<p>sup
 t≥u
 { 1
 c1
-θ(t) e−c3t/c2} &gt; cp
-
-≤(c2/cpc1) |x|p e−uc3/c2.
+θ(t) e−c3t/c2} &gt; cp</p>
+<p>≤(c2/cpc1) |x|p e−uc3/c2.
 The proof is complete.
 ⊓⊔
 3 Stochastic Stability Based on Linear Approximation
@@ -57783,13 +57509,11 @@ y∈Y
 E[∥Dx x(s, s + t, x, y)∥p] ≤h2 e−γt
 with some positive constants h, γ and for all t &gt; 0. Therefore the above
 Lyapunov function satisfies the conditions (2.7) and by construction for all
-x ̸= 0 it has x-derivative which satisfies the inequalities
-
-T</p>
+x ̸= 0 it has x-derivative which satisfies the inequalities</p>
+<p>T</p>
 <p>0
-E[∇x|x(s, s + t, x, y)|p] dt
-
-≤p |x|p−1
+E[∇x|x(s, s + t, x, y)|p] dt</p>
+<p>≤p |x|p−1
 T</p>
 <p>0
 sup
@@ -57800,21 +57524,17 @@ infinitesimal operator of the pair {˜x(t), y(t)}, t ≥0, and we use L0 as give
 by (2.2):
 Lv(x, y) = L0v(x, y) + ⟨g(x, y), ∇x⟩v(x, y) ≤−1
 2 |x|p + c3 |x|p |g(x, y)|
-≤
-
-grc3 −1
-2
-
-|x|p
+≤</p>
+<p>grc3 −1
+2</p>
+<p>|x|p
 for all x ∈Br(0), r &gt; 0. Hence, in view of the Dynkin formula, we use the
 estimate
 E(u)
-x,y[v(˜x(τr(t)), y(τr(t))] ≤v(x, y) +
-
-grc3 −1
-2
-
-E(u)
+x,y[v(˜x(τr(t)), y(τr(t))] ≤v(x, y) +</p>
+<p>grc3 −1
+2</p>
+<p>E(u)
 x,y
 
 
@@ -57829,19 +57549,15 @@ x,y
 which is valid for all y ∈Y, x ∈Br(0), r &gt; 0, t ≥u ≥0. If r is sufficiently
 small, then the second term in the right-hand side of (3.3) is non-positive.
 Hence the process v(˜x(τr(t)), y(τr(t)), t ≥0 is a supermartingale, so
-Px,y
-
-sup
+Px,y</p>
+<p>sup
 t≥0
-|˜x(t)| &gt; ε
-
-≤Px,y
-
-sup
+|˜x(t)| &gt; ε</p>
+<p>≤Px,y</p>
+<p>sup
 t≥0
-v(˜x(τr(t)), y(τr(t)) &gt; c1εp
-
-≤c2δp
+v(˜x(τr(t)), y(τr(t)) &gt; c1εp</p>
+<p>≤c2δp
 c1εp (3.4)
 for all y ∈Y, x ∈Bδ(0), δ ∈(0, ε), ε ∈(0, r) and sufficiently small r &gt; 0. The
 a.s. local stability immediately follows from these estimates. Let us define the
@@ -57871,26 +57587,22 @@ x,y[v(xR(s), y(s))] ds
 (3.6)
 for all t ≥u ≥0. Hence the stochastic process v(xR(t), y(t)), t ≥0 is a positive
 supermartingale and we have that
-Px,y
-
-sup
+Px,y</p>
+<p>sup
 t≥s
-v(xR(t), y(t)) &gt; c1εp
-
-≤
+v(xR(t), y(t)) &gt; c1εp</p>
+<p>≤
 1
 c1εp Ex,y[v(xR(s), y(s))]
 (3.7)
 for all y ∈Y, x ∈BR(0), ε ∈(0, R) and sufficiently small R &gt; 0. We use (3.7)
 to derive that Ex,y[v(xR(t), y(t))] ≤v(x, y) e−c4t/c1 ≤c2 |x|p e−c4t/c1 and then
 from (3.6) to conclude that
-Px,y
-
-sup
+Px,y</p>
+<p>sup
 t≥s
-|xR(t)| &gt; ε
-
-≤c2 |x|pε−pc−1
+|xR(t)| &gt; ε</p>
+<p>≤c2 |x|pε−pc−1
 1 e−sc4/c1.
 Hence all solutions of equation (3.5) starting at t = 0 from a position x(0)
 which is in the ball Bε(0) for ε ∈(0, R), and with sufficiently small R, tend
@@ -58191,14 +57903,12 @@ v(x, y) is defined by (4.8). Let the functions v1(x, y, z) and v2(x, y, z) be th
 solutions of the following two equations:
 Q v1(x, y, z) = −⟨A0(y, z)x, ∇y⟩v(x, y),
 (4.25)
-Q v2(x, y, z) = −
-
-⟨[A(y, z) −¯A(y)]x, ∇x⟩v(x, y) + ⟨h−1(y, z), ∇y⟩v1(x, y, z)
+Q v2(x, y, z) = −</p>
+<p>⟨[A(y, z) −¯A(y)]x, ∇x⟩v(x, y) + ⟨h−1(y, z), ∇y⟩v1(x, y, z)
 −</p>
 <p>G
-⟨h−1(y, z), ∇y⟩v1(x, y, z)µ(dz) + ⟨h0(y, z) −¯h0(y), ∇y⟩v(y, z)
-
-.
+⟨h−1(y, z), ∇y⟩v1(x, y, z)µ(dz) + ⟨h0(y, z) −¯h0(y), ∇y⟩v(y, z)</p>
+<p>.
 (4.26)
 The right-hand side of each of these equations, after integration in y with
 respect of the measure µ(dy), is equal to 0. This implies that there ex-
@@ -58293,11 +58003,10 @@ ponentially p-stable for some p &gt; 0. Now, applying Theorem 3.1 we conclude
 that ˜xε(t) is asymptotically stochastically stable for all sufficiently small ε.
 Since F(0, y, z) ≡0, we use the obvious equality
 F(x, y, z) = (DxF(0, y, z))x +
- 1
+ 1
 0
-[DxF(tx, y, z) −DxF(x, y, z)|x=0]dt
-
-x
+[DxF(tx, y, z) −DxF(x, y, z)|x=0]dt</p>
+<p>x
 to rewrite the right-hand side of equation (1.1) in the following form:
 F(x, y, z) = A0(y, z)x + g(x, y, z).
 The expressions for A0(y, z) and g(y, z) are clear. We use the function
@@ -58520,13 +58229,11 @@ that X is a uniformly integrable (Ft)-martingale?
 Remark. The origin of this problem lies in financial mathematics. Namely,
 let X be the discounted price process of some asset. Define the set of dis-
 counted incomes that can be obtained by trading this asset as:
- N
-
-n=1
+ N</p>
+<p>n=1
 Hn(Xun −Xun−1) : N ∈N, u0 ≤· · · ≤uN &lt; ∞
-are (Ft)-stopping times, Hn is Fun−1-measurable
-
-.
+are (Ft)-stopping times, Hn is Fun−1-measurable</p>
+<p>.
 As in [1], define the set of equivalent risk-neutral measures as the set of
 probability measures Q ∼P such that EQξ−≥EQξ+ for any ξ ∈A (here
 ξ−= (−ξ) ∨0, ξ+ = ξ ∨0; the expectations EQξ−and EQξ+ are allowed to
@@ -58583,15 +58290,13 @@ t = I(t &lt; 1)
 1 −t
 ,
 t ≥0,
-τ = inf
-
-t ≥0 :
+τ = inf</p>
+<p>t ≥0 :
  t
 0
 H0
-s dBs = ξ
-
-,
+s dBs = ξ</p>
+<p>,
 Ht = H0
 t I(t ≤τ),
 t ≥0,
@@ -58619,21 +58324,18 @@ and 4 is negative.</p>
 A. Cherny
 Example 2. Let ξ and η be independent random variables taking on the val-
 ues ±1 with probability 1/2. Set
-Xt =
-
-0,
+Xt =</p>
+<p>0,
 t &lt; 1,
 ξ,
 t ≥1,
-Yt =
-
-0,
+Yt =</p>
+<p>0,
 t &lt; 1,
 η,
 t ≥1,
-Ft =
-
-σ(ξη),
+Ft =</p>
+<p>σ(ξη),
 t &lt; 1,
 σ(ξ, η),
 t ≥1.
@@ -58652,14 +58354,12 @@ Theorem 2.2. Let X and Y be independent continuous (Ft)-local martin-
 gales. Then XY is an (Ft)-local martingale.
 Proof. Let us first assume that X and Y are bounded. Then, for any t and
 any sequence (∆n) of partitions of [0, t] whose diameters tend to 0, we have
-E
- 
-ti∈∆n</p>
+E</p>
+<p>ti∈∆n</p>
 <p>Xti+1 −Xti</p>
 <p>Yti+1 −Yti</p>
-<h1 id="2">2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
-<p>
-ti∈∆n
+<h1 id="2">2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<p>ti∈∆n
 E</p>
 <p>Xti+1 −Xti</p>
 <p>2E</p>
@@ -58668,9 +58368,8 @@ E</p>
 ≤max
 ti∈∆n E</p>
 <p>Xti+1 −Xti</p>
-<p>2 ·
-
-ti∈∆n
+<p>2 ·</p>
+<p>ti∈∆n
 E</p>
 <p>Yti+1 −Yti</p>
 <p>2
@@ -58682,7 +58381,7 @@ ti</p>
 <p>· (EY 2
 t −EY 2
 0 ).
-The latter quantity tends to 0 as n →∞since the function s →EX2
+The latter quantity tends to 0 as n →∞since the function s →EX2
 s is
 continuous in s. Consequently, ⟨X, Y ⟩= 0, which implies that XY is an (Ft)-
 local martingale.

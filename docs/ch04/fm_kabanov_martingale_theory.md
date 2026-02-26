@@ -128,13 +128,15 @@ t
 *Y σn
 t
 −*Yt
- + E
+
+ + E
  *
 Xτn
 t
 −*
 Xt
-*Yt
+
+*Yt
 
 = E
  *
@@ -305,7 +307,7 @@ Xt = X0 −
 3
 
 i=1
- t
+ t
 0
 Bi
 s
@@ -662,11 +664,11 @@ t
 1−t I(t < 1) with
 respect to *
 X is not a martingale in view of the equality
- t
+ t
 0
 *Hsd *
 Xs =
-
+
 t
 1−t
 0
@@ -730,7 +732,7 @@ Furthermore, for any n ≤m ∈N, we have
 E
 IA2nIAc
 2n+1
- 2m
+ 2m
 0
 HsdXs
  = E
@@ -754,7 +756,7 @@ IA2nIAc
 Therefore,
 E
 
- 2m
+ 2m
 0
 HsdXs
  ≥
@@ -764,7 +766,7 @@ n=1
 E
 IA2nIAc
 2n+1
- 2m
+ 2m
 0
 HsdXs
  ≥
@@ -1346,7 +1348,7 @@ t
 )
 i(λ, b) −1
 2(λ, cλ) +
-
+
 Rd(Ei(λ,x) −1 −i(λ, x)I(∥x∥≤1))ν(dx)
 0
 .
@@ -1360,7 +1362,7 @@ Theorem 3.1. The separating time S for P and *P has the following form.
 (ii) If P ̸= *P and
 c = *c,
 (3.1)
-
+
 Rd
 	>
 dν
@@ -1373,7 +1375,7 @@ d(ν + *ν)
 d(ν + *ν) < ∞,
 (3.2)
 b −*b −
-
+
 {∥x∥≤1}
 x d(ν −*ν ) ∈N(c),
 (3.3)
@@ -1447,7 +1449,7 @@ Let (Ω′, F′, P′) be a probability space with a Brownian motion (Wt)t∈[
 Consider the space (C([0, ∞)) × Ω′, F × F′, Pε × P′) and let Qε be the distri-
 bution of the process
 Zt = Xt +
- t
+ t
 0
 I(s > Tε)dWs,
 t ∈[0, ∞).
@@ -1506,16 +1508,16 @@ processes on a filtered probability space
 such that
 i) B is a (Γt, Q)-Brownian motion;
 ii) for any t ∈[0, ∞),
- t
+ t
 0
 (|b(Ys)| + σ2(Ys)) ds < ∞
 Q-a.s.;
 iii) for any t ∈[0, ∞),
 Yt = x0 +
- t
+ t
 0
 b(Ys) ds +
- t
+ t
 0
 σ(Ys) dBs
 Q-a.s.
@@ -1532,19 +1534,19 @@ t Ft.
 Definition 5. A solution of (5.1) is a probability measure P on F such that
 i) P(X0 = x0) = 1;
 ii) for any t ∈[0, ∞),
- t
+ t
 0
 (|b(Xs)| + σ2(Xs)) ds < ∞
 P-a.s.;
 iii) the process
 Mt = Xt −
- t
+ t
 0
 b(Xs) ds,
 t ∈[0, ∞)
 is an (Ft, P)-local martingale with the quadratic variation
 ⟨M⟩t =
- t
+ t
 0
 σ2(Xs) ds,
 t ∈[0, ∞).
@@ -1582,7 +1584,7 @@ ploding solutions.
 Definition 6. A solution of (5.1) is a probability measure P on F such that
 i) P(X0 = x0) = 1;
 ii) for any t ∈[0, ∞) and n ∈N such that n > |x0|,
- t∧τn
+ t∧τn
 0
 (|b(Xs)| + σ2(Xs)) ds < ∞
 P-a.s.,
@@ -1590,13 +1592,13 @@ where τn = inf{t ∈[0, ∞): |Xt| = n} (we set inf ∅= ∞);
 iii) for any n ∈N such that n > |x0|, the process
 M n
 t = Xt∧τn −
- t∧τn
+ t∧τn
 0
 b(Xs) ds,
 t ∈[0, ∞)
 is an (Ft, P)-local martingale with the quadratic variation
 ⟨M n⟩t =
- t∧τn
+ t∧τn
 0
 σ2(Xs) ds,
 t ∈[0, ∞).
@@ -1647,7 +1649,7 @@ Set
 ρ(x) = exp
 
 −
- x
+ x
 0
 2b(y)
 σ2(y) dy
@@ -1656,7 +1658,7 @@ Set
 x ∈R,
 (5.6)
 s(x) =
- x
+ x
 0
 ρ(y) dy,
 x ∈R,
@@ -2106,20 +2108,20 @@ process W = (Wt)t∈[0,∞) is a (Gt, Q)-Brownian motion with the starting
 point s(x0).
 As P-a.s. the trajectories of ⟨Y ⟩are continuous, we have ⟨Y ⟩τt = t P-a.s.
 on {t < ⟨Y ⟩∞}, i.e.
- τt
+ τt
 0
 κ2(Yu) du = t
 P-a.s. on {t < ⟨Y ⟩∞}.
 As P-a.s. the trajectories of ⟨Y ⟩are strictly increasing, then P-a.s. the tra-
 jectories of τ are continuous (however, they may explode). By the change of
 variables in the Stieltjes integral, we get
- t
+ t
 0
 κ2(Yτu) dτu = t
 P-a.s. on {t < ⟨Y ⟩∞},
 and therefore,
 τt =
- t
+ t
 0
 κ−2(Yτu) du
 P-a.s. on {t < ⟨Y ⟩∞}.
@@ -2128,7 +2130,7 @@ Since τt →∞P-a.s. as t ↑⟨Y ⟩∞and Yτt = Wt for t < ⟨Y ⟩∞, we 
 146
 A. Cherny and M. Urusov
 τt =
- t
+ t
 0
 κ−2(Wu) du
 Q-a.s.,
@@ -2284,14 +2286,14 @@ a < x0 and f be a positive Borel function such that f/σ2 ∈L1
 loc([a, ∞)).
 (i) If (s(∞) −s)f/(ρσ2) ∈L1
 loc(∞), then
- ζ
+ ζ
 0
 f(Xt) dt < ∞
 P-a.s. on the set {Ta = ∞}
 (recall that ζ denotes the explosion time of X).
 (ii) If (s(∞) −s)f/(ρσ2) /∈L1
 loc(∞), then
- ζ
+ ζ
 0
 f(Xt) dt = ∞
 P-a.s. on the set {Ta = ∞}.
@@ -2312,17 +2314,17 @@ P-a.s. on the set {Ta = ∞} is equivalent to the convergence of the integral
  ξ
 0 f(s−1(Bτt)) dt Q-a.s. on the set {Ts(∞)(B) < Ts(a)(B)}. By the change of
 variables in the Stieltjes integral, we get
- ξ
+ ξ
 0
 f(s−1(Bτt)) dt =
- ξ
+ ξ
 0
 f(s−1(Bτt)) dAτt =
- τξ
+ τξ
 0
 f(s−1(Bt)) dAt
 =
- Ts(−∞),s(∞)(B)
+ Ts(−∞),s(∞)(B)
 0
 f
 ρ2σ2 (s−1(Bt)) dt.
@@ -2345,7 +2347,7 @@ Separating Times
 Since (s(∞) −s)f/(ρσ2) ∈L1
 loc(∞), then
 ∃ε > 0:
- s(∞)
+ s(∞)
 s(∞)−ε
 (s(∞) −x)g(x) dx < ∞.
 As f/σ2 ∈L1
@@ -2353,7 +2355,7 @@ loc([a, ∞)), we have g ∈L1
 loc([s(a), s(∞))). Now, we need to use
 the results of the paper [2], where the convergence of some integrals associated
 with Bessel processes is investigated. By [2, Th. 2.2],
- Ts(a)(s(∞)−Y )
+ Ts(a)(s(∞)−Y )
 0
 g(s(∞) −Y ) dt < ∞
 R2
@@ -2361,7 +2363,7 @@ R2
 where Y is a three-dimensional Bessel process started at zero and defined on
 a probability space with a measure R2
 +. Set Zt = s(∞) −Yt, t ∈[0, ∞). Then
- Us(x0)(Z)
+ Us(x0)(Z)
 0
 g(Zt) dt < ∞
 R2
@@ -2369,7 +2371,7 @@ R2
 where we use the notation Uc(Z) = sup{t ∈[0, ∞): Zt = c}. Now, the
 Williams theorem (see [33, Ch. VII, Cor. 4.6]), combined with the last formula,
 yields
- Ts(∞)(B)
+ Ts(∞)(B)
 0
 g(Bt) dt < ∞
 Q-a.s. on the set {Ts(∞)(B) < Ts(a)(B)}.
@@ -2380,7 +2382,7 @@ Lemma 5.7. Assume that the coefficients b and σ of (5.1) satisfy condi-
 tions (5.2) and (5.3). Additionally assume that s(−∞) = −∞and s(∞) = ∞.
 Denote by P the solution of (5.1) in the sense of Definition 6 (so, we consider
 Setting 2). Let f be a positive Borel function such that µL(f > 0) > 0. Then
- ∞
+ ∞
 0
 f(Xt) dt = ∞
 P-a.s.
@@ -2405,10 +2407,10 @@ probability space. It is known that local times of a Brownian motion satisfy
 Lx
 ∞(B) = ∞for all x ∈R (see [33, Ch. VI, Cor. 2.4]). By the occupation
 times formula (see [33, Ch. VI, Cor. 1.6]),
- ∞
+ ∞
 0
 g(Bt) dt =
-
+
 R
 g(x)Lx
 ∞(B) dx = ∞
@@ -2440,14 +2442,14 @@ is satisfied. Then *P0 ⊥P0 (let us recall that P0 and *P0 denote the restricti
 of P and *P to the σ-field F0).
 Proof. 1) Let us first assume that condition (5.39) holds. By the occupation
 times formula (see [33, Ch. VI, Cor. 1.6]),
- t
+ t
 0
 I{σ2̸=*σ2}(Xu)σ2(Xu) du =
- t
+ t
 0
 I{σ2̸=*σ2}(Xu) d⟨X⟩u
 =
-
+
 R
 I{σ2̸=*σ2}(x)Lx
 t (X) dx
@@ -2457,7 +2459,7 @@ t (X) > 0 and Lx0−
 t
 (X) > 0 P-a.s. for any
 t > 0. Therefore, for any t > 0,
- t
+ t
 0
 I{σ2̸=*σ2}(Xu)σ2(Xu) du > 0
 P-a.s.
@@ -2465,10 +2467,10 @@ Hence, for any t > 0,
 P
 
 ∃0 < s ≤t:
- s
+ s
 0
 σ2(Xu) du ̸=
- s
+ s
 0
 *σ2(Xu) du
 
@@ -2480,10 +2482,10 @@ Separating Times
 P
 
 ∀t > 0 ∃0 < s ≤t:
- s
+ s
 0
 σ2(Xu) du ̸=
- s
+ s
 0
 *σ2(Xu) du
 
@@ -2497,7 +2499,7 @@ at time s equals
 0 *σ2(Xu) du *P-a.s.). Therefore,
 for any sequence (∆n) of subdivisions of the interval [0, s] whose diameters
 tend to 0, we have
- s
+ s
 0
 σ2(Xu) du = P- lim
 n→∞
@@ -2505,7 +2507,7 @@ n→∞
 ti∈∆n
 (Xti −Xti−1)2
 and
- s
+ s
 0
 *σ2(Xu) du = *P- lim
 n→∞
@@ -2538,7 +2540,7 @@ dPτ .
 Since Z∞> 0 P-a.s., the processes Z and Z−are strictly positive P-a.s.
 (see [12, Ch. III, Lem. 3.6]). Set
 Lt =
- t
+ t
 0
 1
 Zu−
@@ -2553,12 +2555,12 @@ part of the (Ft, P)-semimartingale X, i.e.
 152
 A. Cherny and M. Urusov
 Yt = Xt −
- t
+ t
 0
 b(Xu) du,
 t ∈[0, ∞).
 In particular, there exists a predictable process β such that
- t
+ t
 0
 β2
 u d⟨Y ⟩u < ∞
@@ -2566,7 +2568,7 @@ P-a.s.,
 t ∈[0, ∞)
 and
 Lt =
- t
+ t
 0
 βu dYu
 P-a.s.,
@@ -2576,10 +2578,10 @@ Consider the measure Q = Z∞· P. Then Qτ = *Pτ. It follows from Gir-
 sanov’s theorem for local martingales (see [12, Ch. III, Th. 3.11]) that the
 process Y −⟨Y, L⟩is an (Ft, Q)-local martingale. We have
 ⟨Y, L⟩t =
- t
+ t
 0
 βu d⟨Y ⟩u =
- t
+ t
 0
 βuσ2(Xu) du
 P-a.s.,
@@ -2596,11 +2598,11 @@ Mt =
 
 
 Xt∧τ −
- t∧τ
+ t∧τ
 0
 (b(Xu) + βuσ2(Xu)) du
 if
- t∧τ
+ t∧τ
 0
 (|b(Xu)|
 +|βu|σ2(Xu)) du < ∞,
@@ -2633,13 +2635,13 @@ s )] = 0.
 Hence, M is an (Ft, *P)-local martingale. Consequently, as *P is a solution
 of (5.5), the process
 Nt =
- t∧τ
+ t∧τ
 0
 b(Xu) du +
- t∧τ
+ t∧τ
 0
 βuσ2(Xu) du −
- t∧τ
+ t∧τ
 0
 *b(Xu) du,
 t ∈[0, ∞)
@@ -2651,10 +2653,10 @@ of locally bounded variation. This means that N = 0 *P-a.s. Thus, we have
 *P
 
 ∀t ∈[0, ∞):
- t∧τ
+ t∧τ
 0
 (b(Xu) + βuσ2(Xu)) du =
- t∧τ
+ t∧τ
 0
 *b(Xu) du
 
@@ -2663,10 +2665,10 @@ As *Pτ ∼Pτ, we get
 P
 
 ∀t ∈[0, ∞),
- t∧τ
+ t∧τ
 0
 (b(Xu) + βuσ2(Xu)) du =
- t∧τ
+ t∧τ
 0
 *b(Xu) du
 
@@ -2677,18 +2679,18 @@ t
 (X) > 0 P-a.s. for any t > 0
 (see [4, Th. 2.7]). Then it follows from the occupation times formula and (5.40)
 that, for any t > 0,
- t
+ t
 0
 (*b −b)2
 σ2
 (Xu) du =
- t
+ t
 0
 (*b −b)2
 σ4
 (Xu) d⟨X⟩u
 =
-
+
 R
 (*b −b)2
 σ4
@@ -2699,7 +2701,7 @@ Thus,
 P
 	
 ∀t ∈(0, ∞):
- t
+ t
 0
 (*b −b)2
 σ2
@@ -2722,12 +2724,12 @@ denotes the complement to the set of good points). Then *PTa,c ∼PTa,c and
 d*PTa,c
 dPTa,c
 = exp
- Ta,c
+ Ta,c
 0
 *b −b
 σ2 (Xu) dYu −1
 2
- Ta,c
+ Ta,c
 0
 (*b −b)2
 σ2
@@ -2738,7 +2740,7 @@ dPTa,c
 where the integrals are taken with respect to the measure P and Y is a contin-
 uous (Ft, P)-local martingale defined by the formula
 Yt = Xt∧Ta,c −
- t∧Ta,c
+ t∧Ta,c
 0
 b(Xu) du,
 t ∈[0, ∞).
@@ -2748,17 +2750,17 @@ with the quadratic variation
 154
 A. Cherny and M. Urusov
 ⟨Y ⟩t =
- t∧Ta,c
+ t∧Ta,c
 0
 σ2(Xu) du,
 t ∈[0, ∞).
 Hence,
- Ta,c
+ Ta,c
 0
 (*b −b)2
 σ2
 (Xu) du =
- Ta,c
+ Ta,c
 0
 (*b −b)2
 σ4
@@ -2767,12 +2769,12 @@ P-a.s.
 (5.45)
 Let us show that this integral is finite P-a.s. By the occupation times formula
 (see [33, Ch. VI, Cor. 1.6]),
- Ta,c
+ Ta,c
 0
 (*b −b)2
 σ4
 (Xu) d⟨Y ⟩u =
- Ta,c
+ Ta,c
 0
 (*b −b)2
 σ4
@@ -2780,7 +2782,7 @@ Let us show that this integral is finite P-a.s. By the occupation times formula
 u
 ) d⟨XTa,c⟩u
 =
-
+
 R
 (*b −b)2
 σ4
@@ -2792,7 +2794,7 @@ may explode.) Since [a, c] ⊆[−∞, ∞] \ A, then (*b −b)2/σ4 ∈L1
 loc([a, c]). As
 P-a.s. the process (Lx
 Ta,c(XTa,c))x∈R is equal to zero outside [a, c], we have
- Ta,c
+ Ta,c
 0
 (*b −b)2
 σ4
@@ -2804,12 +2806,12 @@ and c′ such that −∞< a′ < a, c < c′ < ∞, and [a′, c′] ⊆[−∞
 define a continuous (Ft, P)-local martingale Y ′ by the formula
 Y ′
 t = Xt∧Ta′,c′ −
- t∧Ta′,c′
+ t∧Ta′,c′
 0
 b(Xu) du,
 t ∈[0, ∞).
 Note that
- Ta′,c′
+ Ta′,c′
 0
 (*b −b)2
 σ2
@@ -2821,7 +2823,7 @@ of Y .) Fix an arbitrary n ∈N, n > 1. Consider the stopping time
 τ = inf
 
 t ∈[0, ∞):
- t
+ t
 0
 (*b −b)2
 σ2
@@ -2832,7 +2834,7 @@ t ∈[0, ∞):
 σ2
 (∆) = 0). Consider a continuous (Ft, P)-local martingale
 Lt =
- t∧Ta′,c′∧τ
+ t∧Ta′,c′∧τ
 0
 *b −b
 σ2 (Xu) dY ′
@@ -2850,7 +2852,7 @@ EP exp
 = EP exp
 1
 2
- Ta′,c′∧τ
+ Ta′,c′∧τ
 0
 (*b −b)2
 σ2
@@ -2865,16 +2867,16 @@ defined by the formula Q = Z∞· P. Note that for any t ∈[0, ∞),
 Y ′
 t −⟨Y ′, L⟩t
 = Xt∧Ta′,c′ −
- t∧Ta′,c′
+ t∧Ta′,c′
 0
 b(Xu) du −
- t∧Ta′,c′∧τ
+ t∧Ta′,c′∧τ
 0
 (*b −b)(Xu) du
 Q-a.s.
 Consider the process
 Mt = Xt∧Ta′,c′∧τ −
- t∧Ta′,c′∧τ
+ t∧Ta′,c′∧τ
 0
 *b(Xu) du,
 t ∈[0, ∞).
@@ -2882,14 +2884,14 @@ t ∈[0, ∞).
 It is well defined with respect to Q and M = (Y ′ −⟨Y ′, L⟩)τ Q-a.s. Therefore,
 M is a continuous (Ft, Q)-local martingale with the quadratic variation
 ⟨M⟩t =
- t∧Ta′,c′∧τ
+ t∧Ta′,c′∧τ
 0
 σ2(Xu) du,
 t ∈[0, ∞).
 Using the occupation times formula and the fact that σ2 = *σ2 µL-a.e. on
 [a′, c′], we get
 ⟨M⟩t =
- t∧Ta′,c′∧τ
+ t∧Ta′,c′∧τ
 0
 *σ2(Xu) du,
 t ∈[0, ∞).
@@ -2898,7 +2900,7 @@ t ∈[0, ∞).
 (5.7), and (5.36). Consider the process N = *s(XTa′,c′∧τ). By the Ito-Tanaka
 formula (see [33, Ch. VI, Th. 1.5]) applied under the measure Q,
 Nt = *s(x0) +
- t
+ t
 0
 *ρ
 
@@ -2910,7 +2912,7 @@ dMu,
 t ∈[0, ∞).
 Hence, N is a continuous (Ft, Q)-local martingale with the quadratic variation
 ⟨N⟩t =
- t∧Ta′,c′∧τ
+ t∧Ta′,c′∧τ
 0
 *κ2(Nu) du,
 t ∈[0, ∞).
@@ -2967,20 +2969,20 @@ As Q-a.s. the trajectories of ⟨N⟩are continuous, we have
 ⟨N⟩ξt = t
 Q-a.s. on the set {t < ⟨N⟩∞},
 i.e.
- ξt
+ ξt
 0
 *κ2(Nu) du = t
 Q-a.s. on the set {t < ⟨N⟩∞}.
 As Q-a.s. the trajectories of ⟨N⟩are strictly increasing up to the time
 Ta′,c′ ∧τ, we have that Q-a.s. the trajectories of ξ are continuous up to the
 time ⟨N⟩∞. By the change of variables in the Stieltjes integral, we get
- t
+ t
 0
 *κ2(Nξu) dξu = t
 Q-a.s. on the set {t < ⟨N⟩∞},
 and hence,
 ξt =
- t
+ t
 0
 *κ−2(Nξu) du
 Q-a.s. on the set {t < ⟨N⟩∞}.
@@ -2994,12 +2996,12 @@ if t < ⟨N⟩∞,
 if t ≥⟨N⟩∞.
 Using the occupation times formula, it is easy to verify that P-a.s. we have
 ∀t < ⟨N⟩∞,
- ξt
+ ξt
 0
 (*b −b)2
 σ2
 (Xu) du =
- ξt
+ ξt
 0
 (*b −b)2
 *σ2
@@ -3010,35 +3012,35 @@ Separating Times
 By the change of variables in the Stieltjes integral, R2
 +-a.s. we get
 ∀t < ⟨N⟩∞,
- ξt
+ ξt
 0
 (*b −b)2
 *σ2
 (Xu) du =
- ξt
+ ξt
 0
 (*b −b)2
 *σ2
 (*s −1(Nu)) du
 =
- t
+ t
 0
 (*b −b)2
 *σ2
 (*s −1(Nξu)) dξu
 =
- t
+ t
 0
 (*b −b)2
 *ρ 2*σ4 (*s −1(Wu)) du.
 (5.52)
 Letting t ↑⟨N⟩∞in (5.52), we get
- Ta′,c′∧τ
+ Ta′,c′∧τ
 0
 (*b −b)2
 σ2
 (Xu) du =
- ⟨N⟩∞
+ ⟨N⟩∞
 0
 (*b −b)2
 *ρ 2*σ4 (*s −1(Wu)) du
@@ -3048,7 +3050,7 @@ Set
 η(W) = inf
 
 t ∈[0, ∞):
- t
+ t
 0
 (*b −b)2
 *ρ 2*σ4 (*s −1(Wu)) du ≥n
@@ -3061,7 +3063,7 @@ R2
 +-a.s.
 (5.54)
 For this, note that
- Ta′,c′∧τ
+ Ta′,c′∧τ
 0
 (*b −b)2
 σ2
@@ -3093,7 +3095,7 @@ It follows from the reasoning above that R2
 
 
 
- t
+ t
 0
 *κ−2(Wu) du
 if t < T*s(a′),*s(c′)(W) ∧η(W),
@@ -3143,7 +3145,7 @@ XTa′,c′∧τQ
 ρ = inf
 
 t ∈[0, ∞):
- t
+ t
 0
 (*b −b)2
 σ2
@@ -3169,7 +3171,7 @@ dPTa,c∧ρ
 τn = inf
 
 t ∈[0, ∞):
- t
+ t
 0
 (*b −b)2
 σ2
@@ -3186,13 +3188,13 @@ Separating Times
 d*PTa,c∧τn
 dPTa,c∧τn
 = exp
- Ta,c∧τn
+ Ta,c∧τn
 0
 *b −b
 σ2 (Xu)dY ′
 u −1
 2
- Ta,c∧τn
+ Ta,c∧τn
 0
 (*b −b)2
 σ2
@@ -3226,13 +3228,13 @@ that
 d*PTa,c
 dPTa,c
 = exp
- Ta,c
+ Ta,c
 0
 *b −b
 σ2 (Xu) dY ′
 u −1
 2
- Ta,c
+ Ta,c
 0
 (*b −b)2
 σ2
@@ -3372,13 +3374,13 @@ Therefore, we consider the case γ = ∆. Fix a ∈(α′, x0) and define contin
 (Ft, P)-local martingales Y n, Ln, and Zn by the formulas
 Y n
 t = Xt∧Ta,cn −
- t∧Ta,cn
+ t∧Ta,cn
 0
 b(Xu) du,
 t ∈[0, ∞),
 Ln
 t =
- t∧Ta,cn
+ t∧Ta,cn
 0
 *b −b
 σ2 (Xu) dY n
@@ -3425,7 +3427,7 @@ Lt −1
 t ∈[0, T)
 and
 ⟨L⟩t =
- t
+ t
 0
 (*b −b)2
 σ2
@@ -3491,9 +3493,9 @@ II. Let us now prove that S ≤τ P, *P-a.s. Consider several cases.
 
 Separating Times
 163
-b′(x) = b(x)I[x0−2,x0+2](x),
+b′(x) = b(x)I\[x0−2,x0+2\](x),
 x ∈R,
-b′′(x) = *b(x)I[x0−2,x0+2](x),
+b′′(x) = *b(x)I\[x0−2,x0+2\](x),
 x ∈R,
 σ′(x) = σ(x),
 x ∈R,
@@ -3576,23 +3578,23 @@ by (5.70), *P ⊥P. Since Fζ = F, we have *Pζ ⊥Pζ. Thus, S ≤ζ = τ P, *P
 Let us now assume that s(−∞) = −∞and s(∞) = ∞. Then the measure
 P does not explode. Consider the continuous (Ft, P)-local martingale
 Yt = Xt −
- t
+ t
 0
 b(Xu) du,
 t ∈[0, ∞).
 By the occupation times formula (see [33, Ch. VI, Cor. 1.6]),
- t
+ t
 0
 (*b −b)2
 σ4
 (Xu) d⟨Y ⟩u =
- t
+ t
 0
 (*b −b)2
 σ4
 (Xu) d⟨X⟩u
 =
-
+
 R
 (*b −b)2
 σ4
@@ -3605,7 +3607,7 @@ t (X))x∈R is equal to zero outside a finite interval
 loc(R)).
 Hence, the continuous (Ft, P)-local martingales
 Lt =
- t
+ t
 0
 *b −b
 σ2 (Xu) dYu,
@@ -3634,7 +3636,7 @@ Th. 5.2.26]), Z∞is the density of the absolutely continuous part of the measur
 n=1 FTan,cn .
 Due to Lemma 5.7,
 ⟨L⟩∞=
- ∞
+ ∞
 0
 (*b −b)2
 σ2
@@ -4081,20 +4083,20 @@ tdt < ∞,
 t dt < ∞, a.s., and
 dQ
 dP = exp
-	 T
+	 T
 0
 mtdwt −1
 2
- T
+ T
 0
 m2
 tdt +
- T
+ T
 0
 gtdw′
 t −1
 2
- T
+ T
 0
 g2
 t dt
@@ -4131,7 +4133,7 @@ arbitrary drift under equivalent martingale measures, while the drift for St is
 the riskless rate r.
 5 Trading Strategies
 A trading strategy is an adapted process πt satisfying
- T
+ T
 0
 π2
 t dt < ∞a.s.
@@ -4169,7 +4171,8 @@ T + h(YT ))) = exp
 −γ
  ˇXπ
 T + βh(YT )
-
+
+
 ,
 so that
 EU (Xπ
@@ -4242,17 +4245,17 @@ problem to consider. Under measure Q we have from (4.2), (4.3)
 log dQ
 dP = m *wT + 1
 2m2T +
- T
+ T
 0
 gtd *w′
 t +
- T
+ T
 0
 g2
 t dt.
 If
 EQ
- T
+ T
 0
 g2
 t dt < ∞
@@ -4267,7 +4270,7 @@ EQ log dQ
 dP = 1
 2m2T + 1
 2EQ
- T
+ T
 0
 g2
 t dt,
@@ -4280,7 +4283,7 @@ M(η, Q) = V (η) + 1
 
 1
 2γ
- T
+ T
 0
 g2
 t dt + βh(YT )
@@ -4293,7 +4296,7 @@ EQ
 
 1
 2γ
- T
+ T
 0
 g2
 t dt + βh(YT )
@@ -4306,7 +4309,7 @@ is a collection S = (Ξ, (Gt), P, (Bt), (gt)), where (Ξ, (Gt), P) is a filtered
 ability space and Bt, gt are adapted processes such that Bt is a Gt-Brownian
 motion while gt satisfies
 E
- T
+ T
 0
 g2
 t dt < ∞.
@@ -4320,7 +4323,7 @@ CS(s, y) = E
 
 1
 2γ
- T
+ T
 s
 g2
 t dt + βh(YT )
@@ -4363,7 +4366,7 @@ S(s, z) = E
 
 1
 2γ
- T
+ T
 s
 g2
 t dt + f(ZT )
@@ -4398,7 +4401,7 @@ Es,z
 
 1
 2γ
- T
+ T
 s
 g2
 t dt + f(ZT )
@@ -4485,7 +4488,7 @@ J N(ˆg) = E
 	
 1
 2γ
- T
+ T
 s
 ˆg2
 t dt + βhN(YT (ˆg))
@@ -4505,7 +4508,7 @@ Thus candidate controls for minimizing J N′(g) must be less than or equal to
 Denoting a0 = µ0 + σ0ρm, the solution to equation (6.7) is Yt = yξs,t
 where
 ξs,t = exp
- t
+ t
 s
 (a0 + σ0εgu −1
 2σ2
@@ -4547,7 +4550,7 @@ completes the proof of Theorem 6.1.
 Taking a trading strategy π ∈Ab and initial endowment x, let us write
 ˇXπ
 T = x + X = x +
- T
+ T
 0
 Htd ˇSt
 using the notation of section 5. The stochastic integral is a local martingale
@@ -4611,12 +4614,12 @@ by
 γ
 	
 mwT +
- T
+ T
 0
 ˆgtdw′
 t −1
 2
- T
+ T
 0
 ˆg2
 t dt
@@ -4644,7 +4647,7 @@ T . In (7.4), recall
 that βh(YT ) = W(T, YT ). Under measure P, Yt satisfies (3.1), so by the Itˆo
 formula,
 W(T, YT ) −W(0, Y0) =
- T
+ T
 0
 ∂W
 ∂t + µ0Yt
@@ -4657,11 +4660,11 @@ W(T, YT ) −W(0, Y0) =
 
 dt
 +
- T
+ T
 0
 σ0Ytρ∂W
 ∂y dwt +
- T
+ T
 0
 σ0Ytε∂W
 ∂y dw′
@@ -4672,7 +4675,7 @@ gt = ˆgt = −γεσ0Y ∂W
 (7.7)
 We find that
 βh(YT ) −W(0, Y0) = −
- T
+ T
 0
 
 σ0ρmYt
@@ -4685,13 +4688,13 @@ t + σ0εˆgtYt
 
 dt
 +
- T
+ T
 0
 ρσ0Yt
 ∂W
 ∂y dwt −1
 γ
- T
+ T
 0
 ˆgtdw′
 t.
@@ -4699,7 +4702,7 @@ t.
 Replacing βh(YT )−W(0, Y0) by the right-hand side of (7.8) in (7.4) and using
 (7.7) we obtain
 ˆX = −
- T
+ T
 0
 m
 γ + ρσ0Yt
@@ -4711,7 +4714,7 @@ where *wt = wt −mt is a Q-Brownian motion for any Q ∈M, in particular
 for Q = ˆQ. Now ρσ0Yt∂W/∂y = −(ρ/γε)ˆgt, and we know that
 E ˆ
 Q
- T
+ T
 0
 ˆg2
 t dt < ∞
@@ -4721,7 +4724,7 @@ t dt < ∞
 Mark H.A. Davis
 since ˆgt is optimal for the control problem of minimizing (6.10). Hence
 ˆXt := −
- t
+ t
 0
 m
 γ + ρσ0Ys
@@ -4847,7 +4850,7 @@ Et,y
 
 1
 2γ
- T
+ T
 t
 g2
 sds + βh(Y ε
@@ -4906,11 +4909,11 @@ dP ε
 dP = exp
 	
 ε
- T
+ T
 t
 gsdBs −1
 2ε2
- T
+ T
 t
 g2
 sds
@@ -4950,7 +4953,8 @@ h
 
 Y 0
 T
-  T
+
+  T
 t
 gsdBs
 C
@@ -4964,14 +4968,16 @@ h
 
 Y 0
 T
-
+
+
 −εE
 B
 h
 
 Y 0
 T
-  T
+
+  T
 t
 gsdBs
 C
@@ -4985,7 +4991,7 @@ Shreve [11] that
 1
 ε (Gε
 T (g) −1) →
- T
+ T
 t
 gsdBs in L2 as ε →0.
 (9.7)
@@ -5001,7 +5007,7 @@ T
 	
 Gε
 T −1 −εα
- T
+ T
 t
 ˆgsdBs
 
@@ -5017,15 +5023,15 @@ t = 1
 so that
 Gε
 T −1 −εα
- T
+ T
 t
 ˆgsdBs = εα
- T
+ T
 t
 (Gε
 sˆgs −ˆgs) dBs
 = ε2α2
- T
+ T
 t
 ˆgs
 Gε
@@ -5050,7 +5056,7 @@ E
 
 1
 2γ
- T
+ T
 t
 g2
 sds + βh(Y ε
@@ -5065,12 +5071,12 @@ T )
 
 1
 2γ
- T
+ T
 t
 g2
 sds + εβh(Y 0
 T )
- T
+ T
 t
 gsdBs
 
@@ -5088,7 +5094,7 @@ h(Y 0
 T )
 
 +
- T
+ T
 t
 ˆgsdBs.
 (Here Y 0
@@ -5100,12 +5106,12 @@ E
 
 1
 2γ
- T
+ T
 t
 ˆg2
 sds + εβh(Y 0
 T )
- T
+ T
 t
 ˆgsdBs
 
@@ -5113,7 +5119,8 @@ t
 
 h(Y 0
 T )
- α2
+
+ α2
 2γ + βεα
 
 The best choice of α is α = −βγε, giving a minimum value of
@@ -5226,7 +5233,7 @@ Rd |H(z)|µ(dz) < ∞and
 
 190
 B. Delyon, A. Juditsky and R. Liptser
-
+
 Rd H(z)µ(dz) = 0.
 (1.1)
 Set
@@ -5259,12 +5266,12 @@ otherwise,
 where B⊕is the pseudoinverse matrix (in Moore–Penrose sense, see e.g.[1])
 for the matrix
 B =
-
+
 Rd H(x)H∗(x)µ(dx)
 +
 
 n≥1
-
+
 Rd
 )
 H(x)(P (n)
@@ -5338,7 +5345,7 @@ exp
 λ, 1
 nα (Mi −Mi−1)
 EXi−1
-
+
 , λ ∈Rd,
 (1.5)
 being the product of the conditional Laplace transforms for martingale incre-
@@ -5465,7 +5472,7 @@ nα Mn is:
 En(λ) =
 
 Ee⟨λ, ζ1
-nα ⟩n
+nα ⟩n
 , λ ∈Rd.
 (3.4)
 
@@ -5497,7 +5504,7 @@ E
 
 e⟨λ, ζi
 nα ⟩Xi−1
-
+
 , λ ∈R,
 which is not the Laplace transform itself.
 The Poisson equation (3.2) and its solution (3.1) permit to transform (3.5)
@@ -5511,7 +5518,8 @@ H(x)
 P (n)
 x
 H
-∗+
+
+∗+
 
 P (n)
 x
@@ -5532,7 +5540,7 @@ n2α−1 log P
 n2α−1 log En(λ) −1
 2⟨λ, Bλ⟩
  > ε
-
+
 = −∞.
 (3.6)
 Then, the family
@@ -5560,7 +5568,7 @@ B(Xi−1) −B
 
 λ
 E > ε
-
+
 = −∞
 lim
 n→∞
@@ -5577,7 +5585,7 @@ E
 |ζi|3en−α|ζi|Xi−1
 
 > ε
-
+
 = −∞.
 (3.7)
 
@@ -5603,7 +5611,7 @@ B(Xi−1) −B
 
 λ
 E > ε
-
+
 < 0.
 In order to verify the first condition in (3.7), we apply again the Poisson
 equation technique. Set h(x) =
@@ -5615,7 +5623,7 @@ B(x) −B
 λ
 G
 and notice that
-
+
 Rd h(z)µ(dz) = 0.
 Then, the function u(x) = h(x) + 
 n≥1 P (n)
@@ -5660,7 +5668,7 @@ n2α−1 log P
 Mn
 nα
  > C
-
+
 = −∞
 lim
 ε→0 lim
@@ -5670,7 +5678,7 @@ n2α−1 log P
 Mn
 nα −y
  ≤ε
-
+
 ≤−I(y)
 lim
 ε→0
@@ -5681,7 +5689,7 @@ n2α−1 log P
 Mn
 nα −y
  ≤ε
-
+
 ≥−I(y).
 (3.9)
 The first condition in (3.9) provides the exponential tightness in the metric r
@@ -5722,7 +5730,7 @@ n2α−1 log P
 n
 nα
  > C
-
+
 = −∞
 lim
 ε→0 lim
@@ -5733,7 +5741,7 @@ n2α−1 log P
 n
 nα −y
  ≤ε
-
+
 ≤−Iβ(y)
 lim
 ε→0
@@ -5745,7 +5753,7 @@ n2α−1 log P
 n
 nα −y
  ≤ε
-
+
 ≥−Iβ(y).
 (3.10)
 Notice now that (3.9) is implied by (3.10) if
@@ -5773,7 +5781,7 @@ n
 i=1
 ϑi
  > η
-
+
 = −∞,
 ∀η > 0.
 (3.12)
@@ -5808,7 +5816,7 @@ i=1
 ξi
  > nαη
 √β
-
+
 = −∞,
 (3.13)
 where (ξi)i≥1 is a sequence of i.i.d. (0, 1)-Gaussian random variables, and it
@@ -5821,13 +5829,13 @@ n
 i=1
 ϑi > nαη
 √β
-
+
 ≤exp
 
 −λnαη
 √β + nλ2
 2
-
+
 while the choice of λ =
 nαη
 n√
@@ -5840,7 +5848,7 @@ n
 i=1
 ηi > nαη
 √β
-
+
 ≤−η2
 2β −−−→
 β→0 −∞.
@@ -5954,24 +5962,24 @@ Prohorov metric to a limit µ being a probability measure on Rd: for any
 bounded and continuous function g on Rd
 lim
 n′→∞
-
+
 Rd g(z)µn′(dz) =
-
+
 Rd g(z)µ(dz).
 Thence, for g(z) = L ∧|z| and L > 0, it holds
-
+
 Rd(L ∧|z|)µ(dz) = lim
 n′→∞E(L ∧|Xn′|) ≤lim
 n→∞E|Xn| < ∞
 and, by the monotone convergence theorem,
-
+
 Rd |z|µ(dz) ≤lim
 n→∞E|Xn| < ∞.
 The µ is regarded now as a candidate to be the unique invariant measure. So,
 we shall verify
-
+
 Rd g(x)µ(dx) =
-
+
 Rd Pxgµ(dx).
 for any nonnegative, bounded and continuous function g. For notational con-
 venience, write Xx
@@ -5994,7 +6002,7 @@ Markov chain is homogeneous, we also find that
 lim
 n′→∞Eg(Xx
 n′+1) =
-
+
 Rd g(z)µ(dz).
 On the other hand, owing to Eg(Xx
 n′+1) = EPXx
@@ -6003,7 +6011,7 @@ nothing but
 lim
 n′→∞EPXx
 n′g =
-
+
 Rd g(z)µ(dz).
 Finally, owing to Pxg = Eg(f(x, ξ1)), the function Pxg of argument x is
 bounded and continuous. Consequently,
@@ -6044,9 +6052,9 @@ are stationary with the marginal
 distributions µ and µ′ respectively. Hence, for any bounded and continuous
 function g : Rd →R,
 
-
+
 Rd g(x)µ(dx) −
-
+
 Rd g(x)µ′(dx)
  ≤E|g(Xµ
 n) −g(Xµ′
@@ -6079,7 +6087,7 @@ E
 U(Xi) −PXi−1U
 3e
 δ|U(Xi)−PXi−1 U|Xi−1
-
+
 ≤const.
 Proof. 1) Since by Assumption 2.1,
 |Xx′
@@ -6118,18 +6126,18 @@ Up
 f(x, ξ1)
 
 −
-
+
 Rd Up
 
 f(x, z)
 
 dF(z)
-2
+2
 ≤
 (Kℓ)2
 (1 −̺)2 E
 
-
+
 Rd |ξ1 −z|dF(z)
 
 2
@@ -6145,13 +6153,13 @@ Up
 f(x′, ξ1)
 
 −
-
+
 Rd Uq
 
 f(x′, z)
 
 dF(z)
-
+
 b = E
 
 Uq
@@ -6159,11 +6167,11 @@ Uq
 f(x′, ξ1)
 
 −
-
+
 Rd Uq
 
 f(x′, z)dF(z)
-
+
 c = E
 
 Up
@@ -6171,13 +6179,13 @@ Up
 f(x′′, ξ1)
 
 −
-
+
 Rd Uq
 
 f(x′′, z)
 
 dF(z)
-
+
 d = E
 
 Uq
@@ -6185,13 +6193,13 @@ Uq
 f(x′′, ξ1)
 
 −
-
+
 Rd Uq
 
 f(x′′, z)
 
 dF(z)
-
+
 .
 Now, applying ab −cd = a(b −d) + d(a −c) and taking into account (4.1) and
 Assumption 2.1, we find that |a|, |d| ≤2Kℓ
@@ -6231,7 +6239,7 @@ n→∞
 1
 n2α−1 log P
 Xn
- > εnα
+ > εnα
 = −∞, ε > 0.
 (4.2)
 Due to Assumption 2.1, we have
@@ -6263,7 +6271,7 @@ n2α−1 log P
 
 j=0
 ̺j|ξn−j| ≥nαε
-
+
 = −∞.
 (4.3)
 We verify (4.3) with the help of Chernoff’s inequality: with δ, involving in
@@ -6275,7 +6283,7 @@ P
 
 j=0
 ̺j|ξn−j| ≥nαε
-
+
 ≤e−nαγεEe
 n−1
 j=0 γ̺j|ξn−j|.
@@ -6294,7 +6302,7 @@ n2α−1 log P
 
 j=0
 ̺j|ξn−j| ≥nαε
-
+
 ≤−n1−αδε + log Eeδ|ξ1|
 n2α−1
 −−−−→
@@ -6352,7 +6360,7 @@ trace
 
 Ai cov(ξ1, ξ1)(Ai)∗
 , so that
-
+
 Rd ∥z∥2µ(dz) < ∞.
 5.2 The verification of (1) and (2)
 Due to the relation
@@ -6381,7 +6389,7 @@ n→∞
 1
 n2α−1 log P
 Xn
- > εnα
+ > εnα
 = −∞, ε > 0.
 (5.2)
 
@@ -6407,7 +6415,7 @@ n2α−1 log P
  ∞
 
 i=0
-̺i|ξi| > εnα
+̺i|ξi| > εnα
 = −∞, ε > 0
 what be going on similarly to corresponding part of the proof in Section 3.
 6 Exotic example
@@ -6531,7 +6539,7 @@ n→∞
 
 0, 1
 Bθ
-
+
 -Gaussian r. v.
 Here, we give an asymptotic of θn in the MDP scale: for any α ∈
  1
@@ -6546,7 +6554,7 @@ n→∞
 1
 n2α−1 , y2
 2Bθ
-
+
 .
 
 206
@@ -6596,7 +6604,7 @@ i=1
 )
 f 2(Xi−1) −Bθ
  ≥ε
-
+
 = −∞.
 Following to (1.5) and taking into account the setting, we notice that
 En(λ) = exp
@@ -6606,7 +6614,7 @@ n
 i=1
 λ2
 2n2α f 2(Xi−1)
-
+
 .
 is the stochastic exponential related to
  1
@@ -6635,12 +6643,12 @@ y2
 , Bθ = 0, y ̸= 0,
 where, in accordance with (1.3),
 Bθ =
-
+
 R
 H2(x)µθ(dx) + 2
 
 n≥1
-
+
 R
 H(x)P (n)
 x
@@ -6657,7 +6665,7 @@ n
 k=1
 H(Xk−1)
  ≥Cε
-
+
 ≤
 
 −
@@ -6682,7 +6690,7 @@ n
 k=1
 H(Xk−1)
  ≥ε
-
+
 = lim
 n→∞
 1
@@ -6694,7 +6702,7 @@ n
 k=1
 H(Xk−1)
  ≥n1−αε
-
+
 ≤lim
 n→∞
 1
@@ -6706,7 +6714,7 @@ n
 k=1
 H(Xk−1)
  ≥Cε
-
+
 ≤
 
 −C2ε2
@@ -6766,26 +6774,26 @@ E exp
 λMn
 n
 −log En(λ)
-
+
 = 1.
 We apply this equality for further ones
 1 ≥EI
 
 Mn > nε
-
+
 exp
 λMn
 n
 −log En(λ)
-
+
 ≥EI
 
 Mn > nε
-
+
 exp
 
 λε −log En(λ)
-
+
 .
 (A.2)
 Due to E
@@ -6808,7 +6816,7 @@ log
 eλ ζi
 n −1 −λζi
 n |Fi−1
-
+
 ≤
 n
 
@@ -6823,7 +6831,8 @@ i=1
 
 |ζi|3eλ |ζi|
 n |Fi−1
-0
+
+0
 ≤K
 ) λ2
 2n + λ3
@@ -6842,7 +6851,7 @@ exp
 ) λ2
 2n + λ3
 6n2
-
+
 .
 If ε < 3, taking λ = εnK−1, we find that
 1
@@ -6855,7 +6864,7 @@ K
 1
 2 −ε
 6
-
+
 −−−−→
 n→∞−∞.
 Thus, the desired statement holds true.
@@ -7157,7 +7166,7 @@ ewγ(x) = inf
 h
 
 e(cγ(x,h)−λγ)
-
+
 E
 ewγ(y)P h,γ(x, dy)
 
@@ -7341,7 +7350,7 @@ Lemma 2.2. Function ˆwu defined in (2.5) is the unique (up to an additive
 constant) solution to the additive Poisson equation (APE) for the split Markov
 process (ˆx(n)):
 ˆwu(x) = c(x1, u(x1)) −λ(u) +
-
+
 ˆ
 Rk ˆwu(y) ˆP(x, dy).
 (2.6)
@@ -7350,7 +7359,7 @@ Remarks on Risk Neutral and Risk Sensitive Portfolio Optimization
 217
 Furthermore, if ˆw and λ satisfy the equation
 ˆw(x) = c(x1, u(x1)) −λ +
-
+
 ˆ
 Rk ˆw(y) ˆP(x, dy)
 (2.7)
@@ -7382,7 +7391,8 @@ CC
 χˆx(1)∈C1
 
 c(x1(1), u(x1(1))) −λ(u)
-
+
+
 + ˆEx
 B
 χˆx(1)/∈C1
@@ -7420,9 +7430,9 @@ C
 (2.8)
 where by the construction of the split Markov process
 ˆExτC1 [ ˆwu(ˆx(1))] = (1 −β)
-
+
 Rk ˆwu(z, 0)ν(dz) + β
-
+
 Rk ˆwu(z, 1)ν(dz).
 Consequently, ˆwu differs from ˆwu defined in (2.5) only by an additive constant.
 Similarly, if ˆw and λ are solutions to (2.7) then ˆw differs from
@@ -7474,7 +7484,7 @@ wu(x) := ˆwu(x, 0) + 1C(x)β [ ˆwu(x, 1) −ˆwu(x, 0)]
 (2.9)
 is a solution to the APE for the original Markov process (x(n))
 wu(x) = c(x, u(x)) −λ(u) +
-
+
 Rk wu(y)P(x, dy).
 (2.10)
 Furthermore if wu is a solution to (2.10) then ˆwu defined by
@@ -7806,7 +7816,7 @@ w : Rk →R and a unique constant λ which are solutions to the Bellman
 equation (1.7). Furthermore, λ is the optimal value of the cost functional J0.
 Proof. Notice that for ˆu optimal we find w and λ as a solution to the APE
 w(x) = c(x, ˆu(x)) −λ +
-
+
 Rk w(y)P(x, dy),
 which exist by Lemmas 2.1, 2.2 and Corollary 2.2. By Proposition 1.17, λ
 is an optimal value of the cost functional J0. Uniqueness up to an additive
@@ -7967,7 +7977,7 @@ x
 Eht
 xt
 )
-ewγ(x1)α
+ewγ(x1)α
 < ∞
 for every α > 1, then 1
 γ λγ ≤Jγ
@@ -8026,7 +8036,7 @@ also have a lower large deviation estimate. Consequently, we have a large
 deviation principle corresponding to the rate function
 Iu,γ(ν) := sup
 h∈H
-
+
 Rk ln
 h(x)
 P u(x),γh(x)ν(dx),
@@ -8053,7 +8063,7 @@ C
 =
 inf
 ν∈P(Rk)
-
+
 Rk
 1
 γ cγ(z, u(z))ν(dz) −1
@@ -8062,7 +8072,7 @@ Rk
 .
 (3.14)
 There is a sequence of measures νγi with γi →0 as i →∞such that
-
+
 Rk
 1
 γi
@@ -8072,7 +8082,7 @@ Iu,γi(νγi)
 ≤
 inf
 ν∈P(Rk)
-
+
 Rk
 1
 γi
@@ -8106,7 +8116,7 @@ C
 we have that Iu,γi(νγi) →0. We shall show that the sequence (νγi) is tight.
 Applying Fatou’s lemma to the sequence {f0 ∧N} with N →∞we obtain
 that
-
+
 Rk ln
 f0(x)
 P u(x),γf0(x)νγi(dx) ≤Iu,γi(νγi).
@@ -8115,7 +8125,7 @@ By (3.5) for ε > 0 there is γ0 such that for γ ≥γ0
 (1 −ε)Pf0(x) ≤P u(x),γf0(x) ≤(1 + ε)Pf0(x).
 (3.18)
 Therefore, by (3.17)
-
+
 Rk ln f0(x)
 Pf0(x)νγi(dx) ≤Iu,γi(νγi) + ln(1 + ε)
 (3.19)
@@ -8162,12 +8172,12 @@ cγi(x(t), h(t))
 C
 ≥lim
 i→∞
-
+
 Rk
 1
 γi
 cγi(z, u(z))νγi =
-
+
 Rk c(z, u(z))¯ν(dz) = J0(u(x(n))(3.22)
 and using the fact that the cost functional Jγ is increasing in γ we obtain
 (3.12), which completes the proof.
@@ -8260,7 +8270,7 @@ H.-J. Engelbert, V. Kurenok and A. Zalinescu
 1 Introduction
 In this paper we consider the one-dimensional stochastic equation
 Xt = x0 +
- t
+ t
 0
 b(Xs−)dMs + Kt ,
 t ≥0 ,
@@ -8374,7 +8384,7 @@ process of index α on [0, ∞) if there exist processes M and K such that:
 ¯
 Mt ≥0 for all t ≥0;
 3) K is an increasing, right-continuous process with K0 = 0 and
- ∞
+ ∞
 0
 1{ ¯
 Mt̸=0}dKt = 0 ;
@@ -8441,7 +8451,7 @@ max (−x (t) , 0)
 
 ≤max (y (un) , y (vn−) −ε) ,
 which means that y (vn−) = y (un), for every n ≥1. It follows that
- ∞
+ ∞
 0
 1{z(t)>ε}dy(t) = 0 , ∀n ≥1 .
 By letting ε →0, we obtain the result.
@@ -8451,25 +8461,25 @@ z (t) −z′ (t) = y (t) −y′ (t) , ∀t ≥0 .
 Integrating by parts, this yields that for every t > 0,
 [(z −z′) (t)]2
 = 2
-
+
 (0,t]
 (z −z′) (s) d (y −y′) (s) −
 
 0<s≤t
 [(z −z′) (s) −(z −z′) (s−)]2
 ≤2
-
+
 (0,t]
 (z −z′) (s) d (y −y′) (s) .
 On the other hand, the relations
- ∞
+ ∞
 0
 z (s) dy(s) = 0 and
- ∞
+ ∞
 0
 z′ (s) dy′(s) = 0
 imply that
-
+
 (0,t]
 (z −z′) (s) d (y −y′) (s) ≤0, ∀t ≥0 .
 Hence z (t) = z′ (t), ∀t ≥0, which proves the result.
@@ -8511,7 +8521,7 @@ where n(y) := α
 2 −1. Then the process ¯
 M has m as its invariant measure
 ([22]), which means that for every Borel measurable set A ⊆[0, ∞),
- ∞
+ ∞
 0
 Px
  ¯
@@ -8527,7 +8537,7 @@ Markov process X with state space (E, E), defined on the corresponding family
 of probability spaces (Ω, F, F, Px, x ∈E), we introduce the so-called potential-
 measures U(x, ·) as
 U(x, A) := Ex
- ∞
+ ∞
 0
 1{Xt∈A}dt
 
@@ -8559,13 +8569,13 @@ that U(x, A) = 0, for all x ≥0. First, we show that µ(A) = 0, where µ is the
 Lebesgue measure on the positive half-line.
 By the strong Markov property, for every n ∈N we have
 Ex
- ∞
+ ∞
 τn
 1{ ¯
 Mt∈A}dt
 
 = E0
- ∞
+ ∞
 0
 1{ ¯
 Mt∈A}dt
@@ -8573,17 +8583,17 @@ Mt∈A}dt
 , ∀x ≥0 .
 For the particular choice x = z, passing to the limit as n →∞, the finiteness
 of the left-hand term in this equality implies that U (0, A) = 0 and so
- ∞
+ ∞
 τ0
 1{ ¯
 Mt∈A}dt = 0 , Px-a.s. , ∀x ≥0 .
 (2.8)
 On the other hand, relation (2.6) yields
 t m (A) =
- ∞
+ ∞
 0
 Ex
- t
+ t
 0
 1{ ¯
 Ms∈A}ds
@@ -8592,9 +8602,9 @@ m (dx) .
 From (2.8) and the property that Ms = ¯
 Ms on {s < τ0}, we get
 t m (A) =
- ∞
+ ∞
 0
- t
+ t
 0
 Px (Ms ∈A, s < τ0) ds m (dx) , ∀t ≥0 .
 (2.9)
@@ -8602,12 +8612,12 @@ The measure Px (Mt ∈dy, t < τ0) is the transition function of the process M
 starting at x which is killed as soon as it leaves (0, ∞). D. Ray [11] proved
 that it is absolutely continuous with respect to the Lebesgue measure and its
 density, ˜p (t, x, y), satisfies the relation
- ∞
+ ∞
 0
 ˜p (t, x, y) dt =
 1
 Γ (α/2)2
- min(x,y)
+ min(x,y)
 0
 ξ
 α
@@ -8625,28 +8635,28 @@ m (A). Splitting the integral in (2.9), we obtain, for every t ≥0,
 234
 H.-J. Engelbert, V. Kurenok and A. Zalinescu
 t m (A) ≤
- a
+ a
 0
- ∞
+ ∞
 0
-
+
 A
 ˜p (s, x, y) dy ds m (dx) +
- ∞
+ ∞
 a
- t
+ t
 0
-
+
 A
 p (s, x, y) dy ds m (dx)
 ≤
 1
 Γ (α/2)2
- a
+ a
 0
- a
+ a
 0
- min(x,y)
+ min(x,y)
 0
 ξ
 α
@@ -8657,19 +8667,19 @@ p (s, x, y) dy ds m (dx)
 2 a
 α
 2 −1
- t
+ t
 0
-
+
 A
- ∞
+ ∞
 y
 p (s, x, y) dx dy ds
 ≤
 1
 Γ (α/2)2
- a
+ a
 0
- a
+ a
 0
 xα−1 |y −x|
 α
@@ -8679,13 +8689,13 @@ xα−1 |y −x|
 2 −1t µ (A) .
 The last inequality comes from the property that p is homogeneous and sym-
 metric; indeed, we have
- ∞
+ ∞
 y
 p (s, x, y) dx =
- ∞
+ ∞
 y
 p (s, 0, y −x) dx =
- ∞
+ ∞
 0
 p (s, 0, −x) dx = 1
 2 ,
@@ -8694,9 +8704,9 @@ since p (s, 0, −x) = p (s, 0, x) for all s, x > 0. Hence
 2t m (A) ≤
 1
 Γ (α/2)2
- a
+ a
 0
- a
+ a
 0
 xα−1 |y −x|
 α
@@ -8709,10 +8719,10 @@ This proves that m (A) = 0, t being taken arbitrarily. Therefore, µ (A) = 0.
 From (2.8), the fact that Px (Mt ∈·, t < τ0) is absolutely continuous with
 respect to µ and the relation
 U (x, A) =
- ∞
+ ∞
 0
 Px (Ms ∈A, s < τ0) ds + Ex
- ∞
+ ∞
 τ0
 1{ ¯
 Ms∈A}ds
@@ -8727,7 +8737,7 @@ M be a reflected symmetric stable process of index α given by (2.3) and
 an arbitrary measurable function f : [0, ∞) →[0, ∞] we consider the following
 integral functional:
 Tt :=
- t
+ t
 0
 f( ¯
 Ms)ds, t ≥0 .
@@ -8740,7 +8750,7 @@ in [0, ∞) of y, and introduce
 Stochastic Equations Driven by Symmetric Stable Processes
 235
 Ef := {y ≥0 :
-
+
 U
 f(z)m(dz) = ∞, ∀U ∈U(y)} ,
 where m is the measure introduced by (2.5). We write f ∈Lloc(m) to denote
@@ -8782,11 +8792,11 @@ f. In the case x0 = 0, 0 < α ≤1, if Ef is polar, then the condition
 U hα,x0 (z) f (z) dz < ∞for some U ∈U(x0) is automatically satisfied. In-
 deed, if Ef is polar then 0 cannot belong to Ef (cf. beginning of the proof of
 Proposition 1). Hence, there exists U ∈U(0) such that
-
+
 U
 f(z)m(dz) < ∞.
 This yields
-
+
 U
 hα,0 (z) f (z) dz < ∞.
 Theorem 1. Let α ∈(0, 2] and x0 ≥0. Suppose that f satisfies condition
@@ -8815,17 +8825,17 @@ infinity as N →∞, P-a.s.
 We define the stopping time
 σ := inf {t ≥0 : Mt ≤−x0} .
 Then
- t∧ρN
+ t∧ρN
 0
 f
  ¯
 Ms
 
 ds =
- t∧ρN∧σ
+ t∧ρN∧σ
 0
 f (x0 + Ms) ds +
- t∧ρN
+ t∧ρN
 t∧ρN∧σ
 f
  ¯
@@ -8833,11 +8843,11 @@ Ms
 
 ds
 ≤
- t
+ t
 0
 1QN (x0 + Ms) f (x0 + Ms) ds
 +et
- ∞
+ ∞
 σ
 e−s1QN
  ¯
@@ -8853,7 +8863,7 @@ But the function 1QN (x0 + ·) f (x0 + ·) is integrable on the real line with
 respect to the Lebesgue measure. Then, condition (Hα,x0) implies that the
 assumptions of Corollary 2.2, Proposition 2.5, and Proposition 2.7 from [5] in
 the cases α > 1, α = 1 and α < 1, respectively, are fulfilled. Therefore,
- t
+ t
 0
 1QN (x0 + Ms) f (x0 + Ms) ds < ∞.
 (3.3)
@@ -8864,7 +8874,7 @@ Let
 αΓ (α/2) Γ (1 + (α/2))
 
 n(x) −λ
- ∞
+ ∞
 0
 ¯gλ(x, y)m(dy)
 
@@ -8876,7 +8886,7 @@ M.
 Lemma 2. For any λ > 0 and any positive Borel measurable function g, it
 holds
 E
- ∞
+ ∞
 σ
 e−λtg( ¯
 Mt)dt
@@ -8886,7 +8896,8 @@ Mt)dt
 λ
 E
 
-e−λσ  ∞
+e−λσ
+  ∞
 0
 ηλ(y)g(y)dy .
 (3.5)
@@ -8903,7 +8914,7 @@ Stochastic Equations Driven by Symmetric Stable Processes
 Using the nonnegativity of the function ¯gλ(x, y) for all (x, y), relation (3.4),
 and choosing λ = 1 and g = 1QN f, we obtain
 E
- ∞
+ ∞
 σ
 e−s1QN
  ¯
@@ -8916,23 +8927,24 @@ Ms
 ds ≤Γ
 α
 2 + 1
- 
+ 
 QN
 η1(y)f (y) dy
 ≤
 2
 αΓ (α/2)
-
+
 QN
 f (y) m(dy) < ∞. (3.6)
 Relations (3.3) and (3.6) yield that for all t ≥0 and N ≥1, Tt∧ρN < ∞,
 P-a.s., which proves the theorem.
 Example 1. The aim of this example is to show that, in the case 1 < α ≤2,
- t
+ t
 0
  ¯
 Ms
-−β ds = ∞, ∀t > 0, P-a.s.
+
+−β ds = ∞, ∀t > 0, P-a.s.
 (3.7)
 if β ≥α/2 and x0 = 0. This indicates that the condition f ∈Lloc(m) seems to
 be optimal for the convergence of the integral functionals
@@ -8945,7 +8957,7 @@ natural to ask whether that still holds in the case of the reflected process ¯
 M.
 For any Borel set A, let
 S (t, A) :=
- t
+ t
 0
 1A
  ¯
@@ -8985,14 +8997,14 @@ LM (vn ∧t, a −x0 −kn) −LM (un ∧t, a −x0 −kn)
 (3.9)
 We give a concise proof of the occupation times formula for L ¯
 M, i.e.,
- t
+ t
 0
 g
  ¯
 Ms
 
 ds =
- ∞
+ ∞
 0
 g (a) L
 ¯
@@ -9013,7 +9025,7 @@ Mt (ω) = 0
 fore it is sufficient to show the occupation times formula only for the function
 of the type g ≡1A, where A is a Borel set in (0, ∞). Integrating with respect
 to a ∈A in (3.9) and using the occupation times formula for LM, we obtain
-
+
 A
 L
 ¯
@@ -9021,7 +9033,7 @@ M (t, a) da =
 ∞
 
 n=1
-
+
 A−x0−kn
 
 LM (vn ∧t, a) −LM (un ∧t, a)
@@ -9031,13 +9043,13 @@ da
 ∞
 
 n=1
- vn∧t
+ vn∧t
 un∧t
 1A−x0−kn (Ms) ds =
 ∞
 
 n=1
- vn∧t
+ vn∧t
 un∧t
 1A
  ¯
@@ -9045,7 +9057,7 @@ Ms
 
 ds
 =
- ∞
+ ∞
 0
 1A
  ¯
@@ -9058,42 +9070,44 @@ process ¯
 M.
 The equality (3.7) is then a consequence of the occupation times formula.
 Indeed, from this it follows
- t
+ t
 0
  ¯
 Ms
-−β ds =
- ∞
+
+−β ds =
+ ∞
 0
 a−βL
 ¯
 M (t, a) da , ∀t ≥0 , P-a.s. ,
 and
 S (t, [0, ε)) =
- ε
+ ε
 0
 L
 ¯
 M (t, a) da , ∀t , ε > 0 , P-a.s.
 Using integration by parts and (3.8), for sufficiently small ε > 0, we obtain
- t
+ t
 0
  ¯
 Ms
-−β ds ≥
- 1
+
+−β ds ≥
+ 1
 ε
 a−βL
 ¯
 M (t, a) da ≥
- 1
+ 1
 ε
 a−α/2L
 ¯
 M (t, a) da
 = S (t, [0, 1)) −ε−α/2S (t, [0, ε)) + α
 2
- 1
+ 1
 ε
 a−α
 2 −1S (t, [0, a)) da
@@ -9101,7 +9115,7 @@ a−α
 4 L
 ¯
 M (t, 0)
- √ε
+ √ε
 ε
 a−1da
 ≥1
@@ -9120,7 +9134,7 @@ Let us now discuss briefly the conditions ensuring that
 Stochastic Equations Driven by Symmetric Stable Processes
 239
 T∞=
- ∞
+ ∞
 0
 f( ¯
 Ms)ds = ∞.
@@ -9139,20 +9153,20 @@ Let ε > 0. By the strong Markov property of ¯
 M, we have that for every
 n ∈N
 P0
- ∞
+ ∞
 0
 1A( ¯
 Ms)ds > ε
 
 = P ¯
 Mτn
- ∞
+ ∞
 0
 1A( ¯
 Ms)ds > ε
 
 = Px0
- ∞
+ ∞
 τn
 1A( ¯
 Ms)ds > ε
@@ -9164,7 +9178,7 @@ n→∞τn = ∞, Px0-a.s., allows us to pass
 to the limit as n →∞in this relation; from the theorem of Lebesgue-L´evy on
 the convergence of conditional expectations we obtain that
 P0
- ∞
+ ∞
 0
 1A( ¯
 Ms)ds > ε
@@ -9186,7 +9200,7 @@ Ms)ds > ε
 Px0
 	 ?
 n∈N
- ∞
+ ∞
 τn
 1A( ¯
 Ms)ds > ε
@@ -9194,7 +9208,7 @@ Ms)ds > ε
 = 1 .
 Using once again the unboundedness of the sequence (τn)n∈N, this relation
 gives
- ∞
+ ∞
 0
 1A( ¯
 Ms)ds = ∞, Px0-a.s. ,
@@ -9210,7 +9224,7 @@ Nb := {x ≥0 : b(x) = 0} .
 Theorem 3. Assume that |b|−α satisfies condition (H α,x0). Then there exists
 a (non-exploding) solution X of (1.1) with X0 = x0. For this solution, the
 property
- ∞
+ ∞
 0
 1Nb (Xs) ds = 0 , P-a.s.
 is satisfied.
@@ -9230,7 +9244,7 @@ t .
 (4.1)
 Let
 Tt =
- t
+ t
 0
 |b|−α ( ¯
 M ∗
@@ -9266,7 +9280,7 @@ At and Kt = K∗
 At.
 Lemma 3. The process K is a reflecting force for X, i.e., K is increasing,
 right-continuous, K0 = 0 and
- ∞
+ ∞
 0
 1{Xs̸=0}dKs = 0 .
 (4.4)
@@ -9298,14 +9312,14 @@ Ms −x0, 0) ,
 and from Lemma 1 it follows that the relation (4.4) is true.
 Lemma 4. It holds
 E
- t
+ t
 0
 1Nb( ¯
 M ∗
 s−)ds
 
 = E
- t
+ t
 0
 1Nb( ¯
 M ∗
@@ -9314,37 +9328,37 @@ s )ds
 = 0 , ∀t ≥0 .
 Proof. Using Lemma 2 for the function g = 1Nb\E|b|−α and λ = 1, we estimate
 E
- t
+ t
 0
 g( ¯
 M ∗
 s )ds
 
 ≤E
- σ∧t
+ σ∧t
 0
 g(x0 + M ∗
 s )ds
 
 + etE
- ∞
+ ∞
 σ
 e−sg( ¯
 M ∗
 s )dt
 
 ≤
- t
+ t
 0
 P
 
 x0 + M ∗
 s ∈Nb\E|b|−α
-
+
 ds +
 2et
 αΓ (α/2)
- ∞
+ ∞
 0
 g(y)m (dy) .
 It is obvious that m(Nb\E|b|−α) = 0. The right-hand side is then equal to zero
@@ -9356,7 +9370,7 @@ Lemma 5. There exists a symmetric stable process M of the same index α
 such that for all t ≥0 we have
 ˜
 Mt =
- t
+ t
 0
 b(Xs−)dMs .
 (4.5)
@@ -9376,7 +9390,7 @@ H.-J. Engelbert, V. Kurenok and A. Zalinescu
 change properties for stochastic integrals with respect to stable processes (cf.,
 e.g., [5] or [13]) it follows that the process M, defined by
 Mt :=
- At
+ At
 0
 b−1( ¯
 M ∗
@@ -9386,7 +9400,7 @@ s , t ≥0 ,
 is a G-adapted symmetric α-stable process.
 A simple use of Lemma 4 shows that
 At =
- At
+ At
 0
 1Nc
 b
@@ -9395,7 +9409,7 @@ M ∗
 s
 
 ds =
- At
+ At
 0
 |b|α ( ¯
 M ∗
@@ -9405,24 +9419,24 @@ s )ds , t ≥0 .
 Consequently, changing the variables in the Lebesgue-Stieltjes integral, from
 relation (4.2) and A = T −1 we obtain
 At =
- At
+ At
 0
 |b|α ( ¯
 M ∗
 s )dTs =
- TAt
+ TAt
 0
 |b|α  ¯
 M ∗
 As
 
 ds =
- t
+ t
 0
 |b|α (Xs)ds , t ≥0 .
 Therefore, with similar arguments as above, we have that there exists the
 stochastic integral
- t
+ t
 0
 b(Xs−)dMs , t ≥0 .
 (4.7)
@@ -9430,34 +9444,34 @@ Now, using time change properties for stochastic integrals with respect to
 semimartingales (see, e.g. [6], Chap. X) and taking into account (4.6) and
 (4.7), we obtain
 Mt =
- At
+ At
 0
 b−1( ¯
 M ∗
 s−)dM ∗
 s =
- t
+ t
 0
 b−1(Xs−)dM ∗
 As, t ≥0 ,
 and, consequently,
- t
+ t
 0
 b(Xs−)dMs =
- t
+ t
 0
 b(Xs−)b−1(Xs−)dM ∗
 As , t ≥0 .
 (4.8)
 From Lemma 4 we can conclude
- t
+ t
 0
 1Nb( ¯
 M ∗
 s−)dM ∗
 s = 0, ∀t ≥0 , P-a.s. ,
 which implies that
- t
+ t
 0
 b( ¯
 M ∗
@@ -9468,7 +9482,7 @@ s = M ∗
 t , ∀t ≥0 , P-a.s.
 Using once again the properties of time change for stochastic integrals, we
 have
- t
+ t
 0
 b(Xs−)b−1(Xs−)dM ∗
 As = M ∗
@@ -9479,12 +9493,12 @@ Stochastic Equations Driven by Symmetric Stable Processes
 243
 We have shown that the process X has the form
 Xt = x0 +
- t
+ t
 0
 b(Xs−)dMs + Kt , t ≥0 ,
 where K is the reflecting force for X. Therefore, X is a solution of (1.1). From
 Lemma 4 one can easily conclude that X also satisfies
- ∞
+ ∞
 0
 1Nb (Xs) ds = 0 , P-a.s.
 This completes the proof of Theorem 3.
@@ -9498,7 +9512,7 @@ Example 2. Let the volatility b be such that |b|−α satisfies condition (Hα,x
 Suppose that b (x0) = 0. Then the solution X of (1.1) with X0 = x0 is not
 unique in law. Indeed, according to Theorem 3, there is a solution X of (1.1)
 such that
- ∞
+ ∞
 0
 1Nb (Xs) ds = 0 , P-a.s.
 On the other side, we may put Y ≡x0; obviously, Y is a solution of (1.1) with
@@ -9519,7 +9533,7 @@ Definition 3. Let condition (H x0,α) for |b|−α be satisfied. A solution X of
 
 244
 H.-J. Engelbert, V. Kurenok and A. Zalinescu
- ∞
+ ∞
 0
 1Nb (Xs) ds = 0 , P-a.s.
 (4.9)
@@ -9528,7 +9542,7 @@ in law in the class of fundamental solutions. For preparing this result, let X
 be an arbitrary solution of (1.1) with X0 = x0 given on the stochastic basis
 (Ω, F, P; F). Put
 At :=
- t
+ t
 0
 |b|α (Xs) ds ,
 t ≥0 .
@@ -9557,7 +9571,7 @@ At , t ≥0 , P-a.s.
 (4.11)
 Proof. We have
 Xt = x0 +
- t
+ t
 0
 b (Xs−) dMs + Kt , t ≥0 ,
 where M is a symmetric stable process of index α (with M0 = 0) and K is a
@@ -9569,7 +9583,7 @@ t )t≥0 defined by
 ˜
 M ∗
 t :=
- Tt
+ Tt
 0
 b (Xs−) dMs , t ≥0 ,
 is a symmetric stable process of index α stopped at AT∞−= A∞(this latter
@@ -9588,10 +9602,10 @@ M ∗
 At = ˜
 M ∗
 At =
- TAt
+ TAt
 0
 b (Xs−) dMs =
- t
+ t
 0
 b (Xs−) dMs ,
 
@@ -9618,7 +9632,7 @@ As −x0, 0
 max
 
 −
- s
+ s
 0
 b (Xu−) dMu −x0, 0
 
@@ -9637,7 +9651,7 @@ M ∗
 0 = x0 on a, possibly,
 enlarged stochastic basis, satisfying (4.11). Then
 Tt =
- t
+ t
 0
 |b|−α ( ¯
 M ∗
@@ -9645,31 +9659,31 @@ s )ds , t ≥0 , P-a.s.
 (4.12)
 Proof. From (4.9) and (4.11), we obtain
 Tt =
- Tt
+ Tt
 0
 |b|−α (Xs) dAs =
- Tt
+ Tt
 0
 |b|−α ( ¯
 M ∗
 As)dAs
 and, by time change in this Lebesgue-Stieltjes integral, we get
 Tt =
- ATt
+ ATt
 0
 |b|−α ( ¯
 M ∗
 ATs )ds .
 In view of the continuity of A, we conclude ATt = t ∧A∞and hence
 Tt =
- t∧A∞
+ t∧A∞
 0
 |b|−α ( ¯
 M ∗
 s )ds .
 (4.13)
 This yields (4.12) for t ≤A∞. In particular,
- A∞
+ A∞
 0
 |b|−α ( ¯
 M ∗
@@ -9685,14 +9699,14 @@ H.-J. Engelbert, V. Kurenok and A. Zalinescu
 Proposition 4. Suppose that |b|−α satisfies condition (H α,x0). Let X be a
 fundamental solution of (1.1) with X0 = x0. Then
 A∞=
- ∞
+ ∞
 0
 |b|α (Xs) ds = ∞P-a.s.
 Proof. The assertion means that
 Tt < ∞, t ≥0 , P-a.s.
 But the latter property follows from the equality
 Tt =
- t
+ t
 0
 |b|−α  ¯
 M ∗
@@ -9708,7 +9722,7 @@ Now we turn to the uniqueness in law of the fundamental solution.
 Theorem 4. Suppose that the volatility b is such that |b|−α satisfies condition
 (H α,x0). Then the fundamental solution X of (1.1) with X0 = x0 (which exists
 by Theorem 3) is unique in law. Furthermore,
- ∞
+ ∞
 0
 |b|α (Xs) ds = ∞, P-a.s.
 Proof. Let X be a fundamental solution of (1.1) with X0 = x0. According to
@@ -9734,7 +9748,7 @@ b (x) ̸= 0 , ∀x ≥0 .
 Then the solution X of (1.1) with
 X0 = x0 exists and is unique in law.
 Furthermore, it holds
- ∞
+ ∞
 0
 |b|α (Xs) ds = ∞P-a.s.
 In conclusion, we note that the fundamental solution X of (1) is nothing
@@ -9756,19 +9770,19 @@ M ∗(At, a) ,
 t ≥0 .
 Indeed, it can easily be verified that for every nonnegative Borel function g
 on [0, ∞)
- t
+ t
 0
 g(Xs) dAs =
- ∞
+ ∞
 0
 g(a) LX(t, a) da ,
 t ≥0 ,
 P-a.s.
 or, alternatively,
- t
+ t
 0
 g(Xs) ds =
- ∞
+ ∞
 0
 g(a) LX(t, a) µb(da) ,
 t ≥0 ,
@@ -9909,11 +9923,11 @@ Khinchine formula states that EezXt = exp(tψ(z)) where the function ψ is
 the characteristic exponent of the process, and is given by
 ψ(z) = (a, z) + 1
 2(z, Σz) +
-
+
 Rd
 
 e(z,y) −1 −(z, y)1{|y|≤1}
-
+
 Π(dy),
 (2.1)
 where a = (a1, . . . , ad) is a vector in Rd, Π is a positive measure defined on
@@ -9933,11 +9947,11 @@ diffusion with jumps. Introducing F by Π(dy) = αF(dy), the L´evy–Khinchine
 formula is (changing the value of a if necessary)
 ψ(z) = (a, z) + 1
 2(z, Σz) +
-
+
 Rd
 
 e(z,y) −1
-
+
 Π(dy),
 (2.2)
 and the process X = {Xt}t≥0 can be represented by
@@ -9958,11 +9972,11 @@ where ψk is the characteristic exponent of the k-coordinate of X, given by
 ψk(zk) = akzk + 1
 2skkz2
 k +
-
+
 R
 
 ezky −1 −zky1{|y|≤1}
-
+
 Πk(dy),
 where Πk(A) =
 
@@ -10156,14 +10170,14 @@ Rd 1{(v,y)∈A}e(u,y)Π(dy).
 J. Fajardo and E. Mordecki
 Furthermore, the intensity of the Poisson process under ˜P is given by
 ˜α =
-
+
 Rd e(u,y)Π(dy) = α
-
+
 Rd e(u,y)F(dy).
 (c) Assume (b), and let Π(dy) = αF(dy) where F is the common distrib-
 ution of the random variables {Yk}k≥1 with the characteristic function
 ϕ(z) =
-
+
 Rd e(z,y)F(dy).
 Then the characteristic function of the same random variables under ˜P is
 given by
@@ -10199,7 +10213,7 @@ Proposition 1 (Put-Call duality). Consider a L´evy market with driving
 process X with characteristic exponent ψ(z) given by
 ψ(q) = iaq −1
 2σ2q2 +
-
+
 R
 
 eiqy −1 −iqy1{|y|<1}
@@ -10213,7 +10227,7 @@ defined on the set
 C0 =
 /
 z = p + iq ∈C:
-
+
 {|y|>1}
 epyΠ(dy) < ∞
 0
@@ -10225,11 +10239,12 @@ C(S0, K, r, δ, τ, ψ) = P(K, S0, δ, r, τ, ˜ψ),
 where
 ˜ψ(z) = ˜az + 1
 2 ˜σ2z2 +
-
+
 R
 
 ezy −1 −zy1{|y|≤1}
- ˜Π(dy)
+
+ ˜Π(dy)
 (4.6)
 is a characteristic exponent (of a certain L´evy process) that satisfies
 ˜ψ(z) = ψ(1 −z) −ψ(1),
@@ -10246,7 +10261,8 @@ In consequence,
 R
 
 ey −1 −y1{|y|≤1}
- ˜Π(dy),
+
+ ˜Π(dy),
 ˜σ
 = σ,
 ˜Π(dy)
@@ -10388,12 +10404,12 @@ measure P θ is absolutely continuous with respect to P and that the density
 process zθ is measurable with respect to F ⊗A. Then we can introduce on
 the original space (Ω, F, F, P) the arithmetic mean measure ¯P α: for B ∈F
 ¯P α(B) :=
-
+
 Θ
 P θ(B)α(dθ) =
-
+
 Θ
-
+
 B
 zθdPα(dθ).
 One can interpret the measure ¯P α also as a ’randomised experiment’. In [9, 10]
@@ -10463,9 +10479,9 @@ assume that F := FX is the right-continuous version of the natural filtration
 of X (completed by P-null sets and that F = FX
 ∞.
 Let µ be the jump measure of X, i.e.
- t
+ t
 0
-
+
 |x|>ǫ
 xµ(ds, dx) :=
 
@@ -10497,9 +10513,9 @@ Having bounded jumps, the process ˜X = (X −X(l)) is a special semi-
 martingale and allows the representation
 ˜Xt = X0 + Xc
 t +
- t
+ t
 0
-
+
 R\{0}
 l(x)(µ(ds, dx) −ν(ds, dx)) + Bt(l),
 where Xc is the continuous local martingale part of X, ν is the (P, F) com-
@@ -10511,10 +10527,10 @@ semimartingale X as T = (B(l), C, ν). Later we write B instead of B(l).
 Consider the class G of real bounded Borel functions on R vanishing in a
 neighborhood of 0. If η and ˜η are measures on R such that η(|x| > ǫ) < ∞
 and ˜η(|x| > ǫ) < ∞, and if for all g ∈G
-
+
 R
 g(x)η(dx) =
-
+
 R
 g(x)˜η(dx)
 then η = ˜η.
@@ -10601,7 +10617,7 @@ are related to the jumps of the compensator ν, namely
 and
 ˆY θ
 t (ω) :=
-
+
 R0
 Y θ
 t (ω, x)ν(ω, {t}, dx).
@@ -10625,11 +10641,11 @@ measure α on (Θ, A) and t ∈R+ and B ∈Ft, we define the arithmetic mean
 measure:
 ¯P α
 t (B) :=
-
+
 Θ
 P θ
 t (B)α(dθ) =
-
+
 Θ×B
 zθ
 t P(dω)α(dθ),
@@ -10742,7 +10758,7 @@ Y θ −1 +
 Then by Theorem 3.2 we have the following variant of stochastic Fubini the-
 orem
 ¯zt =
-
+
 Θ
 zθ
 t α(dθ) = E( ¯m)t
@@ -10760,7 +10776,7 @@ density process. For instance, we can use the following assumption.
 Assumption 3.3 There exists a localizing sequence of F- stopping times τn
 such that for every n ≥1
 E
-
+
 Θ
 [zθ, zθ]1/2
 τn α(dθ) < ∞

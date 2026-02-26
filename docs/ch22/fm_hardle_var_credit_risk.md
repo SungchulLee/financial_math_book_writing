@@ -433,7 +433,7 @@ f(t) = f(c) +
 X
 r=1
 sr
-r! Dr−1[f ′ · hr](c),
+r! Dr−1\[f ′ · hr\](c),
 (1.7)
 where D denotes the differentation operator. For a given probability c = α,
 f = Φ−1, and h = (Φ −F) ◦Φ−1 this yields
@@ -442,7 +442,7 @@ f = Φ−1, and h = (Φ −F) ◦Φ−1 this yields
 X
 r=1
 (−1)r sr
-r! Dr−1[((F −Φ)r/φ) ◦Φ−1](α).
+r! Dr−1\[((F −Φ)r/φ) ◦Φ−1\](α).
 (1.8)
 Setting s = 1 in (1.6) implies Φ−1(t) = F −1(α) and with the notations x =
 F −1(α), z = Φ−1(α) (1.8) becomes the formal expansion
@@ -451,7 +451,7 @@ x = z +
 X
 r=1
 (−1)r 1
-r!Dr−1[((F −Φ)r/φ) ◦Φ−1](Φ(z)).
+r!Dr−1\[((F −Φ)r/φ) ◦Φ−1\](Φ(z)).
 
 1.3
 Cornish-Fisher Approximations
@@ -462,7 +462,7 @@ x = z +
 X
 r=1
 (−1)r 1
-r!D(r−1)[ar](z)
+r!D(r−1)\[ar\](z)
 (1.9)
 with D(r) = (D+ φ′
 φ )(D+2 φ′
@@ -1827,8 +1827,8 @@ def
 = exp
 n
 −
-
-(−ln u)θ + (−ln v)θ1/θo
+
+(−ln u)θ + (−ln v)θ1/θo
 .
 (2.11)
 The parameter θ may take all values in the interval [1, ∞).
@@ -1879,11 +1879,11 @@ Cθ,u(v) = ∂
 ∂uCθ(u, v) = exp
 n
 −
-
-(−ln u)θ + (−ln v)θ1/θo
+
+(−ln u)θ + (−ln v)θ1/θo
 ×
-
-(−ln u)θ + (−ln v)θ−θ−1
+
+(−ln u)θ + (−ln v)θ−θ−1
 θ
 (−ln u)θ−1
 u
@@ -4200,9 +4200,9 @@ Ti+1 −Ti
 The present value of the bond PV (t) at time t can be obtained by discounting,
 PV (t) =
 1
-
+
 1 + R(t, T −t)
-T −t ,
+T −t ,
 t0 ≤t ≤t1.
 (3.2)
 In the historical simulation the relative risk factor changes
@@ -4230,11 +4230,11 @@ the observed yields and the risk factor changes,
 R(k)
 i
 (t + h) = Ri(t)
-
+
 1 + ∆(k)
 i
 (t)
-
+
 ,
 1 ≤i ≤n,
 (3.4)
@@ -4259,9 +4259,9 @@ Ti+1 −Ti
 for the yield. With (3.2) we obtain a new fictive present value at time t + h:
 PV (k)(t + h) =
 1
-
+
 1 + R(k)(t + h, T −t)
-T −t .
+T −t .
 (3.6)
 In this equation we neglected the effect of the shortening of the time to maturity
 in the transition from t to t + h on the present value. Such an approximation
@@ -4436,11 +4436,11 @@ and
 B(k)
 i
 (t + h) = Bi(t)
-
+
 1 + ∆(k)
 i
 (t)
-
+
 ,
 1 ≤i ≤n.
 (3.17)
@@ -4675,9 +4675,9 @@ distribution {L(k) | 0 ≤k ≤N −1}. If F is the true distribution function
 of the loss L within the holding period h, then the random quantity F(L) is
 (approximately) uniformly distributed on [0, 1]. Therefore we check the values
 Fe
-
+
 L(t)
-
+
 for t0 ≤t ≤t1, where Fe is the empirical distribution. If the prediction
 quality of the model is adequate, these values should not differ significantly from
 a sample with size 250 (t1 −t0 + 1) from a uniform distribution on [0, 1].

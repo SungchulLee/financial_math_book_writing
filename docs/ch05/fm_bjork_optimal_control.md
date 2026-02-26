@@ -93,7 +93,7 @@ p = c - xe-'f(T-t)
 + Ke-'d (T-t). 
 Exercise 17.2 Compute the pricing function (in the domestic currency) for a 
 binary option on the exchange rate. This option is a T-claim, 2, of the form 
-2 = l[a,b](X(T)), 
+2 = l\[a,b\](X(T)), 
 i.e. if a I X(T) 5 b then you will obtain one unit of the domestic currency, 
 otherwise you get nothing. 
 Exercise 17.3 Derive the dynamics of the domestic stock price Sd under the 

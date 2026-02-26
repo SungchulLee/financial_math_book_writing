@@ -53607,7 +53607,7 @@ As we shall concentrate on put options, P(x, t) = P(x) = Pt = P will
 denote the value process of the American option.
 Definition 8.1.4. For any stopping time τ ∈T0,T , a buy-and-hold strategy
 in the option P is a pair (π2, τ), where π2 is the process
-π2(t) = k1<a href="t">0,τ</a>, t ∈[0, T].
+π2(t) = k1[0,τ](t), t ∈[0, T].
 The associated position in P is then π2(t)P(x, t). This means that k units
 of the American option security are purchased (or shorted if k &lt; 0) at time
 0 and held until time τ. Denote by Π+ (resp. Π−) the set of buy-and-hold
@@ -53811,7 +53811,7 @@ For any
 stopping time τ ∈T0,T , and with k = −1, consider the buy-and-hold
 strategy
 π2
-t = −1<a href="t">0,τ</a>.
+t = −1[0,τ](t).
 Construct the extended trading strategy ,π = (,π0
 t , ,π1
 t , ,π2
@@ -53830,10 +53830,10 @@ if t ∈(τ, T],
 and
 ,π1
 t = π1
-t 1<a href="t">0,τ</a>,
+t 1[0,τ](t),
 ,π2
 t = π2
-t = −1<a href="t">0,τ</a>,
+t = −1[0,τ](t),
 with a consumption process ,Ct = Ct∧τ. From the hedging property,
 Xτ = π0
 τerτ + π1
@@ -53865,9 +53865,9 @@ if t ∈(ρ0, T].
 and
 ,π1
 t = −π1
-t 1<a href="t">0,ρ0</a>,
+t 1[0,ρ0](t),
 ,π2
-t =1<a href="t">0,ρ0</a>,
+t =1[0,ρ0](t),
 with the consumption process ,Ct = −Ct∧ρ0. However, we know C = ,C ≡0
 on [0, ρ0] (see the remarks after Notation 8.2.4) and, from the definition of
 ρ0,

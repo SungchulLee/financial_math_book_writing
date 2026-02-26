@@ -48664,22 +48664,21 @@ These notes are used for educational purposes.</p>
 <p>COGARCH versus Ornstein–Uhlenbeck models
 415
 /
-ω : 
+ω : 
 0&lt;s≤t0 |∆Ls(ω)| &lt; ε
 0
 . Then P(Dε,k) &gt; 0, and with c1 and c2 as before
 it is the case that, on Dε,k,
  t0
 0
-e−Xs−dLs =
-
-0<s≤t0
+e−Xs−dLs =</p>
+<p>0<s≤t0
 e−Xs−∆Ls + γ0
  t0
 0
 e−Xs−ds ≥−c2ε + γ0c1t0,
 showing that P
- t0
+ t0
 0 e−Xs−dLs > 0</p>
 <blockquote>
 <p>0 when ε &lt; γ0c1t0/c2.
@@ -48695,7 +48694,7 @@ and
 Suppose further that (Lt)t≥0 is of finite variation. Let (σ2
 t )t≥0 be the stationary
 version of the volatility process, and Gt =
- t
+ t
 0 σs dLs the corresponding CO-
 GARCH process. Then if (−Lt)t≥0 is not a subordinator, for every t &gt; 0 there
 exists a positive constant C1,t such that
@@ -48716,30 +48715,25 @@ Then from (2.7)
 σs =
 H
 Asσ2
-0 + Bs =
-
-Asσ0 +
-Bs
-
-Asσ2
-0 + Bs +
-
-Asσ2
+0 + Bs =</p>
+</blockquote>
+<p>Asσ0 +
+Bs</p>
+<p>Asσ2
+0 + Bs +</p>
+<p>Asσ2
 0
 .
 Defining
 Yt := σ0
  t
-0
-
-As dLs,
+0</p>
+<p>As dLs,
 ζs :=
-Bs
-
-Asσ2
-0 + Bs +
-
-Asσ2
+Bs</p>
+<p>Asσ2
+0 + Bs +</p>
+<p>Asσ2
 0
 ,
 and
@@ -48747,7 +48741,6 @@ Zt :=
  t
 0
 ζs dLs,</p>
-</blockquote>
 <p>416
 C. Kl¨uppelberg et al.
 we obtain
@@ -48758,16 +48751,14 @@ Gt =
 t &gt; 0.
 From Theorem 5.2 we know that limx→∞x2κP(σ0 &gt; x) = C for some
 positive constant C. Suppose we show that there is an d′ &gt; 2κ such that
-E
-
- t
+E</p>
+<p>t
 0
-√As dLs
-
-d′
+√As dLs</p>
+<p>d′
 &lt; ∞. Then a classical result of Breiman [9], using the in-
 dependence of σ0 and
- t
+ t
 0
 √As dLs, yields the existence of strictly positive
 constants C1,t, C2,t such that
@@ -48777,22 +48768,21 @@ lim
 x→∞x2κP(Yt ≤−x) = C2,t,
 (5.7)
 provided P
- t
+ t
 0
 √As dLs &gt; 0</p>
 <blockquote>
 <p>0 and P
- t
+ t
 0
 √As dLs &lt; 0</p>
 <p>0, respectively.
-We shall verify the required moment condition with d′ := d/2. Note that
-
- t
-0
-
-As dLs
- ≤sup
+We shall verify the required moment condition with d′ := d/2. Note that</p>
+</blockquote>
+<p>t
+0</p>
+<p>As dLs
+ ≤sup
 0≤s≤t
 e−Xs/2 ∥Lt∥TV,
 where ∥Lt∥TV denotes the total variation of (Ls)0≤s≤t on [0, t], and we also
@@ -48800,18 +48790,16 @@ have that E sup0≤s≤t e−d′Xs &lt; ∞since Ee−d′X1 &lt; ∞(as in the
 Theorem 5.2), and that E∥Lt∥2d′
 TV is finite since E|L1|2d′ is finite by assumption
 (see Sato [24], Theorem 21.9); also, it follows from H¨older’s inequality that
-E
-
-sup
+E</p>
+<p>sup
 0≤s≤t
 e−Xs/2∥Lt∥TV
-d′
-≤
-
-E sup
+d′
+≤</p>
+<p>E sup
 0≤s≤t
 e−d′Xs
-1/2 
+1/2 
 E∥Lt∥2d′
 TV
 1/2
@@ -48819,43 +48807,41 @@ TV
 So the moment condition is established, with d′ = d/2 &gt; 2κ.
 To get an estimate for Zt, note that Xu ≤−u log δ by (2.6), so that for
 0 ≤s ≤t,
-ζs ≤
-
-Bs =
-
-β
-
-As
-s
+ζs ≤</p>
+<p>Bs =</p>
+<p>β</p>
+<p>As</p>
+<blockquote>
+<p>s
 0
-eXu du ≤
-
-β
+eXu du ≤</p>
+</blockquote>
+<p>β
 √
-tδ−t
+tδ−t
 As.
 This implies, with d′ as above,
 E|Zt|d′ ≤βd′/2td′/2δ−d′t/2E
- sup
+ sup
 0≤s≤t
-e−Xs/2∥Lt∥TV
-
-d′
+e−Xs/2∥Lt∥TV</p>
+<p>d′
 &lt; ∞,
 as already shown. Now if P
- t
+ t
 0
 √As dLs &gt; 0</p>
+<blockquote>
 <p>0, i.e. (−Lt)t≥0 is not a
 subordinator by Lemma 5.2, an application of Lemma 5.1 to (5.7) gives the
 result. On the other hand, if P
- t
+ t
 0
 √As dLs &gt; 0</p>
 </blockquote>
 <p>= 0, i.e. if (−Lt)t≥0 is a
 subordinator, then also Gt =
- t
+ t
 0 σs dLs ≤0 a.s. The assertion for the left tail
 behaviour of Gt follows similarly.</p>
 <p>COGARCH versus Ornstein–Uhlenbeck models
@@ -48872,12 +48858,11 @@ t )t≥0 be the stationary version. Then,
 for any t &gt; 0 there is a constant Ct &gt; 0 such that
 lim
 x→∞xκP
- t
+ t
 0
 σ2
-sds &gt; x
-
-= Ct.
+sds &gt; x</p>
+<p>= Ct.
 6 Conclusion
 We have compared the probabilistic properties of both the stochastic volatil-
 ity model of Barndorff-Nielsen and Shephard and the COGARCH process.
@@ -49001,9 +48986,8 @@ predictable quadratic variation and optional quadratic variation of M.
 It is well-known (see, e.g., [9], [7] and references therein) that for any
 M ∈M2
 loc:
-⟨M⟩∞&lt; ∞a.s. ⇒
-
-[M, M]∞&lt; ∞a.s.
+⟨M⟩∞&lt; ∞a.s. ⇒</p>
+<p>[M, M]∞&lt; ∞a.s.
 lim
 t→∞Mt = M∞∈R a.s.
 (1.1)</p>
@@ -49038,9 +49022,8 @@ lim
 λ→∞λP</p>
 <p>⟨M⟩1/2
 ∞&gt; λ</p>
-<p>=
-
-2
+<p>=</p>
+<p>2
 π EM∞.
 For related topics see Az´ema, Gundy and Yor [1], Gundy [5], Galtchouk
 and Novikov [6], Takaoka, [14], Peskir and Shiryaev [13], and Vondra˘cek [15]).
@@ -49069,9 +49052,8 @@ lim
 λ→∞λP</p>
 <p>[M, M]1/2
 ∞&gt; λ</p>
-<p>=
-
-2
+<p>=</p>
+<p>2
 π EM∞.</p>
 <p>Tail Distributions of Supremum and Quadratic Variation
 423
@@ -49115,7 +49097,7 @@ M c, M d ∈M2
 loc are continuous and purely discontinuous martingales, re-
 spectively. Since ⟨M⟩= ⟨M c⟩+ ⟨M d⟩, the assumption ⟨M⟩∞&lt; ∞implies
 ⟨M c⟩∞&lt; ∞, ⟨M d⟩∞&lt; ∞. The jump process △M ≡△M d generates the
-integer-valued measure µ = µ(dt, dz) with µ((0, t] × A) = 
+integer-valued measure µ = µ(dt, dz) with µ((0, t] × A) = 
 s≤t
 I(△Ms ∈A).
 We denote by ν = ν(dt, dz) the compensator of µ. The condition |△M| ≤K
@@ -49131,9 +49113,8 @@ t =
 z</p>
 <p>µ(ds, dz) −ν(ds, dz)</p>
 <p>.
-Recall that
-
-|z|≤K zν({t}, dz) = 0 and, so that,</p>
+Recall that</p>
+<p>|z|≤K zν({t}, dz) = 0 and, so that,</p>
 <p>424
 R. Liptser and A. Novikov
 ⟨M d⟩t =
@@ -49142,10 +49123,9 @@ R. Liptser and A. Novikov
 <p>|z|≤K
 z2ν(ds, dz) &lt; ∞, t &gt; 0.
 Hence, ⟨M⟩∞&lt; ∞implies
- ∞
-0
-
-|z|≤K z2ν(ds, dz) &lt; ∞and the existence of
+ ∞
+0</p>
+<p>|z|≤K z2ν(ds, dz) &lt; ∞and the existence of
 the cumulant process (for λ ∈R)
 Gt(λ) =
  t
@@ -49161,7 +49141,7 @@ We emphasize that Gt(λ) increases in t ↑to G∞(λ) := limt→∞Gt(λ) &lt; 
 and △Gt(λ) ≥0.
 The process
 Et(λ) = exp
-λ2
+λ2
 2 ⟨M c⟩t + Gt(λ)
  (
 0&lt;s≤t</p>
@@ -49249,9 +49229,8 @@ We derive the desired statement from the relations
 lim
 λ→∞EM∞I{Sλ=∞} = EM∞,
 lim
-λ→∞EMSλI{Sλ&lt;∞} = −λP
-
-sup
+λ→∞EMSλI{Sλ&lt;∞} = −λP</p>
+<p>sup
 t≥0
 M −
 t &gt; λ</p>
@@ -49262,8 +49241,8 @@ By (i), EM −
 ∞&lt; ∞. Consequently, M −
 ∞&lt; ∞and, therefore, we have
 limλ→∞Sλ = ∞. The first part of (3.1) is implied by the inequality
-EM∞I{Sλ=∞} −EM∞
- ≤E|M∞|I{Sλ&lt;∞}
+EM∞I{Sλ=∞} −EM∞
+ ≤E|M∞|I{Sλ&lt;∞}
 and the Lebesgue dominated theorem. The second part in (3.1) follows from
 MSλI{Sλ&lt;∞} = −λI{Sλ&lt;∞} + (MSλ + λ)I{Sλ&lt;∞} since
 E|MSλ + λ|I{Sλ&lt;∞} ≤E|△MSλ|I{Sλ&lt;∞} ≤KP(Sλ &lt; ∞) −−−−→
@@ -49275,24 +49254,20 @@ Auxiliary lemmas
 Lemma 3.1. Under assumptions from the statement (iii) of Theorem 1.1,
 lim
 λ↓0 E 1
-λ
-
-1 −e−log E∞(λ)
+λ</p>
+<p>1 −e−log E∞(λ)
 = EM∞.
 Proof. With λ ≤ε for ε involved in (iii), by Proposition 2.1 we have the
 equality Ez∞(λ) = 1. Hence,
 E 1
-λ
-
-1 −e−log E∞(λ)
+λ</p>
+<p>1 −e−log E∞(λ)
 = E 1
-λ
-
-z∞(λ) −e−log E∞(λ)
+λ</p>
+<p>z∞(λ) −e−log E∞(λ)
 = E 1
-λ
-
-eλM∞−1</p>
+λ</p>
+<p>eλM∞−1</p>
 <p>e−log E∞(λ).
 The required statement follows from the relations
 lim
@@ -49302,35 +49277,32 @@ lim
 eλM∞−1</p>
 <p>= M∞,
 1
-λe−log E∞(λ)eλM∞−1
- ≤eεM∞
+λe−log E∞(λ)eλM∞−1
+ ≤eεM∞
 and EeεM∞&lt; ∞by the Lebesgue dominated theorem.
 Lemma 3.2. Under assumptions from the statement (iii) of Theorem 1.1,
 lim
 λ↓0 E 1
-λ
-
-1 −e−λ2
+λ</p>
+<p>1 −e−λ2
 2 ⟨M⟩∞
 = EM∞.
 Proof. According to Lemma 3.1, it suffices to show that
 lim
 λ↓0 E 1
 λ
-e−log E∞(λ) −e−λ2
+e−log E∞(λ) −e−λ2
 2 ⟨M⟩∞
- = 0.
+ = 0.
 (3.2)
 The verification of (3.2) uses the following estimates: for some C &gt; 0 and
 sufficiently small λ &gt; 0,
-0 &lt;
-
-1 −Cλ
-λ2
-2 ⟨M⟩∞≤log E∞(λ) ≤
-
-1 + Cλ
-λ2
+0 &lt;</p>
+<p>1 −Cλ
+λ2
+2 ⟨M⟩∞≤log E∞(λ) ≤</p>
+<p>1 + Cλ
+λ2
 2 ⟨M⟩∞.
 (3.3)
 The estimate from above is implied by log E∞(λ) ≤λ2
@@ -49350,9 +49322,8 @@ Gc
 where νc(dt, dz) := ν(dt, dz) −ν({t}, dz). Write
 log E∞(λ) = λ2
 2 ⟨M c⟩∞+ Gc
-∞(λ) +
-
-t&gt;0
+∞(λ) +</p>
+<p>t&gt;0
 log</p>
 <p>1 + △Gt(λ)</p>
 <p>≥λ2
@@ -49362,9 +49333,8 @@ log</p>
 <p>|z|≤K
 λ2
 2 z2νc(dt, dz)
-+
-
-t&gt;0
++</p>
+<p>t&gt;0
 log</p>
 <p>1 + Φ(λ, K)</p>
 <p>|z|≤K
@@ -49373,12 +49343,11 @@ log</p>
 <p>.
 (3.4)
 We choose λ so small to keep 1 −λKeλK &gt; 0 and estimate from below the
-“
+“
 t&gt;0 log” in the last line of (3.4) by applying log(1 + x) ≥x −1
 2x2, x ≥0.
-This gives the lower bound
-
-t&gt;0
+This gives the lower bound</p>
+<p>t&gt;0
 log</p>
 <p>1 + Φ(λ, K)</p>
 <p>|z|≤K
@@ -49407,20 +49376,17 @@ z4ν({t}, dz) ≤λ4K2
 4</p>
 <p>|z|≤K
 z2ν({t}, dz)
-providing the inequality
-
-t&gt;0
+providing the inequality</p>
+<p>t&gt;0
 log</p>
 <p>1 + Φ(λ, K)</p>
 <p>|z|≤K
 λ2
 2 z2ν({t}, dz)</p>
-<p>≥
-
-Φ(λ, K) −λ2
-8 K2Φ2(λ, K)
- 
-|z|≤K
+<p>≥</p>
+<p>Φ(λ, K) −λ2
+8 K2Φ2(λ, K)</p>
+<p>|z|≤K
 λ2
 2 z2ν({t}, dz).
 We choose λ so small to keep
@@ -49434,9 +49400,9 @@ From (3.3), we derive that</p>
 R. Liptser and A. Novikov
 1
 λ
-e−log E∞(λ) −e−λ2
+e−log E∞(λ) −e−λ2
 2 ⟨M⟩∞
- ≤C λ2
+ ≤C λ2
 2 ⟨M⟩∞e−λ2
 2 ⟨M⟩∞−−−→
 λ→0 0.
@@ -49521,28 +49487,23 @@ t≤τ
 (3.7)
 In order to establish (3.7), we use the following facts:
 - L is the purely discontinuous local martingale with
-[L, L]t =
-
-s≤t
-(△Ls)2 =
-
-s≤t</p>
+[L, L]t =</p>
+<p>s≤t
+(△Ls)2 =</p>
+<p>s≤t</p>
 <p>(△Ms)2 −△⟨M⟩s</p>
 <h1 id="2">2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
-<p>
-s≤t</p>
+<p>s≤t</p>
 <p>|z|≤K
 z2(µ({s}, dz) −ν({s}, dz)</p>
 <p>2
 ,
 - ⟨L⟩t =
- t
-0
-
-|z|≤K z4(ν(ds, dz) −
-s≤t
- 
-|z|≤K z2ν({s}, dz)
+ t
+0</p>
+<p>|z|≤K z4(ν(ds, dz) −
+s≤t</p>
+<p>|z|≤K z2ν({s}, dz)
 2
 ,</p>
 <p>Tail Distributions of Supremum and Quadratic Variation
@@ -49567,40 +49528,35 @@ K2⟨M⟩≥⟨L⟩), we have E⟨L⟩τ ≤K2E⟨M⟩τ, that is, (3.7) is vali
 By (3.7) and the fact that ⟨M⟩is a predictable process, the Lenglart–
 Rebolledo inequality (see, e.g., Theorem 1.9.3 in [9]) is applicable (notice that
 {supt≥0 |Lt|1/2 &gt; aλ} ≡{supt≥0 |Lt| &gt; a2λ2}), so that,
-P
-
-sup
+P</p>
+<p>sup
 t≥0
 |Lt|1/2 &gt; aλ</p>
 <p>≤λ5/2
 a4λ4 + P</p>
 <p>CK2⟨M⟩∞&gt; λ5/2
 = λ5/2
-a4λ4 + P
-
-⟨M⟩1/2
+a4λ4 + P</p>
+<p>⟨M⟩1/2
 ∞&gt; λ5/4/(C1/2K)</p>
 <p>.
 Hence, with r = 1/(C1/2K) and λr = rλ5/4,
-λP
-
-sup
+λP</p>
+<p>sup
 t≤Tx
 |Lt|1/2 &gt; aλ</p>
 <p>≤
 1
 a4λ1/2 +
 1
-rλ1/4 λrP
-
-⟨M⟩1/2
+rλ1/4 λrP</p>
+<p>⟨M⟩1/2
 ∞&gt; λr</p>
 <p>.
 (3.8)
 Now, (3.6) and (3.8) imply the inequality
-λP
-
-[M, M]1/2
+λP</p>
+<p>[M, M]1/2
 ∞&gt; λ</p>
 <p>≤(1 −a)−1λaP</p>
 <p>⟨M⟩1/2
@@ -49713,26 +49669,22 @@ Theorem. (Feller, [4], XIII.5, Example (c)) Let X be a nonnegative random
 variable such that lim
 λ↓0
 1
-λ
-
-1 −Ee−λ2
+λ</p>
+<p>1 −Ee−λ2
 2 X
 ∈R.
-Then,
-
-2
+Then,</p>
+<p>2
 π lim
 λ↓0
 1
-λ
-
-1 −Ee−λ2
+λ</p>
+<p>1 −Ee−λ2
 2 X
 = lim
 λ→∞λP(X1/2 &gt; λ).
-Letting X = ⟨M⟩∞, we find that
-
-2
+Letting X = ⟨M⟩∞, we find that</p>
+<p>2
 π lim
 λ↓0
 1
@@ -49746,21 +49698,18 @@ while, by Lemmas 3.1, 3.2 and 3.3,
 lim
 λ↓0
 1
-λ
-
-1 −Ee−λ2
+λ</p>
+<p>1 −Ee−λ2
 2 ⟨M⟩∞
-=
-
-2
+=</p>
+<p>2
 π EM∞,
 lim
 λ→∞λP</p>
 <p>[M, M]1/2
 ∞&gt; λ</p>
-<p>=
-
-2
+<p>=</p>
+<p>2
 π EM∞.</p>
 <p>Tail Distributions of Supremum and Quadratic Variation
 431
@@ -49781,18 +49730,16 @@ lim
 λ→∞λP</p>
 <p>⟨M⟩1/2
 ∞&gt; λ</p>
-<p>=
-
-2
+<p>=</p>
+<p>2
 π EM∞.
 Proof. Since (3.2) has to be verified only, by (3.9) we have
 1
 λ
-e−log E∞(λ) −e−λ2
+e−log E∞(λ) −e−λ2
 2 ⟨M⟩∞
- ≤
-
-ζ2 ∨|1 −(1 −ζ1λ)+|
+ ≤</p>
+<p>ζ2 ∨|1 −(1 −ζ1λ)+|
 λ
 λ2
 2 ⟨M⟩∞e−λ2
@@ -50053,13 +50000,11 @@ The following notation will be in force throughout the paper: ∆is the
 Laplace operator, Di = ∂/∂xi, i = 1, . . . , d, and summation over the repeated
 indices is assumed. The space of continuous functions is denoted by C, and
 Hγ
-2 , γ ∈R, is the Sobolev space
-
-f :</p>
+2 , γ ∈R, is the Sobolev space</p>
+<p>f :</p>
 <p>R
-| ˆf(y)|2(1 + |y|2)γdy &lt; ∞
-
-, where ˆf is the Fourier transform of f.
+| ˆf(y)|2(1 + |y|2)γdy &lt; ∞</p>
+<p>, where ˆf is the Fourier transform of f.
 2 Traditional Solutions of Linear Parabolic Equations
 Below is a summary of the Hilbert space theory of linear stochastic parabolic
 equations. The details can be found in the books [41] and [42]; see also [19].</p>
@@ -50102,9 +50047,8 @@ t ∈[0, T],
 (2.1)
 where T &lt; ∞is fixed and non-random and the summation convention is in
 force.
-Assume that, for all v ∈V ,
-
-k≥1
+Assume that, for all v ∈V ,</p>
+<p>k≥1
 ∥Mk(t)v∥2
 H &lt; ∞,
 t ∈[0, T].
@@ -50117,9 +50061,8 @@ H +
  T
 0
 ∥f(t)∥2
-V ′dt +
-
-k≥1
+V ′dt +</p>
+<p>k≥1
  T
 0
 ∥gk(t)∥2
@@ -50137,9 +50080,8 @@ there exists a measurable subset Ω′ of Ωwith P(Ω′) = 1, such that the 
 (u(t), v)H = (u0, v)H+
  t
 0
-⟨Au(s)+f(s), v⟩ds+
-
-k≥1
+⟨Au(s)+f(s), v⟩ds+</p>
+<p>k≥1
 (Mku(s)+gk(s), v)Hdwk(s)
 (2.4)
 holds on Ω′ for all t ∈[0, T].
@@ -50147,9 +50089,8 @@ Existence and uniqueness of the traditional solution for (2.1) can be es-
 tablished when the equation is parabolic.
 Definition 2.3 Equation (2.1) is called strongly parabolic if there exists a
 positive number ε and a real number C0 such that, for all v ∈V and t ∈[0, T],
-2⟨A(t)v, v⟩+
-
-k≥1
+2⟨A(t)v, v⟩+</p>
+<p>k≥1
 ∥M(t)kv∥2
 H + ε∥v∥2
 V ≤C0∥v∥2
@@ -50180,9 +50121,8 @@ H +
  T
 0
 ∥f(t)∥2
-V ′dt +
-
-k≥1
+V ′dt +</p>
+<p>k≥1
  T
 0
 ∥gk(t)∥2
@@ -50205,14 +50145,14 @@ c, σik, and ν are bounded measurable.
 x, y ∈Rd, t ∈[0, T].</p>
 <p>440
 S. Lototsky and B. Rozovskii
-(CL3) There is a positive number K such that, for all x ∈Rd, 
+(CL3) There is a positive number K such that, for all x ∈Rd, 
 k≥1 |νk(x)|2 ≤K.
 (CL4) The initial condition u0 ∈L2(Ω; L2(Rd)) is F0-measurable, the processes
 f ∈L2(Ω× [0, T]; H−1
 2 (Rd)) and gk ∈L2(Ω× [0, T]; L2(Rd)) are Ft-
-adapted, and 
+adapted, and 
 k≥1
- T
+ T
 0 E∥gk∥2
 L2(Rd)(t)dt &lt; ∞.
 Theorem 2.2. Under assumptions (CL1)–(CL4), equation (2.7) has a unique
@@ -50241,9 +50181,8 @@ L2(Rd) +
 ∥f∥2
 H−1
 2
-(Rd)(t)dt+
-
-k≥1
+(Rd)(t)dt+</p>
+<p>k≥1
  T
 0
 ∥gk∥2
@@ -50261,15 +50200,14 @@ tion dominates the stochastic part. Accordingly, there are two main ways to
 violate (2.5):
 1. The order of the operator M is more than half the order of the operator
 A. The equation du = uxdw(t) is an example.
-2. The value of 
+2. The value of 
 k ∥Mk(t)v∥2
 H is too large. This value can be either finite,
 as for the equation du(t, x) = uxx(t, x)dt + 5ux(t, x)dw(t), or infinite, as
 for the equation
 du(t, x) = ∆u(t, x)dt + σk(x)udwk, σk −CONS in L2(Rd), d ≥2. (2.9)
-Indeed, it is shown in [38] that, for equation (2.9), we have
-
-k≥1
+Indeed, it is shown in [38] that, for equation (2.9), we have</p>
+<p>k≥1
 ∥Mk(t)v∥2
 H = ∞
 in every Sobolev space Hγ.
@@ -50282,10 +50220,10 @@ possible collection of such tools.</p>
 Equations
 The central part of the white noise theory is the mathematical model for the
 derivative of the Brownian motion. In particular, the Itˆo integral
- t
+ t
 0 f(s)dw(s)
 is replaced with the integral
- t
+ t
 0 f(s) ⋄˙W(s)ds, where
 ˙W is the white noise
 process and ⋄is the Wick product. The white noise formulation is very dif-
@@ -50317,9 +50255,8 @@ Each ηk is an element of S [12, Section 2.2].
 Consider the collection of multi-indices
 J1 =
 /
-α = (αi, i ≥1) : αi ∈{0, 1, 2, . . .},
-
-i
+α = (αi, i ≥1) : αi ∈{0, 1, 2, . . .},</p>
+<p>i
 αi &lt; ∞
 0
 .
@@ -50351,11 +50288,10 @@ Theorem 3.1. The collection {ξα, α ∈J1} is an orthonormal basis in L2(S).
 Proof. This is a version of the classical result of Cameron and Martin [3]. In
 this particular form, the result is stated and proved in [12, Theorem 2.2.3].
 By Theorem 3.1, every element ϕ of L2(S) is represented as a Fourier series
-ϕ = 
-α ϕαξα, where ϕα =
-
-S′ ϕ(ω)ξα(ω)dµ, and ∥ϕ∥2
-L2(S) = 
+ϕ = 
+α ϕαξα, where ϕα =</p>
+<p>S′ ϕ(ω)ξα(ω)dµ, and ∥ϕ∥2
+L2(S) = 
 α∈J1 |ϕα|2.
 For α ∈J1 and q ∈R, we write
 (2N)qα =
@@ -50365,15 +50301,13 @@ j
 Definition 3.2 For ρ ∈[0, 1] and q ≥0,
 1. the space (S)ρ,q is the collection of elements ϕ from L2(S) such that
 ∥ϕ∥2
-ρ,q =
-
-α∈J1
+ρ,q =</p>
+<p>α∈J1
 (α!)ρ(2N)qα|ϕα|2 &lt; ∞;
 2. the space (S)−ρ,−q is the closure of L2(S) relative to the norm
 ∥ϕ∥2
-−ρ,−q =
-
-α∈J1
+−ρ,−q =</p>
+<p>α∈J1
 (α!)−ρ(2N)−qα|ϕα|2;
 (3.4)
 3. the space (S)ρ is the projective limit of (S)ρ,q as q changes over all non-
@@ -50391,7 +50325,7 @@ for every q ≥0.
 •
 The space (S)−ρ is the dual of (S)ρ and ϕ ∈(S)−ρ if and only if ϕ ∈
 (S)−ρ,−q for some q ≥0. Every element ϕ from (S)ρ is identified with a
-formal sum 
+formal sum 
 α∈J1 ϕαξα such that (3.4) holds for some q ≥0.</p>
 <p>Wiener Chaos for Stochastic Equations
 443
@@ -50404,22 +50338,19 @@ dratiev test functions. The spaces (S)−0 and (S)−1 are known as the spaces
 of Hida and Kondratiev distributions. Sometimes, the spaces (S)ρ and (S)−ρ,
 0 &lt; ρ ≤1, go under the name of Kondratiev test functions and Kondratiev
 distributions, respectively.
-Let h ∈S and hk =
-
-Rℓh(x)ηk(x)dx. Since the asymptotics of nth eigen-
+Let h ∈S and hk =</p>
+<p>Rℓh(x)ηk(x)dx. Since the asymptotics of nth eigen-
 value of the operator Λ in (3.1) is n1/d [11, Chapter 21] and Λkh ∈S for every
-positive integer k, it follows that
-
-k≥1
+positive integer k, it follows that</p>
+<p>k≥1
 |hk|2kq &lt; ∞
 (3.5)
 for every q ∈R.
 For α ∈J1 and hk as above, write hα = K
 j(hj)αj, and define the stochas-
 tic exponential
-E(h) =
-
-α∈J1
+E(h) =</p>
+<p>α∈J1
 hα
 √
 α!
@@ -50430,22 +50361,20 @@ properties:
 •
 E(h) ∈(S)ρ, 0 &lt; ρ &lt; 1;
 •
-For every q &gt; 0, there exists δ &gt; 0 such that E(h) ∈(S)1,q as long as
-
-k≥1 |hk|2 &lt; δ.
+For every q &gt; 0, there exists δ &gt; 0 such that E(h) ∈(S)1,q as long as</p>
+<p>k≥1 |hk|2 &lt; δ.
 Proof. Both properties are verified by direct calculation [12, Chapter 2].
-Definition 3.3 The S-transform Sϕ(h) of an element ϕ = 
+Definition 3.3 The S-transform Sϕ(h) of an element ϕ = 
 α∈J ϕαξα from
 (S)−ρ is the number
-Sϕ(h) =
-
-α∈J1
+Sϕ(h) =</p>
+<p>α∈J1
 hα
 √
 α!
 ϕα,
 (3.7)
-where h = 
+where h = 
 k≥1 hkηk ∈S and hα = K
 j(hj)αj.
 The definition implies that if ϕ ∈(S)−ρ,−q for some q ≥0, then Sϕ(h) =
@@ -50462,20 +50391,18 @@ S. Lototsky and B. Rozovskii
 the complex variable z.
 2. There exist positive numbers K1, K2 and an integer number n so that, for
 all h ∈S and all complex number z,
-|F(zh)| ≤K1 exp
-
-K2∥Λnh∥
+|F(zh)| ≤K1 exp</p>
+<p>K2∥Λnh∥
 2
 1−ρ
 L2(Rd)|z|
 2
-1−ρ
-
-.
+1−ρ</p>
+<p>.
 For ρ = 1, let U1 be the collection of mappings F from S to the complex
 numbers such that
 1′. There exist ε &gt; 0 and a positive integer n such that, for all h1, h2 ∈S with
-∥Λnh1∥L2(Rℓ) &lt; ε, the function of a complex variable z →F(h1 + h2z) is
+∥Λnh1∥L2(Rℓ) &lt; ε, the function of a complex variable z →F(h1 + h2z) is
 analytic at zero, and
 2′. There is a constant K &gt; 0 such that, for all h ∈S with ∥Λnh∥L2(Rℓ) &lt; ε,
 |F(h)| ≤K.
@@ -50607,9 +50534,8 @@ Equivalently, instead of the process W, the starting point can be a system
 of independent standard Wiener processes {wk, k ≥1} on F. Then, given
 a separable Hilbert space Y with an orthonormal basis {yk, k ≥1}, the
 corresponding cylindrical Brownian motion W is defined by
-Wy(t) =
-
-k≥1
+Wy(t) =</p>
+<p>k≥1
 (y, yk)Y wk(t).
 (4.2)
 Fix a non-random T ∈(0, ∞) and denote by FW
@@ -50632,9 +50558,8 @@ J =
 /
 α = (αk
 i , i, k ≥1) : αk
-i ∈{0, 1, 2, . . .},
-
-i,k
+i ∈{0, 1, 2, . . .},</p>
+<p>i,k
 αk
 i &lt; ∞
 0
@@ -50644,9 +50569,8 @@ i are
 not equal to zero. The upper and lower indices in αk
 i represent, respectively,
 the space and time components of the noise process W. For α ∈J , define
-|α| =
-
-i,k
+|α| =</p>
+<p>i,k
 αk
 i , α! =
 (
@@ -50709,9 +50633,8 @@ Theorem 4.1. The collection Ξ = {ξα, α ∈J } is an orthonormal basis in
 L2(W).
 We refer to Ξ as the Cameron–Martin basis in L2(W). By Theorem 4.1, every
 element v of L2(W) can be written as
-v =
-
-α∈J
+v =</p>
+<p>α∈J
 vαξα,
 where vα = E(vξα).
 We now define the space D(L2(W)) of test functions and the space
@@ -50719,9 +50642,8 @@ D′(L2(W); X) of X-valued generalized random elements.
 Definition 4.2
 (1) The space D(L2(W)) is the collection of elements from L2(W) that can
 be written in the form
-v =
-
-α∈Jv
+v =</p>
+<p>α∈Jv
 vαξα
 for some vα ∈R and a finite subset Jv of J .
 (2) A sequence vn converges to v in D(L2(W)) if and only if Jvn ⊆Jv for all
@@ -50732,15 +50654,13 @@ of X-valued generalized random elements as the collection of continuous linear
 maps from the linear topological space D(L2(W)) to X. Similarly, the elements
 of D′(L2(W); L1((0, T); X)) are called X-valued generalized random processes.
 The element u of D′(L2(W); X) can be identified with a formal Fourier series
-u =
-
-α∈J
+u =</p>
+<p>α∈J
 uαξα,
 where uα ∈X are the generalized Fourier coefficients of u. For such a series
 and v ∈D(L2(W)), we have
-u(v) =
-
-α∈Jv
+u(v) =</p>
+<p>α∈Jv
 vαuα.</p>
 <p>Wiener Chaos for Stochastic Equations
 449
@@ -50756,9 +50676,8 @@ spaces other than L2(W). Let H be a real separable Hilbert space with an
 orthonormal basis {ek, k ≥1}. Define the space
 D(H) =
 /
-v ∈H : v =
-
-k∈Jv
+v ∈H : v =</p>
+<p>k∈Jv
 vkek, vk ∈R, Jv −a finite subset of {1, 2, . . .}
 0
 .
@@ -50767,18 +50686,18 @@ for all n and lim
 n→∞|vn,k −vk| = 0 for all k.
 For a linear topological space X, D′(H; X) is the space of continuous linear
 maps from D(H) to X. An element g of D′(H; X) can be identified with a
-formal series 
+formal series 
 k≥1 gk ⊗ek such that gk = g(ek) ∈X and, for v ∈D(H),
-g(v) = 
-k∈Jv gkvk. If X = R and 
+g(v) = 
+k∈Jv gkvk. If X = R and 
 k≥1 g2
-k &lt; ∞, then g = 
+k &lt; ∞, then g = 
 k≥1 gkek ∈
 H and g(v) = (g, v)H, the inner product in H. The space X is naturally
-imbedded into D′(H; X): if u ∈X, then 
+imbedded into D′(H; X): if u ∈X, then 
 k≥1 u ⊗ek ∈D′(H; X).
-A sequence gn = 
-k≥1 gn,k ⊗ek, n ≥1, converges to g = 
+A sequence gn = 
+k≥1 gn,k ⊗ek, n ≥1, converges to g = 
 k≥1 gk ⊗ek in
 D′(H; X) if and only if, for every k ≥1, lim
 n→∞gn,k = gk in the topology of X.
@@ -50786,13 +50705,12 @@ A collection {Lk, k ≥1} of linear operators from X1 to X2 naturally
 defines a linear operator L from D′(H; X1) to D′(H; X2):
 L
 
-
+
 k≥1
 gk ⊗ek
 
-=
-
-k≥1
+=</p>
+<p>k≥1
 Lk(gk) ⊗ek.
 Similarly, a linear operator L : D′(H; X1) →D′(H; X2) can be identified
 with a collection {Lk, k ≥1} of linear operators from X1 to X2 by setting
@@ -50811,44 +50729,38 @@ S. Lototsky and B. Rozovskii
 L1
 2(W) =
 /
-u ∈L2(W) :
-
-α∈J
+u ∈L2(W) :</p>
+<p>α∈J
 |α|u2
 α &lt; ∞
 0
 (5.1)
 to L2 (W; (L2((0, T)) × Y )). In particular,
-(Dξα)(t) =
-
-i,k
+(Dξα)(t) =</p>
+<p>i,k
 H
 αk
 i ξα−(i,k)mi(t)yk,
 (5.2)
-where α−(i, k) is the multi-index with the components
-
-α−(i, k)
+where α−(i, k) is the multi-index with the components</p>
+<p>α−(i, k)
 l
 j =
-max(αk
+max(αk
 i −1, 0), if i = j and k = l,
 αl
 j,
 otherwise.
 Note that, for each t ∈[0, T], Dξα(t) ∈D(L2(W)×Y ). Using (5.2), we extend
 the operator D by linearity to the space D′(L2(W)):
-D
-    
-α∈J
+D</p>
+<p>α∈J
 uαξα</p>
-<p>=
-
-α∈J
+<p>=</p>
+<p>α∈J
 
-uα
-
-i,k
+uα</p>
+<p>i,k
 H
 αk
 i ξα−(i,k)mi(t)yk
@@ -50859,12 +50771,11 @@ tablish connection between the Malliavin derivative and the stochastic Itˆo
 integral.
 If u is an arbitrary FW
 t -adapted process from L2 (W; L2((0, T); Y )), then
-u(t) = 
+u(t) = 
 k≥1 uk(t)yk, where the random variable uk(t) is FW
 t -measurable for
-each t and k, and
-
-k≥1
+each t and k, and</p>
+<p>k≥1
  T
 0
 E|uk(t)|2dt &lt; ∞.
@@ -50872,17 +50783,16 @@ We define the stochastic Itˆo integral
 U(t) =
  t
 0
-(u(s), dW(s))Y =
-
-k≥1
+(u(s), dW(s))Y =</p>
+<p>k≥1
  t
 0
 uk(s)dwk(s).
 (5.3)
 Note that U(t) is FW
-t -measurable and E|U(t)|2 = 
+t -measurable and E|U(t)|2 = 
 k≥1
- t
+ t
 0 E|uk(s)|2ds.
 The next result establishes a connection between the Malliavin derivative
 and the stochastic Itˆo integral.
@@ -50900,29 +50810,26 @@ E(U(t)ξα) = E
 Proof. Define ξα(t) = E(ξα|FW
 t ). It is known (see [33] or Remark 8.2 below)
 that
-dξα(t) =
-
-i,k
+dξα(t) =</p>
+<p>i,k
 H
 αk
 i ξα−(i,k)(t)mi(t)dwk(t).
 (5.5)
 Due to FW
 t -measurability of uk(t), we have
-uk,α(t) = E
-
-uk(t)E(ξα|FW
+uk,α(t) = E</p>
+<p>uk(t)E(ξα|FW
 t )</p>
 <p>= E(uk(t)ξα(t)).
 (5.6)
-The definition of U implies dU(t) = 
+The definition of U implies dU(t) = 
 k≥1 uk(t)dwk(t), so that, by (5.5),
 (5.6), and the Itˆo formula,
 Uα(t) = E(U(t)ξα) =
  t
-0
-
-i,k
+0</p>
+<p>i,k
 H
 αk
 i uk,α−(i,k)(s)mi(s)ds.
@@ -50930,33 +50837,29 @@ i uk,α−(i,k)(s)mi(s)ds.
 Together with (5.2), the last equality implies (5.4). Lemma 5.1 is proved.
 Note that the coefficients uk,α of u ∈L2(W; L2((0, T); H)) belong to
 L2((0, T)). We therefore define uk,α,i =
- T
+ T
 0 uk,α(t)mi(t)dt. Then, by (5.7),
-Uα(T) =
-
-i,k
+Uα(T) =</p>
+<p>i,k
 H
 αk
 i uk,α−(i,k),i.
 (5.8)
-Since U(T) = 
+Since U(T) = 
 α∈J Uα(T)ξα, we shift the summation index in (5.8) and
 conclude that
-U(T) =
-
-α∈J
-
-i,k
+U(T) =</p>
+<p>α∈J</p>
+<p>i,k
 H
 αk
 i + 1uk,α,iξα+(i,k),
 (5.9)
-where
-
-α+(i, k)
+where</p>
+<p>α+(i, k)
 l
 j =
-αk
+αk
 i + 1, if i = j and k = l,
 αl
 j,
@@ -50974,16 +50877,15 @@ t -adapted process from L2 (W; L2((0, T))) such that
 (D∗
 ku)α(t) =
  t
-0
-
-i
+0</p>
+<p>i
 H
 αk
 i uα−(i,k)(s)mi(s)ds.
 (5.11)
 If u ∈L2 (W; L2((0, T); Y )) is FW
 t -adapted, then u is in the domain of the
-operator δ and δ(uI(s &lt; t)) = 
+operator δ and δ(uI(s &lt; t)) = 
 k≥1(D∗
 kuk)(t).
 We now extend the operators D∗
@@ -50995,9 +50897,8 @@ Definition 5.1 If u is an X-valued generalized random process, then D∗
 ku is
 the X-valued generalized random process such that
 (D∗
-ku)α(t) =
-
-i
+ku)α(t) =</p>
+<p>i
  t
 0
 uα−(i,k)(s)
@@ -51005,18 +50906,16 @@ H
 αk
 i mi(s)ds.
 (5.12)
-If g ∈D′
+If g ∈D′
 Y ; D′ (L2(W); L1((0, T); X))</p>
 <p>, then D∗g is the X-valued generalized
-random process such that, for g = 
+random process such that, for g = 
 k≥1 gk⊗yk, gk ∈D′(L2(W); L1((0, T); X)),
-(D∗g)α(t) =
-
-k
+(D∗g)α(t) =</p>
+<p>k
 (D∗
-kgk)α(t) =
-
-i,k
+kgk)α(t) =</p>
+<p>i,k
  t
 0
 gk,α−(i,k)(s)
@@ -51032,11 +50931,10 @@ g(Dξα(s))(s)ds.
 (5.14)
 Indeed, by linearity,
 gk
-H
+H
 αk
-i mi(s)ξα−(i,k)
-
-(s) =
+i mi(s)ξα−(i,k)</p>
+<p>(s) =
 H
 αk
 i mi(s)gk,α−(i,k))(s).
@@ -51055,9 +50953,8 @@ kun)α∥L1((0,T );X) = 0.
 Using (5.12), we find that
 ∥(D∗
 ku)α −(D∗
-kun)α∥X(t) ≤
-
-i
+kun)α∥X(t) ≤</p>
+<p>i
  T
 0
 H
@@ -51067,9 +50964,8 @@ Note that the sum contains finitely many terms. By assumption, |mi(t)| ≤Ci,
 and so
 ∥(D∗
 ku)α−(D∗
-kun)α∥L1((0,T );X) ≤C(α)
-
-i
+kun)α∥L1((0,T );X) ≤C(α)</p>
+<p>i
 H
 αk
 i ∥uα−(i,k)−un,α−(i,k)∥L1((0,T );X).
@@ -51113,9 +51009,8 @@ if and only if the equality
 u(t) = u0 +
  t
 0
-(Au + f)(s)ds +
-
-k≥1
+(Au + f)(s)ds +</p>
+<p>k≥1
 (D∗
 k(Mku + gk))(t)
 (6.3)
@@ -51129,9 +51024,8 @@ uα(t) = u0,α +
 0
 (Au+f)α(s)ds+
  t
-0
-
-i,k
+0</p>
+<p>i,k
 H
 αk
 i (Mku+gk)α−(i,k)(s)mi(s)ds.
@@ -51165,15 +51059,13 @@ precise result is as follows.
 Theorem 6.1. If, for every v0 ∈U and ϕ ∈L1((0, T); X), equation (6.1) has
 a unique w(A, X) solution v(t) = V (t, v0, ϕ), then equation (6.2) has a unique
 w(A, X) Wiener Chaos solution such that
-uα(t) = V (t, u0,α, fα) +
-
-i,k
+uα(t) = V (t, u0,α, fα) +</p>
+<p>i,k
 H
 αk
 i V (t, 0, miMkuα−(i,k))
-+
-
-i,k
++</p>
+<p>i,k
 H
 αk
 i V (t, 0, migk,α−(i,k)).
@@ -51247,9 +51139,8 @@ Let u(0)(t) = V (t, u0, 0) be the solution of (6.4) for |α| = 0. For α ∈J wi
 induction as follows:
 F 1(t; α) = V (t, 0, miMku(0)) if Kα = {(i, k)};
 F n(t; α) =
-n
-
-j=1
+n</p>
+<p>j=1
 V (t, 0, mijMkjF n−1(·; α−(ij, kj)))
 if Kα = {(i1, k1), . . . , (in, kn)}.
 (6.8)
@@ -51269,9 +51160,8 @@ If ¯uα(t) =
 ¯u(t) =
  t
 0
-A¯uα(s)ds +
-
-i,k
+A¯uα(s)ds +</p>
+<p>i,k
  t
 0
 αk
@@ -51281,28 +51171,24 @@ If Kα = {(i1, k1), . . . , (in, kn)}, then, for every j = 1, . . . , n, the cha
 istic set Kα−(ij,kj) of α−(ij, kj) is obtained from Kα by removing the pair
 (ij, kj).
 •
-By the definition of the characteristic set,
-
-i,k
+By the definition of the characteristic set,</p>
+<p>i,k
 αk
 i mi(s)Mk¯uα−(i,k)(s) =
-n
-
-j=1
+n</p>
+<p>j=1
 mij(s)Mkj ¯uα−(ij,kj)(s).
 As a result, representation (6.9) follows by induction on |α| using (6.7):
 if |α| = n &gt; 1, then</p>
 <p>456
 S. Lototsky and B. Rozovskii
 ¯uα(t) =
-n
-
-j=1
+n</p>
+<p>j=1
 V (t, 0, mijMkj ¯uα−(ij,kj))
 =
-n
-
-j=1
+n</p>
+<p>j=1
 V (t, 0, mijMkjF (n−1)(·; α−(ij, kj)) = F n(t; α).
 (6.10)
 Theorem 6.2 is proved.
@@ -51322,9 +51208,8 @@ representation (6.9) becomes
 uα(t) =
 1
 √
-α!
-
-σ∈Pn
+α!</p>
+<p>σ∈Pn
  t
 0
  sn
@@ -51334,12 +51219,10 @@ uα(t) =
 0
 Φt,snMkσ(n) · · · Φs2,s1Mkσ(1)u(0)(s1)miσ(n)(sn) · · · miσ(1)(s1)ds1 . . . dsn.
 (6.12)
-Also,
-
-|α|=n
-uα(t)ξα =
-
-k1,...,kn≥1
+Also,</p>
+<p>|α|=n
+uα(t)ξα =</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -51351,14 +51234,12 @@ k1,...,kn≥1
 <p>Mk1u(0) + gk1(s1)</p>
 <p>dwk1(s1) · · · dwkn(sn), n ≥1,
 (6.13)
-and, for every Hilbert space X, the following energy equality holds:
-
-|α|=n
+and, for every Hilbert space X, the following energy equality holds:</p>
+<p>|α|=n
 ∥uα(t)∥2
 X =
-∞
-
-k1,...,kn=1
+∞</p>
+<p>k1,...,kn=1
  t
 0
  sn
@@ -51375,14 +51256,12 @@ u(ik)(t) =
  t
 0
 Φt,sMku(0)(s) mi(s)ds;
-(6.15)
-
-|α|=1
+(6.15)</p>
+<p>|α|=1
 ∥uα(t)∥2
 X =
-∞
-
-k=1
+∞</p>
+<p>k=1
  t
 0
 ∥Φt,sMku(0)(s)∥2
@@ -51397,14 +51276,13 @@ follows from (6.15) and the Parcevall identity. Similarly, equality (6.14) will
 follow from (6.12) after an application of an appropriate Parcevall’s identity.
 To carry out the necessary arguments when |α| &gt; 1, denote by J1 the
 collection of one-dimensional multi-indices β = (β1, β2, . . .) such that each βi
-is a non-negative integer and |β| = 
+is a non-negative integer and |β| = 
 i≥1 βi &lt; ∞. Given a β ∈J1 with |β| = n,
 we define Kβ = {i1, . . . , in}, the characteristic set of β and the function
 Eβ(s1, . . . , sn) =
 1
-√β!n!
-
-σ∈Pn
+√β!n!</p>
+<p>σ∈Pn
 mi1(sσ(1)) · · · min(sσ(n)).
 (6.17)
 By construction, the collection {Eβ, β ∈J1, |β| = n} is an orthonormal basis
@@ -51417,9 +51295,8 @@ G(t, k(n); s(n))
 =
 1
 √
-n!
-
-σ∈Pn
+n!</p>
+<p>σ∈Pn
 Φt,sσ(n)Mkn · · · Φsσ(2),sσ(1)Mk1u(0)(sσ(1))1sσ(1)&lt;···&lt;sσ(n)&lt;t(s(n)).
 (6.18)
 Then (6.12) becomes
@@ -51432,15 +51309,13 @@ then
 Kβ(α) = {i1, . . . , in}.
 Equality (6.19) means that, for fixed k(n), the function uα is a Fourier coef-
 ficient of the symmetric function G(t, k(n); s(n)) in the space L2((0, T)n; X).
-Parcevall’s identity and summation over all possible k(n) yield the equality
-
-|α|=n
+Parcevall’s identity and summation over all possible k(n) yield the equality</p>
+<p>|α|=n
 ∥uα(t)∥2
 X = 1
 n!
-∞
-
-k1,...,kn=1</p>
+∞</p>
+<p>k1,...,kn=1</p>
 <p>[0,T ]n ∥G(t, k(n); s(n))∥2
 Xdsn,
 which, due to (6.18), is the same as (6.14).</p>
@@ -51479,9 +51354,8 @@ t -measurability of u(t), we have
 E(u(t)ξα) = E(u(t)E(ξα|FW
 t )).
 Using the relation (5.5) and the Itˆo formula, we find that uα satisfy
-duα = a(uα)xxdt +
-
-i
+duα = a(uα)xxdt +</p>
+<p>i
 √αiσ(uα−(i))xmi(t)dt,
 which is precisely the propagator for equation (6.20). In other words, in the
 case 2a &gt; σ2 the traditional solution of (6.20) coincides with the Wiener
@@ -51516,14 +51390,12 @@ dimensional Wiener process, αk
 i = αi, and the propagator in this case becomes
 uα(t, x) = xI(|α| = 0) +
  t
-0
-
-i
+0</p>
+<p>i
 √αi(uα−(i)(s, x))xmi(s)ds.
 Then uα = 0 if |α| &gt; 1, and
-u(t, x) = x +
-
-i≥1
+u(t, x) = x +</p>
+<p>i≥1
 ξi
  t
 0
@@ -51532,13 +51404,11 @@ mi(s)ds = x + w(t).
 Even though Theorem 6.1 does not apply, the above arguments show that
 u(t, x) = x + w(t) is the unique w(A, X) Wiener Chaos solution of (6.21) for
 suitable spaces A and X, for example,
-X =
-
-f :</p>
+X =</p>
+<p>f :</p>
 <p>R
-(1 + x2)−2f 2(x)dx &lt; ∞
-
-and A = {f : f, f ′ ∈X}.
+(1 + x2)−2f 2(x)dx &lt; ∞</p>
+<p>and A = {f : f, f ′ ∈X}.
 Section 14 provides a more detailed analysis of equation (6.21).
 If equation (6.2) is anticipating, that is, the initial condition is not de-
 terministic and/or the free terms f, g are not FW
@@ -51553,9 +51423,8 @@ with initial condition u(0, x) = x2w(T). Since w(T) =
 √
 Tξ1, we find that
 (uα)t(t, x) = 1
-2(uα)xx(t, x) +
-
-i
+2(uα)xx(t, x) +</p>
+<p>i
 √αimi(t)(uα−(i))x(t, x)
 (6.24)
 with initial condition uα(0, x) =
@@ -51563,16 +51432,14 @@ with initial condition uα(0, x) =
 Tx2I(|α| = 1, α1 = 1). By Theorem 6.1,
 there exists a unique w(A, X) Wiener Chaos solution of (6.23) for suitable
 spaces A and X. For example, we can take
-X =
-
-f :</p>
+X =</p>
+<p>f :</p>
 <p>R
-(1 + x2)−8f 2(x)dx &lt; ∞
-
-and A = {f : f, f ′, f ′′ ∈X}.
+(1 + x2)−8f 2(x)dx &lt; ∞</p>
+<p>and A = {f : f, f ′, f ′′ ∈X}.
 System (6.24) can be solved explicitly. Indeed, uα ≡0 if |α| = 0 or |α| &gt; 3 or
 if α1 = 0. Otherwise, writing Mi(t) =
- t
+ t
 0 mi(s)ds, we find:</p>
 <p>460
 S. Lototsky and B. Rozovskii
@@ -51585,9 +51452,8 @@ uα(t, x) = 2
 uα(t, x) = 2
 √
 T xMi(t), if |α| = 2, α1 = αi = 1, 1 &lt; i;
-uα(t, x) =
-
-6
+uα(t, x) =</p>
+<p>6
 T t2, if |α| = 3, α1 = 3;
 uα(t, x) = 2
 √
@@ -51600,9 +51466,8 @@ uα(t, x) = 2
 √
 T Mi(t)Mj(t), if |α| = 3, α1 = αi = αj = 1, 1 &lt; i &lt; j.
 Then
-u(t, x) =
-
-α∈J
+u(t, x) =</p>
+<p>α∈J
 uαξα = w(T)w2(t)−2tw(t)+2(W(T)w(t)−t)x+x2w(T) (6.25)
 is the Wiener Chaos solution of (6.23). It can be verified using the properties
 of the Skorohod integral [37] that the function u defined by (6.25) satisfies
@@ -51625,9 +51490,8 @@ efficients in a Banach space X.
 Definition 7.1 Given a collection {rα, α ∈J } of positive numbers, the space
 RL2(W; X) is the closure of D(L2(W); X) with respect to the norm
 ∥v∥2
-RL2(W;X) :=
-
-α∈J
+RL2(W;X) :=</p>
+<p>α∈J
 r2
 α∥vα∥2
 X.
@@ -51662,33 +51526,31 @@ Definition 3.2.
 The structure of weights in the spaces L2,Q and (S)ρ,γ is different, and
 in general these two classes of spaces are not related. There exist generalized
 random elements that belong to some L2,Q(W; X), but do not belong to any
-(S)ρ,γ(X). For example, u = 
+(S)ρ,γ(X). For example, u = 
 k≥1 ek2ξ1,k belongs to L2,Q(W) with qk =
-e−2k2, but to no (S)ρ,γ, because the sum 
+e−2k2, but to no (S)ρ,γ, because the sum 
 k≥1 e2k2(k!)ρ(2k)γ diverges for
 every ρ, γ ∈R. Similarly, there exist generalized random elements that belong
-to some (S)ρ,γ(X), but to no L2,Q(W; X). For example, u = 
+to some (S)ρ,γ(X), but to no L2,Q(W; X). For example, u = 
 n≥1
 √
 n!ξ(n),
 where (n) is the multi-index with α1
 1 = n and αk
 i = 0 elsewhere, belongs to
-(S)−1,−1, but does not belong to any L2,Q(W), because the sum 
+(S)−1,−1, but does not belong to any L2,Q(W), because the sum 
 n≥1 qnn!
 diverges for every q &gt; 0.
 The next result is the space-time analog of Proposition 2.3.3 in [12].
-Proposition 7.1 The sum
-
-α∈J
+Proposition 7.1 The sum</p>
+<p>α∈J
 (
 i,k≥1
 (2ik)−γαk
 i
 converges if and only if γ &gt; 1.
-Proof. Note that
-
-α∈J
+Proof. Note that</p>
+<p>α∈J
 (
 i,k≥1
 (2ik)−γαk
@@ -51696,7 +51558,7 @@ i =
 (
 i,k≥1
 
-
+
 n≥0
 ((2ik)−γ)n
 
@@ -51707,8 +51569,8 @@ i,k
 (1 −(2ik)−γ), γ &gt; 0
 (7.1)
 The infinite product on the right of (7.1) converges if and only if each of the
-sums 
-i≥1 i−γ, 
+sums 
+i≥1 i−γ, 
 k≥1 k−γ converges, that is, if an only if γ &gt; 1.
 Corollary 7.1 For every u ∈D′(W; X), there exists an operator R such that
 Ru ∈L2(W; X).</p>
@@ -51726,9 +51588,8 @@ i,k≥1
 i .
 Then
 ∥Ru∥2
-L2(W;X) =
-
-α∈J
+L2(W;X) =</p>
+<p>α∈J
 ∥uα∥2
 X
 1 + ∥uα∥2
@@ -51736,9 +51597,8 @@ X
 (
 i,k≥1
 (2ik)−2αk
-i ≤
-
-α∈J
+i ≤</p>
+<p>α∈J
 (
 i,k≥1
 (2ik)−2αk
@@ -51754,9 +51614,8 @@ vα(t) = (Ru0)α +
 (Av + Rf)α(s)ds
 +
  t
-0
-
-i,k
+0</p>
+<p>i,k
 H
 αk
 i
@@ -51785,9 +51644,8 @@ vα(t) = (Qu0)α +
 (Av + Qf)α(s)ds
 +
  t
-0
-
-i,k
+0</p>
+<p>i,k
 H
 αk
 i (Mkv + Qgk)α−(i,k)(s)qkmi(s)ds.
@@ -51813,7 +51671,7 @@ v(t) = (Qu)0 +
 (Mv(s) + Qg(s), dW Q(s))Y ,
 (7.5)
 where, for h ∈Y , W Q
-h (t) = 
+h (t) = 
 k≥1(h, yk)Y qkwk(t).
 The following examples demonstrate how the operator Q helps with the
 analysis of various stochastic evolution equations.
@@ -51854,24 +51712,22 @@ Example 7.2 The Wiener Chaos solutions can be constructed for stochastic
 ordinary differential equations. Consider, for example,
 u(t) = 1 +
  t
-0
-
-k≥1
+0</p>
+<p>k≥1
 u(s)dwk(s),
 (7.7)
 which clearly does not have a traditional solution. On the other hand,
 the unique w(R, R) Wiener Chaos solution of this equation belongs to
-L2,Q (W; L2((0, T)) for every Q satisfying 
+L2,Q (W; L2((0, T)) for every Q satisfying 
 k q2
 k &lt; ∞. Indeed, for (7.7), equa-
 tion (7.5) becomes
 v(t) = 1 +
  t
-0
-
-k
+0</p>
+<p>k
 v(s)qkdwk(s).
-If 
+If 
 k q2
 k &lt; ∞, then the traditional solution of this equation exists and belongs
 to L2 (W; L2((0, T))).</p>
@@ -51901,22 +51757,21 @@ E(h) ∈(S)ρ,γ for ρ ∈[0, 1) and γ ≥0.
 •
 E(h) ∈(S)1,γ, γ ≥0, as long as ∥h∥2
 L2((0,T );Y ) is sufficiently small.
-Proof. Recall that, if h ∈D(L2((0, T); Y )), then h(t) = 
+Proof. Recall that, if h ∈D(L2((0, T); Y )), then h(t) = 
 i,k∈Ih hk,imi(t)yk,
 where Ih is a finite set. Direct computations show that
 E(h) =
 (
 i,k
 
-
+
 n≥0
 Hn(ξik)
 n!
 (hk,i)n
 
-=
-
-α∈J
+=</p>
+<p>α∈J
 hα
 √
 α!
@@ -51934,7 +51789,7 @@ Consequently, for every sequence Q of positive numbers,
 ∥E(h)∥2
 L2,Q(W) = exp
 
-
+
 i,k∈Ih
 h2
 k,iq2
@@ -51944,9 +51799,8 @@ k
 (7.9)
 Similarly, for ρ ∈[0, 1) and γ ≥0,
 ∥E(h)∥2
-(S)ρ,γ =
-
-α∈J
+(S)ρ,γ =</p>
+<p>α∈J
 (
 i,k
 ((2ik)γhk,i)2αk
@@ -51957,7 +51811,7 @@ i !)1−ρ
 (
 i,k∈Ih
 
-
+
 n≥0
 ((2ik)γhk,i)2n
 (n!)1−ρ
@@ -51966,9 +51820,8 @@ n≥0
 (7.10)
 and, for ρ = 1,
 ∥E(h)∥2
-(S)1,γ =
-
-α∈J
+(S)1,γ =</p>
+<p>α∈J
 (
 i,k
 ((2ik)γhk,i)2αk
@@ -51976,16 +51829,15 @@ i =
 (
 i,k∈Ih
 
-
+
 n≥0
 ((2ik)γhk,i)2n
 
 &lt; ∞,
 (7.11)
 if 2</p>
-<p>max(m,n)∈Ih)(mn)γ
- 
-i,k h2
+<p>max(m,n)∈Ih)(mn)γ</p>
+<p>i,k h2
 k,i &lt; 1. Lemma 7.1 is proved.</p>
 <p>Wiener Chaos for Stochastic Equations
 465
@@ -51996,9 +51848,8 @@ quently in every L2,Q(W) and every (S)ρ,γ, −1 &lt; ρ ≤1, γ ∈R.
 Definition 7.2 If u ∈L2,Q(W; X) for some Q, or if u ∈I
 q≥0(S)−ρ,−γ(X),
 0 ≤ρ ≤1, then the deterministic function
-Su(h) =
-
-α∈J
+Su(h) =</p>
+<p>α∈J
 uαhα
 √
 α!
@@ -52028,7 +51879,7 @@ negative if and only if Qu ≥0.
 For example, the solution of equation (7.7) is non-negative because
 Qu(t) = exp
 
-
+
 k≥1
 (qkwk(t) −(1/2)q2
 k)
@@ -52055,9 +51906,8 @@ i Su(h)
 i
 k,i
 
-
-
-h=0
+</p>
+<p>h=0
 .
 (7.13)</p>
 <p>466
@@ -52078,7 +51928,7 @@ To make the presentation shorter, we shall call an X-valued generalized
 random element S-admissible if and only if it belongs to L2,Q(FW ; X) for
 some Q or to (S)ρ,q(X) for some ρ ∈[−1, 1] and q ∈R. It was shown in
 Section 7 that, for every S-admissible u, the S-transform Su(h) is defined
-when h = 
+when h = 
 i,k hk,imiyk ∈D(L2((0, T); Y )) and is an analytic function of
 hk,i in some neighborhood of h = 0.
 The next result describes the S-transform of the Wiener Chaos solution.
@@ -52093,70 +51943,59 @@ L2((0,T );Y ) sufficiently small,
 the function v = Su(h) is a w(A, X) solution of the deterministic equation
 v(t) = Su0(h) +
  t
-0
-
-Av + Sf(h) + (Mkv + Sgk(h))hk</p>
+0</p>
+<p>Av + Sf(h) + (Mkv + Sgk(h))hk</p>
 <p>(s)ds.
 (8.2)
 Proof. By assumption, Su(h) exists for suitable functions h. Then the S-
 transformed equation (8.2) follows from the definition of the S-transform
 (7.12) and the propagator equation (6.4) satisfied by the generalized Fourier
 coefficients of u. Indeed, continuity of operator A implies
-S(Au)(h) =
-
-α
+S(Au)(h) =</p>
+<p>α
 hα
 √
 α!
-Auα = A
-
-α
+Auα = A</p>
+<p>α
 hα
 √
 α!
 uα = A(Su(h)).</p>
 <p>Wiener Chaos for Stochastic Equations
 467
-Similarly,
-
-α
+Similarly,</p>
+<p>α
 hα
 √
-α!
-
-i,k
+α!</p>
+<p>i,k
 H
 αk
-i Mkuα−(i,k)mi =
-
-α
-
-i,k
-hα−(i,k)
-
-α−(i, k)!
+i Mkuα−(i,k)mi =</p>
+<p>α</p>
+<p>i,k
+hα−(i,k)</p>
+<p>α−(i, k)!
 Mkuα−(i,k)mihk,i
-=
-
-i,k
-    
-α
+=</p>
+<p>i,k</p>
+<p>α
 hα
 √αMkuα</p>
 <p>mihk,i = Mk(Su(h))hk.
 Computations for the other terms are similar. Theorem 8.1 is proved.
 Remark 8.1 If h ∈D(L2((0, T); Y )) and
 Et(h) = exp
- t
+ t
 0
 (h(s), dW(s))Y −1
 2
  t
 0
 ∥h(t)∥2
-Y dt
-
-,
+Y dt</p>
+<p>,
 (8.3)
 then, by the Itˆo formula,
 dEt(h) = Et(h)(h(t), dW(t))Y .
@@ -52183,9 +52022,8 @@ i ET (h)
 i
 k,i
 
-
-
-h=0
+</p>
+<p>h=0
 ,
 we arrive at representation (5.5) for E(ξα|FW
 t ).
@@ -52213,12 +52051,11 @@ i v(t; h)
 i
 k,i
 
-
-
-h=0
+</p>
+<p>h=0
 .
 (8.5)
-Then the generalized random process u(t) = 
+Then the generalized random process u(t) = 
 α∈J uα(t)ξα is a w(A, X)
 Wiener Chaos solution of (8.1).</p>
 <p>468
@@ -52242,9 +52079,8 @@ t -adapted random processes f and gk so that
 1. An FW
 t -adapted traditional solution of (8.1) is also a Wiener Chaos so-
 lution.
-2. If u is a w(V, V ′) Wiener Chaos solution of (8.1) such that
-
-α∈J
+2. If u is a w(V, V ′) Wiener Chaos solution of (8.1) such that</p>
+<p>α∈J
      T
 0
 ∥uα(t)∥2
@@ -52277,13 +52113,11 @@ uh of u satisfies the equation
  t
 0
 ⟨f(s), ϕ⟩ds
-+
-
-α∈J
++</p>
+<p>α∈J
 hα
-α!
-
-i,k
+α!</p>
+<p>i,k
  t
 0
 H
@@ -52295,77 +52129,67 @@ i mi(s)</p>
 <p>Wiener Chaos for Stochastic Equations
 469
 If I(t) =
- t
+ t
 0(Mku(s), ϕ)Hdwk(s), then
 E(I(t)ξα(t)) =
  t
-0
-
-i,k
+0</p>
+<p>i,k
 H
 αk
 i mi(s)(Mkuα−(i,k)(s), ϕ)Hds.
 (8.7)
 Similarly,
-E
-
-ξα(t)
+E</p>
+<p>ξα(t)
  t
 0
-(gk(s), ϕ)Hdwk(s)
-
-=
-
-i,k
+(gk(s), ϕ)Hdwk(s)</p>
+<p>=</p>
+<p>i,k
  t
 0
 H
 αk
 i mi(s)(gk(s), ϕ)HI(|α| = 1)ds.
-Therefore,
-
-α∈J
+Therefore,</p>
+<p>α∈J
 hα
-α!
-
-i,k
+α!</p>
+<p>i,k
  t
 0
 H
 αk
 i mi(s)(Mkuα−(i,k)(s), ϕ)Hds
-= E
-
-E(h)
+= E</p>
+<p>E(h)
  t
 0
-((Mku(s), ϕ)H + (gk(s), ϕ)H) dwk(s)
-
-.
+((Mku(s), ϕ)H + (gk(s), ϕ)H) dwk(s)</p>
+<p>.
 As a result,
 E (E(h)(u(t), ϕ)H) = E (E(h)(u0, ϕ)H)
-+ E
-
-E(h)
++ E</p>
+<p>E(h)
  t
 0
-⟨Au(s), ϕ⟩ds
-
-+ E
-
-E(h)
+⟨Au(s), ϕ⟩ds</p>
+<ul>
+<li>E</li>
+</ul>
+<p>E(h)
  t
 0
-⟨f(s), ϕ⟩ds
-
-+ E
-
-E(h)
+⟨f(s), ϕ⟩ds</p>
+<ul>
+<li>E</li>
+</ul>
+<p>E(h)
  t
 0
-((Mku(s), ϕ)H + (gk(s), ϕ)H) dwk(s)
-
-.
+((Mku(s), ϕ)H + (gk(s), ϕ)H) dwk(s)</p>
+<p>.
 (8.8)
 Equality (8.8) and Remark 7.1 imply that, for each t and each ϕ, (2.4)
 holds with probability one. Continuity of u implies that, for each ϕ, a sin-
@@ -52392,21 +52216,20 @@ V ≤C1∥v∥2
 H, v ∈V, t ∈[0, T].
 (9.2)
 A2 There exists a real number C2 such that
-2⟨A(t)v, v⟩+
-
-k≥1
+2⟨A(t)v, v⟩+</p>
+<p>k≥1
 ∥Mk(t)v∥2
 H ≤C2∥v∥2
 H, v ∈V, t ∈[0, T].
 (9.3)
 A3 The initial condition u0 is non-random and belongs to H; the process
 f = f(t) is deterministic and
- T
+ T
 0 ∥f(t)∥2
 V ′dt &lt; ∞; each gk = gk(t) is a
-deterministic processes and 
+deterministic processes and 
 k≥1
- T
+ T
 0 ∥gk(t)∥2
 Hdt &lt; ∞.
 Note that condition (9.3) is weaker than (2.5). Traditional analysis of
@@ -52432,9 +52255,8 @@ H + Cf
  t
 0
 ∥f(s)∥2
-V ′ds +
-
-k≥1
+V ′ds +</p>
+<p>k≥1
  t
 0
 ∥gk(s)∥2
@@ -52445,11 +52267,9 @@ Hds
 where the number C2 is from (9.3) and the positive number Cf depends
 only on δ and C1 from (9.2).
 3. For every t ≤T,
-u(t) = u(0) +
-
-n≥1
-
-k1,...,kn≥1
+u(t) = u(0) +</p>
+<p>n≥1</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -52465,24 +52285,22 @@ where Φt,s is the semigroup of the operator A.</p>
 <p>Wiener Chaos for Stochastic Equations
 471
 Proof. Assumption A2 and the properties of the normal triple imply that
-there exists a positive number C∗such that
-
-k≥1
+there exists a positive number C∗such that</p>
+<p>k≥1
 ∥Mk(t)v∥2
 H ≤C∗∥v∥2
 V , v ∈V, t ∈[0, T].
 (9.6)
 Define the sequence Q such that
 qk =
- µδ
+ µδ
 C∗
-1/2
+1/2
 := q, k ≥1,
 (9.7)
 where µ ∈(0, 2) and δ is from Assumption A1. Then, by Assumption A2,
-2⟨Av, v⟩+
-
-k≥1
+2⟨Av, v⟩+</p>
+<p>k≥1
 q2∥Mkv∥2
 H ≤−(2 −µ)δ∥v∥2
 V + C1∥v∥2
@@ -52492,9 +52310,8 @@ It follows from Theorem 2.1 that equation
 v(t) = u0 +
  t
 0
-(Av + f)(s)ds +
-
-k≥1
+(Av + f)(s)ds +</p>
+<p>k≥1
  t
 0
 q(Mkv + gk)(s)dwk(s)
@@ -52515,15 +52332,13 @@ the result (9.10) is stronger than the conclusion of Theorem 2.1.
 The proof of (9.4) is based on the analysis of the propagator
 uα(t) = u0I(|α| = 0) +
  t
-0
-
-Auα(s) + f(s)I(|α| = 0)</p>
+0</p>
+<p>Auα(s) + f(s)I(|α| = 0)</p>
 <p>ds
 +
  t
-0
-
-i,k
+0</p>
+<p>i,k
 H
 αk
 i (Mkuα−(i,k)(s) + gk(s)I(|α| = 1))mi(s)ds.
@@ -52536,13 +52351,11 @@ ator A(t); Φt := Φt,0. One of the consequence of Theorem 2.1 is that, under
 Assumption A1, this semigroup exists and is strongly continuous in H.</p>
 <p>472
 S. Lototsky and B. Rozovskii
-Consider the homogeneous equation: f = gk = 0. By Corollary 6.1,
-
-|α|=n
+Consider the homogeneous equation: f = gk = 0. By Corollary 6.1,</p>
+<p>|α|=n
 ∥uα(t)∥2
-H =
-
-k1,...,kn≥1
+H =</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -52553,22 +52366,20 @@ k1,...,kn≥1
 ∥Φt,snMkn· · · Φs2,s1Mk1Φs1u0∥2
 Hdsn,
 (9.12)
-where dsn = ds1 . . . dsn. Define Fn(t) = 
+where dsn = ds1 . . . dsn. Define Fn(t) = 
 |α|=n ∥uα(t)∥2
 H, n ≥0. Direct
 application of (9.3) shows that
 d
-dtF0(t) ≤C2F0(t) −
-
-k≥1
+dtF0(t) ≤C2F0(t) −</p>
+<p>k≥1
 ∥MkΦtu0∥2
 H.
 (9.13)
 For n ≥1, equality (9.12) implies that
 d
-dtFn(t) =
-
-k1,...,kn≥1
+dtFn(t) =</p>
+<p>k1,...,kn≥1
  t
 0
  sn−1
@@ -52578,9 +52389,8 @@ k1,...,kn≥1
 0
 ∥MknΦt,sn−1 · · · Mk1Φs1u0∥2
 Hdsn−1
-+
-
-k1,...,kn≥1
++</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -52590,9 +52400,8 @@ k1,...,kn≥1
 0
 ⟨AΦt,snMkn . . . Φs1u0, Φt,snMkn . . . Φs1u0⟩dsn.
 (9.14)
-By (9.3),
-
-k1,...,kn≥1
+By (9.3),</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -52601,9 +52410,8 @@ k1,...,kn≥1
  s2
 0
 ⟨AΦt,snMkn . . . Φs1u0, Φt,snMkn . . . Φs1u0⟩dsn
-≤−
-
-k1,...,kn+1≥1
+≤−</p>
+<p>k1,...,kn+1≥1
  t
 0
  sn
@@ -52613,9 +52421,8 @@ k1,...,kn+1≥1
 0
 ∥Mkn+1Φt,snMkn . . . Mk1Φs1u0∥2
 Hdsn
-+C2
-
-k1,...,kn≥1
++C2</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -52629,9 +52436,8 @@ Hdsn.
 As a result, for n ≥1,
 d
 dtFn(t) ≤C2Fn(t)
-+
-
-k1,...,kn≥1
++</p>
+<p>k1,...,kn≥1
  t
 0
  sn−1
@@ -52641,9 +52447,8 @@ k1,...,kn≥1
 0
 ∥MknΦt,sn−1Mkn−1 . . . Mk1Φs1u0∥2
 Hdsn−1
-−
-
-k1,...,kn+1≥1
+−</p>
+<p>k1,...,kn+1≥1
  t
 0
  sn
@@ -52659,27 +52464,21 @@ Hdsn.
 Consequently,
 d
 dt
-N
-
-n=0
-
-|α|=n
+N</p>
+<p>n=0</p>
+<p>|α|=n
 ∥uα(t)∥2
 H ≤C2
-N
-
-n=0
-
-|α|=n
+N</p>
+<p>n=0</p>
+<p>|α|=n
 ∥uα(t)∥2
 H,
 (9.17)
 so that, by the Gronwall inequality,
-N
-
-n=0
-
-|α|=n
+N</p>
+<p>n=0</p>
+<p>|α|=n
 ∥uα(t)∥2
 H ≤eC2t∥u0∥2
 H
@@ -52695,9 +52494,8 @@ uα(t) =
 0
 (Auα(s) + f(s)I(|α| = 0))ds +
  t
-0
-
-i,k
+0</p>
+<p>i,k
 H
 αk
 i Mkuα−(i,k)(s)mi(s)ds.
@@ -52717,22 +52515,19 @@ H = 2
 ∥u(0)(s)∥2
 Hds −
  t
-0
-
-k≥1
+0</p>
+<p>k≥1
 ∥Mku(0)(s)∥2
 Hds + Cf
  t
 0
 ∥f(s)∥2
 V ′ds.
-By Corollary 6.1,
-
-|α|=n
+By Corollary 6.1,</p>
+<p>|α|=n
 ∥uα(t)∥2
-H =
-
-k1,...,kn≥1
+H =</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -52744,11 +52539,9 @@ k1,...,kn≥1
 Hdsn
 (9.21)
 for n ≥1. Then, repeating the calculations (9.14)–(9.16), we conclude that
-N
-
-n=1
-
-|α|=n
+N</p>
+<p>n=1</p>
+<p>|α|=n
 ∥uα(t)∥2
 H ≤Cf
  t
@@ -52757,11 +52550,9 @@ H ≤Cf
 V ′ds+C2
  t
 0
-N
-
-n=1
-
-|α|=n
+N</p>
+<p>n=1</p>
+<p>|α|=n
 ∥uα(s)∥2
 Hds, (9.22)
 and, by the Gronwall inequality,
@@ -52782,7 +52573,7 @@ Auα(s)ds
  t
 0
 
-
+
 i,k
 H
 αk
@@ -52798,13 +52589,11 @@ u(ik) =
 0
 Φt,sgk(s)mi(s)ds,
 (9.25)
-and then the arguments from the proof of Corollary 6.1 apply, resulting in
-
-|α|=n
+and then the arguments from the proof of Corollary 6.1 apply, resulting in</p>
+<p>|α|=n
 ∥uα(t)∥2
-H =
-
-k1,...,kn≥1
+H =</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -52814,49 +52603,41 @@ k1,...,kn≥1
 0
 ∥Φt,snMkn . . . Φs2,s1gk1(s1)∥2
 Hdsn
-for n ≥1. Note that
-
-|α|=1
+for n ≥1. Note that</p>
+<p>|α|=1
 ∥uα(t)∥2
-H =
-
-k≥1
+H =</p>
+<p>k≥1
  t
 0
 ∥gk(s)∥2
-Hds + 2
-
-k≥1
+Hds + 2</p>
+<p>k≥1
  t
 0
 ⟨AΦt,sgk(s), Φt,sgk(s)⟩ds.
 Then, repeating the calculations (9.14)–(9.16), we conclude that
-N
-
-n=1
-
-|α|=n
+N</p>
+<p>n=1</p>
+<p>|α|=n
 ∥uα(t)∥2
-H ≤
-
-k≥1
+H ≤</p>
+<p>k≥1
  t
 0
 ∥gk(s)∥2
 Hds + C2
  t
 0
-N
-
-n=1
-
-|α|=n
+N</p>
+<p>n=1</p>
+<p>|α|=n
 ∥uα(s)∥2
 Hds,
 (9.26)
 and, by the Gronwall inequality,
 E∥u(t)∥2
-H ≤eC2t 
+H ≤eC2t 
 k≥1
  t
 0
@@ -52867,35 +52648,29 @@ To derive (9.4), it remains to combine (9.19), (9.23), and (9.27) with the
 elementary inequality (a + b + c)2 ≤3(a2 + b2 + c2).
 Representation (9.5) of the Wiener Chaos solution as a sum of iterated Itˆo
 integrals now follows from Corollary 6.1. Theorem 9.1 is proved.
-Corollary 9.1 If
-
-α∈J
+Corollary 9.1 If</p>
+<p>α∈J
  T
 0
 ∥uα(s)∥2
-V ds &lt; ∞, then
-
-α∈J
+V ds &lt; ∞, then</p>
+<p>α∈J
 sup
 0≤t≤T
 ∥uα(t)∥2
 H &lt; ∞.
 Proof. The proof of Theorem 9.1 shows that it is sufficient to consider the
 homogeneous equation. Then, by inequalities (9.15)–(9.16),
-n1
-
-ℓ=n+1
-
-|α|=ℓ
+n1</p>
+<p>ℓ=n+1</p>
+<p>|α|=ℓ
 ∥uα(t)∥2
 H =
-n1
-
-ℓ=n+1
+n1</p>
+<p>ℓ=n+1
 Fℓ(t)
-≤eC2T
-
-k1,...,kn+1≥1
+≤eC2T</p>
+<p>k1,...,kn+1≥1
  T
 0
  t
@@ -52915,11 +52690,9 @@ By Corollary 6.1,</p>
 0
 ∥uα(s)∥2
 V ds
-=
-
-n≥1
-
-k1,...,kn≥1
+=</p>
+<p>n≥1</p>
+<p>k1,...,kn≥1
  T
 0
  t
@@ -52946,30 +52719,25 @@ n→∞
 0
 ∥Mkn+1Φt,snMkn . . . Mk1Φs1u0∥2
 Hdsndt = 0,
-which, by (9.28), implies uniform, with respect to t, convergence of the series
-
-α∈J ∥uα(t)∥2
+which, by (9.28), implies uniform, with respect to t, convergence of the series</p>
+<p>α∈J ∥uα(t)∥2
 H. Corollary 9.1 is proved.
 Corollary 9.2 Let aij, bi, c, σik, νk be deterministic measurable functions of
 (t, x) such that
 |aij(t, x)| + |bi(t, x)| + |c(t, x)| + |σik(t, x)| + |νk(t, x)| ≤K,
-i, j = 1, . . . , d, k ≥1, x ∈Rd, 0 ≤t ≤T;
-
-aij(t, x) −1
-2σik(t, x)σjk(t, x)
-
-yiyj ≥0,
-x, y ∈Rd, 0 ≤t ≤T; and
-
-k≥1
+i, j = 1, . . . , d, k ≥1, x ∈Rd, 0 ≤t ≤T;</p>
+<p>aij(t, x) −1
+2σik(t, x)σjk(t, x)</p>
+<p>yiyj ≥0,
+x, y ∈Rd, 0 ≤t ≤T; and</p>
+<p>k≥1
 |νk(t, x)|2 ≤Cν &lt; ∞,
 x ∈Rd, 0 ≤t ≤T. Consider the equation
 du = (Di(aijDju) + biDiu + c u + f)dt + (σikDiu + νku + gk)dwk.
 (9.30)
 Assume that the input data satisfy u0 ∈L2(Rd), f ∈L2((0, T); H−1
-2 (Rd)),
-
-k≥1 ∥gk∥2
+2 (Rd)),</p>
+<p>k≥1 ∥gk∥2
 L2((0,T )×Rd) &lt; ∞, and there exists an ε &gt; 0 such that
 aij(t, x)yiyj ≥ε|y|2, x, y ∈Rd, 0 ≤t ≤T.
 Then there exists a unique Wiener Chaos solution u = u(t, x) of (9.30). The
@@ -52978,15 +52746,14 @@ u(t, ·) ∈L2(W; L2(Rd)), 0 ≤t ≤T,
 (9.31)
 and
 E∥u∥2
-L2(Rd)(t) ≤C∗
+L2(Rd)(t) ≤C∗
 ∥u0∥2
 L2(Rd) + ∥f∥2
 L2((0,T );H−1
 2
 (Rd))
-+
-
-k≥1
++</p>
+<p>k≥1
 ∥gk∥2
 L2((0,T )×Rd)</p>
 <p>,
@@ -52999,20 +52766,17 @@ Remark 9.1
 (9.15)–(9.16), shows that the term E∥u(t)∥2
 H in the left-hand-side of inequality
 (9.4) can be replaced with
-E
-
-∥u(t)∥2
+E</p>
+<p>∥u(t)∥2
 H + ε
  t
 0
 ∥u(s)∥2
-V ds
-
-.
+V ds</p>
+<p>.
 (2) If f = gk = 0 and the equation is fully degenerate, that is,
-2⟨A(t)v, v⟩+
-
-k≥1
+2⟨A(t)v, v⟩+</p>
+<p>k≥1
 ∥Mk(t)v∥2
 H = 0,
 t ∈[0, T],
@@ -53037,20 +52801,19 @@ n→∞
 Hdsndt = 0.
 The proof of Corollary 9.1 shows that for the conservation of energy in a
 fully degenerate homogeneous equation the condition E
- T
+ T
 0 ∥u(t)∥2
 V dt &lt; ∞is
 sufficient.
 One of applications of the Wiener Chaos solution is new numerical methods
 for solving the evolution equations. Indeed, an approximation of the solution
-is obtained by truncating the sum 
+is obtained by truncating the sum 
 α∈J uα(t)ξα. For the Zakai filtering equa-
 tion, these numerical methods were studied in [25, 26, 27]; see also Section 11
 below. The main question in the analysis is the rate of convergence, in n, of the
-series 
-n≥1
-
-|α|=n ∥u(t)∥2
+series 
+n≥1</p>
+<p>|α|=n ∥u(t)∥2
 H. In general, this convergence can be arbitrarily
 slow. For example, consider the equation
 du = 1
@@ -53059,9 +52822,8 @@ in the normal triple (H1
 2(R), L2(R), H−1
 2 (R)), with the initial condition
 u|t=0 = u0 ∈L2(R). It follows from (9.12) that
-Fn(t) =
-
-|α|=n
+Fn(t) =</p>
+<p>|α|=n
 ∥u∥2
 L2(R)(t) = tn
 n!</p>
@@ -53083,27 +52845,24 @@ der strong parabolicity condition (2.5). An even faster factorial rate is achiev
 when the operators Mk are bounded on H.
 Theorem 9.2. Assume that there exist a positive number ε and a real number
 C0 such that
-2⟨A(t)v, v⟩+
-
-k≥1
+2⟨A(t)v, v⟩+</p>
+<p>k≥1
 ∥Mk(t)v∥2
 H + ε∥v∥2
 V ≤C0∥v∥2
 H, t ∈[0, T], v ∈V.
-Then there exists a positive number b such that, for all t ∈[0, T],
-
-|α|=n
+Then there exists a positive number b such that, for all t ∈[0, T],</p>
+<p>|α|=n
 ∥uα(t)∥2
 H ≤∥u0∥2
 H
 (1 + b)n .
 (9.33)
-If, in addition, 
+If, in addition, 
 k≥1 ∥Mk(t)ϕ∥2
 H ≤C3∥ϕ∥2
-H, then
-
-|α|=n
+H, then</p>
+<p>|α|=n
 ∥uα(t)∥2
 H ≤(C3t)n
 n!
@@ -53114,16 +52873,14 @@ Proof. If C∗is from (9.6) and b = ε/C∗, then the operators
 √
 1 + bMk satisfy
 the inequality
-2⟨A(t)v, v⟩+ (1 + b)
-
-k≥1
+2⟨A(t)v, v⟩+ (1 + b)</p>
+<p>k≥1
 ∥Mk(t)∥2
 H ≤C0∥v∥2
 H.
 By Theorem 9.1,
-(1 + b)n
-
-k1,...,kn≥1
+(1 + b)n</p>
+<p>k1,...,kn≥1
  t
 0
  sn
@@ -53187,12 +52944,11 @@ Example 9.1 Let u = u(t, x) be a Wiener Chaos solution of an ordinary dif-
 ferential equation
 du = udw(t), t ≤1,
 (9.36)
-with u0 = 
+with u0 = 
 α∈J aαξα. For n ≥0, denote by (n) the multi-index with α1 = n
 and αi = 0, i ≥2, and assume that a(n) &gt; 0, n ≥0. Then
-Eu2(1) ≥C
-
-n≥0
+Eu2(1) ≥C</p>
+<p>n≥0
 e
 √na2
 (n).
@@ -53204,19 +52960,17 @@ u(n)(t) = a(n) + √n
 u(n−1)(s)ds,
 so that
 u(n)(t) =
-n
-
-k=0
+n</p>
+<p>k=0
 √
-n!
-
-(n −k)!k!
+n!</p>
+<p>(n −k)!k!
 a(n−k)
 √
 k!
 tk.
 Then u2
-(n)(1) ≥n
+(n)(1) ≥n
 k=0
 n
 k</p>
@@ -53225,34 +52979,29 @@ k</p>
 k!
 and</p>
 <p>Wiener Chaos for Stochastic Equations
-479
-
-n≥0
+479</p>
+<p>n≥0
 u2
-(n)(1) ≥
-
-n≥0
+(n)(1) ≥</p>
+<p>n≥0
 
-
+
 k≥0
 1
 k!
-n + k
+n + k
 n
-
+
 a2
 (n).
-Since
-
-k≥0
+Since</p>
+<p>k≥0
 1
 k!
-n + k
-n
-
-≥
-
-k≥0
+n + k
+n</p>
+<p>≥</p>
+<p>k≥0
 nk
 (k!)2 ≥Ce
 √n,
@@ -53270,26 +53019,25 @@ satisfies
 L
 M
 M
-N
+N
 α∈J
 ∥uα(t)∥2
 H
 α!
-≤C
-
-α∈J
+≤C</p>
+<p>α∈J
 1
 √
 α!</p>
 <p>∥u0α∥H +
- t
+ t
 0
 ∥fα(s)∥2
 V ′ds
-1/2
+1/2
 +
 
-
+
 k≥1
  t
 0
@@ -53306,54 +53054,44 @@ Proof. To simplify the presentation, assume that f = gk = 0. For fixed γ ∈J ,
 denote by u(t; ϕ; γ) the Wiener Chaos solution of the equation (9.1) with initial
 condition u(0; ϕ; γ) = ϕξγ. Denote by (0) the zero multi-index. The structure
 of the propagator implies the following relation:
-uα+γ(t; ϕ; γ)
-
-(α + γ)!
-=
-uα
-
-t;
+uα+γ(t; ϕ; γ)</p>
+<h1 id="_1">(α + γ)!<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>uα</p>
+<p>t;
 ϕ
 √
-γ!; (0)
-
-√
+γ!; (0)</p>
+<p>√
 α!
 .
 (9.39)
 Clearly, uα(t; ϕ; γ) = 0 if |α| &lt; |γ|. If
 ∥v(t)∥2
-(S)−1,0(H) =
-
-α∈J
+(S)−1,0(H) =</p>
+<p>α∈J
 ∥vα(t)∥2
 H
 α!
 ,
 then, by linearity and the triangle inequality,
-∥u(t)∥(S)−1,0(H) ≤
-
-γ∈J
+∥u(t)∥(S)−1,0(H) ≤</p>
+<p>γ∈J
 ∥u(t; u0γ; γ)∥(S)−1,0(H).</p>
 <p>480
 S. Lototsky and B. Rozovskii
 We also have by (9.39) and Theorem 9.1
 ∥u(t; u0γ; γ)∥2
 (S)−1,0(H) =
-u
-
-t; u0γ
-√γ!; (0)
-
-2
+u</p>
+<p>t; u0γ
+√γ!; (0)</p>
+<p>2
 (S)−1,0(H)
 ≤E
-u
-
-t; u0γ
-√γ!; (0)
-
-2
+u</p>
+<p>t; u0γ
+√γ!; (0)</p>
+<p>2
 H
 ≤eC2t ∥u0γ∥2
 H
@@ -53371,9 +53109,8 @@ solution operator for equation (9.1) from (S)−1,γ to (S)−1,0 for every γ &
 0
 ∥f(s)∥2
 (S)−1,γ(V ′)ds
-+
-
-k≥1
++</p>
+<p>k≥1
  t
 0
 ∥gk(s)∥2
@@ -53383,9 +53120,8 @@ k≥1
 Solutions
 The general discussion so far has been dealing with the abstract evolution
 equation
-du = (Au + f)dt +
-
-k≥1
+du = (Au + f)dt +</p>
+<p>k≥1
 (Mku + gk)dwk.
 By further specifying the operators A and Mk, as well as the input data u0, f,
 and gk, it is possible to get additional information about the Wiener Chaos
@@ -53409,9 +53145,8 @@ space with the norm
 and H1
 2,(r) is a Hilbert space with the norm
 ∥f∥1,(r) = ∥f∥0,(r) +
-d
-
-i=1
+d</p>
+<p>i=1
 ∥Dif∥0,(r).
 Denote by H−1
 2,(r) the dual of H1
@@ -53438,13 +53173,12 @@ some r ∈R.
 B5 The initial condition u0 = u0(x) belongs to L2,(r).
 Under Assumptions B2–B4, there exists a sequence Q = {qk, k ≥1} of
 positive numbers with the following properties:
-P1 The matrix A with Aij = aij−(1/2) 
+P1 The matrix A with Aij = aij−(1/2) 
 k≥1 qkσikσjk satisfies the inequality
 Aij(t, x)yiyj ≥0,
 x, y ∈Rd, 0 ≤t ≤T.
-P2 There exists a number C &gt; 0 such that
-
-k≥1</p>
+P2 There exists a number C &gt; 0 such that</p>
+<p>k≥1</p>
 <p>sup
 t,x |qkνk(t, x)|2 +
  T
@@ -53461,9 +53195,8 @@ S. Lototsky and B. Rozovskii
 Xt,x,i (s) = xi +
  t
 s
-Bi (τ, Xt,x (τ)) dτ +
-
-k≥1
+Bi (τ, Xt,x (τ)) dτ +</p>
+<p>k≥1
 qkσik (τ, Xt,x (τ)) ←−−
 dwk (τ)
 +
@@ -53472,7 +53205,7 @@ s
 ˜σik (τ, Xt,x (τ)) ←−
 d ˜wk (τ) ; s ∈(0, t), t ∈(0, T], t −fixed,
 (10.2)
-where Bi = bi −
+where Bi = bi −
 k≥1 q2
 kσikνk and ˜wk, k ≥1, are independent standard
 Wiener processes on F that are independent of wk, k ≥1. This equation might
@@ -53485,9 +53218,8 @@ w(H1
 2,(r), H−1
 2,(r)) Wiener Chaos solution. If Q is a sequence with properties
 P1 and P2, then the solution of (10.1) belongs to
-L2,Q
-
-W; L2((0, T); H1
+L2,Q</p>
+<p>W; L2((0, T); H1
 2,(r))
  ?
 L2,Q</p>
@@ -53497,14 +53229,13 @@ u(t, x) = Q−1E
       t
 0
 f(s, Xt,x(s))γ(t, s, x)ds
-+
-
-k≥1
++</p>
+<p>k≥1
  t
 0
 qkgk(s, Xt,x(s))γ(t, s, x)←−−
 dwk(s) + u0(Xt,x(0))γ(t, 0, x)
-FW
+FW
 t</p>
 <p>, t ≤T,
 (10.3)
@@ -53512,9 +53243,8 @@ where Xt,x(s) is a weak solution of (10.2), and
 γ(t, s, x) = exp
       t
 s
-c(τ, Xt,x(τ))dτ +
-
-k≥1
+c(τ, Xt,x(τ))dτ +</p>
+<p>k≥1
  t
 s
 qkνk(τ, Xt,x(τ))←−−
@@ -53522,17 +53252,15 @@ dwk(τ)
 −1
 2
  t
-s
-
-k≥1
+s</p>
+<p>k≥1
 q2
 k|νk(τ, Xt,x(τ))|2dτ</p>
 <p>.
 (10.4)
 Proof. It is enough to establish (10.3) when t = T. Consider the equation
-dU = (aijDiDjU +biDiU +cU +f)dt+
-
-k≥1
+dU = (aijDiDjU +biDiU +cU +f)dt+</p>
+<p>k≥1
 (σikDiU +νkU +gk)qkdwk (10.5)
 with initial condition U(0, x) = u0(x). Applying Theorem 2.1 in the normal
 triple (H1
@@ -53540,9 +53268,8 @@ triple (H1
 2,(r)), we conclude that there is a unique solution</p>
 <p>Wiener Chaos for Stochastic Equations
 483
-U ∈L2
-
-W; L2((0, T); H1
+U ∈L2</p>
+<p>W; L2((0, T); H1
 2,(r))
  ?
 L2</p>
@@ -53553,9 +53280,8 @@ consider the S-transform Uh of U. According to Theorem 8.1, the function Uh
 is the unique w(H1
 2,(r), H−1
 2,(r)) solution of the equation
-dUh = (aijDiDjUh + biDiUh + cUh + f)dt +
-
-k≥1
+dUh = (aijDiDjUh + biDiUh + cUh + f)dt +</p>
+<p>k≥1
 (σikDiUh + νkUh + gk)qkhkdt
 (10.6)
 with initial condition Uh|t=0 = u0. We also define
@@ -53563,9 +53289,8 @@ Y (T, x) =
  T
 0
 f(s, XT,x(s))γ(T, s, x)ds
-+
-
-k≥1
++</p>
+<p>k≥1
  T
 0
 gk(s, XT,x(s))γ(T, s)qk
@@ -53612,9 +53337,8 @@ L2,(r)(Rd) +
 0
 ∥f −f n∥2
 L2,(r)(Rd)(t)dt
-+
-
-k≥1
++</p>
+<p>k≥1
  T
 0
 q2
@@ -53634,22 +53358,19 @@ L2,(r)(Rd)(T) = 0.
 To complete the proof, it remains to show that
 lim
 n→∞E
-E
-
-Y (T, ·) −Y n(T, ·)
-FW
-T
-
-2
+E</p>
+<p>Y (T, ·) −Y n(T, ·)
+FW
+T</p>
+<p>2
 L2,(r)(Rd) = 0.
 (10.10)
 To this end, introduce a new probability measure
 dP
 ′′
 T = exp</p>
-<p>2
-
-k≥1
+<p>2</p>
+<p>k≥1
  T
 0
 νk(s, XQ
@@ -53658,9 +53379,8 @@ T,x(s))qk
 dwk(s)
 −2
  T
-0
-
-k≥1
+0</p>
+<p>k≥1
 q2
 k|νk(s, XQ
 T,x(s))|2ds</p>
@@ -53668,23 +53388,20 @@ T,x(s))|2ds</p>
 By Girsanov’s theorem, equation (10.2) can be rewritten as
 XT,x,i (s) = xi +
  T
-s
-
-k≥1
+s</p>
+<p>k≥1
 σik (τ, XT,x (τ)) hk (τ) qkdτ
 +
  t
 s
-(bi +
-
-k≥1
+(bi +</p>
+<p>k≥1
 q2
 kσikνk) (τ, XT,x (τ)) dτ
 +
  t
-s
-
-k≥1
+s</p>
+<p>k≥1
 qkσik (τ, XT,x (τ))
 ←−−
 dw′′
@@ -53705,14 +53422,13 @@ T . Denote by p(s, y|x) the corresponding distribution density of
 XT,x(s) and write ℓ(x) = (1+|x|2)r. It then follows by the H¨older and Jensen
 inequalities that
 E
-E
+E
      T
 0
 γ2(T, s, ·)(f −f n)(s, XT,·(s))ds
-FW
+FW
 T</p>
-<p>
-2
+<p>2
 L2,(r)(Rd)
 ≤K1</p>
 <p>Rd
@@ -53735,7 +53451,7 @@ E′′(f −f n)2(s, XT,x(s))ds</p>
 <p>Rd(f(s, y) −f n(s, y))2p(s, y|x)dy ds ℓ(x)dx,
 (10.12)
 where the number K1 depends only on T, and the number K2 depends only
-on T and sup(t,x) |c(t, x)| + 
+on T and sup(t,x) |c(t, x)| + 
 k≥1 q2
 k sup(t,x) |νk(t, x)|2. Assumptions B0–B2
 imply that there exist positive numbers K3 and K4 such that</p>
@@ -53743,13 +53459,11 @@ imply that there exist positive numbers K3 and K4 such that</p>
 485
 p(s, y|x) ≤
 K3
-(T −s)d/2 exp
-
-−K4
+(T −s)d/2 exp</p>
+<p>−K4
 |x −y|2
-T −s
-
-;
+T −s</p>
+<p>;
 (10.13)
 see, for example, [6]. As a result,</p>
 <p>Rd p(s, y|x)ℓ(x)dx ≤K5ℓ(y),
@@ -53767,32 +53481,27 @@ L2,(r)(Rd)(s)ds →0, n →∞,
 where the number K5 depends only on K3, K4, T, and r.
 Calculations similar to (10.12)–(10.14) show that
 E
-E
-
-γ2(T, 0, ·)(u0 −un
+E</p>
+<p>γ2(T, 0, ·)(u0 −un
 0)(XT,·(0))
-W
-
-2
+W</p>
+<p>2
 L2,(r)(Rd)
-+ E
-
-E
++ E</p>
+<p>E
 
 
  T
-0
-
-k≥1
+0</p>
+<p>k≥1
 (gk −gn
 k )(s, XT,·(s))γ(t, s, ·)qk
 ←−−
 dwk(s)
-W
+W
 
-
-
-2
+</p>
+<p>2
 L2,(r)(Rd)
 →0
 (10.15)
@@ -53816,9 +53525,8 @@ Proof. This follows from (10.3) and Proposition 7.3.
 Example 10.1 (Krylov–Veretennikov formula)
 Consider the equation
 du = (aijDiDju + biDiu) dt +
-d
-
-k=1
+d</p>
+<p>k=1
 σikDiudwk, u (0, x) = u0 (x) .
 (10.16)</p>
 <p>486
@@ -53831,18 +53539,14 @@ L2(Rd)(t) ≤C∗∥u0∥2
 L2(Rd)
 and
 u (t, x) =
-∞
-
-n=1
-
-|α|=n
+∞</p>
+<p>n=1</p>
+<p>|α|=n
 uα(t, x)ξα = u0 (x) +
-∞
-
-n=1
-d
-
-k1,...,kn=1
+∞</p>
+<p>n=1
+d</p>
+<p>k1,...,kn=1
  t
 0
  sn
@@ -53856,7 +53560,7 @@ where Φt,s is the semigroup generated by the operator A = aijDiDju+biDiu.
 On the other hand, in this case, Theorem 10.1 yields
 u(t, x) = E</p>
 <p>u0(Xt,x(0))
-FW
+FW
 t</p>
 <p>,
 where W = (w1, ..., wd) and
@@ -53864,9 +53568,8 @@ Xt,x,i (s) = xi +
  t
 s
 bi (τ, Xt,x (τ)) dτ +
-d
-
-k=1
+d</p>
+<p>k=1
 σik (τ, Xt,x (τ)) ←−−
 dwk (τ) ,
 s ∈(0, t), t ∈(0, T], t −fixed.
@@ -53876,12 +53579,10 @@ E</p>
 <p>u0 (Xt,x (0)) |FW
 t</p>
 <p>= u0 (x) +
-∞
-
-n=1
-d
-
-k1,...,kn=1
+∞</p>
+<p>n=1
+d</p>
+<p>k1,...,kn=1
  t
 0
  sn
@@ -53921,12 +53622,10 @@ tion h are bounded measurable, and the random variable X0 has a density
 u0.
 Assumption R2. The matrix σσ∗is uniformly positive definite: there
 exists ε &gt; 0 such that
-d
-
-i,j=1
-d1
-
-k=1
+d</p>
+<p>i,j=1
+d1</p>
+<p>k=1
 σik(x)σjk(x)yiyj ≥ε|y|2, x, y ∈Rd.
 Under Assumption R1 system (11.1) has a unique strong solution [15,
 Theorems 5.2.5 and 5.2.9]. Extra smoothness of the coefficients in assumption
@@ -53944,22 +53643,21 @@ t</p>
 <p>.
 To derive an alternative representation of ˆft, some additional constructions
 will be necessary.
-Define on (Ω, F) the probability measure d<em>P = Z−1
+Define on (Ω, F) the probability measure d*P = Z−1
 T dP where
 Zt = exp
- t
+ t
 0
 h∗(X(s))dY (s) −1
 2
  t
 0
-|h(X(s))|2ds
-
-(here and below, if ζ ∈Rk, then ζ is a column vector, ζ∗= (ζ1, . . . , ζk), and
-|ζ|2 = ζ∗ζ). If the function h is bounded, then the measures P and </em>P are
-equivalent. The expectation with respect to the measure <em>P will be denoted
-by </em>E.
-The following properties of the measure *P are well known [14, 42]:</p>
+|h(X(s))|2ds</p>
+<p>(here and below, if ζ ∈Rk, then ζ is a column vector, ζ∗= (ζ1, . . . , ζk), and
+|ζ|2 = ζ∗ζ). If the function h is bounded, then the measures P and <em>P are
+equivalent. The expectation with respect to the measure </em>P will be denoted
+by <em>E.
+The following properties of the measure </em>P are well known [14, 42]:</p>
 <p>488
 S. Lototsky and B. Rozovskii
 P1. Under the measure <em>P, the distributions of the Wiener process W and
@@ -53971,69 +53669,61 @@ P2. Under the measure </em>P, the Wiener processes W and Y and the random
 variable X0 are independent of one another.
 P3. The optimal filter ˆft satisfies the relation
 ˆft =
-<em>E
-
-f(X(t))Zt|FY
-t
-
-</em>E[Zt|FY
+*E</p>
+<p>f(X(t))Zt|FY
+t</p>
+<p><em>E[Zt|FY
 t ]
 .
 (11.2)
-Because of property P2 of the measure <em>P the filtering problem will be
-studied on the probability space (Ω, F, </em>P). In particular, we will consider
-the stochastic basis <em>F = {Ω, F, {FY
-t }0≤t≤T , </em>P} and the Wiener Chaos space
-<em>L2(Y) of FY
-T -measurable random variables η with </em>E|η|2 &lt; ∞.
+Because of property P2 of the measure </em>P the filtering problem will be
+studied on the probability space (Ω, F, <em>P). In particular, we will consider
+the stochastic basis </em>F = {Ω, F, {FY
+t }0≤t≤T , <em>P} and the Wiener Chaos space
+</em>L2(Y) of FY
+T -measurable random variables η with <em>E|η|2 &lt; ∞.
 If the function h is bounded, then, by the Cauchy–Schwarz inequality,
 E|η| ≤C(h, T)
 H
-<em>E|η|2, η ∈</em>L2(Y).
+</em>E|η|2, η ∈*L2(Y).
 (11.3)
 Next, consider the partial differential operators
 Lg(x) = 1
 2
-d
-
-i,j=1
+d</p>
+<p>i,j=1
 ((σ(x)σ∗(x))ij + (ρ(x)ρ∗(x))ij) ∂2g(x)
 ∂xi∂xj
 +
-d
-
-i=1
+d</p>
+<p>i=1
 bi(x)∂g(x)
 ∂xi
 ;
 Mlg(x) = hl(x)g(x) +
-d
-
-i=1
+d</p>
+<p>i=1
 ρil(x)∂g(x)
 ∂xi
 , l = 1, . . . , r;
 and their adjoints
 L∗g(x) = 1
 2
-d
-
-i,j=1
+d</p>
+<p>i,j=1
 ∂2
 ∂xi∂xj
 ((σ(x)σ∗(x))ijg(x) + (ρ(x)ρ∗(x))ijg(x))
 −
-d
-
-i=1
+d</p>
+<p>i=1
 ∂
 ∂xi
 (bi(x)g(x)) ;
 M∗
 l g(x) = hl(x)g(x) −
-d
-
-i=1
+d</p>
+<p>i=1
 ∂
 ∂xi
 (ρil(x)g(x)) , l = 1, . . . , r.
@@ -54046,9 +53736,8 @@ H1
 <p>Wiener Chaos for Stochastic Equations
 489
 2⟨L∗v, v⟩+
-r
-
-l=1
+r</p>
+<p>l=1
 ∥M∗
 l v∥2
 L2(Rd)+ε∥v∥2
@@ -54068,39 +53757,33 @@ t ∈[0, T], x ∈Rd, with the following properties:
 2. The function u(t, x) is a traditional solution of the stochastic partial
 differential equation
 du(t, x) = L∗u(t, x)dt +
-r
-
-l=1
+r</p>
+<p>l=1
 M∗
 l u(t, x)dYl(t), 0 &lt; t ≤T, x ∈Rd;
 u(0, x) = u0(x).
 (11.5)
 3. The equality
-*E
-
-f(X(t))Zt|FY
-t
-
-=</p>
+*E</p>
+<p>f(X(t))Zt|FY
+t</p>
+<p>=</p>
 <p>Rd f(x)u(t, x)dx
 (11.6)
 holds for all bounded measurable functions f.
 The random field u = u(t, x) is called the unnormalized filtering density
-(UFD) and the random variable ϕt[f] = *E
-
-f(X(t))Zt|FY
-t
-
-, the unnormalized
+(UFD) and the random variable ϕt[f] = *E</p>
+<p>f(X(t))Zt|FY
+t</p>
+<p>, the unnormalized
 optimal filter.
 A number of authors studied the nonlinear filtering problem using the
 multiple Itˆo integral version of the Wiener Chaos [2, 21, 39, 46, etc.]. In
 what follows, we construct approximations of u and ϕt[f] using the Cameron–
 Martin version.
 By Theorem 8.3,
-u(t, x) =
-
-α∈J
+u(t, x) =</p>
+<p>α∈J
 uα(t, x)ξα,
 (11.7)
 where
@@ -54120,9 +53803,8 @@ as before, Hn(·) is the Hermite polynomial (3.3) and mi ∈m, an orthonormal
 basis in L2((0, T)). The functions uα satisfy the corresponding propagator
 ∂
 ∂tuα(t, x) = L∗uα(t, x)
-+
-
-k,i
++</p>
+<p>k,i
 H
 αk
 i M∗
@@ -54135,15 +53817,13 @@ Writing
 fα(t) =</p>
 <p>Rd f(x)uα(t, x)dx,
 we also get a Wiener chaos expansion for the unnormalized optimal filter:
-ϕt[f] =
-
-α∈J
+ϕt[f] =</p>
+<p>α∈J
 fα(t)ξα, t ∈[0, T].
 (11.10)
 For a positive integer N, define
-uN(t, x) =
-
-|α|≤N
+uN(t, x) =</p>
+<p>|α|≤N
 uα(t, x)ξα.
 (11.11)
 Theorem 11.1. Under Assumptions R1 and R2, there exists a positive num-
@@ -54168,9 +53848,8 @@ N = {α = (αk
 i , k = 1, . . . , r, i = 1, . . . , n) : |α| ≤N}.
 and let
 un
-N(t, x) =
-
-α∈J n
+N(t, x) =</p>
+<p>α∈J n
 N
 uα(t, x)ξα.
 (11.14)
@@ -54186,14 +53865,12 @@ Theorem 11.2. Assume that
 m1(t)= 1
 √
 T
-; mk(t)=
-
-2
+; mk(t)=</p>
+<p>2
 T cos
-π(k −1)t
-T
-
-, k &gt; 1; t ≤T,
+π(k −1)t
+T</p>
+<p>, k &gt; 1; t ≤T,
 (11.15)</p>
 <p>Wiener Chaos for Stochastic Equations
 491
@@ -54206,15 +53883,14 @@ only on the functions b and σ such that
 *E∥u−un
 N∥2
 L2(Rd)(T)≤B1eB2T
-(4h∞T)N+1
+(4h∞T)N+1
 (N + 1)!
 eCt∥u0∥2
 L2(Rd) + T 3
 n ∥u0∥2
 H2
-2(Rd)
-
-,
+2(Rd)</p>
+<p>,
 (11.16)
 where h∞= maxk=1,...,r supx |hk(x)|.
 12 Passive Scalar in a Gaussian Field
@@ -54235,17 +53911,14 @@ It is known from [22, Section 10.1] that, for an isotropic Gaussian vector
 field, the Fourier transform ˆC = ˆC(z) of the function C = C(x) is
 ˆC(y) =
 A0
-(1 + |y|2)(d+α)/2
-
-ayy∗
+(1 + |y|2)(d+α)/2</p>
+<p>ayy∗
 |y|2 +
 b
-d −1
-
-I −yyT
-|y|2
-
-,
+d −1</p>
+<p>I −yyT
+|y|2</p>
+<p>,
 (12.2)
 where y∗is the row vector (y1, . . . , yd), y is the corresponding column vector,
 |y|2 = y∗y; γ &gt; 0, a ≥0, b ≥0, A0 &gt; 0 are real numbers. Similar to [22], we
@@ -54264,30 +53937,24 @@ where {σk, k ≥1} is an orthonormal basis in the space HC, the reproducing
 kernel Hilbert space corresponding to the kernel function C. It is known from
 [22] that HC is all or a part of the Sobolev space H(d+γ)/2(Rd; Rd).
 If a &gt; 0 and b &gt; 0, then the matrix ˆC is invertible and
-HC =
-
-f ∈Rd :</p>
+HC =</p>
+<p>f ∈Rd :</p>
 <p>Rd
-ˆf ∗(y) ˆC−1(y) ˆf(y)dy &lt; ∞
-
-= H(d+γ)/2(Rd; Rd),
+ˆf ∗(y) ˆC−1(y) ˆf(y)dy &lt; ∞</p>
+<p>= H(d+γ)/2(Rd; Rd),
 because ∥ˆC(y)∥∼(1 + |y|2)−(d+γ)/2.
 If a &gt; 0 and b = 0, then
-HC =
-
-f ∈Rd :</p>
-<p>Rd | ˆf(y)|2(1 + |y|2)(d+γ)/2dy &lt; ∞; yy∗ˆf(y) = |y|2 ˆf(y)
-
-,
+HC =</p>
+<p>f ∈Rd :</p>
+<p>Rd | ˆf(y)|2(1 + |y|2)(d+γ)/2dy &lt; ∞; yy∗ˆf(y) = |y|2 ˆf(y)</p>
+<p>,
 the subset of gradient fields in H(d+γ)/2(Rd; Rd), that is, the vector fields f
 for which ˆf(y) = y ˆF(y) for some scalar F ∈H(d+γ+2)/2(Rd).
 If a = 0 and b &gt; 0, then
-HC =
-
-f ∈Rd :</p>
-<p>Rd | ˆf(y)|2(1 + |y|2)(d+γ)/2dy &lt; ∞; y∗ˆf(y) = 0
-
-,
+HC =</p>
+<p>f ∈Rd :</p>
+<p>Rd | ˆf(y)|2(1 + |y|2)(d+γ)/2dy &lt; ∞; y∗ˆf(y) = 0</p>
+<p>,
 the subset of divergence-free fields in H(d+γ)/2(Rd; Rd).
 By the embedding theorems, each σi
 k is a bounded continuous function on
@@ -54296,9 +53963,8 @@ k is H¨older continuous of order γ/2. In addition, being an
 element of the corresponding space HC, each σk is a gradient field if b = 0
 and is divergence-free if a = 0.
 Equation (12.1) becomes
-dθ(t, x) = (ν∆θ(t, x) + f(t, x))dt −
-
-k
+dθ(t, x) = (ν∆θ(t, x) + f(t, x))dt −</p>
+<p>k
 σk(x) · ∇θ(t, x)dwk(t).
 (12.4)
 We summarize the above constructions in the following assumptions:
@@ -54309,7 +53975,7 @@ S2 For each k, the vector field σk is an element of the Sobolev space
 H(d+γ)/2
 2
 (Rd; Rd), 0 &lt; γ &lt; 2, d ≥2.
-S3 For all x, y in Rd, 
+S3 For all x, y in Rd, 
 k σi
 k(x)σj
 k(y) = Cij(x−y) such that the matrix-valued
@@ -54333,9 +53999,8 @@ and satisfies the inequality
 L2,Q(W;L2((0,T );H1
 2(Rd))) + ∥θ∥2
 L2,Q(W;C((0,T );L2(Rd)))
-≤C(ν, q, T)
-
-∥θ0∥2
+≤C(ν, q, T)</p>
+<p>∥θ0∥2
 L2(Rd) + ∥f∥2
 L2((0,T );H−1
 2
@@ -54370,9 +54035,8 @@ Equation (12.6) is a model of non-viscous turbulent transport [5]. The prop-
 agator for (12.6) is
 ∂
 ∂tθα(t, x) = 1
-2∆θα(t, x) −
-
-i,k
+2∆θα(t, x) −</p>
+<p>i,k
 H
 αk
 i σj
@@ -54427,9 +54091,8 @@ Lp,(r)(Rd).
 In particular, if r = 0, then K = 0.
 It follows that, for all s, t and almost all x, y,
 Eθ (t, x) = θα (t, x) I|α|=0,
-Eθ (t, x) θ (s, y) =
-
-α∈J
+Eθ (t, x) θ (s, y) =</p>
+<p>α∈J
 θα (t, x) θα (s, y) .
 If the initial condition θ0 belongs to L2(Rd) ∩Lp(Rd) for p ≥3, then,
 by (12.11), higher-order moments of θ exist. To obtain the expressions of the
@@ -54442,10 +54105,9 @@ Similarly, we define the multi-indices |α −β| and α ∧β = min(α, β). We
 β ≤α if and only if βk
 i ≤αk
 i for all i, k ≥1. If β ≤α, we define
-α
-β
-
-:=
+α
+β</p>
+<p>:=
 (
 i,k
 αk
@@ -54463,22 +54125,18 @@ and
 <p>Wiener Chaos for Stochastic Equations
 495
 For (α, β, γ) ∈△, we define
-Ψ (α, β, γ) :=
-
-α!β!γ!
-α −β + γ
-2
-
-!
-β −α + γ
-2
-
-!
-α + β −γ
-2
-
-!
-−1
+Ψ (α, β, γ) :=</p>
+<p>α!β!γ!
+α −β + γ
+2</p>
+<p>!
+β −α + γ
+2</p>
+<p>!
+α + β −γ
+2</p>
+<p>!
+−1
 .
 (12.12)
 Note that the triple (α, β, γ) is complete if and only if any permutation of
@@ -54486,52 +54144,45 @@ the triple (α, β, γ) is complete. Similarly, the value of Ψ (α, β, γ) is 
 under permutation of the arguments.
 We also define
 C (γ, β, µ) :=
-γ + β −2µ
+γ + β −2µ
 γ −µ
-γ
+γ
 µ
-β
+β
 µ
-1/2
+1/2
 , µ ≤γ ∧β.
 (12.13)
-It is readily checked that if f is a function on J , then for γ, β ∈J ,
-
-µ≤γ∧β
-C (γ, β, p) f (γ + β −2µ) =
-
-µ∈(γ,β)
+It is readily checked that if f is a function on J , then for γ, β ∈J ,</p>
+<p>µ≤γ∧β
+C (γ, β, p) f (γ + β −2µ) =</p>
+<p>µ∈(γ,β)
 f (µ) Φ (γ, β, µ)
 (12.14)
 The next theorem presents the formulas for the third and fourth moments
 of the solution of equation (12.6) in terms of the coefficients θα.
 Theorem 12.3. In addition to S1–S4, assume that each σk is divergence-free
 and the initial condition θ0 belongs to L2(Rd) ∩L4(Rd). Then
-Eθ(t, x)θ (t′, x′) θ(s, y) =
-
-(α,β,γ)∈△
+Eθ(t, x)θ (t′, x′) θ(s, y) =</p>
+<p>(α,β,γ)∈△
 Ψ (α, β, γ) θα(t, x)θβ(t′, x′)θγ (s, y)
 (12.15)
 and
 Eθ(t, x)θ(t′, x′)θ (s, y) θ (s′, y′)
 (12.16)
-=
-
-ρ∈△(α,β)∩△(γ,κ)
+=</p>
+<p>ρ∈△(α,β)∩△(γ,κ)
 Ψ (α, β, ρ) Ψ (ρ, γ, κ) θα (t, x) θβ(t′, x′)θγ (s, y) θκ (s′, y′) .
 Proof. It is known, [30], that
-ξγξβ =
-
-µ≤γ∧β
+ξγξβ =</p>
+<p>µ≤γ∧β
 C (γ, β, µ) ξγ+β−2µ.
 (12.17)
 Let us consider the triple product ξαξβξγ. By (12.17),
-Eξαξβξγ = E
-
-µ∈△(α,β)
-ξγξµΨ (α, β, µ) =
-
-Ψ (α, β, γ) ,
+Eξαξβξγ = E</p>
+<p>µ∈△(α,β)
+ξγξµΨ (α, β, µ) =</p>
+<p>Ψ (α, β, γ) ,
 (α, β, γ) ∈△;
 0,
 otherwise.
@@ -54540,42 +54191,32 @@ Equality (12.15) now follows.
 To compute the fourth moment, note that</p>
 <p>496
 S. Lototsky and B. Rozovskii
-ξαξβξγ =
-
-µ≤α∧β
+ξαξβξγ =</p>
+<p>µ≤α∧β
 C (α, β, µ) ξα+β−2µξγ
-=
-
-µ≤α∧β
-C (α, β, µ)
-
-ρ≤(α+β−2µ)∧γ
+=</p>
+<p>µ≤α∧β
+C (α, β, µ)</p>
+<p>ρ≤(α+β−2µ)∧γ
 C (α + β −2µ, γ, ρ) ξα+β+γ−2µ−2ρ.
 (12.19)
 Repeated applications of (12.14) yield
-ξαξβξγ =
-
-µ≤α∧β
-C (α, β, µ)
-
-ρ∈△(α+β−2µ,γ)
+ξαξβξγ =</p>
+<p>µ≤α∧β
+C (α, β, µ)</p>
+<p>ρ∈△(α+β−2µ,γ)
 ξρΨ (α + β −2µ, γ, ρ)
-=
-
-µ∈△(α,β)
-
-ρ∈△(µ,γ)
+=</p>
+<p>µ∈△(α,β)</p>
+<p>ρ∈△(µ,γ)
 Ψ (α, β, µ) Ψ (µ, γ, ρ) ξρ
 Thus,
-Eξαξβξγξκ =
-
-µ∈△(α,β)
-
-ρ∈△(µ,γ)
+Eξαξβξγξκ =</p>
+<p>µ∈△(α,β)</p>
+<p>ρ∈△(µ,γ)
 Ψ (α, β, µ) Ψ (µ, γ, ρ) I{µ=κ}
-=
-
-ρ∈△(α,β)∩△(γ,κ)
+=</p>
+<p>ρ∈△(α,β)∩△(γ,κ)
 Ψ (α, β, ρ) Ψ (ρ, γ, κ) .
 Equality (12.16) now follows.
 In the same way, one can get formulas for fifth- and higher-order moments.
@@ -54588,9 +54229,8 @@ moments (for detail see [35]).
 We now return to the analysis of the passive scalar equation (12.4). By
 reducing the smoothness assumptions on σk, it is possible to consider velocity
 fields v that are more turbulent than in the Kraichnan model, for example,
-vi(t, x) =
-
-k≥0
+vi(t, x) =</p>
+<p>k≥0
 σi
 k(x) ˙wk(t),
 (12.20)
@@ -54615,9 +54255,8 @@ u0 ∈L2(Rd), f ∈L2</p>
 2 (Rd)</p>
 <p>.
 Fix ε &gt; 0 and let Q = {qk, k ≥1} be a sequence so that, for all x, y ∈Rd,
-2ν|y|2 −
-
-k≥1
+2ν|y|2 −</p>
+<p>k≥1
 q2
 kσi
 k(x)σj
@@ -54633,9 +54272,8 @@ The solution is an Ft-adapted process and satisfies the ineq21uality
 L2,Q(W;L2((0,T );H1
 2(Rd))) + ∥θ∥2
 L2,Q(W;C((0,T );L2(Rd)))
-≤C(ν, q, T)
-
-∥θ0∥2
+≤C(ν, q, T)</p>
+<p>∥θ0∥2
 L2(Rd) + ∥f∥2
 L2((0,T );H−1
 2
@@ -54681,9 +54319,8 @@ given by
 
 
 dui = [ν∆ui −ujDjui −DiP + fi]dt
-+
-
-gi
++</p>
+<p>gi
 k −Di ˜Pk −Djσj
 kui
 dwk,
@@ -54706,12 +54343,10 @@ We make the following assumptions:
 NS1
 The functions σi
 k = σi
-k(t, x) are deterministic and measurable,
-
-k≥1
-     d
-
-i=1
+k(t, x) are deterministic and measurable,</p>
+<p>k≥1
+     d</p>
+<p>i=1
 |σi
 k(t, x)|2 + |Diσi
 k(t, x)|2</p>
@@ -54725,16 +54360,14 @@ t ∈[0, T], x ∈Rd.
 NS2
 The functions f i, gi
 k are non-random and
-d
-
-i=1
+d</p>
+<p>i=1
 
 ∥f i∥2
 L2((0,T );H−1
 2
-(Rd)) +
-
-k≥1
+(Rd)) +</p>
+<p>k≥1
 ∥gi
 k∥2
 L2((0,T );L2(Rd))
@@ -54742,10 +54375,10 @@ L2((0,T );L2(Rd))
 &lt; ∞.
 Remark 13.2 In NS1, the derivatives Diσi
 k are understood as Schwartz dis-
-tributions, but it is assumed that div σ := d
+tributions, but it is assumed that div σ := d
 i=1 ∂iσi is a bounded L2-valued
 function. Obviously, the latter assumption holds in the important case when
-d
+d
 i=1 ∂iσi = 0.
 Our next step is to use the divergence-free property of u to eliminate the
 pressure P and ˜P from equation (13.1). For that, we need the decomposition
@@ -54821,9 +54454,8 @@ S. Lototsky and B. Rozovskii
 When d ≥3, the existence of a strong solution as well as uniqueness (strong
 or weak) for equation (13.2) are important open problems.
 By the Cameron–Martin theorem,
-u(t, x) =
-
-α∈J
+u(t, x) =</p>
+<p>α∈J
 uα(t, x)ξα.
 If the solution of (13.2) is FW
 t -adapted, then, using the Itˆo formula together
@@ -54840,37 +54472,31 @@ E∥u∥2
 L2(Rd;Rd)(t) &lt; ∞.
 (13.4)
 Then
-u (t, x) =
-
-α∈J
+u (t, x) =</p>
+<p>α∈J
 uα (t, x) ξα,
 (13.5)
 and the Hermite–Fourier coefficients uα(t, x) are L2(Rd; Rd)-valued weakly
 continuous functions such that
 sup
-t≤T
-
-α∈J
+t≤T</p>
+<p>α∈J
 ∥uα∥2
 L2(Rd;Rd)(t) +
  T
-0
-
-α∈J
+0</p>
+<p>α∈J
 ∥∇uα∥2
 L2(Rd;Rd×d)(t) dt &lt; ∞.
 (13.6)
 The functions uα (t, x) , α ∈J , satisfy the (nonlinear) propagator
 ∂
-∂tuα = S
-
-∆uα −
-
-γ,β∈∆(α)
+∂tuα = S</p>
+<p>∆uα −</p>
+<p>γ,β∈∆(α)
 Ψ (α, β, γ) (uγ, ∇uβ) + I{|α|=0}f
-+
-
-j,k
++</p>
+<p>j,k
 H
 αk
 j</p>
@@ -54900,9 +54526,8 @@ The propagator provides a third way: expressing the mean and other sta-
 tistical moments of u in terms of uα. Indeed, by Cameron–Martin Theorem,
 Eu(t, x) = u0(t, x),
 Eui(t, x)u
-j (s, y) =
-
-α∈J
+j (s, y) =</p>
+<p>α∈J
 ui
 α(t, x)uj
 α(s, y).
@@ -54917,22 +54542,19 @@ the propagator (13.7) has a solution {uα (t, x) , α ∈J } on the interval (0,
 such that, for every α, the process uα is weakly continuous in L2(Rd; Rd) and
 the inequality
 sup
-t≤T
-
-α∈J
+t≤T</p>
+<p>α∈J
 ∥uα∥2
 L2(Rd;Rd)(t) +
  T
-0
-
-α∈J
+0</p>
+<p>α∈J
 ∥∇uα∥2
 L2(Rd;Rd×d)(t) dt &lt; ∞
 (13.9)
 holds. If the process
-¯U (t, x) :=
-
-α∈J
+¯U (t, x) :=</p>
+<p>α∈J
 uα (t, x) ξα
 (13.10)
 is FW
@@ -54976,17 +54598,14 @@ dˆu(t, y) =
 The last equality shows that the properties of the solution essentially depend
 on the initial condition, and, in general, the solution is not in L2(W).
 The S-transformed equation, vt = h(t)vx, has a unique solution
-v(t, x) = ϕ
-
-x +
+v(t, x) = ϕ</p>
+<p>x +
  t
 0
-h(s)ds
-
-, h(t) =
-N
-
-i=1
+h(s)ds</p>
+<p>, h(t) =
+N</p>
+<p>i=1
 himi(t).
 The results of Section 3 imply that a white noise solution of the equation can
 exist only if ϕ is a real analytic function. On the other hand, if ϕ is infinitely
@@ -55003,9 +54622,8 @@ of equation (14.1).
 Proof. The propagator for (14.1) is
 uα(t, x) = ϕ(x)I(|α| = 0) +
  t
-0
-
-i
+0</p>
+<p>i
 √αi(uα−(i)(s, x))xmi(s)ds.
 (14.3)
 Even though Theorem 6.1 is not applicable, the system can be solved by
@@ -55016,9 +54634,8 @@ Cϕ(k) =
 −∞
 |ϕ(k)(x)|2dx.
 (14.4)
-By Corollary 6.1, for every k ≥0 and n ≥0,
-
-|α|=k
+By Corollary 6.1, for every k ≥0 and n ≥0,</p>
+<p>|α|=k
 ∥(u(n)
 α )x∥2
 L2(R)(t) = tkCϕ(n + k)
@@ -55044,9 +54661,8 @@ sin(Nx)
 x
 .
 Direct computations show that the Fourier transform of ψN is supported in
-[−N, N] and
-
-R ψN(x)dx = 1. Consider equation (14.1) with initial condition
+[−N, N] and</p>
+<p>R ψN(x)dx = 1. Consider equation (14.1) with initial condition
 ϕN(x) =</p>
 <p>R
 ϕ(x −y)ψN(y)dy.
@@ -55055,9 +54671,8 @@ L2(W; Hγ
 2 (R)) for every t ≥0, γ ∈R. Relation (14.5) and the definition of
 uN imply that
 lim
-N→∞
-
-|α|=k
+N→∞</p>
+<p>|α|=k
 ∥uα −uN,α∥2
 L2(R)(t) = 0, t ≥0, k ≥0,
 so that, by the Lebesgue dominated convergence theorem,
@@ -55110,7 +54725,7 @@ cos(xy)e−g(y)dy,
 where g is a suitable positive, unbounded, even function. Note that, up to a
 multiplicative constant, the Fourier transform of ϕ is e−g(y), and so Cϕ(n)
 grows with n as
- ∞
+ ∞
 0
 |y|2ne−2g(y)dy.
 A more general first-order equation can be considered:
@@ -55275,10 +54890,10 @@ If M and M⊥are stable subspaces of H2 generated by given local martin-
 gales M and N, strongly orthogonal to each other, then equation (1.1) takes
 the form
 ET (
- .
+ .
 0 ZsdMs)
 ET (
- .
+ .
 0 Z⊥
 s dNs) = ceη
 (1.2)
@@ -55359,11 +54974,10 @@ t = 1
 E(eη|Fs)dm⊥
 s (η),
 Yt = E
-1
+1
 2η + ⟨L⟩T −⟨L⟩t + ⟨L⊥⟩T −⟨L⊥⟩t
-Ft
-
-,
+Ft</p>
+<p>,
 where the martingales m(η) and m⊥(η) are defined by the orthogonal decom-
 position
 E(eη|Ft) = Eeη + mt(η) + m⊥
@@ -55582,7 +55196,7 @@ t + E(⟨L + L⊥⟩tT |Ft) = E(ξ2|Ft) + 2E
      T
 t
 Ysd⟨l + l⊥, l −l⊥⟩s
-Ft</p>
+Ft</p>
 <p>.
 Since ⟨l+l⊥, l−l⊥⟩≺⟨l+l⊥⟩, using the elementary inequality 1
 2a2+2b2 ≥2ab,
@@ -55659,7 +55273,7 @@ the Ito formula to (Y1 −Y2)2 that
 1 −L2
 ⊥⟩tT |Ft)
 = 2E
-  T
+  T
 t
 (Y1(s) −Y2(s))
 ×d(⟨l1 + l⊥
@@ -55667,9 +55281,8 @@ t
 1 ⟩−⟨l2 + l⊥
 2 , l2 −l⊥
 2 ⟩)
-Ft
-
-(1.23)
+Ft</p>
+<p>(1.23)
 ≤1
 2|Y1 −Y2|2
 ∞
@@ -55926,7 +55539,7 @@ where F ∈C1 and F ′ = f, introduced by Az´ema and Yor [3]. We show that
 We conjecture that these are the only local martingales, that is that the only
 (N, N)-harmonic functions are of the form H(x, y) = F(y) −f(y)(y −x) + C,
 with f a locally integrable function, F(y) =
- y
+ y
 0 f(u)du, and C a constant.
 We explain, in an intuitive manner, how these local martingales, which we
 call max-martingales, may be used to find the Az´ema–Yor solution to the
@@ -55978,9 +55591,8 @@ The last condition can be also formulated as “the process (ϕn) is constant on
 excursions of (Yn) away from 0”.
 Lemma 3.1. Let (Yn, ϕn) be as above, Y0 = 0. The following identities hold:
 ϕnYn = ϕn−1Yn =
-n
-
-k=1
+n</p>
+<p>k=1
 ϕk−1(Yk −Yk−1),
 n ≥1.
 (3.1)
@@ -55994,7 +55606,7 @@ Yn = Xn −Xn and ϕn = f(Xn), for some Borel function f;</p>
 <p>520
 Jan Ob^l´oj and Marc Yor
 •
-Yn = Xn, ϕn = n
+Yn = Xn, ϕn = n
 k=0 1Xk=0 (note that Yn = |Xn| works as well);
 •
 Yn = X∗
@@ -56004,7 +55616,7 @@ X∗
 n = maxk≤n |Xk|;
 •
 Yn = Xn −Xn, ϕn = f
- n
+ n
 k=1 1(Xk=Xk)</p>
 <p>, for some Borel function f,
 where Xn = | mink≤n Xk|.
@@ -56014,7 +55626,7 @@ Proposition 3.1. Let (Xn : n ∈N) be a submartingale in its natural filtra-
 tion (Fn), X0 = 0, and let f be some increasing, locally integrable, positive
 function. Assume that Ef(Xn) &lt; ∞and EF(Xn) &lt; ∞for all n ∈N, where
 F(x) =
- x
+ x
 0 f(s)ds. Then the process Sf
 n = f(Xn)(Xn −Xn) −F(Xn) is a
 (Fn)-supermartingale.
@@ -56022,34 +55634,28 @@ Proof. Since the pair (Xn −Xn, f(Xn)) satisfies the assumptions of Lemma
 3.1, we have:
 Sf
 n =
-n
-
-k=1
+n</p>
+<p>k=1
 f(Xk−1)(Xk −Xk −Xk−1 + Xk−1) −F(Xn)
 =
-n
-
-k=1
+n</p>
+<p>k=1
 f(Xk−1)(Xk −Xk−1) −
-n
-
-k=1
+n</p>
+<p>k=1
 f(Xk−1)(Xk −Xk−1) −
  Xn
 0
 f(x)dx
 =
-n
-
-k=1
+n</p>
+<p>k=1
  Xk
-Xk−1
-
-f(Xk−1) −f(x)</p>
+Xk−1</p>
+<p>f(Xk−1) −f(x)</p>
 <p>dx −
-n
-
-k=1
+n</p>
+<p>k=1
 f(Xk−1)(Xk −Xk−1).
 (3.2)
 Using (3.2), the fact that f is increasing, and (Xn) is a submartingale, we
@@ -56063,21 +55669,19 @@ n = S(λ)
 n
 = 1Xn≥λ(λ −Xn) is a supermartingale,
 which yields Doob’s maximal inequality
-λP
-
-Xn ≥λ</p>
+λP</p>
+<p>Xn ≥λ</p>
 <p>≤E
 )
-1(Xn≥λ)Xn
-
-.
+1(Xn≥λ)Xn</p>
+<p>.
 (3.3)
 To obtain the Lp inequalities we consider the function f(x) = pxp−1 for
 some p &gt; 1, and we suppose that (Xn : n ≥0) is a positive submartingale
 with EXp
 n &lt; ∞. This implies, as X
 p
-n ≤n
+n ≤n
 k=1 Xp
 k, that EX
 p
@@ -56089,26 +55693,23 @@ n
 yields
 (p −1)E
 )
-(Xn)p
+(Xn)p
 ≤pE
 )
-(Xn)p−1Xn
-
-and hence, applying H¨older’s ineq.,
+(Xn)p−1Xn</p>
+<p>and hence, applying H¨older’s ineq.,
 E
 )
-(Xn)p
-≤
-
-p
+(Xn)p
+≤</p>
+<p>p
 p −1
 p
 E
 )
 Xp
-n
-
-,
+n</p>
+<p>,
 which is Doob’s Lp ineq.
 (3.4)</p>
 <p>On Brownian Motion and its Supremum
@@ -56127,17 +55728,14 @@ one has:
 E
 )
 f(Bt, Bt)
-Fs
-
-= ˜E
+Fs</p>
+<p>= ˜E
 )
-f
-
-Bs + ˜Bt−s, Bs ∨sup
+f</p>
+<p>Bs + ˜Bt−s, Bs ∨sup
 u≤t−s
-(Bs + ˜Bu)
-
-,
+(Bs + ˜Bu)</p>
+<p>,
 (4.1)
 where on the RHS, the notation ˜E indicates integration with respect to func-
 tionals of the Brownian motion ( ˜Bu : u ≥0), which is assumed to be inde-
@@ -56145,16 +55743,14 @@ pendent of (Bt : t ≥0).
 In particular, the two-dimensional process ((Bt, Bt) : t ≥0) is a nice
 Markov process, hence a strong Markov process, and its semigroup can be
 computed explicitly thanks to the well-known, and classical formula:
-P
-
-Bt ∈dx, Bt ∈dy</p>
+P</p>
+<p>Bt ∈dx, Bt ∈dy</p>
 <p>=
- 2
+ 2
 πt3
 1/2
-(2y −x) exp
-
-−(2y −x)2
+(2y −x) exp</p>
+<p>−(2y −x)2
 2t</p>
 <p>1(y≥x+)dxdy.
 We are now interested in a description of the harmonic functions H of
@@ -56169,7 +55765,7 @@ Theorem 4.1. Let N = (Nt : t ≥0) be a continuous local martingale with
 H(x, y) = F(y) −f(y)(y −x) + C,
 (4.2)
 where C is a constant and F(y) =
- y
+ y
 0 f(s)ds. Then, the following holds:
 H(Nt, N t) = F(N t) −f(N t)(N t −Nt) + C
  t
@@ -56235,9 +55831,9 @@ x2(x, y) = 0.
 (4.5)
 The second condition implies that H(x, y) = f(y)x + g(y) and the first one
 then gives f ′(y)y+g′(y) = 0. Thus, g(y) = −
- y
+ y
 0 uf ′(u)du =
- y
+ y
 0 f(u)du−f(y)y.
 This yields formula (4.2).
 Furthermore, the above reasoning grants us that the formula (4.3) holds
@@ -56250,51 +55846,43 @@ locally integrable function, F(x) is well defined and finite, so all we need to
 <p>On Brownian Motion and its Supremum
 523
 show is that
- t
+ t
 0 f(Bs)dBs is well defined and finite a.s. This is equivalent to
- t
-0
-
-f(Bs)
+ t
+0</p>
+<p>f(Bs)
 2
 ds &lt; ∞a.s., which we now show.
 Write Tx = inf{t ≥0 : Bt = x} for the first hitting time of x, which is a
 well defined, a.s. finite, stopping time. Thus
- t
-0
-
-f(Bs)
+ t
+0</p>
+<p>f(Bs)
 2
 ds &lt; ∞a.s., if and
 only if, for all x &gt; 0,
- Tx
-0
-
-f(Bs)
+ Tx
+0</p>
+<p>f(Bs)
 2
 ds &lt; ∞. However, the last integral can be
 rewritten as
  Tx
 0
-ds
-
-f(Bs)
+ds</p>
+<p>f(Bs)
 2
-=
-
-0≤u≤x
+=</p>
+<p>0≤u≤x
  Tu
 Tu−
-ds
-
-f(Bs)
+ds</p>
+<p>f(Bs)
 2
-=
-
-0≤u≤x
-f 2(u)
-
-Tu −Tu−</p>
+=</p>
+<p>0≤u≤x
+f 2(u)</p>
+<p>Tu −Tu−</p>
 <p>=
  x
 0
@@ -56303,24 +55891,21 @@ f 2(u)dTu.
 Now it suffices to note that (see Ex. III.4.5 in Revuz and Yor [24])
 E
 )
-exp
-
-−1
+exp</p>
+<p>−1
 2
  x
 0
-f 2(u)dTu
-
-= exp
-
-−
+f 2(u)dTu</p>
+<p>= exp</p>
+<p>−
  x
 0
 |f(u)|du</p>
 <p>,
 (4.7)
 to see that the last integral in (4.6) is finite if and only if
- x
+ x
 0 |f(u)|du &lt; ∞,
 which is precisely our hypothesis on f.
 Note that the function H given by (4.2) is locally integrable as both func-
@@ -56341,7 +55926,7 @@ locally integrable function, and H be defined through
 H(x, y) = G(y) −g(y)x + C,
 (4.8)
 where C is a constant and G(y) =
- y
+ y
 0 g(s)ds. Then, the following holds:
 H(|Nt|, LN
 t ) = G(LN
@@ -56387,12 +55972,10 @@ Proposition 5.1 (Vallois [35]). Let T be a stopping time, such that the
 stopped process (Nt∧T : t ≥0) is a uniformly integrable martingale. Write ν
 for the law of N T and suppose that ν is equivalent to the Lebesgue measure
 on its interval support [0, b], b ≤∞. Then the law of N T is given by:
-P
-
-N T ≥y</p>
-<p>= exp
-
-−
+P</p>
+<p>N T ≥y</p>
+<p>= exp</p>
+<p>−
  y
 0
 ds
@@ -56410,17 +55993,15 @@ Proof. Suppose first that EN T &lt; ∞. With the help of the max-martingales
 for any f : R+ →R, bounded with compact support, we get that
 E
 )
-F(N T ) −f(N T )(N T −NT )
-
-= 0.
+F(N T ) −f(N T )(N T −NT )</p>
+<p>= 0.
 Upon conditioning with respect to N T we obtain:</p>
 <p>On Brownian Motion and its Supremum
 525
 E
 )
-F(N T ) −f(N T )(N T −ϕ(N T ))
-
-= 0.
+F(N T ) −f(N T )(N T −ϕ(N T ))</p>
+<p>= 0.
 (5.2)
 We can rewrite the above as a differential equation involving ν ∼N T , which
 yields (5.1).
@@ -56428,7 +56009,7 @@ When EN T is possibly infinite we can stop conveniently and pass to the limit.
 More precisely, let Rn = inf{t : N t = n} and ϕn(x) = E[NT ∧Rn|N T ∧Rn = x],
 x ≤n. A refinement of the argumentation above shows that for any x &lt; n,
 P(N T ∧Rn ≥x) = exp{−
- x
+ x
 0 ds/(s −ϕn(s))}. Observe however that for any
 0 ≤x &lt; n, P(N T ∧Rn ≥x) = P(N T ≥x) and ϕn(x) = ϕ(x). In consequence,
 letting n →∞, we see that (5.1) holds for all x &gt; 0.
@@ -56440,9 +56021,8 @@ function ϕ : R+ →R. Obviously NTϕ = ϕ(N Tϕ). We look for a function
 ϕ = ϕµ such that NTϕµ ∼µ. To this end, we take x in the support of µ and
 write
 µ(x) = P(NTϕµ ≥x) = ν(ϕ−1
-µ (x)) = exp
-
-−
+µ (x)) = exp</p>
+<p>−
  ϕ−1
 µ (x)
 0
@@ -56478,9 +56058,8 @@ dν(y)
 y −ϕ(y),
 hence
 ν(y)dy = (y −ϕ(y))dν(y),
-which we rewrite in terms of ρ
- 
-(y,∞)×R+
+which we rewrite in terms of ρ</p>
+<p>(y,∞)×R+
 ρ(ds, dx)</p>
 <p>dz =</p>
 <p>(0,∞)
@@ -56513,30 +56092,27 @@ stopping time T m := inf{t &gt; 0 : |N|t = ϕm(LN
 t )} satisfies |N|T m ∼m.
 Furthermore, (Nt∧T m : t ≥0) is a uniformly integrable martingale if and only
 if
- ∞
+ ∞
 0
 xdm(x) &lt; ∞.
 The theorem is valid for probability measures with atoms upon proper exten-
 sion of the definition of ψµ. We note that the law of LN
 T m is given through
 P(LN
-T m ≥x) = exp
-
-−
- x
+T m ≥x) = exp</p>
+<p>−
+ x
 0
 ds
 ϕm(s)</p>
 <p>(cf. (5.4) in [20]). An easy analogue of
 Proposition 5.1, is that this formula is also true for general stopping time
 T, such that the law of LT has a density, with the function ϕm replaced by
-ϕ(x) = E
-
-|NT |
-LN
-T = x
-
-.
+ϕ(x) = E</p>
+<p>|NT |
+LN
+T = x</p>
+<p>.
 5.2 Bounds on the laws of N T and LN
 T
 We present a classical bound on the law of N T , which was first obtained by
@@ -56562,30 +56138,25 @@ martingale (4.3) for f(x) = 1(x≥λ), for some fixed λ &gt; 0, and apply the
 optional stopping theorem. We obtain:
 λP(N T ≥λ) = E
 )
-NT 1(N T ≥λ)
-
-,
+NT 1(N T ≥λ)</p>
+<p>,
 (5.7)
 that is Doob’s maximal equality for continuous-time martingales. Let p :=
 P(N T ≥λ). As NT ∼µ, then the RHS is smaller than E[NT 1(NT ≥µ−1(p))]
 which, by definition in (5.3), is equal to pΨµ(µ−1(p)). We obtain therefore:
 λP(N T ≥λ) = λp ≤E
 )
-NT 1(NT ≥µ−1(p))
-
-= pΨµ
-
-µ−1(p)</p>
+NT 1(NT ≥µ−1(p))</p>
+<p>= pΨµ</p>
+<p>µ−1(p)</p>
 <p>,
 hence
-λ ≤Ψµ
-
-µ−1(p)</p>
+λ ≤Ψµ</p>
+<p>µ−1(p)</p>
 <p>,
 thus
-p ≤µ
-
-Ψ −1
+p ≤µ</p>
+<p>Ψ −1
 µ (λ)</p>
 <p>since µ is decreasing.
 (5.8)
@@ -56612,13 +56183,11 @@ H
 E(N T −NT )2 =
 H
 EN 2
-T
-
-E⟨N⟩T .
+T</p>
+<p>E⟨N⟩T .
 (5.9)
-The inequality EN T ≤
-
-E⟨N⟩T extends to any stopping time, through the
+The inequality EN T ≤</p>
+<p>E⟨N⟩T extends to any stopping time, through the
 monotone convergence theorem. This inequality was generalized for Bessel
 processes by Dubins, Shepp and Shiryaev [9] and for Brownian motion with
 drift by Peskir and Shiryaev [22]. These problems are also in close relation with
@@ -56629,11 +56198,9 @@ E
 )
 sup
 s≤T
-|Ns|
-
-≤
-
-2E⟨N⟩T ,
+|Ns|</p>
+<p>≤</p>
+<p>2E⟨N⟩T ,
 (5.10)
 4See also the note by Liptser and Novikov in this volume.</p>
 <p>528
@@ -56644,11 +56211,9 @@ E
 sup
 s≤T
 Ns −inf
-s≤T Ns
-
-≤
-
-3E⟨N⟩T ,
+s≤T Ns</p>
+<p>≤</p>
+<p>3E⟨N⟩T ,
 (5.11)
 and in (5.9), (5.10) and (5.11) the constants are optimal.
 Bounds on the law of the local time similar to (5.6) were studied in detail
@@ -56661,7 +56226,7 @@ the possible laws of the local time, when the distribution of the absolute value
 of the terminal value of a martingale is fixed. We follow the same approach
 as above, only starting with the martingales given in Corollary 4.1.
 Proposition 5.5. Let m be a probability on R+ with
- ∞
+ ∞
 0
 xdm(x) &lt; ∞, and
 let T be a stopping time, such that |NT | ∼m and (Nt∧T : t ≥0) is a uniformly
@@ -56669,30 +56234,29 @@ integrable martingale. Denote ρT the law of LN
 T . Then the following bound is
 true
 E
-)
+)
 LN
 T −ρ−1
 T (p)
-+
++
 ≤E
-)
+)
 LN
 T m −ρ−1
 T m(p∗)
-+
++
 ,
 p ∈[0, 1],
 (5.12)
 where T m is given in Proposition 5.3, the inverses ρ−1
 ·
 are taken left-
-continuous and p∗= m
-
-m−1(p)</p>
+continuous and p∗= m</p>
+<p>m−1(p)</p>
 <p>≥p.
 Remarks. It follows from (5.14) in our proof that the RHS of (5.12) is inde-
 pendent of N and equal to
- ∞
+ ∞
 m−1(p) xdm(x).
 For m with no atoms, p∗≡p. In other words, for m with no atoms, we have
 ρT ⪯ρT m, where ρT m is the image of m through the dual Hardy–Littlewood
@@ -56708,7 +56272,7 @@ Shaked and Shanthikumar in [28] (it is also called the right-spread or-
 der, cf. Fernandez-Ponce et al. [11]) and studied in Kochar et al. [15], and
 the above justifies some further investigation. Since in our case we have
 ELT = ELT m =
- ∞
+ ∞
 0
 xdm(x), the excess wealth order is equivalent to the
 TTT and NBUE orders and implies the convex order (see Kochar et al. [15]).
@@ -56731,7 +56295,7 @@ trivial for p = 1. It holds also for p = 0, as it just means that ELN
 T = ELN
 T m,
 which is true, as both quantities are equal to
- ∞
+ ∞
 0
 xdm(x). This follows from
 the fact that (LN
@@ -56743,44 +56307,40 @@ Take p ∈(0, 1), z = ρ−1
 T (p) and put g(x) = 1(x&gt;z). Using the optional
 stopping theorem for the martingale in (4.9), we obtain:
 E
-)
+)
 LN
 T −z
-+
++
 = E
 )
 |NT |1(LN
-T &gt;z)
-
-,
+T &gt;z)</p>
+<p>,
 hence
 (5.14)
 E
-)
+)
 LN
 T −z
-+
++
 ≤E
 )
-|NT |1(|NT |≥m−1(p))
-
-= E
+|NT |1(|NT |≥m−1(p))</p>
+<p>= E
 )
 |NT m|1(ϕm(LN
-T m)≥m−1(p))
-
-= E
+T m)≥m−1(p))</p>
+<p>= E
 )
 |NT m|1(LN
 T m≥ρ−1
-T m(p∗))
-
-= E
-)
+T m(p∗))</p>
+<p>= E
+)
 LN
 T m −ρ−1
 T m(p∗)
-+
++
 ,
 which ends the proof.
 ✷
@@ -56799,7 +56359,7 @@ f(Xt)
 EW
 )
 f(Xt)
- · W,
+ · W,
 (5.15)
 where W denotes the Wiener measure. Roynette, Vallois and Yor [27, 26]
 show that
@@ -56816,9 +56376,8 @@ t→∞Wf
 where the probability Wf
 ∞may be described as follows: for s &gt; 0 and Γs ∈Fs,
 Wf
-∞(Γs) = EW
-
-1ΓsSf
+∞(Γs) = EW</p>
+<p>1ΓsSf
 s ),
 where
 Sf
@@ -56841,7 +56400,7 @@ f(Xu)du
 (5.18)
 where Xf is a Wf
 ∞-Brownian motion, and F(x) =
- x
+ x
 0 f(u)du. Naturally, we
 see the max-martingales (4.3) intervene again. Further descriptions of Wf
 ∞
@@ -56871,14 +56430,14 @@ multiplicator with respect to (dΣs). As applications, we give some examples:
 •
 for Σt = N t −Nt and ku = f(N u), f a locally integrable function, (6.1)
 reads f(N t)(N t −Nt) =
- t
+ t
 0 f(N s)d(N s −Ns), which yields (4.3);
 •
 for Σt = Nt and ku = f(LN
 u ), f a locally integrable function, we obtain
 f(LN
 t )Nt =
- t
+ t
 0 f(LN
 s )dNs;
 •
@@ -56891,10 +56450,10 @@ u ), f a locally integrable function,
 we obtain f(LN
 t )|Nt|
 =
- t
+ t
 0 f(LN
 s )d|Ns|. This in turn is equal to
- t
+ t
 0 f(LN
 s )sgn(Ns)dNs −F(LN
 t ) by Itˆo–Tanaka’s formula, and so we ob-
@@ -56992,7 +56551,7 @@ Le probl<code>eme de Skorokhod: une remarque sur la d´emonstration
 d’Az´ema-Yor. In S´eminaire de Probabilit´es, XIV (Paris, 1978/1979) (French),
 volume 784 of Lecture Notes in Math., pages 392–396. Springer, Berlin, 1980.
 24. Revuz, D. and Yor, M.: Continuous Martingales and Brownian Motion, volume
-293 of Grundlehren der Mathematischen Wissenschaften [Fundamental Princi-
+293 of Grundlehren der Mathematischen Wissenschaften \[Fundamental Princi-
 ples of Mathematical Sciences]. Springer-Verlag, Berlin, third edition, 1999.
 25. Rogers, L. C. G.: The joint law of the maximum and terminal value of a mar-
 tingale. Probab. Theory Related Fields, 95(4):451–466, 1993.
@@ -57067,16 +56626,14 @@ standard Brownian motion. The problem of finding the fundamental solution
 f = f(t, x) of (1.1) appears naturally in a number of fields (most notably in
 sequential analysis and financial mathematics).
 The unique (strong) solution of (1.2) is given by:
-Xt = Yt
-
-x0 +
+Xt = Yt</p>
+<p>x0 +
  t
 0
 1
 Ys
-ds
-
-(1.3)
+ds</p>
+<p>(1.3)
 where Y = (Yt)t≥0 is a geometric Brownian motion solving:
 dYt = µYt dt + σYt dBt
 (1.4)
@@ -57099,7 +56656,7 @@ Ys ds
 when x0 = 0. This shows that the problem of finding the fundamental solution
 of (1.1) when x0 = 0 is equivalent to the problem of finding the distribution of
 the random variable
- t
+ t
 0 Ys ds. The latter problem has been intensively studied
 in the last 10-15 years (see [20], [4], [15] and the references therein) but none
 of these approaches attempts to tackle the forward equation (1.1) directly (see
@@ -57107,8 +56664,8 @@ of these approaches attempts to tackle the forward equation (1.1) directly (see
 The purpose of the present paper is to search for the fundamental so-
 lution of (1.1) by simple probabilistic and analytic means (cf. [5]). It will
 be seen below that this approach readily leads to the Laplace transform of
-t →
- x
+t →
+ x
 0 f(t, y) dy expressed in terms of confluent hypergeometric functions
 (modified Bessel functions) providing a link to the Hartman-Watson distrib-
 ution [9]. The problem thus reduces to inverting the Laplace transform. This
@@ -57180,7 +56737,7 @@ m(dx) = ν−1 (−x)−2+µ/ν e−1/νx dx
 for x &lt; 0.
 (2.6)
 Since
- ∞
+ ∞
 0
 m(dx) = νµ/ν Γ(1−µ/ν) &lt; ∞if and only if µ &lt; ν, it follows that
 X has an invariant density function on [0, ∞) given by:
@@ -57192,11 +56749,11 @@ x2−µ/ν e−1/νx
 for x &gt; 0
 (2.7)
 if and only if µ &lt; ν. Noting that
- 0
+ 0
 −∞m(dx) = ∞we see that X cannot have
 an invariant density function on (−∞, 0] as already indicated above.
 5. By the law of iterated logarithm for B one easily sees that
- ∞
+ ∞
 0
 Ys ds &lt; ∞
 almost surely if and only if µ &lt; ν. Hence when µ &lt; ν we find using (1.3) and
@@ -57209,28 +56766,28 @@ d
 Ys ds
 (2.8)
 as t →∞where the density function of
- ∞
+ ∞
 0
 Ys ds is given by (2.7) above.
 Likewise one sees that
- ∞
+ ∞
 0 (1/Ys) ds &lt; ∞almost surely if and only if µ &gt; ν.
 Hence when µ &gt; ν we find using (1.3) that:
 Xt →+∞
 if
 x0 +
- ∞
+ ∞
 0 (1/Ys) ds &gt; 0
 (2.9)
 Xt →−∞
 if
 x0 +
- ∞
+ ∞
 0 (1/Ys) ds &lt; 0
 (2.10)
 as t →∞. The probabilities of the latter two events can readily be computed
 upon noting that the density function of
- ∞
+ ∞
 0 (1/Ys) ds is given by:
 g(x) =
 1
@@ -57299,7 +56856,7 @@ In this section we study the problem of finding the fundamental solution of
 the Kolmogorov–Shiryaev equation (1.1). For simplicity we will only examine
 the case when x0 ≥0 (cf. Section 2). By the fundamental solution we thus
 mean a non-negative solution f = f(t, x) for t &gt; 0 and x &gt; 0, satisfying
- ∞
+ ∞
 0
 f(t, x) dx = 1 for each t &gt; 0, and f(t, x) →δ(x−x0) weakly as t ↓0
 (where δ denotes the Dirac delta function).</p>
@@ -57395,21 +56952,17 @@ p2 + (1−A)p + C = 0.
 (3.21)
 Solving (3.21) we find that:
 a = 1
-2
-
-1 −µ
-ν +
-
-1 −µ
+2</p>
+<p>1 −µ
+ν +</p>
+<p>1 −µ
 ν
 2
 + 4λ
-ν
-
-(3.22)
-b = 1 +
-
-1 −µ
+ν</p>
+<p>(3.22)
+b = 1 +</p>
+<p>1 −µ
 ν
 2
 + 4λ
@@ -57436,9 +56989,8 @@ has the general solution given by:
 p. 504]):
 xa M(a, b, −x) =
 Γ(b)
-Γ(b−a)
-
-1 + O(x−1)</p>
+Γ(b−a)</p>
+<p>1 + O(x−1)</p>
 <p>(3.26)
 as x →∞, we find that:
 x−a M(a, b, −1/νx) →νa
@@ -57452,13 +57004,11 @@ C1 = −Γ(b−a)
 Inserting this into (3.25) upon recalling that C2 = 0, we obtain the following
 closed-form expression for the Laplace transform (3.11) above:
 ¯F(λ, x) = 1
-λ
-
-1 −Γ(b−a)
+λ</p>
+<p>1 −Γ(b−a)
 Γ(b)
-(νx)−a M(a, b, −1/νx)
-
-(3.29)
+(νx)−a M(a, b, −1/νx)</p>
+<p>(3.29)
 where a = a(λ) and b = b(λ) are given by (3.22) and (3.23) respectively.
 8. By the inversion formula we have:
 F(t, x) =
@@ -57480,7 +57030,7 @@ G(s, x) ds
 (3.31)</p>
 <p>The Kolmogorov–Shiryaev Equation
 543
-where the Laplace transform of s →G(s, x) is given by:
+where the Laplace transform of s →G(s, x) is given by:
 ¯G(λ, x) =
  ∞
 0
@@ -57509,36 +57059,30 @@ in [1, p. 256]):
 (3.35)
 we find that the following identity holds:
 Γ(a)
-Γ(2a) (x/2)−a M(a, 2a, −2/x) =
-
-2π
+Γ(2a) (x/2)−a M(a, 2a, −2/x) =</p>
+<p>2π
 x e−1/x Ia−1/2(1/x).
 (3.36)
 Inserting this expression into (3.32) we find that:
-¯G(λ, x) =
-
-2π
+¯G(λ, x) =</p>
+<p>2π
 x e−1/x I√
 1/4+2λ (1/x).
 (3.37)
 This provides a link to the Hartman–Watson distribution (cf. [9]).
-Since by (3.37) the Laplace transform of s →e−s/4 G(s, x) equals
-
-2π/x
+Since by (3.37) the Laplace transform of s →e−s/4 G(s, x) equals</p>
+<p>2π/x
 e−1/x I√
 2λ (1/x), denoting by L−1
 λ [ · ] the inverse Laplace transform in the
 argument λ, we see that:
-G(s, x) =
-
-2π
+G(s, x) =</p>
+<p>2π
 x es/4−1/x L−1
-λ
-
-I√
-2λ (1/x)
-
-(s).
+λ</p>
+<p>I√
+2λ (1/x)</p>
+<p>(s).
 (3.38)
 Using the classic Hankel’s contour integral (see [18, Chapter XVII] for more
 details):
@@ -57554,18 +57098,16 @@ ey cosh(z)−(
 <p>544
 G. Peskir
 for y &gt; 0 and the well-known identity L−1
-λ <a href="t">e−(
+λ [e−(
 √
-2λ)x</a> = (2πt3)−1/2 x e−x2/2t
+2λ)x](t) = (2πt3)−1/2 x e−x2/2t
 it is possible to perform the inversion in (3.38) by expressing the result in
 terms of a single integral (cf. [19, pp. 86-87]):
 L−1
-λ
-
-I√
-2λ (y)
-
-(s) = y eπ2/2s
+λ</p>
+<p>I√
+2λ (y)</p>
+<p>(s) = y eπ2/2s
 √
 2π3s
  ∞
@@ -57630,24 +57172,20 @@ H(r) =
 <p>C
 ezzµ/2ν−1/2
 (3.46)
-exp
-
-−log
- ν xz
-r(1−r)
- 
-1
-4 (1−µ/ν)2 + λ/ν
-
-dz.</p>
+exp</p>
+<p>−log
+ ν xz
+r(1−r)</p>
+<p>1
+4 (1−µ/ν)2 + λ/ν</p>
+<p>dz.</p>
 <p>The Kolmogorov–Shiryaev Equation
 545
 Recalling the well-known identity:
 L−1
-λ
-
-e−w√
-α+βλ 
+λ</p>
+<p>e−w√
+α+βλ 
 (t) =
 √β w e−αt/β−βw2/4t
 2
@@ -57809,19 +57347,17 @@ with C &gt; 0, 0 &lt; α &lt; 1.
 The firm’s objective is to maximize the expected profit on the infinite time
 horizon
 J(k, L) = E
- ∞
+ ∞
 0
-e−rt (Π(Kt)dt −pdLt)
-
-(2.5)
+e−rt (Π(Kt)dt −pdLt)</p>
+<p>(2.5)
 over all controls L ∈A. Here r &gt; 0 is a fixed positive discount factor. Without
 loss of generality, one may consider the strategies L in A for which
 E
- ∞
+ ∞
 0
-e−rtdLt
-
-&lt; ∞,
+e−rtdLt</p>
+<p>&lt; ∞,
 (2.6)
 Accordingly, we define the value function
 v(k) = sup
@@ -57857,16 +57393,14 @@ e−rtγKtϕ′(Kt)dWt
  τ
 0
 e−rtϕ′(Kt)dLc
-t +
-
-0≤t≤τ
+t +</p>
+<p>0≤t≤τ
 e−rt [ϕ(Kt) −ϕ(Kt−)] ,
 (3.2)
 where
 Lc
-t = Lt −
-
-0≤s≤t
+t = Lt −</p>
+<p>0≤s≤t
 ∆Ls,
 is the continuous part of L.
 Proposition 3.1. Let ϕ be a nonnegative C2-function which is a supersolu-
@@ -57881,97 +57415,97 @@ Proof. For L ∈A define the stopping time τn = inf{t ≥0 : Kt ≥n} ∧n
 and apply Itˆo’s formula (3.2) between 0 and τn. Then, taking expectation and
 noting that the integrand in the stochastic integral is bounded on [0, τn), we
 get that
-E
-
-e−rτnϕ(Kτn)
-
-= ϕ(k) + E
- τn
+E</p>
+<p>e−rτnϕ(Kτn)</p>
+<p>= ϕ(k) + E
+ τn
 0
-e−rt (−rϕ + Lϕ) (Kt)dt
-
-+ E
- τn
+e−rt (−rϕ + Lϕ) (Kt)dt</p>
+<ul>
+<li>
+<p>E
+ τn
 0
 e−rtϕ′(Kt)dLc
-t
-
-+ E
+t</p>
+</li>
+<li>
+<p>E
 
-
+
 0≤t≤τn
 e−rt [ϕ(Kt) −ϕ(Kt−)]
 
 .
 Since ϕ′ ≤p, and Kt −Kt−= ∆Lt, the mean-value theorem implies that
 ϕ(Kt) −ϕ(Kt−) ≤p∆Lt.</p>
+</li>
+</ul>
 <p>Explicit Solution to an Irreversible Investment Model
 551
 Using again the inequality ϕ′ ≤p in the integrals with respect to dLc and
 taking into account that −rϕ + Lϕ ≤−Π, we obtain:
-E
-
-e−rτnϕ(Kτn)
-
-≤ϕ(k) −E
- τn
+E</p>
+<p>e−rτnϕ(Kτn)</p>
+<p>≤ϕ(k) −E
+ τn
 0
-e−rtΠ(Kt)dt
-
-+ E
- τn
+e−rtΠ(Kt)dt</p>
+<ul>
+<li>
+<p>E
+ τn
 0
 e−rtpdLc
-t
-
-+ E
+t</p>
+</li>
+<li>
+<p>E
 
-
+
 0≤t≤τn
 e−rtp∆Lt
 
 
 = ϕ(k) −E
- τn
+ τn
 0
-e−rtΠ(Kt)dt
-
-+ E
- τn
+e−rtΠ(Kt)dt</p>
+</li>
+<li>
+<p>E
+ τn
 0
-e−rtpdLt
-
-,
+e−rtpdLt</p>
+</li>
+</ul>
+<p>,
 and so
 E
- τn
+ τn
 0
-e−rt (Π(Kt)dt −pdLt)
-
-+ E
-
-e−rτnϕ(Kτn)
-
-≤ϕ(k).
+e−rt (Π(Kt)dt −pdLt)</p>
+<ul>
+<li>E</li>
+</ul>
+<p>e−rτnϕ(Kτn)</p>
+<p>≤ϕ(k).
 Since ϕ is nonnegative,
 ϕ(k) ≥E
- τn
+ τn
 0
-e−rtΠ(Kt)dt
-
-−E
- ∞
+e−rtΠ(Kt)dt</p>
+<p>−E
+ ∞
 0
-e−rtpdLt
-
-.
+e−rtpdLt</p>
+<p>.
 Applying Fatou’s lemma we get that
 E
- ∞
+ ∞
 0
-e−rt (Π(Kt)dt −pdLt)
-
-≤ϕ(k),
+e−rt (Π(Kt)dt −pdLt)</p>
+<p>≤ϕ(k),
 and so, finally, v(k) ≤ϕ(k) from the arbitrariness of L.
 ✷
 We now give some properties on the value function v.
@@ -57982,12 +57516,11 @@ Proof. For L ∈A we consider the control ˜L with ˜L0−= 0 and ˜Lt = Lt +l, 
 t ≥0. Let ˜K be the solution of (2.1) with the control ˜L and initial condition
 ˜K0−= k. Then, ˜Kt = Kt + l for t ≥0, and so ˜L ∈A. Thus,
 v(k) ≥J(k, ˜L) = E
- ∞
+ ∞
 0
-e−rt 
-Π( ˜Kt)dt −pd˜Lt
-
-= J(k + l, L) −pl.
+e−rt 
+Π( ˜Kt)dt −pd˜Lt</p>
+<p>= J(k + l, L) −pl.
 We obtain the required result from the arbitrariness of L.
 ✷
 Moreover, recalling the standing assumption (2.3), we have:
@@ -58239,19 +57772,19 @@ m = δ
 γ2 + 1
 2 −</p>
 <blockquote>
-<p> δ
+<p>δ
 γ2 + 1
 2
-2
+2
 + 2r
 γ2 , &lt; 0
 n = δ
 γ2 + 1
 2 +
- δ
+δ
 γ2 + 1
 2
-2
+2
 + 2r
 γ2 &gt; 1
 are the roots of
@@ -58260,12 +57793,12 @@ are the roots of
 Moreover, the ODE (5.1) admits a twice continuously differentiable particular
 solution on (0, ∞) given, accordingly, e.g. [6], by the formula
 ˆV0(k) = J(k, 0) = E
- ∞
+ ∞
 0
 e−rtΠ( ˆKk
-t )dt
-
-,
+t )dt</p>
+</blockquote>
+<p>,
 where ˆKk is the solution to the linear SDE
 d ˆKt = ˆKt (−δdt + γdWt) ,
 ˆK0 = k.
@@ -58291,7 +57824,6 @@ k &gt; 0.
 Under assumption (2.2), the limiting behavior of the derivative ˆV ′
 0 as k
 tends to zero and infinity is described as follows.</p>
-</blockquote>
 <p>Explicit Solution to an Irreversible Investment Model
 557
 Lemma 5.1.
@@ -58308,11 +57840,10 @@ k→∞
 0(k) = 0.
 Proof. We rewrite ˆV0 as
 ˆV0(k) = E
- ∞
+ ∞
 0
-e−rtΠ(kYt)dt
-
-,
+e−rtΠ(kYt)dt</p>
+<p>,
 k &gt; 0,
 where Yt = e−δtMt, and M is the martingale Mt = exp(γWt−γ2
 2 t). It is easily
@@ -58321,11 +57852,10 @@ checked by the Lebesgue theorem that one can differentiate the expression of
 the equality
 ˆV ′
 0(k) = E
- ∞
+ ∞
 0
-e−rtYtΠ′(kYt)dt
-
-,
+e−rtYtΠ′(kYt)dt</p>
+<p>,
 k &gt; 0.
 Using the positivity and nonincreasing monotonicity of Π′, we may apply
 the monotone convergence theorem as k tends to zero and obtain from the
@@ -58358,7 +57888,7 @@ We can now explicitly determine the value function v.</p>
 H. Pham
 Theorem 5.1. The value function v has the following structure:
 v(k) =
- kp + v(0+),
+ kp + v(0+),
 k ≤kb,
 Akm + ˆV0(k), kb &lt; k,
 (5.2)
@@ -58397,7 +57927,7 @@ C1- and C2-properties of v at kb that we proved to hold a priori. This contrasts
 with the classical verification approach where one tries to find a C2-solution
 to (3.1), so of the form
 ˜v(k) =
- kp + ˜v(0+),
+ kp + ˜v(0+),
 k ≤˜kb,
 ˜Akm + ˆV0(k), ˜kb &lt; k,
 (5.6)
@@ -58429,9 +57959,8 @@ F(kb) := (1 −m) ˆV ′
 (5.8)
 A = k1−m
 b
-m
-
-p −ˆV ′
+m</p>
+<p>p −ˆV ′
 0(kb)</p>
 <p>.
 (5.9)
@@ -58455,10 +57984,9 @@ r + αδ + γ2
 .
 Then, from (5.8), kb is explicitly written as :
 kb =
- p(1 −m)
-αC(α −m)
-
-1
+ p(1 −m)
+αC(α −m)</p>
+<p>1
 α−1
 .
 5.3 Optimal control
@@ -58493,20 +58021,18 @@ Remark 5.5. The solution K∗to the above equations is a reflected diffusion at
 the boundary kb and the process L∗is the local time of K∗at kb. Condition
 (5.12) means that L∗increases only when K∗hits the boundary kb. It is
 also known that the r-potential of L∗is finite, i.e. E
- ∞
+ ∞
 0
 e−rtdL∗
-t
-
-&lt; ∞, see
+t</p>
+<p>&lt; ∞, see
 Chapter X in [9], so that
 E
- ∞
+ ∞
 0
 e−rtK∗
-t dt
-
-&lt; ∞.
+t dt</p>
+<p>&lt; ∞.
 (5.13)
 Theorem 5.2. For k ≥0, let (K∗, L∗) be the solution to the Skorohod problem
 S(k, kb). Then
@@ -58521,12 +58047,10 @@ t ) = 0, a.e.
 t ≥0.
 By applying Itˆo’s formula to e−rtv(K∗
 t ) between 0 and T, we thus get:
-E
-
-e−rT v(K∗
-T )
-
-=
+E</p>
+<p>e−rT v(K∗
+T )</p>
+<p>=
 v(k) −E
 B T
 0
@@ -58567,12 +58091,11 @@ t
 C
 ,
 since v′(kb) = p. Plugging into (5.14) yields:
-v(k) = E
-
-e−rT v(K∗
-T )
-
-+ E
+v(k) = E</p>
+<p>e−rT v(K∗
+T )</p>
+<ul>
+<li>E
 B T
 0
 e−rtΠ(K∗
@@ -58591,19 +58114,19 @@ T ] = 0. Since v satisfies a linear
 growth condition in k, this implies that also
 lim
 T →∞E[e−rT v(K∗
-T )] = 0.</p>
+T )] = 0.</li>
+</ul>
 <p>Explicit Solution to an Irreversible Investment Model
 561
 By sending T to infinity into (5.15), we obtain, by the dominated convergence
 theorem, the required result:
 v(k) = J(k, L∗) = E
- ∞
+ ∞
 0
 e−rt (Π(K∗
 t ) −pdL∗
-t )
-
-.
+t )</p>
+<p>.
 2) If k &lt; kb, and since then L∗
 0 = k −kb, we have:
 J(k, L∗) = J(kb, L∗) −p(k −kb)
@@ -58621,7 +58144,7 @@ Fix k0 &gt; 0 and C2-function ϕ such that v(k0) = ϕ(k0) and ϕ(k) ≤v(k) for
 all k in a neighborhood ¯Bε(k0) = [k0 −ε, k0 + ε] of k0 (0 &lt; ε &lt; k0). Consider
 the admissible control L ∈A defined by
 Lt =
-0, t = 0
+0, t = 0
 η, t ≥0,
 where 0 ≤η &lt; ε. Define the exit time τε = inf{t ≥0 : Kt /∈¯Bε(x0)}. Here K
 is the capacity production starting from k0 and controlled by L above. Notice
@@ -58652,9 +58175,8 @@ e−rt (−rϕ + Lϕ) (Kt)dt
 C
 + E
 
-
-
-0≤t≤τε∧h
+</p>
+<p>0≤t≤τε∧h
 e−rt [ϕ(Kt) −ϕ(Kt−)]
 
 .
@@ -58672,9 +58194,8 @@ e−rtpdLt
 C
 −E
 
-
-
-0≤t≤τε∧h
+</p>
+<p>0≤t≤τε∧h
 e−rt [ϕ(Kt) −ϕ(Kt−)]
 
 ≥0.
@@ -58716,22 +58237,23 @@ applying Itˆo’s formula to e−rtϕ(Kt), we get :
 E
 )
 e−rτεϕ(Kτ −
-ε )
-
-= ϕ(k0) + E
- τε
+ε )</p>
+<p>= ϕ(k0) + E
+ τε
 0
-e−rt (−rϕ + Lϕ) (Kt)dt
-
-+ E
- τε
+e−rt (−rϕ + Lϕ) (Kt)dt</p>
+<ul>
+<li>
+<p>E
+ τε
 0
 e−rtϕ′(Kt)dLc
-t
-
-+ E
+t</p>
+</li>
+<li>
+<p>E
 
-
+
 0≤t&lt;τε
 e−rt [ϕ(Kt) −ϕ(Kt−)]
 
@@ -58749,41 +58271,39 @@ Due to relations (5.23) – (5.26), we thus obtain:
 E
 )
 e−rτεϕ(Kτ −
-ε )
-
-≤ϕ(k0) + E
- τε
+ε )</p>
+</li>
+</ul>
+<p>≤ϕ(k0) + E
+ τε
 0
-e−rt (−Π −ν) (Kt)dt
-
-+ E
+e−rt (−Π −ν) (Kt)dt</p>
+<ul>
+<li>E
 B τ −
 ε
 0
 e−rt(p −ν)dLt
 C
 = ϕ(k0) + E
- τε
+ τε
 0
-e−rt (−Π(Kt)dt + pdLt)
-
-−E
-
-e−rτεp∆Lτε
-
-−ν
-
-E
- τε
+e−rt (−Π(Kt)dt + pdLt)</li>
+</ul>
+<p>−E</p>
+<p>e−rτεp∆Lτε</p>
+<p>−ν</p>
+<p>E
+ τε
 0
-e−rtdt
-
-+ E
+e−rtdt</p>
+<ul>
+<li>E
 B τ −
 ε
 0
 e−rtdLt
-C
+C
 .
 (5.27)
 Notice that while Kτ −
@@ -58798,7 +58318,8 @@ Then, similarly as in (5.26), we have :
 ϕ(kα) −ϕ(Kτ −
 ε ) ≤α(p −ν)∆Lτε.
 (5.28)
-Notice that Kτε = kα + (1 −α)∆Lτε, and so from Lemma 3.1 we have:</p>
+Notice that Kτε = kα + (1 −α)∆Lτε, and so from Lemma 3.1 we have:</li>
+</ul>
 <p>564
 H. Pham
 v(kα) ≥−p(1 −α)∆Lτε + v(Kτε).
@@ -58809,47 +58330,44 @@ Recalling that ϕ(kα) ≥v(kα), inequalities (5.28), (5.29) imply:
 Plugging the last inequality into (5.27) and recalling that ϕ(k0) = v(k0), we
 obtain:
 v(k0) ≥E
- τε
+ τε
 0
-e−rt (Π(Kt)dt −pdLt) + v(Kτε)
-
-+ ν
-
-E
- τε
+e−rt (Π(Kt)dt −pdLt) + v(Kτε)</p>
+<ul>
+<li>ν</li>
+</ul>
+<p>E
+ τε
 0
-e−rtdt
-
-+ E
+e−rtdt</p>
+<ul>
+<li>E
 B τ −
 ε
 0
 e−rtdLt
-C
-+ E
-
-e−rτεα∆Lτε
-
-
-.
+C</li>
+<li>E</li>
+</ul>
+<p>e−rτεα∆Lτε</p>
+<p>.
 (5.30)
 ⋆We now claim that there is a constant g0 &gt; 0 such that for all L ∈A :
 E
- τε
+ τε
 0
-e−rtdt
-
-+ E
+e−rtdt</p>
+<ul>
+<li>E
 B τ −
 ε
 0
 e−rtdLt
-C
-+ E
-
-e−rτεα∆Lτε
-
-≥g0. (5.31)
+C</li>
+<li>E</li>
+</ul>
+<p>e−rτεα∆Lτε</p>
+<p>≥g0. (5.31)
 Indeed, one can always find some constant G0 &gt; 0 such that the C2-function
 ψ(k) = G0((k −k0)2 −ε2),
 satisfies the relations
@@ -58859,26 +58377,24 @@ on
 ψ = 0,
 on ∂¯Bε(k0).
 For instance, we can choose:
-G0 = min
-
-1
+G0 = min</p>
+<p>1
 rε2 + 2εδ(k0 + ε) + γ2(k0 + ε)2 , 1
-2ε
-</p>
+2ε</p>
 <blockquote>
 <p>0.
 By applying again Itˆo’s lemma, we get that
 E
 )
 e−rτεψ(Kτ −
-ε )
-
-≤ψ(k0) + E
- τε
+ε )</p>
+</blockquote>
+<p>≤ψ(k0) + E
+ τε
 0
-e−rtdt
-
-+ E
+e−rtdt</p>
+<ul>
+<li>E
 B τ −
 ε
 0
@@ -58887,29 +58403,27 @@ C
 (5.32)
 Since ψ′(k) ≥−1, we have:
 ψ(Kτ −
-ε ) −ψ(kα) ≥−
-
-Kτ −
+ε ) −ψ(kα) ≥−</li>
+</ul>
+<p>Kτ −
 ε −kα</p>
-</blockquote>
 <p>= α∆Lτε ≥0.
 Plugging into (5.32) yields:
 E
- τε
+ τε
 0
-e−rtdt
-
-+ E
+e−rtdt</p>
+<ul>
+<li>E
 B τ −
 ε
 0
 e−rtdLt
 C
-≥E
-
-e−rτεψ(kα)
-
-−ψ(k0) = −ψ(k0) = G0ε2.
+≥E</li>
+</ul>
+<p>e−rτεψ(kα)</p>
+<p>−ψ(k0) = −ψ(k0) = G0ε2.
 (5.33)</p>
 <p>Explicit Solution to an Irreversible Investment Model
 565
@@ -59017,10 +58531,10 @@ length of a cycle starting from x, i.e.
 G(x) = sup
 τ
 Ex
-τ−1
+τ−1
 n=o βnr(Zn)
 Ex
-τ−1
+τ−1
 n=o βn
 ,
 (1.1)
@@ -59050,17 +58564,15 @@ Qπ(e) ,
 where supremum is taken over some set of strategies.
 Note that the reward Rπ(e) can be represented in the form
 Rπ(e) = Eπ
-Bτ−1
-
-i=0
+Bτ−1</p>
+<p>i=0
 r(Ai)
 C
 = ˜Eπ
 
 
-τ−1
-
-i=0
+τ−1</p>
+<p>i=0
 r(Ai)
 i−1
 (
@@ -59218,7 +58730,7 @@ lution of the system. The goal of the DM is to maximize the expected total
 reward Rπ(x) = Eπ
 xL = Eπ
 x
-∞
+∞
 i=0 r(Xi, Ai). From the general theory of MDP
 it follows that for such a functional it suffices to consider only the station-
 ary strategies. The value function R(x) = supπ Rπ(x) satisfies the Bellman
@@ -59226,9 +58738,8 @@ ary strategies. The value function R(x) = supπ Rπ(x) satisfies the Bellman
 sup
 a∈A(x)
 B
-r(x, a) +
-
-y
+r(x, a) +</p>
+<p>y
 p(y|x, a)R(y)
 C
 .
@@ -59247,7 +58758,7 @@ action, i.e. at each stage a DM can test any of edges in x or select an action
 e∗which at the next moment moves a system to x∗.
 The following parameters are defined for every edge e: 1) a number
 q(e), 0 ≤q(e) ≤1, 2) for each subset D of the set N(e) (including empty
-set and the full set N(e)) a number pD(e) ≥0 such that 
+set and the full set N(e)) a number pD(e) ≥0 such that 
 D⊂N(e) pD(e) =
 1 −q(e), 3) a reward r(e) such that r(e∗) = 0.
 The meaning of these parameters is as follows. Edges correspond to trials.
@@ -59262,9 +58773,8 @@ and that the “coordinates” of a new state y for edges e′ ̸= e remain the 
 Given an initial state x and strategy π, the goal is to maximize the expected
 total reward, Rπ(x) = Eπ
 x
-∞
-
-i=0
+∞</p>
+<p>i=0
 r(Ai), where Ai is the edge tested at moment i.
 Main Problem A: Given an initial state x, maximize Rπ(x) over all
 strategies.
@@ -59469,7 +58979,7 @@ the transition to x∗has occurred now (at a termination moment). For the
 sake of brevity we call τ∗an exit time. Since r(e∗) = 0, we have obviously
 Rπ(x) = Eπ
 x
-τ∗−1
+τ∗−1
 i=0 r(Ai). For any initial state x and PR π let us define
 Qπ(x) = P π
 x {Xτ∗= x∗},
@@ -59652,14 +59162,12 @@ Using strong Markov property and the total probabilities formula it is easy
 to obtain for a π = (π1, π2)
 Rπ(x) = Eπ1
 x
-Bσ−1
-
-i=0
+Bσ−1</p>
+<p>i=0
 ri + Rπ2(Xσ)
 C
-= Rπ1(x) +
-
-y
+= Rπ1(x) +</p>
+<p>y
 P π1
 x (Xσ = y)Rπ2(y). (6.1)
 Lemma 1. If
@@ -59691,7 +59199,7 @@ x
 according to (6.1) the term R is the same for both π12 and π21. The equality
 in Lemma 3 follows from formula (6.1) applied to the moments τi of switching
 from πi to (πj, π) and the fact that for disjoint PRs the second factor of each
-term in the sum 
+term in the sum 
 y P πi
 x (Xτi = y)Rπ(y) is the same for all y such that y ̸= x∗
 and P πi
@@ -59834,15 +59342,13 @@ N k+1(x) =</p>
 <p>A
 N∗(gk),
 (8.3)
-Rk+1(x) = Rk(x) + R∗(gk)
-
-D: gk∈D⊂Nk(x),
+Rk+1(x) = Rk(x) + R∗(gk)</p>
+<p>D: gk∈D⊂Nk(x),
 pk
 D(x),
 (8.4)
-Qk+1(x) = Qk(x) + Q∗(gk)
-
-D: gk∈D⊂Nk(x)
+Qk+1(x) = Qk(x) + Q∗(gk)</p>
+<p>D: gk∈D⊂Nk(x)
 pk
 D(x).
 (8.5)
@@ -60051,7 +59557,7 @@ form ykQ = ((x \ (e1, e2)) ∪Nk(e1) ∪NQ(e1)) for some 0 ≤k ≤j(e1), 0 ≤
 Q ≤j(e2), and P πi
 x {xτ∗= yiQ} = pi(e1)pQ(e2) for i = 1, 2. For y = x∗we
 have P πi
-x {xτ∗= x∗} = 1 −
+x {xτ∗= x∗} = 1 −
 y̸=e∗P π1
 x {xτ∗= y} for i = 1, 2. This completes
 the proof of Lemma 1 for the case |{π}| = 2.</p>
@@ -60162,9 +59668,8 @@ The value of a portfolio ϕ starting from initial capital c is given by
 V c,ϕ
 t
 = c +
-t
-
-i=1
+t</p>
+<p>i=1
 ⟨ϕi, ∆Si⟩,
 where ⟨·, ·⟩denotes scalar product in Rd, ∆Si := Si −Si−1 and c &gt; 0.
 Introduce for each t = 1, ..., T a random subset Dt(ω) of Rd: the affine hull
@@ -60420,9 +59925,8 @@ is a fixed constant. Let the Rd-valued random variables ζj, 1 ≤j ≤m, be
 such that they form a (random) orthonormal bases of R, almost surely. Define
 W := {−1, +1}m and introduce the vectors
 θi :=
-m
-
-j=1
+m</p>
+<p>j=1
 i(j)ζj,
 i ∈W.
 It is clear from Lemma 2.1 that M(x) is contained in the m-dimensional cube
@@ -60439,9 +59943,8 @@ V (x + ⟨ξ, Y ⟩) ≤
 i∈W
 V (x + K⟨θi, Y ⟩) a.s.
 Thus,
-V +(x + ⟨ξ, Y ⟩) ≤
-
-i∈W
+V +(x + ⟨ξ, Y ⟩) ≤</p>
+<p>i∈W
 V +(x + K⟨θi, Y ⟩) a.s.
 (2.6)</p>
 <p>596
@@ -60462,9 +59965,8 @@ V +(x + K⟨θi, Y ⟩) = V +(x + ⟨ρ, Y ⟩+ ⟨Kθi −ρ, Y ⟩) ≤
 [V +(x + ⟨ρ, Y ⟩+ ⟨ψi(Kθi −ρ), Y ⟩) + V (2)],
 i ∈W.
 where we used Lemma 2.2, monotonicity of V , ψi ≤1 and ρ ∈Ξx. Define
-L := 2
-
-i∈W
+L := 2</p>
+<p>i∈W
 1
 ψi
 [V +(x + ⟨ρ, Y ⟩+ ⟨ψi(Kθi −ρ), Y ⟩) + V (2)].
@@ -60472,9 +59974,8 @@ As ψi is chosen in such a manner that
 ρ + ψi(Kθi −ρ) ∈M(x),
 i ∈W,
 we have, using (2.3)
-E(L|H) = 2
-
-i∈W
+E(L|H) = 2</p>
+<p>i∈W
 1
 ψi
 E(V +(x + ⟨ρ, Y ⟩+ ⟨ψi(Kθi −ρ), Y ⟩)|H)+
@@ -60492,10 +59993,9 @@ Proof. Take a version G(q, ω) of the essential supremum, for q ∈Q+. As
 x ∈(0, ∞). Outside a P-null set the monotonicity and convexity relations
 G(q1) ≤G(q2), if q1 ≤q2,
 G
-1
-2 (q1 + q2)
-
-≥G(q1) + G(q2)
+1
+2 (q1 + q2)</p>
+<p>≥G(q1) + G(q2)
 2
 , q1, q2 ∈Q+,</p>
 <p>On the Existence of Optimal Portfolios
@@ -60574,13 +60074,11 @@ n, Y ⟩)|H)
 If 1 ≤k ≤2n −1 we set
 ξn(x, ω) := κk
 n(ω),
-x ∈
-
-1 + k
+x ∈</p>
+<p>1 + k
 2n , 1 + k + 1
-2n
-
-,
+2n</p>
+<p>,
 where κk
 n ∈Ξ1+k/2n is chosen in such a way that almost everywhere
 E(V (1 + k/2n + ⟨κk
@@ -60591,56 +60089,41 @@ n.
 (2.11)
 Here we use the notations
 uk
-n := E
-
-V
-
-1 + k
+n := E</p>
+<p>V</p>
+<p>1 + k
 2n +
 O
-ξn
-
-1 + k −1
-2n
-
-, Y
-P H
-
-,
+ξn</p>
+<p>1 + k −1
+2n</p>
+<p>, Y
+P H</p>
+<p>,
 vk
-n := E
-
-V
-
-1 + k
+n := E</p>
+<p>V</p>
+<p>1 + k
 2n +
 O
-ηn
-
-1 + k
-2n
-
-, Y
-P H
-
-,
+ηn</p>
+<p>1 + k
+2n</p>
+<p>, Y
+P H</p>
+<p>,
 wk
-n := E
-
-V
-
-1 + k
+n := E</p>
+<p>V</p>
+<p>1 + k
 2n +
 O
-ξn−1
-
-1 + k
-2n
-
-, Y
-P H
-
-.
+ξn−1</p>
+<p>1 + k
+2n</p>
+<p>, Y
+P H</p>
+<p>.
 This is possible, as the family (2.10) is directed upwards and Ξy ⊆Ξz for
 y ≤z. The latter fact implies also that actually κk
 n ∈Ξy for y from the
@@ -60830,9 +60313,8 @@ Now set ϕ∗
 1(c) := ˜ξ1(c) and define recursively:
 ϕ∗
 t+1(c) := ˜ξt+1(c +
-t
-
-j=1
+t</p>
+<p>j=1
 ⟨ϕ∗
 j, ∆Sj⟩), 1 ≤t ≤T −1.
 Joint measurability of ˜ξt assures that ϕ∗= ϕ∗(c) is a predictable process
@@ -60989,10 +60471,9 @@ and this is indeed a random set. Take H-measurable random variables
 ζi(ω), 1 ≤i ≤d, which are orthogonal and generate R(x) (some of them
 might be 0), this follows easily from the measurable selection theorem. The
 function
-<a href="ω">dim R(x)</a> :=
-d
-
-j=1
+[dim R(x)](ω) :=
+d</p>
+<p>j=1
 I{ζj̸=0}(ω)
 is H-measurable. It suffices to prove the proposition separately on the events
 {ω : dim R(x, ω) = m} ∈H,
@@ -61009,9 +60490,8 @@ n∈N
 
 (ω, p) : p + 1
 n
-m
-
-j=0
+m</p>
+<p>j=0
 i(j)ζj(ω) ∈M(ω, x), ∀i ∈{−1, +1}m
 
 
@@ -61115,7 +60595,7 @@ following two related but nevertheless different problems.
 Problem 1. Find the solution f of the discrete Poisson equation
 f = c + Pf,
 (1.1)
-where Pf(x) = 
+where Pf(x) = 
 y p(x, y)f(y) is the averaging operator, defined by a transi-
 tion matrix P, and c is a given function defined on a countable or finite state
 space X.
@@ -61172,7 +60652,7 @@ and the expectation for the Markov chain with initial point x are denoted by</p>
 <p>Optimal Stopping and Solution of Poisson and Bellman Equations
 611
 Px and Ex, respectively. The value function v(x) for an OS model is defined
-as v(x) = supτ≥0 Ex[τ−1
+as v(x) = supτ≥0 Ex[τ−1
 i=0 βic(Zi) + βτg(Zτ)], where the sup is taken over
 all stopping times τ ≤∞. If τ = ∞with positive probability we assume that
 g(Z∞) = 0.
@@ -61237,9 +60717,8 @@ imply the following basic lemma of the SR approach:
 Lemma 1. (Kolmogorov, Doeblin) (a) The random sequence (Yn) is a
 Markov chain in a model M2 = (X2, P2), where
 (b) the transition matrix P2 = {p2(x, y)} is given by the formula
-p2(x, y) = p1(x, y) +
-
-z∈D
+p2(x, y) = p1(x, y) +</p>
+<p>z∈D
 p1(x, z)u1(z, y),
 (x, y ∈X2).
 (3.1)
@@ -61247,11 +60726,10 @@ Part (a) is immediately implied by the strong Markov property for (Zn), while
 the proof of (b) is straightforward. Formula (3.1) can be represented in the
 matrix form (see, e.g., [6]). If the matrix P1 is decomposed as
 P1 =
-Q1 T1
+Q1 T1
 R1 P ′
-1
-
-,
+1</p>
+<p>,
 (3.2)
 where sub-stochastic matrix Q1 describes the transitions inside of D, P ′
 1 de-
@@ -61264,9 +60742,8 @@ In this formula U1 is the matrix of distribution of an MC at the moment of
 the first exit from D (exit probabilities matrix), and N1 is the fundamental
 matrix for the sub-stochastic matrix Q1, i.e.
 N1 =
-∞
-
-n=0
+∞</p>
+<p>n=0
 Qn
 1 = (I −Q1)−1,
 (3.4)

@@ -896,7 +896,7 @@ parameters are optimally updated as follows:
 d t|t = d t|t−1 + Kt
 
 it −Xtd t|t−1
-
+
 (8.9)
 where d t|s denotes the estimate of the state “d” at time t conditional
 on the information available at time s. The interesting part of equation
@@ -910,7 +910,7 @@ t
 
 XtP t|t−1X′
 t + 
-−1
+−1
 (8.10)
 
 On the Efficiency of Capital Markets
@@ -983,7 +983,7 @@ added to a matrix, which records its magnitude, phase, and frequency at
 each time point. These steps may be expressed as:
 STFT {x[n]} ≡X(m,ω) =
 ∞
-
+
 n=−∞
 x[n]w[n −m]e−jωn
 (8.11)
@@ -1020,7 +1020,7 @@ i=1
 αi,t exp
 
 −jωi
-
+
 
 2
 t
@@ -1071,11 +1071,11 @@ A. Hughes Hallett and C. Richter
 where
 CYX (ω) = fXX (ω)
 ∞
-
+
 j=0
 aj cosωj, and QYX(ω) = fXX (ω)
 ∞
-
+
 j=0
 aj sinωj
 (8.17)
@@ -1714,23 +1714,23 @@ dP(Wti = du+
 i+1)
 du+
 i+1
-
+
 du+
 i+1
 dyi+1
- +
+ +
 dP(Wti = du−
 i+1)
 du−
 i+1
-
+
 du−
 i+1
 dyi+1
-
+
 =
 1
-
+
 2πti
 
 exp
@@ -1753,14 +1753,14 @@ i+1
 
 
 
-
+
 1
 σxγ
 i
 
 1 + 2γ yi+1
 xi
-
+
 ,
 as 1 + 2γ yi+1
 xi
@@ -1789,7 +1789,7 @@ dP(Xti+1 = dxi+1|Xti = xi)
 dxi+1
 =
 1
-
+
 2πti
 
 exp
@@ -1815,14 +1815,14 @@ i+1
 
 
 
-
+
 1
 σxγ
 i
 
 1 + 2γ yi+1
 xi
-
+
 ,
 for 1 + 2γ yi+1
 xi
@@ -1944,7 +1944,7 @@ for k ≥1. We normalized ˆRk into
 
 Var[ˆRk]
 =
-
+
 N −k ˆRk =
 1
 √
@@ -2811,7 +2811,7 @@ further when the ARCH components are introduced.
 The forecast errors are reported in the tables for both the in-sample and
 the out-of-sample forecasts. According to (9.13), the predictor of Xt+1 in
 the LARMA and the LARMA-ARCH model is given by:
-ˆXt+1 = Et[Xt+1]( ˆθ) = Xt + ˆα0 +
+ˆXt+1 = Et\[Xt+1\]( ˆθ) = Xt + ˆα0 +
 p
 
 i=1
@@ -3469,14 +3469,14 @@ yt = β + αyt−1 + ut
 (10.1)
 where β is a drift parameter. The process can be rewritten in first
 difference form as:
-yt = β + (α −1)yt−1 + ut
+yt = β + (α −1)yt−1 + ut
 (10.2)
 The test for unit root is essentially one which tests for α = 1. If the errors
 are assumed to follow an AR (1) process
 ut = ρut−1 + εt
 (10.3)
 the model can be rewritten as:
-yt = Ztβ+(α −1)(ρ −1)yt−1 + αρyt−1 + εt
+yt = Ztβ+(α −1)(ρ −1)yt−1 + αρyt−1 + εt
 (10.4)
 where Zt is the drift term. The new test is an Augmented Dickey Fuller
 (ˆτ) test of (α −1)(ρ −1) = 0. Elliott et al. (1996) perform asymptotic
@@ -3710,10 +3710,10 @@ where each Yt is an N-dimensional vector of yields defined above and εt’s
 are independent k-dimensional Gaussian errors with covariance matrix
 	. N represents the number of yields in each country (four for Lebanon,
 and five for Egypt). The model can be written in difference form as:
-Yt = µ + 
-1Yt−1 + 
-2Yt−2 + ··· + 
-qYt−q + Yt−q + εt
+Yt = µ + 
+1Yt−1 + 
+2Yt−2 + ··· + 
+qYt−q + Yt−q + εt
 (10.7)
 where µ is a linear deterministic trend,
 
@@ -3736,9 +3736,9 @@ cointegrating vectors. Therefore, the rank6 of  is also r. Johansen (1988)
 and Johansen and Juselius (1990) maximize the likelihood function for
 Yt conditional on the restrictions  = ϕγ‘. The likelihood ratio (LR) is
 derived by applying least squares on the following equations:
-Yt−q = µ + V1Yt−1 + V2Yt−2 + ··· + Vq−1Yt−q+1 + u0t
+Yt−q = µ + V1Yt−1 + V2Yt−2 + ··· + Vq−1Yt−q+1 + u0t
 (10.11)
-Yt = µ + W1Yt−1 + W2Yt−2 + ··· + Wq−1Yt−q+1 + u1t (10.12)
+Yt = µ + W1Yt−1 + W2Yt−2 + ··· + Wq−1Yt−q+1 + u1t (10.12)
 and computing the residual sample second-moment matrices:
 ˆ00 = T−1
 T

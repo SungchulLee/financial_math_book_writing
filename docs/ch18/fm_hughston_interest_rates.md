@@ -1146,7 +1146,7 @@ we will verify it for a specific example. Consider the random variable E1[S3], w
 is the expected value of the share price at time 3, given that we have information
 about what happened at time 1. Evaluate it at a particular element of the sample
 space, say UDU,
-E1[S3](UDU)
+E1\[S3\](UDU)
 =
 E[S3|F 0]
 =
@@ -1155,7 +1155,7 @@ P(UUU|F 0)S000 + P(UUD|F 0)S001
 (C.80)
 Now consider the random variable E1[E2[S3]]. We want to evaluate it at the same
 point and verify that we get the same result as above. Hence
-E1[E2[S3]](UDU)
+E1\[E2\[S3\]\](UDU)
 =
 E[E2[S3]|F 0]
 =
@@ -1172,7 +1172,7 @@ P(UUU|F 0)E[S3|F 00] + P(UUD|F 0)E[S3|F 00]
 {P(UDU|F 01)S010 + P(UDD|F 01)S011}.
 (C.81)
 Collecting terms that have the same value of S3, we have
-E1[E2[S3]](UDU)
+E1\[E2\[S3\]\](UDU)
 =
 {P(UUU|F 0) + P(UUD|F 0)}P(UUU|F 00)S000
 +
@@ -1183,7 +1183,7 @@ E1[E2[S3]](UDU)
 {P(UDU|F 0) + P(UDD|F 0)}P(UDD|F 01)S011.(C.82)
 We then note that P(UUU|F 0)+P(UUD|F 0) = P(F 00|F 0), and similarly P(UDU|F 0)+
 P(UDD|F 0) = P(F 01|F 0), so
-E1[E2[S3]](UDU)
+E1\[E2\[S3\]\](UDU)
 =
 P(F 00|F 0)P(UUU|F 00)S000
 +
@@ -1195,13 +1195,13 @@ P(F 01|F 0)P(UDD|F 01)S011.
 (C.83)
 But then P(F 00|F 0)P(UUU|F 0) = P(UUU|F 0), and so on, which simplifies our
 result to
-E1[E2[S3]](UDU)
+E1\[E2\[S3\]\](UDU)
 =
 P(UUU|F 0)S000 + P(UUD|F 0)S001
 +
 P(UDU|F 0)S010 + P(UDD|F 0)S011
 =
-E1[S3](UDU),
+E1\[S3\](UDU),
 (C.84)
 165
 

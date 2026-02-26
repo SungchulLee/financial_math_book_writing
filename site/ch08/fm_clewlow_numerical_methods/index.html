@@ -48691,13 +48691,13 @@ an asset of current value S. This option can be exercised at any time, and so th
 expiry date. Since the option is perpetual its payoff is time independent (see Merton
 (1973)) and the Black–Scholes equation reduces to the following second order ordinary
 differential equation:
-2S2
+2S2
 2
 d2V
 dS2 þ ðr  qÞS dV
 dS  rV ¼ 0
 ð10:1Þ
-where as usual S is the asset price, V is the option value,  is the volatility of the asset,
+where as usual S is the asset price, V is the option value,  is the volatility of the asset,
 r is the riskless interest rate and q is the continuous dividend yield.</p>
 <p>If we substitute S ¼ exp (X) we then have:
 dV
@@ -48712,86 +48712,77 @@ dS
 d
 dX
 dV
-dX expðXÞ
-</p>
+dX expðXÞ</p>
 <p>¼ expð2XÞ d2V
 dX2  dV
 dX expð2XÞ
 Substituting the above results into Equation 10.1 we obtain:
-2 expð2XÞ expð2XÞ
+2 expð2XÞ expð2XÞ
 2
 d2V
 dX2  dV
-dX
-</p>
+dX</p>
 <p>þ ðr  qÞ expðXÞ expðXÞ dV
 dX  rV ¼ 0
-2
+2
 2
 d2V
 dX2 þ
-ðr  qÞ  2
-2
-</p>
+ðr  qÞ  2
+2</p>
 <p>dV
 dX  rV ¼ 0
 So
 d2V
 dX2 þ
 2ðr  qÞ
-2
- 1
-</p>
+2
+ 1</p>
 <p>dV
 dX  2r
-2 V ¼ 0
+2 V ¼ 0
 ð10:2Þ
 Equation 10.2 is a homogeneous equation with constant coefficients, so we can look
 for solutions of the form V ¼ exp (mX). This gives:
 m2 þ
 2ðr  qÞ
-2
- 1
-</p>
+2
+ 1</p>
 <p>m  2r
-2 ¼ 0
+2 ¼ 0
 ð10:3Þ
 which can be solved to yield:
 m1 ¼ 1
 2
 2ðr  qÞ
-2
-þ 1
-</p>
+2
+þ 1</p>
 <p>þ 1
 2
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 2ðr  qÞ
-2
- 1
-
 2
+ 1</p>
+<p>2
 þ 8r
-2
+2
 s
 ð10:4Þ
 and
 m2 ¼ 1
 2
 2ðr  qÞ
-2
-þ 1Þ
-</p>
+2
+þ 1Þ</p>
 <p>1
 2
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 2ðr  qÞ
-2
- 1
-
 2
+ 1</p>
+<p>2
 þ 8r
-2
+2
 s
 ð10:5Þ
 The general solution to Equation 10.2 is therefore:
@@ -48808,11 +48799,11 @@ Numeric methods and single asset American options
 <p>The general solution of Equation 10.2 as a function of S is therefore:
 VðSÞ ¼ A1Sm1 þ A2Sm2
 ð10:7Þ
-If we assume that (2(r  D)=2) &gt; 1 then m1 &gt; 0 and m2 &lt; 0. (Note: When
-(2(r  D)=2) &lt; 1, m1 &lt; 0 and m2 &gt; 0.)
+If we assume that (2(r  D)=2) &gt; 1 then m1 &gt; 0 and m2 &lt; 0. (Note: When
+(2(r  D)=2) &lt; 1, m1 &lt; 0 and m2 &gt; 0.)
 For the perpetual American put as S ! 1 we have P(S, E) ! 0. This means that
 the coefficient A1 in Equation 10.7 must be zero, and P(S, E) ¼ A2Sm2. Suppose we
-decide that we will exercise the option when S  S  , where S    is termed the critical
+decide that we will exercise the option when S  S   , where S    is termed the critical
 value of S, then the payoff (which is positive) at S ¼ S     will be
 PðS ; EÞ ¼ E  S 
 ð10:8Þ
@@ -48826,9 +48817,8 @@ A2 ¼ E  S <br />
 So we have:
 PðS; EÞ ¼ ðE  S Þ
 S
-S <br />
-
-m2
+S   </p>
+<p>m2
 ð10:11Þ
 We are now going to find the value of S  which maximizes the option value at any
 time before exercise. Differentiating Equation 10.11 and setting the value to zero we
@@ -48837,16 +48827,13 @@ have:
 @S<br />
 ðE  S   Þ
 S
-S <br />
-
-m2
-</p>
+S   </p>
+<p>m2</p>
 <p>¼ 1
 S <br />
 S
-S <br />
-
-m2
+S   </p>
+<p>m2
 S     m2ðE  S   Þ
 f
 g ¼ 0
@@ -48860,58 +48847,51 @@ So substituting into Equation 10.10 results in:
 A2 ¼ 1
 m2
 E
-1  1=m2
-
-1m2
+1  1=m2</p>
+<p>1m2
 When there are no dividends, q ¼ 0, we have from Equation 10.5 that
 m2 ¼ 1
 2
 2r
-2 þ 1
-</p>
+2 þ 1</p>
 <p>1
 2
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 2r
-2  1
-
-2
+2  1</p>
+<p>2
 þ 8r
-2
+2
 s
 ð10:12Þ
 but
 2r
-2  1
-
-2
+2  1</p>
+<p>2
 þ 8r
-2 ¼
+2 ¼
 1 þ 2r
-2
-
-2
+2</p>
+<p>2
 118
 Pricing Assets</p>
 <p>Therefore
 m2 ¼ 1
 2
  2r
-2 þ 1  2r
-2  1
-</p>
+2 þ 1  2r
+2  1</p>
 <p>and
 m2 ¼ 2r
-2
+2
 ð10:13Þ
 Substituting for m2 and A2 in Equation 10.9 we thus obtain the value for a perpetual
 American put without dividends as:
-PðS; EÞ ¼ 2S2r=2
+PðS; EÞ ¼ 2S2r=2
 2r
 E
-1 þ ð2=2rÞ
-
-1þð2r=2Þ
+1 þ ð2=2rÞ</p>
+<p>1þð2r=2Þ
 ð10:14Þ
 see Merton (1973), Equation 52, p. 174.
 10.2.2
@@ -48934,9 +48914,8 @@ A1 ¼ ðS   EÞ
 This gives
 CðS; EÞ ¼ ðS      EÞ
 S
-S <br />
-
-m1
+S   </p>
+<p>m1
 ð10:17Þ
 As in Section 10.2.1 we find the value S     which maximizes the option value by
 differentiating Equation 10.17 w.r.t. S  and setting the value to zero. This yields:
@@ -48944,16 +48923,13 @@ differentiating Equation 10.17 w.r.t. S  and setting the value to zero. This yie
 @S<br />
 ðE  S   Þ
 S
-S <br />
-
-m1
-</p>
+S   </p>
+<p>m1</p>
 <p>¼ 1
 S <br />
 S
-S <br />
-
-m1
+S   </p>
+<p>m1
 S     m1ðS    EÞ
 f
 g ¼ 0
@@ -48980,61 +48956,53 @@ Em11 ð1  1 þ 1=m1Þð1  1=m1Þm11
 A1 ¼ 1
 m1
 1  1=m1
-E
-
-m11
+E</p>
+<p>m11
 ¼ 1
 m1
 E
-1  1=m1
-
-1m1
+1  1=m1</p>
+<p>1m1
 ð10:19Þ
 Therefore the value of the perpetual American call option is:
 CðS; EÞ ¼ 1
 m1
 E
-1  1=m1
-
-1m1
+1  1=m1</p>
+<p>1m1
 Sm1
 ð10:20Þ
 When there are no dividends, q ¼ 0, we have from Equation 10.4 that
 m1 ¼ 1
 2
 2r
-2 þ 1
-</p>
+2 þ 1</p>
 <p>þ 1
 2
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 2r
-2  1
-
-2
+2  1</p>
+<p>2
 þ 8r
-2
+2
 s
 ð10:21Þ
 but
 2r
-2  1
-
-2
+2  1</p>
+<p>2
 þ 8r
-2 ¼
+2 ¼
 1 þ 2r
-2
-
-2
+2</p>
+<p>2
 ð10:22Þ
 so substituting into Equation 10.21 we obtain
 m1 ¼ 1
 2
  2r
-2 þ 1 þ 2r
-2 þ 1
-</p>
+2 þ 1 þ 2r
+2 þ 1</p>
 <p>¼ 1
 ð10:23Þ
 Setting m1 ¼ 1 in Equation 10.18 we thus find that S     ¼ 1. Therefore from Equa-
@@ -49051,7 +49019,7 @@ CðS; EÞ ¼ A1Sm1 ¼ 1  S ¼ S
 10.2.3
 Perpetual European options
 We can easily derive expressions for perpetual European options by using the Black–
-Scholes formulae given in Section 9.3.3. It can be seen that as the option maturity, , tends
+Scholes formulae given in Section 9.3.3. It can be seen that as the option maturity, , tends
 to infinity d1!1 and d2!1. This means that for perpetual options we should use
 N1(d1) 
  1 andN1(d2) 
@@ -49102,12 +49070,12 @@ cdoðS; EÞ ¼ S  S1þm2m1
 Bm2m1
 ð10:28Þ
 When there are no dividends (q ¼ 0) we have already shown in Sections 10.2.1 and
-10.2.2 that m1 ¼ 1 and m2 ¼ 2r=2 so the value of a perpetual down and out call is
+10.2.2 that m1 ¼ 1 and m2 ¼ 2r=2 so the value of a perpetual down and out call is
 (see Merton (1973)):
 cdoðS; EÞ ¼ S  Sm2
 Bm21 ¼ S  B S
 B
- 2r=2
+ 2r=2
 ð10:29Þ
 10.3
 APPROXIMATIONS FOR VANILLA AMERICAN OPTIONS
@@ -49130,15 +49098,15 @@ Now consider an American call option, with strike price E and expiry time T,
 which is taken out on this asset. At t1 there will be a given ex-dividend asset price, S    ,
 above which the option will be exercised early. This value can be found by solving the
 following equation:
-cðS ; E; 1Þ ¼ S     þ D1  E
+cðS ; E; 1Þ ¼ S  þ D1  E
 ð10:31Þ
-where c(S   , E, 1) is the Black–Scholes value of a European call option with strike
-price E and maturity 1 ¼ T  t1, on an asset with current value S    at time t1. If just
+where c(S   , E, 1) is the Black–Scholes value of a European call option with strike
+price E and maturity 1 ¼ T  t1, on an asset with current value S     at time t1. If just
 prior to the ex-dividend date St1 &gt; S   , then the American option will be exercised
-and realize a cash payoff of St1 þ D1  E. On the other hand if St1  S   then the
+and realize a cash payoff of St1 þ D1  E. On the other hand if St1  S    then the
 option is worth more unexercised and it will be held until option maturity at time T.
 We can rewrite Equation 10.31 so that S  is the root of the following equation:
-KðS Þ ¼ cðS ; E; 1Þ  S   D1 þ E ¼ 0
+KðS Þ ¼ cðS ; E; 1Þ  S    D1 þ E ¼ 0
 ð10:32Þ
 where K(S   ) denotes the function in the single variable S .
 A well-known technique for solving Equation 10.32 is Newton’s method, which in
@@ -49155,7 +49123,7 @@ iþ1 is the improved (i þ 1)th approximation.
 If we now consider the terms in Equation 10.33 we have that
 KðS 
 i Þ ¼ cðS <br />
-i ; E; 1Þ  S <br />
+i ; E; 1Þ  S  <br />
 i  D1 þ E
 and
 K0ðS  <br />
@@ -49164,13 +49132,13 @@ i Þ
 @S<br />
 i
 ¼ @cðS<br />
-i ; E; 1Þ
+i ; E; 1Þ
 @S<br />
 i
  1
 Also from Equation C.14 in Appendix C.3
 @cðS  <br />
-i ; E; 1Þ
+i ; E; 1Þ
 @S<br />
 i
 ¼ Nðd1ðS  <br />
@@ -49186,9 +49154,8 @@ i
 i ÞÞ  1;
 where
 d1 ¼ logðS<br />
-i =EÞ þ ðr þ 2=2Þð1Þ
-
-ffiffiffiffiffiffiffiffiffiffiffiffiffi
+i =EÞ þ ðr þ 2=2Þð1Þ</p>
+<p>ffiffiffiffiffiffiffiffiffiffiffiffiffi
 T  t1
 p
 122
@@ -49197,7 +49164,7 @@ Pricing Assets</p>
 S <br />
 iþ1 ¼ S 
 i  cðS<br />
-i ; E; 1Þ  ðS<br />
+i ; E; 1Þ  ðS <br />
 i þ D1  EÞ</p>
 <p>Nðd1ðS<br />
 i ÞÞ  1
@@ -49206,7 +49173,7 @@ S <br />
 iþ1 ¼ S 
 i N1ðd1ðS <br />
 i ÞÞ  cðS <br />
-i ; E; 1Þ þ D1  E
+i ; E; 1Þ þ D1  E
 N1ðd1ðS 
 i ÞÞ  1
 ;
@@ -49217,47 +49184,45 @@ where a convenient initial approximation is to choose S
 maximum number of iterations that are to be used.
 We will now quote the Roll, Geske, and Whaley formula for the current value of
 an American call which pays a single cash dividend D1 at time t1, it is:
-CðS; E; Þ ¼ SD N1ðb1Þ þ N2ða1; b1;
+CðS; E; Þ ¼ SD N1ðb1Þ þ N2ða1; b1;
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
-ðt1  tÞ=
+ðt1  tÞ=
 p
 Þ
 n
 o
 þ D1 expðrðt1  tÞÞN1ðb2Þ
- E expðrÞ N1ðb2Þ expðrð1ÞÞ þ N2ða2; b2; 
+ E expðrÞ N1ðb2Þ expðrð1ÞÞ þ N2ða2; b2; 
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
-ðt1  tÞ=
+ðt1  tÞ=
 p
 Þ
 n
 o
 ð10:35Þ
 where SD is given by Equation 10.30, E is the exercise price, T is the option expiry
-date, t represents the current time,  is the option maturity, N1(a) is the univariate
+date, t represents the current time,  is the option maturity, N1(a) is the univariate
 cumulative normal density function with upper integral limit a, and N2(a, b,    ) is the
 bivariate cumulative normal density function with upper integral limits a and b and
 correlation coefficient     . The other symbols used in Equation 10.35 are defined as
-a1 ¼ logðS=EÞ þ ðr þ 2=2Þ
-
-ffiffiffi
+a1 ¼ logðS=EÞ þ ðr þ 2=2Þ</p>
+<p>ffiffiffi
 p
 ;
-a2 ¼ a1  
-ffiffiffi
+a2 ¼ a1<br />
+ffiffiffi
 p
-b2 ¼ logðS=S    Þ þ ðr þ 2=2Þðt1  tÞ
-
-ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+b2 ¼ logðS=S    Þ þ ðr þ 2=2Þðt1  tÞ</p>
+<p>ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 ðt1  tÞ
 p
 ;
-b2 ¼ b1  
+b2 ¼ b1<br />
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 ðt1  tÞ
 p
 and S is the current (time t) asset price, S     is found using Equation 10.34, r is the
-riskless interest rate,  is the asset’s volatility,  ¼ T  t and 1 ¼ T  t1.
+riskless interest rate,  is the asset’s volatility,  ¼ T  t and 1 ¼ T  t1.
 To compute the value of an American call option which pays n cash dividends
 Di, i ¼ 1, . . . , n at times ti, i ¼ 1, . . . , n, we can use the fact that optimal exercise
 normally only ever occurs at the final ex-dividend date tn, see for example Hull
@@ -49339,7 +49304,7 @@ while (iterate) { /<em> calculate S_star, iteratively </em>/
 Table 10.1
 A comparison of the computed values for American call options with dividends, using the
 Roll, Geske, and Whaley approximation, and the Black approximation. The parameters used were: E ¼ 100:0,
-r ¼ 0:04,  ¼ 0:2,  ¼ 2:0 and there is one cash dividend of value 5.0 at time t ¼ 1:0. The current stock price, S,
+r ¼ 0:04,  ¼ 0:2,  ¼ 2:0 and there is one cash dividend of value 5.0 at time t ¼ 1:0. The current stock price, S,
 is varied from 80.0 to 120.0. The results are in agreement with those given in Table 1 of Whaley (1981)
 Stock price
 Critical price, S <br />
@@ -49414,14 +49379,14 @@ mature at times T, and tn, and then setting the option price to the greater of t
 two values, see for example Hull (1997).
 The Black approximation, CBL, can be expressed more concisely in terms of our
 previously defined notation as:
-CBLðS; E; Þ ¼ maxðv1; v2Þ
+CBLðS; E; Þ ¼ maxðv1; v2Þ
 where v1 and v2 are the following European calls
-v1 ¼ cðSD; E; Þ
+v1 ¼ cðSD; E; Þ
 and
 v2 ¼ cðSþ
-D; E; 1Þ,
- ¼ T  t
-1 ¼ T  tn
+D; E; 1Þ,
+ ¼ T  t
+1 ¼ T  tn
 and
 SD ¼ S 
 X
@@ -49547,39 +49512,39 @@ American option relative to the corresponding European option value (which can
 readily be computed using the Black–Scholes pricing formula).
 Since an American option gives more choice its value is always at least that of its
 European counterpart. This early exercise premium (
-(S, E, )  0) is now defined
+(S, E, )  0) is now defined
 more precisely for American puts and calls. If at current time t the asset price is S,
 then the early exercise premium for an American call which expires at time T, and
-therefore has maturity  ¼ T  t, is:</p>
-<p>cðS; E; Þ ¼ CðS; E; Þ  cðS; E; Þ  0
+therefore has maturity  ¼ T  t, is:</p>
+<p>cðS; E; Þ ¼ CðS; E; Þ  cðS; E; Þ  0
 ð10:37Þ
-where C(S, E, ) denotes the value of the American call and c(S, E, ) denotes the
+where C(S, E, ) denotes the value of the American call and c(S, E, ) denotes the
 value of the corresponding European call. The early exercise premium of an Ameri-
 can put option, 
-p(S, E, ), is similarly defined as:</p>
-<p>pðS; E; Þ ¼ PðS; E; Þ  pðS; E; Þ  0
+p(S, E, ), is similarly defined as:</p>
+<p>pðS; E; Þ ¼ PðS; E; Þ  pðS; E; Þ  0
 ð10:38Þ
-where P(S, E, ) is the value of the American put, and p(S, E, ) is the value of
+where P(S, E, ) is the value of the American put, and p(S, E, ) is the value of
 the corresponding European put. The key insight provided by the MacMillan,
 Barone-Adesi, and Whaley method is that since both the American and European
 option values satisfy the Black–Scholes partial differential equation so does the
 early exercise premium, 
-(S, E, ); see Section 9.3.1. This means that we can
+(S, E, ); see Section 9.3.1. This means that we can
 write:
 @
 @t þ ðr  qÞS @
-@S þ 2S2
+@S þ 2S2
 2
 @2
 @S2 ¼ r
 ð10:39Þ
 where as usual S is the asset price, r the continuously compounded interest rate, q the
-continuously compounded dividend,  the volatility, and time t increases from the
+continuously compounded dividend,  the volatility, and time t increases from the
 current time to the expiry time T.
 Numeric methods and single asset American options
 127</p>
-<p>We will now introduce the variable h() ¼ 1  exp (r) and use the factorization</p>
-<p>(S, E, ) ¼ h()g(S, E, h). From standard calculus we obtain:
+<p>We will now introduce the variable h() ¼ 1  exp (r) and use the factorization</p>
+<p>(S, E, ) ¼ h()g(S, E, h). From standard calculus we obtain:
 @
 @t ¼ g @h
 @t þ h @g
@@ -49598,7 +49563,7 @@ and
 @S2
 Substituting these results into Equation 10.39 yields the following transformed
 Black–Scholes equation:
-S22h
+S22h
 2
 @2g
 @S2 þ ðr  qÞSh @g
@@ -49606,36 +49571,36 @@ S22h
 @h ¼ rgh
 ð10:40Þ
 which can be further simplified to give:
-S22 @2g
+S22 @2g
 @S2 þ 2ðr  qÞS
-2
+2
 @g
 @S  2rg
-h2  2rð1  hÞ
-2
+h2  2rð1  hÞ
+2
 @g
 @h ¼ rgh
 ð10:41Þ
 or
 S2 @2g
-@S2 þ S @g
+@S2 þ S @g
 @S<br />
 h g  ð1  hÞ @g
 @h ¼ 0
 ð10:42Þ
-where  ¼ 2r=2 and  ¼ (2(r  q))=2.
-We now consider the last term of Equation 10.42 and note that when  is large,
-1  h() 
- 0. Also when  ! 0 the option is close to maturity, and the value of both
+where  ¼ 2r=2 and  ¼ (2(r  q))=2.
+We now consider the last term of Equation 10.42 and note that when  is large,
+1  h() 
+ 0. Also when  ! 0 the option is close to maturity, and the value of both
 the European and American options converge; which means that 
-(S, E, ) 
+(S, E, ) 
  0 and
 @g=@h 
  0. It can thus be seen that the last term is generally quite small and, the
 MacMillan, Barone-Adesi and Whaley approximation assumes that it can be
 ignored. This results in the following equation:
 S2 @2g
-@S2 þ S @g
+@S2 þ S @g
 @S<br />
 h g ¼ 0
 ð10:43Þ
@@ -49667,45 +49632,43 @@ S
 2g<br />
 g
 and
-S @g
-@S ¼ Sa
+S @g
+@S ¼ Sa
 S
-1 ¼ 
+1 ¼ 
 S
- ¼ 
+ ¼ 
 g
 128
 Pricing Assets</p>
 <p>When the above results are substituted in Equation 10.43 we obtain the quadratic
 equation:</p>
 <p>2g<br />
-g þ 
+g þ 
 g  =h ¼ gð
 2<br />
- þ ð  1Þ
+ þ ð  1Þ
   =hÞ ¼ 0
 or</p>
 <p>2<br />
- þ ð  1Þ
+ þ ð  1Þ
   =h ¼ 0
 ð10:44Þ
 which has the two solutions</p>
 <p>1 ¼ 1
 2
-ð  1Þ 
+ð  1Þ 
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
-ð  1Þ2 þ 4ð=hÞ
-q
-</p>
+ð  1Þ2 þ 4ð=hÞ
+q</p>
 <p>ð10:45Þ
 and</p>
 <p>2 ¼ 1
 2
-ð  1Þ þ
+ð  1Þ þ
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
-ð  1Þ2 þ 4ð=hÞ
-q
-</p>
+ð  1Þ2 þ 4ð=hÞ
+q</p>
 <p>ð10:46Þ
 where we note that since =h &gt; 0, we have 
 1 &lt; 0 and 
@@ -49720,22 +49683,22 @@ and American put options.
 American call options
 Here we use the fact that both the value and the early exercise premium
 (
-c(S, E, ) ¼ hgc(S, E, h)) of an American call tend to zero as the asset price
+c(S, E, ) ¼ hgc(S, E, h)) of an American call tend to zero as the asset price
 S ! 0. This means that as S ! 0, gc(S, E, h) ! 0.
 However, since 
 1 &lt; 0, the only way this can be achieved in Equation 10.47 is if
 a1 ¼ 0. So gc(S, E, h) ¼ a2S
 2, and the value of an American call is:
-CðS; E; Þ ¼ cðS; E; Þ þ ha2S
+CðS; E; Þ ¼ cðS; E; Þ þ ha2S
 2
 ð10:48Þ
 An expression for a2 can be found by considering the critical asset price (point on
 the early exercise boundary), S , above which the American option will be exercised.
 For S &lt; S   , the value of the American call is governed by Equation 10.48, and when
-S &gt; S    we have C(S, E, ) ¼ S  E.
+S &gt; S    we have C(S, E, ) ¼ S  E.
 Now, since the value of the American option is continuous, at the critical asset
 value S  the following equation applies:
-S     E ¼ cðS   ; E; Þ þ ha2S<br />
+S     E ¼ cðS   ; E; Þ þ ha2S <br />
 2
 ð10:49Þ
 Furthermore, since the gradient of the American option value is also continuous, at
@@ -49743,7 +49706,7 @@ S    we have:
 @ðS   EÞ
 @S<br />
 ¼ @
-@S   cðS    ; E; Þ þ ha2S<br />
+@S   cðS    ; E; Þ þ ha2S <br />
 2
 f
 g
@@ -49751,26 +49714,26 @@ g
 Numeric methods and single asset American options
 129</p>
 <p>which gives:
-1 ¼ expðqÞN1ðd1ðS  ÞÞ þ 
+1 ¼ expðqÞN1ðd1ðS   ÞÞ þ 
 2ha2S   ð
 21Þ
 ð10:51Þ
 where we have used the value of the hedge parameter c, see Section 9.3.3, for a
 European call
-c ¼ @cðS    ; E; Þ
+c ¼ @cðS    ; E; Þ
 @S<br />
-¼ expðqÞN1ðd1ðS    ÞÞ
+¼ expðqÞN1ðd1ðS ÞÞ
 Equation 10.51 can therefore be written as:
 ha2S  <br />
 2 ¼ S   </p>
 <p>2
-f1  expðqÞN1ðd1ðS  ÞÞg
+f1  expðqÞN1ðd1ðS   ÞÞg
 ð10:52Þ
 When the left hand side of the above equation is substituted into Equation 10.49 we
 obtain the following equation for S :
-S     E ¼ cðS   ; E; Þ þ S </p>
+S     E ¼ cðS   ; E; Þ þ S  </p>
 <p>2
-f1  expðqÞN1ðd1ðS  ÞÞg
+f1  expðqÞN1ðd1ðS   ÞÞg
 ð10:53Þ
 This equation can be solved for S    using standard iterative methods (see the section on the
 numerical solution of critical asset values). Once S     has been found Equation 10.52 gives:
@@ -49779,20 +49742,18 @@ ha2 ¼ A2S <br />
 where
 A2 ¼ S  </p>
 <p>2
-1  expðqÞN1ðd1ðS   ÞÞ
+1  expðqÞN1ðd1ðS    ÞÞ
 f
 g
 From Equation 10.48 the value of an American call is thus of the form:
 MacMillan, Barone-Adesi, and Whaley method: American call option
-CðS; E; Þ ¼ cðS; E; Þ þ A2
+CðS; E; Þ ¼ cðS; E; Þ þ A2
 S
-S <br />
-
-
-2
+S   </p>
+<p>2
 when S &lt; S<br />
 ð10:54Þ
-CðS; E; Þ ¼ S  E when S  S  <br />
+CðS; E; Þ ¼ S  E when S  S<br />
 ð10:55Þ
 American put options
 For an American put option we proceed in a similar manner to that for the American
@@ -49803,20 +49764,20 @@ both the
 value
 and early
 exercise premium,</p>
-<p>p(S, E, ) ¼ hgp(S, E, h), of an American put tend to zero as the asset price
+<p>p(S, E, ) ¼ hgp(S, E, h), of an American put tend to zero as the asset price
 S ! 1. So gp(S, E, h) ! 0 as S ! 1. Since 
 2 &gt; 0 the only way this can
 be achieved by Equation 10.47 is if a2 ¼ 0. This gives gp(S, E, h) ¼ a1S
 1 and the
 value of an American put is:
-PðS; E; Þ ¼ pðS; E; Þ þ ha1S
+PðS; E; Þ ¼ pðS; E; Þ þ ha1S
 1
 ð10:56Þ
 An expression for a1 can be found by considering the critical asset price, S        , below
 which the American option will be exercised. For S &gt; S       the value of the American
-put is given by Equation 10.56, and for S &lt; S        we have P(S, E, ) ¼ E  S.
+put is given by Equation 10.56, and for S &lt; S        we have P(S, E, ) ¼ E  S.
 Continuity of the American option value at the critical asset price gives:
-E  S         ¼ pðS      ; E; Þ þ ha1S    <br />
+E  S         ¼ pðS      ; E; Þ þ ha1S     <br />
 1
 ð10:57Þ
 130
@@ -49826,28 +49787,28 @@ Pricing Assets</p>
 @S    <br />
 ¼
 @
-@S       fpðS       ; E; Þ þ ha1S    <br />
+@S       fpðS       ; E; Þ þ ha1S     <br />
 1g
 ð10:58Þ
 which can be simplified to:
-1 ¼ N1ðd1ðS     ÞÞ expðqÞ þ 
+1 ¼ N1ðd1ðS     ÞÞ expðqÞ þ 
 1a1S        ð
 11Þ
 ð10:59Þ
 where we have used the value of hedge parameter p for a European put (see section
 on the greeks):
-p ¼ @pðS        ; E; Þ
+p ¼ @pðS        ; E; Þ
 @S    <br />
-¼ fN1ðd1ðS      ÞÞ  1g expðqÞ ¼ N1ðd1ðS        ÞÞ expðqÞ
+¼ fN1ðd1ðS      ÞÞ  1g expðqÞ ¼ N1ðd1ðS     ÞÞ expðqÞ
 Equation 10.59 can therefore be written as:
 ha1S      <br />
 1 ¼  S      </p>
 <p>1
-f1  N1ðd1ðS     ÞÞ expðqÞg
+f1  N1ðd1ðS     ÞÞ expðqÞg
 ð10:60Þ
 When the left hand side of the above equation is substituted into Equation 10.57 we
 obtain the following equation for S     :
-E  S         ¼ pðS      ; E; Þ þ f1  expðqÞN½d1ðS     Þg S       </p>
+E  S         ¼ pðS      ; E; Þ þ f1  expðqÞN½d1ðS       Þg S        </p>
 <p>1
 ð10:61Þ
 which can be solved iteratively to yield S       (see the section on the numerical solution
@@ -49856,56 +49817,52 @@ ha1 ¼ A1S     <br />
 1
 where
 A1 ¼  S     </p>
-<p>1
-
-
-f1  expðqÞN1ðd1ðS      ÞÞg
+<p>1</p>
+<p>f1  expðqÞN1ðd1ðS       ÞÞg
 We note here that A1 &gt; 0 since, 
-1 &lt; 0, S         &gt; 0 and N1(d1(S        )) exp (q) &lt; 1.
+1 &lt; 0, S         &gt; 0 and N1(d1(S        )) exp (q) &lt; 1.
 From Equation 10.56 the value of an American put is thus:
 MacMillan, Barone-Adesi, and Whaley method: American put option
-PðS; E; Þ ¼ pðS; E; Þ þ A1
+PðS; E; Þ ¼ pðS; E; Þ þ A1
 S
-S     <br />
-
-
-2
+S       </p>
+<p>2
 when S &gt; S    <br />
 ð10:62Þ
-PðS; E; Þ ¼ E  S
-when S  S    <br />
+PðS; E; Þ ¼ E  S
+when S  S     <br />
 ð10:63Þ
 Numerical solution of critical asset values
 We now provide details on how to iteratively solve for the critical asset price in
 Equations 10.53 and 10.61.
 American call options
 For American call options we need to solve Equation 10.53, which is:
-S     E ¼ cðS   ; E; Þ þ S </p>
+S     E ¼ cðS   ; E; Þ þ S  </p>
 <p>2
-f1  expðqÞN1ðd1ðS  ÞÞg
+f1  expðqÞN1ðd1ðS   ÞÞg
 Numeric methods and single asset American options
 131</p>
 <p>We denote the ith approximation to the critical asset value S    by S <br />
 i , and represent
 the left hand side of the equation by:
 LHSðS <br />
-i ; E; Þ ¼ S <br />
+i ; E; Þ ¼ S  <br />
 i  E
 and the right hand side of the equation by:
 RHSðS <br />
-i ; E; Þ ¼ cðS 
-i ; E; Þ þ S <br />
+i ; E; Þ ¼ cðS<br />
+i ; E; Þ þ S  <br />
 i</p>
 <p>2
-f1  expðqÞN1ðd1ðS<br />
+f1  expðqÞN1ðd1ðS <br />
 i ÞÞg
 If we let K(S <br />
-i , E, ) ¼ RHS(S <br />
-i , E, )  LHS(S  <br />
-i , E, ) then we want to find the
+i , E, ) ¼ RHS(S  <br />
+i , E, )  LHS(S 
+i , E, ) then we want to find the
 value of S<br />
 i which (to a specified tolerance) gives K(S  <br />
-i , E, ) 
+i , E, ) 
  0. This can be
 achieved with Newton’s root finding method, in which a better approximation,
 S <br />
@@ -49913,55 +49870,55 @@ iþ1, can be found using:
 S <br />
 iþ1 ¼ S 
 i  KðS<br />
-i ; E; Þ
+i ; E; Þ
 K0ðS  <br />
-i ; E; Þ
+i ; E; Þ
 ð10:64Þ
 where
 K0ðS  <br />
-i ; E; Þ ¼ @
+i ; E; Þ ¼ @
 @S<br />
 i
 fRHSðS<br />
-i ; E; Þ  LHSðS  <br />
-i ; E; Þg
+i ; E; Þ  LHSðS 
+i ; E; Þg
 ¼ @
 @S<br />
 i
 fRHSðS<br />
-i ; E; Þg  @
+i ; E; Þg  @
 @S<br />
 i
 fLHSðS<br />
-i ; E; Þg
+i ; E; Þg
 ¼ bi  1
 Here we have used bi ¼ (@=@S  <br />
 i )fRHS(S <br />
-i , E, )g, and the expression for bi is given
+i , E, )g, and the expression for bi is given
 by Equation 10.66, which is derived at the end of this section.
 Substituting for K(S  <br />
-i , E, ) and K0(S<br />
-i , E, ) into Equation 10.64 we therefore
+i , E, ) and K0(S <br />
+i , E, ) into Equation 10.64 we therefore
 obtain:
 S <br />
 iþ1 ¼ S 
 i  ðRHSðS <br />
-i ; E; Þ  LHSðS  <br />
-i ; E; ÞÞ
+i ; E; Þ  LHSðS 
+i ; E; ÞÞ
 ðbi  1Þ
 ¼ S 
 i  ðRHSðS <br />
-i ; E; Þ  ðS <br />
+i ; E; Þ  ðS  <br />
 i  EÞÞ
 ðbi  1Þ
 ¼ biS <br />
 i  RHSðS  <br />
-i ; E; Þ  E
+i ; E; Þ  E
 ðbi  1Þ
 The final iterative algorithm for the American call is therefore:
 S <br />
 iþ1 ¼ E þ RHSðS 
-i ; E; Þ  biS<br />
+i ; E; Þ  biS <br />
 i
 ð1  biÞ
 ð10:65Þ
@@ -49971,12 +49928,12 @@ Code excerpt 10.4.
 The expression for bi in an American call
 Here we derive an expression for the term bi which is used in Equation 10.65.
 bi ¼ @cðS <br />
-i ; E; Þ
+i ; E; Þ
 @S<br />
 i
 þ 1</p>
 <p>2
-1  expðqÞN1ðd1ðS <br />
+1  expðqÞN1ðd1ðS  <br />
 i ÞÞ</p>
 <p>S<br />
 i</p>
@@ -50007,106 +49964,103 @@ i
 ¼
 1
 S <br />
-i 
-ffiffiffi
+i 
+ffiffiffi
 p
 Equation C.14:
 c ¼ @cðS  <br />
-i ; E; Þ
+i ; E; Þ
 @S<br />
 i
-¼ expðqÞN1ðd1ðS  <br />
+¼ expðqÞN1ðd1ðS 
 i ÞÞ
 Substituting these results into the above expression we obtain:
-bi ¼ expðqÞN1ðd1ðS 
+bi ¼ expðqÞN1ðd1ðS<br />
 i ÞÞ þ 1</p>
 <p>2
- expðqÞN1ðd1ðS 
+ expðqÞN1ðd1ðS<br />
 i ÞÞ</p>
 <p>2
- expðqÞnðd1ðS<br />
+ expðqÞnðd1ðS <br />
 i ÞÞ</p>
-<p>2
-ffiffiffi
+<p>2
+ffiffiffi
 p
 which can be rearranged to yield:
-bi ¼ expðqÞN1ðd1ðS 
+bi ¼ expðqÞN1ðd1ðS<br />
 i ÞÞ 1  1</p>
-<p>2
-</p>
+<p>2</p>
 <p>þ 1</p>
 <p>2
-1  expðqÞnðd1ðS  <br />
-i ÞÞ
-
-ffiffiffi
-p
-</p>
+1  expðqÞnðd1ðS 
+i ÞÞ</p>
+<p>ffiffiffi
+p</p>
 <p>ð10:66Þ
 American put options
 For American put options we need to solve Equation 10.61 which is:
 E  S      <br />
 i
 ¼ pðS     <br />
-i ; E; Þ  S      <br />
+i ; E; Þ  S   <br />
 i</p>
 <p>1
 1  N1ðd1ðS    <br />
-i ÞÞ expðqÞ</p>
+i ÞÞ expðqÞ</p>
 <p>If we let S   <br />
 i
 denote the ith approximation to the critical asset value S      , then we
 can represent the left hand side of the equation by:
 LHSðS     <br />
-i ; E; Þ ¼ E  S      <br />
+i ; E; Þ ¼ E  S   <br />
 i
 and the right hand side of the equation by:
 RHSðS     <br />
-i ; E; Þ ¼ pðS   <br />
-i ; Þ  S     <br />
+i ; E; Þ ¼ pðS    <br />
+i ; Þ  S      <br />
 i</p>
 <p>1
 f1  N1ðd1ðS   <br />
-i ÞÞ expðqÞg
+i ÞÞ expðqÞg
 ¼ pðS     <br />
-i ; E; Þ  S      <br />
+i ; E; Þ  S   <br />
 i</p>
 <p>1
 f1  ½1  N1ðd1ðS   <br />
-i ÞÞ expðqÞg
+i ÞÞ expðqÞg
 ¼ pðS     <br />
-i ; E; Þ  S      <br />
+i ; E; Þ  S   <br />
 i</p>
 <p>1
-f1  expðqÞ þ N1ðd1ðS     <br />
-i ÞÞ expðqÞg
+f1  expðqÞ þ N1ðd1ðS      <br />
+i ÞÞ expðqÞg
 Numeric methods and single asset American options
 133</p>
 <p>We then denote K(S    <br />
-i , E, ) ¼ RHS(S     <br />
-i , E, )  LHS(S      <br />
-i , E, ), and using
+i , E, ) ¼ RHS(S      <br />
+i , E, )  LHS(S   <br />
+i , E, ), and using
 Newton’s method we obtain:
 S     <br />
 iþ1 ¼ S   <br />
 i
  KðS      <br />
-i ; E; Þ
+i ; E; Þ
 K0ðS      <br />
-i ; E; Þ
+i ; E; Þ
 ð10:67Þ
 where as before:
 K0ðS      <br />
-i ; E; Þ ¼
+i ; E; Þ ¼
 @
 @S    <br />
 i
 RHSðS     <br />
-i ; E; Þ  LHSðS      <br />
-i ; E; Þ</p>
+i ; E; Þ  LHSðS   <br />
+i ; E; Þ</p>
 <p>So K0(S   <br />
-i , E, ) ¼ 1 þ bi, where bi ¼ (@(RHS(S   <br />
-i , E, ))=@S     <br />
+i , E, ) ¼ 1 þ bi, where bi ¼ (@(RHS(S    <br />
+i , E, ))=@S      <br />
 i ), and the expres-
 sion for bi is given by Equation 10.69, which is derived at the end of this section.
 Equation 10.67 can therefore be written as:
@@ -50114,19 +50068,19 @@ S     <br />
 iþ1 ¼ S   <br />
 i
  ðRHSðS   <br />
-i ; E; Þ  LHSðS      <br />
-i ; E; ÞÞ
+i ; E; Þ  LHSðS   <br />
+i ; E; ÞÞ
 1 þ bi
 ¼ S   <br />
 i ð1 þ biÞ  RHSðS     <br />
-i ; E; Þ þ E  S      <br />
+i ; E; Þ þ E  S   <br />
 i
 1 þ bi
 The final iterative algorithm for the American put is therefore:
 S     <br />
 i
 ¼ E  RHSðS    <br />
-i ; E; Þ þ biS   <br />
+i ; E; Þ þ biS    <br />
 i
 1 þ bi
 ð10:68Þ
@@ -50138,32 +50092,30 @@ Here we derive an expression for the term bi which is used in Equation 10.67. Si
 bi ¼
 @
 @S    <br />
-i
-
-pðS   <br />
-i ; E; Þ  S      <br />
+i</p>
+<p>pðS   <br />
+i ; E; Þ  S   <br />
 i</p>
 <p>1
-1  expðqÞ
+1  expðqÞ
 ð
 þ N1ðd1ðS     <br />
-i ÞÞ expðqÞ
-
-we have
+i ÞÞ expðqÞ</p>
+<p>we have
 bi ¼ @pðS     <br />
-i ; E; Þ
+i ; E; Þ
 @S    <br />
 i
  1</p>
 <p>1
-1  expðqÞ
+1  expðqÞ
 f
 g  1</p>
 <p>1
-expðqÞN1ðd1ðS    <br />
+expðqÞN1ðd1ðS     <br />
 i ÞÞ
  S    <br />
-i expðqÞ</p>
+i expðqÞ</p>
 <p>1
 @N1ðd1ðS      <br />
 i ÞÞ
@@ -50191,25 +50143,25 @@ i
 ¼
 1
 S     <br />
-i 
-ffiffiffi
+i 
+ffiffiffi
 p
 Equation C.16:
 p ¼ @pðS      <br />
-i ; E; Þ
+i ; E; Þ
 @S    <br />
 i
-¼ expðqÞ N1ðd1ðS     <br />
+¼ expðqÞ N1ðd1ðS      <br />
 i ÞÞ  1</p>
 <p>Substituting these results into the above expression we therefore obtain:
-bi ¼ expðqÞ N1ðd1ðS      <br />
+bi ¼ expðqÞ N1ðd1ðS   <br />
 i ÞÞ  1</p>
 <p>1</p>
 <p>1
-1  expðqÞ þ N1ðd1ðS      <br />
-i ÞÞ expðqÞ</p>
+1  expðqÞ þ N1ðd1ðS   <br />
+i ÞÞ expðqÞ</p>
 <p>S    <br />
-i expðqÞ</p>
+i expðqÞ</p>
 <p>1
 @N1ðd1ðS      <br />
 i ÞÞ
@@ -50219,32 +50171,29 @@ i Þ
 i Þ
 @S    <br />
 i
-¼ expðqÞ N1ðd1ðS     <br />
+¼ expðqÞ N1ðd1ðS      <br />
 i ÞÞ  1</p>
 <p>1</p>
 <p>1
-1  expðqÞ þ N1ðd1ðS      <br />
-i ÞÞ expðqÞ</p>
+1  expðqÞ þ N1ðd1ðS   <br />
+i ÞÞ expðqÞ</p>
 <p>S    <br />
-i expðqÞnðd1ðS   <br />
+i expðqÞnðd1ðS    <br />
 i ÞÞ</p>
-<p>1
-ffiffiffi
+<p>1
+ffiffiffi
 p
 which can be rearranged to yield:
-bi ¼ expðqÞN1ðd1ðS   <br />
+bi ¼ expðqÞN1ðd1ðS    <br />
 i ÞÞ 1  1</p>
-<p>1
-</p>
+<p>1</p>
 <p>þ 1</p>
 <p>1
-expðqÞ  1  expðqÞnðd1ðS     <br />
-i ÞÞ
-
-ffiffiffi
-p
-</p>
-<p>expðqÞ
+expðqÞ  1  expðqÞnðd1ðS   <br />
+i ÞÞ</p>
+<p>ffiffiffi
+p</p>
+<p>expðqÞ
 ð10:69Þ
 The computer code to implement the MacMillan, Barone-Adesi, and Whaley
 method is provided below.
@@ -50366,20 +50315,14 @@ From Section 8.3 Equation 8.15 we know that if the price of an asset, St, follow
 GBM then the change in value of its price over time interval t, has the following
 distribution:
 log Stþt
-St
-
-</p>
+St</p>
 <p>N
-r  2
-2
-
-
-t; 2t
-
-
-Table 10.2
+r  2
+2</p>
+<p>t; 2t</p>
+<p>Table 10.2
 The MacMillan, Barone-Adesi, and Whaley method for American option values computed by the
-routine MBW_approx. The parameters used were:  ¼ 0:5, E ¼ 100:0, r ¼ 0:1, q ¼ 0:06,  ¼ 0:2. The
+routine MBW_approx. The parameters used were:  ¼ 0:5, E ¼ 100:0, r ¼ 0:1, q ¼ 0:06,  ¼ 0:2. The
 accurate value was calculated using a standard lattice with 2000 time steps, and the error was
 the MacMillan, Barone-Adesi, and Whaley estimate minus the accurate value
 Call
@@ -50442,10 +50385,10 @@ Error
 Table 10.3
 The MacMillan, Barone-Adesi, and Whaley critical asset values for the early exercise
 boundary of an American put computed by the routine MBW_approx. The parameters used were:
-S ¼ 101:0, E ¼ 101:0, r ¼ 0:1, q ¼ 0:06, and  ¼ 0:20
-Time to expiry, 
+S ¼ 101:0, E ¼ 101:0, r ¼ 0:1, q ¼ 0:06, and  ¼ 0:20
+Time to expiry, 
 Critical asset value, S   <br />
-Time to expiry, 
+Time to expiry, 
 Critical asset value, S   <br />
 1.0
 82.1510
@@ -50494,106 +50437,94 @@ X ¼ Stþt
 St
 ;
 and
- ¼ ðr  2=2Þt</p>
-<p>2 ¼ 2t
+ ¼ ðr  2=2Þt</p>
+<p>2 ¼ 2t
 the above equation becomes:
 logðXÞ 
- Nð; 
+ Nð; 
 2Þ
 or equivalently
 X 
- ð; 
+ ð; 
 2Þ
-where (, 
+where (, 
 2) is the lognormal distribution derived from a Gaussian distribution
-with mean , and variance 
+with mean , and variance 
 2. It is well known, see for example Evans et al. (2000),
 that the first two moments of a variable X drawn from a lognormal distribution are
 Lognormal mean
-E½X ¼ expð þ 
+E½X ¼ expð þ 
 2=2Þ
 ð10:70Þ
-substituting for  and 
+substituting for  and 
 2 gives
-E½X ¼ exp
-r  2
-2
-
-
-t þ 2
-2 t
-</p>
+E½X ¼ exp
+r  2
+2</p>
+<p>t þ 2
+2 t</p>
 <p>ð10:71Þ
 Lognormal variance
-Var½X ¼ E½ðX  E½XÞ2 ¼ E½X2  ðE½XÞ2 ¼ expð2 þ 
+Var½X ¼ E½ðX  E½XÞ2 ¼ E½X2  ðE½XÞ2 ¼ expð2 þ 
 2Þ expð
 2Þ  1</p>
 <p>ð10:72Þ
-substituting for  and 
+substituting for  and 
 2 gives
-Var½X ¼ exp 2r r  2
-2
-
-
-t þ 2t
-</p>
+Var½X ¼ exp 2r r  2
+2</p>
+<p>t þ 2t</p>
 <p>which can be simplified to yield
-Var½X ¼ exp 2rt
+Var½X ¼ exp 2rt
 f
-g expð2tÞ  1</p>
+g expð2tÞ  1</p>
 <p>ð10:73Þ
 Since we can assume that the expected value of X grows at the riskless interest rate,
 r, we can also write:
-E½X ¼ expðrtÞ
+E½X ¼ expðrtÞ
 ð10:74Þ
 The above results can be used to find the first two moments of the asset price
 distribution Stþt, given that we know the asset price, St, at time instant t. To do this
 we will use, see Appendix F.3 for a proof, the fact that for a random variable G we have:
-E½a þ bG ¼ E½a þ bE½G
+E½a þ bG ¼ E½a þ bE½G
 and
-Var½a þ bG ¼ b2Var½G
+Var½a þ bG ¼ b2Var½G
 where a and b are constants. Applying this to the variable X gives:
-E½X ¼ E Stþt
-St
-
-
-¼ 1
+E½X ¼ E Stþt
+St</p>
+<p>¼ 1
 St
 E Stþt
-½
-
-ð10:75Þ
+½</p>
+<p>ð10:75Þ
 138
 Pricing Assets</p>
 <p>and
-Var½X ¼ Var Stþt
-St
-
-
-¼ 1
+Var½X ¼ Var Stþt
+St</p>
+<p>¼ 1
 S2
 t
 Var Stþt
-½
-
-ð10:76Þ
+½</p>
+<p>ð10:76Þ
 where we have used a ¼ 0 and b ¼ 1/St. Note that it is also easy to show that:
-Var½Stþt ¼ Var½S
+Var½Stþt ¼ Var½S
 ð10:77Þ
 where the change in asset price over the time interval t is denoted by
 S ¼ Stþt  St. This elementary result sometimes is used without proof, see for
 example Hull (1997) p. 344. The proof is simple:
-Var½Stþt ¼ Var½St þ S ¼ Var½S
+Var½Stþt ¼ Var½St þ S ¼ Var½S
 where again we have used
-Var½a þ bG ¼ b2Var½G
+Var½a þ bG ¼ b2Var½G
 this time with a ¼ 0 and b ¼ 1.
 To find expressions for the mean and variance of Stþt we simply substitute
 Equation 10.74 into Equation 10.75 and obtain:
-E½Stþt ¼ St expðrtÞ
+E½Stþt ¼ St expðrtÞ
 ð10:78Þ
 and substitute Equation 10.73 into Equation 10.76 to yield:
-Var½Stþt ¼ S2
-t expð2rtÞ expð2tÞ  1</p>
+Var½Stþt ¼ S2
+t expð2rtÞ expð2tÞ  1</p>
 <p>ð10:79Þ
 Since we are modelling asset price movements with a binomial lattice, the asset
 price, St, at any given node is only permitted to either jump up or jump down in value
@@ -50604,19 +50535,17 @@ probability of a down jump must (by definition) be 1  p.
 Now that we have specified the lattice parameters we will use these to match the
 first two moments of the lognormal distribution. This results in the following
 equation for the mean:
-E½Stþt ¼ pStu þ ð1  pÞStd ¼ St expðrtÞ
+E½Stþt ¼ pStu þ ð1  pÞStd ¼ St expðrtÞ
 ð10:80Þ
 The corresponding equation for the variance requires a little more work:
-Var½Stþt ¼ E½ðStþtÞ2  ðE½StþtÞ2
+Var½Stþt ¼ E½ðStþtÞ2  ðE½StþtÞ2
 ð10:81Þ
 Since
-E½ðStþtÞ2 ¼ pðStuÞ2 þ ð1  pÞðStdÞ2 ¼ S2
-t pu2 þ ð1  pÞd2
-
-
-ð10:82Þ
+E½ðStþtÞ2 ¼ pðStuÞ2 þ ð1  pÞðStdÞ2 ¼ S2
+t pu2 þ ð1  pÞd2</p>
+<p>ð10:82Þ
 and, from Equation 10.80, we have
-ðE½StþtÞ2 ¼ St expðrtÞ
+ðE½StþtÞ2 ¼ St expðrtÞ
 f
 g2 ¼ S2
 t expð2rtÞ
@@ -50624,25 +50553,21 @@ t expð2rtÞ
 Numeric methods and single asset American options
 139</p>
 <p>We can substitute Equations 10.82 and 10.83 into Equation 10.81 to obtain
-Var½St þ t ¼ S2
-t expð2rtÞ expð2tÞ  1</p>
+Var½St þ t ¼ S2
+t expð2rtÞ expð2tÞ  1</p>
 <p>¼ S2
-t pu2 þ ð1  pÞd2
-
-
- S2
+t pu2 þ ð1  pÞd2</p>
+<p>S2
 t expð2rtÞ
 We therefore have:
-expð2rtÞ expð2tÞ  1
-
-
-¼ pu2 þ ð1  pÞd2  expð2rtÞ
+expð2rtÞ expð2tÞ  1</p>
+<p>¼ pu2 þ ð1  pÞd2  expð2rtÞ
 ð10:84Þ
 So, restating Equation 10.80 and simplifying Equation 10.84, we obtain the following
 two equations:
 pu þ ð1  pÞd ¼ expðrtÞ
 ð10:85Þ
-expð2rt þ 2tÞ ¼ pu2 þ ð1  pÞd2
+expð2rt þ 2tÞ ¼ pu2 þ ð1  pÞd2
 ð10:86Þ
 which we will use to solve for the three parameters u, d, and p. Since there are three
 unknowns and only two equations, we can impose an additional constraint to obtain
@@ -50653,8 +50578,8 @@ d
 We now use the following notation:
 a ¼ expðrtÞ
 and
-b2 ¼ expð2rtÞ expð2tÞ  1</p>
-<p>¼ a2 expð2tÞ  1</p>
+b2 ¼ expð2rtÞ expð2tÞ  1</p>
+<p>¼ a2 expð2tÞ  1</p>
 <p>ð10:88Þ
 This means that Equation 10.85 can be written as
 a ¼ pu þ ð1  pÞd;
@@ -50663,7 +50588,7 @@ p ¼ a  d
 u  d
 ð10:89Þ
 From Equation 10.86 we have
-expð2rt þ 2tÞ ¼ a2 expð2tÞ ¼ a2 þ b2
+expð2rt þ 2tÞ ¼ a2 expð2tÞ ¼ a2 þ b2
 and so
 a2 þ b2 ¼ pu2 þ ð1  pÞd2
 Rearranging we have
@@ -50693,83 +50618,81 @@ q
 If t is small we can obtain a reasonable approximation to the solution by
 neglecting terms of order higher than t.
 In these circumstances we have:
-a2 þ b2 þ 1 ¼ expð2rtÞ þ expð2rtÞ expð2tÞ  1</p>
+a2 þ b2 þ 1 ¼ expð2rtÞ þ expð2rtÞ expð2tÞ  1</p>
 <p>þ 1</p>
-<p>1 þ 2rt þ ð1 þ 2rtÞ2t þ 1 
- 2 þ 2rt þ 2t
+<p>1 þ 2rt þ ð1 þ 2rtÞ2t þ 1 
+ 2 þ 2rt þ 2t
 Therefore
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 ða2 þ b2 þ 1Þ2  4a2
 q</p>
 <p>ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
-ð2 þ 2rt þ 2tÞ2  4ð1 þ 2rtÞ
+ð2 þ 2rt þ 2tÞ2  4ð1 þ 2rtÞ
 q</p>
 <p>ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
-4 þ 8rt þ 42  4  8rt
+4 þ 8rt þ 42  4  8rt
 p
 ¼
 ffiffiffiffiffiffiffiffiffiffiffiffiffi
-42t
+42t
 p
-¼ 2
+¼ 2
 ffiffiffiffiffiffi
 t
 p
 and so
 u 
- 2 þ 2rt þ 2t þ 2
+ 2 þ 2rt þ 2t þ 2
 ffiffiffiffiffiffi
 t
 p
 2 expðrtÞ
 u 
-1 þ rt þ 2t
+1 þ rt þ 2t
 2
-þ 
+þ 
 ffiffiffiffiffiffi
 t
-p
-
-
-ð1  rtÞ
+p</p>
+<p>ð1  rtÞ
 u 
- 1 þ rt þ 2t
+ 1 þ rt þ 2t
 2
-þ 
+þ 
 ffiffiffiffiffiffi
 t
 p
- rt ¼ 1 þ 
+ rt ¼ 1 þ 
 ffiffiffiffiffiffi
 t
 p
-þ 2t
+þ 2t
 2
 which to order t gives:
-u ¼ expð
+u ¼ expð
 ffiffiffiffiffiffi
 t
 p
 Þ
 ð10:90Þ
 since
-expð
+expð
 ffiffiffiffiffiffi
 t
 p
-Þ ¼ 1 þ 
+Þ ¼ 1 þ 
 ffiffiffiffiffiffi
 t
 p
-þ 2t
+þ 2t
 2
-þ 3ðtÞ3=2
+þ 3ðtÞ3=2
 6
-þ   
+þ <br />
 ð10:91Þ
 which gives:
 d ¼ 1
-u ¼ expð
+u ¼ expð
 ffiffiffiffiffiffi
 t
 p
@@ -50786,9 +50709,9 @@ Numeric methods and single asset American options
 141</p>
 <p>We will now discuss how to create a lattice which can be used to value American
 and European vanilla options.
-If the current value of the underlying asset is S, and the duration of the option is 
+If the current value of the underlying asset is S, and the duration of the option is 
 and we use a lattice with n equally spaced time intervals t, then we have:
-t ¼ 
+t ¼ 
 n
 The values of the asset price at various nodes in the lattice can easily be computed.
 This is illustrated in Figure 10.1, for a lattice with six time steps (that is seven lattice levels).
@@ -50841,7 +50764,7 @@ V
 W
 Figure 10.1
 A standard binomial lattice consisting of six time steps. The root lattice node R corresponds
-to the current time t, the terminal nodes G to M are those at option maturity; that is time t þ , where  is
+to the current time t, the terminal nodes G to M are those at option maturity; that is time t þ , where  is
 the duration of the option. The asset value at node R is S, where S is the current asset value. Asset values at
 other nodes are, for example, node S: Su, node T: Sd, node V: S, and node A: Su5. Option values are
 computed using a backward iterative process: the option values at nodes A to F on the penultimate time
@@ -50983,8 +50906,8 @@ The probability of moving from node (i, j) at time it to node (i þ 1, j þ 1) a
 f E
 i; j ¼ expðrtÞ pfiþ1; jþ1 þ ð1  pÞfiþ1; j</p>
 <p>;
-j  i  n  1
-0  j  i
+j  i  n  1
+0  j  i
 ð10:93Þ
 When early exercise, for an American option, is taken into account we have:
 f A
@@ -51022,8 +50945,8 @@ i; j
 n
 o
 ;
-j  i  N  1
-0  j  i
+j  i  N  1
+0  j  i
 ð10:95Þ
 where f E
 i, j is given by Equation 10.93.
@@ -51042,7 +50965,7 @@ values and thus allows the Greeks to be computed in the vicinity of the root lat
 node R. In cases where we are not interested in calculating the Greeks (see for
 example Code excerpt 12.6) we continue working backward through the lattice until
 the root node R (m1 ¼ 0) is reached, and the current value of the option is then
-given by v<a href="or its multidimensional equivalent">0</a>.
+given by v[0](or its multidimensional equivalent).
 The option values at all lattice nodes in time steps 0, 1, and 2 are made accessible
 by the following code:
 P2 ¼ 0;
@@ -51085,7 +51008,7 @@ Pricing Assets</p>
 Code fragment illustrating how the option values are stored for the first two time steps
 so that the Greeks can be computed in the vicinity of the root node R
 Figure 10.2 presents the results for the valuation of an American put option.
-Computing the greeks: , , and 
+Computing the greeks: , , and 
 We will now describe how to calculate the option’s hedge statistics (Greeks).
 Let the option value and asset value at lattice node k be denoted by fk and Sk
 respectively. So, for instance, ST represents the asset price at node T, and fT is the
@@ -51121,7 +51044,7 @@ Error in estimated value
 American put
 Figure 10.2
 The error in the estimated value, est val, of an American put using a standard binomial lattice.
-The parameters used were: T ¼ 1:0, S ¼ 105:0, X ¼ 105:0, r ¼ 0:1, q ¼ 0:02,  ¼ 0:3. The very accurate
+The parameters used were: T ¼ 1:0, S ¼ 105:0, X ¼ 105:0, r ¼ 0:1, q ¼ 0:02,  ¼ 0:3. The very accurate
 value (acc val) was 9.2508 and was computed using a 6000 step standard binomial lattice. The error in the
 estimated value was obtained as est val  acc val
 Numeric methods and single asset American options
@@ -51144,14 +51067,14 @@ SS  ST
 v[4]  v[3]
 s[M þ 1]  s[M  1]
 Gamma
-The definition of  is the rate of change of  with asset price; all other parameters
+The definition of  is the rate of change of  with asset price; all other parameters
 remaining fixed. Thus
- ¼ @2f
+ ¼ @2f
 @S2 ¼ @
 @S
-In order to evaluate  we require at least two values of . The nearest this can be
+In order to evaluate  we require at least two values of . The nearest this can be
 achieved to the root node R is at time step 2, where we have:
- ¼   <br />
+ ¼<br />
 UV    <br />
 VW
 S <br />
@@ -51227,37 +51150,36 @@ s[M þ 2]  s[M] ;</p>
 <p>VW ¼
 v[1]  v[0]
 s[M]  s[M  2]
-The value of  can therefore be approximated as:
- ¼
+The value of  can therefore be approximated as:
+ ¼
 2 <br />
 UV    <br />
 VW</p>
 <p>s[M þ 2]  s[M  2]
 Theta
-The definition of  is the rate of change of option value with time; all other
+The definition of  is the rate of change of option value with time; all other
 parameters remaining fixed. Thus
- ¼ @f
+ ¼ @f
 @t ¼ f
 t
 The nearest to the root node R that can be computed is over the time interval from
 time step 0 to time step 2. We then obtain the following approximation:
- ¼ fV  fR
+ ¼ fV  fR
 2t
 ¼ v[1]  v[5]
 2t
-The Code excerpt 10.10 computes the , , and  by using the approximations we
+The Code excerpt 10.10 computes the , , and  by using the approximations we
 have just discussed.
 Vega
 The definition of V is the rate of change of the option value with volatility.
 V ¼ @f
-@
+@
 In a standard binomial lattice V cannot be computed directly. A simple approach is
 to use two binomial lattices as follows
-V ¼ fþ  f
-
-where fþ is the option value computed using a binomial lattice with volatility
- þ  and f is the option value computed using another binomial lattice with a
-volatility of ; all other lattice parameters remain constant.
+V ¼ fþ  f</p>
+<p>where fþ is the option value computed using a binomial lattice with volatility
+ þ  and f is the option value computed using another binomial lattice with a
+volatility of ; all other lattice parameters remain constant.
 if(greeks){
 /<em> assign the value of delta (obtained from m1 ¼ 1) </em>/
 greeks[1] ¼ (v[4]v[3])/(s[Mþ1]s[M1]);
@@ -51306,11 +51228,8 @@ greeks[]
 greeks[2] is theta,
 iflag
 — an error indicator.
-</em>/
-
-
-
-/<em> Allocate the arrays s[2</em>Mþ1], and v[Mþ1] <em>/
+</em>/</p>
+<p>/<em> Allocate the arrays s[2</em>Mþ1], and v[Mþ1] <em>/
 dt ¼ T/(double)M;
 t1 ¼ sigma</em>sqrt(dt);
 u ¼ exp(t1);
@@ -51426,29 +51345,26 @@ improved estimate for the value of the American option.
 When applied to the valuation of an American put option this can be expressed as
 follows:
 European pricing error,
-E ¼ pBSðS; E; Þ  pLðS; E; Þ
+E ¼ pBSðS; E; Þ  pLðS; E; Þ
 American pricing error,
-A ¼ P   ðS; E; Þ  PLðS; E; Þ
-where as usual S is the current value of the asset, E is the strike price, and  is the
-maturity of the option. Also pBS(S, E, ) is the Black–Scholes value of the European
-put option, pL(S, E, ) is the binomial lattice estimate of the European put option,
-P   (S, E, ) is the (unknown) accurate value of the American put option and
-PL(S, E, ) is the binomial lattice estimate of the American put option.
+A ¼ P   ðS; E; Þ  PLðS; E; Þ
+where as usual S is the current value of the asset, E is the strike price, and  is the
+maturity of the option. Also pBS(S, E, ) is the Black–Scholes value of the European
+put option, pL(S, E, ) is the binomial lattice estimate of the European put option,
+P   (S, E, ) is the (unknown) accurate value of the American put option and
+PL(S, E, ) is the binomial lattice estimate of the American put option.
 Letting E ¼ A we then have
-pBSðS; E; Þ  pLðS; E; Þ ¼ P   ðS; E; Þ  PLðS; E; Þ
+pBSðS; E; Þ  pLðS; E; Þ ¼ P ðS; E; Þ  PLðS; E; Þ
 which on rearrangement yields:
-P   ðS; E; Þ ¼ pBSðS; E; Þ  pLðS; E; Þ þ PLðS; E; Þ
-We thus use P   (S, E, ) as the improved, control variate estimate, for the value of
+P   ðS; E; Þ ¼ pBSðS; E; Þ  pLðS; E; Þ þ PLðS; E; Þ
+We thus use P   (S, E, ) as the improved, control variate estimate, for the value of
 American put option. Of course exactly the same approach can be used to obtain an
 improved estimate for the value of an American call.
 Code excerpt 10.12 shows the use of the control variate technique in a standard
 binomial lattice to provide improved estimates for both the value and the hedge
 statistics of an American option.
-/<em> Set up the arrays as in the standard lattice </em>/
-
-
-
-for (i ¼ 0; i &lt; (Mþ1)/2; þþi) { /<em> Calculate the option values at maturity </em>/
+/<em> Set up the arrays as in the standard lattice </em>/</p>
+<p>for (i ¼ 0; i &lt; (Mþ1)/2; þþi) { /<em> Calculate the option values at maturity </em>/
 if (put){
 a_v[Mi] ¼ MAX(X  s[P1], zero);
 a_v[i] ¼ MAX(X  s[P2], zero);
@@ -51580,11 +51496,8 @@ value
 gamma, greeks[1] is delta, greeks[2] is theta,
 iflag
 — an error indicator.
-</em>/
-
-
-
-/<em> allocate the arrays s[((Mþ2)</em>(Mþ1))/2], and v[Mþ1] <em>/
+</em>/</p>
+<p>/<em> allocate the arrays s[((Mþ2)</em>(Mþ1))/2], and v[Mþ1] <em>/
 dt ¼ T/(double)M;
 t1 ¼ sigma</em>sqrt(dt);
 u ¼ exp(t1);
@@ -51698,12 +51611,12 @@ Shaidurov (1983). In this method the option price estimates from two BBS lattice
 with differing number of time steps, are combined to form an improved estimate.
 Here we use the following BBSR scheme to compute the value of an American
 call option
-CBBSRðS; E; ; 2nÞ ¼ 4
-3 CBBSðS; E; ; 2nÞ  1
-3 CBBSðS; E; ; nÞ
+CBBSRðS; E; ; 2nÞ ¼ 4
+3 CBBSðS; E; ; 2nÞ  1
+3 CBBSðS; E; ; nÞ
 ð10:96Þ
-where S is the current asset value, E is the strike price,  is the option maturity,
-CBBS(S, E, , n) is the value of the call option computed using a BBS lattice with
+where S is the current asset value, E is the strike price,  is the option maturity,
+CBBS(S, E, , n) is the value of the call option computed using a BBS lattice with
 American call
 Error in estimated value
 Number of time steps
@@ -51731,19 +51644,19 @@ BBS lattice
 Figure 10.3
 The error in the estimated value, est val, of an American call using both a standard binomial
 lattice and BBS binomial lattice. The parameters used were: T ¼ 1:0, S ¼ 105:0, E ¼ 105:0, r ¼ 0:1,
-q ¼ 0:02,  ¼ 0:3. The very accurate value (acc val) was 16.1697, and was computed using a 6000 step
+q ¼ 0:02,  ¼ 0:3. The very accurate value (acc val) was 16.1697, and was computed using a 6000 step
 standard binomial lattice. The error in the estimated value was obtained as est val  acc val
 156
 Pricing Assets</p>
-<p>n time steps, CBBS(S, E, , 2n) is the value of the call option computed using a BBS
-lattice with 2n time steps and CBBSR(S, E, , 2n) is the BBSR estimate. We compute
+<p>n time steps, CBBS(S, E, , 2n) is the value of the call option computed using a BBS
+lattice with 2n time steps and CBBSR(S, E, , 2n) is the BBSR estimate. We compute
 the value of an American put using
-PBBSRðS; E; ; 2nÞ ¼ 4
-3 PBBSðS; E; ; 2nÞ  1
-3 PBBSðS; E; ; nÞ
+PBBSRðS; E; ; 2nÞ ¼ 4
+3 PBBSðS; E; ; 2nÞ  1
+3 PBBSðS; E; ; nÞ
 ð10:97Þ
 Figure 10.4 displays the computed BBSR results for an American call option with
-S ¼ 105:0,  ¼ 1:0, E ¼ 105:0, q ¼ 0:02, and  ¼ 0:3.
+S ¼ 105:0,  ¼ 1:0, E ¼ 105:0, q ¼ 0:02, and  ¼ 0:3.
 In Tables 10.5 and 10.6 the errors in computing both an American put and an
 American call option are presented; the methods used are the standard binomial
 lattice, the BBS lattice and the BBSR lattice. It can be seen that the BBSR lattice
@@ -51779,7 +51692,7 @@ Number of time steps
 Error in estimated value
 Figure 10.4
 The error in the estimated value, est val, of an American call, using a BBSR binomial lattice.
-The parameters used were: T ¼ 1:0, S ¼ 105:0, E ¼ 105:0, r ¼ 0:1, q ¼ 0:02,  ¼ 0:3. The very accurate
+The parameters used were: T ¼ 1:0, S ¼ 105:0, E ¼ 105:0, r ¼ 0:1, q ¼ 0:02,  ¼ 0:3. The very accurate
 value (acc val) was 16.1697, and was computed using a 6000 step standard binomial lattice. The error in the
 estimated value was obtained as est val  acc val
 Numeric methods and single asset American options
@@ -51788,7 +51701,7 @@ Numeric methods and single asset American options
 The pricing errors for an American call option computed by a standard binomial lattice, a BBS
 lattice and also a BBSR lattice. The pricing error is defined as estimated value  accurate value, where the
 accurate value, 16.1697, was obtained by using a 6000 step standard binomial lattice. The option parameters
-used were: T ¼ 1:0, S ¼ 105:0, E ¼ 105:0, r ¼ 0:1, q ¼ 0:02, and  ¼ 0:3
+used were: T ¼ 1:0, S ¼ 105:0, E ¼ 105:0, r ¼ 0:1, q ¼ 0:02, and  ¼ 0:3
 n steps
 Standard lattice
 BBS lattice
@@ -51873,7 +51786,7 @@ Table 10.6
 The pricing errors for an American put option computed by a standard binomial lattice, a BBS
 lattice and also a BBSR lattice. The pricing error is defined as estimated value  accurate value, where the
 accurate value, 9.2508, was obtained by using a 6000 step standard binomial lattice. The option parameters
-used were: T ¼ 1:0, S ¼ 105:0, E ¼ 105:0, r ¼ 0:1, q ¼ 0:02, and  ¼ 0:3
+used were: T ¼ 1:0, S ¼ 105:0, E ¼ 105:0, r ¼ 0:1, q ¼ 0:02, and  ¼ 0:3
 n steps
 Standard lattice
 BBS lattice
@@ -51963,13 +51876,13 @@ step BBSR lattice is 3:5725  103.
 IMPLIED LATTICE METHODS
 It is well known that market option prices are not consistent with theoretical prices
 derived from the Black–Scholes formula. This has led traders to quote option prices
-in terms of a volatility, imp, which makes the Black–Scholes formula value equal to
-the observed market price. Here we refer to imp as the implied volatility, to distinguish
-it from the theoretical constant volatility ; essentially imp is another way of quoting
+in terms of a volatility, imp, which makes the Black–Scholes formula value equal to
+the observed market price. Here we refer to imp as the implied volatility, to distinguish
+it from the theoretical constant volatility ; essentially imp is another way of quoting
 option prices. Empirical studies have found that:
-. For vanilla options of a given maturity the value of imp decreases with the level of
+. For vanilla options of a given maturity the value of imp decreases with the level of
 the strike price, this asymmetry is termed volatility skew.
-. For vanilla options of a given strike price the value of imp increases with maturity,
+. For vanilla options of a given strike price the value of imp increases with maturity,
 this variation is called the volatility term structure.
 Here we follow Derman and Kani (1994) and refer to both the volatility skew and
 the volatility term structure as the volatility smile. The precise shape and magnitude
@@ -51980,32 +51893,26 @@ Instead of assuming, as in Section 8.3, that the underlying asset price St follo
 with constant drift and volatility, we will now consider the more general GBM process:
 dSt
 St
-¼ ðtÞdt þ ðSt; tÞdZ
+¼ ðtÞdt þ ðSt; tÞdZ
 ð10:98Þ
-where t is the current time, (t) is the time dependent risk neutral drift and (St, t) is an
+where t is the current time, (t) is the time dependent risk neutral drift and (St, t) is an
 unknown volatility function which depends on both the stock price and time. If we
 make use of Ito’s lemma, and write Stþt for the asset price at time t þ t, Equation
 10.84 can be expressed in discretized form as:
 log Stþt
-St
-
-
-¼
-ðtÞ  2ðSt; tÞ=2</p>
-<p>t þ ðSt; tÞdZ
+St</p>
+<p>¼
+ðtÞ  2ðSt; tÞ=2</p>
+<p>t þ ðSt; tÞdZ
 ð10:99Þ
 or equivalently
 log Stþt
-St
-
-</p>
+St</p>
 <p>N
-ðtÞ  2ðSt; tÞ=2</p>
-<p>t; 2ðSt; tÞt
-
-
-ð10:100Þ
-In this section we will show how the volatility function (St, t) can be evaluated by
+ðtÞ  2ðSt; tÞ=2</p>
+<p>t; 2ðSt; tÞt</p>
+<p>ð10:100Þ
+In this section we will show how the volatility function (St, t) can be evaluated by
 ensuring that the option prices calculated using this model agree with those of the smile.
 The implied binomial lattice constructed using this extended model will no longer
 be a regular lattice (as is the case for the simple Black–Scholes model) but will have a
@@ -52070,215 +51977,137 @@ time instant tnþ1, the stock price either has jumped up to Su, at lattice node
 10.100 to node (n, i) by setting t ¼ tn and St ¼ si then gives
 v 
  N
-ðtnÞ  2ðsi; tnÞ=2</p>
-<p>t; 2ðsi; tnÞt
-
-
-ð10:101Þ
+ðtnÞ  2ðsi; tnÞ=2</p>
+<p>t; 2ðsi; tnÞt</p>
+<p>ð10:101Þ
 where the variate v can only take the two values v1 ¼ log(Su=si), and v2 ¼ log(Sd=si).
 We will let pi denote the probability of taking the value v1, corresponding to an up
 jump. The probability of v having the value v2, corresponding to a down jump, is
 thus 1  pi.
-The quantity (si, tn) will be referred to as the local volatility, loc, associated with
+The quantity (si, tn) will be referred to as the local volatility, loc, associated with
 the lattice node (n, i), and using Equation 10.101 we can write
-VarðvÞ ¼ 2
+VarðvÞ ¼ 2
 loct
 ð10:102Þ
-An expression for loc can then be obtained in terms of Su, Sd and pi, as follows.
+An expression for loc can then be obtained in terms of Su, Sd and pi, as follows.
 The variance of v is:
-VarðvÞ ¼ E½v2  ðE½vÞ2
+VarðvÞ ¼ E½v2  ðE½vÞ2
 where
-E½v2 ¼ pi
+E½v2 ¼ pi
 log Su
-si
-
-
-
-2
+si</p>
+<p>2
 þð1  piÞ log Sd
-si
-
-
-
-2
+si</p>
+<p>2
 and
-ðE½vÞ2 ¼
+ðE½vÞ2 ¼
 pi log Su
-si
-
-
-þ ð1  piÞ log Sd
-si
-
-
-
-2
+si</p>
+<p>þ ð1  piÞ log Sd
+si</p>
+<p>2
 which means that
-ðE½vÞ2 ¼ p2
+ðE½vÞ2 ¼ p2
 i
 log Su
-si
-
-
-
-2
+si</p>
+<p>2
 þ ð1  piÞ2
 log Sd
-si
-
-
-
-2
+si</p>
+<p>2
 þ 2pið1  piÞ log Su
-si
-
-
-log Sd
-si
-
-
-We can therefore write the variance as
+si</p>
+<p>log Sd
+si</p>
+<p>We can therefore write the variance as
 VarðvÞ ¼ pi
 log Su
-si
-
-
-
-2
+si</p>
+<p>2
 þ ð1  piÞ log Sd
-si
-
-
-
-2
+si</p>
+<p>2
  p2
 i
 log Su
-si
-
-
-
-2
+si</p>
+<p>2
  ð1  piÞ2
 log Sd
-si
-
-
-
-2
+si</p>
+<p>2
  2pið1  piÞ log Su
-si
-
-
-log Sd
-si
-
-
-Numeric methods and single asset American options
+si</p>
+<p>log Sd
+si</p>
+<p>Numeric methods and single asset American options
 161</p>
 <p>which simplifies to
 VarðvÞ ¼ pið1  piÞ
 log Su
-si
-
-
-
-2
+si</p>
+<p>2
 þ
 log Sd
-si
-
-
-
-2
+si</p>
+<p>2
  2 log Su
-si
-
-
-log Sd
-si
-
-
-"</p>
+si</p>
+<p>log Sd
+si</p>
+<p>"</p>
 <h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>ð10:103Þ
 However
 log Su
-si
-
-
- log Sd
-si
-
-
-¼ log Su
-Sd
-
-
-and
+si</p>
+<p>log Sd
+si</p>
+<p>¼ log Su
+Sd</p>
+<p>and
 log Su
-si
-
-
- log Sd
-si
-
-
-
-2
+si</p>
+<p>log Sd
+si</p>
+<p>2
 ¼
 log Su
-si
-
-
-
-2
+si</p>
+<p>2
 þ
 log Sd
-si
-
-
-
-2
+si</p>
+<p>2
  2 log Su
-si
-
-
-log Sd
-si
-
-
-Substituting this into Equation 10.103 we obtain:
+si</p>
+<p>log Sd
+si</p>
+<p>Substituting this into Equation 10.103 we obtain:
 VarðvÞ ¼ pið1  piÞ log Su
-Sd
-
-
-
-2
+Sd</p>
+<p>2
 ð10:104Þ
 Therefore combining Equations 10.102 and 10.104 we have
-2
-loct ¼ pið1  piÞ log Su
-Sd
-
-
-
 2
+loct ¼ pið1  piÞ log Su
+Sd</p>
+<p>2
 and so the local volatility is given by:
 Binomial lattice: local volatility
-loc ¼ log Su
-Sd
-
-
-ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+loc ¼ log Su
+Sd</p>
+<p>ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 pið1  piÞ
 t
 r
 ð10:105Þ
 In an implied lattice the transition probabilities, pi, and the ratios Su=Sd are (in
 general) different for each lattice node. This generates a volatility surface in which the
-local volatility loc varies throughout the lattice. By contrast the CRR binomial
-lattice of Section 10.4.1 has the same value of loc for all its lattice nodes. The reason
+local volatility loc varies throughout the lattice. By contrast the CRR binomial
+lattice of Section 10.4.1 has the same value of loc for all its lattice nodes. The reason
 for this that pi and t are constants, and the up and down jumps are
 Su ¼ siu
 and
@@ -52291,7 +52120,7 @@ Su
 Sd
 ¼ u2
 and the (constant) local volatility is
-loc ¼ logðu2Þ
+loc ¼ logðu2Þ
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 pð1  pÞ
 t
@@ -52299,7 +52128,7 @@ r
 162
 Pricing Assets</p>
 <p>CRR binomial lattice: local volatility
-loc ¼ 2 logðuÞ
+loc ¼ 2 logðuÞ
 ffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
 pð1  pÞ
 t
@@ -52329,7 +52158,7 @@ The known forward price at lattice level n þ 1 of the known price si at lattice
 level n.
 Si
 The unknown stock price at node (n þ 1, i).
-i
+i
 The known Arrow-Debreu price at node (n, i).
 pi
 The unknown risk-neutral up jump transition probability from node (n, i) to
@@ -52345,17 +52174,17 @@ for i ¼ 1; . . . ; n
 ð10:107Þ
 where as before Siþ1 is the stock value at lattice level n þ 1 following an up jump and
 Si is the stock value at lattice level n þ 1 following a down jump.
-The Arrow-Debreu price, i, at each lattice node (n, i) is defined as: the probability
+The Arrow-Debreu price, i, at each lattice node (n, i) is defined as: the probability
 of reaching node (n, i) from the root lattice node (1, 1) discounted by the risk neutral
 interest rate between time t1 and time tn.
 Numeric methods and single asset American options
 163</p>
 <p>The Arrow-Debreu price of a lattice node is thus the value of a security that pays
-$1 if the stock price reaches that node and zero otherwise. The value of i
+$1 if the stock price reaches that node and zero otherwise. The value of i
 corresponding to node (n, i) is computed as the sum, over all paths from the root
 node (1, 1) to node (n, i), of the product of the riskless-discounted transition prob-
 abilities of nodes along each path from (1, 1) to (n, i). We provide more detail
-concerning the computation of i in the example calculation at the end of this
+concerning the computation of i in the example calculation at the end of this
 section, and consider the following two methods:
 1. Direct calculation of the Arrow-Debreu prices in lattice level n þ 1 by using all
 paths from the root lattice node (1, 1).
@@ -52376,7 +52205,7 @@ CðK; tnþ1Þ ¼ expðrtÞ
 X
 n
 j¼1
-jfpj maxðSjþ1  K; 0Þ
+jfpj maxðSjþ1  K; 0Þ
 þ ð1  pjÞ max ðSj  K; 0Þg
 ð10:108Þ
 where max (Sj  K, 0) is the payout for the call at the jth lattice node on lattice level
@@ -52387,15 +52216,15 @@ expðrtÞCðsi; tnþ1Þ ¼
 X
 n
 j¼1
-jfpj maxðSjþ1  si; 0Þ
+jfpj maxðSjþ1  si; 0Þ
 þ ð1  pjÞ maxðSj  si; 0Þg
 ð10:109Þ
 Since the terms that contribute to the value of the call option, C(si, tnþ1), are those
 with positive payouts we only need consider j indices in the range i to n, and the ith
 term of the summation on the right hand side of Equation 10.109 is:
-i pi maxðSiþ1  si; 0Þ þ ð1  piÞ maxðSi  si; 0Þ
+i pi maxðSiþ1  si; 0Þ þ ð1  piÞ maxðSi  si; 0Þ
 f
-g ¼ ipiðSiþ1  siÞ
+g ¼ ipiðSiþ1  siÞ
 ð10:110Þ
 where we have used (see DK Figure 4) the following: Siþ1 &gt; si (Siþ1 is the up jump
 stock value from lattice level n to lattice level n þ 1) whereas Si &lt; si (Si is the down
@@ -52403,11 +52232,11 @@ jump stock value from lattice level n to lattice level n þ 1).
 164
 Pricing Assets</p>
 <p>This means that we can rewrite Equation 10.109 as:
-expðrtÞCðsi; tnþ1Þ ¼ ipiðSiþ1  siÞ þ
+expðrtÞCðsi; tnþ1Þ ¼ ipiðSiþ1  siÞ þ
 X
 n
 j¼iþ1
-jfpjðSjþ1  siÞ
+jfpjðSjþ1  siÞ
 þ ð1  pjÞðSj  siÞg
 ð10:111Þ
 If we subtract the constant term si from both sides of Equation 10.107 we obtain:
@@ -52415,12 +52244,12 @@ Fj  si ¼ pj ðSjþ1  siÞ þ ð1  pjÞðSj  siÞ; j ¼ 1; . . . ; n
 ð10:112Þ
 where we used si ¼ pjsi þ (1  pj)si. Substituting Equation 10.112 into Equation
 10.111 gives:
-expðrtÞCðsi; tnþ1Þ ¼ ipi ðSiþ1  siÞ þ 
+expðrtÞCðsi; tnþ1Þ ¼ ipi ðSiþ1  siÞ þ 
 ð10:113Þ
-where  ¼ Pn
-j¼iþ1 j(Fj  si). The first term in Equation 10.113 depends on the
+where  ¼ Pn
+j¼iþ1 j(Fj  si). The first term in Equation 10.113 depends on the
 unknown values of the transition probability pi and stock price Siþ1. The last
-term  involves a summation over the known forward prices Fj and known stock
+term  involves a summation over the known forward prices Fj and known stock
 prices si on lattice level n. Since both Fj and C(si, tnþ1) are known, Equations
 10.107 and 10.113 can be solved to give the following expressions for Siþ1 and pi,
 in terms of Si:
@@ -52428,10 +52257,10 @@ pi ¼ Fi  Si
 Siþ1  Si
 ð10:114Þ
 and
-Siþ1 ¼ Si Cðsi; tnþ1Þ expðrtÞ  </p>
-<p>isiðFi  SiÞ
-Cðsi; tnþ1Þ expðrtÞ  </p>
-<p>iðFi  SiÞ
+Siþ1 ¼ Si Cðsi; tnþ1Þ expðrtÞ  </p>
+<p>isiðFi  SiÞ
+Cðsi; tnþ1Þ expðrtÞ  </p>
+<p>iðFi  SiÞ
 ð10:115Þ
 We will now derive these two results.
 Proof of Equation 10.114 (DK equation 7)
@@ -52445,28 +52274,28 @@ Siþ1  Si
 QED
 Proof of Equation 10.115 (DK equation 6)
 If we substitute the value of pi from Equation 10.115 into Equation 10.113 we obtain:
-Cðsi; tnþ1Þ expðrtÞ ¼ iðFi  SiÞðSiþ1  siÞ
+Cðsi; tnþ1Þ expðrtÞ ¼ iðFi  SiÞðSiþ1  siÞ
 Siþ1  Si
-þ 
+þ 
 Numeric methods and single asset American options
 165</p>
 <h2 id="multi-asset-options">Multi-Asset Options<a class="headerlink" href="#multi-asset-options" title="Permanent link">&para;</a></h2>
 <p>Multiplying both sides by Siþ1  Si yields:
 expðrtÞCðsi; tnþ1Þ Siþ1  Si
 f
-g ¼ iFisi  iSiSiþ1 þ iFiSiþ1 þ iSi þ Siþ1   Si 
+g ¼ iFisi  iSiSiþ1 þ iFiSiþ1 þ iSi þ Siþ1   Si 
 so
-Siþ1 Cðsi; tnþ1Þ expðrtÞ þ iSi  iFi  </p>
-<p>¼ SiCðsi; tnþ1Þ expðrtÞ  isiðFi  SiÞ  Si 
+Siþ1 Cðsi; tnþ1Þ expðrtÞ þ iSi  iFi  </p>
+<p>¼ SiCðsi; tnþ1Þ expðrtÞ  isiðFi  SiÞ  Si 
 or
-Siþ1 Cðsi; tnþ1Þ expðrtÞ    iðFi  SiÞ</p>
-<p>¼ Si Cðsi; tnþ1Þ expðrtÞ  </p>
-<p>isiðFi  SiÞ
+Siþ1 Cðsi; tnþ1Þ expðrtÞ    iðFi  SiÞ</p>
+<p>¼ Si Cðsi; tnþ1Þ expðrtÞ  </p>
+<p>isiðFi  SiÞ
 and finally gives the following expression for Siþ1:
-Siþ1 ¼ Si Cðsi; tnþ1Þ expðrtÞ  </p>
-<p>isiðFi  SiÞ
-Cðsi; tnþ1Þ expðrtÞ  </p>
-<p>iðFi  SiÞ
+Siþ1 ¼ Si Cðsi; tnþ1Þ expðrtÞ  </p>
+<p>isiðFi  SiÞ
+Cðsi; tnþ1Þ expðrtÞ  </p>
+<p>iðFi  SiÞ
 QED
 If we know Si at one initial node then Equations 10.114 and 10.115 can be used to
 find iteratively the values of Siþ1 and pi for all n=2 þ 1 nodes above the centre of the
@@ -52487,16 +52316,14 @@ Siþ1Si ¼ S2
 ð10:116Þ
 Substituting Equation 10.116 into Equation 10.114 gives the following formula for
 the stock value at the node just above the centre of the lattice when n þ 1 is even:
-Siþ1 ¼ Sð þ iSÞ
-iFi   ;
+Siþ1 ¼ Sð þ iSÞ
+iFi   ;
 for
 i ¼
 n þ 1
-2
-
-
-ð10:117Þ
-where  ¼ C(S, tnþ1) exp (rt)  .
+2</p>
+<p>ð10:117Þ
+where  ¼ C(S, tnþ1) exp (rt)  .
 When n þ 1 is even, Equation 10.117 can thus be used in conjunction with Equa-
 tions 10.114 and 10.115 to iteratively compute the node values Siþ1 and probabilities
 pi for the (n þ 1)=2 nodes above the lattice centre.
@@ -52515,43 +52342,43 @@ iþ1  S2 ¼
 FiSiþ1  S2
 ðSiþ1  SÞðSiþ1 þ SÞ
 However from Equation 10.113
-expðrtÞCðsi; tnþ1Þ ¼ ipiðSiþ1  siÞ þ 
+expðrtÞCðsi; tnþ1Þ ¼ ipiðSiþ1  siÞ þ 
 so
- ¼ ipiðSiþ1  siÞ
+ ¼ ipiðSiþ1  siÞ
 ð10:118Þ
 When si ¼ S we therefore have:
- ¼ ipiðSiþ1  SÞ ¼ iðFiSiþ1  S2ÞðSiþ1  SÞ
+ ¼ ipiðSiþ1  SÞ ¼ iðFiSiþ1  S2ÞðSiþ1  SÞ
 ðSiþ1  SÞðSiþ1 þ SÞ
-¼ iðFiSiþ1  S2Þ
+¼ iðFiSiþ1  S2Þ
 Siþ1 þ S
 which gives:
-Siþ1 þ S ¼ iFiSiþ1  iS2
-Siþ1ð  iFiÞ ¼ Sð þ iSÞ
+Siþ1 þ S ¼ iFiSiþ1  iS2
+Siþ1ð  iFiÞ ¼ Sð þ iSÞ
 and finally:
-Siþ1 ¼ Sð þ iSÞ
-iFi  
+Siþ1 ¼ Sð þ iSÞ
+iFi<br />
 QED
 Similar formulae can be derived, using interpolated put prices, which enable the
 stock values and probabilities for nodes below the lattice centre to be computed. The
 formula to determine a lower node’s stock value from an upper node’s stock value is:
-Si ¼ Siþ1 Pðsi; tnþ1Þ expðrtÞ    <br />
+Si ¼ Siþ1 Pðsi; tnþ1Þ expðrtÞ <br />
 f
-g  isiðFi  Siþ1Þ
-Pðsi; tnþ1Þ expðrtÞ  <br />
+g  isiðFi  Siþ1Þ
+Pðsi; tnþ1Þ expðrtÞ   <br />
 f
-g  iðFi  Siþ1Þ
+g  iðFi  Siþ1Þ
 ð10:119Þ
 where P(si, tnþ1) is the interpolated price of a put with strike si and expiry time tnþ1
 and
-    ¼
+     ¼
 X
 i1
 j¼1
-jðsi  FjÞ
+jðsi  FjÞ
 denotes the sum over all nodes below the node with stock price si at which the put
 was struck.
 When building the lattice the computed transition probabilities, pi, for each lattice
-node must obey the constraint 0  pi  1. The upper limit pi  1 is equivalent to
+node must obey the constraint 0  pi  1. The upper limit pi  1 is equivalent to
 Numeric methods and single asset American options
 167</p>
 <p>requiring that the up-node stock price Siþ1 at the next level does not fall below the
@@ -52559,7 +52386,7 @@ forward price Fi. This result comes from Equation 10.114
 pi ¼ Fi  Si
 Siþ1  Si
 where it can easily be seen that if Fi &gt; Siþ1 then pi &gt; 1. Similarly the lower limit
-pi  0 can be shown to be equivalent to requiring that the down-node stock price Si is
+pi  0 can be shown to be equivalent to requiring that the down-node stock price Si is
 above the forward price Fi. From Equation 10.114 we now have:
 piþ1 ¼ Fiþ1  Siþ1
 Siþ2  Siþ1
@@ -52603,15 +52430,13 @@ si1
 This means replacing the value of Siþ1 computed using Equation 10.115 with
 Siþ1 ¼ Si
 si
-si1
-
-
-ð10:121Þ
+si1</p>
+<p>ð10:121Þ
 If this method still fails to produce a valid pi then Chriss (1997) suggests the following
 more drastic measure in which
-Siþ1 ¼ Fi þ 
+Siþ1 ¼ Fi þ 
 ð10:122Þ
-where  is a very small number (say 106). It can be seen from Equation 10.114 that
+where  is a very small number (say 106). It can be seen from Equation 10.114 that
 the transition probability pi will then be a very small positive number.
 When we remove bad probabilities in this manner the impact on the implied lattice
 will depend on both the Arrow-Debreu price of the node and its payout. Nodes near
@@ -52694,47 +52519,47 @@ probabilities between nodes (in a smaller font); from DK Figure 6.
 Pricing Assets</p>
 <p>to (n, i). Here we provide more detail and show how the Arrow-Debreu prices can be
 computed for the first four lattice levels.
-Level 1: Node (1, 1) 1 ¼ 1:0.
+Level 1: Node (1, 1) 1 ¼ 1:0.
 Level 2: Node (2, 2): There is only one route from node (1, 1) to node (2, 2) and path
 probability is 0.625. Discounting the path probability by the riskless rate of 3 per cent
 gives the Arrow-Debreu price:
-2 ¼ 0:625
+2 ¼ 0:625
 1:03 ¼ 0:6068
 Node (2, 1): As for node (2, 2) there is only one route from node (1, 1) and the path
 probability is 1  0:625 ¼ 0:375. Discounting by the riskless rate gives the Arrow-
 Debreu price:
-1 ¼ 0:375
+1 ¼ 0:375
 1:03 ¼ 0:3641
 Level 3: Node (3, 3): There is only one route from node (1, 1) to node (3, 3) and the
 path probability is 0:625  0:682 ¼ 0:42625. Discounting by the riskless rate of 3 per
 cent over two time steps yields the Arrow-Debreu price:
-3 ¼
+3 ¼
 0:42625
 1:03  1:03 ¼ 0:40178
 Node (3, 2): There are two ways of going from node (1, 1) to node (3, 2). The first way,
 route (a) includes the nodes (1, 1), (2, 2), and (3, 2); it has a path probability of
-0:625  0:318 ¼ 0:19875. The contribution of route (a) to 2, denoted as a
+0:625  0:318 ¼ 0:19875. The contribution of route (a) to 2, denoted as a
 2, is therefore
-a
+a
 2 ¼ 0:19875=(1:03  1:03) ¼ 0:18734. The second way, route (b) includes the nodes
 (1, 1), (2, 1), and (3, 2); it has a path probability of 0:375  0:671 ¼ 0:2516. The con-
-tribution of route (b) to 2, denoted as b
-2, is thus b
+tribution of route (b) to 2, denoted as b
+2, is thus b
 2 ¼ 0:2516=(1:03  1:03) ¼ 0:23718.
-The Arrow-Debreu price, 2, is therefore:
-2 ¼ a
-2 þ b
+The Arrow-Debreu price, 2, is therefore:
+2 ¼ a
+2 þ b
 2 ¼ 0:18734 þ 0:23718 ¼ 0:4245
 Node (3, 1): There is only one route from node (1, 1) to node (3, 1), and the path
 probability is 0:375  0:329 ¼ 0:12337. Discounting by the riskless rate of 3 per cent
 gives an Arrow-Debreu price:
-1 ¼
+1 ¼
 0:12337
 1:03  1:03 ¼ 0:11629
 Level 4: Node (4, 4): There is only one route from node (1, 1) to node (4, 4), and the
 path probability is 0:625  0:682  0:682 ¼ 0:29070. Discounting by the riskless rate
 of 3 per cent over three time steps gives an Arrow-Debreu price:
-4 ¼
+4 ¼
 0:26768
 1:03  1:03  1:03 ¼ 0:2660
 Node (4, 3): There are three ways of going from node (1, 1) to node (4, 2). The first
@@ -52744,40 +52569,40 @@ route (c) includes the nodes (1, 1), (2, 1), (3, 2), and (4, 2).
 Numeric methods and single asset American options
 171</p>
 <p>The path probability for route (a) is 0:625  0:682  0:316 ¼ 0:1347, and thus
-yields an Arrow-Debreu price a
+yields an Arrow-Debreu price a
 3 ¼ 0:1347=(1:03  1:03  1:03) ¼ 0:1233. The path
 probability for route (b) is 0:375  0:671  0:624 ¼ 0:12402, and gives an Arrow-
-Debreu price of b
+Debreu price of b
 3 ¼ 0:12402=(1.03  1.03  1.03) ¼ 0.1135.
 Finally the path probability for route (c) is 0:375  0:671 0:624 ¼ 0:157014,
-and c
-3 ¼ 0:157014=(1:03  1:03  1:03) ¼ 0:1437. The Arrow-Debreu price, 3, is
+and c
+3 ¼ 0:157014=(1:03  1:03  1:03) ¼ 0:1437. The Arrow-Debreu price, 3, is
 therefore:
-3 ¼ a
-3 þ b
-3 þ c
+3 ¼ a
+3 þ b
+3 þ c
 3 ¼ 0:1233 þ 0:1135 þ 0:1437 ¼ 0:3805
 Node (4, 2): There are three ways of going from node (1, 1) to node (3, 2). The first
 way, route (a) includes the nodes (1, 1), (2, 2), (3, 2), and (4, 2). The second way,
 route (b) includes the nodes (1, 1), (2, 1), (3, 2), and (4, 2). Lastly the third way,
 route (c) includes the nodes (1, 1), (2, 1), (3, 1), and (4, 3).
 The path probability for route (a) is 0:625  0:318  0:376 ¼ 0:07473, and yields
-a
+a
 2 ¼ 0:07473=(1:03  1:03  1:03) ¼ 0:06838. The path probability for route (b)
-is 0:375  0:671  0:376 ¼ 0:09461, and yields b
+is 0:375  0:671  0:376 ¼ 0:09461, and yields b
 2 ¼ 0:09461=(1:03  1:03  1:03) ¼
 0:0865824.
 Finally the probability for route (c) is 0:375  0:329  0:541 ¼ 0:06674, and
-yields c
-2 ¼ 0:06674=(1:03  1:03  1:03) ¼ 0:06108. The Arrow-Debreu price, 2, is
+yields c
+2 ¼ 0:06674=(1:03  1:03  1:03) ¼ 0:06108. The Arrow-Debreu price, 2, is
 therefore:
-2 ¼ a
-2 þ b
-2 þ c
+2 ¼ a
+2 þ b
+2 þ c
 2 ¼ 0:06838 þ 0:0865824 þ 0:06108 ¼ 0:21604
 Node (4, 1): There is only one route from node (1, 1) to node (4, 1), and the path
 probability is 0:375  0:329  0:459 ¼ 0:05663. This gives an Arrow-Debreu price:
-1 ¼
+1 ¼
 0:05663
 1:03  1:03  1:03 ¼ 0:0518
 An alternative and simpler method of obtaining the Arrow-Debreu prices for the
@@ -52789,17 +52614,16 @@ definition) 1, and we know how to compute the transition probabilities between
 levels, all the Arrow-Debreu prices in the (n þ 1)th lattice level can be computed from
 those in the nth lattice level.
 We will now illustrate this, by showing how to compute the Arrow-Debreu prices
-in lattice level 4, i, i ¼ 1, . . . , 4, from the previously computed Arrow-Debreu prices
- <br />
-i , i ¼ 1, . . . , 3, in level 3.
-4 ¼ p3  <br />
+in lattice level 4, i, i ¼ 1, . . . , 4, from the previously computed Arrow-Debreu prices</p>
+<p>i , i ¼ 1, . . . , 3, in level 3.
+4 ¼ p3    <br />
 3
 1 þ r ¼ 0:682  0:402
 1:03
 ¼ 0:266
-3 ¼
-ð1  p3Þ  <br />
-3 þ p2 
+3 ¼
+ð1  p3Þ   <br />
+3 þ p2<br />
 2</p>
 <p>1 þ r
 ¼ 0:402  0:318 þ 0:425  0:624
@@ -52809,9 +52633,9 @@ g
 ¼ 0:381
 172
 Pricing Assets</p>
-<p>2 ¼
-ð1  p2Þ  <br />
-2 þ p1 
+<p>2 ¼
+ð1  p2Þ   <br />
+2 þ p1<br />
 1</p>
 <p>1 þ r
 ¼ 0:425  0:376 þ 0:116  0:541
@@ -52819,9 +52643,9 @@ f
 g
 1:03
 ¼ 0:216
-1 ¼ 1  p1
+1 ¼ 1  p1
 f
-g<br />
+g <br />
 1
 1 þ r
 ¼ 0:459  0:116
@@ -52833,7 +52657,7 @@ interest rate to the root node is 1. That is for nth lattice level we have:
 ð1 þ rÞn1 X
 n
 i¼1
-i ¼ 1
+i ¼ 1
 ð10:123Þ
 where r is the (constant) riskless interest rate. If we take into account finite computa-
 tional precision then Equation 10.123 becomes:
@@ -52841,12 +52665,12 @@ ABS
 ð1 þ rÞn1 X
 n
 i¼1
-i</p>
+i</p>
 <p>!
  1
 (
 )
- tol
+ tol
 ð10:124Þ
 where ABS X
 f
@@ -52866,17 +52690,17 @@ First modification
 The first modification proposed by BC is to use Fi (the forward of si) for the strike
 price, K, in Equation 10.109 instead of si. Under these circumstances Equation
 10.115 (DK equation 7) becomes:
-Siþ1 ¼ Si CðFi; tnþ1Þ expðrtÞ  BC</p>
-<p>iFiðFi  SiÞ
-CðFi; tnþ1Þ expðrtÞ  BC</p>
-<p>iðFi  SiÞ
+Siþ1 ¼ Si CðFi; tnþ1Þ expðrtÞ  BC</p>
+<p>iFiðFi  SiÞ
+CðFi; tnþ1Þ expðrtÞ  BC</p>
+<p>iðFi  SiÞ
 ð10:125Þ
 where
-BC ¼
+BC ¼
 X
 n
 j¼iþ1
-jðFj  FiÞ
+jðFj  FiÞ
 Numeric methods and single asset American options
 173</p>
 <p>Second modification
@@ -52891,14 +52715,14 @@ i
 ð10:126Þ
 where i ¼ (n þ 1)=2.
 The asset price at the lower central node Si is then given by:
-Si ¼ FiðiFi  BCÞ
-iFi þ BC
+Si ¼ FiðiFi  BCÞ
+iFi þ BC
 ð10:127Þ
 whereas that at the upper central node Siþ1 is:
-Siþ1 ¼ FiðBC þ iFiÞ
-iFi  BC
+Siþ1 ¼ FiðBC þ iFiÞ
+iFi  BC
 ð10:128Þ
-where BC ¼ C(Fi, tnþ1) exp (rt)  BC.
+where BC ¼ C(Fi, tnþ1) exp (rt)  BC.
 Proof of Equation 10.127 (BC equation 9) and Equation 10.128
 From Equation 10.114 we have that the transition probability, pi is:
 pi ¼ Fi  Si
@@ -52920,24 +52744,24 @@ i
 ðSiþ1  FiÞðSiþ1 þ FiÞ
 ð10:129Þ
 However from Equation 10.118 we have
-BC ¼ ipiðSiþ1  FiÞ
+BC ¼ ipiðSiþ1  FiÞ
 ð10:130Þ
 If we substitute the value of pi from Equation 10.129 into Equation 10.130 we have
-BC ¼ ipiðSiþ1  FiÞ ¼ iðFiSiþ1  F2
+BC ¼ ipiðSiþ1  FiÞ ¼ iðFiSiþ1  F2
 i ÞðSiþ1  FiÞ
 ðSiþ1  FiÞðSiþ1 þ FiÞ
-¼ iðFiSiþ1  F2
+¼ iðFiSiþ1  F2
 i Þ
 Siþ1 þ Fi
 174
 Pricing Assets</p>
 <p>Rearranging we obtain:
-BCSiþ1 þ BCFi ¼ iFiSiþ1  iF2
+BCSiþ1 þ BCFi ¼ iFiSiþ1  iF2
 i
-Siþ1ðBC  iFiÞ ¼ FiðBC þ iFiÞ
+Siþ1ðBC  iFiÞ ¼ FiðBC þ iFiÞ
 which gives
-Siþ1 ¼ FiðBC þ iFiÞ
-iFi  BC
+Siþ1 ¼ FiðBC þ iFiÞ
+iFi  BC
 QED
 To prove Equation 10.127 we simply substitute Siþ1Si ¼ F2
 i into Equation 10.128
@@ -52946,11 +52770,11 @@ Si ¼ F2
 i
 Siþ1
 ¼ F2
-i ðiFi  BCÞ
-FiðBC þ iFiÞ
+i ðiFi  BCÞ
+FiðBC þ iFiÞ
 So
-Si ¼ FiðFi  BCÞ
-iFi þ BC
+Si ¼ FiðFi  BCÞ
+iFi þ BC
 QED
 Bad probabilities
 If bad transition probabilities occur then this can rectified by setting Siþ1 to any value
@@ -53047,10 +52871,8 @@ K2 expðrTÞ  K
 PUT
 i1; j ¼</p>
 <p>PUT
-i1; j þ K
-
-
-Si; j
+i1; j þ K</p>
+<p>Si; j
 so
 1
 Si; j
@@ -53065,10 +52887,8 @@ K
 Si; j
 ¼ u ¼</p>
 <p>PUT
-i1; j þ K
-
-
-K
+i1; j þ K</p>
+<p>K
 K2 expðrtÞ  K
 PUT
 i1; j
@@ -53112,11 +52932,11 @@ The Black–Scholes equation for the value of an option, f is given by:
 @f
 @t þ ðr  qÞS @f
 @S þ 1
-2 2S2 @2f
+2 2S2 @2f
 @S2 ¼ rf
 ð10:138Þ
 We want to solve this equation over the duration of the option, that is from the
-current time t to the maturity of the option at time t þ . To do this we will use a grid
+current time t to the maturity of the option at time t þ . To do this we will use a grid
 in
 which
 the
@@ -53148,12 +52968,12 @@ have now ensured that Sn1¼ So.
 The user also supplies the function opt_gfd with the number of time intervals for
 the grid. When there are nt time intervals the grid has nt þ 1 uniformly spaced time
 instants, ti ¼ it, i ¼ 0, . . . , nt, and the time step is simply:
-t ¼ 
+t ¼ 
 nt
 ð10:140Þ
 As with the binomial lattice methods of Sections 10.4 and 10.5 we will solve the
-equation backwards in time from maturity (at time t þ ) to the present (time t). So
-as we solve the equation the time index will start at i ¼ nt (time t þ ) and decrease to
+equation backwards in time from maturity (at time t þ ) to the present (time t). So
+as we solve the equation the time index will start at i ¼ nt (time t þ ) and decrease to
 i ¼ 0 (current time t).
 Here we discuss the grid method of solving the Black–Scholes equation in terms of:
 . The finite-difference approximation.
@@ -53171,26 +52991,23 @@ simply as:
 @t ¼ fiþ1; j  fi; j
 t
 ð10:141Þ
-For the other terms in Equation 10.138 we will use the weighted, m, method. This
-technique involves selecting an appropriate choice for m in the range 0  m  1 so
+For the other terms in Equation 10.138 we will use the weighted, m, method. This
+technique involves selecting an appropriate choice for m in the range 0  m  1 so
 that the contribution from node (i, j) is a weighted sum involving the values at nodes
 (i, j) and (i þ 1, j). For instance the term rf ji, j in Equation 10.138 is approximated as:
-rf ji; j ¼ r mfiþ1; j þ ð1  mÞfi; j</p>
+rf ji; j ¼ r mfiþ1; j þ ð1  mÞfi; j</p>
 <p>ð10:142Þ
 and the term @f =@Sji, j in Equation 10.138 is approximated as:
 @f
-@S
-
-i; j
+@S</p>
+<p>i; j
 ¼
-m @f
-@S
-
-iþ1; j
-þ ð1  mÞ @f
-@S
-
-i; j
+m @f
+@S</p>
+<p>iþ1; j
+þ ð1  mÞ @f
+@S</p>
+<p>i; j
 (
 )
 ð10:143Þ
@@ -53198,29 +53015,29 @@ Using this method we thus obtain, at node (i, j), the following discretized vers
 of Equation 10.138:
 fiþ1; j  fi; j
 t
-þ ðr  qÞSj m f 0
-iþ1; j þ <br />
+þ ðr  qÞSj m f 0
+iþ1; j þ  <br />
 m f 0
 i; j
 n
 o
 þ 1
-2 2S2
+2 2S2
 j
-m f 00
-iþ1; j þ <br />
+m f 00
+iþ1; j þ  <br />
 m f 00
 i; j
 n
 o
-¼ r m fiþ1; j þ <br />
+¼ r m fiþ1; j þ   <br />
 m fi; j</p>
 <p>ð10:144Þ
-where for compactness we have written  
-m ¼ 1  m, and denote the partial deri-
+where for compactness we have written <br />
+m ¼ 1  m, and denote the partial deri-
 vatives w.r.t. S at node (i, j) as: f 0
 i, j ¼ @f =@Sji, j and f 00
-i, j ¼ @2f =@S2i, j.
+i, j ¼ @2f =@S2i, j.
 Finite-difference approximations for these derivatives can be obtained by con-
 sidering a Taylor expansion about the point fi,j. We proceed as follows:
 fi; jþ1 ¼ fi; j þ f 0
@@ -53259,50 +53076,50 @@ The complete finite-difference approximation to the Black–Scholes equation can
 then be found by substituting the approximations for the first and second partial
 derivatives, given in Equations 10.147 and 10.148, into Equation 10.144. We thus
 obtain:
-rt m fiþ1; j þ  <br />
+rt m fiþ1; j þ<br />
 m fi; j</p>
 <p>¼ fiþ1; j  fi; j þ ðr  qÞjtA1
 2
-þ 2j2tA2
+þ 2j2tA2
 2
 ð10:149Þ
 where we have used the fact that Sj ¼ jS, and for compactness have defined the
 terms:
-A1 ¼ m fiþ1; j þ1  m fiþ1; j1 þ  
-m fi; jþ1    <br />
+A1 ¼ m fiþ1; j þ1  m fiþ1; j1 þ   <br />
+m fi; jþ1 <br />
 m fi; j1
 and
-A2 ¼ m fiþ1; jþ1 þ m fiþ1; j1  2m fiþ1; j þ   <br />
-m fi; jþ1 þ  <br />
-m fi; j1  2  <br />
+A2 ¼ m fiþ1; jþ1 þ m fiþ1; j1  2m fiþ1; j þ   <br />
+m fi; jþ1 þ   <br />
+m fi; j1  2 
 m fi; j
 Collecting like terms in fi, j, fiþ1, j, etc. results in:
 B1 fi; j1 þ B2 fi; j þ B3 fi; jþ1 þ C1 fiþ1; j1 þ C2 fiþ1; j þ C3 fiþ1; jþ1 ¼ 0
 ð10:150Þ
 where
-B1 ¼ <br />
+B1 ¼  <br />
 mðr  qÞjt
 2
-þ  
-m2j2t
+þ <br />
+m2j2t
 2
-B2 ¼1  rt<br />
-m    <br />
-m2j2t
-B3 ¼ <br />
+B2 ¼1  rt <br />
+m <br />
+m2j2t
+B3 ¼  <br />
 mðr  qÞjt
 2
-þ  
-m2j2t
+þ <br />
+m2j2t
 2
-C1 ¼ m2j2t
+C1 ¼ m2j2t
 2
- mðr  qÞjt
+ mðr  qÞjt
 2
-C2 ¼ 1  rtm  m2j2t
-C3 ¼ mðr  qÞjt
+C2 ¼ 1  rtm  m2j2t
+C3 ¼ mðr  qÞjt
 2
-þ m2j2t
+þ m2j2t
 2
 Since we are solving the equation backwards in time we want to determine the
 option values at time index i from the known option values ( fiþ1, jþ1, fiþ1, j and
@@ -53314,28 +53131,28 @@ Finite-difference scheme for a uniform grid
 aj fi; j1 þ bj fi; j þ cj fi; jþ1 ¼ Riþ1; j
 ð10:151Þ
 where the right hand side, Riþ1, j, is:
-Riþ1; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
+Riþ1; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
 ð10:152Þ
 The six coefficients are:
-aj ¼ ð1  mÞ t
+aj ¼ ð1  mÞ t
 2
-ðr  qÞj  2j2</p>
+ðr  qÞj  2j2</p>
 <p>ð10:153Þ
-bj ¼ 1 þ ð1  mÞt r þ 2j2</p>
+bj ¼ 1 þ ð1  mÞt r þ 2j2</p>
 <p>ð10:154Þ
-cj ¼ ð1  mÞ t
+cj ¼ ð1  mÞ t
 2
-ðr  qÞj þ 2j2</p>
+ðr  qÞj þ 2j2</p>
 <p>ð10:155Þ
-aj ¼ m t
+aj ¼ m t
 2
-ðr  qÞj  2j2</p>
+ðr  qÞj  2j2</p>
 <p>ð10:156Þ
-bj ¼ 1  mt r þ 2j2</p>
+bj ¼ 1  mt r þ 2j2</p>
 <p>ð10:157Þ
-cj ¼ m t
+cj ¼ m t
 2
-ðr  qÞj þ 2j2</p>
+ðr  qÞj þ 2j2</p>
 <p>ð10:158Þ
 For each value of j Equation 10.151 gives us a relationship between three option
 values, fiþ1, j1, fiþ1, j, fiþ1, jþ1 at time index i þ 1, and three option values fi, j1, fi, j,
@@ -53345,30 +53162,30 @@ contribute to the option value f5,5 at grid node E. These are the known option v
 node A: f6,6, node B: f6,5 and node C: f6,4 and the unknown option values, node D:
 f5,6, node E: f5,5 and node F: f5,4.
 Before we solve Equation 10.151 we will briefly consider its characteristics for
-different values of the weight parameter m.
-When m ¼ 1 the values of the coefficients in Equation 10.151 are aj ¼ cj ¼ 0 and
+different values of the weight parameter m.
+When m ¼ 1 the values of the coefficients in Equation 10.151 are aj ¼ cj ¼ 0 and
 bj ¼ 1. This means that Equation 10.151 reduces to:
-fi; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
+fi; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
 This is termed the explicit method, and it can be seen that the unknown option
 value fi, j, at the grid node (i, j) is just a weighted sum of the (known) option values
 fiþ1, j1, fiþ1, j, fiþ1, jþ1. This is the simplest situation to deal with and actu-
 ally corresponds to a trinomial lattice. However, it has poor numerical proper-
 ties and usually requires a very small step size to obtain accurate results, see
 Smith (1985).
-When m 6¼ 1, the unknown option value fi, j depends not only on the known
+When m 6¼ 1, the unknown option value fi, j depends not only on the known
 option values fiþ1, j1, fiþ1, j, fiþ1, jþ1 (as in the explicit method above), but also on the
 Numeric methods and single asset American options
 181</p>
 <p>neighbouring unknown option values fi, j1 and fi, jþ1. It is now necessary to solve a set
 of simultaneous in order to compute the value fi, j. This is therefore called an implicit
 method, see Smith (1985).
-The implicit method m ¼ 0 is also called the fully implicit method, since now the
+The implicit method m ¼ 0 is also called the fully implicit method, since now the
 unknown value fi, j only depends on the neighbouring values fi, j1, fi, jþ1 and its
-previous value, fiþ1, j, at time step i þ 1. This can be shown by substituting m ¼ 0
-in Equations 10.153 to 10.158. We then obtain aj ¼ cj ¼ 0 and bj ¼ 1, which means
+previous value, fiþ1, j, at time step i þ 1. This can be shown by substituting m ¼ 0
+in Equations 10.153 to 10.158. We then obtain aj ¼ cj ¼ 0 and bj ¼ 1, which means
 that Equation 10.151 reduces to:
 aj fi; j1 þ bj fi; j þ cj fi; jþ1 ¼ fiþ1; j
-The implicit method m ¼ 0:5, is also termed the Crank–Nicolson method. This
+The implicit method m ¼ 0:5, is also termed the Crank–Nicolson method. This
 method, first used by Crank and Nicolson in 1946, see Crank and Nicolson (1947),
 computes fi, j by giving equal weight to the contributions from time step i þ 1 and
 Time (in units of ∆t )
@@ -53415,30 +53232,30 @@ Asset price
 Figure 10.9
 An example uniform grid, which could be used to estimate the value of a vanilla option which
 matures in two years time. The grid parameters are: ns ¼ nt ¼ 10, t ¼ 0:2, S ¼ 5, and Smax ¼ 50. The
-option parameters are E ¼ 25, So ¼ 20, and  ¼ 2:0. As usual we denote the grid node option values by fi, j,
+option parameters are E ¼ 25, So ¼ 20, and  ¼ 2:0. As usual we denote the grid node option values by fi, j,
 where i is the time index and j is the asset index. The option values of the grid nodes at maturity for a vanilla
 put are thus labelled as val, f10, j, j ¼ 0, . . . ,10, where val is the value of the option at the node; these are shown
 on the right hand grid boundary. Since E ¼ 25 only those nodes with j &lt; 5 have nonzero option values
 182
 Pricing Assets</p>
-<p>time step i. Substituting m ¼ 0:5 in Equations 10.153 to 10.149 we obtain the
+<p>time step i. Substituting m ¼ 0:5 in Equations 10.153 to 10.149 we obtain the
 following Crank–Nicolson coefficients:
-aj ¼ aj ¼ t
+aj ¼ aj ¼ t
 4
-ðr  qÞj  2j2</p>
+ðr  qÞj  2j2</p>
 <p>bj ¼ 1 þ t
 2
-r þ 2j2</p>
-<p>bj ¼ 1  t
+r þ 2j2</p>
+<p>bj ¼ 1  t
 2
-r þ 2j2</p>
-<p>cj ¼ cj ¼  t
+r þ 2j2</p>
+<p>cj ¼ cj ¼  t
 4
-ðr  qÞj þ 2j2</p>
+ðr  qÞj þ 2j2</p>
 <p>We notice that since we are solving backwards in time, but index time in the forward
-direction, our values of m corresponding to implicit and explicit are different from
-those normally used. For example in Smith (1985) m ¼ 0 is the explicit method and
-m ¼ 1 is the implicit method; the Crank–Nicolson method is still m ¼ 0:5.
+direction, our values of m corresponding to implicit and explicit are different from
+those normally used. For example in Smith (1985) m ¼ 0 is the explicit method and
+m ¼ 1 is the implicit method; the Crank–Nicolson method is still m ¼ 0:5.
 The boundary conditions
 In order to solve Equation 10.151 at time instant it we need to obtain the option
 values at the upper asset boundary, the lower asset boundary and the initial values
@@ -53478,9 +53295,9 @@ and for vanilla put options
 fnt; j ¼ maxðE  jS; 0Þ;
 j ¼ 0; . . . ; ns1
 This is illustrated in Figure 10.9 for a vanilla put option with current asset value
-S0 ¼ 20, strike, E ¼ 25 and maturity  ¼ 2. The grid asset price spacing is S ¼ 5,
+S0 ¼ 20, strike, E ¼ 25 and maturity  ¼ 2. The grid asset price spacing is S ¼ 5,
 and the time increment is t ¼ 0:2. At option maturity, corresponding to time index
-i ¼ 10, the value of the put option is zero for all asset indices j  5.
+i ¼ 10, the value of the put option is zero for all asset indices j  5.
 Computation of the option values at a given time instant
 Having found the option boundary values we are now in a position to solve Equation
 10.151 at time instant ti ¼ it.
@@ -53493,27 +53310,27 @@ with the following situations:
 and consider the form that Equation 10.151 takes under each condition.
 CASE 1: j ¼ 1
 Substituting j ¼ 1, into Equation 10.151 we obtain:
-a1 fi;0 þ b1 fi;1 þ c1 fi;2 ¼ a1 fiþ1;0 þ b1 fiþ1;1 þ c1 fiþ1;2
+a1 fi;0 þ b1 fi;1 þ c1 fi;2 ¼ a1 fiþ1;0 þ b1 fiþ1;1 þ c1 fiþ1;2
 Now, since fi,0 ¼ fBL, this becomes:
-b1 fi;1 þ c1 fi;2 ¼ ða1  a1ÞfBL þ b1 fiþ1;1 þ c1 fiþ1;2
+b1 fi;1 þ c1 fi;2 ¼ ða1  a1ÞfBL þ b1 fiþ1;1 þ c1 fiþ1;2
 or equivalently:
 b1 fi;1 þ c1 fi;2 ¼ Riþ1;1
 ð10:159Þ
 where
-Riþ1;1 ¼ ða1  a1Þ fBL þ b1 fiþ1;1 þ c1 fiþ1;2
+Riþ1;1 ¼ ða1  a1Þ fBL þ b1 fiþ1;1 þ c1 fiþ1;2
 ð10:160Þ
 184
 Pricing Assets</p>
 <p>CASE 2: j ¼ ns2
 Substituting j ¼ ns1 into Equation 10.151 we obtain:
-ans2 fi;ns3 þ bns2 fi;ns2 þ cns2 fi;ns1 ¼ ans2 fiþ1;ns3 þ bns2 fiþ1;ns2 þ cns2 fiþ1;ns1
+ans2 fi;ns3 þ bns2 fi;ns2 þ cns2 fi;ns1 ¼ ans2 fiþ1;ns3 þ bns2 fiþ1;ns2 þ cns2 fiþ1;ns1
 Since fi, ns1 ¼ fBU this gives:
-ans2 fi;ns3 þ bns2 fi;ns2 ¼ ans2 fiþ1;ns3 þ bns2 fiþ1;ns2 þ ðcns2  cns2Þ fBU
+ans2 fi;ns3 þ bns2 fi;ns2 ¼ ans2 fiþ1;ns3 þ bns2 fiþ1;ns2 þ ðcns2  cns2Þ fBU
 or equivalently:
 ans2 fi;ns3 þ bns2 fi;ns2 ¼ Riþ1;ns2
 ð10:161Þ
 where
-Riþ1;ns2 ¼ ans2 fiþ1;ns3 þ bns2 fiþ1;ns2 þ ðcns2  cns2Þ fBU
+Riþ1;ns2 ¼ ans2 fiþ1;ns3 þ bns2 fiþ1;ns2 þ ðcns2  cns2Þ fBU
 ð10:162Þ
 CASE 3
 In this case the boundary values do not enter into the expressions, and we simply
@@ -53522,7 +53339,7 @@ aj fi; j1 þ bj fi; j þ cj fi; jþ1 ¼ Riþ1; j;
 j ¼ 3; . . . ; ns3
 ð10:163Þ
 where as before the right hand side, Riþ1, j, is:
-Riþ1; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
+Riþ1; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
 ð10:164Þ
 We can now gather all the information in Equations 10.159 to 10.164 and represent
 it by the following tridiagonal system:
@@ -53877,7 +53694,7 @@ Numeric methods and single asset American options
 <p>Black–Scholes partial differential equation at time instant ti ¼ it; based on the
 previously computed option values fiþ1, j, j ¼ 1, . . . , ns2.
 Backwards iteration and early exercise
-The Black–Scholes equation can be solved over the time interval t to t þ  by
+The Black–Scholes equation can be solved over the time interval t to t þ  by
 iteratively solving Equation 10.6.2. We iterate backwards in time by solving Equa-
 tion 10.6.2 at the ith time step and then using the computed values to solve Equation
 10.6.2 for the (i  1)th time step. The option values at current time t are obtained
@@ -53973,43 +53790,40 @@ ns ¼ n1þn2 þ 1;
 /</em> Note: Now nps ¼ ns1. Since we define asset grid lines 0 . . . ns1, this is the maximum grid line;
 corresponding to the upper boundary. The lower boundary is at the asset grid line 0, and we solve for
 option values between the asset grid line 1 and the asset grid line ns 2 <em>/
-/</em> Allocate (all size nsþ 1) the arrays: a, b, c, a1, b1, c1, opt_vals, vals, rhs, s, work and u <em>/
-
-
-
-s[0] ¼ 0.0;
+/</em> Allocate (all size nsþ 1) the arrays: a, b, c, a1, b1, c1, opt_vals, vals, rhs, s, work and u */</p>
+<p>s[0] ¼ 0.0;
 s[n1] ¼ asset_price;
-for(i¼ 1; i&lt;¼n1 1; þþi ) /</em> set prices below asset_price <em>/
+for(i¼ 1; i&lt;¼n1 1; þþi ) /<em> set prices below asset_price </em>/
 s[i] ¼ (double)i * ds;
-for(i¼ 1; i&lt;¼ n2þ 1; þþi ) /</em> set prices above asset_price <em>/
+for(i¼ 1; i&lt;¼ n2þ 1; þþi ) /<em> set prices above asset_price </em>/
 s[n1þi] ¼ asset_price þ (double)i * ds;
-/</em> Set up the RHS and LHS coefficients a[], b[] and c[] are the LHS coefficients for the unknown option
+/<em> Set up the RHS and LHS coefficients a[], b[] and c[] are the LHS coefficients for the unknown option
 values (time step j) a1[], b1[] and c1[] are the values of the RHS coefficients for the known option
 prices (time step jþ1).
-Note: a1, b1 and c1 are used to form the RHS vector rhs[] of the tridiagonal system. <em>/
-sig2 ¼ sigma</em>sigma;
+Note: a1, b1 and c1 are used to form the RHS vector rhs[] of the tridiagonal system. </em>/
+sig2 ¼ sigma<em>sigma;
 t2 ¼ dt/2.0;
-tmp ¼ 1.0theta_m; /<em> 1  theta (for theta method) </em>/
-for( i ¼ 1; i&lt;¼ns 2; þþi) {/<em> Assign elements of the (ns 2) </em>(ns 2) tridiagonal matrix <em>/
-a[i] ¼ i</em>(i<em>sig2(rq))</em>t2<em>tmp;
-a1[i] ¼ i</em>(i<em>sig2(rq))</em>t2<em>theta_m;;
-c[i] ¼ i</em>(i<em>sig2þ(rq))</em>t2<em>tmp;
-c1[i] ¼ i</em>(i<em>sig2þ(rq))</em>t2<em>theta_m;;
-b[i] ¼ 1.0þr</em>dt<em>tmpþ(i</em>i<em>sig2)</em>dt<em>tmp;
-b1[i]¼ 1.0(i</em>i<em>sig2þr)</em>dt<em>theta_m;
+tmp ¼ 1.0theta_m; /</em> 1  theta (for theta method) <em>/
+for( i ¼ 1; i&lt;¼ns 2; þþi) {/</em> Assign elements of the (ns 2) <em>(ns 2) tridiagonal matrix </em>/
+a[i] ¼ i<em>(i</em>sig2(rq))<em>t2</em>tmp;
+a1[i] ¼ i<em>(i</em>sig2(rq))<em>t2</em>theta_m;;
+c[i] ¼ i<em>(i</em>sig2þ(rq))<em>t2</em>tmp;
+c1[i] ¼ i<em>(i</em>sig2þ(rq))<em>t2</em>theta_m;;
+b[i] ¼ 1.0þr<em>dt</em>tmpþ(i<em>i</em>sig2)<em>dt</em>tmp;
+b1[i]¼ 1.0(i<em>i</em>sig2þr)<em>dt</em>theta_m;
 }
-/</em> Perform LU decomposition of the tridiagonal matrix with:
+/<em> Perform LU decomposition of the tridiagonal matrix with:
 diagonal elements contained in the array b[], upper diagonal elements contained in the array c[]
 and lower diagonal elements in the array a[]. Store the elements of U but not those of L
 (they will be computed from U)
 Matrix U: The diagonal elements of U are stored in the array u[] and the upper diagonal elements of U
 are just c[].
 Matrix L: For the lower triangular matrix L, the diagonal elements are 1 and the lower diagonal elements
-are l[i] ¼ a[i]/u[i 1], where u[] is the upper diagonal of U. <em>/
+are l[i] ¼ a[i]/u[i 1], where u[] is the upper diagonal of U. </em>/
 u[1] ¼ b[1];
 if (u[1] ¼¼ 0.0) printf (‘‘ERROR in array u \n’’);
 for(i¼ 2; i &lt;¼ns 2; þþi){
-u[i] ¼ b[i]  a[i]</em>c[i 1]/u[i 1];
+u[i] ¼ b[i]  a[i]*c[i 1]/u[i 1];
 if (u[i] ¼¼ 0.0) printf (‘‘ERROR in array u \n’’);
 }
 Numeric methods and single asset American options
@@ -54127,9 +53941,8 @@ iþ1; jXþ
 j þ 1
 2 f 00
 iþ1; j Xþ
-j
-
-2
+j</p>
+<p>2
 ð10:169Þ
 and also
 fiþ1; j1 ¼ fiþ1; j  f 0
@@ -54137,9 +53950,8 @@ iþ1; jX
 j þ 1
 2 f 00
 iþ1; j X
-j
-
-2
+j</p>
+<p>2
 ð10:170Þ
 Numeric methods and single asset American options
 191</p>
@@ -54269,17 +54081,17 @@ j )2X
 j þ (X
 j )2Xþ
 j we then obtain
-rtðm fiþ1; j þ  <br />
+rtðm fiþ1; j þ<br />
 m fi; jÞ ¼ fiþ1; j  fi; j þ ðr  qÞSjtA1
 D
 þ
-2S2
+2S2
 j tA2
 D
 ð10:174Þ
-where  
-m ¼ 1  m, and
-A1 ¼ m fiþ1; jþ1ðX
+where <br />
+m ¼ 1  m, and
+A1 ¼ m fiþ1; jþ1ðX
 j Þ2  fiþ1; j1ðXþ
 j Þ2  fiþ1; j</p>
 <p>ðX
@@ -54287,7 +54099,7 @@ j Þ2  ðXþ
 j Þ2
 h
 i
-þ  
+þ <br />
 m fi; jþ1ðX
 j Þ2  fi; j1ðXþ
 j Þ2  fi; j</p>
@@ -54297,7 +54109,7 @@ j Þ2
 h
 i
 and
-A2 ¼ m fiþ1; jþ1X
+A2 ¼ m fiþ1; jþ1X
 j þ fiþ1; j1Xþ
 j  fiþ1; j</p>
 <p>X
@@ -54305,7 +54117,7 @@ j þ Xþ
 j</p>
 <p>h
 i
-þ  
+þ <br />
 m fi; jþ1X
 j þ fi; j1Xþ
 j  fi; j</p>
@@ -54318,55 +54130,51 @@ Collecting like terms we obtain:
 B1 fi; j1 þ B2 fi; j þ B3 fi; jþ1 þ C1 fiþ1; j1 þ C2 fiþ1; j þ C3 fiþ1; jþ1 ¼ 0
 ð10:175Þ
 where
-B1 ¼ <br />
+B1 ¼  <br />
 mðr  qÞSjtðXþ
 j Þ2
 D
 þ
-ð1  Þ2S2
+ð1  Þ2S2
 j tXþ
 j
 D
-B2 ¼  1  rt  <br />
-m 
- <br />
-m2S2
+B2 ¼  1  rt 
+m </p>
+<p>m2S2
 j tðX
 j þ Xþ
 j Þ
 D</p>
-<p> <br />
-mðr  qÞSjt</p>
+<p>mðr  qÞSjt</p>
 <p>ðX
 j Þ2  ðXþ
 j Þ2
 D
-B3 ¼
- <br />
-mðr  qÞSjtðX
+B3 ¼</p>
+<p>mðr  qÞSjtðX
 j Þ2
 D
-þ
- <br />
-m2S2
+þ</p>
+<p>m2S2
 j tX
 j
 D
 C1 ¼
-m2S2
+m2S2
 j tXþ
 j
 D
- mðr  qÞSjtðXþ
+ mðr  qÞSjtðXþ
 j Þ2
 D
-C2 ¼1  rtm 
-mðr  qÞSjt</p>
+C2 ¼1  rtm 
+mðr  qÞSjt</p>
 <p>ðX
 j Þ2  ðXþ
 j Þ2
 D</p>
-<p>m2S2
+<p>m2S2
 j t X
 j þ Xþ
 j
@@ -54374,11 +54182,11 @@ n
 o
 D
 C3 ¼
-mðr  qÞSjtðX
+mðr  qÞSjtðX
 j Þ2
 D
 þ
-m2S2
+m2S2
 j tX
 j
 D
@@ -54388,26 +54196,26 @@ Finite-difference scheme for a nonuniform grid
 aj fi; j1 þ bj fi; j þ cj ¼ Riþ1; j
 ð10:176Þ
 where the right hand side Riþ1, j is:
-Riþ1; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
+Riþ1; j ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
 ð10:177Þ
 Numeric methods and single asset American options
 193</p>
 <p>and the coefficients are
-aj ¼ <br />
+aj ¼  <br />
 mt ðr  qÞSjðXþ
 j Þ2
 D</p>
-<p>2S2
+<p>2S2
 j Xþ
 j
 D
 (
 )
 ð10:178Þ
-bj ¼1þt  <br />
+bj ¼1þt 
 m
 rþ
-2S2
+2S2
 j ðX
 j þXþ
 j Þ
@@ -54424,20 +54232,20 @@ D
 =
 ;
 ð10:179Þ
-cj ¼ <br />
+cj ¼  <br />
 mt
 ðr  qÞSjðX
 j Þ2
 D</p>
-<p>2S2
+<p>2S2
 j X
 j
 D
 (
 )
 ð10:180Þ
-aj ¼ mt
-2S2
+aj ¼ mt
+2S2
 j Xþ
 j
 D
@@ -54447,8 +54255,8 @@ D
 (
 )
 ð10:181Þ
-bj ¼ 1  mrt
-mt
+bj ¼ 1  mrt
+mt
 ðr  qÞSj ðX
 j Þ2  ðXþ
 j Þ2
@@ -54456,7 +54264,7 @@ n
 o
 D
 þ
-2S2
+2S2
 j
 X
 j þ Xþ
@@ -54471,12 +54279,12 @@ D
 =
 ;
 ð10:182Þ
-cj ¼ mt
+cj ¼ mt
 ðr  qÞSjðX
 j Þ2
 D
 þ
-2S2
+2S2
 j X
 j
 D
@@ -54534,60 +54342,60 @@ D
 ¼ 0
 If we substitute the above values into Equations 10.178 to 10.183 we obtain the
 following expressions for the coefficients in Equation 10.176.
-aj ¼ ð1  mÞt ðr  qÞSj
+aj ¼ ð1  mÞt ðr  qÞSj
 2S</p>
-<p>2S2
+<p>2S2
 j
 2S2
 (
 )
-¼ ð1  mÞ t
+¼ ð1  mÞ t
 2
-ðr  qÞj  2j2</p>
-<p>bj ¼ 1 þ tð1  mÞ
+ðr  qÞj  2j2</p>
+<p>bj ¼ 1 þ tð1  mÞ
 r þ
-2S2
+2S2
 j
 S2
 (
 )
-¼ 1 þ ð1  mÞt r þ 2j2</p>
-<p>cj ¼ ð1  mÞt ðr  qÞSj
+¼ 1 þ ð1  mÞt r þ 2j2</p>
+<p>cj ¼ ð1  mÞt ðr  qÞSj
 2S</p>
-<p>2S2
+<p>2S2
 j
 2S2
 (
 )
-¼ ð1  mÞ t
+¼ ð1  mÞ t
 2
-ðr  qÞj þ 2j2</p>
-<p>aj ¼ mt
-2S2
+ðr  qÞj þ 2j2</p>
+<p>aj ¼ mt
+2S2
 j
 2S2  ðr  qÞSj
 2S
 (
 )
-¼ m t
+¼ m t
 2
-ðr  qÞj  2j2</p>
-<p>bj ¼ 1  mrt 
-m2S2
+ðr  qÞj  2j2</p>
+<p>bj ¼ 1  mrt 
+m2S2
 j t
 S2
-¼ 1  mt r þ 2j2</p>
-<p>cj ¼ mt ðr  qÞSj
+¼ 1  mt r þ 2j2</p>
+<p>cj ¼ mt ðr  qÞSj
 2S
 þ
-2S2
+2S2
 j
 S2
 (
 )
-¼ m t
+¼ m t
 2
-ðr  qÞj þ 2j2</p>
+ðr  qÞj þ 2j2</p>
 <p>It can be seen that these coefficients are identical to those given in Section 10.6.2,
 Equations 10.153 to 10.158.
 We now provide examples of using nonuniform grids to evaluate European down
@@ -54676,20 +54484,17 @@ n2 ¼ ns  n1;
 ds ¼ asset_price/(double)n1;
 time_step ¼ T/(double)nt; /</em> time interval size <em>/
 ns1 ¼ n1þn2þ2; /</em> number of nodes  including extra grid line<em>/
-/</em> allocate the required arrays (all of size ns1þ1): a, b, c, a1, b1, c1, opt_vals, vals, rhs, s, work, u <em>/
-
-
-
-/</em> set prices below asset_price <em>/
+/</em> allocate the required arrays (all of size ns1þ1): a, b, c, a1, b1, c1, opt_vals, vals, rhs, s, work, u */</p>
+<p>/<em> set prices below asset_price </em>/
 s[0] ¼ zero;
 s[n1] ¼ asset_price;
 for(i¼1; i &lt; n1; þþi )
 s[i] ¼ (double)i * ds;
-/</em> set prices above asset_price <em>/
+/<em> set prices above asset_price </em>/
 for(i¼1; i&lt;¼ n2þ2; þþi ){
 s[n1þi] ¼ asset_price þ (double)i * ds;
 }
-/</em> find out the index corresponding to barrier_level */
+/<em> find out the index corresponding to barrier_level </em>/
 barrier_index ¼ 0;
 while(barrier_level &gt; s[barrier_index]){
 þþbarrier_index;
@@ -54717,8 +54522,8 @@ The absolute error in the estimated values for a European down and out call barr
 (B &lt; E) as the number of asset grid points, ns, is varied. Here we show a comparison of the results obtained
 using both uniform and nonuniform grids; logarithmic transformations were not employed. The algorithm
 for the uniform grid is described in Section 10.6.2, and that for the nonuniform grid is outlined in Section
-10.6.3. The Crank–Nicolson method (m ¼ 0:5) was used and the other parameters were E ¼ 50:0, B ¼ 47:5,
-S0 ¼ 55:0, Smax ¼ 300:0, T ¼ 0:5,  ¼ 0:2, r ¼ logð1:1Þ, q ¼ 0:0, nt ¼ 100. The correct option value
+10.6.3. The Crank–Nicolson method (m ¼ 0:5) was used and the other parameters were E ¼ 50:0, B ¼ 47:5,
+S0 ¼ 55:0, Smax ¼ 300:0, T ¼ 0:5,  ¼ 0:2, r ¼ logð1:1Þ, q ¼ 0:0, nt ¼ 100. The correct option value
 was 7.6512 which was obtained using the analytic formulae given in Section 9.4 and Code excerpt 9.6
 Numeric methods and single asset American options
 197</p>
@@ -54770,8 +54575,8 @@ The absolute error in the estimated values for a European down and out call barr
 (E &lt; B) as the number of asset grid points, ns, is varied. Here we show a comparison of the results obtained
 using both uniform and nonuniform grids; logarithmic transformations are not employed. The algorithm
 for the uniform grid is described in Section 10.6.2 and that for the nonuniform grid is outlined in Section
-10.6.3. The Crank–Nicolson method (m ¼ 0:5) was used and the other parameters were E ¼ 50.0, B ¼ 52.5,
-S0 ¼ 65.0, Smax ¼ 300.0, T ¼ 0.5,  ¼ 0.2, r ¼ log (1.1), q ¼ 0.0, nt ¼ 100. The correct option value was
+10.6.3. The Crank–Nicolson method (m ¼ 0:5) was used and the other parameters were E ¼ 50.0, B ¼ 52.5,
+S0 ¼ 65.0, Smax ¼ 300.0, T ¼ 0.5,  ¼ 0.2, r ¼ log (1.1), q ¼ 0.0, nt ¼ 100. The correct option value was
 17.0386 which was obtained using the analytic formulae given in Section 9.4 and Code excerpt 9.6
 198
 Pricing Assets</p>
@@ -54864,11 +54669,8 @@ greeks[2] ¼ (temp[0]þ8.0<em>temp[1] 8.0</em>temp[2]þtemp[3])/(12.0<em>time_st
 greeks[2] ¼ (temp[0]þ4.0<em>temp[1]3.0</em>vals[n1])/(2.0<em> time_step); </em>/
 }
 <em>option_value ¼ vals[n1]; /</em> Return option value <em>/
-/</em> deallocate the arrays that were previously allocated */
-
-
-
-}
+/</em> deallocate the arrays that were previously allocated */</p>
+<p>}
 Code excerpt 10.19
 Function to compute the value of a European down and out barrier option using
 a nonuniform grid
@@ -54878,7 +54680,7 @@ Up to this point we have been dealing with the standard Black–Scholes equation
 which is
 @f
 @t þ ðr  qÞS @f
-@S þ 2S2
+@S þ 2S2
 2
 @2f
 @S2 ¼ rf
@@ -54887,12 +54689,12 @@ However, if we introduce the change of variable Z ¼ log S, we obtain the follow
 equation:
 @f
 @t þ b @f
-@Z þ 2
+@Z þ 2
 2
 @2f
 @Z2 ¼ rf
 ð10:185Þ
-where b ¼ r  q  (2=2). This has beneficial numerical properties since it does not
+where b ¼ r  q  (2=2). This has beneficial numerical properties since it does not
 contain the original Black–Scholes terms in S and S2.
 Derivation of Equation 10.185
 We will now derive an expression for the logarithmic Black–Scholes equation, and
@@ -54911,10 +54713,8 @@ and
 @S2 ¼ @
 @S
 @f
-@S
-
-
-¼ 1
+@S</p>
+<p>¼ 1
 S2
 @f
 @Z þ 1
@@ -54922,10 +54722,8 @@ S
 @
 @S
 @f
-@Z
-
-
-¼  1
+@Z</p>
+<p>¼  1
 S2
 @f
 @Z þ 1
@@ -54935,10 +54733,8 @@ S
 @
 @Z
 @f
-@Z
-
-
-@2f
+@Z</p>
+<p>@2f
 @S2 ¼  1
 S2
 @f
@@ -54951,19 +54747,19 @@ Substituting the above values into Equation 10.184
 @t þ ðr  qÞS
 S
 @f
-@Z  2S2
+@Z  2S2
 2S2
 @f
-@Z þ 2S2
+@Z þ 2S2
 2S2
 @2f
 @Z2 ¼ rf
 200
 Pricing Assets</p>
-<p>and setting b ¼ r  q  2=2 we obtain:
+<p>and setting b ¼ r  q  2=2 we obtain:
 @f
 @t þ b @f
-@Z þ 2
+@Z þ 2
 2
 @2f
 @Z2 ¼ rf
@@ -54973,126 +54769,122 @@ We will now consider the finite-difference discretization of Equation 10.185.
 The finite-difference method
 Application of the finite difference method to the log transformed Black–Scholes
 equation is very similar to that already outlined in Sections 10.6.2 and 10.6.3.
-Use of the m method on Equation 10.185 results in:
+Use of the m method on Equation 10.185 results in:
 fiþ1; j  fi; j
 t
-þ b m f 0
-iþ1; j þ <br />
+þ b m f 0
+iþ1; j þ  <br />
 m f 0
 i; j
 n
 o
 þ 1
-2 2 m f 00
-iþ1; j þ <br />
+2 2 m f 00
+iþ1; j þ  <br />
 m f 00
 i; j
 n
 o
-¼ r m fiþ1; j þ <br />
+¼ r m fiþ1; j þ   <br />
 m fi; j</p>
-<p>where  
-m ¼ 1  m. Applying a uniform discretization at node (i, j) we obtain:
+<p>where <br />
+m ¼ 1  m. Applying a uniform discretization at node (i, j) we obtain:
 fiþ1; j  fi; j þ btA1
-2Z þ 2tA2
-2Z2 ¼ rt m fiþ1; j þ  
+2Z þ 2tA2
+2Z2 ¼ rt m fiþ1; j þ  <br />
 m fi; j</p>
 <p>ð10:187Þ
 where
-A1 ¼ m fiþ1; jþ1  fiþ1; j1</p>
-<p>þ  
+A1 ¼ m fiþ1; jþ1  fiþ1; j1</p>
+<p>þ <br />
 m fi; jþ1  fi; j1</p>
-<p>A2 ¼ m fiþ1; jþ1  2fiþ1; j þ fiþ1; j1</p>
-<p>þ  
+<p>A2 ¼ m fiþ1; jþ1  2fiþ1; j þ fiþ1; j1</p>
+<p>þ <br />
 m fi; jþ1  2fi; j þ fi; j1</p>
 <p>Collecting like terms obtain:
 B1 fi; j1 þ B2 fi; j þ B3 fi; jþ1 þ C1 fiþ1; j1 þ C2 fiþ1; j þ C3 fiþ1; jþ1 ¼ 0
 where
-B1 ¼ <br />
+B1 ¼  <br />
 mbt
 2Z
-þ  
-m2t
+þ <br />
+m2t
 2Z2
-B2 ¼  1  rt  <br />
-m    <br />
-m2t
+B2 ¼  1  rt 
+m <br />
+m2t
 Z2
-B3 ¼ <br />
+B3 ¼  <br />
 mbt
-2Z þ <br />
-m2t
+2Z þ  <br />
+m2t
 2Z2
-C1 ¼ m2t
-2Z2  mbt
+C1 ¼ m2t
+2Z2  mbt
 2Z
-C2 ¼1  rtm  m2t
+C2 ¼1  rtm  m2t
 Z2
-C3 ¼ mbt
-2Z þ m2t
+C3 ¼ mbt
+2Z þ m2t
 2Z2
 Numeric methods and single asset American options
 201</p>
 <p>If we rearrange we have the following equation:
 Finite-difference scheme for a uniform grid and log transformation
-aj fi; j1 þ bj fi; j þ cj ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
+aj fi; j1 þ bj fi; j þ cj ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
 ð10:188Þ
 where:
-aj ¼ ð1  mÞt
+aj ¼ ð1  mÞt
 2Z2
-bZ  2</p>
+bZ  2</p>
 <p>ð10:189Þ
-bj ¼ 1 þ ð1  mÞt r þ 2
-Z2
-</p>
+bj ¼ 1 þ ð1  mÞt r þ 2
+Z2</p>
 <p>ð10:190Þ
-cj ¼  ð1  mÞt
+cj ¼  ð1  mÞt
 2Z2
-bZ þ 2</p>
+bZ þ 2</p>
 <p>ð10:191Þ
-aj ¼  mt
+aj ¼  mt
 2Z2
-bZ  2</p>
+bZ  2</p>
 <p>ð10:192Þ
-bj ¼ 1  mt r þ 2
-Z2
-</p>
+bj ¼ 1  mt r þ 2
+Z2</p>
 <p>ð10:193Þ
-cj ¼ mt
+cj ¼ mt
 2Z2
-bZ þ 2</p>
+bZ þ 2</p>
 <p>ð10:194Þ
 It can be seen that, unlike in Section 10.6.2, the coefficients in Equations 10.188 to
 10.194 are independent of the asset price index j.
-When m ¼ 0:5 (the Crank–Nicolson method) we have the following coefficients:
-aj ¼ aj ¼
+When m ¼ 0:5 (the Crank–Nicolson method) we have the following coefficients:
+aj ¼ aj ¼
 t
-4Z2 bZ  2</p>
+4Z2 bZ  2</p>
 <p>bj ¼ 1 þ t
 2
-r þ 2
-Z2
-</p>
-<p>cj ¼ cj ¼ 
+r þ 2
+Z2</p>
+<p>cj ¼ cj ¼ 
 t
-4Z2 bZ þ 2</p>
-<p>bj ¼ 1  t
+4Z2 bZ þ 2</p>
+<p>bj ¼ 1  t
 2
-r þ 2
-Z2
-</p>
+r þ 2
+Z2</p>
 <p>The method of using the finite-difference grid to compute option prices is identical
 to that already outlined in Section 10.6.2, which solves the standard (nonlogarithmic)
 Black–Scholes equation. Table 10.7 compares the results obtained with and without
 a logarithmic transformation. It is shown in Appendix L.2 that the implicit method,
-m ¼ 0, is unconditionally stable.
+m ¼ 0, is unconditionally stable.
 10.6.5
 The log transformation and nonuniform grids
 In the previous section we considered the use of a uniform grid to discretize the
 logarithmically transformed Black–Scholes equation.
 @f
 @t þ b @f
-@Z þ 2
+@Z þ 2
 2
 @2f
 @Z2 ¼ rf
@@ -55100,7 +54892,7 @@ logarithmically transformed Black–Scholes equation.
 202
 Pricing Assets</p>
 <p>where
-b ¼ r  q  2
+b ¼ r  q  2
 2
 and
 Z ¼ log S
@@ -55135,14 +54927,14 @@ j
 Table 10.7
 Valuation results and pricing errors for a vanilla American put option using a uniform grid with
 and without a logarithmic transformation; the implicit method and Crank–Nicolson method are used. The
-accurate values (obtained using a logarithmic transformed grid with m ¼ 0:0, ns ¼ 1000 and nt ¼ 1000) are
+accurate values (obtained using a logarithmic transformed grid with m ¼ 0:0, ns ¼ 1000 and nt ¼ 1000) are
 presented in the column labelled ‘Value’. The absolute pricing errors (ABS) (accurate value estimated value)
 are presented in the column labelled BS were obtained using a standard uniform grid (as outlined in
 Section 10.6.2), and those in the column labelled Log BS use a uniform grid and logarithmic transformation
 as explained in this section. The maturity of the option was varied from 0.1 to 1.5 years, the other parameters
-were: S ¼ 9:0, X ¼ 9:7, r ¼ 0:1, q ¼ 0:0,  ¼ 0:30, Smax ¼ 100:0, ns ¼ 50, and nt ¼ 50
-m ¼ 0:0
-m ¼ 0:5
+were: S ¼ 9:0, X ¼ 9:7, r ¼ 0:1, q ¼ 0:0,  ¼ 0:30, Smax ¼ 100:0, ns ¼ 50, and nt ¼ 50
+m ¼ 0:0
+m ¼ 0:5
 Time
 Value
 BS
@@ -55255,36 +55047,36 @@ j Þ2Zþ
 Then discretizing Equation 10.195 in the usual manner we obtain
 fiþ1; j  fi; j
 t
-þ b m f 0
-iþ1; j þ <br />
+þ b m f 0
+iþ1; j þ  <br />
 m f 0
 i; j
 n
 o
-þ 2
+þ 2
 2
-m f 00
-iþ1; j þ <br />
+m f 00
+iþ1; j þ  <br />
 m f 00
 i; j
 n
 o
-¼ r m fiþ1; j þ <br />
+¼ r m fiþ1; j þ   <br />
 m fi; j</p>
-<p>where  
-m ¼ 1  m. Letting D ¼ (Zþ
+<p>where <br />
+m ¼ 1  m. Letting D ¼ (Zþ
 j )2Z
 j þ (Z
 j )2Zþ
 j we obtain
-rtðm fiþ1; j þ  <br />
+rtðm fiþ1; j þ<br />
 m fi; jÞ ¼ fiþ1; j  fi; j þ btA1
 D
-þ 2tA2
+þ 2tA2
 D
 ð10:196Þ
 where
-A1 ¼ m fiþ1; jþ1ðZ
+A1 ¼ m fiþ1; jþ1ðZ
 j Þ2  fiþ1; j1ðZþ
 j Þ2  fiþ1; j</p>
 <p>ðZ
@@ -55292,7 +55084,7 @@ j Þ2  ðZþ
 j Þ2
 h
 i
-þ  
+þ <br />
 m fi; jþ1ðZ
 j Þ2  fi; j1ðZþ
 j Þ2  fi; j</p>
@@ -55301,7 +55093,7 @@ j Þ2  ðZþ
 j Þ2
 h
 i
-A2 ¼ m fiþ1; jþ1Z
+A2 ¼ m fiþ1; jþ1Z
 j þ fiþ1; j1Zþ
 j  fiþ1; j</p>
 <p>Z
@@ -55309,7 +55101,7 @@ j þ Zþ
 j</p>
 <p>h
 i
-þ  
+þ <br />
 m fi; jþ1Z
 j þ fi; j1Zþ
 j  fi; j</p>
@@ -55321,83 +55113,80 @@ i
 Collecting like terms obtain:
 B1 fi; j1 þ B2 fi; j þ B3 fi; jþ1 þ C1 fiþ1; j1 þ C2 fiþ1; j þ C3 fiþ1; jþ1 ¼ 0
 where
-B1 ¼ <br />
+B1 ¼  <br />
 mbtðZþ
 j Þ2
 D
-þ  
-m2tZþ
+þ <br />
+m2tZþ
 j
 D
-B2 ¼ 1  rt 
-m 
- <br />
-m2tðZ
+B2 ¼ 1  rt<br />
+m </p>
+<p>m2tðZ
 j þ Zþ
 j Þ
 D</p>
-<p> <br />
+<p>mbt ðZ
+j Þ2  ðZþ
+j Þ2
+n
+o
+D
+B3 ¼</p>
+<p>mbtðZ
+j Þ2
+D
+þ <br />
+m2tZ
+D
+C1 ¼ m2tZþ
+j
+D
+ mbtðZþ
+j Þ2
+D
+C2 ¼ 1  rtm 
 mbt ðZ
 j Þ2  ðZþ
 j Þ2
 n
 o
-D
-B3 ¼
- <br />
-mbtðZ
-j Þ2
-D
-þ  
-m2tZ
-D
-C1 ¼ m2tZþ
-j
-D
- mbtðZþ
-j Þ2
-D
-C2 ¼ 1  rtm 
-mbt ðZ
-j Þ2  ðZþ
-j Þ2
-n
-o
 D</p>
-<p>m2t Z
+<p>m2t Z
 j þ Zþ
 j
 n
 o
 D
 C3 ¼
-mbtðZ
+mbtðZ
 j Þ2
 D
 þ
-m2tZ
+m2tZ
 j
 D
 204
 Pricing Assets</p>
 <p>If we rearrange we have the following equation:
 Finite-difference scheme for a nonuniform grid and log transformation
-aj fi; j1 þ bj fi; j þ cj ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
+aj fi; j1 þ bj fi; j þ cj ¼ aj fiþ1; j1 þ bj fiþ1; j þ cj fiþ1; jþ1
 ð10:197Þ
 where:
-aj ¼ ð1  mÞt
+aj ¼ ð1  mÞt
 bðZþ
 j Þ2
 D
- 2Zþ
+ 2Zþ
 j
 D
 (
 )
 ð10:198Þ
-bj ¼ 1 þ tð1  mÞ
+bj ¼ 1 þ tð1  mÞ
 r 
-2ðZ
+2ðZ
 j þ Zþ
 j Þ
 D
@@ -55412,18 +55201,18 @@ D
 =
 ;
 ð10:199Þ
-cj ¼ ð1  mÞt
+cj ¼ ð1  mÞt
 bðZ
 j Þ2
 D</p>
-<p>2Z
+<p>2Z
 j
 D
 (
 )
 ð10:200Þ
-aj ¼ mt
-2Zþ
+aj ¼ mt
+2Zþ
 j
 D
  bðZþ
@@ -55432,7 +55221,7 @@ D
 (
 )
 ð10:201Þ
-bj ¼ 1  mrt  mt
+bj ¼ 1  mrt  mt
 b ðZ
 j Þ2  ðZþ
 j Þ2
@@ -55443,7 +55232,7 @@ D
 &lt;
 :
 þ
-2 Z
+2 Z
 j þ Zþ
 j
 n
@@ -55453,12 +55242,12 @@ D
 =
 ;
 ð10:202Þ
-cj ¼ mt
+cj ¼ mt
 bðZ
 j Þ2
 D
 þ
-2Z
+2Z
 j
 D
 (
@@ -55506,27 +55295,24 @@ j Þ2
 D
 ¼ 0
 In these circumstances
-aj ¼ ð1  mÞt
+aj ¼ ð1  mÞt
 2Z2
-bZ  2</p>
-<p>bj ¼ 1 þ tð1  mÞ r  2
-Z2
-</p>
-<p>cj ¼ ð1  mÞt
+bZ  2</p>
+<p>bj ¼ 1 þ tð1  mÞ r  2
+Z2</p>
+<p>cj ¼ ð1  mÞt
 b
 2Z 
-2
+2
+2Z2</p>
+<p>aj ¼  mt
 2Z2
-</p>
-<p>aj ¼  mt
+bZ  2</p>
+<p>bj ¼ 1  mt r þ 2
+Z2</p>
+<p>cj ¼ mt
 2Z2
-bZ  2</p>
-<p>bj ¼ 1  mt r þ 2
-Z2
-</p>
-<p>cj ¼ mt
-2Z2
-bZ þ 2</p>
+bZ þ 2</p>
 <p>which are the same as Equations 10.188 to 10.194 in Section 10.6.4.
 10.6.6
 The double knockout call option
@@ -55627,18 +55413,15 @@ ns1 ¼ n1 þn2 þ 2;
 (time step j) a1[], b1[] and c1[] are the values of the RHS coefficients for the known option prices (time
 step jþ1). Note: a1, b1 and c1 are used to form the RHS vector rhs[] of the tridiagonal system. <em>/
 /</em> Allocate the required arrays (all of size (ns1 þ 2): a, b, c, a1, b1, c1, opt_vals, vals, rhs, z, delta,
-gamma, work, u <em>/
-
-
-
-/</em> Set up the RHS and LHS coefficients a[], b[] and c[] are the LHS coefficients for the unknown option values
+gamma, work, u */</p>
+<p>/<em> Set up the RHS and LHS coefficients a[], b[] and c[] are the LHS coefficients for the unknown option values
 (time step j) a1[], b1[] and c1[] are the values of the RHS coefficients for the known option prices (time
-step j þ 1). Note: a1, b1 and c1 are used to form the RHS vector rhs[] of the tridiagonal system. <em>/
-/</em> Set grid line asset values, set one grid spacing to align with the asset price, then won’t have to
-interpolate to get the option value <em>/
+step j þ 1). Note: a1, b1 and c1 are used to form the RHS vector rhs[] of the tridiagonal system. </em>/
+/<em> Set grid line asset values, set one grid spacing to align with the asset price, then won’t have to
+interpolate to get the option value </em>/
 z[n1] ¼ log_asset;
-for (i ¼ 1; i &lt;¼n1; þþi) /</em> This should be the fine mesh <em>/
-z[n1  i] ¼ log_asset  (double)i</em>dz1;
+for (i ¼ 1; i &lt;¼n1; þþi) /<em> This should be the fine mesh </em>/
+z[n1  i] ¼ log_asset  (double)i*dz1;
 Numeric methods and single asset American options
 207</p>
 <p>for (i¼ 1; i &lt;¼5; þþi) /<em> Include 5 extra fine mesh points here </em>/
@@ -55741,16 +55524,16 @@ key to the accuracy achieved by dko_call is a combination of:
 . The logarithmic transformation of the Black–Scholes equation.
 . The ability to place a grid line at both the upper barrier BU, and also at the lower
 boundary BL.
-. The use of a weighted m finite-difference scheme, 0  m  1, instead of the
+. The use of a weighted m finite-difference scheme, 0  m  1, instead of the
 numerically unstable explicit finite-difference method used by a trinomial lattice;
-which in our notation (see Section 10.6.2) is equivalent to m ¼ 1.
+which in our notation (see Section 10.6.2) is equivalent to m ¼ 1.
 Table 10.8
 Estimated value of a European double knock out call option. The values in column
 two were computed by the function dko_call, and those in column three are the results reported in
 Table 2 of Boyle and Tian (1998). The model parameters were: current asset price S ¼ 95:0, exercise price
-E ¼ 100:0, volatility  ¼ 0:25, maturity  ¼ 1:0, interest rate r ¼ 0:1, dividend yield q ¼ 0:0. The upper
+E ¼ 100:0, volatility  ¼ 0:25, maturity  ¼ 1:0, interest rate r ¼ 0:1, dividend yield q ¼ 0:0. The upper
 barrier level is set at 140.0 and the lower barrier is set at 90.0. The other parameters used by the function
-dko_call were: nt ¼ n, ns_below_S0 ¼n/2, ns_above_S0 ¼ n/2, and m ¼ 0:5
+dko_call were: nt ¼ n, ns_below_S0 ¼n/2, ns_above_S0 ¼ n/2, and m ¼ 0:5
 (i.e. the Crank–Nicolson method)
 Time steps (n)
 Estimated value
@@ -55805,9 +55588,9 @@ Numeric methods and single asset American options
 <p>Table 10.9
 The estimated values of European down and out call options calculated
 by the function dko_call. The fixed model parameters were: exercise price E ¼ 100:0, volatility
- ¼ 0:25, maturity  ¼ 1:0, interest rate r ¼ 0:1, dividend yield q ¼ 0:0 and the lower barrier is set at 90.0.
+ ¼ 0:25, maturity  ¼ 1:0, interest rate r ¼ 0:1, dividend yield q ¼ 0:0 and the lower barrier is set at 90.0.
 The other parameters used by the function dko_call were: nt ¼ n, ns_below_S0 ¼ n/2,
-ns_above_S0 ¼ n/2, upper_barrier ¼ 1000.0, lower_barrier ¼ 90.0, and m ¼ 0:5
+ns_above_S0 ¼ n/2, upper_barrier ¼ 1000.0, lower_barrier ¼ 90.0, and m ¼ 0:5
 (i.e. the Crank–Nicolson method)
 Stock price
 Time steps
@@ -55911,9 +55694,9 @@ Closed form
 Table 10.10
 The estimated values of European down and out call options as calculated
 by the function dko_call. The fixed parameters used were: exercise price E ¼ 100:0 volatility
- ¼ 0:25, maturity  ¼ 1:0, interest rate r ¼ 0:1, dividend yield q ¼ 0:0, and the lower barrier is set
+ ¼ 0:25, maturity  ¼ 1:0, interest rate r ¼ 0:1, dividend yield q ¼ 0:0, and the lower barrier is set
 at 90.0. The other parameters used by the function dko_call were: nt ¼ n, ns_below_S0 ¼ n=2,
-ns_above_S0 ¼ n=2, upper_barrier ¼ 1000.0, lower_barrier ¼ 90.0, and m ¼ 0.0 (i.e. the
+ns_above_S0 ¼ n=2, upper_barrier ¼ 1000.0, lower_barrier ¼ 90.0, and m ¼ 0.0 (i.e. the
 implicit method)
 Stock price
 Time steps
@@ -56027,10 +55810,10 @@ lines to locate the barrier position at each time instant.
 Table 10.11
 The estimated values of European double knock out call options computed by the function
 dko_call. In columns 2 and 3 the values given in Boyle and Tian (1998), Table 5, are shown for
-comparison. The fixed model parameters were: exercise price E ¼ 100:0, volatility  ¼ 0:25, dividend yield
-q ¼ 0:0, maturity  ¼ 1:0, interest rate r ¼ 0:1, the lower barrier is set at 90.0 and the upper barrier is set at
+comparison. The fixed model parameters were: exercise price E ¼ 100:0, volatility  ¼ 0:25, dividend yield
+q ¼ 0:0, maturity  ¼ 1:0, interest rate r ¼ 0:1, the lower barrier is set at 90.0 and the upper barrier is set at
 140.0. The other parameters used by the function dko_call were: nt ¼ n, ns_below_S0 ¼ n=2,
-ns_above_S0 ¼ n=2, and m ¼ 0:5 (i.e. the Crank–Nicolson method)
+ns_above_S0 ¼ n=2, and m ¼ 0:5 (i.e. the Crank–Nicolson method)
 Stock price
 Time steps
 92
@@ -56125,10 +55908,10 @@ Time steps
 0.0649
 Table 10.12
 The estimated Greeks for European double knock out call options computed by the function
-dko_call. The fixed model parameters: the exercise price E ¼ 100:0, volatility  ¼ 0:25, dividend yield
-q ¼ 0:0, maturity  ¼ 1:0, interest rate r ¼ 0:1, the lower barrier is set at 90.0 and the upper barrier is set at
+dko_call. The fixed model parameters: the exercise price E ¼ 100:0, volatility  ¼ 0:25, dividend yield
+q ¼ 0:0, maturity  ¼ 1:0, interest rate r ¼ 0:1, the lower barrier is set at 90.0 and the upper barrier is set at
 140.0. The other parameters used by the function dko_call were: nt ¼ 200, ns_below_S0 ¼ 100,
-ns_above_S0 ¼ 100, and m ¼ 0:5 (i.e. the Crank–Nicolson method). The results for m ¼ 0:0 (i.e. the
+ns_above_S0 ¼ 100, and m ¼ 0:5 (i.e. the Crank–Nicolson method). The results for m ¼ 0:0 (i.e. the
 implicit method) are shown in brackets; see Table 6, Boyle and Tian (1998)
 Asset price
 Gamma
@@ -56173,7 +55956,7 @@ and 12.3. The main difficulty in using simulation to value American options is t
 need to incorporate optimal early exercise policies. The standard simulation algo-
 rithms for valuing European contracts are forward in time. That is each price path,
 which contributes to the value of the option, is generated by stepping forward from
-current time, t, to option maturity, t þ , where  is the duration of the option. For
+current time, t, to option maturity, t þ , where  is the duration of the option. For
 instance if there are n equispaced time steps of size t, and only one underlying asset
 then we use the asset values Si, i ¼ 0, . . . , n, where Si corresponds to the asset value
 at the ith time instant, ti, and t0 ¼ t. Here Siþ1 is generated from the previous asset
@@ -56189,16 +55972,14 @@ we have from Equation 12.5 that:
 Siþ1
 Si
 ¼ exp
-r  2
-i =2
-
-
-t þ idXi</p>
+r  2
+i =2</p>
+<p>t þ idXi</p>
 <p>;
 i ¼ 0; . . . ; n  1
 ð10:205Þ
 where dXi 
- N(0, t) and the usual definitions are used for i and r.
+ N(0, t) and the usual definitions are used for i and r.
 For European exotic options (such as time dependent barrier options) the value of
 a particular price path will depend on the asset values Si, i ¼ 0, . . . , n. This is not true
 of European vanilla options whose value only depends on Sn, the underlying asset
@@ -56226,7 +56007,7 @@ estimator of the American option value are calculated. Since both of these biase
 estimators converge (with increasing number of simulations and lattice nodes) to the
 212
 Pricing Assets</p>
-<p>true option value we will only consider how to compute the high estimator, H. We
+<p>true option value we will only consider how to compute the high estimator, H. We
 summarize the approach as follows:
 . Set the parameters
 . Generate the lattice asset prices
@@ -56285,11 +56066,9 @@ iþ1
 Sk
 i
 ¼ exp
-r  2
-i =2
-
-
-t þ idXi</p>
+r  2
+i =2</p>
+<p>t þ idXi</p>
 <p>;
 j ¼ 1; . . . ; b;
 k ¼ 1; . . . ; bi
@@ -56351,7 +56130,7 @@ gk
 i1 ¼ maxðE  Sk
 i1; 0Þ
 The option value for the pth stochastic lattice is therefore:
-p
+p
 H ¼ f 1
 0 ¼ expðrtÞ
 b

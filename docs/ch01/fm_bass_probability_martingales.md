@@ -731,7 +731,7 @@ We prove Proposition 5.1. If g is convex, then the graph of g lies above all the
 tangent lines. Even if g does not have a derivative at x0, there is a line passing through x0
 which lies beneath the graph of g. So for each x0 there exists c(x0) such that
 g(x) ≥g(x0) + c(x0)(x −x0).
-Apply this with x = X(ω) and x0 = E [X | G](ω). We then have
+Apply this with x = X(ω) and x0 = E \[X | G\](ω). We then have
 g(X) ≥g(E [X | G]) + c(E [X | G])(X −E [X | G]).
 If g is differentiable, we let c(x0) = g′(x0). In the case where g is not differentiable, then we
 choose c to be the left hand upper derivate, for example. (For those who are not familiar with
@@ -774,7 +774,7 @@ X
 k=1
 M 2
 k
-
+
 < ∞.
 We have
 E [MN∧n; N ≤n] =

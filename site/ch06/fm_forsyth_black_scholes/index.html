@@ -12717,17 +12717,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#more-on-itos-lemma" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        More on Ito's Lemma
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -48670,17 +48659,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#more-on-itos-lemma" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        More on Ito's Lemma
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -49175,15 +49153,13 @@ need only one result, which is Ito’s Lemma (see Derivatives: the theory and pr
 by P. Wilmott). Suppose we have some function G = G(S, t), where S follows the stochastic process equation
 (2.34), then, in small time increment dt, G →G + dG, where
 dG
-=
-
-µS ∂G
+=</p>
+<p>µS ∂G
 ∂S + σ2S2
 ∂2G
 ∂S2 + ∂G
-∂t
-
-dt + σS ∂G
+∂t</p>
+<p>dt + σS ∂G
 ∂S dZ
 (2.38)
 An informal derivation of this result is given in the following section.
@@ -49302,12 +49278,10 @@ a(X, t) dt + b(X, t) dZ ,
 (2.58)
 then if G = G(X), then
 dG
-=
-
-aGX + Gt + b2
-2 GXX
-
-dt + GXb dZ .
+=</p>
+<p>aGX + Gt + b2
+2 GXX</p>
+<p>dt + GXb dZ .
 (2.59)
 If E[X] = ¯X, then (b(X, t) and dZ are independent)
 E[dX]
@@ -49324,10 +49298,9 @@ dt
 =
 E[a] = ¯a
 ¯X = E
-Z t
-a dt
-
-.
+Z t
+a dt</p>
+<p>.
 (2.61)
 Let ¯G = E[(X −¯X)2] = var(X), then
 d ¯G
@@ -49340,14 +49313,14 @@ E[b2 dt] + E[2(X −¯X)(a −¯a) dt] ,
 (2.62)
 which means that
 ¯G = var(X) = E
-Z t
-b2 dt
-
-+ E
-Z t
-2(a −¯a)(X −¯X) dt
-
-.
+Z t
+b2 dt</p>
+<ul>
+<li>E
+Z t
+2(a −¯a)(X −¯X) dt</li>
+</ul>
+<p>.
 (2.63)
 In a particular case, we can sometimes get more useful expressions. If
 dS
@@ -49454,14 +49427,11 @@ stochastic calculus is used. Other forms of stochastic calculus are used in Phys
 flow).
 Substituting equations (2.34) and (2.38) into equation (2.74) gives
 dP = σS
- VS −(αh)
-
-dZ +
-
-µSVS + σ2S2
-VSS + Vt −µ(αh)S
-
-dt
+VS −(αh)</p>
+<p>dZ +</p>
+<p>µSVS + σ2S2
+VSS + Vt −µ(αh)S</p>
+<p>dt
 (2.75)
 We can make this portfolio riskless over the time interval dt, by choosing (αh) = VS in equation (2.75). This
 eliminates the dZ term in equation (2.75). (This is the analogue of our choice of the amount of stock in the
@@ -49469,23 +49439,19 @@ riskless portfolio for the two state tree model.) So, letting
 (αh) = VS
 (2.76)
 then substituting equation (2.76) into equation (2.75) gives
-dP =
-
-Vt + σ2S2
-VSS
-
-dt
+dP =</p>
+<p>Vt + σ2S2
+VSS</p>
+<p>dt
 (2.77)
 Since P is now risk-free in the interval t →t + dt, then no-arbitrage says that
 dP = rPdt
 (2.78)
 Therefore, equations (2.77) and (2.78) give
-rPdt =
-
-Vt + σ2S2
-VSS
-
-dt
+rPdt =</p>
+<p>Vt + σ2S2
+VSS</p>
+<p>dt
 (2.79)
 Since
 P = V −(αh)S = V −VSS
@@ -49544,9 +49510,8 @@ any time. Consequently, an investor acting optimally, will always exercise the o
 the payoffor exercise value. So, the value of an American option is given by the solution to equation (2.81)
 with the additional constraint
 V (S, t)
-≥
-
-max(S −K, 0)
+≥</p>
+<p>max(S −K, 0)
 for a call
 max(K −S, 0)
 for a put
@@ -49560,9 +49525,8 @@ Vτ
 σ2S2
 VSS + rSVS −rV
 V (S, τ = 0)
-=
-
-max(S −K, 0)
+=</p>
+<p>max(S −K, 0)
 for a call
 max(K −S, 0)
 for a put
@@ -49570,18 +49534,16 @@ V (0, τ)
 →
 Vτ = −rV
 V (S = ∞, τ)
-→
-
-≃S
+→</p>
+<p>≃S
 for a call
 ≃0
 for a put
 (2.83)
 If the option is American, then we also have the additional constraints
 V (S, τ)
-≥
-
-max(S −K, 0)
+≥</p>
+<p>max(S −K, 0)
 for a call
 max(K −S, 0)
 for a put
@@ -49631,12 +49593,10 @@ S = µdt + σdZ .
 (3.5)
 From Ito’s Lemma (2.38) we have that
 dV
-=
-
-Vt + σ2S2
-VSS + µSVS
-
-dt + σSVS dZ .
+=</p>
+<p>Vt + σ2S2
+VSS + µSVS</p>
+<p>dt + σSVS dZ .
 (3.6)
 Noting that
 E(dZ)
@@ -49644,12 +49604,10 @@ E(dZ)
 (3.7)
 then
 E(dV )
-=
-
-Vt + σ2S2
-VSS + µSVS
-
-dt .
+=</p>
+<p>Vt + σ2S2
+VSS + µSVS</p>
+<p>dt .
 (3.8)
 Combining equations (3.4-3.8) gives
 Vt + σ2S2
@@ -49773,14 +49731,12 @@ of discrete hedging, for example, a Monte Carlo approach is very easy to impleme
 The error in the Monte Carlo method is then
 Error
 =
-O
-
-max(∆t,
+O</p>
+<p>max(∆t,
 √
 M
-)
-
-∆t = timestep
+)</p>
+<p>∆t = timestep
 M = number of Monte Carlo paths
 (4.6)
 Now, it doesn’t make sense to drive the Monte Carlo error down to zero if there is O(∆t) timestepping error.
@@ -49790,28 +49746,21 @@ the same order, we should choose M = O(
 Complexity
 =
 O
- M
-∆t
-
-=
-O
-
-(∆t)3
-
-∆t
-=
-O
-
-(Complexity)−1/3
+ M
+∆t</p>
+<p>=
+O</p>
+<p>(∆t)3</p>
+<h1 id="t">∆t<a class="headerlink" href="#t" title="Permanent link">&para;</a></h1>
+<p>O</p>
+<p>(Complexity)−1/3
 (4.7)
 and hence
 Error
 =
-O
-
-( Complexity)1/3
-
-.
+O</p>
+<p>( Complexity)1/3</p>
+<p>.
 (4.8)
 In practice, the convergence in terms of timestep error is often not done. People just pick a timestep,
 i.e. one day, and increase the number of Monte Carlo samples until they achieve convergence in terms of
@@ -50082,18 +50031,15 @@ or solving for (x2, x2)
 x1
 =
 exp
-−1
+−1
 2 (y2
 1 + y2
-2)
-
-x2
-=
-2π tan−1
-y2
-y1
-
-.
+2)</p>
+<h1 id="x2">x2<a class="headerlink" href="#x2" title="Permanent link">&para;</a></h1>
+<p>2π tan−1
+y2
+y1</p>
+<p>.
 (4.34)
 After some tedious algebra, we can see that (using equation (4.34))</p>
 <p>∂(x1, x2)
@@ -50449,14 +50395,14 @@ X
 i
 E[c2
 i ]
- E</p>
+E</p>
 <p>∆Z4
 i</p>
 <p>−2∆tE</p>
 <p>∆Z2
 i</p>
 <ul>
-<li>(∆t)2
+<li>(∆t)2
 .
 (6.19)
 Recall that (∆Z)2 is N(0, ∆t) ( normally distributed with mean zero and variance ∆t) so that
@@ -50488,8 +50434,8 @@ i −∆t)2
 =
 X
 i
-E<a href="∆t">c2
-i </a>2
+E[c2
+i ](∆t)2
 =
 2∆t
  X

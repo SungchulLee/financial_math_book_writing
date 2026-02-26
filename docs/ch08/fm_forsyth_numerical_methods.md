@@ -721,9 +721,9 @@ Since we are dealing with a probabilistic situation here, it is not obvious how 
 a number of points along a Brownian path, we could imagine refining this path (using a Brownian Bridge),
 and then seeing if the solution converged to exact solution. For the model SDE (4.72), we could ask that
 E
-
+
 |S(T) −Sh(T)|
-
+
 ≤
 Const. hγ
 (4.90)
@@ -731,9 +731,9 @@ where the expectation in equation (4.90) is over many Brownian paths, and h is t
 that S(T) is the exact solution along a particular Brownian path; the same path used to compute Sh(T).
 Criterion (4.90) is called strong convergence. A less strict criterion is
 |E [S(T)] −E
-
+
 Sh(T)
-
+
 |
 ≤
 Const. hγ
@@ -852,9 +852,9 @@ N
 N
 X
 i=1
-
+
 |S(T)i −Sh(T)i|
-
+
 (4.92)
 Weak Error
 =
@@ -868,9 +868,9 @@ N
 N
 X
 i=1
-
+
 Sh(T)i
-
+
 | ,
 (4.93)
 where Sh(T)i is the solution obtained by forward Euler timestepping along the i′th Brownian path, and
@@ -1225,7 +1225,7 @@ where, from Ito’s Lemma
 [dP]Brownian
 =
 [Vt + σ2S2
-VSS]dt + [VS −αS](µS dt + σS dZ)
+VSS]dt + \[VS −αS\](µS dt + σS dZ)
 (9.15)
 and, noting that the jump is of finite size,
 [dP]jump

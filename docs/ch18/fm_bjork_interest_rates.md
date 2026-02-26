@@ -196,7 +196,7 @@ The HJB equation now becomes
 u€Rk 
 For each fixed choice of (t, x) we now have to solve the static unconstrained 
 optimization problem to minimize 
-utRu + [V,V](t,x) [Az + Bu] . 
+utRu + \[V,V\](t,x) [Az + Bu] . 
 
 THE LINEAR REGULATOR 
 285 

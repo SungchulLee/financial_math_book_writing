@@ -9,19 +9,19 @@
 CHAPTER 5. CHOICE UNDER UNCERTAINTY
 103
 which implies:
-E[u( ˜W)]
+E\[u( ˜W)]
 =
-u(E[ ˜W]) + 1
-2u′′(E[ ˜W])σ2( ˜W) + E[R3]
+u(E\[ ˜W]) + 1
+2u′′(E\[ ˜W])σ2( ˜W) + E\[R3]
 (5.8.3)
 where
-E[R3]
+E\[R3]
 =
 ∞
 X
 n=3
 1
-n!u(n)(E[ ˜W])mn( ˜W)
+n!u(n)(E\[ ˜W])mn( ˜W)
 (5.8.4)
 It follows that the sign of the nth derivative of the utility function determines
 the direction of preference for the nth central moment of the probability
@@ -30,21 +30,21 @@ plies a preference for greater skewness. It can be shown fairly easily that
 an increasing utility function which exhibits non-increasing absolute risk
 aversion has a non-negative third derivative.
 2. Quadratic utility:
-E[u( ˜W)]
+E\[u( ˜W)]
 =
-E[ ˜W] −b
-2E[ ˜W 2]
+E\[ ˜W] −b
+2E\[ ˜W 2]
 (5.8.5)
 =
-E[ ˜W] −b
+E\[ ˜W] −b
 2
-
-(E[ ˜W])2 + σ2( ˜W)
-
+
+(E\[ ˜W])2 + σ2( ˜W)
+
 (5.8.6)
 =
-u(E[ ˜W]) −b
-2Var[ ˜W]
+u(E\[ ˜W]) −b
+2Var\[ ˜W]
 (5.8.7)
 3. Normally distributed asset returns.
 Note that the expected utility axioms are neither necessary nor sufficient to guar-
@@ -136,26 +136,26 @@ Monthly
 £100
 →
 £100 ×
-
+
 1 + .10
 12
-12 = £110.471. ..
+12 = £110.471. ..
 Weekly
 £100
 →
 £100 ×
-
+
 1 + .10
 52
-52 = £110.506. ..
+52 = £110.506. ..
 Daily
 £100
 →
 £100 ×
-
+
 1 + .10
 365
-365 = £110.515. . .
+365 = £110.515. . .
 Continuously
 £100
 →
@@ -165,10 +165,10 @@ of compounding.
 fact that
 lim
 n→∞
-
+
 1 + r
 n
-n
+n
 = er
 where e ≈2.7182...
 This is sometimes used as the definition of e but others prefer to start with
@@ -184,10 +184,10 @@ where n! ≡n (n −1) (n −2) . . . 3.2.1 and 0! ≡1 by convention.
 There are five concepts which we need to be familiar with:
 1. Discrete compounding:
 Pt =
-
+
 1 + r
 n
-nt
+nt
 P0.
 We can solve this equation for any of five quantities given the other four:
 (a) present value
@@ -283,7 +283,7 @@ return on jth risky asset
 ˜r ∈ℜN
 =
 (˜r1, . . . , ˜rN)
-e = E[˜r] ∈ℜN
+e = E\[˜r] ∈ℜN
 =
 vector of expected returns
 V ∈ℜN×N
@@ -303,7 +303,7 @@ w ∈ℜN
 ˜rw = w⊤˜r
 =
 return on the portfolio w
-µ ≡E[˜rw] ≡W1
+µ ≡E\[˜rw] ≡W1
 W0 ∈ℜ
 =
 the investor’s desired expected return
@@ -381,7 +381,7 @@ Unless otherwise stated, we assume that individuals:
 i.e. preferences have the expected utility representation:
 v(˜z)
 =
-E[u(˜z)]
+E\[u(˜z)]
 =
 Z
 u(z)dF˜z(z)
@@ -429,19 +429,19 @@ CHAPTER 6. PORTFOLIO THEORY
 111
 i.e.
 max
-{wj} f (w1, . . . , wN) ≡E[u(W0rf +
+{wj} f (w1, . . . , wN) ≡E\[u(W0rf +
 X
 j
 wj(˜rj −rf))]
 The first order conditions are:
-E[u′( ˜W)(˜rj −rf)] = 0
+E\[u′( ˜W)(˜rj −rf)] = 0
 ∀j.
 (6.3.3)
 The Hessian matrix of the objective function is:
 A ≡E
 h
-u′′  ˜W
-
+u′′  ˜W
+
 (˜r −rf1) (˜r −rf1)⊤i
 .
 (6.3.4)
@@ -453,7 +453,7 @@ conditions have a unique solution. The trivial case in which the random returns
 are not really random at all can be ignored.
 The rest of this section should be omitted until I figure out what is going on.
 Another way of writing (6.3.3) is:
-E[u′( ˜W)˜rj] = E[u′( ˜W)]rf
+E\[u′( ˜W)˜rj] = E\[u′( ˜W)]rf
 ∀j,
 (6.3.5)
 or
@@ -461,16 +461,16 @@ Cov
 h
 u′( ˜W), ˜rj
 i
-+ E[u′( ˜W)]E[˜rj] = E[u′( ˜W)]rf
++ E\[u′( ˜W)]E\[˜rj] = E\[u′( ˜W)]rf
 ∀j,
 (6.3.6)
 or
-E[˜rj −rf] =
+E\[˜rj −rf] =
 Cov
 h
 u′( ˜W), ˜rj
 i
-E[u′( ˜W)]
+E\[u′( ˜W)]
 ∀j,
 (6.3.7)
 Suppose pj is the price of the random payoff ˜xj. Then ˜rj = ˜xj
@@ -478,7 +478,7 @@ pj and
 pj = E
 "
 u′( ˜W)
-E[u′( ˜W)]rf
+E\[u′( ˜W)]rf
 ˜xj
 #
 ∀j.
@@ -487,7 +487,7 @@ In other words, payoffs are valued by taking their expected present value, using
 the stochastic discount factor
 u′( ˜
 W)
-E[u′( ˜
+E\[u′( ˜
 W)]rf , which ends up being the same for all
 investors. Practical corporate finance and theoretical asset pricing models to a
 large extent are (or should be) concerned with analysing this discount factor.
@@ -508,13 +508,13 @@ The objective function is increasing at a = 0
 f ′ (a) > 0
 (6.3.9)
 ⇐⇒
-E[u′ (W0rf) (˜r −rf)] > 0
+E\[u′ (W0rf) (˜r −rf)] > 0
 (6.3.10)
 ⇐⇒
-u′ (W0rf) E[(˜r −rf)] > 0
+u′ (W0rf) E\[(˜r −rf)] > 0
 (6.3.11)
 ⇐⇒
-E[˜r] > E[rf] = rf
+E\[˜r] > E\[rf] = rf
 This is the property of local risk neutrality — a risk averse investor will always
 prefer a little of a risky asset paying a higher expected return than rf to none of
 the risky asset.
@@ -558,22 +558,22 @@ CHAPTER 6. PORTFOLIO THEORY
 Hence, total revenue is constant or maximised or minimised where elasticity equals
 −1; increasing when elasticity is less than −1 (demand is elastic); and decreasing
 when elasticity is between 0 and −1 (demand is inelastic).
-Now consider other properties of asset demands (assuming that E [˜r] > rf):
+Now consider other properties of asset demands (assuming that E \[˜r] > rf):
 • DARA ⇒risky asset normal
-
+
 da
 dW0 > 0
-
+
 • CARA ⇒
-
+
 da
 dW0 = 0
-
+
 • IARA ⇒risky asset inferior
-
+
 da
 dW0 < 0
-
+
 Define the wealth elasticity of demand for the risky asset to be
 η = W0
 a
@@ -583,10 +583,10 @@ dW0
 (6.3.14)
 Then we have
 d
-
+
 a
 W0
-
+
 dW0
 =
 W0
@@ -615,20 +615,20 @@ tee (by local risk-neutrality) that a is positive.
 Theorem 6.3.1 DARA ⇒RISKY ASSET NORMAL
 Proof By implicit differentiation of the now familiar first order condition (6.3.3),
 which can be written:
-E[u′(W0rf + a(˜r −rf))(˜r −rf)] = 0,
+E\[u′(W0rf + a(˜r −rf))(˜r −rf)] = 0,
 (6.3.16)
 we have
 da
 dW0
-= E[u′′( ˜W)(˜r −rf)]rf
-−E[u′′( ˜W)(˜r −rf)2].
+= E\[u′′( ˜W)(˜r −rf)]rf
+−E\[u′′( ˜W)(˜r −rf)2].
 (6.3.17)
 Revised: December 2, 1998
 
 114
 6.3. THE SINGLE-PERIOD PORTFOLIO CHOICE PROBLEM
 By concavity, the denominator is positive. Therefore:
-sign (da/dW0) = sign {E[u′′( ˜W)(˜r −rf)]}
+sign (da/dW0) = sign {E\[u′′( ˜W)(˜r −rf)]}
 (6.3.18)
 We will show that both are positive.
 For decreasing absolute risk aversion:3
@@ -646,7 +646,7 @@ u′′( ˜W)(˜r −rf) ≥−RA(W0rf)u′( ˜W)(˜r −rf)
 (6.3.20)
 (the same result) in the event that ˜r ≤rf
 Integrating over both events implies:
-E[u′′( ˜W)(˜r −rf)] > −RA(W0rf)E[u′( ˜W)(˜r −rf)],
+E\[u′′( ˜W)(˜r −rf)] > −RA(W0rf)E\[u′( ˜W)(˜r −rf)],
 (6.3.21)
 provided that ˜r > rf with positive probability.
 The RHS of inequality (6.3.21) is 0 at the optimum, hence the LHS is positive as
@@ -676,15 +676,15 @@ i.e. ∀portfolios p, wealths W0, ∃λ s.t.
 E
 h
 u
-
+
 W0rf + λW0p∗⊤(˜r −rf1)
-i
+i
 ≥E
 h
 u
-
+
 W0rf + p⊤(˜r −rf1)
-i
+i
 (6.3.22)
 ⇐⇒
 Risk-tolerance (1/RA(z)) is linear (including constant)
@@ -710,21 +710,21 @@ The optimal dollar investments wj are the unique solution to the first order con
 tions:
 0
 =
-E[u′( ˜W)δ ˜W
+E\[u′( ˜W)δ ˜W
 δwi
 ]
 (6.3.24)
 =
-E[(A + B ˜W)C(˜ri −rf)]
+E\[(A + B ˜W)C(˜ri −rf)]
 (6.3.25)
 =
-E[(A + BW0rf +
+E\[(A + BW0rf +
 X
 j
 Bwj(˜rj −rf))C(˜ri −rf)],
 (6.3.26)
 or equivalently to the system of equations
-E[(1 +
+E\[(1 +
 X
 j
 Bwj
@@ -736,7 +736,7 @@ Revised: December 2, 1998
 116
 6.4. MATHEMATICS OF THE PORTFOLIO FRONTIER
 or
-E[(1 +
+E\[(1 +
 X
 j
 xj(˜rj −rf))C(˜ri −rf)] = 0
@@ -842,7 +842,7 @@ tion 3.5, except that it has explicitly one equality constraint and one inequali
 constraint.
 To avoid degeneracies, we require:
 1. that not every portfolio has the same expected return, i.e.
-e ̸= E[˜r1]1,
+e ̸= E\[˜r1]1,
 (6.4.5)
 and in particular that N > 1.
 2. that the variance-covariance matrix, V, is (strictly) positive definite. We
@@ -865,8 +865,8 @@ The parallels are a little fuzzy in the case of the budget constraint since it i
 an equality constraint.
 (3.5.39) says that the optimal w is a linear combination of the two columns of the
 N × 2 matrix
-V−1G⊤
-GV−1G⊤−1 ,
+V−1G⊤
+GV−1G⊤−1 ,
 with columns weighted by initial wealth W0 and expected final wealth, W1.
 We will call these columns g and h and write the solution as
 w = W0g + W1h = W0 (g + µh) .
@@ -894,12 +894,12 @@ Alternatively, (3.5.35) says that the optimal w is a linear combination of the t
 columns of the N × 2 matrix
 1
 2V−1G⊤=
-
+
 1
 2V−11
 1
 2V−1e
-
+
 ,
 with columns weighted by the Lagrange multipliers corresponding to the two con-
 straints. We will call the Lagrange multipliers 2γ/C and 2λ/A respectively, where
@@ -944,14 +944,14 @@ C(V−11) is the global minimum variance unit cost
 portfolio, which we will denote wMVP.
 In fact, we can combine (6.4.7) and (6.4.13) and write the solution as:
 w = W0
-
+
 wMVP +
-
+
 µ −A
 C
-
+
 h
-
+
 .
 (6.4.14)
 The details are left as an exercise.4
@@ -971,20 +971,20 @@ The portfolio weight vectors g and h are
 g
 =
 1
-D[B(V−11) −A(V−1e)]
+D\[B(V−11) −A(V−1e)]
 (6.4.15)
 h
 =
 1
-D[C(V−1e) −A(V−11)]
+D\[C(V−1e) −A(V−11)]
 (6.4.16)
 We have
-Var[˜rg]
+Var\[˜rg]
 =
 g⊤Vg = B
 D
 (6.4.17)
-Var[˜rh]
+Var\[˜rh]
 =
 h⊤Vh = C
 D
@@ -1051,7 +1051,7 @@ Revised: December 2, 1998
 6.4. MATHEMATICS OF THE PORTFOLIO FRONTIER
 For any frontier portfolio p ̸= wMVP, there is a unique unit cost frontier portfolio
 zp which is orthogonal to p.
-Another important exercise is to figure out the relationship between E [˜rp] and
+Another important exercise is to figure out the relationship between E \[˜rp] and
 E
 h
 ˜rzp
@@ -1063,12 +1063,12 @@ Any (frontier or non-frontier) portfolio q with non-zero cost W0 can be written 
 the form fq + uq where
 fq
 ≡
-W0 (g + E[˜rq]h)
+W0 (g + E\[˜rq]h)
 (6.4.19)
 =
 W0 (βqpp + (1 −βqp)zp) (say)
 (6.4.20)
-is the frontier portfolio with expected return E[˜rq] and cost W0 and uq is a hedge
+is the frontier portfolio with expected return E\[˜rq] and cost W0 and uq is a hedge
 portfolio with zero expected return. Geometrically, this decomposition is equiva-
 lent to the orthogonal projection of q onto the frontier.
 Theorem 6.4.1 shown that any portfolio sharing these properties of uq is uncorre-
@@ -1088,15 +1088,15 @@ We can extend this decomposition to cover
 Note again the parallel between orthogonal portfolio vectors and uncorrelated
 portfolio returns/payoffs.
 We will now derive the relation:
-E[˜rq] −E[˜rzp] = βqp(E[˜rp] −E[˜rzp])
+E\[˜rq] −E\[˜rzp] = βqp(E\[˜rp] −E\[˜rzp])
 (6.4.22)
 5Aside: For the frontier portfolio fq to second degree stochastically dominate the arbitrary
 portfolio q, we will need zero conditional expected return on uq, and will have to show that
 Cov
-
+
 ˜ruq, ˜rfq
-
-= 0 =⇒E[˜ruq|˜rfq] = 0
+
+= 0 =⇒E\[˜ruq|˜rfq] = 0
 The normal distribution is the only case where this is true.
 Revised: December 2, 1998
 
@@ -1115,26 +1115,26 @@ h
 i
 = 0, taking covariances with ˜rp in (6.4.21)
 gives:
-Cov [˜rq, ˜rp] = Cov
+Cov \[˜rq, ˜rp] = Cov
 h
 ˜rfq, ˜rp
 i
-= βqpVar[˜rp]
+= βqpVar\[˜rp]
 (6.4.23)
 or
-βqp = Cov [˜rq, ˜rp]
-Var[˜rp]
+βqp = Cov \[˜rq, ˜rp]
+Var\[˜rp]
 (6.4.24)
 Thus β in (6.4.21) has its usual definition from probability theory, given by (5.2.2).6
 Reversing the roles of p and zp, it can be seen that
 βqzp = 1 −βqp
 (6.4.25)
 Taking expected returns in (6.4.21) yields again:
-E[˜rq] = βqpE[˜rp] + (1 −βqp)E[˜rzp],
+E\[˜rq] = βqpE\[˜rp] + (1 −βqp)E\[˜rzp],
 (6.4.26)
 which can be rearranged to obtain (6.4.22).
 The Global Minimum Variance Portfolio
-Var[˜rg+µh] = g⊤Vg + 2µ(g⊤Vh) + µ2(h⊤Vh)
+Var\[˜rg+µh] = g⊤Vg + 2µ(g⊤Vh) + µ2(h⊤Vh)
 (6.4.27)
 which has its minimum at
 µ = −g⊤Vh
@@ -1142,7 +1142,7 @@ h⊤Vh
 (6.4.28)
 The latter expression reduces to A/C and the minimum value of the variance is
 1/C. The global minimum variance portfolio is denoted MVP.
-Cov [˜rh, ˜rMVP]
+Cov \[˜rh, ˜rMVP]
 =
 h⊤V
  
@@ -1169,13 +1169,13 @@ itself and p, i.e. a = 0 solves:
 min
 a
 1
-2Var[˜rap+(1−a)MVP]
+2Var\[˜rap+(1−a)MVP]
 (6.4.31)
 which has necessary and sufficient first order condition:
-aVar[˜rp] + (1 −2a)Cov [˜rp, ˜rMVP] −(1 −a)Var[˜rMVP] = 0
+aVar\[˜rp] + (1 −2a)Cov \[˜rp, ˜rMVP] −(1 −a)Var\[˜rMVP] = 0
 (6.4.32)
 Hence, setting a = 0:
-Cov [˜rp, ˜rMVP] −Var[˜rMVP] = 0
+Cov \[˜rp, ˜rMVP] −Var\[˜rMVP] = 0
 (6.4.33)
 and the covariance of any portfolio with MVP is 1/C.
 6.4.2
@@ -1186,8 +1186,8 @@ We now move on to consider the mean-variance relationship along the portfolio
 frontier.
 The mean, µ, and variance, σ2, of the rate of return associated with each point on
 the frontier are related by the quadratic equation:
-(σ2 −Var[w⊤
-MVP˜r]) = φ(µ −E[w⊤
+(σ2 −Var\[w⊤
+MVP˜r]) = φ(µ −E\[w⊤
 MVP˜r])2,
 (6.4.34)
 where the shape parameter φ = C/D represents the variance of the (gross) return
@@ -1201,57 +1201,57 @@ can be derived heuristically using the following stylized diagram illustrating t
 portfolio decomposition.
 Figure 3A goes here.
 Applying Pythagoras’ theorem to the triangle with vertices at 0, p and MVP yields:
-σ2 = Var[˜rp] = Var[˜rMVP] +
-
+σ2 = Var\[˜rp] = Var\[˜rMVP] +
+
 µ −A
 C
-2
-Var[˜rh]
+2
+Var\[˜rh]
 (6.4.35)
 Revised: December 2, 1998
 
 CHAPTER 6. PORTFOLIO THEORY
 125
 Recall from the coordinate geometry of conic sections that
-Var[˜rp] = Var[˜rMVP] + (µ −E[˜rMVP])2 Var[˜rh]
+Var\[˜rp] = Var\[˜rMVP] + (µ −E\[˜rMVP])2 Var\[˜rh]
 (6.4.36)
 or
 V (µ) = 1
 C + C
 D
-
+
 µ −A
 C
-2
+2
 (6.4.37)
 is a quadratic equation in µ.
 i.e. the equation of the parabola with vertex at
-Var[˜rp]
+Var\[˜rp]
 =
-Var[˜rMVP] = 1
+Var\[˜rMVP] = 1
 C
 (6.4.38)
 µ
 =
-E[˜rMVP] = A
+E\[˜rMVP] = A
 C
 (6.4.39)
 Thus in mean-variance space, the frontier is a parabola.
 Figure 3.11.2 goes here: indicate position of g on figure.
 Similarly, in mean-standard deviation space, the frontier is a hyperbola. To see
 this, recall that:
-σ2 = Var[˜rMVP] +
-
+σ2 = Var\[˜rMVP] +
+
 µ −A
 C
-2
-Var[˜rh]
+2
+Var\[˜rh]
 (6.4.40)
 is the equation of the hyperbola with vertex at
 σ
 =
 q
-Var[˜rMVP] =
+Var\[˜rMVP] =
 s
 1
 C
@@ -1265,15 +1265,15 @@ centre at σ = 0, µ = A/C and asymptotes as indicated.
 Figure 3.11.1 goes here: indicate position of g on figure.
 The other half of the hyperbola (σ < 0) has no economic meaning.
 Recall two other types of conic sections:
-Var[˜rh] < 0 (impossible) gives a circle with center (1/C, A/C).
-Var[˜rMVP] = 0 (the presence of a riskless asset) allows the square root to be taken
+Var\[˜rh] < 0 (impossible) gives a circle with center (1/C, A/C).
+Var\[˜rMVP] = 0 (the presence of a riskless asset) allows the square root to be taken
 on both sides:
 σ = ±
-
+
 µ −A
 C
- q
-Var[˜rh]
+ q
+Var\[˜rh]
 (6.4.43)
 i.e. the conic section becomes the pair of lines which are its asymptotes otherwise.
 Revised: December 2, 1998
@@ -1285,7 +1285,7 @@ MVPe are termed efficient,
 since they maximise expected return given variance; other frontier portfolios min-
 imise expected return given variance and are inefficient.
 A frontier portfolio is said to be an efficient portfolio iff
-its expected return exceeds the minimum variance expected return A/C = E[˜rMVP].
+its expected return exceeds the minimum variance expected return A/C = E\[˜rMVP].
 The set of efficient portfolios in ℜN (or efficient frontier) is the half-line emanat-
 ing from MVP in the direction of h, and hence is also a convex set.
 Convex combinations (but not all linear combinations with weights summing to
@@ -1296,22 +1296,22 @@ frontier portfolio:
 Figure 3B goes here.
 Algebraically, the expected return µ0 on the zero-covariance frontier portfolio of
 a frontier portfolio with expected return µ solves:
-Cov [˜rMVP + (µ −E[˜rMVP])˜rh, ˜rMVP + (µ0 −E[˜rMVP])˜rh] = 0
+Cov \[˜rMVP + (µ −E\[˜rMVP])˜rh, ˜rMVP + (µ0 −E\[˜rMVP])˜rh] = 0
 (6.4.44)
 or, since ˜rh and ˜rMVP are uncorrelated:
-Var[˜rMVP] + (µ −E[˜rMVP])(µ0 −E[˜rMVP])Var[˜rh] = 0
+Var\[˜rMVP] + (µ −E\[˜rMVP])(µ0 −E\[˜rMVP])Var\[˜rh] = 0
 (6.4.45)
 To make this true, we must have
-(µ −E[˜rMVP])(µ0 −E[˜rMVP]) < 0
+(µ −E\[˜rMVP])(µ0 −E\[˜rMVP]) < 0
 (6.4.46)
-or µ and µ0 on opposite sides of E[˜rMVP] as shown.
+or µ and µ0 on opposite sides of E\[˜rMVP] as shown.
 There is a neat trick which allows zero-covariance portfolios to be plotted in mean-
 standard deviation space.
 Implicit differentiation of the µ−σ relationship (6.4.35) along the frontier yields:
 dµ
 dσ =
 σ
-(µ −E[˜rMVP])Var[˜rh]
+(µ −E\[˜rMVP])Var\[˜rh]
 (6.4.47)
 so the tangent at (σ, µ) intercepts the µ axis at
 µ −σdµ
@@ -1319,17 +1319,17 @@ dσ
 =
 µ −
 σ2
-(µ −E[˜rMVP])Var[˜rh]
+(µ −E\[˜rMVP])Var\[˜rh]
 (6.4.48)
 =
 µ −
-Var[˜rMVP]
-(µ −E[˜rMVP])Var[˜rh] −(µ −E[˜rMVP])
+Var\[˜rMVP]
+(µ −E\[˜rMVP])Var\[˜rh] −(µ −E\[˜rMVP])
 (6.4.49)
 =
-E[˜rMVP] −
-Var[˜rMVP]
-(µ −E[˜rMVP])Var[˜rh]
+E\[˜rMVP] −
+Var\[˜rMVP]
+(µ −E\[˜rMVP])Var\[˜rh]
 (6.4.50)
 Revised: December 2, 1998
 
@@ -1342,10 +1342,10 @@ In mean-standard deviation space the picture is like this:
 Figure 3.15.1 goes here.
 To find zp in mean-variance space, note that the line joining (σ2, µ) to the MVP
 intercepts the µ axis at:
-µ −σ2 µ −E[˜rMVP]
-σ2 −Var[˜rMVP] = µ −σ2
-µ −E[˜rMVP]
-(µ −E[˜rMVP)2Var[˜rh]
+µ −σ2 µ −E\[˜rMVP]
+σ2 −Var\[˜rMVP] = µ −σ2
+µ −E\[˜rMVP]
+(µ −E\[˜rMVP)2Var\[˜rh]
 (6.4.51)
 After cancellation, this is exactly the first expression (6.4.48) for the zero-covariance
 return we had on the previous page.
@@ -1357,7 +1357,8 @@ gether at this stage.
 1. The variance minimisation solution from first principles.
 It can be seen that w is the solution to:
 min
-{w,,} L = 1
+{w,,
+} L = 1
 2w⊤Vw + λ(µ −w⊤e) + γ(W0 −w⊤1)
 (6.4.52)
 which has necessary and sufficient first order conditions:
@@ -1407,45 +1408,45 @@ If we only have frontier portfolio p and interior portfolio q, we get a frontier
 The frontiers must have the same slope at p:
 Figure 3C goes here.
 We already saw that the outer frontier has slope
-E[˜rp−˜rzp]
+E\[˜rp−˜rzp]
 √
-Var[˜rp] .
+Var\[˜rp] .
 At the point on the inner frontier with wq invested in q and (1 −wq) in p,
 µ
 =
-E[˜rp] + wq(E[˜rq −˜rp])
+E\[˜rp] + wq(E\[˜rq −˜rp])
 (6.4.60)
 σ2
 =
 w2
-qVar[˜rq]
-+2wq(1 −wq)Cov [˜rp, ˜rq] + (1 −wq)2Var[˜rp] (6.4.61)
+qVar\[˜rq]
++2wq(1 −wq)Cov \[˜rp, ˜rq] + (1 −wq)2Var\[˜rp] (6.4.61)
 Differentiating these w.r.t. wq:
 dµ
 dwq
 =
-E[˜rq −˜rp]
+E\[˜rq −˜rp]
 (6.4.62)
 2σ dσ
 dwq
 =
-2wqVar[˜rq]
-+2(1 −2wq)Cov [˜rp, ˜rq] −2(1 −wq)Var[˜rp] (6.4.63)
+2wqVar\[˜rq]
++2(1 −2wq)Cov \[˜rp, ˜rq] −2(1 −wq)Var\[˜rp] (6.4.63)
 Taking the ratio and setting wq = 0 gives the slope of the inner frontier at
 p:
 dµ
 dσ =
-E[˜rq −˜rp]
-2Cov[˜rp,˜rq]−2Var[˜rp]
+E\[˜rq −˜rp]
+2Cov\[˜rp,˜rq]−2Var\[˜rp]
 2√
-Var[˜rp]
+Var\[˜rp]
 (6.4.64)
 Equating this to the slope of the outer frontier, setting
-βqp = Cov [˜rp, ˜rq]
-Var[˜rp]
+βqp = Cov \[˜rp, ˜rq]
+Var\[˜rp]
 (6.4.65)
 and rearranging yields:
-E[˜rq] −E[˜rzp] = βqp(E[˜rp] −E[˜rzp])
+E\[˜rq] −E\[˜rzp] = βqp(E\[˜rp] −E\[˜rzp])
 (6.4.66)
 Revised: December 2, 1998
 
@@ -1498,10 +1499,10 @@ riskless asset.
 Graphically, in mean-standard deviation space, combining any portfolio p with
 the riskless asset in proportions a and (1 −a) gives a portfolio with expected
 return
-aE[˜rp] + (1 −a)rf = rf + a(E[˜rp] −rf)
+aE\[˜rp] + (1 −a)rf = rf + a(E\[˜rp] −rf)
 and standard deviation of returns a
 q
-Var[˜rp].
+Var\[˜rp].
 i.e. these portfolios trace out the ray in σ-µ space emanating from (0, rf) and
 passing through p.
 For each σ the highest return attainable is along the ray from rf which is tangent
@@ -1511,7 +1512,7 @@ Revised: December 2, 1998
 130
 6.5. MARKET EQUILIBRIUM AND THE CAPM
 On this ray, the riskless asset is held in combination with the tangency portfolio t.
-This only makes sense for rf < A/C = E[˜rmvp].
+This only makes sense for rf < A/C = E\[˜rmvp].
 Above t, there is a negative weight on the riskless asset — i.e. borrowing.
 Figure 3D goes here.
 Limited borrowing
@@ -1599,7 +1600,7 @@ The zero-beta CAPM
 Theorem 6.5.1 (Zero-beta CAPM theorem) If every investor holds a mean-variance
 frontier portfolio, then the market portfolio, m, is a mean-variance frontier port-
 folio, and hence, ∀q, the CAPM equation
-E [˜rq] = (1 −βqm) E [˜rzm] + βqmE [˜rm]
+E \[˜rq] = (1 −βqm) E \[˜rzm] + βqmE \[˜rm]
 (6.5.4)
 holds.
 Revised: December 2, 1998
@@ -1621,11 +1622,11 @@ for the normal distribution and related distributions.
 We can view the market portfolio as a frontier portfolio under two fund separation.
 If p is a frontier portfolio, then we showed earlier that for purely mathematical
 reasons in the definition of a frontier portfolio:
-E[˜rq] = (1 −βqp)E[˜rzp] + βqpE[˜rp]
+E\[˜rq] = (1 −βqp)E\[˜rzp] + βqpE\[˜rp]
 (6.5.6)
 If two fund separation holds, then individuals hold frontier portfolios.
 Since the market portfolio is then on the frontier, it follows that:
-E[˜rq] = (1 −βqm)E[˜rzm] + βqmE[˜rm]
+E\[˜rq] = (1 −βqm)E\[˜rzm] + βqmE\[˜rm]
 (6.5.7)
 where
 ˜rm
@@ -1637,12 +1638,12 @@ mj˜rj
 (6.5.8)
 βqm
 =
-Cov [˜rq, ˜rm]
-Var[˜rm]
+Cov \[˜rq, ˜rm]
+Var\[˜rm]
 (6.5.9)
 This implies for any particular security, from the economic assumptions of equi-
 librium and two fund separation:
-E[˜rj] = (1 −βjm)E[˜rzm] + βjmE[˜rm]
+E\[˜rj] = (1 −βjm)E\[˜rzm] + βjmE\[˜rm]
 (6.5.10)
 This relation is the ?
 Zero-Beta version of the Capital Asset Pricing Model
@@ -1655,7 +1656,7 @@ and the Security Market Line (return v. β).
 Normally in equilibrium there is zero aggregate supply of the riskfree asset.
 Recommended reading for this part of the course is ?, ?, ? and ?.
 Now we can derive the traditional CAPM. Note that by construction
-rf = E [˜rzt] .
+rf = E \[˜rzt] .
 (6.5.11)
 Revised: December 2, 1998
 
@@ -1667,7 +1668,7 @@ tangency portfolio, t.
 Theorem 6.5.4 (Traditional CAPM Theorem) If every investor holds a mean-
 variance frontier portfolio, then the market portfolio of risky assets, m, is the
 tangency portfolio, t, and hence, ∀q, the traditional CAPM equation
-E [˜rq] = (1 −βqm) rf + βqmE [˜rm]
+E \[˜rq] = (1 −βqm) rf + βqmE \[˜rm]
 (6.5.12)
 holds.
 Theorem 6.5.4 is sometimes known as the Sharpe-Lintner Theorem.
@@ -1681,11 +1682,11 @@ hence that all investors hold risky assets only.
 Note that the No Arbitrage Principle also allows us to rule out correlation matri-
 ces for risky assets which permit the construction of portfolios with zero return
 variance, i.e. synthetic riskless assets.
-Assume that a riskless asset exists, with return rf < E[˜rmvp].
+Assume that a riskless asset exists, with return rf < E\[˜rmvp].
 If the distributional conditions for two fund separation are satisfied, then the tan-
 gency portfolio, t, must be the market portfolio of risky assets in equilibrium. We
 know then that for any portfolio q (with or without a riskless component):
-E[˜rq] −rf = βqm(E[˜rm] −rf)
+E\[˜rq] −rf = βqm(E\[˜rm] −rf)
 (6.5.13)
 This is the traditional Sharpe-Lintner version of the CAPM.
 Figure 4A goes here.
@@ -1701,12 +1702,12 @@ Revised: December 2, 1998
 6.5. MARKET EQUILIBRIUM AND THE CAPM
 Proof By Jensen’s inequality and monotonicity, the riskless asset dominates any
 portfolio with
-E[˜r] < rf
+E\[˜r] < rf
 (6.5.14)
 for
-E[u(W0(1 + ˜r))]
+E\[u(W0(1 + ˜r))]
 ≤
-u(E[W0(1 + ˜r)])
+u(E\[W0(1 + ˜r)])
 (6.5.15)
 <
 u(W0(1 + rf))
@@ -1725,37 +1726,37 @@ Assume there is a riskless asset and returns are multivariate normal (MVN). Reca
 the first order conditions for the canonical portfolio choice problem:
 0
 =
-E[u′
+E\[u′
 i( ˜Wi)(˜rj −rf)]
 ∀i, j
 (6.5.17)
 =
-E[u′
-i( ˜Wi)]E[˜rj −rf] + Cov
+E\[u′
+i( ˜Wi)]E\[˜rj −rf] + Cov
 h
 u′
 i( ˜Wi), ˜rj
 i
 (6.5.18)
 =
-E[u′
-i( ˜Wi)]E[˜rj −rf] + E[u′′
+E\[u′
+i( ˜Wi)]E\[˜rj −rf] + E\[u′′
 i ( ˜Wi)]Cov
 h ˜Wi, ˜rj
 i
 (6.5.19)
 using the definition of covariance and Stein’s lemma for MVN distributions. Re-
 arranging:
-E[˜rj −rf]
+E\[˜rj −rf]
 θi
 = Cov
 h ˜Wi, ˜rj
 i
 (6.5.20)
 where
-θi ≡−E[u′′
+θi ≡−E\[u′′
 i ( ˜Wi)]
-E[u′
+E\[u′
 i( ˜Wi)]
 (6.5.21)
 is the i-th investor’s global absolute risk aversion. Since
@@ -1785,7 +1786,7 @@ Revised: December 2, 1998
 CHAPTER 6. PORTFOLIO THEORY
 135
 Hence,
-E[˜rj −rf]
+E\[˜rj −rf]
 θi
 = Cov
 "
@@ -1805,35 +1806,35 @@ i W i
 clearing and
 P
 k wmk˜rk = ˜rm by definition):
-E[˜rj −rf](
+E\[˜rj −rf](
 I
 X
 i=1
 θ−1
 i )
 =
-Wm0Cov [˜rm, ˜rj]
+Wm0Cov \[˜rm, ˜rj]
 (6.5.25)
 or
-E[˜rj −rf]
+E\[˜rj −rf]
 =
 (
 I
 X
 i=1
 θ−1
-i )−1Wm0Cov [˜rm, ˜rj]
+i )−1Wm0Cov \[˜rm, ˜rj]
 (6.5.26)
 i.e., in equilibrium, the risk premium on the j-th asset is the product of the aggre-
 gate relative risk aversion of the economy and the covariance between the return
 on the j-th asset and the return on the market.
 Now take the average over j weighted by market portfolio weights:
-E[˜rm −rf] = (
+E\[˜rm −rf] = (
 I
 X
 i=1
 θ−1
-i )−1Wm0Var[˜(]˜rm)
+i )−1Wm0Var\[˜(]˜rm)
 (6.5.27)
 i.e., in equilibrium, the risk premium on the market is the product of the aggre-
 gate relative risk aversion of the economy and the variance of the return on the
@@ -1875,10 +1876,10 @@ i )−1 =
  I
 X
 i=1
-ai
+ai
 bi
-−E[ ˜Wi]
-!−1
+−E\[ ˜Wi]
+!−1
 (6.5.31)
 This result can also be derived without assuming MVN and using Stein’s
 lemma.
@@ -1894,7 +1895,7 @@ Chapter 7
 INVESTMENT ANALYSIS
 7.1
 Introduction
-[To be written.]
+\[To be written.]
 7.2
 Arbitrage and the Pricing of Derivative Securi-
 ties
@@ -1948,9 +1949,9 @@ C(S, T) = (S −X)+.
 Let τ = T −t be the time to maturity.
 Then we claim that the solution to the Black-Scholes equation is:
 C(S, t) = SN (d (S, τ)) −Xe−rτN
-
+
 d (S, τ) −σ√τ
-
+
 ,
 where N (·) is the cumulative distribution function of the standard normal distri-
 bution and
@@ -1958,9 +1959,9 @@ d (S, τ)
 =
 ln S
 X +
-
+
 r −1
-2σ2
+2σ2
 τ
 σ√τ
 + σ√τ
@@ -1968,9 +1969,9 @@ r −1
 =
 ln S
 X +
-
+
 r + 1
-2σ2
+2σ2
 τ
 σ√τ
 .
@@ -2004,9 +2005,9 @@ are:
 ∂τ
 =
 −
-
+
 r + 1
-2σ2
+2σ2
 2σ√τ
 (7.2.3)
 and
@@ -2017,9 +2018,9 @@ and
 Sσ√τ .
 (7.2.4)
 Note also that
-N ′ 
+N ′ 
 d (S, τ) −σ√τ
-
+
 =
 e−1
 2σ2τed(S,τ)σ√τN ′ (d (S, τ))
@@ -2027,10 +2028,10 @@ e−1
 =
 e−1
 2σ2τ
- S
+ S
 X e(r+ 1
 2σ2)τ
-
+
 N ′ (d (S, τ))
 (7.2.6)
 =
@@ -2045,26 +2046,26 @@ SN ′ (d (S, τ)) ∂d (S, τ)
 ∂t
 −Xe−rτ×
  
-N ′ 
+N ′ 
 d (S, τ) −σ√τ
-  ∂d (S, τ)
+  ∂d (S, τ)
 ∂t
 −
 σ
 2√τ
 !
 + rN
-
+
 d (S, τ) −σ√τ
-!
+!
 (7.2.8)
 =
 −SN ′ (d (S, τ))
 σ
 2√τ −Xe−rτrN
-
+
 d (S, τ) −σ√τ
-
+
 (7.2.9)
 ∂C
 ∂S
@@ -2072,9 +2073,9 @@ d (S, τ) −σ√τ
 SN ′ (d (S, τ)) ∂d (S, τ)
 ∂S
 + N (d (S, τ))
-−Xe−rτN ′ 
+−Xe−rτN ′ 
 d (S, τ) −σ√τ
- ∂d (S, τ)
+ ∂d (S, τ)
 ∂S
 (7.2.10)
 =
@@ -2106,10 +2107,10 @@ N (d (S, τ)) (rS −rS) + N ′ (d (S, τ))
 ∂S
 !
 +N
-
+
 d (S, τ) −σ√τ
- 
-−Xe−rτr + rXe−rτ
+ 
+−Xe−rτr + rXe−rτ
 (7.2.13)
 =
 0.

@@ -162,20 +162,20 @@ the prices S (t) and B observed on the market.
 1.2.1
 Replicating portfolios
 In order to check for arbitrage opportunities, assume that we construct a position in g
-units of the risky security S (t) and g units of the risk-free asset in such a way that at
+units of the risky security S (t) and g units of the risk-free asset in such a way that at
 time T
-gS (H) + g = G (H)
-gS (L) + g = G (L)
+gS (H) + g = G (H)
+gS (L) + g = G (L)
 So, the portfolio has the same value of asset G at time T . We say that it is the “replicating
 portfolio” of asset G. Obviously we have
 g = G (H) −G (L)
 S (H) −S (L)
-g = G (L) S (H) −G (H) S (L)
+g = G (L) S (H) −G (H) S (L)
 S (H) −S (L)
 1.2.2
 No-arbitrage and the risk-neutral probability measure
-If we substitute g and g in the no-arbitrage equation
-g (t) = gS (t) + Bg
+If we substitute g and g in the no-arbitrage equation
+g (t) = gS (t) + Bg
 we may rewrite the price, after naive algebraic manipulation, as
 g (t) = B [QG (H) + (1 −Q) G (L)]
 with
@@ -203,11 +203,11 @@ of return of the different assets under this probability. We have that
 EQ
 G (T )
 g (t) −1
-
+
 = EQ
 S (T )
 S (t) −1
-
+
 = 1
 B −1 ≡i
 where i is the interest rate earned on the risk-free asset for an investment horizon from t
@@ -222,7 +222,7 @@ g (t)
 B (t) = EQ
 G (T )
 B (T )
-
+
 = EQ [G (T )]
 A process endowed with this property (i.e. z (t) = EQ (z (T ))) is called a martingale. For
 this reason, the measure Q is also called an equivalent martingale measure (EMM).1
@@ -249,7 +249,7 @@ measure must agree on the same subset of zero measure events.
 Derivatives Pricing, Hedging and Risk Management
 5
 Of course this implies ag = E
-
+
 ig
 
 and aS = E (iS). Notice that the expectation is now
@@ -268,7 +268,7 @@ to be the same for all the assets. This relationship, that avoids arbitrage gain
 rewritten as
 E (iS) = i + λbS
 E
-
+
 ig
 
 = i + λbg
@@ -314,7 +314,7 @@ Multiple states of the world
 Consider the case in which three scenarios are possible at time T , say {S (HH) , S (HL),
 S (LL)}. The crucial, albeit obvious, thing to notice is that it is not possible to replicate an
 asset by a portfolio of only two other assets. To continue with the example above, whatever
-amount g of the asset S we choose, and whatever the position of g in the risk-free asset,
+amount g of the asset S we choose, and whatever the position of g in the risk-free asset,
 we are not able to perfectly replicate the pay-off of the contract g in all the three states
 of the world: whatever replicating portfolio was used would lead to some hedging error.
 Technically, we say that contract g is not attainable and we have an incomplete market
@@ -330,17 +330,17 @@ T and the underlying on that date may take values {S (H) , S (L)}. If this is th
 could use the following strategy:
 • Evaluate g (τ) under both scenarios {S (H) , S (L)}, yielding {g (H) , g (L)}: this will result
 in the computation of the risk-neutral probabilities {Q (H) , Q (L)} and the replicating
-portfolios consisting of {g (H), g (L)} units of the underlying and {g (H) , g (L)}
+portfolios consisting of {g (H), g (L)} units of the underlying and {g (H) , g (L)}
 units of the risk-free asset.
 • Evaluate g (t) as a derivative product giving a pay-off {g (H) , g (L)} at time τ, depending
 on the state of the world: this will result in a risk-neutral probability Q, and a replicating
-portfolio with g units of the underlying and g units of the risk-free asset.
+portfolio with g units of the underlying and g units of the risk-free asset.
 The result is that the value of the product will be again set equal to its replicating portfolio
-g (t) = gS (t) + Bg
+g (t) = gS (t) + Bg
 but at time τ it will be rebalanced, depending on the price observed for the underlying
 asset. We will then have
-g (H) = g (H) S (H) + Bg (H)
-g (L) = g (L) S (L) + Bg (L)
+g (H) = g (H) S (H) + Bg (H)
+g (L) = g (L) S (L) + Bg (L)
 and both the position on the underlying asset and the risk-free asset will be changed fol-
 lowing the change of the underlying price. We see that even though we have three possible
 scenarios, we can replicate the product g by a replicating portfolio of only two assets, thanks
@@ -353,8 +353,8 @@ above. The replication trading strategy has a peculiar feature: the value of the
 portfolio set up at t and re-evaluated using the prices of time τ is, in any circumstances,
 equal to that of the new replicating portfolio which will be set up at time τ. We have in
 fact that
-gS (H) + g = g (H) = g (H) S (H) + Bg (H)
-gS (L) + g = g (L) = g (L) S (L) + Bg (L)
+gS (H) + g = g (H) = g (H) S (H) + Bg (H)
+gS (L) + g = g (L) = g (L) S (L) + Bg (L)
 This means that once the replicating portfolio is set up at time t, no further expense or
 withdrawal will be required to rebalance it, and the sums to be paid to buy more of an
 asset will be exactly those made available by the selling of the other. For this reason the
@@ -476,7 +476,7 @@ that under the objective measure P the no-arbitrage requirement implies
 E
 dS (t)
 S (t)
-
+
 = µ dt = (r + λσ) dt
 
 10
@@ -493,7 +493,7 @@ instantaneous yield on the risk-free asset
 EQ
 dS (t)
 S (t)
-
+
 = r dt
 i.e. that Q is the so-called risk-neutral measure. It is easy to check that the same holds
 for any derivative written on S (t). Define g (S, t) the price of a derivative contract giving
@@ -516,7 +516,7 @@ dg (t) =
 2
 ∂2g
 ∂S2 σ 2 (t) S2
-
+
 dt + ∂g
 ∂S σ dz (t)
 However, the no-arbitrage requirement implies
@@ -547,11 +547,11 @@ clusion that under the risk-neutral measure Q
 EQ
 dS (t)
 S (t)
-
+
 = EQ
 dg (t)
 g (t)
-
+
 = r dt
 that is, all the risky assets are assumed to yield the instantaneous risk-free rate.
 1.3.3
@@ -584,7 +584,7 @@ CALL(S, t; K, T ) = S (t)
  (d1) −exp [−r (T −t)] K
  (d2)
 d1 = ln (S (t) /K) +
-
+
 r + σ 2/2
 
 (T −t)
@@ -605,7 +605,7 @@ exp
 
 −u2
 2
-
+
 du
 
 12
@@ -625,14 +625,17 @@ is equal to
  (d1) for the call option and 
  (d1) −1 for the put. The sensitivity of the
 delta with respect to the underlying is called gamma (), and that of the option price with
-respect to time is called theta (). These derivatives, called the greek letters, can be used
+respect to time is called theta (
+). These derivatives, called the greek letters, can be used
 to approximate, in general, the value of any derivative contract by a Taylor expansion as
 g (S (t + h) , t + h) ≃g (S (t) , t) + g (S (t + h) −S (t))
 + 1
-2g (S (t + h) −S (t))2 + gh
+2g (S (t + h) −S (t))2 + 
+gh
 Notice that the greek letters are linked one to the others by the fundamental PDE ruling
 out arbitrage. Indeed, this condition can be rewritten as
-g + grS (t) + 1
+
+g + grS (t) + 1
 2gσ 2 (t) S2 −rg = 0
 1.3.4
 Digital options
@@ -683,7 +686,7 @@ D (t, T ) = exp
  T
 t
 f (t, u) du
-
+
 Term structure pricing models are based on stochastic representations of the spot or forward
 yield curve.
 1.4.1
@@ -704,9 +707,9 @@ exp
  T
 t
 r (u) du
-
+
 G (T ) | ℑt
-
+
 where the expectation is again taken under the risk-neutral measure Q. Notice that for the
 discount factor D (t, T ) we have the pay-off D (T, T ) = 1, so that
 D (t, T ) = EQ
@@ -717,8 +720,8 @@ exp
  T
 t
 r (u) du
- ℑt
-
+ ℑt
+
 
 14
 Copula Methods in Finance
@@ -785,9 +788,9 @@ exp
  τ
 t
 r (u) du
-
+
 max [D (τ, T ) −K, 0]| ℑt
-
+
 ̸= EQ
 
 exp
@@ -796,8 +799,8 @@ exp
  τ
 t
 r (u) du
- ℑt
-
+ ℑt
+
 EQ [max [D (τ, T ) −K, 0]| ℑt]
 and the price cannot be expressed as the product of the discount factor D (t, τ) and the
 expected pay-off. Factorization can, however, be achieved through a suitable change of
@@ -829,8 +832,10 @@ Applying this result to our problem yields immediately
 dD (t, τ, T ) = −σF στD (t, τ, T ) dt + σF D (t, τ, T ) dz (t)
 σF = σT −στ
 We may now use the Girsanov theorem to recover a new measure Qτ under which
-dz = dz −στdt is a Wiener process. We have then
-dD (t, τ, T ) = σF D (t, τ, T ) dz (t)
+d
+z = dz −στdt is a Wiener process. We have then
+dD (t, τ, T ) = σF D (t, τ, T ) d
+z (t)
 and the forward price is a martingale. Under such a measure, the forward price of any future
 contract is equal to the expected spot value. We have
 D (t, τ, T ) = EQτ [(D (τ, τ, T )) | ℑt] = EQτ [(D (τ, T )) | ℑt]
@@ -939,7 +944,7 @@ d2 = d1 −σj
 
 tj −t
 where σj is the instantaneous volatility of the logarithm of the forward rate L
-
+
 t, tj−1, tj
 
 .
@@ -1024,7 +1029,7 @@ n
 
 j=1
 λjQj
-
+
 Xj (T ) | ℑt
 
 where Xj are latent random variables drawn from log-normal distributions Qj, correspond-
@@ -1035,7 +1040,7 @@ n
 
 j=1
 λjCALLBS
-
+
 Xj, t; K, T
 
 
@@ -1055,7 +1060,7 @@ j λjqj(Xj(T ) | ℑt)
 j=1 λjqj(Xj(T ) | ℑt)
 S(t) dz(t)
 where qj
-
+
 Xj (T ) | ℑt
 
 are the densities corresponding to the distribution functions Qj.
@@ -1416,13 +1421,13 @@ leads to the pricing formula
 2σ 2S2 (t)
 ∂2g
 ∂S2
-+
++
 + rS ∂g
 ∂S −rg = 0
 with
 ∂2g
 ∂S2
-+
++
 =
 
 σ −
@@ -1472,9 +1477,9 @@ exp
  T
 t
 r (u) du
-
+
 G (S, T ) [1 −1{DEF}LGD]
-
+
 Notice that there are three risk factors involved in this representation: (i) market risk due
 to fluctuations of the underlying asset S; (ii) interest rate risk due to changes in the discount
 factor; and (iii) credit risk due to the event of default of the counterparty. We will see that
@@ -1581,7 +1586,7 @@ DD (t) = exp (−r (T −t)) DD
 d 
  (−d1) + 
  (−d2)
-
+
 d1 = ln (1/d) + σ 2
 V /2 (T −t)
 σV
@@ -1607,7 +1612,7 @@ d
  (−d1)
 
  (−d2)
-
+
 = exp (−r (T −t)) DD {1 −Dp ∗LGD}
 where Dp stands for default probability and LGD is the loss given default figure in this
 model.
@@ -1635,7 +1640,7 @@ d
  (−d1)
 
  (−d2)
-
+
 T −t
 = −ln {1 −Dp ∗LGD}
 T −t
@@ -1742,7 +1747,7 @@ exp
  T
 t
 γ (u) du
-
+
 It is easy to see that, from a mathematical point of view, the framework is much the
 same as that of interest rate models. These techniques can then be directly applied to the
 evaluation of credit spreads.
@@ -1759,7 +1764,7 @@ exp
  T
 t
 γ (u) du
-
+
 is
 EQ
 
@@ -1769,7 +1774,7 @@ exp
  T
 t
 γ (u) du
-
+
 = exp
 
 A (T −t) + M (T −t) γ (t)
@@ -1798,7 +1803,7 @@ exp
  T
 t
 γ (u) du
-
+
 A final comment is in order concerning the recovery rate. Extensions of the model refer
 to a stochastic recovery rate. Of course, the extension is immediate as long as one is willing
 to assume that the recovery rate is independent of the default intensity and interest rate. In
@@ -1858,11 +1863,11 @@ measure, as
 (−d2) = 
 
 −ln
-
+
 V (T ) /DD
 
 +
-
+
 r −σ 2
 V /2
 
@@ -1881,11 +1886,11 @@ that a serious flaw of the Merton approach is that it underestimates the default
 The key KMV idea is to apply the argument of the default probability function, which they
 denote distance to default
 −ln
-
+
 V (T ) /DD
 
 +
-
+
 µV −σ 2
 V /2
 
@@ -1950,7 +1955,7 @@ N−1
 
 i=1
 D (t, ti)
-
+
 Q (ti) −Q (ti+1)
 
 = cN
@@ -1986,7 +1991,7 @@ N−1
 
 i=1
 D (t, ti)
-
+
 Q (ti) −Q (ti+1)
 
 = cN
@@ -2047,7 +2052,7 @@ d
  (−d1)
 
  (−d2)
-
+
 while an intensity based model would yield
 D (t, T ) EQ [G (S, T )]
 
@@ -2385,7 +2390,7 @@ SNKY (0) , SSP (T )
 SSP (0)
 
 −1, 0
-
+
 
 44
 Copula Methods in Finance
@@ -2407,7 +2412,7 @@ Pr (min (sNKY (T ) , sSP (T )) > 1 | ℑt) = Pr (sNKY (T ) > 1, sSP (T ) > 1 | �
 ∂K
 Using copula functions we obtain
 Q (1, 1 | ℑt) = C
-
+
 QNKY (1) , QSP (1) | ℑt
 
 = −exp [r (T −t)] ∂CALL
@@ -2417,7 +2422,7 @@ CALL (sNKY (t) , sSP (t) ; K, T ) =
  ∞
 1
 C
-
+
 QNKY (η) , QSP (η) | ℑt
 
 dη
@@ -2447,7 +2452,7 @@ It is then immediate to write the price in terms of copula functions
 FTD = exp [−r (T −t)]
 
 1 −C
-
+
 Q1 (T ) , Q2 (T ) | ℑt
 
 Using the duality relationship between a copula function and its survival copula we obtain
@@ -2622,7 +2627,7 @@ sets A = B = {0} ∪
 
 1
 2, 1
-
+
 .
 As a general rule, the 2-increasing property neither implies nor is implied by the non-
 decreasing property in each argument3: however, 2-increasing functions which are also
@@ -2663,7 +2668,7 @@ they are
 ∂C
 ∂v = ∂C
 ∂z =
-
+
 0
 z < 1 −v
 1
@@ -2690,9 +2695,9 @@ Pr(U1 ⩽v | U2 > z) = v −C(v, z)
 1 −z
 C1|2(v, z) ≡Pr(U1 ⩽v | U2 = z) =
 lim
-z→0+
-C(v, z + z) −C(v, z)
-z
+z→0+
+C(v, z + z) −C(v, z)
+z
 = ∂C(v, z)
 ∂z
 C2|1(v, z) ≡Pr(U2 ⩽z | U1 = v) = ∂C(v, z)
@@ -2980,7 +2985,7 @@ A = B = {0} ∪
 
 1
 2, 1
-
+
 , as one can easily verify from the fact that for 1
 2 ⩽x, y ⩽1,
 F(x, y) = 1
@@ -3012,7 +3017,7 @@ Ran F2(y) = {0} ∪
 
 1
 2; 1
-
+
 .
 According to Sklar’s theorem, while writing
 F(x, y) = C(F1(x), F2(y))
@@ -3113,7 +3118,8 @@ Using the product copula and the marginal of X of Example 2.5, i.e. expo-
 nential, assume Y to be a (central) Student r.v., with υ degrees of freedom (d.o.f.). Formally,
 this means that:
 F2(y) = tυ(y) =
- y
+
+ y
 −∞
 ((υ + 1)/2)
 √πυ (υ/2)
@@ -3126,7 +3132,8 @@ ds
 where  is the usual Euler function. Then the joint distribution function, according to Sklar’s
 theorem, is:
 F(x, y) = [1 −exp(λ1x)]
- y
+
+ y
 −∞
 ((υ + 1)/2)
 √πυ (υ/2)
@@ -3183,7 +3190,8 @@ x ⩽−1
 ln
 
 1 −
- y
+
+ y
 −∞
 ((υ + 1)/2)
 √πυ (υ/2)
@@ -3327,9 +3335,11 @@ are not only
 marginally, but also jointly normally distributed, with correlation coefficient ρ, Corollary 2.3
 permits us to state that their copula is the so-called Gaussian one, defined as:
 CGa(v, z) =
- −1(v)
+
+ −1(v)
 −∞
- −1(z)
+
+ −1(z)
 −∞
 1
 2π
@@ -3345,9 +3355,11 @@ dsdω
 Using the copula framework, the no-arbitrage forward price of the bivariate digital option is
 Pr (X ⩽K, Y ⩽k) = F(K, k) = CGa((−d2X(K)), (−d2Y(k)))
 =
- −d2X(K)
+
+ −d2X(K)
 −∞
- −d2Y (k)
+
+ −d2Y (k)
 −∞
 1
 2π
@@ -3368,9 +3380,11 @@ F
 2
 
 =
- 1.55
+
+ 1.55
 −∞
- −1.55
+
+ −1.55
 −∞
 1
 2π
@@ -3411,7 +3425,7 @@ Under this copula, the no-arbitrage forward price of the bivariate digital optio
 Pr (X⩽K, Y ⩽k)=F(K, k)=CA((−d2X(K)), (−d2Y(k)))
 =−1
 α ln
-
+
 1 +
 
 exp (−α(−d2X(K)) −1)
@@ -3519,9 +3533,11 @@ Suppose, for instance, that the asset returns have a correlation coefficient 1
 2, while the
 outstanding debts are 0.5 and 0.7, as above: the joint default probability is
 H(0.5, 0.7) =
- −1.55
+
+ −1.55
 −∞
- −0.0797
+
+ −0.0797
 −∞
 1
 2π
@@ -3721,7 +3737,8 @@ Suppose, as in Luciano and Marena (2003), that the returns on two assets X and Y
 been estimated to be distributed according to a Student’s t, with 5 and 6 d.o.f. respectively.
 Formally, we have
 F1(x) =
- x
+
+ x
 −∞
 (3)
 (5/2)
@@ -3733,7 +3750,8 @@ F1(x) =
 −3
 du
 F2(y) =
- y
+
+ y
 −∞
 (7/2)
 (3)
@@ -4057,7 +4075,7 @@ CC(v, z) = max
 
 v−α + z−α −1
 −1/α , 0
-
+
 (2.14)
 
 74
@@ -4431,9 +4449,11 @@ where ζ1 := −1 (v), ζ2 := −1 (z). This is represented, for ρ = 0.5, in 
 The density can be used in order to define the absolutely continuous component and the
 singular component of C, denoted as AC and SC, as follows (Nelsen, 1999):
 AC(v, z) =
- v
+
+ v
 0
- z
+
+ z
 0
 ∂2C(u, t)
 ∂u∂t
@@ -4454,9 +4474,11 @@ straightforward way, if C is absolutely continuous:
 Example 2.13
 Suppose that we want to verify that the function
 h(v, z) :=
- −1(v)
+
+ −1(v)
 −∞
- −1(z)
+
+ −1(z)
 −∞
 1
 2π
@@ -4485,15 +4507,19 @@ Example 2.14
 The product copula C⊥= vz is absolutely continuous, since for every
 (v, z) ∈I 2
 AC =
- v
+
+ v
 0
- z
+
+ z
 0
 ∂2ut
 ∂u∂t dudt =
- v
+
+ v
 0
- z
+
+ z
 0
 dudt = vz = C⊥
 The Fr´echet upper bound C+ is singular, since for every (u, t)
@@ -4502,9 +4528,11 @@ The Fr´echet upper bound C+ is singular, since for every (u, t)
 = 0
 Consequently
 AC =
- v
+
+ v
 0
- z
+
+ z
 0
 ∂2C+
 ∂u∂t dudt = 0 ̸= C+
@@ -4686,7 +4714,7 @@ t∈[u,1]
 F −1
 1 (t) + F −1
 2 (u −t + 1)
-
+
 F −1
 M (u) = sup
 t∈[0,u]
@@ -4694,7 +4722,7 @@ t∈[0,u]
 F −1
 1 (t) + F −1
 2 (u −t)
-
+
 2.7.1
 An application: VaR bounds
 As we showed above, copulas have been applied to the measurement of market risk, in
@@ -5256,11 +5284,11 @@ Given a bounded, weakly monotone, odd function f , with Dom f =
 −1
 2, 1
 2
-
+
 ,
 then
 k
-
+
 I2 f (v −1
 2)f (z −1
 2) dC(v, z)
@@ -5285,7 +5313,7 @@ Market Comovements and Copula Families
 97
 γ , defined as
 γ = 2
-
+
 I2(|v + z −1| −|v −z|) dC(v, z)
 (3.3)
 It is interesting to notice that concordance measures have two features:
@@ -5303,7 +5331,7 @@ of estimation, conclude the section.
 Definition 3.2
 Kendall’s tau for the r.v.s X and Y with copula C, denoted as τ or τC, is:
 τ = 4
-
+
 I2 C(v, z) dC(v, z) −1
 (3.4)
 One can demonstrate that it measures the difference between the probability of con-
@@ -5347,7 +5375,7 @@ following theorem holds.
 Theorem 3.5
 Kendall’s τ can be computed as:
 τ = 1 −4
-
+
 I2
 ∂C(v, z)
 ∂v
@@ -5358,9 +5386,9 @@ dv dz
 The equivalence of (3.4) and (3.6) follows from the following lemma (Nelsen, 1991):
 Lemma 3.1
 If C is a copula
-
+
 I2 C(v, z) dC(v, z) +
-
+
 I2
 ∂C(v, z)
 ∂v
@@ -5374,7 +5402,7 @@ Consider the product copula, for which we know from Example 2.14 that
 ∂v ∂z = 1
 It follows, according to the definition, that
 τC⊥= 4
-
+
 I2 vz dv dz −1 = 0
 Example 3.2
 Consider the Marshall–Olkin copula defined in section 2.5.1, which is not
@@ -5392,7 +5420,7 @@ vm < zn
 Market Comovements and Copula Families
 99
 Therefore, one can compute
-
+
 I2
 ∂C(v, z)
 ∂v
@@ -5471,9 +5499,9 @@ Definition 3.3
 Spearman’s rho for r.v.s X and Y with copula C – denoted as ρS or
 ρSC – is:
 ρS = 12
-
+
 I2 C(v, z) dv dz −3 = 12
-
+
 I2 vz dC(v, z) −3
 (3.8)
 This measure also exploits probabilities of concordance and discordance. It starts from
@@ -5488,7 +5516,7 @@ Given (X1, Y1), (X2, Y2), (X3, Y3), i.i.d. with copula C, then
 (3.9)
 Substituting in the first definition, one can also write
 ρSC = 12
-
+
 I2 [C(v, z) −vz] dv dz
 Remark 3.2
 Since the integral transforms U1 = F1(X), U2 = F2(Y) are standard uniform,
@@ -5524,11 +5552,11 @@ Example 3.3
 Using the first or the second part of the definition, it is straightforward to
 show that Spearman’s rho for the product copula is equal to zero:
 ρSC⊥= 12
-
+
 I2 vz dv dz −3 = 0
 Example 3.4
 In the Marshall–Olkin case, since
-
+
 I2 CMO(v, z) dv dz = 1
 2
 m + n
@@ -5662,7 +5690,7 @@ Property (v) is a consequence of the fact that if Y = aX + b a.s., with a ∈ℜ
 then |ρXY | = 1 and vice versa.4
 As concerns property (vii), one needs Hoeffding’s (1940) expression for covariance:
 cov(X, Y) =
-
+
 D
 (F(x, y) −F1(x)F2(y)) dx dy
 (3.12)
@@ -5673,11 +5701,11 @@ where D = Dom F1 × Dom F2.
 Copula Methods in Finance
 It follows from this and the Fr´echet inequality that, if C1 ≺C2, and we denote as ρ1 and
 ρ2 the corresponding linear correlations, then from
-
+
 D
 (C1(F1(x), F2(y)) −F1(x)F2(y)) dx dy
 ⩽
-
+
 D
 (C2 (F1(x), F2(y)) −F1(x)F2(y)) dx dy
 it follows that ρ1 ⩽ρ2.
@@ -5745,14 +5773,14 @@ Market Comovements and Copula Families
 Proof :
 The bounds for ρXY can be obtained from Hoeffding’s (1940) expression for
 covariance, (3.12) above, together with the Fr´echet inequality:
-
+
 D
 
 C−(F1(x), F2(y)) −F1(x)F2(y)
 
 dx dy ⩽cov(X, Y)
 cov(X, Y) ⩽
-
+
 D
 
 C+ (F1(x), F2(y)) −F1(x)F2(y)
@@ -5786,14 +5814,16 @@ exp
 X
 
 −1
- 
+
+ 
 exp
 
 σ 2
 Y
 
 −1
- ⩽0
+
+ ⩽0
 ρu =
 exp (σXσY ) −1
 
@@ -5803,14 +5833,16 @@ exp
 X
 
 −1
- 
+
+ 
 exp
 
 σ 2
 Y
 
 −1
- ⩾0
+
+ ⩾0
 As argued by Georges et al. (2001), the lower bound tends to −1 when max(σX, σY ) →0,
 while the upper bound is equal to 1 iff σX = σY . When the two variances are different,
 the interval [ρl, ρu] is different from [−1, +1]. Even worse, it may happen that the interval
@@ -5941,9 +5973,9 @@ Copula Methods in Finance
 usual, it is sufficient to prove the result for standardized normal variates. With ρXY = 0,
 the distribution of two standard jointly normal variables becomes
 F(x, y) =
- x
+ x
 −∞
- y
+ y
 −∞
 1
 2π exp
@@ -6196,9 +6228,9 @@ Therefore
 −1(v), −1(z)
 
 =
- −1(v)
+ −1(v)
 −∞
- −1(z)
+ −1(z)
 −∞
 1
 2π
@@ -6223,7 +6255,7 @@ in Figure 3.5.
 The following representation has been demonstrated by Roncalli (2002) to be equivalent
 to (3.20):
 CGa(v, z) =
- v
+ v
 0
 
 
@@ -6265,9 +6297,9 @@ Random samples of (v, z) couples from a Gaussian copula, ρ = 0.5 (right) and ρ
 (left)
 be obtained:
 CGa(v, z) =
- v
+ v
 0
- z
+ z
 0
 1
 
@@ -6307,9 +6339,9 @@ Copula Methods in Finance
 Proof :
 Consider that
 CGa(F1(x), F2(y)) =
- x
+ x
 −∞
- y
+ y
 −∞
 1
 2π
@@ -6401,22 +6433,25 @@ The bivariate Student’s t copula
 Let tυ : ℜ→ℜbe the (central) univariate Student’s t distribution function, with υ degrees
 of freedom (d.o.f.)6:
 tυ(x) =
- x
+ x
 −∞
- ((υ + 1)/2))
-√πυ (υ/2)
+
+ ((υ + 1)/2))
+√πυ
+ (υ/2)
 
 1 + s2
 υ
 −υ+1
 2
 ds
-where  is the usual Euler function. Let ρ ∈I and tρ,υ the bivariate distribution corre-
+where 
+ is the usual Euler function. Let ρ ∈I and tρ,υ the bivariate distribution corre-
 sponding to tυ:
 tρ,υ(x, y) =
- x
+ x
 −∞
- y
+ y
 −∞
 1
 2π
@@ -6439,10 +6474,10 @@ t−1
 υ (z)
 
 =
- t−1
+ t−1
 υ (v)
 −∞
- t−1
+ t−1
 υ (z)
 −∞
 1
@@ -6561,7 +6596,7 @@ t−1
 Copula Methods in Finance
 It follows that an equivalent expression for the bivariate Student’s copula is
 Tρ,υ(v, z) =
- v
+ v
 0
 tυ+1
 
@@ -6745,7 +6780,7 @@ creasing, convex and such that φ(1) = 0. Such a function φ is called a generat
 a strict generator whenever φ(0) = +∞. The behavior of the φ function is exemplified in
 Figure 3.13.
 The pseudo-inverse of φ must also be defined, as follows:
-φ[−1](v) =
+φ\[−1\](v) =
 
 φ−1(v)
 0 ⩽v ⩽φ(0)
@@ -6753,7 +6788,7 @@ The pseudo-inverse of φ must also be defined, as follows:
 φ(0) ⩽v ⩽+∞
 This pseudo-inverse is such that, by composition with the generator, it gives the identity,
 as ordinary inverses do for functions with domain and range ℜ:
-φ[−1](φ (v)) = v
+φ\[−1\](φ (v)) = v
 for every v ∈I
 In addition, it coincides with the usual inverse if φ is a strict generator.
 Definition 3.10
@@ -6783,7 +6818,7 @@ function Fγ , is defined as:
 
 e−sγ 
 =
- +∞
+ +∞
 0
 e−st dFγ (t)
 (3.23)
@@ -6826,7 +6861,7 @@ Dependency
 Archimedean copulas are easily related to measures of association.
 Genest and MacKay (1986) demonstrated that Kendall’s τ is given by
 τ = 4
-
+
 I
 φ(v)
 φ′(v) dv + 1
@@ -7021,7 +7056,7 @@ In Table 3.5 the concordance measures of the Frank copula require the computatio
 the so-called “Debye” functions, defined as
 Dk (α) = k
 αk
- α
+ α
 0
 tk
 exp(t) −1 dt,
@@ -7569,7 +7604,7 @@ n underlyings, X1, . . . , Xn, with strikes k1, . . . , kn and expiration T . Un
 arbitrage-free markets its forward price is the risk-neutral probability
 Pr(X1 ⩽k1, . . . , Xn ⩽kn) = F(k1, . . . , kn)
 According to the multivariate version of Sklar’s theorem, it is always possible to represent
-this price in terms of the single digital prices, through a copula, unique on n
+this price in terms of the single digital prices, through a copula, unique on n
 i=1Ran Fi:
 F(k1, . . . , kn) = C(F1(k1), . . . , Fn(kn))
 where the distribution functions Fi are those of the single underlyings Xi. If the latter have
@@ -7596,7 +7631,7 @@ Multivariate Copulas
 137
 The basic probabilistic interpretation has at least two important consequences, which we are
 going to discuss in the rest of the section:
-(1) r.v.s are independent iff on n
+(1) r.v.s are independent iff on n
 i=1Ran Fi their copula is the product one;
 (2) the copulas of a.s. increasing or decreasing transforms of continuous r.v.s are easily
 written in terms of the copula of X and Y: in particular, copulas are invariant w.r.t.
@@ -7607,7 +7642,7 @@ C⊥(u) = u1u2 . . . un
 It is evident that Sklar’s theorem entails
 Corollary 4.2
 The r.v.s in X are independent iff they have the product copula on
-n
+n
 i=1Ran Fi.
 As for the copulas of increasing or decreasing transforms of continuous r.v.s, the following
 theorem holds:
@@ -7803,7 +7838,8 @@ TR,υ(u1, u2, . . . , un)
 |R|−1
 2
 	
-υ
+
+υ
 2
 
 (υπ)
@@ -7840,7 +7876,8 @@ F(k1, . . . , kn) =
 |R|−1
 2
 	
-υ
+
+υ
 2
 
 (υπ)
@@ -8421,7 +8458,8 @@ tR,υ(x1, x2, . . . , xn) =
 |R|−1
 2
 	
-υ
+
+υ
 2
 
 (υπ)
@@ -8457,7 +8495,8 @@ TR,υ(u1, u2, . . . , un) = tR,υ(t−1
 |R|−1
 2
 	
-υ
+
+υ
 2
 
 (υπ)
@@ -8481,13 +8520,15 @@ cR,υ(u1, u2, . . . , un) = |R|−1
 2
 
 	
-υ
+
+υ
 2
 
 
 
 	
-υ
+
+υ
 2
 
 	

@@ -48732,7 +48732,7 @@ Definition 3 (Borel σ Algebra, Lebesgue Measure):
 Let n ∈N and ai &lt; bi (i = 1, . . . , n). By B(Rn) we denote the smallest σ-algebra for which
 (a1, b1) × . . . × (an, bn) ∈B(Rn).
 B(Rn) is called the Borel σ-algebra. The measure λ defined on B(Rn) with
-λ (a1, b1) × . . . × (an, bn) :=
+λ(a1, b1) × . . . × (an, bn) :=
 n
 Y
 i=1
@@ -49425,8 +49425,8 @@ n:
 Xn(t) :=
 1
 σ √n
- (t · n −[t · n])S [t·n]+1 + ([t · n] + 1 −t · n))S [t·n]
-,
+(t · n −[t · n])S [t·n]+1 + ([t · n] + 1 −t · n))S [t·n]
+,
 where [x] denotes the largest integer number less or equal x.
 A path Xn(ω), ω ∈Ω, defines a continuous map [0, ∞) 7→R and Xn is (Ω, F ) 7→
 (C([0, ∞)), B(C([0, ∞))))-measurable10. Let Pn denote the image measure of Xn defined on
@@ -49684,21 +49684,21 @@ suited.
 Lemma 38 (Itˆo Isometry):
 Let φ denote an elementary process such that φ(·, ω) is bounded.
 Then we have
-E  Z T
+E Z T
 S
-φ(t, ·)dW(t)2 = E Z T
+φ(t, ·)dW(t)2 = E Z T
 S
 φ(t, ·)2dt.
 Definition 39 (Itˆo Integral):
 ⌝
 The class of integrands of the Itˆo integral is defined as the set of maps
-f : <a href="t">0, ∞) × Ω7→R,
+f : [0, ∞) × Ω7→R,
 for which
 1. f is a B × F -measurable map,
 2. f is an Ft-adapted process,
 3. f is P-almost sure of finite quadratic variation, i.e. we have E R T
 S f(t, ω)2dt &lt; ∞.
-16 We define 1(tj,tj+1</a> = 1, if t ∈(tj, tj+1] and = 0 else.
+16 We define 1(tj,tj+1](t) = 1, if t ∈(tj, tj+1] and = 0 else.
 17 Note that by this definition every path is elementary in the sense of Definition 7.
 This work is licensed under a
 Creative Commons License.
@@ -50000,10 +50000,9 @@ Let X and Y and Y1, . . . , Yn denote Itˆo processes where, Y &gt; c
 for a given c ∈R. Then we have
 1.
 d
-X
-Y
-
-= X
+X
+Y</p>
+<p>= X
 Y
 
 dX
@@ -50248,8 +50247,8 @@ Let X denote an Itˆo process of the
 form
 dX = µdt + σdW
 under P
-with EP  R T
-0 σ2(t) dt1/2
+with EP R T
+0 σ2(t) dt1/2
 &lt; ∞. Then we have
 X is a P martingale
 ⇔µ = 0
@@ -50294,10 +50293,10 @@ Definition 55 (Equivalent Measure):
 Let P and Q denote two measures on the same measurable space (Ω, F ).
 1. Q is called continuous with respect to P
 ⇔
- P(A) = 0 ⇒Q(A) = 0 ∀A ∈F .
+P(A) = 0 ⇒Q(A) = 0 ∀A ∈F .
 2. P and Q are called equivalent
 ⇔
- P(A) = 0 ⇔Q(A) = 0 ∀A ∈F .
+P(A) = 0 ⇔Q(A) = 0 ∀A ∈F .
 ⌟
 Theorem 56 (Radon-Nikod´ym Density):
 Let P and Q denote two measures on a measur-
@@ -50385,15 +50384,12 @@ is a P-martingale. From this we have that for A ∈Ft
 Q(A) :=
 Z
 A
-ρ(T) dP = EP (1A · ρ(T)) = EP 
-EP (1A · ρ(T) | Ft)
-
-(B.1)
-=
-EP 
-1A · EP (ρ(T) | Ft)
-
-= EP (1A · ρ(t)) =
+ρ(T) dP = EP (1A · ρ(T)) = EP 
+EP (1A · ρ(T) | Ft)</p>
+<h1 id="b1">(B.1)<a class="headerlink" href="#b1" title="Permanent link">&para;</a></h1>
+<p>EP 
+1A · EP (ρ(T) | Ft)</p>
+<p>= EP (1A · ρ(t)) =
 Z
 A
 ρ(t) dP.
@@ -51088,14 +51084,13 @@ N(T0) + β.
 (3.7)
 Obviously we have
 V(T0)
-N(T0) = E  V(T1)
-N(T1)|FT0
-
-⇔
+N(T0) = E V(T1)
+N(T1)|FT0</p>
+<p>⇔
 S (T0)
-N(T0) = E  S (T1)
+N(T0) = E S (T1)
 N(T1)|FT0
-.
+.
 Now let q ∈R such that
 S (T0)
 N(T0) = q · S (T1, ω1)
@@ -51123,14 +51118,13 @@ http://www.christian-fries.de/finmath/book</p>
 <p>CHAPTER 3. REPLICATION
 then QN({ω1}) := q, QN({ω2}) := 1 −q defines a probability measure and under QN we have
 S (T0)
-N(T0) = EQN  S (T1)
-N(T1)|FT0
-
-d.h
+N(T0) = EQN S (T1)
+N(T1)|FT0</p>
+<p>d.h
 V(T0)
-N(T0) = EQN  V(T1)
+N(T0) = EQN V(T1)
 N(T1)|FT0
-.
+.
 (3.9)
 So instead of calculating the parameters (α, β) for the replication portfolio we may alternatively
 calculate the measure QN, i.e. the parameter q. At first it appears to be equally complex to
@@ -51156,14 +51150,13 @@ S (T0) .
 (3.11)
 If we determine the measure QS , such that
 N(T0)
-S (T0) = EQS  N(T1)
-S (T1) |FT0
-
-d.h
+S (T0) = EQS N(T1)
+S (T1) |FT0</p>
+<p>d.h
 V(T0)
-S (T0) = EQS  V(T1)
+S (T0) = EQS V(T1)
 S (T1)|FT0
-,
+,
 (3.12)
 then the measure QS is different from QN - we have for example
 QS ({ω1}) =
@@ -51243,8 +51236,8 @@ Exercise: Change of Measure
 ple) that QN , QS .
 2. Instead of relative prices consider absolute prices, i.e. choose as num´eraire 1 and deter-
 mine the measure Q1 for which
-V(T0) = EQ1 V(T1)|FT0
-.
+V(T0) = EQ1V(T1)|FT0
+.
 Show that Q1 depends on the specific V(T1) and is thus not universal for all replication
 portfolios.
 In case we wish to replicate a payoffX(T), which depends on multiple states ω1, . . . , ωn,
@@ -51380,9 +51373,9 @@ asset (num´eraire). Without loss of generality let N = X1.
 measure QN, such that Xi
 N is a martingale with respect to Ft, ∀i = 1, . . . , n.
 • Definition of the (candidate) of a value process of the replication portfolio: Define
-V(t) := N(t) · EQN  V(T)
+V(t) := N(t) · EQN V(T)
 N(T)|Ft
-.
+.
 Then V(t)
 N(t) is a QN-martingale with respect to Ft (tower law).
 • Martingale representation theorem gives trading strategy: Since the processes
@@ -51422,14 +51415,12 @@ i=2
 φi(t)Xi(t)
 N(t) .
 Note: d
- X1
-N
-
-= d
- N
-N
-
-= 0, i.e. (3.13) holds unchanged.
+ X1
+N</p>
+<p>= d
+ N
+N</p>
+<p>= 0, i.e. (3.13) holds unchanged.
 • The portfolio process φ describes a replication portfolio for V(T): We have
 V(T) =
 n
@@ -51455,9 +51446,9 @@ http://www.christian-fries.de/finmath/book</p>
 • The evaluation does not require to explicit determination of the replication portfolio:
 V(t) is the value of the replication portfolio at time t and we have
 V(t)
-N(t) = EQN  V(T)
+N(t) = EQN V(T)
 N(T)|Ft
-.
+.
 (3.14)
 3.2.2. Steps towards the Universal Pricing Theorem
 We will now list the central building blocks of risk-neutral pricing, towards the Universal
@@ -51931,10 +51922,10 @@ The market M is called complete if any contingent claim (payofffunction) is atta
 cable).
 ⌟
 Basic Assumptions (Part 3 of 3)
-Using the martingale representation theorem on EQN  V(T)
+Using the martingale representation theorem on EQN V(T)
 N(T)
  Ft
- we find a representation ˜θdWQN.
+ we find a representation ˜θdWQN.
 In order to find the replication portfolio ˜φ such that ˜θdWQN = ˜φd ˜X = ˜φ · ˜σdWQN we need to
 solve ˜φ· ˜σ = ˜θ. We assume that for any ˜θ,
 R T
@@ -51951,14 +51942,14 @@ What follows is
 Theorem 78 (self-financing replication portfolio of a given payofffunction):
 Let QN
 denote an equivalent martingale measure and V(T) a given payofffunction (contingent claim)
-with EQN  V(T)
+with EQN  V(T)
 N(T)
-2
+2
 &lt; ∞. Furthermore let
-V(t) := N(t) · EQN  V(T)
+V(t) := N(t) · EQN V(T)
 N(T)
  Ft
-.
+.
 From that it follows that V
 N is a QN-Martingal. Furthermore let φ2, . . . , φn be as in the martin-
 gale representation theorem, i.e.
@@ -52022,9 +52013,9 @@ Since the definition of the martingale measure QN was totally independent of V w
 Theorem 79 (Risk-Neutral Valuation Formula, Universal Pricing Theorem):
 Let φ de-
 note an admissible self-financing trading strategy and QN an equivalent martingale measure
-with respect to the num´eraire N with EQN  Vφ(T)
+with respect to the num´eraire N with EQN  Vφ(T)
 N(T)
-2
+2
 &lt; ∞. Then
 Vφ(t)
 N(t) = EQN  Vφ(T)
@@ -52196,9 +52187,9 @@ be used to invest or draw cash at a continuously compounded rate r(t), i.e. the 
 B(0) = 1 in t = 0 evolves as
 dB(t) = r(t)B(t)dt,
 i.e.
-B(t) = exp   Z t
+B(t) = exp  Z t
 0
-r(τ)dτ
+r(τ)dτ
 (4.1)
 (here r denotes a known real valued function of time, not a random variable). Furthermore we
 assume that the stock S (t) follows
@@ -52262,17 +52253,16 @@ deviation ¯σ
 T, where we define ¯r and ¯σ as
 ¯r = 1
 T
- Z T
+ Z T
 0
-r(t)dt
-
-¯σ =
- 1
+r(t)dt</p>
+<p>¯σ =
+ 1
 T
 Z T
 0
 σ2(t)dt
-1/2.3
+1/2.3
 That the distribution of log(S (T)) is normal follows from the definition of the Itˆo process: By
 d(log(S (t)) = (r(t) −1
 2σ2(t))dt + σ(t)dWQN(t)
@@ -52295,10 +52285,9 @@ Z T
 We thus know the dynamics of S (t) and B(t) and more importantly the distribution of S (T)
 under the measure QN. Furthermore we know that the value of V(0) satisfies
 V(0)
-B(0) = EQNV(T)
-B(T)
-
-,
+B(0) = EQNV(T)
+B(T)</p>
+<p>,
 2 Since B has no stochastic component, i.e. does not depend on the path parameter ω ∈Ω, (4.1) holds under QN,
 too.
 This work is licensed under a
@@ -52310,19 +52299,15 @@ Comments welcome.
 Version 1.4.18 [build 20070403]- 1st May 2007
 http://www.christian-fries.de/finmath/book</p>
 <p>thus (with B(0) = 1, B(T) = exp(¯rT))
-V(0) = B(0) · EQNV(T)
-B(T)
-
-= 1 · EQNmax(S (T) −K, 0)
-exp(¯rT)
-
-= exp(−¯rT) · EQN
-max(S (T) −K, 0)
-
-= exp(−¯rT) · EQN
-max(exp(log(S (T))) −K, 0)
-
-= exp(−¯rT) ·
+V(0) = B(0) · EQNV(T)
+B(T)</p>
+<p>= 1 · EQNmax(S (T) −K, 0)
+exp(¯rT)</p>
+<p>= exp(−¯rT) · EQN
+max(S (T) −K, 0)</p>
+<p>= exp(−¯rT) · EQN
+max(exp(log(S (T))) −K, 0)</p>
+<p>= exp(−¯rT) ·
 Z ∞
 −∞
 max(exp(y) −K, 0) ·
@@ -52331,12 +52316,11 @@ max(exp(y) −K, 0) ·
 √
 T
 φ
- y −¯µ
+ y −¯µ
 ¯σ
 √
-T
-
-dy,
+T</p>
+<p>dy,
 where φ(x) :=
 1
 √
@@ -52363,9 +52347,9 @@ To derive this formula we consider for given K, µ, σ ∈R (σ &gt; 0)
 Z ∞
 −∞
 max(exp(y) −K, 0) · 1
-σφ y −µ
+σφy −µ
 σ
-dy
+dy
 =
 Z ∞
 log(K)
@@ -52373,18 +52357,18 @@ log(K)
 1
 √
 2πσ
-exp   −(y −µ)2
+exp  −(y −µ)2
 2σ2
-dy
+dy
 =
 1
 √
 2πσ
 Z ∞
 log(K)
-exp(y) · exp   −(y −µ)2
+exp(y) · exp  −(y −µ)2
 2σ2
-dy
+dy
 −
 1
 √
@@ -52392,27 +52376,27 @@ exp(y) · exp   −(y −µ)2
 K
 Z ∞
 log(K)
-exp   −(y −µ)2
+exp  −(y −µ)2
 2σ2
-dy.
+dy.
 It is
 1
 √
 2πσ
 Z ∞
 log(K)
-exp(y) · exp   −(y −µ)2
+exp(y) · exp  −(y −µ)2
 2σ2
-dy
+dy
 =
 1
 √
 2πσ
 Z ∞
 log(K)
-exp   −(y −µ)2 −2σ2y
+exp  −(y −µ)2 −2σ2y
 2σ2
-dy
+dy
 with (y −µ)2 −2σ2y = (y −(µ + σ2))2 −2µσ2 −σ4
 =
 1
@@ -52420,10 +52404,10 @@ with (y −µ)2 −2σ2y = (y −(µ + σ2))2 −2µσ2 −σ4
 2πσ
 Z ∞
 log(K)
-exp   −(y −(µ + σ2))2
+exp  −(y −(µ + σ2))2
 2σ2
 + µ + 1
-2σ2dy
+2σ2dy
 =
 1
 √
@@ -52432,9 +52416,9 @@ exp(µ + 1
 2σ2)
 Z ∞
 log(K)
-exp   −(y −(µ + σ2))2
+exp  −(y −(µ + σ2))2
 2σ2
-dy
+dy
 and with the substitution y−(µ+σ2)
 σ
 7→y
@@ -52447,9 +52431,9 @@ exp(µ + 1
 Z ∞
 log(K)−(µ+σ2)
 σ
-exp   −y2
+exp  −y2
 2
-dy.
+dy.
 4 We denote the cumulative normal distribution function by Φ. In some books, especially in connection with the
 Black-Scholes model, it is denoted by N (which we usually use for the num´eraire). Instead of d+, d−one often
 uses the symbols d1, d2.
@@ -52470,9 +52454,9 @@ Similarly we have with the substitution y−µ
 K
 Z ∞
 log(K)
-· exp   −(y −µ)2
+· exp  −(y −µ)2
 2σ2
-dy
+dy
 =
 1
 √
@@ -52481,47 +52465,47 @@ K
 Z ∞
 log(K)−µ
 σ
-exp   −y2
+exp  −y2
 2
-dy
+dy
 Defining Φ(x) :=
 1
 √
 2π
 R x
-−∞exp   −y2
+−∞exp  −y2
 2
-dy we thus get from
+dy we thus get from
 1
 √
 2π
 R ∞
-x exp   −y2
+x exp  −y2
 2
-dy = Φ(−x) that
+dy = Φ(−x) that
 Z ∞
 −∞
 max(exp(y) −K, 0) · 1
-σφ y −µ
+σφy −µ
 σ
-dy
-= exp  µ + 1
-2σ2Φ µ + σ2 −log(K)
+dy
+= exp µ + 1
+2σ2Φµ + σ2 −log(K)
 σ
- −KΦ µ −log(K)
+ −KΦµ −log(K)
 σ
-.
+.
 Remark 80 (Implied Black-Scholes Volatility):
 From Equation (4.3) and the definition of
 d± we see that under the model (4.2) the price of an option depends on S (0), ¯r and ¯σ only
 (apart from product parameters like T and K). The parameter
 ¯σ =
- 1
+ 1
 T
 Z T
 0
 σ2(t)dt
-1/2
+1/2
 is called the Black-Scholes volatility, while σ(t) is called the instantaneous volatility of the
 model (4.2). The Black-Scholes volatility is the square root of the average instantaneous vari-
 ance (which is the square of the instantaneous volatility)5.

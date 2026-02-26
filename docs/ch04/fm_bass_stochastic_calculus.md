@@ -19,12 +19,12 @@ Z t
 f(s) dg(s) =
 Z t
 f(s)g′(s) ds.
-If we were to take f(s) = 1[0,a](s) (which is not continuous, but that is a minor matter
+If we were to take f(s) = 1\[0,a\](s) (which is not continuous, but that is a minor matter
 here), one would expect the following:
 Z t
-1[0,a](s) dg(s) =
+1\[0,a\](s) dg(s) =
 Z t
-1[0,a](s)g′(s) ds =
+1\[0,a\](s)g′(s) ds =
 Z a
 g′(s) ds = g(a) −g(0).
 Note that although we use the fact that g is differentiable in the intermediate stages, the
@@ -88,13 +88,13 @@ since the second moment of W( i+1
 2n ) is 1/2n. Using the independence and the
 fact that Wt has mean zero,
 E
-
+
 [W( i+1
 2n −W( i
 2n )] [W( j+1
 2n −W( j
 2n )]
-
+
 = E [W( i+1
 2n −W( i
 2n )]E [W( j+1
@@ -178,7 +178,7 @@ Proposition 12.2. Nt is a continuous martingale, E N 2
 ∞= E [G2(b −a)] and
 ⟨N⟩t =
 Z t
-G21[a,b](s) ds.
+G21\[a,b\](s) ds.
 Proof. The continuity is clear. Let us look at E [Nt | Fs]. In the case a < s < t < b, this
 is equal to
 E [G(Wt −Wa) | Fs] = GE [(Wt −Wa) | Fs] = G(Ws −Wa) = Ns.

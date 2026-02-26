@@ -1154,7 +1154,7 @@ ft(U) + ft(U) −ft(D)
 U −D
 (S0 −U)
 =
-ft(U)(U −D) + [ft(U) −ft(D)](S0 −U)
+ft(U)(U −D) + \[ft(U) −ft(D)\](S0 −U)
 U −D
 =
 ft(U)[S0 −D] −ft(D)[S0 −U]

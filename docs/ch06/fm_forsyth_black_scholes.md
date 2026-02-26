@@ -477,13 +477,13 @@ by P. Wilmott). Suppose we have some function G = G(S, t), where S follows the s
 (2.34), then, in small time increment dt, G →G + dG, where
 dG
 =
-
+
 µS ∂G
 ∂S + σ2S2
 ∂2G
 ∂S2 + ∂G
 ∂t
-
+
 dt + σS ∂G
 ∂S dZ
 (2.38)
@@ -604,10 +604,10 @@ a(X, t) dt + b(X, t) dZ ,
 then if G = G(X), then
 dG
 =
-
+
 aGX + Gt + b2
 2 GXX
-
+
 dt + GXb dZ .
 (2.59)
 If E[X] = ¯X, then (b(X, t) and dZ are independent)
@@ -625,9 +625,9 @@ dt
 =
 E[a] = ¯a
 ¯X = E
-Z t
+Z t
 a dt
-
+
 .
 (2.61)
 Let ¯G = E[(X −¯X)2] = var(X), then
@@ -641,13 +641,13 @@ E[b2 dt] + E[2(X −¯X)(a −¯a) dt] ,
 (2.62)
 which means that
 ¯G = var(X) = E
-Z t
+Z t
 b2 dt
-
+
 + E
-Z t
+Z t
 2(a −¯a)(X −¯X) dt
-
+
 .
 (2.63)
 In a particular case, we can sometimes get more useful expressions. If
@@ -755,13 +755,13 @@ stochastic calculus is used. Other forms of stochastic calculus are used in Phys
 flow).
 Substituting equations (2.34) and (2.38) into equation (2.74) gives
 dP = σS
- VS −(αh)
-
+VS −(αh)
+
 dZ +
-
+
 µSVS + σ2S2
 VSS + Vt −µ(αh)S
-
+
 dt
 (2.75)
 We can make this portfolio riskless over the time interval dt, by choosing (αh) = VS in equation (2.75). This
@@ -771,10 +771,10 @@ riskless portfolio for the two state tree model.) So, letting
 (2.76)
 then substituting equation (2.76) into equation (2.75) gives
 dP =
-
+
 Vt + σ2S2
 VSS
-
+
 dt
 (2.77)
 Since P is now risk-free in the interval t →t + dt, then no-arbitrage says that
@@ -782,10 +782,10 @@ dP = rPdt
 (2.78)
 Therefore, equations (2.77) and (2.78) give
 rPdt =
-
+
 Vt + σ2S2
 VSS
-
+
 dt
 (2.79)
 Since
@@ -846,7 +846,7 @@ the payoffor exercise value. So, the value of an American option is given by the
 with the additional constraint
 V (S, t)
 ≥
-
+
 max(S −K, 0)
 for a call
 max(K −S, 0)
@@ -862,7 +862,7 @@ Vτ
 VSS + rSVS −rV
 V (S, τ = 0)
 =
-
+
 max(S −K, 0)
 for a call
 max(K −S, 0)
@@ -872,7 +872,7 @@ V (0, τ)
 Vτ = −rV
 V (S = ∞, τ)
 →
-
+
 ≃S
 for a call
 ≃0
@@ -881,7 +881,7 @@ for a put
 If the option is American, then we also have the additional constraints
 V (S, τ)
 ≥
-
+
 max(S −K, 0)
 for a call
 max(K −S, 0)
@@ -936,10 +936,10 @@ S = µdt + σdZ .
 From Ito’s Lemma (2.38) we have that
 dV
 =
-
+
 Vt + σ2S2
 VSS + µSVS
-
+
 dt + σSVS dZ .
 (3.6)
 Noting that
@@ -949,10 +949,10 @@ E(dZ)
 then
 E(dV )
 =
-
+
 Vt + σ2S2
 VSS + µSVS
-
+
 dt .
 (3.8)
 Combining equations (3.4-3.8) gives
@@ -1078,12 +1078,12 @@ The error in the Monte Carlo method is then
 Error
 =
 O
-
+
 max(∆t,
 √
 M
 )
-
+
 ∆t = timestep
 M = number of Monte Carlo paths
 (4.6)
@@ -1094,27 +1094,27 @@ the same order, we should choose M = O(
 Complexity
 =
 O
- M
+ M
 ∆t
-
+
 =
 O
-
+
 (∆t)3
-
+
 ∆t
 =
 O
-
-(Complexity)−1/3
+
+(Complexity)−1/3
 (4.7)
 and hence
 Error
 =
 O
-
+
 ( Complexity)1/3
-
+
 .
 (4.8)
 In practice, the convergence in terms of timestep error is often not done. People just pick a timestep,
@@ -1395,17 +1395,17 @@ or solving for (x2, x2)
 x1
 =
 exp
-−1
+−1
 2 (y2
 1 + y2
 2)
-
+
 x2
 =
 2π tan−1
-y2
+y2
 y1
-
+
 .
 (4.34)
 After some tedious algebra, we can see that (using equation (4.34))
@@ -1675,79 +1675,79 @@ cj∆t
 X
 ij
 E
-
+
 cj(∆Z2
 j −∆t)ci(∆Z2
 i −∆t)
-
+
 .
 (6.13)
 Now, note the following
-• The increments of Brownian motion are uncorrelated, i.e. Cov [∆Zi ∆Zj] = 0, i ̸= j, which means
+• The increments of Brownian motion are uncorrelated, i.e. Cov \[∆Zi ∆Zj] = 0, i ̸= j, which means
 that Cov
-
+
 ∆Z2
 i ∆Z2
 j
-
+
 = 0, or E
-
+
 (∆Z2
 j −∆t)(∆Z2
 i −∆t)
-
+
 = 0, i ̸= j.
 • ci = c(ti, X(Zi)), and ∆Zi are independent.
 It then follows that for i < j
 E
-
+
 cj(∆Z2
 j −∆t)ci(∆Z2
 i −∆t)
-
+
 =
-E[cicj(∆Z2
-i −∆t)]E[(∆Z2
+E\[cicj(∆Z2
+i −∆t)]E\[(∆Z2
 j −∆t)]
 =
 0 .
 (6.14)
 Similarly, if i > j
 E
-
+
 cj(∆Z2
 j −∆t)ci(∆Z2
 i −∆t)
-
+
 =
-E[cicj(∆Z2
-j −∆t)]E[(∆Z2
+E\[cicj(∆Z2
+j −∆t)]E\[(∆Z2
 i −∆t)]
 =
 0 .
 (6.15)
 So that in all cases
 E
-
+
 cj(∆Z2
 j −∆t)ci(∆Z2
 i −∆t)
-
+
 =
 δijE
-
+
 c2
 i (∆Z2
-i −∆t)2
+i −∆t)2
 .
 (6.16)
 It also follows from the above properties that
-E[c2
+E\[c2
 j(∆Z2
 j −∆t)2]
 =
-E[c2
-j] E[(∆Z2
+E\[c2
+j] E\[(∆Z2
 j −∆t)2]
 (6.17)
 since cj and (∆Z2
@@ -1756,70 +1756,70 @@ Using equations (6.16-6.17), then equation (6.13) becomes
 X
 ij
 E
-
+
 cj(∆Z2
 j −∆t) ci(∆Z2
 i −∆t)
-
+
 =
 X
 i
-E[c2
+E\[c2
 i ] E
-
+
 (∆Z2
-i −∆t)2
+i −∆t)2
 .
 (6.18)
 Now,
 X
 i
-E[c2
+E\[c2
 i ] E
-
+
 (∆Z2
-i −∆t)2
+i −∆t)2
 =
 X
 i
-E[c2
+E\[c2
 i ]
- E
-
+E
+
 ∆Z4
 i
-
+
 −2∆tE
-
+
 ∆Z2
 i
-
-+ (∆t)2
+
++ (∆t)2
 .
 (6.19)
 Recall that (∆Z)2 is N(0, ∆t) ( normally distributed with mean zero and variance ∆t) so that
 E
-
-(∆Zi)2
+
+(∆Zi)2
 =
 ∆t
 E
-
-(∆Zi)4
+
+(∆Zi)4
 =
 3(∆t)2
 (6.20)
 so that equation (6.19) becomes
 E
-
+
 ∆Z4
 i
-
+
 −2∆tE
-
+
 ∆Z2
 i
-
+
 + (∆t)2
 =
 2(∆t)2
@@ -1827,21 +1827,21 @@ i
 and
 X
 i
-E[c2
+E\[c2
 i ] E
-
+
 (∆Z2
-i −∆t)2
+i −∆t)2
 =
 X
 i
-E[c2
+E\[c2
 i ](∆t)2
 =
 2∆t
  X
 i
-E[c2
+E\[c2
 i ]∆t
 !
 =
