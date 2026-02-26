@@ -84,6 +84,33 @@ pip install -r requirements.txt
 
 ---
 
+## 6. Supplementary Python Implementations
+
+Several Python examples in this book are adapted from
+[**Financial-Models-Numerical-Methods**](https://github.com/cantaro86/Financial-Models-Numerical-Methods)
+by Nicola Cantarutti (cantaro86). That project provides Jupyter notebooks and a Python library
+(`FMNM`) covering PDE methods, Fourier inversion, Lévy processes, Kalman filtering,
+and portfolio optimization. The files prefixed with `cantaro86_` throughout this book
+are self-contained, educational adaptations of that library, mapped to the corresponding chapters:
+
+| cantaro86 module | Course chapter |
+|---|---|
+| `BS_pricer` (closed formula, MC, PDE, LSM) | Ch 6 – Black-Scholes Model |
+| `CF` + `probabilities` (characteristic functions, Gil-Pelaez) | Ch 9 – Fourier Pricing Methods |
+| `FFT` (Lewis FFT pricing, IV extraction) | Ch 9 – Fourier Pricing Methods |
+| `Merton_pricer` (closed formula, PIDE, MC) | Ch 7 – Merton Jump-Diffusion |
+| `VG_pricer` (Variance Gamma PIDE, MC) | Ch 7 – Extensions & Exotics |
+| `NIG_pricer` (Normal Inverse Gaussian) | Ch 7 – Extensions & Exotics |
+| `Heston_pricer` (Fourier inversion, MC, FFT) | Ch 16 – Heston Model |
+| `Processes` (GBM, Merton, GARCH, OU) | Ch 3 – SDE |
+| `Processes` (Heston, VG) | Ch 14 – Stochastic Volatility |
+| `Solvers` (Thomas, SOR algorithms) | Ch 8 – BS PDE Numerical Solutions |
+| `TC_pricer` (transaction cost model) | Ch 11 – Hedging |
+| `Kalman_filter` (regression, MLE, RTS smoother) | Ch 17 – Calibration |
+| `portfolio_optimization` (mean-variance, Sharpe) | Ch 3 – SDE (Portfolio & Strategy) |
+
+---
+
 **Sungchul Lee**
 
 Department of Mathematics, College of Science
