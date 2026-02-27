@@ -104,7 +104,6 @@ nav:
                 - Coin Flip Paths (One Path): ch02/codes/coin_flip_one_path.py
                 - Coin Flip Paths (Two Paths): ch02/codes/coin_flip_two_paths.py
                 - Integrated Brownian Motion (Grzelak): ch02/codes/grzelak_integrated_brownian_motion.py
-                - "Geometric Brownian Motion Theory (qfn)": ch02/qfn_geometric_brownian_motion.md
                 - Geometric Brownian Motion (qfn): ch02/codes/qfn_geometric_brownian_motion.py
 
         - 3 SDE:
