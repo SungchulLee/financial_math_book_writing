@@ -6,7 +6,7 @@ Before introducing Brownian motion axiomatically, we begin with the discrete-tim
 
 1. It provides concrete intuition for the abstract properties of Brownian motion.
 2. It historically motivated the development of continuous stochastic processes.
-3. It rigorously justifies Brownian motion as a scaling limit via Donsker's invariance principle.
+3. It motivates the rigorous justification of Brownian motion as a scaling limit via Donsker's invariance principle, which we prove in the next section.
 
 The simple random walk is a canonical example of a stochastic process, characterized by a discrete sequence of steps that evolve in an independent and identically distributed (i.i.d.) manner. This process serves as a fundamental building block in probability theory, underpinning the analysis of diffusion phenomena, financial time series, statistical physics, and population dynamics.
 
@@ -29,6 +29,8 @@ The parameter $p$ governs the drift of the process, distinguishing between symme
 $$S_n = \sum_{i=1}^n X_i$$
 
 ### Symmetric Random Walk
+
+![Simple Random Walk](figures/simple_random_walk.png)
 
 A **symmetric random walk** corresponds to $p = 1/2$, ensuring an equal probability of moving in either direction. For the remainder of this section, unless otherwise specified, we focus on this symmetric case.
 
@@ -98,9 +100,9 @@ For the symmetric case, this simplifies to $\text{Var}(S_n) = n$, reinforcing th
 
 (3) For $p = 1/2$, we have $\xi_i \in \{-1, 1\}$ with $\xi_i^2 = 1$. We compute:
 
-$$\mathbb{E}[S_n^4] = \sum_{i,j,k,l} \mathbb{E}[\xi_i \xi_j \xi_k \xi_l]$$
+$$\mathbb{E}[S_n^4] = \sum_{i,j,k,l=1}^{n} \mathbb{E}[\xi_i \xi_j \xi_k \xi_l]$$
 
-Since $\mathbb{E}[\xi_i] = 0$ and the $\xi_i$ are independent, the only nonzero contributions occur when indices pair up:
+Since $\mathbb{E}[\xi_i] = 0$ and the $\xi_i$ are independent, the only nonzero contributions occur when every index appears an even number of times. The distinct pairings of four indices into two equal pairs are:
 
 - **Case $i = j = k = l$:** Contributes $\sum_{i=1}^n \mathbb{E}[\xi_i^4] = n$
 - **Case $i = j \neq k = l$:** Contributes $\sum_{i \neq k} \mathbb{E}[\xi_i^2]\mathbb{E}[\xi_k^2] = n(n-1)$
@@ -111,17 +113,57 @@ Therefore:
 
 $$\mathbb{E}[S_n^4] = n + 3n(n-1) = 3n^2 - 2n \quad \square$$
 
+### Moment Generating Function
+
+The moment generating function provides a compact encoding of all moments and foreshadows the Gaussian limit.
+
+**Proposition 1.1.1b** (Moment Generating Function)
+
+For the symmetric random walk $S_n = \sum_{i=1}^n \xi_i$:
+
+$$\mathbb{E}[e^{\lambda S_n}] = (\cosh \lambda)^n$$
+
+**Proof:**
+
+By independence:
+
+$$\mathbb{E}[e^{\lambda S_n}] = \prod_{i=1}^n \mathbb{E}[e^{\lambda \xi_i}] = \prod_{i=1}^n \frac{e^{\lambda} + e^{-\lambda}}{2} = (\cosh \lambda)^n \quad \square$$
+
+**Remark:** Using $\log \cosh \lambda = \frac{\lambda^2}{2} - \frac{\lambda^4}{12} + \cdots$, we obtain:
+
+$$\mathbb{E}[e^{\lambda S_n}] = \exp\left(n \log \cosh \lambda\right) = \exp\left(\frac{n\lambda^2}{2} + O(n\lambda^4)\right)$$
+
+Substituting $\lambda = \theta/\sqrt{n}$ gives $\mathbb{E}[e^{\theta S_n/\sqrt{n}}] \to e^{\theta^2/2}$, which is the moment generating function of $\mathcal{N}(0,1)$. This provides a one-line proof of the CLT for the symmetric random walk. The cumulant structure also connects to large deviation theory, where the rate function is $I(x) = \sup_\lambda (\lambda x - \log \cosh \lambda)$.
+
+### Martingale Property
+
+The martingale property is one of the most important structural features of the symmetric random walk and provides the foundation for optional stopping arguments used throughout stochastic calculus.
+
+**Proposition 1.1.2** (Martingale Property)
+
+If $p = 1/2$, then $\{S_n\}_{n \geq 0}$ is a martingale with respect to the natural filtration $\mathcal{F}_n = \sigma(\xi_1, \ldots, \xi_n)$:
+
+$$\mathbb{E}[S_{n+1} \mid \mathcal{F}_n] = S_n$$
+
+**Proof:**
+
+$$\mathbb{E}[S_{n+1} \mid \mathcal{F}_n] = \mathbb{E}[S_n + \xi_{n+1} \mid \mathcal{F}_n] = S_n + \mathbb{E}[\xi_{n+1}] = S_n$$
+
+where the second equality uses the fact that $S_n$ is $\mathcal{F}_n$-measurable and $\xi_{n+1}$ is independent of $\mathcal{F}_n$. $\square$
+
+**Remark:** More generally, $\{S_n^2 - n\}$ is also a martingale (verify as an exercise). This fact, combined with the optional stopping theorem, yields exact formulas for hitting times and ruin probabilities (see Exercise 3). In the continuous limit, Brownian motion $W_t$ and $W_t^2 - t$ are both martingales.
+
 ### Quadratic Variation
 
 A crucial property that distinguishes random walks from smooth paths is their quadratic variation.
 
-**Definition 1.1.2** (Discrete Quadratic Variation)
+**Definition 1.1.3** (Discrete Quadratic Variation)
 
 The quadratic variation of $S_n$ over $[0,n]$ is
 
 $$[S]_n := \sum_{i=1}^n (S_i - S_{i-1})^2 = \sum_{i=1}^n X_i^2$$
 
-**Proposition 1.1.3**
+**Proposition 1.1.4**
 
 For any random walk (symmetric or asymmetric), $[S]_n = n$ almost surely.
 
@@ -131,13 +173,15 @@ Since $X_i \in \{-1, 1\}$, we have $X_i^2 = 1$ for all $i$. Therefore:
 
 $$[S]_n = \sum_{i=1}^n X_i^2 = n \quad \square$$
 
-**Remark:** This deterministic quadratic variation is fundamental. It shows that the "accumulated squared displacement" grows linearly with time, not quadratically as for smooth functions. This property persists in the continuous limit and underlies Itô's lemma.
+**Remark:** This deterministic quadratic variation is fundamental. It shows that the "accumulated squared displacement" grows linearly with time, not quadratically as for smooth functions. This property persists in the continuous limit and underlies Itô's lemma. We revisit this property for the scaled walk in the Path Properties section and verify it computationally in the Simulation: Quadratic Variation section.
 
 ### Recurrence vs Transience
 
 The probability of return to the origin depends crucially on dimensionality. These results, first established by Pólya, underscore the role of dimensionality in determining long-term behavior.
 
-**Theorem 1.1.4** (Pólya's Recurrence Theorem)
+![polya_recurrence](figures/polya_recurrence.png)
+
+**Theorem 1.1.5** (Pólya's Recurrence Theorem)
 
 For a symmetric random walk in $\mathbb{Z}^d$:
 
@@ -147,15 +191,15 @@ For a symmetric random walk in $\mathbb{Z}^d$:
 
 **Proof sketch for $d=1$:**
 
-The probability of first return at time $2n$ is given by
+The probability of being at the origin at time $2n$ is
 
-$$f_{2n} = \frac{1}{2n-1}\binom{2n}{n}\left(\frac{1}{2}\right)^{2n}$$
+$$u_{2n} := \mathbb{P}(S_{2n} = 0) = \binom{2n}{n}\left(\frac{1}{2}\right)^{2n}$$
 
-Using Stirling's approximation, $f_{2n} \sim \frac{1}{\sqrt{\pi n}}$, which is not summable. However, the total return probability
+Using Stirling's approximation, $u_{2n} \sim \frac{1}{\sqrt{\pi n}}$, which is not summable:
 
-$$\sum_{n=1}^\infty f_{2n} = 1$$
+$$\sum_{n=1}^\infty u_{2n} = \infty$$
 
-proving recurrence. $\square$
+so the expected number of returns to the origin is infinite. By the renewal relation between $u_{2n}$ and the first-return probability $f_{2n}$, via generating functions $U(s) = 1/(1 - F(s))$, the divergence $U(1) = \infty$ implies $F(1) = \sum_{n=1}^\infty f_{2n} = 1$, proving recurrence. $\square$
 
 **Remark:** The distinction between recurrence and transience has profound implications in statistical mechanics, polymer physics, and random graph theory. For asymmetric walks ($p \neq 1/2$), even in one dimension, the walk can be transient if the drift is sufficiently strong.
 
@@ -337,7 +381,7 @@ This defines $W^{(n)} \in C[0,T]$ for each $n$, where $C[0,T]$ is the space of c
 
 ### Asymptotic Properties
 
-**Proposition 1.1.5** (Convergence of Moments)
+**Proposition 1.1.6** (Convergence of Moments)
 
 For fixed $t \in [0,T]$ and the symmetric random walk:
 
@@ -353,7 +397,7 @@ For fixed $t \in [0,T]$ and the symmetric random walk:
 
 $$\text{Var}(S^{(n)}(t)) = \frac{1}{n}\text{Var}(S_{\lfloor nt \rfloor}) = \frac{\lfloor nt \rfloor}{n} = t - \frac{\{nt\}}{n} \to t$$
 
-(3) For $s < t$, we first note that for $m \leq k$. Since $\mathbb{E}[S_m] = 0$, we have $\text{Cov}(S_m, S_k) = \mathbb{E}[S_m S_k]$:
+(3) For $s < t$, let $m = \lfloor ns \rfloor$ and $k = \lfloor nt \rfloor$, so $m \leq k$. Since $\mathbb{E}[S_m] = 0$, we have $\text{Cov}(S_m, S_k) = \mathbb{E}[S_m S_k]$:
 
 $$\mathbb{E}[S_m S_k] = \mathbb{E}\left[\sum_{i=1}^m \xi_i \sum_{j=1}^k \xi_j\right] = \sum_{i=1}^m \sum_{j=1}^k \mathbb{E}[\xi_i \xi_j] = \sum_{i=1}^{m} \mathbb{E}[\xi_i^2] = m = \min(m,k)$$
 
@@ -368,6 +412,8 @@ This example demonstrates **Donsker's theorem** by showing how the scaled random
 **Donsker's Invariance Principle** states:
 
 $$S^{(n)}(t) = \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor} \Rightarrow W_t \quad \text{in } C[0,T]$$
+
+More precisely, convergence holds in the Skorokhod space $D[0,T]$. Since the limit $W_t$ has continuous paths and we use piecewise linear interpolation (so that $W^{(n)} \in C[0,T]$), the convergence may equivalently be viewed in $C[0,T]$ equipped with the sup-norm topology.
 
 As $n$ increases:
 
@@ -432,7 +478,7 @@ plt.show()
 2. Variance at time $t$ remains approximately $t$ across all $n$
 3. The limiting process exhibits the characteristic "wiggliness" of Brownian motion
 
-**Verification of Proposition 1.1.5**: At $t = 1$, the scaled random walk has variance:
+**Verification of Proposition 1.1.6**: At $t = 1$, the scaled random walk has variance:
 
 $$\text{Var}(S^{(n)}(1)) = \frac{\lfloor n \rfloor}{n} \approx 1$$
 
@@ -442,7 +488,7 @@ which matches $\text{Var}(W_1) = 1$ for Brownian motion.
 
 The CLT for i.i.d. sequences is the engine driving convergence to Brownian motion.
 
-**Theorem 1.1.6** (Classical CLT)
+**Theorem 1.1.7** (Classical CLT)
 
 Let $\{\xi_i\}$ be i.i.d. with $\mathbb{E}[\xi_i] = 0$ and $\mathbb{E}[\xi_i^2] = \sigma^2 < \infty$. Then:
 
@@ -456,7 +502,7 @@ $$\frac{S_n}{\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1)$$
 
 This implies that for fixed $t$, $S^{(n)}(t) \xrightarrow{d} \mathcal{N}(0, t)$.
 
-**However:** Finite-dimensional convergence is insufficient! We need **functional convergence** in the space $C[0,T]$.
+**However:** Finite-dimensional convergence alone is insufficient. We need **functional convergence** in the space $C[0,T]$. In addition to finite-dimensional convergence, one must prove **tightness** of the sequence $\{S^{(n)}\}$ in $D[0,T]$ (or $C[0,T]$), ensuring that the probability measures do not "escape to infinity." This is the content of Donsker's theorem, proven in the next section.
 
 ### Scaling Limit Preview
 
@@ -467,24 +513,6 @@ $$\frac{S_{\lfloor nt \rfloor}}{\sqrt{n}} \Rightarrow W_t$$
 where $W_t$ denotes Brownian motion. This limit theorem establishes a bridge between discrete and continuous-time stochastic processes and has far-reaching implications in fields such as statistical mechanics and financial modeling.
 
 ## Structural Properties
-
-### Independent Increments
-
-A property that transfers cleanly from discrete to continuous time.
-
-**Proposition 1.1.7** (Independent Increments) 
-
-For $0 \leq t_1 < t_2 < \cdots < t_k \leq T$, the increments
-
-$$S^{(n)}(t_2) - S^{(n)}(t_1), \, S^{(n)}(t_3) - S^{(n)}(t_2), \, \ldots, \, S^{(n)}(t_k) - S^{(n)}(t_{k-1})$$
-
-are independent for each $n$.
-
-**Proof:** 
-
-Each increment $S^{(n)}(t_{i+1}) - S^{(n)}(t_i)$ depends on disjoint sets of $\{\xi_j\}$ variables, which are independent by construction. $\square$
-
-**Remark:** This property is preserved in the limit, making Brownian motion a **Lévy process** (stochastic process with stationary independent increments).
 
 ### Markov Property
 
@@ -504,17 +532,35 @@ which depends only on $S_n$, not the entire history. $\square$
 
 The scaled version $S^{(n)}(t)$ inherits this Markov property, which persists in the Brownian limit.
 
+### Independent Increments
+
+A property that transfers cleanly from discrete to continuous time.
+
+**Proposition 1.1.9** (Independent Increments) 
+
+For $0 \leq t_1 < t_2 < \cdots < t_k \leq T$, the increments
+
+$$S^{(n)}(t_2) - S^{(n)}(t_1), \, S^{(n)}(t_3) - S^{(n)}(t_2), \, \ldots, \, S^{(n)}(t_k) - S^{(n)}(t_{k-1})$$
+
+are independent for each $n$, provided the time points $t_i$ are multiples of $1/n$ (so that the increments correspond to disjoint sets of $\{\xi_j\}$). More generally, independence holds whenever the intervals $[\lfloor nt_i \rfloor + 1, \lfloor nt_{i+1} \rfloor]$ are disjoint.
+
+**Proof:** 
+
+Each increment $S^{(n)}(t_{i+1}) - S^{(n)}(t_i)$ depends on disjoint sets of $\{\xi_j\}$ variables, which are independent by construction. $\square$
+
+**Remark:** This property is preserved in the limit, making Brownian motion a **Lévy process** (stochastic process with stationary independent increments).
+
 ## Path Properties
 
 ### Non-Differentiability
 
 **Observation:** The random walk has "corners" at every integer time $n$. The slope between $n-1$ and $n$ is $\xi_n \in \{-1, 1\}$, which changes randomly.
 
-For the scaled version, consider the difference quotient:
+For the scaled version, consider the difference quotient at the mesh scale $\Delta t = 1/n$:
 
-$$\frac{S^{(n)}(t + \Delta t) - S^{(n)}(t)}{\Delta t} \approx \frac{\xi_{\lfloor nt \rfloor+1}}{\sqrt{n} \cdot (1/n)} = \sqrt{n} \cdot \xi_{\lfloor nt \rfloor+1} \sim \sqrt{n} \cdot O(1)$$
+$$\frac{S^{(n)}(t + 1/n) - S^{(n)}(t)}{1/n} = \frac{\xi_{\lfloor nt \rfloor+1}/\sqrt{n}}{1/n} = \sqrt{n} \cdot \xi_{\lfloor nt \rfloor+1}$$
 
-which diverges as $n \to \infty$.
+Since $\xi_{\lfloor nt \rfloor+1} = \pm 1$, this difference quotient has magnitude $\sqrt{n}$, which diverges as $n \to \infty$.
 
 **Heuristic Conclusion:** In the limit, Brownian motion should be continuous but nowhere differentiable.
 
@@ -526,7 +572,7 @@ For the scaled random walk:
 
 $$[S^{(n)}]_t = \sum_{i=1}^{\lfloor nt \rfloor} (S^{(n)}(i/n) - S^{(n)}((i-1)/n))^2 = \frac{1}{n} \sum_{i=1}^{\lfloor nt \rfloor} \xi_i^2 = \frac{\lfloor nt \rfloor}{n} \to t$$
 
-This suggests that in the limit, the **quadratic variation equals $t$**, not $t^2$ as for smooth functions.
+That is, the discrete quadratic variation of the scaled walk converges to $t$. This motivates the definition of quadratic variation for continuous processes, which we formalize in the next chapter.
 
 **Key Insight:** If $f(t)$ is differentiable with bounded derivative $f'(t)$, then
 
@@ -536,13 +582,13 @@ But for Brownian motion:
 
 $$\langle W \rangle_t = t \quad \text{(non-zero quadratic variation)}$$
 
-This is the foundation for Itô's formula: when we compute $(dW_t)^2$, we get $dt$, not 0.
+This phenomenon is the analytic origin of Itô calculus, where formally $(dW_t)^2 = dt$.
 
 ## Simulation: Quadratic Variation
 
 This example illustrates the fundamental property that quadratic variation grows linearly with time, not quadratically.
 
-**Proposition 1.1.3** states that for the simple random walk:
+**Proposition 1.1.4** states that for the simple random walk:
 
 $$[S]_n = \sum_{i=1}^n (S_i - S_{i-1})^2 = \sum_{i=1}^n \xi_i^2 = n$$
 
@@ -550,7 +596,7 @@ This is **deterministic** (not random!), unlike the path itself. In the continuo
 
 $$\langle W \rangle_t = t$$
 
-This is the foundation for Itô calculus: $(dW_t)^2 = dt$, not 0.
+This is the analytic origin of Itô calculus: formally $(dW_t)^2 = dt$, not 0.
 
 ```python
 import matplotlib.pyplot as plt
@@ -633,7 +679,7 @@ All paths have [S]_n = n exactly: True
 **Left plot**: 
 
 - All paths (colored lines) lie **exactly** on the red dashed line $[S]_n = n$
-- This confirms Proposition 1.1.3: quadratic variation is deterministic, not random
+- This confirms Proposition 1.1.4: quadratic variation is deterministic, not random
 - Unlike the random walk itself (which fluctuates), $[S]_n$ has zero variance
 
 **Right plot**:
@@ -646,7 +692,7 @@ All paths have [S]_n = n exactly: True
 
 For a differentiable function $f(t)$ with bounded derivative:
 
-$$\sum_{i=1}^n (f(i/n) - f((i-1)/n))^2 \approx (1/n) \cdot \underbrace{\frac{1}{n}\sum_{i=1}^n (f'(i/n))^2}_{\to \int_0^1 (f'(t))^2 dt} = O(1/n) \to 0$$
+$$\sum_{i=1}^n (f(t_i) - f(t_{i-1}))^2 \approx \sum_{i=1}^n (f'(t_i))^2 (\Delta t)^2 = (\Delta t) \cdot \underbrace{\frac{1}{n}\sum_{i=1}^n (f'(t_i))^2}_{\to \int_0^1 (f'(t))^2 dt} = O(1/n) \to 0$$
 
 For Brownian motion:
 
@@ -751,15 +797,17 @@ This confirms Proposition 1.1.1 numerically and demonstrates the power of the La
 
 ## Applications
 
-1. **Gambler's Ruin Problem**: Models the probability of a gambler going bankrupt when repeatedly wagering in a fair or biased game.
+1. **Gambler's Ruin Problem**: Models the probability of a gambler going bankrupt when repeatedly wagering in a fair or biased game. The symmetric random walk provides exact ruin probabilities via the martingale optional stopping theorem (see Exercise 3).
 
-2. **Financial Market Modeling**: While simplistic, the random walk hypothesis serves as an idealized framework for asset price movements, forming the foundation for more sophisticated models such as geometric Brownian motion.
+2. **Financial Market Modeling**: While simplistic, the random walk hypothesis serves as an idealized framework for asset price movements. The scaling limit to geometric Brownian motion forms the foundation for the Black-Scholes option pricing theory, as discussed in the Connection to Finance section below.
 
-3. **Diffusion Processes**: The motion of particles in a fluid (Brownian motion) is well-approximated by discrete random walk models.
+3. **Diffusion Processes**: The motion of particles in a fluid (Brownian motion) is well-approximated by discrete random walk models. Einstein's 1905 derivation of the diffusion equation proceeds via this connection.
 
-4. **Population Genetics**: Used in Wright-Fisher and Moran models to describe allele frequency fluctuations due to genetic drift.
+4. **Population Genetics**: Used in Wright-Fisher and Moran models to describe allele frequency fluctuations due to genetic drift. The recurrence/transience dichotomy (Theorem 1.1.5) determines whether genetic diversity is maintained.
 
-5. **Markov Chains and Reinforcement Learning**: Random walks serve as prototypical examples of Markovian state transitions, with applications in dynamic programming and artificial intelligence.
+5. **Markov Chains and Reinforcement Learning**: Random walks serve as prototypical examples of Markovian state transitions, with applications in dynamic programming and artificial intelligence. The Markov property (Proposition 1.1.8) is the key structural ingredient.
+
+Several of these applications are developed further in the exercises and subsequent chapters.
 
 ## Connection to Finance
 
@@ -790,12 +838,12 @@ remains positive and is the foundation of Black-Scholes theory.
 The simple random walk provides:
 
 1. **Intuitive picture** of random motion in discrete time
-2. **Concrete calculations** for mean, variance, quadratic variation  
-3. **Independent increments** structure
-4. **Markov property**
+2. **Concrete calculations** for mean, variance, moment generating function, quadratic variation  
+3. **Martingale property** and its consequences for stopping problems
+4. **Markov property** and **independent increments** structure
 5. **Recurrence vs. transience** depending on dimension
 6. **Heuristic for non-differentiability** and non-zero quadratic variation
-7. **Motivation for scaling limits** via CLT
+7. **Motivation for scaling limits** via CLT and tightness
 
 The simulations in this section have verified these theoretical properties numerically:
 
@@ -810,27 +858,27 @@ The natural question: **Can we make the limiting procedure rigorous?** Yes—via
 
 1. Let $\Pi_n$ be a partition of $[0,n]$ with mesh going to zero. Consider
 
-$$Q_n := \sum_{i} (S_{t_{i+1}} - S_{t_i})^2$$
+    $$Q_n := \sum_{i} (S_{t_{i+1}} - S_{t_i})^2$$
 
-   (a) Show that $\mathbb{E}[Q_n] = n$.
-   
-   (b) Show that $Q_n = n$ almost surely (not just in expectation).
-   
-   (c) Explain why this deterministic quadratic variation distinguishes random walks from smooth functions.
+    (a) Show that $\mathbb{E}[Q_n] = n$.
+
+    (b) Show that $Q_n = n$ almost surely (not just in expectation).
+
+    (c) Explain why this deterministic quadratic variation distinguishes random walks from smooth functions.
 
 2. For the symmetric random walk $S_n = \sum_{i=1}^n \xi_i$ where $\xi_i \in \{-1, +1\}$ with equal probability:
 
-   (a) Verify that $\mathbb{E}[S_n^2] = n$ by direct calculation.
-   
-   (b) Compute $\mathbb{E}[S_n^6]$ using the pairing argument from Proposition 1.1.1.
-   
-   (c) Show that $\mathbb{E}[S_n^{2k}] = (2k-1)!! \cdot n^k$ for large $n$ (hint: compare with Brownian motion moments).
+    (a) Verify that $\mathbb{E}[S_n^2] = n$ by direct calculation.
+
+    (b) Compute $\mathbb{E}[S_n^6]$ using the pairing argument from Proposition 1.1.1.
+
+    (c) Show that $\mathbb{E}[S_n^{2k}] = (2k-1)!! \cdot n^k + O(n^{k-1})$ as $n \to \infty$ (hint: compare with Brownian motion moments $\mathbb{E}[W_1^{2k}] = (2k-1)!!$).
 
 3. (Gambler's Ruin) A gambler starts with $\$a$ and bets $\$1$ on each fair coin flip. Let $\tau_0$ be the first time the gambler is ruined (reaches $\$0$) and $\tau_b$ be the first time to reach $\$b > a$.
 
-   (a) Using the martingale property of $S_n$, show that $\mathbb{P}(\tau_b < \tau_0) = a/b$.
-   
-   (b) What happens as $b \to \infty$?
+    (a) Using the martingale property of $S_n$, show that $\mathbb{P}(\tau_b < \tau_0) = a/b$.
+
+    (b) What happens as $b \to \infty$?
 
 ## References
 

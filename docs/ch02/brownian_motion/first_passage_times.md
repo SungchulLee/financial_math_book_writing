@@ -6,7 +6,9 @@ First passage times represent the random time at which a Brownian motion first h
 
 **Hitting Times Definition**
 The first passage time (or hitting time) $\tau_a$ to a level $a$ is defined as:
+
 $$\tau_a = \inf\{t \geq 0 : B_t = a\}$$
+
 where $B_t$ is a standard Brownian motion and $a$ is a target level.
 
 **Reflection Principle**
