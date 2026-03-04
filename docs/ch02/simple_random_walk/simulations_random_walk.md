@@ -41,7 +41,7 @@ Heads: 53, Tails: 47
 Final position S_100 = 6
 ```
 
-![Single Realization of Simple Random Walk](../brownian_motion/figures/fig01_single_path.png)
+![Single Realization of Simple Random Walk](figures/fig01_single_path.png)
 
 **What to observe:**
 
@@ -90,7 +90,7 @@ Sample mean at n=100: 0.60  (theoretical: 0)
 Sample variance at n=100: 128.04  (theoretical: 100)
 ```
 
-![Multiple Independent Simple Random Walks](../brownian_motion/figures/fig02_multiple_paths.png)
+![Multiple Independent Simple Random Walks](figures/fig02_multiple_paths.png)
 
 **What to observe:**
 
@@ -136,7 +136,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Scaled Random Walk Converging to Brownian Motion](../brownian_motion/figures/fig03_scaled_convergence.png)
+![Scaled Random Walk Converging to Brownian Motion](figures/fig03_scaled_convergence.png)
 
 **What to observe:**
 
@@ -191,7 +191,7 @@ print(f"All paths equal n exactly: {np.allclose(QV_paths[:, -1], num_steps)}")
 All paths equal n exactly: True
 ```
 
-![Quadratic Variation of Random Walk](../brownian_motion/figures/fig04_quadratic_variation.png)
+![Quadratic Variation of Random Walk](figures/fig04_quadratic_variation.png)
 
 **What to observe:** Every colored path lies exactly on the red dashed line $[S]_n = n$. There is no spread — the quadratic variation has zero randomness. Compare this to the position $S_n$ itself (Simulation 2), which has spread $\sim\sqrt{n}$. The contrast illustrates why $[S]_n = n$ is a *structural* property, not a probabilistic one.
 
@@ -259,6 +259,6 @@ At n = 100:
   E[S^4]: empirical = 29432.7, theoretical = 29800,  error = 1.23%
 ```
 
-![Verification of Moment Formulas](../brownian_motion/figures/fig05_moment_verification.png)
+![Verification of Moment Formulas](figures/fig05_moment_verification.png)
 
 **What to observe:** Both empirical curves track their theoretical counterparts closely. Relative error below 2% with $10{,}000$ trials is expected by the Law of Large Numbers; it would shrink as $1/\sqrt{\text{num\_trials}}$ if the number of trials were increased.

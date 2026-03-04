@@ -34,7 +34,7 @@ which follows from decomposing visits to the origin by the time of the first ret
 
 ## Pólya's Recurrence Theorem
 
-![Polya recurrence](../brownian_motion/figures/polya_recurrence.png)
+![Polya recurrence](figures/polya_recurrence.png)
 
 **Theorem 1.1.6** (Pólya's Recurrence Theorem)
 

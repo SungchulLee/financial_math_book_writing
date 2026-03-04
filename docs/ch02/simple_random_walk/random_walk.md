@@ -50,7 +50,7 @@ This is the form we use most often in computations.
 
 ## Symmetric Random Walk
 
-![Simple Random Walk](../brownian_motion/figures/simple_random_walk.png)
+![Simple Random Walk](figures/simple_random_walk.png)
 
 A **symmetric random walk** corresponds to $p = 1/2$, so that $+1$ and $-1$ steps are equally likely. Unless stated otherwise, the remaining pages in this section focus on the symmetric case.
 
