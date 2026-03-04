@@ -1,15 +1,8 @@
 # Chapter 2: Stochastic Processes
 
-This chapter develops the probabilistic machinery underlying continuous-time finance. Beginning with discrete-time probability and Markov chains, we construct Brownian motion as the scaling limit of random walks, study its path properties and moment structure, and then build the theory of filtrations, martingales, and stopping times that governs information flow and fair pricing in stochastic models.
+This chapter develops the probabilistic machinery underlying continuous-time finance. Beginning with the simple random walk, we construct Brownian motion as its scaling limit via Donsker's theorem, study its path properties and moment structure, and then build the theory of filtrations, conditional expectation, martingales, and stopping times that governs information flow and fair pricing in stochastic models.
 
 ## Key Concepts
-
-### **Discrete-Time Foundations**
-The measure-theoretic foundations begin with probability spaces $(\Omega, \mathcal{F}, \mathbb{P})$, random variables, and conditional expectation $\mathbb{E}[X \mid \mathcal{G}]$ defined via the Radon-Nikodym theorem as the unique $\mathcal{G}$-measurable random variable satisfying $\int_G \mathbb{E}[X \mid \mathcal{G}]\, d\mathbb{P} = \int_G X\, d\mathbb{P}$ for all $G \in \mathcal{G}$. Key properties include the tower property, linearity, taking out what is known, and Jensen's inequality for conditional expectations. Geometrically, $\mathbb{E}[X \mid \mathcal{G}]$ is the orthogonal projection of $X$ onto $L^2(\mathcal{G})$. Markov chains introduce the memoryless property
-
-$$\mathbb{P}(X_{n+1} \mid X_0, \ldots, X_n) = \mathbb{P}(X_{n+1} \mid X_n)$$
-
-and are characterized by their transition matrices $P = (p_{ij})$. Stationary distributions $\pi P = \pi$ describe long-run behavior, with the Perron-Frobenius theorem guaranteeing existence and uniqueness for irreducible aperiodic chains.
 
 ### **Random Walks**
 The simple symmetric random walk

@@ -53,7 +53,7 @@ Since $S_n = \sum_{i=1}^n X_i$ and each $X_i$ has the same distribution, lineari
 $$\mathbb{E}[S_n] = \mathbb{E}\!\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n (2p-1) = n(2p-1).$$
 
 !!! note "Linearity of expectation requires no independence"
-    The step $\sum_{i=1}^n \mathbb{E}[X_i] = \mathbb{E}[\sum_{i=1}^n X_i]$ holds for *any* integrable random variables, dependent or not. Independence is not needed for the mean.
+    The step $\mathbb{E}[\sum_{i=1}^n X_i] = \sum_{i=1}^n \mathbb{E}[X_i]$ holds for *any* integrable random variables, dependent or not. Independence is not needed for the mean.
 
 **Symmetric case ($p = 1/2$).** The drift vanishes:
 
