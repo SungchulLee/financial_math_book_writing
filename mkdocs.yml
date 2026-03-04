@@ -68,9 +68,18 @@ nav:
                 - Conditional Expectation: ch02/discrete_time/conditional_expectation.md
                 - Markov Chains: ch02/discrete_time/markov_chains.md
                 - Transition Matrices and Stationary Distributions: ch02/discrete_time/transition_matrices_and_stationary_distributions.md
-            - 2.2 Brownian Motion:
-                - Random Walk: ch02/brownian_motion/random_walk.md
-                - Donsker's Theorem: ch02/brownian_motion/donsker_theorem.md
+            - 2.2 Simple Random Walk:
+                - Random Walk: ch02/simple_random_walk/random_walk.md
+                - Moments of Random Walk: ch02/simple_random_walk/moments_of_random_walk.md
+                - Moment Generating Function: ch02/simple_random_walk/mgf_of_random_walk.md
+                - Martingale Property: ch02/simple_random_walk/martingale_property.md
+                - Recurrence and Transience: ch02/simple_random_walk/recurrence_and_transience.md
+                - Scaling Limit: ch02/simple_random_walk/scaling_limit.md
+                - Donsker's Theorem: ch02/simple_random_walk/donsker_theorem.md
+                - Simulations: ch02/simple_random_walk/simulations_random_walk.md
+                - Applications: ch02/simple_random_walk/applications_random_walk.md
+                - Exercises: ch02/simple_random_walk/exercises_random_walk.md
+            - 2.3 Brownian Motion:
                 - Brownian Motion: ch02/brownian_motion/brownian_motion.md
                 - Moments of Brownian Motion: ch02/brownian_motion/moments_of_brownian_motion.md
                 - Scaling and Time Change: ch02/brownian_motion/scaling_and_time_change.md
@@ -78,7 +87,7 @@ nav:
                 - Quadratic Variation of Brownian Motion: ch02/brownian_motion/quadratic_variation_of_brownian_motion.md
                 - Reflection Principle: ch02/brownian_motion/reflection_principle.md
                 - First Passage Times: ch02/brownian_motion/first_passage_times.md
-            - 2.3 Martingale:
+            - 2.4 Martingale:
                 - Filtrations: ch02/filtration_and_martingales/filtration.md
                 - Adapted Processes: ch02/filtration_and_martingales/adapted_processes.md
                 - Martingales: ch02/filtration_and_martingales/martingales.md
@@ -90,7 +99,7 @@ nav:
                 - Martingale Convergence: ch02/filtration_and_martingales/martingale_convergence.md
                 - Doob–Meyer Decomposition: ch02/filtration_and_martingales/doob_meyer_decomposition.md
                 - Uniform Integrability: ch02/filtration_and_martingales/uniform_integrability.md
-            - 2.4 Python Examples:
+            - 2.5 Python Examples:
                 - Brownian Motion Beginner Tutorial: ch02/codes/brownian_motion_beginner_tutorial.py
                 - Brownian Motion Simulation: ch02/codes/brownian_motion_simulation.py
                 - Cumulative Sum of dB²: ch02/codes/brownian_motion_cumsum_db_sq.py
