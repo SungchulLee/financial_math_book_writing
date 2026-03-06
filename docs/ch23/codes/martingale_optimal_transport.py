@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def martingale_optimal_transport():
     """
     Martingale Optimal Transport.

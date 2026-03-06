@@ -147,11 +147,15 @@ This shows $\partial_t u = \mathcal{L}u$ at $t = 0$.
 By the **Markov property**, the same argument applies at any time $t$:
 
 $$
+
 \frac{\partial u}{\partial t}(t, x) = \lim_{h \downarrow 0} \frac{u(t+h, x) - u(t, x)}{h} = \lim_{h \downarrow 0} \frac{\mathbb{E}_x[\mathbb{E}_{X_t}[g(X_h)]] - \mathbb{E}_x[g(X_t)]}{h}
+
 $$
 
 $$
+
 = \mathbb{E}_x\left[\lim_{h \downarrow 0} \frac{\mathbb{E}_{X_t}[g(X_h)] - g(X_t)}{h}\right] = \mathbb{E}_x[(\mathcal{L}g)(X_t)]
+
 $$
 
 For the function $u(t, \cdot)$, this gives $\frac{\partial u}{\partial t}(t, x) = (\mathcal{L}_x u)(t, x)$.
@@ -332,12 +336,15 @@ See [Feynman–Kac Formula](../feynman_kac/feynman_kac_formula.md).
 Dynkin's formula is the **integrated form** of the backward equation.
 
 **Backward equation** (differential):
+
 $$\frac{\partial}{\partial t}\mathbb{E}_x[g(X_t)] = \mathcal{L}_x \mathbb{E}_x[g(X_t)]$$
 
 **Dynkin's formula** (integral):
+
 $$\mathbb{E}_x[g(X_t)] = g(x) + \mathbb{E}_x\left[\int_0^t (\mathcal{L}g)(X_s)\,ds\right]$$
 
 Differentiating Dynkin at $t = 0$:
+
 $$\frac{\partial}{\partial t}\mathbb{E}_x[g(X_t)]\Big|_{t=0} = (\mathcal{L}g)(x)$$
 
 recovers the backward equation at $t = 0$.

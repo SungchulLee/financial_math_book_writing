@@ -21,11 +21,15 @@ The CCP becomes:
 **Multilateral netting:** Reduces total exposures
 
 $$
+
 \text{Bilateral Exposure} = \sum_{i<j} |E_{ij}|
+
 $$
 
 $$
+
 \text{CCP Exposure} = \sum_i |E_i^{\text{CCP}}| < \sum_{i<j} |E_{ij}|
+
 $$
 
 **Standardized margin:** Consistent risk management
@@ -41,13 +45,17 @@ $$
 **Variation Margin (VM):** Daily mark-to-market settlement
 
 $$
+
 \text{VM}_t = V_t - V_{t-1}
+
 $$
 
 **Initial Margin (IM):** Covers potential future exposure during MPOR
 
 $$
+
 \text{IM} \approx \text{VaR}_{99\%}(\text{Portfolio change over MPOR})
+
 $$
 
 ### Default Fund (DF)
@@ -55,7 +63,9 @@ $$
 Pre-funded contributions from all members:
 
 $$
+
 \text{DF Total} = \sum_i \text{DF}_i
+
 $$
 
 Absorbs losses beyond defaulter's IM.
@@ -80,7 +90,9 @@ CCP's own capital at risk:
 6. **CCP equity** → Final buffer before resolution
 
 $$
+
 \text{Loss Absorption Capacity} = \text{IM}_{\text{defaulter}} + \text{DF}_{\text{defaulter}} + \text{SITG} + \text{DF}_{\text{others}} + \text{Assessments}
+
 $$
 
 ---
@@ -133,7 +145,9 @@ During stress:
 **Regulatory guidance (EMIR, PFMI):**
 
 $$
+
 \text{IM}_{\text{stressed}} \le 1.25 \times \text{IM}_{\text{normal}} \quad \text{(indicative cap)}
+
 $$
 
 ---
@@ -170,7 +184,9 @@ If waterfall exhausted:
 CCPs must hold resources to cover default of two largest members:
 
 $$
+
 \text{Total Resources} \ge \text{Exposure}_{\text{largest}} + \text{Exposure}_{\text{2nd largest}}
+
 $$
 
 under extreme but plausible conditions.

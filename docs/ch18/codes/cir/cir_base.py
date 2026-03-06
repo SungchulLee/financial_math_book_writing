@@ -1,3 +1,9 @@
+"""
+Cir Base
+
+Educational script demonstrating cir base concepts.
+"""
+
 # ============================================================================
 # cir/cir_base.py
 # ============================================================================
@@ -152,3 +158,7 @@ class CIRParameters:
             'maturity_time': self.maturity_time,
             'feller_parameter': self.feller_parameter
         }
+
+
+if __name__ == "__main__":
+    pass

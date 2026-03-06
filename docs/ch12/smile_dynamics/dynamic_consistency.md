@@ -23,14 +23,18 @@ A volatility model is **dynamically consistent** if:
 Let $\Theta_0$ be the model parameters calibrated at $t=0$. Evolve the model to $t$ to get state $X_t$. The forward-implied surface is:
 
 $$
+
 \sigma_{\text{fwd}}(K, T; X_t, \Theta_0)
+
 $$
 
 
 Dynamic consistency requires:
 
 $$
+
 \sigma_{\text{fwd}}(K, T; X_t, \Theta_0) \stackrel{d}{=} \sigma_{\text{IV}}(K, T; \text{recalibrated at } t)
+
 $$
 
 
@@ -68,7 +72,9 @@ Under Black-Scholes:
 **Evolution:** Under local vol dynamics:
 
 $$
+
 dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+
 $$
 
 
@@ -81,7 +87,9 @@ The forward smile **flattens** over time.
 **Quantitative measure:**
 
 $$
+
 \text{Inconsistency} = \|\sigma_{\text{fwd}}^{\text{model}} - \sigma_{\text{IV}}^{\text{recalibrated}}\|
+
 $$
 
 
@@ -128,7 +136,9 @@ SABR with stochastic $\alpha_t$:
 **Cliquets:**
 
 $$
+
 \text{Cliquet Price} = \mathbb{E}\left[\sum_i f\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)\right]
+
 $$
 
 
@@ -165,14 +175,18 @@ Forward vega exposure depends on forward smile:
 Recalibrating each day changes model parameters:
 
 $$
+
 \Theta_0 \to \Theta_1 \to \Theta_2 \to \cdots
+
 $$
 
 
 **P&L impact:**
 
 $$
+
 \text{P\&L}_{\text{recalib}} = P(\Theta_1) - P(\Theta_0)
+
 $$
 
 
@@ -216,7 +230,9 @@ Adding factors improves dynamics:
 Allow parameters to vary with time:
 
 $$
+
 \kappa(t), \theta(t), \xi(t)
+
 $$
 
 
@@ -227,7 +243,9 @@ $$
 Model forward variance curve directly:
 
 $$
+
 d\xi_t^T = \xi_t^T \omega(T-t) dZ_t
+
 $$
 
 
@@ -259,7 +277,9 @@ $$
 **Metric:**
 
 $$
+
 \text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^N \left(\sigma_{\text{fwd},i}^{\text{model}} - \sigma_{\text{IV},i}^{\text{market}}\right)^2}
+
 $$
 
 
@@ -302,7 +322,9 @@ $$
 Model the forward smile surface directly:
 
 $$
+
 d\sigma_{\text{fwd}}(m, T_1, T_2; t) = \mu(\cdot) dt + \nu(\cdot) dW_t
+
 $$
 
 
@@ -320,7 +342,9 @@ The forward smile must satisfy:
 **No-arbitrage condition:**
 
 $$
+
 \sigma_{\text{fwd}}^2(T_1, T_2) > 0 \quad \text{for all } T_2 > T_1
+
 $$
 
 
@@ -330,7 +354,9 @@ $$
 Forward variance swaps provide model-free information about forward volatility:
 
 $$
+
 K_{\text{var}}^{\text{fwd}}(T_1, T_2) = \frac{K_{\text{var}}(T_2) T_2 - K_{\text{var}}(T_1) T_1}{T_2 - T_1}
+
 $$
 
 

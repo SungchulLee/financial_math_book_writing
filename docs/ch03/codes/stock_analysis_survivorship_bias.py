@@ -1,3 +1,9 @@
+"""
+Stock Analysis Survivorship Bias
+
+Educational script demonstrating stock analysis survivorship bias concepts.
+"""
+
 # ============================================================================
 # stock_analysis_CREATE_SURVIVORSHIP_BIAS_STUDY.py
 # ============================================================================
@@ -26,4 +32,6 @@ def create_survivorship_bias_study():
     
     # This demonstrates why using current S&P 500 for historical studies is misleading
 
-create_survivorship_bias_study()
+
+if __name__ == "__main__":
+    create_survivorship_bias_study()

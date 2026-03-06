@@ -748,8 +748,10 @@ $$\phi(\omega) = e^{\delta(\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2-(\beta+i\ome
 **Lévy measure**:
 
 $$\nu(dx) = \begin{cases}
+
 \frac{Ce^{-G|x|}}{|x|^{1+Y}}dx & x < 0 \\
 \frac{Ce^{-M|x|}}{|x|^{1+Y}}dx & x > 0
+
 \end{cases}$$
 
 

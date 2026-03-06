@@ -1,3 +1,9 @@
+"""
+Base
+
+Educational script demonstrating base concepts.
+"""
+
 # ============================================================================
 # stock_analysis/base.py
 # ============================================================================
@@ -166,3 +172,7 @@ class Stock(ABC):
         self.company_info = {}
         self.statistics = {}
         return self
+
+
+if __name__ == "__main__":
+    pass

@@ -1,3 +1,9 @@
+"""
+Stock Analysis Faang Comprehensive
+
+Educational script demonstrating stock analysis faang comprehensive concepts.
+"""
+
 # ============================================================================
 # stock_analysis_NORMALIZED_ADJUST_CLOSE_FAANG_USING_PLOT_MULTIPLE_PRICES_COMPREHENSIVELY.py
 # ============================================================================
@@ -32,4 +38,6 @@ def analyze_faang_comprehensively():
     
     return stocks
 
-stocks_comprehensive = analyze_faang_comprehensively()
+
+if __name__ == "__main__":
+    stocks_comprehensive = analyze_faang_comprehensively()

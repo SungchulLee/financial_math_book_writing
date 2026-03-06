@@ -38,7 +38,9 @@ $$M_t := \sup_{0 \le s \le t} W_s$$
 For any $t > 0$ and $a > 0$:
 
 $$\boxed{
+
 \mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a)
+
 }$$
 
 **Geometric Idea:**
@@ -73,8 +75,10 @@ $$\mathbb{P}(M_t \ge a, W_t \ge a) = \mathbb{P}(W_t \ge a)$$
 For paths that hit $a$ at time $\tau_a < t$ but end at $W_t < a$, we construct the **reflected path**:
 
 $$\tilde{W}_s = \begin{cases}
+
 W_s & \text{if } s \le \tau_a \\
 2a - W_s & \text{if } s > \tau_a
+
 \end{cases}$$
 
 **Key observation:** By the **strong Markov property**, after hitting $a$, the process $W_{\tau_a + s} - a$ is a Brownian motion independent of $\mathcal{F}_{\tau_a}$. The reflection $2a - W_s$ has the same distribution as $W_s$ for $s > \tau_a$.
@@ -98,9 +102,11 @@ $$\mathbb{P}(M_t \ge a, W_t < a) = \mathbb{P}(M_t \ge a, W_t > a) = \mathbb{P}(W
 Therefore:
 
 $$\begin{array}{lll}
+
 \mathbb{P}(M_t \ge a) 
 &=& \mathbb{P}(M_t \ge a, W_t \ge a) + \mathbb{P}(M_t \ge a, W_t < a)\\
 &=& \mathbb{P}(W_t \ge a) + \mathbb{P}(W_t > a)\\
+
 &=& 2\mathbb{P}(W_t \ge a) \quad \square\end{array}$$
 
 ### 3. Explicit Formula
@@ -206,7 +212,9 @@ Sum: 4.0000 (should equal 4)
 For $a > 0$ and $b < a$:
 
 $$\boxed{
+
 \mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b)
+
 }$$
 
 **Proof:**
@@ -228,7 +236,9 @@ $$\mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b) \quad \square$$
 Since $W_t \sim \mathcal{N}(0, t)$:
 
 $$\boxed{
+
 \mathbb{P}(M_t \ge a, W_t \le b) = 1 - \Phi\left(\frac{2a - b}{\sqrt{t}}\right) = \Phi\left(\frac{b - 2a}{\sqrt{t}}\right)
+
 }$$
 
 ### 3. Python Visualization
@@ -349,7 +359,9 @@ $$\mathbb{P}(\tau_a \le t) = \mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a) = 2\
 The probability density function of $\tau_a$ is:
 
 $$\boxed{
+
 f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), \quad t > 0
+
 }$$
 
 This is called the **Lévy distribution** (or inverse Gaussian with zero drift).
@@ -403,7 +415,9 @@ We now derive the distribution of $\tau_a$ using **exponential martingales** and
 For $\alpha > 0$:
 
 $$\boxed{
+
 \mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}}
+
 }$$
 
 **Proof:**
@@ -485,7 +499,9 @@ We now derive the complete **joint density** $f_{M_t, W_t}(m, w)$.
 For $m > 0$ and $w \le m$:
 
 $$\boxed{
+
 f_{M_t, W_t}(m, w) = \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^2}{2t}\right)
+
 }$$
 
 ### 2. Derivation
@@ -499,10 +515,12 @@ $$\mathbb{P}(M_t \ge m, W_t \le w) = \mathbb{P}(W_t \ge 2m - w)$$
 Therefore:
 
 $$\begin{array}{lll}
+
 \mathbb{P}(M_t \le m, W_t \le w) 
 &=&\displaystyle \mathbb{P}(W_t \le w) - \mathbb{P}(W_t \ge 2m - w)\\
 &=&\displaystyle \Phi\left(\frac{w}{\sqrt{t}}\right) - \left[1 - \Phi\left(\frac{2m - w}{\sqrt{t}}\right)\right]\\
 &=&\displaystyle \Phi\left(\frac{w}{\sqrt{t}}\right) + \Phi\left(\frac{2m - w}{\sqrt{t}}\right) - 1
+
 \end{array}$$
 
 **Step 2: Differentiate to get the joint PDF.**
@@ -512,6 +530,7 @@ $$f_{M_t, W_t}(m, w) = \frac{\partial^2}{\partial m \partial w} \mathbb{P}(M_t \
 First, differentiate with respect to $w$:
 
 $$\frac{\partial}{\partial w}\left[\Phi\left(\frac{w}{\sqrt{t}}\right) + \Phi\left(\frac{2m - w}{\sqrt{t}}\right) - 1\right]
+
 = \phi\left(\frac{w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}} - \phi\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}}$$
 
 where $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$.
@@ -519,11 +538,13 @@ where $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$.
 Now differentiate with respect to $m$:
 
 $$\begin{array}{lll}
+
 \frac{\partial}{\partial m}\left[-\phi\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}}\right]
 &=&\displaystyle -\frac{1}{\sqrt{t}} \cdot \phi'\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{2}{\sqrt{t}}\quad (\because\phi'(x) = -x\phi(x))\\
 &=&\displaystyle -\frac{2}{t} \cdot \left(-\frac{2m - w}{\sqrt{t}}\right) \phi\left(\frac{2m - w}{\sqrt{t}}\right)\\
 &=&\displaystyle \frac{2(2m - w)}{t\sqrt{t}} \cdot \frac{1}{\sqrt{2\pi}} e^{-(2m-w)^2/(2t)}\\
 &=&\displaystyle \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^2}{2t}\right) \quad \square
+
 \end{array}$$
 
 ### 3. Conditional Distribution
@@ -652,6 +673,7 @@ Define the stopping time $\tau_a := \inf\{ t \ge 0 : W_t = a \}$ for $a > 0$.
 ### Laplace Transform
 
 11. Verify the Laplace transform formula $\mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}}$ by direct integration:
+
 $$\int_0^\infty e^{-\alpha t} f_{\tau_a}(t) \, dt$$
 
 12. Use the Laplace transform to show that $\mathbb{E}[\tau_a^{1/2}] < \infty$ but $\mathbb{E}[\tau_a] = \infty$.

@@ -347,3 +347,7 @@ class BlackScholesMonteCarlo(BlackScholesBase):
             'error_improvement': (enh_call_error/std_call_error if std_call_error > 0 else 1, 
                                 enh_put_error/std_put_error if std_put_error > 0 else 1)
         }
+
+
+if __name__ == "__main__":
+    pass

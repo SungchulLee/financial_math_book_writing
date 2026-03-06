@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.sparse import diags
 
 
+# ======================================================================
+
 def riccati_ode_solver():
     """
     Riccati ODE Solver.

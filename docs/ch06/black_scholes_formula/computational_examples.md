@@ -23,39 +23,53 @@ Price a European call option with:
 
 
 $$
+
 d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+
 $$
 
 **Numerator**:
 
 $$
+
 \ln(50/52) + (0.05 + 0.5 \times 0.09) \times 0.5
+
 $$
 
 $$
+
 = \ln(0.9615) + (0.05 + 0.045) \times 0.5
+
 $$
 
 $$
+
 = -0.0392 + 0.0475 = 0.0083
+
 $$
 
 **Denominator**:
 
 $$
+
 \sigma\sqrt{T} = 0.30 \times \sqrt{0.5} = 0.30 \times 0.7071 = 0.2121
+
 $$
 
 **Result**:
 
 $$
+
 d_1 = \frac{0.0083}{0.2121} = 0.0391
+
 $$
 
 **Compute $d_2$**:
 
 $$
+
 d_2 = d_1 - \sigma\sqrt{T} = 0.0391 - 0.2121 = -0.1730
+
 $$
 
 ### 3. **Step 2: Evaluate N(d_1) and N(d_2)**
@@ -64,33 +78,44 @@ $$
 Using standard normal CDF tables or calculator:
 
 $$
+
 \mathcal{N}(0.0391) \approx 0.5156
+
 $$
 
 $$
+
 \mathcal{N}(-0.1730) \approx 0.4313
+
 $$
 
 ### 4. **Step 3: Calculate Option Price**
 
 
 $$
+
 C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+
 $$
 
 **First term**:
 
 $$
+
 S_0\mathcal{N}(d_1) = 50 \times 0.5156 = 25.78
+
 $$
 
 **Second term**:
 
 $$
+
 Ke^{-rT}\mathcal{N}(d_2) = 52 \times e^{-0.05 \times 0.5} \times 0.4313
+
 $$
 
 $$
+
 = 52 \times 0.9753 \times 0.4313 = 21.87
 
 $$
@@ -98,10 +123,12 @@ $$
 **Call price**:
 
 $$
+
 C_0 = 25.78 - 21.87 = 3.91
+
 $$
 
-**Answer**: The European call is worth approximately **$3.91**.
+**Answer**: The European call is worth approximately **\$3.91**.
 
 ---
 
@@ -115,7 +142,9 @@ $$
 
 
 $$
+
 d_1 = 0.0391, \quad d_2 = -0.1730
+
 $$
 
 ### 3. **Step 2: Evaluate N(-d_1) and N(-d_2)**
@@ -124,53 +153,71 @@ $$
 Using symmetry $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
 
 $$
+
 \mathcal{N}(-d_1) = 1 - 0.5156 = 0.4844
+
 $$
 
 $$
+
 \mathcal{N}(-d_2) = 1 - 0.4313 = 0.5687
+
 $$
 
 ### 4. **Step 3: Calculate Put Price**
 
 
 $$
+
 P_0 = Ke^{-rT}\mathcal{N}(-d_2) - S_0\mathcal{N}(-d_1)
+
 $$
 
 **First term**:
 
 $$
+
 Ke^{-rT}\mathcal{N}(-d_2) = 52 \times 0.9753 \times 0.5687 = 28.84
+
 $$
 
 **Second term**:
 
 $$
+
 S_0\mathcal{N}(-d_1) = 50 \times 0.4844 = 24.22
+
 $$
 
 **Put price**:
 
 $$
+
 P_0 = 28.84 - 24.22 = 4.62
+
 $$
 
-**Answer**: The European put is worth approximately **$4.62**.
+**Answer**: The European put is worth approximately **\$4.62**.
 
 ### 5. **Verification via Put-Call Parity**
 
 
 $$
+
 C - P = S - Ke^{-rT}
+
 $$
 
 $$
+
 3.91 - 4.62 = -0.71
+
 $$
 
 $$
+
 50 - 52 \times 0.9753 = 50 - 50.72 = -0.72
+
 $$
 
 Small rounding error confirms parity holds. ✓
@@ -584,7 +631,9 @@ As $T \to 0$, $d_1$ and $d_2$ can become undefined (division by zero).
 **Solution**: For $T < 0.001$, use intrinsic value directly:
 
 $$
+
 C \approx \max(S - K, 0)
+
 $$
 
 ### 3. **Issue 3: Very Low Volatility** (σ → 0)
@@ -595,7 +644,9 @@ When $\sigma$ is very small, option behaves like forward contract.
 **Solution**: Use forward value formula:
 
 $$
+
 C \approx \max(S - Ke^{-rT}, 0)
+
 $$
 
 ---
@@ -685,7 +736,7 @@ Greeks:
 ==================================================
 ```
 
-**Interpretation**: This OTM call with 45 days to expiration is worth $3.67, consisting entirely of time value. It has a delta of 0.41, meaning for every $1 increase in the stock price, the option gains approximately $0.41.
+**Interpretation**: This OTM call with 45 days to expiration is worth \$3.67, consisting entirely of time value. It has a delta of 0.41, meaning for every \$1 increase in the stock price, the option gains approximately \$0.41.
 
 ---
 

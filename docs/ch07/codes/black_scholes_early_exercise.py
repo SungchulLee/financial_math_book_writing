@@ -89,207 +89,209 @@ def compute_exercise_boundary(S, K, T, r, sigma, N):
 # Parameters
 # ============================================================
 
-S = 100
-K = 100
-T = 1.0
-r = 0.05
-sigma = 0.20
-N = 200
+
+if __name__ == "__main__":
+    S = 100
+    K = 100
+    T = 1.0
+    r = 0.05
+    sigma = 0.20
+    N = 200
 
 
-# ============================================================
-# 1. Basic Boundary Visualization
-# ============================================================
+    # ============================================================
+    # 1. Basic Boundary Visualization
+    # ============================================================
 
-print("=" * 60)
-print("Early-Exercise Boundary for American Put")
-print("=" * 60)
-print(f"Parameters: S={S}, K={K}, T={T}, r={r}, σ={sigma}, N={N}\n")
+    print("=" * 60)
+    print("Early-Exercise Boundary for American Put")
+    print("=" * 60)
+    print(f"Parameters: S={S}, K={K}, T={T}, r={r}, σ={sigma}, N={N}\n")
 
-times, boundary, exercise_pts = compute_exercise_boundary(S, K, T, r, sigma, N)
-pts = np.array(exercise_pts)
+    times, boundary, exercise_pts = compute_exercise_boundary(S, K, T, r, sigma, N)
+    pts = np.array(exercise_pts)
 
-fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
-# (a) Scatter of all exercise nodes
-axes[0].scatter(pts[:, 0], pts[:, 1], s=2, alpha=0.4, color="steelblue")
-axes[0].axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
-axes[0].set_xlabel("Time (years)")
-axes[0].set_ylabel("Stock Price")
-axes[0].set_title("Exercise Nodes in Binomial Tree")
-axes[0].legend()
-axes[0].grid(True, alpha=0.3)
+    # (a) Scatter of all exercise nodes
+    axes[0].scatter(pts[:, 0], pts[:, 1], s=2, alpha=0.4, color="steelblue")
+    axes[0].axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
+    axes[0].set_xlabel("Time (years)")
+    axes[0].set_ylabel("Stock Price")
+    axes[0].set_title("Exercise Nodes in Binomial Tree")
+    axes[0].legend()
+    axes[0].grid(True, alpha=0.3)
 
-# (b) Exercise boundary S*(t)
-valid = ~np.isnan(boundary)
-axes[1].plot(times[valid], boundary[valid], "-", color="coral", linewidth=2)
-axes[1].axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
-axes[1].set_xlabel("Time (years)")
-axes[1].set_ylabel("Exercise Boundary S*(t)")
-axes[1].set_title("Optimal Exercise Boundary (American Put)")
-axes[1].legend()
-axes[1].grid(True, alpha=0.3)
+    # (b) Exercise boundary S*(t)
+    valid = ~np.isnan(boundary)
+    axes[1].plot(times[valid], boundary[valid], "-", color="coral", linewidth=2)
+    axes[1].axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
+    axes[1].set_xlabel("Time (years)")
+    axes[1].set_ylabel("Exercise Boundary S*(t)")
+    axes[1].set_title("Optimal Exercise Boundary (American Put)")
+    axes[1].legend()
+    axes[1].grid(True, alpha=0.3)
 
-plt.tight_layout()
-plt.savefig("early_exercise_boundary_basic.png", dpi=150, bbox_inches="tight")
-plt.show()
-print("Figure saved: early_exercise_boundary_basic.png")
-
-
-# ============================================================
-# 2. Effect of Interest Rate on Boundary
-# ============================================================
-
-print("\n" + "=" * 60)
-print("Effect of Interest Rate on Exercise Boundary")
-print("=" * 60)
-
-rates = [0.02, 0.05, 0.10, 0.15]
-colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
-
-fig, ax = plt.subplots(figsize=(10, 6))
-for rate, color in zip(rates, colors):
-    t, bd, _ = compute_exercise_boundary(S, K, T, rate, sigma, N)
-    valid = ~np.isnan(bd)
-    ax.plot(t[valid], bd[valid], "-", color=color, linewidth=2, label=f"r = {rate}")
-
-ax.axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
-ax.set_xlabel("Time (years)")
-ax.set_ylabel("Exercise Boundary S*(t)")
-ax.set_title("Exercise Boundary: Effect of Interest Rate")
-ax.legend()
-ax.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.savefig("early_exercise_boundary_rates.png", dpi=150, bbox_inches="tight")
-plt.show()
-print("Figure saved: early_exercise_boundary_rates.png")
-
-for rate in rates:
-    _, bd, _ = compute_exercise_boundary(S, K, T, rate, sigma, N)
-    bd_start = bd[~np.isnan(bd)][0] if any(~np.isnan(bd)) else np.nan
-    print(f"  r = {rate:.2f}: S*(0) ≈ {bd_start:.2f}")
+    plt.tight_layout()
+    plt.savefig("early_exercise_boundary_basic.png", dpi=150, bbox_inches="tight")
+    plt.show()
+    print("Figure saved: early_exercise_boundary_basic.png")
 
 
-# ============================================================
-# 3. Effect of Volatility on Boundary
-# ============================================================
+    # ============================================================
+    # 2. Effect of Interest Rate on Boundary
+    # ============================================================
 
-print("\n" + "=" * 60)
-print("Effect of Volatility on Exercise Boundary")
-print("=" * 60)
+    print("\n" + "=" * 60)
+    print("Effect of Interest Rate on Exercise Boundary")
+    print("=" * 60)
 
-vols = [0.10, 0.20, 0.30, 0.40]
+    rates = [0.02, 0.05, 0.10, 0.15]
+    colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
 
-fig, ax = plt.subplots(figsize=(10, 6))
-for vol, color in zip(vols, colors):
-    t, bd, _ = compute_exercise_boundary(S, K, T, r, vol, N)
-    valid = ~np.isnan(bd)
-    ax.plot(t[valid], bd[valid], "-", color=color, linewidth=2, label=f"σ = {vol}")
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for rate, color in zip(rates, colors):
+        t, bd, _ = compute_exercise_boundary(S, K, T, rate, sigma, N)
+        valid = ~np.isnan(bd)
+        ax.plot(t[valid], bd[valid], "-", color=color, linewidth=2, label=f"r = {rate}")
 
-ax.axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
-ax.set_xlabel("Time (years)")
-ax.set_ylabel("Exercise Boundary S*(t)")
-ax.set_title("Exercise Boundary: Effect of Volatility")
-ax.legend()
-ax.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.savefig("early_exercise_boundary_vols.png", dpi=150, bbox_inches="tight")
-plt.show()
-print("Figure saved: early_exercise_boundary_vols.png")
+    ax.axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
+    ax.set_xlabel("Time (years)")
+    ax.set_ylabel("Exercise Boundary S*(t)")
+    ax.set_title("Exercise Boundary: Effect of Interest Rate")
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig("early_exercise_boundary_rates.png", dpi=150, bbox_inches="tight")
+    plt.show()
+    print("Figure saved: early_exercise_boundary_rates.png")
 
-for vol in vols:
-    _, bd, _ = compute_exercise_boundary(S, K, T, r, vol, N)
-    bd_start = bd[~np.isnan(bd)][0] if any(~np.isnan(bd)) else np.nan
-    print(f"  σ = {vol:.2f}: S*(0) ≈ {bd_start:.2f}")
-
-
-# ============================================================
-# 4. Exercise Boundary for Different Strikes
-# ============================================================
-
-print("\n" + "=" * 60)
-print("Exercise Boundary for Different Strikes")
-print("=" * 60)
-
-strikes = [80, 100, 120]
-
-fig, ax = plt.subplots(figsize=(10, 6))
-for strike, color in zip(strikes, colors):
-    t, bd, _ = compute_exercise_boundary(S, strike, T, r, sigma, N)
-    valid = ~np.isnan(bd)
-    ax.plot(t[valid], bd[valid], "-", color=color, linewidth=2, label=f"K = {strike}")
-    ax.axhline(strike, color=color, linestyle=":", linewidth=0.5)
-
-ax.set_xlabel("Time (years)")
-ax.set_ylabel("Exercise Boundary S*(t)")
-ax.set_title("Exercise Boundary for Different Strikes")
-ax.legend()
-ax.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.savefig("early_exercise_boundary_strikes.png", dpi=150, bbox_inches="tight")
-plt.show()
-print("Figure saved: early_exercise_boundary_strikes.png")
+    for rate in rates:
+        _, bd, _ = compute_exercise_boundary(S, K, T, rate, sigma, N)
+        bd_start = bd[~np.isnan(bd)][0] if any(~np.isnan(bd)) else np.nan
+        print(f"  r = {rate:.2f}: S*(0) ≈ {bd_start:.2f}")
 
 
-# ============================================================
-# 5. Comprehensive Summary Figure
-# ============================================================
+    # ============================================================
+    # 3. Effect of Volatility on Boundary
+    # ============================================================
 
-fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    print("\n" + "=" * 60)
+    print("Effect of Volatility on Exercise Boundary")
+    print("=" * 60)
 
-# (a) Basic boundary with exercise nodes
-axes[0, 0].scatter(pts[:, 0], pts[:, 1], s=1, alpha=0.3, color="steelblue")
-valid = ~np.isnan(boundary)
-axes[0, 0].plot(times[valid], boundary[valid], "-", color="coral", linewidth=2,
-                label="S*(t)")
-axes[0, 0].axhline(K, color="gray", linestyle="--", linewidth=0.8)
-axes[0, 0].set_title("(a) Exercise Boundary and Nodes")
-axes[0, 0].set_xlabel("Time")
-axes[0, 0].set_ylabel("Stock Price")
-axes[0, 0].legend()
-axes[0, 0].grid(True, alpha=0.3)
+    vols = [0.10, 0.20, 0.30, 0.40]
 
-# (b) Varying r
-for rate, color in zip(rates, colors):
-    t, bd, _ = compute_exercise_boundary(S, K, T, rate, sigma, N)
-    valid = ~np.isnan(bd)
-    axes[0, 1].plot(t[valid], bd[valid], "-", color=color, linewidth=1.5,
-                    label=f"r={rate}")
-axes[0, 1].axhline(K, color="gray", linestyle="--", linewidth=0.8)
-axes[0, 1].set_title("(b) Effect of Interest Rate")
-axes[0, 1].set_xlabel("Time")
-axes[0, 1].set_ylabel("S*(t)")
-axes[0, 1].legend(fontsize=8)
-axes[0, 1].grid(True, alpha=0.3)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for vol, color in zip(vols, colors):
+        t, bd, _ = compute_exercise_boundary(S, K, T, r, vol, N)
+        valid = ~np.isnan(bd)
+        ax.plot(t[valid], bd[valid], "-", color=color, linewidth=2, label=f"σ = {vol}")
 
-# (c) Varying sigma
-for vol, color in zip(vols, colors):
-    t, bd, _ = compute_exercise_boundary(S, K, T, r, vol, N)
-    valid = ~np.isnan(bd)
-    axes[1, 0].plot(t[valid], bd[valid], "-", color=color, linewidth=1.5,
-                    label=f"σ={vol}")
-axes[1, 0].axhline(K, color="gray", linestyle="--", linewidth=0.8)
-axes[1, 0].set_title("(c) Effect of Volatility")
-axes[1, 0].set_xlabel("Time")
-axes[1, 0].set_ylabel("S*(t)")
-axes[1, 0].legend(fontsize=8)
-axes[1, 0].grid(True, alpha=0.3)
+    ax.axhline(K, color="gray", linestyle="--", linewidth=0.8, label=f"K = {K}")
+    ax.set_xlabel("Time (years)")
+    ax.set_ylabel("Exercise Boundary S*(t)")
+    ax.set_title("Exercise Boundary: Effect of Volatility")
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig("early_exercise_boundary_vols.png", dpi=150, bbox_inches="tight")
+    plt.show()
+    print("Figure saved: early_exercise_boundary_vols.png")
 
-# (d) Varying K
-for strike, color in zip(strikes, colors):
-    t, bd, _ = compute_exercise_boundary(S, strike, T, r, sigma, N)
-    valid = ~np.isnan(bd)
-    axes[1, 1].plot(t[valid], bd[valid], "-", color=color, linewidth=1.5,
-                    label=f"K={strike}")
-axes[1, 1].set_title("(d) Effect of Strike Price")
-axes[1, 1].set_xlabel("Time")
-axes[1, 1].set_ylabel("S*(t)")
-axes[1, 1].legend(fontsize=8)
-axes[1, 1].grid(True, alpha=0.3)
+    for vol in vols:
+        _, bd, _ = compute_exercise_boundary(S, K, T, r, vol, N)
+        bd_start = bd[~np.isnan(bd)][0] if any(~np.isnan(bd)) else np.nan
+        print(f"  σ = {vol:.2f}: S*(0) ≈ {bd_start:.2f}")
 
-plt.suptitle("Early-Exercise Boundary Analysis for American Put Options",
-             fontsize=14, fontweight="bold", y=1.01)
-plt.tight_layout()
-plt.savefig("early_exercise_boundary_comprehensive.png", dpi=150, bbox_inches="tight")
-plt.show()
-print("\nFigure saved: early_exercise_boundary_comprehensive.png")
+
+    # ============================================================
+    # 4. Exercise Boundary for Different Strikes
+    # ============================================================
+
+    print("\n" + "=" * 60)
+    print("Exercise Boundary for Different Strikes")
+    print("=" * 60)
+
+    strikes = [80, 100, 120]
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for strike, color in zip(strikes, colors):
+        t, bd, _ = compute_exercise_boundary(S, strike, T, r, sigma, N)
+        valid = ~np.isnan(bd)
+        ax.plot(t[valid], bd[valid], "-", color=color, linewidth=2, label=f"K = {strike}")
+        ax.axhline(strike, color=color, linestyle=":", linewidth=0.5)
+
+    ax.set_xlabel("Time (years)")
+    ax.set_ylabel("Exercise Boundary S*(t)")
+    ax.set_title("Exercise Boundary for Different Strikes")
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig("early_exercise_boundary_strikes.png", dpi=150, bbox_inches="tight")
+    plt.show()
+    print("Figure saved: early_exercise_boundary_strikes.png")
+
+
+    # ============================================================
+    # 5. Comprehensive Summary Figure
+    # ============================================================
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+    # (a) Basic boundary with exercise nodes
+    axes[0, 0].scatter(pts[:, 0], pts[:, 1], s=1, alpha=0.3, color="steelblue")
+    valid = ~np.isnan(boundary)
+    axes[0, 0].plot(times[valid], boundary[valid], "-", color="coral", linewidth=2,
+                    label="S*(t)")
+    axes[0, 0].axhline(K, color="gray", linestyle="--", linewidth=0.8)
+    axes[0, 0].set_title("(a) Exercise Boundary and Nodes")
+    axes[0, 0].set_xlabel("Time")
+    axes[0, 0].set_ylabel("Stock Price")
+    axes[0, 0].legend()
+    axes[0, 0].grid(True, alpha=0.3)
+
+    # (b) Varying r
+    for rate, color in zip(rates, colors):
+        t, bd, _ = compute_exercise_boundary(S, K, T, rate, sigma, N)
+        valid = ~np.isnan(bd)
+        axes[0, 1].plot(t[valid], bd[valid], "-", color=color, linewidth=1.5,
+                        label=f"r={rate}")
+    axes[0, 1].axhline(K, color="gray", linestyle="--", linewidth=0.8)
+    axes[0, 1].set_title("(b) Effect of Interest Rate")
+    axes[0, 1].set_xlabel("Time")
+    axes[0, 1].set_ylabel("S*(t)")
+    axes[0, 1].legend(fontsize=8)
+    axes[0, 1].grid(True, alpha=0.3)
+
+    # (c) Varying sigma
+    for vol, color in zip(vols, colors):
+        t, bd, _ = compute_exercise_boundary(S, K, T, r, vol, N)
+        valid = ~np.isnan(bd)
+        axes[1, 0].plot(t[valid], bd[valid], "-", color=color, linewidth=1.5,
+                        label=f"σ={vol}")
+    axes[1, 0].axhline(K, color="gray", linestyle="--", linewidth=0.8)
+    axes[1, 0].set_title("(c) Effect of Volatility")
+    axes[1, 0].set_xlabel("Time")
+    axes[1, 0].set_ylabel("S*(t)")
+    axes[1, 0].legend(fontsize=8)
+    axes[1, 0].grid(True, alpha=0.3)
+
+    # (d) Varying K
+    for strike, color in zip(strikes, colors):
+        t, bd, _ = compute_exercise_boundary(S, strike, T, r, sigma, N)
+        valid = ~np.isnan(bd)
+        axes[1, 1].plot(t[valid], bd[valid], "-", color=color, linewidth=1.5,
+                        label=f"K={strike}")
+    axes[1, 1].set_title("(d) Effect of Strike Price")
+    axes[1, 1].set_xlabel("Time")
+    axes[1, 1].set_ylabel("S*(t)")
+    axes[1, 1].legend(fontsize=8)
+    axes[1, 1].grid(True, alpha=0.3)
+
+    plt.suptitle("Early-Exercise Boundary Analysis for American Put Options",
+                 fontsize=14, fontweight="bold", y=1.01)
+    plt.tight_layout()
+    plt.savefig("early_exercise_boundary_comprehensive.png", dpi=150, bbox_inches="tight")
+    plt.show()
+    print("\nFigure saved: early_exercise_boundary_comprehensive.png")

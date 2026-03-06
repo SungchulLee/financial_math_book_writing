@@ -28,13 +28,17 @@ Lookback options appear in performance-linked products, executive compensation s
 A **fixed-strike lookback** option has a predetermined strike $K$ and uses the extremal price in the payoff:
 
 $$
+
 \boxed{
 \text{Fixed-strike lookback call} = \left(S_{\max} - K\right)^+, \quad S_{\max} = \max_{0 \leq t \leq T} S_t
 }
+
 $$
 
 $$
+
 \text{Fixed-strike lookback put} = \left(K - S_{\min}\right)^+, \quad S_{\min} = \min_{0 \leq t \leq T} S_t
+
 $$
 
 The fixed-strike lookback call pays the excess of the **highest achieved price** over the strike. This is always at least as valuable as a vanilla call, since $S_{\max} \geq S_T$.
@@ -44,13 +48,17 @@ The fixed-strike lookback call pays the excess of the **highest achieved price**
 A **floating-strike lookback** option uses the extremal price as the effective strike:
 
 $$
+
 \boxed{
 \text{Floating-strike lookback call} = S_T - S_{\min}
 }
+
 $$
 
 $$
+
 \text{Floating-strike lookback put} = S_{\max} - S_T
+
 $$
 
 The floating-strike lookback call lets the holder buy at the **lowest price** and sell at the **terminal price**. Similarly, the floating-strike lookback put lets the holder sell at the **highest price**. Note that these payoffs are **always non-negative** (the option is always in the money), which is why floating-strike lookbacks are particularly expensive.
@@ -66,7 +74,9 @@ Under geometric Brownian motion with continuous monitoring, analytical formulas 
 The Goldman–Sosin–Gatto (1979) formula for the floating-strike lookback call is:
 
 $$
+
 C_{\text{lookback}} = S_0\, N(a_1) - S_0\, e^{-rT} \frac{\sigma^2}{2r}\, N(-a_1) - S_{\min}\, e^{-rT}\left[N(a_2) - \frac{\sigma^2}{2r}\, e^{a_3}\, N(-a_4)\right]
+
 $$
 
 where the parameters $a_1, a_2, a_3, a_4$ involve $S_0$, $S_{\min}$, $r$, $\sigma$, and $T$. The formula is considerably more complex than Black–Scholes due to the distribution of the running minimum.
@@ -86,9 +96,11 @@ The analytical formula reveals important properties:
 The following ordering holds for options with identical parameters:
 
 $$
+
 \boxed{
 V_{\text{vanilla}} \leq V_{\text{fixed-strike lookback}} \leq V_{\text{floating-strike lookback}}
 }
+
 $$
 
 The first inequality follows from $S_{\max} \geq S_T$ (for calls) or $S_{\min} \leq S_T$ (for puts). The second inequality reflects the additional flexibility of the floating strike.
@@ -111,7 +123,9 @@ The first inequality follows from $S_{\max} \geq S_T$ (for calls) or $S_{\min} \
 As with barrier options, the distinction between **discrete** and **continuous** monitoring is important:
 
 $$
+
 S_{\max}^{\text{discrete}} = \max_{i=1,\ldots,n} S_{t_i} \leq \max_{0 \leq t \leq T} S_t = S_{\max}^{\text{continuous}}
+
 $$
 
 Discrete monitoring always produces a lower (or equal) maximum and a higher (or equal) minimum, so:
@@ -122,7 +136,9 @@ Discrete monitoring always produces a lower (or equal) maximum and a higher (or 
 The Broadie–Glasserman–Kou correction (similar to barrier options) adjusts for discrete monitoring:
 
 $$
+
 S_{\max}^{\text{continuous}} \approx S_{\max}^{\text{discrete}} \cdot e^{\beta \sigma \sqrt{T/n}}
+
 $$
 
 where $\beta \approx 0.5826$.
@@ -142,9 +158,11 @@ where $\beta \approx 0.5826$.
 ## Summary
 
 $$
+
 \boxed{
 \text{Floating-strike lookback call payoff} = S_T - \min_{0 \leq t \leq T} S_t \geq 0
 }
+
 $$
 
 | Aspect | Description |

@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def lmm_forward_rate_simulation():
     """
     LMM Forward Rate Simulation.

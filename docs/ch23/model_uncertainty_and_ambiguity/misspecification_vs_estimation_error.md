@@ -31,7 +31,9 @@ This chapter provides rigorous mathematical treatment of both error types, their
 
 
 $$
+
 P^* \in \mathcal{M} \quad \text{i.e., } P^* = P_{\theta^*} \text{ for some } \theta^* \in \Theta
+
 $$
 
 
@@ -40,7 +42,9 @@ $$
 
 
 $$
+
 P^* \notin \mathcal{M}
+
 $$
 
 
@@ -54,7 +58,9 @@ Even under misspecification, we can define a best approximation within the model
 
 
 $$
+
 \theta_0 = \arg\min_{\theta \in \Theta} D_{\text{KL}}(P^* \| P_{\theta})
+
 $$
 
 
@@ -66,7 +72,9 @@ where $D_{\text{KL}}(P \| Q)$ is the Kullback-Leibler divergence.
 1. **Maximum Likelihood**: 
 
    $$
+
    \theta_0 = \arg\max_{\theta \in \Theta} \mathbb{E}_{P^*}[\log p_{\theta}(X)]
+
    $$
 
 
@@ -74,7 +82,9 @@ where $D_{\text{KL}}(P \| Q)$ is the Kullback-Leibler divergence.
 2. **Minimum Hellinger Distance**:
 
    $$
+
    \theta_0 = \arg\min_{\theta \in \Theta} \int \left( \sqrt{p^*} - \sqrt{p_{\theta}} \right)^2
+
    $$
 
 
@@ -91,7 +101,9 @@ where $D_{\text{KL}}(P \| Q)$ is the Kullback-Leibler divergence.
 
 
 $$
+
 \hat{\theta}_n = \arg\max_{\theta \in \Theta} \sum_{i=1}^n \log p_{\theta}(X_i)
+
 $$
 
 
@@ -100,7 +112,9 @@ $$
 
 
 $$
+
 \Delta_{\text{est}} = \hat{\theta}_n - \theta_0
+
 $$
 
 
@@ -109,7 +123,9 @@ $$
 
 
 $$
+
 \sqrt{n}(\hat{\theta}_n - \theta_0) \xrightarrow{d} \mathcal{N}(0, \Sigma(\theta_0))
+
 $$
 
 
@@ -123,7 +139,9 @@ where $\Sigma(\theta_0)$ is the asymptotic covariance matrix.
 
 
 $$
+
 \Delta_{\text{mis}} = D_{\text{KL}}(P^* \| P_{\theta_0})
+
 $$
 
 
@@ -132,7 +150,9 @@ $$
 
 
 $$
+
 D_{\text{KL}}(P^* \| P_{\theta}) = \underbrace{D_{\text{KL}}(P^* \| P_{\theta_0})}_{\text{Misspecification}} + \underbrace{D_{\text{KL}}(P_{\theta_0} \| P_{\theta})}_{\text{Within-Model}}
+
 $$
 
 
@@ -149,7 +169,9 @@ This decomposition shows that any parameter $\theta \neq \theta_0$ incurs both m
 
 
 $$
+
 \hat{\theta}_n \xrightarrow{p} \theta_0 \quad \text{as } n \to \infty
+
 $$
 
 
@@ -160,7 +182,9 @@ even when the model is misspecified.
 
 
 $$
+
 \frac{1}{n} \sum_{i=1}^n \log p_{\theta}(X_i) \xrightarrow{p} \mathbb{E}_{P^*}[\log p_{\theta}(X)]
+
 $$
 
 
@@ -176,7 +200,9 @@ uniformly in $\theta$. The MLE $\hat{\theta}_n$ maximizes the LHS, which converg
 
 
 $$
+
 \sqrt{n}(\hat{\theta}_n - \theta_0) \xrightarrow{d} \mathcal{N}(0, H(\theta_0)^{-1} J(\theta_0) H(\theta_0)^{-1})
+
 $$
 
 
@@ -185,14 +211,18 @@ where:
 - **Hessian**: 
 
   $$
+
   H(\theta) = -\mathbb{E}_{P^*}\left[ \nabla^2 \log p_{\theta}(X) \right]
+
   $$
 
 
 - **Outer Product of Scores** (OPG):
 
   $$
+
   J(\theta) = \mathbb{E}_{P^*}\left[ \nabla \log p_{\theta}(X) \nabla \log p_{\theta}(X)^\top \right]
+
   $$
 
 
@@ -201,7 +231,9 @@ where:
 
 
 $$
+
 \Sigma(\theta_0) = H(\theta_0)^{-1} J(\theta_0) H(\theta_0)^{-1}
+
 $$
 
 
@@ -212,7 +244,9 @@ often called the **robust** or **sandwich** covariance matrix.
 
 
 $$
+
 H(\theta_0) = J(\theta_0) = \mathcal{I}(\theta_0)
+
 $$
 
 
@@ -221,7 +255,9 @@ the Fisher information, and:
 
 
 $$
+
 \Sigma(\theta_0) = \mathcal{I}(\theta_0)^{-1}
+
 $$
 
 
@@ -235,7 +271,9 @@ the Cramér-Rao bound.
 
 
 $$
+
 \|\hat{\theta}_n - \theta_0\| = O_p(n^{-1/2})
+
 $$
 
 
@@ -244,7 +282,9 @@ $$
 
 
 $$
+
 D_{\text{KL}}(P^* \| P_{\theta_0}) = O(1)
+
 $$
 
 
@@ -265,7 +305,9 @@ Consider prediction error measured by a loss function $\ell(y, \hat{y})$.
 
 
 $$
+
 R(\hat{f}_n) = \mathbb{E}_{P^*}[\ell(Y, \hat{f}_n(X))]
+
 $$
 
 
@@ -274,7 +316,9 @@ $$
 
 
 $$
+
 R(\hat{f}_n) = \underbrace{R(f^*)}_{\text{Bayes risk}} + \underbrace{[R(f_{\theta_0}) - R(f^*)]}_{\text{Approximation (Misspecification)}} + \underbrace{[R(\hat{f}_n) - R(f_{\theta_0})]}_{\text{Estimation}}
+
 $$
 
 
@@ -293,7 +337,9 @@ For squared error loss $\ell(y, \hat{y}) = (y - \hat{y})^2$:
 
 
 $$
+
 \text{MSE}(\hat{f}_n) = \mathbb{E}_{P^*}[(Y - \hat{f}_n(X))^2]
+
 $$
 
 
@@ -302,7 +348,9 @@ $$
 
 
 $$
+
 \text{MSE}(\hat{f}_n) = \underbrace{\mathbb{E}[(\mathbb{E}[\hat{f}_n] - f^*)^2]}_{\text{Bias}^2} + \underbrace{\mathbb{E}[(\hat{f}_n - \mathbb{E}[\hat{f}_n])^2]}_{\text{Variance}}
+
 $$
 
 
@@ -311,7 +359,9 @@ $$
 
 
 $$
+
 \text{MSE}(\hat{f}_n) = \underbrace{(f_{\theta_0} - f^*)^2}_{\text{Misspecification}^2} + \underbrace{(\mathbb{E}[\hat{f}_n] - f_{\theta_0})^2}_{\text{Bias}^2} + \underbrace{\text{Var}(\hat{f}_n)}_{\text{Variance}}
+
 $$
 
 
@@ -336,7 +386,9 @@ Information criteria balance goodness-of-fit against model complexity.
 
 
 $$
+
 \text{AIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + 2d
+
 $$
 
 
@@ -347,7 +399,9 @@ where $d = \dim(\Theta)$ is the number of parameters.
 
 
 $$
+
 -2n \cdot \mathbb{E}_{P^*}[\log p_{\hat{\theta}_n}(X)] + 2d \approx -2n \cdot \mathbb{E}_{P^*}[\log p_{\theta_0}(X)] + \text{bias correction}
+
 $$
 
 
@@ -361,7 +415,9 @@ $$
 
 
 $$
+
 \text{BIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + d \log n
+
 $$
 
 
@@ -377,7 +433,9 @@ $$
 
 
 $$
+
 \text{TIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + 2 \text{tr}(H^{-1} J)
+
 $$
 
 
@@ -395,7 +453,9 @@ Cross-validation directly estimates prediction error without assuming correct sp
 
 
 $$
+
 \text{CV} = \frac{1}{K} \sum_{k=1}^K \sum_{i \in \mathcal{D}_k} \ell(Y_i, \hat{f}_{-k}(X_i))
+
 $$
 
 
@@ -406,7 +466,9 @@ where $\hat{f}_{-k}$ is trained on all data except fold $k$.
 
 
 $$
+
 \text{CV} \approx \mathbb{E}_{P^*}[\ell(Y, \hat{f}_n(X))] + O_p(n^{-1})
+
 $$
 
 
@@ -429,7 +491,9 @@ Instead of selecting a single model, average predictions across models.
 
 
 $$
+
 \hat{f}_{\text{avg}} = \sum_{m=1}^M w_m \hat{f}_m
+
 $$
 
 
@@ -438,7 +502,9 @@ $$
 
 
 $$
+
 w^* = \arg\min_w \mathbb{E}_{P^*}[\ell(Y, \sum_{m=1}^M w_m \hat{f}_m(X))]
+
 $$
 
 
@@ -449,7 +515,9 @@ subject to $\sum_m w_m = 1$, $w_m \geq 0$.
 
 
 $$
+
 w_m^{\text{BMA}} = \frac{p(\mathcal{D} | \mathcal{M}_m) p(\mathcal{M}_m)}{\sum_{j=1}^M p(\mathcal{D} | \mathcal{M}_j) p(\mathcal{M}_j)}
+
 $$
 
 
@@ -468,7 +536,9 @@ $$
 
 
 $$
+
 W_n = n(\hat{\theta}_n - \theta_0)^\top \hat{\Sigma}^{-1} (\hat{\theta}_n - \theta_0)
+
 $$
 
 
@@ -477,7 +547,9 @@ $$
 
 
 $$
+
 W_n \xrightarrow{d} \chi^2_d \quad \text{under } H_0
+
 $$
 
 
@@ -496,7 +568,9 @@ using the sandwich estimator $\hat{\Sigma}$.
 
 
 $$
+
 \hat{\theta}_n \pm z_{\alpha/2} \sqrt{\frac{\mathcal{I}(\hat{\theta}_n)^{-1}}{n}}
+
 $$
 
 
@@ -505,7 +579,9 @@ $$
 
 
 $$
+
 \hat{\theta}_n \pm z_{\alpha/2} \sqrt{\frac{\hat{\Sigma}}{n}}
+
 $$
 
 
@@ -523,7 +599,9 @@ where $\hat{\Sigma}$ is the sandwich estimator.
 
 
 $$
+
 \mathbb{E}[Y|X] = \mu(X; \theta), \quad \text{Var}(Y|X) = V(\mu(X; \theta))
+
 $$
 
 
@@ -532,7 +610,9 @@ $$
 
 
 $$
+
 \sum_{i=1}^n \frac{\partial \mu(X_i; \theta)}{\partial \theta} \frac{Y_i - \mu(X_i; \theta)}{V(\mu(X_i; \theta))} = 0
+
 $$
 
 
@@ -543,7 +623,9 @@ $$
 
 
 $$
+
 \mathbb{E}_{P^*}\left[ \frac{\partial \mu(X; \theta_0)}{\partial \theta} \frac{Y - \mu(X; \theta_0)}{V(\mu(X; \theta_0))} \right] = 0
+
 $$
 
 
@@ -560,7 +642,9 @@ $$
 
 
 $$
+
 Q_n = n \cdot \bar{g}_n(\hat{\theta}_n)^\top W \bar{g}_n(\hat{\theta}_n)
+
 $$
 
 
@@ -571,7 +655,9 @@ where $\bar{g}_n(\theta) = n^{-1} \sum_{i=1}^n g(X_i, \theta)$ and $W$ is a weig
 
 
 $$
+
 Q_n \xrightarrow{d} \chi^2_r \quad \text{under correct specification}
+
 $$
 
 
@@ -591,7 +677,9 @@ where $r$ is the number of overidentifying restrictions.
 
 
 $$
+
 H = (\hat{\theta}_1 - \hat{\theta}_2)^\top [\text{Var}(\hat{\theta}_1 - \hat{\theta}_2)]^{-1} (\hat{\theta}_1 - \hat{\theta}_2)
+
 $$
 
 
@@ -600,7 +688,9 @@ $$
 
 
 $$
+
 H \xrightarrow{d} \chi^2_d \quad \text{under } H_0
+
 $$
 
 
@@ -615,7 +705,9 @@ $$
 1. **Kolmogorov-Smirnov**:
 
    $$
+
    D_n = \sup_x |\hat{F}_n(x) - F_{\theta_0}(x)|
+
    $$
 
 
@@ -623,7 +715,9 @@ $$
 2. **Cramér-von Mises**:
 
    $$
+
    W_n^2 = n \int_{-\infty}^{\infty} [\hat{F}_n(x) - F_{\theta_0}(x)]^2 dF_{\theta_0}(x)
+
    $$
 
 
@@ -631,7 +725,9 @@ $$
 3. **Anderson-Darling**:
 
    $$
+
    A_n^2 = n \int_{-\infty}^{\infty} \frac{[\hat{F}_n(x) - F_{\theta_0}(x)]^2}{F_{\theta_0}(x)[1 - F_{\theta_0}(x)]} dF_{\theta_0}(x)
+
    $$
 
 
@@ -648,7 +744,9 @@ $$
 
 
 $$
+
 \hat{\theta}_n = \arg\min_{\theta} \sum_{i=1}^n \rho(X_i, \theta)
+
 $$
 
 
@@ -659,10 +757,12 @@ where $\rho$ is chosen to downweight outliers.
 
 
 $$
+
 \rho_{\delta}(r) = \begin{cases}
 \frac{1}{2} r^2 & |r| \leq \delta \\
 \delta |r| - \frac{1}{2} \delta^2 & |r| > \delta
 \end{cases}
+
 $$
 
 
@@ -676,7 +776,9 @@ $$
 
 
 $$
+
 \text{IF}(x; T, P) = \lim_{\varepsilon \to 0} \frac{T((1-\varepsilon)P + \varepsilon \delta_x) - T(P)}{\varepsilon}
+
 $$
 
 
@@ -687,7 +789,9 @@ where $T$ is a statistical functional and $\delta_x$ is a point mass at $x$.
 
 
 $$
+
 \gamma^* = \sup_x |\text{IF}(x; T, P)|
+
 $$
 
 
@@ -705,7 +809,9 @@ $$
 
 
 $$
+
 \max_{p_1, \ldots, p_n} \prod_{i=1}^n p_i \quad \text{subject to} \quad \sum_{i=1}^n p_i = 1, \quad \sum_{i=1}^n p_i g(X_i, \theta) = 0
+
 $$
 
 
@@ -716,7 +822,9 @@ $$
 
 
 $$
+
 \text{ELR}(\theta) = \max_{p_i} \prod_{i=1}^n (n p_i)
+
 $$
 
 
@@ -727,7 +835,9 @@ subject to moment constraints.
 
 
 $$
+
 -2 \log \text{ELR}(\theta_0) \xrightarrow{d} \chi^2_r
+
 $$
 
 
@@ -744,7 +854,9 @@ $$
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
+
 $$
 
 
@@ -753,7 +865,9 @@ $$
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_{t-} \, dJ_t
+
 $$
 
 
@@ -764,7 +878,9 @@ where $J_t$ is a jump process.
 
 
 $$
+
 \text{Error} = |V_{\text{BS}}(S_0, K, \sigma) - V_{\text{true}}(S_0, K)|
+
 $$
 
 
@@ -781,7 +897,9 @@ $$
 
 
 $$
+
 \text{VaR}_{\alpha} = \inf\{v: P^*(L \leq v) \geq 1 - \alpha\}
+
 $$
 
 
@@ -790,7 +908,9 @@ $$
 
 
 $$
+
 \text{VaR}_{\alpha}^{\text{model}} = \inf\{v: P_{\theta_0}(L \leq v) \geq 1 - \alpha\}
+
 $$
 
 
@@ -799,7 +919,9 @@ $$
 
 
 $$
+
 \Delta_{\text{VaR}} = \text{VaR}_{\alpha}^{\text{model}} - \text{VaR}_{\alpha}
+
 $$
 
 
@@ -808,7 +930,9 @@ $$
 
 
 $$
+
 \text{Violation rate} = \frac{1}{T} \sum_{t=1}^T \mathbb{1}\{L_t > \text{VaR}_{\alpha, t}^{\text{model}}\}
+
 $$
 
 
@@ -822,7 +946,9 @@ Should be close to $\alpha$ if model is well-specified.
 
 
 $$
+
 \max_w \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
+
 $$
 
 
@@ -835,7 +961,9 @@ $$
 
 
 $$
+
 \text{Loss} = (w^*_{\hat{\mu}, \hat{\Sigma}} - w^*_{\mu, \Sigma})^\top \Sigma (w^*_{\hat{\mu}, \hat{\Sigma}} - w^*_{\mu, \Sigma})
+
 $$
 
 
@@ -854,7 +982,9 @@ $$
 
 
 $$
+
 R_i = \alpha_i + \beta_i^\top F + \varepsilon_i
+
 $$
 
 
@@ -872,7 +1002,9 @@ $$
 
 
 $$
+
 \mathbb{E}[(R_i - \hat{\alpha}_i - \hat{\beta}_i^\top F)^2] = \underbrace{\mathbb{E}[\varepsilon_i^2]}_{\text{Idiosyncratic}} + \underbrace{\beta_i^\top \text{Cov}(F) \beta_i}_{\text{Factor}} + \underbrace{O(n^{-1})}_{\text{Estimation}}
+
 $$
 
 
@@ -891,7 +1023,9 @@ when well-specified. Under misspecification, first term includes structural erro
 
 
 $$
+
 \tilde{\ell}(\theta, \eta) = \ell(\theta, \eta) - \Pi[\ell(\theta, \eta) | \mathcal{T}_{\eta}]
+
 $$
 
 
@@ -900,7 +1034,9 @@ $$
 
 
 $$
+
 \text{IF}_{\text{eff}}(x) = \mathcal{I}(\theta)^{-1} \tilde{\ell}(\theta, \eta)(x)
+
 $$
 
 
@@ -909,7 +1045,9 @@ $$
 
 
 $$
+
 \text{Var}(\hat{\theta}) \geq \frac{1}{n \cdot \mathcal{I}_{\text{semi}}(\theta)}
+
 $$
 
 
@@ -927,7 +1065,9 @@ $$
 
 
 $$
+
 \hat{\tau} = \frac{1}{n} \sum_{i=1}^n \left[ \frac{Y_i A_i}{\pi(X_i; \hat{\beta})} - \frac{m(X_i; \hat{\alpha})(A_i - \pi(X_i; \hat{\beta}))}{\pi(X_i; \hat{\beta})} \right]
+
 $$
 
 
@@ -949,7 +1089,9 @@ $$
 
 
 $$
+
 \|\hat{\theta}_n - \theta_0\|^2 = O_p\left(\frac{d}{n}\right)
+
 $$
 
 
@@ -965,7 +1107,9 @@ rather than $O_p(n^{-1})$ in fixed-dimensional case.
 
 
 $$
+
 \hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{ \sum_{i=1}^n (Y_i - X_i^\top \theta)^2 + \lambda \|\theta\|_1 \right\}
+
 $$
 
 
@@ -1047,7 +1191,9 @@ Misspecification  Estimation
 
 
 $$
+
 \text{Total Error} = \text{Misspecification Error} + \text{Estimation Error}
+
 $$
 
 

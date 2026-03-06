@@ -9,7 +9,9 @@ European options can only be exercised at expiration, but **American options** m
 The payoff of an American option must always satisfy:
 
 $$
+
 V(S, t) \geq \Phi(S)
+
 $$
 
 where $\Phi(S)$ is the intrinsic (payoff) value:

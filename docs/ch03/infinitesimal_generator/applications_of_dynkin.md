@@ -36,6 +36,7 @@ To compute $\mathbb{E}_x[\cdot]$ involving a stopping time $\tau$:
 
 !!! note "Why This Works"
     Dynkin's formula says:
+
     $$\mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau (\mathcal{L}f)(X_s)\,ds\right]$$
     
     - If $\mathcal{L}f = 0$: the integral vanishes → $\mathbb{E}_x[f(X_\tau)] = f(x)$
@@ -166,6 +167,7 @@ This ODE does not have a simple closed form.
 **Observation**: $p(X_\tau) = \mathbf{1}_{X_\tau = b}$, so $p(x) = \mathbb{E}_x[p(X_\tau)]$
 
 By Dynkin with $\mathcal{L}p = 0$:
+
 $$\mathbb{E}_x[p(X_\tau)] = p(x)$$
 
 **PDE**: $\frac{1}{2}p'' = 0$ with $p(a) = 0$, $p(b) = 1$
@@ -236,9 +238,11 @@ where $\tau = \inf\{t : X_t \notin D\}$.
 ??? note "Why This Works"
 
     By Dynkin with $\mathcal{L}f = 0$:
+
     $$\mathbb{E}_x[f(X_\tau)] = f(x) + 0 = f(x)$$
     
     Since $f = g$ on $\partial D$ and $X_\tau \in \partial D$:
+
     $$f(x) = \mathbb{E}_x[f(X_\tau)] = \mathbb{E}_x[g(X_\tau)]$$
 
 ---
@@ -363,9 +367,11 @@ This is a standard application combining the tools from this chapter.
 **The Dynkin–PDE correspondence**:
 
 $$
+
 \text{Probabilistic problem}
 \;\stackrel{\text{Dynkin}}{\longleftrightarrow}\;
 \text{PDE boundary value problem}
+
 $$
 
 !!! abstract "Key Takeaway"

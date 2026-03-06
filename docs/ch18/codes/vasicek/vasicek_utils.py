@@ -1,3 +1,9 @@
+"""
+Vasicek Utils
+
+Educational script demonstrating vasicek utils concepts.
+"""
+
 # ============================================================================
 # vasicek/vasicek_utils.py
 # ============================================================================
@@ -192,3 +198,7 @@ def calculate_model_metrics(result: VasicekResult) -> Dict[str, float]:
         'convergence_to_b': abs(np.mean(final_rates) - result.parameters.b),
         'autocorrelation': np.corrcoef(final_rates[:-1], final_rates[1:])[0, 1] if len(final_rates) > 1 else 0,
     }
+
+
+if __name__ == "__main__":
+    pass

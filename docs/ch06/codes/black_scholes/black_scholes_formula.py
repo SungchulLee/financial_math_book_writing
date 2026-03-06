@@ -24,3 +24,7 @@ class BlackScholesFormula(BlackScholesBase):
             bs_call_price(self.S0, self.K, self.T, self.r, self.sigma, self.q),
             bs_put_price(self.S0, self.K, self.T, self.r, self.sigma, self.q)
         )
+
+
+if __name__ == "__main__":
+    pass

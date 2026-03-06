@@ -1,3 +1,9 @@
+"""
+Stock Analysis Journalism Check
+
+Educational script demonstrating stock analysis journalism check concepts.
+"""
+
 # ============================================================================
 # stock_analysis_MARKET_JOURNALISM_FACT_CHECKING.py
 # ============================================================================
@@ -20,4 +26,6 @@ def market_journalism_fact_checking():
     print(f"Total S&P 500 companies: {len(sp500_2000)}")
     print(f"Tech percentage: {len(tech_in_sp500)/len(sp500_2000):.1%}")
 
-market_journalism_fact_checking()
+
+if __name__ == "__main__":
+    market_journalism_fact_checking()

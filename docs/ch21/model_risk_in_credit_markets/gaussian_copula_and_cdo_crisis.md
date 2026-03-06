@@ -6,9 +6,11 @@ The Gaussian copula model, developed by David Li and widely used for pricing col
 
 **Copula Modeling Framework**
 A copula function $C(u_1, \ldots, u_n)$ separates marginal distributions from dependence:
+
 $$F(x_1, \ldots, x_n) = C(F_1(x_1), \ldots, F_n(x_n))$$
 
 For default times, the Gaussian copula models joint default probability through latent variables:
+
 $$X_i = \rho Z + \sqrt{1-\rho^2} \epsilon_i$$
 
 where $Z$ and $\epsilon_i$ are standard normal, and default occurs when $X_i < \Phi^{-1}(p_i)$.
@@ -46,6 +48,7 @@ Reality contradicts this:
 
 **Calibration to Market Prices**
 CDO pricing yields implied correlation:
+
 $$\text{Tranche Price}(K, L, \rho) = f(\text{Default Model}, \rho)$$
 
 Remarkable phenomenon: single $\rho$ could not fit all tranches

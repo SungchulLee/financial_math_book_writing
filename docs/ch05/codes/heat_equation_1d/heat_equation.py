@@ -1,3 +1,9 @@
+"""
+Heat Equation
+
+Educational script demonstrating heat equation concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d/heat_equation.py
 # ============================================================================

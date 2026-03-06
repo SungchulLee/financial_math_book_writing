@@ -1,3 +1,9 @@
+"""
+Black Scholes Monte Carlo
+
+Educational script demonstrating black scholes monte carlo concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_monte_carlo.py
 # ============================================================================
@@ -231,3 +237,7 @@ class BlackScholesMonteCarlo(BlackScholesBase):
         print("• High skewness indicates non-normal distribution")
         print("• % Zero shows proportion of out-of-the-money options at expiration")
         print(f"{'='*80}")
+
+
+if __name__ == "__main__":
+    pass

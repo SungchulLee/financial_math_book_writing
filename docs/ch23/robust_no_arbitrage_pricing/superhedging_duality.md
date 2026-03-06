@@ -28,7 +28,9 @@ The **superhedging price** is the minimum initial capital required to construct 
 
 
 $$
+
 \tilde{S}_t = e^{-rt} S_t
+
 $$
 
 
@@ -39,7 +41,9 @@ $$
 
 
 $$
+
 V_t^{\theta} = \theta_t^0 S_t^0 + \sum_{i=1}^d \theta_t^i S_t^i
+
 $$
 
 
@@ -48,7 +52,9 @@ $$
 
 
 $$
+
 dV_t^{\theta} = \theta_t^0 dS_t^0 + \sum_{i=1}^d \theta_t^i dS_t^i
+
 $$
 
 
@@ -57,7 +63,9 @@ or equivalently:
 
 
 $$
+
 d\tilde{V}_t^{\theta} = \sum_{i=1}^d \theta_t^i d\tilde{S}_t^i
+
 $$
 
 
@@ -86,7 +94,9 @@ Denote the set of admissible strategies by $\mathcal{A}$.
 
 
 $$
+
 V_T^{\theta} \geq \xi \quad \mathbb{P}\text{-almost surely}
+
 $$
 
 
@@ -95,7 +105,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(\xi) = \inf \left\{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \geq \xi \, \mathbb{P}\text{-a.s.} \right\}
+
 $$
 
 
@@ -112,7 +124,9 @@ $$
 
 
 $$
+
 V_T^{\theta} \leq \xi \quad \mathbb{P}\text{-almost surely}
+
 $$
 
 
@@ -121,7 +135,9 @@ $$
 
 
 $$
+
 \pi^{\text{sub}}(\xi) = \sup \left\{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \leq \xi \, \mathbb{P}\text{-a.s.} \right\}
+
 $$
 
 
@@ -137,7 +153,9 @@ $$
 
 
 $$
+
 \pi^{\text{sub}}(\xi) \leq \pi^{\text{sup}}(\xi)
+
 $$
 
 
@@ -153,7 +171,9 @@ $$
 
 
 $$
+
 \pi^{\text{sub}}(\xi) = \pi^{\text{sup}}(\xi)
+
 $$
 
 
@@ -173,7 +193,9 @@ and this common value is the unique arbitrage-free price.
 2. The discounted price process $\tilde{S}_t$ is a $\mathbb{Q}$-martingale:
 
    $$
+
    \tilde{S}_t = \mathbb{E}_{\mathbb{Q}}[\tilde{S}_T | \mathcal{F}_t]
+
    $$
 
 
@@ -182,7 +204,9 @@ and this common value is the unique arbitrage-free price.
 
 
 $$
+
 \mathcal{M} = \{ \mathbb{Q}: \mathbb{Q} \text{ is an EMM} \}
+
 $$
 
 
@@ -208,7 +232,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+
 $$
 
 
@@ -225,7 +251,9 @@ $$
    
 
    $$
+
    e^{-rT} V_T^{\theta} = \tilde{V}_T^{\theta} \geq e^{-rT} \xi
+
    $$
 
 
@@ -234,7 +262,9 @@ $$
    
 
    $$
+
    v = V_0^{\theta} = \tilde{V}_0^{\theta} \geq \mathbb{E}_{\mathbb{Q}}[\tilde{V}_T^{\theta}] \geq \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+
    $$
 
 
@@ -270,7 +300,9 @@ For the duality to hold, we typically require:
 
 
 $$
+
 \pi^{\text{sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+
 $$
 
 
@@ -284,7 +316,9 @@ $$
 
 
 $$
+
 [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi], \, \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \right]
+
 $$
 
 
@@ -293,7 +327,9 @@ $$
 
 
 $$
+
 \text{Spread}(\xi) = \pi^{\text{sup}}(\xi) - \pi^{\text{sub}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] - \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+
 $$
 
 
@@ -319,7 +355,9 @@ $$
 
 
 $$
+
 S_0 = \mathbb{E}_{\mathbb{Q}}[S_1] = 120 q + 90(1-q) = 100
+
 $$
 
 
@@ -330,7 +368,9 @@ Since the EMM is unique, the market is complete:
 
 
 $$
+
 \pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \mathbb{E}_{\mathbb{Q}}[\xi] = \frac{1}{3} \cdot 1 + \frac{2}{3} \cdot 0 = \frac{1}{3}
+
 $$
 
 
@@ -342,7 +382,9 @@ $$
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+
 $$
 
 
@@ -357,7 +399,9 @@ where $\sigma_t \in [\sigma_{\min}, \sigma_{\max}]$ is uncertain.
 
 
 $$
+
 \pi^{\text{sup}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS-Digital}(S_0, K, \sigma, T)
+
 $$
 
 
@@ -368,7 +412,9 @@ where BS-Digital is the Black-Scholes digital call price.
 
 
 $$
+
 \pi^{\text{sup}} = \text{BS-Digital}(S_0, K, \sigma_{\max}, T)
+
 $$
 
 
@@ -377,7 +423,9 @@ $$
 
 
 $$
+
 \pi^{\text{sub}} = \text{BS-Digital}(S_0, K, \sigma_{\min}, T)
+
 $$
 
 
@@ -389,7 +437,9 @@ $$
 
 
 $$
+
 \xi = (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t < H\}}
+
 $$
 
 
@@ -404,7 +454,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+
 $$
 
 
@@ -415,7 +467,9 @@ In Black-Scholes model, this reduces to the standard barrier option formula.
 
 
 $$
+
 \pi^{\text{sup}}(\xi) = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} C^{\text{UO}}(S_0, K, H, \sigma, T)
+
 $$
 
 
@@ -434,7 +488,9 @@ where $C^{\text{UO}}$ is the up-and-out call price under constant volatility $\s
 
 
 $$
+
 \tilde{S}_t(\omega) = \sum_{j: \omega_j \succ \omega} \mathbb{Q}(\omega_j | \omega) \tilde{S}_{t+1}(\omega_j)
+
 $$
 
 
@@ -443,12 +499,14 @@ $$
 
 
 $$
+
 \begin{aligned}
 \text{maximize} \quad & \sum_{i=1}^N e^{-rT} \xi(\omega_i) \mathbb{Q}(\omega_i) \\
 \text{subject to} \quad & \text{Martingale constraints} \\
 & \sum_{i=1}^N \mathbb{Q}(\omega_i) = 1 \\
 & \mathbb{Q}(\omega_i) \geq 0, \quad i = 1, \ldots, N
 \end{aligned}
+
 $$
 
 
@@ -464,7 +522,9 @@ $$
 
 
 $$
+
 S^{(i)}(t_j) = \sum_{k=1}^N p_{ik}(j) S^{(k)}(t_{j+1})
+
 $$
 
 
@@ -480,7 +540,9 @@ where $p_{ik}(j)$ represents transition probabilities.
 
 
 $$
+
 V(t, S) = \sup_{\theta} \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \left[ V(t+dt, S+dS) \right]
+
 $$
 
 
@@ -491,7 +553,9 @@ where the supremum is over trading strategies and infimum over model parameters.
 
 
 $$
+
 \frac{\partial V}{\partial t} + \sup_{\theta} \left\{ \theta \sigma S \frac{\partial^2 V}{\partial S^2} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right\} = 0
+
 $$
 
 
@@ -519,7 +583,9 @@ with terminal condition $V(T, S) = \xi(S)$.
 
 
 $$
+
 \min_{\theta} \mathbb{E}_{\mathbb{P}}\left[ (V_T^{\theta} - \xi)^2 \right]
+
 $$
 
 
@@ -535,7 +601,9 @@ $$
 
 
 $$
+
 \inf \{ c: (c, -\xi) \in \mathcal{C} \}
+
 $$
 
 
@@ -558,7 +626,9 @@ where $\mathcal{C}$ is the cone of claims attainable with non-negative cost.
 
 
 $$
+
 \pi^{\text{BS}}(\xi) = \mathbb{E}_{\mathbb{Q}^{\text{BS}}}[e^{-rT} \xi]
+
 $$
 
 
@@ -567,7 +637,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \pi^{\text{BS}}(\xi)
+
 $$
 
 
@@ -576,7 +648,9 @@ $$
 
 
 $$
+
 \pi^{\text{BS}}(\xi; \sigma) \in [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)]
+
 $$
 
 
@@ -590,7 +664,9 @@ for $\sigma \in [\sigma_{\min}, \sigma_{\max}]$.
 
 
 $$
+
 U(W) = \mathbb{E}[u(W_T^{p, \theta})]
+
 $$
 
 
@@ -608,7 +684,9 @@ $$
 
 
 $$
+
 \mathcal{M}_{\text{GD}} = \left\{ \mathbb{Q} \in \mathcal{M}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}} \right\| \leq K \right\}
+
 $$
 
 
@@ -617,14 +695,18 @@ $$
 
 
 $$
+
 \pi^{\text{GD, sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}_{\text{GD}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \geq \pi^{\text{sub}}(\xi)
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 \pi^{\text{GD, sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}_{\text{GD}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \leq \pi^{\text{sup}}(\xi)
+
 $$
 
 
@@ -643,7 +725,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(\xi; \lambda, \mu) \geq \pi^{\text{sup}}(\xi; 0, 0)
+
 $$
 
 
@@ -654,7 +738,9 @@ with strict inequality reflecting the cost of trading.
 
 
 $$
+
 \pi^{\text{sup}}(\xi; \lambda, \mu) \approx \pi^{\text{sup}}(\xi; 0, 0) + O(\sqrt{\lambda + \mu})
+
 $$
 
 
@@ -670,7 +756,9 @@ under regular conditions.
 
 
 $$
+
 \pi^{\text{sup}}_{t_0, \ldots, t_N}(\xi) \geq \pi^{\text{sup}}_{\text{continuous}}(\xi)
+
 $$
 
 
@@ -679,7 +767,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}_{t_0, \ldots, t_N}(\xi) \to \pi^{\text{sup}}_{\text{continuous}}(\xi)
+
 $$
 
 
@@ -693,7 +783,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+
 $$
 
 
@@ -709,7 +801,9 @@ remains valid.
 
 
 $$
+
 \xi = g((S_t)_{0 \leq t \leq T})
+
 $$
 
 
@@ -720,7 +814,9 @@ $$
 
 
 $$
+
 \xi = \max_{0 \leq t \leq T} S_t - K
+
 $$
 
 
@@ -747,7 +843,9 @@ $$
 
 
 $$
+
 [\pi^{\text{sub}}, \pi^{\text{sup}}] = \text{arbitrage-free price range}
+
 $$
 
 
@@ -765,7 +863,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}} = \sup_{\lambda \in \Lambda} \mathbb{E}_{\mathbb{Q}^{\lambda}}\left[ e^{-rT} (1-R) \mathbb{1}_{\{\tau < T\}} \right]
+
 $$
 
 
@@ -836,7 +936,9 @@ Extract optimal hedging strategy from dual solution:
 1. **Duality Principle**: Dynamic superhedging price equals static optimization over martingale measures:
 
    $$
+
    \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+
    $$
 
 
@@ -844,7 +946,9 @@ Extract optimal hedging strategy from dual solution:
 2. **No-Arbitrage Bounds**: The arbitrage-free price range is:
 
    $$
+
    [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi], \, \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \right]
+
    $$
 
 

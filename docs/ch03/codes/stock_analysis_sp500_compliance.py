@@ -1,3 +1,9 @@
+"""
+Stock Analysis Sp500 Compliance
+
+Educational script demonstrating stock analysis sp500 compliance concepts.
+"""
+
 # ============================================================================
 # stock_analysis_SP500_VALIDATE_HISTORICAL_PORTFOLIO_COMPLIANCE.py
 # ============================================================================
@@ -25,4 +31,6 @@ def validate_historical_portfolio_compliance():
     compliance_rate = len(valid_holdings) / len(client_portfolio_2008)
     print(f"Compliance rate: {compliance_rate:.1%}")
 
-validate_historical_portfolio_compliance()
+
+if __name__ == "__main__":
+    validate_historical_portfolio_compliance()

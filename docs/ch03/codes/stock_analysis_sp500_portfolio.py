@@ -1,3 +1,9 @@
+"""
+Stock Analysis Sp500 Portfolio
+
+Educational script demonstrating stock analysis sp500 portfolio concepts.
+"""
+
 # ============================================================================
 # stock_analysis_CREATE_HISTORICAL_SP500_PORTFOLIO.py
 # ============================================================================
@@ -24,4 +30,6 @@ def create_historical_sp500_portfolio():
     
     return portfolio_tickers
 
-create_historical_sp500_portfolio()
+
+if __name__ == "__main__":
+    create_historical_sp500_portfolio()

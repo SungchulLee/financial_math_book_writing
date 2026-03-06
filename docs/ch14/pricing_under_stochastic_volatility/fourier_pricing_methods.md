@@ -11,7 +11,9 @@ Fourier methods convert option pricing into numerical integration problems using
 European option prices involve expectations of the form:
 
 $$
+
 C(K) = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]
+
 $$
 
 The density of $S_T$ (or $X_T = \log S_T$) is typically unavailable in closed form for stochastic volatility models, but the **characteristic function** $\varphi(u) = \mathbb{E}[e^{iuX_T}]$ often is.
@@ -37,7 +39,9 @@ The density of $S_T$ (or $X_T = \log S_T$) is typically unavailable in closed fo
 A European call price is:
 
 $$
+
 C(K) = e^{-rT}\int_{\log K}^{\infty}(e^x - K)f(x)\,dx
+
 $$
 
 where $f(x)$ is the density of $X_T = \log S_T$.
@@ -49,7 +53,9 @@ where $f(x)$ is the density of $X_T = \log S_T$.
 Introduce a **damping factor** $e^{\alpha k}$ where $k = \log K$:
 
 $$
+
 c(k) = e^{\alpha k}C(e^k)
+
 $$
 
 For $\alpha > 0$, the modified price $c(k) \to 0$ as $k \to -\infty$, making it integrable.
@@ -59,7 +65,9 @@ For $\alpha > 0$, the modified price $c(k) \to 0$ as $k \to -\infty$, making it 
 The Fourier transform of $c(k)$ is:
 
 $$
+
 \hat{c}(u) = \int_{-\infty}^{\infty} e^{iuk}c(k)\,dk = \frac{e^{-rT}\varphi(u - i(\alpha+1))}{\alpha^2 + \alpha - u^2 + i(2\alpha+1)u}
+
 $$
 
 **Derivation:** Substitute the call payoff, interchange integrals, and evaluate.
@@ -69,13 +77,17 @@ $$
 The call price is recovered by:
 
 $$
+
 C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty} e^{-iuk}\hat{c}(u)\,du
+
 $$
 
 or equivalently:
 
 $$
+
 C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty} \text{Re}\left[e^{-iuk}\hat{c}(u)\right]du
+
 $$
 
 ### Choosing α
@@ -100,7 +112,9 @@ For Heston, this means $\alpha + 1$ must be less than the critical moment $n^*(T
 Discretize the integration with step $\Delta u$ and truncate at $N$ points:
 
 $$
+
 C(k_j) \approx \frac{e^{-\alpha k_j}}{\pi}\sum_{n=0}^{N-1} e^{-i u_n k_j}\hat{c}(u_n)\Delta u
+
 $$
 
 where $u_n = n\Delta u$ and $k_j$ is the log-strike grid.
@@ -110,13 +124,17 @@ where $u_n = n\Delta u$ and $k_j$ is the log-strike grid.
 For the FFT to apply, we need:
 
 $$
+
 k_j = -b + j\Delta k, \quad j = 0, \ldots, N-1
+
 $$
 
 with the relationship:
 
 $$
+
 \Delta u \cdot \Delta k = \frac{2\pi}{N}
+
 $$
 
 **Trade-off:** Fine $\Delta u$ (accurate integration) implies coarse $\Delta k$ (sparse strike grid), and vice versa.
@@ -126,7 +144,9 @@ $$
 Apply Simpson's weights for improved accuracy:
 
 $$
+
 C(k_j) \approx \frac{e^{-\alpha k_j}}{\pi}\sum_{n=0}^{N-1} e^{-i u_n k_j}\hat{c}(u_n)\cdot w_n \cdot \Delta u
+
 $$
 
 where $w_n = \frac{1}{3}(3 + (-1)^n - \delta_{n,0})$.
@@ -184,7 +204,9 @@ def carr_madan_fft(S0, K_array, T, r, q, cf_func, alpha=1.5, N=4096):
 Lewis (2001) provides a symmetric formula:
 
 $$
+
 C(K) = S_0 e^{-qT} - \frac{\sqrt{S_0 K}e^{-(r+q)T/2}}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{iuk}\varphi(u - i/2)}{u^2 + 1/4}\right]du
+
 $$
 
 where $k = \log(K/S_0)$.
@@ -208,7 +230,9 @@ where $k = \log(K/S_0)$.
 The **COS method** (Fang & Oosterlee, 2008) expands the density in cosine series:
 
 $$
+
 f(x) \approx \sum_{k=0}^{N-1} A_k \cos\left(k\pi\frac{x-a}{b-a}\right)
+
 $$
 
 on a truncated domain $[a, b]$.
@@ -218,7 +242,9 @@ on a truncated domain $[a, b]$.
 The coefficients are related to the characteristic function:
 
 $$
+
 A_k = \frac{2}{b-a}\text{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right]
+
 $$
 
 ### Option Pricing
@@ -226,13 +252,17 @@ $$
 The call price becomes:
 
 $$
+
 C(K) = e^{-rT}\sum_{k=0}^{N-1} \text{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right] \cdot V_k
+
 $$
 
 where $V_k$ are precomputed payoff coefficients:
 
 $$
+
 V_k = \frac{2}{b-a}\int_{\log K}^b (e^x - K)\cos\left(k\pi\frac{x-a}{b-a}\right)dx
+
 $$
 
 These have closed-form expressions.
@@ -249,7 +279,9 @@ These have closed-form expressions.
 Choose $[a, b]$ based on cumulants:
 
 $$
+
 a = c_1 - L\sqrt{c_2 + \sqrt{c_4}}, \quad b = c_1 + L\sqrt{c_2 + \sqrt{c_4}}
+
 $$
 
 where $c_j$ are cumulants of $X_T$ and $L \approx 10$–$12$.
@@ -319,7 +351,9 @@ Always validate against:
 Use put-call parity:
 
 $$
+
 P(K) = C(K) - S_0 e^{-qT} + K e^{-rT}
+
 $$
 
 Or modify the Fourier transform for put payoffs directly.
@@ -329,7 +363,9 @@ Or modify the Fourier transform for put payoffs directly.
 Digital call: $\mathbf{1}_{S_T > K}$
 
 $$
+
 D_C(K) = e^{-rT}\left[\frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-iuk}\varphi(u)}{iu}\right]du\right]
+
 $$
 
 ### Power Payoffs
@@ -337,7 +373,9 @@ $$
 For $(S_T)^p$:
 
 $$
+
 \mathbb{E}[(S_T)^p] = e^{rT}\varphi(-ip)
+
 $$
 
 (if the moment exists).

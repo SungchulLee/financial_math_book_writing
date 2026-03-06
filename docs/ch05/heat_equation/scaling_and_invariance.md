@@ -9,9 +9,11 @@ The heat equation possesses a characteristic **scaling symmetry** that reflects 
 **Theorem**: If $u(t,x)$ solves the heat equation $u_t = \frac{1}{2}u_{xx}$, then for any $\lambda > 0$:
 
 $$
+
 \boxed{
 u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
 }
+
 $$
 
 also solves the heat equation.
@@ -19,17 +21,23 @@ also solves the heat equation.
 **Proof**: Let $v(t,x) = u(\lambda^2 t, \lambda x)$. Then:
 
 $$
+
 \frac{\partial v}{\partial t} = \lambda^2 \frac{\partial u}{\partial t}(\lambda^2 t, \lambda x)
+
 $$
 
 $$
+
 \frac{\partial^2 v}{\partial x^2} = \lambda^2 \frac{\partial^2 u}{\partial x^2}(\lambda^2 t, \lambda x)
+
 $$
 
 Therefore:
 
 $$
+
 \frac{\partial v}{\partial t} - \frac{1}{2}\frac{\partial^2 v}{\partial x^2} = \lambda^2 \left(\frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\right) = 0 \quad \checkmark
+
 $$
 
 ---
@@ -39,9 +47,11 @@ $$
 Parabolic scaling reveals the fundamental relationship:
 
 $$
+
 \boxed{
 \text{space} \sim \sqrt{\text{time}}
 }
+
 $$
 
 This means:
@@ -56,9 +66,11 @@ This means:
 Brownian motion satisfies the identical scaling property:
 
 $$
+
 \boxed{
 (B_t)_{t \geq 0} \overset{d}{=} \left(\frac{1}{\lambda}B_{\lambda^2 t}\right)_{t \geq 0}
 }
+
 $$
 
 **Proof**: Both sides are Gaussian processes with:
@@ -76,29 +88,39 @@ The scaling invariance leads to **self-similar solutions** — solutions that ma
 **Ansatz**: Look for solutions of the form:
 
 $$
+
 u(t,x) = t^{-\alpha} F\left(\frac{x}{\sqrt{t}}\right) = t^{-\alpha} F(\eta), \quad \eta = \frac{x}{\sqrt{t}}
+
 $$
 
 **Substituting into the heat equation**:
 
 $$
+
 u_t = -\alpha t^{-\alpha-1} F - \frac{1}{2}t^{-\alpha-1}\eta F'
+
 $$
 
 $$
+
 u_{xx} = t^{-\alpha-1} F''
+
 $$
 
 The heat equation becomes:
 
 $$
+
 -\alpha F - \frac{1}{2}\eta F' = \frac{1}{2}F''
+
 $$
 
 For $\alpha = \frac{1}{2}$:
 
 $$
+
 F'' + \eta F' + F = 0
+
 $$
 
 **Solution**: $F(\eta) = C e^{-\eta^2/2}$
@@ -106,7 +128,9 @@ $$
 This recovers the **heat kernel**:
 
 $$
+
 u(t,x) = \frac{C}{\sqrt{t}} e^{-x^2/2t}
+
 $$
 
 ---
@@ -133,7 +157,9 @@ The scaling relation distinguishes diffusion from transport:
 The characteristic length scale is:
 
 $$
+
 \ell(t) = \sqrt{Dt}
+
 $$
 
 **Applications**:
@@ -164,7 +190,9 @@ If $u(t,x)$ is a solution, so is $u(t,-x)$.
 If $u(t,x)$ solves $u_t = \frac{1}{2}u_{xx}$, then:
 
 $$
+
 v(t,x) = e^{cx - c^2t/2} u(t, x - ct)
+
 $$
 
 solves the same equation. This corresponds to Brownian motion with drift.
@@ -182,7 +210,9 @@ Scaling reduces the PDE to an ODE, as shown for self-similar solutions.
 Scaling arguments give bounds on solutions without solving explicitly:
 
 $$
+
 \|u(t,\cdot)\|_\infty \leq \frac{C}{\sqrt{t}}\|f\|_{L^1}
+
 $$
 
 ### 3. Asymptotic Behavior
@@ -190,7 +220,9 @@ $$
 For large $t$, solutions approach the self-similar profile:
 
 $$
+
 u(t,x) \approx \frac{M}{\sqrt{2\pi t}}e^{-x^2/2t}
+
 $$
 
 where $M = \int f(x)\,dx$ is the total mass.
@@ -211,9 +243,11 @@ In terms of $\eta$:
 ## Summary
 
 $$
+
 \boxed{
 u(t,x) \text{ solves heat eq} \implies u(\lambda^2 t, \lambda x) \text{ solves heat eq}
 }
+
 $$
 
 | Property | Expression |

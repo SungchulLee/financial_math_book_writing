@@ -18,6 +18,7 @@ import scipy.integrate as integrate
 import scipy.optimize as optimize
 import enum 
 
+# ======================================================================
 # This class defines puts and calls
 class OptionType(enum.Enum):
     CALL = 1.0
@@ -343,4 +344,6 @@ def mainCalculation():
     plt.legend(['IV-COS','IV-MC'])
     plt.title("Fx Implied volatilities")
     
-mainCalculation()
+
+if __name__ == "__main__":
+    mainCalculation()

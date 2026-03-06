@@ -13,7 +13,9 @@ This is the Doob–Meyer decomposition. It reveals the internal structure of sto
 Consider an Itô process:
 
 $$
+
 X_t = X_0 + \int_0^t b_s \, ds + \int_0^t \sigma_s \, dW_s
+
 $$
 
 This already exhibits a decomposition:
@@ -37,13 +39,17 @@ We start with discrete time, where the decomposition is elementary.
 such that:
 
 $$
+
 \boxed{X_n = X_0 + M_n + A_n}
+
 $$
 
 **Proof**: Define $A_n$ recursively by:
 
 $$
+
 A_0 = 0, \quad A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}]
+
 $$
 
 Then $A_n$ is predictable (since $A_n - A_{n-1}$ is $\mathcal{F}_{n-1}$-measurable).
@@ -51,7 +57,9 @@ Then $A_n$ is predictable (since $A_n - A_{n-1}$ is $\mathcal{F}_{n-1}$-measurab
 Define $M_n = X_n - X_0 - A_n$. Then:
 
 $$
+
 \mathbb{E}[M_n - M_{n-1} \mid \mathcal{F}_{n-1}] = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] - (A_n - A_{n-1}) = 0
+
 $$
 
 So $M_n$ is a martingale.
@@ -79,7 +87,9 @@ The key concept is **class (D)**.
 **Definition**: A càdlàg adapted process $(X_t)_{t \ge 0}$ is of **class (D)** if the family:
 
 $$
+
 \{X_\tau : \tau \text{ is a bounded stopping time}\}
+
 $$
 
 is uniformly integrable.
@@ -104,13 +114,17 @@ is uniformly integrable.
 such that:
 
 $$
+
 \boxed{X_t = X_0 + M_t + A_t, \quad t \ge 0}
+
 $$
 
 Equivalently:
 
 $$
+
 \boxed{M_t = X_t - X_0 - A_t \text{ is a martingale}}
+
 $$
 
 **Remarks**:
@@ -142,13 +156,17 @@ The details involve delicate arguments from the general theory of processes and 
 **Theorem**: The decomposition is unique: if
 
 $$
+
 X_t = X_0 + M_t + A_t = X_0 + \widetilde{M}_t + \widetilde{A}_t
+
 $$
 
 with both $(A_t)$ and $(\widetilde{A}_t)$ predictable increasing, then:
 
 $$
+
 A_t = \widetilde{A}_t \quad \text{for all } t, \text{ a.s.}
+
 $$
 
 Hence $M_t = \widetilde{M}_t$ as well.
@@ -179,7 +197,9 @@ The predictable increasing process $A_t$ in the Doob–Meyer decomposition is ca
 For $X_t = W_t^2$, Itô's formula gives:
 
 $$
+
 W_t^2 = 2\int_0^t W_s \, dW_s + t
+
 $$
 
 Thus:
@@ -190,7 +210,9 @@ Thus:
 The compensator is deterministic: $A_t = t = [W]_t$ (the quadratic variation).
 
 $$
+
 \boxed{W_t^2 = M_t + t}
+
 $$
 
 ### Example 2: Submartingale from Convex Transform
@@ -200,7 +222,9 @@ If $M_t$ is a martingale and $\varphi$ is convex with $\varphi(M_t) \in L^1$, th
 For $\varphi(x) = x^2$ and $M_t = W_t$:
 
 $$
+
 W_t^2 - t = M_t \quad \text{(the martingale part)}
+
 $$
 
 ### Example 3: Absolute Value
@@ -208,7 +232,9 @@ $$
 $|W_t|$ is a submartingale. Its Doob–Meyer decomposition involves the **local time** $L_t^0$:
 
 $$
+
 |W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0
+
 $$
 
 where $L_t^0$ is the local time at 0 (a continuous increasing process measuring time spent near 0).
@@ -224,7 +250,9 @@ $M_t^* = \sup_{s \le t} W_s$ is a submartingale. Its compensator involves reflec
 For a continuous local martingale $M_t$, the **quadratic variation** $[M]_t$ is the unique continuous increasing process such that:
 
 $$
+
 M_t^2 - [M]_t \text{ is a local martingale}
+
 $$
 
 Comparing with Doob–Meyer: $M_t^2$ is a submartingale (when $M_t$ is a true martingale), and $[M]_t$ is its compensator.
@@ -234,7 +262,9 @@ Comparing with Doob–Meyer: $M_t^2$ is a submartingale (when $M_t$ is a true ma
 **Key relationship**:
 
 $$
+
 \text{Quadratic variation} = \text{Compensator of the square}
+
 $$
 
 ---
@@ -246,7 +276,9 @@ The Doob–Meyer decomposition naturally leads to the class of **semimartingales
 **Definition**: A process $X_t$ is a **semimartingale** if it can be written as:
 
 $$
+
 X_t = X_0 + M_t + A_t
+
 $$
 
 where $M_t$ is a local martingale and $A_t$ is an adapted càdlàg finite variation process (not necessarily increasing or predictable).
@@ -296,7 +328,9 @@ Meyer's work in the 1960s, as part of the Strasbourg school, established the gen
 The Doob–Meyer Decomposition:
 
 $$
+
 \boxed{X_t = X_0 + M_t + A_t}
+
 $$
 
 | Component | Type | Interpretation |

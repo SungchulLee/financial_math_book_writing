@@ -28,13 +28,17 @@ The early-exercise feature has profound consequences for pricing: the holder fac
 A **European option** can be exercised **only at maturity** $T$. The payoff is:
 
 $$
+
 H = \Phi(S_T)
+
 $$
 
 where $\Phi$ is the payoff function. For a call and put respectively:
 
 $$
+
 \Phi_{\text{call}}(S) = (S - K)^+, \quad \Phi_{\text{put}}(S) = (K - S)^+
+
 $$
 
 The price admits a closed-form solution under Black–Scholes assumptions.
@@ -49,9 +53,11 @@ An **American option** can be exercised at **any time** $t \in [0, T]$. At each 
 The price is the solution to:
 
 $$
+
 \boxed{
 V(t, S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid S_t = S\right]
 }
+
 $$
 
 where $\mathcal{T}_{t,T}$ denotes the set of stopping times valued in $[t, T]$.
@@ -61,7 +67,9 @@ where $\mathcal{T}_{t,T}$ denotes the set of stopping times valued in $[t, T]$.
 A **Bermudan option** can be exercised on a finite set of dates $\{t_1, t_2, \ldots, t_m\} \subset [0, T]$. The price is:
 
 $$
+
 V(t, S) = \sup_{\tau \in \{t_1, \ldots, t_m\}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid S_t = S\right]
+
 $$
 
 Bermudan options interpolate between European ($m = 1$) and American ($m \to \infty$) exercise styles.
@@ -76,9 +84,11 @@ Bermudan options interpolate between European ($m = 1$) and American ($m \to \in
 The additional exercise flexibility implies a fundamental ordering. For options with identical parameters $(S_0, K, T, r, \sigma)$:
 
 $$
+
 \boxed{
 V_{\text{European}} \leq V_{\text{Bermudan}} \leq V_{\text{American}}
 }
+
 $$
 
 The difference $V_{\text{American}} - V_{\text{European}}$ is the **early exercise premium (EEP)**, representing the value of the right to exercise before maturity.
@@ -101,13 +111,17 @@ The difference $V_{\text{American}} - V_{\text{European}}$ is the **early exerci
 Under the risk-neutral measure $\mathbb{Q}$, the American option price satisfies:
 
 $$
+
 V(t, S_t) = \operatorname*{ess\,sup}_{\tau \geq t} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid \mathcal{F}_t\right]
+
 $$
 
 The **optimal stopping time** $\tau^*$ is:
 
 $$
+
 \tau^* = \inf\{t \leq s \leq T : V(s, S_s) = \Phi(S_s)\}
+
 $$
 
 That is, the holder exercises the first time the option price equals the intrinsic value—equivalently, when the continuation value drops to the exercise value.
@@ -117,9 +131,11 @@ That is, the holder exercises the first time the option price equals the intrins
 The optimal stopping problem is equivalent to the **variational inequality** (obstacle problem):
 
 $$
+
 \boxed{
 \min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
 }
+
 $$
 
 where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ is the Black–Scholes generator. This formulation is studied in detail in [Free Boundary Problems](../../ch08/american_options/free_boundary_problems_american_options.md).
@@ -141,9 +157,11 @@ where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ is the Black–Sch
 ## Summary
 
 $$
+
 \boxed{
 V_{\text{American}}(t, S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid S_t = S\right]
 }
+
 $$
 
 | Aspect | Description |

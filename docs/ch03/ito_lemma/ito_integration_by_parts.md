@@ -13,8 +13,10 @@ In ordinary calculus, for differentiable functions \(f(t)\) and \(g(t)\):
 
 
 $$
+
 \int_0^t f(s) \, dg(s)
 = f(t) g(t) - f(0) g(0) - \int_0^t g(s) \, df(s)
+
 $$
 
 
@@ -26,7 +28,9 @@ Or in differential notation:
 
 
 $$
+
 d(f(t) g(t)) = f(t) \, dg(t) + g(t) \, df(t)
+
 $$
 
 
@@ -45,9 +49,11 @@ For Itô processes \(X_t\) and \(Y_t\), the integration by parts formula include
 
 
 $$
+
 \boxed{
 d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t + d[X, Y]_t
 }
+
 $$
 
 
@@ -59,9 +65,11 @@ In integral form:
 
 
 $$
+
 \boxed{
 X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + [X, Y]_t
 }
+
 $$
 
 
@@ -82,10 +90,12 @@ For two Itô processes:
 
 
 $$
+
 \begin{align}
 dX_t &= \mu_t^X \, dt + \sigma_t^X \, dB_t\\
 dY_t &= \mu_t^Y \, dt + \sigma_t^Y \, dB_t
 \end{align}
+
 $$
 
 
@@ -97,7 +107,9 @@ their **quadratic covariation** is:
 
 
 $$
+
 d[X, Y]_t = \sigma_t^X \sigma_t^Y \, dt
+
 $$
 
 
@@ -109,7 +121,9 @@ In integral form:
 
 
 $$
+
 [X, Y]_t = \int_0^t \sigma_s^X \sigma_s^Y \, ds
+
 $$
 
 
@@ -121,12 +135,14 @@ $$
 
 
 $$
+
 \begin{array}{c|ccc}
 \cdot & dt & dB_t \\
 \hline
 dt & 0 & 0 \\
 dB_t & 0 & dt
 \end{array}
+
 $$
 
 
@@ -154,10 +170,12 @@ The integration by parts formula is a direct consequence of **Itô's product rul
 
 
 $$
+
 \frac{\partial f}{\partial x} = y, \quad
 \frac{\partial f}{\partial y} = x, \quad
 \frac{\partial^2 f}{\partial x \partial y} = 1, \quad
 \frac{\partial^2 f}{\partial x^2} = \frac{\partial^2 f}{\partial y^2} = 0
+
 $$
 
 
@@ -169,11 +187,13 @@ Applying Itô's lemma:
 
 
 $$
+
 df(X_t, Y_t)
 = \frac{\partial f}{\partial x} dX_t + \frac{\partial f}{\partial y} dY_t
 + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} (dX_t)^2
 + \frac{1}{2} \frac{\partial^2 f}{\partial y^2} (dY_t)^2
 + \frac{\partial^2 f}{\partial x \partial y} dX_t \, dY_t
+
 $$
 
 
@@ -185,9 +205,11 @@ Substituting the derivatives:
 
 
 $$
+
 d(X_t Y_t)
 = Y_t \, dX_t + X_t \, dY_t
 + 0 \cdot (dX_t)^2 + 0 \cdot (dY_t)^2 + 1 \cdot dX_t \, dY_t
+
 $$
 
 
@@ -199,9 +221,11 @@ Since \(dX_t \, dY_t = d[X, Y]_t\):
 
 
 $$
+
 \boxed{
 d(X_t Y_t) = Y_t \, dX_t + X_t \, dY_t + d[X, Y]_t
 }
+
 $$
 
 
@@ -223,8 +247,10 @@ If \(X_t\) and \(Y_t\) are martingales driven by the same Brownian motion:
 
 
 $$
+
 dX_t = \sigma_t^X \, dB_t, \quad
 dY_t = \sigma_t^Y \, dB_t
+
 $$
 
 
@@ -236,7 +262,9 @@ Then:
 
 
 $$
+
 d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t + \sigma_t^X \sigma_t^Y \, dt
+
 $$
 
 
@@ -248,7 +276,9 @@ Integrating:
 
 
 $$
+
 X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + \int_0^t \sigma_s^X \sigma_s^Y \, ds
+
 $$
 
 
@@ -260,8 +290,10 @@ $$
 
 
 $$
+
 B_t^2 = \int_0^t B_s \, dB_s + \int_0^t B_s \, dB_s + \int_0^t 1 \, ds
 = 2 \int_0^t B_s \, dB_s + t
+
 $$
 
 
@@ -273,7 +305,9 @@ Solving for the Itô integral:
 
 
 $$
+
 \int_0^t B_s \, dB_s = \frac{B_t^2 - t}{2}
+
 $$
 
 
@@ -290,8 +324,10 @@ If \(X_t = t\) (deterministic) and \(Y_t\) is an Itô process:
 
 
 $$
+
 dX_t = dt, \quad
 dY_t = \mu_t \, dt + \sigma_t \, dB_t
+
 $$
 
 
@@ -303,7 +339,9 @@ Then \(d[X, Y]_t = 0\) (no quadratic covariation with deterministic processes):
 
 
 $$
+
 d(t \cdot Y_t) = t \, dY_t + Y_t \, dt
+
 $$
 
 
@@ -320,8 +358,10 @@ If \(X_t\) and \(Y_t\) are driven by **independent** Brownian motions \(B_t^{(1)
 
 
 $$
+
 dX_t = \sigma_t^X \, dB_t^{(1)}, \quad
 dY_t = \sigma_t^Y \, dB_t^{(2)}
+
 $$
 
 
@@ -333,7 +373,9 @@ Then \(d[X, Y]_t = 0\) (independent Brownian motions have zero cross-variation):
 
 
 $$
+
 d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t
+
 $$
 
 
@@ -359,7 +401,9 @@ Again, no correction term.
 
 
 $$
+
 X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + [X, Y]_t
+
 $$
 
 
@@ -371,7 +415,9 @@ Since \(X_t = t\) is deterministic, \([X, Y]_t = 0\):
 
 
 $$
+
 t B_t = 0 + \int_0^t s \, dB_s + \int_0^t B_s \, ds
+
 $$
 
 
@@ -383,9 +429,11 @@ Solving for the Itô integral:
 
 
 $$
+
 \boxed{
 \int_0^t s \, dB_s = t B_t - \int_0^t B_s \, ds
 }
+
 $$
 
 
@@ -404,7 +452,9 @@ $$
 
 
 $$
+
 d(e^{B_t}) = e^{B_t} dB_t + \frac{1}{2} e^{B_t} dt
+
 $$
 
 
@@ -416,7 +466,9 @@ Rearranging:
 
 
 $$
+
 e^{B_t} dB_t = d(e^{B_t}) - \frac{1}{2} e^{B_t} dt
+
 $$
 
 
@@ -428,7 +480,9 @@ Integrating:
 
 
 $$
+
 \int_0^t e^{B_s} dB_s = e^{B_t} - 1 - \frac{1}{2} \int_0^t e^{B_s} ds
+
 $$
 
 
@@ -447,7 +501,9 @@ $$
 
 
 $$
+
 d\left(\frac{B_t^3}{3}\right) = B_t^2 dB_t + \frac{1}{2} \cdot 2B_t \, dt = B_t^2 dB_t + B_t \, dt
+
 $$
 
 
@@ -459,7 +515,9 @@ Rearranging:
 
 
 $$
+
 B_t^2 dB_t = d\left(\frac{B_t^3}{3}\right) - B_t \, dt
+
 $$
 
 
@@ -471,9 +529,11 @@ Integrating:
 
 
 $$
+
 \boxed{
 \int_0^t B_s^2 \, dB_s = \frac{B_t^3}{3} - \int_0^t B_s \, ds
 }
+
 $$
 
 
@@ -485,8 +545,10 @@ $$
 
 
 $$
+
 dX_t = dB_t, \quad
 dY_t = 2B_t dB_t
+
 $$
 
 
@@ -498,7 +560,9 @@ Integration by parts:
 
 
 $$
+
 X_t Y_t = \int_0^t X_s dY_s + \int_0^t Y_s dX_s + [X, Y]_t
+
 $$
 
 
@@ -510,7 +574,9 @@ This gives:
 
 
 $$
+
 B_t(B_t^2 - t) = \int_0^t B_s \cdot 2B_s dB_s + \int_0^t (B_s^2 - s) dB_s + \int_0^t 2B_s \, ds
+
 $$
 
 
@@ -534,7 +600,9 @@ Consider the SDE:
 
 
 $$
+
 dX_t = -\theta X_t \, dt + \sigma \, dB_t, \quad X_0 = x_0
+
 $$
 
 
@@ -548,7 +616,9 @@ $$
 
 
 $$
+
 e^{\theta t} dX_t = -\theta e^{\theta t} X_t \, dt + \sigma e^{\theta t} dB_t
+
 $$
 
 
@@ -560,8 +630,10 @@ $$
 
 
 $$
+
 dY_t = d(e^{\theta t} X_t)
 = e^{\theta t} dX_t + X_t d(e^{\theta t}) + d[e^{\theta t}, X_t]
+
 $$
 
 
@@ -573,7 +645,9 @@ Since \(e^{\theta t}\) is deterministic, \(d[e^{\theta t}, X_t] = 0\):
 
 
 $$
+
 dY_t = e^{\theta t} dX_t + \theta e^{\theta t} X_t \, dt
+
 $$
 
 
@@ -585,8 +659,10 @@ $$
 
 
 $$
+
 dY_t = e^{\theta t}(-\theta X_t dt + \sigma dB_t) + \theta e^{\theta t} X_t dt
 = \sigma e^{\theta t} dB_t
+
 $$
 
 
@@ -598,7 +674,9 @@ $$
 
 
 $$
+
 Y_t = Y_0 + \sigma \int_0^t e^{\theta s} dB_s
+
 $$
 
 
@@ -610,7 +688,9 @@ $$
 
 
 $$
+
 e^{\theta t} X_t = x_0 + \sigma \int_0^t e^{\theta s} dB_s
+
 $$
 
 
@@ -622,9 +702,11 @@ $$
 
 
 $$
+
 \boxed{
 X_t = e^{-\theta t} x_0 + \sigma e^{-\theta t} \int_0^t e^{\theta s} dB_s
 }
+
 $$
 
 
@@ -643,8 +725,10 @@ Let \(I_t^{(1)} = \int_0^t H_s^{(1)} dB_s^{(1)}\) and \(I_t^{(2)} = \int_0^t H_s
 
 
 $$
+
 I_t^{(1)} I_t^{(2)}
 = \int_0^t I_s^{(1)} dI_s^{(2)} + \int_0^t I_s^{(2)} dI_s^{(1)} + [I^{(1)}, I^{(2)}]_t
+
 $$
 
 
@@ -656,7 +740,9 @@ If \(B_s^{(1)} = B_s^{(2)} = B_s\) (same Brownian motion):
 
 
 $$
+
 [I^{(1)}, I^{(2)}]_t = \int_0^t H_s^{(1)} H_s^{(2)} \, ds
+
 $$
 
 
@@ -668,7 +754,9 @@ If \(B_s^{(1)} \perp B_s^{(2)}\) (independent):
 
 
 $$
+
 [I^{(1)}, I^{(2)}]_t = 0
+
 $$
 
 
@@ -687,7 +775,9 @@ The integration by parts formula is equivalent to **Itô's product rule**:
 
 
 $$
+
 d(X_t Y_t) = X_t dY_t + Y_t dX_t + dX_t \, dY_t
+
 $$
 
 
@@ -699,7 +789,9 @@ where \(dX_t \, dY_t\) denotes the quadratic covariation:
 
 
 $$
+
 dX_t \, dY_t = d[X, Y]_t
+
 $$
 
 
@@ -718,9 +810,11 @@ The **stochastic integration by parts formula** is:
 
 
 $$
+
 \boxed{
 d(X_t Y_t) = X_t dY_t + Y_t dX_t + d[X, Y]_t
 }
+
 $$
 
 

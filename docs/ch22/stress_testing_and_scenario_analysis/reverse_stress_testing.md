@@ -9,7 +9,9 @@ Reverse stress testing is a powerful complement to traditional stress testing. I
 ### Traditional Stress Testing (Forward)
 
 $$
+
 \text{Scenario } \mathcal{S} \xrightarrow{\text{Impact Analysis}} \text{Loss } L^\mathcal{S}
+
 $$
 
 Ask: "Given scenario $\mathcal{S}$, what is the loss?"
@@ -17,7 +19,9 @@ Ask: "Given scenario $\mathcal{S}$, what is the loss?"
 ### Reverse Stress Testing (Backward)
 
 $$
+
 \text{Failure Threshold } L^* \xrightarrow{\text{Scenario Search}} \text{Scenarios } \{\mathcal{S}: L^\mathcal{S} \ge L^*\}
+
 $$
 
 Ask: "What scenarios would cause losses exceeding threshold $L^*$?"
@@ -60,7 +64,9 @@ The failure threshold $L^*$ could be:
 Given current portfolio, calculate the loss required to reach failure:
 
 $$
+
 L^{\text{required}} = L^* - \text{Current Buffer}
+
 $$
 
 For a bank with \$10B capital buffer:
@@ -72,7 +78,9 @@ For a bank with \$10B capital buffer:
 Find risk factor configurations $\mathbf{x}$ such that:
 
 $$
+
 L(\mathbf{x}) \ge L^{\text{required}}
+
 $$
 
 This is typically a large set—characterize its structure.
@@ -96,14 +104,19 @@ For identified scenarios, evaluate:
 Find the "most plausible" scenario causing failure:
 
 $$
+
 \mathbf{x}^* = \arg\min_{\mathbf{x}} \text{Implausibility}(\mathbf{x}) \quad \text{s.t.} \quad L(\mathbf{x}) \ge L^*
+
 $$
 
 where $\text{Implausibility}(\mathbf{x})$ could be:
 
 **Mahalanobis distance:**
+
 $$
+
 D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
+
 $$
 
 **Kullback-Leibler divergence:** From historical distribution to scenario.
@@ -113,12 +126,17 @@ $$
 ### Lagrangian Formulation
 
 $$
+
 \mathcal{L}(\mathbf{x}, \lambda) = D(\mathbf{x}) - \lambda(L(\mathbf{x}) - L^*)
+
 $$
 
 First-order conditions:
+
 $$
+
 \nabla D(\mathbf{x}) = \lambda \nabla L(\mathbf{x})
+
 $$
 
 The gradient of plausibility aligns with the gradient of loss—the most dangerous direction with given plausibility.
@@ -130,14 +148,19 @@ The gradient of plausibility aligns with the gradient of loss—the most dangero
 For linear portfolios, the loss function is:
 
 $$
+
 L(\mathbf{x}) = -\boldsymbol{\delta}^\top (\mathbf{x} - \mathbf{x}_0)
+
 $$
 
 where $\boldsymbol{\delta}$ is the vector of delta sensitivities.
 
 **Minimum plausibility failure:**
+
 $$
+
 \mathbf{x}^* = \mathbf{x}_0 + \frac{L^*}{\boldsymbol{\delta}^\top \boldsymbol{\Sigma} \boldsymbol{\delta}} \boldsymbol{\Sigma} \boldsymbol{\delta}
+
 $$
 
 The most plausible failure scenario moves factors in the direction $\boldsymbol{\Sigma} \boldsymbol{\delta}$—the covariance-weighted sensitivity direction.
@@ -151,7 +174,9 @@ There are typically **many** scenarios causing failure. Characterize the failure
 ### Failure Region
 
 $$
+
 \mathcal{F} = \{\mathbf{x} : L(\mathbf{x}) \ge L^*\}
+
 $$
 
 ### Boundary Scenarios

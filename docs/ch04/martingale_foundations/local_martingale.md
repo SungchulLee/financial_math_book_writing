@@ -41,9 +41,11 @@ A process $\{M_t\}_{t \geq 0}$ is a **martingale** with respect to filtration $\
 The following inclusions are strict:
 
 $$
+
 \boxed{
 \text{UI Martingales} \subsetneq \text{Martingales} \subsetneq \text{Local Martingales}
 }
+
 $$
 
 where **UI** denotes uniformly integrable. The inclusions go from strongest (UI martingales, the smallest class) to weakest (local martingales, the largest class). A local martingale that is not a true martingale is called a **strict local martingale**.
@@ -70,7 +72,9 @@ The process may escape to $+\infty$ (or $-\infty$) in finite time, i.e., $\lim_{
 Even without explosion, probability mass can "escape to infinity" in the sense that:
 
 $$
+
 \mathbb{E}[M_t] < \mathbb{E}[M_0]
+
 $$
 
 The "missing mass" corresponds to paths where $M_t$ has grown large.
@@ -84,7 +88,9 @@ The "missing mass" corresponds to paths where $M_t$ has grown large.
 Consider the Itô integral:
 
 $$
+
 M_t = \int_0^t \sigma_s\,dW_s
+
 $$
 
 where $\sigma$ is an adapted process.
@@ -103,13 +109,17 @@ where $\sigma$ is an adapted process.
 **Proof that it's a local martingale**: Define the localizing sequence:
 
 $$
+
 \tau_n = \inf\left\{t \geq 0 : \int_0^t \sigma_s^2\,ds \geq n\right\} \wedge n
+
 $$
 
 Then $\tau_n \uparrow \infty$ a.s., and by construction:
 
 $$
+
 \mathbb{E}\left[\int_0^{T \wedge \tau_n} \sigma_s^2\,ds\right] \leq n < \infty
+
 $$
 
 By the Itô isometry criterion, $M_{t \wedge \tau_n}$ is a true martingale for each $n$. $\square$
@@ -121,7 +131,9 @@ By the Itô isometry criterion, $M_{t \wedge \tau_n}$ is a true martingale for e
 The **stochastic exponential** of Brownian motion:
 
 $$
+
 Z_t = \mathcal{E}(W)_t := \exp\left(W_t - \frac{t}{2}\right)
+
 $$
 
 satisfies the SDE $dZ_t = Z_t\,dW_t$ with $Z_0 = 1$.
@@ -131,7 +143,9 @@ satisfies the SDE $dZ_t = Z_t\,dW_t$ with $Z_0 = 1$.
 **Proof**: We verify Novikov's condition. Here $\langle W \rangle_t = t$, so:
 
 $$
+
 \mathbb{E}\left[\exp\left(\frac{1}{2}\langle W \rangle_T\right)\right] = \mathbb{E}\left[\exp\left(\frac{T}{2}\right)\right] = e^{T/2} < \infty
+
 $$
 
 By Novikov's theorem (see [Novikov & Kazamaki Conditions](novikov_kazamaki_conditions.md)), $\mathcal{E}(W)$ is a true martingale. $\square$
@@ -145,7 +159,9 @@ Let $R_t = |B_t|$ where $B_t = (B^1_t, B^2_t, B^3_t)$ is 3-dimensional Brownian 
 Define:
 
 $$
+
 M_t = \frac{1}{R_t}
+
 $$
 
 **Claim**: $M_t$ is a strict local martingale (local martingale but NOT a true martingale).
@@ -158,7 +174,9 @@ $$
 The $d$-dimensional Bessel process satisfies the SDE:
 
 $$
+
 dR_t = \frac{d-1}{2R_t}dt + dW_t
+
 $$
 
 where $W$ is a 1-dimensional Brownian motion. For $d = 3$, this gives $dR_t = \frac{1}{R_t}dt + dW_t$.
@@ -166,13 +184,17 @@ where $W$ is a 1-dimensional Brownian motion. For $d = 3$, this gives $dR_t = \f
 By Itô's formula applied to $f(r) = 1/r$:
 
 $$
+
 d\left(\frac{1}{R_t}\right) = -\frac{1}{R_t^2}dR_t + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}\left(\frac{1}{R_t}dt + dW_t\right) + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}dW_t
+
 $$
 
 The drift terms cancel! Thus $M_t = 1/R_t$ satisfies:
 
 $$
+
 dM_t = -\frac{1}{R_t^2}dW_t
+
 $$
 
 This is an Itô integral (no drift), hence a local martingale.
@@ -182,7 +204,9 @@ This is an Itô integral (no drift), hence a local martingale.
 Using the transition density of the 3D Bessel process (see Revuz–Yor, Chapter VI, or Karatzas–Shreve §3.3.C), one can compute:
 
 $$
+
 \mathbb{E}\left[\frac{1}{R_t}\right] = \frac{1}{r_0} - \frac{2}{r_0}\Phi\left(-\frac{r_0}{\sqrt{t}}\right) < \frac{1}{r_0} = M_0
+
 $$
 
 where $\Phi$ is the standard normal CDF. The strict inequality shows $\mathbb{E}[M_t] < \mathbb{E}[M_0]$, violating the martingale property.
@@ -196,7 +220,9 @@ where $\Phi$ is the standard normal CDF. The strict inequality shows $\mathbb{E}
 The **constant elasticity of variance (CEV)** model provides a clean example of a strict local martingale arising in finance. Consider:
 
 $$
+
 dX_t = \sigma X_t^\beta \, dW_t, \quad X_0 = x_0 > 0
+
 $$
 
 where $\sigma > 0$ and $\beta > 1$.
@@ -206,7 +232,9 @@ where $\sigma > 0$ and $\beta > 1$.
 **Why this is a local martingale**: The process is clearly a local martingale since it is an Itô integral with no drift term. The localizing sequence:
 
 $$
+
 \tau_n = \inf\{t \geq 0 : X_t \geq n \text{ or } X_t \leq 1/n\} \wedge n
+
 $$
 
 ensures $X_{t \wedge \tau_n}$ is bounded and hence a true martingale.
@@ -214,7 +242,9 @@ ensures $X_{t \wedge \tau_n}$ is bounded and hence a true martingale.
 **Why this is NOT a true martingale**: For $\beta > 1$, the process can reach infinity in finite time with positive probability. More precisely, the scale function analysis shows that infinity is an accessible boundary. Even when we define $X_t = \infty$ for $t \geq \zeta$ (the explosion time), we have:
 
 $$
+
 \mathbb{E}[X_t] < x_0 \quad \text{for all } t > 0
+
 $$
 
 The "missing mass" corresponds to paths that have exploded.
@@ -231,19 +261,25 @@ The "missing mass" corresponds to paths that have exploded.
     Let $M$ be a non-negative local martingale. Then $M$ is a supermartingale:
     
     $$
+
     \mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s \quad \text{almost surely for all } 0 \leq s \leq t
+
     $$
 
 **Proof**: Let $\{\tau_n\}$ be a localizing sequence. For the stopped process:
 
 $$
+
 \mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}_s] = M_{s \wedge \tau_n} \quad \text{(martingale property)}
+
 $$
 
 Since $M \geq 0$, Fatou's lemma gives:
 
 $$
+
 \mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}\left[\liminf_{n \to \infty} M_{t \wedge \tau_n} \mid \mathcal{F}_s\right] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}_s] = \liminf_{n \to \infty} M_{s \wedge \tau_n} = M_s
+
 $$
 
 where the last equality uses $\tau_n \to \infty$ a.s. $\square$
@@ -251,7 +287,9 @@ where the last equality uses $\tau_n \to \infty$ a.s. $\square$
 **Corollary**: For non-negative local martingales:
 
 $$
+
 \mathbb{E}[M_t] \leq \mathbb{E}[M_0]
+
 $$
 
 with **equality if and only if** $M$ is a true martingale.
@@ -263,13 +301,17 @@ with **equality if and only if** $M$ is a true martingale.
 For a non-negative local martingale with localizing sequence $\{\tau_n\}$:
 
 $$
+
 \mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0] \quad \text{for all } n
+
 $$
 
 Taking $n \to \infty$ and applying Fatou's lemma:
 
 $$
+
 \mathbb{E}[M_t] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0]
+
 $$
 
 The inequality can be **strict**—this is the signature of a strict local martingale.
@@ -283,7 +325,9 @@ A local martingale $M$ is a **true martingale** if any of the following conditio
 ### 1. Boundedness
 
 $$
+
 |M_t| \leq C \quad \text{almost surely for all } t \in [0,T]
+
 $$
 
 for some constant $C < \infty$.
@@ -291,7 +335,9 @@ for some constant $C < \infty$.
 ### 2. Domination
 
 $$
+
 |M_t| \leq Y \quad \text{almost surely for all } t \in [0,T]
+
 $$
 
 for some integrable random variable $Y$ (i.e., $\mathbb{E}[Y] < \infty$).
@@ -299,7 +345,9 @@ for some integrable random variable $Y$ (i.e., $\mathbb{E}[Y] < \infty$).
 ### 3. L^p Boundedness (p > 1)
 
 $$
+
 \sup_{t \in [0,T]} \mathbb{E}[|M_t|^p] < \infty
+
 $$
 
 This follows from the fact that $L^p$-bounded martingales are uniformly integrable for $p > 1$.
@@ -309,13 +357,17 @@ This follows from the fact that $L^p$-bounded martingales are uniformly integrab
 For **continuous** local martingales with $M_0$ integrable:
 
 $$
+
 \mathbb{E}[\langle M \rangle_T] < \infty \implies M \text{ is a true martingale on } [0,T]
+
 $$
 
 **Proof sketch**: By the Burkholder–Davis–Gundy inequality:
 
 $$
+
 \mathbb{E}\left[\sup_{t \leq T} |M_t|\right] \leq C \cdot \mathbb{E}\left[\langle M \rangle_T^{1/2}\right] \leq C \cdot \mathbb{E}[\langle M \rangle_T]^{1/2} < \infty
+
 $$
 
 Hence $M$ is dominated by an integrable random variable. $\square$
@@ -325,7 +377,9 @@ Hence $M$ is dominated by an integrable random variable. $\square$
 For a continuous local martingale $M$ with $M_0 = 0$:
 
 $$
+
 \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right] < \infty \implies \mathcal{E}(M)_t \text{ is a true martingale on } [0,T]
+
 $$
 
 where $\mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)$ is the stochastic exponential.
@@ -359,7 +413,9 @@ Kazamaki's condition is strictly weaker than Novikov's. See [Novikov & Kazamaki 
 Let $X_t$ be a diffusion with infinitesimal generator:
 
 $$
+
 \mathcal{L} = \mu(x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2}{\partial x^2}
+
 $$
 
 For $f \in C^2$, define the process $Y_t = f(X_t)$.
@@ -379,7 +435,9 @@ For $f \in C^2$, define the process $Y_t = f(X_t)$.
 **Connection to Dynkin's formula**: By Itô's formula:
 
 $$
+
 f(X_t) - f(X_0) = \int_0^t \mathcal{L}f(X_s)\,ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s
+
 $$
 
 When $\mathcal{L}f = 0$, the drift integral vanishes, leaving only the stochastic integral (which is a local martingale).
@@ -395,7 +453,9 @@ See [Generator and Martingales](../../ch03/infinitesimal_generator/generator_and
 Under the risk-neutral measure $\mathbb{Q}$, the **discounted asset price**:
 
 $$
+
 \tilde{S}_t = e^{-rt}S_t
+
 $$
 
 should be a martingale for the market to be free of arbitrage (First Fundamental Theorem of Asset Pricing).
@@ -408,7 +468,9 @@ In practice, $\tilde{S}_t$ is often only a **local martingale**. The distinction
     If the discounted price process is a **strict local martingale** under $\mathbb{Q}$:
     
     $$
+
     \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] < S_0
+
     $$
     
     This implies the current price $S_0$ exceeds its "fundamental value" (the discounted expected future price). This is the mathematical signature of a **financial bubble**.
@@ -420,13 +482,17 @@ In practice, $\tilde{S}_t$ is often only a **local martingale**. The distinction
 The standard put-call parity:
 
 $$
+
 C(K,T) - P(K,T) = S_0 - Ke^{-rT}
+
 $$
 
 relies on $\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = S_0$. When the stock price is a strict local martingale:
 
 $$
+
 C(K,T) - P(K,T) = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT} < S_0 - Ke^{-rT}
+
 $$
 
 Put-call parity fails, and the put price includes a "bubble premium."
@@ -436,7 +502,9 @@ Put-call parity fails, and the put price includes a "bubble premium."
 When performing measure changes via Girsanov's theorem, the Radon–Nikodym derivative:
 
 $$
+
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = Z_t = \mathcal{E}\left(-\int_0^\cdot \theta_s\,dW_s\right)_t
+
 $$
 
 must be a **true martingale** (not just a local martingale) for the measure change to be valid. This is precisely where Novikov and Kazamaki conditions enter.
@@ -461,27 +529,35 @@ See [Girsanov's Theorem](../girsanov/girsanov_theorem.md) for the full treatment
 ## Key Takeaways
 
 $$
+
 \boxed{
 \mathcal{L}f = 0 \implies f(X_t) \text{ is a local martingale}
 }
+
 $$
 
 $$
+
 \boxed{
 \mathcal{L}f = 0 \text{ + sufficient condition (1–6)} \implies f(X_t) \text{ is a true martingale}
 }
+
 $$
 
 $$
+
 \boxed{
 \text{Non-negative local martingale} \implies \text{Supermartingale}
 }
+
 $$
 
 $$
+
 \boxed{
 \mathbb{E}[M_t] < \mathbb{E}[M_0] \text{ for non-negative } M \iff M \text{ is a strict local martingale}
 }
+
 $$
 
 !!! summary "The Bottom Line"

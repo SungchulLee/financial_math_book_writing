@@ -51,10 +51,12 @@ def main():
 The payer swap value is:
 
 $$\begin{array}{lllllllll}
+
 \displaystyle
 {\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)
 &=&
 N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)
+
 \end{array}$$
 
 The Hull-White model computes each $P(t,T_k)=e^{A(t,T_k)+B(t,T_k)r(t)}$ using the calibrated functions $A$ and $B$, which by construction match the market ZCB curve. Therefore, the Hull-White swap price agrees with the market swap price.

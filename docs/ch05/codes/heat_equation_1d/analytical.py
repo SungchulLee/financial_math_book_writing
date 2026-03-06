@@ -1,3 +1,9 @@
+"""
+Analytical
+
+Educational script demonstrating analytical concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d/analytical.py
 # ============================================================================
@@ -197,3 +203,7 @@ def validate_against_analytical(numerical_solution: np.ndarray, x: np.ndarray,
         "relative_l2_error": relative_l2_error,
         "analytical_method": method
     }
+
+
+if __name__ == "__main__":
+    pass

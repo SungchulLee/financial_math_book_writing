@@ -32,6 +32,11 @@ import matplotlib.patches as mpatches
 from scipy.stats import norm
 import warnings
 
+
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
 warnings.filterwarnings('ignore')
 
 
@@ -754,6 +759,10 @@ This approach is foundational for:
     
     return portfolio, gbm, paths
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == '__main__':
     portfolio, gbm, paths = main()

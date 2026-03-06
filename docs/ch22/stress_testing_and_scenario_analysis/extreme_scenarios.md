@@ -35,7 +35,9 @@ The scenario must be:
 Scenario factors should move together in economically meaningful ways:
 
 $$
+
 \text{Scenario Coherence:} \quad \Delta\mathbf{X} \text{ consistent with some } \mathbb{Q}^{\text{stress}}
+
 $$
 
 Use economic models or historical analogs to ensure consistency.
@@ -120,7 +122,9 @@ Single-factor shocks for granular analysis:
 Define the "extremity" of a scenario $\mathbf{x}$ as:
 
 $$
+
 D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
+
 $$
 
 Generate scenarios by targeting a specific Mahalanobis distance while varying the direction.
@@ -130,7 +134,9 @@ Generate scenarios by targeting a specific Mahalanobis distance while varying th
 Find the scenario that maximizes portfolio loss for a given extremity:
 
 $$
+
 \mathbf{x}^* = \arg\max_{\mathbf{x}} L(\mathbf{x}) \quad \text{s.t.} \quad D(\mathbf{x}) \le D_{\text{target}}
+
 $$
 
 This identifies the **most dangerous** direction in risk factor space.
@@ -140,7 +146,9 @@ This identifies the **most dangerous** direction in risk factor space.
 Sample from a distribution tilted toward extreme outcomes:
 
 $$
+
 \mathbf{X} \sim f^{\text{tilted}}(\mathbf{x}) \propto f(\mathbf{x}) \cdot h(L(\mathbf{x}))
+
 $$
 
 where $h(\cdot)$ is an increasing function that overweights large losses.
@@ -162,15 +170,23 @@ During crises:
 ### Stressed Correlation Modeling
 
 **Approach 1: Scaling**
+
 $$
+
 \boldsymbol{\Sigma}^{\text{stress}} = \mathbf{D} \boldsymbol{\Sigma} \mathbf{D}
+
 $$
+
 where $\mathbf{D}$ is a diagonal scaling matrix.
 
 **Approach 2: Correlation Adjustment**
+
 $$
+
 \boldsymbol{\rho}^{\text{stress}} = \alpha \boldsymbol{\rho}^{\text{normal}} + (1-\alpha) \mathbf{1}\mathbf{1}^\top
+
 $$
+
 This blends normal correlations toward perfect correlation.
 
 **Approach 3: Regime-Switching Copulas**
@@ -185,7 +201,9 @@ Use different copulas for normal vs. stressed regimes (e.g., Gaussian normal, $t
 For complex portfolios (options, structured products):
 
 $$
+
 L^{\text{stress}} = P_0 - P(\mathbf{x}^{\text{stress}})
+
 $$
 
 where $P(\mathbf{x})$ is the full pricing function.
@@ -195,7 +213,9 @@ where $P(\mathbf{x})$ is the full pricing function.
 For large portfolios, approximate using Greeks:
 
 $$
+
 L^{\text{stress}} \approx -\sum_i \Delta_i \cdot \Delta x_i - \frac{1}{2} \sum_{i,j} \Gamma_{ij} \cdot \Delta x_i \cdot \Delta x_j - \sum_i \mathcal{V}_i \cdot \Delta \sigma_i
+
 $$
 
 **Warning:** Approximations can fail for large moves; use full revaluation when feasible.

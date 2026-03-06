@@ -36,7 +36,9 @@ The mathematical foundations draw from optimal control, PDE theory, and function
 
 
 $$
+
 V_t = \theta_t S_t + \sum_{i=1}^{N_C} n_i^C C_i(S_t, K_i, T_i-t) + \sum_{j=1}^{N_P} n_j^P P_j(S_t, K_j, T_j-t) + B_t
+
 $$
 
 
@@ -52,7 +54,9 @@ where $n_i^C, n_j^P$ are (typically) fixed quantities of options.
 
 
 $$
+
 V_T \approx \Phi \quad \text{or} \quad V_T \geq \Phi \text{ (super-replication)}
+
 $$
 
 
@@ -81,7 +85,9 @@ with minimal adjustments to $\theta_t$.
 
 
 $$
+
 g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K) (K - S_T)^+ dK + \int_F^{\infty} g''(K) (S_T - K)^+ dK
+
 $$
 
 
@@ -108,7 +114,9 @@ where $F = S_0 e^{rT}$ is the forward price.
 
 
 $$
+
 q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K, T)
+
 $$
 
 
@@ -117,7 +125,9 @@ $$
 
 
 $$
+
 V_0 = e^{-rT} \int_0^{\infty} g(K) q(K) dK = \int_0^{\infty} g(K) \frac{\partial^2 C}{\partial K^2}(K, T) dK
+
 $$
 
 
@@ -126,7 +136,9 @@ $$
 
 
 $$
+
 V_0 \approx \sum_{i=1}^n g(K_i) \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}
+
 $$
 
 
@@ -143,7 +155,9 @@ $$
 
 
 $$
+
 C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \left(\frac{H}{S_0}\right)^{2\mu} C\left(\frac{H^2}{S_0}, K\right)
+
 $$
 
 
@@ -182,7 +196,9 @@ where $\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}$.
 
 
 $$
+
 C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \int_0^T \mathbb{E}\left[ \mathbb{1}_{\{S_t = H\}} \cdot \text{Correction}(t, S_t) \right] dt
+
 $$
 
 
@@ -211,7 +227,9 @@ $$
 
 
 $$
+
 \text{Lookback}(S_0, K) = \int_{K}^{\infty} \frac{C(S_0, L)}{L} \frac{\partial C}{\partial L}(S_0, L) dL + \text{additional terms}
+
 $$
 
 
@@ -249,7 +267,9 @@ involving a continuum of vanilla calls.
 
 
 $$
+
 \Phi = \left(\frac{1}{n} \sum_{i=1}^n S_{t_i} - K\right)^+
+
 $$
 
 
@@ -263,7 +283,9 @@ for discrete monitoring dates $\{t_1, \ldots, t_n\}$.
 
 
 $$
+
 \left(\frac{1}{n} \sum_{i=1}^n S_{t_i}\right)^+ \geq \frac{1}{n} \sum_{i=1}^n (S_{t_i} - nK)^+
+
 $$
 
 
@@ -291,7 +313,9 @@ $$
 
 
 $$
+
 \underline{V} \leq V^{\text{Asian}} \leq \overline{V}
+
 $$
 
 
@@ -316,7 +340,9 @@ where bounds involve portfolios of standard calls.
 
 
 $$
+
 V_{t_{i}} = \max\{g(S_{t_i}), \mathbb{E}[V_{t_{i+1}} | \mathcal{F}_{t_i}]\}
+
 $$
 
 
@@ -358,7 +384,9 @@ $$
 
 
 $$
+
 \text{Payoff} = \text{Realized Variance} - K_{\text{var}}
+
 $$
 
 
@@ -367,7 +395,9 @@ where:
 
 
 $$
+
 \text{RV} = \frac{252}{n} \sum_{i=1}^n \log^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)
+
 $$
 
 
@@ -376,7 +406,9 @@ $$
 
 
 $$
+
 \text{RV} \approx \frac{2}{T} \left[\int_0^{S_0} \frac{P(K)}{K^2} dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} dK\right] - \frac{1}{T}\log^2\left(\frac{S_T}{S_0}\right)
+
 $$
 
 
@@ -392,7 +424,9 @@ $$
 
 
 $$
+
 \text{Error} = \sum_{\text{jumps}} \left[\log\left(\frac{S_t}{S_{t-}}\right)\right]^2
+
 $$
 
 
@@ -421,7 +455,9 @@ which is typically small.
 
 
 $$
+
 \text{Payoff} = \text{Realized Vol} - K_{\text{vol}}
+
 $$
 
 
@@ -435,7 +471,9 @@ where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 2. **Adjustment**: Use convexity correction:
 
    $$
+
    \text{Vol} \approx \sqrt{\text{Var}} - \frac{1}{8} \frac{\text{Var}^{3/2}}{\sqrt{\mathbb{E}[\text{Var}]}} + \ldots
+
    $$
 
 
@@ -453,7 +491,9 @@ where $\text{Realized Vol} = \sqrt{\text{RV}}$.
 
 
 $$
+
 \min_{\theta, \{t_i\}} \left\{ \mathbb{E}[(V_T - \Phi)^2] + \lambda \sum_{i=1}^M |\theta_{t_i} - \theta_{t_{i-1}}| S_{t_i} \right\}
+
 $$
 
 
@@ -469,7 +509,9 @@ $$
 
 
 $$
+
 J(t, S, V) = \inf_{\tau > t} \mathbb{E}\left[\text{Cost}(\tau, S_{\tau}, V_{\tau}) + J(\tau, S_{\tau}, V_{\tau})\right]
+
 $$
 
 
@@ -480,7 +522,9 @@ where $\tau$ is the next trading time.
 
 
 $$
+
 |\theta_{\text{optimal}}(S_t) - \theta_t| > \Delta^*
+
 $$
 
 
@@ -491,7 +535,9 @@ for optimal threshold $\Delta^*$ balancing cost and risk.
 
 
 $$
+
 \Delta^*(t) = c \cdot \sigma(t) \cdot \sqrt{T - t}
+
 $$
 
 
@@ -511,7 +557,9 @@ $$
 
 
 $$
+
 \text{Rebalance if } \max\{|\Delta_t - \Delta^*|, |\Gamma_t - \Gamma^*|, |\mathcal{V}_t - \mathcal{V}^*|\} > \epsilon
+
 $$
 
 
@@ -528,7 +576,9 @@ $$
 
 
 $$
+
 \max_{\{\theta_t, n_i, n_j\}} \min_{P \in \mathcal{M}} \mathbb{E}_P[V_T - \Phi]
+
 $$
 
 
@@ -691,7 +741,9 @@ subject to transaction cost constraints.
 
 
 $$
+
 \Phi = \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
+
 $$
 
 
@@ -724,7 +776,9 @@ $$
 
 
 $$
+
 dS_t = \mu S_t dt + \sqrt{V_t} S_t dW_t^S, \quad dV_t = \kappa(\theta - V_t) dt + \xi \sqrt{V_t} dW_t^V
+
 $$
 
 
@@ -786,7 +840,9 @@ $$
 
 
 $$
+
 \min_{\theta, \{t_i\}} \max_{P \in \mathcal{P}} \mathbb{E}_P\left[(V_T - \Phi)^2 + \lambda \sum_{i=1}^M |\Delta \theta_i|\right]
+
 $$
 
 

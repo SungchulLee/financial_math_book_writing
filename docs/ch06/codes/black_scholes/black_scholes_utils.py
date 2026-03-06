@@ -1,3 +1,9 @@
+"""
+Black Scholes Utils
+
+Educational script demonstrating black scholes utils concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_utils.py
 # ============================================================================
@@ -1455,3 +1461,7 @@ def numerical_pricing(S0: float, K: float, T: float, r: float, sigma: float, q: 
                 V[:, n-1] = np.maximum(V[:, n-1], np.maximum(K - S_grid, 0))
     
     return S_grid, V[:, 0]
+
+
+if __name__ == "__main__":
+    pass

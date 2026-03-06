@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def binomial_replicating_portfolio():
     """
     Replicating Portfolio Construction.

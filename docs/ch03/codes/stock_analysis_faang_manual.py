@@ -1,3 +1,9 @@
+"""
+Stock Analysis Faang Manual
+
+Educational script demonstrating stock analysis faang manual concepts.
+"""
+
 # ============================================================================
 # stock_analysis_NORMALIZED_ADJUST_CLOSE_FAANG_USING_PLOT_MULTIPLE_PRICES_MANUALLY.py
 # ============================================================================
@@ -23,4 +29,6 @@ def analyze_faang_manually():
     
     return stocks
 
-stocks_manual = analyze_faang_manually()
+
+if __name__ == "__main__":
+    stocks_manual = analyze_faang_manually()

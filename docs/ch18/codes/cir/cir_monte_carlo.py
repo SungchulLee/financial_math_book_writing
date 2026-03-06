@@ -1,3 +1,9 @@
+"""
+Cir Monte Carlo
+
+Educational script demonstrating cir monte carlo concepts.
+"""
+
 # ============================================================================
 # cir/cir_monte_carlo.py
 # ============================================================================
@@ -212,3 +218,7 @@ class CIRModel(bmw.BrownianMotion):
         """Analytical standard deviation at time t."""
         from .cir_formula import CIRAnalytical
         return CIRAnalytical.standard_deviation(self.parameters, t)
+
+
+if __name__ == "__main__":
+    pass

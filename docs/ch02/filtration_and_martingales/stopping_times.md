@@ -20,7 +20,9 @@ Let $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})$ be a filtered
 A random variable $\tau: \Omega \to [0, \infty]$ is a **stopping time** (or **optional time**) with respect to $(\mathcal{F}_t)$ if:
 
 $$
+
 \boxed{\{\tau \le t\} \in \mathcal{F}_t \quad \text{for all } t \ge 0}
+
 $$
 
 **Interpretation**: By time $t$, you can determine whether $\tau$ has already occurred. You don't need to peek into the future.
@@ -46,7 +48,9 @@ For any fixed $t_0 \ge 0$, the constant $\tau(\omega) = t_0$ is a stopping time,
 For an adapted process $X$ with continuous paths and a Borel set $A \subset \mathbb{R}$:
 
 $$
+
 \tau_A := \inf\{t \ge 0 : X_t \in A\}
+
 $$
 
 is a stopping time. (Convention: $\inf \emptyset = \infty$.)
@@ -54,7 +58,9 @@ is a stopping time. (Convention: $\inf \emptyset = \infty$.)
 **Proof sketch**: The set $\{\tau_A \le t\} = \{\omega : X_s(\omega) \in A \text{ for some } s \le t\}$ can be written as:
 
 $$
+
 \{\tau_A \le t\} = \bigcup_{s \le t, s \in \mathbb{Q}} \{X_s \in A\}
+
 $$
 
 using path continuity. Each $\{X_s \in A\} \in \mathcal{F}_s \subseteq \mathcal{F}_t$, so the union is in $\mathcal{F}_t$. $\square$
@@ -70,7 +76,9 @@ using path continuity. Each $\{X_s \in A\} \in \mathcal{F}_s \subseteq \mathcal{
 The **last exit time** from a set:
 
 $$
+
 \sigma_A := \sup\{t \ge 0 : X_t \in A\}
+
 $$
 
 is generally **not** a stopping time. To know when you last visited $A$, you need to know the entire future path.
@@ -110,7 +118,9 @@ For a discrete filtration $(\mathcal{F}_n)_{n \ge 0}$:
 For a stopping time $\tau$, the **$\sigma$-algebra at time $\tau$** captures information available at the random time $\tau$:
 
 $$
+
 \mathcal{F}_\tau := \{A \in \mathcal{F} : A \cap \{\tau \le t\} \in \mathcal{F}_t \text{ for all } t \ge 0\}
+
 $$
 
 **Interpretation**: $A \in \mathcal{F}_\tau$ if knowing whether $\tau$ has occurred by time $t$ allows you to determine whether $A$ has occurred.
@@ -125,7 +135,9 @@ $$
 **Example**: For the first hitting time $\tau_a = \inf\{t : W_t = a\}$:
 
 $$
+
 \mathcal{F}_{\tau_a} = \sigma\left(W_{t \wedge \tau_a} : t \ge 0\right)
+
 $$
 
 This contains information about the path up to hitting $a$, but nothing beyond.
@@ -137,7 +149,9 @@ This contains information about the path up to hitting $a$, but nothing beyond.
 Given a process $X = \{X_t\}$ and a stopping time $\tau$, the **stopped process** is:
 
 $$
+
 X_t^\tau := X_{t \wedge \tau} = X_{\min(t, \tau)}
+
 $$
 
 The process is "frozen" at time $\tau$.
@@ -147,7 +161,9 @@ The process is "frozen" at time $\tau$.
 **Proof**: For $s \le t$:
 
 $$
+
 \mathbb{E}[X_{t \wedge \tau} \mid \mathcal{F}_s] = \mathbb{E}[X_{t \wedge \tau} \mid \mathcal{F}_{s \wedge \tau}] = X_{s \wedge \tau}
+
 $$
 
 where the second equality uses the martingale property applied carefully to the stopped times. $\square$
@@ -163,7 +179,9 @@ Stopping times interact beautifully with Markov processes. The **strong Markov p
 **Theorem (Strong Markov Property for Brownian Motion)**: Let $W$ be a Brownian motion and $\tau$ a stopping time with $\tau < \infty$ a.s. Then:
 
 $$
+
 \boxed{\widetilde{W}_t := W_{\tau + t} - W_\tau}
+
 $$
 
 is a Brownian motion independent of $\mathcal{F}_\tau$.
@@ -175,7 +193,9 @@ is a Brownian motion independent of $\mathcal{F}_\tau$.
 **Application (Reflection Principle)**: Let $\tau_a = \inf\{t : W_t = a\}$ for $a > 0$. By the strong Markov property:
 
 $$
+
 \mathbb{P}\left(\max_{0 \le s \le t} W_s \ge a\right) = 2\mathbb{P}(W_t \ge a)
+
 $$
 
 The idea: paths that hit $a$ and end below $a$ are in bijection (via reflection) with paths that hit $a$ and end above $a$.
@@ -189,7 +209,9 @@ The strong Markov property enables computation of hitting time distributions.
 **Theorem**: For $a > 0$, the first passage time $\tau_a = \inf\{t : W_t = a\}$ has density:
 
 $$
+
 \boxed{f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), \quad t > 0}
+
 $$
 
 This is the **inverse Gaussian** (or Wald) distribution.
@@ -203,7 +225,9 @@ This is the **inverse Gaussian** (or Wald) distribution.
 **Derivation using exponential martingale**: Apply optional sampling to $Z_t^\theta = \exp(\theta W_t - \frac{\theta^2 t}{2})$ at $\tau_a \wedge T$, then let $T \to \infty$ with careful justification:
 
 $$
+
 \mathbb{E}[\exp(-\lambda \tau_a)] = \exp(-a\sqrt{2\lambda}), \quad \lambda > 0
+
 $$
 
 Inverting this Laplace transform yields the density.
@@ -243,7 +267,9 @@ A stopping time $\tau$ is **predictable** if there exist stopping times $\tau_n 
 For discrete-time filtrations $(\mathcal{F}_n)_{n \ge 0}$, a stopping time satisfies:
 
 $$
+
 \{\tau = n\} \in \mathcal{F}_n \quad \text{for all } n \ge 0
+
 $$
 
 This is equivalent to $\{\tau \le n\} \in \mathcal{F}_n$.

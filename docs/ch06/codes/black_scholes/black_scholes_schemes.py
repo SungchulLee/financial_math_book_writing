@@ -1,3 +1,9 @@
+"""
+Black Scholes Schemes
+
+Educational script demonstrating black scholes schemes concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_schemes.py
 # ============================================================================
@@ -322,3 +328,7 @@ def cn_log_scheme(model, option_type='put', Smin=1e-3, Smax=500, NX=100, NT=100,
             V[1:-1, n] = np.maximum(V[1:-1, n], model._payoff(S_grid[1:-1], option_type))
 
     return S_grid, V[:, 0]
+
+
+if __name__ == "__main__":
+    pass

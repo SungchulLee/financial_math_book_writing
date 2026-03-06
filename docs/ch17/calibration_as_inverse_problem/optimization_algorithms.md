@@ -9,13 +9,17 @@ Calibration reduces to solving an optimization problem. The choice of algorithm 
 Recall that calibration seeks
 
 $$
+
 \hat\theta \in \arg\min_{\theta \in \Theta} \; \mathcal{L}(\theta),
+
 $$
 
 where $\mathcal{L}(\theta)$ measures misfit between model prices and market data. In the weighted least-squares case,
 
 $$
+
 \mathcal{L}(\theta) = \frac{1}{2} \sum_{j=1}^m w_j \left( f_j(\theta) - y_j \right)^2 = \frac{1}{2} \|r(\theta)\|_W^2,
+
 $$
 
 with residual vector $r(\theta) = (f_1(\theta) - y_1, \ldots, f_m(\theta) - y_m)^\top$.
@@ -23,7 +27,9 @@ with residual vector $r(\theta) = (f_1(\theta) - y_1, \ldots, f_m(\theta) - y_m)
 The problem may include constraints:
 
 $$
+
 \min_{\theta} \; \mathcal{L}(\theta) \quad \text{subject to} \quad g_i(\theta) \le 0, \; h_j(\theta) = 0.
+
 $$
 
 Typical constraints in finance include positivity (variances, intensities), the Feller condition, and bounds on correlation.
@@ -39,7 +45,9 @@ Local methods find a minimum near a given starting point. They are fast but may 
 The simplest approach updates parameters along the negative gradient:
 
 $$
+
 \theta^{(k+1)} = \theta^{(k)} - \alpha_k \nabla \mathcal{L}(\theta^{(k)}),
+
 $$
 
 where $\alpha_k > 0$ is the step size (learning rate).
@@ -55,7 +63,9 @@ In calibration, pure gradient descent is rarely used due to the ill-conditioning
 Newton's method uses second-order information:
 
 $$
+
 \theta^{(k+1)} = \theta^{(k)} - H^{-1}(\theta^{(k)}) \nabla \mathcal{L}(\theta^{(k)}),
+
 $$
 
 where $H = \nabla^2 \mathcal{L}$ is the Hessian.
@@ -69,13 +79,17 @@ where $H = \nabla^2 \mathcal{L}$ is the Hessian.
 For least-squares problems, the Hessian can be approximated. Let $J(\theta) = \nabla_\theta r(\theta) \in \mathbb{R}^{m \times d}$ be the Jacobian of the residual. Then
 
 $$
+
 \nabla \mathcal{L} = J^\top W r, \qquad H \approx J^\top W J,
+
 $$
 
 ignoring second-order terms in $r$. The Gauss–Newton update solves
 
 $$
+
 (J^\top W J) \Delta\theta = -J^\top W r,
+
 $$
 
 and sets $\theta^{(k+1)} = \theta^{(k)} + \Delta\theta$.
@@ -89,7 +103,9 @@ and sets $\theta^{(k+1)} = \theta^{(k)} + \Delta\theta$.
 The Levenberg–Marquardt (LM) algorithm interpolates between Gauss–Newton and gradient descent:
 
 $$
+
 (J^\top W J + \lambda I) \Delta\theta = -J^\top W r.
+
 $$
 
 The damping parameter $\lambda \ge 0$ is adjusted adaptively:
@@ -114,7 +130,9 @@ Levenberg–Marquardt is the **standard workhorse** for calibration in quantitat
 Trust-region methods constrain the step size rather than the direction. At each iteration, solve
 
 $$
+
 \min_{\|\Delta\theta\| \le \Delta_k} \; q(\Delta\theta),
+
 $$
 
 where $q$ is a local quadratic model of $\mathcal{L}$ and $\Delta_k$ is the trust-region radius.
@@ -122,7 +140,9 @@ where $q$ is a local quadratic model of $\mathcal{L}$ and $\Delta_k$ is the trus
 The radius is adjusted based on the ratio of actual to predicted reduction:
 
 $$
+
 \rho_k = \frac{\mathcal{L}(\theta^{(k)}) - \mathcal{L}(\theta^{(k)} + \Delta\theta)}{q(0) - q(\Delta\theta)}.
+
 $$
 
 - $\rho_k \approx 1$: good model, expand trust region.
@@ -156,9 +176,13 @@ Differential evolution (DE) is a population-based evolutionary algorithm:
 
 1. Initialize a population of $N_p$ candidate solutions.
 2. For each candidate $\theta_i$, create a mutant:
+
    $$
+
    v_i = \theta_{r_1} + F(\theta_{r_2} - \theta_{r_3}),
+
    $$
+
    where $r_1, r_2, r_3$ are distinct random indices and $F \in (0, 2]$ is the mutation factor.
 3. Crossover: mix components of $v_i$ and $\theta_i$ to form trial vector $u_i$.
 4. Selection: replace $\theta_i$ with $u_i$ if $\mathcal{L}(u_i) < \mathcal{L}(\theta_i)$.
@@ -173,10 +197,15 @@ Differential evolution (DE) is a population-based evolutionary algorithm:
 Particle swarm optimization (PSO) maintains a swarm of particles, each with position $\theta_i$ and velocity $v_i$:
 
 $$
+
 v_i \leftarrow \omega v_i + c_1 r_1 (p_i - \theta_i) + c_2 r_2 (g - \theta_i),
+
 $$
+
 $$
+
 \theta_i \leftarrow \theta_i + v_i,
+
 $$
 
 where $p_i$ is the particle's best position, $g$ is the global best, $\omega$ is inertia, and $c_1, c_2$ are cognitive/social parameters.
@@ -190,7 +219,9 @@ where $p_i$ is the particle's best position, $g$ is the global best, $\omega$ is
 Simulated annealing accepts worse solutions with probability
 
 $$
+
 P(\text{accept}) = \exp\left( -\frac{\Delta \mathcal{L}}{T} \right),
+
 $$
 
 where $T$ is the temperature, which decreases over time (cooling schedule).
@@ -273,19 +304,25 @@ Reliable stopping criteria are essential:
 ### Gradient norm
 
 $$
+
 \|\nabla \mathcal{L}(\theta^{(k)})\| < \epsilon_g.
+
 $$
 
 ### Relative parameter change
 
 $$
+
 \frac{\|\theta^{(k+1)} - \theta^{(k)}\|}{\|\theta^{(k)}\| + 1} < \epsilon_\theta.
+
 $$
 
 ### Relative objective change
 
 $$
+
 \frac{|\mathcal{L}(\theta^{(k+1)}) - \mathcal{L}(\theta^{(k)})|}{|\mathcal{L}(\theta^{(k)})| + 1} < \epsilon_{\mathcal{L}}.
+
 $$
 
 ### Maximum iterations

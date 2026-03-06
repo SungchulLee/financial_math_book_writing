@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.special import comb
 
 
+# ======================================================================
+
 def binomial_multi_period_tree():
     """
     Multi-Period Binomial Tree.

@@ -131,72 +131,75 @@ import scipy.stats as ss
 
 
 # Define parameters
-T = 1.0                             # time horizon
-N = 252                             # number of steps within time horizon
-time = np.linspace(0, T, N + 1)     # from 0 to T with N+1 points (inclusive of T)
-dt = T / N                          # time step increment
-M = 1000                            # number of simulations
-mu = 0.1                            # drift coefficient per unit T
-sigma = 0.3                         # volatility per unit T
-lambda_jump = 0.18                  # mean number of jumps per unit T
-mu_jump = 0.2                       # mean jump size per unit T
-sigma_jump = 0.5                    # jump size volatility per unit T
-S0 = 100.0                          # initial asset price
 
 
-# -----------------------------------------------------------------------------
-# 3.1 Euler-Maruyama Method
-# -----------------------------------------------------------------------------
-# Simulates the Merton jump-diffusion process step-by-step.
-
-# Initialize an array to store the simulated paths
-S = np.zeros((N + 1, M))
-S[0, :] = S0
-
-# Simulate the GBM and jump process
-Z = ss.norm.rvs(loc=0, scale=1, size=(N, M), random_state=42)
-J_size = ss.norm.rvs(loc=mu_jump, scale=sigma_jump, size=(N, M), random_state=43)
-J_occur = ss.poisson.rvs(mu=lambda_jump * dt, size=(N, M), random_state=44)
-
-# Simulate the paths
-for t in range(1, N + 1):
-    S[t, :] = S[t-1, :] * np.exp(
-        (mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[t-1, :] + J_size[t-1, :] * J_occur[t-1, :]
-    )
-
-# Plot the simulated price paths
-plt.figure(figsize=(6, 4))
-plt.plot(time, S)
-plt.title('Merton Jump-Diffusion Simulated Price Paths')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+if __name__ == "__main__":
+    T = 1.0                             # time horizon
+    N = 252                             # number of steps within time horizon
+    time = np.linspace(0, T, N + 1)     # from 0 to T with N+1 points (inclusive of T)
+    dt = T / N                          # time step increment
+    M = 1000                            # number of simulations
+    mu = 0.1                            # drift coefficient per unit T
+    sigma = 0.3                         # volatility per unit T
+    lambda_jump = 0.18                  # mean number of jumps per unit T
+    mu_jump = 0.2                       # mean jump size per unit T
+    sigma_jump = 0.5                    # jump size volatility per unit T
+    S0 = 100.0                          # initial asset price
 
 
-# -----------------------------------------------------------------------------
-# 3.2 Analytical Method
-# -----------------------------------------------------------------------------
-# Utilizes vectorized operations to compute cumulative sums of log return
-# and jump increments.
+    # -----------------------------------------------------------------------------
+    # 3.1 Euler-Maruyama Method
+    # -----------------------------------------------------------------------------
+    # Simulates the Merton jump-diffusion process step-by-step.
 
-# Initialize an array to store the simulated paths
-S = np.zeros((N + 1, M))
-S[0, :] = S0
+    # Initialize an array to store the simulated paths
+    S = np.zeros((N + 1, M))
+    S[0, :] = S0
 
-# Simulate the Merton Jump Diffusion process
-Z = ss.norm.rvs(loc=(mu - 0.5 * sigma**2) * dt, scale=sigma * np.sqrt(dt), size=(N, M), random_state=42)
-J_size = ss.norm.rvs(loc=mu_jump, scale=sigma_jump, size=(N, M), random_state=43)
-J_occur = ss.poisson.rvs(mu=lambda_jump * dt, size=(N, M), random_state=44)
+    # Simulate the GBM and jump process
+    Z = ss.norm.rvs(loc=0, scale=1, size=(N, M), random_state=42)
+    J_size = ss.norm.rvs(loc=mu_jump, scale=sigma_jump, size=(N, M), random_state=43)
+    J_occur = ss.poisson.rvs(mu=lambda_jump * dt, size=(N, M), random_state=44)
 
-# Calculate the asset price paths
-S[1:, :] = S0 * np.exp(np.cumsum(Z, axis=0) + np.cumsum(J_size * J_occur, axis=0))
+    # Simulate the paths
+    for t in range(1, N + 1):
+        S[t, :] = S[t-1, :] * np.exp(
+            (mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[t-1, :] + J_size[t-1, :] * J_occur[t-1, :]
+        )
 
-# Plot the simulated price paths
-plt.figure(figsize=(6, 4))
-plt.plot(time, S)
-plt.title('Merton Jump-Diffusion Simulated Price Paths')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+    # Plot the simulated price paths
+    plt.figure(figsize=(6, 4))
+    plt.plot(time, S)
+    plt.title('Merton Jump-Diffusion Simulated Price Paths')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.grid(True)
+    plt.show()
+
+
+    # -----------------------------------------------------------------------------
+    # 3.2 Analytical Method
+    # -----------------------------------------------------------------------------
+    # Utilizes vectorized operations to compute cumulative sums of log return
+    # and jump increments.
+
+    # Initialize an array to store the simulated paths
+    S = np.zeros((N + 1, M))
+    S[0, :] = S0
+
+    # Simulate the Merton Jump Diffusion process
+    Z = ss.norm.rvs(loc=(mu - 0.5 * sigma**2) * dt, scale=sigma * np.sqrt(dt), size=(N, M), random_state=42)
+    J_size = ss.norm.rvs(loc=mu_jump, scale=sigma_jump, size=(N, M), random_state=43)
+    J_occur = ss.poisson.rvs(mu=lambda_jump * dt, size=(N, M), random_state=44)
+
+    # Calculate the asset price paths
+    S[1:, :] = S0 * np.exp(np.cumsum(Z, axis=0) + np.cumsum(J_size * J_occur, axis=0))
+
+    # Plot the simulated price paths
+    plt.figure(figsize=(6, 4))
+    plt.plot(time, S)
+    plt.title('Merton Jump-Diffusion Simulated Price Paths')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.grid(True)
+    plt.show()

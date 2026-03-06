@@ -16,7 +16,9 @@ This section presents the formula, its underlying assumptions, and the meaning o
 The underlying asset price $S_t$ follows **geometric Brownian motion** under the risk-neutral measure $\mathbb{Q}$:
 
 $$
+
 dS_t = rS_t dt + \sigma S_t dW_t
+
 $$
 
 where:
@@ -25,8 +27,11 @@ where:
 - $W_t$ = standard Brownian motion under $\mathbb{Q}$
 
 **Equivalent representation**:
+
 $$
+
 S_t = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right)
+
 $$
 
 ### 2. **Fundamental Assumptions**
@@ -65,23 +70,31 @@ $$
 The price of a European call option at time $t$ is:
 
 $$
+
 \boxed{C(S,t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
+
 $$
 
 where:
 
 $$
+
 \boxed{d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}
+
 $$
 
 $$
+
 \boxed{d_2 = d_1 - \sigma\sqrt{T-t} = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}
+
 $$
 
 **Notation**: $\mathcal{N}(x)$ denotes the **cumulative distribution function** of the standard normal distribution:
 
 $$
+
 \mathcal{N}(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{z^2}{2}} dz = \mathbb{P}(Z \leq x) \quad \text{where } Z \sim \mathcal{N}(0,1)
+
 $$
 
 ### 2. **European Put Option**
@@ -90,7 +103,9 @@ $$
 The price of a European put option at time $t$ is:
 
 $$
+
 \boxed{P(S,t) = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}
+
 $$
 
 where $d_1$ and $d_2$ are defined identically as for the call.
@@ -98,7 +113,9 @@ where $d_1$ and $d_2$ are defined identically as for the call.
 **Alternative form** using $\mathcal{N}(-x) = 1 - \mathcal{N}(x)$:
 
 $$
+
 P(S,t) = Ke^{-r(T-t)}[1 - \mathcal{N}(d_2)] - S[1 - \mathcal{N}(d_1)]
+
 $$
 
 ---
@@ -110,7 +127,9 @@ $$
 
 
 $$
+
 d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}
+
 $$
 
 **Structure**:
@@ -135,7 +154,9 @@ $$
 
 
 $$
+
 d_2 = d_1 - \sigma\sqrt{T-t}
+
 $$
 
 **Relationship to $d_1$**: 
@@ -175,7 +196,9 @@ $$
 
 
 $$
+
 C = \underbrace{S\mathcal{N}(d_1)}_{\text{Stock term}} - \underbrace{Ke^{-r(T-t)}\mathcal{N}(d_2)}_{\text{Strike term}}
+
 $$
 
 **Interpretation**:
@@ -188,7 +211,9 @@ The call value is the difference: value received minus value paid.
 
 
 $$
+
 P = \underbrace{Ke^{-r(T-t)}\mathcal{N}(-d_2)}_{\text{Strike term}} - \underbrace{S\mathcal{N}(-d_1)}_{\text{Stock term}}
+
 $$
 
 **Interpretation**:
@@ -253,11 +278,15 @@ For a put: ITM when $S < K$, OTM when $S > K$.
 When $S = Ke^{-r(T-t)}$ (current price equals discounted strike):
 
 $$
+
 d_1 = \frac{\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}} = \frac{\sigma\sqrt{T-t}}{2}
+
 $$
 
 $$
+
 d_2 = -\frac{\sigma\sqrt{T-t}}{2}
+
 $$
 
 The call and put have **symmetric probabilities** around $\mathcal{N}(0) = 0.5$.
@@ -278,11 +307,15 @@ This recovers the **terminal payoff**: $C(S,T) = (S-K)^+$, $P(S,T) = (K-S)^+$.
 The formulas reduce to the **intrinsic value discounted at the risk-free rate**:
 
 $$
+
 C = \max(S - Ke^{-r(T-t)}, 0)
+
 $$
 
 $$
+
 P = \max(Ke^{-r(T-t)} - S, 0)
+
 $$
 
 This is the **forward value** with no uncertainty premium.
@@ -303,8 +336,11 @@ The Black-Scholes formula is the **continuous-time limit** of the binomial model
 | $\mathcal{N}(d_2) \approx$ binomial probability | $\mathcal{N}(d_2) = \lim_{n\to\infty}$ binomial |
 
 As the number of time steps $n \to \infty$ in the binomial model with appropriate parameter scaling:
+
 $$
+
 \text{Binomial price} \to \text{Black-Scholes price}
+
 $$
 
 ---
@@ -318,15 +354,20 @@ $$
 The Black-Scholes formula is the solution to a **partial differential equation**:
 
 $$
+
 \boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+
 $$
 
 with **terminal condition**:
+
 $$
+
 V(S,T) = \text{Payoff}(S) = \begin{cases}
 (S-K)^+ & \text{for call} \\
 (K-S)^+ & \text{for put}
 \end{cases}
+
 $$
 
 **Interpretation**: Any replicable derivative whose value is $V(S,t)$ must satisfy this PDE. The equation describes how the option value evolves over time given the stock price dynamics.
@@ -339,23 +380,33 @@ Before solving for option prices, observe that simple portfolios satisfy the PDE
 **1. The stock itself**: $V = S$
 
 Verify:
+
 $$
+
 \frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0
+
 $$
 
 $$
+
 0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark
+
 $$
 
 **2. The risk-free bond**: $V = e^{rt}$
 
 Verify:
+
 $$
+
 \frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0
+
 $$
 
 $$
+
 re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark
+
 $$
 
 These trivial solutions confirm that the PDE correctly describes basic traded assets. Any **linear combination** of stock and bond also satisfies the PDE, which forms the basis of the **replication argument**.
@@ -396,7 +447,9 @@ The Black-Scholes formula for European options:
 where
 
 $$
+
 d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+
 $$
 
 **Key features**:

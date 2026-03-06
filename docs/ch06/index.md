@@ -70,8 +70,10 @@ $$d_{1,2} = \frac{\ln(S_0/K) + (r \pm \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$$
 The term $\mathcal{N}(d_2)$ is the risk-neutral probability of exercise, while $\mathcal{N}(d_1)$ is the exercise probability under the stock-numeraire measure $\mathbb{Q}^S$. 
 
 $$\begin{array}{lll}
+
 \mathcal{N}(d_1) &=& \mathbb{Q}^S(S_T > K)\\
 \mathcal{N}(d_2) &=& \mathbb{Q}(S_T > K)
+
 \end{array}$$
 
 The formula can be derived via direct integration of the log-normal density, via Girsanov's theorem and measure change, or as the solution to the heat equation. Put-call parity

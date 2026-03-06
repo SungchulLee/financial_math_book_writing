@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def pnl_simulation_under_hedging():
     """
     P&L Simulation.

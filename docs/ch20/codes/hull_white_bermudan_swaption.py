@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def hull_white_bermudan_swaption():
     """
     Bermudan Swaption Tree.

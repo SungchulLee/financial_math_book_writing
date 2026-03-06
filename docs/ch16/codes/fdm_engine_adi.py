@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def fdm_engine_adi():
     """
     FDM Engine ADI.

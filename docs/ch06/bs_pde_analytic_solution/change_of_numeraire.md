@@ -16,7 +16,9 @@ This section derives the Black-Scholes formula using numeraire changes and demon
 A **numeraire** $N_t$ is a strictly positive traded asset used as a unit of account. All asset prices are expressed **relative to the numeraire**:
 
 $$
+
 \text{Relative price} = \frac{S_t}{N_t}
+
 $$
 
 
@@ -29,7 +31,9 @@ $$
 In the Black-Scholes framework, the standard numeraire is the **money market account**:
 
 $$
+
 B_t = e^{rt}
+
 $$
 
 
@@ -41,7 +45,9 @@ Under the risk-neutral measure $\mathbb{Q}$:
 **Option pricing formula**:
 
 $$
+
 V_0 = \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T}\right] = e^{-rT}\mathbb{E}^{\mathbb{Q}}[V_T]
+
 $$
 
 
@@ -59,7 +65,9 @@ $$
 Specifically, for any traded asset $S_t$:
 
 $$
+
 \frac{S_t}{N_t} = \mathbb{E}^{\mathbb{Q}^N}\left[\frac{S_T}{N_T} \Big| \mathcal{F}_t\right]
+
 $$
 
 
@@ -70,7 +78,9 @@ $$
 The measure $\mathbb{Q}^N$ is related to the standard risk-neutral measure $\mathbb{Q}$ via:
 
 $$
+
 \frac{d\mathbb{Q}^N}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{N_T/B_T}{\mathbb{E}^{\mathbb{Q}}[N_T/B_T]}
+
 $$
 
 
@@ -83,7 +93,9 @@ $$
 The change of numeraire induces a **change of Brownian motion** via Girsanov's theorem. If under $\mathbb{Q}$:
 
 $$
+
 dN_t = \mu_N N_t dt + \sigma_N N_t dW_t^{\mathbb{Q}}
+
 $$
 
 
@@ -91,7 +103,9 @@ $$
 then under $\mathbb{Q}^N$:
 
 $$
+
 dW_t^{\mathbb{Q}^N} = dW_t^{\mathbb{Q}} + \sigma_N dt
+
 $$
 
 
@@ -118,7 +132,9 @@ Under the stock measure, all assets relative to $S_t$ are martingales.
 **Money market account relative to stock**:
 
 $$
+
 \frac{B_t}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{B_T}{S_T} \Big| \mathcal{F}_t\right]
+
 $$
 
 
@@ -126,7 +142,9 @@ $$
 **Strike relative to stock**:
 
 $$
+
 \frac{K}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{K}{S_T} \Big| \mathcal{F}_t\right]
+
 $$
 
 
@@ -137,7 +155,9 @@ $$
 The stock measure is related to $\mathbb{Q}$ by:
 
 $$
+
 \frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}
+
 $$
 
 
@@ -148,7 +168,9 @@ $$
 If $dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}$ under $\mathbb{Q}$, then by Girsanov:
 
 $$
+
 dW_t^{\mathbb{Q}^S} = dW_t^{\mathbb{Q}} + \sigma dt
+
 $$
 
 
@@ -156,7 +178,9 @@ $$
 Substituting into the stock dynamics:
 
 $$
+
 dS_t = rS_t dt + \sigma S_t(dW_t^{\mathbb{Q}^S} - \sigma dt) = (r - \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}
+
 $$
 
 
@@ -178,7 +202,9 @@ We want to price a European call with payoff $(S_T - K)^+$.
 Divide by $S_T$:
 
 $$
+
 \frac{(S_T - K)^+}{S_T} = \left(1 - \frac{K}{S_T}\right)^+ = \left(1 - \frac{K}{S_T}\right)\mathbf{1}_{\{S_T > K\}}
+
 $$
 
 
@@ -188,7 +214,9 @@ $$
 By the numeraire change theorem:
 
 $$
+
 \frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{C_T}{S_T}\right] = \mathbb{E}^{\mathbb{Q}^S}\left[\left(1 - \frac{K}{S_T}\right)\mathbf{1}_{\{S_T > K\}}\right]
+
 $$
 
 
@@ -197,7 +225,9 @@ $$
 
 
 $$
+
 \frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}[\mathbf{1}_{\{S_T > K\}}] - K\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right]
+
 $$
 
 
@@ -208,7 +238,9 @@ $$
 Under $\mathbb{Q}^S$, from Girsanov:
 
 $$
+
 S_T = S_0 \exp\left(\left(r - \sigma^2 + \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right) = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)
+
 $$
 
 
@@ -216,7 +248,9 @@ $$
 Wait, let me recalculate. Under $\mathbb{Q}$:
 
 $$
+
 S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}}\right)
+
 $$
 
 
@@ -224,7 +258,9 @@ $$
 Under $\mathbb{Q}^S$, using $W_T^{\mathbb{Q}} = W_T^{\mathbb{Q}^S} - \sigma T$:
 
 $$
+
 S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma(W_T^{\mathbb{Q}^S} - \sigma T)\right) = S_0 \exp\left(\left(r - \frac{3}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)
+
 $$
 
 
@@ -234,7 +270,9 @@ Hmm, this doesn't look right. Let me reconsider.
 Actually, under $\mathbb{Q}^S$, the key is that $K/S_t$ is a martingale. We have:
 
 $$
+
 \frac{K}{S_T} = \frac{K}{S_0}\exp\left(-\left(r + \frac{1}{2}\sigma^2\right)T - \sigma W_T^{\mathbb{Q}^S}\right)
+
 $$
 
 
@@ -242,7 +280,9 @@ $$
 Therefore:
 
 $$
+
 S_T > K \iff W_T^{\mathbb{Q}^S} > -\frac{1}{\sigma}\left[\ln(S_0/K) + \left(r + \frac{1}{2}\sigma^2\right)T\right] = -d_1\sqrt{T}
+
 $$
 
 
@@ -250,7 +290,9 @@ $$
 where
 
 $$
+
 d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+
 $$
 
 
@@ -258,7 +300,9 @@ $$
 Hence:
 
 $$
+
 \mathbb{Q}^S(S_T > K) = \mathcal{N}(d_1)
+
 $$
 
 
@@ -269,14 +313,18 @@ $$
 For the second term, we use:
 
 $$
+
 \mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right]
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 = \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T > K\}}\right] = \frac{e^{-rT}}{S_0}\mathbb{Q}(S_T > K)
+
 $$
 
 
@@ -284,7 +332,9 @@ $$
 Under $\mathbb{Q}$:
 
 $$
+
 \mathbb{Q}(S_T > K) = \mathcal{N}(d_2)
+
 $$
 
 
@@ -297,14 +347,18 @@ where $d_2 = d_1 - \sigma\sqrt{T}$.
 Combining:
 
 $$
+
 \frac{C_0}{S_0} = \mathcal{N}(d_1) - K \cdot \frac{e^{-rT}}{S_0}\mathcal{N}(d_2)
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 \boxed{C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)}
+
 $$
 
 
@@ -330,7 +384,9 @@ Consider an option on foreign exchange rate $X_t$ (domestic per foreign).
 **Exchange rate dynamics** under domestic risk-neutral measure $\mathbb{Q}^d$:
 
 $$
+
 dX_t = (r_d - r_f)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^d}
+
 $$
 
 
@@ -343,7 +399,9 @@ Choose numeraire $N_t = X_t B_t^f = X_t e^{r_f t}$ (foreign money market convert
 The Radon-Nikodym derivative:
 
 $$
+
 \frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{r_f T - r_d T}}{X_0}
+
 $$
 
 
@@ -351,7 +409,9 @@ $$
 Under $\mathbb{Q}^f$:
 
 $$
+
 dW_t^{\mathbb{Q}^f} = dW_t^{\mathbb{Q}^d} + \sigma dt
+
 $$
 
 
@@ -359,7 +419,9 @@ $$
 Exchange rate becomes:
 
 $$
+
 dX_t = (r_d - r_f - \sigma^2)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^f}
+
 $$
 
 
@@ -370,7 +432,9 @@ $$
 Using the foreign measure:
 
 $$
+
 C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - K e^{-r_d T}\mathcal{N}(d_2)
+
 $$
 
 
@@ -378,7 +442,9 @@ $$
 where
 
 $$
+
 d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+
 $$
 
 

@@ -29,7 +29,9 @@ Key developments include:
 **Mean-Variance Problem**:
 
 $$
+
 \max_w \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w\right\}
+
 $$
 
 subject to $\mathbf{1}^\top w = 1$ (full investment).
@@ -37,7 +39,9 @@ subject to $\mathbf{1}^\top w = 1$ (full investment).
 **Solution**: The optimal portfolio is:
 
 $$
+
 w^* = \frac{1}{\lambda} \Sigma^{-1}(\mu - \nu \mathbf{1})
+
 $$
 
 where $\nu$ is the Lagrange multiplier for the budget constraint.
@@ -52,7 +56,9 @@ where $\nu$ is the Lagrange multiplier for the budget constraint.
 **Estimation Error Magnitudes**: With $T$ observations:
 
 $$
+
 \text{SE}(\hat{\mu}_i) \approx \frac{\sigma_i}{\sqrt{T}}, \quad \text{SE}(\hat{\sigma}_{ij}) \approx \frac{\sigma_{ij}}{\sqrt{T}}
+
 $$
 
 For typical parameters ($\sigma \approx 20\%$, $T = 60$ months), the standard error of expected return is $\approx 2.5\%$ annually — larger than reasonable expected return differences.
@@ -66,13 +72,17 @@ For typical parameters ($\sigma \approx 20\%$, $T = 60$ months), the standard er
 **Definition**: An uncertainty set $\mathcal{U}$ contains all parameter values considered plausible:
 
 $$
+
 (\mu, \Sigma) \in \mathcal{U}
+
 $$
 
 **Robust Problem**:
 
 $$
+
 \max_w \min_{(\mu, \Sigma) \in \mathcal{U}} \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w\right\}
+
 $$
 
 **Interpretation**: Maximize the worst-case risk-adjusted return over all plausible parameters.
@@ -83,13 +93,17 @@ $$
 **Box Uncertainty** (Mean):
 
 $$
+
 \mathcal{U}_{\text{box}} = \{\mu: |\mu_i - \hat{\mu}_i| \leq \delta_i, \, i = 1, \ldots, n\}
+
 $$
 
 **Ellipsoidal Uncertainty** (Mean):
 
 $$
+
 \mathcal{U}_{\text{ellip}} = \{\mu: (\mu - \hat{\mu})^\top \Omega^{-1} (\mu - \hat{\mu}) \leq \kappa^2\}
+
 $$
 
 where $\Omega$ is the estimation error covariance and $\kappa$ controls the confidence level.
@@ -97,7 +111,9 @@ where $\Omega$ is the estimation error covariance and $\kappa$ controls the conf
 **Factor Model Uncertainty**:
 
 $$
+
 \mu = B f + \epsilon, \quad f \in \mathcal{U}_f
+
 $$
 
 with uncertainty in factor returns $f$.
@@ -108,13 +124,17 @@ with uncertainty in factor returns $f$.
 **Lemma** (Worst-Case Mean): For ellipsoidal uncertainty $\mathcal{U}_{\text{ellip}}$:
 
 $$
+
 \min_{\mu \in \mathcal{U}_{\text{ellip}}} w^\top \mu = w^\top \hat{\mu} - \kappa \sqrt{w^\top \Omega w}
+
 $$
 
 **Proof**: By Cauchy-Schwarz, the minimum is achieved at:
 
 $$
+
 \mu^* = \hat{\mu} - \kappa \frac{\Omega w}{\sqrt{w^\top \Omega w}}
+
 $$
 
 ## Goldfarb-Iyengar Formulation
@@ -126,11 +146,15 @@ $$
 **Setup**: Consider separate uncertainty sets:
 
 $$
+
 \mu \in \mathcal{U}_{\mu} = \{\mu: \|\Sigma_{\mu}^{-1/2}(\mu - \hat{\mu})\|_2 \leq \delta_1\}
+
 $$
 
 $$
+
 \Sigma \in \mathcal{U}_{\Sigma} = \{\Sigma: \|\Sigma_{\Sigma}^{-1/2}(\text{vec}(\Sigma) - \text{vec}(\hat{\Sigma}))\|_2 \leq \delta_2\}
+
 $$
 
 ### 2. SOCP Reformulation
@@ -139,18 +163,22 @@ $$
 **Theorem** (Goldfarb-Iyengar, 2003): The robust mean-variance problem:
 
 $$
+
 \max_w \min_{\mu \in \mathcal{U}_{\mu}} w^\top \mu - \frac{\lambda}{2} \max_{\Sigma \in \mathcal{U}_{\Sigma}} w^\top \Sigma w
+
 $$
 
 subject to $\mathbf{1}^\top w = 1$, is equivalent to the SOCP:
 
 $$
+
 \begin{aligned}
 \max_{w, t, s} \quad & t - \frac{\lambda}{2} s \\
 \text{s.t.} \quad & w^\top \hat{\mu} - \delta_1 \|\Sigma_{\mu}^{1/2} w\|_2 \geq t \\
 & w^\top \hat{\Sigma} w + \delta_2 \|\Sigma_{\Sigma}^{1/2} (w \otimes w)\|_2 \leq s \\
 & \mathbf{1}^\top w = 1
 \end{aligned}
+
 $$
 
 ### 3. Efficient Computation
@@ -196,7 +224,9 @@ def robust_portfolio(mu_hat, Sigma_hat, Sigma_mu, delta1, lambda_risk):
 **Definition**: Instead of parameter uncertainty, consider uncertainty over the entire distribution:
 
 $$
+
 \max_w \min_{P \in \mathcal{P}} \mathbb{E}_P[u(w^\top R)]
+
 $$
 
 **Common Ambiguity Sets**:
@@ -204,19 +234,25 @@ $$
 1. **Moment Constraints**:
    
 $$
+
 \mathcal{P} = \{P: \mathbb{E}_P[R] \in \mathcal{U}_{\mu}, \, \mathbb{E}_P[RR^\top] \in \mathcal{U}_{\Sigma}\}
+
 $$
 
 2. **Wasserstein Ball**:
 
 $$
+
 \mathcal{P} = \{P: W_p(P, \hat{P}) \leq \epsilon\}
+
 $$
 
 3. **Relative Entropy Ball**:
 
 $$
+
 \mathcal{P} = \{P: D_{\text{KL}}(P \| \hat{P}) \leq \eta\}
+
 $$
 
 ### 2. Worst-Case CVaR
@@ -225,13 +261,17 @@ $$
 **Distributionally Robust CVaR**:
 
 $$
+
 \max_w \min_{P \in \mathcal{P}} \text{CVaR}_{\alpha}^P(w^\top R)
+
 $$
 
 **Theorem** (Zhu-Fukushima, 2009): For Wasserstein ambiguity:
 
 $$
+
 \sup_{P: W_1(P, \hat{P}) \leq \epsilon} \text{CVaR}_{\alpha}^P(X) = \text{CVaR}_{\alpha}^{\hat{P}}(X) + \frac{\epsilon}{\alpha}
+
 $$
 
 **Implication**: Wasserstein robustness adds a penalty proportional to the Lipschitz constant of the loss function.
@@ -242,7 +282,9 @@ $$
 **Moment-Based Ambiguity**: With mean $\mu \in \mathcal{U}_{\mu}$ and covariance $\Sigma \in \mathcal{U}_{\Sigma}$:
 
 $$
+
 \min_{P \in \mathcal{P}} \mathbb{E}_P[-w^\top R] = -w^\top \mu^* + \sqrt{w^\top \Sigma^* w}
+
 $$
 
 where $(\mu^*, \Sigma^*)$ are worst-case parameters (not necessarily from the same distribution).
@@ -256,13 +298,17 @@ where $(\mu^*, \Sigma^*)$ are worst-case parameters (not necessarily from the sa
 **James-Stein Shrinkage**: Shrink $\hat{\mu}$ toward a target $\mu_0$:
 
 $$
+
 \tilde{\mu} = (1-\alpha) \hat{\mu} + \alpha \mu_0
+
 $$
 
 **Optimal Shrinkage** (Ledoit-Wolf):
 
 $$
+
 \alpha^* = \frac{\sum_{i=1}^n \text{Var}(\hat{\mu}_i)}{|\hat{\mu} - \mu_0|^2 + \sum_{i=1}^n \text{Var}(\hat{\mu}_i)}
+
 $$
 
 ### 2. Equivalence to Robust Optimization
@@ -271,13 +317,17 @@ $$
 **Theorem**: The robust portfolio problem with ellipsoidal uncertainty:
 
 $$
+
 \max_w \left\{w^\top \hat{\mu} - \kappa \sqrt{w^\top \Omega w} - \frac{\lambda}{2} w^\top \Sigma w\right\}
+
 $$
 
 is equivalent to mean-variance optimization with shrinkage:
 
 $$
+
 \max_w \left\{w^\top \tilde{\mu} - \frac{\tilde{\lambda}}{2} w^\top \Sigma w\right\}
+
 $$
 
 for appropriate $\tilde{\mu}$ and $\tilde{\lambda}$.
@@ -288,13 +338,17 @@ for appropriate $\tilde{\mu}$ and $\tilde{\lambda}$.
 **L1 Penalty** (Sparse Portfolios):
 
 $$
+
 \max_w \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w - \gamma \|w\|_1\right\}
+
 $$
 
 **L2 Penalty** (Ridge):
 
 $$
+
 \max_w \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w - \gamma \|w\|_2^2\right\}
+
 $$
 
 **Equivalence**: L2 penalty is equivalent to shrinkage toward zero; L1 promotes sparsity.
@@ -308,7 +362,9 @@ $$
 **Prior**: Market equilibrium returns are the prior:
 
 $$
+
 \pi = \lambda \Sigma w_{\text{mkt}}
+
 $$
 
 where $w_{\text{mkt}}$ is the market capitalization weighted portfolio.
@@ -316,7 +372,9 @@ where $w_{\text{mkt}}$ is the market capitalization weighted portfolio.
 **Views**: Investor views are expressed as:
 
 $$
+
 P \mu = q + \epsilon, \quad \epsilon \sim N(0, \Omega)
+
 $$
 
 where $P$ is the pick matrix and $q$ is the view vector.
@@ -327,13 +385,17 @@ where $P$ is the pick matrix and $q$ is the view vector.
 **Bayesian Update**:
 
 $$
+
 \mathbb{E}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1} [(\tau \Sigma)^{-1} \pi + P^\top \Omega^{-1} q]
+
 $$
 
 **Posterior Covariance**:
 
 $$
+
 \text{Cov}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1}
+
 $$
 
 ### 3. Robust Interpretation
@@ -372,7 +434,9 @@ $$
 **Connection**: Resampling approximates the Bayesian posterior mean portfolio:
 
 $$
+
 \bar{w} \approx \mathbb{E}[w^*(\mu, \Sigma) | \text{data}]
+
 $$
 
 where the expectation is over posterior parameter uncertainty.
@@ -386,7 +450,9 @@ where the expectation is over posterior parameter uncertainty.
 **Model**: Returns follow:
 
 $$
+
 R = \alpha + B f + \epsilon
+
 $$
 
 where $f$ are factor returns, $B$ is the loading matrix, and $\epsilon$ is idiosyncratic risk.
@@ -394,7 +460,9 @@ where $f$ are factor returns, $B$ is the loading matrix, and $\epsilon$ is idios
 **Covariance Decomposition**:
 
 $$
+
 \Sigma = B \Sigma_f B^\top + D
+
 $$
 
 where $\Sigma_f$ is factor covariance and $D$ is diagonal idiosyncratic covariance.
@@ -405,13 +473,17 @@ where $\Sigma_f$ is factor covariance and $D$ is diagonal idiosyncratic covarian
 **Uncertainty in Loadings**: Consider:
 
 $$
+
 \mathcal{U}_B = \{B: \|B - \hat{B}\|_F \leq \delta_B\}
+
 $$
 
 **Robust Factor Tilt**:
 
 $$
+
 \max_w \min_{B \in \mathcal{U}_B} w^\top B \mathbb{E}[f] - \frac{\lambda}{2} w^\top (B \Sigma_f B^\top + D) w
+
 $$
 
 ### 3. Estimation with Few Factors
@@ -431,13 +503,17 @@ $$
 **Dynamics**: Wealth evolves as:
 
 $$
+
 W_{t+1} = W_t (1 + r_f + w_t^\top (R_t - r_f \mathbf{1}))
+
 $$
 
 **Robust Objective**:
 
 $$
+
 \max_{w_0, \ldots, w_{T-1}} \min_{P \in \mathcal{P}} \mathbb{E}_P[U(W_T)]
+
 $$
 
 ### 2. Rectangularity
@@ -446,13 +522,17 @@ $$
 **Time Consistency**: For dynamic consistency, require **rectangular** ambiguity sets:
 
 $$
+
 \mathcal{P} = \{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t\}
+
 $$
 
 **Bellman Equation**:
 
 $$
+
 V_t(w) = \max_{w_t} \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[V_{t+1}(W_{t+1}) | \mathcal{F}_t]
+
 $$
 
 ### 3. Model Predictive Control

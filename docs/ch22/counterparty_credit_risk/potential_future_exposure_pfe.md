@@ -9,7 +9,9 @@
 For confidence level $\alpha \in (0,1)$, the Potential Future Exposure at time $t$ is:
 
 $$
+
 \text{PFE}_\alpha(t) = \inf\{x : \mathbb{P}(E_t \le x) \ge \alpha\} = F_{E_t}^{-1}(\alpha)
+
 $$
 
 where $E_t = V_t^+$ is the exposure and $F_{E_t}$ is its cumulative distribution function.
@@ -35,7 +37,9 @@ A statement like "the 95% PFE at 1 year is \$20 million" means there is only a 5
 The **PFE profile** plots $\text{PFE}_\alpha(t)$ as a function of time:
 
 $$
+
 t \mapsto \text{PFE}_\alpha(t), \quad t \in [0, T]
+
 $$
 
 **Characteristics:**
@@ -48,15 +52,21 @@ $$
 ## Relation to Expected Exposure
 
 **Hierarchy:**
+
 $$
+
 \text{EE}(t) \le \text{PFE}_\alpha(t) \quad \text{for } \alpha > 0.5
+
 $$
 
 The gap between PFE and EE reflects the **skewness and tail thickness** of the exposure distribution.
 
 **Ratio:**
+
 $$
+
 \frac{\text{PFE}_\alpha(t)}{\text{EE}(t)}
+
 $$
 
 This ratio is often 2-4× for typical derivatives portfolios.
@@ -68,22 +78,31 @@ This ratio is often 2-4× for typical derivatives portfolios.
 If the portfolio value $V_t$ is normally distributed:
 
 $$
+
 V_t \sim N(\mu_t, \sigma_t^2)
+
 $$
 
 Then exposure $E_t = V_t^+$ has:
 
 $$
+
 \text{EE}(t) = \mu_t \Phi\left(\frac{\mu_t}{\sigma_t}\right) + \sigma_t \phi\left(\frac{\mu_t}{\sigma_t}\right)
+
 $$
 
 $$
+
 \text{PFE}_\alpha(t) = \max\left(\mu_t + \sigma_t \Phi^{-1}\left(\frac{\alpha - \Phi(-\mu_t/\sigma_t)}{1 - \Phi(-\mu_t/\sigma_t)}\right), 0\right)
+
 $$
 
 **Approximation for small $\mu_t$:**
+
 $$
+
 \text{PFE}_\alpha(t) \approx \sigma_t \Phi^{-1}(\alpha)
+
 $$
 
 ---
@@ -93,7 +112,9 @@ $$
 The **Peak PFE** is the maximum PFE over the portfolio's lifetime:
 
 $$
+
 \text{Peak PFE}_\alpha = \max_{t \in [0,T]} \text{PFE}_\alpha(t)
+
 $$
 
 **Uses:**
@@ -122,8 +143,11 @@ $$
 - Linear growth approximately
 
 **Scaling:**
+
 $$
+
 \text{PFE}_\alpha(t) \propto \sigma_{\text{FX}} \sqrt{t}
+
 $$
 
 ### Options
@@ -143,7 +167,9 @@ $$
 4. Estimate PFE as the empirical quantile:
 
 $$
+
 \widehat{\text{PFE}}_\alpha(t) = E_t^{(\lceil N\alpha \rceil)}
+
 $$
 
 ### Confidence Interval
@@ -151,7 +177,9 @@ $$
 The standard error of the PFE estimate is approximately:
 
 $$
+
 \text{SE}(\widehat{\text{PFE}}_\alpha) \approx \frac{\sqrt{\alpha(1-\alpha)}}{f_{E_t}(\text{PFE}_\alpha) \sqrt{N}}
+
 $$
 
 where $f_{E_t}$ is the density of exposure.
@@ -165,12 +193,17 @@ where $f_{E_t}$ is the density of exposure.
 **Critical property:** PFE is **not additive** across portfolios:
 
 $$
+
 \text{PFE}_\alpha(A + B) \ne \text{PFE}_\alpha(A) + \text{PFE}_\alpha(B)
+
 $$
 
 In general:
+
 $$
+
 \text{PFE}_\alpha(A + B) \le \text{PFE}_\alpha(A) + \text{PFE}_\alpha(B)
+
 $$
 
 with equality only for perfectly correlated exposures.
@@ -187,7 +220,9 @@ with equality only for perfectly correlated exposures.
 ### Limit Framework
 
 $$
+
 \text{PFE}_\alpha(\text{Counterparty}) \le \text{Credit Limit}
+
 $$
 
 Credit limits are set based on:
@@ -203,7 +238,9 @@ Before executing a trade:
 3. Approve or reject
 
 $$
+
 \text{Available Limit} = \text{Total Limit} - \text{Current PFE}
+
 $$
 
 ---
@@ -213,7 +250,9 @@ $$
 The **marginal PFE** of a new trade measures its incremental impact:
 
 $$
+
 \Delta \text{PFE} = \text{PFE}_\alpha(\text{Portfolio} + \text{New Trade}) - \text{PFE}_\alpha(\text{Portfolio})
+
 $$
 
 **Properties:**
@@ -228,14 +267,19 @@ $$
 Under a collateral agreement with threshold $H$:
 
 $$
+
 E_t^{\text{coll}} = \max(V_t - C_{t-\Delta}, 0)
+
 $$
 
 where $\Delta$ is the margin period of risk (MPOR).
 
 **Collateralized PFE:**
+
 $$
+
 \text{PFE}_\alpha^{\text{coll}}(t) = \text{Quantile}_\alpha(E_t^{\text{coll}})
+
 $$
 
 **Effect:** Collateral significantly reduces PFE but:
@@ -250,7 +294,9 @@ $$
 When exposure and default probability are correlated:
 
 $$
+
 \text{PFE}^{\text{WWR}}_\alpha(t) > \text{PFE}_\alpha(t)
+
 $$
 
 **Treatment:**
@@ -269,7 +315,9 @@ See [Wrong-Way Risk](wrong_way_risk.md) for details.
 The Standardized Approach for CCR uses PFE concepts:
 
 $$
+
 \text{EAD} = \alpha \times (\text{RC} + \text{PFE})
+
 $$
 
 where:
@@ -304,8 +352,11 @@ Compare realized exposures to predicted PFE:
 Under correct model, exceedances follow Binomial$(n, 1-\alpha)$.
 
 Test statistic:
+
 $$
+
 Z = \frac{\hat{p} - (1-\alpha)}{\sqrt{(1-\alpha)\alpha/n}}
+
 $$
 
 where $\hat{p}$ is the observed exceedance rate.

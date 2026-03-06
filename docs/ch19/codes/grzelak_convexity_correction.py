@@ -13,6 +13,11 @@ import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 
 
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
+
 class OptionType(enum.Enum):
     """Option type enumeration."""
     CALL = 1.0
@@ -313,6 +318,10 @@ def main():
     forward_price = l_t0_t1_t2 + convexity_correction(sigma_range)
     plot_derivative_price(sigma_range, mc_result, forward_price)
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == "__main__":
     main()

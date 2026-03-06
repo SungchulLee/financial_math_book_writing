@@ -27,6 +27,8 @@ from scipy.integrate import quad
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def f(P, T):
     """
     Extract forward rate from zero-coupon bond prices.

@@ -14,6 +14,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 
+# ======================================================================
+
 def f0T(t,P0T):
     # time-step needed for differentiation
     dt = 0.01    
@@ -115,4 +117,6 @@ def mainCalculation():
     plt.legend(['P(0,t) market','P(0,t) Monte Carlo','P(0,t) from Affine form'])
     plt.title('ZCBs from Hull-White Model')
     
-mainCalculation()
+
+if __name__ == "__main__":
+    mainCalculation()

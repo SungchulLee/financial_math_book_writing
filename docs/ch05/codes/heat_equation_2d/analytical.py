@@ -1,3 +1,9 @@
+"""
+Analytical
+
+Educational script demonstrating analytical concepts.
+"""
+
 # ============================================================================
 # heat_equation_2d/analytical.py
 # ============================================================================
@@ -86,3 +92,7 @@ def solve_analytical(x: np.ndarray, t: float, initial_func: Callable,
     """1D analytical solution placeholder."""
     # This is for 1D compatibility - just return zeros for now
     return np.zeros_like(x)
+
+
+if __name__ == "__main__":
+    pass

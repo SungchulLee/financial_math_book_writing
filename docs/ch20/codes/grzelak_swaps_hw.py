@@ -17,6 +17,8 @@ from scipy import interpolate
 from scipy.optimize import newton
 
 
+# ======================================================================
+
 class OptionTypeSwap(enum.Enum):
     RECEIVER = 1.0
     PAYER = -1.0

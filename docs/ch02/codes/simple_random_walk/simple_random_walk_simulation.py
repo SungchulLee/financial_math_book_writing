@@ -1,3 +1,9 @@
+"""
+Simple Random Walk Simulation
+
+Educational script demonstrating simple random walk simulation concepts.
+"""
+
 # ============================================================================
 # simple_random_walk/simple_random_walk_simulation.py
 # ============================================================================
@@ -68,3 +74,7 @@ class SimpleRandomWalk:
     
     def get_seed(self) -> Optional[int]:
         return self.seed
+
+
+if __name__ == "__main__":
+    pass

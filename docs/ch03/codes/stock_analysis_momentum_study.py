@@ -1,3 +1,9 @@
+"""
+Stock Analysis Momentum Study
+
+Educational script demonstrating stock analysis momentum study concepts.
+"""
+
 # ============================================================================
 # stock_analysis_STUDY_MOMENTUM_WITH_HISTORICAL_ACCURACY.py
 # ============================================================================
@@ -19,4 +25,6 @@ def study_momentum_with_historical_accuracy():
     # This would be followed by performance analysis
     # using the historically accurate ticker lists
 
-study_momentum_with_historical_accuracy()
+
+if __name__ == "__main__":
+    study_momentum_with_historical_accuracy()

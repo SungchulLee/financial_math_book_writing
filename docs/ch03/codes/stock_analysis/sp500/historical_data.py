@@ -1,3 +1,9 @@
+"""
+Historical Data
+
+Educational script demonstrating historical data concepts.
+"""
+
 # ============================================================================
 # stock_analysis/sp500/historical_data.py
 # ============================================================================
@@ -258,3 +264,7 @@ def get_crisis_periods():
             'major_additions': ['TSLA', 'ETSY', 'MRNA']
         }
     }
+
+
+if __name__ == "__main__":
+    pass

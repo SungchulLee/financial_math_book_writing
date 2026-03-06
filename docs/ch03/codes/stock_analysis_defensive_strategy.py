@@ -1,3 +1,9 @@
+"""
+Stock Analysis Defensive Strategy
+
+Educational script demonstrating stock analysis defensive strategy concepts.
+"""
+
 # ============================================================================
 # stock_analysis_DEVELOP_DEFENSIVE_STRATEGY.py
 # ============================================================================
@@ -22,4 +28,6 @@ def develop_defensive_strategy():
     
     # These could form the basis of a defensive portfolio
 
-develop_defensive_strategy()
+
+if __name__ == "__main__":
+    develop_defensive_strategy()

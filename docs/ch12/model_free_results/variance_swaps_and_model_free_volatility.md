@@ -6,6 +6,7 @@ Variance swaps provide direct exposure to realized volatility and enable model-f
 
 **Variance Swap Definition**
 A variance swap exchanges realized variance for a fixed strike:
+
 $$\text{Payoff} = N \times \left(\sum_i \ln^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right) - K_{\text{var}}^2\right) \times \Delta t$$
 
 Key features:
@@ -19,6 +20,7 @@ Under risk-neutral measure, realized variance can be replicated using:
 2. A continuum of out-of-the-money options across all strikes for the variance term
 
 The replication formula:
+
 $$\text{Var}(S) = 2 \int_0^{\infty} \frac{C(K)}{K^2} dK - \frac{1}{T}\ln^2(F/S_0)$$
 
 where $C(K)$ are European call prices and $F$ is the forward.
@@ -33,7 +35,9 @@ where the superscript denotes risk-neutral (Q) vs physical (P) measure.
 
 **Model-Free Implied Volatility**
 The VIX index computes model-free implied volatility from options:
+
 $$\text{VIX}^2 = \frac{2}{T}\int_0^{\infty} \frac{C(K)}{K^2} dK - \frac{1}{T}\ln^2(F/K_0)$$
+
 This is model-independent and directly observable from market option prices.
 
 **Volatility Curve Construction**

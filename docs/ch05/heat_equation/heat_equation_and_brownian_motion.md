@@ -11,9 +11,11 @@ Let $(B_t)_{t \geq 0}$ be a standard Brownian motion starting at $0$.
 **Theorem**: The density of $B_t$ is the heat kernel:
 
 $$
+
 \boxed{
 p_{B_t}(x) = \frac{1}{\sqrt{2\pi t}} \exp\left(-\frac{x^2}{2t}\right) = G(t,x)
 }
+
 $$
 
 This density **solves the heat equation** with initial condition $\delta_0$.
@@ -25,30 +27,40 @@ This density **solves the heat equation** with initial condition $\delta_0$.
 For any bounded measurable function $f$, define:
 
 $$
+
 u(t,x) = \mathbb{E}[f(x + B_t)] = \mathbb{E}[f(B_t) \mid B_0 = x]
+
 $$
 
 **Theorem**: The function $u$ solves the **initial value problem**:
 
 $$
+
 \boxed{
 \begin{cases}
 \displaystyle\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2} & t > 0 \\[1em]
 u(0,x) = f(x)
 \end{cases}
 }
+
 $$
 
 **Proof**: 
 
 Using the convolution formula:
+
 $$
+
 u(t,x) = \int_{\mathbb{R}} f(y) G(t, y-x)\,dy = \int_{\mathbb{R}} f(x+z) G(t,z)\,dz
+
 $$
 
 Since $G$ solves the heat equation and differentiation commutes with integration:
+
 $$
+
 \frac{\partial u}{\partial t} = \int f(x+z) \frac{\partial G}{\partial t}(t,z)\,dz = \frac{1}{2}\int f(x+z) \frac{\partial^2 G}{\partial z^2}(t,z)\,dz = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}
+
 $$
 
 The initial condition follows from $G(t,\cdot) \to \delta_0$ as $t \to 0$. $\square$
@@ -60,7 +72,9 @@ The initial condition follows from $G(t,\cdot) \to \delta_0$ as $t \to 0$. $\squ
 The **infinitesimal generator** of Brownian motion is:
 
 $$
+
 \mathcal{L}f(x) = \lim_{t \to 0} \frac{\mathbb{E}_x[f(B_t)] - f(x)}{t} = \frac{1}{2}f''(x)
+
 $$
 
 **The heat equation is**: $u_t = \mathcal{L}u$
@@ -87,7 +101,9 @@ This generalizes: for any diffusion with generator $\mathcal{L}$, expected value
 **Theorem**: If $u$ solves $u_t = \frac{1}{2}u_{xx}$, then:
 
 $$
+
 M_t := u(T-t, B_t)
+
 $$
 
 is a **martingale** for $0 \leq t \leq T$.
@@ -95,13 +111,17 @@ is a **martingale** for $0 \leq t \leq T$.
 **Proof**: Apply Itô's lemma to $u(T-t, B_t)$:
 
 $$
+
 dM_t = \left(-\frac{\partial u}{\partial t} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\right)dt + \frac{\partial u}{\partial x}dB_t
+
 $$
 
 Since $u$ solves the heat equation (with time running backward), the $dt$ term vanishes:
 
 $$
+
 dM_t = \frac{\partial u}{\partial x}(T-t, B_t)\,dB_t
+
 $$
 
 This is a local martingale (and a true martingale under growth conditions). $\square$
@@ -134,22 +154,28 @@ The probabilistic representation enables **Monte Carlo methods**:
 For Brownian motion in a domain $D$, define the **exit time**:
 
 $$
+
 \tau = \inf\{t > 0 : B_t \notin D\}
+
 $$
 
 **Theorem (Kakutani)**: The function:
 
 $$
+
 u(x) = \mathbb{E}_x[f(B_\tau)]
+
 $$
 
 solves the **Dirichlet problem**:
 
 $$
+
 \begin{cases}
 \frac{1}{2}\Delta u = 0 & \text{in } D \\
 u = f & \text{on } \partial D
 \end{cases}
+
 $$
 
 This connects harmonic functions (solutions to Laplace's equation) to Brownian motion.
@@ -161,7 +187,9 @@ This connects harmonic functions (solutions to Laplace's equation) to Brownian m
 For Brownian motion hitting a boundary, the **reflection principle** provides:
 
 $$
+
 \mathbb{P}\left(\max_{0 \leq s \leq t} B_s \geq a\right) = 2\mathbb{P}(B_t \geq a) = 2\Phi\left(-\frac{a}{\sqrt{t}}\right)
+
 $$
 
 for $a > 0$.
@@ -175,13 +203,17 @@ for $a > 0$.
 For Brownian motion with drift $dX_t = \mu\,dt + dB_t$:
 
 $$
+
 u(t,x) = \mathbb{E}[f(X_t) \mid X_0 = x]
+
 $$
 
 solves the **advection-diffusion equation**:
 
 $$
+
 \frac{\partial u}{\partial t} = -\mu\frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}
+
 $$
 
 The generator becomes $\mathcal{L} = \mu\partial_x + \frac{1}{2}\partial_{xx}$.
@@ -217,9 +249,11 @@ This hierarchy leads to the **Feynman-Kac theorem**.
 ## Summary
 
 $$
+
 \boxed{
 \mathbb{E}[f(B_t) \mid B_0 = x] = \int_{\mathbb{R}} f(y) G(t, y-x)\,dy \quad \text{solves} \quad u_t = \frac{1}{2}u_{xx}
 }
+
 $$
 
 The heat equation-Brownian motion connection establishes:

@@ -9,7 +9,9 @@ A PDE alone does not determine a unique solution. **Terminal conditions** and **
 The Black-Scholes PDE:
 
 $$
+
 \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV
+
 $$
 
 has infinitely many solutions. The conditions select the **unique solution** corresponding to a specific contract.
@@ -23,9 +25,11 @@ has infinitely many solutions. The conditions select the **unique solution** cor
 At maturity $t = T$, the option value equals its **payoff**:
 
 $$
+
 \boxed{
 V(T, S) = \Phi(S)
 }
+
 $$
 
 The function $\Phi$ is determined by the contract.
@@ -59,7 +63,9 @@ The PDE solution **smooths** these irregularities for $t < T$.
 **1. Dirichlet Conditions** (value specified):
 
 $$
+
 V(t, S^*) = g(t)
+
 $$
 
 The option value is specified at boundary $S = S^*$.
@@ -67,7 +73,9 @@ The option value is specified at boundary $S = S^*$.
 **2. Neumann Conditions** (derivative specified):
 
 $$
+
 \frac{\partial V}{\partial S}(t, S^*) = h(t)
+
 $$
 
 The delta is specified at the boundary.
@@ -75,7 +83,9 @@ The delta is specified at the boundary.
 **3. Robin (Mixed) Conditions**:
 
 $$
+
 \alpha V + \beta\frac{\partial V}{\partial S} = g(t)
+
 $$
 
 A linear combination is specified.
@@ -89,13 +99,17 @@ A linear combination is specified.
 **Call option**: The call is worthless if the stock goes to zero:
 
 $$
+
 V(t, 0) = 0
+
 $$
 
 **Put option**: The put has maximum value:
 
 $$
+
 V(t, 0) = Ke^{-r(T-t)}
+
 $$
 
 (Present value of receiving $K$ at maturity)
@@ -105,7 +119,9 @@ $$
 **Call option**: Behaves like the forward:
 
 $$
+
 V(t, S) \sim S - Ke^{-r(T-t)} \quad \text{as } S \to \infty
+
 $$
 
 Equivalently: $V_S \to 1$ (delta approaches 1).
@@ -113,7 +129,9 @@ Equivalently: $V_S \to 1$ (delta approaches 1).
 **Put option**: Worthless for large $S$:
 
 $$
+
 V(t, S) \to 0 \quad \text{as } S \to \infty
+
 $$
 
 ---
@@ -127,10 +145,12 @@ Barrier options have **explicit boundaries** where the contract terminates.
 Knocked out if $S$ hits barrier $B < S_0$:
 
 $$
+
 \begin{cases}
 V(T, S) = (S - K)^+ & S > B \\
 V(t, B) = 0 & \text{(knocked out)}
 \end{cases}
+
 $$
 
 ### Up-and-Out Put
@@ -138,10 +158,12 @@ $$
 Knocked out if $S$ hits barrier $B > S_0$:
 
 $$
+
 \begin{cases}
 V(T, S) = (K - S)^+ & S < B \\
 V(t, B) = 0 & \text{(knocked out)}
 \end{cases}
+
 $$
 
 ### Knock-In Options
@@ -149,7 +171,9 @@ $$
 The complementary "knock-in" satisfies:
 
 $$
+
 V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
+
 $$
 
 ---
@@ -161,7 +185,9 @@ Boundary conditions correspond to **stopping rules** for the underlying process.
 ### Dirichlet at S = B
 
 $$
+
 V(t, S) = \mathbb{E}\left[e^{-r(\tau \wedge T - t)}\Phi(S_{\tau \wedge T}) \mid S_t = S\right]
+
 $$
 
 where $\tau = \inf\{s \geq t : S_s = B\}$ is the hitting time.
@@ -171,7 +197,9 @@ where $\tau = \inf\{s \geq t : S_s = B\}$ is the hitting time.
 When the process hits the boundary, it is **killed**:
 
 $$
+
 \mathbb{P}(\text{survive to } T \mid S_t = S) = \mathbb{P}(\tau > T \mid S_t = S)
+
 $$
 
 ### Reflecting Boundary
@@ -179,7 +207,9 @@ $$
 The process is **pushed back** at the boundary:
 
 $$
+
 dS_t = rS_t\,dt + \sigma S_t\,dW_t + dL_t
+
 $$
 
 where $L_t$ is the local time at the boundary.
@@ -193,7 +223,9 @@ American options introduce a **free boundary** (exercise boundary).
 ### Optimal Stopping Problem
 
 $$
+
 V(t, S) = \sup_{\tau \in [t,T]} \mathbb{E}\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]
+
 $$
 
 ### Complementarity Formulation
@@ -201,11 +233,13 @@ $$
 The American option price satisfies:
 
 $$
+
 \begin{cases}
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV \leq 0 \\
 V \geq \Phi \\
 \left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV\right)(V - \Phi) = 0
 \end{cases}
+
 $$
 
 This is a **free boundary problem**: the exercise boundary $S^*(t)$ is part of the solution.
@@ -244,7 +278,9 @@ With appropriate terminal and boundary conditions:
 Numerical methods require finite domains. Far-field boundaries are placed at $S_{\min}$ and $S_{\max}$ where:
 
 $$
+
 S_{\min} \ll K \ll S_{\max}
+
 $$
 
 ### Boundary Condition Errors
@@ -266,9 +302,11 @@ Incorrect boundary conditions cause errors that propagate inward. Use:
 | Free boundary | $V = \Phi$ on $S^*(t)$ | Optimal exercise |
 
 $$
+
 \boxed{
 \text{PDE} + \text{Terminal Condition} + \text{Boundary Conditions} = \text{Unique Price}
 }
+
 $$
 
 **Terminal and boundary conditions transform abstract PDEs into specific pricing problems, encoding the contractual features of financial derivatives.**

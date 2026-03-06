@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def duration_key_rate():
     """
     Duration and Key Rate Duration.

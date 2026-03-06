@@ -955,6 +955,7 @@ All these methods are **related**:
 
 
 $$\begin{align}
+
 &\text{Separation (finite)} \longleftrightarrow \text{Fourier series} \\
 &\quad\downarrow \text{(limit } L \to \infty) \\
 &\text{Separation (infinite)} \longleftrightarrow \text{Fourier transform} \\
@@ -962,6 +963,7 @@ $$\begin{align}
 &\text{Fundamental solution} \longleftrightarrow \text{Heat kernel} \\
 &\quad\downarrow \text{(probabilistic)} \\
 &\text{Transition density} \longleftrightarrow \text{Feynman-Kac}
+
 \end{align}$$
 
 
@@ -973,10 +975,12 @@ They're all **different manifestations** of the spectral decomposition of the he
 
 
 $$\boxed{e^{\tau\mathcal{L}}V_0 = \begin{cases}
+
 \sum_{n}e^{\tau\lambda_n}\langle V_0, \phi_n\rangle\phi_n & \text{(discrete)} \\
 \int e^{\tau\lambda}\langle V_0, \phi_\lambda\rangle\phi_\lambda d\lambda & \text{(continuous)} \\
 \int G(x,y,\tau)V_0(y)dy & \text{(Green's function)} \\
 \mathbb{E}[V_0(X_\tau)] & \text{(probabilistic)}
+
 \end{cases}}$$
 
 

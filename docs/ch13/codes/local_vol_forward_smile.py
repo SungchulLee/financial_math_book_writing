@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def local_vol_forward_smile():
     """
     Forward Smile Comparison.

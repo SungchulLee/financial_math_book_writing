@@ -25,17 +25,21 @@ Affine processes form a class of continuous-time stochastic processes that are p
 A state vector $\mathbf{X}_t \in \mathbb{R}^n$ follows an affine process if its dynamics under a risk-neutral measure $\mathbb{Q}$ are:
 
 $$
+
 d\mathbf{X}_t = \bar{\mu}(\mathbf{X}_t)dt + \bar{\sigma}(\mathbf{X}_t)d\mathbf{W}_t
+
 $$
 
 and satisfy the following **linearity conditions**:
 
 $$
+
 \begin{array}{lll}
 \displaystyle \bar{\mu}(\mathbf{X}_t) = a_0 + a_1 \mathbf{X}_t & \quad & \text{(Drift is linear in } \mathbf{X}_t\text{)}\\
 \displaystyle \bar{\sigma}(\mathbf{X}_t)\bar{\sigma}(\mathbf{X}_t)^T = c_0 + c_1^T \mathbf{X}_t & \quad & \text{(Diffusion is linear in } \mathbf{X}_t\text{)}\\
 \displaystyle r(\mathbf{X}_t) = r_0 + r_1^T \mathbf{X}_t & \quad & \text{(Short rate is linear in } \mathbf{X}_t\text{)}\\
 \end{array}
+
 $$
 
 where:
@@ -48,13 +52,17 @@ where:
 The power of the affine framework lies in the conditional characteristic function:
 
 $$
+
 \varphi(\mathbf{X}_t, t, T, \mathbf{u}) := \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r(\mathbf{X}_s)ds} e^{i\mathbf{u}^T\mathbf{X}_T} \Big| \mathcal{F}_t\right]
+
 $$
 
 For an affine process, this takes an **affine form**:
 
 $$
+
 \varphi(\mathbf{X}_t, t, T, \mathbf{u}) = e^{A(\tau, \mathbf{u}) + \mathbf{B}^T(\tau, \mathbf{u})\mathbf{X}_t}
+
 $$
 
 where:
@@ -67,19 +75,23 @@ where:
 The functions $A(\tau, \mathbf{u})$ and $\mathbf{B}(\tau, \mathbf{u})$ satisfy the system of Riccati equations (with terminal conditions at $\tau = 0$):
 
 $$
+
 \begin{array}{lll}
 \displaystyle -\frac{\partial A}{\partial \tau} &=& r_0 - \mathbf{B}^T a_0 - \frac{1}{2}\mathbf{B}^T c_0 \mathbf{B}\\
 \displaystyle -\frac{\partial \mathbf{B}}{\partial \tau} &=& r_1 - a_1^T \mathbf{B} - \frac{1}{2}c_1^T \mathbf{B} \mathbf{B}\\
 \end{array}
+
 $$
 
 Or equivalently, integrating backward from maturity:
 
 $$
+
 \begin{array}{lll}
 \displaystyle \frac{dA}{d\tau} &=& -r_0 + \mathbf{B}^T a_0 + \frac{1}{2}\mathbf{B}^T c_0 \mathbf{B}\\
 \displaystyle \frac{d\mathbf{B}}{d\tau} &=& -r_1 + a_1^T \mathbf{B} + \frac{1}{2}\mathbf{B}^T c_1 \mathbf{B}\\
 \end{array}
+
 $$
 
 ### Bond Pricing
@@ -87,13 +99,17 @@ $$
 The zero-coupon bond price is directly obtained from the characteristic function:
 
 $$
+
 P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r(\mathbf{X}_s)ds} \Big| \mathcal{F}_t\right] = e^{A(T-t, 0) + \mathbf{B}^T(T-t, 0)\mathbf{X}_t}
+
 $$
 
 This gives an **exponential-affine form** for bond prices:
 
 $$
+
 P(t, T) = \exp\left(A(T-t) + \mathbf{B}^T(T-t)\mathbf{X}_t\right)
+
 $$
 
 ---
@@ -134,6 +150,7 @@ Affine models can incorporate:
 State variable: $X_t = r_t$ (short rate), one-dimensional.
 
 Dynamics:
+
 $$dr_t = \kappa(\theta - r_t)dt + \sigma dW_t$$
 
 Affine parameters:

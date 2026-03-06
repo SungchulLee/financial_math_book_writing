@@ -29,28 +29,36 @@ Three quantities characterize the answer:
 **Strike space:** Implied volatility as a function of absolute strike $K$:
 
 $$
+
 \sigma_{\text{IV}} = \sigma(K, T)
+
 $$
 
 
 **Moneyness space:** Implied volatility as a function of moneyness $m = K/F$:
 
 $$
+
 \sigma_{\text{IV}} = \sigma(m, T)
+
 $$
 
 
 **Log-moneyness space:** Implied volatility as a function of $k = \ln(K/F)$:
 
 $$
+
 \sigma_{\text{IV}} = \sigma(k, T)
+
 $$
 
 
 **Delta space:** Implied volatility as a function of option delta $\Delta$:
 
 $$
+
 \sigma_{\text{IV}} = \sigma(\Delta, T)
+
 $$
 
 
@@ -65,14 +73,18 @@ The choice of coordinate system determines how we parametrize the smile and affe
 Under the **sticky strike** assumption, implied volatility is a function of absolute strike only, independent of spot:
 
 $$
+
 \sigma_{\text{IV}}(K, T; S) = \sigma(K, T) \quad \text{(independent of } S \text{)}
+
 $$
 
 
 **Consequence:** When spot moves, the implied volatility at a fixed strike $K$ remains unchanged:
 
 $$
+
 \frac{\partial \sigma_{\text{IV}}(K)}{\partial S} = 0
+
 $$
 
 
@@ -94,14 +106,18 @@ Under sticky strike:
 Let $\sigma(K)$ be the smile function. Under sticky strike:
 
 $$
+
 \sigma_{\text{IV}}(K; S_t) = \sigma(K) \quad \forall S_t
+
 $$
 
 
 The **total derivative** of IV with respect to spot is:
 
 $$
+
 \frac{d\sigma_{\text{IV}}}{dS} = \frac{\partial \sigma}{\partial K} \cdot \underbrace{\frac{\partial K}{\partial S}}_{=0} = 0
+
 $$
 
 
@@ -113,21 +129,27 @@ since strike is held constant.
 The Black-Scholes delta is:
 
 $$
+
 \Delta_{\text{BS}} = e^{-qT} \Phi(d_1)
+
 $$
 
 
 Under sticky strike, the **total delta** includes the smile effect:
 
 $$
+
 \Delta_{\text{total}} = \frac{\partial C}{\partial S} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}
+
 $$
 
 
 Since $\frac{\partial \sigma_{\text{IV}}}{\partial S} = 0$ under sticky strike:
 
 $$
+
 \Delta_{\text{sticky-strike}} = \Delta_{\text{BS}}
+
 $$
 
 
@@ -141,7 +163,9 @@ $$
 In a local volatility model:
 
 $$
+
 dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+
 $$
 
 
@@ -161,14 +185,18 @@ The implied volatility surface is determined by the local volatility function vi
 Under the **sticky delta** assumption, implied volatility is a function of option delta only, independent of spot:
 
 $$
+
 \sigma_{\text{IV}}(\Delta, T; S) = \sigma(\Delta, T) \quad \text{(independent of } S \text{)}
+
 $$
 
 
 **Consequence:** When spot moves, the implied volatility at a fixed delta level remains unchanged:
 
 $$
+
 \frac{\partial \sigma_{\text{IV}}(\Delta)}{\partial S} = 0
+
 $$
 
 
@@ -191,7 +219,9 @@ Under sticky delta:
 Let $\sigma(\Delta)$ be the smile function in delta space. The strike corresponding to delta $\Delta$ depends on spot:
 
 $$
+
 K(\Delta, S) = S \cdot f(\Delta, \sigma, T, r, q)
+
 $$
 
 
@@ -200,14 +230,18 @@ where $f$ is the inverse delta function.
 Under sticky delta, the IV at a fixed strike $K_0$ changes as spot moves because the delta at $K_0$ changes:
 
 $$
+
 \frac{d\sigma_{\text{IV}}(K_0)}{dS} = \frac{\partial \sigma}{\partial \Delta} \cdot \frac{\partial \Delta(K_0)}{\partial S}
+
 $$
 
 
 Since $\frac{\partial \Delta}{\partial S} > 0$ (delta increases with spot for calls), and $\frac{\partial \sigma}{\partial \Delta}$ is typically negative (OTM puts have higher IV), we have:
 
 $$
+
 \frac{d\sigma_{\text{IV}}(K_0)}{dS} < 0 \quad \text{(for typical equity skew)}
+
 $$
 
 
@@ -219,14 +253,18 @@ $$
 The total delta under sticky delta includes the smile effect:
 
 $$
+
 \Delta_{\text{total}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}
+
 $$
 
 
 Since $\frac{\partial \sigma_{\text{IV}}}{\partial S} < 0$ for typical equity skew:
 
 $$
+
 \Delta_{\text{sticky-delta}} = \Delta_{\text{BS}} + \underbrace{\mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}}_{< 0}
+
 $$
 
 
@@ -254,7 +292,9 @@ This makes sticky delta a natural assumption for FX volatility models.
 Consider a simple linear skew model:
 
 $$
+
 \sigma(k) = \sigma_0 + \beta k
+
 $$
 
 
@@ -270,28 +310,36 @@ where $k = \ln(K/F)$ is log-moneyness and $\beta < 0$ (downward skew).
 **Proposition:** For a call option with negative skew ($\beta < 0$):
 
 $$
+
 \Delta_{\text{sticky-delta}} < \Delta_{\text{BS}} < \Delta_{\text{sticky-strike}} \cdot \text{(adjusted)}
+
 $$
 
 
 Actually, under sticky strike:
 
 $$
+
 \Delta_{\text{sticky-strike}} = \Delta_{\text{BS}}
+
 $$
 
 
 And under sticky delta:
 
 $$
+
 \Delta_{\text{sticky-delta}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma}{\partial S}
+
 $$
 
 
 For equity skew with $\frac{\partial \sigma}{\partial S} < 0$:
 
 $$
+
 \Delta_{\text{sticky-delta}} < \Delta_{\text{sticky-strike}}
+
 $$
 
 
@@ -306,28 +354,36 @@ $$
 **Black-Scholes delta:**
 
 $$
+
 \Delta_{\text{BS}} = \Phi(d_1) = \Phi(0.175) \approx 0.569
+
 $$
 
 
 **Smile adjustment:**
 
 $$
+
 \frac{\partial \sigma}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = -0.20 \times \left(-\frac{1}{S}\right) = \frac{0.20}{100} = 0.002
+
 $$
 
 
 **Vega:**
 
 $$
+
 \mathcal{V} \approx 19.73
+
 $$
 
 
 **Sticky delta adjustment:**
 
 $$
+
 \Delta_{\text{sticky-delta}} = 0.569 + 19.73 \times 0.002 = 0.569 + 0.039 = 0.608
+
 $$
 
 
@@ -336,14 +392,18 @@ Wait, this is **larger**, not smaller. Let me recalculate.
 The sign depends on the direction of the skew effect. With $\frac{\partial \sigma}{\partial k} < 0$:
 
 $$
+
 \frac{\partial \sigma}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{-1}{S}
+
 $$
 
 
 So if $\frac{\partial \sigma}{\partial k} = -0.20$:
 
 $$
+
 \frac{\partial \sigma}{\partial S} = (-0.20) \times \left(\frac{-1}{100}\right) = +0.002
+
 $$
 
 
@@ -361,21 +421,27 @@ Let me reformulate more carefully.
 Under **sticky moneyness** (log-moneyness constant):
 
 $$
+
 \sigma(k, T) \text{ fixed}, \quad k = \ln(K/F)
+
 $$
 
 
 When $S$ increases, $F$ increases, so $k = \ln(K/F)$ decreases for fixed $K$.
 
 $$
+
 \frac{\partial \sigma}{\partial S}\bigg|_{K \text{ fixed}} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \left(-\frac{1}{S}\right)
+
 $$
 
 
 For downward skew ($\frac{\partial \sigma}{\partial k} < 0$):
 
 $$
+
 \frac{\partial \sigma}{\partial S}\bigg|_{K \text{ fixed}} > 0
+
 $$
 
 
@@ -394,7 +460,9 @@ Under **sticky delta**: The IV at a fixed delta stays constant, meaning the smil
 The general formula for total delta is:
 
 $$
+
 \Delta_{\text{total}} = \frac{\partial C}{\partial S} = \Delta_{\text{BS}} + \frac{\partial C}{\partial \sigma} \cdot \frac{\partial \sigma}{\partial S} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma}{\partial S}
+
 $$
 
 
@@ -410,7 +478,9 @@ $$
 **Vanna** measures the sensitivity of delta to volatility, or equivalently, of vega to spot:
 
 $$
+
 \text{Vanna} = \frac{\partial \Delta}{\partial \sigma} = \frac{\partial \mathcal{V}}{\partial S}
+
 $$
 
 
@@ -419,14 +489,18 @@ Under different smile dynamics:
 **Sticky strike:**
 
 $$
+
 \text{Total Vanna} = \text{Vanna}_{\text{BS}}
+
 $$
 
 
 **Sticky delta:**
 
 $$
+
 \text{Total Vanna} = \text{Vanna}_{\text{BS}} + \text{Volga} \cdot \frac{\partial \sigma}{\partial S} + \mathcal{V} \cdot \frac{\partial^2 \sigma}{\partial S \partial S}
+
 $$
 
 
@@ -438,7 +512,9 @@ The smile dynamics introduce additional vanna-like effects.
 Similarly, the total gamma depends on smile dynamics:
 
 $$
+
 \Gamma_{\text{total}} = \Gamma_{\text{BS}} + 2 \cdot \text{Vanna} \cdot \frac{\partial \sigma}{\partial S} + \mathcal{V} \cdot \frac{\partial^2 \sigma}{\partial S^2}
+
 $$
 
 
@@ -453,7 +529,9 @@ Under sticky strike, the correction terms vanish.
 For a delta-hedged option position:
 
 $$
+
 \text{P\&L} = \frac{1}{2} \Gamma (\Delta S)^2 + \mathcal{V} \Delta\sigma + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma + \Theta \Delta t
+
 $$
 
 
@@ -465,7 +543,9 @@ The vanna term captures the cross-effect between spot and volatility moves.
 Under sticky strike, $\Delta\sigma|_{K \text{ fixed}} = 0$, so:
 
 $$
+
 \text{P\&L}_{\text{sticky-strike}} = \frac{1}{2} \Gamma (\Delta S)^2 + \Theta \Delta t
+
 $$
 
 
@@ -477,7 +557,9 @@ No volatility P&L (at fixed strike).
 Under sticky delta, $\Delta\sigma|_{\Delta \text{ fixed}} = 0$, but $\Delta\sigma|_{K \text{ fixed}} \neq 0$:
 
 $$
+
 \text{P\&L}_{\text{sticky-delta}} = \frac{1}{2} \Gamma (\Delta S)^2 + \mathcal{V} \Delta\sigma_K + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma_K + \Theta \Delta t
+
 $$
 
 
@@ -504,7 +586,9 @@ Empirical studies of equity index options (S&P 500, EURO STOXX) show:
 **Quantitative finding:** The "skew stickiness ratio" (SSR):
 
 $$
+
 \text{SSR} = \frac{\text{ATM IV change}}{\text{Predicted change under sticky strike}}
+
 $$
 
 
@@ -562,7 +646,9 @@ Stochastic volatility models (Heston, SABR) produce dynamics between sticky stri
 Bergomi's framework models the forward variance curve directly:
 
 $$
+
 d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t
+
 $$
 
 
@@ -589,7 +675,9 @@ The resulting smile dynamics are:
 **Regression approach:**
 
 $$
+
 \Delta\sigma_{\text{ATM}} = \alpha + \beta \cdot \frac{\Delta S}{S} + \epsilon
+
 $$
 
 
@@ -615,7 +703,9 @@ Sticky strike and sticky delta represent idealized extremes of smile dynamics:
 ### 1. Sticky Strike
 
 $$
+
 \frac{\partial \sigma_{\text{IV}}(K)}{\partial S} = 0
+
 $$
 
 - IV at fixed strike unchanged when spot moves
@@ -625,7 +715,9 @@ $$
 ### 2. Sticky Delta
 
 $$
+
 \frac{\partial \sigma_{\text{IV}}(\Delta)}{\partial S} = 0
+
 $$
 
 - IV at fixed delta unchanged when spot moves

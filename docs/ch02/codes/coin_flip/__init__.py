@@ -28,6 +28,8 @@ Relationship to Brownian Motion:
 from .coin_flip_simulation import CoinFlip
 
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Coin flip process simulation and binary random walk generation"
+
+if __name__ == "__main__":
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Coin flip process simulation and binary random walk generation"

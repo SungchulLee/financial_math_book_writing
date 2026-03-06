@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.special import comb
 
 
+# ======================================================================
+
 def trinomial_tree_pricing():
     """
     Trinomial Tree Pricing.

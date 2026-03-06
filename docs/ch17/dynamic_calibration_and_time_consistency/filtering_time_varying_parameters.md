@@ -11,13 +11,19 @@ When parameters are treated as time-varying state variables, **filtering** provi
 Consider a model where parameters $\theta_t$ evolve over time:
 
 **State equation:**
+
 $$
+
 \theta_{t+1} = f(\theta_t) + \eta_t, \qquad \eta_t \sim \mathcal{N}(0, Q),
+
 $$
 
 **Observation equation:**
+
 $$
+
 y_t = h(\theta_t) + \varepsilon_t, \qquad \varepsilon_t \sim \mathcal{N}(0, R),
+
 $$
 
 where:
@@ -34,7 +40,9 @@ where:
 Given observations $y_1, \ldots, y_t$, estimate the posterior:
 
 $$
+
 p(\theta_t \mid y_{1:t}).
+
 $$
 
 This provides:
@@ -52,25 +60,39 @@ When both $f$ and $h$ are linear and noise is Gaussian, the Kalman filter provid
 ### Linear state-space model
 
 $$
+
 \theta_{t+1} = A \theta_t + \eta_t, \qquad y_t = H \theta_t + \varepsilon_t.
+
 $$
 
 ### Kalman filter recursion
 
 **Predict:**
+
 $$
+
 \hat{\theta}_{t|t-1} = A \hat{\theta}_{t-1|t-1}, \qquad P_{t|t-1} = A P_{t-1|t-1} A^\top + Q.
+
 $$
 
 **Update:**
+
 $$
+
 K_t = P_{t|t-1} H^\top (H P_{t|t-1} H^\top + R)^{-1},
+
 $$
+
 $$
+
 \hat{\theta}_{t|t} = \hat{\theta}_{t|t-1} + K_t (y_t - H \hat{\theta}_{t|t-1}),
+
 $$
+
 $$
+
 P_{t|t} = (I - K_t H) P_{t|t-1}.
+
 $$
 
 ### Interpretation
@@ -100,7 +122,9 @@ The EKF handles nonlinearity by linearizing around the current estimate.
 At each step, approximate:
 
 $$
+
 h(\theta) \approx h(\hat{\theta}_{t|t-1}) + H_t (\theta - \hat{\theta}_{t|t-1}),
+
 $$
 
 where $H_t = \nabla_\theta h(\hat{\theta}_{t|t-1})$ is the Jacobian (sensitivity of prices to parameters).
@@ -110,21 +134,33 @@ where $H_t = \nabla_\theta h(\hat{\theta}_{t|t-1})$ is the Jacobian (sensitivity
 Same structure as Kalman filter, but with $H_t$ evaluated at the current estimate:
 
 **Predict:**
+
 $$
+
 \hat{\theta}_{t|t-1} = f(\hat{\theta}_{t-1|t-1}), \qquad P_{t|t-1} = F_t P_{t-1|t-1} F_t^\top + Q,
+
 $$
 
 where $F_t = \nabla_\theta f(\hat{\theta}_{t-1|t-1})$.
 
 **Update:**
+
 $$
+
 K_t = P_{t|t-1} H_t^\top (H_t P_{t|t-1} H_t^\top + R)^{-1},
+
 $$
+
 $$
+
 \hat{\theta}_{t|t} = \hat{\theta}_{t|t-1} + K_t (y_t - h(\hat{\theta}_{t|t-1})),
+
 $$
+
 $$
+
 P_{t|t} = (I - K_t H_t) P_{t|t-1}.
+
 $$
 
 ### Advantages
@@ -150,7 +186,9 @@ The UKF avoids explicit linearization by propagating carefully chosen "sigma poi
 For state dimension $d$, choose $2d + 1$ sigma points:
 
 $$
+
 \chi_0 = \hat{\theta}, \quad \chi_i = \hat{\theta} + \sqrt{(d + \lambda) P} \big|_i, \quad \chi_{i+d} = \hat{\theta} - \sqrt{(d + \lambda) P} \big|_i,
+
 $$
 
 where $\sqrt{(d + \lambda) P}|_i$ denotes the $i$-th column of the matrix square root, and $\lambda$ is a scaling parameter.
@@ -160,7 +198,9 @@ where $\sqrt{(d + \lambda) P}|_i$ denotes the $i$-th column of the matrix square
 Transform sigma points through $f$ and $h$:
 
 $$
+
 \chi_i^{-} = f(\chi_i), \qquad \gamma_i = h(\chi_i^{-}).
+
 $$
 
 Compute weighted means and covariances from the transformed points.
@@ -187,13 +227,19 @@ Particle filters (sequential Monte Carlo) handle arbitrary nonlinearity and non-
 1. **Initialize:** Draw $N$ particles $\{\theta_0^{(i)}\}_{i=1}^N$ from prior.
 
 2. **Predict:** Propagate each particle through state dynamics:
+
    $$
+
    \tilde{\theta}_t^{(i)} = f(\theta_{t-1}^{(i)}) + \eta_t^{(i)}.
+
    $$
 
 3. **Update:** Compute importance weights based on likelihood:
+
    $$
+
    w_t^{(i)} \propto p(y_t \mid \tilde{\theta}_t^{(i)}).
+
    $$
 
 4. **Resample:** Draw $N$ particles from $\{\tilde{\theta}_t^{(i)}\}$ with probabilities $\{w_t^{(i)}\}$.
@@ -229,7 +275,9 @@ For option model calibration:
 For Heston with time-varying parameters:
 
 $$
+
 \theta_t = (v_t, \kappa_t, \bar{v}_t, \sigma_{v,t}, \rho_t)^\top.
+
 $$
 
 Often, only $v_t$ (spot variance) is treated as rapidly varying; others are slowly varying or fixed.
@@ -239,7 +287,9 @@ Often, only $v_t$ (spot variance) is treated as rapidly varying; others are slow
 Observe implied volatilities at strikes $K_j$ and maturities $T_j$:
 
 $$
+
 y_t = (\sigma_{\text{impl}}(K_1, T_1; \theta_t), \ldots, \sigma_{\text{impl}}(K_m, T_m; \theta_t))^\top + \varepsilon_t.
+
 $$
 
 The function $h(\theta) = (\sigma_{\text{impl}}(K_j, T_j; \theta))_j$ requires Heston pricing and implied vol inversion.
@@ -249,7 +299,9 @@ The function $h(\theta) = (\sigma_{\text{impl}}(K_j, T_j; \theta))_j$ requires H
 A simple random walk model:
 
 $$
+
 \theta_{t+1} = \theta_t + \eta_t, \qquad \eta_t \sim \mathcal{N}(0, Q).
+
 $$
 
 The covariance $Q$ encodes beliefs about parameter stability:
@@ -331,7 +383,9 @@ In models like Heston, the variance $v_t$ is a latent state with known dynamics,
 Augment the state vector:
 
 $$
+
 x_t = (v_t, \kappa, \bar{v}, \sigma_v, \rho)^\top.
+
 $$
 
 Apply filtering to $x_t$, treating parameters as slowly evolving states.

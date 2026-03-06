@@ -24,7 +24,9 @@ The foundations of pathwise hedging lie in rough path theory, functional analysi
 
 
 $$
+
 \|x\|_{\infty} = \sup_{t \in [0,T]} |x(t)|
+
 $$
 
 
@@ -40,7 +42,9 @@ $$
 
 
 $$
+
 \frac{\delta F}{\delta S_t}(S) = \lim_{\varepsilon \to 0} \frac{F(S + \varepsilon \delta_t) - F(S)}{\varepsilon}
+
 $$
 
 
@@ -58,7 +62,9 @@ where $\delta_t$ is a perturbation concentrated at time $t$.
 
 
 $$
+
 V_t = V_0 + \int_0^t \theta_s \, dS_s
+
 $$
 
 
@@ -77,7 +83,9 @@ where the integral is understood pathwise (e.g., Riemann-Stieltjes or Young inte
 
 
 $$
+
 f(S_T) - f(S_0) = \int_0^T f'(S_t) \, dS_t + \frac{1}{2} \int_0^T f''(S_t) \, d[S]_t
+
 $$
 
 
@@ -101,7 +109,9 @@ where:
 
 
 $$
+
 \bar{P}(A) = \inf \left\{ V_0: \exists \theta \text{ s.t. } V_T \geq \mathbb{1}_A \text{ for all } S \right\}
+
 $$
 
 
@@ -123,7 +133,9 @@ where $A \subseteq \mathcal{C}([0,T], \mathbb{R}_+)$ is an event.
 
 
 $$
+
 \frac{\partial C}{\partial T} = \frac{1}{2} \sigma^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2} - r K \frac{\partial C}{\partial K} + rC
+
 $$
 
 
@@ -137,7 +149,9 @@ where $C(K, T)$ is the call price as a function of strike and maturity.
 
 
 $$
+
 \sigma^2_{\text{realized}}(S_t, t) = \lim_{\Delta t \to 0} \frac{(S_{t+\Delta t} - S_t)^2}{\Delta t}
+
 $$
 
 
@@ -148,7 +162,9 @@ assuming the limit exists.
 
 
 $$
+
 \frac{\partial C}{\partial T}(K, T) = \frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}(K, T) \cdot \mathbb{E}[\sigma^2_{\text{realized}}(K, T)]
+
 $$
 
 
@@ -175,7 +191,9 @@ where the expectation is with respect to paths conditional on $S_T = K$.
 
 
 $$
+
 \theta_t = \Phi'(\tilde{S}_t)
+
 $$
 
 
@@ -184,7 +202,9 @@ $$
 
 
 $$
+
 \text{Error} = \frac{1}{2} \int_0^T \Phi''(\tilde{S}_t) \left( d[S]_t - d[\tilde{S}]_t \right)
+
 $$
 
 
@@ -196,7 +216,9 @@ $$
 
 
 $$
+
 V_T^{\text{upper}} \geq \Phi(S_T) \quad \text{for all } S
+
 $$
 
 
@@ -210,7 +232,9 @@ $$
 
 
 $$
+
 V_T^{\text{lower}} \leq \Phi(S_T) \quad \text{for all } S
+
 $$
 
 
@@ -219,7 +243,9 @@ $$
 
 
 $$
+
 V_0^{\text{upper}} - V_0^{\text{lower}} = \text{Model uncertainty premium}
+
 $$
 
 
@@ -233,7 +259,9 @@ reflects the inherent ambiguity in pathwise hedging.
 
 
 $$
+
 \underline{\sigma}^2 \leq \sigma^2_{\text{realized}}(S_t, t) \leq \overline{\sigma}^2
+
 $$
 
 
@@ -242,7 +270,9 @@ $$
 
 
 $$
+
 V_0 + \int_0^T \theta_t \, dS_t \geq \Phi(S_T)
+
 $$
 
 
@@ -253,7 +283,9 @@ for all paths with quadratic variation satisfying the bound.
 
 
 $$
+
 V_t + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 V_{SS} \right\} + rSV_S - rV = 0
+
 $$
 
 
@@ -273,7 +305,9 @@ $$
 - $\mathbb{X}_{s,t}$ is the "second-order increment":
 
   $$
+
   \mathbb{X}_{s,t} \approx \int_s^t (X_r - X_s) \otimes dX_r
+
   $$
 
 
@@ -282,7 +316,9 @@ $$
 
 
 $$
+
 |X_t - X_s| \leq C |t - s|^{\alpha}
+
 $$
 
 
@@ -291,7 +327,9 @@ $$
 
 
 $$
+
 \int_0^T Y_t \, dX_t = \lim_{|\Pi| \to 0} \sum_i Y_{t_i} (X_{t_{i+1}} - X_{t_i})
+
 $$
 
 
@@ -307,7 +345,9 @@ exists pathwise.
 
 
 $$
+
 Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}
+
 $$
 
 
@@ -320,7 +360,9 @@ where $R_{s,t} = o(|t-s|^{\alpha})$ is a remainder term.
 
 
 $$
+
 V_t - V_s = \theta_s (S_t - S_s) + R_{s,t}
+
 $$
 
 
@@ -334,7 +376,9 @@ where $\theta_s$ is the delta position.
 
 
 $$
+
 \sigma_t = \sigma_0 + \int_0^t K(t-s) \, dW_s^H
+
 $$
 
 
@@ -367,7 +411,9 @@ where $W^H$ is fractional Brownian motion with $H < 1/2$.
 
 
 $$
+
 \sigma^2(K, T) = \frac{\frac{\partial C}{\partial T}(K, T) + rK \frac{\partial C}{\partial K}(K, T)}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}(K, T)}
+
 $$
 
 
@@ -383,7 +429,9 @@ $$
 
 
 $$
+
 \sum_{i,j} \left( C^{\text{model}}(K_i, T_j; \sigma) - C^{\text{market}}(K_i, T_j) \right)^2
+
 $$
 
 
@@ -399,7 +447,9 @@ subject to:
 
 
 $$
+
 + \lambda \int_0^T \int_0^{\infty} \left( \frac{\partial \sigma}{\partial S} \right)^2 dS \, dt
+
 $$
 
 
@@ -416,7 +466,9 @@ to ensure smooth volatility surface amenable to pathwise analysis.
 
 
 $$
+
 \Phi = F((S_t)_{0 \leq t \leq T})
+
 $$
 
 
@@ -433,7 +485,9 @@ $$
 
 
 $$
+
 \partial_x F_t(S) = \lim_{\varepsilon \to 0} \frac{F(S + \varepsilon \mathbb{1}_{[t,T]}) - F(S)}{\varepsilon}
+
 $$
 
 
@@ -442,7 +496,9 @@ $$
 
 
 $$
+
 \partial_t F_t(S) = \lim_{h \to 0} \frac{F(S^{t+h}) - F(S^t)}{h}
+
 $$
 
 
@@ -456,7 +512,9 @@ where $S^t$ is the path stopped at time $t$.
 
 
 $$
+
 F(S) = F(S_0) + \int_0^T \partial_x F_t(S) \, dS_t + \frac{1}{2} \int_0^T \partial_{xx} F_t(S) \, d[S]_t + \int_0^T \partial_t F_t(S) \, dt
+
 $$
 
 
@@ -467,7 +525,9 @@ where all terms are defined pathwise.
 
 
 $$
+
 \theta_t = \partial_x F_t(S)
+
 $$
 
 
@@ -486,7 +546,9 @@ shares at time $t$, accumulating gamma and theta costs.
 
 
 $$
+
 S_t = \tilde{S}_t \text{ for all } t \leq \tau \implies F(S)_{\tau} = F(\tilde{S})_{\tau}
+
 $$
 
 
@@ -500,7 +562,9 @@ For causal functionals, the vertical derivative simplifies:
 
 
 $$
+
 \partial_x F_t(S) = \lim_{\varepsilon \to 0} \frac{F(S + \varepsilon \delta_t) - F(S)}{\varepsilon}
+
 $$
 
 
@@ -511,7 +575,9 @@ where $\delta_t$ is a spike at time $t$.
 
 
 $$
+
 F(S) = \left( \frac{1}{T} \int_0^T S_u \, du - K \right)^+
+
 $$
 
 
@@ -520,7 +586,9 @@ has vertical derivative:
 
 
 $$
+
 \partial_x F_t(S) = \frac{1}{T} \left( \frac{1}{T} \int_0^T S_u \, du - K \right)_+
+
 $$
 
 
@@ -532,7 +600,9 @@ $$
 
 
 $$
+
 \int_0^t \partial_x M_s(S) \, dS_s = M_t(S) - M_0(S)
+
 $$
 
 
@@ -543,7 +613,9 @@ for all paths $S$.
 
 
 $$
+
 \partial_t M_t(S) + \frac{1}{2} \sigma^2(S_t, t) \partial_{xx} M_t(S) = 0
+
 $$
 
 
@@ -560,7 +632,9 @@ for any choice of local volatility $\sigma$.
 
 
 $$
+
 \Phi = \left( \bar{S} - K \right)^+ \quad \text{where } \bar{S} = \frac{1}{T} \int_0^T S_t \, dt
+
 $$
 
 
@@ -571,7 +645,9 @@ $$
 
 
 $$
+
 \frac{\delta \Phi}{\delta S_t} = \frac{1}{T} (\bar{S} - K)_+' = \frac{1}{T} \mathbb{1}_{\{\bar{S} > K\}}
+
 $$
 
 
@@ -582,7 +658,9 @@ $$
 
 
 $$
+
 \frac{1}{2} \int_0^T \frac{1}{T^2} \delta_{\bar{S} = K} \, d[S]_t
+
 $$
 
 
@@ -596,7 +674,9 @@ where $\delta_{\bar{S} = K}$ is the Dirac delta at the boundary.
 
 
 $$
+
 \Phi = M_T - K \quad \text{where } M_t = \max_{0 \leq s \leq t} S_s
+
 $$
 
 
@@ -607,7 +687,9 @@ $$
 
 
 $$
+
 \frac{\delta \Phi}{\delta S_t} = 0
+
 $$
 
 
@@ -616,7 +698,9 @@ When $S_t = M_t$ (at the running maximum):
 
 
 $$
+
 \frac{\delta \Phi}{\delta S_t} = 1
+
 $$
 
 
@@ -630,7 +714,9 @@ $$
 
 
 $$
+
 L_T = \text{time spent at running maximum}
+
 $$
 
 
@@ -642,7 +728,9 @@ $$
 
 
 $$
+
 \Phi = (S_T - K)^+ \mathbb{1}_{\{M_T < H\}}
+
 $$
 
 
@@ -668,7 +756,9 @@ $$
 
 
 $$
+
 \mathcal{V} = \frac{\partial V}{\partial \sigma}
+
 $$
 
 
@@ -682,7 +772,9 @@ $$
 
 
 $$
+
 \text{Payoff} = \text{Realized Variance} - K_{\text{var}}
+
 $$
 
 
@@ -691,7 +783,9 @@ $$
 
 
 $$
+
 \text{RV} = \frac{2}{T} \left( \int_0^{S_0} \frac{P(K)}{K^2} dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} dK \right)
+
 $$
 
 
@@ -702,7 +796,9 @@ $$
 
 
 $$
+
 \theta_t^{\text{stock}} dS_t + \int \theta_K^{\text{options}} dC(K, T) = dV
+
 $$
 
 
@@ -716,7 +812,9 @@ for all paths.
 
 
 $$
+
 \int_0^T \Gamma_t \, d[S]_t = \text{Total Gamma Cost}
+
 $$
 
 
@@ -725,7 +823,9 @@ $$
 
 
 $$
+
 \mathcal{V} = \mathbb{E}\left[ \int_0^T \Gamma_t \frac{\partial \sigma_t^2}{\partial \sigma_0} dt \right]
+
 $$
 
 
@@ -744,7 +844,9 @@ $$
 
 
 $$
+
 \theta_{t_i} = \partial_x F_{t_i}(S)
+
 $$
 
 
@@ -755,7 +857,9 @@ shares.
 
 
 $$
+
 V_{t_{i+1}} = V_{t_i} + \theta_{t_i} (S_{t_{i+1}} - S_{t_i})
+
 $$
 
 
@@ -764,7 +868,9 @@ $$
 
 
 $$
+
 V_{t_N} \to F(S) + \text{Second-order terms}
+
 $$
 
 
@@ -776,7 +882,9 @@ $$
 
 
 $$
+
 [S]^{\Pi}_T = \sum_{i=0}^{N-1} (S_{t_{i+1}} - S_{t_i})^2
+
 $$
 
 
@@ -785,7 +893,9 @@ $$
 
 
 $$
+
 [S]^{\Pi}_T \to [S]_T
+
 $$
 
 
@@ -794,7 +904,9 @@ $$
 
 
 $$
+
 \text{Error} \approx \frac{1}{2} \Gamma [S]^{\Pi}_T
+
 $$
 
 
@@ -832,7 +944,9 @@ $$
 
 
 $$
+
 [\underline{P}, \overline{P}] = \text{arbitrage-free price range}
+
 $$
 
 
@@ -851,7 +965,9 @@ $$
 
 
 $$
+
 \theta_t = \Theta((S_s)_{0 \leq s \leq t})
+
 $$
 
 
@@ -860,7 +976,9 @@ $$
 
 
 $$
+
 \theta_t = \partial_x F_t(S) \cdot \left(1 + \beta \cdot \frac{[S]_t}{t}\right)
+
 $$
 
 
@@ -876,7 +994,9 @@ adjusting for realized variance.
 
 
 $$
+
 \text{Cost} = \lambda |\theta_{t_{i+1}} - \theta_{t_i}| S_{t_i}
+
 $$
 
 
@@ -885,7 +1005,9 @@ $$
 
 
 $$
+
 \min_{\theta} \left\{ |V_T - F(S)| + \lambda \sum_{i=0}^{N-1} |\theta_{t_{i+1}} - \theta_{t_i}| S_{t_i} \right\}
+
 $$
 
 
@@ -901,7 +1023,9 @@ $$
 
 
 $$
+
 dS_t = S_t \sqrt{V_t} \, dW_t, \quad V_t = \xi_t \mathcal{E}\left(\eta \int_0^t (t-s)^{H-1/2} dW_s^{\perp}\right)
+
 $$
 
 
@@ -958,7 +1082,9 @@ $$
 
 
 $$
+
 \theta_t = \frac{1}{T} \Phi'\left(\frac{A_t + S_t (T-t)}{T}\right)
+
 $$
 
 

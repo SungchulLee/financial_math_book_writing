@@ -46,21 +46,27 @@ A barrier option is characterized by three features: the **option type** (call o
 A **knock-out** option pays like a vanilla option provided the barrier is never breached:
 
 $$
+
 \boxed{
 \text{Payoff}_{\text{KO}} = (S_T - K)^+ \cdot \mathbf{1}_{\{\text{barrier not breached}\}}
 }
+
 $$
 
 For a **down-and-out call** with barrier $H < S_0$:
 
 $$
+
 \text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{\min_{0 \leq t \leq T} S_t > H\right\}}
+
 $$
 
 For an **up-and-out call** with barrier $H > S_0$:
 
 $$
+
 \text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{\max_{0 \leq t \leq T} S_t < H\right\}}
+
 $$
 
 ### Knock-In Options
@@ -68,15 +74,19 @@ $$
 A **knock-in** option pays only if the barrier has been breached:
 
 $$
+
 \boxed{
 \text{Payoff}_{\text{KI}} = (S_T - K)^+ \cdot \mathbf{1}_{\{\text{barrier breached}\}}
 }
+
 $$
 
 For a **down-and-in call** with barrier $H < S_0$:
 
 $$
+
 \text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{\min_{0 \leq t \leq T} S_t \leq H\right\}}
+
 $$
 
 ---
@@ -86,9 +96,11 @@ $$
 A fundamental relationship connects knock-in and knock-out options of the same type:
 
 $$
+
 \boxed{
 V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
 }
+
 $$
 
 **Proof sketch.** The barrier is either breached or not breached during $[0, T]$. If breached, the knock-in option pays the vanilla payoff and the knock-out option pays zero. If not breached, the knock-out option pays the vanilla payoff and the knock-in option pays zero. In either case, the combined payoff equals the vanilla payoff exactly.
@@ -114,13 +126,17 @@ Under geometric Brownian motion with continuous barrier monitoring, closed-form 
 The Rubinstein–Reiner (1991) formula gives:
 
 $$
+
 C_{\text{do}} = S_0\, N(x_1) - K e^{-rT} N(x_1 - \sigma\sqrt{T}) - S_0 \left(\frac{H}{S_0}\right)^{2\lambda} N(y_1) + K e^{-rT} \left(\frac{H}{S_0}\right)^{2\lambda - 2} N(y_1 - \sigma\sqrt{T})
+
 $$
 
 where:
 
 $$
+
 \lambda = \frac{r + \frac{1}{2}\sigma^2}{\sigma^2}, \quad x_1 = \frac{\ln(S_0/K)}{\sigma\sqrt{T}} + \lambda \sigma\sqrt{T}, \quad y_1 = \frac{\ln(H^2/(S_0 K))}{\sigma\sqrt{T}} + \lambda \sigma\sqrt{T}
+
 $$
 
 The terms involving $(H/S_0)^{2\lambda}$ arise from the reflection principle and encode the probability of the barrier being hit.
@@ -136,9 +152,11 @@ In practice, barriers are typically monitored at **discrete intervals** (daily c
 For a discrete barrier monitored at $m$ equally-spaced times, the effective continuous barrier is approximately:
 
 $$
+
 \boxed{
 H_{\text{eff}} = H \cdot e^{\pm \beta \sigma \sqrt{T/m}}
 }
+
 $$
 
 where $\beta = -\zeta(1/2)/\sqrt{2\pi} \approx 0.5826$, $\zeta$ is the Riemann zeta function, and the sign depends on whether the barrier is above ($+$) or below ($-$) the current price.
@@ -160,7 +178,9 @@ This correction shifts the barrier **outward**, reflecting the fact that discret
 Many barrier options include a **rebate** $R$ paid when the barrier is hit (for knock-out options) or at maturity if the barrier is never hit (for knock-in options):
 
 $$
+
 \text{Payoff}_{\text{KO with rebate}} = (S_T - K)^+ \cdot \mathbf{1}_{\{\text{not breached}\}} + R \cdot e^{-r(\tau_H - t)} \cdot \mathbf{1}_{\{\text{breached at } \tau_H\}}
+
 $$
 
 where $\tau_H$ is the first hitting time of the barrier. The rebate compensates the holder for the loss of optionality when the barrier is triggered.
@@ -170,9 +190,11 @@ where $\tau_H$ is the first hitting time of the barrier. The rebate compensates 
 ## Summary
 
 $$
+
 \boxed{
 V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
 }
+
 $$
 
 | Aspect | Description |

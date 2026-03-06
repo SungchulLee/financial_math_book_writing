@@ -16,7 +16,9 @@ A **European call option** on a zero-coupon bond:
 **Payoff at expiry:**
 
 $$
+
 (P(T, T_B) - K)^+
+
 $$
 
 A **European put option** has payoff $(K - P(T, T_B))^+$.
@@ -26,7 +28,9 @@ A **European put option** has payoff $(K - P(T, T_B))^+$.
 Under the $T$-forward measure $\mathbb{Q}^T$:
 
 $$
+
 C(0) = P(0, T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(P(T, T_B) - K)^+]
+
 $$
 
 The forward bond price $P(T, T_B)$ is a martingale under $\mathbb{Q}^T$.
@@ -46,7 +50,9 @@ In the Vasicek model:
 At the option expiry $T$:
 
 $$
+
 \log P(T, T_B) = \log A(\tau_B) - B(\tau_B) r_T
+
 $$
 
 where $\tau_B = T_B - T$.
@@ -56,23 +62,31 @@ Since $r_T$ is Gaussian, $\log P(T, T_B)$ is also Gaussian (shifted and scaled).
 ### The Jamshidian Formula
 
 $$
+
 \boxed{C(0) = P(0, T_B) N(d_1) - K P(0, T) N(d_2)}
+
 $$
 
 where:
 
 $$
+
 d_1 = \frac{1}{\sigma_P} \ln \frac{P(0, T_B)}{K P(0, T)} + \frac{\sigma_P}{2}
+
 $$
 
 $$
+
 d_2 = d_1 - \sigma_P
+
 $$
 
 ### Bond Price Volatility
 
 $$
+
 \sigma_P = \sigma \cdot B(T_B - T) \cdot \sqrt{\frac{1 - e^{-2\kappa T}}{2\kappa}}
+
 $$
 
 where:
@@ -85,7 +99,9 @@ where:
 By put-call parity for bond options:
 
 $$
+
 P_{\text{put}}(0) = K P(0, T) N(-d_2) - P(0, T_B) N(-d_1)
+
 $$
 
 ---
@@ -97,7 +113,9 @@ $$
 The Hull-White bond option formula is structurally identical to Vasicek:
 
 $$
+
 C(0) = P(0, T_B) N(d_1) - K P(0, T) N(d_2)
+
 $$
 
 The only difference is in the discount factors $P(0, T)$ and $P(0, T_B)$, which now match the market curve exactly.
@@ -105,7 +123,9 @@ The only difference is in the discount factors $P(0, T)$ and $P(0, T_B)$, which 
 ### Bond Price Volatility (Hull-White)
 
 $$
+
 \sigma_P = \sigma \cdot \frac{1 - e^{-\kappa(T_B - T)}}{\kappa} \cdot \sqrt{\frac{1 - e^{-2\kappa T}}{2\kappa}}
+
 $$
 
 ---
@@ -117,7 +137,9 @@ $$
 In CIR, bond prices follow:
 
 $$
+
 P(T, T_B) = A(\tau_B) e^{-B(\tau_B) r_T}
+
 $$
 
 where $r_T$ has a non-central chi-squared distribution.
@@ -127,7 +149,9 @@ where $r_T$ has a non-central chi-squared distribution.
 The CIR bond option price involves the non-central chi-squared CDF:
 
 $$
+
 C(0) = P(0, T_B) \chi^2(x^*; \nu + 2, \lambda_1) - K P(0, T) \chi^2(x^*; \nu, \lambda_2)
+
 $$
 
 where:
@@ -155,7 +179,9 @@ Consider a European call on a coupon bond with cashflows $c_i$ at times $T_i$ (f
 Define $r^*$ as the short rate at which the coupon bond price equals the strike:
 
 $$
+
 \sum_{i=1}^{n} c_i P(T, T_i, r^*) = K
+
 $$
 
 ### Decomposition
@@ -163,13 +189,17 @@ $$
 The coupon bond option decomposes into a portfolio of zero-coupon bond options:
 
 $$
+
 \text{Call on coupon bond} = \sum_{i=1}^{n} c_i \cdot \text{Call}(P(T, T_i), K_i)
+
 $$
 
 where:
 
 $$
+
 K_i = P(T, T_i, r^*)
+
 $$
 
 ### Algorithm
@@ -195,7 +225,9 @@ Jamshidian decomposition converts this to 5 zero-coupon bond options.
 ### Zero-Coupon Bonds
 
 $$
+
 C(0) - P_{\text{put}}(0) = P(0, T_B) - K P(0, T)
+
 $$
 
 This is the forward price of the bond minus the discounted strike.
@@ -203,7 +235,9 @@ This is the forward price of the bond minus the discounted strike.
 ### Coupon Bonds
 
 $$
+
 C(0) - P_{\text{put}}(0) = B(0) - K P(0, T)
+
 $$
 
 where $B(0) = \sum_i c_i P(0, T_i)$ is the current bond price.
@@ -217,7 +251,9 @@ where $B(0) = \sum_i c_i P(0, T_i)$ is the current bond price.
 Sensitivity to the underlying bond price:
 
 $$
+
 \Delta = \frac{\partial C}{\partial P(0, T_B)} = N(d_1)
+
 $$
 
 ### Vega (Interest Rate)
@@ -225,7 +261,9 @@ $$
 Sensitivity to short-rate volatility:
 
 $$
+
 \mathcal{V} = \frac{\partial C}{\partial \sigma} = P(0, T_B) \phi(d_1) \frac{\partial \sigma_P}{\partial \sigma}
+
 $$
 
 where $\phi(\cdot)$ is the standard normal PDF.
@@ -254,7 +292,9 @@ Numerical methods are needed for:
 Solve the bond option PDE:
 
 $$
+
 \frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2} - rV = 0
+
 $$
 
 with terminal condition $V(T, r) = (P(T, T_B, r) - K)^+$.
@@ -268,7 +308,9 @@ Binomial or trinomial trees discretize the short rate and compute option values 
 Simulate paths of $r_t$, compute bond prices at expiry, and average discounted payoffs:
 
 $$
+
 C(0) \approx \frac{1}{N} \sum_{i=1}^{N} e^{-\int_0^T r_t^{(i)} dt} (P(T, T_B, r_T^{(i)}) - K)^+
+
 $$
 
 ---
@@ -280,7 +322,9 @@ $$
 A caplet paying $\delta(L(T_1, T_2) - K)^+$ at $T_2$ can be rewritten as a put on a bond:
 
 $$
+
 \text{Caplet} = (1 + K\delta) \cdot \text{Put}(P(T_1, T_2), K_{\text{bond}})
+
 $$
 
 where $K_{\text{bond}} = 1/(1 + K\delta)$.

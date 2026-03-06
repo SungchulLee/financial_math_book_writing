@@ -1,3 +1,9 @@
+"""
+Black Scholes Wrapper
+
+Educational script demonstrating black scholes wrapper concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_wrapper.py
 # ============================================================================
@@ -826,3 +832,7 @@ class BlackScholes:
         print(f"  Theta (Call/Put):     {greeks['theta_call']:>10.4f} / {greeks['theta_put']:>10.4f}")
         print(f"  Rho (Call/Put):       {greeks['rho_call']:>10.4f} / {greeks['rho_put']:>10.4f}")
         print(f"{'='*80}")
+
+
+if __name__ == "__main__":
+    pass

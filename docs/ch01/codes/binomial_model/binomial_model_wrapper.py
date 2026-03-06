@@ -1,3 +1,9 @@
+"""
+Binomial Model Wrapper
+
+Educational script demonstrating binomial model wrapper concepts.
+"""
+
 # ============================================================================
 # binomial_model/binomial_model_wrapper.py
 # ============================================================================
@@ -154,3 +160,7 @@ class BinomialModel:
     def dt(self):
         """Time step size"""
         return self.params.dt
+
+
+if __name__ == "__main__":
+    pass

@@ -28,6 +28,8 @@ from .binomial_model_pricer import BinomialPricer
 from .binomial_model_plotter import BinomialPlotter
 from .binomial_model_wrapper import BinomialModel
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Binomial tree option pricing model implementation"
+
+if __name__ == "__main__":
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Binomial tree option pricing model implementation"

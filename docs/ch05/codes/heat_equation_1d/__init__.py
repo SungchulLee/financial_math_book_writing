@@ -33,42 +33,45 @@ Connection to Finance:
 from .heat_equation import (
     HeatEquation1D,
     solve_heat_equation
-)
 
-# Grid generation and management
-from .grid import create_grid
 
-# Initial and boundary conditions
-from .initial_conditions import (
-    step_function,
-    gaussian_pulse
-)
+if __name__ == "__main__":
+    )
 
-# Numerical solvers
-from .solvers import (
-    solve_forward_euler,
-    solve_backward_euler,
-    solve_crank_nicolson
-)
+    # Grid generation and management
+    from .grid import create_grid
 
-# Analytical solutions
-from .analytical import (
-    solve_analytical,
-    validate_against_analytical
-)
+    # Initial and boundary conditions
+    from .initial_conditions import (
+        step_function,
+        gaussian_pulse
+    )
 
-# Visualization and plotting
-from .plotting import (
-    plot_method_comparison,
-    plot_convergence_study,
-    plot_with_analytical
-)
+    # Numerical solvers
+    from .solvers import (
+        solve_forward_euler,
+        solve_backward_euler,
+        solve_crank_nicolson
+    )
 
-from .wrapper import (
-    HeatSolver,
-    quick_solve
-)
+    # Analytical solutions
+    from .analytical import (
+        solve_analytical,
+        validate_against_analytical
+    )
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "1D Heat equation numerical and analytical solver with visualization"
+    # Visualization and plotting
+    from .plotting import (
+        plot_method_comparison,
+        plot_convergence_study,
+        plot_with_analytical
+    )
+
+    from .wrapper import (
+        HeatSolver,
+        quick_solve
+    )
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "1D Heat equation numerical and analytical solver with visualization"

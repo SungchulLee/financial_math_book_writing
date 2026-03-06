@@ -1,3 +1,9 @@
+"""
+Stock Analysis Etf Tracking
+
+Educational script demonstrating stock analysis etf tracking concepts.
+"""
+
 # ============================================================================
 # stock_analysis_COMPARE_ETF_TRACKING_ERROR.py
 # ============================================================================
@@ -18,4 +24,6 @@ def compare_etf_tracking_error():
     else:
         print("✅ Stable period - low tracking error expected")
 
-compare_etf_tracking_error()
+
+if __name__ == "__main__":
+    compare_etf_tracking_error()

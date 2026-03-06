@@ -16,7 +16,9 @@ Consider a pricing functional:
 
 
 $$
+
 F: \mathcal{D} \subset \mathbb{R}_+ \to \mathbb{R}_+, \quad \sigma \mapsto F(\sigma; \theta)
+
 $$
 
 
@@ -28,7 +30,9 @@ For a given market price $P_{\text{market}}$, the implied parameter $\sigma_*$ i
 
 
 $$
+
 F(\sigma_*; \theta) = P_{\text{market}}
+
 $$
 
 
@@ -50,7 +54,9 @@ For the Black-Scholes call pricing function:
 
 
 $$
+
 C_{\text{BS}}: (0, \infty) \to \mathbb{R}_+, \quad \sigma \mapsto S e^{-qT} \Phi(d_1) - K e^{-rT} \Phi(d_2)
+
 $$
 
 
@@ -73,7 +79,9 @@ We establish:
 
 
 $$
+
 \lim_{\sigma \to 0^+} C_{\text{BS}}(S, K, T, r, q, \sigma) = \max(S e^{-qT} - K e^{-rT}, 0)
+
 $$
 
 
@@ -84,14 +92,18 @@ As $\sigma \to 0^+$:
 
 
 $$
+
 d_1 = \frac{\ln m + \sigma^2 T/2}{\sigma \sqrt{T}} \sim \frac{\ln m}{\sigma \sqrt{T}}
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 d_2 = d_1 - \sigma\sqrt{T} \sim \frac{\ln m}{\sigma \sqrt{T}}
+
 $$
 
 
@@ -117,7 +129,9 @@ $$
 
 
 $$
+
 \lim_{\sigma \to \infty} C_{\text{BS}}(S, K, T, r, q, \sigma) = S e^{-qT}
+
 $$
 
 
@@ -126,7 +140,9 @@ $$
 
 
 $$
+
 d_1 = \frac{\ln(S/K) + (r - q)T}{\sigma\sqrt{T}} + \frac{\sigma\sqrt{T}}{2} \to +\infty
+
 $$
 
 
@@ -135,7 +151,9 @@ $$
 
 
 $$
+
 d_2 = d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + (r - q)T}{\sigma\sqrt{T}} - \frac{\sigma\sqrt{T}}{2} \to -\infty
+
 $$
 
 
@@ -155,7 +173,9 @@ Implied volatility exists for a market price $C_{\text{market}}$ if and only if:
 
 
 $$
+
 \max(S e^{-qT} - K e^{-rT}, 0) < C_{\text{market}} < S e^{-qT}
+
 $$
 
 
@@ -172,7 +192,9 @@ The derivative of the Black-Scholes price with respect to volatility:
 
 
 $$
+
 \mathcal{V} := \frac{\partial C_{\text{BS}}}{\partial \sigma} = S e^{-qT} \phi(d_1) \sqrt{T}
+
 $$
 
 
@@ -187,7 +209,9 @@ For all $(S, K, T, r, q, \sigma)$ with $S > 0$, $T > 0$, $\sigma > 0$:
 
 
 $$
+
 \mathcal{V}(\sigma) > 0
+
 $$
 
 
@@ -210,7 +234,9 @@ For $\sigma \in [\sigma_{\min}, \sigma_{\max}]$ and fixed $(S, K, T)$:
 
 
 $$
+
 \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathcal{V}(\sigma) > 0
+
 $$
 
 
@@ -221,7 +247,9 @@ This ensures that the inverse map $C \mapsto \sigma_{\text{IV}}$ has bounded der
 
 
 $$
+
 \frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\mathcal{V}(\sigma_{\text{IV}})}
+
 $$
 
 
@@ -237,7 +265,9 @@ The implied volatility map:
 
 
 $$
+
 \mathcal{I}: (C_{\text{intrinsic}}, S e^{-qT}) \to (0, \infty), \quad C \mapsto \sigma_{\text{IV}}
+
 $$
 
 
@@ -254,7 +284,9 @@ By continuity of $C_{\text{BS}}$:
 
 
 $$
+
 C_{\text{BS}}(\sigma_*) = \lim_{k \to \infty} C_{\text{BS}}(\sigma_{n_k}) = \lim_{k \to \infty} C_{n_k} = C
+
 $$
 
 
@@ -269,7 +301,9 @@ The implied volatility is $C^\infty$ smooth with:
 
 
 $$
+
 \frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\mathcal{V}(\sigma_{\text{IV}})} = \frac{1}{S e^{-qT} \phi(d_1(\sigma_{\text{IV}})) \sqrt{T}}
+
 $$
 
 
@@ -278,7 +312,9 @@ $$
 
 
 $$
+
 G(C, \sigma) = C_{\text{BS}}(\sigma) - C = 0
+
 $$
 
 
@@ -291,7 +327,9 @@ Therefore, the implicit function $\sigma_{\text{IV}}(C)$ is $C^\infty$ with:
 
 
 $$
+
 \frac{d\sigma_{\text{IV}}}{dC} = -\frac{\partial G/\partial C}{\partial G/\partial \sigma} = -\frac{-1}{\mathcal{V}} = \frac{1}{\mathcal{V}}
+
 $$
 
 
@@ -305,7 +343,9 @@ Differentiating the relation $C_{\text{BS}}(\sigma_{\text{IV}}(C)) = C$:
 
 
 $$
+
 \mathcal{V}(\sigma_{\text{IV}}) \frac{d\sigma_{\text{IV}}}{dC} = 1
+
 $$
 
 
@@ -314,14 +354,18 @@ Differentiate again:
 
 
 $$
+
 \frac{d\mathcal{V}}{d\sigma}\bigg|_{\sigma=\sigma_{\text{IV}}} \left(\frac{d\sigma_{\text{IV}}}{dC}\right)^2 + \mathcal{V} \frac{d^2\sigma_{\text{IV}}}{dC^2} = 0
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 \frac{d^2\sigma_{\text{IV}}}{dC^2} = -\frac{d\mathcal{V}/d\sigma}{\mathcal{V}^3}
+
 $$
 
 
@@ -330,7 +374,9 @@ where $d\mathcal{V}/d\sigma$ is the **vomma** (or volga):
 
 
 $$
+
 \frac{d\mathcal{V}}{d\sigma} = S e^{-qT} \phi(d_1) \sqrt{T} \cdot \frac{d_1 d_2}{\sigma}
+
 $$
 
 
@@ -345,7 +391,9 @@ As $C \to C_{\text{intrinsic}}^+$:
 
 
 $$
+
 \sigma_{\text{IV}}(C) \to 0^+
+
 $$
 
 
@@ -357,7 +405,9 @@ For deep ITM options with $m = S e^{-qT}/(K e^{-rT}) \gg 1$:
 
 
 $$
+
 \sigma_{\text{IV}} \sim \sqrt{\frac{2|\ln(C/C_{\text{intrinsic}})|}{T}}
+
 $$
 
 
@@ -371,7 +421,9 @@ As $C \to (S e^{-qT})^-$:
 
 
 $$
+
 \sigma_{\text{IV}}(C) \to \infty
+
 $$
 
 
@@ -381,7 +433,9 @@ As $C \to S e^{-qT}$:
 
 
 $$
+
 \sigma_{\text{IV}} \sim \sqrt{\frac{2 \ln(1/(1 - C/(S e^{-qT})))}{T}}
+
 $$
 
 
@@ -419,7 +473,9 @@ On any compact interval $[C_1, C_2] \subset (C_{\text{intrinsic}}, S e^{-qT})$, 
 
 
 $$
+
 |\sigma_{\text{IV}}(C') - \sigma_{\text{IV}}(C)| \leq L |C' - C|
+
 $$
 
 
@@ -428,7 +484,9 @@ where:
 
 
 $$
+
 L = \sup_{C \in [C_1, C_2]} \frac{1}{\mathcal{V}(\sigma_{\text{IV}}(C))}
+
 $$
 
 
@@ -437,7 +495,9 @@ $$
 
 
 $$
+
 \sigma_{\text{IV}}(C') - \sigma_{\text{IV}}(C) = \frac{d\sigma_{\text{IV}}}{dC}\bigg|_{C=\xi} (C' - C)
+
 $$
 
 
@@ -451,7 +511,9 @@ The **condition number** for the inversion problem:
 
 
 $$
+
 \kappa = \left| \frac{C}{\sigma_{\text{IV}}} \frac{d\sigma_{\text{IV}}}{dC} \right| = \frac{C}{\sigma_{\text{IV}} \mathcal{V}(\sigma_{\text{IV}})}
+
 $$
 
 
@@ -475,7 +537,9 @@ For European puts, by put-call parity:
 
 
 $$
+
 P_{\text{BS}}(S, K, T, r, q, \sigma) = C_{\text{BS}}(S, K, T, r, q, \sigma) - S e^{-qT} + K e^{-rT}
+
 $$
 
 
@@ -484,7 +548,9 @@ Since put-call parity is model-independent:
 
 
 $$
+
 \sigma_{\text{IV}}^{\text{put}} = \sigma_{\text{IV}}^{\text{call}}
+
 $$
 
 
@@ -498,7 +564,9 @@ For digital (binary) calls with payoff $\mathbb{1}_{S_T > K}$:
 
 
 $$
+
 D_{\text{BS}}(\sigma) = e^{-rT} \Phi(d_2)
+
 $$
 
 
@@ -507,7 +575,9 @@ $$
 
 
 $$
+
 \frac{\partial D_{\text{BS}}}{\partial \sigma} = -e^{-rT} \phi(d_2) \frac{d_2}{\sigma} = -e^{-rT} \phi(d_2) \frac{\ln(S/K) + (r - q - \sigma^2/2)T}{\sigma^2 \sqrt{T}}
+
 $$
 
 

@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def stress_testing_scenarios():
     """
     Stress Testing Scenarios.

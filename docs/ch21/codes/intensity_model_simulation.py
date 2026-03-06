@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def intensity_model_simulation():
     """
     Intensity Model Simulation.

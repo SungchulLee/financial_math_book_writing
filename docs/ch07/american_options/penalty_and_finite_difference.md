@@ -26,7 +26,9 @@ This section focuses on penalty methods and their integration with standard fini
 The American option price satisfies:
 
 $$
+
 \max\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV, \; \Phi(S) - V\right) = 0
+
 $$
 
 where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ and $\Phi$ is the payoff function.
@@ -34,11 +36,13 @@ where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S$ and $\Phi$ is the 
 Equivalently, at each time step the discrete solution must satisfy:
 
 $$
+
 \begin{aligned}
 L\mathbf{u} &\geq \mathbf{f} \\
 \mathbf{u} &\geq \boldsymbol{\Phi} \\
 (L\mathbf{u} - \mathbf{f})^T (\mathbf{u} - \boldsymbol{\Phi}) &= 0
 \end{aligned}
+
 $$
 
 This is the **linear complementarity problem (LCP)**.
@@ -52,9 +56,11 @@ This is the **linear complementarity problem (LCP)**.
 Instead of enforcing the constraint $V \geq \Phi$ exactly, add a **penalty term** that becomes large when the constraint is violated:
 
 $$
+
 \boxed{
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV + \lambda \max(\Phi(S) - V, 0) = 0
 }
+
 $$
 
 where $\lambda \gg 1$ is the **penalty parameter**.
@@ -70,16 +76,20 @@ where $\lambda \gg 1$ is the **penalty parameter**.
 After discretization with an implicit or Crank–Nicolson scheme, the system at each time step becomes:
 
 $$
+
 (L + \lambda P)\mathbf{u}^{n+1} = \mathbf{f} + \lambda P\boldsymbol{\Phi}
+
 $$
 
 where $P = \operatorname{diag}(p_1, \ldots, p_M)$ with:
 
 $$
+
 p_j = \begin{cases}
 1 & \text{if } u_j^{n+1} < \Phi_j \\
 0 & \text{otherwise}
 \end{cases}
+
 $$
 
 Since $P$ depends on the solution, the system is **nonlinear** and requires iteration.
@@ -120,12 +130,14 @@ At each time step, solve the LCP: $L\mathbf{u} \geq \mathbf{f}$, $\mathbf{u} \ge
 For iteration $k+1$:
 
 $$
+
 \boxed{
 \begin{aligned}
 \tilde{u}_j^{(k+1)} &= (1 - \omega) u_j^{(k)} + \frac{\omega}{l_{jj}} \left(f_j - \sum_{i < j} l_{ji} u_i^{(k+1)} - \sum_{i > j} l_{ji} u_i^{(k)}\right) \\[6pt]
 u_j^{(k+1)} &= \max\left(\tilde{u}_j^{(k+1)}, \; \Phi_j\right)
 \end{aligned}
 }
+
 $$
 
 The first line is the standard SOR update; the second is the **projection** onto the constraint.
@@ -232,13 +244,17 @@ def american_put_penalty(S_max, K, T, r, sigma, M, N, lam=1e7):
 The penalized solution $V^\lambda$ satisfies:
 
 $$
+
 \|V^\lambda - V\|_\infty \leq \frac{C}{\lambda}
+
 $$
 
 where $C$ depends on the PDE coefficients and the payoff. Combined with the finite difference discretization error:
 
 $$
+
 \|V^\lambda_{h,\Delta t} - V\|_\infty \leq C_1 h^2 + C_2 \Delta t^p + \frac{C_3}{\lambda}
+
 $$
 
 where $p = 1$ for implicit and $p = 2$ for Crank–Nicolson. The penalty parameter should be chosen so that $1/\lambda$ is smaller than the discretization error.
@@ -248,9 +264,11 @@ where $p = 1$ for implicit and $p = 2$ for Crank–Nicolson. The penalty paramet
 ## Summary
 
 $$
+
 \boxed{
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV + \lambda(\Phi - V)^+ = 0 \quad \xrightarrow{\lambda \to \infty} \quad \text{American price}
 }
+
 $$
 
 | Aspect | Description |

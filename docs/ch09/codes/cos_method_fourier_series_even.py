@@ -1,6 +1,14 @@
+"""
+Cos Method Fourier Series Even
+
+Educational script demonstrating cos method fourier series even concepts.
+"""
+
 #@title Fourier Series On $[-\pi,\pi]$ For Even Function $g$
 import matplotlib.pyplot as plt
 import numpy as np
+
+# ======================================================================
 
 def main():
     f = lambda x : np.sin( (x-1.8)**2 )

@@ -1,3 +1,9 @@
+"""
+Cir Formula
+
+Educational script demonstrating cir formula concepts.
+"""
+
 # ============================================================================
 # cir/cir_formula.py
 # ============================================================================
@@ -127,3 +133,7 @@ class CIRBondPricer:
         P_t2 = CIRBondPricer.zero_coupon_bond_price(params, current_rate, t2)
         
         return np.log(P_t1 / P_t2) / (t2 - t1)
+
+
+if __name__ == "__main__":
+    pass

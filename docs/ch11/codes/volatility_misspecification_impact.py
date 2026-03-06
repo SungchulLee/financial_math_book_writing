@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def volatility_misspecification_impact():
     """
     Volatility Misspecification Impact.

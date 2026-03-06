@@ -1,3 +1,9 @@
+"""
+Black Scholes Formula
+
+Educational script demonstrating black scholes formula concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_formula.py
 # ============================================================================
@@ -8,3 +14,7 @@ class BlackScholesFormula(BlackScholesBase):
     def price(self):
         return bs_call_price(self.S0, self.K, self.T, self.r, self.sigma, self.q), \
                bs_put_price(self.S0, self.K, self.T, self.r, self.sigma, self.q)
+
+
+if __name__ == "__main__":
+    pass

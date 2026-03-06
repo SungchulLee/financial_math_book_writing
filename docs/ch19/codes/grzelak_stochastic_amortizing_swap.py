@@ -13,6 +13,11 @@ import scipy.optimize as optimize
 import scipy.integrate as integrate
 
 
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
+
 def generate_paths_hw_euler(num_paths, num_steps, T, p0t, lmbda, eta):
     """
     Generate Hull-White model paths using Euler scheme.
@@ -452,6 +457,10 @@ def main():
     plt.plot(ti_grid, annuity_profile_no_prepay[:, 1], '--r')
     plt.title('Notional profile')
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == "__main__":
     main()

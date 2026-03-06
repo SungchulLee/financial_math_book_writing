@@ -1,3 +1,9 @@
+"""
+Matrices
+
+Educational script demonstrating matrices concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d/matrices.py
 # ============================================================================
@@ -196,3 +202,7 @@ def construct_neumann_matrix(Nx: int, coeff: float, method: str = "forward") -> 
     A[-1, -2] = -1.0
     
     return A
+
+
+if __name__ == "__main__":
+    pass

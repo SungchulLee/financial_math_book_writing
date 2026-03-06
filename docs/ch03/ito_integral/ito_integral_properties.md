@@ -14,10 +14,12 @@ The Itô integral is linear in the integrand.
 
 
 $$
+
 \boxed{
 \int_0^t (\alpha H_s + \beta K_s) \, dB_s
 = \alpha \int_0^t H_s \, dB_s + \beta \int_0^t K_s \, dB_s
 }
+
 $$
 
 
@@ -37,7 +39,9 @@ The Itô integral defines a martingale with respect to the natural filtration.
 
 
 $$
+
 I_t := \int_0^t H_s \, dB_s, \quad 0 \le t \le T
+
 $$
 
 
@@ -52,10 +56,12 @@ is a **continuous martingale** with respect to \(\{\mathcal{F}_t\}\).
 
 
 $$
+
 \mathbb{E}[I_t^2]
 = \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
 \le \mathbb{E}\left[\int_0^T H_s^2 \, ds\right]
 < \infty
+
 $$
 
 
@@ -66,7 +72,9 @@ Thus, \(\mathbb{E}[|I_t|] \le \sqrt{\mathbb{E}[I_t^2]} < \infty\).
 
 
 $$
+
 \mathbb{E}[I_t \mid \mathcal{F}_s] = I_s
+
 $$
 
 
@@ -77,8 +85,10 @@ $$
 
 
 $$
+
 I_t^{(n)} := \int_0^t H_s^{(n)} \, dB_s
 \to I_t \quad \text{in } L^2(\Omega)
+
 $$
 
 
@@ -87,7 +97,9 @@ Since \(I_t^{(n)}\) are martingales:
 
 
 $$
+
 \mathbb{E}[I_t^{(n)} \mid \mathcal{F}_s] = I_s^{(n)}
+
 $$
 
 
@@ -96,10 +108,12 @@ Taking \(L^2\)-limits (conditional expectation is continuous in \(L^2\)):
 
 
 $$
+
 \mathbb{E}[I_t \mid \mathcal{F}_s]
 = \lim_{n \to \infty} \mathbb{E}[I_t^{(n)} \mid \mathcal{F}_s]
 = \lim_{n \to \infty} I_s^{(n)}
 = I_s
+
 $$
 
 
@@ -110,7 +124,9 @@ This completes the proof. \(\square\)
 
 
 $$
+
 \mathbb{E}\left[\int_0^t H_s \, dB_s\right] = 0
+
 $$
 
 
@@ -119,7 +135,9 @@ $$
 
 
 $$
+
 \mathbb{E}[I_t] = \mathbb{E}[\mathbb{E}[I_t \mid \mathcal{F}_0]] = \mathbb{E}[I_0] = 0
+
 $$
 
 
@@ -137,7 +155,9 @@ Unlike general semimartingales, the Itô integral with respect to Brownian motio
 
 
 $$
+
 I_t = \int_0^t H_s \, dB_s
+
 $$
 
 
@@ -146,7 +166,9 @@ has a **continuous modification**. That is, there exists a continuous process \(
 
 
 $$
+
 \mathbb{P}(I_t = \tilde{I}_t \text{ for all } t \in [0,T]) = 1
+
 $$
 
 
@@ -157,8 +179,10 @@ $$
 
 
 $$
+
 \mathbb{E}[|I_t - I_s|^4]
 = \mathbb{E}\left[\left(\int_s^t H_u \, dB_u\right)^4\right]
+
 $$
 
 
@@ -167,8 +191,10 @@ Using **Burkholder-Davis-Gundy inequality** (BDG inequality) for martingales:
 
 
 $$
+
 \mathbb{E}\left[\sup_{u \le t} |I_u|^4\right]
 \le C \mathbb{E}\left[\left(\int_0^t H_s^2 \, ds\right)^2\right]
+
 $$
 
 
@@ -177,8 +203,10 @@ This gives, for \(s < t\):
 
 
 $$
+
 \mathbb{E}[|I_t - I_s|^4]
 \le C (t - s)^2 \mathbb{E}\left[\sup_{u \le T} H_u^4\right]
+
 $$
 
 
@@ -189,7 +217,9 @@ under appropriate regularity conditions on \(H\).
 
 
 $$
+
 \mathbb{E}[|I_t - I_s|^4] \le K |t - s|^{1 + \varepsilon}
+
 $$
 
 
@@ -211,9 +241,11 @@ The quadratic variation of the Itô integral reveals its fundamental stochastic 
 
 
 $$
+
 \boxed{
 [I, I]_t = \int_0^t H_s^2 \, ds
 }
+
 $$
 
 
@@ -222,8 +254,10 @@ $$
 
 
 $$
+
 [I, I]_t
 = \lim_{|\pi| \to 0} \sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
+
 $$
 
 
@@ -232,8 +266,10 @@ Each increment is:
 
 
 $$
+
 I_{t_{i+1}} - I_{t_i}
 = \int_{t_i}^{t_{i+1}} H_s \, dB_s
+
 $$
 
 
@@ -242,8 +278,10 @@ For small intervals, \(H_s \approx H_{t_i}\) (assuming continuity), so:
 
 
 $$
+
 I_{t_{i+1}} - I_{t_i}
 \approx H_{t_i} (B_{t_{i+1}} - B_{t_i})
+
 $$
 
 
@@ -252,8 +290,10 @@ Therefore:
 
 
 $$
+
 (I_{t_{i+1}} - I_{t_i})^2
 \approx H_{t_i}^2 (B_{t_{i+1}} - B_{t_i})^2
+
 $$
 
 
@@ -262,10 +302,12 @@ Summing and using \([B, B]_t = t\):
 
 
 $$
+
 \sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
 \approx \sum_{i=0}^{n-1} H_{t_i}^2 (B_{t_{i+1}} - B_{t_i})^2
 \to \sum_{i=0}^{n-1} H_{t_i}^2 (t_{i+1} - t_i)
 = \int_0^t H_s^2 \, ds
+
 $$
 
 
@@ -274,8 +316,10 @@ $$
 
 
 $$
+
 \sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
 \xrightarrow{\mathbb{P}} \int_0^t H_s^2 \, ds
+
 $$
 
 
@@ -286,7 +330,9 @@ which can be established via the Itô isometry and martingale moment bounds. \(\
 
 
 $$
+
 M_t := I_t^2 - \int_0^t H_s^2 \, ds
+
 $$
 
 
@@ -295,7 +341,9 @@ is a martingale. This is a direct consequence of the Doob-Meyer decomposition: \
 
 
 $$
+
 I_t^2 = M_t + \int_0^t H_s^2 \, ds
+
 $$
 
 
@@ -311,10 +359,12 @@ We established the Itô isometry during construction, but it's worth restating i
 
 
 $$
+
 \boxed{
 \mathbb{E}\left[\left(\int_0^t H_s \, dB_s\right)^2\right]
 = \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
 }
+
 $$
 
 
@@ -329,8 +379,10 @@ $$
 
 
 $$
+
 \mathbb{E}\left[\int_0^t H_s \, dB_s \cdot \int_0^t K_s \, dB_s\right]
 = \mathbb{E}\left[\int_0^t H_s K_s \, ds\right]
+
 $$
 
 
@@ -348,7 +400,9 @@ The Itô integral provides a **representation theorem** for certain martingales.
 
 
 $$
+
 M_t = M_0 + \int_0^t H_s \, dB_s
+
 $$
 
 
@@ -376,8 +430,10 @@ For processes that are not globally square-integrable, we can define the Itô in
 
 
 $$
+
 \mathbb{E}\left[\int_0^{\tau_n \wedge T} H_s^2 \, ds\right] < \infty
 \quad \text{for all } n
+
 $$
 
 
@@ -386,8 +442,10 @@ For such \(H\), define:
 
 
 $$
+
 \int_0^t H_s \, dB_s
 := \lim_{n \to \infty} \int_0^{t \wedge \tau_n} H_s \, dB_s
+
 $$
 
 
@@ -396,7 +454,9 @@ The resulting process is a **local martingale**: there exist stopping times \(\t
 
 
 $$
+
 I_{t \wedge \tau_n} = \int_0^{t \wedge \tau_n} H_s \, dB_s
+
 $$
 
 
@@ -407,7 +467,9 @@ is a true martingale for each \(n\).
 
 
 $$
+
 \mathbb{E}\left[\int_0^t e^{B_s} \, dB_s\right] = 0
+
 $$
 
 

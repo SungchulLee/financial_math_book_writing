@@ -20,7 +20,9 @@ Classical derivative pricing assumes:
 FVA reflects the cost (or benefit) of funding uncollateralized derivative positions:
 
 $$
+
 \text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[\text{Funding Exposure}(t)] \cdot D(0,t) \, dt
+
 $$
 
 where $s_F(t)$ is the funding spread (bank's borrowing rate minus risk-free rate).
@@ -28,25 +30,37 @@ where $s_F(t)$ is the funding spread (bank's borrowing rate minus risk-free rate
 ### Funding Exposure
 
 **Positive derivative value:** Bank must fund the asset
+
 $$
+
 \text{Funding Cost} = s_F \cdot V^+ \cdot dt
+
 $$
 
 **Negative derivative value:** Bank receives funding benefit
+
 $$
+
 \text{Funding Benefit} = s_F \cdot V^- \cdot dt
+
 $$
 
 ### Symmetric vs Asymmetric FVA
 
 **Symmetric FVA:**
+
 $$
+
 \text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[V_t] \cdot D(0,t) \, dt
+
 $$
 
 **Asymmetric FVA:** Different rates for borrowing ($s_F^+$) and lending ($s_F^-$):
+
 $$
+
 \text{FVA} = \int_0^T \left[s_F^+(t) \cdot \mathbb{E}[V_t^+] - s_F^-(t) \cdot \mathbb{E}[V_t^-]\right] D(0,t) \, dt
+
 $$
 
 ---
@@ -62,7 +76,9 @@ Banks must hold regulatory capital against derivative positions. This capital ha
 KVA reflects the cost of holding regulatory capital over the life of the trade:
 
 $$
+
 \text{KVA} = \int_0^T h \cdot K(t) \cdot S_B(t) \cdot D(0,t) \, dt
+
 $$
 
 where:
@@ -79,7 +95,9 @@ For CCR, capital typically includes:
 - **Market risk capital:** If derivatives are in trading book
 
 $$
+
 K(t) = K^{\text{default}}(t) + K^{\text{CVA}}(t) + K^{\text{market}}(t)
+
 $$
 
 ### KVA Formula
@@ -87,12 +105,17 @@ $$
 With constant hurdle rate $h$:
 
 $$
+
 \text{KVA} \approx h \cdot \int_0^T K(t) \cdot D(0,t) \, dt
+
 $$
 
 **Example:** If average capital is \$10M over 5 years and $h = 10\%$:
+
 $$
+
 \text{KVA} \approx 0.10 \times 10\text{M} \times 5 \approx \$5\text{M}
+
 $$
 
 (simplified; actual calculation accounts for time profile)
@@ -110,7 +133,9 @@ Post-crisis regulations require initial margin (IM) for both cleared and unclear
 MVA is the cost of funding initial margin over the life of the trade:
 
 $$
+
 \text{MVA} = \int_0^T s_F(t) \cdot \mathbb{E}[\text{IM}(t)] \cdot D(0,t) \, dt
+
 $$
 
 where $\text{IM}(t)$ is the initial margin requirement at time $t$.
@@ -155,8 +180,11 @@ Common ordering by materiality:
 ### Non-Additivity
 
 XVAs are **not additive** across trades:
+
 $$
+
 \text{XVA}(A + B) \ne \text{XVA}(A) + \text{XVA}(B)
+
 $$
 
 due to netting, collateral, and capital effects.
@@ -168,7 +196,9 @@ due to netting, collateral, and capital effects.
 ### XVA-Inclusive Price
 
 $$
+
 V^{\text{total}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} - \text{FVA} - \text{KVA} - \text{MVA}
+
 $$
 
 **Note:** Signs may vary by convention; FVA and MVA are typically costs (negative adjustments).
@@ -176,7 +206,9 @@ $$
 ### Simplified Notation
 
 $$
+
 V^{\text{total}} = V^{\text{clean}} - \text{XVA}
+
 $$
 
 where XVA is the total adjustment.
@@ -188,7 +220,9 @@ where XVA is the total adjustment.
 XVA pricing can be formulated as a **backward stochastic differential equation**:
 
 $$
+
 V_t = \text{Payoff}_T + \int_t^T g(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+
 $$
 
 where the driver $g$ incorporates:
@@ -197,8 +231,11 @@ where the driver $g$ incorporates:
 - Collateral effects
 
 **Example driver:**
+
 $$
+
 g(t, V, Z) = -r V + s_F V^+ - s_L V^- + \lambda_C (V^+ - \text{collateral}) + \cdots
+
 $$
 
 ### Advantages of BSDE Approach
@@ -222,8 +259,11 @@ Modern banks typically have a dedicated **XVA desk** that:
 ### Transfer Pricing
 
 Business units charged for XVA at trade inception:
+
 $$
+
 \text{Trade Price} = V^{\text{clean}} - \text{XVA charge}
+
 $$
 
 XVA desk then owns and manages the XVA risk.
@@ -283,8 +323,11 @@ Each introduces model risk.
 | KVA | h × ∫ K × D | \$1.8M |
 
 **Total adjustment:**
+
 $$
+
 \text{XVA} = 2.1 - 1.2 + 0.4 + 1.8 = \$3.1\text{M}
+
 $$
 
 ---

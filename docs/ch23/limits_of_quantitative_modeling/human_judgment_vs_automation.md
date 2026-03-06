@@ -17,7 +17,9 @@ Effective financial decision-making typically requires a thoughtful combination 
 **Consistency**: Models apply the same rules every time.
 
 $$
+
 f(x_t) = f(x_{t'}) \quad \text{when } x_t = x_{t'}
+
 $$
 
 No mood effects, fatigue, or recency bias.
@@ -103,7 +105,9 @@ No mood effects, fatigue, or recency bias.
 **Definition**: Losses loom larger than equivalent gains.
 
 $$
+
 |U(-x)| > U(x) \quad \text{for } x > 0
+
 $$
 
 **Impact**: Hold losing positions too long, cut winners too early.

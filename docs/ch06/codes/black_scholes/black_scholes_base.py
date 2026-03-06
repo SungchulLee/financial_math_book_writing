@@ -1,3 +1,9 @@
+"""
+Black Scholes Base
+
+Educational script demonstrating black scholes base concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_base.py
 # ============================================================================
@@ -11,3 +17,7 @@ class BlackScholesBase:
         self.r = r          # Risk-free interest rate
         self.sigma = sigma  # Volatility of the underlying asset
         self.q = q          # Continuous dividend yield
+
+
+if __name__ == "__main__":
+    pass

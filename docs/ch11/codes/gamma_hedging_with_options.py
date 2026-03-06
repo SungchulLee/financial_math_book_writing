@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def gamma_hedging_with_options():
     """
     Gamma Hedging with Options.

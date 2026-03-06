@@ -222,255 +222,257 @@ def calculate_bond_holding(S0, K, T, r, sigma, payoff='call'):
 # Parameters
 # ============================================================================
 
-T = 1.0                            # time horizon
-N = 10                             # number of steps within time horizon
-time = np.linspace(0, T, N + 1)    # from 0 to T with N+1 points (inclusive of T)
-dt = T / N                         # time step increment
-mu = 0.02                          # drift coefficient per unit T
-sigma = 0.15                       # volatility per unit T
-S0 = 100.0                         # initial asset price
-K = 100.0                          # strike price
-r = 0.04                           # risk-free rate per unit T
+
+if __name__ == "__main__":
+    T = 1.0                            # time horizon
+    N = 10                             # number of steps within time horizon
+    time = np.linspace(0, T, N + 1)    # from 0 to T with N+1 points (inclusive of T)
+    dt = T / N                         # time step increment
+    mu = 0.02                          # drift coefficient per unit T
+    sigma = 0.15                       # volatility per unit T
+    S0 = 100.0                         # initial asset price
+    K = 100.0                          # strike price
+    r = 0.04                           # risk-free rate per unit T
 
 
-# ============================================================================
-# Example 1: Option Expires In The Money
-# ============================================================================
+    # ============================================================================
+    # Example 1: Option Expires In The Money
+    # ============================================================================
 
-# Simulate a realised price path
-S = np.zeros(N + 1)
-S[0] = S0
-Z = ss.norm.rvs(loc=0, scale=1, size=N, random_state=5)
-for t in range(1, N + 1):
-    S[t] = S[t-1] * np.exp(mu * dt + sigma * np.sqrt(dt) * Z[t-1])
+    # Simulate a realised price path
+    S = np.zeros(N + 1)
+    S[0] = S0
+    Z = ss.norm.rvs(loc=0, scale=1, size=N, random_state=5)
+    for t in range(1, N + 1):
+        S[t] = S[t-1] * np.exp(mu * dt + sigma * np.sqrt(dt) * Z[t-1])
 
-# Plot the realised price path
-plt.figure(figsize=(6, 4))
-plt.plot(time, S)
-plt.title('Realised Price Path')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+    # Plot the realised price path
+    plt.figure(figsize=(6, 4))
+    plt.plot(time, S)
+    plt.title('Realised Price Path')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.grid(True)
+    plt.show()
 
-# Calculate option price at time 0
-delta = calculate_delta(S0, K, T, r, sigma, payoff='call')
-bond_holding = calculate_bond_holding(S0, K, T, r, sigma, payoff='call')
-V0 = delta * S0 + bond_holding
+    # Calculate option price at time 0
+    delta = calculate_delta(S0, K, T, r, sigma, payoff='call')
+    bond_holding = calculate_bond_holding(S0, K, T, r, sigma, payoff='call')
+    V0 = delta * S0 + bond_holding
 
-# Print results
-print(f"### At t0 ###")
-print(f"Stock price (S0): {S0:.2f}")
-print(f"Option price (V0): {V0:.2f}")
-print(f"Delta (delta): {delta:.2f}")
-print(f"Buy delta * S0 of stock: {delta * S0:.2f}")
-print(f"Financed by borrowing V0 - delta * S0 = bond_holding: {bond_holding:.2f}")
+    # Print results
+    print(f"### At t0 ###")
+    print(f"Stock price (S0): {S0:.2f}")
+    print(f"Option price (V0): {V0:.2f}")
+    print(f"Delta (delta): {delta:.2f}")
+    print(f"Buy delta * S0 of stock: {delta * S0:.2f}")
+    print(f"Financed by borrowing V0 - delta * S0 = bond_holding: {bond_holding:.2f}")
 
-# Rebalancing through time along the realised price path
-deltas = np.zeros(N + 1)
-bond_holdings = np.zeros(N + 1)
-V = np.zeros(N + 1)
-for t in range(N + 1):
-    tau = T - t * dt
-    if tau <= 0:
-        tau = 1e-8    # avoid divide by zero
-    deltas[t] = calculate_delta(S[t], K, tau, r, sigma, 'call')
-    bond_holdings[t] = calculate_bond_holding(S[t], K, tau, r, sigma, 'call')
-    V[t] = deltas[t] * S[t] + bond_holdings[t]
+    # Rebalancing through time along the realised price path
+    deltas = np.zeros(N + 1)
+    bond_holdings = np.zeros(N + 1)
+    V = np.zeros(N + 1)
+    for t in range(N + 1):
+        tau = T - t * dt
+        if tau <= 0:
+            tau = 1e-8    # avoid divide by zero
+        deltas[t] = calculate_delta(S[t], K, tau, r, sigma, 'call')
+        bond_holdings[t] = calculate_bond_holding(S[t], K, tau, r, sigma, 'call')
+        V[t] = deltas[t] * S[t] + bond_holdings[t]
 
-# Calculate realised option payoff at time T
-ST = S[-1]
-payoff_T = max(ST - K, 0)
+    # Calculate realised option payoff at time T
+    ST = S[-1]
+    payoff_T = max(ST - K, 0)
 
-# Print results
-print(f"### At T ###")
-print(f"Stock price (ST): {ST:.2f}")
-print(f"Option terminal value (payoff_T): {payoff_T:.2f}")
+    # Print results
+    print(f"### At T ###")
+    print(f"Stock price (ST): {ST:.2f}")
+    print(f"Option terminal value (payoff_T): {payoff_T:.2f}")
 
-# Plot option value, delta, and bond holding over time
-plt.figure(figsize=(16, 4))
+    # Plot option value, delta, and bond holding over time
+    plt.figure(figsize=(16, 4))
 
-plt.subplot(1, 3, 1)
-plt.plot(time, V)
-plt.scatter(time[-1], payoff_T, color='red', label='Option Terminal Value')
-plt.title('Option Value')
-plt.xlabel('Time')
-plt.grid(True)
-plt.legend()
+    plt.subplot(1, 3, 1)
+    plt.plot(time, V)
+    plt.scatter(time[-1], payoff_T, color='red', label='Option Terminal Value')
+    plt.title('Option Value')
+    plt.xlabel('Time')
+    plt.grid(True)
+    plt.legend()
 
-plt.subplot(1, 3, 2)
-plt.plot(time, deltas)
-plt.title('Stock Hedge (Delta)')
-plt.xlabel('Time')
-plt.grid(True)
+    plt.subplot(1, 3, 2)
+    plt.plot(time, deltas)
+    plt.title('Stock Hedge (Delta)')
+    plt.xlabel('Time')
+    plt.grid(True)
 
-plt.subplot(1, 3, 3)
-plt.plot(time, bond_holdings)
-plt.title('Bond Holding')
-plt.xlabel('Time')
-plt.grid(True)
+    plt.subplot(1, 3, 3)
+    plt.plot(time, bond_holdings)
+    plt.title('Bond Holding')
+    plt.xlabel('Time')
+    plt.grid(True)
 
-plt.tight_layout()
-plt.show()
+    plt.tight_layout()
+    plt.show()
 
-# Create a dataframe to show delta hedging over time
-df = pd.DataFrame({
-    'time': time,
-    'stock_price': S,
-    'option_value': V,
-    'delta': deltas
-})
+    # Create a dataframe to show delta hedging over time
+    df = pd.DataFrame({
+        'time': time,
+        'stock_price': S,
+        'option_value': V,
+        'delta': deltas
+    })
 
-# How many shares to trade each step
-df['delta_change'] = df['delta'].diff()
+    # How many shares to trade each step
+    df['delta_change'] = df['delta'].diff()
 
-# Cashflow from trading shares
-# negative = you pay cash to buy shares
-# positive = you receive cash from selling shares
-df.loc[0, 'stock_trade_cashflow'] = -df.loc[0, 'delta'] * df.loc[0, 'stock_price']
-df.loc[1:, 'stock_trade_cashflow'] = (-df.loc[1:, 'delta_change'] * df.loc[1:, 'stock_price'])
+    # Cashflow from trading shares
+    # negative = you pay cash to buy shares
+    # positive = you receive cash from selling shares
+    df.loc[0, 'stock_trade_cashflow'] = -df.loc[0, 'delta'] * df.loc[0, 'stock_price']
+    df.loc[1:, 'stock_trade_cashflow'] = (-df.loc[1:, 'delta_change'] * df.loc[1:, 'stock_price'])
 
-# Cash account (borrowing)
-df['cash_account'] = 0.0
+    # Cash account (borrowing)
+    df['cash_account'] = 0.0
 
-# t = 0: receive option premium, then buy initial delta shares
-df.loc[0, 'cash_account'] = V0 + df.loc[0, 'stock_trade_cashflow']
+    # t = 0: receive option premium, then buy initial delta shares
+    df.loc[0, 'cash_account'] = V0 + df.loc[0, 'stock_trade_cashflow']
 
-# Propagate through time with interest
-for t in range(1, len(df)):
-    df.loc[t, 'cash_account'] = (
-        df.loc[t - 1, 'cash_account'] * np.exp(r * dt) + df.loc[t, 'stock_trade_cashflow']
-    )
+    # Propagate through time with interest
+    for t in range(1, len(df)):
+        df.loc[t, 'cash_account'] = (
+            df.loc[t - 1, 'cash_account'] * np.exp(r * dt) + df.loc[t, 'stock_trade_cashflow']
+        )
 
-# Hedge portfolio value at each step
-df['hedge_portfolio_value'] = (df['delta'] * df['stock_price'] + df['cash_account'])
+    # Hedge portfolio value at each step
+    df['hedge_portfolio_value'] = (df['delta'] * df['stock_price'] + df['cash_account'])
 
-print(df)
+    print(df)
 
-print(f"Terminal hedging error: {df['hedge_portfolio_value'].iloc[-1] - payoff_T:.3f}")
+    print(f"Terminal hedging error: {df['hedge_portfolio_value'].iloc[-1] - payoff_T:.3f}")
 
-# This simulation demonstrates that dynamic delta hedging can approximately
-# replicate the payoff of a European option. However, because hedging occurs
-# at discrete intervals rather than continuously, a non-zero hedging error
-# remains at expiry (which could be positive or negative). The magnitude of
-# this error reflects the limitations of discrete rebalancing and the
-# sensitivity of option value to nonlinear price movements. As the
-# rebalancing frequency increases, the hedging error tends toward zero,
-# consistent with Black-Scholes theory.
+    # This simulation demonstrates that dynamic delta hedging can approximately
+    # replicate the payoff of a European option. However, because hedging occurs
+    # at discrete intervals rather than continuously, a non-zero hedging error
+    # remains at expiry (which could be positive or negative). The magnitude of
+    # this error reflects the limitations of discrete rebalancing and the
+    # sensitivity of option value to nonlinear price movements. As the
+    # rebalancing frequency increases, the hedging error tends toward zero,
+    # consistent with Black-Scholes theory.
 
 
-# ============================================================================
-# Example 2: Option Expires Out of The Money
-# ============================================================================
+    # ============================================================================
+    # Example 2: Option Expires Out of The Money
+    # ============================================================================
 
-# Simulate a realised price path
-S = np.zeros(N + 1)
-S[0] = S0
-Z = ss.norm.rvs(loc=0, scale=1, size=N, random_state=6)
-for t in range(1, N + 1):
-    S[t] = S[t-1] * np.exp(mu * dt + sigma * np.sqrt(dt) * Z[t-1])
+    # Simulate a realised price path
+    S = np.zeros(N + 1)
+    S[0] = S0
+    Z = ss.norm.rvs(loc=0, scale=1, size=N, random_state=6)
+    for t in range(1, N + 1):
+        S[t] = S[t-1] * np.exp(mu * dt + sigma * np.sqrt(dt) * Z[t-1])
 
-# Plot the realised price path
-plt.figure(figsize=(6, 4))
-plt.plot(time, S, color='C1')
-plt.title('Realised Price Path')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+    # Plot the realised price path
+    plt.figure(figsize=(6, 4))
+    plt.plot(time, S, color='C1')
+    plt.title('Realised Price Path')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.grid(True)
+    plt.show()
 
-# Calculate option price at time 0
-delta = calculate_delta(S0, K, T, r, sigma, payoff='call')
-bond_holding = calculate_bond_holding(S0, K, T, r, sigma, payoff='call')
-V0 = delta * S0 + bond_holding
+    # Calculate option price at time 0
+    delta = calculate_delta(S0, K, T, r, sigma, payoff='call')
+    bond_holding = calculate_bond_holding(S0, K, T, r, sigma, payoff='call')
+    V0 = delta * S0 + bond_holding
 
-# Print results
-print(f"### At t0 ###")
-print(f"Stock price (S0): {S0:.2f}")
-print(f"Option price (V0): {V0:.2f}")
-print(f"Delta (delta): {delta:.2f}")
-print(f"Buy delta * S0 of stock: {delta * S0:.2f}")
-print(f"Financed by borrowing V0 - delta * S0 = bond_holding: {bond_holding:.2f}")
+    # Print results
+    print(f"### At t0 ###")
+    print(f"Stock price (S0): {S0:.2f}")
+    print(f"Option price (V0): {V0:.2f}")
+    print(f"Delta (delta): {delta:.2f}")
+    print(f"Buy delta * S0 of stock: {delta * S0:.2f}")
+    print(f"Financed by borrowing V0 - delta * S0 = bond_holding: {bond_holding:.2f}")
 
-# Rebalancing through time along the realised price path
-deltas = np.zeros(N + 1)
-bond_holdings = np.zeros(N + 1)
-V = np.zeros(N + 1)
-for t in range(N + 1):
-    tau = T - t * dt
-    if tau <= 0:
-        tau = 1e-8    # avoid divide by zero
-    deltas[t] = calculate_delta(S[t], K, tau, r, sigma, 'call')
-    bond_holdings[t] = calculate_bond_holding(S[t], K, tau, r, sigma, 'call')
-    V[t] = deltas[t] * S[t] + bond_holdings[t]
+    # Rebalancing through time along the realised price path
+    deltas = np.zeros(N + 1)
+    bond_holdings = np.zeros(N + 1)
+    V = np.zeros(N + 1)
+    for t in range(N + 1):
+        tau = T - t * dt
+        if tau <= 0:
+            tau = 1e-8    # avoid divide by zero
+        deltas[t] = calculate_delta(S[t], K, tau, r, sigma, 'call')
+        bond_holdings[t] = calculate_bond_holding(S[t], K, tau, r, sigma, 'call')
+        V[t] = deltas[t] * S[t] + bond_holdings[t]
 
-# Calculate realised option payoff at time T
-ST = S[-1]
-payoff_T = max(ST - K, 0)
+    # Calculate realised option payoff at time T
+    ST = S[-1]
+    payoff_T = max(ST - K, 0)
 
-# Print results
-print(f"### At T ###")
-print(f"Stock price (ST): {ST:.2f}")
-print(f"Option terminal value (payoff_T): {payoff_T:.2f}")
+    # Print results
+    print(f"### At T ###")
+    print(f"Stock price (ST): {ST:.2f}")
+    print(f"Option terminal value (payoff_T): {payoff_T:.2f}")
 
-# Plot option value, delta, and bond holding over time
-plt.figure(figsize=(16, 4))
+    # Plot option value, delta, and bond holding over time
+    plt.figure(figsize=(16, 4))
 
-plt.subplot(1, 3, 1)
-plt.plot(time, V, color='C1')
-plt.scatter(time[-1], payoff_T, color='red', label='Option Terminal Value')
-plt.title('Option Value')
-plt.xlabel('Time')
-plt.grid(True)
-plt.legend()
+    plt.subplot(1, 3, 1)
+    plt.plot(time, V, color='C1')
+    plt.scatter(time[-1], payoff_T, color='red', label='Option Terminal Value')
+    plt.title('Option Value')
+    plt.xlabel('Time')
+    plt.grid(True)
+    plt.legend()
 
-plt.subplot(1, 3, 2)
-plt.plot(time, deltas, color='C1')
-plt.title('Stock Hedge (Delta)')
-plt.xlabel('Time')
-plt.grid(True)
+    plt.subplot(1, 3, 2)
+    plt.plot(time, deltas, color='C1')
+    plt.title('Stock Hedge (Delta)')
+    plt.xlabel('Time')
+    plt.grid(True)
 
-plt.subplot(1, 3, 3)
-plt.plot(time, bond_holdings, color='C1')
-plt.title('Bond Holding')
-plt.xlabel('Time')
-plt.grid(True)
+    plt.subplot(1, 3, 3)
+    plt.plot(time, bond_holdings, color='C1')
+    plt.title('Bond Holding')
+    plt.xlabel('Time')
+    plt.grid(True)
 
-plt.tight_layout()
-plt.show()
+    plt.tight_layout()
+    plt.show()
 
-# Create a dataframe to show delta hedging over time
-df = pd.DataFrame({
-    'time': time,
-    'stock_price': S,
-    'option_value': V,
-    'delta': deltas
-})
+    # Create a dataframe to show delta hedging over time
+    df = pd.DataFrame({
+        'time': time,
+        'stock_price': S,
+        'option_value': V,
+        'delta': deltas
+    })
 
-# How many shares to trade each step
-df['delta_change'] = df['delta'].diff()
+    # How many shares to trade each step
+    df['delta_change'] = df['delta'].diff()
 
-# Cashflow from trading shares
-# negative = you pay cash to buy shares
-# positive = you receive cash from selling shares
-df.loc[0, 'stock_trade_cashflow'] = -df.loc[0, 'delta'] * df.loc[0, 'stock_price']
-df.loc[1:, 'stock_trade_cashflow'] = (-df.loc[1:, 'delta_change'] * df.loc[1:, 'stock_price'])
+    # Cashflow from trading shares
+    # negative = you pay cash to buy shares
+    # positive = you receive cash from selling shares
+    df.loc[0, 'stock_trade_cashflow'] = -df.loc[0, 'delta'] * df.loc[0, 'stock_price']
+    df.loc[1:, 'stock_trade_cashflow'] = (-df.loc[1:, 'delta_change'] * df.loc[1:, 'stock_price'])
 
-# Cash account (borrowing)
-df['cash_account'] = 0.0
+    # Cash account (borrowing)
+    df['cash_account'] = 0.0
 
-# t = 0: receive option premium, then buy initial delta shares
-df.loc[0, 'cash_account'] = V0 + df.loc[0, 'stock_trade_cashflow']
+    # t = 0: receive option premium, then buy initial delta shares
+    df.loc[0, 'cash_account'] = V0 + df.loc[0, 'stock_trade_cashflow']
 
-# Propagate through time with interest
-for t in range(1, len(df)):
-    df.loc[t, 'cash_account'] = (
-        df.loc[t-1, 'cash_account'] * np.exp(r * dt) + df.loc[t, 'stock_trade_cashflow']
-    )
+    # Propagate through time with interest
+    for t in range(1, len(df)):
+        df.loc[t, 'cash_account'] = (
+            df.loc[t-1, 'cash_account'] * np.exp(r * dt) + df.loc[t, 'stock_trade_cashflow']
+        )
 
-# Hedge portfolio value at each step
-df['hedge_portfolio_value'] = (df['delta'] * df['stock_price'] + df['cash_account'])
+    # Hedge portfolio value at each step
+    df['hedge_portfolio_value'] = (df['delta'] * df['stock_price'] + df['cash_account'])
 
-print(df)
+    print(df)
 
-print(f"Terminal hedging error: {df['hedge_portfolio_value'].iloc[-1] - payoff_T:.3f}")
+    print(f"Terminal hedging error: {df['hedge_portfolio_value'].iloc[-1] - payoff_T:.3f}")

@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def python_implementation():
     """
     Black-Karasinski Python Implementation.

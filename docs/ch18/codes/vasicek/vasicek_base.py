@@ -1,3 +1,9 @@
+"""
+Vasicek Base
+
+Educational script demonstrating vasicek base concepts.
+"""
+
 # ============================================================================
 # vasicek/vasicek_base.py
 # ============================================================================
@@ -121,3 +127,7 @@ class VasicekParameters:
             'sigma': self.sigma,
             'maturity_time': self.maturity_time
         }
+
+
+if __name__ == "__main__":
+    pass

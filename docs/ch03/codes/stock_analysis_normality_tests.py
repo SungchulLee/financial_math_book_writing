@@ -1,3 +1,9 @@
+"""
+Stock Analysis Normality Tests
+
+Educational script demonstrating stock analysis normality tests concepts.
+"""
+
 # ---
 # title: "Normality Tests on Log-Returns"
 # description: >

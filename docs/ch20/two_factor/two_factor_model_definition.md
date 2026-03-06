@@ -5,38 +5,48 @@
 The two-factor Hull-White model introduces a second stochastic factor to capture richer yield curve dynamics:
 
 $$\begin{array}{lllll}
+
 \displaystyle
 r(t)=x(t)+y(t)+\varphi(t)
+
 \end{array}$$
 
 where
 
 $$\begin{array}{lllll}
+
 dx(t)&=&-\lambda_1 x(t)dt+\sigma_1 dW_1(t),\quad x(0)=0\\
 dy(t)&=&-\lambda_2 y(t)dt+\sigma_2 dW_2(t),\quad y(0)=0\\
 dW_1(t)dW_2(t)&=&\rho\, dt
+
 \end{array}$$
 
 and $\varphi(t)$ is a deterministic function chosen to fit the initial term structure:
 
 $$
+
 \varphi(t)=f(0,t)
 +\frac{\sigma_1^2}{2\lambda_1^2}\left(1-e^{-\lambda_1 t}\right)^2
 +\frac{\sigma_2^2}{2\lambda_2^2}\left(1-e^{-\lambda_2 t}\right)^2
 +\frac{\rho\sigma_1\sigma_2}{\lambda_1\lambda_2}\left(1-e^{-\lambda_1 t}\right)\left(1-e^{-\lambda_2 t}\right)
+
 $$
 
 ## Two-Factor ZCB Price
 
 $$\begin{array}{lllll}
+
 P(T_1,T_2)=\exp\left(A(T_1,T_2)+B_x(T_1,T_2)x(T_1)+B_y(T_1,T_2)y(T_1)\right)
+
 \end{array}$$
 
 where
 
 $$\begin{array}{lllll}
+
 B_x(T_1,T_2)&=&\displaystyle\frac{e^{-\lambda_1(T_2-T_1)}-1}{\lambda_1}\\
 B_y(T_1,T_2)&=&\displaystyle\frac{e^{-\lambda_2(T_2-T_1)}-1}{\lambda_2}
+
 \end{array}$$
 
 and $A(T_1,T_2)$ is determined by no-arbitrage to fit the initial curve.

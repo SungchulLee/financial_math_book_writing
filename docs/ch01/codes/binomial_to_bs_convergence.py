@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def binomial_to_bs_convergence():
     """
     Binomial to BS Convergence.

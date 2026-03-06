@@ -65,6 +65,7 @@ where $\Rightarrow$ denotes weak convergence of probability measures and $W$ is 
 **Proof sketch.**
 
 1. **Finite-dimensional convergence.** For any $0 \leq t_1 < \cdots < t_k \leq T$, the increments $W^{(n)}(t_{i+1}) - W^{(n)}(t_i)$ are sums of independent $\xi_j$'s over disjoint blocks. The CLT applied to each block gives joint convergence:
+
 $$\bigl(W^{(n)}(t_1),\ldots,W^{(n)}(t_k)\bigr) \xrightarrow{d} \bigl(W_{t_1},\ldots,W_{t_k}\bigr).$$
 
 2. **Tightness.** The fourth-moment estimate above implies tightness via the Kolmogorov–Chentsov criterion.

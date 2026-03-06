@@ -1,3 +1,9 @@
+"""
+Binomial Model Pricer
+
+Educational script demonstrating binomial model pricer concepts.
+"""
+
 # ============================================================================
 # binomial_model/binomial_model_pricer.py
 # ============================================================================
@@ -128,3 +134,7 @@ class BinomialPricer:
         # Combine and discount once
         weights = np.exp(log_weights - r * T)
         return np.sum(V * weights)
+
+
+if __name__ == "__main__":
+    pass

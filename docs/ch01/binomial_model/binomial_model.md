@@ -56,7 +56,9 @@ The market consists of two traded assets:
 Starting with $B_0 = 1$, the bank account grows deterministically:
 
 $$
+
 B_{\Delta t} = e^{r \Delta t}
+
 $$
 
 where $r \geq 0$ is the continuously compounded risk-free rate.
@@ -66,11 +68,13 @@ where $r \geq 0$ is the continuously compounded risk-free rate.
 Starting with $S_0 > 0$, the stock price at time $\Delta t$ takes one of two values:
 
 $$
+
 S_{\Delta t} =
 \begin{cases}
 u S_0 & \text{with probability } p \quad \text{(up state)} \\[6pt]
 d S_0 & \text{with probability } 1-p \quad \text{(down state)}
 \end{cases}
+
 $$
 
 where:
@@ -101,11 +105,15 @@ A **portfolio** is described by holdings $(\Delta, \beta)$, where:
 The portfolio value at each time is:
 
 $$
+
 V_0 = \Delta S_0 + \beta B_0 = \Delta S_0 + \beta
+
 $$
 
 $$
+
 V_{\Delta t} = \Delta S_{\Delta t} + \beta B_{\Delta t} = \Delta S_{\Delta t} + \beta e^{r \Delta t}
+
 $$
 
 !!! note "Self-Financing Property"
@@ -120,11 +128,13 @@ $$
 A **contingent claim** (or **derivative**) is any payoff that depends on the terminal stock price:
 
 $$
+
 H = H(S_{\Delta t}) = 
 \begin{cases}
 H_u & \text{if } S_{\Delta t} = u S_0 \\[4pt]
 H_d & \text{if } S_{\Delta t} = d S_0
 \end{cases}
+
 $$
 
 !!! example "Common Examples"
@@ -194,7 +204,9 @@ Since $u > d$, we have strict inequality in the up state. This is an arbitrage.
     The one-period binomial market is arbitrage-free if and only if:
     
     $$
+
     \boxed{d < e^{r \Delta t} < u}
+
     $$
     
     **Interpretation:** The risk-free return must lie strictly between the worst and best stock returns. If the bank always beats the stock (even in the up state), or the stock always beats the bank (even in the down state), arbitrage is possible.
@@ -208,7 +220,9 @@ The no-arbitrage condition has an elegant geometric interpretation in terms of *
 Define the **discounted stock price**:
 
 $$
+
 \tilde{S}_{\Delta t} := \frac{S_{\Delta t}}{e^{r \Delta t}} = \frac{S_{\Delta t}}{B_{\Delta t}}
+
 $$
 
 This measures the stock price in units of the bank account (the **numéraire**).
@@ -216,24 +230,30 @@ This measures the stock price in units of the bank account (the **numéraire**).
 The discounted terminal values are:
 
 $$
+
 \tilde{S}_{\Delta t} = 
 \begin{cases}
 \dfrac{u S_0}{e^{r \Delta t}} & \text{(up state)} \\[10pt]
 \dfrac{d S_0}{e^{r \Delta t}} & \text{(down state)}
 \end{cases}
+
 $$
 
 The no-arbitrage condition $d < e^{r \Delta t} < u$ is equivalent to:
 
 $$
+
 \frac{d S_0}{e^{r \Delta t}} < S_0 < \frac{u S_0}{e^{r \Delta t}}
+
 $$
 
 !!! tip "Convex Hull Interpretation"
     The current stock price $S_0$ lies in the **interior** of the interval spanned by the discounted future values:
     
     $$
+
     S_0 \in \left( \frac{d S_0}{e^{r \Delta t}}, \frac{u S_0}{e^{r \Delta t}} \right)
+
     $$
     
     Equivalently, $S_0$ can be written as a **strict convex combination** of the discounted future values. This convexity property is the geometric essence of no-arbitrage and generalizes to higher dimensions (multiple assets, multiple periods).
@@ -249,7 +269,9 @@ The convex hull interpretation suggests that we can express $S_0$ as a weighted 
 We seek a probability $q \in (0,1)$ such that:
 
 $$
+
 S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]
+
 $$
 
 where $\mathbb{E}^{\mathbb{Q}}$ denotes expectation under a new probability measure $\mathbb{Q}$ with $\mathbb{Q}(\text{up}) = q$.
@@ -257,34 +279,46 @@ where $\mathbb{E}^{\mathbb{Q}}$ denotes expectation under a new probability meas
 Expanding the expectation:
 
 $$
+
 S_0 = e^{-r \Delta t} \left( q \cdot u S_0 + (1-q) \cdot d S_0 \right)
+
 $$
 
 Dividing both sides by $S_0$ and multiplying by $e^{r \Delta t}$:
 
 $$
+
 e^{r \Delta t} = q \cdot u + (1-q) \cdot d
+
 $$
 
 Expanding and solving for $q$:
 
 $$
+
 e^{r \Delta t} = qu + d - qd = d + q(u - d)
+
 $$
 
 $$
+
 q(u - d) = e^{r \Delta t} - d
+
 $$
 
 $$
+
 \boxed{q = \frac{e^{r \Delta t} - d}{u - d}}
+
 $$
 
 !!! success "Risk-Neutral Probability"
     Under the no-arbitrage condition $d < e^{r \Delta t} < u$, there exists a **unique** probability $q \in (0,1)$ given by:
     
     $$
+
     q = \frac{e^{r \Delta t} - d}{u - d}, \qquad 1 - q = \frac{u - e^{r \Delta t}}{u - d}
+
     $$
 
 ### Verification that q ∈ (0,1)
@@ -302,7 +336,9 @@ This confirms that $q \in (0,1)$ if and only if the no-arbitrage condition holds
 Define a probability measure $\mathbb{Q}$ on the one-period state space by:
 
 $$
+
 \mathbb{Q}(\text{up}) = q, \qquad \mathbb{Q}(\text{down}) = 1 - q
+
 $$
 
 This probability measure $\mathbb{Q}$ is called the **risk-neutral measure** (or **equivalent martingale measure**).
@@ -322,20 +358,26 @@ This probability measure $\mathbb{Q}$ is called the **risk-neutral measure** (or
 Under the risk-neutral measure $\mathbb{Q}$, the stock price satisfies:
 
 $$
+
 S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]
+
 $$
 
 Equivalently, the **discounted stock price** $\tilde{S}_t := e^{-rt} S_t$ satisfies:
 
 $$
+
 \tilde{S}_0 = S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = \mathbb{E}^{\mathbb{Q}}\left[ e^{-r \Delta t} S_{\Delta t} \right] = \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}]
+
 $$
 
 !!! success "Martingale Property"
     Under the risk-neutral measure $\mathbb{Q}$, the discounted stock price is a **martingale**:
     
     $$
+
     \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t} \mid \mathcal{F}_0] = \tilde{S}_0
+
     $$
     
     This is the discrete-time analog of the continuous-time result. See [Martingales](../../ch02/filtration_and_martingales/martingales.md) for the general definition.
@@ -343,7 +385,9 @@ $$
 This martingale property is the key to pricing contingent claims: if discounted asset prices are martingales under $\mathbb{Q}$, then by no-arbitrage, discounted derivative prices must also be martingales. This leads to the **risk-neutral pricing formula**:
 
 $$
+
 V_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[H]
+
 $$
 
 The derivation of this formula via replication is the subject of the [next section](replicating_portfolio.md).

@@ -1,3 +1,9 @@
+"""
+Composition
+
+Educational script demonstrating composition concepts.
+"""
+
 # ============================================================================
 # stock_analysis/sp500/composition.py
 # ============================================================================
@@ -225,3 +231,7 @@ def get_sp500_survivors(start_year: str, end_year: str) -> Dict[str, List[str]]:
         'survival_rate': len(survivors) / len(start_tickers) if start_tickers else 0,
         'turnover_rate': (len(dropouts) + len(new_additions)) / len(start_tickers) if start_tickers else 0
     }
+
+
+if __name__ == "__main__":
+    pass

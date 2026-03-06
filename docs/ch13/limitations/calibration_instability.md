@@ -12,6 +12,7 @@ Model calibration to market data is essential for practical implementation, but 
 
 **Local Volatility Calibration Instability**
 Local volatility models $\sigma_{\text{LV}}(S, t)$ are calibrated to match all observed option prices:
+
 $$C^{\text{LV}}(S_0, K, T; \sigma_{\text{LV}}) = C^{\text{Market}}(K, T)$$
 
 Instability arises from:

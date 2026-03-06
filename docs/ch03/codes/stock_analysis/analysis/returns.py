@@ -1,3 +1,9 @@
+"""
+Returns
+
+Educational script demonstrating returns concepts.
+"""
+
 # ============================================================================
 # stock_analysis/analysis/returns.py
 # ============================================================================
@@ -123,3 +129,7 @@ def compute_drawdown(df: pd.DataFrame, price_col: str = 'Close') -> pd.DataFrame
     df_copy['Drawdown'] = (df_copy[price_col] - df_copy['Peak']) / df_copy['Peak']
     df_copy['Drawdown_Pct'] = df_copy['Drawdown'] * 100
     return df_copy
+
+
+if __name__ == "__main__":
+    pass

@@ -105,6 +105,7 @@ This has magnitude $\sqrt{n} \to \infty$. In the limit, the paths cannot be diff
 From [Martingale Property](martingale_property.md), $[S]_n = n$. For the scaled walk over $[0,t]$:
 
 $$[S^{(n)}]_t = \sum_{i=1}^{\lfloor nt \rfloor} \!\left(S^{(n)}\!\left(\tfrac{i}{n}\right) - S^{(n)}\!\left(\tfrac{i-1}{n}\right)\right)^2
+
 = \frac{1}{n} \sum_{i=1}^{\lfloor nt \rfloor} \xi_i^2 = \frac{\lfloor nt \rfloor}{n} \xrightarrow{n\to\infty} t.$$
 
 The quadratic variation of the scaled walk converges to $t$ — the same as Brownian motion's quadratic variation $\langle W\rangle_t = t$. This is the key quantity underlying Itô's formula: formally $(dW_t)^2 = dt$.

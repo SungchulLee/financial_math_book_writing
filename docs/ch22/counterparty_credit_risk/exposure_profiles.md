@@ -9,7 +9,9 @@ Counterparty credit risk (CCR) arises from the possibility that a counterparty d
 For a derivative portfolio with value process $V_t$, the **exposure** at time $t$ is:
 
 $$
+
 E_t = \max(V_t, 0) = V_t^+
+
 $$
 
 **Interpretation:** 
@@ -25,7 +27,9 @@ Exposure is **one-sided**—only positive values matter for CCR.
 The **Expected Exposure** at time $t$ is:
 
 $$
+
 \text{EE}(t) = \mathbb{E}^{\mathbb{Q}}[E_t] = \mathbb{E}^{\mathbb{Q}}[V_t^+]
+
 $$
 
 where the expectation is typically under the risk-neutral measure $\mathbb{Q}$.
@@ -42,12 +46,17 @@ where the expectation is typically under the risk-neutral measure $\mathbb{Q}$.
 The **Expected Positive Exposure** is the time-averaged EE:
 
 $$
+
 \text{EPE} = \frac{1}{T} \int_0^T \text{EE}(t) \, dt
+
 $$
 
 **Discrete approximation:**
+
 $$
+
 \text{EPE} \approx \frac{1}{n} \sum_{i=1}^n \text{EE}(t_i)
+
 $$
 
 EPE is a single number summarizing average exposure over the portfolio's life.
@@ -59,13 +68,19 @@ EPE is a single number summarizing average exposure over the portfolio's life.
 Regulatory capital calculations use **non-decreasing** versions:
 
 **Effective EE:**
+
 $$
+
 \text{Effective EE}(t) = \max_{s \le t} \text{EE}(s)
+
 $$
 
 **Effective EPE:**
+
 $$
+
 \text{Effective EPE} = \frac{1}{\min(1\text{ year}, T)} \int_0^{\min(1\text{ year}, T)} \text{Effective EE}(t) \, dt
+
 $$
 
 **Rationale:** Prevents gaming by structuring trades to have low EE at measurement dates but high EE in between.
@@ -77,7 +92,9 @@ $$
 **PFE** is a high-quantile measure of future exposure:
 
 $$
+
 \text{PFE}_\alpha(t) = \inf\{x : \mathbb{P}(E_t \le x) \ge \alpha\}
+
 $$
 
 Typically $\alpha = 0.95$ or $0.99$.
@@ -103,7 +120,9 @@ Different products have characteristic exposure profiles:
 - Pull-to-par effect near maturity
 
 $$
+
 \text{EE}(t) \text{ peaks at } t \approx T/2
+
 $$
 
 ### FX Forward
@@ -154,12 +173,17 @@ $$
 Under a **netting agreement**, exposure is calculated at the portfolio level:
 
 $$
+
 E_t^{\text{netted}} = \left(\sum_{i=1}^n V_{i,t}\right)^+ \le \sum_{i=1}^n V_{i,t}^+ = \sum_{i=1}^n E_{i,t}
+
 $$
 
 **Netting benefit:**
+
 $$
+
 \text{Netting Benefit} = \frac{\sum_i \text{EE}_i - \text{EE}_{\text{netted}}}{\sum_i \text{EE}_i}
+
 $$
 
 Netting is most valuable when trades have:
@@ -174,7 +198,9 @@ Netting is most valuable when trades have:
 **Collateral (margin)** reduces exposure:
 
 $$
+
 E_t^{\text{collateralized}} = \max(V_t - C_t, 0)
+
 $$
 
 where $C_t$ is the collateral held.
@@ -189,8 +215,11 @@ Collateral is not instantaneously available. The **MPOR** is the time to:
 Typical MPOR: 10 business days (bilateral), 5 days (CCP).
 
 **Effective exposure under collateral:**
+
 $$
+
 \text{EE}^{\text{coll}}(t) = \mathbb{E}[\max(V_t - C_{t-\text{MPOR}}, 0)]
+
 $$
 
 ---
@@ -200,7 +229,9 @@ $$
 **Credit Valuation Adjustment (CVA)** depends directly on exposure profiles:
 
 $$
+
 \text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot e^{-\int_0^t (r(s) + \lambda(s)) ds} \, dt
+
 $$
 
 where:
@@ -209,8 +240,11 @@ where:
 - $r(t)$ = risk-free rate
 
 **Discrete approximation:**
+
 $$
+
 \text{CVA} \approx \text{LGD} \sum_{i=1}^n \text{EE}(t_i) \cdot [\mathbb{Q}(\tau \le t_i) - \mathbb{Q}(\tau \le t_{i-1})] \cdot D(t_i)
+
 $$
 
 where $D(t)$ is the discount factor and $\mathbb{Q}(\tau \le t)$ is the default probability.
@@ -242,11 +276,15 @@ where $D(t)$ is the discount factor and $\mathbb{Q}(\tau \le t)$ is the default 
 **Peak Exposure** is the maximum exposure over the portfolio's life:
 
 $$
+
 \text{Peak EE} = \max_{t \in [0,T]} \text{EE}(t)
+
 $$
 
 $$
+
 \text{Peak PFE}_\alpha = \max_{t \in [0,T]} \text{PFE}_\alpha(t)
+
 $$
 
 Peak exposure is used for:

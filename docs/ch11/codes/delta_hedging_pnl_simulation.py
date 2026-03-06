@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def delta_hedging_pnl_simulation():
     """
     Delta Hedging P&L Simulation.

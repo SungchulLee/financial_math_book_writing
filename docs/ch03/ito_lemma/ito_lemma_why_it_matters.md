@@ -61,14 +61,18 @@ Summing over \(i\) gives a telescoping term and a quadratic-variation term:
 - Telescoping:
 
   $$
+
   \sum_{i=0}^{n-1}(B_{t_{i+1}}^2-B_{t_i}^2)=B_1^2-B_0^2=B_1^2.
+
   $$
 
 
 - Quadratic variation:
 
   $$
+
   \sum_{i=0}^{n-1}(B_{t_{i+1}}-B_{t_i})^2 \xrightarrow{a.s.} [B,B]_1 = 1.
+
   $$
 
 
@@ -76,9 +80,11 @@ Summing over \(i\) gives a telescoping term and a quadratic-variation term:
 Therefore,
 
 $$
+
 \boxed{
 \int_0^1 B_s\,dB_s = \frac12 B_1^2 - \frac12.
 }
+
 $$
 
 

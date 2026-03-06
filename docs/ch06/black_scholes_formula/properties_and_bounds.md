@@ -16,7 +16,9 @@ This section rigorously establishes these properties for European options under 
 For a European call option on a non-dividend-paying stock:
 
 $$
+
 \boxed{\max(S - Ke^{-r(T-t)}, 0) \leq C(S,t) \leq S}
+
 $$
 
 **Lower bound**: The call cannot be worth less than its discounted intrinsic value (otherwise arbitrage exists)
@@ -26,7 +28,9 @@ $$
 **Tighter lower bound**: 
 
 $$
+
 C(S,t) \geq \max(S - Ke^{-r(T-t)}, 0)
+
 $$
 
 This is the **no-arbitrage lower bound**.
@@ -37,7 +41,9 @@ This is the **no-arbitrage lower bound**.
 For a European put:
 
 $$
+
 \boxed{\max(Ke^{-r(T-t)} - S, 0) \leq P(S,t) \leq Ke^{-r(T-t)}}
+
 $$
 
 **Lower bound**: Put worth at least discounted intrinsic value
@@ -54,19 +60,25 @@ Since $\mathcal{N}(d_1), \mathcal{N}(d_2) \in [0,1]$:
 When $S > Ke^{-rT}$:
 
 $$
+
 C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \geq S \cdot 0 - Ke^{-rT} \cdot 1
+
 $$
 
 But more carefully, when deeply ITM, $\mathcal{N}(d_1), \mathcal{N}(d_2) \approx 1$:
 
 $$
+
 C \approx S - Ke^{-rT}
+
 $$
 
 **Upper bound**:
 
 $$
+
 C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \leq S \cdot 1 - Ke^{-rT} \cdot 0 = S
+
 $$
 
 Both bounds satisfied. ✓
@@ -80,7 +92,9 @@ Both bounds satisfied. ✓
 
 
 $$
+
 \boxed{\frac{\partial C}{\partial S} = \mathcal{N}(d_1) > 0}
+
 $$
 
 **Interpretation**: Call price is **strictly increasing** in stock price.
@@ -88,13 +102,17 @@ $$
 **Proof**: Differentiating the Black-Scholes formula:
 
 $$
+
 \frac{\partial C}{\partial S} = \mathcal{N}(d_1) + S\frac{\partial \mathcal{N}(d_1)}{\partial S} - Ke^{-rT}\frac{\partial \mathcal{N}(d_2)}{\partial S}
+
 $$
 
 Using $\frac{\partial d_1}{\partial S} = \frac{1}{S\sigma\sqrt{T}}$ and $\frac{\partial d_2}{\partial S} = \frac{\partial d_1}{\partial S}$:
 
 $$
+
 \frac{\partial \mathcal{N}(d_1)}{\partial S} = \mathcal{N}'(d_1)\frac{1}{S\sigma\sqrt{T}}
+
 $$
 
 After substitution and using $\mathcal{N}'(d_1) = \frac{1}{\sqrt{2\pi}}e^{-d_1^2/2}$:
@@ -102,7 +120,9 @@ After substitution and using $\mathcal{N}'(d_1) = \frac{1}{\sqrt{2\pi}}e^{-d_1^2
 The cross-terms cancel (due to Black-Scholes PDE), leaving:
 
 $$
+
 \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
+
 $$
 
 Since $\mathcal{N}(d_1) \in (0,1)$ for all finite $d_1$, the call is strictly increasing in $S$. ✓
@@ -111,7 +131,9 @@ Since $\mathcal{N}(d_1) \in (0,1)$ for all finite $d_1$, the call is strictly in
 
 
 $$
+
 \boxed{\frac{\partial P}{\partial S} = -\mathcal{N}(-d_1) = \mathcal{N}(d_1) - 1 < 0}
+
 $$
 
 **Interpretation**: Put price is **strictly decreasing** in stock price.
@@ -119,13 +141,17 @@ $$
 **Proof**: From put-call parity:
 
 $$
+
 P = C - S + Ke^{-rT}
+
 $$
 
 Differentiate:
 
 $$
+
 \frac{\partial P}{\partial S} = \frac{\partial C}{\partial S} - 1 = \mathcal{N}(d_1) - 1 < 0
+
 $$
 
 Since $\mathcal{N}(d_1) < 1$, we have $\frac{\partial P}{\partial S} < 0$. ✓
@@ -141,7 +167,9 @@ Since $\mathcal{N}(d_1) < 1$, we have $\frac{\partial P}{\partial S} < 0$. ✓
 For European calls on non-dividend-paying stocks:
 
 $$
+
 \frac{\partial C}{\partial t} = -\Theta < 0
+
 $$
 
 **Interpretation**: Call price **decreases** as time passes (all else equal), a phenomenon called **time decay**.
@@ -149,7 +177,9 @@ $$
 **Theta formula**:
 
 $$
+
 \Theta_{\text{call}} = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
+
 $$
 
 Since both terms are negative, $\Theta < 0$ (time decay).
@@ -160,7 +190,9 @@ Since both terms are negative, $\Theta < 0$ (time decay).
 
 
 $$
+
 \boxed{\frac{\partial C}{\partial T} > 0}
+
 $$
 
 **Interpretation**: Longer-dated options are more valuable (more time for favorable price movement).
@@ -174,7 +206,9 @@ $$
 From the formula, as $T$ increases, $d_1$ and $d_2$ shift, and the net effect is positive:
 
 $$
+
 C(S, T_2) > C(S, T_1) \quad \text{for } T_2 > T_1
+
 $$
 
 ---
@@ -186,7 +220,9 @@ $$
 
 
 $$
+
 \boxed{\frac{\partial C}{\partial \sigma} = S\sqrt{T-t}\,\mathcal{N}'(d_1) > 0}
+
 $$
 
 **Interpretation**: Call (and put) prices are **strictly increasing** in volatility.
@@ -194,7 +230,9 @@ $$
 **Vega formula**:
 
 $$
+
 \nu = S\sqrt{T}\,\mathcal{N}'(d_1) = S\sqrt{T}\frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} > 0
+
 $$
 
 **Economic intuition**: Higher volatility increases the probability of large moves. For options (with capped downside but unlimited upside), this increases value.
@@ -202,7 +240,9 @@ $$
 **Key property**: Vega is the same for calls and puts with identical strike and maturity:
 
 $$
+
 \nu_{\text{call}} = \nu_{\text{put}}
+
 $$
 
 This follows from put-call parity (volatility affects both equally).
@@ -216,7 +256,9 @@ This follows from put-call parity (volatility affects both equally).
 
 
 $$
+
 \boxed{\frac{\partial C}{\partial K} = -e^{-r(T-t)}\mathcal{N}(d_2) < 0}
+
 $$
 
 **Interpretation**: Call price is **strictly decreasing** in strike.
@@ -229,14 +271,18 @@ $$
 From the formula:
 
 $$
+
 \frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) - \text{(other terms that sum to zero)}
+
 $$
 
 ### 2. **Put Options**
 
 
 $$
+
 \boxed{\frac{\partial P}{\partial K} = e^{-r(T-t)}\mathcal{N}(-d_2) > 0}
+
 $$
 
 **Interpretation**: Put price is **strictly increasing** in strike (higher strike = more valuable right to sell).
@@ -250,7 +296,9 @@ $$
 
 
 $$
+
 \boxed{\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T-t}} > 0}
+
 $$
 
 **Interpretation**: Option value is **convex** in stock price.
@@ -258,7 +306,9 @@ $$
 **Gamma formula**:
 
 $$
+
 \Gamma = \frac{1}{S\sigma\sqrt{T}}\frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} > 0
+
 $$
 
 **Implication**: 
@@ -270,7 +320,9 @@ $$
 **Put gamma**: From put-call parity,
 
 $$
+
 \Gamma_{\text{put}} = \Gamma_{\text{call}}
+
 $$
 
 Both calls and puts have the same gamma.
@@ -297,7 +349,9 @@ This convexity property is fundamental to option hedging and risk management.
 For strikes $K_1 < K_2 < K_3$ with $K_2 - K_1 = K_3 - K_2 = \Delta K$:
 
 $$
+
 \boxed{C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}}
+
 $$
 
 **Interpretation**: Call prices are **convex** (downward) in strike.
@@ -310,7 +364,9 @@ $$
 **Cost**:
 
 $$
+
 \text{Cost} = C(K_1) - 2C(K_2) + C(K_3)
+
 $$
 
 **Payoff**: Non-negative in all states (can verify by cases).
@@ -318,13 +374,17 @@ $$
 **No-arbitrage**: Since payoff $\geq 0$, cost must be $\geq 0$:
 
 $$
+
 C(K_1) - 2C(K_2) + C(K_3) \geq 0
+
 $$
 
 Rearranging:
 
 $$
+
 C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}
+
 $$
 
 This is the **convexity constraint** for call prices. ✓
@@ -335,13 +395,17 @@ This is the **convexity constraint** for call prices. ✓
 For infinitesimally close strikes:
 
 $$
+
 \frac{\partial^2 C}{\partial K^2} \geq 0
+
 $$
 
 From Black-Scholes:
 
 $$
+
 \frac{\partial^2 C}{\partial K^2} = e^{-rT}\frac{\mathcal{N}'(d_2)}{K\sigma\sqrt{T}} > 0
+
 $$
 
 Strict convexity holds. ✓
@@ -357,7 +421,9 @@ Strict convexity holds. ✓
 For maturities $T_1 < T_2$ with identical strike $K$:
 
 $$
+
 \boxed{C(S, T_1) \leq C(S, T_2)}
+
 $$
 
 **Interpretation**: Longer-dated calls are always worth at least as much as shorter-dated calls.
@@ -442,7 +508,9 @@ For American options on non-dividend-paying stocks:
 
 
 $$
+
 C_{\text{American}} = C_{\text{European}}
+
 $$
 
 **Reason**: Never optimal to exercise early (forgo time value and interest on strike).
@@ -451,7 +519,9 @@ $$
 
 
 $$
+
 P_{\text{American}} \geq P_{\text{European}}
+
 $$
 
 **Reason**: Early exercise can be optimal when deep ITM (capture strike immediately rather than wait).
@@ -459,7 +529,9 @@ $$
 **Bound**:
 
 $$
+
 \max(K - S, 0) \leq P_{\text{American}} \leq K
+
 $$
 
 Note: American put lower bound is *intrinsic value*, not discounted intrinsic value.

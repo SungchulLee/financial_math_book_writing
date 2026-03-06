@@ -16,9 +16,11 @@ The **risk-neutral valuation principle** is the central pricing formula of mathe
 In an arbitrage-free market, the time-$t$ price of a contingent claim with payoff $\Phi(X_T)$ at maturity $T$ is:
 
 $$
+
 \boxed{
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]
 }
+
 $$
 
 where:
@@ -30,7 +32,9 @@ where:
 For constant interest rate $r$:
 
 $$
+
 V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(X_T) \mid \mathcal{F}_t]
+
 $$
 
 ---
@@ -82,7 +86,9 @@ By the First Fundamental Theorem, no-arbitrage implies existence of $\mathbb{Q}$
 For the money market account $B_t = e^{\int_0^t r_s\,ds}$ as numeraire, the discounted stock price:
 
 $$
+
 \tilde{S}_t = \frac{S_t}{B_t} = e^{-\int_0^t r_s\,ds}S_t
+
 $$
 
 is a $\mathbb{Q}$-martingale.
@@ -94,7 +100,9 @@ Let $V_t$ be the price of a derivative with payoff $\Phi(X_T)$ at time $T$. If t
 Therefore:
 
 $$
+
 \tilde{V}_t = e^{-\int_0^t r_s\,ds}V_t
+
 $$
 
 is a $\mathbb{Q}$-martingale.
@@ -104,7 +112,9 @@ is a $\mathbb{Q}$-martingale.
 By the martingale property:
 
 $$
+
 \tilde{V}_t = \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T \mid \mathcal{F}_t]
+
 $$
 
 ### Step 4: Use the Terminal Condition
@@ -112,7 +122,9 @@ $$
 At maturity, $V_T = \Phi(X_T)$, so:
 
 $$
+
 e^{-\int_0^t r_s\,ds}V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]
+
 $$
 
 ### Step 5: Rearrange
@@ -120,7 +132,9 @@ $$
 Multiplying both sides by $e^{\int_0^t r_s\,ds}$:
 
 $$
+
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]
+
 $$
 
 ---
@@ -148,7 +162,9 @@ Risk-neutral valuation is equivalent to solving the pricing PDE via the **Feynma
 If $V(t,x)$ is the price as a function of time $t$ and underlying value $x$, it satisfies:
 
 $$
+
 \frac{\partial V}{\partial t} + \mathcal{L}^{\mathbb{Q}}V - rV = 0, \quad V(T,x) = \Phi(x)
+
 $$
 
 where $\mathcal{L}^{\mathbb{Q}}$ is the **infinitesimal generator under $\mathbb{Q}$**.
@@ -158,7 +174,9 @@ where $\mathcal{L}^{\mathbb{Q}}$ is the **infinitesimal generator under $\mathbb
 For a stock following $dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}$ under $\mathbb{Q}$:
 
 $$
+
 \mathcal{L}^{\mathbb{Q}} = rx\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2}{\partial x^2}
+
 $$
 
 Note that the drift is $r$, not $\mu$—this is the risk-neutral drift.
@@ -168,7 +186,9 @@ Note that the drift is $r$, not $\mu$—this is the risk-neutral drift.
 Substituting into the pricing PDE:
 
 $$
+
 \frac{\partial V}{\partial t} + rx\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 V}{\partial x^2} - rV = 0
+
 $$
 
 This is the **Black–Scholes PDE**.
@@ -178,7 +198,9 @@ This is the **Black–Scholes PDE**.
 The Feynman–Kac theorem states that the solution to the PDE equals the risk-neutral expectation:
 
 $$
+
 V(t,x) = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}\Phi(X_T) \mid X_t = x]
+
 $$
 
 **Two equivalent computational approaches**:
@@ -197,31 +219,41 @@ See [Feynman–Kac Formula](../../ch05/feynman_kac/feynman_kac_formula.md) for t
 Under $\mathbb{Q}$, the stock follows:
 
 $$
+
 dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+
 $$
 
 The call price is:
 
 $$
+
 C_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t]
+
 $$
 
 **Evaluating the expectation**: Under $\mathbb{Q}$, the terminal stock price is:
 
 $$
+
 S_T = S_t \exp\left(\left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma\sqrt{T-t}\,Z\right)
+
 $$
 
 where $Z \sim N(0,1)$ under $\mathbb{Q}$. The expectation of $(S_T - K)^+$ for lognormal $S_T$ can be evaluated explicitly (see [Black–Scholes Formula](../../ch06/black_scholes_formula/bs_formula_statement.md)), yielding:
 
 $$
+
 C_t = S_t\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
+
 $$
 
 where:
 
 $$
+
 d_1 = \frac{\ln(S_t/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+
 $$
 
 ### Example 2: Zero-Coupon Bond
@@ -229,7 +261,9 @@ $$
 A bond paying $1$ at time $T$ has price:
 
 $$
+
 P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds} \;\middle|\; \mathcal{F}_t\right]
+
 $$
 
 For constant $r$: $P(t,T) = e^{-r(T-t)}$.
@@ -241,13 +275,17 @@ For stochastic $r_t$, the expectation depends on the short-rate model (Vasicek, 
 A digital call paying $1$ if $S_T > K$ has price:
 
 $$
+
 V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\mathbf{1}_{S_T > K} \mid \mathcal{F}_t] = e^{-r(T-t)}\mathbb{Q}(S_T > K \mid S_t)
+
 $$
 
 Under the Black–Scholes model:
 
 $$
+
 V_t = e^{-r(T-t)}\Phi(d_2)
+
 $$
 
 where $d_2$ is as defined above, and $\Phi$ is the standard normal CDF.
@@ -276,7 +314,9 @@ The **instantaneous (diffusion) volatility** $\sigma(t, S_t)$ is invariant under
 The risk-neutral measure uses the money market account $B_t = e^{\int_0^t r_s\,ds}$ as numéraire. More generally, for any positive tradeable asset $N_t$ as numéraire:
 
 $$
+
 V_t = N_t \cdot \mathbb{E}^{\mathbb{Q}^N}\left[\frac{\Phi(X_T)}{N_T} \;\middle|\; \mathcal{F}_t\right]
+
 $$
 
 where $\mathbb{Q}^N$ is the measure under which prices divided by $N_t$ are martingales.
@@ -322,7 +362,9 @@ Model risk is the risk that the model is misspecified.
 For options whose payoff depends on the entire path $\{X_s\}_{t \leq s \leq T}$:
 
 $$
+
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(\{X_s\}_{t \leq s \leq T}) \;\middle|\; \mathcal{F}_t\right]
+
 $$
 
 Examples include:
@@ -338,9 +380,11 @@ These expectations typically require Monte Carlo simulation or specialized PDE m
 ## Summary
 
 $$
+
 \boxed{
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-r(T-t)}\Phi(X_T) \mid \mathcal{F}_t\right]
 }
+
 $$
 
 | Aspect | Description |

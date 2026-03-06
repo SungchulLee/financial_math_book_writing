@@ -5,7 +5,9 @@ Before diving into the rigorous construction of stochastic integrals, we begin w
 
 
 $$
+
 \int_0^t f(s, B_s) \, ds
+
 $$
 
 
@@ -38,6 +40,7 @@ Imagine you are managing a bond portfolio where:
 
 
 $$
+
 \begin{array}{lll}
 \text{Stock price at beginning of day } s & & B_s \\
 \text{Bond position at beginning of day } s & & f(s, B_s) \\
@@ -45,6 +48,7 @@ $$
 \text{P\&L of bond position at end of day } s & & f(s, B_s) \, ds \\
 \text{Cumulative P\&L up to end of day } t & & \displaystyle\int_0^t f(s, B_s) \, ds
 \end{array}
+
 $$
 
 
@@ -70,6 +74,7 @@ We simulate Brownian motion using 10 coin flips, then compute the integral manua
 
 
 $$
+
 \begin{array}{lrrrrrr}
 \text{Time} & 0/10 & 1/10 & 2/10 & 3/10 & 4/10 & 5/10 \\
 \hline
@@ -82,12 +87,14 @@ f(t, B_t) = B_{t-dt} & - & 0 & \frac{1}{\sqrt{10}} & \frac{2}{\sqrt{10}} & \frac
 f(t, B_t) \, dt & - & 0 & \frac{1}{10^{3/2}} & \frac{2}{10^{3/2}} & \frac{1}{10^{3/2}} & \frac{2}{10^{3/2}} \\
 \int_0^t f(s, B_s) \, ds & - & 0 & \frac{1}{10^{3/2}} & \frac{3}{10^{3/2}} & \frac{4}{10^{3/2}} & \frac{6}{10^{3/2}}
 \end{array}
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 \begin{array}{lrrrrrr}
 \text{Time} & 6/10 & 7/10 & 8/10 & 9/10 & 10/10 \\
 \hline
@@ -100,6 +107,7 @@ f(t, B_t) = B_{t-dt} & \frac{1}{\sqrt{10}} & \frac{0}{\sqrt{10}} & \frac{1}{\sqr
 f(t, B_t) \, dt & \frac{1}{10^{3/2}} & \frac{0}{10^{3/2}} & \frac{1}{10^{3/2}} & \frac{2}{10^{3/2}} & \frac{3}{10^{3/2}} \\
 \int_0^t f(s, B_s) \, ds & \frac{7}{10^{3/2}} & \frac{7}{10^{3/2}} & \frac{8}{10^{3/2}} & \frac{10}{10^{3/2}} & \frac{13}{10^{3/2}}
 \end{array}
+
 $$
 
 
@@ -108,7 +116,9 @@ $$
 
 
 $$
+
 \int_0^1 B_s \, ds = \frac{13}{10^{3/2}} \approx 0.411
+
 $$
 
 
@@ -127,6 +137,7 @@ Using the same coin flips, we compute the deterministic integral.
 
 
 $$
+
 \begin{array}{lrrrrrr}
 \text{Time} & 0/10 & 1/10 & 2/10 & \cdots & 9/10 & 10/10 \\
 \hline
@@ -134,6 +145,7 @@ f(t, B_t) = t - dt & - & 0 & \frac{1}{10} & \cdots & \frac{8}{10} & \frac{9}{10}
 f(t, B_t) \, dt & - & 0 & \frac{1}{100} & \cdots & \frac{8}{100} & \frac{9}{100} \\
 \int_0^t s \, ds & - & 0 & \frac{1}{100} & \cdots & \frac{36}{100} & \frac{45}{100}
 \end{array}
+
 $$
 
 
@@ -142,7 +154,9 @@ $$
 
 
 $$
+
 \int_0^1 s \, ds = \frac{45}{100} = 0.45
+
 $$
 
 
@@ -151,7 +165,9 @@ $$
 
 
 $$
+
 \int_0^1 s \, ds = \left[\frac{s^2}{2}\right]_0^1 = 0.5
+
 $$
 
 
@@ -170,6 +186,7 @@ Now we integrate a function depending on both time and the Brownian path.
 
 
 $$
+
 \begin{array}{lrrrrrr}
 \text{Time} & 0/10 & 1/10 & 2/10 & \cdots & 9/10 & 10/10 \\
 \hline
@@ -179,6 +196,7 @@ f(t, B_t) = h \cdot g & - & 0 & \frac{1}{10^{3/2}} & \cdots & \frac{16}{10^{3/2}
 f(t, B_t) \, dt & - & 0 & \frac{1}{10^{5/2}} & \cdots & \frac{16}{10^{5/2}} & \frac{27}{10^{5/2}} \\
 \int_0^t s B_s \, ds & - & 0 & \frac{1}{10^{5/2}} & \cdots & \frac{44}{10^{5/2}} & \frac{71}{10^{5/2}}
 \end{array}
+
 $$
 
 
@@ -187,7 +205,9 @@ $$
 
 
 $$
+
 \int_0^1 s B_s \, ds = \frac{71}{10^{5/2}} \approx 0.224
+
 $$
 
 
@@ -280,7 +300,9 @@ plt.show()
    
 
    $$
+
    \int_0^1 s \, ds = 0.5 \quad \text{(exact)}
+
    $$
 
 

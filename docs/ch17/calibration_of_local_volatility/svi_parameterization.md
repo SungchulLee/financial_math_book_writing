@@ -22,7 +22,9 @@ SVI achieves a good trade-off, fitting market smiles with only 5 parameters per 
 The **raw SVI** parameterization expresses total implied variance $w(k) = T \sigma_{\text{impl}}^2(k)$ as a function of log-moneyness $k = \log(K/F_T)$:
 
 $$
+
 w(k) = a + b \left( \rho (k - m) + \sqrt{(k - m)^2 + \sigma^2} \right).
+
 $$
 
 ### Parameter interpretation
@@ -50,7 +52,9 @@ $$
 A reparameterization that decouples ATM behavior:
 
 $$
+
 w(k) = \delta + \frac{\omega}{2} \left( 1 + \zeta \rho (k - \mu) + \sqrt{(\zeta(k - \mu) + \rho)^2 + 1 - \rho^2} \right),
+
 $$
 
 where $\delta$ is ATM variance, $\omega$ is ATM curvature, and $\zeta$ controls wing steepness.
@@ -76,13 +80,17 @@ This form is useful for interpolating across maturities.
 The call price must be convex in strike, which requires
 
 $$
+
 \frac{\partial^2 C}{\partial K^2} \ge 0 \quad \Leftrightarrow \quad g(k) \ge 0,
+
 $$
 
 where
 
 $$
+
 g(k) = \left( 1 - \frac{k w'(k)}{2w(k)} \right)^2 - \frac{(w'(k))^2}{4} \left( \frac{1}{w(k)} + \frac{1}{4} \right) + \frac{w''(k)}{2}.
+
 $$
 
 For SVI, this translates to constraints on the parameters.
@@ -92,7 +100,9 @@ For SVI, this translates to constraints on the parameters.
 A simple sufficient condition (Gatheral & Jacquier):
 
 $$
+
 b(1 + |\rho|) \le \frac{4}{T}, \qquad a + b\sigma\sqrt{1 - \rho^2} \ge 0.
+
 $$
 
 These ensure non-negative variance and bounded slope.
@@ -102,7 +112,9 @@ These ensure non-negative variance and bounded slope.
 Total variance must be non-decreasing in maturity for fixed log-moneyness:
 
 $$
+
 \frac{\partial w(k, T)}{\partial T} \ge 0 \quad \text{for all } k.
+
 $$
 
 This constrains how SVI parameters can evolve across the term structure.
@@ -116,7 +128,9 @@ This constrains how SVI parameters can evolve across the term structure.
 ### The SSVI formula
 
 $$
+
 w(k, \theta_T) = \frac{\theta_T}{2} \left( 1 + \rho \phi(\theta_T) k + \sqrt{(\phi(\theta_T) k + \rho)^2 + 1 - \rho^2} \right),
+
 $$
 
 where:
@@ -127,13 +141,19 @@ where:
 ### Common choices for φ(θ)
 
 **Power-law:**
+
 $$
+
 \phi(\theta) = \frac{\eta}{\theta^\gamma (1 + \theta)^{1 - \gamma}}, \quad \eta > 0, \; 0 \le \gamma \le 1.
+
 $$
 
 **Heston-like:**
+
 $$
+
 \phi(\theta) = \frac{1}{\lambda \theta} \left( 1 - \frac{1 - e^{-\lambda \theta}}{\lambda \theta} \right).
+
 $$
 
 ### Arbitrage-free by design
@@ -157,9 +177,13 @@ For each maturity $T$:
 2. Convert to total variance: $w_i = T \sigma_{\text{impl}}^2(K_i, T)$.
 3. Convert strikes to log-moneyness: $k_i = \log(K_i / F_T)$.
 4. Minimize:
+
    $$
+
    \min_{a, b, \rho, m, \sigma} \sum_i \omega_i \left( w^{\text{SVI}}(k_i; a, b, \rho, m, \sigma) - w_i \right)^2.
+
    $$
+
 5. Enforce constraints (e.g., $b \ge 0$, $|\rho| < 1$, arbitrage conditions).
 
 ### Initialization strategies
@@ -185,7 +209,9 @@ For SSVI, calibrate across all maturities simultaneously:
 Once an arbitrage-free implied variance surface $w(k, T)$ is obtained, Dupire's formula yields local variance:
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{\partial_T w}{1 - \frac{k}{w} \partial_k w + \frac{1}{4}\left( -\frac{1}{4} - \frac{1}{w} + \frac{k^2}{w^2} \right)(\partial_k w)^2 + \frac{1}{2} \partial_{kk} w}.
+
 $$
 
 ### Analytic derivatives
@@ -193,15 +219,21 @@ $$
 SVI admits closed-form derivatives:
 
 $$
+
 \partial_k w = b \left( \rho + \frac{k - m}{\sqrt{(k - m)^2 + \sigma^2}} \right),
+
 $$
 
 $$
+
 \partial_{kk} w = \frac{b \sigma^2}{((k - m)^2 + \sigma^2)^{3/2}},
+
 $$
 
 $$
+
 \partial_T w = \frac{\partial a}{\partial T} + \frac{\partial b}{\partial T} \left( \cdots \right) + \cdots
+
 $$
 
 For SSVI, derivatives with respect to $T$ come from the dependence on $\theta_T$.

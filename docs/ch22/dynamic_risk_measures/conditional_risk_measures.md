@@ -35,7 +35,9 @@ A terminal loss $X \in L^\infty(\mathcal{F}_T)$ is $\mathcal{F}_T$-measurable (k
 A **conditional risk measure** at time $t \in [0, T]$ is a mapping:
 
 $$
+
 \rho_t: L^\infty(\mathcal{F}_T) \to L^\infty(\mathcal{F}_t)
+
 $$
 
 such that $\rho_t(X)$ is $\mathcal{F}_t$-measurable for each $X$.
@@ -55,21 +57,30 @@ If $X \le Y$ a.s., then $\rho_t(X) \le \rho_t(Y)$ a.s.
 
 ### Conditional Translation Invariance
 For any $\mathcal{F}_t$-measurable $m$:
+
 $$
+
 \rho_t(X + m) = \rho_t(X) + m \quad \text{a.s.}
+
 $$
 
 **Note:** The constant $m$ must be $\mathcal{F}_t$-measurable (known at time $t$).
 
 ### Conditional Positive Homogeneity
 For any $\mathcal{F}_t$-measurable $\lambda > 0$:
+
 $$
+
 \rho_t(\lambda X) = \lambda \rho_t(X) \quad \text{a.s.}
+
 $$
 
 ### Conditional Subadditivity
+
 $$
+
 \rho_t(X + Y) \le \rho_t(X) + \rho_t(Y) \quad \text{a.s.}
+
 $$
 
 ---
@@ -79,8 +90,11 @@ $$
 Relaxing positive homogeneity, a conditional risk measure is **conditionally convex** if:
 
 For any $\mathcal{F}_t$-measurable $\lambda \in [0,1]$:
+
 $$
+
 \rho_t(\lambda X + (1-\lambda)Y) \le \lambda \rho_t(X) + (1-\lambda) \rho_t(Y) \quad \text{a.s.}
+
 $$
 
 This generalizes conditional coherence.
@@ -92,8 +106,11 @@ This generalizes conditional coherence.
 ### Conditional Expectation
 
 The simplest conditional risk measure:
+
 $$
+
 \rho_t(X) = \mathbb{E}[X | \mathcal{F}_t]
+
 $$
 
 This is conditionally coherent but **risk-neutral** (no risk aversion).
@@ -101,7 +118,9 @@ This is conditionally coherent but **risk-neutral** (no risk aversion).
 ### Conditional VaR
 
 $$
+
 \text{VaR}_\alpha^t(X) = \inf\{m \in L^\infty(\mathcal{F}_t) : \mathbb{P}(X \le m | \mathcal{F}_t) \ge \alpha\}
+
 $$
 
 The conditional $\alpha$-quantile of $X$ given $\mathcal{F}_t$.
@@ -111,12 +130,17 @@ The conditional $\alpha$-quantile of $X$ given $\mathcal{F}_t$.
 ### Conditional ES
 
 $$
+
 \text{ES}_\alpha^t(X) = \mathbb{E}[X | X \ge \text{VaR}_\alpha^t(X), \mathcal{F}_t]
+
 $$
 
 Or using the integral representation:
+
 $$
+
 \text{ES}_\alpha^t(X) = \frac{1}{1-\alpha} \int_\alpha^1 \text{VaR}_u^t(X) \, du
+
 $$
 
 Conditional ES is conditionally coherent.
@@ -124,7 +148,9 @@ Conditional ES is conditionally coherent.
 ### Conditional Entropic Risk
 
 $$
+
 \rho_t^\gamma(X) = \frac{1}{\gamma} \log \mathbb{E}[e^{\gamma X} | \mathcal{F}_t]
+
 $$
 
 This is conditionally convex but not positively homogeneous.
@@ -136,7 +162,9 @@ This is conditionally convex but not positively homogeneous.
 Conditionally coherent risk measures admit a dual representation:
 
 $$
+
 \rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q} \in \mathcal{Q}_t} \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t]
+
 $$
 
 where $\mathcal{Q}_t$ is a set of probability measures equivalent to $\mathbb{P}$ on $\mathcal{F}_T$.
@@ -144,8 +172,11 @@ where $\mathcal{Q}_t$ is a set of probability measures equivalent to $\mathbb{P}
 **Interpretation:** Risk is the worst-case conditional expectation over a set of "stress" measures.
 
 For conditionally convex measures:
+
 $$
+
 \rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q}} \left\{ \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t] - \alpha_t(\mathbb{Q}) \right\}
+
 $$
 
 where $\alpha_t(\mathbb{Q})$ is a conditional penalty function.
@@ -155,13 +186,19 @@ where $\alpha_t(\mathbb{Q})$ is a conditional penalty function.
 ## Normalization Properties
 
 A conditional risk measure is **normalized** if:
+
 $$
+
 \rho_t(0) = 0 \quad \text{a.s.}
+
 $$
 
 Combined with translation invariance, this implies:
+
 $$
+
 \rho_t(c) = c \quad \text{for any } \mathcal{F}_t\text{-measurable } c
+
 $$
 
 ---
@@ -171,7 +208,9 @@ $$
 Static risk measures are special cases with **trivial information**:
 
 $$
+
 \rho = \rho_0 \quad \text{where } \mathcal{F}_0 = \{\emptyset, \Omega\}
+
 $$
 
 When $\mathcal{F}_0$ is trivial, $\rho_0(X)$ is a constant (a real number), recovering the static case.
@@ -187,8 +226,11 @@ Key requirements:
 2. The family should satisfy **time-consistency** (see [Time-Consistency](time_consistency.md))
 
 **Composition:**
+
 $$
+
 \rho_{s,t}(X) := \rho_s(-\rho_t(X))
+
 $$
 
 represents the risk at time $s$ of a position evaluated at time $t$.
@@ -202,11 +244,14 @@ As information arrives, risk is updated:
 **Before event:** $\rho_0(X) = 50$
 
 **After observing $A \in \mathcal{F}_1$:**
+
 $$
+
 \rho_1(X)(\omega) = \begin{cases}
 30 & \omega \in A \\
 70 & \omega \in A^c
 \end{cases}
+
 $$
 
 The conditional risk measure adapts to the realized state.
@@ -216,8 +261,11 @@ The conditional risk measure adapts to the realized state.
 ## Conditional Acceptance Sets
 
 Define the **conditional acceptance set**:
+
 $$
+
 \mathcal{A}_t = \{X \in L^\infty(\mathcal{F}_T) : \rho_t(X) \le 0 \text{ a.s.}\}
+
 $$
 
 Properties:
@@ -226,8 +274,11 @@ Properties:
 - If $\rho_t$ is coherent: $\mathcal{A}_t$ is a convex cone
 
 **Reconstruction:** 
+
 $$
+
 \rho_t(X) = \operatorname{ess\,inf}\{m \in L^\infty(\mathcal{F}_t) : X - m \in \mathcal{A}_t\}
+
 $$
 
 ---
@@ -235,8 +286,11 @@ $$
 ## Relevance Property
 
 A conditional risk measure is **relevant** if:
+
 $$
+
 X < 0 \text{ on } A \text{ (with } \mathbb{P}(A) > 0) \quad \Rightarrow \quad \rho_t(X) < 0 \text{ on } A
+
 $$
 
 Relevance ensures that strict improvements are recognized.
@@ -248,12 +302,17 @@ Relevance ensures that strict improvements are recognized.
 For a portfolio $X = \sum_i X_i$, the conditional capital allocation to unit $i$ is:
 
 $$
+
 \text{AC}_i^t = \mathbb{E}[X_i | X \ge \text{VaR}_\alpha^t(X), \mathcal{F}_t]
+
 $$
 
 for conditional ES, satisfying:
+
 $$
+
 \sum_i \text{AC}_i^t = \rho_t(X) \quad \text{a.s.}
+
 $$
 
 This enables **state-dependent capital allocation**.

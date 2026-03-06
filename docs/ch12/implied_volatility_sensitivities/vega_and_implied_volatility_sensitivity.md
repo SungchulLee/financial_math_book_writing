@@ -17,7 +17,9 @@ This section develops a comprehensive treatment of vega, from the basic Black-Sc
 For an option with price $P$ and implied volatility $\sigma_{\text{IV}}$, **vega** is defined as:
 
 $$
+
 \mathcal{V} := \frac{\partial P}{\partial \sigma_{\text{IV}}}
+
 $$
 
 
@@ -26,7 +28,9 @@ This measures the first-order sensitivity of the option price to changes in impl
 **Convention:** Vega is typically quoted per 1% (100 basis points) change in implied volatility:
 
 $$
+
 \mathcal{V}_{1\%} = \frac{\partial P}{\partial \sigma_{\text{IV}}} \times 0.01
+
 $$
 
 
@@ -36,14 +40,18 @@ $$
 In the Black-Scholes model, vega has a closed-form expression:
 
 $$
+
 \mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}
+
 $$
 
 
 where $\phi(\cdot)$ is the standard normal density and:
 
 $$
+
 d_1 = \frac{\ln(S_0/K) + (r - q + \sigma^2/2)T}{\sigma\sqrt{T}}
+
 $$
 
 
@@ -55,7 +63,9 @@ $$
 **Equivalently:**
 
 $$
+
 \mathcal{V}_{\text{BS}} = K e^{-rT} \phi(d_2) \sqrt{T}
+
 $$
 
 
@@ -67,14 +77,18 @@ where $d_2 = d_1 - \sigma\sqrt{T}$.
 There is a remarkable duality between vega and delta:
 
 $$
+
 \mathcal{V} = S_0 \sqrt{T} \cdot \frac{\partial C}{\partial d_1} \cdot \frac{\partial d_1}{\partial \sigma}
+
 $$
 
 
 Using the Black-Scholes formula:
 
 $$
+
 \frac{\partial C}{\partial d_1} = S_0 e^{-qT} \phi(d_1)
+
 $$
 
 
@@ -89,35 +103,45 @@ This shows that vega can be interpreted as the "delta with respect to $d_1$" sca
 The dependence of vega on strike (or moneyness) follows directly from the $\phi(d_1)$ term:
 
 $$
+
 \mathcal{V}(K) = S_0 e^{-qT} \sqrt{T} \cdot \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{d_1^2}{2}\right)
+
 $$
 
 
 **At-the-money forward ($K = F = S_0 e^{(r-q)T}$):**
 
 $$
+
 d_1 = \frac{\sigma\sqrt{T}}{2}, \quad \mathcal{V}_{\text{ATM}} = S_0 e^{-qT} \sqrt{T} \cdot \phi\left(\frac{\sigma\sqrt{T}}{2}\right)
+
 $$
 
 
 For small $\sigma\sqrt{T}$:
 
 $$
+
 \mathcal{V}_{\text{ATM}} \approx \frac{S_0 e^{-qT} \sqrt{T}}{\sqrt{2\pi}} \left(1 - \frac{\sigma^2 T}{8}\right)
+
 $$
 
 
 **Deep in-the-money ($K \ll S_0$):**
 
 $$
+
 d_1 \to +\infty, \quad \phi(d_1) \to 0, \quad \mathcal{V} \to 0
+
 $$
 
 
 **Deep out-of-the-money ($K \gg S_0$):**
 
 $$
+
 d_1 \to -\infty, \quad \phi(d_1) \to 0, \quad \mathcal{V} \to 0
+
 $$
 
 
@@ -129,14 +153,18 @@ $$
 The $\sqrt{T}$ factor in vega produces characteristic maturity behavior:
 
 $$
+
 \mathcal{V}(T) = S_0 e^{-qT} \phi(d_1(T)) \sqrt{T}
+
 $$
 
 
 **Short maturity ($T \to 0$):**
 
 $$
+
 \sqrt{T} \to 0 \quad \Rightarrow \quad \mathcal{V} \to 0
+
 $$
 
 
@@ -149,21 +177,27 @@ Short-dated options have small vega because:
 For ATM options:
 
 $$
+
 d_1 \to \frac{\sigma\sqrt{T}}{2} \to \infty \quad \Rightarrow \quad \phi(d_1) \to 0
+
 $$
 
 
 The product $\sqrt{T} \cdot \phi(d_1)$ eventually decreases:
 
 $$
+
 \lim_{T \to \infty} \sqrt{T} \cdot \phi\left(\frac{\sigma\sqrt{T}}{2}\right) = \lim_{T \to \infty} \frac{\sqrt{T}}{\sqrt{2\pi}} e^{-\sigma^2 T/8} = 0
+
 $$
 
 
 **Peak vega maturity:** For ATM options, vega peaks at an intermediate maturity:
 
 $$
+
 T^* = \frac{4}{\sigma^2}
+
 $$
 
 
@@ -193,21 +227,27 @@ The complete vega surface $\mathcal{V}(K, T)$ exhibits:
 **Definition:**
 
 $$
+
 \text{Vanna} := \frac{\partial^2 P}{\partial S \partial \sigma} = \frac{\partial \mathcal{V}}{\partial S} = \frac{\partial \Delta}{\partial \sigma}
+
 $$
 
 
 **Black-Scholes formula:**
 
 $$
+
 \text{Vanna}_{\text{BS}} = -e^{-qT} \phi(d_1) \frac{d_2}{\sigma} = \frac{\mathcal{V}}{S} \left(1 - \frac{d_1}{\sigma\sqrt{T}}\right)
+
 $$
 
 
 **Equivalently:**
 
 $$
+
 \text{Vanna}_{\text{BS}} = -\frac{\mathcal{V} \cdot d_2}{S \sigma \sqrt{T}}
+
 $$
 
 
@@ -224,21 +264,27 @@ $$
 **Definition:**
 
 $$
+
 \text{Volga} := \frac{\partial^2 P}{\partial \sigma^2} = \frac{\partial \mathcal{V}}{\partial \sigma}
+
 $$
 
 
 **Black-Scholes formula:**
 
 $$
+
 \text{Volga}_{\text{BS}} = \mathcal{V} \cdot \frac{d_1 d_2}{\sigma}
+
 $$
 
 
 **Equivalently:**
 
 $$
+
 \text{Volga}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T} \cdot \frac{d_1 d_2}{\sigma}
+
 $$
 
 
@@ -254,14 +300,18 @@ $$
 **Definition:**
 
 $$
+
 \text{Ultima} := \frac{\partial^3 P}{\partial \sigma^3} = \frac{\partial \text{Volga}}{\partial \sigma}
+
 $$
 
 
 **Black-Scholes formula:**
 
 $$
+
 \text{Ultima}_{\text{BS}} = -\frac{\mathcal{V}}{\sigma^2} \left[ d_1 d_2 (1 - d_1 d_2) + d_1^2 + d_2^2 \right]
+
 $$
 
 
@@ -286,7 +336,9 @@ Ultima is rarely used in practice but becomes relevant for portfolios with large
 Because traders quote options in terms of implied volatility rather than price, vega measures sensitivity to **observable market moves**:
 
 $$
+
 \Delta P \approx \mathcal{V} \cdot \Delta \sigma_{\text{IV}}
+
 $$
 
 
@@ -300,14 +352,18 @@ This first-order approximation underlies most day-to-day volatility risk managem
 **Dollar vega:** The absolute change in position value for a 1% move in implied volatility:
 
 $$
+
 \mathcal{V}_{\$} = \mathcal{V} \times \text{Position Size}
+
 $$
 
 
 **Percentage vega:** The percentage change in option price per 1% move in IV:
 
 $$
+
 \mathcal{V}_{\%} = \frac{\mathcal{V}}{P} \times 100
+
 $$
 
 
@@ -319,7 +375,9 @@ $$
 Importantly, when using market-implied volatility, vega has a model-free interpretation:
 
 $$
+
 \Delta P_{\text{market}} \approx \mathcal{V}_{\text{BS}}(\sigma_{\text{IV}}) \cdot \Delta \sigma_{\text{IV}}
+
 $$
 
 
@@ -336,7 +394,9 @@ In models beyond Black-Scholes (local volatility, stochastic volatility), the co
 **Definition:** Model-consistent vega is the derivative of the model price with respect to a parallel shift in the implied volatility surface:
 
 $$
+
 \mathcal{V}_{\text{model}} = \frac{\partial P_{\text{model}}}{\partial \sigma_{\text{IV}}}
+
 $$
 
 
@@ -348,21 +408,27 @@ This differs from the Black-Scholes vega because model prices depend on the enti
 In local volatility models:
 
 $$
+
 dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+
 $$
 
 
 The vega with respect to a bump in the local volatility surface is:
 
 $$
+
 \mathcal{V}_{\text{loc}} = \int_0^T \int_0^\infty \frac{\partial P}{\partial \sigma_{\text{loc}}(S, t)} \cdot \delta\sigma_{\text{loc}}(S, t) \, dS \, dt
+
 $$
 
 
 For a parallel bump $\delta\sigma_{\text{loc}} = \epsilon$:
 
 $$
+
 \mathcal{V}_{\text{loc}} \neq \mathcal{V}_{\text{BS}}
+
 $$
 
 
@@ -374,10 +440,12 @@ because the local volatility surface and implied volatility surface are related 
 In stochastic volatility models (e.g., Heston):
 
 $$
+
 \begin{align}
 dS_t &= (r - q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 \end{align}
+
 $$
 
 
@@ -420,7 +488,9 @@ A portfolio of options across multiple strikes and maturities has vega exposure 
 **Definition:** Parallel vega is the sensitivity to a uniform shift across all implied volatilities:
 
 $$
+
 \mathcal{V}_{\parallel} = \sum_{i} \mathcal{V}_i
+
 $$
 
 
@@ -434,7 +504,9 @@ where $\mathcal{V}_i$ is the vega of the $i$-th option.
 **Definition:** Term structure vega decomposes sensitivity by maturity:
 
 $$
+
 \mathcal{V}(T_j) = \sum_{i: T_i \in \text{bucket } j} \mathcal{V}_i
+
 $$
 
 
@@ -457,7 +529,9 @@ The portfolio is net long $\$50K$ vega, but:
 **Definition:** Smile vega decomposes sensitivity by strike:
 
 $$
+
 \mathcal{V}(K_j) = \sum_{i: K_i \in \text{bucket } j} \mathcal{V}_i
+
 $$
 
 
@@ -483,17 +557,23 @@ $$
 **Calculation:**
 
 $$
+
 d_1 = \frac{\ln(100/100) + (0.05 + 0.04/2) \times 0.25}{0.20 \times 0.5} = \frac{0 + 0.0175}{0.10} = 0.175
+
 $$
 
 
 $$
+
 \phi(0.175) = \frac{1}{\sqrt{2\pi}} e^{-0.175^2/2} = 0.3945
+
 $$
 
 
 $$
+
 \mathcal{V} = 100 \times 0.3945 \times 0.5 = 19.73
+
 $$
 
 
@@ -520,12 +600,16 @@ For the same parameters, vary $K$:
 Using the same ATM parameters:
 
 $$
+
 d_2 = d_1 - \sigma\sqrt{T} = 0.175 - 0.10 = 0.075
+
 $$
 
 
 $$
+
 \text{Vanna} = -\frac{\mathcal{V} \cdot d_2}{S \cdot \sigma \cdot \sqrt{T}} = -\frac{19.73 \times 0.075}{100 \times 0.20 \times 0.5} = -0.148
+
 $$
 
 
@@ -535,7 +619,9 @@ $$
 
 
 $$
+
 \text{Volga} = \mathcal{V} \cdot \frac{d_1 d_2}{\sigma} = 19.73 \times \frac{0.175 \times 0.075}{0.20} = 1.30
+
 $$
 
 
@@ -562,14 +648,18 @@ $$
 When hedging across different maturities, use **time-weighted vega**:
 
 $$
+
 \mathcal{V}_{\sqrt{T}} = \mathcal{V} / \sqrt{T}
+
 $$
 
 
 This normalizes for the $\sqrt{T}$ dependence:
 
 $$
+
 \text{Hedge ratio} = -\frac{\mathcal{V}_{\text{portfolio}} / \sqrt{T_{\text{portfolio}}}}{\mathcal{V}_{\text{hedge}} / \sqrt{T_{\text{hedge}}}}
+
 $$
 
 
@@ -581,14 +671,18 @@ For complex portfolios, hedge using multiple instruments:
 **Objective:** Find hedge ratios $n_1, n_2, \ldots$ such that:
 
 $$
+
 \mathcal{V}_{\text{portfolio}} + \sum_j n_j \mathcal{V}_j^{(\text{hedge})} = 0
+
 $$
 
 
 **Extended objective (term structure):**
 
 $$
+
 \mathcal{V}_{\text{portfolio}}(T_k) + \sum_j n_j \mathcal{V}_j^{(\text{hedge})}(T_k) = 0 \quad \text{for each bucket } k
+
 $$
 
 
@@ -614,21 +708,27 @@ This requires at least as many hedging instruments as buckets.
 The P&L from volatility moves is:
 
 $$
+
 \text{P\&L}_{\sigma} = \mathcal{V} \cdot \Delta\sigma + \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2 + \text{higher order}
+
 $$
 
 
 **First-order approximation:**
 
 $$
+
 \text{P\&L}_{\sigma} \approx \mathcal{V} \cdot \Delta\sigma
+
 $$
 
 
 **Second-order refinement (important for large moves):**
 
 $$
+
 \text{P\&L}_{\sigma} \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2
+
 $$
 
 
@@ -638,14 +738,18 @@ $$
 When spot and volatility move together:
 
 $$
+
 \text{P\&L}_{\text{cross}} = \text{Vanna} \cdot \Delta S \cdot \Delta\sigma
+
 $$
 
 
 **Empirical regularity:** For equity indices, spot and volatility are negatively correlated:
 
 $$
+
 \Delta\sigma \approx -\beta \cdot \frac{\Delta S}{S}, \quad \beta > 0
+
 $$
 
 
@@ -659,7 +763,9 @@ This **leverage effect** means:
 Combining all effects:
 
 $$
+
 \text{P\&L} = \Delta \cdot \Delta S + \frac{1}{2}\Gamma \cdot (\Delta S)^2 + \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2 + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma + \Theta \cdot \Delta t
+
 $$
 
 
@@ -673,7 +779,9 @@ Vega and implied volatility sensitivities form the foundation of volatility risk
 ### 1. Basic Properties
 
 $$
+
 \mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}
+
 $$
 
 - Positive for all options
@@ -703,7 +811,9 @@ $$
 ### 5. P&L Attribution
 
 $$
+
 \text{P\&L}_{\text{vol}} \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2 + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma
+
 $$
 
 Understanding these sensitivities enables effective volatility trading and risk management.

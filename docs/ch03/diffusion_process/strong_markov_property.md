@@ -11,9 +11,11 @@ This section states the **strong Markov property** for Brownian motion and (unde
 A process $(X_t)$ is (time-inhomogeneous) Markov if for bounded measurable $\varphi$ and $0\le s\le t$,
 
 $$
+
 \boxed{
 \mathbb{E}[\varphi(X_t)\mid \mathcal{F}_s] = \mathbb{E}[\varphi(X_t)\mid X_s]
 }
+
 $$
 
 
@@ -28,11 +30,13 @@ It is **strong Markov** if the same property holds when $s$ is replaced by a sto
 Let $\tau$ be a stopping time. For bounded measurable $\varphi$ and $t\ge 0$,
 
 $$
+
 \boxed{
 \mathbb{E}[\varphi(X_{\tau+t})\mid \mathcal{F}_\tau]
 =
 \mathbb{E}^{X_\tau}[\varphi(X_t)]
 }
+
 $$
 
 

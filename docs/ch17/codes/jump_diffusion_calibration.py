@@ -1,3 +1,9 @@
+"""
+Jump Diffusion Calibration
+
+Educational script demonstrating jump diffusion calibration concepts.
+"""
+
 # ---
 # title: "Jump-Diffusion Model Calibration to Option Prices"
 # description: >
@@ -27,6 +33,8 @@ from functools import lru_cache
 # ══════════════════════════════════════════════════════════════════
 #  Jump-Diffusion Monte Carlo Pricer
 # ══════════════════════════════════════════════════════════════════
+
+# ======================================================================
 
 def jd_mcs_european_call(S0, K, T, r, sigma, lamb, mu_j, delta,
                          I=50_000, M=50, fixed_seed=True):

@@ -1,3 +1,9 @@
+"""
+Binomial Model Parameter
+
+Educational script demonstrating binomial model parameter concepts.
+"""
+
 # ============================================================================
 # binomial_model/binomial_model_parameter.py
 # ============================================================================
@@ -69,3 +75,7 @@ class BinomialParameter:
         
         q_u = (np.exp(r * dt) - d) / (u - d)
         return u, d, q_u, 1 - q_u
+
+
+if __name__ == "__main__":
+    pass

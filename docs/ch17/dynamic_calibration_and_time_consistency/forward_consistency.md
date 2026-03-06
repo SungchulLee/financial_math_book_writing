@@ -23,7 +23,9 @@ Let $\theta_t$ denote calibrated parameters at time $t$, and let $\Phi_{t \to t+
 A model is **forward consistent** if, for typical market realizations:
 
 $$
+
 \hat{\theta}_{t+\Delta t}^{\text{calib}} \approx \Phi_{t \to t+\Delta t}(\hat{\theta}_t, \omega),
+
 $$
 
 where $\hat{\theta}_{t+\Delta t}^{\text{calib}}$ is the result of fresh calibration at $t + \Delta t$.
@@ -48,13 +50,17 @@ The Heath–Jarrow–Morton (HJM) framework provides the canonical example of fo
 In HJM, the entire forward rate curve $f(t, T)$ for $T \ge t$ is modeled as the state variable:
 
 $$
+
 df(t, T) = \alpha(t, T) \, dt + \sigma(t, T) \, dW_t.
+
 $$
 
 The no-arbitrage drift condition determines $\alpha$ in terms of $\sigma$:
 
 $$
+
 \alpha(t, T) = \sigma(t, T) \int_t^T \sigma(t, u) \, du.
+
 $$
 
 ### Why HJM is forward consistent
@@ -92,7 +98,9 @@ Models like Heston use a small number of parameters ($\kappa$, $\bar{v}$, $\sigm
 In Heston, the variance process follows:
 
 $$
+
 dv_t = \kappa(\bar{v} - v_t) \, dt + \sigma_v \sqrt{v_t} \, dW_t^v.
+
 $$
 
 The model specifies how $v_t$ evolves, but not how $(\kappa, \bar{v}, \sigma_v, \rho)$ evolve. When we recalibrate:
@@ -121,7 +129,9 @@ Enlarge the state space to include variables that can track surface dynamics.
 Model the entire forward variance curve $\xi_t(T) = \mathbb{E}_t[v_T]$ as the state:
 
 $$
+
 d\xi_t(T) = \text{(drift)} \, dt + \eta(T - t) \xi_t(T) \, dW_t.
+
 $$
 
 The forward variance curve is now a state variable, analogous to forward rates in HJM. Calibration becomes observing $\xi_t(\cdot)$ from option prices.
@@ -135,7 +145,9 @@ The forward variance curve is now a state variable, analogous to forward rates i
 Allow parameters to follow their own stochastic processes:
 
 $$
+
 d\theta_t = \mu_\theta(\theta_t) \, dt + \Sigma_\theta(\theta_t) \, dZ_t.
+
 $$
 
 The parameter process $\theta_t$ is now part of the model. Calibration estimates the current state $\theta_t$, and the model specifies future evolution.
@@ -164,7 +176,9 @@ The CRC framework (Björk, Landén, Svensson; Carmona, Nadtochiy) formalizes the
 Let $\mathcal{C}: \text{(market data)} \to \theta$ be the calibration map. Let $\Phi: \theta_t \to \theta_{t+\Delta t}$ be model-implied evolution. CRC requires:
 
 $$
+
 \mathcal{C}(\text{prices at } t + \Delta t) = \Phi(\mathcal{C}(\text{prices at } t), \omega).
+
 $$
 
 This is a strong constraint that typically cannot be satisfied by standard models. The CRC framework characterizes *which* models and calibration procedures are mutually consistent.
@@ -174,7 +188,9 @@ This is a strong constraint that typically cannot be satisfied by standard model
 By analogy with LIBOR market models for rates, one can model tradeable volatility instruments (e.g., variance swaps, VIX futures) directly:
 
 $$
+
 d\text{VS}_t(T) = \text{VS}_t(T) \sigma_{\text{VS}}(t, T) \, dW_t.
+
 $$
 
 This ensures that calibration to variance swap prices is consistent with modeled dynamics.

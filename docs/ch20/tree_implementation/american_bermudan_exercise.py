@@ -11,6 +11,8 @@ import numpy as np
 from typing import List, Tuple, Dict
 
 
+# ======================================================================
+
 class BinomialTree:
     """Binomial tree for option pricing with early exercise."""
     

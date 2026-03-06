@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def binomial_delta_hedging():
     """
     Delta Hedging Simulation.

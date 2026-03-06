@@ -15,7 +15,9 @@ A model calibrated at time $t$ is typically used to:
 If the model is recalibrated at $t + \Delta t$ to new data, the parameter shift
 
 $$
+
 \theta_t \longrightarrow \theta_{t+\Delta t}
+
 $$
 
 can introduce artificial P&L unrelated to actual market moves.
@@ -64,7 +66,9 @@ Different optimizer initializations or convergence criteria can yield different 
 Let $\hat{\theta}_t$ denote calibrated parameters on day $t$. Define:
 
 $$
+
 \Delta\theta_t = \hat{\theta}_t - \hat{\theta}_{t-1}.
+
 $$
 
 Unstable calibration exhibits:
@@ -78,7 +82,9 @@ Unstable calibration exhibits:
 Compute rolling standard deviation of each parameter:
 
 $$
+
 \text{Vol}_T(\theta_i) = \sqrt{\frac{1}{T} \sum_{t=1}^{T} (\theta_{i,t} - \bar{\theta}_i)^2}.
+
 $$
 
 Compare to economically plausible variation. If $\text{Vol}(\rho)$ implies correlation swinging from $-0.9$ to $-0.5$ weekly, something is wrong.
@@ -88,7 +94,9 @@ Compare to economically plausible variation. If $\text{Vol}(\rho)$ implies corre
 Decompose daily P&L:
 
 $$
+
 \text{P\&L} = \underbrace{\Delta \cdot \Delta S + \frac{1}{2}\Gamma \cdot (\Delta S)^2 + \text{Vega} \cdot \Delta\sigma + \Theta \cdot \Delta t}_{\text{explained}} + \underbrace{\text{residual}}_{\text{unexplained}}.
+
 $$
 
 Recalibration-induced P&L shows up as unexplained residual even when market moves are modest.
@@ -102,7 +110,9 @@ Recalibration-induced P&L shows up as unexplained residual even when market move
 In continuous-time theory, a delta-hedged portfolio is self-financing. But if parameters jump:
 
 $$
+
 \Delta_t \ne \Delta_{t-}
+
 $$
 
 discontinuously, the rebalancing cost is non-zero and unhedged.
@@ -112,7 +122,9 @@ discontinuously, the rebalancing cost is non-zero and unhedged.
 Greeks depend on calibrated parameters:
 
 $$
+
 \text{Vega}(\hat{\theta}_t) \ne \text{Vega}(\hat{\theta}_{t-1}).
+
 $$
 
 If $\hat{\theta}$ jumps, hedges based on yesterday's Greeks are stale.
@@ -138,7 +150,9 @@ Suppose day 1 calibration yields $v_0 = 0.04$, $\kappa = 2$, $\bar{v} = 0.04$. D
 Apply exponential smoothing:
 
 $$
+
 \theta_t^{\text{smooth}} = \lambda \hat{\theta}_t + (1 - \lambda) \theta_{t-1}^{\text{smooth}}.
+
 $$
 
 **Pros:** Reduces day-to-day noise.
@@ -166,7 +180,9 @@ Calibrate slowly-moving parameters (mean reversion, long-run levels) to historic
 Use Tikhonov regularization pulling toward yesterday's parameters:
 
 $$
+
 \min_\theta \; \mathcal{L}(\theta) + \lambda \|\theta - \hat{\theta}_{t-1}\|^2.
+
 $$
 
 **Pros:** Principled; controls jump magnitude.

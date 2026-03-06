@@ -11,7 +11,9 @@ In the Black–Scholes framework, a market is **complete** if every contingent c
 **Formal definition:** A market is complete if the replicating portfolio $\Pi_t$ satisfies:
 
 $$
+
 \Pi_T = \Phi(S_T) \quad \text{a.s.}
+
 $$
 
 for any payoff $\Phi$, where $\Pi_t$ is constructed from holdings in $S_t$ and the risk-free bond.
@@ -26,7 +28,9 @@ for any payoff $\Phi$, where $\Pi_t$ is constructed from holdings in $S_t$ and t
 Under these conditions, the delta-hedging strategy:
 
 $$
+
 \Delta_t = \frac{\partial C}{\partial S}(t, S_t)
+
 $$
 
 replicates any European payoff exactly.
@@ -42,10 +46,12 @@ Real markets violate the completeness conditions in multiple ways:
 When volatility is random:
 
 $$
+
 \begin{aligned}
 dS_t &= \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^S \\
 dV_t &= a(V_t)\,dt + b(V_t)\,dW_t^V
 \end{aligned}
+
 $$
 
 there are **two sources of randomness** ($W^S$, $W^V$) but only **one traded asset** ($S$). The volatility shock $dW_t^V$ cannot be hedged by trading $S$ alone.
@@ -60,7 +66,9 @@ there are **two sources of randomness** ($W^S$, $W^V$) but only **one traded ass
 If prices can jump:
 
 $$
+
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t + S_{t^-}(e^{J_t} - 1)\,dN_t
+
 $$
 
 where $N_t$ is a Poisson process, then:
@@ -75,13 +83,17 @@ Even with deterministic jump sizes, the number of jump states can exceed the num
 In practice, portfolios are rebalanced at discrete times $t_0 < t_1 < \cdots < t_n$. Between rebalancing:
 
 $$
+
 d\Pi_t = \Delta_{t_i}\,dS_t + (r\,dt)\times\text{(cash)}
+
 $$
 
 but $\Delta_{t_i}$ is stale. The **hedging error** accumulates:
 
 $$
+
 \text{Hedging error} = \int_0^T (\Delta_t^{\text{true}} - \Delta_t^{\text{used}})\,dS_t \neq 0
+
 $$
 
 ### 4. Transaction Costs
@@ -89,7 +101,9 @@ $$
 With proportional transaction costs $\epsilon$, frequent rebalancing incurs costs:
 
 $$
+
 \text{Cost} = \epsilon \sum_{i} |S_{t_i}||\Delta_{t_i} - \Delta_{t_{i-1}}|
+
 $$
 
 The trade-off between hedging error and transaction costs introduces irreducible uncertainty.
@@ -116,7 +130,9 @@ In incomplete markets, the fundamental theorem of asset pricing takes a differen
 **Incomplete market:** A range of no-arbitrage prices exists:
 
 $$
+
 \underline{C} \leq C \leq \overline{C}
+
 $$
 
 where:
@@ -130,13 +146,17 @@ Any price in $[\underline{C}, \overline{C}]$ is consistent with no-arbitrage.
 By the Second Fundamental Theorem of Asset Pricing:
 
 $$
+
 \text{Market complete} \iff \text{Unique EMM } \mathbb{Q}
+
 $$
 
 In incomplete markets, there exists a **family** of equivalent martingale measures $\{\mathbb{Q}_\lambda\}$. Each measure gives a different price:
 
 $$
+
 C_\lambda = e^{-rT}\mathbb{E}^{\mathbb{Q}_\lambda}[\Phi(S_T)]
+
 $$
 
 The selection of $\mathbb{Q}$ requires additional criteria (utility, equilibrium, market price of risk).
@@ -167,7 +187,9 @@ While volatility derivatives exist (variance swaps, VIX options), in many market
 The change from physical to risk-neutral measure involves a **market price of volatility risk** $\lambda_V$:
 
 $$
+
 dW_t^{V,\mathbb{Q}} = dW_t^{V,\mathbb{P}} - \lambda_V(t, S_t, V_t)\,dt
+
 $$
 
 Under $\mathbb{P}$: volatility dynamics reflect actual evolution
@@ -180,7 +202,9 @@ The difference $\lambda_V$ is not uniquely determined by no-arbitrage—it refle
 Empirically, volatility risk carries a **negative premium**: sellers of volatility (e.g., variance swap receivers) earn positive expected returns.
 
 $$
+
 \mathbb{E}^{\mathbb{P}}[\text{RV}^2] < \mathbb{E}^{\mathbb{Q}}[\text{RV}^2] = \text{Variance swap rate}
+
 $$
 
 This premium compensates for:
@@ -197,7 +221,9 @@ This premium compensates for:
 The mean-variance optimal hedge minimizes:
 
 $$
+
 \min_{\Delta} \mathbb{E}\left[(H - V_T^{\Delta})^2\right]
+
 $$
 
 where $H$ is the claim payoff and $V_T^{\Delta}$ the hedged portfolio value.
@@ -205,7 +231,9 @@ where $H$ is the claim payoff and $V_T^{\Delta}$ the hedged portfolio value.
 The **residual variance** measures incompleteness:
 
 $$
+
 \text{Residual var} = \min_{\Delta} \text{Var}[H - V_T^{\Delta}] > 0
+
 $$
 
 ### Minimal Entropy Martingale Measure
@@ -213,7 +241,9 @@ $$
 Among all EMMs, the **minimal entropy** measure $\mathbb{Q}^*$ minimizes:
 
 $$
+
 \mathbb{Q}^* = \arg\min_{\mathbb{Q}} H(\mathbb{Q} | \mathbb{P}) = \arg\min_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}\left[\log\frac{d\mathbb{Q}}{d\mathbb{P}}\right]
+
 $$
 
 This provides a principled way to select among EMMs.
@@ -223,7 +253,9 @@ This provides a principled way to select among EMMs.
 An agent with utility $U$ values a claim at the **indifference price** $p$:
 
 $$
+
 \sup_{\pi} \mathbb{E}[U(X_T^{\pi})] = \sup_{\pi} \mathbb{E}[U(X_T^{\pi} + H - p)]
+
 $$
 
 where $\pi$ ranges over admissible trading strategies.
@@ -256,7 +288,9 @@ Model selection is a form of specifying risk preferences.
 In incomplete markets, hedging P&L decomposes as:
 
 $$
+
 \text{P\&L} = \underbrace{\text{Gamma P\&L}}_{\text{hedgeable}} + \underbrace{\text{Vega P\&L}}_{\text{partially hedgeable}} + \underbrace{\text{Volga/Vanna P\&L}}_{\text{higher-order}} + \underbrace{\text{Unexplained}}_{\text{model error}}
+
 $$
 
 ---

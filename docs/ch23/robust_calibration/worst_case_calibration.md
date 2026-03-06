@@ -21,7 +21,9 @@ This approach is motivated by:
 **Objective**: Find parameters $\theta$ minimizing calibration error:
 
 $$
+
 \hat{\theta} = \arg\min_{\theta \in \Theta} \sum_{i=1}^m w_i [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2
+
 $$
 
 **Problem**: Point estimate ignores parameter uncertainty.
@@ -32,19 +34,25 @@ $$
 **Setup**: Define acceptable parameter set:
 
 $$
+
 \Theta_{\epsilon} = \{\theta: \text{CalibrationError}(\theta) \leq \epsilon\}
+
 $$
 
 **Worst-Case Price**:
 
 $$
+
 V^{\text{worst}} = \min_{\theta \in \Theta_{\epsilon}} V(\theta)
+
 $$
 
 or
 
 $$
+
 V^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} V(\theta)
+
 $$
 
 depending on whether buyer or seller perspective.
@@ -55,7 +63,9 @@ depending on whether buyer or seller perspective.
 **Min-Max Hedging**: For hedging strategy $\Delta$:
 
 $$
+
 \min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{HedgingError}(\Delta, \theta)
+
 $$
 
 **Interpretation**: Find hedge that minimizes worst-case error over all acceptable models.
@@ -69,7 +79,9 @@ $$
 **Definition**:
 
 $$
+
 \Theta_{\epsilon} = \left\{\theta: \sum_{i=1}^m w_i [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2 \leq \epsilon\right\}
+
 $$
 
 **Choosing $\epsilon$**: 
@@ -82,7 +94,9 @@ $$
 **Definition**:
 
 $$
+
 \Theta_{\alpha} = \left\{\theta: \ell(\hat{\theta}) - \ell(\theta) \leq \frac{1}{2}\chi^2_{p, 1-\alpha}\right\}
+
 $$
 
 **Interpretation**: Parameters within $(1-\alpha)$ confidence region.
@@ -93,7 +107,9 @@ $$
 **Definition**: For implied moments $m_1(\theta), \ldots, m_k(\theta)$:
 
 $$
+
 \Theta_{\text{moment}} = \{\theta: |m_j(\theta) - m_j^{\text{market}}| \leq \delta_j, \, j = 1, \ldots, k\}
+
 $$
 
 **Examples**: Match ATM implied volatility, skew, kurtosis.
@@ -107,7 +123,9 @@ $$
 **Definition**:
 
 $$
+
 \Delta^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \Delta(\theta) \quad \text{or} \quad \min_{\theta \in \Theta_{\epsilon}} \Delta(\theta)
+
 $$
 
 **Application**: Upper and lower bounds for hedging position.
@@ -118,7 +136,9 @@ $$
 **Risk Consideration**: Large gamma implies high rebalancing costs.
 
 $$
+
 \Gamma^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} |\Gamma(\theta)|
+
 $$
 
 ### 3. Worst-Case Vega
@@ -127,7 +147,9 @@ $$
 **Volatility Sensitivity Bounds**:
 
 $$
+
 \mathcal{V}^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \mathcal{V}(\theta)
+
 $$
 
 **Stress Testing**: Used for volatility stress scenarios.
@@ -152,13 +174,17 @@ $$
 **P&L**: 
 
 $$
+
 \Pi(\theta) = \Phi(S_T) - \Delta (S_T - S_0) - V_0(\theta)
+
 $$
 
 **Worst-Case P&L**:
 
 $$
+
 \Pi^{\text{worst}} = \min_{\theta \in \Theta_{\epsilon}} \mathbb{E}_{\theta}[\Pi(\theta)]
+
 $$
 
 ### 2. Minimax Hedge
@@ -167,13 +193,17 @@ $$
 **Objective**:
 
 $$
+
 \Delta^* = \arg\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{RiskMeasure}(\Pi(\Delta, \theta))
+
 $$
 
 **Example with Variance**:
 
 $$
+
 \Delta^* = \arg\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{Var}_{\theta}(\Pi)
+
 $$
 
 ### 3. Robust Delta-Gamma Hedging
@@ -182,7 +212,9 @@ $$
 **Extension**: Include gamma hedging instrument:
 
 $$
+
 \min_{\Delta, \phi} \max_{\theta \in \Theta_{\epsilon}} \mathbb{E}_{\theta}[(\Pi - \Delta \Delta S - \phi \Delta_{\text{option}})^2]
+
 $$
 
 where $\phi$ is position in hedging option.
@@ -200,7 +232,9 @@ where $\phi$ is position in hedging option.
 **Uncertainty Set**:
 
 $$
+
 \Theta_{\epsilon} = \left\{\theta: \sum_{i,j} w_{ij} [\sigma_{ij}^{\text{market}} - \sigma_{ij}^{\text{Heston}}(\theta)]^2 \leq \epsilon\right\}
+
 $$
 
 ### 2. Worst-Case Exotic Pricing
@@ -211,11 +245,15 @@ $$
 **Bounds**:
 
 $$
+
 V^{\text{low}} = \min_{\theta \in \Theta_{\epsilon}} V_{\text{exotic}}(\theta)
+
 $$
 
 $$
+
 V^{\text{high}} = \max_{\theta \in \Theta_{\epsilon}} V_{\text{exotic}}(\theta)
+
 $$
 
 **Interpretation**: Range of prices consistent with vanilla calibration.
@@ -236,7 +274,9 @@ $$
 **Dupire Formula**:
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK \frac{\partial C}{\partial K} + qC}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}
+
 $$
 
 **Uncertainty**: Estimation error in market derivatives $\frac{\partial C}{\partial T}$, $\frac{\partial^2 C}{\partial K^2}$.
@@ -247,13 +287,17 @@ $$
 **Construction**: Given confidence intervals for call prices:
 
 $$
+
 C^{\text{low}}(K, T) \leq C(K, T) \leq C^{\text{high}}(K, T)
+
 $$
 
 derive bounds on local volatility:
 
 $$
+
 \sigma_{\text{loc}}^{\text{low}}(K, T) \leq \sigma_{\text{loc}}(K, T) \leq \sigma_{\text{loc}}^{\text{high}}(K, T)
+
 $$
 
 ### 3. Worst-Case Path-Dependent Pricing
@@ -264,7 +308,9 @@ $$
 **Worst-Case**: 
 
 $$
+
 V^{\text{worst}} = \min/\max_{\sigma_{\text{loc}} \in \text{Band}} V_{\text{barrier}}(\sigma_{\text{loc}})
+
 $$
 
 ## Computational Methods
@@ -276,7 +322,9 @@ $$
 **Structure**:
 
 $$
+
 \min_{\Delta} \left\{\max_{\theta \in \Theta_{\epsilon}} f(\Delta, \theta)\right\}
+
 $$
 
 **Algorithm**: Alternating optimization
@@ -290,7 +338,9 @@ $$
 For polynomial objectives, relaxation to SDP:
 
 $$
+
 \max_{\theta \in \Theta_{\epsilon}} p(\theta) \leq \min_{\lambda} \{q(\lambda): q(\theta) - p(\theta) \geq 0 \text{ on } \Theta_{\epsilon}\}
+
 $$
 
 where $q$ is a polynomial bound verified by SOS (sum-of-squares) decomposition.
@@ -311,13 +361,17 @@ where $q$ is a polynomial bound verified by SOS (sum-of-squares) decomposition.
 **Lagrangian**:
 
 $$
+
 \max_{\theta} \min_{\lambda \geq 0} V(\theta) + \lambda (\text{CalibrationError}(\theta) - \epsilon)
+
 $$
 
 **Dual Problem**:
 
 $$
+
 \min_{\lambda \geq 0} \max_{\theta} \{V(\theta) - \lambda \cdot \text{CalibrationError}(\theta)\} + \lambda \epsilon
+
 $$
 
 ## Applications
@@ -339,13 +393,17 @@ $$
 **CVA Calculation**:
 
 $$
+
 \text{CVA}(\theta) = (1 - R) \int_0^T \mathbb{E}^{\theta}[\text{EE}(t)] dP_{\text{default}}(t)
+
 $$
 
 **Worst-Case CVA**:
 
 $$
+
 \text{CVA}^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \text{CVA}(\theta)
+
 $$
 
 ### 3. Model Reserve
@@ -354,7 +412,9 @@ $$
 **Definition**: Additional reserve for model uncertainty:
 
 $$
+
 \text{Model Reserve} = V^{\text{worst}} - V(\hat{\theta})
+
 $$
 
 **Purpose**: Cover potential losses from model misspecification.
@@ -375,7 +435,9 @@ $$
 **Approach**: Average over parameter posterior:
 
 $$
+
 V^{\text{Bayes}} = \mathbb{E}_{\theta | \text{data}}[V(\theta)]
+
 $$
 
 **Difference**: Worst-case uses extreme values; Bayesian uses weighted average.

@@ -45,13 +45,17 @@ Strategy B involves reinvestment at an **unknown future rate**. To eliminate thi
 For no arbitrage, both strategies must cost the same:
 
 $$
+
 P(0, T_2) \cdot [1 + F(0; T_1, T_2)(T_2 - T_1)] = P(0, T_1)
+
 $$
 
 Rearranging:
 
 $$
+
 \frac{P(0, T_1)}{P(0, T_2)} = 1 + F(0; T_1, T_2)(T_2 - T_1)
+
 $$
 
 This is precisely the forward rate definition, showing it arises from no-arbitrage.
@@ -65,7 +69,9 @@ This is precisely the forward rate definition, showing it arises from no-arbitra
 Under absence of arbitrage with non-negative rates:
 
 $$
+
 T_1 < T_2 \implies P(0, T_1) \geq P(0, T_2)
+
 $$
 
 **Proof:** If $P(0, T_1) < P(0, T_2)$:
@@ -81,7 +87,9 @@ $$
 Discount factors must be strictly positive:
 
 $$
+
 P(0, T) > 0 \quad \text{for all } T
+
 $$
 
 A non-positive discount factor would imply:
@@ -95,7 +103,9 @@ Both are arbitrage.
 For stochastic rates, discount factors exhibit convexity:
 
 $$
+
 P(0, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s ds}\right] \geq e^{-\mathbb{E}^{\mathbb{Q}}\left[\int_0^T r_s ds\right]}
+
 $$
 
 by Jensen's inequality (since $e^{-x}$ is convex).
@@ -109,13 +119,17 @@ by Jensen's inequality (since $e^{-x}$ is convex).
 The continuous-time analog of the replication argument yields:
 
 $$
+
 P(0, T) = P(0, t) \cdot e^{-\int_t^T f(0,u) du}
+
 $$
 
 for any $0 \leq t \leq T$. Differentiating:
 
 $$
+
 f(0, T) = -\frac{\partial}{\partial T} \log P(0, T)
+
 $$
 
 ### Chain Rule for Discount Factors
@@ -123,8 +137,10 @@ $$
 For any partition $0 = T_0 < T_1 < \cdots < T_n = T$:
 
 $$
+
 P(0, T) = \prod_{i=1}^{n} \frac{P(0, T_i)}{P(0, T_{i-1})} \cdot P(0, T_0)
 = \prod_{i=1}^{n} \frac{P(0, T_i)}{P(0, T_{i-1})}
+
 $$
 
 This **multiplicative decomposition** underlies bootstrapping algorithms.
@@ -138,7 +154,9 @@ This **multiplicative decomposition** underlies bootstrapping algorithms.
 A coupon bond with cashflows $c_i$ at times $T_i$ (for $i = 1, \ldots, n$) has price:
 
 $$
+
 B_0 = \sum_{i=1}^n c_i \cdot P(0, T_i)
+
 $$
 
 This is a direct consequence of:
@@ -150,7 +168,9 @@ This is a direct consequence of:
 The **par yield** $y_n$ for maturity $T_n$ is the coupon rate that makes a bond trade at par:
 
 $$
+
 1 = \sum_{i=1}^n y_n \cdot \delta_i \cdot P(0, T_i) + P(0, T_n)
+
 $$
 
 where $\delta_i = T_i - T_{i-1}$ is the accrual fraction.
@@ -158,7 +178,9 @@ where $\delta_i = T_i - T_{i-1}$ is the accrual fraction.
 Solving:
 
 $$
+
 y_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i \cdot P(0, T_i)}
+
 $$
 
 Par yields are observable in swap markets.
@@ -172,13 +194,17 @@ Par yields are observable in swap markets.
 A curve violates no-arbitrage if:
 
 $$
+
 \frac{P(0, T_1)}{P(0, T_2)} < 1 \quad \text{for some } T_1 < T_2
+
 $$
 
 This would imply a negative forward rate:
 
 $$
+
 F(0; T_1, T_2) = \frac{1}{T_2 - T_1}\left(\frac{P(0, T_1)}{P(0, T_2)} - 1\right) < 0
+
 $$
 
 While negative forwards can occur (with negative rates), **implied negative rates must be consistent with market reality**.
@@ -188,7 +214,9 @@ While negative forwards can occur (with negative rates), **implied negative rate
 For three maturities $T_1 < T_2 < T_3$, convexity requires:
 
 $$
+
 P(0, T_2) \leq \lambda P(0, T_1) + (1-\lambda) P(0, T_3)
+
 $$
 
 where $\lambda = (T_3 - T_2)/(T_3 - T_1)$.
@@ -207,7 +235,9 @@ Violation implies arbitrage via a butterfly trade:
 A **forward contract** to buy a $T_2$-bond at time $T_1$ has forward price:
 
 $$
+
 F_B(0; T_1, T_2) = \frac{P(0, T_2)}{P(0, T_1)}
+
 $$
 
 This is the ratio of discount factors, reflecting no-arbitrage.
@@ -217,7 +247,9 @@ This is the ratio of discount factors, reflecting no-arbitrage.
 A **forward-starting swap** beginning at $T_0$ with payments at $T_1, \ldots, T_n$ has forward swap rate:
 
 $$
+
 S(0; T_0, T_n) = \frac{P(0, T_0) - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
+
 $$
 
 This rate makes the swap have zero initial value.

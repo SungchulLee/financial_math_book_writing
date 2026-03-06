@@ -26,7 +26,9 @@ The pricing of exotic options demands more sophisticated mathematical tools than
 A vanilla option has a payoff determined entirely by the **terminal value** of a single underlying asset:
 
 $$
+
 \text{Call payoff} = (S_T - K)^+, \quad \text{Put payoff} = (K - S_T)^+
+
 $$
 
 An exotic option departs from this structure in one or more ways:
@@ -104,9 +106,11 @@ The following table summarizes which pricing approaches are practical for each e
 The general principle is:
 
 $$
+
 \boxed{
 \text{Option Price} = e^{-rT}\, \mathbb{E}^{\mathbb{Q}}\!\left[\text{Payoff}(\{S_t\}_{0 \leq t \leq T})\right]
 }
+
 $$
 
 where the expectation must account for path-dependent features—this is what makes exotic pricing fundamentally harder than vanilla pricing.

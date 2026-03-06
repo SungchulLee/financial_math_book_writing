@@ -11,6 +11,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
+
 def generate_paths_cir_euler(num_paths, num_steps, T, lmbda, r0, theta, gamma):
     """
     Generate CIR process paths using Euler scheme.
@@ -153,6 +158,10 @@ def main():
     gamma_vec = [0.1, 0.2, 0.3]
     plot_gamma_effect(gamma_vec, num_paths, num_steps, T, lmbda, r0, theta)
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == "__main__":
     main()

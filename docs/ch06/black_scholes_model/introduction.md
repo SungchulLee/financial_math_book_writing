@@ -72,7 +72,9 @@ Recall from Section 2.1 that the **binomial model** provides a discrete-time fra
 The Black-Scholes model emerges as the **continuous-time limit** of the binomial framework:
 
 $$
+
 \lim_{n \to \infty, \Delta t \to 0} \text{Binomial Model} = \text{Black-Scholes Model}
+
 $$
 
 where $n$ is the number of time steps and $\Delta t = T/n$.
@@ -117,7 +119,9 @@ The Black-Scholes model consists of three interrelated elements:
 The stock price $S_t$ follows **geometric Brownian motion**:
 
 $$
+
 dS_t = \mu S_t dt + \sigma S_t dW_t
+
 $$
 
 where:
@@ -131,13 +135,17 @@ where:
 The option value $V(S,t)$ satisfies the **Black-Scholes PDE**:
 
 $$
+
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+
 $$
 
 with terminal condition (for European call):
 
 $$
+
 V(S,T) = \max(S-K, 0)
+
 $$
 
 **3. Hedging Strategy**
@@ -145,7 +153,9 @@ $$
 The replicating portfolio:
 
 $$
+
 \Pi = V - \Delta S
+
 $$
 
 where $\Delta = \frac{\partial V}{\partial S}$ is the **delta** (hedge ratio).
@@ -176,13 +186,17 @@ By constructing this portfolio to be **locally risk-free**, we eliminate uncerta
 Under the **risk-neutral measure** $\mathbb{Q}$:
 
 $$
+
 V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
+
 $$
 
 The asset grows at the risk-free rate $r$ (not the actual expected return $\mu$):
 
 $$
+
 dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
+
 $$
 
 **Why this works**:
@@ -213,31 +227,41 @@ Unlike buy-and-hold strategies, option replication requires **continuous rebalan
 **Step 1**: Construct a hedged portfolio
 
 $$
+
 \Pi = V - \Delta S
+
 $$
 
 **Step 2**: Choose $\Delta$ to eliminate randomness
 
 $$
+
 \Delta = \frac{\partial V}{\partial S}
+
 $$
 
 **Step 3**: Apply Itô's lemma to $V(S,t)$
 
 $$
+
 dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}dt
+
 $$
 
 **Step 4**: Show portfolio is risk-free
 
 $$
+
 d\Pi = \left[\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt
+
 $$
 
 **Step 5**: No-arbitrage requires risk-free return
 
 $$
+
 d\Pi = r\Pi dt
+
 $$
 
 **Result**: The Black-Scholes PDE.
@@ -252,11 +276,15 @@ Before solving for option prices, observe that simple portfolios satisfy the PDE
 Verify:
 
 $$
+
 \frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0
+
 $$
 
 $$
+
 0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark
+
 $$
 
 **2. The risk-free bond**: $V = e^{rt}$
@@ -264,11 +292,15 @@ $$
 Verify:
 
 $$
+
 \frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0
+
 $$
 
 $$
+
 re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark
+
 $$
 
 **Interpretation**: The PDE correctly describes basic traded assets. Any **linear combination** of stock and bond also satisfies the PDE, forming the basis of replication.

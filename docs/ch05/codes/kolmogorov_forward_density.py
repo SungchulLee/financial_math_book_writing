@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def kolmogorov_forward_density():
     """
     Kolmogorov Forward Density Evolution.

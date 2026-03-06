@@ -1,3 +1,9 @@
+"""
+Black Scholes Utils
+
+Educational script demonstrating black scholes utils concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_utils.py
 # ============================================================================
@@ -1185,3 +1191,7 @@ def save_analysis_summary(options_data, vol_surface, stats, save_path="./data/an
             f.write(f"  Coverage rate: {vol_surface.notna().sum().sum() / vol_surface.size * 100:.1f}%\n")
     
     print(f"📄 Analysis summary saved to: {save_path}")
+
+
+if __name__ == "__main__":
+    pass

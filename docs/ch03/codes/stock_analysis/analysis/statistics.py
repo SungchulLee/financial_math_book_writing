@@ -1,3 +1,9 @@
+"""
+Statistics
+
+Educational script demonstrating statistics concepts.
+"""
+
 # ============================================================================
 # stock_analysis/analysis/statistics.py
 # ============================================================================
@@ -179,3 +185,7 @@ def compute_moving_averages(df: pd.DataFrame, price_col: str = 'Close',
         df_copy[f'MA_{window}'] = df_copy[price_col].rolling(window=window).mean()
     
     return df_copy
+
+
+if __name__ == "__main__":
+    pass

@@ -1,3 +1,9 @@
+"""
+Grid
+
+Educational script demonstrating grid concepts.
+"""
+
 # ============================================================================
 # heat_equation_2d/grid.py
 # ============================================================================
@@ -57,3 +63,7 @@ def create_2d_grid(Lx=1.0, Ly=1.0, T=0.1, Nx=50, Ny=50, Nt=1000, D=0.01):
     X, Y = np.meshgrid(x, y, indexing="ij")
     rx, ry = D*dt/dx**2, D*dt/dy**2
     return Grid2DParams(Lx, Ly, T, Nx, Ny, Nt, D, dx, dy, dt, x, y, X, Y, rx, ry)
+
+
+if __name__ == "__main__":
+    pass

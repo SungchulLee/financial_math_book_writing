@@ -1,3 +1,9 @@
+"""
+Black Scholes Wrapper
+
+Educational script demonstrating black scholes wrapper concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_wrapper.py  
 # ============================================================================
@@ -498,3 +504,7 @@ class BlackScholes:
     def volatility(self):
         """Volatility"""
         return self.sigma
+
+
+if __name__ == "__main__":
+    pass

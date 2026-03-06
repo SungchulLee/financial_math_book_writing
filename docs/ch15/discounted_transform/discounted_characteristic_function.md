@@ -5,7 +5,9 @@
 
 
 If ${\bf X}_t$ is affine, the discounted characteristic function (ChF) has the following affine form:
+
 $$
+
 \begin{array}{lll}
 \displaystyle
 \varphi({\bf X}_t,t,T,{\bf u})
@@ -14,10 +16,14 @@ $$
 =
 e^{A({\bf u},\tau)+{\bf B}({\bf u},\tau)^T{\bf X}_t}
 \end{array}
+
 $$
+
 where $\tau=T−t$. Furthermore,
 The coefficients $A$ and ${\bf B}$ satisfy the following Riccati Equation:
+
 $$\begin{array}{lll}
+
 \displaystyle
 \frac{dA}{d\tau}
 &=&\displaystyle
@@ -26,11 +32,13 @@ $$\begin{array}{lll}
 \frac{d{\bf B}}{d\tau}
 &=&\displaystyle
 -r_1+a_1^T{\bf B}+\frac{1}{2}{\bf B}^Tc_1{\bf B}\\
+
 \end{array}$$
 
 with the initial condition
 
 $$\begin{array}{lll}
+
 \displaystyle
 A({\bf u},0)
 &=&\displaystyle
@@ -39,6 +47,7 @@ A({\bf u},0)
 {\bf B}({\bf u},0)
 &=&\displaystyle
 i{\bf u}^T\\
+
 \end{array}$$
 
 
@@ -51,6 +60,7 @@ i{\bf u}^T\\
 With the fixed $u$ and $T$,
 
 $$
+
 \begin{array}{lll}
 \displaystyle
 U(X,t)
@@ -58,6 +68,7 @@ U(X,t)
 :=e^{-r(T-t)}\mathbb{E^Q}\left[e^{iuX_T}\Big{|}F(t)\right]
 =e^{-r(T-t)}\int e^{iuX_T} p(X,t,X_T,T)dX_T
 \end{array}
+
 $$
 
 ##### U(X,t) Satisfies Black-Scholes PDE
@@ -71,6 +82,7 @@ With change of variable $X=\log S$ and $\tau=T-t$,
 the Black-Scholes PDE for $U(X,t)$ becomes  
 
 $$
+
 \begin{array}{lll}
 \displaystyle
 -\frac{\partial U}{\partial \tau}
@@ -79,6 +91,7 @@ $$
 \frac{1}{2}\sigma^2\frac{\partial^2 U}{\partial X^2}
 -rU=0
 \end{array}
+
 $$
 
 ##### Affine Solution
@@ -88,11 +101,13 @@ $$
 By Duffie-Pan-Singleton, $U(X,t)$ has the following form:
 
 $$
+
 \begin{array}{lll}
 \displaystyle
 U(X,t)
 =e^{A(\tau)+B(\tau)X}
 \end{array}
+
 $$
 
 ##### Riccati Equation
@@ -102,6 +117,7 @@ $$
 Plugging this to the Black-Scholes PDE, we have
 
 $$
+
 \begin{array}{lll}
 \displaystyle
 \left(-\frac{\partial A}{\partial \tau}
@@ -109,11 +125,13 @@ $$
 +\frac{1}{2}\sigma^2B^2
 -r\right) -\left(\frac{\partial B}{\partial \tau}\right)X=0
 \end{array}
+
 $$
 
 or
 
 $$
+
 \begin{array}{lllll}
 \text{Collect Rest}&&
 \displaystyle
@@ -129,6 +147,7 @@ A=\left[-r+\left(r-\frac{1}{2}\sigma^2\right)iu-\frac{1}{2}\sigma^2u^2\right]\ta
 \displaystyle
 B=iu\quad(\text{This is from the terminal condition})\\
 \end{array}
+
 $$
 
 ##### Discounted Characteristic Function From BS PDE
@@ -136,6 +155,7 @@ $$
 
 
 $$
+
 \begin{array}{lll}
 \displaystyle
 \varphi(X_t,t,u,T)
@@ -149,4 +169,5 @@ exp\left(
 +
 iuX_t\right)
 \end{array}
+
 $$

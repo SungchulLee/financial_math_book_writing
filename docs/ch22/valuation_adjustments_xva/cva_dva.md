@@ -11,7 +11,9 @@
 CVA is the expected loss due to counterparty default:
 
 $$
+
 \text{CVA} = \mathbb{E}^{\mathbb{Q}}\left[\text{LGD} \cdot D(\tau) \cdot E_\tau \cdot \mathbf{1}_{\tau \le T}\right]
+
 $$
 
 where:
@@ -30,7 +32,9 @@ where:
 Assuming independence between exposure and default:
 
 $$
+
 \text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot dPD(t) \cdot D(0, t)
+
 $$
 
 where:
@@ -39,8 +43,11 @@ where:
 - $D(0,t)$ = discount factor
 
 **Discrete approximation:**
+
 $$
+
 \text{CVA} \approx \text{LGD} \sum_{i=1}^{n} \text{EE}(t_i) \cdot [PD(t_i) - PD(t_{i-1})] \cdot D(0, t_i)
+
 $$
 
 ---
@@ -50,18 +57,25 @@ $$
 If the default intensity (hazard rate) is $\lambda(t)$:
 
 $$
+
 PD(t) = 1 - e^{-\int_0^t \lambda(s) \, ds}
+
 $$
 
 $$
+
 dPD(t) = \lambda(t) \cdot e^{-\int_0^t \lambda(s) \, ds} \, dt = \lambda(t) \cdot S(t) \, dt
+
 $$
 
 where $S(t) = 1 - PD(t)$ is the survival probability.
 
 **CVA formula:**
+
 $$
+
 \text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot S(t) \cdot D(0,t) \, dt
+
 $$
 
 ---
@@ -71,13 +85,17 @@ $$
 **Unilateral CVA:** Only considers counterparty default risk
 
 $$
+
 \text{CVA}^{\text{unilateral}} = \text{LGD}_C \int_0^T \mathbb{E}[V_t^+] \cdot dPD_C(t) \cdot D(0,t)
+
 $$
 
 **Bilateral CVA:** Considers both counterparty AND own default
 
 $$
+
 \text{CVA}^{\text{bilateral}} = \text{CVA}^{\text{unilateral}} \text{ (counterparty defaults first)}
+
 $$
 
 The bilateral framework requires joint modeling of both default times.
@@ -91,7 +109,9 @@ The bilateral framework requires joint modeling of both default times.
 DVA reflects the benefit from the bank's own default risk:
 
 $$
+
 \text{DVA} = \mathbb{E}^{\mathbb{Q}}\left[\text{LGD}_B \cdot D(\tau_B) \cdot E_{\tau_B}^- \cdot \mathbf{1}_{\tau_B \le T}\right]
+
 $$
 
 where:
@@ -106,7 +126,9 @@ where:
 ### DVA Formula
 
 $$
+
 \text{DVA} = \text{LGD}_B \int_0^T \text{NEE}(t) \cdot dPD_B(t) \cdot D(0,t)
+
 $$
 
 where $\text{NEE}(t) = \mathbb{E}[V_t^-]$ is the Negative Expected Exposure.
@@ -137,7 +159,9 @@ DVA is economically controversial:
 ### Adjusted Derivative Value
 
 $$
+
 V^{\text{adjusted}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA}
+
 $$
 
 where $V^{\text{risk-free}}$ is the classical risk-neutral value ignoring default.
@@ -145,7 +169,9 @@ where $V^{\text{risk-free}}$ is the classical risk-neutral value ignoring defaul
 **Alternative formulation:**
 
 $$
+
 V^{\text{adjusted}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} = V^{\text{risk-free}} - \text{BCVA}
+
 $$
 
 where $\text{BCVA} = \text{CVA} - \text{DVA}$ is the **Bilateral CVA**.
@@ -157,7 +183,9 @@ where $\text{BCVA} = \text{CVA} - \text{DVA}$ is the **Bilateral CVA**.
 In the bilateral setting, only the first default matters:
 
 $$
+
 V^{\text{bilateral}} = \mathbb{E}\left[D(\tau_1) \cdot V_{\tau_1}^* \cdot \mathbf{1}_{\tau_1 \le T}\right] + \mathbb{E}\left[D(T) \cdot V_T \cdot \mathbf{1}_{\tau_1 > T}\right]
+
 $$
 
 where $\tau_1 = \min(\tau_C, \tau_B)$ is the first-to-default time and $V^*$ is the close-out value.
@@ -171,7 +199,9 @@ where $\tau_1 = \min(\tau_C, \tau_B)$ is the first-to-default time and $V^*$ is 
 For portfolios with analytical exposure profiles:
 
 $$
+
 \text{CVA} = \text{LGD} \sum_{i=1}^n \text{EE}(t_i) \cdot \Delta PD_i \cdot D(0, t_i)
+
 $$
 
 with $\text{EE}(t)$ computed analytically (e.g., for single swap).
@@ -196,7 +226,9 @@ For path-dependent exposures or early exercise features, use regression-based me
 ### Credit Spread Sensitivity
 
 $$
+
 \frac{\partial \text{CVA}}{\partial s} = -\text{LGD} \int_0^T \text{EE}(t) \cdot t \cdot e^{-st} \cdot D(0,t) \, dt
+
 $$
 
 where $s$ is the credit spread (constant hazard rate approximation).
@@ -204,7 +236,9 @@ where $s$ is the credit spread (constant hazard rate approximation).
 ### Market Factor Sensitivities
 
 $$
+
 \frac{\partial \text{CVA}}{\partial S} = \text{LGD} \int_0^T \frac{\partial \text{EE}(t)}{\partial S} \cdot dPD(t) \cdot D(0,t)
+
 $$
 
 These are **contingent credit sensitivities**—market Greeks conditional on default.
@@ -273,16 +307,23 @@ Hedge market sensitivities of CVA:
 **Survival probabilities:** $S(t) = e^{-0.02t}$
 
 **CVA calculation:**
+
 $$
+
 \text{CVA} = 0.60 \times \sum_{i=1}^{5} \text{EE}(t_i) \times [S(t_{i-1}) - S(t_i)] \times D(0, t_i)
+
 $$
 
 $$
+
 \approx 0.60 \times (2.0 \times 0.0198 \times 0.97 + 3.5 \times 0.0194 \times 0.94 + \cdots)
+
 $$
 
 $$
+
 \approx \$0.25\text{M} \text{ (approximately)}
+
 $$
 
 ---

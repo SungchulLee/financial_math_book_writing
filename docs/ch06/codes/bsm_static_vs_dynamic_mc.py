@@ -1,3 +1,9 @@
+"""
+Bsm Static Vs Dynamic Mc
+
+Educational script demonstrating bsm static vs dynamic mc concepts.
+"""
+
 # ---
 # title: "BSM Static vs Dynamic Monte Carlo Comparison"
 # description: >
@@ -17,6 +23,7 @@ import numpy.random as npr
 import scipy.stats as scs
 import matplotlib.pyplot as plt
 
+# ======================================================================
 # ── Variance-reduction random-number generator ───────────────────
 def gen_sn(M, I, anti_paths=True, mo_match=True):
     """Generate standard-normal random numbers with optional

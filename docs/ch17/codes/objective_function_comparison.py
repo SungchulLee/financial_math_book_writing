@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def objective_function_comparison():
     """
     Objective Function Comparison.

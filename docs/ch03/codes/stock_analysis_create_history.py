@@ -1,3 +1,9 @@
+"""
+Stock Analysis Create History
+
+Educational script demonstrating stock analysis create history concepts.
+"""
+
 # ============================================================================
 # stock_analysis_CREATE_FINANCIAL_HISTORY_LESSON.py
 # ============================================================================
@@ -21,4 +27,6 @@ def create_financial_history_lesson():
         tickers = sto.get_sp500_tickers_by_year(year, include_index=False)
         print(f"{year}: {event} (Total: {len(tickers)} companies)")
 
-create_financial_history_lesson()
+
+if __name__ == "__main__":
+    create_financial_history_lesson()

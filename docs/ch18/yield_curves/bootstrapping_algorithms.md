@@ -40,7 +40,9 @@ where $\delta$ is the day count fraction (typically ACT/360).
 The deposit rate directly implies the discount factor:
 
 $$
+
 P(0, T) = \frac{1}{1 + R_d \cdot \delta}
+
 $$
 
 ### Example
@@ -60,7 +62,9 @@ $$
 A **3-month interest rate future** with price $F$ implies a forward rate:
 
 $$
+
 R_{\text{fut}} = \frac{100 - F}{100}
+
 $$
 
 for the period from the futures expiry $T_1$ to $T_2 = T_1 + 0.25$.
@@ -70,13 +74,17 @@ for the period from the futures expiry $T_1$ to $T_2 = T_1 + 0.25$.
 Futures rates differ from forward rates due to daily margining. The **convexity adjustment** is:
 
 $$
+
 F(0; T_1, T_2) \approx R_{\text{fut}} - \text{CA}(T_1)
+
 $$
 
 A common approximation:
 
 $$
+
 \text{CA}(T_1) \approx \frac{1}{2} \sigma^2 T_1 (T_2 - T_1)
+
 $$
 
 where $\sigma$ is the rate volatility (typically 0.5-1.5%).
@@ -86,7 +94,9 @@ where $\sigma$ is the rate volatility (typically 0.5-1.5%).
 Given $P(0, T_1)$ from previous stage and forward rate $F(0; T_1, T_2)$:
 
 $$
+
 P(0, T_2) = \frac{P(0, T_1)}{1 + F(0; T_1, T_2) \cdot (T_2 - T_1)}
+
 $$
 
 ### Sequential Application
@@ -94,7 +104,9 @@ $$
 Futures strip provides a chain:
 
 $$
+
 P(0, T_1) \to P(0, T_2) \to P(0, T_3) \to \cdots
+
 $$
 
 Each step uses the forward rate from the corresponding future.
@@ -116,7 +128,9 @@ The swap rate $S_n$ for an $n$-year swap is the rate that makes the swap have ze
 The present value of a swap is:
 
 $$
+
 V_{\text{swap}} = \underbrace{\sum_{i=1}^{n} \delta_i P(0, T_i) \cdot (F_i - S)}_{\text{floating - fixed}}
+
 $$
 
 where $F_i$ is the forward rate for period $i$.
@@ -128,13 +142,17 @@ At inception, $V_{\text{swap}} = 0$ when $S = S_n$ (the par swap rate).
 The par swap rate satisfies:
 
 $$
+
 S_n = \frac{P(0, T_0) - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
+
 $$
 
 For a spot-starting swap with $T_0 = 0$ (so $P(0, T_0) = 1$):
 
 $$
+
 S_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
+
 $$
 
 ### Bootstrapping Formula
@@ -142,7 +160,9 @@ $$
 Rearranging to solve for the unknown $P(0, T_n)$:
 
 $$
+
 P(0, T_n) = \frac{1 - S_n \sum_{i=1}^{n-1} \delta_i P(0, T_i)}{1 + S_n \delta_n}
+
 $$
 
 This requires all previous discount factors $P(0, T_1), \ldots, P(0, T_{n-1})$.
@@ -195,7 +215,9 @@ Bootstrapping produces discount factors at **discrete** maturities. Pricing arbi
 **Linear on Log-Discounts:**
 
 $$
+
 \log P(0, T) = \frac{T_2 - T}{T_2 - T_1} \log P(0, T_1) + \frac{T - T_1}{T_2 - T_1} \log P(0, T_2)
+
 $$
 
 - Equivalent to linear interpolation on continuously compounded zero rates
@@ -240,7 +262,9 @@ After the 2008 financial crisis, the single-curve framework broke down:
 **Step 1:** Bootstrap the OIS curve for discounting
 
 $$
+
 P^{\text{OIS}}(0, T_n) = \frac{1 - S_n^{\text{OIS}} \sum_{i=1}^{n-1} \delta_i P^{\text{OIS}}(0, T_i)}{1 + S_n^{\text{OIS}} \delta_n}
+
 $$
 
 **Step 2:** Bootstrap each tenor curve using OIS for discounting
@@ -252,7 +276,9 @@ For a 3M tenor curve, use basis swaps or directly bootstrap from instruments ref
 The spread between curves of different tenors reflects credit and liquidity risk:
 
 $$
+
 \text{Basis}_{3M/6M} = S_{3M} - S_{6M}
+
 $$
 
 This spread was negligible pre-crisis but became significant afterward.
@@ -284,7 +310,9 @@ Common issues and remedies:
 After bootstrapping, verify by **repricing** all input instruments:
 
 $$
+
 \max_i |V_i^{\text{model}} - V_i^{\text{market}}| < \epsilon
+
 $$
 
 A well-constructed curve should reprice inputs to within bid-ask tolerance.

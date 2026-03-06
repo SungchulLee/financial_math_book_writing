@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def neural_network_option_pricing():
     """
     Neural Network Option Pricing.

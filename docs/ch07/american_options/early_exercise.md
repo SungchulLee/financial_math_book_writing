@@ -29,7 +29,9 @@ Understanding the conditions under which early exercise is rational is essential
     For a **non-dividend-paying stock**, it is **never optimal** to exercise an American call option before maturity. Therefore:
     
     $$
+
     C_{\text{American}}(S, t) = C_{\text{European}}(S, t)
+
     $$
 
 ### Proof
@@ -43,13 +45,17 @@ Consider an American call with strike $K$ and maturity $T$. At any time $t < T$,
 By the lower bound for European calls:
 
 $$
+
 C_{\text{European}}(S_t, t) \geq S_t - K e^{-r(T-t)}
+
 $$
 
 Since $r > 0$ and $T - t > 0$:
 
 $$
+
 C_{\text{European}}(S_t, t) \geq S_t - K e^{-r(T-t)} > S_t - K
+
 $$
 
 Therefore selling the option always dominates exercising. The option is worth more alive than dead.
@@ -70,13 +76,17 @@ Therefore selling the option always dominates exercising. The option is worth mo
 The analogous argument **fails** for puts. The lower bound for a European put is:
 
 $$
+
 P_{\text{European}}(S_t, t) \geq K e^{-r(T-t)} - S_t
+
 $$
 
 When the put is deep in-the-money ($S_t \ll K$), the **immediate exercise value** is:
 
 $$
+
 K - S_t > K e^{-r(T-t)} - S_t = K\left(1 - e^{-r(T-t)}\right) + (K e^{-r(T-t)} - S_t)
+
 $$
 
 The European put value can be **less than** the intrinsic value $K - S_t$ because discounting the strike reduces the continuation value. The holder can earn interest on the cash received from exercise.
@@ -94,9 +104,11 @@ The European put value can be **less than** the intrinsic value $K - S_t$ becaus
 The American put price decomposes as:
 
 $$
+
 \boxed{
 P_{\text{American}}(S, t) = P_{\text{European}}(S, t) + \text{EEP}(S, t)
 }
+
 $$
 
 The early exercise premium $\text{EEP}$ is always non-negative and increases as:
@@ -125,7 +137,9 @@ For dividend-paying stocks, early exercise of American calls **may be optimal** 
     Exercise is potentially optimal just before the ex-dividend date if:
     
     $$
+
     \boxed{D > K\left(1 - e^{-r \Delta t}\right)}
+
     $$
     
     where $\Delta t$ is the time remaining to maturity after the dividend date. The dividend must exceed the interest savings from deferring the strike payment.
@@ -178,9 +192,11 @@ The exercise boundary for an American put satisfies:
 ## Summary
 
 $$
+
 \boxed{
 \text{Exercise early} \iff \Phi(S_t) > \mathbb{E}^{\mathbb{Q}}\left[e^{-r\Delta t} V(t + \Delta t, S_{t+\Delta t}) \mid S_t\right]
 }
+
 $$
 
 | Aspect | Description |

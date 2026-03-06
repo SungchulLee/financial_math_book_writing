@@ -11,7 +11,9 @@ The variance process in the Heston model is a **square-root diffusion** (CIR pro
 The variance in the Heston model follows a Cox–Ingersoll–Ross (CIR) process:
 
 $$
+
 dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
+
 $$
 
 with parameters $\kappa > 0$ (mean reversion), $\theta > 0$ (long-run level), and $\xi > 0$ (volatility of volatility).
@@ -33,13 +35,17 @@ The challenge: ensuring the process stays strictly positive ($V_t > 0$) vs. mere
 The **Feller condition** is:
 
 $$
+
 2\kappa\theta \geq \xi^2
+
 $$
 
 Equivalently, defining $\nu = \frac{2\kappa\theta}{\xi^2}$:
 
 $$
+
 \nu \geq 1
+
 $$
 
 ### Interpretation
@@ -73,13 +79,19 @@ The drift dominates when $\kappa\theta > \frac{1}{2}\xi^2$, i.e., $2\kappa\theta
 For a diffusion $dX = \mu(X)dt + \sigma(X)dW$ on $(0, \infty)$, boundaries are classified using:
 
 **Scale function:**
+
 $$
+
 s(x) = \int_c^x \exp\left(-\int_c^y \frac{2\mu(z)}{\sigma(z)^2}dz\right)dy
+
 $$
 
 **Speed measure:**
+
 $$
+
 m(x) = \frac{1}{\sigma(x)^2 s'(x)}
+
 $$
 
 ### Classification of Zero for CIR
@@ -136,7 +148,9 @@ Feller violation creates numerical difficulties:
 Replace $V_t^+ = \max(V_t, 0)$ in both drift and diffusion:
 
 $$
+
 V_{t+\Delta} = V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z
+
 $$
 
 **Properties:**
@@ -160,15 +174,23 @@ Andersen's QE scheme matches moments of the exact transition density:
 **Step 1:** Compute $m = \theta + (V_t - \theta)e^{-\kappa\Delta}$ and $s^2 = \frac{V_t\xi^2 e^{-\kappa\Delta}}{\kappa}(1-e^{-\kappa\Delta}) + \frac{\theta\xi^2}{2\kappa}(1-e^{-\kappa\Delta})^2$
 
 **Step 2:** If $\psi = s^2/m^2 < \psi_c$ (typically $\psi_c = 1.5$), use quadratic:
+
 $$
+
 V_{t+\Delta} = a(b + Z)^2
+
 $$
+
 where $a, b$ are moment-matched.
 
 **Step 3:** If $\psi \geq \psi_c$, use exponential:
+
 $$
+
 V_{t+\Delta} = \Psi^{-1}(U; p, \beta)
+
 $$
+
 where $\Psi$ is a mixture of point mass at 0 and exponential.
 
 **Properties:**
@@ -181,7 +203,9 @@ where $\Psi$ is a mixture of point mass at 0 and exponential.
 The transition $V_{t+\Delta} | V_t$ is a scaled non-central chi-squared:
 
 $$
+
 V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2_{d,\lambda}
+
 $$
 
 where:

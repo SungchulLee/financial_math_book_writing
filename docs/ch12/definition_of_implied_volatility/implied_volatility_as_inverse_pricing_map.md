@@ -16,7 +16,9 @@ Consider the Black-Scholes pricing functional for a European call option:
 
 
 $$
+
 \mathcal{C}: \mathbb{R}_+ \to \mathbb{R}_+, \quad \sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)
+
 $$
 
 
@@ -25,7 +27,9 @@ where the Black-Scholes price is given explicitly by:
 
 
 $$
+
 C_{\text{BS}}(S, K, T, r, \sigma) = S \Phi(d_1) - K e^{-rT} \Phi(d_2)
+
 $$
 
 
@@ -34,10 +38,12 @@ with
 
 
 $$
+
 \begin{align}
 d_1 &= \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} \\
 d_2 &= d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}
 \end{align}
+
 $$
 
 
@@ -54,7 +60,9 @@ The Black-Scholes call price $C_{\text{BS}}$ is strictly increasing in $\sigma$ 
 
 
 $$
+
 \frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} > 0
+
 $$
 
 
@@ -66,14 +74,18 @@ For fixed $(S, K, T, r)$, the pricing map $\sigma \mapsto C_{\text{BS}}(S, K, T,
 
 
 $$
+
 \lim_{\sigma \to 0^+} C_{\text{BS}} = \max(S - Ke^{-rT}, 0) = C_{\text{intrinsic}}
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 \lim_{\sigma \to \infty} C_{\text{BS}} = S
+
 $$
 
 
@@ -95,7 +107,9 @@ The pricing map operates between specific spaces:
 
 
 $$
+
 \mathcal{C}: (0, \infty) \to (C_{\text{intrinsic}}, S)
+
 $$
 
 
@@ -104,7 +118,9 @@ This characterizes the **image** of the Black-Scholes formula: any observable ca
 
 
 $$
+
 \max(S - Ke^{-rT}, 0) < C_{\text{market}} < S
+
 $$
 
 
@@ -121,7 +137,9 @@ Given an observed market price $C_{\text{market}}$ satisfying the no-arbitrage b
 
 
 $$
+
 C_{\text{market}} = C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}})
+
 $$
 
 
@@ -130,7 +148,9 @@ Equivalently, we define the inverse pricing map:
 
 
 $$
+
 \sigma_{\text{IV}} = \mathcal{C}^{-1}(C_{\text{market}})
+
 $$
 
 
@@ -147,7 +167,9 @@ For any market price $C_{\text{market}} \in (C_{\text{intrinsic}}, S)$, there ex
 
 
 $$
+
 C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}}) = C_{\text{market}}
+
 $$
 
 
@@ -169,7 +191,9 @@ The implied volatility map $\mathcal{C}^{-1}$ is $C^\infty$ smooth on its domain
 
 
 $$
+
 \frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} > 0
+
 $$
 
 
@@ -178,7 +202,9 @@ is strictly positive and smooth in $\sigma$, the inverse function is $C^\infty$ 
 
 
 $$
+
 \frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\partial C_{\text{BS}}/\partial \sigma\big|_{\sigma=\sigma_{\text{IV}}}} = \frac{1}{S \phi(d_1(\sigma_{\text{IV}})) \sqrt{T}}
+
 $$
 
 
@@ -195,7 +221,9 @@ The Black-Scholes formula establishes a diffeomorphism:
 
 
 $$
+
 \Psi: (0, \infty) \to (C_{\text{intrinsic}}, S), \quad \sigma \mapsto C_{\text{BS}}(\sigma)
+
 $$
 
 
@@ -204,7 +232,9 @@ with smooth inverse:
 
 
 $$
+
 \Psi^{-1}: (C_{\text{intrinsic}}, S) \to (0, \infty), \quad C \mapsto \sigma_{\text{IV}}
+
 $$
 
 
@@ -258,7 +288,9 @@ The inversion concept extends beyond vanilla calls. For any path-independent pay
 
 
 $$
+
 V_{\text{BS}}(S, T, r, \sigma) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\Psi(S_T)]
+
 $$
 
 
@@ -269,7 +301,9 @@ If $V_{\text{BS}}$ is strictly monotone in $\sigma$ (which requires $\Psi$ to be
 
 
 $$
+
 \sigma_{\text{IV}}^{\Psi} = \text{solution to } V_{\text{market}} = V_{\text{BS}}(S, T, r, \sigma)
+
 $$
 
 
@@ -284,7 +318,9 @@ The Black-Scholes price $V_{\text{BS}}$ is strictly increasing in $\sigma$ if an
 
 
 $$
+
 \frac{\partial V_{\text{BS}}}{\partial \sigma} = e^{-rT} \mathbb{E}^{\mathbb{Q}}\left[\Psi(S_T) \frac{\partial \ln S_T}{\partial \sigma}\right]
+
 $$
 
 
@@ -301,7 +337,9 @@ In practice, $\sigma_{\text{IV}}$ is computed by solving:
 
 
 $$
+
 C_{\text{BS}}(\sigma) - C_{\text{market}} = 0
+
 $$
 
 
@@ -309,7 +347,9 @@ $$
 Equivalently, we seek:
 
 $$
+
 \sigma_{\text{imp}} = \arg\min_\sigma \left| C_{\text{BS}}(S, K, T, r, \sigma) - C^{\text{mkt}} \right|
+
 $$
 
 
@@ -342,7 +382,9 @@ The practical procedure for computing implied volatility proceeds as follows:
 **Step 3.** Adjust $\sigma$ iteratively until convergence:
 
 $$
+
 C_{\text{BS}}(S, K, T, r, \sigma_{\text{imp}}) \approx C^{\text{mkt}}
+
 $$
 
 
@@ -356,7 +398,9 @@ Given current iterate $\sigma_n$:
 
 
 $$
+
 \sigma_{n+1} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{\partial C_{\text{BS}}/\partial \sigma\big|_{\sigma=\sigma_n}} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{S \phi(d_1) \sqrt{T}}
+
 $$
 
 
@@ -393,7 +437,9 @@ The implied volatility establishes a fundamental coordinate transformation:
 
 
 $$
+
 \text{Option Price Space} \xrightarrow{\mathcal{C}^{-1}} \text{Volatility Space}
+
 $$
 
 

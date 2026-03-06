@@ -28,6 +28,8 @@ from scipy import stats
 # Radon–Nikodym derivative and PDF transformations
 # ---------------------------------------------------------------------------
 
+# ======================================================================
+
 def compute_dQ_over_dP(x, T, theta):
     """
     Compute the Radon–Nikodym derivative dQ/dP evaluated at terminal

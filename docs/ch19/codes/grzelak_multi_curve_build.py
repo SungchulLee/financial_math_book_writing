@@ -14,6 +14,11 @@ from copy import deepcopy
 from scipy.interpolate import splrep, splev, interp1d
 
 
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
+
 class OptionTypeSwap(enum.Enum):
     """Swap option type enumeration."""
     RECEIVER = 1.0
@@ -447,6 +452,10 @@ def main():
     t = np.linspace(0, 10, 100)
     plot_curves(t, p0t_discount, p0t_frwd)
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == "__main__":
     main()

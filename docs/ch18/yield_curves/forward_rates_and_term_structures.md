@@ -11,13 +11,17 @@ Forward rates describe **future borrowing/lending rates** implied by today's yie
 Given discount factors $P(0,T_1)$ and $P(0,T_2)$ with $0 < T_1 < T_2$, the **simple forward rate** over the period $[T_1, T_2]$ is defined by the no-arbitrage relation:
 
 $$
+
 P(0,T_1) = P(0,T_2) \cdot \left[1 + F(0; T_1, T_2) \cdot (T_2 - T_1)\right]
+
 $$
 
 Solving for the forward rate:
 
 $$
+
 F(0; T_1, T_2) = \frac{1}{T_2 - T_1} \left(\frac{P(0,T_1)}{P(0,T_2)} - 1\right)
+
 $$
 
 ### Economic Interpretation
@@ -32,7 +36,9 @@ The forward rate $F(0; T_1, T_2)$ is:
 More generally, the forward rate observed at time $t$ for the period $[T_1, T_2]$ is:
 
 $$
+
 F(t; T_1, T_2) = \frac{1}{T_2 - T_1} \left(\frac{P(t,T_1)}{P(t,T_2)} - 1\right)
+
 $$
 
 This forward rate evolves stochastically as market conditions change.
@@ -44,19 +50,25 @@ This forward rate evolves stochastically as market conditions change.
 Using continuous compounding, the forward rate $f_c(0; T_1, T_2)$ satisfies:
 
 $$
+
 e^{-z(0,T_1) T_1} = e^{-z(0,T_2) T_2} \cdot e^{f_c(0; T_1, T_2)(T_2 - T_1)}
+
 $$
 
 Solving:
 
 $$
+
 f_c(0; T_1, T_2) = \frac{z(0,T_2) T_2 - z(0,T_1) T_1}{T_2 - T_1}
+
 $$
 
 This can be rewritten as:
 
 $$
+
 f_c(0; T_1, T_2) = \frac{-\log P(0,T_2) + \log P(0,T_1)}{T_2 - T_1}
+
 $$
 
 ---
@@ -68,13 +80,17 @@ $$
 The **instantaneous forward rate** $f(t,T)$ is obtained by taking the limit as the accrual period shrinks to zero:
 
 $$
+
 f(t,T) := \lim_{\Delta \to 0} f_c(t; T, T+\Delta) = -\frac{\partial}{\partial T} \log P(t,T)
+
 $$
 
 This fundamental relationship can be inverted:
 
 $$
+
 P(t,T) = \exp\left(-\int_t^T f(t,u) \, du\right)
+
 $$
 
 ### Relationship to Zero Rates
@@ -82,13 +98,17 @@ $$
 The zero rate is the average of instantaneous forward rates:
 
 $$
+
 z(t,T) = \frac{1}{T-t} \int_t^T f(t,u) \, du
+
 $$
 
 Equivalently, differentiating:
 
 $$
+
 f(t,T) = z(t,T) + (T-t) \frac{\partial z(t,T)}{\partial T}
+
 $$
 
 This shows that:
@@ -101,7 +121,9 @@ This shows that:
 The instantaneous short rate is the limit:
 
 $$
+
 r_t = f(t,t) = \lim_{T \to t^+} f(t,T)
+
 $$
 
 This is the rate for infinitesimally short borrowing at time $t$.
@@ -121,7 +143,9 @@ at a future settlement date, based on a notional principal.
 At settlement time $T_1$, the FRA payoff (to the receiver of floating) is:
 
 $$
+
 \text{Payoff} = N \cdot (L(T_1; T_1, T_2) - K) \cdot (T_2 - T_1)
+
 $$
 
 discounted back to $T_1$, where $L(T_1; T_1, T_2)$ is the realized LIBOR rate.
@@ -131,13 +155,17 @@ discounted back to $T_1$, where $L(T_1; T_1, T_2)$ is the realized LIBOR rate.
 The fair fixed rate $K$ that makes the FRA have zero initial value is precisely the forward rate:
 
 $$
+
 K^* = F(0; T_1, T_2)
+
 $$
 
 The value of an existing FRA with rate $K$ is:
 
 $$
+
 V_{\text{FRA}}(0) = N \cdot (F(0; T_1, T_2) - K) \cdot (T_2 - T_1) \cdot P(0, T_2)
+
 $$
 
 ---
@@ -178,13 +206,17 @@ All three contain equivalent information (given sufficient smoothness) but serve
 Under the **pure expectations hypothesis**, forward rates equal expected future spot rates:
 
 $$
+
 F(0; T_1, T_2) = \mathbb{E}[z(T_1, T_2)]
+
 $$
 
 However, this hypothesis is empirically rejected. The observed relationship is:
 
 $$
+
 F(0; T_1, T_2) = \mathbb{E}^{\mathbb{P}}[z(T_1, T_2)] + \text{term premium}
+
 $$
 
 ### Risk-Neutral Expectations
@@ -192,7 +224,9 @@ $$
 Under the risk-neutral measure $\mathbb{Q}$, forward rates **do** equal expected future rates:
 
 $$
+
 F(0; T_1, T_2) = \mathbb{E}^{\mathbb{Q}}[L(T_1; T_1, T_2)]
+
 $$
 
 This is the foundation of forward measure pricing (Section 10.5).

@@ -23,7 +23,9 @@ This chapter develops the mathematical theory of sets of probability measures, t
 2. Countable additivity: For disjoint $\{A_i\}_{i=1}^{\infty}$,
 
    $$
+
    P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
+
    $$
 
 
@@ -32,7 +34,9 @@ This chapter develops the mathematical theory of sets of probability measures, t
 
 
 $$
+
 \mathcal{M}_1(\Omega) = \{ P: P \text{ is a probability measure on } (\Omega, \mathcal{F}) \}
+
 $$
 
 
@@ -46,7 +50,9 @@ The space $\mathcal{M}_1(\Omega)$ is endowed with the **weak topology** (or weak
 
 
 $$
+
 \int_{\Omega} f \, dP_n \to \int_{\Omega} f \, dP
+
 $$
 
 
@@ -71,7 +77,9 @@ for all bounded continuous functions $f: \Omega \to \mathbb{R}$.
 
 
 $$
+
 \|P - Q\|_{\text{TV}} = \sup_{A \in \mathcal{F}} |P(A) - Q(A)| = \frac{1}{2} \int_{\Omega} \left| \frac{dP}{d\mu} - \frac{dQ}{d\mu} \right| d\mu
+
 $$
 
 
@@ -87,7 +95,9 @@ where $\mu = P + Q$.
 
 
 $$
+
 \|P_n - P\|_{\text{TV}} \to 0 \implies P_n \xrightarrow{w} P
+
 $$
 
 
@@ -104,7 +114,9 @@ but the converse is generally false.
 
 
 $$
+
 \mathcal{P}_{\varepsilon} = \{ (1-\varepsilon) P_0 + \varepsilon Q: Q \in \mathcal{M}_1(\Omega) \}
+
 $$
 
 
@@ -115,7 +127,9 @@ $$
 
 
 $$
+
 \mathcal{P}_{\text{TV}}(\delta) = \{ P: \|P - P_0\|_{\text{TV}} \leq \delta \}
+
 $$
 
 
@@ -124,7 +138,9 @@ $$
 
 
 $$
+
 \mathcal{P}_{\text{KL}}(\theta) = \left\{ P \ll P_0: D_{\text{KL}}(P \| P_0) \leq \theta \right\}
+
 $$
 
 
@@ -133,10 +149,12 @@ where the KL divergence is:
 
 
 $$
+
 D_{\text{KL}}(P \| P_0) = \begin{cases}
 \displaystyle\int_{\Omega} \log\left(\frac{dP}{dP_0}\right) dP & \text{if } P \ll P_0 \\
 +\infty & \text{otherwise}
 \end{cases}
+
 $$
 
 
@@ -148,7 +166,9 @@ $$
 
 
 $$
+
 \mathcal{P}_{\text{density}} = \left\{ P: \frac{dP}{dP_0}(\omega) \in [\ell(\omega), u(\omega)] \text{ for } P_0\text{-a.e. } \omega \right\}
+
 $$
 
 
@@ -159,7 +179,9 @@ where $0 \leq \ell(\omega) \leq u(\omega)$ are given density bounds.
 
 
 $$
+
 \mathcal{Q} = \left\{ \mathbb{Q}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} \right\|_{L^{\infty}} \leq K \right\}
+
 $$
 
 
@@ -171,7 +193,9 @@ $$
 
 
 $$
+
 \mathcal{P}_{\text{moment}} = \left\{ P: \mathbb{E}_P[X] \in \mathcal{M}, \, \text{Cov}_P(X) \in \Sigma \right\}
+
 $$
 
 
@@ -182,7 +206,9 @@ where $\mathcal{M} \subseteq \mathbb{R}^n$ and $\Sigma$ is a set of positive sem
 
 
 $$
+
 \mathcal{P} = \left\{ P: \mathbb{E}_P[g_i(X)] \in \mathcal{C}_i, \, i = 1, \ldots, k \right\}
+
 $$
 
 
@@ -198,7 +224,9 @@ A fundamental concept for dynamic consistency in multi-period models.
 
 
 $$
+
 R(A) = \mathbb{E}_P[\mathbb{1}_A \cdot \mathbb{1}_B + \mathbb{1}_A \cdot \mathbb{1}_{B^c} \cdot P(A|\mathcal{F}_t) / Q(B|\mathcal{F}_t) \cdot Q(A|\mathcal{F}_t)]
+
 $$
 
 
@@ -209,7 +237,9 @@ also belongs to $\mathcal{P}$ for all $B \in \mathcal{F}_t$ and $A \in \mathcal{
 
 
 $$
+
 \mathcal{P} = \left\{ P: P(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t \leq T \right\}
+
 $$
 
 
@@ -228,7 +258,9 @@ where $\mathcal{P}_t$ are measurable families of conditional distributions.
 
 
 $$
+
 \lambda P + (1-\lambda) Q \in \mathcal{M}_1(\Omega)
+
 $$
 
 
@@ -237,7 +269,9 @@ $$
 
 
 $$
+
 \text{conv}(\mathcal{P}) = \left\{ \sum_{i=1}^n \lambda_i P_i: P_i \in \mathcal{P}, \sum_{i=1}^n \lambda_i = 1, \lambda_i \geq 0 \right\}
+
 $$
 
 
@@ -258,7 +292,9 @@ $$
 
 
 $$
+
 P(K) > 1 - \varepsilon \quad \text{for all } P \in \mathcal{P}
+
 $$
 
 
@@ -274,7 +310,9 @@ $$
 
 
 $$
+
 P = \lambda P_1 + (1-\lambda) P_2 \quad \text{with } P_1, P_2 \in \mathcal{P}, P_1 \neq P_2, \lambda \in (0,1)
+
 $$
 
 
@@ -285,7 +323,9 @@ implies $P = P_1 = P_2$.
 
 
 $$
+
 P = \int_{\text{ext}(\mathcal{P})} Q \, d\mu(Q)
+
 $$
 
 
@@ -296,7 +336,9 @@ for some probability measure $\mu$ on the set of extreme points $\text{ext}(\mat
 
 
 $$
+
 \min_{P \in \mathcal{P}} \mathbb{E}_P[u(X)] = \min_{P \in \text{ext}(\mathcal{P})} \mathbb{E}_P[u(X)]
+
 $$
 
 
@@ -313,7 +355,9 @@ Consider the robust optimization problem:
 
 
 $$
+
 \inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \omega)]
+
 $$
 
 
@@ -327,7 +371,9 @@ where:
 
 
 $$
+
 \inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \omega)] = \sup_{P \in \mathcal{P}} \inf_{x \in \mathcal{X}} \mathbb{E}_P[f(x, \omega)]
+
 $$
 
 
@@ -339,7 +385,9 @@ $$
 
 
 $$
+
 \phi^*(y) = \sup_{x \in \mathbb{R}^n} \left\{ x^\top y - \phi(x) \right\}
+
 $$
 
 
@@ -348,7 +396,9 @@ $$
 
 
 $$
+
 \inf_x \{ f(x) + g(x) \} = \sup_{y} \{ -f^*(y) - g^*(-y) \}
+
 $$
 
 
@@ -357,7 +407,9 @@ $$
 
 
 $$
+
 \min_{x} \max_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \cdot)]
+
 $$
 
 
@@ -374,7 +426,9 @@ can be reformulated using the conjugate of the indicator function of $\mathcal{P
 
 
 $$
+
 \max_{w} \min_{P \in \mathcal{P}} \left\{ w^\top \mathbb{E}_P[R] - \frac{\lambda}{2} w^\top \text{Cov}_P(R) w \right\}
+
 $$
 
 
@@ -383,7 +437,9 @@ $$
 
 
 $$
+
 \min_{P \in \mathcal{P}} \mathbb{E}_P[w^\top R] = \mathbb{E}_{P_0}[w^\top R] - \sqrt{2\theta \cdot w^\top \Sigma_0 w}
+
 $$
 
 
@@ -394,7 +450,9 @@ where $\Sigma_0 = \text{Cov}_{P_0}(R)$.
 
 
 $$
+
 w^* = \frac{1}{\lambda + \sqrt{2\theta/\mu^\top \Sigma_0^{-1} \mu}} \Sigma_0^{-1} \mu_0
+
 $$
 
 
@@ -410,7 +468,9 @@ where $\mu_0 = \mathbb{E}_{P_0}[R]$.
 
 
 $$
+
 \mathcal{Q} = \left\{ \mathbb{Q}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}} \right\|_{\infty} \leq K \right\}
+
 $$
 
 
@@ -419,7 +479,9 @@ $$
 
 
 $$
+
 V_0 = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-rT} \Phi(S_T) \right]
+
 $$
 
 
@@ -428,7 +490,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathcal{L}^{\sigma} V = 0
+
 $$
 
 
@@ -447,7 +511,9 @@ where $\mathcal{L}^{\sigma}$ is the Black-Scholes operator with volatility $\sig
 
 
 $$
+
 \mathcal{P}_t = \{ P(\cdot | \mathcal{F}_t): P \in \mathcal{P} \}
+
 $$
 
 
@@ -458,7 +524,9 @@ $$
 
 
 $$
+
 P_t = \arg\max_{P \in \mathcal{P}} \text{likelihood}(P | \text{data up to } t)
+
 $$
 
 
@@ -467,7 +535,9 @@ $$
 
 
 $$
+
 \mathcal{P}_t = \left\{ P \in \mathcal{P}: \frac{dP}{dP_0}\bigg|_{\mathcal{F}_t} \geq \ell_t \right\}
+
 $$
 
 
@@ -483,7 +553,9 @@ As more data is observed, uncertainty should decrease.
 
 
 $$
+
 \mathcal{P}_n \to \{P^*\} \quad \text{as } n \to \infty
+
 $$
 
 
@@ -494,7 +566,9 @@ where $\mathcal{P}_n$ is the posterior uncertainty set after $n$ observations.
 
 
 $$
+
 \text{diam}(\mathcal{P}_n) = O_P(n^{-1/2})
+
 $$
 
 
@@ -511,7 +585,9 @@ in appropriate metrics.
 
 
 $$
+
 D_{\text{KL}}(P \| Q) = \int_{\Omega} \log\left(\frac{dP}{dQ}\right) dP
+
 $$
 
 
@@ -522,7 +598,9 @@ $$
 3. **Data processing inequality**: For measurable $f$:
 
    $$
+
    D_{\text{KL}}(P \circ f^{-1} \| Q \circ f^{-1}) \leq D_{\text{KL}}(P \| Q)
+
    $$
 
 
@@ -536,7 +614,9 @@ The KL divergence naturally penalizes deviation from a reference measure.
 
 
 $$
+
 \min_{P} \mathbb{E}_P[X] \quad \text{subject to} \quad D_{\text{KL}}(P \| P_0) \leq \theta
+
 $$
 
 
@@ -545,7 +625,9 @@ $$
 
 
 $$
+
 \frac{dP^*}{dP_0} = \frac{e^{-\lambda^* X}}{Z(\lambda^*)}
+
 $$
 
 
@@ -561,7 +643,9 @@ where:
 
 
 $$
+
 \rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}_{P_0}\left[ e^{\beta X} \right]
+
 $$
 
 
@@ -570,7 +654,9 @@ $$
 
 
 $$
+
 \rho_{\beta}(X) = \sup_{P \ll P_0} \left\{ \mathbb{E}_P[X] - \frac{1}{\beta} D_{\text{KL}}(P \| P_0) \right\}
+
 $$
 
 
@@ -581,7 +667,9 @@ $$
 
 
 $$
+
 -\frac{1}{\beta} \log(-\mathbb{E}[u(X)]) = \rho_{\beta}(X)
+
 $$
 
 
@@ -598,7 +686,9 @@ linking risk-sensitive preferences to model uncertainty.
 
 
 $$
+
 dX_t = \mu_t \, dt + \sigma \, dW_t
+
 $$
 
 
@@ -609,7 +699,9 @@ with uncertain drift $\mu_t \in \mathcal{M}$.
 
 
 $$
+
 \mathcal{P} = \left\{ P^{\mu}: \mu \in \mathcal{M} \right\}
+
 $$
 
 
@@ -620,7 +712,9 @@ where under $P^{\mu}$, $X$ has drift $\mu$.
 
 
 $$
+
 \frac{dP^{\mu}}{dP^0}\bigg|_{\mathcal{F}_t} = \exp\left( \int_0^t \frac{\mu_s}{\sigma} dW_s - \frac{1}{2} \int_0^t \left(\frac{\mu_s}{\sigma}\right)^2 ds \right)
+
 $$
 
 
@@ -632,7 +726,9 @@ $$
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+
 $$
 
 
@@ -643,7 +739,9 @@ with $\sigma_t \in [\sigma_{\min}, \sigma_{\max}]$.
 
 
 $$
+
 d\mathbb{Q}^{\sigma} = \exp\left( -\int_0^T \theta_s \, dW_s - \frac{1}{2} \int_0^T \theta_s^2 \, ds \right) d\mathbb{P}
+
 $$
 
 
@@ -654,7 +752,9 @@ where $\theta_t = (\mu - r)/\sigma_t$ is the market price of risk.
 
 
 $$
+
 V_t = \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathbb{E}_{\mathbb{Q}^{\sigma}}\left[ e^{-r(T-t)} \Phi(S_T) \, \big| \, \mathcal{F}_t \right]
+
 $$
 
 
@@ -666,7 +766,9 @@ $$
 
 
 $$
+
 dX_t = b(X_t, u_t) \, dt + \sigma(X_t) \, dW_t + \gamma(X_t) \, dB_t
+
 $$
 
 
@@ -677,7 +779,9 @@ where $B_t$ represents model misspecification.
 
 
 $$
+
 \inf_{u} \sup_{B} \mathbb{E}\left[ \int_0^T e^{-\rho t} \left( c(X_t, u_t) + \frac{\theta}{2} \left(\frac{dB_t}{dt}\right)^2 \right) dt \right]
+
 $$
 
 
@@ -686,7 +790,9 @@ $$
 
 
 $$
+
 \frac{dB_t^*}{dt} = \frac{1}{\theta} \gamma(X_t)^\top \nabla V(t, X_t)
+
 $$
 
 
@@ -728,7 +834,9 @@ where $V$ is the value function.
 
 
 $$
+
 P^* = \arg\max_{P \in \mathcal{P}} \mathbb{E}_P[\ell]
+
 $$
 
 
@@ -744,7 +852,9 @@ $$
 
 
 $$
+
 \mathbb{E}_{P^*}[\ell] \geq \ell_{\text{threshold}}
+
 $$
 
 
@@ -753,7 +863,9 @@ subject to:
 
 
 $$
+
 D_{\text{KL}}(P^* \| P_0) \text{ is minimized}
+
 $$
 
 
@@ -762,7 +874,9 @@ $$
 
 
 $$
+
 \mathcal{L}(P, \lambda) = \mathbb{E}_P[\ell] + \lambda D_{\text{KL}}(P \| P_0)
+
 $$
 
 
@@ -771,7 +885,9 @@ yielding:
 
 
 $$
+
 \frac{dP^*}{dP_0} \propto e^{-\lambda^* \ell}
+
 $$
 
 
@@ -785,7 +901,9 @@ $$
 
 
 $$
+
 \mathbb{E}_P[\ell] = \mathbb{E}_{P^*}\left[ \ell \cdot \frac{dP}{dP^*} \right]
+
 $$
 
 
@@ -802,7 +920,9 @@ with reduced variance for rare events.
 
 
 $$
+
 I(X; Y) = D_{\text{KL}}(P_{XY} \| P_X \otimes P_Y)
+
 $$
 
 
@@ -811,7 +931,9 @@ $$
 
 
 $$
+
 I_{\min}(X; Y) = \inf_{P \in \mathcal{P}} I_P(X; Y)
+
 $$
 
 
@@ -820,7 +942,9 @@ and:
 
 
 $$
+
 I_{\max}(X; Y) = \sup_{P \in \mathcal{P}} I_P(X; Y)
+
 $$
 
 
@@ -834,7 +958,9 @@ $$
 
 
 $$
+
 C = \sup_{P_X} \inf_{P_{Y|X}} I(X; Y)
+
 $$
 
 
@@ -851,7 +977,9 @@ $$
 
 
 $$
+
 W_p(P, Q) = \left( \inf_{\pi \in \Pi(P, Q)} \int_{\Omega \times \Omega} d(x, y)^p \, d\pi(x, y) \right)^{1/p}
+
 $$
 
 
@@ -862,7 +990,9 @@ where $\Pi(P, Q)$ is the set of couplings with marginals $P$ and $Q$.
 
 
 $$
+
 \mathcal{P}_W(\delta) = \{ P: W_p(P, P_0) \leq \delta \}
+
 $$
 
 
@@ -876,7 +1006,9 @@ $$
 
 
 $$
+
 \inf_x \sup_{P \in \mathcal{P}_W(\delta)} \mathbb{E}_P[f(x, \cdot)]
+
 $$
 
 
@@ -888,7 +1020,9 @@ $$
 
 
 $$
+
 D_{\phi}(P \| Q) = \int_{\Omega} \phi\left(\frac{dP}{dQ}\right) dQ
+
 $$
 
 
@@ -915,7 +1049,9 @@ then:
 
 
 $$
+
 \inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} f(x, P) = \sup_{P \in \mathcal{P}} \inf_{x \in \mathcal{X}} f(x, P)
+
 $$
 
 
@@ -933,7 +1069,9 @@ $$
 
 
 $$
+
 \text{core}(\nu) = \{ P \in \mathcal{M}_1(\Omega): P(A) \geq \nu(A) \text{ for all } A \in \mathcal{F} \}
+
 $$
 
 
@@ -942,7 +1080,9 @@ $$
 
 
 $$
+
 \int f \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[f]
+
 $$
 
 

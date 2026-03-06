@@ -1,3 +1,9 @@
+"""
+Cir Numerical
+
+Educational script demonstrating cir numerical concepts.
+"""
+
 # ============================================================================
 # cir/cir_numerical.py
 # ============================================================================
@@ -228,3 +234,7 @@ class CIRRiskMetrics:
         sensitivities['sigma'] = (price_sigma_up - base_price) / delta
         
         return sensitivities
+
+
+if __name__ == "__main__":
+    pass

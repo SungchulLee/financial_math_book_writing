@@ -1,3 +1,9 @@
+"""
+Stock Analysis Sector Rotation
+
+Educational script demonstrating stock analysis sector rotation concepts.
+"""
+
 # ============================================================================
 # stock_analysis_ACADEMIC_SECTOR_ROTATION_STUDY.py
 # ============================================================================
@@ -23,4 +29,6 @@ def academic_sector_rotation_study():
     # This would typically be followed by sector analysis using company metadata
     print(f"Companies added since 2000: {len(set(current_sp500) - set(tech_boom_2000))}")
 
-academic_sector_rotation_study()
+
+if __name__ == "__main__":
+    academic_sector_rotation_study()

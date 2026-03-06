@@ -12,9 +12,11 @@ An **Itô process** is a continuous adapted process \(X_t\) that can be written 
 
 
 $$
+
 \boxed{
 X_t = X_0 + \int_0^t \mu_s \, ds + \int_0^t \sigma_s \, dB_s
 }
+
 $$
 
 
@@ -30,7 +32,9 @@ where:
 
 
 $$
+
 dX_t = \mu_t \, dt + \sigma_t \, dB_t
+
 $$
 
 
@@ -55,7 +59,9 @@ Standard Brownian motion is the simplest Itô process:
 
 
 $$
+
 B_t = B_0 + \int_0^t 0 \, ds + \int_0^t 1 \, dB_s = \int_0^t dB_s
+
 $$
 
 
@@ -69,8 +75,10 @@ A Brownian motion with constant drift \(\mu\) and volatility \(\sigma\):
 
 
 $$
+
 X_t = X_0 + \mu t + \sigma B_t
 = X_0 + \int_0^t \mu \, ds + \int_0^t \sigma \, dB_s
+
 $$
 
 
@@ -92,7 +100,9 @@ Define:
 
 
 $$
+
 X_t = \int_0^t B_s \, ds
+
 $$
 
 
@@ -101,7 +111,9 @@ This is **not** directly an Itô process, but it can be expressed using integrat
 
 
 $$
+
 X_t = t B_t - \int_0^t s \, dB_s
+
 $$
 
 
@@ -110,7 +122,9 @@ Thus, \(X_t\) is an Itô process with:
 
 
 $$
+
 dX_t = B_t \, dt - t \, dB_t
+
 $$
 
 
@@ -124,7 +138,9 @@ The process \(B_t^2 - t\) is a martingale (established in Section 1.2). We can e
 
 
 $$
+
 B_t^2 - t = \int_0^t 2B_s \, dB_s
+
 $$
 
 
@@ -135,7 +151,9 @@ This is an Itô process with \(\mu_t = -1\) (implicit drift correction) and \(\s
 
 
 $$
+
 d(B_t^2) = 2B_t \, dB_t + dt
+
 $$
 
 
@@ -144,7 +162,9 @@ Thus:
 
 
 $$
+
 d(B_t^2 - t) = 2B_t \, dB_t
+
 $$
 
 
@@ -160,8 +180,10 @@ The notation \(dX_t = \mu_t dt + \sigma_t dB_t\) should be understood as:
 
 
 $$
+
 X_t - X_s = \int_s^t \mu_u \, du + \int_s^t \sigma_u \, dB_u
 \quad \text{for } s < t
+
 $$
 
 
@@ -177,11 +199,13 @@ $$
 
 
 $$
+
 \begin{align}
 dt \cdot dt &= 0\\
 dB_t \cdot dt &= 0\\
 dB_t \cdot dB_t &= dt
 \end{align}
+
 $$
 
 
@@ -207,8 +231,10 @@ An Itô process \(X_t = X_0 + \int_0^t \mu_s ds + \int_0^t \sigma_s dB_s\) is:
 
 
 $$
+
 \mathbb{E}[X_t \mid \mathcal{F}_s]
 = \mathbb{E}\left[X_s + \int_s^t \mu_u du + \int_s^t \sigma_u dB_u \,\Big|\, \mathcal{F}_s\right]
+
 $$
 
 
@@ -217,7 +243,9 @@ The stochastic integral is a martingale, so:
 
 
 $$
+
 \mathbb{E}\left[\int_s^t \sigma_u dB_u \,\Big|\, \mathcal{F}_s\right] = 0
+
 $$
 
 
@@ -226,8 +254,10 @@ Thus:
 
 
 $$
+
 \mathbb{E}[X_t \mid \mathcal{F}_s]
 = X_s + \mathbb{E}\left[\int_s^t \mu_u du \,\Big|\, \mathcal{F}_s\right]
+
 $$
 
 
@@ -238,7 +268,9 @@ The martingale property \(\mathbb{E}[X_t \mid \mathcal{F}_s] = X_s\) holds if an
 
 
 $$
+
 B_t^2 - t = \int_0^t 2B_s \, dB_s
+
 $$
 
 
@@ -254,9 +286,11 @@ The quadratic variation of an Itô process is determined entirely by its diffusi
 
 
 $$
+
 \boxed{
 [X, X]_t = \int_0^t \sigma_s^2 \, ds
 }
+
 $$
 
 
@@ -265,7 +299,9 @@ $$
 
 
 $$
+
 \left[\int_0^t \mu_s ds, \int_0^t \mu_s ds\right]_t = 0
+
 $$
 
 
@@ -274,9 +310,11 @@ By bilinearity of quadratic covariation:
 
 
 $$
+
 [X, X]_t
 = \left[\int_0^t \sigma_s dB_s, \int_0^t \sigma_s dB_s\right]_t
 = \int_0^t \sigma_s^2 \, ds
+
 $$
 
 
@@ -303,7 +341,9 @@ For an Itô process, the **Doob-Meyer decomposition** is explicit.
 
 
 $$
+
 X_t = M_t + A_t
+
 $$
 
 
@@ -329,7 +369,9 @@ The **Ornstein-Uhlenbeck process** is defined by:
 
 
 $$
+
 dX_t = -\theta X_t \, dt + \sigma \, dB_t
+
 $$
 
 
@@ -356,7 +398,9 @@ Consider the process:
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma S_t \, dB_t
+
 $$
 
 
@@ -367,7 +411,9 @@ However, we can interpret this as a **stochastic differential equation (SDE)**, 
 
 
 $$
+
 S_t = S_0 \exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right)
+
 $$
 
 
@@ -385,7 +431,9 @@ In applications, we often encounter systems of coupled Itô processes.
 
 
 $$
+
 X_t^i = X_0^i + \int_0^t \mu_s^i \, ds + \sum_{j=1}^m \int_0^t \sigma_s^{ij} \, dB_s^j
+
 $$
 
 
@@ -396,7 +444,9 @@ In differential form:
 
 
 $$
+
 dX_t^i = \mu_t^i \, dt + \sum_{j=1}^m \sigma_t^{ij} \, dB_t^j
+
 $$
 
 
@@ -405,7 +455,9 @@ or in matrix notation:
 
 
 $$
+
 d\mathbf{X}_t = \boldsymbol{\mu}_t \, dt + \boldsymbol{\Sigma}_t \, d\mathbf{B}_t
+
 $$
 
 
@@ -416,7 +468,9 @@ where \(\boldsymbol{\Sigma}_t\) is an \(n \times m\) matrix (the **diffusion mat
 
 
 $$
+
 [X^i, X^j]_t = \sum_{k=1}^m \int_0^t \sigma_s^{ik} \sigma_s^{jk} \, ds
+
 $$
 
 
@@ -432,7 +486,9 @@ The notation \(dX_t = \mu_t dt + \sigma_t dB_t\) naturally leads to **stochastic
 
 
 $$
+
 dX_t = \mu(t, X_t) \, dt + \sigma(t, X_t) \, dB_t
+
 $$
 
 

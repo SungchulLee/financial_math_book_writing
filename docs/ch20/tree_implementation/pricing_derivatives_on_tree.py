@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.special import comb
 
 
+# ======================================================================
+
 def pricing_derivatives_on_tree():
     """
     Pricing Derivatives on Tree.

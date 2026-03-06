@@ -17,6 +17,8 @@ import scipy.integrate as integrate
 from scipy import interpolate
 
 
+# ======================================================================
+
 class OptionType(enum.Enum):
     CALL = 1.0
     PUT = -1.0

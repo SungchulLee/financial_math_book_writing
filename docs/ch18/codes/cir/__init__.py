@@ -41,46 +41,49 @@ from .cir_base import (
     CIRSimulationError,
     CIRValidationError,
     CIRNumericalError
-)
-
-# Monte Carlo simulation
-from .cir_monte_carlo import (
-    CIRModel,
-    CIRResult,
-    SimulationConfig
-)
-
-# Analytical formulas and bond pricing
-from .cir_formula import (
-    CIRAnalytical,
-    CIRBondPricer
-)
-
-# Numerical methods 
-from .cir_numerical import (
-    CIRNumerical,
-    CIRRiskMetrics
-)
-
-# Utilities and validation
-from .cir_utils import (
-    CIRValidator,
-    CIRCalibrator,
-    ValidationResult,
-    calculate_model_metrics
-)
-
-# High-level wrapper and convenience functions
-from .cir_wrapper import (
-    create_cir_model,
-    quick_simulation,
-    CIRAnalyzer
-)
-
-# External dependencies
-from brownian_motion import IncrementType
 
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Cox-Ingersoll-Ross short rate model implementation"
+if __name__ == "__main__":
+    )
+
+    # Monte Carlo simulation
+    from .cir_monte_carlo import (
+        CIRModel,
+        CIRResult,
+        SimulationConfig
+    )
+
+    # Analytical formulas and bond pricing
+    from .cir_formula import (
+        CIRAnalytical,
+        CIRBondPricer
+    )
+
+    # Numerical methods 
+    from .cir_numerical import (
+        CIRNumerical,
+        CIRRiskMetrics
+    )
+
+    # Utilities and validation
+    from .cir_utils import (
+        CIRValidator,
+        CIRCalibrator,
+        ValidationResult,
+        calculate_model_metrics
+    )
+
+    # High-level wrapper and convenience functions
+    from .cir_wrapper import (
+        create_cir_model,
+        quick_simulation,
+        CIRAnalyzer
+    )
+
+    # External dependencies
+    from brownian_motion import IncrementType
+
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Cox-Ingersoll-Ross short rate model implementation"

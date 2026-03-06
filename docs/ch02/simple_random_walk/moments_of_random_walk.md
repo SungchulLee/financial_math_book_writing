@@ -46,7 +46,7 @@ This expression is maximised at $p = 1/2$, where $\text{Var}(X_i) = 1$, and tend
 
 ---
 
-## Mean of $S_n$
+## Mean of S_n
 
 Since $S_n = \sum_{i=1}^n X_i$ and each $X_i$ has the same distribution, linearity of expectation gives:
 
@@ -63,7 +63,7 @@ The walk is centred at the origin at every time step. This is not a coincidence 
 
 ---
 
-## Variance of $S_n$
+## Variance of S_n
 
 ### Method 1: Additivity of Variance
 
@@ -82,7 +82,7 @@ The standard deviation is $\text{SD}(S_n) = \sqrt{n}$. After $n$ steps, a typica
 
 ---
 
-### Method 2: Direct Expansion of $\mathbb{E}[S_n^2]$
+### Method 2: Direct Expansion of E[S_n^2]
 
 This second derivation is longer but makes the role of the cross terms explicit, which is important for higher-moment calculations.
 
@@ -101,13 +101,16 @@ $$\mathbb{E}[S_n^2] = n \cdot 1 + 2 \cdot \frac{n(n-1)}{2} \cdot (2p-1)^2 = n + 
 **Subtract the squared mean:**
 
 $$\text{Var}(S_n) = \mathbb{E}[S_n^2] - (\mathbb{E}[S_n])^2
+
 = n + n(n-1)(2p-1)^2 - n^2(2p-1)^2.$$
 
 Factor out $(2p-1)^2$:
 
 $$= n + (2p-1)^2\bigl[n(n-1) - n^2\bigr]
+
 = n + (2p-1)^2 \cdot (-n)
 = n\bigl[1-(2p-1)^2\bigr]
+
 = 4np(1-p). \quad\square$$
 
 Both methods agree, as required.
@@ -119,6 +122,7 @@ Both methods agree, as required.
 For $p = 1/2$ there is a third, particularly transparent route that shows *why* the cross terms vanish.
 
 $$\mathbb{E}[S_n^2] = \mathbb{E}\!\left[\left(\sum_{i=1}^n \xi_i\right)^2\right]
+
 = \sum_{i=1}^n \mathbb{E}[\xi_i^2] + 2\sum_{i < j} \mathbb{E}[\xi_i \xi_j].$$
 
 - **Diagonal:** $\mathbb{E}[\xi_i^2] = 1$ for all $i$.

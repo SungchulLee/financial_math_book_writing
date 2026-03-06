@@ -3,32 +3,39 @@
 ## Hull-White ZB Dynamics
 
 $$\begin{array}{lllll}
+
 \displaystyle
 \frac{dP(t,T)}{P(t,T)}
 =
 r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}_t
+
 \end{array}$$
 
 where
 
 $$\begin{array}{lllll}
+
 \displaystyle
 \sigma_P(t,T)
 =
 -\frac{\sigma}{\lambda}
 \left(1-e^{-\lambda(T-t)}\right)
+
 \end{array}$$
 
 ## Zero Bond Price
 
 $$
+
 \displaystyle
 P(t,T)=A(t,T)e^{-B(t,T)r(t)}
+
 $$
 
 where
 
 $$\begin{array}{lllll}
+
 \displaystyle
 A(t,T)
 &=&\displaystyle
@@ -39,26 +46,31 @@ A(t,T)
 B(t,T)
 &=&\displaystyle
 \frac{1}{\lambda}\left[1-e^{-\lambda(T-t)}\right]
+
 \end{array}$$
 
 ???+ note "Proof (Expectation)"
 
     $$
+
     \displaystyle
     \int_t^Tr(t')dt'\Big|{\cal F}(t)
     \sim{\cal N}\left(
         B(t,T)[r(t)-\alpha(t)]+\log\frac{P^M(0,t)}{P^M(0,T)}+\frac{1}{2}[V(0,T)-V(0,t)],
         V(t,T)
     \right)
+
     $$
 
     where
 
     $$\begin{array}{lllll}
+
     \displaystyle
     V(t,T)
     &=&\displaystyle
     \frac{\sigma^2}{\lambda^2}\left[T-t+\frac{2}{\lambda}e^{-\lambda(T-t)}-\frac{1}{2\lambda}e^{-2\lambda(T-t)}-\frac{3}{2\lambda}\right]
+
     \end{array}$$
 
 ???+ note "Proof (PDE)"
@@ -66,16 +78,20 @@ B(t,T)
     Since the Hull-White short rate dynamics is
 
     $$\begin{array}{lllll}
+
     \displaystyle
     dr=\lambda\left(\theta(t)-r\right) dt+\sigma dW^{\mathbb{Q}}(t)
+
     \end{array}$$
 
     the ZCB PDE becomes
 
     $$
+
     \displaystyle
     \frac{\partial P}{\partial t}
     +\lambda\left(\theta(t)-r\right)\frac{\partial P}{\partial r}+\frac{1}{2}\sigma^2\frac{\partial^2 P}{\partial r^2}=rP
+
     $$
 
     Substituting the affine ansatz $P(t,T)=e^{A(\tau)+B(\tau)r(t)}$ with $\tau=T-t$ leads to the Riccati ODEs for $A$ and $B$.

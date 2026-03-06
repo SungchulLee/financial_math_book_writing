@@ -49,3 +49,7 @@ class BlackScholesGreeks(BlackScholesBase):
         UNCHANGED API - now delegates to utility function.
         """
         return rho(self.S0, self.K, self.T, self.r, self.sigma, self.q)
+
+
+if __name__ == "__main__":
+    pass

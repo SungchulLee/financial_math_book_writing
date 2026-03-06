@@ -24,7 +24,9 @@ In sequential estimation, data arrives as a stream $(X_1, Y_1), (X_2, Y_2), \ldo
 **Batch estimation:** Given all data $\{(X_i, Y_i)\}_{i=1}^T$:
 
 $$
+
 \hat{\theta}_T = \arg\min_\theta \sum_{i=1}^T L(Y_i, f(X_i; \theta)).
+
 $$
 
 Computational cost: $O(T)$ per re-estimation.
@@ -40,13 +42,17 @@ Computational cost: $O(T)$ per re-estimation.
 Consider the linear model:
 
 $$
+
 Y_t = X_t^\top \theta^* + \varepsilon_t, \quad \varepsilon_t \sim (0, \sigma^2).
+
 $$
 
 The batch least squares estimator is:
 
 $$
+
 \hat{\theta}_t = \left(\sum_{i=1}^t X_i X_i^\top\right)^{-1} \sum_{i=1}^t X_i Y_i = P_t^{-1} b_t,
+
 $$
 
 where $P_t = \sum_{i=1}^t X_i X_i^\top$ and $b_t = \sum_{i=1}^t X_i Y_i$.
@@ -56,19 +62,25 @@ where $P_t = \sum_{i=1}^t X_i X_i^\top$ and $b_t = \sum_{i=1}^t X_i Y_i$.
 **Theorem (Recursive Least Squares).** The OLS estimator can be computed recursively:
 
 $$
+
 \hat{\theta}_t = \hat{\theta}_{t-1} + K_t (Y_t - X_t^\top \hat{\theta}_{t-1}),
+
 $$
 
 where the **gain** $K_t$ is:
 
 $$
+
 K_t = \frac{P_{t-1}^{-1} X_t}{1 + X_t^\top P_{t-1}^{-1} X_t},
+
 $$
 
 and the inverse covariance matrix updates as:
 
 $$
+
 P_t^{-1} = P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{1 + X_t^\top P_{t-1}^{-1} X_t}.
+
 $$
 
 ### Proof
@@ -76,19 +88,25 @@ $$
 Using the matrix inversion lemma (Sherman-Morrison-Woodbury):
 
 $$
+
 (A + uv^\top)^{-1} = A^{-1} - \frac{A^{-1} u v^\top A^{-1}}{1 + v^\top A^{-1} u}.
+
 $$
 
 Since $P_t = P_{t-1} + X_t X_t^\top$:
 
 $$
+
 P_t^{-1} = P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{1 + X_t^\top P_{t-1}^{-1} X_t}.
+
 $$
 
 For the parameter update:
 
 $$
+
 \hat{\theta}_t = P_t^{-1} b_t = P_t^{-1} (b_{t-1} + X_t Y_t).
+
 $$
 
 Substituting and simplifying yields the stated form. $\square$
@@ -121,7 +139,9 @@ Standard RLS treats all observations equally. In non-stationary environments, ol
 Introduce **forgetting factor** $\lambda \in (0, 1]$:
 
 $$
+
 \hat{\theta}_t = \arg\min_\theta \sum_{i=1}^t \lambda^{t-i} (Y_i - X_i^\top \theta)^2.
+
 $$
 
 Recent observations receive weight $\approx 1$; observations $k$ periods ago receive weight $\lambda^k$.
@@ -129,7 +149,9 @@ Recent observations receive weight $\approx 1$; observations $k$ periods ago rec
 **Effective window length:**
 
 $$
+
 T_{\text{eff}} = \sum_{k=0}^\infty \lambda^k = \frac{1}{1 - \lambda}.
+
 $$
 
 For $\lambda = 0.99$: $T_{\text{eff}} = 100$; for $\lambda = 0.95$: $T_{\text{eff}} = 20$.
@@ -137,15 +159,21 @@ For $\lambda = 0.99$: $T_{\text{eff}} = 100$; for $\lambda = 0.95$: $T_{\text{ef
 ### Recursive Update
 
 $$
+
 \hat{\theta}_t = \hat{\theta}_{t-1} + K_t (Y_t - X_t^\top \hat{\theta}_{t-1}),
+
 $$
 
 $$
+
 K_t = \frac{P_{t-1}^{-1} X_t}{\lambda + X_t^\top P_{t-1}^{-1} X_t},
+
 $$
 
 $$
+
 P_t^{-1} = \frac{1}{\lambda}\left(P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{\lambda + X_t^\top P_{t-1}^{-1} X_t}\right).
+
 $$
 
 ### Choosing the Forgetting Factor
@@ -157,7 +185,9 @@ $$
 **Adaptive forgetting:** Adjust $\lambda_t$ based on prediction error magnitude:
 
 $$
+
 \lambda_t = \lambda_{\min} + (1 - \lambda_{\min}) \cdot \exp(-\gamma e_t^2),
+
 $$
 
 where $e_t = Y_t - X_t^\top \hat{\theta}_{t-1}$ is the prediction error.
@@ -173,7 +203,9 @@ Large errors trigger faster adaptation (smaller $\lambda_t$).
 For loss function $L(\theta) = \mathbb{E}[\ell(Y, f(X; \theta))]$, gradient descent updates:
 
 $$
+
 \theta_{t+1} = \theta_t - \eta_t \nabla_\theta \ell(Y_t, f(X_t; \theta_t)),
+
 $$
 
 where $\eta_t > 0$ is the **learning rate** (step size).
@@ -183,7 +215,9 @@ where $\eta_t > 0$ is the **learning rate** (step size).
 **Theorem.** For convex $L(\theta)$ with minimizer $\theta^*$, SGD converges in mean square if:
 
 $$
+
 \sum_{t=1}^\infty \eta_t = \infty, \quad \sum_{t=1}^\infty \eta_t^2 < \infty.
+
 $$
 
 Common choices:
@@ -195,7 +229,9 @@ Common choices:
 For strongly convex $L$ with condition number $\kappa$:
 
 $$
+
 \mathbb{E}[\|\theta_t - \theta^*\|^2] = O\left(\frac{\sigma^2}{t}\right),
+
 $$
 
 where $\sigma^2$ is the variance of gradient estimates.
@@ -203,7 +239,9 @@ where $\sigma^2$ is the variance of gradient estimates.
 For convex (not strongly convex) $L$:
 
 $$
+
 \mathbb{E}[L(\bar{\theta}_t) - L(\theta^*)] = O\left(\frac{1}{\sqrt{t}}\right),
+
 $$
 
 where $\bar{\theta}_t = \frac{1}{t}\sum_{i=1}^t \theta_i$ (averaged iterate).
@@ -227,11 +265,15 @@ where $\bar{\theta}_t = \frac{1}{t}\sum_{i=1}^t \theta_i$ (averaged iterate).
 Add momentum to accelerate convergence:
 
 $$
+
 v_t = \beta v_{t-1} + \nabla_\theta \ell(Y_t, f(X_t; \theta_t)),
+
 $$
 
 $$
+
 \theta_{t+1} = \theta_t - \eta_t v_t.
+
 $$
 
 Momentum $\beta \in [0.9, 0.99]$ accumulates gradient direction, reducing oscillation.
@@ -241,11 +283,15 @@ Momentum $\beta \in [0.9, 0.99]$ accumulates gradient direction, reducing oscill
 Adapt learning rate per parameter based on historical gradients:
 
 $$
+
 G_t = G_{t-1} + g_t \odot g_t, \quad g_t = \nabla_\theta \ell_t,
+
 $$
 
 $$
+
 \theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \odot g_t,
+
 $$
 
 where $\odot$ is element-wise product and $\epsilon > 0$ prevents division by zero.
@@ -257,11 +303,15 @@ Parameters with large historical gradients get smaller updates (implicit regular
 Use exponential moving average of squared gradients:
 
 $$
+
 v_t = \gamma v_{t-1} + (1-\gamma) g_t^2,
+
 $$
 
 $$
+
 \theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{v_t + \epsilon}} g_t.
+
 $$
 
 Typical $\gamma = 0.9$.
@@ -271,19 +321,27 @@ Typical $\gamma = 0.9$.
 Combines momentum and adaptive learning rates:
 
 $$
+
 m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \quad \text{(first moment)},
+
 $$
 
 $$
+
 v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 \quad \text{(second moment)},
+
 $$
 
 $$
+
 \hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t} \quad \text{(bias correction)},
+
 $$
 
 $$
+
 \theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t.
+
 $$
 
 Default hyperparameters: $\beta_1 = 0.9$, $\beta_2 = 0.999$, $\epsilon = 10^{-8}$.
@@ -307,17 +365,23 @@ Batch EM requires all data for each E-step.
 **Theorem (Cappé & Moulines, 2009).** For exponential family models:
 
 $$
+
 p(Y, Z | \theta) = h(Y, Z) \exp\{\langle \theta, S(Y, Z) \rangle - A(\theta)\},
+
 $$
 
 online EM updates sufficient statistics recursively:
 
 $$
+
 \bar{S}_t = (1 - \gamma_t) \bar{S}_{t-1} + \gamma_t \mathbb{E}_{Z|Y_t, \theta_{t-1}}[S(Y_t, Z)],
+
 $$
 
 $$
+
 \theta_t = \arg\max_\theta \{\langle \theta, \bar{S}_t \rangle - A(\theta)\}.
+
 $$
 
 ### Convergence
@@ -325,7 +389,9 @@ $$
 Under suitable conditions on $\gamma_t$ (satisfying Robbins-Monro):
 
 $$
+
 \theta_t \xrightarrow{a.s.} \theta^*,
+
 $$
 
 a stationary point of the expected log-likelihood.
@@ -337,21 +403,29 @@ For Gaussian mixture $p(Y) = \sum_{k=1}^K \pi_k \mathcal{N}(Y; \mu_k, \Sigma_k)$
 **Online E-step:** Compute responsibilities:
 
 $$
+
 r_{tk} = \frac{\pi_k^{(t-1)} \mathcal{N}(Y_t; \mu_k^{(t-1)}, \Sigma_k^{(t-1)})}{\sum_j \pi_j^{(t-1)} \mathcal{N}(Y_t; \mu_j^{(t-1)}, \Sigma_j^{(t-1)})}.
+
 $$
 
 **Online M-step:** Update sufficient statistics and parameters:
 
 $$
+
 \bar{n}_k^{(t)} = (1 - \gamma_t) \bar{n}_k^{(t-1)} + \gamma_t r_{tk},
+
 $$
 
 $$
+
 \bar{s}_k^{(t)} = (1 - \gamma_t) \bar{s}_k^{(t-1)} + \gamma_t r_{tk} Y_t,
+
 $$
 
 $$
+
 \mu_k^{(t)} = \bar{s}_k^{(t)} / \bar{n}_k^{(t)}, \quad \pi_k^{(t)} = \bar{n}_k^{(t)} / \sum_j \bar{n}_j^{(t)}.
+
 $$
 
 ---
@@ -363,7 +437,9 @@ $$
 **GARCH updating.** For GARCH(1,1):
 
 $$
+
 \sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2.
+
 $$
 
 Parameters $(\omega, \alpha, \beta)$ can be estimated online via recursive maximum likelihood.
@@ -371,7 +447,9 @@ Parameters $(\omega, \alpha, \beta)$ can be estimated online via recursive maxim
 **Realized volatility.** Update estimate using high-frequency returns:
 
 $$
+
 \hat{\sigma}_t^2 = \lambda \hat{\sigma}_{t-1}^2 + (1-\lambda) r_t^2.
+
 $$
 
 This is exponentially weighted moving average (EWMA) variance, the basis of RiskMetrics.
@@ -381,13 +459,17 @@ This is exponentially weighted moving average (EWMA) variance, the basis of Risk
 For time-varying factor loadings $B_t$:
 
 $$
+
 R_t = \alpha + B_t F_t + \varepsilon_t.
+
 $$
 
 Use RLS with forgetting factor to track $B_t$:
 
 $$
+
 \hat{B}_t = \hat{B}_{t-1} + K_t (R_t - \hat{B}_{t-1} F_t) F_t^\top.
+
 $$
 
 ### Online Portfolio Optimization
@@ -395,7 +477,9 @@ $$
 **Online gradient descent for mean-variance:**
 
 $$
+
 w_{t+1} = \Pi_{\mathcal{W}}\left(w_t - \eta_t \nabla_w L(w_t, R_t)\right),
+
 $$
 
 where $\Pi_{\mathcal{W}}$ projects onto the constraint set (e.g., simplex for long-only).
@@ -403,7 +487,9 @@ where $\Pi_{\mathcal{W}}$ projects onto the constraint set (e.g., simplex for lo
 **Regret bound:** For convex losses, OGD achieves:
 
 $$
+
 \sum_{t=1}^T L(w_t, R_t) - \min_w \sum_{t=1}^T L(w, R_t) = O(\sqrt{T}).
+
 $$
 
 ### Real-Time Risk Metrics
@@ -411,7 +497,9 @@ $$
 **Streaming VaR/ES estimation:**
 
 $$
+
 \hat{q}_t^{(\alpha)} = \hat{q}_{t-1}^{(\alpha)} + \gamma_t (\alpha - \mathbf{1}\{R_t \leq \hat{q}_{t-1}^{(\alpha)}\}),
+
 $$
 
 updating the $\alpha$-quantile estimate using stochastic gradient on the pinball loss.
@@ -425,7 +513,9 @@ updating the $\alpha$-quantile estimate using stochastic gradient on the pinball
 Consider tracking a time-varying parameter $\theta_t^*$ with dynamics:
 
 $$
+
 \theta_t^* = \theta_{t-1}^* + \xi_t, \quad \xi_t \sim (0, Q).
+
 $$
 
 For an estimator $\hat{\theta}_t$ with gain $K_t$:
@@ -433,7 +523,9 @@ For an estimator $\hat{\theta}_t$ with gain $K_t$:
 **Tracking error variance:**
 
 $$
+
 \text{Var}(\hat{\theta}_t - \theta_t^*) \approx \text{Var}(\text{noise}) \cdot \sum_{k=0}^\infty K_{t-k}^2 + \text{Var}(\text{drift}) \cdot \sum_{k=0}^\infty (1 - K_{t-k})^2.
+
 $$
 
 - Large $K$: Tracks drift well, amplifies noise (high variance)
@@ -446,13 +538,17 @@ For constant gain $K$ and i.i.d. noise $\varepsilon_t$ with variance $R$, drift 
 **Tracking MSE:**
 
 $$
+
 \text{MSE} = \frac{K R}{2 - K} + \frac{Q}{K(2 - K)}.
+
 $$
 
 **Optimal gain:**
 
 $$
+
 K^* = \sqrt{\frac{Q}{R + Q/2}}.
+
 $$
 
 More drift ($Q$ large) → larger gain; more noise ($R$ large) → smaller gain.
@@ -464,17 +560,23 @@ More drift ($Q$ large) → larger gain; more noise ($R$ large) → smaller gain.
 RLS is equivalent to Kalman filtering for the static state-space model:
 
 $$
+
 \theta_t = \theta_{t-1} \quad \text{(state equation: no dynamics)},
+
 $$
 
 $$
+
 Y_t = X_t^\top \theta_t + \varepsilon_t \quad \text{(observation equation)}.
+
 $$
 
 With forgetting factor $\lambda$, RLS corresponds to:
 
 $$
+
 \theta_t = \theta_{t-1} + \eta_t, \quad \eta_t \sim \mathcal{N}(0, Q_t),
+
 $$
 
 where $Q_t$ is chosen to match the effect of $\lambda$.
@@ -506,7 +608,9 @@ Monitor prediction errors for signs of regime change:
 **CUSUM test:** Cumulative sum of standardized errors:
 
 $$
+
 S_t = \sum_{i=1}^t \frac{e_i}{\hat{\sigma}_e}.
+
 $$
 
 Large $|S_t|$ signals potential break.
@@ -514,7 +618,9 @@ Large $|S_t|$ signals potential break.
 **EWMA control chart:** Smooth prediction errors:
 
 $$
+
 Z_t = \lambda e_t + (1 - \lambda) Z_{t-1}.
+
 $$
 
 Trigger alert if $|Z_t| > h \cdot \text{se}$ for threshold $h$.

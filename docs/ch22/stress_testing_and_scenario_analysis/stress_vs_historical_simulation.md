@@ -29,13 +29,19 @@ Historical simulation estimates risk by revaluing the portfolio under historical
 4. Estimate VaR and ES from empirical distribution
 
 **VaR estimator:**
+
 $$
+
 \widehat{\text{VaR}}_\alpha = L_{(\lceil n\alpha \rceil)}
+
 $$
 
 **ES estimator:**
+
 $$
+
 \widehat{\text{ES}}_\alpha = \frac{1}{n(1-\alpha)} \sum_{i=\lceil n\alpha \rceil}^n L_{(i)}
+
 $$
 
 ### Advantages
@@ -139,14 +145,19 @@ Effective stress scenarios should be:
 A stress scenario $\mathcal{S}$ specifies values or distributions for risk factors:
 
 $$
+
 \mathcal{S}: \mathbf{X} \mapsto \mathbf{x}^{\text{stress}} \quad \text{or} \quad \mathbf{X} \sim F^{\text{stress}}
+
 $$
 
 ### Portfolio Loss Under Stress
 
 For scenario $\mathcal{S}$:
+
 $$
+
 L^{\mathcal{S}} = P_0 - P(\mathbf{x}^{\text{stress}})
+
 $$
 
 where $P(\mathbf{x})$ is the portfolio value function.
@@ -156,11 +167,15 @@ where $P(\mathbf{x})$ is the portfolio value function.
 Regulatory frameworks often require "stressed" versions of risk measures:
 
 $$
+
 \text{Stressed VaR} = \text{VaR}_\alpha \text{ using a stressed historical period}
+
 $$
 
 $$
+
 \text{Stressed ES} = \text{ES}_\alpha \text{ calibrated to stress conditions}
+
 $$
 
 ---
@@ -211,8 +226,11 @@ Robust risk management uses **both** approaches:
 - Recovery and resolution planning
 
 ### Best Practice
+
 $$
+
 \text{Total Risk Picture} = \text{Statistical Measures (VaR/ES)} + \text{Stress Test Results}
+
 $$
 
 Neither alone is sufficient.

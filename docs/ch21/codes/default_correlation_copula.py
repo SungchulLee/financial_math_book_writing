@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def default_correlation_copula():
     """
     Default Correlation Gaussian Copula.

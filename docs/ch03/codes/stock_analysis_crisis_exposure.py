@@ -1,3 +1,9 @@
+"""
+Stock Analysis Crisis Exposure
+
+Educational script demonstrating stock analysis crisis exposure concepts.
+"""
+
 # ============================================================================
 # stock_analysis_CRISIS_EXPOSURE_ANALYSIS.py
 # ============================================================================
@@ -20,4 +26,6 @@ def crisis_exposure_analysis():
         print(f"  Dropouts: {len(survivors['dropouts'])}")
         print(f"  New additions: {len(survivors['new_additions'])}")
 
-crisis_exposure_analysis()
+
+if __name__ == "__main__":
+    crisis_exposure_analysis()

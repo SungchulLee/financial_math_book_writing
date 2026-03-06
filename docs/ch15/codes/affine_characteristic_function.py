@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def affine_characteristic_function():
     """
     Characteristic Function Computation.

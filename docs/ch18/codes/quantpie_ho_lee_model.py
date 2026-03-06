@@ -31,6 +31,8 @@ from scipy.stats import norm
 from scipy.optimize import brentq
 
 
+# ======================================================================
+
 def f(P, T):
     """
     Extract forward rate from zero-coupon bond prices.

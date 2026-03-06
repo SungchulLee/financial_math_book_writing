@@ -1,3 +1,9 @@
+"""
+Black Scholes Greeks
+
+Educational script demonstrating black scholes greeks concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_greeks.py
 # ============================================================================
@@ -13,3 +19,7 @@ class BlackScholesGreeks(BlackScholesBase):
 
     def vega(self):
         return vega(self.S0, self.K, self.T, self.r, self.sigma, self.q)
+
+
+if __name__ == "__main__":
+    pass

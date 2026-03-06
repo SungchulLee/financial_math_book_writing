@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def heston_path_simulation_euler():
     """
     Heston Path Simulation Euler.

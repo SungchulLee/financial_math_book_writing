@@ -7,19 +7,25 @@ A **barrier option** is a path-dependent option whose payoff depends on whether 
 We work in the **standard Black–Scholes model** under the risk-neutral measure $\mathbb{Q}$:
 
 $$
+
 dS_t = r S_t\,dt + \sigma S_t\,dW_t
+
 $$
 
 with solution:
 
 $$
+
 S_t = S_0 \exp\!\left( \left(r - \tfrac{1}{2}\sigma^2 \right)t + \sigma W_t \right)
+
 $$
 
 Define the **log-price process**:
 
 $$
+
 X_t := \log S_t = \log S_0 + \left(r - \tfrac{1}{2}\sigma^2 \right)t + \sigma W_t
+
 $$
 
 Let $H$ denote the constant **barrier level** and $K$ the strike price.
@@ -38,7 +44,9 @@ Let $H$ denote the constant **barrier level** and $K$ the strike price.
 **In–Out Parity.** For any barrier type, the in-version and out-version satisfy:
 
 $$
+
 C_{\text{In}} + C_{\text{Out}} = C_{\text{Vanilla}}
+
 $$
 
 This follows because the events $\{\text{barrier hit}\}$ and $\{\text{barrier not hit}\}$ partition the sample space.
@@ -52,7 +60,9 @@ This follows because the events $\{\text{barrier hit}\}$ and $\{\text{barrier no
 An **up-and-out call option** knocks out (becomes worthless) if $S_t$ ever reaches or exceeds $H > S_0$ before expiry $T$. Its payoff is:
 
 $$
+
 \text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{ \sup_{0 \le t \le T} S_t < H \right\}}
+
 $$
 
 ### Reduction to Brownian Motion
@@ -60,19 +70,25 @@ $$
 Define the **running maximum** of Brownian motion:
 
 $$
+
 M_T := \sup_{0 \le t \le T} W_t
+
 $$
 
 The supremum of the stock price is:
 
 $$
+
 \sup_{0 \le t \le T} S_t = S_0 \exp\!\left( \sup_{0 \le t \le T} \left[ \left(r - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t \right] \right)
+
 $$
 
 For a standard Brownian motion (without drift), the condition $\sup_{0 \le t \le T} S_t < H$ is equivalent to $M_T < b$, where:
 
 $$
+
 b := \frac{1}{\sigma} \log\!\left( \frac{H}{S_0} \right)
+
 $$
 
 !!! note "Drift Adjustment"
@@ -83,21 +99,27 @@ $$
 Using the joint density $f_{M_T, W_T}(m, w)$ from the reflection principle (see [Reflection Principle](../../ch02/brownian_motion/reflection_principle.md)):
 
 $$
+
 f_{M_T, W_T}(m, w) = \frac{2(2m - w)}{T\sqrt{2\pi T}} \exp\!\left( -\frac{(2m - w)^2}{2T} \right), \quad m \ge 0,\; w \le m
+
 $$
 
 The discounted price of the up-and-out call is:
 
 $$
+
 C_{\text{UO}} = e^{-rT} \int_{-\infty}^{\infty} \int_{0}^{b} \left( S_0\, e^{(r - \frac{1}{2}\sigma^2)T + \sigma w} - K \right)^{\!+} f_{M_T, W_T}(m, w)\, dm\, dw
+
 $$
 
 Substituting the joint density:
 
 $$
+
 C_{\text{UO}} = e^{-rT} \int_{-\infty}^{b} \int_{\max(0,w)}^{b}
 \left( S_0\, e^{(r - \frac{1}{2}\sigma^2)T + \sigma w} - K \right)^{\!+}
 \cdot \frac{2(2m - w)}{T\sqrt{2\pi T}}\, e^{-\frac{(2m-w)^2}{2T}}\, dm\, dw
+
 $$
 
 !!! info "Integration Domain"
@@ -112,7 +134,9 @@ For a **vanilla up-and-out call** with barrier $H > \max(S_0, K)$, a closed-form
 ### Formula
 
 $$
+
 C_{\text{UO}}(S_0, K, H, T) = C_{\text{BS}}(S_0, K, T) - \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}\!\left( \frac{H^2}{S_0}, K, T \right)
+
 $$
 
 where:
@@ -135,7 +159,9 @@ The idea proceeds in three steps:
 Using **in–out parity**, the up-and-in call price is:
 
 $$
+
 C_{\text{UI}} = C_{\text{BS}} - C_{\text{UO}} = \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}\!\left( \frac{H^2}{S_0}, K, T \right)
+
 $$
 
 For **down-and-out** and **down-and-in** options (barrier $H < S_0$), analogous formulas exist with the running minimum replacing the maximum, and the joint density $f_{m_T, W_T}$ of $\left(\inf_{0 \le t \le T} W_t,\, W_T\right)$.
@@ -162,7 +188,9 @@ The joint density approach is powerful because it extends to settings where clos
 For the up-and-out call, the effective integration domain is:
 
 $$
+
 \{(w, m) : w_{\min} \le w \le b,\;\; \max(0, w) \le m \le b\}
+
 $$
 
 where $w_{\min}$ is chosen so that the payoff is negligible below it (typically $w_{\min} = \frac{1}{\sigma}\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T/\sigma$).

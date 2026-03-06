@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def end_to_end_worked_examples():
     """
     End-to-End Worked Examples.

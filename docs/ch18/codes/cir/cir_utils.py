@@ -1,3 +1,9 @@
+"""
+Cir Utils
+
+Educational script demonstrating cir utils concepts.
+"""
+
 # ============================================================================
 # cir/cir_utils.py
 # ============================================================================
@@ -158,3 +164,7 @@ def calculate_model_metrics(result: CIRResult) -> Dict[str, float]:
         'absorption_frequency': np.mean(paths == 0) * 100,
         'convergence_to_theta': abs(np.mean(final_rates) - result.parameters.theta),
     }
+
+
+if __name__ == "__main__":
+    pass

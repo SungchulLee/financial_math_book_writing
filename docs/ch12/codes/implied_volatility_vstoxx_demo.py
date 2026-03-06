@@ -1,9 +1,17 @@
+"""
+Implied Volatility Vstoxx Demo
+
+Educational script demonstrating implied volatility vstoxx demo concepts.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Requires: ImpliedVol class
 # Data: vstoxx_data_31032014.h5
 # Download from: https://github.com/psygement/financepy/blob/master/part1/ch03/source/vstoxx_data_31032014.h5
+
+# ======================================================================
 
 def main():
     S = 17.6639 # 2014-03-31 VSTOXX Close

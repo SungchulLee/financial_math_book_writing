@@ -48,7 +48,7 @@ We prove all three cases via the generating function criterion $U(1) < \infty \L
 
 ---
 
-### Proof for $d = 1$
+### Proof for d = 1
 
 The probability of return to 0 at time $2n$ (we can only return at even times) is
 
@@ -60,7 +60,7 @@ $$\binom{2n}{n} = \frac{(2n)!}{(n!)^2} \sim \frac{\sqrt{4\pi n}\,(2n/e)^{2n}}{2\
 
 so $u_{2n} \sim \frac{1}{\sqrt{\pi n}}$. Since $\sum_{n=1}^\infty \frac{1}{\sqrt{\pi n}} = \infty$, we have $U(1) = \infty$, hence the walk is **recurrent**.
 
-### Proof for $d = 2$
+### Proof for d = 2
 
 In two dimensions, a step is a unit vector in one of the four directions $\{\pm e_1, \pm e_2\}$, each with probability $1/4$. The return probability at time $2n$ factors over coordinates:
 
@@ -68,13 +68,13 @@ $$u_{2n}^{(2)} = \left[\binom{2n}{n}\left(\frac{1}{2}\right)^{2n}\right]^2 \sim 
 
 Again $\sum_n u_{2n}^{(2)} = \infty$, so the 2D walk is **recurrent**.
 
-### Proof for $d \geq 3$
+### Proof for d >= 3
 
 In $d$ dimensions, $u_{2n}^{(d)} \sim C_d \cdot n^{-d/2}$ for a constant $C_d > 0$. Since $d/2 > 1$ for $d \geq 3$, the series $\sum_n n^{-d/2}$ converges by the $p$-series test ($p = d/2 > 1$). Therefore $U^{(d)}(1) < \infty$, which forces $F^{(d)}(1) < 1$: the walk is **transient**. $\square$
 
 ---
 
-## Asymmetric Walk in $d = 1$
+## Asymmetric Walk in d = 1
 
 For $p \neq 1/2$, any nonzero drift makes the 1D walk transient. By the Strong Law of Large Numbers:
 

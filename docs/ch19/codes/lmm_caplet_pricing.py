@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def lmm_caplet_pricing():
     """
     LMM Caplet Pricing.

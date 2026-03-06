@@ -1,3 +1,9 @@
+"""
+Binomial Model Plotter
+
+Educational script demonstrating binomial model plotter concepts.
+"""
+
 # ============================================================================
 # binomial_model/binomial_model_plotter.py
 # ============================================================================
@@ -77,3 +83,7 @@ class BinomialPlotter:
         
         # Return the result (fig, ax) if show=False, otherwise None
         return (fig, ax) if not show else None
+
+
+if __name__ == "__main__":
+    pass

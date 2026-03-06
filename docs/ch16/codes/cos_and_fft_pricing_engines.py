@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def cos_and_fft_pricing_engines():
     """
     COS and FFT Pricing Engines.

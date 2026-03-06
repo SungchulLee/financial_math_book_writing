@@ -26,6 +26,8 @@ from scipy.optimize import brentq
 from enum import Enum
 
 
+# ======================================================================
+
 class OptionType(Enum):
     """Enumeration for option types."""
     CALL = 1

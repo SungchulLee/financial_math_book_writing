@@ -34,8 +34,11 @@ Foundation for Financial Models:
 from .simple_random_walk_simulation import (
     SimpleRandomWalk,
     StepType
-)
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Simple random walk simulation and discrete stochastic process generation"
+
+if __name__ == "__main__":
+    )
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Simple random walk simulation and discrete stochastic process generation"

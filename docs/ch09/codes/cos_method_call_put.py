@@ -1,3 +1,9 @@
+"""
+Cos Method Call Put
+
+Educational script demonstrating cos method call put concepts.
+"""
+
 #@title Call and Put COS Method
 # Source Code
 # https://github.com/LechGrzelak/Computational-Finance-Course/blob/main/
@@ -7,6 +13,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as st
 import time
+
+# ======================================================================
 
 def CallPutOptionPriceCOSMthd(cf,CP,S0,r,tau,K,N,L):
     # cf   - characteristic function as a functon, in the book denoted as \varphi

@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def binomial_american_put():
     """
     American Put on Binomial Tree.

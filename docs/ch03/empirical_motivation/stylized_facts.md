@@ -108,7 +108,9 @@ def compare_tail_behavior(df, return_col='Return_Log'):
 **Power-law tails:** Empirical evidence suggests:
 
 $$
+
 P(|r| > x) \sim x^{-\alpha} \quad \text{for large } x
+
 $$
 
 with **tail index** $\alpha \approx 3-5$ (compared to Gaussian's exponential decay).
@@ -116,7 +118,9 @@ with **tail index** $\alpha \approx 3-5$ (compared to Gaussian's exponential dec
 **Student's t-distribution:** A common alternative to Gaussian:
 
 $$
+
 f(x; \nu) \propto \left(1 + \frac{x^2}{\nu}\right)^{-(\nu+1)/2}
+
 $$
 
 with degrees of freedom $\nu \approx 4-6$ for S&P 500.
@@ -336,7 +340,9 @@ def plot_leverage_effect(df, return_col='Return_Log', window=20):
 **Empirical evidence:**
 
 $$
+
 \text{Corr}(r_t, r_{t-k}) \approx 0 \quad \text{for } k \geq 1
+
 $$
 
 (with minor exceptions at very short horizons due to microstructure effects)
@@ -451,7 +457,9 @@ def demonstrate_aggregational_gaussianity(df, return_col='Return_Log'):
 **Long memory in volatility:** The autocorrelation function of $|r_t|$ decays **slowly** (power-law rather than exponential).
 
 $$
+
 \text{Corr}(|r_t|, |r_{t+k}|) \sim k^{-\beta} \quad \text{with } \beta \approx 0.2-0.4
+
 $$
 
 This is **slower** than exponential decay $e^{-\lambda k}$.

@@ -1,3 +1,9 @@
+"""
+Stock Analysis Market Entry
+
+Educational script demonstrating stock analysis market entry concepts.
+"""
+
 # ============================================================================
 # stock_analysis_TIME_MARKET_ENTRY_STRATEGY.py
 # ============================================================================
@@ -20,4 +26,6 @@ def time_market_entry_strategy():
         else:
             print(f"  📈 Normal period")
 
-time_market_entry_strategy()
+
+if __name__ == "__main__":
+    time_market_entry_strategy()

@@ -13,6 +13,11 @@ from copy import deepcopy
 from scipy.interpolate import splrep, splev, interp1d
 
 
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
+
 class OptionTypeSwap(enum.Enum):
     """Swap option type enumeration."""
     RECEIVER = 1.0
@@ -363,6 +368,10 @@ def main():
 
     print(delta)
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == "__main__":
     main()

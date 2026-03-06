@@ -1,3 +1,9 @@
+"""
+Matrices
+
+Educational script demonstrating matrices concepts.
+"""
+
 # ============================================================================
 # heat_equation_2d/matrices.py
 # ============================================================================
@@ -305,3 +311,7 @@ def construct_neumann_bc_2d(Nx: int, Ny: int, dx: float, dy: float,
     B = I + half_dt_D_L  # Explicit
     
     return A.tocsr(), B.tocsr()
+
+
+if __name__ == "__main__":
+    pass

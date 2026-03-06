@@ -16,7 +16,9 @@ The map from option prices to implied volatilities:
 
 
 $$
+
 C(K, T) \xrightarrow{\mathcal{C}^{-1}} \sigma_{\text{IV}}(K, T)
+
 $$
 
 
@@ -25,7 +27,9 @@ transforms the price surface into the implied volatility surface. Combined with 
 
 
 $$
+
 \text{Prices } C(K, T) \xrightarrow{\text{B-L}} \text{Density } q(K, T) \xrightarrow{\text{encode}} \text{IV Surface } \sigma_{\text{IV}}(K, T)
+
 $$
 
 
@@ -55,7 +59,9 @@ The risk-neutral density is completely characterized by its moments:
 
 
 $$
+
 m_n = \mathbb{E}^{\mathbb{Q}}[S_T^n] = \int_0^\infty S^n q(S) dS
+
 $$
 
 
@@ -69,7 +75,9 @@ The first moment is fixed by no-arbitrage:
 
 
 $$
+
 \mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{(r - q)T} = F
+
 $$
 
 
@@ -83,7 +91,9 @@ The second moment (variance) is related to the **model-free implied variance**:
 
 
 $$
+
 \text{Var}^{\mathbb{Q}}(S_T) = \mathbb{E}^{\mathbb{Q}}[S_T^2] - F^2
+
 $$
 
 
@@ -92,7 +102,9 @@ Carr and Madan show this can be computed from option prices via:
 
 
 $$
+
 \text{Var}^{\mathbb{Q}}(S_T) = 2 e^{rT} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)
+
 $$
 
 
@@ -105,7 +117,9 @@ For small $T$, the ATM implied volatility approximates the square root of the va
 
 
 $$
+
 \sigma_{\text{IV}}(F, T) \approx \sqrt{\frac{\text{Var}^{\mathbb{Q}}(S_T)}{F^2 T}}
+
 $$
 
 
@@ -117,7 +131,9 @@ The third central moment measures asymmetry:
 
 
 $$
+
 \text{Skew}^{\mathbb{Q}} = \frac{\mathbb{E}^{\mathbb{Q}}[(S_T - F)^3]}{(\text{Var}^{\mathbb{Q}}(S_T))^{3/2}}
+
 $$
 
 
@@ -130,7 +146,9 @@ $$
 
 
 $$
+
 \mathbb{E}^{\mathbb{Q}}[(S_T - F)^3] = 6 e^{rT} \left( \int_0^F \frac{(F - K)^2 P(K)}{K^2} dK + \int_F^\infty \frac{(K - F)^2 C(K)}{K^2} dK \right)
+
 $$
 
 
@@ -144,7 +162,9 @@ The fourth moment measures tail heaviness:
 
 
 $$
+
 \text{Kurt}^{\mathbb{Q}} = \frac{\mathbb{E}^{\mathbb{Q}}[(S_T - F)^4]}{(\text{Var}^{\mathbb{Q}}(S_T))^2}
+
 $$
 
 
@@ -157,7 +177,9 @@ $$
 
 
 $$
+
 \mathbb{E}^{\mathbb{Q}}[(S_T - F)^4] \propto \int_0^\infty \frac{(K - F)^4 \max(C(K), P(K))}{K^2} dK
+
 $$
 
 
@@ -174,7 +196,9 @@ If $\sigma_{\text{IV}}(K, T) = \sigma_0$ (constant), the risk-neutral density is
 
 
 $$
+
 q(S) = \frac{1}{S \sigma_0 \sqrt{2\pi T}} \exp\left( -\frac{(\ln S - \ln F - \sigma_0^2 T/2)^2}{2 \sigma_0^2 T} \right)
+
 $$
 
 
@@ -232,7 +256,9 @@ At-the-money implied volatility (forward strike $K = F$):
 
 
 $$
+
 \sigma_{\text{ATM}}^2 = \sigma_{\text{IV}}^2(F, T)
+
 $$
 
 
@@ -241,7 +267,9 @@ For short maturity, this relates to instantaneous variance:
 
 
 $$
+
 \lim_{T \to 0} \sigma_{\text{ATM}}^2(T) = \sigma_{\text{spot}}^2
+
 $$
 
 
@@ -255,7 +283,9 @@ The **slope of the skew** at ATM:
 
 
 $$
+
 \mathcal{S} := \frac{\partial \sigma_{\text{IV}}}{\partial K}\bigg|_{K=F}
+
 $$
 
 
@@ -264,7 +294,9 @@ relates to skewness through:
 
 
 $$
+
 \text{Skew}^{\mathbb{Q}} \approx -\frac{6 F \mathcal{S} \sqrt{T}}{\sigma_{\text{ATM}}}
+
 $$
 
 
@@ -280,7 +312,9 @@ The **curvature of the smile** at ATM:
 
 
 $$
+
 \mathcal{C} := \frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}\bigg|_{K=F}
+
 $$
 
 
@@ -289,7 +323,9 @@ relates to kurtosis:
 
 
 $$
+
 \text{Kurt}^{\mathbb{Q}} - 3 \approx 12 F^2 \mathcal{C} T
+
 $$
 
 
@@ -306,7 +342,9 @@ For $T \to 0$, the implied volatility admits an expansion:
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) = \sigma_0(K) + \sigma_1(K) T + \sigma_2(K) T^2 + O(T^3)
+
 $$
 
 
@@ -315,7 +353,9 @@ The leading term $\sigma_0(K)$ is determined by the **initial local volatility**
 
 
 $$
+
 \sigma_0(K) = \sigma_{\text{loc}}(K, 0)
+
 $$
 
 
@@ -331,7 +371,9 @@ For large strikes ($K \gg F$), the implied volatility behaves as:
 
 
 $$
+
 \sigma_{\text{IV}}^2(K, T) T \sim \frac{2 |\ln(K/F)|}{T} \quad \text{as } K \to \infty
+
 $$
 
 
@@ -340,7 +382,9 @@ This is **Lee's moment formula**, ensuring that the density has finite variance:
 
 
 $$
+
 \mathbb{E}^{\mathbb{Q}}[S_T^2] < \infty
+
 $$
 
 
@@ -368,7 +412,9 @@ Define the **implied tail probability** of large moves:
 
 
 $$
+
 \mathbb{Q}(S_T < K_{\text{low}}) = \int_0^{K_{\text{low}}} q(S) dS
+
 $$
 
 
@@ -377,7 +423,9 @@ Using Breeden-Litzenberger:
 
 
 $$
+
 \mathbb{Q}(S_T < K) = 1 + e^{rT} \frac{\partial C}{\partial K}\bigg|_K
+
 $$
 
 
@@ -409,7 +457,9 @@ The IV surface $\sigma_{\text{IV}}(K, T)$ at a fixed time $t = 0$ encodes the **
 
 
 $$
+
 \sigma_{\text{IV}}(K, T_1) \leftrightarrow q(S_{T_1}) \quad \text{and} \quad \sigma_{\text{IV}}(K, T_2) \leftrightarrow q(S_{T_2})
+
 $$
 
 
@@ -425,7 +475,9 @@ The **forward density** (conditional on survival to time $t$):
 
 
 $$
+
 q(S_T \mid S_t) = \frac{q(S_T, S_t)}{q(S_t)}
+
 $$
 
 
@@ -434,7 +486,9 @@ can be inferred from **forward-starting options**:
 
 
 $$
+
 C_{\text{fwd}}(K, t, T) = e^{-r(T - t)} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K, 0) \mid \mathcal{F}_t]
+
 $$
 
 
@@ -489,7 +543,9 @@ Different models generate different IV surfaces even with the same marginal dens
 **Black-Scholes:**
 
 $$
+
 \sigma_{\text{IV}}(K, T) = \sigma \quad \text{(flat)}
+
 $$
 
 
@@ -497,7 +553,9 @@ $$
 **Local Volatility:**
 
 $$
+
 \sigma_{\text{IV}}(K, T) \text{ determined by } \sigma_{\text{loc}}(S, t) \text{ via Dupire}
+
 $$
 
 
@@ -506,7 +564,9 @@ $$
 **Heston (Stochastic Volatility):**
 
 $$
+
 \sigma_{\text{IV}}(K, T) \text{ determined by } (\kappa, \theta, \xi, \rho, v_0)
+
 $$
 
 
@@ -515,7 +575,9 @@ $$
 **Jump-Diffusion (Merton):**
 
 $$
+
 \sigma_{\text{IV}}(K, T) \text{ exhibits convexity from jumps}
+
 $$
 
 
@@ -544,7 +606,9 @@ Observe implied volatilities $\{\sigma_{\text{IV}}(K_i, T_j)\}$ from market quot
 Use Black-Scholes formula:
 
 $$
+
 C(K_i, T_j) = C_{\text{BS}}(S_0, K_i, T_j, r, q, \sigma_{\text{IV}}(K_i, T_j))
+
 $$
 
 
@@ -555,7 +619,9 @@ Fit arbitrage-free surface $C(K, T)$ using splines or parametric models
 **Step 4: Extract density via B-L**  
 
 $$
+
 q(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{(K, T)}
+
 $$
 
 
@@ -563,7 +629,9 @@ $$
 **Step 5: Compute moments**  
 
 $$
+
 m_n(T) = \int_0^\infty K^n q(K, T) dK
+
 $$
 
 
@@ -594,7 +662,9 @@ The implied volatility surface $\sigma_{\text{IV}}(K, T)$ provides a **normalize
 **Variance:**
 
 $$
+
 \text{Var}^{\mathbb{Q}}(S_T) \leftrightarrow \sigma_{\text{IV}}(F, T)
+
 $$
 
 
@@ -602,7 +672,9 @@ $$
 **Skewness:**
 
 $$
+
 \text{Skew}^{\mathbb{Q}} \leftrightarrow \frac{\partial \sigma_{\text{IV}}}{\partial K}
+
 $$
 
 
@@ -610,7 +682,9 @@ $$
 **Kurtosis:**
 
 $$
+
 \text{Kurt}^{\mathbb{Q}} \leftrightarrow \frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}
+
 $$
 
 

@@ -1,3 +1,9 @@
+"""
+Bsm Functions
+
+Educational script demonstrating bsm functions concepts.
+"""
+
 # ---
 # title: "BSM Analytical Functions"
 # description: >
@@ -18,6 +24,7 @@ from scipy import stats
 import numpy as np
 
 
+# ======================================================================
 # ── Black-Scholes-Merton call value ────────────────────────────
 def bsm_call_value(S0, K, T, r, sigma):
     """Analytical European call price under BSM.

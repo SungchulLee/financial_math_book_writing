@@ -11,13 +11,17 @@ Calibration error affects not only prices but also **Greeks**, which are used fo
 Greeks are partial derivatives of the option price with respect to market variables:
 
 $$
+
 \Delta = \frac{\partial P}{\partial S}, \quad \Gamma = \frac{\partial^2 P}{\partial S^2}, \quad \text{Vega} = \frac{\partial P}{\partial \sigma}, \quad \Theta = \frac{\partial P}{\partial t}, \quad \text{etc.}
+
 $$
 
 These derivatives are computed **under the calibrated model** with parameters $\hat{\theta}$:
 
 $$
+
 \Delta(\hat{\theta}) = \frac{\partial P}{\partial S}\bigg|_{\theta = \hat{\theta}}.
+
 $$
 
 ### The problem
@@ -25,7 +29,9 @@ $$
 If $\hat{\theta} \ne \theta^{\star}$, the computed Greeks are wrong:
 
 $$
+
 \Delta(\hat{\theta}) \ne \Delta(\theta^{\star}).
+
 $$
 
 Hedging based on $\Delta(\hat{\theta})$ leaves residual exposure to the true $\Delta(\theta^{\star})$.
@@ -39,13 +45,17 @@ Hedging based on $\Delta(\hat{\theta})$ leaves residual exposure to the true $\D
 Expand Greeks around the true parameter:
 
 $$
+
 \Delta(\hat{\theta}) - \Delta(\theta^{\star}) \approx \nabla_\theta \Delta(\theta^{\star})^\top (\hat{\theta} - \theta^{\star}).
+
 $$
 
 The term $\nabla_\theta \Delta$ is the **sensitivity of delta to parameters**, a second-order derivative of the price:
 
 $$
+
 \nabla_\theta \Delta = \nabla_\theta \left( \frac{\partial P}{\partial S} \right) = \frac{\partial^2 P}{\partial S \partial \theta}.
+
 $$
 
 ### Implication
@@ -57,7 +67,9 @@ Even small parameter errors can materially distort hedge ratios when $\nabla_\th
 For Gamma, Vega, etc., the analysis is similar:
 
 $$
+
 \Gamma(\hat{\theta}) - \Gamma(\theta^{\star}) \approx \nabla_\theta \Gamma^\top \Delta\theta.
+
 $$
 
 Higher-order Greeks (Gamma, Vanna, Volga) are often more sensitive to parameters than Delta itself.
@@ -108,13 +120,17 @@ If the model is mis-specified, these Greeks may be meaningless or misleading.
 The variance of delta due to parameter uncertainty:
 
 $$
+
 \text{Var}(\Delta) \approx \nabla_\theta \Delta^\top \Sigma_\theta \nabla_\theta \Delta.
+
 $$
 
 This gives a confidence interval for the hedge ratio:
 
 $$
+
 \Delta \in \left[ \hat{\Delta} - z_\alpha \sigma_\Delta, \; \hat{\Delta} + z_\alpha \sigma_\Delta \right].
+
 $$
 
 ### Bump-and-reprice for Greeks
@@ -140,7 +156,9 @@ $$
 Consider delta-hedging a call option over $[t, t + \Delta t]$. The hedging error is:
 
 $$
+
 \epsilon = \Delta C - \Delta(\hat{\theta}) \cdot \Delta S,
+
 $$
 
 where $\Delta C$ is the actual change in option value.
@@ -148,19 +166,25 @@ where $\Delta C$ is the actual change in option value.
 Under the true model:
 
 $$
+
 \epsilon = \frac{1}{2} \Gamma(\theta^{\star}) (\Delta S)^2 + \text{higher-order terms}.
+
 $$
 
 Under the calibrated model:
 
 $$
+
 \epsilon_{\text{model}} = \frac{1}{2} \Gamma(\hat{\theta}) (\Delta S)^2 + \cdots
+
 $$
 
 The discrepancy:
 
 $$
+
 \epsilon - \epsilon_{\text{model}} \approx \frac{1}{2} (\Gamma(\theta^{\star}) - \Gamma(\hat{\theta})) (\Delta S)^2.
+
 $$
 
 ### Cumulative effect
@@ -168,7 +192,9 @@ $$
 Over $N$ hedging periods:
 
 $$
+
 \text{Total error} \approx \sum_{i=1}^N \epsilon_i.
+
 $$
 
 If errors are biased (systematic), they accumulate linearly. If unbiased but noisy, they accumulate as $\sqrt{N}$.
@@ -184,7 +210,9 @@ Calibration-induced errors are often **systematic** (same direction each day), l
 In Heston, delta depends on all parameters:
 
 $$
+
 \Delta = \Delta(S, v_0, \kappa, \bar{v}, \sigma_v, \rho, K, T).
+
 $$
 
 ### Sensitivity to correlation
@@ -206,10 +234,10 @@ Consider a 3-month 95% strike put on SPX with:
 - True parameters: $\rho = -0.8$, giving $\Delta_{\text{true}} = -0.35$.
 - Calibrated: $\rho = -0.7$, giving $\Delta_{\text{calib}} = -0.30$.
 
-The hedge is $5\%$ short of the correct delta. For a $100M notional position:
+The hedge is $5\%$ short of the correct delta. For a \$100M notional position:
 
-- Under-hedge: $5M$ delta exposure.
-- In a $5\%$ SPX move: unexpected P&L of ~$250K$.
+- Under-hedge: \$5M delta exposure.
+- In a $5\%$ SPX move: unexpected P&L of ~\$250K.
 
 ---
 
@@ -220,7 +248,9 @@ The hedge is $5\%$ short of the correct delta. For a $100M notional position:
 Rather than using point estimates, compute:
 
 $$
+
 \Delta_{\min} = \inf_{\theta \in C_\alpha} \Delta(\theta), \qquad \Delta_{\max} = \sup_{\theta \in C_\alpha} \Delta(\theta),
+
 $$
 
 where $C_\alpha$ is a confidence region for parameters.
@@ -254,7 +284,9 @@ Use robust, simple models for risk management even if pricing uses complex model
 Regularization that stabilizes parameters also stabilizes Greeks:
 
 $$
+
 \min_\theta \mathcal{L}(\theta) + \lambda \|\theta - \theta_{\text{prior}}\|^2.
+
 $$
 
 Smaller parameter jumps → smaller Greek jumps.

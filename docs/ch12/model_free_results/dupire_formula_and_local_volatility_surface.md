@@ -16,7 +16,9 @@ The **local volatility model** assumes the underlying asset follows:
 
 
 $$
+
 dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+
 $$
 
 
@@ -36,7 +38,9 @@ The probability density $p(S, t; S_0, 0)$ of $S_t$ given $S_0$ at time 0 satisfi
 
 
 $$
+
 \frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}\left[(r - q) S p\right] + \frac{1}{2} \frac{\partial^2}{\partial S^2}\left[\sigma_{\text{loc}}^2(S, t) S^2 p\right]
+
 $$
 
 
@@ -50,7 +54,9 @@ The call option price is:
 
 
 $$
+
 C(S_0, K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) p(S, T; S_0, 0) dS
+
 $$
 
 
@@ -68,7 +74,9 @@ The local volatility function can be extracted from the call price surface via:
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+
 $$
 
 
@@ -77,7 +85,9 @@ Equivalently, using forward price $F = S_0 e^{(r-q)T}$ and eliminating drift ter
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+
 $$
 
 
@@ -95,7 +105,9 @@ when expressed in forward coordinates.
 
 
 $$
+
 \sigma_{\text{loc}}^2(S, t) = \frac{C_T + (r - q) S C_S + q C}{\frac{1}{2} S^2 C_{SS}}
+
 $$
 
 
@@ -106,7 +118,9 @@ where subscripts denote partial derivatives.
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}
+
 $$
 
 
@@ -115,7 +129,9 @@ $$
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \frac{\partial \sigma_{\text{IV}}}{\partial T} + 2(r - q) K T \sigma_{\text{IV}} \frac{\partial \sigma_{\text{IV}}}{\partial K}}{\left(1 + K d_1 \sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2 + \sigma_{\text{IV}} K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
+
 $$
 
 
@@ -132,7 +148,9 @@ The call option price satisfies the backward Kolmogorov equation:
 
 
 $$
+
 \frac{\partial C}{\partial t} + (r - q) S \frac{\partial C}{\partial S} + \frac{1}{2} \sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 C}{\partial S^2} - r C = 0
+
 $$
 
 
@@ -146,7 +164,9 @@ Fix strike $K$ and differentiate the PDE with respect to $T$ (treating $T$ as a 
 
 
 $$
+
 \frac{\partial}{\partial T}\left(\frac{\partial C}{\partial t}\right) + (r - q) S \frac{\partial}{\partial T}\left(\frac{\partial C}{\partial S}\right) + \frac{1}{2} \sigma_{\text{loc}}^2(S, T) S^2 \frac{\partial}{\partial T}\left(\frac{\partial^2 C}{\partial S^2}\right) - r \frac{\partial C}{\partial T} = 0
+
 $$
 
 
@@ -163,7 +183,9 @@ Using the **Dupire argument**: differentiate the option price with respect to ma
 
 
 $$
+
 \frac{\partial C}{\partial T}\bigg|_{S=K} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}\bigg|_{S=K, t=T}
+
 $$
 
 
@@ -172,7 +194,9 @@ Solving for $\sigma_{\text{loc}}^2$:
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}
+
 $$
 
 
@@ -184,7 +208,9 @@ For general $(S, t)$, the complete derivation includes drift corrections:
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+
 $$
 
 
@@ -201,7 +227,9 @@ Consider the **local time** $L_t^K$ of the process $S_t$ at level $K$. Tanaka's 
 
 
 $$
+
 (S_T - K)^+ = (S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t > K} dS_t + \frac{1}{2} L_T^K
+
 $$
 
 
@@ -210,7 +238,9 @@ Taking expectations:
 
 
 $$
+
 C(S_0, K, T) = e^{-rT} \mathbb{E}\left[(S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t > K} (r - q) S_t dt + \frac{1}{2} L_T^K\right]
+
 $$
 
 
@@ -219,7 +249,9 @@ The local time satisfies:
 
 
 $$
+
 \mathbb{E}[L_T^K] = \int_0^T \sigma_{\text{loc}}^2(K, t) K^2 p(K, t; S_0, 0) dt
+
 $$
 
 
@@ -228,7 +260,9 @@ Differentiating with respect to $T$ and using Breeden-Litzenberger:
 
 
 $$
+
 \frac{\partial C}{\partial T} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \cdot e^{-rT} p(K, T) = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}
+
 $$
 
 
@@ -246,7 +280,9 @@ Given a complete arbitrage-free European call price surface $C(K, T)$ for all $K
 
 
 $$
+
 dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+
 $$
 
 
@@ -272,7 +308,9 @@ The local volatility at strike $K$ and maturity $T$ is **not** equal to the impl
 
 
 $$
+
 \sigma_{\text{loc}}(K, T) \neq \sigma_{\text{IV}}(K, T)
+
 $$
 
 
@@ -301,14 +339,18 @@ On a discrete grid $(K_i, T_j)$, approximate derivatives using centered differen
 
 
 $$
+
 \frac{\partial C}{\partial T}\bigg|_{K_i, T_j} \approx \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}}
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 \frac{\partial^2 C}{\partial K^2}\bigg|_{K_i, T_j} \approx \frac{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2}
+
 $$
 
 
@@ -317,7 +359,9 @@ Then:
 
 
 $$
+
 \sigma_{\text{loc}}^2(K_i, T_j) = \frac{2}{ K_i^2} \cdot \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}} \cdot \frac{(\Delta K)^2}{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}
+
 $$
 
 
@@ -370,7 +414,9 @@ Given the implied volatility surface $\sigma_{\text{IV}}(K, T)$, compute local v
 **Step 2:** Compute derivatives:
 
 $$
+
 C_T, \quad C_K, \quad C_{KK}
+
 $$
 
 
@@ -384,7 +430,9 @@ Gyöngy's formula provides a direct relationship:
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \left(\frac{\partial \sigma_{\text{IV}}}{\partial T} + (r - q) K \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)}{1 + 2 d_1 K\sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K} + K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1^2 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
+
 $$
 
 
@@ -398,7 +446,9 @@ At-the-money ($K = F = S_0 e^{(r-q)T}$), a useful approximation:
 
 
 $$
+
 \sigma_{\text{loc}}^2(F, T) \approx \sigma_{\text{IV}}^2(F, T) + 2 T \sigma_{\text{IV}}(F, T) \frac{\partial \sigma_{\text{IV}}}{\partial T}\bigg|_{K=F}
+
 $$
 
 
@@ -415,7 +465,9 @@ The density $p(K, T)$ satisfies:
 
 
 $$
+
 \frac{\partial p}{\partial T} = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 p(K, T)\right]
+
 $$
 
 
@@ -426,7 +478,9 @@ Using Breeden-Litzenberger $p(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}$:
 
 
 $$
+
 \frac{\partial}{\partial T}\left(e^{rT} \frac{\partial^2 C}{\partial K^2}\right) = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 e^{rT} \frac{\partial^2 C}{\partial K^2}\right]
+
 $$
 
 
@@ -503,7 +557,9 @@ Dupire's formula:
 
 
 $$
+
 \sigma_{\text{loc}}^2(K, T) = \frac{2 \frac{\partial C}{\partial T}}{K^2 \frac{\partial^2 C}{\partial K^2}}
+
 $$
 
 
@@ -523,7 +579,9 @@ establishes a **model-free, one-to-one relationship** between:
 
 
 $$
+
 \text{Market Prices} \xrightarrow{\text{B-L}} \text{Risk-Neutral Density} \xrightarrow{\text{Dupire}} \text{Local Volatility Surface}
+
 $$
 
 

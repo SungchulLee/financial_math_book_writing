@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def hazard_rate_curve():
     """
     Hazard Rate Curve Construction.

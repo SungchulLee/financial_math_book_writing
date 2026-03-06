@@ -1,3 +1,9 @@
+"""
+Heat Equation 1D Fundamental
+
+Educational script demonstrating heat equation 1d fundamental concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d_FUNDAMENTAL_SOLUTION.py
 # ============================================================================

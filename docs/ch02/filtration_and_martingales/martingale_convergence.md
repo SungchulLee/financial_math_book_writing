@@ -25,7 +25,9 @@ Let $U_N^{[a,b]}$ denote the number of upcrossings of $[a, b]$ by $(X_0, X_1, \l
 **Theorem**: If $\{X_n\}_{n=0}^N$ is a submartingale, then:
 
 $$
+
 \boxed{(b - a) \mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^+]}
+
 $$
 
 where $(x)^+ = \max(x, 0)$.
@@ -41,19 +43,25 @@ Set $H_n = 1$ if $\sigma_k \leq n - 1 < \tau_k$ for some $k$, and $H_n = 0$ othe
 The total gain from this strategy is:
 
 $$
+
 G_N = \sum_{n=1}^N H_n (X_n - X_{n-1})
+
 $$
 
 Each completed upcrossing contributes at least $b - a$ to the gain, so:
 
 $$
+
 G_N \geq (b - a) U_N^{[a,b]} - (X_N - a)^-
+
 $$
 
 For submartingales, predictable strategies with non-negative bounded coefficients preserve the submartingale property, so $\mathbb{E}[G_N] \geq 0$. This gives:
 
 $$
+
 (b - a) \mathbb{E}[U_N^{[a,b]}] \leq \mathbb{E}[(X_N - a)^-] + \mathbb{E}[G_N] \leq \mathbb{E}[(X_N - a)^+]
+
 $$
 
 where the last step uses $\mathbb{E}[G_N] \geq 0$ and $(X_N - a)^- \leq (X_N - a)^+$ when $X_N \geq a$, or direct accounting otherwise. $\square$
@@ -67,13 +75,17 @@ where the last step uses $\mathbb{E}[G_N] \geq 0$ and $(X_N - a)^- \leq (X_N - a
 **Theorem (Doob's Martingale Convergence Theorem)**: Let $\{M_n\}_{n \ge 0}$ be a martingale (or submartingale) satisfying:
 
 $$
+
 \sup_n \mathbb{E}[|M_n|] < \infty \quad \text{($L^1$-bounded)}
+
 $$
 
 Then there exists a random variable $M_\infty$ with $\mathbb{E}|M_\infty| < \infty$ such that:
 
 $$
+
 \boxed{M_n \to M_\infty \quad \text{almost surely as } n \to \infty}
+
 $$
 
 **Proof**:
@@ -81,7 +93,9 @@ $$
 *Step 1*: For any rational $a < b$, the upcrossing inequality gives:
 
 $$
+
 \mathbb{E}[U_\infty^{[a,b]}] = \lim_N \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a} < \infty
+
 $$
 
 Therefore $U_\infty^{[a,b]} < \infty$ almost surely.
@@ -89,7 +103,9 @@ Therefore $U_\infty^{[a,b]} < \infty$ almost surely.
 *Step 2*: The event "$(M_n)$ oscillates infinitely often" equals:
 
 $$
+
 \bigcup_{a < b, \, a,b \in \mathbb{Q}} \{U_\infty^{[a,b]} = \infty\}
+
 $$
 
 This is a countable union of null sets, hence null.
@@ -99,7 +115,9 @@ This is a countable union of null sets, hence null.
 *Step 4*: To show $M_\infty$ is finite a.s., note that $(|M_n|)$ is a submartingale and:
 
 $$
+
 \mathbb{P}(|M_\infty| = \infty) \le \lim_K \mathbb{P}\left(\sup_n |M_n| \ge K\right) \le \lim_K \frac{\sup_n \mathbb{E}|M_n|}{K} = 0 \quad \square
+
 $$
 
 ---
@@ -111,7 +129,9 @@ Almost sure convergence does **not** imply $L^1$ convergence. The canonical coun
 **Example**: Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2$. Define:
 
 $$
+
 M_n = \prod_{i=1}^n \xi_i
+
 $$
 
 Then $M_n$ is a martingale with $\mathbb{E}[M_n] = 1$ for all $n$. However, $M_n \to 0$ almost surely (since $\mathbb{P}(\text{at least one } \xi_i = 0) = 1$), but $\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]$.
@@ -125,7 +145,9 @@ The gap is filled by **uniform integrability**.
 A family of random variables $\{X_\alpha\}_{\alpha \in A}$ is **uniformly integrable (UI)** if:
 
 $$
+
 \lim_{K \to \infty} \sup_{\alpha \in A} \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] = 0
+
 $$
 
 **Equivalent conditions**:
@@ -165,7 +187,9 @@ $(1) \Rightarrow (3)$: By the basic convergence theorem, $M_n \to M_\infty$ a.s.
 $(3) \Rightarrow (4)$: For any $A \in \mathcal{F}_n$, by dominated convergence:
 
 $$
+
 \mathbb{E}[M_\infty \mathbf{1}_A] = \lim_m \mathbb{E}[M_m \mathbf{1}_A] = \mathbb{E}[M_n \mathbf{1}_A]
+
 $$
 
 showing $M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]$. $\square$
@@ -177,13 +201,17 @@ showing $M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]$. $\square$
 **Theorem**: Let $p > 1$ and let $(M_n)$ be a martingale with $\sup_n \mathbb{E}|M_n|^p < \infty$. Then:
 
 $$
+
 \boxed{M_n \to M_\infty \quad \text{in } L^p \text{ and a.s.}}
+
 $$
 
 **Proof**: $L^p$-boundedness with $p > 1$ implies UI, so $L^1$ (hence a.s.) convergence follows. For $L^p$ convergence, Doob's maximal inequality gives:
 
 $$
+
 \mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}|M_n|^p < \infty
+
 $$
 
 Since $|M_n - M_\infty|^p \le 2^p \sup_n |M_n|^p$ which is integrable, dominated convergence yields $L^p$ convergence. $\square$
@@ -197,7 +225,9 @@ Since $|M_n - M_\infty|^p \le 2^p \sup_n |M_n|^p$ which is integrable, dominated
 A **backward martingale** (or reverse martingale) is a sequence $(M_n, \mathcal{F}_n)_{n \geq 1}$ with $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$ (decreasing filtration) and:
 
 $$
+
 \mathbb{E}[M_n \mid \mathcal{F}_{n+1}] = M_{n+1} \quad \text{for all } n \geq 1
+
 $$
 
 Equivalently, as we move forward in the index $n$, we have *less* information (the filtration shrinks), and conditioning on this smaller $\sigma$-algebra still gives the martingale relation.
@@ -205,7 +235,9 @@ Equivalently, as we move forward in the index $n$, we have *less* information (t
 **Theorem (Backward Martingale Convergence)**: If $(M_n, \mathcal{F}_n)_{n \geq 1}$ is a backward martingale with $\sup_n \mathbb{E}|M_n| < \infty$, then:
 
 $$
+
 M_n \to M_\infty \quad \text{a.s. and in } L^1
+
 $$
 
 where $M_\infty = \mathbb{E}[M_1 \mid \mathcal{F}_\infty]$ and $\mathcal{F}_\infty = \bigcap_n \mathcal{F}_n$ is the tail $\sigma$-algebra.
@@ -222,13 +254,17 @@ The key observation is that $\mathcal{F}_n \supseteq \mathcal{F}_{n+1}$ (knowing
 Let $\bar{X}_n = S_n/n$. Then $(\bar{X}_n, \mathcal{F}_n)$ is a backward martingale. By the backward convergence theorem:
 
 $$
+
 \frac{S_n}{n} = \bar{X}_n \to \mathbb{E}[X_1 \mid \mathcal{F}_\infty] \quad \text{a.s. and in } L^1
+
 $$
 
 By Kolmogorov's 0-1 law, $\mathcal{F}_\infty$ is trivial (all events have probability 0 or 1), so:
 
 $$
+
 \frac{S_n}{n} \to \mathbb{E}[X_1] = \mu \quad \text{a.s. and in } L^1
+
 $$
 
 This elegant proof of the SLLN avoids truncation arguments.
@@ -242,7 +278,9 @@ The convergence theorems extend to continuous time with appropriate modification
 **Theorem**: Let $(M_t)_{t \ge 0}$ be a right-continuous martingale with:
 
 $$
+
 \sup_t \mathbb{E}|M_t| < \infty
+
 $$
 
 Then $M_\infty := \lim_{t \to \infty} M_t$ exists almost surely and is finite a.s.
@@ -285,7 +323,9 @@ Martingale convergence and optional sampling are deeply connected:
 **Theorem**: Let $(M_n)$ be a UI martingale with limit $M_\infty$. For any stopping time $\tau$ (possibly infinite):
 
 $$
+
 \mathbb{E}[M_\tau] = \mathbb{E}[M_0] \quad \text{and} \quad M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]
+
 $$
 
 This extends the optional sampling theorem to unbounded stopping times, using convergence to handle the limit.

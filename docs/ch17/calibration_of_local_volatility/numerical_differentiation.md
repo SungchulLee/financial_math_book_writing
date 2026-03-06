@@ -9,7 +9,9 @@ Local volatility calibration via Dupire's formula requires computing derivatives
 Dupire's formula involves:
 
 $$
+
 \sigma_{\text{loc}}^2(T, K) = \frac{2 \left( \partial_T C + (r - q) K \partial_K C - q C \right)}{K^2 \partial_{KK} C}.
+
 $$
 
 All three derivatives ($\partial_T C$, $\partial_K C$, $\partial_{KK} C$) must be estimated from discrete, noisy data.
@@ -19,13 +21,17 @@ All three derivatives ($\partial_T C$, $\partial_K C$, $\partial_{KK} C$) must b
 If $C^{\text{obs}}(K) = C^{\star}(K) + \varepsilon(K)$ where $\varepsilon$ is observation noise with standard deviation $\sigma_\varepsilon$, then a central difference approximation
 
 $$
+
 \partial_K C \approx \frac{C(K + h) - C(K - h)}{2h}
+
 $$
 
 has error
 
 $$
+
 \text{Error} \approx \frac{\sigma_\varepsilon}{h} + O(h^2).
+
 $$
 
 The first term (noise amplification) grows as $h \to 0$, while the second term (truncation error) shrinks. There is an optimal $h$ balancing these effects.
@@ -33,7 +39,9 @@ The first term (noise amplification) grows as $h \to 0$, while the second term (
 For second derivatives:
 
 $$
+
 \partial_{KK} C \approx \frac{C(K + h) - 2C(K) + C(K - h)}{h^2},
+
 $$
 
 with error scaling as $\sigma_\varepsilon / h^2$—much worse.
@@ -45,30 +53,45 @@ with error scaling as $\sigma_\varepsilon / h^2$—much worse.
 ### First derivatives
 
 **Forward difference:**
+
 $$
+
 \partial_K C \approx \frac{C(K + h) - C(K)}{h}, \quad \text{Error} = O(h).
+
 $$
 
 **Backward difference:**
+
 $$
+
 \partial_K C \approx \frac{C(K) - C(K - h)}{h}, \quad \text{Error} = O(h).
+
 $$
 
 **Central difference (preferred):**
+
 $$
+
 \partial_K C \approx \frac{C(K + h) - C(K - h)}{2h}, \quad \text{Error} = O(h^2).
+
 $$
 
 ### Second derivatives
 
 **Standard central difference:**
+
 $$
+
 \partial_{KK} C \approx \frac{C(K + h) - 2C(K) + C(K - h)}{h^2}, \quad \text{Error} = O(h^2).
+
 $$
 
 **Five-point stencil (higher accuracy):**
+
 $$
+
 \partial_{KK} C \approx \frac{-C(K + 2h) + 16C(K + h) - 30C(K) + 16C(K - h) - C(K - 2h)}{12h^2}, \quad \text{Error} = O(h^4).
+
 $$
 
 ### Time derivatives
@@ -76,19 +99,27 @@ $$
 For $\partial_T C$, data are typically available at discrete maturities $T_1 < T_2 < \cdots$. Options include:
 
 **Forward difference:**
+
 $$
+
 \partial_T C \approx \frac{C(K, T_{i+1}) - C(K, T_i)}{T_{i+1} - T_i}.
+
 $$
 
 **Central difference (if three maturities available):**
+
 $$
+
 \partial_T C \approx \frac{C(K, T_{i+1}) - C(K, T_{i-1})}{T_{i+1} - T_{i-1}}.
+
 $$
 
 In total variance coordinates $w(k, T) = T \sigma_{\text{impl}}^2(k, T)$:
 
 $$
+
 \partial_T w \approx \frac{w(k, T_{i+1}) - w(k, T_i)}{T_{i+1} - T_i}.
+
 $$
 
 ---
@@ -102,13 +133,17 @@ Richardson extrapolation improves accuracy by combining estimates at different s
 If an approximation $A(h)$ has error expansion
 
 $$
+
 A(h) = A^{\star} + c_1 h^p + c_2 h^{p+1} + \cdots,
+
 $$
 
 then
 
 $$
+
 A_{\text{extrap}} = \frac{2^p A(h/2) - A(h)}{2^p - 1}
+
 $$
 
 has error $O(h^{p+1})$.
@@ -118,7 +153,9 @@ has error $O(h^{p+1})$.
 With central differences ($p = 2$):
 
 $$
+
 \partial_{KK} C \approx \frac{4 D(h/2) - D(h)}{3}, \quad \text{where } D(h) = \frac{C(K+h) - 2C(K) + C(K-h)}{h^2}.
+
 $$
 
 This yields $O(h^4)$ accuracy from $O(h^2)$ building blocks.
@@ -144,7 +181,9 @@ Given data $(K_i, C_i)$, fit a cubic spline $S(K)$ such that:
 Then compute:
 
 $$
+
 \partial_K C(K) = S'(K), \qquad \partial_{KK} C(K) = S''(K).
+
 $$
 
 ### Advantages
@@ -163,7 +202,9 @@ $$
 To handle noise, use smoothing splines that minimize
 
 $$
+
 \sum_i (S(K_i) - C_i)^2 + \lambda \int (S''(K))^2 \, dK,
+
 $$
 
 where $\lambda > 0$ controls the smoothness-fit trade-off.
@@ -179,7 +220,9 @@ Market data are often given as implied volatilities. Dupire's formula can be rew
 Let $k = \log(K/F_T)$ and $w(k, T) = T \sigma_{\text{impl}}^2(k, T)$. Then:
 
 $$
+
 \sigma_{\text{loc}}^2 = \frac{\partial_T w}{1 - \frac{k}{w} \partial_k w + \frac{1}{4} \left( -\frac{1}{4} - \frac{1}{w} + \frac{k^2}{w^2} \right) (\partial_k w)^2 + \frac{1}{2} \partial_{kk} w}.
+
 $$
 
 ### Advantages of total variance
@@ -204,13 +247,19 @@ $$
 For central differences with noise level $\sigma_\varepsilon$ and smooth function $C$:
 
 **First derivative:**
+
 $$
+
 h^{\star} \sim \left( \frac{\sigma_\varepsilon}{|C'''|} \right)^{1/3}.
+
 $$
 
 **Second derivative:**
+
 $$
+
 h^{\star} \sim \left( \frac{\sigma_\varepsilon}{|C^{(4)}|} \right)^{1/4}.
+
 $$
 
 ### Practical estimation
@@ -228,7 +277,9 @@ Since $C'''$ and $C^{(4)}$ are unknown:
 The denominator in Dupire's formula must be positive for local variance to be real and positive:
 
 $$
+
 K^2 \partial_{KK} C > 0 \quad \Leftrightarrow \quad \partial_{KK} C > 0.
+
 $$
 
 This is the butterfly arbitrage condition.
@@ -242,7 +293,9 @@ This is the butterfly arbitrage condition.
 A small positive floor is often applied:
 
 $$
+
 \partial_{KK} C \leftarrow \max(\partial_{KK} C, \epsilon),
+
 $$
 
 but this is a band-aid, not a solution. Proper arbitrage-free surface construction (e.g., SVI/SSVI) is preferred.

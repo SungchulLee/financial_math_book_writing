@@ -34,7 +34,9 @@ This approach is particularly valuable because:
 
 
 $$
+
 \frac{S_t}{B_t} = \mathbb{E}_{\mathbb{Q}}\left[ \frac{S_T}{B_T} \,\bigg|\, \mathcal{F}_t \right]
+
 $$
 
 
@@ -62,7 +64,9 @@ $$
 
 
 $$
+
 C(K, T) \geq (S_0 - Ke^{-rT})^+
+
 $$
 
 
@@ -80,7 +84,9 @@ The portfolio has non-negative payoff, so by no-arbitrage, its initial value mus
 
 
 $$
+
 C(K, T) - S_0 + Ke^{-rT} \geq 0
+
 $$
 
 
@@ -89,7 +95,9 @@ $$
 
 
 $$
+
 C(K, T) \leq S_0
+
 $$
 
 
@@ -103,7 +111,9 @@ $$
 
 
 $$
+
 P(K, T) \geq (Ke^{-rT} - S_0)^+
+
 $$
 
 
@@ -112,7 +122,9 @@ $$
 
 
 $$
+
 P(K, T) \leq Ke^{-rT}
+
 $$
 
 
@@ -126,7 +138,9 @@ $$
 
 
 $$
+
 C(K, T) - P(K, T) = S_0 - Ke^{-rT}
+
 $$
 
 
@@ -151,7 +165,9 @@ Since both portfolios have identical payoffs, by no-arbitrage, they must have id
 
 
 $$
+
 C(\lambda K_1 + (1-\lambda) K_2) \leq \lambda C(K_1) + (1-\lambda) C(K_2)
+
 $$
 
 
@@ -167,7 +183,9 @@ This portfolio has non-negative payoff everywhere, hence:
 
 
 $$
+
 C(K_1) + C(K_3) - \frac{1}{\alpha} C(K_2) \geq 0
+
 $$
 
 
@@ -178,7 +196,9 @@ which establishes convexity.
 
 
 $$
+
 \frac{C(K_2) - C(K_1)}{K_2 - K_1} \leq \frac{C(K_3) - C(K_2)}{K_3 - K_2}
+
 $$
 
 
@@ -192,7 +212,9 @@ for any $K_1 < K_2 < K_3$.
 
 
 $$
+
 K_1 < K_2 \implies C(K_1) \geq C(K_2)
+
 $$
 
 
@@ -203,7 +225,9 @@ $$
 
 
 $$
+
 0 \leq C(K_1) - C(K_2) \leq e^{-rT}(K_2 - K_1)
+
 $$
 
 
@@ -219,7 +243,9 @@ $$
 
 
 $$
+
 -e^{-rT} \leq \frac{\partial C}{\partial K} \leq 0
+
 $$
 
 
@@ -229,7 +255,9 @@ $$
 - Lower bound: From call spread bound, taking limits:
 
   $$
+
   \frac{C(K) - C(K + h)}{h} \leq e^{-rT}
+
   $$
 
 
@@ -237,7 +265,9 @@ $$
 As $h \to 0$:
 
   $$
+
   -\frac{\partial C}{\partial K} \leq e^{-rT}
+
   $$
 
 
@@ -246,7 +276,9 @@ As $h \to 0$:
 
 
 $$
+
 \mathcal{D}(K) = e^{rT} \frac{\partial C}{\partial K}(K)
+
 $$
 
 
@@ -254,7 +286,9 @@ $$
 Then:
 
 $$
+
 \mathcal{D}(K) = -\mathbb{Q}(S_T > K)
+
 $$
 
 
@@ -262,7 +296,9 @@ $$
 and the constraint becomes:
 
 $$
+
 0 \leq \mathbb{Q}(S_T > K) \leq 1
+
 $$
 
 
@@ -277,7 +313,9 @@ $$
 
 
 $$
+
 q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)
+
 $$
 
 
@@ -286,7 +324,9 @@ $$
 
 
 $$
+
 C(K) = e^{-rT} \int_K^{\infty} (S - K) q(S) \, dS
+
 $$
 
 
@@ -295,7 +335,9 @@ Differentiate once with respect to $K$:
 
 
 $$
+
 \frac{\partial C}{\partial K} = e^{-rT} \int_K^{\infty} (-1) q(S) \, dS = -e^{-rT} \int_K^{\infty} q(S) \, dS
+
 $$
 
 
@@ -304,7 +346,9 @@ Differentiate again:
 
 
 $$
+
 \frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
+
 $$
 
 
@@ -315,7 +359,9 @@ $$
 3. The forward price:
 
    $$
+
    F_0 = \int_0^{\infty} K q(K) \, dK = S_0 e^{rT}
+
    $$
 
 
@@ -327,7 +373,9 @@ $$
 
 
 $$
+
 q(K_i) \approx e^{rT} \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}
+
 $$
 
 
@@ -351,7 +399,9 @@ Regularized approaches project observed prices onto the space of arbitrage-free 
 
 
 $$
+
 g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K) (K - S_T)^+ \, dK + \int_F^{\infty} g''(K) (S_T - K)^+ \, dK
+
 $$
 
 
@@ -362,7 +412,9 @@ where $F = S_0 e^{rT}$ is the forward price.
 
 
 $$
+
 g(S_T) - g(F) = \int_F^{S_T} g'(K) \, dK
+
 $$
 
 
@@ -371,7 +423,9 @@ Apply integration by parts:
 
 
 $$
+
 \int_F^{S_T} g'(K) \, dK = g'(K)(K - F)\bigg|_F^{S_T} - \int_F^{S_T} (K - F) g''(K) \, dK
+
 $$
 
 
@@ -382,10 +436,12 @@ Continuing and rearranging terms yields the result.
 
 
 $$
+
 \begin{aligned}
 V_0 &= e^{-rT} \mathbb{E}_{\mathbb{Q}}[g(S_T)] \\
 &= e^{-rT} g(F) + e^{-rT} \int_0^F g''(K) P(K) \, dK + e^{-rT} \int_F^{\infty} g''(K) C(K) \, dK
 \end{aligned}
+
 $$
 
 
@@ -402,7 +458,9 @@ $$
 
 
 $$
+
 g''(K) = \frac{1}{K^2}
+
 $$
 
 
@@ -411,7 +469,9 @@ Hence:
 
 
 $$
+
 \mathbb{E}_{\mathbb{Q}}[\log(S_T/F)] = \int_0^F \frac{P(K)}{K^2} \, dK + \int_F^{\infty} \frac{C(K)}{K^2} \, dK
+
 $$
 
 
@@ -420,7 +480,9 @@ $$
 
 
 $$
+
 \text{Var}(S_T) \approx 2e^{rT} \left( \int_0^F \frac{P(K)}{K^2} \, dK + \int_F^{\infty} \frac{C(K)}{K^2} \, dK \right)
+
 $$
 
 
@@ -437,7 +499,9 @@ $$
 
 
 $$
+
 \text{Payoff} = (S_{t_2} - S_{t_1})^+
+
 $$
 
 
@@ -446,10 +510,12 @@ $$
 
 
 $$
+
 \begin{aligned}
 V_0^{\text{forward}} &\leq C_0(S_0, t_2) \\
 V_0^{\text{forward}} &\geq (1 - e^{-r t_1}) C_0(S_0, t_2)
 \end{aligned}
+
 $$
 
 
@@ -465,7 +531,9 @@ $$
 
 
 $$
+
 \left(\max_{0 \leq t \leq T} S_t - K\right)^+
+
 $$
 
 
@@ -474,7 +542,9 @@ $$
 
 
 $$
+
 C_{\text{lookback}}(K) \geq C_{\text{European}}(K)
+
 $$
 
 
@@ -485,7 +555,9 @@ with equality only if volatility is zero.
 
 
 $$
+
 C_{\text{lookback}}(K) \geq \int_K^{\infty} \frac{C(L)}{L^2} \, dL
+
 $$
 
 
@@ -499,7 +571,9 @@ This bound can be computed from the market prices of vanilla calls.
 
 
 $$
+
 (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t < H\}}
+
 $$
 
 
@@ -512,7 +586,9 @@ where $H > S_0$ is the barrier level.
 
 
 $$
+
 C_{\text{UO}}(K, H) \geq 0
+
 $$
 
 
@@ -521,7 +597,9 @@ $$
 
 
 $$
+
 C_{\text{UO}}(K, H) \leq C(K) - C(H)
+
 $$
 
 
@@ -540,7 +618,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(g) = \inf \left\{ V_0: \exists \text{ trading strategy with } V_T \geq g(S_T) \text{ a.s.} \right\}
+
 $$
 
 
@@ -549,7 +629,9 @@ $$
 
 
 $$
+
 \pi^{\text{dual}}(g) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
+
 $$
 
 
@@ -560,7 +642,9 @@ where $\mathcal{M}$ is the set of equivalent martingale measures.
 
 
 $$
+
 \pi^{\text{sup}}(g) = \pi^{\text{dual}}(g)
+
 $$
 
 
@@ -577,7 +661,9 @@ $$
 
 
 $$
+
 \pi^{\text{sub}}(g) = \sup \left\{ V_0: \exists \text{ trading strategy with } V_T \leq g(S_T) \text{ a.s.} \right\}
+
 $$
 
 
@@ -586,7 +672,9 @@ $$
 
 
 $$
+
 \pi^{\text{sub}}(g) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
+
 $$
 
 
@@ -595,7 +683,9 @@ $$
 
 
 $$
+
 \pi^{\text{sup}}(g) = \pi^{\text{sub}}(g) = \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
+
 $$
 
 
@@ -604,7 +694,9 @@ $$
 
 
 $$
+
 \pi^{\text{sub}}(g) \leq \pi^{\text{sup}}(g)
+
 $$
 
 
@@ -621,7 +713,9 @@ with strict inequality reflecting model uncertainty.
 
 
 $$
+
 \sigma_{\text{MF}}^2 = \frac{2e^{rT}}{T} \left( \int_0^{S_0} \frac{P(K)}{K^2} \, dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} \, dK \right)
+
 $$
 
 
@@ -630,7 +724,9 @@ $$
 
 
 $$
+
 \sigma_{\text{MF}}^2 = \frac{1}{T} \mathbb{E}_{\mathbb{Q}}\left[ \int_0^T \frac{\sigma_t^2}{1} \, dt \right] - \frac{1}{T} \left[ \log\left(\frac{S_T}{S_0}\right) \right]^2
+
 $$
 
 
@@ -641,7 +737,9 @@ where $\sigma_t$ is the instantaneous volatility.
 
 
 $$
+
 \sigma_{\text{MF}}^2 \leq \frac{1}{T} \mathbb{E}_{\mathbb{Q}}\left[ \int_0^T \sigma_t^2 \, dt \right]
+
 $$
 
 
@@ -655,7 +753,9 @@ $$
 
 
 $$
+
 \int_0^{\infty} S^k q(S) \, dS = m_k
+
 $$
 
 
@@ -664,7 +764,9 @@ for $k = 0, 1, 2, \ldots$, where:
 
 
 $$
+
 m_0 = 1, \quad m_1 = S_0 e^{rT}
+
 $$
 
 
@@ -673,7 +775,9 @@ and higher moments can be computed from option prices using:
 
 
 $$
+
 m_k = e^{rT} \left[ k(k-1) \int_0^{\infty} K^{k-2} C(K) \, dK + \text{boundary terms} \right]
+
 $$
 
 
@@ -692,7 +796,9 @@ $$
 
 
 $$
+
 \mathcal{M}_{\text{market}} = \left\{ \mathbb{Q} \in \mathcal{M}: \mathbb{E}_{\mathbb{Q}}[e^{-rT}(S_T - K_i)^+] = C(K_i), \, i = 1, \ldots, n \right\}
+
 $$
 
 
@@ -701,7 +807,9 @@ $$
 
 
 $$
+
 [\underline{V}, \overline{V}] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}_{\text{market}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)], \, \sup_{\mathbb{Q} \in \mathcal{M}_{\text{market}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)] \right]
+
 $$
 
 
@@ -715,7 +823,9 @@ $$
 
 
 $$
+
 \overline{V} = \sup_q \left\{ \int_0^{\infty} g(S) q(S) \, dS \right\}
+
 $$
 
 
@@ -732,7 +842,9 @@ This is a **linear programming** problem in infinite dimensions.
 
 
 $$
+
 S \in \{S_1, S_2, \ldots, S_M\}
+
 $$
 
 
@@ -762,7 +874,9 @@ Then solve a finite-dimensional LP with variables $q_j = q(S_j)$.
 
 
 $$
+
 \frac{C(K_1) - C(K)}{K - K_1} \geq \frac{C(K) - C(K_2)}{K_2 - K}
+
 $$
 
 
@@ -771,7 +885,9 @@ Rearranging:
 
 
 $$
+
 C(K) \leq \frac{(K_2 - K) C(K_1) + (K - K_1) C(K_2)}{K_2 - K_1}
+
 $$
 
 
@@ -780,7 +896,9 @@ For the digital option:
 
 
 $$
+
 \mathcal{D}(K) = \lim_{h \to 0} \frac{C(K) - C(K+h)}{h}
+
 $$
 
 
@@ -794,7 +912,9 @@ Bounds can be derived using finite differences of observed call prices.
 
 
 $$
+
 \text{Payoff} = \frac{1}{T} \sum_{i=1}^N \left( \log \frac{S_{t_i}}{S_{t_{i-1}}} \right)^2
+
 $$
 
 
@@ -803,7 +923,9 @@ $$
 
 
 $$
+
 \mathbb{E}_{\mathbb{Q}}\left[ \log \frac{S_T}{S_0} \right] = e^{-rT} \left( \int_0^{S_0} \frac{P(K)}{K^2} \, dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} \, dK \right)
+
 $$
 
 
@@ -817,7 +939,9 @@ The variance can be replicated (approximately) by a portfolio of puts and calls.
 
 
 $$
+
 \left( \frac{1}{N} \sum_{i=1}^N S_{t_i} - K \right)^+
+
 $$
 
 
@@ -826,7 +950,9 @@ $$
 
 
 $$
+
 C_{\text{Asian}}(K) \leq C_{\text{European}}(K)
+
 $$
 
 
@@ -835,7 +961,9 @@ since:
 
 
 $$
+
 \left( \frac{1}{N} \sum_{i=1}^N S_{t_i} - K \right)^+ \leq \frac{1}{N} \sum_{i=1}^N (S_{t_i} - K)^+
+
 $$
 
 
@@ -852,7 +980,9 @@ $$
 
 
 $$
+
 q_j = q(S_j) \Delta S_j
+
 $$
 
 
@@ -861,6 +991,7 @@ $$
 
 
 $$
+
 \begin{aligned}
 \text{maximize} \quad & \sum_{j=1}^M g(S_j) q_j \\
 \text{subject to} \quad & \sum_{j=1}^M q_j = e^{-rT} \\
@@ -868,6 +999,7 @@ $$
 & \sum_{j=1}^M (S_j - K_i)^+ q_j = C(K_i), \quad i = 1, \ldots, n \\
 & q_j \geq 0, \quad j = 1, \ldots, M
 \end{aligned}
+
 $$
 
 
@@ -890,12 +1022,14 @@ $$
 
 
 $$
+
 M = \begin{pmatrix}
 \mu_0 & \mu_1 & \cdots & \mu_K \\
 \mu_1 & \mu_2 & \cdots & \mu_{K+1} \\
 \vdots & \vdots & \ddots & \vdots \\
 \mu_K & \mu_{K+1} & \cdots & \mu_{2K}
 \end{pmatrix} \succeq 0
+
 $$
 
 
@@ -911,7 +1045,9 @@ $$
 
 
 $$
+
 \sum_{i=1}^N w_i (S_T^{(i)} - K_j)^+ = C(K_j), \quad j = 1, \ldots, n
+
 $$
 
 
@@ -920,7 +1056,9 @@ $$
 
 
 $$
+
 \min_w \sum_{i=1}^N w_i \log w_i
+
 $$
 
 
@@ -931,7 +1069,9 @@ subject to pricing constraints.
 
 
 $$
+
 w_i^* = \frac{\exp(-\lambda^\top g(S_T^{(i)}))}{\sum_{j=1}^N \exp(-\lambda^\top g(S_T^{(j)}))}
+
 $$
 
 
@@ -955,7 +1095,9 @@ where $\lambda$ is chosen to match constraints.
 
 
 $$
+
 0 \leq C_{\text{UO}} \leq C(K)
+
 $$
 
 
@@ -969,7 +1111,9 @@ which is not very informative.
 
 
 $$
+
 \{C(K, T_i): i = 1, \ldots, M\}
+
 $$
 
 
@@ -987,7 +1131,9 @@ tightens bounds significantly for path-dependent options.
 
 
 $$
+
 g(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)})
+
 $$
 
 
@@ -996,7 +1142,9 @@ $$
 
 
 $$
+
 \{C_i(K): K \geq 0, i = 1, \ldots, n\}
+
 $$
 
 
@@ -1005,7 +1153,9 @@ $$
 
 
 $$
+
 \sup_{\mathbb{Q}} \mathbb{E}_{\mathbb{Q}}[g(S_T^{(1)}, \ldots, S_T^{(n)})]
+
 $$
 
 

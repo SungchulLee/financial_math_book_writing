@@ -103,113 +103,116 @@ import scipy.stats as ss
 # -----------------------------------------------------------------------------
 # Parameters
 # -----------------------------------------------------------------------------
-T = 1.0                            # time horizon
-N = 252                            # number of steps within time horizon
-time = np.linspace(0, T, N + 1)   # from 0 to T with N+1 points (inclusive of T)
-dt = T / N                         # time step increment
-M = 1000                           # number of simulations
-mu = 0.1                           # drift coefficient per unit T
-sigma = 0.3                        # volatility per unit T
-S0 = 100.0                         # initial asset price
 
-# =============================================================================
-# 2.1 Euler-Maruyama Method
-# =============================================================================
-# Simulates the GBM process step-by-step.
 
-# Initialize an array to store the simulated paths
-S = np.zeros((N + 1, M))
-S[0, :] = S0
+if __name__ == "__main__":
+    T = 1.0                            # time horizon
+    N = 252                            # number of steps within time horizon
+    time = np.linspace(0, T, N + 1)   # from 0 to T with N+1 points (inclusive of T)
+    dt = T / N                         # time step increment
+    M = 1000                           # number of simulations
+    mu = 0.1                           # drift coefficient per unit T
+    sigma = 0.3                        # volatility per unit T
+    S0 = 100.0                         # initial asset price
 
-# Simulate the GBM process
-Z = ss.norm.rvs(loc=0, scale=1, size=(N, M), random_state=42)
-for t in range(1, N + 1):
-    S[t, :] = S[t-1, :] * np.exp((mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[t-1, :])
+    # =============================================================================
+    # 2.1 Euler-Maruyama Method
+    # =============================================================================
+    # Simulates the GBM process step-by-step.
 
-# Plot the simulated price paths
-plt.figure(figsize=(6, 4))
-plt.plot(time, S)
-plt.title('GBM Simulated Price Paths')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+    # Initialize an array to store the simulated paths
+    S = np.zeros((N + 1, M))
+    S[0, :] = S0
 
-# =============================================================================
-# 2.2 Analytical Method
-# =============================================================================
-# Utilizes vectorized operations to compute cumulative sums of log return increments.
+    # Simulate the GBM process
+    Z = ss.norm.rvs(loc=0, scale=1, size=(N, M), random_state=42)
+    for t in range(1, N + 1):
+        S[t, :] = S[t-1, :] * np.exp((mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[t-1, :])
 
-# Initialize an array to store the simulated paths
-S = np.zeros((N + 1, M))
-S[0, :] = S0
+    # Plot the simulated price paths
+    plt.figure(figsize=(6, 4))
+    plt.plot(time, S)
+    plt.title('GBM Simulated Price Paths')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.grid(True)
+    plt.show()
 
-# Simulate the GBM process
-W = ss.norm.rvs(loc=(mu - 0.5 * sigma**2) * dt, scale=sigma * np.sqrt(dt), size=(N, M), random_state=42
-    )
-S[1:, :] = S0 * np.exp(np.cumsum(W, axis=0))
+    # =============================================================================
+    # 2.2 Analytical Method
+    # =============================================================================
+    # Utilizes vectorized operations to compute cumulative sums of log return increments.
 
-# Plot the simulated price paths
-plt.figure(figsize=(6, 4))
-plt.plot(time, S)
-plt.title('GBM Simulated Price Paths')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+    # Initialize an array to store the simulated paths
+    S = np.zeros((N + 1, M))
+    S[0, :] = S0
 
-# =============================================================================
-# 2.3 Multivariate GBM
-# =============================================================================
-#
-# GBM can be extended to the case where there are multiple correlated price
-# paths. Each price path follows the underlying process:
-#
-#   dS_t^i = mu_i * S_t^i * dt + sigma_i * S_t^i * dW_t^i
-#
-# where the Wiener processes are correlated such that:
-#
-#   E(dW_t^i * dW_t^j) = rho_{i,j} * dt,   with rho_{i,i} = 1.
-#
-# Covariance between assets:
-#
-#   Cov(S_t^i, S_t^j) = S_0^i * S_0^j * exp((mu_i + mu_j)*t)
-#                        * (exp(rho_{i,j} * sigma_i * sigma_j * t) - 1)
-#
-# A multivariate formulation with independent driving Brownian motions W_t^j:
-#
-#   dS_t^i = mu_i * S_t^i * dt + sum_{j=1}^{d} sigma_{i,j} * S_t^i * dW_t^j
-#
-# where sigma_{i,j} = rho_{i,j} * sigma_i * sigma_j encodes the correlation.
+    # Simulate the GBM process
+    W = ss.norm.rvs(loc=(mu - 0.5 * sigma**2) * dt, scale=sigma * np.sqrt(dt), size=(N, M), random_state=42
+        )
+    S[1:, :] = S0 * np.exp(np.cumsum(W, axis=0))
 
-# -----------------------------------------------------------------------------
-# Multivariate Parameters
-# -----------------------------------------------------------------------------
-T = 1.0                                              # time horizon
-N = 252                                              # number of steps within time horizon
-time = np.linspace(0, T, N + 1)                      # from 0 to T with N+1 points (inclusive of T)
-dt = T / N                                           # time step increment
-M = 1000                                             # number of simulations
-mu = np.array([0.1, 0.12])                           # drift coefficients for each asset per unit T
-sigma = np.array([0.3, 0.27])                        # volatility coefficients for each asset per unit T
-S0 = np.array([100.0, 80.0])                         # initial asset prices
-num_endog = len(S0)                                  # number of assets
-cov = np.array([[0.09, 0.04], [0.04, 0.07]])         # covariance matrix
+    # Plot the simulated price paths
+    plt.figure(figsize=(6, 4))
+    plt.plot(time, S)
+    plt.title('GBM Simulated Price Paths')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.grid(True)
+    plt.show()
 
-# Initialize an array to store the simulated paths
-S = np.zeros((N + 1, M, num_endog))
-S[0, :, :] = S0
+    # =============================================================================
+    # 2.3 Multivariate GBM
+    # =============================================================================
+    #
+    # GBM can be extended to the case where there are multiple correlated price
+    # paths. Each price path follows the underlying process:
+    #
+    #   dS_t^i = mu_i * S_t^i * dt + sigma_i * S_t^i * dW_t^i
+    #
+    # where the Wiener processes are correlated such that:
+    #
+    #   E(dW_t^i * dW_t^j) = rho_{i,j} * dt,   with rho_{i,i} = 1.
+    #
+    # Covariance between assets:
+    #
+    #   Cov(S_t^i, S_t^j) = S_0^i * S_0^j * exp((mu_i + mu_j)*t)
+    #                        * (exp(rho_{i,j} * sigma_i * sigma_j * t) - 1)
+    #
+    # A multivariate formulation with independent driving Brownian motions W_t^j:
+    #
+    #   dS_t^i = mu_i * S_t^i * dt + sum_{j=1}^{d} sigma_{i,j} * S_t^i * dW_t^j
+    #
+    # where sigma_{i,j} = rho_{i,j} * sigma_i * sigma_j encodes the correlation.
 
-# Simulate the GBM process
-W = ss.multivariate_normal.rvs(mean=(mu - 0.5 * np.diag(cov)) * dt, cov=cov * dt, size=(N, M), random_state=42)
-S[1:, :, :] = S0 * np.exp(np.cumsum(W, axis=0))
+    # -----------------------------------------------------------------------------
+    # Multivariate Parameters
+    # -----------------------------------------------------------------------------
+    T = 1.0                                              # time horizon
+    N = 252                                              # number of steps within time horizon
+    time = np.linspace(0, T, N + 1)                      # from 0 to T with N+1 points (inclusive of T)
+    dt = T / N                                           # time step increment
+    M = 1000                                             # number of simulations
+    mu = np.array([0.1, 0.12])                           # drift coefficients for each asset per unit T
+    sigma = np.array([0.3, 0.27])                        # volatility coefficients for each asset per unit T
+    S0 = np.array([100.0, 80.0])                         # initial asset prices
+    num_endog = len(S0)                                  # number of assets
+    cov = np.array([[0.09, 0.04], [0.04, 0.07]])         # covariance matrix
 
-# Plot the simulated price paths
-plt.figure(figsize=(6, 4))
-plt.plot(time, S[:, :, 0], color='C0', alpha=0.5)
-plt.plot(time, S[:, :, 1], color='C1', alpha=0.25)
-plt.title('Multivariate GBM Simulated Price Paths')
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+    # Initialize an array to store the simulated paths
+    S = np.zeros((N + 1, M, num_endog))
+    S[0, :, :] = S0
+
+    # Simulate the GBM process
+    W = ss.multivariate_normal.rvs(mean=(mu - 0.5 * np.diag(cov)) * dt, cov=cov * dt, size=(N, M), random_state=42)
+    S[1:, :, :] = S0 * np.exp(np.cumsum(W, axis=0))
+
+    # Plot the simulated price paths
+    plt.figure(figsize=(6, 4))
+    plt.plot(time, S[:, :, 0], color='C0', alpha=0.5)
+    plt.plot(time, S[:, :, 1], color='C1', alpha=0.25)
+    plt.title('Multivariate GBM Simulated Price Paths')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.grid(True)
+    plt.show()

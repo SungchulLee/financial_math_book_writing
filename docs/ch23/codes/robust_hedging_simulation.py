@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def robust_hedging_simulation():
     """
     Robust Hedging Simulation.

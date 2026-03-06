@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.special import comb
 
 
+# ======================================================================
+
 def tree_construction():
     """
     Tree Construction for Hull-White.

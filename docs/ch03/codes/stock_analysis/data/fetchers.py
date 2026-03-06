@@ -1,7 +1,15 @@
+"""
+Fetchers
+
+Educational script demonstrating fetchers concepts.
+"""
+
 import yfinance as yf
 import pandas as pd
 from typing import Optional
 
+
+# ======================================================================
 
 def get_historical_prices(ticker: str, start_date: str, end_date: Optional[str] = None) -> pd.DataFrame:
     """
@@ -104,3 +112,7 @@ def get_company_info(ticker: str) -> dict:
     
     except Exception as e:
         return {'name': ticker, 'error': str(e)}
+
+
+if __name__ == "__main__":
+    pass

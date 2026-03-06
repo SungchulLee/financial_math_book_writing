@@ -16,6 +16,8 @@ from scipy.stats import poisson, norm
 from typing import Tuple, List
 
 
+# ======================================================================
+
 class MertonJumpDiffusion:
     """Merton jump-diffusion model for option pricing."""
     

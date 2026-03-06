@@ -35,7 +35,9 @@ The key insight is that multi-period pricing reduces to **repeated application**
 Fix a maturity $T$ and divide it into $N$ equal periods:
 
 $$
+
 \Delta t = \frac{T}{N}
+
 $$
 
 Time points: $t_n = n \cdot \Delta t$ for $n = 0, 1, \ldots, N$.
@@ -52,7 +54,9 @@ Each node is indexed by $(n, j)$ where:
 At node $(n, j)$, the stock price is:
 
 $$
+
 \boxed{S_{n,j} = S_0 \cdot u^j \cdot d^{n-j}}
+
 $$
 
 ### The Recombining Property
@@ -60,7 +64,9 @@ $$
 With $u = e^{\sigma\sqrt{\Delta t}}$ and $d = e^{-\sigma\sqrt{\Delta t}} = 1/u$:
 
 $$
+
 ud = 1
+
 $$
 
 An up-then-down path reaches the same price as a down-then-up path. The tree **recombines**, giving only $n+1$ nodes at time $n$ (not $2^n$).
@@ -94,8 +100,11 @@ Time:     0           1           2           3
 **Step 1: Terminal condition** ($n = N$)
 
 Set option values equal to payoffs:
+
 $$
+
 V_{N,j} = H(S_{N,j})
+
 $$
 
 **Step 2: Backward recursion** ($n = N-1, N-2, \ldots, 0$)
@@ -103,7 +112,9 @@ $$
 At each node $(n, j)$, the option value is the discounted risk-neutral expectation:
 
 $$
+
 \boxed{V_{n,j} = e^{-r\Delta t}\left[qV_{n+1,j+1} + (1-q)V_{n+1,j}\right]}
+
 $$
 
 where $q = \frac{e^{r\Delta t} - d}{u - d}$.
@@ -119,8 +130,11 @@ At each node, we apply the one-period pricing formula. The option at node $(n,j)
 - Down-state payoff: $V_{n+1,j}$
 
 By risk-neutral pricing:
+
 $$
+
 V_{n,j} = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[V_{n+1} | \text{at node } (n,j)]
+
 $$
 
 ---
@@ -141,7 +155,9 @@ The portfolio replicates the option over the next period.
 From the one-period hedging formula:
 
 $$
+
 \boxed{\Delta_{n,j} = \frac{V_{n+1,j+1} - V_{n+1,j}}{S_{n,j}(u - d)}}
+
 $$
 
 This is the **local hedge ratio**—the number of shares to hold at node $(n,j)$.
@@ -149,12 +165,17 @@ This is the **local hedge ratio**—the number of shares to hold at node $(n,j)$
 ### Computing the Cash Position
 
 $$
+
 \boxed{B_{n,j} = e^{-r\Delta t}\left(V_{n+1,j+1} - \Delta_{n,j} \cdot uS_{n,j}\right)}
+
 $$
 
 Or equivalently:
+
 $$
+
 B_{n,j} = V_{n,j} - \Delta_{n,j} \cdot S_{n,j}
+
 $$
 
 ### The Rebalancing Process
@@ -171,7 +192,9 @@ $$
 The rebalancing requires **no external cash**. The value of the old portfolio exactly equals the cost of the new portfolio:
 
 $$
+
 \Delta_{n-1,k} \cdot S_{n,j} + B_{n-1,k} \cdot e^{r\Delta t} = V_{n,j} = \Delta_{n,j} \cdot S_{n,j} + B_{n,j}
+
 $$
 
 This is the **self-financing property**—the hedging strategy is implementable without adding or withdrawing funds.
@@ -194,11 +217,15 @@ This is the **self-financing property**—the hedging strategy is implementable 
 ### Computed Values
 
 $$
+
 \Delta t = \frac{1}{3}, \quad u = e^{0.2\sqrt{1/3}} = 1.1224, \quad d = \frac{1}{u} = 0.8909
+
 $$
 
 $$
+
 e^{r\Delta t} = e^{0.05/3} = 1.0168, \quad q = \frac{1.0168 - 0.8909}{1.1224 - 0.8909} = 0.5439
+
 $$
 
 ### Stock Price Tree
@@ -219,61 +246,95 @@ $$
 ### Option Values (European Call, K = 100)
 
 **Terminal payoffs** ($n = 3$):
+
 $$
+
 V_{3,3} = 41.40, \quad V_{3,2} = 12.24, \quad V_{3,1} = 0, \quad V_{3,0} = 0
+
 $$
 
 **At $n = 2$**:
+
 $$
+
 V_{2,2} = e^{-0.0167}[0.5439 \times 41.40 + 0.4561 \times 12.24] = 0.9835 \times 28.10 = 27.63
+
 $$
+
 $$
+
 V_{2,1} = e^{-0.0167}[0.5439 \times 12.24 + 0.4561 \times 0] = 0.9835 \times 6.66 = 6.55
+
 $$
+
 $$
+
 V_{2,0} = e^{-0.0167}[0.5439 \times 0 + 0.4561 \times 0] = 0
+
 $$
 
 **At $n = 1$**:
+
 $$
+
 V_{1,1} = e^{-0.0167}[0.5439 \times 27.63 + 0.4561 \times 6.55] = 0.9835 \times 18.02 = 17.72
+
 $$
+
 $$
+
 V_{1,0} = e^{-0.0167}[0.5439 \times 6.55 + 0.4561 \times 0] = 0.9835 \times 3.56 = 3.50
+
 $$
 
 **At $n = 0$**:
+
 $$
+
 V_{0,0} = e^{-0.0167}[0.5439 \times 17.72 + 0.4561 \times 3.50] = 0.9835 \times 11.23 = 11.04
+
 $$
 
 !!! success "European Call Price"
+
     $$C_0 = 11.04$$
 
 ### Delta at Each Node
 
 $$
+
 \Delta_{2,2} = \frac{41.40 - 12.24}{125.98 \times 0.2315} = \frac{29.16}{29.16} = 1.00
+
 $$
 
 $$
+
 \Delta_{2,1} = \frac{12.24 - 0}{100 \times 0.2315} = \frac{12.24}{23.15} = 0.529
+
 $$
 
 $$
+
 \Delta_{2,0} = \frac{0 - 0}{79.37 \times 0.2315} = 0
+
 $$
 
 $$
+
 \Delta_{1,1} = \frac{27.63 - 6.55}{112.24 \times 0.2315} = \frac{21.08}{25.98} = 0.812
+
 $$
 
 $$
+
 \Delta_{1,0} = \frac{6.55 - 0}{89.09 \times 0.2315} = \frac{6.55}{20.62} = 0.318
+
 $$
 
 $$
+
 \Delta_{0,0} = \frac{17.72 - 3.50}{100 \times 0.2315} = \frac{14.22}{23.15} = 0.614
+
 $$
 
 ### Delta Hedging Through the Tree
@@ -312,7 +373,9 @@ An **American option** can be exercised at any time up to maturity. At each node
 ### Backward Induction for American Options
 
 $$
+
 \boxed{V_{n,j}^{Am} = \max\left(\text{Intrinsic}_{n,j}, \, e^{-r\Delta t}[qV_{n+1,j+1}^{Am} + (1-q)V_{n+1,j}^{Am}]\right)}
+
 $$
 
 **American call**: $\text{Intrinsic}_{n,j} = (S_{n,j} - K)^+$
@@ -324,8 +387,11 @@ $$
 Using the same parameters, price an American put with $K = 100$.
 
 **Terminal payoffs** ($n = 3$):
+
 $$
+
 V_{3,3}^{Am} = 0, \quad V_{3,2}^{Am} = 0, \quad V_{3,1}^{Am} = 10.91, \quad V_{3,0}^{Am} = 29.28
+
 $$
 
 **At $n = 2$**:
@@ -337,7 +403,9 @@ $V_{2,1}$: Intrinsic $= (100 - 100)^+ = 0$, Continuation $= 0.9835[0.5439 \times
 $V_{2,0}$: Intrinsic $= (100 - 79.37)^+ = 20.63$, Continuation $= 0.9835[0.5439 \times 10.91 + 0.4561 \times 29.28] = 18.96$
 
 $$
+
 V_{2,0}^{Am} = \max(20.63, 18.96) = 20.63 \quad \textbf{(Early exercise optimal!)}
+
 $$
 
 **At $n = 1$**:
@@ -347,7 +415,9 @@ $V_{1,1}$: Intrinsic $= 0$, Continuation $= 0.9835[0.5439 \times 0 + 0.4561 \tim
 $V_{1,0}$: Intrinsic $= (100 - 89.09)^+ = 10.91$, Continuation $= 0.9835[0.5439 \times 4.89 + 0.4561 \times 20.63] = 11.87$
 
 $$
+
 V_{1,0}^{Am} = \max(10.91, 11.87) = 11.87 \quad \text{(Hold)}
+
 $$
 
 **At $n = 0$**:
@@ -355,10 +425,13 @@ $$
 $V_{0,0}$: Intrinsic $= 0$, Continuation $= 0.9835[0.5439 \times 2.19 + 0.4561 \times 11.87] = 6.50$
 
 $$
+
 V_{0,0}^{Am} = 6.50
+
 $$
 
 !!! success "American Put Price"
+
     $$P_0^{Am} = 6.50$$
     
     The European put price would be approximately $5.57$. The difference $6.50 - 5.57 = 0.93$ is the **early exercise premium**.
@@ -394,7 +467,9 @@ As we move through the tree:
 The **gamma** measures how fast delta changes:
 
 $$
+
 \Gamma_{n,j} \approx \frac{\Delta_{n+1,j+1} - \Delta_{n+1,j}}{S_{n+1,j+1} - S_{n+1,j}}
+
 $$
 
 High gamma means more frequent rebalancing is needed.
@@ -402,13 +477,16 @@ High gamma means more frequent rebalancing is needed.
 ### Delta at Maturity
 
 At expiration:
+
 $$
+
 \Delta_{N-1,j} = \frac{V_{N,j+1} - V_{N,j}}{S_{N-1,j}(u-d)} = 
 \begin{cases}
 1 & \text{if both nodes in-the-money} \\
 \frac{\text{payoff spread}}{\text{price spread}} & \text{if one node ITM} \\
 0 & \text{if both nodes out-of-the-money}
 \end{cases}
+
 $$
 
 ---

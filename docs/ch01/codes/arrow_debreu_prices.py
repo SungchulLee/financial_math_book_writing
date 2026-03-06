@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def arrow_debreu_prices():
     """
     Arrow-Debreu Price Extraction.

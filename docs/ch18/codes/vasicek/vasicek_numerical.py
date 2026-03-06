@@ -1,3 +1,9 @@
+"""
+Vasicek Numerical
+
+Educational script demonstrating vasicek numerical concepts.
+"""
+
 # ============================================================================
 # vasicek/vasicek_numerical.py
 # ============================================================================
@@ -196,3 +202,7 @@ class VasicekRiskMetrics:
         sensitivities['sigma'] = (price_sigma_up - base_price) / delta
         
         return sensitivities
+
+
+if __name__ == "__main__":
+    pass

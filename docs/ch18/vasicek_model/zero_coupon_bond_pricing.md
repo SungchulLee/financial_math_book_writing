@@ -110,7 +110,7 @@ $$f_t + \frac{1}{2}\sigma^2 f_{rr} + [\alpha(\theta - r_t) - \sigma\lambda_t]f_r
 
 This is the **bond pricing PDE** under the physical measure, with the market price of risk $\lambda_t$ incorporated.
 
-**Boundary condition**: $f(T, r_T, T) = 1$ (the bond pays $1 at maturity)
+**Boundary condition**: $f(T, r_T, T) = 1$ (the bond pays \$1 at maturity)
 
 ---
 

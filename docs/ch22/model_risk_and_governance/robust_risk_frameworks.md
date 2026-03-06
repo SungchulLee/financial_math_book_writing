@@ -33,7 +33,9 @@ Build risk management systems that perform reasonably even when individual model
 Don't rely on a single model:
 
 $$
+
 \text{Risk Assessment} = f(\text{Model}_1, \text{Model}_2, \ldots, \text{Model}_n)
+
 $$
 
 **Approaches:**
@@ -78,7 +80,9 @@ Simple models:
 **Model averaging:**
 
 $$
+
 \hat{\rho} = \sum_i w_i \cdot \rho_i
+
 $$
 
 where $w_i$ are weights (possibly equal, or based on past performance).
@@ -86,7 +90,9 @@ where $w_i$ are weights (possibly equal, or based on past performance).
 **Envelope approach:**
 
 $$
+
 \hat{\rho} = \max_i \rho_i
+
 $$
 
 Use the most conservative estimate.
@@ -94,7 +100,9 @@ Use the most conservative estimate.
 **Model selection with uncertainty:**
 
 $$
+
 \hat{\rho} = \rho_{\text{best}} + \text{Model Uncertainty Adjustment}
+
 $$
 
 ### Stress Testing Integration
@@ -105,7 +113,9 @@ Robust framework combines:
 - Scenario analysis
 
 $$
+
 \text{Capital} = \max(\text{Statistical Capital}, \text{Stress Capital})
+
 $$
 
 ### Buffers and Reserves
@@ -113,7 +123,9 @@ $$
 **Model risk buffer:**
 
 $$
+
 \text{Adjusted Risk} = \text{Model Risk} \times (1 + \text{Buffer})
+
 $$
 
 **Prudent valuation adjustments:**
@@ -173,7 +185,9 @@ Rather than optimizing based on model output:
 3. Choose actions robust across scenarios
 
 $$
+
 \max_a \min_s U(a, s)
+
 $$
 
 (maximin: maximize the minimum outcome across scenarios)
@@ -183,7 +197,9 @@ $$
 **Bayesian approach:**
 
 $$
+
 p(\text{Risk} | \text{Data}) = \int p(\text{Risk} | \theta) \cdot p(\theta | \text{Data}) \, d\theta
+
 $$
 
 Integrate over parameter uncertainty.

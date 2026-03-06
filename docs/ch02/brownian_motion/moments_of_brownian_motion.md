@@ -44,7 +44,9 @@ $$\phi_X(t) = \sum_{k=0}^\infty \frac{\mathbb{E}[X^k]}{k!} t^k$$
 If $X \sim \mathcal{N}(\mu, \sigma^2)$, then:
 
 $$\boxed{
+
 \phi_X(t) = \mathbb{E}[e^{tX}] = \exp\left(\mu t + \frac{1}{2} \sigma^2 t^2\right)
+
 }$$
 
 **Proof:**
@@ -56,6 +58,7 @@ $$\phi_X(t) = \int_{-\infty}^{\infty} e^{tx} \cdot \frac{1}{\sqrt{2\pi \sigma^2}
 $$= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} + tx \right) dx$$
 
 **Step 1: Complete the square in the exponent.**
+
 $$-\frac{(x - \mu)^2}{2\sigma^2} + tx = -\frac{1}{2\sigma^2} \left[ (x - \mu)^2 - 2\sigma^2 tx \right]$$
 
 $$= -\frac{1}{2\sigma^2} \left[ x^2 - 2\mu x + \mu^2 - 2\sigma^2 t x \right]$$
@@ -73,6 +76,7 @@ Simplify the constant term:
 $$\frac{(\mu + \sigma^2 t)^2 - \mu^2}{2\sigma^2} = \frac{\mu^2 + 2\mu\sigma^2 t + \sigma^4 t^2 - \mu^2}{2\sigma^2} = \mu t + \frac{1}{2}\sigma^2 t^2$$
 
 **Step 2: Factor out the constant.**
+
 $$\phi_X(t) = \exp\left(\mu t + \frac{1}{2} \sigma^2 t^2\right) \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(x - (\mu + \sigma^2 t))^2}{2\sigma^2} \right) dx$$
 
 The integral is the total probability of a Gaussian density with mean $\mu + \sigma^2 t$ and variance $\sigma^2$:
@@ -100,13 +104,17 @@ Let $W_T$ be standard Brownian motion at time $T$. Then:
 1. **Odd moments vanish:**
 
 $$\boxed{
+
 \mathbb{E}[W_T^{2k+1}] = 0 \quad \text{for all } k \ge 0
+
 }$$
 
 2. **Even moments:**
 
 $$\boxed{
+
 \mathbb{E}[W_T^{2k}] = \frac{(2k)!}{k! \, 2^k} T^k = (2k-1)!! \cdot T^k \quad \text{for all } k \ge 0
+
 }$$
 
 where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$ is the **double factorial**.
@@ -182,6 +190,7 @@ $$1!! = 1, \quad 3!! = 3 \cdot 1 = 3, \quad 5!! = 5 \cdot 3 \cdot 1 = 15, \quad 
 ### 3. Alternative Derivation
 
 **Alternative proof for even moments:**
+
 $$\mathbb{E}[W_T^{2k}] = \int_{-\infty}^{\infty} x^{2k} \frac{1}{\sqrt{2\pi T}} e^{-x^2/(2T)} dx$$
 
 Substitute $y = x/\sqrt{T}$:
@@ -345,6 +354,7 @@ The Hermite polynomials provide a **spectral decomposition** of $L^2(\Omega, \ma
 Any $F \in L^2(\Omega)$ measurable with respect to $\sigma(W_s : s \in [0,T])$ can be written as:
 
 $$F = \sum_{n=0}^\infty I_n(f_n)$$
+
 where $I_n$ is the $n$-th order **multiple Wiener integral**.
 
 **For Brownian motion at time $T$:**
@@ -451,6 +461,7 @@ $$\mathbb{E}[S_T^k] = S_0^k e^{k(\mu - \sigma^2/2)T} \mathbb{E}[e^{k\sigma W_T}]
 In Monte Carlo simulation, one can use:
 
 $$W_T^2 - T$$
+
 as a **control variate** (it has zero mean and known variance).
 
 The variance of $W_T^2$ is:
@@ -466,6 +477,7 @@ When implementing numerical schemes for SDEs, one can verify correctness by chec
 **Example:** For Euler-Maruyama discretization of $dX_t = dW_t$:
 
 $$X_{n+1} = X_n + \sqrt{\Delta t} \, Z_n$$
+
 where $Z_n \sim \mathcal{N}(0,1)$.
 
 At time $T = N \Delta t$:

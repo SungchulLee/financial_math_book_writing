@@ -11,7 +11,9 @@ First-passage models extend the Merton framework by allowing default to occur **
 In first-passage models, the default time is defined as the **first hitting time** of a barrier:
 
 $$
+
 \tau = \inf\{t \ge 0 : V_t \le B_t\},
+
 $$
 
 where:
@@ -38,13 +40,17 @@ Unlike Merton's maturity-only default, first-passage models capture **early defa
 Under the risk-neutral measure $\mathbb{Q}$:
 
 $$
+
 dV_t = (r - q)V_t \, dt + \sigma V_t \, dW_t^{\mathbb{Q}},
+
 $$
 
 with solution:
 
 $$
+
 V_t = V_0 \exp\left[\left(r - q - \frac{\sigma^2}{2}\right)t + \sigma W_t^{\mathbb{Q}}\right].
+
 $$
 
 ### Common Barrier Specifications
@@ -52,7 +58,9 @@ $$
 **1. Constant Barrier (Black-Cox)**
 
 $$
+
 B_t = B \quad \text{(constant)}.
+
 $$
 
 Simplest case with analytical tractability.
@@ -60,7 +68,9 @@ Simplest case with analytical tractability.
 **2. Exponentially Decaying Barrier**
 
 $$
+
 B_t = B_0 e^{-\gamma t}
+
 $$
 
 Models amortizing debt or improving credit over time.
@@ -68,7 +78,9 @@ Models amortizing debt or improving credit over time.
 **3. Exponentially Growing Barrier**
 
 $$
+
 B_t = B_0 e^{\gamma t}
+
 $$
 
 Models accumulating liabilities or covenant tightening.
@@ -76,7 +88,9 @@ Models accumulating liabilities or covenant tightening.
 **4. Coupon-Linked Barrier (Leland)**
 
 $$
+
 B_t = C/r
+
 $$
 
 where $C$ is the coupon rate, representing the capitalized value of perpetual debt service.
@@ -96,7 +110,9 @@ Black and Cox (1976) extended Merton by introducing a **safety covenant**: defau
 The default time is:
 
 $$
+
 \tau = \inf\{t \ge 0 : V_t \le B\}.
+
 $$
 
 ### Transformation to Standard Form
@@ -104,7 +120,9 @@ $$
 Define the log-asset process:
 
 $$
+
 X_t = \ln V_t = \ln V_0 + \mu t + \sigma W_t,
+
 $$
 
 where $\mu = r - q - \sigma^2/2$.
@@ -112,7 +130,9 @@ where $\mu = r - q - \sigma^2/2$.
 Default occurs when $X_t$ first hits $\ln B$. Define $a = \ln(V_0/B) > 0$. Then:
 
 $$
+
 \tau = \inf\{t : X_t - \ln V_0 \le -a\} = \inf\{t : \mu t + \sigma W_t \le -a\}.
+
 $$
 
 This is a **first-passage time** for Brownian motion with drift.
@@ -126,7 +146,9 @@ This is a **first-passage time** for Brownian motion with drift.
 The probability that default has not occurred by time $T$ is:
 
 $$
+
 S(0,T) = \mathbb{Q}(\tau > T) = \mathbb{Q}\left(\min_{0 \le t \le T} V_t > B\right).
+
 $$
 
 For GBM with constant barrier, this has a closed-form solution.
@@ -136,25 +158,33 @@ For GBM with constant barrier, this has a closed-form solution.
 Let $a = \ln(V_0/B)$ and define:
 
 $$
+
 \nu = \frac{\mu}{\sigma} = \frac{r - q - \sigma^2/2}{\sigma}.
+
 $$
 
 The survival probability is:
 
 $$
+
 S(0,T) = N\left(\frac{a + \nu \sigma T}{\sigma\sqrt{T}}\right) - e^{2\nu a} N\left(\frac{-a + \nu \sigma T}{\sigma\sqrt{T}}\right),
+
 $$
 
 or equivalently:
 
 $$
+
 S(0,T) = N(d_+) - \left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} N(d_-),
+
 $$
 
 where:
 
 $$
+
 d_+ = \frac{\ln(V_0/B) + \mu T}{\sigma\sqrt{T}}, \quad d_- = \frac{\ln(B/V_0) + \mu T}{\sigma\sqrt{T}}.
+
 $$
 
 ### Default Probability
@@ -162,7 +192,9 @@ $$
 The cumulative default probability is:
 
 $$
+
 F(T) = \mathbb{Q}(\tau \le T) = 1 - S(0,T).
+
 $$
 
 ### Density of Default Time
@@ -170,7 +202,9 @@ $$
 The density of the first-passage time is:
 
 $$
+
 f(t) = \frac{a}{\sigma\sqrt{2\pi t^3}} \exp\left(-\frac{(a + \mu t)^2}{2\sigma^2 t}\right), \quad t > 0.
+
 $$
 
 This is the **inverse Gaussian density** (shifted).
@@ -188,7 +222,9 @@ Consider a defaultable zero-coupon bond paying:
 The price is:
 
 $$
+
 P^d(0,T) = D \cdot e^{-rT} \cdot S(0,T) + R \cdot B \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{\{\tau \le T\}}\right].
+
 $$
 
 ### Expected Discounted Default Payment
@@ -196,7 +232,9 @@ $$
 The second term involves:
 
 $$
+
 \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{\{\tau \le T\}}\right] = \int_0^T e^{-rt} f(t) \, dt.
+
 $$
 
 For the Black-Cox model, this has a semi-closed form involving the normal CDF.
@@ -206,7 +244,9 @@ For the Black-Cox model, this has a semi-closed form involving the normal CDF.
 The credit spread is:
 
 $$
+
 s(T) = -\frac{1}{T} \ln\left(\frac{P^d(0,T)}{D \cdot e^{-rT}}\right).
+
 $$
 
 First-passage models generate non-trivial short-term spreads (unlike Merton), because there is always positive probability of hitting the barrier immediately.
@@ -246,7 +286,9 @@ First-passage models can generate **hump-shaped** credit spread curves, which ar
 Let $B_t = K e^{\gamma t}$ for constants $K$ and $\gamma$:
 
 $$
+
 \tau = \inf\{t : V_t \le K e^{\gamma t}\}.
+
 $$
 
 This is equivalent to first passage of $V_t e^{-\gamma t}$ to level $K$, which can be solved similarly.
@@ -256,7 +298,9 @@ This is equivalent to first passage of $V_t e^{-\gamma t}$ to level $K$, which c
 Combine first-passage default with Vasicek interest rates:
 
 $$
+
 dr_t = \kappa(\theta - r_t)dt + \sigma_r dW_t^r.
+
 $$
 
 Correlation between $W^r$ and $W^V$ introduces interest rate—credit risk dependence.
@@ -266,7 +310,9 @@ Correlation between $W^r$ and $W^V$ introduces interest rate—credit risk depen
 Add jumps to asset value:
 
 $$
+
 dV_t = (r - q - \lambda \bar{k})V_t dt + \sigma V_t dW_t + V_{t-}(J_t - 1)dN_t,
+
 $$
 
 where $N_t$ is a Poisson process with intensity $\lambda$ and $J_t$ is the jump size with $\bar{k} = \mathbb{E}[J - 1]$.
@@ -332,22 +378,31 @@ Drift parameter: $\mu = r - q - \sigma^2/2 = 0.05 - 0.02 - 0.03125 = -0.00125$
 Log-barrier distance: $a = \ln(100/60) = 0.5108$
 
 $$
+
 d_+ = \frac{0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{0.5046}{0.559} = 0.902
+
 $$
 
 $$
+
 d_- = \frac{-0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{-0.5171}{0.559} = -0.925
+
 $$
 
 Exponent: $2\mu/\sigma^2 = 2(-0.00125)/(0.0625) = -0.04$
 
 $$
+
 \left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} = (0.6)^{-0.04} = 1.0205
+
 $$
 
 **Survival probability:**
+
 $$
+
 S(0,5) = N(0.902) - 1.0205 \times N(-0.925) = 0.8165 - 1.0205 \times 0.1775 = 0.635
+
 $$
 
 **5-year default probability:** $36.5\%$

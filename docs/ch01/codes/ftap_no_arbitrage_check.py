@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def ftap_no_arbitrage_check():
     """
     No-Arbitrage Check.

@@ -1,3 +1,9 @@
+"""
+Black Scholes Sensitivity
+
+Educational script demonstrating black scholes sensitivity concepts.
+"""
+
 # ============================================================================
 # black_scholes_SENSITIVITY_ANALYSIS.py
 # ============================================================================

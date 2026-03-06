@@ -15,7 +15,9 @@ Given a filtration $(\mathcal{F}_t)$ and an enlargement $(\mathcal{G}_t)$ with $
 Equivalently, for any $\mathcal{F}$-martingale $M$ and any $t \ge 0$:
 
 $$
+
 \mathbb{E}[M_\infty \mid \mathcal{G}_t] = \mathbb{E}[M_\infty \mid \mathcal{F}_t] = M_t.
+
 $$
 
 ### Interpretation
@@ -42,7 +44,9 @@ Without immersion, default could signal information about future asset prices, c
 Under immersion, pricing defaultable claims simplifies dramatically. For a defaultable claim with payoff $X$ at time $T$:
 
 $$
+
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} X \mid \mathcal{G}_t\right]
+
 $$
 
 decomposes cleanly into pre-default and post-default values without complex cross-terms.
@@ -58,7 +62,9 @@ The H-hypothesis admits several equivalent formulations:
 Immersion holds if and only if for all $t \ge 0$ and all $A \in \mathcal{F}_\infty$:
 
 $$
+
 \mathbb{P}(A \mid \mathcal{G}_t) = \mathbb{P}(A \mid \mathcal{F}_t).
+
 $$
 
 This says that default information $\mathcal{H}_t = \sigma(\tau \wedge t)$ is **conditionally independent** of $\mathcal{F}_\infty$ given $\mathcal{F}_t$.
@@ -68,7 +74,9 @@ This says that default information $\mathcal{H}_t = \sigma(\tau \wedge t)$ is **
 For any integrable $\mathcal{F}_\infty$-measurable $X$:
 
 $$
+
 \mathbb{E}[X \mid \mathcal{G}_t] = \mathbb{E}[X \mid \mathcal{F}_t].
+
 $$
 
 ### Density Hypothesis Formulation
@@ -76,7 +84,9 @@ $$
 Under the density hypothesis, immersion is equivalent to: for all $s \ge t$,
 
 $$
+
 \alpha_s^u = \mathbb{E}[\alpha_s^u \mid \mathcal{F}_t] \cdot \frac{\alpha_t^u}{G_t}
+
 $$
 
 where $\alpha_t^u$ is the conditional density of $\tau$ given $\mathcal{F}_t$.
@@ -98,7 +108,9 @@ In canonical reduced-form (intensity-based) credit models, immersion holds by co
 Under the Cox construction, for any $\mathcal{F}$-martingale $M$:
 
 $$
+
 \mathbb{E}[M_T \mid \mathcal{G}_t] = \mathbb{E}[M_T \mid \mathcal{F}_t, \tau \wedge t, \mathbf{1}_{\{\tau > t\}}]
+
 $$
 
 The key insight is that on $\{\tau > t\}$, the only additional information is that $E > \Lambda_t = \int_0^t \lambda_s ds$. Since $E$ is independent of $\mathcal{F}_\infty$, this event carries no information about $M_T$ beyond what $\mathcal{F}_t$ contains.
@@ -114,7 +126,9 @@ Therefore: $\mathbb{E}[M_T \mid \mathcal{G}_t] = \mathbb{E}[M_T \mid \mathcal{F}
 Under immersion, the price of a defaultable claim paying $X$ at maturity $T$ (if no default) is:
 
 $$
+
 V_t = \mathbf{1}_{\{\tau > t\}} \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} X \mid \mathcal{F}_t\right].
+
 $$
 
 The default indicator $\mathbf{1}_{\{\tau > t\}}$ factors out cleanly because:
@@ -126,13 +140,17 @@ The default indicator $\mathbf{1}_{\{\tau > t\}}$ factors out cleanly because:
 Immersion enables a clean decomposition:
 
 $$
+
 \text{Defaultable Price} = \text{Default-Free Price} \times \text{Survival Adjustment}
+
 $$
 
 More precisely, for a zero-recovery defaultable bond:
 
 $$
+
 P^d(t,T) = P(t,T) \cdot S(t,T),
+
 $$
 
 where $P(t,T)$ is the default-free discount factor and $S(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t]$ is the survival probability.
@@ -148,7 +166,9 @@ In structural (Merton-type) models, immersion typically **does not hold**. Defau
 **Example:** If $V_t$ is correlated with equity prices $S_t$, then observing default (i.e., $V_\tau \le B$) reveals information about the path of $S$:
 
 $$
+
 \mathbb{E}[S_T \mid \mathcal{G}_t] \ne \mathbb{E}[S_T \mid \mathcal{F}_t]
+
 $$
 
 Default signals that firm value was low, which correlates with low equity values.
@@ -167,7 +187,9 @@ In these cases, additional **compensator terms** are needed to maintain martinga
 When immersion fails, for an $\mathcal{F}$-martingale $M$:
 
 $$
+
 M_t = \tilde{M}_t + \int_0^{t \wedge \tau} \frac{d\langle M, G \rangle_s}{G_{s-}}
+
 $$
 
 where $\tilde{M}$ is a $\mathcal{G}$-martingale and the integral term is the **drift correction** due to filtration enlargement. This additional term:

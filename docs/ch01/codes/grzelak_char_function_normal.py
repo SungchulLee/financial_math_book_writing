@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import scipy.stats as st
 from mpl_toolkits import mplot3d
 
+# ======================================================================
+
 def plotNormalPDF_CDF_CHF():
     mu    = 10.0
     sigma = 1.0
@@ -47,4 +49,6 @@ def plotNormalPDF_CDF_CHF():
     ax.plot3D(u, x, y, 'blue')
     ax.view_init(30, -120)
     
-plotNormalPDF_CDF_CHF()
+
+if __name__ == "__main__":
+    plotNormalPDF_CDF_CHF()

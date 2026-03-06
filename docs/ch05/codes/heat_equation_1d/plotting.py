@@ -1,3 +1,9 @@
+"""
+Plotting
+
+Educational script demonstrating plotting concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d/plotting.py
 # ============================================================================
@@ -493,3 +499,7 @@ def plot_with_analytical(x: np.ndarray, u_numerical: np.ndarray,
     
     plt.tight_layout()
     plt.show()
+
+
+if __name__ == "__main__":
+    pass

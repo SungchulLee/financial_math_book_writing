@@ -1,3 +1,9 @@
+"""
+Portfolio Optimization Frontier
+
+Educational script demonstrating portfolio optimization frontier concepts.
+"""
+
 # ---
 # title: "Mean-Variance Portfolio Optimisation & Efficient Frontier"
 # description: >
@@ -23,6 +29,8 @@ import matplotlib.pyplot as plt
 # ══════════════════════════════════════════════════════════════════
 #  Synthetic Return Data (replace with real data in production)
 # ══════════════════════════════════════════════════════════════════
+
+# ======================================================================
 
 def generate_correlated_returns(symbols=None, n_days=2000, seed=42):
     """Create synthetic daily log-returns with realistic

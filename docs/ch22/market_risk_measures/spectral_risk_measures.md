@@ -15,6 +15,7 @@ VaR violates subadditivity (not coherent). Expected Shortfall is coherent.
 
 **Spectral Risk Measure Definition**
 A spectral risk measure applies weight function $\phi(\alpha)$ across quantiles:
+
 $$\rho_\phi(X) = \int_0^1 \phi(\alpha) q_\alpha(X) d\alpha$$
 
 where $q_\alpha(X) = \text{VaR}_\alpha(X)$ is the $\alpha$-quantile, and:
@@ -40,6 +41,7 @@ The weight function $\phi(\alpha)$ encodes:
 
 **Kusuoka Representation**
 Kusuoka showed any spectral risk measure can be expressed as:
+
 $$\rho_\phi(X) = \max_{p \in \mathcal{P}} \mathbb{E}_p[-X]$$
 
 where the maximum is over distributions consistent with marginal constraints. This connects spectral measures to robust optimization.

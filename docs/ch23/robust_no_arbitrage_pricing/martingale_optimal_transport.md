@@ -24,7 +24,9 @@ The key insight is that observed option prices at different maturities constrain
 
 
 $$
+
 \inf_{T: T_{\#}\mu = \nu} \int_{\mathbb{R}^d} c(x, T(x)) \, d\mu(x)
+
 $$
 
 
@@ -35,7 +37,9 @@ where $c(x, y)$ is the cost of transporting mass from $x$ to $y$.
 
 
 $$
+
 \mathcal{W}_c(\mu, \nu) = \inf_{\pi \in \Pi(\mu, \nu)} \int_{\mathbb{R}^d \times \mathbb{R}^d} c(x, y) \, d\pi(x, y)
+
 $$
 
 
@@ -44,7 +48,9 @@ where:
 
 
 $$
+
 \Pi(\mu, \nu) = \{ \pi \in \mathcal{P}(\mathbb{R}^d \times \mathbb{R}^d): \pi_1 = \mu, \, \pi_2 = \nu \}
+
 $$
 
 
@@ -55,7 +61,9 @@ is the set of couplings with marginals $\mu$ and $\nu$.
 
 
 $$
+
 W_p(\mu, \nu) = \left( \mathcal{W}_{|\cdot|^p}(\mu, \nu) \right)^{1/p}
+
 $$
 
 
@@ -67,7 +75,9 @@ $$
 
 
 $$
+
 \mathcal{W}_c(\mu, \nu) = \sup_{(\phi, \psi) \in \Phi_c} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
+
 $$
 
 
@@ -76,7 +86,9 @@ where:
 
 
 $$
+
 \Phi_c = \{ (\phi, \psi): \phi(x) + \psi(y) \leq c(x, y) \text{ for all } x, y \}
+
 $$
 
 
@@ -90,7 +102,9 @@ $$
 
 
 $$
+
 \psi(y) = \inf_x \{ c(x, y) - \phi(x) \} = -\phi^c(y)
+
 $$
 
 
@@ -111,7 +125,9 @@ where $\phi^c$ is the $c$-transform of $\phi$.
 
 
 $$
+
 \mathbb{E}_{\pi}[S_T | S_0] = e^{rT} S_0 \quad \text{(martingale condition under risk-neutral measure)}
+
 $$
 
 
@@ -120,7 +136,9 @@ For simplicity, assume $r = 0$ (or work with discounted prices):
 
 
 $$
+
 \mathbb{E}_{\pi}[S_T | S_0] = S_0
+
 $$
 
 
@@ -129,7 +147,9 @@ $$
 
 
 $$
+
 \mathcal{M}(\mu, \nu) = \left\{ \pi \in \Pi(\mu, \nu): \int y \, d\pi(y | x) = x \text{ for } \mu\text{-a.e. } x \right\}
+
 $$
 
 
@@ -138,7 +158,9 @@ $$
 
 
 $$
+
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}[c(S_0, S_T)] = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c(x, y) \, d\pi(x, y)
+
 $$
 
 
@@ -147,7 +169,9 @@ $$
 
 
 $$
+
 \sup_{(\phi, \psi) \in \Phi_c^M} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
+
 $$
 
 
@@ -161,7 +185,9 @@ where $\Phi_c^M$ incorporates both the cost constraint and martingale structure.
 
 
 $$
+
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c(x, y) \, d\pi = \sup_{\phi, \psi} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
+
 $$
 
 
@@ -170,7 +196,9 @@ subject to:
 
 
 $$
+
 \phi(x) + \psi(y) \leq c(x, y) \quad \text{and} \quad \psi(y) \geq y \phi'(x) \text{ for all } x, y
+
 $$
 
 
@@ -186,7 +214,9 @@ The second constraint reflects the martingale restriction.
 
 
 $$
+
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c \, d\pi = \sup_{\phi \in C(\mathbb{R})} \left\{ \int \phi \, d\mu + \int \phi^* \, d\nu \right\}
+
 $$
 
 
@@ -195,7 +225,9 @@ where $\phi^*$ is the **convex minorant** of $\phi$ defined by:
 
 
 $$
+
 \phi^*(y) = \sup \{ a y + b: ax + b \leq \phi(x) \text{ for all } x \}
+
 $$
 
 
@@ -219,7 +251,9 @@ $$
 
 
 $$
+
 d\nu(y) = e^{rT} \frac{\partial^2 C}{\partial K^2}(y) \, dy
+
 $$
 
 
@@ -233,7 +267,9 @@ $$
 
 
 $$
+
 \overline{V}(g) = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
+
 $$
 
 
@@ -242,7 +278,9 @@ $$
 
 
 $$
+
 \overline{V}(g) = \inf_{\phi} \left\{ \int \phi(x) \, d\mu(x) + \int \phi^*(y) \, d\nu(y) \right\}
+
 $$
 
 
@@ -261,7 +299,9 @@ subject to $\phi(x) + \phi^*(y) \geq g(x, y)$ for all $x, y$.
 
 
 $$
+
 \underline{V}(g) = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
+
 $$
 
 
@@ -270,7 +310,9 @@ $$
 
 
 $$
+
 \underline{V}(g) = -\overline{V}(-g)
+
 $$
 
 
@@ -289,7 +331,9 @@ such that:
 
 
 $$
+
 \theta_S S_T + \int_0^{\infty} \theta_C(K) (S_T - K)^+ dK + \theta_0 \geq g(S_0, S_T)
+
 $$
 
 
@@ -312,7 +356,9 @@ $$
 
 
 $$
+
 \inf_{\pi \in \mathcal{M}(\mu_0, \ldots, \mu_n)} \int c(s_0, s_1, \ldots, s_n) \, d\pi(s_0, \ldots, s_n)
+
 $$
 
 
@@ -324,7 +370,9 @@ $$
 
 
 $$
+
 \text{Primal} \geq \text{Dual}
+
 $$
 
 
@@ -354,6 +402,7 @@ $$
 
 
 $$
+
 \begin{aligned}
 \text{minimize} \quad & \sum_{i=1}^{N_0} \sum_{j=1}^{N_T} c(s_i^0, s_j^T) \pi_{ij} \\
 \text{subject to} \quad & \sum_{j=1}^{N_T} \pi_{ij} = \mu_i, \quad i = 1, \ldots, N_0 \quad \text{(marginal 1)} \\
@@ -361,6 +410,7 @@ $$
 & \sum_{j=1}^{N_T} s_j^T \pi_{ij} = s_i^0 \sum_{j=1}^{N_T} \pi_{ij}, \quad i = 1, \ldots, N_0 \quad \text{(martingale)} \\
 & \pi_{ij} \geq 0, \quad \forall i, j
 \end{aligned}
+
 $$
 
 
@@ -376,7 +426,9 @@ $$
 
 
 $$
+
 \inf_{\pi \in \mathcal{M}(\mu, \nu)} \left\{ \int c \, d\pi + \varepsilon D_{\text{KL}}(\pi \| \mu \otimes \nu) \right\}
+
 $$
 
 
@@ -385,7 +437,9 @@ where:
 
 
 $$
+
 D_{\text{KL}}(\pi \| \mu \otimes \nu) = \int \log\left(\frac{d\pi}{d(\mu \otimes \nu)}\right) d\pi
+
 $$
 
 
@@ -396,7 +450,9 @@ $$
 2. Iterate:
 
    $$
+
    u^{(k+1)}_i = \frac{\mu_i}{\sum_j K_{ij} v^{(k)}_j}, \quad v^{(k+1)}_j = \frac{\nu_j}{\sum_i K_{ij} u^{(k+1)}_i}
+
    $$
 
 
@@ -415,7 +471,9 @@ $$
 
 
 $$
+
 \mathcal{L}(\phi, \psi) = -\left( \mathbb{E}_{\mu}[\phi(X)] + \mathbb{E}_{\nu}[\psi(Y)] \right) + \lambda \cdot \text{Penalty}(\phi, \psi)
+
 $$
 
 
@@ -436,11 +494,13 @@ where Penalty enforces the constraints $\phi + \psi \leq c$ and martingale condi
 
 
 $$
+
 \begin{aligned}
 \text{maximize} \quad & \sum_{i=1}^{N_0} \phi_i \mu_i + \sum_{j=1}^{N_T} \psi_j \nu_j \\
 \text{subject to} \quad & \phi_i + \psi_j \leq c_{ij}, \quad \forall i, j \\
 & \psi_j \geq s_j^T \phi_i, \quad \forall i, j \quad \text{(martingale dual constraint)}
 \end{aligned}
+
 $$
 
 
@@ -459,7 +519,9 @@ $$
 
 
 $$
+
 g(S_0, S_T) = \log^2(S_T / S_0)
+
 $$
 
 
@@ -468,7 +530,9 @@ $$
 
 
 $$
+
 [\underline{V}, \overline{V}] = \left[ \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[\log^2(S_T / S_0)\right], \, \sup_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[\log^2(S_T / S_0)\right] \right]
+
 $$
 
 
@@ -479,7 +543,9 @@ $$
 
 
 $$
+
 \text{RV} = \sum_{i=1}^n \log^2(S_{t_i} / S_{t_{i-1}})
+
 $$
 
 
@@ -493,7 +559,9 @@ using multi-period MOT.
 
 
 $$
+
 g = (S_{T_2} - S_{T_1})^+
+
 $$
 
 
@@ -513,7 +581,9 @@ $$
 
 
 $$
+
 (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t < H\}}
+
 $$
 
 
@@ -524,7 +594,9 @@ $$
 
 
 $$
+
 \underline{V} = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[(S_T - K)^+ \mathbb{1}_{\{S_T < H\}}\right]
+
 $$
 
 
@@ -540,7 +612,9 @@ This can be computed via MOT since the barrier event is approximated by terminal
 
 
 $$
+
 \text{VIX}^2 = \frac{2e^{rT}}{T} \left( \int_0^{F} \frac{P(K)}{K^2} dK + \int_F^{\infty} \frac{C(K)}{K^2} dK \right)
+
 $$
 
 
@@ -561,7 +635,9 @@ $$
 
 
 $$
+
 \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
+
 $$
 
 
@@ -574,7 +650,9 @@ $$
 
 
 $$
+
 \sup_{\pi \in \mathcal{M}(\mu_1, \ldots, \mu_n)} \mathbb{E}_{\pi}\left[\left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+\right]
+
 $$
 
 
@@ -583,7 +661,9 @@ $$
 
 
 $$
+
 \max_i \{S_T^{(i)}\} \leq \sum_{i=1}^n w_i S_T^{(i)} \leq n \max_i \{S_T^{(i)}\}
+
 $$
 
 
@@ -600,7 +680,9 @@ MOT tightens these bounds using martingale constraints.
 
 
 $$
+
 \int f \, d\mu = \int f \, d\nu
+
 $$
 
 
@@ -632,7 +714,9 @@ for all convex functions $f$ for which both integrals exist.
 
 
 $$
+
 \pi_L(A \times B) = \lambda(A \cap B), \quad \pi_R(A \times B) = \lambda(A \cup B) - \lambda(A) - \lambda(B) + \lambda(A \cap B)
+
 $$
 
 
@@ -641,7 +725,9 @@ $$
 
 
 $$
+
 \lambda([a, b]) = \text{const} \cdot (b - a)
+
 $$
 
 
@@ -655,7 +741,9 @@ $$
 
 
 $$
+
 X_s \preceq_c X_t \quad \text{for all } s \leq t
+
 $$
 
 
@@ -693,7 +781,9 @@ where $\preceq_c$ denotes convex order.
 
 
 $$
+
 V(x) = \sup_{\tau} \mathbb{E}_x[g(X_{\tau}, Y_{\tau})]
+
 $$
 
 
@@ -709,7 +799,9 @@ where the supremum is over stopping times.
 
 
 $$
+
 \inf_{\alpha} \mathbb{E}\left[\int_0^T c(X_t, \alpha_t) dt + h(X_T)\right]
+
 $$
 
 
@@ -720,7 +812,9 @@ subject to $dX_t = \mu(X_t, \alpha_t) dt + \sigma(X_t) dW_t$.
 
 
 $$
+
 V_t + \inf_{\alpha} \{ c(x, \alpha) + \mu(x, \alpha) V_x + \frac{1}{2} \sigma^2(x) V_{xx} \} = 0
+
 $$
 
 
@@ -751,7 +845,9 @@ $$
 - Compute risk-neutral density using Breeden-Litzenberger:
 
   $$
+
   q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)
+
   $$
 
 
@@ -822,7 +918,9 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 
 
 $$
+
 [\underline{V}, \overline{V}] \approx [0.45, 0.55]
+
 $$
 
 
@@ -840,7 +938,9 @@ $$
 
 
 $$
+
 \overline{V} = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}[(S_T - S_0)^+]
+
 $$
 
 
@@ -858,7 +958,9 @@ $$
 
 
 $$
+
 \overline{V} = \sup_{\pi \in \mathcal{M}(\mu_1, \mu_2)} \mathbb{E}_{\pi}[(S_T^{(1)} - S_T^{(2)} - K)^+]
+
 $$
 
 
@@ -889,7 +991,9 @@ $$
 
 
 $$
+
 \partial_t \rho + \nabla \cdot (\rho v) = 0
+
 $$
 
 

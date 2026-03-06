@@ -14,6 +14,8 @@ from scipy.special import erf
 from typing import Tuple, Dict
 
 
+# ======================================================================
+
 class VasicekModel:
     """Vasicek interest rate model."""
     

@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def deep_hedging_simple():
     """
     Deep Hedging Simple.

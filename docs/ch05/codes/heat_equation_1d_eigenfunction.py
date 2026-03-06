@@ -1,3 +1,9 @@
+"""
+Heat Equation 1D Eigenfunction
+
+Educational script demonstrating heat equation 1d eigenfunction concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d_EIGENFUNCTION_EXPANSION.py
 # ============================================================================

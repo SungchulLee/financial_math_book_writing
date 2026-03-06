@@ -16,7 +16,9 @@ Knightian uncertainty, named after economist Frank Knight (1921), represents a f
 
 
 $$
+
 \mathbb{E}[X] = \int_{\Omega} X(\omega) \, dP(\omega)
+
 $$
 
 
@@ -47,7 +49,9 @@ Savage (1954) axiomatized decision-making under uncertainty using a unique subje
 
 
 $$
+
 U(f) = \int_{\Omega} u(f(\omega)) \, dP(\omega)
+
 $$
 
 
@@ -65,7 +69,9 @@ To capture Knightian uncertainty, we generalize from a single probability measur
 
 
 $$
+
 V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]
+
 $$
 
 
@@ -86,7 +92,9 @@ An alternative representation uses a penalty function for deviating from a refer
 
 
 $$
+
 V(f) = \min_{P \in \mathcal{P}} \left\{ \mathbb{E}_P[u(f)] + c(P \| P_0) \right\}
+
 $$
 
 
@@ -95,7 +103,9 @@ where $c(P \| P_0)$ is a convex penalty function, often chosen as relative entro
 
 
 $$
+
 c(P \| P_0) = \theta \cdot D_{\text{KL}}(P \| P_0) = \theta \int_{\Omega} \log\left(\frac{dP}{dP_0}\right) \, dP
+
 $$
 
 
@@ -142,7 +152,9 @@ Let $P_{\text{Urn 2}}$ denote the decision maker's beliefs about Urn 2. The obse
 
 
 $$
+
 \inf_{P \in \mathcal{P}_2} P(\text{Red}) < 0.5 \quad \text{and} \quad \inf_{P \in \mathcal{P}_2} P(\text{Black}) < 0.5
+
 $$
 
 
@@ -153,7 +165,9 @@ This is consistent with maxmin preferences with:
 
 
 $$
+
 \mathcal{P}_2 = \left\{ P: P(\text{Red}) \in [a, 1-a] \text{ for some } a < 0.5 \right\}
+
 $$
 
 
@@ -174,7 +188,9 @@ In the Black-Scholes framework, the risk-neutral measure $\mathbb{Q}$ is uniquel
 
 
 $$
+
 V_t = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-r(T-t)} \Phi(S_T) \, \bigg| \, \mathcal{F}_t \right]
+
 $$
 
 
@@ -190,7 +206,9 @@ Consider a European call option under model uncertainty about volatility.
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+
 $$
 
 
@@ -201,7 +219,9 @@ where $\sigma_t \in [\sigma_{\min}, \sigma_{\max}]$ is uncertain.
 
 
 $$
+
 V_{\text{buy}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)
+
 $$
 
 
@@ -210,7 +230,9 @@ while the seller solves:
 
 
 $$
+
 V_{\text{sell}} = \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)
+
 $$
 
 
@@ -219,7 +241,9 @@ This creates a **bid-ask spread** driven by Knightian uncertainty:
 
 
 $$
+
 V_{\text{sell}} < V_{\text{buy}}
+
 $$
 
 
@@ -233,7 +257,9 @@ The classical Markowitz framework assumes known mean $\mu$ and covariance $\Sigm
 
 
 $$
+
 \max_{w \in \Delta^n} \min_{(\mu, \Sigma) \in \Theta} \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
+
 $$
 
 
@@ -244,7 +270,9 @@ where $\Theta$ represents uncertainty about the joint distribution of returns.
 
 
 $$
+
 \Theta = \left\{ (\mu, \Sigma): \|\mu - \hat{\mu}\|_{\Sigma^{-1}} \leq \delta \right\}
+
 $$
 
 
@@ -253,7 +281,9 @@ leads to the robust portfolio:
 
 
 $$
+
 w^* = \frac{1}{\lambda(1 + \delta)} \Sigma^{-1} \hat{\mu}
+
 $$
 
 
@@ -270,7 +300,9 @@ The ambiguity parameter $\delta$ effectively increases risk aversion, leading to
 
 
 $$
+
 u(\mathbb{E}[X]) > \mathbb{E}[u(X)]
+
 $$
 
 
@@ -281,7 +313,9 @@ characterized by concavity of $u$.
 
 
 $$
+
 \min_{P \in \mathcal{P}} \mathbb{E}_P[u(X)] < \mathbb{E}_{P_{\text{avg}}}[u(X)]
+
 $$
 
 
@@ -303,7 +337,9 @@ A critical issue in multiple priors models is maintaining consistency across tim
 
 
 $$
+
 \mathcal{P} = \left\{ P: P(A|\mathcal{F}_t) \in [\underline{p}_t(A), \overline{p}_t(A)] \text{ for all } A \in \mathcal{F}_T, t \leq T \right\}
+
 $$
 
 
@@ -321,7 +357,9 @@ Knightian uncertainty has deep connections to robust control theory (Hansen-Sarg
 
 
 $$
+
 \min_{u_t} \max_{w_t} \mathbb{E}\left[ \sum_{t=0}^T \left( x_t^\top Q x_t + u_t^\top R u_t - \theta w_t^\top w_t \right) \right]
+
 $$
 
 
@@ -330,7 +368,9 @@ subject to:
 
 
 $$
+
 x_{t+1} = A x_t + B u_t + C w_t
+
 $$
 
 
@@ -346,7 +386,9 @@ where:
 
 
 $$
+
 V(x_0) = -\frac{1}{\beta} \log \mathbb{E}\left[ \exp\left(-\beta \sum_{t=0}^T r(x_t, u_t) \right) \right]
+
 $$
 
 
@@ -368,7 +410,9 @@ Gilboa and Schmeidler (1989) provided an axiomatic foundation for maxmin expecte
 4. **Uncertainty Aversion**: For any $f, g$ and $\alpha \in (0,1)$:
 
    $$
+
    f \sim g \implies \alpha f + (1-\alpha) g \succeq f
+
    $$
 
 
@@ -378,7 +422,9 @@ Gilboa and Schmeidler (1989) provided an axiomatic foundation for maxmin expecte
 
 
 $$
+
 f \succeq g \iff \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \mathcal{P}} \mathbb{E}_P[u(g)]
+
 $$
 
 
@@ -394,7 +440,9 @@ MMR (2006) generalized this to variational preferences.
 
 
 $$
+
 \alpha x + (1-\alpha) f \succeq \alpha y + (1-\alpha) f \iff x \succeq y
+
 $$
 
 
@@ -403,7 +451,9 @@ $$
 
 
 $$
+
 V(f) = \min_{P \in \mathcal{M}(\Omega)} \left\{ \mathbb{E}_P[u(f)] + c(P) \right\}
+
 $$
 
 
@@ -431,7 +481,9 @@ Several experimental and market-based approaches measure the degree of ambiguity
 
 
 $$
+
 \pi = CE(\text{known}) - CE(\text{unknown})
+
 $$
 
 
@@ -448,7 +500,9 @@ $$
 
 
 $$
+
 \mathbb{E}[R_{\text{equity}}] - R_f = \gamma \sigma^2 + \text{ambiguity premium}
+
 $$
 
 
@@ -467,7 +521,9 @@ The relative entropy (Kullback-Leibler divergence) provides a natural measure of
 
 
 $$
+
 D_{\text{KL}}(P \| Q) = \mathbb{E}_P\left[ \log \frac{dP}{dQ} \right] = \int_{\Omega} \log\left(\frac{dP}{dQ}\right) \, dP
+
 $$
 
 
@@ -486,7 +542,9 @@ The entropic risk measure combines ambiguity and risk:
 
 
 $$
+
 \rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}\left[ e^{\beta X} \right]
+
 $$
 
 
@@ -495,7 +553,9 @@ $$
 
 
 $$
+
 \rho_{\beta}(X) = \sup_{\mathbb{Q} \ll \mathbb{P}} \left\{ \mathbb{E}_{\mathbb{Q}}[X] - \frac{1}{\beta} D_{\text{KL}}(\mathbb{Q} \| \mathbb{P}) \right\}
+
 $$
 
 
@@ -517,7 +577,9 @@ This shows entropic risk as a variational preference with KL penalty.
 
 
 $$
+
 \int_{-\infty}^x F(t) \, dt \leq \int_{-\infty}^x G(t) \, dt \quad \text{for all } x \in \mathbb{R}
+
 $$
 
 
@@ -528,7 +590,9 @@ $$
 
 
 $$
+
 f \succeq_{\text{SSD}} g \implies \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \mathcal{P}} \mathbb{E}_P[u(g)]
+
 $$
 
 
@@ -542,7 +606,9 @@ Klibanoff, Marinacci, Mukerji (2005) introduced **smooth ambiguity preferences**
 
 
 $$
+
 V(f) = \int_{\mathcal{P}} \phi\left( \int_{\Omega} u(f(\omega)) \, dP(\omega) \right) d\mu(P)
+
 $$
 
 
@@ -572,7 +638,9 @@ Another generalization uses non-additive measures (capacities).
 
 
 $$
+
 \int_{\Omega} f \, d\nu = \int_0^{\infty} \nu(\{\omega: f(\omega) \geq t\}) \, dt
+
 $$
 
 
@@ -581,7 +649,9 @@ $$
 
 
 $$
+
 V(f) = \int_{\Omega} u(f(\omega)) \, d\nu(\omega)
+
 $$
 
 
@@ -590,7 +660,9 @@ $$
 
 
 $$
+
 \nu(A \cup B) + \nu(A \cap B) \geq \nu(A) + \nu(B)
+
 $$
 
 
@@ -599,7 +671,9 @@ which implies ambiguity aversion through the **core** of the capacity:
 
 
 $$
+
 \text{core}(\nu) = \left\{ P: P(A) \geq \nu(A) \text{ for all } A \in \mathcal{F} \right\}
+
 $$
 
 
@@ -608,7 +682,9 @@ and:
 
 
 $$
+
 \int_{\Omega} f \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[f]
+
 $$
 
 

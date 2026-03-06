@@ -1,3 +1,9 @@
+"""
+Stocks
+
+Educational script demonstrating stocks concepts.
+"""
+
 # ============================================================================
 # stock_analysis/stock.py
 # ============================================================================
@@ -514,3 +520,7 @@ def analyze_single_stock(ticker='AAPL'):
     data.plot('returns')      # Comprehensive returns analysis
     
     return data
+
+
+if __name__ == "__main__":
+    pass

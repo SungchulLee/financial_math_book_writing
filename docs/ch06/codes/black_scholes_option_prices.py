@@ -1,3 +1,9 @@
+"""
+Black Scholes Option Prices
+
+Educational script demonstrating black scholes option prices concepts.
+"""
+
 # ============================================================================
 # black_scholes_OPTION_PRICES.py
 # ============================================================================

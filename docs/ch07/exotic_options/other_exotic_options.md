@@ -28,9 +28,11 @@ A **chooser option** (also called an "as-you-like-it" option) gives the holder t
 At the choice date $t_c$, the holder selects whichever is more valuable:
 
 $$
+
 \boxed{
 V_{\text{chooser}}(t_c) = \max\left(C(t_c, S_{t_c}; K, T),\; P(t_c, S_{t_c}; K, T)\right)
 }
+
 $$
 
 where $C$ and $P$ are Black–Scholes call and put values at time $t_c$.
@@ -40,7 +42,9 @@ where $C$ and $P$ are Black–Scholes call and put values at time $t_c$.
 Using put–call parity $P = C - S_{t_c} e^{-q(T-t_c)} + K e^{-r(T-t_c)}$, the chooser payoff becomes:
 
 $$
+
 V_{\text{chooser}}(t_c) = C(t_c, S_{t_c}; K, T) + \max\left(0,\; K e^{-r(T-t_c)} - S_{t_c} e^{-q(T-t_c)}\right)
+
 $$
 
 This decomposes the chooser into a **call with strike $K$ and maturity $T$** plus a **put with strike $K e^{-r(T-t_c)}$ and maturity $t_c$**. Both components can be priced with Black–Scholes.
@@ -59,19 +63,25 @@ This decomposes the chooser into a **call with strike $K$ and maturity $T$** plu
 **Best-of option (call on max)**:
 
 $$
+
 \text{Payoff} = \left(\max(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)}) - K\right)^+
+
 $$
 
 **Worst-of option (call on min)**:
 
 $$
+
 \text{Payoff} = \left(\min(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)}) - K\right)^+
+
 $$
 
 **Spread option** (two assets):
 
 $$
+
 \text{Payoff} = \left(S_T^{(1)} - S_T^{(2)} - K\right)^+
+
 $$
 
 ### Role of Correlation
@@ -97,9 +107,11 @@ A **cliquet option** resets its strike at predetermined dates and accumulates pa
 For reset dates $t_0 < t_1 < \cdots < t_n = T$, the cliquet payoff is:
 
 $$
+
 \boxed{
 \text{Payoff} = \sum_{i=1}^{n} \max\left(\frac{S_{t_i} - S_{t_{i-1}}}{S_{t_{i-1}}} - K_{\text{local}},\; 0\right)
 }
+
 $$
 
 Each period's return is capped and floored independently, and the total payoff is the sum of individual period payoffs.
@@ -146,27 +158,35 @@ Under GBM assumptions, Geske (1979) derived a closed-form formula for compound o
 ### Cash-or-Nothing
 
 $$
+
 \boxed{
 \text{Payoff}_{\text{digital call}} = Q \cdot \mathbf{1}_{\{S_T > K\}}
 }
+
 $$
 
 where $Q$ is the fixed cash payment. Under Black–Scholes:
 
 $$
+
 V_{\text{digital call}} = Q\, e^{-rT}\, N(d_2)
+
 $$
 
 ### Asset-or-Nothing
 
 $$
+
 \text{Payoff}_{\text{asset-or-nothing call}} = S_T \cdot \mathbf{1}_{\{S_T > K\}}
+
 $$
 
 Under Black–Scholes:
 
 $$
+
 V_{\text{asset-or-nothing call}} = S_0\, N(d_1)
+
 $$
 
 ### Relationship to Vanilla Options
@@ -174,7 +194,9 @@ $$
 A vanilla call is the difference between an asset-or-nothing call and $K$ units of a cash-or-nothing call:
 
 $$
+
 C_{\text{vanilla}} = S_0\, N(d_1) - K\, e^{-rT}\, N(d_2)
+
 $$
 
 This decomposition clarifies the probabilistic structure of the Black–Scholes formula.

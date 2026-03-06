@@ -1,3 +1,9 @@
+"""
+Bayesian Regression Finance
+
+Educational script demonstrating bayesian regression finance concepts.
+"""
+
 # ---
 # title: "Bayesian Linear Regression for Financial Data"
 # description: >
@@ -23,6 +29,8 @@ import matplotlib.pyplot as plt
 # ══════════════════════════════════════════════════════════════════
 #  Lightweight Bayesian Linear Regression (no PyMC3 required)
 # ══════════════════════════════════════════════════════════════════
+
+# ======================================================================
 
 class BayesianLinearRegression:
     """Bayesian linear regression  y = alpha + beta * x + eps

@@ -11,9 +11,11 @@ American options can be exercised at any time before expiration, leading to an *
 Under risk-neutral dynamics $dS_t = rS_t\,dt + \sigma S_t\,dW_t$:
 
 $$
+
 \boxed{
 V(t,S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]
 }
+
 $$
 
 where $\mathcal{T}_{t,T}$ is the set of stopping times in $[t,T]$.
@@ -23,9 +25,11 @@ where $\mathcal{T}_{t,T}$ is the set of stopping times in $[t,T]$.
 The American option price satisfies:
 
 $$
+
 \boxed{
 \min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
 }
+
 $$
 
 where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rS V_S$ is the Black-Scholes generator.
@@ -33,6 +37,7 @@ where $\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rS V_S$ is the Black-Scho
 ### Two Regions
 
 1. **Continuation region** $\mathcal{C}$: $V > \Phi$, and the PDE holds:
+
    $$\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0$$
 
 2. **Exercise region** $\mathcal{E}$: $V = \Phi$ (immediate exercise is optimal)
@@ -54,21 +59,27 @@ The **exercise boundary** $S^*(t)$ separates the two regions:
 At the free boundary $S = S^*(t)$:
 
 $$
+
 \boxed{
 V(t, S^*(t)) = \Phi(S^*(t)), \quad \frac{\partial V}{\partial S}(t, S^*(t)) = \Phi'(S^*(t))
 }
+
 $$
 
 For an American put with $\Phi(S) = (K-S)^+$:
 
 $$
+
 V(t, S^*) = K - S^*, \quad V_S(t, S^*) = -1
+
 $$
 
 ### Early Exercise Premium
 
 $$
+
 V_{\text{American}} = V_{\text{European}} + \text{Early Exercise Premium}
+
 $$
 
 The premium is always non-negative and reflects the value of the exercise option.
@@ -82,9 +93,11 @@ The premium is always non-negative and reflects the value of the exercise option
 After each time step, **project** onto the constraint:
 
 $$
+
 \boxed{
 u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)
 }
+
 $$
 
 ### Algorithm (Implicit + Projection)
@@ -110,6 +123,7 @@ $$
 The discrete problem at each time step is:
 
 $$
+
 \boxed{
 \begin{aligned}
 & L\mathbf{u} \geq \mathbf{f} \\
@@ -117,6 +131,7 @@ $$
 & (L\mathbf{u} - \mathbf{f})^T(\mathbf{u} - \boldsymbol{\Phi}) = 0
 \end{aligned}
 }
+
 $$
 
 where $L = I - \Delta\tau A$ and $\mathbf{f} = \mathbf{u}^n$.
@@ -137,11 +152,15 @@ The **Projected Successive Over-Relaxation (PSOR)** method solves the LCP effici
 For iteration $k+1$:
 
 $$
+
 \tilde{u}_j^{(k+1)} = (1-\omega)u_j^{(k)} + \frac{\omega}{l_{jj}}\left(f_j - \sum_{i<j} l_{ji}u_i^{(k+1)} - \sum_{i>j} l_{ji}u_i^{(k)}\right)
+
 $$
 
 $$
+
 u_j^{(k+1)} = \max(\tilde{u}_j^{(k+1)}, \Phi_j)
+
 $$
 
 ### Parameters
@@ -164,7 +183,9 @@ $$
 Replace the hard constraint with a soft penalty:
 
 $$
+
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV + \rho(V - \Phi)^- = 0
+
 $$
 
 where $(x)^- = \min(x, 0)$ and $\rho \gg 1$ is the penalty parameter.
@@ -172,7 +193,9 @@ where $(x)^- = \min(x, 0)$ and $\rho \gg 1$ is the penalty parameter.
 ### Discrete Form
 
 $$
+
 (I - \Delta\tau A + \Delta\tau \rho P)\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \rho P\boldsymbol{\Phi}
+
 $$
 
 where $P$ is a diagonal matrix with $P_{jj} = 1$ if $u_j < \Phi_j$, else $0$.
@@ -264,9 +287,11 @@ More complex implementation; boundary must be tracked.
 ## Summary
 
 $$
+
 \boxed{
 \min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
 }
+
 $$
 
 | Aspect | Description |

@@ -40,7 +40,9 @@ Model the financial system as a directed graph:
 - **Edge weight:** Size of exposure
 
 $$
+
 \Pi_{ij} = \text{Exposure of } i \text{ to } j
+
 $$
 
 ### Liability Matrix
@@ -48,7 +50,9 @@ $$
 Define the **relative liability matrix**:
 
 $$
+
 \bar{\Pi}_{ij} = \frac{\Pi_{ij}}{\sum_k \Pi_{ik}} = \frac{\text{Claim of } i \text{ on } j}{\text{Total liabilities of } i}
+
 $$
 
 This captures the fraction of each institution's liabilities owed to others.
@@ -69,7 +73,9 @@ This captures the fraction of each institution's liabilities owed to others.
 A **clearing payment vector** $p = (p_1, \ldots, p_n)$ satisfies:
 
 $$
+
 p_i = \min\left(\bar{p}_i, \, e_i + \sum_{j=1}^n \Pi_{ji} p_j\right)
+
 $$
 
 **Interpretation:**
@@ -82,7 +88,9 @@ $$
 The clearing vector is a fixed point:
 
 $$
+
 p = \min(\bar{p}, \, e + \Pi^\top p)
+
 $$
 
 **Theorem (Eisenberg-Noe, 2001):** Under mild conditions, there exists a unique clearing vector that can be computed iteratively.
@@ -105,7 +113,9 @@ Institution $i$ **defaults** if $p_i < \bar{p}_i$.
 For a leveraged institution:
 
 $$
+
 \text{Equity} = \text{Assets} - \text{Liabilities}
+
 $$
 
 A 1% decline in assets causes $\frac{1}{\text{Equity/Assets}}$ % decline in equity.
@@ -120,8 +130,11 @@ When institution $i$ sells assets:
 3. May trigger further sales
 
 **Price impact:**
+
 $$
+
 P' = P \cdot \left(1 - \alpha \cdot \frac{\text{Sales}}{\text{Market Cap}}\right)
+
 $$
 
 ### Margin Spirals
@@ -193,19 +206,25 @@ Many financial networks exhibit core-periphery structure:
 ### CoVaR (Adrian-Brunnermeier)
 
 $$
+
 \text{CoVaR}_\alpha^{i|j} = \text{VaR}_\alpha(\text{System} \mid \text{Institution } j \text{ at VaR})
+
 $$
 
 **$\Delta$CoVaR:** Contribution of institution $j$ to system risk:
 
 $$
+
 \Delta\text{CoVaR}^j = \text{CoVaR}^{i|j=\text{VaR}} - \text{CoVaR}^{i|j=\text{median}}
+
 $$
 
 ### Marginal Expected Shortfall (MES)
 
 $$
+
 \text{MES}_i = \mathbb{E}[R_i \mid R_{\text{market}} < \text{VaR}_\alpha^{\text{market}}]
+
 $$
 
 Expected loss of institution $i$ when the market is in distress.
@@ -213,7 +232,9 @@ Expected loss of institution $i$ when the market is in distress.
 ### SRISK
 
 $$
+
 \text{SRISK}_i = k \cdot D_i - (1-k) \cdot W_i \cdot (1 - \text{LRMES}_i)
+
 $$
 
 Capital shortfall in a crisis, where:

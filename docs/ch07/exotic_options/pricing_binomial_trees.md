@@ -24,19 +24,25 @@ The **binomial tree** method extends naturally to price exotic options by tracki
 In the Cox–Ross–Rubinstein (CRR) framework with $N$ time steps:
 
 $$
+
 \Delta t = \frac{T}{N}, \quad u = e^{\sigma\sqrt{\Delta t}}, \quad d = \frac{1}{u}, \quad q = \frac{e^{r\Delta t} - d}{u - d}
+
 $$
 
 The stock price at node $(n, j)$ is:
 
 $$
+
 S_{n,j} = S_0 \cdot u^j \cdot d^{n - j}, \quad 0 \leq j \leq n \leq N
+
 $$
 
 For vanilla options, backward induction gives the option value at each node:
 
 $$
+
 V_{n,j} = e^{-r\Delta t}\left[q\, V_{n+1,j+1} + (1-q)\, V_{n+1,j}\right]
+
 $$
 
 ---
@@ -118,7 +124,9 @@ For an Asian option, the payoff depends on the running average $\bar{S}_n = \fra
 At time step $n$ with $j$ up-moves, there are $\binom{n}{j}$ distinct paths, each potentially producing a different running average. The total number of distinct averages across all nodes grows combinatorially:
 
 $$
+
 \text{Total states} = \sum_{n=0}^{N} \sum_{j=0}^{n} \binom{n}{j} = \sum_{n=0}^{N} 2^n = 2^{N+1} - 1
+
 $$
 
 This **exponential growth** makes exact tree pricing of Asian options computationally intractable for large $N$.

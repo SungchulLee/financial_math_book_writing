@@ -1,3 +1,9 @@
+"""
+Sma Trading Strategy
+
+Educational script demonstrating sma trading strategy concepts.
+"""
+
 # ---
 # title: "Simple Moving Average (SMA) Trading Strategy"
 # description: >
@@ -20,6 +26,7 @@ import matplotlib.pyplot as plt
 from itertools import product
 
 
+# ======================================================================
 # ── Synthetic price series for stand-alone use ────────────────────
 def generate_gbm_prices(S0=100, mu=0.08, sigma=0.20,
                         T=8.0, dt=1/252, seed=42):

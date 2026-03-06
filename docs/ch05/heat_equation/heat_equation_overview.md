@@ -9,15 +9,19 @@ The heat equation is the canonical partial differential equation describing diff
 In one spatial dimension, the heat equation is:
 
 $$
+
 \boxed{
 \frac{\partial u}{\partial t}(t,x) = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}(t,x), \quad (t,x) \in (0,\infty) \times \mathbb{R}
 }
+
 $$
 
 with initial condition:
 
 $$
+
 u(0,x) = f(x)
+
 $$
 
 Here $u(t,x)$ represents:
@@ -32,7 +36,9 @@ Here $u(t,x)$ represents:
 The coefficient $\frac{1}{2}$ is chosen to align with **standard Brownian motion**, whose variance satisfies:
 
 $$
+
 \text{Var}(B_t) = \mathbb{E}[B_t^2] = t
+
 $$
 
 With this normalization:
@@ -49,19 +55,29 @@ With this normalization:
 The heat equation arises from two physical principles:
 
 **1. Conservation of energy**: 
+
 $$
+
 \frac{\partial u}{\partial t} = -\frac{\partial q}{\partial x}
+
 $$
+
 where $q$ is the heat flux.
 
 **2. Fourier's law**: Heat flows from hot to cold proportionally to the temperature gradient:
+
 $$
+
 q = -\kappa \frac{\partial u}{\partial x}
+
 $$
 
 Combining these:
+
 $$
+
 \frac{\partial u}{\partial t} = \kappa \frac{\partial^2 u}{\partial x^2}
+
 $$
 
 ---
@@ -71,8 +87,11 @@ $$
 The heat equation is the prototype of **parabolic** PDEs.
 
 **General second-order linear PDE**:
+
 $$
+
 Au_{xx} + 2Bu_{xy} + Cu_{yy} + \text{lower order} = 0
+
 $$
 
 **Classification** (by discriminant $B^2 - AC$):
@@ -102,8 +121,11 @@ If $f$ has compact support, $u(t,x) > 0$ for all $x \in \mathbb{R}$ and $t > 0$.
 ### 3. Conservation of Mass
 
 If $\int_{\mathbb{R}} f(x)\,dx = M$, then:
+
 $$
+
 \int_{\mathbb{R}} u(t,x)\,dx = M \quad \text{for all } t > 0
+
 $$
 
 Total "heat" (or probability mass) is conserved.
@@ -117,7 +139,9 @@ If $f(x) \geq 0$ for all $x$, then $u(t,x) \geq 0$ for all $t > 0$ and $x \in \m
 ### 5. Decay of Maximum
 
 $$
+
 \max_x u(t,x) \leq \max_x f(x)
+
 $$
 
 The maximum temperature decreases over time (in the absence of sources).
@@ -129,12 +153,17 @@ The maximum temperature decreases over time (in the absence of sources).
 In $\mathbb{R}^d$:
 
 $$
+
 \frac{\partial u}{\partial t} = \frac{1}{2}\Delta u = \frac{1}{2}\sum_{i=1}^d \frac{\partial^2 u}{\partial x_i^2}
+
 $$
 
 The fundamental solution becomes:
+
 $$
+
 G(t,x) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{|x|^2}{2t}\right)
+
 $$
 
 This is the density of $d$-dimensional Brownian motion $B_t \in \mathbb{R}^d$.
@@ -146,11 +175,13 @@ This is the density of $d$-dimensional Brownian motion $B_t \in \mathbb{R}^d$.
 On a bounded domain $\Omega \subset \mathbb{R}^d$:
 
 $$
+
 \begin{cases}
 u_t = \frac{1}{2}\Delta u & \text{in } (0,T) \times \Omega \\
 u(0,x) = f(x) & \text{initial condition} \\
 u(t,x) = g(t,x) & \text{on } (0,T) \times \partial\Omega \text{ (Dirichlet)}
 \end{cases}
+
 $$
 
 **Neumann conditions**: Specify $\frac{\partial u}{\partial n}$ on the boundary (insulated boundary).
@@ -184,9 +215,11 @@ This connection, formalized by the **Feynman-Kac theorem**, is the foundation fo
 ## Summary
 
 $$
+
 \boxed{
 u_t = \frac{1}{2}u_{xx} \quad \longleftrightarrow \quad \text{Brownian motion}
 }
+
 $$
 
 The heat equation describes:
@@ -208,7 +241,9 @@ The heat equation emerges naturally from modeling particle diffusion. Consider p
 **Number of particles at time $t + \tau$:**
 
 $$
+
 f(x, t+\tau) = \int_{-\infty}^{\infty} f(x-\Delta, t) \phi(\Delta) d\Delta
+
 $$
 
 **Taylor expansion:**
@@ -218,19 +253,25 @@ $$
 **Substituting and using the fact that $\phi$ is even** (symmetric distribution):
 
 $$
+
 f(x, t) + \frac{\partial f}{\partial t}\tau = f(x, t) \int \phi(\Delta)d\Delta - \frac{\partial f}{\partial x}\int \Delta\phi(\Delta)d\Delta + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta
+
 $$
 
 Since $\int \phi(\Delta)d\Delta = 1$ and $\int \Delta\phi(\Delta)d\Delta = 0$ (by symmetry):
 
 $$
+
 \frac{\partial f}{\partial t}\tau = \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta
+
 $$
 
 **Defining diffusion coefficient** $D = \frac{1}{\tau}\int \Delta^2\phi(\Delta)d\Delta$ (variance per unit time):
 
 $$
+
 \frac{\partial f}{\partial t} = \frac{D}{2}\frac{\partial^2 f}{\partial x^2}
+
 $$
 
 **Physical interpretation:** If neighboring regions have more particles on average, particles diffuse in to increase the local density. Conversely, if neighbors are depleted, the region loses particles.
@@ -247,7 +288,9 @@ For the heat equation to remain invariant, we need $b = 2a$.
 **Similarity solution ansatz:**
 
 $$
+
 u(x, t) = t^{c/b} f\left(\frac{x}{\sqrt{t}}\right)
+
 $$
 
 where $\xi = \frac{x}{\sqrt{t}}$ is the similarity variable.
@@ -255,26 +298,35 @@ where $\xi = \frac{x}{\sqrt{t}}$ is the similarity variable.
 **Substituting into the heat equation** with $c/b = -1/2$:
 
 $$
+
 \kappa f''(\xi) + \frac{1}{2}\xi f'(\xi) + \frac{1}{2}f(\xi) = 0
+
 $$
 
 This simplifies to:
+
 $$
+
 \frac{df}{f} = -\frac{1}{2\kappa}\xi d\xi \quad \Rightarrow \quad f(\xi) = e^{-\xi^2/(4\kappa)}
+
 $$
 
 **Fundamental solution (Green's function):**
 
 $$
+
 \boxed{
 G(x, t; x_0) = \frac{1}{\sqrt{4\pi\kappa t}} \exp\left(-\frac{(x-x_0)^2}{4\kappa t}\right)
 }
+
 $$
 
 **General solution by superposition:**
 
 $$
+
 u(x, t) = \int_{-\infty}^{\infty} u(x_0, 0) \cdot G(x, t; x_0) dx_0
+
 $$
 
 The fundamental solution is the Gaussian kernel - the transition density of diffusion processes. This connects the PDE theory to probability: the solution represents how an initial distribution $u(x, 0)$ spreads according to Brownian motion.

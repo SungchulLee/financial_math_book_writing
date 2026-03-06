@@ -20,7 +20,9 @@ Before defining martingales, we must understand conditional expectation, the fun
 Let $(\Omega, \mathcal{F}, \mathbb{P})$ be a probability space, $\mathcal{G} \subseteq \mathcal{F}$ a sub-$\sigma$-algebra, and $X \in L^1(\Omega)$ an integrable random variable. The **conditional expectation** $\mathbb{E}[X \mid \mathcal{G}]$ is the unique (a.s.) $\mathcal{G}$-measurable random variable satisfying
 
 $$
+
 \int_G \mathbb{E}[X \mid \mathcal{G}] \, d\mathbb{P} = \int_G X \, d\mathbb{P} \quad \text{for all } G \in \mathcal{G}
+
 $$
 
 **Key properties**:
@@ -48,7 +50,9 @@ Let $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})$ be a filtered
 2. **Martingale property**: For all $0 \le s \le t$,
 
 $$
+
 \boxed{\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s \quad \text{a.s.}}
+
 $$
 
 **Interpretation**: Given all information up to time $s$, the best prediction of the future value $M_t$ is the current value $M_s$. The process has "no drift" on average.
@@ -56,7 +60,9 @@ $$
 **Equivalent formulation**: The martingale property is equivalent to
 
 $$
+
 \mathbb{E}[M_t - M_s \mid \mathcal{F}_s] = 0 \quad \text{for all } 0 \le s \le t
+
 $$
 
 The increments are **uncorrelated** with the past (though not necessarily independent).
@@ -68,13 +74,17 @@ The increments are **uncorrelated** with the past (though not necessarily indepe
 A process $X$ is a **submartingale** if
 
 $$
+
 \mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s \quad \text{for all } 0 \le s \le t
+
 $$
 
 A process $X$ is a **supermartingale** if
 
 $$
+
 \mathbb{E}[X_t \mid \mathcal{F}_s] \le X_s \quad \text{for all } 0 \le s \le t
+
 $$
 
 **Mnemonic**: "Sub" suggests the process is below its expected value (tends to rise), "super" suggests it exceeds its expected value (tends to fall). This naming convention is counterintuitive but standard.
@@ -98,7 +108,9 @@ Let $W_t$ be standard Brownian motion with natural filtration $\mathcal{F}_t = \
 **Proof**: For $0 \le s < t$,
 
 $$
+
 \mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s + (W_t - W_s) \mid \mathcal{F}_s] = W_s + \mathbb{E}[W_t - W_s] = W_s + 0 = W_s
+
 $$
 
 using that $W_s$ is $\mathcal{F}_s$-measurable and $W_t - W_s$ is independent of $\mathcal{F}_s$ with mean zero. $\square$
@@ -110,11 +122,13 @@ using that $W_s$ is $\mathcal{F}_s$-measurable and $W_t - W_s$ is independent of
 **Proof**: We compute $\mathbb{E}[W_t^2 \mid \mathcal{F}_s]$. Writing $W_t = W_s + (W_t - W_s)$:
 
 $$
+
 \begin{aligned}
 \mathbb{E}[W_t^2 \mid \mathcal{F}_s] &= \mathbb{E}[(W_s + (W_t - W_s))^2 \mid \mathcal{F}_s] \\
 &= \mathbb{E}[W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2 \mid \mathcal{F}_s] \\
 &= W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s \mid \mathcal{F}_s] + \mathbb{E}[(W_t - W_s)^2 \mid \mathcal{F}_s]
 \end{aligned}
+
 $$
 
 Now, $W_t - W_s$ is independent of $\mathcal{F}_s$, so:
@@ -125,7 +139,9 @@ Now, $W_t - W_s$ is independent of $\mathcal{F}_s$, so:
 Therefore:
 
 $$
+
 \mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 0 + (t-s) = W_s^2 + (t-s)
+
 $$
 
 Hence $\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s$. $\square$
@@ -137,7 +153,9 @@ Hence $\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s$
 For any $X \in L^1(\mathcal{F})$, the process
 
 $$
+
 M_t := \mathbb{E}[X \mid \mathcal{F}_t]
+
 $$
 
 is a martingale. This is the canonical construction: we reveal information about $X$ over time.
@@ -145,7 +163,9 @@ is a martingale. This is the canonical construction: we reveal information about
 **Proof**: For $s \le t$, by the tower property:
 
 $$
+
 \mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}[\mathbb{E}[X \mid \mathcal{F}_t] \mid \mathcal{F}_s] = \mathbb{E}[X \mid \mathcal{F}_s] = M_s \quad \square
+
 $$
 
 ### Example 4: Simple Random Walk
@@ -153,7 +173,9 @@ $$
 Let $\xi_1, \xi_2, \ldots$ be i.i.d. with $\mathbb{P}(\xi_i = +1) = \mathbb{P}(\xi_i = -1) = 1/2$. Define
 
 $$
+
 S_n = \sum_{k=1}^n \xi_k, \quad \mathcal{F}_n = \sigma(\xi_1, \ldots, \xi_n)
+
 $$
 
 Then $S_n$ is a martingale, modeling a fair coin-tossing game.
@@ -169,7 +191,9 @@ Convex functions applied to martingales yield submartingales:
 **Proof**: By Jensen's inequality,
 
 $$
+
 \mathbb{E}[\varphi(M_t) \mid \mathcal{F}_s] \ge \varphi(\mathbb{E}[M_t \mid \mathcal{F}_s]) = \varphi(M_s) \quad \square
+
 $$
 
 **Corollary**: If $M_t$ is a martingale, then:
@@ -187,7 +211,9 @@ A martingale $M$ is called an **$L^p$-martingale** if $\sup_t \mathbb{E}|M_t|^p 
 A family of random variables $\{X_\alpha\}$ is **uniformly integrable** if
 
 $$
+
 \lim_{K \to \infty} \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| > K\}}] = 0
+
 $$
 
 **Key facts**:
@@ -203,7 +229,9 @@ $$
 A deep connection links martingales to stochastic integration. If $H_t$ is a predictable process with $\mathbb{E}\int_0^T H_s^2 \, ds < \infty$, then the Itô integral
 
 $$
+
 I_t = \int_0^t H_s \, dW_s
+
 $$
 
 is a martingale. This is fundamental: Itô integrals are "pure noise" with no drift.

@@ -635,8 +635,10 @@ where $c$ is the transaction cost rate.
 The supremum over $\alpha$ gives:
 
 $$\sup_\alpha\left\{\alpha\left(\sigma S\frac{\partial V}{\partial S} - c\text{sgn}(\alpha)\right)\right\} = \begin{cases}
+
 0 & \text{if } |\sigma S\frac{\partial V}{\partial S}| \leq c \\
 +\infty & \text{otherwise}
+
 \end{cases}$$
 
 

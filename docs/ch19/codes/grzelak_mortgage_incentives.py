@@ -12,6 +12,8 @@ by C.W. Oosterlee and L.A. Grzelak, World Scientific Publishing Europe Ltd, 2019
 import numpy as np
 import matplotlib.pyplot as plt
 
+# ======================================================================
+
 def Annuity(rate,notional,periods,CPR):
     # it returns a matrix M such that
     # M = [t  notional(t)  prepayment(t)  notional_quote(t)  interest_quote(t)  installment(t)]
@@ -65,6 +67,8 @@ def mainCode():
 
     return 0.0
 
-mainCode()
+
+if __name__ == "__main__":
+    mainCode()
     
     

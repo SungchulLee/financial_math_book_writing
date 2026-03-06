@@ -1,3 +1,9 @@
+"""
+Heat Equation 1D Fft
+
+Educational script demonstrating heat equation 1d fft concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d_FFT.py
 # ============================================================================

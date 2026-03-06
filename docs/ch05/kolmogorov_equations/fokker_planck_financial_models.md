@@ -6,15 +6,18 @@ The Fokker-Planck equation describes the evolution of probability density functi
 
 **Forward Equation (Fokker-Planck)**
 For a diffusion process $dX_t = \mu(X_t, t) dt + \sigma(X_t, t) dB_t$, the Fokker-Planck equation governs the probability density $p(x, t)$:
+
 $$\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x, t) p(x, t)] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x, t) p(x, t)]$$
 
 **Geometric Brownian Motion (GBM)**
 For GBM: $dS_t = \mu S_t dt + \sigma S_t dB_t$
 
 The Fokker-Planck equation is:
+
 $$\frac{\partial p}{\partial t} = -\mu \frac{\partial(xp)}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2(x^2 p)}{\partial x^2}$$
 
 In log-space with $y = \ln(x)$, the density becomes Gaussian:
+
 $$p(y, t) = \frac{1}{\sigma\sqrt{2\pi t}} \exp\left(-\frac{(y - \mu t)^2}{2\sigma^2 t}\right)$$
 
 **Cox-Ingersoll-Ross (CIR) Model**
@@ -47,7 +50,9 @@ The Fokker-Planck equation determines:
 For Brownian motion $dX_t = dB_t$, the probability density $p(x, t)$ satisfies:
 
 $$
+
 \frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}
+
 $$
 
 **Derivation using Itô's Lemma:**
@@ -55,58 +60,83 @@ $$
 For any test function $f$ in $C_c^2$ (twice continuously differentiable with compact support):
 
 $$
+
 df(B_t) = f'(B_t)dB_t + \frac{1}{2}f''(B_t)dt
+
 $$
 
 Taking expectations:
+
 $$
+
 \frac{d}{dt}\mathbb{E}[f(B_t)] = \frac{1}{2}\mathbb{E}[f''(B_t)]
+
 $$
 
 Using the transition density function $p(x, t)$:
 
 $$
+
 \mathbb{E}[f] = \int_{-\infty}^{\infty} f(x)p(x, t)dx
+
 $$
 
 $$
+
 \frac{d}{dt}\mathbb{E}[f] = \int_{-\infty}^{\infty} f(x)\frac{\partial p}{\partial t}dx
+
 $$
 
 **Integration by parts** (assuming boundary terms vanish):
 
 $$
+
 \mathbb{E}[f''(x)] = \int_{-\infty}^{\infty} f''(x)p(x, t)dx = \int_{-\infty}^{\infty} f(x)p_{xx}(x, t)dx
+
 $$
 
 Therefore:
+
 $$
+
 \int_{-\infty}^{\infty} f(x)\left[\frac{\partial p}{\partial t} - \frac{1}{2}p_{xx}\right]dx = 0
+
 $$
 
 Since this holds for all test functions:
+
 $$
+
 \boxed{\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}}
+
 $$
 
 ### Fokker-Planck for General Diffusions
 
 For a general SDE:
+
 $$
+
 dX_t = \mu(X_t, t)dt + \sigma(X_t, t)dB_t
+
 $$
 
 Applying Itô's Lemma:
+
 $$
+
 df = \left(\mu f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma f_x dB_t
+
 $$
 
 Taking expectations and using integration by parts:
 
 $$
+
 \boxed{
 \frac{\partial p}{\partial t} = -\frac{\partial(\mu p)}{\partial x} + \frac{1}{2}\frac{\partial^2(\sigma^2 p)}{\partial x^2}
 }
+
 $$
 
 **Key examples:**

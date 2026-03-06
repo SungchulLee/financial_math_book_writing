@@ -23,7 +23,9 @@ The key innovation is that 2BSDEs account for uncertainty in the **quadratic var
 
 
 $$
+
 Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+
 $$
 
 
@@ -34,7 +36,9 @@ where $g$ is the generator (first-order in $z$).
 
 
 $$
+
 d\langle W \rangle_t = dt
+
 $$
 
 
@@ -46,7 +50,9 @@ $$
 
 
 $$
+
 \underline{a} \leq \sigma_t \sigma_t^\top \leq \overline{a}
+
 $$
 
 
@@ -67,7 +73,9 @@ A **second-order BSDE** is an equation of the form:
 
 
 $$
+
 Y_t = \xi + \int_t^T F(s, Y_s, Z_s, \Gamma_s) \, ds - \int_t^T Z_s \, dW_s - \int_t^T \text{tr}[\Gamma_s d\langle W \rangle_s]
+
 $$
 
 
@@ -90,7 +98,9 @@ where:
 
 
 $$
+
 \mathcal{P} = \left\{ P: \frac{dP}{dP^0}\bigg|_{\mathcal{F}_t} = \mathcal{E}\left(\int_0^t \theta_s \, dW_s^0\right), \, \theta \in \Theta \right\}
+
 $$
 
 
@@ -101,7 +111,9 @@ where $\Theta$ represents admissible drifts and volatilities.
 
 
 $$
+
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
+
 $$
 
 
@@ -115,7 +127,9 @@ for appropriate generator $f$.
 
 
 $$
+
 Y_t = \sup_{\alpha \in \mathcal{A}} E^{\alpha}\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
+
 $$
 
 
@@ -126,7 +140,9 @@ where the supremum is over admissible controls $\alpha$ affecting the quadratic 
 
 
 $$
+
 F(t, y, z, \gamma) = f(t, y, z) + G(t, y, z, \gamma)
+
 $$
 
 
@@ -161,7 +177,9 @@ Then:
 
 
 $$
+
 Y_1^t \leq Y_2^t \quad P\text{-a.s. for all } t
+
 $$
 
 
@@ -178,7 +196,9 @@ $$
 
 
 $$
+
 \frac{\partial u}{\partial t} + \sup_{\sigma \in \Sigma} \left\{ \frac{1}{2} \text{tr}[\sigma \sigma^\top D^2 u] + \mu \cdot \nabla u \right\} + f(t, u, \sigma^\top \nabla u) = 0
+
 $$
 
 
@@ -194,7 +214,9 @@ with terminal condition $u(T, x) = \Phi(x)$.
 - **Subsolution**: For any smooth test function $\phi$ with $u - \phi$ attaining a local maximum at $(t_0, x_0)$:
 
   $$
+
   \frac{\partial \phi}{\partial t} + F(t, u, D\phi, D^2\phi) \leq 0
+
   $$
 
 
@@ -202,7 +224,9 @@ with terminal condition $u(T, x) = \Phi(x)$.
 - **Supersolution**: For any smooth test function $\phi$ with $u - \phi$ attaining a local minimum at $(t_0, x_0)$:
 
   $$
+
   \frac{\partial \phi}{\partial t} + F(t, u, D\phi, D^2\phi) \geq 0
+
   $$
 
 
@@ -216,7 +240,9 @@ with terminal condition $u(T, x) = \Phi(x)$.
 
 
 $$
+
 \frac{\partial u}{\partial t} + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} \right\} + rS \frac{\partial u}{\partial S} - ru = 0
+
 $$
 
 
@@ -227,7 +253,9 @@ $$
 
 
 $$
+
 \frac{\partial u}{\partial t} + G\left(\frac{\partial^2 u}{\partial x^2}\right) = 0
+
 $$
 
 
@@ -236,7 +264,9 @@ where:
 
 
 $$
+
 G(a) = \frac{1}{2}\overline{\sigma}^2 a^+ - \frac{1}{2}\underline{\sigma}^2 a^-
+
 $$
 
 
@@ -256,7 +286,9 @@ $$
 
 
 $$
+
 \langle B \rangle_t \in [\underline{\sigma}^2 t, \overline{\sigma}^2 t]
+
 $$
 
 
@@ -267,7 +299,9 @@ with exact value unknown (uncertain).
 
 
 $$
+
 G: \mathbb{R}^{d \times d} \to \mathbb{R}
+
 $$
 
 
@@ -276,7 +310,9 @@ defined by:
 
 
 $$
+
 G(A) = \frac{1}{2} \sup_{\sigma \in \Sigma} \text{tr}[\sigma \sigma^\top A]
+
 $$
 
 
@@ -290,7 +326,9 @@ characterizes the quadratic variation uncertainty.
 
 
 $$
+
 \mathbb{E}^G[\xi] = Y_0
+
 $$
 
 
@@ -299,7 +337,9 @@ where $Y_t$ solves the 2BSDE:
 
 
 $$
+
 Y_t = \sup_{P \in \mathcal{P}_G} E_P[\xi | \mathcal{F}_t]
+
 $$
 
 
@@ -316,7 +356,9 @@ and $\mathcal{P}_G$ is the set of measures compatible with the G-Brownian motion
 
 
 $$
+
 F(t, y, z, \gamma) = G(\gamma)
+
 $$
 
 
@@ -328,7 +370,9 @@ $$
 
 
 $$
+
 df(t, B_t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dB_t + G\left(\frac{\partial^2 f}{\partial x^2}\right) d\langle B \rangle_t
+
 $$
 
 
@@ -339,7 +383,9 @@ where $\langle B \rangle_t$ is the G-quadratic variation.
 
 
 $$
+
 \mathbb{E}^G[M_t | \mathcal{F}_s] = M_s \quad \text{for } s \leq t
+
 $$
 
 
@@ -348,7 +394,9 @@ $$
 
 
 $$
+
 M_t = M_0 + \int_0^t Z_s \, dB_s
+
 $$
 
 
@@ -365,7 +413,9 @@ for some adapted process $Z_t$.
 
 
 $$
+
 V_T \geq \Phi(S_T) \quad P\text{-a.s. for all } P \in \mathcal{P}
+
 $$
 
 
@@ -374,7 +424,9 @@ $$
 
 
 $$
+
 V_0 = Y_0
+
 $$
 
 
@@ -383,7 +435,9 @@ where $Y_t$ solves the 2BSDE:
 
 
 $$
+
 Y_t = \sup_{P \in \mathcal{P}} E_P[\Phi(S_T) | \mathcal{F}_t]
+
 $$
 
 
@@ -392,7 +446,9 @@ $$
 
 
 $$
+
 \Delta_t = Z_t / S_t
+
 $$
 
 
@@ -406,7 +462,9 @@ where $Z_t$ comes from the 2BSDE solution.
 
 
 $$
+
 \inf_{(Y, Z): Y_T \geq \Phi} Y_0
+
 $$
 
 
@@ -415,7 +473,9 @@ $$
 
 
 $$
+
 \sup_{P \in \mathcal{P}} E_P[\Phi(S_T)]
+
 $$
 
 
@@ -424,7 +484,9 @@ $$
 
 
 $$
+
 \inf_{(Y, Z): Y_T \geq \Phi} Y_0 = \sup_{P \in \mathcal{P}} E_P[\Phi(S_T)]
+
 $$
 
 
@@ -445,7 +507,9 @@ $$
 
 
 $$
+
 [\underline{V}, \overline{V}] = \left[\inf_{P \in \mathcal{P}} E_P[\Phi], \, \sup_{P \in \mathcal{P}} E_P[\Phi]\right]
+
 $$
 
 
@@ -462,7 +526,9 @@ Both bounds obtained via 2BSDEs.
 
 
 $$
+
 Y_T^{y, \theta} \geq \Phi \quad P\text{-a.s. for all } P \in \mathcal{P}
+
 $$
 
 
@@ -471,7 +537,9 @@ $$
 
 
 $$
+
 \mathcal{V}_t = \{y: \exists \theta \text{ s.t. } Y_T^{y, \theta} \geq \Phi\}
+
 $$
 
 
@@ -480,7 +548,9 @@ $$
 
 
 $$
+
 u(t, x) = \inf\{y: y \in \mathcal{V}_t(x)\}
+
 $$
 
 
@@ -494,7 +564,9 @@ $$
 
 
 $$
+
 \text{Find } y \text{ such that } (Y_T, X_T) \in \mathcal{T}
+
 $$
 
 
@@ -503,7 +575,9 @@ $$
 
 
 $$
+
 Y_t = \sup_{P \in \mathcal{P}} \text{ess inf}\left\{\int_t^{\tau} f(s, Y_s, Z_s) \, ds + h(Y_{\tau}, X_{\tau}) \right\}
+
 $$
 
 
@@ -520,7 +594,9 @@ where $\tau$ is a stopping time and $h$ is the target function.
 
 
 $$
+
 |F(t, y, z, \gamma)| \leq C(1 + |y| + |z|^2 + |\gamma|)
+
 $$
 
 
@@ -529,7 +605,9 @@ $$
 
 
 $$
+
 F(t, y, z, \gamma) = -\frac{\alpha}{2} |z|^2 + G(\gamma)
+
 $$
 
 
@@ -559,7 +637,9 @@ $$
 
 
 $$
+
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\xi + \int_t^T F(s, Y_s, Z_s, \mathcal{L}(Y_s)) \, ds \bigg| \mathcal{F}_t\right]
+
 $$
 
 
@@ -575,14 +655,18 @@ where $\mathcal{L}(Y_s)$ denotes the law of $Y_s$.
 
 
 $$
+
 dX_t = b(t, X_t, \mathcal{L}(X_t)) \, dt + \sigma_t \, dW_t
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\Phi(X_T) + \int_t^T f(s, X_s, Y_s, \mathcal{L}(X_s, Y_s)) \, ds \bigg| \mathcal{F}_t\right]
+
 $$
 
 
@@ -602,7 +686,9 @@ $$
 
 
 $$
+
 \frac{\partial u}{\partial t} + F(t, u, Du, D^2u) = 0
+
 $$
 
 
@@ -611,7 +697,9 @@ $$
 
 
 $$
+
 \frac{u_j^{i+1} - u_j^i}{\Delta t} + F\left(t_i, u_j^i, \frac{u_{j+1}^i - u_{j-1}^i}{2\Delta x}, \frac{u_{j+1}^i - 2u_j^i + u_{j-1}^i}{(\Delta x)^2}\right) = 0
+
 $$
 
 
@@ -644,7 +732,9 @@ $$
 
 
 $$
+
 Y_t = f_{\theta_Y}(t, X_t), \quad Z_t = f_{\theta_Z}(t, X_t), \quad \Gamma_t = f_{\theta_{\Gamma}}(t, X_t)
+
 $$
 
 
@@ -653,7 +743,9 @@ $$
 
 
 $$
+
 \mathcal{L}(\theta) = E\left[\left|Y_T - \xi\right|^2 + \int_0^T \left|\frac{dY_t}{dt} + F(t, Y_t, Z_t, \Gamma_t)\right|^2 dt\right]
+
 $$
 
 
@@ -686,7 +778,9 @@ $$
 
 
 $$
+
 Y_t = \sup_{P \in \mathcal{P}} E_P\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
+
 $$
 
 
@@ -702,7 +796,9 @@ where $\mathcal{P}$ is characterized by the generator $F$.
 
 
 $$
+
 Y_t = \sup_{\alpha \in \mathcal{A}} \inf_{\beta \in \mathcal{B}} E^{\alpha, \beta}\left[\xi + \int_t^T f(s, Y_s, Z_s) \, ds \bigg| \mathcal{F}_t\right]
+
 $$
 
 
@@ -734,7 +830,9 @@ where:
 
 
 $$
+
 V_t = \sup_{P \in \mathcal{P}_{\sigma}} E_P[\Phi(S_T) | \mathcal{F}_t]
+
 $$
 
 
@@ -743,7 +841,9 @@ $$
 
 
 $$
+
 \Delta_t = \frac{Z_t}{S_t}
+
 $$
 
 
@@ -757,7 +857,9 @@ $$
 
 
 $$
+
 \sup_{\pi} \inf_{P \in \mathcal{P}} E_P[U(X_T^{\pi})]
+
 $$
 
 
@@ -766,7 +868,9 @@ $$
 
 
 $$
+
 V(t, x) = \sup_{\pi} \inf_{P \in \mathcal{P}} E_P[U(X_T^{\pi}) | X_t = x]
+
 $$
 
 
@@ -784,7 +888,9 @@ satisfies a 2BSDE.
 
 
 $$
+
 \text{CVA}_t = \sup_{P \in \mathcal{P}} E_P\left[\int_t^T e^{-\int_t^s r_u du} dL_s \bigg| \mathcal{F}_t\right]
+
 $$
 
 
@@ -800,7 +906,9 @@ where $L_t$ is the loss process.
 
 
 $$
+
 \rho_t(X) = Y_t
+
 $$
 
 

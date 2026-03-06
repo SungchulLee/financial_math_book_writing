@@ -11,6 +11,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
+
 def bullet(rate, notional, periods, cpr):
     """
     Compute bullet mortgage payment profile.
@@ -97,6 +102,10 @@ def main():
     # ============= Plotting =============
     plot_notional(m, t_end)
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == "__main__":
     main()

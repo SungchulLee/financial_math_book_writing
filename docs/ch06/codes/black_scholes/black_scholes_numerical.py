@@ -1,3 +1,9 @@
+"""
+Black Scholes Numerical
+
+Educational script demonstrating black scholes numerical concepts.
+"""
+
 # ============================================================================
 # black_scholes/black_scholes_numerical.py
 # ============================================================================
@@ -83,3 +89,7 @@ class BlackScholesNumericalSolver(BlackScholesBase):
 
     def cn_log(self, option_type='put', Smin=1e-3, Smax=500, NX=100, NT=100, early_exercise=False):
         return cn_log_scheme(self, option_type, Smin, Smax, NX, NT, early_exercise)
+
+
+if __name__ == "__main__":
+    pass

@@ -16,6 +16,8 @@ import scipy.integrate as integrate
 import enum
 
 
+# ======================================================================
+
 class OptionType(enum.Enum):
     CALL = 1.0
     PUT = -1.0

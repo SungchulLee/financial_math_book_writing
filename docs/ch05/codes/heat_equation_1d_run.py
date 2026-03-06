@@ -1,3 +1,9 @@
+"""
+Heat Equation 1D Run
+
+Educational script demonstrating heat equation 1d run concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d_RUN.py
 # ============================================================================

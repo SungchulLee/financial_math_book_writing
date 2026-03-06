@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.special import comb
 
 
+# ======================================================================
+
 def hull_white_trinomial_tree():
     """
     Trinomial Tree Construction.

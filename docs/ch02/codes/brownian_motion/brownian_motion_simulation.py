@@ -1,3 +1,9 @@
+"""
+Brownian Motion Simulation
+
+Educational script demonstrating brownian motion simulation concepts.
+"""
+
 # ============================================================================
 # brownian_motion/brownian_motion_simulation.py
 # ============================================================================
@@ -143,3 +149,7 @@ class BrownianMotion:
         initial_values = np.zeros((increments.shape[0], 1))
         cumulative_increments = increments.cumsum(axis=1)
         return np.concatenate([initial_values, cumulative_increments], axis=1)
+
+
+if __name__ == "__main__":
+    pass

@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def hedging_error_distribution():
     """
     Hedging Error Distribution.

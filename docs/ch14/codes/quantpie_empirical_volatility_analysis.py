@@ -18,6 +18,8 @@ import yfinance as yf
 from scipy import stats
 
 
+# ======================================================================
+
 def download_stock_data(ticker: str, period: str = 'max') -> pd.DataFrame:
     """
     Download historical stock price data using yfinance.

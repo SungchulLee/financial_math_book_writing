@@ -1,3 +1,9 @@
+"""
+Stock Analysis Sp500 Corr
+
+Educational script demonstrating stock analysis sp500 corr concepts.
+"""
+
 # ============================================================================
 # stock_analysis_CORRELATION_SP500.py
 # ============================================================================

@@ -41,14 +41,17 @@ from .stocks import (
     USStock,
     CryptoStock,
     InternationalStock
-)
 
-# S&P 500 market data
-from .sp500 import (
-    download_sp500,
-    load_data_from_csv
-)
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Stock market analysis with multi-market support and risk metrics"
+if __name__ == "__main__":
+    )
+
+    # S&P 500 market data
+    from .sp500 import (
+        download_sp500,
+        load_data_from_csv
+    )
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Stock market analysis with multi-market support and risk metrics"

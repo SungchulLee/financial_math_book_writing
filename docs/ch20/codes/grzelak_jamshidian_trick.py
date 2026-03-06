@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 import scipy.optimize as optimize
 
 
+# ======================================================================
+
 def psi_sum(psi, n, x):
     """Compute sum of psi_i."""
     temp = 0

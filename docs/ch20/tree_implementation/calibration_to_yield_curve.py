@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
 
+# ======================================================================
+
 def calibration_to_yield_curve():
     """
     Calibration to Yield Curve on Tree.

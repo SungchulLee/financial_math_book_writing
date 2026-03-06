@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def monte_carlo_engine_qe():
     """
     Monte Carlo Engine QE.

@@ -11,7 +11,9 @@ Short-rate models describe interest rates by modeling the **instantaneous short 
 The **instantaneous short rate** $r_t$ (or simply "short rate") is the continuously compounded interest rate for infinitesimally short borrowing at time $t$:
 
 $$
+
 r_t = \lim_{\Delta t \to 0} \frac{1}{\Delta t} \log \frac{B_{t+\Delta t}}{B_t}
+
 $$
 
 where $B_t$ is the money-market account value.
@@ -38,13 +40,17 @@ In practice, proxies for $r_t$ include:
 The **money-market account** (or bank account) $B_t$ evolves according to:
 
 $$
+
 dB_t = r_t B_t \, dt, \quad B_0 = 1
+
 $$
 
 This is a non-stochastic ODE given a path of $r_t$. The solution is:
 
 $$
+
 B_t = \exp\left(\int_0^t r_s \, ds\right)
+
 $$
 
 ### Economic Role
@@ -67,7 +73,9 @@ The reciprocal $B_t^{-1} = e^{-\int_0^t r_s ds}$ is the **stochastic discount fa
 Under the risk-neutral measure $\mathbb{Q}$, the price at time $t$ of a zero-coupon bond maturing at $T$ is:
 
 $$
+
 P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r_s \, ds\right) \,\bigg|\, \mathcal{F}_t\right]
+
 $$
 
 This is the **discounted expectation** of the terminal payoff (which is 1).
@@ -84,13 +92,17 @@ This is the **discounted expectation** of the terminal payoff (which is 1).
 The zero rate implied by $P(t, T)$ is:
 
 $$
+
 z(t, T) = -\frac{\log P(t, T)}{T - t}
+
 $$
 
 The instantaneous forward rate is:
 
 $$
+
 f(t, T) = -\frac{\partial}{\partial T} \log P(t, T)
+
 $$
 
 ---
@@ -102,7 +114,9 @@ $$
 A **Markov short-rate model** specifies $r_t$ as a diffusion:
 
 $$
+
 dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}
+
 $$
 
 where:
@@ -115,7 +129,9 @@ where:
 In a Markov model, the bond price depends only on current time and state:
 
 $$
+
 P(t, T) = P(t, T, r_t)
+
 $$
 
 This function solves a PDE (derived below) or can be computed via the Feynman-Kac expectation.
@@ -138,7 +154,9 @@ Non-Markov models (e.g., certain path-dependent structures) require different te
 Let $V(t, r) = P(t, T, r)$ be the bond price. By Itô's lemma:
 
 $$
+
 dV = \left(\frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2}\right) dt + \sigma \frac{\partial V}{\partial r} dW_t^{\mathbb{Q}}
+
 $$
 
 ### No-Arbitrage Condition
@@ -146,19 +164,25 @@ $$
 The discounted bond price $V/B_t$ must be a martingale under $\mathbb{Q}$. This requires:
 
 $$
+
 \frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2} = r V
+
 $$
 
 ### Bond Pricing PDE
 
 $$
+
 \boxed{\frac{\partial P}{\partial t} + \mu^{\mathbb{Q}}(t, r) \frac{\partial P}{\partial r} + \frac{1}{2}\sigma(t, r)^2 \frac{\partial^2 P}{\partial r^2} - r P = 0}
+
 $$
 
 with terminal condition:
 
 $$
+
 P(T, T, r) = 1 \quad \text{for all } r
+
 $$
 
 ### Boundary Conditions
@@ -180,7 +204,9 @@ Appropriate boundary conditions depend on the model:
 Under the real-world (physical) measure, the short rate follows:
 
 $$
+
 dr_t = \mu^{\mathbb{P}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{P}}
+
 $$
 
 The drift $\mu^{\mathbb{P}}$ reflects actual rate dynamics observed historically.
@@ -190,13 +216,17 @@ The drift $\mu^{\mathbb{P}}$ reflects actual rate dynamics observed historically
 Under $\mathbb{Q}$, the dynamics become:
 
 $$
+
 dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}
+
 $$
 
 where:
 
 $$
+
 \mu^{\mathbb{Q}}(t, r) = \mu^{\mathbb{P}}(t, r) - \lambda(t, r) \sigma(t, r)
+
 $$
 
 and $\lambda(t, r)$ is the **market price of interest rate risk**.
@@ -206,7 +236,9 @@ and $\lambda(t, r)$ is the **market price of interest rate risk**.
 The relationship between Brownian motions is:
 
 $$
+
 dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \lambda(t, r_t) \, dt
+
 $$
 
 ### Implications
@@ -227,7 +259,9 @@ The volatility $\sigma(t, r)$ is the same under both measures.
 The short rate is the limit of the forward rate curve:
 
 $$
+
 r_t = f(t, t) = \lim_{T \to t^+} f(t, T)
+
 $$
 
 ### Induced Forward Rates
@@ -235,7 +269,9 @@ $$
 A short-rate model **implies** forward rate dynamics. From:
 
 $$
+
 P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \,|\, \mathcal{F}_t\right]
+
 $$
 
 one can derive $f(t, T)$ and its stochastic evolution.

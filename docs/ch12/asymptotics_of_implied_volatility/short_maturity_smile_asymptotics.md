@@ -16,7 +16,9 @@ As $T \to 0$, an option's value approaches its intrinsic value:
 
 
 $$
+
 \lim_{T \to 0} C(K, T) = \max(S_0 - K, 0)
+
 $$
 
 
@@ -33,7 +35,9 @@ For small $T$, the distribution of $S_T$ concentrates around $S_0$:
 
 
 $$
+
 S_T \approx S_0 + \int_0^T \sigma(S_t, t) S_t dW_t \approx S_0 + \sigma(S_0, 0) S_0 \int_0^T dW_t
+
 $$
 
 
@@ -50,7 +54,9 @@ Consider the underlying asset following:
 
 
 $$
+
 dS_t = \mu(S_t, t) S_t dt + \sigma(S_t, t) S_t dW_t
+
 $$
 
 
@@ -59,7 +65,9 @@ under the physical measure. Under the risk-neutral measure $\mathbb{Q}$:
 
 
 $$
+
 dS_t = (r - q) S_t dt + \sigma(S_t, t) S_t dW_t^\mathbb{Q}
+
 $$
 
 
@@ -73,7 +81,9 @@ We seek an expansion of the form:
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) = \sigma_0(K) + \sigma_1(K) T + \sigma_2(K) T^2 + O(T^3) \quad \text{as } T \to 0
+
 $$
 
 
@@ -91,7 +101,9 @@ For a local volatility model with smooth $\sigma(S, t)$, as $T \to 0$:
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) = \sigma(K, 0) + O(T)
+
 $$
 
 
@@ -105,7 +117,9 @@ The call option price can be written as:
 
 
 $$
+
 C(K, T) = e^{-rT} \mathbb{E}^\mathbb{Q}[\max(S_T - K, 0)]
+
 $$
 
 
@@ -114,7 +128,9 @@ For small $T$, the density $p(S_T | S_0)$ concentrates around $S_0$. Near $K \ap
 
 
 $$
+
 p(S_T | S_0) \approx \frac{1}{\sigma(K, 0) K \sqrt{2\pi T}} \exp\left(-\frac{(S_T - K)^2}{2\sigma^2(K, 0) K^2 T}\right)
+
 $$
 
 
@@ -129,7 +145,9 @@ At-the-money ($K = S_0$):
 
 
 $$
+
 \lim_{T \to 0} \sigma_{\text{IV}}(S_0, T) = \sigma(S_0, 0) = \sigma_{\text{spot}}
+
 $$
 
 
@@ -143,7 +161,9 @@ For strikes $K \neq S_0$, the leading-order term still gives:
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)
+
 $$
 
 
@@ -161,7 +181,9 @@ For smooth local volatility $\sigma(S, t)$:
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) = \sigma(K, 0) + T \cdot \frac{\partial \sigma}{\partial t}(K, 0) + O(T^2)
+
 $$
 
 
@@ -177,7 +199,9 @@ For non-constant local volatility in the spot direction, higher-order terms invo
 
 
 $$
+
 \sigma_1(K) \sim \frac{\partial \sigma}{\partial S}(K, 0), \quad \frac{\partial^2 \sigma}{\partial S^2}(K, 0)
+
 $$
 
 
@@ -186,7 +210,9 @@ $$
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) \approx \sigma(K, 0) \left\{1 + \frac{T}{24}\left[\frac{\sigma''(K, 0)}{\sigma(K, 0)} - \frac{(\sigma'(K, 0))^2}{4\sigma^2(K, 0)}\right] + \cdots \right\}
+
 $$
 
 
@@ -201,11 +227,13 @@ The Heston model:
 
 
 $$
+
 \begin{align}
 dS_t &= (r - q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 d\langle W^S, W^v \rangle_t &= \rho dt
 \end{align}
+
 $$
 
 
@@ -218,7 +246,9 @@ For the Heston model, as $T \to 0$:
 
 
 $$
+
 \sigma_{\text{IV}}(S_0, T) = \sqrt{v_0} + \frac{T}{8\sqrt{v_0}} \left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] + O(T^2)
+
 $$
 
 
@@ -233,7 +263,9 @@ Using the moment-generating function for Heston:
 
 
 $$
+
 \mathbb{E}^\mathbb{Q}[e^{i\omega \ln S_T}] = \exp\left\{i\omega \ln S_0 + A(T; \omega) + B(T; \omega) v_0\right\}
+
 $$
 
 
@@ -249,7 +281,9 @@ Away from ATM, for log-moneyness $y = \ln(K/S_0)$:
 
 
 $$
+
 \sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho \xi}{4} y + \frac{1}{24\sqrt{v_0}}\left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] T + \cdots
+
 $$
 
 
@@ -271,11 +305,13 @@ The SABR model:
 
 
 $$
+
 \begin{align}
 dF_t &= \sigma_t F_t^\beta dW_t^1 \\
 d\sigma_t &= \nu \sigma_t dW_t^2 \\
 d\langle W^1, W^2 \rangle_t &= \rho dt
 \end{align}
+
 $$
 
 
@@ -290,7 +326,9 @@ For SABR, the implied volatility admits the expansion:
 
 
 $$
+
 \sigma_{\text{IV}}(K) = \frac{\alpha}{(FK)^{(1-\beta)/2}} \frac{z}{x(z)} \left[1 + \left(\frac{(1-\beta)^2}{24} \frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho\beta\nu\alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T + O(T^2)\right]
+
 $$
 
 
@@ -298,7 +336,9 @@ $$
 where:
 
 $$
+
 z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K), \quad x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)
+
 $$
 
 
@@ -324,7 +364,9 @@ For deep ITM or OTM options (large $|K - S_0|$) with small $T$:
 
 
 $$
+
 -\lim_{T \to 0} T \ln C(K, T) = \inf_{x: x > K} I(x)
+
 $$
 
 
@@ -333,7 +375,9 @@ where $I(x)$ is the **rate function** from large deviation theory:
 
 
 $$
+
 I(x) = \inf_{\text{paths } \{S_t\}: S_T = x} \int_0^T \frac{(\dot{S}_t - \mu(S_t))^2}{2\sigma^2(S_t) S_t^2} dt
+
 $$
 
 
@@ -347,7 +391,9 @@ Taking logarithms and using $C \approx S_0 \Phi(d_1) \approx S_0 e^{-d_1^2/2}$ f
 
 
 $$
+
 \sigma_{\text{IV}}^2(K, T) T \sim 2 I(K) \quad \text{as } T \to 0, \, K \text{ far from } S_0
+
 $$
 
 
@@ -364,7 +410,9 @@ $$
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) \sim \sigma(S_0, 0)
+
 $$
 
 
@@ -375,7 +423,9 @@ Local volatility at the spot.
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)
+
 $$
 
 
@@ -386,7 +436,9 @@ Local volatility at the strike.
 
 
 $$
+
 \sigma_{\text{IV}}\left(S_0 + y\sqrt{T}, T\right) \sim \sigma(S_0, 0) \left[1 + \frac{y^2}{2} \frac{\sigma'(S_0, 0)}{\sigma(S_0, 0)} + \cdots\right]
+
 $$
 
 
@@ -400,10 +452,12 @@ The complete small-time picture requires **matching** these regimes:
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) = \begin{cases}
 \sigma(K, 0) + O(T) & |K - S_0| = O(1) \\
 \sigma(S_0, 0) \left[1 + \frac{(K - S_0)^2}{2T\sigma^2(S_0, 0) S_0^2}\right] + O(T) & |K - S_0| = O(\sqrt{T})
 \end{cases}
+
 $$
 
 
@@ -418,7 +472,9 @@ $$
 
 
 $$
+
 \sigma_{\text{loc}}(K, 0) \approx \sigma_{\text{IV}}(K, T_{\text{short}})
+
 $$
 
 
@@ -508,7 +564,9 @@ If the model includes jumps:
 
 
 $$
+
 dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t
+
 $$
 
 
@@ -517,7 +575,9 @@ the leading-order behavior is **discontinuous** rather than diffusive. Small-tim
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) \sim \infty \quad \text{as } T \to 0 \text{ for } K \neq S_0
+
 $$
 
 
@@ -533,7 +593,9 @@ For **rough volatility models** (fractional Brownian motion):
 
 
 $$
+
 dv_t = -\lambda v_t dt + \xi v_t dB_t^H
+
 $$
 
 
@@ -544,7 +606,9 @@ where $B_t^H$ is fractional Brownian motion with Hurst exponent $H < 1/2$.
 
 
 $$
+
 \sigma_{\text{IV}}(y, T) \sim T^{H - 1/2} |y|
+
 $$
 
 
@@ -560,7 +624,9 @@ For $|K - S_0| \gg \sigma S_0 \sqrt{T}$, the option is so deep ITM/OTM that:
 
 
 $$
+
 C(K, T) \approx \max(S_0 - K e^{-rT}, 0)
+
 $$
 
 
@@ -579,7 +645,9 @@ Short-maturity asymptotics reveal:
 
 
 $$
+
 \lim_{T \to 0} \sigma_{\text{IV}}(K, T) = \sigma_{\text{loc}}(K, 0)
+
 $$
 
 
@@ -592,7 +660,9 @@ Implied volatility converges to local volatility.
 **Heston:**
 
 $$
+
 \sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho\xi}{4}y + O(T)
+
 $$
 
 
@@ -602,7 +672,9 @@ Instantaneous linear skew.
 **SABR:**
 
 $$
+
 \sigma_{\text{IV}} \sim \frac{\alpha}{(FK)^{(1-\beta)/2}} [1 + O(T)]
+
 $$
 
 
@@ -621,11 +693,13 @@ Backbone plus time-dependent corrections.
 
 
 $$
+
 \sigma_{\text{IV}}(K, T) \sim \begin{cases}
 \sigma(S_0, 0) & K = S_0 \\
 \sigma(K, 0) & K \neq S_0, \, T \to 0 \\
 \sqrt{\frac{2I(K)}{T}} & K \text{ far from } S_0
 \end{cases}
+
 $$
 
 

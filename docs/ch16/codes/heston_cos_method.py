@@ -1,9 +1,17 @@
+"""
+Heston Cos Method
+
+Educational script demonstrating heston cos method concepts.
+"""
+
 #@title Heston Call and Put COS Method
 # Source Code
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as st
 
+
+# ======================================================================
 
 def BS_Call_Option_Price(CP,S_0,K,sigma,tau,r):
     d1 = ( np.log(S_0/K) + (r+0.5*sigma**2*tau) ) / (sigma*np.sqrt(tau))

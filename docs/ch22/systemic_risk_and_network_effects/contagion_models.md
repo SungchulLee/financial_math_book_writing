@@ -48,11 +48,15 @@ Liquidity withdrawal:
 Institution $i$ defaults if:
 
 $$
+
 \text{Losses} > \text{Capital Buffer}
+
 $$
 
 $$
+
 \sum_j \mathbf{1}_{\{j \text{ defaults}\}} \cdot \text{Exposure}_{ij} \cdot \text{LGD} > E_i
+
 $$
 
 ### Cascade Algorithm
@@ -81,7 +85,9 @@ Let $n_k$ = number of defaults after round $k$.
 **Fire sale impact:** When institution $i$ deleverages:
 
 $$
+
 \Delta P_a = -\lambda_a \cdot \frac{\text{Sales}_{ia}}{D_a}
+
 $$
 
 where $\lambda_a$ is illiquidity of asset $a$ and $D_a$ is market depth.
@@ -89,13 +95,17 @@ where $\lambda_a$ is illiquidity of asset $a$ and $D_a$ is market depth.
 **Indirect exposure:** Institution $j$'s loss from $i$'s deleveraging:
 
 $$
+
 \text{Loss}_j = \sum_a w_{ja} \cdot |\Delta P_a|
+
 $$
 
 **Vulnerability index:**
 
 $$
+
 v_i = \sum_j \text{Impact}_{ij} \cdot \text{Leverage}_j
+
 $$
 
 ### Systemic Feedback
@@ -103,7 +113,9 @@ $$
 Total system losses exceed sum of individual losses:
 
 $$
+
 \text{System Loss} > \sum_i \text{Direct Loss}_i
+
 $$
 
 The multiplier captures fire sale externalities.
@@ -129,7 +141,9 @@ Random network of interbank exposures:
 Contagion spreads if the **basic reproduction number** $R_0 > 1$:
 
 $$
+
 R_0 = \bar{d} \cdot p_{\text{default}}
+
 $$
 
 where $\bar{d}$ = average degree and $p_{\text{default}}$ = probability a connection causes default.
@@ -180,7 +194,9 @@ Static models miss dynamics:
 **Differential equation models:**
 
 $$
+
 \frac{dI(t)}{dt} = \beta S(t) I(t) - \gamma I(t)
+
 $$
 
 where $I$ = infected (distressed), $S$ = susceptible, $\beta$ = transmission rate, $\gamma$ = recovery rate.
@@ -209,7 +225,9 @@ During crisis:
 Test whether institution $A$'s distress predicts $B$'s:
 
 $$
+
 R_B(t) = \alpha + \beta R_A(t-1) + \gamma R_M(t-1) + \epsilon_t
+
 $$
 
 Significant $\beta$ suggests contagion channel.

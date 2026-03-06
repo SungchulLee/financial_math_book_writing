@@ -21,6 +21,8 @@ from scipy.optimize import brentq
 from scipy.stats import norm
 
 
+# ======================================================================
+
 def generate_sample_path(num_paths, num_steps, S0, T, mu_J, sigma_J, r, seed=None):
     """
     Generate sample paths under stochastic volatility GBM.

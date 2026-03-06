@@ -29,8 +29,11 @@ Foundation Role:
 from .brownian_motion_simulation import (
     BrownianMotion,
     IncrementType
-)
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Brownian motion process simulation and increment generation"
+
+if __name__ == "__main__":
+    )
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Brownian motion process simulation and increment generation"

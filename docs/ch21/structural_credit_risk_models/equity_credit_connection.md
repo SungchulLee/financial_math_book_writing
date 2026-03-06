@@ -20,13 +20,17 @@ Since both securities derive their value from $V_t$, their prices must move toge
 From Merton's model, equity value is:
 
 $$
+
 E = V N(d_1) - D e^{-rT} N(d_2),
+
 $$
 
 with delta (sensitivity to firm value):
 
 $$
+
 \Delta_E = \frac{\partial E}{\partial V} = N(d_1) > 0.
+
 $$
 
 Equity is a **leveraged long position** in firm value. When $V$ increases:
@@ -43,19 +47,25 @@ Equity is a **leveraged long position** in firm value. When $V$ increases:
 Applying Itô's lemma to $E(V_t, t)$:
 
 $$
+
 dE = \frac{\partial E}{\partial V} dV + \frac{\partial E}{\partial t} dt + \frac{1}{2}\frac{\partial^2 E}{\partial V^2} (dV)^2.
+
 $$
 
 The instantaneous equity volatility is:
 
 $$
+
 \sigma_E = \frac{\partial E}{\partial V} \cdot \frac{V}{E} \cdot \sigma_V = \frac{V N(d_1)}{E} \cdot \sigma_V.
+
 $$
 
 Define **leverage ratio** $L = V/E$:
 
 $$
+
 \sigma_E = L \cdot N(d_1) \cdot \sigma_V.
+
 $$
 
 ### Implications
@@ -75,7 +85,9 @@ This creates the empirical **leverage effect**: negative correlation between equ
 The credit spread depends on:
 
 $$
+
 s = f(V_0/D, \sigma_V, T) = g(E, \sigma_E, D, T).
+
 $$
 
 Since equity prices embed information about $V$ and $\sigma_V$, spreads can be inferred from equity markets.
@@ -106,7 +118,9 @@ These relationships are:
 The **distance to default** (DD) provides a normalized measure:
 
 $$
+
 DD = \frac{\ln(V/D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}},
+
 $$
 
 where $\mu$ is the physical drift of asset value.
@@ -114,7 +128,9 @@ where $\mu$ is the physical drift of asset value.
 In terms of observables:
 
 $$
+
 DD \approx \frac{\ln(E + D) - \ln(D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}.
+
 $$
 
 **KMV/Moody's Analytics approach:**
@@ -127,7 +143,9 @@ $$
 For small spreads and near-the-money situations:
 
 $$
+
 s \approx (1 - R) \cdot \lambda \approx (1 - R) \cdot \frac{N(-DD)}{T},
+
 $$
 
 where $R$ is recovery rate and $\lambda$ is an implied intensity.
@@ -216,7 +234,9 @@ Integrated equity-credit models for:
 Observed spread = Default risk + Liquidity premium + Tax effect + Risk premium
 
 $$
+
 s^{\text{observed}} = s^{\text{Merton}} + s^{\text{liquidity}} + s^{\text{tax}} + s^{\text{risk premium}}
+
 $$
 
 ### Structural Model Contribution
@@ -224,7 +244,9 @@ $$
 The Merton model captures the **expected loss** component:
 
 $$
+
 s^{\text{Merton}} \approx (1-R) \cdot \text{Default Probability}/T.
+
 $$
 
 This is typically 20-50% of observed spreads.
@@ -300,8 +322,11 @@ Modern approaches blend:
 - **Reduced-form tractability:** Intensity-based pricing, easy calibration
 
 **Example:** Set intensity as function of equity price:
+
 $$
+
 \lambda_t = f(S_t, \sigma_t) = a + b \cdot (S^*/S_t)^c
+
 $$
 
 This captures structural intuition in reduced-form framework.

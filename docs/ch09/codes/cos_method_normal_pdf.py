@@ -1,8 +1,16 @@
+"""
+Cos Method Normal Pdf
+
+Educational script demonstrating cos method normal pdf concepts.
+"""
+
 #@title Normal PDF Recovery
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats
 
+
+# ======================================================================
 
 def COSDensity(cf,x_point_of_interest,n,a,b):
     """

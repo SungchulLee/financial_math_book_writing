@@ -133,76 +133,79 @@ import scipy.stats as ss
 # ---------------------------------------------------------------------------
 # Define parameters
 # ---------------------------------------------------------------------------
-S0 = 100.0      # initial asset price
-K = 100.0       # strike price
-T = 1.0         # time to maturity
-r = 0.04        # risk-free rate per unit T
-sigma = 0.2     # volatility per unit T
 
-# ---------------------------------------------------------------------------
-# Monte Carlo method -- backward induction for American put pricing
-# ---------------------------------------------------------------------------
-N = 252
-dt = T / N
-M = 100000
-S = np.zeros((N + 1, M))
-S[0, :] = S0
 
-Z = ss.norm.rvs(loc=0, scale=1, size=(N, M), random_state=42)
-for t in range(1, N + 1):
-    S[t, :] = S[t-1, :] * np.exp((r - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[t-1, :])
+if __name__ == "__main__":
+    S0 = 100.0      # initial asset price
+    K = 100.0       # strike price
+    T = 1.0         # time to maturity
+    r = 0.04        # risk-free rate per unit T
+    sigma = 0.2     # volatility per unit T
 
-payoffs = np.maximum(K - S, 0)
-option_values = payoffs[-1, :]
+    # ---------------------------------------------------------------------------
+    # Monte Carlo method -- backward induction for American put pricing
+    # ---------------------------------------------------------------------------
+    N = 252
+    dt = T / N
+    M = 100000
+    S = np.zeros((N + 1, M))
+    S[0, :] = S0
 
-# Backward induction to determine optimal stopping
-for i in range(N - 1, -1, -1):
-    discounted_payoff = np.exp(-r * dt) * option_values
-    option_values = np.maximum(payoffs[i, :], discounted_payoff)
+    Z = ss.norm.rvs(loc=0, scale=1, size=(N, M), random_state=42)
+    for t in range(1, N + 1):
+        S[t, :] = S[t-1, :] * np.exp((r - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z[t-1, :])
 
-american_put = np.mean(option_values)
-american_put_std_err = ss.sem(option_values)
+    payoffs = np.maximum(K - S, 0)
+    option_values = payoffs[-1, :]
 
-print(f"The price of the American put option is: {american_put:.3f}"
-      f"\nwith standard error: {american_put_std_err:.3f}")
+    # Backward induction to determine optimal stopping
+    for i in range(N - 1, -1, -1):
+        discounted_payoff = np.exp(-r * dt) * option_values
+        option_values = np.maximum(payoffs[i, :], discounted_payoff)
 
-# ============================================================================
-# 3. American Call
-# ============================================================================
+    american_put = np.mean(option_values)
+    american_put_std_err = ss.sem(option_values)
 
-# ----------------------------------------------------------------------------
-# 3.1 Underlying Asset Pays No Dividends
-# ----------------------------------------------------------------------------
-# In the case of a non-dividend-paying asset, American and European calls have
-# the same price. The details can be found in Shreve (2008, pp. 361 - 363), but
-# are not presented here.
+    print(f"The price of the American put option is: {american_put:.3f}"
+          f"\nwith standard error: {american_put_std_err:.3f}")
 
-# ----------------------------------------------------------------------------
-# 3.2 Underlying Asset Pays Dividends
-# ----------------------------------------------------------------------------
-# If the asset pays dividends, the prices of American and European calls may
-# differ.
-#
-# Let's consider an American call on an asset that pays dividends whose price
-# process is a geometric Brownian motion governed by equation (2.1.1). We assume
-# there are times 0 < t_1 < t_2 < ... < t_n < T, and at each time t_j the
-# dividend paid is a_j * S(t_j-), where S(t_j-) denotes the asset price just
-# prior to the dividend payment. The asset price S(t_j) after the dividend
-# payment is the asset price before the dividend payment less the dividend
-# payment:
-#
-#     S(t_j) = S(t_j-) - a_j * S(t_j-) = (1 - a_j) * S(t_j-).
-#
-# We assume that each a_j, j = 1, ..., n, is a number between 0 and 1. We set
-# t_0 = 0, but this is not a dividend payment date. We also assume that T is
-# not a dividend payment date, although it is not difficult to modify the
-# analysis to handle the case when T is a dividend payment date.
-#
-# We will not go through the details here, but Shreve (2008, pp. 363 - 368)
-# shows that it is not optimal to exercise an American call on this asset except
-# possibly immediately before a dividend payment. The price of the call is shown
-# to satisfy the Black-Scholes-Merton PDE between dividend payment dates. At
-# dividend payment dates, the price of the call is the maximum of the call's
-# intrinsic value and the price of the call after the dividend is paid and the
-# stock price is reduced by the amount of the payment. These observations lead
-# to a recursive algorithm for determining the price.
+    # ============================================================================
+    # 3. American Call
+    # ============================================================================
+
+    # ----------------------------------------------------------------------------
+    # 3.1 Underlying Asset Pays No Dividends
+    # ----------------------------------------------------------------------------
+    # In the case of a non-dividend-paying asset, American and European calls have
+    # the same price. The details can be found in Shreve (2008, pp. 361 - 363), but
+    # are not presented here.
+
+    # ----------------------------------------------------------------------------
+    # 3.2 Underlying Asset Pays Dividends
+    # ----------------------------------------------------------------------------
+    # If the asset pays dividends, the prices of American and European calls may
+    # differ.
+    #
+    # Let's consider an American call on an asset that pays dividends whose price
+    # process is a geometric Brownian motion governed by equation (2.1.1). We assume
+    # there are times 0 < t_1 < t_2 < ... < t_n < T, and at each time t_j the
+    # dividend paid is a_j * S(t_j-), where S(t_j-) denotes the asset price just
+    # prior to the dividend payment. The asset price S(t_j) after the dividend
+    # payment is the asset price before the dividend payment less the dividend
+    # payment:
+    #
+    #     S(t_j) = S(t_j-) - a_j * S(t_j-) = (1 - a_j) * S(t_j-).
+    #
+    # We assume that each a_j, j = 1, ..., n, is a number between 0 and 1. We set
+    # t_0 = 0, but this is not a dividend payment date. We also assume that T is
+    # not a dividend payment date, although it is not difficult to modify the
+    # analysis to handle the case when T is a dividend payment date.
+    #
+    # We will not go through the details here, but Shreve (2008, pp. 363 - 368)
+    # shows that it is not optimal to exercise an American call on this asset except
+    # possibly immediately before a dividend payment. The price of the call is shown
+    # to satisfy the Black-Scholes-Merton PDE between dividend payment dates. At
+    # dividend payment dates, the price of the call is the maximum of the call's
+    # intrinsic value and the price of the call after the dividend is paid and the
+    # stock price is reduced by the amount of the payment. These observations lead
+    # to a recursive algorithm for determining the price.

@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def named_functions_implementation():
     """
     Named Functions Implementation.

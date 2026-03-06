@@ -25,10 +25,12 @@ If $p = 1/2$, then $\{S_n, \mathcal{F}_n\}_{n \geq 0}$ is a martingale:
 **Proof of the martingale condition.**
 
 $$\mathbb{E}[S_{n+1} \mid \mathcal{F}_n]
+
 = \mathbb{E}[S_n + \xi_{n+1} \mid \mathcal{F}_n]
 = S_n + \mathbb{E}[\xi_{n+1} \mid \mathcal{F}_n]
 = S_n + \mathbb{E}[\xi_{n+1}]
 = S_n + 0
+
 = S_n. \quad\square$$
 
 The key steps are: (i) $S_n$ is $\mathcal{F}_n$-measurable so it pulls out of the conditional expectation; (ii) $\xi_{n+1}$ is independent of $\mathcal{F}_n = \sigma(\xi_1,\ldots,\xi_n)$, so the conditional expectation reduces to the unconditional mean $\mathbb{E}[\xi_{n+1}] = 0$.
@@ -51,12 +53,15 @@ is a martingale with respect to $\{\mathcal{F}_n\}$.
 **Proof.**
 
 $$\mathbb{E}[M_{n+1} \mid \mathcal{F}_n]
+
 = \mathbb{E}[S_{n+1}^2 - (n+1) \mid \mathcal{F}_n]
+
 = \mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n] - (n+1).$$
 
 Expanding the square:
 
 $$\mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n]
+
 = \mathbb{E}[S_n^2 + 2S_n\xi_{n+1} + \xi_{n+1}^2 \mid \mathcal{F}_n].$$
 
 Using measurability of $S_n$, independence of $\xi_{n+1}$, and $\mathbb{E}[\xi_{n+1}] = 0$, $\mathbb{E}[\xi_{n+1}^2] = 1$:

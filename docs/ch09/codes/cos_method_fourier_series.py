@@ -1,5 +1,13 @@
+"""
+Cos Method Fourier Series
+
+Educational script demonstrating cos method fourier series concepts.
+"""
+
 #@title Fourier Series Of Non-Periodic Function on $[-\pi,\pi]$
 f = lambda x : np.sin( ( x - 1.8 ) ** 2 )
+
+# ======================================================================
 
 def main():
     n = 10_000

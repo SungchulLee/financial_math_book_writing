@@ -7,7 +7,7 @@ Quantitative models drive decision-making in modern finance, but models occasion
 **Long-Term Capital Management (1998)**
 LTCM operated a "market-neutral" convergence trading strategy using sophisticated mathematical models:
 - **Model logic**: historical spreads reliably mean-revert; pairs trading hedges directional risk
-- **Capital**: $5 billion with 25:1 leverage on a $125 billion portfolio
+- **Capital**: \$5 billion with 25:1 leverage on a \$125 billion portfolio
 - **Trigger**: Russian default (August 1998) caused emerging market flight to quality
 
 **Failure mechanisms**:
@@ -27,7 +27,7 @@ Rogue trader Nick Leeson used unauthorized derivatives to mask trading losses:
 - **Mechanism**: Leeson had control of both trading and back-office, circumventing controls
 - **Strategy**: short straddles (sold volatility) on Nikkei, betting on low volatility
 - **Trigger**: January 1995 Kobe earthquake; Nikkei fell sharply
-- **Losses**: $1.3 billion, more than Barings' equity; bank collapsed
+- **Losses**: \$1.3 billion, more than Barings' equity; bank collapsed
 
 **Failure mechanisms**:
 1. **Operational risk**: single person controlled both execution and settlement
@@ -43,10 +43,10 @@ Rogue trader Nick Leeson used unauthorized derivatives to mask trading losses:
 
 **London Whale Trading Loss (2012)**
 JP Morgan's Chief Investment Office (CIO) took large credit-hedging positions:
-- **Notional exposure**: $100 billion in credit derivatives
+- **Notional exposure**: \$100 billion in credit derivatives
 - **Strategy**: intended as hedge but became speculative position
 - **Trigger**: market volatility increased; position moved against the bank
-- **Losses**: $6 billion (officially), possibly $9 billion including unwinding costs
+- **Losses**: \$6 billion (officially), possibly \$9 billion including unwinding costs
 
 **Failure mechanisms**:
 1. **Model misuse**: Value-at-Risk model used positions outside scope (correlations unstable)
@@ -55,6 +55,7 @@ JP Morgan's Chief Investment Office (CIO) took large credit-hedging positions:
 4. **Organizational culture**: risk warnings were overridden by revenue incentives
 
 **Specific math failures**:
+
 $$\text{VaR}_{\text{model}} = f(\text{volatility}, \text{correlation}) \text{ but correlation unstable in stress}$$
 
 **Lessons**:

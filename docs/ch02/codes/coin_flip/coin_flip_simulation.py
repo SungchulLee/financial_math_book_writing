@@ -1,3 +1,9 @@
+"""
+Coin Flip Simulation
+
+Educational script demonstrating coin flip simulation concepts.
+"""
+
 # ============================================================================
 # coin_flip/coin_flip_simulation.py
 # ============================================================================
@@ -37,3 +43,7 @@ class CoinFlip:
     
     def get_seed(self) -> Optional[int]:
         return self.seed
+
+
+if __name__ == "__main__":
+    pass

@@ -33,45 +33,48 @@ from .vasicek_base import (
     VasicekSimulationError,
     VasicekValidationError,
     VasicekNumericalError
-)
 
-# Monte Carlo simulation
-from .vasicek_monte_carlo import (
-    VasicekModel,
-    VasicekResult,
-    SimulationConfig
-)
 
-# Analytical formulas and bond pricing
-from .vasicek_formula import (
-    VasicekAnalytical,
-    VasicekBondPricer
-)
+if __name__ == "__main__":
+    )
 
-# Numerical methods 
-from .vasicek_numerical import (
-    VasicekNumerical,
-    VasicekRiskMetrics
-)
+    # Monte Carlo simulation
+    from .vasicek_monte_carlo import (
+        VasicekModel,
+        VasicekResult,
+        SimulationConfig
+    )
 
-# Utilities and validation
-from .vasicek_utils import (
-    VasicekValidator,
-    VasicekCalibrator,
-    ValidationResult,
-    calculate_model_metrics
-)
+    # Analytical formulas and bond pricing
+    from .vasicek_formula import (
+        VasicekAnalytical,
+        VasicekBondPricer
+    )
 
-# High-level wrapper and convenience functions
-from .vasicek_wrapper import (
-    create_vasicek_model,
-    quick_simulation,
-    VasicekAnalyzer
-)
+    # Numerical methods 
+    from .vasicek_numerical import (
+        VasicekNumerical,
+        VasicekRiskMetrics
+    )
 
-# External dependencies
-from brownian_motion import IncrementType
+    # Utilities and validation
+    from .vasicek_utils import (
+        VasicekValidator,
+        VasicekCalibrator,
+        ValidationResult,
+        calculate_model_metrics
+    )
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Vasicek short rate model implementation"
+    # High-level wrapper and convenience functions
+    from .vasicek_wrapper import (
+        create_vasicek_model,
+        quick_simulation,
+        VasicekAnalyzer
+    )
+
+    # External dependencies
+    from brownian_motion import IncrementType
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Vasicek short rate model implementation"

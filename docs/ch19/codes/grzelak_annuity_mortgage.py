@@ -11,6 +11,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+# Functions / Classes
+# ======================================================================
+
+
 def annuity(rate, notional, periods, cpr):
     """
     Compute annuity mortgage payment profile.
@@ -102,6 +107,10 @@ def main():
     # ============= Plotting =============
     plot_notional(m, t_end)
 
+
+# ======================================================================
+# Main
+# ======================================================================
 
 if __name__ == "__main__":
     main()

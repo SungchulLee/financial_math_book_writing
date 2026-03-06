@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def binomial_one_period_pricing():
     """
     One-Period Binomial Pricing.

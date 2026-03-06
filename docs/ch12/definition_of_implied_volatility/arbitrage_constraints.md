@@ -19,7 +19,9 @@ Any arbitrage-free call price $C$ must satisfy:
 
 
 $$
+
 \max(S e^{-qT} - K e^{-rT}, 0) \leq C \leq S e^{-qT}
+
 $$
 
 
@@ -28,7 +30,9 @@ with strict inequalities for implied volatility to exist:
 
 
 $$
+
 \max(S e^{-qT} - K e^{-rT}, 0) < C < S e^{-qT}
+
 $$
 
 
@@ -51,7 +55,9 @@ At time 0, portfolio value:
 
 
 $$
+
 C - S e^{-qT} + K e^{-rT}
+
 $$
 
 
@@ -78,7 +84,9 @@ The domain of the implied volatility inverse map is:
 
 
 $$
+
 \mathcal{D}_C = (C_{\text{intrinsic}}, S e^{-qT})
+
 $$
 
 
@@ -96,7 +104,9 @@ For European puts, by symmetry and put-call parity:
 
 
 $$
+
 \max(K e^{-rT} - S e^{-qT}, 0) < P < K e^{-rT}
+
 $$
 
 
@@ -105,7 +115,9 @@ Since:
 
 
 $$
+
 C - P = S e^{-qT} - K e^{-rT}
+
 $$
 
 
@@ -114,7 +126,9 @@ the implied volatilities satisfy:
 
 
 $$
+
 \sigma_{\text{IV}}^{\text{call}}(K, T) = \sigma_{\text{IV}}^{\text{put}}(K, T)
+
 $$
 
 
@@ -130,7 +144,9 @@ For fixed maturity $T$, the call price function $C(K)$ is non-increasing in stri
 
 
 $$
+
 K_1 < K_2 \implies C(K_1) \geq C(K_2)
+
 $$
 
 
@@ -139,7 +155,9 @@ $$
 
 
 $$
+
 \max(S_T - K_1, 0) \geq \max(S_T - K_2, 0) \quad \text{for all } S_T
+
 $$
 
 
@@ -148,7 +166,9 @@ By the risk-neutral pricing formula:
 
 
 $$
+
 C(K_1) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K_1, 0)] \geq e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K_2, 0)] = C(K_2)
+
 $$
 
 
@@ -175,7 +195,9 @@ The call price function $C(K)$ is convex in $K$:
 
 
 $$
+
 C(K_2) \leq \lambda C(K_1) + (1 - \lambda) C(K_3)
+
 $$
 
 
@@ -191,12 +213,14 @@ For equally spaced strikes ($K_2 - K_1 = K_3 - K_2 = \Delta K$), the payoff is:
 
 
 $$
+
 \Psi(S_T) = \begin{cases}
 0 & S_T \leq K_1 \\
 S_T - K_1 & K_1 < S_T \leq K_2 \\
 K_3 - S_T & K_2 < S_T \leq K_3 \\
 0 & S_T > K_3
 \end{cases}
+
 $$
 
 
@@ -205,7 +229,9 @@ This is a non-negative piecewise linear function (tent function). Therefore, the
 
 
 $$
+
 C(K_1) - 2C(K_2) + C(K_3) \geq 0
+
 $$
 
 
@@ -214,7 +240,9 @@ Rearranging:
 
 
 $$
+
 C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}
+
 $$
 
 
@@ -226,7 +254,9 @@ The second derivative (in the distributional sense):
 
 
 $$
+
 \frac{\partial^2 C}{\partial K^2} \geq 0
+
 $$
 
 
@@ -240,7 +270,9 @@ Convexity of $C(K)$ imposes constraints on $\sigma_{\text{IV}}(K)$. Define the *
 
 
 $$
+
 w(K, T) = \sigma_{\text{IV}}^2(K, T) \cdot T
+
 $$
 
 
@@ -250,7 +282,9 @@ For the surface to be arbitrage-free:
 
 
 $$
+
 \left(1 - \frac{y}{w} \frac{\partial w}{\partial y}\right)^2 - \frac{1}{4} \left(\frac{1}{w} + \frac{1}{4}\right) \left(\frac{\partial w}{\partial y}\right)^2 + \frac{1}{2} \frac{\partial^2 w}{\partial y^2} \geq 0
+
 $$
 
 
@@ -270,7 +304,9 @@ For fixed strike $K$, the call price function $C(T)$ is non-decreasing in maturi
 
 
 $$
+
 T_1 < T_2 \implies C(T_1) \leq C(T_2)
+
 $$
 
 
@@ -279,7 +315,9 @@ $$
 
 
 $$
+
 C(T_2) = \sup_{\tau \leq T_2} \mathbb{E}[\text{Payoff at } \tau] \geq \sup_{\tau \leq T_1} \mathbb{E}[\text{Payoff at } \tau] = C(T_1)
+
 $$
 
 
@@ -315,7 +353,9 @@ An implied volatility surface $\sigma_{\text{IV}}(K, T)$ is arbitrage-free if an
 1. **Butterfly arbitrage-free:** For each $T$,
 
    $$
+
    \frac{\partial^2 C_{\text{BS}}}{\partial K^2} \geq 0
+
    $$
 
 
@@ -323,7 +363,9 @@ An implied volatility surface $\sigma_{\text{IV}}(K, T)$ is arbitrage-free if an
 2. **Calendar arbitrage-free:** For each $K$,
 
    $$
+
    \frac{\partial C_{\text{BS}}}{\partial T} \geq 0
+
    $$
 
 
@@ -340,7 +382,9 @@ Let $y = \ln(K/F)$. The surface is arbitrage-free if:
 
 
 $$
+
 w_T(1 - \frac{y w_y}{2w})^2 \geq \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) - \frac{w_{yy}}{2}
+
 $$
 
 
@@ -349,7 +393,9 @@ and
 
 
 $$
+
 w_T \geq 0
+
 $$
 
 
@@ -367,7 +413,9 @@ For the surface to be arbitrage-free, the **skew** (derivative of IV with respec
 
 
 $$
+
 \left| \frac{\partial \sigma_{\text{IV}}}{\partial (\ln K)} \right| \leq \frac{C_{\max}}{\sigma_{\text{IV}} \sqrt{T}}
+
 $$
 
 
@@ -382,7 +430,9 @@ A sufficient (but not necessary) condition for no butterfly arbitrage is:
 
 
 $$
+
 \frac{\partial^2 w}{\partial y^2} \geq 0
+
 $$
 
 
@@ -401,7 +451,9 @@ The arbitrage-free condition $\partial^2 C / \partial K^2 \geq 0$ arises from:
 
 
 $$
+
 \frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
+
 $$
 
 
@@ -412,7 +464,9 @@ Non-negativity of $q(K)$ is necessary and sufficient for:
 
 
 $$
+
 \int_0^\infty q(K) dK = 1 \quad \text{(probability measure)}
+
 $$
 
 
@@ -425,7 +479,9 @@ For the implied volatility surface to admit a finite-variance risk-neutral densi
 
 
 $$
+
 \lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty
+
 $$
 
 
@@ -439,7 +495,9 @@ As $y \to \pm \infty$:
 
 
 $$
+
 \sigma_{\text{IV}}^2(y, T) \geq C \frac{|y|}{T}
+
 $$
 
 
@@ -457,7 +515,9 @@ In practice, option prices are observed on a discrete grid $(K_i, T_j)$. Arbitra
 1. **Butterfly violations:**
 
    $$
+
    C(K_i) - 2C(K_{i+1}) + C(K_{i+2}) < -\epsilon
+
    $$
 
 
@@ -466,7 +526,9 @@ In practice, option prices are observed on a discrete grid $(K_i, T_j)$. Arbitra
 2. **Calendar violations:**
 
    $$
+
    C(K_i, T_j) > C(K_i, T_{j+1}) + \epsilon
+
    $$
 
 
@@ -516,7 +578,9 @@ The implied volatility surface must satisfy:
 
 
 $$
+
 \max(S e^{-qT} - K e^{-rT}, 0) < C < S e^{-qT}
+
 $$
 
 
@@ -525,7 +589,9 @@ $$
 
 
 $$
+
 \frac{\partial C}{\partial K} \leq 0
+
 $$
 
 
@@ -534,7 +600,9 @@ $$
 
 
 $$
+
 \frac{\partial^2 C}{\partial K^2} \geq 0
+
 $$
 
 
@@ -543,7 +611,9 @@ $$
 
 
 $$
+
 \frac{\partial C}{\partial T} \geq 0
+
 $$
 
 
@@ -552,7 +622,9 @@ $$
 
 
 $$
+
 \frac{\partial w}{\partial T} \geq 0
+
 $$
 
 
@@ -561,7 +633,9 @@ $$
 
 
 $$
+
 \lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty
+
 $$
 
 

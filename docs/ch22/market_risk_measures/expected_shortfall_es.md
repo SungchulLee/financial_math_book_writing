@@ -9,7 +9,9 @@
 For confidence level $\alpha \in (0,1)$, the Expected Shortfall of loss $L$ is defined as:
 
 $$
+
 \text{ES}_\alpha(L) = \mathbb{E}[L \mid L \ge \text{VaR}_\alpha(L)]
+
 $$
 
 This is the **conditional expectation of losses given that they exceed VaR**.
@@ -21,14 +23,19 @@ This is the **conditional expectation of losses given that they exceed VaR**.
 An equivalent and often more useful representation expresses ES as an average of VaRs:
 
 $$
+
 \text{ES}_\alpha(L) = \frac{1}{1-\alpha} \int_\alpha^1 \text{VaR}_u(L) \, du
+
 $$
 
 **Interpretation:** ES is the average of all VaR levels from $\alpha$ to 1. This shows that ES incorporates information about the entire tail, not just a single quantile.
 
 **Proof sketch:** For continuous $F_L$:
+
 $$
+
 \text{ES}_\alpha = \frac{1}{1-\alpha} \int_\alpha^1 F_L^{-1}(u) \, du = \frac{1}{1-\alpha} \int_{\text{VaR}_\alpha}^\infty x \, dF_L(x) = \mathbb{E}[L \mid L \ge \text{VaR}_\alpha]
+
 $$
 
 ---
@@ -40,7 +47,9 @@ $$
 For continuous distributions:
 
 $$
+
 \text{ES}_\alpha(L) = \frac{1}{1-\alpha} \mathbb{E}[L \cdot \mathbf{1}_{L \ge \text{VaR}_\alpha}]
+
 $$
 
 ### Optimization Formulation (Rockafellar-Uryasev)
@@ -48,7 +57,9 @@ $$
 ES admits a convex optimization representation:
 
 $$
+
 \text{ES}_\alpha(L) = \min_{v \in \mathbb{R}} \left\{ v + \frac{1}{1-\alpha} \mathbb{E}[(L-v)^+] \right\}
+
 $$
 
 The minimizer is $v^* = \text{VaR}_\alpha(L)$. This formulation is valuable for portfolio optimization.
@@ -60,7 +71,9 @@ The minimizer is $v^* = \text{VaR}_\alpha(L)$. This formulation is valuable for 
 If $L \sim N(\mu, \sigma^2)$, then:
 
 $$
+
 \text{ES}_\alpha = \mu + \sigma \cdot \frac{\phi(\Phi^{-1}(\alpha))}{1-\alpha}
+
 $$
 
 where $\phi$ is the standard normal PDF and $\Phi$ is the CDF.
@@ -68,7 +81,9 @@ where $\phi$ is the standard normal PDF and $\Phi$ is the CDF.
 **Example:** For $\alpha = 0.99$ and $L \sim N(0, \sigma^2)$:
 
 $$
+
 \text{ES}_{0.99} = \sigma \cdot \frac{\phi(2.326)}{0.01} \approx 2.665\sigma
+
 $$
 
 Compare to $\text{VaR}_{0.99} \approx 2.326\sigma$. ES exceeds VaR by about 15%.
@@ -101,8 +116,11 @@ Expected Shortfall satisfies all four coherence axioms:
 4. **Subadditivity:** $\text{ES}_\alpha(L_1 + L_2) \le \text{ES}_\alpha(L_1) + \text{ES}_\alpha(L_2)$
 
 **Subadditivity proof sketch:** Using the integral representation:
+
 $$
+
 \text{ES}_\alpha(L_1+L_2) = \frac{1}{1-\alpha}\int_\alpha^1 \text{VaR}_u(L_1+L_2)\,du \le \frac{1}{1-\alpha}\int_\alpha^1 [\text{VaR}_u(L_1)+\text{VaR}_u(L_2)]\,du
+
 $$
 
 The inequality follows because quantiles of sums are bounded by sums of quantiles (for comonotonic variables, equality holds).
@@ -114,7 +132,9 @@ The inequality follows because quantiles of sums are bounded by sums of quantile
 Unlike VaR, **ES is not directly elicitable**. There is no scoring function $S$ such that:
 
 $$
+
 \text{ES}_\alpha(L) = \arg\min_x \mathbb{E}[S(x, L)]
+
 $$
 
 **Implications:**
@@ -133,12 +153,17 @@ Although ES alone is not elicitable, the pair $(\text{VaR}_\alpha, \text{ES}_\al
 **Acerbi-Szekely Tests:** Based on the identity:
 
 $$
+
 \mathbb{E}\left[\frac{L \cdot \mathbf{1}_{L \ge \text{VaR}_\alpha}}{\text{ES}_\alpha(L)}\right] = 1 - \alpha
+
 $$
 
 The test statistic compares:
+
 $$
+
 Z = \frac{1}{n(1-\alpha)} \sum_{t=1}^n \frac{L_t \cdot \mathbf{1}_{L_t \ge \widehat{\text{VaR}}_\alpha}}{\widehat{\text{ES}}_\alpha}
+
 $$
 
 to the expected value of 1.
@@ -152,7 +177,9 @@ to the expected value of 1.
 ### Historical Simulation
 
 $$
+
 \widehat{\text{ES}}_\alpha = \frac{1}{n(1-\alpha)} \sum_{i=\lceil n\alpha \rceil}^{n} L_{(i)}
+
 $$
 
 where $L_{(1)} \le \cdots \le L_{(n)}$ are ordered losses.
@@ -186,8 +213,11 @@ Modern regulations favor ES over VaR:
 ### Capital Formula
 
 Under FRTB internal models approach:
+
 $$
+
 \text{Capital} = \max\left(\text{ES}_{t-1}, m_c \cdot \overline{\text{ES}}\right) + \text{SES}
+
 $$
 
 where $m_c$ is a multiplier (minimum 1.5) and SES is the stressed ES.
@@ -199,7 +229,9 @@ where $m_c$ is a multiplier (minimum 1.5) and SES is the stressed ES.
 The Rockafellar-Uryasev formulation enables ES-constrained portfolio optimization:
 
 $$
+
 \min_{\mathbf{w}} \quad -\mathbb{E}[R_P] \quad \text{s.t.} \quad \text{ES}_\alpha(L_P) \le \text{ES}^{\max}
+
 $$
 
 This is a **convex optimization problem** (unlike VaR constraints), making it tractable for large portfolios.

@@ -1,3 +1,9 @@
+"""
+Grid
+
+Educational script demonstrating grid concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d/grid.py
 # ============================================================================
@@ -67,3 +73,7 @@ def check_stability(coeff: float, method: str = "forward") -> None:
 def create_time_array(T: float, Nt: int) -> np.ndarray:
     """Create time array for the simulation."""
     return np.linspace(0, T, Nt + 1)
+
+
+if __name__ == "__main__":
+    pass

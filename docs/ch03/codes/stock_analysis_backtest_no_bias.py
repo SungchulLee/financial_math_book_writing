@@ -1,3 +1,9 @@
+"""
+Stock Analysis Backtest No Bias
+
+Educational script demonstrating stock analysis backtest no bias concepts.
+"""
+
 # ============================================================================
 # stock_analysis_BACKTEST_STRATEGY_WITHOUT_SURVIVORSHIP_BIAS.py
 # ============================================================================
@@ -30,4 +36,6 @@ def backtest_strategy_without_survivorship_bias():
     
     return pre_crisis_tickers
 
-backtest_strategy_without_survivorship_bias()
+
+if __name__ == "__main__":
+    backtest_strategy_without_survivorship_bias()

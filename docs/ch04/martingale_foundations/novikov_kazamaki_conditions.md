@@ -16,13 +16,17 @@ When does a stochastic exponential define a valid probability measure? The **Nov
 Consider the stochastic exponential of a continuous local martingale $M_t = \int_0^t \theta_s\,dW_s$:
 
 $$
+
 Z_t = \mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M \rangle_t\right) = \exp\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
+
 $$
 
 We want to use $Z_T$ as a Radon–Nikodym derivative:
 
 $$
+
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T
+
 $$
 
 **For this to be valid**, we need:
@@ -50,13 +54,17 @@ But local martingales can have $\mathbb{E}[Z_T] < Z_0 = 1$ due to:
 Consider $\theta_t = \frac{c}{\sqrt{T-t}}$ for $t < T$, where $c > 0$ is a constant. Then:
 
 $$
+
 \int_0^T \theta_s^2\,ds = \int_0^T \frac{c^2}{T-s}\,ds = +\infty
+
 $$
 
 The quadratic variation explodes, and Novikov's condition fails. More precisely, for any $\epsilon > 0$:
 
 $$
+
 \int_0^{T-\epsilon} \theta_s^2\,ds = c^2 \log\left(\frac{T}{\epsilon}\right) \to \infty \quad \text{as } \epsilon \to 0
+
 $$
 
 The stochastic exponential $Z_t$ converges to 0 as $t \to T$, and $\mathbb{E}[Z_T] < 1$.
@@ -70,15 +78,19 @@ The stochastic exponential $Z_t$ converges to 0 as $t \to T$, and $\mathbb{E}[Z_
 **Theorem (Novikov, 1972)**: Let $M_t = \int_0^t \theta_s\,dW_s$ be a continuous local martingale. If
 
 $$
+
 \boxed{
 \mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right] = \mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] < \infty
 }
+
 $$
 
 then $Z_t = \mathcal{E}(M)_t$ is a **true martingale** on $[0,T]$, and in particular:
 
 $$
+
 \mathbb{E}^{\mathbb{P}}[Z_T] = 1
+
 $$
 
 ### Interpretation
@@ -104,7 +116,9 @@ The proof proceeds in several steps. We follow the approach in Revuz–Yor (Chap
 For any continuous local martingale $M$ with $M_0 = 0$ and any $\lambda > 0$:
 
 $$
+
 \mathbb{P}\left(\sup_{t \leq T} M_t \geq \lambda\right) \leq e^{-\lambda} \mathbb{E}\left[\exp(M_T)\mathbf{1}_{\{\sup_{t \leq T} M_t \geq \lambda\}}\right]
+
 $$
 
 **Step 2: Control the maximum**
@@ -112,7 +126,9 @@ $$
 Using the inequality from Step 1 and properties of the stochastic exponential, one can show:
 
 $$
+
 \mathbb{E}\left[\sup_{t \leq T} \mathcal{E}(M)_t\right] \leq 2\,\mathbb{E}\left[\mathcal{E}(M)_T^{1/2} \cdot \exp\left(\frac{1}{4}\langle M \rangle_T\right)\right]
+
 $$
 
 **Step 3: Apply Cauchy–Schwarz**
@@ -120,7 +136,9 @@ $$
 By Cauchy–Schwarz:
 
 $$
+
 \mathbb{E}\left[\mathcal{E}(M)_T^{1/2} \cdot \exp\left(\frac{1}{4}\langle M \rangle_T\right)\right] \leq \mathbb{E}\left[\mathcal{E}(M)_T\right]^{1/2} \cdot \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right]^{1/2}
+
 $$
 
 **Step 4: Bootstrap**
@@ -138,9 +156,11 @@ Kazamaki's condition is weaker than Novikov's and involves the local martingale 
 **Theorem (Kazamaki, 1977)**: Let $M_t = \int_0^t \theta_s\,dW_s$ be a continuous local martingale with $M_0 = 0$. If
 
 $$
+
 \boxed{
 \mathcal{E}\left(\frac{1}{2}M\right)_t = \exp\left(\frac{1}{2}M_t - \frac{1}{8}\langle M \rangle_t\right) \text{ is a submartingale}
 }
+
 $$
 
 then $\mathcal{E}(M)_t$ is a true martingale.
@@ -150,13 +170,17 @@ then $\mathcal{E}(M)_t$ is a true martingale.
 The submartingale condition is equivalent to:
 
 $$
+
 \sup_{t \leq T} \mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] < \infty
+
 $$
 
 A sufficient (but slightly stronger) condition often stated in practice:
 
 $$
+
 \mathbb{E}\left[\exp\left(\frac{1}{2}M_T\right)\right] < \infty
+
 $$
 
 ### Why Kazamaki Is Weaker
@@ -168,13 +192,17 @@ $$
 The process $\exp(\frac{1}{2}M_t)$ can be written as:
 
 $$
+
 \exp\left(\frac{1}{2}M_t\right) = \mathcal{E}\left(\frac{1}{2}M\right)_t \cdot \exp\left(\frac{1}{8}\langle M \rangle_t\right)
+
 $$
 
 Taking expectations and using that $\mathcal{E}(\frac{1}{2}M)$ is a non-negative local martingale (hence a supermartingale):
 
 $$
+
 \mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{8}\langle M \rangle_t\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right]^{1/4} < \infty
+
 $$
 
 where we used Jensen's inequality in the last step. Thus Kazamaki's condition is satisfied. $\square$
@@ -191,7 +219,9 @@ The converse is **false**: there exist processes satisfying Kazamaki but not Nov
 | **Kazamaki** | $\sup_{t \leq T}\mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] < \infty$ | Weaker |
 
 $$
+
 \text{Novikov satisfied} \Rightarrow \text{Kazamaki satisfied} \Rightarrow \mathcal{E}(M) \text{ is a true martingale}
+
 $$
 
 **When to use which**:
@@ -208,7 +238,9 @@ $$
 If $\theta_t = \theta(t)$ is deterministic:
 
 $$
+
 \int_0^T \theta(t)^2\,dt < \infty \Rightarrow \text{Novikov satisfied}
+
 $$
 
 The exponential of a constant is finite, so the condition reduces to $\theta \in L^2[0,T]$.
@@ -218,7 +250,9 @@ The exponential of a constant is finite, so the condition reduces to $\theta \in
 If $|\theta_t| \leq M$ almost surely for all $t \in [0,T]$:
 
 $$
+
 \mathbb{E}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] \leq \exp\left(\frac{M^2 T}{2}\right) < \infty
+
 $$
 
 Novikov is satisfied.
@@ -228,7 +262,9 @@ Novikov is satisfied.
 The market price of risk $\theta = (\mu - r)/\sigma$ is constant.
 
 $$
+
 \mathbb{E}\left[\exp\left(\frac{1}{2}\theta^2 T\right)\right] = \exp\left(\frac{\theta^2 T}{2}\right) < \infty \quad \checkmark
+
 $$
 
 Novikov is satisfied for any finite $T$.
@@ -238,13 +274,17 @@ Novikov is satisfied for any finite $T$.
 In the Heston model, the variance process $V_t$ follows:
 
 $$
+
 dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
+
 $$
 
 The market price of risk for the stock is $\theta_t = (\mu - r)/\sqrt{V_t}$, so:
 
 $$
+
 \int_0^T \theta_s^2\,ds = (\mu - r)^2 \int_0^T \frac{1}{V_s}\,ds
+
 $$
 
 **Novikov verification requires**: $\mathbb{E}\left[\exp\left(\frac{(\mu-r)^2}{2}\int_0^T V_s^{-1}\,ds\right)\right] < \infty$
@@ -252,7 +292,9 @@ $$
 This holds when the **Feller condition** is satisfied:
 
 $$
+
 2\kappa\bar{V} \geq \xi^2
+
 $$
 
 The Feller condition ensures $V_t > 0$ for all $t$ (the process never hits zero), which prevents $\int_0^T V_s^{-1}\,ds$ from exploding. When Feller is violated, $V_t$ can hit zero, and verification becomes more delicate—one must check whether the time spent near zero is short enough.
@@ -268,7 +310,9 @@ The Feller condition ensures $V_t > 0$ for all $t$ (the process never hits zero)
 For Girsanov's theorem to produce a valid measure change, we need the Radon–Nikodym derivative:
 
 $$
+
 Z_T = \exp\left(\int_0^T \theta_s\,dW_s - \frac{1}{2}\int_0^T \theta_s^2\,ds\right)
+
 $$
 
 to satisfy $\mathbb{E}[Z_T] = 1$. Novikov or Kazamaki provides this guarantee.
@@ -295,7 +339,9 @@ In finance, this corresponds to **asset price bubbles**: the discounted price pr
 For a general continuous local martingale $M$ (not necessarily an Itô integral), the **Doléans-Dade exponential** is:
 
 $$
+
 \mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M \rangle_t\right)
+
 $$
 
 **General Novikov Condition**: If $\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] < \infty$, then $\mathcal{E}(M)$ is a true martingale on $[0,T]$.
@@ -305,7 +351,9 @@ $$
 For discontinuous local martingales (with jumps), the Doléans-Dade exponential has the more complex form:
 
 $$
+
 \mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M^c \rangle_t\right) \prod_{0 < s \leq t}(1 + \Delta M_s)e^{-\Delta M_s}
+
 $$
 
 where $M^c$ is the continuous part and $\Delta M_s = M_s - M_{s-}$ are the jumps. Conditions for this to be a true martingale are more involved.
@@ -320,9 +368,11 @@ where $M^c$ is the continuous part and $\Delta M_s = M_s - M_{s-}$ are the jumps
 | **Kazamaki** | $\mathcal{E}\left(\frac{1}{2}M\right)$ is a submartingale | $\mathcal{E}(M)$ is a true martingale |
 
 $$
+
 \boxed{
 \text{Novikov} \Rightarrow \text{Kazamaki} \Rightarrow \mathcal{E}(M) \text{ is a true martingale} \Rightarrow \mathbb{E}[\mathcal{E}(M)_T] = 1
 }
+
 $$
 
 !!! summary "Key Takeaways"

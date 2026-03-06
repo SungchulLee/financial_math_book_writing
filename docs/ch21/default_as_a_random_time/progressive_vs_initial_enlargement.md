@@ -13,7 +13,9 @@ In **progressive enlargement**, information about default is revealed only when 
 The progressively enlarged filtration is
 
 $$
+
 \mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau \wedge t) = \mathcal{F}_t \vee \sigma(H_s : s \le t),
+
 $$
 
 where $H_s = \mathbf{1}_{\{\tau \le s\}}$ is the default indicator.
@@ -21,7 +23,9 @@ where $H_s = \mathbf{1}_{\{\tau \le s\}}$ is the default indicator.
 Equivalently, with right-continuous regularization:
 
 $$
+
 \mathcal{G}_t = \bigcap_{s > t} \left( \mathcal{F}_s \vee \sigma(\tau \wedge s) \right).
+
 $$
 
 ### Information Content
@@ -45,7 +49,9 @@ Crucially, they do **not** know the future default time if $\tau > t$.
 A random variable $X$ is $\mathcal{G}_t$-measurable if and only if it has the form
 
 $$
+
 X = Y \mathbf{1}_{\{\tau > t\}} + Z(\tau) \mathbf{1}_{\{\tau \le t\}},
+
 $$
 
 where:
@@ -65,7 +71,9 @@ In **initial enlargement**, the default time is known from the very beginning (t
 The initially enlarged filtration is
 
 $$
+
 \mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau).
+
 $$
 
 Here, $\sigma(\tau)$ represents complete knowledge of the default time, available at all times.
@@ -96,7 +104,9 @@ Initial enlargement corresponds to **insider information**—knowing default tim
 The filtrations satisfy a strict inclusion:
 
 $$
+
 \mathcal{F}_t \subsetneq \mathcal{G}_t^{\text{prog}} \subsetneq \mathcal{G}_t^{\text{init}}.
+
 $$
 
 Progressive enlargement adds "just enough" information to observe default, while initial enlargement adds "complete" information about $\tau$.
@@ -114,15 +124,23 @@ For a random variable $X$:
 Consider computing $\mathbb{P}(\tau > T \mid \mathcal{G}_t)$ for $T > t$:
 
 **Progressive enlargement ($\tau > t$):**
+
 $$
+
 \mathbb{P}(\tau > T \mid \mathcal{G}_t^{\text{prog}}) = \frac{\mathbb{P}(\tau > T \mid \mathcal{F}_t)}{\mathbb{P}(\tau > t \mid \mathcal{F}_t)} = \frac{G_T^{\mathcal{F}}}{G_t^{\mathcal{F}}}
+
 $$
+
 where $G_s^{\mathcal{F}} = \mathbb{P}(\tau > s \mid \mathcal{F}_t)$.
 
 **Initial enlargement:**
+
 $$
+
 \mathbb{P}(\tau > T \mid \mathcal{G}_t^{\text{init}}) = \mathbf{1}_{\{\tau > T\}}
+
 $$
+
 since $\tau$ is known exactly.
 
 ---
@@ -136,7 +154,9 @@ A critical question is whether $\mathcal{F}$-semimartingales remain semimartinga
 Under mild conditions (the **density hypothesis** or **intensity hypothesis**), every $(\mathcal{F}, \mathbb{P})$-semimartingale remains a $(\mathcal{G}^{\text{prog}}, \mathbb{P})$-semimartingale. The decomposition involves:
 
 $$
+
 X_t = \tilde{X}_t + \int_0^{t \wedge \tau} \frac{d\langle X, G \rangle_s}{G_{s-}},
+
 $$
 
 where $\tilde{X}$ is a $\mathcal{G}$-martingale and $G_t = \mathbb{P}(\tau > t \mid \mathcal{F}_t)$.
@@ -176,7 +196,9 @@ A key technical condition ensuring tractability under progressive enlargement is
 There exists a family of non-negative $\mathcal{F}_t$-measurable random variables $(\alpha_t^u)_{u \ge 0}$ such that for all $t \ge 0$:
 
 $$
+
 \mathbb{P}(\tau > u \mid \mathcal{F}_t) = \int_u^\infty \alpha_t^s \, ds \quad \text{for } u \ge 0.
+
 $$
 
 The function $u \mapsto \alpha_t^u$ is the conditional density of $\tau$ given $\mathcal{F}_t$.
@@ -200,8 +222,11 @@ Let $\tau \sim \text{Exp}(\lambda)$ be independent of $(\mathcal{F}_t)$ with con
 The survival probability is $G_t = e^{-\lambda t}$ (deterministic since $\tau$ is independent of $\mathcal{F}$).
 
 On $\{\tau > t\}$:
+
 $$
+
 \mathbb{P}(\tau > T \mid \mathcal{G}_t) = \mathbb{P}(\tau > T \mid \tau > t) = e^{-\lambda(T-t)}
+
 $$
 
 This follows from the memoryless property of the exponential distribution.
@@ -209,8 +234,11 @@ This follows from the memoryless property of the exponential distribution.
 ### Initial Enlargement
 
 Given $\mathcal{G}_t^{\text{init}} = \mathcal{F}_t \vee \sigma(\tau)$:
+
 $$
+
 \mathbb{P}(\tau > T \mid \mathcal{G}_t^{\text{init}}) = \mathbf{1}_{\{\tau > T\}}
+
 $$
 
 The uncertainty is completely resolved by knowing $\tau$.

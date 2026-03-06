@@ -1,3 +1,9 @@
+"""
+Ml Classification Survey
+
+Educational script demonstrating ml classification survey concepts.
+"""
+
 # ---
 # title: "Machine Learning Classification Survey"
 # description: >
@@ -41,6 +47,8 @@ from sklearn import preprocessing
 # ══════════════════════════════════════════════════════════════════
 #  Helper: scatter with correct / incorrect markers
 # ══════════════════════════════════════════════════════════════════
+
+# ======================================================================
 
 def plot_classification(X, y, pred, title=''):
     """Scatter true-class colours; circles = correct, × = wrong."""

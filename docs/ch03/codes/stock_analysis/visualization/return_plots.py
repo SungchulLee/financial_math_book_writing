@@ -1,3 +1,9 @@
+"""
+Return Plots
+
+Educational script demonstrating return plots concepts.
+"""
+
 # ============================================================================
 # stock_analysis/visualization/return_plots.py
 # ============================================================================
@@ -446,3 +452,7 @@ def plot_drawdown_analysis(df: pd.DataFrame, ticker: str,
     
     plt.tight_layout()
     plt.show()
+
+
+if __name__ == "__main__":
+    pass

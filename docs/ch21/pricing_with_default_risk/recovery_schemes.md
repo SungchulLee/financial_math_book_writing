@@ -23,7 +23,9 @@ Each has advantages in terms of tractability, realism, and market convention.
 At default time $\tau$, bondholders receive:
 
 $$
+
 \text{Recovery Payment} = R \cdot F,
+
 $$
 
 where $R$ is the recovery rate and $F$ is the face value (par).
@@ -37,13 +39,17 @@ Payment occurs at default time $\tau$, not at maturity.
 For a zero-coupon bond with face value $F$ and maturity $T$:
 
 $$
+
 P^d(0,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s ds} \mathbf{1}_{\{\tau > T\}}\right] + R \cdot F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^{\tau} r_s ds} \mathbf{1}_{\{\tau \le T\}}\right].
+
 $$
 
 Using intensity-based valuation:
 
 $$
+
 P^d(0,T) = F \cdot \mathbb{E}\left[e^{-\int_0^T (r_s + \lambda_s) ds}\right] + R \cdot F \cdot \mathbb{E}\left[\int_0^T e^{-\int_0^u (r_s + \lambda_s) ds} \lambda_u \, du\right].
+
 $$
 
 ### Deterministic Rates and Intensity
@@ -51,7 +57,9 @@ $$
 With constant $r$ and $\lambda$:
 
 $$
+
 P^d(0,T) = F \cdot e^{-(r+\lambda)T} + R \cdot F \cdot \frac{\lambda}{r+\lambda}\left(1 - e^{-(r+\lambda)T}\right).
+
 $$
 
 ### Advantages and Disadvantages
@@ -74,7 +82,9 @@ $$
 At default time $\tau$, bondholders receive the equivalent of $R \cdot F$ at maturity $T$:
 
 $$
+
 \text{Recovery Payment at } \tau = R \cdot F \cdot P(\tau, T),
+
 $$
 
 where $P(\tau, T)$ is the risk-free discount factor from $\tau$ to $T$.
@@ -82,7 +92,9 @@ where $P(\tau, T)$ is the risk-free discount factor from $\tau$ to $T$.
 ### Pricing Formula
 
 $$
+
 P^d(0,T) = F \cdot P(0,T) \cdot \left[R + (1-R) S(0,T)\right].
+
 $$
 
 ### Advantages and Disadvantages
@@ -104,7 +116,9 @@ $$
 At default, bondholders recover a fraction $R$ of the **pre-default market value**:
 
 $$
+
 \text{Recovery Payment} = R \cdot P^d(\tau-, T).
+
 $$
 
 ### Key Result
@@ -112,7 +126,9 @@ $$
 The Duffie-Singleton formula:
 
 $$
+
 P^d(0,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T (r_s + (1-R)\lambda_s) ds}\right].
+
 $$
 
 Default risk enters through the **loss-adjusted intensity** $(1-R)\lambda$.

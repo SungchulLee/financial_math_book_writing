@@ -1,3 +1,9 @@
+"""
+Plotting
+
+Educational script demonstrating plotting concepts.
+"""
+
 # ============================================================================
 # heat_equation_2d/plotting.py
 # ============================================================================
@@ -272,3 +278,7 @@ def plot_cross_sections(X, Y, u_initial, u_final, method="Method"):
     plt.suptitle(f"Temperature Cross-sections ({method})")
     plt.tight_layout()
     plt.show()
+
+
+if __name__ == "__main__":
+    pass

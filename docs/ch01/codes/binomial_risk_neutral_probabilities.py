@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def binomial_risk_neutral_probabilities():
     """
     Risk-Neutral Probabilities.

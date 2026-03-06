@@ -19,6 +19,8 @@ from scipy.stats import norm
 from typing import Tuple, Callable
 
 
+# ======================================================================
+
 def black_scholes_call(
     S: float, K: float, T: float, r: float, sigma: float
 ) -> float:

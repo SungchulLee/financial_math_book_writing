@@ -29,6 +29,8 @@ from scipy.stats import ncx2, norm
 from scipy.special import gamma
 
 
+# ======================================================================
+
 class CIRProcess:
     """
     Cox-Ingersoll-Ross (CIR) process simulator.

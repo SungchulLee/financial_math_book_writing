@@ -9,6 +9,7 @@ The overnight indexed swap (OIS) rate and LIBOR historically tracked closely but
 - **LIBOR**: 3M/6M/12M unsecured borrowing rate, contains credit and term premium
 
 OIS-LIBOR spread (basis) represents:
+
 $$\text{LIBOR}(T) - \text{OIS}(T) = \text{Credit Premium} + \text{Liquidity Premium} + \text{Term Premium}$$
 
 **Multi-Curve Framework**
@@ -19,6 +20,7 @@ Modern approach: separate curves for:
 3. **Basis curves**: spread between LIBOR and OIS for each tenor
 
 Forward LIBOR in multi-curve:
+
 $$L_{t}(T, T+\Delta) = \text{OIS}_t(T, T+\Delta) + \text{Basis}_t(\Delta)$$
 
 **Spread Modeling Dynamics**
@@ -29,9 +31,11 @@ Spread $X_t = L_t - \text{OIS}_t$ dynamics can follow:
 
 **Funding Cost Modeling**
 Banks have different funding rates depending on creditworthiness:
+
 $$r_t^{\text{funding}}(T) = r_t^{\text{OIS}}(T) + \text{CDS}_t + \text{Liquidity Adjustment}$$
 
 Swap pricing reflection:
+
 $$\text{Par Swap Rate} = \text{OIS Forward} + \text{Funding Spread}$$
 
 **CVA and Counterparty Risk**
@@ -42,6 +46,7 @@ Multi-curve framework enables:
 
 **Basis Risk in Hedging**
 Hedging LIBOR exposure with OIS introduces basis risk:
+
 $$P\&L_{\text{basis}} = N \times (\text{LIBOR} - \text{OIS}) \times dBasis \times \Delta t$$
 
 Risk management requires:

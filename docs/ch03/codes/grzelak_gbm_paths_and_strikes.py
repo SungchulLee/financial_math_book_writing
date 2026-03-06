@@ -7,6 +7,8 @@ GBM paths and strike figures
 import numpy as np
 import matplotlib.pyplot as plt
 
+# ======================================================================
+
 def GeneratePathsGBMABM(NoOfPaths,NoOfSteps,T,r,sigma,S_0):    
     Z = np.random.normal(0.0,1.0,[NoOfPaths,NoOfSteps])
     X = np.zeros([NoOfPaths, NoOfSteps+1])
@@ -56,4 +58,6 @@ def mainCalculation():
     for ti in Tcall:
         plt.plot(ti*np.ones([300,1]),range(0,300),'--k')
        
-mainCalculation()
+
+if __name__ == "__main__":
+    mainCalculation()

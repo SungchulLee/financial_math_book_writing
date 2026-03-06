@@ -19,18 +19,27 @@
 ### Illiquidity Measures
 
 **Bid-ask spread:**
+
 $$
+
 \text{Spread} = P^{\text{ask}} - P^{\text{bid}}
+
 $$
 
 **Relative spread:**
+
 $$
+
 \text{Relative Spread} = \frac{P^{\text{ask}} - P^{\text{bid}}}{P^{\text{mid}}}
+
 $$
 
 **Amihud illiquidity measure:**
+
 $$
+
 \text{ILLIQ} = \frac{1}{D} \sum_{d=1}^D \frac{|r_d|}{V_d}
+
 $$
 
 where $r_d$ is the return and $V_d$ is dollar volume on day $d$.
@@ -44,13 +53,17 @@ where $r_d$ is the return and $V_d$ is dollar volume on day $d$.
 The **liquidity premium** is the additional expected return required to hold illiquid assets:
 
 $$
+
 \mathbb{E}[R_{\text{illiquid}}] = \mathbb{E}[R_{\text{liquid}}] + \text{Liquidity Premium}
+
 $$
 
 Equivalently, illiquid assets trade at a **discount**:
 
 $$
+
 P_{\text{illiquid}} = P_{\text{liquid}} - \text{Liquidity Discount}
+
 $$
 
 ### Sources
@@ -70,7 +83,9 @@ $$
 Extends CAPM to include liquidity:
 
 $$
+
 \mathbb{E}[R_i] - R_f = \beta_1 \cdot \lambda_{\text{mkt}} + \beta_2 \cdot \lambda_{\text{liq}}
+
 $$
 
 where:
@@ -132,7 +147,9 @@ During stress:
 ### CDS-Bond Basis
 
 $$
+
 \text{Basis} = \text{CDS Spread} - \text{Bond Spread}
+
 $$
 
 Negative basis often reflects bond illiquidity premium.
@@ -144,13 +161,17 @@ Negative basis often reflects bond illiquidity premium.
 ### Liquidity Discount
 
 $$
+
 V_{\text{adjusted}} = V_{\text{liquid}} \times (1 - \text{Liquidity Discount})
+
 $$
 
 ### Stress Liquidity Adjustment
 
 $$
+
 V_{\text{stressed}} = V_{\text{normal}} - \text{Liquidity Adjustment}_{\text{stress}}
+
 $$
 
 ### Regulatory Treatment

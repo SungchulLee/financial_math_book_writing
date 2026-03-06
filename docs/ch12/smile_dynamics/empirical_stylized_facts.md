@@ -19,7 +19,9 @@ This section documents the key empirical regularities in smile dynamics, their q
 **Quantitative relationship:**
 
 $$
+
 \Delta \sigma_{\text{ATM}} \approx \beta \cdot \frac{\Delta S}{S}
+
 $$
 
 
@@ -33,7 +35,9 @@ where $\beta < 0$ (typically $\beta \approx -1.5$ to $-2.5$ for equity indices).
 **Asymmetry:**
 
 $$
+
 |\beta_{\text{down}}| > |\beta_{\text{up}}|
+
 $$
 
 
@@ -52,7 +56,9 @@ The vol response is stronger for down moves than up moves.
 **Quantitative measure:**
 
 $$
+
 \text{Skew}_{25\Delta} = \sigma_{\text{25DP}} - \sigma_{\text{ATM}}
+
 $$
 
 
@@ -84,7 +90,9 @@ $$
 **Quantitative relationship:**
 
 $$
+
 |\beta(T_{\text{short}})| > |\beta(T_{\text{long}})|
+
 $$
 
 
@@ -131,7 +139,9 @@ $$
 **Quantitative measure:**
 
 $$
+
 \text{ACF}(\sigma_{\text{ATM}}, \text{lag } k) = \rho^k
+
 $$
 
 
@@ -165,7 +175,9 @@ where $\rho \approx 0.95$ for daily data.
 **GARCH-like behavior:**
 
 $$
+
 \sigma_{t+1}^2 \approx \omega + \alpha \epsilon_t^2 + \beta \sigma_t^2
+
 $$
 
 
@@ -241,7 +253,9 @@ $$
 **Definition:**
 
 $$
+
 \text{SSR} = \frac{\Delta \sigma_{\text{ATM}}}{\Delta \sigma_{\text{ATM}}^{\text{sticky-strike}}}
+
 $$
 
 
@@ -258,7 +272,9 @@ where the denominator is the ATM vol change predicted by sticky strike.
 **Definition:**
 
 $$
+
 \rho_{S,\sigma} = \text{Corr}(\Delta \log S, \Delta \sigma_{\text{ATM}})
+
 $$
 
 
@@ -277,7 +293,9 @@ $$
 **Definition:** The volatility of ATM implied volatility.
 
 $$
+
 \text{Vol-of-Vol} = \text{Std}(\Delta \sigma_{\text{ATM}}) \cdot \sqrt{252}
+
 $$
 
 
@@ -291,7 +309,9 @@ $$
 **Definition:**
 
 $$
+
 \beta_{\text{skew}} = \frac{d(\text{Skew})}{d(\log S)}
+
 $$
 
 

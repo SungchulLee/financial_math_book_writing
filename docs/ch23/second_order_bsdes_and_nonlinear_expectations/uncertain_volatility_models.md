@@ -27,7 +27,9 @@ This framework has profound implications for:
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+
 $$
 
 
@@ -41,7 +43,9 @@ where:
 
 
 $$
+
 \underline{\sigma} \leq \sigma_t \leq \overline{\sigma}
+
 $$
 
 
@@ -57,7 +61,9 @@ $$
 
 
 $$
+
 dV_t = \Delta_t \, dS_t + (V_t - \Delta_t S_t) r \, dt
+
 $$
 
 
@@ -70,7 +76,9 @@ where $r$ is the risk-free rate.
 
 
 $$
+
 V_T \geq \Phi(S_T) \quad \text{for all admissible volatility paths } \{\sigma_t\}_{t \in [0,T]}
+
 $$
 
 
@@ -85,7 +93,9 @@ $$
 
 
 $$
+
 V^{\text{sup}}(S_0) = \inf \left\{ V_0: \exists \Delta_t \text{ s.t. } V_T \geq \Phi(S_T) \text{ for all } \sigma_t \in [\underline{\sigma}, \overline{\sigma}] \right\}
+
 $$
 
 
@@ -99,7 +109,9 @@ $$
 
 
 $$
+
 V^{\text{sub}}(S_0) = \sup \left\{ V_0: \exists \Delta_t \text{ s.t. } V_T \leq \Phi(S_T) \text{ for all } \sigma_t \in [\underline{\sigma}, \overline{\sigma}] \right\}
+
 $$
 
 
@@ -113,7 +125,9 @@ $$
 
 
 $$
+
 [V^{\text{sub}}(S_0), V^{\text{sup}}(S_0)]
+
 $$
 
 
@@ -124,7 +138,9 @@ represents the range of arbitrage-free prices under volatility uncertainty.
 
 
 $$
+
 \text{Spread} = V^{\text{sup}}(S_0) - V^{\text{sub}}(S_0)
+
 $$
 
 
@@ -144,7 +160,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+
 $$
 
 
@@ -153,10 +171,12 @@ with terminal condition $V(T, S) = \Phi(S)$, where:
 
 
 $$
+
 \bar{\sigma}^2(V) = \begin{cases}
 \overline{\sigma}^2 & \text{if } \frac{\partial^2 V}{\partial S^2} > 0 \\
 \underline{\sigma}^2 & \text{if } \frac{\partial^2 V}{\partial S^2} < 0
 \end{cases}
+
 $$
 
 
@@ -192,7 +212,9 @@ $$
 - Super-replication price:
 
   $$
+
   V^{\text{sup}}(S_0) = \text{BS}(S_0, K, \overline{\sigma}, T)
+
   $$
 
 
@@ -204,7 +226,9 @@ $$
 - Super-replication price:
 
   $$
+
   V^{\text{sup}}(S_0) = \text{BS-Put}(S_0, K, \overline{\sigma}, T)
+
   $$
 
 
@@ -232,7 +256,9 @@ $$
 
 
 $$
+
 \Delta_t^* = \frac{\partial V}{\partial S}(t, S_t)
+
 $$
 
 
@@ -250,7 +276,9 @@ where $V$ is the super-replication price.
 
 
 $$
+
 \Gamma_t = \frac{\partial^2 V}{\partial S^2}(t, S_t)
+
 $$
 
 
@@ -259,10 +287,12 @@ $$
 
 
 $$
+
 \sigma_t^* = \begin{cases}
 \overline{\sigma} & \text{if } \Gamma_t > 0 \\
 \underline{\sigma} & \text{if } \Gamma_t < 0
 \end{cases}
+
 $$
 
 
@@ -271,7 +301,9 @@ $$
 
 
 $$
+
 \text{Cost} = \frac{1}{2} \int_0^T \Gamma_t \sigma_t^2 S_t^2 \, dt
+
 $$
 
 
@@ -287,7 +319,9 @@ $$
 
 
 $$
+
 \Pi_t = V_t + \sum_{i=1}^n \theta_i^t O_i(t, S_t)
+
 $$
 
 
@@ -296,7 +330,9 @@ $$
 
 
 $$
+
 \frac{\partial^2 \Pi}{\partial S^2} = 0
+
 $$
 
 
@@ -313,7 +349,9 @@ $$
 
 
 $$
+
 \Phi = \left(\frac{1}{T} \int_0^T S_t \, dt - K\right)^+
+
 $$
 
 
@@ -324,7 +362,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + S \frac{\partial V}{\partial A} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+
 $$
 
 
@@ -338,7 +378,9 @@ $$
 
 
 $$
+
 \Phi = (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t < H\}}
+
 $$
 
 
@@ -349,7 +391,9 @@ $$
 
 
 $$
+
 V(t, H) = 0 \quad \text{(boundary condition)}
+
 $$
 
 
@@ -365,7 +409,9 @@ $$
 
 
 $$
+
 \Phi = \sup_{0 \leq \tau \leq T} e^{-r\tau} g(S_{\tau})
+
 $$
 
 
@@ -374,7 +420,9 @@ $$
 
 
 $$
+
 \min\left\{ \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV, \, V - g(S) \right\} = 0
+
 $$
 
 
@@ -390,7 +438,9 @@ $$
 
 
 $$
+
 \Phi = M_T - K \quad \text{where } M_t = \max_{0 \leq s \leq t} S_s
+
 $$
 
 
@@ -401,7 +451,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+
 $$
 
 
@@ -420,7 +472,9 @@ with boundary condition $V(t, M, M) = $ continuously updated.
 
 
 $$
+
 dS_t^{(i)} = \mu_i S_t^{(i)} \, dt + \sigma_t^{(i)} S_t^{(i)} \, dW_t^{(i)}
+
 $$
 
 
@@ -436,7 +490,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + \mathbf{r} \cdot \mathbf{S} \odot \nabla V + \sup_{\boldsymbol{\Sigma} \in \mathcal{S}} \left\{ \frac{1}{2} \text{tr}[\boldsymbol{\Sigma} \mathbf{S} \mathbf{S}^\top \odot \mathbf{H}] \right\} - rV = 0
+
 $$
 
 
@@ -455,7 +511,9 @@ where:
 
 
 $$
+
 \max\left\{-1, \sum_{i \neq j} \frac{\sigma_i \sigma_j}{\sigma_i^2 + \sigma_j^2} - (n-1)\right\} \leq \rho_{ij} \leq 1
+
 $$
 
 
@@ -466,7 +524,9 @@ $$
 
 
 $$
+
 \sup_{\boldsymbol{\rho} \in \mathcal{R}} \text{tr}[\boldsymbol{\rho} \odot \mathbf{H}]
+
 $$
 
 
@@ -487,7 +547,9 @@ where $\mathcal{R}$ is the set of valid correlation matrices.
 
 
 $$
+
 \frac{V_j^{i+1} - V_j^i}{\Delta t} + rS_j \frac{V_{j+1}^i - V_{j-1}^i}{2\Delta S} + \frac{1}{2} \bar{\sigma}^2(\Gamma_j^i) S_j^2 \frac{V_{j+1}^i - 2V_j^i + V_{j-1}^i}{(\Delta S)^2} - rV_j^i = 0
+
 $$
 
 
@@ -496,7 +558,9 @@ where:
 
 
 $$
+
 \Gamma_j^i = \frac{V_{j+1}^i - 2V_j^i + V_{j-1}^i}{(\Delta S)^2}
+
 $$
 
 
@@ -505,10 +569,12 @@ $$
 
 
 $$
+
 \bar{\sigma}^2(\Gamma_j^i) = \begin{cases}
 \overline{\sigma}^2 & \text{if } \Gamma_j^i > 0 \\
 \underline{\sigma}^2 & \text{if } \Gamma_j^i < 0
 \end{cases}
+
 $$
 
 
@@ -530,7 +596,9 @@ $$
 
 
 $$
+
 V(t, S) \approx \sum_{k=1}^K \beta_k \phi_k(S)
+
 $$
 
 
@@ -546,10 +614,12 @@ $$
 3. **Update Policy**: Set:
 
    $$
+
    \sigma^{(k+1)}(t, S) = \begin{cases}
    \overline{\sigma} & \text{if } \frac{\partial^2 V^{(k)}}{\partial S^2} > 0 \\
    \underline{\sigma} & \text{if } \frac{\partial^2 V^{(k)}}{\partial S^2} < 0
    \end{cases}
+
    $$
 
 
@@ -569,7 +639,9 @@ $$
 
 
 $$
+
 \sigma_{\text{imp}}(K, T) = \text{BS}^{-1}(C(K, T), S_0, K, r, T)
+
 $$
 
 
@@ -578,7 +650,9 @@ $$
 
 
 $$
+
 \underline{\sigma}(t) = \min_{K, T} \sigma_{\text{imp}}(K, T), \quad \overline{\sigma}(t) = \max_{K, T} \sigma_{\text{imp}}(K, T)
+
 $$
 
 
@@ -592,7 +666,9 @@ $$
 
 
 $$
+
 \hat{\sigma} = \sqrt{\frac{252}{n} \sum_{i=1}^n \log^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)}
+
 $$
 
 
@@ -601,7 +677,9 @@ $$
 
 
 $$
+
 \underline{\sigma} = \hat{\sigma} - k \cdot \text{std}(\sigma_{\text{hist}}), \quad \overline{\sigma} = \hat{\sigma} + k \cdot \text{std}(\sigma_{\text{hist}})
+
 $$
 
 
@@ -615,7 +693,9 @@ for some confidence level $k$.
 
 
 $$
+
 \underline{\sigma} = \min\{\sigma_{\text{imp}}^{\min}, \sigma_{\text{hist}}^{\min}\}, \quad \overline{\sigma} = \max\{\sigma_{\text{imp}}^{\max}, \sigma_{\text{hist}}^{\max}\}
+
 $$
 
 
@@ -632,7 +712,9 @@ $$
 
 
 $$
+
 \text{Model Risk} = V^{\text{sup}} - V^{\text{model}}
+
 $$
 
 
@@ -651,7 +733,9 @@ $$
 
 
 $$
+
 \text{P&L}_{\text{stress}} = V(T, S_T^{\text{stress}}) - V_0 - \int_0^T \Delta_t \, dS_t^{\text{stress}}
+
 $$
 
 
@@ -660,7 +744,9 @@ $$
 
 
 $$
+
 \text{WCL} = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \text{Loss}(\sigma)
+
 $$
 
 
@@ -672,7 +758,9 @@ $$
 
 
 $$
+
 \text{VaR}_{\alpha}^{\mathcal{M}} = \inf\{v: P^{\mathcal{M}}(\text{Loss} > v) \leq \alpha\}
+
 $$
 
 
@@ -681,7 +769,9 @@ $$
 
 
 $$
+
 \text{VaR}_{\alpha}^{\text{robust}} = \sup_{\mathcal{M} \in \text{Model Class}} \text{VaR}_{\alpha}^{\mathcal{M}}
+
 $$
 
 
@@ -698,7 +788,9 @@ $$
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S, \quad dV_t = \kappa(\theta - V_t) \, dt + \xi \sqrt{V_t} \, dW_t^V
+
 $$
 
 
@@ -723,7 +815,9 @@ $$
 
 
 $$
+
 dF_t = \alpha_t F_t^{\beta} \, dW_t^1, \quad d\alpha_t = \nu \alpha_t \, dW_t^2
+
 $$
 
 
@@ -756,7 +850,9 @@ $$
 
 
 $$
+
 \text{Spread} = V^{\text{sup}} - V^{\text{sub}}
+
 $$
 
 
@@ -772,7 +868,9 @@ $$
 
 
 $$
+
 \Phi = \min_{i=1, \ldots, n} S_T^{(i)} - K
+
 $$
 
 
@@ -788,7 +886,9 @@ $$
 
 
 $$
+
 \text{Model Risk Capital} = V^{\text{sup}} - V^{\text{expected}}
+
 $$
 
 
@@ -807,7 +907,9 @@ $$
 
 
 $$
+
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t + S_{t-} \, dJ_t
+
 $$
 
 
@@ -818,7 +920,9 @@ where $J_t$ is a jump process with uncertain intensity $\lambda \in [\underline{
 
 
 $$
+
 \frac{\partial V}{\partial t} + \mathcal{L}V + \sup_{\lambda \in [\underline{\lambda}, \overline{\lambda}]} \left\{ \lambda \int (V(t, Sy) - V(t, S)) \nu(dy) \right\} = 0
+
 $$
 
 
@@ -834,7 +938,9 @@ where $\nu$ is the jump size distribution.
 
 
 $$
+
 \underline{\sigma}(t) \leq \sigma_t \leq \overline{\sigma}(t)
+
 $$
 
 
@@ -843,7 +949,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(t, V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+
 $$
 
 
@@ -859,7 +967,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - \lambda S \left|\frac{\partial V}{\partial S}\right| - rV = 0
+
 $$
 
 
@@ -875,7 +985,9 @@ $$
 
 
 $$
+
 \exp\left(-\int_0^T r_s \, ds\right)
+
 $$
 
 
@@ -894,7 +1006,9 @@ $$
 
 
 $$
+
 V(t, S) \approx f_{\theta}(t, S)
+
 $$
 
 
@@ -903,7 +1017,9 @@ $$
 
 
 $$
+
 \mathcal{L}(\theta) = \mathbb{E}\left[\left|\frac{\partial f_{\theta}}{\partial t} + rS \frac{\partial f_{\theta}}{\partial S} + \frac{1}{2} \bar{\sigma}^2(f_{\theta}) S^2 \frac{\partial^2 f_{\theta}}{\partial S^2} - rf_{\theta}\right|^2\right]
+
 $$
 
 
@@ -926,7 +1042,9 @@ $$
 
 
 $$
+
 \sigma_t = f\left(\int_0^t (t-s)^{H-1/2} dW_s\right)
+
 $$
 
 
@@ -935,7 +1053,9 @@ $$
 
 
 $$
+
 \underline{H} \leq H_t \leq \overline{H}
+
 $$
 
 

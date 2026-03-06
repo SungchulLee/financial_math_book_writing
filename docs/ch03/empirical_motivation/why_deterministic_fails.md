@@ -16,7 +16,9 @@ The answer, as we shall demonstrate rigorously, is **no**. Deterministic ordinar
 The simplest model for asset prices is exponential growth:
 
 $$
+
 \frac{dS}{dt} = \mu S
+
 $$
 
 where:
@@ -26,7 +28,9 @@ where:
 **Solution:**
 
 $$
+
 S(t) = S_0 e^{\mu t}
+
 $$
 
 This is a **smooth, deterministic trajectory** with no randomness.
@@ -39,7 +43,9 @@ This is a **smooth, deterministic trajectory** with no randomness.
 Given $S_0$ and $\mu$, the price at any future time is **exactly known**:
 
 $$
+
 S(t) = S_0 e^{\mu t} \quad \text{for all } t \geq 0
+
 $$
 
 **2. Smoothness:**
@@ -47,7 +53,9 @@ $$
 The path $t \mapsto S(t)$ is **infinitely differentiable**:
 
 $$
+
 S'(t) = \mu S(t), \quad S''(t) = \mu^2 S(t), \quad \text{etc.}
+
 $$
 
 **3. No volatility:**
@@ -55,7 +63,9 @@ $$
 The instantaneous return is **constant**:
 
 $$
+
 \frac{dS/dt}{S} = \mu \quad \text{(deterministic)}
+
 $$
 
 **4. Monotonicity:**
@@ -140,7 +150,9 @@ compare_deterministic_vs_real("AAPL", "2023-01-01", "2023-12-31")
 **Deterministic Model:**
 
 $$
+
 r_t = \frac{S(t+\Delta t) - S(t)}{S(t)} = e^{\mu \Delta t} - 1 \approx \mu \Delta t
+
 $$
 
 This is **constant** and **perfectly predictable**!
@@ -148,7 +160,9 @@ This is **constant** and **perfectly predictable**!
 **Reality:**
 
 $$
+
 r_t = \text{random variable with } \mathbb{E}[r_t] \approx \mu \Delta t, \quad \text{Var}(r_t) > 0
+
 $$
 
 **Conclusion:** Deterministic models have **zero variance** → Cannot match observed volatility.
@@ -161,13 +175,17 @@ $$
 **Deterministic ODE:** Requires $S(t)$ to be **continuously differentiable**:
 
 $$
+
 \frac{dS}{dt} = \text{well-defined at all times}
+
 $$
 
 **Reality:** Price paths are continuous but **not differentiable**:
 
 $$
+
 \lim_{\Delta t \to 0} \frac{S(t + \Delta t) - S(t)}{\Delta t} = \text{does not exist}
+
 $$
 
 This is a rigorous result from the theory of Brownian motion.
@@ -226,13 +244,17 @@ def demonstrate_nondifferentiability(df):
 **Deterministic Model:** Volatility is **zero** everywhere!
 
 $$
+
 \text{Var}\left(\frac{dS}{dt}\Big|_t\right) = 0 \quad \text{for all } t
+
 $$
 
 **Reality:** Volatility is time-varying:
 
 $$
+
 \sigma_t = \sigma(t, \text{information}) \quad \text{(changes over time)}
+
 $$
 
 Periods of high volatility followed by high volatility, etc.
@@ -247,7 +269,9 @@ Periods of high volatility followed by high volatility, etc.
 **Deterministic Model:** Return distribution is a **Dirac delta function**:
 
 $$
+
 P(r_t = \mu \Delta t) = 1, \quad P(r_t \neq \mu \Delta t) = 0
+
 $$
 
 This is **infinitely peaked** at one point with **no tails** whatsoever.
@@ -276,7 +300,9 @@ This is **infinitely peaked** at one point with **no tails** whatsoever.
 **Idea:** Modify the deterministic model by adding random "shocks":
 
 $$
+
 S(t + \Delta t) = S(t) e^{\mu \Delta t} + \epsilon_t
+
 $$
 
 where $\epsilon_t \sim \mathcal{N}(0, \sigma^2 \Delta t)$ is random noise.
@@ -289,7 +315,9 @@ where $\epsilon_t \sim \mathcal{N}(0, \sigma^2 \Delta t)$ is random noise.
 With additive noise, $S(t)$ can become **negative**:
 
 $$
+
 S(t + \Delta t) = S(t) e^{\mu \Delta t} + \epsilon_t < 0 \quad \text{if } \epsilon_t < -S(t)e^{\mu \Delta t}
+
 $$
 
 This is economically nonsensical (prices must be positive).
@@ -305,13 +333,17 @@ The noise $\epsilon_t$ has **constant variance** $\sigma^2 \Delta t$ regardless 
 As $\Delta t \to 0$, what happens?
 
 $$
+
 S(t + \Delta t) - S(t) = S(t)(\mu \Delta t + o(\Delta t)) + \epsilon_t
+
 $$
 
 Dividing by $\Delta t$:
 
 $$
+
 \frac{S(t + \Delta t) - S(t)}{\Delta t} = S(t)\mu + \frac{\epsilon_t}{\Delta t}
+
 $$
 
 But $\frac{\epsilon_t}{\Delta t} \to \infty$ as $\Delta t \to 0$ (noise grows without bound!).
@@ -329,7 +361,9 @@ But $\frac{\epsilon_t}{\Delta t} \to \infty$ as $\Delta t \to 0$ (noise grows wi
 **Improved idea:** Make noise proportional to price:
 
 $$
+
 S(t + \Delta t) = S(t) \cdot e^{\mu \Delta t + \sigma \epsilon_t}
+
 $$
 
 where $\epsilon_t \sim \mathcal{N}(0, \Delta t)$.
@@ -347,7 +381,9 @@ where $\epsilon_t \sim \mathcal{N}(0, \Delta t)$.
 For small $\Delta t$:
 
 $$
+
 S(t + \Delta t) = S(t) \exp\left(\mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z\right)
+
 $$
 
 where $Z \sim \mathcal{N}(0, 1)$.
@@ -355,13 +391,17 @@ where $Z \sim \mathcal{N}(0, 1)$.
 Taking logarithms:
 
 $$
+
 \log S(t + \Delta t) - \log S(t) = \mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z
+
 $$
 
 Dividing by $\Delta t$:
 
 $$
+
 \frac{\log S(t + \Delta t) - \log S(t)}{\Delta t} = \mu + \sigma \frac{Z}{\sqrt{\Delta t}}
+
 $$
 
 As $\Delta t \to 0$, the term $\frac{Z}{\sqrt{\Delta t}} \to \infty$ but in a **controlled way**!
@@ -369,7 +409,9 @@ As $\Delta t \to 0$, the term $\frac{Z}{\sqrt{\Delta t}} \to \infty$ but in a **
 **This is precisely a Brownian motion increment:**
 
 $$
+
 \frac{W(t + \Delta t) - W(t)}{\sqrt{\Delta t}} \sim \mathcal{N}(0, 1)
+
 $$
 
 ### 3. Heuristic Continuous-Time Limit
@@ -378,7 +420,9 @@ $$
 Formally (heuristically):
 
 $$
+
 d(\log S) = \mu \, dt + \sigma \, dW_t
+
 $$
 
 where $W_t$ is **Brownian motion**.
@@ -388,7 +432,9 @@ where $W_t$ is **Brownian motion**.
 Using the "chain rule" (actually **Itô's lemma**, which we'll study later):
 
 $$
+
 dS = \mu S \, dt + \sigma S \, dW_t
+
 $$
 
 **This is a stochastic differential equation (SDE)**, not an ODE!
@@ -404,19 +450,25 @@ $$
 **Ordinary calculus assumes:**
 
 $$
+
 df = f'(x) \, dx
+
 $$
 
 **But for stochastic processes:**
 
 $$
+
 d(\log S) \neq \frac{1}{S} dS \quad \text{(WRONG!)}
+
 $$
 
 **The correct formula (Itô's lemma) includes a correction term:**
 
 $$
+
 d(\log S) = \frac{1}{S} dS - \frac{1}{2S^2} (dS)^2
+
 $$
 
 The term $(dS)^2 = \sigma^2 S^2 dt$ is **not zero** in stochastic calculus!
@@ -427,13 +479,17 @@ The term $(dS)^2 = \sigma^2 S^2 dt$ is **not zero** in stochastic calculus!
 **In ordinary calculus:**
 
 $$
+
 (dx)^2 = 0 \quad \text{(infinitesimal squared is zero)}
+
 $$
 
 **In stochastic calculus:**
 
 $$
+
 (dW_t)^2 = dt \quad \text{(NOT zero!)}
+
 $$
 
 This is the **quadratic variation** of Brownian motion, a fundamental result.
@@ -503,9 +559,11 @@ To properly model financial returns, we must develop:
 The correct continuous-time model is:
 
 $$
+
 \boxed{
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 }
+
 $$
 
 **Properties:**

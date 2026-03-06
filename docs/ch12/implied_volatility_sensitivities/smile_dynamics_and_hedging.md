@@ -15,7 +15,9 @@ Smile dynamics describe how the implied volatility surface evolves as market con
 A **static smile** assumes the implied volatility surface is fixed in time except for deterministic decay:
 
 $$
+
 \sigma_{\text{IV}}(K, T; t) = \sigma_{\text{IV}}(K, T-t; 0)
+
 $$
 
 
@@ -62,7 +64,9 @@ A **dynamic smile** evolves with:
 Model the implied volatility surface as a function of state variables:
 
 $$
+
 \sigma_{\text{IV}}(K, T; S_t, v_t, \ldots) = f(K, T, S_t, v_t, \ldots)
+
 $$
 
 
@@ -71,7 +75,9 @@ where $v_t$ may represent instantaneous variance, a volatility factor, or other 
 **Taylor expansion:**
 
 $$
+
 d\sigma_{\text{IV}} = \frac{\partial \sigma}{\partial S} dS + \frac{\partial \sigma}{\partial v} dv + \frac{\partial \sigma}{\partial t} dt + \frac{1}{2}\frac{\partial^2 \sigma}{\partial S^2}(dS)^2 + \ldots
+
 $$
 
 
@@ -83,21 +89,27 @@ Define the following smile sensitivities:
 **Spot sensitivity (at fixed strike):**
 
 $$
+
 \Sigma_S := \frac{\partial \sigma_{\text{IV}}(K)}{\partial S}
+
 $$
 
 
 **Variance sensitivity:**
 
 $$
+
 \Sigma_v := \frac{\partial \sigma_{\text{IV}}(K)}{\partial v}
+
 $$
 
 
 **Time decay of smile:**
 
 $$
+
 \Sigma_t := \frac{\partial \sigma_{\text{IV}}(K)}{\partial t}
+
 $$
 
 
@@ -107,25 +119,31 @@ $$
 In a stochastic volatility model:
 
 $$
+
 \begin{align}
 dS_t &= (r-q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 d\langle W^S, W^v \rangle_t &= \rho dt
 \end{align}
+
 $$
 
 
 The implied volatility depends on both $S_t$ and $v_t$:
 
 $$
+
 \sigma_{\text{IV}}(K, T; S_t, v_t)
+
 $$
 
 
 The dynamics are:
 
 $$
+
 d\sigma_{\text{IV}} = \Sigma_S dS + \Sigma_v dv + \Sigma_t dt + \text{higher order}
+
 $$
 
 
@@ -138,7 +156,9 @@ $$
 The total P&L of a delta-hedged option position can be decomposed:
 
 $$
+
 \text{P\&L} = \underbrace{\Theta \cdot dt}_{\text{time decay}} + \underbrace{\frac{1}{2}\Gamma (dS)^2}_{\text{gamma P\&L}} + \underbrace{\mathcal{V} \cdot d\sigma_{\text{ATM}}}_{\text{parallel vol}} + \underbrace{\text{Smile effects}}_{\text{residual}}
+
 $$
 
 
@@ -153,14 +173,18 @@ The "smile effects" capture:
 Expanding the vega term:
 
 $$
+
 \mathcal{V} \cdot d\sigma = \mathcal{V} \cdot \left(\Sigma_S dS + \Sigma_v dv + \Sigma_t dt\right)
+
 $$
 
 
 **Cross-gamma (Vanna P&L):**
 
 $$
+
 \text{P\&L}_{\text{vanna}} = \mathcal{V} \cdot \Sigma_S \cdot dS
+
 $$
 
 
@@ -169,7 +193,9 @@ This captures the interaction between spot moves and volatility changes.
 **Pure volatility P&L:**
 
 $$
+
 \text{P\&L}_{\text{vol}} = \mathcal{V} \cdot \Sigma_v \cdot dv
+
 $$
 
 
@@ -181,7 +207,9 @@ This captures changes in the underlying volatility state.
 Including second-order terms:
 
 $$
+
 \text{P\&L} = \Delta \cdot dS + \Theta \cdot dt + \frac{1}{2}\Gamma (dS)^2 + \mathcal{V} \cdot d\sigma + \text{Vanna} \cdot dS \cdot d\sigma + \frac{1}{2}\text{Volga} \cdot (d\sigma)^2
+
 $$
 
 
@@ -203,7 +231,9 @@ $$
 In local volatility models, the smile dynamics are fully determined by the local volatility surface:
 
 $$
+
 \sigma_{\text{loc}}(S, t) = \sigma_{\text{loc}}(S, t) \quad \text{(fixed)}
+
 $$
 
 
@@ -215,7 +245,9 @@ $$
 **Forward smile:** The local vol model implies a specific forward smile that typically **flattens** over time:
 
 $$
+
 \sigma_{\text{fwd}}(K, T_1, T_2) \to \text{flat as } T_1 \to \infty
+
 $$
 
 
@@ -229,7 +261,9 @@ The Heston model produces richer smile dynamics:
 **ATM volatility:**
 
 $$
+
 \sigma_{\text{ATM}}^2 \approx v_t + \text{corrections}
+
 $$
 
 
@@ -238,7 +272,9 @@ So ATM volatility moves with the variance process $v_t$.
 **Skew:**
 
 $$
+
 \text{Skew} \propto \rho \cdot \xi
+
 $$
 
 
@@ -255,11 +291,13 @@ The spot-vol correlation $\rho$ generates skew, and vol-of-vol $\xi$ affects its
 The SABR model:
 
 $$
+
 \begin{align}
 dF_t &= \alpha_t F_t^\beta dW_t^F \\
 d\alpha_t &= \nu \alpha_t dW_t^\alpha \\
 d\langle W^F, W^\alpha \rangle &= \rho dt
 \end{align}
+
 $$
 
 
@@ -279,14 +317,18 @@ $$
 Bergomi models the forward variance curve directly:
 
 $$
+
 \xi_t^T = \mathbb{E}_t[\sigma_T^2]
+
 $$
 
 
 The dynamics:
 
 $$
+
 d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t
+
 $$
 
 
@@ -306,7 +348,9 @@ This framework provides a unified approach to smile dynamics and is widely used 
 The "true" delta depends on smile dynamics:
 
 $$
+
 \Delta_{\text{true}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \Sigma_S
+
 $$
 
 
@@ -326,7 +370,9 @@ A single ATM option hedge provides **parallel vega** protection but not **skew p
 **Skew risk:** If the portfolio has different vega exposures at different strikes, a change in skew creates P&L:
 
 $$
+
 \text{P\&L}_{\text{skew}} = \sum_i \mathcal{V}_i \cdot \Delta\sigma(K_i) - \mathcal{V}_{\text{hedge}} \cdot \Delta\sigma_{\text{ATM}}
+
 $$
 
 
@@ -340,7 +386,9 @@ Different maturities respond differently to volatility shocks:
 **Term structure risk:** The term structure may steepen or flatten:
 
 $$
+
 \Delta\sigma(T_{\text{long}}) \neq \Delta\sigma(T_{\text{short}})
+
 $$
 
 
@@ -354,14 +402,18 @@ $$
 Vanna exposure creates P&L when spot and volatility move together:
 
 $$
+
 \text{P\&L}_{\text{vanna}} \approx \text{Vanna} \cdot \Delta S \cdot \Delta\sigma
+
 $$
 
 
 **Empirical correlation:** For equities, spot and volatility are negatively correlated:
 
 $$
+
 \mathbb{E}[\Delta S \cdot \Delta\sigma] < 0
+
 $$
 
 
@@ -373,7 +425,9 @@ $$
 Volga exposure creates P&L from volatility convexity:
 
 $$
+
 \text{P\&L}_{\text{volga}} \approx \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2
+
 $$
 
 
@@ -403,7 +457,9 @@ A portfolio of exotic options has exposures to:
 For first-order exposures, solve:
 
 $$
+
 \begin{pmatrix} \Delta_{\text{port}} \\ \mathcal{V}_{\text{ATM,port}} \\ \mathcal{V}_{\text{skew,port}} \end{pmatrix} + \begin{pmatrix} \Delta_1 & \Delta_2 & \Delta_3 \\ \mathcal{V}_{\text{ATM},1} & \mathcal{V}_{\text{ATM},2} & \mathcal{V}_{\text{ATM},3} \\ \mathcal{V}_{\text{skew},1} & \mathcal{V}_{\text{skew},2} & \mathcal{V}_{\text{skew},3} \end{pmatrix} \begin{pmatrix} h_1 \\ h_2 \\ h_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+
 $$
 
 
@@ -432,7 +488,9 @@ This requires at least as many hedging instruments as exposures.
 **Empirical:** Estimate sensitivities from historical data:
 
 $$
+
 \Delta\sigma_{\text{port}} = \beta_1 \Delta\sigma_{\text{ATM}} + \beta_2 \Delta\text{skew} + \epsilon
+
 $$
 
 
@@ -466,29 +524,39 @@ $$
 **Scenario A: Parallel vol up 2%**
 
 $$
+
 \text{P\&L} \approx 25.5 \times 0.02 - 12.3 \times 0.02 = 0.51 - 0.25 = +\$0.26
+
 $$
 
 
 **Scenario B: Skew steepens (25D put vol up 3%, ATM unchanged)**
 
 $$
+
 \text{P\&L} \approx 0 - 12.3 \times 0.03 = -\$0.37
+
 $$
 
 
 **Scenario C: Spot down 5%, vol up 2%**
 
 $$
+
 \text{P\&L}_{\Delta} = 0.72 \times (-5) = -\$3.60
+
 $$
 
 $$
+
 \text{P\&L}_{\text{vol}} \approx +\$0.26 \text{ (as in A)}
+
 $$
 
 $$
+
 \text{Total} \approx -\$3.34
+
 $$
 
 
@@ -542,7 +610,9 @@ A model is **dynamically consistent** if:
 The **forward smile** reveals model dynamics:
 
 $$
+
 \sigma_{\text{fwd}}(K, T_1, T_2) = \text{IV of forward-start option}
+
 $$
 
 
@@ -580,21 +650,27 @@ Comparing model-implied forward smiles to historical smile behavior is a key mod
 **Skew-spot beta:**
 
 $$
+
 \frac{d(\text{skew})}{d(\text{log spot})} \approx -0.3 \text{ to } -0.5 \text{ for SPX}
+
 $$
 
 
 **Vol-spot beta:**
 
 $$
+
 \frac{d(\sigma_{\text{ATM}})}{d(\text{log spot})} \approx -1.5 \text{ to } -2.5 \text{ for SPX}
+
 $$
 
 
 **Vol-of-vol:**
 
 $$
+
 \text{Realized vol of ATM IV} \approx 3\% \text{ to } 5\% \text{ annualized}
+
 $$
 
 
@@ -638,7 +714,9 @@ Smile dynamics are central to volatility hedging:
 ### 4. P&L Attribution
 
 $$
+
 \text{P\&L} = \Delta \cdot dS + \Theta \cdot dt + \frac{1}{2}\Gamma (dS)^2 + \mathcal{V} \cdot d\sigma + \text{Vanna} \cdot dS \cdot d\sigma + \frac{1}{2}\text{Volga} \cdot (d\sigma)^2
+
 $$
 
 ### 5. Dynamic Consistency

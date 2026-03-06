@@ -1,3 +1,9 @@
+"""
+Data Downloader
+
+Educational script demonstrating data downloader concepts.
+"""
+
 # ============================================================================
 # stock_analysis/sp500/data_downloader.py
 # ============================================================================

@@ -67,8 +67,11 @@ from .black_scholes_utils import (
     implied_volatility,
     simulate_gbm_paths,
     draw_finite_difference_grid
-)
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "Black-Scholes option pricing model implementation"
+
+if __name__ == "__main__":
+    )
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "Black-Scholes option pricing model implementation"

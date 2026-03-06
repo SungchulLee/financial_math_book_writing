@@ -14,6 +14,8 @@ from scipy.optimize import differential_evolution, minimize
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 class StabilityAnalyzer:
     """Analyze calibration stability across multiple runs."""
     

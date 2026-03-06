@@ -41,61 +41,64 @@ from .grid import (
     check_2d_stability,
     create_time_array_2d,
     get_stability_info
-)
 
-# Initial and boundary conditions
-from .initial_conditions import (
-    step_function_2d,
-    gaussian_pulse_2d,
-    gaussian_2d,
-    circular_pulse_2d,
-    sine_wave_2d,
-    multiple_hotspots_2d,
-    ring_pattern_2d,
-    custom_function_2d,
-    zero_initial_condition_2d
-)
 
-# Matrix construction and linear algebra
-from .matrices import (
-    construct_2d_laplacian,
-    construct_forward_euler_2d,
-    construct_backward_euler_2d,
-    construct_crank_nicolson_2d,
-    construct_crank_nicolson_matrices_2d,
-    construct_adi_matrices,
-    apply_dirichlet_bc_2d,
-    construct_neumann_bc_2d
-)
+if __name__ == "__main__":
+    )
 
-# Numerical solvers
-from .solvers import (
-    solve_forward_euler_2d,
-    solve_backward_euler_2d,
-    solve_crank_nicolson_2d,
-    solve_crank_nicolson_adi_2d,
-    compare_2d_methods
-)
+    # Initial and boundary conditions
+    from .initial_conditions import (
+        step_function_2d,
+        gaussian_pulse_2d,
+        gaussian_2d,
+        circular_pulse_2d,
+        sine_wave_2d,
+        multiple_hotspots_2d,
+        ring_pattern_2d,
+        custom_function_2d,
+        zero_initial_condition_2d
+    )
 
-# Analytical solutions
-from .analytical import (
-    solve_analytical_2d,
-    validate_against_analytical_2d
-)
+    # Matrix construction and linear algebra
+    from .matrices import (
+        construct_2d_laplacian,
+        construct_forward_euler_2d,
+        construct_backward_euler_2d,
+        construct_crank_nicolson_2d,
+        construct_crank_nicolson_matrices_2d,
+        construct_adi_matrices,
+        apply_dirichlet_bc_2d,
+        construct_neumann_bc_2d
+    )
 
-# Visualization and plotting
-from .plotting import (
-    plot_2d_solution,
-    plot_method_comparison_2d,
-    plot_2d_evolution,
-    plot_cross_sections
-)
+    # Numerical solvers
+    from .solvers import (
+        solve_forward_euler_2d,
+        solve_backward_euler_2d,
+        solve_crank_nicolson_2d,
+        solve_crank_nicolson_adi_2d,
+        compare_2d_methods
+    )
 
-from .wrapper import (
-    HeatEquation2D,
-    solve_heat_equation_2d
-)
+    # Analytical solutions
+    from .analytical import (
+        solve_analytical_2d,
+        validate_against_analytical_2d
+    )
 
-__version__ = "1.0.0"
-__author__ = "sungchul@yonsei.ac.kr"
-__description__ = "2D Heat equation numerical solver with multi-dimensional PDE methods"
+    # Visualization and plotting
+    from .plotting import (
+        plot_2d_solution,
+        plot_method_comparison_2d,
+        plot_2d_evolution,
+        plot_cross_sections
+    )
+
+    from .wrapper import (
+        HeatEquation2D,
+        solve_heat_equation_2d
+    )
+
+    __version__ = "1.0.0"
+    __author__ = "sungchul@yonsei.ac.kr"
+    __description__ = "2D Heat equation numerical solver with multi-dimensional PDE methods"

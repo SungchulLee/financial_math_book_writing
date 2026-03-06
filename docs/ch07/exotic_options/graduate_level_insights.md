@@ -27,7 +27,9 @@ This section collects advanced topics and deeper mathematical insights related t
 When simulating barrier options with discrete time steps $\Delta t = T/M$, the underlying price is observed only at times $\{0, \Delta t, 2\Delta t, \ldots, T\}$. Between observation times, the price may cross and re-cross the barrier without detection. This introduces a **systematic bias**:
 
 $$
+
 \mathbb{P}\!\left(\min_{0 \leq t \leq T} S_t \leq H \;\middle|\; S_{t_k} > H \;\forall k\right) > 0
+
 $$
 
 The probability of missing a barrier crossing between two consecutive observations is non-negligible, causing discrete-monitoring simulations to **overestimate** knock-out option prices (and **underestimate** knock-in prices).
@@ -37,9 +39,11 @@ The probability of missing a barrier crossing between two consecutive observatio
 Broadie, Glasserman, and Kou (1997) derived an asymptotic correction for this bias. For a down barrier $H$ monitored at $m$ equally-spaced times:
 
 $$
+
 \boxed{
 H_{\text{eff}} = H \cdot \exp\left(-\beta\, \sigma \sqrt{\Delta t}\right), \quad \beta = \frac{-\zeta(1/2)}{\sqrt{2\pi}} \approx 0.5826
 }
+
 $$
 
 where $\zeta$ is the Riemann zeta function. The correction shifts the barrier **downward** (for a down barrier), accounting for the paths that would have crossed $H$ between observation times.
@@ -66,17 +70,23 @@ Since the arithmetic average $\bar{S}_{\text{arith}} = \frac{1}{n}\sum_{i=1}^{n}
 Under GBM, the first two moments of the arithmetic average are:
 
 $$
+
 M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}] = \frac{1}{n}\sum_{i=1}^{n} S_0\, e^{r t_i}
+
 $$
 
 $$
+
 M_2 = \mathbb{E}^{\mathbb{Q}}[\bar{S}^2] = \frac{1}{n^2}\sum_{i=1}^{n}\sum_{j=1}^{n} S_0^2\, e^{(r + \sigma^2 \min(t_i, t_j))(t_i + t_j)/2 + \ldots}
+
 $$
 
 The matched lognormal parameters are:
 
 $$
+
 \hat{\sigma}^2 = \ln\!\left(\frac{M_2}{M_1^2}\right), \quad \hat{\mu} = \ln M_1 - \frac{1}{2}\hat{\sigma}^2
+
 $$
 
 The Asian call price is then approximated using a Black–Scholes formula with these adjusted parameters.
@@ -103,7 +113,9 @@ For continuous-time Asian options, Geman and Yor (1993) derived the Laplace tran
 The analytical pricing of lookback options rests on the **joint distribution of Brownian motion and its running maximum**. For a standard Brownian motion $W_t$:
 
 $$
+
 \mathbb{P}\!\left(W_T \leq x,\; \max_{0 \leq t \leq T} W_t \leq y\right) = N\!\left(\frac{x}{\sqrt{T}}\right) - e^{-2xy/T}\, N\!\left(\frac{x - 2y}{\sqrt{T}}\right)
+
 $$
 
 for $y \geq 0$ and $x \leq y$. This formula follows from the **reflection principle**: the event $\{\max_t W_t \geq y\}$ can be related to $\{W_T \geq 2y - x\}$ by reflecting paths that hit level $y$.
@@ -113,7 +125,9 @@ for $y \geq 0$ and $x \leq y$. This formula follows from the **reflection princi
 Under GBM, $\ln S_t$ is a Brownian motion with drift. The running maximum of $S_t$ corresponds to the running maximum of $\ln S_t$, and the reflection principle extends to drifted Brownian motion via a Girsanov-type calculation:
 
 $$
+
 \mathbb{P}^{\mathbb{Q}}\!\left(S_T \leq s,\; S_{\max} \leq m \;\middle|\; S_0\right) = N(a) - \left(\frac{m}{S_0}\right)^{2\lambda - 2} N(b)
+
 $$
 
 where $\lambda = (r - \frac{1}{2}\sigma^2)/\sigma^2 + 1$ and $a, b$ depend on $s, m, S_0, r, \sigma, T$.
@@ -146,13 +160,17 @@ The standard LSM algorithm (see [LSM Monte Carlo](../american_options/lsm_monte_
 For an American Asian option, the continuation value at time $t_k$ depends on both $S_{t_k}$ and the running average $\bar{S}_k$:
 
 $$
+
 C(t_k, S_{t_k}, \bar{S}_k) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-r\Delta t} V_{t_{k+1}} \;\middle|\; S_{t_k}, \bar{S}_k\right]
+
 $$
 
 The LSM regression is performed on basis functions of **both** state variables:
 
 $$
+
 C \approx \sum_{p,q} \alpha_{pq}\, \psi_p(S_{t_k})\, \phi_q(\bar{S}_k)
+
 $$
 
 where $\{\psi_p\}$ and $\{\phi_q\}$ are polynomial or other basis functions.

@@ -9,9 +9,11 @@ The infinitesimal generator $\mathcal{L}$ and martingales are deeply connected. 
 For a diffusion $dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t$ with generator $\mathcal{L}$, define:
 
 $$
+
 \boxed{
 M_t := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds
 }
+
 $$
 
 !!! abstract "Theorem"
@@ -34,6 +36,7 @@ $$M_t = f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds = \int_0^t f'(X_s)\si
 The Itô integral is a (local) martingale, so $M_t$ is a (local) martingale.
 
 !!! info "Interpretation"
+
     $$f(X_t) = \underbrace{f(X_0) + \int_0^t (\mathcal{L}f)(X_s)\,ds}_{\text{predictable drift}} + \underbrace{M_t}_{\text{martingale}}$$
     
     - **Drift**: systematic, predictable change (captured by $\mathcal{L}$)
@@ -126,9 +129,11 @@ $$M_t = f(X_t) - f(X_0) - \int_0^t 0\,ds = f(X_t) - f(X_0)$$
 So $f(X_t) - f(X_0)$ is a martingale, i.e., **$f(X_t)$ is a martingale**.
 
 $$
+
 \boxed{
 \mathcal{L}f = 0 \quad \Longrightarrow \quad f(X_t) \text{ is a martingale}
 }
+
 $$
 
 ---
@@ -174,9 +179,11 @@ It does **not** automatically give $\mathcal{L}f(x) = 0$ for all $x$.
 Under suitable regularity (e.g., $f \in C^2$, diffusion is non-degenerate):
 
 $$
+
 \boxed{
 \mathcal{L}f(x) = 0 \;\forall x \quad \Longleftrightarrow \quad f(X_t) \text{ is a local martingale}
 }
+
 $$
 
 !!! note "Why Local Martingale?"
@@ -186,6 +193,7 @@ $$
     - **⟸ direction**: We only need "martingale locally" to conclude $\mathcal{L}f = 0$ along paths
     
     For **true martingale**, we need the additional integrability condition:
+
     $$\mathbb{E}\left[\int_0^t (f'(X_s)\sigma(X_s))^2\,ds\right] < \infty$$
 
 ---
@@ -293,9 +301,11 @@ See [Stroock–Varadhan Martingale Problem](../diffusion_process/martingale_prob
 | $f(X_t)$ martingale $\Rightarrow \mathcal{L}f = 0$ | Converse (with caveats) |
 
 $$
+
 \boxed{
 M_t = \int_0^t f'(X_s)\sigma(X_s)\,dW_s
 }
+
 $$
 
 The Dynkin martingale **is** the Itô integral — the noise that remains after subtracting the systematic drift.

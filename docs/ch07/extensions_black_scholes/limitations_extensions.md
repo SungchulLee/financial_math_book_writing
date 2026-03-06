@@ -80,11 +80,14 @@ The "smile" shape contradicts constant $\sigma$.
 Allow volatility itself to be random:
 
 **Heston model** (1993):
+
 $$
+
 \begin{aligned}
 dS_t &= rS_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 \end{aligned}
+
 $$
 
 where:
@@ -110,13 +113,19 @@ where:
 Make volatility a **deterministic function** of price and time:
 
 **Dupire model** (1994):
+
 $$
+
 \sigma = \sigma(S, t)
+
 $$
 
 **Key equation (Dupire's formula)**:
+
 $$
+
 \sigma^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}
+
 $$
 
 where $C(K,T)$ is the market price of call option with strike $K$ and maturity $T$.
@@ -180,8 +189,11 @@ where $C(K,T)$ is the market price of call option with strike $K$ and maturity $
 Add a jump component to the price process:
 
 **Merton model** (1976):
+
 $$
+
 dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t
+
 $$
 
 where:
@@ -190,15 +202,21 @@ where:
 - Jump size $Y \sim \mathcal{N}(\mu_J, \sigma_J^2)$ (log-normal)
 
 **Full dynamics**:
+
 $$
+
 S_t = S_0 \exp\left((\mu - \frac{1}{2}\sigma^2)t + \sigma W_t + \sum_{i=1}^{N_t} Y_i\right)
+
 $$
 
 where $N_t \sim \text{Poisson}(\lambda t)$.
 
 **Option pricing**:
+
 $$
+
 C = \sum_{n=0}^\infty \frac{e^{-\lambda' T}(\lambda' T)^n}{n!} C_{BS}(S, K, T, r, \sigma_n)
+
 $$
 
 where:
@@ -233,7 +251,7 @@ where:
 
 **Transaction costs**:
 - Bid-ask spreads: 0.01%-0.1% for liquid stocks, 0.5%-2% for illiquid
-- Commission fees: $0-10 per trade (varies by broker)
+- Commission fees: \$0-10 per trade (varies by broker)
 - Market impact: Large trades move prices
 
 **Discrete trading**:
@@ -254,8 +272,11 @@ where:
 **Leland model** (1985):
 
 Adjust volatility to account for discrete hedging with proportional transaction cost $k$:
+
 $$
+
 \sigma_{adj} = \sigma\sqrt{1 + \sqrt{\frac{2}{\pi}} \frac{k}{\sigma\sqrt{\Delta t}}}
+
 $$
 
 where $\Delta t$ = rehedging interval.
@@ -270,8 +291,11 @@ where $\Delta t$ = rehedging interval.
 🔧 **Extension 2: Utility-Based Pricing**
 
 In incomplete markets (with frictions), derive prices from investor preferences:
+
 $$
+
 V = \arg\min_{V} \mathbb{E}[U(\text{Wealth})]
+
 $$
 
 where $U$ is utility function.
@@ -325,8 +349,11 @@ Clearly not a single constant $r$.
 🔧 **Extension 1: Deterministic $r(t)$**
 
 Use time-dependent but deterministic risk-free rate:
+
 $$
+
 r = r(t)
+
 $$
 
 **Implementation**: Replace $e^{-rT}$ with $\exp\left(-\int_0^T r(s)ds\right)$ in formulas.
@@ -338,13 +365,19 @@ $$
 Model interest rates as random:
 
 **Vasicek model** (1977):
+
 $$
+
 dr_t = \kappa(\theta - r_t)dt + \sigma_r dW_t^r
+
 $$
 
 **Cox-Ingersoll-Ross (CIR) model** (1985):
+
 $$
+
 dr_t = \kappa(\theta - r_t)dt + \sigma_r\sqrt{r_t} dW_t^r
+
 $$
 
 **Features**:
@@ -385,18 +418,27 @@ Combine stock price dynamics with stochastic rates for long-dated equity options
 🔧 **Extension 1: Continuous Dividend Yield**
 
 Replace drift $r$ with $r - q$ where $q$ = dividend yield:
+
 $$
+
 dS_t = (r - q)S_t dt + \sigma S_t dW_t
+
 $$
 
 **Black-Scholes formula adjustment**:
+
 $$
+
 C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+
 $$
 
 with:
+
 $$
+
 d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+
 $$
 
 **Application**: Foreign exchange (treat foreign interest rate as dividend yield).
@@ -406,8 +448,11 @@ $$
 **Known dividends** $D_1, D_2, \ldots$ at times $t_1, t_2, \ldots$:
 
 **Method 1**: Subtract PV of dividends from stock price:
+
 $$
+
 S' = S - \sum_{i:t_i < T} D_i e^{-r(t_i - t)}
+
 $$
 
 Use $S'$ in Black-Scholes formula.
@@ -450,8 +495,11 @@ Use $S'$ in Black-Scholes formula.
 When perfect replication is impossible:
 
 **Pricing bounds**:
+
 $$
+
 C_{lower} \leq C \leq C_{upper}
+
 $$
 
 Instead of unique price, derive **bid-ask bounds**.

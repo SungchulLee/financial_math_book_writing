@@ -32,6 +32,8 @@ import matplotlib.pyplot as plt
 # 1. OU process -- exact simulation
 # ---------------------------------------------------------------------------
 
+# ======================================================================
+
 def simulate_ou(kappa, theta, sigma, X0, T, N, paths, seed=42):
     """Simulate OU paths using the exact recursive formula.
 

@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import enum
 import scipy.stats as st
 
+# ======================================================================
 # This class defines puts and calls
 class OptionType(enum.Enum):
     CALL = 1.0
@@ -130,4 +131,6 @@ def mainCalculation():
     plt.ylabel('Option price for a given strike, K')
     plt.grid()
                        
-mainCalculation()
+
+if __name__ == "__main__":
+    mainCalculation()

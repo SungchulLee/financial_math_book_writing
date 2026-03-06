@@ -1,3 +1,9 @@
+"""
+Initial Conditions
+
+Educational script demonstrating initial conditions concepts.
+"""
+
 # ============================================================================
 # heat_equation_1d/initial_conditions.py
 # ============================================================================
@@ -115,3 +121,7 @@ def zero_initial_condition(x: np.ndarray) -> np.ndarray:
         Zero initial condition array
     """
     return np.zeros_like(x)
+
+
+if __name__ == "__main__":
+    pass

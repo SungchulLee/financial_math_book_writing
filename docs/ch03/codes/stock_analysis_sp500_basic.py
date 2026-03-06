@@ -1,3 +1,9 @@
+"""
+Stock Analysis Sp500 Basic
+
+Educational script demonstrating stock analysis sp500 basic concepts.
+"""
+
 # ============================================================================
 # stock_analysis_SP500_BASIC_DOWNLOAD.py
 # ============================================================================

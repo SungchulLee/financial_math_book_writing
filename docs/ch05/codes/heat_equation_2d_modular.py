@@ -1,3 +1,9 @@
+"""
+Heat Equation 2D Modular
+
+Educational script demonstrating heat equation 2d modular concepts.
+"""
+
 # ============================================================================
 # heat_equation_2d_MODULAR.py
 # ============================================================================

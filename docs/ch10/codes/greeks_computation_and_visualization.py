@@ -15,6 +15,8 @@ from scipy.stats import norm
 from typing import Dict, Tuple
 
 
+# ======================================================================
+
 class GreeksCalculator:
     """Compute Greeks for European options under Black-Scholes model."""
     

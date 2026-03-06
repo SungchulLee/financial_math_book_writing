@@ -14,6 +14,8 @@ from typing import Dict, Tuple, List
 from scipy.stats import norm
 
 
+# ======================================================================
+
 class MultiGreekHedger:
     """Portfolio hedging with delta, gamma, and vega constraints."""
     

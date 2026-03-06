@@ -1,3 +1,9 @@
+"""
+Vasicek Monte Carlo
+
+Educational script demonstrating vasicek monte carlo concepts.
+"""
+
 # ============================================================================
 # vasicek/vasicek_monte_carlo.py
 # ============================================================================
@@ -208,3 +214,7 @@ class VasicekModel(bmw.BrownianMotion):
         """Analytical standard deviation at time t."""
         from .vasicek_formula import VasicekAnalytical
         return VasicekAnalytical.standard_deviation(self.parameters, t)
+
+
+if __name__ == "__main__":
+    pass

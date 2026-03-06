@@ -3,9 +3,11 @@
 **Dynkin's formula** is the integral form of the infinitesimal generator — a **stochastic fundamental theorem of calculus**.
 
 $$
+
 \boxed{
 \mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau (\mathcal{L}f)(X_s)\,ds\right]
 }
+
 $$
 
 ---
@@ -124,7 +126,9 @@ $$\mathbb{E}_x[\tau] = \frac{b^2 x - ab^2 + a^2 b - a^2 x - x^2(b-a)}{b-a} = \fr
 $$= (a+b)x - ab - x^2 = -(x^2 - (a+b)x + ab) = -(x-a)(x-b)$$
 
 $$
+
 \boxed{\mathbb{E}_x[\tau] = (x-a)(b-x)}
+
 $$
 
 !!! check "Verification"

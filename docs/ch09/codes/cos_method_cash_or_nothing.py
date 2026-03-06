@@ -1,3 +1,9 @@
+"""
+Cos Method Cash Or Nothing
+
+Educational script demonstrating cos method cash or nothing concepts.
+"""
+
 #@title Cash or Nothing COS Method
 # Source Code
 # https://github.com/LechGrzelak/Computational-Finance-Course/blob/main/
@@ -7,6 +13,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as st
 import time
+
+# ======================================================================
 
 def CashOrNothingPriceCOSMthd(cf,CP,S0,r,tau,K,N,L):
     # cf   - characteristic function as a functon, in the book denoted as \varphi

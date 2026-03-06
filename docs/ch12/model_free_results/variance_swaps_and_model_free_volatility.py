@@ -15,6 +15,8 @@ from scipy.interpolate import interp1d
 from typing import Dict, Tuple
 
 
+# ======================================================================
+
 class VarianceSwapCalculator:
     """Compute variance swap fair strike and implied vol from option prices."""
     

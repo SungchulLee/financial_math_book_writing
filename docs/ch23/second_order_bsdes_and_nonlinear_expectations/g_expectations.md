@@ -23,7 +23,9 @@ The mathematical foundation lies in the theory of **backward stochastic differen
 
 
 $$
+
 E[\xi] = \int_{\Omega} \xi(\omega) \, dP(\omega)
+
 $$
 
 
@@ -38,7 +40,9 @@ $$
 
 
 $$
+
 E[\xi|\mathcal{G}]
+
 $$
 
 
@@ -47,7 +51,9 @@ is the unique $\mathcal{G}$-measurable random variable satisfying:
 
 
 $$
+
 E[\xi \mathbb{1}_A] = E[E[\xi|\mathcal{G}] \mathbb{1}_A] \quad \text{for all } A \in \mathcal{G}
+
 $$
 
 
@@ -59,7 +65,9 @@ $$
 
 
 $$
+
 Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+
 $$
 
 
@@ -75,7 +83,9 @@ where:
 
 
 $$
+
 dY_t = -g(t, Y_t, Z_t) \, dt + Z_t \, dW_t, \quad Y_T = \xi
+
 $$
 
 
@@ -92,7 +102,9 @@ Then there exists a unique adapted solution $(Y_t, Z_t)$ to the BSDE with:
 
 
 $$
+
 \mathbb{E}\left[\sup_{t \in [0,T]} |Y_t|^2 + \int_0^T |Z_t|^2 dt\right] < \infty
+
 $$
 
 
@@ -109,7 +121,9 @@ $$
 
 
 $$
+
 \mathcal{E}_g[\xi|\mathcal{F}_t] := Y_t
+
 $$
 
 
@@ -118,7 +132,9 @@ where $Y_t$ is the solution to the BSDE:
 
 
 $$
+
 Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+
 $$
 
 
@@ -127,7 +143,9 @@ $$
 
 
 $$
+
 \mathcal{E}_g[\xi] := \mathcal{E}_g[\xi|\mathcal{F}_0] = Y_0
+
 $$
 
 
@@ -151,7 +169,9 @@ $$
 4. **Time Consistency**: 
 
    $$
+
    \mathcal{E}_g[\mathcal{E}_g[\xi|\mathcal{F}_t]|\mathcal{F}_s] = \mathcal{E}_g[\xi|\mathcal{F}_s] \quad \text{for } s \leq t
+
    $$
 
 
@@ -160,7 +180,9 @@ $$
 
 
 $$
+
 Y_s = Y_t + \int_s^t g(r, Y_r, Z_r) \, dr - \int_s^t Z_r \, dW_r
+
 $$
 
 
@@ -174,7 +196,9 @@ This BSDE with terminal condition $Y_t$ has solution $Y_s$ at time $s$, establis
 
 
 $$
+
 \mathcal{E}_g[\xi|\mathcal{F}_t] = E[\xi|\mathcal{F}_t]
+
 $$
 
 
@@ -185,7 +209,9 @@ the classical conditional expectation.
 
 
 $$
+
 \mathcal{E}_g[\xi] = -\frac{1}{\gamma} \log E[e^{-\gamma \xi}]
+
 $$
 
 
@@ -196,7 +222,9 @@ the certainty equivalent under exponential utility with risk aversion $\gamma$.
 
 
 $$
+
 \mathcal{E}_g[\xi] = \sup_{\mathbb{Q} \in \mathcal{P}_{\alpha}} E_{\mathbb{Q}}[\xi]
+
 $$
 
 
@@ -213,7 +241,9 @@ where $\mathcal{P}_{\alpha}$ is a set of probability measures with bounded densi
 
 
 $$
+
 |g(t, y_1, z_1) - g(t, y_2, z_2)| \leq K(|y_1 - y_2| + |z_1 - z_2|)
+
 $$
 
 
@@ -229,7 +259,9 @@ for all $(t, y_1, z_1), (t, y_2, z_2)$.
 
 
 $$
+
 g(t, \lambda y_1 + (1-\lambda) y_2, \lambda z_1 + (1-\lambda) z_2) \leq \lambda g(t, y_1, z_1) + (1-\lambda) g(t, y_2, z_2)
+
 $$
 
 
@@ -240,7 +272,9 @@ for all $\lambda \in [0, 1]$.
 
 
 $$
+
 \mathcal{E}_g[\lambda \xi_1 + (1-\lambda) \xi_2] \geq \lambda \mathcal{E}_g[\xi_1] + (1-\lambda) \mathcal{E}_g[\xi_2]
+
 $$
 
 
@@ -254,7 +288,9 @@ $$
 
 
 $$
+
 g(t, \lambda y, \lambda z) = \lambda g(t, y, z)
+
 $$
 
 
@@ -265,7 +301,9 @@ for all $\lambda > 0$.
 
 
 $$
+
 \mathcal{E}_g[\lambda \xi] = \lambda \mathcal{E}_g[\xi]
+
 $$
 
 
@@ -279,7 +317,9 @@ for $\lambda > 0$.
 
 
 $$
+
 \mathcal{E}_g[\xi_1 + \xi_2] \leq \mathcal{E}_g[\xi_1] + \mathcal{E}_g[\xi_2]
+
 $$
 
 
@@ -298,7 +338,9 @@ If $\xi \leq \bar{\xi}$ a.s., then:
 
 
 $$
+
 Y_t \leq \bar{Y}_t \quad \text{a.s. for all } t \in [0, T]
+
 $$
 
 
@@ -307,7 +349,9 @@ $$
 
 
 $$
+
 d(\Delta Y_t) = -[g(t, \bar{Y}_t, \bar{Z}_t) - g(t, Y_t, Z_t)] \, dt + \Delta Z_t \, dW_t
+
 $$
 
 
@@ -323,7 +367,9 @@ If $g(t, y, z) \geq \bar{g}(t, y, z)$ for all $(t, y, z)$, then:
 
 
 $$
+
 Y_t \leq \bar{Y}_t \quad \text{a.s. for all } t \in [0, T]
+
 $$
 
 
@@ -334,7 +380,9 @@ $$
 
 
 $$
+
 \mathcal{E}_{g_1}[\xi] \geq \mathcal{E}_{g_2}[\xi]
+
 $$
 
 
@@ -346,7 +394,9 @@ $$
 
 
 $$
+
 \xi < \bar{\xi} \text{ a.s. on set } A \text{ with } P(A) > 0 \implies Y_t < \bar{Y}_t \text{ a.s.}
+
 $$
 
 
@@ -361,7 +411,9 @@ $$
 
 
 $$
+
 \mathcal{E}_g[\xi] = \sup_{\mathbb{Q} \in \mathcal{Q}} E_{\mathbb{Q}}[\xi] = \inf_{\mathbb{Q} \in \mathcal{Q}^c} E_{\mathbb{Q}}[\xi]
+
 $$
 
 
@@ -379,7 +431,9 @@ where:
 
 
 $$
+
 \mathcal{E}_g[\xi] = \sup_{\mathbb{Q} \ll P} \left\{ E_{\mathbb{Q}}[\xi] - \frac{1}{\gamma} H(\mathbb{Q}|P) \right\}
+
 $$
 
 
@@ -388,7 +442,9 @@ where:
 
 
 $$
+
 H(\mathbb{Q}|P) = E_{\mathbb{Q}}\left[\log \frac{d\mathbb{Q}}{dP}\right]
+
 $$
 
 
@@ -399,7 +455,9 @@ is the relative entropy (Kullback-Leibler divergence).
 
 
 $$
+
 \frac{d\mathbb{Q}^*}{dP}\bigg|_{\mathcal{F}_T} = \exp\left(-\gamma \xi + \frac{\gamma^2}{2} \int_0^T |Z_t|^2 dt - \gamma \int_0^T Z_t \, dW_t\right)
+
 $$
 
 
@@ -419,7 +477,9 @@ where $Z_t$ comes from the BSDE solution.
 
 
 $$
+
 \int_{\Omega} \xi \, d\nu = \int_0^{\infty} \nu(\{\xi \geq t\}) \, dt + \int_{-\infty}^0 [\nu(\{\xi \geq t\}) - 1] \, dt
+
 $$
 
 
@@ -443,7 +503,9 @@ $$
 
 
 $$
+
 \text{AVaR}_{\alpha}(X) = \frac{1}{\alpha} \int_0^{\alpha} \text{VaR}_u(X) \, du
+
 $$
 
 
@@ -455,7 +517,9 @@ $$
 
 
 $$
+
 \rho_s(\rho_t(X)) = \rho_s(X) \quad \text{for } s \leq t
+
 $$
 
 
@@ -466,7 +530,9 @@ $$
 
 
 $$
+
 \rho_t(X) = \mathcal{E}_g[-X|\mathcal{F}_t]
+
 $$
 
 
@@ -480,7 +546,9 @@ for appropriate generator $g$.
 
 
 $$
+
 dY_t = g(t, Y_t, Z_t) \, dt - Z_t \, dW_t, \quad Y_T = X
+
 $$
 
 
@@ -501,7 +569,9 @@ where $g$ is convex and positively homogeneous in $(y, z)$.
 
 
 $$
+
 V_0 = \mathcal{E}_g[\Phi(S_T)]
+
 $$
 
 
@@ -510,7 +580,9 @@ where:
 
 
 $$
+
 g(t, y, z) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ -\frac{1}{2} \sigma^2 |z|^2 \right\} = -\frac{1}{2} \underline{\sigma}^2 |z|^2
+
 $$
 
 
@@ -521,7 +593,9 @@ for positive gamma positions.
 
 
 $$
+
 dY_t = \frac{1}{2} \underline{\sigma}^2 |Z_t|^2 \, dt + Z_t \, dW_t, \quad Y_T = \Phi(S_T)
+
 $$
 
 
@@ -537,7 +611,9 @@ $$
 
 
 $$
+
 \sup_{\theta} E[-e^{-\gamma(X_T^{\theta, 0})}] = \sup_{\theta} E[-e^{-\gamma(X_T^{\theta, p} + \Phi)}]
+
 $$
 
 
@@ -548,7 +624,9 @@ where $X_T^{\theta, v}$ is terminal wealth from initial capital $v$ and strategy
 
 
 $$
+
 p = \mathcal{E}_g[\Phi]
+
 $$
 
 
@@ -557,7 +635,9 @@ with generator:
 
 
 $$
+
 g(t, y, z) = -\frac{\gamma}{2} |z - \sigma S_t|^2 + \frac{\gamma}{2} \sigma^2 S_t^2
+
 $$
 
 
@@ -569,7 +649,9 @@ $$
 
 
 $$
+
 \sup_{\pi} \inf_{\mathbb{Q} \in \mathcal{Q}} E_{\mathbb{Q}}[u(X_T^{\pi})]
+
 $$
 
 
@@ -580,7 +662,9 @@ where $\mathcal{Q}$ is a set of probability measures representing ambiguity.
 
 
 $$
+
 V(t, x) = \mathcal{E}_g[u(X_T) | X_t = x]
+
 $$
 
 
@@ -591,7 +675,9 @@ with appropriate generator encoding ambiguity aversion.
 
 
 $$
+
 \pi_t^* = f(Z_t, X_t)
+
 $$
 
 
@@ -605,7 +691,9 @@ $$
 
 
 $$
+
 \text{CVA} = \mathcal{E}_g[\text{Loss at default}]
+
 $$
 
 
@@ -626,7 +714,9 @@ with generator reflecting uncertainty about default intensity and recovery rates
 
 
 $$
+
 Y_{t_i} = Y_{t_{i+1}} + g(t_i, Y_{t_i}, Z_{t_i}) \Delta t - Z_{t_i} \Delta W_{t_i}
+
 $$
 
 
@@ -635,7 +725,9 @@ $$
 
 
 $$
+
 Z_{t_i} = \arg\min_{z} E\left[\left|Y_{t_{i+1}} - Y_{t_i} - g(t_i, Y_{t_i}, z) \Delta t + z \Delta W_{t_i}\right|^2 | \mathcal{F}_{t_i}\right]
+
 $$
 
 
@@ -644,7 +736,9 @@ $$
 
 
 $$
+
 E[|Y_0 - Y_0^N|] = O(\Delta t^{1/2})
+
 $$
 
 
@@ -661,7 +755,9 @@ $$
 
 
 $$
+
 E[Y_{t_{i+1}} | \mathcal{F}_{t_i}] \approx \sum_{j=1}^K \alpha_j \phi_j(S_{t_i})
+
 $$
 
 
@@ -675,7 +771,9 @@ $$
 
 
 $$
+
 Y_t = f_{\theta_Y}(t, S_t), \quad Z_t = f_{\theta_Z}(t, S_t)
+
 $$
 
 
@@ -684,7 +782,9 @@ $$
 
 
 $$
+
 \mathcal{L}(\theta_Y, \theta_Z) = E\left[\left|Y_T - \xi\right|^2 + \int_0^T \left|dY_t + g(t, Y_t, Z_t) dt - Z_t dW_t\right|^2\right]
+
 $$
 
 
@@ -704,7 +804,9 @@ $$
 
 
 $$
+
 Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds + K_T - K_t - \int_t^T Z_s \, dW_s
+
 $$
 
 
@@ -727,7 +829,9 @@ with:
 
 
 $$
+
 Y_t^i = \xi^i + \int_t^T g(s, Y_s^i, Z_s^i, \bar{Y}_s, \bar{Z}_s) \, ds - \int_t^T Z_s^i \, dW_s^i
+
 $$
 
 
@@ -745,14 +849,18 @@ where $\bar{Y}_t = \frac{1}{N} \sum_{i=1}^N Y_t^i$ is the empirical mean.
 
 
 $$
+
 dX_t = b(t, X_t, Y_t, Z_t) \, dt + \sigma(t, X_t, Y_t, Z_t) \, dW_t
-$$
-
-
-
 
 $$
+
+
+
+
+$$
+
 dY_t = -g(t, X_t, Y_t, Z_t) \, dt + Z_t \, dW_t
+
 $$
 
 
@@ -770,7 +878,9 @@ with $X_0 = x$ and $Y_T = \Phi(X_T)$.
 
 
 $$
+
 g(t, y, z) = f(t, y) + \frac{1}{2} z^\top A(t, y) z
+
 $$
 
 
@@ -794,7 +904,9 @@ $$
 
 
 $$
+
 \frac{\partial v}{\partial t} + \mathcal{L} v + g(t, v, \sigma^\top \nabla v) = 0
+
 $$
 
 
@@ -821,7 +933,9 @@ with terminal condition $v(T, x) = \Phi(x)$, where $\mathcal{L}$ is the infinite
 
 
 $$
+
 V(t, x) = \sup_{\alpha \in \mathcal{A}} E\left[\int_t^T f(s, X_s^{\alpha}, \alpha_s) \, ds + \Phi(X_T^{\alpha}) \bigg| X_t = x\right]
+
 $$
 
 
@@ -830,7 +944,9 @@ $$
 
 
 $$
+
 \frac{\partial V}{\partial t} + \sup_{\alpha} \{\mathcal{L}^{\alpha} V + f(t, x, \alpha)\} = 0
+
 $$
 
 
@@ -839,7 +955,9 @@ $$
 
 
 $$
+
 g(t, y, z) = \sup_{\alpha} \{-f(t, x, \alpha) - \mu^{\alpha}(t, x) \cdot \nabla v - \frac{1}{2} \text{tr}[(\sigma^{\alpha})^2 \nabla^2 v]\}
+
 $$
 
 
@@ -856,7 +974,9 @@ If $g_n \to g$ and $\xi_n \to \xi$ in appropriate norms, then:
 
 
 $$
+
 Y_t^n \to Y_t, \quad Z_t^n \to Z_t
+
 $$
 
 
@@ -874,7 +994,9 @@ in $L^2$ norm.
 
 
 $$
+
 \sup_{t \in [0,T]} E[|Y_t - Y_t^N|^2] = O(\Delta t)
+
 $$
 
 
@@ -890,7 +1012,9 @@ under appropriate regularity conditions.
 
 
 $$
+
 |g_1 - g_2| \leq \epsilon \implies |\mathcal{E}_{g_1}[\xi] - \mathcal{E}_{g_2}[\xi]| \leq C \epsilon
+
 $$
 
 

@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# ======================================================================
+
 def characteristic_function_engine():
     """
     Characteristic Function Engine.

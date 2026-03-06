@@ -189,6 +189,7 @@ The operator is **self-adjoint**: $\mathcal{L} = \mathcal{L}^*$.
 More generally, for constant $\mu$ and $\sigma$:
 
 $$\mathcal{L} = \mu \partial_x + \frac{\sigma^2}{2}\partial_{xx}$$
+
 $$\mathcal{L}^* = -\mu \partial_x + \frac{\sigma^2}{2}\partial_{xx}$$
 
 The drift term changes sign, but diffusion is self-adjoint.
@@ -310,12 +311,14 @@ This is the foundation of:
 ## Summary
 
 $$
+
 \boxed{
 \begin{aligned}
 \mathcal{L} &= \mu \partial_x + \frac{\sigma^2}{2}\partial_{xx} \quad &\text{(generator)} \\[6pt]
 \mathcal{L}^* &= -\partial_x[\mu \cdot] + \frac{1}{2}\partial_{xx}[\sigma^2 \cdot] \quad &\text{(adjoint)}
 \end{aligned}
 }
+
 $$
 
 | Equation | Operator | Acts On | Question |
