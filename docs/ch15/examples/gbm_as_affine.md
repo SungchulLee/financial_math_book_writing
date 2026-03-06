@@ -245,7 +245,7 @@ $$
 
 $$
 
-\varphi(X_t, t, T, u) = \exp\left(\left[\left(r - \frac{\sigma^2}{2}\right)u - r + \frac{1}{2}\sigma^2 u^2\right](T-t) + iuX_t\right)
+\varphi(X_t, t, T, u) = \exp\left(\left[\left(r - \frac{\sigma^2}{2}\right)u - r + \frac{1}{2}\sigma^2 u^2\right]\left(T-t\right) + iuX_t\right)
 
 $$
 
