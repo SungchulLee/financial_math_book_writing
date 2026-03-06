@@ -11,13 +11,11 @@ The Heston model is one of the most widely used **stochastic volatility models**
 Under the risk-neutral measure $\mathbb{Q}$, the Heston model is defined by:
 
 $$
-
 \begin{aligned}
 dS_t &= (r - q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
 dV_t &= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V \\
 d\langle W^S, W^V \rangle_t &= \rho\,dt
 \end{aligned}
-
 $$
 
 where:
@@ -39,9 +37,7 @@ where:
 For pricing, it is often convenient to work with $X_t = \log S_t$:
 
 $$
-
 dX_t = \left(r - q - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^S
-
 $$
 
 The pair $(X_t, V_t)$ is a **two-dimensional affine diffusion**.
@@ -66,17 +62,13 @@ The parameter $\kappa > 0$ controls how quickly variance returns to its long-run
 The parameter $\theta > 0$ is the **stationary mean** of the variance process:
 
 $$
-
 \lim_{t \to \infty} \mathbb{E}[V_t] = \theta
-
 $$
 
 **Calibration insight:** $\theta$ controls the level of long-maturity implied volatility:
 
 $$
-
 \sigma_{\text{impl}}^2(T \to \infty) \approx \theta
-
 $$
 
 ### Volatility of Volatility (ξ)
@@ -89,9 +81,7 @@ The parameter $\xi > 0$ controls the magnitude of variance fluctuations:
 **Calibration insight:** $\xi$ is identifiable from the **convexity** of the smile:
 
 $$
-
 \frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2} \propto \xi^2
-
 $$
 
 ### Correlation (ρ)
@@ -105,9 +95,7 @@ The parameter $\rho \in (-1, 1)$ controls the correlation between price and vari
 **Calibration insight:** $\rho$ directly controls the **skew**:
 
 $$
-
 \frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \propto \rho
-
 $$
 
 ### Initial Variance (V_0)
@@ -124,21 +112,17 @@ The parameter $V_0 > 0$ is the **current** instantaneous variance:
 When $V_t$ reaches its stationary distribution (for $t$ large):
 
 $$
-
 V_{\infty} \sim \text{Gamma}\left(\frac{2\kappa\theta}{\xi^2}, \frac{2\kappa}{\xi^2}\right)
-
 $$
 
 **Stationary moments:**
 
 $$
-
 \begin{aligned}
 \mathbb{E}[V_{\infty}] &= \theta \\
 \text{Var}[V_{\infty}] &= \frac{\xi^2 \theta}{2\kappa} \\
 \text{Skew}[V_{\infty}] &= \frac{2\xi}{\sqrt{2\kappa\theta}}
 \end{aligned}
-
 $$
 
 The variance distribution is always right-skewed and bounded below by zero.
@@ -152,17 +136,13 @@ The variance distribution is always right-skewed and bounded below by zero.
 If volatility is deterministic ($\xi = 0$), the variance satisfies:
 
 $$
-
 V_t = V_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})
-
 $$
 
 The model reduces to **time-dependent Black–Scholes**:
 
 $$
-
 C = C^{\text{BS}}\left(S_0, K, T, \bar{\sigma}(T)\right)
-
 $$
 
 where $\bar{\sigma}^2(T) = \frac{1}{T}\int_0^T V_s\,ds$.
@@ -172,9 +152,7 @@ where $\bar{\sigma}^2(T) = \frac{1}{T}\int_0^T V_s\,ds$.
 For small $\xi$, Heston prices can be expanded:
 
 $$
-
 C^{\text{Heston}} = C^{\text{BS}} + \xi \cdot C_1 + \xi^2 \cdot C_2 + O(\xi^3)
-
 $$
 
 The correction terms introduce smile and skew.
@@ -184,9 +162,7 @@ The correction terms introduce smile and skew.
 For short maturities and near-ATM options:
 
 $$
-
 \sigma_{\text{impl}}(k, T) \approx \sqrt{V_0} + \frac{\rho\xi}{4\sqrt{V_0}}k + \frac{\xi^2(1-\rho^2)}{8V_0^{3/2}}k^2 + O(T, k^3)
-
 $$
 
 This shows:
@@ -207,9 +183,7 @@ For $V_t \geq 0$ to hold, we need $\kappa, \theta, \xi > 0$.
 The **Feller condition** ensures $V_t > 0$ (strictly positive):
 
 $$
-
 2\kappa\theta \geq \xi^2
-
 $$
 
 See Section 9.3.2 for detailed boundary behavior.
@@ -229,12 +203,10 @@ The $n$-th moment of $S_T$ exists under $\mathbb{Q}$ if and only if $n < n^*$ wh
 The simplest scheme (with variance floor):
 
 $$
-
 \begin{aligned}
 V_{t+\Delta} &= V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z_1 \\
 S_{t+\Delta} &= S_t \exp\left[\left(r - q - \frac{1}{2}V_t^+\right)\Delta + \sqrt{V_t^+}\sqrt{\Delta}\,Z_2\right]
 \end{aligned}
-
 $$
 
 where $V_t^+ = \max(V_t, 0)$ and $(Z_1, Z_2)$ are correlated normals.
@@ -252,9 +224,7 @@ See Section 9.4 for implementation details.
 The variance transition $V_{t+\Delta} | V_t$ follows a scaled non-central $\chi^2$:
 
 $$
-
 V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2\left(\frac{4\kappa\theta}{\xi^2}, \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t\right)
-
 $$
 
 Exact simulation is possible but computationally expensive.

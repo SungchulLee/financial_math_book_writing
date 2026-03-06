@@ -17,7 +17,7 @@ A random walk on $\mathbb{Z}^d$ is called:
 
 Define the **return probability** and **first-return probability** generating functions:
 
-$$U(s) = \sum_{n=0}^{\infty} u_{2n}\, s^{2n}, \qquad F(s) = \sum_{n=1}^{\infty} f_{2n}\, s^{2n}, \qquad s \in [0,1],$$
+$$U(s) = \sum_{n=0}^{\infty} u_{2n}\, s^{2n}, \qquad F(s) = \sum_{n=1}^{\infty} f_{2n}\, s^{2n}, \qquad s \in [0,1]$$
 
 where
 
@@ -26,7 +26,7 @@ where
 
 These are connected by the **renewal relation**
 
-$$U(s) = \frac{1}{1 - F(s)},$$
+$$U(s) = \frac{1}{1 - F(s)}$$
 
 which follows from decomposing visits to the origin by the time of the first return. The walk is recurrent if and only if $F(1) = \sum_{n=1}^\infty f_{2n} = 1$, which by the renewal relation holds if and only if $U(1) = \sum_{n=0}^\infty u_{2n} = \infty$.
 
@@ -52,11 +52,11 @@ We prove all three cases via the generating function criterion $U(1) < \infty \L
 
 The probability of return to 0 at time $2n$ (we can only return at even times) is
 
-$$u_{2n} = \mathbb{P}(S_{2n} = 0) = \binom{2n}{n}\left(\frac{1}{2}\right)^{2n}.$$
+$$u_{2n} = \mathbb{P}(S_{2n} = 0) = \binom{2n}{n}\left(\frac{1}{2}\right)^{2n}$$
 
 By Stirling's approximation $n! \sim \sqrt{2\pi n}\,(n/e)^n$:
 
-$$\binom{2n}{n} = \frac{(2n)!}{(n!)^2} \sim \frac{\sqrt{4\pi n}\,(2n/e)^{2n}}{2\pi n\,(n/e)^{2n}} = \frac{4^n}{\sqrt{\pi n}},$$
+$$\binom{2n}{n} = \frac{(2n)!}{(n!)^2} \sim \frac{\sqrt{4\pi n}\,(2n/e)^{2n}}{2\pi n\,(n/e)^{2n}} = \frac{4^n}{\sqrt{\pi n}}$$
 
 so $u_{2n} \sim \frac{1}{\sqrt{\pi n}}$. Since $\sum_{n=1}^\infty \frac{1}{\sqrt{\pi n}} = \infty$, we have $U(1) = \infty$, hence the walk is **recurrent**.
 
@@ -64,7 +64,7 @@ so $u_{2n} \sim \frac{1}{\sqrt{\pi n}}$. Since $\sum_{n=1}^\infty \frac{1}{\sqrt
 
 In two dimensions, a step is a unit vector in one of the four directions $\{\pm e_1, \pm e_2\}$, each with probability $1/4$. The return probability at time $2n$ factors over coordinates:
 
-$$u_{2n}^{(2)} = \left[\binom{2n}{n}\left(\frac{1}{2}\right)^{2n}\right]^2 \sim \frac{1}{\pi n}.$$
+$$u_{2n}^{(2)} = \left[\binom{2n}{n}\left(\frac{1}{2}\right)^{2n}\right]^2 \sim \frac{1}{\pi n}$$
 
 Again $\sum_n u_{2n}^{(2)} = \infty$, so the 2D walk is **recurrent**.
 

@@ -13,45 +13,33 @@ This section develops the main ideas behind the proof of Girsanov's theorem syst
 **Computing the differential:**
 
 $$
-
 dX_t = -\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt
-
 $$
 
 Apply Itô to $f(X) = e^X$:
 
 $$
-
 dZ_t = e^{X_t}\,dX_t + \frac{1}{2}e^{X_t}(dX_t)^2
-
 $$
 
 Compute $(dX_t)^2$:
 
 $$
-
 (dX_t)^2 = \left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right)^2 = \theta_t^2\,(dW_t)^2 = \theta_t^2\,dt
-
 $$
 
 Therefore:
 
 $$
-
 dZ_t = Z_t\left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right) + \frac{1}{2}Z_t\,\theta_t^2\,dt
-
 $$
 
 $$
-
 = -Z_t\theta_t\,dW_t - \frac{1}{2}Z_t\theta_t^2\,dt + \frac{1}{2}Z_t\theta_t^2\,dt
-
 $$
 
 $$
-
 \boxed{dZ_t = -Z_t\theta_t\,dW_t}
-
 $$
 
 **Key observation:** There is **no $dt$ term**, only the $dW_t$ term. This is the defining property of a martingale!
@@ -59,9 +47,7 @@ $$
 Since $Z_t$ has no drift and is adapted to the filtration, it is a local martingale. The **Novikov condition** ensures it is a **true martingale** with:
 
 $$
-
 \mathbb{E}^{\mathbb{P}}[Z_t] = \mathbb{E}^{\mathbb{P}}[Z_0] = 1
-
 $$
 
 ---
@@ -71,25 +57,19 @@ $$
 For $X_t = -\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds$, the random variable $X_t$ is Gaussian:
 
 $$
-
 X_t \sim \mathcal{N}\left(-\frac{1}{2}\int_0^t \theta_s^2\,ds, \int_0^t \theta_s^2\,ds\right)
-
 $$
 
 For any Gaussian random variable $Y \sim \mathcal{N}(\mu, \sigma^2)$:
 
 $$
-
 \mathbb{E}[e^Y] = \exp\left(\mu + \frac{\sigma^2}{2}\right)
-
 $$
 
 Applying this with $\mu = -\frac{1}{2}\int_0^t \theta_s^2\,ds$ and $\sigma^2 = \int_0^t \theta_s^2\,ds$:
 
 $$
-
 \mathbb{E}^{\mathbb{P}}[Z_t] = \exp\left(-\frac{1}{2}\int_0^t \theta_s^2\,ds + \frac{1}{2}\int_0^t \theta_s^2\,ds\right) = 1 \quad \checkmark
-
 $$
 
 ---
@@ -101,33 +81,25 @@ $$
 **Method:** Use the change-of-measure formula. For any $\mathcal{F}_t$-adapted process $X_t$:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s]}
-
 $$
 
 For $s \leq t$, by the martingale property of $Z$:
 
 $$
-
 \mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s] = Z_s
-
 $$
 
 Therefore, for the shifted Brownian motion:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}\left[\widetilde{W}_t | \mathcal{F}_s\right] = \frac{\mathbb{E}^{\mathbb{P}}\left[\left(W_t + \int_0^t \theta_u\,du\right) Z_T | \mathcal{F}_s\right]}{Z_s}
-
 $$
 
 By the martingale property and adapted property of $\theta$:
 
 $$
-
 = \frac{\mathbb{E}^{\mathbb{P}}\left[\left(W_t + \int_0^t \theta_u\,du\right) Z_T | \mathcal{F}_s\right]}{Z_s}
-
 $$
 
 The key step involves showing that the $dW$ term and the measure change $Z_T$ cancel exactly, leaving only a martingale in $t$. More precisely, under the conditional expectation, the drift from the integral is exactly compensated by the likelihood reweighting from $Z_T$.
@@ -143,17 +115,13 @@ The key step involves showing that the $dW$ term and the measure change $Z_T$ ca
 Since:
 
 $$
-
 \widetilde{W}_t = W_t + \int_0^t \theta_s\,ds
-
 $$
 
 and the integral term has **finite variation** (it's a deterministic or adapted process with finite $L^2$ norm):
 
 $$
-
 d\langle\widetilde{W}\rangle_t = d\langle W\rangle_t = dt
-
 $$
 
 **Conclusion:** The quadratic variation of $\widetilde{W}_t$ equals $t$, the same as for standard Brownian motion.
@@ -173,9 +141,7 @@ $$
 By Lévy's theorem:
 
 $$
-
 \boxed{\widetilde{W}_t \text{ is a standard Brownian motion under } \mathbb{Q}}
-
 $$
 
 ---
@@ -189,9 +155,7 @@ Another approach uses direct computation. Under $\mathbb{Q}$, we want to show $\
 We can verify this by computing the characteristic function:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[e^{i\lambda\widetilde{W}_t}] = e^{-\lambda^2 t/2}
-
 $$
 
 This matches the characteristic function of $\mathcal{N}(0, t)$, confirming that $\widetilde{W}_t$ is a standard Brownian motion.
@@ -215,9 +179,7 @@ This matches the characteristic function of $\mathcal{N}(0, t)$, confirming that
 The proof's elegance lies in a remarkable **cancellation**:
 
 $$
-
 Z_T \cdot \text{(drift from measure change)} = \text{(drift from } \theta \text{ term)}
-
 $$
 
 These two sources of drift, coming from different places, exactly cancel when we change measures. This is not coincidental—it's built into the definition of $Z_t$.

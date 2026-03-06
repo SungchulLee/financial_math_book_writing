@@ -99,9 +99,7 @@ Compare model to:
 Test model response to input changes:
 
 $$
-
 \frac{\partial \text{Output}}{\partial \text{Input}_i} \quad \text{for all key inputs}
-
 $$
 
 **Identify:**

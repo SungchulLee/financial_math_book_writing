@@ -36,7 +36,7 @@ $$S_n = S_{n-1} + X_n$$
 
 where $S_0 = 0$ and $\{X_n\}_{n \geq 1}$ is a sequence of **independent** random variables taking values in $\{-1, +1\}$ with
 
-$$\mathbb{P}(X_n = +1) = p, \qquad \mathbb{P}(X_n = -1) = 1 - p, \qquad p \in (0,1).$$
+$$\mathbb{P}(X_n = +1) = p, \qquad \mathbb{P}(X_n = -1) = 1 - p, \qquad p \in (0,1)$$
 
 The parameter $p$ governs the drift of the process.
 
@@ -60,7 +60,7 @@ $$\mathbb{P}(\xi_i = +1) = \mathbb{P}(\xi_i = -1) = \frac{1}{2}$$
 
 and the walk is
 
-$$S_n = \sum_{i=1}^n \xi_i, \qquad S_0 = 0.$$
+$$S_n = \sum_{i=1}^n \xi_i, \qquad S_0 = 0$$
 
 **Interpretations.** At each step the process moves up or down by 1 with equal probability. This can model:
 

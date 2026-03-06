@@ -12,9 +12,7 @@ The **Hull-White model** (1990) extends Vasicek by introducing a time-dependent 
 Under the risk-neutral measure $\mathbb{Q}$:
 
 $$
-
 dr_t = [\theta(t) - \kappa r_t] \, dt + \sigma \, dW_t^{\mathbb{Q}}
-
 $$
 
 or equivalently $dr_t = \kappa[\bar{\theta}(t) - r_t] \, dt + \sigma \, dW_t^{\mathbb{Q}}$ where $\bar{\theta}(t) = \theta(t)/\kappa$.
@@ -34,9 +32,7 @@ or equivalently $dr_t = \kappa[\bar{\theta}(t) - r_t] \, dt + \sigma \, dW_t^{\m
 The model reprices all observed discount bonds exactly: $P^{\text{model}}(0, T) = P^{\text{market}}(0, T)$ for all $T$. This determines $\theta(t)$ uniquely:
 
 $$
-
 \boxed{\theta(t) = \frac{\partial f(0, t)}{\partial t} + \kappa f(0, t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})}
-
 $$
 
 where $f(0, t) = -\frac{\partial}{\partial t} \log P(0, t)$ is the market instantaneous forward rate. See [§20 Short Rate](../../ch20/short_rate/short_rate_solution.md) for the full HJM-based derivation.
@@ -52,9 +48,7 @@ The short rate $r_t$ conditional on $r_s$ is Gaussian with variance $v(s,t) = \f
 ### Affine Bond Prices
 
 $$
-
 P(t, T) = A(t, T) \exp(-B(t, T) \cdot r_t), \qquad B(t, T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}
-
 $$
 
 where $B(t,T)$ is identical to Vasicek. The function $A(t,T)$ incorporates market bond prices to ensure exact calibration. See [§20 Zero Bond Pricing](../../ch20/bond_pricing/bond_price_formula.md) for explicit formulas and proofs.
@@ -76,9 +70,7 @@ The Hull-White model provides analytical formulas for European bond options, cap
 **Step 2 — Calibrate to volatility instruments:** Fit $\kappa$ and $\sigma$ to cap and swaption implied volatilities:
 
 $$
-
 \min_{\kappa, \sigma} \sum_{i} w_i \left(\sigma^{\text{model}}_i(\kappa, \sigma) - \sigma^{\text{market}}_i\right)^2
-
 $$
 
 ---

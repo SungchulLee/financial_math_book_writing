@@ -147,15 +147,11 @@ This shows $\partial_t u = \mathcal{L}u$ at $t = 0$.
 By the **Markov property**, the same argument applies at any time $t$:
 
 $$
-
 \frac{\partial u}{\partial t}(t, x) = \lim_{h \downarrow 0} \frac{u(t+h, x) - u(t, x)}{h} = \lim_{h \downarrow 0} \frac{\mathbb{E}_x[\mathbb{E}_{X_t}[g(X_h)]] - \mathbb{E}_x[g(X_t)]}{h}
-
 $$
 
 $$
-
 = \mathbb{E}_x\left[\lim_{h \downarrow 0} \frac{\mathbb{E}_{X_t}[g(X_h)] - g(X_t)}{h}\right] = \mathbb{E}_x[(\mathcal{L}g)(X_t)]
-
 $$
 
 For the function $u(t, \cdot)$, this gives $\frac{\partial u}{\partial t}(t, x) = (\mathcal{L}_x u)(t, x)$.

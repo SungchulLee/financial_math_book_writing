@@ -305,11 +305,9 @@ When the EMM is unique, every contingent claim has a unique no-arbitrage price a
 The FTAP establishes a fundamental duality:
 
 $$\begin{array}{ccc}
-
 \text{Portfolio strategies } \theta & \longleftrightarrow & \text{Probability measures } \mathbb{Q} \\
 \text{Arbitrage opportunities} & \longleftrightarrow & \text{Non-existence of EMM} \\
 \text{Market completeness} & \longleftrightarrow & \text{Unique EMM}
-
 \end{array}$$
 
 This is a financial instance of a general principle in convex analysis: feasibility of a primal problem (replication) is dual to feasibility of the dual problem (existence of pricing measures).

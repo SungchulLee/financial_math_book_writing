@@ -19,9 +19,7 @@ The **Greeks** represent sensitivities of an option's value with respect to vari
 Approximate Delta at node $i$ using central differences:
 
 $$
-
 \Delta_i \approx \frac{V_{i+1} - V_{i-1}}{2\Delta S}
-
 $$
 
 At the edges ($i = 0$ or $i = M$), use forward or backward difference instead.
@@ -31,9 +29,7 @@ At the edges ($i = 0$ or $i = M$), use forward or backward difference instead.
 ## Gamma (Second Derivative in Space)
 
 $$
-
 \Gamma_i \approx \frac{V_{i+1} - 2V_i + V_{i-1}}{(\Delta S)^2}
-
 $$
 
 High Gamma near the strike means small moves in $S$ cause big changes in Delta.
@@ -45,9 +41,7 @@ High Gamma near the strike means small moves in $S$ cause big changes in Delta.
 Given two time levels ($V^{n+1}$ and $V^n$):
 
 $$
-
 \Theta_i \approx -\frac{V_i^{n+1} - V_i^n}{\Delta t}
-
 $$
 
 In practice, we often use the final two time steps for this estimate.

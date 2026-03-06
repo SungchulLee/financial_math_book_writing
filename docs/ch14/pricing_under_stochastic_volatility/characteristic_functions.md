@@ -11,9 +11,7 @@ A major reason stochastic volatility models (especially affine models like Hesto
 For a random variable $X$ with distribution $F$, the **characteristic function** is:
 
 $$
-
 \varphi_X(u) = \mathbb{E}[e^{iuX}] = \int_{-\infty}^{\infty} e^{iux}\,dF(x), \quad u \in \mathbb{R}
-
 $$
 
 **Key properties:**
@@ -28,9 +26,7 @@ $$
 For option pricing, we use the **conditional** characteristic function:
 
 $$
-
 \varphi(t, x, v; T, u) = \mathbb{E}^{\mathbb{Q}}\left[e^{iuX_T} \mid X_t = x, V_t = v\right]
-
 $$
 
 where $X_t = \log S_t$ is the log-price.
@@ -44,17 +40,13 @@ where $X_t = \log S_t$ is the log-price.
 The density can be recovered via Fourier inversion:
 
 $$
-
 f_X(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\varphi_X(u)\,du
-
 $$
 
 The distribution function via Gil-Pelaez:
 
 $$
-
 F_X(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty} \text{Re}\left[\frac{e^{-iux}\varphi_X(u)}{iu}\right]du
-
 $$
 
 ### Option Pricing
@@ -62,9 +54,7 @@ $$
 European option prices can be written as integrals involving $\varphi$:
 
 $$
-
 C(K) = e^{-rT}\mathbb{E}[(S_T - K)^+] = e^{-rT}\int_{\log K}^{\infty}(e^x - K)f(x)\,dx
-
 $$
 
 Substituting the Fourier representation of $f$ yields pricing formulas.
@@ -88,9 +78,7 @@ Fourier methods are dramatically faster for calibration across many strikes.
 For affine stochastic volatility models, the characteristic function has the form:
 
 $$
-
 \varphi(\tau, u) = \exp\left(A(\tau, u) + B(\tau, u)V_t + iuX_t\right)
-
 $$
 
 where $\tau = T - t$ and $A$, $B$ solve **Riccati ODEs**.
@@ -100,37 +88,27 @@ where $\tau = T - t$ and $A$, $B$ solve **Riccati ODEs**.
 For the Heston model (derived in Section 9.3):
 
 $$
-
 \varphi(\tau, u) = \exp\left(C(\tau, u) + D(\tau, u)V_0 + iu\log S_0\right)
-
 $$
 
 with:
 
 $$
-
 C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]
-
 $$
 
 $$
-
 D(\tau, u) = \frac{\kappa - \rho\xi iu - d}{\xi^2} \cdot \frac{1 - e^{d\tau}}{1 - ge^{d\tau}}
-
 $$
 
 where:
 
 $$
-
 d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}
-
 $$
 
 $$
-
 g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}
-
 $$
 
 ---
@@ -142,9 +120,7 @@ $$
 For GBM with constant volatility $\sigma$:
 
 $$
-
 \varphi_{\text{BS}}(\tau, u) = \exp\left(iu\left[\log S_0 + (r-q-\tfrac{\sigma^2}{2})\tau\right] - \frac{\sigma^2 u^2 \tau}{2}\right)
-
 $$
 
 This is Gaussian in $u$.
@@ -152,17 +128,13 @@ This is Gaussian in $u$.
 ### Variance Gamma
 
 $$
-
 \varphi_{\text{VG}}(\tau, u) = \exp(iu\omega\tau)\left(\frac{1}{1 - iu\theta\nu + \frac{\sigma^2\nu u^2}{2}}\right)^{\tau/\nu}
-
 $$
 
 ### CGMY
 
 $$
-
 \varphi_{\text{CGMY}}(\tau, u) = \exp\left(\tau C\Gamma(-Y)\left[(M-iu)^Y - M^Y + (G+iu)^Y - G^Y\right]\right)
-
 $$
 
 ### 3/2 Model
@@ -182,17 +154,13 @@ No closed-form CF; asymptotic implied volatility formula used instead.
 Under $\mathbb{Q}$, the discounted stock price must be a martingale:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}S_T \mid \mathcal{F}_t] = e^{-q(T-t)}S_t
-
 $$
 
 This implies:
 
 $$
-
 \varphi(\tau, -i) = e^{(r-q)\tau}
-
 $$
 
 ### Verification
@@ -200,9 +168,7 @@ $$
 For Heston, substituting $u = -i$ into the characteristic function should yield:
 
 $$
-
 \varphi(\tau, -i) = \exp\left((r-q)\tau + 0 \cdot V_0 + \log S_0\right) \cdot e^{-\log S_0} = e^{(r-q)\tau}
-
 $$
 
 This is the **martingale condition** and should be verified numerically.
@@ -216,9 +182,7 @@ This is the **martingale condition** and should be verified numerically.
 The characteristic function $\varphi(u)$ for real $u$ can often be extended to complex $u$:
 
 $$
-
 \varphi(u + iv) = \mathbb{E}[e^{i(u+iv)X}] = \mathbb{E}[e^{iuX - vX}]
-
 $$
 
 This requires $\mathbb{E}[e^{-vX}] < \infty$, i.e., moments must exist.
@@ -228,9 +192,7 @@ This requires $\mathbb{E}[e^{-vX}] < \infty$, i.e., moments must exist.
 For Heston, $\varphi(u)$ is analytic in the strip:
 
 $$
-
 \{u \in \mathbb{C} : \text{Im}(u) \in (-u^-, u^+)\}
-
 $$
 
 where $u^-$ and $u^+$ depend on model parameters (related to moment explosion).
@@ -254,9 +216,7 @@ For Heston, the $n$-th moment $\mathbb{E}[S_T^n]$ exists if and only if $n < n^*
 **Andersen–Piterbarg condition:** The critical moment $n^*$ solves:
 
 $$
-
 D(\tau, -in^*) = \infty
-
 $$
 
 ### Implications
@@ -271,9 +231,7 @@ $$
 For implied volatility wings, the moment explosion determines asymptotic behavior:
 
 $$
-
 \sigma_{\text{impl}}^2(k, T) \sim \frac{2|k|}{T}\left(1 - \frac{1}{n^*(T)}\text{sgn}(k)\right) \quad \text{as } |k| \to \infty
-
 $$
 
 ---

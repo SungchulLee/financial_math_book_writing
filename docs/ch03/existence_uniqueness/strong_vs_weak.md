@@ -9,9 +9,7 @@ The theory of stochastic differential equations distinguishes between two fundam
 Consider the SDE:
 
 $$
-
 dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \quad X_0 = x
-
 $$
 
 **The key question**: What is "given" and what must be "constructed"?
@@ -28,9 +26,7 @@ $$
 **Intuition**: The solution $X_t$ is a **functional of the given Brownian motion**:
 
 $$
-
 X_t = F(W_s : 0 \leq s \leq t)
-
 $$
 
 ### Weak Solution
@@ -80,9 +76,7 @@ A **weak solution** is a tuple $(\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P
 **Definition**: **Pathwise uniqueness** holds if whenever $(X_t, W_t)$ and $(Y_t, W_t)$ are two solutions on the **same** probability space with the **same** Brownian motion and $X_0 = Y_0$ a.s., then:
 
 $$
-
 \mathbb{P}(X_t = Y_t \text{ for all } t \geq 0) = 1
-
 $$
 
 **Meaning**: The solution is uniquely determined by the Brownian path.
@@ -92,9 +86,7 @@ $$
 **Definition**: **Uniqueness in law** holds if any two weak solutions $(X_t, W_t)$ and $(X_t', W_t')$ with the same initial distribution have the same law:
 
 $$
-
 \text{Law}(X_t) = \text{Law}(X_t') \quad \text{for all } t
-
 $$
 
 **Meaning**: The probability distribution of the solution is unique, though individual paths may differ.
@@ -102,9 +94,7 @@ $$
 ### Relationship
 
 $$
-
 \text{Pathwise uniqueness} \Longrightarrow \text{Uniqueness in law}
-
 $$
 
 The converse is **false** in general.
@@ -118,11 +108,9 @@ This fundamental theorem connects the different solution concepts.
 **Theorem (Yamada-Watanabe, 1971)**:
 
 $$
-
 \boxed{
 \text{Pathwise uniqueness} + \text{Weak existence} \Longrightarrow \text{Strong existence}
 }
-
 $$
 
 More precisely:
@@ -152,9 +140,7 @@ For the SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$ with Lipschitz coefficients:
 Consider:
 
 $$
-
 dX_t = \text{sgn}(X_t)\,dW_t, \quad X_0 = 0
-
 $$
 
 where $\text{sgn}(x) = 1$ if $x > 0$, $-1$ if $x < 0$, and $0$ if $x = 0$.
@@ -204,9 +190,7 @@ Weak solutions are naturally connected to the **Stroock-Varadhan martingale prob
 **Theorem**: $(X_t, W_t)$ is a weak solution to the SDE if and only if $X_t$ solves the martingale problem for the generator:
 
 $$
-
 \mathcal{L} = b^i(x)\partial_i + \frac{1}{2}a^{ij}(x)\partial_i\partial_j, \quad a = \sigma\sigma^T
-
 $$
 
 **Advantage**: The martingale problem characterizes the **law** of $X_t$, which is exactly what weak solutions specify.
@@ -222,17 +206,13 @@ Girsanov's theorem provides a powerful method for constructing weak solutions.
 **Theorem**: If $X_t$ solves $dX_t = \sigma(X_t)\,d\widetilde{W}_t$ under $\widetilde{\mathbb{P}}$, then under the measure $\mathbb{P}$ defined by:
 
 $$
-
 \frac{d\mathbb{P}}{d\widetilde{\mathbb{P}}} = \exp\left(-\int_0^T \theta_s\,d\widetilde{W}_s - \frac{1}{2}\int_0^T \theta_s^2\,ds\right)
-
 $$
 
 with $\theta_t = \sigma^{-1}(X_t)b(X_t)$, the process $X_t$ solves:
 
 $$
-
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
-
 $$
 
 where $W_t = \widetilde{W}_t + \int_0^t \theta_s\,ds$ is a Brownian motion under $\mathbb{P}$.
@@ -271,7 +251,6 @@ where $W_t = \widetilde{W}_t + \int_0^t \theta_s\,ds$ is a Brownian motion under
 ## Key Takeaways
 
 $$
-
 \boxed{
 \begin{aligned}
 &\text{Strong} \Longrightarrow \text{Weak} \\[0.5em]
@@ -279,7 +258,6 @@ $$
 &\text{Pathwise uniqueness} \Longrightarrow \text{Uniqueness in law}
 \end{aligned}
 }
-
 $$
 
 1. **Strong solutions** are functionals of the Brownian path.

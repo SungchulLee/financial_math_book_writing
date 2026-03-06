@@ -38,9 +38,7 @@ Understanding and ensuring dynamic consistency is crucial for:
 **Dynamic Consistency**: The plan is dynamically consistent if:
 
 $$
-
 a_t^*(\omega) = \arg\max_{a_t} V_t(a_t, \sigma^*_{t+1:T} | \mathcal{F}_t = \omega)
-
 $$
 
 for all $t$ and $\omega$ — the planned action remains optimal at the time of execution.
@@ -51,9 +49,7 @@ for all $t$ and $\omega$ — the planned action remains optimal at the time of e
 **Time Consistency**: Preferences over consumption streams are time-consistent if:
 
 $$
-
 (c_0, c_1, \ldots) \succeq_0 (c_0', c_1', \ldots) \implies (c_1, c_2, \ldots) \succeq_1 (c_1', c_2', \ldots)
-
 $$
 
 when $c_0 = c_0'$.
@@ -71,17 +67,13 @@ when $c_0 = c_0'$.
 **Bayes' Rule**: Given prior $P$ and event $A$:
 
 $$
-
 P(\cdot | A) = \frac{P(\cdot \cap A)}{P(A)}
-
 $$
 
 **Sequential Expected Utility**: Value of strategy $\sigma$ at time $t$:
 
 $$
-
 V_t(\sigma) = \mathbb{E}_P[U(\sigma) | \mathcal{F}_t]
-
 $$
 
 ### 2. Tower Property
@@ -90,17 +82,13 @@ $$
 **Law of Iterated Expectations**:
 
 $$
-
 \mathbb{E}_P[\mathbb{E}_P[U | \mathcal{F}_s] | \mathcal{F}_t] = \mathbb{E}_P[U | \mathcal{F}_t] \quad \text{for } t \leq s
-
 $$
 
 **Implication**: Sequential optimization is equivalent to backward induction:
 
 $$
-
 V_t(\sigma) = \mathbb{E}_P[V_{t+1}(\sigma) | \mathcal{F}_t]
-
 $$
 
 ### 3. Bellman Principle
@@ -109,9 +97,7 @@ $$
 **Dynamic Programming**: Under EU with Bayesian updating:
 
 $$
-
 V_t(x) = \max_{a_t} \left\{u(x, a_t) + \beta \mathbb{E}_P[V_{t+1}(x') | \mathcal{F}_t]\right\}
-
 $$
 
 **Dynamic Consistency**: The Bellman optimal policy is dynamically consistent by construction.
@@ -125,9 +111,7 @@ $$
 **MEU Preferences**: 
 
 $$
-
 V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[U(f)]
-
 $$
 
 **Problem**: The minimum may be achieved by different measures at different times.
@@ -152,17 +136,13 @@ $$
 **Non-Additive Expectations**: MEU uses:
 
 $$
-
 V_0(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[f]
-
 $$
 
 but this does not satisfy the tower property:
 
 $$
-
 \min_{P \in \mathcal{P}} \mathbb{E}_P[\min_{Q \in \mathcal{P}} \mathbb{E}_Q[f | \mathcal{F}_1]] \neq \min_{P \in \mathcal{P}} \mathbb{E}_P[f]
-
 $$
 
 in general.
@@ -176,9 +156,7 @@ in general.
 **Definition** (Epstein-Schneider, 2003): A set of priors $\mathcal{P}$ is **rectangular** with respect to filtration $\{\mathcal{F}_t\}$ if it can be decomposed as:
 
 $$
-
 \mathcal{P} = \left\{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t(\omega) \text{ for all } t, \omega\right\}
-
 $$
 
 where $\mathcal{P}_t(\omega)$ is a family of conditional probability measures.
@@ -186,9 +164,7 @@ where $\mathcal{P}_t(\omega)$ is a family of conditional probability measures.
 **Equivalent Characterization**: For any $P, Q \in \mathcal{P}$ and stopping time $\tau$, the "pasted" measure:
 
 $$
-
 (P \otimes_{\tau} Q)(A) = \mathbb{E}_P[\mathbb{1}_{\tau > T} \mathbb{1}_A] + \mathbb{E}_P[\mathbb{1}_{\tau \leq T} Q(A | \mathcal{F}_{\tau})]
-
 $$
 
 is also in $\mathcal{P}$.
@@ -203,9 +179,7 @@ is also in $\mathcal{P}$.
 **Example** (Rectangular):
 
 $$
-
 \mathcal{P} = \{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t\}
-
 $$
 
 where each $\mathcal{P}_t$ is specified independently.
@@ -213,9 +187,7 @@ where each $\mathcal{P}_t$ is specified independently.
 **Example** (Non-Rectangular):
 
 $$
-
 \mathcal{P} = \{P: \mathbb{E}_P[\sum_{t=0}^T X_t] \in [a, b]\}
-
 $$
 
 Constraints across periods create non-rectangularity.
@@ -232,9 +204,7 @@ Constraints across periods create non-rectangularity.
 *Sufficiency*: Under rectangularity:
 
 $$
-
 \min_{P \in \mathcal{P}} \mathbb{E}_P[U] = \min_{P_0 \in \mathcal{P}_0} \mathbb{E}_{P_0}\left[\min_{P_1 \in \mathcal{P}_1} \mathbb{E}_{P_1}[\cdots]\right]
-
 $$
 
 The tower property holds for the "min" operation, enabling backward induction.
@@ -248,9 +218,7 @@ The tower property holds for the "min" operation, enabling backward induction.
 **Formulation**: With rectangular priors, value function satisfies:
 
 $$
-
 V_t = \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[u(c_t) + \beta V_{t+1} | \mathcal{F}_t]
-
 $$
 
 **Properties**:
@@ -264,9 +232,7 @@ $$
 **Standard Epstein-Zin**:
 
 $$
-
 V_t = \left[(1-\beta) c_t^{1-1/\psi} + \beta \mu_t(V_{t+1})^{1-1/\psi}\right]^{1/(1-1/\psi)}
-
 $$
 
 where $\mu_t(V) = (\mathbb{E}_t[V^{1-\gamma}])^{1/(1-\gamma)}$.
@@ -274,9 +240,7 @@ where $\mu_t(V) = (\mathbb{E}_t[V^{1-\gamma}])^{1/(1-\gamma)}$.
 **With Ambiguity**: Replace $\mu_t$ with robust certainty equivalent:
 
 $$
-
 \mu_t^R(V) = \min_{P_t \in \mathcal{P}_t} (\mathbb{E}_{P_t}[V^{1-\gamma}])^{1/(1-\gamma)}
-
 $$
 
 **Dynamic Consistency**: Preserved under rectangularity.
@@ -287,9 +251,7 @@ $$
 **KMM Recursive**:
 
 $$
-
 V_t = u(c_t) + \beta \phi^{-1}\left(\mathbb{E}_{\mu_t}\left[\phi\left(\mathbb{E}_{P_t}[V_{t+1}]\right)\right]\right)
-
 $$
 
 where $\mu_t$ is a second-order probability over models.
@@ -305,9 +267,7 @@ where $\mu_t$ is a second-order probability over models.
 **Definition** (Maccheroni-Marinacci-Rustichini, 2006):
 
 $$
-
 V(f) = \min_{P} \left\{\mathbb{E}_P[U(f)] + c(P)\right\}
-
 $$
 
 where $c: \mathcal{M}_1 \to [0, \infty]$ is a convex, lower semicontinuous cost function.
@@ -318,17 +278,13 @@ where $c: \mathcal{M}_1 \to [0, \infty]$ is a convex, lower semicontinuous cost 
 **Conditional Cost Function**: For dynamic consistency, require cost function to factor:
 
 $$
-
 c(P) = \sum_{t=0}^{T-1} \mathbb{E}_P[c_t(P_{t+1}(\cdot | \mathcal{F}_t))]
-
 $$
 
 **Recursive Formulation**:
 
 $$
-
 V_t = \min_{P_t} \left\{\mathbb{E}_{P_t}[u(c_t, a_t) + \beta V_{t+1} | \mathcal{F}_t] + c_t(P_t)\right\}
-
 $$
 
 ### 3. Multiplier Preferences (Hansen-Sargent)
@@ -339,9 +295,7 @@ $$
 **Dynamic**:
 
 $$
-
 V_t = \min_{P_t} \left\{\mathbb{E}_{P_t}[u_t + \beta V_{t+1} | \mathcal{F}_t] + \theta D_{\text{KL}}(P_t \| P_{0,t})\right\}
-
 $$
 
 **Solution**: Exponential tilting preserves dynamic consistency.
@@ -382,9 +336,7 @@ $$
 **Gul-Pesendorfer**: Model temptation and self-control explicitly:
 
 $$
-
 V(B) = \max_{x \in B} \{u(x) + v(x)\} - \max_{y \in B} v(y)
-
 $$
 
 where $v$ represents temptation.
@@ -404,9 +356,7 @@ where $v$ represents temptation.
 **Rectangular Solution**: 
 
 $$
-
 V_t(W_t) = \max_{w_t} \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[V_{t+1}(W_{t+1}) | \mathcal{F}_t]
-
 $$
 
 with $W_{t+1} = W_t(1 + r_f + w_t^\top (R_t - r_f \mathbf{1}))$.
@@ -419,9 +369,7 @@ with $W_{t+1} = W_t(1 + r_f + w_t^\top (R_t - r_f \mathbf{1}))$.
 **HJB Equation**:
 
 $$
-
 \rho V = \max_{c, w} \min_h \{u(c) + \mathcal{L}^{w,h} V - \frac{\theta}{2} h^2\}
-
 $$
 
 **Dynamic Consistency**: Preserved by quadratic penalty structure.
@@ -434,9 +382,7 @@ $$
 **Pathwise Hedging**: With rectangularity:
 
 $$
-
 \Pi_t = V_t - \Delta_t S_t
-
 $$
 
 is a supermartingale under all $P \in \mathcal{P}$.
@@ -449,9 +395,7 @@ is a supermartingale under all $P \in \mathcal{P}$.
 **Consistent Risk Measures**: For multi-period risk assessment, require:
 
 $$
-
 \rho_0(X) = \rho_0(\rho_1(X | \mathcal{F}_1))
-
 $$
 
 **Time Consistency of CVaR**: Standard CVaR is NOT time-consistent.
@@ -459,9 +403,7 @@ $$
 **Conditional Risk Measures**: Use recursive formulation:
 
 $$
-
 \rho_t(X) = \rho_t^{\text{1-period}}(\rho_{t+1}(X))
-
 $$
 
 ## Behavioral Implications
@@ -491,9 +433,7 @@ $$
 **Bayesian Updating Under MEU**: For each $P \in \mathcal{P}$:
 
 $$
-
 P(\cdot | A) = \frac{P(\cdot \cap A)}{P(A)}
-
 $$
 
 **Challenge**: Updated set $\mathcal{P}_A = \{P(\cdot | A): P \in \mathcal{P}\}$ may not preserve rectangularity.

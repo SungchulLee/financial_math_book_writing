@@ -13,9 +13,7 @@ A robust calibration satisfies several criteria simultaneously:
 Small changes in input data (within bid-ask spreads, across data vendors) should not produce large changes in parameters:
 
 $$
-
 \|\theta(\text{data} + \epsilon) - \theta(\text{data})\| \le C \|\epsilon\|
-
 $$
 
 for some reasonable constant $C$.
@@ -58,9 +56,7 @@ Hedge ratios derived from calibrated parameters should be reliable:
 Add penalties to discourage extreme or unstable parameters:
 
 $$
-
-\mathcal{L}_{\text{robust}}(\theta) = \mathcal{L}_{\text{fit}}(\theta) + \lambda \mathcal{R}(\theta),
-
+\mathcal{L}_{\text{robust}}(\theta) = \mathcal{L}_{\text{fit}}(\theta) + \lambda \mathcal{R}(\theta)
 $$
 
 where $\mathcal{R}$ penalizes:
@@ -76,17 +72,13 @@ Replace squared loss with losses less sensitive to outliers:
 **Huber loss:**
 
 $$
-
 \ell_H(r) = \begin{cases} \frac{1}{2} r^2 & |r| \le \delta \\ \delta |r| - \frac{1}{2}\delta^2 & |r| > \delta \end{cases}
-
 $$
 
 **$\ell_1$ loss:**
 
 $$
-
 \ell_1(r) = |r|
-
 $$
 
 These reduce the influence of stale quotes or outliers.
@@ -96,9 +88,7 @@ These reduce the influence of stale quotes or outliers.
 Minimize the maximum error across scenarios:
 
 $$
-
-\min_\theta \max_{y \in \mathcal{Y}} \mathcal{L}(\theta, y),
-
+\min_\theta \max_{y \in \mathcal{Y}} \mathcal{L}(\theta, y)
 $$
 
 where $\mathcal{Y}$ is a set of plausible market data realizations (e.g., within bid-ask).
@@ -171,9 +161,7 @@ If parameters disagree significantly, the model may be mis-specified or data may
 Minimizing residual sum of squares (RSS) or maximizing likelihood measures statistical fit:
 
 $$
-
-\text{RSS} = \sum_j w_j (P_j^{\text{model}} - P_j^{\text{mkt}})^2.
-
+\text{RSS} = \sum_j w_j (P_j^{\text{model}} - P_j^{\text{mkt}})^2
 $$
 
 Lower RSS is better statistically.
@@ -213,9 +201,7 @@ In practice, many trading desks judge calibration quality primarily by time stab
 Regularize toward yesterday's parameters:
 
 $$
-
-\mathcal{L}(\theta) = \mathcal{L}_{\text{fit}}(\theta) + \lambda \|\theta - \hat{\theta}_{t-1}\|^2.
-
+\mathcal{L}(\theta) = \mathcal{L}_{\text{fit}}(\theta) + \lambda \|\theta - \hat{\theta}_{t-1}\|^2
 $$
 
 This penalizes large parameter changes, promoting continuity.

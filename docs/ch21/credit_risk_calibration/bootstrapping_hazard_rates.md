@@ -29,9 +29,7 @@ Piecewise-constant hazard rates $\lambda_1, \lambda_2, \ldots, \lambda_n$ such t
 Assume:
 
 $$
-
-\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n,
-
+\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n
 $$
 
 where $T_0 = 0$.
@@ -39,9 +37,7 @@ where $T_0 = 0$.
 ### Survival Probability
 
 $$
-
-S(0, T_i) = \exp\left(-\sum_{j=1}^{i} \lambda_j (T_j - T_{j-1})\right) = \prod_{j=1}^{i} e^{-\lambda_j \Delta T_j},
-
+S(0, T_i) = \exp\left(-\sum_{j=1}^{i} \lambda_j (T_j - T_{j-1})\right) = \prod_{j=1}^{i} e^{-\lambda_j \Delta T_j}
 $$
 
 where $\Delta T_j = T_j - T_{j-1}$.
@@ -51,9 +47,7 @@ where $\Delta T_j = T_j - T_{j-1}$.
 Given $\lambda_1, \ldots, \lambda_{i-1}$:
 
 $$
-
-S(0, T_i) = S(0, T_{i-1}) \cdot e^{-\lambda_i \Delta T_i}.
-
+S(0, T_i) = S(0, T_{i-1}) \cdot e^{-\lambda_i \Delta T_i}
 $$
 
 This recursive structure enables sequential bootstrapping.
@@ -81,9 +75,7 @@ This recursive structure enables sequential bootstrapping.
 For each CDS, the par spread condition is:
 
 $$
-
-s_i \times \text{RPV01}_i = (1-R) \times \text{PV}_{\text{prot}, i},
-
+s_i \times \text{RPV01}_i = (1-R) \times \text{PV}_{\text{prot}, i}
 $$
 
 where both sides depend on survival probabilities up to $T_i$.
@@ -95,25 +87,19 @@ where both sides depend on survival probabilities up to $T_i$.
 ### Protection Leg Present Value
 
 $$
-
-\text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \int_{T_{j-1}}^{T_j} D(0,t) \lambda_j S(0,t) \, dt.
-
+\text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \int_{T_{j-1}}^{T_j} D(0,t) \lambda_j S(0,t) \, dt
 $$
 
 With piecewise-constant intensity and assuming continuous compounding:
 
 $$
-
-\text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \lambda_j \int_{T_{j-1}}^{T_j} D(0,t) S(0, T_{j-1}) e^{-\lambda_j (t - T_{j-1})} \, dt.
-
+\text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \lambda_j \int_{T_{j-1}}^{T_j} D(0,t) S(0, T_{j-1}) e^{-\lambda_j (t - T_{j-1})} \, dt
 $$
 
 ### Premium Leg Present Value (Risky Annuity)
 
 $$
-
-\text{RPV01}(T_i) = \sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k),
-
+\text{RPV01}(T_i) = \sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k)
 $$
 
 where $t_1, \ldots, t_{m_i}$ are premium payment dates up to $T_i$.
@@ -121,9 +107,7 @@ where $t_1, \ldots, t_{m_i}$ are premium payment dates up to $T_i$.
 ### Par Spread Equation
 
 $$
-
-s_i = \frac{(1-R) \sum_{j=1}^{i} \lambda_j \cdot I_j}{\sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k)},
-
+s_i = \frac{(1-R) \sum_{j=1}^{i} \lambda_j \cdot I_j}{\sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k)}
 $$
 
 where $I_j$ is the integral contribution from period $j$.
@@ -137,9 +121,7 @@ where $I_j$ is the integral contribution from period $j$.
 For each step $i$, solve for $\lambda_i$ in the nonlinear equation:
 
 $$
-
-f(\lambda_i) = s_i \times \text{RPV01}(T_i; \lambda_1, \ldots, \lambda_i) - (1-R) \times \text{PV}_{\text{prot}}(T_i; \lambda_1, \ldots, \lambda_i) = 0.
-
+f(\lambda_i) = s_i \times \text{RPV01}(T_i; \lambda_1, \ldots, \lambda_i) - (1-R) \times \text{PV}_{\text{prot}}(T_i; \lambda_1, \ldots, \lambda_i) = 0
 $$
 
 Methods:
@@ -152,17 +134,13 @@ Methods:
 Use the constant-intensity approximation:
 
 $$
-
-\lambda_i^{(0)} \approx \frac{s_i}{1 - R}.
-
+\lambda_i^{(0)} \approx \frac{s_i}{1 - R}
 $$
 
 ### Convergence Criteria
 
 $$
-
-|f(\lambda_i)| < \epsilon, \quad \text{with } \epsilon \sim 10^{-8}.
-
+|f(\lambda_i)| < \epsilon, \quad \text{with } \epsilon \sim 10^{-8}
 $$
 
 ---
@@ -221,9 +199,7 @@ PV\_prot(1Y) $\approx 0.6 \times \lambda_1 \times \int_0^1 e^{-(0.03 + \lambda_1
 Solving $0.008 \times \text{RPV01} = 0.6 \times \text{PV\_prot}$ numerically:
 
 $$
-
 \lambda_1 \approx 1.35\% = 135 \text{ bp}
-
 $$
 
 $S(0,1) = e^{-0.0135} = 0.9866$
@@ -238,9 +214,7 @@ Given $\lambda_1 = 135$ bp and $S(0,1) = 0.9866$:
 Solving (details omitted):
 
 $$
-
 \lambda_2 \approx 1.15\% = 115 \text{ bp}
-
 $$
 
 $S(0,3) = 0.9866 \times e^{-0.0115 \times 2} = 0.9866 \times 0.9772 = 0.9641$
@@ -252,9 +226,7 @@ Given $\lambda_1, \lambda_2$ and $S(0,3) = 0.9641$:
 Solving for $\lambda_3$:
 
 $$
-
 \lambda_3 \approx 2.05\% = 205 \text{ bp}
-
 $$
 
 $S(0,5) = 0.9641 \times e^{-0.0205 \times 2} = 0.9641 \times 0.9599 = 0.9254$
@@ -284,9 +256,7 @@ For illiquid maturities, interpolation or extrapolation is needed.
 Bootstrapped hazard rates depend heavily on assumed recovery:
 
 $$
-
-\lambda \propto \frac{s}{1-R}.
-
+\lambda \propto \frac{s}{1-R}
 $$
 
 A change from $R = 40\%$ to $R = 30\%$ increases implied hazard rates by $\frac{0.60}{0.70} \approx 14\%$.
@@ -330,9 +300,7 @@ The mathematical machinery is nearly identical, with survival replacing discount
 Instead of sequential bootstrapping, fit all hazard rates simultaneously by minimizing:
 
 $$
-
-\sum_{i=1}^n \left(s_i^{\text{model}}(\lambda_1, \ldots, \lambda_n) - s_i^{\text{market}}\right)^2.
-
+\sum_{i=1}^n \left(s_i^{\text{model}}(\lambda_1, \ldots, \lambda_n) - s_i^{\text{market}}\right)^2
 $$
 
 **Advantages:** More stable, can impose smoothness

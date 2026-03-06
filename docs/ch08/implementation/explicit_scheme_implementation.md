@@ -9,9 +9,7 @@ The **explicit finite difference scheme** computes the option price at the next 
 Recall the Black-Scholes PDE:
 
 $$
-
 \frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0
-
 $$
 
 Replace derivatives using finite difference approximations:
@@ -32,21 +30,17 @@ Replace derivatives using finite difference approximations:
 Substituting and rearranging:
 
 $$
-
 V_i^{n+1} = a_i V_{i-1}^n + b_i V_i^n + c_i V_{i+1}^n
-
 $$
 
 where the coefficients are:
 
 $$
-
 \begin{aligned}
 a_i &= \frac{\Delta t}{2} \left[ \sigma^2 i^2 - r i \right] \\
 b_i &= 1 - \Delta t \left[ \sigma^2 i^2 + r \right] \\
 c_i &= \frac{\Delta t}{2} \left[ \sigma^2 i^2 + r i \right]
 \end{aligned}
-
 $$
 
 Here $i$ is the spatial grid index and $S_i = i \Delta S$.
@@ -76,9 +70,7 @@ Here $i$ is the spatial grid index and $S_i = i \Delta S$.
 The explicit scheme is only **conditionally stable**. A conservative stability condition is:
 
 $$
-
 \Delta t \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
-
 $$
 
 If violated, the solution may exhibit oscillations or grow without bound.
@@ -92,9 +84,7 @@ We compare results of the explicit finite difference scheme in both original and
 **Black-Scholes Formula for a European Call:**
 
 $$
-
 C(S, t) = S \Phi(d_1) - K e^{-r(T - t)} \Phi(d_2)
-
 $$
 
 where $d_1 = \frac{\ln(S / K) + (r + \frac{1}{2} \sigma^2)(T - t)}{\sigma \sqrt{T - t}}$ and $d_2 = d_1 - \sigma \sqrt{T - t}$.

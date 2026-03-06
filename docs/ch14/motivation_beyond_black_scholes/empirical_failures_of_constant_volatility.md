@@ -9,9 +9,7 @@ The Black–Scholes model assumes that volatility is constant over time and acro
 In the Black–Scholes framework, the underlying asset follows geometric Brownian motion:
 
 $$
-
-dS_t = \mu S_t\,dt + \sigma S_t\,dW_t,
-
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
 $$
 
 where the volatility parameter $\sigma$ is constant. This implies several testable predictions:
@@ -32,17 +30,13 @@ One of the most robust findings in financial econometrics is **volatility cluste
 Formally, while returns $r_t$ are approximately uncorrelated:
 
 $$
-
-\text{Corr}(r_t, r_{t+k}) \approx 0 \quad \text{for } k \geq 1,
-
+\text{Corr}(r_t, r_{t+k}) \approx 0 \quad \text{for } k \geq 1
 $$
 
 squared returns exhibit significant positive autocorrelation:
 
 $$
-
-\text{Corr}(r_t^2, r_{t+k}^2) > 0 \quad \text{for } k = 1, 2, \ldots, 50+.
-
+\text{Corr}(r_t^2, r_{t+k}^2) > 0 \quad \text{for } k = 1, 2, \ldots, 50+
 $$
 
 **Quantitative evidence:**
@@ -58,9 +52,7 @@ This persistence implies that volatility is **predictable**, contradicting the c
 The ARCH/GARCH literature (Engle 1982, Bollerslev 1986) formalizes this by modeling conditional variance as:
 
 $$
-
-\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2,
-
+\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
 $$
 
 where typically $\alpha + \beta \approx 0.95$–$0.99$, indicating high persistence.
@@ -74,9 +66,7 @@ The **leverage effect** refers to the negative correlation between returns and s
 Let $r_t$ denote the return and $\sigma_{t+1}$ the subsequent volatility. Empirically:
 
 $$
-
-\text{Corr}(r_t, \sigma_{t+1}^2 - \sigma_t^2) < 0.
-
+\text{Corr}(r_t, \sigma_{t+1}^2 - \sigma_t^2) < 0
 $$
 
 **Typical magnitudes:**
@@ -105,9 +95,7 @@ The leverage effect has profound implications for option pricing: it generates t
 Realized volatility, estimated from high-frequency data, varies substantially over time:
 
 $$
-
 RV_t = \sqrt{\sum_{i=1}^{n} r_{t,i}^2}
-
 $$
 
 where $r_{t,i}$ are intraday returns.
@@ -125,9 +113,7 @@ The ratio between high and low volatility regimes exceeds 5:1, making constant v
 **Volatility of volatility:** The standard deviation of realized volatility is itself substantial. For the S&P 500:
 
 $$
-
-\text{Std}[\sigma_{\text{realized}}] \approx 0.4 \times \mathbb{E}[\sigma_{\text{realized}}],
-
+\text{Std}[\sigma_{\text{realized}}] \approx 0.4 \times \mathbb{E}[\sigma_{\text{realized}}]
 $$
 
 implying a coefficient of variation around 40%.
@@ -143,9 +129,7 @@ Under constant volatility, log-returns are Gaussian. Empirically, returns exhibi
 The kurtosis of a Gaussian is 3. Empirical return distributions have excess kurtosis:
 
 $$
-
-\text{Kurt}[r] = \frac{\mathbb{E}[(r - \mu)^4]}{(\mathbb{E}[(r-\mu)^2])^2} > 3.
-
+\text{Kurt}[r] = \frac{\mathbb{E}[(r - \mu)^4]}{(\mathbb{E}[(r-\mu)^2])^2} > 3
 $$
 
 **Typical values:**
@@ -163,9 +147,7 @@ The aggregational Gaussianity (kurtosis approaching 3 at longer horizons) is con
 Equity returns, especially for indices, exhibit negative skewness:
 
 $$
-
-\text{Skew}[r] = \frac{\mathbb{E}[(r - \mu)^3]}{(\mathbb{E}[(r-\mu)^2])^{3/2}} < 0.
-
+\text{Skew}[r] = \frac{\mathbb{E}[(r - \mu)^3]}{(\mathbb{E}[(r-\mu)^2])^{3/2}} < 0
 $$
 
 **Typical values for equity indices:** $-0.3$ to $-1.0$
@@ -201,9 +183,7 @@ Under Black–Scholes with constant $\sigma$:
 If Black–Scholes held with constant $\sigma$, implied volatility would be flat across strikes. Instead:
 
 $$
-
-\sigma_{\text{impl}}(K) \neq \text{constant}.
-
+\sigma_{\text{impl}}(K) \neq \text{constant}
 $$
 
 The pattern—higher implied volatility for OTM puts (low strikes) and sometimes OTM calls (high strikes)—reflects the market's recognition of non-Gaussian risks.
@@ -213,9 +193,7 @@ The pattern—higher implied volatility for OTM puts (low strikes) and sometimes
 Delta hedging under constant volatility assumes:
 
 $$
-
 \Delta = \frac{\partial C}{\partial S} = N(d_1)
-
 $$
 
 with known, stable $\sigma$. When volatility is stochastic:

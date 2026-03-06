@@ -11,13 +11,11 @@ The SABR model is a widely used **stochastic volatility model** designed to capt
 The SABR model specifies dynamics for a forward price $F_t$ (e.g., a forward rate or forward stock price):
 
 $$
-
 \begin{aligned}
 dF_t &= \sigma_t F_t^{\beta}\,dW_t^F \\
 d\sigma_t &= \nu\sigma_t\,dW_t^{\sigma} \\
 d\langle W^F, W^{\sigma} \rangle_t &= \rho\,dt
 \end{aligned}
-
 $$
 
 with initial conditions $F_0 = F$ and $\sigma_0 = \alpha$.
@@ -89,31 +87,23 @@ The parameter $\alpha$ sets the **ATM implied volatility level**:
 Hagan, Kumar, Lesniewski, and Woodward (2002) derived an **asymptotic formula** for implied volatility:
 
 $$
-
 \sigma_{\text{impl}}(K, F) = \sigma_B(K, F) \cdot \left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho\beta\nu\alpha}{4(FK)^{(1-\beta)/2}} + \frac{2-3\rho^2}{24}\nu^2\right)T + O(T^2)\right]
-
 $$
 
 where the **base volatility** $\sigma_B$ is:
 
 $$
-
 \sigma_B(K, F) = \frac{\alpha}{(FK)^{(1-\beta)/2}\left[1 + \frac{(1-\beta)^2}{24}\log^2(F/K) + \frac{(1-\beta)^4}{1920}\log^4(F/K)\right]} \cdot \frac{z}{x(z)}
-
 $$
 
 with:
 
 $$
-
 z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2}\log(F/K)
-
 $$
 
 $$
-
 x(z) = \log\left(\frac{\sqrt{1-2\rho z + z^2} + z - \rho}{1-\rho}\right)
-
 $$
 
 ### ATM Formula (K = F)
@@ -121,17 +111,13 @@ $$
 At the money, the formula simplifies significantly:
 
 $$
-
 \sigma_{\text{ATM}} = \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{F^{2(1-\beta)}} + \frac{\rho\beta\nu\alpha}{4F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]
-
 $$
 
 **For $\beta = 1$ (lognormal):**
 
 $$
-
 \sigma_{\text{ATM}} = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right]
-
 $$
 
 ### Skew and Curvature
@@ -141,9 +127,7 @@ Taking derivatives of the Hagan formula:
 **Skew (first derivative):**
 
 $$
-
 \frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \approx \frac{\rho\nu}{2\sigma_{\text{ATM}}} - \frac{(1-\beta)}{2F}
-
 $$
 
 where $k = \log(K/F)$.
@@ -151,9 +135,7 @@ where $k = \log(K/F)$.
 **Curvature (second derivative):**
 
 $$
-
 \frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2}\bigg|_{k=0} \approx \frac{\nu^2(1-\rho^2)}{2\sigma_{\text{ATM}}} + \text{(corrections)}
-
 $$
 
 ---
@@ -169,9 +151,7 @@ $$
 **Step 3:** Fit $\rho$ and $\nu$ to OTM options using least squares:
 
 $$
-
 \min_{\rho, \nu} \sum_i \left(\sigma_{\text{impl}}^{\text{market}}(K_i) - \sigma_{\text{impl}}^{\text{SABR}}(K_i; \alpha, \beta, \rho, \nu)\right)^2
-
 $$
 
 ### Typical Calibrated Values
@@ -240,9 +220,7 @@ When rates can go negative ($F < 0$ possible), the standard SABR model fails:
 Introduce a shift $s$:
 
 $$
-
 dF_t = \sigma_t (F_t + s)^{\beta}\,dW_t^F
-
 $$
 
 The shifted forward $\tilde{F} = F + s$ remains positive if $s$ is large enough.
@@ -254,9 +232,7 @@ The shifted forward $\tilde{F} = F + s$ remains positive if $s$ is large enough.
 Setting $\beta = 0$:
 
 $$
-
 dF_t = \sigma_t\,dW_t^F
-
 $$
 
 Allows negative rates naturally (Bachelier-type model).
@@ -264,9 +240,7 @@ Allows negative rates naturally (Bachelier-type model).
 **Hagan formula for $\beta = 0$:**
 
 $$
-
 \sigma_{\text{impl}}^N(K, F) = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right] \cdot \frac{z}{x(z)}
-
 $$
 
 where $z = \frac{\nu}{\alpha}(F - K)$ and $x(z)$ as before.
@@ -297,9 +271,7 @@ where $z = \frac{\nu}{\alpha}(F - K)$ and $x(z)$ as before.
 **Solution:** Use series expansion for small $z$:
 
 $$
-
 x(z) \approx z\left(1 + \frac{\rho z}{2} + \frac{(2\rho^2 - 1)z^2}{6} + \cdots\right)
-
 $$
 
 ### Python Implementation

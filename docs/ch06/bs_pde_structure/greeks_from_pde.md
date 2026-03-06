@@ -23,19 +23,15 @@ For an option price $V(t, S)$:
 The Black-Scholes PDE connects the Greeks:
 
 $$
-
 \frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV
-
 $$
 
 Rewriting in terms of Greeks:
 
 $$
-
 \boxed{
 \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma = rV
 }
-
 $$
 
 **Interpretation**: Time decay ($\Theta$) is compensated by delta ($\Delta$) and gamma ($\Gamma$) effects.
@@ -55,9 +51,7 @@ For ATM options ($S \approx K$), the relationship simplifies.
 From the PDE:
 
 $$
-
 \Theta \approx rV - rS(0.5) - \frac{1}{2}\sigma^2 S^2\Gamma
-
 $$
 
 For small $r$: $\Theta \approx -\frac{1}{2}\sigma^2 S^2\Gamma$
@@ -71,9 +65,7 @@ For small $r$: $\Theta \approx -\frac{1}{2}\sigma^2 S^2\Gamma$
 ### Definition
 
 $$
-
 \Delta = \frac{\partial V}{\partial S}
-
 $$
 
 ### Interpretation
@@ -103,9 +95,7 @@ where $d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}$
 ### Definition
 
 $$
-
 \Gamma = \frac{\partial^2 V}{\partial S^2} = \frac{\partial \Delta}{\partial S}
-
 $$
 
 ### Interpretation
@@ -117,9 +107,7 @@ $$
 ### Black-Scholes Formula
 
 $$
-
 \Gamma = \frac{\phi(d_1)}{S\sigma\sqrt{T-t}}
-
 $$
 
 where $\phi$ is the standard normal PDF.
@@ -143,9 +131,7 @@ Gamma measures the **instability of the hedge**:
 ### Definition
 
 $$
-
 \Theta = \frac{\partial V}{\partial t}
-
 $$
 
 **Convention**: Often reported as daily decay ($\Theta/365$).
@@ -155,17 +141,13 @@ $$
 **Call**:
 
 $$
-
 \Theta_C = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\Phi(d_2)
-
 $$
 
 **Put**:
 
 $$
-
 \Theta_P = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} + rKe^{-r(T-t)}\Phi(-d_2)
-
 $$
 
 ### Properties
@@ -177,9 +159,7 @@ $$
 ### Theta-Gamma Tradeoff
 
 $$
-
 \Theta \approx -\frac{1}{2}\sigma^2 S^2\Gamma
-
 $$
 
 Long gamma positions have negative theta (pay for convexity with time decay).
@@ -191,9 +171,7 @@ Long gamma positions have negative theta (pay for convexity with time decay).
 ### Definition
 
 $$
-
 \mathcal{V} = \frac{\partial V}{\partial \sigma}
-
 $$
 
 **Note**: Vega is not a Greek letter!
@@ -201,9 +179,7 @@ $$
 ### Black-Scholes Formula
 
 $$
-
 \mathcal{V} = S\sqrt{T-t}\phi(d_1)
-
 $$
 
 Same for calls and puts (put-call parity).
@@ -228,9 +204,7 @@ Vega is essential for:
 ### Definition
 
 $$
-
 \rho = \frac{\partial V}{\partial r}
-
 $$
 
 ### Black-Scholes Formulas
@@ -254,21 +228,15 @@ $$
 Given numerical solution $V^n_j$ on a grid:
 
 $$
-
 \Delta \approx \frac{V_{j+1} - V_{j-1}}{2\Delta S}
-
 $$
 
 $$
-
 \Gamma \approx \frac{V_{j+1} - 2V_j + V_{j-1}}{(\Delta S)^2}
-
 $$
 
 $$
-
 \Theta \approx \frac{V^{n+1}_j - V^n_j}{\Delta t}
-
 $$
 
 ### Pathwise Derivatives (Monte Carlo)
@@ -276,9 +244,7 @@ $$
 For simulation:
 
 $$
-
 \Delta = \mathbb{E}\left[e^{-rT}\Phi'(S_T)\frac{\partial S_T}{\partial S_0}\right]
-
 $$
 
 Using GBM: $\frac{\partial S_T}{\partial S_0} = \frac{S_T}{S_0}$
@@ -290,9 +256,7 @@ Using GBM: $\frac{\partial S_T}{\partial S_0} = \frac{S_T}{S_0}$
 For a portfolio $\Pi = \sum_i w_i V_i$:
 
 $$
-
 \Delta_\Pi = \sum_i w_i \Delta_i, \quad \Gamma_\Pi = \sum_i w_i \Gamma_i, \quad \text{etc.}
-
 $$
 
 ### Delta-Gamma Hedging
@@ -317,11 +281,9 @@ To hedge both delta and gamma:
 ## Summary
 
 $$
-
 \boxed{
 \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma = rV
 }
-
 $$
 
 | Greek | Role in Hedging | Sign (Long Call) |

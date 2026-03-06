@@ -7,9 +7,7 @@ The martingale property states that $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ f
 If $\sigma \le \tau$ are stopping times, does the martingale property extend to:
 
 $$
-
 \mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma \quad ?
-
 $$
 
 The answer is: **yes, but with conditions**. The Optional Sampling Theorem (also called the Optional Stopping Theorem) provides the precise circumstances under which this holds.
@@ -21,25 +19,19 @@ The answer is: **yes, but with conditions**. The Optional Sampling Theorem (also
 **Theorem (Optional Sampling — Bounded Version)**: Let $\{M_t\}_{t \ge 0}$ be a right-continuous martingale with respect to $(\mathcal{F}_t)$. Let $\sigma$ and $\tau$ be stopping times with:
 
 $$
-
 0 \le \sigma \le \tau \le T \quad \text{almost surely}
-
 $$
 
 for some constant $T < \infty$. Then:
 
 $$
-
 \boxed{\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma \quad \text{a.s.}}
-
 $$
 
 In particular:
 
 $$
-
 \boxed{\mathbb{E}[M_\tau] = \mathbb{E}[M_\sigma] = \mathbb{E}[M_0]}
-
 $$
 
 **Interpretation**: For bounded stopping times, the "fair game" property persists. On average, stopping at a random time gives the same expected value as the starting value.
@@ -55,9 +47,7 @@ For $s \le t$, we need $\mathbb{E}[M_{t \wedge \tau} \mid \mathcal{F}_s] = M_{s 
 Decompose based on whether $\tau \le s$:
 
 $$
-
 M_{t \wedge \tau} = M_\tau \mathbf{1}_{\{\tau \le s\}} + M_{t \wedge \tau} \mathbf{1}_{\{\tau > s\}}
-
 $$
 
 On $\{\tau \le s\}$: $M_{t \wedge \tau} = M_\tau = M_{s \wedge \tau}$, so conditioning gives $M_{s \wedge \tau}$.
@@ -69,9 +59,7 @@ On $\{\tau > s\}$: $s \wedge \tau = s$, and we use the martingale property caref
 Since $\tau \le T$, evaluate the stopped martingale at time $T$:
 
 $$
-
 \mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = \mathbb{E}[M_{T \wedge \tau} \mid \mathcal{F}_\sigma] = M_{\sigma \wedge \tau} = M_\sigma
-
 $$
 
 where the last equality uses $\sigma \le \tau$. $\square$
@@ -85,17 +73,13 @@ Without boundedness or other integrability conditions, optional sampling can fai
 **Example 1 (Symmetric Random Walk)**: Let $S_n = \sum_{i=1}^n \xi_i$ where $\mathbb{P}(\xi_i = \pm 1) = 1/2$. Define:
 
 $$
-
 \tau = \inf\{n : S_n = 1\}
-
 $$
 
 Then $S_n$ is a martingale with $S_0 = 0$, and $\mathbb{P}(\tau < \infty) = 1$. But:
 
 $$
-
 \mathbb{E}[S_\tau] = \mathbb{E}[1] = 1 \neq 0 = \mathbb{E}[S_0]
-
 $$
 
 The problem: $\mathbb{E}[\tau] = \infty$, so the stopping time is unbounded.
@@ -105,9 +89,7 @@ The problem: $\mathbb{E}[\tau] = \infty$, so the stopping time is unbounded.
 **Example 3 (Brownian Motion)**: Let $\tau_a = \inf\{t : W_t = a\}$ for $a > 0$. Then $W_\tau = a$ almost surely, but:
 
 $$
-
 \mathbb{E}[W_{\tau_a}] = a \neq 0 = \mathbb{E}[W_0]
-
 $$
 
 Again, $\mathbb{E}[\tau_a] = \infty$ (the inverse Gaussian distribution has infinite mean).
@@ -123,9 +105,7 @@ Several conditions ensure optional sampling holds for unbounded stopping times:
 **Theorem**: Let $M$ be a UI martingale. Then for any stopping times $\sigma \le \tau$ (possibly unbounded):
 
 $$
-
 \mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma
-
 $$
 
 **Proof**: UI implies $M_t \to M_\infty$ in $L^1$. Apply bounded optional sampling to $\tau \wedge T$ and let $T \to \infty$. $\square$
@@ -168,9 +148,7 @@ Common choices:
 **Step 3**: Apply optional sampling with truncation:
 
 $$
-
 \mathbb{E}[M_{\tau \wedge T}] = \mathbb{E}[M_0]
-
 $$
 
 **Step 4**: Justify passage to the limit $T \to \infty$.
@@ -192,23 +170,17 @@ The martingale identity often encodes the answer.
 **Solution**: $W_t$ is a bounded martingale on $[0, \tau]$ (since $W_t \in [a, b]$ for $t < \tau$). By optional sampling:
 
 $$
-
 \mathbb{E}[W_\tau] = x
-
 $$
 
 Let $p = \mathbb{P}(W_\tau = b)$. Then:
 
 $$
-
 b \cdot p + a \cdot (1-p) = x \implies p = \frac{x - a}{b - a}
-
 $$
 
 $$
-
 \boxed{\mathbb{P}(\text{hit } b \text{ before } a \mid W_0 = x) = \frac{x - a}{b - a}}
-
 $$
 
 ### Application 2: Expected Exit Time
@@ -220,31 +192,23 @@ $$
 Since $|W_t| \le a$ for $t < \tau$, we have $|M_t| \le a^2 + t$. With care:
 
 $$
-
 \mathbb{E}[M_{\tau \wedge T}] = \mathbb{E}[M_0] = 0
-
 $$
 
 As $T \to \infty$:
 
 $$
-
 \mathbb{E}[W_\tau^2] - \mathbb{E}[\tau] = 0
-
 $$
 
 Since $|W_\tau| = a$ (the process exits at the boundary):
 
 $$
-
 \mathbb{E}[\tau] = \mathbb{E}[W_\tau^2] = a^2
-
 $$
 
 $$
-
 \boxed{\mathbb{E}[\tau_{(-a,a)}] = a^2}
-
 $$
 
 ### Application 3: Laplace Transform of Hitting Time
@@ -254,37 +218,27 @@ $$
 **Solution**: Use the exponential martingale with $\theta = \sqrt{2\lambda}$:
 
 $$
-
 Z_t = \exp\left(\sqrt{2\lambda} W_t - \lambda t\right)
-
 $$
 
 Apply optional sampling to $\tau_a \wedge T$. At $\tau_a$, $W_{\tau_a} = a$, so:
 
 $$
-
 Z_{\tau_a} = \exp\left(\sqrt{2\lambda} \cdot a - \lambda \tau_a\right)
-
 $$
 
 With justification for $T \to \infty$:
 
 $$
-
 \mathbb{E}[Z_{\tau_a}] = \mathbb{E}[Z_0] = 1
-
 $$
 
 $$
-
 \mathbb{E}\left[\exp(-\lambda \tau_a)\right] = \exp\left(-a\sqrt{2\lambda}\right)
-
 $$
 
 $$
-
 \boxed{\mathbb{E}[e^{-\lambda \tau_a}] = e^{-a\sqrt{2\lambda}}}
-
 $$
 
 This is the Laplace transform of the inverse Gaussian distribution.
@@ -296,9 +250,7 @@ This is the Laplace transform of the inverse Gaussian distribution.
 **Theorem**: If $X$ is a supermartingale and $\sigma \le \tau \le T$ are bounded stopping times:
 
 $$
-
 \mathbb{E}[X_\tau \mid \mathcal{F}_\sigma] \le X_\sigma
-
 $$
 
 For submartingales, the inequality reverses.
@@ -306,9 +258,7 @@ For submartingales, the inequality reverses.
 **Application**: If $|M_t|$ is a submartingale (true for any martingale $M_t$):
 
 $$
-
 \mathbb{E}[|M_\tau|] \ge \mathbb{E}[|M_\sigma|]
-
 $$
 
 The expected absolute value can only increase at stopping times.
@@ -322,9 +272,7 @@ Optional sampling connects stochastic processes to partial differential equation
 **Theorem (Dynkin's Formula)**: If $u$ is $C^2$ and $X_t$ is a diffusion with generator $\mathcal{L}$, then:
 
 $$
-
 u(X_t) - u(X_0) - \int_0^t \mathcal{L}u(X_s) \, ds
-
 $$
 
 is a local martingale. If $\mathcal{L}u = 0$ (i.e., $u$ is harmonic), then $u(X_t)$ is a local martingale.
@@ -332,9 +280,7 @@ is a local martingale. If $\mathcal{L}u = 0$ (i.e., $u$ is harmonic), then $u(X_
 **Consequence**: For Brownian motion ($\mathcal{L} = \frac{1}{2}\Delta$), if $u$ is harmonic on domain $D$:
 
 $$
-
 u(x) = \mathbb{E}^x[u(W_\tau)]
-
 $$
 
 where $\tau$ is the exit time from $D$. This is the **probabilistic solution to the Dirichlet problem**.
@@ -346,9 +292,7 @@ where $\tau$ is the exit time from $D$. This is the **probabilistic solution to 
 The Optional Sampling Theorem:
 
 $$
-
 \boxed{\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma}
-
 $$
 
 holds when:

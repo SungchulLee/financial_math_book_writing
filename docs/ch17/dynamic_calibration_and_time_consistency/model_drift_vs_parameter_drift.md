@@ -152,9 +152,7 @@ Calibrate separately to different subsets of data (e.g., puts vs. calls, short v
 Suppose we observe calibrated parameters $\hat{\theta}_t$ over time $t = 1, \ldots, T$. Decompose:
 
 $$
-
-\hat{\theta}_t = \theta^{\star} + \delta_t + \epsilon_t,
-
+\hat{\theta}_t = \theta^{\star} + \delta_t + \epsilon_t
 $$
 
 where:
@@ -168,9 +166,7 @@ where:
 Total variance:
 
 $$
-
-\text{Var}(\hat{\theta}_t) = \text{Var}(\delta_t) + \text{Var}(\epsilon_t) + 2\text{Cov}(\delta_t, \epsilon_t).
-
+\text{Var}(\hat{\theta}_t) = \text{Var}(\delta_t) + \text{Var}(\epsilon_t) + 2\text{Cov}(\delta_t, \epsilon_t)
 $$
 
 If we can estimate $\text{Var}(\epsilon_t)$ (e.g., from bootstrap), we can attribute residual variance to drift.
@@ -180,9 +176,7 @@ If we can estimate $\text{Var}(\epsilon_t)$ (e.g., from bootstrap), we can attri
 Define:
 
 $$
-
-\text{SNR} = \frac{\text{Var}(\delta_t)}{\text{Var}(\epsilon_t)}.
-
+\text{SNR} = \frac{\text{Var}(\delta_t)}{\text{Var}(\epsilon_t)}
 $$
 
 - High SNR: Parameter changes are mostly genuine drift.

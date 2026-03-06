@@ -13,17 +13,13 @@ Consider a $d$-dimensional hypercube $[0,1]^d$ and an inscribed hypersphere of r
 **Volume of hypersphere:**
 
 $$
-
-V_d(r) = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)} r^d.
-
+V_d(r) = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)} r^d
 $$
 
 **Ratio of sphere to cube volume:**
 
 $$
-
-\frac{V_d(1/2)}{1^d} = \frac{\pi^{d/2}}{2^d \Gamma(d/2 + 1)} \xrightarrow{d \to \infty} 0.
-
+\frac{V_d(1/2)}{1^d} = \frac{\pi^{d/2}}{2^d \Gamma(d/2 + 1)} \xrightarrow{d \to \infty} 0
 $$
 
 | Dimension $d$ | Ratio |
@@ -43,9 +39,7 @@ For points uniformly distributed in $[0,1]^d$, the expected distance to the near
 **Theorem.** Let $X_1, \ldots, X_n \sim \text{Uniform}([0,1]^d)$ i.i.d. For any point $x$:
 
 $$
-
-\mathbb{E}[\min_{i} \|x - X_i\|] \asymp n^{-1/d}.
-
+\mathbb{E}[\min_{i} \|x - X_i\|] \asymp n^{-1/d}
 $$
 
 For fixed $n$ and large $d$, typical nearest-neighbor distances approach the diameter of the space.
@@ -55,9 +49,7 @@ For fixed $n$ and large $d$, typical nearest-neighbor distances approach the dia
 **Theorem (Distance concentration).** Let $X, Y$ be independent uniform on $[0,1]^d$. Then:
 
 $$
-
-\frac{\|X - Y\|^2 - d/6}{\sqrt{d \cdot \text{Var}(\|X-Y\|^2)}} \xrightarrow{d} \mathcal{N}(0,1).
-
+\frac{\|X - Y\|^2 - d/6}{\sqrt{d \cdot \text{Var}(\|X-Y\|^2)}} \xrightarrow{d} \mathcal{N}(0,1)
 $$
 
 All pairwise distances concentrate around $\sqrt{d/6}$. When all points are equidistant, notions of "near" and "far" lose meaning.
@@ -71,9 +63,7 @@ All pairwise distances concentrate around $\sqrt{d/6}$. When all points are equi
 Recall Stone's theorem: for functions in the Hölder class $\mathcal{H}(\beta, L)$, the minimax rate for estimating $f$ in $L_2$ is:
 
 $$
-
-\inf_{\hat{f}} \sup_{f \in \mathcal{H}(\beta, L)} \mathbb{E}\|\hat{f} - f\|_2^2 \asymp n^{-\frac{2\beta}{2\beta + d}}.
-
+\inf_{\hat{f}} \sup_{f \in \mathcal{H}(\beta, L)} \mathbb{E}\|\hat{f} - f\|_2^2 \asymp n^{-\frac{2\beta}{2\beta + d}}
 $$
 
 ### Effective Sample Size
@@ -81,9 +71,7 @@ $$
 Define **effective sample size** as the number of observations needed in dimension 1 to achieve the same error as $n$ observations in dimension $d$:
 
 $$
-
-n_{\text{eff}} = n^{\frac{2\beta + 1}{2\beta + d}}.
-
+n_{\text{eff}} = n^{\frac{2\beta + 1}{2\beta + d}}
 $$
 
 **Example.** For $\beta = 2$ (twice differentiable) and $n = 1000$:
@@ -103,9 +91,7 @@ With 1000 observations in 50 dimensions, effective information content is equiva
 To achieve a target MSE of $\varepsilon^2$, the required sample size scales as:
 
 $$
-
-n \asymp \varepsilon^{-(2\beta + d)/\beta}.
-
+n \asymp \varepsilon^{-(2\beta + d)/\beta}
 $$
 
 For small $\varepsilon$ and large $d$, this grows exponentially in $d$.
@@ -117,9 +103,7 @@ The **covering number** $\mathcal{N}(\varepsilon, \mathcal{X}, \|\cdot\|)$ is th
 For $[0,1]^d$:
 
 $$
-
-\mathcal{N}(\varepsilon, [0,1]^d, \|\cdot\|_\infty) = \lceil 1/\varepsilon \rceil^d.
-
+\mathcal{N}(\varepsilon, [0,1]^d, \|\cdot\|_\infty) = \lceil 1/\varepsilon \rceil^d
 $$
 
 This exponential scaling implies that learning algorithms must query exponentially many regions to approximate functions uniformly.
@@ -133,9 +117,7 @@ This exponential scaling implies that learning algorithms must query exponential
 **k-Nearest Neighbors.** To capture local structure with $k$ neighbors, the neighborhood radius is:
 
 $$
-
-r_k \approx \left(\frac{k}{n}\right)^{1/d}.
-
+r_k \approx \left(\frac{k}{n}\right)^{1/d}
 $$
 
 For fixed $k/n$, $r_k \to 1$ as $d \to \infty$—the "local" neighborhood spans the entire space.
@@ -143,9 +125,7 @@ For fixed $k/n$, $r_k \to 1$ as $d \to \infty$—the "local" neighborhood spans 
 **Kernel Regression.** With bandwidth $h$, the effective number of observations in a ball of radius $h$ is:
 
 $$
-
-n_{\text{local}} \approx n \cdot h^d.
-
+n_{\text{local}} \approx n \cdot h^d
 $$
 
 To maintain constant $n_{\text{local}}$ as $d$ increases, we need $h \to 1$, destroying locality.
@@ -155,9 +135,7 @@ To maintain constant $n_{\text{local}}$ as $d$ increases, we need $h \to 1$, des
 **Theorem.** For $n$ points uniformly distributed in $[0,1]^d$, with high probability there exists an empty ball of radius:
 
 $$
-
-r \asymp \left(\frac{\log n}{n}\right)^{1/d}.
-
+r \asymp \left(\frac{\log n}{n}\right)^{1/d}
 $$
 
 For large $d$, this radius is close to 1—large empty regions exist even with many observations.
@@ -173,17 +151,13 @@ For large $d$, this radius is close to 1—large empty regions exist even with m
 For $X \sim \mathcal{N}(0, I_d)$, the norm concentrates:
 
 $$
-
-\frac{\|X\|^2 - d}{\sqrt{2d}} \xrightarrow{d} \mathcal{N}(0,1).
-
+\frac{\|X\|^2 - d}{\sqrt{2d}} \xrightarrow{d} \mathcal{N}(0,1)
 $$
 
 Most probability mass lies in a thin shell of radius $\sqrt{d}$:
 
 $$
-
-\mathbb{P}\left(\left|\|X\| - \sqrt{d}\right| > t\right) \leq 2e^{-t^2/2}.
-
+\mathbb{P}\left(\left|\|X\| - \sqrt{d}\right| > t\right) \leq 2e^{-t^2/2}
 $$
 
 ### Implications for Gaussian Models
@@ -237,9 +211,7 @@ For $n = 500$ assets: 125,250 covariance parameters from perhaps $T = 250$ tradi
 **Principal Component Analysis.** Project onto top $k$ eigenvectors of covariance:
 
 $$
-
-X_{\text{reduced}} = X V_k, \quad V_k = [v_1, \ldots, v_k],
-
+X_{\text{reduced}} = X V_k, \quad V_k = [v_1, \ldots, v_k]
 $$
 
 where $v_j$ are eigenvectors of $\text{Cov}(X)$.
@@ -251,9 +223,7 @@ In finance, the first few principal components of returns explain substantial va
 **Factor models.** Assume structure:
 
 $$
-
-R = \alpha + B F + \varepsilon, \quad \text{Cov}(\varepsilon) = D \text{ (diagonal)}.
-
+R = \alpha + B F + \varepsilon, \quad \text{Cov}(\varepsilon) = D \text{ (diagonal)}
 $$
 
 With $k$ factors, covariance has $nk + n$ parameters instead of $n(n+1)/2$.
@@ -263,17 +233,13 @@ With $k$ factors, covariance has $nk + n$ parameters instead of $n(n+1)/2$.
 **LASSO for variable selection.** If only $s \ll d$ predictors are relevant:
 
 $$
-
-\hat{\beta} = \arg\min_\beta \left\{ \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1 \right\}.
-
+\hat{\beta} = \arg\min_\beta \left\{ \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1 \right\}
 $$
 
 **Oracle inequality:** Under restricted eigenvalue conditions:
 
 $$
-
-\|\hat{\beta} - \beta^*\|_2^2 \leq C \frac{s \log d}{n} \sigma^2.
-
+\|\hat{\beta} - \beta^*\|_2^2 \leq C \frac{s \log d}{n} \sigma^2
 $$
 
 The effective dimension is $s \log d$, not $d$.
@@ -281,9 +247,7 @@ The effective dimension is $s \log d$, not $d$.
 **Graphical LASSO for covariance.** Estimate sparse precision matrix:
 
 $$
-
-\hat{\Omega} = \arg\min_{\Omega \succ 0} \left\{ \text{tr}(S\Omega) - \log\det(\Omega) + \lambda \|\Omega\|_1 \right\},
-
+\hat{\Omega} = \arg\min_{\Omega \succ 0} \left\{ \text{tr}(S\Omega) - \log\det(\Omega) + \lambda \|\Omega\|_1 \right\}
 $$
 
 where $S$ is sample covariance and $\|\Omega\|_1 = \sum_{i \neq j} |\Omega_{ij}|$.
@@ -293,9 +257,7 @@ where $S$ is sample covariance and $\|\Omega\|_1 = \sum_{i \neq j} |\Omega_{ij}|
 **Additivity.** Assume:
 
 $$
-
-f(x_1, \ldots, x_d) = \sum_{j=1}^d f_j(x_j).
-
+f(x_1, \ldots, x_d) = \sum_{j=1}^d f_j(x_j)
 $$
 
 Estimation reduces to $d$ univariate problems, achieving rate $n^{-2\beta/(2\beta+1)}$ independent of $d$.
@@ -303,9 +265,7 @@ Estimation reduces to $d$ univariate problems, achieving rate $n^{-2\beta/(2\bet
 **Single-index models:**
 
 $$
-
-f(x) = g(w^\top x),
-
+f(x) = g(w^\top x)
 $$
 
 reducing $d$-dimensional regression to estimating direction $w$ and univariate function $g$.
@@ -317,9 +277,7 @@ reducing $d$-dimensional regression to estimating direction $w$ and univariate f
 **Ledoit-Wolf shrinkage for covariance:**
 
 $$
-
-\hat{\Sigma}_{\text{shrink}} = (1-\alpha) S + \alpha \mu I,
-
+\hat{\Sigma}_{\text{shrink}} = (1-\alpha) S + \alpha \mu I
 $$
 
 where $\alpha$ and $\mu$ are chosen to minimize expected Frobenius loss.
@@ -329,9 +287,7 @@ Optimal $\alpha$ increases with dimension, reflecting greater need for regulariz
 **James-Stein for means:** The sample mean is inadmissible for $d \geq 3$. Shrink toward grand mean:
 
 $$
-
-\hat{\mu}_{\text{JS}} = \bar{X} - \frac{(d-2)\hat{\sigma}^2}{n\|\bar{X}\|^2} \bar{X}.
-
+\hat{\mu}_{\text{JS}} = \bar{X} - \frac{(d-2)\hat{\sigma}^2}{n\|\bar{X}\|^2} \bar{X}
 $$
 
 ---
@@ -345,9 +301,7 @@ When variables are selected based on data (e.g., via LASSO), standard inference 
 **Selective inference** conditions on the selection event:
 
 $$
-
-\mathbb{P}(|\hat{\beta}_j - \beta_j| > z | \text{variable } j \text{ selected}).
-
+\mathbb{P}(|\hat{\beta}_j - \beta_j| > z | \text{variable } j \text{ selected})
 $$
 
 ### Debiased LASSO
@@ -355,9 +309,7 @@ $$
 For valid inference in high dimensions, debias the LASSO estimator:
 
 $$
-
-\hat{\beta}^{\text{debias}} = \hat{\beta}^{\text{lasso}} + \frac{1}{n} \hat{\Theta} X^\top (Y - X\hat{\beta}^{\text{lasso}}),
-
+\hat{\beta}^{\text{debias}} = \hat{\beta}^{\text{lasso}} + \frac{1}{n} \hat{\Theta} X^\top (Y - X\hat{\beta}^{\text{lasso}})
 $$
 
 where $\hat{\Theta}$ approximates the inverse of $X^\top X / n$.
@@ -365,9 +317,7 @@ where $\hat{\Theta}$ approximates the inverse of $X^\top X / n$.
 Under sparsity conditions:
 
 $$
-
-\sqrt{n}(\hat{\beta}_j^{\text{debias}} - \beta_j) \xrightarrow{d} \mathcal{N}(0, \sigma^2 \Theta_{jj}).
-
+\sqrt{n}(\hat{\beta}_j^{\text{debias}} - \beta_j) \xrightarrow{d} \mathcal{N}(0, \sigma^2 \Theta_{jj})
 $$
 
 ---
@@ -379,9 +329,7 @@ $$
 When $n, d \to \infty$ with $d/n \to \gamma \in (0, \infty)$, the eigenvalues of the sample covariance $S = X^\top X / n$ (for $X$ with i.i.d. entries) follow the Marchenko-Pastur distribution:
 
 $$
-
-\rho_{\text{MP}}(\lambda) = \frac{\sqrt{(\lambda_+ - \lambda)(\lambda - \lambda_-)}}{2\pi \gamma \lambda} \mathbf{1}_{[\lambda_-, \lambda_+]}(\lambda),
-
+\rho_{\text{MP}}(\lambda) = \frac{\sqrt{(\lambda_+ - \lambda)(\lambda - \lambda_-)}}{2\pi \gamma \lambda} \mathbf{1}_{[\lambda_-, \lambda_+]}(\lambda)
 $$
 
 where $\lambda_\pm = (1 \pm \sqrt{\gamma})^2$.
@@ -395,9 +343,7 @@ For $\gamma = 1$ (as many dimensions as observations): eigenvalues span $[0, 4]$
 If true covariance has a few large eigenvalues (factors) plus identity:
 
 $$
-
-\Sigma = \sum_{i=1}^k \lambda_i v_i v_i^\top + I,
-
+\Sigma = \sum_{i=1}^k \lambda_i v_i v_i^\top + I
 $$
 
 the sample eigenvalues exhibit a phase transition:
@@ -417,9 +363,7 @@ the sample eigenvalues exhibit a phase transition:
 For $n$ points in $\mathbb{R}^d$ in general position, the probability that a random labeling is linearly separable is:
 
 $$
-
-P(d, n) = \frac{1}{2^{n-1}} \sum_{k=0}^{d-1} \binom{n-1}{k}.
-
+P(d, n) = \frac{1}{2^{n-1}} \sum_{k=0}^{d-1} \binom{n-1}{k}
 $$
 
 For $d > n$: $P(d, n) = 1$ (always separable).
@@ -431,9 +375,7 @@ For $d > n$: $P(d, n) = 1$ (always separable).
 The kernel trick implicitly maps to high-dimensional feature spaces where linear methods suffice:
 
 $$
-
-\phi: \mathbb{R}^d \to \mathbb{R}^D, \quad K(x, x') = \langle \phi(x), \phi(x') \rangle.
-
+\phi: \mathbb{R}^d \to \mathbb{R}^D, \quad K(x, x') = \langle \phi(x), \phi(x') \rangle
 $$
 
 Computation depends only on $n$, not $D$. But generalization still depends on effective dimensionality of the problem.

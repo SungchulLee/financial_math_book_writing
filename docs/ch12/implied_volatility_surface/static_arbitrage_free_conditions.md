@@ -29,13 +29,11 @@ Consider a **call spread**:
 **Payoff at maturity:**
 
 $$
-
 V_T(S_T) = \max(S_T - K_1, 0) - \max(S_T - K_2, 0) = \begin{cases}
 0 & S_T \leq K_1 \\
 S_T - K_1 & K_1 < S_T \leq K_2 \\
 K_2 - K_1 & S_T > K_2
 \end{cases}
-
 $$
 
 
@@ -45,9 +43,7 @@ This is non-negative for all $S_T$ and strictly positive when $K_1 < S_T \leq K_
 **No-arbitrage condition:**
 
 $$
-
 C(K_1) - C(K_2) \geq 0
-
 $$
 
 
@@ -57,9 +53,7 @@ with strict inequality unless $K_1 = K_2$.
 **Consequence:** Call prices are **monotonically decreasing** in strike:
 
 $$
-
 \frac{\partial C}{\partial K} \leq 0
-
 $$
 
 
@@ -77,14 +71,12 @@ For equal spacing $\Delta K = K_2 - K_1 = K_3 - K_2$:
 **Payoff at maturity:** Piecewise linear, tent-shaped:
 
 $$
-
 V_T(S_T) = \begin{cases}
 0 & S_T \leq K_1 \\
 S_T - K_1 & K_1 < S_T \leq K_2 \\
 K_3 - S_T & K_2 < S_T \leq K_3 \\
 0 & S_T > K_3
 \end{cases}
-
 $$
 
 
@@ -94,9 +86,7 @@ Non-negative everywhere.
 **No-arbitrage condition:**
 
 $$
-
 C(K_1) - 2C(K_2) + C(K_3) \geq 0
-
 $$
 
 
@@ -104,9 +94,7 @@ $$
 **Consequence:** Call prices are **convex** in strike:
 
 $$
-
 \frac{\partial^2 C}{\partial K^2} \geq 0
-
 $$
 
 
@@ -125,9 +113,7 @@ For non-dividend-paying stock:
 **No-arbitrage condition:**
 
 $$
-
 C(K, T_2) \geq C(K, T_1)
-
 $$
 
 
@@ -135,9 +121,7 @@ $$
 **Consequence:** Call prices are **monotonically increasing** in maturity:
 
 $$
-
 \frac{\partial C}{\partial T} \geq 0
-
 $$
 
 
@@ -151,9 +135,7 @@ $$
 From the Breeden-Litzenberger formula:
 
 $$
-
 q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
-
 $$
 
 
@@ -165,9 +147,7 @@ where $q(K)$ is the risk-neutral probability density.
 **Equivalent constraint:**
 
 $$
-
 \frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K
-
 $$
 
 
@@ -180,9 +160,7 @@ This is the **butterfly arbitrage-free condition**.
 The density must integrate to unity:
 
 $$
-
 \int_0^\infty q(K) dK = 1
-
 $$
 
 
@@ -190,9 +168,7 @@ $$
 **Verification:** Using integration by parts:
 
 $$
-
 e^{rT} \int_0^\infty \frac{\partial^2 C}{\partial K^2} dK = e^{rT} \left[ \frac{\partial C}{\partial K}\bigg|_0^\infty \right]
-
 $$
 
 
@@ -204,9 +180,7 @@ Boundary conditions:
 Thus:
 
 $$
-
 e^{rT}(0 - (-e^{-rT})) = 1 \quad \checkmark
-
 $$
 
 
@@ -220,9 +194,7 @@ $$
 Define **total variance**:
 
 $$
-
 w(K, T) := \sigma_{\text{IV}}^2(K, T) \cdot T
-
 $$
 
 
@@ -230,9 +202,7 @@ $$
 Using log-moneyness $y = \ln(K/F)$ where $F = S_0 e^{(r-q)T}$ is the forward:
 
 $$
-
 w(y, T)
-
 $$
 
 
@@ -246,9 +216,7 @@ An implied volatility surface $\sigma_{\text{IV}}(K, T)$ is arbitrage-free if an
 1. **Butterfly condition:** For each $T$,
 
    $$
-
    g(y, T) := \left(1 - \frac{y w_y(y, T)}{2w(y, T)}\right)^2 - \frac{w_y(y, T)^2}{4}\left(\frac{1}{w(y, T)} + \frac{1}{4}\right) + \frac{w_{yy}(y, T)}{2} \geq 0
-
    $$
 
 
@@ -256,9 +224,7 @@ An implied volatility surface $\sigma_{\text{IV}}(K, T)$ is arbitrage-free if an
 2. **Calendar condition:** For each $K$ (or $y$),
 
    $$
-
    w_T(y, T) \geq 0
-
    $$
 
 
@@ -277,9 +243,7 @@ For **fixed maturity** $T$, a sufficient (but not necessary) condition:
 
 
 $$
-
 \frac{\partial^2 w}{\partial y^2} \geq 0
-
 $$
 
 
@@ -299,9 +263,7 @@ i.e., total variance is convex in log-moneyness.
 The **slope of implied volatility** in log-moneyness coordinates:
 
 $$
-
 \mathcal{S}(y, T) := \frac{\partial \sigma_{\text{IV}}}{\partial y}
-
 $$
 
 
@@ -312,9 +274,7 @@ For the surface to be arbitrage-free:
 There exists a finite bound:
 
 $$
-
 \left| \frac{\partial \sigma_{\text{IV}}}{\partial y} \right| \leq C(T, \sigma_{\text{IV}})
-
 $$
 
 
@@ -329,9 +289,7 @@ where the bound depends on maturity and the level of IV.
 The **curvature of implied volatility**:
 
 $$
-
 \mathcal{C}(y, T) := \frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2}
-
 $$
 
 
@@ -340,9 +298,7 @@ $$
 For the Breeden-Litzenberger density to be non-negative:
 
 $$
-
 \frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2} \geq -\frac{f(y, \sigma_{\text{IV}}, T)}{\sigma_{\text{IV}} T}
-
 $$
 
 
@@ -361,9 +317,7 @@ where $f$ is a function of the current smile level.
 For the risk-neutral distribution to have finite variance:
 
 $$
-
 \lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) \cdot T \cdot \frac{1}{|y|} = 2
-
 $$
 
 
@@ -371,9 +325,7 @@ $$
 More generally, for finite $p$-th moment ($p \geq 2$):
 
 $$
-
 \lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} \geq \frac{2}{p}
-
 $$
 
 
@@ -386,9 +338,7 @@ $$
 Define the **left wing slope**:
 
 $$
-
 p_- = \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
-
 $$
 
 
@@ -396,9 +346,7 @@ $$
 and **right wing slope**:
 
 $$
-
 p_+ = \lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
-
 $$
 
 
@@ -406,9 +354,7 @@ $$
 **Constraints:**
 
 $$
-
 0 < p_- \leq 2, \quad 0 < p_+ \leq 2
-
 $$
 
 
@@ -430,9 +376,7 @@ Given option prices on a discrete grid $(K_i, T_j)$:
 For each maturity $T_j$ and strikes $K_{i-1} < K_i < K_{i+1}$:
 
 $$
-
 B_i := C(K_{i-1}) - 2C(K_i) + C(K_{i+1}) \geq -\epsilon
-
 $$
 
 
@@ -446,9 +390,7 @@ If $B_i < -\epsilon$, there is **butterfly arbitrage**.
 For each strike $K_i$ and maturities $T_j < T_{j+1}$:
 
 $$
-
 C(K_i, T_{j+1}) - C(K_i, T_j) \geq -\epsilon
-
 $$
 
 
@@ -460,9 +402,7 @@ If violated, there is **calendar arbitrage**.
 Check that for large $|y|$:
 
 $$
-
 \sigma_{\text{IV}}^2(y, T) T \gtrsim 2|y|
-
 $$
 
 
@@ -509,9 +449,7 @@ Standard cubic splines can introduce spurious oscillations violating convexity.
 
 
 $$
-
 w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)
-
 $$
 
 
@@ -519,9 +457,7 @@ $$
 **Arbitrage-free conditions:**
 
 $$
-
 b \geq 0, \quad |b\rho| < 4a, \quad b(1 + |\rho|) < 4a, \quad a + b\sigma\sqrt{1 - \rho^2} \geq 0
-
 $$
 
 
@@ -540,9 +476,7 @@ Fit parameters $(a, b, \rho, m, \sigma)$ to market data with these constraints.
 For large $|y|$, use:
 
 $$
-
 \sigma_{\text{IV}}^2(y, T) T \sim 2|y| + c
-
 $$
 
 
@@ -553,9 +487,7 @@ where $c$ is calibrated to the outermost observed strikes.
 
 
 $$
-
 \sigma_{\text{IV}}(y) \sim \sigma_\infty + A e^{-\lambda |y|}
-
 $$
 
 
@@ -573,9 +505,7 @@ While $q(K) \geq 0$ is necessary, real densities are smooth (continuous derivati
 **Heuristic constraint:**
 
 $$
-
 \frac{\partial q}{\partial K} \text{ bounded}
-
 $$
 
 
@@ -583,9 +513,7 @@ $$
 Equivalently:
 
 $$
-
 \frac{\partial^3 C}{\partial K^3} \text{ bounded}
-
 $$
 
 
@@ -702,9 +630,7 @@ An implied volatility surface is arbitrage-free if and only if:
 
 
 $$
-
 \max(S e^{-qT} - K e^{-rT}, 0) < C(K, T) < S e^{-qT}
-
 $$
 
 
@@ -713,9 +639,7 @@ $$
 
 
 $$
-
 \frac{\partial C}{\partial K} \leq 0 \quad \text{(call spreads)}
-
 $$
 
 
@@ -724,9 +648,7 @@ $$
 
 
 $$
-
 \frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{(butterflies, Breeden-Litzenberger)}
-
 $$
 
 
@@ -735,9 +657,7 @@ $$
 
 
 $$
-
 \frac{\partial C}{\partial T} \geq 0 \quad \text{(calendar spreads)}
-
 $$
 
 
@@ -746,9 +666,7 @@ $$
 
 
 $$
-
 g(y, T) = \left(1 - \frac{y w_y}{2w}\right)^2 - \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) + \frac{w_{yy}}{2} \geq 0
-
 $$
 
 
@@ -757,9 +675,7 @@ $$
 
 
 $$
-
 \lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 \quad \text{(finite variance)}
-
 $$
 
 

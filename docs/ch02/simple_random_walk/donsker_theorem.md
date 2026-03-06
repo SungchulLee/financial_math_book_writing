@@ -10,11 +10,11 @@ Donsker's Invariance Principle is the functional analogue of the Central Limit T
 
 Let $\{\xi_i\}_{i \geq 1}$ be i.i.d. with $\mathbb{E}[\xi_i] = 0$ and $\mathbb{E}[\xi_i^2] = \sigma^2 \in (0,\infty)$. Then:
 
-$$\frac{1}{\sqrt{n}}\sum_{i=1}^n \xi_i \xrightarrow{d} \mathcal{N}(0,\sigma^2) \quad \text{as } n \to \infty.$$
+$$\frac{1}{\sqrt{n}}\sum_{i=1}^n \xi_i \xrightarrow{d} \mathcal{N}(0,\sigma^2) \quad \text{as } n \to \infty$$
 
 For the symmetric random walk ($\sigma^2 = 1$), this gives $S_n/\sqrt{n} \xrightarrow{d} \mathcal{N}(0,1)$. Since $S^{(n)}(t) = S_{\lfloor nt \rfloor}/\sqrt{n}$, for each fixed $t$:
 
-$$S^{(n)}(t) \xrightarrow{d} \mathcal{N}(0,t).$$
+$$S^{(n)}(t) \xrightarrow{d} \mathcal{N}(0,t)$$
 
 The MGF proof from [Moment Generating Function](mgf_of_random_walk.md) gives this in one computation.
 
@@ -54,7 +54,7 @@ for a constant $C$ independent of $n$. This is the **Kolmogorov tightness criter
 
 Let $\{\xi_i\}$ be i.i.d. with $\mathbb{E}[\xi_i] = 0$ and $\mathbb{E}[\xi_i^2] = 1$. Let $W^{(n)}$ be the piecewise-linear scaled random walk:
 
-$$W^{(n)}(t) := \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor} + \frac{nt - \lfloor nt \rfloor}{\sqrt{n}}\,\xi_{\lfloor nt \rfloor+1}, \qquad t \in [0,T].$$
+$$W^{(n)}(t) := \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor} + \frac{nt - \lfloor nt \rfloor}{\sqrt{n}}\,\xi_{\lfloor nt \rfloor+1}, \qquad t \in [0,T]$$
 
 Then
 
@@ -66,7 +66,7 @@ where $\Rightarrow$ denotes weak convergence of probability measures and $W$ is 
 
 1. **Finite-dimensional convergence.** For any $0 \leq t_1 < \cdots < t_k \leq T$, the increments $W^{(n)}(t_{i+1}) - W^{(n)}(t_i)$ are sums of independent $\xi_j$'s over disjoint blocks. The CLT applied to each block gives joint convergence:
 
-$$\bigl(W^{(n)}(t_1),\ldots,W^{(n)}(t_k)\bigr) \xrightarrow{d} \bigl(W_{t_1},\ldots,W_{t_k}\bigr).$$
+$$\bigl(W^{(n)}(t_1),\ldots,W^{(n)}(t_k)\bigr) \xrightarrow{d} \bigl(W_{t_1},\ldots,W_{t_k}\bigr)$$
 
 2. **Tightness.** The fourth-moment estimate above implies tightness via the Kolmogorov–Chentsov criterion.
 

@@ -12,7 +12,7 @@ be a partition of $[0,T]$ with each $t_i$ a multiple of $1/n$, so that each subi
 
 **(a)** Show that
 
-$$\mathbb{E}\!\left[\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2\right] = T.$$
+$$\mathbb{E}\!\left[\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2\right] = T$$
 
 **(b)** Show that
 
@@ -22,7 +22,7 @@ $$\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2 = T \quad \text{almost su
 
 **(c)** For a differentiable function $f: [0,T] \to \mathbb{R}$ with bounded derivative, show that
 
-$$\sum_{i=0}^{m-1} (f(t_{i+1}) - f(t_i))^2 \to 0 \quad \text{as } |\Pi| \to 0.$$
+$$\sum_{i=0}^{m-1} (f(t_{i+1}) - f(t_i))^2 \to 0 \quad \text{as } |\Pi| \to 0$$
 
 Explain why this distinguishes random walk paths from smooth paths.
 
@@ -40,7 +40,7 @@ Let $S_n = \sum_{i=1}^n \xi_i$ be the symmetric random walk.
 
 **(c)** Show that as $n \to \infty$:
 
-$$\mathbb{E}[S_n^{2k}] = (2k-1)!!\, n^k + O(n^{k-1}),$$
+$$\mathbb{E}[S_n^{2k}] = (2k-1)!!\, n^k + O(n^{k-1})$$
 
 where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$. Compare with the Brownian motion moments $\mathbb{E}[W_1^{2k}] = (2k-1)!!$ and explain the connection.
 
@@ -50,11 +50,11 @@ where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$. Compare with the Brownian mo
 
 A gambler starts with $\$a$ and bets $\$1$ per round on a fair coin flip. Let
 
-$$\tau_0 = \inf\{n : S_n = 0\}, \qquad \tau_b = \inf\{n : S_n = b\}, \qquad b > a.$$
+$$\tau_0 = \inf\{n : S_n = 0\}, \qquad \tau_b = \inf\{n : S_n = b\}, \qquad b > a$$
 
 **(a)** Using the martingale $\{S_n\}$ (Proposition 1.1.3) and the Optional Stopping Theorem applied to the bounded stopping time $\tau = \tau_0 \wedge \tau_b$, show that
 
-$$\mathbb{P}(\tau_b < \tau_0) = \frac{a}{b}.$$
+$$\mathbb{P}(\tau_b < \tau_0) = \frac{a}{b}$$
 
 **(b)** Let $b \to \infty$. Show that $\mathbb{P}(\tau_0 < \infty) = 1$: the gambler is ruined with probability 1 in an unbounded game.
 
@@ -62,7 +62,7 @@ Reconcile this with Theorem 1.1.6 (recurrence): how can the walk be recurrent â€
 
 **(c)** Using the martingale $\{S_n^2 - n\}$ (Proposition 1.1.4) and the Optional Stopping Theorem, show that
 
-$$\mathbb{E}[\tau_0 \wedge \tau_b] = a(b - a).$$
+$$\mathbb{E}[\tau_0 \wedge \tau_b] = a(b - a)$$
 
 What does this give for $\mathbb{E}[\tau_0]$ as $b \to \infty$? Interpret the result.
 
@@ -74,13 +74,13 @@ Let $M_n = \max_{0 \leq k \leq n} S_k$ be the running maximum of the symmetric r
 
 **(a)** By a symmetry argument, show that for $m > 0$:
 
-$$\mathbb{P}(M_n \geq m) = 2\,\mathbb{P}(S_n \geq m) - \mathbb{P}(S_n = m).$$
+$$\mathbb{P}(M_n \geq m) = 2\,\mathbb{P}(S_n \geq m) - \mathbb{P}(S_n = m)$$
 
 *Hint:* Consider the "reflected" path obtained by flipping all steps after the first time the walk hits $m$.
 
 **(b)** Use part (a) and the normal approximation to show that for large $n$:
 
-$$\mathbb{P}\!\left(\frac{M_n}{\sqrt{n}} \geq x\right) \approx 2\,\mathbb{P}\!\left(\mathcal{N}(0,1) \geq x\right) = 2\bigl(1-\Phi(x)\bigr), \qquad x > 0,$$
+$$\mathbb{P}\!\left(\frac{M_n}{\sqrt{n}} \geq x\right) \approx 2\,\mathbb{P}\!\left(\mathcal{N}(0,1) \geq x\right) = 2\bigl(1-\Phi(x)\bigr), \qquad x > 0$$
 
 where $\Phi$ is the standard normal CDF. This is the distribution of $\max_{0 \leq t \leq 1} W_t$ for Brownian motion.
 

@@ -367,11 +367,9 @@ This is a standard application combining the tools from this chapter.
 **The Dynkin–PDE correspondence**:
 
 $$
-
 \text{Probabilistic problem}
 \;\stackrel{\text{Dynkin}}{\longleftrightarrow}\;
 \text{PDE boundary value problem}
-
 $$
 
 !!! abstract "Key Takeaway"

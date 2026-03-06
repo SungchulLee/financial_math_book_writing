@@ -18,17 +18,13 @@ Arrow-Debreu securities and state prices are foundational concepts in financial 
 Consider a single-period economy with time $t = 0$ (today) and $t = 1$ (future). At $t = 1$, exactly one of $S$ possible **states of the world** $\omega_1, \omega_2, \ldots, \omega_S$ will occur. Each state $\omega_s$ occurs with a known physical (real-world) probability $p_s > 0$, where
 
 $$
-
-\sum_{s=1}^{S} p_s = 1.
-
+\sum_{s=1}^{S} p_s = 1
 $$
 
 There are $N$ traded assets in this economy. Asset $j$ has a known price $P_j$ at $t = 0$ and delivers a state-contingent payoff $X_j(\omega_s) = X_{js}$ at $t = 1$. We can organize these payoffs into a **payoff matrix**:
 
 $$
-
 \mathbf{X} = \begin{pmatrix} X_{11} & X_{12} & \cdots & X_{1S} \\ X_{21} & X_{22} & \cdots & X_{2S} \\ \vdots & \vdots & \ddots & \vdots \\ X_{N1} & X_{N2} & \cdots & X_{NS} \end{pmatrix}
-
 $$
 
 where row $j$ represents the payoffs of asset $j$ across all states, and column $s$ represents the payoffs of all assets in state $s$.
@@ -50,9 +46,7 @@ where row $j$ represents the payoffs of asset $j$ across all states, and column 
 Formally, the Arrow-Debreu security for state $s$ has the payoff vector:
 
 $$
-
 \mathbf{e}_s = (0, \ldots, 0, \underbrace{1}_{s\text{-th position}}, 0, \ldots, 0)^\top
-
 $$
 
 If we have $S$ states, there are $S$ possible Arrow-Debreu securities $\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_S$, which together form the **identity matrix** $\mathbf{I}_S$.
@@ -62,9 +56,7 @@ If we have $S$ states, there are $S$ possible Arrow-Debreu securities $\mathbf{e
 Arrow-Debreu securities isolate and "price" individual states of the world. They decompose uncertainty into its most elementary components. Any asset with an arbitrary payoff profile can be viewed as a portfolio of Arrow-Debreu securities:
 
 $$
-
 \text{If asset } j \text{ pays } X_{js} \text{ in state } s, \text{ then: } \quad \mathbf{X}_j = \sum_{s=1}^{S} X_{js} \, \mathbf{e}_s
-
 $$
 
 This makes Arrow-Debreu securities the "building blocks" of all financial claims.
@@ -89,9 +81,7 @@ This makes Arrow-Debreu securities the "building blocks" of all financial claims
 The vector of state prices is:
 
 $$
-
 \boldsymbol{\phi} = (\phi_1, \phi_2, \ldots, \phi_S)^\top
-
 $$
 
 ### Pricing Any Asset with State Prices
@@ -99,9 +89,7 @@ $$
 If state prices exist, the price of **any** asset $j$ with payoffs $(X_{j1}, X_{j2}, \ldots, X_{jS})$ is simply:
 
 $$
-
 \boxed{P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \boldsymbol{\phi}^\top \mathbf{X}_j}
-
 $$
 
 This is the **fundamental pricing equation**. It says that an asset's price equals the sum of its payoffs in each state, weighted by the state prices.
@@ -109,9 +97,7 @@ This is the **fundamental pricing equation**. It says that an asset's price equa
 In matrix form for all $N$ assets:
 
 $$
-
 \mathbf{P} = \mathbf{X} \, \boldsymbol{\phi}
-
 $$
 
 where $\mathbf{P} = (P_1, P_2, \ldots, P_N)^\top$ is the vector of asset prices.
@@ -126,9 +112,7 @@ where $\mathbf{P} = (P_1, P_2, \ldots, P_N)^\top$ is the vector of asset prices.
     2. **Sum relates to the risk-free rate**: If a risk-free bond exists paying \$1 in every state, its price is
     
     $$
-
     P_{\text{rf}} = \sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}
-
     $$
     
     where $r_f$ is the one-period risk-free interest rate. Thus, $\sum_s \phi_s < 1$ when $r_f > 0$.
@@ -144,9 +128,7 @@ where $\mathbf{P} = (P_1, P_2, \ldots, P_N)^\top$ is the vector of asset prices.
 An **arbitrage opportunity** is a trading strategy that costs nothing (or less) today and yields a non-negative payoff in all future states with a strictly positive payoff in at least one state. Formally, a portfolio $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_N)^\top$ is an arbitrage if:
 
 $$
-
 \boldsymbol{\theta}^\top \mathbf{P} \leq 0, \quad \mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}, \quad \text{and} \quad \mathbf{X}^\top \boldsymbol{\theta} \neq \mathbf{0}
-
 $$
 
 ### The Fundamental Theorem (First Version)
@@ -155,9 +137,7 @@ $$
     There are **no arbitrage opportunities** in the market if and only if there exists a strictly positive state price vector $\boldsymbol{\phi} \gg \mathbf{0}$ such that:
     
     $$
-
     \mathbf{P} = \mathbf{X} \, \boldsymbol{\phi}
-
     $$
 
 This is a form of the **First Fundamental Theorem of Asset Pricing** in finite-state settings. It connects the economic condition (no free lunch) to a mathematical condition (existence of positive pricing functionals).
@@ -176,9 +156,7 @@ This is a form of the **First Fundamental Theorem of Asset Pricing** in finite-s
 State prices naturally give rise to **risk-neutral probabilities**. Define:
 
 $$
-
 \boxed{q_s = \phi_s \,(1 + r_f) = \frac{\phi_s}{\sum_{k=1}^{S} \phi_k}}
-
 $$
 
 Since $\phi_s > 0$ for all $s$ and $\sum_s q_s = 1$, the $q_s$ form a valid probability measure $\mathbb{Q}$, called the **risk-neutral measure** (or **equivalent martingale measure**).
@@ -188,15 +166,11 @@ Since $\phi_s > 0$ for all $s$ and $\sum_s q_s = 1$, the $q_s$ form a valid prob
 Under $\mathbb{Q}$, the fundamental pricing equation becomes:
 
 $$
-
 P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \frac{1}{1+r_f} \sum_{s=1}^{S} q_s \, X_{js} = \frac{1}{1+r_f} \, \mathbb{E}^{\mathbb{Q}}[X_j]
-
 $$
 
 $$
-
 \boxed{P_j = \frac{\mathbb{E}^{\mathbb{Q}}[X_j]}{1 + r_f}}
-
 $$
 
 !!! tip "Interpretation"
@@ -218,23 +192,17 @@ Risk-neutral probabilities **overweight bad states** (where marginal utility is 
 The **stochastic discount factor** (SDF), also called the **pricing kernel**, connects state prices to physical probabilities:
 
 $$
-
 \boxed{m_s = \frac{\phi_s}{p_s}}
-
 $$
 
 The SDF allows us to write the pricing equation using physical probabilities:
 
 $$
-
 P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \sum_{s=1}^{S} p_s \, m_s \, X_{js} = \mathbb{E}^{\mathbb{P}}[m \cdot X_j]
-
 $$
 
 $$
-
 \boxed{P_j = \mathbb{E}^{\mathbb{P}}[m \cdot X_j]}
-
 $$
 
 !!! info "Interpretation of the SDF"
@@ -247,9 +215,7 @@ $$
 The three representations — state prices, risk-neutral probabilities, and the SDF — are equivalent ways to enforce no-arbitrage:
 
 $$
-
 \phi_s = \frac{q_s}{1 + r_f} = p_s \cdot m_s
-
 $$
 
 | Representation | Pricing Formula | Key Object |
@@ -293,9 +259,7 @@ This is related to the **Second Fundamental Theorem of Asset Pricing**.
 Given $N$ assets with price vector $\mathbf{P}$ and payoff matrix $\mathbf{X}$, state prices solve:
 
 $$
-
 \mathbf{X} \, \boldsymbol{\phi} = \mathbf{P}
-
 $$
 
 - If $N = S$ and $\mathbf{X}$ has full rank: $\boldsymbol{\phi} = \mathbf{X}^{-1} \mathbf{P}$ (unique solution).
@@ -313,31 +277,23 @@ $$
     The payoff matrix and price vector are:
     
     $$
-
     \mathbf{X} = \begin{pmatrix} 1 & 1 \\ 70 & 40 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 0.95 \\ 50 \end{pmatrix}
-
     $$
     
     Solving $\mathbf{X} \boldsymbol{\phi} = \mathbf{P}$:
     
     $$
-
     \begin{cases} \phi_1 + \phi_2 = 0.95 \\ 70\phi_1 + 40\phi_2 = 50 \end{cases}
-
     $$
     
     From the first equation: $\phi_2 = 0.95 - \phi_1$. Substituting:
     
     $$
-
     70\phi_1 + 40(0.95 - \phi_1) = 50 \implies 30\phi_1 = 12 \implies \phi_1 = 0.4
-
     $$
     
     $$
-
     \phi_2 = 0.95 - 0.4 = 0.55
-
     $$
     
     **Results**:
@@ -356,17 +312,13 @@ $$
 In continuous-state settings, state prices can be extracted from **European option prices**. If $C(K)$ denotes the price of a European call option with strike $K$ on an asset with terminal price $S_T$, and the state price density is $\phi(s)$, then:
 
 $$
-
 C(K) = \int_K^{\infty} (s - K) \, \phi(s) \, ds
-
 $$
 
 Differentiating twice with respect to $K$:
 
 $$
-
 \boxed{\phi(K) = e^{r_f T} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}}
-
 $$
 
 This is the **Breeden-Litzenberger formula**. It shows that the curvature of the call price function with respect to the strike price reveals the state price density (and hence the risk-neutral density).
@@ -385,9 +337,7 @@ In a multi-period setting with times $t = 0, 1, \ldots, T$, the state price fram
 A **state-price deflator** (or **numeraire portfolio process**) $\{\pi_t\}$ satisfies:
 
 $$
-
 P_t^{(j)} = \frac{1}{\pi_t} \mathbb{E}_t^{\mathbb{P}}[\pi_T \cdot X_T^{(j)}]
-
 $$
 
 for any asset $j$, where $\mathbb{E}_t^{\mathbb{P}}[\cdot]$ denotes the conditional expectation under the physical measure given information at time $t$.
@@ -397,9 +347,7 @@ for any asset $j$, where $\mathbb{E}_t^{\mathbb{P}}[\cdot]$ denotes the conditio
 Between any two adjacent periods $t$ and $t+1$:
 
 $$
-
 P_t = \mathbb{E}_t^{\mathbb{P}}[m_{t+1} \cdot (P_{t+1} + D_{t+1})]
-
 $$
 
 where $m_{t+1} = \pi_{t+1}/\pi_t$ is the **one-period SDF** and $D_{t+1}$ is any intermediate dividend.

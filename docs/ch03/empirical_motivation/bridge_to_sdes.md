@@ -55,9 +55,7 @@ We have now established the empirical motivation for stochastic models: **determ
 Suppose stock prices evolve via a **discrete-time random walk**:
 
 $$
-
 S_{n+1} = S_n + \mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z_n
-
 $$
 
 where:
@@ -69,9 +67,7 @@ where:
 **In multiplicative form:**
 
 $$
-
 S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)
-
 $$
 
 ### 2. Taking the Limit Δ t → 0
@@ -82,17 +78,13 @@ $$
 **Heuristic argument:**
 
 $$
-
 S(t + \Delta t) - S(t) = \mu S(t) \Delta t + \sigma S(t) \sqrt{\Delta t} \cdot Z
-
 $$
 
 Dividing by $\Delta t$:
 
 $$
-
 \frac{S(t + \Delta t) - S(t)}{\Delta t} = \mu S(t) + \sigma S(t) \frac{Z}{\sqrt{\Delta t}}
-
 $$
 
 As $\Delta t \to 0$:
@@ -102,19 +94,15 @@ As $\Delta t \to 0$:
 **The key insight:** The term $\frac{Z}{\sqrt{\Delta t}}$ does **not** go to zero or infinity in a pathological way. Instead, it converges to the **derivative of Brownian motion**:
 
 $$
-
 \frac{Z}{\sqrt{\Delta t}} \rightsquigarrow \frac{dW_t}{dt} \quad \text{(formal notation)}
-
 $$
 
 **Heuristic SDE:**
 
 $$
-
 \boxed{
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 }
-
 $$
 
 This is **Geometric Brownian Motion (GBM)**, the foundation of the Black-Scholes model.
@@ -137,25 +125,19 @@ This is **Geometric Brownian Motion (GBM)**, the foundation of the Black-Scholes
 **Infinitesimal increment:**
 
 $$
-
 dW_t = W_{t+dt} - W_t \sim \mathcal{N}(0, dt)
-
 $$
 
 **Key property:**
 
 $$
-
 \mathbb{E}[dW_t] = 0, \quad \mathbb{E}[(dW_t)^2] = dt
-
 $$
 
 This means:
 
 $$
-
 (dW_t)^2 = dt \quad \text{(in mean-square sense)}
-
 $$
 
 **This is the fundamental difference from ordinary calculus!**
@@ -166,9 +148,7 @@ $$
 In ordinary calculus, $(dx)^2 = 0$ for infinitesimals. But for Brownian motion:
 
 $$
-
 (dW_t)^2 = dt \neq 0
-
 $$
 
 **Consequence:** The chain rule changes!
@@ -176,17 +156,13 @@ $$
 **Ordinary calculus:**
 
 $$
-
 d f(x) = f'(x) \, dx
-
 $$
 
 **Stochastic calculus (Itô's lemma):**
 
 $$
-
 d f(X_t) = f'(X_t) \, dX_t + \frac{1}{2} f''(X_t) (dX_t)^2
-
 $$
 
 The second-order term survives because $(dX_t)^2$ is not negligible!
@@ -202,9 +178,7 @@ The second-order term survives because $(dX_t)^2$ is not negligible!
 **Theorem:** Consider the discrete random walk:
 
 $$
-
 S_n^{(\Delta t)} = \sum_{i=1}^n \sqrt{\Delta t} \cdot Z_i
-
 $$
 
 where $Z_i \sim \mathcal{N}(0, 1)$ i.i.d.
@@ -212,17 +186,13 @@ where $Z_i \sim \mathcal{N}(0, 1)$ i.i.d.
 **Interpolated process:**
 
 $$
-
 S^{(\Delta t)}(t) = S_{\lfloor t/\Delta t \rfloor}^{(\Delta t)} + (t - \lfloor t/\Delta t \rfloor \Delta t) \frac{S_{\lfloor t/\Delta t \rfloor + 1}^{(\Delta t)} - S_{\lfloor t/\Delta t \rfloor}^{(\Delta t)}}{\Delta t}
-
 $$
 
 **Donsker (1951):** As $\Delta t \to 0$:
 
 $$
-
 S^{(\Delta t)}(t) \xrightarrow{d} W_t \quad \text{(in distribution)}
-
 $$
 
 where $W_t$ is standard Brownian motion.
@@ -235,25 +205,19 @@ where $W_t$ is standard Brownian motion.
 **Discrete-time GBM:**
 
 $$
-
 S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)
-
 $$
 
 **Continuous-time limit:**
 
 $$
-
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-
 $$
 
 with solution:
 
 $$
-
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-
 $$
 
 ---
@@ -267,9 +231,7 @@ $$
 A **stochastic differential equation** has the form:
 
 $$
-
 dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t
-
 $$
 
 where:
@@ -301,17 +263,13 @@ where:
 The SDE:
 
 $$
-
 dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t
-
 $$
 
 is shorthand for the **integral equation**:
 
 $$
-
 X_t = X_0 + \int_0^t \mu(X_s, s) \, ds + \int_0^t \sigma(X_s, s) \, dW_s
-
 $$
 
 where:
@@ -329,9 +287,7 @@ where:
 **Question:** How do we make sense of:
 
 $$
-
 \int_0^t \sigma(X_s, s) \, dW_s \quad ?
-
 $$
 
 This is **not** a standard Riemann or Lebesgue integral because:
@@ -345,17 +301,13 @@ This is **not** a standard Riemann or Lebesgue integral because:
 **Section 2.1** will rigorously define:
 
 $$
-
 \int_0^t f(s) \, dW_s
-
 $$
 
 as the limit of approximating sums:
 
 $$
-
 \lim_{n \to \infty} \sum_{i=0}^{n-1} f(t_i) [W_{t_{i+1}} - W_{t_i}]
-
 $$
 
 where the partition $0 = t_0 < t_1 < \cdots < t_n = t$ gets finer.
@@ -379,9 +331,7 @@ where the partition $0 = t_0 < t_1 < \cdots < t_n = t$ gets finer.
 **SDE:**
 
 $$
-
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-
 $$
 
 **Application:** Stock prices (Black-Scholes model)
@@ -397,9 +347,7 @@ $$
 **SDE:**
 
 $$
-
 dX_t = \kappa(\theta - X_t) \, dt + \sigma \, dW_t
-
 $$
 
 **Application:** Interest rates (Vasicek model), mean-reverting spreads
@@ -415,9 +363,7 @@ $$
 **SDE:**
 
 $$
-
 dr_t = \kappa(\theta - r_t) \, dt + \sigma \sqrt{r_t} \, dW_t
-
 $$
 
 **Application:** Short-term interest rates
@@ -433,12 +379,10 @@ $$
 **System of SDEs:**
 
 $$
-
 \begin{align}
 dS_t &= \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S \\
 dV_t &= \kappa(\theta - V_t) \, dt + \sigma \sqrt{V_t} \, dW_t^V
 \end{align}
-
 $$
 
 with $\text{Corr}(dW_t^S, dW_t^V) = \rho dt$.
@@ -519,9 +463,7 @@ with $\text{Corr}(dW_t^S, dW_t^V) = \rho dt$.
 **Heuristic understanding:**
 
 $$
-
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-
 $$
 
 means:
@@ -607,9 +549,7 @@ We are now ready to begin the rigorous mathematical development of stochastic di
 The adventure begins with defining:
 
 $$
-
 \int_0^t f(s) \, dW_s
-
 $$
 
 Everything else follows from this fundamental construct.

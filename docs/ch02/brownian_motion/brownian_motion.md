@@ -117,7 +117,6 @@ $$\Sigma_{ij} = \mathbb{E}[W_{t_i} W_{t_j}] = \min(t_i,t_j)$$
 Write the vector in terms of independent increments. Define $\Delta W_k = W_{t_k} - W_{t_{k-1}}$ and $\Delta t_k = t_k - t_{k-1}$ for $k = 1, \ldots, n$ (with $t_0 = 0$):
 
 $$\begin{pmatrix} W_{t_1} \\ W_{t_2} \\ \vdots \\ W_{t_n} \end{pmatrix}
-
 = 
 \begin{pmatrix} 
 1 & 0 & \cdots & 0 \\
@@ -125,7 +124,6 @@ $$\begin{pmatrix} W_{t_1} \\ W_{t_2} \\ \vdots \\ W_{t_n} \end{pmatrix}
 \vdots & \vdots & \ddots & \vdots \\
 1 & 1 & \cdots & 1
 \end{pmatrix}
-
 \begin{pmatrix} \Delta W_1 \\ \Delta W_2 \\ \vdots \\ \Delta W_n \end{pmatrix}$$
 
 Since the increments $\Delta W_k \sim \mathcal{N}(0, \Delta t_k)$ are independent Gaussians, their linear combination is Gaussian. The covariance is:
@@ -143,11 +141,9 @@ $$\mathbb{E}[W_t] = 0, \quad \mathbb{E}[W_t^2] = t, \quad \mathbb{E}[W_s W_t] = 
 For $0 \le s < t$ and $\lambda \in \mathbb{R}$:
 
 $$\boxed{
-
 \mathbb{E}\left[e^{i\lambda(W_t-W_s)}\right]
 =
 \exp\left(-\frac{1}{2}\lambda^2(t-s)\right)
-
 }$$
 
 ## Covariance Structure

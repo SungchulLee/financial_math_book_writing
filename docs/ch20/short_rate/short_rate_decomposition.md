@@ -5,30 +5,25 @@
 Decompose the short rate $r(t)$ as
 
 $$\begin{array}{lllll}
-
 \displaystyle
 r(t)
 =
 \tilde{r}(t)+\psi(t)
-
 \end{array}$$
 
 Then,
 
 $$\begin{array}{lllll}
-
 \displaystyle
 d\tilde{r}(t)
 =
 -\lambda\tilde{r}(t) dt+\sigma dW^{\mathbb{Q}}(t),\quad
 \tilde{r}(0)=0
-
 \end{array}$$
 
 ???+ note "Proof"
 
     $$\begin{array}{lllll}
-
     \displaystyle
     d\psi(t)
     &=&\displaystyle
@@ -39,22 +34,18 @@ d\tilde{r}(t)
     &=&\displaystyle
     -\lambda \psi(t)dt
     +\lambda \theta(t)dt
-
     \end{array}$$
 
     Therefore,
 
     $$\begin{array}{lllll}
-
     \displaystyle
     dr(t)=d\tilde{r}(t)+d\psi(t)
-
     \end{array}$$
 
     gives
 
     $$\begin{array}{lllll}
-
     \displaystyle
     d\tilde{r}(t)
     &=&\displaystyle
@@ -65,13 +56,11 @@ d\tilde{r}(t)
     -\lambda(r(t)-\psi(t))dt+\sigma dW^{\mathbb{Q}}(t)\\
     &=&\displaystyle
     -\lambda\tilde{r}(t)dt+\sigma dW^{\mathbb{Q}}(t)
-
     \end{array}$$
 
 ## Discounted Characteristic Function via Decomposition
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \phi(u;t,T)
 =
@@ -79,13 +68,11 @@ $$\begin{array}{lllll}
 =
 e^{-\int_t^T\psi(t')dt'+iu\psi(T)}
 \text{exp}\left(\tilde{A}(u,\tau)+\tilde{B}(u,\tau)\tilde{r}(t)\right)
-
 \end{array}$$
 
 ???+ note "Proof"
 
     $$\begin{array}{lllll}
-
     \displaystyle
     \phi(u;t,T)
     &=&\displaystyle
@@ -95,7 +82,6 @@ e^{-\int_t^T\psi(t')dt'+iu\psi(T)}
     &=&\displaystyle
     e^{-\int_t^T\psi(t')dt'+iu\psi(T)}
     \mathbb{E}^\mathbb{Q}\left[e^{-\int_t^T\tilde{r}(t')dt'+iu\tilde{r}(T)}\Big{|}{\cal F}(t)\right]\\
-
     \end{array}$$
 
     The remaining expectation involves only $\tilde{r}$, which follows a simple Ornstein–Uhlenbeck process without the time-dependent $\theta$, making the computation tractable.
@@ -103,10 +89,8 @@ e^{-\int_t^T\psi(t')dt'+iu\psi(T)}
 ## ZCB Price via Decomposition
 
 $$
-
 \displaystyle
 P(t,T)=e^{A(\tau)+B(\tau)r(t)}
-
 $$
 
 ???+ note "Proof"
@@ -114,7 +98,6 @@ $$
     Setting $u=0$:
 
     $$\begin{array}{lllll}
-
     \displaystyle
     P(0,T)
     &=&\displaystyle
@@ -124,18 +107,15 @@ $$
     &=&\displaystyle
     \text{exp}\left(
     -\int_0^T\left[r_0e^{-\lambda z}+\lambda\int_0^z\theta(z')e^{-\lambda(z-z')}dz'\right]dz+\tilde{A}(0,\tau)\right)
-
     \end{array}$$
 
 ## Final Form of ψ
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \psi(T)
 =
 f(0,T)+\frac{\sigma^2}{2\lambda}\left(e^{-\lambda T}-1\right)^2\\
-
 \end{array}$$
 
 ???+ note "Proof"

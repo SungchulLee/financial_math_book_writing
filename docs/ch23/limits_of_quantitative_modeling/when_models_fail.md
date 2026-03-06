@@ -57,25 +57,19 @@ This section examines:
 **Correlation Assumption**: Pre-crisis correlation matrix:
 
 $$
-
 \rho_{ij}^{\text{normal}} \approx 0.2
-
 $$
 
 Crisis correlation:
 
 $$
-
 \rho_{ij}^{\text{crisis}} \approx 0.8
-
 $$
 
 **Loss Magnification**: With leverage $L$ and correlation increase $\Delta \rho$:
 
 $$
-
 \text{Loss Factor} \approx L \cdot \sqrt{1 + (n-1)\Delta \rho}
-
 $$
 
 ### 5. Lessons
@@ -97,9 +91,7 @@ $$
 **Gaussian Copula** (Li, 2000): Elegant framework linking marginal default probabilities through correlation:
 
 $$
-
 \Phi_2^{-1}(P(D_1 \leq t_1, D_2 \leq t_2)) = N_2(\Phi^{-1}(P(D_1 \leq t_1)), \Phi^{-1}(P(D_2 \leq t_2)); \rho)
-
 $$
 
 ### 2. Model Assumptions
@@ -119,9 +111,7 @@ $$
 **Underestimation of Joint Defaults**: Gaussian copula has **weak tail dependence**:
 
 $$
-
 \lambda_U = \lim_{u \to 1^-} P(U_2 > u | U_1 > u) = 0
-
 $$
 
 **Correlation Smile**: Market-implied correlations varied with tranche (base vs. senior), inconsistent with single-$\rho$ model.
@@ -134,17 +124,13 @@ $$
 **Tranche Sensitivity**: For equity tranche, small $\Delta \rho$ causes large price change:
 
 $$
-
 \frac{\partial V_{\text{equity}}}{\partial \rho} \gg \frac{\partial V_{\text{senior}}}{\partial \rho}
-
 $$
 
 **Implied Correlation Skew**: Market prices implied:
 
 $$
-
 \rho_{\text{equity}} < \rho_{\text{mezzanine}} < \rho_{\text{senior}}
-
 $$
 
 Inconsistent with single-factor Gaussian copula.
@@ -257,9 +243,7 @@ Inconsistent with single-factor Gaussian copula.
 **Residual Analysis**:
 
 $$
-
 \hat{\epsilon}_t = Y_t - \hat{Y}_t
-
 $$
 
 Warning signs:
@@ -270,9 +254,7 @@ Warning signs:
 **Forecast Error Tracking**:
 
 $$
-
 \text{MAE}_t = \frac{1}{n} \sum_{s=t-n+1}^{t} |Y_s - \hat{Y}_{s|s-1}|
-
 $$
 
 Warning: Increasing MAE trend.
@@ -333,9 +315,7 @@ Warning: Increasing MAE trend.
 **Calculation**:
 
 $$
-
 \text{Reserve} = V^{\text{worst-case}} - V^{\text{point estimate}}
-
 $$
 
 ### 4. Model Governance

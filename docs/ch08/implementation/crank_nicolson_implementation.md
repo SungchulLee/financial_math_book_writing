@@ -9,9 +9,7 @@ The **Crank-Nicolson method** combines the accuracy of the explicit method with 
 The Crank-Nicolson method uses the **average of the explicit and implicit finite difference approximations**:
 
 $$
-
 \frac{V_i^{n+1} - V_i^n}{\Delta t} = \frac{1}{2} \left( L V_i^n + L V_i^{n+1} \right)
-
 $$
 
 where $L$ is the spatial differential operator in the Black-Scholes PDE. This leads to a **tridiagonal linear system** at each time step with improved accuracy.
@@ -23,17 +21,13 @@ where $L$ is the spatial differential operator in the Black-Scholes PDE. This le
 Writing the Black-Scholes PDE as:
 
 $$
-
 \frac{\partial V}{\partial t} = -\frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - r S \frac{\partial V}{\partial S} + r V
-
 $$
 
 and applying the Crank-Nicolson approach, we derive a linear system:
 
 $$
-
 A \mathbf{V}^{n+1} = B \mathbf{V}^n + \mathbf{b}_{\text{boundary}}
-
 $$
 
 where $A$ and $B$ are tridiagonal matrices and $\mathbf{b}_{\text{boundary}}$ incorporates boundary adjustments.

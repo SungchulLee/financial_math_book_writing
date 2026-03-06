@@ -19,9 +19,7 @@ A **payer swaption** gives the holder the right (but not obligation) to enter in
 **Payoff at expiry $T_0$:**
 
 $$
-
 \max\left(\text{Value of payer swap at } T_0, 0\right) = \max\left(\sum_{i=1}^{n} \delta_i P(T_0, T_i)(S_{T_0} - K), 0\right)
-
 $$
 
 where $S_{T_0}$ is the swap rate prevailing at $T_0$.
@@ -29,9 +27,7 @@ where $S_{T_0}$ is the swap rate prevailing at $T_0$.
 Simplified:
 
 $$
-
 \text{Payoff} = A(T_0) \cdot \max(S_{T_0} - K, 0)
-
 $$
 
 where $A(T_0) = \sum_{i=1}^{n} \delta_i P(T_0, T_i)$ is the **swap annuity**.
@@ -41,17 +37,13 @@ where $A(T_0) = \sum_{i=1}^{n} \delta_i P(T_0, T_i)$ is the **swap annuity**.
 A **receiver swaption** gives the right to enter a **receiver swap** (receive fixed, pay floating):
 
 $$
-
 \text{Payoff} = A(T_0) \cdot \max(K - S_{T_0}, 0)
-
 $$
 
 ### Put-Call Parity
 
 $$
-
 \text{Payer Swaption} - \text{Receiver Swaption} = \text{Forward Swap}
-
 $$
 
 The forward swap has zero value when $K$ equals the forward swap rate $S_0$.
@@ -73,17 +65,13 @@ Example: "5y × 10y" = option expiring in 5 years on a 10-year swap
 The **forward swap rate** observed at time $t$ for a swap starting at $T_0$ is:
 
 $$
-
 S(t; T_0, T_n) = \frac{P(t, T_0) - P(t, T_n)}{\sum_{i=1}^{n} \delta_i P(t, T_i)}
-
 $$
 
 At time 0:
 
 $$
-
 S_0 = S(0; T_0, T_n) = \frac{P(0, T_0) - P(0, T_n)}{A_0}
-
 $$
 
 where $A_0 = \sum_{i=1}^{n} \delta_i P(0, T_i)$ is the **present value of the annuity**.
@@ -97,9 +85,7 @@ where $A_0 = \sum_{i=1}^{n} \delta_i P(0, T_i)$ is the **present value of the an
 Under the **annuity (swap) measure** $\mathbb{Q}^A$, the forward swap rate is a **martingale** with lognormal dynamics:
 
 $$
-
 \frac{dS_t}{S_t} = \sigma \, dW_t^A
-
 $$
 
 where $\sigma$ is the **swaption volatility**.
@@ -109,9 +95,7 @@ where $\sigma$ is the **swaption volatility**.
 The annuity $A(t)$ serves as the numéraire. Under $\mathbb{Q}^A$:
 
 $$
-
 \text{Swaption Value} = A_0 \cdot \mathbb{E}^{\mathbb{Q}^A}[\max(S_{T_0} - K, 0)]
-
 $$
 
 Since $S_{T_0}$ is lognormal under $\mathbb{Q}^A$, this is a standard Black-Scholes expectation.
@@ -119,31 +103,23 @@ Since $S_{T_0}$ is lognormal under $\mathbb{Q}^A$, this is a standard Black-Scho
 ### Black's Formula (Payer Swaption)
 
 $$
-
 \boxed{\text{Payer Swaption} = A_0 \cdot [S_0 N(d_1) - K N(d_2)]}
-
 $$
 
 where:
 
 $$
-
 d_1 = \frac{\ln(S_0/K) + \frac{1}{2}\sigma^2 T_0}{\sigma \sqrt{T_0}}
-
 $$
 
 $$
-
 d_2 = d_1 - \sigma \sqrt{T_0}
-
 $$
 
 ### Receiver Swaption
 
 $$
-
 \text{Receiver Swaption} = A_0 \cdot [K N(-d_2) - S_0 N(-d_1)]
-
 $$
 
 ### ATM Swaption
@@ -151,9 +127,7 @@ $$
 When $K = S_0$ (at-the-money forward):
 
 $$
-
 \text{ATM Swaption} \approx A_0 \cdot S_0 \cdot \sigma \sqrt{T_0} \cdot \sqrt{\frac{2}{\pi}}
-
 $$
 
 using the approximation $N(d_1) - N(d_2) \approx \sigma\sqrt{T}/\sqrt{2\pi}$ for small $\sigma\sqrt{T}$.
@@ -169,9 +143,7 @@ In one-factor models (Vasicek, Hull-White, CIR), bond prices are monotonic in th
 **Key insight:** There exists a unique $r^*$ such that the swap value equals zero:
 
 $$
-
 \sum_{i=1}^{n} c_i P(T_0, T_i, r^*) = P(T_0, T_0, r^*) = 1
-
 $$
 
 where $c_i = K \delta_i$ for $i < n$ and $c_n = 1 + K \delta_n$.
@@ -181,9 +153,7 @@ where $c_i = K \delta_i$ for $i < n$ and $c_n = 1 + K \delta_n$.
 The payer swaption decomposes into:
 
 $$
-
 \text{Payer Swaption} = \sum_{i=1}^{n} c_i \cdot \text{Put}(P(T_0, T_i), K_i)
-
 $$
 
 where $K_i = P(T_0, T_i, r^*)$.
@@ -206,33 +176,25 @@ Each put option has an analytical formula (in Vasicek/Hull-White/CIR), so the sw
 For low or negative rates, lognormal models break down. The Bachelier model assumes:
 
 $$
-
 dS_t = \sigma^{(n)} \, dW_t^A
-
 $$
 
 ### Bachelier Swaption Formula
 
 $$
-
 \text{Payer Swaption} = A_0 \cdot \left[(S_0 - K) N(d) + \sigma^{(n)} \sqrt{T_0} \phi(d)\right]
-
 $$
 
 where:
 
 $$
-
 d = \frac{S_0 - K}{\sigma^{(n)} \sqrt{T_0}}
-
 $$
 
 ### Conversion (ATM Approximation)
 
 $$
-
 \sigma^{(n)} \approx S_0 \cdot \sigma^{(\text{Black})}
-
 $$
 
 ---
@@ -250,9 +212,7 @@ The swaption market quotes volatilities across three dimensions:
 ### The Volatility Cube
 
 $$
-
 \sigma = \sigma(\text{expiry}, \text{tenor}, \text{strike})
-
 $$
 
 ### Typical Features
@@ -291,9 +251,7 @@ Standard quotes include:
 Calibrate to both caps and swaptions:
 
 $$
-
 \min_{\theta} \sum_{\text{caps}} w_c (C^{\text{model}} - C^{\text{mkt}})^2 + \sum_{\text{swaptions}} w_s (S^{\text{model}} - S^{\text{mkt}})^2
-
 $$
 
 ---
@@ -305,9 +263,7 @@ $$
 Sensitivity to the forward swap rate:
 
 $$
-
 \Delta = A_0 \cdot N(d_1)
-
 $$
 
 ### Vega
@@ -315,17 +271,13 @@ $$
 Sensitivity to volatility:
 
 $$
-
 \mathcal{V} = A_0 \cdot S_0 \sqrt{T_0} \phi(d_1)
-
 $$
 
 ### Gamma
 
 $$
-
 \Gamma = \frac{A_0 \phi(d_1)}{S_0 \sigma \sqrt{T_0}}
-
 $$
 
 ### Annuity Delta
@@ -333,9 +285,7 @@ $$
 Sensitivity to shifts in the discount curve (affects $A_0$):
 
 $$
-
 \frac{\partial V}{\partial A_0} = S_0 N(d_1) - K N(d_2)
-
 $$
 
 ---
@@ -353,9 +303,7 @@ At expiry, the holder receives cash equal to the swap value, typically using a s
 **Cash settlement amount:**
 
 $$
-
 \text{Cash} = A_{\text{ref}} \cdot \max(S_{T_0} - K, 0)
-
 $$
 
 where $A_{\text{ref}}$ is computed using a reference curve (often ISDA methodology).
@@ -385,9 +333,7 @@ Bermudan swaptions require numerical methods:
 ### Relationship to European
 
 $$
-
 \text{Bermudan} \geq \text{European}
-
 $$
 
 The early exercise premium is typically 5-20 bps on implied vol for typical structures.

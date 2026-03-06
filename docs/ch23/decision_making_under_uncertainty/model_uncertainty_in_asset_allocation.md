@@ -23,17 +23,13 @@ The theoretical and practical implications connect Bayesian model averaging, rob
 **CAPM vs. Multi-Factor**: Should returns be modeled by:
 
 $$
-
 R_i - r_f = \alpha_i + \beta_i (R_m - r_f) + \epsilon_i
-
 $$
 
 or by Fama-French factors:
 
 $$
-
 R_i - r_f = \alpha_i + \beta_{i,m} (R_m - r_f) + \beta_{i,s} SMB + \beta_{i,v} HML + \epsilon_i
-
 $$
 
 or by alternative factors (momentum, quality, low volatility)?
@@ -46,17 +42,13 @@ or by alternative factors (momentum, quality, low volatility)?
 **Unpredictable Returns**:
 
 $$
-
 R_{t+1} = \mu + \epsilon_{t+1}
-
 $$
 
 **Predictable Returns** (with predictor $x_t$):
 
 $$
-
 R_{t+1} = \alpha + \beta x_t + \epsilon_{t+1}
-
 $$
 
 **Model Uncertainty**: Is the predictive coefficient $\beta$ zero or significantly different from zero?
@@ -67,25 +59,19 @@ $$
 **Gaussian**:
 
 $$
-
 R \sim N(\mu, \Sigma)
-
 $$
 
 **Student-t** (fat tails):
 
 $$
-
 R \sim t_{\nu}(\mu, \Sigma)
-
 $$
 
 **Mixture of Normals** (regimes):
 
 $$
-
 R \sim \sum_{k=1}^K \pi_k N(\mu_k, \Sigma_k)
-
 $$
 
 ### 4. Parameter Stability
@@ -94,17 +80,13 @@ $$
 **Constant Parameters**:
 
 $$
-
 \mu_t = \mu, \quad \Sigma_t = \Sigma \quad \text{for all } t
-
 $$
 
 **Time-Varying Parameters**:
 
 $$
-
 \mu_t = f(z_t), \quad \Sigma_t = g(z_t)
-
 $$
 
 where $z_t$ are state variables.
@@ -122,9 +104,7 @@ where $z_t$ are state variables.
 **Posterior Model Probabilities**:
 
 $$
-
 P(M_k | D) = \frac{P(D | M_k) P(M_k)}{\sum_{j=1}^K P(D | M_j) P(M_j)}
-
 $$
 
 where $P(D | M_k)$ is the marginal likelihood under model $k$.
@@ -135,9 +115,7 @@ where $P(D | M_k)$ is the marginal likelihood under model $k$.
 **Definition**:
 
 $$
-
 P(D | M_k) = \int P(D | \theta_k, M_k) P(\theta_k | M_k) d\theta_k
-
 $$
 
 **Computation**: Often requires numerical integration (MCMC, importance sampling).
@@ -145,9 +123,7 @@ $$
 **BIC Approximation**:
 
 $$
-
 \log P(D | M_k) \approx \log P(D | \hat{\theta}_k, M_k) - \frac{d_k}{2} \log T
-
 $$
 
 where $d_k$ is the number of parameters in model $k$ and $T$ is the sample size.
@@ -158,9 +134,7 @@ where $d_k$ is the number of parameters in model $k$ and $T$ is the sample size.
 **BMA Predictive**:
 
 $$
-
 P(R_{T+1} | D) = \sum_{k=1}^K P(R_{T+1} | D, M_k) P(M_k | D)
-
 $$
 
 **Implication**: The predictive distribution is a mixture across models, weighted by posterior model probabilities.
@@ -171,9 +145,7 @@ $$
 **Expected Utility**:
 
 $$
-
 \mathbb{E}[U(W_{T+1}) | D] = \sum_{k=1}^K P(M_k | D) \mathbb{E}[U(W_{T+1}) | D, M_k]
-
 $$
 
 **Optimal Portfolio**: Maximize expected utility under the BMA predictive distribution.
@@ -189,17 +161,13 @@ $$
 For each model $M_k$, the posterior distribution of parameters is:
 
 $$
-
 P(\theta_k | D, M_k) \propto P(D | \theta_k, M_k) P(\theta_k | M_k)
-
 $$
 
 **Total Uncertainty**: Combines within-model parameter uncertainty and across-model uncertainty:
 
 $$
-
 \text{Var}(R_{T+1} | D) = \underbrace{\sum_k P(M_k | D) \text{Var}(R_{T+1} | D, M_k)}_{\text{within-model}} + \underbrace{\text{Var}_k[\mathbb{E}(R_{T+1} | D, M_k)]}_{\text{across-model}}
-
 $$
 
 ### 2. Effect on Portfolio Choice
@@ -218,9 +186,7 @@ $$
 **Dynamic Updating**: As data accumulates:
 
 $$
-
 P(M_k | D_1, \ldots, D_t) \propto P(D_t | D_1, \ldots, D_{t-1}, M_k) P(M_k | D_1, \ldots, D_{t-1})
-
 $$
 
 **Convergence**: Under regularity conditions, posterior concentrates on the "best" model (or model(s) closest to truth).
@@ -234,9 +200,7 @@ $$
 **Regret Definition**: For portfolio $w$ and true model $M$:
 
 $$
-
 \text{Regret}(w, M) = U(w^*(M)) - U(w)
-
 $$
 
 where $w^*(M)$ is optimal under model $M$.
@@ -244,9 +208,7 @@ where $w^*(M)$ is optimal under model $M$.
 **Minimax Regret**:
 
 $$
-
 w^{\text{MR}} = \arg\min_w \max_{M \in \mathcal{M}} \text{Regret}(w, M)
-
 $$
 
 **Properties**: Minimax regret is less conservative than maximin utility.
@@ -259,9 +221,7 @@ $$
 **Max-Min Expected Utility**:
 
 $$
-
 \max_w \min_{P \in \mathcal{P}} \sum_k P(M_k) \mathbb{E}[U(W) | M_k]
-
 $$
 
 **Interpretation**: Robust to misspecification of model weights.
@@ -272,9 +232,7 @@ $$
 **KMM Approach**:
 
 $$
-
 V(w) = \phi^{-1}\left(\sum_k \mu(M_k) \phi(\mathbb{E}[U(W) | M_k])\right)
-
 $$
 
 where $\phi$ is a concave ambiguity transformation and $\mu$ is a second-order probability.
@@ -319,21 +277,15 @@ where $\phi$ is a concave ambiguity transformation and $\mu$ is a second-order p
 **Model Selection**: Which factors to use?
 
 $$
-
 M_{\text{CAPM}}: \quad R = \alpha + \beta R_m + \epsilon
-
 $$
 
 $$
-
 M_{\text{FF3}}: \quad R = \alpha + \beta_1 R_m + \beta_2 SMB + \beta_3 HML + \epsilon
-
 $$
 
 $$
-
 M_{\text{FF5}}: \quad \text{adds RMW and CMA factors}
-
 $$
 
 **BMA Factor Model**: Weights factors by posterior model probabilities, naturally selecting relevant factors.
@@ -344,9 +296,7 @@ $$
 **Two-Regime Model**:
 
 $$
-
 R_t | S_t = k \sim N(\mu_k, \Sigma_k)
-
 $$
 
 with Markov switching for $S_t$.
@@ -367,9 +317,7 @@ with Markov switching for $S_t$.
 **State Space**: Extend to include model uncertainty:
 
 $$
-
 \Omega = \bigcup_{k=1}^K \Omega_k
-
 $$
 
 where $\Omega_k$ is the state space under model $M_k$.
@@ -423,9 +371,7 @@ where $\Omega_k$ is the state space under model $M_k$.
 3. Solve:
 
 $$
-
 \max_w \sum_{k=1}^K P(M_k | D) \sum_{s=1}^{S_k} \frac{1}{S_k} U(w^\top R_s^{(k)})
-
 $$
 
 ### 3. Numerical Integration
@@ -436,9 +382,7 @@ $$
 **Importance Sampling**: For high-dimensional problems:
 
 $$
-
 \mathbb{E}[g(R)] \approx \frac{1}{N} \sum_{i=1}^N w_i g(R^{(i)})
-
 $$
 
 with appropriate importance weights.

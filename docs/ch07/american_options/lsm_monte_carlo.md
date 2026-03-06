@@ -26,9 +26,7 @@ The key insight is that the optimal exercise decision at each time step requires
 The American option price at time $t_0 = 0$ is:
 
 $$
-
 V_0 = \sup_{\tau \in \mathcal{T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \Phi(S_\tau)\right]
-
 $$
 
 At each exercise date $t_k$, the holder compares:
@@ -211,11 +209,9 @@ The LSM estimator uses the **same paths** for regression and exercise decisions.
 Therefore:
 
 $$
-
 \boxed{
 \hat{V}_{\text{LSM}} \leq V_{\text{American}} \quad \text{(low-biased)}
 }
-
 $$
 
 ### High-Biased Estimator
@@ -223,9 +219,7 @@ $$
 A **high-biased** (dual) estimator can be constructed using the **Andersen–Broadie** approach, which provides an upper bound. The true price lies between the low and high estimates:
 
 $$
-
 \hat{V}_{\text{low}} \leq V_{\text{American}} \leq \hat{V}_{\text{high}}
-
 $$
 
 ---
@@ -237,9 +231,7 @@ $$
 The total error has three components:
 
 $$
-
 \text{Total Error} = \underbrace{O(1/\sqrt{M})}_{\text{Monte Carlo}} + \underbrace{O(1/N)}_{\text{time discretization}} + \underbrace{O(P^{-\alpha})}_{\text{regression bias}}
-
 $$
 
 where $\alpha > 0$ depends on the smoothness of the continuation value function.
@@ -275,11 +267,9 @@ where $\alpha > 0$ depends on the smoothness of the continuation value function.
 ## Summary
 
 $$
-
 \boxed{
 \hat{V}_0 = \frac{1}{M} \sum_{m=1}^{M} e^{-r\tau^{*(m)}} \Phi(S_{\tau^{*(m)}}^{(m)})
 }
-
 $$
 
 | Aspect | Description |

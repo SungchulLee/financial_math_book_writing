@@ -11,9 +11,7 @@ The Cox-Ingersoll-Ross model (1985) is a mean-reverting short-rate model with **
 Under the risk-neutral measure $\mathbb{Q}$, the short rate follows:
 
 $$
-
 dr_t = \kappa(\theta - r_t) \, dt + \sigma \sqrt{r_t} \, dW_t^{\mathbb{Q}}
-
 $$
 
 where:
@@ -39,9 +37,7 @@ where:
 The **Feller condition** is:
 
 $$
-
 \boxed{2\kappa\theta \geq \sigma^2}
-
 $$
 
 ### Boundary Behavior
@@ -70,9 +66,7 @@ In both cases, $r_t \geq 0$ for all $t$.
 Given $r_s$ at time $s < t$, the distribution of $r_t$ is:
 
 $$
-
 r_t \mid r_s \sim \frac{c}{2} \chi^2\left(\nu, \lambda\right)
-
 $$
 
 where:
@@ -86,9 +80,7 @@ where:
 **Mean:**
 
 $$
-
 \mathbb{E}[r_t \mid r_s] = r_s e^{-\kappa(t-s)} + \theta(1 - e^{-\kappa(t-s)})
-
 $$
 
 This is identical to Vasicek!
@@ -96,9 +88,7 @@ This is identical to Vasicek!
 **Variance:**
 
 $$
-
 \text{Var}(r_t \mid r_s) = r_s \frac{\sigma^2}{\kappa}(e^{-\kappa(t-s)} - e^{-2\kappa(t-s)}) + \frac{\theta\sigma^2}{2\kappa}(1 - e^{-\kappa(t-s)})^2
-
 $$
 
 Unlike Vasicek, variance depends on the current rate $r_s$.
@@ -108,9 +98,7 @@ Unlike Vasicek, variance depends on the current rate $r_s$.
 As $t \to \infty$:
 
 $$
-
 r_\infty \sim \text{Gamma}\left(\frac{2\kappa\theta}{\sigma^2}, \frac{2\kappa}{\sigma^2}\right)
-
 $$
 
 with mean $\theta$ and variance $\frac{\theta\sigma^2}{2\kappa}$.
@@ -124,9 +112,7 @@ with mean $\theta$ and variance $\frac{\theta\sigma^2}{2\kappa}$.
 Like Vasicek, CIR yields **exponential-affine** bond prices:
 
 $$
-
 \boxed{P(t, T) = A(\tau) \exp(-B(\tau) \cdot r_t)}
-
 $$
 
 where $\tau = T - t$.
@@ -136,25 +122,19 @@ where $\tau = T - t$.
 Define:
 
 $$
-
 \gamma = \sqrt{\kappa^2 + 2\sigma^2}
-
 $$
 
 ### Solution for B(τ)
 
 $$
-
 \boxed{B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}}
-
 $$
 
 ### Solution for A(τ)
 
 $$
-
 \boxed{A(\tau) = \left[\frac{2\gamma \exp\left(\frac{(\kappa + \gamma)\tau}{2}\right)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}}
-
 $$
 
 ### Derivation Outline
@@ -162,9 +142,7 @@ $$
 The bond pricing PDE is:
 
 $$
-
 \frac{\partial P}{\partial t} + \kappa(\theta - r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 r \frac{\partial^2 P}{\partial r^2} = rP
-
 $$
 
 Using ansatz $P = A(\tau) e^{-B(\tau)r}$ leads to:
@@ -178,9 +156,7 @@ Using ansatz $P = A(\tau) e^{-B(\tau)r}$ leads to:
 ### Zero Rate
 
 $$
-
 z(t, T) = -\frac{\log P(t, T)}{\tau} = \frac{B(\tau)}{\tau} r_t - \frac{\log A(\tau)}{\tau}
-
 $$
 
 ### Long-Term Yield
@@ -188,9 +164,7 @@ $$
 As $\tau \to \infty$:
 
 $$
-
 z_\infty = \frac{2\kappa\theta}{\gamma + \kappa}
-
 $$
 
 ---
@@ -202,9 +176,7 @@ $$
 A European call on a $T_2$-bond with strike $K$, expiring at $T_1$, has price involving the non-central chi-squared distribution:
 
 $$
-
 C = P(0, T_2) \cdot \chi^2_{2r^*(\phi + \psi + B)}(\nu, \lambda_1) - K P(0, T_1) \cdot \chi^2_{2r^*(\phi + \psi)}(\nu, \lambda_2)
-
 $$
 
 where the parameters are functions of model inputs and $r^*$ solves $P(T_1, T_2, r^*) = K$.

@@ -9,27 +9,21 @@ The **maximum principle** is a fundamental property of parabolic equations that 
 **Theorem (Weak Maximum Principle)**: Let $u$ be a continuous function on $\overline{Q}_T = [0,T] \times [a,b]$ that satisfies:
 
 $$
-
 \frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \leq 0 \quad \text{in } Q_T = (0,T] \times (a,b)
-
 $$
 
 Then:
 
 $$
-
 \boxed{
 \max_{\overline{Q}_T} u = \max_{\Gamma_T} u
 }
-
 $$
 
 where $\Gamma_T$ is the **parabolic boundary**:
 
 $$
-
 \Gamma_T = \{0\} \times [a,b] \cup [0,T] \times \{a,b\}
-
 $$
 
 **Interpretation**: A subsolution cannot attain its maximum in the interior—the maximum must occur on the parabolic boundary (initial time or spatial boundary).
@@ -68,9 +62,7 @@ At a maximum:
 Therefore:
 
 $$
-
 \frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \geq 0 - \frac{1}{2} \cdot 0 = 0
-
 $$
 
 with strict inequality if $u_{xx} < 0$.
@@ -84,9 +76,7 @@ This contradicts the assumption $u_t - \frac{1}{2}u_{xx} \leq 0$ (with equality 
 **Theorem (Strong Maximum Principle)**: If $u$ satisfies the heat equation:
 
 $$
-
 \frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \quad \text{in } Q_T
-
 $$
 
 and attains its maximum at an interior point, then $u$ is **constant**.
@@ -100,17 +90,13 @@ and attains its maximum at an interior point, then $u$ is **constant**.
 **Corollary**: If $u$ and $v$ both solve the heat equation and:
 
 $$
-
 u \leq v \quad \text{on } \Gamma_T
-
 $$
 
 then:
 
 $$
-
 u \leq v \quad \text{in } \overline{Q}_T
-
 $$
 
 **Proof**: Apply the maximum principle to $w = u - v$, which satisfies $w_t = \frac{1}{2}w_{xx}$ and $w \leq 0$ on $\Gamma_T$. $\square$
@@ -122,13 +108,11 @@ $$
 **Theorem**: The initial-boundary value problem:
 
 $$
-
 \begin{cases}
 u_t = \frac{1}{2}u_{xx} & \text{in } Q_T \\
 u(0,x) = f(x) & \text{initial condition} \\
 u(t,a) = g_a(t), \quad u(t,b) = g_b(t) & \text{boundary conditions}
 \end{cases}
-
 $$
 
 has **at most one** solution.
@@ -136,9 +120,7 @@ has **at most one** solution.
 **Proof**: If $u$ and $v$ are two solutions, then $w = u - v$ solves the heat equation with $w = 0$ on $\Gamma_T$. By the maximum principle:
 
 $$
-
 \max w \leq 0 \quad \text{and} \quad \max(-w) \leq 0
-
 $$
 
 Therefore $w \equiv 0$, so $u = v$. $\square$
@@ -152,9 +134,7 @@ Therefore $w \equiv 0$, so $u = v$. $\square$
 If $u_1$ and $u_2$ are solutions with data $(f_1, g_1)$ and $(f_2, g_2)$, then:
 
 $$
-
 \|u_1 - u_2\|_\infty \leq \max\left(\|f_1 - f_2\|_\infty, \|g_1 - g_2\|_\infty\right)
-
 $$
 
 **Physical meaning**: Small perturbations in initial/boundary data lead to small perturbations in the solution.
@@ -183,9 +163,7 @@ The maximum principle has a natural probabilistic meaning:
 **For Brownian motion**: If $f \leq M$, then:
 
 $$
-
 u(t,x) = \mathbb{E}[f(x + B_t)] \leq M
-
 $$
 
 The expected value of a bounded function is bounded by the same constant.
@@ -193,9 +171,7 @@ The expected value of a bounded function is bounded by the same constant.
 **For killed Brownian motion**: With discounting $r > 0$:
 
 $$
-
 u(t,x) = \mathbb{E}[e^{-rT}f(B_T)] \leq e^{-rT}M \leq M
-
 $$
 
 ---
@@ -207,9 +183,7 @@ By applying the maximum principle to $-u$:
 **Theorem**: If $u_t = \frac{1}{2}u_{xx}$ in $Q_T$, then:
 
 $$
-
 \min_{\overline{Q}_T} u = \min_{\Gamma_T} u
-
 $$
 
 ---
@@ -243,11 +217,9 @@ Maximum principles for systems of equations are more delicate and may fail witho
 ## Summary
 
 $$
-
 \boxed{
 u_t \leq \frac{1}{2}u_{xx} \implies \max u \text{ occurs on parabolic boundary}
 }
-
 $$
 
 | Result | Statement |

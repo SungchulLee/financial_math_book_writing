@@ -44,9 +44,7 @@ $$\phi_X(t) = \sum_{k=0}^\infty \frac{\mathbb{E}[X^k]}{k!} t^k$$
 If $X \sim \mathcal{N}(\mu, \sigma^2)$, then:
 
 $$\boxed{
-
 \phi_X(t) = \mathbb{E}[e^{tX}] = \exp\left(\mu t + \frac{1}{2} \sigma^2 t^2\right)
-
 }$$
 
 **Proof:**
@@ -104,17 +102,13 @@ Let $W_T$ be standard Brownian motion at time $T$. Then:
 1. **Odd moments vanish:**
 
 $$\boxed{
-
 \mathbb{E}[W_T^{2k+1}] = 0 \quad \text{for all } k \ge 0
-
 }$$
 
 2. **Even moments:**
 
 $$\boxed{
-
 \mathbb{E}[W_T^{2k}] = \frac{(2k)!}{k! \, 2^k} T^k = (2k-1)!! \cdot T^k \quad \text{for all } k \ge 0
-
 }$$
 
 where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$ is the **double factorial**.

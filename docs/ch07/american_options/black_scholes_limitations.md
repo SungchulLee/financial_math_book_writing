@@ -27,17 +27,13 @@ This section explains precisely why the analytical framework breaks down and how
 For a European option, the Black–Scholes PDE:
 
 $$
-
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0
-
 $$
 
 is solved on the domain $(S, t) \in (0, \infty) \times [0, T)$ with a **fixed terminal condition**:
 
 $$
-
 V(S, T) = \Phi(S)
-
 $$
 
 and boundary conditions at $S = 0$ and $S \to \infty$. The domain is fully specified, and the problem admits a unique closed-form solution via the Feynman–Kac representation.
@@ -63,14 +59,12 @@ For an American option, the constraint $V(S, t) \geq \Phi(S)$ must hold for all 
 The boundary between $\mathcal{C}$ and $\mathcal{E}$ is an **unknown curve** $S^*(t)$ that must be determined as part of the solution:
 
 $$
-
 \boxed{
 \begin{aligned}
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0 &\quad \text{for } S > S^*(t) \text{ (put)} \\
 V(S, t) = K - S &\quad \text{for } S \leq S^*(t) \text{ (put)}
 \end{aligned}
 }
-
 $$
 
 This is fundamentally different from the European case: the **domain of the PDE itself depends on the solution**.
@@ -82,19 +76,15 @@ This is fundamentally different from the European case: the **domain of the PDE 
 At the free boundary, the solution satisfies two conditions that together determine $S^*(t)$:
 
 $$
-
 \boxed{
 V(t, S^*(t)) = \Phi(S^*(t)), \qquad \frac{\partial V}{\partial S}(t, S^*(t)) = \Phi'(S^*(t))
 }
-
 $$
 
 For an American put with $\Phi(S) = (K - S)^+$:
 
 $$
-
 V(t, S^*) = K - S^*, \qquad V_S(t, S^*) = -1
-
 $$
 
 The **value-matching** condition (first equation) requires continuity. The **smooth-pasting** condition (second equation) requires differentiability at the boundary. Together, they provide the extra equation needed to determine the unknown $S^*(t)$.
@@ -109,7 +99,6 @@ The **value-matching** condition (first equation) requires continuity. The **smo
 The free-boundary problem can be restated compactly as a **linear complementarity problem (LCP)**:
 
 $$
-
 \boxed{
 \begin{aligned}
 V(S, t) &\geq \Phi(S) \\
@@ -117,7 +106,6 @@ V(S, t) &\geq \Phi(S) \\
 \left(V - \Phi\right) \cdot \left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV\right) &= 0
 \end{aligned}
 }
-
 $$
 
 The third equation is the **complementarity condition**: at every point, **at least one** of the two inequalities holds as an equality.
@@ -128,9 +116,7 @@ The third equation is the **complementarity condition**: at every point, **at le
 This is equivalent to the variational inequality:
 
 $$
-
 \min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
-
 $$
 
 ---
@@ -157,9 +143,7 @@ For American options, each of these breaks down:
     For a **perpetual American put** ($T = \infty$), the problem becomes time-independent. The exercise boundary is a **constant** $S^*$, and a closed-form solution exists:
     
     $$
-
     V(S) = \left(\frac{S^*}{S}\right)^\lambda (K - S^*), \quad S^* = \frac{\lambda}{\lambda + 1} K
-
     $$
     
     where $\lambda = \frac{2r}{\sigma^2}$. This is the only analytically tractable case.
@@ -182,11 +166,9 @@ Since closed-form solutions are unavailable, American options require numerical 
 ## Summary
 
 $$
-
 \boxed{
 \text{European: standard PDE} \quad \longrightarrow \quad \text{American: free-boundary PDE}
 }
-
 $$
 
 | Aspect | European | American |

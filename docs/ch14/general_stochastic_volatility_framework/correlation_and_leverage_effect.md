@@ -11,9 +11,7 @@ A defining feature of equity markets is the **leverage effect**: negative return
 In two-factor stochastic volatility models, we allow the driving Brownian motions to be correlated:
 
 $$
-
 d\langle W^S, W^V \rangle_t = \rho\,dt
-
 $$
 
 with correlation coefficient $\rho \in [-1, 1]$.
@@ -21,9 +19,7 @@ with correlation coefficient $\rho \in [-1, 1]$.
 **Decomposition:** The correlated pair can be written as:
 
 $$
-
 W_t^V = \rho W_t^S + \sqrt{1-\rho^2}\, W_t^{\perp}
-
 $$
 
 where $W^S$ and $W^{\perp}$ are independent standard Brownian motions.
@@ -31,9 +27,7 @@ where $W^S$ and $W^{\perp}$ are independent standard Brownian motions.
 **Joint increment distribution:**
 
 $$
-
 \begin{pmatrix} \Delta W^S \\ \Delta W^V \end{pmatrix} \sim \mathcal{N}\left(\begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{pmatrix} \Delta t & \rho\Delta t \\ \rho\Delta t & \Delta t \end{pmatrix}\right)
-
 $$
 
 ### Instantaneous Covariation
@@ -41,17 +35,13 @@ $$
 For the Heston model with $dS_t = (r-q)S_t\,dt + \sqrt{V_t}S_t\,dW_t^S$ and $dV_t = \kappa(\theta-V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V$:
 
 $$
-
 d\langle S, V \rangle_t = \rho \xi V_t S_t\,dt
-
 $$
 
 The **instantaneous covariance** between log-returns and variance changes is:
 
 $$
-
 \text{Cov}\left(\frac{dS_t}{S_t}, dV_t\right) = \rho \xi V_t\,dt
-
 $$
 
 ---
@@ -63,9 +53,7 @@ $$
 The **leverage effect** refers to the empirically observed negative correlation between equity returns and subsequent volatility changes:
 
 $$
-
 \text{Corr}(r_t, \sigma_{t+\Delta}^2 - \sigma_t^2) < 0
-
 $$
 
 where $r_t$ is the return and $\sigma_t$ is volatility.
@@ -93,9 +81,7 @@ where $r_t$ is the return and $\sigma_t$ is volatility.
 The correlation depends on the measurement horizon:
 
 $$
-
 \rho(\Delta) = \text{Corr}\left(r_{[t, t+\Delta]}, \Delta\sigma_{[t+\Delta, t+2\Delta]}^2\right)
-
 $$
 
 Empirically:
@@ -116,9 +102,7 @@ This suggests the leverage effect is a **short-term** phenomenon.
 **Formalization:** Let $A = E + D$ be assets, with equity $E$ and debt $D$. If $A$ falls:
 
 $$
-
 \text{Leverage} = \frac{D}{E} \uparrow \quad \Rightarrow \quad \text{Equity volatility} \uparrow
-
 $$
 
 **Critique:** This explains firm-level volatility but less clearly applies to indices or portfolios.
@@ -130,9 +114,7 @@ $$
 **Formalization:** Under CAPM-type reasoning:
 
 $$
-
 \mathbb{E}[r] = r_f + \lambda \cdot \sigma \quad \Rightarrow \quad \uparrow \sigma \Rightarrow \uparrow \mathbb{E}[r] \Rightarrow \downarrow P_0
-
 $$
 
 **French, Schwert, Stambaugh (1987):** Found evidence consistent with volatility feedback, but the effect is smaller than pure leverage would predict.
@@ -171,9 +153,7 @@ This asymmetry makes downward moves more extreme than upward moves, creating a l
 For small vol-of-vol and short maturities, the implied volatility skew can be approximated:
 
 $$
-
 \sigma_{\text{impl}}(k) \approx \sigma_{\text{ATM}} + \text{Skew} \cdot k + \frac{1}{2}\text{Convexity} \cdot k^2
-
 $$
 
 where $k = \log(K/F)$ is log-moneyness.
@@ -181,9 +161,7 @@ where $k = \log(K/F)$ is log-moneyness.
 **First-order expansion (Heston):**
 
 $$
-
 \text{Skew} \approx \frac{\rho \xi}{2\sigma_{\text{ATM}}}
-
 $$
 
 This shows:
@@ -223,9 +201,7 @@ The correlation $\rho$ can be estimated by:
 Direct estimation from returns and realized variance changes:
 
 $$
-
 \hat{\rho} = \frac{\sum_t (r_t - \bar{r})(\Delta RV_t - \overline{\Delta RV})}{\sqrt{\sum_t (r_t - \bar{r})^2 \sum_t (\Delta RV_t - \overline{\Delta RV})^2}}
-
 $$
 
 **Caveat:** Historical $\rho^{\mathbb{P}}$ and risk-neutral $\rho^{\mathbb{Q}}$ may differ due to risk premia.
@@ -257,9 +233,7 @@ Empirical studies find that $\rho$ is relatively stable over time, unlike other 
 Some evidence suggests $\rho$ varies with market conditions:
 
 $$
-
 \rho(t) = \rho_0 + \rho_1 \cdot \mathbf{1}_{\text{crisis}}
-
 $$
 
 During crises:
@@ -276,9 +250,7 @@ During crises:
 With $\rho \neq 0$, the delta hedge must account for correlation:
 
 $$
-
 \Delta^{\text{SV}} = \frac{\partial C}{\partial S} + \rho \frac{\xi}{\sigma} \frac{\partial C}{\partial V}
-
 $$
 
 The second term corrects for the correlation between price and volatility moves.
@@ -288,9 +260,7 @@ The second term corrects for the correlation between price and volatility moves.
 **Vanna** (cross-gamma) measures sensitivity to joint price-volatility moves:
 
 $$
-
 \text{Vanna} = \frac{\partial^2 C}{\partial S \partial \sigma} = \frac{\partial \Delta}{\partial \sigma}
-
 $$
 
 When $\rho < 0$:

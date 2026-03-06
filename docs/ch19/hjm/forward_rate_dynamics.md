@@ -53,17 +53,13 @@ Crucially, the drift is *not arbitrary*.
 For $t < S < T$, the forward rate is defined as:
 
 $$
-
 P(t,T) = P(t,S) \cdot P(t,S,T) := P(t,S) \cdot e^{-R(t,S,T)(T-S)}
-
 $$
 
 where the forward rate is:
 
 $$
-
 R(t,S,T) = -\frac{\log P(t,T) - \log P(t,S)}{T-S}
-
 $$
 
 ### Instantaneous Forward Rate
@@ -71,9 +67,7 @@ $$
 Taking the limit as $S \to T$:
 
 $$
-
 f(t,T) = \lim_{S \to T} R(t,S,T) = -\lim_{S \to T} \frac{\log P(t,T) - \log P(t,S)}{T-S} = -\frac{\partial}{\partial T}\log P(t,T)
-
 $$
 
 This shows the fundamental relationship between instantaneous forward rates and the log of bond prices.
@@ -83,9 +77,7 @@ This shows the fundamental relationship between instantaneous forward rates and 
 The instantaneous forward rate follows the stochastic differential equation:
 
 $$
-
 df(t,T) = \mu^{\mathbb{Q}}(t,T)dt + \sigma(t,T)dW^{\mathbb{Q}}(t)
-
 $$
 
 where:

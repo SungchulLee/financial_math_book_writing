@@ -17,9 +17,7 @@ Let $C(K, T)$ denote the price of a European call option with strike $K$ and mat
 
 
 $$
-
 q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}
-
 $$
 
 
@@ -28,9 +26,7 @@ Equivalently, for the cumulative distribution function:
 
 
 $$
-
 Q(K) = \mathbb{P}^{\mathbb{Q}}(S_T \leq K) = e^{rT} \left(1 + \frac{\partial C}{\partial K}\bigg|_{K}\right)
-
 $$
 
 
@@ -42,9 +38,7 @@ The second derivative of the call price with respect to strike extracts the **di
 
 
 $$
-
 \frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
-
 $$
 
 
@@ -61,9 +55,7 @@ Under the risk-neutral measure $\mathbb{Q}$, the call price is:
 
 
 $$
-
 C(K, T) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K, 0)]
-
 $$
 
 
@@ -72,9 +64,7 @@ Expanding the expectation:
 
 
 $$
-
 C(K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) q(S) dS = e^{-rT} \int_K^\infty (S - K) q(S) dS
-
 $$
 
 
@@ -86,9 +76,7 @@ Differentiating under the integral sign:
 
 
 $$
-
 \frac{\partial C}{\partial K} = e^{-rT} \frac{\partial}{\partial K} \int_K^\infty (S - K) q(S) dS
-
 $$
 
 
@@ -97,9 +85,7 @@ By Leibniz integral rule:
 
 
 $$
-
 \frac{\partial C}{\partial K} = e^{-rT} \left[ -\int_K^\infty q(S) dS + (K - K) q(K) \right] = -e^{-rT} \int_K^\infty q(S) dS
-
 $$
 
 
@@ -108,9 +94,7 @@ Recognizing the tail probability:
 
 
 $$
-
 \frac{\partial C}{\partial K} = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T > K) = -e^{-rT}(1 - Q(K))
-
 $$
 
 
@@ -119,9 +103,7 @@ Rearranging:
 
 
 $$
-
 Q(K) = 1 + e^{rT} \frac{\partial C}{\partial K}
-
 $$
 
 
@@ -133,9 +115,7 @@ Differentiating once more:
 
 
 $$
-
 \frac{\partial^2 C}{\partial K^2} = -e^{-rT} \frac{d}{dK} \int_K^\infty q(S) dS = -e^{-rT} \cdot (-q(K)) = e^{-rT} q(K)
-
 $$
 
 
@@ -144,9 +124,7 @@ Therefore:
 
 
 $$
-
 q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
-
 $$
 
 
@@ -180,9 +158,7 @@ If the underlying asset price has a continuous risk-neutral density $q(S)$, then
 
 
 $$
-
 C(K) = e^{-rT} \int_K^\infty (S - K) q(S) dS
-
 $$
 
 
@@ -197,9 +173,7 @@ In practice, two issues arise:
 1. **Atoms in the distribution:** If $\mathbb{P}^{\mathbb{Q}}(S_T = K_0) > 0$ for some $K_0$, then $q$ contains a Dirac delta:
 
    $$
-
    q(S) = q_c(S) + p_0 \delta(S - K_0)
-
    $$
 
 
@@ -217,9 +191,7 @@ An **Arrow-Debreu security** (digital option) pays \$1 if $S_T \in [K, K + dK]$ 
 
 
 $$
-
 \text{Digital}(K, dK) = e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T \in [K, K + dK]) = e^{-rT} q(K) dK
-
 $$
 
 
@@ -236,9 +208,7 @@ Cost of butterfly:
 
 
 $$
-
 B(K, \Delta K) = C(K - \Delta K) - 2C(K) + C(K + \Delta K)
-
 $$
 
 
@@ -247,9 +217,7 @@ As $\Delta K \to 0$:
 
 
 $$
-
 \lim_{\Delta K \to 0} \frac{B(K, \Delta K)}{(\Delta K)^2} = \frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
-
 $$
 
 
@@ -258,9 +226,7 @@ Therefore:
 
 
 $$
-
 \text{Digital}(K, dK) \approx B(K, \Delta K) \quad \text{for small } \Delta K
-
 $$
 
 
@@ -277,9 +243,7 @@ In practice, options trade at discrete strikes $K_1 < K_2 < \cdots < K_n$. The d
 
 
 $$
-
 q(K_i) \approx e^{rT} \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(\Delta K)^2}
-
 $$
 
 
@@ -293,9 +257,7 @@ For non-uniform grids, use:
 
 
 $$
-
 \frac{\partial^2 C}{\partial K^2}\bigg|_{K_i} \approx \frac{2}{K_{i+1} - K_{i-1}} \left( \frac{C(K_{i+1}) - C(K_i)}{K_{i+1} - K_i} - \frac{C(K_i) - C(K_{i-1})}{K_i - K_{i-1}} \right)
-
 $$
 
 
@@ -323,9 +285,7 @@ By put-call parity:
 
 
 $$
-
 P(K, T) = C(K, T) - S_0 e^{-qT} + K e^{-rT}
-
 $$
 
 
@@ -334,9 +294,7 @@ Differentiating twice:
 
 
 $$
-
 \frac{\partial^2 P}{\partial K^2} = \frac{\partial^2 C}{\partial K^2}
-
 $$
 
 
@@ -345,9 +303,7 @@ Therefore, the Breeden-Litzenberger formula applies equally to puts:
 
 
 $$
-
 q(K) = e^{rT} \frac{\partial^2 P}{\partial K^2}
-
 $$
 
 
@@ -367,9 +323,7 @@ Since $q(K) \geq 0$ is a probability density, we require:
 
 
 $$
-
 \frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K
-
 $$
 
 
@@ -386,9 +340,7 @@ The density must integrate to unity:
 
 
 $$
-
 \int_0^\infty q(S) dS = 1
-
 $$
 
 
@@ -397,9 +349,7 @@ Equivalently:
 
 
 $$
-
 e^{rT} \int_0^\infty \frac{\partial^2 C}{\partial K^2} dK = 1
-
 $$
 
 
@@ -408,9 +358,7 @@ Integrating by parts:
 
 
 $$
-
 e^{rT} \left[ \frac{\partial C}{\partial K}\bigg|_0^\infty - \int_0^\infty \delta(K - K') \frac{\partial C}{\partial K} dK' \right]
-
 $$
 
 
@@ -423,9 +371,7 @@ This recovers:
 
 
 $$
-
 e^{rT}(0 - (-e^{-rT})) = 1 \quad \checkmark
-
 $$
 
 
@@ -442,9 +388,7 @@ Once the density is known, compute moments:
 
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[S_T] = \int_0^\infty S \cdot q(S) dS = S_0 e^{(r - q)T}
-
 $$
 
 
@@ -455,9 +399,7 @@ $$
 
 
 $$
-
 \text{Var}^{\mathbb{Q}}(S_T) = \int_0^\infty S^2 q(S) dS - (\mathbb{E}^{\mathbb{Q}}[S_T])^2
-
 $$
 
 
@@ -471,9 +413,7 @@ The Breeden-Litzenberger density can be used to define a **model-free implied va
 
 
 $$
-
 \sigma_{\text{MF}}^2 = \frac{2e^{rT}}{T} \int_0^\infty \frac{C(K) - \max(S_0 e^{-qT} - K e^{-rT}, 0)}{K^2} dK
-
 $$
 
 
@@ -500,9 +440,7 @@ The risk-neutral density can also be expressed via the characteristic function:
 
 
 $$
-
 q(K) = \frac{1}{2\pi} \int_{-\infty}^\infty e^{-i\omega \ln K} \phi(\omega) d\omega
-
 $$
 
 
@@ -516,9 +454,7 @@ Carr and Madan (1999) show that call prices can be recovered from the characteri
 
 
 $$
-
 C(K) = \frac{e^{-rT}}{\pi} \int_0^\infty \text{Re}\left[ \frac{e^{-i\omega \ln K} \phi(\omega - i)}{(\omega^2 + 1)} \right] d\omega
-
 $$
 
 
@@ -535,9 +471,7 @@ For $S_T \sim \text{Lognormal}(\mu, \sigma^2 T)$ with $\mu = (r - q - \sigma^2/2
 
 
 $$
-
 q_{\text{BS}}(K) = \frac{1}{K \sigma \sqrt{2\pi T}} \exp\left( -\frac{(\ln K - \ln S_0 - \mu)^2}{2\sigma^2 T} \right)
-
 $$
 
 
@@ -546,9 +480,7 @@ Compute $C(K)$ via Black-Scholes formula, then verify:
 
 
 $$
-
 e^{rT} \frac{\partial^2 C_{\text{BS}}}{\partial K^2} = q_{\text{BS}}(K)
-
 $$
 
 
@@ -557,18 +489,14 @@ $$
 
 
 $$
-
 \frac{\partial C_{\text{BS}}}{\partial K} = -e^{-rT} \Phi(d_2)
-
 $$
 
 
 
 
 $$
-
 \frac{\partial^2 C_{\text{BS}}}{\partial K^2} = -e^{-rT} \phi(d_2) \frac{\partial d_2}{\partial K} = e^{-rT} \frac{\phi(d_2)}{K \sigma \sqrt{T}}
-
 $$
 
 
@@ -577,9 +505,7 @@ Since $\phi(d_2) = \frac{1}{\sqrt{2\pi}} e^{-d_2^2/2}$ and $d_2 = \frac{\ln(S_0/
 
 
 $$
-
 e^{rT} \frac{\partial^2 C_{\text{BS}}}{\partial K^2} = \frac{1}{K \sigma \sqrt{2\pi T}} e^{-d_2^2/2} = q_{\text{BS}}(K) \quad \checkmark
-
 $$
 
 
@@ -604,9 +530,7 @@ For stochastic interest rates, the discount factor $e^{-rT}$ is replaced by the 
 
 
 $$
-
 q(K) = B(0, T)^{-1} \frac{\partial^2 C}{\partial K^2}
-
 $$
 
 
@@ -623,9 +547,7 @@ For basket options, the joint risk-neutral density can be extracted using higher
 
 
 $$
-
 q(K_1, K_2) = e^{rT} \frac{\partial^2 C}{\partial K_1 \partial K_2}
-
 $$
 
 
@@ -672,9 +594,7 @@ The Breeden-Litzenberger formula:
 
 
 $$
-
 q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
-
 $$
 
 

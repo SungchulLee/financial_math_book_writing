@@ -9,11 +9,9 @@ The reliability of a finite difference scheme depends on three fundamental prope
 For linear, well-posed problems:
 
 $$
-
 \boxed{
 \text{Consistency} + \text{Stability} \Longrightarrow \text{Convergence}
 }
-
 $$
 
 This is the **Lax Equivalence Theorem**: a consistent scheme converges if and only if it is stable.
@@ -29,9 +27,7 @@ A scheme is **consistent** if the local truncation error vanishes as the mesh is
 For a PDE $\mathcal{L}u = 0$ and discrete approximation $\mathcal{L}_{\Delta}u_{\Delta} = 0$:
 
 $$
-
 \text{Local truncation error} = \mathcal{L}_{\Delta}u - \mathcal{L}u
-
 $$
 
 where $u$ is the exact solution.
@@ -49,9 +45,7 @@ If LTE $= O((\Delta\tau)^p + (\Delta S)^q)$, the scheme is:
 For smooth solutions:
 
 $$
-
 \text{LTE} = O((\Delta\tau)^2 + (\Delta S)^2)
-
 $$
 
 Crank-Nicolson is **second-order consistent** in both time and space.
@@ -67,11 +61,9 @@ A scheme is **stable** if errors remain bounded as the computation proceeds.
 For a linear scheme $\mathbf{u}^{n+1} = B\mathbf{u}^n$, stability requires:
 
 $$
-
 \boxed{
 \|B^n\| \leq C \quad \text{for all } n\Delta\tau \leq T
 }
-
 $$
 
 for some constant $C$ independent of the mesh.
@@ -87,11 +79,9 @@ The standard method for analyzing stability of constant-coefficient schemes.
 **Stability criterion**:
 
 $$
-
 \boxed{
 |G(k)| \leq 1 \quad \text{for all } k
 }
-
 $$
 
 ### Example: Explicit Scheme for Heat Equation
@@ -99,9 +89,7 @@ $$
 For $u_\tau = \frac{1}{2}u_{xx}$ with explicit discretization:
 
 $$
-
 G = 1 - 2\lambda(1 - \cos(k\Delta x))
-
 $$
 
 where $\lambda = \frac{\Delta\tau}{(\Delta x)^2}$.
@@ -109,19 +97,15 @@ where $\lambda = \frac{\Delta\tau}{(\Delta x)^2}$.
 **Stability requires**: $|G| \leq 1 \Rightarrow \lambda \leq \frac{1}{2}$
 
 $$
-
 \boxed{
 \Delta\tau \leq \frac{(\Delta x)^2}{2} \quad \text{(CFL condition)}
 }
-
 $$
 
 ### Example: Implicit Scheme
 
 $$
-
 G = \frac{1}{1 + 2\lambda(1 - \cos(k\Delta x))}
-
 $$
 
 Since the denominator $> 1$, we have $|G| < 1$ for all $\lambda > 0$.
@@ -131,9 +115,7 @@ Since the denominator $> 1$, we have $|G| < 1$ for all $\lambda > 0$.
 ### Example: Crank-Nicolson
 
 $$
-
 G = \frac{1 - \lambda(1 - \cos(k\Delta x))}{1 + \lambda(1 - \cos(k\Delta x))}
-
 $$
 
 **Unconditionally stable**: $|G| \leq 1$ for all $\lambda$.
@@ -147,9 +129,7 @@ $$
 A scheme **converges** if the numerical solution approaches the exact solution as the mesh is refined:
 
 $$
-
 \lim_{\Delta\tau, \Delta S \to 0} \max_{n,j} |u_j^n - u(\tau_n, S_j)| = 0
-
 $$
 
 ### Convergence Rate
@@ -157,9 +137,7 @@ $$
 If the error satisfies:
 
 $$
-
 \|u_{\Delta} - u\| = O((\Delta\tau)^p + (\Delta S)^q)
-
 $$
 
 the scheme has convergence rate $(p, q)$.
@@ -184,9 +162,7 @@ the scheme has convergence rate $(p, q)$.
 For $\mathbf{u}^{n+1} = B\mathbf{u}^n$, stability requires:
 
 $$
-
 \rho(B) \leq 1 + O(\Delta\tau)
-
 $$
 
 where $\rho(B)$ is the spectral radius (largest eigenvalue magnitude).
@@ -196,9 +172,7 @@ where $\rho(B)$ is the spectral radius (largest eigenvalue magnitude).
 For some problems, multiply by $u$ and sum to get energy estimates:
 
 $$
-
 \|u^{n+1}\|^2 \leq \|u^n\|^2
-
 $$
 
 This directly proves stability.
@@ -208,9 +182,7 @@ This directly proves stability.
 **Monotone schemes** preserve the discrete maximum principle:
 
 $$
-
 \min_j u_j^n \leq u_j^{n+1} \leq \max_j u_j^n
-
 $$
 
 This implies $L^\infty$ stability.
@@ -250,11 +222,9 @@ The **Courant-Friedrichs-Lewy (CFL) condition** is a necessary condition for sta
 ### For Advection Equation u_t + cu_x = 0
 
 $$
-
 \boxed{
 |c|\frac{\Delta t}{\Delta x} \leq 1
 }
-
 $$
 
 **Interpretation**: The numerical domain of dependence must contain the physical domain of dependence.
@@ -262,11 +232,9 @@ $$
 ### For Diffusion Equation u_t = Du_xx
 
 $$
-
 \boxed{
 D\frac{\Delta t}{(\Delta x)^2} \leq \frac{1}{2}
 }
-
 $$
 
 ### For Black-Scholes (Variable Coefficients)
@@ -274,9 +242,7 @@ $$
 The CFL condition involves the local diffusion coefficient $\frac{1}{2}\sigma^2 S^2$:
 
 $$
-
 \frac{\sigma^2 S_{\max}^2 \Delta\tau}{2(\Delta S)^2} \leq \frac{1}{2}
-
 $$
 
 ---
@@ -305,11 +271,9 @@ Ratio $\approx 4$ confirms second-order convergence (error $\sim M^{-2}$).
 ## Summary
 
 $$
-
 \boxed{
 \text{Consistency} + \text{Stability} \Longleftrightarrow \text{Convergence}
 }
-
 $$
 
 | Concept | Definition | Verification |

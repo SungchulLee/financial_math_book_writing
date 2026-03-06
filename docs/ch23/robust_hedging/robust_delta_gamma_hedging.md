@@ -23,9 +23,7 @@ The mathematical framework draws from stochastic optimal control, robust optimiz
 
 
 $$
-
 \Delta = \frac{\partial V}{\partial S}
-
 $$
 
 
@@ -34,9 +32,7 @@ $$
 
 
 $$
-
 \Gamma = \frac{\partial^2 V}{\partial S^2}
-
 $$
 
 
@@ -45,9 +41,7 @@ $$
 
 
 $$
-
 \mathcal{V} = \frac{\partial V}{\partial \sigma}
-
 $$
 
 
@@ -56,9 +50,7 @@ $$
 
 
 $$
-
 \mathcal{V} = S^2 \Gamma \sqrt{T - t}
-
 $$
 
 
@@ -74,9 +66,7 @@ connecting gamma and vega.
 
 
 $$
-
 V_t = V(S_t, t) + \theta_t S_t + \phi_t O(S_t, t)
-
 $$
 
 
@@ -87,18 +77,14 @@ where $O(S_t, t)$ is the option value.
 
 
 $$
-
 \frac{\partial V}{\partial S} + \theta_t + \phi_t \frac{\partial O}{\partial S} = 0 \quad \text{(delta neutral)}
-
 $$
 
 
 
 
 $$
-
 \frac{\partial^2 V}{\partial S^2} + \phi_t \frac{\partial^2 O}{\partial S^2} = 0 \quad \text{(gamma neutral)}
-
 $$
 
 
@@ -107,9 +93,7 @@ $$
 
 
 $$
-
 \phi_t = -\frac{\Gamma_V}{\Gamma_O}, \quad \theta_t = -\Delta_V + \phi_t \Delta_O
-
 $$
 
 
@@ -126,9 +110,7 @@ where subscripts denote the derivative or hedging instrument.
 
 
 $$
-
 \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
-
 $$
 
 
@@ -137,9 +119,7 @@ $$
 
 
 $$
-
 dV - \Delta \, dS - \Theta \, dt = 0
-
 $$
 
 
@@ -157,9 +137,7 @@ where $\Theta = \frac{\partial V}{\partial t}$ is theta.
 
 
 $$
-
 dV_t = \theta_{t_i} \, dS_t + \phi_{t_i} \, dO_t
-
 $$
 
 
@@ -170,9 +148,7 @@ for $t \in [t_i, t_{i+1})$.
 
 
 $$
-
 \Delta V \approx \Delta \cdot \Delta S + \frac{1}{2} \Gamma \cdot (\Delta S)^2 + \Theta \cdot \Delta t + \frac{1}{2} \mathcal{V} \cdot (\Delta \sigma)^2 + \ldots
-
 $$
 
 
@@ -181,9 +157,7 @@ $$
 
 
 $$
-
 \text{Error} \approx \frac{1}{6} \frac{\partial^3 V}{\partial S^3} (\Delta S)^3 + \frac{1}{2} \frac{\partial^2 V}{\partial S \partial t} \Delta S \, \Delta t + \ldots
-
 $$
 
 
@@ -200,9 +174,7 @@ Third and higher-order terms, which vanish as $\Delta t \to 0$.
 
 
 $$
-
 \underline{\sigma} \leq \sigma_t \leq \overline{\sigma}
-
 $$
 
 
@@ -211,9 +183,7 @@ $$
 
 
 $$
-
 dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
-
 $$
 
 
@@ -229,9 +199,7 @@ where $\sigma_t \in [\underline{\sigma}, \overline{\sigma}]$ is adversarially ch
 
 
 $$
-
 \frac{\partial V}{\partial t} + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right\} + rS \frac{\partial V}{\partial S} - rV = 0
-
 $$
 
 
@@ -242,9 +210,7 @@ $$
 
 
 $$
-
 \frac{\partial V}{\partial t} + \frac{1}{2} \bar{\sigma}^2(S, t) S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0
-
 $$
 
 
@@ -253,12 +219,10 @@ where:
 
 
 $$
-
 \bar{\sigma}^2(S, t) = \begin{cases}
 \overline{\sigma}^2 & \text{if } \frac{\partial^2 V}{\partial S^2} > 0 \\
 \underline{\sigma}^2 & \text{if } \frac{\partial^2 V}{\partial S^2} < 0
 \end{cases}
-
 $$
 
 
@@ -274,9 +238,7 @@ $$
 
 
 $$
-
 \theta_t = -\frac{\partial V}{\partial S}(S_t, t)
-
 $$
 
 
@@ -285,12 +247,10 @@ $$
 
 
 $$
-
 \Gamma_{\text{target}}(S, t) = \begin{cases}
 0 & \text{if gamma is costly to hedge} \\
 -\Gamma_V(S, t) & \text{if neutralizing gamma is beneficial}
 \end{cases}
-
 $$
 
 
@@ -307,18 +267,14 @@ $$
 
 
 $$
-
 dS_t = \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S
-
 $$
 
 
 
 
 $$
-
 dV_t = \kappa(\theta - V_t) \, dt + \xi \sqrt{V_t} \, dW_t^V
-
 $$
 
 
@@ -340,9 +296,7 @@ with correlation $\rho = \mathbb{E}[dW_t^S dW_t^V]$.
 
 
 $$
-
 \Pi_t = V_t + \theta_t^S S_t + \theta_t^{O_1} O_1(S_t, v_t; K_1) + \theta_t^{O_2} O_2(S_t, v_t; K_2)
-
 $$
 
 
@@ -351,9 +305,7 @@ $$
 
 
 $$
-
 \frac{\partial \Pi}{\partial S} = 0, \quad \frac{\partial^2 \Pi}{\partial S^2} = 0, \quad \frac{\partial \Pi}{\partial v} = 0
-
 $$
 
 
@@ -367,9 +319,7 @@ This is a **system of 3 equations** in 3 unknowns: $(\theta^S, \theta^{O_1}, \th
 
 
 $$
-
 \Gamma_{Sv} = \frac{\partial^2 V}{\partial S \partial v}
-
 $$
 
 
@@ -392,9 +342,7 @@ measures interaction between price and volatility changes.
 
 
 $$
-
 \min_{\theta, \phi} \max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \mathbb{E}_{\sigma}\left[(V_T - \Pi_T)^2\right]
-
 $$
 
 
@@ -413,9 +361,7 @@ where $\Pi_T$ is the hedged portfolio value.
 
 
 $$
-
 \frac{\partial V}{\partial t} + \sup_{(\mu, \sigma) \in \mathcal{U}} \left\{ \mu S \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right\} = 0
-
 $$
 
 
@@ -436,9 +382,7 @@ where $\mathcal{U}$ is the uncertainty set.
 
 
 $$
-
 \frac{\partial V}{\partial t} + \frac{1}{2} \sigma_0^2 S^2 \frac{\partial^2 V}{\partial S^2} + \sup_{\sigma} \left\{ \frac{1}{2}(\sigma^2 - \sigma_0^2) S^2 \frac{\partial^2 V}{\partial S^2} - \theta \cdot \frac{(\sigma - \sigma_0)^2}{2} \right\} = 0
-
 $$
 
 
@@ -447,9 +391,7 @@ $$
 
 
 $$
-
 \sigma^* = \sigma_0 + \frac{1}{\theta} S^2 \frac{\partial^2 V}{\partial S^2}
-
 $$
 
 
@@ -468,9 +410,7 @@ clamped to $[\underline{\sigma}, \overline{\sigma}]$.
 
 
 $$
-
 \text{Cost} = \lambda |\Delta \theta| S + \lambda |\Delta \phi| O
-
 $$
 
 
@@ -479,9 +419,7 @@ $$
 
 
 $$
-
 \min_{\{\Delta \theta_i, \Delta \phi_i\}} \mathbb{E}\left[(V_T - \Pi_T)^2 + \sum_{i=1}^N \lambda_i (|\Delta \theta_i| S_i + |\Delta \phi_i| O_i)\right]
-
 $$
 
 
@@ -490,9 +428,7 @@ $$
 
 
 $$
-
 |\Delta(S_t) - \Delta_{\text{portfolio}}| > \epsilon_{\Delta}, \quad |\Gamma(S_t) - \Gamma_{\text{portfolio}}| > \epsilon_{\Gamma}
-
 $$
 
 
@@ -506,9 +442,7 @@ where $\epsilon_{\Delta}, \epsilon_{\Gamma}$ depend on $\lambda$ and $\sigma$.
 
 
 $$
-
 \epsilon_{\Delta} \sim \lambda^{1/3}, \quad \epsilon_{\Gamma} \sim \lambda^{1/3}
-
 $$
 
 
@@ -517,9 +451,7 @@ $$
 
 
 $$
-
 \mathbb{E}[(V_T - \Pi_T)^2] \sim \lambda^{2/3}
-
 $$
 
 
@@ -533,9 +465,7 @@ $$
 
 
 $$
-
 \tilde{\sigma}^2 = \sigma^2 + \sqrt{\frac{2}{\pi}} \lambda \frac{\sigma}{\sqrt{\Delta t}}
-
 $$
 
 
@@ -556,14 +486,12 @@ $$
 
 
 $$
-
 \boldsymbol{\Gamma} = \begin{pmatrix}
 \Gamma_{11} & \Gamma_{12} & \cdots & \Gamma_{1n} \\
 \Gamma_{21} & \Gamma_{22} & \cdots & \Gamma_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
 \Gamma_{n1} & \Gamma_{n2} & \cdots & \Gamma_{nn}
 \end{pmatrix}
-
 $$
 
 
@@ -578,9 +506,7 @@ where $\Gamma_{ij} = \frac{\partial^2 V}{\partial S_i \partial S_j}$.
 
 
 $$
-
 \max_{\rho \in \mathcal{R}} \sum_{i,j} \Gamma_{ij} \rho_{ij}
-
 $$
 
 
@@ -594,9 +520,7 @@ where $\mathcal{R}$ is the set of valid correlation matrices in the uncertainty 
 
 
 $$
-
 \Phi = \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
-
 $$
 
 
@@ -612,9 +536,7 @@ $$
 
 
 $$
-
 \rho^* = \arg\max_{\rho \in \mathcal{R}} \text{Hedging Error}(\rho)
-
 $$
 
 
@@ -635,18 +557,14 @@ and hedge for this scenario.
 
 
 $$
-
 \frac{\partial V}{\partial t} \approx \frac{V_i^{n+1} - V_i^n}{\Delta t}
-
 $$
 
 
 
 
 $$
-
 \frac{\partial^2 V}{\partial S^2} \approx \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2}
-
 $$
 
 
@@ -655,9 +573,7 @@ $$
 
 
 $$
-
 \frac{V_i^{n+1} - V_i^n}{\Delta t} + \max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S_i^2 \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2} \right\} + \ldots = 0
-
 $$
 
 
@@ -677,9 +593,7 @@ $$
 
 
 $$
-
 \mathbb{E}[V_{t_{i+1}} | S_{t_i}] \approx \sum_j \beta_j \phi_j(S_{t_i})
-
 $$
 
 
@@ -690,9 +604,7 @@ using basis functions $\{\phi_j\}$ (polynomials, radial basis functions, etc.).
 
 
 $$
-
 \text{Var}(V_{t_{i+1}} - \theta_{t_i} S_{t_{i+1}} - \phi_{t_i} O_{t_{i+1}} | S_{t_i})
-
 $$
 
 
@@ -708,9 +620,7 @@ $$
 
 
 $$
-
 \sigma^{(k+1)}(S, t) = \arg\max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V^{(k)}}{\partial S^2} \right\}
-
 $$
 
 
@@ -719,9 +629,7 @@ $$
 
 
 $$
-
 \frac{\partial V^{(k+1)}}{\partial t} + \frac{1}{2} (\sigma^{(k+1)})^2 S^2 \frac{\partial^2 V^{(k+1)}}{\partial S^2} + \ldots = 0
-
 $$
 
 
@@ -755,18 +663,14 @@ $$
 
 
 $$
-
 \Delta \phi = -\frac{\Gamma_{\text{portfolio}} - \Gamma_{\text{target}}}{\Gamma_O}
-
 $$
 
 
 
 
 $$
-
 \Delta \theta = -(\Delta_{\text{portfolio}} - \Delta_{\text{target}}) + \Delta \phi \cdot \Delta_O
-
 $$
 
 
@@ -775,9 +679,7 @@ $$
 
 
 $$
-
 \text{Cost} = \lambda (|\Delta \theta| S_t + |\Delta \phi| O_t)
-
 $$
 
 
@@ -899,9 +801,7 @@ $$
 
 
 $$
-
 \sigma_t = f\left(\int_0^t (t-s)^{H-1/2} dW_s\right)
-
 $$
 
 
@@ -912,9 +812,7 @@ $$
 
 
 $$
-
 \text{Gamma Cost} = \int_0^T \Gamma_t \, d[S]_t
-
 $$
 
 
@@ -930,9 +828,7 @@ where $[S]_t$ is understood in rough path sense.
 
 
 $$
-
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_{t-} dJ_t
-
 $$
 
 
@@ -983,9 +879,7 @@ where $J_t$ is a jump process.
 
 
 $$
-
 \text{Error} = V_T - \Pi_T
-
 $$
 
 
@@ -996,9 +890,7 @@ where $\Pi_T$ is hedged portfolio value.
 
 
 $$
-
 \text{MSE} = \mathbb{E}[(\text{Error})^2]
-
 $$
 
 
@@ -1007,9 +899,7 @@ $$
 
 
 $$
-
 \text{RMSE} = \sqrt{\text{MSE}}
-
 $$
 
 
@@ -1021,9 +911,7 @@ $$
 
 
 $$
-
 R = \frac{\Pi_T - \Pi_0}{\Pi_0}
-
 $$
 
 
@@ -1032,9 +920,7 @@ $$
 
 
 $$
-
 \text{SR} = \frac{\mathbb{E}[R] - r_f}{\text{Std}(R)}
-
 $$
 
 
@@ -1050,9 +936,7 @@ where $r_f$ is the risk-free rate.
 
 
 $$
-
 \text{DD}_t = \max_{0 \leq s \leq t} \Pi_s - \Pi_t
-
 $$
 
 
@@ -1061,9 +945,7 @@ $$
 
 
 $$
-
 \text{MDD} = \max_{0 \leq t \leq T} \text{DD}_t
-
 $$
 
 
@@ -1077,9 +959,7 @@ $$
 
 
 $$
-
 \text{Total Cost} = \sum_{i=1}^N \lambda |\Delta \theta_i| S_i + \sum_{j=1}^M \text{Premium}_j
-
 $$
 
 
@@ -1088,9 +968,7 @@ $$
 
 
 $$
-
 \text{Benefit} = \text{Var}(\text{Error}_{\text{unhedged}}) - \text{Var}(\text{Error}_{\text{hedged}})
-
 $$
 
 
@@ -1099,9 +977,7 @@ $$
 
 
 $$
-
 \text{Cost-Benefit Ratio} = \frac{\text{Total Cost}}{\text{Benefit}}
-
 $$
 
 

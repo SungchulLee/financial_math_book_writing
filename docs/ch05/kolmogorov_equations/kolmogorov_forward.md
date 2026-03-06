@@ -15,17 +15,13 @@ The **Kolmogorov forward equation**, also known as the **Fokker–Planck equatio
 Consider the Itô diffusion:
 
 $$
-
 dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
-
 $$
 
 Let $p(x, t \mid x_0, t_0)$ denote the **transition density**:
 
 $$
-
 \mathbb{P}(X_t \in dx \mid X_{t_0} = x_0) = p(x, t \mid x_0, t_0)\,dx
-
 $$
 
 **Convention:**
@@ -50,21 +46,17 @@ $$
     The transition density satisfies:
 
     $$
-
     \boxed{
     \frac{\partial p}{\partial t}(x, t \mid x_0, t_0) = \mathcal{L}_x^* p(x, t \mid x_0, t_0)
     }
-
     $$
 
     where $\mathcal{L}^*$ is the **adjoint** of the infinitesimal generator:
 
     $$
-
     \boxed{
     \mathcal{L}^* p = -\frac{\partial}{\partial x}[\mu(x,t) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t) p]
     }
-
     $$
 
     **Initial condition**: $p(x, t_0 \mid x_0, t_0) = \delta(x - x_0)$
@@ -84,9 +76,7 @@ $$
 The PDE for the transition density:
 
 $$
-
 \frac{\partial p}{\partial t} = \mathcal{L}^* p = -\frac{\partial}{\partial x}[\mu \cdot p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2 \cdot p]
-
 $$
 
 ### Expectation Form (Weak)
@@ -94,25 +84,19 @@ $$
 For any smooth test function $f$ with suitable decay:
 
 $$
-
 \frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]
-
 $$
 
 where the infinitesimal generator is:
 
 $$
-
 \mathcal{L}f(x, t) = \mu(x, t)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2 f}{\partial x^2}
-
 $$
 
 Equivalently:
 
 $$
-
 \frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x, t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x, t \mid x_0, t_0)\,dx
-
 $$
 
 This formulation is **dual** to the density PDE: the generator $\mathcal{L}$ acts on test functions, while its adjoint $\mathcal{L}^*$ acts on densities.
@@ -126,49 +110,37 @@ This formulation is **dual** to the density PDE: the generator $\mathcal{L}$ act
     **Step 1**: Start with the expectation form. For any smooth test function $f$ with compact support:
 
     $$
-
     \frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]
-
     $$
 
     **Step 2**: Write expectations as integrals against the density:
 
     $$
-
     \frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x,t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x,t \mid x_0, t_0)\,dx
-
     $$
 
     **Step 3**: The left side equals:
 
     $$
-
     \int_{-\infty}^{\infty} f(x) \frac{\partial p}{\partial t}(x,t \mid x_0, t_0)\,dx
-
     $$
 
     **Step 4**: Integrate by parts on the right side. For the drift term:
 
     $$
-
     \int \mu(x) f'(x) p\,dx = -\int f(x) \frac{\partial}{\partial x}[\mu(x) p]\,dx
-
     $$
 
     For the diffusion term:
 
     $$
-
     \int \frac{\sigma^2(x)}{2} f''(x) p\,dx = \int f(x) \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]\,dx
-
     $$
 
     **Step 5**: Since this holds for all test functions $f$:
 
     $$
-
     \frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]
-
     $$
 
 ---
@@ -180,9 +152,7 @@ This formulation is **dual** to the density PDE: the generator $\mathcal{L}$ act
 For **constant coefficients** ($\mu, \sigma = \text{const}$), the Fokker–Planck equation simplifies to:
 
 $$
-
 \frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
-
 $$
 
 This is the **advection–diffusion equation**: probability advects with velocity $\mu$ and diffuses with coefficient $\sigma^2/2$.
@@ -196,33 +166,25 @@ This is the **advection–diffusion equation**: probability advects with velocit
     **Drift term:**
 
     $$
-
     -\frac{\partial}{\partial x}[\mu(x) p] = -\mu(x)\frac{\partial p}{\partial x} - \mu'(x)p
-
     $$
 
     **Diffusion term:** Let $D(x) = \sigma^2(x)$. Then:
 
     $$
-
     \frac{1}{2}\frac{\partial^2}{\partial x^2}[D(x) p] = \frac{1}{2}D(x)\frac{\partial^2 p}{\partial x^2} + D'(x)\frac{\partial p}{\partial x} + \frac{1}{2}D''(x)p
-
     $$
 
     Since $D' = 2\sigma\sigma'$ and $D'' = 2(\sigma')^2 + 2\sigma\sigma''$:
 
     $$
-
     \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p] = \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \sigma(x)\sigma'(x)\frac{\partial p}{\partial x} + \left[(\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
-
     $$
 
     **Combined:**
 
     $$
-
     \frac{\partial p}{\partial t} = \left[-\mu(x) + \sigma(x)\sigma'(x)\right]\frac{\partial p}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \left[-\mu'(x) + (\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
-
     $$
 
 ---
@@ -232,17 +194,13 @@ This is the **advection–diffusion equation**: probability advects with velocit
 The Fokker–Planck equation can be written as a **continuity equation**:
 
 $$
-
 \frac{\partial p}{\partial t} + \frac{\partial J}{\partial x} = 0
-
 $$
 
 where the **probability current** is:
 
 $$
-
 J(x, t) = \mu(x)p - \frac{1}{2}\frac{\partial}{\partial x}[\sigma^2(x)p]
-
 $$
 
 !!! info "Physical Interpretation"
@@ -269,9 +227,7 @@ $$
 For $dX_t = dW_t$ (i.e., $\mu = 0$, $\sigma = 1$):
 
 $$
-
 \frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}
-
 $$
 
 This is the **heat equation**. 
@@ -279,9 +235,7 @@ This is the **heat equation**.
 **Solution** (heat kernel):
 
 $$
-
 p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi (t - t_0)}}\exp\left(-\frac{(x - x_0)^2}{2(t - t_0)}\right)
-
 $$
 
 ### Example 2: Brownian Motion with Drift
@@ -289,17 +243,13 @@ $$
 For $dX_t = \mu\,dt + \sigma\,dW_t$:
 
 $$
-
 \frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
-
 $$
 
 **Solution**:
 
 $$
-
 p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(x - x_0 - \mu(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)
-
 $$
 
 ### Example 3: Ornstein–Uhlenbeck Process
@@ -307,17 +257,13 @@ $$
 For $dX_t = -\kappa X_t\,dt + \sigma\,dW_t$ (mean-reverting to zero):
 
 $$
-
 \frac{\partial p}{\partial t} = \kappa\frac{\partial}{\partial x}(x \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
-
 $$
 
 **Transient solution** (starting from $X_{t_0} = x_0$):
 
 $$
-
 p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi v(\tau)}}\exp\left(-\frac{(x - m(\tau))^2}{2v(\tau)}\right)
-
 $$
 
 where $\tau = t - t_0$ and:
@@ -328,9 +274,7 @@ where $\tau = t - t_0$ and:
 **Stationary solution** (as $\tau \to \infty$):
 
 $$
-
 p_\infty(x) = \sqrt{\frac{\kappa}{\pi\sigma^2}}\exp\left(-\frac{\kappa x^2}{\sigma^2}\right)
-
 $$
 
 ### Example 4: Geometric Brownian Motion
@@ -338,17 +282,13 @@ $$
 For $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ on $S > 0$:
 
 $$
-
 \frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}(\mu S \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2 \cdot p)
-
 $$
 
 **Solution** (log-normal density):
 
 $$
-
 p(S, t \mid S_0, t_0) = \frac{1}{S\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(\log S - \log S_0 - (\mu - \sigma^2/2)(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)
-
 $$
 
 ### Summary Table
@@ -367,9 +307,7 @@ $$
 A density $p_\infty(x)$ is **stationary** if $\mathcal{L}^* p_\infty = 0$:
 
 $$
-
 -\frac{d}{dx}[\mu(x)p_\infty] + \frac{1}{2}\frac{d^2}{dx^2}[\sigma^2(x)p_\infty] = 0
-
 $$
 
 ### Zero-Current Condition
@@ -377,17 +315,13 @@ $$
 At stationarity with zero probability current ($J = 0$):
 
 $$
-
 \mu(x)p_\infty = \frac{1}{2}\frac{d}{dx}[\sigma^2(x)p_\infty]
-
 $$
 
 ### General Solution (One Dimension)
 
 $$
-
 p_\infty(x) \propto \frac{1}{\sigma^2(x)}\exp\left(\int^x \frac{2\mu(z)}{\sigma^2(z)}\,dz\right)
-
 $$
 
 !!! warning "Existence Conditions"
@@ -405,9 +339,7 @@ $$
 At equilibrium, the drift and diffusive currents balance:
 
 $$
-
 \underbrace{\mu(x) p_\infty}_{\text{drift current}} = \underbrace{\frac{1}{2}\frac{d}{dx}[\sigma^2(x)p_\infty]}_{\text{diffusive current}}
-
 $$
 
 This is analogous to detailed balance in statistical mechanics.
@@ -421,25 +353,19 @@ This is analogous to detailed balance in statistical mechanics.
 For constant coefficients on $\mathbb{R}$, apply the Fourier transform in $x$:
 
 $$
-
 \hat{p}(k, t) = \int_{-\infty}^{\infty} p(x, t) e^{-ikx}\,dx
-
 $$
 
 The PDE becomes an ODE in $t$:
 
 $$
-
 \frac{\partial \hat{p}}{\partial t} = \left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)\hat{p}
-
 $$
 
 **Solution**: 
 
 $$
-
 \hat{p}(k, t) = \hat{p}(k, t_0) \exp\left[\left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)(t - t_0)\right]
-
 $$
 
 For delta initial condition $p(x, t_0) = \delta(x - x_0)$, we have $\hat{p}(k, t_0) = e^{-ikx_0}$, and the inverse transform yields the Gaussian solution.
@@ -449,17 +375,13 @@ For delta initial condition $p(x, t_0) = \delta(x - x_0)$, we have $\hat{p}(k, t
 For the heat equation, exploit scale invariance by seeking solutions of the form:
 
 $$
-
 p(x, t) = \frac{1}{\sqrt{t - t_0}} F\left(\frac{x - x_0}{\sqrt{t - t_0}}\right)
-
 $$
 
 Substituting into the PDE yields an ODE for $F(\eta)$:
 
 $$
-
 \frac{1}{2}F'' + \frac{1}{2}\eta F' + \frac{1}{2}F = 0
-
 $$
 
 whose normalized solution is $F(\eta) = \frac{1}{\sqrt{2\pi}}e^{-\eta^2/2}$.
@@ -469,9 +391,7 @@ whose normalized solution is $F(\eta) = \frac{1}{\sqrt{2\pi}}e^{-\eta^2/2}$.
 On bounded domains $[a, b]$ with homogeneous boundary conditions, expand in eigenfunctions of $\mathcal{L}^*$:
 
 $$
-
 p(x, t) = \sum_n c_n \phi_n(x) e^{-\lambda_n (t - t_0)}
-
 $$
 
 where $\mathcal{L}^* \phi_n = -\lambda_n \phi_n$ with eigenvalues $0 = \lambda_0 < \lambda_1 < \lambda_2 < \cdots$.
@@ -560,9 +480,7 @@ plt.show()
 For $X_t \in \mathbb{R}^d$ with $dX_t^i = \mu^i(X_t, t)\,dt + \sigma^{i\alpha}(X_t, t)\,dW_t^\alpha$:
 
 $$
-
 \frac{\partial p}{\partial t} = -\sum_{i=1}^{d}\frac{\partial}{\partial x_i}(\mu^i p) + \frac{1}{2}\sum_{i,j=1}^{d}\frac{\partial^2}{\partial x_i \partial x_j}(a^{ij} p)
-
 $$
 
 where the **diffusion matrix** is $a^{ij} = \sum_{\alpha}\sigma^{i\alpha}\sigma^{j\alpha} = (\sigma\sigma^\top)^{ij}$.
@@ -570,9 +488,7 @@ where the **diffusion matrix** is $a^{ij} = \sum_{\alpha}\sigma^{i\alpha}\sigma^
 In vector notation:
 
 $$
-
 \frac{\partial p}{\partial t} = -\nabla \cdot (\mu p) + \frac{1}{2}\nabla \cdot (a \cdot \nabla p) + \frac{1}{2}p \, \nabla \cdot \nabla \cdot a
-
 $$
 
 !!! note "Ellipticity"
@@ -592,9 +508,7 @@ $$
 Given a **marginal density** $p(x, t)$, the **score function** is:
 
 $$
-
 s(x, t) = \nabla_x \log p(x, t)
-
 $$
 
 This gradient of the log-density is fundamental to:
@@ -608,9 +522,7 @@ This gradient of the log-density is fundamental to:
 In diffusion models, the forward SDE typically adds noise:
 
 $$
-
 dX_t = f(X_t, t)\,dt + g(t)\,dW_t
-
 $$
 
 The marginal density $p(x, t)$ (starting from data distribution $p_0$) satisfies the Fokker–Planck equation.
@@ -620,9 +532,7 @@ The marginal density $p(x, t)$ (starting from data distribution $p_0$) satisfies
 The remarkable result (Anderson, 1982) is that the **reverse-time SDE**:
 
 $$
-
 dX_t = \left[f(X_t, t) - g^2(t) \nabla_x \log p(X_t, t)\right] dt + g(t)\,d\bar{W}_t
-
 $$
 
 generates samples from $p(x, t)$ running backward in time, where $\bar{W}_t$ is a backward Brownian motion.
@@ -672,11 +582,9 @@ The equation is sometimes called the **Smoluchowski equation** in the physics li
 ## Summary
 
 $$
-
 \boxed{
 \frac{\partial p}{\partial t}(x, t \mid x_0, t_0) = -\frac{\partial}{\partial x}[\mu(x,t)p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t)p] = \mathcal{L}^* p
 }
-
 $$
 
 The Fokker–Planck equation describes how probability density evolves **forward** in time, dual to the backward equation which describes how expectations depend on initial conditions.

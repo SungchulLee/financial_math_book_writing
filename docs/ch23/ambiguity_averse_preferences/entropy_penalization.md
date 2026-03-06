@@ -23,9 +23,7 @@ The mathematical foundations connect information theory, optimal control, and st
 **Definition** (Kullback-Leibler Divergence): For probability measures $P$ and $Q$ with $P \ll Q$ (P absolutely continuous with respect to Q):
 
 $$
-
 D_{\text{KL}}(P \| Q) = \mathbb{E}_P\left[\log \frac{dP}{dQ}\right] = \int_{\Omega} \log\left(\frac{dP}{dQ}\right) dP
-
 $$
 
 If $P$ is not absolutely continuous with respect to $Q$, define $D_{\text{KL}}(P \| Q) = +\infty$.
@@ -41,17 +39,13 @@ If $P$ is not absolutely continuous with respect to $Q$, define $D_{\text{KL}}(P
 4. **Chain Rule**: For joint distributions:
    
 $$
-
 D_{\text{KL}}(P_{XY} \| Q_{XY}) = D_{\text{KL}}(P_X \| Q_X) + \mathbb{E}_{P_X}[D_{\text{KL}}(P_{Y|X} \| Q_{Y|X})]
-
 $$
 
 5. **Data Processing Inequality**: For any measurable function $f$:
 
 $$
-
 D_{\text{KL}}(P \circ f^{-1} \| Q \circ f^{-1}) \leq D_{\text{KL}}(P \| Q)
-
 $$
 
 ### 2. Information-Theoretic Interpretation
@@ -62,9 +56,7 @@ $$
 **Statistical Interpretation**: In hypothesis testing between $P$ and $Q$:
 
 $$
-
 D_{\text{KL}}(P \| Q) = \lim_{n \to \infty} \frac{1}{n} \log \frac{P^n(X_1, \ldots, X_n)}{Q^n(X_1, \ldots, X_n)}
-
 $$
 
 where the limit is the rate at which evidence accumulates against $Q$ when $P$ is true.
@@ -72,9 +64,7 @@ where the limit is the rate at which evidence accumulates against $Q$ when $P$ i
 **Detection Error Probability**: For testing $H_0: Q$ vs $H_1: P$ with sample size $n$:
 
 $$
-
 \text{Detection Error} \approx e^{-n \cdot D_{\text{KL}}(P \| Q)}
-
 $$
 
 This connects model distance to statistical distinguishability.
@@ -85,25 +75,19 @@ This connects model distance to statistical distinguishability.
 **Lemma** (Variational Formula): For any random variable $X$ and constant $\theta > 0$:
 
 $$
-
 \log \mathbb{E}_Q[e^{\theta X}] = \sup_{P \ll Q} \left\{ \theta \mathbb{E}_P[X] - D_{\text{KL}}(P \| Q) \right\}
-
 $$
 
 **Optimal Tilting**: The supremum is achieved by the exponentially tilted measure:
 
 $$
-
 \frac{dP^*}{dQ} = \frac{e^{\theta X}}{\mathbb{E}_Q[e^{\theta X}]}
-
 $$
 
 **Verification**:
 
 $$
-
 D_{\text{KL}}(P^* \| Q) = \theta \mathbb{E}_{P^*}[X] - \log \mathbb{E}_Q[e^{\theta X}]
-
 $$
 
 Rearranging yields the variational formula.
@@ -117,9 +101,7 @@ Rearranging yields the variational formula.
 **Multiplier Preferences** (Hansen-Sargent): Evaluate act $f$ by:
 
 $$
-
 V(f) = \min_{P \ll P_0} \left\{ \mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P_0) \right\}
-
 $$
 
 where:
@@ -135,17 +117,13 @@ where:
 **Theorem**: The minimizing measure $P^*$ in multiplier preferences satisfies:
 
 $$
-
 \frac{dP^*}{dP_0} = \frac{e^{-u(f)/\theta}}{\mathbb{E}_{P_0}[e^{-u(f)/\theta}]}
-
 $$
 
 **Proof**: Apply the variational formula with $X = -u(f)/\theta$:
 
 $$
-
 \min_P \left\{ \mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P_0) \right\} = -\theta \log \mathbb{E}_{P_0}[e^{-u(f)/\theta}]
-
 $$
 
 The minimum is achieved by the exponentially tilted measure.
@@ -156,17 +134,13 @@ The minimum is achieved by the exponentially tilted measure.
 **Robust Value**: The multiplier preference value is:
 
 $$
-
 V(f) = -\theta \log \mathbb{E}_{P_0}[e^{-u(f)/\theta}]
-
 $$
 
 **Connection to Certainty Equivalent**: With $u(x) = x$:
 
 $$
-
 V(f) = -\theta \log \mathbb{E}_{P_0}[e^{-f/\theta}]
-
 $$
 
 This is the certainty equivalent under **exponential utility** with risk aversion $1/\theta$.
@@ -177,9 +151,7 @@ This is the certainty equivalent under **exponential utility** with risk aversio
 **Small $\theta$ (High Robustness)**: As $\theta \to 0^+$:
 
 $$
-
 V(f) \to \inf_{\omega \in \text{supp}(P_0)} u(f(\omega))
-
 $$
 
 The decision-maker becomes infinitely robust, evaluating by the worst-case outcome.
@@ -187,9 +159,7 @@ The decision-maker becomes infinitely robust, evaluating by the worst-case outco
 **Large $\theta$ (Low Robustness)**: As $\theta \to \infty$:
 
 $$
-
 V(f) \to \mathbb{E}_{P_0}[u(f)]
-
 $$
 
 The decision-maker trusts the reference model completely.
@@ -203,17 +173,13 @@ The decision-maker trusts the reference model completely.
 **Dual Formulation**: The multiplier problem is dual to:
 
 $$
-
 \min_{P: D_{\text{KL}}(P \| P_0) \leq \eta} \mathbb{E}_P[u(f)]
-
 $$
 
 **Lagrangian**: The Lagrangian is:
 
 $$
-
 \mathcal{L}(P, \theta) = \mathbb{E}_P[u(f)] + \theta(D_{\text{KL}}(P \| P_0) - \eta)
-
 $$
 
 At the optimum, the constraint binds: $D_{\text{KL}}(P^* \| P_0) = \eta$.
@@ -224,9 +190,7 @@ At the optimum, the constraint binds: $D_{\text{KL}}(P^* \| P_0) = \eta$.
 **Theorem**: For the entropy-constrained problem, the constraint level $\eta$ and multiplier $\theta$ are related by:
 
 $$
-
 \eta = \frac{\text{Var}_{P^*}[u(f)]}{\theta^2} + O(\theta^{-3})
-
 $$
 
 for small entropy budgets.
@@ -234,9 +198,7 @@ for small entropy budgets.
 **Calibration**: Given a desired detection error probability $\alpha$:
 
 $$
-
 \eta \approx -\log(\alpha)
-
 $$
 
 connects the entropy constraint to statistical distinguishability.
@@ -250,9 +212,7 @@ connects the entropy constraint to statistical distinguishability.
 **Setup**: A controller chooses action $u_t$ affecting state $x_t$:
 
 $$
-
 x_{t+1} = A x_t + B u_t + C w_t
-
 $$
 
 where $w_t$ represents model disturbance.
@@ -260,9 +220,7 @@ where $w_t$ represents model disturbance.
 **Standard LQG**: Under known model, minimize:
 
 $$
-
 J = \mathbb{E}\left[\sum_{t=0}^{\infty} \beta^t (x_t^\top Q x_t + u_t^\top R u_t)\right]
-
 $$
 
 **Robustness Concern**: The true model may differ from the assumed one.
@@ -273,17 +231,13 @@ $$
 **Hansen-Sargent Problem**:
 
 $$
-
 \min_u \max_w \mathbb{E}\left[\sum_{t=0}^{\infty} \beta^t \left(x_t^\top Q x_t + u_t^\top R u_t - \theta \|w_t\|^2\right)\right]
-
 $$
 
 subject to:
 
 $$
-
 x_{t+1} = A x_t + B u_t + C w_t
-
 $$
 
 **Interpretation**: 
@@ -297,15 +251,11 @@ $$
 **Robust Riccati Equation**: The value function $V(x) = x^\top P x$ where $P$ satisfies:
 
 $$
-
 P = Q + \beta A^\top \left(P - P C (C^\top P C - \theta^{-1} I)^{-1} C^\top P\right) A
-
 $$
 
 $$
-
 - \beta A^\top P B (R + \beta B^\top P B)^{-1} B^\top P A
-
 $$
 
 **Existence Condition**: Requires $\theta^{-1} < \lambda_{\min}(C^\top P C)$ for well-posedness.
@@ -313,9 +263,7 @@ $$
 **Optimal Control**:
 
 $$
-
 u_t^* = -K x_t
-
 $$
 
 where $K = (R + \beta B^\top P B)^{-1} B^\top P A$.
@@ -323,9 +271,7 @@ where $K = (R + \beta B^\top P B)^{-1} B^\top P A$.
 **Worst-Case Disturbance**:
 
 $$
-
 w_t^* = (C^\top P C - \theta^{-1} I)^{-1} C^\top P (A - BK) x_t
-
 $$
 
 ### 4. Detection Error Probability
@@ -334,9 +280,7 @@ $$
 **Calibration**: Hansen and Sargent suggest calibrating $\theta$ using:
 
 $$
-
 \text{Detection Error Probability} = P(\text{Type I error}) = P(\text{Type II error})
-
 $$
 
 at a given sample size.
@@ -352,25 +296,19 @@ at a given sample size.
 **Definition**: The entropic risk measure with parameter $\beta > 0$ is:
 
 $$
-
 \rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}[e^{\beta X}]
-
 $$
 
 **Dual Representation**:
 
 $$
-
 \rho_{\beta}(X) = \sup_{P \ll P_0} \left\{ \mathbb{E}_P[X] - \frac{1}{\beta} D_{\text{KL}}(P \| P_0) \right\}
-
 $$
 
 **Comparison**: With multiplier preferences and $u(x) = -x$:
 
 $$
-
 V(f) = -\rho_{1/\theta}(-f)
-
 $$
 
 The entropic risk measure is the negative of multiplier preference value.
@@ -396,17 +334,13 @@ The entropic risk measure is the negative of multiplier preference value.
 **Comparison**: Expected Shortfall (CVaR) at level $\alpha$:
 
 $$
-
 \text{CVaR}_{\alpha}(X) = \frac{1}{\alpha} \int_0^{\alpha} \text{VaR}_u(X) du
-
 $$
 
 **Dual Representation**:
 
 $$
-
 \text{CVaR}_{\alpha}(X) = \sup_{P: P \ll P_0, \, dP/dP_0 \leq 1/\alpha} \mathbb{E}_P[X]
-
 $$
 
 **Difference**: 
@@ -423,25 +357,19 @@ $$
 **Representative Agent**: Consider a representative agent with:
 
 $$
-
 V(C) = \min_{P \ll P_0} \left\{ \mathbb{E}_P[u(C)] + \theta D_{\text{KL}}(P \| P_0) \right\}
-
 $$
 
 **Stochastic Discount Factor**: The SDF under robustness is:
 
 $$
-
 M_t = \beta^t \frac{u'(C_t)}{u'(C_0)} \cdot \frac{dP^*}{dP_0}\bigg|_{\mathcal{F}_t}
-
 $$
 
 **Worst-Case Measure**: The likelihood ratio evolves as:
 
 $$
-
 \frac{d P^*}{d P_0}\bigg|_{\mathcal{F}_t} = \frac{\exp(-u(C_t)/\theta)}{\mathbb{E}_{P_0}[\exp(-u(C_T)/\theta) | \mathcal{F}_t]}
-
 $$
 
 **Implication**: Assets correlated with bad states under the worst-case measure command higher risk premia.
@@ -454,25 +382,19 @@ $$
 **Standard Model**: With CRRA utility $u(c) = c^{1-\gamma}/(1-\gamma)$:
 
 $$
-
 \mathbb{E}[R_e] - R_f \approx \gamma \sigma^2
-
 $$
 
 **With Robustness**: The effective risk aversion increases:
 
 $$
-
 \mathbb{E}[R_e] - R_f \approx \left(\gamma + \frac{\sigma^2}{\theta}\right) \sigma^2
-
 $$
 
 **Calibration**: With $\gamma = 2$, $\sigma = 0.02$, and detection error $\approx 10\%$:
 
 $$
-
 \theta \approx 0.001 \implies \text{Additional premium} \approx 4\%
-
 $$
 
 explaining the equity premium puzzle.
@@ -483,17 +405,13 @@ explaining the equity premium puzzle.
 **Robust Portfolio Problem**:
 
 $$
-
 \max_w \min_{P: D_{\text{KL}}(P \| P_0) \leq \eta} \mathbb{E}_P[w^\top R - \frac{\lambda}{2} w^\top \Sigma w]
-
 $$
 
 **Solution with Gaussian Returns**: If $R \sim N(\mu, \Sigma)$ under $P_0$:
 
 $$
-
 w^* = \frac{1}{\lambda + \kappa(\eta)} \Sigma^{-1} \mu
-
 $$
 
 where $\kappa(\eta) > 0$ increases with entropy budget $\eta$.
@@ -506,17 +424,13 @@ where $\kappa(\eta) > 0$ increases with entropy budget $\eta$.
 **Robust Pricing Bound**:
 
 $$
-
 V_{\text{robust}} = \min_{\mathbb{Q}: D_{\text{KL}}(\mathbb{Q} \| \mathbb{Q}_0) \leq \eta} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \Phi(S_T)]
-
 $$
 
 **Worst-Case Measure**: Tilts probability toward states where payoff is low:
 
 $$
-
 \frac{d\mathbb{Q}^*}{d\mathbb{Q}_0} \propto e^{-\Phi(S_T)/\theta}
-
 $$
 
 **Effect**: Puts are priced higher (tilt toward low $S_T$), calls are priced higher for high strikes (tilt toward extreme $S_T$), contributing to volatility smile.
@@ -530,9 +444,7 @@ $$
 **Dynamics**: Asset price follows:
 
 $$
-
 dS_t = \mu S_t dt + \sigma S_t dW_t^{P_0}
-
 $$
 
 under reference measure $P_0$.
@@ -540,9 +452,7 @@ under reference measure $P_0$.
 **Alternative Measure**: Under $P$:
 
 $$
-
 dS_t = (\mu + \sigma h_t) S_t dt + \sigma S_t dW_t^P
-
 $$
 
 where $h_t$ is the market price of risk adjustment.
@@ -550,9 +460,7 @@ where $h_t$ is the market price of risk adjustment.
 **Entropy Rate**:
 
 $$
-
 \frac{d}{dt} D_{\text{KL}}(P_t \| P_{0,t}) = \frac{1}{2} \mathbb{E}_P[h_t^2]
-
 $$
 
 ### 2. Robust HJB Equation
@@ -561,9 +469,7 @@ $$
 **Value Function**: $V(t, x)$ satisfies:
 
 $$
-
 V_t + \sup_u \inf_h \left\{ \mathcal{L}^{u,h} V + \ell(x, u) + \frac{\theta}{2} h^2 \right\} = 0
-
 $$
 
 where $\mathcal{L}^{u,h}$ is the controlled generator under drift adjustment $h$.
@@ -571,9 +477,7 @@ where $\mathcal{L}^{u,h}$ is the controlled generator under drift adjustment $h$
 **Solution**: The optimal drift perturbation is:
 
 $$
-
 h^* = -\frac{\sigma}{\theta} V_x
-
 $$
 
 proportional to sensitivity of value to the state.
@@ -584,17 +488,13 @@ proportional to sensitivity of value to the state.
 **Duffie-Epstein Stochastic Differential Utility**:
 
 $$
-
 U_t = \mathbb{E}_t\left[\int_t^{\infty} f(c_s, U_s) ds\right]
-
 $$
 
 **With Robustness**: Multiplier preferences can be embedded in recursive utility with:
 
 $$
-
 f(c, U) = u(c) - \frac{\beta}{\theta} U \log U
-
 $$
 
 This yields the entropic adjustment through the continuation utility.
@@ -608,9 +508,7 @@ This yields the entropic adjustment through the continuation utility.
 **Reformulation**: The multiplier problem:
 
 $$
-
 \min_P \left\{ \mathbb{E}_P[u(f)] + \theta D_{\text{KL}}(P \| P_0) \right\}
-
 $$
 
 is convex in $P$ (both terms are convex).
@@ -618,9 +516,7 @@ is convex in $P$ (both terms are convex).
 **First-Order Condition**: At optimum:
 
 $$
-
 u(f(\omega)) + \theta \left(1 + \log \frac{dP^*}{dP_0}(\omega)\right) = \text{constant}
-
 $$
 
 yielding the exponential tilting formula.
@@ -631,9 +527,7 @@ yielding the exponential tilting formula.
 **Importance Sampling**: Estimate worst-case expectation:
 
 $$
-
 \mathbb{E}_{P^*}[g] = \mathbb{E}_{P_0}\left[g \cdot \frac{dP^*}{dP_0}\right] = \frac{\mathbb{E}_{P_0}[g \cdot e^{-u(f)/\theta}]}{\mathbb{E}_{P_0}[e^{-u(f)/\theta}]}
-
 $$
 
 **Algorithm**:
@@ -647,9 +541,7 @@ $$
 For Markovian problems, the robust value function satisfies:
 
 $$
-
 \frac{\partial V}{\partial t} + \sup_u \left\{ \mathcal{L}^u V + \ell(x, u) - \frac{\|\sigma^\top \nabla V\|^2}{2\theta} \right\} = 0
-
 $$
 
 This is a **semilinear PDE** with quadratic gradient term.
@@ -677,9 +569,7 @@ This is a **semilinear PDE** with quadratic gradient term.
 **Connection**: When $\phi(x) = -e^{-x/\theta}$ and $\mu$ is point mass at $P_0$:
 
 $$
-
 V(f) \propto -\theta \log \mathbb{E}_{P_0}[e^{-u(f)/\theta}]
-
 $$
 
 recovering multiplier preferences.
@@ -703,9 +593,7 @@ recovering multiplier preferences.
 **Robust Taylor Rule**: Central bank sets interest rate $i_t$:
 
 $$
-
 i_t = r^* + \phi_{\pi} (\pi_t - \pi^*) + \phi_y y_t
-
 $$
 
 with coefficients chosen to be robust to model uncertainty.
@@ -718,9 +606,7 @@ with coefficients chosen to be robust to model uncertainty.
 **Robust Optimization**: Many asset managers use entropy-constrained optimization:
 
 $$
-
 \max_w \left\{ \mathbb{E}_{P_0}[w^\top R] - \lambda \text{Var}_{P_0}(w^\top R) - \kappa \max_P \mathbb{E}_P[-(w^\top R)] \right\}
-
 $$
 
 subject to entropy constraints on $P$.
@@ -736,9 +622,7 @@ subject to entropy constraints on $P$.
 **Premium Setting**: Insurers use:
 
 $$
-
 \text{Premium} = \sup_{P: D_{\text{KL}}(P \| P_0) \leq \eta} \mathbb{E}_P[\text{Loss}]
-
 $$
 
 to account for model uncertainty in loss distributions.

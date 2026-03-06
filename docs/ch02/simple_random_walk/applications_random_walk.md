@@ -10,7 +10,7 @@ The simple random walk is a prototype for a wide class of models across probabil
 
 **Model.** Let $S_n$ be the gambler's fortune after $n$ bets, starting from $S_0 = a$. Define stopping times:
 
-$$\tau_0 = \inf\{n \geq 0 : S_n = 0\}, \qquad \tau_b = \inf\{n \geq 0 : S_n = b\}.$$
+$$\tau_0 = \inf\{n \geq 0 : S_n = 0\}, \qquad \tau_b = \inf\{n \geq 0 : S_n = b\}$$
 
 **Result.** $\mathbb{P}(\tau_b < \tau_0) = a/b$.
 
@@ -24,13 +24,13 @@ $$\tau_0 = \inf\{n \geq 0 : S_n = 0\}, \qquad \tau_b = \inf\{n \geq 0 : S_n = b\
 
 **Bachelier's model (1900).** Louis Bachelier modeled stock price changes as symmetric random walk steps:
 
-$$S_n = S_0 + \sum_{i=1}^n \xi_i.$$
+$$S_n = S_0 + \sum_{i=1}^n \xi_i$$
 
 The scaling limit gives **arithmetic Brownian motion** $S(t) = S_0 + \sigma W_t$, which can become negative — a defect for prices.
 
 **Geometric Brownian motion.** The modern remedy (Samuelson, 1965) models log-returns:
 
-$$\frac{dS(t)}{S(t)} = \mu\,dt + \sigma\,dW_t \implies S(t) = S_0\exp\!\left(\mu t + \sigma W_t - \tfrac{\sigma^2 t}{2}\right).$$
+$$\frac{dS(t)}{S(t)} = \mu\,dt + \sigma\,dW_t \implies S(t) = S_0\exp\!\left(\mu t + \sigma W_t - \tfrac{\sigma^2 t}{2}\right)$$
 
 The correction $-\sigma^2 t/2$ is the **Itô correction**, arising from the nonzero quadratic variation $[W]_t = t$ established in [Martingale Property](martingale_property.md).
 
@@ -50,7 +50,7 @@ By Donsker's theorem applied to the log-returns $\log R_i$, $S_n \to S(t)$ (geom
 
 The probability density $p(x,t)$ satisfies the **heat equation**:
 
-$$\frac{\partial p}{\partial t} = D\,\frac{\partial^2 p}{\partial x^2}.$$
+$$\frac{\partial p}{\partial t} = D\,\frac{\partial^2 p}{\partial x^2}$$
 
 The scaling limit in [Scaling Limit](scaling_limit.md) makes this connection precise: Brownian motion $W_t$ is the canonical solution to the heat equation with $D = 1/2$.
 
@@ -60,11 +60,11 @@ The scaling limit in [Scaling Limit](scaling_limit.md) makes this connection pre
 
 **Wright–Fisher model.** In a population of $N$ diploid individuals, the frequency $X_n$ of an allele after $n$ generations evolves as:
 
-$$X_{n+1} \approx X_n + \text{(random fluctuation of order } 1/\sqrt{N}\text{)}.$$
+$$X_{n+1} \approx X_n + \text{(random fluctuation of order } 1/\sqrt{N}\text{)}$$
 
 For large $N$, the rescaled process $X^{(N)}(t) = X_{\lfloor Nt \rfloor}$ converges (by Donsker-type arguments) to a diffusion:
 
-$$dX_t = \sqrt{X_t(1-X_t)}\,dW_t.$$
+$$dX_t = \sqrt{X_t(1-X_t)}\,dW_t$$
 
 **Recurrence/transience and diversity.** The recurrence of the 1D walk (Theorem 1.1.6) underlies the **fixation** phenomenon: with probability 1, one allele eventually takes over the entire population (the frequency process hits 0 or 1). This is the genetic drift analogue of the gambler being ruined with certainty.
 

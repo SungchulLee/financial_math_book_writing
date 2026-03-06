@@ -5,9 +5,7 @@ Having explored ordinary (Lebesgue) integrals \(\int_0^t f(s, B_s) ds\), we now 
 
 
 $$
-
 \int_0^t f(s, B_s) \, dB_s
-
 $$
 
 
@@ -35,7 +33,6 @@ Imagine you are trading a stock whose price follows Brownian motion:
 
 
 $$
-
 \begin{array}{lll}
 \text{Stock price at beginning of day } s & & B_s \\
 \text{Stock position at beginning of day } s & & f(s, B_s) \\
@@ -43,7 +40,6 @@ $$
 \text{P\&L of stock position at end of day } s & & f(s, B_s) \, dB_s \\
 \text{Cumulative P&L up to end of day } t & & \displaystyle\int_0^t f(s, B_s) \, dB_s
 \end{array}
-
 $$
 
 
@@ -67,7 +63,6 @@ We use the same 10 coin flips from the Lebesgue integration section.
 
 
 $$
-
 \begin{array}{lrrrrrr}
 \text{Time} & 0/10 & 1/10 & 2/10 & 3/10 & 4/10 & 5/10 \\
 \hline
@@ -80,14 +75,12 @@ f(t, B_t) = B_{t-dt} & - & 0 & \frac{1}{\sqrt{10}} & \frac{2}{\sqrt{10}} & \frac
 f(t, B_t) \, dB_t & - & 0 & \frac{1}{10} & \frac{-2}{10} & \frac{1}{10} & \frac{-2}{10} \\
 \int_0^t f(s, B_s) \, dB_s & - & 0 & \frac{1}{10} & \frac{-1}{10} & \frac{0}{10} & \frac{-2}{10}
 \end{array}
-
 $$
 
 
 
 
 $$
-
 \begin{array}{lrrrrrr}
 \text{Time} & 6/10 & 7/10 & 8/10 & 9/10 & 10/10 \\
 \hline
@@ -100,7 +93,6 @@ f(t, B_t) = B_{t-dt} & \frac{1}{\sqrt{10}} & \frac{0}{\sqrt{10}} & \frac{1}{\sqr
 f(t, B_t) \, dB_t & \frac{-1}{10} & \frac{0}{10} & \frac{1}{10} & \frac{2}{10} & \frac{-3}{10} \\
 \int_0^t f(s, B_s) \, dB_s & \frac{-3}{10} & \frac{-3}{10} & \frac{-2}{10} & \frac{0}{10} & \frac{-3}{10}
 \end{array}
-
 $$
 
 
@@ -109,9 +101,7 @@ $$
 
 
 $$
-
 \int_0^1 B_s \, dB_s = \frac{-3}{10} = -0.3
-
 $$
 
 
@@ -129,9 +119,7 @@ $$
    
 
    $$
-
    \int_0^1 B_s \, dB_s = \frac{B_1^2 - 1}{2} = \frac{(2/\sqrt{10})^2 - 1}{2} = \frac{4/10 - 1}{2} = -0.3
-
    $$
 
 
@@ -150,7 +138,6 @@ Now we hold \(s\) shares at time \(s\) (a time-dependent strategy).
 
 
 $$
-
 \begin{array}{lrrrrrr}
 \text{Time} & 0/10 & 1/10 & 2/10 & \cdots & 9/10 & 10/10 \\
 \hline
@@ -159,7 +146,6 @@ f(t, B_t) = t - dt & - & 0 & \frac{1}{10} & \cdots & \frac{8}{10} & \frac{9}{10}
 f(t, B_t) \, dB_t & - & 0 & \frac{1}{10^{3/2}} & \cdots & \frac{8}{10^{3/2}} & \frac{-9}{10^{3/2}} \\
 \int_0^t s \, dB_s & - & 0 & \frac{1}{10^{3/2}} & \cdots & \frac{14}{10^{3/2}} & \frac{5}{10^{3/2}}
 \end{array}
-
 $$
 
 
@@ -168,9 +154,7 @@ $$
 
 
 $$
-
 \int_0^1 s \, dB_s = \frac{5}{10^{3/2}} \approx 0.158
-
 $$
 
 
@@ -192,7 +176,6 @@ Combining time and price dependence: hold \(s B_s\) shares at time \(s\).
 
 
 $$
-
 \begin{array}{lrrrrrr}
 \text{Time} & 6/10 & 7/10 & 8/10 & 9/10 & 10/10 \\
 \hline
@@ -203,7 +186,6 @@ dB_t & \frac{-1}{\sqrt{10}} & \frac{1}{\sqrt{10}} & \frac{1}{\sqrt{10}} & \frac{
 f(t, B_t) \, dB_t & \frac{-5}{100} & \frac{0}{100} & \frac{7}{100} & \frac{16}{100} & \frac{-27}{100} \\
 \int_0^t s B_s \, dB_s & \frac{-13}{100} & \frac{-13}{100} & \frac{-6}{100} & \frac{10}{100} & \frac{-17}{100}
 \end{array}
-
 $$
 
 
@@ -212,9 +194,7 @@ $$
 
 
 $$
-
 \int_0^1 s B_s \, dB_s = \frac{-17}{100} = -0.17
-
 $$
 
 
@@ -308,9 +288,7 @@ plt.show()
    
 
    $$
-
    \mathbb{E}\left[\int_0^T f(s, B_s) dB_s\right] \approx 0
-
    $$
 
 
@@ -344,9 +322,7 @@ For any adapted process \(f(s, B_s)\):
 
 
 $$
-
 \mathbb{E}\left[\int_0^t f(s, B_s) dB_s\right] = 0
-
 $$
 
 
@@ -384,12 +360,10 @@ A remarkable property of the Itô integral is the **Itô isometry**:
 
 
 $$
-
 \boxed{
 \mathbb{E}\left[\left(\int_0^t f(s, B_s) dB_s\right)^2\right]
 = \mathbb{E}\left[\int_0^t f(s, B_s)^2 ds\right]
 }
-
 $$
 
 
@@ -400,10 +374,8 @@ $$
 
 
 $$
-
 \mathbb{E}\left[\left(\int_0^1 B_s dB_s\right)^2\right]
 = \mathbb{E}\left[\int_0^1 B_s^2 ds\right]
-
 $$
 
 
@@ -434,10 +406,8 @@ In Itô integration, we **must** evaluate the integrand at the **left endpoint**
 
 
 $$
-
 \int_0^t f(s, B_s) dB_s
 = \lim \sum_{i} f(t_i, B_{t_i}) \cdot (B_{t_{i+1}} - B_{t_i})
-
 $$
 
 
@@ -455,9 +425,7 @@ The surprising result from Example 1:
 
 
 $$
-
 \int_0^1 B_s dB_s = \frac{B_1^2 - 1}{2}
-
 $$
 
 
@@ -466,10 +434,8 @@ is a special case of **Itô's formula**. For \(f(x) = x^2\):
 
 
 $$
-
 f(B_t) - f(B_0)
 = \int_0^t f'(B_s) dB_s + \frac{1}{2} \int_0^t f''(B_s) ds
-
 $$
 
 
@@ -478,11 +444,9 @@ With \(f'(x) = 2x\) and \(f''(x) = 2\):
 
 
 $$
-
 B_t^2 - 0
 = \int_0^t 2B_s dB_s + \frac{1}{2} \int_0^t 2 \, ds
 = 2 \int_0^t B_s dB_s + t
-
 $$
 
 
@@ -491,9 +455,7 @@ Solving for the Itô integral:
 
 
 $$
-
 \int_0^t B_s dB_s = \frac{B_t^2 - t}{2}
-
 $$
 
 

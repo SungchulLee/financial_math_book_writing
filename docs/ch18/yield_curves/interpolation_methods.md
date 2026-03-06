@@ -11,9 +11,7 @@ Bootstrapping produces discount factors at discrete maturities corresponding to 
 A set of bootstrapped points:
 
 $$
-
 \{(T_1, P_1), (T_2, P_2), \ldots, (T_n, P_n)\}
-
 $$
 
 where $P_i = P(0, T_i)$ are discount factors at maturities $T_i$.
@@ -35,9 +33,7 @@ The choice of **what to interpolate** matters as much as **how to interpolate**.
 ### Option 1: Interpolate Discount Factors
 
 $$
-
 P(0, T) = \text{Interp}\{(T_i, P_i)\}
-
 $$
 
 - Direct but can violate positivity
@@ -46,9 +42,7 @@ $$
 ### Option 2: Interpolate Log-Discount Factors
 
 $$
-
 \log P(0, T) = \text{Interp}\{(T_i, \log P_i)\}
-
 $$
 
 - Ensures positivity: $P(0, T) = e^{\text{Interp}(\cdot)} > 0$
@@ -57,9 +51,7 @@ $$
 ### Option 3: Interpolate Zero Rates
 
 $$
-
 z(0, T) = \text{Interp}\{(T_i, z_i)\}
-
 $$
 
 where $z_i = -\log(P_i)/T_i$
@@ -70,9 +62,7 @@ where $z_i = -\log(P_i)/T_i$
 ### Option 4: Interpolate Forward Rates
 
 $$
-
 f(0, T) = \text{Interp}\{(T_i, f_i)\}
-
 $$
 
 - Direct control over forward curve shape
@@ -87,25 +77,19 @@ $$
 For $T \in [T_i, T_{i+1}]$:
 
 $$
-
 z(0, T) = z_i + \frac{T - T_i}{T_{i+1} - T_i}(z_{i+1} - z_i)
-
 $$
 
 **Forward rate:**
 
 $$
-
 f(0, T) = z(0, T) + T \frac{\partial z}{\partial T} = z_i + \frac{T - T_i}{T_{i+1} - T_i}(z_{i+1} - z_i) + T \cdot \frac{z_{i+1} - z_i}{T_{i+1} - T_i}
-
 $$
 
 Simplifying:
 
 $$
-
 f(0, T) = z_{i+1} + \frac{T_i(z_{i+1} - z_i)}{T_{i+1} - T_i}
-
 $$
 
 The forward rate is **constant** within each interval (piecewise flat forwards).
@@ -115,17 +99,13 @@ The forward rate is **constant** within each interval (piecewise flat forwards).
 For $T \in [T_i, T_{i+1}]$:
 
 $$
-
 \log P(0, T) = \log P_i + \frac{T - T_i}{T_{i+1} - T_i}(\log P_{i+1} - \log P_i)
-
 $$
 
 **Forward rate:**
 
 $$
-
 f(0, T) = -\frac{\partial}{\partial T} \log P(0, T) = \frac{\log P_i - \log P_{i+1}}{T_{i+1} - T_i}
-
 $$
 
 This is **piecewise constant**, with jumps at the nodes $T_i$.
@@ -150,9 +130,7 @@ A **cubic spline** fits a piecewise cubic polynomial with continuous first and s
 For $T \in [T_i, T_{i+1}]$:
 
 $$
-
 z(0, T) = a_i + b_i(T - T_i) + c_i(T - T_i)^2 + d_i(T - T_i)^3
-
 $$
 
 subject to:
@@ -163,9 +141,7 @@ subject to:
 ### Forward Rate from Cubic Spline
 
 $$
-
 f(0, T) = z(0, T) + T \cdot z'(0, T)
-
 $$
 
 The forward rate is a **quadratic** function within each interval, ensuring smoothness.
@@ -204,9 +180,7 @@ Developed by Hagan & West (2006) to address:
 The method interpolates the **integral of the forward rate**:
 
 $$
-
 g(T) = \int_0^T f(0, u) du = -\log P(0, T)
-
 $$
 
 such that:
@@ -221,9 +195,7 @@ For each interval $[T_i, T_{i+1}]$:
 1. Compute discrete forward rate:
 
 $$
-
 f_i^{\text{disc}} = \frac{g(T_{i+1}) - g(T_i)}{T_{i+1} - T_i}
-
 $$
 
 2. Choose instantaneous forwards $f(T_i^+)$ and $f(T_{i+1}^-)$ to ensure monotonicity
@@ -274,9 +246,7 @@ Monotone convex:     ---*---*---*---           (smooth, positive, controlled)
 The sensitivity of a portfolio to a parallel shift in rate $i$ depends on the interpolation:
 
 $$
-
 \frac{\partial V}{\partial z_i} = \sum_j \frac{\partial V}{\partial P(0, T_j)} \cdot \frac{\partial P(0, T_j)}{\partial z_i}
-
 $$
 
 The term $\frac{\partial P(0, T_j)}{\partial z_i}$ depends on interpolation.
@@ -335,9 +305,7 @@ Smoother methods (cubic spline, monotone convex) provide more stable hedging.
 Add a "tension" parameter $\tau$ to control smoothness vs. fidelity:
 
 $$
-
 z''(T) - \tau^2 z(T) = 0 \quad \text{(within intervals)}
-
 $$
 
 Higher tension → closer to linear; lower tension → closer to natural spline.
@@ -347,9 +315,7 @@ Higher tension → closer to linear; lower tension → closer to natural spline.
 Use ratios of polynomials:
 
 $$
-
 z(0, T) = \frac{a_0 + a_1 T + a_2 T^2}{1 + b_1 T}
-
 $$
 
 Can better capture certain curve shapes.

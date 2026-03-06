@@ -13,17 +13,13 @@ Let $V(t, S, v)$ be the price at time $t$ of a European option when the spot pri
 By delta-vega hedging arguments (in the presence of a volatility-traded asset) or by the Feynman–Kac theorem, $V$ satisfies:
 
 $$
-
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0
-
 $$
 
 with terminal condition:
 
 $$
-
 V(T, S, v) = \Phi(S)
-
 $$
 
 where $\Phi(S)$ is the payoff (e.g., $(S-K)^+$ for a call).
@@ -33,21 +29,17 @@ where $\Phi(S)$ is the payoff (e.g., $(S-K)^+$ for a call).
 For a general two-factor stochastic volatility model:
 
 $$
-
 \begin{aligned}
 dS_t &= (r-q)S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^S \\
 dv_t &= a(v_t)\,dt + b(v_t)\,dW_t^v \\
 d\langle W^S, W^v \rangle_t &= \rho\,dt
 \end{aligned}
-
 $$
 
 the generator is:
 
 $$
-
 \mathcal{L}V = (r-q)S\frac{\partial V}{\partial S} + a(v)\frac{\partial V}{\partial v} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho b(v)S\sqrt{v}\frac{\partial^2 V}{\partial S \partial v} + \frac{1}{2}b(v)^2\frac{\partial^2 V}{\partial v^2}
-
 $$
 
 ---
@@ -59,9 +51,7 @@ $$
 For the Heston model with $a(v) = \kappa(\theta - v)$ and $b(v) = \xi\sqrt{v}$:
 
 $$
-
 \frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho\xi vS\frac{\partial^2 V}{\partial S \partial v} + \frac{1}{2}\xi^2 v\frac{\partial^2 V}{\partial v^2} - rV = 0
-
 $$
 
 ### Log-Price Transformation
@@ -69,9 +59,7 @@ $$
 Setting $x = \log S$:
 
 $$
-
 \frac{\partial V}{\partial t} + \left(r-q-\frac{v}{2}\right)\frac{\partial V}{\partial x} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{v}{2}\frac{\partial^2 V}{\partial x^2} + \rho\xi v\frac{\partial^2 V}{\partial x \partial v} + \frac{\xi^2 v}{2}\frac{\partial^2 V}{\partial v^2} - rV = 0
-
 $$
 
 This form has constant coefficients in the second-order $x$ terms, simplifying numerical treatment.
@@ -102,9 +90,7 @@ The PDE degenerates (diffusion coefficient vanishes). Treatment depends on the F
 A common approach: use the **limiting PDE** as $v \to 0$:
 
 $$
-
 \frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa\theta\frac{\partial V}{\partial v} - rV = 0
-
 $$
 
 **As $v \to \infty$:**
@@ -117,9 +103,7 @@ Option value becomes approximately linear in $\sqrt{v}$. Common choices:
 ### Terminal Condition
 
 $$
-
 V(T, S, v) = \Phi(S)
-
 $$
 
 For a European call: $\Phi(S) = (S - K)^+$
@@ -133,9 +117,7 @@ For a European call: $\Phi(S) = (S - K)^+$
 Discretize the $(x, v)$ domain on a grid:
 
 $$
-
 x_i = x_{\min} + i\Delta x, \quad v_j = j\Delta v, \quad t_n = n\Delta t
-
 $$
 
 Denote $V_{i,j}^n \approx V(t_n, x_i, v_j)$.
@@ -145,25 +127,19 @@ Denote $V_{i,j}^n \approx V(t_n, x_i, v_j)$.
 **First derivatives:**
 
 $$
-
 \frac{\partial V}{\partial x} \approx \frac{V_{i+1,j} - V_{i-1,j}}{2\Delta x} \quad \text{(central)}
-
 $$
 
 **Second derivatives:**
 
 $$
-
 \frac{\partial^2 V}{\partial x^2} \approx \frac{V_{i+1,j} - 2V_{i,j} + V_{i-1,j}}{(\Delta x)^2}
-
 $$
 
 **Mixed derivative:**
 
 $$
-
 \frac{\partial^2 V}{\partial x \partial v} \approx \frac{V_{i+1,j+1} - V_{i+1,j-1} - V_{i-1,j+1} + V_{i-1,j-1}}{4\Delta x \Delta v}
-
 $$
 
 ### Time Stepping
@@ -187,17 +163,13 @@ Split the operator: $\mathcal{L} = \mathcal{L}_x + \mathcal{L}_v + \mathcal{L}_{
 **Step 1 (implicit in $x$):**
 
 $$
-
 \frac{V^* - V^n}{\Delta t} + \mathcal{L}_x V^* + \mathcal{L}_v V^n + \mathcal{L}_{xv} V^n = rV^n
-
 $$
 
 **Step 2 (implicit in $v$):**
 
 $$
-
 \frac{V^{n+1} - V^*}{\Delta t} + \mathcal{L}_v(V^{n+1} - V^n) = 0
-
 $$
 
 Each step involves only tridiagonal systems (fast to solve).
@@ -207,39 +179,27 @@ Each step involves only tridiagonal systems (fast to solve).
 More sophisticated splitting with better stability:
 
 $$
-
 Y_0 = V^n + \Delta t \mathcal{L}V^n
-
 $$
 
 $$
-
 Y_1 = Y_0 + \theta\Delta t(\mathcal{L}_1 Y_1 - \mathcal{L}_1 V^n)
-
 $$
 
 $$
-
 Y_2 = Y_1 + \theta\Delta t(\mathcal{L}_2 Y_2 - \mathcal{L}_2 V^n)
-
 $$
 
 $$
-
 \tilde{Y}_0 = Y_0 + \frac{1}{2}\Delta t(\mathcal{L}Y_2 - \mathcal{L}V^n)
-
 $$
 
 $$
-
 \tilde{Y}_1 = \tilde{Y}_0 + \theta\Delta t(\mathcal{L}_1\tilde{Y}_1 - \mathcal{L}_1 Y_2)
-
 $$
 
 $$
-
 V^{n+1} = \tilde{Y}_1 + \theta\Delta t(\mathcal{L}_2 V^{n+1} - \mathcal{L}_2 Y_2)
-
 $$
 
 with $\theta = 1/2$ for second-order accuracy.
@@ -263,9 +223,7 @@ The cross-derivative $\frac{\partial^2 V}{\partial x \partial v}$ complicates AD
 The transformation:
 
 $$
-
 y = x - \rho v, \quad w = v
-
 $$
 
 can simplify the PDE by reducing the mixed derivative coefficient.
@@ -280,9 +238,7 @@ Concentrate grid points where $V$ varies most:
 Common transformations:
 
 $$
-
 \tilde{v} = \sinh^{-1}(\alpha v)
-
 $$
 
 ---
@@ -294,9 +250,7 @@ $$
 American options require:
 
 $$
-
 V(t, S, v) \geq \Phi(S) \quad \text{for all } (t, S, v)
-
 $$
 
 The **early exercise boundary** $S^*(t, v)$ separates continuation and exercise regions.
@@ -304,9 +258,7 @@ The **early exercise boundary** $S^*(t, v)$ separates continuation and exercise 
 ### Complementarity Formulation
 
 $$
-
 \min\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV, \; V - \Phi\right) = 0
-
 $$
 
 ### Numerical Approaches

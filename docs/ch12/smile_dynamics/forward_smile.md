@@ -17,18 +17,14 @@ While the spot smile $\sigma_{\text{IV}}(K, T)$ reflects the marginal distributi
 The **spot implied volatility surface** $\sigma_{\text{IV}}(K, T)$ prices options on the current spot:
 
 $$
-
 C(K, T) = C_{\text{BS}}(S_0, K, T, r, q, \sigma_{\text{IV}}(K, T))
-
 $$
 
 
 This surface reflects the risk-neutral marginal distribution of $S_T$:
 
 $$
-
 \sigma_{\text{IV}}(K, T) \leftrightarrow \text{Law}^{\mathbb{Q}}(S_T)
-
 $$
 
 
@@ -38,18 +34,14 @@ $$
 The **forward smile** $\sigma_{\text{fwd}}(K, T_1, T_2)$ is the implied volatility surface for options starting at future time $T_1$ and expiring at $T_2$:
 
 $$
-
 \sigma_{\text{fwd}}(K, T_1, T_2) = \text{IV of forward-start option with strike } K \text{ over } [T_1, T_2]
-
 $$
 
 
 More precisely, it characterizes the conditional distribution:
 
 $$
-
 \sigma_{\text{fwd}}(m, T_1, T_2) \leftrightarrow \text{Law}^{\mathbb{Q}}\left(\frac{S_{T_2}}{S_{T_1}} \bigg| \mathcal{F}_{T_1}\right)
-
 $$
 
 
@@ -61,18 +53,14 @@ where $m = K/S_{T_1}$ is forward moneyness.
 For a forward-start call option with payoff:
 
 $$
-
 \text{Payoff} = \left(S_{T_2} - m \cdot S_{T_1}\right)^+
-
 $$
 
 
 the forward implied volatility $\sigma_{\text{fwd}}$ satisfies:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}\left[e^{-rT_2}\left(S_{T_2} - m S_{T_1}\right)^+\right] = C_{\text{BS}}^{\text{fwd}}(m, T_2-T_1, \sigma_{\text{fwd}})
-
 $$
 
 
@@ -82,18 +70,14 @@ $$
 Total variance decomposes additively:
 
 $$
-
 w(T_2) = w(T_1) + w_{\text{fwd}}(T_1, T_2)
-
 $$
 
 
 where $w(T) = \sigma_{\text{IV}}^2(T) \cdot T$ is total variance. The forward implied volatility is:
 
 $$
-
 \sigma_{\text{fwd}}^2(T_1, T_2) = \frac{w(T_2) - w(T_1)}{T_2 - T_1} = \frac{\sigma_{\text{IV}}^2(T_2) T_2 - \sigma_{\text{IV}}^2(T_1) T_1}{T_2 - T_1}
-
 $$
 
 
@@ -108,18 +92,14 @@ A **forward-start option** is a European option whose strike is set at a future 
 **Forward-start call:**
 
 $$
-
 \text{Payoff}_{T_2} = \left(S_{T_2} - m \cdot S_{T_1}\right)^+
-
 $$
 
 
 **Forward-start put:**
 
 $$
-
 \text{Payoff}_{T_2} = \left(m \cdot S_{T_1} - S_{T_2}\right)^+
-
 $$
 
 
@@ -129,18 +109,14 @@ $$
 In Black-Scholes, the ratio $S_{T_2}/S_{T_1}$ is independent of $S_{T_1}$:
 
 $$
-
 \frac{S_{T_2}}{S_{T_1}} = \exp\left((r-q-\sigma^2/2)(T_2-T_1) + \sigma(W_{T_2} - W_{T_1})\right)
-
 $$
 
 
 **Result:** The forward-start call price is:
 
 $$
-
 C_{\text{fwd}} = S_0 e^{-q T_1} \cdot C_{\text{BS}}^{\text{scaled}}(m, T_2-T_1, \sigma)
-
 $$
 
 
@@ -155,18 +131,14 @@ $$
 In local volatility models:
 
 $$
-
 dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
-
 $$
 
 
 **Critical issue:** Local vol models imply that the forward smile **flattens rapidly**:
 
 $$
-
 \sigma_{\text{fwd}}(m, T_1, T_2) \to \text{flat as } T_1 \to \infty
-
 $$
 
 
@@ -182,9 +154,7 @@ The Heston model produces:
 **Approximate forward ATM volatility:**
 
 $$
-
 \sigma_{\text{fwd, ATM}}^2(T_1, T_2) \approx \mathbb{E}[v_{T_1}] + \frac{\xi^2}{4\kappa}(1 - e^{-\kappa(T_2-T_1)})
-
 $$
 
 
@@ -209,9 +179,7 @@ Bergomi models forward variance directly, providing direct control over forward 
 **Cliquet option:** A series of forward-start options with periodic reset:
 
 $$
-
 \text{Payoff} = \sum_{i=1}^{n} f\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)
-
 $$
 
 

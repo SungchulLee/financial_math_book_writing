@@ -16,17 +16,13 @@ This section derives put-call parity, verifies it for the Black-Scholes formula,
 For European options on a non-dividend-paying stock with the same strike $K$ and maturity $T$:
 
 $$
-
 \boxed{C - P = S - Ke^{-r(T-t)}}
-
 $$
 
 or equivalently at time $t=0$:
 
 $$
-
 \boxed{C_0 - P_0 = S_0 - Ke^{-rT}}
-
 $$
 
 **In words**: The difference between call and put prices equals the difference between the current stock price and the present value of the strike.
@@ -37,27 +33,19 @@ $$
 Rearranging gives equivalent expressions:
 
 $$
-
 C = P + S - Ke^{-rT}
-
 $$
 
 $$
-
 P = C - S + Ke^{-rT}
-
 $$
 
 $$
-
 S = C - P + Ke^{-rT}
-
 $$
 
 $$
-
 Ke^{-rT} = S + P - C
-
 $$
 
 Each form is useful for different applications.
@@ -86,15 +74,11 @@ Consider two portfolios at time $t=0$:
 
 
 $$
-
 V_0^A = C_0 + Ke^{-rT}
-
 $$
 
 $$
-
 V_0^B = P_0 + S_0
-
 $$
 
 ### 3. **Terminal Values**
@@ -138,17 +122,13 @@ At maturity $T$, consider two cases:
 Since the two portfolios have **identical terminal payoffs** in all states, they must have **identical initial values** (otherwise arbitrage exists):
 
 $$
-
 C_0 + Ke^{-rT} = P_0 + S_0
-
 $$
 
 Rearranging:
 
 $$
-
 \boxed{C_0 - P_0 = S_0 - Ke^{-rT}}
-
 $$
 
 This is put-call parity.
@@ -164,28 +144,22 @@ This is put-call parity.
 Recall:
 
 $$
-
 C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
-
 $$
 
 $$
-
 P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
-
 $$
 
 ### 2. **Compute C - P**
 
 
 $$
-
 \begin{aligned}
 C - P &= \left[S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)\right] - \left[Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)\right] \\
 &= S\mathcal{N}(d_1) + S\mathcal{N}(-d_1) - Ke^{-rT}\mathcal{N}(d_2) - Ke^{-rT}\mathcal{N}(-d_2) \\
 &= S\left[\mathcal{N}(d_1) + \mathcal{N}(-d_1)\right] - Ke^{-rT}\left[\mathcal{N}(d_2) + \mathcal{N}(-d_2)\right]
 \end{aligned}
-
 $$
 
 ### 3. **Use Symmetry Property**
@@ -194,17 +168,13 @@ $$
 For the standard normal CDF:
 
 $$
-
 \mathcal{N}(x) + \mathcal{N}(-x) = 1
-
 $$
 
 Therefore:
 
 $$
-
 C - P = S \cdot 1 - Ke^{-rT} \cdot 1 = S - Ke^{-rT}
-
 $$
 
 **Verified**: Put-call parity holds exactly for the Black-Scholes formula. ✓
@@ -229,9 +199,7 @@ If put-call parity is violated, **arbitrage opportunities** exist.
 **Net cash flow at $t=0$**:
 
 $$
-
 C - P - S + Ke^{-rT} > 0
-
 $$
 
 (positive cash inflow = free money)
@@ -256,9 +224,7 @@ $$
 **Net cash flow at $t=0$**:
 
 $$
-
 -C + P + S - Ke^{-rT} > 0
-
 $$
 
 **At maturity $T$**: All positions close with zero net cash flow.
@@ -276,14 +242,12 @@ $$
 Put-call parity allows creation of **synthetic** positions:
 
 $$
-
 \begin{array}{lll}
 \text{Synthetic Call} &=& P + S - Ke^{-rT} \\
 \text{Synthetic Put} &=& C - S + Ke^{-rT} \\
 \text{Synthetic Stock} &=& C - P + Ke^{-rT} \\
 \text{Synthetic Bond} &=& S + P - C
 \end{array}
-
 $$
 
 **Use case**: If an option is illiquid or mispriced, create it synthetically using other instruments.
@@ -294,9 +258,7 @@ $$
 If you know the call price, you can immediately determine the put price:
 
 $$
-
 P = C - S + Ke^{-rT}
-
 $$
 
 This is useful when only one option trades actively.
@@ -307,9 +269,7 @@ This is useful when only one option trades actively.
 For American options on **non-dividend-paying stocks**, put-call parity implies:
 
 $$
-
 C_{\text{Am}} - P_{\text{Am}} \geq S - Ke^{-r(T-t)}
-
 $$
 
 Since $C_{\text{Am}} = C_{\text{Eu}}$ (call not exercised early), this shows American puts can trade at a premium to European puts.
@@ -320,9 +280,7 @@ Since $C_{\text{Am}} = C_{\text{Eu}}$ (call not exercised early), this shows Ame
 In practice, compare observed market prices to put-call parity:
 
 $$
-
 \Delta = (C_{\text{market}} - P_{\text{market}}) - (S_{\text{market}} - Ke^{-rT_{\text{market}}})
-
 $$
 
 - If $|\Delta| > \text{transaction costs}$: Potential arbitrage
@@ -334,9 +292,7 @@ $$
 If call, put, and stock prices are known, solve for the **implied risk-free rate**:
 
 $$
-
 r = -\frac{1}{T}\log\left(\frac{K}{S + P - C}\right)
-
 $$
 
 This can be used to infer market expectations of interest rates.
@@ -352,9 +308,7 @@ This can be used to infer market expectations of interest rates.
 If the stock pays dividends at continuous rate $q$:
 
 $$
-
 \boxed{C - P = Se^{-q(T-t)} - Ke^{-r(T-t)}}
-
 $$
 
 **Derivation**: Replace $S$ with $Se^{-qT}$ (present value of stock after dividend payments).
@@ -365,9 +319,7 @@ $$
 If the stock pays known dividends $D$ at time $t_d < T$:
 
 $$
-
 \boxed{C - P = \left(S - De^{-rt_d}\right) - Ke^{-rT}}
-
 $$
 
 **Derivation**: Subtract the present value of dividends from the stock price.
@@ -378,9 +330,7 @@ $$
 For options on foreign exchange rate $X$ (domestic per foreign):
 
 $$
-
 \boxed{C - P = Xe^{-r_f T} - Ke^{-r_d T}}
-
 $$
 
 where $r_d$ = domestic rate, $r_f$ = foreign rate.
@@ -391,9 +341,7 @@ where $r_d$ = domestic rate, $r_f$ = foreign rate.
 For options on futures contracts with futures price $F$:
 
 $$
-
 \boxed{C - P = e^{-rT}(F - K)}
-
 $$
 
 Since futures require no initial payment, this simplifies further.
@@ -418,33 +366,23 @@ Since futures require no initial payment, this simplifies further.
 From put-call parity:
 
 $$
-
 P_0 = C_0 - S_0 + Ke^{-rT}
-
 $$
 
 $$
-
 P_0 = 4.50 - 50 + 50 \times e^{-0.04 \times 0.5}
-
 $$
 
 $$
-
 P_0 = 4.50 - 50 + 50 \times e^{-0.02}
-
 $$
 
 $$
-
 P_0 = 4.50 - 50 + 50 \times 0.9802
-
 $$
 
 $$
-
 P_0 = 4.50 - 50 + 49.01 = 3.51
-
 $$
 
 **Answer**: The put should be priced at **\$3.51**.
@@ -511,9 +449,7 @@ In practice, put-call parity holds very tightly for liquid, exchange-traded opti
 Put-call parity establishes the fundamental relationship:
 
 $$
-
 \boxed{C - P = S - Ke^{-r(T-t)}}
-
 $$
 
 **Key points**:

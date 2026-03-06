@@ -9,9 +9,7 @@ After spatial discretization, the Black-Scholes PDE becomes an ODE system in tim
 After spatial discretization:
 
 $$
-
 \frac{d\mathbf{u}}{d\tau} = A\mathbf{u}
-
 $$
 
 where $\mathbf{u} = (u_1, \ldots, u_{M-1})^T$ and $A$ is the tridiagonal spatial operator matrix.
@@ -27,19 +25,15 @@ where $\mathbf{u} = (u_1, \ldots, u_{M-1})^T$ and $A$ is the tridiagonal spatial
 Evaluate the right-hand side at the **known** time level $n$:
 
 $$
-
 \boxed{
 \mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \cdot A\mathbf{u}^n = (I + \Delta\tau A)\mathbf{u}^n
 }
-
 $$
 
 ### Component Form
 
 $$
-
 u_j^{n+1} = a_j u_{j-1}^n + (1 + b_j)u_j^n + c_j u_{j+1}^n
-
 $$
 
 ### Properties
@@ -56,11 +50,9 @@ $$
 For the heat equation, stability requires:
 
 $$
-
 \boxed{
 \Delta\tau \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
 }
-
 $$
 
 This is often **very restrictive**, requiring many time steps.
@@ -68,9 +60,7 @@ This is often **very restrictive**, requiring many time steps.
 **Example**: $\sigma = 0.3$, $S_{\max} = 300$, $\Delta S = 1$:
 
 $$
-
 \Delta\tau \leq \frac{1}{0.09 \times 90000} \approx 0.000123
-
 $$
 
 For $T = 1$ year, this requires $N > 8000$ time steps!
@@ -84,19 +74,15 @@ For $T = 1$ year, this requires $N > 8000$ time steps!
 Evaluate the right-hand side at the **unknown** time level $n+1$:
 
 $$
-
 \mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \cdot A\mathbf{u}^{n+1}
-
 $$
 
 Rearranging:
 
 $$
-
 \boxed{
 (I - \Delta\tau A)\mathbf{u}^{n+1} = \mathbf{u}^n
 }
-
 $$
 
 ### Properties
@@ -127,19 +113,15 @@ The matrix $(I - \Delta\tau A)$ is tridiagonal and can be solved efficiently usi
 Average of explicit and implicit:
 
 $$
-
 \mathbf{u}^{n+1} = \mathbf{u}^n + \frac{\Delta\tau}{2}(A\mathbf{u}^n + A\mathbf{u}^{n+1})
-
 $$
 
 Rearranging:
 
 $$
-
 \boxed{
 \left(I - \frac{\Delta\tau}{2}A\right)\mathbf{u}^{n+1} = \left(I + \frac{\Delta\tau}{2}A\right)\mathbf{u}^n
 }
-
 $$
 
 ### Properties
@@ -162,11 +144,9 @@ Crank-Nicolson is equivalent to the trapezoidal rule for ODEs, which has error $
 The **theta-scheme** parameterizes the family:
 
 $$
-
 \boxed{
 (I - \theta\Delta\tau A)\mathbf{u}^{n+1} = (I + (1-\theta)\Delta\tau A)\mathbf{u}^n
 }
-
 $$
 
 | $\theta$ | Scheme | Stability | Accuracy |
@@ -231,9 +211,7 @@ This damps high-frequency oscillations while maintaining overall second-order ac
 For the tridiagonal system:
 
 $$
-
 \alpha_j u_{j-1} + \beta_j u_j + \gamma_j u_{j+1} = d_j
-
 $$
 
 **Forward sweep**:
@@ -279,7 +257,6 @@ For j = M-2, ..., 1:
 ## Summary
 
 $$
-
 \boxed{
 \begin{aligned}
 \text{Explicit}: & \quad \mathbf{u}^{n+1} = (I + \Delta\tau A)\mathbf{u}^n \\
@@ -287,7 +264,6 @@ $$
 \text{Crank-Nicolson}: & \quad \left(I - \frac{\Delta\tau}{2}A\right)\mathbf{u}^{n+1} = \left(I + \frac{\Delta\tau}{2}A\right)\mathbf{u}^n
 \end{aligned}
 }
-
 $$
 
 | Recommendation | Scheme |

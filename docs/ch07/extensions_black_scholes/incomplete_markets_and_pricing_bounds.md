@@ -38,11 +38,9 @@ In **incomplete markets**, not all risks can be perfectly hedged, leading to **n
 Let $\mathcal{Q}$ be the set of all equivalent martingale measures. For a claim with payoff $H$:
 
 $$
-
 \boxed{
 \underline{\pi}(H) = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] \leq \pi(H) \leq \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] = \overline{\pi}(H)
 }
-
 $$
 
 Any price in $[\underline{\pi}(H), \overline{\pi}(H)]$ is **arbitrage-free**.
@@ -62,11 +60,9 @@ Any price in $[\underline{\pi}(H), \overline{\pi}(H)]$ is **arbitrage-free**.
 The **superhedging price** is the minimum initial capital needed to dominate the payoff:
 
 $$
-
 \boxed{
 \overline{\pi}(H) = \inf\left\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \geq H \text{ a.s.}\right\}
 }
-
 $$
 
 **Duality theorem**: Under technical conditions, the superhedging price equals the upper bound.
@@ -76,9 +72,7 @@ $$
 The **subhedging price** is the maximum initial capital that can be extracted while covering the payoff:
 
 $$
-
 \underline{\pi}(H) = \sup\left\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \leq H \text{ a.s.}\right\}
-
 $$
 
 ---
@@ -92,9 +86,7 @@ When prices are not unique, additional criteria select a specific price.
 Choose $\mathbb{Q}^{\min}$ that preserves the structure of the orthogonal martingale component:
 
 $$
-
 \frac{d\mathbb{Q}^{\min}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \theta^{(1)}_t\,dW_t^{(1)}\right)
-
 $$
 
 where only the traded risk is adjusted.
@@ -109,9 +101,7 @@ where only the traded risk is adjusted.
 Choose $\mathbb{Q}$ to minimize the variance of the pricing error:
 
 $$
-
 \mathbb{Q}^{\text{var}} = \arg\min_{\mathbb{Q} \in \mathcal{Q}} \text{Var}^{\mathbb{P}}\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\right]
-
 $$
 
 ### 3. Utility Indifference Pricing
@@ -119,11 +109,9 @@ $$
 Price based on an investor's utility function $U$:
 
 $$
-
 \boxed{
 \pi^U(H) = x \text{ such that } \sup_\theta \mathbb{E}[U(X_T^x)] = \sup_\theta \mathbb{E}[U(X_T^0 + H)]
 }
-
 $$
 
 The price makes the investor indifferent between buying the claim or not.
@@ -135,9 +123,7 @@ The price makes the investor indifferent between buying the claim or not.
 Choose $\mathbb{Q}$ closest to $\mathbb{P}$ in relative entropy:
 
 $$
-
 \mathbb{Q}^{\text{ent}} = \arg\min_{\mathbb{Q} \in \mathcal{Q}} H(\mathbb{Q} | \mathbb{P}) = \arg\min_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}\left[\log\frac{d\mathbb{Q}}{d\mathbb{P}}\right]
-
 $$
 
 ---
@@ -147,12 +133,10 @@ $$
 ### Setup
 
 $$
-
 \begin{aligned}
 dS_t &= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
 dv_t &= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 \end{aligned}
-
 $$
 
 with $\text{Corr}(dW^{(1)}, dW^{(2)}) = \rho$.
@@ -168,9 +152,7 @@ with $\text{Corr}(dW^{(1)}, dW^{(2)}) = \rho$.
 The measure change involves:
 
 $$
-
 \frac{d\mathbb{Q}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \theta_t^{(1)}\,dW_t^{(1)} - \int_0^T \theta_t^{(2)}\,dW_t^{(2)}\right)
-
 $$
 
 - $\theta_t^{(1)} = (\mu - r)/\sqrt{v_t}$ is determined by no-arbitrage
@@ -215,9 +197,7 @@ $$
 For a market with price process $S$ under $\mathbb{P}$:
 
 $$
-
 \mathcal{Q} = \{\mathbb{Q} \sim \mathbb{P} : S/B \text{ is a } \mathbb{Q}\text{-local martingale}\}
-
 $$
 
 ### Characterization (for diffusions)
@@ -257,11 +237,9 @@ In stochastic volatility, variance swap prices span a wide interval because vari
 ## Summary
 
 $$
-
 \boxed{
 \underline{\pi}(H) = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] \leq \pi(H) \leq \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] = \overline{\pi}(H)
 }
-
 $$
 
 | Concept | Description |

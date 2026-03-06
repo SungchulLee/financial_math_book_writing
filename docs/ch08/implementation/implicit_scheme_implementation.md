@@ -26,21 +26,17 @@ In the implicit method, spatial derivatives are approximated at the **future tim
 Substituting into the Black-Scholes PDE and rearranging:
 
 $$
-
 a_i V_{i-1}^{n+1} + b_i V_i^{n+1} + c_i V_{i+1}^{n+1} = V_i^n
-
 $$
 
 with coefficients:
 
 $$
-
 \begin{aligned}
 a_i &= -\frac{\Delta t}{2} \left( \sigma^2 i^2 - r i \right) \\
 b_i &= 1 + \Delta t \left( \sigma^2 i^2 + r \right) \\
 c_i &= -\frac{\Delta t}{2} \left( \sigma^2 i^2 + r i \right)
 \end{aligned}
-
 $$
 
 This forms a **tridiagonal linear system** solved at each time step.

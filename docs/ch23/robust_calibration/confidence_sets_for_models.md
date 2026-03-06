@@ -21,9 +21,7 @@ In quantitative finance, confidence sets are essential for:
 **Definition**: A $(1-\alpha)$ confidence region for parameter $\theta$ is a random set $C_n = C_n(X_1, \ldots, X_n)$ such that:
 
 $$
-
 P_{\theta}(\theta \in C_n) \geq 1 - \alpha \quad \text{for all } \theta \in \Theta
-
 $$
 
 **Interpretation**: Under repeated sampling, the confidence region contains the true parameter at least $(1-\alpha)$ of the time.
@@ -34,17 +32,13 @@ $$
 **Log-Likelihood**: For observations $X_1, \ldots, X_n$:
 
 $$
-
 \ell(\theta) = \sum_{i=1}^n \log f(X_i; \theta)
-
 $$
 
 **Likelihood Ratio Statistic**:
 
 $$
-
 \Lambda_n(\theta) = 2[\ell(\hat{\theta}) - \ell(\theta)]
-
 $$
 
 where $\hat{\theta}$ is the MLE.
@@ -52,9 +46,7 @@ where $\hat{\theta}$ is the MLE.
 **Wilks' Theorem**: Under regularity conditions:
 
 $$
-
 \Lambda_n(\theta_0) \xrightarrow{d} \chi^2_p
-
 $$
 
 where $p = \dim(\theta)$.
@@ -62,9 +54,7 @@ where $p = \dim(\theta)$.
 **Confidence Region**:
 
 $$
-
 C_n = \{\theta: \Lambda_n(\theta) \leq \chi^2_{p, 1-\alpha}\}
-
 $$
 
 ### 3. Wald Confidence Regions
@@ -73,9 +63,7 @@ $$
 **Asymptotic Normality**:
 
 $$
-
 \sqrt{n}(\hat{\theta} - \theta_0) \xrightarrow{d} N(0, I(\theta_0)^{-1})
-
 $$
 
 where $I(\theta)$ is the Fisher information.
@@ -83,9 +71,7 @@ where $I(\theta)$ is the Fisher information.
 **Wald Region**:
 
 $$
-
 C_n^W = \{\theta: n(\hat{\theta} - \theta)^\top \hat{I}(\hat{\theta})(\hat{\theta} - \theta) \leq \chi^2_{p, 1-\alpha}\}
-
 $$
 
 This is an ellipsoid centered at the MLE.
@@ -114,17 +100,13 @@ This is an ellipsoid centered at the MLE.
 **Calibration Error**:
 
 $$
-
 Q(\sigma) = \sum_{i=1}^m w_i [C_i - C_i^{BS}(\sigma)]^2
-
 $$
 
 **Confidence Set for $\sigma$**:
 
 $$
-
 \mathcal{C}_{\sigma} = \{\sigma: Q(\sigma) - Q(\hat{\sigma}) \leq \Delta_{\alpha}\}
-
 $$
 
 where $\Delta_{\alpha}$ depends on the error distribution.
@@ -137,9 +119,7 @@ where $\Delta_{\alpha}$ depends on the error distribution.
 **Confidence Region**: 
 
 $$
-
 \mathcal{C}_{\theta} = \{\theta: \ell(\theta) \geq \ell(\hat{\theta}) - \frac{1}{2}\chi^2_{5, 1-\alpha}\}
-
 $$
 
 **Challenge**: High-dimensional confidence regions are difficult to visualize and interpret.
@@ -150,17 +130,13 @@ $$
 **Definition**: For parameter of interest $\psi = g(\theta)$:
 
 $$
-
 \ell_p(\psi) = \max_{\theta: g(\theta) = \psi} \ell(\theta)
-
 $$
 
 **Profile Confidence Interval**:
 
 $$
-
 \mathcal{C}_{\psi} = \{\psi: 2[\ell(\hat{\theta}) - \ell_p(\psi)] \leq \chi^2_{1, 1-\alpha}\}
-
 $$
 
 **Application**: Confidence interval for a single Greek while accounting for uncertainty in other parameters.
@@ -189,17 +165,13 @@ $$
 **Range Statistic**:
 
 $$
-
 T_R = \max_{i,j \in \hat{\mathcal{M}}} \frac{|\bar{d}_{ij}|}{\sqrt{\hat{\text{var}}(\bar{d}_{ij})}}
-
 $$
 
 **Semi-Quadratic Statistic**:
 
 $$
-
 T_{SQ} = \sum_{i \in \hat{\mathcal{M}}} \left(\frac{\bar{d}_{i\cdot}}{\sqrt{\hat{\text{var}}(\bar{d}_{i\cdot})}}\right)^2 \mathbf{1}_{\bar{d}_{i\cdot} > 0}
-
 $$
 
 where $\bar{d}_{i\cdot} = \frac{1}{|\hat{\mathcal{M}}|} \sum_{j \in \hat{\mathcal{M}}} \bar{d}_{ij}$.
@@ -222,17 +194,13 @@ where $\bar{d}_{i\cdot} = \frac{1}{|\hat{\mathcal{M}}|} \sum_{j \in \hat{\mathca
 **Bayes' Theorem**:
 
 $$
-
 p(\theta | X) = \frac{L(X | \theta) \pi(\theta)}{\int L(X | \theta) \pi(\theta) d\theta}
-
 $$
 
 **Credible Set**: A $(1-\alpha)$ credible set $C$ satisfies:
 
 $$
-
 P(\theta \in C | X) = 1 - \alpha
-
 $$
 
 ### 2. Highest Posterior Density Region
@@ -241,9 +209,7 @@ $$
 **Definition**: The HPD region is the smallest set with coverage $1-\alpha$:
 
 $$
-
 C_{\text{HPD}} = \{\theta: p(\theta | X) \geq c_{\alpha}\}
-
 $$
 
 where $c_{\alpha}$ is chosen so that $P(\theta \in C_{\text{HPD}} | X) = 1 - \alpha$.
@@ -266,9 +232,7 @@ where $c_{\alpha}$ is chosen so that $P(\theta \in C_{\text{HPD}} | X) = 1 - \al
 **Posterior Model Probability**:
 
 $$
-
 P(M_k | X) = \frac{P(X | M_k) P(M_k)}{\sum_j P(X | M_j) P(M_j)}
-
 $$
 
 **Credible Model Set**: Include models until cumulative posterior probability exceeds $1 - \alpha$.
@@ -319,17 +283,13 @@ $$
 **Transformation**: For $g(\theta)$ smooth:
 
 $$
-
 \sqrt{n}(g(\hat{\theta}) - g(\theta)) \xrightarrow{d} N\left(0, \nabla g(\theta)^\top \Sigma \nabla g(\theta)\right)
-
 $$
 
 **Confidence Interval for $g(\theta)$**:
 
 $$
-
 g(\hat{\theta}) \pm z_{1-\alpha/2} \sqrt{\nabla g(\hat{\theta})^\top \hat{\Sigma} \nabla g(\hat{\theta}) / n}
-
 $$
 
 ### 2. Monte Carlo Propagation
@@ -346,9 +306,7 @@ $$
 **Example**: Delta uncertainty given parameter uncertainty
 
 $$
-
 \Delta(\theta) = \frac{\partial V}{\partial S}(\theta)
-
 $$
 
 **Confidence Interval**: Propagate parameter confidence set through $\Delta(\cdot)$.

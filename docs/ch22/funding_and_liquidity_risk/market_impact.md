@@ -23,9 +23,7 @@ Lasting price change due to information revelation:
 ### Total Impact
 
 $$
-
 \text{Total Impact} = \text{Temporary Impact} + \text{Permanent Impact}
-
 $$
 
 ---
@@ -37,9 +35,7 @@ $$
 Market impact scales approximately as the square root of trade size:
 
 $$
-
 \Delta P \approx \sigma \cdot \sqrt{\frac{Q}{V}}
-
 $$
 
 where:
@@ -61,9 +57,7 @@ where:
 Including a constant term:
 
 $$
-
 \Delta P = \eta \cdot \text{sign}(Q) + \gamma \cdot \sigma \cdot \sqrt{\frac{|Q|}{V}}
-
 $$
 
 where $\eta$ captures fixed costs (bid-ask spread) and $\gamma$ is a market-specific constant.
@@ -77,17 +71,13 @@ where $\eta$ captures fixed costs (bid-ask spread) and $\gamma$ is a market-spec
 Liquidate $X$ shares over time horizon $T$ with strategy $x(t)$:
 
 $$
-
 \int_0^T \dot{x}(t) \, dt = X, \quad x(0) = X, \quad x(T) = 0
-
 $$
 
 ### Price Dynamics
 
 $$
-
 S_t = S_0 - g(v_t) - h(v_t) + \sigma W_t
-
 $$
 
 where:
@@ -101,9 +91,7 @@ where:
 Common specification:
 
 $$
-
 g(v) = \gamma v, \quad h(v) = \eta v
-
 $$
 
 where $\gamma$ is permanent impact coefficient and $\eta$ is temporary impact coefficient.
@@ -113,9 +101,7 @@ where $\gamma$ is permanent impact coefficient and $\eta$ is temporary impact co
 Total cost of execution:
 
 $$
-
 C[x(\cdot)] = \gamma X^2 + \int_0^T \eta v_t^2 \, dt + \text{Risk Cost}
-
 $$
 
 The first term is permanent impact (unavoidable), the second is temporary impact (depends on speed).
@@ -129,9 +115,7 @@ The first term is permanent impact (unavoidable), the second is temporary impact
 Minimize expected cost plus risk penalty:
 
 $$
-
 \min_{x(\cdot)} \mathbb{E}[C] + \lambda \cdot \text{Var}[C]
-
 $$
 
 where $\lambda$ is risk aversion.
@@ -141,9 +125,7 @@ where $\lambda$ is risk aversion.
 The optimal trading trajectory is:
 
 $$
-
 x(t) = X \cdot \frac{\sinh(\kappa(T-t))}{\sinh(\kappa T)}
-
 $$
 
 where $\kappa = \sqrt{\lambda \sigma^2 / \eta}$ depends on risk aversion and market parameters.
@@ -153,17 +135,13 @@ where $\kappa = \sqrt{\lambda \sigma^2 / \eta}$ depends on risk aversion and mar
 **Risk-neutral ($\lambda = 0$):** Trade at constant rate (TWAP)
 
 $$
-
 x(t) = X \cdot \left(1 - \frac{t}{T}\right)
-
 $$
 
 **Highly risk-averse ($\lambda \to \infty$):** Trade immediately
 
 $$
-
 x(t) = 0 \text{ for } t > 0
-
 $$
 
 ### Implementation Shortfall
@@ -171,9 +149,7 @@ $$
 Expected cost of the optimal strategy:
 
 $$
-
 \mathbb{E}[C^*] = \gamma X^2 + \eta X^2 \cdot \frac{\kappa}{\tanh(\kappa T)}
-
 $$
 
 Decomposed into permanent impact and temporary impact terms.
@@ -185,9 +161,7 @@ Decomposed into permanent impact and temporary impact terms.
 ### Linear Models
 
 $$
-
 \Delta P = \lambda \cdot Q
-
 $$
 
 Simple but unrealistic for large trades.
@@ -195,9 +169,7 @@ Simple but unrealistic for large trades.
 ### Square-Root Models
 
 $$
-
 \Delta P = \lambda \cdot \text{sign}(Q) \cdot \sqrt{|Q|}
-
 $$
 
 Empirically supported; widely used.
@@ -205,9 +177,7 @@ Empirically supported; widely used.
 ### Power-Law Models
 
 $$
-
 \Delta P = \lambda \cdot \text{sign}(Q) \cdot |Q|^\delta
-
 $$
 
 where $\delta \approx 0.5$ empirically.
@@ -217,17 +187,13 @@ where $\delta \approx 0.5$ empirically.
 From Kyle (1985) model:
 
 $$
-
 \Delta P = \lambda \cdot Q
-
 $$
 
 where $\lambda$ is the market depth parameter, related to:
 
 $$
-
 \lambda = \frac{\sigma_v}{\sigma_u}
-
 $$
 
 (ratio of informed trading volatility to noise trading volatility).
@@ -267,9 +233,7 @@ Trades perceived as informed have larger permanent impact.
 Compare execution price to benchmark:
 
 $$
-
 \text{Impact} = P_{\text{exec}} - P_{\text{benchmark}}
-
 $$
 
 **Benchmarks:**
@@ -283,9 +247,7 @@ $$
 Estimate impact function from execution data:
 
 $$
-
 r_t = \alpha + \beta \cdot \text{OrderFlow}_t + \epsilon_t
-
 $$
 
 where $\beta$ estimates price sensitivity to order flow.
@@ -307,17 +269,13 @@ Comprehensive analysis decomposing costs:
 Ignoring market impact **understates liquidation losses**:
 
 $$
-
 \text{True Liquidation Loss} = \text{Mark-to-Market Loss} + \text{Market Impact}
-
 $$
 
 ### Liquidity-Adjusted VaR (LVaR)
 
 $$
-
 \text{LVaR} = \text{VaR} + \text{Liquidation Cost}
-
 $$
 
 where liquidation cost depends on position size and impact model.
@@ -341,9 +299,7 @@ During crises, impact increases:
 Optimal hedge with impact costs:
 
 $$
-
 \Delta^* = \Delta^{\text{BS}} \cdot \frac{1}{1 + \text{Impact Cost Factor}}
-
 $$
 
 Under-hedge when impact is costly.

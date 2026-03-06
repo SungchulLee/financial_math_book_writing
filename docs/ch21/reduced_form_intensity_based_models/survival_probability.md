@@ -11,9 +11,7 @@ Survival probabilities are central objects in reduced-form credit models. They d
 The **survival probability** from time 0 to time $T$ is:
 
 $$
-
-S(0,T) := \mathbb{Q}(\tau > T),
-
+S(0,T) := \mathbb{Q}(\tau > T)
 $$
 
 where $\tau$ is the default time and $\mathbb{Q}$ is the risk-neutral measure.
@@ -23,9 +21,7 @@ where $\tau$ is the default time and $\mathbb{Q}$ is the risk-neutral measure.
 Given information at time $t$ (on the pre-default event $\{\tau > t\}$):
 
 $$
-
-S(t,T) := \mathbb{Q}(\tau > T \mid \mathcal{G}_t) = \mathbb{Q}(\tau > T \mid \mathcal{F}_t, \tau > t),
-
+S(t,T) := \mathbb{Q}(\tau > T \mid \mathcal{G}_t) = \mathbb{Q}(\tau > T \mid \mathcal{F}_t, \tau > t)
 $$
 
 where $\mathcal{G}_t$ is the enlarged filtration and $\mathcal{F}_t$ is the market filtration.
@@ -46,9 +42,7 @@ where $\mathcal{G}_t$ is the enlarged filtration and $\mathcal{F}_t$ is the mark
 Under the standard intensity framework with Cox process construction:
 
 $$
-
-S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T \lambda_s \, ds\right) \middle| \mathcal{F}_t\right],
-
+S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T \lambda_s \, ds\right) \middle| \mathcal{F}_t\right]
 $$
 
 where $\lambda_s$ is the default intensity process.
@@ -56,25 +50,19 @@ where $\lambda_s$ is the default intensity process.
 **Derivation:** On $\{\tau > t\}$, using the Cox construction with $\tau = \Lambda^{-1}(E)$ where $E \sim \text{Exp}(1)$ independent of $\mathcal{F}$:
 
 $$
-
-\mathbb{Q}(\tau > T \mid \mathcal{F}_t, \tau > t) = \mathbb{Q}(E > \Lambda_T \mid E > \Lambda_t, \mathcal{F}_t) = \frac{\mathbb{Q}(E > \Lambda_T \mid \mathcal{F}_t)}{\mathbb{Q}(E > \Lambda_t \mid \mathcal{F}_t)}.
-
+\mathbb{Q}(\tau > T \mid \mathcal{F}_t, \tau > t) = \mathbb{Q}(E > \Lambda_T \mid E > \Lambda_t, \mathcal{F}_t) = \frac{\mathbb{Q}(E > \Lambda_T \mid \mathcal{F}_t)}{\mathbb{Q}(E > \Lambda_t \mid \mathcal{F}_t)}
 $$
 
 Since $E$ is independent of $\mathcal{F}_\infty$:
 
 $$
-
-S(t,T) = \frac{e^{-\Lambda_T}}{e^{-\Lambda_t}} = \exp\left(-\int_t^T \lambda_s ds\right) \quad \text{(given } \mathcal{F}_t\text{)}.
-
+S(t,T) = \frac{e^{-\Lambda_T}}{e^{-\Lambda_t}} = \exp\left(-\int_t^T \lambda_s ds\right) \quad \text{(given } \mathcal{F}_t\text{)}
 $$
 
 Taking expectation over future intensity:
 
 $$
-
-S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T \lambda_s ds} \middle| \mathcal{F}_t\right].
-
+S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T \lambda_s ds} \middle| \mathcal{F}_t\right]
 $$
 
 ### Deterministic Intensity Case
@@ -82,9 +70,7 @@ $$
 If $\lambda_t = \lambda(t)$ is a deterministic function:
 
 $$
-
-S(t,T) = \exp\left(-\int_t^T \lambda(s) \, ds\right) = e^{-\Lambda(t,T)},
-
+S(t,T) = \exp\left(-\int_t^T \lambda(s) \, ds\right) = e^{-\Lambda(t,T)}
 $$
 
 where $\Lambda(t,T) = \int_t^T \lambda(s) ds$ is the cumulative hazard.
@@ -109,9 +95,7 @@ Just as discount factors define the term structure of interest rates, survival p
 The **continuously compounded hazard rate** for maturity $T$ is:
 
 $$
-
-h(t,T) = -\frac{\ln S(t,T)}{T-t}.
-
+h(t,T) = -\frac{\ln S(t,T)}{T-t}
 $$
 
 This is the constant intensity that would produce the same survival probability.
@@ -121,9 +105,7 @@ This is the constant intensity that would produce the same survival probability.
 The **instantaneous forward hazard rate** is:
 
 $$
-
-\lambda_f(t,T) = -\frac{\partial \ln S(t,T)}{\partial T} = \frac{1}{S(t,T)} \cdot \left(-\frac{\partial S(t,T)}{\partial T}\right).
-
+\lambda_f(t,T) = -\frac{\partial \ln S(t,T)}{\partial T} = \frac{1}{S(t,T)} \cdot \left(-\frac{\partial S(t,T)}{\partial T}\right)
 $$
 
 In the limit $T \to t$: $\lambda_f(t,t) = \lambda_t$ (the spot intensity).
@@ -137,9 +119,7 @@ In the limit $T \to t$: $\lambda_f(t,t) = \lambda_t$ (the spot intensity).
 With $\lambda(s) = \lambda_i$ for $s \in (T_{i-1}, T_i]$:
 
 $$
-
-S(0,T) = \exp\left(-\sum_{i=1}^{k-1} \lambda_i (T_i - T_{i-1}) - \lambda_k (T - T_{k-1})\right),
-
+S(0,T) = \exp\left(-\sum_{i=1}^{k-1} \lambda_i (T_i - T_{i-1}) - \lambda_k (T - T_{k-1})\right)
 $$
 
 where $T_{k-1} < T \le T_k$.
@@ -147,15 +127,11 @@ where $T_{k-1} < T \le T_k$.
 **Example:** With nodes $T_0=0, T_1=1, T_2=3, T_3=5$ and intensities $\lambda_1=1\%, \lambda_2=1.5\%, \lambda_3=2\%$:
 
 $$
-
 S(0,2) = e^{-0.01 \times 1 - 0.015 \times 1} = e^{-0.025} = 0.9753
-
 $$
 
 $$
-
 S(0,5) = e^{-0.01 \times 1 - 0.015 \times 2 - 0.02 \times 2} = e^{-0.08} = 0.9231
-
 $$
 
 ### CIR Intensity Model
@@ -163,23 +139,17 @@ $$
 With $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma\sqrt{\lambda_t}dW_t$, the survival probability has affine form:
 
 $$
-
-S(t,T) = A(t,T) \exp(-B(t,T) \lambda_t),
-
+S(t,T) = A(t,T) \exp(-B(t,T) \lambda_t)
 $$
 
 where $A(t,T)$ and $B(t,T)$ satisfy Riccati ODEs:
 
 $$
-
-B(t,T) = \frac{2(e^{\gamma(T-t)} - 1)}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma},
-
+B(t,T) = \frac{2(e^{\gamma(T-t)} - 1)}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}
 $$
 
 $$
-
-A(t,T) = \left[\frac{2\gamma e^{(\kappa + \gamma)(T-t)/2}}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2},
-
+A(t,T) = \left[\frac{2\gamma e^{(\kappa + \gamma)(T-t)/2}}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}
 $$
 
 with $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$.
@@ -189,23 +159,17 @@ with $\gamma = \sqrt{\kappa^2 + 2\sigma^2}$.
 With $d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma dW_t$ (Gaussian OU process):
 
 $$
-
-S(t,T) = \exp\left(-B(t,T)\lambda_t - A(t,T)\right),
-
+S(t,T) = \exp\left(-B(t,T)\lambda_t - A(t,T)\right)
 $$
 
 where:
 
 $$
-
-B(t,T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa},
-
+B(t,T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}
 $$
 
 $$
-
-A(t,T) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(t,T) - (T-t)) - \frac{\sigma^2}{4\kappa}B(t,T)^2.
-
+A(t,T) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(t,T) - (T-t)) - \frac{\sigma^2}{4\kappa}B(t,T)^2
 $$
 
 **Note:** Vasicek intensity can become negative, which is economically problematic but sometimes used for analytical convenience.
@@ -219,9 +183,7 @@ $$
 The probability of default by time $T$:
 
 $$
-
-F(t,T) := \mathbb{Q}(\tau \le T \mid \mathcal{G}_t) = 1 - S(t,T).
-
+F(t,T) := \mathbb{Q}(\tau \le T \mid \mathcal{G}_t) = 1 - S(t,T)
 $$
 
 ### Marginal (Period) Default Probability
@@ -229,9 +191,7 @@ $$
 The probability of default during period $(T_1, T_2]$, conditional on survival to $T_1$:
 
 $$
-
-\mathbb{Q}(\tau \in (T_1, T_2] \mid \tau > T_1) = \frac{S(t, T_1) - S(t, T_2)}{S(t, T_1)} = 1 - \frac{S(t, T_2)}{S(t, T_1)}.
-
+\mathbb{Q}(\tau \in (T_1, T_2] \mid \tau > T_1) = \frac{S(t, T_1) - S(t, T_2)}{S(t, T_1)} = 1 - \frac{S(t, T_2)}{S(t, T_1)}
 $$
 
 ### Default Density
@@ -239,9 +199,7 @@ $$
 The density of default time (conditional on $\mathcal{F}_t$):
 
 $$
-
-f(t,T) = -\frac{\partial S(t,T)}{\partial T} = S(t,T) \cdot \lambda_f(t,T).
-
+f(t,T) = -\frac{\partial S(t,T)}{\partial T} = S(t,T) \cdot \lambda_f(t,T)
 $$
 
 For deterministic intensity: $f(0,T) = \lambda(T) e^{-\int_0^T \lambda(s)ds}$.
@@ -263,9 +221,7 @@ Market CDS spreads imply survival probabilities:
 For a defaultable zero-coupon bond with price $P^d(0,T)$ and recovery $R$:
 
 $$
-
-P^d(0,T) = P(0,T)\left[R + (1-R)S(0,T)\right],
-
+P^d(0,T) = P(0,T)\left[R + (1-R)S(0,T)\right]
 $$
 
 where $P(0,T)$ is the risk-free discount factor.
@@ -273,9 +229,7 @@ where $P(0,T)$ is the risk-free discount factor.
 Solving for survival probability:
 
 $$
-
-S(0,T) = \frac{P^d(0,T)/P(0,T) - R}{1 - R}.
-
+S(0,T) = \frac{P^d(0,T)/P(0,T) - R}{1 - R}
 $$
 
 ### Credit Curve Shapes
@@ -298,9 +252,7 @@ Typical shapes observed in markets:
 A key insight: survival-weighted discounting combines interest rate and credit effects:
 
 $$
-
-\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds} \middle| \mathcal{F}_t\right] = P(t,T) \cdot S(t,T) \quad \text{(under independence)}.
-
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds} \middle| \mathcal{F}_t\right] = P(t,T) \cdot S(t,T) \quad \text{(under independence)}
 $$
 
 When $r$ and $\lambda$ are independent, risk-adjusted discounting **separates** into interest rate discounting times survival probability.
@@ -310,9 +262,7 @@ When $r$ and $\lambda$ are independent, risk-adjusted discounting **separates** 
 The **default-adjusted discount factor** is:
 
 $$
-
-D^d(t,T) := P(t,T) \cdot S(t,T).
-
+D^d(t,T) := P(t,T) \cdot S(t,T)
 $$
 
 This discounts both for time value and credit risk.
@@ -322,9 +272,7 @@ This discounts both for time value and credit risk.
 If $r_t$ and $\lambda_t$ are correlated:
 
 $$
-
-\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds}\right] \ne P(t,T) \cdot S(t,T).
-
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds}\right] \ne P(t,T) \cdot S(t,T)
 $$
 
 Positive correlation ($r$ and $\lambda$ move together) increases the covariance term; negative correlation decreases it. This matters for credit-rate hybrid products.
@@ -338,9 +286,7 @@ Positive correlation ($r$ and $\lambda$ move together) increases the covariance 
 For affine intensity models (CIR, Vasicek), survival probabilities have exponential-affine form:
 
 $$
-
-S(t,T) = A(T-t) e^{-B(T-t)\lambda_t}.
-
+S(t,T) = A(T-t) e^{-B(T-t)\lambda_t}
 $$
 
 Solve the associated Riccati equations for $A$ and $B$.
@@ -356,9 +302,7 @@ Solve the associated Riccati equations for $A$ and $B$.
 Survival probability satisfies a Kolmogorov backward equation:
 
 $$
-
-\frac{\partial S}{\partial t} + \mathcal{L}S - \lambda S = 0, \quad S(T,T) = 1,
-
+\frac{\partial S}{\partial t} + \mathcal{L}S - \lambda S = 0, \quad S(T,T) = 1
 $$
 
 where $\mathcal{L}$ is the infinitesimal generator of the intensity process.
@@ -376,41 +320,29 @@ where $\mathcal{L}$ is the infinitesimal generator of the intensity process.
 **Compute $\gamma$:**
 
 $$
-
 \gamma = \sqrt{\kappa^2 + 2\sigma^2} = \sqrt{0.25 + 0.02} = \sqrt{0.27} = 0.5196
-
 $$
 
 **5-year survival probability:**
 
 $$
-
 B(0,5) = \frac{2(e^{0.5196 \times 5} - 1)}{(0.5196 + 0.5)(e^{2.598} - 1) + 2 \times 0.5196}
-
 $$
 
 $$
-
 = \frac{2(13.44 - 1)}{1.0196 \times 12.44 + 1.0392} = \frac{24.88}{13.72} = 1.814
-
 $$
 
 $$
-
 A(0,5) = \left[\frac{2 \times 0.5196 \times e^{(0.5 + 0.5196) \times 2.5}}{(1.0196)(12.44) + 1.0392}\right]^{2 \times 0.5 \times 0.03/0.01}
-
 $$
 
 $$
-
 = \left[\frac{1.0392 \times e^{2.55}}{13.72}\right]^{3} = \left[\frac{13.32}{13.72}\right]^3 = 0.971^3 = 0.915
-
 $$
 
 $$
-
 S(0,5) = 0.915 \times e^{-1.814 \times 0.02} = 0.915 \times e^{-0.0363} = 0.915 \times 0.964 = 0.882
-
 $$
 
 **5-year default probability:** $1 - 0.882 = 11.8\%$

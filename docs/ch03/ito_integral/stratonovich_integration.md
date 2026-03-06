@@ -215,19 +215,15 @@ The two integrals are related by a **correction term** involving the quadratic c
 For a process $f(t, X_t)$ where $X_t$ satisfies an SDE, the Stratonovich integral can be expressed in terms of the Itô integral:
 
 $$
-
 \boxed{
 \int_0^t f(s, X_s) \circ dW_s = \int_0^t f(s, X_s)\,dW_s + \frac{1}{2}\int_0^t \frac{\partial f}{\partial x}(s, X_s)\sigma(s, X_s)\,ds
 }
-
 $$
 
 **Equivalently**:
 
 $$
-
 \int_0^t f \circ dW = \int_0^t f\,dW + \frac{1}{2}[f, W]_t
-
 $$
 
 where $[f, W]_t$ is the quadratic covariation between $f$ and $W$.
@@ -237,15 +233,11 @@ where $[f, W]_t$ is the quadratic covariation between $f$ and $W$.
 Using the conversion formula with $f(x) = x$ and $\sigma = 1$:
 
 $$
-
 \int_0^t B_s \circ dB_s = \int_0^t B_s\,dB_s + \frac{1}{2}\int_0^t 1\,ds
-
 $$
 
 $$
-
 = \frac{1}{2}(B_t^2 - t) + \frac{1}{2}t = \frac{1}{2}B_t^2
-
 $$
 
 This is exactly what the classical chain rule would give! (No Itô correction needed for Stratonovich.)
@@ -259,9 +251,7 @@ A key advantage of Stratonovich calculus is that the **classical chain rule hold
 **Theorem**: For $f \in C^2$ and $X_t$ satisfying a Stratonovich SDE:
 
 $$
-
 df(X_t) = f'(X_t) \circ dX_t
-
 $$
 
 **No second-order correction term appears!**
@@ -287,25 +277,19 @@ The **Wong-Zakai theorem** provides deep insight into why the Stratonovich integ
 Consider the SDE:
 
 $$
-
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
-
 $$
 
 Now replace Brownian motion $W_t$ by a **smooth approximation** $W_t^{(n)}$ (e.g., piecewise linear interpolation), and solve the **ordinary** differential equation:
 
 $$
-
 \frac{dX_t^{(n)}}{dt} = b(X_t^{(n)}) + \sigma(X_t^{(n)})\frac{dW_t^{(n)}}{dt}
-
 $$
 
 **Wong-Zakai Theorem**: As $n \to \infty$, the solutions $X_t^{(n)}$ converge to the solution of the **Stratonovich SDE**:
 
 $$
-
 dX_t = b(X_t)\,dt + \sigma(X_t) \circ dW_t
-
 $$
 
 **NOT** the Itô SDE!
@@ -321,19 +305,15 @@ $$
 If physical reasoning suggests a Stratonovich SDE:
 
 $$
-
 dX_t = b(X_t)\,dt + \sigma(X_t) \circ dW_t
-
 $$
 
 The equivalent Itô SDE is:
 
 $$
-
 \boxed{
 dX_t = \left(b(X_t) + \frac{1}{2}\sigma(X_t)\sigma'(X_t)\right)dt + \sigma(X_t)\,dW_t
 }
-
 $$
 
 The extra drift term $\frac{1}{2}\sigma\sigma'$ is called the **noise-induced drift** or **Stratonovich correction**.
@@ -363,9 +343,7 @@ The extra drift term $\frac{1}{2}\sigma\sigma'$ is called the **noise-induced dr
 In physics, the overdamped Langevin equation is often written as:
 
 $$
-
 \gamma \frac{dx}{dt} = -V'(x) + \sqrt{2\gamma k_B T}\,\xi(t)
-
 $$
 
 where $\xi(t)$ is "white noise."
@@ -373,17 +351,13 @@ where $\xi(t)$ is "white noise."
 **Physical interpretation** (Wong-Zakai) suggests Stratonovich:
 
 $$
-
 dx = -\frac{V'(x)}{\gamma}\,dt + \sqrt{\frac{2k_B T}{\gamma}} \circ dW_t
-
 $$
 
 **Equivalent Itô form** (for state-independent diffusion, they coincide):
 
 $$
-
 dx = -\frac{V'(x)}{\gamma}\,dt + \sqrt{\frac{2k_B T}{\gamma}}\,dW_t
-
 $$
 
 When diffusion is state-dependent, the correction term becomes crucial!
@@ -393,11 +367,9 @@ When diffusion is state-dependent, the correction term becomes crucial!
 ## Summary
 
 $$
-
 \boxed{
 \int f \circ dW = \int f\,dW + \frac{1}{2}\int f'\sigma\,dt
 }
-
 $$
 
 | Aspect | Itô Integral | Stratonovich Integral |

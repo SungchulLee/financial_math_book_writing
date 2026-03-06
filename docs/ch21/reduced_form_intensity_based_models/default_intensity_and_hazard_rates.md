@@ -31,9 +31,7 @@ The reduced-form approach does not ask "why" default occurs—only "when" and "w
 Let $\tau$ denote the random default time. The **default intensity** (or **hazard rate**) $\lambda_t$ is an $\mathcal{F}_t$-adapted, non-negative process such that:
 
 $$
-
-\mathbb{Q}(t < \tau \le t + dt \mid \mathcal{F}_t, \tau > t) \approx \lambda_t \, dt.
-
+\mathbb{Q}(t < \tau \le t + dt \mid \mathcal{F}_t, \tau > t) \approx \lambda_t \, dt
 $$
 
 **Interpretation:** Given survival to time $t$ and current market information, the probability of defaulting in the next instant $dt$ is approximately $\lambda_t \, dt$.
@@ -43,17 +41,13 @@ $$
 More precisely, the intensity is defined through the **compensator** of the default indicator process $H_t = \mathbf{1}_{\{\tau \le t\}}$:
 
 $$
-
 A_t = \int_0^{t \wedge \tau} \lambda_s \, ds
-
 $$
 
 is the $(\mathcal{G}_t, \mathbb{Q})$-compensator of $H_t$, meaning:
 
 $$
-
 M_t := H_t - A_t = \mathbf{1}_{\{\tau \le t\}} - \int_0^{t \wedge \tau} \lambda_s \, ds
-
 $$
 
 is a $(\mathcal{G}_t, \mathbb{Q})$-martingale.
@@ -72,9 +66,7 @@ The standard way to construct a default time with given intensity is via the **C
 4. Define the default time:
 
 $$
-
-\tau = \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E).
-
+\tau = \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E)
 $$
 
 ### Properties of Cox Construction
@@ -90,17 +82,13 @@ Under this construction:
 The conditional survival probability given $\mathcal{F}_t$ is:
 
 $$
-
-\mathbb{Q}(\tau > T \mid \mathcal{F}_t) = \mathbb{Q}(E > \Lambda_T \mid \mathcal{F}_t) = \mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right].
-
+\mathbb{Q}(\tau > T \mid \mathcal{F}_t) = \mathbb{Q}(E > \Lambda_T \mid \mathcal{F}_t) = \mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]
 $$
 
 On the pre-default event $\{\tau > t\}$:
 
 $$
-
-\mathbb{Q}(\tau > T \mid \mathcal{G}_t) = \frac{\mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]}{e^{-\Lambda_t}} = \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right].
-
+\mathbb{Q}(\tau > T \mid \mathcal{G}_t) = \frac{\mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]}{e^{-\Lambda_t}} = \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right]
 $$
 
 ---
@@ -112,9 +100,7 @@ $$
 The hazard rate in credit modeling is analogous to the **force of mortality** in actuarial science:
 
 $$
-
-\lambda(t) = \lim_{h \to 0} \frac{\mathbb{P}(t < \tau \le t+h \mid \tau > t)}{h}.
-
+\lambda(t) = \lim_{h \to 0} \frac{\mathbb{P}(t < \tau \le t+h \mid \tau > t)}{h}
 $$
 
 This is the instantaneous conditional default rate.
@@ -124,17 +110,13 @@ This is the instantaneous conditional default rate.
 For deterministic intensity $\lambda(t)$, the survival function is:
 
 $$
-
-S(t) = \mathbb{Q}(\tau > t) = \exp\left(-\int_0^t \lambda(s) \, ds\right) = e^{-\Lambda(t)}.
-
+S(t) = \mathbb{Q}(\tau > t) = \exp\left(-\int_0^t \lambda(s) \, ds\right) = e^{-\Lambda(t)}
 $$
 
 The density of default time is:
 
 $$
-
-f(t) = -\frac{dS}{dt} = \lambda(t) S(t) = \lambda(t) e^{-\Lambda(t)}.
-
+f(t) = -\frac{dS}{dt} = \lambda(t) S(t) = \lambda(t) e^{-\Lambda(t)}
 $$
 
 ### Cumulative Hazard
@@ -142,9 +124,7 @@ $$
 The cumulative hazard function is:
 
 $$
-
-\Lambda(t) = -\ln S(t) = \int_0^t \lambda(s) \, ds.
-
+\Lambda(t) = -\ln S(t) = \int_0^t \lambda(s) \, ds
 $$
 
 This relationship allows estimation of intensity from survival data.
@@ -165,17 +145,13 @@ Constant or deterministic intensity is too restrictive:
 Let $\lambda_t$ be driven by state variables $X_t$:
 
 $$
-
-\lambda_t = g(X_t, t),
-
+\lambda_t = g(X_t, t)
 $$
 
 where $X_t$ follows an SDE:
 
 $$
-
-dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t.
-
+dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t
 $$
 
 The intensity inherits randomness from the state variables.
@@ -185,9 +161,7 @@ The intensity inherits randomness from the state variables.
 **1. Vasicek-type (Ornstein-Uhlenbeck):**
 
 $$
-
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma \, dW_t.
-
+d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma \, dW_t
 $$
 
 Properties:
@@ -198,9 +172,7 @@ Properties:
 **2. CIR-type (Cox-Ingersoll-Ross):**
 
 $$
-
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t.
-
+d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t
 $$
 
 Properties:
@@ -212,9 +184,7 @@ Properties:
 **3. Log-normal:**
 
 $$
-
-d\ln\lambda_t = \kappa(\theta - \ln\lambda_t) \, dt + \sigma \, dW_t.
-
+d\ln\lambda_t = \kappa(\theta - \ln\lambda_t) \, dt + \sigma \, dW_t
 $$
 
 Properties:
@@ -225,9 +195,7 @@ Properties:
 **4. Jump-diffusion:**
 
 $$
-
-d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t + J \, dN_t,
-
+d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t + J \, dN_t
 $$
 
 where $N_t$ is a Poisson process and $J$ is jump size.
@@ -246,9 +214,7 @@ Properties:
 For calibration to CDS term structures, piecewise-constant intensity is ubiquitous:
 
 $$
-
-\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n.
-
+\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n
 $$
 
 The intervals typically correspond to CDS maturities: 1Y, 2Y, 3Y, 5Y, 7Y, 10Y.
@@ -258,9 +224,7 @@ The intervals typically correspond to CDS maturities: 1Y, 2Y, 3Y, 5Y, 7Y, 10Y.
 With piecewise-constant intensity:
 
 $$
-
-S(0, T) = \exp\left(-\sum_{i: T_i \le T} \lambda_i (T_i - T_{i-1}) - \lambda_{k}(T - T_{k-1})\right),
-
+S(0, T) = \exp\left(-\sum_{i: T_i \le T} \lambda_i (T_i - T_{i-1}) - \lambda_{k}(T - T_{k-1})\right)
 $$
 
 where $T_{k-1} < T \le T_k$.
@@ -316,17 +280,13 @@ Under the Cox construction, immersion holds automatically:
 ### Instantaneous Default Probability
 
 $$
-
-\mathbb{Q}(\tau \in (t, t+dt] \mid \mathcal{F}_t, \tau > t) = \lambda_t \, dt + o(dt).
-
+\mathbb{Q}(\tau \in (t, t+dt] \mid \mathcal{F}_t, \tau > t) = \lambda_t \, dt + o(dt)
 $$
 
 ### Cumulative Default Probability
 
 $$
-
-\mathbb{Q}(\tau \le T \mid \mathcal{F}_t, \tau > t) = 1 - \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right].
-
+\mathbb{Q}(\tau \le T \mid \mathcal{F}_t, \tau > t) = 1 - \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right]
 $$
 
 ### Forward Default Probability
@@ -334,9 +294,7 @@ $$
 The forward default probability for period $(T_1, T_2]$ conditional on survival to $T_1$:
 
 $$
-
-\mathbb{Q}(\tau \le T_2 \mid \tau > T_1) = 1 - \frac{S(T_2)}{S(T_1)}.
-
+\mathbb{Q}(\tau \le T_2 \mid \tau > T_1) = 1 - \frac{S(T_2)}{S(T_1)}
 $$
 
 ---
@@ -352,25 +310,19 @@ $$
 1-year survival:
 
 $$
-
 S(0,1) = e^{-0.01 \times 1} = e^{-0.01} = 0.9900
-
 $$
 
 2-year survival:
 
 $$
-
 S(0,2) = e^{-0.01 \times 1 - 0.015 \times 1} = e^{-0.025} = 0.9753
-
 $$
 
 3-year survival:
 
 $$
-
 S(0,3) = e^{-0.01 \times 1 - 0.015 \times 2} = e^{-0.04} = 0.9608
-
 $$
 
 **Default probabilities:**

@@ -83,38 +83,32 @@ Forward measures are especially useful for:
 **Risk Neutral Measure:**
 
 $$\begin{array}{lllll}
-
 \text{Risk Neutral}&&
 \displaystyle
 df(t,T)
 &=&\displaystyle
 \left(\sigma(t,T)\int_t^T\sigma(t,T')dT'\right)dt+\sigma(t,T)dW^\mathbb{Q}(t)\\
-
 \end{array}$$
 
 **T Forward Measure:**
 
 $$\begin{array}{lllll}
-
 \text{$T$ Forward}&&
 \displaystyle
 df(t,T)
 &=&\displaystyle
 \sigma(t,T)dW^T(t)\\
-
 \end{array}$$
 
 **$T_f$ Forward Measure:**
 
 $$\begin{array}{lllll}
-
 \text{$T_f$ Forward}&&
 \displaystyle
 df(t,T)
 &=&\displaystyle
 -\left(\sigma(t,T)\int_T^{T_f}\sigma(t,T')dT'\right)dt
 +\sigma(t,T)dW^{T_f}(t)\\
-
 \end{array}$$
 
 ### Forward Rate as a Markov Process
@@ -122,32 +116,26 @@ df(t,T)
 $f(t,T)$, as a function of $t$, is a Markov process.
 
 $$\begin{array}{lllll}
-
 \displaystyle
 f(t,T)
 =
 f(0,T)+
 \int_0^t\left(\sigma(t',T)\int_{t'}^T\sigma(t',T')dT'\right)dt'+\int_0^t\sigma(t',T)dW^\mathbb{Q}(t')
-
 \end{array}$$
 
 $$\begin{array}{lllll}
-
 \displaystyle
 f(t+\Delta,T)
 =
 f(0,T)+
 \int_0^{t+\Delta}\left(\sigma(t',T)\int_{t'}^T\sigma(t',T')dT'\right)dt'+\int_0^{t+\Delta}\sigma(t',T)dW^\mathbb{Q}(t')
-
 \end{array}$$
 
 $$\begin{array}{lllll}
-
 \displaystyle
 f(t+\Delta,T)-f(t,T)
 =
 \int_t^{t+\Delta}\left(\sigma(t',T)\int_{t'}^T\sigma(t',T')dT'\right)dt'+\int_t^{t+\Delta}\sigma(t',T)dW^\mathbb{Q}(t')
-
 \end{array}$$
 
 ### T-Forward Measure: Direct Computation
@@ -155,56 +143,45 @@ f(t+\Delta,T)-f(t,T)
 **Instantaneous Forward Rate Dynamics**
 
 $$\begin{array}{lllll}
-
 \displaystyle
 df(t,T)
 =
 \mu^\mathbb{Q}(t,T)dt+\sigma(t,T)dW^{\mathbb{Q}}(t)
-
 \end{array}$$
 
 **ZCB Dynamics**
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \frac{dP(t,T)}{P(t,T)}
 =
 r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)
-
 \end{array}$$
 
 $$\begin{array}{lllll}
-
 \displaystyle
 d\log P(t,T)
 =
 \left(r(t)-\frac{1}{2}\sigma_P^2(t,T)\right)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)\\
-
 \end{array}$$
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \log P(t,T)-\log P(0,T)
 =
 \int_0^t\left(r(t')-\frac{1}{2}\sigma_P^2(t',T)\right)dt'+\int_0^t\sigma_P(t',T)dW^{\mathbb{Q}}(t')\\
-
 \end{array}$$
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \frac{P(t,T)}{P(0,T)}
 =
 \text{exp}\left(\int_0^t\left(r(t')-\frac{1}{2}\sigma_P^2(t',T)\right)dt'+\int_0^t\sigma_P(t',T)dW^{\mathbb{Q}}(t')\right)
-
 \end{array}$$
 
 **Radon-Nikodym Derivative**
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \lambda_\mathbb{Q}^T(t)
 &=&\displaystyle
@@ -220,33 +197,27 @@ $$\begin{array}{lllll}
 \text{exp}\left(
 -\frac{1}{2}\int_0^t\sigma_P^2(t',T)dt'+\int_0^t\sigma_P(t',T)dW^\mathbb{Q}(t')
 \right)\\
-
 \end{array}$$
 
 **Girsanov Theorem**
 
 $$\begin{array}{lllll}
-
 \displaystyle
 dW^T(t)=dW^{\mathbb{Q}}(t)-\sigma_P(t,T)dt
-
 \end{array}$$
 
 where
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \sigma_P(t,T)
 =
 -\int_t^T\sigma(t',T)dt'
-
 \end{array}$$
 
 **Forward Rate Dynamics under $\mathbb{Q}^T$**
 
 $$\begin{array}{lllll}
-
 \displaystyle
 df(t,T)
 &=&\displaystyle
@@ -259,5 +230,4 @@ dW^T(t)-\left(\int_t^T\sigma(t,T')dT'\right)dt
 \right)\\
 &=&\displaystyle
 \sigma(t,T)dW^T(t)
-
 \end{array}$$

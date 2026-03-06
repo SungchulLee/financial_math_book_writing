@@ -37,9 +37,7 @@ The increments are independent (by independent increments of $W$), and paths are
 Hence we write the **self-similarity (scaling) property**:
 
 $$\boxed{
-
 \{W_{ct}\}_{t\ge 0}\;\overset{d}{=}\;\{\sqrt{c}\,W_t\}_{t\ge 0}
-
 }$$
 
 **Remark:** This is a restatement of Theorem 1.3.8 from Brownian Motion Foundations. We now explore its deeper implications.
@@ -249,9 +247,7 @@ The fundamental result connecting continuous martingales to Brownian motion is:
 Let $M = \{M_t\}_{t \ge 0}$ be a continuous local martingale with $M_0 = 0$ and $\langle M \rangle_\infty = \infty$. Then there exists a Brownian motion $\{B_u\}_{u\ge 0}$ such that:
 
 $$\boxed{
-
 M_t = B_{\langle M\rangle_t}, \quad t\ge 0
-
 }$$
 
 More precisely, if we define $\tau(u) = \inf\{t : \langle M \rangle_t > u\}$, then:
@@ -310,9 +306,7 @@ $$\langle M\rangle_t = \int_0^t H_s^2\,ds$$
 By the Dambis-Dubins-Schwarz theorem, there exists a Brownian motion $\{B_u\}$ such that:
 
 $$\boxed{
-
 \int_0^t H_s dW_s = B_{\int_0^t H_s^2 ds}
-
 }$$
 
 **Interpretation:**

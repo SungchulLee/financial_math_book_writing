@@ -28,9 +28,7 @@ The relationship between implied and local volatility can be understood through 
 The Black-Scholes formula provides a fundamental tool for connecting market prices to implied volatility. The call option price is:
 
 $$
-
 C = S_{0}N(d_{1}) - Ke^{-rT}N(d_{2})
-
 $$
 
 where the log-moneyness and variance parameters are defined as:
@@ -40,12 +38,10 @@ $$y = \log\frac{K}{S_0e^{rT}}, \quad w = \sigma_{\text{imp}}^2 T$$
 and
 
 $$
-
 \begin{aligned}
 d_{1} &= -\frac{y}{\sqrt{w}} + \sqrt{w} \\
 d_{2} &= -\frac{y}{\sqrt{w}} - \sqrt{w}
 \end{aligned}
-
 $$
 
 ---
@@ -57,25 +53,19 @@ To bridge implied and local volatility, we perform a change of variables from st
 ### Time Derivative
 
 $$
-
 C_T = C_y y_T + C_w w_T = -rC_y + \sigma_{\text{imp}}^2 C_w
-
 $$
 
 ### Strike Derivative
 
 $$
-
 C_K = C_y y_K + C_w w_K = K^{-1}C_y
-
 $$
 
 ### Second Strike Derivative
 
 $$
-
 C_{KK} = (K^{-1}C_y)_K = K^{-2}(C_{yy} - C_y)
-
 $$
 
 ---
@@ -89,9 +79,7 @@ Using the change of variables, we can express the Dupire formula directly in ter
 The Dupire formula is:
 
 $$
-
 \sigma^2(K,T) = \frac{C_T + rKC_K}{\frac{1}{2} K^2 C_{KK}}
-
 $$
 
 ### Application to Black-Scholes Parameters
@@ -99,9 +87,7 @@ $$
 Substituting the transformed derivatives:
 
 $$
-
 \sigma^2 = \frac{(C_y y_T + C_w w_T) + rK(C_y y_K + C_w w_K)}{\frac{1}{2} K^2 [C_{yy} y_K^2 + 2C_{yw} y_K w_K + C_{ww} w_K^2 + C_y y_{KK} + C_w w_{KK}]}
-
 $$
 
 ### Simplified Form
@@ -114,17 +100,13 @@ Using the relationships:
 We obtain:
 
 $$
-
 \sigma^2 = \frac{-rC_y + \sigma_{\text{imp}}^2 C_w + rK \cdot K^{-1}C_y}{\frac{1}{2} K^2 \cdot K^{-2}(C_{yy} - C_y)}
-
 $$
 
 This simplifies to:
 
 $$
-
 \sigma^2 = \frac{\sigma_{\text{imp}}^2 C_w}{\frac{1}{2}(C_{yy} - C_y)}
-
 $$
 
 ---

@@ -30,9 +30,7 @@ This section surveys major open problems across several domains:
 **Stochastic Volatility Models**: Heston, SABR capture static smile but struggle with:
 
 $$
-
 \frac{\partial \sigma_{\text{impl}}}{\partial S} \neq \text{observed}
-
 $$
 
 ### 2. Joint Calibration Problem
@@ -68,9 +66,7 @@ $$
 **Finding** (Gatheral et al., 2018): Log-volatility behaves like fractional Brownian motion with Hurst parameter $H \approx 0.1$:
 
 $$
-
 \mathbb{E}[|\log \sigma_{t+\Delta} - \log \sigma_t|^2] \sim \Delta^{2H}
-
 $$
 
 **Implication**: Volatility is **rougher** than standard diffusion ($H = 0.5$).
@@ -81,9 +77,7 @@ $$
 **Dynamics**:
 
 $$
-
 dV_t = \kappa (\bar{V} - V_t) dt + \nu \sqrt{V_t} dW_t^H
-
 $$
 
 where $W_t^H$ is fractional Brownian motion with $H < 0.5$.
@@ -154,9 +148,7 @@ where $W_t^H$ is fractional Brownian motion with $H < 0.5$.
 **Idea** (Buehler et al., 2019): Learn hedging strategy directly via neural networks:
 
 $$
-
 \Delta_t = \text{NN}(S_t, V_t, t; \theta)
-
 $$
 
 trained to minimize hedging loss.
@@ -236,9 +228,7 @@ trained to minimize hedging loss.
 **Setup**: Financial institutions connected through obligations:
 
 $$
-
 \bar{p}_i = \min\left(d_i + \sum_j \pi_{ij} \bar{p}_j, c_i\right)
-
 $$
 
 where $\bar{p}_i$ is clearing payment, $\pi_{ij}$ is liability fraction.

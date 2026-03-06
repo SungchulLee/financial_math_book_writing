@@ -167,9 +167,7 @@ plt.show()
 The SPX exhibits a pronounced **negative skew**:
 
 $$
-
 \sigma_{\text{IV}}(K_{\text{OTM put}}) > \sigma_{\text{IV}}(K_{\text{ATM}}) > \sigma_{\text{IV}}(K_{\text{OTM call}})
-
 $$
 
 
@@ -187,9 +185,7 @@ $$
 Implied volatilities from puts and calls at the same strike should be equal (absent arbitrage):
 
 $$
-
 \sigma_{\text{IV}}^{\text{call}}(K, T) = \sigma_{\text{IV}}^{\text{put}}(K, T)
-
 $$
 
 
@@ -205,9 +201,7 @@ Small deviations occur due to:
 The **butterfly spread** measures smile curvature:
 
 $$
-
 \text{Butterfly} = \frac{1}{2}(\sigma_{25\Delta C} + \sigma_{25\Delta P}) - \sigma_{\text{ATM}}
-
 $$
 
 

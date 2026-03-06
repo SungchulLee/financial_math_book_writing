@@ -21,9 +21,7 @@ We develop complete derivations using stochastic calculus tools including **Itô
 The **standard Brownian motion** (Wiener process) $B_t$ satisfies:
 
 $$
-
 dB_t = dW_t, \quad B_0 = 0
-
 $$
 
 ### 2. Basic Moments
@@ -32,11 +30,9 @@ $$
 Since $B_t \sim \mathcal{N}(0, t)$ by construction:
 
 $$
-
 \boxed{
 \mathbb{E}[B_t] = 0, \quad \text{Var}(B_t) = t
 }
-
 $$
 
 ### 3. Higher Moments
@@ -47,17 +43,13 @@ For a Gaussian random variable $X \sim \mathcal{N}(0, \sigma^2)$:
 **Odd moments:**
 
 $$
-
 \mathbb{E}[X^{2k+1}] = 0 \quad \text{for all } k \geq 0
-
 $$
 
 **Even moments:**
 
 $$
-
 \mathbb{E}[X^{2k}] = \sigma^{2k} \cdot (2k-1)!! = \sigma^{2k} \cdot \frac{(2k)!}{2^k k!}
-
 $$
 
 where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$.
@@ -65,11 +57,9 @@ where $(2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)$.
 **For Brownian motion:**
 
 $$
-
 \boxed{
 \mathbb{E}[B_t^{2k}] = t^k \cdot (2k-1)!!
 }
-
 $$
 
 **Examples:**
@@ -82,17 +72,13 @@ $$
 
 
 $$
-
 M_B(u, t) = \mathbb{E}[e^{uB_t}] = e^{u^2 t/2}
-
 $$
 
 **Derivation:** Since $B_t \sim \mathcal{N}(0, t)$:
 
 $$
-
 \mathbb{E}[e^{uB_t}] = \int_{-\infty}^\infty e^{ux} \frac{1}{\sqrt{2\pi t}} e^{-x^2/(2t)} dx = e^{u^2 t/2}
-
 $$
 
 ---
@@ -106,9 +92,7 @@ $$
 Let $X_t$ satisfy:
 
 $$
-
 dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}
-
 $$
 
 ### 2. Solution
@@ -117,9 +101,7 @@ $$
 This is a linear SDE. Integrating:
 
 $$
-
 X_t = X_0 + \mu t + \sigma B_t
-
 $$
 
 ### 3. First Two Moments
@@ -128,11 +110,9 @@ $$
 Since $B_t \sim \mathcal{N}(0, t)$:
 
 $$
-
 \boxed{
 \mathbb{E}[X_t] = X_0 + \mu t, \quad \text{Var}(X_t) = \sigma^2 t
 }
-
 $$
 
 **Distribution:** $X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)$
@@ -143,21 +123,17 @@ $$
 Since $X_t$ is Gaussian:
 
 $$
-
 \mathbb{E}[(X_t - \mathbb{E}[X_t])^n] = \begin{cases}
 0 & \text{if } n \text{ odd} \\
 \sigma^n t^{n/2} (n-1)!! & \text{if } n \text{ even}
 \end{cases}
-
 $$
 
 ### 5. Moment Generating Function
 
 
 $$
-
 M_X(u, t) = \mathbb{E}[e^{uX_t}] = \exp\left[u(X_0 + \mu t) + \frac{u^2 \sigma^2 t}{2}\right]
-
 $$
 
 ### 6. Conditional Moments
@@ -166,15 +142,11 @@ $$
 For $s < t$:
 
 $$
-
 \mathbb{E}[X_t | X_s] = X_s + \mu(t - s)
-
 $$
 
 $$
-
 \text{Var}(X_t | X_s) = \sigma^2(t - s)
-
 $$
 
 ---
@@ -188,9 +160,7 @@ $$
 The GBM process satisfies:
 
 $$
-
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 > 0
-
 $$
 
 ### 2. Solution
@@ -199,35 +169,27 @@ $$
 Define $Y_t = \log S_t$ and apply **Itô's lemma**:
 
 $$
-
 f(S) = \log S, \quad f'(S) = \frac{1}{S}, \quad f''(S) = -\frac{1}{S^2}
-
 $$
 
 $$
-
 \begin{align}
 dY_t &= \frac{1}{S_t}dS_t + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)(dS_t)^2 \\
 &= \frac{1}{S_t}(\mu S_t dt + \sigma S_t dW_t) - \frac{1}{2S_t^2} \cdot \sigma^2 S_t^2 dt \\
 &= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma dW_t
 \end{align}
-
 $$
 
 Integrating:
 
 $$
-
 \log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t
-
 $$
 
 $$
-
 \boxed{
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right]
 }
-
 $$
 
 ### 3. First Two Moments
@@ -238,65 +200,51 @@ Let $Z = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t \sim \mathcal{N}\le
 For a Gaussian $Z \sim \mathcal{N}(m, v^2)$:
 
 $$
-
 \mathbb{E}[e^Z] = e^{m + v^2/2}
-
 $$
 
 **Expectation:**
 
 $$
-
 \begin{align}
 \mathbb{E}[S_t] &= S_0 \mathbb{E}[e^Z] \\
 &= S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \frac{\sigma^2 t}{2}\right] \\
 &= S_0 e^{\mu t}
 \end{align}
-
 $$
 
 **Second moment:**
 
 $$
-
 \mathbb{E}[S_t^2] = S_0^2 \mathbb{E}[e^{2Z}]
-
 $$
 
 For $2Z \sim \mathcal{N}(2(\mu - \sigma^2/2)t, 4\sigma^2 t)$:
 
 $$
-
 \mathbb{E}[e^{2Z}] = \exp\left[2\left(\mu - \frac{\sigma^2}{2}\right)t + \frac{4\sigma^2 t}{2}\right] = e^{2\mu t + \sigma^2 t}
-
 $$
 
 Therefore:
 
 $$
-
 \mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}
-
 $$
 
 **Variance:**
 
 $$
-
 \begin{align}
 \text{Var}(S_t) &= \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 \\
 &= S_0^2 e^{2\mu t + \sigma^2 t} - S_0^2 e^{2\mu t} \\
 &= S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
 \end{align}
-
 $$
 
 $$
-
 \boxed{
 \mathbb{E}[S_t] = S_0 e^{\mu t}, \quad \text{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
 }
-
 $$
 
 ### 4. Higher Moments
@@ -305,19 +253,15 @@ $$
 **General $n$-th moment:**
 
 $$
-
 \mathbb{E}[S_t^n] = S_0^n \mathbb{E}[e^{nZ}]
-
 $$
 
 For $nZ \sim \mathcal{N}(n(\mu - \sigma^2/2)t, n^2\sigma^2 t)$:
 
 $$
-
 \boxed{
 \mathbb{E}[S_t^n] = S_0^n \exp\left[n\mu t + \frac{n(n-1)}{2}\sigma^2 t\right]
 }
-
 $$
 
 **Verification for $n=1, 2$:**
@@ -328,14 +272,12 @@ $$
 
 
 $$
-
 \boxed{
 M_S(u, t) = \mathbb{E}[e^{uS_t}] = \begin{cases}
 \text{No closed form} & \text{(log-normal distribution)} \\
 \text{Use } \mathbb{E}[S_t^n] \text{ instead} & 
 \end{cases}
 }
-
 $$
 
 **Alternative: Log moment generating function**
@@ -343,9 +285,7 @@ $$
 For $\log S_t \sim \mathcal{N}(m, v^2)$ with $m = \log S_0 + (\mu - \sigma^2/2)t$ and $v^2 = \sigma^2 t$:
 
 $$
-
 \mathbb{E}[e^{u \log S_t}] = \mathbb{E}[S_t^u] = S_0^u e^{u\mu t + u(u-1)\sigma^2 t/2}
-
 $$
 
 ### 6. Conditional Moments
@@ -354,15 +294,11 @@ $$
 For $s < t$:
 
 $$
-
 \mathbb{E}[S_t | S_s] = S_s e^{\mu(t-s)}
-
 $$
 
 $$
-
 \text{Var}(S_t | S_s) = S_s^2 e^{2\mu(t-s)}(e^{\sigma^2(t-s)} - 1)
-
 $$
 
 **Derivation:** Since $S_t = S_s \exp[(drifts) + \sigma(B_t - B_s)]$, conditioning on $S_s$ gives independent increments.
@@ -375,17 +311,13 @@ The log-normal distribution is **right-skewed** and **heavy-tailed**.
 **Skewness:**
 
 $$
-
 \text{Skew}(S_t) = (e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}
-
 $$
 
 **Excess kurtosis:**
 
 $$
-
 \text{Kurt}(S_t) = e^{4\sigma^2 t} + 2e^{3\sigma^2 t} + 3e^{2\sigma^2 t} - 6
-
 $$
 
 Both increase with $\sigma^2 t$, showing heavier tails for higher volatility or longer time.
@@ -401,9 +333,7 @@ Both increase with $\sigma^2 t$, showing heavier tails for higher volatility or 
 The Vasicek model is defined by:
 
 $$
-
 dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad r_0 = r(0)
-
 $$
 
 where:
@@ -417,47 +347,35 @@ where:
 Rewrite as:
 
 $$
-
 dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
-
 $$
 
 Multiply both sides by the integrating factor $e^{at}$:
 
 $$
-
 e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t
-
 $$
 
 The left side is $d(r_t e^{at})$:
 
 $$
-
 d(r_t e^{at}) = abe^{at}\,dt + \sigma e^{at}\,dW_t
-
 $$
 
 Integrate from $0$ to $t$:
 
 $$
-
 r_t e^{at} - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s
-
 $$
 
 $$
-
 r_t e^{at} = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s
-
 $$
 
 $$
-
 \boxed{
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
 }
-
 $$
 
 ### 3. Expectation
@@ -466,19 +384,15 @@ $$
 Using linearity of expectation and $\mathbb{E}[\int e^{as}\,dW_s] = 0$:
 
 $$
-
 \boxed{
 \mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
 }
-
 $$
 
 **Long-term behavior:**
 
 $$
-
 \lim_{t \to \infty} \mathbb{E}[r_t] = b
-
 $$
 
 The process **mean-reverts** to $b$ with speed $a$.
@@ -489,41 +403,31 @@ The process **mean-reverts** to $b$ with speed $a$.
 The only stochastic term is:
 
 $$
-
 I_t = \sigma e^{-at}\int_0^t e^{as}\,dW_s
-
 $$
 
 Use **Itô isometry**:
 
 $$
-
 \mathbb{E}[I_t^2] = \sigma^2 e^{-2at} \mathbb{E}\left[\left(\int_0^t e^{as}\,dW_s\right)^2\right] = \sigma^2 e^{-2at} \int_0^t e^{2as}\,ds
-
 $$
 
 $$
-
 = \sigma^2 e^{-2at} \cdot \frac{e^{2at} - 1}{2a} = \frac{\sigma^2}{2a}(1 - e^{-2at})
-
 $$
 
 Since $\mathbb{E}[I_t] = 0$:
 
 $$
-
 \boxed{
 \text{Var}(r_t) = \frac{\sigma^2}{2a}(1 - e^{-2at})
 }
-
 $$
 
 **Long-term variance:**
 
 $$
-
 \lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}
-
 $$
 
 **Stationary distribution:** $r_\infty \sim \mathcal{N}\left(b, \frac{\sigma^2}{2a}\right)$
@@ -532,14 +436,12 @@ $$
 
 
 $$
-
 \boxed{
 \begin{align}
 \mathbb{E}[r_t] &= r_0 e^{-at} + b(1 - e^{-at}) \\
 \text{Var}(r_t) &= \frac{\sigma^2}{2a}(1 - e^{-2at})
 \end{align}
 }
-
 $$
 
 ### 6. Conditional Moments
@@ -550,23 +452,17 @@ For $s < t$, the increment $r_t - r_s$ depends on $r_s$.
 From the solution form:
 
 $$
-
 r_t = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)}) + \sigma e^{-a(t-s)}\int_s^t e^{a u}\,dW_u
-
 $$
 
 Therefore:
 
 $$
-
 \mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})
-
 $$
 
 $$
-
 \text{Var}(r_t | r_s) = \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})
-
 $$
 
 ### 7. Covariance Function
@@ -575,33 +471,25 @@ $$
 For $s < t$:
 
 $$
-
 \text{Cov}(r_s, r_t) = \text{Var}(r_s) \cdot e^{-a(t-s)}
-
 $$
 
 **Proof:** Use tower property:
 
 $$
-
 \text{Cov}(r_s, r_t) = \mathbb{E}[r_s r_t] - \mathbb{E}[r_s]\mathbb{E}[r_t]
-
 $$
 
 After algebra (using $\mathbb{E}[r_t | r_s] = \alpha + \beta r_s$):
 
 $$
-
 \text{Cov}(r_s, r_t) = \frac{\sigma^2}{2a}(1 - e^{-2as}) \cdot e^{-a(t-s)}
-
 $$
 
 **Correlation:**
 
 $$
-
 \rho(s, t) = e^{-a|t-s|}
-
 $$
 
 This is an **exponentially decaying autocorrelation**, characteristic of OU processes.
@@ -617,9 +505,7 @@ This is an **exponentially decaying autocorrelation**, characteristic of OU proc
 The CIR model is defined by:
 
 $$
-
 dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t, \quad r_0 > 0
-
 $$
 
 where:
@@ -634,27 +520,21 @@ where:
 Let $m(t) = \mathbb{E}[r_t]$. Taking expectations of both sides:
 
 $$
-
 \mathbb{E}[dr_t] = a(b - \mathbb{E}[r_t])\,dt + \sigma \mathbb{E}[\sqrt{r_t}]\,dW_t
-
 $$
 
 The stochastic integral has zero expectation, giving:
 
 $$
-
 \frac{dm}{dt} = a(b - m(t))
-
 $$
 
 This is a linear ODE with solution:
 
 $$
-
 \boxed{
 \mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
 }
-
 $$
 
 **Note:** Same as Vasicek! The state-dependent volatility doesn't affect the mean.
@@ -667,36 +547,28 @@ To find variance, we need $\mathbb{E}[r_t^2]$.
 **Apply Itô's lemma** to $f(r) = r^2$:
 
 $$
-
 f'(r) = 2r, \quad f''(r) = 2
-
 $$
 
 $$
-
 \begin{align}
 d(r_t^2) &= 2r_t\,dr_t + \frac{1}{2} \cdot 2 \cdot (dr_t)^2 \\
 &= 2r_t[a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t] + \sigma^2 r_t\,dt \\
 &= [2ab r_t - 2ar_t^2 + \sigma^2 r_t]\,dt + 2\sigma r_t^{3/2}\,dW_t \\
 &= [(2ab + \sigma^2)r_t - 2ar_t^2]\,dt + 2\sigma r_t^{3/2}\,dW_t
 \end{align}
-
 $$
 
 **Take expectation:**
 
 $$
-
 \frac{d}{dt}\mathbb{E}[r_t^2] = (2ab + \sigma^2)\mathbb{E}[r_t] - 2a\mathbb{E}[r_t^2]
-
 $$
 
 Let $m_2(t) = \mathbb{E}[r_t^2]$ and $m(t) = \mathbb{E}[r_t]$. This is a **linear first-order ODE**:
 
 $$
-
 \frac{dm_2}{dt} + 2am_2 = (2ab + \sigma^2)m(t)
-
 $$
 
 ### 4. Solving the Second Moment ODE
@@ -707,79 +579,61 @@ $$
 Multiply both sides:
 
 $$
-
 e^{2at}\frac{dm_2}{dt} + 2ae^{2at}m_2 = (2ab + \sigma^2)e^{2at}m(t)
-
 $$
 
 $$
-
 \frac{d}{dt}[e^{2at}m_2] = (2ab + \sigma^2)e^{2at}m(t)
-
 $$
 
 Integrate from $0$ to $t$:
 
 $$
-
 e^{2at}m_2(t) - m_2(0) = (2ab + \sigma^2)\int_0^t e^{2as}m(s)\,ds
-
 $$
 
 Substitute $m(s) = r_0 e^{-as} + b(1 - e^{-as})$:
 
 $$
-
 \begin{align}
 \int_0^t e^{2as}m(s)\,ds &= \int_0^t e^{2as}[r_0 e^{-as} + b(1 - e^{-as})]\,ds \\
 &= r_0 \int_0^t e^{as}\,ds + b\int_0^t [e^{2as} - e^{as}]\,ds \\
 &= r_0 \frac{e^{at} - 1}{a} + b\left[\frac{e^{2at} - 1}{2a} - \frac{e^{at} - 1}{a}\right]
 \end{align}
-
 $$
 
 After substitution and simplification:
 
 $$
-
 m_2(t) = r_0^2 e^{-2at} + \frac{\sigma^2}{a}r_0 e^{-at}(1 - e^{-at}) + b^2(1 - e^{-at})^2 + \frac{\sigma^2 b}{2a}(1 - e^{-at})^2
-
 $$
 
 ### 5. Variance Formula
 
 
 $$
-
 \text{Var}(r_t) = m_2(t) - m(t)^2
-
 $$
 
 After considerable algebra:
 
 $$
-
 \boxed{
 \text{Var}(r_t) = \frac{\sigma^2}{a}\left[r_0 e^{-at}(1 - e^{-at}) + \frac{b}{2}(1 - e^{-at})^2\right]
 }
-
 $$
 
 **Alternative form:**
 
 $$
-
 \text{Var}(r_t) = r_0\frac{\sigma^2}{a}(e^{-at} - e^{-2at}) + \frac{b\sigma^2}{2a}(1 - e^{-at})^2
-
 $$
 
 ### 6. Long-Term Variance
 
 
 $$
-
 \lim_{t \to \infty} \text{Var}(r_t) = \frac{b\sigma^2}{2a}
-
 $$
 
 **Stationary distribution:** $r_\infty$ follows a scaled non-central chi-squared distribution with mean $b$ and variance $\frac{b\sigma^2}{2a}$.
@@ -790,15 +644,11 @@ $$
 For $s < t$:
 
 $$
-
 \mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})
-
 $$
 
 $$
-
 \text{Var}(r_t | r_s) = r_s \frac{\sigma^2}{a}(e^{-a(t-s)} - e^{-2a(t-s)}) + \frac{b\sigma^2}{2a}(1 - e^{-a(t-s)})^2
-
 $$
 
 ---
@@ -810,9 +660,7 @@ $$
 
 
 $$
-
 dX_t = -\gamma X_t\,dt + \sigma\,dW_t, \quad X_0 = x
-
 $$
 
 This is a **centered** version of Vasicek with $b = 0$.
@@ -821,15 +669,11 @@ This is a **centered** version of Vasicek with $b = 0$.
 
 
 $$
-
 \mathbb{E}[X_t] = x e^{-\gamma t}
-
 $$
 
 $$
-
 \text{Var}(X_t) = \frac{\sigma^2}{2\gamma}(1 - e^{-2\gamma t})
-
 $$
 
 ### 3. Stationary Distribution
@@ -838,9 +682,7 @@ $$
 For $t \to \infty$ starting from the stationary distribution:
 
 $$
-
 X_t \sim \mathcal{N}\left(0, \frac{\sigma^2}{2\gamma}\right)
-
 $$
 
 ---
@@ -861,9 +703,7 @@ If an **explicit solution** exists, compute moments directly using properties of
 To find $\mathbb{E}[X_t^n]$, apply Itô's lemma to $f(x) = x^n$:
 
 $$
-
 d(X_t^n) = nx^{n-1}\,dX_t + \frac{n(n-1)}{2}X_t^{n-2}(dX_t)^2
-
 $$
 
 Take expectations to get an ODE for $m_n(t) = \mathbb{E}[X_t^n]$.
@@ -876,25 +716,19 @@ Take expectations to get an ODE for $m_n(t) = \mathbb{E}[X_t^n]$.
 For SDE $dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t$, the generator is:
 
 $$
-
 \mathcal{L} = b(x)\frac{\partial}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2}{\partial x^2}
-
 $$
 
 Then:
 
 $$
-
 \frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}[\mathcal{L}f(X_t)]
-
 $$
 
 For $f(x) = x^n$:
 
 $$
-
 \frac{dm_n}{dt} = \mathbb{E}[b(X_t) \cdot nx^{n-1}] + \mathbb{E}[\frac{\sigma^2(X_t)}{2} \cdot n(n-1)x^{n-2}]
-
 $$
 
 This gives a **hierarchy of moment ODEs**.
@@ -905,17 +739,13 @@ This gives a **hierarchy of moment ODEs**.
 The **characteristic function** is:
 
 $$
-
 \phi(u, t) = \mathbb{E}[e^{iuX_t}]
-
 $$
 
 Moments can be recovered via:
 
 $$
-
 \mathbb{E}[X_t^n] = \frac{1}{i^n}\frac{\partial^n \phi}{\partial u^n}\Big|_{u=0}
-
 $$
 
 For affine processes (Vasicek, CIR, Heston), $\phi$ satisfies a Riccati ODE.
@@ -1068,9 +898,7 @@ Match theoretical moments to market-implied moments (e.g., from option prices).
 **Example for OU process:**
 
 $$
-
 \hat{\gamma} = -\frac{1}{\Delta t}\log\left(\frac{\text{Cov}(X_{t+\Delta t}, X_t)}{\text{Var}(X_t)}\right)
-
 $$
 
 ---

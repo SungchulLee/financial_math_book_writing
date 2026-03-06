@@ -16,12 +16,10 @@ Before simulating continuous SDEs, we build intuition through a **discrete rando
 **Setup:** Divide time interval $[0, T]$ into $n$ equal steps of size $\Delta t = T/n$.
 
 $$
-
 \begin{array}{ccccccccccc}
 S_0 && S_1 && S_2 && \cdots && S_n \\
 t_0 & < & t_1 & < & t_2 & < & \cdots & < & t_n
 \end{array}
-
 $$
 
 ### 2. Discretizing GBM
@@ -30,21 +28,17 @@ $$
 For the geometric Brownian motion SDE:
 
 $$
-
 \frac{dS}{S} = \mu\,dt + \sigma\,dB_t
-
 $$
 
 we discretize at times $t_0 < t_1 < t_2 < \cdots < t_n < t_{n+1}$:
 
 $$
-
 \begin{array}{ccccccccccccc}
 \frac{dS}{S} & = & \mu & dt & + & \sigma & dB_t \\
 \downarrow && \downarrow & \downarrow && \downarrow & \downarrow \\
 \frac{S_{n+1} - S_n}{S_n} && \mu & \Delta t && \sigma & \Delta B_n
 \end{array}
-
 $$
 
 where $\Delta B_n = B_{t_{n+1}} - B_{t_n} \sim \mathcal{N}(0, \Delta t)$.
@@ -59,19 +53,16 @@ where $\Delta B_n = B_{t_{n+1}} - B_{t_n} \sim \mathcal{N}(0, \Delta t)$.
 **Updating rule:**
 
 $$
-
 \begin{array}{ccccccccccccc}
 \frac{dS}{S} & = & \mu & dt & + & \sigma & dB_t \\
 \uparrow && \uparrow & \uparrow && \uparrow & \uparrow \\
 \frac{S_{n+1} - S_n}{S_n} && 0.10 & \frac{1}{10} && 0.30 & \pm\sqrt{\frac{1}{10}}
 \end{array}
-
 $$
 
 **Simulation table:**
 
 $$
-
 \begin{array}{lrrrrrrrrrrrrrr}
 \text{Time} & 0/10 & 1/10 & 2/10 & 3/10 \\
 \text{Coin flip} & - & H & H & T \\
@@ -106,7 +97,6 @@ dB_t = B_t - B_{t-dt} && \frac{1}{\sqrt{10}} & \frac{1}{\sqrt{10}} & \frac{-1}{\
 S_{t-dt} \cdot (\mu \cdot dt + \sigma \cdot dB_t) && 11.9767 & 13.2327 & -11.8320 \\
 S_t = S_{t-dt} + S_{t-dt} \cdot (\mu \cdot dt + \sigma \cdot dB_t) && 126.1837 & 139.4164 & 127.5844
 \end{array}
-
 $$
 
 **Result:** Starting from $S_0 = 100$, we end at $S_T \approx 127.58$ after 10 coin flips.
@@ -133,25 +123,19 @@ This limiting process is the foundation of **Euler-Maruyama discretization**.
 For a general SDE:
 
 $$
-
 dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \quad X_0 = x
-
 $$
 
 Integrate from $t_n$ to $t_{n+1}$:
 
 $$
-
 X_{t_{n+1}} = X_{t_n} + \int_{t_n}^{t_{n+1}} b(s, X_s)\,ds + \int_{t_n}^{t_{n+1}} \sigma(s, X_s)\,dW_s
-
 $$
 
 **Euler approximation:** Replace $X_s$ with $X_{t_n}$ (constant on $[t_n, t_{n+1}]$):
 
 $$
-
 X_{t_{n+1}} \approx X_{t_n} + b(t_n, X_{t_n})\Delta t + \sigma(t_n, X_{t_n})\Delta W_n
-
 $$
 
 where $\Delta t = t_{n+1} - t_n$ and $\Delta W_n = W_{t_{n+1}} - W_{t_n} \sim \mathcal{N}(0, \Delta t)$.
@@ -159,11 +143,9 @@ where $\Delta t = t_{n+1} - t_n$ and $\Delta W_n = W_{t_{n+1}} - W_{t_n} \sim \m
 **Euler-Maruyama scheme:**
 
 $$
-
 \boxed{
 X_{n+1} = X_n + b(t_n, X_n)\Delta t + \sigma(t_n, X_n)\Delta W_n
 }
-
 $$
 
 ### 2. Implementation
@@ -302,9 +284,7 @@ plt.show()
 **Definition:** A numerical scheme has **strong convergence of order $\gamma$** if:
 
 $$
-
 \mathbb{E}[|X_T - X_T^{\Delta t}|] = O(\Delta t^\gamma)
-
 $$
 
 where $X_T$ is the true solution and $X_T^{\Delta t}$ is the numerical approximation.
@@ -312,9 +292,7 @@ where $X_T$ is the true solution and $X_T^{\Delta t}$ is the numerical approxima
 **Theorem:** Under Lipschitz and growth conditions on $b$ and $\sigma$, the Euler-Maruyama scheme has **strong order $\gamma = 0.5$**:
 
 $$
-
 \mathbb{E}[|X_T - X_T^{\Delta t}|] \leq C\sqrt{\Delta t}
-
 $$
 
 **Interpretation:** To reduce error by factor of 10, we need $\Delta t \to \Delta t / 100$ (100× more steps).
@@ -325,17 +303,13 @@ $$
 **Definition:** A scheme has **weak convergence of order $\beta$** if for all sufficiently smooth functions $g$:
 
 $$
-
 |\mathbb{E}[g(X_T)] - \mathbb{E}[g(X_T^{\Delta t})]| = O(\Delta t^\beta)
-
 $$
 
 **Theorem:** Euler-Maruyama has **weak order $\beta = 1.0$**:
 
 $$
-
 |\mathbb{E}[g(X_T)] - \mathbb{E}[g(X_T^{\Delta t})]| \leq C\Delta t
-
 $$
 
 **Practical implication:** For computing expectations (e.g., option prices), Euler-Maruyama converges faster than for pathwise accuracy.
@@ -408,32 +382,26 @@ Euler-Maruyama has strong order 0.5. Can we do better?
 For $Y_t = X_{t+\Delta t}$, expand using Itô's lemma:
 
 $$
-
 \begin{align}
 dX_t &= b(X_t)\,dt + \sigma(X_t)\,dW_t \\
 d\sigma(X_t) &= \sigma'(X_t)\,dX_t + \frac{1}{2}\sigma''(X_t)(dX_t)^2 \\
 &= \sigma'(X_t)[b(X_t)\,dt + \sigma(X_t)\,dW_t] + \frac{1}{2}\sigma''(X_t)\sigma^2(X_t)\,dt
 \end{align}
-
 $$
 
 Keeping terms up to order $\Delta t$:
 
 $$
-
 X_{t+\Delta t} = X_t + b(X_t)\Delta t + \sigma(X_t)\Delta W + \frac{1}{2}\sigma(X_t)\sigma'(X_t)[(\Delta W)^2 - \Delta t]
-
 $$
 
 ### 3. Milstein Scheme
 
 
 $$
-
 \boxed{
 X_{n+1} = X_n + b(X_n)\Delta t + \sigma(X_n)\Delta W_n + \frac{1}{2}\sigma(X_n)\sigma'(X_n)[(\Delta W_n)^2 - \Delta t]
 }
-
 $$
 
 **Key term:** $(\Delta W_n)^2 - \Delta t$ captures the **quadratic variation** correction.
@@ -544,9 +512,7 @@ plt.show()
 For GBM, we have the **exact solution**:
 
 $$
-
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-
 $$
 
 **Exact simulation:** Generate $W_t$ directly and compute $S_t$.
@@ -575,9 +541,7 @@ def exact_GBM(S0, mu, sigma, T, N, num_paths):
 The OU process also has an exact solution:
 
 $$
-
 X_t = X_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma \int_0^t e^{-\kappa(t-s)}\,dW_s
-
 $$
 
 The stochastic integral is Gaussian with known mean and variance.
@@ -585,9 +549,7 @@ The stochastic integral is Gaussian with known mean and variance.
 **Exact simulation (conditional distribution):**
 
 $$
-
 X_{t+\Delta t} | X_t \sim \mathcal{N}\left(X_t e^{-\kappa\Delta t} + \theta(1 - e^{-\kappa\Delta t}), \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)
-
 $$
 
 ```python
@@ -656,13 +618,11 @@ Higher-order schemes based on Runge-Kutta ideas.
 **Example (Order 1.5 strong scheme):**
 
 $$
-
 \begin{align}
 K_1 &= b(X_n)\Delta t + \sigma(X_n)\Delta W_n \\
 \bar{X} &= X_n + K_1 \\
 X_{n+1} &= X_n + \frac{1}{2}[b(X_n) + b(\bar{X})]\Delta t + \sigma(X_n)\Delta W_n
 \end{align}
-
 $$
 
 ### 2. Predictor-Corrector Methods
@@ -706,9 +666,7 @@ def predictor_corrector(b, sigma, X0, T, N, num_paths=1):
 For $X_t = (X_t^1, \ldots, X_t^d)$ driven by $W_t = (W_t^1, \ldots, W_t^m)$:
 
 $$
-
 dX_t^i = b^i(t, X_t)\,dt + \sum_{j=1}^m \sigma^{ij}(t, X_t)\,dW_t^j
-
 $$
 
 ### 2. Correlated Brownian Motions
@@ -767,12 +725,10 @@ def correlated_BM(rho, T, N, num_paths):
 
 
 $$
-
 \begin{cases}
 dS_t = \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^1 \\
 dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^2
 \end{cases}
-
 $$
 
 with $d\langle W^1, W^2 \rangle_t = \rho\,dt$.
@@ -823,9 +779,7 @@ def heston_euler(S0, V0, mu, kappa, theta, xi, rho, T, N, num_paths):
 **Total error = Discretization error + Monte Carlo error**
 
 $$
-
 \text{Error} \approx C_1 \Delta t^\gamma + \frac{C_2}{\sqrt{M}}
-
 $$
 
 where:
@@ -840,9 +794,7 @@ To minimize computational cost for fixed error $\varepsilon$:
 **Balance the errors:**
 
 $$
-
 \Delta t^\gamma \approx \frac{1}{\sqrt{M}}
-
 $$
 
 **Optimal:** $\Delta t \sim \varepsilon^{2/(2\gamma+1)}$, $M \sim \varepsilon^{-4\gamma/(2\gamma+1)}$

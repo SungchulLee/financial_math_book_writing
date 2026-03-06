@@ -11,9 +11,7 @@ One of the most visible failures of the Black–Scholes model is the presence of
 Given a market price $C^{\text{mkt}}(K, T)$ for a European call option, the **implied volatility** $\sigma_{\text{impl}}(K, T)$ is defined as the unique value solving:
 
 $$
-
-C^{\text{BS}}(S_0, K, T, r, q, \sigma_{\text{impl}}) = C^{\text{mkt}}(K, T).
-
+C^{\text{BS}}(S_0, K, T, r, q, \sigma_{\text{impl}}) = C^{\text{mkt}}(K, T)
 $$
 
 If the Black–Scholes model were correct, $\sigma_{\text{impl}}(K, T) = \sigma$ would be constant. Instead, market data reveal a two-dimensional surface with systematic patterns.
@@ -34,9 +32,7 @@ Rather than strike $K$, practitioners often use:
 For equity indices (S&P 500, Euro Stoxx 50), the dominant feature is **negative skew**:
 
 $$
-
-\sigma_{\text{impl}}(K_1) > \sigma_{\text{impl}}(K_2) \quad \text{for } K_1 < K_2.
-
+\sigma_{\text{impl}}(K_1) > \sigma_{\text{impl}}(K_2) \quad \text{for } K_1 < K_2
 $$
 
 **Typical characteristics:**
@@ -65,9 +61,7 @@ Individual equities exhibit more varied patterns:
 Currency options typically show a more symmetric **smile** (not skew):
 
 $$
-
-\sigma_{\text{impl}}(K) \approx \sigma_{\text{ATM}} + a(K - K_{\text{ATM}})^2.
-
+\sigma_{\text{impl}}(K) \approx \sigma_{\text{ATM}} + a(K - K_{\text{ATM}})^2
 $$
 
 Both OTM puts and OTM calls have elevated implied volatility, reflecting tail risk in both directions.
@@ -86,9 +80,7 @@ Commodities exhibit varied patterns depending on:
 Implied volatility varies systematically with maturity:
 
 $$
-
-\sigma_{\text{impl}}(T_1) \neq \sigma_{\text{impl}}(T_2) \quad \text{for } T_1 \neq T_2.
-
+\sigma_{\text{impl}}(T_1) \neq \sigma_{\text{impl}}(T_2) \quad \text{for } T_1 \neq T_2
 $$
 
 ### Common Term Structure Shapes
@@ -114,18 +106,14 @@ For ATM options, empirical regularities include:
 **Variance additivity (approximately):**
 
 $$
-
 \sigma_{\text{impl}}^2(T) \cdot T \approx \int_0^T \mathbb{E}^{\mathbb{Q}}[V_s]\,ds
-
 $$
 
 **Mean reversion signature:**
 Under a mean-reverting volatility process with speed $\kappa$ and long-run level $\bar{\sigma}$:
 
 $$
-
 \sigma_{\text{impl}}^2(T) \approx V_0 \cdot \frac{1 - e^{-\kappa T}}{\kappa T} + \bar{\sigma}^2 \cdot \left(1 - \frac{1 - e^{-\kappa T}}{\kappa T}\right)
-
 $$
 
 This interpolates between $V_0$ (short term) and $\bar{\sigma}^2$ (long term).
@@ -141,17 +129,13 @@ The smile and term structure interact in important ways:
 Short-maturity smiles are typically steeper than long-maturity smiles:
 
 $$
-
 \left|\frac{\partial \sigma_{\text{impl}}}{\partial k}\right|_{T=0.1} > \left|\frac{\partial \sigma_{\text{impl}}}{\partial k}\right|_{T=1.0}
-
 $$
 
 **Scaling relationship:** Under diffusion models, the skew scales approximately as:
 
 $$
-
 \text{Skew}(T) \propto \frac{1}{\sqrt{T}}
-
 $$
 
 ### Smile Dynamics
@@ -179,9 +163,7 @@ The implied volatility surface encodes market beliefs and risk premia:
 The Breeden–Litzenberger formula (Chapter 7) recovers the risk-neutral density:
 
 $$
-
-f^{\mathbb{Q}}(S_T = K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}.
-
+f^{\mathbb{Q}}(S_T = K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}
 $$
 
 A non-flat smile implies a non-Gaussian risk-neutral density:
@@ -193,9 +175,7 @@ A non-flat smile implies a non-Gaussian risk-neutral density:
 The gap between implied and realized variance:
 
 $$
-
 VRP = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]
-
 $$
 
 is typically positive for equity indices (investors pay a premium for volatility protection). The term structure of VRP reveals:

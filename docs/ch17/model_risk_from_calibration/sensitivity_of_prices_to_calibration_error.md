@@ -11,17 +11,13 @@ Calibration error translates directly into **model risk**: even small mis-estima
 Let $\hat{\theta}$ be the calibrated parameter vector and $\theta^{\star}$ the (unknown) true parameter. For a derivative price $P(\theta)$, a Taylor expansion gives:
 
 $$
-
-P(\theta^{\star}) - P(\hat{\theta}) \approx \nabla_\theta P(\hat{\theta})^\top (\theta^{\star} - \hat{\theta}).
-
+P(\theta^{\star}) - P(\hat{\theta}) \approx \nabla_\theta P(\hat{\theta})^\top (\theta^{\star} - \hat{\theta})
 $$
 
 Rearranging:
 
 $$
-
-\Delta P := P(\hat{\theta}) - P(\theta^{\star}) \approx -\nabla_\theta P(\hat{\theta})^\top \Delta\theta,
-
+\Delta P := P(\hat{\theta}) - P(\theta^{\star}) \approx -\nabla_\theta P(\hat{\theta})^\top \Delta\theta
 $$
 
 where $\Delta\theta = \hat{\theta} - \theta^{\star}$ is the parameter estimation error.
@@ -44,9 +40,7 @@ For derivatives with significant curvature in parameter space, first-order appro
 ### Taylor expansion to second order
 
 $$
-
-\Delta P \approx \nabla_\theta P^\top \Delta\theta + \frac{1}{2} \Delta\theta^\top H_P \Delta\theta,
-
+\Delta P \approx \nabla_\theta P^\top \Delta\theta + \frac{1}{2} \Delta\theta^\top H_P \Delta\theta
 $$
 
 where $H_P = \nabla_\theta^2 P$ is the Hessian of the price with respect to parameters.
@@ -75,9 +69,7 @@ If $H_P$ is negative definite, the opposite holds.
 Model parameter uncertainty as:
 
 $$
-
-\theta \sim \mathcal{N}(\hat{\theta}, \Sigma_\theta),
-
+\theta \sim \mathcal{N}(\hat{\theta}, \Sigma_\theta)
 $$
 
 where $\Sigma_\theta$ is the parameter covariance matrix (e.g., from Hessian of calibration objective, bootstrap, or Bayesian posterior).
@@ -87,33 +79,25 @@ where $\Sigma_\theta$ is the parameter covariance matrix (e.g., from Hessian of 
 Under first-order approximation:
 
 $$
-
-P(\theta) \approx P(\hat{\theta}) + \nabla_\theta P^\top (\theta - \hat{\theta}).
-
+P(\theta) \approx P(\hat{\theta}) + \nabla_\theta P^\top (\theta - \hat{\theta})
 $$
 
 Then:
 
 $$
-
-P \sim \mathcal{N}(P(\hat{\theta}), \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P).
-
+P \sim \mathcal{N}(P(\hat{\theta}), \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P)
 $$
 
 **Price variance:**
 
 $$
-
-\text{Var}(P) \approx \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P.
-
+\text{Var}(P) \approx \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P
 $$
 
 **Price standard deviation (model risk):**
 
 $$
-
-\sigma_P = \sqrt{\nabla_\theta P^\top \Sigma_\theta \nabla_\theta P}.
-
+\sigma_P = \sqrt{\nabla_\theta P^\top \Sigma_\theta \nabla_\theta P}
 $$
 
 ### Monte Carlo propagation
@@ -135,25 +119,19 @@ This captures higher-order effects and non-Gaussian tails.
 Decompose price variance by parameter:
 
 $$
-
-\text{Var}(P) = \sum_{i,j} \frac{\partial P}{\partial \theta_i} \frac{\partial P}{\partial \theta_j} \Sigma_{\theta,ij}.
-
+\text{Var}(P) = \sum_{i,j} \frac{\partial P}{\partial \theta_i} \frac{\partial P}{\partial \theta_j} \Sigma_{\theta,ij}
 $$
 
 If parameters are approximately independent ($\Sigma_\theta$ diagonal):
 
 $$
-
-\text{Var}(P) \approx \sum_i \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma_{\theta_i}^2.
-
+\text{Var}(P) \approx \sum_i \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma_{\theta_i}^2
 $$
 
 The contribution of parameter $i$ is:
 
 $$
-
-\text{Contribution}_i = \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma_{\theta_i}^2.
-
+\text{Contribution}_i = \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma_{\theta_i}^2
 $$
 
 ### Typical patterns in option models
@@ -211,9 +189,7 @@ A $5\%$ error in $\rho$ can translate to $>10\%$ error in barrier price, far exc
 Define the $\alpha$-level parameter Value-at-Risk:
 
 $$
-
-\text{VaR}_\alpha^{\text{param}} = \sup_{\theta \in C_\alpha} |P(\theta) - P(\hat{\theta})|,
-
+\text{VaR}_\alpha^{\text{param}} = \sup_{\theta \in C_\alpha} |P(\theta) - P(\hat{\theta})|
 $$
 
 where $C_\alpha$ is the $(1-\alpha)$ confidence region for $\theta$.
@@ -221,9 +197,7 @@ where $C_\alpha$ is the $(1-\alpha)$ confidence region for $\theta$.
 For Gaussian $\theta$ and linear $P$:
 
 $$
-
-\text{VaR}_\alpha^{\text{param}} = z_\alpha \cdot \sigma_P,
-
+\text{VaR}_\alpha^{\text{param}} = z_\alpha \cdot \sigma_P
 $$
 
 where $z_\alpha$ is the standard normal quantile.
@@ -233,9 +207,7 @@ where $z_\alpha$ is the standard normal quantile.
 Report prices as intervals:
 
 $$
-
-P \in [P(\hat{\theta}) - \text{VaR}_\alpha^{\text{param}}, \, P(\hat{\theta}) + \text{VaR}_\alpha^{\text{param}}].
-
+P \in [P(\hat{\theta}) - \text{VaR}_\alpha^{\text{param}}, \, P(\hat{\theta}) + \text{VaR}_\alpha^{\text{param}}]
 $$
 
 For asymmetric or nonlinear cases, use Monte Carlo quantiles.
@@ -245,9 +217,7 @@ For asymmetric or nonlinear cases, use Monte Carlo quantiles.
 Banks often hold reserves for model risk:
 
 $$
-
-\text{Model Reserve} = \lambda \cdot \text{VaR}_\alpha^{\text{param}},
-
+\text{Model Reserve} = \lambda \cdot \text{VaR}_\alpha^{\text{param}}
 $$
 
 where $\lambda \ge 1$ is a safety factor.
@@ -294,17 +264,13 @@ Price the same product under different models (Heston, SABR, local vol). The ran
 Suppose we calibrate Heston to SPX options and obtain:
 
 $$
-
-\hat{\theta} = (v_0, \kappa, \bar{v}, \sigma_v, \rho) = (0.04, 2.0, 0.04, 0.5, -0.7).
-
+\hat{\theta} = (v_0, \kappa, \bar{v}, \sigma_v, \rho) = (0.04, 2.0, 0.04, 0.5, -0.7)
 $$
 
 Bootstrap analysis yields approximate standard errors:
 
 $$
-
-\sigma_\theta = (0.002, 0.3, 0.005, 0.05, 0.05).
-
+\sigma_\theta = (0.002, 0.3, 0.005, 0.05, 0.05)
 $$
 
 ### Vanilla option
@@ -312,17 +278,13 @@ $$
 For an ATM 3-month call, sensitivities are approximately:
 
 $$
-
-\nabla_\theta P \approx (0.5, 0.01, 0.1, 0.02, 0.05).
-
+\nabla_\theta P \approx (0.5, 0.01, 0.1, 0.02, 0.05)
 $$
 
 Price standard deviation:
 
 $$
-
-\sigma_P \approx \sqrt{(0.5)^2(0.002)^2 + (0.01)^2(0.3)^2 + \cdots} \approx 0.001.
-
+\sigma_P \approx \sqrt{(0.5)^2(0.002)^2 + (0.01)^2(0.3)^2 + \cdots} \approx 0.001
 $$
 
 This is small relative to the option price (~$5$), so model risk is modest.
@@ -332,17 +294,13 @@ This is small relative to the option price (~$5$), so model risk is modest.
 For a down-and-out call (barrier 10% below spot), sensitivities are larger:
 
 $$
-
-\nabla_\theta P \approx (2.0, 0.05, 0.3, 0.2, 0.8).
-
+\nabla_\theta P \approx (2.0, 0.05, 0.3, 0.2, 0.8)
 $$
 
 Price standard deviation:
 
 $$
-
-\sigma_P \approx 0.05,
-
+\sigma_P \approx 0.05
 $$
 
 which may be $5$–$10\%$ of the option value—significant model risk.

@@ -26,11 +26,9 @@ Jump-diffusion models augment the continuous diffusion of Black-Scholes with **d
 ### Dynamics
 
 $$
-
 \boxed{
 \frac{dS_t}{S_{t^-}} = (r - \lambda\kappa)\,dt + \sigma\,dW_t + dJ_t
 }
-
 $$
 
 where:
@@ -44,9 +42,7 @@ where:
 Jumps arrive at Poisson times with intensity $\lambda$. At each jump:
 
 $$
-
 S_t = S_{t^-} \cdot Y
-
 $$
 
 where $Y$ is the random jump multiplier.
@@ -60,9 +56,7 @@ Then: $\kappa = \mathbb{E}[Y - 1] = e^{\mu_J + \sigma_J^2/2} - 1$
 The term $-\lambda\kappa$ ensures the discounted price is a martingale:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt
-
 $$
 
 ---
@@ -74,11 +68,9 @@ $$
 The option price $V(t, S)$ satisfies:
 
 $$
-
 \boxed{
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + (r - \lambda\kappa)S\frac{\partial V}{\partial S} - rV + \lambda\int_0^\infty [V(t, Sy) - V(t, S)]\nu(dy) = 0
 }
-
 $$
 
 where $\nu(dy)$ is the jump size distribution (for Merton: log-normal).
@@ -86,9 +78,7 @@ where $\nu(dy)$ is the jump size distribution (for Merton: log-normal).
 ### The Integral Term
 
 $$
-
 \lambda\int_0^\infty [V(t, Sy) - V(t, S)]\nu(dy)
-
 $$
 
 represents the expected change in option value due to jumps.
@@ -111,11 +101,9 @@ represents the expected change in option value due to jumps.
 For European options, Merton derived a semi-analytical formula:
 
 $$
-
 \boxed{
 C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)
 }
-
 $$
 
 where:
@@ -138,9 +126,7 @@ Log-normal jumps in Merton don't produce enough skew. Asymmetric jumps work bett
 ### Jump Distribution
 
 $$
-
 f_Y(y) = p \cdot \eta_1 e^{-\eta_1 y}\mathbf{1}_{y>0} + (1-p) \cdot \eta_2 e^{\eta_2 y}\mathbf{1}_{y<0}
-
 $$
 
 - $p$: Probability of upward jump
@@ -205,9 +191,7 @@ The jump intensity $\lambda$ and distribution $\nu$ under $\mathbb{Q}$ are not u
 The characteristic function for Merton is known:
 
 $$
-
 \phi(u) = \exp\left[iuX_0 + (iu\omega - \frac{1}{2}u^2\sigma^2 + \lambda(\phi_Y(u) - 1))T\right]
-
 $$
 
 where $\phi_Y$ is the characteristic function of $\log Y$.
@@ -219,9 +203,7 @@ where $\phi_Y$ is the characteristic function of $\log Y$.
 Discretize the integral term:
 
 $$
-
 \int V(Sy)\nu(dy) \approx \sum_k w_k V(Sy_k)
-
 $$
 
 Use implicit schemes for the differential part, explicit for the integral.
@@ -253,9 +235,7 @@ for i in range(N):
 Jumps reduce delta near the money (smile effect):
 
 $$
-
 \Delta_{\text{Merton}} < \Delta_{\text{BS}} \quad \text{(for ATM calls)}
-
 $$
 
 ### Gamma
@@ -267,9 +247,7 @@ Concentrated near barriers and strikes due to jump risk.
 Decomposes into diffusion vega and jump vega:
 
 $$
-
 \mathcal{V}_{\text{total}} = \mathcal{V}_{\sigma} + \mathcal{V}_{\lambda} + \mathcal{V}_{\mu_J} + \mathcal{V}_{\sigma_J}
-
 $$
 
 ---
@@ -281,12 +259,10 @@ $$
 Combine Heston with Merton:
 
 $$
-
 \begin{aligned}
 dS_t &= (r - \lambda\kappa)S_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} + S_t\,dJ_t \\
 dv_t &= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 \end{aligned}
-
 $$
 
 ### Jumps in Volatility
@@ -302,11 +278,9 @@ Generalize to infinite-activity jump processes (Variance Gamma, CGMY, NIG).
 ## Summary
 
 $$
-
 \boxed{
 \frac{dS_t}{S_{t^-}} = (r - \lambda\kappa)\,dt + \sigma\,dW_t + dJ_t
 }
-
 $$
 
 | Feature | Description |
@@ -318,11 +292,9 @@ $$
 | **Hedging** | Incomplete—jump risk unhedgeable with stock alone |
 
 $$
-
 \boxed{
 C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)
 }
-
 $$
 
 **Jump-diffusion models capture sudden large moves and short-maturity smiles that pure diffusion models cannot, at the cost of market incompleteness and more complex pricing equations.**

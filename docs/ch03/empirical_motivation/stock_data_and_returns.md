@@ -38,9 +38,7 @@ Without proper adjustment, a 2-for-1 stock split would appear as a 50% price dro
 For a dividend $D$ paid at time $t$:
 
 $$
-
 P_{\text{adj}}^{\text{pre-div}} = P_{\text{unadj}}^{\text{pre-div}} \times \frac{P_{\text{adj}}^{\text{post-div}}}{P_{\text{unadj}}^{\text{post-div}} + D}
-
 $$
 
 This ensures that returns computed from adjusted prices are economically meaningful.
@@ -138,9 +136,7 @@ Transforming raw price data into return series is a critical intermediate step t
 **Definition:**
 
 $$
-
 r_t^{(D)} = \frac{S_t - S_{t-1}}{S_{t-1}} = \frac{S_t}{S_{t-1}} - 1
-
 $$
 
 **Properties:**
@@ -149,9 +145,7 @@ $$
 - **Portfolio aggregation:** Returns of portfolio components are linearly additive:
 
   $$
-
   r_P = \sum_{i=1}^n w_i r_i
-
   $$
 
 - **Time aggregation:** NOT time-additive across multiple periods
@@ -160,9 +154,7 @@ $$
 **Multi-period discrete return:**
 
 $$
-
 1 + r_{[t, t+n]} = \prod_{i=1}^n (1 + r_{t+i})
-
 $$
 
 ### 2. Continuous (Logarithmic) Return
@@ -171,9 +163,7 @@ $$
 **Definition:**
 
 $$
-
 r_t^{(C)} = \log\left(\frac{S_t}{S_{t-1}}\right) = \log S_t - \log S_{t-1}
-
 $$
 
 **Properties:**
@@ -181,9 +171,7 @@ $$
 - **Time additivity:** Log returns are additive across time:
 
   $$
-
   r_{[t, t+n]}^{(C)} = \sum_{i=1}^n r_{t+i}^{(C)}
-
   $$
 
 - **Symmetry:** $r^{(C)}(S_1 \to S_2) = -r^{(C)}(S_2 \to S_1)$
@@ -196,9 +184,7 @@ $$
 For small returns, the Taylor expansion gives:
 
 $$
-
 r^{(C)} = \log(1 + r^{(D)}) \approx r^{(D)} - \frac{(r^{(D)})^2}{2} + \frac{(r^{(D)})^3}{3} - \cdots
-
 $$
 
 For $|r^{(D)}| < 0.10$, the approximation $r^{(C)} \approx r^{(D)}$ is accurate to within 0.5%.
@@ -263,9 +249,7 @@ With return series in hand, we proceed to estimate their empirical moments—qua
 **First moment (sample mean):**
 
 $$
-
 \hat{\mu} = \frac{1}{T} \sum_{t=1}^{T} r_t
-
 $$
 
 This estimates the expected return $\mathbb{E}[r_t]$ under the assumption of stationarity.
@@ -273,9 +257,7 @@ This estimates the expected return $\mathbb{E}[r_t]$ under the assumption of sta
 **Second central moment (sample variance):**
 
 $$
-
 \hat{\sigma}^2 = \frac{1}{T - 1} \sum_{t=1}^{T} (r_t - \hat{\mu})^2
-
 $$
 
 The $(T-1)$ denominator provides an unbiased estimator (Bessel's correction).
@@ -283,9 +265,7 @@ The $(T-1)$ denominator provides an unbiased estimator (Bessel's correction).
 **Sample standard deviation (volatility):**
 
 $$
-
 \hat{\sigma} = \sqrt{\hat{\sigma}^2}
-
 $$
 
 **Higher moments:**
@@ -363,17 +343,13 @@ To enable alignment with decision-making horizons, daily estimates are converted
 For $n$ independent periods:
 
 $$
-
 \mathbb{E}[r_{[1,n]}] = n \cdot \mathbb{E}[r_1], \quad \text{Var}(r_{[1,n]}) = n \cdot \text{Var}(r_1)
-
 $$
 
 Therefore:
 
 $$
-
 \sigma_{[1,n]} = \sqrt{n} \cdot \sigma_1
-
 $$
 
 This is the famous **square-root-of-time rule**.
@@ -386,17 +362,13 @@ This is the famous **square-root-of-time rule**.
 **Annualized mean return:**
 
 $$
-
 \mu_{\text{ann}} = \mu_{\text{daily}} \times N = \mu_{\text{daily}} \times 252
-
 $$
 
 **Annualized volatility:**
 
 $$
-
 \sigma_{\text{ann}} = \sigma_{\text{daily}} \times \sqrt{N} = \sigma_{\text{daily}} \times \sqrt{252}
-
 $$
 
 **Note:** Some practitioners use $N = 250$ or $N = 365$ (calendar days). The choice depends on context and convention.

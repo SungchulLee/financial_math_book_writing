@@ -18,11 +18,9 @@ Black-Scholes with constant $\sigma$ produces a **flat** implied volatility surf
 Allow $\sigma$ to depend on $(t, S)$:
 
 $$
-
 \boxed{
 dS_t = rS_t\,dt + \sigma_{\text{loc}}(t, S_t)S_t\,dW_t^{\mathbb{Q}}
 }
-
 $$
 
 With the right choice of $\sigma_{\text{loc}}$, any arbitrage-free implied volatility surface can be matched exactly.
@@ -34,11 +32,9 @@ With the right choice of $\sigma_{\text{loc}}$, any arbitrage-free implied volat
 Under local volatility, the option price $V(t, S)$ satisfies:
 
 $$
-
 \boxed{
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma_{\text{loc}}^2(t,S)S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
 }
-
 $$
 
 with terminal condition $V(T, S) = \Phi(S)$.
@@ -54,11 +50,9 @@ with terminal condition $V(T, S) = \Phi(S)$.
 The price of a European call $C(T, K)$ as a function of maturity $T$ and strike $K$ satisfies:
 
 $$
-
 \boxed{
 \frac{\partial C}{\partial T} = \frac{1}{2}\sigma_{\text{loc}}^2(T, K)K^2\frac{\partial^2 C}{\partial K^2} - rK\frac{\partial C}{\partial K}
 }
-
 $$
 
 ### Dupire's Inversion Formula
@@ -66,19 +60,15 @@ $$
 Given observed call prices $C(T, K)$, the local volatility is:
 
 $$
-
 \boxed{
 \sigma_{\text{loc}}^2(T, K) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C}{\partial K^2}}
 }
-
 $$
 
 Or equivalently, in terms of implied volatility $\sigma_{\text{imp}}(T, K)$:
 
 $$
-
 \sigma_{\text{loc}}^2(T, K) = \frac{\sigma_{\text{imp}}^2 + 2\sigma_{\text{imp}}T\left(\frac{\partial\sigma_{\text{imp}}}{\partial T} + rK\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)}{\left(1 + Kd_1\sqrt{T}\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)^2 + K^2T\sigma_{\text{imp}}\left(\frac{\partial^2\sigma_{\text{imp}}}{\partial K^2} - d_1\sqrt{T}\left(\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)^2\right)}
-
 $$
 
 ### Derivation Sketch
@@ -167,9 +157,7 @@ Solve the backward PDE with $\sigma_{\text{loc}}(t, S)$:
 Simulate paths with local volatility:
 
 $$
-
 S_{t+\Delta t} = S_t \exp\left[\left(r - \frac{\sigma_{\text{loc}}^2(t, S_t)}{2}\right)\Delta t + \sigma_{\text{loc}}(t, S_t)\sqrt{\Delta t}Z\right]
-
 $$
 
 **Note**: Use $\sigma_{\text{loc}}(t, S_t)$ evaluated at the current state.
@@ -191,9 +179,7 @@ Dupire's formula involves second derivatives of prices with respect to strike. S
 ### Typical Regularized Problem
 
 $$
-
 \min_{\sigma_{\text{loc}}} \sum_{i,j}(C^{\text{model}}_{ij} - C^{\text{market}}_{ij})^2 + \lambda \int |\nabla\sigma_{\text{loc}}|^2\,dT\,dK
-
 $$
 
 ---
@@ -205,9 +191,7 @@ $$
 A parametric local volatility model:
 
 $$
-
 \sigma_{\text{loc}}(S) = \sigma_0 S^{\beta - 1}
-
 $$
 
 - $\beta = 1$: Black-Scholes
@@ -217,9 +201,7 @@ $$
 ### Time-Dependent Parameters
 
 $$
-
 \sigma_{\text{loc}}(t, S) = \sigma(t) f(S)
-
 $$
 
 Separable form simplifies calibration.
@@ -229,11 +211,9 @@ Separable form simplifies calibration.
 ## Summary
 
 $$
-
 \boxed{
 dS_t = rS_t\,dt + \sigma_{\text{loc}}(t, S_t)S_t\,dW_t
 }
-
 $$
 
 | Aspect | Description |
@@ -244,11 +224,9 @@ $$
 | **Disadvantage** | Poor smile dynamics, unstable calibration |
 
 $$
-
 \boxed{
 \sigma_{\text{loc}}^2(T, K) = \frac{\partial_T C + rK\partial_K C}{\frac{1}{2}K^2\partial_{KK}C}
 }
-
 $$
 
 **Local volatility provides a complete market model that fits the smile exactly, but its unrealistic dynamics limit its use for hedging and exotic pricing.**

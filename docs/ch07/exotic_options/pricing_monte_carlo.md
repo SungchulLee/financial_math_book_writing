@@ -27,19 +27,15 @@
 Under the risk-neutral measure $\mathbb{Q}$, the price of any derivative with payoff $\Phi$ is:
 
 $$
-
 V_0 = e^{-rT}\, \mathbb{E}^{\mathbb{Q}}[\Phi]
-
 $$
 
 For path-dependent options, $\Phi$ depends on the entire path $\{S_{t_0}, S_{t_1}, \ldots, S_{t_M}\}$. We simulate this path using the GBM discretization:
 
 $$
-
 \boxed{
 S_{t_{k+1}} = S_{t_k} \exp\left[\left(r - \tfrac{1}{2}\sigma^2\right)\Delta t + \sigma\sqrt{\Delta t}\, Z_k\right], \quad Z_k \sim N(0,1)
 }
-
 $$
 
 where $\Delta t = T/M$ and $M$ is the number of time steps.
@@ -129,19 +125,15 @@ The standard Monte Carlo convergence rate is $O(1/\sqrt{N})$—to halve the stan
 **Idea.** For each simulated path using random draws $\{Z_1, Z_2, \ldots, Z_M\}$, also compute the path using $\{-Z_1, -Z_2, \ldots, -Z_M\}$. Average the two payoffs:
 
 $$
-
 \boxed{
 \hat{\Phi}^{(i)}_{\text{anti}} = \frac{1}{2}\left[\Phi(Z_1, \ldots, Z_M) + \Phi(-Z_1, \ldots, -Z_M)\right]
 }
-
 $$
 
 **Why it works.** If $\Phi$ is a monotone function of the random inputs, the correlation between $\Phi(Z)$ and $\Phi(-Z)$ is negative, reducing the variance of the average:
 
 $$
-
 \text{Var}(\hat{\Phi}_{\text{anti}}) = \frac{1}{4}\left[\text{Var}(\Phi(Z)) + \text{Var}(\Phi(-Z)) + 2\,\text{Cov}(\Phi(Z), \Phi(-Z))\right]
-
 $$
 
 When the covariance is negative, $\text{Var}(\hat{\Phi}_{\text{anti}}) < \text{Var}(\Phi(Z))$.
@@ -181,11 +173,9 @@ def asian_call_antithetic(S, K, T, r, sigma, M, N):
 The **control variate estimator** adjusts the exotic price:
 
 $$
-
 \boxed{
 \hat{V}_{\text{CV}} = \hat{V}_{\text{exotic}} + \beta\left(C_{\text{BS}} - \hat{C}_{\text{MC}}\right)
 }
-
 $$
 
 where $\beta$ is chosen to minimize variance (often set to $\beta = 1$ in practice, which corresponds to a simple additive correction).
@@ -237,9 +227,7 @@ def asian_call_control_variate(S, K, T, r, sigma, M, N):
 For arithmetic Asian options specifically, the **geometric average Asian option** provides an even better control variate than the European call, because the geometric average is more highly correlated with the arithmetic average:
 
 $$
-
 \hat{V}_{\text{arith}} = \hat{V}_{\text{arith,MC}} + \left(V_{\text{geom,exact}} - \hat{V}_{\text{geom,MC}}\right)
-
 $$
 
 This typically provides superior variance reduction compared to the European call control variate.
@@ -253,9 +241,7 @@ This typically provides superior variance reduction compared to the European cal
 The Monte Carlo estimator converges at rate $O(1/\sqrt{N})$ regardless of the problem dimension:
 
 $$
-
 \text{SE} = \frac{\sigma_{\Phi}}{\sqrt{N}}
-
 $$
 
 This **dimension-independent** convergence rate is the key advantage of Monte Carlo over grid-based methods, which suffer from the curse of dimensionality.
@@ -294,11 +280,9 @@ This is the primary reason Monte Carlo dominates for multi-asset exotics: the co
 ## Summary
 
 $$
-
 \boxed{
 \hat{V}_0 = e^{-rT} \cdot \frac{1}{N}\sum_{i=1}^{N} \Phi^{(i)}, \quad \text{SE} = \frac{e^{-rT}\, \hat{\sigma}_\Phi}{\sqrt{N}}
 }
-
 $$
 
 | Aspect | Description |

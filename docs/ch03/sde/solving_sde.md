@@ -16,9 +16,7 @@ This section develops analytical solution methods through a carefully structured
 An Itô stochastic differential equation takes the form:
 
 $$
-
 dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
-
 $$
 
 where:
@@ -33,9 +31,7 @@ where:
 We seek an **explicit formula** for $X_t$ as a function of $W_t$ and $t$:
 
 $$
-
 X_t = f(W_t, t, X_0)
-
 $$
 
 This allows us to:
@@ -68,9 +64,7 @@ We begin with three fundamental SDEs that motivate our solution methods. Underst
 **SDE:**
 
 $$
-
 dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}
-
 $$
 
 **Physical interpretation:**
@@ -82,12 +76,10 @@ $$
 This is the simplest non-trivial SDE. Direct integration yields:
 
 $$
-
 \begin{align}
 X_t &= X_0 + \int_0^t \mu\,ds + \int_0^t \sigma\,dW_s \\
 &= X_0 + \mu t + \sigma B_t
 \end{align}
-
 $$
 
 where $B_t = \int_0^t dW_s$ is Brownian motion.
@@ -95,11 +87,9 @@ where $B_t = \int_0^t dW_s$ is Brownian motion.
 **Distribution:**
 
 $$
-
 \boxed{
 X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)
 }
-
 $$
 
 **Properties:**
@@ -116,9 +106,7 @@ $$
 **SDE:**
 
 $$
-
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 > 0
-
 $$
 
 **Financial interpretation:**
@@ -131,23 +119,17 @@ $$
 If there were **no random term**, we would solve via separation of variables:
 
 $$
-
 \frac{dS_t}{S_t} = \mu\,dt \quad \Rightarrow \quad \int_0^T \frac{dS_t}{S_t} = \mu T \quad \Rightarrow \quad \log S_T - \log S_0 = \mu T
-
 $$
 
 $$
-
 S_T = S_0 e^{\mu T}
-
 $$
 
 **Attempt 1: Direct integration?**
 
 $$
-
 S_t \stackrel{?}{=} S_0 + \int_0^t \mu S_s\,ds + \int_0^t \sigma S_s\,dW_s
-
 $$
 
 This doesn't help because $S_s$ appears inside the integrals!
@@ -159,61 +141,45 @@ This doesn't help because $S_s$ appears inside the integrals!
 Define $Y_t = \log S_t$. Compute partial derivatives:
 
 $$
-
 \frac{\partial}{\partial S}(\log S) = \frac{1}{S}, \quad \frac{\partial^2}{\partial S^2}(\log S) = -\frac{1}{S^2}
-
 $$
 
 Apply Itô's lemma:
 
 $$
-
 d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
-
 $$
 
 Substitute $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$:
 
 $$
-
 d(\log S_t) = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2S_t^2} \cdot (\sigma S_t)^2\,dt
-
 $$
 
 $$
-
 = \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt
-
 $$
 
 $$
-
 = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
-
 $$
 
 This is now **linear** like Example 1! Use **Method 1: Direct Integration**:
 
 $$
-
 \log S_t - \log S_0 = \int_0^t \left(\mu - \frac{\sigma^2}{2}\right)ds + \int_0^t \sigma\,dW_s
-
 $$
 
 $$
-
 \log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
-
 $$
 
 Exponentiate to solve for $S_t$:
 
 $$
-
 \boxed{
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 }
-
 $$
 
 **Distribution Analysis:**
@@ -221,25 +187,19 @@ $$
 Since $W_t \sim \mathcal{N}(0, t)$, we have:
 
 $$
-
 \sigma W_t \sim \mathcal{N}(0, \sigma^2 t)
-
 $$
 
 Therefore:
 
 $$
-
 \log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)
-
 $$
 
 So $S_t$ is **log-normally distributed** with PDF:
 
 $$
-
 f_{S_t}(x) = \frac{1}{x\sqrt{2\pi\sigma^2 t}}\exp\left(-\frac{(\log x - \log S_0 - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)
-
 $$
 
 **The Itô Correction Term:**
@@ -247,17 +207,13 @@ $$
 The crucial term $-\frac{\sigma^2}{2}$ is not a typo—it emerges from the quadratic variation:
 
 $$
-
 (dS_t)^2 = (\sigma S_t\,dW_t)^2 = \sigma^2 S_t^2\,(dW_t)^2 = \sigma^2 S_t^2\,dt
-
 $$
 
 By Itô's lemma, this contributes:
 
 $$
-
 -\frac{1}{2}\frac{1}{S_t^2} \cdot \sigma^2 S_t^2\,dt = -\frac{\sigma^2}{2}\,dt
-
 $$
 
 This is **unique to stochastic calculus** and does not appear in ordinary deterministic calculus.
@@ -277,9 +233,7 @@ This is **unique to stochastic calculus** and does not appear in ordinary determ
 **SDE:**
 
 $$
-
 dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad a > 0, \quad b \in \mathbb{R}
-
 $$
 
 **Financial interpretation:**
@@ -290,9 +244,7 @@ $$
 **Rewrite:**
 
 $$
-
 dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
-
 $$
 
 This looks like an ODE plus noise! Recall from ODEs: for $\frac{dy}{dt} + ay = f(t)$, we use integrating factor $e^{at}$.
@@ -302,17 +254,13 @@ This looks like an ODE plus noise! Recall from ODEs: for $\frac{dy}{dt} + ay = f
 Multiply both sides by $e^{at}$:
 
 $$
-
 e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t
-
 $$
 
 The left side is exactly $d(e^{at}r_t)$ because:
 
 $$
-
 d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt
-
 $$
 
 (No Itô correction: $e^{at}$ is non-random!)
@@ -320,49 +268,37 @@ $$
 Therefore:
 
 $$
-
 d(e^{at}r_t) = abe^{at}\,dt + \sigma e^{at}\,dW_t
-
 $$
 
 Integrate from $0$ to $t$:
 
 $$
-
 e^{at}r_t - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s
-
 $$
 
 $$
-
 e^{at}r_t = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s
-
 $$
 
 **Solution:**
 
 $$
-
 \boxed{
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
 }
-
 $$
 
 **Alternative form:**
 
 $$
-
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma\int_0^t e^{-a(t-s)}\,dW_s
-
 $$
 
 **Long-term behavior:**
 
 $$
-
 \lim_{t \to \infty} \mathbb{E}[r_t] = b, \quad \lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}
-
 $$
 
 The process is **Gaussian** and **mean-reverting**.
@@ -382,9 +318,7 @@ The process is **Gaussian** and **mean-reverting**.
 **Class of SDEs:** Additive noise with simple drift.
 
 $$
-
 dX_t = b(t)\,dt + \sigma(t)\,dW_t
-
 $$
 
 where $b(t)$ and $\sigma(t)$ are known functions of time only (not of $X_t$).
@@ -393,11 +327,9 @@ where $b(t)$ and $\sigma(t)$ are known functions of time only (not of $X_t$).
 
 
 $$
-
 \boxed{
 X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s
 }
-
 $$
 
 - First integral: ordinary Riemann integral
@@ -409,25 +341,19 @@ $$
 **Constant coefficients** (Example 1):
 
 $$
-
 dX_t = \mu\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + \mu t + \sigma W_t
-
 $$
 
 **Time-dependent drift:**
 
 $$
-
 dX_t = \sin(t)\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + (1 - \cos(t)) + \sigma W_t
-
 $$
 
 **Time-dependent volatility:**
 
 $$
-
 dX_t = 0\,dt + e^{-t}\,dW_t \quad \Rightarrow \quad X_t = X_0 + \int_0^t e^{-s}\,dW_s
-
 $$
 
 ### 4. Computing Moments
@@ -438,17 +364,13 @@ For $X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s$:
 **Mean:**
 
 $$
-
 \mathbb{E}[X_t] = X_0 + \int_0^t b(s)\,ds
-
 $$
 
 **Variance (using Itô isometry):**
 
 $$
-
 \text{Var}(X_t) = \mathbb{E}\left[\left(\int_0^t \sigma(s)\,dW_s\right)^2\right] = \int_0^t \sigma^2(s)\,ds
-
 $$
 
 ### 5. Limitations
@@ -471,19 +393,15 @@ For these, we need more sophisticated methods.
 **Itô's Lemma** is the chain rule for stochastic calculus. For $Y_t = f(X_t)$ where $X_t$ satisfies:
 
 $$
-
 dX_t = b(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
-
 $$
 
 we have:
 
 $$
-
 \boxed{
 dY_t = \left(\frac{\partial f}{\partial t} + b\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\right)dt + \sigma\frac{\partial f}{\partial x}\,dW_t
 }
-
 $$
 
 **Key difference from ordinary calculus:** The second derivative term $\frac{1}{2}\sigma^2 f_{xx}$.
@@ -494,9 +412,7 @@ $$
 **Goal:** Find transformation $Y_t = f(X_t)$ such that:
 
 $$
-
 dY_t = \text{simple SDE (e.g., constant coefficients)}
-
 $$
 
 Then:
@@ -509,45 +425,35 @@ Then:
 **SDE:**
 
 $$
-
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
-
 $$
 
 **Transformation:** $Y_t = \log S_t$
 
 $$
-
 \frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}
-
 $$
 
 **Apply Itô's lemma:**
 
 $$
-
 \begin{align}
 d(\log S_t) &= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)(\sigma S_t)^2\,dt \\
 &= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt \\
 &= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
 \end{align}
-
 $$
 
 Now use Method 1 (direct integration):
 
 $$
-
 \log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
-
 $$
 
 Invert:
 
 $$
-
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-
 $$
 
 ### 4. General Power Transformations
@@ -556,9 +462,7 @@ $$
 **SDE:**
 
 $$
-
 dX_t = bX_t\,dt + \sigma X_t^\beta\,dW_t
-
 $$
 
 **Try transformation:** $Y_t = X_t^{1-\beta}$ for $\beta \neq 1$.
@@ -566,9 +470,7 @@ $$
 After applying Itô's lemma, we get:
 
 $$
-
 dY_t = (1-\beta)bY_t\,dt - \frac{(1-\beta)\beta\sigma^2}{2}Y_t^{(2\beta-1)/(1-\beta)}\,dt + (1-\beta)\sigma\,dW_t
-
 $$
 
 This is simpler only for special $\beta$ values.
@@ -598,9 +500,7 @@ This is simpler only for special $\beta$ values.
 **Class of SDEs:** Linear in $X_t$ with deterministic coefficients.
 
 $$
-
 dX_t = [a(t) + b(t)X_t]\,dt + [c(t) + d(t)X_t]\,dW_t
-
 $$
 
 ### 2. The Vasicek Example Revisited (Example 3)
@@ -609,17 +509,13 @@ $$
 **SDE:**
 
 $$
-
 dr_t = a(b - r_t)\,dt + \sigma\,dW_t
-
 $$
 
 **Rewrite in standard form:**
 
 $$
-
 dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
-
 $$
 
 **Integrating factor:** $\mu(t) = e^{at}$
@@ -627,9 +523,7 @@ $$
 **Key insight:** Multiplying by $e^{at}$ makes the left side a perfect differential:
 
 $$
-
 d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt
-
 $$
 
 **Why no Itô correction?** Because $e^{at}$ is deterministic (no $dW$ term).
@@ -637,9 +531,7 @@ $$
 **General solution:**
 
 $$
-
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
-
 $$
 
 ### 3. General Linear SDE Solution
@@ -648,9 +540,7 @@ $$
 For:
 
 $$
-
 dX_t = [a(t) + b(t)X_t]\,dt + c(t)\,dW_t
-
 $$
 
 **Integrating factor:** $\mu(t) = \exp\left(\int_0^t b(s)\,ds\right)$
@@ -658,9 +548,7 @@ $$
 **Solution:**
 
 $$
-
 X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)a(s)\,ds + \int_0^t \mu(s)c(s)\,dW_s\right]
-
 $$
 
 ### 4. When There's Diffusion in X_t
@@ -669,17 +557,13 @@ $$
 For:
 
 $$
-
 dX_t = b(t)X_t\,dt + d(t)X_t\,dW_t
-
 $$
 
 The integrating factor must account for **both** drift and diffusion:
 
 $$
-
 Y_t = X_t \exp\left(-\int_0^t b(s)\,ds + \frac{1}{2}\int_0^t d^2(s)\,ds - \int_0^t d(s)\,dW_s\right)
-
 $$
 
 Then $Y_t$ is a **martingale**.
@@ -695,9 +579,7 @@ Then $Y_t$ is a **martingale**.
 **SDE:**
 
 $$
-
 dB_t = dW_t, \quad B_0 = 0
-
 $$
 
 **Solution:**
@@ -705,9 +587,7 @@ $$
 This **defines** Brownian motion itself:
 
 $$
-
 B_t = \int_0^t dW_s = B_t
-
 $$
 
 **Properties:**
@@ -725,9 +605,7 @@ $$
 **SDE:**
 
 $$
-
 dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
-
 $$
 
 **Why it's different:**
@@ -741,9 +619,7 @@ $$
 1. **Distribution:** Scaled non-central chi-squared
 
 $$
-
 r_t \sim \frac{\sigma^2(1-e^{-at})}{4a}\chi_{\nu}^2\left(\frac{4ae^{-at}}{\sigma^2(1-e^{-at})}r_0\right)
-
 $$
 
 where $\nu = \frac{4ab}{\sigma^2}$.
@@ -751,9 +627,7 @@ where $\nu = \frac{4ab}{\sigma^2}$.
 2. **Moments:** (see Moment Analysis section)
 
 $$
-
 \mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
-
 $$
 
 3. **Characteristic function:** Satisfies Riccati ODE
@@ -777,9 +651,7 @@ $$
 If $M_t = g(X_t, t)$ is a **martingale**, then:
 
 $$
-
 \mathbb{E}[M_t | \mathcal{F}_s] = M_s
-
 $$
 
 This constrains the distribution of $X_t$.
@@ -790,9 +662,7 @@ This constrains the distribution of $X_t$.
 For $M_t$ to be a martingale, its drift must vanish:
 
 $$
-
 \frac{\partial g}{\partial t} + b(x)\frac{\partial g}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 g}{\partial x^2} = 0
-
 $$
 
 This is the **backward Kolmogorov equation**.
@@ -803,9 +673,7 @@ This is the **backward Kolmogorov equation**.
 For $dX_t = \mu\,dt + \sigma\,dW_t$, consider:
 
 $$
-
 M_t = \exp\left[\lambda X_t - \left(\lambda\mu + \frac{\lambda^2\sigma^2}{2}\right)t\right]
-
 $$
 
 **Verification:** Apply Itô's lemma to check $dM_t$ has no $dt$ term.
@@ -826,9 +694,7 @@ $$
 Transform SDE with state-dependent diffusion to **unit diffusion**:
 
 $$
-
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t \quad \Rightarrow \quad dY_t = \tilde{b}(Y_t)\,dt + dW_t
-
 $$
 
 ### 2. Lamperti Transform
@@ -837,9 +703,7 @@ $$
 **Transformation:**
 
 $$
-
 Y_t = h(X_t) = \int_{X_0}^{X_t} \frac{du}{\sigma(u)}
-
 $$
 
 **Result:** The transformed SDE has unit diffusion coefficient.
@@ -850,17 +714,13 @@ $$
 **SDE:**
 
 $$
-
 dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
-
 $$
 
 **Lamperti transform:**
 
 $$
-
 Y_t = \int_{r_0}^{r_t} \frac{du}{\sigma\sqrt{u}} = \frac{2}{\sigma}(\sqrt{r_t} - \sqrt{r_0})
-
 $$
 
 **Inverted:** $r_t = \left(\frac{\sigma}{2}Y_t + \sqrt{r_0}\right)^2$
@@ -878,9 +738,7 @@ The transformed SDE relates to **squared Bessel processes**.
 **SDE:**
 
 $$
-
 dX_t = [\alpha(t) - \beta(t)X_t]\,dt + \sigma(t)\,dW_t
-
 $$
 
 **Strategy:**
@@ -891,9 +749,7 @@ $$
 **Solution:**
 
 $$
-
 X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)\alpha(s)\,ds + \int_0^t \mu(s)\sigma(s)\,dW_s\right]
-
 $$
 
 where $\mu(t) = \exp\left(\int_0^t \beta(s)\,ds\right)$.
@@ -914,25 +770,19 @@ Generalizes Vasicek to time-dependent parameters (useful for fitting yield curve
 Given SDE:
 
 $$
-
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
-
 $$
 
 Define:
 
 $$
-
 u(t, x) = \mathbb{E}[\phi(X_T) | X_t = x]
-
 $$
 
 Then $u$ satisfies the **backward Kolmogorov PDE**:
 
 $$
-
 \frac{\partial u}{\partial t} + b(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
-
 $$
 
 ### 2. Black-Scholes as Feynman-Kac
@@ -941,17 +791,13 @@ $$
 For GBM under risk-neutral measure:
 
 $$
-
 dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-
 $$
 
 The call option price:
 
 $$
-
 C(t, S_t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | S_t]
-
 $$
 
 satisfies the Black-Scholes PDE.
@@ -969,17 +815,13 @@ satisfies the Black-Scholes PDE.
 Under $\mathbb{P}$:
 
 $$
-
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
-
 $$
 
 Under $\mathbb{Q}$ (with market price of risk $\theta = \frac{\mu - r}{\sigma}$):
 
 $$
-
 dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
-
 $$
 
 where $W_t^{\mathbb{Q}} = W_t + \theta t$.
@@ -990,9 +832,7 @@ where $W_t^{\mathbb{Q}} = W_t + \theta t$.
 Now $e^{-rt}S_t$ is a $\mathbb{Q}$-martingale, enabling:
 
 $$
-
 \text{Option Price} = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\text{Payoff} | \mathcal{F}_t]
-
 $$
 
 ---
@@ -1006,18 +846,14 @@ $$
 For SDEs with homogeneity properties, seek solutions:
 
 $$
-
 X_t = t^\alpha f(W_t/t^\beta)
-
 $$
 
 ### 2. Example: Quadratic SDE
 
 
 $$
-
 dX_t = X_t^2\,dt + dW_t
-
 $$
 
 May exhibit **finite-time explosion**. Similarity methods help characterize blow-up behavior.
@@ -1084,9 +920,7 @@ May exhibit **finite-time explosion**. Similarity methods help characterize blow
 **Problem:** Solve
 
 $$
-
 dX_t = (1 - X_t)\,dt + \sqrt{X_t}\,dW_t, \quad X_0 = 1
-
 $$
 
 **Step 1: Recognize structure**
@@ -1096,9 +930,7 @@ This is CIR-type with $\kappa = 1$, $\theta = 1$, $\sigma = 1$.
 **Step 2: Check Feller condition**
 
 $$
-
 2\kappa\theta = 2(1)(1) = 2 \geq \sigma^2 = 1 \quad \checkmark
-
 $$
 
 Therefore $X_t > 0$ for all $t > 0$.
@@ -1110,15 +942,11 @@ But we can find:
 **Moments:**
 
 $$
-
 \mathbb{E}[X_t] = 1 \quad \text{(constant!)}
-
 $$
 
 $$
-
 \text{Var}[X_t] = e^{-t}(1 - e^{-t}) + \frac{1}{2}(1 - e^{-t})^2
-
 $$
 
 **Distribution:** Scaled non-central $\chi^2$ with $\nu = 4$.

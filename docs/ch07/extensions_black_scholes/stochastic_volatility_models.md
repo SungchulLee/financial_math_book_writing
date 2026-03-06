@@ -27,7 +27,6 @@ Local volatility models fit the smile but predict it will flatten—contrary to 
 Under the risk-neutral measure $\mathbb{Q}$:
 
 $$
-
 \boxed{
 \begin{aligned}
 dS_t &= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
@@ -35,7 +34,6 @@ dv_t &= \alpha(t, v_t)\,dt + \beta(t, v_t)\,dW_t^{(2)} \\
 d\langle W^{(1)}, W^{(2)}\rangle_t &= \rho\,dt
 \end{aligned}
 }
-
 $$
 
 where:
@@ -58,14 +56,12 @@ When $\rho < 0$:
 ### Model Specification
 
 $$
-
 \boxed{
 \begin{aligned}
 dS_t &= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
 dv_t &= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 \end{aligned}
 }
-
 $$
 
 **Parameters**:
@@ -80,11 +76,9 @@ $$
 To ensure $v_t > 0$ (variance stays positive):
 
 $$
-
 \boxed{
 2\kappa\theta \geq \xi^2
 }
-
 $$
 
 If violated, variance can hit zero (but is reflected).
@@ -102,11 +96,9 @@ Heston is an **affine** model: the characteristic function has exponential-affin
 For option price $V(t, S, v)$:
 
 $$
-
 \boxed{
 \frac{\partial V}{\partial t} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho\xi vS\frac{\partial^2 V}{\partial S\partial v} + \frac{1}{2}\xi^2 v\frac{\partial^2 V}{\partial v^2} + rS\frac{\partial V}{\partial S} + \kappa(\theta - v)\frac{\partial V}{\partial v} - rV = 0
 }
-
 $$
 
 **Note**: The mixed derivative $\partial_{Sv}$ term arises from correlation.
@@ -116,9 +108,7 @@ $$
 For Heston, the log-price characteristic function is:
 
 $$
-
 \phi(u) = \mathbb{E}^{\mathbb{Q}}[e^{iu\log S_T} | S_t, v_t] = e^{C(T-t, u) + D(T-t, u)v_t + iu\log S_t}
-
 $$
 
 where $C$ and $D$ satisfy Riccati ODEs with known solutions.
@@ -128,9 +118,7 @@ where $C$ and $D$ satisfy Riccati ODEs with known solutions.
 European call prices via inverse Fourier transform:
 
 $$
-
 C(K) = S_0 - \frac{Ke^{-rT}}{\pi}\int_0^\infty \text{Re}\left[\frac{e^{-iu\log K}\phi(u-i)}{iu}\right]du
-
 $$
 
 **Advantages**: Fast and accurate for vanilla options.
@@ -181,9 +169,7 @@ Two sources of randomness ($W^{(1)}$, $W^{(2)}$) but only one traded asset ($S$)
 Under $\mathbb{P}$, variance drift may differ:
 
 $$
-
 dv_t = [\kappa(\theta - v_t) - \lambda(t, v_t)]\,dt + \xi\sqrt{v_t}\,dW_t^{(2),\mathbb{P}}
-
 $$
 
 where $\lambda$ is the volatility risk premium (typically negative—investors pay for volatility protection).
@@ -197,28 +183,22 @@ where $\lambda$ is the volatility risk premium (typically negative—investors p
 Popular for interest rate and FX options:
 
 $$
-
 \begin{aligned}
 dF_t &= \sigma_t F_t^\beta\,dW_t^{(1)} \\
 d\sigma_t &= \alpha\sigma_t\,dW_t^{(2)}
 \end{aligned}
-
 $$
 
 **Asymptotic formula** for implied volatility (Hagan et al.):
 
 $$
-
 \sigma_{\text{imp}}(K) \approx \frac{\alpha}{(FK)^{(1-\beta)/2}}\left[1 + \frac{(1-\beta)^2}{24}\log^2\frac{F}{K} + \cdots\right] \times \frac{z}{x(z)}
-
 $$
 
 ### Hull-White Model
 
 $$
-
 dv_t = \mu v_t\,dt + \xi v_t\,dW_t^{(2)}
-
 $$
 
 Log-normal variance process.
@@ -226,9 +206,7 @@ Log-normal variance process.
 ### 3/2 Model
 
 $$
-
 dv_t = \kappa v_t(\theta - v_t)\,dt + \xi v_t^{3/2}\,dW_t^{(2)}
-
 $$
 
 Higher vol-of-vol at high variance levels.
@@ -276,14 +254,12 @@ for i in range(N):
 ## Summary
 
 $$
-
 \boxed{
 \begin{aligned}
 dS_t &= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
 dv_t &= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 \end{aligned}
 }
-
 $$
 
 | Feature | Description |

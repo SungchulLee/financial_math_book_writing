@@ -16,17 +16,13 @@ This approach reveals the deep connection between option pricing and diffusion p
 For a European option value $V(S,t)$:
 
 $$
-
 \boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
-
 $$
 
 **Terminal condition** (European call):
 
 $$
-
 V(S,T) = \max(S-K, 0)
-
 $$
 
 **Challenge**: The PDE has:
@@ -47,9 +43,7 @@ We apply three transformations to reduce the BS PDE to canonical heat equation f
 
 
 $$
-
 \boxed{\tau = T - t}
-
 $$
 
 **Meaning**: Time remaining until option expiration.
@@ -57,26 +51,20 @@ $$
 **Example**: If current time is $t = 0.5$ years and expiration is $T = 1$ year:
 
 $$
-
 \tau = 1 - 0.5 = 0.5 \text{ years (6 months remaining)}
-
 $$
 
 **Effect**: Converts terminal condition into initial condition and reverses time direction:
 
 $$
-
 \frac{\partial}{\partial t} = -\frac{\partial}{\partial \tau}
-
 $$
 
 ### 2. **Transformation 2: Expected Log-Price**
 
 
 $$
-
 \boxed{x = \log S + \left(r - \frac{1}{2}\sigma^2\right)\tau}
-
 $$
 
 **Meaning**: This is the **expected log-price** at maturity under the risk-neutral measure.
@@ -84,29 +72,23 @@ $$
 **Derivation**: Under geometric Brownian motion:
 
 $$
-
 S_T = S_t \exp\left(\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma W_\tau\right)
-
 $$
 
 Taking logarithm and expectation:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[\log S_T | S_t] = \log S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau = x
-
 $$
 
 **Example**: For $S = 100$, $r = 5\%$, $\sigma = 20\%$, $\tau = 0.5$:
 
 $$
-
 \begin{aligned}
 x &= \log 100 + \left(0.05 - \frac{1}{2}(0.2)^2\right) \cdot 0.5 \\
 &= 4.605 + (0.05 - 0.02) \cdot 0.5 \\
 &= 4.605 + 0.015 = 4.620
 \end{aligned}
-
 $$
 
 **Effect**: Centers the process by removing drift, converting first-order terms to second-order.
@@ -115,9 +97,7 @@ $$
 
 
 $$
-
 \boxed{F(x,\tau) = V(S,t) e^{r\tau}}
-
 $$
 
 **Meaning**: Option value **compounded forward** to expiration at the risk-free rate.
@@ -125,17 +105,13 @@ $$
 **Intuition**: Under risk-neutral pricing:
 
 $$
-
 V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
-
 $$
 
 so
 
 $$
-
 F(x,\tau) = \mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
-
 $$
 
 is the **undiscounted expected payoff**.
@@ -143,9 +119,7 @@ is the **undiscounted expected payoff**.
 **Example**: If current option value is $V = 10$, $r = 5\%$, $\tau = 0.5$:
 
 $$
-
 F = 10 \cdot e^{0.05 \times 0.5} = 10 \cdot e^{0.025} \approx 10.25
-
 $$
 
 **Effect**: Eliminates the $-rV$ term from the PDE.
@@ -161,9 +135,7 @@ $$
 Using chain rule:
 
 $$
-
 \frac{\partial V}{\partial t} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial V}{\partial \tau}\frac{\partial \tau}{\partial t}
-
 $$
 
 Since:
@@ -173,47 +145,37 @@ Since:
 We get:
 
 $$
-
 \frac{\partial V}{\partial t} = -\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{\partial V}{\partial \tau}
-
 $$
 
 ### 2. **First Spatial Derivative**
 
 
 $$
-
 \frac{\partial V}{\partial S} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial S} = \frac{\partial V}{\partial x} \cdot \frac{1}{S}
-
 $$
 
 ### 3. **Second Spatial Derivative**
 
 
 $$
-
 \begin{aligned}
 \frac{\partial^2 V}{\partial S^2} &= \frac{\partial}{\partial S}\left(\frac{1}{S}\frac{\partial V}{\partial x}\right) \\
 &= \frac{\partial}{\partial x}\left(\frac{1}{S}\frac{\partial V}{\partial x}\right)\frac{\partial x}{\partial S} \\
 &= \frac{1}{S}\left[\frac{\partial^2 V}{\partial x^2}\frac{1}{S} + \frac{\partial V}{\partial x}\frac{\partial}{\partial x}\left(\frac{1}{S}\right)\right]
 \end{aligned}
-
 $$
 
 **Key observation**: Since $S = e^{x - (r-\frac{1}{2}\sigma^2)\tau}$:
 
 $$
-
 \frac{\partial}{\partial x}\left(\frac{1}{S}\right) = -\frac{1}{S}
-
 $$
 
 Therefore:
 
 $$
-
 \frac{\partial^2 V}{\partial S^2} = \frac{1}{S^2}\left[\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right]
-
 $$
 
 ---
@@ -227,21 +189,17 @@ $$
 Starting with:
 
 $$
-
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-
 $$
 
 Substitute transformed derivatives:
 
 $$
-
 \begin{aligned}
 &-\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{\partial V}{\partial \tau} \\
 &\quad + \frac{1}{2}\sigma^2\left[\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right] \\
 &\quad + r\frac{\partial V}{\partial x} - rV = 0
 \end{aligned}
-
 $$
 
 ### 2. **Step 2: Collect Terms**
@@ -256,9 +214,7 @@ Grouping by derivative order:
 Result:
 
 $$
-
 -\frac{\partial V}{\partial \tau} + \frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - rV = 0
-
 $$
 
 ### 3. **Step 3: Eliminate -rV Term**
@@ -267,39 +223,29 @@ $$
 Since $V = Fe^{-r\tau}$, compute derivatives:
 
 $$
-
 \frac{\partial V}{\partial \tau} = \frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}
-
 $$
 
 $$
-
 \frac{\partial^2 V}{\partial x^2} = \frac{\partial^2 F}{\partial x^2}e^{-r\tau}
-
 $$
 
 Substitute into the PDE:
 
 $$
-
 -\left[\frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}\right] + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}e^{-r\tau} - rFe^{-r\tau} = 0
-
 $$
 
 Divide by $e^{-r\tau}$:
 
 $$
-
 -\frac{\partial F}{\partial \tau} + rF + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2} - rF = 0
-
 $$
 
 Simplify:
 
 $$
-
 \boxed{\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}}
-
 $$
 
 This is the **heat equation** with thermal diffusivity $\kappa = \frac{1}{2}\sigma^2$.
@@ -318,20 +264,16 @@ At $\tau = 0$ (maturity):
 For a European call:
 
 $$
-
 \boxed{F(x,0) = \psi(x) = \max(e^x - K, 0) = (e^x - K)^+}
-
 $$
 
 This is a piecewise function:
 
 $$
-
 \psi(x) = \begin{cases}
 e^x - K & \text{if } x > \log K \\
 0 & \text{if } x \leq \log K
 \end{cases}
-
 $$
 
 **Summary**: We've transformed the **terminal-value problem** (BS PDE backward in time) into an **initial-value problem** (heat equation forward in time).
@@ -347,17 +289,13 @@ $$
 The **fundamental solution** or **Green's function** of the heat equation is the solution to:
 
 $$
-
 \frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}
-
 $$
 
 with initial condition:
 
 $$
-
 G(x,0; z) = \delta(x-z)
-
 $$
 
 where $\delta$ is the Dirac delta function (unit point source at $z$).
@@ -370,9 +308,7 @@ where $\delta$ is the Dirac delta function (unit point source at $z$).
 The fundamental solution is:
 
 $$
-
 \boxed{G(x,\tau; z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)}
-
 $$
 
 This is a **Gaussian kernel** with:
@@ -388,9 +324,7 @@ This is a **Gaussian kernel** with:
 Direct calculation shows:
 
 $$
-
 \frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}
-
 $$
 
 using standard Gaussian differentiation formulas.
@@ -398,9 +332,7 @@ using standard Gaussian differentiation formulas.
 **Property 2** (Initial condition):
 
 $$
-
 \lim_{\tau \to 0^+} G(x,\tau; z) = \delta(x-z)
-
 $$
 
 As $\tau \to 0$, the Gaussian concentrates at $z$.
@@ -408,9 +340,7 @@ As $\tau \to 0$, the Gaussian concentrates at $z$.
 **Property 3** (Probability conservation):
 
 $$
-
 \int_{-\infty}^\infty G(x,\tau; z) dx = 1 \quad \text{for all } \tau > 0
-
 $$
 
 ### 4. **Intuition**
@@ -431,17 +361,13 @@ $$
 For any initial condition $\psi(x)$, the solution to the heat equation is obtained by **superposition** of fundamental solutions:
 
 $$
-
 \boxed{F(x,\tau) = \int_{-\infty}^\infty \psi(z) G(x,\tau; z) dz}
-
 $$
 
 Explicitly:
 
 $$
-
 F(x,\tau) = \int_{-\infty}^\infty \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
-
 $$
 
 **Interpretation**:
@@ -452,9 +378,7 @@ $$
 **Probabilistic view**: If $X \sim \mathcal{N}(x, \sigma^2\tau)$, then:
 
 $$
-
 F(x,\tau) = \mathbb{E}[\psi(X)] = \int_{-\infty}^\infty \psi(z) \cdot \text{pdf}(z; x, \sigma^2\tau) dz
-
 $$
 
 This connects the PDE solution to **expectation under Brownian motion**.
@@ -470,26 +394,20 @@ This connects the PDE solution to **expectation under Brownian motion**.
 For a call option with $\psi(x) = (e^x - K)^+$:
 
 $$
-
 F(x,\tau) = \int_{-\infty}^\infty (e^z - K)^+ \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
-
 $$
 
 Since $(e^z - K)^+ = 0$ for $z \leq \log K$:
 
 $$
-
 F(x,\tau) = \int_{\log K}^\infty (e^z - K) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
-
 $$
 
 ### 2. **Split into Two Integrals**
 
 
 $$
-
 F(x,\tau) = \underbrace{\int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}_{I_1} - K\underbrace{\int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}_{I_2}
-
 $$
 
 We evaluate each integral separately.
@@ -500,23 +418,18 @@ We evaluate each integral separately.
 
 
 $$
-
 I_2 = \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
-
 $$
 
 This is a **Gaussian tail probability**. Define standard normal variable:
 
 $$
-
 Z = \frac{z - x}{\sigma\sqrt{\tau}} \sim \mathcal{N}(0,1)
-
 $$
 
 Then:
 
 $$
-
 \begin{aligned}
 I_2 &= \mathbb{P}(z \geq \log K) \\
 &= \mathbb{P}\left(\frac{z-x}{\sigma\sqrt{\tau}} \geq \frac{\log K - x}{\sigma\sqrt{\tau}}\right) \\
@@ -524,23 +437,18 @@ I_2 &= \mathbb{P}(z \geq \log K) \\
 &= \mathbb{P}\left(Z \leq \frac{x - \log K}{\sigma\sqrt{\tau}}\right) \\
 &= \mathcal{N}\left(\frac{x - \log K}{\sigma\sqrt{\tau}}\right)
 \end{aligned}
-
 $$
 
 Define:
 
 $$
-
 \boxed{d_2 = \frac{x - \log K}{\sigma\sqrt{\tau}}}
-
 $$
 
 Therefore:
 
 $$
-
 I_2 = \mathcal{N}(d_2)
-
 $$
 
 ---
@@ -549,9 +457,7 @@ $$
 
 
 $$
-
 I_1 = \int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
-
 $$
 
 **Key technique**: Complete the square in the exponent.
@@ -560,53 +466,41 @@ $$
 
 
 $$
-
 z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{1}{2\sigma^2\tau}\left[(x-z)^2 - 2\sigma^2\tau z\right]
-
 $$
 
 Expand:
 
 $$
-
 (x-z)^2 - 2\sigma^2\tau z = z^2 - 2zx + x^2 - 2\sigma^2\tau z = z^2 - 2z(x + \sigma^2\tau) + x^2
-
 $$
 
 Complete the square:
 
 $$
-
 \begin{aligned}
 &= [z - (x + \sigma^2\tau)]^2 - (x + \sigma^2\tau)^2 + x^2 \\
 &= [z - (x + \sigma^2\tau)]^2 - 2x\sigma^2\tau - \sigma^4\tau^2
 \end{aligned}
-
 $$
 
 Therefore:
 
 $$
-
 z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau} + x + \frac{\sigma^2\tau}{2}
-
 $$
 
 ### 2. **Step 2: Factor Out Constant**
 
 
 $$
-
 I_1 = e^{x + \frac{\sigma^2\tau}{2}} \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz
-
 $$
 
 The integral is a Gaussian tail probability with **shifted mean** $x + \sigma^2\tau$:
 
 $$
-
 \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz = \mathbb{P}(W \geq \log K)
-
 $$
 
 where $W \sim \mathcal{N}(x+\sigma^2\tau, \sigma^2\tau)$.
@@ -615,29 +509,23 @@ where $W \sim \mathcal{N}(x+\sigma^2\tau, \sigma^2\tau)$.
 
 
 $$
-
 \begin{aligned}
 \mathbb{P}(W \geq \log K) &= \mathbb{P}\left(\frac{W - (x+\sigma^2\tau)}{\sigma\sqrt{\tau}} \geq \frac{\log K - (x+\sigma^2\tau)}{\sigma\sqrt{\tau}}\right) \\
 &= \mathbb{P}\left(Z \geq \frac{\log K - x - \sigma^2\tau}{\sigma\sqrt{\tau}}\right) \\
 &= \mathcal{N}\left(\frac{x + \sigma^2\tau - \log K}{\sigma\sqrt{\tau}}\right)
 \end{aligned}
-
 $$
 
 Define:
 
 $$
-
 \boxed{d_1 = \frac{x + \sigma^2\tau - \log K}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}}
-
 $$
 
 Therefore:
 
 $$
-
 I_1 = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1)
-
 $$
 
 ---
@@ -651,9 +539,7 @@ $$
 Combining $I_1$ and $I_2$:
 
 $$
-
 F(x,\tau) = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1) - K\mathcal{N}(d_2)
-
 $$
 
 ### 2. **Transform Back to Original Variables**
@@ -666,17 +552,13 @@ Recall:
 Therefore:
 
 $$
-
 e^{x + \frac{\sigma^2\tau}{2}} = Se^{(r - \frac{1}{2}\sigma^2)\tau + \frac{\sigma^2\tau}{2}} = Se^{r\tau}
-
 $$
 
 Substituting:
 
 $$
-
 F(x,\tau) = Se^{r\tau}\mathcal{N}(d_1) - K\mathcal{N}(d_2)
-
 $$
 
 ### 3. **Discount Back**
@@ -685,23 +567,17 @@ $$
 Since $V = Fe^{-r\tau}$:
 
 $$
-
 \boxed{V(S,t) = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}
-
 $$
 
 where $\tau = T - t$ and:
 
 $$
-
 \boxed{d_1 = \frac{\log(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}
-
 $$
 
 $$
-
 \boxed{d_2 = d_1 - \sigma\sqrt{\tau} = \frac{\log(S/K) + (r - \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}
-
 $$
 
 This is the **Black-Scholes formula** for a European call option.
@@ -715,9 +591,7 @@ This is the **Black-Scholes formula** for a European call option.
 
 
 $$
-
 C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
-
 $$
 
 **Term 1**: $S_0\mathcal{N}(d_1)$
@@ -797,7 +671,6 @@ The heat equation method demonstrates that these three perspectives are **mathem
 The Black-Scholes PDE is converted to the heat equation through three clever changes of variables:
 
 $$
-
 \begin{array}{ccc}
 \text{Original Variables} & \text{Transformed Variables} & \text{Purpose} \\
 \hline
@@ -805,7 +678,6 @@ $$
 x = \log S + (r - \frac{\sigma^2}{2})\tau & \text{Expected log-price} & \text{Remove drift, eliminate } S \text{ factors} \\
 F = Ve^{r\tau} & \text{Forward option value} & \text{Remove discounting term } -rV
 \end{array}
-
 $$
 
 ### Transformation Details
@@ -813,17 +685,13 @@ $$
 **Original BS PDE:**
 
 $$
-
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-
 $$
 
 **After all transformations, the heat equation emerges:**
 
 $$
-
 \frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}
-
 $$
 
 The remarkable cancellation occurs because:
@@ -837,34 +705,26 @@ This leaves only the diffusion term, which is the pure heat equation.
 **For call option payoff** $\psi(x) = (e^x - K)^+$:
 
 $$
-
 F(x, \tau) = \int_{-\infty}^{\infty} \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}} \exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
-
 $$
 
 Split into two Gaussian integrals (one with $e^z$ in the integrand):
 
 $$
-
 F(x, \tau) = e^{x + \frac{\sigma^2\tau}{2}} \mathcal{N}(d_1) - K\mathcal{N}(d_2)
-
 $$
 
 **Transform back to original variables:**
 - Since $e^{x + \frac{\sigma^2\tau}{2}} = Se^{r\tau}$ and $V = Fe^{-r\tau}$:
 
 $$
-
 \boxed{V(S, t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
-
 $$
 
 where:
 
 $$
-
 d_1 = \frac{\log(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
-
 $$
 
 ### Advantages of the Heat Equation Approach

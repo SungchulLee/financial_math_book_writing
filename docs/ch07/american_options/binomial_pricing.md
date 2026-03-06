@@ -26,17 +26,13 @@ This section develops the full binomial pricing algorithm for American options, 
 In the CRR binomial model with $N$ time steps:
 
 $$
-
 \Delta t = \frac{T}{N}, \quad u = e^{\sigma\sqrt{\Delta t}}, \quad d = \frac{1}{u}, \quad q = \frac{e^{r\Delta t} - d}{u - d}
-
 $$
 
 For a **European** option, backward induction gives:
 
 $$
-
 V_{n,j} = e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1 - q) \, V_{n+1,j}\right]
-
 $$
 
 starting from terminal payoffs $V_{N,j} = \Phi(S_{N,j})$.
@@ -48,11 +44,9 @@ starting from terminal payoffs $V_{N,j} = \Phi(S_{N,j})$.
 For an **American** option, at each node $(n, j)$ we compare the **continuation value** with the **immediate exercise value**:
 
 $$
-
 \boxed{
 V_{n,j} = \max\left(\Phi(S_{n,j}), \; e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1 - q) \, V_{n+1,j}\right]\right)
 }
-
 $$
 
 where:
@@ -71,13 +65,11 @@ where:
     **Step 3.** For $n = N-1$ down to $0$, for $j = 0, 1, \ldots, n$:
     
     $$
-
     \begin{aligned}
     \text{Continuation} &= e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1-q) \, V_{n+1,j}\right] \\
     \text{Exercise} &= \Phi(S_{n,j}) \\
     V_{n,j} &= \max(\text{Exercise}, \text{Continuation})
     \end{aligned}
-
     $$
     
     **Step 4.** The American option price is $V_{0,0}$.
@@ -258,9 +250,7 @@ The boundary shows:
 The CRR binomial tree converges to the continuous-time American option price, but with **oscillatory behavior** due to the discrete grid:
 
 $$
-
 V_{\text{binomial}}(N) = V_{\text{American}} + O\left(\frac{1}{\sqrt{N}}\right) + \text{oscillatory terms}
-
 $$
 
 ### Richardson Extrapolation
@@ -268,9 +258,7 @@ $$
 To accelerate convergence, use prices from two step sizes:
 
 $$
-
 V_{\text{extrapolated}} = 2 \, V(2N) - V(N)
-
 $$
 
 This eliminates the leading error term and often yields fourth-decimal accuracy with moderate $N$.
@@ -290,11 +278,9 @@ This eliminates the leading error term and often yields fourth-decimal accuracy 
 ## Summary
 
 $$
-
 \boxed{
 V_{n,j} = \max\left(\Phi(S_{n,j}), \; e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1-q) \, V_{n+1,j}\right]\right)
 }
-
 $$
 
 | Aspect | Description |

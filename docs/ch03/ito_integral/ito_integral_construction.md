@@ -12,9 +12,7 @@ Classical integration \(\int_0^t f(s) \, dg(s)\) for deterministic functions req
 
 
 $$
-
 \text{Var}_{[0,t]}(g) := \sup_{\pi} \sum_{i=0}^{n-1} |g(t_{i+1}) - g(t_i)| < \infty
-
 $$
 
 
@@ -23,9 +21,7 @@ over all partitions \(\pi: 0 = t_0 < t_1 < \cdots < t_n = t\), then the Riemann-
 
 
 $$
-
 \int_0^t f(s) \, dg(s) = \lim_{|\pi| \to 0} \sum_{i=0}^{n-1} f(t_i^*)(g(t_{i+1}) - g(t_i))
-
 $$
 
 
@@ -37,9 +33,7 @@ For Brownian motion \(B_t\), we can show that almost surely:
 
 
 $$
-
 \text{Var}_{[0,t]}(B) = \infty
-
 $$
 
 
@@ -48,10 +42,8 @@ $$
 
 
 $$
-
 \sum_{i=0}^{n-1} |B_{t_{i+1}} - B_{t_i}|
 = \sum_{i=0}^{n-1} |B_{t/n}^{(i)}|
-
 $$
 
 
@@ -60,11 +52,9 @@ where \(B_{t/n}^{(i)}\) are i.i.d. \(N(0, t/n)\) increments. By the law of large
 
 
 $$
-
 \frac{1}{n} \sum_{i=0}^{n-1} |B_{t/n}^{(i)}|
 \to \mathbb{E}[|Z|] \sqrt{\frac{t}{n}}
 = \sqrt{\frac{2t}{\pi n}}
-
 $$
 
 
@@ -73,12 +63,10 @@ Therefore:
 
 
 $$
-
 \sum_{i=0}^{n-1} |B_{t_{i+1}} - B_{t_i}|
 \sim n \cdot \sqrt{\frac{2t}{\pi n}}
 = \sqrt{\frac{2nt}{\pi}}
 \to \infty
-
 $$
 
 
@@ -109,9 +97,7 @@ A **simple process** \(H_t\) has the form:
 
 
 $$
-
 H_t(\omega) = \sum_{i=0}^{n-1} H_i(\omega) \mathbf{1}_{(t_i, t_{i+1}]}(t)
-
 $$
 
 
@@ -131,12 +117,10 @@ For a simple process \(H_t = \sum_{i=0}^{n-1} H_i \mathbf{1}_{(t_i, t_{i+1}]}\),
 
 
 $$
-
 \boxed{
 I_t(H) := \int_0^t H_s \, dB_s
 = \sum_{i=0}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})
 }
-
 $$
 
 
@@ -156,10 +140,8 @@ We verify that \(I_t(H)\) is a martingale. For \(s < t\):
 
 
 $$
-
 \mathbb{E}[I_t(H) \mid \mathcal{F}_s]
 = \mathbb{E}\left[\sum_{i=0}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t}) \,\Big|\, \mathcal{F}_s\right]
-
 $$
 
 
@@ -174,9 +156,7 @@ The calculation shows:
 
 
 $$
-
 \mathbb{E}[I_t(H) \mid \mathcal{F}_s] = I_s(H)
-
 $$
 
 
@@ -197,12 +177,10 @@ Let \(H_t\) be a simple process. Then:
 
 
 $$
-
 \boxed{
 \mathbb{E}\left[\left(\int_0^t H_s \, dB_s\right)^2\right]
 = \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
 }
-
 $$
 
 
@@ -211,10 +189,8 @@ $$
 
 
 $$
-
 \left(\int_0^t H_s \, dB_s\right)^2
 = \left(\sum_{i=0}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})\right)^2
-
 $$
 
 
@@ -223,10 +199,8 @@ Expanding the square:
 
 
 $$
-
 = \sum_{i=0}^{n-1} H_i^2 (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2
 + 2 \sum_{i < j} H_i H_j (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})(B_{t_{j+1} \wedge t} - B_{t_j \wedge t})
-
 $$
 
 
@@ -237,11 +211,9 @@ Taking expectations:
 
 
 $$
-
 \mathbb{E}[H_i^2 (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2]
 = \mathbb{E}[H_i^2] \cdot \mathbb{E}[(B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2]
 = \mathbb{E}[H_i^2] \cdot ((t_{i+1} \wedge t) - (t_i \wedge t))
-
 $$
 
 
@@ -252,9 +224,7 @@ by independence of \(H_i\) and the future increment.
 
 
 $$
-
 \mathbb{E}[H_i H_j (B_{t_{i+1}} - B_{t_i})(B_{t_{j+1}} - B_{t_j})]
-
 $$
 
 
@@ -263,10 +233,8 @@ Conditioning on \(\mathcal{F}_{t_{j}}\):
 
 
 $$
-
 = \mathbb{E}\left[H_i H_j (B_{t_{i+1}} - B_{t_i}) \cdot \mathbb{E}[B_{t_{j+1}} - B_{t_j} \mid \mathcal{F}_{t_j}]\right]
 = 0
-
 $$
 
 
@@ -277,11 +245,9 @@ since \(B_{t_{j+1}} - B_{t_j}\) has zero mean and is independent of \(\mathcal{F
 
 
 $$
-
 \mathbb{E}\left[\left(\int_0^t H_s \, dB_s\right)^2\right]
 = \sum_{i=0}^{n-1} \mathbb{E}[H_i^2] \cdot ((t_{i+1} \wedge t) - (t_i \wedge t))
 = \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
-
 $$
 
 
@@ -304,9 +270,7 @@ Let \(\mathcal{L}^2([0,T])\) denote the space of adapted processes \(H = \{H_t\}
 
 
 $$
-
 \mathbb{E}\left[\int_0^T H_t^2 \, dt\right] < \infty
-
 $$
 
 
@@ -315,10 +279,8 @@ This is a Hilbert space with inner product:
 
 
 $$
-
 \langle H, K \rangle
 := \mathbb{E}\left[\int_0^T H_t K_t \, dt\right]
-
 $$
 
 
@@ -334,9 +296,7 @@ $$
 
 
    $$
-
    \mathbb{E}\left[\int_0^T (H_t - H_t^{(n)})^2 \, dt\right] \to 0
-
    $$
 
 
@@ -345,11 +305,9 @@ $$
 
 
    $$
-
    \mathbb{E}\left[\left(\int_0^T H_s^{(n)} dB_s - \int_0^T H_s^{(m)} dB_s\right)^2\right]
    = \mathbb{E}\left[\int_0^T (H_s^{(n)} - H_s^{(m)})^2 ds\right]
    \to 0
-
    $$
 
 
@@ -360,9 +318,7 @@ $$
 
 
    $$
-
    \int_0^T H_s \, dB_s := L^2\text{-}\lim_{n \to \infty} \int_0^T H_s^{(n)} dB_s
-
    $$
 
 
@@ -373,12 +329,10 @@ $$
 
 
    $$
-
    \mathbb{E}\left[\left(\int_0^T H_s dB_s\right)^2\right]
    = \lim_{n \to \infty} \mathbb{E}\left[\left(\int_0^T H_s^{(n)} dB_s\right)^2\right]
    = \lim_{n \to \infty} \mathbb{E}\left[\int_0^T (H_s^{(n)})^2 ds\right]
    = \mathbb{E}\left[\int_0^T H_s^2 ds\right]
-
    $$
 
 
@@ -394,9 +348,7 @@ For \(H \in \mathcal{L}^2([0,T])\), the **Itô integral process** is defined as:
 
 
 $$
-
 I_t := \int_0^t H_s \, dB_s, \quad 0 \le t \le T
-
 $$
 
 
@@ -421,10 +373,8 @@ A process \(H\) is **locally square-integrable** if there exists a sequence of s
 
 
 $$
-
 \mathbb{E}\left[\int_0^{\tau_n \wedge T} H_s^2 \, ds\right] < \infty
 \quad \text{for all } n
-
 $$
 
 
@@ -433,10 +383,8 @@ For such processes, we define:
 
 
 $$
-
 \int_0^t H_s \, dB_s
 := \lim_{n \to \infty} \int_0^{t \wedge \tau_n} H_s \, dB_s
-
 $$
 
 
@@ -475,10 +423,8 @@ The resulting integral is **not** a pathwise construction—it is defined as a l
 
 
   $$
-
   \mathbb{E}\left[\left(\int_0^t H_s dB_s\right)^2\right]
   = \mathbb{E}\left[\int_0^t H_s^2 ds\right]
-
   $$
 
 

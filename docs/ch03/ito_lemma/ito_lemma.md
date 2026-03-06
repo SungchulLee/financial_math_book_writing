@@ -9,17 +9,13 @@ Itô's lemma is the **fundamental theorem of stochastic calculus**—the stochas
 For a smooth function $f(x)$ and a differentiable path $x(t)$:
 
 $$
-
 \frac{d}{dt}f(x(t)) = f'(x(t)) \cdot \frac{dx}{dt}
-
 $$
 
 Or in differential notation:
 
 $$
-
 df = f'(x)\,dx
-
 $$
 
 **Key feature**: Only **first-order** terms survive.
@@ -42,17 +38,14 @@ For Brownian motion $B_t$:
 For Brownian motion differentials, the multiplication rules are:
 
 $$
-
 \boxed{
 (dt)^2 = 0, \qquad dt \cdot dB_t = 0, \qquad (dB_t)^2 = dt
 }
-
 $$
 
 **Multiplication table**:
 
 $$
-
 \begin{array}{|c|c|c|}
 \hline
 \times & dt & dB_t \\
@@ -62,7 +55,6 @@ dt & 0 & 0 \\
 dB_t & 0 & dt \\
 \hline
 \end{array}
-
 $$
 
 **Interpretation**:
@@ -80,19 +72,15 @@ $$
 Let $f: \mathbb{R} \to \mathbb{R}$ be $C^2$ (twice continuously differentiable). Then:
 
 $$
-
 \boxed{
 df(B_t) = f'(B_t)\,dB_t + \frac{1}{2}f''(B_t)\,dt
 }
-
 $$
 
 **Integral form**:
 
 $$
-
 f(B_t) - f(B_0) = \int_0^t f'(B_s)\,dB_s + \frac{1}{2}\int_0^t f''(B_s)\,ds
-
 $$
 
 ### Version 2: Function of Time and Brownian Motion
@@ -100,29 +88,23 @@ $$
 Let $f: [0,\infty) \times \mathbb{R} \to \mathbb{R}$ be $C^{1,2}$ (once in $t$, twice in $x$). Then:
 
 $$
-
 \boxed{
 df(t, B_t) = \frac{\partial f}{\partial t}\,dt + \frac{\partial f}{\partial x}\,dB_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\,dt
 }
-
 $$
 
 Equivalently:
 
 $$
-
 \boxed{
 df = \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right)dt + \frac{\partial f}{\partial x}\,dB_t
 }
-
 $$
 
 **Integral form**:
 
 $$
-
 f(t, B_t) = f(0, B_0) + \int_0^t \left(\frac{\partial f}{\partial s} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right)(s, B_s)\,ds + \int_0^t \frac{\partial f}{\partial x}(s, B_s)\,dB_s
-
 $$
 
 ### Version 3: General Itô Process
@@ -130,29 +112,23 @@ $$
 Let $X_t$ be an Itô process:
 
 $$
-
 dX_t = \mu_t\,dt + \sigma_t\,dB_t
-
 $$
 
 For $f \in C^{1,2}$:
 
 $$
-
 \boxed{
 df(t, X_t) = \frac{\partial f}{\partial t}\,dt + \frac{\partial f}{\partial x}\,dX_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(dX_t)^2
 }
-
 $$
 
 Using $(dX_t)^2 = \sigma_t^2\,dt$:
 
 $$
-
 \boxed{
 df(t, X_t) = \left(\frac{\partial f}{\partial t} + \mu_t\frac{\partial f}{\partial x} + \frac{1}{2}\sigma_t^2\frac{\partial^2 f}{\partial x^2}\right)dt + \sigma_t\frac{\partial f}{\partial x}\,dB_t
 }
-
 $$
 
 ---
@@ -164,17 +140,13 @@ $$
 Start with a second-order Taylor expansion at $(t_{k-1}, B_{t_{k-1}})$:
 
 $$
-
 f(t_k, B_{t_k}) - f(t_{k-1}, B_{t_{k-1}}) = f_t(t_{k-1}, B_{t_{k-1}})\Delta t + f_x(t_{k-1}, B_{t_{k-1}})\Delta B_t$$
 
 $$
-
 + \frac{1}{2}f_{tt}(t_{k-1}, B_{t_{k-1}})(\Delta t)^2 + \frac{1}{2}f_{xx}(t_{k-1}, B_{t_{k-1}})(\Delta B_t)^2$$
 
 $$
-
 + f_{tx}(t_{k-1}, B_{t_{k-1}})\Delta B_t \,\Delta t + \cdots
-
 $$
 
 ### Step 2: Apply Itô Multiplication Rules
@@ -182,7 +154,6 @@ $$
 The crucial difference from ordinary calculus is **which terms survive**:
 
 $$
-
 \begin{array}{|c|c|}
 \hline
 \text{Term} & \text{Order and Fate} \\
@@ -194,7 +165,6 @@ f_x \,dB_t & O(\sqrt{dt}) \,\Rightarrow\, \text{SURVIVES} \\
 f_{tx}\,dt\,dB_t & O(dt^{3/2}) \,\Rightarrow\, \text{VANISHES} \\
 \hline
 \end{array}
-
 $$
 
 **The key insight:** $(dB_t)^2 = dt$ is the fundamental rule distinguishing stochastic from ordinary calculus.
@@ -204,29 +174,21 @@ $$
 Summing over a partition $0 = t_0 < t_1 < \cdots < t_n = t$:
 
 $$
-
 f(t, B_t) - f(0, B_0) = \sum_{k=1}^n [f(t_k, B_{t_k}) - f(t_{k-1}, B_{t_{k-1}})]
-
 $$
 
 Each five-term expansion contributes:
 
 $$
-
 \sum_{k=1}^n f_t(\cdot)\,\Delta t \to \int_0^t f_t(s, B_s)\,ds
-
 $$
 
 $$
-
 \sum_{k=1}^n f_x(\cdot)\,\Delta B_t \to \int_0^t f_x(s, B_s)\,dB_s
-
 $$
 
 $$
-
 \sum_{k=1}^n \frac{1}{2}f_{xx}(\cdot)(\Delta B_t)^2 = \sum_{k=1}^n \frac{1}{2}f_{xx}(\cdot)\,\Delta t \to \int_0^t \frac{1}{2}f_{xx}(s, B_s)\,ds
-
 $$
 
 ### Step 4: Rigorous Limit
@@ -248,33 +210,25 @@ Taking the limit as $\|\Delta\| \to 0$:
 ### Example 1: f(x) = x²
 
 $$
-
 d(B_t^2) = 2B_t\,dB_t + \frac{1}{2}\cdot 2\,dt = 2B_t\,dB_t + dt
-
 $$
 
 **Integral form**:
 
 $$
-
 B_t^2 = 2\int_0^t B_s\,dB_s + t
-
 $$
 
 **Corollary**: The famous Itô integral formula:
 
 $$
-
 \int_0^t B_s\,dB_s = \frac{1}{2}(B_t^2 - t)
-
 $$
 
 ### Example 2: f(x) = e^x
 
 $$
-
 d(e^{B_t}) = e^{B_t}\,dB_t + \frac{1}{2}e^{B_t}\,dt
-
 $$
 
 **Note**: $e^{B_t}$ is **not** a martingale (the $dt$ term has non-zero drift).
@@ -282,9 +236,7 @@ $$
 ### Example 3: Exponential Martingale f(t,x) = e^x - t/2
 
 $$
-
 df = \left(-\frac{1}{2}e^{x-t/2} + \frac{1}{2}e^{x-t/2}\right)dt + e^{x-t/2}\,dB_t = e^{B_t - t/2}\,dB_t
-
 $$
 
 The $dt$ terms **cancel**! So $Z_t = e^{B_t - t/2}$ is a martingale.
@@ -294,35 +246,25 @@ The $dt$ terms **cancel**! So $Z_t = e^{B_t - t/2}$ is a martingale.
 Let $S_t$ satisfy $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$. Apply Itô to $f(x) = \log x$:
 
 $$
-
 d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
-
 $$
 
 $$
-
 = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dB_t) - \frac{1}{2S_t^2}\sigma^2 S_t^2\,dt
-
 $$
 
 $$
-
 = \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dB_t
-
 $$
 
 **Solution**:
 
 $$
-
 \log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t
-
 $$
 
 $$
-
 \boxed{S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right]}
-
 $$
 
 ---
@@ -344,9 +286,7 @@ Itô's lemma connects SDEs to partial differential equations.
 **Observation**: If $f(t, B_t)$ is a martingale, then its $dt$ coefficient must be zero:
 
 $$
-
 \frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} = 0
-
 $$
 
 This is the **heat equation** (backward in time)!
@@ -354,9 +294,7 @@ This is the **heat equation** (backward in time)!
 **General connection**: For the SDE $dX_t = \mu(x)\,dt + \sigma(x)\,dB_t$, the function $u(t,x) = \mathbb{E}[g(X_T) | X_t = x]$ satisfies:
 
 $$
-
 \frac{\partial u}{\partial t} + \mu(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
-
 $$
 
 This is the **Kolmogorov backward equation** and the foundation of the **Feynman-Kac formula**.
@@ -374,17 +312,13 @@ $$f_t, \quad f_x, \quad f_{xx}$$
 **Step 2:** Compute $(dX_t)^2$ symbolically using Itô rules:
 
 $$
-
 (dX_t)^2 = (\mu_t\,dt + \sigma_t\,dB_t)^2 = \sigma_t^2\,(dB_t)^2 = \sigma_t^2\,dt
-
 $$
 
 **Step 3:** Substitute into Itô's lemma formula:
 
 $$
-
 df = \left(f_t + \mu_t f_x + \frac{1}{2}\sigma_t^2 f_{xx}\right)dt + \sigma_t f_x\,dB_t
-
 $$
 
 **Step 4:** Integrate if needed, or use as differential equation.
@@ -406,11 +340,9 @@ $$
 ## Summary
 
 $$
-
 \boxed{
 \text{Itô's Lemma: } df(t, X_t) = \left(f_t + \mu f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma f_x\,dB_t
 }
-
 $$
 
 | Classical Calculus | Stochastic Calculus |

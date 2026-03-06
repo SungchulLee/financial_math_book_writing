@@ -11,12 +11,10 @@ Stochastic volatility models distinguish between **physical (real-world)** dynam
 The **physical** or **real-world** measure governs actual asset evolution:
 
 $$
-
 \begin{aligned}
 dS_t &= \mu^{\mathbb{P}} S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^{S,\mathbb{P}} \\
 dV_t &= a^{\mathbb{P}}(V_t)\,dt + b(V_t)\,dW_t^{V,\mathbb{P}}
 \end{aligned}
-
 $$
 
 Under $\mathbb{P}$:
@@ -29,12 +27,10 @@ Under $\mathbb{P}$:
 The **risk-neutral** or **pricing** measure is constructed for derivative valuation:
 
 $$
-
 \begin{aligned}
 dS_t &= (r - q) S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^{S,\mathbb{Q}} \\
 dV_t &= a^{\mathbb{Q}}(V_t)\,dt + b(V_t)\,dW_t^{V,\mathbb{Q}}
 \end{aligned}
-
 $$
 
 Under $\mathbb{Q}$:
@@ -55,9 +51,7 @@ Under $\mathbb{Q}$:
 The change from $\mathbb{P}$ to $\mathbb{Q}$ is characterized by a **Radon–Nikodym derivative**:
 
 $$
-
 \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T = \exp\left(-\int_0^T \lambda_t \cdot dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T |\lambda_t|^2\,dt\right)
-
 $$
 
 where $\lambda_t = (\lambda_t^S, \lambda_t^V)^{\top}$ is the **market price of risk** vector.
@@ -67,12 +61,10 @@ where $\lambda_t = (\lambda_t^S, \lambda_t^V)^{\top}$ is the **market price of r
 Under $\mathbb{Q}$, the Brownian motions transform as:
 
 $$
-
 \begin{aligned}
 dW_t^{S,\mathbb{Q}} &= dW_t^{S,\mathbb{P}} + \lambda_t^S\,dt \\
 dW_t^{V,\mathbb{Q}} &= dW_t^{V,\mathbb{P}} + \lambda_t^V\,dt
 \end{aligned}
-
 $$
 
 **Crucially:** The diffusion coefficients are unchanged. Only drifts are modified.
@@ -82,25 +74,19 @@ $$
 For the asset price:
 
 $$
-
 \mu^{\mathbb{Q}} = \mu^{\mathbb{P}} - \lambda^S \sqrt{V} = r - q
-
 $$
 
 This determines the market price of equity risk:
 
 $$
-
 \lambda^S = \frac{\mu^{\mathbb{P}} - (r - q)}{\sqrt{V}}
-
 $$
 
 For the variance process:
 
 $$
-
 a^{\mathbb{Q}}(V) = a^{\mathbb{P}}(V) - \lambda^V b(V)
-
 $$
 
 ---
@@ -112,9 +98,7 @@ $$
 The **market price of volatility risk** $\lambda^V$ captures compensation for bearing volatility uncertainty:
 
 $$
-
 \lambda^V = \frac{a^{\mathbb{P}}(V) - a^{\mathbb{Q}}(V)}{b(V)}
-
 $$
 
 This quantity is:
@@ -141,25 +125,19 @@ More flexible; still tractable.
 Under $\mathbb{P}$:
 
 $$
-
 dV_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{V,\mathbb{P}}
-
 $$
 
 Under $\mathbb{Q}$ with $\lambda^V = \lambda \sqrt{V}$:
 
 $$
-
 dV_t = \kappa^{\mathbb{Q}}(\theta^{\mathbb{Q}} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{V,\mathbb{Q}}
-
 $$
 
 where:
 
 $$
-
 \kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda\xi, \qquad \theta^{\mathbb{Q}} = \frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{P}} + \lambda\xi}
-
 $$
 
 **Observation:** Different $(\kappa, \theta)$ values across measures reflect the volatility risk premium.
@@ -173,9 +151,7 @@ $$
 The **volatility risk premium (VRP)** is typically defined as:
 
 $$
-
 \text{VRP} = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]
-
 $$
 
 or equivalently in terms of variance swap rates vs. realized variance.
@@ -264,17 +240,13 @@ Typically: $\theta^{\mathbb{Q}} > \theta^{\mathbb{P}}$ or ambiguous
 The **variance swap rate** (traded at zero cost) satisfies:
 
 $$
-
 \text{VS Rate} = \mathbb{E}^{\mathbb{Q}}\left[\frac{1}{T}\int_0^T V_s\,ds\right]
-
 $$
 
 The **realized variance** satisfies:
 
 $$
-
 \text{RV} = \frac{1}{T}\int_0^T V_s\,ds \quad \text{(realized path)}
-
 $$
 
 **VRP = VS Rate $-$ $\mathbb{E}^{\mathbb{P}}[\text{RV}]$** is persistently positive.

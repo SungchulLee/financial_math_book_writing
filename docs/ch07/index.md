@@ -38,13 +38,11 @@ is a parametric special case. Regularization techniques (Tikhonov, spline smooth
 Stochastic volatility introduces a second random factor to capture volatility clustering, mean reversion, and the leverage effect. The general two-factor framework under $\mathbb{Q}$ is 
 
 $$
-
 \left\{\begin{array}{cll}
 dS_t &=& rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)}\\
 dv_t &=& \alpha(t,v_t)\,dt + \beta(t,v_t)\,dW_t^{(2)}\\
 d\langle W^{(1)},W^{(2)}\rangle_t &=& \rho\,dt
 \end{array}\right.
-
 $$
 
 The **Heston model** (1993) specifies CIR dynamics for variance:

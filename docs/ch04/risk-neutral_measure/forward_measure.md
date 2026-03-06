@@ -18,11 +18,9 @@ The **$T$-maturity zero-coupon bond** has price process $P(t,T)$ satisfying:
 The $T$-forward measure $\mathbb{Q}^T$ is defined by the Radon-Nikodym derivative:
 
 $$
-
 \boxed{
 \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{P(t,T)}{P(0,T)B_t}
 }
-
 $$
 
 where $B_t = e^{\int_0^t r_s\,ds}$ is the money market account and $\mathbb{Q}$ is the standard risk-neutral measure.
@@ -36,9 +34,7 @@ where $B_t = e^{\int_0^t r_s\,ds}$ is the money market account and $\mathbb{Q}$ 
 Under $\mathbb{Q}^T$, for any traded asset $S_t$:
 
 $$
-
 \frac{S_t}{P(t,T)} \text{ is a } \mathbb{Q}^T\text{-martingale}
-
 $$
 
 ### 2. Forward Prices are Martingales
@@ -46,17 +42,13 @@ $$
 The **forward price** of $S$ for delivery at $T$:
 
 $$
-
 F(t,T) = \frac{S_t}{P(t,T)}
-
 $$
 
 is a $\mathbb{Q}^T$-martingale:
 
 $$
-
 F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]
-
 $$
 
 ### 3. Pricing Formula
@@ -64,11 +56,9 @@ $$
 For a claim with payoff $\Phi_T$ at time $T$:
 
 $$
-
 \boxed{
 V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
 }
-
 $$
 
 **No explicit discounting required**—the bond price handles it.
@@ -95,17 +85,13 @@ Under $\mathbb{Q}$: $W_t^{\mathbb{Q}}$ is Brownian motion.
 Under $\mathbb{Q}^T$:
 
 $$
-
 W_t^{\mathbb{Q}^T} = W_t^{\mathbb{Q}} - \int_0^t \sigma_P(s,T)\,ds
-
 $$
 
 is Brownian motion, where $\sigma_P(t,T)$ is the volatility of the bond:
 
 $$
-
 \frac{dP(t,T)}{P(t,T)} = r_t\,dt + \sigma_P(t,T)\,dW_t^{\mathbb{Q}}
-
 $$
 
 ### Asset Dynamics
@@ -113,17 +99,13 @@ $$
 If under $\mathbb{Q}$:
 
 $$
-
 \frac{dS_t}{S_t} = r_t\,dt + \sigma_S\,dW_t^{\mathbb{Q}}
-
 $$
 
 then under $\mathbb{Q}^T$:
 
 $$
-
 \frac{dS_t}{S_t} = (r_t + \sigma_S\sigma_P(t,T))\,dt + \sigma_S\,dW_t^{\mathbb{Q}^T}
-
 $$
 
 The drift changes by the covariance between $S$ and $P$.
@@ -137,9 +119,7 @@ The drift changes by the covariance between $S$ and $P$.
 The **forward LIBOR rate** $L(t;T,T+\delta)$ for period $[T, T+\delta]$ is defined by:
 
 $$
-
 1 + \delta L(t;T,T+\delta) = \frac{P(t,T)}{P(t,T+\delta)}
-
 $$
 
 ### Under the (T+δ)-Forward Measure
@@ -147,9 +127,7 @@ $$
 The forward LIBOR rate is a $\mathbb{Q}^{T+\delta}$-martingale:
 
 $$
-
 L(t;T,T+\delta) = \mathbb{E}^{\mathbb{Q}^{T+\delta}}[L(T;T,T+\delta) \mid \mathcal{F}_t]
-
 $$
 
 At time $T$, the spot LIBOR fixes: $L(T;T,T+\delta) = L_T$.
@@ -161,17 +139,13 @@ A caplet with strike $K$ pays $\delta(L_T - K)^+$ at time $T+\delta$.
 Under $\mathbb{Q}^{T+\delta}$:
 
 $$
-
 V_t = P(t,T+\delta) \cdot \delta \cdot \mathbb{E}^{\mathbb{Q}^{T+\delta}}[(L_T - K)^+ \mid \mathcal{F}_t]
-
 $$
 
 If $L(t;T,T+\delta)$ is log-normal under $\mathbb{Q}^{T+\delta}$ with volatility $\sigma_L$:
 
 $$
-
 V_t = P(t,T+\delta) \cdot \delta \cdot [L_t\Phi(d_1) - K\Phi(d_2)]
-
 $$
 
 This is **Black's formula for caplets**.
@@ -189,9 +163,7 @@ Payoff at $T$: $\Phi_T = S_T - K$.
 ### Under Risk-Neutral Measure
 
 $$
-
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}(S_T - K) \mid \mathcal{F}_t\right]
-
 $$
 
 Requires knowing the joint distribution of $r$ and $S$.
@@ -199,9 +171,7 @@ Requires knowing the joint distribution of $r$ and $S$.
 ### Under Forward Measure
 
 $$
-
 V_t = P(t,T)\mathbb{E}^{\mathbb{Q}^T}[S_T - K \mid \mathcal{F}_t] = P(t,T)(F(t,T) - K)
-
 $$
 
 Since $F(t,T)$ is a $\mathbb{Q}^T$-martingale: $\mathbb{E}^{\mathbb{Q}^T}[S_T] = F(t,T)$.
@@ -217,17 +187,13 @@ Since $F(t,T)$ is a $\mathbb{Q}^T$-martingale: $\mathbb{E}^{\mathbb{Q}^T}[S_T] =
 In Vasicek:
 
 $$
-
 dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{Q}}
-
 $$
 
 The bond price is:
 
 $$
-
 P(t,T) = A(t,T)e^{-B(t,T)r_t}
-
 $$
 
 with $B(t,T) = \frac{1-e^{-\kappa(T-t)}}{\kappa}$.
@@ -235,17 +201,13 @@ with $B(t,T) = \frac{1-e^{-\kappa(T-t)}}{\kappa}$.
 ### Bond Volatility
 
 $$
-
 \sigma_P(t,T) = -B(t,T)\sigma_r
-
 $$
 
 ### Interest Rate Under Q^T
 
 $$
-
 dr_t = [\kappa(\bar{r} - r_t) - \sigma_r^2 B(t,T)]\,dt + \sigma_r\,dW_t^{\mathbb{Q}^T}
-
 $$
 
 The drift is modified by the "volatility of the drift" adjustment.
@@ -257,9 +219,7 @@ The drift is modified by the "volatility of the drift" adjustment.
 For different maturities $T_1 < T_2$:
 
 $$
-
 \frac{d\mathbb{Q}^{T_2}}{d\mathbb{Q}^{T_1}}\bigg|_{\mathcal{F}_t} = \frac{P(t,T_2)/P(0,T_2)}{P(t,T_1)/P(0,T_1)}
-
 $$
 
 Each maturity has its own forward measure.
@@ -267,9 +227,7 @@ Each maturity has its own forward measure.
 ### The Tower of Measures
 
 $$
-
 \mathbb{Q} \longleftrightarrow \mathbb{Q}^{T_1} \longleftrightarrow \mathbb{Q}^{T_2} \longleftrightarrow \cdots
-
 $$
 
 All are equivalent measures connected by Radon-Nikodym derivatives.
@@ -295,11 +253,9 @@ All are equivalent measures connected by Radon-Nikodym derivatives.
 ## Summary
 
 $$
-
 \boxed{
 V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
 }
-
 $$
 
 | Property | Statement |

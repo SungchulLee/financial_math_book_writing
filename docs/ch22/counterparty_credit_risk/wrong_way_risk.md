@@ -9,9 +9,7 @@ In counterparty credit risk, **wrong-way risk (WWR)** occurs when exposure to a 
 Wrong-way risk arises when:
 
 $$
-
 \text{Corr}(E_\tau, \mathbf{1}_{\tau \le T}) > 0
-
 $$
 
 where $E_\tau$ is exposure at default time $\tau$.
@@ -55,9 +53,7 @@ Arises from **correlation between market factors and credit quality** not specif
 The standard CVA formula assumes independence:
 
 $$
-
 \text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot dPD(t)
-
 $$
 
 where:
@@ -71,9 +67,7 @@ where:
 With wrong-way risk:
 
 $$
-
 \text{CVA}^{\text{WWR}} = \text{LGD} \int_0^T \mathbb{E}[E_t | \tau = t] \cdot dPD(t)
-
 $$
 
 The key difference: **conditional expectation** $\mathbb{E}[E_t | \tau = t]$ replaces the unconditional $\text{EE}(t)$.
@@ -81,9 +75,7 @@ The key difference: **conditional expectation** $\mathbb{E}[E_t | \tau = t]$ rep
 **Relation:**
 
 $$
-
 \text{CVA}^{\text{WWR}} > \text{CVA} \quad \text{under positive correlation}
-
 $$
 
 ---
@@ -95,9 +87,7 @@ $$
 Simple but conservative:
 
 $$
-
 \text{CVA}^{\text{WWR}} = \text{LGD} \int_0^T \text{EE}^{\text{stressed}}(t) \cdot dPD(t)
-
 $$
 
 where $\text{EE}^{\text{stressed}}(t)$ is computed under a stressed scenario consistent with default.
@@ -110,9 +100,7 @@ where $\text{EE}^{\text{stressed}}(t)$ is computed under a stressed scenario con
 Model joint distribution of exposure and default:
 
 $$
-
 (V_t, \tau) \sim F(v, t; \rho)
-
 $$
 
 where $\rho$ captures the correlation structure.
@@ -127,9 +115,7 @@ where $\rho$ captures the correlation structure.
 Let default intensity $\lambda_t$ depend on market factors $X_t$:
 
 $$
-
 \lambda_t = \lambda_0 \cdot e^{\beta \cdot X_t}
-
 $$
 
 If $X_t$ also drives exposure:
@@ -139,9 +125,7 @@ If $X_t$ also drives exposure:
 **Example:** For FX exposure with EM counterparty:
 
 $$
-
 \lambda_t = \lambda_0 \cdot e^{\beta \cdot (S_t - S_0)/S_0}
-
 $$
 
 where $S_t$ is the FX rate (domestic per foreign). Depreciation ($S_t$ increases) raises default intensity.
@@ -151,9 +135,7 @@ where $S_t$ is the FX rate (domestic per foreign). Depreciation ($S_t$ increases
 Assume exposure at default follows:
 
 $$
-
 \mathbb{E}[E_\tau | \tau = t] = \text{EE}(t) \cdot (1 + w)
-
 $$
 
 where $w$ is the WWR multiplier.
@@ -186,9 +168,7 @@ Regulators require explicit WWR consideration:
 Some regulators prescribe:
 
 $$
-
 \text{EAD}^{\text{WWR}} = \text{EAD} \times (1 + \alpha_{\text{WWR}})
-
 $$
 
 where $\alpha_{\text{WWR}}$ is a supervisory add-on (e.g., 40%).
@@ -207,9 +187,7 @@ where $\alpha_{\text{WWR}}$ is a supervisory add-on (e.g., 40%).
 **Analysis:**
 
 $$
-
 E_t = \max(K - S_t^B, 0)
-
 $$
 
 As $S_t^B \downarrow$:
@@ -228,9 +206,7 @@ As $S_t^B \downarrow$:
 **Analysis:**
 
 $$
-
 V_t = N \cdot (F_t - K) \cdot D(t,T)
-
 $$
 
 If BRL depreciates (USD/BRL increases):
@@ -260,9 +236,7 @@ If BRL depreciates (USD/BRL increases):
 Define the WWR multiplier:
 
 $$
-
 \text{WWR Multiplier} = \frac{\text{CVA}^{\text{WWR}}}{\text{CVA}}
-
 $$
 
 **Typical ranges:**
@@ -275,9 +249,7 @@ $$
 Compute CVA under varying correlation assumptions:
 
 $$
-
 \text{CVA}(\rho) \text{ for } \rho \in [-1, 1]
-
 $$
 
 Plot to understand WWR sensitivity.

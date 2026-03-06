@@ -27,9 +27,7 @@ Let $(\Omega, \mathcal{F}, \{\mathcal{F}_t\}_{0 \leq t \leq T}, \mathbb{P})$ be 
 A martingale $M_t$ is **square-integrable** on $[0,T]$ if:
 
 $$
-
 \mathbb{E}[M_T^2] < \infty
-
 $$
 
 Equivalently (by the martingale property and Doob's $L^2$ inequality): $\sup_{t \leq T} \mathbb{E}[M_t^2] < \infty$.
@@ -42,9 +40,7 @@ Before stating the main theorem, recall the converse direction (proved in [Itô 
     If $\phi_t$ is a predictable process with $\mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right] < \infty$, then the Itô integral:
     
     $$
-
     I_t = \int_0^t \phi_s \, dW_s
-
     $$
     
     is a **square-integrable martingale** with $I_0 = 0$.
@@ -57,17 +53,13 @@ This tells us that stochastic integrals produce martingales. The Martingale Repr
     Let $M_t$ be a square-integrable $\mathcal{F}_t$-martingale on $[0,T]$. Then there exists a **unique** predictable process $\phi_t$ such that:
 
     $$
-
     \boxed{M_t = M_0 + \int_0^t \phi_s \, dW_s \quad \text{for all } t \in [0,T]}
-
     $$
 
     with
 
     $$
-
     \mathbb{E}\left[ \int_0^T \phi_s^2 \, ds \right] < \infty
-
     $$
 
     Uniqueness is understood up to indistinguishability (i.e., $\phi$ is unique in $L^2(\Omega \times [0,T])$).
@@ -98,17 +90,13 @@ The proof relies on Hilbert space ideas and the Itô isometry.
 Define the space of stochastic integrals:
 
 $$
-
 \mathcal{I} = \left\{ \int_0^T \phi_s \, dW_s : \phi \text{ predictable}, \, \mathbb{E}\left[\int_0^T \phi_s^2\,ds\right] < \infty \right\}
-
 $$
 
 By the **Itô isometry**, this is isometrically isomorphic to $L^2(\Omega \times [0,T], \mathcal{P}, \mathbb{P} \otimes dt)$:
 
 $$
-
 \mathbb{E}\left[\left(\int_0^T \phi_s \, dW_s\right)^2\right] = \mathbb{E}\left[\int_0^T \phi_s^2 \, ds\right]
-
 $$
 
 ### Step 2: Density of Simple Processes
@@ -130,9 +118,7 @@ The key step is showing that $\mathcal{I}$ contains **all** mean-zero square-int
 For a square-integrable martingale $M_t$ with terminal value $M_T$, we have $M_T - M_0 \in \mathcal{I}$, so:
 
 $$
-
 M_T - M_0 = \int_0^T \phi_s\,dW_s
-
 $$
 
 By the martingale property, $M_t = \mathbb{E}[M_T \mid \mathcal{F}_t] = M_0 + \int_0^t \phi_s\,dW_s$. $\square$
@@ -163,9 +149,7 @@ In a complete market, the MRT provides the mathematical foundation for hedging.
 Under the risk-neutral measure $\mathbb{Q}$, the discounted stock price $\tilde{S}_t = e^{-rt}S_t$ is a martingale. For a European claim with payoff $\Phi(S_T)$, the discounted claim value:
 
 $$
-
 \tilde{V}_t = e^{-rt}V_t = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t]
-
 $$
 
 is also a martingale.
@@ -175,9 +159,7 @@ is also a martingale.
 By the Martingale Representation Theorem:
 
 $$
-
 \tilde{V}_t = \tilde{V}_0 + \int_0^t \psi_s \, dW_s^{\mathbb{Q}}
-
 $$
 
 for some predictable process $\psi_t$.
@@ -187,25 +169,19 @@ for some predictable process $\psi_t$.
 Since $d\tilde{S}_t = \sigma \tilde{S}_t \, dW_t^{\mathbb{Q}}$ (under $\mathbb{Q}$), we can write:
 
 $$
-
 dW_t^{\mathbb{Q}} = \frac{d\tilde{S}_t}{\sigma \tilde{S}_t}
-
 $$
 
 Substituting:
 
 $$
-
 d\tilde{V}_t = \psi_t \, dW_t^{\mathbb{Q}} = \frac{\psi_t}{\sigma \tilde{S}_t} \, d\tilde{S}_t
-
 $$
 
 The **hedging strategy** (number of shares) is:
 
 $$
-
 \boxed{\Delta_t = \frac{\psi_t}{\sigma \tilde{S}_t} = \frac{\psi_t}{\sigma S_t} e^{rt}}
-
 $$
 
 ### Connection to Delta
@@ -213,9 +189,7 @@ $$
 For the Black–Scholes model, one can show:
 
 $$
-
 \Delta_t = \frac{\partial V}{\partial S}(t, S_t)
-
 $$
 
 The MRT integrand $\psi_t$ encodes the sensitivity of the option value to Brownian shocks, which translates to delta hedging.
@@ -249,9 +223,7 @@ For a $d$-dimensional Brownian motion $W_t = (W_t^1, \ldots, W_t^d)$ with indepe
     Every square-integrable $\mathcal{F}_t^W$-martingale $M_t$ can be written as:
 
     $$
-
     M_t = M_0 + \sum_{i=1}^d \int_0^t \phi_s^i \, dW_s^i = M_0 + \int_0^t \boldsymbol{\phi}_s \cdot d\mathbf{W}_s
-
     $$
 
     where $\boldsymbol{\phi}_t = (\phi_t^1, \ldots, \phi_t^d)$ is a predictable $\mathbb{R}^d$-valued process.
@@ -270,9 +242,7 @@ In **Malliavin calculus**, the integrand $\phi_t$ can be written explicitly usin
     If $F \in \mathbb{D}^{1,2}$ (the Malliavin–Sobolev space), then:
 
     $$
-
     F = \mathbb{E}[F] + \int_0^T \mathbb{E}[D_t F \mid \mathcal{F}_t] \, dW_t
-
     $$
 
     where $D_t F$ is the **Malliavin derivative** of $F$ at time $t$.
@@ -287,9 +257,7 @@ When the filtration is larger than the Brownian filtration (e.g., jump processes
     Let $M_t$ be a square-integrable martingale and $N_t$ a given martingale (e.g., a traded asset). Then:
 
     $$
-
     M_t = M_0 + \int_0^t \phi_s \, dN_s + L_t
-
     $$
 
     where:
@@ -308,9 +276,7 @@ The orthogonal component $L_t$ represents **unhedgeable risk**. This decompositi
 ## Summary
 
 $$
-
 \boxed{M_t = M_0 + \int_0^t \phi_s \, dW_s}
-
 $$
 
 | Aspect | Description |

@@ -9,9 +9,7 @@
 Let $L$ denote the (random) loss of a portfolio over a given horizon. For a confidence level $\alpha \in (0,1)$, the Value-at-Risk is defined as the **$\alpha$-quantile** of the loss distribution:
 
 $$
-
 \text{VaR}_{\alpha}(L) = \inf\{x \in \mathbb{R} : F_L(x) \ge \alpha\} = F_L^{-1}(\alpha)
-
 $$
 
 where $F_L(x) = \mathbb{P}(L \le x)$ is the cumulative distribution function of $L$.
@@ -40,9 +38,7 @@ VaR answers the question: *"What is the maximum loss at confidence level $\alpha
 If portfolio returns $R \sim N(\mu, \sigma^2)$ over horizon $\Delta t$, the loss $L = -R$ satisfies:
 
 $$
-
 \text{VaR}_\alpha = -\mu + \sigma \Phi^{-1}(\alpha)
-
 $$
 
 where $\Phi^{-1}$ is the standard normal quantile function.
@@ -50,9 +46,7 @@ where $\Phi^{-1}$ is the standard normal quantile function.
 **Example:** For $\alpha = 0.99$, we have $\Phi^{-1}(0.99) \approx 2.326$, so:
 
 $$
-
 \text{VaR}_{0.99} \approx -\mu + 2.326\sigma
-
 $$
 
 For daily returns with $\mu \approx 0$, this simplifies to $\text{VaR}_{0.99} \approx 2.326\sigma$.
@@ -66,9 +60,7 @@ For daily returns with $\mu \approx 0$, this simplifies to $\text{VaR}_{0.99} \a
 Order historical losses $L_{(1)} \le L_{(2)} \le \cdots \le L_{(n)}$ and estimate:
 
 $$
-
 \widehat{\text{VaR}}_\alpha = L_{(\lceil n\alpha \rceil)}
-
 $$
 
 **Advantages:** Model-free, captures fat tails if present in data.
@@ -80,17 +72,13 @@ $$
 Assume returns follow a multivariate normal distribution:
 
 $$
-
 \mathbf{R} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})
-
 $$
 
 For portfolio weights $\mathbf{w}$, the portfolio variance is $\sigma_P^2 = \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}$, giving:
 
 $$
-
 \text{VaR}_\alpha = -\mathbf{w}^\top \boldsymbol{\mu} + \sqrt{\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}} \cdot \Phi^{-1}(\alpha)
-
 $$
 
 **Advantages:** Computationally efficient, analytically tractable.
@@ -114,9 +102,7 @@ $$
 Under the assumption of i.i.d. returns, VaR scales with the square root of time:
 
 $$
-
 \text{VaR}_\alpha(h \text{ days}) \approx \sqrt{h} \cdot \text{VaR}_\alpha(1 \text{ day})
-
 $$
 
 This **square-root-of-time rule** is exact for normally distributed returns but only approximate otherwise. It tends to underestimate multi-day VaR when returns exhibit volatility clustering or fat tails.
@@ -128,9 +114,7 @@ This **square-root-of-time rule** is exact for normally distributed returns but 
 A critical limitation of VaR is that it can violate **subadditivity**:
 
 $$
-
 \text{VaR}_\alpha(L_1 + L_2) \le \text{VaR}_\alpha(L_1) + \text{VaR}_\alpha(L_2) \quad \text{(may fail)}
-
 $$
 
 **Counterexample:** Consider two bonds, each defaulting independently with probability 4%. At the 95% confidence level:
@@ -150,17 +134,13 @@ This violates the diversification principle: combining positions can *increase* 
 A risk measure $\rho$ is **elicitable** if there exists a scoring function $S(x, y)$ such that:
 
 $$
-
 \rho(L) = \arg\min_x \mathbb{E}[S(x, L)]
-
 $$
 
 **VaR is elicitable.** The scoring function for the $\alpha$-quantile is:
 
 $$
-
 S(x, L) = (\mathbf{1}_{L \le x} - \alpha)(x - L)
-
 $$
 
 This is the **pinball loss** (or quantile loss) function, which is asymmetric around the quantile.

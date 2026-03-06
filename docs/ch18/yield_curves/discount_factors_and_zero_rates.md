@@ -9,17 +9,13 @@ Yield curves summarize the time value of money and are foundational for pricing 
 A **discount factor** $P(0,T)$ is the time-0 price of a zero-coupon bond paying 1 unit of currency at maturity $T$:
 
 $$
-
-P(0,T) = \text{Price at }0\text{ of a claim paying }1\text{ at }T.
-
+P(0,T) = \text{Price at }0\text{ of a claim paying }1\text{ at }T
 $$
 
 More generally, for any valuation time $t \leq T$:
 
 $$
-
-P(t,T) = \text{Price at }t\text{ of a claim paying }1\text{ at }T.
-
+P(t,T) = \text{Price at }t\text{ of a claim paying }1\text{ at }T
 $$
 
 ### Fundamental Properties
@@ -51,25 +47,19 @@ This value reflects:
 The **continuously compounded zero rate** $z(t,T)$ is defined implicitly by:
 
 $$
-
 P(t,T) = e^{-z(t,T)(T-t)}
-
 $$
 
 Solving for the zero rate:
 
 $$
-
 z(t,T) = -\frac{\log P(t,T)}{T-t}
-
 $$
 
 For the initial curve at $t=0$:
 
 $$
-
 z(0,T) = -\frac{\log P(0,T)}{T}
-
 $$
 
 The zero rate $z(0,T)$ represents the constant continuously compounded rate that, if applied over $[0,T]$, produces the observed discount factor.
@@ -81,17 +71,13 @@ Different markets use different compounding conventions:
 **Simple (Money Market) Compounding:**
 
 $$
-
 P(0,T) = \frac{1}{1 + R_s(0,T) \cdot T}
-
 $$
 
 Inverting:
 
 $$
-
 R_s(0,T) = \frac{1 - P(0,T)}{P(0,T) \cdot T}
-
 $$
 
 This convention is standard for maturities under one year.
@@ -99,25 +85,19 @@ This convention is standard for maturities under one year.
 **Annual Compounding:**
 
 $$
-
 P(0,T) = \frac{1}{(1 + R_a(0,T))^T}
-
 $$
 
 Inverting:
 
 $$
-
 R_a(0,T) = P(0,T)^{-1/T} - 1
-
 $$
 
 **Semi-Annual Compounding:**
 
 $$
-
 P(0,T) = \frac{1}{\left(1 + \frac{R_{sa}(0,T)}{2}\right)^{2T}}
-
 $$
 
 This is the standard convention for US Treasury bonds.
@@ -170,9 +150,7 @@ Zero rates and discount factors serve as building blocks for:
 2. **Pricing coupon bonds:** A bond paying coupons $c_i$ at times $T_i$ and principal $F$ at $T_n$:
 
 $$
-
 B_0 = \sum_{i=1}^n c_i P(0,T_i) + F \cdot P(0,T_n)
-
 $$
 
 3. **Building forward rates:** Forward rates are derived from ratios of discount factors (next section)
@@ -186,9 +164,7 @@ $$
 Under the risk-neutral measure $\mathbb{Q}$, if $r_t$ denotes the instantaneous short rate, then:
 
 $$
-
 P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s \, ds} \,\bigg|\, \mathcal{F}_t\right]
-
 $$
 
 This fundamental relationship:
@@ -212,9 +188,7 @@ Practical rate calculations require specifying how time intervals are measured:
 For a period from date $d_1$ to $d_2$:
 
 $$
-
 \tau = \frac{\text{Day count}(d_1, d_2)}{\text{Year basis}}
-
 $$
 
 Consistency in day count conventions is essential when comparing rates or building curves.

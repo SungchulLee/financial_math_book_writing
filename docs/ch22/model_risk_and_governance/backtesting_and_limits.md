@@ -28,9 +28,7 @@ A good risk model should:
 For a $\alpha$-level VaR (e.g., 99%), count days when losses exceed VaR:
 
 $$
-
 I_t = \mathbf{1}_{\{L_t > \text{VaR}_{\alpha,t}\}}
-
 $$
 
 **Expected exceedances:** $(1-\alpha) \times n$ days out of $n$
@@ -44,9 +42,7 @@ $$
 **Test statistic (likelihood ratio):**
 
 $$
-
 LR_{uc} = -2 \ln\left[\frac{(1-\alpha)^{n_0} \alpha^{n_1}}{\hat{p}^{n_1} (1-\hat{p})^{n_0}}\right]
-
 $$
 
 where:
@@ -71,9 +67,7 @@ Good VaR should have **independent** exceedances (no clustering).
 **Test statistic:**
 
 $$
-
 LR_{ind} = -2 \ln\left[\frac{L(\hat{\pi})}{L(\hat{\pi}_{01}, \hat{\pi}_{11})}\right] \sim \chi^2(1)
-
 $$
 
 ### Conditional Coverage Test
@@ -81,9 +75,7 @@ $$
 **Combined test:**
 
 $$
-
 LR_{cc} = LR_{uc} + LR_{ind} \sim \chi^2(2)
-
 $$
 
 Tests both correct level AND independence.
@@ -109,9 +101,7 @@ Capital = Multiplier × VaR
 Yellow zone multiplier:
 
 $$
-
 k = 3.0 + 0.2 \times (\text{exceedances} - 4)
-
 $$
 
 ---
@@ -127,17 +117,13 @@ ES is not directly elicitable, making backtesting harder than VaR.
 Based on the identity:
 
 $$
-
 \mathbb{E}\left[\frac{L \cdot \mathbf{1}_{L > \text{VaR}_\alpha}}{\text{ES}_\alpha}\right] = 1 - \alpha
-
 $$
 
 **Test statistic:**
 
 $$
-
 Z = \frac{1}{n(1-\alpha)} \sum_{t: L_t > \text{VaR}_t} \frac{L_t}{\text{ES}_t}
-
 $$
 
 Under correct model: $\mathbb{E}[Z] = 1$
@@ -147,9 +133,7 @@ Under correct model: $\mathbb{E}[Z] = 1$
 Transform exceedances:
 
 $$
-
 e_t = \frac{L_t - \text{VaR}_t}{\text{ES}_t - \text{VaR}_t} \quad \text{for } L_t > \text{VaR}_t
-
 $$
 
 Under correct model: $e_t$ should follow standard exponential distribution.
@@ -172,33 +156,25 @@ Translate risk measures into operational controls:
 **Position limits:** Maximum notional or delta exposure
 
 $$
-
 \text{Position}_i \le \text{Limit}_i
-
 $$
 
 **VaR limits:** Maximum VaR at desk/portfolio level
 
 $$
-
 \text{VaR}_{\text{desk}} \le \text{VaR Limit}
-
 $$
 
 **Stress limits:** Maximum loss under stress scenarios
 
 $$
-
 \text{Stress Loss} \le \text{Stress Limit}
-
 $$
 
 **Sensitivity limits:** Maximum Greeks (delta, gamma, vega)
 
 $$
-
 |\Delta| \le \Delta^{\max}, \quad |\Gamma| \le \Gamma^{\max}
-
 $$
 
 ### Limit Framework
@@ -210,9 +186,7 @@ $$
 4. Trader limits
 
 $$
-
 \sum_{\text{desks}} \text{Limit}_{\text{desk}} \le \text{Business Unit Limit} \le \text{Firm Limit}
-
 $$
 
 **Note:** Limits are not additive due to diversification; "budget" not "constraint."

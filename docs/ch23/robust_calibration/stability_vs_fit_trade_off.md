@@ -21,9 +21,7 @@ Understanding and managing this trade-off is crucial for:
 **Perfect Fit**: Minimize calibration error exactly:
 
 $$
-
 \hat{\theta} = \arg\min_{\theta} \sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2
-
 $$
 
 **Problem**: Small changes in $\{C_i^{\text{market}}\}$ can cause large changes in $\hat{\theta}$.
@@ -39,9 +37,7 @@ $$
 **Parameter Sensitivity**: For data perturbation $\delta C$:
 
 $$
-
 \delta \theta \approx -H^{-1} J^\top \delta C
-
 $$
 
 where $H$ is the Hessian and $J$ is the Jacobian of model prices.
@@ -49,9 +45,7 @@ where $H$ is the Hessian and $J$ is the Jacobian of model prices.
 **Condition Number**: 
 
 $$
-
 \kappa = \|H^{-1}\| \cdot \|H\|
-
 $$
 
 Large $\kappa$ indicates ill-conditioning.
@@ -59,9 +53,7 @@ Large $\kappa$ indicates ill-conditioning.
 **Temporal Stability**: Measure parameter variation over time:
 
 $$
-
 \text{Volatility}(\theta_t) = \sqrt{\text{Var}_t(\theta_{t+1} - \theta_t)}
-
 $$
 
 ### 3. Sources of Instability
@@ -84,9 +76,7 @@ $$
 **Penalized Objective**:
 
 $$
-
 \hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{\sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2 + \lambda \|\theta - \theta_0\|^2\right\}
-
 $$
 
 where $\theta_0$ is a prior or reference parameter.
@@ -103,9 +93,7 @@ where $\theta_0$ is a prior or reference parameter.
 **L1 Penalty**:
 
 $$
-
 \hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{\text{CalibrationError}(\theta) + \lambda \|\theta\|_1\right\}
-
 $$
 
 **Effect**: Promotes sparsity; some parameters set to zero.
@@ -118,9 +106,7 @@ $$
 **Combined Penalty**:
 
 $$
-
 \hat{\theta} = \arg\min_{\theta} \left\{\text{Error}(\theta) + \lambda_1 \|\theta\|_1 + \lambda_2 \|\theta\|_2^2\right\}
-
 $$
 
 **Properties**: Combines sparsity (L1) with grouping (L2).
@@ -131,9 +117,7 @@ $$
 **Smooth Parameter Evolution**:
 
 $$
-
 \hat{\theta}_t = \arg\min_{\theta} \left\{\text{Error}_t(\theta) + \gamma \|\theta - \hat{\theta}_{t-1}\|^2\right\}
-
 $$
 
 **Effect**: Penalizes large parameter jumps between calibrations.
@@ -169,17 +153,13 @@ $$
 **AIC**: 
 
 $$
-
 \text{AIC} = 2k - 2\ln(\hat{L})
-
 $$
 
 **BIC**:
 
 $$
-
 \text{BIC} = k \ln(n) - 2\ln(\hat{L})
-
 $$
 
 where $k$ is number of effective parameters.
@@ -204,9 +184,7 @@ where $k$ is number of effective parameters.
 **Weighted Sum**:
 
 $$
-
 \min_{\theta} \{w \cdot f_1(\theta) + (1-w) \cdot f_2(\theta)\}
-
 $$
 
 for $w \in [0, 1]$.
@@ -214,9 +192,7 @@ for $w \in [0, 1]$.
 **$\epsilon$-Constraint**:
 
 $$
-
 \min_{\theta} f_1(\theta) \quad \text{s.t.} \quad f_2(\theta) \leq \epsilon
-
 $$
 
 ### 3. Visualizing Trade-Offs
@@ -244,12 +220,10 @@ $$
 **Alternative Parameters**: Instead of $(\kappa, \bar{v}, \sigma_v)$, use:
 
 $$
-
 \begin{aligned}
 \theta_1 &= \kappa \bar{v} \quad \text{(long-run variance rate)} \\
 \theta_2 &= \frac{\sigma_v^2}{4\kappa} \quad \text{(Feller ratio)}
 \end{aligned}
-
 $$
 
 **Benefit**: Re-parameterized quantities may be more stable.
@@ -260,9 +234,7 @@ $$
 **Objective**:
 
 $$
-
 \min_{\theta} \left\{\sum_{i,j} w_{ij}[\sigma_{ij}^{\text{mkt}} - \sigma_{ij}^{\text{Heston}}(\theta)]^2 + \lambda \|\theta - \theta_{\text{prior}}\|_{\Sigma^{-1}}^2\right\}
-
 $$
 
 where $\theta_{\text{prior}}$ is historical average and $\Sigma$ is parameter covariance.
@@ -299,9 +271,7 @@ where $\theta_{\text{prior}}$ is historical average and $\Sigma$ is parameter co
 **Kalman Filter**: Model parameters as latent states:
 
 $$
-
 \theta_t = \theta_{t-1} + \eta_t
-
 $$
 
 **Update**: Combine prior $\theta_{t-1}$ with new data to get $\theta_t$.
@@ -317,17 +287,13 @@ $$
 **Daily Parameter Change**:
 
 $$
-
 \Delta \theta_t = \|\theta_t - \theta_{t-1}\|
-
 $$
 
 **Coefficient of Variation**:
 
 $$
-
 \text{CV}(\theta_i) = \frac{\text{std}(\theta_{i,t})}{\text{mean}(\theta_{i,t})}
-
 $$
 
 **Rolling Correlation**: Correlation between parameter changes and market moves.
@@ -358,17 +324,13 @@ $$
 **Delta Stability**: Variation in hedge ratio over time:
 
 $$
-
 \text{Var}(\Delta_t - \Delta_{t-1})
-
 $$
 
 **Transaction Costs**: Proportional to turnover:
 
 $$
-
 \text{Cost} \propto \sum_t |\Delta_t - \Delta_{t-1}|
-
 $$
 
 ### 2. Regularized Hedging
@@ -377,9 +339,7 @@ $$
 **Penalty on Hedge Changes**:
 
 $$
-
 \min_{\Delta_t} \left\{\text{HedgingError}_t + \gamma |\Delta_t - \Delta_{t-1}|\right\}
-
 $$
 
 **Effect**: Smooth hedge adjustments, reduce trading.

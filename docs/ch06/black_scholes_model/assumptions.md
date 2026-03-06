@@ -23,9 +23,7 @@ The Black-Scholes framework rests on six fundamental assumptions about asset pri
 The underlying asset price $S_t$ follows **geometric Brownian motion** with constant drift $\mu$ and constant volatility $\sigma$:
 
 $$
-
 \boxed{dS_t = \mu S_t dt + \sigma S_t dW_t}
-
 $$
 
 where:
@@ -41,17 +39,13 @@ where:
 By Itô's lemma, this implies:
 
 $$
-
 S_t = S_0 \exp\left(\left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right)
-
 $$
 
 Taking logarithms:
 
 $$
-
 \ln(S_t) = \ln(S_0) + \left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t
-
 $$
 
 ### 3. **Implications**
@@ -60,25 +54,19 @@ $$
 **1. Log-normal distribution**: Stock prices are log-normally distributed
 
 $$
-
 \ln(S_t) \sim \mathcal{N}\left(\ln(S_0) + \left(\mu - \frac{1}{2}\sigma^2\right)t, \sigma^2 t\right)
-
 $$
 
 **2. Normal returns**: Continuously compounded returns are normally distributed
 
 $$
-
 \ln\left(\frac{S_t}{S_0}\right) \sim \mathcal{N}\left(\left(\mu - \frac{1}{2}\sigma^2\right)t, \sigma^2 t\right)
-
 $$
 
 **3. Continuity**: Price paths are continuous (no jumps)
 
 $$
-
 \mathbb{P}(\text{jump at any instant}) = 0
-
 $$
 
 **4. Constant parameters**: $\mu$ and $\sigma$ do not change over time or with price level
@@ -228,9 +216,7 @@ The risk-free interest rate $r$ is **constant and known** over the option's life
 **2. Risk-neutral drift**: Under risk-neutral measure, stock grows at rate $r$:
 
 $$
-
 dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
-
 $$
 
 **3. Simplified PDE**: The $-rV$ term in the Black-Scholes PDE is constant
@@ -418,9 +404,7 @@ For accuracy, match the risk-free rate to the option's time to maturity:
 For equity options on dividend-paying stocks, use:
 
 $$
-
 r_{\text{effective}} = r - q
-
 $$
 
 where:
@@ -621,9 +605,7 @@ The rationale for introducing a non-zero dividend yield $q$ stems from the fact 
 When dividends are incorporated as a continuous yield $q$, the underlying price process becomes:
 
 $$
-
 \boxed{dS_t = (\mu - q) S_t dt + \sigma S_t dW_t}
-
 $$
 
 **Interpretation**:
@@ -637,9 +619,7 @@ $$
 From the hedging perspective, an option holder is exposed to the dividend-adjusted growth rate $(\mu - q)$ rather than $\mu$. Under the risk-neutral measure, the Black-Scholes PDE becomes:
 
 $$
-
 \boxed{\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q) S \frac{\partial V}{\partial S} - rV = 0}
-
 $$
 
 **Key change**: The drift term $rS\frac{\partial V}{\partial S}$ becomes $(r-q)S\frac{\partial V}{\partial S}$.
@@ -769,25 +749,19 @@ For precise pricing around ex-dividend dates or for options highly sensitive to 
 Replace $r$ with $r - q$ in the drift:
 
 $$
-
 dS_t = (r - q)S_t dt + \sigma S_t dW_t
-
 $$
 
 Black-Scholes formula becomes:
 
 $$
-
 C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
-
 $$
 
 with modified $d_1$:
 
 $$
-
 d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
-
 $$
 
 **2. Discrete dividends $D_i$ at times $t_i$**:
@@ -795,9 +769,7 @@ $$
 Replace $S$ with $S - \text{PV(dividends)}$:
 
 $$
-
 S' = S - \sum_{i: t_i < T} D_i e^{-r(t_i - t)}
-
 $$
 
 Use $S'$ in the Black-Scholes formula.

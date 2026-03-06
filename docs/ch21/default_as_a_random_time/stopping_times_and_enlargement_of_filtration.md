@@ -22,9 +22,7 @@ Introducing default requires expanding this information set to include knowledge
 A random time $\tau: \Omega \to [0, \infty]$ is a **stopping time** with respect to a filtration $(\mathcal{G}_t)$ if
 
 $$
-
-\{\tau \le t\} \in \mathcal{G}_t \quad \text{for all } t \ge 0.
-
+\{\tau \le t\} \in \mathcal{G}_t \quad \text{for all } t \ge 0
 $$
 
 Equivalently, under right-continuous filtrations, $\{\tau < t\} \in \mathcal{G}_t$ for all $t$.
@@ -40,9 +38,7 @@ A stronger condition is **predictability**: $\tau$ is predictable if there exist
 The **default indicator** is the process
 
 $$
-
-H_t := \mathbf{1}_{\{\tau \le t\}}.
-
+H_t := \mathbf{1}_{\{\tau \le t\}}
 $$
 
 This is a right-continuous, non-decreasing process that jumps from 0 to 1 at the moment of default. Key properties:
@@ -67,9 +63,7 @@ This process is known as **enlargement of filtration**. The enlarged filtration 
 The **minimal enlargement** making $\tau$ a stopping time is
 
 $$
-
-\mathcal{G}_t = \mathcal{F}_t \vee \mathcal{H}_t,
-
+\mathcal{G}_t = \mathcal{F}_t \vee \mathcal{H}_t
 $$
 
 where $\mathcal{H}_t = \sigma(H_s : s \le t) = \sigma(\mathbf{1}_{\{\tau \le s\}} : s \le t)$.
@@ -77,17 +71,13 @@ where $\mathcal{H}_t = \sigma(H_s : s \le t) = \sigma(\mathbf{1}_{\{\tau \le s\}
 This can be written more explicitly as
 
 $$
-
-\mathcal{G}_t = \bigcap_{s > t} \left( \mathcal{F}_s \vee \sigma(\tau \wedge s) \right).
-
+\mathcal{G}_t = \bigcap_{s > t} \left( \mathcal{F}_s \vee \sigma(\tau \wedge s) \right)
 $$
 
 Every $\mathcal{G}_t$-measurable random variable $X$ admits the representation
 
 $$
-
-X = X_0 \mathbf{1}_{\{\tau > t\}} + X_1(\tau) \mathbf{1}_{\{\tau \le t\}},
-
+X = X_0 \mathbf{1}_{\{\tau > t\}} + X_1(\tau) \mathbf{1}_{\{\tau \le t\}}
 $$
 
 where $X_0$ is $\mathcal{F}_t$-measurable and $X_1(s)$ is $\mathcal{F}_t \otimes \mathcal{B}([0,t])$-measurable.
@@ -99,9 +89,7 @@ where $X_0$ is $\mathcal{F}_t$-measurable and $X_1(s)$ is $\mathcal{F}_t \otimes
 A fundamental object in the theory is the **Azéma supermartingale**:
 
 $$
-
-G_t := \mathbb{P}(\tau > t \mid \mathcal{F}_t).
-
+G_t := \mathbb{P}(\tau > t \mid \mathcal{F}_t)
 $$
 
 This process represents the conditional probability of survival given market information. Key properties:
@@ -113,9 +101,7 @@ This process represents the conditional probability of survival given market inf
 The Azéma supermartingale admits the **Doob-Meyer decomposition**:
 
 $$
-
-G_t = M_t - A_t,
-
+G_t = M_t - A_t
 $$
 
 where $M_t$ is a martingale and $A_t$ is a predictable increasing process.
@@ -127,9 +113,7 @@ where $M_t$ is a martingale and $A_t$ is a predictable increasing process.
 The enlarged filtration naturally separates into pre-default and post-default regimes. For any $\mathcal{G}$-adapted process $X_t$:
 
 $$
-
-X_t = X_t^{\text{pre}} \mathbf{1}_{\{\tau > t\}} + X_t^{\text{post}} \mathbf{1}_{\{\tau \le t\}}.
-
+X_t = X_t^{\text{pre}} \mathbf{1}_{\{\tau > t\}} + X_t^{\text{post}} \mathbf{1}_{\{\tau \le t\}}
 $$
 
 **Pre-default:** On $\{\tau > t\}$, the relevant information is $\mathcal{F}_t$ (market factors only).
@@ -158,17 +142,13 @@ The mathematical framework ensures that pricing and hedging are internally consi
 In reduced-form models, default is often constructed via a **doubly-stochastic** (Cox) process. Given an $\mathcal{F}$-adapted intensity process $\lambda_t \ge 0$, define
 
 $$
-
 \Lambda_t := \int_0^t \lambda_s \, ds
-
 $$
 
 and let $E \sim \text{Exp}(1)$ be independent of $\mathcal{F}_\infty$. The default time is
 
 $$
-
-\tau := \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E).
-
+\tau := \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E)
 $$
 
 Under this construction:

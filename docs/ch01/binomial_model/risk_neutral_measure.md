@@ -54,17 +54,13 @@ The answer is **yes**, and that measure is uniquely determined by no-arbitrage.
 In the one-period binomial model with:
 
 $$
-
 S_{\Delta t} \in \{uS_0, \, dS_0\}, \qquad B_{\Delta t} = e^{r\Delta t}
-
 $$
 
 the **risk-neutral probability** of an up move is:
 
 $$
-
 \boxed{q = \frac{e^{r\Delta t} - d}{u - d}}
-
 $$
 
 ### Properties
@@ -80,9 +76,7 @@ $$
 Define a probability measure $\mathbb{Q}$ on the state space $\{\text{up}, \text{down}\}$ by:
 
 $$
-
 \mathbb{Q}(\text{up}) = q, \qquad \mathbb{Q}(\text{down}) = 1 - q
-
 $$
 
 This is called the **risk-neutral measure** (or **equivalent martingale measure**).
@@ -98,37 +92,27 @@ Under the risk-neutral measure $\mathbb{Q}$, the **discounted stock price** is a
 The expected stock price under $\mathbb{Q}$ is:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = q \cdot uS_0 + (1-q) \cdot dS_0 = S_0[qu + (1-q)d]
-
 $$
 
 Substituting $q = \frac{e^{r\Delta t} - d}{u - d}$:
 
 $$
-
 qu + (1-q)d = \frac{e^{r\Delta t} - d}{u - d} \cdot u + \frac{u - e^{r\Delta t}}{u - d} \cdot d
-
 $$
 
 $$
-
 = \frac{(e^{r\Delta t} - d)u + (u - e^{r\Delta t})d}{u - d} = \frac{ue^{r\Delta t} - ud + ud - de^{r\Delta t}}{u - d}
-
 $$
 
 $$
-
 = \frac{e^{r\Delta t}(u - d)}{u - d} = e^{r\Delta t}
-
 $$
 
 Therefore:
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 \cdot e^{r\Delta t}
-
 $$
 
 Dividing both sides by $e^{r\Delta t}$:
@@ -136,9 +120,7 @@ Dividing both sides by $e^{r\Delta t}$:
 !!! success "Martingale Property"
 
     $$
-
     \boxed{\mathbb{E}^{\mathbb{Q}}\left[\frac{S_{\Delta t}}{e^{r\Delta t}}\right] = S_0}
-
     $$
     
     The discounted stock price is a **martingale** under $\mathbb{Q}$.
@@ -154,9 +136,7 @@ Dividing both sides by $e^{r\Delta t}$:
 For any contingent claim with payoff $H \in \{H_u, H_d\}$:
 
 $$
-
 \boxed{V_0 = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[H] = e^{-r\Delta t}(qH_u + (1-q)H_d)}
-
 $$
 
 ### Proof of Equivalence to Replication
@@ -166,75 +146,53 @@ We show that the risk-neutral price equals the replication price.
 **Replication price** (from [Replicating Portfolio](replicating_portfolio.md)):
 
 $$
-
 V_0^{rep} = \Delta S_0 + B
-
 $$
 
 where:
 
 $$
-
 \Delta = \frac{H_u - H_d}{(u-d)S_0}, \qquad B = e^{-r\Delta t}(H_u - \Delta \cdot uS_0)
-
 $$
 
 Substituting:
 
 $$
-
 V_0^{rep} = \frac{H_u - H_d}{(u-d)S_0} \cdot S_0 + e^{-r\Delta t}\left(H_u - \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0\right)
-
 $$
 
 $$
-
 = \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(H_u - \frac{u(H_u - H_d)}{u-d}\right)
-
 $$
 
 $$
-
 = \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{(u-d)H_u - u(H_u - H_d)}{u-d}\right)
-
 $$
 
 $$
-
 = \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_u - dH_u - uH_u + uH_d}{u-d}\right)
-
 $$
 
 $$
-
 = \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u-d}\right)
-
 $$
 
 **Risk-neutral price**:
 
 $$
-
 V_0^{RN} = e^{-r\Delta t}(qH_u + (1-q)H_d)
-
 $$
 
 $$
-
 = e^{-r\Delta t}\left(\frac{e^{r\Delta t} - d}{u-d}H_u + \frac{u - e^{r\Delta t}}{u-d}H_d\right)
-
 $$
 
 $$
-
 = e^{-r\Delta t}\left(\frac{(e^{r\Delta t} - d)H_u + (u - e^{r\Delta t})H_d}{u-d}\right)
-
 $$
 
 $$
-
 = \frac{1}{u-d}\left(\frac{e^{r\Delta t} - d}{e^{r\Delta t}}H_u + \frac{u - e^{r\Delta t}}{e^{r\Delta t}}H_d\right)
-
 $$
 
 To show $V_0^{rep} = V_0^{RN}$, we can verify algebraically (or more simply, note that both give the unique no-arbitrage price, so they must be equal).
@@ -242,9 +200,7 @@ To show $V_0^{rep} = V_0^{RN}$, we can verify algebraically (or more simply, not
 !!! success "Equivalence Theorem"
 
     $$
-
     V_0 = \Delta S_0 + B = e^{-r\Delta t}(qH_u + (1-q)H_d)
-
     $$
     
     **Replication pricing and risk-neutral pricing give the same answer.**
@@ -267,21 +223,15 @@ We use consistent parameters throughout:
 **Computed values:**
 
 $$
-
 e^{r\Delta t} = e^{0.05} = 1.0513
-
 $$
 
 $$
-
 q = \frac{1.0513 - 0.9}{1.2 - 0.9} = \frac{0.1513}{0.3} = 0.5043
-
 $$
 
 $$
-
 1 - q = 0.4957
-
 $$
 
 ---
@@ -291,35 +241,25 @@ $$
 ### Payoffs
 
 $$
-
 S_{\Delta t}^{up} = 120, \quad S_{\Delta t}^{down} = 90
-
 $$
 
 $$
-
 H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0
-
 $$
 
 ### Risk-Neutral Price
 
 $$
-
 C_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
-
 $$
 
 $$
-
 = e^{-0.05}(0.5043 \times 15 + 0.4957 \times 0)
-
 $$
 
 $$
-
 = 0.9512 \times 7.565 = 7.19
-
 $$
 
 !!! success "European Call Price"
@@ -335,29 +275,21 @@ $$
 ### Payoffs
 
 $$
-
 H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15
-
 $$
 
 ### Risk-Neutral Price
 
 $$
-
 P_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
-
 $$
 
 $$
-
 = e^{-0.05}(0.5043 \times 0 + 0.4957 \times 15)
-
 $$
 
 $$
-
 = 0.9512 \times 7.436 = 7.07
-
 $$
 
 !!! success "European Put Price"
@@ -367,15 +299,11 @@ $$
 ### Verification via Put–Call Parity
 
 $$
-
 C_0 - P_0 = 7.19 - 7.07 = 0.12
-
 $$
 
 $$
-
 S_0 - Ke^{-r\Delta t} = 100 - 105 \times 0.9512 = 100 - 99.88 = 0.12 \text{ ✓}
-
 $$
 
 ---
@@ -387,23 +315,17 @@ A digital call pays $\$1$ if the stock is above the strike, and $\$0$ otherwise.
 ### Payoffs
 
 $$
-
 H_u = 1, \qquad H_d = 0
-
 $$
 
 ### Risk-Neutral Price
 
 $$
-
 V_0 = e^{-r\Delta t}(q \cdot 1 + (1-q) \cdot 0) = e^{-r\Delta t} \cdot q
-
 $$
 
 $$
-
 = 0.9512 \times 0.5043 = 0.48
-
 $$
 
 !!! success "Digital Call Price"
@@ -423,37 +345,27 @@ A forward contract obligates the holder to buy the stock at price $F$ at maturit
 ### Payoff
 
 $$
-
 H = S_{\Delta t} - F
-
 $$
 
 $$
-
 H_u = uS_0 - F = 120 - F, \qquad H_d = dS_0 - F = 90 - F
-
 $$
 
 ### Risk-Neutral Price
 
 $$
-
 V_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - F]
-
 $$
 
 $$
-
 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - e^{-r\Delta t}F
-
 $$
 
 Using $\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 e^{r\Delta t}$ (martingale property):
 
 $$
-
 V_0 = e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Fe^{-r\Delta t} = S_0 - Fe^{-r\Delta t}
-
 $$
 
 ### Forward Price
@@ -461,15 +373,11 @@ $$
 A forward contract has zero initial value by definition. Setting $V_0 = 0$:
 
 $$
-
 0 = S_0 - Fe^{-r\Delta t}
-
 $$
 
 $$
-
 F = S_0 e^{r\Delta t} = 100 \times 1.0513 = 105.13
-
 $$
 
 !!! success "Forward Price"
@@ -487,37 +395,27 @@ $$
 For a call and put with the same strike $K$:
 
 $$
-
 C_0 - P_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[(S_{\Delta t} - K)^+] - e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[(K - S_{\Delta t})^+]
-
 $$
 
 Using the identity $(S - K)^+ - (K - S)^+ = S - K$:
 
 $$
-
 C_0 - P_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - K]
-
 $$
 
 $$
-
 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - Ke^{-r\Delta t}
-
 $$
 
 $$
-
 = e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Ke^{-r\Delta t} = S_0 - Ke^{-r\Delta t}
-
 $$
 
 !!! success "Put–Call Parity"
 
     $$
-
     \boxed{C_0 - P_0 = S_0 - Ke^{-r\Delta t}}
-
     $$
     
     Put–call parity is a **risk-neutral identity**—a direct consequence of the pricing formula.
@@ -529,9 +427,7 @@ $$
 Risk-neutral pricing is **linear** in payoffs:
 
 $$
-
 V_0(\alpha H^{(1)} + \beta H^{(2)}) = \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
-
 $$
 
 ### Example: Bull Spread
@@ -543,9 +439,7 @@ A bull spread consists of:
 The price is:
 
 $$
-
 V_0^{bull} = C_0(K_1) - C_0(K_2)
-
 $$
 
 No additional calculation is needed—linearity allows decomposition of complex payoffs into simpler components.
@@ -555,21 +449,15 @@ No additional calculation is needed—linearity allows decomposition of complex 
 Linearity follows from the expectation operator:
 
 $$
-
 V_0(\alpha H^{(1)} + \beta H^{(2)}) = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[\alpha H^{(1)} + \beta H^{(2)}]
-
 $$
 
 $$
-
 = \alpha e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(1)}] + \beta e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(2)}]
-
 $$
 
 $$
-
 = \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
-
 $$
 
 ---
@@ -611,17 +499,13 @@ In an $N$-period binomial tree, the risk-neutral pricing formula generalizes nat
 Let $V_{N,j}$ denote the payoff at terminal node $(N, j)$ (after $j$ up moves):
 
 $$
-
 V_{N,j} = H(S_0 u^j d^{N-j})
-
 $$
 
 ### Risk-Neutral Pricing Formula
 
 $$
-
 \boxed{V_0 = e^{-rN\Delta t} \sum_{j=0}^{N} \binom{N}{j} q^j (1-q)^{N-j} V_{N,j}}
-
 $$
 
 where $\binom{N}{j} q^j (1-q)^{N-j}$ is the risk-neutral probability of reaching node $(N, j)$.
@@ -631,9 +515,7 @@ where $\binom{N}{j} q^j (1-q)^{N-j}$ is the risk-neutral probability of reaching
 This formula is equivalent to backward induction:
 
 $$
-
 V_{n,j} = e^{-r\Delta t}(qV_{n+1,j+1} + (1-q)V_{n+1,j})
-
 $$
 
 Both methods give the same price. Backward induction is computationally more efficient for path-independent options, while the direct formula is useful for analysis.

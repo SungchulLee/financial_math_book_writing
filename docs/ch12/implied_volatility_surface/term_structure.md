@@ -16,9 +16,7 @@ The most commonly analyzed term structure is at-the-money (ATM):
 
 
 $$
-
 \sigma_{\text{ATM}}(T) := \sigma_{\text{IV}}(K_{\text{ATM}}(T), T)
-
 $$
 
 
@@ -34,9 +32,7 @@ For fixed moneyness $m = K/F$:
 
 
 $$
-
 \sigma_{\text{IV}}(m, T) \quad \text{with } K = m \cdot S_0 e^{(r-q)T}
-
 $$
 
 
@@ -50,9 +46,7 @@ For a fixed strike $K_0$:
 
 
 $$
-
 \sigma_{\text{IV}}(K_0, T) \quad \text{as } T \text{ varies}
-
 $$
 
 
@@ -70,9 +64,7 @@ $$
 **Characteristics:**
 
 $$
-
 \frac{\partial \sigma_{\text{ATM}}}{\partial T} > 0
-
 $$
 
 
@@ -90,9 +82,7 @@ Short-dated options have lower implied volatility than long-dated options.
 
 
 $$
-
 \mathbb{E}^{\mathbb{Q}}[v_t] = v_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) \to \theta \quad \text{as } t \to \infty
-
 $$
 
 
@@ -105,9 +95,7 @@ The ATM IV for small $T$ reflects $v_0$, while large $T$ reflects $\theta$.
 **Characteristics:**
 
 $$
-
 \frac{\partial \sigma_{\text{ATM}}}{\partial T} < 0
-
 $$
 
 
@@ -129,12 +117,10 @@ Short-dated options have higher implied volatility than long-dated options.
 **Characteristics:**
 
 $$
-
 \frac{\partial \sigma_{\text{ATM}}}{\partial T} \begin{cases}
 > 0 & \text{for small } T \\
 < 0 & \text{for large } T
 \end{cases}
-
 $$
 
 
@@ -156,9 +142,7 @@ Implied volatility peaks at intermediate maturities (e.g., 3-6 months).
 **Characteristics:**
 
 $$
-
 \sigma_{\text{ATM}}(T) \approx \text{constant}
-
 $$
 
 
@@ -178,9 +162,7 @@ Define **total variance**:
 
 
 $$
-
 w(T) := \sigma_{\text{ATM}}^2(T) \cdot T
-
 $$
 
 
@@ -190,9 +172,7 @@ The term structure is equivalently characterized by how $w(T)$ grows with $T$:
 **Upward sloping IV:**
 
 $$
-
 \frac{d w}{d T} = \sigma_{\text{ATM}}^2 + 2T \sigma_{\text{ATM}} \frac{d\sigma_{\text{ATM}}}{dT} > \sigma_{\text{ATM}}^2
-
 $$
 
 
@@ -201,9 +181,7 @@ If $\frac{d\sigma_{\text{ATM}}}{dT} > 0$, total variance grows **faster than lin
 **Downward sloping IV:**
 
 $$
-
 \frac{d w}{d T} < \sigma_{\text{ATM}}^2
-
 $$
 
 
@@ -212,9 +190,7 @@ Total variance still increases (by no-arbitrage) but **slower than linearly**.
 **Constraint:** No-arbitrage requires:
 
 $$
-
 \frac{d w}{d T} \geq 0 \quad \Rightarrow \quad w(T) \text{ is non-decreasing}
-
 $$
 
 
@@ -226,9 +202,7 @@ The no-arbitrage condition for calendar spreads:
 
 
 $$
-
 C(K, T_2) \geq C(K, T_1) \quad \text{for } T_2 > T_1
-
 $$
 
 
@@ -237,9 +211,7 @@ $$
 
 
 $$
-
 w(T_2) \geq w(T_1)
-
 $$
 
 
@@ -257,9 +229,7 @@ The **forward implied volatility** between $T_1$ and $T_2$ is defined by:
 
 
 $$
-
 \sigma_{\text{fwd}}^2(T_1, T_2) := \frac{w(T_2) - w(T_1)}{T_2 - T_1} = \frac{\sigma_{\text{ATM}}^2(T_2) T_2 - \sigma_{\text{ATM}}^2(T_1) T_1}{T_2 - T_1}
-
 $$
 
 
@@ -268,9 +238,7 @@ $$
 
 
 $$
-
 \int_0^{T_1} \sigma^2(t) dt = w(T_1), \quad \int_0^{T_2} \sigma^2(t) dt = w(T_2)
-
 $$
 
 
@@ -279,9 +247,7 @@ Thus:
 
 
 $$
-
 \int_{T_1}^{T_2} \sigma^2(t) dt = w(T_2) - w(T_1) \quad \Rightarrow \quad \sigma_{\text{fwd}}^2(T_1, T_2) \approx \text{average } \sigma^2(t) \text{ over } [T_1, T_2]
-
 $$
 
 
@@ -293,9 +259,7 @@ Taking $T_2 \to T_1$:
 
 
 $$
-
 \sigma_{\text{inst}}^2(T) := \lim_{T_2 \to T_1} \sigma_{\text{fwd}}^2(T_1, T_2) = \frac{d w}{d T}\bigg|_{T=T_1}
-
 $$
 
 
@@ -304,9 +268,7 @@ Explicitly:
 
 
 $$
-
 \sigma_{\text{inst}}^2(T) = \sigma_{\text{ATM}}^2(T) + 2T \sigma_{\text{ATM}}(T) \frac{d\sigma_{\text{ATM}}}{dT}
-
 $$
 
 
@@ -327,9 +289,7 @@ If $\sigma(t) = \sigma_0$ (constant), then:
 
 
 $$
-
 w(T) = \sigma_0^2 T \quad \Rightarrow \quad \sigma_{\text{ATM}}(T) = \sigma_0
-
 $$
 
 
@@ -343,18 +303,14 @@ For a time-dependent local volatility $\sigma_{\text{loc}}(t)$:
 
 
 $$
-
 w(T) = \int_0^T \sigma_{\text{loc}}^2(t) dt
-
 $$
 
 
 
 
 $$
-
 \sigma_{\text{ATM}}(T) = \sqrt{\frac{1}{T} \int_0^T \sigma_{\text{loc}}^2(t) dt}
-
 $$
 
 
@@ -365,18 +321,14 @@ The term structure reflects the **time-averaged** volatility up to maturity $T$.
 
 
 $$
-
 w(T) = \sigma_0^2 T + \sigma_0 \alpha T^2 + \frac{\alpha^2 T^3}{3}
-
 $$
 
 
 
 
 $$
-
 \sigma_{\text{ATM}}(T) = \sqrt{\sigma_0^2 + \sigma_0 \alpha T + \frac{\alpha^2 T^2}{3}}
-
 $$
 
 
@@ -390,13 +342,11 @@ The Heston model:
 
 
 $$
-
 \begin{align}
 dS_t &= (r - q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 d\langle W^S, W^v \rangle_t &= \rho dt
 \end{align}
-
 $$
 
 
@@ -405,9 +355,7 @@ ATM term structure for small $T$:
 
 
 $$
-
 \sigma_{\text{ATM}}^2(T) \approx v_0 + (\theta - v_0)(1 - e^{-\kappa T}) + \frac{\xi^2}{4\kappa}(1 - e^{-2\kappa T})
-
 $$
 
 
@@ -419,9 +367,7 @@ $$
 **Slope:**
 
 $$
-
 \frac{d\sigma_{\text{ATM}}^2}{dT}\bigg|_{T=0} = \kappa(\theta - v_0)
-
 $$
 
 
@@ -436,9 +382,7 @@ With jumps in the underlying:
 
 
 $$
-
 dS_t = (r - q - \lambda m_J) S_t dt + \sigma S_t dW_t + S_t dJ_t
-
 $$
 
 
@@ -449,9 +393,7 @@ where $J_t$ is a compound Poisson process with intensity $\lambda$ and jump size
 
 
 $$
-
 w(T) = \sigma^2 T + \lambda \mathbb{E}[J^2] T
-
 $$
 
 
@@ -516,9 +458,7 @@ A **variance swap** pays the difference between realized variance and a fixed st
 
 
 $$
-
 \text{Payoff} = N_{\text{var}} \left( \frac{1}{T} \sum_{i=1}^n \log^2\frac{S_{t_i}}{S_{t_{i-1}}} - K_{\text{var}} \right)
-
 $$
 
 
@@ -529,9 +469,7 @@ The fair strike is:
 
 
 $$
-
 K_{\text{var}} = \frac{2 e^{rT}}{T} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)
-
 $$
 
 
@@ -545,9 +483,7 @@ Define the variance swap rate for maturity $T$:
 
 
 $$
-
 \sigma_{\text{var}}^2(T) := K_{\text{var}}(T)
-
 $$
 
 
@@ -557,9 +493,7 @@ The **variance term structure** $\sigma_{\text{var}}(T)$ is often smoother than 
 **Relationship:**
 
 $$
-
 \sigma_{\text{var}}^2(T) \approx \frac{1}{T} \int_0^T \mathbb{E}[\sigma^2(t)] dt
-
 $$
 
 
@@ -567,9 +501,7 @@ $$
 In practice:
 
 $$
-
 \sigma_{\text{var}}(T) \gtrsim \sigma_{\text{ATM}}(T)
-
 $$
 
 
@@ -583,9 +515,7 @@ The **forward variance** between $T_1$ and $T_2$:
 
 
 $$
-
 \sigma_{\text{fwd-var}}^2(T_1, T_2) = \frac{\sigma_{\text{var}}^2(T_2) T_2 - \sigma_{\text{var}}^2(T_1) T_1}{T_2 - T_1}
-
 $$
 
 
@@ -595,9 +525,7 @@ This can be traded via **forward-starting variance swaps**, providing a direct m
 **Arbitrage-free condition:**
 
 $$
-
 \sigma_{\text{fwd-var}}^2(T_1, T_2) \geq 0 \quad \text{for all } T_2 > T_1
-
 $$
 
 
@@ -605,9 +533,7 @@ $$
 Equivalently:
 
 $$
-
 \frac{d}{dT}\left(\sigma_{\text{var}}^2(T) \cdot T\right) \geq 0
-
 $$
 
 
@@ -622,9 +548,7 @@ As $T \to 0$, the ATM implied volatility converges to the **spot instantaneous v
 
 
 $$
-
 \lim_{T \to 0} \sigma_{\text{ATM}}(T) = \sigma_{\text{spot}}
-
 $$
 
 
@@ -634,9 +558,7 @@ where $\sigma_{\text{spot}}$ is the volatility coefficient in the SDE at the cur
 **In local volatility:**
 
 $$
-
 \sigma_{\text{spot}} = \sigma_{\text{loc}}(S_0, 0)
-
 $$
 
 
@@ -644,9 +566,7 @@ $$
 **In stochastic volatility:**
 
 $$
-
 \sigma_{\text{spot}} = \sqrt{v_0}
-
 $$
 
 
@@ -655,9 +575,7 @@ $$
 
 
 $$
-
 \sigma_{\text{ATM}}^2(T) = v_0 + a_1 T + a_2 T^2 + O(T^3)
-
 $$
 
 
@@ -666,9 +584,7 @@ The coefficient $a_1$ is related to the drift of volatility:
 
 
 $$
-
 a_1 = \kappa(\theta - v_0) \quad \text{(Heston)}
-
 $$
 
 
@@ -680,9 +596,7 @@ As $T \to \infty$, the ATM implied volatility converges to the **long-run averag
 
 
 $$
-
 \lim_{T \to \infty} \sigma_{\text{ATM}}(T) = \sigma_\infty
-
 $$
 
 
@@ -690,9 +604,7 @@ $$
 **In mean-reverting models:**
 
 $$
-
 \sigma_\infty = \sqrt{\theta + \frac{\xi^2}{4\kappa}} \quad \text{(Heston)}
-
 $$
 
 
@@ -703,9 +615,7 @@ $$
 
 
 $$
-
 \sigma_{\text{ATM}}^2(T) - \sigma_\infty^2 \sim e^{-\lambda T}
-
 $$
 
 
@@ -762,27 +672,21 @@ The term structure of implied volatility $\sigma_{\text{ATM}}(T)$ encodes:
 
 
 $$
-
 w(T) = \sigma_{\text{ATM}}^2(T) \cdot T \quad \text{(total variance)}
-
 $$
 
 
 
 
 $$
-
 \sigma_{\text{fwd}}^2(T_1, T_2) = \frac{w(T_2) - w(T_1)}{T_2 - T_1} \quad \text{(forward volatility)}
-
 $$
 
 
 
 
 $$
-
 \sigma_{\text{inst}}^2(T) = \frac{dw}{dT} \quad \text{(instantaneous forward vol)}
-
 $$
 
 
@@ -791,9 +695,7 @@ $$
 
 
 $$
-
 \frac{dw}{dT} \geq 0 \quad \text{(calendar spreads)}
-
 $$
 
 
@@ -802,18 +704,14 @@ $$
 
 
 $$
-
 \lim_{T \to 0} \sigma_{\text{ATM}}(T) = \sigma_{\text{spot}} \quad (\text{spot vol})
-
 $$
 
 
 
 
 $$
-
 \lim_{T \to \infty} \sigma_{\text{ATM}}(T) = \sigma_\infty \quad (\text{long-run vol})
-
 $$
 
 

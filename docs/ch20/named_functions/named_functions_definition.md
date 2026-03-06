@@ -9,7 +9,6 @@ $$\tau=T-t$$
 ## θ
 
 $$\begin{array}{lllllll}
-
 \displaystyle
 \theta(t)
 &=&\displaystyle
@@ -19,13 +18,11 @@ f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
 \displaystyle
 \theta^\mathbb{T}(t)
 &=&\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\\
-
 \end{array}$$
 
 ## ψ
 
 $$\begin{array}{lllllll}
-
 \psi(t)
 &=&\displaystyle
 r(0)e^{-\lambda t}+\lambda\int_0^t\theta(t')e^{-\lambda(t-t')}dt'
@@ -39,13 +36,11 @@ r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta(t')e^{-\lambda(t-t')}dt'
 &=&\displaystyle
 r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t-t')}dt'
 \\
-
 \end{array}$$
 
 ## σ_r², μ_r
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \sigma_r^2(t)
 &=&\displaystyle
@@ -54,11 +49,9 @@ $$\begin{array}{lllll}
 \sigma_r^2(t_0,t)
 &=&\displaystyle
 -\frac{1}{2}\sigma^2 B(2(t-t_0))
-
 \end{array}$$
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \mu_r(t)
 &=&\displaystyle
@@ -71,13 +64,11 @@ $$\begin{array}{lllll}
 \mu^\mathbb{T}_r(t_0,t)
 &=&\displaystyle
 \psi^\mathbb{T}(t_0,t)\\
-
 \end{array}$$
 
 ## A, B
 
 $$\begin{array}{lllllll}
-
 A(\tau)&=&A(0,\tau)
 &=&\displaystyle
 -\frac{\sigma^2}{4\lambda^3}
@@ -89,13 +80,11 @@ B(\tau)&=&B(0,\tau)
 &=&\displaystyle
 -\frac{1-e^{-\lambda\tau}}{\lambda}
 \\
-
 \end{array}$$
 
 ### Characteristic Function Version
 
 $$\begin{array}{lllll}
-
 \displaystyle
 A(u,\tau)
 &=&\displaystyle
@@ -109,13 +98,11 @@ B(u,\tau)
 &=&\displaystyle
 -\frac{1-(1+iu\lambda) e^{-\lambda \tau}}{\lambda}
 =iue^{-\lambda\tau}+B(\tau)\\
-
 \end{array}$$
 
 ### Decomposition Version
 
 $$\begin{array}{lllll}
-
 \displaystyle
 \tilde{A}(u,\tau)
 &=&\displaystyle
@@ -125,5 +112,4 @@ $$\begin{array}{lllll}
 \tilde{B}(u,\tau)
 &=&\displaystyle
 B(u,\tau)\\
-
 \end{array}$$

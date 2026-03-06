@@ -9,9 +9,7 @@ Numerical methods must not only be stable and accurate on a single grid — they
 **Grid convergence** refers to the behavior of the numerical solution as the mesh becomes finer. As $\Delta S \to 0$ and $\Delta t \to 0$, the finite difference solution $V_{\text{FD}}(S,t)$ should approach the exact (analytical) solution $V_{\text{BS}}(S,t)$:
 
 $$
-
 \| V_{\text{FD}} - V_{\text{BS}} \| \to 0
-
 $$
 
 as $M \to \infty$ and $N \to \infty$.
@@ -23,9 +21,7 @@ as $M \to \infty$ and $N \to \infty$.
 The **maximum absolute error** is often used:
 
 $$
-
 \text{Max Error} = \max_i |V_{\text{FD}}(S_i, t=0) - V_{\text{BS}}(S_i, t=0)|
-
 $$
 
 Other common norms include the $\ell_2$ norm (root mean square error) and relative error (useful for options deep in- or out-of-the-money).
@@ -37,9 +33,7 @@ Other common norms include the $\ell_2$ norm (root mean square error) and relati
 For a second-order method, the error should behave like:
 
 $$
-
 \text{Error} \propto (\Delta S)^2 + (\Delta t)^2
-
 $$
 
 A **log-log plot** of error vs. $1/M$ should show a **slope of 2** for second-order schemes like Crank-Nicolson.

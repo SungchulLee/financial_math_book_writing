@@ -1087,11 +1087,9 @@ All three transforms are related via **analytic continuation**:
 
 
 $$\begin{align}
-
 \text{Fourier: } &\omega \in \mathbb{R} \\
 \text{Laplace: } &\omega = ip, \quad p \in \mathbb{R}^+ \\
 \text{Mellin: } &\omega = -is, \quad s \in \mathbb{C}
-
 \end{align}$$
 
 

@@ -25,12 +25,10 @@ If $p = 1/2$, then $\{S_n, \mathcal{F}_n\}_{n \geq 0}$ is a martingale:
 **Proof of the martingale condition.**
 
 $$\mathbb{E}[S_{n+1} \mid \mathcal{F}_n]
-
 = \mathbb{E}[S_n + \xi_{n+1} \mid \mathcal{F}_n]
 = S_n + \mathbb{E}[\xi_{n+1} \mid \mathcal{F}_n]
 = S_n + \mathbb{E}[\xi_{n+1}]
 = S_n + 0
-
 = S_n. \quad\square$$
 
 The key steps are: (i) $S_n$ is $\mathcal{F}_n$-measurable so it pulls out of the conditional expectation; (ii) $\xi_{n+1}$ is independent of $\mathcal{F}_n = \sigma(\xi_1,\ldots,\xi_n)$, so the conditional expectation reduces to the unconditional mean $\mathbb{E}[\xi_{n+1}] = 0$.
@@ -53,20 +51,17 @@ is a martingale with respect to $\{\mathcal{F}_n\}$.
 **Proof.**
 
 $$\mathbb{E}[M_{n+1} \mid \mathcal{F}_n]
-
 = \mathbb{E}[S_{n+1}^2 - (n+1) \mid \mathcal{F}_n]
-
-= \mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n] - (n+1).$$
+= \mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n] - (n+1)$$
 
 Expanding the square:
 
 $$\mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n]
-
-= \mathbb{E}[S_n^2 + 2S_n\xi_{n+1} + \xi_{n+1}^2 \mid \mathcal{F}_n].$$
+= \mathbb{E}[S_n^2 + 2S_n\xi_{n+1} + \xi_{n+1}^2 \mid \mathcal{F}_n]$$
 
 Using measurability of $S_n$, independence of $\xi_{n+1}$, and $\mathbb{E}[\xi_{n+1}] = 0$, $\mathbb{E}[\xi_{n+1}^2] = 1$:
 
-$$= S_n^2 + 2S_n \cdot 0 + 1 = S_n^2 + 1.$$
+$$= S_n^2 + 2S_n \cdot 0 + 1 = S_n^2 + 1$$
 
 Therefore:
 
@@ -80,7 +75,7 @@ $$\mathbb{E}[M_{n+1} \mid \mathcal{F}_n] = S_n^2 + 1 - (n+1) = S_n^2 - n = M_n. 
 
 The **quadratic variation** of the random walk over $\{0, 1, \ldots, n\}$ is
 
-$$[S]_n := \sum_{i=1}^n (S_i - S_{i-1})^2 = \sum_{i=1}^n X_i^2.$$
+$$[S]_n := \sum_{i=1}^n (S_i - S_{i-1})^2 = \sum_{i=1}^n X_i^2$$
 
 **Proposition 1.1.5**
 
@@ -92,13 +87,13 @@ The quadratic variation is **deterministic** — it equals $n$ for every realisa
 
 **Connection to $S_n^2 - n$.** Observe that
 
-$$S_n^2 = \left(\sum_{i=1}^n \xi_i\right)^2 = [S]_n + 2\sum_{i < j} \xi_i\xi_j.$$
+$$S_n^2 = \left(\sum_{i=1}^n \xi_i\right)^2 = [S]_n + 2\sum_{i < j} \xi_i\xi_j$$
 
 The quadratic variation $[S]_n = n$ accounts for the "diagonal" part of $S_n^2$. The martingale $M_n = S_n^2 - n = S_n^2 - [S]_n$ is precisely the "off-diagonal" remainder. This decomposition $S_n^2 = [S]_n + M_n$ is the discrete analogue of the Itô decomposition $W_t^2 = t + 2\int_0^t W_s\,dW_s$.
 
 **Why quadratic variation matters.** For a smooth function $f$ with bounded derivative:
 
-$$\sum_{i=1}^n (f(t_i) - f(t_{i-1}))^2 \approx \sum_{i=1}^n (f'(t_i))^2(\Delta t)^2 \to 0 \quad \text{as } \Delta t \to 0.$$
+$$\sum_{i=1}^n (f(t_i) - f(t_{i-1}))^2 \approx \sum_{i=1}^n (f'(t_i))^2(\Delta t)^2 \to 0 \quad \text{as } \Delta t \to 0$$
 
 For the random walk, $[S]_n = n$ regardless of how finely we partition. This non-vanishing quadratic variation is what forces the correction term in Itô's formula: $(dW_t)^2 = dt$.
 
@@ -108,7 +103,7 @@ For the random walk, $[S]_n = n$ regardless of how finely we partition. This non
 
 The two martingales $\{S_n\}$ and $\{S_n^2 - n\}$ are the workhorses of stopping-time calculations. By the Optional Stopping Theorem (see [Optional Sampling Theorem](../filtration_and_martingales/optional_sampling_theorem.md)), if $\tau$ is a bounded stopping time then:
 
-$$\mathbb{E}[S_\tau] = \mathbb{E}[S_0] = 0, \qquad \mathbb{E}[S_\tau^2 - \tau] = \mathbb{E}[S_0^2 - 0] = 0.$$
+$$\mathbb{E}[S_\tau] = \mathbb{E}[S_0] = 0, \qquad \mathbb{E}[S_\tau^2 - \tau] = \mathbb{E}[S_0^2 - 0] = 0$$
 
 These two identities together give $\mathbb{E}[S_\tau] = 0$ and $\mathbb{E}[\tau] = \mathbb{E}[S_\tau^2]$. See [Exercises](exercises_random_walk.md) (Exercise 3) for the Gambler's Ruin application.
 

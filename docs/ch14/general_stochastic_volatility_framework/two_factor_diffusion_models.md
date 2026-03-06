@@ -11,12 +11,10 @@ Stochastic volatility models extend Black–Scholes by introducing **additional 
 A generic two-factor stochastic volatility model takes the form:
 
 $$
-
 \begin{aligned}
 dS_t &= \mu(t, S_t, V_t)\,S_t\,dt + \sigma(t, S_t, V_t)\,S_t\,dW_t^S \\
 dV_t &= a(t, V_t)\,dt + b(t, V_t)\,dW_t^V
 \end{aligned}
-
 $$
 
 where:
@@ -38,9 +36,7 @@ The function $\sigma(t, S_t, V_t)$ links the variance factor to instantaneous vo
 The correlation can be introduced via:
 
 $$
-
 W_t^V = \rho W_t^S + \sqrt{1-\rho^2} W_t^{\perp}
-
 $$
 
 where $W^S$ and $W^{\perp}$ are independent. This decomposition is useful for simulation and analysis.
@@ -48,9 +44,7 @@ where $W^S$ and $W^{\perp}$ are independent. This decomposition is useful for si
 Alternatively, use the covariance matrix formulation:
 
 $$
-
 \begin{pmatrix} dW_t^S \\ dW_t^V \end{pmatrix} \sim \mathcal{N}\left(\mathbf{0}, \begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix} dt\right)
-
 $$
 
 ---
@@ -71,17 +65,13 @@ This enables:
 The generator of the two-factor diffusion is:
 
 $$
-
 \mathcal{L} = \frac{1}{2}\sigma^2 S^2 \frac{\partial^2}{\partial S^2} + \rho \sigma b S \frac{\partial^2}{\partial S \partial V} + \frac{1}{2}b^2 \frac{\partial^2}{\partial V^2} + \mu S \frac{\partial}{\partial S} + a \frac{\partial}{\partial V}
-
 $$
 
 For a function $f(t, S, V)$, Itô's lemma gives:
 
 $$
-
 df = \left(\frac{\partial f}{\partial t} + \mathcal{L}f\right)dt + \frac{\partial f}{\partial S}\sigma S\,dW^S + \frac{\partial f}{\partial V}b\,dW^V
-
 $$
 
 ### Risk-Neutral Dynamics
@@ -89,17 +79,13 @@ $$
 Under the risk-neutral measure $\mathbb{Q}$, the drift of $S$ is constrained by no-arbitrage:
 
 $$
-
 dS_t = (r - q)S_t\,dt + \sigma(t, S_t, V_t)\,S_t\,dW_t^{S,\mathbb{Q}}
-
 $$
 
 The volatility process drift changes via Girsanov:
 
 $$
-
 dV_t = a^{\mathbb{Q}}(t, V_t)\,dt + b(t, V_t)\,dW_t^{V,\mathbb{Q}}
-
 $$
 
 where $a^{\mathbb{Q}} = a - \lambda_V b$ and $\lambda_V$ is the market price of volatility risk.
@@ -115,12 +101,10 @@ where $a^{\mathbb{Q}} = a - \lambda_V b$ and $\lambda_V$ is the market price of 
 The most widely used stochastic volatility model:
 
 $$
-
 \begin{aligned}
 dS_t &= (r-q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
 dV_t &= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
 \end{aligned}
-
 $$
 
 **Characteristics:**
@@ -134,12 +118,10 @@ $$
 Lognormal volatility dynamics:
 
 $$
-
 \begin{aligned}
 dS_t &= (r-q)S_t\,dt + V_t S_t\,dW_t^S \\
 dV_t &= \mu_V V_t\,dt + \xi V_t\,dW_t^V
 \end{aligned}
-
 $$
 
 **Characteristics:**
@@ -153,12 +135,10 @@ $$
 Ornstein–Uhlenbeck volatility:
 
 $$
-
 \begin{aligned}
 dS_t &= (r-q)S_t\,dt + V_t S_t\,dW_t^S \\
 dV_t &= \kappa(\theta - V_t)\,dt + \xi\,dW_t^V
 \end{aligned}
-
 $$
 
 **Characteristics:**
@@ -172,12 +152,10 @@ $$
 Power-law volatility dynamics:
 
 $$
-
 \begin{aligned}
 dS_t &= (r-q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
 dV_t &= \kappa V_t(\theta - V_t)\,dt + \xi V_t^{3/2}\,dW_t^V
 \end{aligned}
-
 $$
 
 **Characteristics:**
@@ -191,12 +169,10 @@ $$
 Stochastic alpha-beta-rho model:
 
 $$
-
 \begin{aligned}
 dF_t &= \sigma_t F_t^{\beta}\,dW_t^F \\
 d\sigma_t &= \nu \sigma_t\,dW_t^{\sigma}
 \end{aligned}
-
 $$
 
 **Characteristics:**
@@ -250,9 +226,7 @@ Two-factor diffusions imply:
 The unconditional distribution of $\log(S_T/S_0)$ is a **mixture of normals**:
 
 $$
-
 \log(S_T/S_0) \big| \int_0^T V_s\,ds \sim \mathcal{N}\left(\mu T - \frac{1}{2}\int_0^T V_s\,ds, \int_0^T V_s\,ds\right)
-
 $$
 
 Integrating over the distribution of integrated variance yields:
@@ -264,9 +238,7 @@ Integrating over the distribution of integrated variance yields:
 Mean-reverting $V_t$ produces autocorrelated squared returns:
 
 $$
-
 \text{Corr}(r_t^2, r_{t+\tau}^2) \propto e^{-\kappa \tau}
-
 $$
 
 ### Implied Volatility Smile
@@ -281,9 +253,7 @@ The smile arises because:
 Option prices depend on the **joint law** of $(S_T, V_T)$ and the path of $V$. For European options:
 
 $$
-
 C(K, T) = e^{-rT}\mathbb{E}^{\mathbb{Q}}\left[(S_T - K)^+\right]
-
 $$
 
 where the expectation is over the full two-dimensional process.
