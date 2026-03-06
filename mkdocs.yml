@@ -61,6 +61,10 @@ nav:
                 - Arrow–Debreu Price Extraction: ch01/codes/arrow_debreu_prices.py
                 - Characteristic Function of Normal (Grzelak): ch01/codes/grzelak_char_function_normal.py
                 - Black-Scholes-Merton Monte Carlo European (Intro): ch01/codes/bsm_mcs_euro.py
+                - Binomial Model Parameter: ch01/codes/binomial_model/binomial_model_parameter.py
+                - Binomial Model Plotter: ch01/codes/binomial_model/binomial_model_plotter.py
+                - Binomial Model Pricer: ch01/codes/binomial_model/binomial_model_pricer.py
+                - Binomial Model Wrapper: ch01/codes/binomial_model/binomial_model_wrapper.py
 
         - 2 Brownian Motion:
             - Chapter Overview: ch02/index.md
@@ -111,6 +115,9 @@ nav:
                 - Coin Flip Paths (Two Paths): ch02/codes/coin_flip_two_paths.py
                 - Integrated Brownian Motion (Grzelak): ch02/codes/grzelak_integrated_brownian_motion.py
                 - Geometric Brownian Motion (qfn): ch02/codes/qfn_geometric_brownian_motion.py
+                - Brownian Motion Simulation: ch02/codes/brownian_motion/brownian_motion_simulation.py
+                - Coin Flip Simulation: ch02/codes/coin_flip/coin_flip_simulation.py
+                - Simple Random Walk Simulation: ch02/codes/simple_random_walk/simple_random_walk_simulation.py
 
         - 3 Stochastic Differential Equations:
             - Chapter Overview: ch03/index.md
@@ -216,6 +223,18 @@ nav:
                     - Geometric Brownian Motion Paths and Strikes (Grzelak): ch03/codes/grzelak_gbm_paths_and_strikes.py
                 - Statistical Analysis:
                     - Normality Tests on Log-Returns: ch03/codes/stock_analysis_normality_tests.py
+                    - Returns: ch03/codes/stock_analysis/analysis/returns.py
+                    - Statistics: ch03/codes/stock_analysis/analysis/statistics.py
+                    - Base: ch03/codes/stock_analysis/base.py
+                    - Fetchers: ch03/codes/stock_analysis/data/fetchers.py
+                    - Analysis: ch03/codes/stock_analysis/sp500/analysis.py
+                    - Composition: ch03/codes/stock_analysis/sp500/composition.py
+                    - Data Downloader: ch03/codes/stock_analysis/sp500/data_downloader.py
+                    - Historical Data: ch03/codes/stock_analysis/sp500/historical_data.py
+                    - Stocks: ch03/codes/stock_analysis/stocks.py
+                    - Basic Plots: ch03/codes/stock_analysis/visualization/basic_plots.py
+                    - Candlestick: ch03/codes/stock_analysis/visualization/candlestick.py
+                    - Return Plots: ch03/codes/stock_analysis/visualization/return_plots.py
 
         - 4 Measure Change:
             - Chapter Overview: ch04/index.md
@@ -295,6 +314,23 @@ nav:
                 - Transition Density Computation: ch05/codes/transition_density_computation.py
                 - Visualize Fast Fourier Transform: ch05/codes/visualize_fft.py
                 - Visualize Fast Fourier Transform Low Pass Filter: ch05/codes/visualize_fft_low_pass.py
+                - Grzelak Poisson Paths: ch05/codes/grzelak_poisson_paths.py
+                - Analytical: ch05/codes/heat_equation_1d/analytical.py
+                - Grid: ch05/codes/heat_equation_1d/grid.py
+                - Heat Equation: ch05/codes/heat_equation_1d/heat_equation.py
+                - Initial Conditions: ch05/codes/heat_equation_1d/initial_conditions.py
+                - Matrices: ch05/codes/heat_equation_1d/matrices.py
+                - Plotting: ch05/codes/heat_equation_1d/plotting.py
+                - Solvers: ch05/codes/heat_equation_1d/solvers.py
+                - Wrapper: ch05/codes/heat_equation_1d/wrapper.py
+                - Analytical: ch05/codes/heat_equation_2d/analytical.py
+                - Grid: ch05/codes/heat_equation_2d/grid.py
+                - Heat Equation: ch05/codes/heat_equation_2d/heat_equation.py
+                - Initial Conditions: ch05/codes/heat_equation_2d/initial_conditions.py
+                - Matrices: ch05/codes/heat_equation_2d/matrices.py
+                - Plotting: ch05/codes/heat_equation_2d/plotting.py
+                - Solvers: ch05/codes/heat_equation_2d/solvers.py
+                - Wrapper: ch05/codes/heat_equation_2d/wrapper.py
 
     - II Black-Scholes Theory:
 
@@ -347,6 +383,25 @@ nav:
                 - Black-Scholes Numerical Methods Demo (cantaro86): ch06/codes/cantaro86_bs_numerical_methods.py
                 - Black-Scholes-Merton Replication (qfn): ch06/codes/qfn_bsm_replication.py
                 - Black-Scholes-Merton Pricing Methods (qfn): ch06/codes/qfn_bsm_pricing_methods.py
+                - Black Scholes Base: ch06/codes/black_scholes/black_scholes_base.py
+                - Black Scholes Formula: ch06/codes/black_scholes/black_scholes_formula.py
+                - Black Scholes Greeks: ch06/codes/black_scholes/black_scholes_greeks.py
+                - Black Scholes Implied Vol: ch06/codes/black_scholes/black_scholes_implied_vol.py
+                - Black Scholes Monte Carlo: ch06/codes/black_scholes/black_scholes_monte_carlo.py
+                - Black Scholes Numerical: ch06/codes/black_scholes/black_scholes_numerical.py
+                - Black Scholes Schemes: ch06/codes/black_scholes/black_scholes_schemes.py
+                - Black Scholes Utils: ch06/codes/black_scholes/black_scholes_utils.py
+                - Black Scholes Wrapper: ch06/codes/black_scholes/black_scholes_wrapper.py
+                - Black Scholes Base: ch06/codes/black_scholes_v100/black_scholes_base.py
+                - Black Scholes Formula: ch06/codes/black_scholes_v100/black_scholes_formula.py
+                - Black Scholes Greeks: ch06/codes/black_scholes_v100/black_scholes_greeks.py
+                - Black Scholes Implied Vol: ch06/codes/black_scholes_v100/black_scholes_implied_vol.py
+                - Black Scholes Monte Carlo: ch06/codes/black_scholes_v100/black_scholes_monte_carlo.py
+                - Black Scholes Numerical: ch06/codes/black_scholes_v100/black_scholes_numerical.py
+                - Black Scholes Schemes: ch06/codes/black_scholes_v100/black_scholes_schemes.py
+                - Black Scholes Utils: ch06/codes/black_scholes_v100/black_scholes_utils.py
+                - Black Scholes Wrapper: ch06/codes/black_scholes_v100/black_scholes_wrapper.py
+                - Grzelak Cos Density Recovery: ch06/codes/grzelak_cos_density_recovery.py
 
         - '7 Extensions & Exotics':
             - Chapter Overview: ch07/index.md
@@ -602,6 +657,7 @@ nav:
                 - Variance Swaps and Model-Free Volatility: ch12/model_free_results/variance_swaps_and_model_free_volatility.md
                 - VIX Formula Derivation: ch12/model_free_results/vix_formula_derivation.md
                 - Dupire Formula and Local Volatility Surface: ch12/model_free_results/dupire_formula_and_local_volatility_surface.md
+                - Variance Swaps And Model Free Volatility: ch12/model_free_results/variance_swaps_and_model_free_volatility.py
             - 12.3 Implied Volatility Surface:
                 - Term Structure: ch12/implied_volatility_surface/term_structure.md
                 - Skew and Smile: ch12/implied_volatility_surface/skew_and_smile.md
@@ -988,6 +1044,20 @@ nav:
                 - Cox-Ingersoll-Ross Interest Rate Paths (Grzelak): ch18/codes/grzelak_cir_ir_paths.py
                 - Ho-Lee Zero-Coupon Bonds (Grzelak): ch18/codes/grzelak_ho_lee_zcbs.py
                 - Ho-Lee Model (QuantPie): ch18/codes/quantpie_ho_lee_model.py
+                - Cir Base: ch18/codes/cir/cir_base.py
+                - Cir Formula: ch18/codes/cir/cir_formula.py
+                - Cir Monte Carlo: ch18/codes/cir/cir_monte_carlo.py
+                - Cir Numerical: ch18/codes/cir/cir_numerical.py
+                - Cir Schemes: ch18/codes/cir/cir_schemes.py
+                - Cir Utils: ch18/codes/cir/cir_utils.py
+                - Cir Wrapper: ch18/codes/cir/cir_wrapper.py
+                - Vasicek Base: ch18/codes/vasicek/vasicek_base.py
+                - Vasicek Formula: ch18/codes/vasicek/vasicek_formula.py
+                - Vasicek Monte Carlo: ch18/codes/vasicek/vasicek_monte_carlo.py
+                - Vasicek Numerical: ch18/codes/vasicek/vasicek_numerical.py
+                - Vasicek Schemes: ch18/codes/vasicek/vasicek_schemes.py
+                - Vasicek Utils: ch18/codes/vasicek/vasicek_utils.py
+                - Vasicek Wrapper: ch18/codes/vasicek/vasicek_wrapper.py
 
         - 19 Heath-Jarrow-Morton Framework:
             - Chapter Overview: ch19/index.md
