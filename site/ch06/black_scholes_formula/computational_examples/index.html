@@ -46827,101 +46827,101 @@
 <li>Volatility: <span class="arithmatex">\(\sigma = 30\%\)</span> per annum</li>
 </ul>
 <h3 id="2-step-1-compute-d_1-and-d_2">2. <strong>Step 1: Compute d_1 and d_2</strong><a class="headerlink" href="#2-step-1-compute-d_1-and-d_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+\]</div>
 <p><strong>Numerator</strong>:</p>
-<p>$$</p>
-<p>\ln(50/52) + (0.05 + 0.5 \times 0.09) \times 0.5</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \ln(0.9615) + (0.05 + 0.045) \times 0.5</p>
-<p>$$</p>
-<p>$$</p>
-<p>= -0.0392 + 0.0475 = 0.0083</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(50/52) + (0.05 + 0.5 \times 0.09) \times 0.5
+\]</div>
+<div class="arithmatex">\[
+= \ln(0.9615) + (0.05 + 0.045) \times 0.5
+\]</div>
+<div class="arithmatex">\[
+= -0.0392 + 0.0475 = 0.0083
+\]</div>
 <p><strong>Denominator</strong>:</p>
-<p>$$</p>
-<p>\sigma\sqrt{T} = 0.30 \times \sqrt{0.5} = 0.30 \times 0.7071 = 0.2121</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma\sqrt{T} = 0.30 \times \sqrt{0.5} = 0.30 \times 0.7071 = 0.2121
+\]</div>
 <p><strong>Result</strong>:</p>
-<p>$$</p>
-<p>d_1 = \frac{0.0083}{0.2121} = 0.0391</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{0.0083}{0.2121} = 0.0391
+\]</div>
 <p><strong>Compute <span class="arithmatex">\(d_2\)</span></strong>:</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T} = 0.0391 - 0.2121 = -0.1730</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T} = 0.0391 - 0.2121 = -0.1730
+\]</div>
 <h3 id="3-step-2-evaluate-nd_1-and-nd_2">3. <strong>Step 2: Evaluate N(d_1) and N(d_2)</strong><a class="headerlink" href="#3-step-2-evaluate-nd_1-and-nd_2" title="Permanent link">&para;</a></h3>
 <p>Using standard normal CDF tables or calculator:</p>
-<p>$$</p>
-<p>\mathcal{N}(0.0391) \approx 0.5156</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mathcal{N}(-0.1730) \approx 0.4313</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(0.0391) \approx 0.5156
+\]</div>
+<div class="arithmatex">\[
+\mathcal{N}(-0.1730) \approx 0.4313
+\]</div>
 <h3 id="4-step-3-calculate-option-price">4. <strong>Step 3: Calculate Option Price</strong><a class="headerlink" href="#4-step-3-calculate-option-price" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+\]</div>
 <p><strong>First term</strong>:</p>
-<p>$$</p>
-<p>S_0\mathcal{N}(d_1) = 50 \times 0.5156 = 25.78</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0\mathcal{N}(d_1) = 50 \times 0.5156 = 25.78
+\]</div>
 <p><strong>Second term</strong>:</p>
-<p>$$</p>
-<p>Ke^{-rT}\mathcal{N}(d_2) = 52 \times e^{-0.05 \times 0.5} \times 0.4313</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 52 \times 0.9753 \times 0.4313 = 21.87</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Ke^{-rT}\mathcal{N}(d_2) = 52 \times e^{-0.05 \times 0.5} \times 0.4313
+\]</div>
+<div class="arithmatex">\[
+= 52 \times 0.9753 \times 0.4313 = 21.87
+\]</div>
 <p><strong>Call price</strong>:</p>
-<p>$$</p>
-<p>C_0 = 25.78 - 21.87 = 3.91</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = 25.78 - 21.87 = 3.91
+\]</div>
 <p><strong>Answer</strong>: The European call is worth approximately <strong>$3.91</strong>.</p>
 <hr />
 <h2 id="manual-calculation-european-put">Manual Calculation: European Put<a class="headerlink" href="#manual-calculation-european-put" title="Permanent link">&para;</a></h2>
 <h3 id="1-same-setup-as-above">1. <strong>Same Setup as Above</strong><a class="headerlink" href="#1-same-setup-as-above" title="Permanent link">&para;</a></h3>
 <h3 id="2-step-1-use-d_1-and-d_2-from-call-calculation">2. <strong>Step 1: Use d_1 and d_2 from Call Calculation</strong><a class="headerlink" href="#2-step-1-use-d_1-and-d_2-from-call-calculation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d_1 = 0.0391, \quad d_2 = -0.1730</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = 0.0391, \quad d_2 = -0.1730
+\]</div>
 <h3 id="3-step-2-evaluate-n-d_1-and-n-d_2">3. <strong>Step 2: Evaluate N(-d_1) and N(-d_2)</strong><a class="headerlink" href="#3-step-2-evaluate-n-d_1-and-n-d_2" title="Permanent link">&para;</a></h3>
 <p>Using symmetry <span class="arithmatex">\(\mathcal{N}(-x) = 1 - \mathcal{N}(x)\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{N}(-d_1) = 1 - 0.5156 = 0.4844</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mathcal{N}(-d_2) = 1 - 0.4313 = 0.5687</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(-d_1) = 1 - 0.5156 = 0.4844
+\]</div>
+<div class="arithmatex">\[
+\mathcal{N}(-d_2) = 1 - 0.4313 = 0.5687
+\]</div>
 <h3 id="4-step-3-calculate-put-price">4. <strong>Step 3: Calculate Put Price</strong><a class="headerlink" href="#4-step-3-calculate-put-price" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P_0 = Ke^{-rT}\mathcal{N}(-d_2) - S_0\mathcal{N}(-d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_0 = Ke^{-rT}\mathcal{N}(-d_2) - S_0\mathcal{N}(-d_1)
+\]</div>
 <p><strong>First term</strong>:</p>
-<p>$$</p>
-<p>Ke^{-rT}\mathcal{N}(-d_2) = 52 \times 0.9753 \times 0.5687 = 28.84</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Ke^{-rT}\mathcal{N}(-d_2) = 52 \times 0.9753 \times 0.5687 = 28.84
+\]</div>
 <p><strong>Second term</strong>:</p>
-<p>$$</p>
-<p>S_0\mathcal{N}(-d_1) = 50 \times 0.4844 = 24.22</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0\mathcal{N}(-d_1) = 50 \times 0.4844 = 24.22
+\]</div>
 <p><strong>Put price</strong>:</p>
-<p>$$</p>
-<p>P_0 = 28.84 - 24.22 = 4.62</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_0 = 28.84 - 24.22 = 4.62
+\]</div>
 <p><strong>Answer</strong>: The European put is worth approximately <strong>$4.62</strong>.</p>
 <h3 id="5-verification-via-put-call-parity">5. <strong>Verification via Put-Call Parity</strong><a class="headerlink" href="#5-verification-via-put-call-parity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C - P = S - Ke^{-rT}</p>
-<p>$$</p>
-<p>$$</p>
-<p>3.91 - 4.62 = -0.71</p>
-<p>$$</p>
-<p>$$</p>
-<p>50 - 52 \times 0.9753 = 50 - 50.72 = -0.72</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C - P = S - Ke^{-rT}
+\]</div>
+<div class="arithmatex">\[
+3.91 - 4.62 = -0.71
+\]</div>
+<div class="arithmatex">\[
+50 - 52 \times 0.9753 = 50 - 50.72 = -0.72
+\]</div>
 <p>Small rounding error confirms parity holds. ✓</p>
 <hr />
 <h2 id="python-implementation">Python Implementation<a class="headerlink" href="#python-implementation" title="Permanent link">&para;</a></h2>
@@ -47266,15 +47266,15 @@ BS Price at Implied Vol: $6.00
 <h3 id="2-issue-2-near-expiration-t-0">2. <strong>Issue 2: Near Expiration</strong> (T → 0)<a class="headerlink" href="#2-issue-2-near-expiration-t-0" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(T \to 0\)</span>, <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span> can become undefined (division by zero).</p>
 <p><strong>Solution</strong>: For <span class="arithmatex">\(T &lt; 0.001\)</span>, use intrinsic value directly:</p>
-<p>$$</p>
-<p>C \approx \max(S - K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \approx \max(S - K, 0)
+\]</div>
 <h3 id="3-issue-3-very-low-volatility-0">3. <strong>Issue 3: Very Low Volatility</strong> (σ → 0)<a class="headerlink" href="#3-issue-3-very-low-volatility-0" title="Permanent link">&para;</a></h3>
 <p>When <span class="arithmatex">\(\sigma\)</span> is very small, option behaves like forward contract.</p>
 <p><strong>Solution</strong>: Use forward value formula:</p>
-<p>$$</p>
-<p>C \approx \max(S - Ke^{-rT}, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \approx \max(S - Ke^{-rT}, 0)
+\]</div>
 <hr />
 <h2 id="complete-working-example">Complete Working Example<a class="headerlink" href="#complete-working-example" title="Permanent link">&para;</a></h2>
 <h3 id="1-real-world-scenario">1. <strong>Real-World Scenario</strong><a class="headerlink" href="#1-real-world-scenario" title="Permanent link">&para;</a></h3>

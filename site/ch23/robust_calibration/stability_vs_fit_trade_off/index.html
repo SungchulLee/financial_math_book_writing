@@ -47034,9 +47034,9 @@
 <h2 id="the-trade-off-in-detail">The Trade-Off in Detail<a class="headerlink" href="#the-trade-off-in-detail" title="Permanent link">&para;</a></h2>
 <h3 id="1-perfect-fit-vs-stability">1. Perfect Fit vs. Stability<a class="headerlink" href="#1-perfect-fit-vs-stability" title="Permanent link">&para;</a></h3>
 <p><strong>Perfect Fit</strong>: Minimize calibration error exactly:</p>
-<p>$$</p>
-<p>\hat{\theta} = \arg\min_{\theta} \sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta} = \arg\min_{\theta} \sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2
+\]</div>
 <p><strong>Problem</strong>: Small changes in <span class="arithmatex">\(\{C_i^{\text{market}}\}\)</span> can cause large changes in <span class="arithmatex">\(\hat{\theta}\)</span>.</p>
 <p><strong>Ill-Conditioning</strong>: The optimization landscape may have:
 - Flat regions (parameters poorly identified)
@@ -47044,19 +47044,19 @@
 - Multiple local minima</p>
 <h3 id="2-quantifying-instability">2. Quantifying Instability<a class="headerlink" href="#2-quantifying-instability" title="Permanent link">&para;</a></h3>
 <p><strong>Parameter Sensitivity</strong>: For data perturbation <span class="arithmatex">\(\delta C\)</span>:</p>
-<p>$$</p>
-<p>\delta \theta \approx -H^{-1} J^\top \delta C</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\delta \theta \approx -H^{-1} J^\top \delta C
+\]</div>
 <p>where <span class="arithmatex">\(H\)</span> is the Hessian and <span class="arithmatex">\(J\)</span> is the Jacobian of model prices.</p>
 <p><strong>Condition Number</strong>: </p>
-<p>$$</p>
-<p>\kappa = |H^{-1}| \cdot |H|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\kappa = \|H^{-1}\| \cdot \|H\|
+\]</div>
 <p>Large <span class="arithmatex">\(\kappa\)</span> indicates ill-conditioning.</p>
 <p><strong>Temporal Stability</strong>: Measure parameter variation over time:</p>
-<p>$$</p>
-<p>\text{Volatility}(\theta_t) = \sqrt{\text{Var}<em t_1="t+1">t(\theta</em>} - \theta_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Volatility}(\theta_t) = \sqrt{\text{Var}_t(\theta_{t+1} - \theta_t)}
+\]</div>
 <h3 id="3-sources-of-instability">3. Sources of Instability<a class="headerlink" href="#3-sources-of-instability" title="Permanent link">&para;</a></h3>
 <p><strong>Over-Parameterization</strong>: More parameters than data can constrain.</p>
 <p><strong>Near-Flat Directions</strong>: Some parameter combinations affect prices minimally.</p>
@@ -47065,9 +47065,9 @@
 <h2 id="regularization-approaches">Regularization Approaches<a class="headerlink" href="#regularization-approaches" title="Permanent link">&para;</a></h2>
 <h3 id="1-tikhonov-regularization">1. Tikhonov Regularization<a class="headerlink" href="#1-tikhonov-regularization" title="Permanent link">&para;</a></h3>
 <p><strong>Penalized Objective</strong>:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _theta="\theta">{\lambda} = \arg\min</em>(\theta)]^2 + \lambda |\theta - \theta_0|^2\right}} \left{\sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{\sum_{i=1}^m [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2 + \lambda \|\theta - \theta_0\|^2\right\}
+\]</div>
 <p>where <span class="arithmatex">\(\theta_0\)</span> is a prior or reference parameter.</p>
 <p><strong>Effect</strong>: Shrinks parameters toward <span class="arithmatex">\(\theta_0\)</span>, reducing sensitivity to noise.</p>
 <p><strong>Bias-Variance Trade-Off</strong>:
@@ -47075,22 +47075,22 @@
 - <span class="arithmatex">\(\lambda \to \infty\)</span>: Low variance but biased toward <span class="arithmatex">\(\theta_0\)</span></p>
 <h3 id="2-lasso-regularization">2. LASSO Regularization<a class="headerlink" href="#2-lasso-regularization" title="Permanent link">&para;</a></h3>
 <p><strong>L1 Penalty</strong>:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _theta="\theta">{\lambda} = \arg\min</em>(\theta) + \lambda |\theta|_1\right}} \left{\text{CalibrationError</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{\text{CalibrationError}(\theta) + \lambda \|\theta\|_1\right\}
+\]</div>
 <p><strong>Effect</strong>: Promotes sparsity; some parameters set to zero.</p>
 <p><strong>Application</strong>: Variable selection in factor models.</p>
 <h3 id="3-elastic-net">3. Elastic Net<a class="headerlink" href="#3-elastic-net" title="Permanent link">&para;</a></h3>
 <p><strong>Combined Penalty</strong>:</p>
-<p>$$</p>
-<p>\hat{\theta} = \arg\min_{\theta} \left{\text{Error}(\theta) + \lambda_1 |\theta|_1 + \lambda_2 |\theta|_2^2\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta} = \arg\min_{\theta} \left\{\text{Error}(\theta) + \lambda_1 \|\theta\|_1 + \lambda_2 \|\theta\|_2^2\right\}
+\]</div>
 <p><strong>Properties</strong>: Combines sparsity (L1) with grouping (L2).</p>
 <h3 id="4-temporal-regularization">4. Temporal Regularization<a class="headerlink" href="#4-temporal-regularization" title="Permanent link">&para;</a></h3>
 <p><strong>Smooth Parameter Evolution</strong>:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _theta="\theta">t = \arg\min</em>} \left{\text{Error<em t-1="t-1">t(\theta) + \gamma |\theta - \hat{\theta}</em>|^2\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_t = \arg\min_{\theta} \left\{\text{Error}_t(\theta) + \gamma \|\theta - \hat{\theta}_{t-1}\|^2\right\}
+\]</div>
 <p><strong>Effect</strong>: Penalizes large parameter jumps between calibrations.</p>
 <h2 id="cross-validation-for-penalty-selection">Cross-Validation for Penalty Selection<a class="headerlink" href="#cross-validation-for-penalty-selection" title="Permanent link">&para;</a></h2>
 <h3 id="1-k-fold-cross-validation">1. K-Fold Cross-Validation<a class="headerlink" href="#1-k-fold-cross-validation" title="Permanent link">&para;</a></h3>
@@ -47109,13 +47109,13 @@
 <p><strong>Metric</strong>: Average out-of-sample error.</p>
 <h3 id="3-information-criteria">3. Information Criteria<a class="headerlink" href="#3-information-criteria" title="Permanent link">&para;</a></h3>
 <p><strong>AIC</strong>: </p>
-<p>$$</p>
-<p>\text{AIC} = 2k - 2\ln(\hat{L})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AIC} = 2k - 2\ln(\hat{L})
+\]</div>
 <p><strong>BIC</strong>:</p>
-<p>$$</p>
-<p>\text{BIC} = k \ln(n) - 2\ln(\hat{L})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{BIC} = k \ln(n) - 2\ln(\hat{L})
+\]</div>
 <p>where <span class="arithmatex">\(k\)</span> is number of effective parameters.</p>
 <p><strong>Application</strong>: Balance fit (likelihood) against complexity (parameters).</p>
 <h2 id="pareto-frontier-analysis">Pareto Frontier Analysis<a class="headerlink" href="#pareto-frontier-analysis" title="Permanent link">&para;</a></h2>
@@ -47126,14 +47126,14 @@
 <p><strong>Pareto Optimal</strong>: <span class="arithmatex">\(\theta^*\)</span> is Pareto optimal if no <span class="arithmatex">\(\theta\)</span> improves both objectives.</p>
 <h3 id="2-computing-the-frontier">2. Computing the Frontier<a class="headerlink" href="#2-computing-the-frontier" title="Permanent link">&para;</a></h3>
 <p><strong>Weighted Sum</strong>:</p>
-<p>$$</p>
-<p>\min_{\theta} {w \cdot f_1(\theta) + (1-w) \cdot f_2(\theta)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta} \{w \cdot f_1(\theta) + (1-w) \cdot f_2(\theta)\}
+\]</div>
 <p>for <span class="arithmatex">\(w \in [0, 1]\)</span>.</p>
 <p><strong><span class="arithmatex">\(\epsilon\)</span>-Constraint</strong>:</p>
-<p>$$</p>
-<p>\min_{\theta} f_1(\theta) \quad \text{s.t.} \quad f_2(\theta) \leq \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta} f_1(\theta) \quad \text{s.t.} \quad f_2(\theta) \leq \epsilon
+\]</div>
 <h3 id="3-visualizing-trade-offs">3. Visualizing Trade-Offs<a class="headerlink" href="#3-visualizing-trade-offs" title="Permanent link">&para;</a></h3>
 <p><strong>Pareto Plot</strong>: Graph <span class="arithmatex">\(f_1\)</span> vs <span class="arithmatex">\(f_2\)</span> for Pareto optimal solutions.</p>
 <p><strong>Interpretation</strong>: Points on frontier represent optimal trade-offs; decision-maker chooses preferred balance.</p>
@@ -47144,18 +47144,18 @@
 <p><strong>Identifiability</strong>: Some parameter combinations better identified than individual parameters.</p>
 <h3 id="2-re-parameterization">2. Re-Parameterization<a class="headerlink" href="#2-re-parameterization" title="Permanent link">&para;</a></h3>
 <p><strong>Alternative Parameters</strong>: Instead of <span class="arithmatex">\((\kappa, \bar{v}, \sigma_v)\)</span>, use:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \theta_1 &amp;= \kappa \bar{v} \quad \text{(long-run variance rate)} \\
 \theta_2 &amp;= \frac{\sigma_v^2}{4\kappa} \quad \text{(Feller ratio)}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Benefit</strong>: Re-parameterized quantities may be more stable.</p>
 <h3 id="3-regularized-heston-calibration">3. Regularized Heston Calibration<a class="headerlink" href="#3-regularized-heston-calibration" title="Permanent link">&para;</a></h3>
 <p><strong>Objective</strong>:</p>
-<p>$$</p>
-<p>\min_{\theta} \left{\sum_{i,j} w_{ij}[\sigma_{ij}^{\text{mkt}} - \sigma_{ij}^{\text{Heston}}(\theta)]^2 + \lambda |\theta - \theta_{\text{prior}}|_{\Sigma^{-1}}^2\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta} \left\{\sum_{i,j} w_{ij}[\sigma_{ij}^{\text{mkt}} - \sigma_{ij}^{\text{Heston}}(\theta)]^2 + \lambda \|\theta - \theta_{\text{prior}}\|_{\Sigma^{-1}}^2\right\}
+\]</div>
 <p>where <span class="arithmatex">\(\theta_{\text{prior}}\)</span> is historical average and <span class="arithmatex">\(\Sigma\)</span> is parameter covariance.</p>
 <h2 id="practical-strategies">Practical Strategies<a class="headerlink" href="#practical-strategies" title="Permanent link">&para;</a></h2>
 <h3 id="1-fix-poorly-identified-parameters">1. Fix Poorly Identified Parameters<a class="headerlink" href="#1-fix-poorly-identified-parameters" title="Permanent link">&para;</a></h3>
@@ -47171,21 +47171,21 @@
 <p><strong>Benefit</strong>: Reduces sensitivity to individual optimization path.</p>
 <h3 id="4-filtering-approaches">4. Filtering Approaches<a class="headerlink" href="#4-filtering-approaches" title="Permanent link">&para;</a></h3>
 <p><strong>Kalman Filter</strong>: Model parameters as latent states:</p>
-<p>$$</p>
-<p>\theta_t = \theta_{t-1} + \eta_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = \theta_{t-1} + \eta_t
+\]</div>
 <p><strong>Update</strong>: Combine prior <span class="arithmatex">\(\theta_{t-1}\)</span> with new data to get <span class="arithmatex">\(\theta_t\)</span>.</p>
 <p><strong>Benefit</strong>: Natural smoothing of parameter paths.</p>
 <h2 id="measuring-and-monitoring-stability">Measuring and Monitoring Stability<a class="headerlink" href="#measuring-and-monitoring-stability" title="Permanent link">&para;</a></h2>
 <h3 id="1-stability-metrics">1. Stability Metrics<a class="headerlink" href="#1-stability-metrics" title="Permanent link">&para;</a></h3>
 <p><strong>Daily Parameter Change</strong>:</p>
-<p>$$</p>
-<p>\Delta \theta_t = |\theta_t - \theta_{t-1}|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \theta_t = \|\theta_t - \theta_{t-1}\|
+\]</div>
 <p><strong>Coefficient of Variation</strong>:</p>
-<p>$$</p>
-<p>\text{CV}(\theta_i) = \frac{\text{std}(\theta_{i,t})}{\text{mean}(\theta_{i,t})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CV}(\theta_i) = \frac{\text{std}(\theta_{i,t})}{\text{mean}(\theta_{i,t})}
+\]</div>
 <p><strong>Rolling Correlation</strong>: Correlation between parameter changes and market moves.</p>
 <h3 id="2-stability-monitoring-dashboard">2. Stability Monitoring Dashboard<a class="headerlink" href="#2-stability-monitoring-dashboard" title="Permanent link">&para;</a></h3>
 <p><strong>Visualizations</strong>:
@@ -47199,18 +47199,18 @@
 <h2 id="impact-on-hedging">Impact on Hedging<a class="headerlink" href="#impact-on-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="1-hedge-stability">1. Hedge Stability<a class="headerlink" href="#1-hedge-stability" title="Permanent link">&para;</a></h3>
 <p><strong>Delta Stability</strong>: Variation in hedge ratio over time:</p>
-<p>$$</p>
-<p>\text{Var}(\Delta_t - \Delta_{t-1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(\Delta_t - \Delta_{t-1})
+\]</div>
 <p><strong>Transaction Costs</strong>: Proportional to turnover:</p>
-<p>$$</p>
-<p>\text{Cost} \propto \sum_t |\Delta_t - \Delta_{t-1}|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost} \propto \sum_t |\Delta_t - \Delta_{t-1}|
+\]</div>
 <h3 id="2-regularized-hedging">2. Regularized Hedging<a class="headerlink" href="#2-regularized-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Penalty on Hedge Changes</strong>:</p>
-<p>$$</p>
-<p>\min_{\Delta_t} \left{\text{HedgingError}<em t-1="t-1">t + \gamma |\Delta_t - \Delta</em>|\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\Delta_t} \left\{\text{HedgingError}_t + \gamma |\Delta_t - \Delta_{t-1}|\right\}
+\]</div>
 <p><strong>Effect</strong>: Smooth hedge adjustments, reduce trading.</p>
 <h3 id="3-empirical-results">3. Empirical Results<a class="headerlink" href="#3-empirical-results" title="Permanent link">&para;</a></h3>
 <p><strong>Finding</strong>: Regularized calibrations often produce:

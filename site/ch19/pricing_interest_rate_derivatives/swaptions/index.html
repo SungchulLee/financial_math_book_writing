@@ -47357,24 +47357,24 @@
 - <strong>Strike:</strong> <span class="arithmatex">\(K\)</span> (fixed rate)
 - <strong>Notional:</strong> <span class="arithmatex">\(N\)</span></p>
 <p><strong>Payoff at expiry <span class="arithmatex">\(T_0\)</span>:</strong></p>
-<p>$$</p>
-<p>\max\left(\text{Value of payer swap at } T_0, 0\right) = \max\left(\sum_{i=1}^{n} \delta_i P(T_0, T_i)(S_{T_0} - K), 0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max\left(\text{Value of payer swap at } T_0, 0\right) = \max\left(\sum_{i=1}^{n} \delta_i P(T_0, T_i)(S_{T_0} - K), 0\right)
+\]</div>
 <p>where <span class="arithmatex">\(S_{T_0}\)</span> is the swap rate prevailing at <span class="arithmatex">\(T_0\)</span>.</p>
 <p>Simplified:</p>
-<p>$$</p>
-<p>\text{Payoff} = A(T_0) \cdot \max(S_{T_0} - K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = A(T_0) \cdot \max(S_{T_0} - K, 0)
+\]</div>
 <p>where <span class="arithmatex">\(A(T_0) = \sum_{i=1}^{n} \delta_i P(T_0, T_i)\)</span> is the <strong>swap annuity</strong>.</p>
 <h3 id="receiver-swaption">Receiver Swaption<a class="headerlink" href="#receiver-swaption" title="Permanent link">&para;</a></h3>
 <p>A <strong>receiver swaption</strong> gives the right to enter a <strong>receiver swap</strong> (receive fixed, pay floating):</p>
-<p>$$</p>
-<p>\text{Payoff} = A(T_0) \cdot \max(K - S_{T_0}, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = A(T_0) \cdot \max(K - S_{T_0}, 0)
+\]</div>
 <h3 id="put-call-parity">Put-Call Parity<a class="headerlink" href="#put-call-parity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Payer Swaption} - \text{Receiver Swaption} = \text{Forward Swap}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payer Swaption} - \text{Receiver Swaption} = \text{Forward Swap}
+\]</div>
 <p>The forward swap has zero value when <span class="arithmatex">\(K\)</span> equals the forward swap rate <span class="arithmatex">\(S_0\)</span>.</p>
 <hr />
 <h2 id="notation-and-conventions">Notation and Conventions<a class="headerlink" href="#notation-and-conventions" title="Permanent link">&para;</a></h2>
@@ -47385,63 +47385,63 @@
 <p>Example: "5y × 10y" = option expiring in 5 years on a 10-year swap</p>
 <h3 id="the-swap-rate">The Swap Rate<a class="headerlink" href="#the-swap-rate" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward swap rate</strong> observed at time <span class="arithmatex">\(t\)</span> for a swap starting at <span class="arithmatex">\(T_0\)</span> is:</p>
-<p>$$</p>
-<p>S(t; T_0, T_n) = \frac{P(t, T_0) - P(t, T_n)}{\sum_{i=1}^{n} \delta_i P(t, T_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t; T_0, T_n) = \frac{P(t, T_0) - P(t, T_n)}{\sum_{i=1}^{n} \delta_i P(t, T_i)}
+\]</div>
 <p>At time 0:</p>
-<p>$$</p>
-<p>S_0 = S(0; T_0, T_n) = \frac{P(0, T_0) - P(0, T_n)}{A_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0 = S(0; T_0, T_n) = \frac{P(0, T_0) - P(0, T_n)}{A_0}
+\]</div>
 <p>where <span class="arithmatex">\(A_0 = \sum_{i=1}^{n} \delta_i P(0, T_i)\)</span> is the <strong>present value of the annuity</strong>.</p>
 <hr />
 <h2 id="blacks-model-for-swaptions">Black's Model for Swaptions<a class="headerlink" href="#blacks-model-for-swaptions" title="Permanent link">&para;</a></h2>
 <h3 id="model-assumption">Model Assumption<a class="headerlink" href="#model-assumption" title="Permanent link">&para;</a></h3>
 <p>Under the <strong>annuity (swap) measure</strong> <span class="arithmatex">\(\mathbb{Q}^A\)</span>, the forward swap rate is a <strong>martingale</strong> with lognormal dynamics:</p>
-<p>$$</p>
-<p>\frac{dS_t}{S_t} = \sigma \, dW_t^A</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS_t}{S_t} = \sigma \, dW_t^A
+\]</div>
 <p>where <span class="arithmatex">\(\sigma\)</span> is the <strong>swaption volatility</strong>.</p>
 <h3 id="change-of-numeraire">Change of Numéraire<a class="headerlink" href="#change-of-numeraire" title="Permanent link">&para;</a></h3>
 <p>The annuity <span class="arithmatex">\(A(t)\)</span> serves as the numéraire. Under <span class="arithmatex">\(\mathbb{Q}^A\)</span>:</p>
-<p>$$</p>
-<p>\text{Swaption Value} = A_0 \cdot \mathbb{E}^{\mathbb{Q}^A}[\max(S_{T_0} - K, 0)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Swaption Value} = A_0 \cdot \mathbb{E}^{\mathbb{Q}^A}[\max(S_{T_0} - K, 0)]
+\]</div>
 <p>Since <span class="arithmatex">\(S_{T_0}\)</span> is lognormal under <span class="arithmatex">\(\mathbb{Q}^A\)</span>, this is a standard Black-Scholes expectation.</p>
 <h3 id="blacks-formula-payer-swaption">Black's Formula (Payer Swaption)<a class="headerlink" href="#blacks-formula-payer-swaption" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\text{Payer Swaption} = A_0 \cdot [S_0 N(d_1) - K N(d_2)]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\text{Payer Swaption} = A_0 \cdot [S_0 N(d_1) - K N(d_2)]}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S_0/K) + \frac{1}{2}\sigma^2 T_0}{\sigma \sqrt{T_0}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma \sqrt{T_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S_0/K) + \frac{1}{2}\sigma^2 T_0}{\sigma \sqrt{T_0}}
+\]</div>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma \sqrt{T_0}
+\]</div>
 <h3 id="receiver-swaption_1">Receiver Swaption<a class="headerlink" href="#receiver-swaption_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Receiver Swaption} = A_0 \cdot [K N(-d_2) - S_0 N(-d_1)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Receiver Swaption} = A_0 \cdot [K N(-d_2) - S_0 N(-d_1)]
+\]</div>
 <h3 id="atm-swaption">ATM Swaption<a class="headerlink" href="#atm-swaption" title="Permanent link">&para;</a></h3>
 <p>When <span class="arithmatex">\(K = S_0\)</span> (at-the-money forward):</p>
-<p>$$</p>
-<p>\text{ATM Swaption} \approx A_0 \cdot S_0 \cdot \sigma \sqrt{T_0} \cdot \sqrt{\frac{2}{\pi}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ATM Swaption} \approx A_0 \cdot S_0 \cdot \sigma \sqrt{T_0} \cdot \sqrt{\frac{2}{\pi}}
+\]</div>
 <p>using the approximation <span class="arithmatex">\(N(d_1) - N(d_2) \approx \sigma\sqrt{T}/\sqrt{2\pi}\)</span> for small <span class="arithmatex">\(\sigma\sqrt{T}\)</span>.</p>
 <hr />
 <h2 id="swaption-pricing-in-short-rate-models">Swaption Pricing in Short-Rate Models<a class="headerlink" href="#swaption-pricing-in-short-rate-models" title="Permanent link">&para;</a></h2>
 <h3 id="jamshidians-trick">Jamshidian's Trick<a class="headerlink" href="#jamshidians-trick" title="Permanent link">&para;</a></h3>
 <p>In one-factor models (Vasicek, Hull-White, CIR), bond prices are monotonic in the short rate <span class="arithmatex">\(r\)</span>.</p>
 <p><strong>Key insight:</strong> There exists a unique <span class="arithmatex">\(r^*\)</span> such that the swap value equals zero:</p>
-<p>$$</p>
-<p>\sum_{i=1}^{n} c_i P(T_0, T_i, r^<em>) = P(T_0, T_0, r^</em>) = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i=1}^{n} c_i P(T_0, T_i, r^*) = P(T_0, T_0, r^*) = 1
+\]</div>
 <p>where <span class="arithmatex">\(c_i = K \delta_i\)</span> for <span class="arithmatex">\(i &lt; n\)</span> and <span class="arithmatex">\(c_n = 1 + K \delta_n\)</span>.</p>
 <h3 id="decomposition">Decomposition<a class="headerlink" href="#decomposition" title="Permanent link">&para;</a></h3>
 <p>The payer swaption decomposes into:</p>
-<p>$$</p>
-<p>\text{Payer Swaption} = \sum_{i=1}^{n} c_i \cdot \text{Put}(P(T_0, T_i), K_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payer Swaption} = \sum_{i=1}^{n} c_i \cdot \text{Put}(P(T_0, T_i), K_i)
+\]</div>
 <p>where <span class="arithmatex">\(K_i = P(T_0, T_i, r^*)\)</span>.</p>
 <p>Each put option has an analytical formula (in Vasicek/Hull-White/CIR), so the swaption price is semi-analytical.</p>
 <h3 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h3>
@@ -47455,21 +47455,21 @@
 <h2 id="normal-bachelier-model">Normal (Bachelier) Model<a class="headerlink" href="#normal-bachelier-model" title="Permanent link">&para;</a></h2>
 <h3 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h3>
 <p>For low or negative rates, lognormal models break down. The Bachelier model assumes:</p>
-<p>$$</p>
-<p>dS_t = \sigma^{(n)} \, dW_t^A</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \sigma^{(n)} \, dW_t^A
+\]</div>
 <h3 id="bachelier-swaption-formula">Bachelier Swaption Formula<a class="headerlink" href="#bachelier-swaption-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Payer Swaption} = A_0 \cdot \left[(S_0 - K) N(d) + \sigma^{(n)} \sqrt{T_0} \phi(d)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payer Swaption} = A_0 \cdot \left[(S_0 - K) N(d) + \sigma^{(n)} \sqrt{T_0} \phi(d)\right]
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d = \frac{S_0 - K}{\sigma^{(n)} \sqrt{T_0}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d = \frac{S_0 - K}{\sigma^{(n)} \sqrt{T_0}}
+\]</div>
 <h3 id="conversion-atm-approximation">Conversion (ATM Approximation)<a class="headerlink" href="#conversion-atm-approximation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma^{(n)} \approx S_0 \cdot \sigma^{(\text{Black})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^{(n)} \approx S_0 \cdot \sigma^{(\text{Black})}
+\]</div>
 <hr />
 <h2 id="swaption-volatility-cube">Swaption Volatility Cube<a class="headerlink" href="#swaption-volatility-cube" title="Permanent link">&para;</a></h2>
 <h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h3>
@@ -47480,9 +47480,9 @@
 <li><strong>Strike:</strong> Moneyness (ATM, ITM, OTM)</li>
 </ol>
 <h3 id="the-volatility-cube">The Volatility Cube<a class="headerlink" href="#the-volatility-cube" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma = \sigma(\text{expiry}, \text{tenor}, \text{strike})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma = \sigma(\text{expiry}, \text{tenor}, \text{strike})
+\]</div>
 <h3 id="typical-features">Typical Features<a class="headerlink" href="#typical-features" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Smile:</strong> OTM puts and calls have higher vol than ATM</li>
@@ -47508,30 +47508,30 @@
 - Risk of overfitting</p>
 <h3 id="joint-calibration">Joint Calibration<a class="headerlink" href="#joint-calibration" title="Permanent link">&para;</a></h3>
 <p>Calibrate to both caps and swaptions:</p>
-<p>$$</p>
-<p>\min_{\theta} \sum_{\text{caps}} w_c (C^{\text{model}} - C^{\text{mkt}})^2 + \sum_{\text{swaptions}} w_s (S^{\text{model}} - S^{\text{mkt}})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta} \sum_{\text{caps}} w_c (C^{\text{model}} - C^{\text{mkt}})^2 + \sum_{\text{swaptions}} w_s (S^{\text{model}} - S^{\text{mkt}})^2
+\]</div>
 <hr />
 <h2 id="greeks-for-swaptions">Greeks for Swaptions<a class="headerlink" href="#greeks-for-swaptions" title="Permanent link">&para;</a></h2>
 <h3 id="delta">Delta<a class="headerlink" href="#delta" title="Permanent link">&para;</a></h3>
 <p>Sensitivity to the forward swap rate:</p>
-<p>$$</p>
-<p>\Delta = A_0 \cdot N(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = A_0 \cdot N(d_1)
+\]</div>
 <h3 id="vega">Vega<a class="headerlink" href="#vega" title="Permanent link">&para;</a></h3>
 <p>Sensitivity to volatility:</p>
-<p>$$</p>
-<p>\mathcal{V} = A_0 \cdot S_0 \sqrt{T_0} \phi(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} = A_0 \cdot S_0 \sqrt{T_0} \phi(d_1)
+\]</div>
 <h3 id="gamma">Gamma<a class="headerlink" href="#gamma" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Gamma = \frac{A_0 \phi(d_1)}{S_0 \sigma \sqrt{T_0}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma = \frac{A_0 \phi(d_1)}{S_0 \sigma \sqrt{T_0}}
+\]</div>
 <h3 id="annuity-delta">Annuity Delta<a class="headerlink" href="#annuity-delta" title="Permanent link">&para;</a></h3>
 <p>Sensitivity to shifts in the discount curve (affects <span class="arithmatex">\(A_0\)</span>):</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial A_0} = S_0 N(d_1) - K N(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial A_0} = S_0 N(d_1) - K N(d_2)
+\]</div>
 <hr />
 <h2 id="physical-vs-cash-settlement">Physical vs. Cash Settlement<a class="headerlink" href="#physical-vs-cash-settlement" title="Permanent link">&para;</a></h2>
 <h3 id="physical-settlement">Physical Settlement<a class="headerlink" href="#physical-settlement" title="Permanent link">&para;</a></h3>
@@ -47539,9 +47539,9 @@
 <h3 id="cash-settlement">Cash Settlement<a class="headerlink" href="#cash-settlement" title="Permanent link">&para;</a></h3>
 <p>At expiry, the holder receives cash equal to the swap value, typically using a standardized formula based on the prevailing swap rate.</p>
 <p><strong>Cash settlement amount:</strong></p>
-<p>$$</p>
-<p>\text{Cash} = A_{\text{ref}} \cdot \max(S_{T_0} - K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cash} = A_{\text{ref}} \cdot \max(S_{T_0} - K, 0)
+\]</div>
 <p>where <span class="arithmatex">\(A_{\text{ref}}\)</span> is computed using a reference curve (often ISDA methodology).</p>
 <h3 id="difference">Difference<a class="headerlink" href="#difference" title="Permanent link">&para;</a></h3>
 <p>Cash and physical settlement can produce different values due to:
@@ -47558,9 +47558,9 @@
 - <strong>Monte Carlo:</strong> American/Bermudan methods (Longstaff-Schwartz)
 - <strong>PDE:</strong> With multiple exercise boundaries</p>
 <h3 id="relationship-to-european">Relationship to European<a class="headerlink" href="#relationship-to-european" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Bermudan} \geq \text{European}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bermudan} \geq \text{European}
+\]</div>
 <p>The early exercise premium is typically 5-20 bps on implied vol for typical structures.</p>
 <hr />
 <h2 id="practical-considerations">Practical Considerations<a class="headerlink" href="#practical-considerations" title="Permanent link">&para;</a></h2>

@@ -46516,91 +46516,91 @@
 <hr />
 <h2 id="the-idea">The Idea<a class="headerlink" href="#the-idea" title="Permanent link">&para;</a></h2>
 <p>Given the SDE:</p>
-<p>$$</p>
-<p>X_t = x_0 + \int_0^t b(s, X_s)\,ds + \int_0^t \sigma(s, X_s)\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = x_0 + \int_0^t b(s, X_s)\,ds + \int_0^t \sigma(s, X_s)\,dW_s
+\]</div>
 <p>we construct a sequence of approximations <span class="arithmatex">\(\{X^{(n)}_t\}\)</span> that converges to the true solution.</p>
 <hr />
 <h2 id="the-iteration-scheme">The Iteration Scheme<a class="headerlink" href="#the-iteration-scheme" title="Permanent link">&para;</a></h2>
 <p><strong>Step 0</strong>: Start with a constant process:</p>
-<p>$$</p>
-<p>X_t^{(0)} = x_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t^{(0)} = x_0
+\]</div>
 <p><strong>Step n+1</strong>: Given <span class="arithmatex">\(X^{(n)}\)</span>, define:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t^{(n+1)} = x_0 + \int_0^t b(s, X_s^{(n)})\,ds + \int_0^t \sigma(s, X_s^{(n)})\,dW_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Claim</strong>: Under Lipschitz and linear growth conditions, <span class="arithmatex">\(X^{(n)} \to X\)</span> as <span class="arithmatex">\(n \to \infty\)</span>, where <span class="arithmatex">\(X\)</span> is the unique solution.</p>
 <hr />
 <h2 id="convergence-analysis">Convergence Analysis<a class="headerlink" href="#convergence-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="error-definition">Error Definition<a class="headerlink" href="#error-definition" title="Permanent link">&para;</a></h3>
 <p>Define the error at step <span class="arithmatex">\(n\)</span>:</p>
-<p>$$</p>
-<p>e_n(t) := \mathbb{E}\left[\sup_{0 \leq s \leq t} |X_s^{(n+1)} - X_s^{(n)}|^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_n(t) := \mathbb{E}\left[\sup_{0 \leq s \leq t} |X_s^{(n+1)} - X_s^{(n)}|^2\right]
+\]</div>
 <h3 id="key-estimate">Key Estimate<a class="headerlink" href="#key-estimate" title="Permanent link">&para;</a></h3>
 <p>Using Lipschitz continuity, the Itô isometry, and Doob's maximal inequality:</p>
-<p>$$</p>
-<p>e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds
+\]</div>
 <p>where <span class="arithmatex">\(C\)</span> depends on the Lipschitz constant <span class="arithmatex">\(K\)</span> and dimension.</p>
 <h3 id="induction">Induction<a class="headerlink" href="#induction" title="Permanent link">&para;</a></h3>
 <p>By induction, we obtain:</p>
-<p>$$</p>
-<p>e_n(t) \leq \frac{(Ct)^n}{n!} e_0(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_n(t) \leq \frac{(Ct)^n}{n!} e_0(T)
+\]</div>
 <h3 id="convergence">Convergence<a class="headerlink" href="#convergence" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(\sum_{n=0}^\infty \frac{(CT)^n}{n!} = e^{CT} &lt; \infty\)</span>, we have:</p>
-<p>$$</p>
-<p>\sum_{n=0}^\infty \sqrt{e_n(T)} &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{n=0}^\infty \sqrt{e_n(T)} &lt; \infty
+\]</div>
 <p>By completeness of <span class="arithmatex">\(L^2\)</span>, the sequence <span class="arithmatex">\(X^{(n)}\)</span> converges to a limit <span class="arithmatex">\(X\)</span> in <span class="arithmatex">\(L^2(\Omega; C([0,T]))\)</span>.</p>
 <hr />
 <h2 id="detailed-proof-sketch">Detailed Proof Sketch<a class="headerlink" href="#detailed-proof-sketch" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-bound-the-first-iteration">Step 1: Bound the First Iteration<a class="headerlink" href="#step-1-bound-the-first-iteration" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{s \leq t}|X_s^{(1)} - X_s^{(0)}|^2\right] = \mathbb{E}\left[\sup_{s \leq t}\left|\int_0^s b(u, x_0)\,du + \int_0^s \sigma(u, x_0)\,dW_u\right|^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{s \leq t}|X_s^{(1)} - X_s^{(0)}|^2\right] = \mathbb{E}\left[\sup_{s \leq t}\left|\int_0^s b(u, x_0)\,du + \int_0^s \sigma(u, x_0)\,dW_u\right|^2\right]
+\]</div>
 <p>Using linear growth: <span class="arithmatex">\(|b(t,x)|^2 + |\sigma(t,x)|^2 \leq K^2(1 + |x|^2)\)</span></p>
-<p>$$</p>
-<p>e_0(t) \leq C(1 + |x_0|^2)t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_0(t) \leq C(1 + |x_0|^2)t
+\]</div>
 <h3 id="step-2-recursive-bound">Step 2: Recursive Bound<a class="headerlink" href="#step-2-recursive-bound" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(n \geq 1\)</span>:</p>
-<p>$$</p>
-<p>X_t^{(n+1)} - X_t^{(n)} = \int_0^t [b(s, X_s^{(n)}) - b(s, X_s^{(n-1)})]\,ds + \int_0^t [\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})]\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t^{(n+1)} - X_t^{(n)} = \int_0^t [b(s, X_s^{(n)}) - b(s, X_s^{(n-1)})]\,ds + \int_0^t [\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})]\,dW_s
+\]</div>
 <p>Taking supremum and expectation, using Lipschitz condition:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{s \leq t}|X_s^{(n+1)} - X_s^{(n)}|^2\right] \leq 2T \int_0^t K^2 \mathbb{E}|X_s^{(n)} - X_s^{(n-1)}|^2\,ds + 8K^2 \int_0^t \mathbb{E}|X_s^{(n)} - X_s^{(n-1)}|^2\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{s \leq t}|X_s^{(n+1)} - X_s^{(n)}|^2\right] \leq 2T \int_0^t K^2 \mathbb{E}|X_s^{(n)} - X_s^{(n-1)}|^2\,ds + 8K^2 \int_0^t \mathbb{E}|X_s^{(n)} - X_s^{(n-1)}|^2\,ds
+\]</div>
 <p>The factor 8 comes from Doob's inequality for the martingale part.</p>
 <h3 id="step-3-gronwall-type-iteration">Step 3: Gronwall-Type Iteration<a class="headerlink" href="#step-3-gronwall-type-iteration" title="Permanent link">&para;</a></h3>
 <p>This gives:</p>
-<p>$$</p>
-<p>e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds
+\]</div>
 <p>Iterating:</p>
-<p>$$</p>
-<p>e_n(t) \leq C^n \int_0^t \int_0^{s_1} \cdots \int_0^{s_{n-1}} e_0(s_n)\,ds_n \cdots ds_1 \leq \frac{(Ct)^n}{n!} e_0(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_n(t) \leq C^n \int_0^t \int_0^{s_1} \cdots \int_0^{s_{n-1}} e_0(s_n)\,ds_n \cdots ds_1 \leq \frac{(Ct)^n}{n!} e_0(T)
+\]</div>
 <hr />
 <h2 id="uniqueness">Uniqueness<a class="headerlink" href="#uniqueness" title="Permanent link">&para;</a></h2>
 <p><strong>Suppose</strong> <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are two solutions with <span class="arithmatex">\(X_0 = Y_0 = x_0\)</span>.</p>
 <p>Define <span class="arithmatex">\(Z_t = X_t - Y_t\)</span>. Then:</p>
-<p>$$</p>
-<p>Z_t = \int_0^t [b(s, X_s) - b(s, Y_s)]\,ds + \int_0^t [\sigma(s, X_s) - \sigma(s, Y_s)]\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \int_0^t [b(s, X_s) - b(s, Y_s)]\,ds + \int_0^t [\sigma(s, X_s) - \sigma(s, Y_s)]\,dW_s
+\]</div>
 <p>By the same estimates as above:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{s \leq t}|Z_s|^2\right] \leq C \int_0^t \mathbb{E}|Z_s|^2\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{s \leq t}|Z_s|^2\right] \leq C \int_0^t \mathbb{E}|Z_s|^2\,ds
+\]</div>
 <p>By Gronwall's inequality, since <span class="arithmatex">\(Z_0 = 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{s \leq t}|Z_s|^2\right] = 0 \quad \text{for all } t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{s \leq t}|Z_s|^2\right] = 0 \quad \text{for all } t
+\]</div>
 <p>Therefore <span class="arithmatex">\(X_t = Y_t\)</span> almost surely.</p>
 <hr />
 <h2 id="example-geometric-brownian-motion">Example: Geometric Brownian Motion<a class="headerlink" href="#example-geometric-brownian-motion" title="Permanent link">&para;</a></h2>
@@ -46612,9 +46612,9 @@ X_t^{(n+1)} = x_0 + \int_0^t b(s, X_s^{(n)})\,ds + \int_0^t \sigma(s, X_s^{(n)})
 <li><span class="arithmatex">\(S^{(2)}_t = s_0 + \int_0^t \mu S^{(1)}_s\,ds + \int_0^t \sigma S^{(1)}_s\,dW_s\)</span></li>
 </ul>
 <p>As <span class="arithmatex">\(n \to \infty\)</span>, this converges to:</p>
-<p>$$</p>
-<p>S_t = s_0 \exp\left[(\mu - \tfrac{1}{2}\sigma^2)t + \sigma W_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = s_0 \exp\left[(\mu - \tfrac{1}{2}\sigma^2)t + \sigma W_t\right]
+\]</div>
 <hr />
 <h2 id="comparison-with-ode-picard-iteration">Comparison with ODE Picard Iteration<a class="headerlink" href="#comparison-with-ode-picard-iteration" title="Permanent link">&para;</a></h2>
 <table>
@@ -46652,9 +46652,9 @@ X_t^{(n+1)} = x_0 + \int_0^t b(s, X_s^{(n)})\,ds + \int_0^t \sigma(s, X_s^{(n)})
 <h2 id="practical-considerations">Practical Considerations<a class="headerlink" href="#practical-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="numerical-picard-iteration">Numerical Picard Iteration<a class="headerlink" href="#numerical-picard-iteration" title="Permanent link">&para;</a></h3>
 <p>For numerical purposes, one might truncate after <span class="arithmatex">\(N\)</span> iterations. The error is bounded by:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{t \leq T}|X_t - X_t^{(N)}|^2\right] \leq \sum_{n=N}^\infty e_n(T) \approx \frac{(CT)^N}{N!}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{t \leq T}|X_t - X_t^{(N)}|^2\right] \leq \sum_{n=N}^\infty e_n(T) \approx \frac{(CT)^N}{N!}
+\]</div>
 <h3 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Theoretical proofs</strong>: Standard method for existence/uniqueness</li>
@@ -46663,11 +46663,11 @@ X_t^{(n+1)} = x_0 + \int_0^t b(s, X_s^{(n)})\,ds + \int_0^t \sigma(s, X_s^{(n)})
 </ul>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t^{(n+1)} = x_0 + \int_0^t b(s, X_s^{(n)})\,ds + \int_0^t \sigma(s, X_s^{(n)})\,dW_s \xrightarrow{n \to \infty} X_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Convergence rate</strong>: <span class="arithmatex">\(\|X - X^{(n)}\|_{L^2} = O\left(\frac{(CT)^{n/2}}{\sqrt{n!}}\right)\)</span></p>
 <p><strong>The Picard iteration is the constructive backbone of SDE existence theory, directly paralleling the classical ODE theory.</strong></p>
 

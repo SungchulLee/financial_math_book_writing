@@ -46517,19 +46517,19 @@
 <p>The market consists of two traded assets:</p>
 <p><strong>Risk-free asset (bank account):</strong></p>
 <p>Starting with <span class="arithmatex">\(B_0 = 1\)</span>, the bank account grows deterministically:</p>
-<p>$$</p>
-<p>B_{\Delta t} = e^{r \Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_{\Delta t} = e^{r \Delta t}
+\]</div>
 <p>where <span class="arithmatex">\(r \geq 0\)</span> is the continuously compounded risk-free rate.</p>
 <p><strong>Risky asset (stock):</strong></p>
 <p>Starting with <span class="arithmatex">\(S_0 &gt; 0\)</span>, the stock price at time <span class="arithmatex">\(\Delta t\)</span> takes one of two values:</p>
-<p>$$</p>
-<p>S_{\Delta t} =
+<div class="arithmatex">\[
+S_{\Delta t} =
 \begin{cases}
-u S_0 &amp; \text{with probability } p \quad \text{(up state)} \[6pt]
+u S_0 &amp; \text{with probability } p \quad \text{(up state)} \\[6pt]
 d S_0 &amp; \text{with probability } 1-p \quad \text{(down state)}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(u &gt; 1\)</span> is the <strong>up factor</strong> (stock increases by factor <span class="arithmatex">\(u\)</span>)</li>
@@ -46557,12 +46557,12 @@ d S_0 &amp; \text{with probability } 1-p \quad \text{(down state)}
 <li><span class="arithmatex">\(\beta \in \mathbb{R}\)</span>: units of the bank account (can be negative for borrowing)</li>
 </ul>
 <p>The portfolio value at each time is:</p>
-<p>$$</p>
-<p>V_0 = \Delta S_0 + \beta B_0 = \Delta S_0 + \beta</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_{\Delta t} = \Delta S_{\Delta t} + \beta B_{\Delta t} = \Delta S_{\Delta t} + \beta e^{r \Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \Delta S_0 + \beta B_0 = \Delta S_0 + \beta
+\]</div>
+<div class="arithmatex">\[
+V_{\Delta t} = \Delta S_{\Delta t} + \beta B_{\Delta t} = \Delta S_{\Delta t} + \beta e^{r \Delta t}
+\]</div>
 <div class="admonition note">
 <p class="admonition-title">Self-Financing Property</p>
 <p>In the one-period model, the holdings <span class="arithmatex">\((\Delta, \beta)\)</span> are fixed at time <span class="arithmatex">\(0\)</span> and held until time <span class="arithmatex">\(\Delta t\)</span>. There are no intermediate cash flows—the portfolio is automatically <strong>self-financing</strong>.</p>
@@ -46571,13 +46571,13 @@ d S_0 &amp; \text{with probability } 1-p \quad \text{(down state)}
 <hr />
 <h2 id="contingent-claims-and-the-pricing-problem">Contingent Claims and the Pricing Problem<a class="headerlink" href="#contingent-claims-and-the-pricing-problem" title="Permanent link">&para;</a></h2>
 <p>A <strong>contingent claim</strong> (or <strong>derivative</strong>) is any payoff that depends on the terminal stock price:</p>
-<p>$$</p>
-<p>H = H(S_{\Delta t}) = 
+<div class="arithmatex">\[
+H = H(S_{\Delta t}) = 
 \begin{cases}
-H_u &amp; \text{if } S_{\Delta t} = u S_0 \[4pt]
+H_u &amp; \text{if } S_{\Delta t} = u S_0 \\[4pt]
 H_d &amp; \text{if } S_{\Delta t} = d S_0
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <div class="admonition example">
 <p class="admonition-title">Common Examples</p>
 <ul>
@@ -46635,37 +46635,37 @@ H_d &amp; \text{if } S_{\Delta t} = d S_0
 <div class="admonition success">
 <p class="admonition-title">No-Arbitrage Condition</p>
 <p>The one-period binomial market is arbitrage-free if and only if:</p>
-<p>$$</p>
-<p>\boxed{d &lt; e^{r \Delta t} &lt; u}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d &lt; e^{r \Delta t} &lt; u}
+\]</div>
 <p><strong>Interpretation:</strong> The risk-free return must lie strictly between the worst and best stock returns. If the bank always beats the stock (even in the up state), or the stock always beats the bank (even in the down state), arbitrage is possible.</p>
 </div>
 <hr />
 <h2 id="geometric-interpretation">Geometric Interpretation<a class="headerlink" href="#geometric-interpretation" title="Permanent link">&para;</a></h2>
 <p>The no-arbitrage condition has an elegant geometric interpretation in terms of <strong>discounted prices</strong>.</p>
 <p>Define the <strong>discounted stock price</strong>:</p>
-<p>$$</p>
-<p>\tilde{S}<em _Delta="\Delta" t="t">{\Delta t} := \frac{S</em>}}{e^{r \Delta t}} = \frac{S_{\Delta t}}{B_{\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{S}_{\Delta t} := \frac{S_{\Delta t}}{e^{r \Delta t}} = \frac{S_{\Delta t}}{B_{\Delta t}}
+\]</div>
 <p>This measures the stock price in units of the bank account (the <strong>numéraire</strong>).</p>
 <p>The discounted terminal values are:</p>
-<p>$$</p>
-<p>\tilde{S}_{\Delta t} = 
+<div class="arithmatex">\[
+\tilde{S}_{\Delta t} = 
 \begin{cases}
-\dfrac{u S_0}{e^{r \Delta t}} &amp; \text{(up state)} \[10pt]
+\dfrac{u S_0}{e^{r \Delta t}} &amp; \text{(up state)} \\[10pt]
 \dfrac{d S_0}{e^{r \Delta t}} &amp; \text{(down state)}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>The no-arbitrage condition <span class="arithmatex">\(d &lt; e^{r \Delta t} &lt; u\)</span> is equivalent to:</p>
-<p>$$</p>
-<p>\frac{d S_0}{e^{r \Delta t}} &lt; S_0 &lt; \frac{u S_0}{e^{r \Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d S_0}{e^{r \Delta t}} &lt; S_0 &lt; \frac{u S_0}{e^{r \Delta t}}
+\]</div>
 <div class="admonition tip">
 <p class="admonition-title">Convex Hull Interpretation</p>
 <p>The current stock price <span class="arithmatex">\(S_0\)</span> lies in the <strong>interior</strong> of the interval spanned by the discounted future values:</p>
-<p>$$</p>
-<p>S_0 \in \left( \frac{d S_0}{e^{r \Delta t}}, \frac{u S_0}{e^{r \Delta t}} \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0 \in \left( \frac{d S_0}{e^{r \Delta t}}, \frac{u S_0}{e^{r \Delta t}} \right)
+\]</div>
 <p>Equivalently, <span class="arithmatex">\(S_0\)</span> can be written as a <strong>strict convex combination</strong> of the discounted future values. This convexity property is the geometric essence of no-arbitrage and generalizes to higher dimensions (multiple assets, multiple periods).</p>
 </div>
 <hr />
@@ -46673,34 +46673,34 @@ H_d &amp; \text{if } S_{\Delta t} = d S_0
 <p>The convex hull interpretation suggests that we can express <span class="arithmatex">\(S_0\)</span> as a weighted average of discounted future values. This leads to the <strong>risk-neutral probability</strong>.</p>
 <h3 id="derivation">Derivation<a class="headerlink" href="#derivation" title="Permanent link">&para;</a></h3>
 <p>We seek a probability <span class="arithmatex">\(q \in (0,1)\)</span> such that:</p>
-<p>$$</p>
-<p>S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]
+\]</div>
 <p>where <span class="arithmatex">\(\mathbb{E}^{\mathbb{Q}}\)</span> denotes expectation under a new probability measure <span class="arithmatex">\(\mathbb{Q}\)</span> with <span class="arithmatex">\(\mathbb{Q}(\text{up}) = q\)</span>.</p>
 <p>Expanding the expectation:</p>
-<p>$$</p>
-<p>S_0 = e^{-r \Delta t} \left( q \cdot u S_0 + (1-q) \cdot d S_0 \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0 = e^{-r \Delta t} \left( q \cdot u S_0 + (1-q) \cdot d S_0 \right)
+\]</div>
 <p>Dividing both sides by <span class="arithmatex">\(S_0\)</span> and multiplying by <span class="arithmatex">\(e^{r \Delta t}\)</span>:</p>
-<p>$$</p>
-<p>e^{r \Delta t} = q \cdot u + (1-q) \cdot d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{r \Delta t} = q \cdot u + (1-q) \cdot d
+\]</div>
 <p>Expanding and solving for <span class="arithmatex">\(q\)</span>:</p>
-<p>$$</p>
-<p>e^{r \Delta t} = qu + d - qd = d + q(u - d)</p>
-<p>$$</p>
-<p>$$</p>
-<p>q(u - d) = e^{r \Delta t} - d</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{q = \frac{e^{r \Delta t} - d}{u - d}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{r \Delta t} = qu + d - qd = d + q(u - d)
+\]</div>
+<div class="arithmatex">\[
+q(u - d) = e^{r \Delta t} - d
+\]</div>
+<div class="arithmatex">\[
+\boxed{q = \frac{e^{r \Delta t} - d}{u - d}}
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Risk-Neutral Probability</p>
 <p>Under the no-arbitrage condition <span class="arithmatex">\(d &lt; e^{r \Delta t} &lt; u\)</span>, there exists a <strong>unique</strong> probability <span class="arithmatex">\(q \in (0,1)\)</span> given by:</p>
-<p>$$</p>
-<p>q = \frac{e^{r \Delta t} - d}{u - d}, \qquad 1 - q = \frac{u - e^{r \Delta t}}{u - d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q = \frac{e^{r \Delta t} - d}{u - d}, \qquad 1 - q = \frac{u - e^{r \Delta t}}{u - d}
+\]</div>
 </div>
 <h3 id="verification-that-q-01">Verification that q ∈ (0,1)<a class="headerlink" href="#verification-that-q-01" title="Permanent link">&para;</a></h3>
 <p>The no-arbitrage condition guarantees <span class="arithmatex">\(q\)</span> is a valid probability:</p>
@@ -46715,9 +46715,9 @@ H_d &amp; \text{if } S_{\Delta t} = d S_0
 <p>This confirms that <span class="arithmatex">\(q \in (0,1)\)</span> if and only if the no-arbitrage condition holds.</p>
 <h3 id="risk-neutral-measure">Risk-Neutral Measure<a class="headerlink" href="#risk-neutral-measure" title="Permanent link">&para;</a></h3>
 <p>Define a probability measure <span class="arithmatex">\(\mathbb{Q}\)</span> on the one-period state space by:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\text{up}) = q, \qquad \mathbb{Q}(\text{down}) = 1 - q</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\text{up}) = q, \qquad \mathbb{Q}(\text{down}) = 1 - q
+\]</div>
 <p>This probability measure <span class="arithmatex">\(\mathbb{Q}\)</span> is called the <strong>risk-neutral measure</strong> (or <strong>equivalent martingale measure</strong>).</p>
 <div class="admonition warning">
 <p class="admonition-title">Risk-Neutral ≠ Physical</p>
@@ -46731,25 +46731,25 @@ H_d &amp; \text{if } S_{\Delta t} = d S_0
 <hr />
 <h2 id="martingale-interpretation">Martingale Interpretation<a class="headerlink" href="#martingale-interpretation" title="Permanent link">&para;</a></h2>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the stock price satisfies:</p>
-<p>$$</p>
-<p>S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}]
+\]</div>
 <p>Equivalently, the <strong>discounted stock price</strong> <span class="arithmatex">\(\tilde{S}_t := e^{-rt} S_t\)</span> satisfies:</p>
-<p>$$</p>
-<p>\tilde{S}<em _Delta="\Delta" t="t">0 = S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S</em>]}] = \mathbb{E}^{\mathbb{Q}}\left[ e^{-r \Delta t} S_{\Delta t} \right] = \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{S}_0 = S_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = \mathbb{E}^{\mathbb{Q}}\left[ e^{-r \Delta t} S_{\Delta t} \right] = \mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t}]
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Martingale Property</p>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the discounted stock price is a <strong>martingale</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t} \mid \mathcal{F}_0] = \tilde{S}_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[\tilde{S}_{\Delta t} \mid \mathcal{F}_0] = \tilde{S}_0
+\]</div>
 <p>This is the discrete-time analog of the continuous-time result. See <a href="../../../ch02/filtration_and_martingales/martingales/">Martingales</a> for the general definition.</p>
 </div>
 <p>This martingale property is the key to pricing contingent claims: if discounted asset prices are martingales under <span class="arithmatex">\(\mathbb{Q}\)</span>, then by no-arbitrage, discounted derivative prices must also be martingales. This leads to the <strong>risk-neutral pricing formula</strong>:</p>
-<p>$$</p>
-<p>V_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[H]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-r \Delta t} \mathbb{E}^{\mathbb{Q}}[H]
+\]</div>
 <p>The derivation of this formula via replication is the subject of the <a href="../replicating_portfolio/">next section</a>.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>

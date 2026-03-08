@@ -46191,117 +46191,117 @@
 
 <h1 id="change-of-numeraire-from-q-to-t">Change of Numeraire from Q to T<a class="headerlink" href="#change-of-numeraire-from-q-to-t" title="Permanent link">&para;</a></h1>
 <h2 id="change-of-measure">Change of Measure<a class="headerlink" href="#change-of-measure" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\displaystyle
-dW^{\mathbb{Q}}(t)=dW^\mathbb{T}(t)+\sigma_P(t,T)dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+dW^{\mathbb{Q}}(t)=dW^\mathbb{T}(t)+\sigma_P(t,T)dt
+\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
 <p>From ZCB dynamics,</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \frac{dP(t,T)}{P(t,T)}
 =
-r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 d\log P(t,T)
 =
-\left(r(t)-\frac{1}{2}\sigma_P^2(t,T)\right)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)</p>
-<p>\end{array}$$</p>
+\left(r(t)-\frac{1}{2}\sigma_P^2(t,T)\right)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)
+\end{array}\]</div>
 <p>The Radon–Nikodym derivative for the change from <span class="arithmatex">\(\mathbb{Q}\)</span> to <span class="arithmatex">\(\mathbb{T}\)</span> is:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{T}}{d\mathbb{Q}}\Big|_{{\cal F}(t)}
+<div class="arithmatex">\[
+\frac{d\mathbb{T}}{d\mathbb{Q}}\Big|_{{\cal F}(t)}
 =\frac{P(t,T)/P(0,T)}{M(t)/M(0)}
-=\exp\left(-\frac{1}{2}\int_0^t\sigma_P^2(s,T)ds+\int_0^t\sigma_P(s,T)dW^{\mathbb{Q}}(s)\right)</p>
-<p>$$</p>
+=\exp\left(-\frac{1}{2}\int_0^t\sigma_P^2(s,T)ds+\int_0^t\sigma_P(s,T)dW^{\mathbb{Q}}(s)\right)
+\]</div>
 <p>By Girsanov's theorem, <span class="arithmatex">\(dW^\mathbb{T}(t)=dW^{\mathbb{Q}}(t)-\sigma_P(t,T)dt\)</span> is a Brownian motion under <span class="arithmatex">\(\mathbb{T}\)</span>.</p>
 </details>
 <h2 id="df-under-t">df under T<a class="headerlink" href="#df-under-t" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 df(t,T)
 =
-\sigma(t,T)dW^\mathbb{T}(t)</p>
-<p>\end{array}$$</p>
+\sigma(t,T)dW^\mathbb{T}(t)
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 df(t,T)
 &amp;=&amp;\displaystyle
 \left(\sigma(t,T)\int_t^T\sigma(t,T')dT'\right)dt
-+\sigma(t,T)dW^{\mathbb{Q}}(t)\
++\sigma(t,T)dW^{\mathbb{Q}}(t)\\
 &amp;=&amp;\displaystyle
 \left(\sigma(t,T)\int_t^T\sigma(t,T')dT'\right)dt
-+\sigma(t,T)\left(dW^\mathbb{T}(t)+\sigma_P(t,T)dt\right)\
++\sigma(t,T)\left(dW^\mathbb{T}(t)+\sigma_P(t,T)dt\right)\\
 &amp;=&amp;\displaystyle
-\sigma(t,T)dW^\mathbb{T}(t)</p>
-<p>\end{array}$$</p>
+\sigma(t,T)dW^\mathbb{T}(t)
+\end{array}\]</div>
 <p>since <span class="arithmatex">\(\sigma_P(t,T)=-\int_t^T\sigma(t,T')dT'\)</span>.</p>
 </details>
 <h2 id="dp-under-t">dP under T<a class="headerlink" href="#dp-under-t" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \frac{dP(t,T)}{P(t,T)}
 =
-\left(r(t)+\sigma_P^2(t,T)\right)dt+\sigma_P(t,T) dW^\mathbb{T}(t) \</p>
-<p>\end{array}$$</p>
+\left(r(t)+\sigma_P^2(t,T)\right)dt+\sigma_P(t,T) dW^\mathbb{T}(t) \\
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \frac{dP(t,T)}{P(t,T)}
 &amp;=&amp;\displaystyle
-r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)\
+r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}(t)\\
 &amp;=&amp;\displaystyle
-r(t)dt+\sigma_P(t,T)\left(dW^\mathbb{T}_t+\sigma_P(t,T)dt\right)\
+r(t)dt+\sigma_P(t,T)\left(dW^\mathbb{T}_t+\sigma_P(t,T)dt\right)\\
 &amp;=&amp;\displaystyle
-\left(r(t)+\sigma_P^2(t,T)\right)dt+\sigma_P(t,T)dW^\mathbb{T}(t)\</p>
-<p>\end{array}$$</p>
+\left(r(t)+\sigma_P^2(t,T)\right)dt+\sigma_P(t,T)dW^\mathbb{T}(t)\\
+\end{array}\]</div>
 </details>
 <h2 id="dr-under-t">dr under T<a class="headerlink" href="#dr-under-t" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 dr(t)
 =
-\lambda\left(\theta^\mathbb{T}(t)- r(t)\right) dt+\sigma dW^\mathbb{T}(t)\</p>
-<p>\end{array}$$</p>
+\lambda\left(\theta^\mathbb{T}(t)- r(t)\right) dt+\sigma dW^\mathbb{T}(t)\\
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 dr(t)
 &amp;=&amp;\displaystyle
-\lambda\left(\theta(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)\
+\lambda\left(\theta(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)\\
 &amp;=&amp;\displaystyle
-\lambda\left(\theta(t)-r(t)\right) dt+\sigma \left(dW^\mathbb{T}(t)+\sigma_P(t,T)dt\right)\
+\lambda\left(\theta(t)-r(t)\right) dt+\sigma \left(dW^\mathbb{T}(t)+\sigma_P(t,T)dt\right)\\
 &amp;=&amp;\displaystyle
-\lambda\left(\theta(t)+\frac{\sigma}{\lambda}\sigma_P(t,T)-r(t)\right) dt+\sigma dW^\mathbb{T}(t)\
+\lambda\left(\theta(t)+\frac{\sigma}{\lambda}\sigma_P(t,T)-r(t)\right) dt+\sigma dW^\mathbb{T}(t)\\
 &amp;=&amp;\displaystyle
-\lambda\left(\theta^\mathbb{T}(t)-r(t)\right) dt+\sigma dW^\mathbb{T}(t)</p>
-<p>\end{array}$$</p>
+\lambda\left(\theta^\mathbb{T}(t)-r(t)\right) dt+\sigma dW^\mathbb{T}(t)
+\end{array}\]</div>
 </details>
 <h2 id="hull-white-short-rate-under-t">Hull-White Short Rate under T<a class="headerlink" href="#hull-white-short-rate-under-t" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 r(t)|r(t_0)
 \sim
-N\left(\mu^\mathbb{T}_r(t_0,t),\sigma_r^2(t_0,t)\right)</p>
-<p>\end{array}$$</p>
+N\left(\mu^\mathbb{T}_r(t_0,t),\sigma_r^2(t_0,t)\right)
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-\mu^\mathbb{T}<em t_0="t_0">r(t_0,t)
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+\mu^\mathbb{T}_r(t_0,t)
 &amp;=&amp;\displaystyle
-r(t_0)e^{-\lambda (t-t_0)}+\lambda\int</em>dt'
-=\psi^\mathbb{T}(t_0,t)\
+r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t-t')}dt'
+=\psi^\mathbb{T}(t_0,t)\\
 \displaystyle
 \sigma_r^2(t_0,t)
 &amp;=&amp;\displaystyle
--\frac{1}{2}\sigma^2 B(2(t-t_0))}^t\theta^\mathbb{T}(t')e^{-\lambda(t-t')</p>
-<p>\end{array}$$</p>
+-\frac{1}{2}\sigma^2 B(2(t-t_0))
+\end{array}\]</div>
 
 
 

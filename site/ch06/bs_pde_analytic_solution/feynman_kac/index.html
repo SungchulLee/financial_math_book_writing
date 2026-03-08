@@ -47340,69 +47340,69 @@
 <h2 id="the-general-feynman-kac-theorem">The General Feynman-Kac Theorem<a class="headerlink" href="#the-general-feynman-kac-theorem" title="Permanent link">&para;</a></h2>
 <h3 id="1-statement">1. <strong>Statement</strong><a class="headerlink" href="#1-statement" title="Permanent link">&para;</a></h3>
 <p>Consider a stochastic process <span class="arithmatex">\(X_t\)</span> satisfying the stochastic differential equation:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t)dt + \sigma(X_t, t)dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t)dt + \sigma(X_t, t)dW_t
+\]</div>
 <p>Let <span class="arithmatex">\(u(x,t)\)</span> be a function solving the parabolic PDE:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mu(x,t)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x,t)\frac{\partial^2 u}{\partial x^2} - r(x,t)u + f(x,t) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mu(x,t)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x,t)\frac{\partial^2 u}{\partial x^2} - r(x,t)u + f(x,t) = 0
+\]</div>
 <p>with terminal condition:</p>
-<p>$$</p>
-<p>u(x,T) = \Phi(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x,T) = \Phi(x)
+\]</div>
 <p><strong>Then the Feynman-Kac formula states:</strong></p>
-<p>$$</p>
-<p>\boxed{u(x,t) = \mathbb{E}\left[\int_t^T e^{-\int_t^s r(X_\tau,\tau)d\tau}f(X_s,s)ds + e^{-\int_t^T r(X_\tau,\tau)d\tau}\Phi(X_T) \mid X_t = x\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{u(x,t) = \mathbb{E}\left[\int_t^T e^{-\int_t^s r(X_\tau,\tau)d\tau}f(X_s,s)ds + e^{-\int_t^T r(X_\tau,\tau)d\tau}\Phi(X_T) \mid X_t = x\right]}
+\]</div>
 <h3 id="2-interpretation-of-terms">2. <strong>Interpretation of Terms</strong><a class="headerlink" href="#2-interpretation-of-terms" title="Permanent link">&para;</a></h3>
 <p><strong>1. Terminal condition term</strong>:</p>
-<p>$$</p>
-<p>e^{-\int_t^T r(X_\tau,\tau)d\tau}\Phi(X_T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{-\int_t^T r(X_\tau,\tau)d\tau}\Phi(X_T)
+\]</div>
 <p>This represents the <strong>discounted terminal payoff</strong> at maturity <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>2. Running cost/reward term</strong>:</p>
-<p>$$</p>
-<p>\int_t^T e^{-\int_t^s r(X_\tau,\tau)d\tau}f(X_s,s)ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_t^T e^{-\int_t^s r(X_\tau,\tau)d\tau}f(X_s,s)ds
+\]</div>
 <p>This represents <strong>accumulated discounted cash flows</strong> between <span class="arithmatex">\(t\)</span> and <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>3. For option pricing</strong>:
 - <span class="arithmatex">\(f \equiv 0\)</span> (no intermediate cash flows for European options)
 - <span class="arithmatex">\(r\)</span> is constant (risk-free rate)
 - <span class="arithmatex">\(\Phi(X_T)\)</span> is the option payoff at maturity</p>
 <p>The formula simplifies to:</p>
-<p>$$</p>
-<p>u(x,t) = \mathbb{E}\left[e^{-r(T-t)}\Phi(X_T) \mid X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x,t) = \mathbb{E}\left[e^{-r(T-t)}\Phi(X_T) \mid X_t = x\right]
+\]</div>
 <p>This is the <strong>risk-neutral valuation formula</strong>.</p>
 <hr />
 <h2 id="application-to-black-scholes">Application to Black-Scholes<a class="headerlink" href="#application-to-black-scholes" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-setup">1. <strong>The Setup</strong><a class="headerlink" href="#1-the-setup" title="Permanent link">&para;</a></h3>
 <p>Under the <strong>risk-neutral measure</strong> <span class="arithmatex">\(\mathbb{Q}\)</span>, the stock price dynamics are:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(r\)</span> = constant risk-free rate
 - <span class="arithmatex">\(\sigma\)</span> = constant volatility
 - <span class="arithmatex">\(W_t^{\mathbb{Q}}\)</span> = Brownian motion under <span class="arithmatex">\(\mathbb{Q}\)</span></p>
 <h3 id="2-the-black-scholes-pde">2. <strong>The Black-Scholes PDE</strong><a class="headerlink" href="#2-the-black-scholes-pde" title="Permanent link">&para;</a></h3>
 <p>The option value <span class="arithmatex">\(V(S,t)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p>with terminal condition:</p>
-<p>$$</p>
-<p>V(S,T) = \Phi(S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,T) = \Phi(S)
+\]</div>
 <p>where <span class="arithmatex">\(\Phi(S)\)</span> is the option payoff:
 - European call: <span class="arithmatex">\(\Phi(S) = (S-K)^+\)</span>
 - European put: <span class="arithmatex">\(\Phi(S) = (K-S)^+\)</span></p>
 <h3 id="3-feynman-kac-representation">3. <strong>Feynman-Kac Representation</strong><a class="headerlink" href="#3-feynman-kac-representation" title="Permanent link">&para;</a></h3>
 <p>By the Feynman-Kac formula:</p>
-<p>$$</p>
-<p>\boxed{V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]}
+\]</div>
 <p><strong>Interpretation</strong>: The option value is the <strong>expected discounted payoff</strong> under the risk-neutral measure.</p>
 <p>This converts the PDE problem into a probabilistic expectation problem.</p>
 <hr />
@@ -47410,64 +47410,64 @@
 <p>We now prove the Feynman-Kac formula rigorously using Itô's lemma and martingale theory.</p>
 <h3 id="1-step-1-apply-itos-lemma-to-ux_t-t">1. <strong>Step 1: Apply Itô's Lemma to u(X_t, t)</strong><a class="headerlink" href="#1-step-1-apply-itos-lemma-to-ux_t-t" title="Permanent link">&para;</a></h3>
 <p>For a function <span class="arithmatex">\(u(X_t, t)\)</span> where <span class="arithmatex">\(dX_t = \mu dt + \sigma dW_t\)</span>, Itô's lemma gives:</p>
-<p>$$</p>
-<p>du = \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x}dX_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}(dX_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+du = \frac{\partial u}{\partial t}dt + \frac{\partial u}{\partial x}dX_t + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}(dX_t)^2
+\]</div>
 <p>Since <span class="arithmatex">\((dX_t)^2 = \sigma^2 dt\)</span>:</p>
-<p>$$</p>
-<p>du = \left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right]dt + \sigma\frac{\partial u}{\partial x}dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+du = \left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right]dt + \sigma\frac{\partial u}{\partial x}dW_t
+\]</div>
 <h3 id="2-step-2-introduce-discounting">2. <strong>Step 2: Introduce Discounting</strong><a class="headerlink" href="#2-step-2-introduce-discounting" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>discounted value</strong>:</p>
-<p>$$</p>
-<p>Y_t = e^{-\int_0^t r(X_s,s)ds}u(X_t,t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = e^{-\int_0^t r(X_s,s)ds}u(X_t,t)
+\]</div>
 <p>Apply the product rule (Itô's lemma for products):</p>
-<p>$$</p>
-<p>dY_t = d\left(e^{-\int_0^t r ds}\right) \cdot u + e^{-\int_0^t r ds} \cdot du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = d\left(e^{-\int_0^t r ds}\right) \cdot u + e^{-\int_0^t r ds} \cdot du
+\]</div>
 <p>The discount factor satisfies:</p>
-<p>$$</p>
-<p>d\left(e^{-\int_0^t r ds}\right) = -r(X_t,t)e^{-\int_0^t r ds}dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\left(e^{-\int_0^t r ds}\right) = -r(X_t,t)e^{-\int_0^t r ds}dt
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right]dt \\
 &amp;\quad + e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Combining:</p>
-<p>$$</p>
-<p>dY_t = e^{-\int_0^t r ds}\left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} - ru\right]dt + e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = e^{-\int_0^t r ds}\left[\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} - ru\right]dt + e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t
+\]</div>
 <h3 id="3-step-3-use-the-pde-condition">3. <strong>Step 3: Use the PDE Condition</strong><a class="headerlink" href="#3-step-3-use-the-pde-condition" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(u\)</span> satisfies the Feynman-Kac PDE (with <span class="arithmatex">\(f=0\)</span>):</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} - ru = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} - ru = 0
+\]</div>
 <p>Then the drift term vanishes:</p>
-<p>$$</p>
-<p>\boxed{dY_t = e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{dY_t = e^{-\int_0^t r ds}\sigma\frac{\partial u}{\partial x}dW_t}
+\]</div>
 <p><strong>Key observation</strong>: <span class="arithmatex">\(Y_t\)</span> is a <strong>martingale</strong> (has no <span class="arithmatex">\(dt\)</span> term, only <span class="arithmatex">\(dW_t\)</span> term).</p>
 <h3 id="4-step-4-take-conditional-expectation">4. <strong>Step 4: Take Conditional Expectation</strong><a class="headerlink" href="#4-step-4-take-conditional-expectation" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(Y_t\)</span> is a martingale:</p>
-<p>$$</p>
-<p>\mathbb{E}[Y_T \mid \mathcal{F}_t] = Y_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y_T \mid \mathcal{F}_t] = Y_t
+\]</div>
 <p>Expanding:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[e^{-\int_0^T r ds}u(X_T,T) \mid \mathcal{F}_t\right] = e^{-\int_0^t r ds}u(X_t,t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[e^{-\int_0^T r ds}u(X_T,T) \mid \mathcal{F}_t\right] = e^{-\int_0^t r ds}u(X_t,t)
+\]</div>
 <p>Using the terminal condition <span class="arithmatex">\(u(X_T,T) = \Phi(X_T)\)</span>:</p>
-<p>$$</p>
-<p>e^{-\int_0^t r ds}u(X_t,t) = \mathbb{E}\left[e^{-\int_0^T r ds}\Phi(X_T) \mid \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{-\int_0^t r ds}u(X_t,t) = \mathbb{E}\left[e^{-\int_0^T r ds}\Phi(X_T) \mid \mathcal{F}_t\right]
+\]</div>
 <p>Multiply both sides by <span class="arithmatex">\(e^{\int_0^t r ds}\)</span>:</p>
-<p>$$</p>
-<p>u(X_t,t) = \mathbb{E}\left[e^{-\int_t^T r ds}\Phi(X_T) \mid \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(X_t,t) = \mathbb{E}\left[e^{-\int_t^T r ds}\Phi(X_T) \mid \mathcal{F}_t\right]
+\]</div>
 <p><strong>This is the Feynman-Kac representation.</strong></p>
 <h3 id="5-application-to-black-scholes">5. <strong>Application to Black-Scholes</strong><a class="headerlink" href="#5-application-to-black-scholes" title="Permanent link">&para;</a></h3>
 <p>For the Black-Scholes case with constant <span class="arithmatex">\(r\)</span>:
@@ -47476,9 +47476,9 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 - <span class="arithmatex">\(\sigma(S_t, t) = \sigma S_t\)</span>
 - <span class="arithmatex">\(r(S_t, t) = r\)</span></p>
 <p>The Feynman-Kac formula gives:</p>
-<p>$$</p>
-<p>V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]
+\]</div>
 <p>with terminal conditions:
 - European call: <span class="arithmatex">\(\Phi(S) = (S-K)^+\)</span>
 - European put: <span class="arithmatex">\(\Phi(S) = (K-S)^+\)</span></p>
@@ -47488,72 +47488,72 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 <p>To evaluate the expectation in the Feynman-Kac formula, we need the distribution of <span class="arithmatex">\(S_T\)</span>.</p>
 <h3 id="1-the-stochastic-differential-equation">1. <strong>The Stochastic Differential Equation</strong><a class="headerlink" href="#1-the-stochastic-differential-equation" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
+\]</div>
 <h3 id="2-apply-itos-lemma-to-ln-s_t">2. <strong>Apply Itô's Lemma to ln S_t</strong><a class="headerlink" href="#2-apply-itos-lemma-to-ln-s_t" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(f(S) = \ln S\)</span>. Then:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}
+\]</div>
 <p>By Itô's lemma:</p>
-<p>$$</p>
-<p>d(\ln S_t) = \frac{1}{S_t}dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\ln S_t) = \frac{1}{S_t}dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
+\]</div>
 <p>Substituting <span class="arithmatex">\(dS_t = rS_t dt + \sigma S_t dW_t\)</span> and <span class="arithmatex">\((dS_t)^2 = \sigma^2 S_t^2 dt\)</span>:</p>
-<p>$$</p>
-<p>d(\ln S_t) = \frac{1}{S_t}(rS_t dt + \sigma S_t dW_t) - \frac{1}{2}\frac{1}{S_t^2}\sigma^2 S_t^2 dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= rdt + \sigma dW_t - \frac{1}{2}\sigma^2 dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \left(r - \frac{1}{2}\sigma^2\right)dt + \sigma dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\ln S_t) = \frac{1}{S_t}(rS_t dt + \sigma S_t dW_t) - \frac{1}{2}\frac{1}{S_t^2}\sigma^2 S_t^2 dt
+\]</div>
+<div class="arithmatex">\[
+= rdt + \sigma dW_t - \frac{1}{2}\sigma^2 dt
+\]</div>
+<div class="arithmatex">\[
+= \left(r - \frac{1}{2}\sigma^2\right)dt + \sigma dW_t^{\mathbb{Q}}
+\]</div>
 <h3 id="3-integrate-from-t-to-t">3. <strong>Integrate from t to T</strong><a class="headerlink" href="#3-integrate-from-t-to-t" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\ln S_T - \ln S_t = \left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma(W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln S_T - \ln S_t = \left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma(W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}})
+\]</div>
 <p>Since <span class="arithmatex">\(W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}} \sim \mathcal{N}(0, T-t)\)</span>, we can write:</p>
-<p>$$</p>
-<p>W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}} = \sqrt{T-t} \cdot Z</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_T^{\mathbb{Q}} - W_t^{\mathbb{Q}} = \sqrt{T-t} \cdot Z
+\]</div>
 <p>where <span class="arithmatex">\(Z \sim \mathcal{N}(0,1)\)</span>.</p>
 <h3 id="4-explicit-solution">4. <strong>Explicit Solution</strong><a class="headerlink" href="#4-explicit-solution" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{S_T = S_t \exp\left[\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma\sqrt{T-t} \cdot Z\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{S_T = S_t \exp\left[\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma\sqrt{T-t} \cdot Z\right]}
+\]</div>
 <h3 id="5-distribution-of-s_t">5. <strong>Distribution of S_T</strong><a class="headerlink" href="#5-distribution-of-s_t" title="Permanent link">&para;</a></h3>
 <p>Define <span class="arithmatex">\(\tau = T - t\)</span>. Then:</p>
-<p>$$</p>
-<p>\ln S_T \mid S_t \sim \mathcal{N}\left(\ln S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau, \sigma^2\tau\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln S_T \mid S_t \sim \mathcal{N}\left(\ln S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau, \sigma^2\tau\right)
+\]</div>
 <p><strong>Log-normal distribution</strong>: <span class="arithmatex">\(S_T\)</span> is log-normally distributed with:
 - Mean of <span class="arithmatex">\(\ln S_T\)</span>: <span class="arithmatex">\(\mathbb{E}[\ln S_T | S_t] = \ln S_t + (r - \frac{1}{2}\sigma^2)\tau\)</span>
 - Variance of <span class="arithmatex">\(\ln S_T\)</span>: <span class="arithmatex">\(\text{Var}[\ln S_T | S_t] = \sigma^2\tau\)</span></p>
 <p>The probability density function:</p>
-<p>$$</p>
-<p>p(S_T \mid S_t) = \frac{1}{S_T\sigma\sqrt{2\pi\tau}}\exp\left[-\frac{\left(\ln(S_T/S_t) - (r-\frac{\sigma^2}{2})\tau\right)^2}{2\sigma^2\tau}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(S_T \mid S_t) = \frac{1}{S_T\sigma\sqrt{2\pi\tau}}\exp\left[-\frac{\left(\ln(S_T/S_t) - (r-\frac{\sigma^2}{2})\tau\right)^2}{2\sigma^2\tau}\right]
+\]</div>
 <hr />
 <h2 id="european-call-option-detailed-derivation">European Call Option: Detailed Derivation<a class="headerlink" href="#european-call-option-detailed-derivation" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-pricing-formula-via-feynman-kac">1. <strong>The Pricing Formula via Feynman-Kac</strong><a class="headerlink" href="#1-the-pricing-formula-via-feynman-kac" title="Permanent link">&para;</a></h3>
 <p>For a European call with payoff <span class="arithmatex">\(\Phi(S) = (S-K)^+\)</span>:</p>
-<p>$$</p>
-<p>C(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]
+\]</div>
 <p>where <span class="arithmatex">\(\tau = T - t\)</span>.</p>
 <h3 id="2-step-1-rewrite-as-integral">2. <strong>Step 1: Rewrite as Integral</strong><a class="headerlink" href="#2-step-1-rewrite-as-integral" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C(S,t) = e^{-r\tau}\int_K^{\infty}(S_T - K)p(S_T \mid S)dS_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S,t) = e^{-r\tau}\int_K^{\infty}(S_T - K)p(S_T \mid S)dS_T
+\]</div>
 <h3 id="3-step-2-split-the-integral">3. <strong>Step 2: Split the Integral</strong><a class="headerlink" href="#3-step-2-split-the-integral" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C(S,t) = e^{-r\tau}\left[\int_K^{\infty}S_T p(S_T \mid S)dS_T - K\int_K^{\infty}p(S_T \mid S)dS_T\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\tau}\left[I_1 - K \cdot I_2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S,t) = e^{-r\tau}\left[\int_K^{\infty}S_T p(S_T \mid S)dS_T - K\int_K^{\infty}p(S_T \mid S)dS_T\right]
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\tau}\left[I_1 - K \cdot I_2\right]
+\]</div>
 <p>We need to evaluate two integrals.</p>
 <h3 id="4-step-3-change-to-log-normal-variable">4. <strong>Step 3: Change to Log-Normal Variable</strong><a class="headerlink" href="#4-step-3-change-to-log-normal-variable" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(\ln S_T \sim \mathcal{N}(m, v^2)\)</span> where:
@@ -47561,187 +47561,187 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 - <span class="arithmatex">\(v = \sigma\sqrt{\tau}\)</span></p>
 <p>Set <span class="arithmatex">\(y = \ln S_T\)</span>, so <span class="arithmatex">\(S_T = e^y\)</span> and <span class="arithmatex">\(dS_T = e^y dy\)</span>.</p>
 <p>The density becomes:</p>
-<p>$$</p>
-<p>p(S_T)dS_T = \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(S_T)dS_T = \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
+\]</div>
 <p>Both integrals transform to:</p>
 <p><strong>Integral <span class="arithmatex">\(I_2\)</span></strong>:</p>
-<p>$$</p>
-<p>I_2 = \int_K^{\infty}p(S_T)dS_T = \int_{\ln K}^{\infty}\frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_2 = \int_K^{\infty}p(S_T)dS_T = \int_{\ln K}^{\infty}\frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
+\]</div>
 <p><strong>Integral <span class="arithmatex">\(I_1\)</span></strong>:</p>
-<p>$$</p>
-<p>I_1 = \int_K^{\infty}S_T p(S_T)dS_T = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = \int_K^{\infty}S_T p(S_T)dS_T = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
+\]</div>
 <h3 id="5-step-4-evaluate-i_2-probability-term">5. <strong>Step 4: Evaluate I_2 (Probability Term)</strong><a class="headerlink" href="#5-step-4-evaluate-i_2-probability-term" title="Permanent link">&para;</a></h3>
 <p>Standardize the integral. Let:</p>
-<p>$$</p>
-<p>Z = \frac{y - m}{v}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z = \frac{y - m}{v}
+\]</div>
 <p>Then <span class="arithmatex">\(y = m + vZ\)</span> and <span class="arithmatex">\(dy = v dZ\)</span>.</p>
 <p>When <span class="arithmatex">\(y = \ln K\)</span>: <span class="arithmatex">\(Z = \frac{\ln K - m}{v}\)</span></p>
 <p>When <span class="arithmatex">\(y = \infty\)</span>: <span class="arithmatex">\(Z = \infty\)</span></p>
 <p>Therefore:</p>
-<p>$$</p>
-<p>I_2 = \int_{\frac{\ln K - m}{v}}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{Z^2}{2}}dZ = \mathcal{N}\left(-\frac{\ln K - m}{v}\right) = \mathcal{N}\left(\frac{m - \ln K}{v}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_2 = \int_{\frac{\ln K - m}{v}}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{Z^2}{2}}dZ = \mathcal{N}\left(-\frac{\ln K - m}{v}\right) = \mathcal{N}\left(\frac{m - \ln K}{v}\right)
+\]</div>
 <p>Substituting <span class="arithmatex">\(m = \ln S + (r - \frac{\sigma^2}{2})\tau\)</span> and <span class="arithmatex">\(v = \sigma\sqrt{\tau}\)</span>:</p>
-<p>$$</p>
-<p>I_2 = \mathcal{N}\left(\frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_2 = \mathcal{N}\left(\frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}\right)
+\]</div>
 <p>Define:</p>
-<p>$$</p>
-<p>\boxed{d_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d_2 = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}}
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>I_2 = \mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_2 = \mathcal{N}(d_2)
+\]</div>
 <p><strong>Interpretation</strong>: <span class="arithmatex">\(\mathcal{N}(d_2) = \mathbb{Q}(S_T &gt; K)\)</span> is the <strong>risk-neutral probability</strong> that the option expires in-the-money.</p>
 <h3 id="6-step-5-evaluate-i_1-stock-term">6. <strong>Step 5: Evaluate I_1 (Stock Term)</strong><a class="headerlink" href="#6-step-5-evaluate-i_1-stock-term" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>I_1 = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = \int_{\ln K}^{\infty}e^y \frac{1}{v\sqrt{2\pi}}e^{-\frac{(y-m)^2}{2v^2}}dy
+\]</div>
 <p><strong>Key technique</strong>: Complete the square in the exponent.</p>
 <p>Combine the exponents:</p>
-<p>$$</p>
-<p>y - \frac{(y-m)^2}{2v^2} = -\frac{1}{2v^2}\left[(y-m)^2 - 2v^2 y\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y - \frac{(y-m)^2}{2v^2} = -\frac{1}{2v^2}\left[(y-m)^2 - 2v^2 y\right]
+\]</div>
 <p>Expand:</p>
-<p>$$</p>
-<p>(y-m)^2 - 2v^2 y = y^2 - 2ym + m^2 - 2v^2y = y^2 - 2y(m + v^2) + m^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(y-m)^2 - 2v^2 y = y^2 - 2ym + m^2 - 2v^2y = y^2 - 2y(m + v^2) + m^2
+\]</div>
 <p>Complete the square:</p>
-<p>$$</p>
-<p>= [y - (m+v^2)]^2 - (m+v^2)^2 + m^2</p>
-<p>$$</p>
-<p>$$</p>
-<p>= [y - (m+v^2)]^2 - 2mv^2 - v^4</p>
-<p>$$</p>
+<div class="arithmatex">\[
+= [y - (m+v^2)]^2 - (m+v^2)^2 + m^2
+\]</div>
+<div class="arithmatex">\[
+= [y - (m+v^2)]^2 - 2mv^2 - v^4
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>y - \frac{(y-m)^2}{2v^2} = -\frac{[y-(m+v^2)]^2}{2v^2} + m + \frac{v^2}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y - \frac{(y-m)^2}{2v^2} = -\frac{[y-(m+v^2)]^2}{2v^2} + m + \frac{v^2}{2}
+\]</div>
 <p>Substituting back:</p>
-<p>$$</p>
-<p>I_1 = e^{m + \frac{v^2}{2}}\int_{\ln K}^{\infty}\frac{1}{v\sqrt{2\pi}}e^{-\frac{[y-(m+v^2)]^2}{2v^2}}dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = e^{m + \frac{v^2}{2}}\int_{\ln K}^{\infty}\frac{1}{v\sqrt{2\pi}}e^{-\frac{[y-(m+v^2)]^2}{2v^2}}dy
+\]</div>
 <p>This is a Gaussian integral with mean shifted to <span class="arithmatex">\(m + v^2\)</span>:</p>
-<p>$$</p>
-<p>I_1 = e^{m + \frac{v^2}{2}} \cdot \mathcal{N}\left(\frac{(m+v^2) - \ln K}{v}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = e^{m + \frac{v^2}{2}} \cdot \mathcal{N}\left(\frac{(m+v^2) - \ln K}{v}\right)
+\]</div>
 <p>Simplify the exponent. Recall:
 - <span class="arithmatex">\(m = \ln S + (r - \frac{\sigma^2}{2})\tau\)</span>
 - <span class="arithmatex">\(v^2 = \sigma^2\tau\)</span></p>
-<p>$$</p>
-<p>m + \frac{v^2}{2} = \ln S + (r - \frac{\sigma^2}{2})\tau + \frac{\sigma^2\tau}{2} = \ln S + r\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m + \frac{v^2}{2} = \ln S + (r - \frac{\sigma^2}{2})\tau + \frac{\sigma^2\tau}{2} = \ln S + r\tau
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>e^{m + \frac{v^2}{2}} = e^{\ln S + r\tau} = Se^{r\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{m + \frac{v^2}{2}} = e^{\ln S + r\tau} = Se^{r\tau}
+\]</div>
 <p>For the normal CDF argument:</p>
-<p>$$</p>
-<p>\frac{(m+v^2) - \ln K}{v} = \frac{\ln S + r\tau + \frac{\sigma^2\tau}{2} - \ln K}{\sigma\sqrt{\tau}} = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{(m+v^2) - \ln K}{v} = \frac{\ln S + r\tau + \frac{\sigma^2\tau}{2} - \ln K}{\sigma\sqrt{\tau}} = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}
+\]</div>
 <p>Define:</p>
-<p>$$</p>
-<p>\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}}
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>I_1 = Se^{r\tau}\mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = Se^{r\tau}\mathcal{N}(d_1)
+\]</div>
 <h3 id="7-step-6-combine-results">7. <strong>Step 6: Combine Results</strong><a class="headerlink" href="#7-step-6-combine-results" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C(S,t) = e^{-r\tau}[I_1 - KI_2]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\tau}\left[Se^{r\tau}\mathcal{N}(d_1) - K\mathcal{N}(d_2)\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{C(S,t) = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S,t) = e^{-r\tau}[I_1 - KI_2]
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\tau}\left[Se^{r\tau}\mathcal{N}(d_1) - K\mathcal{N}(d_2)\right]
+\]</div>
+<div class="arithmatex">\[
+\boxed{C(S,t) = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau} = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau} = \frac{\ln(S/K) + (r - \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}}
+\]</div>
 <p><strong>This is the Black-Scholes formula for a European call option.</strong></p>
 <hr />
 <h2 id="european-put-option">European Put Option<a class="headerlink" href="#european-put-option" title="Permanent link">&para;</a></h2>
 <h3 id="1-method-1-direct-calculation">1. <strong>Method 1: Direct Calculation</strong><a class="headerlink" href="#1-method-1-direct-calculation" title="Permanent link">&para;</a></h3>
 <p>For a European put with payoff <span class="arithmatex">\(\Phi(S) = (K-S)^+\)</span>:</p>
-<p>$$</p>
-<p>P(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[(K - S_T)^+ \mid S_t = S]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\tau}\int_0^K(K - S_T)p(S_T \mid S)dS_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[(K - S_T)^+ \mid S_t = S]
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\tau}\int_0^K(K - S_T)p(S_T \mid S)dS_T
+\]</div>
 <p>Following similar calculations (completing the square with reversed integration limits):</p>
-<p>$$</p>
-<p>\boxed{P(S,t) = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{P(S,t) = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}
+\]</div>
 <p>where <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span> are the same as for the call.</p>
 <h3 id="2-method-2-put-call-parity">2. <strong>Method 2: Put-Call Parity</strong><a class="headerlink" href="#2-method-2-put-call-parity" title="Permanent link">&para;</a></h3>
 <p>From the no-arbitrage relationship:</p>
-<p>$$</p>
-<p>C - P = S - Ke^{-r\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C - P = S - Ke^{-r\tau}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>P = C - S + Ke^{-r\tau}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2) - S + Ke^{-r\tau}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= S(\mathcal{N}(d_1) - 1) + Ke^{-r\tau}(1 - \mathcal{N}(d_2))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = C - S + Ke^{-r\tau}
+\]</div>
+<div class="arithmatex">\[
+= S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2) - S + Ke^{-r\tau}
+\]</div>
+<div class="arithmatex">\[
+= S(\mathcal{N}(d_1) - 1) + Ke^{-r\tau}(1 - \mathcal{N}(d_2))
+\]</div>
 <p>Using <span class="arithmatex">\(\mathcal{N}(-x) = 1 - \mathcal{N}(x)\)</span>:</p>
-<p>$$</p>
-<p>P = -S\mathcal{N}(-d_1) + Ke^{-r\tau}\mathcal{N}(-d_2)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{P(S,t) = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = -S\mathcal{N}(-d_1) + Ke^{-r\tau}\mathcal{N}(-d_2)
+\]</div>
+<div class="arithmatex">\[
+\boxed{P(S,t) = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}
+\]</div>
 <p>Both methods yield the same formula. ✓</p>
 <hr />
 <h2 id="probabilistic-interpretation">Probabilistic Interpretation<a class="headerlink" href="#probabilistic-interpretation" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-two-terms-in-the-call-formula">1. <strong>The Two Terms in the Call Formula</strong><a class="headerlink" href="#1-the-two-terms-in-the-call-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C = \underbrace{S\mathcal{N}(d_1)}<em _text_Strike="\text{Strike" term="term">{\text{Stock term}} - \underbrace{Ke^{-r\tau}\mathcal{N}(d_2)}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = \underbrace{S\mathcal{N}(d_1)}_{\text{Stock term}} - \underbrace{Ke^{-r\tau}\mathcal{N}(d_2)}_{\text{Strike term}}
+\]</div>
 <h3 id="2-meaning-of-nd_2">2. <strong>Meaning of N(d_2)</strong><a class="headerlink" href="#2-meaning-of-nd_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\mathcal{N}(d_2) = \mathbb{Q}(S_T &gt; K \mid S_t = S)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathcal{N}(d_2) = \mathbb{Q}(S_T &gt; K \mid S_t = S)}
+\]</div>
 <p>This is the <strong>risk-neutral probability</strong> that the option expires in-the-money.</p>
 <p><strong>Derivation</strong>: From our calculation of <span class="arithmatex">\(I_2\)</span>, we showed:</p>
-<p>$$</p>
-<p>\int_K^{\infty}p(S_T)dS_T = \mathbb{Q}(S_T &gt; K) = \mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_K^{\infty}p(S_T)dS_T = \mathbb{Q}(S_T &gt; K) = \mathcal{N}(d_2)
+\]</div>
 <h3 id="3-meaning-of-nd_1">3. <strong>Meaning of N(d_1)</strong><a class="headerlink" href="#3-meaning-of-nd_1" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(\mathcal{N}(d_1)\)</span> represents the probability of exercise under the <strong>stock measure</strong> <span class="arithmatex">\(\mathbb{Q}^S\)</span>:</p>
-<p>$$</p>
-<p>\boxed{\mathcal{N}(d_1) = \mathbb{Q}^S(S_T &gt; K \mid S_t = S)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathcal{N}(d_1) = \mathbb{Q}^S(S_T &gt; K \mid S_t = S)}
+\]</div>
 <p><strong>Change of numeraire interpretation</strong>: Under the stock as numeraire, the stock price dynamics shift:</p>
-<p>$$</p>
-<p>\frac{dS_t}{S_t} = (r + \sigma^2)dt + \sigma dW_t^{\mathbb{Q}^S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS_t}{S_t} = (r + \sigma^2)dt + \sigma dW_t^{\mathbb{Q}^S}
+\]</div>
 <p>The drift changes by <span class="arithmatex">\(\sigma^2\)</span> (via Girsanov's theorem), which explains the relationship:</p>
-<p>$$</p>
-<p>d_1 = d_2 + \sigma\sqrt{\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = d_2 + \sigma\sqrt{\tau}
+\]</div>
 <p><strong>Alternative interpretation</strong>: <span class="arithmatex">\(\mathcal{N}(d_1)\)</span> is also the <strong>delta</strong> (hedge ratio) of the call option:</p>
-<p>$$</p>
-<p>\Delta_{\text{call}} = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{call}} = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
+\]</div>
 <h3 id="4-decomposition-of-call-value">4. <strong>Decomposition of Call Value</strong><a class="headerlink" href="#4-decomposition-of-call-value" title="Permanent link">&para;</a></h3>
 <p>The call formula can be written as:</p>
-<p>$$</p>
-<p>C = S \cdot \mathbb{Q}^S(S_T &gt; K) - Ke^{-r\tau} \cdot \mathbb{Q}(S_T &gt; K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = S \cdot \mathbb{Q}^S(S_T &gt; K) - Ke^{-r\tau} \cdot \mathbb{Q}(S_T &gt; K)
+\]</div>
 <p><strong>Interpretation</strong>:
 - First term: Expected value of stock received upon exercise (under stock measure)
 - Second term: Expected present value of strike paid upon exercise (under risk-neutral measure)</p>
@@ -47750,27 +47750,27 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 <h2 id="connection-to-kolmogorov-equations">Connection to Kolmogorov Equations<a class="headerlink" href="#connection-to-kolmogorov-equations" title="Permanent link">&para;</a></h2>
 <h3 id="1-backward-equation">1. <strong>Backward Equation</strong><a class="headerlink" href="#1-backward-equation" title="Permanent link">&para;</a></h3>
 <p>The Black-Scholes PDE is the <strong>Kolmogorov backward equation</strong> for the process <span class="arithmatex">\(S_t\)</span> under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2S^2\frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2S^2\frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p><strong>"Backward"</strong> because:
 - We start from terminal condition <span class="arithmatex">\(V(S,T) = \Phi(S)\)</span> at time <span class="arithmatex">\(T\)</span>
 - We solve backward in time to find <span class="arithmatex">\(V(S,t)\)</span> for <span class="arithmatex">\(t &lt; T\)</span>
 - The PDE describes how the option value evolves as we move backward from maturity</p>
 <h3 id="2-forward-equation-fokker-planck">2. <strong>Forward Equation (Fokker-Planck)</strong><a class="headerlink" href="#2-forward-equation-fokker-planck" title="Permanent link">&para;</a></h3>
 <p>The transition density <span class="arithmatex">\(p(S_T, T \mid S_t, t)\)</span> satisfies the <strong>Kolmogorov forward equation</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial T} = -\frac{\partial}{\partial S_T}(rS_T p) + \frac{1}{2}\frac{\partial^2}{\partial S_T^2}(\sigma^2 S_T^2 p)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial T} = -\frac{\partial}{\partial S_T}(rS_T p) + \frac{1}{2}\frac{\partial^2}{\partial S_T^2}(\sigma^2 S_T^2 p)
+\]</div>
 <p><strong>"Forward"</strong> because:
 - Given initial distribution at time <span class="arithmatex">\(t\)</span>
 - We evolve forward in time to find distribution at time <span class="arithmatex">\(T\)</span>
 - The PDE describes how the probability distribution evolves forward</p>
 <h3 id="3-duality-relationship">3. <strong>Duality Relationship</strong><a class="headerlink" href="#3-duality-relationship" title="Permanent link">&para;</a></h3>
 <p>The option value can be expressed as:</p>
-<p>$$</p>
-<p>V(S,t) = e^{-r\tau}\int_0^{\infty}\Phi(S_T)p(S_T, T \mid S, t)dS_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,t) = e^{-r\tau}\int_0^{\infty}\Phi(S_T)p(S_T, T \mid S, t)dS_T
+\]</div>
 <p><strong>Key insight</strong>:
 - The backward equation (PDE for <span class="arithmatex">\(V\)</span>) describes the evolution of functionals
 - The forward equation (PDE for <span class="arithmatex">\(p\)</span>) describes the evolution of densities
@@ -47779,28 +47779,28 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 <h2 id="why-feynman-kac-works-deep-intuition">Why Feynman-Kac Works: Deep Intuition<a class="headerlink" href="#why-feynman-kac-works-deep-intuition" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-martingale-property">1. <strong>The Martingale Property</strong><a class="headerlink" href="#1-the-martingale-property" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure, the <strong>discounted stock price</strong> is a martingale:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[e^{-rt}S_t \mid \mathcal{F}_s] = e^{-rs}S_s \quad \text{for } s \leq t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[e^{-rt}S_t \mid \mathcal{F}_s] = e^{-rs}S_s \quad \text{for } s \leq t
+\]</div>
 <p><strong>Proof</strong>: Since <span class="arithmatex">\(dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)</span>, we have:</p>
-<p>$$</p>
-<p>d(e^{-rt}S_t) = e^{-rt}\sigma S_t dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{-rt}S_t) = e^{-rt}\sigma S_t dW_t^{\mathbb{Q}}
+\]</div>
 <p>This is a martingale (no drift).</p>
 <h3 id="2-extension-to-option-value">2. <strong>Extension to Option Value</strong><a class="headerlink" href="#2-extension-to-option-value" title="Permanent link">&para;</a></h3>
 <p>By extension, the <strong>discounted option value</strong> must also be a martingale:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[e^{-rT}V(S_T,T) \mid \mathcal{F}_t] = e^{-rt}V(S_t,t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[e^{-rT}V(S_T,T) \mid \mathcal{F}_t] = e^{-rt}V(S_t,t)
+\]</div>
 <p>At maturity: <span class="arithmatex">\(V(S_T,T) = \Phi(S_T)\)</span></p>
 <p>Therefore:</p>
-<p>$$</p>
-<p>e^{-rt}V(S_t,t) = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{-rt}V(S_t,t) = \mathbb{E}^{\mathbb{Q}}[e^{-rT}\Phi(S_T) \mid \mathcal{F}_t]
+\]</div>
 <p>Solving for <span class="arithmatex">\(V\)</span>:</p>
-<p>$$</p>
-<p>V(S_t,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S_t,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid \mathcal{F}_t]
+\]</div>
 <p><strong>This is the Feynman-Kac representation.</strong></p>
 <h3 id="3-no-arbitrage-martingale-measure">3. <strong>No-Arbitrage = Martingale Measure</strong><a class="headerlink" href="#3-no-arbitrage-martingale-measure" title="Permanent link">&para;</a></h3>
 <p>The Feynman-Kac formula is the <strong>mathematical manifestation of no-arbitrage pricing</strong>:</p>
@@ -47815,36 +47815,36 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 <h2 id="extensions-and-generalizations">Extensions and Generalizations<a class="headerlink" href="#extensions-and-generalizations" title="Permanent link">&para;</a></h2>
 <h3 id="1-with-continuous-dividend-yield">1. <strong>With Continuous Dividend Yield</strong><a class="headerlink" href="#1-with-continuous-dividend-yield" title="Permanent link">&para;</a></h3>
 <p>If the stock pays continuous dividends at rate <span class="arithmatex">\(q\)</span>:</p>
-<p>$$</p>
-<p>dS_t = (r-q)S_t dt + \sigma S_t dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r-q)S_t dt + \sigma S_t dW_t^{\mathbb{Q}}
+\]</div>
 <p>The Black-Scholes formula becomes:</p>
-<p>$$</p>
-<p>\boxed{C(S,t) = Se^{-q\tau}\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C(S,t) = Se^{-q\tau}\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r - q + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r - q + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau}
+\]</div>
 <p><strong>Application</strong>: Foreign exchange options (treat foreign interest rate as dividend yield).</p>
 <h3 id="2-with-time-dependent-parameters">2. <strong>With Time-Dependent Parameters</strong><a class="headerlink" href="#2-with-time-dependent-parameters" title="Permanent link">&para;</a></h3>
 <p>For time-varying <span class="arithmatex">\(r(t)\)</span>, <span class="arithmatex">\(\sigma(t)\)</span>, <span class="arithmatex">\(q(t)\)</span>:</p>
-<p>$$</p>
-<p>V(S,t) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r(s)ds\right)\Phi(S_T) \mid S_t = S\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,t) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r(s)ds\right)\Phi(S_T) \mid S_t = S\right]
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>S_T = S_t\exp\left[\int_t^T\left(r(s)-q(s)-\frac{\sigma^2(s)}{2}\right)ds + \int_t^T\sigma(s)dW_s^{\mathbb{Q}}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_t\exp\left[\int_t^T\left(r(s)-q(s)-\frac{\sigma^2(s)}{2}\right)ds + \int_t^T\sigma(s)dW_s^{\mathbb{Q}}\right]
+\]</div>
 <p>The log-return is normally distributed with:
 - Mean: <span class="arithmatex">\(\int_t^T(r(s) - q(s) - \frac{\sigma^2(s)}{2})ds\)</span>
 - Variance: <span class="arithmatex">\(\int_t^T\sigma^2(s)ds\)</span></p>
 <p><strong>Modified <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span></strong>: Replace <span class="arithmatex">\(r\tau\)</span> with <span class="arithmatex">\(\int_t^T r(s)ds\)</span> and <span class="arithmatex">\(\sigma^2\tau\)</span> with <span class="arithmatex">\(\int_t^T\sigma^2(s)ds\)</span>.</p>
 <h3 id="3-multi-dimensional-case">3. <strong>Multi-Dimensional Case</strong><a class="headerlink" href="#3-multi-dimensional-case" title="Permanent link">&para;</a></h3>
 <p>For basket options with <span class="arithmatex">\(n\)</span> assets <span class="arithmatex">\(S_1, \ldots, S_n\)</span>:</p>
-<p>$$</p>
-<p>V(\mathbf{S},t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\Phi(\mathbf{S}_T) \mid \mathbf{S}_t = \mathbf{S}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(\mathbf{S},t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\Phi(\mathbf{S}_T) \mid \mathbf{S}_t = \mathbf{S}]
+\]</div>
 <p>where <span class="arithmatex">\(\mathbf{S}_T = (S_1^T, \ldots, S_n^T)\)</span> follows a <strong>multivariate log-normal distribution</strong> with correlation matrix <span class="arithmatex">\(\rho\)</span>.</p>
 <p><strong>Example payoffs</strong>:
 - Basket call: <span class="arithmatex">\(\Phi = (\sum_{i=1}^n w_i S_i^T - K)^+\)</span>
@@ -47886,13 +47886,13 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The Feynman-Kac formula establishes the fundamental connection:</p>
-<p>$$</p>
-<p>\text{PDE Solution} = \text{Probabilistic Expectation}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PDE Solution} = \text{Probabilistic Expectation}
+\]</div>
 <p><strong>For Black-Scholes</strong>:</p>
-<p>$$</p>
-<p>V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]
+\]</div>
 <p><strong>Derivation steps</strong>:
 1. Apply Itô's lemma to discounted <span class="arithmatex">\(u(X_t,t)\)</span>
 2. Show it becomes a martingale if <span class="arithmatex">\(u\)</span> satisfies the PDE
@@ -47904,9 +47904,9 @@ dY_t &amp;= -re^{-\int_0^t r ds}u \cdot dt + e^{-\int_0^t r ds}\left[\frac{\part
 <p><strong>Call</strong>: <span class="arithmatex">\(C = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)\)</span></p>
 <p><strong>Put</strong>: <span class="arithmatex">\(P = Ke^{-r\tau}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)\)</span></p>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})\tau}{\sigma\sqrt{\tau}}, \quad d_2 = d_1 - \sigma\sqrt{\tau}
+\]</div>
 <p><strong>Interpretation</strong>:
 - <span class="arithmatex">\(\mathcal{N}(d_2)\)</span> = Risk-neutral probability of exercise
 - <span class="arithmatex">\(\mathcal{N}(d_1)\)</span> = Delta = Stock-measure probability of exercise</p>

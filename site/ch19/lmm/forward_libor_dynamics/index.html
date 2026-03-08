@@ -46399,169 +46399,169 @@
 <hr />
 <h2 id="quantpie-derivation-libor-market-model-forward-measure">QuantPie Derivation: LIBOR Market Model Forward Measure<a class="headerlink" href="#quantpie-derivation-libor-market-model-forward-measure" title="Permanent link">&para;</a></h2>
 <h3 id="definition-of-the-libor-rate">Definition of the LIBOR Rate<a class="headerlink" href="#definition-of-the-libor-rate" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{ccccccccccccccc}</p>
-<p>\displaystyle
-l_i(t)&amp;=&amp;l&amp;\left(\right.&amp;t&amp;;&amp;T_{i-1}&amp;,&amp;T_{i}&amp;\left.\right)\
-&amp;&amp;&amp;&amp;\uparrow&amp;&amp;\uparrow&amp;&amp;\uparrow&amp;\
-&amp;&amp;&amp;&amp;\text{Now}&amp;&amp;\text{Reset Date}&amp;&amp;\text{Maturity}&amp;\
-&amp;&amp;&amp;&amp;&amp;&amp;\text{Fixing Date}&amp;&amp;&amp;\
-&amp;&amp;&amp;&amp;&amp;&amp;\text{Expiry Date}&amp;&amp;&amp;\</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{ccccccccccccccc}
+\displaystyle
+l_i(t)&amp;=&amp;l&amp;\left(\right.&amp;t&amp;;&amp;T_{i-1}&amp;,&amp;T_{i}&amp;\left.\right)\\
+&amp;&amp;&amp;&amp;\uparrow&amp;&amp;\uparrow&amp;&amp;\uparrow&amp;\\
+&amp;&amp;&amp;&amp;\text{Now}&amp;&amp;\text{Reset Date}&amp;&amp;\text{Maturity}&amp;\\
+&amp;&amp;&amp;&amp;&amp;&amp;\text{Fixing Date}&amp;&amp;&amp;\\
+&amp;&amp;&amp;&amp;&amp;&amp;\text{Expiry Date}&amp;&amp;&amp;\\
+\end{array}\]</div>
 <h3 id="zcb-and-libor-relationship">ZCB and LIBOR Relationship<a class="headerlink" href="#zcb-and-libor-relationship" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 P\left(t,T_{i}\right)
 &amp;=&amp;
 \displaystyle
 P\left(t,T_{i-1}\right)
 &amp;\displaystyle
-\frac{1}{1+\tau_i l\left(t;T_{i-1},T_{i}\right)}\
-\uparrow&amp;&amp;\uparrow&amp;\uparrow\
-\text{Discount from <span class="arithmatex">\(T_i\)</span> to <span class="arithmatex">\(t\)</span>}&amp;&amp;\text{Discount from <span class="arithmatex">\(T_{i-1}\)</span> to <span class="arithmatex">\(t\)</span>}&amp;\text{Discount from <span class="arithmatex">\(T_i\)</span> to <span class="arithmatex">\(T_{i-1}\)</span>}\
-\text{Observed today <span class="arithmatex">\(t\)</span>}&amp;&amp;\text{Observed today <span class="arithmatex">\(t\)</span>}&amp;\text{Observed today <span class="arithmatex">\(t\)</span>}\</p>
-<p>\end{array}$$</p>
+\frac{1}{1+\tau_i l\left(t;T_{i-1},T_{i}\right)}\\
+\uparrow&amp;&amp;\uparrow&amp;\uparrow\\
+\text{Discount from $T_i$ to $t$}&amp;&amp;\text{Discount from $T_{i-1}$ to $t$}&amp;\text{Discount from $T_i$ to $T_{i-1}$}\\
+\text{Observed today $t$}&amp;&amp;\text{Observed today $t$}&amp;\text{Observed today $t$}\\
+\end{array}\]</div>
 <h3 id="forward-libor-rate">Forward LIBOR Rate<a class="headerlink" href="#forward-libor-rate" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 l_i\left(t\right)
 &amp;=&amp;\displaystyle
-l\left(t;T_{i-1},T_{i}\right)\
+l\left(t;T_{i-1},T_{i}\right)\\
 &amp;=&amp;\displaystyle
 \frac{1}{\tau_i}
-\left(\frac{P\left(t,T_{i-1}\right)-P\left(t,T_{i}\right)}{P\left(t,T_{i}\right)}\right)\
+\left(\frac{P\left(t,T_{i-1}\right)-P\left(t,T_{i}\right)}{P\left(t,T_{i}\right)}\right)\\
 &amp;=&amp;\displaystyle
 \frac{1}{\tau_i}
-\left(\frac{P\left(t,T_{i-1}\right)}{P\left(t,T_{i}\right)}-1\right)\</p>
-<p>\end{array}$$</p>
+\left(\frac{P\left(t,T_{i-1}\right)}{P\left(t,T_{i}\right)}-1\right)\\
+\end{array}\]</div>
 <h3 id="dynamics-of-the-libor-rate">Dynamics of the LIBOR Rate<a class="headerlink" href="#dynamics-of-the-libor-rate" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 dl_i(t)
 &amp;=&amp;
 \displaystyle
-\bar{\mu}_i^\mathbb{P}(t)dt+\bar{\sigma}_i(t)dW_i^\mathbb{P}(t)</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+\bar{\mu}_i^\mathbb{P}(t)dt+\bar{\sigma}_i(t)dW_i^\mathbb{P}(t)
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 dW_i^\mathbb{P}(t)dW_j^\mathbb{P}(t)
-=\rho_{ij}dt</p>
-<p>\end{array}$$</p>
+=\rho_{ij}dt
+\end{array}\]</div>
 <h3 id="libor-is-an-t_i-martingale">LIBOR is an T_i-Martingale<a class="headerlink" href="#libor-is-an-t_i-martingale" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(P\left(t,T_{i-1}\right)-P\left(t,T_{i}\right)\)</span> is a price of tradable assets,
 <span class="arithmatex">\(l_i\left(t\right)\)</span> is an <span class="arithmatex">\(T_i\)</span>-martingale.</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 \mathbb{E}^{T_i}\left[\frac{P\left(T_{i-1},T_{i-1}\right)}{P\left(T_{i-1},T_{i}\right)}\Big{|}{\cal F}(t)\right]
 &amp;=&amp;
 \displaystyle
-\frac{P\left(t,T_{i-1}\right)}{P\left(t,T_{i}\right)}</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+\frac{P\left(t,T_{i-1}\right)}{P\left(t,T_{i}\right)}
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 \mathbb{E}^{T_i}\left[1+\tau_il(T_{i-1};T_{i-1},T_i)\Big{|}{\cal F}(t)\right]
 &amp;=&amp;
 \displaystyle
-1+\tau_il(t;T_{i-1},T_i)</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+1+\tau_il(t;T_{i-1},T_i)
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 \mathbb{E}^{T_i}\left[l(T_{i-1};T_{i-1},T_i)\Big{|}{\cal F}(t)\right]
 &amp;=&amp;
 \displaystyle
-l(t;T_{i-1},T_i)</p>
-<p>\end{array}$$</p>
+l(t;T_{i-1},T_i)
+\end{array}\]</div>
 <h3 id="libor-dynamics-in-forward-and-other-measures">LIBOR Dynamics in Forward and Other Measures<a class="headerlink" href="#libor-dynamics-in-forward-and-other-measures" title="Permanent link">&para;</a></h3>
 <p>Under the <span class="arithmatex">\(T_i\)</span>-forward measure:</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 dl_i(t)
 =
-\bar{\sigma}_i(t)dW_i^i(t)</p>
-<p>\end{array}$$</p>
+\bar{\sigma}_i(t)dW_i^i(t)
+\end{array}\]</div>
 <p>Under a different forward measure <span class="arithmatex">\(T_j\)</span>:</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 dl_i(t)
 =
-\bar{\mu}_i^j(t)dt+\bar{\sigma}_i(t)dW_i^j(t)</p>
-<p>\end{array}$$</p>
+\bar{\mu}_i^j(t)dt+\bar{\sigma}_i(t)dW_i^j(t)
+\end{array}\]</div>
 <h3 id="lognormal-libor-market-model">Lognormal LIBOR Market Model<a class="headerlink" href="#lognormal-libor-market-model" title="Permanent link">&para;</a></h3>
 <p>Assume constant proportional volatility:</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 \bar{\sigma}_i(t)
 =
 \sigma_i(t)l_i(t)
 \quad\Rightarrow\quad
 \frac{dl_i(t)}{l_i(t)}
 =
-\sigma_i(t)dW_i^i(t)</p>
-<p>\end{array}$$</p>
+\sigma_i(t)dW_i^i(t)
+\end{array}\]</div>
 <h3 id="change-of-measure-radon-nikodym-derivative">Change of Measure: Radon-Nikodym Derivative<a class="headerlink" href="#change-of-measure-radon-nikodym-derivative" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 \lambda_i^{i-1}(t)
 &amp;=&amp;\displaystyle
-\left.\frac{d\mathbb{Q}^{i-1}}{d\mathbb{Q}^{i}}\Big{|}{\cal F}(t)\right)\
+\left.\frac{d\mathbb{Q}^{i-1}}{d\mathbb{Q}^{i}}\Big{|}{\cal F}(t)\right)\\
 &amp;=&amp;\displaystyle
-\frac{P(t,T_{i-1})/P(t_0,T_{i-1})}{P(t,T_{i})/P(t_0,T_{i})}\
+\frac{P(t,T_{i-1})/P(t_0,T_{i-1})}{P(t,T_{i})/P(t_0,T_{i})}\\
 &amp;=&amp;\displaystyle
-\frac{P(t_0,T_{i})}{P(t_0,T_{i-1})}(\tau_i l_i(t)+1)\</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+\frac{P(t_0,T_{i})}{P(t_0,T_{i-1})}(\tau_i l_i(t)+1)\\
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 d\lambda_i^{i-1}(t)
 &amp;=&amp;\displaystyle
-\frac{P(t_0,T_{i})}{P(t_0,T_{i-1})}\tau_i dl_i(t)\
+\frac{P(t_0,T_{i})}{P(t_0,T_{i-1})}\tau_i dl_i(t)\\
 &amp;=&amp;\displaystyle
-\frac{P(t_0,T_{i})}{P(t_0,T_{i-1})}\tau_i \bar{\sigma}_i(t)dW_i^i(t)\
+\frac{P(t_0,T_{i})}{P(t_0,T_{i-1})}\tau_i \bar{\sigma}_i(t)dW_i^i(t)\\
 &amp;=&amp;\displaystyle
-\frac{\lambda_i^{i-1}(t)}{\tau_il_i(t)+1}\tau_i\bar{\sigma}_i(t)dW_i^i(t)\
+\frac{\lambda_i^{i-1}(t)}{\tau_il_i(t)+1}\tau_i\bar{\sigma}_i(t)dW_i^i(t)\\
 &amp;=&amp;\displaystyle
-\lambda_i^{i-1}(t)\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dW_i^i(t)\</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+\lambda_i^{i-1}(t)\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dW_i^i(t)\\
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 \frac{d\lambda_i^{i-1}(t)}{\lambda_i^{i-1}(t)}
-=\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dW_i^i(t)\</p>
-<p>\end{array}$$</p>
+=\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dW_i^i(t)\\
+\end{array}\]</div>
 <h3 id="girsanov-transformation">Girsanov Transformation<a class="headerlink" href="#girsanov-transformation" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 dW_i^{i-1}(t)
 =
--\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dt +dW_i^i(t)</p>
-<p>\end{array}$$</p>
+-\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dt +dW_i^i(t)
+\end{array}\]</div>
 <h3 id="libor-under-different-measures">LIBOR Under Different Measures<a class="headerlink" href="#libor-under-different-measures" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{llllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llllll}
+\displaystyle
 dl_i(t)
 &amp;=&amp;\displaystyle
-\bar{\sigma}_i(t)dW_i^i(t)\
+\bar{\sigma}_i(t)dW_i^i(t)\\
 &amp;=&amp;\displaystyle
 \bar{\sigma}_i(t)\left(\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dt
-+dW_i^{i-1}(t)\right)\
++dW_i^{i-1}(t)\right)\\
 &amp;=&amp;\displaystyle
 \bar{\sigma}_i(t)\frac{\tau_i\bar{\sigma}_i(t)}{\tau_il_i(t)+1}dt
-+\bar{\sigma}_i(t)dW_i^{i-1}(t)\</p>
-<p>\end{array}$$</p>
++\bar{\sigma}_i(t)dW_i^{i-1}(t)\\
+\end{array}\]</div>
 <h3 id="terminal-measure">Terminal Measure<a class="headerlink" href="#terminal-measure" title="Permanent link">&para;</a></h3>
 <p>For the terminal measure <span class="arithmatex">\(\mathbb{Q}^m\)</span> with numeraire <span class="arithmatex">\(P(t, T_m)\)</span>:</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 dW_i^{i}(t)
 &amp;=&amp;\displaystyle
--\frac{\tau_{i+1}\bar{\sigma}<em i_1="i+1">{i+1}(t)}{\tau</em>(t)\
+-\frac{\tau_{i+1}\bar{\sigma}_{i+1}(t)}{\tau_{i+1}l_{i+1}(t)+1}dt +dW_i^{i+1}(t)\\
 &amp;=&amp;\displaystyle
--\frac{\tau_{i+1}\bar{\sigma}}l_{i+1}(t)+1}dt +dW_i^{i+1<em i_1="i+1">{i+1}(t)}{\tau</em>dt
-+\left(-\frac{\tau_{i+2}\bar{\sigma}}l_{i+1}(t)+1<em i_2="i+2">{i+2}(t)}{\tau</em>(t)\right)\
+-\frac{\tau_{i+1}\bar{\sigma}_{i+1}(t)}{\tau_{i+1}l_{i+1}(t)+1}dt
++\left(-\frac{\tau_{i+2}\bar{\sigma}_{i+2}(t)}{\tau_{i+2}l_{i+2}(t)+1}dt +dW_i^{i+2}(t)\right)\\
 &amp;=&amp;\displaystyle
--\sum_{k=i+1}^{i+2}\frac{\tau_{k}\bar{\sigma}}l_{i+2}(t)+1}dt +dW_i^{i+2<em k="k">{k}(t)}{\tau</em>dt
-+dW_i^{i+2}(t)\
+-\sum_{k=i+1}^{i+2}\frac{\tau_{k}\bar{\sigma}_{k}(t)}{\tau_{k}l_{k}(t)+1}dt
++dW_i^{i+2}(t)\\
 &amp;=&amp;\displaystyle
--\sum_{k=i+1}^{m}\frac{\tau_{k}\bar{\sigma}}l_{k}(t)+1<em k="k">{k}(t)}{\tau</em>dt
-+dW_i^{m}(t)\}l_{k}(t)+1</p>
-<p>\end{array}$$</p>
+-\sum_{k=i+1}^{m}\frac{\tau_{k}\bar{\sigma}_{k}(t)}{\tau_{k}l_{k}(t)+1}dt
++dW_i^{m}(t)\\
+\end{array}\]</div>
 
 
 

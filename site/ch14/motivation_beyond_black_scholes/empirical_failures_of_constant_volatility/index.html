@@ -46582,9 +46582,9 @@
 <hr />
 <h2 id="the-constant-volatility-assumption">The Constant Volatility Assumption<a class="headerlink" href="#the-constant-volatility-assumption" title="Permanent link">&para;</a></h2>
 <p>In the Black–Scholes framework, the underlying asset follows geometric Brownian motion:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
+\]</div>
 <p>where the volatility parameter <span class="arithmatex">\(\sigma\)</span> is constant. This implies several testable predictions:</p>
 <ol>
 <li><strong>Normality of log-returns:</strong> <span class="arithmatex">\(\log(S_{t+\Delta}/S_t) \sim \mathcal{N}\bigl((\mu - \tfrac{1}{2}\sigma^2)\Delta, \sigma^2\Delta\bigr)\)</span></li>
@@ -46597,13 +46597,13 @@
 <h2 id="volatility-clustering">Volatility Clustering<a class="headerlink" href="#volatility-clustering" title="Permanent link">&para;</a></h2>
 <p>One of the most robust findings in financial econometrics is <strong>volatility clustering</strong>: large price changes tend to be followed by large price changes (of either sign), and small changes by small changes.</p>
 <p>Formally, while returns <span class="arithmatex">\(r_t\)</span> are approximately uncorrelated:</p>
-<p>$$</p>
-<p>\text{Corr}(r_t, r_{t+k}) \approx 0 \quad \text{for } k \geq 1,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(r_t, r_{t+k}) \approx 0 \quad \text{for } k \geq 1
+\]</div>
 <p>squared returns exhibit significant positive autocorrelation:</p>
-<p>$$</p>
-<p>\text{Corr}(r_t^2, r_{t+k}^2) &gt; 0 \quad \text{for } k = 1, 2, \ldots, 50+.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(r_t^2, r_{t+k}^2) &gt; 0 \quad \text{for } k = 1, 2, \ldots, 50+
+\]</div>
 <p><strong>Quantitative evidence:</strong></p>
 <table>
 <thead>
@@ -46633,17 +46633,17 @@
 </table>
 <p>This persistence implies that volatility is <strong>predictable</strong>, contradicting the constant-<span class="arithmatex">\(\sigma\)</span> assumption.</p>
 <p>The ARCH/GARCH literature (Engle 1982, Bollerslev 1986) formalizes this by modeling conditional variance as:</p>
-<p>$$</p>
-<p>\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
+\]</div>
 <p>where typically <span class="arithmatex">\(\alpha + \beta \approx 0.95\)</span>–<span class="arithmatex">\(0.99\)</span>, indicating high persistence.</p>
 <hr />
 <h2 id="the-leverage-effect">The Leverage Effect<a class="headerlink" href="#the-leverage-effect" title="Permanent link">&para;</a></h2>
 <p>The <strong>leverage effect</strong> refers to the negative correlation between returns and subsequent volatility changes: when prices fall, volatility tends to rise.</p>
 <p>Let <span class="arithmatex">\(r_t\)</span> denote the return and <span class="arithmatex">\(\sigma_{t+1}\)</span> the subsequent volatility. Empirically:</p>
-<p>$$</p>
-<p>\text{Corr}(r_t, \sigma_{t+1}^2 - \sigma_t^2) &lt; 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(r_t, \sigma_{t+1}^2 - \sigma_t^2) &lt; 0
+\]</div>
 <p><strong>Typical magnitudes:</strong></p>
 <table>
 <thead>
@@ -46687,9 +46687,9 @@
 <hr />
 <h2 id="time-varying-realized-volatility">Time-Varying Realized Volatility<a class="headerlink" href="#time-varying-realized-volatility" title="Permanent link">&para;</a></h2>
 <p>Realized volatility, estimated from high-frequency data, varies substantially over time:</p>
-<p>$$</p>
-<p>RV_t = \sqrt{\sum_{i=1}^{n} r_{t,i}^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+RV_t = \sqrt{\sum_{i=1}^{n} r_{t,i}^2}
+\]</div>
 <p>where <span class="arithmatex">\(r_{t,i}\)</span> are intraday returns.</p>
 <p><strong>Historical ranges for S&amp;P 500 annualized volatility:</strong></p>
 <table>
@@ -46716,18 +46716,18 @@
 </table>
 <p>The ratio between high and low volatility regimes exceeds 5:1, making constant volatility untenable.</p>
 <p><strong>Volatility of volatility:</strong> The standard deviation of realized volatility is itself substantial. For the S&amp;P 500:</p>
-<p>$$</p>
-<p>\text{Std}[\sigma_{\text{realized}}] \approx 0.4 \times \mathbb{E}[\sigma_{\text{realized}}],</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Std}[\sigma_{\text{realized}}] \approx 0.4 \times \mathbb{E}[\sigma_{\text{realized}}]
+\]</div>
 <p>implying a coefficient of variation around 40%.</p>
 <hr />
 <h2 id="distributional-failures">Distributional Failures<a class="headerlink" href="#distributional-failures" title="Permanent link">&para;</a></h2>
 <p>Under constant volatility, log-returns are Gaussian. Empirically, returns exhibit systematic departures:</p>
 <h3 id="heavy-tails-leptokurtosis">Heavy Tails (Leptokurtosis)<a class="headerlink" href="#heavy-tails-leptokurtosis" title="Permanent link">&para;</a></h3>
 <p>The kurtosis of a Gaussian is 3. Empirical return distributions have excess kurtosis:</p>
-<p>$$</p>
-<p>\text{Kurt}[r] = \frac{\mathbb{E}[(r - \mu)^4]}{(\mathbb{E}[(r-\mu)^2])^2} &gt; 3.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Kurt}[r] = \frac{\mathbb{E}[(r - \mu)^4]}{(\mathbb{E}[(r-\mu)^2])^2} &gt; 3
+\]</div>
 <p><strong>Typical values:</strong></p>
 <table>
 <thead>
@@ -46754,9 +46754,9 @@
 <p>The aggregational Gaussianity (kurtosis approaching 3 at longer horizons) is consistent with stochastic volatility: conditional normality with random variance produces unconditional heavy tails.</p>
 <h3 id="negative-skewness">Negative Skewness<a class="headerlink" href="#negative-skewness" title="Permanent link">&para;</a></h3>
 <p>Equity returns, especially for indices, exhibit negative skewness:</p>
-<p>$$</p>
-<p>\text{Skew}[r] = \frac{\mathbb{E}[(r - \mu)^3]}{(\mathbb{E}[(r-\mu)^2])^{3/2}} &lt; 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew}[r] = \frac{\mathbb{E}[(r - \mu)^3]}{(\mathbb{E}[(r-\mu)^2])^{3/2}} &lt; 0
+\]</div>
 <p><strong>Typical values for equity indices:</strong> <span class="arithmatex">\(-0.3\)</span> to <span class="arithmatex">\(-1.0\)</span></p>
 <p>This reflects the leverage effect and the occasional occurrence of market crashes.</p>
 <h3 id="extreme-events">Extreme Events<a class="headerlink" href="#extreme-events" title="Permanent link">&para;</a></h3>
@@ -46797,15 +46797,15 @@
 - OTM calls may be overpriced or underpriced depending on the asset</p>
 <h3 id="the-volatility-smile">The Volatility Smile<a class="headerlink" href="#the-volatility-smile" title="Permanent link">&para;</a></h3>
 <p>If Black–Scholes held with constant <span class="arithmatex">\(\sigma\)</span>, implied volatility would be flat across strikes. Instead:</p>
-<p>$$</p>
-<p>\sigma_{\text{impl}}(K) \neq \text{constant}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{impl}}(K) \neq \text{constant}
+\]</div>
 <p>The pattern—higher implied volatility for OTM puts (low strikes) and sometimes OTM calls (high strikes)—reflects the market's recognition of non-Gaussian risks.</p>
 <h3 id="hedging-failures">Hedging Failures<a class="headerlink" href="#hedging-failures" title="Permanent link">&para;</a></h3>
 <p>Delta hedging under constant volatility assumes:</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial C}{\partial S} = N(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial C}{\partial S} = N(d_1)
+\]</div>
 <p>with known, stable <span class="arithmatex">\(\sigma\)</span>. When volatility is stochastic:
 - Delta itself becomes random
 - Hedging P&amp;L has non-zero variance even with continuous rebalancing

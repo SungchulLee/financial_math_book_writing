@@ -46846,42 +46846,42 @@
 - <strong>Skew</strong>: Asymmetric smile (especially in equity markets)</p>
 <h3 id="local-volatility-solution">Local Volatility Solution<a class="headerlink" href="#local-volatility-solution" title="Permanent link">&para;</a></h3>
 <p>Allow <span class="arithmatex">\(\sigma\)</span> to depend on <span class="arithmatex">\((t, S)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dS_t = rS_t\,dt + \sigma_{\text{loc}}(t, S_t)S_t\,dW_t^{\mathbb{Q}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>With the right choice of <span class="arithmatex">\(\sigma_{\text{loc}}\)</span>, any arbitrage-free implied volatility surface can be matched exactly.</p>
 <hr />
 <h2 id="the-pricing-pde">The Pricing PDE<a class="headerlink" href="#the-pricing-pde" title="Permanent link">&para;</a></h2>
 <p>Under local volatility, the option price <span class="arithmatex">\(V(t, S)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma_{\text{loc}}^2(t,S)S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V(T, S) = \Phi(S)\)</span>.</p>
 <p><strong>Key difference from Black-Scholes</strong>: The diffusion coefficient <span class="arithmatex">\(\frac{1}{2}\sigma_{\text{loc}}^2(t,S)S^2\)</span> varies across the grid.</p>
 <hr />
 <h2 id="dupires-formula">Dupire's Formula<a class="headerlink" href="#dupires-formula" title="Permanent link">&para;</a></h2>
 <h3 id="the-forward-pde-dupire-equation">The Forward PDE (Dupire Equation)<a class="headerlink" href="#the-forward-pde-dupire-equation" title="Permanent link">&para;</a></h3>
 <p>The price of a European call <span class="arithmatex">\(C(T, K)\)</span> as a function of maturity <span class="arithmatex">\(T\)</span> and strike <span class="arithmatex">\(K\)</span> satisfies:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial C}{\partial T} = \frac{1}{2}\sigma_{\text{loc}}^2(T, K)K^2\frac{\partial^2 C}{\partial K^2} - rK\frac{\partial C}{\partial K}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="dupires-inversion-formula">Dupire's Inversion Formula<a class="headerlink" href="#dupires-inversion-formula" title="Permanent link">&para;</a></h3>
 <p>Given observed call prices <span class="arithmatex">\(C(T, K)\)</span>, the local volatility is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \sigma_{\text{loc}}^2(T, K) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C}{\partial K^2}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Or equivalently, in terms of implied volatility <span class="arithmatex">\(\sigma_{\text{imp}}(T, K)\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(T, K) = \frac{\sigma_{\text{imp}}^2 + 2\sigma_{\text{imp}}T\left(\frac{\partial\sigma_{\text{imp}}}{\partial T} + rK\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)}{\left(1 + Kd_1\sqrt{T}\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)^2 + K^2T\sigma_{\text{imp}}\left(\frac{\partial^2\sigma_{\text{imp}}}{\partial K^2} - d_1\sqrt{T}\left(\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)^2\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(T, K) = \frac{\sigma_{\text{imp}}^2 + 2\sigma_{\text{imp}}T\left(\frac{\partial\sigma_{\text{imp}}}{\partial T} + rK\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)}{\left(1 + Kd_1\sqrt{T}\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)^2 + K^2T\sigma_{\text{imp}}\left(\frac{\partial^2\sigma_{\text{imp}}}{\partial K^2} - d_1\sqrt{T}\left(\frac{\partial\sigma_{\text{imp}}}{\partial K}\right)^2\right)}
+\]</div>
 <h3 id="derivation-sketch">Derivation Sketch<a class="headerlink" href="#derivation-sketch" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Apply Itô's lemma to the indicator <span class="arithmatex">\(\mathbf{1}_{S_T &gt; K}\)</span></li>
@@ -46958,9 +46958,9 @@ dS_t = rS_t\,dt + \sigma_{\text{loc}}(t, S_t)S_t\,dW_t^{\mathbb{Q}}
 </code></pre></div>
 <h3 id="monte-carlo-method">Monte Carlo Method<a class="headerlink" href="#monte-carlo-method" title="Permanent link">&para;</a></h3>
 <p>Simulate paths with local volatility:</p>
-<p>$$</p>
-<p>S_{t+\Delta t} = S_t \exp\left[\left(r - \frac{\sigma_{\text{loc}}^2(t, S_t)}{2}\right)\Delta t + \sigma_{\text{loc}}(t, S_t)\sqrt{\Delta t}Z\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{t+\Delta t} = S_t \exp\left[\left(r - \frac{\sigma_{\text{loc}}^2(t, S_t)}{2}\right)\Delta t + \sigma_{\text{loc}}(t, S_t)\sqrt{\Delta t}Z\right]
+\]</div>
 <p><strong>Note</strong>: Use <span class="arithmatex">\(\sigma_{\text{loc}}(t, S_t)\)</span> evaluated at the current state.</p>
 <hr />
 <h2 id="regularization">Regularization<a class="headerlink" href="#regularization" title="Permanent link">&para;</a></h2>
@@ -46973,33 +46973,33 @@ dS_t = rS_t\,dt + \sigma_{\text{loc}}(t, S_t)S_t\,dW_t^{\mathbb{Q}}
 <li><strong>Parameterization</strong>: Fit a parametric form (e.g., SVI) first</li>
 </ol>
 <h3 id="typical-regularized-problem">Typical Regularized Problem<a class="headerlink" href="#typical-regularized-problem" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\min_{\sigma_{\text{loc}}} \sum_{i,j}(C^{\text{model}}<em ij="ij">{ij} - C^{\text{market}}</em>|^2\,dT\,dK})^2 + \lambda \int |\nabla\sigma_{\text{loc}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\sigma_{\text{loc}}} \sum_{i,j}(C^{\text{model}}_{ij} - C^{\text{market}}_{ij})^2 + \lambda \int |\nabla\sigma_{\text{loc}}|^2\,dT\,dK
+\]</div>
 <hr />
 <h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h2>
 <h3 id="cev-constant-elasticity-of-variance">CEV (Constant Elasticity of Variance)<a class="headerlink" href="#cev-constant-elasticity-of-variance" title="Permanent link">&para;</a></h3>
 <p>A parametric local volatility model:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}(S) = \sigma_0 S^{\beta - 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}(S) = \sigma_0 S^{\beta - 1}
+\]</div>
 <ul>
 <li><span class="arithmatex">\(\beta = 1\)</span>: Black-Scholes</li>
 <li><span class="arithmatex">\(\beta &lt; 1\)</span>: Volatility increases as <span class="arithmatex">\(S\)</span> decreases (leverage effect)</li>
 <li><span class="arithmatex">\(\beta = 0\)</span>: Normal model</li>
 </ul>
 <h3 id="time-dependent-parameters">Time-Dependent Parameters<a class="headerlink" href="#time-dependent-parameters" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_{\text{loc}}(t, S) = \sigma(t) f(S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}(t, S) = \sigma(t) f(S)
+\]</div>
 <p>Separable form simplifies calibration.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dS_t = rS_t\,dt + \sigma_{\text{loc}}(t, S_t)S_t\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47026,11 +47026,11 @@ dS_t = rS_t\,dt + \sigma_{\text{loc}}(t, S_t)S_t\,dW_t
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \sigma_{\text{loc}}^2(T, K) = \frac{\partial_T C + rK\partial_K C}{\frac{1}{2}K^2\partial_{KK}C}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Local volatility provides a complete market model that fits the smile exactly, but its unrealistic dynamics limit its use for hedging and exotic pricing.</strong></p>
 
 

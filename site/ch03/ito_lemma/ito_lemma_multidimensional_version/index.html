@@ -46404,11 +46404,11 @@
 <hr />
 <h2 id="setting">Setting<a class="headerlink" href="#setting" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(W_t = (W_t^{1}, \ldots, W_t^{m})\)</span> be an <span class="arithmatex">\(m\)</span>-dimensional Brownian motion and <span class="arithmatex">\(X_t = (X_t^{1}, \ldots, X_t^{d})\)</span> an <span class="arithmatex">\(\mathbb{R}^d\)</span>-valued diffusion solving:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dX_t^{i} = b^{i}(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^{\alpha}, \qquad i = 1, \ldots, d, \quad \alpha = 1, \ldots, m
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Einstein summation convention</strong>: Repeated indices (one upper, one lower, or both on same level) are summed over their range. Here <span class="arithmatex">\(\alpha\)</span> is summed from <span class="arithmatex">\(1\)</span> to <span class="arithmatex">\(m\)</span>.</p>
 <p><strong>Notation</strong>:</p>
 <ul>
@@ -46420,47 +46420,47 @@ dX_t^{i} = b^{i}(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^{\alpha}, \qquad i
 <h2 id="multidimensional-itos-lemma_1">Multidimensional Itô's Lemma<a class="headerlink" href="#multidimensional-itos-lemma_1" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(f: [0,T] \times \mathbb{R}^d \to \mathbb{R}\)</span> be <span class="arithmatex">\(C^{1,2}\)</span> (once differentiable in <span class="arithmatex">\(t\)</span>, twice in <span class="arithmatex">\(x\)</span>). Define <span class="arithmatex">\(Y_t = f(t, X_t)\)</span>.</p>
 <p><strong>Theorem (Multidimensional Itô Formula)</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df(t, X_t) = \frac{\partial f}{\partial t}(t, X_t)\,dt + \frac{\partial f}{\partial x_i}(t, X_t)\,dX_t^{i} + \frac{1}{2}\frac{\partial^2 f}{\partial x_i \partial x_j}(t, X_t)\,d\langle X^{i}, X^{j}\rangle_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h2 id="quadratic-covariation">Quadratic Covariation<a class="headerlink" href="#quadratic-covariation" title="Permanent link">&para;</a></h2>
 <p>The quadratic covariation term requires computing <span class="arithmatex">\(d\langle X^i, X^j \rangle_t\)</span>.</p>
 <p>Since <span class="arithmatex">\(dX_t^{i} = b^{i}\,dt + \sigma^{i\alpha}\,dW_t^{\alpha}\)</span>, only the Brownian parts contribute to quadratic variation.</p>
 <p>Using the fundamental relation:</p>
-<p>$$</p>
-<p>d\langle W^{\alpha}, W^{\beta} \rangle_t = \delta^{\alpha\beta}\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\langle W^{\alpha}, W^{\beta} \rangle_t = \delta^{\alpha\beta}\,dt
+\]</div>
 <p>where <span class="arithmatex">\(\delta^{\alpha\beta}\)</span> is the Kronecker delta, we obtain:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 d\langle X^{i}, X^{j} \rangle_t = \sigma^{i\alpha}(t, X_t)\sigma^{j\alpha}(t, X_t)\,dt
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Note</strong>: The repeated index <span class="arithmatex">\(\alpha\)</span> is summed: <span class="arithmatex">\(\sigma^{i\alpha}\sigma^{j\alpha} = \sum_{\alpha=1}^{m} \sigma^{i\alpha}\sigma^{j\alpha}\)</span>.</p>
 <hr />
 <h2 id="expanded-form">Expanded Form<a class="headerlink" href="#expanded-form" title="Permanent link">&para;</a></h2>
 <p>Substituting <span class="arithmatex">\(dX_t^{i}\)</span> and <span class="arithmatex">\(d\langle X^i, X^j \rangle_t\)</span> explicitly:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 df(t, X_t) &amp;= f_t(t, X_t)\,dt + f_i(t, X_t)\left(b^{i}(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^{\alpha}\right) \\
 &amp;\quad + \frac{1}{2}f_{ij}(t, X_t)\sigma^{i\alpha}(t, X_t)\sigma^{j\alpha}(t, X_t)\,dt
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>where we use the standard shorthand:</p>
-<p>$$</p>
-<p>f_t = \frac{\partial f}{\partial t}, \qquad f_i = \frac{\partial f}{\partial x_i}, \qquad f_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_t = \frac{\partial f}{\partial t}, \qquad f_i = \frac{\partial f}{\partial x_i}, \qquad f_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}
+\]</div>
 <hr />
 <h2 id="standard-form">Standard Form<a class="headerlink" href="#standard-form" title="Permanent link">&para;</a></h2>
 <p>Collecting <span class="arithmatex">\(dt\)</span> and <span class="arithmatex">\(dW\)</span> terms gives the most common form:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df(t, X_t) = \left(f_t + b^{i} f_i + \frac{1}{2}\sigma^{i\alpha}\sigma^{j\alpha} f_{ij}\right)dt + \sigma^{i\alpha} f_i\,dW_t^{\alpha}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where all functions are evaluated at <span class="arithmatex">\((t, X_t)\)</span>.</p>
 <p><strong>In words</strong>:</p>
 <ul>
@@ -46470,9 +46470,9 @@ df(t, X_t) = \left(f_t + b^{i} f_i + \frac{1}{2}\sigma^{i\alpha}\sigma^{j\alpha}
 <hr />
 <h2 id="the-diffusion-matrix">The Diffusion Matrix<a class="headerlink" href="#the-diffusion-matrix" title="Permanent link">&para;</a></h2>
 <p>Define the <strong>diffusion matrix</strong> (or <strong>variance matrix</strong>):</p>
-<p>$$</p>
-<p>a^{ij}(t, x) := \sigma^{i\alpha}(t, x)\sigma^{j\alpha}(t, x) = (\sigma\sigma^T)^{ij}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a^{ij}(t, x) := \sigma^{i\alpha}(t, x)\sigma^{j\alpha}(t, x) = (\sigma\sigma^T)^{ij}
+\]</div>
 <p>This is a <span class="arithmatex">\(d \times d\)</span> symmetric non-negative definite matrix.</p>
 <p><strong>Properties</strong>:</p>
 <ul>
@@ -46483,63 +46483,63 @@ df(t, X_t) = \left(f_t + b^{i} f_i + \frac{1}{2}\sigma^{i\alpha}\sigma^{j\alpha}
 <hr />
 <h2 id="the-infinitesimal-generator">The Infinitesimal Generator<a class="headerlink" href="#the-infinitesimal-generator" title="Permanent link">&para;</a></h2>
 <p>The <strong>infinitesimal generator</strong> <span class="arithmatex">\(\mathcal{L}\)</span> of the diffusion <span class="arithmatex">\(X_t\)</span> is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 (\mathcal{L}f)(t, x) = b^{i}(t, x)\frac{\partial f}{\partial x_i}(t, x) + \frac{1}{2}a^{ij}(t, x)\frac{\partial^2 f}{\partial x_i \partial x_j}(t, x)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This allows Itô's formula to be written compactly as:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df(t, X_t) = \left(f_t + \mathcal{L}f\right)(t, X_t)\,dt + \frac{\partial f}{\partial x_i}(t, X_t)\sigma^{i\alpha}(t, X_t)\,dW_t^{\alpha}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h2 id="vector-valued-functions">Vector-Valued Functions<a class="headerlink" href="#vector-valued-functions" title="Permanent link">&para;</a></h2>
 <p>For <span class="arithmatex">\(f: [0,T] \times \mathbb{R}^d \to \mathbb{R}^k\)</span> with components <span class="arithmatex">\(f^r\)</span> (<span class="arithmatex">\(r = 1, \ldots, k\)</span>), apply the scalar formula componentwise:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df^{r}(t, X_t) = \left(\frac{\partial f^{r}}{\partial t} + b^{i}\frac{\partial f^{r}}{\partial x_i} + \frac{1}{2}a^{ij}\frac{\partial^2 f^{r}}{\partial x_i \partial x_j}\right)dt + \sigma^{i\alpha}\frac{\partial f^{r}}{\partial x_i}\,dW_t^{\alpha}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h3 id="example-1-norm-squared">Example 1: Norm Squared<a class="headerlink" href="#example-1-norm-squared" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(f(x) = |x|^2 = x_i x_i\)</span> (sum over <span class="arithmatex">\(i\)</span>). Then:</p>
-<p>$$</p>
-<p>f_i = 2x_i, \qquad f_{ij} = 2\delta_{ij}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_i = 2x_i, \qquad f_{ij} = 2\delta_{ij}
+\]</div>
 <p>Itô's formula gives:</p>
-<p>$$</p>
-<p>d|X_t|^2 = 2X_t^i\,dX_t^i + \frac{1}{2} \cdot 2\delta_{ij} \cdot d\langle X^i, X^j \rangle_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 2X_t^i(b^i\,dt + \sigma^{i\alpha}\,dW_t^\alpha) + a^{ii}\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= (2X_t^i b^i + \text{tr}(a))\,dt + 2X_t^i \sigma^{i\alpha}\,dW_t^\alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d|X_t|^2 = 2X_t^i\,dX_t^i + \frac{1}{2} \cdot 2\delta_{ij} \cdot d\langle X^i, X^j \rangle_t
+\]</div>
+<div class="arithmatex">\[
+= 2X_t^i(b^i\,dt + \sigma^{i\alpha}\,dW_t^\alpha) + a^{ii}\,dt
+\]</div>
+<div class="arithmatex">\[
+= (2X_t^i b^i + \text{tr}(a))\,dt + 2X_t^i \sigma^{i\alpha}\,dW_t^\alpha
+\]</div>
 <h3 id="example-2-inner-product">Example 2: Inner Product<a class="headerlink" href="#example-2-inner-product" title="Permanent link">&para;</a></h3>
 <p>For two diffusions <span class="arithmatex">\(X_t\)</span> and <span class="arithmatex">\(Y_t\)</span>, the inner product <span class="arithmatex">\(\langle X_t, Y_t \rangle = X_t^i Y_t^i\)</span> satisfies:</p>
-<p>$$</p>
-<p>d(X_t^i Y_t^i) = X_t^i\,dY_t^i + Y_t^i\,dX_t^i + d\langle X^i, Y^i \rangle_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(X_t^i Y_t^i) = X_t^i\,dY_t^i + Y_t^i\,dX_t^i + d\langle X^i, Y^i \rangle_t
+\]</div>
 <p>This is the <strong>multidimensional Itô product rule</strong>.</p>
 <hr />
 <h2 id="box-calculus-in-multiple-dimensions">Box Calculus in Multiple Dimensions<a class="headerlink" href="#box-calculus-in-multiple-dimensions" title="Permanent link">&para;</a></h2>
 <p>The multiplication rules generalize to:</p>
-<p>$$</p>
-<p>dW_t^\alpha \cdot dW_t^\beta = \delta^{\alpha\beta}\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>dW_t^\alpha \cdot dt = 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>dt \cdot dt = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^\alpha \cdot dW_t^\beta = \delta^{\alpha\beta}\,dt
+\]</div>
+<div class="arithmatex">\[
+dW_t^\alpha \cdot dt = 0
+\]</div>
+<div class="arithmatex">\[
+dt \cdot dt = 0
+\]</div>
 <p><strong>Multiplication table</strong> for <span class="arithmatex">\(m = 2\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{|c|c|c|c|}
+<div class="arithmatex">\[
+\begin{array}{|c|c|c|c|}
 \hline
 \times &amp; dt &amp; dW^1 &amp; dW^2 \\
 \hline
@@ -46549,24 +46549,24 @@ dW^1 &amp; 0 &amp; dt &amp; 0 \\
 \hline
 dW^2 &amp; 0 &amp; 0 &amp; dt \\
 \hline
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <hr />
 <h2 id="integral-form">Integral Form<a class="headerlink" href="#integral-form" title="Permanent link">&para;</a></h2>
 <p>The integral form of multidimensional Itô's lemma is:</p>
-<p>$$</p>
-<p>f(t, X_t) = f(0, X_0) + \int_0^t \left(f_s + \mathcal{L}f\right)(s, X_s)\,ds + \int_0^t f_i(s, X_s)\sigma^{i\alpha}(s, X_s)\,dW_s^\alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t, X_t) = f(0, X_0) + \int_0^t \left(f_s + \mathcal{L}f\right)(s, X_s)\,ds + \int_0^t f_i(s, X_s)\sigma^{i\alpha}(s, X_s)\,dW_s^\alpha
+\]</div>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-df &amp;= \left(\frac{\partial f}{\partial t} + b^i \frac{\partial f}{\partial x_i} + \frac{1}{2}a^{ij}\frac{\partial^2 f}{\partial x_i \partial x_j}\right)dt + \sigma^{i\alpha}\frac{\partial f}{\partial x_i}\,dW_t^\alpha \[1em]
+df &amp;= \left(\frac{\partial f}{\partial t} + b^i \frac{\partial f}{\partial x_i} + \frac{1}{2}a^{ij}\frac{\partial^2 f}{\partial x_i \partial x_j}\right)dt + \sigma^{i\alpha}\frac{\partial f}{\partial x_i}\,dW_t^\alpha \\[1em]
 &amp;= (f_t + \mathcal{L}f)\,dt + (\nabla f)^T \sigma\,dW_t
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

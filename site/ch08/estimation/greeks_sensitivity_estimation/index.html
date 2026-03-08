@@ -46288,22 +46288,22 @@
 <hr />
 <h2 id="delta-first-derivative-in-space">Delta (First Derivative in Space)<a class="headerlink" href="#delta-first-derivative-in-space" title="Permanent link">&para;</a></h2>
 <p>Approximate Delta at node <span class="arithmatex">\(i\)</span> using central differences:</p>
-<p>$$</p>
-<p>\Delta_i \approx \frac{V_{i+1} - V_{i-1}}{2\Delta S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_i \approx \frac{V_{i+1} - V_{i-1}}{2\Delta S}
+\]</div>
 <p>At the edges (<span class="arithmatex">\(i = 0\)</span> or <span class="arithmatex">\(i = M\)</span>), use forward or backward difference instead.</p>
 <hr />
 <h2 id="gamma-second-derivative-in-space">Gamma (Second Derivative in Space)<a class="headerlink" href="#gamma-second-derivative-in-space" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\Gamma_i \approx \frac{V_{i+1} - 2V_i + V_{i-1}}{(\Delta S)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_i \approx \frac{V_{i+1} - 2V_i + V_{i-1}}{(\Delta S)^2}
+\]</div>
 <p>High Gamma near the strike means small moves in <span class="arithmatex">\(S\)</span> cause big changes in Delta.</p>
 <hr />
 <h2 id="theta-time-derivative">Theta (Time Derivative)<a class="headerlink" href="#theta-time-derivative" title="Permanent link">&para;</a></h2>
 <p>Given two time levels (<span class="arithmatex">\(V^{n+1}\)</span> and <span class="arithmatex">\(V^n\)</span>):</p>
-<p>$$</p>
-<p>\Theta_i \approx -\frac{V_i^{n+1} - V_i^n}{\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_i \approx -\frac{V_i^{n+1} - V_i^n}{\Delta t}
+\]</div>
 <p>In practice, we often use the final two time steps for this estimate.</p>
 <hr />
 <h2 id="python-example-delta-and-gamma-estimation">Python Example: Delta and Gamma Estimation<a class="headerlink" href="#python-example-delta-and-gamma-estimation" title="Permanent link">&para;</a></h2>

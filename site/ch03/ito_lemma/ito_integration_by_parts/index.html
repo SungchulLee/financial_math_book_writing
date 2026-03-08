@@ -46494,57 +46494,57 @@
 <hr />
 <h2 id="classical-integration-by-parts-review">Classical integration by parts (review)<a class="headerlink" href="#classical-integration-by-parts-review" title="Permanent link">&para;</a></h2>
 <p>In ordinary calculus, for differentiable functions <span class="arithmatex">\(f(t)\)</span> and <span class="arithmatex">\(g(t)\)</span>:</p>
-<p>$$</p>
-<p>\int_0^t f(s) \, dg(s)
-= f(t) g(t) - f(0) g(0) - \int_0^t g(s) \, df(s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f(s) \, dg(s)
+= f(t) g(t) - f(0) g(0) - \int_0^t g(s) \, df(s)
+\]</div>
 <p>Or in differential notation:</p>
-<p>$$</p>
-<p>d(f(t) g(t)) = f(t) \, dg(t) + g(t) \, df(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(f(t) g(t)) = f(t) \, dg(t) + g(t) \, df(t)
+\]</div>
 <p>This formula expresses the relationship between the product <span class="arithmatex">\(f \cdot g\)</span> and the integrals of <span class="arithmatex">\(f \, dg\)</span> and <span class="arithmatex">\(g \, df\)</span>.</p>
 <hr />
 <h2 id="stochastic-integration-by-parts">Stochastic integration by parts<a class="headerlink" href="#stochastic-integration-by-parts" title="Permanent link">&para;</a></h2>
 <p>For Itô processes <span class="arithmatex">\(X_t\)</span> and <span class="arithmatex">\(Y_t\)</span>, the integration by parts formula includes an <strong>additional term</strong> involving their quadratic covariation:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t + d[X, Y]_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>In integral form:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + [X, Y]_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The term <span class="arithmatex">\(d[X, Y]_t\)</span> is the <strong>differential of the quadratic covariation</strong> and represents the "second-order interaction" between <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>.</p>
 <p><strong>Comparison with classical formula</strong>: The additional term <span class="arithmatex">\(d[X, Y]_t\)</span> is absent in ordinary calculus because quadratic variation vanishes for smooth functions. In stochastic calculus, this term is <strong>non-negligible</strong> due to the unbounded variation of Brownian motion.</p>
 <hr />
 <h2 id="quadratic-covariation-review">Quadratic covariation review<a class="headerlink" href="#quadratic-covariation-review" title="Permanent link">&para;</a></h2>
 <p>For two Itô processes:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dX_t &amp;= \mu_t^X \, dt + \sigma_t^X \, dB_t\\
 dY_t &amp;= \mu_t^Y \, dt + \sigma_t^Y \, dB_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>their <strong>quadratic covariation</strong> is:</p>
-<p>$$</p>
-<p>d[X, Y]_t = \sigma_t^X \sigma_t^Y \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d[X, Y]_t = \sigma_t^X \sigma_t^Y \, dt
+\]</div>
 <p>In integral form:</p>
-<p>$$</p>
-<p>[X, Y]_t = \int_0^t \sigma_s^X \sigma_s^Y \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[X, Y]_t = \int_0^t \sigma_s^X \sigma_s^Y \, ds
+\]</div>
 <p><strong>Key rules</strong> (informal multiplication table):</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{c|ccc}
+<div class="arithmatex">\[
+\begin{array}{c|ccc}
 \cdot &amp; dt &amp; dB_t \\
 \hline
 dt &amp; 0 &amp; 0 \\
 dB_t &amp; 0 &amp; dt
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p>From these rules:
 - <span class="arithmatex">\(dt \cdot dt = 0\)</span> (negligible)
 - <span class="arithmatex">\(dt \cdot dB_t = 0\)</span> (negligible)
@@ -46555,80 +46555,80 @@ dB_t &amp; 0 &amp; dt
 <p><strong>Setup</strong>: Let <span class="arithmatex">\(X_t\)</span> and <span class="arithmatex">\(Y_t\)</span> be Itô processes. Define <span class="arithmatex">\(Z_t = X_t Y_t\)</span>.</p>
 <p><strong>Goal</strong>: Compute <span class="arithmatex">\(dZ_t\)</span> using Itô's lemma for <span class="arithmatex">\(f(x, y) = xy\)</span>.</p>
 <p><strong>Calculation</strong>: The partial derivatives are:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial x} = y, \quad
+<div class="arithmatex">\[
+\frac{\partial f}{\partial x} = y, \quad
 \frac{\partial f}{\partial y} = x, \quad
 \frac{\partial^2 f}{\partial x \partial y} = 1, \quad
-\frac{\partial^2 f}{\partial x^2} = \frac{\partial^2 f}{\partial y^2} = 0</p>
-<p>$$</p>
+\frac{\partial^2 f}{\partial x^2} = \frac{\partial^2 f}{\partial y^2} = 0
+\]</div>
 <p>Applying Itô's lemma:</p>
-<p>$$</p>
-<p>df(X_t, Y_t)
+<div class="arithmatex">\[
+df(X_t, Y_t)
 = \frac{\partial f}{\partial x} dX_t + \frac{\partial f}{\partial y} dY_t
 + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} (dX_t)^2
 + \frac{1}{2} \frac{\partial^2 f}{\partial y^2} (dY_t)^2
-+ \frac{\partial^2 f}{\partial x \partial y} dX_t \, dY_t</p>
-<p>$$</p>
++ \frac{\partial^2 f}{\partial x \partial y} dX_t \, dY_t
+\]</div>
 <p>Substituting the derivatives:</p>
-<p>$$</p>
-<p>d(X_t Y_t)
+<div class="arithmatex">\[
+d(X_t Y_t)
 = Y_t \, dX_t + X_t \, dY_t
-+ 0 \cdot (dX_t)^2 + 0 \cdot (dY_t)^2 + 1 \cdot dX_t \, dY_t</p>
-<p>$$</p>
++ 0 \cdot (dX_t)^2 + 0 \cdot (dY_t)^2 + 1 \cdot dX_t \, dY_t
+\]</div>
 <p>Since <span class="arithmatex">\(dX_t \, dY_t = d[X, Y]_t\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 d(X_t Y_t) = Y_t \, dX_t + X_t \, dY_t + d[X, Y]_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is the <strong>stochastic integration by parts formula</strong>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="special-cases">Special cases<a class="headerlink" href="#special-cases" title="Permanent link">&para;</a></h2>
 <h3 id="1-case-1-both-processes-are-martingales">1. Case 1: Both processes are martingales<a class="headerlink" href="#1-case-1-both-processes-are-martingales" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(X_t\)</span> and <span class="arithmatex">\(Y_t\)</span> are martingales driven by the same Brownian motion:</p>
-<p>$$</p>
-<p>dX_t = \sigma_t^X \, dB_t, \quad
-dY_t = \sigma_t^Y \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \sigma_t^X \, dB_t, \quad
+dY_t = \sigma_t^Y \, dB_t
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t + \sigma_t^X \sigma_t^Y \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t + \sigma_t^X \sigma_t^Y \, dt
+\]</div>
 <p>Integrating:</p>
-<p>$$</p>
-<p>X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + \int_0^t \sigma_s^X \sigma_s^Y \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + \int_0^t \sigma_s^X \sigma_s^Y \, ds
+\]</div>
 <p><strong>Example</strong>: For <span class="arithmatex">\(X_t = Y_t = B_t\)</span> (with <span class="arithmatex">\(\sigma = 1\)</span>):</p>
-<p>$$</p>
-<p>B_t^2 = \int_0^t B_s \, dB_s + \int_0^t B_s \, dB_s + \int_0^t 1 \, ds
-= 2 \int_0^t B_s \, dB_s + t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t^2 = \int_0^t B_s \, dB_s + \int_0^t B_s \, dB_s + \int_0^t 1 \, ds
+= 2 \int_0^t B_s \, dB_s + t
+\]</div>
 <p>Solving for the Itô integral:</p>
-<p>$$</p>
-<p>\int_0^t B_s \, dB_s = \frac{B_t^2 - t}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t B_s \, dB_s = \frac{B_t^2 - t}{2}
+\]</div>
 <p>This recovers the classic result.</p>
 <h3 id="2-case-2-one-deterministic-one-stochastic">2. Case 2: One deterministic, one stochastic<a class="headerlink" href="#2-case-2-one-deterministic-one-stochastic" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(X_t = t\)</span> (deterministic) and <span class="arithmatex">\(Y_t\)</span> is an Itô process:</p>
-<p>$$</p>
-<p>dX_t = dt, \quad
-dY_t = \mu_t \, dt + \sigma_t \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = dt, \quad
+dY_t = \mu_t \, dt + \sigma_t \, dB_t
+\]</div>
 <p>Then <span class="arithmatex">\(d[X, Y]_t = 0\)</span> (no quadratic covariation with deterministic processes):</p>
-<p>$$</p>
-<p>d(t \cdot Y_t) = t \, dY_t + Y_t \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(t \cdot Y_t) = t \, dY_t + Y_t \, dt
+\]</div>
 <p>This is the <strong>classical integration by parts</strong> formula—no correction term needed when one process is deterministic.</p>
 <h3 id="3-case-3-independent-brownian-motions">3. Case 3: Independent Brownian motions<a class="headerlink" href="#3-case-3-independent-brownian-motions" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(X_t\)</span> and <span class="arithmatex">\(Y_t\)</span> are driven by <strong>independent</strong> Brownian motions <span class="arithmatex">\(B_t^{(1)}\)</span> and <span class="arithmatex">\(B_t^{(2)}\)</span>:</p>
-<p>$$</p>
-<p>dX_t = \sigma_t^X \, dB_t^{(1)}, \quad
-dY_t = \sigma_t^Y \, dB_t^{(2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \sigma_t^X \, dB_t^{(1)}, \quad
+dY_t = \sigma_t^Y \, dB_t^{(2)}
+\]</div>
 <p>Then <span class="arithmatex">\(d[X, Y]_t = 0\)</span> (independent Brownian motions have zero cross-variation):</p>
-<p>$$</p>
-<p>d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(X_t Y_t) = X_t \, dY_t + Y_t \, dX_t
+\]</div>
 <p>Again, no correction term.</p>
 <hr />
 <h2 id="worked-examples">Worked examples<a class="headerlink" href="#worked-examples" title="Permanent link">&para;</a></h2>
@@ -46636,142 +46636,142 @@ dY_t = \sigma_t^Y \, dB_t^{(2)}</p>
 <p><strong>Goal</strong>: Evaluate <span class="arithmatex">\(\int_0^t s \, dB_s\)</span> using integration by parts.</p>
 <p><strong>Setup</strong>: Let <span class="arithmatex">\(X_t = t\)</span> and <span class="arithmatex">\(Y_t = B_t\)</span>. We want to compute <span class="arithmatex">\(\int_0^t X_s dY_s\)</span>.</p>
 <p><strong>Integration by parts</strong>:</p>
-<p>$$</p>
-<p>X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + [X, Y]_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t Y_t = X_0 Y_0 + \int_0^t X_s \, dY_s + \int_0^t Y_s \, dX_s + [X, Y]_t
+\]</div>
 <p>Since <span class="arithmatex">\(X_t = t\)</span> is deterministic, <span class="arithmatex">\([X, Y]_t = 0\)</span>:</p>
-<p>$$</p>
-<p>t B_t = 0 + \int_0^t s \, dB_s + \int_0^t B_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+t B_t = 0 + \int_0^t s \, dB_s + \int_0^t B_s \, ds
+\]</div>
 <p>Solving for the Itô integral:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \int_0^t s \, dB_s = t B_t - \int_0^t B_s \, ds
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Interpretation</strong>: This expresses the stochastic integral in terms of an ordinary integral. The result is a <strong>continuous martingale</strong> (since the ordinary integral <span class="arithmatex">\(\int B_s ds\)</span> is adapted and continuous).</p>
 <h3 id="2-example-2-computing-int_0t-eb_s-db_s">2. Example 2: Computing <span class="arithmatex">\(\int_0^t e^{B_s} \, dB_s\)</span><a class="headerlink" href="#2-example-2-computing-int_0t-eb_s-db_s" title="Permanent link">&para;</a></h3>
 <p><strong>Goal</strong>: Evaluate <span class="arithmatex">\(\int_0^t e^{B_s} dB_s\)</span>.</p>
 <p><strong>Setup</strong>: Let <span class="arithmatex">\(f(x) = e^x\)</span>. By Itô's lemma:</p>
-<p>$$</p>
-<p>d(e^{B_t}) = e^{B_t} dB_t + \frac{1}{2} e^{B_t} dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{B_t}) = e^{B_t} dB_t + \frac{1}{2} e^{B_t} dt
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>e^{B_t} dB_t = d(e^{B_t}) - \frac{1}{2} e^{B_t} dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{B_t} dB_t = d(e^{B_t}) - \frac{1}{2} e^{B_t} dt
+\]</div>
 <p>Integrating:</p>
-<p>$$</p>
-<p>\int_0^t e^{B_s} dB_s = e^{B_t} - 1 - \frac{1}{2} \int_0^t e^{B_s} ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t e^{B_s} dB_s = e^{B_t} - 1 - \frac{1}{2} \int_0^t e^{B_s} ds
+\]</div>
 <p><strong>Note</strong>: This is not a closed-form solution (the ordinary integral <span class="arithmatex">\(\int e^{B_s} ds\)</span> has no explicit form), but it relates the stochastic integral to a deterministic integral.</p>
 <h3 id="3-example-3-int_0t-b_s2-db_s">3. Example 3: <span class="arithmatex">\(\int_0^t B_s^2 \, dB_s\)</span><a class="headerlink" href="#3-example-3-int_0t-b_s2-db_s" title="Permanent link">&para;</a></h3>
 <p><strong>Goal</strong>: Compute <span class="arithmatex">\(\int_0^t B_s^2 dB_s\)</span>.</p>
 <p><strong>Method 1 (Direct Itô's lemma)</strong>: Let <span class="arithmatex">\(f(x) = x^3/3\)</span>. Then:</p>
-<p>$$</p>
-<p>d\left(\frac{B_t^3}{3}\right) = B_t^2 dB_t + \frac{1}{2} \cdot 2B_t \, dt = B_t^2 dB_t + B_t \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\left(\frac{B_t^3}{3}\right) = B_t^2 dB_t + \frac{1}{2} \cdot 2B_t \, dt = B_t^2 dB_t + B_t \, dt
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>B_t^2 dB_t = d\left(\frac{B_t^3}{3}\right) - B_t \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t^2 dB_t = d\left(\frac{B_t^3}{3}\right) - B_t \, dt
+\]</div>
 <p>Integrating:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \int_0^t B_s^2 \, dB_s = \frac{B_t^3}{3} - \int_0^t B_s \, ds
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Method 2 (Integration by parts)</strong>: Let <span class="arithmatex">\(X_t = B_t\)</span> and <span class="arithmatex">\(Y_t = B_t^2 - t\)</span> (a martingale). Then:</p>
-<p>$$</p>
-<p>dX_t = dB_t, \quad
-dY_t = 2B_t dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = dB_t, \quad
+dY_t = 2B_t dB_t
+\]</div>
 <p>Integration by parts:</p>
-<p>$$</p>
-<p>X_t Y_t = \int_0^t X_s dY_s + \int_0^t Y_s dX_s + [X, Y]_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t Y_t = \int_0^t X_s dY_s + \int_0^t Y_s dX_s + [X, Y]_t
+\]</div>
 <p>This gives:</p>
-<p>$$</p>
-<p>B_t(B_t^2 - t) = \int_0^t B_s \cdot 2B_s dB_s + \int_0^t (B_s^2 - s) dB_s + \int_0^t 2B_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t(B_t^2 - t) = \int_0^t B_s \cdot 2B_s dB_s + \int_0^t (B_s^2 - s) dB_s + \int_0^t 2B_s \, ds
+\]</div>
 <p>Simplifying yields the same result.</p>
 <hr />
 <h2 id="application-solving-linear-sdes">Application: Solving linear SDEs<a class="headerlink" href="#application-solving-linear-sdes" title="Permanent link">&para;</a></h2>
 <p>Integration by parts is instrumental in solving <strong>linear stochastic differential equations</strong>.</p>
 <h3 id="1-example-ornstein-uhlenbeck-process">1. Example: Ornstein-Uhlenbeck process<a class="headerlink" href="#1-example-ornstein-uhlenbeck-process" title="Permanent link">&para;</a></h3>
 <p>Consider the SDE:</p>
-<p>$$</p>
-<p>dX_t = -\theta X_t \, dt + \sigma \, dB_t, \quad X_0 = x_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = -\theta X_t \, dt + \sigma \, dB_t, \quad X_0 = x_0
+\]</div>
 <p><strong>Solution strategy</strong>: Use an <strong>integrating factor</strong> <span class="arithmatex">\(e^{\theta t}\)</span>.</p>
 <p><strong>Step 1</strong>: Multiply both sides by <span class="arithmatex">\(e^{\theta t}\)</span>:</p>
-<p>$$</p>
-<p>e^{\theta t} dX_t = -\theta e^{\theta t} X_t \, dt + \sigma e^{\theta t} dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{\theta t} dX_t = -\theta e^{\theta t} X_t \, dt + \sigma e^{\theta t} dB_t
+\]</div>
 <p><strong>Step 2</strong>: Recognize the left side as a differential. Let <span class="arithmatex">\(Y_t = e^{\theta t} X_t\)</span>. By integration by parts:</p>
-<p>$$</p>
-<p>dY_t = d(e^{\theta t} X_t)
-= e^{\theta t} dX_t + X_t d(e^{\theta t}) + d[e^{\theta t}, X_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = d(e^{\theta t} X_t)
+= e^{\theta t} dX_t + X_t d(e^{\theta t}) + d[e^{\theta t}, X_t]
+\]</div>
 <p>Since <span class="arithmatex">\(e^{\theta t}\)</span> is deterministic, <span class="arithmatex">\(d[e^{\theta t}, X_t] = 0\)</span>:</p>
-<p>$$</p>
-<p>dY_t = e^{\theta t} dX_t + \theta e^{\theta t} X_t \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = e^{\theta t} dX_t + \theta e^{\theta t} X_t \, dt
+\]</div>
 <p><strong>Step 3</strong>: Substitute <span class="arithmatex">\(dX_t\)</span>:</p>
-<p>$$</p>
-<p>dY_t = e^{\theta t}(-\theta X_t dt + \sigma dB_t) + \theta e^{\theta t} X_t dt
-= \sigma e^{\theta t} dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = e^{\theta t}(-\theta X_t dt + \sigma dB_t) + \theta e^{\theta t} X_t dt
+= \sigma e^{\theta t} dB_t
+\]</div>
 <p><strong>Step 4</strong>: Integrate:</p>
-<p>$$</p>
-<p>Y_t = Y_0 + \sigma \int_0^t e^{\theta s} dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = Y_0 + \sigma \int_0^t e^{\theta s} dB_s
+\]</div>
 <p><strong>Step 5</strong>: Substitute back <span class="arithmatex">\(Y_t = e^{\theta t} X_t\)</span>:</p>
-<p>$$</p>
-<p>e^{\theta t} X_t = x_0 + \sigma \int_0^t e^{\theta s} dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{\theta t} X_t = x_0 + \sigma \int_0^t e^{\theta s} dB_s
+\]</div>
 <p><strong>Solution</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t = e^{-\theta t} x_0 + \sigma e^{-\theta t} \int_0^t e^{\theta s} dB_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is the <strong>explicit solution</strong> to the Ornstein-Uhlenbeck SDE, obtained via integration by parts.</p>
 <hr />
 <h2 id="general-formula-for-product-of-ito-integrals">General formula for product of Itô integrals<a class="headerlink" href="#general-formula-for-product-of-ito-integrals" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(I_t^{(1)} = \int_0^t H_s^{(1)} dB_s^{(1)}\)</span> and <span class="arithmatex">\(I_t^{(2)} = \int_0^t H_s^{(2)} dB_s^{(2)}\)</span> be Itô integrals (possibly with different Brownian motions). Then:</p>
-<p>$$</p>
-<p>I_t^{(1)} I_t^{(2)}
-= \int_0^t I_s^{(1)} dI_s^{(2)} + \int_0^t I_s^{(2)} dI_s^{(1)} + [I^{(1)}, I^{(2)}]_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t^{(1)} I_t^{(2)}
+= \int_0^t I_s^{(1)} dI_s^{(2)} + \int_0^t I_s^{(2)} dI_s^{(1)} + [I^{(1)}, I^{(2)}]_t
+\]</div>
 <p>If <span class="arithmatex">\(B_s^{(1)} = B_s^{(2)} = B_s\)</span> (same Brownian motion):</p>
-<p>$$</p>
-<p>[I^{(1)}, I^{(2)}]_t = \int_0^t H_s^{(1)} H_s^{(2)} \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[I^{(1)}, I^{(2)}]_t = \int_0^t H_s^{(1)} H_s^{(2)} \, ds
+\]</div>
 <p>If <span class="arithmatex">\(B_s^{(1)} \perp B_s^{(2)}\)</span> (independent):</p>
-<p>$$</p>
-<p>[I^{(1)}, I^{(2)}]_t = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[I^{(1)}, I^{(2)}]_t = 0
+\]</div>
 <p>This formula generalizes integration by parts to arbitrary Itô integrals.</p>
 <hr />
 <h2 id="connection-to-itos-product-rule">Connection to Itô's product rule<a class="headerlink" href="#connection-to-itos-product-rule" title="Permanent link">&para;</a></h2>
 <p>The integration by parts formula is equivalent to <strong>Itô's product rule</strong>:</p>
-<p>$$</p>
-<p>d(X_t Y_t) = X_t dY_t + Y_t dX_t + dX_t \, dY_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(X_t Y_t) = X_t dY_t + Y_t dX_t + dX_t \, dY_t
+\]</div>
 <p>where <span class="arithmatex">\(dX_t \, dY_t\)</span> denotes the quadratic covariation:</p>
-<p>$$</p>
-<p>dX_t \, dY_t = d[X, Y]_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t \, dY_t = d[X, Y]_t
+\]</div>
 <p><strong>Why is this different from classical calculus?</strong> In ordinary calculus, <span class="arithmatex">\(dx \, dy = 0\)</span> (products of differentials vanish). In stochastic calculus, <span class="arithmatex">\(dB_t \, dB_t = dt\)</span> is <strong>non-zero</strong>, leading to the additional term.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The <strong>stochastic integration by parts formula</strong> is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 d(X_t Y_t) = X_t dY_t + Y_t dX_t + d[X, Y]_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Key points</strong>:</p>
 <ol>
 <li>

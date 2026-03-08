@@ -46851,13 +46851,13 @@
 <h2 id="model-definition">Model Definition<a class="headerlink" href="#model-definition" title="Permanent link">&para;</a></h2>
 <h3 id="dynamics-under-the-forward-measure">Dynamics Under the Forward Measure<a class="headerlink" href="#dynamics-under-the-forward-measure" title="Permanent link">&para;</a></h3>
 <p>The SABR model specifies dynamics for a forward price <span class="arithmatex">\(F_t\)</span> (e.g., a forward rate or forward stock price):</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dF_t &amp;= \sigma_t F_t^{\beta}\,dW_t^F \\
 d\sigma_t &amp;= \nu\sigma_t\,dW_t^{\sigma} \\
 d\langle W^F, W^{\sigma} \rangle_t &amp;= \rho\,dt
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>with initial conditions <span class="arithmatex">\(F_0 = F\)</span> and <span class="arithmatex">\(\sigma_0 = \alpha\)</span>.</p>
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <table>
@@ -46962,49 +46962,49 @@ d\langle W^F, W^{\sigma} \rangle_t &amp;= \rho\,dt
 <h2 id="hagans-implied-volatility-formula">Hagan's Implied Volatility Formula<a class="headerlink" href="#hagans-implied-volatility-formula" title="Permanent link">&para;</a></h2>
 <h3 id="the-asymptotic-approximation">The Asymptotic Approximation<a class="headerlink" href="#the-asymptotic-approximation" title="Permanent link">&para;</a></h3>
 <p>Hagan, Kumar, Lesniewski, and Woodward (2002) derived an <strong>asymptotic formula</strong> for implied volatility:</p>
-<p>$$</p>
-<p>\sigma_{\text{impl}}(K, F) = \sigma_B(K, F) \cdot \left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho\beta\nu\alpha}{4(FK)^{(1-\beta)/2}} + \frac{2-3\rho^2}{24}\nu^2\right)T + O(T^2)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{impl}}(K, F) = \sigma_B(K, F) \cdot \left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho\beta\nu\alpha}{4(FK)^{(1-\beta)/2}} + \frac{2-3\rho^2}{24}\nu^2\right)T + O(T^2)\right]
+\]</div>
 <p>where the <strong>base volatility</strong> <span class="arithmatex">\(\sigma_B\)</span> is:</p>
-<p>$$</p>
-<p>\sigma_B(K, F) = \frac{\alpha}{(FK)^{(1-\beta)/2}\left[1 + \frac{(1-\beta)^2}{24}\log^2(F/K) + \frac{(1-\beta)^4}{1920}\log^4(F/K)\right]} \cdot \frac{z}{x(z)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_B(K, F) = \frac{\alpha}{(FK)^{(1-\beta)/2}\left[1 + \frac{(1-\beta)^2}{24}\log^2(F/K) + \frac{(1-\beta)^4}{1920}\log^4(F/K)\right]} \cdot \frac{z}{x(z)}
+\]</div>
 <p>with:</p>
-<p>$$</p>
-<p>z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2}\log(F/K)</p>
-<p>$$</p>
-<p>$$</p>
-<p>x(z) = \log\left(\frac{\sqrt{1-2\rho z + z^2} + z - \rho}{1-\rho}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2}\log(F/K)
+\]</div>
+<div class="arithmatex">\[
+x(z) = \log\left(\frac{\sqrt{1-2\rho z + z^2} + z - \rho}{1-\rho}\right)
+\]</div>
 <h3 id="atm-formula-k-f">ATM Formula (K = F)<a class="headerlink" href="#atm-formula-k-f" title="Permanent link">&para;</a></h3>
 <p>At the money, the formula simplifies significantly:</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}} = \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{F^{2(1-\beta)}} + \frac{\rho\beta\nu\alpha}{4F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}} = \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{F^{2(1-\beta)}} + \frac{\rho\beta\nu\alpha}{4F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]
+\]</div>
 <p><strong>For <span class="arithmatex">\(\beta = 1\)</span> (lognormal):</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}} = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}} = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right]
+\]</div>
 <h3 id="skew-and-curvature">Skew and Curvature<a class="headerlink" href="#skew-and-curvature" title="Permanent link">&para;</a></h3>
 <p>Taking derivatives of the Hagan formula:</p>
 <p><strong>Skew (first derivative):</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|<em _text_ATM="\text{ATM">{k=0} \approx \frac{\rho\nu}{2\sigma</em>}}} - \frac{(1-\beta)}{2F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \approx \frac{\rho\nu}{2\sigma_{\text{ATM}}} - \frac{(1-\beta)}{2F}
+\]</div>
 <p>where <span class="arithmatex">\(k = \log(K/F)\)</span>.</p>
 <p><strong>Curvature (second derivative):</strong></p>
-<p>$$</p>
-<p>\frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2}\bigg|<em _text_ATM="\text{ATM">{k=0} \approx \frac{\nu^2(1-\rho^2)}{2\sigma</em>}}} + \text{(corrections)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2}\bigg|_{k=0} \approx \frac{\nu^2(1-\rho^2)}{2\sigma_{\text{ATM}}} + \text{(corrections)}
+\]</div>
 <hr />
 <h2 id="calibration">Calibration<a class="headerlink" href="#calibration" title="Permanent link">&para;</a></h2>
 <h3 id="standard-approach">Standard Approach<a class="headerlink" href="#standard-approach" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1:</strong> Fix <span class="arithmatex">\(\beta\)</span> (often to market convention)</p>
 <p><strong>Step 2:</strong> Set <span class="arithmatex">\(\alpha\)</span> from ATM implied volatility (approximately)</p>
 <p><strong>Step 3:</strong> Fit <span class="arithmatex">\(\rho\)</span> and <span class="arithmatex">\(\nu\)</span> to OTM options using least squares:</p>
-<p>$$</p>
-<p>\min_{\rho, \nu} \sum_i \left(\sigma_{\text{impl}}^{\text{market}}(K_i) - \sigma_{\text{impl}}^{\text{SABR}}(K_i; \alpha, \beta, \rho, \nu)\right)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\rho, \nu} \sum_i \left(\sigma_{\text{impl}}^{\text{market}}(K_i) - \sigma_{\text{impl}}^{\text{SABR}}(K_i; \alpha, \beta, \rho, \nu)\right)^2
+\]</div>
 <h3 id="typical-calibrated-values">Typical Calibrated Values<a class="headerlink" href="#typical-calibrated-values" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47088,21 +47088,21 @@ d\langle W^F, W^{\sigma} \rangle_t &amp;= \rho\,dt
 - Lognormal (<span class="arithmatex">\(\beta = 1\)</span>) excludes negative rates</p>
 <h3 id="shifted-sabr">Shifted SABR<a class="headerlink" href="#shifted-sabr" title="Permanent link">&para;</a></h3>
 <p>Introduce a shift <span class="arithmatex">\(s\)</span>:</p>
-<p>$$</p>
-<p>dF_t = \sigma_t (F_t + s)^{\beta}\,dW_t^F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dF_t = \sigma_t (F_t + s)^{\beta}\,dW_t^F
+\]</div>
 <p>The shifted forward <span class="arithmatex">\(\tilde{F} = F + s\)</span> remains positive if <span class="arithmatex">\(s\)</span> is large enough.</p>
 <p><strong>Calibration:</strong> Choose <span class="arithmatex">\(s\)</span> such that <span class="arithmatex">\(F_{\min} + s &gt; 0\)</span>.</p>
 <h3 id="normal-sabr-0">Normal SABR (β = 0)<a class="headerlink" href="#normal-sabr-0" title="Permanent link">&para;</a></h3>
 <p>Setting <span class="arithmatex">\(\beta = 0\)</span>:</p>
-<p>$$</p>
-<p>dF_t = \sigma_t\,dW_t^F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dF_t = \sigma_t\,dW_t^F
+\]</div>
 <p>Allows negative rates naturally (Bachelier-type model).</p>
 <p><strong>Hagan formula for <span class="arithmatex">\(\beta = 0\)</span>:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{impl}}^N(K, F) = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right] \cdot \frac{z}{x(z)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{impl}}^N(K, F) = \alpha\left[1 + \frac{2-3\rho^2}{24}\nu^2 T\right] \cdot \frac{z}{x(z)}
+\]</div>
 <p>where <span class="arithmatex">\(z = \frac{\nu}{\alpha}(F - K)\)</span> and <span class="arithmatex">\(x(z)\)</span> as before.</p>
 <hr />
 <h2 id="comparison-with-heston">Comparison with Heston<a class="headerlink" href="#comparison-with-heston" title="Permanent link">&para;</a></h2>
@@ -47162,9 +47162,9 @@ d\langle W^F, W^{\sigma} \rangle_t &amp;= \rho\,dt
 <h3 id="numerical-stability">Numerical Stability<a class="headerlink" href="#numerical-stability" title="Permanent link">&para;</a></h3>
 <p><strong>Issue:</strong> <span class="arithmatex">\(x(z)\)</span> has numerical issues when <span class="arithmatex">\(z \to 0\)</span> or <span class="arithmatex">\(\rho \to \pm 1\)</span></p>
 <p><strong>Solution:</strong> Use series expansion for small <span class="arithmatex">\(z\)</span>:</p>
-<p>$$</p>
-<p>x(z) \approx z\left(1 + \frac{\rho z}{2} + \frac{(2\rho^2 - 1)z^2}{6} + \cdots\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x(z) \approx z\left(1 + \frac{\rho z}{2} + \frac{(2\rho^2 - 1)z^2}{6} + \cdots\right)
+\]</div>
 <h3 id="python-implementation">Python Implementation<a class="headerlink" href="#python-implementation" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 

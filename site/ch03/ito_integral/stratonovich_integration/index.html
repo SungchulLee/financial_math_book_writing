@@ -46820,32 +46820,32 @@ t_j^* = \frac{t_j + t_{j+1}}{2},
 <p>The two integrals are related by a <strong>correction term</strong> involving the quadratic covariation.</p>
 <h3 id="conversion-formula">Conversion Formula<a class="headerlink" href="#conversion-formula" title="Permanent link">&para;</a></h3>
 <p>For a process <span class="arithmatex">\(f(t, X_t)\)</span> where <span class="arithmatex">\(X_t\)</span> satisfies an SDE, the Stratonovich integral can be expressed in terms of the Itô integral:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \int_0^t f(s, X_s) \circ dW_s = \int_0^t f(s, X_s)\,dW_s + \frac{1}{2}\int_0^t \frac{\partial f}{\partial x}(s, X_s)\sigma(s, X_s)\,ds
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Equivalently</strong>:</p>
-<p>$$</p>
-<p>\int_0^t f \circ dW = \int_0^t f\,dW + \frac{1}{2}[f, W]_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f \circ dW = \int_0^t f\,dW + \frac{1}{2}[f, W]_t
+\]</div>
 <p>where <span class="arithmatex">\([f, W]_t\)</span> is the quadratic covariation between <span class="arithmatex">\(f\)</span> and <span class="arithmatex">\(W\)</span>.</p>
 <h3 id="example-b_t-db_t">Example: ∫ B_t ∘ dB_t<a class="headerlink" href="#example-b_t-db_t" title="Permanent link">&para;</a></h3>
 <p>Using the conversion formula with <span class="arithmatex">\(f(x) = x\)</span> and <span class="arithmatex">\(\sigma = 1\)</span>:</p>
-<p>$$</p>
-<p>\int_0^t B_s \circ dB_s = \int_0^t B_s\,dB_s + \frac{1}{2}\int_0^t 1\,ds</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{1}{2}(B_t^2 - t) + \frac{1}{2}t = \frac{1}{2}B_t^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t B_s \circ dB_s = \int_0^t B_s\,dB_s + \frac{1}{2}\int_0^t 1\,ds
+\]</div>
+<div class="arithmatex">\[
+= \frac{1}{2}(B_t^2 - t) + \frac{1}{2}t = \frac{1}{2}B_t^2
+\]</div>
 <p>This is exactly what the classical chain rule would give! (No Itô correction needed for Stratonovich.)</p>
 <hr />
 <h2 id="the-stratonovich-chain-rule">The Stratonovich Chain Rule<a class="headerlink" href="#the-stratonovich-chain-rule" title="Permanent link">&para;</a></h2>
 <p>A key advantage of Stratonovich calculus is that the <strong>classical chain rule holds</strong>.</p>
 <p><strong>Theorem</strong>: For <span class="arithmatex">\(f \in C^2\)</span> and <span class="arithmatex">\(X_t\)</span> satisfying a Stratonovich SDE:</p>
-<p>$$</p>
-<p>df(X_t) = f'(X_t) \circ dX_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(X_t) = f'(X_t) \circ dX_t
+\]</div>
 <p><strong>No second-order correction term appears!</strong></p>
 <h3 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h3>
 <table>
@@ -46889,17 +46889,17 @@ t_j^* = \frac{t_j + t_{j+1}}{2},
 <p>The <strong>Wong-Zakai theorem</strong> provides deep insight into why the Stratonovich integral appears naturally in physics.</p>
 <h3 id="statement">Statement<a class="headerlink" href="#statement" title="Permanent link">&para;</a></h3>
 <p>Consider the SDE:</p>
-<p>$$</p>
-<p>dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
+\]</div>
 <p>Now replace Brownian motion <span class="arithmatex">\(W_t\)</span> by a <strong>smooth approximation</strong> <span class="arithmatex">\(W_t^{(n)}\)</span> (e.g., piecewise linear interpolation), and solve the <strong>ordinary</strong> differential equation:</p>
-<p>$$</p>
-<p>\frac{dX_t^{(n)}}{dt} = b(X_t^{(n)}) + \sigma(X_t^{(n)})\frac{dW_t^{(n)}}{dt}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dX_t^{(n)}}{dt} = b(X_t^{(n)}) + \sigma(X_t^{(n)})\frac{dW_t^{(n)}}{dt}
+\]</div>
 <p><strong>Wong-Zakai Theorem</strong>: As <span class="arithmatex">\(n \to \infty\)</span>, the solutions <span class="arithmatex">\(X_t^{(n)}\)</span> converge to the solution of the <strong>Stratonovich SDE</strong>:</p>
-<p>$$</p>
-<p>dX_t = b(X_t)\,dt + \sigma(X_t) \circ dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t)\,dt + \sigma(X_t) \circ dW_t
+\]</div>
 <p><strong>NOT</strong> the Itô SDE!</p>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46909,15 +46909,15 @@ t_j^* = \frac{t_j + t_{j+1}}{2},
 </ul>
 <h3 id="converting-wong-zakai-to-ito">Converting Wong-Zakai to Itô<a class="headerlink" href="#converting-wong-zakai-to-ito" title="Permanent link">&para;</a></h3>
 <p>If physical reasoning suggests a Stratonovich SDE:</p>
-<p>$$</p>
-<p>dX_t = b(X_t)\,dt + \sigma(X_t) \circ dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t)\,dt + \sigma(X_t) \circ dW_t
+\]</div>
 <p>The equivalent Itô SDE is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dX_t = \left(b(X_t) + \frac{1}{2}\sigma(X_t)\sigma'(X_t)\right)dt + \sigma(X_t)\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The extra drift term <span class="arithmatex">\(\frac{1}{2}\sigma\sigma'\)</span> is called the <strong>noise-induced drift</strong> or <strong>Stratonovich correction</strong>.</p>
 <hr />
 <h2 id="when-to-use-which">When to Use Which?<a class="headerlink" href="#when-to-use-which" title="Permanent link">&para;</a></h2>
@@ -46938,26 +46938,26 @@ dX_t = \left(b(X_t) + \frac{1}{2}\sigma(X_t)\sigma'(X_t)\right)dt + \sigma(X_t)\
 <hr />
 <h2 id="example-overdamped-langevin-equation">Example: Overdamped Langevin Equation<a class="headerlink" href="#example-overdamped-langevin-equation" title="Permanent link">&para;</a></h2>
 <p>In physics, the overdamped Langevin equation is often written as:</p>
-<p>$$</p>
-<p>\gamma \frac{dx}{dt} = -V'(x) + \sqrt{2\gamma k_B T}\,\xi(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\gamma \frac{dx}{dt} = -V'(x) + \sqrt{2\gamma k_B T}\,\xi(t)
+\]</div>
 <p>where <span class="arithmatex">\(\xi(t)\)</span> is "white noise."</p>
 <p><strong>Physical interpretation</strong> (Wong-Zakai) suggests Stratonovich:</p>
-<p>$$</p>
-<p>dx = -\frac{V'(x)}{\gamma}\,dt + \sqrt{\frac{2k_B T}{\gamma}} \circ dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dx = -\frac{V'(x)}{\gamma}\,dt + \sqrt{\frac{2k_B T}{\gamma}} \circ dW_t
+\]</div>
 <p><strong>Equivalent Itô form</strong> (for state-independent diffusion, they coincide):</p>
-<p>$$</p>
-<p>dx = -\frac{V'(x)}{\gamma}\,dt + \sqrt{\frac{2k_B T}{\gamma}}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dx = -\frac{V'(x)}{\gamma}\,dt + \sqrt{\frac{2k_B T}{\gamma}}\,dW_t
+\]</div>
 <p>When diffusion is state-dependent, the correction term becomes crucial!</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \int f \circ dW = \int f\,dW + \frac{1}{2}\int f'\sigma\,dt
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

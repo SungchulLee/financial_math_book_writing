@@ -46905,14 +46905,14 @@
 - <strong>Nodes:</strong> Financial institutions
 - <strong>Edges:</strong> Exposures (claims between institutions)
 - <strong>Edge weight:</strong> Size of exposure</p>
-<p>$$</p>
-<p>\Pi_{ij} = \text{Exposure of } i \text{ to } j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{ij} = \text{Exposure of } i \text{ to } j
+\]</div>
 <h3 id="liability-matrix">Liability Matrix<a class="headerlink" href="#liability-matrix" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>relative liability matrix</strong>:</p>
-<p>$$</p>
-<p>\bar{\Pi}<em ij="ij">{ij} = \frac{\Pi</em>}}{\sum_k \Pi_{ik}} = \frac{\text{Claim of } i \text{ on } j}{\text{Total liabilities of } i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{\Pi}_{ij} = \frac{\Pi_{ij}}{\sum_k \Pi_{ik}} = \frac{\text{Claim of } i \text{ on } j}{\text{Total liabilities of } i}
+\]</div>
 <p>This captures the fraction of each institution's liabilities owed to others.</p>
 <hr />
 <h2 id="eisenberg-noe-clearing-model">Eisenberg-Noe Clearing Model<a class="headerlink" href="#eisenberg-noe-clearing-model" title="Permanent link">&para;</a></h2>
@@ -46923,18 +46923,18 @@
 - Liability matrix <span class="arithmatex">\(\Pi\)</span> where <span class="arithmatex">\(\Pi_{ij}\)</span> = share of <span class="arithmatex">\(i\)</span>'s liabilities owed to <span class="arithmatex">\(j\)</span></p>
 <h3 id="clearing-payments">Clearing Payments<a class="headerlink" href="#clearing-payments" title="Permanent link">&para;</a></h3>
 <p>A <strong>clearing payment vector</strong> <span class="arithmatex">\(p = (p_1, \ldots, p_n)\)</span> satisfies:</p>
-<p>$$</p>
-<p>p_i = \min\left(\bar{p}<em j="1">i, \, e_i + \sum</em> p_j\right)}^n \Pi_{ji</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_i = \min\left(\bar{p}_i, \, e_i + \sum_{j=1}^n \Pi_{ji} p_j\right)
+\]</div>
 <p><strong>Interpretation:</strong>
 - Institution <span class="arithmatex">\(i\)</span> pays the minimum of:
   - What it owes (<span class="arithmatex">\(\bar{p}_i\)</span>)
   - What it has: external assets plus what it receives from others</p>
 <h3 id="fixed-point-characterization">Fixed-Point Characterization<a class="headerlink" href="#fixed-point-characterization" title="Permanent link">&para;</a></h3>
 <p>The clearing vector is a fixed point:</p>
-<p>$$</p>
-<p>p = \min(\bar{p}, \, e + \Pi^\top p)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p = \min(\bar{p}, \, e + \Pi^\top p)
+\]</div>
 <p><strong>Theorem (Eisenberg-Noe, 2001):</strong> Under mild conditions, there exists a unique clearing vector that can be computed iteratively.</p>
 <h3 id="default-and-contagion">Default and Contagion<a class="headerlink" href="#default-and-contagion" title="Permanent link">&para;</a></h3>
 <p>Institution <span class="arithmatex">\(i\)</span> <strong>defaults</strong> if <span class="arithmatex">\(p_i &lt; \bar{p}_i\)</span>.</p>
@@ -46946,9 +46946,9 @@
 <h2 id="balance-sheet-amplification">Balance Sheet Amplification<a class="headerlink" href="#balance-sheet-amplification" title="Permanent link">&para;</a></h2>
 <h3 id="leverage-effect">Leverage Effect<a class="headerlink" href="#leverage-effect" title="Permanent link">&para;</a></h3>
 <p>For a leveraged institution:</p>
-<p>$$</p>
-<p>\text{Equity} = \text{Assets} - \text{Liabilities}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Equity} = \text{Assets} - \text{Liabilities}
+\]</div>
 <p>A 1% decline in assets causes <span class="arithmatex">\(\frac{1}{\text{Equity/Assets}}\)</span> % decline in equity.</p>
 <p><strong>Example:</strong> With 10× leverage, 1% asset loss = 10% equity loss.</p>
 <h3 id="fire-sale-externality">Fire Sale Externality<a class="headerlink" href="#fire-sale-externality" title="Permanent link">&para;</a></h3>
@@ -46957,9 +46957,9 @@
 2. Other holders suffer mark-to-market losses
 3. May trigger further sales</p>
 <p><strong>Price impact:</strong></p>
-<p>$$</p>
-<p>P' = P \cdot \left(1 - \alpha \cdot \frac{\text{Sales}}{\text{Market Cap}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P' = P \cdot \left(1 - \alpha \cdot \frac{\text{Sales}}{\text{Market Cap}}\right)
+\]</div>
 <h3 id="margin-spirals">Margin Spirals<a class="headerlink" href="#margin-spirals" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Asset prices fall</li>
@@ -47010,22 +47010,22 @@
 <hr />
 <h2 id="systemic-risk-measures">Systemic Risk Measures<a class="headerlink" href="#systemic-risk-measures" title="Permanent link">&para;</a></h2>
 <h3 id="covar-adrian-brunnermeier">CoVaR (Adrian-Brunnermeier)<a class="headerlink" href="#covar-adrian-brunnermeier" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{CoVaR}<em>\alpha^{i|j} = \text{VaR}</em>\alpha(\text{System} \mid \text{Institution } j \text{ at VaR})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CoVaR}_\alpha^{i|j} = \text{VaR}_\alpha(\text{System} \mid \text{Institution } j \text{ at VaR})
+\]</div>
 <p><strong><span class="arithmatex">\(\Delta\)</span>CoVaR:</strong> Contribution of institution <span class="arithmatex">\(j\)</span> to system risk:</p>
-<p>$$</p>
-<p>\Delta\text{CoVaR}^j = \text{CoVaR}^{i|j=\text{VaR}} - \text{CoVaR}^{i|j=\text{median}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta\text{CoVaR}^j = \text{CoVaR}^{i|j=\text{VaR}} - \text{CoVaR}^{i|j=\text{median}}
+\]</div>
 <h3 id="marginal-expected-shortfall-mes">Marginal Expected Shortfall (MES)<a class="headerlink" href="#marginal-expected-shortfall-mes" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{MES}<em _text_market="\text{market">i = \mathbb{E}[R_i \mid R</em>]}} &lt; \text{VaR}_\alpha^{\text{market}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MES}_i = \mathbb{E}[R_i \mid R_{\text{market}} &lt; \text{VaR}_\alpha^{\text{market}}]
+\]</div>
 <p>Expected loss of institution <span class="arithmatex">\(i\)</span> when the market is in distress.</p>
 <h3 id="srisk">SRISK<a class="headerlink" href="#srisk" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{SRISK}_i = k \cdot D_i - (1-k) \cdot W_i \cdot (1 - \text{LRMES}_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{SRISK}_i = k \cdot D_i - (1-k) \cdot W_i \cdot (1 - \text{LRMES}_i)
+\]</div>
 <p>Capital shortfall in a crisis, where:
 - <span class="arithmatex">\(k\)</span> = prudential capital ratio
 - <span class="arithmatex">\(D_i\)</span> = debt

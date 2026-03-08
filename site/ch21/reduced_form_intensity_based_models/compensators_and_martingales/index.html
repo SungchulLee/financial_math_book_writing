@@ -47041,9 +47041,9 @@
 <h2 id="the-default-indicator-process">The Default Indicator Process<a class="headerlink" href="#the-default-indicator-process" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>default indicator</strong> (or default process) is:</p>
-<p>$$</p>
-<p>H_t := \mathbf{1}_{{\tau \le t}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_t := \mathbf{1}_{\{\tau \le t\}}
+\]</div>
 <p>where <span class="arithmatex">\(\tau\)</span> is the default time.</p>
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47054,17 +47054,17 @@
 </ul>
 <h3 id="submartingale-property">Submartingale Property<a class="headerlink" href="#submartingale-property" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(H_t\)</span> is increasing, it is automatically a <strong>submartingale</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}[H_T \mid \mathcal{G}_t] \ge H_t \quad \text{for } T \ge t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[H_T \mid \mathcal{G}_t] \ge H_t \quad \text{for } T \ge t
+\]</div>
 <p>The Doob-Meyer decomposition guarantees the existence of a predictable compensator.</p>
 <hr />
 <h2 id="the-compensator">The Compensator<a class="headerlink" href="#the-compensator" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>The <strong>compensator</strong> of the default indicator <span class="arithmatex">\(H_t\)</span> is the unique predictable increasing process <span class="arithmatex">\(A_t\)</span> such that:</p>
-<p>$$</p>
-<p>M_t := H_t - A_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t := H_t - A_t
+\]</div>
 <p>is a <span class="arithmatex">\((\mathcal{G}_t, \mathbb{Q})\)</span>-martingale.</p>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <p>The compensator <span class="arithmatex">\(A_t\)</span> represents the <strong>cumulative expected default</strong> up to time <span class="arithmatex">\(t\)</span>. It "compensates" for the jump in <span class="arithmatex">\(H_t\)</span> to create a martingale.</p>
@@ -47076,35 +47076,35 @@
 <h2 id="compensator-under-intensity-models">Compensator Under Intensity Models<a class="headerlink" href="#compensator-under-intensity-models" title="Permanent link">&para;</a></h2>
 <h3 id="explicit-form">Explicit Form<a class="headerlink" href="#explicit-form" title="Permanent link">&para;</a></h3>
 <p>Under the standard intensity framework, the compensator is:</p>
-<p>$$</p>
-<p>A_t = \int_0^{t \wedge \tau} \lambda_s \, ds,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A_t = \int_0^{t \wedge \tau} \lambda_s \, ds
+\]</div>
 <p>where <span class="arithmatex">\(\lambda_s\)</span> is the default intensity and <span class="arithmatex">\(t \wedge \tau = \min(t, \tau)\)</span>.</p>
 <p><strong>Key observation:</strong> The integral is only up to <span class="arithmatex">\(t \wedge \tau\)</span> (stopped at default). After default, <span class="arithmatex">\(A_t\)</span> remains constant.</p>
 <h3 id="the-compensated-martingale">The Compensated Martingale<a class="headerlink" href="#the-compensated-martingale" title="Permanent link">&para;</a></h3>
 <p>The process:</p>
-<p>$$</p>
-<p>M_t = H_t - \int_0^{t \wedge \tau} \lambda_s \, ds = \mathbf{1}_{{\tau \le t}} - \int_0^{t \wedge \tau} \lambda_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t = H_t - \int_0^{t \wedge \tau} \lambda_s \, ds = \mathbf{1}_{\{\tau \le t\}} - \int_0^{t \wedge \tau} \lambda_s \, ds
+\]</div>
 <p>is a <span class="arithmatex">\((\mathcal{G}_t, \mathbb{Q})\)</span>-martingale with <span class="arithmatex">\(M_0 = 0\)</span>.</p>
 <h3 id="verification-heuristic">Verification (Heuristic)<a class="headerlink" href="#verification-heuristic" title="Permanent link">&para;</a></h3>
 <p>Pre-default (<span class="arithmatex">\(t &lt; \tau\)</span>): <span class="arithmatex">\(H_t = 0\)</span> and <span class="arithmatex">\(A_t = \int_0^t \lambda_s ds\)</span></p>
 <p>At default (<span class="arithmatex">\(t = \tau\)</span>): <span class="arithmatex">\(H_t\)</span> jumps by +1, while <span class="arithmatex">\(A_t\)</span> has been accumulating continuously</p>
 <p>The "balance" is maintained in expectation:</p>
-<p>$$</p>
-<p>\mathbb{E}[dH_t \mid \mathcal{G}_{t-}] = \lambda_t \, dt = dA_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[dH_t \mid \mathcal{G}_{t-}] = \lambda_t \, dt = dA_t
+\]</div>
 <hr />
 <h2 id="martingale-representation">Martingale Representation<a class="headerlink" href="#martingale-representation" title="Permanent link">&para;</a></h2>
 <h3 id="differential-form">Differential Form<a class="headerlink" href="#differential-form" title="Permanent link">&para;</a></h3>
 <p>In differential notation:</p>
-<p>$$</p>
-<p>dM_t = dH_t - \lambda_t \mathbf{1}_{{\tau &gt; t}} \, dt.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_t = dH_t - \lambda_t \mathbf{1}_{\{\tau &gt; t\}} \, dt
+\]</div>
 <p>Since <span class="arithmatex">\(dH_t = \mathbf{1}_{\{\tau \in dt\}}\)</span> (the jump indicator), this reads:</p>
-<p>$$</p>
-<p>dM_t = dH_t - \lambda_t \mathbf{1}_{{\tau \ge t}} \, dt.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_t = dH_t - \lambda_t \mathbf{1}_{\{\tau \ge t\}} \, dt
+\]</div>
 <h3 id="jump-martingale">Jump Martingale<a class="headerlink" href="#jump-martingale" title="Permanent link">&para;</a></h3>
 <p>The martingale <span class="arithmatex">\(M_t\)</span> is a <strong>purely discontinuous</strong> (jump) martingale:
 - It is constant between jumps
@@ -47112,13 +47112,13 @@
 - No continuous martingale component</p>
 <h3 id="quadratic-variation">Quadratic Variation<a class="headerlink" href="#quadratic-variation" title="Permanent link">&para;</a></h3>
 <p>The predictable quadratic variation is:</p>
-<p>$$</p>
-<p>\langle M \rangle_t = A_t = \int_0^{t \wedge \tau} \lambda_s \, ds.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\langle M \rangle_t = A_t = \int_0^{t \wedge \tau} \lambda_s \, ds
+\]</div>
 <p>The actual quadratic variation is:</p>
-<p>$$</p>
-<p>[M]<em _123_tau="{\tau" _le="\le" t_125_="t}">t = H_t = \mathbf{1}</em>.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[M]_t = H_t = \mathbf{1}_{\{\tau \le t\}}
+\]</div>
 <hr />
 <h2 id="role-in-pricing">Role in Pricing<a class="headerlink" href="#role-in-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="arbitrage-free-pricing-framework">Arbitrage-Free Pricing Framework<a class="headerlink" href="#arbitrage-free-pricing-framework" title="Permanent link">&para;</a></h3>
@@ -47130,15 +47130,15 @@
 </ol>
 <h3 id="the-key-pricing-decomposition">The Key Pricing Decomposition<a class="headerlink" href="#the-key-pricing-decomposition" title="Permanent link">&para;</a></h3>
 <p>For any <span class="arithmatex">\(\mathcal{G}_T\)</span>-measurable payoff <span class="arithmatex">\(X\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[X \mid \mathcal{G}<em T_125_="T}" _="&gt;" _123_tau="{\tau">t] = \mathbb{E}^{\mathbb{Q}}[X \cdot \mathbf{1}</em>} \mid \mathcal{G<em T_125_="T}" _123_tau="{\tau" _le="\le">t] + \mathbb{E}^{\mathbb{Q}}[X \cdot \mathbf{1}</em>_t].} \mid \mathcal{G</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[X \mid \mathcal{G}_t] = \mathbb{E}^{\mathbb{Q}}[X \cdot \mathbf{1}_{\{\tau &gt; T\}} \mid \mathcal{G}_t] + \mathbb{E}^{\mathbb{Q}}[X \cdot \mathbf{1}_{\{\tau \le T\}} \mid \mathcal{G}_t]
+\]</div>
 <p>The compensator structure allows explicit computation of each term.</p>
 <h3 id="pre-default-pricing-formula">Pre-Default Pricing Formula<a class="headerlink" href="#pre-default-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>On <span class="arithmatex">\(\{\tau &gt; t\}\)</span>, for a payoff <span class="arithmatex">\(Y(\tau)\)</span> at default:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} Y(\tau) \mathbf{1}_{{t &lt; \tau \le T}} \mid \mathcal{F}_t\right] = \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u r_s ds} Y(u) \lambda_u S(t,u) \, du \mid \mathcal{F}_t\right],</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} Y(\tau) \mathbf{1}_{\{t &lt; \tau \le T\}} \mid \mathcal{F}_t\right] = \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u r_s ds} Y(u) \lambda_u S(t,u) \, du \mid \mathcal{F}_t\right]
+\]</div>
 <p>where <span class="arithmatex">\(S(t,u) = e^{-\int_t^u \lambda_s ds}\)</span> is the survival probability.</p>
 <p>This formula <strong>converts a random stopping time expectation to a deterministic integral</strong>, which is computationally tractable.</p>
 <hr />
@@ -47148,13 +47148,13 @@
 - <span class="arithmatex">\(C(T)\)</span> at maturity <span class="arithmatex">\(T\)</span> if no default
 - <span class="arithmatex">\(R(\tau)\)</span> at default time <span class="arithmatex">\(\tau\)</span> if <span class="arithmatex">\(\tau \le T\)</span></p>
 <p>The price at time <span class="arithmatex">\(t\)</span> (on <span class="arithmatex">\(\{\tau &gt; t\}\)</span>) is:</p>
-<p>$$</p>
-<p>V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} C(T) \mathbf{1}<em T_125_="T}" _="&lt;" _123_t="{t" _le="\le" _tau="\tau">{{\tau &gt; T}} \mid \mathcal{F}_t\right] + \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} R(\tau) \mathbf{1}</em>_t\right].} \mid \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} C(T) \mathbf{1}_{\{\tau &gt; T\}} \mid \mathcal{F}_t\right] + \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} R(\tau) \mathbf{1}_{\{t &lt; \tau \le T\}} \mid \mathcal{F}_t\right]
+\]</div>
 <p>Using the compensator representation:</p>
-<p>$$</p>
-<p>V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} C(T) \mid \mathcal{F}_t\right] + \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} R(u) \lambda_u \, du \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} C(T) \mid \mathcal{F}_t\right] + \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} R(u) \lambda_u \, du \mid \mathcal{F}_t\right]
+\]</div>
 <h3 id="interpretation_1">Interpretation<a class="headerlink" href="#interpretation_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>First term:</strong> Survival-weighted terminal payoff, discounted at rate <span class="arithmatex">\(r + \lambda\)</span></li>
@@ -47166,9 +47166,9 @@
 <h3 id="progressive-enlargement-and-compensators">Progressive Enlargement and Compensators<a class="headerlink" href="#progressive-enlargement-and-compensators" title="Permanent link">&para;</a></h3>
 <p>Under progressive enlargement <span class="arithmatex">\(\mathcal{G}_t = \mathcal{F}_t \vee \sigma(\tau \wedge t)\)</span>:</p>
 <p>The compensator formula:</p>
-<p>$$</p>
-<p>A_t = \int_0^{t \wedge \tau} \lambda_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A_t = \int_0^{t \wedge \tau} \lambda_s \, ds
+\]</div>
 <p>arises naturally from the <strong>intensity hypothesis</strong>: the conditional default probability is governed by <span class="arithmatex">\(\lambda_t\)</span>.</p>
 <h3 id="immersion-preserved">Immersion Preserved<a class="headerlink" href="#immersion-preserved" title="Permanent link">&para;</a></h3>
 <p>When immersion holds:
@@ -47177,9 +47177,9 @@
 - Clean separation of default and market risks</p>
 <h3 id="without-immersion">Without Immersion<a class="headerlink" href="#without-immersion" title="Permanent link">&para;</a></h3>
 <p>If immersion fails, <span class="arithmatex">\(\mathcal{F}\)</span>-martingales <span class="arithmatex">\(X_t\)</span> need compensation:</p>
-<p>$$</p>
-<p>X_t - \int_0^{t \wedge \tau} \frac{d\langle X, G \rangle_s}{G_{s-}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t - \int_0^{t \wedge \tau} \frac{d\langle X, G \rangle_s}{G_{s-}}
+\]</div>
 <p>is a <span class="arithmatex">\(\mathcal{G}\)</span>-martingale, where <span class="arithmatex">\(G_t = \mathbb{Q}(\tau &gt; t \mid \mathcal{F}_t)\)</span>.</p>
 <hr />
 <h2 id="analogy-with-diffusion-models">Analogy with Diffusion Models<a class="headerlink" href="#analogy-with-diffusion-models" title="Permanent link">&para;</a></h2>
@@ -47212,20 +47212,20 @@
 </table>
 <h3 id="drift-removal-analogy">Drift Removal Analogy<a class="headerlink" href="#drift-removal-analogy" title="Permanent link">&para;</a></h3>
 <p>In diffusion models, Girsanov's theorem removes drift to create martingales:</p>
-<p>$$</p>
-<p>dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} - \theta_t \, dt.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} - \theta_t \, dt
+\]</div>
 <p>In credit models, the compensator plays an analogous role:</p>
-<p>$$</p>
-<p>dM_t = dH_t - \lambda_t \, dt.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_t = dH_t - \lambda_t \, dt
+\]</div>
 <hr />
 <h2 id="stochastic-integration-with-m_t">Stochastic Integration with M_t<a class="headerlink" href="#stochastic-integration-with-m_t" title="Permanent link">&para;</a></h2>
 <h3 id="integrating-against-the-compensated-martingale">Integrating Against the Compensated Martingale<a class="headerlink" href="#integrating-against-the-compensated-martingale" title="Permanent link">&para;</a></h3>
 <p>For a predictable process <span class="arithmatex">\(\phi_t\)</span>:</p>
-<p>$$</p>
-<p>\int_0^t \phi_s \, dM_s = \int_0^t \phi_s \, dH_s - \int_0^t \phi_s \lambda_s \mathbf{1}_{{\tau &gt; s}} \, ds.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t \phi_s \, dM_s = \int_0^t \phi_s \, dH_s - \int_0^t \phi_s \lambda_s \mathbf{1}_{\{\tau &gt; s\}} \, ds
+\]</div>
 <p>The first integral is <span class="arithmatex">\(\phi_\tau \mathbf{1}_{\{\tau \le t\}}\)</span> (value at default, if it occurs).</p>
 <h3 id="martingale-property">Martingale Property<a class="headerlink" href="#martingale-property" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\phi_t\)</span> is suitably bounded, then <span class="arithmatex">\(\int_0^t \phi_s dM_s\)</span> is a martingale. This enables:
@@ -47251,17 +47251,17 @@
 <p><strong>Setup:</strong> Zero-coupon bond paying 1 at <span class="arithmatex">\(T\)</span> with zero recovery.</p>
 <p><strong>Price under intensity model:</strong></p>
 <p>On <span class="arithmatex">\(\{\tau &gt; t\}\)</span>:</p>
-<p>$$</p>
-<p>P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \mathbf{1}_{{\tau &gt; T}} \mid \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \mathbf{1}_{\{\tau &gt; T\}} \mid \mathcal{F}_t\right]
+\]</div>
 <p>Using the fundamental formula:</p>
-<p>$$</p>
-<p>P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right]
+\]</div>
 <p><strong>Special case (deterministic <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(\lambda\)</span>):</strong></p>
-<p>$$</p>
-<p>P^d(t,T) = e^{-\int_t^T (r(s) + \lambda(s)) ds} = P(t,T) \cdot S(t,T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = e^{-\int_t^T (r(s) + \lambda(s)) ds} = P(t,T) \cdot S(t,T)
+\]</div>
 <p>The martingale/compensator framework justifies this formula rigorously.</p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

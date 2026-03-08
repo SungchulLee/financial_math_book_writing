@@ -46919,9 +46919,9 @@
 <h2 id="knights-risk-uncertainty-distinction">Knight's Risk-Uncertainty Distinction<a class="headerlink" href="#knights-risk-uncertainty-distinction" title="Permanent link">&para;</a></h2>
 <h3 id="1-definitions">1. Definitions<a class="headerlink" href="#1-definitions" title="Permanent link">&para;</a></h3>
 <p><strong>Risk</strong>: Situations where the probability distribution over outcomes is known or can be objectively estimated from data. This corresponds to the classical probabilistic framework where:</p>
-<p>$$</p>
-<p>\mathbb{E}[X] = \int_{\Omega} X(\omega) \, dP(\omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X] = \int_{\Omega} X(\omega) \, dP(\omega)
+\]</div>
 <p>for a known probability measure <span class="arithmatex">\(P\)</span>.</p>
 <p><strong>Knightian Uncertainty (Ambiguity)</strong>: Situations where the probability distribution is not uniquely specified, leading to a family of possible probability measures. Decision makers face <strong>model uncertainty</strong> about which probability measure governs the true data-generating process.</p>
 <h3 id="2-historical-context-and-motivation">2. Historical Context and Motivation<a class="headerlink" href="#2-historical-context-and-motivation" title="Permanent link">&para;</a></h3>
@@ -46934,17 +46934,17 @@
 <h3 id="1-savages-subjective-expected-utility">1. Savage's Subjective Expected Utility<a class="headerlink" href="#1-savages-subjective-expected-utility" title="Permanent link">&para;</a></h3>
 <p>Savage (1954) axiomatized decision-making under uncertainty using a unique subjective probability measure. However, this framework assumes that decision makers can always form precise probabilistic beliefs, which Knightian uncertainty challenges.</p>
 <p><strong>Savage's Axioms</strong>: Lead to a representation:</p>
-<p>$$</p>
-<p>U(f) = \int_{\Omega} u(f(\omega)) \, dP(\omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+U(f) = \int_{\Omega} u(f(\omega)) \, dP(\omega)
+\]</div>
 <p>where <span class="arithmatex">\(u\)</span> is a utility function and <span class="arithmatex">\(P\)</span> is a unique subjective probability measure.</p>
 <p><strong>Limitation</strong>: Savage's framework cannot accommodate situations where the decision maker is genuinely uncertain about which probability measure to use.</p>
 <h3 id="2-multiple-priors-representation">2. Multiple Priors Representation<a class="headerlink" href="#2-multiple-priors-representation" title="Permanent link">&para;</a></h3>
 <p>To capture Knightian uncertainty, we generalize from a single probability measure to a set of probability measures.</p>
 <p><strong>Definition</strong> (Set of Priors): Let <span class="arithmatex">\(\mathcal{P}\)</span> be a convex, closed set of probability measures on <span class="arithmatex">\((\Omega, \mathcal{F})\)</span>. The decision maker evaluates acts <span class="arithmatex">\(f: \Omega \to \mathbb{R}\)</span> using:</p>
-<p>$$</p>
-<p>V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]
+\]</div>
 <p>This is known as the <strong>maxmin expected utility</strong> representation (Gilboa-Schmeidler, 1989).</p>
 <p><strong>Interpretation</strong>: The decision maker:
 1. Computes expected utility under each plausible probability measure in <span class="arithmatex">\(\mathcal{P}\)</span>
@@ -46953,13 +46953,13 @@
 <h3 id="3-variational-preferences">3. Variational Preferences<a class="headerlink" href="#3-variational-preferences" title="Permanent link">&para;</a></h3>
 <p>An alternative representation uses a penalty function for deviating from a reference measure <span class="arithmatex">\(P_0\)</span>.</p>
 <p><strong>Variational Representation</strong> (Maccheroni, Marinacci, Rustichini, 2006):</p>
-<p>$$</p>
-<p>V(f) = \min_{P \in \mathcal{P}} \left{ \mathbb{E}_P[u(f)] + c(P | P_0) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \min_{P \in \mathcal{P}} \left\{ \mathbb{E}_P[u(f)] + c(P \| P_0) \right\}
+\]</div>
 <p>where <span class="arithmatex">\(c(P \| P_0)\)</span> is a convex penalty function, often chosen as relative entropy:</p>
-<p>$$</p>
-<p>c(P | P_0) = \theta \cdot D_{\text{KL}}(P | P_0) = \theta \int_{\Omega} \log\left(\frac{dP}{dP_0}\right) \, dP</p>
-<p>$$</p>
+<div class="arithmatex">\[
+c(P \| P_0) = \theta \cdot D_{\text{KL}}(P \| P_0) = \theta \int_{\Omega} \log\left(\frac{dP}{dP_0}\right) \, dP
+\]</div>
 <p>with <span class="arithmatex">\(\theta &gt; 0\)</span> measuring the degree of ambiguity aversion.</p>
 <p><strong>Properties</strong>:
 - When <span class="arithmatex">\(\theta \to 0\)</span>: Approaches classical expected utility with measure <span class="arithmatex">\(P_0\)</span>
@@ -46985,14 +46985,14 @@
 <p>This contradiction demonstrates that people systematically avoid ambiguous situations, violating the independence axiom in Savage's theory.</p>
 <h3 id="2-mathematical-analysis">2. Mathematical Analysis<a class="headerlink" href="#2-mathematical-analysis" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(P_{\text{Urn 2}}\)</span> denote the decision maker's beliefs about Urn 2. The observed preferences suggest:</p>
-<p>$$</p>
-<p>\inf_{P \in \mathcal{P}<em P="P" _in="\in" _mathcal_P="\mathcal{P">2} P(\text{Red}) &lt; 0.5 \quad \text{and} \quad \inf</em>) &lt; 0.5}_2} P(\text{Black</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{P \in \mathcal{P}_2} P(\text{Red}) &lt; 0.5 \quad \text{and} \quad \inf_{P \in \mathcal{P}_2} P(\text{Black}) &lt; 0.5
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{P}_2\)</span> is the set of priors for Urn 2.</p>
 <p>This is consistent with maxmin preferences with:</p>
-<p>$$</p>
-<p>\mathcal{P}_2 = \left{ P: P(\text{Red}) \in [a, 1-a] \text{ for some } a &lt; 0.5 \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_2 = \left\{ P: P(\text{Red}) \in [a, 1-a] \text{ for some } a &lt; 0.5 \right\}
+\]</div>
 <h2 id="applications-to-quantitative-finance">Applications to Quantitative Finance<a class="headerlink" href="#applications-to-quantitative-finance" title="Permanent link">&para;</a></h2>
 <h3 id="1-model-uncertainty-in-derivative-pricing">1. Model Uncertainty in Derivative Pricing<a class="headerlink" href="#1-model-uncertainty-in-derivative-pricing" title="Permanent link">&para;</a></h3>
 <p>In the Black-Scholes framework, the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span> is uniquely determined by no-arbitrage conditions. However, in practice:</p>
@@ -47002,56 +47002,56 @@
 <li><strong>Market Incompleteness</strong>: Not all risks can be hedged</li>
 </ol>
 <p><strong>Robust Pricing</strong>: Instead of a single risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, consider:</p>
-<p>$$</p>
-<p>V_t = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-r(T-t)} \Phi(S_T) \, \bigg| \, \mathcal{F}_t \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-r(T-t)} \Phi(S_T) \, \bigg| \, \mathcal{F}_t \right]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{Q}\)</span> is a set of equivalent martingale measures compatible with observed market prices.</p>
 <h3 id="2-volatility-uncertainty">2. Volatility Uncertainty<a class="headerlink" href="#2-volatility-uncertainty" title="Permanent link">&para;</a></h3>
 <p>Consider a European call option under model uncertainty about volatility.</p>
 <p><strong>Setup</strong>: Stock price follows:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_t \in [\sigma_{\min}, \sigma_{\max}]\)</span> is uncertain.</p>
 <p><strong>Robust Price</strong>: The buyer (who is ambiguity-averse) solves:</p>
-<p>$$</p>
-<p>V_{\text{buy}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{buy}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)
+\]</div>
 <p>while the seller solves:</p>
-<p>$$</p>
-<p>V_{\text{sell}} = \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{sell}} = \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS}(S_0, K, r, \sigma, T)
+\]</div>
 <p>This creates a <strong>bid-ask spread</strong> driven by Knightian uncertainty:</p>
-<p>$$</p>
-<p>V_{\text{sell}} &lt; V_{\text{buy}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{sell}} &lt; V_{\text{buy}}
+\]</div>
 <h3 id="3-portfolio-selection-under-ambiguity">3. Portfolio Selection under Ambiguity<a class="headerlink" href="#3-portfolio-selection-under-ambiguity" title="Permanent link">&para;</a></h3>
 <p>The classical Markowitz framework assumes known mean <span class="arithmatex">\(\mu\)</span> and covariance <span class="arithmatex">\(\Sigma\)</span> of returns. Under ambiguity:</p>
 <p><strong>Robust Portfolio Problem</strong>:</p>
-<p>$$</p>
-<p>\max_{w \in \Delta^n} \min_{(\mu, \Sigma) \in \Theta} \left{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{w \in \Delta^n} \min_{(\mu, \Sigma) \in \Theta} \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\Theta\)</span> represents uncertainty about the joint distribution of returns.</p>
 <p><strong>Example</strong>: Uncertainty about the mean return vector:</p>
-<p>$$</p>
-<p>\Theta = \left{ (\mu, \Sigma): |\mu - \hat{\mu}|_{\Sigma^{-1}} \leq \delta \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta = \left\{ (\mu, \Sigma): \|\mu - \hat{\mu}\|_{\Sigma^{-1}} \leq \delta \right\}
+\]</div>
 <p>leads to the robust portfolio:</p>
-<p>$$</p>
-<p>w^* = \frac{1}{\lambda(1 + \delta)} \Sigma^{-1} \hat{\mu}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w^* = \frac{1}{\lambda(1 + \delta)} \Sigma^{-1} \hat{\mu}
+\]</div>
 <p>The ambiguity parameter <span class="arithmatex">\(\delta\)</span> effectively increases risk aversion, leading to more conservative positions.</p>
 <h2 id="theoretical-properties">Theoretical Properties<a class="headerlink" href="#theoretical-properties" title="Permanent link">&para;</a></h2>
 <h3 id="1-ambiguity-aversion-vs-risk-aversion">1. Ambiguity Aversion vs Risk Aversion<a class="headerlink" href="#1-ambiguity-aversion-vs-risk-aversion" title="Permanent link">&para;</a></h3>
 <p><strong>Risk Aversion</strong>: Preference for certain outcomes over risky lotteries with the same expected value:</p>
-<p>$$</p>
-<p>u(\mathbb{E}[X]) &gt; \mathbb{E}[u(X)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(\mathbb{E}[X]) &gt; \mathbb{E}[u(X)]
+\]</div>
 <p>characterized by concavity of <span class="arithmatex">\(u\)</span>.</p>
 <p><strong>Ambiguity Aversion</strong>: Preference for known probability distributions over ambiguous ones:</p>
-<p>$$</p>
-<p>\min_{P \in \mathcal{P}} \mathbb{E}<em P__text_avg="P_{\text{avg">P[u(X)] &lt; \mathbb{E}</em>[u(X)]}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{P \in \mathcal{P}} \mathbb{E}_P[u(X)] &lt; \mathbb{E}_{P_{\text{avg}}}[u(X)]
+\]</div>
 <p>where <span class="arithmatex">\(P_{\text{avg}} = \int_{\mathcal{P}} P \, d\nu(P)\)</span> for some averaging measure <span class="arithmatex">\(\nu\)</span>.</p>
 <p><strong>Key Distinction</strong>: 
 - Risk aversion is about the curvature of utility over outcomes
@@ -47060,30 +47060,30 @@
 <h3 id="2-rectangularity-and-dynamic-consistency">2. Rectangularity and Dynamic Consistency<a class="headerlink" href="#2-rectangularity-and-dynamic-consistency" title="Permanent link">&para;</a></h3>
 <p>A critical issue in multiple priors models is maintaining consistency across time.</p>
 <p><strong>Rectangularity</strong> (Epstein-Schneider, 2003): A set of priors <span class="arithmatex">\(\mathcal{P}\)</span> is rectangular if:</p>
-<p>$$</p>
-<p>\mathcal{P} = \left{ P: P(A|\mathcal{F}_t) \in [\underline{p}_t(A), \overline{p}_t(A)] \text{ for all } A \in \mathcal{F}_T, t \leq T \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \left\{ P: P(A|\mathcal{F}_t) \in [\underline{p}_t(A), \overline{p}_t(A)] \text{ for all } A \in \mathcal{F}_T, t \leq T \right\}
+\]</div>
 <p><strong>Dynamic Consistency</strong>: Requires that optimal plans made at time <span class="arithmatex">\(t=0\)</span> remain optimal when reconsidered at intermediate times.</p>
 <p><strong>Theorem</strong> (Epstein-Schneider): For maxmin preferences with multiple priors, dynamic consistency holds if and only if the set of priors is rectangular.</p>
 <h3 id="3-connection-to-robust-control">3. Connection to Robust Control<a class="headerlink" href="#3-connection-to-robust-control" title="Permanent link">&para;</a></h3>
 <p>Knightian uncertainty has deep connections to robust control theory (Hansen-Sargent, 2001).</p>
 <p><strong>Robust Control Problem</strong>:</p>
-<p>$$</p>
-<p>\min_{u_t} \max_{w_t} \mathbb{E}\left[ \sum_{t=0}^T \left( x_t^\top Q x_t + u_t^\top R u_t - \theta w_t^\top w_t \right) \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{u_t} \max_{w_t} \mathbb{E}\left[ \sum_{t=0}^T \left( x_t^\top Q x_t + u_t^\top R u_t - \theta w_t^\top w_t \right) \right]
+\]</div>
 <p>subject to:</p>
-<p>$$</p>
-<p>x_{t+1} = A x_t + B u_t + C w_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x_{t+1} = A x_t + B u_t + C w_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(u_t\)</span> is the control (decision variable)
 - <span class="arithmatex">\(w_t\)</span> represents model misspecification
 - <span class="arithmatex">\(\theta\)</span> measures robustness concerns</p>
 <p><strong>Interpretation</strong>: The decision maker chooses controls assuming nature selects the worst-case model distortion <span class="arithmatex">\(w_t\)</span>, penalized by <span class="arithmatex">\(\theta w_t^\top w_t\)</span>.</p>
 <p><strong>Risk-Sensitive Control</strong>: Setting <span class="arithmatex">\(\theta = -\beta\)</span> and taking limits yields:</p>
-<p>$$</p>
-<p>V(x_0) = -\frac{1}{\beta} \log \mathbb{E}\left[ \exp\left(-\beta \sum_{t=0}^T r(x_t, u_t) \right) \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(x_0) = -\frac{1}{\beta} \log \mathbb{E}\left[ \exp\left(-\beta \sum_{t=0}^T r(x_t, u_t) \right) \right]
+\]</div>
 <p>which is equivalent to exponential utility preferences over random costs.</p>
 <h2 id="axiomatization-and-representation-theorems">Axiomatization and Representation Theorems<a class="headerlink" href="#axiomatization-and-representation-theorems" title="Permanent link">&para;</a></h2>
 <h3 id="1-gilboa-schmeidler-axioms">1. Gilboa-Schmeidler Axioms<a class="headerlink" href="#1-gilboa-schmeidler-axioms" title="Permanent link">&para;</a></h3>
@@ -47093,27 +47093,27 @@
 2. <strong>Continuity</strong>: Standard topological continuity
 3. <strong>Monotonicity</strong>: If <span class="arithmatex">\(f(\omega) \geq g(\omega)\)</span> for all <span class="arithmatex">\(\omega\)</span>, then <span class="arithmatex">\(f \succeq g\)</span>
 4. <strong>Uncertainty Aversion</strong>: For any <span class="arithmatex">\(f, g\)</span> and <span class="arithmatex">\(\alpha \in (0,1)\)</span>:</p>
-<p>$$</p>
-<p>f \sim g \implies \alpha f + (1-\alpha) g \succeq f</p>
-<p>$$</p>
+<p>$$
+   f \sim g \implies \alpha f + (1-\alpha) g \succeq f
+   $$</p>
 <ol>
 <li><strong>State Independence</strong>: Constant acts are ranked by their payoff</li>
 </ol>
 <p><strong>Representation Theorem</strong>: Preferences <span class="arithmatex">\(\succeq\)</span> satisfy axioms 1-5 if and only if there exists a unique set of priors <span class="arithmatex">\(\mathcal{P}\)</span> and a unique (up to positive affine transformation) utility function <span class="arithmatex">\(u\)</span> such that:</p>
-<p>$$</p>
-<p>f \succeq g \iff \min_{P \in \mathcal{P}} \mathbb{E}<em P="P" _in="\in" _mathcal_P="\mathcal{P">P[u(f)] \geq \min</em>_P[u(g)]}} \mathbb{E</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f \succeq g \iff \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \mathcal{P}} \mathbb{E}_P[u(g)]
+\]</div>
 <p><strong>Key Axiom</strong>: Uncertainty aversion (axiom 4) is the critical axiom distinguishing this from Savage's framework. It states that averaging over ambiguous acts is (weakly) preferred to the acts themselves.</p>
 <h3 id="2-maccheroni-marinacci-rustichini-variational-preferences">2. Maccheroni-Marinacci-Rustichini Variational Preferences<a class="headerlink" href="#2-maccheroni-marinacci-rustichini-variational-preferences" title="Permanent link">&para;</a></h3>
 <p>MMR (2006) generalized this to variational preferences.</p>
 <p><strong>Axiom</strong> (Certainty Independence): For any constant acts <span class="arithmatex">\(x, y\)</span> and any act <span class="arithmatex">\(f\)</span>, and <span class="arithmatex">\(\alpha \in (0,1)\)</span>:</p>
-<p>$$</p>
-<p>\alpha x + (1-\alpha) f \succeq \alpha y + (1-\alpha) f \iff x \succeq y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha x + (1-\alpha) f \succeq \alpha y + (1-\alpha) f \iff x \succeq y
+\]</div>
 <p><strong>Representation Theorem</strong>: Preferences satisfy the MMR axioms if and only if:</p>
-<p>$$</p>
-<p>V(f) = \min_{P \in \mathcal{M}(\Omega)} \left{ \mathbb{E}_P[u(f)] + c(P) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \min_{P \in \mathcal{M}(\Omega)} \left\{ \mathbb{E}_P[u(f)] + c(P) \right\}
+\]</div>
 <p>where <span class="arithmatex">\(c: \mathcal{M}(\Omega) \to [0, \infty]\)</span> is a convex, grounded (<span class="arithmatex">\(\inf_P c(P) = 0\)</span>) function.</p>
 <p><strong>Special Cases</strong>:
 - <span class="arithmatex">\(c(P) = 0\)</span> if <span class="arithmatex">\(P = P_0\)</span>, else <span class="arithmatex">\(c(P) = \infty\)</span>: Savage's expected utility
@@ -47126,26 +47126,26 @@
 - Known probability bets (risk)
 - Unknown probability bets (ambiguity)</p>
 <p><strong>Ambiguity Premium</strong>: The difference in certainty equivalents:</p>
-<p>$$</p>
-<p>\pi = CE(\text{known}) - CE(\text{unknown})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi = CE(\text{known}) - CE(\text{unknown})
+\]</div>
 <p><strong>Empirical Findings</strong>:
 - Most subjects exhibit <span class="arithmatex">\(\pi &gt; 0\)</span> (ambiguity aversion)
 - Magnitude varies across individuals and contexts
 - Professional traders often show less ambiguity aversion</p>
 <h3 id="2-market-implications">2. Market Implications<a class="headerlink" href="#2-market-implications" title="Permanent link">&para;</a></h3>
 <p><strong>Equity Premium Puzzle</strong>: Hansen-Sargent (2001) show that model uncertainty can help explain the historically high equity premium:</p>
-<p>$$</p>
-<p>\mathbb{E}[R_{\text{equity}}] - R_f = \gamma \sigma^2 + \text{ambiguity premium}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[R_{\text{equity}}] - R_f = \gamma \sigma^2 + \text{ambiguity premium}
+\]</div>
 <p><strong>Options Market</strong>: The implied volatility smile may partially reflect ambiguity aversion about the true volatility process.</p>
 <p><strong>Bid-Ask Spreads</strong>: Wider spreads for less liquid assets may incorporate compensation for model uncertainty.</p>
 <h2 id="connections-to-information-theory">Connections to Information Theory<a class="headerlink" href="#connections-to-information-theory" title="Permanent link">&para;</a></h2>
 <h3 id="1-relative-entropy-and-model-distance">1. Relative Entropy and Model Distance<a class="headerlink" href="#1-relative-entropy-and-model-distance" title="Permanent link">&para;</a></h3>
 <p>The relative entropy (Kullback-Leibler divergence) provides a natural measure of model distance:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(P | Q) = \mathbb{E}<em _Omega="\Omega">P\left[ \log \frac{dP}{dQ} \right] = \int</em>\right) \, dP} \log\left(\frac{dP}{dQ</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(P \| Q) = \mathbb{E}_P\left[ \log \frac{dP}{dQ} \right] = \int_{\Omega} \log\left(\frac{dP}{dQ}\right) \, dP
+\]</div>
 <p><strong>Properties</strong>:
 1. Non-negativity: <span class="arithmatex">\(D_{\text{KL}}(P \| Q) \geq 0\)</span> with equality iff <span class="arithmatex">\(P = Q\)</span>
 2. Not symmetric: <span class="arithmatex">\(D_{\text{KL}}(P \| Q) \neq D_{\text{KL}}(Q \| P)\)</span> in general
@@ -47153,13 +47153,13 @@
 <p><strong>Interpretation in Finance</strong>: <span class="arithmatex">\(D_{\text{KL}}(P \| Q)\)</span> measures the "surprise" or information gained when the true model is <span class="arithmatex">\(P\)</span> but we believed <span class="arithmatex">\(Q\)</span>.</p>
 <h3 id="2-entropic-risk-measures">2. Entropic Risk Measures<a class="headerlink" href="#2-entropic-risk-measures" title="Permanent link">&para;</a></h3>
 <p>The entropic risk measure combines ambiguity and risk:</p>
-<p>$$</p>
-<p>\rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}\left[ e^{\beta X} \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}\left[ e^{\beta X} \right]
+\]</div>
 <p><strong>Dual Representation</strong>:</p>
-<p>$$</p>
-<p>\rho_{\beta}(X) = \sup_{\mathbb{Q} \ll \mathbb{P}} \left{ \mathbb{E}<em _text_KL="\text{KL">{\mathbb{Q}}[X] - \frac{1}{\beta} D</em>) \right}}}(\mathbb{Q} | \mathbb{P</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{\beta}(X) = \sup_{\mathbb{Q} \ll \mathbb{P}} \left\{ \mathbb{E}_{\mathbb{Q}}[X] - \frac{1}{\beta} D_{\text{KL}}(\mathbb{Q} \| \mathbb{P}) \right\}
+\]</div>
 <p>This shows entropic risk as a variational preference with KL penalty.</p>
 <p><strong>Properties</strong>:
 - Coherent for <span class="arithmatex">\(\beta &gt; 0\)</span>
@@ -47168,20 +47168,20 @@
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
 <h3 id="1-second-order-stochastic-dominance-and-ambiguity">1. Second-Order Stochastic Dominance and Ambiguity<a class="headerlink" href="#1-second-order-stochastic-dominance-and-ambiguity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong> (Second-Order Stochastic Dominance): Distribution <span class="arithmatex">\(F\)</span> second-order stochastically dominates <span class="arithmatex">\(G\)</span> (written <span class="arithmatex">\(F \succeq_{\text{SSD}} G\)</span>) if:</p>
-<p>$$</p>
-<p>\int_{-\infty}^x F(t) \, dt \leq \int_{-\infty}^x G(t) \, dt \quad \text{for all } x \in \mathbb{R}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{-\infty}^x F(t) \, dt \leq \int_{-\infty}^x G(t) \, dt \quad \text{for all } x \in \mathbb{R}
+\]</div>
 <p><strong>Theorem</strong>: All risk-averse expected utility maximizers prefer <span class="arithmatex">\(F\)</span> to <span class="arithmatex">\(G\)</span> if and only if <span class="arithmatex">\(F \succeq_{\text{SSD}} G\)</span>.</p>
 <p><strong>Extension to Ambiguity</strong>: For multiple priors preferences:</p>
-<p>$$</p>
-<p>f \succeq_{\text{SSD}} g \implies \min_{P \in \mathcal{P}} \mathbb{E}<em P="P" _in="\in" _mathcal_P="\mathcal{P">P[u(f)] \geq \min</em>_P[u(g)]}} \mathbb{E</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f \succeq_{\text{SSD}} g \implies \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \mathcal{P}} \mathbb{E}_P[u(g)]
+\]</div>
 <p>for all concave <span class="arithmatex">\(u\)</span> and convex <span class="arithmatex">\(\mathcal{P}\)</span>.</p>
 <h3 id="2-smooth-ambiguity-model">2. Smooth Ambiguity Model<a class="headerlink" href="#2-smooth-ambiguity-model" title="Permanent link">&para;</a></h3>
 <p>Klibanoff, Marinacci, Mukerji (2005) introduced <strong>smooth ambiguity preferences</strong>:</p>
-<p>$$</p>
-<p>V(f) = \int_{\mathcal{P}} \phi\left( \int_{\Omega} u(f(\omega)) \, dP(\omega) \right) d\mu(P)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \int_{\mathcal{P}} \phi\left( \int_{\Omega} u(f(\omega)) \, dP(\omega) \right) d\mu(P)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(u\)</span> measures risk aversion
 - <span class="arithmatex">\(\phi\)</span> measures ambiguity aversion
@@ -47197,25 +47197,25 @@
 1. <span class="arithmatex">\(\nu(\emptyset) = 0\)</span>, <span class="arithmatex">\(\nu(\Omega) = 1\)</span>
 2. <span class="arithmatex">\(A \subseteq B \implies \nu(A) \leq \nu(B)\)</span></p>
 <p><strong>Choquet Integral</strong>:</p>
-<p>$$</p>
-<p>\int_{\Omega} f \, d\nu = \int_0^{\infty} \nu({\omega: f(\omega) \geq t}) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\Omega} f \, d\nu = \int_0^{\infty} \nu(\{\omega: f(\omega) \geq t\}) \, dt
+\]</div>
 <p><strong>Choquet Expected Utility</strong>:</p>
-<p>$$</p>
-<p>V(f) = \int_{\Omega} u(f(\omega)) \, d\nu(\omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \int_{\Omega} u(f(\omega)) \, d\nu(\omega)
+\]</div>
 <p><strong>Connection to Ambiguity</strong>: A capacity is <strong>convex</strong> if:</p>
-<p>$$</p>
-<p>\nu(A \cup B) + \nu(A \cap B) \geq \nu(A) + \nu(B)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nu(A \cup B) + \nu(A \cap B) \geq \nu(A) + \nu(B)
+\]</div>
 <p>which implies ambiguity aversion through the <strong>core</strong> of the capacity:</p>
-<p>$$</p>
-<p>\text{core}(\nu) = \left{ P: P(A) \geq \nu(A) \text{ for all } A \in \mathcal{F} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{core}(\nu) = \left\{ P: P(A) \geq \nu(A) \text{ for all } A \in \mathcal{F} \right\}
+\]</div>
 <p>and:</p>
-<p>$$</p>
-<p>\int_{\Omega} f \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[f]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\Omega} f \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[f]
+\]</div>
 <h2 id="summary-and-key-takeaways">Summary and Key Takeaways<a class="headerlink" href="#summary-and-key-takeaways" title="Permanent link">&para;</a></h2>
 <ol>
 <li>

@@ -46973,9 +46973,9 @@
 <h2 id="model-specification">Model Specification<a class="headerlink" href="#model-specification" title="Permanent link">&para;</a></h2>
 <h3 id="risk-neutral-dynamics">Risk-Neutral Dynamics<a class="headerlink" href="#risk-neutral-dynamics" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the short rate follows an <strong>Ornstein-Uhlenbeck (OU) process</strong>:</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t) \, dt + \sigma \, dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t) \, dt + \sigma \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\kappa &gt; 0\)</span>: <strong>mean-reversion speed</strong> (rate of pull toward <span class="arithmatex">\(\theta\)</span>)
 - <span class="arithmatex">\(\theta\)</span>: <strong>long-run mean level</strong> (equilibrium rate)
@@ -46983,55 +46983,55 @@
 - <span class="arithmatex">\(W_t^{\mathbb{Q}}\)</span>: standard Brownian motion under <span class="arithmatex">\(\mathbb{Q}\)</span></p>
 <h3 id="physical-dynamics">Physical Dynamics<a class="headerlink" href="#physical-dynamics" title="Permanent link">&para;</a></h3>
 <p>Under the physical measure <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta^{\mathbb{P}} - r_t) \, dt + \sigma \, dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta^{\mathbb{P}} - r_t) \, dt + \sigma \, dW_t^{\mathbb{P}}
+\]</div>
 <p>The relationship between measures:</p>
-<p>$$</p>
-<p>\theta = \theta^{\mathbb{P}} - \frac{\lambda \sigma}{\kappa}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta = \theta^{\mathbb{P}} - \frac{\lambda \sigma}{\kappa}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda\)</span> is the market price of interest rate risk.</p>
 <hr />
 <h2 id="solution-of-the-sde">Solution of the SDE<a class="headerlink" href="#solution-of-the-sde" title="Permanent link">&para;</a></h2>
 <h3 id="explicit-solution">Explicit Solution<a class="headerlink" href="#explicit-solution" title="Permanent link">&para;</a></h3>
 <p>The Vasicek SDE has the explicit solution:</p>
-<p>$$</p>
-<p>r_t = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma \int_0^t e^{-\kappa(t-s)} \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma \int_0^t e^{-\kappa(t-s)} \, dW_s
+\]</div>
 <p><strong>Derivation:</strong> </p>
 <p>Let <span class="arithmatex">\(Y_t = r_t e^{\kappa t}\)</span>. Then:</p>
-<p>$$</p>
-<p>dY_t = e^{\kappa t} dr_t + \kappa e^{\kappa t} r_t \, dt = e^{\kappa t}[\kappa(\theta - r_t) + \kappa r_t] dt + \sigma e^{\kappa t} dW_t = \kappa \theta e^{\kappa t} dt + \sigma e^{\kappa t} dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = e^{\kappa t} dr_t + \kappa e^{\kappa t} r_t \, dt = e^{\kappa t}[\kappa(\theta - r_t) + \kappa r_t] dt + \sigma e^{\kappa t} dW_t = \kappa \theta e^{\kappa t} dt + \sigma e^{\kappa t} dW_t
+\]</div>
 <p>Integrating:</p>
-<p>$$</p>
-<p>Y_t = Y_0 + \kappa \theta \int_0^t e^{\kappa s} ds + \sigma \int_0^t e^{\kappa s} dW_s = r_0 + \theta(e^{\kappa t} - 1) + \sigma \int_0^t e^{\kappa s} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = Y_0 + \kappa \theta \int_0^t e^{\kappa s} ds + \sigma \int_0^t e^{\kappa s} dW_s = r_0 + \theta(e^{\kappa t} - 1) + \sigma \int_0^t e^{\kappa s} dW_s
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>r_t = Y_t e^{-\kappa t} = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma e^{-\kappa t} \int_0^t e^{\kappa s} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = Y_t e^{-\kappa t} = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma e^{-\kappa t} \int_0^t e^{\kappa s} dW_s
+\]</div>
 <h3 id="distribution-of-r_t">Distribution of r_t<a class="headerlink" href="#distribution-of-r_t" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(r_t\)</span> is a linear functional of Brownian motion, it is <strong>normally distributed</strong>:</p>
-<p>$$</p>
-<p>r_t \mid r_0 \sim \mathcal{N}(m(t), v(t))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t \mid r_0 \sim \mathcal{N}(m(t), v(t))
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>m(t) = \mathbb{E}[r_t] = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})</p>
-<p>$$</p>
-<p>$$</p>
-<p>v(t) = \text{Var}(r_t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m(t) = \mathbb{E}[r_t] = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})
+\]</div>
+<div class="arithmatex">\[
+v(t) = \text{Var}(r_t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})
+\]</div>
 <h3 id="long-run-behavior">Long-Run Behavior<a class="headerlink" href="#long-run-behavior" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(t \to \infty\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[r_t] \to \theta, \quad \text{Var}(r_t) \to \frac{\sigma^2}{2\kappa}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_t] \to \theta, \quad \text{Var}(r_t) \to \frac{\sigma^2}{2\kappa}
+\]</div>
 <p>The stationary distribution is:</p>
-<p>$$</p>
-<p>r_\infty \sim \mathcal{N}\left(\theta, \frac{\sigma^2}{2\kappa}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_\infty \sim \mathcal{N}\left(\theta, \frac{\sigma^2}{2\kappa}\right)
+\]</div>
 <hr />
 <h2 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h2>
 <h3 id="mean-reversion">Mean Reversion<a class="headerlink" href="#mean-reversion" title="Permanent link">&para;</a></h3>
@@ -47051,71 +47051,71 @@
 <h2 id="zero-coupon-bond-pricing">Zero-Coupon Bond Pricing<a class="headerlink" href="#zero-coupon-bond-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="affine-structure">Affine Structure<a class="headerlink" href="#affine-structure" title="Permanent link">&para;</a></h3>
 <p>The bond price takes the <strong>exponential-affine</strong> form:</p>
-<p>$$</p>
-<p>\boxed{P(t, T) = A(t, T) \exp(-B(t, T) \cdot r_t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{P(t, T) = A(t, T) \exp(-B(t, T) \cdot r_t)}
+\]</div>
 <p>where <span class="arithmatex">\(A(t, T) &gt; 0\)</span> and <span class="arithmatex">\(B(t, T) &gt; 0\)</span> are deterministic functions.</p>
 <h3 id="derivation-via-pde">Derivation via PDE<a class="headerlink" href="#derivation-via-pde" title="Permanent link">&para;</a></h3>
 <p>The bond price <span class="arithmatex">\(P(t, T, r)\)</span> satisfies the PDE:</p>
-<p>$$</p>
-<p>\frac{\partial P}{\partial t} + \kappa(\theta - r) \frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 P}{\partial r^2} = rP</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial P}{\partial t} + \kappa(\theta - r) \frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 P}{\partial r^2} = rP
+\]</div>
 <p>with <span class="arithmatex">\(P(T, T, r) = 1\)</span>.</p>
 <p><strong>Ansatz:</strong> Guess <span class="arithmatex">\(P = A(\tau) e^{-B(\tau) r}\)</span> where <span class="arithmatex">\(\tau = T - t\)</span> (time to maturity).</p>
 <p>Substituting into the PDE:</p>
-<p>$$</p>
-<p>-A'(\tau) e^{-Br} + A \cdot B'(\tau) r \cdot e^{-Br} + \kappa(\theta - r)(-AB e^{-Br}) + \frac{1}{2}\sigma^2 A B^2 e^{-Br} = r A e^{-Br}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-A'(\tau) e^{-Br} + A \cdot B'(\tau) r \cdot e^{-Br} + \kappa(\theta - r)(-AB e^{-Br}) + \frac{1}{2}\sigma^2 A B^2 e^{-Br} = r A e^{-Br}
+\]</div>
 <p>Dividing by <span class="arithmatex">\(A e^{-Br}\)</span>:</p>
-<p>$$</p>
-<p>-\frac{A'}{A} + B' r - \kappa \theta B + \kappa r B + \frac{1}{2}\sigma^2 B^2 = r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\frac{A'}{A} + B' r - \kappa \theta B + \kappa r B + \frac{1}{2}\sigma^2 B^2 = r
+\]</div>
 <p>Collecting terms in <span class="arithmatex">\(r\)</span>:</p>
 <ul>
 <li>Coefficient of <span class="arithmatex">\(r\)</span>: <span class="arithmatex">\(B' + \kappa B = 1\)</span></li>
 <li>Constant term: <span class="arithmatex">\(-\frac{A'}{A} - \kappa \theta B + \frac{1}{2}\sigma^2 B^2 = 0\)</span></li>
 </ul>
 <h3 id="ode-for-b">ODE for B(τ)<a class="headerlink" href="#ode-for-b" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{dB}{d\tau} = 1 - \kappa B, \quad B(0) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dB}{d\tau} = 1 - \kappa B, \quad B(0) = 0
+\]</div>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<p>\boxed{B(\tau) = \frac{1 - e^{-\kappa \tau}}{\kappa}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{B(\tau) = \frac{1 - e^{-\kappa \tau}}{\kappa}}
+\]</div>
 <h3 id="ode-for-a">ODE for A(τ)<a class="headerlink" href="#ode-for-a" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{d \log A}{d\tau} = \kappa \theta B - \frac{1}{2}\sigma^2 B^2, \quad A(0) = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d \log A}{d\tau} = \kappa \theta B - \frac{1}{2}\sigma^2 B^2, \quad A(0) = 1
+\]</div>
 <p>Integrating:</p>
-<p>$$</p>
-<p>\log A(\tau) = \kappa \theta \int_0^\tau B(s) \, ds - \frac{\sigma^2}{2} \int_0^\tau B(s)^2 \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log A(\tau) = \kappa \theta \int_0^\tau B(s) \, ds - \frac{\sigma^2}{2} \int_0^\tau B(s)^2 \, ds
+\]</div>
 <p>After computation:</p>
-<p>$$</p>
-<p>\boxed{A(\tau) = \exp\left[\left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(\tau) - \tau) - \frac{\sigma^2 B(\tau)^2}{4\kappa}\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{A(\tau) = \exp\left[\left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(\tau) - \tau) - \frac{\sigma^2 B(\tau)^2}{4\kappa}\right]}
+\]</div>
 <h3 id="complete-bond-price-formula">Complete Bond Price Formula<a class="headerlink" href="#complete-bond-price-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P(t, T) = \exp\left[\left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(\tau) - \tau) - \frac{\sigma^2 B(\tau)^2}{4\kappa} - B(\tau) r_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = \exp\left[\left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(\tau) - \tau) - \frac{\sigma^2 B(\tau)^2}{4\kappa} - B(\tau) r_t\right]
+\]</div>
 <p>where <span class="arithmatex">\(\tau = T - t\)</span> and <span class="arithmatex">\(B(\tau) = \frac{1 - e^{-\kappa \tau}}{\kappa}\)</span>.</p>
 <hr />
 <h2 id="yield-curve-analysis">Yield Curve Analysis<a class="headerlink" href="#yield-curve-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="zero-rate">Zero Rate<a class="headerlink" href="#zero-rate" title="Permanent link">&para;</a></h3>
 <p>The continuously compounded zero rate is:</p>
-<p>$$</p>
-<p>z(t, T) = -\frac{\log P(t, T)}{\tau} = \frac{B(\tau)}{\tau} r_t + \frac{\tau - B(\tau)}{\tau}\left(\theta - \frac{\sigma^2}{2\kappa^2}\right) + \frac{\sigma^2 B(\tau)^2}{4\kappa \tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(t, T) = -\frac{\log P(t, T)}{\tau} = \frac{B(\tau)}{\tau} r_t + \frac{\tau - B(\tau)}{\tau}\left(\theta - \frac{\sigma^2}{2\kappa^2}\right) + \frac{\sigma^2 B(\tau)^2}{4\kappa \tau}
+\]</div>
 <h3 id="asymptotic-long-rate">Asymptotic Long Rate<a class="headerlink" href="#asymptotic-long-rate" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(T \to \infty\)</span> (i.e., <span class="arithmatex">\(\tau \to \infty\)</span>):</p>
-<p>$$</p>
-<p>B(\tau) \to \frac{1}{\kappa}, \quad \frac{B(\tau)}{\tau} \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B(\tau) \to \frac{1}{\kappa}, \quad \frac{B(\tau)}{\tau} \to 0
+\]</div>
 <p>The long rate converges to:</p>
-<p>$$</p>
-<p>z_\infty = \theta - \frac{\sigma^2}{2\kappa^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z_\infty = \theta - \frac{\sigma^2}{2\kappa^2}
+\]</div>
 <p>This is the <strong>asymptotic yield</strong>.</p>
 <h3 id="yield-curve-shapes">Yield Curve Shapes<a class="headerlink" href="#yield-curve-shapes" title="Permanent link">&para;</a></h3>
 <p>The Vasicek model can produce:</p>
@@ -47149,33 +47149,33 @@
 <h2 id="option-pricing">Option Pricing<a class="headerlink" href="#option-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="bond-option-formula">Bond Option Formula<a class="headerlink" href="#bond-option-formula" title="Permanent link">&para;</a></h3>
 <p>A European call option on a <span class="arithmatex">\(T_2\)</span>-bond with strike <span class="arithmatex">\(K\)</span>, expiring at <span class="arithmatex">\(T_1 &lt; T_2\)</span>, has price:</p>
-<p>$$</p>
-<p>C(0, T_1, T_2, K) = P(0, T_2) N(d_1) - K P(0, T_1) N(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(0, T_1, T_2, K) = P(0, T_2) N(d_1) - K P(0, T_1) N(d_2)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{1}{\sigma_P} \log \frac{P(0, T_2)}{K P(0, T_1)} + \frac{\sigma_P}{2}</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma_P</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{1}{\sigma_P} \log \frac{P(0, T_2)}{K P(0, T_1)} + \frac{\sigma_P}{2}
+\]</div>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma_P
+\]</div>
 <p>and the <strong>bond price volatility</strong> is:</p>
-<p>$$</p>
-<p>\sigma_P = \sigma B(T_2 - T_1) \sqrt{\frac{1 - e^{-2\kappa T_1}}{2\kappa}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P = \sigma B(T_2 - T_1) \sqrt{\frac{1 - e^{-2\kappa T_1}}{2\kappa}}
+\]</div>
 <h3 id="put-option-put-call-parity">Put Option (Put-Call Parity)<a class="headerlink" href="#put-option-put-call-parity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P_{\text{opt}} = K P(0, T_1) N(-d_2) - P(0, T_2) N(-d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{opt}} = K P(0, T_1) N(-d_2) - P(0, T_2) N(-d_1)
+\]</div>
 <h3 id="caps-and-floors">Caps and Floors<a class="headerlink" href="#caps-and-floors" title="Permanent link">&para;</a></h3>
 <p>A caplet can be viewed as a put option on a bond. The Vasicek model provides closed-form caplet prices, enabling analytic cap pricing.</p>
 <hr />
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <h3 id="negative-rates">Negative Rates<a class="headerlink" href="#negative-rates" title="Permanent link">&para;</a></h3>
 <p>The Gaussian distribution implies:</p>
-<p>$$</p>
-<p>\mathbb{P}(r_t &lt; 0) = \Phi\left(\frac{-m(t)}{\sqrt{v(t)}}\right) &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(r_t &lt; 0) = \Phi\left(\frac{-m(t)}{\sqrt{v(t)}}\right) &gt; 0
+\]</div>
 <p>While negative rates are now observed in some markets, the model doesn't constrain their probability.</p>
 <h3 id="constant-parameters">Constant Parameters<a class="headerlink" href="#constant-parameters" title="Permanent link">&para;</a></h3>
 <p>The basic Vasicek model cannot fit an arbitrary initial yield curve—only specific shapes consistent with the parameters.</p>
@@ -47188,21 +47188,21 @@
 <hr />
 <h2 id="hull-white-extension">Hull-White Extension<a class="headerlink" href="#hull-white-extension" title="Permanent link">&para;</a></h2>
 <p>The <strong>Hull-White model</strong> extends Vasicek with time-dependent <span class="arithmatex">\(\theta(t)\)</span>:</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta(t) - r_t) \, dt + \sigma \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta(t) - r_t) \, dt + \sigma \, dW_t
+\]</div>
 <p>The function <span class="arithmatex">\(\theta(t)\)</span> is calibrated to match the initial yield curve exactly:</p>
-<p>$$</p>
-<p>\theta(t) = \frac{1}{\kappa}\frac{\partial f(0, t)}{\partial t} + f(0, t) + \frac{\sigma^2}{2\kappa^2}(1 - e^{-2\kappa t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta(t) = \frac{1}{\kappa}\frac{\partial f(0, t)}{\partial t} + f(0, t) + \frac{\sigma^2}{2\kappa^2}(1 - e^{-2\kappa t})
+\]</div>
 <p>where <span class="arithmatex">\(f(0, t)\)</span> is the initial instantaneous forward rate.</p>
 <hr />
 <h2 id="calibration">Calibration<a class="headerlink" href="#calibration" title="Permanent link">&para;</a></h2>
 <h3 id="to-initial-yield-curve">To Initial Yield Curve<a class="headerlink" href="#to-initial-yield-curve" title="Permanent link">&para;</a></h3>
 <p>For basic Vasicek, minimize:</p>
-<p>$$</p>
-<p>\sum_{i} \left(P^{\text{model}}(0, T_i; \kappa, \theta, \sigma, r_0) - P^{\text{market}}(0, T_i)\right)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i} \left(P^{\text{model}}(0, T_i; \kappa, \theta, \sigma, r_0) - P^{\text{market}}(0, T_i)\right)^2
+\]</div>
 <p>Often, exact fit is not achievable without Hull-White extension.</p>
 <h3 id="to-options">To Options<a class="headerlink" href="#to-options" title="Permanent link">&para;</a></h3>
 <p>Given the yield curve, calibrate <span class="arithmatex">\(\sigma\)</span> (and possibly <span class="arithmatex">\(\kappa\)</span>) to cap/swaption implied volatilities.</p>

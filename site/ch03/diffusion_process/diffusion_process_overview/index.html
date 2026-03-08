@@ -46040,28 +46040,28 @@
 <hr />
 <h1 id="probabilityfiltration-setup">Probability–Filtration Setup<a class="headerlink" href="#probabilityfiltration-setup" title="Permanent link">&para;</a></h1>
 <p>Let</p>
-<p>$$</p>
-<p>(\Omega,\mathcal{F},(\mathcal{F}<em 0="0" t_ge="t\ge">t)</em>)},\mathbb{P</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(\Omega,\mathcal{F},(\mathcal{F}*t)*{t\ge 0},\mathbb{P})
+\]</div>
 <p>be a filtered probability space satisfying the <strong>usual conditions</strong>:</p>
 <ul>
 <li><span class="arithmatex">\((\mathcal{F}_t)\)</span> is right-continuous</li>
 <li><span class="arithmatex">\(\mathcal{F}_0\)</span> contains all (\mathbb{P})-null sets</li>
 </ul>
 <p>Let</p>
-<p>$$</p>
-<p>W_t = (W_t^{1},\dots,W_t^{m})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t = (W_t^{1},\dots,W_t^{m})
+\]</div>
 <p>be an <span class="arithmatex">\(m\)</span>-dimensional Brownian motion adapted to <span class="arithmatex">\((\mathcal{F}_t)\)</span>.</p>
 <hr />
 <h1 id="definition-of-an-ito-diffusion-core-definition">Definition of an Itô Diffusion (Core Definition)<a class="headerlink" href="#definition-of-an-ito-diffusion-core-definition" title="Permanent link">&para;</a></h1>
 <p>An <span class="arithmatex">\(\mathbb{R}^d\)</span>-valued stochastic process</p>
-<p>$$</p>
-<p>X_t = (X_t^{1},\dots,X_t^{d})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = (X_t^{1},\dots,X_t^{d})
+\]</div>
 <p>is called a <strong>diffusion process</strong> (or <strong>Itô diffusion</strong>) if it satisfies the stochastic differential equation</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathrm{d}X_t^{i}
 =
 b^{i}(t,X_t),\mathrm{d}t
@@ -46069,8 +46069,8 @@ b^{i}(t,X_t),\mathrm{d}t
 \sigma^{i\alpha}(t,X_t),\mathrm{d}W_t^{\alpha},
 \qquad
 i=1,\dots,d,\ \alpha=1,\dots,m.
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Here:</p>
 <ul>
 <li><span class="arithmatex">\(b^{i} : [0,\infty)\times\mathbb{R}^d \to \mathbb{R}\)</span> is the <strong>drift field</strong></li>
@@ -46079,8 +46079,8 @@ i=1,\dots,d,\ \alpha=1,\dots,m.
 <hr />
 <h1 id="integral-weak-form-of-the-definition">Integral (Weak) Form of the Definition<a class="headerlink" href="#integral-weak-form-of-the-definition" title="Permanent link">&para;</a></h1>
 <p>The SDE above is shorthand for the <strong>integral equation</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t^{i}
 =
 X_0^{i}
@@ -46088,116 +46088,118 @@ X_0^{i}
 \int_0^t b^{i}(s,X_s),\mathrm{d}s
 +
 \int_0^t \sigma^{i\alpha}(s,X_s),\mathrm{d}W_s^{\alpha}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is the <strong>actual mathematical definition</strong>; the differential form is symbolic.</p>
 <hr />
 <h1 id="structural-properties-built-into-the-definition">Structural Properties (Built into the Definition)<a class="headerlink" href="#structural-properties-built-into-the-definition" title="Permanent link">&para;</a></h1>
 <p>From the definition:</p>
 <h3 id="1-i-continuity-of-paths">1. (i) Continuity of paths<a class="headerlink" href="#1-i-continuity-of-paths" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>t \mapsto X_t(\omega) \quad \text{is continuous almost surely}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+t \mapsto X_t(\omega) \quad \text{is continuous almost surely}
+\]</div>
 <p>because both integrals produce continuous processes.</p>
 <h3 id="2-ii-semimartingale-structure">2. (ii) Semimartingale structure<a class="headerlink" href="#2-ii-semimartingale-structure" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<h1 id="x_ti">X_t^{i}<a class="headerlink" href="#x_ti" title="Permanent link">&para;</a></h1>
-<p>\underbrace{X_0^{i}+\int_0^t b^{i}(s,X_s),\mathrm{d}s}<em _text_local="\text{local" martingale="martingale">{\text{finite variation}}
+<div class="arithmatex">\[
+X_t^{i}
+=
+\underbrace{X_0^{i}+\int_0^t b^{i}(s,X_s),\mathrm{d}s}*{\text{finite variation}}
 +
-\underbrace{\int_0^t \sigma^{i\alpha}(s,X_s),\mathrm{d}W_s^{\alpha}}</em>}</p>
-<p>$$</p>
+\underbrace{\int_0^t \sigma^{i\alpha}(s,X_s),\mathrm{d}W_s^{\alpha}}*{\text{local martingale}}
+\]</div>
 <hr />
 <h1 id="diffusion-matrix-and-covariation">Diffusion Matrix and Covariation<a class="headerlink" href="#diffusion-matrix-and-covariation" title="Permanent link">&para;</a></h1>
 <p>Define the <strong>diffusion (covariance) matrix</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 a^{ij}(t,x)
 :=
 \sigma^{i\alpha}(t,x)\sigma^{j\alpha}(t,x)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Then the quadratic covariation of the components satisfies</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathrm{d}\langle X^{i},X^{j}\rangle_t
 =
 a^{ij}(t,X_t),\mathrm{d}t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This identity is <strong>defining</strong> for diffusions.</p>
 <hr />
 <h1 id="generator-of-a-diffusion">Generator of a Diffusion<a class="headerlink" href="#generator-of-a-diffusion" title="Permanent link">&para;</a></h1>
 <p>For <span class="arithmatex">\(f \in C^{2}(\mathbb{R}^d)\)</span>, define the <strong>infinitesimal generator</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 (\mathcal{L}f)(x,t)
 =
 b^{i}(t,x)\frac{\partial f}{\partial x_i}(x)
 +
 \frac{1}{2}a^{ij}(t,x)\frac{\partial^2 f}{\partial x_i\partial x_j}(x)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Itô’s lemma implies:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 f(X_t)
 = f(X_0)
 +
 \int_0^t (\mathcal{L}f)(X_s,s),\mathrm{d}s
 \quad \text{is a martingale}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This characterizes diffusions among Markov processes.</p>
 <hr />
 <h1 id="markov-property-under-mild-conditions">Markov Property (Under Mild Conditions)<a class="headerlink" href="#markov-property-under-mild-conditions" title="Permanent link">&para;</a></h1>
 <p>If <span class="arithmatex">\(b,\sigma\)</span> satisfy standard Lipschitz and growth assumptions, then <span class="arithmatex">\(X_t\)</span> is a <strong>strong Markov process</strong>, and</p>
-<p>$$</p>
-<h1 id="mathbbefx_tmidmathcalf_s">\mathbb{E}[f(X_t)\mid\mathcal{F}_s]<a class="headerlink" href="#mathbbefx_tmidmathcalf_s" title="Permanent link">&para;</a></h1>
-<p>\mathbb{E}[f(X_t)\mid X_s]
-\quad \text{for } s\le t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[f(X_t)\mid\mathcal{F}_s]
+=
+\mathbb{E}[f(X_t)\mid X_s]
+\quad \text{for } s\le t
+\]</div>
 <hr />
 <h1 id="kolmogorov-equations">Kolmogorov Equations<a class="headerlink" href="#kolmogorov-equations" title="Permanent link">&para;</a></h1>
 <p>Let <span class="arithmatex">\(p(t,x)\)</span> be the probability density of <span class="arithmatex">\(X_t\)</span>.</p>
 <h3 id="1-forward-fokkerplanck">1. Forward (Fokker–Planck):<a class="headerlink" href="#1-forward-fokkerplanck" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial p}{\partial t}
 =
 -\frac{\partial}{\partial x_i}!\left(b^{i}p\right)
 +
 \frac{1}{2}
 \frac{\partial^2}{\partial x_i\partial x_j}!\left(a^{ij}p\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="2-backward">2. Backward:<a class="headerlink" href="#2-backward" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial u}{\partial t}
 +
 \mathcal{L}u
 =
 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h1 id="special-cases">Special Cases<a class="headerlink" href="#special-cases" title="Permanent link">&para;</a></h1>
 <h3 id="1-i-pure-brownian-motion">1. (i) Pure Brownian motion<a class="headerlink" href="#1-i-pure-brownian-motion" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathrm{d}X_t^{i} = \mathrm{d}W_t^{i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathrm{d}X_t^{i} = \mathrm{d}W_t^{i}
+\]</div>
 <h3 id="2-ii-drifted-brownian-motion">2. (ii) Drifted Brownian motion<a class="headerlink" href="#2-ii-drifted-brownian-motion" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathrm{d}X_t^{i} = b^{i}(X_t),\mathrm{d}t + \mathrm{d}W_t^{i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathrm{d}X_t^{i} = b^{i}(X_t),\mathrm{d}t + \mathrm{d}W_t^{i}
+\]</div>
 <h3 id="3-iii-gradient-diffusion">3. (iii) Gradient diffusion<a class="headerlink" href="#3-iii-gradient-diffusion" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathrm{d}X_t = -\nabla V(X_t),\mathrm{d}t + \sqrt{2},\mathrm{d}W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathrm{d}X_t = -\nabla V(X_t),\mathrm{d}t + \sqrt{2},\mathrm{d}W_t
+\]</div>
 <p>with invariant density</p>
-<p>$$</p>
-<p>\pi(x) \propto e^{-V(x)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi(x) \propto e^{-V(x)}
+\]</div>
 <hr />
 <h1 id="conceptual-summary">Conceptual Summary<a class="headerlink" href="#conceptual-summary" title="Permanent link">&para;</a></h1>
 <p>A <strong>diffusion process</strong> is:</p>
@@ -46205,15 +46207,15 @@ f(X_t)
 <p>A continuous-path Markov semimartingale whose quadratic variation grows linearly in time and is locally determined by the state.</p>
 </blockquote>
 <p>Symbolically:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Diffusion}
 =
 \text{Brownian noise}
 +
 \text{state-dependent drift}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h2 id="natural-next-steps">Natural Next Steps<a class="headerlink" href="#natural-next-steps" title="Permanent link">&para;</a></h2>
 <p>We are now ready for deep theory. The most natural continuations are:</p>

@@ -46707,37 +46707,37 @@
 <h2 id="the-black-scholes-pricing-map">The Black-Scholes Pricing Map<a class="headerlink" href="#the-black-scholes-pricing-map" title="Permanent link">&para;</a></h2>
 <h3 id="1-forward-direction-price-as-function-of-volatility">1. Forward Direction: Price as Function of Volatility<a class="headerlink" href="#1-forward-direction-price-as-function-of-volatility" title="Permanent link">&para;</a></h3>
 <p>Consider the Black-Scholes pricing functional for a European call option:</p>
-<p>$$</p>
-<p>\mathcal{C}: \mathbb{R}<em>+ \to \mathbb{R}</em>+, \quad \sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}: \mathbb{R}_+ \to \mathbb{R}_+, \quad \sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)
+\]</div>
 <p>where the Black-Scholes price is given explicitly by:</p>
-<p>$$</p>
-<p>C_{\text{BS}}(S, K, T, r, \sigma) = S \Phi(d_1) - K e^{-rT} \Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{BS}}(S, K, T, r, \sigma) = S \Phi(d_1) - K e^{-rT} \Phi(d_2)
+\]</div>
 <p>with</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 d_1 &amp;= \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} \\
 d_2 &amp;= d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + (r - \sigma^2/2)T}{\sigma\sqrt{T}}
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>and <span class="arithmatex">\(\Phi(\cdot)\)</span> denoting the standard normal cumulative distribution function.</p>
 <h3 id="2-mathematical-properties-of-the-pricing-map">2. Mathematical Properties of the Pricing Map<a class="headerlink" href="#2-mathematical-properties-of-the-pricing-map" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition 4.1.1</strong> (Monotonicity in Volatility)<br />
 The Black-Scholes call price <span class="arithmatex">\(C_{\text{BS}}\)</span> is strictly increasing in <span class="arithmatex">\(\sigma\)</span> for all <span class="arithmatex">\((S, K, T, r)\)</span> with <span class="arithmatex">\(S &gt; 0\)</span>, <span class="arithmatex">\(K &gt; 0\)</span>, <span class="arithmatex">\(T &gt; 0\)</span>.</p>
 <p><em>Proof.</em> Computing the derivative with respect to volatility (vega):</p>
-<p>$$</p>
-<p>\frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} &gt; 0
+\]</div>
 <p>where <span class="arithmatex">\(\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\)</span> is the standard normal density. Since <span class="arithmatex">\(\phi(d_1) &gt; 0\)</span> for all <span class="arithmatex">\(d_1 \in \mathbb{R}\)</span>, we have strict positivity. □</p>
 <p><strong>Proposition 4.1.2</strong> (Range of the Pricing Map)<br />
 For fixed <span class="arithmatex">\((S, K, T, r)\)</span>, the pricing map <span class="arithmatex">\(\sigma \mapsto C_{\text{BS}}(S, K, T, r, \sigma)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\lim_{\sigma \to 0^+} C_{\text{BS}} = \max(S - Ke^{-rT}, 0) = C_{\text{intrinsic}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\lim_{\sigma \to \infty} C_{\text{BS}} = S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\sigma \to 0^+} C_{\text{BS}} = \max(S - Ke^{-rT}, 0) = C_{\text{intrinsic}}
+\]</div>
+<div class="arithmatex">\[
+\lim_{\sigma \to \infty} C_{\text{BS}} = S
+\]</div>
 <p><em>Proof.</em> For the lower limit, as <span class="arithmatex">\(\sigma \to 0^+\)</span>:
 - If <span class="arithmatex">\(S &gt; Ke^{-rT}\)</span>: <span class="arithmatex">\(d_1, d_2 \to +\infty\)</span>, so <span class="arithmatex">\(\Phi(d_1), \Phi(d_2) \to 1\)</span>
 - If <span class="arithmatex">\(S &lt; Ke^{-rT}\)</span>: <span class="arithmatex">\(d_1, d_2 \to -\infty\)</span>, so <span class="arithmatex">\(\Phi(d_1), \Phi(d_2) \to 0\)</span>
@@ -46748,32 +46748,32 @@ For fixed <span class="arithmatex">\((S, K, T, r)\)</span>, the pricing map <spa
 - Thus <span class="arithmatex">\(\Phi(d_1) \to 1\)</span> and <span class="arithmatex">\(\Phi(d_2) \to 0\)</span>, giving <span class="arithmatex">\(C_{\text{BS}} \to S\)</span> □</p>
 <h3 id="3-domain-and-codomain-characterization">3. Domain and Codomain Characterization<a class="headerlink" href="#3-domain-and-codomain-characterization" title="Permanent link">&para;</a></h3>
 <p>The pricing map operates between specific spaces:</p>
-<p>$$</p>
-<p>\mathcal{C}: (0, \infty) \to (C_{\text{intrinsic}}, S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}: (0, \infty) \to (C_{\text{intrinsic}}, S)
+\]</div>
 <p>This characterizes the <strong>image</strong> of the Black-Scholes formula: any observable call price must satisfy the strict bounds:</p>
-<p>$$</p>
-<p>\max(S - Ke^{-rT}, 0) &lt; C_{\text{market}} &lt; S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S - Ke^{-rT}, 0) &lt; C_{\text{market}} &lt; S
+\]</div>
 <p>The strict inequalities reflect the time value of optionality.</p>
 <h2 id="the-inverse-map-definition-of-implied-volatility">The Inverse Map: Definition of Implied Volatility<a class="headerlink" href="#the-inverse-map-definition-of-implied-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="1-formal-definition">1. Formal Definition<a class="headerlink" href="#1-formal-definition" title="Permanent link">&para;</a></h3>
 <p>Given an observed market price <span class="arithmatex">\(C_{\text{market}}\)</span> satisfying the no-arbitrage bounds, the <strong>implied volatility</strong> <span class="arithmatex">\(\sigma_{\text{IV}}\)</span> is defined as the unique solution to:</p>
-<p>$$</p>
-<p>C_{\text{market}} = C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{market}} = C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}})
+\]</div>
 <p>Equivalently, we define the inverse pricing map:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} = \mathcal{C}^{-1}(C_{\text{market}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} = \mathcal{C}^{-1}(C_{\text{market}})
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{C}^{-1}: (C_{\text{intrinsic}}, S) \to (0, \infty)\)</span> is the functional inverse.</p>
 <h3 id="2-well-posedness-of-the-inverse-problem">2. Well-Posedness of the Inverse Problem<a class="headerlink" href="#2-well-posedness-of-the-inverse-problem" title="Permanent link">&para;</a></h3>
 <p>The existence and uniqueness of the inverse map follows from:</p>
 <p><strong>Theorem 4.1.1</strong> (Invertibility of Black-Scholes Pricing)<br />
 For any market price <span class="arithmatex">\(C_{\text{market}} \in (C_{\text{intrinsic}}, S)\)</span>, there exists a unique <span class="arithmatex">\(\sigma_{\text{IV}} \in (0, \infty)\)</span> such that:</p>
-<p>$$</p>
-<p>C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}}) = C_{\text{market}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{BS}}(S, K, T, r, \sigma_{\text{IV}}) = C_{\text{market}}
+\]</div>
 <p><em>Proof.</em> This follows immediately from:
 1. <strong>Monotonicity</strong> (Proposition 4.1.1): <span class="arithmatex">\(\partial C_{\text{BS}}/\partial \sigma &gt; 0\)</span> ensures injectivity
 2. <strong>Range characterization</strong> (Proposition 4.1.2): The image of <span class="arithmatex">\((0, \infty)\)</span> under <span class="arithmatex">\(\mathcal{C}\)</span> is precisely <span class="arithmatex">\((C_{\text{intrinsic}}, S)\)</span>, ensuring surjectivity onto the admissible price domain
@@ -46783,24 +46783,24 @@ For any market price <span class="arithmatex">\(C_{\text{market}} \in (C_{\text{
 <p><strong>Theorem 4.1.2</strong> (Smoothness of Implied Volatility)<br />
 The implied volatility map <span class="arithmatex">\(\mathcal{C}^{-1}\)</span> is <span class="arithmatex">\(C^\infty\)</span> smooth on its domain <span class="arithmatex">\((C_{\text{intrinsic}}, S)\)</span>.</p>
 <p><em>Proof.</em> By the Inverse Function Theorem, since:</p>
-<p>$$</p>
-<p>\frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C_{\text{BS}}}{\partial \sigma} = S \phi(d_1) \sqrt{T} &gt; 0
+\]</div>
 <p>is strictly positive and smooth in <span class="arithmatex">\(\sigma\)</span>, the inverse function is <span class="arithmatex">\(C^\infty\)</span> with derivative:</p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\partial C_{\text{BS}}/\partial \sigma\big|<em _text_IV="\text{IV">{\sigma=\sigma</em>}}}} = \frac{1}{S \phi(d_1(\sigma_{\text{IV}})) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\partial C_{\text{BS}}/\partial \sigma\big|_{\sigma=\sigma_{\text{IV}}}} = \frac{1}{S \phi(d_1(\sigma_{\text{IV}})) \sqrt{T}}
+\]</div>
 <p>Higher derivatives exist by repeated application. □</p>
 <h2 id="interpretation-as-change-of-coordinates">Interpretation as Change of Coordinates<a class="headerlink" href="#interpretation-as-change-of-coordinates" title="Permanent link">&para;</a></h2>
 <h3 id="1-from-price-space-to-volatility-space">1. From Price Space to Volatility Space<a class="headerlink" href="#1-from-price-space-to-volatility-space" title="Permanent link">&para;</a></h3>
 <p>The Black-Scholes formula establishes a diffeomorphism:</p>
-<p>$$</p>
-<p>\Psi: (0, \infty) \to (C_{\text{intrinsic}}, S), \quad \sigma \mapsto C_{\text{BS}}(\sigma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Psi: (0, \infty) \to (C_{\text{intrinsic}}, S), \quad \sigma \mapsto C_{\text{BS}}(\sigma)
+\]</div>
 <p>with smooth inverse:</p>
-<p>$$</p>
-<p>\Psi^{-1}: (C_{\text{intrinsic}}, S) \to (0, \infty), \quad C \mapsto \sigma_{\text{IV}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Psi^{-1}: (C_{\text{intrinsic}}, S) \to (0, \infty), \quad C \mapsto \sigma_{\text{IV}}
+\]</div>
 <p>This perspective reveals implied volatility as a <strong>coordinate transformation</strong>: rather than quoting option prices in dollars, we quote them in units of volatility.</p>
 <h3 id="2-advantages-of-volatility-coordinates">2. Advantages of Volatility Coordinates<a class="headerlink" href="#2-advantages-of-volatility-coordinates" title="Permanent link">&para;</a></h3>
 <p><strong>Normalization across strikes and maturities:</strong><br />
@@ -46826,32 +46826,32 @@ Small errors in option prices can correspond to small errors in implied volatili
 <h2 id="mathematical-formalism-pricing-functional-in-general">Mathematical Formalism: Pricing Functional in General<a class="headerlink" href="#mathematical-formalism-pricing-functional-in-general" title="Permanent link">&para;</a></h2>
 <h3 id="1-extension-to-general-payoffs">1. Extension to General Payoffs<a class="headerlink" href="#1-extension-to-general-payoffs" title="Permanent link">&para;</a></h3>
 <p>The inversion concept extends beyond vanilla calls. For any path-independent payoff <span class="arithmatex">\(\Psi(S_T)\)</span>, under Black-Scholes we have:</p>
-<p>$$</p>
-<p>V_{\text{BS}}(S, T, r, \sigma) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\Psi(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{BS}}(S, T, r, \sigma) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\Psi(S_T)]
+\]</div>
 <p>where <span class="arithmatex">\(S_T = S e^{(r - \sigma^2/2)T + \sigma W_T}\)</span> under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <p>If <span class="arithmatex">\(V_{\text{BS}}\)</span> is strictly monotone in <span class="arithmatex">\(\sigma\)</span> (which requires <span class="arithmatex">\(\Psi\)</span> to be non-constant), we can define:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^{\Psi} = \text{solution to } V_{\text{market}} = V_{\text{BS}}(S, T, r, \sigma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^{\Psi} = \text{solution to } V_{\text{market}} = V_{\text{BS}}(S, T, r, \sigma)
+\]</div>
 <h3 id="2-monotonicity-conditions-for-general-payoffs">2. Monotonicity Conditions for General Payoffs<a class="headerlink" href="#2-monotonicity-conditions-for-general-payoffs" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition 4.1.3</strong><br />
 The Black-Scholes price <span class="arithmatex">\(V_{\text{BS}}\)</span> is strictly increasing in <span class="arithmatex">\(\sigma\)</span> if and only if <span class="arithmatex">\(\Psi\)</span> is not a linear function.</p>
 <p><em>Proof sketch.</em> The vega is:</p>
-<p>$$</p>
-<p>\frac{\partial V_{\text{BS}}}{\partial \sigma} = e^{-rT} \mathbb{E}^{\mathbb{Q}}\left[\Psi(S_T) \frac{\partial \ln S_T}{\partial \sigma}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V_{\text{BS}}}{\partial \sigma} = e^{-rT} \mathbb{E}^{\mathbb{Q}}\left[\Psi(S_T) \frac{\partial \ln S_T}{\partial \sigma}\right]
+\]</div>
 <p>Using <span class="arithmatex">\(\partial \ln S_T / \partial \sigma = -\sigma T + W_T\)</span>, this becomes a covariance term. Non-linearity of <span class="arithmatex">\(\Psi\)</span> ensures non-degeneracy. □</p>
 <h2 id="numerical-considerations">Numerical Considerations<a class="headerlink" href="#numerical-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="1-root-finding-for-implied-volatility">1. Root-Finding for Implied Volatility<a class="headerlink" href="#1-root-finding-for-implied-volatility" title="Permanent link">&para;</a></h3>
 <p>In practice, <span class="arithmatex">\(\sigma_{\text{IV}}\)</span> is computed by solving:</p>
-<p>$$</p>
-<p>C_{\text{BS}}(\sigma) - C_{\text{market}} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{BS}}(\sigma) - C_{\text{market}} = 0
+\]</div>
 <p>Equivalently, we seek:</p>
-<p>$$</p>
-<p>\sigma_{\text{imp}} = \arg\min_\sigma \left| C_{\text{BS}}(S, K, T, r, \sigma) - C^{\text{mkt}} \right|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{imp}} = \arg\min_\sigma \left| C_{\text{BS}}(S, K, T, r, \sigma) - C^{\text{mkt}} \right|
+\]</div>
 <p>Standard methods include:
 - <strong>Newton-Raphson:</strong> Fast quadratic convergence using vega as the Jacobian
 - <strong>Brent's method:</strong> Combines bisection, secant, and inverse quadratic interpolation; robust without requiring derivatives
@@ -46871,15 +46871,15 @@ The Black-Scholes price <span class="arithmatex">\(V_{\text{BS}}\)</span> is str
 <p><strong>Step 1.</strong> Select an initial guess <span class="arithmatex">\(\sigma_0\)</span> (a common choice is <span class="arithmatex">\(\sigma_0 = 0.20\)</span> or the previous day's IV).</p>
 <p><strong>Step 2.</strong> Compute the Black-Scholes model price <span class="arithmatex">\(C_{\text{BS}}(S, K, T, r, \sigma_0)\)</span>.</p>
 <p><strong>Step 3.</strong> Adjust <span class="arithmatex">\(\sigma\)</span> iteratively until convergence:</p>
-<p>$$</p>
-<p>C_{\text{BS}}(S, K, T, r, \sigma_{\text{imp}}) \approx C^{\text{mkt}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{BS}}(S, K, T, r, \sigma_{\text{imp}}) \approx C^{\text{mkt}}
+\]</div>
 <p>The result gives the <strong>market-implied expectation of volatility</strong> over the remaining life of the option. This is distinct from historical or realized volatility, which is computed from past returns.</p>
 <h3 id="3-newton-raphson-iteration">3. Newton-Raphson Iteration<a class="headerlink" href="#3-newton-raphson-iteration" title="Permanent link">&para;</a></h3>
 <p>Given current iterate <span class="arithmatex">\(\sigma_n\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{n+1} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{\partial C_{\text{BS}}/\partial \sigma\big|<em _text_BS="\text{BS">{\sigma=\sigma_n}} = \sigma_n - \frac{C</em>}}(\sigma_n) - C_{\text{market}}}{S \phi(d_1) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{n+1} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{\partial C_{\text{BS}}/\partial \sigma\big|_{\sigma=\sigma_n}} = \sigma_n - \frac{C_{\text{BS}}(\sigma_n) - C_{\text{market}}}{S \phi(d_1) \sqrt{T}}
+\]</div>
 <p><strong>Convergence:</strong> Quadratic convergence is guaranteed due to <span class="arithmatex">\(C_{\text{BS}}\)</span> being strictly convex in <span class="arithmatex">\(\sigma\)</span> (positive vega derivative, i.e., vomma <span class="arithmatex">\(&gt; 0\)</span>).</p>
 <h3 id="4-brents-method">4. Brent's Method<a class="headerlink" href="#4-brents-method" title="Permanent link">&para;</a></h3>
 <p>Brent's method is often preferred in production systems because it:
@@ -46918,9 +46918,9 @@ The Black-Scholes price <span class="arithmatex">\(V_{\text{BS}}\)</span> is str
 <p>Comparing <span class="arithmatex">\(\sigma_{\text{IV}}\)</span> vs. <span class="arithmatex">\(\hat{\sigma}\)</span> informs relative value trades: if <span class="arithmatex">\(\sigma_{\text{IV}} &gt; \hat{\sigma}\)</span>, options may be "expensive" (volatility risk premium).</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The implied volatility establishes a fundamental coordinate transformation:</p>
-<p>$$</p>
-<p>\text{Option Price Space} \xrightarrow{\mathcal{C}^{-1}} \text{Volatility Space}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Option Price Space} \xrightarrow{\mathcal{C}^{-1}} \text{Volatility Space}
+\]</div>
 <p>This transformation:
 - Is <strong>well-defined</strong> via monotonicity and continuity of Black-Scholes pricing
 - Provides a <strong>normalized quoting convention</strong> independent of intrinsic value

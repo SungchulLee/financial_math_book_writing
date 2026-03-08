@@ -47281,56 +47281,56 @@
 <h3 id="1-statement-of-the-theorem">1. Statement of the Theorem<a class="headerlink" href="#1-statement-of-the-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.7</strong> (Lee, 2004)<br />
 Let <span class="arithmatex">\(q(S_T)\)</span> be the risk-neutral probability density at maturity <span class="arithmatex">\(T\)</span>. Define the growth rate of total implied variance in the wings:</p>
-<p>$$</p>
-<p>p_+ := \lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) \cdot T}{y}</p>
-<p>$$</p>
-<p>$$</p>
-<p>p_- := \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) \cdot T}{|y|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_+ := \lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) \cdot T}{y}
+\]</div>
+<div class="arithmatex">\[
+p_- := \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) \cdot T}{|y|}
+\]</div>
 <p>where <span class="arithmatex">\(y = \ln(K/F)\)</span> is log-moneyness.</p>
 <p>Then the <strong>maximum finite moment</strong> of the distribution is characterized by:</p>
-<p>$$</p>
-<p>p_{\pm} = \frac{2}{m_{\pm}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_{\pm} = \frac{2}{m_{\pm}}
+\]</div>
 <p>where <span class="arithmatex">\(m_+\)</span> is the largest <span class="arithmatex">\(p\)</span> such that <span class="arithmatex">\(\mathbb{E}^\mathbb{Q}[S_T^p] &lt; \infty\)</span> (right tail), and <span class="arithmatex">\(m_-\)</span> is the largest <span class="arithmatex">\(p\)</span> such that <span class="arithmatex">\(\mathbb{E}^\mathbb{Q}[S_T^{-p}] &lt; \infty\)</span> (left tail).</p>
 <p><strong>Interpretation:</strong> The slope of the implied variance in the wings is inversely proportional to the maximum finite moment.</p>
 <h3 id="2-proof-sketch">2. Proof Sketch<a class="headerlink" href="#2-proof-sketch" title="Permanent link">&para;</a></h3>
 <p>The call option price for large strikes admits the tail expansion:</p>
-<p>$$</p>
-<p>C(K, T) \sim e^{-rT} \mathbb{E}^\mathbb{Q}[(S_T - K)^+] \sim e^{-rT} \int_K^\infty (S - K) q(S) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) \sim e^{-rT} \mathbb{E}^\mathbb{Q}[(S_T - K)^+] \sim e^{-rT} \int_K^\infty (S - K) q(S) dS
+\]</div>
 <p>For large <span class="arithmatex">\(K\)</span>, if the density tail behaves as <span class="arithmatex">\(q(S) \sim S^{-\alpha}\)</span>, then:</p>
-<p>$$</p>
-<p>C(K, T) \sim K^{1 - \alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) \sim K^{1 - \alpha}
+\]</div>
 <p>Using the Black-Scholes formula approximation for deep OTM:</p>
-<p>$$</p>
-<p>C(K, T) \approx e^{-rT} S_0 e^{-\frac{1}{2}d_1^2} \sim \exp\left(-\frac{y^2}{2\sigma_{\text{IV}}^2 T}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) \approx e^{-rT} S_0 e^{-\frac{1}{2}d_1^2} \sim \exp\left(-\frac{y^2}{2\sigma_{\text{IV}}^2 T}\right)
+\]</div>
 <p>Matching the power law decay <span class="arithmatex">\(K^{1-\alpha}\)</span> with the Gaussian tail requires:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T \sim \frac{2y}{p}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T \sim \frac{2y}{p}
+\]</div>
 <p>where <span class="arithmatex">\(p = \alpha - 1\)</span> is the moment exponent. □</p>
 <h3 id="3-special-cases">3. Special Cases<a class="headerlink" href="#3-special-cases" title="Permanent link">&para;</a></h3>
 <p><strong>Finite variance (<span class="arithmatex">\(p_+ = p_- = 2\)</span>):</strong></p>
-<p>$$</p>
-<p>\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2
+\]</div>
 <p>The wings grow exactly linearly in log-moneyness.</p>
 <p><strong>Infinite variance (<span class="arithmatex">\(p_+ &lt; 2\)</span> or <span class="arithmatex">\(p_- &lt; 2\)</span>):</strong></p>
 <p>Wings grow slower than linear—flatter smile indicates heavier tails and infinite variance.</p>
 <p><strong>Finite fourth moment (<span class="arithmatex">\(p_+ = p_- = 4\)</span>):</strong></p>
-<p>$$</p>
-<p>\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = \frac{1}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = \frac{1}{2}
+\]</div>
 <p>Very steep wings, thin tails.</p>
 <h2 id="right-wing-large-strike-asymptotics">Right Wing: Large-Strike Asymptotics<a class="headerlink" href="#right-wing-large-strike-asymptotics" title="Permanent link">&para;</a></h2>
 <h3 id="1-power-law-tails">1. Power Law Tails<a class="headerlink" href="#1-power-law-tails" title="Permanent link">&para;</a></h3>
 <p>Assume the risk-neutral density has a power law right tail:</p>
-<p>$$</p>
-<p>q(S) \sim C_+ S^{-\alpha} \quad \text{as } S \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(S) \sim C_+ S^{-\alpha} \quad \text{as } S \to \infty
+\]</div>
 <p>for some <span class="arithmatex">\(\alpha &gt; 1\)</span> (to ensure normalization).</p>
 <p><strong>Implications:</strong>
 - Finite <span class="arithmatex">\(p\)</span>-th moment: <span class="arithmatex">\(\mathbb{E}[S_T^p] &lt; \infty\)</span> iff <span class="arithmatex">\(p &lt; \alpha - 1\)</span>
@@ -47338,95 +47338,95 @@ Let <span class="arithmatex">\(q(S_T)\)</span> be the risk-neutral probability d
 <h3 id="2-implied-volatility-asymptotics">2. Implied Volatility Asymptotics<a class="headerlink" href="#2-implied-volatility-asymptotics" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.8</strong> (Right Wing Asymptotics)<br />
 If <span class="arithmatex">\(q(S) \sim C_+ S^{-\alpha}\)</span> as <span class="arithmatex">\(S \to \infty\)</span>, then:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T \sim \frac{2y}{\alpha - 1} \quad \text{as } y \to +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T \sim \frac{2y}{\alpha - 1} \quad \text{as } y \to +\infty
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \sim \sqrt{\frac{2 \ln(K/F)}{T(\alpha - 1)}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \sim \sqrt{\frac{2 \ln(K/F)}{T(\alpha - 1)}}
+\]</div>
 <p><strong>Proof:</strong> From Lee's formula with <span class="arithmatex">\(m_+ = \alpha - 1\)</span>, we have <span class="arithmatex">\(p_+ = \frac{2}{\alpha - 1}\)</span>. The result follows by definition of <span class="arithmatex">\(p_+\)</span>. □</p>
 <h3 id="3-exponential-tails">3. Exponential Tails<a class="headerlink" href="#3-exponential-tails" title="Permanent link">&para;</a></h3>
 <p>If instead the density has exponential decay:</p>
-<p>$$</p>
-<p>q(S) \sim C_+ e^{-\lambda S} \quad \text{as } S \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(S) \sim C_+ e^{-\lambda S} \quad \text{as } S \to \infty
+\]</div>
 <p><strong>Implications:</strong>
 - All moments are finite: <span class="arithmatex">\(\mathbb{E}[S_T^p] &lt; \infty\)</span> for all <span class="arithmatex">\(p\)</span>
 - Lee's formula: <span class="arithmatex">\(p_+ = +\infty\)</span></p>
 <p><strong>Wing behavior:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T \gg y \quad \text{as } y \to +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T \gg y \quad \text{as } y \to +\infty
+\]</div>
 <p>The implied variance grows faster than linear (steep wings).</p>
 <p><strong>Example (Gaussian tail):</strong><br />
 For lognormal distribution:</p>
-<p>$$</p>
-<p>q(S) \sim \frac{1}{S\sigma\sqrt{2\pi T}} e^{-\frac{(\ln S - \mu)^2}{2\sigma^2 T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(S) \sim \frac{1}{S\sigma\sqrt{2\pi T}} e^{-\frac{(\ln S - \mu)^2}{2\sigma^2 T}}
+\]</div>
 <p>The IV wings grow as:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T \sim 2|y| + \text{const}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T \sim 2|y| + \text{const}
+\]</div>
 <p>(Linear growth with a different constant than power law.)</p>
 <h2 id="left-wing-small-strike-asymptotics">Left Wing: Small-Strike Asymptotics<a class="headerlink" href="#left-wing-small-strike-asymptotics" title="Permanent link">&para;</a></h2>
 <h3 id="1-put-call-symmetry">1. Put-Call Symmetry<a class="headerlink" href="#1-put-call-symmetry" title="Permanent link">&para;</a></h3>
 <p>By put-call parity:</p>
-<p>$$</p>
-<p>P(K, T) = C(K, T) - S_0 e^{-qT} + K e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(K, T) = C(K, T) - S_0 e^{-qT} + K e^{-rT}
+\]</div>
 <p>The implied volatility of a put equals that of a call:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^{\text{put}}(K, T) = \sigma_{\text{IV}}^{\text{call}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^{\text{put}}(K, T) = \sigma_{\text{IV}}^{\text{call}}(K, T)
+\]</div>
 <p>Thus, left wing analysis proceeds analogously using puts.</p>
 <h3 id="2-small-strike-behavior">2. Small-Strike Behavior<a class="headerlink" href="#2-small-strike-behavior" title="Permanent link">&para;</a></h3>
 <p>Define the left wing slope:</p>
-<p>$$</p>
-<p>p_- = \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_- = \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
+\]</div>
 <p><strong>Theorem 4.4.9</strong> (Left Wing Asymptotics)<br />
 If the density tail behaves as:</p>
-<p>$$</p>
-<p>q(S) \sim C_- S^{\beta} \quad \text{as } S \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(S) \sim C_- S^{\beta} \quad \text{as } S \to 0
+\]</div>
 <p>for some <span class="arithmatex">\(\beta &gt; -1\)</span> (to ensure integrability), then:</p>
-<p>$$</p>
-<p>p_- = \frac{2}{\beta + 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_- = \frac{2}{\beta + 1}
+\]</div>
 <p><strong>Special case (Black-Scholes):</strong><br />
 Lognormal density has <span class="arithmatex">\(q(S) \sim S^{-1}\)</span> as <span class="arithmatex">\(S \to 0\)</span>, giving <span class="arithmatex">\(\beta = -1\)</span>. However, this is <strong>boundary case</strong>—technically infinite <span class="arithmatex">\(p_-\)</span> due to exponential correction.</p>
 <h3 id="3-absorbing-barrier-at-zero">3. Absorbing Barrier at Zero<a class="headerlink" href="#3-absorbing-barrier-at-zero" title="Permanent link">&para;</a></h3>
 <p>If there is <strong>probability mass</strong> at <span class="arithmatex">\(S_T = 0\)</span> (complete default):</p>
-<p>$$</p>
-<p>\mathbb{P}^\mathbb{Q}(S_T = 0) = p_0 &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}^\mathbb{Q}(S_T = 0) = p_0 &gt; 0
+\]</div>
 <p><strong>Consequence:</strong> The put price has a floor:</p>
-<p>$$</p>
-<p>P(K, T) \geq K e^{-rT} p_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(K, T) \geq K e^{-rT} p_0
+\]</div>
 <p>This creates a <strong>kink</strong> in the left wing:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \to \infty \quad \text{as } K \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \to \infty \quad \text{as } K \to 0
+\]</div>
 <p>(Infinite IV needed to match the put price floor.)</p>
 <h2 id="symmetric-vs-asymmetric-wings">Symmetric vs Asymmetric Wings<a class="headerlink" href="#symmetric-vs-asymmetric-wings" title="Permanent link">&para;</a></h2>
 <h3 id="1-symmetric-distribution">1. Symmetric Distribution<a class="headerlink" href="#1-symmetric-distribution" title="Permanent link">&para;</a></h3>
 <p>If the risk-neutral density is symmetric around <span class="arithmatex">\(F\)</span>:</p>
-<p>$$</p>
-<p>q(F + x) = q(F - x) \quad \text{for all } x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(F + x) = q(F - x) \quad \text{for all } x
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>p_+ = p_- = 2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_+ = p_- = 2
+\]</div>
 <p>Both wings have finite variance tails.</p>
 <p><strong>Markets:</strong> Foreign exchange options often exhibit near-symmetric wings.</p>
 <h3 id="2-asymmetric-distribution-skewed">2. Asymmetric Distribution (Skewed)<a class="headerlink" href="#2-asymmetric-distribution-skewed" title="Permanent link">&para;</a></h3>
 <p><strong>Equity markets:</strong> Typically exhibit:</p>
-<p>$$</p>
-<p>p_- &lt; p_+ \quad (\text{or } p_- &lt; 2 &lt; p_+)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_- &lt; p_+ \quad (\text{or } p_- &lt; 2 &lt; p_+)
+\]</div>
 <p><strong>Interpretation:</strong> Left tail is heavier (fatter) than right tail, reflecting crash risk.</p>
 <p><strong>Example:</strong><br />
 - <span class="arithmatex">\(p_- = 1.5\)</span> → Inverse cubic tail (<span class="arithmatex">\(\alpha_- = 2.5\)</span>)
@@ -47435,18 +47435,18 @@ Lognormal density has <span class="arithmatex">\(q(S) \sim S^{-1}\)</span> as <s
 <h2 id="connections-to-variance-swaps">Connections to Variance Swaps<a class="headerlink" href="#connections-to-variance-swaps" title="Permanent link">&para;</a></h2>
 <h3 id="1-variance-swap-pricing">1. Variance Swap Pricing<a class="headerlink" href="#1-variance-swap-pricing" title="Permanent link">&para;</a></h3>
 <p>The fair strike for a variance swap is:</p>
-<p>$$</p>
-<p>K_{\text{var}} = \frac{2 e^{rT}}{T} \left(\int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_{\text{var}} = \frac{2 e^{rT}}{T} \left(\int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK\right)
+\]</div>
 <h3 id="2-wing-contribution">2. Wing Contribution<a class="headerlink" href="#2-wing-contribution" title="Permanent link">&para;</a></h3>
 <p>The integral is dominated by the wings:</p>
-<p>$$</p>
-<p>\int_F^\infty \frac{C(K)}{K^2} dK \sim \int_{y=0}^\infty C(Fe^y) e^{-2y} F dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_F^\infty \frac{C(K)}{K^2} dK \sim \int_{y=0}^\infty C(Fe^y) e^{-2y} F dy
+\]</div>
 <p>For large <span class="arithmatex">\(y\)</span>, using the tail behavior <span class="arithmatex">\(C(K) \sim K^{1 - \alpha}\)</span>:</p>
-<p>$$</p>
-<p>\int_{y_{\text{large}}}^\infty e^{y(1 - \alpha)} e^{-2y} dy \sim \int_{y_{\text{large}}}^\infty e^{-y(\alpha + 1)} dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{y_{\text{large}}}^\infty e^{y(1 - \alpha)} e^{-2y} dy \sim \int_{y_{\text{large}}}^\infty e^{-y(\alpha + 1)} dy
+\]</div>
 <p><strong>Convergence condition:</strong> <span class="arithmatex">\(\alpha + 1 &gt; 1\)</span>, i.e., <span class="arithmatex">\(\alpha &gt; 0\)</span> (finite first moment).</p>
 <p><strong>Connection to Lee's formula:</strong><br />
 If <span class="arithmatex">\(\alpha = m_+ + 1 &lt; 3\)</span> (infinite variance), the variance swap integral <strong>diverges</strong>.</p>
@@ -47455,27 +47455,27 @@ If <span class="arithmatex">\(\alpha = m_+ + 1 &lt; 3\)</span> (infinite varianc
 <h3 id="1-minimum-wing-slope">1. Minimum Wing Slope<a class="headerlink" href="#1-minimum-wing-slope" title="Permanent link">&para;</a></h3>
 <p>For the density to be a valid probability measure:</p>
 <p><strong>Lower bound:</strong></p>
-<p>$$</p>
-<p>p_{\pm} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_{\pm} &gt; 0
+\]</div>
 <p><strong>Upper bound (finite first moment):</strong></p>
-<p>$$</p>
-<p>p_{\pm} &lt; \infty \quad \Rightarrow \quad \mathbb{E}[S_T] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_{\pm} &lt; \infty \quad \Rightarrow \quad \mathbb{E}[S_T] &lt; \infty
+\]</div>
 <p>The forward price <span class="arithmatex">\(F = \mathbb{E}^\mathbb{Q}[S_T]\)</span> is finite by no-arbitrage, requiring:</p>
-<p>$$</p>
-<p>p_+ \geq 2/m_+ \quad \text{with } m_+ \geq 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_+ \geq 2/m_+ \quad \text{with } m_+ \geq 1
+\]</div>
 <p>Thus:</p>
-<p>$$</p>
-<p>p_+ \leq 2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_+ \leq 2
+\]</div>
 <p>Similarly for the left wing.</p>
 <h3 id="2-calibration-constraints">2. Calibration Constraints<a class="headerlink" href="#2-calibration-constraints" title="Permanent link">&para;</a></h3>
 <p>When fitting parametric smile models (SVI, SSVI), the wing slopes must satisfy:</p>
-<p>$$</p>
-<p>0 &lt; p_- \leq 2, \quad 0 &lt; p_+ \leq 2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 &lt; p_- \leq 2, \quad 0 &lt; p_+ \leq 2
+\]</div>
 <p>Violations indicate:
 - Mispriced options
 - Model over-fitting
@@ -47501,35 +47501,35 @@ If <span class="arithmatex">\(\alpha = m_+ + 1 &lt; 3\)</span> (infinite varianc
 <h2 id="wing-approximations-in-practice">Wing Approximations in Practice<a class="headerlink" href="#wing-approximations-in-practice" title="Permanent link">&para;</a></h2>
 <h3 id="1-polynomial-extrapolation">1. Polynomial Extrapolation<a class="headerlink" href="#1-polynomial-extrapolation" title="Permanent link">&para;</a></h3>
 <p>For strikes beyond the last traded option, fit:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T = a + b|y| + c y^2 + \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T = a + b|y| + c y^2 + \cdots
+\]</div>
 <p><strong>Constraint:</strong> The linear coefficient <span class="arithmatex">\(b\)</span> should match <span class="arithmatex">\(p_{\pm}\)</span> from Lee's formula.</p>
 <h3 id="2-power-law-tails-svi">2. Power Law Tails (SVI)<a class="headerlink" href="#2-power-law-tails-svi" title="Permanent link">&para;</a></h3>
 <p>The SVI parametrization:</p>
-<p>$$</p>
-<p>w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)
+\]</div>
 <p><strong>Wing slopes:</strong></p>
-<p>$$</p>
-<p>p_+ = 1 + \rho, \quad p_- = 1 - \rho</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_+ = 1 + \rho, \quad p_- = 1 - \rho
+\]</div>
 <p><strong>Constraint:</strong> <span class="arithmatex">\(\rho \in [-1, 1]\)</span> ensures <span class="arithmatex">\(0 &lt; p_{\pm} &lt; 2\)</span> (finite variance).</p>
 <p><strong>Limitation:</strong> SVI cannot model infinite variance distributions (<span class="arithmatex">\(p &lt; 2\)</span> arbitrary).</p>
 <h3 id="3-rational-function-extrapolation">3. Rational Function Extrapolation<a class="headerlink" href="#3-rational-function-extrapolation" title="Permanent link">&para;</a></h3>
 <p>For more flexible wing behavior:</p>
-<p>$$</p>
-<p>w(y) \sim a|y| + b \log|y| + c \quad \text{as } |y| \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(y) \sim a|y| + b \log|y| + c \quad \text{as } |y| \to \infty
+\]</div>
 <p>This allows for:
 - Leading linear term (controls moment)
 - Logarithmic correction (finer tail structure)</p>
 <h2 id="moment-constrained-calibration">Moment-Constrained Calibration<a class="headerlink" href="#moment-constrained-calibration" title="Permanent link">&para;</a></h2>
 <h3 id="1-imposing-known-moments">1. Imposing Known Moments<a class="headerlink" href="#1-imposing-known-moments" title="Permanent link">&para;</a></h3>
 <p>If external information provides moment bounds:</p>
-<p>$$</p>
-<p>\mathbb{E}^\mathbb{Q}[S_T^2] = M_2, \quad \mathbb{E}^\mathbb{Q}[S_T^3] = M_3, \quad \ldots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^\mathbb{Q}[S_T^2] = M_2, \quad \mathbb{E}^\mathbb{Q}[S_T^3] = M_3, \quad \ldots
+\]</div>
 <p><strong>Calibration strategy:</strong></p>
 <ol>
 <li>Use Lee's formula to determine <span class="arithmatex">\(p_{\pm}\)</span> from moment constraints</li>
@@ -47537,42 +47537,42 @@ If <span class="arithmatex">\(\alpha = m_+ + 1 &lt; 3\)</span> (infinite varianc
 <li>Verify that extracted density has correct moments</li>
 </ol>
 <p><strong>Example:</strong> If variance is known from variance swap:</p>
-<p>$$</p>
-<p>\mathbb{E}[S_T^2] = F^2 + \text{Var}(S_T) = F^2 + \sigma_{\text{var}}^2 F^2 T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_T^2] = F^2 + \text{Var}(S_T) = F^2 + \sigma_{\text{var}}^2 F^2 T
+\]</div>
 <p>This constrains the wings to decay at least as fast as <span class="arithmatex">\(p_+ = p_- = 2\)</span>.</p>
 <h2 id="extreme-wing-behavior-pathological-cases">Extreme Wing Behavior: Pathological Cases<a class="headerlink" href="#extreme-wing-behavior-pathological-cases" title="Permanent link">&para;</a></h2>
 <h3 id="1-flat-wings-p-0">1. Flat Wings (p → 0)<a class="headerlink" href="#1-flat-wings-p-0" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\sigma_{\text{IV}}(y, T)\)</span> is constant for large <span class="arithmatex">\(|y|\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y) = \sigma_\infty \quad \text{for } |y| &gt; y_{\text{large}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y) = \sigma_\infty \quad \text{for } |y| &gt; y_{\text{large}}
+\]</div>
 <p><strong>Consequence (Lee):</strong> All moments are infinite.</p>
 <p><strong>Interpretation:</strong> Extremely heavy tails—unrealistic for most assets.</p>
 <h3 id="2-steep-wings-p">2. Steep Wings (p → ∞)<a class="headerlink" href="#2-steep-wings-p" title="Permanent link">&para;</a></h3>
 <p>If IV grows faster than <span class="arithmatex">\(\sqrt{|y|/T}\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T \sim |y|^\gamma \quad \text{with } \gamma &gt; 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T \sim |y|^\gamma \quad \text{with } \gamma &gt; 1
+\]</div>
 <p><strong>Consequence:</strong> Density has <strong>compact support</strong> (zero probability beyond some threshold).</p>
 <p><strong>Interpretation:</strong> Asset price is bounded—possible for commodities (price can't be negative, may have physical upper bound).</p>
 <h2 id="relationship-to-greeks">Relationship to Greeks<a class="headerlink" href="#relationship-to-greeks" title="Permanent link">&para;</a></h2>
 <h3 id="1-wing-vega">1. Wing Vega<a class="headerlink" href="#1-wing-vega" title="Permanent link">&para;</a></h3>
 <p>The vega in the wings is:</p>
-<p>$$</p>
-<p>\mathcal{V}(K) = S_0 e^{-qT} \phi(d_1) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}(K) = S_0 e^{-qT} \phi(d_1) \sqrt{T}
+\]</div>
 <p>For large <span class="arithmatex">\(K\)</span>, <span class="arithmatex">\(d_1 \to -\infty\)</span>, so <span class="arithmatex">\(\phi(d_1) \to 0\)</span> exponentially.</p>
 <p><strong>Implication:</strong> Deep OTM options have very low vega—changes in wing IV have limited P&amp;L impact unless positions are large.</p>
 <h3 id="2-wing-delta">2. Wing Delta<a class="headerlink" href="#2-wing-delta" title="Permanent link">&para;</a></h3>
 <p>Deep OTM call delta:</p>
-<p>$$</p>
-<p>\Delta_{\text{call}} = e^{-qT} \Phi(d_1) \to 0 \quad \text{as } K \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{call}} = e^{-qT} \Phi(d_1) \to 0 \quad \text{as } K \to \infty
+\]</div>
 <p>Deep OTM put delta:</p>
-<p>$$</p>
-<p>\Delta_{\text{put}} = -e^{-qT} \Phi(-d_1) \to -e^{-qT} \quad \text{as } K \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{put}} = -e^{-qT} \Phi(-d_1) \to -e^{-qT} \quad \text{as } K \to 0
+\]</div>
 <p><strong>Wing hedging:</strong> Minimal sensitivity to spot moves, but gamma risk remains.</p>
 <h2 id="computational-aspects">Computational Aspects<a class="headerlink" href="#computational-aspects" title="Permanent link">&para;</a></h2>
 <h3 id="1-numerical-stability">1. Numerical Stability<a class="headerlink" href="#1-numerical-stability" title="Permanent link">&para;</a></h3>
@@ -47589,21 +47589,21 @@ If <span class="arithmatex">\(\alpha = m_+ + 1 &lt; 3\)</span> (infinite varianc
 <li>Determine wing slopes <span class="arithmatex">\(p_{\pm}\)</span> from fit</li>
 <li>Extend IV linearly in <span class="arithmatex">\(\sqrt{|y|}\)</span> for <span class="arithmatex">\(|y| &gt; y_{\text{liquid}}\)</span>:</li>
 </ol>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T = w_{\text{last}} + p_{\pm} (|y| - y_{\text{liquid}})</p>
-<p>$$</p>
+<p>$$
+   \sigma_{\text{IV}}^2(y, T) T = w_{\text{last}} + p_{\pm} (|y| - y_{\text{liquid}})
+   $$</p>
 <p><strong>Guarantee:</strong> Asymptotically correct behavior, arbitrage-free.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Wing asymptotics reveal:</p>
 <h3 id="1-lees-moment-formula">1. <strong>Lee's moment formula:</strong><a class="headerlink" href="#1-lees-moment-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>p_{\pm} = \frac{2}{m_{\pm}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_{\pm} = \frac{2}{m_{\pm}}
+\]</div>
 <p>Wing slope inversely proportional to maximum finite moment.</p>
 <h3 id="2-arbitrage-constraints">2. <strong>Arbitrage constraints:</strong><a class="headerlink" href="#2-arbitrage-constraints" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>0 &lt; p_- \leq 2, \quad 0 &lt; p_+ \leq 2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 &lt; p_- \leq 2, \quad 0 &lt; p_+ \leq 2
+\]</div>
 <p>Finite variance requires wings grow at least linearly in <span class="arithmatex">\(|y|\)</span>.</p>
 <h3 id="3-asymptotic-behavior">3. <strong>Asymptotic behavior:</strong><a class="headerlink" href="#3-asymptotic-behavior" title="Permanent link">&para;</a></h3>
 <p><strong>Power law tail:</strong> <span class="arithmatex">\(q(S) \sim S^{-\alpha} \Rightarrow \sigma_{\text{IV}}^2 T \sim \frac{2|y|}{\alpha - 1}\)</span></p>

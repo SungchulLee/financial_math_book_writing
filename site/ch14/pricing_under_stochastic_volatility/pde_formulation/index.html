@@ -46864,39 +46864,39 @@
 <h3 id="derivation-from-no-arbitrage">Derivation from No-Arbitrage<a class="headerlink" href="#derivation-from-no-arbitrage" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(V(t, S, v)\)</span> be the price at time <span class="arithmatex">\(t\)</span> of a European option when the spot price is <span class="arithmatex">\(S\)</span> and instantaneous variance is <span class="arithmatex">\(v\)</span>.</p>
 <p>By delta-vega hedging arguments (in the presence of a volatility-traded asset) or by the Feynman–Kac theorem, <span class="arithmatex">\(V\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0
+\]</div>
 <p>with terminal condition:</p>
-<p>$$</p>
-<p>V(T, S, v) = \Phi(S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(T, S, v) = \Phi(S)
+\]</div>
 <p>where <span class="arithmatex">\(\Phi(S)\)</span> is the payoff (e.g., <span class="arithmatex">\((S-K)^+\)</span> for a call).</p>
 <h3 id="the-infinitesimal-generator">The Infinitesimal Generator<a class="headerlink" href="#the-infinitesimal-generator" title="Permanent link">&para;</a></h3>
 <p>For a general two-factor stochastic volatility model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r-q)S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^S \\
 dv_t &amp;= a(v_t)\,dt + b(v_t)\,dW_t^v \\
 d\langle W^S, W^v \rangle_t &amp;= \rho\,dt
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>the generator is:</p>
-<p>$$</p>
-<p>\mathcal{L}V = (r-q)S\frac{\partial V}{\partial S} + a(v)\frac{\partial V}{\partial v} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho b(v)S\sqrt{v}\frac{\partial^2 V}{\partial S \partial v} + \frac{1}{2}b(v)^2\frac{\partial^2 V}{\partial v^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}V = (r-q)S\frac{\partial V}{\partial S} + a(v)\frac{\partial V}{\partial v} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho b(v)S\sqrt{v}\frac{\partial^2 V}{\partial S \partial v} + \frac{1}{2}b(v)^2\frac{\partial^2 V}{\partial v^2}
+\]</div>
 <hr />
 <h2 id="heston-pde">Heston PDE<a class="headerlink" href="#heston-pde" title="Permanent link">&para;</a></h2>
 <h3 id="specific-form">Specific Form<a class="headerlink" href="#specific-form" title="Permanent link">&para;</a></h3>
 <p>For the Heston model with <span class="arithmatex">\(a(v) = \kappa(\theta - v)\)</span> and <span class="arithmatex">\(b(v) = \xi\sqrt{v}\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho\xi vS\frac{\partial^2 V}{\partial S \partial v} + \frac{1}{2}\xi^2 v\frac{\partial^2 V}{\partial v^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho\xi vS\frac{\partial^2 V}{\partial S \partial v} + \frac{1}{2}\xi^2 v\frac{\partial^2 V}{\partial v^2} - rV = 0
+\]</div>
 <h3 id="log-price-transformation">Log-Price Transformation<a class="headerlink" href="#log-price-transformation" title="Permanent link">&para;</a></h3>
 <p>Setting <span class="arithmatex">\(x = \log S\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \left(r-q-\frac{v}{2}\right)\frac{\partial V}{\partial x} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{v}{2}\frac{\partial^2 V}{\partial x^2} + \rho\xi v\frac{\partial^2 V}{\partial x \partial v} + \frac{\xi^2 v}{2}\frac{\partial^2 V}{\partial v^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \left(r-q-\frac{v}{2}\right)\frac{\partial V}{\partial x} + \kappa(\theta - v)\frac{\partial V}{\partial v} + \frac{v}{2}\frac{\partial^2 V}{\partial x^2} + \rho\xi v\frac{\partial^2 V}{\partial x \partial v} + \frac{\xi^2 v}{2}\frac{\partial^2 V}{\partial v^2} - rV = 0
+\]</div>
 <p>This form has constant coefficients in the second-order <span class="arithmatex">\(x\)</span> terms, simplifying numerical treatment.</p>
 <hr />
 <h2 id="boundary-conditions">Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permanent link">&para;</a></h2>
@@ -46915,40 +46915,40 @@ d\langle W^S, W^v \rangle_t &amp;= \rho\,dt
 <li><strong>Feller violated:</strong> Boundary is attainable; specify behavior (typically: smooth continuation)</li>
 </ul>
 <p>A common approach: use the <strong>limiting PDE</strong> as <span class="arithmatex">\(v \to 0\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa\theta\frac{\partial V}{\partial v} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + (r-q)S\frac{\partial V}{\partial S} + \kappa\theta\frac{\partial V}{\partial v} - rV = 0
+\]</div>
 <p><strong>As <span class="arithmatex">\(v \to \infty\)</span>:</strong></p>
 <p>Option value becomes approximately linear in <span class="arithmatex">\(\sqrt{v}\)</span>. Common choices:
 - Neumann: <span class="arithmatex">\(\frac{\partial V}{\partial v} = 0\)</span>
 - Linear extrapolation
 - Far boundary placed sufficiently far</p>
 <h3 id="terminal-condition">Terminal Condition<a class="headerlink" href="#terminal-condition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V(T, S, v) = \Phi(S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(T, S, v) = \Phi(S)
+\]</div>
 <p>For a European call: <span class="arithmatex">\(\Phi(S) = (S - K)^+\)</span></p>
 <hr />
 <h2 id="numerical-methods">Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permanent link">&para;</a></h2>
 <h3 id="finite-difference-discretization">Finite Difference Discretization<a class="headerlink" href="#finite-difference-discretization" title="Permanent link">&para;</a></h3>
 <p>Discretize the <span class="arithmatex">\((x, v)\)</span> domain on a grid:</p>
-<p>$$</p>
-<p>x_i = x_{\min} + i\Delta x, \quad v_j = j\Delta v, \quad t_n = n\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x_i = x_{\min} + i\Delta x, \quad v_j = j\Delta v, \quad t_n = n\Delta t
+\]</div>
 <p>Denote <span class="arithmatex">\(V_{i,j}^n \approx V(t_n, x_i, v_j)\)</span>.</p>
 <h3 id="standard-finite-differences">Standard Finite Differences<a class="headerlink" href="#standard-finite-differences" title="Permanent link">&para;</a></h3>
 <p><strong>First derivatives:</strong></p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial x} \approx \frac{V_{i+1,j} - V_{i-1,j}}{2\Delta x} \quad \text{(central)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial x} \approx \frac{V_{i+1,j} - V_{i-1,j}}{2\Delta x} \quad \text{(central)}
+\]</div>
 <p><strong>Second derivatives:</strong></p>
-<p>$$</p>
-<p>\frac{\partial^2 V}{\partial x^2} \approx \frac{V_{i+1,j} - 2V_{i,j} + V_{i-1,j}}{(\Delta x)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 V}{\partial x^2} \approx \frac{V_{i+1,j} - 2V_{i,j} + V_{i-1,j}}{(\Delta x)^2}
+\]</div>
 <p><strong>Mixed derivative:</strong></p>
-<p>$$</p>
-<p>\frac{\partial^2 V}{\partial x \partial v} \approx \frac{V_{i+1,j+1} - V_{i+1,j-1} - V_{i-1,j+1} + V_{i-1,j-1}}{4\Delta x \Delta v}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 V}{\partial x \partial v} \approx \frac{V_{i+1,j+1} - V_{i+1,j-1} - V_{i-1,j+1} + V_{i-1,j-1}}{4\Delta x \Delta v}
+\]</div>
 <h3 id="time-stepping">Time Stepping<a class="headerlink" href="#time-stepping" title="Permanent link">&para;</a></h3>
 <p><strong>Explicit scheme:</strong> Unstable for fine grids; CFL condition required</p>
 <p><strong>Implicit scheme:</strong> Unconditionally stable but requires solving linear systems</p>
@@ -46959,34 +46959,34 @@ d\langle W^S, W^v \rangle_t &amp;= \rho\,dt
 <h3 id="douglasrachford-adi">Douglas–Rachford ADI<a class="headerlink" href="#douglasrachford-adi" title="Permanent link">&para;</a></h3>
 <p>Split the operator: <span class="arithmatex">\(\mathcal{L} = \mathcal{L}_x + \mathcal{L}_v + \mathcal{L}_{xv}\)</span></p>
 <p><strong>Step 1 (implicit in <span class="arithmatex">\(x\)</span>):</strong></p>
-<p>$$</p>
-<p>\frac{V^<em> - V^n}{\Delta t} + \mathcal{L}_x V^</em> + \mathcal{L}<em xv="xv">v V^n + \mathcal{L}</em> V^n = rV^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{V^* - V^n}{\Delta t} + \mathcal{L}_x V^* + \mathcal{L}_v V^n + \mathcal{L}_{xv} V^n = rV^n
+\]</div>
 <p><strong>Step 2 (implicit in <span class="arithmatex">\(v\)</span>):</strong></p>
-<p>$$</p>
-<p>\frac{V^{n+1} - V^*}{\Delta t} + \mathcal{L}_v(V^{n+1} - V^n) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{V^{n+1} - V^*}{\Delta t} + \mathcal{L}_v(V^{n+1} - V^n) = 0
+\]</div>
 <p>Each step involves only tridiagonal systems (fast to solve).</p>
 <h3 id="hundsdorferverwer-adi">Hundsdorfer–Verwer ADI<a class="headerlink" href="#hundsdorferverwer-adi" title="Permanent link">&para;</a></h3>
 <p>More sophisticated splitting with better stability:</p>
-<p>$$</p>
-<p>Y_0 = V^n + \Delta t \mathcal{L}V^n</p>
-<p>$$</p>
-<p>$$</p>
-<p>Y_1 = Y_0 + \theta\Delta t(\mathcal{L}_1 Y_1 - \mathcal{L}_1 V^n)</p>
-<p>$$</p>
-<p>$$</p>
-<p>Y_2 = Y_1 + \theta\Delta t(\mathcal{L}_2 Y_2 - \mathcal{L}_2 V^n)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\tilde{Y}_0 = Y_0 + \frac{1}{2}\Delta t(\mathcal{L}Y_2 - \mathcal{L}V^n)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\tilde{Y}_1 = \tilde{Y}_0 + \theta\Delta t(\mathcal{L}_1\tilde{Y}_1 - \mathcal{L}_1 Y_2)</p>
-<p>$$</p>
-<p>$$</p>
-<p>V^{n+1} = \tilde{Y}_1 + \theta\Delta t(\mathcal{L}_2 V^{n+1} - \mathcal{L}_2 Y_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_0 = V^n + \Delta t \mathcal{L}V^n
+\]</div>
+<div class="arithmatex">\[
+Y_1 = Y_0 + \theta\Delta t(\mathcal{L}_1 Y_1 - \mathcal{L}_1 V^n)
+\]</div>
+<div class="arithmatex">\[
+Y_2 = Y_1 + \theta\Delta t(\mathcal{L}_2 Y_2 - \mathcal{L}_2 V^n)
+\]</div>
+<div class="arithmatex">\[
+\tilde{Y}_0 = Y_0 + \frac{1}{2}\Delta t(\mathcal{L}Y_2 - \mathcal{L}V^n)
+\]</div>
+<div class="arithmatex">\[
+\tilde{Y}_1 = \tilde{Y}_0 + \theta\Delta t(\mathcal{L}_1\tilde{Y}_1 - \mathcal{L}_1 Y_2)
+\]</div>
+<div class="arithmatex">\[
+V^{n+1} = \tilde{Y}_1 + \theta\Delta t(\mathcal{L}_2 V^{n+1} - \mathcal{L}_2 Y_2)
+\]</div>
 <p>with <span class="arithmatex">\(\theta = 1/2\)</span> for second-order accuracy.</p>
 <h3 id="mixed-derivative-treatment">Mixed Derivative Treatment<a class="headerlink" href="#mixed-derivative-treatment" title="Permanent link">&para;</a></h3>
 <p>The cross-derivative <span class="arithmatex">\(\frac{\partial^2 V}{\partial x \partial v}\)</span> complicates ADI:</p>
@@ -46997,9 +46997,9 @@ d\langle W^S, W^v \rangle_t &amp;= \rho\,dt
 <h2 id="coordinate-transformations">Coordinate Transformations<a class="headerlink" href="#coordinate-transformations" title="Permanent link">&para;</a></h2>
 <h3 id="removing-the-mixed-derivative">Removing the Mixed Derivative<a class="headerlink" href="#removing-the-mixed-derivative" title="Permanent link">&para;</a></h3>
 <p>The transformation:</p>
-<p>$$</p>
-<p>y = x - \rho v, \quad w = v</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y = x - \rho v, \quad w = v
+\]</div>
 <p>can simplify the PDE by reducing the mixed derivative coefficient.</p>
 <h3 id="non-uniform-grids">Non-Uniform Grids<a class="headerlink" href="#non-uniform-grids" title="Permanent link">&para;</a></h3>
 <p>Concentrate grid points where <span class="arithmatex">\(V\)</span> varies most:
@@ -47007,21 +47007,21 @@ d\langle W^S, W^v \rangle_t &amp;= \rho\,dt
 - Near <span class="arithmatex">\(v = 0\)</span> (boundary layer)
 - Near <span class="arithmatex">\(v = v_0\)</span> (current variance)</p>
 <p>Common transformations:</p>
-<p>$$</p>
-<p>\tilde{v} = \sinh^{-1}(\alpha v)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{v} = \sinh^{-1}(\alpha v)
+\]</div>
 <hr />
 <h2 id="american-options">American Options<a class="headerlink" href="#american-options" title="Permanent link">&para;</a></h2>
 <h3 id="free-boundary-problem">Free Boundary Problem<a class="headerlink" href="#free-boundary-problem" title="Permanent link">&para;</a></h3>
 <p>American options require:</p>
-<p>$$</p>
-<p>V(t, S, v) \geq \Phi(S) \quad \text{for all } (t, S, v)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S, v) \geq \Phi(S) \quad \text{for all } (t, S, v)
+\]</div>
 <p>The <strong>early exercise boundary</strong> <span class="arithmatex">\(S^*(t, v)\)</span> separates continuation and exercise regions.</p>
 <h3 id="complementarity-formulation">Complementarity Formulation<a class="headerlink" href="#complementarity-formulation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\min\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV, \; V - \Phi\right) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV, \; V - \Phi\right) = 0
+\]</div>
 <h3 id="numerical-approaches">Numerical Approaches<a class="headerlink" href="#numerical-approaches" title="Permanent link">&para;</a></h3>
 <p><strong>Projected SOR:</strong> After each time step, enforce <span class="arithmatex">\(V \geq \Phi\)</span></p>
 <p><strong>Penalty method:</strong> Replace constraint with penalty term</p>

@@ -46851,12 +46851,12 @@
 <h2 id="payoff-structure">Payoff Structure<a class="headerlink" href="#payoff-structure" title="Permanent link">&para;</a></h2>
 <h3 id="zero-coupon-defaultable-bond">Zero-Coupon Defaultable Bond<a class="headerlink" href="#zero-coupon-defaultable-bond" title="Permanent link">&para;</a></h3>
 <p>A defaultable zero-coupon bond with face value <span class="arithmatex">\(F\)</span>, maturity <span class="arithmatex">\(T\)</span>, and recovery rate <span class="arithmatex">\(R\)</span> pays:</p>
-<p>$$</p>
-<p>\text{Payoff} = \begin{cases}
-F &amp; \text{if } \tau &gt; T \text{ (no default)} \
+<div class="arithmatex">\[
+\text{Payoff} = \begin{cases}
+F &amp; \text{if } \tau &gt; T \text{ (no default)} \\
 R \cdot F \cdot \delta(\tau) &amp; \text{if } \tau \le T \text{ (default)}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\tau\)</span> is the default time
 - <span class="arithmatex">\(R\)</span> is the recovery rate (fraction of face value recovered)
@@ -46870,103 +46870,103 @@ R \cdot F \cdot \delta(\tau) &amp; \text{if } \tau \le T \text{ (default)}
 <h2 id="general-pricing-framework">General Pricing Framework<a class="headerlink" href="#general-pricing-framework" title="Permanent link">&para;</a></h2>
 <h3 id="risk-neutral-valuation">Risk-Neutral Valuation<a class="headerlink" href="#risk-neutral-valuation" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the price at time <span class="arithmatex">\(t\)</span> (on <span class="arithmatex">\(\{\tau &gt; t\}\)</span>) is:</p>
-<p>$$</p>
-<p>P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\text{PV of Payoff} \mid \mathcal{G}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\text{PV of Payoff} \mid \mathcal{G}_t\right]
+\]</div>
 <h3 id="decomposition-into-components">Decomposition into Components<a class="headerlink" href="#decomposition-into-components" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P^d(t,T) = \underbrace{\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}<em Component="Component" _text_Survival="\text{Survival">{{\tau &gt; T}} \mid \mathcal{F}_t\right]}</em>}} + \underbrace{\mathbb{E}^{\mathbb{Q}}\left[\text{Recovery Payment} \mid \mathcal{F<em Component="Component" _text_Default="\text{Default">t\right]}</em>.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = \underbrace{\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{\{\tau &gt; T\}} \mid \mathcal{F}_t\right]}_{\text{Survival Component}} + \underbrace{\mathbb{E}^{\mathbb{Q}}\left[\text{Recovery Payment} \mid \mathcal{F}_t\right]}_{\text{Default Component}}
+\]</div>
 <p>The exact form of the second term depends on the recovery assumption.</p>
 <hr />
 <h2 id="recovery-conventions">Recovery Conventions<a class="headerlink" href="#recovery-conventions" title="Permanent link">&para;</a></h2>
 <h3 id="recovery-of-face-value-rfv">Recovery of Face Value (RFV)<a class="headerlink" href="#recovery-of-face-value-rfv" title="Permanent link">&para;</a></h3>
 <p>At default, bondholders receive a fraction <span class="arithmatex">\(R\)</span> of <strong>face value</strong>:</p>
-<p>$$</p>
-<p>\text{Recovery Payment} = R \cdot F \quad \text{paid at } \tau.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Recovery Payment} = R \cdot F \quad \text{paid at } \tau
+\]</div>
 <p><strong>Price formula:</strong></p>
-<p>$$</p>
-<p>P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}<em T_125_="T}" _="&lt;" _123_t="{t" _le="\le" _tau="\tau">{{\tau &gt; T}} \mid \mathcal{F}_t\right] + \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} RF \cdot \mathbf{1}</em>_t\right].} \mid \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{\{\tau &gt; T\}} \mid \mathcal{F}_t\right] + \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} RF \cdot \mathbf{1}_{\{t &lt; \tau \le T\}} \mid \mathcal{F}_t\right]
+\]</div>
 <h3 id="recovery-of-treasury-rt">Recovery of Treasury (RT)<a class="headerlink" href="#recovery-of-treasury-rt" title="Permanent link">&para;</a></h3>
 <p>At default, bondholders receive a fraction <span class="arithmatex">\(R\)</span> of the <strong>risk-free bond value</strong>:</p>
-<p>$$</p>
-<p>\text{Recovery Payment} = R \cdot P(\tau, T) \cdot F \quad \text{paid at } \tau,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Recovery Payment} = R \cdot P(\tau, T) \cdot F \quad \text{paid at } \tau
+\]</div>
 <p>where <span class="arithmatex">\(P(\tau, T)\)</span> is the risk-free discount factor from <span class="arithmatex">\(\tau\)</span> to <span class="arithmatex">\(T\)</span>.</p>
 <p>This is equivalent to receiving <span class="arithmatex">\(R \cdot F\)</span> at maturity <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>Price formula:</strong></p>
-<p>$$</p>
-<p>P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}<em T_125_="T}" _="&lt;" _123_t="{t" _le="\le" _tau="\tau">{{\tau &gt; T}} \mid \mathcal{F}_t\right] + R \cdot F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \mathbf{1}</em>_t\right].} \mid \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{\{\tau &gt; T\}} \mid \mathcal{F}_t\right] + R \cdot F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \mathbf{1}_{\{t &lt; \tau \le T\}} \mid \mathcal{F}_t\right]
+\]</div>
 <h3 id="recovery-of-market-value-rmv">Recovery of Market Value (RMV)<a class="headerlink" href="#recovery-of-market-value-rmv" title="Permanent link">&para;</a></h3>
 <p>At default, bondholders recover a fraction <span class="arithmatex">\(R\)</span> of the <strong>pre-default market value</strong> of the bond:</p>
-<p>$$</p>
-<p>\text{Recovery Payment} = R \cdot P^d(\tau-, T) \quad \text{paid at } \tau.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Recovery Payment} = R \cdot P^d(\tau-, T) \quad \text{paid at } \tau
+\]</div>
 <p>This leads to a recursive relationship in pricing.</p>
 <p><strong>Simplified formula (Duffie-Singleton):</strong></p>
 <p>Under RMV, the defaultable bond price satisfies:</p>
-<p>$$</p>
-<p>P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + (1-R)\lambda_s) ds} F \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + (1-R)\lambda_s) ds} F \mid \mathcal{F}_t\right]
+\]</div>
 <p>The intensity-adjusted discount rate is <span class="arithmatex">\(r + (1-R)\lambda\)</span>, where <span class="arithmatex">\((1-R)\lambda\)</span> is the <strong>loss-adjusted intensity</strong>.</p>
 <hr />
 <h2 id="pricing-under-intensity-models">Pricing Under Intensity Models<a class="headerlink" href="#pricing-under-intensity-models" title="Permanent link">&para;</a></h2>
 <h3 id="survival-component">Survival Component<a class="headerlink" href="#survival-component" title="Permanent link">&para;</a></h3>
 <p>Using the fundamental credit pricing formula:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{{\tau &gt; T}} \mid \mathcal{F}_t\right] = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} F \cdot \mathbf{1}_{\{\tau &gt; T\}} \mid \mathcal{F}_t\right] = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right]
+\]</div>
 <h3 id="default-component-rfv">Default Component (RFV)<a class="headerlink" href="#default-component-rfv" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} RF \cdot \mathbf{1}_{{t &lt; \tau \le T}} \mid \mathcal{F}_t\right] = RF \cdot \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} \lambda_u \, du \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^{\tau} r_s ds} RF \cdot \mathbf{1}_{\{t &lt; \tau \le T\}} \mid \mathcal{F}_t\right] = RF \cdot \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} \lambda_u \, du \mid \mathcal{F}_t\right]
+\]</div>
 <h3 id="combined-formula-rfv">Combined Formula (RFV)<a class="headerlink" href="#combined-formula-rfv" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P^d(t,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right] + RF \cdot \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} \lambda_u \, du \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right] + RF \cdot \mathbb{E}^{\mathbb{Q}}\left[\int_t^T e^{-\int_t^u (r_s + \lambda_s) ds} \lambda_u \, du \mid \mathcal{F}_t\right]
+\]</div>
 <hr />
 <h2 id="special-cases">Special Cases<a class="headerlink" href="#special-cases" title="Permanent link">&para;</a></h2>
 <h3 id="deterministic-rates-and-intensity">Deterministic Rates and Intensity<a class="headerlink" href="#deterministic-rates-and-intensity" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(r(t)\)</span> and <span class="arithmatex">\(\lambda(t)\)</span> are deterministic:</p>
 <p><strong>RFV:</strong></p>
-<p>$$</p>
-<p>P^d(t,T) = F \cdot e^{-\int_t^T (r(s) + \lambda(s)) ds} + RF \cdot \int_t^T e^{-\int_t^u (r(s) + \lambda(s)) ds} \lambda(u) \, du.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = F \cdot e^{-\int_t^T (r(s) + \lambda(s)) ds} + RF \cdot \int_t^T e^{-\int_t^u (r(s) + \lambda(s)) ds} \lambda(u) \, du
+\]</div>
 <p><strong>RMV/Duffie-Singleton:</strong></p>
-<p>$$</p>
-<p>P^d(t,T) = F \cdot e^{-\int_t^T (r(s) + (1-R)\lambda(s)) ds}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = F \cdot e^{-\int_t^T (r(s) + (1-R)\lambda(s)) ds}
+\]</div>
 <h3 id="constant-rates-and-intensity">Constant Rates and Intensity<a class="headerlink" href="#constant-rates-and-intensity" title="Permanent link">&para;</a></h3>
 <p>With constant <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(\lambda\)</span>:</p>
 <p><strong>RFV:</strong></p>
-<p>$$</p>
-<p>P^d(t,T) = F \cdot e^{-(r+\lambda)(T-t)} + RF \cdot \lambda \cdot \frac{1 - e^{-(r+\lambda)(T-t)}}{r + \lambda}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = F \cdot e^{-(r+\lambda)(T-t)} + RF \cdot \lambda \cdot \frac{1 - e^{-(r+\lambda)(T-t)}}{r + \lambda}
+\]</div>
 <p><strong>RMV:</strong></p>
-<p>$$</p>
-<p>P^d(t,T) = F \cdot e^{-(r + (1-R)\lambda)(T-t)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = F \cdot e^{-(r + (1-R)\lambda)(T-t)}
+\]</div>
 <h3 id="zero-recovery">Zero Recovery<a class="headerlink" href="#zero-recovery" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(R = 0\)</span>:</p>
-<p>$$</p>
-<p>P^d(t,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right] = P(t,T) \cdot S(t,T),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} \mid \mathcal{F}_t\right] = P(t,T) \cdot S(t,T)
+\]</div>
 <p>under independence of <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(\lambda\)</span>.</p>
 <hr />
 <h2 id="credit-spread-analysis">Credit Spread Analysis<a class="headerlink" href="#credit-spread-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="definition-of-yield">Definition of Yield<a class="headerlink" href="#definition-of-yield" title="Permanent link">&para;</a></h3>
 <p>The yield on a defaultable zero-coupon bond is:</p>
-<p>$$</p>
-<p>y^d(t,T) = -\frac{1}{T-t} \ln\left(\frac{P^d(t,T)}{F}\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y^d(t,T) = -\frac{1}{T-t} \ln\left(\frac{P^d(t,T)}{F}\right)
+\]</div>
 <h3 id="credit-spread">Credit Spread<a class="headerlink" href="#credit-spread" title="Permanent link">&para;</a></h3>
 <p>The <strong>credit spread</strong> (or <strong>yield spread</strong>) is:</p>
-<p>$$</p>
-<p>s(t,T) = y^d(t,T) - y(t,T),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s(t,T) = y^d(t,T) - y(t,T)
+\]</div>
 <p>where <span class="arithmatex">\(y(t,T)\)</span> is the yield on a comparable risk-free bond.</p>
 <h3 id="spread-components">Spread Components<a class="headerlink" href="#spread-components" title="Permanent link">&para;</a></h3>
 <p>The credit spread compensates for:
@@ -46976,14 +46976,14 @@ R \cdot F \cdot \delta(\tau) &amp; \text{if } \tau \le T \text{ (default)}
 4. <strong>Liquidity premium:</strong> Compensation for illiquidity</p>
 <h3 id="approximate-spread-formula">Approximate Spread Formula<a class="headerlink" href="#approximate-spread-formula" title="Permanent link">&para;</a></h3>
 <p>For small spreads and short horizons:</p>
-<p>$$</p>
-<p>s \approx (1 - R) \cdot \bar{\lambda},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s \approx (1 - R) \cdot \bar{\lambda}
+\]</div>
 <p>where <span class="arithmatex">\(\bar{\lambda}\)</span> is the average intensity over the period.</p>
 <p><strong>Derivation:</strong> Under RMV with constant parameters:</p>
-<p>$$</p>
-<p>P^d = P \cdot e^{-(1-R)\lambda T} \approx P \cdot (1 - (1-R)\lambda T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d = P \cdot e^{-(1-R)\lambda T} \approx P \cdot (1 - (1-R)\lambda T)
+\]</div>
 <p>Taking logs: <span class="arithmatex">\(y^d - y \approx (1-R)\lambda\)</span>.</p>
 <hr />
 <h2 id="coupon-bearing-defaultable-bonds">Coupon-Bearing Defaultable Bonds<a class="headerlink" href="#coupon-bearing-defaultable-bonds" title="Permanent link">&para;</a></h2>
@@ -46993,9 +46993,9 @@ R \cdot F \cdot \delta(\tau) &amp; \text{if } \tau \le T \text{ (default)}
 - Principal <span class="arithmatex">\(F\)</span> at maturity <span class="arithmatex">\(T\)</span> (if no default)
 - Recovery payment upon default</p>
 <h3 id="pricing-as-sum-of-components">Pricing as Sum of Components<a class="headerlink" href="#pricing-as-sum-of-components" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P^d_{\text{coupon}}(t,T) = \sum_{i: t_i &gt; t} c \cdot P^d(t, t_i) + F \cdot P^d(t, T),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d_{\text{coupon}}(t,T) = \sum_{i: t_i &gt; t} c \cdot P^d(t, t_i) + F \cdot P^d(t, T)
+\]</div>
 <p>where each <span class="arithmatex">\(P^d(t, t_i)\)</span> is a defaultable discount factor.</p>
 <h3 id="accrued-interest-at-default">Accrued Interest at Default<a class="headerlink" href="#accrued-interest-at-default" title="Permanent link">&para;</a></h3>
 <p>Upon default, accrued interest from the last coupon date may or may not be paid:
@@ -47012,25 +47012,25 @@ R \cdot F \cdot \delta(\tau) &amp; \text{if } \tau \le T \text{ (default)}
 - Recovery convention: RFV</p>
 <p><strong>Calculations:</strong></p>
 <p><strong>Survival component:</strong></p>
-<p>$$</p>
-<p>100 \cdot e^{-(0.04 + 0.02) \times 5} = 100 \cdot e^{-0.30} = 74.08</p>
-<p>$$</p>
+<div class="arithmatex">\[
+100 \cdot e^{-(0.04 + 0.02) \times 5} = 100 \cdot e^{-0.30} = 74.08
+\]</div>
 <p><strong>Default component:</strong></p>
-<p>$$</p>
-<p>40 \cdot 0.02 \cdot \frac{1 - e^{-0.06 \times 5}}{0.06} = 0.8 \cdot \frac{1 - 0.7408}{0.06} = 0.8 \cdot 4.32 = 3.46</p>
-<p>$$</p>
+<div class="arithmatex">\[
+40 \cdot 0.02 \cdot \frac{1 - e^{-0.06 \times 5}}{0.06} = 0.8 \cdot \frac{1 - 0.7408}{0.06} = 0.8 \cdot 4.32 = 3.46
+\]</div>
 <p><strong>Total price:</strong></p>
-<p>$$</p>
-<p>P^d = 74.08 + 3.46 = 77.54</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d = 74.08 + 3.46 = 77.54
+\]</div>
 <p><strong>Yield:</strong></p>
-<p>$$</p>
-<p>y^d = -\frac{1}{5} \ln(77.54/100) = \frac{0.2545}{5} = 5.09\%</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y^d = -\frac{1}{5} \ln(77.54/100) = \frac{0.2545}{5} = 5.09\%
+\]</div>
 <p><strong>Credit spread:</strong></p>
-<p>$$</p>
-<p>s = 5.09\% - 4\% = 1.09\% = 109 \text{ bp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s = 5.09\% - 4\% = 1.09\% = 109 \text{ bp}
+\]</div>
 <p><strong>Check:</strong> Approximate formula gives <span class="arithmatex">\(s \approx (1-0.4) \times 2\% = 1.2\%\)</span>, close to exact.</p>
 <hr />
 <h2 id="comparison-of-recovery-conventions">Comparison of Recovery Conventions<a class="headerlink" href="#comparison-of-recovery-conventions" title="Permanent link">&para;</a></h2>

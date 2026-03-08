@@ -46485,22 +46485,22 @@
 <div class="admonition tip">
 <p class="admonition-title">Key Result</p>
 <p>For a <strong>non-dividend-paying stock</strong>, it is <strong>never optimal</strong> to exercise an American call option before maturity. Therefore:</p>
-<p>$$</p>
-<p>C_{\text{American}}(S, t) = C_{\text{European}}(S, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{American}}(S, t) = C_{\text{European}}(S, t)
+\]</div>
 </div>
 <h3 id="proof">Proof<a class="headerlink" href="#proof" title="Permanent link">&para;</a></h3>
 <p>Consider an American call with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span>. At any time <span class="arithmatex">\(t &lt; T\)</span>, the holder can either:</p>
 <p><strong>Option A — Exercise now:</strong> Receive <span class="arithmatex">\(S_t - K\)</span>.</p>
 <p><strong>Option B — Sell the option:</strong> Receive at least <span class="arithmatex">\(C_{\text{European}}(S_t, t)\)</span>.</p>
 <p>By the lower bound for European calls:</p>
-<p>$$</p>
-<p>C_{\text{European}}(S_t, t) \geq S_t - K e^{-r(T-t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{European}}(S_t, t) \geq S_t - K e^{-r(T-t)}
+\]</div>
 <p>Since <span class="arithmatex">\(r &gt; 0\)</span> and <span class="arithmatex">\(T - t &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>C_{\text{European}}(S_t, t) \geq S_t - K e^{-r(T-t)} &gt; S_t - K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{European}}(S_t, t) \geq S_t - K e^{-r(T-t)} &gt; S_t - K
+\]</div>
 <p>Therefore selling the option always dominates exercising. The option is worth more alive than dead.</p>
 <div class="admonition note">
 <p class="admonition-title">Intuition: Three Sources of Value Lost by Early Exercise</p>
@@ -46515,13 +46515,13 @@
 <h2 id="american-puts-early-exercise-can-be-optimal">American Puts: Early Exercise Can Be Optimal<a class="headerlink" href="#american-puts-early-exercise-can-be-optimal" title="Permanent link">&para;</a></h2>
 <h3 id="why-puts-differ">Why Puts Differ<a class="headerlink" href="#why-puts-differ" title="Permanent link">&para;</a></h3>
 <p>The analogous argument <strong>fails</strong> for puts. The lower bound for a European put is:</p>
-<p>$$</p>
-<p>P_{\text{European}}(S_t, t) \geq K e^{-r(T-t)} - S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{European}}(S_t, t) \geq K e^{-r(T-t)} - S_t
+\]</div>
 <p>When the put is deep in-the-money (<span class="arithmatex">\(S_t \ll K\)</span>), the <strong>immediate exercise value</strong> is:</p>
-<p>$$</p>
-<p>K - S_t &gt; K e^{-r(T-t)} - S_t = K\left(1 - e^{-r(T-t)}\right) + (K e^{-r(T-t)} - S_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K - S_t &gt; K e^{-r(T-t)} - S_t = K\left(1 - e^{-r(T-t)}\right) + (K e^{-r(T-t)} - S_t)
+\]</div>
 <p>The European put value can be <strong>less than</strong> the intrinsic value <span class="arithmatex">\(K - S_t\)</span> because discounting the strike reduces the continuation value. The holder can earn interest on the cash received from exercise.</p>
 <div class="admonition example">
 <p class="admonition-title">When Early Exercise Is Optimal</p>
@@ -46534,11 +46534,11 @@
 </div>
 <h3 id="the-early-exercise-premium-for-puts">The Early Exercise Premium for Puts<a class="headerlink" href="#the-early-exercise-premium-for-puts" title="Permanent link">&para;</a></h3>
 <p>The American put price decomposes as:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 P_{\text{American}}(S, t) = P_{\text{European}}(S, t) + \text{EEP}(S, t)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The early exercise premium <span class="arithmatex">\(\text{EEP}\)</span> is always non-negative and increases as:</p>
 <ul>
 <li>The option goes deeper in-the-money</li>
@@ -46563,9 +46563,9 @@ P_{\text{American}}(S, t) = P_{\text{European}}(S, t) + \text{EEP}(S, t)
 <div class="admonition tip">
 <p class="admonition-title">Early Exercise Rule for Calls</p>
 <p>Exercise is potentially optimal just before the ex-dividend date if:</p>
-<p>$$</p>
-<p>\boxed{D &gt; K\left(1 - e^{-r \Delta t}\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{D &gt; K\left(1 - e^{-r \Delta t}\right)}
+\]</div>
 <p>where <span class="arithmatex">\(\Delta t\)</span> is the time remaining to maturity after the dividend date. The dividend must exceed the interest savings from deferring the strike payment.</p>
 </div>
 <h3 id="multiple-dividend-dates">Multiple Dividend Dates<a class="headerlink" href="#multiple-dividend-dates" title="Permanent link">&para;</a></h3>
@@ -46652,11 +46652,11 @@ P_{\text{American}}(S, t) = P_{\text{European}}(S, t) + \text{EEP}(S, t)
 </table>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Exercise early} \iff \Phi(S_t) &gt; \mathbb{E}^{\mathbb{Q}}\left[e^{-r\Delta t} V(t + \Delta t, S_{t+\Delta t}) \mid S_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

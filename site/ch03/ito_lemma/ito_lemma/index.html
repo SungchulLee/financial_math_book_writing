@@ -46604,13 +46604,13 @@
 <hr />
 <h2 id="the-classical-chain-rule-review">The Classical Chain Rule (Review)<a class="headerlink" href="#the-classical-chain-rule-review" title="Permanent link">&para;</a></h2>
 <p>For a smooth function <span class="arithmatex">\(f(x)\)</span> and a differentiable path <span class="arithmatex">\(x(t)\)</span>:</p>
-<p>$$</p>
-<p>\frac{d}{dt}f(x(t)) = f'(x(t)) \cdot \frac{dx}{dt}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}f(x(t)) = f'(x(t)) \cdot \frac{dx}{dt}
+\]</div>
 <p>Or in differential notation:</p>
-<p>$$</p>
-<p>df = f'(x)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df = f'(x)\,dx
+\]</div>
 <p><strong>Key feature</strong>: Only <strong>first-order</strong> terms survive.</p>
 <hr />
 <h2 id="why-the-classical-chain-rule-fails-for-brownian-motion">Why the Classical Chain Rule Fails for Brownian Motion<a class="headerlink" href="#why-the-classical-chain-rule-fails-for-brownian-motion" title="Permanent link">&para;</a></h2>
@@ -46623,14 +46623,14 @@
 <hr />
 <h2 id="the-ito-rules-box-calculus">The Itô Rules (Box Calculus)<a class="headerlink" href="#the-ito-rules-box-calculus" title="Permanent link">&para;</a></h2>
 <p>For Brownian motion differentials, the multiplication rules are:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 (dt)^2 = 0, \qquad dt \cdot dB_t = 0, \qquad (dB_t)^2 = dt
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Multiplication table</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{|c|c|c|}
+<div class="arithmatex">\[
+\begin{array}{|c|c|c|}
 \hline
 \times &amp; dt &amp; dB_t \\
 \hline
@@ -46638,8 +46638,8 @@ dt &amp; 0 &amp; 0 \\
 \hline
 dB_t &amp; 0 &amp; dt \\
 \hline
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ul>
 <li><span class="arithmatex">\(dt\)</span> is "infinitely small" compared to <span class="arithmatex">\(dB_t \sim \sqrt{dt}\)</span></li>
@@ -46650,68 +46650,64 @@ dB_t &amp; 0 &amp; dt \\
 <h2 id="statement-of-itos-lemma">Statement of Itô's Lemma<a class="headerlink" href="#statement-of-itos-lemma" title="Permanent link">&para;</a></h2>
 <h3 id="version-1-function-of-brownian-motion-only">Version 1: Function of Brownian Motion Only<a class="headerlink" href="#version-1-function-of-brownian-motion-only" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(f: \mathbb{R} \to \mathbb{R}\)</span> be <span class="arithmatex">\(C^2\)</span> (twice continuously differentiable). Then:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df(B_t) = f'(B_t)\,dB_t + \frac{1}{2}f''(B_t)\,dt
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Integral form</strong>:</p>
-<p>$$</p>
-<p>f(B_t) - f(B_0) = \int_0^t f'(B_s)\,dB_s + \frac{1}{2}\int_0^t f''(B_s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(B_t) - f(B_0) = \int_0^t f'(B_s)\,dB_s + \frac{1}{2}\int_0^t f''(B_s)\,ds
+\]</div>
 <h3 id="version-2-function-of-time-and-brownian-motion">Version 2: Function of Time and Brownian Motion<a class="headerlink" href="#version-2-function-of-time-and-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(f: [0,\infty) \times \mathbb{R} \to \mathbb{R}\)</span> be <span class="arithmatex">\(C^{1,2}\)</span> (once in <span class="arithmatex">\(t\)</span>, twice in <span class="arithmatex">\(x\)</span>). Then:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df(t, B_t) = \frac{\partial f}{\partial t}\,dt + \frac{\partial f}{\partial x}\,dB_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\,dt
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df = \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right)dt + \frac{\partial f}{\partial x}\,dB_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Integral form</strong>:</p>
-<p>$$</p>
-<p>f(t, B_t) = f(0, B_0) + \int_0^t \left(\frac{\partial f}{\partial s} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right)(s, B_s)\,ds + \int_0^t \frac{\partial f}{\partial x}(s, B_s)\,dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t, B_t) = f(0, B_0) + \int_0^t \left(\frac{\partial f}{\partial s} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right)(s, B_s)\,ds + \int_0^t \frac{\partial f}{\partial x}(s, B_s)\,dB_s
+\]</div>
 <h3 id="version-3-general-ito-process">Version 3: General Itô Process<a class="headerlink" href="#version-3-general-ito-process" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(X_t\)</span> be an Itô process:</p>
-<p>$$</p>
-<p>dX_t = \mu_t\,dt + \sigma_t\,dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu_t\,dt + \sigma_t\,dB_t
+\]</div>
 <p>For <span class="arithmatex">\(f \in C^{1,2}\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df(t, X_t) = \frac{\partial f}{\partial t}\,dt + \frac{\partial f}{\partial x}\,dX_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(dX_t)^2
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Using <span class="arithmatex">\((dX_t)^2 = \sigma_t^2\,dt\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 df(t, X_t) = \left(\frac{\partial f}{\partial t} + \mu_t\frac{\partial f}{\partial x} + \frac{1}{2}\sigma_t^2\frac{\partial^2 f}{\partial x^2}\right)dt + \sigma_t\frac{\partial f}{\partial x}\,dB_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h2 id="proof-sketch">Proof Sketch<a class="headerlink" href="#proof-sketch" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-second-order-taylor-expansion">Step 1: Second-Order Taylor Expansion<a class="headerlink" href="#step-1-second-order-taylor-expansion" title="Permanent link">&para;</a></h3>
 <p>Start with a second-order Taylor expansion at <span class="arithmatex">\((t_{k-1}, B_{t_{k-1}})\)</span>:</p>
-<p>$$</p>
-<p>f(t_k, B_{t_k}) - f(t_{k-1}, B_{t_{k-1}}) = f_t(t_{k-1}, B_{t_{k-1}})\Delta t + f_x(t_{k-1}, B_{t_{k-1}})\Delta B_t$$</p>
-<p>$$</p>
-<ul>
-<li>\frac{1}{2}f_{tt}(t_{k-1}, B_{t_{k-1}})(\Delta t)^2 + \frac{1}{2}f_{xx}(t_{k-1}, B_{t_{k-1}})(\Delta B_t)^2$$</li>
-</ul>
-<p>$$</p>
-<ul>
-<li>f_{tx}(t_{k-1}, B_{t_{k-1}})\Delta B_t \,\Delta t + \cdots</li>
-</ul>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t_k, B_{t_k}) - f(t_{k-1}, B_{t_{k-1}}) = f_t(t_{k-1}, B_{t_{k-1}})\Delta t + f_x(t_{k-1}, B_{t_{k-1}})\Delta B_t\]</div>
+<div class="arithmatex">\[
++ \frac{1}{2}f_{tt}(t_{k-1}, B_{t_{k-1}})(\Delta t)^2 + \frac{1}{2}f_{xx}(t_{k-1}, B_{t_{k-1}})(\Delta B_t)^2\]</div>
+<div class="arithmatex">\[
++ f_{tx}(t_{k-1}, B_{t_{k-1}})\Delta B_t \,\Delta t + \cdots
+\]</div>
 <h3 id="step-2-apply-ito-multiplication-rules">Step 2: Apply Itô Multiplication Rules<a class="headerlink" href="#step-2-apply-ito-multiplication-rules" title="Permanent link">&para;</a></h3>
 <p>The crucial difference from ordinary calculus is <strong>which terms survive</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{|c|c|}
+<div class="arithmatex">\[
+\begin{array}{|c|c|}
 \hline
 \text{Term} &amp; \text{Order and Fate} \\
 \hline
@@ -46721,24 +46717,24 @@ f_x \,dB_t &amp; O(\sqrt{dt}) \,\Rightarrow\, \text{SURVIVES} \\
 \frac{1}{2}f_{xx}(dB_t)^2 &amp; O(dt) \,\Rightarrow\, \text{SURVIVES} \quad \text{(KEY!)} \\
 f_{tx}\,dt\,dB_t &amp; O(dt^{3/2}) \,\Rightarrow\, \text{VANISHES} \\
 \hline
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>The key insight:</strong> <span class="arithmatex">\((dB_t)^2 = dt\)</span> is the fundamental rule distinguishing stochastic from ordinary calculus.</p>
 <h3 id="step-3-telescoping-sum">Step 3: Telescoping Sum<a class="headerlink" href="#step-3-telescoping-sum" title="Permanent link">&para;</a></h3>
 <p>Summing over a partition <span class="arithmatex">\(0 = t_0 &lt; t_1 &lt; \cdots &lt; t_n = t\)</span>:</p>
-<p>$$</p>
-<p>f(t, B_t) - f(0, B_0) = \sum_{k=1}^n [f(t_k, B_{t_k}) - f(t_{k-1}, B_{t_{k-1}})]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t, B_t) - f(0, B_0) = \sum_{k=1}^n [f(t_k, B_{t_k}) - f(t_{k-1}, B_{t_{k-1}})]
+\]</div>
 <p>Each five-term expansion contributes:</p>
-<p>$$</p>
-<p>\sum_{k=1}^n f_t(\cdot)\,\Delta t \to \int_0^t f_t(s, B_s)\,ds</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sum_{k=1}^n f_x(\cdot)\,\Delta B_t \to \int_0^t f_x(s, B_s)\,dB_s</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sum_{k=1}^n \frac{1}{2}f_{xx}(\cdot)(\Delta B_t)^2 = \sum_{k=1}^n \frac{1}{2}f_{xx}(\cdot)\,\Delta t \to \int_0^t \frac{1}{2}f_{xx}(s, B_s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{k=1}^n f_t(\cdot)\,\Delta t \to \int_0^t f_t(s, B_s)\,ds
+\]</div>
+<div class="arithmatex">\[
+\sum_{k=1}^n f_x(\cdot)\,\Delta B_t \to \int_0^t f_x(s, B_s)\,dB_s
+\]</div>
+<div class="arithmatex">\[
+\sum_{k=1}^n \frac{1}{2}f_{xx}(\cdot)(\Delta B_t)^2 = \sum_{k=1}^n \frac{1}{2}f_{xx}(\cdot)\,\Delta t \to \int_0^t \frac{1}{2}f_{xx}(s, B_s)\,ds
+\]</div>
 <h3 id="step-4-rigorous-limit">Step 4: Rigorous Limit<a class="headerlink" href="#step-4-rigorous-limit" title="Permanent link">&para;</a></h3>
 <p>Taking the limit as <span class="arithmatex">\(\|\Delta\| \to 0\)</span>:</p>
 <ul>
@@ -46751,45 +46747,45 @@ f_{tx}\,dt\,dB_t &amp; O(dt^{3/2}) \,\Rightarrow\, \text{VANISHES} \\
 <hr />
 <h2 id="key-examples">Key Examples<a class="headerlink" href="#key-examples" title="Permanent link">&para;</a></h2>
 <h3 id="example-1-fx-x2">Example 1: f(x) = x²<a class="headerlink" href="#example-1-fx-x2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d(B_t^2) = 2B_t\,dB_t + \frac{1}{2}\cdot 2\,dt = 2B_t\,dB_t + dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(B_t^2) = 2B_t\,dB_t + \frac{1}{2}\cdot 2\,dt = 2B_t\,dB_t + dt
+\]</div>
 <p><strong>Integral form</strong>:</p>
-<p>$$</p>
-<p>B_t^2 = 2\int_0^t B_s\,dB_s + t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t^2 = 2\int_0^t B_s\,dB_s + t
+\]</div>
 <p><strong>Corollary</strong>: The famous Itô integral formula:</p>
-<p>$$</p>
-<p>\int_0^t B_s\,dB_s = \frac{1}{2}(B_t^2 - t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t B_s\,dB_s = \frac{1}{2}(B_t^2 - t)
+\]</div>
 <h3 id="example-2-fx-ex">Example 2: f(x) = e^x<a class="headerlink" href="#example-2-fx-ex" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d(e^{B_t}) = e^{B_t}\,dB_t + \frac{1}{2}e^{B_t}\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{B_t}) = e^{B_t}\,dB_t + \frac{1}{2}e^{B_t}\,dt
+\]</div>
 <p><strong>Note</strong>: <span class="arithmatex">\(e^{B_t}\)</span> is <strong>not</strong> a martingale (the <span class="arithmatex">\(dt\)</span> term has non-zero drift).</p>
 <h3 id="example-3-exponential-martingale-ftx-ex-t2">Example 3: Exponential Martingale f(t,x) = e^x - t/2<a class="headerlink" href="#example-3-exponential-martingale-ftx-ex-t2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>df = \left(-\frac{1}{2}e^{x-t/2} + \frac{1}{2}e^{x-t/2}\right)dt + e^{x-t/2}\,dB_t = e^{B_t - t/2}\,dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df = \left(-\frac{1}{2}e^{x-t/2} + \frac{1}{2}e^{x-t/2}\right)dt + e^{x-t/2}\,dB_t = e^{B_t - t/2}\,dB_t
+\]</div>
 <p>The <span class="arithmatex">\(dt\)</span> terms <strong>cancel</strong>! So <span class="arithmatex">\(Z_t = e^{B_t - t/2}\)</span> is a martingale.</p>
 <h3 id="example-4-geometric-brownian-motion">Example 4: Geometric Brownian Motion<a class="headerlink" href="#example-4-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(S_t\)</span> satisfy <span class="arithmatex">\(dS_t = \mu S_t\,dt + \sigma S_t\,dB_t\)</span>. Apply Itô to <span class="arithmatex">\(f(x) = \log x\)</span>:</p>
-<p>$$</p>
-<p>d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dB_t) - \frac{1}{2S_t^2}\sigma^2 S_t^2\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
+\]</div>
+<div class="arithmatex">\[
+= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dB_t) - \frac{1}{2S_t^2}\sigma^2 S_t^2\,dt
+\]</div>
+<div class="arithmatex">\[
+= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dB_t
+\]</div>
 <p><strong>Solution</strong>:</p>
-<p>$$</p>
-<p>\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t
+\]</div>
+<div class="arithmatex">\[
+\boxed{S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right]}
+\]</div>
 <hr />
 <h2 id="the-ito-correction-term">The Itô Correction Term<a class="headerlink" href="#the-ito-correction-term" title="Permanent link">&para;</a></h2>
 <p>The term <span class="arithmatex">\(\frac{1}{2}f''(x)\,dt\)</span> is called the <strong>Itô correction</strong> or <strong>Itô drift</strong>.</p>
@@ -46799,14 +46795,14 @@ f_{tx}\,dt\,dB_t &amp; O(dt^{3/2}) \,\Rightarrow\, \text{VANISHES} \\
 <h2 id="connection-to-pdes">Connection to PDEs<a class="headerlink" href="#connection-to-pdes" title="Permanent link">&para;</a></h2>
 <p>Itô's lemma connects SDEs to partial differential equations.</p>
 <p><strong>Observation</strong>: If <span class="arithmatex">\(f(t, B_t)\)</span> is a martingale, then its <span class="arithmatex">\(dt\)</span> coefficient must be zero:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} = 0
+\]</div>
 <p>This is the <strong>heat equation</strong> (backward in time)!</p>
 <p><strong>General connection</strong>: For the SDE <span class="arithmatex">\(dX_t = \mu(x)\,dt + \sigma(x)\,dB_t\)</span>, the function <span class="arithmatex">\(u(t,x) = \mathbb{E}[g(X_T) | X_t = x]\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mu(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mu(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
+\]</div>
 <p>This is the <strong>Kolmogorov backward equation</strong> and the foundation of the <strong>Feynman-Kac formula</strong>.</p>
 <hr />
 <h2 id="step-by-step-application-strategy">Step-by-Step Application Strategy<a class="headerlink" href="#step-by-step-application-strategy" title="Permanent link">&para;</a></h2>
@@ -46814,13 +46810,13 @@ f_{tx}\,dt\,dB_t &amp; O(dt^{3/2}) \,\Rightarrow\, \text{VANISHES} \\
 <p><strong>Step 1:</strong> Compute all first and second partial derivatives of <span class="arithmatex">\(f\)</span>:</p>
 <div class="arithmatex">\[f_t, \quad f_x, \quad f_{xx}\]</div>
 <p><strong>Step 2:</strong> Compute <span class="arithmatex">\((dX_t)^2\)</span> symbolically using Itô rules:</p>
-<p>$$</p>
-<p>(dX_t)^2 = (\mu_t\,dt + \sigma_t\,dB_t)^2 = \sigma_t^2\,(dB_t)^2 = \sigma_t^2\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dX_t)^2 = (\mu_t\,dt + \sigma_t\,dB_t)^2 = \sigma_t^2\,(dB_t)^2 = \sigma_t^2\,dt
+\]</div>
 <p><strong>Step 3:</strong> Substitute into Itô's lemma formula:</p>
-<p>$$</p>
-<p>df = \left(f_t + \mu_t f_x + \frac{1}{2}\sigma_t^2 f_{xx}\right)dt + \sigma_t f_x\,dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df = \left(f_t + \mu_t f_x + \frac{1}{2}\sigma_t^2 f_{xx}\right)dt + \sigma_t f_x\,dB_t
+\]</div>
 <p><strong>Step 4:</strong> Integrate if needed, or use as differential equation.</p>
 <h2 id="common-mistakes-to-avoid">Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Permanent link">&para;</a></h2>
 <ol>
@@ -46842,11 +46838,11 @@ f_{tx}\,dt\,dB_t &amp; O(dt^{3/2}) \,\Rightarrow\, \text{VANISHES} \\
 </ol>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Itô's Lemma: } df(t, X_t) = \left(f_t + \mu f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma f_x\,dB_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

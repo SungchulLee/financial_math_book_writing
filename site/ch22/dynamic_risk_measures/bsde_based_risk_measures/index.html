@@ -46748,9 +46748,9 @@
 <hr />
 <h2 id="introduction-to-bsdes">Introduction to BSDEs<a class="headerlink" href="#introduction-to-bsdes" title="Permanent link">&para;</a></h2>
 <p>A <strong>backward stochastic differential equation</strong> has the form:</p>
-<p>$$</p>
-<p>Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+\]</div>
 <p>where:
 - <span class="arithmatex">\(X \in L^2(\mathcal{F}_T)\)</span> is the <strong>terminal condition</strong> (e.g., a loss at maturity)
 - <span class="arithmatex">\(g: [0,T] \times \mathbb{R} \times \mathbb{R}^d \to \mathbb{R}\)</span> is the <strong>driver</strong> (or generator)
@@ -46761,9 +46761,9 @@
 <hr />
 <h2 id="risk-measure-interpretation">Risk Measure Interpretation<a class="headerlink" href="#risk-measure-interpretation" title="Permanent link">&para;</a></h2>
 <p>Given a BSDE with terminal condition <span class="arithmatex">\(X\)</span> (the loss), define:</p>
-<p>$$</p>
-<p>\rho_t(X) := Y_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) := Y_t
+\]</div>
 <p>The solution <span class="arithmatex">\(Y_t\)</span> represents the <strong>dynamic risk assessment</strong> of the terminal loss <span class="arithmatex">\(X\)</span> at time <span class="arithmatex">\(t\)</span>.</p>
 <p><strong>Why this works:</strong>
 - <span class="arithmatex">\(Y_T = X\)</span>: At maturity, risk equals the realized loss
@@ -46803,20 +46803,20 @@
 <h2 id="standard-assumptions">Standard Assumptions<a class="headerlink" href="#standard-assumptions" title="Permanent link">&para;</a></h2>
 <p>For existence and uniqueness of BSDE solutions, standard conditions on <span class="arithmatex">\(g\)</span> are:</p>
 <h3 id="lipschitz-condition">Lipschitz Condition<a class="headerlink" href="#lipschitz-condition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>|g(t, y_1, z_1) - g(t, y_2, z_2)| \le K(|y_1 - y_2| + |z_1 - z_2|)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|g(t, y_1, z_1) - g(t, y_2, z_2)| \le K(|y_1 - y_2| + |z_1 - z_2|)
+\]</div>
 <h3 id="growth-condition">Growth Condition<a class="headerlink" href="#growth-condition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>|g(t, 0, 0)| \le K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|g(t, 0, 0)| \le K
+\]</div>
 <p>Under these conditions (Pardoux-Peng, 1990), the BSDE has a unique adapted solution <span class="arithmatex">\((Y, Z)\)</span>.</p>
 <hr />
 <h2 id="g-expectations-peng">g-Expectations (Peng)<a class="headerlink" href="#g-expectations-peng" title="Permanent link">&para;</a></h2>
 <p><strong>g-expectation</strong> is a nonlinear generalization of conditional expectation:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[X | \mathcal{F}_t] := Y_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[X | \mathcal{F}_t] := Y_t
+\]</div>
 <p>where <span class="arithmatex">\(Y\)</span> solves the BSDE with terminal condition <span class="arithmatex">\(X\)</span> and driver <span class="arithmatex">\(g\)</span>.</p>
 <h3 id="properties-of-g-expectations">Properties of g-Expectations<a class="headerlink" href="#properties-of-g-expectations" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(g\)</span> satisfies appropriate conditions:</p>
@@ -46842,24 +46842,24 @@
 <hr />
 <h2 id="example-linear-driver-conditional-expectation">Example: Linear Driver (Conditional Expectation)<a class="headerlink" href="#example-linear-driver-conditional-expectation" title="Permanent link">&para;</a></h2>
 <p>If <span class="arithmatex">\(g(t, y, z) = 0\)</span>, the BSDE becomes:</p>
-<p>$$</p>
-<p>Y_t = X - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = X - \int_t^T Z_s \, dW_s
+\]</div>
 <p>Taking conditional expectations:</p>
-<p>$$</p>
-<p>Y_t = \mathbb{E}[X | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = \mathbb{E}[X | \mathcal{F}_t]
+\]</div>
 <p>This recovers the standard conditional expectation.</p>
 <hr />
 <h2 id="example-entropic-risk-measure">Example: Entropic Risk Measure<a class="headerlink" href="#example-entropic-risk-measure" title="Permanent link">&para;</a></h2>
 <p>Consider the driver:</p>
-<p>$$</p>
-<p>g(t, y, z) = \frac{\gamma}{2} |z|^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, y, z) = \frac{\gamma}{2} |z|^2
+\]</div>
 <p>The solution satisfies:</p>
-<p>$$</p>
-<p>Y_t = \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma X} \big| \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma X} \big| \mathcal{F}_t\right]
+\]</div>
 <p>This is the <strong>conditional entropic risk measure</strong> with risk aversion parameter <span class="arithmatex">\(\gamma\)</span>.</p>
 <p><strong>Properties:</strong>
 - Convex but not positively homogeneous
@@ -46868,13 +46868,13 @@
 <hr />
 <h2 id="example-coherent-risk-measures">Example: Coherent Risk Measures<a class="headerlink" href="#example-coherent-risk-measures" title="Permanent link">&para;</a></h2>
 <p>For coherent measures, the driver must be positively homogeneous:</p>
-<p>$$</p>
-<p>g(t, \lambda y, \lambda z) = \lambda g(t, y, z) \quad \text{for } \lambda &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, \lambda y, \lambda z) = \lambda g(t, y, z) \quad \text{for } \lambda &gt; 0
+\]</div>
 <p>A canonical example:</p>
-<p>$$</p>
-<p>g(t, y, z) = \theta |z|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, y, z) = \theta |z|
+\]</div>
 <p>for some <span class="arithmatex">\(\theta \ge 0\)</span>. This generates a <strong>penalty for volatility exposure</strong>.</p>
 <hr />
 <h2 id="time-consistency-from-bsdes">Time-Consistency from BSDEs<a class="headerlink" href="#time-consistency-from-bsdes" title="Permanent link">&para;</a></h2>
@@ -46889,16 +46889,16 @@
 <hr />
 <h2 id="comparison-theorem">Comparison Theorem<a class="headerlink" href="#comparison-theorem" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem:</strong> If <span class="arithmatex">\(X \le X'\)</span> a.s. and <span class="arithmatex">\(g \le g'\)</span>, then the corresponding BSDE solutions satisfy:</p>
-<p>$$</p>
-<p>Y_t \le Y'_t \quad \text{a.s. for all } t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t \le Y'_t \quad \text{a.s. for all } t
+\]</div>
 <p>This ensures <strong>monotonicity</strong> of BSDE-based risk measures.</p>
 <hr />
 <h2 id="dual-representation-via-bsdes">Dual Representation via BSDEs<a class="headerlink" href="#dual-representation-via-bsdes" title="Permanent link">&para;</a></h2>
 <p>For convex risk measures defined via BSDEs, there is a dual representation:</p>
-<p>$$</p>
-<p>\rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q} \in \mathcal{Q}} \left{ \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t] - \alpha_t(\mathbb{Q}) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q} \in \mathcal{Q}} \left\{ \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t] - \alpha_t(\mathbb{Q}) \right\}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\mathcal{Q}\)</span> is a set of equivalent probability measures
 - <span class="arithmatex">\(\alpha_t(\mathbb{Q})\)</span> is a penalty function related to the driver <span class="arithmatex">\(g\)</span></p>
@@ -46906,9 +46906,9 @@
 <hr />
 <h2 id="quadratic-bsdes">Quadratic BSDEs<a class="headerlink" href="#quadratic-bsdes" title="Permanent link">&para;</a></h2>
 <p>When <span class="arithmatex">\(g\)</span> has quadratic growth in <span class="arithmatex">\(z\)</span>:</p>
-<p>$$</p>
-<p>|g(t, y, z)| \le K(1 + |y| + |z|^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|g(t, y, z)| \le K(1 + |y| + |z|^2)
+\]</div>
 <p>the theory becomes more delicate:
 - Solutions may not exist for all terminal conditions
 - Uniqueness may fail
@@ -46917,9 +46917,9 @@
 <hr />
 <h2 id="multidimensional-extensions">Multidimensional Extensions<a class="headerlink" href="#multidimensional-extensions" title="Permanent link">&para;</a></h2>
 <p>For portfolios with multiple risk factors, consider BSDEs driven by multidimensional Brownian motion:</p>
-<p>$$</p>
-<p>Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \cdot dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \cdot dW_s
+\]</div>
 <p>where <span class="arithmatex">\(Z_s \in \mathbb{R}^d\)</span> and <span class="arithmatex">\(W\)</span> is <span class="arithmatex">\(d\)</span>-dimensional.</p>
 <p>The driver can incorporate:
 - Correlation structure between risk factors
@@ -46931,9 +46931,9 @@
 <p>BSDEs with suitable drivers price derivatives under portfolio constraints (no short-selling, funding costs).</p>
 <h3 id="valuation-adjustments-xva">Valuation Adjustments (XVA)<a class="headerlink" href="#valuation-adjustments-xva" title="Permanent link">&para;</a></h3>
 <p>XVA calculations naturally formulate as BSDEs:</p>
-<p>$$</p>
-<p>V_t = \text{Payoff}_T + \int_t^T g(s, V_s, \nabla V_s) \, ds - \int_t^T \nabla V_s \cdot dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \text{Payoff}_T + \int_t^T g(s, V_s, \nabla V_s) \, ds - \int_t^T \nabla V_s \cdot dW_s
+\]</div>
 <p>where <span class="arithmatex">\(g\)</span> incorporates CVA, DVA, FVA, KVA effects.</p>
 <h3 id="dynamic-portfolio-optimization">Dynamic Portfolio Optimization<a class="headerlink" href="#dynamic-portfolio-optimization" title="Permanent link">&para;</a></h3>
 <p>Risk-averse portfolio optimization leads to BSDE characterizations of value functions.</p>
@@ -46944,9 +46944,9 @@
 <p>Since BSDEs propagate backward, numerical schemes work from <span class="arithmatex">\(T\)</span> to <span class="arithmatex">\(0\)</span>:</p>
 <h3 id="time-discretization">Time Discretization<a class="headerlink" href="#time-discretization" title="Permanent link">&para;</a></h3>
 <p>For partition <span class="arithmatex">\(0 = t_0 &lt; t_1 &lt; \cdots &lt; t_n = T\)</span>:</p>
-<p>$$</p>
-<p>Y_{t_i} \approx \mathbb{E}[Y_{t_{i+1}} + g(t_i, Y_{t_{i+1}}, Z_{t_i}) \Delta t | \mathcal{F}_{t_i}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_{t_i} \approx \mathbb{E}[Y_{t_{i+1}} + g(t_i, Y_{t_{i+1}}, Z_{t_i}) \Delta t | \mathcal{F}_{t_i}]
+\]</div>
 <h3 id="monte-carlo-methods">Monte Carlo Methods<a class="headerlink" href="#monte-carlo-methods" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Simulate paths forward</li>
@@ -46959,9 +46959,9 @@
 <h2 id="connection-to-pdes">Connection to PDEs<a class="headerlink" href="#connection-to-pdes" title="Permanent link">&para;</a></h2>
 <p>Via the <strong>nonlinear Feynman-Kac formula</strong>, BSDE solutions connect to PDEs:</p>
 <p>If <span class="arithmatex">\(Y_t = u(t, X_t)\)</span> where <span class="arithmatex">\(X\)</span> is a diffusion, then <span class="arithmatex">\(u\)</span> satisfies:</p>
-<p>$$</p>
-<p>\partial_t u + \mathcal{L}u + g(t, u, \sigma^\top \nabla u) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_t u + \mathcal{L}u + g(t, u, \sigma^\top \nabla u) = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(u(T, x) = h(x)\)</span>.</p>
 <p>This connects BSDE-based risk measures to <strong>nonlinear PDEs</strong>.</p>
 <hr />

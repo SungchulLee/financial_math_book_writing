@@ -47220,55 +47220,55 @@
 <h3 id="1-statement-of-the-theorem">1. Statement of the Theorem<a class="headerlink" href="#1-statement-of-the-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.1</strong> (Breeden-Litzenberger Formula)<br />
 Let <span class="arithmatex">\(C(K, T)\)</span> denote the price of a European call option with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span>. The risk-neutral probability density function <span class="arithmatex">\(q(S_T)\)</span> of the terminal asset price <span class="arithmatex">\(S_T\)</span> is given by:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}
+\]</div>
 <p>Equivalently, for the cumulative distribution function:</p>
-<p>$$</p>
-<p>Q(K) = \mathbb{P}^{\mathbb{Q}}(S_T \leq K) = e^{rT} \left(1 + \frac{\partial C}{\partial K}\bigg|_{K}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Q(K) = \mathbb{P}^{\mathbb{Q}}(S_T \leq K) = e^{rT} \left(1 + \frac{\partial C}{\partial K}\bigg|_{K}\right)
+\]</div>
 <h3 id="2-interpretation">2. Interpretation<a class="headerlink" href="#2-interpretation" title="Permanent link">&para;</a></h3>
 <p>The second derivative of the call price with respect to strike extracts the <strong>discounted</strong> risk-neutral density:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
+\]</div>
 <p>This is a <strong>model-free</strong> result: it holds regardless of whether the underlying follows geometric Brownian motion, jump-diffusion, local volatility, or any other process—it relies only on the absence of arbitrage.</p>
 <h2 id="derivation-via-risk-neutral-pricing">Derivation via Risk-Neutral Pricing<a class="headerlink" href="#derivation-via-risk-neutral-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="1-starting-point-call-price-formula">1. Starting Point: Call Price Formula<a class="headerlink" href="#1-starting-point-call-price-formula" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the call price is:</p>
-<p>$$</p>
-<p>C(K, T) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K, 0)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K, 0)]
+\]</div>
 <p>Expanding the expectation:</p>
-<p>$$</p>
-<p>C(K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) q(S) dS = e^{-rT} \int_K^\infty (S - K) q(S) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) q(S) dS = e^{-rT} \int_K^\infty (S - K) q(S) dS
+\]</div>
 <h3 id="2-first-derivative-delta-with-respect-to-strike">2. First Derivative: Delta with Respect to Strike<a class="headerlink" href="#2-first-derivative-delta-with-respect-to-strike" title="Permanent link">&para;</a></h3>
 <p>Differentiating under the integral sign:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} = e^{-rT} \frac{\partial}{\partial K} \int_K^\infty (S - K) q(S) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} = e^{-rT} \frac{\partial}{\partial K} \int_K^\infty (S - K) q(S) dS
+\]</div>
 <p>By Leibniz integral rule:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} = e^{-rT} \left[ -\int_K^\infty q(S) dS + (K - K) q(K) \right] = -e^{-rT} \int_K^\infty q(S) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} = e^{-rT} \left[ -\int_K^\infty q(S) dS + (K - K) q(K) \right] = -e^{-rT} \int_K^\infty q(S) dS
+\]</div>
 <p>Recognizing the tail probability:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T &gt; K) = -e^{-rT}(1 - Q(K))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} = -e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T &gt; K) = -e^{-rT}(1 - Q(K))
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>Q(K) = 1 + e^{rT} \frac{\partial C}{\partial K}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Q(K) = 1 + e^{rT} \frac{\partial C}{\partial K}
+\]</div>
 <h3 id="3-second-derivative-extracting-the-density">3. Second Derivative: Extracting the Density<a class="headerlink" href="#3-second-derivative-extracting-the-density" title="Permanent link">&para;</a></h3>
 <p>Differentiating once more:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} = -e^{-rT} \frac{d}{dK} \int_K^\infty q(S) dS = -e^{-rT} \cdot (-q(K)) = e^{-rT} q(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} = -e^{-rT} \frac{d}{dK} \int_K^\infty q(S) dS = -e^{-rT} \cdot (-q(K)) = e^{-rT} q(K)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
+\]</div>
 <p>This completes the derivation. □</p>
 <h2 id="regularity-conditions">Regularity Conditions<a class="headerlink" href="#regularity-conditions" title="Permanent link">&para;</a></h2>
 <h3 id="1-assumptions-for-validity">1. Assumptions for Validity<a class="headerlink" href="#1-assumptions-for-validity" title="Permanent link">&para;</a></h3>
@@ -47286,18 +47286,18 @@ If the underlying asset price has a continuous risk-neutral density <span class=
 - <span class="arithmatex">\(C^1\)</span> differentiable everywhere
 - <span class="arithmatex">\(C^2\)</span> twice differentiable almost everywhere</p>
 <p><em>Proof sketch.</em> The integral representation:</p>
-<p>$$</p>
-<p>C(K) = e^{-rT} \int_K^\infty (S - K) q(S) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = e^{-rT} \int_K^\infty (S - K) q(S) dS
+\]</div>
 <p>is continuous in <span class="arithmatex">\(K\)</span> by dominated convergence. First derivative exists by fundamental theorem of calculus. Second derivative exists where <span class="arithmatex">\(q\)</span> is continuous. □</p>
 <h3 id="3-violation-of-smoothness">3. Violation of Smoothness<a class="headerlink" href="#3-violation-of-smoothness" title="Permanent link">&para;</a></h3>
 <p>In practice, two issues arise:</p>
 <ol>
 <li><strong>Atoms in the distribution:</strong> If <span class="arithmatex">\(\mathbb{P}^{\mathbb{Q}}(S_T = K_0) &gt; 0\)</span> for some <span class="arithmatex">\(K_0\)</span>, then <span class="arithmatex">\(q\)</span> contains a Dirac delta:</li>
 </ol>
-<p>$$</p>
-<p>q(S) = q_c(S) + p_0 \delta(S - K_0)</p>
-<p>$$</p>
+<p>$$
+   q(S) = q_c(S) + p_0 \delta(S - K_0)
+   $$</p>
 <p>The call price has a kink at <span class="arithmatex">\(K_0\)</span> (non-differentiable first derivative).</p>
 <ol>
 <li><strong>Dividend jumps:</strong> Ex-dividend jumps create discontinuities in <span class="arithmatex">\(S_T\)</span> distribution.</li>
@@ -47305,39 +47305,39 @@ If the underlying asset price has a continuous risk-neutral density <span class=
 <h2 id="connection-to-arrow-debreu-securities">Connection to Arrow-Debreu Securities<a class="headerlink" href="#connection-to-arrow-debreu-securities" title="Permanent link">&para;</a></h2>
 <h3 id="1-digital-options-as-building-blocks">1. Digital Options as Building Blocks<a class="headerlink" href="#1-digital-options-as-building-blocks" title="Permanent link">&para;</a></h3>
 <p>An <strong>Arrow-Debreu security</strong> (digital option) pays $1 if <span class="arithmatex">\(S_T \in [K, K + dK]\)</span> and 0 otherwise. Its price is:</p>
-<p>$$</p>
-<p>\text{Digital}(K, dK) = e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T \in [K, K + dK]) = e^{-rT} q(K) dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Digital}(K, dK) = e^{-rT} \mathbb{P}^{\mathbb{Q}}(S_T \in [K, K + dK]) = e^{-rT} q(K) dK
+\]</div>
 <h3 id="2-static-replication-via-butterflies">2. Static Replication via Butterflies<a class="headerlink" href="#2-static-replication-via-butterflies" title="Permanent link">&para;</a></h3>
 <p>A digital option can be replicated using a <strong>butterfly spread</strong>:
 - Long 1 call at <span class="arithmatex">\(K - \Delta K\)</span>
 - Short 2 calls at <span class="arithmatex">\(K\)</span>
 - Long 1 call at <span class="arithmatex">\(K + \Delta K\)</span></p>
 <p>Cost of butterfly:</p>
-<p>$$</p>
-<p>B(K, \Delta K) = C(K - \Delta K) - 2C(K) + C(K + \Delta K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B(K, \Delta K) = C(K - \Delta K) - 2C(K) + C(K + \Delta K)
+\]</div>
 <p>As <span class="arithmatex">\(\Delta K \to 0\)</span>:</p>
-<p>$$</p>
-<p>\lim_{\Delta K \to 0} \frac{B(K, \Delta K)}{(\Delta K)^2} = \frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\Delta K \to 0} \frac{B(K, \Delta K)}{(\Delta K)^2} = \frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\text{Digital}(K, dK) \approx B(K, \Delta K) \quad \text{for small } \Delta K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Digital}(K, dK) \approx B(K, \Delta K) \quad \text{for small } \Delta K
+\]</div>
 <p><strong>Interpretation:</strong> The risk-neutral density can be extracted by observing the prices of butterfly spreads across all strikes.</p>
 <h2 id="discrete-strike-grid-finite-differences">Discrete Strike Grid: Finite Differences<a class="headerlink" href="#discrete-strike-grid-finite-differences" title="Permanent link">&para;</a></h2>
 <h3 id="1-practical-implementation">1. Practical Implementation<a class="headerlink" href="#1-practical-implementation" title="Permanent link">&para;</a></h3>
 <p>In practice, options trade at discrete strikes <span class="arithmatex">\(K_1 &lt; K_2 &lt; \cdots &lt; K_n\)</span>. The density is approximated using finite differences:</p>
-<p>$$</p>
-<p>q(K_i) \approx e^{rT} \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(\Delta K)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K_i) \approx e^{rT} \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(\Delta K)^2}
+\]</div>
 <p>where <span class="arithmatex">\(\Delta K = K_{i+1} - K_i\)</span> (assuming equal spacing for simplicity).</p>
 <h3 id="2-second-order-accurate-formula">2. Second-Order Accurate Formula<a class="headerlink" href="#2-second-order-accurate-formula" title="Permanent link">&para;</a></h3>
 <p>For non-uniform grids, use:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2}\bigg|<em i_1="i+1">{K_i} \approx \frac{2}{K</em> \right)} - K_{i-1}} \left( \frac{C(K_{i+1}) - C(K_i)}{K_{i+1} - K_i} - \frac{C(K_i) - C(K_{i-1})}{K_i - K_{i-1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2}\bigg|_{K_i} \approx \frac{2}{K_{i+1} - K_{i-1}} \left( \frac{C(K_{i+1}) - C(K_i)}{K_{i+1} - K_i} - \frac{C(K_i) - C(K_{i-1})}{K_i - K_{i-1}} \right)
+\]</div>
 <p>This is exact for quadratic functions and <span class="arithmatex">\(O((\Delta K)^2)\)</span> for smooth <span class="arithmatex">\(C\)</span>.</p>
 <h3 id="3-interpolation-and-smoothing">3. Interpolation and Smoothing<a class="headerlink" href="#3-interpolation-and-smoothing" title="Permanent link">&para;</a></h3>
 <p>To obtain density at arbitrary strikes:</p>
@@ -47350,67 +47350,67 @@ If the underlying asset price has a continuous risk-neutral density <span class=
 <h2 id="extension-to-put-options">Extension to Put Options<a class="headerlink" href="#extension-to-put-options" title="Permanent link">&para;</a></h2>
 <h3 id="1-put-call-symmetry">1. Put-Call Symmetry<a class="headerlink" href="#1-put-call-symmetry" title="Permanent link">&para;</a></h3>
 <p>By put-call parity:</p>
-<p>$$</p>
-<p>P(K, T) = C(K, T) - S_0 e^{-qT} + K e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(K, T) = C(K, T) - S_0 e^{-qT} + K e^{-rT}
+\]</div>
 <p>Differentiating twice:</p>
-<p>$$</p>
-<p>\frac{\partial^2 P}{\partial K^2} = \frac{\partial^2 C}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 P}{\partial K^2} = \frac{\partial^2 C}{\partial K^2}
+\]</div>
 <p>Therefore, the Breeden-Litzenberger formula applies equally to puts:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 P}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = e^{rT} \frac{\partial^2 P}{\partial K^2}
+\]</div>
 <h3 id="2-practical-advantage-of-puts">2. Practical Advantage of Puts<a class="headerlink" href="#2-practical-advantage-of-puts" title="Permanent link">&para;</a></h3>
 <p>For low strikes (<span class="arithmatex">\(K \ll S_0\)</span>), put prices have higher liquidity and tighter spreads than calls. Using puts for the left wing and calls for the right wing provides more accurate density estimation.</p>
 <h2 id="consistency-conditions">Consistency Conditions<a class="headerlink" href="#consistency-conditions" title="Permanent link">&para;</a></h2>
 <h3 id="1-non-negativity-constraint">1. Non-Negativity Constraint<a class="headerlink" href="#1-non-negativity-constraint" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(q(K) \geq 0\)</span> is a probability density, we require:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K
+\]</div>
 <p>This is the <strong>no-butterfly-arbitrage condition</strong>. Violation indicates:
 - Mispriced options
 - Bid-ask spread effects
 - Model-free arbitrage opportunity</p>
 <h3 id="2-normalization-probability-sums-to-one">2. Normalization: Probability Sums to One<a class="headerlink" href="#2-normalization-probability-sums-to-one" title="Permanent link">&para;</a></h3>
 <p>The density must integrate to unity:</p>
-<p>$$</p>
-<p>\int_0^\infty q(S) dS = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^\infty q(S) dS = 1
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>e^{rT} \int_0^\infty \frac{\partial^2 C}{\partial K^2} dK = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{rT} \int_0^\infty \frac{\partial^2 C}{\partial K^2} dK = 1
+\]</div>
 <p>Integrating by parts:</p>
-<p>$$</p>
-<p>e^{rT} \left[ \frac{\partial C}{\partial K}\bigg|_0^\infty - \int_0^\infty \delta(K - K') \frac{\partial C}{\partial K} dK' \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{rT} \left[ \frac{\partial C}{\partial K}\bigg|_0^\infty - \int_0^\infty \delta(K - K') \frac{\partial C}{\partial K} dK' \right]
+\]</div>
 <p>Using boundary conditions:
 - <span class="arithmatex">\(\frac{\partial C}{\partial K}\big|_{K \to 0} = 0\)</span> (deep ITM call has delta 1)
 - <span class="arithmatex">\(\frac{\partial C}{\partial K}\big|_{K \to \infty} = -e^{-rT}\)</span> (OTM call worthless)</p>
 <p>This recovers:</p>
-<p>$$</p>
-<p>e^{rT}(0 - (-e^{-rT})) = 1 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{rT}(0 - (-e^{-rT})) = 1 \quad \checkmark
+\]</div>
 <h2 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h2>
 <h3 id="1-extracting-risk-neutral-moments">1. Extracting Risk-Neutral Moments<a class="headerlink" href="#1-extracting-risk-neutral-moments" title="Permanent link">&para;</a></h3>
 <p>Once the density is known, compute moments:</p>
 <p><strong>Mean (first moment):</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_T] = \int_0^\infty S \cdot q(S) dS = S_0 e^{(r - q)T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_T] = \int_0^\infty S \cdot q(S) dS = S_0 e^{(r - q)T}
+\]</div>
 <p>(This is the forward price under no-arbitrage.)</p>
 <p><strong>Variance (second central moment):</strong></p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(S_T) = \int_0^\infty S^2 q(S) dS - (\mathbb{E}^{\mathbb{Q}}[S_T])^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(S_T) = \int_0^\infty S^2 q(S) dS - (\mathbb{E}^{\mathbb{Q}}[S_T])^2
+\]</div>
 <p><strong>Skewness and kurtosis:</strong> Higher moments characterize tail behavior.</p>
 <h3 id="2-model-free-implied-volatility">2. Model-Free Implied Volatility<a class="headerlink" href="#2-model-free-implied-volatility" title="Permanent link">&para;</a></h3>
 <p>The Breeden-Litzenberger density can be used to define a <strong>model-free implied variance</strong>:</p>
-<p>$$</p>
-<p>\sigma_{\text{MF}}^2 = \frac{2e^{rT}}{T} \int_0^\infty \frac{C(K) - \max(S_0 e^{-qT} - K e^{-rT}, 0)}{K^2} dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{MF}}^2 = \frac{2e^{rT}}{T} \int_0^\infty \frac{C(K) - \max(S_0 e^{-qT} - K e^{-rT}, 0)}{K^2} dK
+\]</div>
 <p>This integral of option prices across all strikes provides a volatility estimate independent of Black-Scholes.</p>
 <h3 id="3-testing-model-assumptions">3. Testing Model Assumptions<a class="headerlink" href="#3-testing-model-assumptions" title="Permanent link">&para;</a></h3>
 <p>Compare the empirical density <span class="arithmatex">\(q_{\text{market}}(K)\)</span> extracted from option prices to model-implied densities:
@@ -47421,37 +47421,37 @@ If the underlying asset price has a continuous risk-neutral density <span class=
 <h2 id="relationship-to-characteristic-function">Relationship to Characteristic Function<a class="headerlink" href="#relationship-to-characteristic-function" title="Permanent link">&para;</a></h2>
 <h3 id="1-fourier-inversion">1. Fourier Inversion<a class="headerlink" href="#1-fourier-inversion" title="Permanent link">&para;</a></h3>
 <p>The risk-neutral density can also be expressed via the characteristic function:</p>
-<p>$$</p>
-<p>q(K) = \frac{1}{2\pi} \int_{-\infty}^\infty e^{-i\omega \ln K} \phi(\omega) d\omega</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = \frac{1}{2\pi} \int_{-\infty}^\infty e^{-i\omega \ln K} \phi(\omega) d\omega
+\]</div>
 <p>where <span class="arithmatex">\(\phi(\omega) = \mathbb{E}^{\mathbb{Q}}[e^{i\omega \ln S_T}]\)</span> is the characteristic function.</p>
 <h3 id="2-carr-madan-formula">2. Carr-Madan Formula<a class="headerlink" href="#2-carr-madan-formula" title="Permanent link">&para;</a></h3>
 <p>Carr and Madan (1999) show that call prices can be recovered from the characteristic function:</p>
-<p>$$</p>
-<p>C(K) = \frac{e^{-rT}}{\pi} \int_0^\infty \text{Re}\left[ \frac{e^{-i\omega \ln K} \phi(\omega - i)}{(\omega^2 + 1)} \right] d\omega</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = \frac{e^{-rT}}{\pi} \int_0^\infty \text{Re}\left[ \frac{e^{-i\omega \ln K} \phi(\omega - i)}{(\omega^2 + 1)} \right] d\omega
+\]</div>
 <p>Combining with Breeden-Litzenberger provides an alternative path: <span class="arithmatex">\(\phi \to C \to q\)</span>.</p>
 <h2 id="numerical-examples">Numerical Examples<a class="headerlink" href="#numerical-examples" title="Permanent link">&para;</a></h2>
 <h3 id="1-example-1-black-scholes-density">1. Example 1: Black-Scholes Density<a class="headerlink" href="#1-example-1-black-scholes-density" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(S_T \sim \text{Lognormal}(\mu, \sigma^2 T)\)</span> with <span class="arithmatex">\(\mu = (r - q - \sigma^2/2)T\)</span>:</p>
-<p>$$</p>
-<p>q_{\text{BS}}(K) = \frac{1}{K \sigma \sqrt{2\pi T}} \exp\left( -\frac{(\ln K - \ln S_0 - \mu)^2}{2\sigma^2 T} \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q_{\text{BS}}(K) = \frac{1}{K \sigma \sqrt{2\pi T}} \exp\left( -\frac{(\ln K - \ln S_0 - \mu)^2}{2\sigma^2 T} \right)
+\]</div>
 <p>Compute <span class="arithmatex">\(C(K)\)</span> via Black-Scholes formula, then verify:</p>
-<p>$$</p>
-<p>e^{rT} \frac{\partial^2 C_{\text{BS}}}{\partial K^2} = q_{\text{BS}}(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{rT} \frac{\partial^2 C_{\text{BS}}}{\partial K^2} = q_{\text{BS}}(K)
+\]</div>
 <p><strong>Verification:</strong></p>
-<p>$$</p>
-<p>\frac{\partial C_{\text{BS}}}{\partial K} = -e^{-rT} \Phi(d_2)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 C_{\text{BS}}}{\partial K^2} = -e^{-rT} \phi(d_2) \frac{\partial d_2}{\partial K} = e^{-rT} \frac{\phi(d_2)}{K \sigma \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C_{\text{BS}}}{\partial K} = -e^{-rT} \Phi(d_2)
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 C_{\text{BS}}}{\partial K^2} = -e^{-rT} \phi(d_2) \frac{\partial d_2}{\partial K} = e^{-rT} \frac{\phi(d_2)}{K \sigma \sqrt{T}}
+\]</div>
 <p>Since <span class="arithmatex">\(\phi(d_2) = \frac{1}{\sqrt{2\pi}} e^{-d_2^2/2}\)</span> and <span class="arithmatex">\(d_2 = \frac{\ln(S_0/K) + (r - q - \sigma^2/2)T}{\sigma\sqrt{T}}\)</span>:</p>
-<p>$$</p>
-<p>e^{rT} \frac{\partial^2 C_{\text{BS}}}{\partial K^2} = \frac{1}{K \sigma \sqrt{2\pi T}} e^{-d_2^2/2} = q_{\text{BS}}(K) \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{rT} \frac{\partial^2 C_{\text{BS}}}{\partial K^2} = \frac{1}{K \sigma \sqrt{2\pi T}} e^{-d_2^2/2} = q_{\text{BS}}(K) \quad \checkmark
+\]</div>
 <h3 id="2-example-2-discrete-grid-recovery">2. Example 2: Discrete Grid Recovery<a class="headerlink" href="#2-example-2-discrete-grid-recovery" title="Permanent link">&para;</a></h3>
 <p>Given market call prices <span class="arithmatex">\(\{(K_i, C_i)\}_{i=1}^n\)</span>:</p>
 <ol>
@@ -47463,16 +47463,16 @@ If the underlying asset price has a continuous risk-neutral density <span class=
 <h2 id="extensions-and-generalizations">Extensions and Generalizations<a class="headerlink" href="#extensions-and-generalizations" title="Permanent link">&para;</a></h2>
 <h3 id="1-time-dependent-interest-rates">1. Time-Dependent Interest Rates<a class="headerlink" href="#1-time-dependent-interest-rates" title="Permanent link">&para;</a></h3>
 <p>For stochastic interest rates, the discount factor <span class="arithmatex">\(e^{-rT}\)</span> is replaced by the price of a zero-coupon bond <span class="arithmatex">\(B(0, T)\)</span>:</p>
-<p>$$</p>
-<p>q(K) = B(0, T)^{-1} \frac{\partial^2 C}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = B(0, T)^{-1} \frac{\partial^2 C}{\partial K^2}
+\]</div>
 <h3 id="2-dividends-and-jumps">2. Dividends and Jumps<a class="headerlink" href="#2-dividends-and-jumps" title="Permanent link">&para;</a></h3>
 <p>Discrete dividends create point masses in the density. Continuous dividend yield <span class="arithmatex">\(q\)</span> modifies the forward price but preserves the Breeden-Litzenberger structure.</p>
 <h3 id="3-multi-asset-options">3. Multi-Asset Options<a class="headerlink" href="#3-multi-asset-options" title="Permanent link">&para;</a></h3>
 <p>For basket options, the joint risk-neutral density can be extracted using higher-dimensional derivatives:</p>
-<p>$$</p>
-<p>q(K_1, K_2) = e^{rT} \frac{\partial^2 C}{\partial K_1 \partial K_2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K_1, K_2) = e^{rT} \frac{\partial^2 C}{\partial K_1 \partial K_2}
+\]</div>
 <p>This requires options on the basket at a two-dimensional grid of strikes.</p>
 <h2 id="limitations-and-practical-considerations">Limitations and Practical Considerations<a class="headerlink" href="#limitations-and-practical-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="1-sparse-strike-grid">1. Sparse Strike Grid<a class="headerlink" href="#1-sparse-strike-grid" title="Permanent link">&para;</a></h3>
@@ -47494,9 +47494,9 @@ If the underlying asset price has a continuous risk-neutral density <span class=
 <p>Standard approach: assume parametric tail (e.g., power law, exponential decay).</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The Breeden-Litzenberger formula:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
+\]</div>
 <p>provides a <strong>model-free</strong> method to extract the risk-neutral probability density from option prices. Key properties:</p>
 <ul>
 <li><strong>No model assumption:</strong> Holds for any arbitrage-free market</li>

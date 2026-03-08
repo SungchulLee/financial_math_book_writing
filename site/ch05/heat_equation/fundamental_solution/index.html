@@ -46448,11 +46448,11 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>The fundamental solution of the heat equation is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 G(t,x) = \frac{1}{\sqrt{2\pi t}} \exp\left(-\frac{x^2}{2t}\right), \quad t &gt; 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This function satisfies:</p>
 <ol>
 <li>
@@ -46465,97 +46465,97 @@ G(t,x) = \frac{1}{\sqrt{2\pi t}} \exp\left(-\frac{x^2}{2t}\right), \quad t &gt; 
 <hr />
 <h2 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong>: Compute derivatives.</p>
-<p>$$</p>
-<p>\partial_t G = G \cdot \left(-\frac{1}{2t} + \frac{x^2}{2t^2}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\partial_x G = G \cdot \left(-\frac{x}{t}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\partial_{xx} G = G \cdot \left(-\frac{1}{t} + \frac{x^2}{t^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_t G = G \cdot \left(-\frac{1}{2t} + \frac{x^2}{2t^2}\right)
+\]</div>
+<div class="arithmatex">\[
+\partial_x G = G \cdot \left(-\frac{x}{t}\right)
+\]</div>
+<div class="arithmatex">\[
+\partial_{xx} G = G \cdot \left(-\frac{1}{t} + \frac{x^2}{t^2}\right)
+\]</div>
 <p><strong>Step 2</strong>: Verify the equation.</p>
-<p>$$</p>
-<p>\partial_t G - \frac{1}{2}\partial_{xx} G = G \cdot \left(-\frac{1}{2t} + \frac{x^2}{2t^2} + \frac{1}{2t} - \frac{x^2}{2t^2}\right) = 0 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_t G - \frac{1}{2}\partial_{xx} G = G \cdot \left(-\frac{1}{2t} + \frac{x^2}{2t^2} + \frac{1}{2t} - \frac{x^2}{2t^2}\right) = 0 \quad \checkmark
+\]</div>
 <hr />
 <h2 id="derivation-via-fourier-transform">Derivation via Fourier Transform<a class="headerlink" href="#derivation-via-fourier-transform" title="Permanent link">&para;</a></h2>
 <p>The Fourier transform provides a systematic method to derive the fundamental solution.</p>
 <p><strong>Step 1</strong>: Take Fourier transform in <span class="arithmatex">\(x\)</span>.</p>
 <p>Let <span class="arithmatex">\(\hat{u}(t,\xi) = \int_{\mathbb{R}} u(t,x) e^{-i\xi x}\,dx\)</span>.</p>
 <p>The heat equation <span class="arithmatex">\(u_t = \frac{1}{2}u_{xx}\)</span> transforms to:</p>
-<p>$$</p>
-<p>\frac{\partial \hat{u}}{\partial t} = -\frac{\xi^2}{2}\hat{u}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \hat{u}}{\partial t} = -\frac{\xi^2}{2}\hat{u}
+\]</div>
 <p><strong>Step 2</strong>: Solve the ODE.</p>
-<p>$$</p>
-<p>\hat{u}(t,\xi) = \hat{f}(\xi) \cdot e^{-\xi^2 t/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{u}(t,\xi) = \hat{f}(\xi) \cdot e^{-\xi^2 t/2}
+\]</div>
 <p>where <span class="arithmatex">\(\hat{f}\)</span> is the Fourier transform of the initial data.</p>
 <p><strong>Step 3</strong>: For <span class="arithmatex">\(f = \delta_0\)</span>, we have <span class="arithmatex">\(\hat{f}(\xi) = 1\)</span>.</p>
-<p>$$</p>
-<p>\hat{G}(t,\xi) = e^{-\xi^2 t/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{G}(t,\xi) = e^{-\xi^2 t/2}
+\]</div>
 <p><strong>Step 4</strong>: Inverse Fourier transform.</p>
-<p>$$</p>
-<p>G(t,x) = \frac{1}{2\pi}\int_{\mathbb{R}} e^{i\xi x} e^{-\xi^2 t/2}\,d\xi</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t,x) = \frac{1}{2\pi}\int_{\mathbb{R}} e^{i\xi x} e^{-\xi^2 t/2}\,d\xi
+\]</div>
 <p>This is a Gaussian integral. Completing the square:</p>
-<p>$$</p>
-<p>G(t,x) = \frac{1}{2\pi} \cdot \sqrt{\frac{2\pi}{t}} \cdot e^{-x^2/2t} = \frac{1}{\sqrt{2\pi t}} e^{-x^2/2t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t,x) = \frac{1}{2\pi} \cdot \sqrt{\frac{2\pi}{t}} \cdot e^{-x^2/2t} = \frac{1}{\sqrt{2\pi t}} e^{-x^2/2t}
+\]</div>
 <hr />
 <h2 id="solution-by-convolution">Solution by Convolution<a class="headerlink" href="#solution-by-convolution" title="Permanent link">&para;</a></h2>
 <p>For general initial data <span class="arithmatex">\(u(0,x) = f(x)\)</span>, the solution is given by <strong>convolution</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 u(t,x) = (G(t,\cdot) * f)(x) = \int_{\mathbb{R}} G(t, x-y) f(y)\,dy
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Explicitly:</p>
-<p>$$</p>
-<p>u(t,x) = \frac{1}{\sqrt{2\pi t}} \int_{\mathbb{R}} \exp\left(-\frac{(x-y)^2}{2t}\right) f(y)\,dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \frac{1}{\sqrt{2\pi t}} \int_{\mathbb{R}} \exp\left(-\frac{(x-y)^2}{2t}\right) f(y)\,dy
+\]</div>
 <p><strong>Interpretation</strong>: The solution at <span class="arithmatex">\((t,x)\)</span> is a weighted average of initial values, with Gaussian weights centered at <span class="arithmatex">\(x\)</span>.</p>
 <hr />
 <h2 id="properties-of-the-heat-kernel">Properties of the Heat Kernel<a class="headerlink" href="#properties-of-the-heat-kernel" title="Permanent link">&para;</a></h2>
 <h3 id="1-normalization">1. Normalization<a class="headerlink" href="#1-normalization" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\int_{\mathbb{R}} G(t,x)\,dx = 1 \quad \text{for all } t &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\mathbb{R}} G(t,x)\,dx = 1 \quad \text{for all } t &gt; 0
+\]</div>
 <p>The heat kernel is a probability density.</p>
 <h3 id="2-semigroup-property">2. Semigroup Property<a class="headerlink" href="#2-semigroup-property" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>G(t+s, x) = \int_{\mathbb{R}} G(t, x-y) G(s, y)\,dy = (G(t,\cdot) * G(s,\cdot))(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t+s, x) = \int_{\mathbb{R}} G(t, x-y) G(s, y)\,dy = (G(t,\cdot) * G(s,\cdot))(x)
+\]</div>
 <p><strong>Probabilistic meaning</strong>: <span class="arithmatex">\(B_{t+s} = B_t + (B_{t+s} - B_t)\)</span>, where increments are independent.</p>
 <h3 id="3-symmetry">3. Symmetry<a class="headerlink" href="#3-symmetry" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>G(t,x) = G(t,-x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t,x) = G(t,-x)
+\]</div>
 <h3 id="4-scaling">4. Scaling<a class="headerlink" href="#4-scaling" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>G(t,x) = \frac{1}{\sqrt{t}} G\left(1, \frac{x}{\sqrt{t}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t,x) = \frac{1}{\sqrt{t}} G\left(1, \frac{x}{\sqrt{t}}\right)
+\]</div>
 <h3 id="5-moments">5. Moments<a class="headerlink" href="#5-moments" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\int_{\mathbb{R}} x^{2n} G(t,x)\,dx = (2n-1)!! \cdot t^n = \frac{(2n)!}{2^n n!} t^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\mathbb{R}} x^{2n} G(t,x)\,dx = (2n-1)!! \cdot t^n = \frac{(2n)!}{2^n n!} t^n
+\]</div>
 <p>In particular: mean <span class="arithmatex">\(= 0\)</span>, variance <span class="arithmatex">\(= t\)</span>.</p>
 <hr />
 <h2 id="probabilistic-interpretation">Probabilistic Interpretation<a class="headerlink" href="#probabilistic-interpretation" title="Permanent link">&para;</a></h2>
 <p>The heat kernel is the <strong>transition density of Brownian motion</strong>:</p>
-<p>$$</p>
-<p>G(t,x) = \frac{d}{dx}\mathbb{P}(B_t \leq x) = p_{B_t}(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t,x) = \frac{d}{dx}\mathbb{P}(B_t \leq x) = p_{B_t}(x)
+\]</div>
 <p>More generally, for Brownian motion starting at <span class="arithmatex">\(y\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}(B_t \in dx \mid B_0 = y) = G(t, x-y)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(B_t \in dx \mid B_0 = y) = G(t, x-y)\,dx
+\]</div>
 <p>The convolution formula becomes:</p>
-<p>$$</p>
-<p>u(t,x) = \mathbb{E}[f(x + B_t)] = \mathbb{E}[f(B_t) \mid B_0 = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \mathbb{E}[f(x + B_t)] = \mathbb{E}[f(B_t) \mid B_0 = x]
+\]</div>
 <hr />
 <h2 id="regularity">Regularity<a class="headerlink" href="#regularity" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(f\)</span> is bounded and measurable, then for all <span class="arithmatex">\(t &gt; 0\)</span>:</p>
@@ -46568,9 +46568,9 @@ u(t,x) = (G(t,\cdot) * f)(x) = \int_{\mathbb{R}} G(t, x-y) f(y)\,dy
 <hr />
 <h2 id="the-heat-kernel-in-higher-dimensions">The Heat Kernel in Higher Dimensions<a class="headerlink" href="#the-heat-kernel-in-higher-dimensions" title="Permanent link">&para;</a></h2>
 <p>In <span class="arithmatex">\(\mathbb{R}^d\)</span>:</p>
-<p>$$</p>
-<p>G(t,x) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{|x|^2}{2t}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t,x) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{|x|^2}{2t}\right)
+\]</div>
 <p>where <span class="arithmatex">\(|x|^2 = x_1^2 + \cdots + x_d^2\)</span>.</p>
 <p>This is the density of <span class="arithmatex">\(d\)</span>-dimensional Brownian motion.</p>
 <hr />
@@ -46611,11 +46611,11 @@ u(t,x) = (G(t,\cdot) * f)(x) = \int_{\mathbb{R}} G(t, x-y) f(y)\,dy
 </ol>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 G(t,x) = \frac{1}{\sqrt{2\pi t}}e^{-x^2/2t} = \text{density of } B_t \sim N(0,t)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The fundamental solution:
 - Solves the heat equation with delta initial data
 - Gives general solutions via convolution

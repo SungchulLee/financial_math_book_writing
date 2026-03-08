@@ -46746,9 +46746,9 @@
 <p>Without proper adjustment, a 2-for-1 stock split would appear as a 50% price drop overnight, creating a spurious return observation. The adjusted price retroactively scales historical prices to ensure <strong>return continuity</strong>.</p>
 <p><strong>Mathematical adjustment:</strong></p>
 <p>For a dividend <span class="arithmatex">\(D\)</span> paid at time <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>P_{\text{adj}}^{\text{pre-div}} = P_{\text{unadj}}^{\text{pre-div}} \times \frac{P_{\text{adj}}^{\text{post-div}}}{P_{\text{unadj}}^{\text{post-div}} + D}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{adj}}^{\text{pre-div}} = P_{\text{unadj}}^{\text{pre-div}} \times \frac{P_{\text{adj}}^{\text{post-div}}}{P_{\text{unadj}}^{\text{post-div}} + D}
+\]</div>
 <p>This ensures that returns computed from adjusted prices are economically meaningful.</p>
 <h3 id="3-data-retrieval-implementation">3. Data Retrieval Implementation<a class="headerlink" href="#3-data-retrieval-implementation" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">yfinance</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">yf</span>
@@ -46824,37 +46824,37 @@
 <p>Transforming raw price data into return series is a critical intermediate step that recasts the time series from levels to increments. Two principal forms of returns are widely utilized, each with distinct mathematical properties and applications.</p>
 <h3 id="1-discrete-arithmetic-return">1. Discrete (Arithmetic) Return<a class="headerlink" href="#1-discrete-arithmetic-return" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>r_t^{(D)} = \frac{S_t - S_{t-1}}{S_{t-1}} = \frac{S_t}{S_{t-1}} - 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t^{(D)} = \frac{S_t - S_{t-1}}{S_{t-1}} = \frac{S_t}{S_{t-1}} - 1
+\]</div>
 <p><strong>Properties:</strong></p>
 <ul>
 <li><strong>Interpretation:</strong> Proportional change in price over one period</li>
 <li><strong>Portfolio aggregation:</strong> Returns of portfolio components are linearly additive:</li>
 </ul>
-<p>$$</p>
-<p>r_P = \sum_{i=1}^n w_i r_i</p>
-<p>$$</p>
+<p>$$
+  r_P = \sum_{i=1}^n w_i r_i
+  $$</p>
 <ul>
 <li><strong>Time aggregation:</strong> NOT time-additive across multiple periods</li>
 <li><strong>Common usage:</strong> Performance reporting, portfolio attribution, backtesting</li>
 </ul>
 <p><strong>Multi-period discrete return:</strong></p>
-<p>$$</p>
-<p>1 + r_{[t, t+n]} = \prod_{i=1}^n (1 + r_{t+i})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+1 + r_{[t, t+n]} = \prod_{i=1}^n (1 + r_{t+i})
+\]</div>
 <h3 id="2-continuous-logarithmic-return">2. Continuous (Logarithmic) Return<a class="headerlink" href="#2-continuous-logarithmic-return" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>r_t^{(C)} = \log\left(\frac{S_t}{S_{t-1}}\right) = \log S_t - \log S_{t-1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t^{(C)} = \log\left(\frac{S_t}{S_{t-1}}\right) = \log S_t - \log S_{t-1}
+\]</div>
 <p><strong>Properties:</strong></p>
 <ul>
 <li><strong>Time additivity:</strong> Log returns are additive across time:</li>
 </ul>
-<p>$$</p>
-<p>r_{[t, t+n]}^{(C)} = \sum_{i=1}^n r_{t+i}^{(C)}</p>
-<p>$$</p>
+<p>$$
+  r_{[t, t+n]}^{(C)} = \sum_{i=1}^n r_{t+i}^{(C)}
+  $$</p>
 <ul>
 <li><strong>Symmetry:</strong> <span class="arithmatex">\(r^{(C)}(S_1 \to S_2) = -r^{(C)}(S_2 \to S_1)\)</span></li>
 <li><strong>Continuous compounding:</strong> Natural for continuous-time models</li>
@@ -46863,9 +46863,9 @@
 </ul>
 <p><strong>Connection to discrete returns:</strong></p>
 <p>For small returns, the Taylor expansion gives:</p>
-<p>$$</p>
-<p>r^{(C)} = \log(1 + r^{(D)}) \approx r^{(D)} - \frac{(r^{(D)})^2}{2} + \frac{(r^{(D)})^3}{3} - \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r^{(C)} = \log(1 + r^{(D)}) \approx r^{(D)} - \frac{(r^{(D)})^2}{2} + \frac{(r^{(D)})^3}{3} - \cdots
+\]</div>
 <p>For <span class="arithmatex">\(|r^{(D)}| &lt; 0.10\)</span>, the approximation <span class="arithmatex">\(r^{(C)} \approx r^{(D)}\)</span> is accurate to within 0.5%.</p>
 <h3 id="3-implementation">3. Implementation<a class="headerlink" href="#3-implementation" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_returns</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -46937,19 +46937,19 @@
 <p>With return series in hand, we proceed to estimate their empirical moments—quantities that underpin subsequent modeling and optimization procedures.</p>
 <h3 id="1-sample-moments">1. Sample Moments<a class="headerlink" href="#1-sample-moments" title="Permanent link">&para;</a></h3>
 <p><strong>First moment (sample mean):</strong></p>
-<p>$$</p>
-<p>\hat{\mu} = \frac{1}{T} \sum_{t=1}^{T} r_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\mu} = \frac{1}{T} \sum_{t=1}^{T} r_t
+\]</div>
 <p>This estimates the expected return <span class="arithmatex">\(\mathbb{E}[r_t]\)</span> under the assumption of stationarity.</p>
 <p><strong>Second central moment (sample variance):</strong></p>
-<p>$$</p>
-<p>\hat{\sigma}^2 = \frac{1}{T - 1} \sum_{t=1}^{T} (r_t - \hat{\mu})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\sigma}^2 = \frac{1}{T - 1} \sum_{t=1}^{T} (r_t - \hat{\mu})^2
+\]</div>
 <p>The <span class="arithmatex">\((T-1)\)</span> denominator provides an unbiased estimator (Bessel's correction).</p>
 <p><strong>Sample standard deviation (volatility):</strong></p>
-<p>$$</p>
-<p>\hat{\sigma} = \sqrt{\hat{\sigma}^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\sigma} = \sqrt{\hat{\sigma}^2}
+\]</div>
 <p><strong>Higher moments:</strong></p>
 <ul>
 <li><strong>Skewness:</strong> <span class="arithmatex">\(\hat{\gamma}_1 = \frac{1}{T}\sum_{t=1}^T \left(\frac{r_t - \hat{\mu}}{\hat{\sigma}}\right)^3\)</span></li>
@@ -47008,24 +47008,24 @@
 <p><strong>Assumption:</strong> Returns are i.i.d. across time.</p>
 <p><strong>Consequence:</strong> Variances add, means scale linearly.</p>
 <p>For <span class="arithmatex">\(n\)</span> independent periods:</p>
-<p>$$</p>
-<p>\mathbb{E}[r_{[1,n]}] = n \cdot \mathbb{E}[r_1], \quad \text{Var}(r_{[1,n]}) = n \cdot \text{Var}(r_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_{[1,n]}] = n \cdot \mathbb{E}[r_1], \quad \text{Var}(r_{[1,n]}) = n \cdot \text{Var}(r_1)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\sigma_{[1,n]} = \sqrt{n} \cdot \sigma_1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{[1,n]} = \sqrt{n} \cdot \sigma_1
+\]</div>
 <p>This is the famous <strong>square-root-of-time rule</strong>.</p>
 <h3 id="2-annualization-formulas">2. Annualization Formulas<a class="headerlink" href="#2-annualization-formulas" title="Permanent link">&para;</a></h3>
 <p><strong>Trading days per year:</strong> <span class="arithmatex">\(N = 252\)</span> (U.S. equity markets)</p>
 <p><strong>Annualized mean return:</strong></p>
-<p>$$</p>
-<p>\mu_{\text{ann}} = \mu_{\text{daily}} \times N = \mu_{\text{daily}} \times 252</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu_{\text{ann}} = \mu_{\text{daily}} \times N = \mu_{\text{daily}} \times 252
+\]</div>
 <p><strong>Annualized volatility:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ann}} = \sigma_{\text{daily}} \times \sqrt{N} = \sigma_{\text{daily}} \times \sqrt{252}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ann}} = \sigma_{\text{daily}} \times \sqrt{N} = \sigma_{\text{daily}} \times \sqrt{252}
+\]</div>
 <p><strong>Note:</strong> Some practitioners use <span class="arithmatex">\(N = 250\)</span> or <span class="arithmatex">\(N = 365\)</span> (calendar days). The choice depends on context and convention.</p>
 <h3 id="3-when-annualization-fails">3. When Annualization Fails<a class="headerlink" href="#3-when-annualization-fails" title="Permanent link">&para;</a></h3>
 <p>The square-root rule breaks down when:</p>

@@ -46944,92 +46944,92 @@
 <h2 id="fundamental-bounds">Fundamental Bounds<a class="headerlink" href="#fundamental-bounds" title="Permanent link">&para;</a></h2>
 <h3 id="1-call-option-bounds">1. <strong>Call Option Bounds</strong><a class="headerlink" href="#1-call-option-bounds" title="Permanent link">&para;</a></h3>
 <p>For a European call option on a non-dividend-paying stock:</p>
-<p>$$</p>
-<p>\boxed{\max(S - Ke^{-r(T-t)}, 0) \leq C(S,t) \leq S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\max(S - Ke^{-r(T-t)}, 0) \leq C(S,t) \leq S}
+\]</div>
 <p><strong>Lower bound</strong>: The call cannot be worth less than its discounted intrinsic value (otherwise arbitrage exists)</p>
 <p><strong>Upper bound</strong>: The call cannot exceed the stock price (option gives right to buy stock, not worth more than owning it)</p>
 <p><strong>Tighter lower bound</strong>: </p>
-<p>$$</p>
-<p>C(S,t) \geq \max(S - Ke^{-r(T-t)}, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S,t) \geq \max(S - Ke^{-r(T-t)}, 0)
+\]</div>
 <p>This is the <strong>no-arbitrage lower bound</strong>.</p>
 <h3 id="2-put-option-bounds">2. <strong>Put Option Bounds</strong><a class="headerlink" href="#2-put-option-bounds" title="Permanent link">&para;</a></h3>
 <p>For a European put:</p>
-<p>$$</p>
-<p>\boxed{\max(Ke^{-r(T-t)} - S, 0) \leq P(S,t) \leq Ke^{-r(T-t)}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\max(Ke^{-r(T-t)} - S, 0) \leq P(S,t) \leq Ke^{-r(T-t)}}
+\]</div>
 <p><strong>Lower bound</strong>: Put worth at least discounted intrinsic value</p>
 <p><strong>Upper bound</strong>: Put cannot exceed present value of strike (max possible payoff)</p>
 <h3 id="3-verification-for-black-scholes">3. <strong>Verification for Black-Scholes</strong><a class="headerlink" href="#3-verification-for-black-scholes" title="Permanent link">&para;</a></h3>
 <p><strong>Lower bound for call</strong>:</p>
 <p>Since <span class="arithmatex">\(\mathcal{N}(d_1), \mathcal{N}(d_2) \in [0,1]\)</span>:</p>
 <p>When <span class="arithmatex">\(S &gt; Ke^{-rT}\)</span>:</p>
-<p>$$</p>
-<p>C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \geq S \cdot 0 - Ke^{-rT} \cdot 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \geq S \cdot 0 - Ke^{-rT} \cdot 1
+\]</div>
 <p>But more carefully, when deeply ITM, <span class="arithmatex">\(\mathcal{N}(d_1), \mathcal{N}(d_2) \approx 1\)</span>:</p>
-<p>$$</p>
-<p>C \approx S - Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \approx S - Ke^{-rT}
+\]</div>
 <p><strong>Upper bound</strong>:</p>
-<p>$$</p>
-<p>C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \leq S \cdot 1 - Ke^{-rT} \cdot 0 = S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \leq S \cdot 1 - Ke^{-rT} \cdot 0 = S
+\]</div>
 <p>Both bounds satisfied. ✓</p>
 <hr />
 <h2 id="monotonicity-in-stock-price">Monotonicity in Stock Price<a class="headerlink" href="#monotonicity-in-stock-price" title="Permanent link">&para;</a></h2>
 <h3 id="1-call-options">1. <strong>Call Options</strong><a class="headerlink" href="#1-call-options" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\partial C}{\partial S} = \mathcal{N}(d_1) &gt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial C}{\partial S} = \mathcal{N}(d_1) &gt; 0}
+\]</div>
 <p><strong>Interpretation</strong>: Call price is <strong>strictly increasing</strong> in stock price.</p>
 <p><strong>Proof</strong>: Differentiating the Black-Scholes formula:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial S} = \mathcal{N}(d_1) + S\frac{\partial \mathcal{N}(d_1)}{\partial S} - Ke^{-rT}\frac{\partial \mathcal{N}(d_2)}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial S} = \mathcal{N}(d_1) + S\frac{\partial \mathcal{N}(d_1)}{\partial S} - Ke^{-rT}\frac{\partial \mathcal{N}(d_2)}{\partial S}
+\]</div>
 <p>Using <span class="arithmatex">\(\frac{\partial d_1}{\partial S} = \frac{1}{S\sigma\sqrt{T}}\)</span> and <span class="arithmatex">\(\frac{\partial d_2}{\partial S} = \frac{\partial d_1}{\partial S}\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial \mathcal{N}(d_1)}{\partial S} = \mathcal{N}'(d_1)\frac{1}{S\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \mathcal{N}(d_1)}{\partial S} = \mathcal{N}'(d_1)\frac{1}{S\sigma\sqrt{T}}
+\]</div>
 <p>After substitution and using <span class="arithmatex">\(\mathcal{N}'(d_1) = \frac{1}{\sqrt{2\pi}}e^{-d_1^2/2}\)</span>:</p>
 <p>The cross-terms cancel (due to Black-Scholes PDE), leaving:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial S} = \mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial S} = \mathcal{N}(d_1)
+\]</div>
 <p>Since <span class="arithmatex">\(\mathcal{N}(d_1) \in (0,1)\)</span> for all finite <span class="arithmatex">\(d_1\)</span>, the call is strictly increasing in <span class="arithmatex">\(S\)</span>. ✓</p>
 <h3 id="2-put-options">2. <strong>Put Options</strong><a class="headerlink" href="#2-put-options" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\partial P}{\partial S} = -\mathcal{N}(-d_1) = \mathcal{N}(d_1) - 1 &lt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial P}{\partial S} = -\mathcal{N}(-d_1) = \mathcal{N}(d_1) - 1 &lt; 0}
+\]</div>
 <p><strong>Interpretation</strong>: Put price is <strong>strictly decreasing</strong> in stock price.</p>
 <p><strong>Proof</strong>: From put-call parity:</p>
-<p>$$</p>
-<p>P = C - S + Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = C - S + Ke^{-rT}
+\]</div>
 <p>Differentiate:</p>
-<p>$$</p>
-<p>\frac{\partial P}{\partial S} = \frac{\partial C}{\partial S} - 1 = \mathcal{N}(d_1) - 1 &lt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial P}{\partial S} = \frac{\partial C}{\partial S} - 1 = \mathcal{N}(d_1) - 1 &lt; 0
+\]</div>
 <p>Since <span class="arithmatex">\(\mathcal{N}(d_1) &lt; 1\)</span>, we have <span class="arithmatex">\(\frac{\partial P}{\partial S} &lt; 0\)</span>. ✓</p>
 <hr />
 <h2 id="monotonicity-in-time">Monotonicity in Time<a class="headerlink" href="#monotonicity-in-time" title="Permanent link">&para;</a></h2>
 <h3 id="1-time-decay-theta">1. <strong>Time Decay (Theta)</strong><a class="headerlink" href="#1-time-decay-theta" title="Permanent link">&para;</a></h3>
 <p>For European calls on non-dividend-paying stocks:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial t} = -\Theta &lt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial t} = -\Theta &lt; 0
+\]</div>
 <p><strong>Interpretation</strong>: Call price <strong>decreases</strong> as time passes (all else equal), a phenomenon called <strong>time decay</strong>.</p>
 <p><strong>Theta formula</strong>:</p>
-<p>$$</p>
-<p>\Theta_{\text{call}} = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_{\text{call}} = -\frac{S\mathcal{N}'(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\mathcal{N}(d_2)
+\]</div>
 <p>Since both terms are negative, <span class="arithmatex">\(\Theta &lt; 0\)</span> (time decay).</p>
 <p><strong>Exception</strong>: Deep ITM European calls can have slightly positive theta near expiration due to interest earned on deferred strike payment.</p>
 <h3 id="2-increasing-with-time-to-maturity">2. <strong>Increasing with Time to Maturity</strong><a class="headerlink" href="#2-increasing-with-time-to-maturity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\partial C}{\partial T} &gt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial C}{\partial T} &gt; 0}
+\]</div>
 <p><strong>Interpretation</strong>: Longer-dated options are more valuable (more time for favorable price movement).</p>
 <p><strong>Proof</strong>: Options with more time have:</p>
 <ol>
@@ -47038,57 +47038,57 @@
 <li>More uncertainty (higher variance <span class="arithmatex">\(\sigma^2 T\)</span>)</li>
 </ol>
 <p>From the formula, as <span class="arithmatex">\(T\)</span> increases, <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span> shift, and the net effect is positive:</p>
-<p>$$</p>
-<p>C(S, T_2) &gt; C(S, T_1) \quad \text{for } T_2 &gt; T_1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S, T_2) &gt; C(S, T_1) \quad \text{for } T_2 &gt; T_1
+\]</div>
 <hr />
 <h2 id="monotonicity-in-volatility">Monotonicity in Volatility<a class="headerlink" href="#monotonicity-in-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="1-vega-volatility-sensitivity">1. <strong>Vega (Volatility Sensitivity)</strong><a class="headerlink" href="#1-vega-volatility-sensitivity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\partial C}{\partial \sigma} = S\sqrt{T-t}\,\mathcal{N}'(d_1) &gt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial C}{\partial \sigma} = S\sqrt{T-t}\,\mathcal{N}'(d_1) &gt; 0}
+\]</div>
 <p><strong>Interpretation</strong>: Call (and put) prices are <strong>strictly increasing</strong> in volatility.</p>
 <p><strong>Vega formula</strong>:</p>
-<p>$$</p>
-<p>\nu = S\sqrt{T}\,\mathcal{N}'(d_1) = S\sqrt{T}\frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nu = S\sqrt{T}\,\mathcal{N}'(d_1) = S\sqrt{T}\frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} &gt; 0
+\]</div>
 <p><strong>Economic intuition</strong>: Higher volatility increases the probability of large moves. For options (with capped downside but unlimited upside), this increases value.</p>
 <p><strong>Key property</strong>: Vega is the same for calls and puts with identical strike and maturity:</p>
-<p>$$</p>
-<p>\nu_{\text{call}} = \nu_{\text{put}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nu_{\text{call}} = \nu_{\text{put}}
+\]</div>
 <p>This follows from put-call parity (volatility affects both equally).</p>
 <hr />
 <h2 id="monotonicity-in-strike">Monotonicity in Strike<a class="headerlink" href="#monotonicity-in-strike" title="Permanent link">&para;</a></h2>
 <h3 id="1-call-options_1">1. <strong>Call Options</strong><a class="headerlink" href="#1-call-options_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\partial C}{\partial K} = -e^{-r(T-t)}\mathcal{N}(d_2) &lt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial C}{\partial K} = -e^{-r(T-t)}\mathcal{N}(d_2) &lt; 0}
+\]</div>
 <p><strong>Interpretation</strong>: Call price is <strong>strictly decreasing</strong> in strike.</p>
 <p><strong>Proof</strong>: Higher strike means:
 - Lower intrinsic value
 - Lower probability of exercise
 - Less favorable payoff structure</p>
 <p>From the formula:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) - \text{(other terms that sum to zero)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} = -e^{-rT}\mathcal{N}(d_2) - \text{(other terms that sum to zero)}
+\]</div>
 <h3 id="2-put-options_1">2. <strong>Put Options</strong><a class="headerlink" href="#2-put-options_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\partial P}{\partial K} = e^{-r(T-t)}\mathcal{N}(-d_2) &gt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial P}{\partial K} = e^{-r(T-t)}\mathcal{N}(-d_2) &gt; 0}
+\]</div>
 <p><strong>Interpretation</strong>: Put price is <strong>strictly increasing</strong> in strike (higher strike = more valuable right to sell).</p>
 <hr />
 <h2 id="convexity-in-stock-price">Convexity in Stock Price<a class="headerlink" href="#convexity-in-stock-price" title="Permanent link">&para;</a></h2>
 <h3 id="1-second-derivative-gamma">1. <strong>Second Derivative (Gamma)</strong><a class="headerlink" href="#1-second-derivative-gamma" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T-t}} &gt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\mathcal{N}'(d_1)}{S\sigma\sqrt{T-t}} &gt; 0}
+\]</div>
 <p><strong>Interpretation</strong>: Option value is <strong>convex</strong> in stock price.</p>
 <p><strong>Gamma formula</strong>:</p>
-<p>$$</p>
-<p>\Gamma = \frac{1}{S\sigma\sqrt{T}}\frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma = \frac{1}{S\sigma\sqrt{T}}\frac{1}{\sqrt{2\pi}}e^{-d_1^2/2} &gt; 0
+\]</div>
 <p><strong>Implication</strong>: </p>
 <ul>
 <li>Options benefit from large stock price moves in either direction</li>
@@ -47096,9 +47096,9 @@
 <li>Delta decreases as stock falls (decelerating losses)</li>
 </ul>
 <p><strong>Put gamma</strong>: From put-call parity,</p>
-<p>$$</p>
-<p>\Gamma_{\text{put}} = \Gamma_{\text{call}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_{\text{put}} = \Gamma_{\text{call}}
+\]</div>
 <p>Both calls and puts have the same gamma.</p>
 <h3 id="2-graphical-interpretation">2. <strong>Graphical Interpretation</strong><a class="headerlink" href="#2-graphical-interpretation" title="Permanent link">&para;</a></h3>
 <p>The option value curve <span class="arithmatex">\(C(S)\)</span> is:</p>
@@ -47112,45 +47112,45 @@
 <h2 id="convexity-in-strike-butterfly-spread">Convexity in Strike (Butterfly Spread)<a class="headerlink" href="#convexity-in-strike-butterfly-spread" title="Permanent link">&para;</a></h2>
 <h3 id="1-butterfly-constraint">1. <strong>Butterfly Constraint</strong><a class="headerlink" href="#1-butterfly-constraint" title="Permanent link">&para;</a></h3>
 <p>For strikes <span class="arithmatex">\(K_1 &lt; K_2 &lt; K_3\)</span> with <span class="arithmatex">\(K_2 - K_1 = K_3 - K_2 = \Delta K\)</span>:</p>
-<p>$$</p>
-<p>\boxed{C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}}
+\]</div>
 <p><strong>Interpretation</strong>: Call prices are <strong>convex</strong> (downward) in strike.</p>
 <p><strong>Proof</strong>: Consider a <strong>butterfly spread</strong>:
 - Buy 1 call at <span class="arithmatex">\(K_1\)</span>
 - Sell 2 calls at <span class="arithmatex">\(K_2\)</span>
 - Buy 1 call at <span class="arithmatex">\(K_3\)</span></p>
 <p><strong>Cost</strong>:</p>
-<p>$$</p>
-<p>\text{Cost} = C(K_1) - 2C(K_2) + C(K_3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost} = C(K_1) - 2C(K_2) + C(K_3)
+\]</div>
 <p><strong>Payoff</strong>: Non-negative in all states (can verify by cases).</p>
 <p><strong>No-arbitrage</strong>: Since payoff <span class="arithmatex">\(\geq 0\)</span>, cost must be <span class="arithmatex">\(\geq 0\)</span>:</p>
-<p>$$</p>
-<p>C(K_1) - 2C(K_2) + C(K_3) \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_1) - 2C(K_2) + C(K_3) \geq 0
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}
+\]</div>
 <p>This is the <strong>convexity constraint</strong> for call prices. ✓</p>
 <h3 id="2-continuous-version">2. <strong>Continuous Version</strong><a class="headerlink" href="#2-continuous-version" title="Permanent link">&para;</a></h3>
 <p>For infinitesimally close strikes:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} \geq 0
+\]</div>
 <p>From Black-Scholes:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} = e^{-rT}\frac{\mathcal{N}'(d_2)}{K\sigma\sqrt{T}} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} = e^{-rT}\frac{\mathcal{N}'(d_2)}{K\sigma\sqrt{T}} &gt; 0
+\]</div>
 <p>Strict convexity holds. ✓</p>
 <hr />
 <h2 id="calendar-spread-inequality">Calendar Spread Inequality<a class="headerlink" href="#calendar-spread-inequality" title="Permanent link">&para;</a></h2>
 <h3 id="1-time-spread-constraint">1. <strong>Time Spread Constraint</strong><a class="headerlink" href="#1-time-spread-constraint" title="Permanent link">&para;</a></h3>
 <p>For maturities <span class="arithmatex">\(T_1 &lt; T_2\)</span> with identical strike <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>\boxed{C(S, T_1) \leq C(S, T_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C(S, T_1) \leq C(S, T_2)}
+\]</div>
 <p><strong>Interpretation</strong>: Longer-dated calls are always worth at least as much as shorter-dated calls.</p>
 <p><strong>Proof</strong>: The longer-dated option can replicate the shorter-dated option by:</p>
 <ol>
@@ -47246,19 +47246,19 @@
 <h2 id="comparison-american-vs-european">Comparison: American vs. European<a class="headerlink" href="#comparison-american-vs-european" title="Permanent link">&para;</a></h2>
 <p>For American options on non-dividend-paying stocks:</p>
 <h3 id="1-call-options_2">1. <strong>Call Options</strong><a class="headerlink" href="#1-call-options_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_{\text{American}} = C_{\text{European}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{American}} = C_{\text{European}}
+\]</div>
 <p><strong>Reason</strong>: Never optimal to exercise early (forgo time value and interest on strike).</p>
 <h3 id="2-put-options_2">2. <strong>Put Options</strong><a class="headerlink" href="#2-put-options_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P_{\text{American}} \geq P_{\text{European}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{American}} \geq P_{\text{European}}
+\]</div>
 <p><strong>Reason</strong>: Early exercise can be optimal when deep ITM (capture strike immediately rather than wait).</p>
 <p><strong>Bound</strong>:</p>
-<p>$$</p>
-<p>\max(K - S, 0) \leq P_{\text{American}} \leq K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(K - S, 0) \leq P_{\text{American}} \leq K
+\]</div>
 <p>Note: American put lower bound is <em>intrinsic value</em>, not discounted intrinsic value.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>

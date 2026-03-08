@@ -46227,12 +46227,12 @@
 <li><strong>Martingale condition:</strong> <span class="arithmatex">\(\mathbb{E}[S_{n+1} \mid \mathcal{F}_n] = S_n\)</span>.</li>
 </ol>
 <p><strong>Proof of the martingale condition.</strong></p>
-<p>$$\mathbb{E}[S_{n+1} \mid \mathcal{F}_n]</p>
-<p>= \mathbb{E}[S_n + \xi_{n+1} \mid \mathcal{F}<em n_1="n+1">n]
-= S_n + \mathbb{E}[\xi</em>} \mid \mathcal{F<em n_1="n+1">n]
-= S_n + \mathbb{E}[\xi</em>]
-= S_n + 0</p>
-<p>= S_n. \quad\square$$</p>
+<div class="arithmatex">\[\mathbb{E}[S_{n+1} \mid \mathcal{F}_n]
+= \mathbb{E}[S_n + \xi_{n+1} \mid \mathcal{F}_n]
+= S_n + \mathbb{E}[\xi_{n+1} \mid \mathcal{F}_n]
+= S_n + \mathbb{E}[\xi_{n+1}]
+= S_n + 0
+= S_n. \quad\square\]</div>
 <p>The key steps are: (i) <span class="arithmatex">\(S_n\)</span> is <span class="arithmatex">\(\mathcal{F}_n\)</span>-measurable so it pulls out of the conditional expectation; (ii) <span class="arithmatex">\(\xi_{n+1}\)</span> is independent of <span class="arithmatex">\(\mathcal{F}_n = \sigma(\xi_1,\ldots,\xi_n)\)</span>, so the conditional expectation reduces to the unconditional mean <span class="arithmatex">\(\mathbb{E}[\xi_{n+1}] = 0\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Why <span class="arithmatex">\(p = 1/2\)</span> is required</p>
@@ -46245,35 +46245,35 @@
 <div class="arithmatex">\[M_n := S_n^2 - n\]</div>
 <p>is a martingale with respect to <span class="arithmatex">\(\{\mathcal{F}_n\}\)</span>.</p>
 <p><strong>Proof.</strong></p>
-<p>$$\mathbb{E}[M_{n+1} \mid \mathcal{F}_n]</p>
-<p>= \mathbb{E}[S_{n+1}^2 - (n+1) \mid \mathcal{F}_n]</p>
-<p>= \mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n] - (n+1).$$</p>
+<div class="arithmatex">\[\mathbb{E}[M_{n+1} \mid \mathcal{F}_n]
+= \mathbb{E}[S_{n+1}^2 - (n+1) \mid \mathcal{F}_n]
+= \mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n] - (n+1)\]</div>
 <p>Expanding the square:</p>
-<p>$$\mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n]</p>
-<p>= \mathbb{E}[S_n^2 + 2S_n\xi_{n+1} + \xi_{n+1}^2 \mid \mathcal{F}_n].$$</p>
+<div class="arithmatex">\[\mathbb{E}[(S_n + \xi_{n+1})^2 \mid \mathcal{F}_n]
+= \mathbb{E}[S_n^2 + 2S_n\xi_{n+1} + \xi_{n+1}^2 \mid \mathcal{F}_n]\]</div>
 <p>Using measurability of <span class="arithmatex">\(S_n\)</span>, independence of <span class="arithmatex">\(\xi_{n+1}\)</span>, and <span class="arithmatex">\(\mathbb{E}[\xi_{n+1}] = 0\)</span>, <span class="arithmatex">\(\mathbb{E}[\xi_{n+1}^2] = 1\)</span>:</p>
-<div class="arithmatex">\[= S_n^2 + 2S_n \cdot 0 + 1 = S_n^2 + 1.\]</div>
+<div class="arithmatex">\[= S_n^2 + 2S_n \cdot 0 + 1 = S_n^2 + 1\]</div>
 <p>Therefore:</p>
 <div class="arithmatex">\[\mathbb{E}[M_{n+1} \mid \mathcal{F}_n] = S_n^2 + 1 - (n+1) = S_n^2 - n = M_n. \quad\square\]</div>
 <hr />
 <h2 id="quadratic-variation">Quadratic Variation<a class="headerlink" href="#quadratic-variation" title="Permanent link">&para;</a></h2>
 <p><strong>Definition 1.1.4</strong> (Discrete Quadratic Variation)</p>
 <p>The <strong>quadratic variation</strong> of the random walk over <span class="arithmatex">\(\{0, 1, \ldots, n\}\)</span> is</p>
-<div class="arithmatex">\[[S]_n := \sum_{i=1}^n (S_i - S_{i-1})^2 = \sum_{i=1}^n X_i^2.\]</div>
+<div class="arithmatex">\[[S]_n := \sum_{i=1}^n (S_i - S_{i-1})^2 = \sum_{i=1}^n X_i^2\]</div>
 <p><strong>Proposition 1.1.5</strong></p>
 <p>For any random walk (symmetric or asymmetric), <span class="arithmatex">\([S]_n = n\)</span> almost surely.</p>
 <p><strong>Proof.</strong> Since <span class="arithmatex">\(X_i \in \{-1,+1\}\)</span>, we have <span class="arithmatex">\(X_i^2 = 1\)</span> for every <span class="arithmatex">\(i\)</span>, so <span class="arithmatex">\([S]_n = \sum_{i=1}^n 1 = n\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <p>The quadratic variation is <strong>deterministic</strong> — it equals <span class="arithmatex">\(n\)</span> for every realisation of the walk, regardless of which steps were <span class="arithmatex">\(+1\)</span> or <span class="arithmatex">\(-1\)</span>. This contrasts sharply with the position <span class="arithmatex">\(S_n\)</span> itself, which is random.</p>
 <p><strong>Connection to <span class="arithmatex">\(S_n^2 - n\)</span>.</strong> Observe that</p>
-<div class="arithmatex">\[S_n^2 = \left(\sum_{i=1}^n \xi_i\right)^2 = [S]_n + 2\sum_{i &lt; j} \xi_i\xi_j.\]</div>
+<div class="arithmatex">\[S_n^2 = \left(\sum_{i=1}^n \xi_i\right)^2 = [S]_n + 2\sum_{i &lt; j} \xi_i\xi_j\]</div>
 <p>The quadratic variation <span class="arithmatex">\([S]_n = n\)</span> accounts for the "diagonal" part of <span class="arithmatex">\(S_n^2\)</span>. The martingale <span class="arithmatex">\(M_n = S_n^2 - n = S_n^2 - [S]_n\)</span> is precisely the "off-diagonal" remainder. This decomposition <span class="arithmatex">\(S_n^2 = [S]_n + M_n\)</span> is the discrete analogue of the Itô decomposition <span class="arithmatex">\(W_t^2 = t + 2\int_0^t W_s\,dW_s\)</span>.</p>
 <p><strong>Why quadratic variation matters.</strong> For a smooth function <span class="arithmatex">\(f\)</span> with bounded derivative:</p>
-<div class="arithmatex">\[\sum_{i=1}^n (f(t_i) - f(t_{i-1}))^2 \approx \sum_{i=1}^n (f'(t_i))^2(\Delta t)^2 \to 0 \quad \text{as } \Delta t \to 0.\]</div>
+<div class="arithmatex">\[\sum_{i=1}^n (f(t_i) - f(t_{i-1}))^2 \approx \sum_{i=1}^n (f'(t_i))^2(\Delta t)^2 \to 0 \quad \text{as } \Delta t \to 0\]</div>
 <p>For the random walk, <span class="arithmatex">\([S]_n = n\)</span> regardless of how finely we partition. This non-vanishing quadratic variation is what forces the correction term in Itô's formula: <span class="arithmatex">\((dW_t)^2 = dt\)</span>.</p>
 <hr />
 <h2 id="consequences-for-optional-stopping">Consequences for Optional Stopping<a class="headerlink" href="#consequences-for-optional-stopping" title="Permanent link">&para;</a></h2>
 <p>The two martingales <span class="arithmatex">\(\{S_n\}\)</span> and <span class="arithmatex">\(\{S_n^2 - n\}\)</span> are the workhorses of stopping-time calculations. By the Optional Stopping Theorem (see <a href="../../filtration_and_martingales/optional_sampling_theorem/">Optional Sampling Theorem</a>), if <span class="arithmatex">\(\tau\)</span> is a bounded stopping time then:</p>
-<div class="arithmatex">\[\mathbb{E}[S_\tau] = \mathbb{E}[S_0] = 0, \qquad \mathbb{E}[S_\tau^2 - \tau] = \mathbb{E}[S_0^2 - 0] = 0.\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_\tau] = \mathbb{E}[S_0] = 0, \qquad \mathbb{E}[S_\tau^2 - \tau] = \mathbb{E}[S_0^2 - 0] = 0\]</div>
 <p>These two identities together give <span class="arithmatex">\(\mathbb{E}[S_\tau] = 0\)</span> and <span class="arithmatex">\(\mathbb{E}[\tau] = \mathbb{E}[S_\tau^2]\)</span>. See <a href="../exercises_random_walk/">Exercises</a> (Exercise 3) for the Gambler's Ruin application.</p>
 <hr />
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>

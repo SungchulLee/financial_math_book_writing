@@ -46724,11 +46724,11 @@ When the EMM is unique, every contingent claim has a unique no-arbitrage price a
 <h2 id="mathematical-intuition">Mathematical Intuition<a class="headerlink" href="#mathematical-intuition" title="Permanent link">&para;</a></h2>
 <p><strong>Duality between strategies and measures.</strong>
 The FTAP establishes a fundamental duality:</p>
-<p>$$\begin{array}{ccc}</p>
-<p>\text{Portfolio strategies } \theta &amp; \longleftrightarrow &amp; \text{Probability measures } \mathbb{Q} \
-\text{Arbitrage opportunities} &amp; \longleftrightarrow &amp; \text{Non-existence of EMM} \
-\text{Market completeness} &amp; \longleftrightarrow &amp; \text{Unique EMM}</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{ccc}
+\text{Portfolio strategies } \theta &amp; \longleftrightarrow &amp; \text{Probability measures } \mathbb{Q} \\
+\text{Arbitrage opportunities} &amp; \longleftrightarrow &amp; \text{Non-existence of EMM} \\
+\text{Market completeness} &amp; \longleftrightarrow &amp; \text{Unique EMM}
+\end{array}\]</div>
 <p>This is a financial instance of a general principle in convex analysis: feasibility of a primal problem (replication) is dual to feasibility of the dual problem (existence of pricing measures).</p>
 <p><strong>Martingales as fair games.</strong>
 A martingale <span class="arithmatex">\(M_t\)</span> satisfies <span class="arithmatex">\(\mathbb{E}[M_{t+1} \mid \mathcal{F}_t] = M_t\)</span>: the best forecast of tomorrow's value is today's value. The FTAP says that no-arbitrage is equivalent to the existence of a probability measure under which discounted prices are fair games.</p>

@@ -46863,9 +46863,9 @@
 <h2 id="affine-processes">Affine Processes<a class="headerlink" href="#affine-processes" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>A Markov process <span class="arithmatex">\((X_t, V_t)\)</span> is <strong>affine</strong> if its conditional characteristic function has exponential-affine form:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[e^{iu X_T + wV_T} \mid X_t, V_t\right] = \exp\left(A(\tau, u, w) + B(\tau, u, w)V_t + iuX_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[e^{iu X_T + wV_T} \mid X_t, V_t\right] = \exp\left(A(\tau, u, w) + B(\tau, u, w)V_t + iuX_t\right)
+\]</div>
 <p>where <span class="arithmatex">\(\tau = T - t\)</span> and the functions <span class="arithmatex">\(A, B\)</span> satisfy ordinary differential equations (Riccati equations).</p>
 <h3 id="why-affine-structure-matters">Why Affine Structure Matters<a class="headerlink" href="#why-affine-structure-matters" title="Permanent link">&para;</a></h3>
 <ol>
@@ -46879,115 +46879,115 @@
 <h2 id="characteristic-function-of-log-price">Characteristic Function of Log-Price<a class="headerlink" href="#characteristic-function-of-log-price" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(X_t = \log S_t\)</span>. Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dX_t &amp;= \left(r - q - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^S \\
 dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>with <span class="arithmatex">\(\langle W^S, W^V \rangle_t = \rho t\)</span>.</p>
 <h3 id="the-characteristic-function">The Characteristic Function<a class="headerlink" href="#the-characteristic-function" title="Permanent link">&para;</a></h3>
 <p>The conditional characteristic function of <span class="arithmatex">\(X_T\)</span> is:</p>
-<p>$$</p>
-<p>\varphi(\tau, u) = \mathbb{E}^{\mathbb{Q}}\left[e^{iuX_T} \mid X_t, V_t\right] = \exp\left(C(\tau, u) + D(\tau, u)V_t + iuX_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(\tau, u) = \mathbb{E}^{\mathbb{Q}}\left[e^{iuX_T} \mid X_t, V_t\right] = \exp\left(C(\tau, u) + D(\tau, u)V_t + iuX_t\right)
+\]</div>
 <p>where <span class="arithmatex">\(\tau = T - t\)</span>.</p>
 <hr />
 <h2 id="derivation-of-riccati-equations">Derivation of Riccati Equations<a class="headerlink" href="#derivation-of-riccati-equations" title="Permanent link">&para;</a></h2>
 <h3 id="feynmankac-approach">Feynman–Kac Approach<a class="headerlink" href="#feynmankac-approach" title="Permanent link">&para;</a></h3>
 <p>Define <span class="arithmatex">\(f(t, x, v) = \mathbb{E}[e^{iuX_T} | X_t = x, V_t = v]\)</span>.</p>
 <p>By Feynman–Kac, <span class="arithmatex">\(f\)</span> satisfies the PDE:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t} + \mathcal{L}f = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t} + \mathcal{L}f = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(f(T, x, v) = e^{iux}\)</span>, where <span class="arithmatex">\(\mathcal{L}\)</span> is the infinitesimal generator.</p>
 <h3 id="generator-calculation">Generator Calculation<a class="headerlink" href="#generator-calculation" title="Permanent link">&para;</a></h3>
 <p>The generator is:</p>
-<p>$$</p>
-<p>\mathcal{L}f = \left(r - q - \frac{v}{2}\right)\frac{\partial f}{\partial x} + \kappa(\theta - v)\frac{\partial f}{\partial v} + \frac{v}{2}\frac{\partial^2 f}{\partial x^2} + \rho\xi v\frac{\partial^2 f}{\partial x \partial v} + \frac{\xi^2 v}{2}\frac{\partial^2 f}{\partial v^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}f = \left(r - q - \frac{v}{2}\right)\frac{\partial f}{\partial x} + \kappa(\theta - v)\frac{\partial f}{\partial v} + \frac{v}{2}\frac{\partial^2 f}{\partial x^2} + \rho\xi v\frac{\partial^2 f}{\partial x \partial v} + \frac{\xi^2 v}{2}\frac{\partial^2 f}{\partial v^2}
+\]</div>
 <h3 id="affine-ansatz">Affine Ansatz<a class="headerlink" href="#affine-ansatz" title="Permanent link">&para;</a></h3>
 <p>Substitute the ansatz <span class="arithmatex">\(f = \exp(C + Dv + iux)\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t} = \left(\dot{C} + \dot{D}v\right)f</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial x} = iu \cdot f, \quad \frac{\partial^2 f}{\partial x^2} = -u^2 f</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial v} = D \cdot f, \quad \frac{\partial^2 f}{\partial v^2} = D^2 f</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 f}{\partial x \partial v} = iuD \cdot f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t} = \left(\dot{C} + \dot{D}v\right)f
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial x} = iu \cdot f, \quad \frac{\partial^2 f}{\partial x^2} = -u^2 f
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial v} = D \cdot f, \quad \frac{\partial^2 f}{\partial v^2} = D^2 f
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial x \partial v} = iuD \cdot f
+\]</div>
 <h3 id="collecting-terms">Collecting Terms<a class="headerlink" href="#collecting-terms" title="Permanent link">&para;</a></h3>
 <p>Substituting into the PDE and dividing by <span class="arithmatex">\(f\)</span>:</p>
-<p>$$</p>
-<p>\dot{C} + \dot{D}v + (r-q-\tfrac{v}{2})iu + \kappa(\theta - v)D - \frac{u^2 v}{2} + \rho\xi v \cdot iuD + \frac{\xi^2 v}{2}D^2 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\dot{C} + \dot{D}v + (r-q-\tfrac{v}{2})iu + \kappa(\theta - v)D - \frac{u^2 v}{2} + \rho\xi v \cdot iuD + \frac{\xi^2 v}{2}D^2 = 0
+\]</div>
 <p>Separating terms constant in <span class="arithmatex">\(v\)</span> and linear in <span class="arithmatex">\(v\)</span>:</p>
 <p><strong>Constant terms:</strong></p>
-<p>$$</p>
-<p>\dot{C} + (r-q)iu + \kappa\theta D = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\dot{C} + (r-q)iu + \kappa\theta D = 0
+\]</div>
 <p><strong>Linear in <span class="arithmatex">\(v\)</span>:</strong></p>
-<p>$$</p>
-<p>\dot{D} - \frac{iu}{2} - \kappa D - \frac{u^2}{2} + \rho\xi iu D + \frac{\xi^2}{2}D^2 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\dot{D} - \frac{iu}{2} - \kappa D - \frac{u^2}{2} + \rho\xi iu D + \frac{\xi^2}{2}D^2 = 0
+\]</div>
 <hr />
 <h2 id="solving-the-riccati-equations">Solving the Riccati Equations<a class="headerlink" href="#solving-the-riccati-equations" title="Permanent link">&para;</a></h2>
 <h3 id="the-d-equation-riccati">The D Equation (Riccati)<a class="headerlink" href="#the-d-equation-riccati" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\dot{D} = \frac{\xi^2}{2}D^2 + (\rho\xi iu - \kappa)D - \frac{1}{2}(iu + u^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\dot{D} = \frac{\xi^2}{2}D^2 + (\rho\xi iu - \kappa)D - \frac{1}{2}(iu + u^2)
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(D(0, u) = 0\)</span>.</p>
 <p>This is a Riccati ODE with solution:</p>
-<p>$$</p>
-<p>D(\tau, u) = \frac{1 - e^{d\tau}}{1 - ge^{d\tau}} \cdot \frac{\kappa - \rho\xi iu - d}{\xi^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D(\tau, u) = \frac{1 - e^{d\tau}}{1 - ge^{d\tau}} \cdot \frac{\kappa - \rho\xi iu - d}{\xi^2}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d = \sqrt{(\rho\xi iu - \kappa)^2 + \xi^2(iu + u^2)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d = \sqrt{(\rho\xi iu - \kappa)^2 + \xi^2(iu + u^2)}
+\]</div>
+<div class="arithmatex">\[
+g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}
+\]</div>
 <h3 id="the-c-equation-linear">The C Equation (Linear)<a class="headerlink" href="#the-c-equation-linear" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\dot{C} = -(r-q)iu - \kappa\theta D</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\dot{C} = -(r-q)iu - \kappa\theta D
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(C(0, u) = 0\)</span>.</p>
 <p>Integrating:</p>
-<p>$$</p>
-<p>C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]
+\]</div>
 <hr />
 <h2 id="complete-characteristic-function">Complete Characteristic Function<a class="headerlink" href="#complete-characteristic-function" title="Permanent link">&para;</a></h2>
 <h3 id="final-formula">Final Formula<a class="headerlink" href="#final-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\varphi(\tau, u) = \exp\left(C(\tau, u) + D(\tau, u)V_0 + iu\log S_0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(\tau, u) = \exp\left(C(\tau, u) + D(\tau, u)V_0 + iu\log S_0\right)
+\]</div>
 <p>with:</p>
-<p>$$</p>
-<p>C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>D(\tau, u) = \frac{\kappa - \rho\xi iu - d}{\xi^2} \cdot \frac{1 - e^{d\tau}}{1 - ge^{d\tau}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]
+\]</div>
+<div class="arithmatex">\[
+D(\tau, u) = \frac{\kappa - \rho\xi iu - d}{\xi^2} \cdot \frac{1 - e^{d\tau}}{1 - ge^{d\tau}}
+\]</div>
+<div class="arithmatex">\[
+d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}
+\]</div>
+<div class="arithmatex">\[
+g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}
+\]</div>
 <h3 id="alternative-formulation-lordkahl">Alternative Formulation (Lord–Kahl)<a class="headerlink" href="#alternative-formulation-lordkahl" title="Permanent link">&para;</a></h3>
 <p>For numerical stability, use the alternative form:</p>
-<p>$$</p>
-<p>D(\tau, u) = \frac{\kappa - \rho\xi iu + d}{\xi^2} \cdot \frac{1 - e^{-d\tau}}{1 - g^{-1}e^{-d\tau}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu + d)\tau - 2\ln\left(\frac{1 - g^{-1}e^{-d\tau}}{1-g^{-1}}\right)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D(\tau, u) = \frac{\kappa - \rho\xi iu + d}{\xi^2} \cdot \frac{1 - e^{-d\tau}}{1 - g^{-1}e^{-d\tau}}
+\]</div>
+<div class="arithmatex">\[
+C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu + d)\tau - 2\ln\left(\frac{1 - g^{-1}e^{-d\tau}}{1-g^{-1}}\right)\right]
+\]</div>
 <p>This avoids numerical issues when <span class="arithmatex">\(|g| &gt; 1\)</span>.</p>
 <hr />
 <h2 id="numerical-stability-issues">Numerical Stability Issues<a class="headerlink" href="#numerical-stability-issues" title="Permanent link">&para;</a></h2>
@@ -46998,9 +46998,9 @@ dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
 3. <strong>Overflow:</strong> Large exponentials</p>
 <h3 id="rotation-count-method">Rotation Count Method<a class="headerlink" href="#rotation-count-method" title="Permanent link">&para;</a></h3>
 <p>Track the branch of the complex logarithm by counting rotations:</p>
-<p>$$</p>
-<p>\ln(z) = \ln|z| + i(\arg(z) + 2\pi n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(z) = \ln|z| + i(\arg(z) + 2\pi n)
+\]</div>
 <p>where <span class="arithmatex">\(n\)</span> is chosen for continuity as <span class="arithmatex">\(u\)</span> varies.</p>
 <h3 id="practical-recommendations">Practical Recommendations<a class="headerlink" href="#practical-recommendations" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47013,40 +47013,40 @@ dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
 <h2 id="moments-from-characteristic-function">Moments from Characteristic Function<a class="headerlink" href="#moments-from-characteristic-function" title="Permanent link">&para;</a></h2>
 <h3 id="moment-generating-property">Moment Generating Property<a class="headerlink" href="#moment-generating-property" title="Permanent link">&para;</a></h3>
 <p>The moments of <span class="arithmatex">\(X_T = \log S_T\)</span> are obtained from:</p>
-<p>$$</p>
-<p>\mathbb{E}[(X_T)^n] = \frac{1}{i^n}\frac{\partial^n \varphi}{\partial u^n}\bigg|_{u=0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(X_T)^n] = \frac{1}{i^n}\frac{\partial^n \varphi}{\partial u^n}\bigg|_{u=0}
+\]</div>
 <h3 id="first-two-moments">First Two Moments<a class="headerlink" href="#first-two-moments" title="Permanent link">&para;</a></h3>
 <p><strong>Mean of log-price:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[X_T] = X_0 + (r-q)T - \frac{1}{2}\mathbb{E}\left[\int_0^T V_s\,ds\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_T] = X_0 + (r-q)T - \frac{1}{2}\mathbb{E}\left[\int_0^T V_s\,ds\right]
+\]</div>
 <p>where <span class="arithmatex">\(\mathbb{E}[\int_0^T V_s\,ds] = \theta T + (V_0 - \theta)\frac{1 - e^{-\kappa T}}{\kappa}\)</span>.</p>
 <p><strong>Variance of log-price:</strong></p>
-<p>$$</p>
-<p>\text{Var}[X_T] = \mathbb{E}\left[\int_0^T V_s\,ds\right] + \text{(covariance correction)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[X_T] = \mathbb{E}\left[\int_0^T V_s\,ds\right] + \text{(covariance correction)}
+\]</div>
 <p>The full expression involves the covariance between <span class="arithmatex">\(X_T\)</span> and <span class="arithmatex">\(\int_0^T V_s\,ds\)</span>.</p>
 <hr />
 <h2 id="option-pricing-via-fourier-methods">Option Pricing via Fourier Methods<a class="headerlink" href="#option-pricing-via-fourier-methods" title="Permanent link">&para;</a></h2>
 <h3 id="density-recovery">Density Recovery<a class="headerlink" href="#density-recovery" title="Permanent link">&para;</a></h3>
 <p>The risk-neutral density of <span class="arithmatex">\(X_T\)</span> is:</p>
-<p>$$</p>
-<p>f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\varphi(\tau, u)\,du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\varphi(\tau, u)\,du
+\]</div>
 <h3 id="gil-pelaez-inversion">Gil-Pelaez Inversion<a class="headerlink" href="#gil-pelaez-inversion" title="Permanent link">&para;</a></h3>
 <p>For the distribution function:</p>
-<p>$$</p>
-<p>F(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty} \text{Re}\left[\frac{e^{-iux}\varphi(\tau, u)}{iu}\right]du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty} \text{Re}\left[\frac{e^{-iux}\varphi(\tau, u)}{iu}\right]du
+\]</div>
 <h3 id="call-price-formula-hestons-original">Call Price Formula (Heston's Original)<a class="headerlink" href="#call-price-formula-hestons-original" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C = S_0 e^{-qT}P_1 - Ke^{-rT}P_2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = S_0 e^{-qT}P_1 - Ke^{-rT}P_2
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>P_j = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty} \text{Re}\left[\frac{e^{-iu\log K}\varphi_j(\tau, u)}{iu}\right]du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_j = \frac{1}{2} + \frac{1}{\pi}\int_0^{\infty} \text{Re}\left[\frac{e^{-iu\log K}\varphi_j(\tau, u)}{iu}\right]du
+\]</div>
 <p>and <span class="arithmatex">\(\varphi_1\)</span>, <span class="arithmatex">\(\varphi_2\)</span> are modified characteristic functions.</p>
 <h3 id="carrmadan-formula">Carr–Madan Formula<a class="headerlink" href="#carrmadan-formula" title="Permanent link">&para;</a></h3>
 <p>See Section 9.4 for the complete Fourier pricing methodology.</p>

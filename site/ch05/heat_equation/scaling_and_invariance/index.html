@@ -46482,31 +46482,31 @@
 <hr />
 <h2 id="parabolic-scaling">Parabolic Scaling<a class="headerlink" href="#parabolic-scaling" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(u(t,x)\)</span> solves the heat equation <span class="arithmatex">\(u_t = \frac{1}{2}u_{xx}\)</span>, then for any <span class="arithmatex">\(\lambda &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>also solves the heat equation.</p>
 <p><strong>Proof</strong>: Let <span class="arithmatex">\(v(t,x) = u(\lambda^2 t, \lambda x)\)</span>. Then:</p>
-<p>$$</p>
-<p>\frac{\partial v}{\partial t} = \lambda^2 \frac{\partial u}{\partial t}(\lambda^2 t, \lambda x)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 v}{\partial x^2} = \lambda^2 \frac{\partial^2 u}{\partial x^2}(\lambda^2 t, \lambda x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial v}{\partial t} = \lambda^2 \frac{\partial u}{\partial t}(\lambda^2 t, \lambda x)
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 v}{\partial x^2} = \lambda^2 \frac{\partial^2 u}{\partial x^2}(\lambda^2 t, \lambda x)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\frac{\partial v}{\partial t} - \frac{1}{2}\frac{\partial^2 v}{\partial x^2} = \lambda^2 \left(\frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\right) = 0 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial v}{\partial t} - \frac{1}{2}\frac{\partial^2 v}{\partial x^2} = \lambda^2 \left(\frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\right) = 0 \quad \checkmark
+\]</div>
 <hr />
 <h2 id="the-scaling-relation-x-t">The Scaling Relation: x ~ √t<a class="headerlink" href="#the-scaling-relation-x-t" title="Permanent link">&para;</a></h2>
 <p>Parabolic scaling reveals the fundamental relationship:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{space} \sim \sqrt{\text{time}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This means:
 - To double the spatial scale, quadruple the time
 - Diffusion is <strong>slower than linear transport</strong>
@@ -46514,11 +46514,11 @@ u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
 <hr />
 <h2 id="connection-to-brownian-motion">Connection to Brownian Motion<a class="headerlink" href="#connection-to-brownian-motion" title="Permanent link">&para;</a></h2>
 <p>Brownian motion satisfies the identical scaling property:</p>
-<p>$$</p>
-<p>\boxed{
-(B_t)<em _lambda_2="\lambda^2" t="t">{t \geq 0} \overset{d}{=} \left(\frac{1}{\lambda}B</em>
-}}\right)_{t \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+(B_t)_{t \geq 0} \overset{d}{=} \left(\frac{1}{\lambda}B_{\lambda^2 t}\right)_{t \geq 0}
+}
+\]</div>
 <p><strong>Proof</strong>: Both sides are Gaussian processes with:
 - Mean zero
 - Covariance <span class="arithmatex">\(\mathbb{E}[B_s B_t] = \min(s,t)\)</span></p>
@@ -46527,29 +46527,29 @@ u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
 <h2 id="self-similar-solutions">Self-Similar Solutions<a class="headerlink" href="#self-similar-solutions" title="Permanent link">&para;</a></h2>
 <p>The scaling invariance leads to <strong>self-similar solutions</strong> — solutions that maintain their shape under rescaling.</p>
 <p><strong>Ansatz</strong>: Look for solutions of the form:</p>
-<p>$$</p>
-<p>u(t,x) = t^{-\alpha} F\left(\frac{x}{\sqrt{t}}\right) = t^{-\alpha} F(\eta), \quad \eta = \frac{x}{\sqrt{t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = t^{-\alpha} F\left(\frac{x}{\sqrt{t}}\right) = t^{-\alpha} F(\eta), \quad \eta = \frac{x}{\sqrt{t}}
+\]</div>
 <p><strong>Substituting into the heat equation</strong>:</p>
-<p>$$</p>
-<p>u_t = -\alpha t^{-\alpha-1} F - \frac{1}{2}t^{-\alpha-1}\eta F'</p>
-<p>$$</p>
-<p>$$</p>
-<p>u_{xx} = t^{-\alpha-1} F''</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u_t = -\alpha t^{-\alpha-1} F - \frac{1}{2}t^{-\alpha-1}\eta F'
+\]</div>
+<div class="arithmatex">\[
+u_{xx} = t^{-\alpha-1} F''
+\]</div>
 <p>The heat equation becomes:</p>
-<p>$$</p>
-<p>-\alpha F - \frac{1}{2}\eta F' = \frac{1}{2}F''</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\alpha F - \frac{1}{2}\eta F' = \frac{1}{2}F''
+\]</div>
 <p>For <span class="arithmatex">\(\alpha = \frac{1}{2}\)</span>:</p>
-<p>$$</p>
-<p>F'' + \eta F' + F = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F'' + \eta F' + F = 0
+\]</div>
 <p><strong>Solution</strong>: <span class="arithmatex">\(F(\eta) = C e^{-\eta^2/2}\)</span></p>
 <p>This recovers the <strong>heat kernel</strong>:</p>
-<p>$$</p>
-<p>u(t,x) = \frac{C}{\sqrt{t}} e^{-x^2/2t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \frac{C}{\sqrt{t}} e^{-x^2/2t}
+\]</div>
 <hr />
 <h2 id="diffusion-vs-transport">Diffusion vs Transport<a class="headerlink" href="#diffusion-vs-transport" title="Permanent link">&para;</a></h2>
 <p>The scaling relation distinguishes diffusion from transport:</p>
@@ -46584,9 +46584,9 @@ u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
 <h2 id="dimensional-analysis">Dimensional Analysis<a class="headerlink" href="#dimensional-analysis" title="Permanent link">&para;</a></h2>
 <p><strong>Diffusion coefficient</strong>: If the equation is <span class="arithmatex">\(u_t = D u_{xx}\)</span>, then <span class="arithmatex">\([D] = \frac{\text{length}^2}{\text{time}}\)</span>.</p>
 <p>The characteristic length scale is:</p>
-<p>$$</p>
-<p>\ell(t) = \sqrt{Dt}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ell(t) = \sqrt{Dt}
+\]</div>
 <p><strong>Applications</strong>:
 - Heat conduction: How far does heat spread in time <span class="arithmatex">\(t\)</span>?
 - Finance: How much can a stock price move in time <span class="arithmatex">\(t\)</span>?
@@ -46602,9 +46602,9 @@ u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
 <p>If <span class="arithmatex">\(u(t,x)\)</span> is a solution, so is <span class="arithmatex">\(u(t,-x)\)</span>.</p>
 <h3 id="4-galilean-transformation">4. Galilean Transformation<a class="headerlink" href="#4-galilean-transformation" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(u(t,x)\)</span> solves <span class="arithmatex">\(u_t = \frac{1}{2}u_{xx}\)</span>, then:</p>
-<p>$$</p>
-<p>v(t,x) = e^{cx - c^2t/2} u(t, x - ct)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+v(t,x) = e^{cx - c^2t/2} u(t, x - ct)
+\]</div>
 <p>solves the same equation. This corresponds to Brownian motion with drift.</p>
 <hr />
 <h2 id="applications-of-scaling">Applications of Scaling<a class="headerlink" href="#applications-of-scaling" title="Permanent link">&para;</a></h2>
@@ -46612,14 +46612,14 @@ u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
 <p>Scaling reduces the PDE to an ODE, as shown for self-similar solutions.</p>
 <h3 id="2-a-priori-estimates">2. A Priori Estimates<a class="headerlink" href="#2-a-priori-estimates" title="Permanent link">&para;</a></h3>
 <p>Scaling arguments give bounds on solutions without solving explicitly:</p>
-<p>$$</p>
-<p>|u(t,\cdot)|<em L_1="L^1">\infty \leq \frac{C}{\sqrt{t}}|f|</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|u(t,\cdot)\|_\infty \leq \frac{C}{\sqrt{t}}\|f\|_{L^1}
+\]</div>
 <h3 id="3-asymptotic-behavior">3. Asymptotic Behavior<a class="headerlink" href="#3-asymptotic-behavior" title="Permanent link">&para;</a></h3>
 <p>For large <span class="arithmatex">\(t\)</span>, solutions approach the self-similar profile:</p>
-<p>$$</p>
-<p>u(t,x) \approx \frac{M}{\sqrt{2\pi t}}e^{-x^2/2t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) \approx \frac{M}{\sqrt{2\pi t}}e^{-x^2/2t}
+\]</div>
 <p>where <span class="arithmatex">\(M = \int f(x)\,dx\)</span> is the total mass.</p>
 <hr />
 <h2 id="the-similarity-variable">The Similarity Variable<a class="headerlink" href="#the-similarity-variable" title="Permanent link">&para;</a></h2>
@@ -46630,11 +46630,11 @@ u_\lambda(t,x) := u(\lambda^2 t, \lambda x)
 - Long-time asymptotics are controlled by behavior near <span class="arithmatex">\(\eta = 0\)</span></p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 u(t,x) \text{ solves heat eq} \implies u(\lambda^2 t, \lambda x) \text{ solves heat eq}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

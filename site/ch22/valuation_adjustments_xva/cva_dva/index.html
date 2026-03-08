@@ -46807,9 +46807,9 @@
 <h2 id="credit-valuation-adjustment-cva">Credit Valuation Adjustment (CVA)<a class="headerlink" href="#credit-valuation-adjustment-cva" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>CVA is the expected loss due to counterparty default:</p>
-<p>$$</p>
-<p>\text{CVA} = \mathbb{E}^{\mathbb{Q}}\left[\text{LGD} \cdot D(\tau) \cdot E_\tau \cdot \mathbf{1}_{\tau \le T}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = \mathbb{E}^{\mathbb{Q}}\left[\text{LGD} \cdot D(\tau) \cdot E_\tau \cdot \mathbf{1}_{\tau \le T}\right]
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\tau\)</span> = counterparty default time
 - <span class="arithmatex">\(\text{LGD}\)</span> = Loss Given Default (typically 60%)
@@ -46820,49 +46820,49 @@
 <hr />
 <h3 id="cva-formula-independence-assumption">CVA Formula (Independence Assumption)<a class="headerlink" href="#cva-formula-independence-assumption" title="Permanent link">&para;</a></h3>
 <p>Assuming independence between exposure and default:</p>
-<p>$$</p>
-<p>\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot dPD(t) \cdot D(0, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot dPD(t) \cdot D(0, t)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\text{EE}(t) = \mathbb{E}^{\mathbb{Q}}[V_t^+]\)</span> = Expected Exposure
 - <span class="arithmatex">\(PD(t) = \mathbb{Q}(\tau \le t)\)</span> = cumulative default probability
 - <span class="arithmatex">\(D(0,t)\)</span> = discount factor</p>
 <p><strong>Discrete approximation:</strong></p>
-<p>$$</p>
-<p>\text{CVA} \approx \text{LGD} \sum_{i=1}^{n} \text{EE}(t_i) \cdot [PD(t_i) - PD(t_{i-1})] \cdot D(0, t_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} \approx \text{LGD} \sum_{i=1}^{n} \text{EE}(t_i) \cdot [PD(t_i) - PD(t_{i-1})] \cdot D(0, t_i)
+\]</div>
 <hr />
 <h3 id="cva-with-hazard-rate">CVA with Hazard Rate<a class="headerlink" href="#cva-with-hazard-rate" title="Permanent link">&para;</a></h3>
 <p>If the default intensity (hazard rate) is <span class="arithmatex">\(\lambda(t)\)</span>:</p>
-<p>$$</p>
-<p>PD(t) = 1 - e^{-\int_0^t \lambda(s) \, ds}</p>
-<p>$$</p>
-<p>$$</p>
-<p>dPD(t) = \lambda(t) \cdot e^{-\int_0^t \lambda(s) \, ds} \, dt = \lambda(t) \cdot S(t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+PD(t) = 1 - e^{-\int_0^t \lambda(s) \, ds}
+\]</div>
+<div class="arithmatex">\[
+dPD(t) = \lambda(t) \cdot e^{-\int_0^t \lambda(s) \, ds} \, dt = \lambda(t) \cdot S(t) \, dt
+\]</div>
 <p>where <span class="arithmatex">\(S(t) = 1 - PD(t)\)</span> is the survival probability.</p>
 <p><strong>CVA formula:</strong></p>
-<p>$$</p>
-<p>\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot S(t) \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot S(t) \cdot D(0,t) \, dt
+\]</div>
 <hr />
 <h3 id="unilateral-vs-bilateral-cva">Unilateral vs Bilateral CVA<a class="headerlink" href="#unilateral-vs-bilateral-cva" title="Permanent link">&para;</a></h3>
 <p><strong>Unilateral CVA:</strong> Only considers counterparty default risk</p>
-<p>$$</p>
-<p>\text{CVA}^{\text{unilateral}} = \text{LGD}_C \int_0^T \mathbb{E}[V_t^+] \cdot dPD_C(t) \cdot D(0,t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}^{\text{unilateral}} = \text{LGD}_C \int_0^T \mathbb{E}[V_t^+] \cdot dPD_C(t) \cdot D(0,t)
+\]</div>
 <p><strong>Bilateral CVA:</strong> Considers both counterparty AND own default</p>
-<p>$$</p>
-<p>\text{CVA}^{\text{bilateral}} = \text{CVA}^{\text{unilateral}} \text{ (counterparty defaults first)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}^{\text{bilateral}} = \text{CVA}^{\text{unilateral}} \text{ (counterparty defaults first)}
+\]</div>
 <p>The bilateral framework requires joint modeling of both default times.</p>
 <hr />
 <h2 id="debit-valuation-adjustment-dva">Debit Valuation Adjustment (DVA)<a class="headerlink" href="#debit-valuation-adjustment-dva" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>DVA reflects the benefit from the bank's own default risk:</p>
-<p>$$</p>
-<p>\text{DVA} = \mathbb{E}^{\mathbb{Q}}\left[\text{LGD}<em _tau_B="\tau_B">B \cdot D(\tau_B) \cdot E</em>\right]}^- \cdot \mathbf{1}_{\tau_B \le T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{DVA} = \mathbb{E}^{\mathbb{Q}}\left[\text{LGD}_B \cdot D(\tau_B) \cdot E_{\tau_B}^- \cdot \mathbf{1}_{\tau_B \le T}\right]
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\tau_B\)</span> = bank's own default time
 - <span class="arithmatex">\(\text{LGD}_B\)</span> = bank's Loss Given Default
@@ -46870,9 +46870,9 @@
 <p><strong>Interpretation:</strong> DVA is the expected gain to the bank from not having to pay in full upon its own default.</p>
 <hr />
 <h3 id="dva-formula">DVA Formula<a class="headerlink" href="#dva-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{DVA} = \text{LGD}_B \int_0^T \text{NEE}(t) \cdot dPD_B(t) \cdot D(0,t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{DVA} = \text{LGD}_B \int_0^T \text{NEE}(t) \cdot dPD_B(t) \cdot D(0,t)
+\]</div>
 <p>where <span class="arithmatex">\(\text{NEE}(t) = \mathbb{E}[V_t^-]\)</span> is the Negative Expected Exposure.</p>
 <hr />
 <h3 id="dva-controversy">DVA Controversy<a class="headerlink" href="#dva-controversy" title="Permanent link">&para;</a></h3>
@@ -46890,29 +46890,29 @@
 <hr />
 <h2 id="net-valuation-with-cva-and-dva">Net Valuation with CVA and DVA<a class="headerlink" href="#net-valuation-with-cva-and-dva" title="Permanent link">&para;</a></h2>
 <h3 id="adjusted-derivative-value">Adjusted Derivative Value<a class="headerlink" href="#adjusted-derivative-value" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V^{\text{adjusted}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{adjusted}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA}
+\]</div>
 <p>where <span class="arithmatex">\(V^{\text{risk-free}}\)</span> is the classical risk-neutral value ignoring default.</p>
 <p><strong>Alternative formulation:</strong></p>
-<p>$$</p>
-<p>V^{\text{adjusted}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} = V^{\text{risk-free}} - \text{BCVA}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{adjusted}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} = V^{\text{risk-free}} - \text{BCVA}
+\]</div>
 <p>where <span class="arithmatex">\(\text{BCVA} = \text{CVA} - \text{DVA}\)</span> is the <strong>Bilateral CVA</strong>.</p>
 <hr />
 <h3 id="first-to-default-framework">First-to-Default Framework<a class="headerlink" href="#first-to-default-framework" title="Permanent link">&para;</a></h3>
 <p>In the bilateral setting, only the first default matters:</p>
-<p>$$</p>
-<p>V^{\text{bilateral}} = \mathbb{E}\left[D(\tau_1) \cdot V_{\tau_1}^* \cdot \mathbf{1}<em T="T" _="&gt;" _tau_1="\tau_1">{\tau_1 \le T}\right] + \mathbb{E}\left[D(T) \cdot V_T \cdot \mathbf{1}</em>\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{bilateral}} = \mathbb{E}\left[D(\tau_1) \cdot V_{\tau_1}^* \cdot \mathbf{1}_{\tau_1 \le T}\right] + \mathbb{E}\left[D(T) \cdot V_T \cdot \mathbf{1}_{\tau_1 &gt; T}\right]
+\]</div>
 <p>where <span class="arithmatex">\(\tau_1 = \min(\tau_C, \tau_B)\)</span> is the first-to-default time and <span class="arithmatex">\(V^*\)</span> is the close-out value.</p>
 <hr />
 <h2 id="cva-calculation-methods">CVA Calculation Methods<a class="headerlink" href="#cva-calculation-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-semi-analytical-simple-portfolios">1. Semi-Analytical (Simple Portfolios)<a class="headerlink" href="#1-semi-analytical-simple-portfolios" title="Permanent link">&para;</a></h3>
 <p>For portfolios with analytical exposure profiles:</p>
-<p>$$</p>
-<p>\text{CVA} = \text{LGD} \sum_{i=1}^n \text{EE}(t_i) \cdot \Delta PD_i \cdot D(0, t_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = \text{LGD} \sum_{i=1}^n \text{EE}(t_i) \cdot \Delta PD_i \cdot D(0, t_i)
+\]</div>
 <p>with <span class="arithmatex">\(\text{EE}(t)\)</span> computed analytically (e.g., for single swap).</p>
 <h3 id="2-monte-carlo-simulation">2. Monte Carlo Simulation<a class="headerlink" href="#2-monte-carlo-simulation" title="Permanent link">&para;</a></h3>
 <p><strong>Algorithm:</strong>
@@ -46926,14 +46926,14 @@
 <hr />
 <h2 id="cva-sensitivities-cva-greeks">CVA Sensitivities (CVA Greeks)<a class="headerlink" href="#cva-sensitivities-cva-greeks" title="Permanent link">&para;</a></h2>
 <h3 id="credit-spread-sensitivity">Credit Spread Sensitivity<a class="headerlink" href="#credit-spread-sensitivity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial \text{CVA}}{\partial s} = -\text{LGD} \int_0^T \text{EE}(t) \cdot t \cdot e^{-st} \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \text{CVA}}{\partial s} = -\text{LGD} \int_0^T \text{EE}(t) \cdot t \cdot e^{-st} \cdot D(0,t) \, dt
+\]</div>
 <p>where <span class="arithmatex">\(s\)</span> is the credit spread (constant hazard rate approximation).</p>
 <h3 id="market-factor-sensitivities">Market Factor Sensitivities<a class="headerlink" href="#market-factor-sensitivities" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial \text{CVA}}{\partial S} = \text{LGD} \int_0^T \frac{\partial \text{EE}(t)}{\partial S} \cdot dPD(t) \cdot D(0,t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \text{CVA}}{\partial S} = \text{LGD} \int_0^T \frac{\partial \text{EE}(t)}{\partial S} \cdot dPD(t) \cdot D(0,t)
+\]</div>
 <p>These are <strong>contingent credit sensitivities</strong>—market Greeks conditional on default.</p>
 <hr />
 <h2 id="cva-hedging">CVA Hedging<a class="headerlink" href="#cva-hedging" title="Permanent link">&para;</a></h2>
@@ -47008,15 +47008,15 @@
 </table>
 <p><strong>Survival probabilities:</strong> <span class="arithmatex">\(S(t) = e^{-0.02t}\)</span></p>
 <p><strong>CVA calculation:</strong></p>
-<p>$$</p>
-<p>\text{CVA} = 0.60 \times \sum_{i=1}^{5} \text{EE}(t_i) \times [S(t_{i-1}) - S(t_i)] \times D(0, t_i)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\approx 0.60 \times (2.0 \times 0.0198 \times 0.97 + 3.5 \times 0.0194 \times 0.94 + \cdots)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\approx $0.25\text{M} \text{ (approximately)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = 0.60 \times \sum_{i=1}^{5} \text{EE}(t_i) \times [S(t_{i-1}) - S(t_i)] \times D(0, t_i)
+\]</div>
+<div class="arithmatex">\[
+\approx 0.60 \times (2.0 \times 0.0198 \times 0.97 + 3.5 \times 0.0194 \times 0.94 + \cdots)
+\]</div>
+<div class="arithmatex">\[
+\approx \$0.25\text{M} \text{ (approximately)}
+\]</div>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
 <ul>

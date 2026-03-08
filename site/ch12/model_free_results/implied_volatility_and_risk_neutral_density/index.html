@@ -47119,13 +47119,13 @@
 <h2 id="implied-volatility-as-distributional-coordinate">Implied Volatility as Distributional Coordinate<a class="headerlink" href="#implied-volatility-as-distributional-coordinate" title="Permanent link">&para;</a></h2>
 <h3 id="1-coordinate-transformation">1. Coordinate Transformation<a class="headerlink" href="#1-coordinate-transformation" title="Permanent link">&para;</a></h3>
 <p>The map from option prices to implied volatilities:</p>
-<p>$$</p>
-<p>C(K, T) \xrightarrow{\mathcal{C}^{-1}} \sigma_{\text{IV}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) \xrightarrow{\mathcal{C}^{-1}} \sigma_{\text{IV}}(K, T)
+\]</div>
 <p>transforms the price surface into the implied volatility surface. Combined with Breeden-Litzenberger:</p>
-<p>$$</p>
-<p>\text{Prices } C(K, T) \xrightarrow{\text{B-L}} \text{Density } q(K, T) \xrightarrow{\text{encode}} \text{IV Surface } \sigma_{\text{IV}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Prices } C(K, T) \xrightarrow{\text{B-L}} \text{Density } q(K, T) \xrightarrow{\text{encode}} \text{IV Surface } \sigma_{\text{IV}}(K, T)
+\]</div>
 <p><strong>Key insight:</strong> The same information is represented in three equivalent ways:
 1. <strong>Option prices</strong> <span class="arithmatex">\(C(K, T)\)</span>: Direct market observables
 2. <strong>Risk-neutral density</strong> <span class="arithmatex">\(q(S_T)\)</span>: Probabilistic description
@@ -47141,63 +47141,63 @@
 <h2 id="relating-implied-volatility-to-moments">Relating Implied Volatility to Moments<a class="headerlink" href="#relating-implied-volatility-to-moments" title="Permanent link">&para;</a></h2>
 <h3 id="1-moment-based-characterization">1. Moment-Based Characterization<a class="headerlink" href="#1-moment-based-characterization" title="Permanent link">&para;</a></h3>
 <p>The risk-neutral density is completely characterized by its moments:</p>
-<p>$$</p>
-<p>m_n = \mathbb{E}^{\mathbb{Q}}[S_T^n] = \int_0^\infty S^n q(S) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m_n = \mathbb{E}^{\mathbb{Q}}[S_T^n] = \int_0^\infty S^n q(S) dS
+\]</div>
 <p>The implied volatility surface encodes these moments through option prices.</p>
 <h3 id="2-first-moment-forward-price">2. First Moment: Forward Price<a class="headerlink" href="#2-first-moment-forward-price" title="Permanent link">&para;</a></h3>
 <p>The first moment is fixed by no-arbitrage:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{(r - q)T} = F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{(r - q)T} = F
+\]</div>
 <p>This is the forward price and is <strong>independent</strong> of the volatility smile. All arbitrage-free models agree on the first moment.</p>
 <h3 id="3-second-moment-variance">3. Second Moment: Variance<a class="headerlink" href="#3-second-moment-variance" title="Permanent link">&para;</a></h3>
 <p>The second moment (variance) is related to the <strong>model-free implied variance</strong>:</p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(S_T) = \mathbb{E}^{\mathbb{Q}}[S_T^2] - F^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(S_T) = \mathbb{E}^{\mathbb{Q}}[S_T^2] - F^2
+\]</div>
 <p>Carr and Madan show this can be computed from option prices via:</p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(S_T) = 2 e^{rT} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(S_T) = 2 e^{rT} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)
+\]</div>
 <p>This integral is the <strong>variance swap</strong> payoff, directly observable from the smile.</p>
 <p><strong>Connection to ATM IV:</strong></p>
 <p>For small <span class="arithmatex">\(T\)</span>, the ATM implied volatility approximates the square root of the variance:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(F, T) \approx \sqrt{\frac{\text{Var}^{\mathbb{Q}}(S_T)}{F^2 T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(F, T) \approx \sqrt{\frac{\text{Var}^{\mathbb{Q}}(S_T)}{F^2 T}}
+\]</div>
 <h3 id="4-third-moment-skewness">4. Third Moment: Skewness<a class="headerlink" href="#4-third-moment-skewness" title="Permanent link">&para;</a></h3>
 <p>The third central moment measures asymmetry:</p>
-<p>$$</p>
-<p>\text{Skew}^{\mathbb{Q}} = \frac{\mathbb{E}^{\mathbb{Q}}[(S_T - F)^3]}{(\text{Var}^{\mathbb{Q}}(S_T))^{3/2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew}^{\mathbb{Q}} = \frac{\mathbb{E}^{\mathbb{Q}}[(S_T - F)^3]}{(\text{Var}^{\mathbb{Q}}(S_T))^{3/2}}
+\]</div>
 <p><strong>Empirical relationship:</strong> Negative skewness (left tail heavier) corresponds to:
 - <strong>Downward sloping IV skew:</strong> <span class="arithmatex">\(\frac{\partial \sigma_{\text{IV}}}{\partial K} &lt; 0\)</span> for <span class="arithmatex">\(K &lt; F\)</span>
 - <strong>Equity markets:</strong> Typically exhibit negative skew (crash fear)</p>
 <p><strong>Mathematical connection:</strong> Bakshi, Kapadia, and Madan (2003) show:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[(S_T - F)^3] = 6 e^{rT} \left( \int_0^F \frac{(F - K)^2 P(K)}{K^2} dK + \int_F^\infty \frac{(K - F)^2 C(K)}{K^2} dK \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[(S_T - F)^3] = 6 e^{rT} \left( \int_0^F \frac{(F - K)^2 P(K)}{K^2} dK + \int_F^\infty \frac{(K - F)^2 C(K)}{K^2} dK \right)
+\]</div>
 <p>This integral weights OTM options, which are directly affected by the skew.</p>
 <h3 id="5-fourth-moment-kurtosis">5. Fourth Moment: Kurtosis<a class="headerlink" href="#5-fourth-moment-kurtosis" title="Permanent link">&para;</a></h3>
 <p>The fourth moment measures tail heaviness:</p>
-<p>$$</p>
-<p>\text{Kurt}^{\mathbb{Q}} = \frac{\mathbb{E}^{\mathbb{Q}}[(S_T - F)^4]}{(\text{Var}^{\mathbb{Q}}(S_T))^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Kurt}^{\mathbb{Q}} = \frac{\mathbb{E}^{\mathbb{Q}}[(S_T - F)^4]}{(\text{Var}^{\mathbb{Q}}(S_T))^2}
+\]</div>
 <p><strong>Relationship to smile:</strong> Excess kurtosis (fat tails, <span class="arithmatex">\(\text{Kurt} &gt; 3\)</span>) manifests as:
 - <strong>Volatility smile:</strong> Both OTM puts and calls have higher IV than ATM
 - <strong>Symmetric wings:</strong> <span class="arithmatex">\(\sigma_{\text{IV}}(K)\)</span> increases as <span class="arithmatex">\(|K - F|\)</span> increases</p>
 <p><strong>Log contract representation:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[(S_T - F)^4] \propto \int_0^\infty \frac{(K - F)^4 \max(C(K), P(K))}{K^2} dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[(S_T - F)^4] \propto \int_0^\infty \frac{(K - F)^4 \max(C(K), P(K))}{K^2} dK
+\]</div>
 <p>Deep OTM options contribute heavily, reflecting tail risk.</p>
 <h2 id="smile-patterns-and-distributional-shapes">Smile Patterns and Distributional Shapes<a class="headerlink" href="#smile-patterns-and-distributional-shapes" title="Permanent link">&para;</a></h2>
 <h3 id="1-flat-smile-lognormal-distribution">1. Flat Smile: Lognormal Distribution<a class="headerlink" href="#1-flat-smile-lognormal-distribution" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\sigma_{\text{IV}}(K, T) = \sigma_0\)</span> (constant), the risk-neutral density is lognormal:</p>
-<p>$$</p>
-<p>q(S) = \frac{1}{S \sigma_0 \sqrt{2\pi T}} \exp\left( -\frac{(\ln S - \ln F - \sigma_0^2 T/2)^2}{2 \sigma_0^2 T} \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(S) = \frac{1}{S \sigma_0 \sqrt{2\pi T}} \exp\left( -\frac{(\ln S - \ln F - \sigma_0^2 T/2)^2}{2 \sigma_0^2 T} \right)
+\]</div>
 <p>This is the Black-Scholes assumption. Properties:
 - <strong>Symmetric log-returns:</strong> <span class="arithmatex">\(\ln(S_T/F)\)</span> is normally distributed
 - <strong>Skewness:</strong> Zero
@@ -47228,56 +47228,56 @@
 <h2 id="quantitative-relationships">Quantitative Relationships<a class="headerlink" href="#quantitative-relationships" title="Permanent link">&para;</a></h2>
 <h3 id="1-atm-implied-volatility-and-second-moment">1. ATM Implied Volatility and Second Moment<a class="headerlink" href="#1-atm-implied-volatility-and-second-moment" title="Permanent link">&para;</a></h3>
 <p>At-the-money implied volatility (forward strike <span class="arithmatex">\(K = F\)</span>):</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2 = \sigma_{\text{IV}}^2(F, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2 = \sigma_{\text{IV}}^2(F, T)
+\]</div>
 <p>For short maturity, this relates to instantaneous variance:</p>
-<p>$$</p>
-<p>\lim_{T \to 0} \sigma_{\text{ATM}}^2(T) = \sigma_{\text{spot}}^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to 0} \sigma_{\text{ATM}}^2(T) = \sigma_{\text{spot}}^2
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_{\text{spot}}\)</span> is the instantaneous volatility at the current spot.</p>
 <h3 id="2-skew-and-third-moment">2. Skew and Third Moment<a class="headerlink" href="#2-skew-and-third-moment" title="Permanent link">&para;</a></h3>
 <p>The <strong>slope of the skew</strong> at ATM:</p>
-<p>$$</p>
-<p>\mathcal{S} := \frac{\partial \sigma_{\text{IV}}}{\partial K}\bigg|_{K=F}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{S} := \frac{\partial \sigma_{\text{IV}}}{\partial K}\bigg|_{K=F}
+\]</div>
 <p>relates to skewness through:</p>
-<p>$$</p>
-<p>\text{Skew}^{\mathbb{Q}} \approx -\frac{6 F \mathcal{S} \sqrt{T}}{\sigma_{\text{ATM}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew}^{\mathbb{Q}} \approx -\frac{6 F \mathcal{S} \sqrt{T}}{\sigma_{\text{ATM}}}
+\]</div>
 <p>for small <span class="arithmatex">\(T\)</span> (asymptotic expansion).</p>
 <p><strong>Interpretation:</strong> Steeper downward skew → more negative skewness.</p>
 <h3 id="3-curvature-and-fourth-moment">3. Curvature and Fourth Moment<a class="headerlink" href="#3-curvature-and-fourth-moment" title="Permanent link">&para;</a></h3>
 <p>The <strong>curvature of the smile</strong> at ATM:</p>
-<p>$$</p>
-<p>\mathcal{C} := \frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}\bigg|_{K=F}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C} := \frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}\bigg|_{K=F}
+\]</div>
 <p>relates to kurtosis:</p>
-<p>$$</p>
-<p>\text{Kurt}^{\mathbb{Q}} - 3 \approx 12 F^2 \mathcal{C} T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Kurt}^{\mathbb{Q}} - 3 \approx 12 F^2 \mathcal{C} T
+\]</div>
 <p><strong>Interpretation:</strong> Positive curvature (convex smile) → excess kurtosis → fat tails.</p>
 <h2 id="asymptotic-expansions">Asymptotic Expansions<a class="headerlink" href="#asymptotic-expansions" title="Permanent link">&para;</a></h2>
 <h3 id="1-small-time-asymptotics">1. Small-Time Asymptotics<a class="headerlink" href="#1-small-time-asymptotics" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(T \to 0\)</span>, the implied volatility admits an expansion:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) = \sigma_0(K) + \sigma_1(K) T + \sigma_2(K) T^2 + O(T^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) = \sigma_0(K) + \sigma_1(K) T + \sigma_2(K) T^2 + O(T^3)
+\]</div>
 <p>The leading term <span class="arithmatex">\(\sigma_0(K)\)</span> is determined by the <strong>initial local volatility</strong>:</p>
-<p>$$</p>
-<p>\sigma_0(K) = \sigma_{\text{loc}}(K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_0(K) = \sigma_{\text{loc}}(K, 0)
+\]</div>
 <p>Higher-order terms <span class="arithmatex">\(\sigma_1(K), \sigma_2(K)\)</span> depend on derivatives of <span class="arithmatex">\(\sigma_{\text{loc}}\)</span>.</p>
 <p><strong>Connection to density:</strong> As <span class="arithmatex">\(T \to 0\)</span>, the density concentrates around <span class="arithmatex">\(S_0\)</span>, and the smile encodes information about the local volatility function.</p>
 <h3 id="2-large-deviation-principle">2. Large Deviation Principle<a class="headerlink" href="#2-large-deviation-principle" title="Permanent link">&para;</a></h3>
 <p>For large strikes (<span class="arithmatex">\(K \gg F\)</span>), the implied volatility behaves as:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(K, T) T \sim \frac{2 |\ln(K/F)|}{T} \quad \text{as } K \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(K, T) T \sim \frac{2 |\ln(K/F)|}{T} \quad \text{as } K \to \infty
+\]</div>
 <p>This is <strong>Lee's moment formula</strong>, ensuring that the density has finite variance:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_T^2] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_T^2] &lt; \infty
+\]</div>
 <p><strong>Interpretation:</strong> The wings cannot be too flat; IV must grow with <span class="arithmatex">\(|K - F|\)</span> to prevent infinite variance.</p>
 <h2 id="using-iv-to-infer-market-beliefs">Using IV to Infer Market Beliefs<a class="headerlink" href="#using-iv-to-infer-market-beliefs" title="Permanent link">&para;</a></h2>
 <h3 id="1-risk-neutral-vs-physical-measure">1. Risk-Neutral vs Physical Measure<a class="headerlink" href="#1-risk-neutral-vs-physical-measure" title="Permanent link">&para;</a></h3>
@@ -47288,13 +47288,13 @@
 <p>While not true probabilities, IV reveals market sentiment and hedging demand.</p>
 <h3 id="2-extracting-tail-probabilities">2. Extracting Tail Probabilities<a class="headerlink" href="#2-extracting-tail-probabilities" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>implied tail probability</strong> of large moves:</p>
-<p>$$</p>
-<p>\mathbb{Q}(S_T &lt; K_{\text{low}}) = \int_0^{K_{\text{low}}} q(S) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(S_T &lt; K_{\text{low}}) = \int_0^{K_{\text{low}}} q(S) dS
+\]</div>
 <p>Using Breeden-Litzenberger:</p>
-<p>$$</p>
-<p>\mathbb{Q}(S_T &lt; K) = 1 + e^{rT} \frac{\partial C}{\partial K}\bigg|_K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(S_T &lt; K) = 1 + e^{rT} \frac{\partial C}{\partial K}\bigg|_K
+\]</div>
 <p><strong>From IV:</strong> Convert <span class="arithmatex">\(\sigma_{\text{IV}}(K_{\text{low}}, T)\)</span> to <span class="arithmatex">\(C(K_{\text{low}})\)</span> via Black-Scholes, then differentiate.</p>
 <p>Example: If 1-month 10%-OTM put has <span class="arithmatex">\(\sigma_{\text{IV}} = 30\%\)</span> vs ATM <span class="arithmatex">\(\sigma_{\text{IV}} = 20\%\)</span>, the market implies higher tail probability than lognormal with <span class="arithmatex">\(20\%\)</span> vol.</p>
 <h3 id="3-implied-density-plots">3. Implied Density Plots<a class="headerlink" href="#3-implied-density-plots" title="Permanent link">&para;</a></h3>
@@ -47309,20 +47309,20 @@
 <h2 id="connection-between-iv-surface-and-density-evolution">Connection Between IV Surface and Density Evolution<a class="headerlink" href="#connection-between-iv-surface-and-density-evolution" title="Permanent link">&para;</a></h2>
 <h3 id="1-static-vs-dynamic">1. Static vs Dynamic<a class="headerlink" href="#1-static-vs-dynamic" title="Permanent link">&para;</a></h3>
 <p>The IV surface <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span> at a fixed time <span class="arithmatex">\(t = 0\)</span> encodes the <strong>marginal densities</strong> <span class="arithmatex">\(q(S_T)\)</span> for various <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T_1) \leftrightarrow q(S_{T_1}) \quad \text{and} \quad \sigma_{\text{IV}}(K, T_2) \leftrightarrow q(S_{T_2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T_1) \leftrightarrow q(S_{T_1}) \quad \text{and} \quad \sigma_{\text{IV}}(K, T_2) \leftrightarrow q(S_{T_2})
+\]</div>
 <p>However, the surface does <strong>not</strong> uniquely determine the <strong>joint distribution</strong> <span class="arithmatex">\(q(S_{T_1}, S_{T_2})\)</span> or the path-dependent dynamics.</p>
 <p><strong>Limitation:</strong> Knowing all marginals <span class="arithmatex">\(q(S_T)\)</span> is insufficient to price path-dependent exotics without additional assumptions (local vol, stochastic vol, etc.).</p>
 <h3 id="2-forward-density">2. Forward Density<a class="headerlink" href="#2-forward-density" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward density</strong> (conditional on survival to time <span class="arithmatex">\(t\)</span>):</p>
-<p>$$</p>
-<p>q(S_T \mid S_t) = \frac{q(S_T, S_t)}{q(S_t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(S_T \mid S_t) = \frac{q(S_T, S_t)}{q(S_t)}
+\]</div>
 <p>can be inferred from <strong>forward-starting options</strong>:</p>
-<p>$$</p>
-<p>C_{\text{fwd}}(K, t, T) = e^{-r(T - t)} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K, 0) \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{fwd}}(K, t, T) = e^{-r(T - t)} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K, 0) \mid \mathcal{F}_t]
+\]</div>
 <p>The forward IV surface <span class="arithmatex">\(\sigma_{\text{IV}}^{\text{fwd}}(K; t, T)\)</span> encodes <span class="arithmatex">\(q(S_T \mid S_t)\)</span>.</p>
 <h2 id="smile-and-distributional-summary-statistics">Smile and Distributional Summary Statistics<a class="headerlink" href="#smile-and-distributional-summary-statistics" title="Permanent link">&para;</a></h2>
 <h3 id="1-moment-summary-table">1. Moment Summary Table<a class="headerlink" href="#1-moment-summary-table" title="Permanent link">&para;</a></h3>
@@ -47383,27 +47383,27 @@
 <h3 id="1-implied-volatility-in-different-models">1. Implied Volatility in Different Models<a class="headerlink" href="#1-implied-volatility-in-different-models" title="Permanent link">&para;</a></h3>
 <p>Different models generate different IV surfaces even with the same marginal density <span class="arithmatex">\(q(S_T)\)</span>:</p>
 <p><strong>Black-Scholes:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) = \sigma \quad \text{(flat)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) = \sigma \quad \text{(flat)}
+\]</div>
 <p><strong>Local Volatility:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \text{ determined by } \sigma_{\text{loc}}(S, t) \text{ via Dupire}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \text{ determined by } \sigma_{\text{loc}}(S, t) \text{ via Dupire}
+\]</div>
 <ul>
 <li>Generates sticky-strike smile dynamics</li>
 </ul>
 <p><strong>Heston (Stochastic Volatility):</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \text{ determined by } (\kappa, \theta, \xi, \rho, v_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \text{ determined by } (\kappa, \theta, \xi, \rho, v_0)
+\]</div>
 <ul>
 <li>Generates more realistic smile dynamics (sticky-delta)</li>
 </ul>
 <p><strong>Jump-Diffusion (Merton):</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \text{ exhibits convexity from jumps}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \text{ exhibits convexity from jumps}
+\]</div>
 <ul>
 <li>Smile curvature increases with jump intensity</li>
 </ul>
@@ -47419,19 +47419,19 @@
 Observe implied volatilities <span class="arithmatex">\(\{\sigma_{\text{IV}}(K_i, T_j)\}\)</span> from market quotes</p>
 <p><strong>Step 2: Convert IV to prices</strong><br />
 Use Black-Scholes formula:</p>
-<p>$$</p>
-<p>C(K_i, T_j) = C_{\text{BS}}(S_0, K_i, T_j, r, q, \sigma_{\text{IV}}(K_i, T_j))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_i, T_j) = C_{\text{BS}}(S_0, K_i, T_j, r, q, \sigma_{\text{IV}}(K_i, T_j))
+\]</div>
 <p><strong>Step 3: Interpolate/Smooth</strong><br />
 Fit arbitrage-free surface <span class="arithmatex">\(C(K, T)\)</span> using splines or parametric models</p>
 <p><strong>Step 4: Extract density via B-L</strong>  </p>
-<p>$$</p>
-<p>q(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{(K, T)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}\bigg|_{(K, T)}
+\]</div>
 <p><strong>Step 5: Compute moments</strong>  </p>
-<p>$$</p>
-<p>m_n(T) = \int_0^\infty K^n q(K, T) dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m_n(T) = \int_0^\infty K^n q(K, T) dK
+\]</div>
 <p><strong>Step 6: Analyze distributional properties</strong><br />
 Compute skewness, kurtosis, tail probabilities, VaR, etc.</p>
 <h3 id="2-example-sp-500-options">2. Example: S&amp;P 500 Options<a class="headerlink" href="#2-example-sp-500-options" title="Permanent link">&para;</a></h3>
@@ -47445,17 +47445,17 @@ Compute skewness, kurtosis, tail probabilities, VaR, etc.</p>
 <p>The implied volatility surface <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span> provides a <strong>normalized coordinate system</strong> for the risk-neutral density <span class="arithmatex">\(q(S_T)\)</span>:</p>
 <h3 id="1-key-relationships">1. <strong>Key relationships:</strong><a class="headerlink" href="#1-key-relationships" title="Permanent link">&para;</a></h3>
 <p><strong>Variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(S_T) \leftrightarrow \sigma_{\text{IV}}(F, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(S_T) \leftrightarrow \sigma_{\text{IV}}(F, T)
+\]</div>
 <p><strong>Skewness:</strong></p>
-<p>$$</p>
-<p>\text{Skew}^{\mathbb{Q}} \leftrightarrow \frac{\partial \sigma_{\text{IV}}}{\partial K}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew}^{\mathbb{Q}} \leftrightarrow \frac{\partial \sigma_{\text{IV}}}{\partial K}
+\]</div>
 <p><strong>Kurtosis:</strong></p>
-<p>$$</p>
-<p>\text{Kurt}^{\mathbb{Q}} \leftrightarrow \frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Kurt}^{\mathbb{Q}} \leftrightarrow \frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2}
+\]</div>
 <h3 id="2-practical-insights">2. <strong>Practical insights:</strong><a class="headerlink" href="#2-practical-insights" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Smile shape encodes tail risk:</strong> U-shaped smile = fat tails, skew = asymmetry</li>

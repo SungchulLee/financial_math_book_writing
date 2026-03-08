@@ -46501,11 +46501,11 @@
 
 <h1 id="dynkins-formula">Dynkin's Formula<a class="headerlink" href="#dynkins-formula" title="Permanent link">&para;</a></h1>
 <p><strong>Dynkin's formula</strong> is the integral form of the infinitesimal generator — a <strong>stochastic fundamental theorem of calculus</strong>.</p>
-<p>$$</p>
-<p>\boxed{
-\mathbb{E}<em>x[f(X</em>\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau (\mathcal{L}f)(X_s)\,ds\right]
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbb{E}_x[f(X_\tau)] = f(x) + \mathbb{E}_x\left[\int_0^\tau (\mathcal{L}f)(X_s)\,ds\right]
+}
+\]</div>
 <hr />
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p>For the diffusion <span class="arithmatex">\(dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t\)</span> with generator:</p>
@@ -46624,9 +46624,9 @@
 <p>Expanding and simplifying:</p>
 <div class="arithmatex">\[\mathbb{E}_x[\tau] = \frac{b^2 x - ab^2 + a^2 b - a^2 x - x^2(b-a)}{b-a} = \frac{(b^2 - a^2)(x) - ab(b-a) - x^2(b-a)}{b-a}\]</div>
 <div class="arithmatex">\[= (a+b)x - ab - x^2 = -(x^2 - (a+b)x + ab) = -(x-a)(x-b)\]</div>
-<p>$$</p>
-<p>\boxed{\mathbb{E}_x[\tau] = (x-a)(b-x)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}_x[\tau] = (x-a)(b-x)}
+\]</div>
 <div class="admonition check">
 <p class="admonition-title">Verification</p>
 <ul>

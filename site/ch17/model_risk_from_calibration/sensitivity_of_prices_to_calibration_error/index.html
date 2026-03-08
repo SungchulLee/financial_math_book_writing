@@ -46907,13 +46907,13 @@
 <h2 id="from-parameter-error-to-price-error">From parameter error to price error<a class="headerlink" href="#from-parameter-error-to-price-error" title="Permanent link">&para;</a></h2>
 <h3 id="first-order-approximation">First-order approximation<a class="headerlink" href="#first-order-approximation" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\hat{\theta}\)</span> be the calibrated parameter vector and <span class="arithmatex">\(\theta^{\star}\)</span> the (unknown) true parameter. For a derivative price <span class="arithmatex">\(P(\theta)\)</span>, a Taylor expansion gives:</p>
-<p>$$</p>
-<p>P(\theta^{\star}) - P(\hat{\theta}) \approx \nabla_\theta P(\hat{\theta})^\top (\theta^{\star} - \hat{\theta}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(\theta^{\star}) - P(\hat{\theta}) \approx \nabla_\theta P(\hat{\theta})^\top (\theta^{\star} - \hat{\theta})
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>\Delta P := P(\hat{\theta}) - P(\theta^{\star}) \approx -\nabla_\theta P(\hat{\theta})^\top \Delta\theta,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P := P(\hat{\theta}) - P(\theta^{\star}) \approx -\nabla_\theta P(\hat{\theta})^\top \Delta\theta
+\]</div>
 <p>where <span class="arithmatex">\(\Delta\theta = \hat{\theta} - \theta^{\star}\)</span> is the parameter estimation error.</p>
 <h3 id="key-insight">Key insight<a class="headerlink" href="#key-insight" title="Permanent link">&para;</a></h3>
 <p>Price sensitivity depends on two factors:</p>
@@ -46926,9 +46926,9 @@
 <h2 id="second-order-effects">Second-order effects<a class="headerlink" href="#second-order-effects" title="Permanent link">&para;</a></h2>
 <p>For derivatives with significant curvature in parameter space, first-order approximation may understate risk.</p>
 <h3 id="taylor-expansion-to-second-order">Taylor expansion to second order<a class="headerlink" href="#taylor-expansion-to-second-order" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Delta P \approx \nabla_\theta P^\top \Delta\theta + \frac{1}{2} \Delta\theta^\top H_P \Delta\theta,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P \approx \nabla_\theta P^\top \Delta\theta + \frac{1}{2} \Delta\theta^\top H_P \Delta\theta
+\]</div>
 <p>where <span class="arithmatex">\(H_P = \nabla_\theta^2 P\)</span> is the Hessian of the price with respect to parameters.</p>
 <h3 id="when-second-order-matters">When second-order matters<a class="headerlink" href="#when-second-order-matters" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46947,27 +46947,27 @@
 <h2 id="propagating-parameter-uncertainty">Propagating parameter uncertainty<a class="headerlink" href="#propagating-parameter-uncertainty" title="Permanent link">&para;</a></h2>
 <h3 id="probabilistic-framework">Probabilistic framework<a class="headerlink" href="#probabilistic-framework" title="Permanent link">&para;</a></h3>
 <p>Model parameter uncertainty as:</p>
-<p>$$</p>
-<p>\theta \sim \mathcal{N}(\hat{\theta}, \Sigma_\theta),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta \sim \mathcal{N}(\hat{\theta}, \Sigma_\theta)
+\]</div>
 <p>where <span class="arithmatex">\(\Sigma_\theta\)</span> is the parameter covariance matrix (e.g., from Hessian of calibration objective, bootstrap, or Bayesian posterior).</p>
 <h3 id="price-distribution-linear-approximation">Price distribution (linear approximation)<a class="headerlink" href="#price-distribution-linear-approximation" title="Permanent link">&para;</a></h3>
 <p>Under first-order approximation:</p>
-<p>$$</p>
-<p>P(\theta) \approx P(\hat{\theta}) + \nabla_\theta P^\top (\theta - \hat{\theta}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(\theta) \approx P(\hat{\theta}) + \nabla_\theta P^\top (\theta - \hat{\theta})
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>P \sim \mathcal{N}(P(\hat{\theta}), \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P \sim \mathcal{N}(P(\hat{\theta}), \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P)
+\]</div>
 <p><strong>Price variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}(P) \approx \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(P) \approx \nabla_\theta P^\top \Sigma_\theta \nabla_\theta P
+\]</div>
 <p><strong>Price standard deviation (model risk):</strong></p>
-<p>$$</p>
-<p>\sigma_P = \sqrt{\nabla_\theta P^\top \Sigma_\theta \nabla_\theta P}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P = \sqrt{\nabla_\theta P^\top \Sigma_\theta \nabla_\theta P}
+\]</div>
 <h3 id="monte-carlo-propagation">Monte Carlo propagation<a class="headerlink" href="#monte-carlo-propagation" title="Permanent link">&para;</a></h3>
 <p>For nonlinear dependence or non-Gaussian parameter uncertainty:</p>
 <ol>
@@ -46980,17 +46980,17 @@
 <h2 id="concentration-of-sensitivity">Concentration of sensitivity<a class="headerlink" href="#concentration-of-sensitivity" title="Permanent link">&para;</a></h2>
 <h3 id="which-parameters-matter-most">Which parameters matter most?<a class="headerlink" href="#which-parameters-matter-most" title="Permanent link">&para;</a></h3>
 <p>Decompose price variance by parameter:</p>
-<p>$$</p>
-<p>\text{Var}(P) = \sum_{i,j} \frac{\partial P}{\partial \theta_i} \frac{\partial P}{\partial \theta_j} \Sigma_{\theta,ij}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(P) = \sum_{i,j} \frac{\partial P}{\partial \theta_i} \frac{\partial P}{\partial \theta_j} \Sigma_{\theta,ij}
+\]</div>
 <p>If parameters are approximately independent (<span class="arithmatex">\(\Sigma_\theta\)</span> diagonal):</p>
-<p>$$</p>
-<p>\text{Var}(P) \approx \sum_i \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma_{\theta_i}^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(P) \approx \sum_i \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma_{\theta_i}^2
+\]</div>
 <p>The contribution of parameter <span class="arithmatex">\(i\)</span> is:</p>
-<p>$$</p>
-<p>\text{Contribution}<em _theta_i="\theta_i">i = \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma</em>^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Contribution}_i = \left( \frac{\partial P}{\partial \theta_i} \right)^2 \sigma_{\theta_i}^2
+\]</div>
 <h3 id="typical-patterns-in-option-models">Typical patterns in option models<a class="headerlink" href="#typical-patterns-in-option-models" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47059,26 +47059,26 @@
 <h2 id="quantifying-model-risk-from-calibration">Quantifying model risk from calibration<a class="headerlink" href="#quantifying-model-risk-from-calibration" title="Permanent link">&para;</a></h2>
 <h3 id="parameter-var">Parameter VaR<a class="headerlink" href="#parameter-var" title="Permanent link">&para;</a></h3>
 <p>Define the <span class="arithmatex">\(\alpha\)</span>-level parameter Value-at-Risk:</p>
-<p>$$</p>
-<p>\text{VaR}<em C__alpha="C_\alpha" _in="\in" _theta="\theta">\alpha^{\text{param}} = \sup</em>)|,} |P(\theta) - P(\hat{\theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_\alpha^{\text{param}} = \sup_{\theta \in C_\alpha} |P(\theta) - P(\hat{\theta})|
+\]</div>
 <p>where <span class="arithmatex">\(C_\alpha\)</span> is the <span class="arithmatex">\((1-\alpha)\)</span> confidence region for <span class="arithmatex">\(\theta\)</span>.</p>
 <p>For Gaussian <span class="arithmatex">\(\theta\)</span> and linear <span class="arithmatex">\(P\)</span>:</p>
-<p>$$</p>
-<p>\text{VaR}<em>\alpha^{\text{param}} = z</em>\alpha \cdot \sigma_P,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_\alpha^{\text{param}} = z_\alpha \cdot \sigma_P
+\]</div>
 <p>where <span class="arithmatex">\(z_\alpha\)</span> is the standard normal quantile.</p>
 <h3 id="price-intervals">Price intervals<a class="headerlink" href="#price-intervals" title="Permanent link">&para;</a></h3>
 <p>Report prices as intervals:</p>
-<p>$$</p>
-<p>P \in [P(\hat{\theta}) - \text{VaR}<em>\alpha^{\text{param}}, \, P(\hat{\theta}) + \text{VaR}</em>\alpha^{\text{param}}].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P \in [P(\hat{\theta}) - \text{VaR}_\alpha^{\text{param}}, \, P(\hat{\theta}) + \text{VaR}_\alpha^{\text{param}}]
+\]</div>
 <p>For asymmetric or nonlinear cases, use Monte Carlo quantiles.</p>
 <h3 id="model-reserve">Model reserve<a class="headerlink" href="#model-reserve" title="Permanent link">&para;</a></h3>
 <p>Banks often hold reserves for model risk:</p>
-<p>$$</p>
-<p>\text{Model Reserve} = \lambda \cdot \text{VaR}_\alpha^{\text{param}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Model Reserve} = \lambda \cdot \text{VaR}_\alpha^{\text{param}}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda \ge 1\)</span> is a safety factor.</p>
 <hr />
 <h2 id="practical-measurement">Practical measurement<a class="headerlink" href="#practical-measurement" title="Permanent link">&para;</a></h2>
@@ -47110,32 +47110,32 @@
 <h2 id="example-heston-model-calibration-error">Example: Heston model calibration error<a class="headerlink" href="#example-heston-model-calibration-error" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>Suppose we calibrate Heston to SPX options and obtain:</p>
-<p>$$</p>
-<p>\hat{\theta} = (v_0, \kappa, \bar{v}, \sigma_v, \rho) = (0.04, 2.0, 0.04, 0.5, -0.7).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta} = (v_0, \kappa, \bar{v}, \sigma_v, \rho) = (0.04, 2.0, 0.04, 0.5, -0.7)
+\]</div>
 <p>Bootstrap analysis yields approximate standard errors:</p>
-<p>$$</p>
-<p>\sigma_\theta = (0.002, 0.3, 0.005, 0.05, 0.05).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_\theta = (0.002, 0.3, 0.005, 0.05, 0.05)
+\]</div>
 <h3 id="vanilla-option">Vanilla option<a class="headerlink" href="#vanilla-option" title="Permanent link">&para;</a></h3>
 <p>For an ATM 3-month call, sensitivities are approximately:</p>
-<p>$$</p>
-<p>\nabla_\theta P \approx (0.5, 0.01, 0.1, 0.02, 0.05).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nabla_\theta P \approx (0.5, 0.01, 0.1, 0.02, 0.05)
+\]</div>
 <p>Price standard deviation:</p>
-<p>$$</p>
-<p>\sigma_P \approx \sqrt{(0.5)^2(0.002)^2 + (0.01)^2(0.3)^2 + \cdots} \approx 0.001.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P \approx \sqrt{(0.5)^2(0.002)^2 + (0.01)^2(0.3)^2 + \cdots} \approx 0.001
+\]</div>
 <p>This is small relative to the option price (~<span class="arithmatex">\(5\)</span>), so model risk is modest.</p>
 <h3 id="barrier-option">Barrier option<a class="headerlink" href="#barrier-option" title="Permanent link">&para;</a></h3>
 <p>For a down-and-out call (barrier 10% below spot), sensitivities are larger:</p>
-<p>$$</p>
-<p>\nabla_\theta P \approx (2.0, 0.05, 0.3, 0.2, 0.8).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nabla_\theta P \approx (2.0, 0.05, 0.3, 0.2, 0.8)
+\]</div>
 <p>Price standard deviation:</p>
-<p>$$</p>
-<p>\sigma_P \approx 0.05,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P \approx 0.05
+\]</div>
 <p>which may be <span class="arithmatex">\(5\)</span>–<span class="arithmatex">\(10\%\)</span> of the option value—significant model risk.</p>
 <hr />
 <h2 id="key-takeaways">Key takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

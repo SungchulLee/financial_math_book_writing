@@ -46371,13 +46371,13 @@
 <h2 id="option-classification-by-exercise-rights">Option Classification by Exercise Rights<a class="headerlink" href="#option-classification-by-exercise-rights" title="Permanent link">&para;</a></h2>
 <h3 id="european-options">European Options<a class="headerlink" href="#european-options" title="Permanent link">&para;</a></h3>
 <p>A <strong>European option</strong> can be exercised <strong>only at maturity</strong> <span class="arithmatex">\(T\)</span>. The payoff is:</p>
-<p>$$</p>
-<p>H = \Phi(S_T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H = \Phi(S_T)
+\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> is the payoff function. For a call and put respectively:</p>
-<p>$$</p>
-<p>\Phi_{\text{call}}(S) = (S - K)^+, \quad \Phi_{\text{put}}(S) = (K - S)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi_{\text{call}}(S) = (S - K)^+, \quad \Phi_{\text{put}}(S) = (K - S)^+
+\]</div>
 <p>The price admits a closed-form solution under Black–Scholes assumptions.</p>
 <h3 id="american-options">American Options<a class="headerlink" href="#american-options" title="Permanent link">&para;</a></h3>
 <p>An <strong>American option</strong> can be exercised at <strong>any time</strong> <span class="arithmatex">\(t \in [0, T]\)</span>. At each moment, the holder chooses between:</p>
@@ -46386,17 +46386,17 @@
 <li><strong>Continuing to hold</strong>: preserving the option for potential future exercise</li>
 </ul>
 <p>The price is the solution to:</p>
-<p>$$</p>
-<p>\boxed{
-V(t, S) = \sup_{\tau \in \mathcal{T}<em>{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S</em>\tau) \mid S_t = S\right]
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+V(t, S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid S_t = S\right]
+}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{T}_{t,T}\)</span> denotes the set of stopping times valued in <span class="arithmatex">\([t, T]\)</span>.</p>
 <h3 id="bermudan-options">Bermudan Options<a class="headerlink" href="#bermudan-options" title="Permanent link">&para;</a></h3>
 <p>A <strong>Bermudan option</strong> can be exercised on a finite set of dates <span class="arithmatex">\(\{t_1, t_2, \ldots, t_m\} \subset [0, T]\)</span>. The price is:</p>
-<p>$$</p>
-<p>V(t, S) = \sup_{\tau \in {t_1, \ldots, t_m}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid S_t = S\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) = \sup_{\tau \in \{t_1, \ldots, t_m\}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid S_t = S\right]
+\]</div>
 <p>Bermudan options interpolate between European (<span class="arithmatex">\(m = 1\)</span>) and American (<span class="arithmatex">\(m \to \infty\)</span>) exercise styles.</p>
 <div class="admonition note">
 <p class="admonition-title">Naming Convention</p>
@@ -46405,11 +46405,11 @@ V(t, S) = \sup_{\tau \in \mathcal{T}<em>{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-
 <hr />
 <h2 id="no-arbitrage-ordering">No-Arbitrage Ordering<a class="headerlink" href="#no-arbitrage-ordering" title="Permanent link">&para;</a></h2>
 <p>The additional exercise flexibility implies a fundamental ordering. For options with identical parameters <span class="arithmatex">\((S_0, K, T, r, \sigma)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_{\text{European}} \leq V_{\text{Bermudan}} \leq V_{\text{American}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The difference <span class="arithmatex">\(V_{\text{American}} - V_{\text{European}}\)</span> is the <strong>early exercise premium (EEP)</strong>, representing the value of the right to exercise before maturity.</p>
 <div class="admonition example">
 <p class="admonition-title">Numerical Illustration</p>
@@ -46441,21 +46441,21 @@ V_{\text{European}} \leq V_{\text{Bermudan}} \leq V_{\text{American}}
 <h2 id="the-optimal-stopping-problem">The Optimal Stopping Problem<a class="headerlink" href="#the-optimal-stopping-problem" title="Permanent link">&para;</a></h2>
 <h3 id="mathematical-formulation">Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the American option price satisfies:</p>
-<p>$$</p>
-<p>V(t, S_t) = \operatorname*{ess\,sup}<em>{\tau \geq t} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S</em>\tau) \mid \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S_t) = \operatorname*{ess\,sup}_{\tau \geq t} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid \mathcal{F}_t\right]
+\]</div>
 <p>The <strong>optimal stopping time</strong> <span class="arithmatex">\(\tau^*\)</span> is:</p>
-<p>$$</p>
-<p>\tau^* = \inf{t \leq s \leq T : V(s, S_s) = \Phi(S_s)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau^* = \inf\{t \leq s \leq T : V(s, S_s) = \Phi(S_s)\}
+\]</div>
 <p>That is, the holder exercises the first time the option price equals the intrinsic value—equivalently, when the continuation value drops to the exercise value.</p>
 <h3 id="connection-to-the-variational-inequality">Connection to the Variational Inequality<a class="headerlink" href="#connection-to-the-variational-inequality" title="Permanent link">&para;</a></h3>
 <p>The optimal stopping problem is equivalent to the <strong>variational inequality</strong> (obstacle problem):</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S\)</span> is the Black–Scholes generator. This formulation is studied in detail in <a href="../../../ch08/american_options/free_boundary_problems_american_options/">Free Boundary Problems</a>.</p>
 <hr />
 <h2 id="comparison-of-exercise-styles">Comparison of Exercise Styles<a class="headerlink" href="#comparison-of-exercise-styles" title="Permanent link">&para;</a></h2>
@@ -46503,11 +46503,11 @@ V_{\text{European}} \leq V_{\text{Bermudan}} \leq V_{\text{American}}
 </table>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
-V_{\text{American}}(t, S) = \sup_{\tau \in \mathcal{T}<em>{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S</em>\tau) \mid S_t = S\right]
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+V_{\text{American}}(t, S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau - t)} \Phi(S_\tau) \mid S_t = S\right]
+}
+\]</div>
 <table>
 <thead>
 <tr>

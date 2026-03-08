@@ -46448,19 +46448,19 @@
 <hr />
 <h2 id="the-weak-maximum-principle">The Weak Maximum Principle<a class="headerlink" href="#the-weak-maximum-principle" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Weak Maximum Principle)</strong>: Let <span class="arithmatex">\(u\)</span> be a continuous function on <span class="arithmatex">\(\overline{Q}_T = [0,T] \times [a,b]\)</span> that satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \leq 0 \quad \text{in } Q_T = (0,T] \times (a,b)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \leq 0 \quad \text{in } Q_T = (0,T] \times (a,b)
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>\boxed{
-\max_{\overline{Q}<em _Gamma_T="\Gamma_T">T} u = \max</em> u
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\max_{\overline{Q}_T} u = \max_{\Gamma_T} u
+}
+\]</div>
 <p>where <span class="arithmatex">\(\Gamma_T\)</span> is the <strong>parabolic boundary</strong>:</p>
-<p>$$</p>
-<p>\Gamma_T = {0} \times [a,b] \cup [0,T] \times {a,b}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_T = \{0\} \times [a,b] \cup [0,T] \times \{a,b\}
+\]</div>
 <p><strong>Interpretation</strong>: A subsolution cannot attain its maximum in the interior—the maximum must occur on the parabolic boundary (initial time or spatial boundary).</p>
 <hr />
 <h2 id="the-parabolic-boundary">The Parabolic Boundary<a class="headerlink" href="#the-parabolic-boundary" title="Permanent link">&para;</a></h2>
@@ -46484,53 +46484,53 @@
 - <span class="arithmatex">\(\frac{\partial u}{\partial x}(t_0, x_0) = 0\)</span>
 - <span class="arithmatex">\(\frac{\partial^2 u}{\partial x^2}(t_0, x_0) \leq 0\)</span></p>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \geq 0 - \frac{1}{2} \cdot 0 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} - \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \geq 0 - \frac{1}{2} \cdot 0 = 0
+\]</div>
 <p>with strict inequality if <span class="arithmatex">\(u_{xx} &lt; 0\)</span>.</p>
 <p>This contradicts the assumption <span class="arithmatex">\(u_t - \frac{1}{2}u_{xx} \leq 0\)</span> (with equality only if <span class="arithmatex">\(u\)</span> is constant). <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="the-strong-maximum-principle">The Strong Maximum Principle<a class="headerlink" href="#the-strong-maximum-principle" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Strong Maximum Principle)</strong>: If <span class="arithmatex">\(u\)</span> satisfies the heat equation:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \quad \text{in } Q_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2} \quad \text{in } Q_T
+\]</div>
 <p>and attains its maximum at an interior point, then <span class="arithmatex">\(u\)</span> is <strong>constant</strong>.</p>
 <p><strong>Interpretation</strong>: For true solutions (not just subsolutions), the maximum cannot be attained in the interior unless the function is constant everywhere.</p>
 <hr />
 <h2 id="comparison-principle">Comparison Principle<a class="headerlink" href="#comparison-principle" title="Permanent link">&para;</a></h2>
 <p><strong>Corollary</strong>: If <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span> both solve the heat equation and:</p>
-<p>$$</p>
-<p>u \leq v \quad \text{on } \Gamma_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u \leq v \quad \text{on } \Gamma_T
+\]</div>
 <p>then:</p>
-<p>$$</p>
-<p>u \leq v \quad \text{in } \overline{Q}_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u \leq v \quad \text{in } \overline{Q}_T
+\]</div>
 <p><strong>Proof</strong>: Apply the maximum principle to <span class="arithmatex">\(w = u - v\)</span>, which satisfies <span class="arithmatex">\(w_t = \frac{1}{2}w_{xx}\)</span> and <span class="arithmatex">\(w \leq 0\)</span> on <span class="arithmatex">\(\Gamma_T\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="uniqueness-of-solutions">Uniqueness of Solutions<a class="headerlink" href="#uniqueness-of-solutions" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: The initial-boundary value problem:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 u_t = \frac{1}{2}u_{xx} &amp; \text{in } Q_T \\
 u(0,x) = f(x) &amp; \text{initial condition} \\
 u(t,a) = g_a(t), \quad u(t,b) = g_b(t) &amp; \text{boundary conditions}
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>has <strong>at most one</strong> solution.</p>
 <p><strong>Proof</strong>: If <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span> are two solutions, then <span class="arithmatex">\(w = u - v\)</span> solves the heat equation with <span class="arithmatex">\(w = 0\)</span> on <span class="arithmatex">\(\Gamma_T\)</span>. By the maximum principle:</p>
-<p>$$</p>
-<p>\max w \leq 0 \quad \text{and} \quad \max(-w) \leq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max w \leq 0 \quad \text{and} \quad \max(-w) \leq 0
+\]</div>
 <p>Therefore <span class="arithmatex">\(w \equiv 0\)</span>, so <span class="arithmatex">\(u = v\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="stability-and-continuous-dependence">Stability and Continuous Dependence<a class="headerlink" href="#stability-and-continuous-dependence" title="Permanent link">&para;</a></h2>
 <p><strong>Corollary</strong>: Solutions depend continuously on initial and boundary data.</p>
 <p>If <span class="arithmatex">\(u_1\)</span> and <span class="arithmatex">\(u_2\)</span> are solutions with data <span class="arithmatex">\((f_1, g_1)\)</span> and <span class="arithmatex">\((f_2, g_2)\)</span>, then:</p>
-<p>$$</p>
-<p>|u_1 - u_2|<em>\infty \leq \max\left(|f_1 - f_2|</em>\infty, |g_1 - g_2|_\infty\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|u_1 - u_2\|_\infty \leq \max\left(\|f_1 - f_2\|_\infty, \|g_1 - g_2\|_\infty\right)
+\]</div>
 <p><strong>Physical meaning</strong>: Small perturbations in initial/boundary data lead to small perturbations in the solution.</p>
 <hr />
 <h2 id="maximum-principle-on-unbounded-domains">Maximum Principle on Unbounded Domains<a class="headerlink" href="#maximum-principle-on-unbounded-domains" title="Permanent link">&para;</a></h2>
@@ -46546,21 +46546,21 @@ u(t,a) = g_a(t), \quad u(t,b) = g_b(t) &amp; \text{boundary conditions}
 <h2 id="probabilistic-interpretation">Probabilistic Interpretation<a class="headerlink" href="#probabilistic-interpretation" title="Permanent link">&para;</a></h2>
 <p>The maximum principle has a natural probabilistic meaning:</p>
 <p><strong>For Brownian motion</strong>: If <span class="arithmatex">\(f \leq M\)</span>, then:</p>
-<p>$$</p>
-<p>u(t,x) = \mathbb{E}[f(x + B_t)] \leq M</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \mathbb{E}[f(x + B_t)] \leq M
+\]</div>
 <p>The expected value of a bounded function is bounded by the same constant.</p>
 <p><strong>For killed Brownian motion</strong>: With discounting <span class="arithmatex">\(r &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>u(t,x) = \mathbb{E}[e^{-rT}f(B_T)] \leq e^{-rT}M \leq M</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \mathbb{E}[e^{-rT}f(B_T)] \leq e^{-rT}M \leq M
+\]</div>
 <hr />
 <h2 id="minimum-principle">Minimum Principle<a class="headerlink" href="#minimum-principle" title="Permanent link">&para;</a></h2>
 <p>By applying the maximum principle to <span class="arithmatex">\(-u\)</span>:</p>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(u_t = \frac{1}{2}u_{xx}\)</span> in <span class="arithmatex">\(Q_T\)</span>, then:</p>
-<p>$$</p>
-<p>\min_{\overline{Q}<em _Gamma_T="\Gamma_T">T} u = \min</em> u</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\overline{Q}_T} u = \min_{\Gamma_T} u
+\]</div>
 <hr />
 <h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h2>
 <h3 id="1-variable-coefficients">1. Variable Coefficients<a class="headerlink" href="#1-variable-coefficients" title="Permanent link">&para;</a></h3>
@@ -46580,11 +46580,11 @@ u(t,a) = g_a(t), \quad u(t,b) = g_b(t) &amp; \text{boundary conditions}
 </ol>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 u_t \leq \frac{1}{2}u_{xx} \implies \max u \text{ occurs on parabolic boundary}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

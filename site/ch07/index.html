@@ -46286,13 +46286,13 @@
 <p>is a parametric special case. Regularization techniques (Tikhonov, spline smoothing, SVI parameterization) address the ill-posedness of numerical differentiation in Dupire's formula.</p>
 <h3 id="stochastic-volatility-models"><strong>Stochastic Volatility Models</strong><a class="headerlink" href="#stochastic-volatility-models" title="Permanent link">&para;</a></h3>
 <p>Stochastic volatility introduces a second random factor to capture volatility clustering, mean reversion, and the leverage effect. The general two-factor framework under <span class="arithmatex">\(\mathbb{Q}\)</span> is </p>
-<p>$$</p>
-<p>\left{\begin{array}{cll}
-dS_t &amp;=&amp; rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)}\
-dv_t &amp;=&amp; \alpha(t,v_t)\,dt + \beta(t,v_t)\,dW_t^{(2)}\
+<div class="arithmatex">\[
+\left\{\begin{array}{cll}
+dS_t &amp;=&amp; rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)}\\
+dv_t &amp;=&amp; \alpha(t,v_t)\,dt + \beta(t,v_t)\,dW_t^{(2)}\\
 d\langle W^{(1)},W^{(2)}\rangle_t &amp;=&amp; \rho\,dt
-\end{array}\right.</p>
-<p>$$</p>
+\end{array}\right.
+\]</div>
 <p>The <strong>Heston model</strong> (1993) specifies CIR dynamics for variance:</p>
 <div class="arithmatex">\[dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}\]</div>
 <p>with Feller condition, ensuring positivity, </p>

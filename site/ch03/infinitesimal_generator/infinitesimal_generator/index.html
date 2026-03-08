@@ -46899,19 +46899,19 @@
 <h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
 <p>Consider a diffusion process <span class="arithmatex">\(X_t\)</span> and a smooth function <span class="arithmatex">\(f\)</span>. We want to understand how <span class="arithmatex">\(\mathbb{E}[f(X_t) \mid X_{t_0} = x_0]\)</span> changes with time, starting from position <span class="arithmatex">\(x_0\)</span> at time <span class="arithmatex">\(t_0\)</span>.</p>
 <p><strong>Key question</strong>: What is the instantaneous rate of change?</p>
-<p>$$</p>
-<p>\lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] - f(x_0)}{h} = \, ?</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] - f(x_0)}{h} = \, ?
+\]</div>
 <p>The answer is the <strong>generator</strong> acting on <span class="arithmatex">\(f\)</span>.</p>
 <h3 id="why-should-you-care-a-financial-example">Why Should You Care? A Financial Example<a class="headerlink" href="#why-should-you-care-a-financial-example" title="Permanent link">&para;</a></h3>
 <p>Consider <strong>geometric Brownian motion</strong> <span class="arithmatex">\(dS_t = \mu S_t \, dt + \sigma S_t \, dW_t\)</span> modeling a stock price. Its generator is:</p>
-<p>$$</p>
-<p>\mathcal{L} = \mu S \frac{\partial}{\partial S} + \frac{\sigma^2 S^2}{2} \frac{\partial^2}{\partial S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = \mu S \frac{\partial}{\partial S} + \frac{\sigma^2 S^2}{2} \frac{\partial^2}{\partial S^2}
+\]</div>
 <p>The <strong>Black–Scholes PDE</strong> for option pricing is:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{\sigma^2 S^2}{2}\frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p>This is precisely <span class="arithmatex">\(\partial_t V + \mathcal{L}^{(r)} V - rV = 0\)</span>, where <span class="arithmatex">\(\mathcal{L}^{(r)}\)</span> is the generator under the risk-neutral measure. The generator is the <strong>bridge</strong> connecting the stochastic model to the pricing PDE.</p>
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
@@ -46919,29 +46919,29 @@
 <div class="admonition abstract">
 <p class="admonition-title">Definition (Infinitesimal Generator — Pointwise)</p>
 <p>The <strong>infinitesimal generator</strong> <span class="arithmatex">\(\mathcal{L}_t\)</span> at time <span class="arithmatex">\(t_0\)</span> is the operator defined by:</p>
-<p>$$</p>
-<p>\boxed{
-(\mathcal{L}<em 0="0" _downarrow="\downarrow" h="h">{t_0} f)(x_0) := \lim</em>
-}} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] - f(x_0)}{h</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+(\mathcal{L}_{t_0} f)(x_0) := \lim_{h \downarrow 0} \frac{\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0] - f(x_0)}{h}
+}
+\]</div>
 <p>for functions <span class="arithmatex">\(f\)</span> in the <strong>domain</strong> of <span class="arithmatex">\(\mathcal{L}\)</span>:</p>
-<p>$$</p>
-<p>\mathrm{Dom}(\mathcal{L}) = \left{ f : \text{the limit exists for all } x_0 \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathrm{Dom}(\mathcal{L}) = \left\{ f : \text{the limit exists for all } x_0 \right\}
+\]</div>
 </div>
 <p><strong>Interpretation</strong>: <span class="arithmatex">\((\mathcal{L}_{t_0} f)(x_0)\)</span> is the <strong>instantaneous expected rate of change</strong> of <span class="arithmatex">\(f\)</span> at position <span class="arithmatex">\(x_0\)</span>, starting at time <span class="arithmatex">\(t_0\)</span>.</p>
 <hr />
 <h2 id="generator-of-a-diffusion-process">Generator of a Diffusion Process<a class="headerlink" href="#generator-of-a-diffusion-process" title="Permanent link">&para;</a></h2>
 <p>For a diffusion process solving the SDE:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
+\]</div>
 <p>the generator is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 (\mathcal{L}_t f)(x) = \mu(x, t)f'(x) + \frac{1}{2}\sigma^2(x, t)f''(x)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <div class="admonition info">
 <p class="admonition-title">Meaning of the Subscript <span class="arithmatex">\(t\)</span></p>
 <p>The subscript <span class="arithmatex">\(t\)</span> on <span class="arithmatex">\(\mathcal{L}_t\)</span> indicates that the coefficients are <strong>evaluated at time <span class="arithmatex">\(t\)</span></strong>. Specifically, when computing <span class="arithmatex">\((\mathcal{L}_{t_0} f)(x_0)\)</span>, we use:</p>
@@ -46969,38 +46969,38 @@
 </ol>
 </div>
 <p>Apply Itô's lemma to <span class="arithmatex">\(f(X_t)\)</span>:</p>
-<p>$$</p>
-<p>df(X_t) = f'(X_t)\,dX_t + \frac{1}{2}f''(X_t)(dX_t)^2</p>
-<p>$$</p>
-<p>$$</p>
-<p>= f'(X_t)[\mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t] + \frac{1}{2}f''(X_t)\sigma^2(X_t, t)\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \underbrace{\left[\mu(X_t, t)f'(X_t) + \frac{1}{2}\sigma^2(X_t, t)f''(X_t)\right]}_{(\mathcal{L}_t f)(X_t)}dt + f'(X_t)\sigma(X_t, t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(X_t) = f'(X_t)\,dX_t + \frac{1}{2}f''(X_t)(dX_t)^2
+\]</div>
+<div class="arithmatex">\[
+= f'(X_t)[\mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t] + \frac{1}{2}f''(X_t)\sigma^2(X_t, t)\,dt
+\]</div>
+<div class="arithmatex">\[
+= \underbrace{\left[\mu(X_t, t)f'(X_t) + \frac{1}{2}\sigma^2(X_t, t)f''(X_t)\right]}_{(\mathcal{L}_t f)(X_t)}dt + f'(X_t)\sigma(X_t, t)\,dW_t
+\]</div>
 <p>Taking expectations (the Itô integral has zero expectation under the integrability condition):</p>
-<p>$$</p>
-<p>\frac{d}{dh}\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0]\Big|<em t_0="t_0">{h=0} = (\mathcal{L}</em> f)(x_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dh}\mathbb{E}[f(X_{t_0+h}) \mid X_{t_0} = x_0]\Big|_{h=0} = (\mathcal{L}_{t_0} f)(x_0)
+\]</div>
 <p>More generally:</p>
-<p>$$</p>
-<p>\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}<em t_0="t_0">t f)(X_t) \mid X</em> = x_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}_t f)(X_t) \mid X_{t_0} = x_0]
+\]</div>
 <hr />
 <h2 id="extended-generator-for-time-dependent-functions">Extended Generator for Time-Dependent Functions<a class="headerlink" href="#extended-generator-for-time-dependent-functions" title="Permanent link">&para;</a></h2>
 <p>When working with functions <span class="arithmatex">\(f(x, t)\)</span> that depend explicitly on both space and time, we need the <strong>extended generator</strong>.</p>
 <div class="admonition abstract">
 <p class="admonition-title">Definition (Extended Generator)</p>
 <p>For <span class="arithmatex">\(f: \mathbb{R}^d \times [0, T] \to \mathbb{R}\)</span> with <span class="arithmatex">\(f \in C^{2,1}\)</span> (twice differentiable in <span class="arithmatex">\(x\)</span>, once in <span class="arithmatex">\(t\)</span>), the <strong>extended generator</strong> is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 (\tilde{\mathcal{L}} f)(x, t) = \frac{\partial f}{\partial t}(x, t) + (\mathcal{L}_t f)(x, t)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Explicitly:</p>
-<p>$$</p>
-<p>(\tilde{\mathcal{L}} f)(x, t) = \frac{\partial f}{\partial t} + \mu(x, t)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2 f}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(\tilde{\mathcal{L}} f)(x, t) = \frac{\partial f}{\partial t} + \mu(x, t)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2 f}{\partial x^2}
+\]</div>
 </div>
 <p><strong>Why this matters</strong>: The extended generator appears naturally in:</p>
 <ul>
@@ -47012,9 +47012,9 @@
 <hr />
 <h2 id="multidimensional-generator">Multidimensional Generator<a class="headerlink" href="#multidimensional-generator" title="Permanent link">&para;</a></h2>
 <p>For a <span class="arithmatex">\(d\)</span>-dimensional diffusion driven by <span class="arithmatex">\(m\)</span> independent Brownian motions:</p>
-<p>$$</p>
-<p>dX_t^i = \mu^i(X_t, t)\,dt + \sum_{\alpha=1}^{m}\sigma^{i\alpha}(X_t, t)\,dW_t^\alpha, \quad i = 1, \ldots, d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t^i = \mu^i(X_t, t)\,dt + \sum_{\alpha=1}^{m}\sigma^{i\alpha}(X_t, t)\,dW_t^\alpha, \quad i = 1, \ldots, d
+\]</div>
 <div class="admonition info">
 <p class="admonition-title">Index Convention</p>
 <ul>
@@ -47024,38 +47024,38 @@
 </ul>
 </div>
 <p>The generator is:</p>
-<p>$$</p>
-<p>\boxed{
-(\mathcal{L}<em i="1">t f)(x) = \sum</em>(x)
-}}^d \mu^i(x, t)\frac{\partial f}{\partial x_i}(x) + \frac{1}{2}\sum_{i,j=1}^d a^{ij}(x, t)\frac{\partial^2 f}{\partial x_i \partial x_j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+(\mathcal{L}_t f)(x) = \sum_{i=1}^d \mu^i(x, t)\frac{\partial f}{\partial x_i}(x) + \frac{1}{2}\sum_{i,j=1}^d a^{ij}(x, t)\frac{\partial^2 f}{\partial x_i \partial x_j}(x)
+}
+\]</div>
 <p>where the <strong>diffusion matrix</strong> (or covariance matrix) is:</p>
-<p>$$</p>
-<p>a^{ij}(x,t) = \sum_{\alpha=1}^{m}\sigma^{i\alpha}(x,t)\sigma^{j\alpha}(x,t) = (\sigma \sigma^\top)^{ij}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a^{ij}(x,t) = \sum_{\alpha=1}^{m}\sigma^{i\alpha}(x,t)\sigma^{j\alpha}(x,t) = (\sigma \sigma^\top)^{ij}
+\]</div>
 <p><strong>In vector notation</strong>:</p>
-<p>$$</p>
-<p>\mathcal{L}_t f = \mu \cdot \nabla f + \frac{1}{2} a : \nabla^2 f = \mu \cdot \nabla f + \frac{1}{2} \mathrm{tr}(a \cdot \nabla^2 f)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}_t f = \mu \cdot \nabla f + \frac{1}{2} a : \nabla^2 f = \mu \cdot \nabla f + \frac{1}{2} \mathrm{tr}(a \cdot \nabla^2 f)
+\]</div>
 <hr />
 <h2 id="examples-time-homogeneous">Examples (Time-Homogeneous)<a class="headerlink" href="#examples-time-homogeneous" title="Permanent link">&para;</a></h2>
 <p>The following classical examples have time-independent coefficients.</p>
 <h3 id="example-1-brownian-motion">Example 1: Brownian Motion<a class="headerlink" href="#example-1-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dX_t = dW_t\)</span> (i.e., <span class="arithmatex">\(\mu = 0\)</span>, <span class="arithmatex">\(\sigma = 1\)</span>):</p>
-<p>$$</p>
-<p>\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}
+\]</div>
 <p>This is half the <strong>Laplacian</strong>, explaining the connection between Brownian motion and the heat equation.</p>
 <h3 id="example-2-brownian-motion-with-drift">Example 2: Brownian Motion with Drift<a class="headerlink" href="#example-2-brownian-motion-with-drift" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dX_t = \mu\,dt + \sigma\,dW_t\)</span> (constant coefficients):</p>
-<p>$$</p>
-<p>\mathcal{L} = \mu\frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = \mu\frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}
+\]</div>
 <h3 id="example-3-ornsteinuhlenbeck-process">Example 3: Ornstein–Uhlenbeck Process<a class="headerlink" href="#example-3-ornsteinuhlenbeck-process" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dX_t = -\kappa X_t\,dt + \sigma\,dW_t\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{L} = -\kappa x\frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = -\kappa x\frac{d}{dx} + \frac{\sigma^2}{2}\frac{d^2}{dx^2}
+\]</div>
 <details class="example">
 <summary>Worked Example: Computing <span class="arithmatex">\(\mathcal{L}f\)</span> for <span class="arithmatex">\(f(x) = x^2\)</span></summary>
 <p>For the OU process with <span class="arithmatex">\(f(x) = x^2\)</span>:</p>
@@ -47071,9 +47071,9 @@
 </details>
 <h3 id="example-4-geometric-brownian-motion">Example 4: Geometric Brownian Motion<a class="headerlink" href="#example-4-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dS_t = \mu S_t\,dt + \sigma S_t\,dW_t\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{L} = \mu S\frac{d}{dS} + \frac{\sigma^2 S^2}{2}\frac{d^2}{dS^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = \mu S\frac{d}{dS} + \frac{\sigma^2 S^2}{2}\frac{d^2}{dS^2}
+\]</div>
 <div class="admonition warning">
 <p class="admonition-title">Domain Restriction</p>
 <p>GBM lives on the positive half-line <span class="arithmatex">\((0, \infty)\)</span>. The generator is only defined for <span class="arithmatex">\(S &gt; 0\)</span>, and functions in <span class="arithmatex">\(\mathrm{Dom}(\mathcal{L})\)</span> must satisfy appropriate boundary conditions as <span class="arithmatex">\(S \to 0^+\)</span> and <span class="arithmatex">\(S \to \infty\)</span>. This is important for option pricing where payoffs may not be smooth at <span class="arithmatex">\(S = 0\)</span>.</p>
@@ -47134,20 +47134,20 @@
 <div class="admonition abstract">
 <p class="admonition-title">Definition (Transition Operator)</p>
 <p>The <strong>transition operator</strong> <span class="arithmatex">\(P_{t_0, t}\)</span> is defined by:</p>
-<p>$$</p>
-<p>(P_{t_0, t} f)(x_0) = \mathbb{E}[f(X_t) \mid X_{t_0} = x_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(P_{t_0, t} f)(x_0) = \mathbb{E}[f(X_t) \mid X_{t_0} = x_0]
+\]</div>
 <p>It maps a function <span class="arithmatex">\(f\)</span> to its expected value at time <span class="arithmatex">\(t\)</span>, given the process starts at <span class="arithmatex">\(x_0\)</span> at time <span class="arithmatex">\(t_0\)</span>.</p>
 </div>
 <p>The generator is the infinitesimal version:</p>
-<p>$$</p>
-<p>(\mathcal{L}<em 0="0" _downarrow="\downarrow" h="h">{t_0} f)(x_0) = \lim</em>} \frac{(P_{t_0, t_0+h} f)(x_0) - f(x_0)}{h</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(\mathcal{L}_{t_0} f)(x_0) = \lim_{h \downarrow 0} \frac{(P_{t_0, t_0+h} f)(x_0) - f(x_0)}{h}
+\]</div>
 <h3 id="chapmankolmogorov-equation">Chapman–Kolmogorov Equation<a class="headerlink" href="#chapmankolmogorov-equation" title="Permanent link">&para;</a></h3>
 <p>The transition operators satisfy the <strong>Chapman–Kolmogorov equation</strong>: for <span class="arithmatex">\(t_0 &lt; s &lt; t\)</span>,</p>
-<p>$$</p>
-<p>P_{t_0, t} = P_{s, t} \circ P_{t_0, s}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{t_0, t} = P_{s, t} \circ P_{t_0, s}
+\]</div>
 <p>This is simply the <strong>Markov property</strong> in operator form: to compute the expectation at time <span class="arithmatex">\(t\)</span>, we can first evolve to any intermediate time <span class="arithmatex">\(s\)</span>, then continue from <span class="arithmatex">\(s\)</span> to <span class="arithmatex">\(t\)</span>.</p>
 <div class="admonition info">
 <p class="admonition-title">Operator Composition Order</p>
@@ -47156,24 +47156,24 @@
 </div>
 <h3 id="time-homogeneous-case">Time-Homogeneous Case<a class="headerlink" href="#time-homogeneous-case" title="Permanent link">&para;</a></h3>
 <p>When coefficients don't depend on time, the transition operator depends only on the <strong>time difference</strong> <span class="arithmatex">\(h = t - t_0\)</span>:</p>
-<p>$$</p>
-<p>P_{t_0, t_0 + h} = P_h \quad \text{(independent of } t_0\text{)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{t_0, t_0 + h} = P_h \quad \text{(independent of } t_0\text{)}
+\]</div>
 <p>In this case, the Chapman–Kolmogorov equation becomes:</p>
-<p>$$</p>
-<p>P_{h_1 + h_2} = P_{h_1} \circ P_{h_2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{h_1 + h_2} = P_{h_1} \circ P_{h_2}
+\]</div>
 <hr />
 <h2 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h2>
 <h3 id="1-linearity">1. Linearity<a class="headerlink" href="#1-linearity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{L}(\alpha f + \beta g) = \alpha \mathcal{L}f + \beta \mathcal{L}g</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(\alpha f + \beta g) = \alpha \mathcal{L}f + \beta \mathcal{L}g
+\]</div>
 <h3 id="2-maximum-principle-diffusions-only">2. Maximum Principle (Diffusions Only)<a class="headerlink" href="#2-maximum-principle-diffusions-only" title="Permanent link">&para;</a></h3>
 <p>For <strong>diffusion generators</strong> (no jumps), if <span class="arithmatex">\(f\)</span> attains a maximum at <span class="arithmatex">\(x^*\)</span> and <span class="arithmatex">\(f \in \mathrm{Dom}(\mathcal{L})\)</span>:</p>
-<p>$$</p>
-<p>(\mathcal{L}f)(x^*) \leq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(\mathcal{L}f)(x^*) \leq 0
+\]</div>
 <details class="abstract">
 <summary>Proof</summary>
 <p>At a maximum, <span class="arithmatex">\(f'(x^*) = 0\)</span> and <span class="arithmatex">\(f''(x^*) \leq 0\)</span>. Therefore:</p>
@@ -47225,18 +47225,18 @@
 <div class="admonition abstract">
 <p class="admonition-title">Theorem (Dynkin's Martingale)</p>
 <p>For <span class="arithmatex">\(f \in C^2\)</span> with appropriate integrability conditions, the process:</p>
-<p>$$</p>
-<p>M_t^f := f(X_t) - f(X_{t_0}) - \int_{t_0}^t (\mathcal{L}_s f)(X_s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t^f := f(X_t) - f(X_{t_0}) - \int_{t_0}^t (\mathcal{L}_s f)(X_s)\,ds
+\]</div>
 <p>is a <strong>martingale</strong> with respect to the natural filtration.</p>
 </div>
 <p><strong>Proof</strong>: This follows directly from Itô's lemma—the drift term is <span class="arithmatex">\((\mathcal{L}_s f)(X_s)\,ds\)</span>, and the Itô integral <span class="arithmatex">\(\int f'(X_s)\sigma(X_s, s)\,dW_s\)</span> is a martingale (under the square-integrability condition).</p>
 <p>See <a href="../generator_and_martingales/">Generator and Martingales</a> for details.</p>
 <h3 id="harmonic-functions">Harmonic Functions<a class="headerlink" href="#harmonic-functions" title="Permanent link">&para;</a></h3>
 <p>A function <span class="arithmatex">\(f\)</span> is <strong><span class="arithmatex">\(\mathcal{L}\)</span>-harmonic</strong> if:</p>
-<p>$$</p>
-<p>\mathcal{L}f = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}f = 0
+\]</div>
 <p><strong>Consequence</strong>: If <span class="arithmatex">\(\mathcal{L}f = 0\)</span>, then <span class="arithmatex">\(f(X_t)\)</span> is a martingale.</p>
 <div class="admonition note">
 <p class="admonition-title">Terminology</p>
@@ -47247,9 +47247,9 @@
 <p>The generator connects stochastic processes to partial differential equations.</p>
 <h3 id="kolmogorov-backward-equation">Kolmogorov Backward Equation<a class="headerlink" href="#kolmogorov-backward-equation" title="Permanent link">&para;</a></h3>
 <p>The function <span class="arithmatex">\(u(x_0, t_0) = \mathbb{E}[g(X_T) \mid X_{t_0} = x_0]\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t_0} + \mathcal{L}_{t_0} u = 0, \quad u(x_0, T) = g(x_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t_0} + \mathcal{L}_{t_0} u = 0, \quad u(x_0, T) = g(x_0)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}_{t_0}\)</span> acts on <span class="arithmatex">\(x_0\)</span> with coefficients evaluated at time <span class="arithmatex">\(t_0\)</span>.</p>
 <div class="admonition info">
 <p class="admonition-title">Sign Convention</p>
@@ -47259,34 +47259,34 @@
 <p>See <a href="../../../ch05/kolmogorov_equations/kolmogorov_backward/">Kolmogorov Backward Equation</a>.</p>
 <h3 id="kolmogorov-forward-fokkerplanck-equation">Kolmogorov Forward (Fokker–Planck) Equation<a class="headerlink" href="#kolmogorov-forward-fokkerplanck-equation" title="Permanent link">&para;</a></h3>
 <p>The transition density <span class="arithmatex">\(p(x, t \mid x_0, t_0)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = \mathcal{L}^*_t p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = \mathcal{L}^*_t p
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}^*_t\)</span> is the <strong>adjoint</strong> of <span class="arithmatex">\(\mathcal{L}_t\)</span>, acting on <span class="arithmatex">\(x\)</span> with coefficients evaluated at time <span class="arithmatex">\(t\)</span>. See <a href="../../../ch05/kolmogorov_equations/kolmogorov_forward/">Fokker–Planck Equation</a>.</p>
 <h3 id="feynmankac-formula">Feynman–Kac Formula<a class="headerlink" href="#feynmankac-formula" title="Permanent link">&para;</a></h3>
 <p>The function:</p>
-<p>$$</p>
-<p>u(x_0, t_0) = \mathbb{E}\left[e^{-\int_{t_0}^T r(X_s, s)\,ds} g(X_T) \,\Big|\, X_{t_0} = x_0\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x_0, t_0) = \mathbb{E}\left[e^{-\int_{t_0}^T r(X_s, s)\,ds} g(X_T) \,\Big|\, X_{t_0} = x_0\right]
+\]</div>
 <p>satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t_0} + \mathcal{L}_{t_0} u - r(x_0, t_0) u = 0, \quad u(x_0, T) = g(x_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t_0} + \mathcal{L}_{t_0} u - r(x_0, t_0) u = 0, \quad u(x_0, T) = g(x_0)
+\]</div>
 <p>Using the extended generator notation: <span class="arithmatex">\(\tilde{\mathcal{L}} u - r u = 0\)</span> where <span class="arithmatex">\(\tilde{\mathcal{L}} = \partial_t + \mathcal{L}_t\)</span>.</p>
 <p>See <a href="../../../ch05/feynman_kac/feynman_kac_formula/">Feynman–Kac Formula</a>.</p>
 <hr />
 <h2 id="the-adjoint-generator">The Adjoint Generator<a class="headerlink" href="#the-adjoint-generator" title="Permanent link">&para;</a></h2>
 <p>The <strong>adjoint</strong> <span class="arithmatex">\(\mathcal{L}^*_t\)</span> is defined by the duality relation:</p>
-<p>$$</p>
-<p>\int_{-\infty}^{\infty} f(x)(\mathcal{L}<em -_infty="-\infty">t g)(x)\,dx = \int</em>^*_t f)(x)g(x)\,dx}^{\infty} (\mathcal{L</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{\infty} f(x)(\mathcal{L}_t g)(x)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}^*_t f)(x)g(x)\,dx
+\]</div>
 <p>for suitable test functions with vanishing boundary terms.</p>
 <p>For a diffusion with coefficients <span class="arithmatex">\(\mu(x, t)\)</span> and <span class="arithmatex">\(\sigma(x, t)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{L}^*_t f = -\frac{\partial}{\partial x}[\mu(x, t) f] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x, t) f]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <details class="abstract">
 <summary>Derivation via Integration by Parts</summary>
 <p>Starting from the duality requirement, we compute <span class="arithmatex">\(\int f \cdot \mathcal{L}_t g \, dx\)</span> and integrate by parts to move derivatives onto <span class="arithmatex">\(f\)</span>.</p>
@@ -47337,9 +47337,9 @@
 <p>This document focuses on diffusion processes, but generators extend naturally to processes with jumps.</p>
 <h3 id="levy-process-generator">Lévy Process Generator<a class="headerlink" href="#levy-process-generator" title="Permanent link">&para;</a></h3>
 <p>For a Lévy process with drift <span class="arithmatex">\(b\)</span>, diffusion <span class="arithmatex">\(\sigma\)</span>, and Lévy measure <span class="arithmatex">\(\nu\)</span>, the generator is:</p>
-<p>$$</p>
-<p>\mathcal{L}f(x) = b f'(x) + \frac{\sigma^2}{2}f''(x) + \int_{\mathbb{R} \setminus {0}} \left[f(x+y) - f(x) - y f'(x) \mathbf{1}_{|y|&lt;1}\right] \nu(dy)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}f(x) = b f'(x) + \frac{\sigma^2}{2}f''(x) + \int_{\mathbb{R} \setminus \{0\}} \left[f(x+y) - f(x) - y f'(x) \mathbf{1}_{|y|&lt;1}\right] \nu(dy)
+\]</div>
 <p>The integral term captures the contribution of jumps:</p>
 <ul>
 <li><span class="arithmatex">\(f(x+y) - f(x)\)</span>: change in <span class="arithmatex">\(f\)</span> due to a jump of size <span class="arithmatex">\(y\)</span></li>
@@ -47348,9 +47348,9 @@
 </ul>
 <h3 id="jump-diffusion-generator">Jump-Diffusion Generator<a class="headerlink" href="#jump-diffusion-generator" title="Permanent link">&para;</a></h3>
 <p>For a jump-diffusion <span class="arithmatex">\(dX_t = \mu(X_t)dt + \sigma(X_t)dW_t + dJ_t\)</span> where <span class="arithmatex">\(J_t\)</span> is a compound Poisson process with intensity <span class="arithmatex">\(\lambda\)</span> and jump size distribution <span class="arithmatex">\(F\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{L}f(x) = \mu(x)f'(x) + \frac{\sigma^2(x)}{2}f''(x) + \lambda \int_{\mathbb{R}} [f(x+y) - f(x)] F(dy)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}f(x) = \mu(x)f'(x) + \frac{\sigma^2(x)}{2}f''(x) + \lambda \int_{\mathbb{R}} [f(x+y) - f(x)] F(dy)
+\]</div>
 <p><strong>Key differences for jump processes include</strong>:</p>
 <ul>
 <li>The maximum principle fails (integral term can be positive at maxima)</li>
@@ -47390,11 +47390,11 @@
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{L}_t = \mu(x, t)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2}{\partial x^2}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>The infinitesimal generator is the bridge between stochastic processes (SDEs) and partial differential equations (PDEs).</strong></p>
 <hr />
 <details class="note">

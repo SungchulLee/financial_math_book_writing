@@ -47187,9 +47187,9 @@
 3. <strong>Continuity</strong>: If <span class="arithmatex">\(p \succ q \succ r\)</span>, there exist <span class="arithmatex">\(\alpha, \beta \in (0,1)\)</span> such that <span class="arithmatex">\(\alpha p + (1-\alpha) r \succ q \succ \beta p + (1-\beta) r\)</span>
 4. <strong>Independence</strong>: <span class="arithmatex">\(p \succeq q\)</span> iff <span class="arithmatex">\(\alpha p + (1-\alpha) r \succeq \alpha q + (1-\alpha) r\)</span> for all <span class="arithmatex">\(\alpha \in (0,1)\)</span></p>
 <p><strong>Representation Theorem</strong> (von Neumann–Morgenstern): Preferences satisfy VNM axioms iff there exists a utility function <span class="arithmatex">\(u: X \to \mathbb{R}\)</span> such that:</p>
-<p>$$</p>
-<p>p \succeq q \iff \sum_{i=1}^m p_i u(x_i) \geq \sum_{i=1}^m q_i u(x_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p \succeq q \iff \sum_{i=1}^m p_i u(x_i) \geq \sum_{i=1}^m q_i u(x_i)
+\]</div>
 <p>The utility function <span class="arithmatex">\(u\)</span> is unique up to positive affine transformation.</p>
 <h3 id="2-savages-subjective-expected-utility">2. Savage's Subjective Expected Utility<a class="headerlink" href="#2-savages-subjective-expected-utility" title="Permanent link">&para;</a></h3>
 <p><strong>Extension to Uncertainty</strong>: Savage (1954) extended VNM to situations where probabilities are not given but must be inferred from behavior.</p>
@@ -47199,9 +47199,9 @@
 - A unique probability measure <span class="arithmatex">\(P\)</span> on <span class="arithmatex">\(\Omega\)</span>
 - A utility function <span class="arithmatex">\(u: X \to \mathbb{R}\)</span> (unique up to positive affine transformation)</p>
 <p>such that:</p>
-<p>$$</p>
-<p>f \succeq g \iff \mathbb{E}_P[u(f)] \geq \mathbb{E}_P[u(g)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f \succeq g \iff \mathbb{E}_P[u(f)] \geq \mathbb{E}_P[u(g)]
+\]</div>
 <p><strong>Limitation</strong>: Savage's framework assumes the decision-maker can always form precise probabilistic beliefs, which the Ellsberg paradox challenges.</p>
 <h2 id="the-ellsberg-paradox">The Ellsberg Paradox<a class="headerlink" href="#the-ellsberg-paradox" title="Permanent link">&para;</a></h2>
 <h3 id="1-experimental-setup">1. Experimental Setup<a class="headerlink" href="#1-experimental-setup" title="Permanent link">&para;</a></h3>
@@ -47214,21 +47214,21 @@
 - <span class="arithmatex">\(f_3\)</span>: Win $100 if red drawn from Urn II
 - <span class="arithmatex">\(f_4\)</span>: Win $100 if black drawn from Urn II</p>
 <p><strong>Typical Preferences</strong>: Most subjects exhibit:</p>
-<p>$$</p>
-<p>f_1 \sim f_2 \succ f_3 \sim f_4</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_1 \sim f_2 \succ f_3 \sim f_4
+\]</div>
 <p>preferring gambles with known probabilities over ambiguous ones.</p>
 <h3 id="2-violation-of-savages-axioms">2. Violation of Savage's Axioms<a class="headerlink" href="#2-violation-of-savages-axioms" title="Permanent link">&para;</a></h3>
 <p><strong>Subjective Probability Argument</strong>: Under Savage's framework, let <span class="arithmatex">\(p\)</span> be the subjective probability of red in Urn II.</p>
 <p>From <span class="arithmatex">\(f_1 \succ f_3\)</span>:</p>
-<p>$$</p>
-<p>0.5 \cdot u(100) + 0.5 \cdot u(0) &gt; p \cdot u(100) + (1-p) \cdot u(0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0.5 \cdot u(100) + 0.5 \cdot u(0) &gt; p \cdot u(100) + (1-p) \cdot u(0)
+\]</div>
 <p>This implies <span class="arithmatex">\(p &lt; 0.5\)</span>.</p>
 <p>From <span class="arithmatex">\(f_2 \succ f_4\)</span>:</p>
-<p>$$</p>
-<p>0.5 \cdot u(100) + 0.5 \cdot u(0) &gt; (1-p) \cdot u(100) + p \cdot u(0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0.5 \cdot u(100) + 0.5 \cdot u(0) &gt; (1-p) \cdot u(100) + p \cdot u(0)
+\]</div>
 <p>This implies <span class="arithmatex">\(1-p &lt; 0.5\)</span>, hence <span class="arithmatex">\(p &gt; 0.5\)</span>.</p>
 <p><strong>Contradiction</strong>: No single probability <span class="arithmatex">\(p\)</span> can rationalize these preferences, violating the Sure-Thing Principle.</p>
 <h3 id="3-interpretation">3. Interpretation<a class="headerlink" href="#3-interpretation" title="Permanent link">&para;</a></h3>
@@ -47242,30 +47242,30 @@
 <p><strong>Acts</strong>: <span class="arithmatex">\(\mathcal{F} = \{f: \Omega \to X \text{ measurable}\}\)</span> is the set of acts.</p>
 <p><strong>Constant Acts</strong>: For <span class="arithmatex">\(x \in X\)</span>, denote by <span class="arithmatex">\(\bar{x}\)</span> the constant act <span class="arithmatex">\(f(\omega) = x\)</span> for all <span class="arithmatex">\(\omega\)</span>.</p>
 <p><strong>Mixtures</strong>: For acts <span class="arithmatex">\(f, g\)</span> and <span class="arithmatex">\(\alpha \in [0,1]\)</span>, define <span class="arithmatex">\(\alpha f + (1-\alpha) g\)</span> pointwise:</p>
-<p>$$</p>
-<p>(\alpha f + (1-\alpha) g)(\omega) = \alpha f(\omega) + (1-\alpha) g(\omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(\alpha f + (1-\alpha) g)(\omega) = \alpha f(\omega) + (1-\alpha) g(\omega)
+\]</div>
 <h3 id="2-gilboaschmeidler-axioms">2. Gilboa–Schmeidler Axioms<a class="headerlink" href="#2-gilboaschmeidler-axioms" title="Permanent link">&para;</a></h3>
 <p><strong>Axiom 1</strong> (Weak Order): <span class="arithmatex">\(\succeq\)</span> is complete and transitive.</p>
 <p><strong>Axiom 2</strong> (Continuity): For all <span class="arithmatex">\(f, g, h \in \mathcal{F}\)</span>, the sets <span class="arithmatex">\(\{\alpha \in [0,1]: \alpha f + (1-\alpha) g \succeq h\}\)</span> and <span class="arithmatex">\(\{\alpha \in [0,1]: h \succeq \alpha f + (1-\alpha) g\}\)</span> are closed.</p>
 <p><strong>Axiom 3</strong> (Monotonicity): If <span class="arithmatex">\(f(\omega) \succeq g(\omega)\)</span> for all <span class="arithmatex">\(\omega \in \Omega\)</span> (comparing constant acts), then <span class="arithmatex">\(f \succeq g\)</span>.</p>
 <p><strong>Axiom 4</strong> (C-Independence): For all <span class="arithmatex">\(f, g \in \mathcal{F}\)</span>, constant acts <span class="arithmatex">\(\bar{x}\)</span>, and <span class="arithmatex">\(\alpha \in (0,1)\)</span>:</p>
-<p>$$</p>
-<p>f \succeq g \iff \alpha f + (1-\alpha) \bar{x} \succeq \alpha g + (1-\alpha) \bar{x}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f \succeq g \iff \alpha f + (1-\alpha) \bar{x} \succeq \alpha g + (1-\alpha) \bar{x}
+\]</div>
 <p><strong>Axiom 5</strong> (Uncertainty Aversion): For all <span class="arithmatex">\(f, g \in \mathcal{F}\)</span> and <span class="arithmatex">\(\alpha \in (0,1)\)</span>:</p>
-<p>$$</p>
-<p>f \sim g \implies \alpha f + (1-\alpha) g \succeq f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f \sim g \implies \alpha f + (1-\alpha) g \succeq f
+\]</div>
 <p><strong>Axiom 6</strong> (Non-Degeneracy): There exist <span class="arithmatex">\(f, g \in \mathcal{F}\)</span> such that <span class="arithmatex">\(f \succ g\)</span>.</p>
 <h3 id="3-representation-theorem">3. Representation Theorem<a class="headerlink" href="#3-representation-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Gilboa–Schmeidler, 1989): Preferences <span class="arithmatex">\(\succeq\)</span> on <span class="arithmatex">\(\mathcal{F}\)</span> satisfy Axioms 1-6 if and only if there exist:
 - A non-empty, closed, convex set of probability measures <span class="arithmatex">\(\mathcal{P}\)</span> on <span class="arithmatex">\((\Omega, \Sigma)\)</span>
 - A non-constant affine utility function <span class="arithmatex">\(u: X \to \mathbb{R}\)</span></p>
 <p>such that for all <span class="arithmatex">\(f, g \in \mathcal{F}\)</span>:</p>
-<p>$$</p>
-<p>f \succeq g \iff \min_{P \in \mathcal{P}} \mathbb{E}<em P="P" _in="\in" _mathcal_P="\mathcal{P">P[u(f)] \geq \min</em>_P[u(g)]}} \mathbb{E</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f \succeq g \iff \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)] \geq \min_{P \in \mathcal{P}} \mathbb{E}_P[u(g)]
+\]</div>
 <p>Moreover:
 - <span class="arithmatex">\(u\)</span> is unique up to positive affine transformation
 - <span class="arithmatex">\(\mathcal{P}\)</span> is unique</p>
@@ -47281,89 +47281,89 @@
 4. The key step uses uncertainty aversion to establish that <span class="arithmatex">\(I\)</span> is <strong>concave</strong>, leading to the minimum over a set of priors</p>
 <h3 id="4-key-properties-of-meu">4. Key Properties of MEU<a class="headerlink" href="#4-key-properties-of-meu" title="Permanent link">&para;</a></h3>
 <p><strong>Property 1</strong> (Worst-Case Evaluation): The decision-maker evaluates each act by its minimum expected utility:</p>
-<p>$$</p>
-<p>V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[u(f)]
+\]</div>
 <p><strong>Property 2</strong> (Constant Preserving): For constant acts <span class="arithmatex">\(\bar{x}\)</span>:</p>
-<p>$$</p>
-<p>V(\bar{x}) = u(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(\bar{x}) = u(x)
+\]</div>
 <p><strong>Property 3</strong> (Quasi-Concavity): The preference functional is quasi-concave:</p>
-<p>$$</p>
-<p>V(\alpha f + (1-\alpha) g) \geq \min{V(f), V(g)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(\alpha f + (1-\alpha) g) \geq \min\{V(f), V(g)\}
+\]</div>
 <p><strong>Property 4</strong> (Positive Homogeneity): For <span class="arithmatex">\(\lambda &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>V(\lambda f) = \lambda V(f)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(\lambda f) = \lambda V(f)
+\]</div>
 <p>when <span class="arithmatex">\(u\)</span> is normalized appropriately.</p>
 <h2 id="characterization-of-the-set-of-priors">Characterization of the Set of Priors<a class="headerlink" href="#characterization-of-the-set-of-priors" title="Permanent link">&para;</a></h2>
 <h3 id="1-revealed-priors">1. Revealed Priors<a class="headerlink" href="#1-revealed-priors" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: The set of priors <span class="arithmatex">\(\mathcal{P}\)</span> is <strong>revealed</strong> by preferences through hedging behavior.</p>
 <p><strong>Unambiguous Events</strong>: An event <span class="arithmatex">\(A \in \Sigma\)</span> is <strong>unambiguous</strong> if:</p>
-<p>$$</p>
-<p>P(A) = Q(A) \quad \text{for all } P, Q \in \mathcal{P}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(A) = Q(A) \quad \text{for all } P, Q \in \mathcal{P}
+\]</div>
 <p><strong>Characterization</strong>: <span class="arithmatex">\(A\)</span> is unambiguous iff preferences over acts that differ only on <span class="arithmatex">\(A\)</span> satisfy the independence axiom.</p>
 <h3 id="2-core-of-a-capacity">2. Core of a Capacity<a class="headerlink" href="#2-core-of-a-capacity" title="Permanent link">&para;</a></h3>
 <p><strong>Capacity</strong>: A set function <span class="arithmatex">\(\nu: \Sigma \to [0,1]\)</span> satisfying:
 1. <span class="arithmatex">\(\nu(\emptyset) = 0\)</span>, <span class="arithmatex">\(\nu(\Omega) = 1\)</span>
 2. <span class="arithmatex">\(A \subseteq B \implies \nu(A) \leq \nu(B)\)</span></p>
 <p><strong>Core</strong>: The core of capacity <span class="arithmatex">\(\nu\)</span> is:</p>
-<p>$$</p>
-<p>\text{core}(\nu) = {P \in \mathcal{M}_1(\Omega): P(A) \geq \nu(A) \text{ for all } A \in \Sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{core}(\nu) = \{P \in \mathcal{M}_1(\Omega): P(A) \geq \nu(A) \text{ for all } A \in \Sigma\}
+\]</div>
 <p><strong>Connection</strong>: Under MEU with priors <span class="arithmatex">\(\mathcal{P}\)</span>:</p>
-<p>$$</p>
-<p>\nu(A) = \min_{P \in \mathcal{P}} P(A)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nu(A) = \min_{P \in \mathcal{P}} P(A)
+\]</div>
 <p>and <span class="arithmatex">\(\mathcal{P} = \text{core}(\nu)\)</span> when <span class="arithmatex">\(\nu\)</span> is a <strong>convex</strong> capacity.</p>
 <h3 id="3-contamination">3. ε-Contamination<a class="headerlink" href="#3-contamination" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: The <span class="arithmatex">\(\varepsilon\)</span>-contamination model specifies:</p>
-<p>$$</p>
-<p>\mathcal{P}_{\varepsilon} = {(1-\varepsilon) P_0 + \varepsilon Q: Q \in \mathcal{M}_1(\Omega)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_{\varepsilon} = \{(1-\varepsilon) P_0 + \varepsilon Q: Q \in \mathcal{M}_1(\Omega)\}
+\]</div>
 <p>for a reference measure <span class="arithmatex">\(P_0\)</span> and contamination level <span class="arithmatex">\(\varepsilon \in [0,1]\)</span>.</p>
 <p><strong>MEU with <span class="arithmatex">\(\varepsilon\)</span>-Contamination</strong>:</p>
-<p>$$</p>
-<p>V(f) = (1-\varepsilon) \mathbb{E}<em _Omega="\Omega" _in="\in" _omega="\omega">{P_0}[u(f)] + \varepsilon \inf</em> u(f(\omega))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = (1-\varepsilon) \mathbb{E}_{P_0}[u(f)] + \varepsilon \inf_{\omega \in \Omega} u(f(\omega))
+\]</div>
 <p><strong>Interpretation</strong>: The decision-maker places weight <span class="arithmatex">\((1-\varepsilon)\)</span> on the baseline model and weight <span class="arithmatex">\(\varepsilon\)</span> on the worst possible outcome.</p>
 <h2 id="financial-applications">Financial Applications<a class="headerlink" href="#financial-applications" title="Permanent link">&para;</a></h2>
 <h3 id="1-portfolio-choice-under-ambiguity">1. Portfolio Choice Under Ambiguity<a class="headerlink" href="#1-portfolio-choice-under-ambiguity" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: An investor chooses portfolio weights <span class="arithmatex">\(w \in \mathbb{R}^n\)</span> for <span class="arithmatex">\(n\)</span> assets with random returns <span class="arithmatex">\(R = (R_1, \ldots, R_n)\)</span>.</p>
 <p><strong>Classical Mean-Variance</strong>:</p>
-<p>$$</p>
-<p>\max_w \left{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\mu = \mathbb{E}[R]\)</span> and <span class="arithmatex">\(\Sigma = \text{Cov}(R)\)</span>.</p>
 <p><strong>Ambiguity About Mean</strong>: Consider uncertainty set for expected returns:</p>
-<p>$$</p>
-<p>\mathcal{U}_{\mu} = {\mu: (\mu - \hat{\mu})^\top \Sigma^{-1} (\mu - \hat{\mu}) \leq \kappa^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{U}_{\mu} = \{\mu: (\mu - \hat{\mu})^\top \Sigma^{-1} (\mu - \hat{\mu}) \leq \kappa^2\}
+\]</div>
 <p><strong>MEU Portfolio Problem</strong>:</p>
-<p>$$</p>
-<p>\max_w \min_{\mu \in \mathcal{U}_{\mu}} \left{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \min_{\mu \in \mathcal{U}_{\mu}} \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
+\]</div>
 <p><strong>Solution</strong>: The worst-case mean is:</p>
-<p>$$</p>
-<p>\mu^*(w) = \hat{\mu} - \kappa \frac{\Sigma w}{\sqrt{w^\top \Sigma w}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu^*(w) = \hat{\mu} - \kappa \frac{\Sigma w}{\sqrt{w^\top \Sigma w}}
+\]</div>
 <p>Substituting:</p>
-<p>$$</p>
-<p>\max_w \left{ w^\top \hat{\mu} - \kappa \sqrt{w^\top \Sigma w} - \frac{\lambda}{2} w^\top \Sigma w \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{ w^\top \hat{\mu} - \kappa \sqrt{w^\top \Sigma w} - \frac{\lambda}{2} w^\top \Sigma w \right\}
+\]</div>
 <p><strong>Result</strong>: The optimal portfolio is:</p>
-<p>$$</p>
-<p>w^<em> = \frac{1}{\lambda + \kappa / \sqrt{w^{</em>\top} \Sigma w^*}} \Sigma^{-1} \hat{\mu}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w^* = \frac{1}{\lambda + \kappa / \sqrt{w^{*\top} \Sigma w^*}} \Sigma^{-1} \hat{\mu}
+\]</div>
 <p>Ambiguity aversion <span class="arithmatex">\(\kappa &gt; 0\)</span> shrinks the position toward zero, reducing leverage.</p>
 <h3 id="2-equity-premium-under-ambiguity">2. Equity Premium Under Ambiguity<a class="headerlink" href="#2-equity-premium-under-ambiguity" title="Permanent link">&para;</a></h3>
 <p><strong>Puzzle</strong>: The historical equity premium (<span class="arithmatex">\(\approx 6\%\)</span>) is too high to be explained by reasonable levels of risk aversion.</p>
 <p><strong>MEU Explanation</strong>: With ambiguity about the equity return distribution:</p>
-<p>$$</p>
-<p>\mathbb{E}[R_{\text{equity}}] - R_f = \gamma \cdot \text{Cov}(R_{\text{equity}}, C) + \text{Ambiguity Premium}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[R_{\text{equity}}] - R_f = \gamma \cdot \text{Cov}(R_{\text{equity}}, C) + \text{Ambiguity Premium}
+\]</div>
 <p>where the ambiguity premium compensates investors for bearing uncertainty about the true distribution.</p>
 <p><strong>Hansen-Sargent (2001)</strong>: Calibrating with detection error probability <span class="arithmatex">\(\approx 10\%\)</span> generates equity premium consistent with historical data under reasonable risk aversion (<span class="arithmatex">\(\gamma \approx 2\)</span>).</p>
 <h3 id="3-home-bias">3. Home Bias<a class="headerlink" href="#3-home-bias" title="Permanent link">&para;</a></h3>
@@ -47379,40 +47379,40 @@
 <h3 id="4-robust-option-pricing">4. Robust Option Pricing<a class="headerlink" href="#4-robust-option-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Volatility Uncertainty</strong>: The true volatility <span class="arithmatex">\(\sigma\)</span> lies in <span class="arithmatex">\([\underline{\sigma}, \overline{\sigma}]\)</span>.</p>
 <p><strong>Set of Risk-Neutral Measures</strong>:</p>
-<p>$$</p>
-<p>\mathcal{Q} = {\mathbb{Q}: \text{price process is } \mathbb{Q}\text{-martingale with } \sigma \in [\underline{\sigma}, \overline{\sigma}]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{Q} = \{\mathbb{Q}: \text{price process is } \mathbb{Q}\text{-martingale with } \sigma \in [\underline{\sigma}, \overline{\sigma}]\}
+\]</div>
 <p><strong>Buyer's Price</strong> (MEU with negative payoff):</p>
-<p>$$</p>
-<p>V_{\text{buy}} = \max_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \Phi(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{buy}} = \max_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \Phi(S_T)]
+\]</div>
 <p><strong>Seller's Price</strong> (MEU):</p>
-<p>$$</p>
-<p>V_{\text{sell}} = \min_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \Phi(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{sell}} = \min_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \Phi(S_T)]
+\]</div>
 <p><strong>Bid-Ask Spread</strong>: <span class="arithmatex">\(V_{\text{sell}} - V_{\text{buy}}\)</span> reflects model uncertainty.</p>
 <h2 id="comparison-with-alternative-models">Comparison with Alternative Models<a class="headerlink" href="#comparison-with-alternative-models" title="Permanent link">&para;</a></h2>
 <h3 id="1-choquet-expected-utility">1. Choquet Expected Utility<a class="headerlink" href="#1-choquet-expected-utility" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: For a capacity <span class="arithmatex">\(\nu\)</span> and act <span class="arithmatex">\(f\)</span>:</p>
-<p>$$</p>
-<p>V(f) = \int u(f) \, d\nu</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \int u(f) \, d\nu
+\]</div>
 <p>using the Choquet integral.</p>
 <p><strong>Choquet Integral</strong>:</p>
-<p>$$</p>
-<p>\int u(f) \, d\nu = \int_0^{\infty} \nu({u(f) \geq t}) \, dt + \int_{-\infty}^0 [\nu({u(f) \geq t}) - 1] \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int u(f) \, d\nu = \int_0^{\infty} \nu(\{u(f) \geq t\}) \, dt + \int_{-\infty}^0 [\nu(\{u(f) \geq t\}) - 1] \, dt
+\]</div>
 <p><strong>Relation to MEU</strong>: When <span class="arithmatex">\(\nu\)</span> is convex:</p>
-<p>$$</p>
-<p>\int u(f) \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[u(f)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int u(f) \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[u(f)]
+\]</div>
 <p>so Choquet expected utility coincides with MEU.</p>
 <p><strong>Non-Convex Capacities</strong>: CEU is more general, allowing for both ambiguity aversion (convex <span class="arithmatex">\(\nu\)</span>) and ambiguity seeking (concave <span class="arithmatex">\(\nu\)</span>).</p>
 <h3 id="2-smooth-ambiguity-model">2. Smooth Ambiguity Model<a class="headerlink" href="#2-smooth-ambiguity-model" title="Permanent link">&para;</a></h3>
 <p><strong>Klibanoff-Marinacci-Mukerji (2005)</strong>: Preferences represented by:</p>
-<p>$$</p>
-<p>V(f) = \int_{\mathcal{P}} \phi\left(\mathbb{E}_P[u(f)]\right) d\mu(P)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \int_{\mathcal{P}} \phi\left(\mathbb{E}_P[u(f)]\right) d\mu(P)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(u\)</span>: Utility function (risk attitude)
 - <span class="arithmatex">\(\phi\)</span>: Ambiguity attitude function
@@ -47428,9 +47428,9 @@
 - More tractable for dynamic optimization</p>
 <h3 id="3-variational-preferences">3. Variational Preferences<a class="headerlink" href="#3-variational-preferences" title="Permanent link">&para;</a></h3>
 <p><strong>Maccheroni-Marinacci-Rustichini (2006)</strong>:</p>
-<p>$$</p>
-<p>V(f) = \min_{P \in \mathcal{M}_1(\Omega)} \left{\mathbb{E}_P[u(f)] + c(P)\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \min_{P \in \mathcal{M}_1(\Omega)} \left\{\mathbb{E}_P[u(f)] + c(P)\right\}
+\]</div>
 <p>where <span class="arithmatex">\(c: \mathcal{M}_1(\Omega) \to [0, \infty]\)</span> is a convex, lower semicontinuous cost function with <span class="arithmatex">\(\inf_P c(P) = 0\)</span>.</p>
 <p><strong>Special Cases</strong>:
 - <strong>MEU</strong>: <span class="arithmatex">\(c(P) = 0\)</span> if <span class="arithmatex">\(P \in \mathcal{P}\)</span>, else <span class="arithmatex">\(c(P) = \infty\)</span>
@@ -47443,9 +47443,9 @@
 <p><strong>Source</strong>: The minimum over priors may be achieved by different measures at different times.</p>
 <h3 id="2-rectangularity">2. Rectangularity<a class="headerlink" href="#2-rectangularity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong> (Epstein-Schneider, 2003): A set of priors <span class="arithmatex">\(\mathcal{P}\)</span> is <strong>rectangular</strong> with respect to filtration <span class="arithmatex">\(\{\mathcal{F}_t\}\)</span> if:</p>
-<p>$$</p>
-<p>\mathcal{P} = {P: P(\cdot | \mathcal{F}_t) \in \mathcal{P}_t(\omega) \text{ for all } t, \omega}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \{P: P(\cdot | \mathcal{F}_t) \in \mathcal{P}_t(\omega) \text{ for all } t, \omega\}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{P}_t(\omega)\)</span> is a family of conditional distributions.</p>
 <p><strong>Characterization</strong>: <span class="arithmatex">\(\mathcal{P}\)</span> is rectangular iff for any <span class="arithmatex">\(P, Q \in \mathcal{P}\)</span> and stopping time <span class="arithmatex">\(\tau\)</span>, the "pasted" measure <span class="arithmatex">\(P \otimes_{\tau} Q\)</span> (using <span class="arithmatex">\(P\)</span> before <span class="arithmatex">\(\tau\)</span> and <span class="arithmatex">\(Q\)</span> after) is also in <span class="arithmatex">\(\mathcal{P}\)</span>.</p>
 <h3 id="3-dynamic-consistency-theorem">3. Dynamic Consistency Theorem<a class="headerlink" href="#3-dynamic-consistency-theorem" title="Permanent link">&para;</a></h3>
@@ -47456,35 +47456,35 @@
 3. Use alternative preference models (e.g., smooth ambiguity)</p>
 <h3 id="4-recursive-meu">4. Recursive MEU<a class="headerlink" href="#4-recursive-meu" title="Permanent link">&para;</a></h3>
 <p><strong>Formulation</strong>: With rectangular priors, the value function satisfies:</p>
-<p>$$</p>
-<p>V_t = \min_{P \in \mathcal{P}<em t_1="t+1">t} \mathbb{E}_P\left[u(c_t) + \beta V</em>_t\right]} \,|\, \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \min_{P \in \mathcal{P}_t} \mathbb{E}_P\left[u(c_t) + \beta V_{t+1} \,|\, \mathcal{F}_t\right]
+\]</div>
 <p><strong>Bellman Equation</strong>: Under appropriate regularity:</p>
-<p>$$</p>
-<p>V(x) = \min_{P \in \mathcal{P}} \max_a \left{\mathbb{E}_P[u(x, a) + \beta V(x') \,|\, x]\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(x) = \min_{P \in \mathcal{P}} \max_a \left\{\mathbb{E}_P[u(x, a) + \beta V(x') \,|\, x]\right\}
+\]</div>
 <p>with state transition <span class="arithmatex">\(x' = f(x, a, \epsilon)\)</span>.</p>
 <h2 id="computational-methods">Computational Methods<a class="headerlink" href="#computational-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-linear-programming-formulation">1. Linear Programming Formulation<a class="headerlink" href="#1-linear-programming-formulation" title="Permanent link">&para;</a></h3>
 <p>For finite <span class="arithmatex">\(\Omega = \{\omega_1, \ldots, \omega_n\}\)</span> and finite <span class="arithmatex">\(\mathcal{P} = \{P^1, \ldots, P^m\}\)</span>:</p>
 <p><strong>Primal Problem</strong> (Find optimal act):</p>
-<p>$$</p>
-<p>\max_{f \in \mathcal{F}} \min_{k=1,\ldots,m} \sum_{i=1}^n P^k(\omega_i) u(f(\omega_i))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{f \in \mathcal{F}} \min_{k=1,\ldots,m} \sum_{i=1}^n P^k(\omega_i) u(f(\omega_i))
+\]</div>
 <p><strong>Epigraph Reformulation</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \max_{f, t} \quad &amp; t \\
 \text{s.t.} \quad &amp; \sum_{i=1}^n P^k(\omega_i) u(f(\omega_i)) \geq t, \quad k = 1, \ldots, m \\
 &amp; f \in \mathcal{F}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>This is a linear program when <span class="arithmatex">\(u\)</span> is linear and <span class="arithmatex">\(\mathcal{F}\)</span> is polyhedral.</p>
 <h3 id="2-semidefinite-programming">2. Semidefinite Programming<a class="headerlink" href="#2-semidefinite-programming" title="Permanent link">&para;</a></h3>
 <p>For ellipsoidal uncertainty sets:</p>
-<p>$$</p>
-<p>\mathcal{U} = {(\mu, \Sigma): |A(\mu - \hat{\mu})|_2 \leq 1, |B(\Sigma - \hat{\Sigma})|_F \leq 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{U} = \{(\mu, \Sigma): \|A(\mu - \hat{\mu})\|_2 \leq 1, \|B(\Sigma - \hat{\Sigma})\|_F \leq 1\}
+\]</div>
 <p>The robust portfolio problem can be reformulated as an SDP using Schur complements and S-lemma.</p>
 <h3 id="3-sampling-based-methods">3. Sampling-Based Methods<a class="headerlink" href="#3-sampling-based-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Monte Carlo</strong>: 

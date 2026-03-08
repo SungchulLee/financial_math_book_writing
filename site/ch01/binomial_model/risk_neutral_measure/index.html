@@ -47142,13 +47142,13 @@
 <h2 id="the-risk-neutral-probability">The Risk-Neutral Probability<a class="headerlink" href="#the-risk-neutral-probability" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>In the one-period binomial model with:</p>
-<p>$$</p>
-<p>S_{\Delta t} \in {uS_0, \, dS_0}, \qquad B_{\Delta t} = e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{\Delta t} \in \{uS_0, \, dS_0\}, \qquad B_{\Delta t} = e^{r\Delta t}
+\]</div>
 <p>the <strong>risk-neutral probability</strong> of an up move is:</p>
-<p>$$</p>
-<p>\boxed{q = \frac{e^{r\Delta t} - d}{u - d}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{q = \frac{e^{r\Delta t} - d}{u - d}}
+\]</div>
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -47163,38 +47163,38 @@
 </ol>
 <h3 id="the-risk-neutral-measure">The Risk-Neutral Measure<a class="headerlink" href="#the-risk-neutral-measure" title="Permanent link">&para;</a></h3>
 <p>Define a probability measure <span class="arithmatex">\(\mathbb{Q}\)</span> on the state space <span class="arithmatex">\(\{\text{up}, \text{down}\}\)</span> by:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\text{up}) = q, \qquad \mathbb{Q}(\text{down}) = 1 - q</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\text{up}) = q, \qquad \mathbb{Q}(\text{down}) = 1 - q
+\]</div>
 <p>This is called the <strong>risk-neutral measure</strong> (or <strong>equivalent martingale measure</strong>).</p>
 <hr />
 <h2 id="the-martingale-property">The Martingale Property<a class="headerlink" href="#the-martingale-property" title="Permanent link">&para;</a></h2>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the <strong>discounted stock price</strong> is a martingale.</p>
 <h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
 <p>The expected stock price under <span class="arithmatex">\(\mathbb{Q}\)</span> is:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = q \cdot uS_0 + (1-q) \cdot dS_0 = S_0[qu + (1-q)d]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = q \cdot uS_0 + (1-q) \cdot dS_0 = S_0[qu + (1-q)d]
+\]</div>
 <p>Substituting <span class="arithmatex">\(q = \frac{e^{r\Delta t} - d}{u - d}\)</span>:</p>
-<p>$$</p>
-<p>qu + (1-q)d = \frac{e^{r\Delta t} - d}{u - d} \cdot u + \frac{u - e^{r\Delta t}}{u - d} \cdot d</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{(e^{r\Delta t} - d)u + (u - e^{r\Delta t})d}{u - d} = \frac{ue^{r\Delta t} - ud + ud - de^{r\Delta t}}{u - d}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{e^{r\Delta t}(u - d)}{u - d} = e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+qu + (1-q)d = \frac{e^{r\Delta t} - d}{u - d} \cdot u + \frac{u - e^{r\Delta t}}{u - d} \cdot d
+\]</div>
+<div class="arithmatex">\[
+= \frac{(e^{r\Delta t} - d)u + (u - e^{r\Delta t})d}{u - d} = \frac{ue^{r\Delta t} - ud + ud - de^{r\Delta t}}{u - d}
+\]</div>
+<div class="arithmatex">\[
+= \frac{e^{r\Delta t}(u - d)}{u - d} = e^{r\Delta t}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 \cdot e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 \cdot e^{r\Delta t}
+\]</div>
 <p>Dividing both sides by <span class="arithmatex">\(e^{r\Delta t}\)</span>:</p>
 <div class="admonition success">
 <p class="admonition-title">Martingale Property</p>
-<p>$$</p>
-<p>\boxed{\mathbb{E}^{\mathbb{Q}}\left[\frac{S_{\Delta t}}{e^{r\Delta t}}\right] = S_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}^{\mathbb{Q}}\left[\frac{S_{\Delta t}}{e^{r\Delta t}}\right] = S_0}
+\]</div>
 <p>The discounted stock price is a <strong>martingale</strong> under <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 </div>
 <p><strong>Interpretation</strong>: Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the stock's expected return equals the risk-free rate. This is why <span class="arithmatex">\(\mathbb{Q}\)</span> is called "risk-neutral"—it's as if investors don't require any risk premium.</p>
@@ -47202,54 +47202,54 @@
 <h2 id="the-risk-neutral-pricing-formula">The Risk-Neutral Pricing Formula<a class="headerlink" href="#the-risk-neutral-pricing-formula" title="Permanent link">&para;</a></h2>
 <h3 id="statement">Statement<a class="headerlink" href="#statement" title="Permanent link">&para;</a></h3>
 <p>For any contingent claim with payoff <span class="arithmatex">\(H \in \{H_u, H_d\}\)</span>:</p>
-<p>$$</p>
-<p>\boxed{V_0 = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[H] = e^{-r\Delta t}(qH_u + (1-q)H_d)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_0 = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[H] = e^{-r\Delta t}(qH_u + (1-q)H_d)}
+\]</div>
 <h3 id="proof-of-equivalence-to-replication">Proof of Equivalence to Replication<a class="headerlink" href="#proof-of-equivalence-to-replication" title="Permanent link">&para;</a></h3>
 <p>We show that the risk-neutral price equals the replication price.</p>
 <p><strong>Replication price</strong> (from <a href="../replicating_portfolio/">Replicating Portfolio</a>):</p>
-<p>$$</p>
-<p>V_0^{rep} = \Delta S_0 + B</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0^{rep} = \Delta S_0 + B
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\Delta = \frac{H_u - H_d}{(u-d)S_0}, \qquad B = e^{-r\Delta t}(H_u - \Delta \cdot uS_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{H_u - H_d}{(u-d)S_0}, \qquad B = e^{-r\Delta t}(H_u - \Delta \cdot uS_0)
+\]</div>
 <p>Substituting:</p>
-<p>$$</p>
-<p>V_0^{rep} = \frac{H_u - H_d}{(u-d)S_0} \cdot S_0 + e^{-r\Delta t}\left(H_u - \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(H_u - \frac{u(H_u - H_d)}{u-d}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{(u-d)H_u - u(H_u - H_d)}{u-d}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_u - dH_u - uH_u + uH_d}{u-d}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u-d}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0^{rep} = \frac{H_u - H_d}{(u-d)S_0} \cdot S_0 + e^{-r\Delta t}\left(H_u - \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0\right)
+\]</div>
+<div class="arithmatex">\[
+= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(H_u - \frac{u(H_u - H_d)}{u-d}\right)
+\]</div>
+<div class="arithmatex">\[
+= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{(u-d)H_u - u(H_u - H_d)}{u-d}\right)
+\]</div>
+<div class="arithmatex">\[
+= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_u - dH_u - uH_u + uH_d}{u-d}\right)
+\]</div>
+<div class="arithmatex">\[
+= \frac{H_u - H_d}{u-d} + e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u-d}\right)
+\]</div>
 <p><strong>Risk-neutral price</strong>:</p>
-<p>$$</p>
-<p>V_0^{RN} = e^{-r\Delta t}(qH_u + (1-q)H_d)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\Delta t}\left(\frac{e^{r\Delta t} - d}{u-d}H_u + \frac{u - e^{r\Delta t}}{u-d}H_d\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\Delta t}\left(\frac{(e^{r\Delta t} - d)H_u + (u - e^{r\Delta t})H_d}{u-d}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{1}{u-d}\left(\frac{e^{r\Delta t} - d}{e^{r\Delta t}}H_u + \frac{u - e^{r\Delta t}}{e^{r\Delta t}}H_d\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0^{RN} = e^{-r\Delta t}(qH_u + (1-q)H_d)
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\Delta t}\left(\frac{e^{r\Delta t} - d}{u-d}H_u + \frac{u - e^{r\Delta t}}{u-d}H_d\right)
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\Delta t}\left(\frac{(e^{r\Delta t} - d)H_u + (u - e^{r\Delta t})H_d}{u-d}\right)
+\]</div>
+<div class="arithmatex">\[
+= \frac{1}{u-d}\left(\frac{e^{r\Delta t} - d}{e^{r\Delta t}}H_u + \frac{u - e^{r\Delta t}}{e^{r\Delta t}}H_d\right)
+\]</div>
 <p>To show <span class="arithmatex">\(V_0^{rep} = V_0^{RN}\)</span>, we can verify algebraically (or more simply, note that both give the unique no-arbitrage price, so they must be equal).</p>
 <div class="admonition success">
 <p class="admonition-title">Equivalence Theorem</p>
-<p>$$</p>
-<p>V_0 = \Delta S_0 + B = e^{-r\Delta t}(qH_u + (1-q)H_d)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \Delta S_0 + B = e^{-r\Delta t}(qH_u + (1-q)H_d)
+\]</div>
 <p><strong>Replication pricing and risk-neutral pricing give the same answer.</strong></p>
 </div>
 <hr />
@@ -47290,34 +47290,34 @@
 </tbody>
 </table>
 <p><strong>Computed values:</strong></p>
-<p>$$</p>
-<p>e^{r\Delta t} = e^{0.05} = 1.0513</p>
-<p>$$</p>
-<p>$$</p>
-<p>q = \frac{1.0513 - 0.9}{1.2 - 0.9} = \frac{0.1513}{0.3} = 0.5043</p>
-<p>$$</p>
-<p>$$</p>
-<p>1 - q = 0.4957</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{r\Delta t} = e^{0.05} = 1.0513
+\]</div>
+<div class="arithmatex">\[
+q = \frac{1.0513 - 0.9}{1.2 - 0.9} = \frac{0.1513}{0.3} = 0.5043
+\]</div>
+<div class="arithmatex">\[
+1 - q = 0.4957
+\]</div>
 <hr />
 <h2 id="example-1-european-call-option">Example 1: European Call Option<a class="headerlink" href="#example-1-european-call-option" title="Permanent link">&para;</a></h2>
 <h3 id="payoffs">Payoffs<a class="headerlink" href="#payoffs" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>S_{\Delta t}^{up} = 120, \quad S_{\Delta t}^{down} = 90</p>
-<p>$$</p>
-<p>$$</p>
-<p>H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{\Delta t}^{up} = 120, \quad S_{\Delta t}^{down} = 90
+\]</div>
+<div class="arithmatex">\[
+H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0
+\]</div>
 <h3 id="risk-neutral-price">Risk-Neutral Price<a class="headerlink" href="#risk-neutral-price" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-0.05}(0.5043 \times 15 + 0.4957 \times 0)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 0.9512 \times 7.565 = 7.19</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
+\]</div>
+<div class="arithmatex">\[
+= e^{-0.05}(0.5043 \times 15 + 0.4957 \times 0)
+\]</div>
+<div class="arithmatex">\[
+= 0.9512 \times 7.565 = 7.19
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">European Call Price</p>
 <div class="arithmatex">\[C_0 = 7.19\]</div>
@@ -47326,44 +47326,44 @@
 <hr />
 <h2 id="example-2-european-put-option">Example 2: European Put Option<a class="headerlink" href="#example-2-european-put-option" title="Permanent link">&para;</a></h2>
 <h3 id="payoffs_1">Payoffs<a class="headerlink" href="#payoffs_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15
+\]</div>
 <h3 id="risk-neutral-price_1">Risk-Neutral Price<a class="headerlink" href="#risk-neutral-price_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-0.05}(0.5043 \times 0 + 0.4957 \times 15)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 0.9512 \times 7.436 = 7.07</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)
+\]</div>
+<div class="arithmatex">\[
+= e^{-0.05}(0.5043 \times 0 + 0.4957 \times 15)
+\]</div>
+<div class="arithmatex">\[
+= 0.9512 \times 7.436 = 7.07
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">European Put Price</p>
 <div class="arithmatex">\[P_0 = 7.07\]</div>
 </div>
 <h3 id="verification-via-putcall-parity">Verification via Put–Call Parity<a class="headerlink" href="#verification-via-putcall-parity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_0 - P_0 = 7.19 - 7.07 = 0.12</p>
-<p>$$</p>
-<p>$$</p>
-<p>S_0 - Ke^{-r\Delta t} = 100 - 105 \times 0.9512 = 100 - 99.88 = 0.12 \text{ ✓}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 - P_0 = 7.19 - 7.07 = 0.12
+\]</div>
+<div class="arithmatex">\[
+S_0 - Ke^{-r\Delta t} = 100 - 105 \times 0.9512 = 100 - 99.88 = 0.12 \text{ ✓}
+\]</div>
 <hr />
 <h2 id="example-3-digital-binary-call-option">Example 3: Digital (Binary) Call Option<a class="headerlink" href="#example-3-digital-binary-call-option" title="Permanent link">&para;</a></h2>
 <p>A digital call pays <span class="arithmatex">\(\$1\)</span> if the stock is above the strike, and <span class="arithmatex">\(\$0\)</span> otherwise.</p>
 <h3 id="payoffs_2">Payoffs<a class="headerlink" href="#payoffs_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>H_u = 1, \qquad H_d = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_u = 1, \qquad H_d = 0
+\]</div>
 <h3 id="risk-neutral-price_2">Risk-Neutral Price<a class="headerlink" href="#risk-neutral-price_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_0 = e^{-r\Delta t}(q \cdot 1 + (1-q) \cdot 0) = e^{-r\Delta t} \cdot q</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 0.9512 \times 0.5043 = 0.48</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-r\Delta t}(q \cdot 1 + (1-q) \cdot 0) = e^{-r\Delta t} \cdot q
+\]</div>
+<div class="arithmatex">\[
+= 0.9512 \times 0.5043 = 0.48
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Digital Call Price</p>
 <div class="arithmatex">\[V_0 = e^{-r\Delta t} q = 0.48\]</div>
@@ -47374,31 +47374,31 @@
 <h2 id="example-4-forward-contract">Example 4: Forward Contract<a class="headerlink" href="#example-4-forward-contract" title="Permanent link">&para;</a></h2>
 <p>A forward contract obligates the holder to buy the stock at price <span class="arithmatex">\(F\)</span> at maturity.</p>
 <h3 id="payoff">Payoff<a class="headerlink" href="#payoff" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>H = S_{\Delta t} - F</p>
-<p>$$</p>
-<p>$$</p>
-<p>H_u = uS_0 - F = 120 - F, \qquad H_d = dS_0 - F = 90 - F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H = S_{\Delta t} - F
+\]</div>
+<div class="arithmatex">\[
+H_u = uS_0 - F = 120 - F, \qquad H_d = dS_0 - F = 90 - F
+\]</div>
 <h3 id="risk-neutral-price_3">Risk-Neutral Price<a class="headerlink" href="#risk-neutral-price_3" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - F]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - e^{-r\Delta t}F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - F]
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - e^{-r\Delta t}F
+\]</div>
 <p>Using <span class="arithmatex">\(\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = S_0 e^{r\Delta t}\)</span> (martingale property):</p>
-<p>$$</p>
-<p>V_0 = e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Fe^{-r\Delta t} = S_0 - Fe^{-r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Fe^{-r\Delta t} = S_0 - Fe^{-r\Delta t}
+\]</div>
 <h3 id="forward-price">Forward Price<a class="headerlink" href="#forward-price" title="Permanent link">&para;</a></h3>
 <p>A forward contract has zero initial value by definition. Setting <span class="arithmatex">\(V_0 = 0\)</span>:</p>
-<p>$$</p>
-<p>0 = S_0 - Fe^{-r\Delta t}</p>
-<p>$$</p>
-<p>$$</p>
-<p>F = S_0 e^{r\Delta t} = 100 \times 1.0513 = 105.13</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 = S_0 - Fe^{-r\Delta t}
+\]</div>
+<div class="arithmatex">\[
+F = S_0 e^{r\Delta t} = 100 \times 1.0513 = 105.13
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Forward Price</p>
 <div class="arithmatex">\[F = S_0 e^{r\Delta t} = 105.13\]</div>
@@ -47408,52 +47408,52 @@
 <h2 id="putcall-parity-via-risk-neutral-pricing">Put–Call Parity via Risk-Neutral Pricing<a class="headerlink" href="#putcall-parity-via-risk-neutral-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="derivation">Derivation<a class="headerlink" href="#derivation" title="Permanent link">&para;</a></h3>
 <p>For a call and put with the same strike <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>C_0 - P_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[(S_{\Delta t} - K)^+] - e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[(K - S_{\Delta t})^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 - P_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[(S_{\Delta t} - K)^+] - e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[(K - S_{\Delta t})^+]
+\]</div>
 <p>Using the identity <span class="arithmatex">\((S - K)^+ - (K - S)^+ = S - K\)</span>:</p>
-<p>$$</p>
-<p>C_0 - P_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - K]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - Ke^{-r\Delta t}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Ke^{-r\Delta t} = S_0 - Ke^{-r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 - P_0 = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t} - K]
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] - Ke^{-r\Delta t}
+\]</div>
+<div class="arithmatex">\[
+= e^{-r\Delta t} \cdot S_0 e^{r\Delta t} - Ke^{-r\Delta t} = S_0 - Ke^{-r\Delta t}
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Put–Call Parity</p>
-<p>$$</p>
-<p>\boxed{C_0 - P_0 = S_0 - Ke^{-r\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C_0 - P_0 = S_0 - Ke^{-r\Delta t}}
+\]</div>
 <p>Put–call parity is a <strong>risk-neutral identity</strong>—a direct consequence of the pricing formula.</p>
 </div>
 <hr />
 <h2 id="linearity-of-risk-neutral-pricing">Linearity of Risk-Neutral Pricing<a class="headerlink" href="#linearity-of-risk-neutral-pricing" title="Permanent link">&para;</a></h2>
 <p>Risk-neutral pricing is <strong>linear</strong> in payoffs:</p>
-<p>$$</p>
-<p>V_0(\alpha H^{(1)} + \beta H^{(2)}) = \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0(\alpha H^{(1)} + \beta H^{(2)}) = \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
+\]</div>
 <h3 id="example-bull-spread">Example: Bull Spread<a class="headerlink" href="#example-bull-spread" title="Permanent link">&para;</a></h3>
 <p>A bull spread consists of:
 - Long call with strike <span class="arithmatex">\(K_1\)</span>
 - Short call with strike <span class="arithmatex">\(K_2 &gt; K_1\)</span></p>
 <p>The price is:</p>
-<p>$$</p>
-<p>V_0^{bull} = C_0(K_1) - C_0(K_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0^{bull} = C_0(K_1) - C_0(K_2)
+\]</div>
 <p>No additional calculation is needed—linearity allows decomposition of complex payoffs into simpler components.</p>
 <h3 id="why-linearity-holds">Why Linearity Holds<a class="headerlink" href="#why-linearity-holds" title="Permanent link">&para;</a></h3>
 <p>Linearity follows from the expectation operator:</p>
-<p>$$</p>
-<p>V_0(\alpha H^{(1)} + \beta H^{(2)}) = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[\alpha H^{(1)} + \beta H^{(2)}]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \alpha e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(1)}] + \beta e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(2)}]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0(\alpha H^{(1)} + \beta H^{(2)}) = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[\alpha H^{(1)} + \beta H^{(2)}]
+\]</div>
+<div class="arithmatex">\[
+= \alpha e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(1)}] + \beta e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H^{(2)}]
+\]</div>
+<div class="arithmatex">\[
+= \alpha V_0(H^{(1)}) + \beta V_0(H^{(2)})
+\]</div>
 <hr />
 <h2 id="what-risk-neutral-probability-is-and-is-not">What Risk-Neutral Probability Is (and Is Not)<a class="headerlink" href="#what-risk-neutral-probability-is-and-is-not" title="Permanent link">&para;</a></h2>
 <h3 id="it-is">It IS:<a class="headerlink" href="#it-is" title="Permanent link">&para;</a></h3>
@@ -47523,19 +47523,19 @@
 <p>In an <span class="arithmatex">\(N\)</span>-period binomial tree, the risk-neutral pricing formula generalizes naturally.</p>
 <h3 id="terminal-payoffs">Terminal Payoffs<a class="headerlink" href="#terminal-payoffs" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(V_{N,j}\)</span> denote the payoff at terminal node <span class="arithmatex">\((N, j)\)</span> (after <span class="arithmatex">\(j\)</span> up moves):</p>
-<p>$$</p>
-<p>V_{N,j} = H(S_0 u^j d^{N-j})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{N,j} = H(S_0 u^j d^{N-j})
+\]</div>
 <h3 id="risk-neutral-pricing-formula">Risk-Neutral Pricing Formula<a class="headerlink" href="#risk-neutral-pricing-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{V_0 = e^{-rN\Delta t} \sum_{j=0}^{N} \binom{N}{j} q^j (1-q)^{N-j} V_{N,j}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_0 = e^{-rN\Delta t} \sum_{j=0}^{N} \binom{N}{j} q^j (1-q)^{N-j} V_{N,j}}
+\]</div>
 <p>where <span class="arithmatex">\(\binom{N}{j} q^j (1-q)^{N-j}\)</span> is the risk-neutral probability of reaching node <span class="arithmatex">\((N, j)\)</span>.</p>
 <h3 id="equivalence-to-backward-induction">Equivalence to Backward Induction<a class="headerlink" href="#equivalence-to-backward-induction" title="Permanent link">&para;</a></h3>
 <p>This formula is equivalent to backward induction:</p>
-<p>$$</p>
-<p>V_{n,j} = e^{-r\Delta t}(qV_{n+1,j+1} + (1-q)V_{n+1,j})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{n,j} = e^{-r\Delta t}(qV_{n+1,j+1} + (1-q)V_{n+1,j})
+\]</div>
 <p>Both methods give the same price. Backward induction is computationally more efficient for path-independent options, while the direct formula is useful for analysis.</p>
 <p>See <a href="../multi_period_binomial_model/">Multi-Period Binomial Model</a> for complete details.</p>
 <hr />

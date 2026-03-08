@@ -46261,95 +46261,95 @@
 <h2 id="linearity">Linearity<a class="headerlink" href="#linearity" title="Permanent link">&para;</a></h2>
 <p>The Itô integral is linear in the integrand.</p>
 <p><strong>Theorem (Linearity)</strong>: Let <span class="arithmatex">\(H, K \in \mathcal{L}^2([0,T])\)</span> and <span class="arithmatex">\(\alpha, \beta \in \mathbb{R}\)</span>. Then:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \int_0^t (\alpha H_s + \beta K_s) \, dB_s
 = \alpha \int_0^t H_s \, dB_s + \beta \int_0^t K_s \, dB_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Proof</strong>: Linearity holds by definition for simple processes. Since simple processes are dense in <span class="arithmatex">\(\mathcal{L}^2([0,T])\)</span> and the integral extends by continuity, linearity passes to the limit. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Remark</strong>: Unlike Riemann integration, the Itô integral is <strong>not</strong> linear in the integrator <span class="arithmatex">\(B_t\)</span>. The quadratic variation structure means that stochastic integrals with respect to different Brownian motions cannot be simply combined.</p>
 <hr />
 <h2 id="martingale-property">Martingale property<a class="headerlink" href="#martingale-property" title="Permanent link">&para;</a></h2>
 <p>The Itô integral defines a martingale with respect to the natural filtration.</p>
 <p><strong>Theorem (Martingale Property)</strong>: Let <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>. Then the process:</p>
-<p>$$</p>
-<p>I_t := \int_0^t H_s \, dB_s, \quad 0 \le t \le T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t := \int_0^t H_s \, dB_s, \quad 0 \le t \le T
+\]</div>
 <p>is a <strong>continuous martingale</strong> with respect to <span class="arithmatex">\(\{\mathcal{F}_t\}\)</span>.</p>
 <p><strong>Proof</strong>: We verify the three conditions for a martingale.</p>
 <p><strong>1. Adaptedness</strong>: For each <span class="arithmatex">\(t\)</span>, <span class="arithmatex">\(I_t\)</span> is defined as an <span class="arithmatex">\(L^2\)</span>-limit of integrals of simple processes, each of which is <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable. Therefore, <span class="arithmatex">\(I_t\)</span> is <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable.</p>
 <p><strong>2. Integrability</strong>: By the Itô isometry:</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t^2]
+<div class="arithmatex">\[
+\mathbb{E}[I_t^2]
 = \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
 \le \mathbb{E}\left[\int_0^T H_s^2 \, ds\right]
-&lt; \infty</p>
-<p>$$</p>
+&lt; \infty
+\]</div>
 <p>Thus, <span class="arithmatex">\(\mathbb{E}[|I_t|] \le \sqrt{\mathbb{E}[I_t^2]} &lt; \infty\)</span>.</p>
 <p><strong>3. Martingale property</strong>: For <span class="arithmatex">\(0 \le s &lt; t \le T\)</span>, we must show:</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[I_t \mid \mathcal{F}_s] = I_s
+\]</div>
 <p><strong>Step 1</strong>: For simple processes, this was verified in the construction (it follows from the independent increments property of Brownian motion and adaptedness of the integrand).</p>
 <p><strong>Step 2</strong>: For general <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>, approximate by simple processes <span class="arithmatex">\(H^{(n)} \to H\)</span> in <span class="arithmatex">\(\mathcal{L}^2\)</span>. Then:</p>
-<p>$$</p>
-<p>I_t^{(n)} := \int_0^t H_s^{(n)} \, dB_s
-\to I_t \quad \text{in } L^2(\Omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t^{(n)} := \int_0^t H_s^{(n)} \, dB_s
+\to I_t \quad \text{in } L^2(\Omega)
+\]</div>
 <p>Since <span class="arithmatex">\(I_t^{(n)}\)</span> are martingales:</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t^{(n)} \mid \mathcal{F}_s] = I_s^{(n)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[I_t^{(n)} \mid \mathcal{F}_s] = I_s^{(n)}
+\]</div>
 <p>Taking <span class="arithmatex">\(L^2\)</span>-limits (conditional expectation is continuous in <span class="arithmatex">\(L^2\)</span>):</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t \mid \mathcal{F}<em _infty="\infty" _to="\to" n="n">s]
-= \lim</em>} \mathbb{E}[I_t^{(n)} \mid \mathcal{F<em _infty="\infty" _to="\to" n="n">s]
-= \lim</em>
-= I_s} I_s^{(n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[I_t \mid \mathcal{F}_s]
+= \lim_{n \to \infty} \mathbb{E}[I_t^{(n)} \mid \mathcal{F}_s]
+= \lim_{n \to \infty} I_s^{(n)}
+= I_s
+\]</div>
 <p>This completes the proof. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Corollary (Zero Mean)</strong>: For all <span class="arithmatex">\(t \ge 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^t H_s \, dB_s\right] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^t H_s \, dB_s\right] = 0
+\]</div>
 <p><strong>Proof</strong>: Taking expectations in the martingale property at <span class="arithmatex">\(s = 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t] = \mathbb{E}[\mathbb{E}[I_t \mid \mathcal{F}_0]] = \mathbb{E}[I_0] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[I_t] = \mathbb{E}[\mathbb{E}[I_t \mid \mathcal{F}_0]] = \mathbb{E}[I_0] = 0
+\]</div>
 <p>since <span class="arithmatex">\(I_0 = \int_0^0 H_s dB_s = 0\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="path-continuity">Path continuity<a class="headerlink" href="#path-continuity" title="Permanent link">&para;</a></h2>
 <p>Unlike general semimartingales, the Itô integral with respect to Brownian motion has <strong>continuous sample paths</strong>.</p>
 <p><strong>Theorem (Continuity)</strong>: Let <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>. Then the process:</p>
-<p>$$</p>
-<p>I_t = \int_0^t H_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t = \int_0^t H_s \, dB_s
+\]</div>
 <p>has a <strong>continuous modification</strong>. That is, there exists a continuous process <span class="arithmatex">\(\tilde{I}_t\)</span> such that:</p>
-<p>$$</p>
-<p>\mathbb{P}(I_t = \tilde{I}_t \text{ for all } t \in [0,T]) = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(I_t = \tilde{I}_t \text{ for all } t \in [0,T]) = 1
+\]</div>
 <p><strong>Proof (Sketch)</strong>: The proof uses the <strong>Kolmogorov continuity criterion</strong>.</p>
 <p><strong>Step 1</strong>: Establish a moment bound. For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[|I_t - I_s|^4]
-= \mathbb{E}\left[\left(\int_s^t H_u \, dB_u\right)^4\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|I_t - I_s|^4]
+= \mathbb{E}\left[\left(\int_s^t H_u \, dB_u\right)^4\right]
+\]</div>
 <p>Using <strong>Burkholder-Davis-Gundy inequality</strong> (BDG inequality) for martingales:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{u \le t} |I_u|^4\right]
-\le C \mathbb{E}\left[\left(\int_0^t H_s^2 \, ds\right)^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{u \le t} |I_u|^4\right]
+\le C \mathbb{E}\left[\left(\int_0^t H_s^2 \, ds\right)^2\right]
+\]</div>
 <p>This gives, for <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[|I_t - I_s|^4]
-\le C (t - s)^2 \mathbb{E}\left[\sup_{u \le T} H_u^4\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|I_t - I_s|^4]
+\le C (t - s)^2 \mathbb{E}\left[\sup_{u \le T} H_u^4\right]
+\]</div>
 <p>under appropriate regularity conditions on <span class="arithmatex">\(H\)</span>.</p>
 <p><strong>Step 2</strong>: Apply Kolmogorov's criterion. Since:</p>
-<p>$$</p>
-<p>\mathbb{E}[|I_t - I_s|^4] \le K |t - s|^{1 + \varepsilon}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|I_t - I_s|^4] \le K |t - s|^{1 + \varepsilon}
+\]</div>
 <p>for some <span class="arithmatex">\(\varepsilon &gt; 0\)</span>, Kolmogorov's theorem guarantees the existence of a continuous modification.</p>
 <p><strong>Alternative approach</strong>: For simple processes, the integral is manifestly continuous (finite sums of continuous functions). The general case follows by <span class="arithmatex">\(L^2\)</span>-approximation and a diagonal argument. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Remark</strong>: Continuity is a special feature of integration with respect to Brownian motion. For Poisson processes or jump diffusions, stochastic integrals have jumps.</p>
@@ -46357,62 +46357,62 @@
 <h2 id="quadratic-variation">Quadratic variation<a class="headerlink" href="#quadratic-variation" title="Permanent link">&para;</a></h2>
 <p>The quadratic variation of the Itô integral reveals its fundamental stochastic nature.</p>
 <p><strong>Theorem (Quadratic Variation)</strong>: Let <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>. Then the quadratic variation of <span class="arithmatex">\(I_t = \int_0^t H_s dB_s\)</span> is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 [I, I]_t = \int_0^t H_s^2 \, ds
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Proof (Heuristic)</strong>: Consider a partition <span class="arithmatex">\(\pi: 0 = t_0 &lt; t_1 &lt; \cdots &lt; t_n = t\)</span>. The quadratic variation is:</p>
-<p>$$</p>
-<p>[I, I]<em 0="0" _pi_="|\pi|" _to="\to">t
-= \lim</em>)^2} \sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[I, I]_t
+= \lim_{|\pi| \to 0} \sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
+\]</div>
 <p>Each increment is:</p>
-<p>$$</p>
-<p>I_{t_{i+1}} - I_{t_i}
-= \int_{t_i}^{t_{i+1}} H_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_{t_{i+1}} - I_{t_i}
+= \int_{t_i}^{t_{i+1}} H_s \, dB_s
+\]</div>
 <p>For small intervals, <span class="arithmatex">\(H_s \approx H_{t_i}\)</span> (assuming continuity), so:</p>
-<p>$$</p>
-<p>I_{t_{i+1}} - I_{t_i}
-\approx H_{t_i} (B_{t_{i+1}} - B_{t_i})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_{t_{i+1}} - I_{t_i}
+\approx H_{t_i} (B_{t_{i+1}} - B_{t_i})
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>(I_{t_{i+1}} - I_{t_i})^2
-\approx H_{t_i}^2 (B_{t_{i+1}} - B_{t_i})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(I_{t_{i+1}} - I_{t_i})^2
+\approx H_{t_i}^2 (B_{t_{i+1}} - B_{t_i})^2
+\]</div>
 <p>Summing and using <span class="arithmatex">\([B, B]_t = t\)</span>:</p>
-<p>$$</p>
-<p>\sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
+<div class="arithmatex">\[
+\sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
 \approx \sum_{i=0}^{n-1} H_{t_i}^2 (B_{t_{i+1}} - B_{t_i})^2
 \to \sum_{i=0}^{n-1} H_{t_i}^2 (t_{i+1} - t_i)
-= \int_0^t H_s^2 \, ds</p>
-<p>$$</p>
+= \int_0^t H_s^2 \, ds
+\]</div>
 <p><strong>Rigorous proof</strong>: Uses the convergence in probability:</p>
-<p>$$</p>
-<p>\sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
-\xrightarrow{\mathbb{P}} \int_0^t H_s^2 \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i=0}^{n-1} (I_{t_{i+1}} - I_{t_i})^2
+\xrightarrow{\mathbb{P}} \int_0^t H_s^2 \, ds
+\]</div>
 <p>which can be established via the Itô isometry and martingale moment bounds. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Corollary</strong>: The process:</p>
-<p>$$</p>
-<p>M_t := I_t^2 - \int_0^t H_s^2 \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t := I_t^2 - \int_0^t H_s^2 \, ds
+\]</div>
 <p>is a martingale. This is a direct consequence of the Doob-Meyer decomposition: <span class="arithmatex">\(I_t^2\)</span> is a submartingale, and its decomposition into a martingale plus an increasing process is:</p>
-<p>$$</p>
-<p>I_t^2 = M_t + \int_0^t H_s^2 \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t^2 = M_t + \int_0^t H_s^2 \, ds
+\]</div>
 <hr />
 <h2 id="ito-isometry-revisited">Itô isometry (revisited)<a class="headerlink" href="#ito-isometry-revisited" title="Permanent link">&para;</a></h2>
 <p>We established the Itô isometry during construction, but it's worth restating in full generality.</p>
 <p><strong>Theorem (Itô Isometry)</strong>: For <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}\left[\left(\int_0^t H_s \, dB_s\right)^2\right]
 = \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Interpretation</strong>: The Itô isometry provides a bridge between the stochastic integral (a random variable) and a deterministic integral of the squared integrand. It is the key to:</p>
 <ol>
 <li><strong>Existence</strong>: Ensuring the <span class="arithmatex">\(L^2\)</span>-approximation procedure converges</li>
@@ -46420,18 +46420,18 @@
 <li><strong>Computation</strong>: Calculating second moments and variances</li>
 </ol>
 <p><strong>Generalization</strong>: For two processes <span class="arithmatex">\(H, K \in \mathcal{L}^2([0,T])\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^t H_s \, dB_s \cdot \int_0^t K_s \, dB_s\right]
-= \mathbb{E}\left[\int_0^t H_s K_s \, ds\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^t H_s \, dB_s \cdot \int_0^t K_s \, dB_s\right]
+= \mathbb{E}\left[\int_0^t H_s K_s \, ds\right]
+\]</div>
 <p>This follows from polarization of the Itô isometry.</p>
 <hr />
 <h2 id="connection-to-martingale-theory">Connection to martingale theory<a class="headerlink" href="#connection-to-martingale-theory" title="Permanent link">&para;</a></h2>
 <p>The Itô integral provides a <strong>representation theorem</strong> for certain martingales.</p>
 <p><strong>Theorem (Martingale Representation - Preview)</strong>: Every square-integrable martingale <span class="arithmatex">\(M_t\)</span> adapted to the Brownian filtration <span class="arithmatex">\(\mathcal{F}_t = \sigma(B_s: s \le t)\)</span> can be represented as:</p>
-<p>$$</p>
-<p>M_t = M_0 + \int_0^t H_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t = M_0 + \int_0^t H_s \, dB_s
+\]</div>
 <p>for some adapted process <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>.</p>
 <p><strong>Intuition</strong>: In a Brownian filtration, <strong>all randomness comes from Brownian motion</strong>. Any martingale is just a "reweighting" of Brownian increments via stochastic integration.</p>
 <p>This result is fundamental in:</p>
@@ -46445,24 +46445,24 @@
 <h2 id="local-martingales-and-localization">Local martingales and localization<a class="headerlink" href="#local-martingales-and-localization" title="Permanent link">&para;</a></h2>
 <p>For processes that are not globally square-integrable, we can define the Itô integral as a <strong>local martingale</strong>.</p>
 <p><strong>Definition</strong>: A process <span class="arithmatex">\(H\)</span> is <strong>locally in <span class="arithmatex">\(\mathcal{L}^2\)</span></strong> if there exist stopping times <span class="arithmatex">\(\tau_n \uparrow \infty\)</span> such that:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^{\tau_n \wedge T} H_s^2 \, ds\right] &lt; \infty
-\quad \text{for all } n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^{\tau_n \wedge T} H_s^2 \, ds\right] &lt; \infty
+\quad \text{for all } n
+\]</div>
 <p>For such <span class="arithmatex">\(H\)</span>, define:</p>
-<p>$$</p>
-<p>\int_0^t H_s \, dB_s
-:= \lim_{n \to \infty} \int_0^{t \wedge \tau_n} H_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t H_s \, dB_s
+:= \lim_{n \to \infty} \int_0^{t \wedge \tau_n} H_s \, dB_s
+\]</div>
 <p>The resulting process is a <strong>local martingale</strong>: there exist stopping times <span class="arithmatex">\(\tau_n \uparrow \infty\)</span> such that:</p>
-<p>$$</p>
-<p>I_{t \wedge \tau_n} = \int_0^{t \wedge \tau_n} H_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_{t \wedge \tau_n} = \int_0^{t \wedge \tau_n} H_s \, dB_s
+\]</div>
 <p>is a true martingale for each <span class="arithmatex">\(n\)</span>.</p>
 <p><strong>Key difference</strong>: Local martingales need not have constant expectation. For example:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^t e^{B_s} \, dB_s\right] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^t e^{B_s} \, dB_s\right] = 0
+\]</div>
 <p>only holds locally, not globally, since <span class="arithmatex">\(e^{B_s}\)</span> is not globally square-integrable.</p>
 <hr />
 <h2 id="summary-of-key-properties">Summary of key properties<a class="headerlink" href="#summary-of-key-properties" title="Permanent link">&para;</a></h2>

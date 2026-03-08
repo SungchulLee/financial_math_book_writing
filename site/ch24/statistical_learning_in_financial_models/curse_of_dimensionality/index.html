@@ -47042,13 +47042,13 @@
 <h3 id="volume-concentration">Volume Concentration<a class="headerlink" href="#volume-concentration" title="Permanent link">&para;</a></h3>
 <p>Consider a <span class="arithmatex">\(d\)</span>-dimensional hypercube <span class="arithmatex">\([0,1]^d\)</span> and an inscribed hypersphere of radius <span class="arithmatex">\(r = 1/2\)</span>.</p>
 <p><strong>Volume of hypersphere:</strong></p>
-<p>$$</p>
-<p>V_d(r) = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)} r^d.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_d(r) = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)} r^d
+\]</div>
 <p><strong>Ratio of sphere to cube volume:</strong></p>
-<p>$$</p>
-<p>\frac{V_d(1/2)}{1^d} = \frac{\pi^{d/2}}{2^d \Gamma(d/2 + 1)} \xrightarrow{d \to \infty} 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{V_d(1/2)}{1^d} = \frac{\pi^{d/2}}{2^d \Gamma(d/2 + 1)} \xrightarrow{d \to \infty} 0
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47083,28 +47083,28 @@
 <h3 id="distance-concentration">Distance Concentration<a class="headerlink" href="#distance-concentration" title="Permanent link">&para;</a></h3>
 <p>For points uniformly distributed in <span class="arithmatex">\([0,1]^d\)</span>, the expected distance to the nearest neighbor grows with dimension.</p>
 <p><strong>Theorem.</strong> Let <span class="arithmatex">\(X_1, \ldots, X_n \sim \text{Uniform}([0,1]^d)\)</span> i.i.d. For any point <span class="arithmatex">\(x\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[\min_{i} |x - X_i|] \asymp n^{-1/d}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\min_{i} \|x - X_i\|] \asymp n^{-1/d}
+\]</div>
 <p>For fixed <span class="arithmatex">\(n\)</span> and large <span class="arithmatex">\(d\)</span>, typical nearest-neighbor distances approach the diameter of the space.</p>
 <h3 id="concentration-of-pairwise-distances">Concentration of Pairwise Distances<a class="headerlink" href="#concentration-of-pairwise-distances" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem (Distance concentration).</strong> Let <span class="arithmatex">\(X, Y\)</span> be independent uniform on <span class="arithmatex">\([0,1]^d\)</span>. Then:</p>
-<p>$$</p>
-<p>\frac{|X - Y|^2 - d/6}{\sqrt{d \cdot \text{Var}(|X-Y|^2)}} \xrightarrow{d} \mathcal{N}(0,1).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\|X - Y\|^2 - d/6}{\sqrt{d \cdot \text{Var}(\|X-Y\|^2)}} \xrightarrow{d} \mathcal{N}(0,1)
+\]</div>
 <p>All pairwise distances concentrate around <span class="arithmatex">\(\sqrt{d/6}\)</span>. When all points are equidistant, notions of "near" and "far" lose meaning.</p>
 <hr />
 <h2 id="statistical-consequences">Statistical Consequences<a class="headerlink" href="#statistical-consequences" title="Permanent link">&para;</a></h2>
 <h3 id="nonparametric-convergence-rates">Nonparametric Convergence Rates<a class="headerlink" href="#nonparametric-convergence-rates" title="Permanent link">&para;</a></h3>
 <p>Recall Stone's theorem: for functions in the Hölder class <span class="arithmatex">\(\mathcal{H}(\beta, L)\)</span>, the minimax rate for estimating <span class="arithmatex">\(f\)</span> in <span class="arithmatex">\(L_2\)</span> is:</p>
-<p>$$</p>
-<p>\inf_{\hat{f}} \sup_{f \in \mathcal{H}(\beta, L)} \mathbb{E}|\hat{f} - f|_2^2 \asymp n^{-\frac{2\beta}{2\beta + d}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\hat{f}} \sup_{f \in \mathcal{H}(\beta, L)} \mathbb{E}\|\hat{f} - f\|_2^2 \asymp n^{-\frac{2\beta}{2\beta + d}}
+\]</div>
 <h3 id="effective-sample-size">Effective Sample Size<a class="headerlink" href="#effective-sample-size" title="Permanent link">&para;</a></h3>
 <p>Define <strong>effective sample size</strong> as the number of observations needed in dimension 1 to achieve the same error as <span class="arithmatex">\(n\)</span> observations in dimension <span class="arithmatex">\(d\)</span>:</p>
-<p>$$</p>
-<p>n_{\text{eff}} = n^{\frac{2\beta + 1}{2\beta + d}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+n_{\text{eff}} = n^{\frac{2\beta + 1}{2\beta + d}}
+\]</div>
 <p><strong>Example.</strong> For <span class="arithmatex">\(\beta = 2\)</span> (twice differentiable) and <span class="arithmatex">\(n = 1000\)</span>:</p>
 <table>
 <thead>
@@ -47145,48 +47145,48 @@
 <p>With 1000 observations in 50 dimensions, effective information content is equivalent to ~1.5 observations in one dimension.</p>
 <h3 id="required-sample-size">Required Sample Size<a class="headerlink" href="#required-sample-size" title="Permanent link">&para;</a></h3>
 <p>To achieve a target MSE of <span class="arithmatex">\(\varepsilon^2\)</span>, the required sample size scales as:</p>
-<p>$$</p>
-<p>n \asymp \varepsilon^{-(2\beta + d)/\beta}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+n \asymp \varepsilon^{-(2\beta + d)/\beta}
+\]</div>
 <p>For small <span class="arithmatex">\(\varepsilon\)</span> and large <span class="arithmatex">\(d\)</span>, this grows exponentially in <span class="arithmatex">\(d\)</span>.</p>
 <h3 id="covering-numbers-and-complexity">Covering Numbers and Complexity<a class="headerlink" href="#covering-numbers-and-complexity" title="Permanent link">&para;</a></h3>
 <p>The <strong>covering number</strong> <span class="arithmatex">\(\mathcal{N}(\varepsilon, \mathcal{X}, \|\cdot\|)\)</span> is the minimum number of balls of radius <span class="arithmatex">\(\varepsilon\)</span> needed to cover space <span class="arithmatex">\(\mathcal{X}\)</span>.</p>
 <p>For <span class="arithmatex">\([0,1]^d\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{N}(\varepsilon, [0,1]^d, |\cdot|_\infty) = \lceil 1/\varepsilon \rceil^d.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(\varepsilon, [0,1]^d, \|\cdot\|_\infty) = \lceil 1/\varepsilon \rceil^d
+\]</div>
 <p>This exponential scaling implies that learning algorithms must query exponentially many regions to approximate functions uniformly.</p>
 <hr />
 <h2 id="implications-for-learning">Implications for Learning<a class="headerlink" href="#implications-for-learning" title="Permanent link">&para;</a></h2>
 <h3 id="local-methods-fail">Local Methods Fail<a class="headerlink" href="#local-methods-fail" title="Permanent link">&para;</a></h3>
 <p><strong>k-Nearest Neighbors.</strong> To capture local structure with <span class="arithmatex">\(k\)</span> neighbors, the neighborhood radius is:</p>
-<p>$$</p>
-<p>r_k \approx \left(\frac{k}{n}\right)^{1/d}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_k \approx \left(\frac{k}{n}\right)^{1/d}
+\]</div>
 <p>For fixed <span class="arithmatex">\(k/n\)</span>, <span class="arithmatex">\(r_k \to 1\)</span> as <span class="arithmatex">\(d \to \infty\)</span>—the "local" neighborhood spans the entire space.</p>
 <p><strong>Kernel Regression.</strong> With bandwidth <span class="arithmatex">\(h\)</span>, the effective number of observations in a ball of radius <span class="arithmatex">\(h\)</span> is:</p>
-<p>$$</p>
-<p>n_{\text{local}} \approx n \cdot h^d.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+n_{\text{local}} \approx n \cdot h^d
+\]</div>
 <p>To maintain constant <span class="arithmatex">\(n_{\text{local}}\)</span> as <span class="arithmatex">\(d\)</span> increases, we need <span class="arithmatex">\(h \to 1\)</span>, destroying locality.</p>
 <h3 id="empty-space-phenomenon">Empty Space Phenomenon<a class="headerlink" href="#empty-space-phenomenon" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem.</strong> For <span class="arithmatex">\(n\)</span> points uniformly distributed in <span class="arithmatex">\([0,1]^d\)</span>, with high probability there exists an empty ball of radius:</p>
-<p>$$</p>
-<p>r \asymp \left(\frac{\log n}{n}\right)^{1/d}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r \asymp \left(\frac{\log n}{n}\right)^{1/d}
+\]</div>
 <p>For large <span class="arithmatex">\(d\)</span>, this radius is close to 1—large empty regions exist even with many observations.</p>
 <p><strong>Implication for finance:</strong> Extreme market scenarios (crashes, regime changes) may lie in empty regions of the feature space where no historical data provides guidance.</p>
 <hr />
 <h2 id="the-concentration-of-measure-phenomenon">The Concentration of Measure Phenomenon<a class="headerlink" href="#the-concentration-of-measure-phenomenon" title="Permanent link">&para;</a></h2>
 <h3 id="gaussian-concentration">Gaussian Concentration<a class="headerlink" href="#gaussian-concentration" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(X \sim \mathcal{N}(0, I_d)\)</span>, the norm concentrates:</p>
-<p>$$</p>
-<p>\frac{|X|^2 - d}{\sqrt{2d}} \xrightarrow{d} \mathcal{N}(0,1).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\|X\|^2 - d}{\sqrt{2d}} \xrightarrow{d} \mathcal{N}(0,1)
+\]</div>
 <p>Most probability mass lies in a thin shell of radius <span class="arithmatex">\(\sqrt{d}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}\left(\left||X| - \sqrt{d}\right| &gt; t\right) \leq 2e^{-t^2/2}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\left(\left|\|X\| - \sqrt{d}\right| &gt; t\right) \leq 2e^{-t^2/2}
+\]</div>
 <h3 id="implications-for-gaussian-models">Implications for Gaussian Models<a class="headerlink" href="#implications-for-gaussian-models" title="Permanent link">&para;</a></h3>
 <p>In factor models <span class="arithmatex">\(R = B F + \varepsilon\)</span> with <span class="arithmatex">\(F \sim \mathcal{N}(0, I_k)\)</span>:
 - Factor realizations concentrate on a sphere
@@ -47217,89 +47217,89 @@
 <h2 id="mitigation-strategies">Mitigation Strategies<a class="headerlink" href="#mitigation-strategies" title="Permanent link">&para;</a></h2>
 <h3 id="dimensionality-reduction">Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Permanent link">&para;</a></h3>
 <p><strong>Principal Component Analysis.</strong> Project onto top <span class="arithmatex">\(k\)</span> eigenvectors of covariance:</p>
-<p>$$</p>
-<p>X_{\text{reduced}} = X V_k, \quad V_k = [v_1, \ldots, v_k],</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_{\text{reduced}} = X V_k, \quad V_k = [v_1, \ldots, v_k]
+\]</div>
 <p>where <span class="arithmatex">\(v_j\)</span> are eigenvectors of <span class="arithmatex">\(\text{Cov}(X)\)</span>.</p>
 <p>In finance, the first few principal components of returns explain substantial variance:
 - PC1 (market): ~30-50% of variance
 - PC1-PC5: ~60-70% of variance</p>
 <p><strong>Factor models.</strong> Assume structure:</p>
-<p>$$</p>
-<p>R = \alpha + B F + \varepsilon, \quad \text{Cov}(\varepsilon) = D \text{ (diagonal)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R = \alpha + B F + \varepsilon, \quad \text{Cov}(\varepsilon) = D \text{ (diagonal)}
+\]</div>
 <p>With <span class="arithmatex">\(k\)</span> factors, covariance has <span class="arithmatex">\(nk + n\)</span> parameters instead of <span class="arithmatex">\(n(n+1)/2\)</span>.</p>
 <h3 id="sparsity-and-regularization">Sparsity and Regularization<a class="headerlink" href="#sparsity-and-regularization" title="Permanent link">&para;</a></h3>
 <p><strong>LASSO for variable selection.</strong> If only <span class="arithmatex">\(s \ll d\)</span> predictors are relevant:</p>
-<p>$$</p>
-<p>\hat{\beta} = \arg\min_\beta \left{ |Y - X\beta|_2^2 + \lambda |\beta|_1 \right}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\beta} = \arg\min_\beta \left\{ \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1 \right\}
+\]</div>
 <p><strong>Oracle inequality:</strong> Under restricted eigenvalue conditions:</p>
-<p>$$</p>
-<p>|\hat{\beta} - \beta^*|_2^2 \leq C \frac{s \log d}{n} \sigma^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|\hat{\beta} - \beta^*\|_2^2 \leq C \frac{s \log d}{n} \sigma^2
+\]</div>
 <p>The effective dimension is <span class="arithmatex">\(s \log d\)</span>, not <span class="arithmatex">\(d\)</span>.</p>
 <p><strong>Graphical LASSO for covariance.</strong> Estimate sparse precision matrix:</p>
-<p>$$</p>
-<p>\hat{\Omega} = \arg\min_{\Omega \succ 0} \left{ \text{tr}(S\Omega) - \log\det(\Omega) + \lambda |\Omega|_1 \right},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\Omega} = \arg\min_{\Omega \succ 0} \left\{ \text{tr}(S\Omega) - \log\det(\Omega) + \lambda \|\Omega\|_1 \right\}
+\]</div>
 <p>where <span class="arithmatex">\(S\)</span> is sample covariance and <span class="arithmatex">\(\|\Omega\|_1 = \sum_{i \neq j} |\Omega_{ij}|\)</span>.</p>
 <h3 id="structural-assumptions">Structural Assumptions<a class="headerlink" href="#structural-assumptions" title="Permanent link">&para;</a></h3>
 <p><strong>Additivity.</strong> Assume:</p>
-<p>$$</p>
-<p>f(x_1, \ldots, x_d) = \sum_{j=1}^d f_j(x_j).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(x_1, \ldots, x_d) = \sum_{j=1}^d f_j(x_j)
+\]</div>
 <p>Estimation reduces to <span class="arithmatex">\(d\)</span> univariate problems, achieving rate <span class="arithmatex">\(n^{-2\beta/(2\beta+1)}\)</span> independent of <span class="arithmatex">\(d\)</span>.</p>
 <p><strong>Single-index models:</strong></p>
-<p>$$</p>
-<p>f(x) = g(w^\top x),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(x) = g(w^\top x)
+\]</div>
 <p>reducing <span class="arithmatex">\(d\)</span>-dimensional regression to estimating direction <span class="arithmatex">\(w\)</span> and univariate function <span class="arithmatex">\(g\)</span>.</p>
 <p><strong>Low-rank structure:</strong> For matrix completion, assume <span class="arithmatex">\(\text{rank}(M) = r \ll \min(m,n)\)</span>.</p>
 <h3 id="shrinkage-estimators">Shrinkage Estimators<a class="headerlink" href="#shrinkage-estimators" title="Permanent link">&para;</a></h3>
 <p><strong>Ledoit-Wolf shrinkage for covariance:</strong></p>
-<p>$$</p>
-<p>\hat{\Sigma}_{\text{shrink}} = (1-\alpha) S + \alpha \mu I,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\Sigma}_{\text{shrink}} = (1-\alpha) S + \alpha \mu I
+\]</div>
 <p>where <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\mu\)</span> are chosen to minimize expected Frobenius loss.</p>
 <p>Optimal <span class="arithmatex">\(\alpha\)</span> increases with dimension, reflecting greater need for regularization.</p>
 <p><strong>James-Stein for means:</strong> The sample mean is inadmissible for <span class="arithmatex">\(d \geq 3\)</span>. Shrink toward grand mean:</p>
-<p>$$</p>
-<p>\hat{\mu}_{\text{JS}} = \bar{X} - \frac{(d-2)\hat{\sigma}^2}{n|\bar{X}|^2} \bar{X}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\mu}_{\text{JS}} = \bar{X} - \frac{(d-2)\hat{\sigma}^2}{n\|\bar{X}\|^2} \bar{X}
+\]</div>
 <hr />
 <h2 id="sample-splitting-and-high-dimensional-inference">Sample Splitting and High-Dimensional Inference<a class="headerlink" href="#sample-splitting-and-high-dimensional-inference" title="Permanent link">&para;</a></h2>
 <h3 id="post-selection-inference">Post-Selection Inference<a class="headerlink" href="#post-selection-inference" title="Permanent link">&para;</a></h3>
 <p>When variables are selected based on data (e.g., via LASSO), standard inference is invalid.</p>
 <p><strong>Selective inference</strong> conditions on the selection event:</p>
-<p>$$</p>
-<p>\mathbb{P}(|\hat{\beta}_j - \beta_j| &gt; z | \text{variable } j \text{ selected}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(|\hat{\beta}_j - \beta_j| &gt; z | \text{variable } j \text{ selected})
+\]</div>
 <h3 id="debiased-lasso">Debiased LASSO<a class="headerlink" href="#debiased-lasso" title="Permanent link">&para;</a></h3>
 <p>For valid inference in high dimensions, debias the LASSO estimator:</p>
-<p>$$</p>
-<p>\hat{\beta}^{\text{debias}} = \hat{\beta}^{\text{lasso}} + \frac{1}{n} \hat{\Theta} X^\top (Y - X\hat{\beta}^{\text{lasso}}),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\beta}^{\text{debias}} = \hat{\beta}^{\text{lasso}} + \frac{1}{n} \hat{\Theta} X^\top (Y - X\hat{\beta}^{\text{lasso}})
+\]</div>
 <p>where <span class="arithmatex">\(\hat{\Theta}\)</span> approximates the inverse of <span class="arithmatex">\(X^\top X / n\)</span>.</p>
 <p>Under sparsity conditions:</p>
-<p>$$</p>
-<p>\sqrt{n}(\hat{\beta}<em jj="jj">j^{\text{debias}} - \beta_j) \xrightarrow{d} \mathcal{N}(0, \sigma^2 \Theta</em>).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sqrt{n}(\hat{\beta}_j^{\text{debias}} - \beta_j) \xrightarrow{d} \mathcal{N}(0, \sigma^2 \Theta_{jj})
+\]</div>
 <hr />
 <h2 id="random-matrix-theory-perspective">Random Matrix Theory Perspective<a class="headerlink" href="#random-matrix-theory-perspective" title="Permanent link">&para;</a></h2>
 <h3 id="marchenko-pastur-distribution">Marchenko-Pastur Distribution<a class="headerlink" href="#marchenko-pastur-distribution" title="Permanent link">&para;</a></h3>
 <p>When <span class="arithmatex">\(n, d \to \infty\)</span> with <span class="arithmatex">\(d/n \to \gamma \in (0, \infty)\)</span>, the eigenvalues of the sample covariance <span class="arithmatex">\(S = X^\top X / n\)</span> (for <span class="arithmatex">\(X\)</span> with i.i.d. entries) follow the Marchenko-Pastur distribution:</p>
-<p>$$</p>
-<p>\rho_{\text{MP}}(\lambda) = \frac{\sqrt{(\lambda_+ - \lambda)(\lambda - \lambda_-)}}{2\pi \gamma \lambda} \mathbf{1}<em>{[\lambda</em>-, \lambda_+]}(\lambda),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{\text{MP}}(\lambda) = \frac{\sqrt{(\lambda_+ - \lambda)(\lambda - \lambda_-)}}{2\pi \gamma \lambda} \mathbf{1}_{[\lambda_-, \lambda_+]}(\lambda)
+\]</div>
 <p>where <span class="arithmatex">\(\lambda_\pm = (1 \pm \sqrt{\gamma})^2\)</span>.</p>
 <p><strong>Implication:</strong> Even if the true covariance is <span class="arithmatex">\(I\)</span>, sample eigenvalues spread over <span class="arithmatex">\([(1-\sqrt{\gamma})^2, (1+\sqrt{\gamma})^2]\)</span>.</p>
 <p>For <span class="arithmatex">\(\gamma = 1\)</span> (as many dimensions as observations): eigenvalues span <span class="arithmatex">\([0, 4]\)</span>, with many near zero (apparent multicollinearity from noise).</p>
 <h3 id="spiked-covariance-model">Spiked Covariance Model<a class="headerlink" href="#spiked-covariance-model" title="Permanent link">&para;</a></h3>
 <p>If true covariance has a few large eigenvalues (factors) plus identity:</p>
-<p>$$</p>
-<p>\Sigma = \sum_{i=1}^k \lambda_i v_i v_i^\top + I,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma = \sum_{i=1}^k \lambda_i v_i v_i^\top + I
+\]</div>
 <p>the sample eigenvalues exhibit a phase transition:
 - <span class="arithmatex">\(\lambda_i &gt; 1 + \sqrt{\gamma}\)</span>: Eigenvalue separates from bulk, estimable
 - <span class="arithmatex">\(\lambda_i \leq 1 + \sqrt{\gamma}\)</span>: Eigenvalue absorbed into noise, undetectable</p>
@@ -47309,16 +47309,16 @@
 <h3 id="high-dimensional-classification">High-Dimensional Classification<a class="headerlink" href="#high-dimensional-classification" title="Permanent link">&para;</a></h3>
 <p><strong>Cover's theorem:</strong> In high dimensions, random binary labelings become linearly separable with high probability.</p>
 <p>For <span class="arithmatex">\(n\)</span> points in <span class="arithmatex">\(\mathbb{R}^d\)</span> in general position, the probability that a random labeling is linearly separable is:</p>
-<p>$$</p>
-<p>P(d, n) = \frac{1}{2^{n-1}} \sum_{k=0}^{d-1} \binom{n-1}{k}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(d, n) = \frac{1}{2^{n-1}} \sum_{k=0}^{d-1} \binom{n-1}{k}
+\]</div>
 <p>For <span class="arithmatex">\(d &gt; n\)</span>: <span class="arithmatex">\(P(d, n) = 1\)</span> (always separable).</p>
 <p><strong>Caution:</strong> This "blessing" is illusory for generalization—it means we can fit any training labels, including noise.</p>
 <h3 id="kernel-methods">Kernel Methods<a class="headerlink" href="#kernel-methods" title="Permanent link">&para;</a></h3>
 <p>The kernel trick implicitly maps to high-dimensional feature spaces where linear methods suffice:</p>
-<p>$$</p>
-<p>\phi: \mathbb{R}^d \to \mathbb{R}^D, \quad K(x, x') = \langle \phi(x), \phi(x') \rangle.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi: \mathbb{R}^d \to \mathbb{R}^D, \quad K(x, x') = \langle \phi(x), \phi(x') \rangle
+\]</div>
 <p>Computation depends only on <span class="arithmatex">\(n\)</span>, not <span class="arithmatex">\(D\)</span>. But generalization still depends on effective dimensionality of the problem.</p>
 <hr />
 <h2 id="practical-guidelines-for-finance">Practical Guidelines for Finance<a class="headerlink" href="#practical-guidelines-for-finance" title="Permanent link">&para;</a></h2>

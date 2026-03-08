@@ -47029,15 +47029,15 @@
 <h2 id="definition-and-basic-properties">Definition and Basic Properties<a class="headerlink" href="#definition-and-basic-properties" title="Permanent link">&para;</a></h2>
 <h3 id="unconditional-survival-probability">Unconditional Survival Probability<a class="headerlink" href="#unconditional-survival-probability" title="Permanent link">&para;</a></h3>
 <p>The <strong>survival probability</strong> from time 0 to time <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>S(0,T) := \mathbb{Q}(\tau &gt; T),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,T) := \mathbb{Q}(\tau &gt; T)
+\]</div>
 <p>where <span class="arithmatex">\(\tau\)</span> is the default time and <span class="arithmatex">\(\mathbb{Q}\)</span> is the risk-neutral measure.</p>
 <h3 id="conditional-survival-probability">Conditional Survival Probability<a class="headerlink" href="#conditional-survival-probability" title="Permanent link">&para;</a></h3>
 <p>Given information at time <span class="arithmatex">\(t\)</span> (on the pre-default event <span class="arithmatex">\(\{\tau &gt; t\}\)</span>):</p>
-<p>$$</p>
-<p>S(t,T) := \mathbb{Q}(\tau &gt; T \mid \mathcal{G}_t) = \mathbb{Q}(\tau &gt; T \mid \mathcal{F}_t, \tau &gt; t),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) := \mathbb{Q}(\tau &gt; T \mid \mathcal{G}_t) = \mathbb{Q}(\tau &gt; T \mid \mathcal{F}_t, \tau &gt; t)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{G}_t\)</span> is the enlarged filtration and <span class="arithmatex">\(\mathcal{F}_t\)</span> is the market filtration.</p>
 <h3 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47050,27 +47050,27 @@
 <h2 id="relation-to-intensity">Relation to Intensity<a class="headerlink" href="#relation-to-intensity" title="Permanent link">&para;</a></h2>
 <h3 id="fundamental-formula">Fundamental Formula<a class="headerlink" href="#fundamental-formula" title="Permanent link">&para;</a></h3>
 <p>Under the standard intensity framework with Cox process construction:</p>
-<p>$$</p>
-<p>S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T \lambda_s \, ds\right) \middle| \mathcal{F}_t\right],</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T \lambda_s \, ds\right) \middle| \mathcal{F}_t\right]
+\]</div>
 <p>where <span class="arithmatex">\(\lambda_s\)</span> is the default intensity process.</p>
 <p><strong>Derivation:</strong> On <span class="arithmatex">\(\{\tau &gt; t\}\)</span>, using the Cox construction with <span class="arithmatex">\(\tau = \Lambda^{-1}(E)\)</span> where <span class="arithmatex">\(E \sim \text{Exp}(1)\)</span> independent of <span class="arithmatex">\(\mathcal{F}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\tau &gt; T \mid \mathcal{F}_t, \tau &gt; t) = \mathbb{Q}(E &gt; \Lambda_T \mid E &gt; \Lambda_t, \mathcal{F}_t) = \frac{\mathbb{Q}(E &gt; \Lambda_T \mid \mathcal{F}_t)}{\mathbb{Q}(E &gt; \Lambda_t \mid \mathcal{F}_t)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau &gt; T \mid \mathcal{F}_t, \tau &gt; t) = \mathbb{Q}(E &gt; \Lambda_T \mid E &gt; \Lambda_t, \mathcal{F}_t) = \frac{\mathbb{Q}(E &gt; \Lambda_T \mid \mathcal{F}_t)}{\mathbb{Q}(E &gt; \Lambda_t \mid \mathcal{F}_t)}
+\]</div>
 <p>Since <span class="arithmatex">\(E\)</span> is independent of <span class="arithmatex">\(\mathcal{F}_\infty\)</span>:</p>
-<p>$$</p>
-<p>S(t,T) = \frac{e^{-\Lambda_T}}{e^{-\Lambda_t}} = \exp\left(-\int_t^T \lambda_s ds\right) \quad \text{(given } \mathcal{F}_t\text{)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) = \frac{e^{-\Lambda_T}}{e^{-\Lambda_t}} = \exp\left(-\int_t^T \lambda_s ds\right) \quad \text{(given } \mathcal{F}_t\text{)}
+\]</div>
 <p>Taking expectation over future intensity:</p>
-<p>$$</p>
-<p>S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T \lambda_s ds} \middle| \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T \lambda_s ds} \middle| \mathcal{F}_t\right]
+\]</div>
 <h3 id="deterministic-intensity-case">Deterministic Intensity Case<a class="headerlink" href="#deterministic-intensity-case" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\lambda_t = \lambda(t)\)</span> is a deterministic function:</p>
-<p>$$</p>
-<p>S(t,T) = \exp\left(-\int_t^T \lambda(s) \, ds\right) = e^{-\Lambda(t,T)},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) = \exp\left(-\int_t^T \lambda(s) \, ds\right) = e^{-\Lambda(t,T)}
+\]</div>
 <p>where <span class="arithmatex">\(\Lambda(t,T) = \int_t^T \lambda(s) ds\)</span> is the cumulative hazard.</p>
 <hr />
 <h2 id="credit-term-structure">Credit Term Structure<a class="headerlink" href="#credit-term-structure" title="Permanent link">&para;</a></h2>
@@ -47104,74 +47104,74 @@
 </table>
 <h3 id="implied-hazard-rate">Implied Hazard Rate<a class="headerlink" href="#implied-hazard-rate" title="Permanent link">&para;</a></h3>
 <p>The <strong>continuously compounded hazard rate</strong> for maturity <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>h(t,T) = -\frac{\ln S(t,T)}{T-t}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+h(t,T) = -\frac{\ln S(t,T)}{T-t}
+\]</div>
 <p>This is the constant intensity that would produce the same survival probability.</p>
 <h3 id="forward-hazard-rate">Forward Hazard Rate<a class="headerlink" href="#forward-hazard-rate" title="Permanent link">&para;</a></h3>
 <p>The <strong>instantaneous forward hazard rate</strong> is:</p>
-<p>$$</p>
-<p>\lambda_f(t,T) = -\frac{\partial \ln S(t,T)}{\partial T} = \frac{1}{S(t,T)} \cdot \left(-\frac{\partial S(t,T)}{\partial T}\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_f(t,T) = -\frac{\partial \ln S(t,T)}{\partial T} = \frac{1}{S(t,T)} \cdot \left(-\frac{\partial S(t,T)}{\partial T}\right)
+\]</div>
 <p>In the limit <span class="arithmatex">\(T \to t\)</span>: <span class="arithmatex">\(\lambda_f(t,t) = \lambda_t\)</span> (the spot intensity).</p>
 <hr />
 <h2 id="survival-probabilities-for-specific-models">Survival Probabilities for Specific Models<a class="headerlink" href="#survival-probabilities-for-specific-models" title="Permanent link">&para;</a></h2>
 <h3 id="piecewise-constant-intensity">Piecewise-Constant Intensity<a class="headerlink" href="#piecewise-constant-intensity" title="Permanent link">&para;</a></h3>
 <p>With <span class="arithmatex">\(\lambda(s) = \lambda_i\)</span> for <span class="arithmatex">\(s \in (T_{i-1}, T_i]\)</span>:</p>
-<p>$$</p>
-<p>S(0,T) = \exp\left(-\sum_{i=1}^{k-1} \lambda_i (T_i - T_{i-1}) - \lambda_k (T - T_{k-1})\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,T) = \exp\left(-\sum_{i=1}^{k-1} \lambda_i (T_i - T_{i-1}) - \lambda_k (T - T_{k-1})\right)
+\]</div>
 <p>where <span class="arithmatex">\(T_{k-1} &lt; T \le T_k\)</span>.</p>
 <p><strong>Example:</strong> With nodes <span class="arithmatex">\(T_0=0, T_1=1, T_2=3, T_3=5\)</span> and intensities <span class="arithmatex">\(\lambda_1=1\%, \lambda_2=1.5\%, \lambda_3=2\%\)</span>:</p>
-<p>$$</p>
-<p>S(0,2) = e^{-0.01 \times 1 - 0.015 \times 1} = e^{-0.025} = 0.9753</p>
-<p>$$</p>
-<p>$$</p>
-<p>S(0,5) = e^{-0.01 \times 1 - 0.015 \times 2 - 0.02 \times 2} = e^{-0.08} = 0.9231</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,2) = e^{-0.01 \times 1 - 0.015 \times 1} = e^{-0.025} = 0.9753
+\]</div>
+<div class="arithmatex">\[
+S(0,5) = e^{-0.01 \times 1 - 0.015 \times 2 - 0.02 \times 2} = e^{-0.08} = 0.9231
+\]</div>
 <h3 id="cir-intensity-model">CIR Intensity Model<a class="headerlink" href="#cir-intensity-model" title="Permanent link">&para;</a></h3>
 <p>With <span class="arithmatex">\(d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma\sqrt{\lambda_t}dW_t\)</span>, the survival probability has affine form:</p>
-<p>$$</p>
-<p>S(t,T) = A(t,T) \exp(-B(t,T) \lambda_t),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) = A(t,T) \exp(-B(t,T) \lambda_t)
+\]</div>
 <p>where <span class="arithmatex">\(A(t,T)\)</span> and <span class="arithmatex">\(B(t,T)\)</span> satisfy Riccati ODEs:</p>
-<p>$$</p>
-<p>B(t,T) = \frac{2(e^{\gamma(T-t)} - 1)}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma},</p>
-<p>$$</p>
-<p>$$</p>
-<p>A(t,T) = \left[\frac{2\gamma e^{(\kappa + \gamma)(T-t)/2}}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B(t,T) = \frac{2(e^{\gamma(T-t)} - 1)}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}
+\]</div>
+<div class="arithmatex">\[
+A(t,T) = \left[\frac{2\gamma e^{(\kappa + \gamma)(T-t)/2}}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}
+\]</div>
 <p>with <span class="arithmatex">\(\gamma = \sqrt{\kappa^2 + 2\sigma^2}\)</span>.</p>
 <h3 id="vasicek-intensity-model">Vasicek Intensity Model<a class="headerlink" href="#vasicek-intensity-model" title="Permanent link">&para;</a></h3>
 <p>With <span class="arithmatex">\(d\lambda_t = \kappa(\theta - \lambda_t)dt + \sigma dW_t\)</span> (Gaussian OU process):</p>
-<p>$$</p>
-<p>S(t,T) = \exp\left(-B(t,T)\lambda_t - A(t,T)\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) = \exp\left(-B(t,T)\lambda_t - A(t,T)\right)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>B(t,T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa},</p>
-<p>$$</p>
-<p>$$</p>
-<p>A(t,T) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(t,T) - (T-t)) - \frac{\sigma^2}{4\kappa}B(t,T)^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B(t,T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}
+\]</div>
+<div class="arithmatex">\[
+A(t,T) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)(B(t,T) - (T-t)) - \frac{\sigma^2}{4\kappa}B(t,T)^2
+\]</div>
 <p><strong>Note:</strong> Vasicek intensity can become negative, which is economically problematic but sometimes used for analytical convenience.</p>
 <hr />
 <h2 id="default-probability-term-structure">Default Probability Term Structure<a class="headerlink" href="#default-probability-term-structure" title="Permanent link">&para;</a></h2>
 <h3 id="cumulative-default-probability">Cumulative Default Probability<a class="headerlink" href="#cumulative-default-probability" title="Permanent link">&para;</a></h3>
 <p>The probability of default by time <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>F(t,T) := \mathbb{Q}(\tau \le T \mid \mathcal{G}_t) = 1 - S(t,T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(t,T) := \mathbb{Q}(\tau \le T \mid \mathcal{G}_t) = 1 - S(t,T)
+\]</div>
 <h3 id="marginal-period-default-probability">Marginal (Period) Default Probability<a class="headerlink" href="#marginal-period-default-probability" title="Permanent link">&para;</a></h3>
 <p>The probability of default during period <span class="arithmatex">\((T_1, T_2]\)</span>, conditional on survival to <span class="arithmatex">\(T_1\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\tau \in (T_1, T_2] \mid \tau &gt; T_1) = \frac{S(t, T_1) - S(t, T_2)}{S(t, T_1)} = 1 - \frac{S(t, T_2)}{S(t, T_1)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau \in (T_1, T_2] \mid \tau &gt; T_1) = \frac{S(t, T_1) - S(t, T_2)}{S(t, T_1)} = 1 - \frac{S(t, T_2)}{S(t, T_1)}
+\]</div>
 <h3 id="default-density">Default Density<a class="headerlink" href="#default-density" title="Permanent link">&para;</a></h3>
 <p>The density of default time (conditional on <span class="arithmatex">\(\mathcal{F}_t\)</span>):</p>
-<p>$$</p>
-<p>f(t,T) = -\frac{\partial S(t,T)}{\partial T} = S(t,T) \cdot \lambda_f(t,T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t,T) = -\frac{\partial S(t,T)}{\partial T} = S(t,T) \cdot \lambda_f(t,T)
+\]</div>
 <p>For deterministic intensity: <span class="arithmatex">\(f(0,T) = \lambda(T) e^{-\int_0^T \lambda(s)ds}\)</span>.</p>
 <hr />
 <h2 id="market-observables-and-credit-curves">Market Observables and Credit Curves<a class="headerlink" href="#market-observables-and-credit-curves" title="Permanent link">&para;</a></h2>
@@ -47184,14 +47184,14 @@
 </ol>
 <h3 id="bond-implied-survival-probabilities">Bond-Implied Survival Probabilities<a class="headerlink" href="#bond-implied-survival-probabilities" title="Permanent link">&para;</a></h3>
 <p>For a defaultable zero-coupon bond with price <span class="arithmatex">\(P^d(0,T)\)</span> and recovery <span class="arithmatex">\(R\)</span>:</p>
-<p>$$</p>
-<p>P^d(0,T) = P(0,T)\left[R + (1-R)S(0,T)\right],</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(0,T) = P(0,T)\left[R + (1-R)S(0,T)\right]
+\]</div>
 <p>where <span class="arithmatex">\(P(0,T)\)</span> is the risk-free discount factor.</p>
 <p>Solving for survival probability:</p>
-<p>$$</p>
-<p>S(0,T) = \frac{P^d(0,T)/P(0,T) - R}{1 - R}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,T) = \frac{P^d(0,T)/P(0,T) - R}{1 - R}
+\]</div>
 <h3 id="credit-curve-shapes">Credit Curve Shapes<a class="headerlink" href="#credit-curve-shapes" title="Permanent link">&para;</a></h3>
 <p>Typical shapes observed in markets:</p>
 <table>
@@ -47229,29 +47229,29 @@
 <h2 id="survival-probabilities-and-discounting">Survival Probabilities and Discounting<a class="headerlink" href="#survival-probabilities-and-discounting" title="Permanent link">&para;</a></h2>
 <h3 id="risk-adjusted-discounting">Risk-Adjusted Discounting<a class="headerlink" href="#risk-adjusted-discounting" title="Permanent link">&para;</a></h3>
 <p>A key insight: survival-weighted discounting combines interest rate and credit effects:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds} \middle| \mathcal{F}_t\right] = P(t,T) \cdot S(t,T) \quad \text{(under independence)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds} \middle| \mathcal{F}_t\right] = P(t,T) \cdot S(t,T) \quad \text{(under independence)}
+\]</div>
 <p>When <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(\lambda\)</span> are independent, risk-adjusted discounting <strong>separates</strong> into interest rate discounting times survival probability.</p>
 <h3 id="default-adjusted-discount-factor">Default-Adjusted Discount Factor<a class="headerlink" href="#default-adjusted-discount-factor" title="Permanent link">&para;</a></h3>
 <p>The <strong>default-adjusted discount factor</strong> is:</p>
-<p>$$</p>
-<p>D^d(t,T) := P(t,T) \cdot S(t,T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D^d(t,T) := P(t,T) \cdot S(t,T)
+\]</div>
 <p>This discounts both for time value and credit risk.</p>
 <h3 id="correlation-effects">Correlation Effects<a class="headerlink" href="#correlation-effects" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(r_t\)</span> and <span class="arithmatex">\(\lambda_t\)</span> are correlated:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds}\right] \ne P(t,T) \cdot S(t,T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s)ds}\right] \ne P(t,T) \cdot S(t,T)
+\]</div>
 <p>Positive correlation (<span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(\lambda\)</span> move together) increases the covariance term; negative correlation decreases it. This matters for credit-rate hybrid products.</p>
 <hr />
 <h2 id="computation-methods">Computation Methods<a class="headerlink" href="#computation-methods" title="Permanent link">&para;</a></h2>
 <h3 id="analytical-affine-models">Analytical (Affine Models)<a class="headerlink" href="#analytical-affine-models" title="Permanent link">&para;</a></h3>
 <p>For affine intensity models (CIR, Vasicek), survival probabilities have exponential-affine form:</p>
-<p>$$</p>
-<p>S(t,T) = A(T-t) e^{-B(T-t)\lambda_t}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t,T) = A(T-t) e^{-B(T-t)\lambda_t}
+\]</div>
 <p>Solve the associated Riccati equations for <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>.</p>
 <h3 id="monte-carlo-simulation">Monte Carlo Simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47261,9 +47261,9 @@
 </ol>
 <h3 id="pde-methods">PDE Methods<a class="headerlink" href="#pde-methods" title="Permanent link">&para;</a></h3>
 <p>Survival probability satisfies a Kolmogorov backward equation:</p>
-<p>$$</p>
-<p>\frac{\partial S}{\partial t} + \mathcal{L}S - \lambda S = 0, \quad S(T,T) = 1,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial S}{\partial t} + \mathcal{L}S - \lambda S = 0, \quad S(T,T) = 1
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}\)</span> is the infinitesimal generator of the intensity process.</p>
 <hr />
 <h2 id="worked-example-cir-intensity">Worked Example: CIR Intensity<a class="headerlink" href="#worked-example-cir-intensity" title="Permanent link">&para;</a></h2>
@@ -47273,25 +47273,25 @@
 - Long-run mean: <span class="arithmatex">\(\theta = 3\%\)</span>
 - Volatility: <span class="arithmatex">\(\sigma = 10\%\)</span></p>
 <p><strong>Compute <span class="arithmatex">\(\gamma\)</span>:</strong></p>
-<p>$$</p>
-<p>\gamma = \sqrt{\kappa^2 + 2\sigma^2} = \sqrt{0.25 + 0.02} = \sqrt{0.27} = 0.5196</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\gamma = \sqrt{\kappa^2 + 2\sigma^2} = \sqrt{0.25 + 0.02} = \sqrt{0.27} = 0.5196
+\]</div>
 <p><strong>5-year survival probability:</strong></p>
-<p>$$</p>
-<p>B(0,5) = \frac{2(e^{0.5196 \times 5} - 1)}{(0.5196 + 0.5)(e^{2.598} - 1) + 2 \times 0.5196}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{2(13.44 - 1)}{1.0196 \times 12.44 + 1.0392} = \frac{24.88}{13.72} = 1.814</p>
-<p>$$</p>
-<p>$$</p>
-<p>A(0,5) = \left[\frac{2 \times 0.5196 \times e^{(0.5 + 0.5196) \times 2.5}}{(1.0196)(12.44) + 1.0392}\right]^{2 \times 0.5 \times 0.03/0.01}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \left[\frac{1.0392 \times e^{2.55}}{13.72}\right]^{3} = \left[\frac{13.32}{13.72}\right]^3 = 0.971^3 = 0.915</p>
-<p>$$</p>
-<p>$$</p>
-<p>S(0,5) = 0.915 \times e^{-1.814 \times 0.02} = 0.915 \times e^{-0.0363} = 0.915 \times 0.964 = 0.882</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B(0,5) = \frac{2(e^{0.5196 \times 5} - 1)}{(0.5196 + 0.5)(e^{2.598} - 1) + 2 \times 0.5196}
+\]</div>
+<div class="arithmatex">\[
+= \frac{2(13.44 - 1)}{1.0196 \times 12.44 + 1.0392} = \frac{24.88}{13.72} = 1.814
+\]</div>
+<div class="arithmatex">\[
+A(0,5) = \left[\frac{2 \times 0.5196 \times e^{(0.5 + 0.5196) \times 2.5}}{(1.0196)(12.44) + 1.0392}\right]^{2 \times 0.5 \times 0.03/0.01}
+\]</div>
+<div class="arithmatex">\[
+= \left[\frac{1.0392 \times e^{2.55}}{13.72}\right]^{3} = \left[\frac{13.32}{13.72}\right]^3 = 0.971^3 = 0.915
+\]</div>
+<div class="arithmatex">\[
+S(0,5) = 0.915 \times e^{-1.814 \times 0.02} = 0.915 \times e^{-0.0363} = 0.915 \times 0.964 = 0.882
+\]</div>
 <p><strong>5-year default probability:</strong> <span class="arithmatex">\(1 - 0.882 = 11.8\%\)</span></p>
 <hr />
 <h2 id="practical-considerations">Practical Considerations<a class="headerlink" href="#practical-considerations" title="Permanent link">&para;</a></h2>

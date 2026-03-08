@@ -46516,11 +46516,11 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>An <strong>Itô process</strong> is a continuous adapted process <span class="arithmatex">\(X_t\)</span> that can be written in the form:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t = X_0 + \int_0^t \mu_s \, ds + \int_0^t \sigma_s \, dB_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(X_0\)</span> is an <span class="arithmatex">\(\mathcal{F}_0\)</span>-measurable random variable (the initial value)</li>
@@ -46529,9 +46529,9 @@ X_t = X_0 + \int_0^t \mu_s \, ds + \int_0^t \sigma_s \, dB_s
 <li><span class="arithmatex">\(B_t\)</span> is a standard Brownian motion</li>
 </ul>
 <p><strong>Differential notation</strong>: We often write this compactly as:</p>
-<p>$$</p>
-<p>dX_t = \mu_t \, dt + \sigma_t \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu_t \, dt + \sigma_t \, dB_t
+\]</div>
 <p>with the understanding that this is shorthand for the integral equation above.</p>
 <p><strong>Interpretation</strong>:</p>
 <ul>
@@ -46543,16 +46543,16 @@ X_t = X_0 + \int_0^t \mu_s \, ds + \int_0^t \sigma_s \, dB_s
 <h2 id="basic-examples">Basic examples<a class="headerlink" href="#basic-examples" title="Permanent link">&para;</a></h2>
 <h3 id="1-example-1-brownian-motion">1. Example 1: Brownian motion<a class="headerlink" href="#1-example-1-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>Standard Brownian motion is the simplest Itô process:</p>
-<p>$$</p>
-<p>B_t = B_0 + \int_0^t 0 \, ds + \int_0^t 1 \, dB_s = \int_0^t dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = B_0 + \int_0^t 0 \, ds + \int_0^t 1 \, dB_s = \int_0^t dB_s
+\]</div>
 <p>Here, <span class="arithmatex">\(\mu_t = 0\)</span> (no drift) and <span class="arithmatex">\(\sigma_t = 1\)</span> (unit diffusion).</p>
 <h3 id="2-example-2-brownian-motion-with-drift">2. Example 2: Brownian motion with drift<a class="headerlink" href="#2-example-2-brownian-motion-with-drift" title="Permanent link">&para;</a></h3>
 <p>A Brownian motion with constant drift <span class="arithmatex">\(\mu\)</span> and volatility <span class="arithmatex">\(\sigma\)</span>:</p>
-<p>$$</p>
-<p>X_t = X_0 + \mu t + \sigma B_t
-= X_0 + \int_0^t \mu \, ds + \int_0^t \sigma \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 + \mu t + \sigma B_t
+= X_0 + \int_0^t \mu \, ds + \int_0^t \sigma \, dB_s
+\]</div>
 <p>In differential form: <span class="arithmatex">\(dX_t = \mu \, dt + \sigma \, dB_t\)</span>.</p>
 <p><strong>Properties</strong>:</p>
 <ul>
@@ -46563,40 +46563,40 @@ X_t = X_0 + \int_0^t \mu_s \, ds + \int_0^t \sigma_s \, dB_s
 <p>This process is widely used in physics (particle motion with constant force) and finance (stock prices under the Black-Scholes model with log-normal returns).</p>
 <h3 id="3-example-3-integrated-brownian-motion">3. Example 3: Integrated Brownian motion<a class="headerlink" href="#3-example-3-integrated-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>Define:</p>
-<p>$$</p>
-<p>X_t = \int_0^t B_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = \int_0^t B_s \, ds
+\]</div>
 <p>This is <strong>not</strong> directly an Itô process, but it can be expressed using integration by parts as:</p>
-<p>$$</p>
-<p>X_t = t B_t - \int_0^t s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = t B_t - \int_0^t s \, dB_s
+\]</div>
 <p>Thus, <span class="arithmatex">\(X_t\)</span> is an Itô process with:</p>
-<p>$$</p>
-<p>dX_t = B_t \, dt - t \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = B_t \, dt - t \, dB_t
+\]</div>
 <p>(This anticipates Itô's integration by parts formula.)</p>
 <h3 id="4-example-4-quadratic-variation-as-an-ito-process">4. Example 4: Quadratic variation as an Itô process<a class="headerlink" href="#4-example-4-quadratic-variation-as-an-ito-process" title="Permanent link">&para;</a></h3>
 <p>The process <span class="arithmatex">\(B_t^2 - t\)</span> is a martingale (established in Section 1.2). We can express it as:</p>
-<p>$$</p>
-<p>B_t^2 - t = \int_0^t 2B_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t^2 - t = \int_0^t 2B_s \, dB_s
+\]</div>
 <p>This is an Itô process with <span class="arithmatex">\(\mu_t = -1\)</span> (implicit drift correction) and <span class="arithmatex">\(\sigma_t = 2B_t\)</span>.</p>
 <p><strong>Verification</strong>: Applying Itô's formula to <span class="arithmatex">\(f(x) = x^2\)</span>:</p>
-<p>$$</p>
-<p>d(B_t^2) = 2B_t \, dB_t + dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(B_t^2) = 2B_t \, dB_t + dt
+\]</div>
 <p>Thus:</p>
-<p>$$</p>
-<p>d(B_t^2 - t) = 2B_t \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(B_t^2 - t) = 2B_t \, dB_t
+\]</div>
 <p>confirming the representation.</p>
 <hr />
 <h2 id="differential-notation-and-interpretation">Differential notation and interpretation<a class="headerlink" href="#differential-notation-and-interpretation" title="Permanent link">&para;</a></h2>
 <p>The notation <span class="arithmatex">\(dX_t = \mu_t dt + \sigma_t dB_t\)</span> should be understood as:</p>
-<p>$$</p>
-<p>X_t - X_s = \int_s^t \mu_u \, du + \int_s^t \sigma_u \, dB_u
-\quad \text{for } s &lt; t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t - X_s = \int_s^t \mu_u \, du + \int_s^t \sigma_u \, dB_u
+\quad \text{for } s &lt; t
+\]</div>
 <p><strong>Key points</strong>:</p>
 <ol>
 <li><span class="arithmatex">\(dX_t\)</span> is <strong>not</strong> a derivative—it is an infinitesimal increment</li>
@@ -46605,13 +46605,13 @@ X_t = X_0 + \int_0^t \mu_s \, ds + \int_0^t \sigma_s \, dB_s
 <li>The equality is in the integral sense, not pointwise</li>
 </ol>
 <p><strong>Heuristic rules</strong> (formalized by Itô's formula):</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dt \cdot dt &amp;= 0\\
 dB_t \cdot dt &amp;= 0\\
 dB_t \cdot dB_t &amp;= dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>These "multiplication rules" capture the essence of stochastic calculus: deterministic infinitesimals are negligible compared to stochastic ones, and the quadratic variation of Brownian motion is of order <span class="arithmatex">\(dt\)</span>.</p>
 <hr />
 <h2 id="properties-of-ito-processes">Properties of Itô processes<a class="headerlink" href="#properties-of-ito-processes" title="Permanent link">&para;</a></h2>
@@ -46624,43 +46624,43 @@ dB_t \cdot dB_t &amp;= dt
 <li>A <strong>supermartingale</strong> if <span class="arithmatex">\(\mu_t \le 0\)</span> (nonpositive drift)</li>
 </ol>
 <p><strong>Proof of (1)</strong>: For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_t \mid \mathcal{F}_s]
-= \mathbb{E}\left[X_s + \int_s^t \mu_u du + \int_s^t \sigma_u dB_u \,\Big|\, \mathcal{F}_s\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t \mid \mathcal{F}_s]
+= \mathbb{E}\left[X_s + \int_s^t \mu_u du + \int_s^t \sigma_u dB_u \,\Big|\, \mathcal{F}_s\right]
+\]</div>
 <p>The stochastic integral is a martingale, so:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_s^t \sigma_u dB_u \,\Big|\, \mathcal{F}_s\right] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_s^t \sigma_u dB_u \,\Big|\, \mathcal{F}_s\right] = 0
+\]</div>
 <p>Thus:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_t \mid \mathcal{F}_s]
-= X_s + \mathbb{E}\left[\int_s^t \mu_u du \,\Big|\, \mathcal{F}_s\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t \mid \mathcal{F}_s]
+= X_s + \mathbb{E}\left[\int_s^t \mu_u du \,\Big|\, \mathcal{F}_s\right]
+\]</div>
 <p>The martingale property <span class="arithmatex">\(\mathbb{E}[X_t \mid \mathcal{F}_s] = X_s\)</span> holds if and only if <span class="arithmatex">\(\mu_t = 0\)</span> a.e. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Example</strong>: The process <span class="arithmatex">\(B_t^2 - t\)</span> is a martingale because it has the representation:</p>
-<p>$$</p>
-<p>B_t^2 - t = \int_0^t 2B_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t^2 - t = \int_0^t 2B_s \, dB_s
+\]</div>
 <p>with <span class="arithmatex">\(\mu_t = 0\)</span>.</p>
 <h3 id="2-quadratic-variation">2. Quadratic variation<a class="headerlink" href="#2-quadratic-variation" title="Permanent link">&para;</a></h3>
 <p>The quadratic variation of an Itô process is determined entirely by its diffusion coefficient.</p>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(X_t = X_0 + \int_0^t \mu_s ds + \int_0^t \sigma_s dB_s\)</span>, then:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 [X, X]_t = \int_0^t \sigma_s^2 \, ds
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Proof</strong>: The quadratic variation of a finite variation process is zero, so:</p>
-<p>$$</p>
-<p>\left[\int_0^t \mu_s ds, \int_0^t \mu_s ds\right]_t = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left[\int_0^t \mu_s ds, \int_0^t \mu_s ds\right]_t = 0
+\]</div>
 <p>By bilinearity of quadratic covariation:</p>
-<p>$$</p>
-<p>[X, X]_t
+<div class="arithmatex">\[
+[X, X]_t
 = \left[\int_0^t \sigma_s dB_s, \int_0^t \sigma_s dB_s\right]_t
-= \int_0^t \sigma_s^2 \, ds</p>
-<p>$$</p>
+= \int_0^t \sigma_s^2 \, ds
+\]</div>
 <p>where the last equality follows from the quadratic variation property of the Itô integral. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Corollary</strong>: The <strong>instantaneous variance</strong> (or <strong>spot volatility</strong>) of <span class="arithmatex">\(X_t\)</span> at time <span class="arithmatex">\(t\)</span> is <span class="arithmatex">\(\sigma_t^2\)</span>.</p>
 <h3 id="3-path-properties">3. Path properties<a class="headerlink" href="#3-path-properties" title="Permanent link">&para;</a></h3>
@@ -46670,9 +46670,9 @@ dB_t \cdot dB_t &amp;= dt
 <h2 id="the-doob-meyer-decomposition">The Doob-Meyer decomposition<a class="headerlink" href="#the-doob-meyer-decomposition" title="Permanent link">&para;</a></h2>
 <p>For an Itô process, the <strong>Doob-Meyer decomposition</strong> is explicit.</p>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\(X_t\)</span> be an Itô process with <span class="arithmatex">\(\mu_t \ge 0\)</span>. Then <span class="arithmatex">\(X_t\)</span> is a submartingale, and its Doob-Meyer decomposition is:</p>
-<p>$$</p>
-<p>X_t = M_t + A_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = M_t + A_t
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(M_t = X_0 + \int_0^t \sigma_s dB_s\)</span> is a continuous local martingale</li>
@@ -46684,9 +46684,9 @@ dB_t \cdot dB_t &amp;= dt
 <h2 id="examples-revisited">Examples revisited<a class="headerlink" href="#examples-revisited" title="Permanent link">&para;</a></h2>
 <h3 id="1-ornstein-uhlenbeck-process">1. Ornstein-Uhlenbeck process<a class="headerlink" href="#1-ornstein-uhlenbeck-process" title="Permanent link">&para;</a></h3>
 <p>The <strong>Ornstein-Uhlenbeck process</strong> is defined by:</p>
-<p>$$</p>
-<p>dX_t = -\theta X_t \, dt + \sigma \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = -\theta X_t \, dt + \sigma \, dB_t
+\]</div>
 <p>where <span class="arithmatex">\(\theta &gt; 0\)</span> is a mean-reversion parameter and <span class="arithmatex">\(\sigma &gt; 0\)</span> is volatility.</p>
 <p>This is an Itô process with:</p>
 <ul>
@@ -46702,43 +46702,43 @@ dB_t \cdot dB_t &amp;= dt
 <p>The Ornstein-Uhlenbeck process is used in physics (velocity of a particle under friction) and finance (interest rate models, volatility models).</p>
 <h3 id="2-geometric-brownian-motion-informal-preview">2. Geometric Brownian motion (informal preview)<a class="headerlink" href="#2-geometric-brownian-motion-informal-preview" title="Permanent link">&para;</a></h3>
 <p>Consider the process:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma S_t \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma S_t \, dB_t
+\]</div>
 <p>This is <strong>not</strong> directly an Itô process in the sense defined above, because the coefficients <span class="arithmatex">\(\mu S_t\)</span> and <span class="arithmatex">\(\sigma S_t\)</span> depend on the unknown process <span class="arithmatex">\(S_t\)</span> itself.</p>
 <p>However, we can interpret this as a <strong>stochastic differential equation (SDE)</strong>, which we will study in Chapter 2. Using Itô's formula, the solution is:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right)
+\]</div>
 <p>This process is widely used in mathematical finance as a model for stock prices (Black-Scholes model).</p>
 <hr />
 <h2 id="extension-multidimensional-ito-processes">Extension: Multidimensional Itô processes<a class="headerlink" href="#extension-multidimensional-ito-processes" title="Permanent link">&para;</a></h2>
 <p>In applications, we often encounter systems of coupled Itô processes.</p>
 <p><strong>Definition</strong>: An <span class="arithmatex">\(n\)</span>-dimensional Itô process <span class="arithmatex">\(\mathbf{X}_t = (X_t^1, \ldots, X_t^n)^\top\)</span> is a vector process satisfying:</p>
-<p>$$</p>
-<p>X_t^i = X_0^i + \int_0^t \mu_s^i \, ds + \sum_{j=1}^m \int_0^t \sigma_s^{ij} \, dB_s^j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t^i = X_0^i + \int_0^t \mu_s^i \, ds + \sum_{j=1}^m \int_0^t \sigma_s^{ij} \, dB_s^j
+\]</div>
 <p>where <span class="arithmatex">\(B^1, \ldots, B^m\)</span> are independent Brownian motions.</p>
 <p>In differential form:</p>
-<p>$$</p>
-<p>dX_t^i = \mu_t^i \, dt + \sum_{j=1}^m \sigma_t^{ij} \, dB_t^j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t^i = \mu_t^i \, dt + \sum_{j=1}^m \sigma_t^{ij} \, dB_t^j
+\]</div>
 <p>or in matrix notation:</p>
-<p>$$</p>
-<p>d\mathbf{X}_t = \boldsymbol{\mu}_t \, dt + \boldsymbol{\Sigma}_t \, d\mathbf{B}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\mathbf{X}_t = \boldsymbol{\mu}_t \, dt + \boldsymbol{\Sigma}_t \, d\mathbf{B}_t
+\]</div>
 <p>where <span class="arithmatex">\(\boldsymbol{\Sigma}_t\)</span> is an <span class="arithmatex">\(n \times m\)</span> matrix (the <strong>diffusion matrix</strong>).</p>
 <p><strong>Quadratic variation</strong>: For multidimensional Itô processes:</p>
-<p>$$</p>
-<p>[X^i, X^j]<em k="1">t = \sum</em> \, ds}^m \int_0^t \sigma_s^{ik} \sigma_s^{jk</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[X^i, X^j]_t = \sum_{k=1}^m \int_0^t \sigma_s^{ik} \sigma_s^{jk} \, ds
+\]</div>
 <p>This generalizes the scalar case.</p>
 <hr />
 <h2 id="connection-to-stochastic-differential-equations">Connection to stochastic differential equations<a class="headerlink" href="#connection-to-stochastic-differential-equations" title="Permanent link">&para;</a></h2>
 <p>The notation <span class="arithmatex">\(dX_t = \mu_t dt + \sigma_t dB_t\)</span> naturally leads to <strong>stochastic differential equations (SDEs)</strong>:</p>
-<p>$$</p>
-<p>dX_t = \mu(t, X_t) \, dt + \sigma(t, X_t) \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(t, X_t) \, dt + \sigma(t, X_t) \, dB_t
+\]</div>
 <p>where the drift and diffusion coefficients now <strong>depend on the current state</strong> <span class="arithmatex">\(X_t\)</span>.</p>
 <p><strong>Key difference</strong>:</p>
 <ul>

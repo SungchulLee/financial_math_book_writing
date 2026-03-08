@@ -46504,15 +46504,15 @@
 <hr />
 <h2 id="the-equation">The Equation<a class="headerlink" href="#the-equation" title="Permanent link">&para;</a></h2>
 <p>In one spatial dimension, the heat equation is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial u}{\partial t}(t,x) = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}(t,x), \quad (t,x) \in (0,\infty) \times \mathbb{R}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>with initial condition:</p>
-<p>$$</p>
-<p>u(0,x) = f(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(0,x) = f(x)
+\]</div>
 <p>Here <span class="arithmatex">\(u(t,x)\)</span> represents:
 - <strong>Physics</strong>: Temperature at position <span class="arithmatex">\(x\)</span> and time <span class="arithmatex">\(t\)</span>
 - <strong>Probability</strong>: Density of particles diffusing from initial distribution <span class="arithmatex">\(f\)</span>
@@ -46520,9 +46520,9 @@
 <hr />
 <h2 id="why-the-factor-12">Why the Factor 1/2?<a class="headerlink" href="#why-the-factor-12" title="Permanent link">&para;</a></h2>
 <p>The coefficient <span class="arithmatex">\(\frac{1}{2}\)</span> is chosen to align with <strong>standard Brownian motion</strong>, whose variance satisfies:</p>
-<p>$$</p>
-<p>\text{Var}(B_t) = \mathbb{E}[B_t^2] = t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(B_t) = \mathbb{E}[B_t^2] = t
+\]</div>
 <p>With this normalization:
 - The heat kernel equals the density of <span class="arithmatex">\(B_t\)</span>
 - The generator of Brownian motion is <span class="arithmatex">\(\mathcal{L} = \frac{1}{2}\frac{\partial^2}{\partial x^2}\)</span>
@@ -46532,25 +46532,25 @@
 <h2 id="physical-derivation">Physical Derivation<a class="headerlink" href="#physical-derivation" title="Permanent link">&para;</a></h2>
 <p>The heat equation arises from two physical principles:</p>
 <p><strong>1. Conservation of energy</strong>: </p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} = -\frac{\partial q}{\partial x}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} = -\frac{\partial q}{\partial x}
+\]</div>
 <p>where <span class="arithmatex">\(q\)</span> is the heat flux.</p>
 <p><strong>2. Fourier's law</strong>: Heat flows from hot to cold proportionally to the temperature gradient:</p>
-<p>$$</p>
-<p>q = -\kappa \frac{\partial u}{\partial x}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q = -\kappa \frac{\partial u}{\partial x}
+\]</div>
 <p>Combining these:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} = \kappa \frac{\partial^2 u}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} = \kappa \frac{\partial^2 u}{\partial x^2}
+\]</div>
 <hr />
 <h2 id="classification-parabolic-pdes">Classification: Parabolic PDEs<a class="headerlink" href="#classification-parabolic-pdes" title="Permanent link">&para;</a></h2>
 <p>The heat equation is the prototype of <strong>parabolic</strong> PDEs.</p>
 <p><strong>General second-order linear PDE</strong>:</p>
-<p>$$</p>
-<p>Au_{xx} + 2Bu_{xy} + Cu_{yy} + \text{lower order} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Au_{xx} + 2Bu_{xy} + Cu_{yy} + \text{lower order} = 0
+\]</div>
 <p><strong>Classification</strong> (by discriminant <span class="arithmatex">\(B^2 - AC\)</span>):</p>
 <table>
 <thead>
@@ -46592,39 +46592,39 @@
 <p><strong>Contrast with wave equation</strong>: Information travels at finite speed for hyperbolic equations.</p>
 <h3 id="3-conservation-of-mass">3. Conservation of Mass<a class="headerlink" href="#3-conservation-of-mass" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\int_{\mathbb{R}} f(x)\,dx = M\)</span>, then:</p>
-<p>$$</p>
-<p>\int_{\mathbb{R}} u(t,x)\,dx = M \quad \text{for all } t &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\mathbb{R}} u(t,x)\,dx = M \quad \text{for all } t &gt; 0
+\]</div>
 <p>Total "heat" (or probability mass) is conserved.</p>
 <h3 id="4-positivity-preservation">4. Positivity Preservation<a class="headerlink" href="#4-positivity-preservation" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(f(x) \geq 0\)</span> for all <span class="arithmatex">\(x\)</span>, then <span class="arithmatex">\(u(t,x) \geq 0\)</span> for all <span class="arithmatex">\(t &gt; 0\)</span> and <span class="arithmatex">\(x \in \mathbb{R}\)</span>.</p>
 <p><strong>Probabilistic meaning</strong>: Densities remain non-negative.</p>
 <h3 id="5-decay-of-maximum">5. Decay of Maximum<a class="headerlink" href="#5-decay-of-maximum" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\max_x u(t,x) \leq \max_x f(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_x u(t,x) \leq \max_x f(x)
+\]</div>
 <p>The maximum temperature decreases over time (in the absence of sources).</p>
 <hr />
 <h2 id="the-heat-equation-in-higher-dimensions">The Heat Equation in Higher Dimensions<a class="headerlink" href="#the-heat-equation-in-higher-dimensions" title="Permanent link">&para;</a></h2>
 <p>In <span class="arithmatex">\(\mathbb{R}^d\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} = \frac{1}{2}\Delta u = \frac{1}{2}\sum_{i=1}^d \frac{\partial^2 u}{\partial x_i^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} = \frac{1}{2}\Delta u = \frac{1}{2}\sum_{i=1}^d \frac{\partial^2 u}{\partial x_i^2}
+\]</div>
 <p>The fundamental solution becomes:</p>
-<p>$$</p>
-<p>G(t,x) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{|x|^2}{2t}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(t,x) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{|x|^2}{2t}\right)
+\]</div>
 <p>This is the density of <span class="arithmatex">\(d\)</span>-dimensional Brownian motion <span class="arithmatex">\(B_t \in \mathbb{R}^d\)</span>.</p>
 <hr />
 <h2 id="boundary-value-problems">Boundary Value Problems<a class="headerlink" href="#boundary-value-problems" title="Permanent link">&para;</a></h2>
 <p>On a bounded domain <span class="arithmatex">\(\Omega \subset \mathbb{R}^d\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 u_t = \frac{1}{2}\Delta u &amp; \text{in } (0,T) \times \Omega \\
 u(0,x) = f(x) &amp; \text{initial condition} \\
 u(t,x) = g(t,x) &amp; \text{on } (0,T) \times \partial\Omega \text{ (Dirichlet)}
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Neumann conditions</strong>: Specify <span class="arithmatex">\(\frac{\partial u}{\partial n}\)</span> on the boundary (insulated boundary).</p>
 <hr />
 <h2 id="connection-to-brownian-motion">Connection to Brownian Motion<a class="headerlink" href="#connection-to-brownian-motion" title="Permanent link">&para;</a></h2>
@@ -46666,11 +46666,11 @@ u(t,x) = g(t,x) &amp; \text{on } (0,T) \times \partial\Omega \text{ (Dirichlet)}
 </ul>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 u_t = \frac{1}{2}u_{xx} \quad \longleftrightarrow \quad \text{Brownian motion}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The heat equation describes:
 - Diffusion of heat, particles, or probability
 - Smoothing of initial irregularities
@@ -46682,24 +46682,24 @@ u_t = \frac{1}{2}u_{xx} \quad \longleftrightarrow \quad \text{Brownian motion}
 <h3 id="derivation-from-particle-conservation">Derivation from Particle Conservation<a class="headerlink" href="#derivation-from-particle-conservation" title="Permanent link">&para;</a></h3>
 <p>The heat equation emerges naturally from modeling particle diffusion. Consider particles randomly moving in space, where the position change <span class="arithmatex">\(\Delta\)</span> has probability density <span class="arithmatex">\(\phi(\Delta)\)</span>.</p>
 <p><strong>Number of particles at time <span class="arithmatex">\(t + \tau\)</span>:</strong></p>
-<p>$$</p>
-<p>f(x, t+\tau) = \int_{-\infty}^{\infty} f(x-\Delta, t) \phi(\Delta) d\Delta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(x, t+\tau) = \int_{-\infty}^{\infty} f(x-\Delta, t) \phi(\Delta) d\Delta
+\]</div>
 <p><strong>Taylor expansion:</strong>
 - Time: <span class="arithmatex">\(f(x, t+\tau) = f(x, t) + \frac{\partial f}{\partial t}\tau\)</span>
 - Position: <span class="arithmatex">\(f(x-\Delta, t) = f(x, t) - \frac{\partial f}{\partial x}\Delta + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\Delta^2\)</span></p>
 <p><strong>Substituting and using the fact that <span class="arithmatex">\(\phi\)</span> is even</strong> (symmetric distribution):</p>
-<p>$$</p>
-<p>f(x, t) + \frac{\partial f}{\partial t}\tau = f(x, t) \int \phi(\Delta)d\Delta - \frac{\partial f}{\partial x}\int \Delta\phi(\Delta)d\Delta + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(x, t) + \frac{\partial f}{\partial t}\tau = f(x, t) \int \phi(\Delta)d\Delta - \frac{\partial f}{\partial x}\int \Delta\phi(\Delta)d\Delta + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta
+\]</div>
 <p>Since <span class="arithmatex">\(\int \phi(\Delta)d\Delta = 1\)</span> and <span class="arithmatex">\(\int \Delta\phi(\Delta)d\Delta = 0\)</span> (by symmetry):</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t}\tau = \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t}\tau = \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\int \Delta^2\phi(\Delta)d\Delta
+\]</div>
 <p><strong>Defining diffusion coefficient</strong> <span class="arithmatex">\(D = \frac{1}{\tau}\int \Delta^2\phi(\Delta)d\Delta\)</span> (variance per unit time):</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t} = \frac{D}{2}\frac{\partial^2 f}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t} = \frac{D}{2}\frac{\partial^2 f}{\partial x^2}
+\]</div>
 <p><strong>Physical interpretation:</strong> If neighboring regions have more particles on average, particles diffuse in to increase the local density. Conversely, if neighbors are depleted, the region loses particles.</p>
 <h3 id="fundamental-solution-via-similarity-method">Fundamental Solution via Similarity Method<a class="headerlink" href="#fundamental-solution-via-similarity-method" title="Permanent link">&para;</a></h3>
 <p>The heat equation admits a self-similar solution. Under the transformation:
@@ -46708,28 +46708,28 @@ u_t = \frac{1}{2}u_{xx} \quad \longleftrightarrow \quad \text{Brownian motion}
 - <span class="arithmatex">\(v(z, s) = e^c u(e^a x, e^b t)\)</span></p>
 <p>For the heat equation to remain invariant, we need <span class="arithmatex">\(b = 2a\)</span>.</p>
 <p><strong>Similarity solution ansatz:</strong></p>
-<p>$$</p>
-<p>u(x, t) = t^{c/b} f\left(\frac{x}{\sqrt{t}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x, t) = t^{c/b} f\left(\frac{x}{\sqrt{t}}\right)
+\]</div>
 <p>where <span class="arithmatex">\(\xi = \frac{x}{\sqrt{t}}\)</span> is the similarity variable.</p>
 <p><strong>Substituting into the heat equation</strong> with <span class="arithmatex">\(c/b = -1/2\)</span>:</p>
-<p>$$</p>
-<p>\kappa f''(\xi) + \frac{1}{2}\xi f'(\xi) + \frac{1}{2}f(\xi) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\kappa f''(\xi) + \frac{1}{2}\xi f'(\xi) + \frac{1}{2}f(\xi) = 0
+\]</div>
 <p>This simplifies to:</p>
-<p>$$</p>
-<p>\frac{df}{f} = -\frac{1}{2\kappa}\xi d\xi \quad \Rightarrow \quad f(\xi) = e^{-\xi^2/(4\kappa)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{df}{f} = -\frac{1}{2\kappa}\xi d\xi \quad \Rightarrow \quad f(\xi) = e^{-\xi^2/(4\kappa)}
+\]</div>
 <p><strong>Fundamental solution (Green's function):</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 G(x, t; x_0) = \frac{1}{\sqrt{4\pi\kappa t}} \exp\left(-\frac{(x-x_0)^2}{4\kappa t}\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>General solution by superposition:</strong></p>
-<p>$$</p>
-<p>u(x, t) = \int_{-\infty}^{\infty} u(x_0, 0) \cdot G(x, t; x_0) dx_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x, t) = \int_{-\infty}^{\infty} u(x_0, 0) \cdot G(x, t; x_0) dx_0
+\]</div>
 <p>The fundamental solution is the Gaussian kernel - the transition density of diffusion processes. This connects the PDE theory to probability: the solution represents how an initial distribution <span class="arithmatex">\(u(x, 0)\)</span> spreads according to Brownian motion.</p>
 
 

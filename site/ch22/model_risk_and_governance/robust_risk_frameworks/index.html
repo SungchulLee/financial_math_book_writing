@@ -46935,9 +46935,9 @@
 <h2 id="principles-of-robustness">Principles of Robustness<a class="headerlink" href="#principles-of-robustness" title="Permanent link">&para;</a></h2>
 <h3 id="1-diversification-of-methods">1. Diversification of Methods<a class="headerlink" href="#1-diversification-of-methods" title="Permanent link">&para;</a></h3>
 <p>Don't rely on a single model:</p>
-<p>$$</p>
-<p>\text{Risk Assessment} = f(\text{Model}_1, \text{Model}_2, \ldots, \text{Model}_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Risk Assessment} = f(\text{Model}_1, \text{Model}_2, \ldots, \text{Model}_n)
+\]</div>
 <p><strong>Approaches:</strong>
 - Multiple VaR methodologies (historical, parametric, Monte Carlo)
 - Alternative distributional assumptions
@@ -46966,32 +46966,32 @@
 <h2 id="elements-of-robust-frameworks">Elements of Robust Frameworks<a class="headerlink" href="#elements-of-robust-frameworks" title="Permanent link">&para;</a></h2>
 <h3 id="multiple-models">Multiple Models<a class="headerlink" href="#multiple-models" title="Permanent link">&para;</a></h3>
 <p><strong>Model averaging:</strong></p>
-<p>$$</p>
-<p>\hat{\rho} = \sum_i w_i \cdot \rho_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\rho} = \sum_i w_i \cdot \rho_i
+\]</div>
 <p>where <span class="arithmatex">\(w_i\)</span> are weights (possibly equal, or based on past performance).</p>
 <p><strong>Envelope approach:</strong></p>
-<p>$$</p>
-<p>\hat{\rho} = \max_i \rho_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\rho} = \max_i \rho_i
+\]</div>
 <p>Use the most conservative estimate.</p>
 <p><strong>Model selection with uncertainty:</strong></p>
-<p>$$</p>
-<p>\hat{\rho} = \rho_{\text{best}} + \text{Model Uncertainty Adjustment}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\rho} = \rho_{\text{best}} + \text{Model Uncertainty Adjustment}
+\]</div>
 <h3 id="stress-testing-integration">Stress Testing Integration<a class="headerlink" href="#stress-testing-integration" title="Permanent link">&para;</a></h3>
 <p>Robust framework combines:
 - Statistical measures (VaR, ES)
 - Stress test results
 - Scenario analysis</p>
-<p>$$</p>
-<p>\text{Capital} = \max(\text{Statistical Capital}, \text{Stress Capital})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Capital} = \max(\text{Statistical Capital}, \text{Stress Capital})
+\]</div>
 <h3 id="buffers-and-reserves">Buffers and Reserves<a class="headerlink" href="#buffers-and-reserves" title="Permanent link">&para;</a></h3>
 <p><strong>Model risk buffer:</strong></p>
-<p>$$</p>
-<p>\text{Adjusted Risk} = \text{Model Risk} \times (1 + \text{Buffer})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Adjusted Risk} = \text{Model Risk} \times (1 + \text{Buffer})
+\]</div>
 <p><strong>Prudent valuation adjustments:</strong>
 - AVA for model uncertainty
 - AVA for close-out costs
@@ -47038,15 +47038,15 @@
 <li>Evaluate outcomes under each</li>
 <li>Choose actions robust across scenarios</li>
 </ol>
-<p>$$</p>
-<p>\max_a \min_s U(a, s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_a \min_s U(a, s)
+\]</div>
 <p>(maximin: maximize the minimum outcome across scenarios)</p>
 <h3 id="model-uncertainty-quantification">Model Uncertainty Quantification<a class="headerlink" href="#model-uncertainty-quantification" title="Permanent link">&para;</a></h3>
 <p><strong>Bayesian approach:</strong></p>
-<p>$$</p>
-<p>p(\text{Risk} | \text{Data}) = \int p(\text{Risk} | \theta) \cdot p(\theta | \text{Data}) \, d\theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(\text{Risk} | \text{Data}) = \int p(\text{Risk} | \theta) \cdot p(\theta | \text{Data}) \, d\theta
+\]</div>
 <p>Integrate over parameter uncertainty.</p>
 <p><strong>Bootstrap:</strong></p>
 <p>Resample data to generate distribution of model outputs.</p>

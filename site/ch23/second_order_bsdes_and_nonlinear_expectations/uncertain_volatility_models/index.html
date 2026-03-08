@@ -47560,53 +47560,53 @@
 <h2 id="mathematical-framework">Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-setup">1. Setup<a class="headerlink" href="#1-setup" title="Permanent link">&para;</a></h3>
 <p><strong>Asset Price Dynamics</strong>: The underlying asset <span class="arithmatex">\(S_t\)</span> follows:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\mu\)</span>: Drift (unimportant for pricing under risk-neutrality)
 - <span class="arithmatex">\(\sigma_t\)</span>: Instantaneous volatility (uncertain)
 - <span class="arithmatex">\(W_t\)</span>: Brownian motion</p>
 <p><strong>Volatility Uncertainty</strong>: The true volatility is unknown but constrained:</p>
-<p>$$</p>
-<p>\underline{\sigma} \leq \sigma_t \leq \overline{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{\sigma} \leq \sigma_t \leq \overline{\sigma}
+\]</div>
 <p><strong>Key Assumption</strong>: No assumptions on <span class="arithmatex">\(\sigma_t\)</span> dynamics; could be deterministic, stochastic, path-dependent, etc.</p>
 <h3 id="2-hedging-portfolio">2. Hedging Portfolio<a class="headerlink" href="#2-hedging-portfolio" title="Permanent link">&para;</a></h3>
 <p><strong>Portfolio</strong>: At time <span class="arithmatex">\(t\)</span>, hold <span class="arithmatex">\(\Delta_t\)</span> shares of stock.</p>
 <p><strong>Value Process</strong>: Starting with <span class="arithmatex">\(V_0\)</span>, the portfolio evolves:</p>
-<p>$$</p>
-<p>dV_t = \Delta_t \, dS_t + (V_t - \Delta_t S_t) r \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \Delta_t \, dS_t + (V_t - \Delta_t S_t) r \, dt
+\]</div>
 <p>where <span class="arithmatex">\(r\)</span> is the risk-free rate.</p>
 <p><strong>Self-Financing</strong>: The strategy is self-financing (no additional capital injections).</p>
 <p><strong>Goal</strong>: Choose <span class="arithmatex">\(V_0\)</span> and <span class="arithmatex">\(\Delta_t\)</span> such that:</p>
-<p>$$</p>
-<p>V_T \geq \Phi(S_T) \quad \text{for all admissible volatility paths } {\sigma_t}_{t \in [0,T]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_T \geq \Phi(S_T) \quad \text{for all admissible volatility paths } \{\sigma_t\}_{t \in [0,T]}
+\]</div>
 <h2 id="avellaneda-levy-paras-model">Avellaneda-Levy-Parás Model<a class="headerlink" href="#avellaneda-levy-paras-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-super-replication-price">1. Super-Replication Price<a class="headerlink" href="#1-super-replication-price" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: The <strong>super-replication price</strong> <span class="arithmatex">\(V^{\text{sup}}(S_0)\)</span> is the minimal initial capital required to construct a hedging portfolio that dominates the option payoff under all volatility scenarios:</p>
-<p>$$</p>
-<p>V^{\text{sup}}(S_0) = \inf \left{ V_0: \exists \Delta_t \text{ s.t. } V_T \geq \Phi(S_T) \text{ for all } \sigma_t \in [\underline{\sigma}, \overline{\sigma}] \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{sup}}(S_0) = \inf \left\{ V_0: \exists \Delta_t \text{ s.t. } V_T \geq \Phi(S_T) \text{ for all } \sigma_t \in [\underline{\sigma}, \overline{\sigma}] \right\}
+\]</div>
 <p><strong>Interpretation</strong>: Conservative pricing from seller's perspective.</p>
 <h3 id="2-sub-replication-price">2. Sub-Replication Price<a class="headerlink" href="#2-sub-replication-price" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: The <strong>sub-replication price</strong> <span class="arithmatex">\(V^{\text{sub}}(S_0)\)</span> is the maximal initial capital from which a portfolio can be constructed that is dominated by the option payoff:</p>
-<p>$$</p>
-<p>V^{\text{sub}}(S_0) = \sup \left{ V_0: \exists \Delta_t \text{ s.t. } V_T \leq \Phi(S_T) \text{ for all } \sigma_t \in [\underline{\sigma}, \overline{\sigma}] \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{sub}}(S_0) = \sup \left\{ V_0: \exists \Delta_t \text{ s.t. } V_T \leq \Phi(S_T) \text{ for all } \sigma_t \in [\underline{\sigma}, \overline{\sigma}] \right\}
+\]</div>
 <p><strong>Interpretation</strong>: Aggressive pricing from buyer's perspective.</p>
 <h3 id="3-bid-ask-spread">3. Bid-Ask Spread<a class="headerlink" href="#3-bid-ask-spread" title="Permanent link">&para;</a></h3>
 <p><strong>Arbitrage-Free Range</strong>: The interval:</p>
-<p>$$</p>
-<p>[V^{\text{sub}}(S_0), V^{\text{sup}}(S_0)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[V^{\text{sub}}(S_0), V^{\text{sup}}(S_0)]
+\]</div>
 <p>represents the range of arbitrage-free prices under volatility uncertainty.</p>
 <p><strong>Spread Width</strong>: The bid-ask spread is:</p>
-<p>$$</p>
-<p>\text{Spread} = V^{\text{sup}}(S_0) - V^{\text{sub}}(S_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Spread} = V^{\text{sup}}(S_0) - V^{\text{sub}}(S_0)
+\]</div>
 <p><strong>Factors</strong>:
 - Increases with <span class="arithmatex">\(\overline{\sigma} - \underline{\sigma}\)</span> (uncertainty range)
 - Increases with option gamma exposure
@@ -47614,16 +47614,16 @@
 <h2 id="fully-nonlinear-pde">Fully Nonlinear PDE<a class="headerlink" href="#fully-nonlinear-pde" title="Permanent link">&para;</a></h2>
 <h3 id="1-black-scholes-barenblatt-equation">1. Black-Scholes-Barenblatt Equation<a class="headerlink" href="#1-black-scholes-barenblatt-equation" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Avellaneda-Parás): The super-replication price <span class="arithmatex">\(V^{\text{sup}}(t, S)\)</span> satisfies the <strong>Black-Scholes-Barenblatt (BSB) equation</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V(T, S) = \Phi(S)\)</span>, where:</p>
-<p>$$</p>
-<p>\bar{\sigma}^2(V) = \begin{cases}
-\overline{\sigma}^2 &amp; \text{if } \frac{\partial^2 V}{\partial S^2} &gt; 0 \
+<div class="arithmatex">\[
+\bar{\sigma}^2(V) = \begin{cases}
+\overline{\sigma}^2 &amp; \text{if } \frac{\partial^2 V}{\partial S^2} &gt; 0 \\
 \underline{\sigma}^2 &amp; \text{if } \frac{\partial^2 V}{\partial S^2} &lt; 0
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Proof Sketch</strong>: 
 1. Dynamic programming principle: <span class="arithmatex">\(V\)</span> is the value function
 2. Apply Itô's formula to <span class="arithmatex">\(V(t, S_t)\)</span>
@@ -47644,18 +47644,18 @@
 <li>Use <span class="arithmatex">\(\sigma = \overline{\sigma}\)</span> uniformly</li>
 <li>Super-replication price:</li>
 </ul>
-<p>$$</p>
-<p>V^{\text{sup}}(S_0) = \text{BS}(S_0, K, \overline{\sigma}, T)</p>
-<p>$$</p>
+<p>$$
+  V^{\text{sup}}(S_0) = \text{BS}(S_0, K, \overline{\sigma}, T)
+  $$</p>
 <p><strong>Example 2</strong> (European Put): For <span class="arithmatex">\(\Phi(S) = (K - S)^+\)</span>:</p>
 <ul>
 <li>The put has <span class="arithmatex">\(\Gamma &gt; 0\)</span> everywhere (positive gamma)</li>
 <li>Use <span class="arithmatex">\(\sigma = \overline{\sigma}\)</span> uniformly</li>
 <li>Super-replication price:</li>
 </ul>
-<p>$$</p>
-<p>V^{\text{sup}}(S_0) = \text{BS-Put}(S_0, K, \overline{\sigma}, T)</p>
-<p>$$</p>
+<p>$$
+  V^{\text{sup}}(S_0) = \text{BS-Put}(S_0, K, \overline{\sigma}, T)
+  $$</p>
 <p><strong>Example 3</strong> (Digital Option): For <span class="arithmatex">\(\Phi(S) = \mathbb{1}_{\{S &gt; K\}}\)</span>:</p>
 <ul>
 <li>Gamma is infinite (Dirac delta) at <span class="arithmatex">\(S = K\)</span></li>
@@ -47672,101 +47672,101 @@
 <h2 id="optimal-hedging-strategy">Optimal Hedging Strategy<a class="headerlink" href="#optimal-hedging-strategy" title="Permanent link">&para;</a></h2>
 <h3 id="1-delta-hedging">1. Delta Hedging<a class="headerlink" href="#1-delta-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The optimal hedging strategy is:</p>
-<p>$$</p>
-<p>\Delta_t^* = \frac{\partial V}{\partial S}(t, S_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_t^* = \frac{\partial V}{\partial S}(t, S_t)
+\]</div>
 <p>where <span class="arithmatex">\(V\)</span> is the super-replication price.</p>
 <p><strong>Proof</strong>: By construction, <span class="arithmatex">\(V(t, S_t)\)</span> is a supermartingale under worst-case volatility. The delta position makes the portfolio self-financing.</p>
 <p><strong>Interpretation</strong>: Classic delta-hedging, but using value function from nonlinear PDE.</p>
 <h3 id="2-gamma-adjustment">2. Gamma Adjustment<a class="headerlink" href="#2-gamma-adjustment" title="Permanent link">&para;</a></h3>
 <p><strong>Gamma Exposure</strong>: The residual gamma exposure is:</p>
-<p>$$</p>
-<p>\Gamma_t = \frac{\partial^2 V}{\partial S^2}(t, S_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_t = \frac{\partial^2 V}{\partial S^2}(t, S_t)
+\]</div>
 <p><strong>Worst-Case Volatility</strong>: At each instant, nature chooses:</p>
-<p>$$</p>
-<p>\sigma_t^* = \begin{cases}
-\overline{\sigma} &amp; \text{if } \Gamma_t &gt; 0 \
+<div class="arithmatex">\[
+\sigma_t^* = \begin{cases}
+\overline{\sigma} &amp; \text{if } \Gamma_t &gt; 0 \\
 \underline{\sigma} &amp; \text{if } \Gamma_t &lt; 0
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Accumulated Cost</strong>: The total gamma cost over hedging period is:</p>
-<p>$$</p>
-<p>\text{Cost} = \frac{1}{2} \int_0^T \Gamma_t \sigma_t^2 S_t^2 \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost} = \frac{1}{2} \int_0^T \Gamma_t \sigma_t^2 S_t^2 \, dt
+\]</div>
 <h3 id="3-vega-hedging">3. Vega Hedging<a class="headerlink" href="#3-vega-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Question</strong>: Can we hedge against volatility uncertainty using options?</p>
 <p><strong>Additional Instruments</strong>: Hold portfolio of options <span class="arithmatex">\(\{O_i\}_{i=1}^n\)</span> with different strikes.</p>
 <p><strong>Enhanced Hedging</strong>: </p>
-<p>$$</p>
-<p>\Pi_t = V_t + \sum_{i=1}^n \theta_i^t O_i(t, S_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_t = V_t + \sum_{i=1}^n \theta_i^t O_i(t, S_t)
+\]</div>
 <p><strong>Gamma Neutralization</strong>: Choose <span class="arithmatex">\(\{\theta_i\}\)</span> to make:</p>
-<p>$$</p>
-<p>\frac{\partial^2 \Pi}{\partial S^2} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 \Pi}{\partial S^2} = 0
+\]</div>
 <p><strong>Cost-Benefit</strong>: Gamma hedging reduces uncertainty but requires purchasing options (expensive).</p>
 <h2 id="extensions-and-generalizations">Extensions and Generalizations<a class="headerlink" href="#extensions-and-generalizations" title="Permanent link">&para;</a></h2>
 <h3 id="1-path-dependent-options">1. Path-Dependent Options<a class="headerlink" href="#1-path-dependent-options" title="Permanent link">&para;</a></h3>
 <p><strong>Asian Options</strong>: Payoff depends on average:</p>
-<p>$$</p>
-<p>\Phi = \left(\frac{1}{T} \int_0^T S_t \, dt - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = \left(\frac{1}{T} \int_0^T S_t \, dt - K\right)^+
+\]</div>
 <p><strong>State Variables</strong>: <span class="arithmatex">\((t, S, A)\)</span> where <span class="arithmatex">\(A_t = \int_0^t S_u \, du\)</span>.</p>
 <p><strong>PDE</strong>: Higher-dimensional BSB equation:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + S \frac{\partial V}{\partial A} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + S \frac{\partial V}{\partial A} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p><strong>Complexity</strong>: Increases with dimension; numerical methods required.</p>
 <h3 id="2-barrier-options">2. Barrier Options<a class="headerlink" href="#2-barrier-options" title="Permanent link">&para;</a></h3>
 <p><strong>Knock-Out Call</strong>: Payoff is:</p>
-<p>$$</p>
-<p>\Phi = (S_T - K)^+ \mathbb{1}<em 0="0" T="T" _leq="\leq" t="t">{{\max</em>} S_t &lt; H}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t &lt; H\}}
+\]</div>
 <p><strong>Challenge</strong>: Near barrier, gamma can be very large.</p>
 <p><strong>BSB Equation</strong>: With barrier at <span class="arithmatex">\(S = H\)</span>:</p>
-<p>$$</p>
-<p>V(t, H) = 0 \quad \text{(boundary condition)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, H) = 0 \quad \text{(boundary condition)}
+\]</div>
 <p><strong>Volatility Choice</strong>: 
 - Far from barrier: Use volatility based on gamma sign
 - Near barrier: Critical region where hedging is difficult</p>
 <h3 id="3-american-options">3. American Options<a class="headerlink" href="#3-american-options" title="Permanent link">&para;</a></h3>
 <p><strong>Early Exercise</strong>: Holder can exercise at any time <span class="arithmatex">\(\tau \leq T\)</span>:</p>
-<p>$$</p>
-<p>\Phi = \sup_{0 \leq \tau \leq T} e^{-r\tau} g(S_{\tau})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = \sup_{0 \leq \tau \leq T} e^{-r\tau} g(S_{\tau})
+\]</div>
 <p><strong>Variational Inequality</strong>: The value function satisfies:</p>
-<p>$$</p>
-<p>\min\left{ \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV, \, V - g(S) \right} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min\left\{ \frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV, \, V - g(S) \right\} = 0
+\]</div>
 <p><strong>Exercise Boundary</strong>: Define free boundary <span class="arithmatex">\(S^*(t)\)</span> where <span class="arithmatex">\(V(t, S^*(t)) = g(S^*(t))\)</span>.</p>
 <p><strong>Optimal Exercise</strong>: Exercise when <span class="arithmatex">\(S_t\)</span> hits boundary <span class="arithmatex">\(S^*(t)\)</span>.</p>
 <h3 id="4-lookback-options">4. Lookback Options<a class="headerlink" href="#4-lookback-options" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: Depends on running maximum:</p>
-<p>$$</p>
-<p>\Phi = M_T - K \quad \text{where } M_t = \max_{0 \leq s \leq t} S_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = M_T - K \quad \text{where } M_t = \max_{0 \leq s \leq t} S_s
+\]</div>
 <p><strong>State Space</strong>: <span class="arithmatex">\((t, S, M)\)</span> with <span class="arithmatex">\(M \geq S\)</span>.</p>
 <p><strong>PDE</strong>: </p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p>with boundary condition $V(t, M, M) = $ continuously updated.</p>
 <h2 id="multi-asset-case">Multi-Asset Case<a class="headerlink" href="#multi-asset-case" title="Permanent link">&para;</a></h2>
 <h3 id="1-basket-options">1. Basket Options<a class="headerlink" href="#1-basket-options" title="Permanent link">&para;</a></h3>
 <p><strong>Assets</strong>: <span class="arithmatex">\(\mathbf{S}_t = (S_t^{(1)}, \ldots, S_t^{(n)})\)</span></p>
 <p><strong>Dynamics</strong>:</p>
-<p>$$</p>
-<p>dS_t^{(i)} = \mu_i S_t^{(i)} \, dt + \sigma_t^{(i)} S_t^{(i)} \, dW_t^{(i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t^{(i)} = \mu_i S_t^{(i)} \, dt + \sigma_t^{(i)} S_t^{(i)} \, dW_t^{(i)}
+\]</div>
 <p><strong>Correlation Uncertainty</strong>: Cross-correlations <span class="arithmatex">\(\rho_{ij}(t) \in [\underline{\rho}_{ij}, \overline{\rho}_{ij}]\)</span>.</p>
 <h3 id="2-nonlinear-pde">2. Nonlinear PDE<a class="headerlink" href="#2-nonlinear-pde" title="Permanent link">&para;</a></h3>
 <p><strong>Hessian Matrix</strong>: Let <span class="arithmatex">\(\mathbf{H} = D^2 V\)</span> (Hessian of <span class="arithmatex">\(V\)</span> in <span class="arithmatex">\(\mathbf{S}\)</span>).</p>
 <p><strong>BSB Equation</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathbf{r} \cdot \mathbf{S} \odot \nabla V + \sup_{\boldsymbol{\Sigma} \in \mathcal{S}} \left{ \frac{1}{2} \text{tr}[\boldsymbol{\Sigma} \mathbf{S} \mathbf{S}^\top \odot \mathbf{H}] \right} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathbf{r} \cdot \mathbf{S} \odot \nabla V + \sup_{\boldsymbol{\Sigma} \in \mathcal{S}} \left\{ \frac{1}{2} \text{tr}[\boldsymbol{\Sigma} \mathbf{S} \mathbf{S}^\top \odot \mathbf{H}] \right\} - rV = 0
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\boldsymbol{\Sigma} = (\sigma_{ij})\)</span>: Covariance matrix
 - <span class="arithmatex">\(\mathcal{S}\)</span>: Set of admissible covariance matrices
@@ -47774,14 +47774,14 @@
 <p><strong>Optimal Covariance</strong>: Chosen to maximize the quadratic form <span class="arithmatex">\(\text{tr}[\boldsymbol{\Sigma} \mathbf{H}]\)</span> subject to constraints.</p>
 <h3 id="3-correlation-bounds">3. Correlation Bounds<a class="headerlink" href="#3-correlation-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Fréchet-Hoeffding Bounds</strong>: For marginals with volatilities <span class="arithmatex">\(\{\sigma_i\}\)</span>:</p>
-<p>$$</p>
-<p>\max\left{-1, \sum_{i \neq j} \frac{\sigma_i \sigma_j}{\sigma_i^2 + \sigma_j^2} - (n-1)\right} \leq \rho_{ij} \leq 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max\left\{-1, \sum_{i \neq j} \frac{\sigma_i \sigma_j}{\sigma_i^2 + \sigma_j^2} - (n-1)\right\} \leq \rho_{ij} \leq 1
+\]</div>
 <p><strong>Semidefinite Constraint</strong>: The correlation matrix <span class="arithmatex">\(\boldsymbol{\rho}\)</span> must be positive semidefinite.</p>
 <p><strong>Optimization</strong>: Solve:</p>
-<p>$$</p>
-<p>\sup_{\boldsymbol{\rho} \in \mathcal{R}} \text{tr}[\boldsymbol{\rho} \odot \mathbf{H}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{\boldsymbol{\rho} \in \mathcal{R}} \text{tr}[\boldsymbol{\rho} \odot \mathbf{H}]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{R}\)</span> is the set of valid correlation matrices.</p>
 <h2 id="numerical-methods">Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-finite-difference-schemes">1. Finite Difference Schemes<a class="headerlink" href="#1-finite-difference-schemes" title="Permanent link">&para;</a></h3>
@@ -47789,20 +47789,20 @@
 - Time: <span class="arithmatex">\(t \in \{0, \Delta t, 2\Delta t, \ldots, T\}\)</span>
 - Space: <span class="arithmatex">\(S \in \{S_{\min}, S_{\min} + \Delta S, \ldots, S_{\max}\}\)</span></p>
 <p><strong>Scheme</strong>: At each grid point <span class="arithmatex">\((t_i, S_j)\)</span>:</p>
-<p>$$</p>
-<p>\frac{V_j^{i+1} - V_j^i}{\Delta t} + rS_j \frac{V_{j+1}^i - V_{j-1}^i}{2\Delta S} + \frac{1}{2} \bar{\sigma}^2(\Gamma_j^i) S_j^2 \frac{V_{j+1}^i - 2V_j^i + V_{j-1}^i}{(\Delta S)^2} - rV_j^i = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{V_j^{i+1} - V_j^i}{\Delta t} + rS_j \frac{V_{j+1}^i - V_{j-1}^i}{2\Delta S} + \frac{1}{2} \bar{\sigma}^2(\Gamma_j^i) S_j^2 \frac{V_{j+1}^i - 2V_j^i + V_{j-1}^i}{(\Delta S)^2} - rV_j^i = 0
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\Gamma_j^i = \frac{V_{j+1}^i - 2V_j^i + V_{j-1}^i}{(\Delta S)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_j^i = \frac{V_{j+1}^i - 2V_j^i + V_{j-1}^i}{(\Delta S)^2}
+\]</div>
 <p><strong>Volatility Selection</strong>: At each point, use:</p>
-<p>$$</p>
-<p>\bar{\sigma}^2(\Gamma_j^i) = \begin{cases}
-\overline{\sigma}^2 &amp; \text{if } \Gamma_j^i &gt; 0 \
+<div class="arithmatex">\[
+\bar{\sigma}^2(\Gamma_j^i) = \begin{cases}
+\overline{\sigma}^2 &amp; \text{if } \Gamma_j^i &gt; 0 \\
 \underline{\sigma}^2 &amp; \text{if } \Gamma_j^i &lt; 0
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Monotone Schemes</strong>: Ensure convergence to viscosity solution by using upwind schemes.</p>
 <h3 id="2-monte-carlo-simulation">2. Monte Carlo Simulation<a class="headerlink" href="#2-monte-carlo-simulation" title="Permanent link">&para;</a></h3>
 <p><strong>Challenge</strong>: Direct Monte Carlo is difficult due to supremum over volatilities.</p>
@@ -47812,21 +47812,21 @@
 3. Continue simulation to maturity
 4. Average over paths</p>
 <p><strong>Least-Squares Monte Carlo</strong>: Estimate continuation values using regression:</p>
-<p>$$</p>
-<p>V(t, S) \approx \sum_{k=1}^K \beta_k \phi_k(S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) \approx \sum_{k=1}^K \beta_k \phi_k(S)
+\]</div>
 <p><strong>Complexity</strong>: <span class="arithmatex">\(O(M \cdot N)\)</span> where <span class="arithmatex">\(M\)</span> is number of paths, <span class="arithmatex">\(N\)</span> is time steps.</p>
 <h3 id="3-policy-iteration">3. Policy Iteration<a class="headerlink" href="#3-policy-iteration" title="Permanent link">&para;</a></h3>
 <p><strong>Algorithm</strong>:
 1. <strong>Initialize</strong>: Guess volatility policy <span class="arithmatex">\(\sigma^{(0)}(t, S)\)</span>
 2. <strong>Solve PDE</strong>: Compute <span class="arithmatex">\(V^{(k)}\)</span> solving linear PDE with <span class="arithmatex">\(\sigma = \sigma^{(k)}\)</span>
 3. <strong>Update Policy</strong>: Set:</p>
-<p>$$</p>
-<p>\sigma^{(k+1)}(t, S) = \begin{cases}
+<p>$$
+   \sigma^{(k+1)}(t, S) = \begin{cases}
    \overline{\sigma} &amp; \text{if } \frac{\partial^2 V^{(k)}}{\partial S^2} &gt; 0 \
    \underline{\sigma} &amp; \text{if } \frac{\partial^2 V^{(k)}}{\partial S^2} &lt; 0
-   \end{cases}</p>
-<p>$$</p>
+   \end{cases}
+   $$</p>
 <ol>
 <li><strong>Iterate</strong>: Repeat until convergence <span class="arithmatex">\(\|V^{(k+1)} - V^{(k)}\| &lt; \epsilon\)</span></li>
 </ol>
@@ -47835,36 +47835,36 @@
 <h3 id="1-implied-volatility-bounds">1. Implied Volatility Bounds<a class="headerlink" href="#1-implied-volatility-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Market Information</strong>: Observed call prices <span class="arithmatex">\(\{C(K_i, T_j)\}\)</span> at various strikes and maturities.</p>
 <p><strong>Implied Volatility</strong>: For each option, compute:</p>
-<p>$$</p>
-<p>\sigma_{\text{imp}}(K, T) = \text{BS}^{-1}(C(K, T), S_0, K, r, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{imp}}(K, T) = \text{BS}^{-1}(C(K, T), S_0, K, r, T)
+\]</div>
 <p><strong>Volatility Bounds</strong>: Set:</p>
-<p>$$</p>
-<p>\underline{\sigma}(t) = \min_{K, T} \sigma_{\text{imp}}(K, T), \quad \overline{\sigma}(t) = \max_{K, T} \sigma_{\text{imp}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{\sigma}(t) = \min_{K, T} \sigma_{\text{imp}}(K, T), \quad \overline{\sigma}(t) = \max_{K, T} \sigma_{\text{imp}}(K, T)
+\]</div>
 <p><strong>Refinement</strong>: Use smile dynamics to infer time-varying bounds <span class="arithmatex">\(\underline{\sigma}(t)\)</span>, <span class="arithmatex">\(\overline{\sigma}(t)\)</span>.</p>
 <h3 id="2-historical-volatility">2. Historical Volatility<a class="headerlink" href="#2-historical-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Realized Volatility</strong>: Compute from historical returns:</p>
-<p>$$</p>
-<p>\hat{\sigma} = \sqrt{\frac{252}{n} \sum_{i=1}^n \log^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\sigma} = \sqrt{\frac{252}{n} \sum_{i=1}^n \log^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)}
+\]</div>
 <p><strong>Bounds</strong>: Use historical range:</p>
-<p>$$</p>
-<p>\underline{\sigma} = \hat{\sigma} - k \cdot \text{std}(\sigma_{\text{hist}}), \quad \overline{\sigma} = \hat{\sigma} + k \cdot \text{std}(\sigma_{\text{hist}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{\sigma} = \hat{\sigma} - k \cdot \text{std}(\sigma_{\text{hist}}), \quad \overline{\sigma} = \hat{\sigma} + k \cdot \text{std}(\sigma_{\text{hist}})
+\]</div>
 <p>for some confidence level <span class="arithmatex">\(k\)</span>.</p>
 <h3 id="3-combining-information">3. Combining Information<a class="headerlink" href="#3-combining-information" title="Permanent link">&para;</a></h3>
 <p><strong>Hybrid Approach</strong>: Combine implied and historical:</p>
-<p>$$</p>
-<p>\underline{\sigma} = \min{\sigma_{\text{imp}}^{\min}, \sigma_{\text{hist}}^{\min}}, \quad \overline{\sigma} = \max{\sigma_{\text{imp}}^{\max}, \sigma_{\text{hist}}^{\max}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{\sigma} = \min\{\sigma_{\text{imp}}^{\min}, \sigma_{\text{hist}}^{\min}\}, \quad \overline{\sigma} = \max\{\sigma_{\text{imp}}^{\max}, \sigma_{\text{hist}}^{\max}\}
+\]</div>
 <p><strong>Judgment</strong>: Analyst judgment based on market conditions, regime shifts, etc.</p>
 <h2 id="model-risk-and-stress-testing">Model Risk and Stress Testing<a class="headerlink" href="#model-risk-and-stress-testing" title="Permanent link">&para;</a></h2>
 <h3 id="1-model-risk-quantification">1. Model Risk Quantification<a class="headerlink" href="#1-model-risk-quantification" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: The difference between model price and robust price:</p>
-<p>$$</p>
-<p>\text{Model Risk} = V^{\text{sup}} - V^{\text{model}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Model Risk} = V^{\text{sup}} - V^{\text{model}}
+\]</div>
 <p><strong>Interpretation</strong>: Additional capital required to protect against model misspecification.</p>
 <h3 id="2-stress-testing">2. Stress Testing<a class="headerlink" href="#2-stress-testing" title="Permanent link">&para;</a></h3>
 <p><strong>Scenarios</strong>: Test portfolio under extreme volatility scenarios:
@@ -47872,29 +47872,29 @@
 2. <strong>Vol Crash</strong>: <span class="arithmatex">\(\sigma \to \underline{\sigma}\)</span> suddenly
 3. <strong>Time-Varying</strong>: <span class="arithmatex">\(\sigma_t\)</span> follows worst-case path</p>
 <p><strong>P&amp;L Impact</strong>: Compute:</p>
-<p>$$</p>
-<p>\text{P&amp;L}_{\text{stress}} = V(T, S_T^{\text{stress}}) - V_0 - \int_0^T \Delta_t \, dS_t^{\text{stress}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P&amp;L}_{\text{stress}} = V(T, S_T^{\text{stress}}) - V_0 - \int_0^T \Delta_t \, dS_t^{\text{stress}}
+\]</div>
 <p><strong>Worst-Case Loss</strong>: Maximum loss over all scenarios:</p>
-<p>$$</p>
-<p>\text{WCL} = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \text{Loss}(\sigma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{WCL} = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \text{Loss}(\sigma)
+\]</div>
 <h3 id="3-value-at-risk-var">3. Value-at-Risk (VaR)<a class="headerlink" href="#3-value-at-risk-var" title="Permanent link">&para;</a></h3>
 <p><strong>Standard VaR</strong>: Under specific model <span class="arithmatex">\(\mathcal{M}\)</span>:</p>
-<p>$$</p>
-<p>\text{VaR}_{\alpha}^{\mathcal{M}} = \inf{v: P^{\mathcal{M}}(\text{Loss} &gt; v) \leq \alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_{\alpha}^{\mathcal{M}} = \inf\{v: P^{\mathcal{M}}(\text{Loss} &gt; v) \leq \alpha\}
+\]</div>
 <p><strong>Robust VaR</strong>: Over model class:</p>
-<p>$$</p>
-<p>\text{VaR}<em _mathcal_M="\mathcal{M">{\alpha}^{\text{robust}} = \sup</em>} \in \text{Model Class}} \text{VaR}_{\alpha}^{\mathcal{M}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_{\alpha}^{\text{robust}} = \sup_{\mathcal{M} \in \text{Model Class}} \text{VaR}_{\alpha}^{\mathcal{M}}
+\]</div>
 <p><strong>Conservatism</strong>: Robust VaR accounts for model uncertainty, yielding higher capital requirements.</p>
 <h2 id="comparison-with-stochastic-volatility-models">Comparison with Stochastic Volatility Models<a class="headerlink" href="#comparison-with-stochastic-volatility-models" title="Permanent link">&para;</a></h2>
 <h3 id="1-heston-model">1. Heston Model<a class="headerlink" href="#1-heston-model" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamics</strong>: </p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S, \quad dV_t = \kappa(\theta - V_t) \, dt + \xi \sqrt{V_t} \, dW_t^V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S, \quad dV_t = \kappa(\theta - V_t) \, dt + \xi \sqrt{V_t} \, dW_t^V
+\]</div>
 <p><strong>Known Parameters</strong>: Assumes specific mean-reversion <span class="arithmatex">\(\kappa\)</span>, long-run mean <span class="arithmatex">\(\theta\)</span>, vol-of-vol <span class="arithmatex">\(\xi\)</span>.</p>
 <p><strong>Comparison</strong>: Heston is <strong>parametric</strong> and <strong>specific</strong>, while UVM is <strong>nonparametric</strong> and <strong>robust</strong>.</p>
 <h3 id="2-local-volatility">2. Local Volatility<a class="headerlink" href="#2-local-volatility" title="Permanent link">&para;</a></h3>
@@ -47903,9 +47903,9 @@
 <p><strong>Comparison</strong>: Local volatility is <strong>model-complete</strong> but not robust to misspecification; UVM provides bounds.</p>
 <h3 id="3-sabr-model">3. SABR Model<a class="headerlink" href="#3-sabr-model" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamics</strong>:</p>
-<p>$$</p>
-<p>dF_t = \alpha_t F_t^{\beta} \, dW_t^1, \quad d\alpha_t = \nu \alpha_t \, dW_t^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dF_t = \alpha_t F_t^{\beta} \, dW_t^1, \quad d\alpha_t = \nu \alpha_t \, dW_t^2
+\]</div>
 <p><strong>Usage</strong>: Widely used for FX and interest rate options.</p>
 <p><strong>Comparison</strong>: SABR specifies stochastic dynamics; UVM only specifies bounds.</p>
 <h3 id="4-pros-and-cons">4. Pros and Cons<a class="headerlink" href="#4-pros-and-cons" title="Permanent link">&para;</a></h3>
@@ -47946,73 +47946,73 @@
 - <strong>Bid</strong>: <span class="arithmatex">\(V^{\text{sub}}\)</span> (buying from client)
 - <strong>Ask</strong>: <span class="arithmatex">\(V^{\text{sup}}\)</span> (selling to client)</p>
 <p><strong>Spread</strong>: Reflects volatility uncertainty:</p>
-<p>$$</p>
-<p>\text{Spread} = V^{\text{sup}} - V^{\text{sub}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Spread} = V^{\text{sup}} - V^{\text{sub}}
+\]</div>
 <p><strong>Inventory Management</strong>: Adjust spreads based on position (long/short gamma).</p>
 <h3 id="2-exotic-derivatives-desk">2. Exotic Derivatives Desk<a class="headerlink" href="#2-exotic-derivatives-desk" title="Permanent link">&para;</a></h3>
 <p><strong>Structured Products</strong>: Price complex payoffs using UVM framework.</p>
 <p><strong>Example</strong> (Worst-of Basket):</p>
-<p>$$</p>
-<p>\Phi = \min_{i=1, \ldots, n} S_T^{(i)} - K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = \min_{i=1, \ldots, n} S_T^{(i)} - K
+\]</div>
 <p><strong>Hedging</strong>: Use UVM to compute robust hedges in each underlying and correlation.</p>
 <p><strong>Risk</strong>: Quantify model risk using spread width.</p>
 <h3 id="3-risk-management">3. Risk Management<a class="headerlink" href="#3-risk-management" title="Permanent link">&para;</a></h3>
 <p><strong>Regulatory Capital</strong>: Basel III requires quantification of model risk:</p>
-<p>$$</p>
-<p>\text{Model Risk Capital} = V^{\text{sup}} - V^{\text{expected}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Model Risk Capital} = V^{\text{sup}} - V^{\text{expected}}
+\]</div>
 <p><strong>Internal Models</strong>: Banks use UVM to stress-test trading book.</p>
 <p><strong>Backtesting</strong>: Compare realized P&amp;L against robust bounds to validate assumptions.</p>
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
 <h3 id="1-uncertain-jump-risk">1. Uncertain Jump Risk<a class="headerlink" href="#1-uncertain-jump-risk" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamics</strong>: Add jump component:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t + S_{t-} \, dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t + S_{t-} \, dJ_t
+\]</div>
 <p>where <span class="arithmatex">\(J_t\)</span> is a jump process with uncertain intensity <span class="arithmatex">\(\lambda \in [\underline{\lambda}, \overline{\lambda}]\)</span>.</p>
 <p><strong>PIDE</strong>: Pricing satisfies partial integro-differential equation (PIDE):</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathcal{L}V + \sup_{\lambda \in [\underline{\lambda}, \overline{\lambda}]} \left{ \lambda \int (V(t, Sy) - V(t, S)) \nu(dy) \right} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathcal{L}V + \sup_{\lambda \in [\underline{\lambda}, \overline{\lambda}]} \left\{ \lambda \int (V(t, Sy) - V(t, S)) \nu(dy) \right\} = 0
+\]</div>
 <p>where <span class="arithmatex">\(\nu\)</span> is the jump size distribution.</p>
 <p><strong>Complexity</strong>: Numerical solution requires discretization of integral term.</p>
 <h3 id="2-time-dependent-bounds">2. Time-Dependent Bounds<a class="headerlink" href="#2-time-dependent-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Time-Varying Uncertainty</strong>:</p>
-<p>$$</p>
-<p>\underline{\sigma}(t) \leq \sigma_t \leq \overline{\sigma}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{\sigma}(t) \leq \sigma_t \leq \overline{\sigma}(t)
+\]</div>
 <p><strong>PDE</strong>: Coefficient becomes time-dependent:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(t, V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(t, V) S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p><strong>Application</strong>: Models regime shifts, earnings announcements, macroeconomic releases.</p>
 <h3 id="3-transaction-costs">3. Transaction Costs<a class="headerlink" href="#3-transaction-costs" title="Permanent link">&para;</a></h3>
 <p><strong>Proportional Costs</strong>: Each trade costs <span class="arithmatex">\(\lambda |\)</span>quantity<span class="arithmatex">\(| \times\)</span> price.</p>
 <p><strong>Modified PDE</strong>: Includes nonlinear terms from costs:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - \lambda S \left|\frac{\partial V}{\partial S}\right| - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \bar{\sigma}^2(V) S^2 \frac{\partial^2 V}{\partial S^2} - \lambda S \left|\frac{\partial V}{\partial S}\right| - rV = 0
+\]</div>
 <p><strong>Interpretation</strong>: Transaction costs increase super-replication price.</p>
 <h3 id="4-interest-rate-uncertainty">4. Interest Rate Uncertainty<a class="headerlink" href="#4-interest-rate-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Stochastic Rates</strong>: Uncertain short rate <span class="arithmatex">\(r_t \in [\underline{r}, \overline{r}]\)</span>.</p>
 <p><strong>Discount Factor</strong>: Affects pricing through:</p>
-<p>$$</p>
-<p>\exp\left(-\int_0^T r_s \, ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\exp\left(-\int_0^T r_s \, ds\right)
+\]</div>
 <p><strong>Joint Uncertainty</strong>: Both volatility and interest rate uncertain.</p>
 <p><strong>Dimension</strong>: Increases state space dimension, making numerical solution more challenging.</p>
 <h2 id="research-directions">Research Directions<a class="headerlink" href="#research-directions" title="Permanent link">&para;</a></h2>
 <h3 id="1-deep-learning-for-uvms">1. Deep Learning for UVMs<a class="headerlink" href="#1-deep-learning-for-uvms" title="Permanent link">&para;</a></h3>
 <p><strong>Neural Network Approximation</strong>: Represent value function:</p>
-<p>$$</p>
-<p>V(t, S) \approx f_{\theta}(t, S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) \approx f_{\theta}(t, S)
+\]</div>
 <p><strong>Training</strong>: Minimize PDE residual:</p>
-<p>$$</p>
-<p>\mathcal{L}(\theta) = \mathbb{E}\left[\left|\frac{\partial f_{\theta}}{\partial t} + rS \frac{\partial f_{\theta}}{\partial S} + \frac{1}{2} \bar{\sigma}^2(f_{\theta}) S^2 \frac{\partial^2 f_{\theta}}{\partial S^2} - rf_{\theta}\right|^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(\theta) = \mathbb{E}\left[\left|\frac{\partial f_{\theta}}{\partial t} + rS \frac{\partial f_{\theta}}{\partial S} + \frac{1}{2} \bar{\sigma}^2(f_{\theta}) S^2 \frac{\partial^2 f_{\theta}}{\partial S^2} - rf_{\theta}\right|^2\right]
+\]</div>
 <p><strong>Advantages</strong>: Handles high dimensions, bypasses curse of dimensionality.</p>
 <h3 id="2-data-driven-calibration">2. Data-Driven Calibration<a class="headerlink" href="#2-data-driven-calibration" title="Permanent link">&para;</a></h3>
 <p><strong>Machine Learning</strong>: Learn volatility bounds from data:
@@ -48021,13 +48021,13 @@
 <p><strong>Online Learning</strong>: Update bounds dynamically as new data arrives.</p>
 <h3 id="3-rough-volatility">3. Rough Volatility<a class="headerlink" href="#3-rough-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Fractional Brownian Motion</strong>: Volatility with Hurst exponent <span class="arithmatex">\(H &lt; 1/2\)</span>:</p>
-<p>$$</p>
-<p>\sigma_t = f\left(\int_0^t (t-s)^{H-1/2} dW_s\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_t = f\left(\int_0^t (t-s)^{H-1/2} dW_s\right)
+\]</div>
 <p><strong>UVM Extension</strong>: Bounds on rough volatility:</p>
-<p>$$</p>
-<p>\underline{H} \leq H_t \leq \overline{H}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{H} \leq H_t \leq \overline{H}
+\]</div>
 <p><strong>Challenge</strong>: Requires rough path theory for rigorous treatment.</p>
 <h2 id="summary-and-key-insights">Summary and Key Insights<a class="headerlink" href="#summary-and-key-insights" title="Permanent link">&para;</a></h2>
 <h3 id="1-fundamental-results">1. Fundamental Results<a class="headerlink" href="#1-fundamental-results" title="Permanent link">&para;</a></h3>

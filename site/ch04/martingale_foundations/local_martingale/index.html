@@ -46912,11 +46912,11 @@
 <hr />
 <h2 id="the-martingale-hierarchy">The Martingale Hierarchy<a class="headerlink" href="#the-martingale-hierarchy" title="Permanent link">&para;</a></h2>
 <p>The following inclusions are strict:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{UI Martingales} \subsetneq \text{Martingales} \subsetneq \text{Local Martingales}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <strong>UI</strong> denotes uniformly integrable. The inclusions go from strongest (UI martingales, the smallest class) to weakest (local martingales, the largest class). A local martingale that is not a true martingale is called a <strong>strict local martingale</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Connection to Convergence Theory</p>
@@ -46931,17 +46931,17 @@
 <p>The process may escape to <span class="arithmatex">\(+\infty\)</span> (or <span class="arithmatex">\(-\infty\)</span>) in finite time, i.e., <span class="arithmatex">\(\lim_{t \to \zeta^-} |M_t| = \infty\)</span> where <span class="arithmatex">\(\zeta &lt; \infty\)</span> is an explosion time.</p>
 <h3 id="3-mass-leakage-at-infinity">3. Mass Leakage at Infinity<a class="headerlink" href="#3-mass-leakage-at-infinity" title="Permanent link">&para;</a></h3>
 <p>Even without explosion, probability mass can "escape to infinity" in the sense that:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t] &lt; \mathbb{E}[M_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t] &lt; \mathbb{E}[M_0]
+\]</div>
 <p>The "missing mass" corresponds to paths where <span class="arithmatex">\(M_t\)</span> has grown large.</p>
 <hr />
 <h2 id="canonical-examples">Canonical Examples<a class="headerlink" href="#canonical-examples" title="Permanent link">&para;</a></h2>
 <h3 id="example-1-ito-integrals">Example 1: Itô Integrals<a class="headerlink" href="#example-1-ito-integrals" title="Permanent link">&para;</a></h3>
 <p>Consider the Itô integral:</p>
-<p>$$</p>
-<p>M_t = \int_0^t \sigma_s\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t = \int_0^t \sigma_s\,dW_s
+\]</div>
 <p>where <span class="arithmatex">\(\sigma\)</span> is an adapted process.</p>
 <div class="admonition note">
 <p class="admonition-title">Integrability Hierarchy for Itô Integrals</p>
@@ -46971,34 +46971,34 @@
 </div>
 <p><strong>Intuition</strong>: A driftless SDE <span class="arithmatex">\(dM_t = \sigma_t dW_t\)</span> looks like a martingale—it's "pure noise" with no systematic drift. And usually it is a true martingale. But technically, Itô calculus only guarantees a local martingale; upgrading to true martingale requires verifying integrability.</p>
 <p><strong>Proof that it's a local martingale</strong>: Define the localizing sequence:</p>
-<p>$$</p>
-<p>\tau_n = \inf\left{t \geq 0 : \int_0^t \sigma_s^2\,ds \geq n\right} \wedge n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau_n = \inf\left\{t \geq 0 : \int_0^t \sigma_s^2\,ds \geq n\right\} \wedge n
+\]</div>
 <p>Then <span class="arithmatex">\(\tau_n \uparrow \infty\)</span> a.s., and by construction:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^{T \wedge \tau_n} \sigma_s^2\,ds\right] \leq n &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^{T \wedge \tau_n} \sigma_s^2\,ds\right] \leq n &lt; \infty
+\]</div>
 <p>By the Itô isometry criterion, <span class="arithmatex">\(M_{t \wedge \tau_n}\)</span> is a true martingale for each <span class="arithmatex">\(n\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h3 id="example-2-stochastic-exponential-true-martingale">Example 2: Stochastic Exponential (True Martingale)<a class="headerlink" href="#example-2-stochastic-exponential-true-martingale" title="Permanent link">&para;</a></h3>
 <p>The <strong>stochastic exponential</strong> of Brownian motion:</p>
-<p>$$</p>
-<p>Z_t = \mathcal{E}(W)_t := \exp\left(W_t - \frac{t}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \mathcal{E}(W)_t := \exp\left(W_t - \frac{t}{2}\right)
+\]</div>
 <p>satisfies the SDE <span class="arithmatex">\(dZ_t = Z_t\,dW_t\)</span> with <span class="arithmatex">\(Z_0 = 1\)</span>.</p>
 <p><strong>Claim</strong>: <span class="arithmatex">\(Z_t\)</span> is a true martingale with <span class="arithmatex">\(\mathbb{E}[Z_t] = 1\)</span> for all <span class="arithmatex">\(t \geq 0\)</span>.</p>
 <p><strong>Proof</strong>: We verify Novikov's condition. Here <span class="arithmatex">\(\langle W \rangle_t = t\)</span>, so:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\frac{1}{2}\langle W \rangle_T\right)\right] = \mathbb{E}\left[\exp\left(\frac{T}{2}\right)\right] = e^{T/2} &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\frac{1}{2}\langle W \rangle_T\right)\right] = \mathbb{E}\left[\exp\left(\frac{T}{2}\right)\right] = e^{T/2} &lt; \infty
+\]</div>
 <p>By Novikov's theorem (see <a href="../novikov_kazamaki_conditions/">Novikov &amp; Kazamaki Conditions</a>), <span class="arithmatex">\(\mathcal{E}(W)\)</span> is a true martingale. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h3 id="example-3-reciprocal-of-3d-bessel-process-strict-local-martingale">Example 3: Reciprocal of 3D Bessel Process (Strict Local Martingale)<a class="headerlink" href="#example-3-reciprocal-of-3d-bessel-process-strict-local-martingale" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(R_t = |B_t|\)</span> where <span class="arithmatex">\(B_t = (B^1_t, B^2_t, B^3_t)\)</span> is 3-dimensional Brownian motion started from <span class="arithmatex">\(B_0 = x\)</span> with <span class="arithmatex">\(|x| = r_0 &gt; 0\)</span>. The process <span class="arithmatex">\(R_t\)</span> is the <strong>3-dimensional Bessel process</strong> started from <span class="arithmatex">\(r_0\)</span>.</p>
 <p>Define:</p>
-<p>$$</p>
-<p>M_t = \frac{1}{R_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t = \frac{1}{R_t}
+\]</div>
 <p><strong>Claim</strong>: <span class="arithmatex">\(M_t\)</span> is a strict local martingale (local martingale but NOT a true martingale).</p>
 <div class="admonition warning">
 <p class="admonition-title">Common Misconception</p>
@@ -47006,43 +47006,43 @@
 </div>
 <p><strong>Proof that <span class="arithmatex">\(M_t\)</span> is a local martingale</strong>:</p>
 <p>The <span class="arithmatex">\(d\)</span>-dimensional Bessel process satisfies the SDE:</p>
-<p>$$</p>
-<p>dR_t = \frac{d-1}{2R_t}dt + dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dR_t = \frac{d-1}{2R_t}dt + dW_t
+\]</div>
 <p>where <span class="arithmatex">\(W\)</span> is a 1-dimensional Brownian motion. For <span class="arithmatex">\(d = 3\)</span>, this gives <span class="arithmatex">\(dR_t = \frac{1}{R_t}dt + dW_t\)</span>.</p>
 <p>By Itô's formula applied to <span class="arithmatex">\(f(r) = 1/r\)</span>:</p>
-<p>$$</p>
-<p>d\left(\frac{1}{R_t}\right) = -\frac{1}{R_t^2}dR_t + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}\left(\frac{1}{R_t}dt + dW_t\right) + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\left(\frac{1}{R_t}\right) = -\frac{1}{R_t^2}dR_t + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}\left(\frac{1}{R_t}dt + dW_t\right) + \frac{1}{R_t^3}dt = -\frac{1}{R_t^2}dW_t
+\]</div>
 <p>The drift terms cancel! Thus <span class="arithmatex">\(M_t = 1/R_t\)</span> satisfies:</p>
-<p>$$</p>
-<p>dM_t = -\frac{1}{R_t^2}dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_t = -\frac{1}{R_t^2}dW_t
+\]</div>
 <p>This is an Itô integral (no drift), hence a local martingale.</p>
 <p><strong>Proof that <span class="arithmatex">\(M_t\)</span> is NOT a true martingale</strong>:</p>
 <p>Using the transition density of the 3D Bessel process (see Revuz–Yor, Chapter VI, or Karatzas–Shreve §3.3.C), one can compute:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\frac{1}{R_t}\right] = \frac{1}{r_0} - \frac{2}{r_0}\Phi\left(-\frac{r_0}{\sqrt{t}}\right) &lt; \frac{1}{r_0} = M_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\frac{1}{R_t}\right] = \frac{1}{r_0} - \frac{2}{r_0}\Phi\left(-\frac{r_0}{\sqrt{t}}\right) &lt; \frac{1}{r_0} = M_0
+\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> is the standard normal CDF. The strict inequality shows <span class="arithmatex">\(\mathbb{E}[M_t] &lt; \mathbb{E}[M_0]\)</span>, violating the martingale property.</p>
 <p><strong>Intuition</strong>: As <span class="arithmatex">\(t \to \infty\)</span>, the Bessel process drifts to <span class="arithmatex">\(+\infty\)</span>, so <span class="arithmatex">\(1/R_t \to 0\)</span>. The "probability mass" that would be needed to maintain <span class="arithmatex">\(\mathbb{E}[M_t] = M_0\)</span> has "leaked to infinity."</p>
 <hr />
 <h3 id="example-4-cev-model-with-1-strict-local-martingale">Example 4: CEV Model with β &gt; 1 (Strict Local Martingale)<a class="headerlink" href="#example-4-cev-model-with-1-strict-local-martingale" title="Permanent link">&para;</a></h3>
 <p>The <strong>constant elasticity of variance (CEV)</strong> model provides a clean example of a strict local martingale arising in finance. Consider:</p>
-<p>$$</p>
-<p>dX_t = \sigma X_t^\beta \, dW_t, \quad X_0 = x_0 &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \sigma X_t^\beta \, dW_t, \quad X_0 = x_0 &gt; 0
+\]</div>
 <p>where <span class="arithmatex">\(\sigma &gt; 0\)</span> and <span class="arithmatex">\(\beta &gt; 1\)</span>.</p>
 <p><strong>Claim</strong>: For <span class="arithmatex">\(\beta &gt; 1\)</span>, the process <span class="arithmatex">\(X_t\)</span> is a strict local martingale.</p>
 <p><strong>Why this is a local martingale</strong>: The process is clearly a local martingale since it is an Itô integral with no drift term. The localizing sequence:</p>
-<p>$$</p>
-<p>\tau_n = \inf{t \geq 0 : X_t \geq n \text{ or } X_t \leq 1/n} \wedge n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau_n = \inf\{t \geq 0 : X_t \geq n \text{ or } X_t \leq 1/n\} \wedge n
+\]</div>
 <p>ensures <span class="arithmatex">\(X_{t \wedge \tau_n}\)</span> is bounded and hence a true martingale.</p>
 <p><strong>Why this is NOT a true martingale</strong>: For <span class="arithmatex">\(\beta &gt; 1\)</span>, the process can reach infinity in finite time with positive probability. More precisely, the scale function analysis shows that infinity is an accessible boundary. Even when we define <span class="arithmatex">\(X_t = \infty\)</span> for <span class="arithmatex">\(t \geq \zeta\)</span> (the explosion time), we have:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_t] &lt; x_0 \quad \text{for all } t &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t] &lt; x_0 \quad \text{for all } t &gt; 0
+\]</div>
 <p>The "missing mass" corresponds to paths that have exploded.</p>
 <p><strong>Financial interpretation</strong>: The CEV model with <span class="arithmatex">\(\beta &gt; 1\)</span> exhibits explosive behavior inconsistent with limited liability. This is why practitioners typically use <span class="arithmatex">\(\beta &lt; 1\)</span> (which gives absorption at zero rather than explosion at infinity).</p>
 <hr />
@@ -47051,68 +47051,68 @@
 <div class="admonition theorem">
 <p class="admonition-title">Non-negative Local Martingales are Supermartingales</p>
 <p>Let <span class="arithmatex">\(M\)</span> be a non-negative local martingale. Then <span class="arithmatex">\(M\)</span> is a supermartingale:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s \quad \text{almost surely for all } 0 \leq s \leq t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t \mid \mathcal{F}_s] \leq M_s \quad \text{almost surely for all } 0 \leq s \leq t
+\]</div>
 </div>
 <p><strong>Proof</strong>: Let <span class="arithmatex">\(\{\tau_n\}\)</span> be a localizing sequence. For the stopped process:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}<em _tau_n="\tau_n" _wedge="\wedge" s="s">s] = M</em>} \quad \text{(martingale property)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}_s] = M_{s \wedge \tau_n} \quad \text{(martingale property)}
+\]</div>
 <p>Since <span class="arithmatex">\(M \geq 0\)</span>, Fatou's lemma gives:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t \mid \mathcal{F}<em _infty="\infty" _to="\to" n="n">s] = \mathbb{E}\left[\liminf</em>} M_{t \wedge \tau_n} \mid \mathcal{F<em _infty="\infty" _to="\to" n="n">s\right] \leq \liminf</em>} \mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F<em _infty="\infty" _to="\to" n="n">s] = \liminf</em> = M_s} M_{s \wedge \tau_n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}\left[\liminf_{n \to \infty} M_{t \wedge \tau_n} \mid \mathcal{F}_s\right] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n} \mid \mathcal{F}_s] = \liminf_{n \to \infty} M_{s \wedge \tau_n} = M_s
+\]</div>
 <p>where the last equality uses <span class="arithmatex">\(\tau_n \to \infty\)</span> a.s. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Corollary</strong>: For non-negative local martingales:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t] \leq \mathbb{E}[M_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t] \leq \mathbb{E}[M_0]
+\]</div>
 <p>with <strong>equality if and only if</strong> <span class="arithmatex">\(M\)</span> is a true martingale.</p>
 <hr />
 <h3 id="characterization-via-fatous-lemma">Characterization via Fatou's Lemma<a class="headerlink" href="#characterization-via-fatous-lemma" title="Permanent link">&para;</a></h3>
 <p>For a non-negative local martingale with localizing sequence <span class="arithmatex">\(\{\tau_n\}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0] \quad \text{for all } n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0] \quad \text{for all } n
+\]</div>
 <p>Taking <span class="arithmatex">\(n \to \infty\)</span> and applying Fatou's lemma:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t] \leq \liminf_{n \to \infty} \mathbb{E}[M_{t \wedge \tau_n}] = \mathbb{E}[M_0]
+\]</div>
 <p>The inequality can be <strong>strict</strong>—this is the signature of a strict local martingale.</p>
 <hr />
 <h2 id="sufficient-conditions-for-true-martingale">Sufficient Conditions for True Martingale<a class="headerlink" href="#sufficient-conditions-for-true-martingale" title="Permanent link">&para;</a></h2>
 <p>A local martingale <span class="arithmatex">\(M\)</span> is a <strong>true martingale</strong> if any of the following conditions holds:</p>
 <h3 id="1-boundedness">1. Boundedness<a class="headerlink" href="#1-boundedness" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>|M_t| \leq C \quad \text{almost surely for all } t \in [0,T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|M_t| \leq C \quad \text{almost surely for all } t \in [0,T]
+\]</div>
 <p>for some constant <span class="arithmatex">\(C &lt; \infty\)</span>.</p>
 <h3 id="2-domination">2. Domination<a class="headerlink" href="#2-domination" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>|M_t| \leq Y \quad \text{almost surely for all } t \in [0,T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|M_t| \leq Y \quad \text{almost surely for all } t \in [0,T]
+\]</div>
 <p>for some integrable random variable <span class="arithmatex">\(Y\)</span> (i.e., <span class="arithmatex">\(\mathbb{E}[Y] &lt; \infty\)</span>).</p>
 <h3 id="3-lp-boundedness-p-1">3. L^p Boundedness (p &gt; 1)<a class="headerlink" href="#3-lp-boundedness-p-1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sup_{t \in [0,T]} \mathbb{E}[|M_t|^p] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{t \in [0,T]} \mathbb{E}[|M_t|^p] &lt; \infty
+\]</div>
 <p>This follows from the fact that <span class="arithmatex">\(L^p\)</span>-bounded martingales are uniformly integrable for <span class="arithmatex">\(p &gt; 1\)</span>.</p>
 <h3 id="4-finite-expected-quadratic-variation">4. Finite Expected Quadratic Variation<a class="headerlink" href="#4-finite-expected-quadratic-variation" title="Permanent link">&para;</a></h3>
 <p>For <strong>continuous</strong> local martingales with <span class="arithmatex">\(M_0\)</span> integrable:</p>
-<p>$$</p>
-<p>\mathbb{E}[\langle M \rangle_T] &lt; \infty \implies M \text{ is a true martingale on } [0,T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\langle M \rangle_T] &lt; \infty \implies M \text{ is a true martingale on } [0,T]
+\]</div>
 <p><strong>Proof sketch</strong>: By the Burkholder–Davis–Gundy inequality:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{t \leq T} |M_t|\right] \leq C \cdot \mathbb{E}\left[\langle M \rangle_T^{1/2}\right] \leq C \cdot \mathbb{E}[\langle M \rangle_T]^{1/2} &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{t \leq T} |M_t|\right] \leq C \cdot \mathbb{E}\left[\langle M \rangle_T^{1/2}\right] \leq C \cdot \mathbb{E}[\langle M \rangle_T]^{1/2} &lt; \infty
+\]</div>
 <p>Hence <span class="arithmatex">\(M\)</span> is dominated by an integrable random variable. <span class="arithmatex">\(\square\)</span></p>
 <h3 id="5-novikovs-condition-for-stochastic-exponentials">5. Novikov's Condition (for Stochastic Exponentials)<a class="headerlink" href="#5-novikovs-condition-for-stochastic-exponentials" title="Permanent link">&para;</a></h3>
 <p>For a continuous local martingale <span class="arithmatex">\(M\)</span> with <span class="arithmatex">\(M_0 = 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right] &lt; \infty \implies \mathcal{E}(M)_t \text{ is a true martingale on } [0,T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right] &lt; \infty \implies \mathcal{E}(M)_t \text{ is a true martingale on } [0,T]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{E}(M)_t = \exp(M_t - \frac{1}{2}\langle M \rangle_t)\)</span> is the stochastic exponential.</p>
 <h3 id="6-kazamakis-condition-weaker-than-novikovs-condition">6. Kazamaki's Condition (Weaker than Novikov's Condition)<a class="headerlink" href="#6-kazamakis-condition-weaker-than-novikovs-condition" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\mathcal{E}(M/2)\)</span> is a submartingale, then <span class="arithmatex">\(\mathcal{E}(M)\)</span> is a true martingale on <span class="arithmatex">\([0,T]\)</span>.</p>
@@ -47153,9 +47153,9 @@
 <hr />
 <h2 id="connection-to-infinitesimal-generators">Connection to Infinitesimal Generators<a class="headerlink" href="#connection-to-infinitesimal-generators" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(X_t\)</span> be a diffusion with infinitesimal generator:</p>
-<p>$$</p>
-<p>\mathcal{L} = \mu(x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = \mu(x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2}{\partial x^2}
+\]</div>
 <p>For <span class="arithmatex">\(f \in C^2\)</span>, define the process <span class="arithmatex">\(Y_t = f(X_t)\)</span>.</p>
 <div class="admonition theorem">
 <p class="admonition-title">Generator Criterion</p>
@@ -47195,45 +47195,45 @@
 </ul>
 </div>
 <p><strong>Connection to Dynkin's formula</strong>: By Itô's formula:</p>
-<p>$$</p>
-<p>f(X_t) - f(X_0) = \int_0^t \mathcal{L}f(X_s)\,ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(X_t) - f(X_0) = \int_0^t \mathcal{L}f(X_s)\,ds + \int_0^t f'(X_s)\sigma(X_s)\,dW_s
+\]</div>
 <p>When <span class="arithmatex">\(\mathcal{L}f = 0\)</span>, the drift integral vanishes, leaving only the stochastic integral (which is a local martingale).</p>
 <p>See <a href="../../../ch03/infinitesimal_generator/generator_and_martingales/">Generator and Martingales</a> for the full treatment.</p>
 <hr />
 <h2 id="financial-implications">Financial Implications<a class="headerlink" href="#financial-implications" title="Permanent link">&para;</a></h2>
 <h3 id="discounted-asset-prices">Discounted Asset Prices<a class="headerlink" href="#discounted-asset-prices" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the <strong>discounted asset price</strong>:</p>
-<p>$$</p>
-<p>\tilde{S}_t = e^{-rt}S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{S}_t = e^{-rt}S_t
+\]</div>
 <p>should be a martingale for the market to be free of arbitrage (First Fundamental Theorem of Asset Pricing).</p>
 <p>In practice, <span class="arithmatex">\(\tilde{S}_t\)</span> is often only a <strong>local martingale</strong>. The distinction matters.</p>
 <h3 id="strict-local-martingales-and-financial-bubbles">Strict Local Martingales and Financial Bubbles<a class="headerlink" href="#strict-local-martingales-and-financial-bubbles" title="Permanent link">&para;</a></h3>
 <div class="admonition important">
 <p class="admonition-title">Bubble Characterization</p>
 <p>If the discounted price process is a <strong>strict local martingale</strong> under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] &lt; S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] &lt; S_0
+\]</div>
 <p>This implies the current price <span class="arithmatex">\(S_0\)</span> exceeds its "fundamental value" (the discounted expected future price). This is the mathematical signature of a <strong>financial bubble</strong>.</p>
 </div>
 <p><strong>Reference</strong>: Jarrow, Protter, and Shimbo (2010), "Asset Price Bubbles in Incomplete Markets," <em>Mathematical Finance</em>.</p>
 <h3 id="put-call-parity-failure">Put-Call Parity Failure<a class="headerlink" href="#put-call-parity-failure" title="Permanent link">&para;</a></h3>
 <p>The standard put-call parity:</p>
-<p>$$</p>
-<p>C(K,T) - P(K,T) = S_0 - Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K,T) - P(K,T) = S_0 - Ke^{-rT}
+\]</div>
 <p>relies on <span class="arithmatex">\(\mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] = S_0\)</span>. When the stock price is a strict local martingale:</p>
-<p>$$</p>
-<p>C(K,T) - P(K,T) = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT} &lt; S_0 - Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K,T) - P(K,T) = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T] - Ke^{-rT} &lt; S_0 - Ke^{-rT}
+\]</div>
 <p>Put-call parity fails, and the put price includes a "bubble premium."</p>
 <h3 id="connection-to-girsanovs-theorem">Connection to Girsanov's Theorem<a class="headerlink" href="#connection-to-girsanovs-theorem" title="Permanent link">&para;</a></h3>
 <p>When performing measure changes via Girsanov's theorem, the Radon–Nikodym derivative:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = Z_t = \mathcal{E}\left(-\int_0^\cdot \theta_s\,dW_s\right)_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = Z_t = \mathcal{E}\left(-\int_0^\cdot \theta_s\,dW_s\right)_t
+\]</div>
 <p>must be a <strong>true martingale</strong> (not just a local martingale) for the measure change to be valid. This is precisely where Novikov and Kazamaki conditions enter.</p>
 <p>See <a href="../../girsanov/girsanov_theorem/">Girsanov's Theorem</a> for the full treatment.</p>
 <hr />
@@ -47288,26 +47288,26 @@
 </table>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{L}f = 0 \implies f(X_t) \text{ is a local martingale}
-}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{
+}
+\]</div>
+<div class="arithmatex">\[
+\boxed{
 \mathcal{L}f = 0 \text{ + sufficient condition (1–6)} \implies f(X_t) \text{ is a true martingale}
-}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{
+}
+\]</div>
+<div class="arithmatex">\[
+\boxed{
 \text{Non-negative local martingale} \implies \text{Supermartingale}
-}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{
+}
+\]</div>
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[M_t] &lt; \mathbb{E}[M_0] \text{ for non-negative } M \iff M \text{ is a strict local martingale}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <div class="admonition summary">
 <p class="admonition-title">The Bottom Line</p>
 <p>The distinction between local martingales and true martingales is essential for:</p>

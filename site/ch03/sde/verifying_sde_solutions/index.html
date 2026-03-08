@@ -47217,9 +47217,9 @@
 <h2 id="general-framework">General Framework<a class="headerlink" href="#general-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-sde-problem">1. The SDE Problem<a class="headerlink" href="#1-the-sde-problem" title="Permanent link">&para;</a></h3>
 <p>Consider a general SDE of the form:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t) dt + \sigma(X_t, t) dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t) dt + \sigma(X_t, t) dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(X_t\)</span> is the stochastic process
 - <span class="arithmatex">\(\mu(X_t, t)\)</span> is the drift coefficient
@@ -47234,237 +47234,237 @@
 </ol>
 <h2 id="itos-lemma">Itô's Lemma<a class="headerlink" href="#itos-lemma" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Itô's Lemma):</strong> Let <span class="arithmatex">\(X_t\)</span> be an Itô process satisfying:</p>
-<p>$$</p>
-<p>dX_t = \mu_t dt + \sigma_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu_t dt + \sigma_t dW_t
+\]</div>
 <p>and let <span class="arithmatex">\(f(x, t) \in C^{2,1}(\mathbb{R} \times [0, T])\)</span>. Then <span class="arithmatex">\(Y_t = f(X_t, t)\)</span> is also an Itô process with:</p>
-<p>$$</p>
-<p>df(X_t, t) = \left(\frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2}\sigma_t^2 \frac{\partial^2 f}{\partial x^2}\right) dt + \sigma_t \frac{\partial f}{\partial x} dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(X_t, t) = \left(\frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2}\sigma_t^2 \frac{\partial^2 f}{\partial x^2}\right) dt + \sigma_t \frac{\partial f}{\partial x} dW_t
+\]</div>
 <p><strong>Special Case:</strong> When <span class="arithmatex">\(X_t = W_t\)</span> (standard Brownian motion), we have <span class="arithmatex">\(\mu_t = 0\)</span> and <span class="arithmatex">\(\sigma_t = 1\)</span>, so:</p>
-<p>$$</p>
-<p>df(W_t, t) = \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right) dt + \frac{\partial f}{\partial x} dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(W_t, t) = \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right) dt + \frac{\partial f}{\partial x} dW_t
+\]</div>
 <h2 id="example-1-geometric-brownian-motion-stock-price-model">Example 1: Geometric Brownian Motion (Stock Price Model)<a class="headerlink" href="#example-1-geometric-brownian-motion-stock-price-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-sde">1. The SDE<a class="headerlink" href="#1-the-sde" title="Permanent link">&para;</a></h3>
 <p>The geometric Brownian motion (GBM) model for stock prices is:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t dt + \sigma S_t dW_t
+\]</div>
 <p>where <span class="arithmatex">\(\mu\)</span> is the drift rate and <span class="arithmatex">\(\sigma\)</span> is the volatility.</p>
 <h3 id="2-proposed-solution">2. Proposed Solution<a class="headerlink" href="#2-proposed-solution" title="Permanent link">&para;</a></h3>
 <p>The analytical solution is claimed to be:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+\]</div>
 <h3 id="3-verification">3. Verification<a class="headerlink" href="#3-verification" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(f(x, t) = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right]\)</span> where <span class="arithmatex">\(x = W_t\)</span>.</p>
 <p><strong>Step 1:</strong> Compute partial derivatives.</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t} = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right] \cdot \left(\mu - \frac{\sigma^2}{2}\right) = S_t \left(\mu - \frac{\sigma^2}{2}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial x} = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right] \cdot \sigma = \sigma S_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 f}{\partial x^2} = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right] \cdot \sigma^2 = \sigma^2 S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t} = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right] \cdot \left(\mu - \frac{\sigma^2}{2}\right) = S_t \left(\mu - \frac{\sigma^2}{2}\right)
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial x} = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right] \cdot \sigma = \sigma S_t
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial x^2} = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma x\right] \cdot \sigma^2 = \sigma^2 S_t
+\]</div>
 <p><strong>Step 2:</strong> Apply Itô's lemma.</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right) dt + \frac{\partial f}{\partial x} dW_t \\
 &amp;= \left(S_t \left(\mu - \frac{\sigma^2}{2}\right) + \frac{1}{2}\sigma^2 S_t\right) dt + \sigma S_t dW_t \\
 &amp;= S_t \left(\mu - \frac{\sigma^2}{2} + \frac{\sigma^2}{2}\right) dt + \sigma S_t dW_t \\
 &amp;= \mu S_t dt + \sigma S_t dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>Conclusion:</strong> The solution matches the original SDE. ✓</p>
 <h3 id="4-interpretation">4. Interpretation<a class="headerlink" href="#4-interpretation" title="Permanent link">&para;</a></h3>
 <p>The presence of the <span class="arithmatex">\(-\frac{\sigma^2}{2}\)</span> term in the exponent is the <strong>Itô correction</strong>, which arises from the second-order term in Itô's lemma. This is a fundamental difference from ordinary calculus and reflects the quadratic variation of Brownian motion.</p>
 <h2 id="example-2-ornstein-uhlenbeck-process">Example 2: Ornstein-Uhlenbeck Process<a class="headerlink" href="#example-2-ornstein-uhlenbeck-process" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-sde_1">1. The SDE<a class="headerlink" href="#1-the-sde_1" title="Permanent link">&para;</a></h3>
 <p>The Ornstein-Uhlenbeck (OU) process describes mean-reverting behavior:</p>
-<p>$$</p>
-<p>dX_t = \theta(\mu - X_t) dt + \sigma dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \theta(\mu - X_t) dt + \sigma dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\theta &gt; 0\)</span> is the speed of mean reversion
 - <span class="arithmatex">\(\mu\)</span> is the long-term mean
 - <span class="arithmatex">\(\sigma\)</span> is the volatility</p>
 <h3 id="2-proposed-solution_1">2. Proposed Solution<a class="headerlink" href="#2-proposed-solution_1" title="Permanent link">&para;</a></h3>
 <p>The solution is:</p>
-<p>$$</p>
-<p>X_t = X_0 e^{-\theta t} + \mu(1 - e^{-\theta t}) + \sigma \int_0^t e^{-\theta(t-s)} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 e^{-\theta t} + \mu(1 - e^{-\theta t}) + \sigma \int_0^t e^{-\theta(t-s)} dW_s
+\]</div>
 <h3 id="3-verification_1">3. Verification<a class="headerlink" href="#3-verification_1" title="Permanent link">&para;</a></h3>
 <p>Define <span class="arithmatex">\(Y_t = X_t - \mu\)</span>, so the SDE becomes:</p>
-<p>$$</p>
-<p>dY_t = -\theta Y_t dt + \sigma dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = -\theta Y_t dt + \sigma dW_t
+\]</div>
 <p>The proposed solution for <span class="arithmatex">\(Y_t\)</span> is:</p>
-<p>$$</p>
-<p>Y_t = Y_0 e^{-\theta t} + \sigma \int_0^t e^{-\theta(t-s)} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = Y_0 e^{-\theta t} + \sigma \int_0^t e^{-\theta(t-s)} dW_s
+\]</div>
 <p><strong>Method 1: Direct differentiation using integration by parts</strong></p>
 <p>Let <span class="arithmatex">\(Z_t = \int_0^t e^{-\theta(t-s)} dW_s\)</span>. We can write:</p>
-<p>$$</p>
-<p>Z_t = e^{-\theta t} \int_0^t e^{\theta s} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = e^{-\theta t} \int_0^t e^{\theta s} dW_s
+\]</div>
 <p>Applying Itô's lemma to <span class="arithmatex">\(f(x, t) = e^{-\theta t} x\)</span> where <span class="arithmatex">\(x = \int_0^t e^{\theta s} dW_s\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t} = -\theta e^{-\theta t} x, \quad \frac{\partial f}{\partial x} = e^{-\theta t}, \quad \frac{\partial^2 f}{\partial x^2} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t} = -\theta e^{-\theta t} x, \quad \frac{\partial f}{\partial x} = e^{-\theta t}, \quad \frac{\partial^2 f}{\partial x^2} = 0
+\]</div>
 <p>Since <span class="arithmatex">\(dx = e^{\theta t} dW_t\)</span>, we have:</p>
-<p>$$</p>
-<p>dZ_t = -\theta e^{-\theta t} x \, dt + e^{-\theta t} \cdot e^{\theta t} dW_t = -\theta Z_t dt + dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ_t = -\theta e^{-\theta t} x \, dt + e^{-\theta t} \cdot e^{\theta t} dW_t = -\theta Z_t dt + dW_t
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dY_t &amp;= d(Y_0 e^{-\theta t}) + \sigma dZ_t \\
 &amp;= -\theta Y_0 e^{-\theta t} dt + \sigma(-\theta Z_t dt + dW_t) \\
 &amp;= -\theta(Y_0 e^{-\theta t} + \sigma Z_t) dt + \sigma dW_t \\
 &amp;= -\theta Y_t dt + \sigma dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>Conclusion:</strong> The solution is verified. ✓</p>
 <h2 id="example-3-vasicek-model-interest-rate">Example 3: Vasicek Model (Interest Rate)<a class="headerlink" href="#example-3-vasicek-model-interest-rate" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-sde_2">1. The SDE<a class="headerlink" href="#1-the-sde_2" title="Permanent link">&para;</a></h3>
 <p>The Vasicek model for short-term interest rates is:</p>
-<p>$$</p>
-<p>dr_t = a(b - r_t) dt + \sigma dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = a(b - r_t) dt + \sigma dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(a &gt; 0\)</span> is the speed of mean reversion
 - <span class="arithmatex">\(b\)</span> is the long-term mean level
 - <span class="arithmatex">\(\sigma\)</span> is the volatility</p>
 <p>This is structurally identical to the OU process.</p>
 <h3 id="2-proposed-solution_2">2. Proposed Solution<a class="headerlink" href="#2-proposed-solution_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma \int_0^t e^{-a(t-s)} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma \int_0^t e^{-a(t-s)} dW_s
+\]</div>
 <h3 id="3-verification_2">3. Verification<a class="headerlink" href="#3-verification_2" title="Permanent link">&para;</a></h3>
 <p>Following the same approach as the OU process, let <span class="arithmatex">\(Y_t = r_t - b\)</span>:</p>
-<p>$$</p>
-<p>Y_t = (r_0 - b) e^{-at} + \sigma \int_0^t e^{-a(t-s)} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = (r_0 - b) e^{-at} + \sigma \int_0^t e^{-a(t-s)} dW_s
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>dY_t = -a Y_t dt + \sigma dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = -a Y_t dt + \sigma dW_t
+\]</div>
 <p>which gives:</p>
-<p>$$</p>
-<p>dr_t = dY_t = -a(r_t - b) dt + \sigma dW_t = a(b - r_t) dt + \sigma dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = dY_t = -a(r_t - b) dt + \sigma dW_t = a(b - r_t) dt + \sigma dW_t
+\]</div>
 <p><strong>Conclusion:</strong> Verified. ✓</p>
 <h3 id="4-properties-of-the-solution">4. Properties of the Solution<a class="headerlink" href="#4-properties-of-the-solution" title="Permanent link">&para;</a></h3>
 <p><strong>Conditional Mean:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[r_t | r_0] = r_0 e^{-at} + b(1 - e^{-at})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_t | r_0] = r_0 e^{-at} + b(1 - e^{-at})
+\]</div>
 <p><strong>Conditional Variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}[r_t | r_0] = \frac{\sigma^2}{2a}(1 - e^{-2at})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[r_t | r_0] = \frac{\sigma^2}{2a}(1 - e^{-2at})
+\]</div>
 <p><strong>Long-term behavior:</strong></p>
-<p>$$</p>
-<p>\lim_{t \to \infty} \mathbb{E}[r_t | r_0] = b, \quad \lim_{t \to \infty} \text{Var}[r_t | r_0] = \frac{\sigma^2}{2a}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{t \to \infty} \mathbb{E}[r_t | r_0] = b, \quad \lim_{t \to \infty} \text{Var}[r_t | r_0] = \frac{\sigma^2}{2a}
+\]</div>
 <h2 id="example-4-cox-ingersoll-ross-cir-model">Example 4: Cox-Ingersoll-Ross (CIR) Model<a class="headerlink" href="#example-4-cox-ingersoll-ross-cir-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-sde_3">1. The SDE<a class="headerlink" href="#1-the-sde_3" title="Permanent link">&para;</a></h3>
 <p>The CIR model extends Vasicek by making volatility state-dependent:</p>
-<p>$$</p>
-<p>dr_t = a(b - r_t) dt + \sigma \sqrt{r_t} dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = a(b - r_t) dt + \sigma \sqrt{r_t} dW_t
+\]</div>
 <p>where <span class="arithmatex">\(a, b, \sigma &gt; 0\)</span> and the <strong>Feller condition</strong> <span class="arithmatex">\(2ab \geq \sigma^2\)</span> ensures <span class="arithmatex">\(r_t \geq 0\)</span>.</p>
 <h3 id="2-proposed-solution-via-transformation">2. Proposed Solution via Transformation<a class="headerlink" href="#2-proposed-solution-via-transformation" title="Permanent link">&para;</a></h3>
 <p>The CIR model doesn't have a simple closed-form solution like GBM or Vasicek. However, we can verify transformations.</p>
 <p><strong>Claim:</strong> Let <span class="arithmatex">\(X_t = \sqrt{r_t}\)</span>. Then under certain conditions, we can derive the SDE for <span class="arithmatex">\(X_t\)</span>.</p>
 <p><strong>Verification:</strong> Apply Itô's lemma to <span class="arithmatex">\(f(r) = \sqrt{r}\)</span>.</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial r} = \frac{1}{2\sqrt{r}}, \quad \frac{\partial^2 f}{\partial r^2} = -\frac{1}{4r^{3/2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial r} = \frac{1}{2\sqrt{r}}, \quad \frac{\partial^2 f}{\partial r^2} = -\frac{1}{4r^{3/2}}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dX_t &amp;= \left[a(b - r_t) \cdot \frac{1}{2\sqrt{r_t}} + \frac{1}{2}\sigma^2 r_t \cdot \left(-\frac{1}{4r_t^{3/2}}\right)\right] dt + \sigma\sqrt{r_t} \cdot \frac{1}{2\sqrt{r_t}} dW_t \\
 &amp;= \left[\frac{a(b - r_t)}{2\sqrt{r_t}} - \frac{\sigma^2}{8\sqrt{r_t}}\right] dt + \frac{\sigma}{2} dW_t \\
 &amp;= \left[\frac{ab - ar_t - \sigma^2/4}{2\sqrt{r_t}}\right] dt + \frac{\sigma}{2} dW_t \\
 &amp;= \left[\frac{ab - \sigma^2/4}{2X_t} - \frac{a}{2}X_t\right] dt + \frac{\sigma}{2} dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>This transformation is useful for numerical methods and analytical approximations.</p>
 <h3 id="3-alternative-non-central-chi-squared-distribution">3. Alternative: Non-central Chi-squared Distribution<a class="headerlink" href="#3-alternative-non-central-chi-squared-distribution" title="Permanent link">&para;</a></h3>
 <p>For the CIR model, the solution at time <span class="arithmatex">\(t\)</span> conditional on <span class="arithmatex">\(r_0\)</span> is not explicit but follows a scaled non-central chi-squared distribution:</p>
-<p>$$</p>
-<p>r_t \sim \frac{\sigma^2(1-e^{-at})}{4a} \chi^2_{d}\left(\frac{4a e^{-at}}{\sigma^2(1-e^{-at})}r_0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t \sim \frac{\sigma^2(1-e^{-at})}{4a} \chi^2_{d}\left(\frac{4a e^{-at}}{\sigma^2(1-e^{-at})}r_0\right)
+\]</div>
 <p>where <span class="arithmatex">\(d = \frac{4ab}{\sigma^2}\)</span> is the degrees of freedom.</p>
 <p><strong>Verification approach:</strong> One would check that this distribution satisfies the Fokker-Planck (forward Kolmogorov) equation associated with the CIR SDE:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\frac{\partial}{\partial r}[a(b-r)p] + \frac{1}{2}\frac{\partial^2}{\partial r^2}[\sigma^2 r p]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial r}[a(b-r)p] + \frac{1}{2}\frac{\partial^2}{\partial r^2}[\sigma^2 r p]
+\]</div>
 <p>where <span class="arithmatex">\(p(r, t)\)</span> is the probability density function.</p>
 <h2 id="example-5-black-scholes-with-dividends">Example 5: Black-Scholes with Dividends<a class="headerlink" href="#example-5-black-scholes-with-dividends" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-sde_4">1. The SDE<a class="headerlink" href="#1-the-sde_4" title="Permanent link">&para;</a></h3>
 <p>A stock paying continuous dividends at rate <span class="arithmatex">\(q\)</span> follows:</p>
-<p>$$</p>
-<p>dS_t = (\mu - q) S_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (\mu - q) S_t dt + \sigma S_t dW_t
+\]</div>
 <h3 id="2-proposed-solution_3">2. Proposed Solution<a class="headerlink" href="#2-proposed-solution_3" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>S_t = S_0 \exp\left[\left(\mu - q - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left[\left(\mu - q - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+\]</div>
 <h3 id="3-verification_3">3. Verification<a class="headerlink" href="#3-verification_3" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(f(x, t) = S_0 \exp\left[\left(\mu - q - \frac{\sigma^2}{2}\right)t + \sigma x\right]\)</span>.</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial t} = S_t\left(\mu - q - \frac{\sigma^2}{2}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial x} = \sigma S_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 f}{\partial x^2} = \sigma^2 S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial t} = S_t\left(\mu - q - \frac{\sigma^2}{2}\right)
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial x} = \sigma S_t
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial x^2} = \sigma^2 S_t
+\]</div>
 <p>Applying Itô's lemma:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= \left[S_t\left(\mu - q - \frac{\sigma^2}{2}\right) + \frac{1}{2}\sigma^2 S_t\right] dt + \sigma S_t dW_t \\
 &amp;= (\mu - q) S_t dt + \sigma S_t dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>Conclusion:</strong> Verified. ✓</p>
 <h2 id="example-6-change-of-measure-risk-neutral-pricing">Example 6: Change of Measure (Risk-Neutral Pricing)<a class="headerlink" href="#example-6-change-of-measure-risk-neutral-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="1-physical-vs-risk-neutral-measure">1. Physical vs. Risk-Neutral Measure<a class="headerlink" href="#1-physical-vs-risk-neutral-measure" title="Permanent link">&para;</a></h3>
 <p>Under the physical measure <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t dt + \sigma S_t dW_t^\mathbb{P}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t dt + \sigma S_t dW_t^\mathbb{P}
+\]</div>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = r S_t dt + \sigma S_t dW_t^\mathbb{Q}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = r S_t dt + \sigma S_t dW_t^\mathbb{Q}
+\]</div>
 <p>where <span class="arithmatex">\(r\)</span> is the risk-free rate.</p>
 <h3 id="2-girsanovs-theorem">2. Girsanov's Theorem<a class="headerlink" href="#2-girsanovs-theorem" title="Permanent link">&para;</a></h3>
 <p>The two Brownian motions are related by:</p>
-<p>$$</p>
-<p>W_t^\mathbb{Q} = W_t^\mathbb{P} + \frac{\mu - r}{\sigma}t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^\mathbb{Q} = W_t^\mathbb{P} + \frac{\mu - r}{\sigma}t
+\]</div>
 <h3 id="3-verification_4">3. Verification<a class="headerlink" href="#3-verification_4" title="Permanent link">&para;</a></h3>
 <p>The market price of risk is <span class="arithmatex">\(\lambda = \frac{\mu - r}{\sigma}\)</span>. Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dW_t^\mathbb{P} = dW_t^\mathbb{Q} - \lambda dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^\mathbb{P} = dW_t^\mathbb{Q} - \lambda dt
+\]</div>
 <p>Substituting into the original SDE:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= \mu S_t dt + \sigma S_t dW_t^\mathbb{P} \\
 &amp;= \mu S_t dt + \sigma S_t (dW_t^\mathbb{Q} - \lambda dt) \\
 &amp;= (\mu - \sigma\lambda) S_t dt + \sigma S_t dW_t^\mathbb{Q} \\
 &amp;= (\mu - \sigma \cdot \frac{\mu - r}{\sigma}) S_t dt + \sigma S_t dW_t^\mathbb{Q} \\
 &amp;= r S_t dt + \sigma S_t dW_t^\mathbb{Q}
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>Conclusion:</strong> The change of measure is verified. ✓</p>
 <h2 id="general-verification-checklist">General Verification Checklist<a class="headerlink" href="#general-verification-checklist" title="Permanent link">&para;</a></h2>
 <p>When verifying an SDE solution, follow these steps:</p>
@@ -47480,13 +47480,13 @@ dS_t &amp;= \mu S_t dt + \sigma S_t dW_t^\mathbb{P} \\
 - <span class="arithmatex">\(\frac{\partial^2 f}{\partial x^2}\)</span></p>
 <h3 id="3-apply-itos-lemma">3. Apply Itô's Lemma<a class="headerlink" href="#3-apply-itos-lemma" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(X_t\)</span> depends on Brownian motion directly:</p>
-<p>$$</p>
-<p>dX_t = \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right) dt + \frac{\partial f}{\partial x} dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \left(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}\right) dt + \frac{\partial f}{\partial x} dW_t
+\]</div>
 <p>If <span class="arithmatex">\(X_t = f(Y_t, t)\)</span> where <span class="arithmatex">\(dY_t = \mu_Y dt + \sigma_Y dW_t\)</span>:</p>
-<p>$$</p>
-<p>dX_t = \left(\frac{\partial f}{\partial t} + \mu_Y \frac{\partial f}{\partial y} + \frac{1}{2}\sigma_Y^2 \frac{\partial^2 f}{\partial y^2}\right) dt + \sigma_Y \frac{\partial f}{\partial y} dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \left(\frac{\partial f}{\partial t} + \mu_Y \frac{\partial f}{\partial y} + \frac{1}{2}\sigma_Y^2 \frac{\partial^2 f}{\partial y^2}\right) dt + \sigma_Y \frac{\partial f}{\partial y} dW_t
+\]</div>
 <h3 id="4-match-coefficients">4. Match Coefficients<a class="headerlink" href="#4-match-coefficients" title="Permanent link">&para;</a></h3>
 <p>Compare the computed <span class="arithmatex">\(dX_t\)</span> with the original SDE:
 - <strong>Drift coefficient:</strong> The <span class="arithmatex">\(dt\)</span> terms must match
@@ -47505,19 +47505,19 @@ dS_t &amp;= \mu S_t dt + \sigma S_t dW_t^\mathbb{P} \\
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
 <h3 id="1-multi-dimensional-sdes">1. Multi-dimensional SDEs<a class="headerlink" href="#1-multi-dimensional-sdes" title="Permanent link">&para;</a></h3>
 <p>For a system of SDEs:</p>
-<p>$$</p>
-<p>dX_t^i = \mu^i(X_t, t) dt + \sum_{j=1}^d \sigma^{ij}(X_t, t) dW_t^j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t^i = \mu^i(X_t, t) dt + \sum_{j=1}^d \sigma^{ij}(X_t, t) dW_t^j
+\]</div>
 <p>Itô's lemma extends to:</p>
-<p>$$</p>
-<p>df = \frac{\partial f}{\partial t} dt + \sum_{i=1}^n \frac{\partial f}{\partial x^i} dX_t^i + \frac{1}{2}\sum_{i,j=1}^n \frac{\partial^2 f}{\partial x^i \partial x^j} dX_t^i dX_t^j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df = \frac{\partial f}{\partial t} dt + \sum_{i=1}^n \frac{\partial f}{\partial x^i} dX_t^i + \frac{1}{2}\sum_{i,j=1}^n \frac{\partial^2 f}{\partial x^i \partial x^j} dX_t^i dX_t^j
+\]</div>
 <p>where <span class="arithmatex">\(dX_t^i dX_t^j = \sum_{k=1}^d \sigma^{ik}\sigma^{jk} dt\)</span> (using <span class="arithmatex">\(dW_t^k dW_t^l = \delta_{kl} dt\)</span>).</p>
 <h3 id="2-jump-diffusion-models">2. Jump-Diffusion Models<a class="headerlink" href="#2-jump-diffusion-models" title="Permanent link">&para;</a></h3>
 <p>For SDEs with jumps (e.g., Merton model):</p>
-<p>$$</p>
-<p>dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t
+\]</div>
 <p>where <span class="arithmatex">\(J_t\)</span> is a jump process, verification requires extended Itô's lemma with jump terms.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Verifying SDE solutions is a fundamental skill in stochastic calculus and quantitative finance. The key tool is <strong>Itô's lemma</strong>, which accounts for the quadratic variation of Brownian motion through the second-order correction term. By systematically:</p>

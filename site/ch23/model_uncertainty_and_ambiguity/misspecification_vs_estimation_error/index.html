@@ -47329,113 +47329,113 @@
 <p><strong>Data-Generating Process</strong>: Let <span class="arithmatex">\(P^*\)</span> denote the true (unknown) probability measure governing observed data <span class="arithmatex">\(\{X_i\}_{i=1}^n\)</span>.</p>
 <p><strong>Model Class</strong>: Consider a parametric family <span class="arithmatex">\(\mathcal{M} = \{P_{\theta}: \theta \in \Theta\}\)</span> where <span class="arithmatex">\(\Theta \subseteq \mathbb{R}^d\)</span> is the parameter space.</p>
 <p><strong>Well-Specified Model</strong>: The model is <strong>correctly specified</strong> if:</p>
-<p>$$</p>
-<p>P^<em> \in \mathcal{M} \quad \text{i.e., } P^</em> = P_{\theta^<em>} \text{ for some } \theta^</em> \in \Theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^* \in \mathcal{M} \quad \text{i.e., } P^* = P_{\theta^*} \text{ for some } \theta^* \in \Theta
+\]</div>
 <p><strong>Misspecified Model</strong>: The model is <strong>misspecified</strong> if:</p>
-<p>$$</p>
-<p>P^* \notin \mathcal{M}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^* \notin \mathcal{M}
+\]</div>
 <h3 id="2-pseudo-true-parameter">2. Pseudo-True Parameter<a class="headerlink" href="#2-pseudo-true-parameter" title="Permanent link">&para;</a></h3>
 <p>Even under misspecification, we can define a best approximation within the model class.</p>
 <p><strong>Definition</strong> (Pseudo-True Parameter): The <strong>pseudo-true parameter</strong> <span class="arithmatex">\(\theta_0\)</span> is defined as:</p>
-<p>$$</p>
-<p>\theta_0 = \arg\min_{\theta \in \Theta} D_{\text{KL}}(P^* | P_{\theta})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_0 = \arg\min_{\theta \in \Theta} D_{\text{KL}}(P^* \| P_{\theta})
+\]</div>
 <p>where <span class="arithmatex">\(D_{\text{KL}}(P \| Q)\)</span> is the Kullback-Leibler divergence.</p>
 <p><strong>Alternative Characterizations</strong>:</p>
 <ol>
 <li><strong>Maximum Likelihood</strong>: </li>
 </ol>
-<p>$$</p>
-<p>\theta_0 = \arg\max_{\theta \in \Theta} \mathbb{E}<em _theta="\theta">{P^*}[\log p</em>(X)]</p>
-<p>$$</p>
+<p>$$
+   \theta_0 = \arg\max_{\theta \in \Theta} \mathbb{E}<em _theta="\theta">{P^*}[\log p</em>(X)]
+   $$</p>
 <ol>
 <li><strong>Minimum Hellinger Distance</strong>:</li>
 </ol>
-<p>$$</p>
-<p>\theta_0 = \arg\min_{\theta \in \Theta} \int \left( \sqrt{p^*} - \sqrt{p_{\theta}} \right)^2</p>
-<p>$$</p>
+<p>$$
+   \theta_0 = \arg\min_{\theta \in \Theta} \int \left( \sqrt{p^*} - \sqrt{p_{\theta}} \right)^2
+   $$</p>
 <p><strong>Properties</strong>:
 - When well-specified: <span class="arithmatex">\(\theta_0 = \theta^*\)</span>
 - When misspecified: <span class="arithmatex">\(\theta_0\)</span> is the "closest" parameter in the KL sense
 - <span class="arithmatex">\(\theta_0\)</span> is uniquely defined under identifiability conditions</p>
 <h3 id="3-estimator-and-estimation-error">3. Estimator and Estimation Error<a class="headerlink" href="#3-estimator-and-estimation-error" title="Permanent link">&para;</a></h3>
 <p><strong>Maximum Likelihood Estimator (MLE)</strong>:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _Theta="\Theta" _in="\in" _theta="\theta">n = \arg\max</em>(X_i)} \sum_{i=1}^n \log p_{\theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_n = \arg\max_{\theta \in \Theta} \sum_{i=1}^n \log p_{\theta}(X_i)
+\]</div>
 <p><strong>Estimation Error</strong>: The deviation between estimator and pseudo-true parameter:</p>
-<p>$$</p>
-<p>\Delta_{\text{est}} = \hat{\theta}_n - \theta_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{est}} = \hat{\theta}_n - \theta_0
+\]</div>
 <p><strong>Asymptotic Distribution</strong>: Under regularity conditions:</p>
-<p>$$</p>
-<p>\sqrt{n}(\hat{\theta}_n - \theta_0) \xrightarrow{d} \mathcal{N}(0, \Sigma(\theta_0))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sqrt{n}(\hat{\theta}_n - \theta_0) \xrightarrow{d} \mathcal{N}(0, \Sigma(\theta_0))
+\]</div>
 <p>where <span class="arithmatex">\(\Sigma(\theta_0)\)</span> is the asymptotic covariance matrix.</p>
 <h3 id="4-misspecification-error">4. Misspecification Error<a class="headerlink" href="#4-misspecification-error" title="Permanent link">&para;</a></h3>
 <p><strong>Approximation Error</strong>: The distance between the pseudo-true model and the truth:</p>
-<p>$$</p>
-<p>\Delta_{\text{mis}} = D_{\text{KL}}(P^* | P_{\theta_0})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{mis}} = D_{\text{KL}}(P^* \| P_{\theta_0})
+\]</div>
 <p><strong>Decomposition</strong>: For any <span class="arithmatex">\(\theta \in \Theta\)</span>:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(P^<em> | P_{\theta}) = \underbrace{D_{\text{KL}}(P^</em> | P_{\theta_0})}<em _text_KL="\text{KL">{\text{Misspecification}} + \underbrace{D</em>}}(P_{\theta_0} | P_{\theta})}_{\text{Within-Model}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(P^* \| P_{\theta}) = \underbrace{D_{\text{KL}}(P^* \| P_{\theta_0})}_{\text{Misspecification}} + \underbrace{D_{\text{KL}}(P_{\theta_0} \| P_{\theta})}_{\text{Within-Model}}
+\]</div>
 <p>This decomposition shows that any parameter <span class="arithmatex">\(\theta \neq \theta_0\)</span> incurs both misspecification error and within-model error.</p>
 <h2 id="asymptotic-theory">Asymptotic Theory<a class="headerlink" href="#asymptotic-theory" title="Permanent link">&para;</a></h2>
 <h3 id="1-consistency-under-misspecification">1. Consistency Under Misspecification<a class="headerlink" href="#1-consistency-under-misspecification" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Consistency): Under standard regularity conditions:</p>
-<p>$$</p>
-<p>\hat{\theta}_n \xrightarrow{p} \theta_0 \quad \text{as } n \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_n \xrightarrow{p} \theta_0 \quad \text{as } n \to \infty
+\]</div>
 <p>even when the model is misspecified.</p>
 <p><strong>Proof Sketch</strong>: By the law of large numbers:</p>
-<p>$$</p>
-<p>\frac{1}{n} \sum_{i=1}^n \log p_{\theta}(X_i) \xrightarrow{p} \mathbb{E}<em _theta="\theta">{P^*}[\log p</em>(X)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{1}{n} \sum_{i=1}^n \log p_{\theta}(X_i) \xrightarrow{p} \mathbb{E}_{P^*}[\log p_{\theta}(X)]
+\]</div>
 <p>uniformly in <span class="arithmatex">\(\theta\)</span>. The MLE <span class="arithmatex">\(\hat{\theta}_n\)</span> maximizes the LHS, which converges to the RHS, which is maximized at <span class="arithmatex">\(\theta_0\)</span> by definition.</p>
 <p><strong>Interpretation</strong>: The MLE consistently estimates the pseudo-true parameter <span class="arithmatex">\(\theta_0\)</span>, not necessarily the true parameter <span class="arithmatex">\(\theta^*\)</span> (which may not exist in <span class="arithmatex">\(\mathcal{M}\)</span>).</p>
 <h3 id="2-asymptotic-normality">2. Asymptotic Normality<a class="headerlink" href="#2-asymptotic-normality" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Asymptotic Distribution): Under regularity conditions:</p>
-<p>$$</p>
-<p>\sqrt{n}(\hat{\theta}_n - \theta_0) \xrightarrow{d} \mathcal{N}(0, H(\theta_0)^{-1} J(\theta_0) H(\theta_0)^{-1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sqrt{n}(\hat{\theta}_n - \theta_0) \xrightarrow{d} \mathcal{N}(0, H(\theta_0)^{-1} J(\theta_0) H(\theta_0)^{-1})
+\]</div>
 <p>where:
 - <strong>Hessian</strong>: </p>
-<p>$$</p>
-<p>H(\theta) = -\mathbb{E}<em _theta="\theta">{P^*}\left[ \nabla^2 \log p</em>(X) \right]</p>
-<p>$$</p>
+<p>$$
+  H(\theta) = -\mathbb{E}<em _theta="\theta">{P^*}\left[ \nabla^2 \log p</em>(X) \right]
+  $$</p>
 <ul>
 <li><strong>Outer Product of Scores</strong> (OPG):</li>
 </ul>
-<p>$$</p>
-<p>J(\theta) = \mathbb{E}<em _theta="\theta">{P^*}\left[ \nabla \log p</em>(X)^\top \right]}(X) \nabla \log p_{\theta</p>
-<p>$$</p>
+<p>$$
+  J(\theta) = \mathbb{E}<em _theta="\theta">{P^*}\left[ \nabla \log p</em>(X)^\top \right]
+  $$}(X) \nabla \log p_{\theta</p>
 <p><strong>Sandwich Formula</strong>: The asymptotic covariance is:</p>
-<p>$$</p>
-<p>\Sigma(\theta_0) = H(\theta_0)^{-1} J(\theta_0) H(\theta_0)^{-1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma(\theta_0) = H(\theta_0)^{-1} J(\theta_0) H(\theta_0)^{-1}
+\]</div>
 <p>often called the <strong>robust</strong> or <strong>sandwich</strong> covariance matrix.</p>
 <p><strong>Well-Specified Case</strong>: When <span class="arithmatex">\(P^* = P_{\theta_0}\)</span>:</p>
-<p>$$</p>
-<p>H(\theta_0) = J(\theta_0) = \mathcal{I}(\theta_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H(\theta_0) = J(\theta_0) = \mathcal{I}(\theta_0)
+\]</div>
 <p>the Fisher information, and:</p>
-<p>$$</p>
-<p>\Sigma(\theta_0) = \mathcal{I}(\theta_0)^{-1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma(\theta_0) = \mathcal{I}(\theta_0)^{-1}
+\]</div>
 <p>the Cramér-Rao bound.</p>
 <h3 id="3-rate-of-convergence">3. Rate of Convergence<a class="headerlink" href="#3-rate-of-convergence" title="Permanent link">&para;</a></h3>
 <p><strong>Parametric Rate</strong>: Both estimation error and convergence rate are <span class="arithmatex">\(O_p(n^{-1/2})\)</span>:</p>
-<p>$$</p>
-<p>|\hat{\theta}_n - \theta_0| = O_p(n^{-1/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|\hat{\theta}_n - \theta_0\| = O_p(n^{-1/2})
+\]</div>
 <p><strong>Misspecification</strong>: The misspecification error <span class="arithmatex">\(\Delta_{\text{mis}}\)</span> does <strong>not</strong> vanish as <span class="arithmatex">\(n \to \infty\)</span>:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(P^* | P_{\theta_0}) = O(1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(P^* \| P_{\theta_0}) = O(1)
+\]</div>
 <p><strong>Implication</strong>: For large <span class="arithmatex">\(n\)</span>:
 - Estimation error becomes negligible: <span class="arithmatex">\(O(n^{-1/2})\)</span>
 - Misspecification error dominates: <span class="arithmatex">\(O(1)\)</span></p>
@@ -47443,13 +47443,13 @@
 <h3 id="1-expected-loss-framework">1. Expected Loss Framework<a class="headerlink" href="#1-expected-loss-framework" title="Permanent link">&para;</a></h3>
 <p>Consider prediction error measured by a loss function <span class="arithmatex">\(\ell(y, \hat{y})\)</span>.</p>
 <p><strong>Expected Loss</strong>: For predictor <span class="arithmatex">\(\hat{f}_n\)</span> based on <span class="arithmatex">\(n\)</span> samples:</p>
-<p>$$</p>
-<p>R(\hat{f}<em P_="P^*">n) = \mathbb{E}</em>_n(X))]}[\ell(Y, \hat{f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R(\hat{f}_n) = \mathbb{E}_{P^*}[\ell(Y, \hat{f}_n(X))]
+\]</div>
 <p><strong>Decomposition</strong>: We can write:</p>
-<p>$$</p>
-<p>R(\hat{f}<em _Misspecification_="(Misspecification)" _text_Approximation="\text{Approximation">n) = \underbrace{R(f^<em>)}<em _theta_0="\theta_0">{\text{Bayes risk}} + \underbrace{[R(f</em>) - R(f^</em>)]}</em>}} + \underbrace{[R(\hat{f<em _theta_0="\theta_0">n) - R(f</em>})]}_{\text{Estimation}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R(\hat{f}_n) = \underbrace{R(f^*)}_{\text{Bayes risk}} + \underbrace{[R(f_{\theta_0}) - R(f^*)]}_{\text{Approximation (Misspecification)}} + \underbrace{[R(\hat{f}_n) - R(f_{\theta_0})]}_{\text{Estimation}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(f^*\)</span> is the Bayes-optimal predictor under <span class="arithmatex">\(P^*\)</span>
 - <span class="arithmatex">\(f_{\theta_0}\)</span> is the best predictor in model class <span class="arithmatex">\(\mathcal{M}\)</span>
@@ -47457,17 +47457,17 @@
 <h3 id="2-bias-variance-misspecification-tradeoff">2. Bias-Variance-Misspecification Tradeoff<a class="headerlink" href="#2-bias-variance-misspecification-tradeoff" title="Permanent link">&para;</a></h3>
 <p>For squared error loss <span class="arithmatex">\(\ell(y, \hat{y}) = (y - \hat{y})^2\)</span>:</p>
 <p><strong>Mean Squared Error</strong>:</p>
-<p>$$</p>
-<p>\text{MSE}(\hat{f}<em P_="P^*">n) = \mathbb{E}</em>_n(X))^2]}[(Y - \hat{f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MSE}(\hat{f}_n) = \mathbb{E}_{P^*}[(Y - \hat{f}_n(X))^2]
+\]</div>
 <p><strong>Classical Decomposition</strong> (Well-Specified):</p>
-<p>$$</p>
-<p>\text{MSE}(\hat{f}<em _text_Bias="\text{Bias">n) = \underbrace{\mathbb{E}[(\mathbb{E}[\hat{f}_n] - f^*)^2]}</em>}^2} + \underbrace{\mathbb{E}[(\hat{f<em _text_Variance="\text{Variance">n - \mathbb{E}[\hat{f}_n])^2]}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MSE}(\hat{f}_n) = \underbrace{\mathbb{E}[(\mathbb{E}[\hat{f}_n] - f^*)^2]}_{\text{Bias}^2} + \underbrace{\mathbb{E}[(\hat{f}_n - \mathbb{E}[\hat{f}_n])^2]}_{\text{Variance}}
+\]</div>
 <p><strong>Extended Decomposition</strong> (Misspecified):</p>
-<p>$$</p>
-<p>\text{MSE}(\hat{f}<em _theta_0="\theta_0">n) = \underbrace{(f</em>} - f^*)^2<em _theta_0="\theta_0">{\text{Misspecification}^2} + \underbrace{(\mathbb{E}[\hat{f}_n] - f</em>})^2<em _text_Variance="\text{Variance">{\text{Bias}^2} + \underbrace{\text{Var}(\hat{f}_n)}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MSE}(\hat{f}_n) = \underbrace{(f_{\theta_0} - f^*)^2}_{\text{Misspecification}^2} + \underbrace{(\mathbb{E}[\hat{f}_n] - f_{\theta_0})^2}_{\text{Bias}^2} + \underbrace{\text{Var}(\hat{f}_n)}_{\text{Variance}}
+\]</div>
 <p><strong>Interpretation</strong>:
 1. <strong>Misspecification</strong>: Cannot be reduced by collecting more data
 2. <strong>Bias</strong>: Decreases with more flexible models
@@ -47477,40 +47477,40 @@
 <p>Information criteria balance goodness-of-fit against model complexity.</p>
 <h3 id="2-akaike-information-criterion-aic">2. Akaike Information Criterion (AIC)<a class="headerlink" href="#2-akaike-information-criterion-aic" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>:</p>
-<p>$$</p>
-<p>\text{AIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + 2d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + 2d
+\]</div>
 <p>where <span class="arithmatex">\(d = \dim(\Theta)\)</span> is the number of parameters.</p>
 <p><strong>Asymptotic Justification</strong>: AIC estimates:</p>
-<p>$$</p>
-<p>-2n \cdot \mathbb{E}<em _theta_0="\theta_0">{P^<em>}[\log p_{\hat{\theta}<em>n}(X)] + 2d \approx -2n \cdot \mathbb{E}</em>{P^</em>}[\log p</em>}(X)] + \text{bias correction</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-2n \cdot \mathbb{E}_{P^*}[\log p_{\hat{\theta}_n}(X)] + 2d \approx -2n \cdot \mathbb{E}_{P^*}[\log p_{\theta_0}(X)] + \text{bias correction}
+\]</div>
 <p><strong>Key Property</strong>: AIC is consistent for selecting the model that minimizes KL divergence to <span class="arithmatex">\(P^*\)</span>, even under misspecification.</p>
 <h3 id="3-bayesian-information-criterion-bic">3. Bayesian Information Criterion (BIC)<a class="headerlink" href="#3-bayesian-information-criterion-bic" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>:</p>
-<p>$$</p>
-<p>\text{BIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + d \log n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{BIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + d \log n
+\]</div>
 <p><strong>Asymptotic Property</strong>: BIC is consistent for model selection when the true model is in the candidate set (well-specified case).</p>
 <p><strong>Under Misspecification</strong>: BIC tends to select simpler models than AIC due to larger penalty (<span class="arithmatex">\(\log n\)</span> vs <span class="arithmatex">\(2\)</span>).</p>
 <h3 id="4-takeuchi-information-criterion-tic">4. Takeuchi Information Criterion (TIC)<a class="headerlink" href="#4-takeuchi-information-criterion-tic" title="Permanent link">&para;</a></h3>
 <p><strong>Robust Variant</strong> accounting for misspecification:</p>
-<p>$$</p>
-<p>\text{TIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + 2 \text{tr}(H^{-1} J)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{TIC} = -2 \sum_{i=1}^n \log p_{\hat{\theta}_n}(X_i) + 2 \text{tr}(H^{-1} J)
+\]</div>
 <p>where <span class="arithmatex">\(H\)</span> and <span class="arithmatex">\(J\)</span> are estimates of <span class="arithmatex">\(H(\theta_0)\)</span> and <span class="arithmatex">\(J(\theta_0)\)</span>.</p>
 <p><strong>Interpretation</strong>: The trace term <span class="arithmatex">\(\text{tr}(H^{-1} J)\)</span> reduces to <span class="arithmatex">\(d\)</span> when well-specified, generalizing AIC.</p>
 <h3 id="5-cross-validation">5. Cross-Validation<a class="headerlink" href="#5-cross-validation" title="Permanent link">&para;</a></h3>
 <p>Cross-validation directly estimates prediction error without assuming correct specification.</p>
 <p><strong><span class="arithmatex">\(K\)</span>-Fold Cross-Validation</strong>:</p>
-<p>$$</p>
-<p>\text{CV} = \frac{1}{K} \sum_{k=1}^K \sum_{i \in \mathcal{D}<em -k="-k">k} \ell(Y_i, \hat{f}</em>(X_i))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CV} = \frac{1}{K} \sum_{k=1}^K \sum_{i \in \mathcal{D}_k} \ell(Y_i, \hat{f}_{-k}(X_i))
+\]</div>
 <p>where <span class="arithmatex">\(\hat{f}_{-k}\)</span> is trained on all data except fold <span class="arithmatex">\(k\)</span>.</p>
 <p><strong>Asymptotic Behavior</strong>:</p>
-<p>$$</p>
-<p>\text{CV} \approx \mathbb{E}_{P^*}[\ell(Y, \hat{f}_n(X))] + O_p(n^{-1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CV} \approx \mathbb{E}_{P^*}[\ell(Y, \hat{f}_n(X))] + O_p(n^{-1})
+\]</div>
 <p><strong>Advantages</strong>:
 - Valid under misspecification
 - No assumption about model form
@@ -47521,30 +47521,30 @@
 <h3 id="6-model-averaging">6. Model Averaging<a class="headerlink" href="#6-model-averaging" title="Permanent link">&para;</a></h3>
 <p>Instead of selecting a single model, average predictions across models.</p>
 <p><strong>Weighted Average</strong>:</p>
-<p>$$</p>
-<p>\hat{f}<em m="1">{\text{avg}} = \sum</em>_m}^M w_m \hat{f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f}_{\text{avg}} = \sum_{m=1}^M w_m \hat{f}_m
+\]</div>
 <p><strong>Optimal Weights</strong>: Minimize expected loss:</p>
-<p>$$</p>
-<p>w^<em> = \arg\min_w \mathbb{E}_{P^</em>}[\ell(Y, \sum_{m=1}^M w_m \hat{f}_m(X))]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w^* = \arg\min_w \mathbb{E}_{P^*}[\ell(Y, \sum_{m=1}^M w_m \hat{f}_m(X))]
+\]</div>
 <p>subject to <span class="arithmatex">\(\sum_m w_m = 1\)</span>, <span class="arithmatex">\(w_m \geq 0\)</span>.</p>
 <p><strong>Bayesian Model Averaging (BMA)</strong>:</p>
-<p>$$</p>
-<p>w_m^{\text{BMA}} = \frac{p(\mathcal{D} | \mathcal{M}<em j="1">m) p(\mathcal{M}_m)}{\sum</em>}^M p(\mathcal{D} | \mathcal{M}_j) p(\mathcal{M}_j)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w_m^{\text{BMA}} = \frac{p(\mathcal{D} | \mathcal{M}_m) p(\mathcal{M}_m)}{\sum_{j=1}^M p(\mathcal{D} | \mathcal{M}_j) p(\mathcal{M}_j)}
+\]</div>
 <p><strong>Under Misspecification</strong>: BMA may not be optimal; frequentist stacking often performs better.</p>
 <h2 id="inference-under-misspecification">Inference Under Misspecification<a class="headerlink" href="#inference-under-misspecification" title="Permanent link">&para;</a></h2>
 <h3 id="1-hypothesis-testing">1. Hypothesis Testing<a class="headerlink" href="#1-hypothesis-testing" title="Permanent link">&para;</a></h3>
 <p><strong>Null Hypothesis</strong>: <span class="arithmatex">\(H_0: \theta = \theta_0\)</span> (pseudo-true value).</p>
 <p><strong>Wald Test Statistic</strong>:</p>
-<p>$$</p>
-<p>W_n = n(\hat{\theta}_n - \theta_0)^\top \hat{\Sigma}^{-1} (\hat{\theta}_n - \theta_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_n = n(\hat{\theta}_n - \theta_0)^\top \hat{\Sigma}^{-1} (\hat{\theta}_n - \theta_0)
+\]</div>
 <p><strong>Asymptotic Distribution</strong>:</p>
-<p>$$</p>
-<p>W_n \xrightarrow{d} \chi^2_d \quad \text{under } H_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_n \xrightarrow{d} \chi^2_d \quad \text{under } H_0
+\]</div>
 <p>using the sandwich estimator <span class="arithmatex">\(\hat{\Sigma}\)</span>.</p>
 <p><strong>Critical Issue</strong>: Standard tests assume well-specification. Using incorrect covariance (e.g., <span class="arithmatex">\(\mathcal{I}(\theta_0)^{-1}\)</span> instead of sandwich) leads to:
 - Incorrect size
@@ -47552,43 +47552,43 @@
 - Misleading inference</p>
 <h3 id="2-confidence-intervals">2. Confidence Intervals<a class="headerlink" href="#2-confidence-intervals" title="Permanent link">&para;</a></h3>
 <p><strong>Standard CI</strong> (assuming well-specification):</p>
-<p>$$</p>
-<p>\hat{\theta}<em _alpha_2="\alpha/2">n \pm z</em>} \sqrt{\frac{\mathcal{I}(\hat{\theta}_n)^{-1}}{n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_n \pm z_{\alpha/2} \sqrt{\frac{\mathcal{I}(\hat{\theta}_n)^{-1}}{n}}
+\]</div>
 <p><strong>Robust CI</strong> (allowing misspecification):</p>
-<p>$$</p>
-<p>\hat{\theta}<em _alpha_2="\alpha/2">n \pm z</em>} \sqrt{\frac{\hat{\Sigma}}{n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_n \pm z_{\alpha/2} \sqrt{\frac{\hat{\Sigma}}{n}}
+\]</div>
 <p>where <span class="arithmatex">\(\hat{\Sigma}\)</span> is the sandwich estimator.</p>
 <p><strong>Coverage</strong>: 
 - Standard CI: May have coverage <span class="arithmatex">\(&lt; 1-\alpha\)</span> under misspecification
 - Robust CI: Maintains nominal coverage asymptotically</p>
 <h3 id="3-quasi-likelihood-methods">3. Quasi-Likelihood Methods<a class="headerlink" href="#3-quasi-likelihood-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Quasi-Likelihood</strong>: Specify only first two moments:</p>
-<p>$$</p>
-<p>\mathbb{E}[Y|X] = \mu(X; \theta), \quad \text{Var}(Y|X) = V(\mu(X; \theta))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y|X] = \mu(X; \theta), \quad \text{Var}(Y|X) = V(\mu(X; \theta))
+\]</div>
 <p><strong>Estimating Equation</strong>:</p>
-<p>$$</p>
-<p>\sum_{i=1}^n \frac{\partial \mu(X_i; \theta)}{\partial \theta} \frac{Y_i - \mu(X_i; \theta)}{V(\mu(X_i; \theta))} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i=1}^n \frac{\partial \mu(X_i; \theta)}{\partial \theta} \frac{Y_i - \mu(X_i; \theta)}{V(\mu(X_i; \theta))} = 0
+\]</div>
 <p><strong>Advantage</strong>: Robust to distributional misspecification; only requires correct specification of mean and variance functions.</p>
 <p><strong>Consistency</strong>: <span class="arithmatex">\(\hat{\theta}_n \to \theta_0\)</span> where:</p>
-<p>$$</p>
-<p>\mathbb{E}_{P^*}\left[ \frac{\partial \mu(X; \theta_0)}{\partial \theta} \frac{Y - \mu(X; \theta_0)}{V(\mu(X; \theta_0))} \right] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_{P^*}\left[ \frac{\partial \mu(X; \theta_0)}{\partial \theta} \frac{Y - \mu(X; \theta_0)}{V(\mu(X; \theta_0))} \right] = 0
+\]</div>
 <h2 id="misspecification-tests">Misspecification Tests<a class="headerlink" href="#misspecification-tests" title="Permanent link">&para;</a></h2>
 <h3 id="1-moment-tests">1. Moment Tests<a class="headerlink" href="#1-moment-tests" title="Permanent link">&para;</a></h3>
 <p><strong>Idea</strong>: Check if moments implied by the model match empirical moments.</p>
 <p><strong>Test Statistic</strong>: For moment conditions <span class="arithmatex">\(\mathbb{E}[g(X, \theta)] = 0\)</span>:</p>
-<p>$$</p>
-<p>Q_n = n \cdot \bar{g}_n(\hat{\theta}_n)^\top W \bar{g}_n(\hat{\theta}_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Q_n = n \cdot \bar{g}_n(\hat{\theta}_n)^\top W \bar{g}_n(\hat{\theta}_n)
+\]</div>
 <p>where <span class="arithmatex">\(\bar{g}_n(\theta) = n^{-1} \sum_{i=1}^n g(X_i, \theta)\)</span> and <span class="arithmatex">\(W\)</span> is a weight matrix.</p>
 <p><strong>Asymptotic Distribution</strong>:</p>
-<p>$$</p>
-<p>Q_n \xrightarrow{d} \chi^2_r \quad \text{under correct specification}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Q_n \xrightarrow{d} \chi^2_r \quad \text{under correct specification}
+\]</div>
 <p>where <span class="arithmatex">\(r\)</span> is the number of overidentifying restrictions.</p>
 <p><strong>Rejection</strong>: Large <span class="arithmatex">\(Q_n\)</span> provides evidence of misspecification.</p>
 <h3 id="2-hausman-test">2. Hausman Test<a class="headerlink" href="#2-hausman-test" title="Permanent link">&para;</a></h3>
@@ -47596,128 +47596,128 @@
 - <span class="arithmatex">\(\hat{\theta}_1\)</span> is consistent under both <span class="arithmatex">\(H_0\)</span> and <span class="arithmatex">\(H_1\)</span> but inefficient under <span class="arithmatex">\(H_0\)</span>
 - <span class="arithmatex">\(\hat{\theta}_2\)</span> is consistent and efficient under <span class="arithmatex">\(H_0\)</span> but inconsistent under <span class="arithmatex">\(H_1\)</span></p>
 <p><strong>Test Statistic</strong>:</p>
-<p>$$</p>
-<p>H = (\hat{\theta}_1 - \hat{\theta}_2)^\top [\text{Var}(\hat{\theta}_1 - \hat{\theta}_2)]^{-1} (\hat{\theta}_1 - \hat{\theta}_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H = (\hat{\theta}_1 - \hat{\theta}_2)^\top [\text{Var}(\hat{\theta}_1 - \hat{\theta}_2)]^{-1} (\hat{\theta}_1 - \hat{\theta}_2)
+\]</div>
 <p><strong>Asymptotic Distribution</strong>:</p>
-<p>$$</p>
-<p>H \xrightarrow{d} \chi^2_d \quad \text{under } H_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H \xrightarrow{d} \chi^2_d \quad \text{under } H_0
+\]</div>
 <p><strong>Application</strong>: Test endogeneity, omitted variables, or other forms of misspecification.</p>
 <h3 id="3-omnibus-tests">3. Omnibus Tests<a class="headerlink" href="#3-omnibus-tests" title="Permanent link">&para;</a></h3>
 <p><strong>Goodness-of-Fit Tests</strong>: </p>
 <ol>
 <li><strong>Kolmogorov-Smirnov</strong>:</li>
 </ol>
-<p>$$</p>
-<p>D_n = \sup_x |\hat{F}<em _theta_0="\theta_0">n(x) - F</em>(x)|</p>
-<p>$$</p>
+<p>$$
+   D_n = \sup_x |\hat{F}<em _theta_0="\theta_0">n(x) - F</em>(x)|
+   $$</p>
 <ol>
 <li><strong>Cramér-von Mises</strong>:</li>
 </ol>
-<p>$$</p>
-<p>W_n^2 = n \int_{-\infty}^{\infty} [\hat{F}<em _theta_0="\theta_0">n(x) - F</em>(x)}(x)]^2 dF_{\theta_0</p>
-<p>$$</p>
+<p>$$
+   W_n^2 = n \int_{-\infty}^{\infty} [\hat{F}<em _theta_0="\theta_0">n(x) - F</em>(x)
+   $$}(x)]^2 dF_{\theta_0</p>
 <ol>
 <li><strong>Anderson-Darling</strong>:</li>
 </ol>
-<p>$$</p>
-<p>A_n^2 = n \int_{-\infty}^{\infty} \frac{[\hat{F}<em _theta_0="\theta_0">n(x) - F</em>(x)}(x)]^2}{F_{\theta_0}(x)[1 - F_{\theta_0}(x)]} dF_{\theta_0</p>
-<p>$$</p>
+<p>$$
+   A_n^2 = n \int_{-\infty}^{\infty} \frac{[\hat{F}<em _theta_0="\theta_0">n(x) - F</em>(x)
+   $$}(x)]^2}{F_{\theta_0}(x)[1 - F_{\theta_0}(x)]} dF_{\theta_0</p>
 <p><strong>Power</strong>: These tests can detect various forms of misspecification but may have low power against specific alternatives.</p>
 <h2 id="robustness-to-misspecification">Robustness to Misspecification<a class="headerlink" href="#robustness-to-misspecification" title="Permanent link">&para;</a></h2>
 <h3 id="1-robust-estimators">1. Robust Estimators<a class="headerlink" href="#1-robust-estimators" title="Permanent link">&para;</a></h3>
 <p><strong>M-Estimators</strong>: Minimize a robust loss function:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _theta="\theta">n = \arg\min</em>^n \rho(X_i, \theta)} \sum_{i=1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_n = \arg\min_{\theta} \sum_{i=1}^n \rho(X_i, \theta)
+\]</div>
 <p>where <span class="arithmatex">\(\rho\)</span> is chosen to downweight outliers.</p>
 <p><strong>Example</strong> (Huber Loss): For regression:</p>
-<p>$$</p>
-<p>\rho_{\delta}(r) = \begin{cases}
-\frac{1}{2} r^2 &amp; |r| \leq \delta \
+<div class="arithmatex">\[
+\rho_{\delta}(r) = \begin{cases}
+\frac{1}{2} r^2 &amp; |r| \leq \delta \\
 \delta |r| - \frac{1}{2} \delta^2 &amp; |r| &gt; \delta
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Breakdown Point</strong>: Fraction of contamination an estimator can handle before breaking down.</p>
 <h3 id="2-influence-functions">2. Influence Functions<a class="headerlink" href="#2-influence-functions" title="Permanent link">&para;</a></h3>
 <p><strong>Influence Function</strong>: Measures sensitivity to infinitesimal contamination:</p>
-<p>$$</p>
-<p>\text{IF}(x; T, P) = \lim_{\varepsilon \to 0} \frac{T((1-\varepsilon)P + \varepsilon \delta_x) - T(P)}{\varepsilon}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{IF}(x; T, P) = \lim_{\varepsilon \to 0} \frac{T((1-\varepsilon)P + \varepsilon \delta_x) - T(P)}{\varepsilon}
+\]</div>
 <p>where <span class="arithmatex">\(T\)</span> is a statistical functional and <span class="arithmatex">\(\delta_x\)</span> is a point mass at <span class="arithmatex">\(x\)</span>.</p>
 <p><strong>Gross Error Sensitivity</strong>:</p>
-<p>$$</p>
-<p>\gamma^* = \sup_x |\text{IF}(x; T, P)|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\gamma^* = \sup_x |\text{IF}(x; T, P)|
+\]</div>
 <p><strong>Interpretation</strong>: Smaller <span class="arithmatex">\(\gamma^*\)</span> indicates greater robustness to outliers.</p>
 <p><strong>For MLE</strong>: Influence function is unbounded, making it sensitive to outliers and misspecification.</p>
 <h3 id="3-empirical-likelihood">3. Empirical Likelihood<a class="headerlink" href="#3-empirical-likelihood" title="Permanent link">&para;</a></h3>
 <p><strong>Idea</strong>: Nonparametric approach that assigns probabilities <span class="arithmatex">\(p_i\)</span> to observations.</p>
 <p><strong>Optimization</strong>:</p>
-<p>$$</p>
-<p>\max_{p_1, \ldots, p_n} \prod_{i=1}^n p_i \quad \text{subject to} \quad \sum_{i=1}^n p_i = 1, \quad \sum_{i=1}^n p_i g(X_i, \theta) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{p_1, \ldots, p_n} \prod_{i=1}^n p_i \quad \text{subject to} \quad \sum_{i=1}^n p_i = 1, \quad \sum_{i=1}^n p_i g(X_i, \theta) = 0
+\]</div>
 <p><strong>Advantage</strong>: Does not require specifying a parametric likelihood; robust to distributional misspecification.</p>
 <p><strong>Empirical Likelihood Ratio</strong>:</p>
-<p>$$</p>
-<p>\text{ELR}(\theta) = \max_{p_i} \prod_{i=1}^n (n p_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ELR}(\theta) = \max_{p_i} \prod_{i=1}^n (n p_i)
+\]</div>
 <p>subject to moment constraints.</p>
 <p><strong>Asymptotic Distribution</strong>:</p>
-<p>$$</p>
-<p>-2 \log \text{ELR}(\theta_0) \xrightarrow{d} \chi^2_r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-2 \log \text{ELR}(\theta_0) \xrightarrow{d} \chi^2_r
+\]</div>
 <h2 id="applications-to-quantitative-finance">Applications to Quantitative Finance<a class="headerlink" href="#applications-to-quantitative-finance" title="Permanent link">&para;</a></h2>
 <h3 id="1-option-pricing-under-misspecification">1. Option Pricing Under Misspecification<a class="headerlink" href="#1-option-pricing-under-misspecification" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: True stock dynamics unknown; use Black-Scholes as working model.</p>
 <p><strong>Black-Scholes Model</strong>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
+\]</div>
 <p><strong>True Dynamics</strong> (e.g., with jumps):</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_{t-} \, dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_{t-} \, dJ_t
+\]</div>
 <p>where <span class="arithmatex">\(J_t\)</span> is a jump process.</p>
 <p><strong>Pricing Error</strong>: </p>
-<p>$$</p>
-<p>\text{Error} = |V_{\text{BS}}(S_0, K, \sigma) - V_{\text{true}}(S_0, K)|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Error} = |V_{\text{BS}}(S_0, K, \sigma) - V_{\text{true}}(S_0, K)|
+\]</div>
 <p><strong>Components</strong>:
 1. <strong>Misspecification</strong>: Ignoring jumps creates systematic bias
 2. <strong>Estimation Error</strong>: Volatility <span class="arithmatex">\(\sigma\)</span> estimated from data
 3. <strong>Interaction</strong>: Estimated <span class="arithmatex">\(\sigma\)</span> may partially compensate for model misspecification</p>
 <h3 id="2-risk-management">2. Risk Management<a class="headerlink" href="#2-risk-management" title="Permanent link">&para;</a></h3>
 <p><strong>Value-at-Risk (VaR)</strong>: </p>
-<p>$$</p>
-<p>\text{VaR}_{\alpha} = \inf{v: P^*(L \leq v) \geq 1 - \alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_{\alpha} = \inf\{v: P^*(L \leq v) \geq 1 - \alpha\}
+\]</div>
 <p><strong>Under Misspecified Model</strong>: Using <span class="arithmatex">\(P_{\theta_0}\)</span> instead of <span class="arithmatex">\(P^*\)</span>:</p>
-<p>$$</p>
-<p>\text{VaR}<em _theta_0="\theta_0">{\alpha}^{\text{model}} = \inf{v: P</em>(L \leq v) \geq 1 - \alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_{\alpha}^{\text{model}} = \inf\{v: P_{\theta_0}(L \leq v) \geq 1 - \alpha\}
+\]</div>
 <p><strong>Model Risk</strong>: </p>
-<p>$$</p>
-<p>\Delta_{\text{VaR}} = \text{VaR}<em _alpha="\alpha">{\alpha}^{\text{model}} - \text{VaR}</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{VaR}} = \text{VaR}_{\alpha}^{\text{model}} - \text{VaR}_{\alpha}
+\]</div>
 <p><strong>Backtesting</strong>: Check if actual violations match predicted:</p>
-<p>$$</p>
-<p>\text{Violation rate} = \frac{1}{T} \sum_{t=1}^T \mathbb{1}{L_t &gt; \text{VaR}_{\alpha, t}^{\text{model}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Violation rate} = \frac{1}{T} \sum_{t=1}^T \mathbb{1}\{L_t &gt; \text{VaR}_{\alpha, t}^{\text{model}}\}
+\]</div>
 <p>Should be close to <span class="arithmatex">\(\alpha\)</span> if model is well-specified.</p>
 <h3 id="3-portfolio-optimization">3. Portfolio Optimization<a class="headerlink" href="#3-portfolio-optimization" title="Permanent link">&para;</a></h3>
 <p><strong>Mean-Variance Problem</strong>:</p>
-<p>$$</p>
-<p>\max_w \left{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{ w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w \right\}
+\]</div>
 <p><strong>Parameter Estimation</strong>:
 - <span class="arithmatex">\(\hat{\mu}\)</span> estimated from sample mean
 - <span class="arithmatex">\(\hat{\Sigma}\)</span> estimated from sample covariance</p>
 <p><strong>Estimation Error Impact</strong>: </p>
-<p>$$</p>
-<p>\text{Loss} = (w^<em>_{\hat{\mu}, \hat{\Sigma}} - w^</em><em _Sigma="\Sigma" _mu_="\mu,">{\mu, \Sigma})^\top \Sigma (w^<em>_{\hat{\mu}, \hat{\Sigma}} - w^</em></em>)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Loss} = (w^*_{\hat{\mu}, \hat{\Sigma}} - w^*_{\mu, \Sigma})^\top \Sigma (w^*_{\hat{\mu}, \hat{\Sigma}} - w^*_{\mu, \Sigma})
+\]</div>
 <p><strong>Misspecification</strong>: Returns may not be i.i.d. normal:
 - Fat tails
 - Time-varying moments
@@ -47725,9 +47725,9 @@
 <p><strong>Robust Approach</strong>: Use shrinkage estimators or robust covariance estimators to reduce impact of both estimation error and misspecification.</p>
 <h3 id="4-factor-models">4. Factor Models<a class="headerlink" href="#4-factor-models" title="Permanent link">&para;</a></h3>
 <p><strong>Model</strong>: Returns generated by factors:</p>
-<p>$$</p>
-<p>R_i = \alpha_i + \beta_i^\top F + \varepsilon_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_i = \alpha_i + \beta_i^\top F + \varepsilon_i
+\]</div>
 <p><strong>Misspecification</strong>: 
 - Missing factors
 - Nonlinear factor loadings
@@ -47736,34 +47736,34 @@
 - Estimated <span class="arithmatex">\(\hat{\beta}_i\)</span> from regression
 - Standard error: <span class="arithmatex">\(O(n^{-1/2})\)</span></p>
 <p><strong>Joint Impact</strong>: </p>
-<p>$$</p>
-<p>\mathbb{E}[(R_i - \hat{\alpha}<em _text_Idiosyncratic="\text{Idiosyncratic">i - \hat{\beta}_i^\top F)^2] = \underbrace{\mathbb{E}[\varepsilon_i^2]}</em>}} + \underbrace{\beta_i^\top \text{Cov}(F) \beta_i<em _text_Estimation="\text{Estimation">{\text{Factor}} + \underbrace{O(n^{-1})}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(R_i - \hat{\alpha}_i - \hat{\beta}_i^\top F)^2] = \underbrace{\mathbb{E}[\varepsilon_i^2]}_{\text{Idiosyncratic}} + \underbrace{\beta_i^\top \text{Cov}(F) \beta_i}_{\text{Factor}} + \underbrace{O(n^{-1})}_{\text{Estimation}}
+\]</div>
 <p>when well-specified. Under misspecification, first term includes structural error.</p>
 <h2 id="advanced-theoretical-results">Advanced Theoretical Results<a class="headerlink" href="#advanced-theoretical-results" title="Permanent link">&para;</a></h2>
 <h3 id="1-semiparametric-efficiency">1. Semiparametric Efficiency<a class="headerlink" href="#1-semiparametric-efficiency" title="Permanent link">&para;</a></h3>
 <p><strong>Semiparametric Model</strong>: Parametric component <span class="arithmatex">\(\theta\)</span> and infinite-dimensional nuisance component <span class="arithmatex">\(\eta\)</span>.</p>
 <p><strong>Efficient Score</strong>: The orthogonal component to the nuisance tangent space:</p>
-<p>$$</p>
-<p>\tilde{\ell}(\theta, \eta) = \ell(\theta, \eta) - \Pi[\ell(\theta, \eta) | \mathcal{T}_{\eta}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{\ell}(\theta, \eta) = \ell(\theta, \eta) - \Pi[\ell(\theta, \eta) | \mathcal{T}_{\eta}]
+\]</div>
 <p><strong>Efficient Influence Function</strong>: </p>
-<p>$$</p>
-<p>\text{IF}_{\text{eff}}(x) = \mathcal{I}(\theta)^{-1} \tilde{\ell}(\theta, \eta)(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{IF}_{\text{eff}}(x) = \mathcal{I}(\theta)^{-1} \tilde{\ell}(\theta, \eta)(x)
+\]</div>
 <p><strong>Semiparametric Efficiency Bound</strong>:</p>
-<p>$$</p>
-<p>\text{Var}(\hat{\theta}) \geq \frac{1}{n \cdot \mathcal{I}_{\text{semi}}(\theta)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(\hat{\theta}) \geq \frac{1}{n \cdot \mathcal{I}_{\text{semi}}(\theta)}
+\]</div>
 <p><strong>Under Misspecification</strong>: Efficiency bounds still apply, but target is pseudo-true <span class="arithmatex">\(\theta_0\)</span> rather than true <span class="arithmatex">\(\theta^*\)</span>.</p>
 <h3 id="2-double-robustness">2. Double Robustness<a class="headerlink" href="#2-double-robustness" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Two working models:
 1. Outcome regression: <span class="arithmatex">\(m(X; \alpha)\)</span>
 2. Propensity score: <span class="arithmatex">\(\pi(X; \beta)\)</span></p>
 <p><strong>Doubly Robust Estimator</strong>:</p>
-<p>$$</p>
-<p>\hat{\tau} = \frac{1}{n} \sum_{i=1}^n \left[ \frac{Y_i A_i}{\pi(X_i; \hat{\beta})} - \frac{m(X_i; \hat{\alpha})(A_i - \pi(X_i; \hat{\beta}))}{\pi(X_i; \hat{\beta})} \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\tau} = \frac{1}{n} \sum_{i=1}^n \left[ \frac{Y_i A_i}{\pi(X_i; \hat{\beta})} - \frac{m(X_i; \hat{\alpha})(A_i - \pi(X_i; \hat{\beta}))}{\pi(X_i; \hat{\beta})} \right]
+\]</div>
 <p><strong>Property</strong>: <span class="arithmatex">\(\hat{\tau}\)</span> is consistent if <strong>either</strong> (not necessarily both):
 - <span class="arithmatex">\(m(X; \alpha)\)</span> is correctly specified, <strong>or</strong>
 - <span class="arithmatex">\(\pi(X; \beta)\)</span> is correctly specified</p>
@@ -47772,18 +47772,18 @@
 <p><strong>Setup</strong>: Dimension <span class="arithmatex">\(d = d_n \to \infty\)</span> as <span class="arithmatex">\(n \to \infty\)</span>.</p>
 <p><strong>Regime</strong>: <span class="arithmatex">\(d/n \to \kappa \in (0, 1)\)</span> (proportional asymptotics).</p>
 <p><strong>Estimation Error</strong>: In high dimensions:</p>
-<p>$$</p>
-<p>|\hat{\theta}_n - \theta_0|^2 = O_p\left(\frac{d}{n}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|\hat{\theta}_n - \theta_0\|^2 = O_p\left(\frac{d}{n}\right)
+\]</div>
 <p>rather than <span class="arithmatex">\(O_p(n^{-1})\)</span> in fixed-dimensional case.</p>
 <p><strong>Misspecification</strong>: Can be exacerbated in high dimensions:
 - More parameters to estimate
 - Greater potential for overfitting
 - Model selection more difficult</p>
 <p><strong>Regularization</strong>: Methods like LASSO add penalty to control both estimation error and effective model complexity:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _theta="\theta">{\lambda} = \arg\min</em>^n (Y_i - X_i^\top \theta)^2 + \lambda |\theta|_1 \right}} \left{ \sum_{i=1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_{\lambda} = \arg\min_{\theta} \left\{ \sum_{i=1}^n (Y_i - X_i^\top \theta)^2 + \lambda \|\theta\|_1 \right\}
+\]</div>
 <h2 id="practical-guidelines">Practical Guidelines<a class="headerlink" href="#practical-guidelines" title="Permanent link">&para;</a></h2>
 <h3 id="1-detection-strategy">1. Detection Strategy<a class="headerlink" href="#1-detection-strategy" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong>: Diagnostic Checks
@@ -47855,9 +47855,9 @@ Misspecification  Estimation
     Error          Error
 </code></pre></div>
 <p><strong>Optimal Model</strong>: Minimizes total error:</p>
-<p>$$</p>
-<p>\text{Total Error} = \text{Misspecification Error} + \text{Estimation Error}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Error} = \text{Misspecification Error} + \text{Estimation Error}
+\]</div>
 <p><strong>Guidelines</strong>:
 - <strong>Small <span class="arithmatex">\(n\)</span></strong>: Use simpler models to reduce estimation error
 - <strong>Large <span class="arithmatex">\(n\)</span></strong>: Can afford more complex models; focus on reducing misspecification

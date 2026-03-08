@@ -47311,9 +47311,9 @@
 2. Has non-negative payoff with probability 1
 3. Has positive payoff with positive probability</p>
 <p><strong>Fundamental Theorem of Asset Pricing</strong>: Under no-arbitrage, there exists a probability measure <span class="arithmatex">\(\mathbb{Q}\)</span> equivalent to the physical measure <span class="arithmatex">\(\mathbb{P}\)</span> such that discounted asset prices are <span class="arithmatex">\(\mathbb{Q}\)</span>-martingales:</p>
-<p>$$</p>
-<p>\frac{S_t}{B_t} = \mathbb{E}_{\mathbb{Q}}\left[ \frac{S_T}{B_T} \,\bigg|\, \mathcal{F}_t \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S_t}{B_t} = \mathbb{E}_{\mathbb{Q}}\left[ \frac{S_T}{B_T} \,\bigg|\, \mathcal{F}_t \right]
+\]</div>
 <h3 id="2-model-free-setting">2. Model-Free Setting<a class="headerlink" href="#2-model-free-setting" title="Permanent link">&para;</a></h3>
 <p><strong>Given Information</strong>:
 - Current stock price <span class="arithmatex">\(S_0\)</span>
@@ -47325,9 +47325,9 @@
 <h2 id="static-arbitrage-bounds">Static Arbitrage Bounds<a class="headerlink" href="#static-arbitrage-bounds" title="Permanent link">&para;</a></h2>
 <h3 id="1-call-option-bounds">1. Call Option Bounds<a class="headerlink" href="#1-call-option-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Intrinsic Value Bound</strong> (Lower Bound):</p>
-<p>$$</p>
-<p>C(K, T) \geq (S_0 - Ke^{-rT})^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) \geq (S_0 - Ke^{-rT})^+
+\]</div>
 <p><strong>Proof</strong>: Consider the portfolio:
 - Long one call with strike <span class="arithmatex">\(K\)</span>
 - Short one stock
@@ -47336,29 +47336,29 @@
 - If <span class="arithmatex">\(S_T &gt; K\)</span>: Portfolio value = <span class="arithmatex">\((S_T - K) - S_T + K = 0\)</span>
 - If <span class="arithmatex">\(S_T \leq K\)</span>: Portfolio value = <span class="arithmatex">\(0 - S_T + K \geq 0\)</span></p>
 <p>The portfolio has non-negative payoff, so by no-arbitrage, its initial value must be non-negative:</p>
-<p>$$</p>
-<p>C(K, T) - S_0 + Ke^{-rT} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) - S_0 + Ke^{-rT} \geq 0
+\]</div>
 <p><strong>Upper Bound</strong>:</p>
-<p>$$</p>
-<p>C(K, T) \leq S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) \leq S_0
+\]</div>
 <p><strong>Proof</strong>: A call option cannot be worth more than the underlying stock itself. If <span class="arithmatex">\(C(K, T) &gt; S_0\)</span>, sell the call and buy the stock for arbitrage.</p>
 <h3 id="2-put-option-bounds">2. Put Option Bounds<a class="headerlink" href="#2-put-option-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Lower Bound</strong>:</p>
-<p>$$</p>
-<p>P(K, T) \geq (Ke^{-rT} - S_0)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(K, T) \geq (Ke^{-rT} - S_0)^+
+\]</div>
 <p><strong>Upper Bound</strong>:</p>
-<p>$$</p>
-<p>P(K, T) \leq Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(K, T) \leq Ke^{-rT}
+\]</div>
 <p><strong>Proof</strong>: A put option cannot be worth more than the present value of the strike. If <span class="arithmatex">\(P(K, T) &gt; Ke^{-rT}\)</span>, sell the put and invest the proceeds for arbitrage.</p>
 <h3 id="3-put-call-parity">3. Put-Call Parity<a class="headerlink" href="#3-put-call-parity" title="Permanent link">&para;</a></h3>
 <p><strong>Exact Relationship</strong>:</p>
-<p>$$</p>
-<p>C(K, T) - P(K, T) = S_0 - Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) - P(K, T) = S_0 - Ke^{-rT}
+\]</div>
 <p><strong>Proof</strong>: Consider two portfolios:
 - Portfolio A: One call + <span class="arithmatex">\(Ke^{-rT}\)</span> in bonds
 - Portfolio B: One put + One stock</p>
@@ -47369,94 +47369,94 @@
 <h2 id="convexity-and-monotonicity-constraints">Convexity and Monotonicity Constraints<a class="headerlink" href="#convexity-and-monotonicity-constraints" title="Permanent link">&para;</a></h2>
 <h3 id="1-convexity-in-strike">1. Convexity in Strike<a class="headerlink" href="#1-convexity-in-strike" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Convexity): The call price <span class="arithmatex">\(C(K)\)</span> is a convex function of the strike <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>C(\lambda K_1 + (1-\lambda) K_2) \leq \lambda C(K_1) + (1-\lambda) C(K_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(\lambda K_1 + (1-\lambda) K_2) \leq \lambda C(K_1) + (1-\lambda) C(K_2)
+\]</div>
 <p>for all <span class="arithmatex">\(K_1 &lt; K_2\)</span> and <span class="arithmatex">\(\lambda \in [0, 1]\)</span>.</p>
 <p><strong>Proof</strong>: For any <span class="arithmatex">\(K_1 &lt; K_2 &lt; K_3\)</span> with <span class="arithmatex">\(K_2 = \alpha K_1 + (1-\alpha) K_3\)</span>, consider the butterfly spread:
 - Long 1 call at <span class="arithmatex">\(K_1\)</span>
 - Long 1 call at <span class="arithmatex">\(K_3\)</span>
 - Short <span class="arithmatex">\(\frac{K_3 - K_1}{K_2 - K_1} = \frac{1}{\alpha}\)</span> calls at <span class="arithmatex">\(K_2\)</span></p>
 <p>This portfolio has non-negative payoff everywhere, hence:</p>
-<p>$$</p>
-<p>C(K_1) + C(K_3) - \frac{1}{\alpha} C(K_2) \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_1) + C(K_3) - \frac{1}{\alpha} C(K_2) \geq 0
+\]</div>
 <p>which establishes convexity.</p>
 <p><strong>Consequence</strong>: The call price function must satisfy:</p>
-<p>$$</p>
-<p>\frac{C(K_2) - C(K_1)}{K_2 - K_1} \leq \frac{C(K_3) - C(K_2)}{K_3 - K_2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{C(K_2) - C(K_1)}{K_2 - K_1} \leq \frac{C(K_3) - C(K_2)}{K_3 - K_2}
+\]</div>
 <p>for any <span class="arithmatex">\(K_1 &lt; K_2 &lt; K_3\)</span>.</p>
 <h3 id="2-monotonicity">2. Monotonicity<a class="headerlink" href="#2-monotonicity" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Decreasing in Strike): Call prices are decreasing in strike:</p>
-<p>$$</p>
-<p>K_1 &lt; K_2 \implies C(K_1) \geq C(K_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_1 &lt; K_2 \implies C(K_1) \geq C(K_2)
+\]</div>
 <p><strong>Proof</strong>: The payoff <span class="arithmatex">\((S_T - K_1)^+ \geq (S_T - K_2)^+\)</span> for all <span class="arithmatex">\(S_T\)</span> when <span class="arithmatex">\(K_1 &lt; K_2\)</span>. By no-arbitrage, <span class="arithmatex">\(C(K_1) \geq C(K_2)\)</span>.</p>
 <p><strong>Call Spread Bound</strong>: For <span class="arithmatex">\(K_1 &lt; K_2\)</span>:</p>
-<p>$$</p>
-<p>0 \leq C(K_1) - C(K_2) \leq e^{-rT}(K_2 - K_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 \leq C(K_1) - C(K_2) \leq e^{-rT}(K_2 - K_1)
+\]</div>
 <p><strong>Proof</strong>: 
 - Lower bound: From monotonicity
 - Upper bound: The maximum payoff of a call spread is <span class="arithmatex">\(K_2 - K_1\)</span>, so its present value is at most <span class="arithmatex">\(e^{-rT}(K_2 - K_1)\)</span></p>
 <h3 id="3-slope-constraints">3. Slope Constraints<a class="headerlink" href="#3-slope-constraints" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The call price function satisfies:</p>
-<p>$$</p>
-<p>-e^{-rT} \leq \frac{\partial C}{\partial K} \leq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-e^{-rT} \leq \frac{\partial C}{\partial K} \leq 0
+\]</div>
 <p><strong>Proof</strong>: 
 - Upper bound: Monotonicity (decreasing function)
 - Lower bound: From call spread bound, taking limits:</p>
-<p>$$</p>
-<p>\frac{C(K) - C(K + h)}{h} \leq e^{-rT}</p>
-<p>$$</p>
+<p>$$
+  \frac{C(K) - C(K + h)}{h} \leq e^{-rT}
+  $$</p>
 <p>As <span class="arithmatex">\(h \to 0\)</span>:</p>
-<p>$$</p>
-<p>-\frac{\partial C}{\partial K} \leq e^{-rT}</p>
-<p>$$</p>
+<p>$$
+  -\frac{\partial C}{\partial K} \leq e^{-rT}
+  $$</p>
 <p><strong>Digital Option Connection</strong>: Define the <strong>digital call</strong>:</p>
-<p>$$</p>
-<p>\mathcal{D}(K) = e^{rT} \frac{\partial C}{\partial K}(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{D}(K) = e^{rT} \frac{\partial C}{\partial K}(K)
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>\mathcal{D}(K) = -\mathbb{Q}(S_T &gt; K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{D}(K) = -\mathbb{Q}(S_T &gt; K)
+\]</div>
 <p>and the constraint becomes:</p>
-<p>$$</p>
-<p>0 \leq \mathbb{Q}(S_T &gt; K) \leq 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 \leq \mathbb{Q}(S_T &gt; K) \leq 1
+\]</div>
 <h2 id="breeden-litzenberger-formula">Breeden-Litzenberger Formula<a class="headerlink" href="#breeden-litzenberger-formula" title="Permanent link">&para;</a></h2>
 <h3 id="1-risk-neutral-density-recovery">1. Risk-Neutral Density Recovery<a class="headerlink" href="#1-risk-neutral-density-recovery" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Breeden-Litzenberger, 1978): The risk-neutral density is given by:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)
+\]</div>
 <p><strong>Proof</strong>: Starting from the call option formula:</p>
-<p>$$</p>
-<p>C(K) = e^{-rT} \int_K^{\infty} (S - K) q(S) \, dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = e^{-rT} \int_K^{\infty} (S - K) q(S) \, dS
+\]</div>
 <p>Differentiate once with respect to <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} = e^{-rT} \int_K^{\infty} (-1) q(S) \, dS = -e^{-rT} \int_K^{\infty} q(S) \, dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} = e^{-rT} \int_K^{\infty} (-1) q(S) \, dS = -e^{-rT} \int_K^{\infty} q(S) \, dS
+\]</div>
 <p>Differentiate again:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
+\]</div>
 <p><strong>Implications</strong>:
 1. Convexity of <span class="arithmatex">\(C(K)\)</span> ensures <span class="arithmatex">\(q(K) \geq 0\)</span> (probability density)
 2. The integral <span class="arithmatex">\(\int_0^{\infty} q(K) \, dK = 1\)</span> (normalization)
 3. The forward price:</p>
-<p>$$</p>
-<p>F_0 = \int_0^{\infty} K q(K) \, dK = S_0 e^{rT}</p>
-<p>$$</p>
+<p>$$
+   F_0 = \int_0^{\infty} K q(K) \, dK = S_0 e^{rT}
+   $$</p>
 <h3 id="2-practical-implementation">2. Practical Implementation<a class="headerlink" href="#2-practical-implementation" title="Permanent link">&para;</a></h3>
 <p><strong>Discrete Approximation</strong>: With observed call prices <span class="arithmatex">\(\{C(K_i)\}_{i=1}^n\)</span>:</p>
-<p>$$</p>
-<p>q(K_i) \approx e^{rT} \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K_i) \approx e^{rT} \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}
+\]</div>
 <p><strong>Interpolation</strong>: Use splines or other smooth interpolation methods to obtain a continuous function <span class="arithmatex">\(C(K)\)</span>, then differentiate numerically.</p>
 <p><strong>Regularization</strong>: In practice, raw market prices may violate no-arbitrage constraints due to:
 - Bid-ask spreads
@@ -47466,175 +47466,175 @@
 <h2 id="carr-madan-formula">Carr-Madan Formula<a class="headerlink" href="#carr-madan-formula" title="Permanent link">&para;</a></h2>
 <h3 id="1-derivative-payoff-decomposition">1. Derivative Payoff Decomposition<a class="headerlink" href="#1-derivative-payoff-decomposition" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Carr-Madan, 1998): Any twice-differentiable payoff <span class="arithmatex">\(g(S_T)\)</span> can be decomposed as:</p>
-<p>$$</p>
-<p>g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K) (K - S_T)^+ \, dK + \int_F^{\infty} g''(K) (S_T - K)^+ \, dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K) (K - S_T)^+ \, dK + \int_F^{\infty} g''(K) (S_T - K)^+ \, dK
+\]</div>
 <p>where <span class="arithmatex">\(F = S_0 e^{rT}\)</span> is the forward price.</p>
 <p><strong>Proof</strong>: Integration by parts applied twice. Start with:</p>
-<p>$$</p>
-<p>g(S_T) - g(F) = \int_F^{S_T} g'(K) \, dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(S_T) - g(F) = \int_F^{S_T} g'(K) \, dK
+\]</div>
 <p>Apply integration by parts:</p>
-<p>$$</p>
-<p>\int_F^{S_T} g'(K) \, dK = g'(K)(K - F)\bigg|_F^{S_T} - \int_F^{S_T} (K - F) g''(K) \, dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_F^{S_T} g'(K) \, dK = g'(K)(K - F)\bigg|_F^{S_T} - \int_F^{S_T} (K - F) g''(K) \, dK
+\]</div>
 <p>Continuing and rearranging terms yields the result.</p>
 <p><strong>Pricing Formula</strong>: Taking expectations under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 V_0 &amp;= e^{-rT} \mathbb{E}_{\mathbb{Q}}[g(S_T)] \\
 &amp;= e^{-rT} g(F) + e^{-rT} \int_0^F g''(K) P(K) \, dK + e^{-rT} \int_F^{\infty} g''(K) C(K) \, dK
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Interpretation</strong>: 
 - Any derivative can be priced using puts below the forward and calls above the forward
 - The weights are given by the second derivative of the payoff function
 - This is a <strong>static replication strategy</strong></p>
 <h3 id="2-applications">2. Applications<a class="headerlink" href="#2-applications" title="Permanent link">&para;</a></h3>
 <p><strong>Variance Swap</strong>: For the log-contract <span class="arithmatex">\(g(S_T) = \log(S_T/F)\)</span>:</p>
-<p>$$</p>
-<p>g''(K) = \frac{1}{K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g''(K) = \frac{1}{K^2}
+\]</div>
 <p>Hence:</p>
-<p>$$</p>
-<p>\mathbb{E}_{\mathbb{Q}}[\log(S_T/F)] = \int_0^F \frac{P(K)}{K^2} \, dK + \int_F^{\infty} \frac{C(K)}{K^2} \, dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\mathbb{Q}}[\log(S_T/F)] = \int_0^F \frac{P(K)}{K^2} \, dK + \int_F^{\infty} \frac{C(K)}{K^2} \, dK
+\]</div>
 <p><strong>Realized Variance</strong>: Under certain conditions:</p>
-<p>$$</p>
-<p>\text{Var}(S_T) \approx 2e^{rT} \left( \int_0^F \frac{P(K)}{K^2} \, dK + \int_F^{\infty} \frac{C(K)}{K^2} \, dK \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(S_T) \approx 2e^{rT} \left( \int_0^F \frac{P(K)}{K^2} \, dK + \int_F^{\infty} \frac{C(K)}{K^2} \, dK \right)
+\]</div>
 <p><strong>VIX Construction</strong>: The CBOE VIX index uses this formula to compute model-free implied variance.</p>
 <h2 id="model-free-bounds-on-path-dependent-options">Model-Free Bounds on Path-Dependent Options<a class="headerlink" href="#model-free-bounds-on-path-dependent-options" title="Permanent link">&para;</a></h2>
 <h3 id="1-forward-start-options">1. Forward Start Options<a class="headerlink" href="#1-forward-start-options" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: A forward start call option struck at-the-money at time <span class="arithmatex">\(t_1\)</span> with maturity <span class="arithmatex">\(t_2\)</span>:</p>
-<p>$$</p>
-<p>\text{Payoff} = (S_{t_2} - S_{t_1})^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = (S_{t_2} - S_{t_1})^+
+\]</div>
 <p><strong>Model-Free Bound</strong>: Using only vanilla options:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 V_0^{\text{forward}} &amp;\leq C_0(S_0, t_2) \\
 V_0^{\text{forward}} &amp;\geq (1 - e^{-r t_1}) C_0(S_0, t_2)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Proof</strong> (Upper Bound): The forward start option is dominated by a standard call option with the same maturity.</p>
 <p><strong>Proof</strong> (Lower Bound): More subtle, requires constructing sub-replicating portfolio using European options.</p>
 <h3 id="2-lookback-options">2. Lookback Options<a class="headerlink" href="#2-lookback-options" title="Permanent link">&para;</a></h3>
 <p><strong>Fixed Strike Lookback Call</strong>: Payoff is:</p>
-<p>$$</p>
-<p>\left(\max_{0 \leq t \leq T} S_t - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left(\max_{0 \leq t \leq T} S_t - K\right)^+
+\]</div>
 <p><strong>Model-Free Bound</strong>: </p>
-<p>$$</p>
-<p>C_{\text{lookback}}(K) \geq C_{\text{European}}(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{lookback}}(K) \geq C_{\text{European}}(K)
+\]</div>
 <p>with equality only if volatility is zero.</p>
 <p><strong>Tighter Bound</strong>: Using convexity:</p>
-<p>$$</p>
-<p>C_{\text{lookback}}(K) \geq \int_K^{\infty} \frac{C(L)}{L^2} \, dL</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{lookback}}(K) \geq \int_K^{\infty} \frac{C(L)}{L^2} \, dL
+\]</div>
 <p>This bound can be computed from the market prices of vanilla calls.</p>
 <h3 id="3-barrier-options">3. Barrier Options<a class="headerlink" href="#3-barrier-options" title="Permanent link">&para;</a></h3>
 <p><strong>Up-and-Out Call</strong>: Payoff is:</p>
-<p>$$</p>
-<p>(S_T - K)^+ \mathbb{1}<em 0="0" T="T" _leq="\leq" t="t">{{\max</em>} S_t &lt; H}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t &lt; H\}}
+\]</div>
 <p>where <span class="arithmatex">\(H &gt; S_0\)</span> is the barrier level.</p>
 <p><strong>Model-Free Bounds</strong>: Let <span class="arithmatex">\(C_{\text{UO}}\)</span> denote the up-and-out call price.</p>
 <p><strong>Lower Bound</strong>:</p>
-<p>$$</p>
-<p>C_{\text{UO}}(K, H) \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}}(K, H) \geq 0
+\]</div>
 <p><strong>Upper Bound</strong>:</p>
-<p>$$</p>
-<p>C_{\text{UO}}(K, H) \leq C(K) - C(H)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}}(K, H) \leq C(K) - C(H)
+\]</div>
 <p><strong>Proof</strong>: The up-and-out call pays <span class="arithmatex">\((S_T - K)^+\)</span> only when <span class="arithmatex">\(S_T &lt; H\)</span>. This is less valuable than a call spread <span class="arithmatex">\((S_T - K)^+ - (S_T - H)^+\)</span>.</p>
 <p><strong>Static Replication</strong> (Under Specific Models): For certain models (e.g., Black-Scholes with constant volatility), exact static replication is possible using vanilla options. However, <strong>model-free</strong> exact replication is generally not possible for barrier options.</p>
 <h2 id="fundamental-duality">Fundamental Duality<a class="headerlink" href="#fundamental-duality" title="Permanent link">&para;</a></h2>
 <h3 id="1-primal-and-dual-problems">1. Primal and Dual Problems<a class="headerlink" href="#1-primal-and-dual-problems" title="Permanent link">&para;</a></h3>
 <p><strong>Primal Problem</strong> (Buyer's Perspective): Minimize the super-replication cost:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(g) = \inf \left{ V_0: \exists \text{ trading strategy with } V_T \geq g(S_T) \text{ a.s.} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(g) = \inf \left\{ V_0: \exists \text{ trading strategy with } V_T \geq g(S_T) \text{ a.s.} \right\}
+\]</div>
 <p><strong>Dual Problem</strong>: Maximize over all equivalent martingale measures:</p>
-<p>$$</p>
-<p>\pi^{\text{dual}}(g) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{dual}}(g) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{M}\)</span> is the set of equivalent martingale measures.</p>
 <p><strong>Fundamental Duality Theorem</strong>: Under appropriate technical conditions:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(g) = \pi^{\text{dual}}(g)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(g) = \pi^{\text{dual}}(g)
+\]</div>
 <p><strong>Interpretation</strong>: 
 - The minimum cost to super-replicate equals the maximum expected discounted payoff over all martingale measures
 - This provides a dual characterization of derivative prices
 - Strong duality holds in frictionless markets</p>
 <h3 id="2-sub-replication">2. Sub-Replication<a class="headerlink" href="#2-sub-replication" title="Permanent link">&para;</a></h3>
 <p><strong>Sub-Replication Cost</strong>:</p>
-<p>$$</p>
-<p>\pi^{\text{sub}}(g) = \sup \left{ V_0: \exists \text{ trading strategy with } V_T \leq g(S_T) \text{ a.s.} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}}(g) = \sup \left\{ V_0: \exists \text{ trading strategy with } V_T \leq g(S_T) \text{ a.s.} \right\}
+\]</div>
 <p><strong>Dual Characterization</strong>:</p>
-<p>$$</p>
-<p>\pi^{\text{sub}}(g) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}}(g) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
+\]</div>
 <p><strong>Complete Markets</strong>: When the market is complete (unique martingale measure):</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(g) = \pi^{\text{sub}}(g) = \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(g) = \pi^{\text{sub}}(g) = \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)]
+\]</div>
 <p><strong>Incomplete Markets</strong>: </p>
-<p>$$</p>
-<p>\pi^{\text{sub}}(g) \leq \pi^{\text{sup}}(g)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}}(g) \leq \pi^{\text{sup}}(g)
+\]</div>
 <p>with strict inequality reflecting model uncertainty.</p>
 <h2 id="advanced-model-free-results">Advanced Model-Free Results<a class="headerlink" href="#advanced-model-free-results" title="Permanent link">&para;</a></h2>
 <h3 id="1-variance-bounds">1. Variance Bounds<a class="headerlink" href="#1-variance-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Model-Free Implied Variance</strong>: Define:</p>
-<p>$$</p>
-<p>\sigma_{\text{MF}}^2 = \frac{2e^{rT}}{T} \left( \int_0^{S_0} \frac{P(K)}{K^2} \, dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} \, dK \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{MF}}^2 = \frac{2e^{rT}}{T} \left( \int_0^{S_0} \frac{P(K)}{K^2} \, dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} \, dK \right)
+\]</div>
 <p><strong>Theorem</strong> (Carr-Madan): This quantity satisfies:</p>
-<p>$$</p>
-<p>\sigma_{\text{MF}}^2 = \frac{1}{T} \mathbb{E}_{\mathbb{Q}}\left[ \int_0^T \frac{\sigma_t^2}{1} \, dt \right] - \frac{1}{T} \left[ \log\left(\frac{S_T}{S_0}\right) \right]^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{MF}}^2 = \frac{1}{T} \mathbb{E}_{\mathbb{Q}}\left[ \int_0^T \frac{\sigma_t^2}{1} \, dt \right] - \frac{1}{T} \left[ \log\left(\frac{S_T}{S_0}\right) \right]^2
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_t\)</span> is the instantaneous volatility.</p>
 <p><strong>Implication</strong>: <span class="arithmatex">\(\sigma_{\text{MF}}^2\)</span> provides a lower bound on the expected realized variance:</p>
-<p>$$</p>
-<p>\sigma_{\text{MF}}^2 \leq \frac{1}{T} \mathbb{E}_{\mathbb{Q}}\left[ \int_0^T \sigma_t^2 \, dt \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{MF}}^2 \leq \frac{1}{T} \mathbb{E}_{\mathbb{Q}}\left[ \int_0^T \sigma_t^2 \, dt \right]
+\]</div>
 <h3 id="2-moment-constraints">2. Moment Constraints<a class="headerlink" href="#2-moment-constraints" title="Permanent link">&para;</a></h3>
 <p><strong>European Option Prices</strong> constrain the moments of the risk-neutral distribution.</p>
 <p><strong>Theorem</strong>: Given call prices <span class="arithmatex">\(\{C(K_i)\}_{i=1}^n\)</span>, the risk-neutral distribution <span class="arithmatex">\(q(S)\)</span> must satisfy:</p>
-<p>$$</p>
-<p>\int_0^{\infty} S^k q(S) \, dS = m_k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^{\infty} S^k q(S) \, dS = m_k
+\]</div>
 <p>for <span class="arithmatex">\(k = 0, 1, 2, \ldots\)</span>, where:</p>
-<p>$$</p>
-<p>m_0 = 1, \quad m_1 = S_0 e^{rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m_0 = 1, \quad m_1 = S_0 e^{rT}
+\]</div>
 <p>and higher moments can be computed from option prices using:</p>
-<p>$$</p>
-<p>m_k = e^{rT} \left[ k(k-1) \int_0^{\infty} K^{k-2} C(K) \, dK + \text{boundary terms} \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m_k = e^{rT} \left[ k(k-1) \int_0^{\infty} K^{k-2} C(K) \, dK + \text{boundary terms} \right]
+\]</div>
 <p><strong>Application</strong>: These moment constraints can be used to derive bounds on exotic options by optimization over distributions satisfying the constraints.</p>
 <h2 id="robust-pricing-with-traded-options">Robust Pricing with Traded Options<a class="headerlink" href="#robust-pricing-with-traded-options" title="Permanent link">&para;</a></h2>
 <h3 id="1-constrained-martingale-measures">1. Constrained Martingale Measures<a class="headerlink" href="#1-constrained-martingale-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Suppose European calls <span class="arithmatex">\(\{C(K_i)\}_{i=1}^n\)</span> are traded with observed prices.</p>
 <p><strong>Martingale Constraint Set</strong>: Define:</p>
-<p>$$</p>
-<p>\mathcal{M}<em _mathbb_Q="\mathbb{Q">{\text{market}} = \left{ \mathbb{Q} \in \mathcal{M}: \mathbb{E}</em>(S_T - K_i)^+] = C(K_i), \, i = 1, \ldots, n \right}}}[e^{-rT</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{M}_{\text{market}} = \left\{ \mathbb{Q} \in \mathcal{M}: \mathbb{E}_{\mathbb{Q}}[e^{-rT}(S_T - K_i)^+] = C(K_i), \, i = 1, \ldots, n \right\}
+\]</div>
 <p><strong>Robust Pricing</strong>: For an exotic derivative with payoff <span class="arithmatex">\(g(S_T)\)</span>:</p>
-<p>$$</p>
-<p>[\underline{V}, \overline{V}] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}<em _mathbb_Q="\mathbb{Q">{\text{market}}} \mathbb{E}</em>}}[e^{-rT} g(S_T)], \, \sup_{\mathbb{Q} \in \mathcal{M<em _mathbb_Q="\mathbb{Q">{\text{market}}} \mathbb{E}</em> g(S_T)] \right]}}[e^{-rT</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[\underline{V}, \overline{V}] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}_{\text{market}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)], \, \sup_{\mathbb{Q} \in \mathcal{M}_{\text{market}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} g(S_T)] \right]
+\]</div>
 <p><strong>Interpretation</strong>: The robust price interval <span class="arithmatex">\([\underline{V}, \overline{V}]\)</span> contains all prices consistent with no-arbitrage and observed vanilla option prices.</p>
 <h3 id="2-optimization-formulation">2. Optimization Formulation<a class="headerlink" href="#2-optimization-formulation" title="Permanent link">&para;</a></h3>
 <p><strong>Dual Problem</strong>: The robust bounds can be computed by solving:</p>
-<p>$$</p>
-<p>\overline{V} = \sup_q \left{ \int_0^{\infty} g(S) q(S) \, dS \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\overline{V} = \sup_q \left\{ \int_0^{\infty} g(S) q(S) \, dS \right\}
+\]</div>
 <p>subject to:
 1. <span class="arithmatex">\(q(S) \geq 0\)</span> for all <span class="arithmatex">\(S\)</span>
 2. <span class="arithmatex">\(\int_0^{\infty} q(S) \, dS = e^{-rT}\)</span>
@@ -47642,9 +47642,9 @@ V_0^{\text{forward}} &amp;\geq (1 - e^{-r t_1}) C_0(S_0, t_2)
 4. <span class="arithmatex">\(\int_0^{\infty} (S - K_i)^+ q(S) \, dS = C(K_i)\)</span> for <span class="arithmatex">\(i = 1, \ldots, n\)</span></p>
 <p>This is a <strong>linear programming</strong> problem in infinite dimensions.</p>
 <p><strong>Discretization</strong>: Approximate by discretizing the state space:</p>
-<p>$$</p>
-<p>S \in {S_1, S_2, \ldots, S_M}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S \in \{S_1, S_2, \ldots, S_M\}
+\]</div>
 <p>Then solve a finite-dimensional LP with variables <span class="arithmatex">\(q_j = q(S_j)\)</span>.</p>
 <h3 id="3-extremal-measures">3. Extremal Measures<a class="headerlink" href="#3-extremal-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The extremal measures (achieving the supremum or infimum) are typically <strong>discrete</strong> with support on at most <span class="arithmatex">\(n+2\)</span> points, where <span class="arithmatex">\(n\)</span> is the number of traded strikes.</p>
@@ -47655,58 +47655,58 @@ V_0^{\text{forward}} &amp;\geq (1 - e^{-r t_1}) C_0(S_0, t_2)
 <p><strong>Payoff</strong>: Binary option that pays <span class="arithmatex">\(1\)</span> if <span class="arithmatex">\(S_T &gt; K\)</span>, zero otherwise.</p>
 <p><strong>Given</strong>: Prices of European calls <span class="arithmatex">\(C(K_1)\)</span> and <span class="arithmatex">\(C(K_2)\)</span> with <span class="arithmatex">\(K_1 &lt; K &lt; K_2\)</span>.</p>
 <p><strong>Model-Free Bound</strong>: By convexity:</p>
-<p>$$</p>
-<p>\frac{C(K_1) - C(K)}{K - K_1} \geq \frac{C(K) - C(K_2)}{K_2 - K}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{C(K_1) - C(K)}{K - K_1} \geq \frac{C(K) - C(K_2)}{K_2 - K}
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>C(K) \leq \frac{(K_2 - K) C(K_1) + (K - K_1) C(K_2)}{K_2 - K_1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) \leq \frac{(K_2 - K) C(K_1) + (K - K_1) C(K_2)}{K_2 - K_1}
+\]</div>
 <p>For the digital option:</p>
-<p>$$</p>
-<p>\mathcal{D}(K) = \lim_{h \to 0} \frac{C(K) - C(K+h)}{h}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{D}(K) = \lim_{h \to 0} \frac{C(K) - C(K+h)}{h}
+\]</div>
 <p>Bounds can be derived using finite differences of observed call prices.</p>
 <h3 id="2-example-2-variance-swap-replication">2. Example 2: Variance Swap Replication<a class="headerlink" href="#2-example-2-variance-swap-replication" title="Permanent link">&para;</a></h3>
 <p><strong>Variance Swap Payoff</strong>: Pays the realized variance:</p>
-<p>$$</p>
-<p>\text{Payoff} = \frac{1}{T} \sum_{i=1}^N \left( \log \frac{S_{t_i}}{S_{t_{i-1}}} \right)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = \frac{1}{T} \sum_{i=1}^N \left( \log \frac{S_{t_i}}{S_{t_{i-1}}} \right)^2
+\]</div>
 <p><strong>Model-Free Replication</strong>: Using the log-contract:</p>
-<p>$$</p>
-<p>\mathbb{E}<em S_0="S_0">{\mathbb{Q}}\left[ \log \frac{S_T}{S_0} \right] = e^{-rT} \left( \int_0^{S_0} \frac{P(K)}{K^2} \, dK + \int</em> \, dK \right)}^{\infty} \frac{C(K)}{K^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\mathbb{Q}}\left[ \log \frac{S_T}{S_0} \right] = e^{-rT} \left( \int_0^{S_0} \frac{P(K)}{K^2} \, dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} \, dK \right)
+\]</div>
 <p>The variance can be replicated (approximately) by a portfolio of puts and calls.</p>
 <h3 id="3-example-3-asian-option-bounds">3. Example 3: Asian Option Bounds<a class="headerlink" href="#3-example-3-asian-option-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Arithmetic Asian Call</strong>: Payoff is:</p>
-<p>$$</p>
-<p>\left( \frac{1}{N} \sum_{i=1}^N S_{t_i} - K \right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left( \frac{1}{N} \sum_{i=1}^N S_{t_i} - K \right)^+
+\]</div>
 <p><strong>Model-Free Bound</strong> (Using Jensen's Inequality):</p>
-<p>$$</p>
-<p>C_{\text{Asian}}(K) \leq C_{\text{European}}(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{Asian}}(K) \leq C_{\text{European}}(K)
+\]</div>
 <p>since:</p>
-<p>$$</p>
-<p>\left( \frac{1}{N} \sum_{i=1}^N S_{t_i} - K \right)^+ \leq \frac{1}{N} \sum_{i=1}^N (S_{t_i} - K)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left( \frac{1}{N} \sum_{i=1}^N S_{t_i} - K \right)^+ \leq \frac{1}{N} \sum_{i=1}^N (S_{t_i} - K)^+
+\]</div>
 <p><strong>Tighter Bounds</strong>: Can be derived using moment constraints and optimization over distributions.</p>
 <h2 id="computational-methods">Computational Methods<a class="headerlink" href="#computational-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-linear-programming-approach">1. Linear Programming Approach<a class="headerlink" href="#1-linear-programming-approach" title="Permanent link">&para;</a></h3>
 <p><strong>Discretization</strong>: Choose a grid <span class="arithmatex">\(\{S_j\}_{j=1}^M\)</span> and discretize the density:</p>
-<p>$$</p>
-<p>q_j = q(S_j) \Delta S_j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q_j = q(S_j) \Delta S_j
+\]</div>
 <p><strong>LP Formulation</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \text{maximize} \quad &amp; \sum_{j=1}^M g(S_j) q_j \\
 \text{subject to} \quad &amp; \sum_{j=1}^M q_j = e^{-rT} \\
 &amp; \sum_{j=1}^M S_j q_j = S_0 \\
 &amp; \sum_{j=1}^M (S_j - K_i)^+ q_j = C(K_i), \quad i = 1, \ldots, n \\
 &amp; q_j \geq 0, \quad j = 1, \ldots, M
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Sensitivity</strong>: Solutions are sensitive to grid choice and number of points <span class="arithmatex">\(M\)</span>. Use adaptive grids for better accuracy.</p>
 <h3 id="2-semidefinite-programming">2. Semidefinite Programming<a class="headerlink" href="#2-semidefinite-programming" title="Permanent link">&para;</a></h3>
 <p><strong>Moment-Based Approach</strong>: Instead of discretizing states, work directly with moments.</p>
@@ -47716,30 +47716,30 @@ V_0^{\text{forward}} &amp;\geq (1 - e^{-r t_1}) C_0(S_0, t_2)
 2. Martingale constraint: <span class="arithmatex">\(\mu_1 = S_0 e^{rT}\)</span>
 3. Option pricing constraints from Breeden-Litzenberger</p>
 <p><strong>SDP Formulation</strong>: The positivity constraint can be expressed as:</p>
-<p>$$</p>
-<p>M = \begin{pmatrix}
-\mu_0 &amp; \mu_1 &amp; \cdots &amp; \mu_K \
-\mu_1 &amp; \mu_2 &amp; \cdots &amp; \mu_{K+1} \
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+<div class="arithmatex">\[
+M = \begin{pmatrix}
+\mu_0 &amp; \mu_1 &amp; \cdots &amp; \mu_K \\
+\mu_1 &amp; \mu_2 &amp; \cdots &amp; \mu_{K+1} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 \mu_K &amp; \mu_{K+1} &amp; \cdots &amp; \mu_{2K}
-\end{pmatrix} \succeq 0</p>
-<p>$$</p>
+\end{pmatrix} \succeq 0
+\]</div>
 <p><strong>Objective</strong>: Compute expectation <span class="arithmatex">\(\mathbb{E}_{\mathbb{Q}}[g(S_T)]\)</span> as a function of moments.</p>
 <h3 id="3-monte-carlo-methods">3. Monte Carlo Methods<a class="headerlink" href="#3-monte-carlo-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Scenario Generation</strong>: Generate scenarios <span class="arithmatex">\(\{S_T^{(i)}\}_{i=1}^N\)</span> from a reference distribution.</p>
 <p><strong>Importance Weights</strong>: Assign weights <span class="arithmatex">\(\{w_i\}_{i=1}^N\)</span> to match market prices:</p>
-<p>$$</p>
-<p>\sum_{i=1}^N w_i (S_T^{(i)} - K_j)^+ = C(K_j), \quad j = 1, \ldots, n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i=1}^N w_i (S_T^{(i)} - K_j)^+ = C(K_j), \quad j = 1, \ldots, n
+\]</div>
 <p><strong>Entropy Minimization</strong>: Choose weights to minimize relative entropy:</p>
-<p>$$</p>
-<p>\min_w \sum_{i=1}^N w_i \log w_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_w \sum_{i=1}^N w_i \log w_i
+\]</div>
 <p>subject to pricing constraints.</p>
 <p><strong>Solution</strong>: Exponential tilting:</p>
-<p>$$</p>
-<p>w_i^* = \frac{\exp(-\lambda^\top g(S_T^{(i)}))}{\sum_{j=1}^N \exp(-\lambda^\top g(S_T^{(j)}))}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w_i^* = \frac{\exp(-\lambda^\top g(S_T^{(i)}))}{\sum_{j=1}^N \exp(-\lambda^\top g(S_T^{(j)}))}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda\)</span> is chosen to match constraints.</p>
 <h2 id="limitations-and-extensions">Limitations and Extensions<a class="headerlink" href="#limitations-and-extensions" title="Permanent link">&para;</a></h2>
 <h3 id="1-model-free-bound-limitations">1. Model-Free Bound Limitations<a class="headerlink" href="#1-model-free-bound-limitations" title="Permanent link">&para;</a></h3>
@@ -47749,31 +47749,31 @@ V_0^{\text{forward}} &amp;\geq (1 - e^{-r t_1}) C_0(S_0, t_2)
 - Multi-asset derivatives
 - Options sensitive to volatility dynamics</p>
 <p><strong>Example</strong>: For an up-and-out call, the bounds can be:</p>
-<p>$$</p>
-<p>0 \leq C_{\text{UO}} \leq C(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 \leq C_{\text{UO}} \leq C(K)
+\]</div>
 <p>which is not very informative.</p>
 <h3 id="2-additional-market-information">2. Additional Market Information<a class="headerlink" href="#2-additional-market-information" title="Permanent link">&para;</a></h3>
 <p><strong>Volatility Surface</strong>: Incorporating options at multiple maturities:</p>
-<p>$$</p>
-<p>{C(K, T_i): i = 1, \ldots, M}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{C(K, T_i): i = 1, \ldots, M\}
+\]</div>
 <p>tightens bounds significantly for path-dependent options.</p>
 <p><strong>Co-monotonicity</strong>: Assuming monotonicity relationships between prices at different times can further tighten bounds.</p>
 <p><strong>Dividend Information</strong>: Knowledge of dividend payments <span class="arithmatex">\(\{d_i, t_i\}\)</span> modifies the martingale constraint.</p>
 <h3 id="3-extensions-to-multiple-assets">3. Extensions to Multiple Assets<a class="headerlink" href="#3-extensions-to-multiple-assets" title="Permanent link">&para;</a></h3>
 <p><strong>Basket Options</strong>: Payoff depends on multiple underlyings:</p>
-<p>$$</p>
-<p>g(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)})
+\]</div>
 <p><strong>Marginal Constraints</strong>: Given marginal option prices for each asset:</p>
-<p>$$</p>
-<p>{C_i(K): K \geq 0, i = 1, \ldots, n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{C_i(K): K \geq 0, i = 1, \ldots, n\}
+\]</div>
 <p><strong>Robust Pricing</strong>: Optimize over joint distributions with specified marginals:</p>
-<p>$$</p>
-<p>\sup_{\mathbb{Q}} \mathbb{E}_{\mathbb{Q}}[g(S_T^{(1)}, \ldots, S_T^{(n)})]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{\mathbb{Q}} \mathbb{E}_{\mathbb{Q}}[g(S_T^{(1)}, \ldots, S_T^{(n)})]
+\]</div>
 <p>subject to marginal constraints.</p>
 <p><strong>Fréchet-Hoeffding Bounds</strong>: Provide bounds based solely on marginals without correlation information.</p>
 <h2 id="summary-and-key-insights">Summary and Key Insights<a class="headerlink" href="#summary-and-key-insights" title="Permanent link">&para;</a></h2>

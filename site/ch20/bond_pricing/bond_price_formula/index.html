@@ -46169,69 +46169,69 @@
 
 <h1 id="hull-white-zero-bond-pricing">Hull-White Zero Bond Pricing<a class="headerlink" href="#hull-white-zero-bond-pricing" title="Permanent link">&para;</a></h1>
 <h2 id="hull-white-zb-dynamics">Hull-White ZB Dynamics<a class="headerlink" href="#hull-white-zb-dynamics" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \frac{dP(t,T)}{P(t,T)}
 =
-r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}_t</p>
-<p>\end{array}$$</p>
+r(t)dt+\sigma_P(t,T)dW^{\mathbb{Q}}_t
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \sigma_P(t,T)
 =
 -\frac{\sigma}{\lambda}
-\left(1-e^{-\lambda(T-t)}\right)</p>
-<p>\end{array}$$</p>
+\left(1-e^{-\lambda(T-t)}\right)
+\end{array}\]</div>
 <h2 id="zero-bond-price">Zero Bond Price<a class="headerlink" href="#zero-bond-price" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\displaystyle
-P(t,T)=A(t,T)e^{-B(t,T)r(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+P(t,T)=A(t,T)e^{-B(t,T)r(t)}
+\]</div>
 <p>where</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 A(t,T)
 &amp;=&amp;\displaystyle
 \frac{P^M(0,T)}{P^M(0,t)}
-\text{exp}\left{B(t,T)f^M(0,t)-\frac{\sigma^2}{4\lambda}B(t,T)^2\right}
-\
+\text{exp}\left\{B(t,T)f^M(0,t)-\frac{\sigma^2}{4\lambda}B(t,T)^2\right\}
+\\
 \displaystyle
 B(t,T)
 &amp;=&amp;\displaystyle
-\frac{1}{\lambda}\left[1-e^{-\lambda(T-t)}\right]</p>
-<p>\end{array}$$</p>
+\frac{1}{\lambda}\left[1-e^{-\lambda(T-t)}\right]
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof (Expectation)</summary>
-<p>$$</p>
-<p>\displaystyle
+<div class="arithmatex">\[
+\displaystyle
 \int_t^Tr(t')dt'\Big|{\cal F}(t)
 \sim{\cal N}\left(
     B(t,T)[r(t)-\alpha(t)]+\log\frac{P^M(0,t)}{P^M(0,T)}+\frac{1}{2}[V(0,T)-V(0,t)],
     V(t,T)
-\right)</p>
-<p>$$</p>
+\right)
+\]</div>
 <p>where</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V(t,T)
 &amp;=&amp;\displaystyle
-\frac{\sigma^2}{\lambda^2}\left[T-t+\frac{2}{\lambda}e^{-\lambda(T-t)}-\frac{1}{2\lambda}e^{-2\lambda(T-t)}-\frac{3}{2\lambda}\right]</p>
-<p>\end{array}$$</p>
+\frac{\sigma^2}{\lambda^2}\left[T-t+\frac{2}{\lambda}e^{-\lambda(T-t)}-\frac{1}{2\lambda}e^{-2\lambda(T-t)}-\frac{3}{2\lambda}\right]
+\end{array}\]</div>
 </details>
 <details class="note" open="open">
 <summary>Proof (PDE)</summary>
 <p>Since the Hull-White short rate dynamics is</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-dr=\lambda\left(\theta(t)-r\right) dt+\sigma dW^{\mathbb{Q}}(t)</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+dr=\lambda\left(\theta(t)-r\right) dt+\sigma dW^{\mathbb{Q}}(t)
+\end{array}\]</div>
 <p>the ZCB PDE becomes</p>
-<p>$$</p>
-<p>\displaystyle
+<div class="arithmatex">\[
+\displaystyle
 \frac{\partial P}{\partial t}
-+\lambda\left(\theta(t)-r\right)\frac{\partial P}{\partial r}+\frac{1}{2}\sigma^2\frac{\partial^2 P}{\partial r^2}=rP</p>
-<p>$$</p>
++\lambda\left(\theta(t)-r\right)\frac{\partial P}{\partial r}+\frac{1}{2}\sigma^2\frac{\partial^2 P}{\partial r^2}=rP
+\]</div>
 <p>Substituting the affine ansatz <span class="arithmatex">\(P(t,T)=e^{A(\tau)+B(\tau)r(t)}\)</span> with <span class="arithmatex">\(\tau=T-t\)</span> leads to the Riccati ODEs for <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>.</p>
 </details>
 <h2 id="hull-white-model-recovers-market-zb-curve">Hull-White Model Recovers Market ZB Curve<a class="headerlink" href="#hull-white-model-recovers-market-zb-curve" title="Permanent link">&para;</a></h2>

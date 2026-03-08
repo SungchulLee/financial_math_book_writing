@@ -46965,13 +46965,13 @@
 <p>For a European call option with spot <span class="arithmatex">\(S\)</span>, strike <span class="arithmatex">\(K\)</span>, maturity <span class="arithmatex">\(T\)</span>, risk-free rate <span class="arithmatex">\(r\)</span>, and dividend yield <span class="arithmatex">\(q\)</span>:</p>
 <p><strong>Theorem 4.3.1</strong> (Fundamental Call Price Bounds)<br />
 Any arbitrage-free call price <span class="arithmatex">\(C\)</span> must satisfy:</p>
-<p>$$</p>
-<p>\max(S e^{-qT} - K e^{-rT}, 0) \leq C \leq S e^{-qT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S e^{-qT} - K e^{-rT}, 0) \leq C \leq S e^{-qT}
+\]</div>
 <p>with strict inequalities for implied volatility to exist:</p>
-<p>$$</p>
-<p>\max(S e^{-qT} - K e^{-rT}, 0) &lt; C &lt; S e^{-qT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S e^{-qT} - K e^{-rT}, 0) &lt; C &lt; S e^{-qT}
+\]</div>
 <p><em>Proof of lower bound.</em> Construct the portfolio:
 - Long 1 call option
 - Short <span class="arithmatex">\(e^{-qT}\)</span> units of stock (to account for dividends)
@@ -46984,9 +46984,9 @@ Any arbitrage-free call price <span class="arithmatex">\(C\)</span> must satisfy
 - If <span class="arithmatex">\(S_T &gt; K\)</span>: <span class="arithmatex">\((S_T - K) - S_T + K = 0\)</span>
 - If <span class="arithmatex">\(S_T \leq K\)</span>: <span class="arithmatex">\(0 - S_T + K = K - S_T \geq 0\)</span></p>
 <p>At time 0, portfolio value:</p>
-<p>$$</p>
-<p>C - S e^{-qT} + K e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C - S e^{-qT} + K e^{-rT}
+\]</div>
 <p>If <span class="arithmatex">\(C &lt; S e^{-qT} - K e^{-rT}\)</span>, portfolio has negative initial cost and non-negative terminal value—arbitrage. □</p>
 <p><em>Proof of upper bound.</em> Consider the strategy:
 - Short 1 call option
@@ -46999,41 +46999,41 @@ Any arbitrage-free call price <span class="arithmatex">\(C\)</span> must satisfy
 <h3 id="2-implications-for-implied-volatility-domain">2. Implications for Implied Volatility Domain<a class="headerlink" href="#2-implications-for-implied-volatility-domain" title="Permanent link">&para;</a></h3>
 <p><strong>Corollary 4.3.1</strong> (Admissible Price Domain)<br />
 The domain of the implied volatility inverse map is:</p>
-<p>$$</p>
-<p>\mathcal{D}<em _text_intrinsic="\text{intrinsic">C = (C</em>)}}, S e^{-qT</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{D}_C = (C_{\text{intrinsic}}, S e^{-qT})
+\]</div>
 <p>where <span class="arithmatex">\(C_{\text{intrinsic}} = \max(S e^{-qT} - K e^{-rT}, 0)\)</span>.</p>
 <p>Any price outside this interval either:
 1. Admits arbitrage (economically infeasible)
 2. Corresponds to <span class="arithmatex">\(\sigma_{\text{IV}} \in \{0, \infty\}\)</span> (boundary cases)</p>
 <h3 id="3-put-option-bounds">3. Put Option Bounds<a class="headerlink" href="#3-put-option-bounds" title="Permanent link">&para;</a></h3>
 <p>For European puts, by symmetry and put-call parity:</p>
-<p>$$</p>
-<p>\max(K e^{-rT} - S e^{-qT}, 0) &lt; P &lt; K e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(K e^{-rT} - S e^{-qT}, 0) &lt; P &lt; K e^{-rT}
+\]</div>
 <p>Since:</p>
-<p>$$</p>
-<p>C - P = S e^{-qT} - K e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C - P = S e^{-qT} - K e^{-rT}
+\]</div>
 <p>the implied volatilities satisfy:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^{\text{call}}(K, T) = \sigma_{\text{IV}}^{\text{put}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^{\text{call}}(K, T) = \sigma_{\text{IV}}^{\text{put}}(K, T)
+\]</div>
 <h2 id="monotonicity-constraints-across-strikes">Monotonicity Constraints Across Strikes<a class="headerlink" href="#monotonicity-constraints-across-strikes" title="Permanent link">&para;</a></h2>
 <h3 id="1-call-prices-decreasing-in-strike">1. Call Prices Decreasing in Strike<a class="headerlink" href="#1-call-prices-decreasing-in-strike" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.3.2</strong> (Monotonicity in Strike)<br />
 For fixed maturity <span class="arithmatex">\(T\)</span>, the call price function <span class="arithmatex">\(C(K)\)</span> is non-increasing in strike <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>K_1 &lt; K_2 \implies C(K_1) \geq C(K_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_1 &lt; K_2 \implies C(K_1) \geq C(K_2)
+\]</div>
 <p><em>Proof.</em> Consider the payoffs at maturity:</p>
-<p>$$</p>
-<p>\max(S_T - K_1, 0) \geq \max(S_T - K_2, 0) \quad \text{for all } S_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S_T - K_1, 0) \geq \max(S_T - K_2, 0) \quad \text{for all } S_T
+\]</div>
 <p>By the risk-neutral pricing formula:</p>
-<p>$$</p>
-<p>C(K_1) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K_1, 0)] \geq e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K_2, 0)] = C(K_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_1) = e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K_1, 0)] \geq e^{-rT} \mathbb{E}^{\mathbb{Q}}[\max(S_T - K_2, 0)] = C(K_2)
+\]</div>
 <p>If <span class="arithmatex">\(C(K_1) &lt; C(K_2)\)</span>, buy call at <span class="arithmatex">\(K_1\)</span>, sell call at <span class="arithmatex">\(K_2\)</span>—guaranteed non-negative payoff with negative initial cost. □</p>
 <h3 id="2-implications-for-implied-volatility">2. Implications for Implied Volatility<a class="headerlink" href="#2-implications-for-implied-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition 4.3.1</strong><br />
@@ -47045,61 +47045,61 @@ Monotonicity of call prices in strike does <strong>not</strong> imply monotonici
 <h3 id="3-convexity-butterfly-spread-constraint">3. Convexity: Butterfly Spread Constraint<a class="headerlink" href="#3-convexity-butterfly-spread-constraint" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.3.3</strong> (Convexity in Strike)<br />
 The call price function <span class="arithmatex">\(C(K)\)</span> is convex in <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>C(K_2) \leq \lambda C(K_1) + (1 - \lambda) C(K_3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_2) \leq \lambda C(K_1) + (1 - \lambda) C(K_3)
+\]</div>
 <p>for any <span class="arithmatex">\(K_1 &lt; K_2 &lt; K_3\)</span> with <span class="arithmatex">\(\lambda = \frac{K_3 - K_2}{K_3 - K_1}\)</span>.</p>
 <p><em>Proof.</em> Consider the butterfly spread:
 - Long 1 call at <span class="arithmatex">\(K_1\)</span>
 - Short <span class="arithmatex">\(\frac{K_3 - K_1}{K_2 - K_1}\)</span> calls at <span class="arithmatex">\(K_2\)</span>
 - Long <span class="arithmatex">\(\frac{K_2 - K_1}{K_3 - K_1}\)</span> calls at <span class="arithmatex">\(K_3\)</span></p>
 <p>For equally spaced strikes (<span class="arithmatex">\(K_2 - K_1 = K_3 - K_2 = \Delta K\)</span>), the payoff is:</p>
-<p>$$</p>
-<p>\Psi(S_T) = \begin{cases}
-0 &amp; S_T \leq K_1 \
-S_T - K_1 &amp; K_1 &lt; S_T \leq K_2 \
-K_3 - S_T &amp; K_2 &lt; S_T \leq K_3 \
+<div class="arithmatex">\[
+\Psi(S_T) = \begin{cases}
+0 &amp; S_T \leq K_1 \\
+S_T - K_1 &amp; K_1 &lt; S_T \leq K_2 \\
+K_3 - S_T &amp; K_2 &lt; S_T \leq K_3 \\
 0 &amp; S_T &gt; K_3
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>This is a non-negative piecewise linear function (tent function). Therefore, the initial cost must be non-negative:</p>
-<p>$$</p>
-<p>C(K_1) - 2C(K_2) + C(K_3) \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_1) - 2C(K_2) + C(K_3) \geq 0
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_2) \leq \frac{C(K_1) + C(K_3)}{2}
+\]</div>
 <p>for equally spaced strikes, which extends to general convexity via density of dyadic rationals. □</p>
 <p><strong>Corollary 4.3.2</strong> (Second Derivative Bound)<br />
 The second derivative (in the distributional sense):</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} \geq 0
+\]</div>
 <p>This is the <strong>Breeden-Litzenberger</strong> density constraint: the second derivative of call price with respect to strike equals the discounted risk-neutral density, which must be non-negative.</p>
 <h3 id="4-implications-for-implied-volatility-surface">4. Implications for Implied Volatility Surface<a class="headerlink" href="#4-implications-for-implied-volatility-surface" title="Permanent link">&para;</a></h3>
 <p>Convexity of <span class="arithmatex">\(C(K)\)</span> imposes constraints on <span class="arithmatex">\(\sigma_{\text{IV}}(K)\)</span>. Define the <strong>total variance</strong>:</p>
-<p>$$</p>
-<p>w(K, T) = \sigma_{\text{IV}}^2(K, T) \cdot T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(K, T) = \sigma_{\text{IV}}^2(K, T) \cdot T
+\]</div>
 <p><strong>Theorem 4.3.4</strong> (Gatheral's Constraint)<br />
 For the surface to be arbitrage-free:</p>
-<p>$$</p>
-<p>\left(1 - \frac{y}{w} \frac{\partial w}{\partial y}\right)^2 - \frac{1}{4} \left(\frac{1}{w} + \frac{1}{4}\right) \left(\frac{\partial w}{\partial y}\right)^2 + \frac{1}{2} \frac{\partial^2 w}{\partial y^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left(1 - \frac{y}{w} \frac{\partial w}{\partial y}\right)^2 - \frac{1}{4} \left(\frac{1}{w} + \frac{1}{4}\right) \left(\frac{\partial w}{\partial y}\right)^2 + \frac{1}{2} \frac{\partial^2 w}{\partial y^2} \geq 0
+\]</div>
 <p>where <span class="arithmatex">\(y = \ln(K/F)\)</span> is log-moneyness (<span class="arithmatex">\(F\)</span> is the forward price).</p>
 <p><em>This constraint is equivalent to convexity of call prices in strike.</em></p>
 <h2 id="calendar-spread-constraints">Calendar Spread Constraints<a class="headerlink" href="#calendar-spread-constraints" title="Permanent link">&para;</a></h2>
 <h3 id="1-monotonicity-in-maturity">1. Monotonicity in Maturity<a class="headerlink" href="#1-monotonicity-in-maturity" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.3.5</strong> (Call Prices Increasing in Maturity)<br />
 For fixed strike <span class="arithmatex">\(K\)</span>, the call price function <span class="arithmatex">\(C(T)\)</span> is non-decreasing in maturity <span class="arithmatex">\(T\)</span> (assuming zero dividends):</p>
-<p>$$</p>
-<p>T_1 &lt; T_2 \implies C(T_1) \leq C(T_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+T_1 &lt; T_2 \implies C(T_1) \leq C(T_2)
+\]</div>
 <p><em>Proof.</em> The American call option on a non-dividend-paying stock is never optimally exercised early. Therefore:</p>
-<p>$$</p>
-<p>C(T_2) = \sup_{\tau \leq T_2} \mathbb{E}[\text{Payoff at } \tau] \geq \sup_{\tau \leq T_1} \mathbb{E}[\text{Payoff at } \tau] = C(T_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(T_2) = \sup_{\tau \leq T_2} \mathbb{E}[\text{Payoff at } \tau] \geq \sup_{\tau \leq T_1} \mathbb{E}[\text{Payoff at } \tau] = C(T_1)
+\]</div>
 <p>Alternatively, note that the <span class="arithmatex">\(T_2\)</span> option dominates the <span class="arithmatex">\(T_1\)</span> option (same payoff if exercised at <span class="arithmatex">\(T_1\)</span>, plus additional optionality). □</p>
 <p><strong>Remark:</strong> With dividends, the monotonicity can be violated for sufficiently high dividend yield.</p>
 <h3 id="2-implications-for-total-variance">2. Implications for Total Variance<a class="headerlink" href="#2-implications-for-total-variance" title="Permanent link">&para;</a></h3>
@@ -47117,68 +47117,68 @@ An implied volatility surface <span class="arithmatex">\(\sigma_{\text{IV}}(K, T
 <ol>
 <li><strong>Butterfly arbitrage-free:</strong> For each <span class="arithmatex">\(T\)</span>,</li>
 </ol>
-<p>$$</p>
-<p>\frac{\partial^2 C_{\text{BS}}}{\partial K^2} \geq 0</p>
-<p>$$</p>
+<p>$$
+   \frac{\partial^2 C_{\text{BS}}}{\partial K^2} \geq 0
+   $$</p>
 <ol>
 <li><strong>Calendar arbitrage-free:</strong> For each <span class="arithmatex">\(K\)</span>,</li>
 </ol>
-<p>$$</p>
-<p>\frac{\partial C_{\text{BS}}}{\partial T} \geq 0</p>
-<p>$$</p>
+<p>$$
+   \frac{\partial C_{\text{BS}}}{\partial T} \geq 0
+   $$</p>
 <p>where the partial derivatives are computed while <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span> may vary with <span class="arithmatex">\(T\)</span> or <span class="arithmatex">\(K\)</span>.</p>
 <h3 id="2-conversion-to-total-variance-space">2. Conversion to Total Variance Space<a class="headerlink" href="#2-conversion-to-total-variance-space" title="Permanent link">&para;</a></h3>
 <p>In terms of total variance <span class="arithmatex">\(w(K, T) = \sigma_{\text{IV}}^2 T\)</span>:</p>
 <p><strong>Corollary 4.3.4</strong> (Arbitrage-Free in <span class="arithmatex">\((w, y)\)</span> Coordinates)<br />
 Let <span class="arithmatex">\(y = \ln(K/F)\)</span>. The surface is arbitrage-free if:</p>
-<p>$$</p>
-<p>w_T(1 - \frac{y w_y}{2w})^2 \geq \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) - \frac{w_{yy}}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w_T(1 - \frac{y w_y}{2w})^2 \geq \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) - \frac{w_{yy}}{2}
+\]</div>
 <p>and</p>
-<p>$$</p>
-<p>w_T \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w_T \geq 0
+\]</div>
 <p>where subscripts denote partial derivatives.</p>
 <h2 id="constraints-on-implied-volatility-derivatives">Constraints on Implied Volatility Derivatives<a class="headerlink" href="#constraints-on-implied-volatility-derivatives" title="Permanent link">&para;</a></h2>
 <h3 id="1-bounds-on-skew">1. Bounds on Skew<a class="headerlink" href="#1-bounds-on-skew" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition 4.3.3</strong> (Skew Bounds)<br />
 For the surface to be arbitrage-free, the <strong>skew</strong> (derivative of IV with respect to log-strike) satisfies:</p>
-<p>$$</p>
-<p>\left| \frac{\partial \sigma_{\text{IV}}}{\partial (\ln K)} \right| \leq \frac{C_{\max}}{\sigma_{\text{IV}} \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left| \frac{\partial \sigma_{\text{IV}}}{\partial (\ln K)} \right| \leq \frac{C_{\max}}{\sigma_{\text{IV}} \sqrt{T}}
+\]</div>
 <p>for some constant <span class="arithmatex">\(C_{\max}\)</span> depending on the specific no-arbitrage formulation.</p>
 <h3 id="2-bounds-on-curvature">2. Bounds on Curvature<a class="headerlink" href="#2-bounds-on-curvature" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition 4.3.4</strong> (Convexity of Total Variance)<br />
 A sufficient (but not necessary) condition for no butterfly arbitrage is:</p>
-<p>$$</p>
-<p>\frac{\partial^2 w}{\partial y^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 w}{\partial y^2} \geq 0
+\]</div>
 <p>i.e., total variance is convex in log-strike.</p>
 <p>This is <strong>stronger</strong> than the Gatheral constraint but easier to verify.</p>
 <h2 id="connection-to-risk-neutral-density">Connection to Risk-Neutral Density<a class="headerlink" href="#connection-to-risk-neutral-density" title="Permanent link">&para;</a></h2>
 <h3 id="1-breeden-litzenberger-formula">1. Breeden-Litzenberger Formula<a class="headerlink" href="#1-breeden-litzenberger-formula" title="Permanent link">&para;</a></h3>
 <p>The arbitrage-free condition <span class="arithmatex">\(\partial^2 C / \partial K^2 \geq 0\)</span> arises from:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} = e^{-rT} q(K)
+\]</div>
 <p>where <span class="arithmatex">\(q(K)\)</span> is the risk-neutral probability density of <span class="arithmatex">\(S_T\)</span>.</p>
 <p>Non-negativity of <span class="arithmatex">\(q(K)\)</span> is necessary and sufficient for:</p>
-<p>$$</p>
-<p>\int_0^\infty q(K) dK = 1 \quad \text{(probability measure)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^\infty q(K) dK = 1 \quad \text{(probability measure)}
+\]</div>
 <h3 id="2-moment-explosion-constraints">2. Moment Explosion Constraints<a class="headerlink" href="#2-moment-explosion-constraints" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.3.7</strong> (Lee's Moment Formula)<br />
 For the implied volatility surface to admit a finite-variance risk-neutral density:</p>
-<p>$$</p>
-<p>\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty
+\]</div>
 <p>where <span class="arithmatex">\(y = \ln(K/F)\)</span> is log-moneyness.</p>
 <p><em>This prevents probability mass from accumulating in the tails too heavily.</em></p>
 <p><strong>Corollary 4.3.5</strong> (Wing Slope Bounds)<br />
 As <span class="arithmatex">\(y \to \pm \infty\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) \geq C \frac{|y|}{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) \geq C \frac{|y|}{T}
+\]</div>
 <p>for some constant <span class="arithmatex">\(C &gt; 0\)</span>, ensuring finite variance.</p>
 <h2 id="practical-arbitrage-detection">Practical Arbitrage Detection<a class="headerlink" href="#practical-arbitrage-detection" title="Permanent link">&para;</a></h2>
 <h3 id="1-discrete-strike-grid">1. Discrete Strike Grid<a class="headerlink" href="#1-discrete-strike-grid" title="Permanent link">&para;</a></h3>
@@ -47186,16 +47186,16 @@ As <span class="arithmatex">\(y \to \pm \infty\)</span>:</p>
 <ol>
 <li><strong>Butterfly violations:</strong></li>
 </ol>
-<p>$$</p>
-<p>C(K_i) - 2C(K_{i+1}) + C(K_{i+2}) &lt; -\epsilon</p>
-<p>$$</p>
+<p>$$
+   C(K_i) - 2C(K_{i+1}) + C(K_{i+2}) &lt; -\epsilon
+   $$</p>
 <p>for small tolerance <span class="arithmatex">\(\epsilon &gt; 0\)</span></p>
 <ol>
 <li><strong>Calendar violations:</strong></li>
 </ol>
-<p>$$</p>
-<p>C(K_i, T_j) &gt; C(K_i, T_{j+1}) + \epsilon</p>
-<p>$$</p>
+<p>$$
+   C(K_i, T_j) &gt; C(K_i, T_{j+1}) + \epsilon
+   $$</p>
 <h3 id="2-arbitrage-free-interpolation">2. Arbitrage-Free Interpolation<a class="headerlink" href="#2-arbitrage-free-interpolation" title="Permanent link">&para;</a></h3>
 <p>To construct an arbitrage-free surface from discrete data:</p>
 <p><strong>Method 1:</strong> Fit parametric form (e.g., SVI) with arbitrage constraints built in</p>
@@ -47219,29 +47219,29 @@ Real implied volatility surfaces are <span class="arithmatex">\(C^2\)</span> in 
 <h2 id="summary-of-arbitrage-constraints">Summary of Arbitrage Constraints<a class="headerlink" href="#summary-of-arbitrage-constraints" title="Permanent link">&para;</a></h2>
 <p>The implied volatility surface must satisfy:</p>
 <h3 id="1-point-wise-bounds">1. <strong>Point-wise bounds:</strong><a class="headerlink" href="#1-point-wise-bounds" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\max(S e^{-qT} - K e^{-rT}, 0) &lt; C &lt; S e^{-qT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S e^{-qT} - K e^{-rT}, 0) &lt; C &lt; S e^{-qT}
+\]</div>
 <h3 id="2-strike-monotonicity">2. <strong>Strike monotonicity:</strong><a class="headerlink" href="#2-strike-monotonicity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} \leq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} \leq 0
+\]</div>
 <h3 id="3-strike-convexity-butterfly">3. <strong>Strike convexity (Butterfly):</strong><a class="headerlink" href="#3-strike-convexity-butterfly" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} \geq 0
+\]</div>
 <h3 id="4-maturity-monotonicity-calendar">4. <strong>Maturity monotonicity (Calendar):</strong><a class="headerlink" href="#4-maturity-monotonicity-calendar" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial C}{\partial T} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial T} \geq 0
+\]</div>
 <h3 id="5-total-variance-monotonicity">5. <strong>Total variance monotonicity:</strong><a class="headerlink" href="#5-total-variance-monotonicity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial w}{\partial T} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial w}{\partial T} \geq 0
+\]</div>
 <h3 id="6-wing-behavior-lees-constraint">6. <strong>Wing behavior (Lee's constraint):</strong><a class="headerlink" href="#6-wing-behavior-lees-constraint" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) |y| = \infty
+\]</div>
 <p>These conditions ensure:
 1. Existence of a valid probability measure (risk-neutral density <span class="arithmatex">\(\geq 0\)</span>, integrates to 1)
 2. No static arbitrage via butterfly or calendar spreads

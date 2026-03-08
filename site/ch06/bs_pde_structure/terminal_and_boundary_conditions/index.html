@@ -46796,19 +46796,19 @@
 <hr />
 <h2 id="why-conditions-matter">Why Conditions Matter<a class="headerlink" href="#why-conditions-matter" title="Permanent link">&para;</a></h2>
 <p>The Black-Scholes PDE:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV
+\]</div>
 <p>has infinitely many solutions. The conditions select the <strong>unique solution</strong> corresponding to a specific contract.</p>
 <hr />
 <h2 id="terminal-conditions">Terminal Conditions<a class="headerlink" href="#terminal-conditions" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>At maturity <span class="arithmatex">\(t = T\)</span>, the option value equals its <strong>payoff</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V(T, S) = \Phi(S)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The function <span class="arithmatex">\(\Phi\)</span> is determined by the contract.</p>
 <h3 id="common-payoffs">Common Payoffs<a class="headerlink" href="#common-payoffs" title="Permanent link">&para;</a></h3>
 <table>
@@ -46862,101 +46862,101 @@ V(T, S) = \Phi(S)
 <h2 id="boundary-conditions-in-space">Boundary Conditions in Space<a class="headerlink" href="#boundary-conditions-in-space" title="Permanent link">&para;</a></h2>
 <h3 id="types-of-boundary-conditions">Types of Boundary Conditions<a class="headerlink" href="#types-of-boundary-conditions" title="Permanent link">&para;</a></h3>
 <p><strong>1. Dirichlet Conditions</strong> (value specified):</p>
-<p>$$</p>
-<p>V(t, S^*) = g(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S^*) = g(t)
+\]</div>
 <p>The option value is specified at boundary <span class="arithmatex">\(S = S^*\)</span>.</p>
 <p><strong>2. Neumann Conditions</strong> (derivative specified):</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial S}(t, S^*) = h(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial S}(t, S^*) = h(t)
+\]</div>
 <p>The delta is specified at the boundary.</p>
 <p><strong>3. Robin (Mixed) Conditions</strong>:</p>
-<p>$$</p>
-<p>\alpha V + \beta\frac{\partial V}{\partial S} = g(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha V + \beta\frac{\partial V}{\partial S} = g(t)
+\]</div>
 <p>A linear combination is specified.</p>
 <hr />
 <h2 id="boundary-conditions-for-standard-options">Boundary Conditions for Standard Options<a class="headerlink" href="#boundary-conditions-for-standard-options" title="Permanent link">&para;</a></h2>
 <h3 id="as-s-0">As S → 0<a class="headerlink" href="#as-s-0" title="Permanent link">&para;</a></h3>
 <p><strong>Call option</strong>: The call is worthless if the stock goes to zero:</p>
-<p>$$</p>
-<p>V(t, 0) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, 0) = 0
+\]</div>
 <p><strong>Put option</strong>: The put has maximum value:</p>
-<p>$$</p>
-<p>V(t, 0) = Ke^{-r(T-t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, 0) = Ke^{-r(T-t)}
+\]</div>
 <p>(Present value of receiving <span class="arithmatex">\(K\)</span> at maturity)</p>
 <h3 id="as-s">As S → ∞<a class="headerlink" href="#as-s" title="Permanent link">&para;</a></h3>
 <p><strong>Call option</strong>: Behaves like the forward:</p>
-<p>$$</p>
-<p>V(t, S) \sim S - Ke^{-r(T-t)} \quad \text{as } S \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) \sim S - Ke^{-r(T-t)} \quad \text{as } S \to \infty
+\]</div>
 <p>Equivalently: <span class="arithmatex">\(V_S \to 1\)</span> (delta approaches 1).</p>
 <p><strong>Put option</strong>: Worthless for large <span class="arithmatex">\(S\)</span>:</p>
-<p>$$</p>
-<p>V(t, S) \to 0 \quad \text{as } S \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) \to 0 \quad \text{as } S \to \infty
+\]</div>
 <hr />
 <h2 id="barrier-options">Barrier Options<a class="headerlink" href="#barrier-options" title="Permanent link">&para;</a></h2>
 <p>Barrier options have <strong>explicit boundaries</strong> where the contract terminates.</p>
 <h3 id="down-and-out-call">Down-and-Out Call<a class="headerlink" href="#down-and-out-call" title="Permanent link">&para;</a></h3>
 <p>Knocked out if <span class="arithmatex">\(S\)</span> hits barrier <span class="arithmatex">\(B &lt; S_0\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 V(T, S) = (S - K)^+ &amp; S &gt; B \\
 V(t, B) = 0 &amp; \text{(knocked out)}
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <h3 id="up-and-out-put">Up-and-Out Put<a class="headerlink" href="#up-and-out-put" title="Permanent link">&para;</a></h3>
 <p>Knocked out if <span class="arithmatex">\(S\)</span> hits barrier <span class="arithmatex">\(B &gt; S_0\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 V(T, S) = (K - S)^+ &amp; S &lt; B \\
 V(t, B) = 0 &amp; \text{(knocked out)}
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <h3 id="knock-in-options">Knock-In Options<a class="headerlink" href="#knock-in-options" title="Permanent link">&para;</a></h3>
 <p>The complementary "knock-in" satisfies:</p>
-<p>$$</p>
-<p>V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
+\]</div>
 <hr />
 <h2 id="probabilistic-interpretation">Probabilistic Interpretation<a class="headerlink" href="#probabilistic-interpretation" title="Permanent link">&para;</a></h2>
 <p>Boundary conditions correspond to <strong>stopping rules</strong> for the underlying process.</p>
 <h3 id="dirichlet-at-s-b">Dirichlet at S = B<a class="headerlink" href="#dirichlet-at-s-b" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V(t, S) = \mathbb{E}\left[e^{-r(\tau \wedge T - t)}\Phi(S_{\tau \wedge T}) \mid S_t = S\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) = \mathbb{E}\left[e^{-r(\tau \wedge T - t)}\Phi(S_{\tau \wedge T}) \mid S_t = S\right]
+\]</div>
 <p>where <span class="arithmatex">\(\tau = \inf\{s \geq t : S_s = B\}\)</span> is the hitting time.</p>
 <h3 id="absorbing-boundary">Absorbing Boundary<a class="headerlink" href="#absorbing-boundary" title="Permanent link">&para;</a></h3>
 <p>When the process hits the boundary, it is <strong>killed</strong>:</p>
-<p>$$</p>
-<p>\mathbb{P}(\text{survive to } T \mid S_t = S) = \mathbb{P}(\tau &gt; T \mid S_t = S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\text{survive to } T \mid S_t = S) = \mathbb{P}(\tau &gt; T \mid S_t = S)
+\]</div>
 <h3 id="reflecting-boundary">Reflecting Boundary<a class="headerlink" href="#reflecting-boundary" title="Permanent link">&para;</a></h3>
 <p>The process is <strong>pushed back</strong> at the boundary:</p>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,dW_t + dL_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,dW_t + dL_t
+\]</div>
 <p>where <span class="arithmatex">\(L_t\)</span> is the local time at the boundary.</p>
 <hr />
 <h2 id="american-options-and-free-boundaries">American Options and Free Boundaries<a class="headerlink" href="#american-options-and-free-boundaries" title="Permanent link">&para;</a></h2>
 <p>American options introduce a <strong>free boundary</strong> (exercise boundary).</p>
 <h3 id="optimal-stopping-problem">Optimal Stopping Problem<a class="headerlink" href="#optimal-stopping-problem" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V(t, S) = \sup_{\tau \in [t,T]} \mathbb{E}\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) = \sup_{\tau \in [t,T]} \mathbb{E}\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]
+\]</div>
 <h3 id="complementarity-formulation">Complementarity Formulation<a class="headerlink" href="#complementarity-formulation" title="Permanent link">&para;</a></h3>
 <p>The American option price satisfies:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV \leq 0 \\
 V \geq \Phi \\
 \left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV\right)(V - \Phi) = 0
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>This is a <strong>free boundary problem</strong>: the exercise boundary <span class="arithmatex">\(S^*(t)\)</span> is part of the solution.</p>
 <h3 id="exercise-boundary">Exercise Boundary<a class="headerlink" href="#exercise-boundary" title="Permanent link">&para;</a></h3>
 <p>For an American put:
@@ -46980,9 +46980,9 @@ V \geq \Phi \\
 <h2 id="numerical-considerations">Numerical Considerations<a class="headerlink" href="#numerical-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="grid-truncation">Grid Truncation<a class="headerlink" href="#grid-truncation" title="Permanent link">&para;</a></h3>
 <p>Numerical methods require finite domains. Far-field boundaries are placed at <span class="arithmatex">\(S_{\min}\)</span> and <span class="arithmatex">\(S_{\max}\)</span> where:</p>
-<p>$$</p>
-<p>S_{\min} \ll K \ll S_{\max}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{\min} \ll K \ll S_{\max}
+\]</div>
 <h3 id="boundary-condition-errors">Boundary Condition Errors<a class="headerlink" href="#boundary-condition-errors" title="Permanent link">&para;</a></h3>
 <p>Incorrect boundary conditions cause errors that propagate inward. Use:
 - Asymptotic analysis for far-field behavior
@@ -47021,11 +47021,11 @@ V \geq \Phi \\
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{PDE} + \text{Terminal Condition} + \text{Boundary Conditions} = \text{Unique Price}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Terminal and boundary conditions transform abstract PDEs into specific pricing problems, encoding the contractual features of financial derivatives.</strong></p>
 
 

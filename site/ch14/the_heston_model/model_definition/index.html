@@ -46695,13 +46695,13 @@
 <h2 id="dynamics-under-the-risk-neutral-measure">Dynamics Under the Risk-Neutral Measure<a class="headerlink" href="#dynamics-under-the-risk-neutral-measure" title="Permanent link">&para;</a></h2>
 <h3 id="the-heston-sde-system">The Heston SDE System<a class="headerlink" href="#the-heston-sde-system" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the Heston model is defined by:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r - q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
 dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V \\
 d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>where:</p>
 <table>
 <thead>
@@ -46771,9 +46771,9 @@ d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
 </table>
 <h3 id="log-price-dynamics">Log-Price Dynamics<a class="headerlink" href="#log-price-dynamics" title="Permanent link">&para;</a></h3>
 <p>For pricing, it is often convenient to work with <span class="arithmatex">\(X_t = \log S_t\)</span>:</p>
-<p>$$</p>
-<p>dX_t = \left(r - q - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \left(r - q - \frac{1}{2}V_t\right)dt + \sqrt{V_t}\,dW_t^S
+\]</div>
 <p>The pair <span class="arithmatex">\((X_t, V_t)\)</span> is a <strong>two-dimensional affine diffusion</strong>.</p>
 <hr />
 <h2 id="interpretation-of-parameters">Interpretation of Parameters<a class="headerlink" href="#interpretation-of-parameters" title="Permanent link">&para;</a></h2>
@@ -46788,13 +46788,13 @@ d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
 <p><strong>Calibration insight:</strong> <span class="arithmatex">\(\kappa\)</span> primarily affects the <strong>term structure</strong> of implied volatility. Higher <span class="arithmatex">\(\kappa\)</span> flattens the term structure faster.</p>
 <h3 id="long-run-variance">Long-Run Variance (θ)<a class="headerlink" href="#long-run-variance" title="Permanent link">&para;</a></h3>
 <p>The parameter <span class="arithmatex">\(\theta &gt; 0\)</span> is the <strong>stationary mean</strong> of the variance process:</p>
-<p>$$</p>
-<p>\lim_{t \to \infty} \mathbb{E}[V_t] = \theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{t \to \infty} \mathbb{E}[V_t] = \theta
+\]</div>
 <p><strong>Calibration insight:</strong> <span class="arithmatex">\(\theta\)</span> controls the level of long-maturity implied volatility:</p>
-<p>$$</p>
-<p>\sigma_{\text{impl}}^2(T \to \infty) \approx \theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{impl}}^2(T \to \infty) \approx \theta
+\]</div>
 <h3 id="volatility-of-volatility">Volatility of Volatility (ξ)<a class="headerlink" href="#volatility-of-volatility" title="Permanent link">&para;</a></h3>
 <p>The parameter <span class="arithmatex">\(\xi &gt; 0\)</span> controls the magnitude of variance fluctuations:</p>
 <ul>
@@ -46802,9 +46802,9 @@ d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
 <li><span class="arithmatex">\(\xi\)</span> affects both wings of the smile (not just skew)</li>
 </ul>
 <p><strong>Calibration insight:</strong> <span class="arithmatex">\(\xi\)</span> is identifiable from the <strong>convexity</strong> of the smile:</p>
-<p>$$</p>
-<p>\frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2} \propto \xi^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 \sigma_{\text{impl}}}{\partial k^2} \propto \xi^2
+\]</div>
 <h3 id="correlation">Correlation (ρ)<a class="headerlink" href="#correlation" title="Permanent link">&para;</a></h3>
 <p>The parameter <span class="arithmatex">\(\rho \in (-1, 1)\)</span> controls the correlation between price and variance shocks:</p>
 <ul>
@@ -46813,9 +46813,9 @@ d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
 <li><span class="arithmatex">\(\rho &gt; 0\)</span>: inverse leverage (rare)</li>
 </ul>
 <p><strong>Calibration insight:</strong> <span class="arithmatex">\(\rho\)</span> directly controls the <strong>skew</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \propto \rho</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{impl}}}{\partial k}\bigg|_{k=0} \propto \rho
+\]</div>
 <h3 id="initial-variance-v_0">Initial Variance (V_0)<a class="headerlink" href="#initial-variance-v_0" title="Permanent link">&para;</a></h3>
 <p>The parameter <span class="arithmatex">\(V_0 &gt; 0\)</span> is the <strong>current</strong> instantaneous variance:</p>
 <ul>
@@ -46825,41 +46825,41 @@ d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
 <hr />
 <h2 id="stationary-distribution">Stationary Distribution<a class="headerlink" href="#stationary-distribution" title="Permanent link">&para;</a></h2>
 <p>When <span class="arithmatex">\(V_t\)</span> reaches its stationary distribution (for <span class="arithmatex">\(t\)</span> large):</p>
-<p>$$</p>
-<p>V_{\infty} \sim \text{Gamma}\left(\frac{2\kappa\theta}{\xi^2}, \frac{2\kappa}{\xi^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\infty} \sim \text{Gamma}\left(\frac{2\kappa\theta}{\xi^2}, \frac{2\kappa}{\xi^2}\right)
+\]</div>
 <p><strong>Stationary moments:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \mathbb{E}[V_{\infty}] &amp;= \theta \\
 \text{Var}[V_{\infty}] &amp;= \frac{\xi^2 \theta}{2\kappa} \\
 \text{Skew}[V_{\infty}] &amp;= \frac{2\xi}{\sqrt{2\kappa\theta}}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>The variance distribution is always right-skewed and bounded below by zero.</p>
 <hr />
 <h2 id="relation-to-blackscholes">Relation to Black–Scholes<a class="headerlink" href="#relation-to-blackscholes" title="Permanent link">&para;</a></h2>
 <h3 id="deterministic-limit">Deterministic Limit<a class="headerlink" href="#deterministic-limit" title="Permanent link">&para;</a></h3>
 <p>If volatility is deterministic (<span class="arithmatex">\(\xi = 0\)</span>), the variance satisfies:</p>
-<p>$$</p>
-<p>V_t = V_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = V_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})
+\]</div>
 <p>The model reduces to <strong>time-dependent Black–Scholes</strong>:</p>
-<p>$$</p>
-<p>C = C^{\text{BS}}\left(S_0, K, T, \bar{\sigma}(T)\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = C^{\text{BS}}\left(S_0, K, T, \bar{\sigma}(T)\right)
+\]</div>
 <p>where <span class="arithmatex">\(\bar{\sigma}^2(T) = \frac{1}{T}\int_0^T V_s\,ds\)</span>.</p>
 <h3 id="small-vol-of-vol-expansion">Small Vol-of-Vol Expansion<a class="headerlink" href="#small-vol-of-vol-expansion" title="Permanent link">&para;</a></h3>
 <p>For small <span class="arithmatex">\(\xi\)</span>, Heston prices can be expanded:</p>
-<p>$$</p>
-<p>C^{\text{Heston}} = C^{\text{BS}} + \xi \cdot C_1 + \xi^2 \cdot C_2 + O(\xi^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C^{\text{Heston}} = C^{\text{BS}} + \xi \cdot C_1 + \xi^2 \cdot C_2 + O(\xi^3)
+\]</div>
 <p>The correction terms introduce smile and skew.</p>
 <h3 id="implied-volatility-approximation">Implied Volatility Approximation<a class="headerlink" href="#implied-volatility-approximation" title="Permanent link">&para;</a></h3>
 <p>For short maturities and near-ATM options:</p>
-<p>$$</p>
-<p>\sigma_{\text{impl}}(k, T) \approx \sqrt{V_0} + \frac{\rho\xi}{4\sqrt{V_0}}k + \frac{\xi^2(1-\rho^2)}{8V_0^{3/2}}k^2 + O(T, k^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{impl}}(k, T) \approx \sqrt{V_0} + \frac{\rho\xi}{4\sqrt{V_0}}k + \frac{\xi^2(1-\rho^2)}{8V_0^{3/2}}k^2 + O(T, k^3)
+\]</div>
 <p>This shows:
 - ATM level: <span class="arithmatex">\(\sqrt{V_0}\)</span>
 - Skew: <span class="arithmatex">\(\propto \rho\xi\)</span>
@@ -46870,9 +46870,9 @@ d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
 <p>For <span class="arithmatex">\(V_t \geq 0\)</span> to hold, we need <span class="arithmatex">\(\kappa, \theta, \xi &gt; 0\)</span>.</p>
 <h3 id="feller-condition">Feller Condition<a class="headerlink" href="#feller-condition" title="Permanent link">&para;</a></h3>
 <p>The <strong>Feller condition</strong> ensures <span class="arithmatex">\(V_t &gt; 0\)</span> (strictly positive):</p>
-<p>$$</p>
-<p>2\kappa\theta \geq \xi^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+2\kappa\theta \geq \xi^2
+\]</div>
 <p>See Section 9.3.2 for detailed boundary behavior.</p>
 <h3 id="existence-of-moments">Existence of Moments<a class="headerlink" href="#existence-of-moments" title="Permanent link">&para;</a></h3>
 <p>The <span class="arithmatex">\(n\)</span>-th moment of <span class="arithmatex">\(S_T\)</span> exists under <span class="arithmatex">\(\mathbb{Q}\)</span> if and only if <span class="arithmatex">\(n &lt; n^*\)</span> where <span class="arithmatex">\(n^*\)</span> depends on <span class="arithmatex">\((\kappa, \theta, \xi, \rho)\)</span>.</p>
@@ -46881,12 +46881,12 @@ d\langle W^S, W^V \rangle_t &amp;= \rho\,dt
 <h2 id="simulation-of-heston-paths">Simulation of Heston Paths<a class="headerlink" href="#simulation-of-heston-paths" title="Permanent link">&para;</a></h2>
 <h3 id="euler-scheme-with-truncation">Euler Scheme (with Truncation)<a class="headerlink" href="#euler-scheme-with-truncation" title="Permanent link">&para;</a></h3>
 <p>The simplest scheme (with variance floor):</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 V_{t+\Delta} &amp;= V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z_1 \\
 S_{t+\Delta} &amp;= S_t \exp\left[\left(r - q - \frac{1}{2}V_t^+\right)\Delta + \sqrt{V_t^+}\sqrt{\Delta}\,Z_2\right]
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>where <span class="arithmatex">\(V_t^+ = \max(V_t, 0)\)</span> and <span class="arithmatex">\((Z_1, Z_2)\)</span> are correlated normals.</p>
 <h3 id="qe-scheme-andersen">QE Scheme (Andersen)<a class="headerlink" href="#qe-scheme-andersen" title="Permanent link">&para;</a></h3>
 <p>The <strong>Quadratic-Exponential</strong> scheme is more accurate:
@@ -46895,9 +46895,9 @@ S_{t+\Delta} &amp;= S_t \exp\left[\left(r - q - \frac{1}{2}V_t^+\right)\Delta + 
 <p>See Section 9.4 for implementation details.</p>
 <h3 id="exact-simulation">Exact Simulation<a class="headerlink" href="#exact-simulation" title="Permanent link">&para;</a></h3>
 <p>The variance transition <span class="arithmatex">\(V_{t+\Delta} | V_t\)</span> follows a scaled non-central <span class="arithmatex">\(\chi^2\)</span>:</p>
-<p>$$</p>
-<p>V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2\left(\frac{4\kappa\theta}{\xi^2}, \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2\left(\frac{4\kappa\theta}{\xi^2}, \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t\right)
+\]</div>
 <p>Exact simulation is possible but computationally expensive.</p>
 <hr />
 <h2 id="model-summary">Model Summary<a class="headerlink" href="#model-summary" title="Permanent link">&para;</a></h2>

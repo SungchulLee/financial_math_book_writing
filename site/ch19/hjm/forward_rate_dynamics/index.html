@@ -46339,24 +46339,24 @@ df(t,T) = \alpha(t,T)\,dt + \sum_{i=1}^n \sigma_i(t,T)\,dW_t^i,
 <h2 id="quantpie-derivation-from-forward-rates-to-bond-prices">QuantPie Derivation: From Forward Rates to Bond Prices<a class="headerlink" href="#quantpie-derivation-from-forward-rates-to-bond-prices" title="Permanent link">&para;</a></h2>
 <h3 id="forward-rate-definition">Forward Rate Definition<a class="headerlink" href="#forward-rate-definition" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(t &lt; S &lt; T\)</span>, the forward rate is defined as:</p>
-<p>$$</p>
-<p>P(t,T) = P(t,S) \cdot P(t,S,T) := P(t,S) \cdot e^{-R(t,S,T)(T-S)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = P(t,S) \cdot P(t,S,T) := P(t,S) \cdot e^{-R(t,S,T)(T-S)}
+\]</div>
 <p>where the forward rate is:</p>
-<p>$$</p>
-<p>R(t,S,T) = -\frac{\log P(t,T) - \log P(t,S)}{T-S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R(t,S,T) = -\frac{\log P(t,T) - \log P(t,S)}{T-S}
+\]</div>
 <h3 id="instantaneous-forward-rate">Instantaneous Forward Rate<a class="headerlink" href="#instantaneous-forward-rate" title="Permanent link">&para;</a></h3>
 <p>Taking the limit as <span class="arithmatex">\(S \to T\)</span>:</p>
-<p>$$</p>
-<p>f(t,T) = \lim_{S \to T} R(t,S,T) = -\lim_{S \to T} \frac{\log P(t,T) - \log P(t,S)}{T-S} = -\frac{\partial}{\partial T}\log P(t,T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t,T) = \lim_{S \to T} R(t,S,T) = -\lim_{S \to T} \frac{\log P(t,T) - \log P(t,S)}{T-S} = -\frac{\partial}{\partial T}\log P(t,T)
+\]</div>
 <p>This shows the fundamental relationship between instantaneous forward rates and the log of bond prices.</p>
 <h3 id="forward-rate-dynamics_1">Forward Rate Dynamics<a class="headerlink" href="#forward-rate-dynamics_1" title="Permanent link">&para;</a></h3>
 <p>The instantaneous forward rate follows the stochastic differential equation:</p>
-<p>$$</p>
-<p>df(t,T) = \mu^{\mathbb{Q}}(t,T)dt + \sigma(t,T)dW^{\mathbb{Q}}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t,T) = \mu^{\mathbb{Q}}(t,T)dt + \sigma(t,T)dW^{\mathbb{Q}}(t)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\mu^{\mathbb{Q}}(t,T)\)</span> is the drift under the risk-neutral measure
 - <span class="arithmatex">\(\sigma(t,T)\)</span> is the volatility of the forward rate

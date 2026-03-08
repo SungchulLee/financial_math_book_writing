@@ -46786,9 +46786,9 @@
 <hr />
 <h2 id="stock-price-dynamics">Stock Price Dynamics<a class="headerlink" href="#stock-price-dynamics" title="Permanent link">&para;</a></h2>
 <p>Consider the standard Black-Scholes model for a stock price <span class="arithmatex">\(S_t\)</span>:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(r\)</span> is the constant risk-free rate
 - <span class="arithmatex">\(\sigma\)</span> is the volatility
@@ -46798,26 +46798,26 @@
 <h2 id="why-s_t-is-not-affine">Why S_t is NOT Affine<a class="headerlink" href="#why-s_t-is-not-affine" title="Permanent link">&para;</a></h2>
 <h3 id="checking-the-affine-conditions">Checking the Affine Conditions<a class="headerlink" href="#checking-the-affine-conditions" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(S_t\)</span> to be affine, we need:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle \bar{\mu}(S_t) = a_0 + a_1 S_t &amp; \quad &amp; \text{(Drift linear in } S_t\text{)}\\
 \displaystyle \bar{\sigma}(S_t)\bar{\sigma}(S_t)^T = c_0 + c_1^T S_t &amp; \quad &amp; \text{(Diffusion linear in } S_t\text{)}\\
 \displaystyle r(S_t) = r_0 + r_1^T S_t &amp; \quad &amp; \text{(Short rate linear in } S_t\text{)}\\
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h3>
 <p>For the GBM process:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t
+\]</div>
 <p>We can identify:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lllllll}
+<div class="arithmatex">\[
+\begin{array}{lllllll}
 \displaystyle \bar{\mu}(S_t) = rS_t &amp;\quad&amp; \text{Linear in } S_t &amp; \quad &amp; \color{green}{\checkmark} \text{ Good}\\
 \displaystyle \bar{\sigma}(S_t) = \sigma S_t &amp;\Rightarrow&amp; \bar{\sigma}(S_t)\bar{\sigma}(S_t)^T = \sigma^2 S_t^2 &amp; \quad &amp; \color{red}{\times} \text{ NOT Linear!}\\
 \displaystyle r(S_t) = r &amp;\quad&amp; \text{Linear in } S_t &amp; \quad &amp; \color{green}{\checkmark} \text{ Good}\\
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
 <p>The diffusion matrix <span class="arithmatex">\(\bar{\sigma}(S_t)\bar{\sigma}(S_t)^T = \sigma^2 S_t^2\)</span> is <strong>quadratic</strong>, not linear, in <span class="arithmatex">\(S_t\)</span>. This violates the affine property.</p>
 <p><strong>Therefore, the stock price process <span class="arithmatex">\(S_t\)</span> is NOT affine.</strong></p>
@@ -46825,115 +46825,115 @@
 <h2 id="transformation-x_t-log-s_t">Transformation: X_t = log S_t<a class="headerlink" href="#transformation-x_t-log-s_t" title="Permanent link">&para;</a></h2>
 <h3 id="applying-itos-lemma">Applying Itô's Lemma<a class="headerlink" href="#applying-itos-lemma" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(X_t = \log S_t\)</span>. By Itô's lemma:</p>
-<p>$$</p>
-<p>dX_t = \frac{\partial X_t}{\partial S_t} dS_t + \frac{1}{2}\frac{\partial^2 X_t}{\partial S_t^2} (dS_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \frac{\partial X_t}{\partial S_t} dS_t + \frac{1}{2}\frac{\partial^2 X_t}{\partial S_t^2} (dS_t)^2
+\]</div>
 <p>Computing derivatives:</p>
-<p>$$</p>
-<p>\frac{\partial X_t}{\partial S_t} = \frac{1}{S_t}, \quad \frac{\partial^2 X_t}{\partial S_t^2} = -\frac{1}{S_t^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial X_t}{\partial S_t} = \frac{1}{S_t}, \quad \frac{\partial^2 X_t}{\partial S_t^2} = -\frac{1}{S_t^2}
+\]</div>
 <p>The quadratic variation is:</p>
 <div class="arithmatex">\[(dS_t)^2 = (\sigma S_t dW_t)^2 = \sigma^2 S_t^2 dt\]</div>
 <p>Substituting:</p>
-<p>$$</p>
-<p>dX_t = \frac{1}{S_t}(rS_t dt + \sigma S_t dW_t) - \frac{1}{2}\frac{1}{S_t^2}(\sigma^2 S_t^2 dt)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \frac{1}{S_t}(rS_t dt + \sigma S_t dW_t) - \frac{1}{2}\frac{1}{S_t^2}(\sigma^2 S_t^2 dt)
+\]</div>
+<div class="arithmatex">\[
+= \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t
+\]</div>
 <h3 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h3>
 <p>The log stock price follows:</p>
-<p>$$</p>
-<p>dX_t = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \left(r - \frac{\sigma^2}{2}\right)dt + \sigma dW_t
+\]</div>
 <p>This is a simple arithmetic Brownian motion with drift.</p>
 <hr />
 <h2 id="why-x_t-log-s_t-is-affine">Why X_t = log S_t IS Affine<a class="headerlink" href="#why-x_t-log-s_t-is-affine" title="Permanent link">&para;</a></h2>
 <h3 id="checking-the-affine-conditions_1">Checking the Affine Conditions<a class="headerlink" href="#checking-the-affine-conditions_1" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(X_t\)</span>, we have:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle \bar{\mu}(X_t) = r - \frac{\sigma^2}{2} &amp; \quad &amp; \text{Constant (linear in } X_t\text{)}\\
 \displaystyle \bar{\sigma}(X_t) = \sigma &amp;\Rightarrow&amp; \bar{\sigma}(X_t)\bar{\sigma}(X_t)^T = \sigma^2 &amp; \quad &amp; \text{Constant (linear in } X_t\text{)}\\
 \displaystyle r(X_t) = r &amp; \quad &amp; \text{Constant (linear in } X_t\text{)}\\
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="affine-parameters">Affine Parameters<a class="headerlink" href="#affine-parameters" title="Permanent link">&para;</a></h3>
 <p>In the standard affine form <span class="arithmatex">\(\bar{\mu}(\mathbf{X}) = a_0 + a_1 \mathbf{X}\)</span>, we identify (for the one-dimensional case):</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 a_0 = r - \frac{\sigma^2}{2} &amp; \Rightarrow &amp; \text{Drift constant}\\
 a_1 = 0 &amp; \Rightarrow &amp; \text{No linear dependence on } X_t\\
 c_0 = \sigma^2 &amp; \Rightarrow &amp; \text{Diffusion constant}\\
 c_1 = 0 &amp; \Rightarrow &amp; \text{No state-dependent volatility}\\
 r_0 = r &amp; \Rightarrow &amp; \text{Short rate constant}\\
 r_1 = 0 &amp; \Rightarrow &amp; \text{No dependence on } X_t\\
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="conclusion_1">Conclusion<a class="headerlink" href="#conclusion_1" title="Permanent link">&para;</a></h3>
 <p><strong>All affine conditions are satisfied.</strong> The log stock price <span class="arithmatex">\(X_t\)</span> is an affine process.</p>
 <hr />
 <h2 id="characteristic-function">Characteristic Function<a class="headerlink" href="#characteristic-function" title="Permanent link">&para;</a></h2>
 <h3 id="general-affine-characteristic-function">General Affine Characteristic Function<a class="headerlink" href="#general-affine-characteristic-function" title="Permanent link">&para;</a></h3>
 <p>For an affine process:</p>
-<p>$$</p>
-<p>\varphi(\mathbf{X}_t, t, T, \mathbf{u}) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r(\mathbf{X}_s)ds} e^{i\mathbf{u}^T \mathbf{X}_T} \Big| \mathcal{F}_t\right] = e^{A(\tau, \mathbf{u}) + \mathbf{B}^T(\tau, \mathbf{u})\mathbf{X}_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(\mathbf{X}_t, t, T, \mathbf{u}) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r(\mathbf{X}_s)ds} e^{i\mathbf{u}^T \mathbf{X}_T} \Big| \mathcal{F}_t\right] = e^{A(\tau, \mathbf{u}) + \mathbf{B}^T(\tau, \mathbf{u})\mathbf{X}_t}
+\]</div>
 <h3 id="riccati-equations-for-our-case">Riccati Equations for Our Case<a class="headerlink" href="#riccati-equations-for-our-case" title="Permanent link">&para;</a></h3>
 <p>For the log stock price with parameters <span class="arithmatex">\((a_0, a_1=0, c_0, c_1=0, r_0, r_1=0)\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle \frac{dA}{d\tau} &amp;=&amp; -r_0 + \mathbf{B}^T a_0 + \frac{1}{2}\mathbf{B}^T c_0 \mathbf{B}\\
 \displaystyle \frac{dB}{d\tau} &amp;=&amp; -r_1 + a_1^T \mathbf{B} + \frac{1}{2}c_1^T \mathbf{B} \mathbf{B}\\
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p>Substituting our parameters:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle \frac{dA}{d\tau} &amp;=&amp; -r + \left(r - \frac{\sigma^2}{2}\right)B + \frac{1}{2}\sigma^2 B^2\\
 \displaystyle \frac{dB}{d\tau} &amp;=&amp; 0\\
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h3>
 <p>From <span class="arithmatex">\(\frac{dB}{d\tau} = 0\)</span> with terminal condition <span class="arithmatex">\(B(0) = u\)</span>:</p>
 <div class="arithmatex">\[B(\tau, u) = u \quad \text{(constant in } \tau\text{)}\]</div>
 <p>Substituting into the first equation:</p>
-<p>$$</p>
-<p>\frac{dA}{d\tau} = -r + \left(r - \frac{\sigma^2}{2}\right)u + \frac{1}{2}\sigma^2 u^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dA}{d\tau} = -r + \left(r - \frac{\sigma^2}{2}\right)u + \frac{1}{2}\sigma^2 u^2
+\]</div>
 <p>This is a first-order linear ODE in <span class="arithmatex">\(A\)</span>. Integrating with terminal condition <span class="arithmatex">\(A(0) = 0\)</span>:</p>
-<p>$$</p>
-<p>A(\tau, u) = \left[-r + \left(r - \frac{\sigma^2}{2}\right)u + \frac{1}{2}\sigma^2 u^2\right]\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A(\tau, u) = \left[-r + \left(r - \frac{\sigma^2}{2}\right)u + \frac{1}{2}\sigma^2 u^2\right]\tau
+\]</div>
 <p>Simplifying:</p>
-<p>$$</p>
-<p>A(\tau, u) = \left[\left(r - \frac{\sigma^2}{2}\right)u - r + \frac{1}{2}\sigma^2 u^2\right]\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A(\tau, u) = \left[\left(r - \frac{\sigma^2}{2}\right)u - r + \frac{1}{2}\sigma^2 u^2\right]\tau
+\]</div>
 <h3 id="characteristic-function-result">Characteristic Function Result<a class="headerlink" href="#characteristic-function-result" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\varphi(X_t, t, T, u) = \exp\left(\left[\left(r - \frac{\sigma^2}{2}\right)u - r + \frac{1}{2}\sigma^2 u^2\right]\left(T-t\right) + iuX_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(X_t, t, T, u) = \exp\left(\left[\left(r - \frac{\sigma^2}{2}\right)u - r + \frac{1}{2}\sigma^2 u^2\right]\left(T-t\right) + iuX_t\right)
+\]</div>
 <h3 id="simplification-using-standard-form">Simplification Using Standard Form<a class="headerlink" href="#simplification-using-standard-form" title="Permanent link">&para;</a></h3>
 <p>This matches the known result for log-normal distributions. Rewriting:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[e^{iuX_T} \Big| X_t\right] = \exp\left(iu(X_t + \mu(T-t)) - \frac{1}{2}u^2\sigma^2(T-t)\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[e^{iuX_T} \Big| X_t\right] = \exp\left(iu(X_t + \mu(T-t)) - \frac{1}{2}u^2\sigma^2(T-t)\right)
+\]</div>
 <p>where <span class="arithmatex">\(\mu = r - \frac{\sigma^2}{2}\)</span> is the drift of <span class="arithmatex">\(X_t\)</span>. This is the characteristic function of a normal distribution with mean <span class="arithmatex">\(X_t + \mu(T-t)\)</span> and variance <span class="arithmatex">\(\sigma^2(T-t)\)</span>, confirming that <span class="arithmatex">\(X_T | X_t \sim N(X_t + \mu(T-t), \sigma^2(T-t))\)</span>.</p>
 <hr />
 <h2 id="link-to-stock-price-distribution">Link to Stock Price Distribution<a class="headerlink" href="#link-to-stock-price-distribution" title="Permanent link">&para;</a></h2>
 <h3 id="recovery-of-log-normal-distribution">Recovery of Log-Normal Distribution<a class="headerlink" href="#recovery-of-log-normal-distribution" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(X_T = \log S_T\)</span> is normally distributed:</p>
-<p>$$</p>
-<p>X_T | X_t \sim N\left(X_t + \left(r - \frac{\sigma^2}{2}\right)(T-t), \sigma^2(T-t)\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_T | X_t \sim N\left(X_t + \left(r - \frac{\sigma^2}{2}\right)(T-t), \sigma^2(T-t)\right)
+\]</div>
 <p>Taking exponentials:</p>
-<p>$$</p>
-<p>S_T | S_t \sim \text{Lognormal}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T | S_t \sim \text{Lognormal}
+\]</div>
 <p>with parameters:</p>
-<p>$$</p>
-<p>\log S_T = \log S_t + \left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma\sqrt{T-t} \cdot Z</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_T = \log S_t + \left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma\sqrt{T-t} \cdot Z
+\]</div>
 <p>where <span class="arithmatex">\(Z \sim N(0, 1)\)</span>.</p>
 <p>This is the standard Black-Scholes result.</p>
 <hr />

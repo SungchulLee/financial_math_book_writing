@@ -46681,13 +46681,13 @@
 <hr />
 <h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
 <p>Consider the stochastic exponential of a continuous local martingale <span class="arithmatex">\(M_t = \int_0^t \theta_s\,dW_s\)</span>:</p>
-<p>$$</p>
-<p>Z_t = \mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M \rangle_t\right) = \exp\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M \rangle_t\right) = \exp\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
+\]</div>
 <p>We want to use <span class="arithmatex">\(Z_T\)</span> as a Radon–Nikodym derivative:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T
+\]</div>
 <p><strong>For this to be valid</strong>, we need:</p>
 <ol>
 <li><span class="arithmatex">\(Z_t \geq 0\)</span> (automatically satisfied by exponential)</li>
@@ -46705,27 +46705,27 @@
 </ul>
 <h3 id="example-of-failure">Example of Failure<a class="headerlink" href="#example-of-failure" title="Permanent link">&para;</a></h3>
 <p>Consider <span class="arithmatex">\(\theta_t = \frac{c}{\sqrt{T-t}}\)</span> for <span class="arithmatex">\(t &lt; T\)</span>, where <span class="arithmatex">\(c &gt; 0\)</span> is a constant. Then:</p>
-<p>$$</p>
-<p>\int_0^T \theta_s^2\,ds = \int_0^T \frac{c^2}{T-s}\,ds = +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^T \theta_s^2\,ds = \int_0^T \frac{c^2}{T-s}\,ds = +\infty
+\]</div>
 <p>The quadratic variation explodes, and Novikov's condition fails. More precisely, for any <span class="arithmatex">\(\epsilon &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\int_0^{T-\epsilon} \theta_s^2\,ds = c^2 \log\left(\frac{T}{\epsilon}\right) \to \infty \quad \text{as } \epsilon \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^{T-\epsilon} \theta_s^2\,ds = c^2 \log\left(\frac{T}{\epsilon}\right) \to \infty \quad \text{as } \epsilon \to 0
+\]</div>
 <p>The stochastic exponential <span class="arithmatex">\(Z_t\)</span> converges to 0 as <span class="arithmatex">\(t \to T\)</span>, and <span class="arithmatex">\(\mathbb{E}[Z_T] &lt; 1\)</span>.</p>
 <p><strong>Intuition</strong>: The integrand <span class="arithmatex">\(\theta\)</span> blows up near the terminal time, causing the local martingale to "leak mass to infinity."</p>
 <hr />
 <h2 id="novikovs-condition">Novikov's Condition<a class="headerlink" href="#novikovs-condition" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Novikov, 1972)</strong>: Let <span class="arithmatex">\(M_t = \int_0^t \theta_s\,dW_s\)</span> be a continuous local martingale. If</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right] = \mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] &lt; \infty
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>then <span class="arithmatex">\(Z_t = \mathcal{E}(M)_t\)</span> is a <strong>true martingale</strong> on <span class="arithmatex">\([0,T]\)</span>, and in particular:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}[Z_T] = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}[Z_T] = 1
+\]</div>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <p>Novikov's condition requires that the "energy" <span class="arithmatex">\(\langle M \rangle_T = \int_0^T \theta_s^2\,ds\)</span> has finite exponential moments. This prevents the integrand from being too large too often.</p>
 <h3 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h3>
@@ -46745,19 +46745,19 @@
 <p>The proof proceeds in several steps. We follow the approach in Revuz–Yor (Chapter VIII) and Karatzas–Shreve (Section 3.5).</p>
 <p><strong>Step 1: Exponential martingale inequality</strong></p>
 <p>For any continuous local martingale <span class="arithmatex">\(M\)</span> with <span class="arithmatex">\(M_0 = 0\)</span> and any <span class="arithmatex">\(\lambda &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}\left(\sup_{t \leq T} M_t \geq \lambda\right) \leq e^{-\lambda} \mathbb{E}\left[\exp(M_T)\mathbf{1}<em T="T" _leq="\leq" t="t">{{\sup</em>\right]} M_t \geq \lambda}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\left(\sup_{t \leq T} M_t \geq \lambda\right) \leq e^{-\lambda} \mathbb{E}\left[\exp(M_T)\mathbf{1}_{\{\sup_{t \leq T} M_t \geq \lambda\}}\right]
+\]</div>
 <p><strong>Step 2: Control the maximum</strong></p>
 <p>Using the inequality from Step 1 and properties of the stochastic exponential, one can show:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{t \leq T} \mathcal{E}(M)_t\right] \leq 2\,\mathbb{E}\left[\mathcal{E}(M)_T^{1/2} \cdot \exp\left(\frac{1}{4}\langle M \rangle_T\right)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{t \leq T} \mathcal{E}(M)_t\right] \leq 2\,\mathbb{E}\left[\mathcal{E}(M)_T^{1/2} \cdot \exp\left(\frac{1}{4}\langle M \rangle_T\right)\right]
+\]</div>
 <p><strong>Step 3: Apply Cauchy–Schwarz</strong></p>
 <p>By Cauchy–Schwarz:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\mathcal{E}(M)_T^{1/2} \cdot \exp\left(\frac{1}{4}\langle M \rangle_T\right)\right] \leq \mathbb{E}\left[\mathcal{E}(M)_T\right]^{1/2} \cdot \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right]^{1/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\mathcal{E}(M)_T^{1/2} \cdot \exp\left(\frac{1}{4}\langle M \rangle_T\right)\right] \leq \mathbb{E}\left[\mathcal{E}(M)_T\right]^{1/2} \cdot \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right]^{1/2}
+\]</div>
 <p><strong>Step 4: Bootstrap</strong></p>
 <p>Under Novikov's condition, the second factor is finite. A careful stopping time argument shows that the local martingale <span class="arithmatex">\(\mathcal{E}(M)\)</span> is dominated by an integrable random variable, hence is a true martingale.</p>
 <p><strong>Reference</strong>: For the complete proof, see Karatzas–Shreve, <em>Brownian Motion and Stochastic Calculus</em>, Proposition 3.5.12, or Revuz–Yor, <em>Continuous Martingales and Brownian Motion</em>, Proposition VIII.1.15.</p>
@@ -46765,32 +46765,32 @@
 <h2 id="kazamakis-condition">Kazamaki's Condition<a class="headerlink" href="#kazamakis-condition" title="Permanent link">&para;</a></h2>
 <p>Kazamaki's condition is weaker than Novikov's and involves the local martingale <span class="arithmatex">\(M\)</span> itself rather than its quadratic variation.</p>
 <p><strong>Theorem (Kazamaki, 1977)</strong>: Let <span class="arithmatex">\(M_t = \int_0^t \theta_s\,dW_s\)</span> be a continuous local martingale with <span class="arithmatex">\(M_0 = 0\)</span>. If</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{E}\left(\frac{1}{2}M\right)_t = \exp\left(\frac{1}{2}M_t - \frac{1}{8}\langle M \rangle_t\right) \text{ is a submartingale}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>then <span class="arithmatex">\(\mathcal{E}(M)_t\)</span> is a true martingale.</p>
 <h3 id="equivalent-formulations">Equivalent Formulations<a class="headerlink" href="#equivalent-formulations" title="Permanent link">&para;</a></h3>
 <p>The submartingale condition is equivalent to:</p>
-<p>$$</p>
-<p>\sup_{t \leq T} \mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{t \leq T} \mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] &lt; \infty
+\]</div>
 <p>A sufficient (but slightly stronger) condition often stated in practice:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\frac{1}{2}M_T\right)\right] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\frac{1}{2}M_T\right)\right] &lt; \infty
+\]</div>
 <h3 id="why-kazamaki-is-weaker">Why Kazamaki Is Weaker<a class="headerlink" href="#why-kazamaki-is-weaker" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition</strong>: Novikov's condition implies Kazamaki's condition.</p>
 <p><strong>Proof</strong>: Assume Novikov holds: <span class="arithmatex">\(\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] &lt; \infty\)</span>.</p>
 <p>The process <span class="arithmatex">\(\exp(\frac{1}{2}M_t)\)</span> can be written as:</p>
-<p>$$</p>
-<p>\exp\left(\frac{1}{2}M_t\right) = \mathcal{E}\left(\frac{1}{2}M\right)_t \cdot \exp\left(\frac{1}{8}\langle M \rangle_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\exp\left(\frac{1}{2}M_t\right) = \mathcal{E}\left(\frac{1}{2}M\right)_t \cdot \exp\left(\frac{1}{8}\langle M \rangle_t\right)
+\]</div>
 <p>Taking expectations and using that <span class="arithmatex">\(\mathcal{E}(\frac{1}{2}M)\)</span> is a non-negative local martingale (hence a supermartingale):</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{8}\langle M \rangle_t\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right]^{1/4} &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\frac{1}{2}M_t\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{8}\langle M \rangle_t\right)\right] \leq \mathbb{E}\left[\exp\left(\frac{1}{2}\langle M \rangle_T\right)\right]^{1/4} &lt; \infty
+\]</div>
 <p>where we used Jensen's inequality in the last step. Thus Kazamaki's condition is satisfied. <span class="arithmatex">\(\square\)</span></p>
 <p>The converse is <strong>false</strong>: there exist processes satisfying Kazamaki but not Novikov.</p>
 <hr />
@@ -46816,9 +46816,9 @@
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\text{Novikov satisfied} \Rightarrow \text{Kazamaki satisfied} \Rightarrow \mathcal{E}(M) \text{ is a true martingale}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Novikov satisfied} \Rightarrow \text{Kazamaki satisfied} \Rightarrow \mathcal{E}(M) \text{ is a true martingale}
+\]</div>
 <p><strong>When to use which</strong>:</p>
 <ul>
 <li><strong>Novikov</strong>: Easier to verify when <span class="arithmatex">\(\theta\)</span> has known bounds or growth conditions</li>
@@ -46828,45 +46828,45 @@
 <h2 id="practical-verification">Practical Verification<a class="headerlink" href="#practical-verification" title="Permanent link">&para;</a></h2>
 <h3 id="case-1-deterministic">Case 1: Deterministic θ<a class="headerlink" href="#case-1-deterministic" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\theta_t = \theta(t)\)</span> is deterministic:</p>
-<p>$$</p>
-<p>\int_0^T \theta(t)^2\,dt &lt; \infty \Rightarrow \text{Novikov satisfied}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^T \theta(t)^2\,dt &lt; \infty \Rightarrow \text{Novikov satisfied}
+\]</div>
 <p>The exponential of a constant is finite, so the condition reduces to <span class="arithmatex">\(\theta \in L^2[0,T]\)</span>.</p>
 <h3 id="case-2-bounded">Case 2: Bounded θ<a class="headerlink" href="#case-2-bounded" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(|\theta_t| \leq M\)</span> almost surely for all <span class="arithmatex">\(t \in [0,T]\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] \leq \exp\left(\frac{M^2 T}{2}\right) &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\frac{1}{2}\int_0^T \theta_s^2\,ds\right)\right] \leq \exp\left(\frac{M^2 T}{2}\right) &lt; \infty
+\]</div>
 <p>Novikov is satisfied.</p>
 <h3 id="case-3-blackscholes-model">Case 3: Black–Scholes Model<a class="headerlink" href="#case-3-blackscholes-model" title="Permanent link">&para;</a></h3>
 <p>The market price of risk <span class="arithmatex">\(\theta = (\mu - r)/\sigma\)</span> is constant.</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\frac{1}{2}\theta^2 T\right)\right] = \exp\left(\frac{\theta^2 T}{2}\right) &lt; \infty \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\frac{1}{2}\theta^2 T\right)\right] = \exp\left(\frac{\theta^2 T}{2}\right) &lt; \infty \quad \checkmark
+\]</div>
 <p>Novikov is satisfied for any finite <span class="arithmatex">\(T\)</span>.</p>
 <h3 id="case-4-heston-stochastic-volatility-model">Case 4: Heston Stochastic Volatility Model<a class="headerlink" href="#case-4-heston-stochastic-volatility-model" title="Permanent link">&para;</a></h3>
 <p>In the Heston model, the variance process <span class="arithmatex">\(V_t\)</span> follows:</p>
-<p>$$</p>
-<p>dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
+\]</div>
 <p>The market price of risk for the stock is <span class="arithmatex">\(\theta_t = (\mu - r)/\sqrt{V_t}\)</span>, so:</p>
-<p>$$</p>
-<p>\int_0^T \theta_s^2\,ds = (\mu - r)^2 \int_0^T \frac{1}{V_s}\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^T \theta_s^2\,ds = (\mu - r)^2 \int_0^T \frac{1}{V_s}\,ds
+\]</div>
 <p><strong>Novikov verification requires</strong>: <span class="arithmatex">\(\mathbb{E}\left[\exp\left(\frac{(\mu-r)^2}{2}\int_0^T V_s^{-1}\,ds\right)\right] &lt; \infty\)</span></p>
 <p>This holds when the <strong>Feller condition</strong> is satisfied:</p>
-<p>$$</p>
-<p>2\kappa\bar{V} \geq \xi^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+2\kappa\bar{V} \geq \xi^2
+\]</div>
 <p>The Feller condition ensures <span class="arithmatex">\(V_t &gt; 0\)</span> for all <span class="arithmatex">\(t\)</span> (the process never hits zero), which prevents <span class="arithmatex">\(\int_0^T V_s^{-1}\,ds\)</span> from exploding. When Feller is violated, <span class="arithmatex">\(V_t\)</span> can hit zero, and verification becomes more delicate—one must check whether the time spent near zero is short enough.</p>
 <p><strong>Reference</strong>: For detailed analysis, see Andersen and Piterbarg, <em>Interest Rate Modeling</em>, Vol. 1, Chapter 8.</p>
 <hr />
 <h2 id="applications-in-finance">Applications in Finance<a class="headerlink" href="#applications-in-finance" title="Permanent link">&para;</a></h2>
 <h3 id="girsanovs-theorem">Girsanov's Theorem<a class="headerlink" href="#girsanovs-theorem" title="Permanent link">&para;</a></h3>
 <p>For Girsanov's theorem to produce a valid measure change, we need the Radon–Nikodym derivative:</p>
-<p>$$</p>
-<p>Z_T = \exp\left(\int_0^T \theta_s\,dW_s - \frac{1}{2}\int_0^T \theta_s^2\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_T = \exp\left(\int_0^T \theta_s\,dW_s - \frac{1}{2}\int_0^T \theta_s^2\,ds\right)
+\]</div>
 <p>to satisfy <span class="arithmatex">\(\mathbb{E}[Z_T] = 1\)</span>. Novikov or Kazamaki provides this guarantee.</p>
 <h3 id="risk-neutral-measure-construction">Risk-Neutral Measure Construction<a class="headerlink" href="#risk-neutral-measure-construction" title="Permanent link">&para;</a></h3>
 <p>The risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span> exists and is equivalent to <span class="arithmatex">\(\mathbb{P}\)</span> if:</p>
@@ -46881,15 +46881,15 @@
 <hr />
 <h2 id="extension-to-general-continuous-local-martingales">Extension to General Continuous Local Martingales<a class="headerlink" href="#extension-to-general-continuous-local-martingales" title="Permanent link">&para;</a></h2>
 <p>For a general continuous local martingale <span class="arithmatex">\(M\)</span> (not necessarily an Itô integral), the <strong>Doléans-Dade exponential</strong> is:</p>
-<p>$$</p>
-<p>\mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M \rangle_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M \rangle_t\right)
+\]</div>
 <p><strong>General Novikov Condition</strong>: If <span class="arithmatex">\(\mathbb{E}[\exp(\frac{1}{2}\langle M \rangle_T)] &lt; \infty\)</span>, then <span class="arithmatex">\(\mathcal{E}(M)\)</span> is a true martingale on <span class="arithmatex">\([0,T]\)</span>.</p>
 <p><strong>General Kazamaki Condition</strong>: If <span class="arithmatex">\(\mathcal{E}(\frac{1}{2}M)\)</span> is a submartingale, then <span class="arithmatex">\(\mathcal{E}(M)\)</span> is a true martingale.</p>
 <p>For discontinuous local martingales (with jumps), the Doléans-Dade exponential has the more complex form:</p>
-<p>$$</p>
-<p>\mathcal{E}(M)<em 0="0" _="&lt;" _leq="\leq" s="s" t="t">t = \exp\left(M_t - \frac{1}{2}\langle M^c \rangle_t\right) \prod</em>}(1 + \Delta M_s)e^{-\Delta M_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(M)_t = \exp\left(M_t - \frac{1}{2}\langle M^c \rangle_t\right) \prod_{0 &lt; s \leq t}(1 + \Delta M_s)e^{-\Delta M_s}
+\]</div>
 <p>where <span class="arithmatex">\(M^c\)</span> is the continuous part and <span class="arithmatex">\(\Delta M_s = M_s - M_{s-}\)</span> are the jumps. Conditions for this to be a true martingale are more involved.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
@@ -46914,11 +46914,11 @@
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Novikov} \Rightarrow \text{Kazamaki} \Rightarrow \mathcal{E}(M) \text{ is a true martingale} \Rightarrow \mathbb{E}[\mathcal{E}(M)_T] = 1
-}</p>
-<p>$$</p>
+}
+\]</div>
 <div class="admonition summary">
 <p class="admonition-title">Key Takeaways</p>
 <ol>

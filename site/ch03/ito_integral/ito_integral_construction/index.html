@@ -46496,36 +46496,36 @@
 <hr />
 <h2 id="motivation-why-riemann-stieltjes-fails">Motivation: Why Riemann-Stieltjes fails<a class="headerlink" href="#motivation-why-riemann-stieltjes-fails" title="Permanent link">&para;</a></h2>
 <p>Classical integration <span class="arithmatex">\(\int_0^t f(s) \, dg(s)\)</span> for deterministic functions requires that <span class="arithmatex">\(g\)</span> has <strong>bounded variation</strong> on <span class="arithmatex">\([0,t]\)</span>. Specifically, if</p>
-<p>$$</p>
-<p>\text{Var}<em _pi="\pi">{[0,t]}(g) := \sup</em>) - g(t_i)| &lt; \infty} \sum_{i=0}^{n-1} |g(t_{i+1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}_{[0,t]}(g) := \sup_{\pi} \sum_{i=0}^{n-1} |g(t_{i+1}) - g(t_i)| &lt; \infty
+\]</div>
 <p>over all partitions <span class="arithmatex">\(\pi: 0 = t_0 &lt; t_1 &lt; \cdots &lt; t_n = t\)</span>, then the Riemann-Stieltjes integral is well-defined as:</p>
-<p>$$</p>
-<p>\int_0^t f(s) \, dg(s) = \lim_{|\pi| \to 0} \sum_{i=0}^{n-1} f(t_i^*)(g(t_{i+1}) - g(t_i))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f(s) \, dg(s) = \lim_{|\pi| \to 0} \sum_{i=0}^{n-1} f(t_i^*)(g(t_{i+1}) - g(t_i))
+\]</div>
 <h3 id="1-brownian-motion-has-unbounded-variation">1. Brownian motion has unbounded variation<a class="headerlink" href="#1-brownian-motion-has-unbounded-variation" title="Permanent link">&para;</a></h3>
 <p>For Brownian motion <span class="arithmatex">\(B_t\)</span>, we can show that almost surely:</p>
-<p>$$</p>
-<p>\text{Var}_{[0,t]}(B) = \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}_{[0,t]}(B) = \infty
+\]</div>
 <p><strong>Proof sketch</strong>: Consider a partition <span class="arithmatex">\(\pi_n\)</span> with <span class="arithmatex">\(n\)</span> equally-spaced points: <span class="arithmatex">\(t_i = it/n\)</span>. Then:</p>
-<p>$$</p>
-<p>\sum_{i=0}^{n-1} |B_{t_{i+1}} - B_{t_i}|
-= \sum_{i=0}^{n-1} |B_{t/n}^{(i)}|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i=0}^{n-1} |B_{t_{i+1}} - B_{t_i}|
+= \sum_{i=0}^{n-1} |B_{t/n}^{(i)}|
+\]</div>
 <p>where <span class="arithmatex">\(B_{t/n}^{(i)}\)</span> are i.i.d. <span class="arithmatex">\(N(0, t/n)\)</span> increments. By the law of large numbers:</p>
-<p>$$</p>
-<p>\frac{1}{n} \sum_{i=0}^{n-1} |B_{t/n}^{(i)}|
+<div class="arithmatex">\[
+\frac{1}{n} \sum_{i=0}^{n-1} |B_{t/n}^{(i)}|
 \to \mathbb{E}[|Z|] \sqrt{\frac{t}{n}}
-= \sqrt{\frac{2t}{\pi n}}</p>
-<p>$$</p>
+= \sqrt{\frac{2t}{\pi n}}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\sum_{i=0}^{n-1} |B_{t_{i+1}} - B_{t_i}|
+<div class="arithmatex">\[
+\sum_{i=0}^{n-1} |B_{t_{i+1}} - B_{t_i}|
 \sim n \cdot \sqrt{\frac{2t}{\pi n}}
 = \sqrt{\frac{2nt}{\pi}}
-\to \infty</p>
-<p>$$</p>
+\to \infty
+\]</div>
 <p><strong>Conclusion</strong>: Brownian paths have unbounded variation almost surely, so pathwise Riemann-Stieltjes integration is impossible.</p>
 <p>However, Brownian motion has <strong>quadratic variation</strong> equal to <span class="arithmatex">\(t\)</span>, which suggests a different integration theory is possible.</p>
 <hr />
@@ -46540,9 +46540,9 @@
 <hr />
 <h2 id="step-1-simple-processes">Step 1: Simple processes<a class="headerlink" href="#step-1-simple-processes" title="Permanent link">&para;</a></h2>
 <p>A <strong>simple process</strong> <span class="arithmatex">\(H_t\)</span> has the form:</p>
-<p>$$</p>
-<p>H_t(\omega) = \sum_{i=0}^{n-1} H_i(\omega) \mathbf{1}<em i_1="i+1">{(t_i, t</em>(t)}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_t(\omega) = \sum_{i=0}^{n-1} H_i(\omega) \mathbf{1}_{(t_i, t_{i+1}]}(t)
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(0 = t_0 &lt; t_1 &lt; \cdots &lt; t_n = T\)</span> is a partition of <span class="arithmatex">\([0,T]\)</span></li>
@@ -46552,12 +46552,12 @@
 <p><strong>Interpretation</strong>: <span class="arithmatex">\(H_t\)</span> is constant on each interval <span class="arithmatex">\((t_i, t_{i+1}]\)</span> and its value on that interval depends only on information available at time <span class="arithmatex">\(t_i\)</span>.</p>
 <h3 id="1-definition-of-the-integral-for-simple-processes">1. Definition of the integral for simple processes<a class="headerlink" href="#1-definition-of-the-integral-for-simple-processes" title="Permanent link">&para;</a></h3>
 <p>For a simple process <span class="arithmatex">\(H_t = \sum_{i=0}^{n-1} H_i \mathbf{1}_{(t_i, t_{i+1}]}\)</span>, we define:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 I_t(H) := \int_0^t H_s \, dB_s
 = \sum_{i=0}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(a \wedge b := \min(a,b)\)</span>.</p>
 <p><strong>Key properties</strong>:</p>
 <ol>
@@ -46567,10 +46567,10 @@ I_t(H) := \int_0^t H_s \, dB_s
 </ol>
 <h3 id="2-verification-martingale-property">2. Verification: Martingale property<a class="headerlink" href="#2-verification-martingale-property" title="Permanent link">&para;</a></h3>
 <p>We verify that <span class="arithmatex">\(I_t(H)\)</span> is a martingale. For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t(H) \mid \mathcal{F}<em i="0">s]
-= \mathbb{E}\left[\sum</em>_s\right]}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t}) \,\Big|\, \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[I_t(H) \mid \mathcal{F}_s]
+= \mathbb{E}\left[\sum_{i=0}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t}) \,\Big|\, \mathcal{F}_s\right]
+\]</div>
 <p>Consider a term <span class="arithmatex">\(H_i(B_{t_{i+1} \wedge t} - B_{t_i \wedge t})\)</span>:</p>
 <ul>
 <li>If <span class="arithmatex">\(t_{i+1} \le s\)</span>: The term is <span class="arithmatex">\(\mathcal{F}_s\)</span>-measurable, contributes to <span class="arithmatex">\(I_s(H)\)</span></li>
@@ -46578,55 +46578,55 @@ I_t(H) := \int_0^t H_s \, dB_s
 <li>If <span class="arithmatex">\(s \le t_i\)</span>: Use independence: <span class="arithmatex">\(\mathbb{E}[B_{t_{i+1}} - B_{t_i} \mid \mathcal{F}_s] = 0\)</span></li>
 </ul>
 <p>The calculation shows:</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t(H) \mid \mathcal{F}_s] = I_s(H)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[I_t(H) \mid \mathcal{F}_s] = I_s(H)
+\]</div>
 <p>Thus, <span class="arithmatex">\(I_t(H)\)</span> is a martingale with respect to the natural filtration.</p>
 <hr />
 <h2 id="step-2-the-ito-isometry">Step 2: The Itô isometry<a class="headerlink" href="#step-2-the-ito-isometry" title="Permanent link">&para;</a></h2>
 <p>The key result that enables extension to general processes is the <strong>Itô isometry</strong>.</p>
 <h3 id="1-theorem-ito-isometry-for-simple-processes">1. Theorem (Itô Isometry for Simple Processes)<a class="headerlink" href="#1-theorem-ito-isometry-for-simple-processes" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(H_t\)</span> be a simple process. Then:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}\left[\left(\int_0^t H_s \, dB_s\right)^2\right]
 = \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Proof</strong>: Write <span class="arithmatex">\(H_t = \sum_{i=0}^{n-1} H_i \mathbf{1}_{(t_i, t_{i+1}]}\)</span>. Then:</p>
-<p>$$</p>
-<p>\left(\int_0^t H_s \, dB_s\right)^2
-= \left(\sum_{i=0}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})\right)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left(\int_0^t H_s \, dB_s\right)^2
+= \left(\sum_{i=0}^{n-1} H_i (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})\right)^2
+\]</div>
 <p>Expanding the square:</p>
-<p>$$</p>
-<p>= \sum_{i=0}^{n-1} H_i^2 (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2
-+ 2 \sum_{i &lt; j} H_i H_j (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})(B_{t_{j+1} \wedge t} - B_{t_j \wedge t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+= \sum_{i=0}^{n-1} H_i^2 (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2
++ 2 \sum_{i &lt; j} H_i H_j (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})(B_{t_{j+1} \wedge t} - B_{t_j \wedge t})
+\]</div>
 <p>Taking expectations:</p>
 <p><strong>Term 1</strong>: For each <span class="arithmatex">\(i\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[H_i^2 (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2]
+<div class="arithmatex">\[
+\mathbb{E}[H_i^2 (B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2]
 = \mathbb{E}[H_i^2] \cdot \mathbb{E}[(B_{t_{i+1} \wedge t} - B_{t_i \wedge t})^2]
-= \mathbb{E}[H_i^2] \cdot ((t_{i+1} \wedge t) - (t_i \wedge t))</p>
-<p>$$</p>
+= \mathbb{E}[H_i^2] \cdot ((t_{i+1} \wedge t) - (t_i \wedge t))
+\]</div>
 <p>by independence of <span class="arithmatex">\(H_i\)</span> and the future increment.</p>
 <p><strong>Term 2</strong>: For <span class="arithmatex">\(i &lt; j\)</span>, write:</p>
-<p>$$</p>
-<p>\mathbb{E}[H_i H_j (B_{t_{i+1}} - B_{t_i})(B_{t_{j+1}} - B_{t_j})]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[H_i H_j (B_{t_{i+1}} - B_{t_i})(B_{t_{j+1}} - B_{t_j})]
+\]</div>
 <p>Conditioning on <span class="arithmatex">\(\mathcal{F}_{t_{j}}\)</span>:</p>
-<p>$$</p>
-<p>= \mathbb{E}\left[H_i H_j (B_{t_{i+1}} - B_{t_i}) \cdot \mathbb{E}[B_{t_{j+1}} - B_{t_j} \mid \mathcal{F}_{t_j}]\right]
-= 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+= \mathbb{E}\left[H_i H_j (B_{t_{i+1}} - B_{t_i}) \cdot \mathbb{E}[B_{t_{j+1}} - B_{t_j} \mid \mathcal{F}_{t_j}]\right]
+= 0
+\]</div>
 <p>since <span class="arithmatex">\(B_{t_{j+1}} - B_{t_j}\)</span> has zero mean and is independent of <span class="arithmatex">\(\mathcal{F}_{t_j}\)</span>.</p>
 <p><strong>Combining</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\left(\int_0^t H_s \, dB_s\right)^2\right]
+<div class="arithmatex">\[
+\mathbb{E}\left[\left(\int_0^t H_s \, dB_s\right)^2\right]
 = \sum_{i=0}^{n-1} \mathbb{E}[H_i^2] \cdot ((t_{i+1} \wedge t) - (t_i \wedge t))
-= \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]</p>
-<p>$$</p>
+= \mathbb{E}\left[\int_0^t H_s^2 \, ds\right]
+\]</div>
 <p>This completes the proof. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Interpretation</strong>: The Itô isometry shows that the <span class="arithmatex">\(L^2\)</span>-norm of the stochastic integral <span class="arithmatex">\(\int_0^t H_s dB_s\)</span> is controlled by the deterministic <span class="arithmatex">\(L^2\)</span>-norm of the integrand <span class="arithmatex">\(H_s\)</span>.</p>
 <hr />
@@ -46634,38 +46634,38 @@ I_t(H) := \int_0^t H_s \, dB_s
 <p>We now extend the integral to the class of <strong>adapted square-integrable processes</strong>.</p>
 <h3 id="1-definition-l2-adapted-processes">1. Definition: <span class="arithmatex">\(L^2\)</span>-adapted processes<a class="headerlink" href="#1-definition-l2-adapted-processes" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\mathcal{L}^2([0,T])\)</span> denote the space of adapted processes <span class="arithmatex">\(H = \{H_t\}_{0 \le t \le T}\)</span> satisfying:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^T H_t^2 \, dt\right] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^T H_t^2 \, dt\right] &lt; \infty
+\]</div>
 <p>This is a Hilbert space with inner product:</p>
-<p>$$</p>
-<p>\langle H, K \rangle
-:= \mathbb{E}\left[\int_0^T H_t K_t \, dt\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\langle H, K \rangle
+:= \mathbb{E}\left[\int_0^T H_t K_t \, dt\right]
+\]</div>
 <h3 id="2-extension-theorem">2. Extension theorem<a class="headerlink" href="#2-extension-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The Itô integral can be uniquely extended from simple processes to all processes in <span class="arithmatex">\(\mathcal{L}^2([0,T])\)</span>, preserving linearity and the Itô isometry.</p>
 <p><strong>Proof (Sketch)</strong>:</p>
 <ol>
 <li><strong>Dense subset</strong>: Simple processes are dense in <span class="arithmatex">\(\mathcal{L}^2([0,T])\)</span>. For any <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>, there exists a sequence of simple processes <span class="arithmatex">\(H^{(n)}\)</span> such that:</li>
 </ol>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^T (H_t - H_t^{(n)})^2 \, dt\right] \to 0</p>
-<p>$$</p>
+<p>$$
+   \mathbb{E}\left[\int_0^T (H_t - H_t^{(n)})^2 \, dt\right] \to 0
+   $$</p>
 <ol>
 <li><strong>Cauchy sequence</strong>: By the Itô isometry:</li>
 </ol>
-<p>$$</p>
-<p>\mathbb{E}\left[\left(\int_0^T H_s^{(n)} dB_s - \int_0^T H_s^{(m)} dB_s\right)^2\right]
+<p>$$
+   \mathbb{E}\left[\left(\int_0^T H_s^{(n)} dB_s - \int_0^T H_s^{(m)} dB_s\right)^2\right]
    = \mathbb{E}\left[\int_0^T (H_s^{(n)} - H_s^{(m)})^2 ds\right]
-   \to 0</p>
-<p>$$</p>
+   \to 0
+   $$</p>
 <p>Thus, <span class="arithmatex">\(\{\int_0^T H_s^{(n)} dB_s\}\)</span> is Cauchy in <span class="arithmatex">\(L^2(\Omega)\)</span>.</p>
 <ol>
 <li><strong>Define the limit</strong>: Since <span class="arithmatex">\(L^2(\Omega)\)</span> is complete, define:</li>
 </ol>
-<p>$$</p>
-<p>\int_0^T H_s \, dB_s := L^2\text{-}\lim_{n \to \infty} \int_0^T H_s^{(n)} dB_s</p>
-<p>$$</p>
+<p>$$
+   \int_0^T H_s \, dB_s := L^2\text{-}\lim_{n \to \infty} \int_0^T H_s^{(n)} dB_s
+   $$</p>
 <ol>
 <li>
 <p><strong>Well-defined</strong>: The limit is independent of the choice of approximating sequence <span class="arithmatex">\(H^{(n)}\)</span>.</p>
@@ -46674,19 +46674,19 @@ I_t(H) := \int_0^t H_s \, dB_s
 <p><strong>Itô isometry holds</strong>: By continuity:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>\mathbb{E}\left[\left(\int_0^T H_s dB_s\right)^2\right]
+<p>$$
+   \mathbb{E}\left[\left(\int_0^T H_s dB_s\right)^2\right]
    = \lim_{n \to \infty} \mathbb{E}\left[\left(\int_0^T H_s^{(n)} dB_s\right)^2\right]
    = \lim_{n \to \infty} \mathbb{E}\left[\int_0^T (H_s^{(n)})^2 ds\right]
-   = \mathbb{E}\left[\int_0^T H_s^2 ds\right]</p>
-<p>$$</p>
+   = \mathbb{E}\left[\int_0^T H_s^2 ds\right]
+   $$</p>
 <p>This completes the construction. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="the-ito-integral-as-a-process">The Itô integral as a process<a class="headerlink" href="#the-ito-integral-as-a-process" title="Permanent link">&para;</a></h2>
 <p>For <span class="arithmatex">\(H \in \mathcal{L}^2([0,T])\)</span>, the <strong>Itô integral process</strong> is defined as:</p>
-<p>$$</p>
-<p>I_t := \int_0^t H_s \, dB_s, \quad 0 \le t \le T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t := \int_0^t H_s \, dB_s, \quad 0 \le t \le T
+\]</div>
 <p><strong>Key properties</strong> (to be established in the next section):</p>
 <ol>
 <li><span class="arithmatex">\(I_t\)</span> is a continuous, adapted process</li>
@@ -46698,15 +46698,15 @@ I_t(H) := \int_0^t H_s \, dB_s
 <p>The construction above requires <span class="arithmatex">\(\mathbb{E}[\int_0^T H_t^2 dt] &lt; \infty\)</span>. For many applications (e.g., stochastic differential equations), we need to integrate processes that may not satisfy this global square-integrability condition.</p>
 <h3 id="1-locally-square-integrable-processes">1. Locally square-integrable processes<a class="headerlink" href="#1-locally-square-integrable-processes" title="Permanent link">&para;</a></h3>
 <p>A process <span class="arithmatex">\(H\)</span> is <strong>locally square-integrable</strong> if there exists a sequence of stopping times <span class="arithmatex">\(\tau_n \uparrow \infty\)</span> such that:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^{\tau_n \wedge T} H_s^2 \, ds\right] &lt; \infty
-\quad \text{for all } n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^{\tau_n \wedge T} H_s^2 \, ds\right] &lt; \infty
+\quad \text{for all } n
+\]</div>
 <p>For such processes, we define:</p>
-<p>$$</p>
-<p>\int_0^t H_s \, dB_s
-:= \lim_{n \to \infty} \int_0^{t \wedge \tau_n} H_s \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t H_s \, dB_s
+:= \lim_{n \to \infty} \int_0^{t \wedge \tau_n} H_s \, dB_s
+\]</div>
 <p>The resulting process is a <strong>local martingale</strong> rather than a martingale.</p>
 <hr />
 <h2 id="alternative-construction-predictable-processes">Alternative construction: Predictable processes<a class="headerlink" href="#alternative-construction-predictable-processes" title="Permanent link">&para;</a></h2>
@@ -46728,10 +46728,10 @@ I_t(H) := \int_0^t H_s \, dB_s
 <li>The Itô integral is constructed via <span class="arithmatex">\(L^2\)</span>-approximation, exploiting martingale structure</li>
 <li>The <strong>Itô isometry</strong> is the central technical tool:</li>
 </ul>
-<p>$$</p>
-<p>\mathbb{E}\left[\left(\int_0^t H_s dB_s\right)^2\right]
-  = \mathbb{E}\left[\int_0^t H_s^2 ds\right]</p>
-<p>$$</p>
+<p>$$
+  \mathbb{E}\left[\left(\int_0^t H_s dB_s\right)^2\right]
+  = \mathbb{E}\left[\int_0^t H_s^2 ds\right]
+  $$</p>
 <ul>
 <li>Extension to local integrands yields <strong>local martingales</strong></li>
 </ul>

@@ -46391,17 +46391,17 @@
 <hr />
 <h2 id="binomial-tree-recap">Binomial Tree Recap<a class="headerlink" href="#binomial-tree-recap" title="Permanent link">&para;</a></h2>
 <p>In the Cox–Ross–Rubinstein (CRR) framework with <span class="arithmatex">\(N\)</span> time steps:</p>
-<p>$$</p>
-<p>\Delta t = \frac{T}{N}, \quad u = e^{\sigma\sqrt{\Delta t}}, \quad d = \frac{1}{u}, \quad q = \frac{e^{r\Delta t} - d}{u - d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta t = \frac{T}{N}, \quad u = e^{\sigma\sqrt{\Delta t}}, \quad d = \frac{1}{u}, \quad q = \frac{e^{r\Delta t} - d}{u - d}
+\]</div>
 <p>The stock price at node <span class="arithmatex">\((n, j)\)</span> is:</p>
-<p>$$</p>
-<p>S_{n,j} = S_0 \cdot u^j \cdot d^{n - j}, \quad 0 \leq j \leq n \leq N</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{n,j} = S_0 \cdot u^j \cdot d^{n - j}, \quad 0 \leq j \leq n \leq N
+\]</div>
 <p>For vanilla options, backward induction gives the option value at each node:</p>
-<p>$$</p>
-<p>V_{n,j} = e^{-r\Delta t}\left[q\, V_{n+1,j+1} + (1-q)\, V_{n+1,j}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{n,j} = e^{-r\Delta t}\left[q\, V_{n+1,j+1} + (1-q)\, V_{n+1,j}\right]
+\]</div>
 <hr />
 <h2 id="barrier-options-on-binomial-trees">Barrier Options on Binomial Trees<a class="headerlink" href="#barrier-options-on-binomial-trees" title="Permanent link">&para;</a></h2>
 <h3 id="algorithm-down-and-out-call">Algorithm: Down-and-Out Call<a class="headerlink" href="#algorithm-down-and-out-call" title="Permanent link">&para;</a></h3>
@@ -46460,9 +46460,9 @@
 <h3 id="state-space-expansion">State-Space Expansion<a class="headerlink" href="#state-space-expansion" title="Permanent link">&para;</a></h3>
 <p>For an Asian option, the payoff depends on the running average <span class="arithmatex">\(\bar{S}_n = \frac{1}{n+1}\sum_{k=0}^{n} S_k\)</span>. To price this on a tree, each node must track <strong>both the current price and the running average</strong>, creating a two-dimensional state space.</p>
 <p>At time step <span class="arithmatex">\(n\)</span> with <span class="arithmatex">\(j\)</span> up-moves, there are <span class="arithmatex">\(\binom{n}{j}\)</span> distinct paths, each potentially producing a different running average. The total number of distinct averages across all nodes grows combinatorially:</p>
-<p>$$</p>
-<p>\text{Total states} = \sum_{n=0}^{N} \sum_{j=0}^{n} \binom{n}{j} = \sum_{n=0}^{N} 2^n = 2^{N+1} - 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total states} = \sum_{n=0}^{N} \sum_{j=0}^{n} \binom{n}{j} = \sum_{n=0}^{N} 2^n = 2^{N+1} - 1
+\]</div>
 <p>This <strong>exponential growth</strong> makes exact tree pricing of Asian options computationally intractable for large <span class="arithmatex">\(N\)</span>.</p>
 <h3 id="hullwhite-approximation">Hull–White Approximation<a class="headerlink" href="#hullwhite-approximation" title="Permanent link">&para;</a></h3>
 <p>Hull and White (1993) proposed a practical approximation:</p>

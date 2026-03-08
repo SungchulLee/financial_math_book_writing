@@ -46449,17 +46449,17 @@
 <h2 id="barrier-option-overview">Barrier Option Overview<a class="headerlink" href="#barrier-option-overview" title="Permanent link">&para;</a></h2>
 <p>A <strong>barrier option</strong> is a path-dependent option whose payoff depends on whether the underlying asset hits a certain barrier level during its life. Unlike vanilla options that depend only on the terminal price <span class="arithmatex">\(S_T\)</span>, barrier options require tracking the entire path of the underlying.</p>
 <p>We work in the <strong>standard Black–Scholes model</strong> under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = r S_t\,dt + \sigma S_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = r S_t\,dt + \sigma S_t\,dW_t
+\]</div>
 <p>with solution:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp!\left( \left(r - \tfrac{1}{2}\sigma^2 \right)t + \sigma W_t \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\!\left( \left(r - \tfrac{1}{2}\sigma^2 \right)t + \sigma W_t \right)
+\]</div>
 <p>Define the <strong>log-price process</strong>:</p>
-<p>$$</p>
-<p>X_t := \log S_t = \log S_0 + \left(r - \tfrac{1}{2}\sigma^2 \right)t + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t := \log S_t = \log S_0 + \left(r - \tfrac{1}{2}\sigma^2 \right)t + \sigma W_t
+\]</div>
 <p>Let <span class="arithmatex">\(H\)</span> denote the constant <strong>barrier level</strong> and <span class="arithmatex">\(K\)</span> the strike price.</p>
 <hr />
 <h2 id="common-barrier-option-types">Common Barrier Option Types<a class="headerlink" href="#common-barrier-option-types" title="Permanent link">&para;</a></h2>
@@ -46495,49 +46495,49 @@
 </tbody>
 </table>
 <p><strong>In–Out Parity.</strong> For any barrier type, the in-version and out-version satisfy:</p>
-<p>$$</p>
-<p>C_{\text{In}} + C_{\text{Out}} = C_{\text{Vanilla}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{In}} + C_{\text{Out}} = C_{\text{Vanilla}}
+\]</div>
 <p>This follows because the events <span class="arithmatex">\(\{\text{barrier hit}\}\)</span> and <span class="arithmatex">\(\{\text{barrier not hit}\}\)</span> partition the sample space.</p>
 <hr />
 <h2 id="up-and-out-call-via-joint-law">Up-and-Out Call via Joint Law<a class="headerlink" href="#up-and-out-call-via-joint-law" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>An <strong>up-and-out call option</strong> knocks out (becomes worthless) if <span class="arithmatex">\(S_t\)</span> ever reaches or exceeds <span class="arithmatex">\(H &gt; S_0\)</span> before expiry <span class="arithmatex">\(T\)</span>. Its payoff is:</p>
-<p>$$</p>
-<p>\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}<em 0="0" T="T" _le="\le" t="t">{\left{ \sup</em>} S_t &lt; H \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{ \sup_{0 \le t \le T} S_t &lt; H \right\}}
+\]</div>
 <h3 id="reduction-to-brownian-motion">Reduction to Brownian Motion<a class="headerlink" href="#reduction-to-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>running maximum</strong> of Brownian motion:</p>
-<p>$$</p>
-<p>M_T := \sup_{0 \le t \le T} W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_T := \sup_{0 \le t \le T} W_t
+\]</div>
 <p>The supremum of the stock price is:</p>
-<p>$$</p>
-<p>\sup_{0 \le t \le T} S_t = S_0 \exp!\left( \sup_{0 \le t \le T} \left[ \left(r - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t \right] \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{0 \le t \le T} S_t = S_0 \exp\!\left( \sup_{0 \le t \le T} \left[ \left(r - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t \right] \right)
+\]</div>
 <p>For a standard Brownian motion (without drift), the condition <span class="arithmatex">\(\sup_{0 \le t \le T} S_t &lt; H\)</span> is equivalent to <span class="arithmatex">\(M_T &lt; b\)</span>, where:</p>
-<p>$$</p>
-<p>b := \frac{1}{\sigma} \log!\left( \frac{H}{S_0} \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+b := \frac{1}{\sigma} \log\!\left( \frac{H}{S_0} \right)
+\]</div>
 <div class="admonition note">
 <p class="admonition-title">Drift Adjustment</p>
 <p>When <span class="arithmatex">\(r - \frac{1}{2}\sigma^2 \neq 0\)</span>, the supremum of <span class="arithmatex">\(X_t\)</span> does not reduce exactly to <span class="arithmatex">\(\sigma M_T\)</span>. One approach is to use <strong>Girsanov's theorem</strong> to remove the drift, then apply the joint density under the new measure with a Radon–Nikodym correction. Alternatively, one can use the <strong>joint density of drifted Brownian motion</strong> directly, which involves the reflection principle for drifted processes.</p>
 </div>
 <h3 id="pricing-via-the-joint-density">Pricing via the Joint Density<a class="headerlink" href="#pricing-via-the-joint-density" title="Permanent link">&para;</a></h3>
 <p>Using the joint density <span class="arithmatex">\(f_{M_T, W_T}(m, w)\)</span> from the reflection principle (see <a href="../../../ch02/brownian_motion/reflection_principle/">Reflection Principle</a>):</p>
-<p>$$</p>
-<p>f_{M_T, W_T}(m, w) = \frac{2(2m - w)}{T\sqrt{2\pi T}} \exp!\left( -\frac{(2m - w)^2}{2T} \right), \quad m \ge 0,\; w \le m</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_{M_T, W_T}(m, w) = \frac{2(2m - w)}{T\sqrt{2\pi T}} \exp\!\left( -\frac{(2m - w)^2}{2T} \right), \quad m \ge 0,\; w \le m
+\]</div>
 <p>The discounted price of the up-and-out call is:</p>
-<p>$$</p>
-<p>C_{\text{UO}} = e^{-rT} \int_{-\infty}^{\infty} \int_{0}^{b} \left( S_0\, e^{(r - \frac{1}{2}\sigma^2)T + \sigma w} - K \right)^{!+} f_{M_T, W_T}(m, w)\, dm\, dw</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}} = e^{-rT} \int_{-\infty}^{\infty} \int_{0}^{b} \left( S_0\, e^{(r - \frac{1}{2}\sigma^2)T + \sigma w} - K \right)^{\!+} f_{M_T, W_T}(m, w)\, dm\, dw
+\]</div>
 <p>Substituting the joint density:</p>
-<p>$$</p>
-<p>C_{\text{UO}} = e^{-rT} \int_{-\infty}^{b} \int_{\max(0,w)}^{b}
-\left( S_0\, e^{(r - \frac{1}{2}\sigma^2)T + \sigma w} - K \right)^{!+}
-\cdot \frac{2(2m - w)}{T\sqrt{2\pi T}}\, e^{-\frac{(2m-w)^2}{2T}}\, dm\, dw</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}} = e^{-rT} \int_{-\infty}^{b} \int_{\max(0,w)}^{b}
+\left( S_0\, e^{(r - \frac{1}{2}\sigma^2)T + \sigma w} - K \right)^{\!+}
+\cdot \frac{2(2m - w)}{T\sqrt{2\pi T}}\, e^{-\frac{(2m-w)^2}{2T}}\, dm\, dw
+\]</div>
 <div class="admonition info">
 <p class="admonition-title">Integration Domain</p>
 <p>The constraint <span class="arithmatex">\(w \le m\)</span> (since the terminal value cannot exceed the running maximum) restricts the inner integral to <span class="arithmatex">\(m \ge \max(0, w)\)</span>. The barrier condition restricts <span class="arithmatex">\(m &lt; b\)</span>.</p>
@@ -46546,9 +46546,9 @@
 <h2 id="closed-form-via-reflection-principle">Closed-Form via Reflection Principle<a class="headerlink" href="#closed-form-via-reflection-principle" title="Permanent link">&para;</a></h2>
 <p>For a <strong>vanilla up-and-out call</strong> with barrier <span class="arithmatex">\(H &gt; \max(S_0, K)\)</span>, a closed-form solution exists using the <strong>image method</strong> (also called the method of images), which is closely related to the reflection principle.</p>
 <h3 id="formula">Formula<a class="headerlink" href="#formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_{\text{UO}}(S_0, K, H, T) = C_{\text{BS}}(S_0, K, T) - \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}!\left( \frac{H^2}{S_0}, K, T \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}}(S_0, K, H, T) = C_{\text{BS}}(S_0, K, T) - \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}\!\left( \frac{H^2}{S_0}, K, T \right)
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(C_{\text{BS}}(S, K, T)\)</span> is the standard Black–Scholes European call price,</li>
@@ -46569,9 +46569,9 @@
 </ol>
 <h3 id="other-barrier-types">Other Barrier Types<a class="headerlink" href="#other-barrier-types" title="Permanent link">&para;</a></h3>
 <p>Using <strong>in–out parity</strong>, the up-and-in call price is:</p>
-<p>$$</p>
-<p>C_{\text{UI}} = C_{\text{BS}} - C_{\text{UO}} = \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}!\left( \frac{H^2}{S_0}, K, T \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UI}} = C_{\text{BS}} - C_{\text{UO}} = \left( \frac{S_0}{H} \right)^{2\lambda - 2} C_{\text{BS}}\!\left( \frac{H^2}{S_0}, K, T \right)
+\]</div>
 <p>For <strong>down-and-out</strong> and <strong>down-and-in</strong> options (barrier <span class="arithmatex">\(H &lt; S_0\)</span>), analogous formulas exist with the running minimum replacing the maximum, and the joint density <span class="arithmatex">\(f_{m_T, W_T}\)</span> of <span class="arithmatex">\(\left(\inf_{0 \le t \le T} W_t,\, W_T\right)\)</span>.</p>
 <hr />
 <h2 id="numerical-approximation-via-joint-density">Numerical Approximation via Joint Density<a class="headerlink" href="#numerical-approximation-via-joint-density" title="Permanent link">&para;</a></h2>
@@ -46590,9 +46590,9 @@
 <li><strong>Integrate</strong> using numerical quadrature (e.g., trapezoidal rule or Simpson's rule) or Monte Carlo sampling.</li>
 </ol>
 <p>For the up-and-out call, the effective integration domain is:</p>
-<p>$$</p>
-<p>{(w, m) : w_{\min} \le w \le b,\;\; \max(0, w) \le m \le b}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{(w, m) : w_{\min} \le w \le b,\;\; \max(0, w) \le m \le b\}
+\]</div>
 <p>where <span class="arithmatex">\(w_{\min}\)</span> is chosen so that the payoff is negligible below it (typically <span class="arithmatex">\(w_{\min} = \frac{1}{\sigma}\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T/\sigma\)</span>).</p>
 <hr />
 <h2 id="python-implementation">Python Implementation<a class="headerlink" href="#python-implementation" title="Permanent link">&para;</a></h2>

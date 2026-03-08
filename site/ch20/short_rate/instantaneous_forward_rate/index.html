@@ -46125,31 +46125,31 @@
 
 <h1 id="hull-white-instantaneous-forward-rate">Hull-White Instantaneous Forward Rate<a class="headerlink" href="#hull-white-instantaneous-forward-rate" title="Permanent link">&para;</a></h1>
 <h2 id="hull-white-volatility-of-instantaneous-forward-rate">Hull-White Volatility of Instantaneous Forward Rate<a class="headerlink" href="#hull-white-volatility-of-instantaneous-forward-rate" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-\sigma(t,T)=\sigma e^{-\lambda(T-t)}</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+\sigma(t,T)=\sigma e^{-\lambda(T-t)}
+\end{array}\]</div>
 <h2 id="hull-white-instantaneous-forward-rate-dynamics">Hull-White Instantaneous Forward Rate Dynamics<a class="headerlink" href="#hull-white-instantaneous-forward-rate-dynamics" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 df(t,T)
 =
-\mu^\mathbb{Q}(t,T)dt+\sigma(t,T)dW^{\mathbb{Q}}(t)</p>
-<p>\end{array}$$</p>
+\mu^\mathbb{Q}(t,T)dt+\sigma(t,T)dW^{\mathbb{Q}}(t)
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mu^\mathbb{Q}(t,T)
-=\frac{\sigma^2}{\lambda}e^{-\lambda(T-t)}\left(1-e^{-\lambda(T-t)}\right)</p>
-<p>\end{array}$$</p>
+=\frac{\sigma^2}{\lambda}e^{-\lambda(T-t)}\left(1-e^{-\lambda(T-t)}\right)
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mu(t,T)
 =\sigma(t,T)\int_t^T\sigma(t,T')dT'
-=\frac{\sigma^2}{\lambda}e^{-\lambda(T-t)}\left(1-e^{-\lambda(T-t)}\right)</p>
-<p>\end{array}$$</p>
+=\frac{\sigma^2}{\lambda}e^{-\lambda(T-t)}\left(1-e^{-\lambda(T-t)}\right)
+\end{array}\]</div>
 </details>
 
 

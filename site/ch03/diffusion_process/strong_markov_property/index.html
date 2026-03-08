@@ -46216,22 +46216,22 @@
 <hr />
 <h2 id="markov-vs-strong-markov">Markov vs Strong Markov<a class="headerlink" href="#markov-vs-strong-markov" title="Permanent link">&para;</a></h2>
 <p>A process <span class="arithmatex">\((X_t)\)</span> is (time-inhomogeneous) Markov if for bounded measurable <span class="arithmatex">\(\varphi\)</span> and <span class="arithmatex">\(0\le s\le t\)</span>,</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[\varphi(X_t)\mid \mathcal{F}_s] = \mathbb{E}[\varphi(X_t)\mid X_s]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>It is <strong>strong Markov</strong> if the same property holds when <span class="arithmatex">\(s\)</span> is replaced by a stopping time <span class="arithmatex">\(\tau\)</span>.</p>
 <hr />
 <h2 id="strong-markov-property-stopping-time-form">Strong Markov Property (Stopping-Time Form)<a class="headerlink" href="#strong-markov-property-stopping-time-form" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(\tau\)</span> be a stopping time. For bounded measurable <span class="arithmatex">\(\varphi\)</span> and <span class="arithmatex">\(t\ge 0\)</span>,</p>
-<p>$$</p>
-<p>\boxed{
-\mathbb{E}[\varphi(X_{\tau+t})\mid \mathcal{F}<em>\tau]
+<div class="arithmatex">\[
+\boxed{
+\mathbb{E}[\varphi(X_{\tau+t})\mid \mathcal{F}_\tau]
 =
-\mathbb{E}^{X</em>\tau}[\varphi(X_t)]
-}</p>
-<p>$$</p>
+\mathbb{E}^{X_\tau}[\varphi(X_t)]
+}
+\]</div>
 <p>Equivalently, conditionally on <span class="arithmatex">\(X_\tau\)</span>, the post-<span class="arithmatex">\(\tau\)</span> evolution is independent of the past and distributed like a fresh copy started from <span class="arithmatex">\(X_\tau\)</span>.</p>
 <hr />
 <h2 id="brownian-motion-case">Brownian Motion Case<a class="headerlink" href="#brownian-motion-case" title="Permanent link">&para;</a></h2>

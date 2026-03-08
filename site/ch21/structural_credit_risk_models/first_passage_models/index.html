@@ -46929,9 +46929,9 @@
 <h2 id="default-as-barrier-crossing">Default as Barrier Crossing<a class="headerlink" href="#default-as-barrier-crossing" title="Permanent link">&para;</a></h2>
 <h3 id="definition-of-default-time">Definition of Default Time<a class="headerlink" href="#definition-of-default-time" title="Permanent link">&para;</a></h3>
 <p>In first-passage models, the default time is defined as the <strong>first hitting time</strong> of a barrier:</p>
-<p>$$</p>
-<p>\tau = \inf{t \ge 0 : V_t \le B_t},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \inf\{t \ge 0 : V_t \le B_t\}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(V_t\)</span> is the firm's asset value process
 - <span class="arithmatex">\(B_t\)</span> is the default barrier (possibly time-varying)
@@ -46947,33 +46947,33 @@
 <h2 id="asset-dynamics-and-barrier-specifications">Asset Dynamics and Barrier Specifications<a class="headerlink" href="#asset-dynamics-and-barrier-specifications" title="Permanent link">&para;</a></h2>
 <h3 id="asset-value-process">Asset Value Process<a class="headerlink" href="#asset-value-process" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dV_t = (r - q)V_t \, dt + \sigma V_t \, dW_t^{\mathbb{Q}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = (r - q)V_t \, dt + \sigma V_t \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>with solution:</p>
-<p>$$</p>
-<p>V_t = V_0 \exp\left[\left(r - q - \frac{\sigma^2}{2}\right)t + \sigma W_t^{\mathbb{Q}}\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = V_0 \exp\left[\left(r - q - \frac{\sigma^2}{2}\right)t + \sigma W_t^{\mathbb{Q}}\right]
+\]</div>
 <h3 id="common-barrier-specifications">Common Barrier Specifications<a class="headerlink" href="#common-barrier-specifications" title="Permanent link">&para;</a></h3>
 <p><strong>1. Constant Barrier (Black-Cox)</strong></p>
-<p>$$</p>
-<p>B_t = B \quad \text{(constant)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = B \quad \text{(constant)}
+\]</div>
 <p>Simplest case with analytical tractability.</p>
 <p><strong>2. Exponentially Decaying Barrier</strong></p>
-<p>$$</p>
-<p>B_t = B_0 e^{-\gamma t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = B_0 e^{-\gamma t}
+\]</div>
 <p>Models amortizing debt or improving credit over time.</p>
 <p><strong>3. Exponentially Growing Barrier</strong></p>
-<p>$$</p>
-<p>B_t = B_0 e^{\gamma t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = B_0 e^{\gamma t}
+\]</div>
 <p>Models accumulating liabilities or covenant tightening.</p>
 <p><strong>4. Coupon-Linked Barrier (Leland)</strong></p>
-<p>$$</p>
-<p>B_t = C/r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = C/r
+\]</div>
 <p>where <span class="arithmatex">\(C\)</span> is the coupon rate, representing the capitalized value of perpetual debt service.</p>
 <p><strong>5. Endogenous Barrier</strong></p>
 <p>The barrier is determined optimally by equity holders' decision to default, typically when equity value hits zero.</p>
@@ -46982,55 +46982,55 @@
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>Black and Cox (1976) extended Merton by introducing a <strong>safety covenant</strong>: default occurs at the first time asset value falls to a constant barrier <span class="arithmatex">\(B &lt; V_0\)</span>.</p>
 <p>The default time is:</p>
-<p>$$</p>
-<p>\tau = \inf{t \ge 0 : V_t \le B}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \inf\{t \ge 0 : V_t \le B\}
+\]</div>
 <h3 id="transformation-to-standard-form">Transformation to Standard Form<a class="headerlink" href="#transformation-to-standard-form" title="Permanent link">&para;</a></h3>
 <p>Define the log-asset process:</p>
-<p>$$</p>
-<p>X_t = \ln V_t = \ln V_0 + \mu t + \sigma W_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = \ln V_t = \ln V_0 + \mu t + \sigma W_t
+\]</div>
 <p>where <span class="arithmatex">\(\mu = r - q - \sigma^2/2\)</span>.</p>
 <p>Default occurs when <span class="arithmatex">\(X_t\)</span> first hits <span class="arithmatex">\(\ln B\)</span>. Define <span class="arithmatex">\(a = \ln(V_0/B) &gt; 0\)</span>. Then:</p>
-<p>$$</p>
-<p>\tau = \inf{t : X_t - \ln V_0 \le -a} = \inf{t : \mu t + \sigma W_t \le -a}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \inf\{t : X_t - \ln V_0 \le -a\} = \inf\{t : \mu t + \sigma W_t \le -a\}
+\]</div>
 <p>This is a <strong>first-passage time</strong> for Brownian motion with drift.</p>
 <hr />
 <h2 id="first-passage-time-distributions">First-Passage Time Distributions<a class="headerlink" href="#first-passage-time-distributions" title="Permanent link">&para;</a></h2>
 <h3 id="survival-probability">Survival Probability<a class="headerlink" href="#survival-probability" title="Permanent link">&para;</a></h3>
 <p>The probability that default has not occurred by time <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>S(0,T) = \mathbb{Q}(\tau &gt; T) = \mathbb{Q}\left(\min_{0 \le t \le T} V_t &gt; B\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,T) = \mathbb{Q}(\tau &gt; T) = \mathbb{Q}\left(\min_{0 \le t \le T} V_t &gt; B\right)
+\]</div>
 <p>For GBM with constant barrier, this has a closed-form solution.</p>
 <h3 id="closed-form-formula">Closed-Form Formula<a class="headerlink" href="#closed-form-formula" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(a = \ln(V_0/B)\)</span> and define:</p>
-<p>$$</p>
-<p>\nu = \frac{\mu}{\sigma} = \frac{r - q - \sigma^2/2}{\sigma}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nu = \frac{\mu}{\sigma} = \frac{r - q - \sigma^2/2}{\sigma}
+\]</div>
 <p>The survival probability is:</p>
-<p>$$</p>
-<p>S(0,T) = N\left(\frac{a + \nu \sigma T}{\sigma\sqrt{T}}\right) - e^{2\nu a} N\left(\frac{-a + \nu \sigma T}{\sigma\sqrt{T}}\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,T) = N\left(\frac{a + \nu \sigma T}{\sigma\sqrt{T}}\right) - e^{2\nu a} N\left(\frac{-a + \nu \sigma T}{\sigma\sqrt{T}}\right)
+\]</div>
 <p>or equivalently:</p>
-<p>$$</p>
-<p>S(0,T) = N(d_+) - \left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} N(d_-),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,T) = N(d_+) - \left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} N(d_-)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_+ = \frac{\ln(V_0/B) + \mu T}{\sigma\sqrt{T}}, \quad d_- = \frac{\ln(B/V_0) + \mu T}{\sigma\sqrt{T}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_+ = \frac{\ln(V_0/B) + \mu T}{\sigma\sqrt{T}}, \quad d_- = \frac{\ln(B/V_0) + \mu T}{\sigma\sqrt{T}}
+\]</div>
 <h3 id="default-probability">Default Probability<a class="headerlink" href="#default-probability" title="Permanent link">&para;</a></h3>
 <p>The cumulative default probability is:</p>
-<p>$$</p>
-<p>F(T) = \mathbb{Q}(\tau \le T) = 1 - S(0,T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(T) = \mathbb{Q}(\tau \le T) = 1 - S(0,T)
+\]</div>
 <h3 id="density-of-default-time">Density of Default Time<a class="headerlink" href="#density-of-default-time" title="Permanent link">&para;</a></h3>
 <p>The density of the first-passage time is:</p>
-<p>$$</p>
-<p>f(t) = \frac{a}{\sigma\sqrt{2\pi t^3}} \exp\left(-\frac{(a + \mu t)^2}{2\sigma^2 t}\right), \quad t &gt; 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t) = \frac{a}{\sigma\sqrt{2\pi t^3}} \exp\left(-\frac{(a + \mu t)^2}{2\sigma^2 t}\right), \quad t &gt; 0
+\]</div>
 <p>This is the <strong>inverse Gaussian density</strong> (shifted).</p>
 <hr />
 <h2 id="pricing-defaultable-bonds">Pricing Defaultable Bonds<a class="headerlink" href="#pricing-defaultable-bonds" title="Permanent link">&para;</a></h2>
@@ -47039,20 +47039,20 @@
 - Face value <span class="arithmatex">\(D\)</span> at maturity <span class="arithmatex">\(T\)</span> if no default
 - Recovery <span class="arithmatex">\(R \cdot B\)</span> at default time <span class="arithmatex">\(\tau\)</span> if default occurs before <span class="arithmatex">\(T\)</span></p>
 <p>The price is:</p>
-<p>$$</p>
-<p>P^d(0,T) = D \cdot e^{-rT} \cdot S(0,T) + R \cdot B \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{{\tau \le T}}\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(0,T) = D \cdot e^{-rT} \cdot S(0,T) + R \cdot B \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{\{\tau \le T\}}\right]
+\]</div>
 <h3 id="expected-discounted-default-payment">Expected Discounted Default Payment<a class="headerlink" href="#expected-discounted-default-payment" title="Permanent link">&para;</a></h3>
 <p>The second term involves:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{{\tau \le T}}\right] = \int_0^T e^{-rt} f(t) \, dt.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \mathbf{1}_{\{\tau \le T\}}\right] = \int_0^T e^{-rt} f(t) \, dt
+\]</div>
 <p>For the Black-Cox model, this has a semi-closed form involving the normal CDF.</p>
 <h3 id="credit-spread">Credit Spread<a class="headerlink" href="#credit-spread" title="Permanent link">&para;</a></h3>
 <p>The credit spread is:</p>
-<p>$$</p>
-<p>s(T) = -\frac{1}{T} \ln\left(\frac{P^d(0,T)}{D \cdot e^{-rT}}\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s(T) = -\frac{1}{T} \ln\left(\frac{P^d(0,T)}{D \cdot e^{-rT}}\right)
+\]</div>
 <p>First-passage models generate non-trivial short-term spreads (unlike Merton), because there is always positive probability of hitting the barrier immediately.</p>
 <hr />
 <h2 id="term-structure-of-credit-spreads">Term Structure of Credit Spreads<a class="headerlink" href="#term-structure-of-credit-spreads" title="Permanent link">&para;</a></h2>
@@ -47075,21 +47075,21 @@
 <h2 id="extensions-of-the-black-cox-model">Extensions of the Black-Cox Model<a class="headerlink" href="#extensions-of-the-black-cox-model" title="Permanent link">&para;</a></h2>
 <h3 id="time-varying-barrier-longstaff-schwartz">Time-Varying Barrier (Longstaff-Schwartz)<a class="headerlink" href="#time-varying-barrier-longstaff-schwartz" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(B_t = K e^{\gamma t}\)</span> for constants <span class="arithmatex">\(K\)</span> and <span class="arithmatex">\(\gamma\)</span>:</p>
-<p>$$</p>
-<p>\tau = \inf{t : V_t \le K e^{\gamma t}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \inf\{t : V_t \le K e^{\gamma t}\}
+\]</div>
 <p>This is equivalent to first passage of <span class="arithmatex">\(V_t e^{-\gamma t}\)</span> to level <span class="arithmatex">\(K\)</span>, which can be solved similarly.</p>
 <h3 id="stochastic-interest-rates-longstaff-schwartz-1995">Stochastic Interest Rates (Longstaff-Schwartz, 1995)<a class="headerlink" href="#stochastic-interest-rates-longstaff-schwartz-1995" title="Permanent link">&para;</a></h3>
 <p>Combine first-passage default with Vasicek interest rates:</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t)dt + \sigma_r dW_t^r.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t)dt + \sigma_r dW_t^r
+\]</div>
 <p>Correlation between <span class="arithmatex">\(W^r\)</span> and <span class="arithmatex">\(W^V\)</span> introduces interest rate—credit risk dependence.</p>
 <h3 id="jump-diffusion-asset-dynamics">Jump-Diffusion Asset Dynamics<a class="headerlink" href="#jump-diffusion-asset-dynamics" title="Permanent link">&para;</a></h3>
 <p>Add jumps to asset value:</p>
-<p>$$</p>
-<p>dV_t = (r - q - \lambda \bar{k})V_t dt + \sigma V_t dW_t + V_{t-}(J_t - 1)dN_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = (r - q - \lambda \bar{k})V_t dt + \sigma V_t dW_t + V_{t-}(J_t - 1)dN_t
+\]</div>
 <p>where <span class="arithmatex">\(N_t\)</span> is a Poisson process with intensity <span class="arithmatex">\(\lambda\)</span> and <span class="arithmatex">\(J_t\)</span> is the jump size with <span class="arithmatex">\(\bar{k} = \mathbb{E}[J - 1]\)</span>.</p>
 <p>Jumps allow for sudden default, partially addressing short-term spread issues.</p>
 <hr />
@@ -47165,20 +47165,20 @@
 <p><strong>Calculations:</strong></p>
 <p>Drift parameter: <span class="arithmatex">\(\mu = r - q - \sigma^2/2 = 0.05 - 0.02 - 0.03125 = -0.00125\)</span></p>
 <p>Log-barrier distance: <span class="arithmatex">\(a = \ln(100/60) = 0.5108\)</span></p>
-<p>$$</p>
-<p>d_+ = \frac{0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{0.5046}{0.559} = 0.902</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_- = \frac{-0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{-0.5171}{0.559} = -0.925</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_+ = \frac{0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{0.5046}{0.559} = 0.902
+\]</div>
+<div class="arithmatex">\[
+d_- = \frac{-0.5108 + (-0.00125)(5)}{0.25\sqrt{5}} = \frac{-0.5171}{0.559} = -0.925
+\]</div>
 <p>Exponent: <span class="arithmatex">\(2\mu/\sigma^2 = 2(-0.00125)/(0.0625) = -0.04\)</span></p>
-<p>$$</p>
-<p>\left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} = (0.6)^{-0.04} = 1.0205</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left(\frac{B}{V_0}\right)^{2\mu/\sigma^2} = (0.6)^{-0.04} = 1.0205
+\]</div>
 <p><strong>Survival probability:</strong></p>
-<p>$$</p>
-<p>S(0,5) = N(0.902) - 1.0205 \times N(-0.925) = 0.8165 - 1.0205 \times 0.1775 = 0.635</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,5) = N(0.902) - 1.0205 \times N(-0.925) = 0.8165 - 1.0205 \times 0.1775 = 0.635
+\]</div>
 <p><strong>5-year default probability:</strong> <span class="arithmatex">\(36.5\%\)</span></p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

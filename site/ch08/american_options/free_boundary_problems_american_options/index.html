@@ -47007,19 +47007,19 @@
 <h2 id="the-american-option-problem">The American Option Problem<a class="headerlink" href="#the-american-option-problem" title="Permanent link">&para;</a></h2>
 <h3 id="optimal-stopping-formulation">Optimal Stopping Formulation<a class="headerlink" href="#optimal-stopping-formulation" title="Permanent link">&para;</a></h3>
 <p>Under risk-neutral dynamics <span class="arithmatex">\(dS_t = rS_t\,dt + \sigma S_t\,dW_t\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
-V(t,S) = \sup_{\tau \in \mathcal{T}<em>{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau-t)}\Phi(S</em>\tau) \mid S_t = S\right]
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+V(t,S) = \sup_{\tau \in \mathcal{T}_{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r(\tau-t)}\Phi(S_\tau) \mid S_t = S\right]
+}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{T}_{t,T}\)</span> is the set of stopping times in <span class="arithmatex">\([t,T]\)</span>.</p>
 <h3 id="the-variational-inequality">The Variational Inequality<a class="headerlink" href="#the-variational-inequality" title="Permanent link">&para;</a></h3>
 <p>The American option price satisfies:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rS V_S\)</span> is the Black-Scholes generator.</p>
 <h3 id="two-regions">Two Regions<a class="headerlink" href="#two-regions" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47040,29 +47040,29 @@ V(t,S) = \sup_{\tau \in \mathcal{T}<em>{t,T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r
 </ul>
 <h3 id="smooth-pasting-conditions">Smooth Pasting Conditions<a class="headerlink" href="#smooth-pasting-conditions" title="Permanent link">&para;</a></h3>
 <p>At the free boundary <span class="arithmatex">\(S = S^*(t)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
-V(t, S^<em>(t)) = \Phi(S^</em>(t)), \quad \frac{\partial V}{\partial S}(t, S^<em>(t)) = \Phi'(S^</em>(t))
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+V(t, S^*(t)) = \Phi(S^*(t)), \quad \frac{\partial V}{\partial S}(t, S^*(t)) = \Phi'(S^*(t))
+}
+\]</div>
 <p>For an American put with <span class="arithmatex">\(\Phi(S) = (K-S)^+\)</span>:</p>
-<p>$$</p>
-<p>V(t, S^<em>) = K - S^</em>, \quad V_S(t, S^*) = -1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S^*) = K - S^*, \quad V_S(t, S^*) = -1
+\]</div>
 <h3 id="early-exercise-premium">Early Exercise Premium<a class="headerlink" href="#early-exercise-premium" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_{\text{American}} = V_{\text{European}} + \text{Early Exercise Premium}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{American}} = V_{\text{European}} + \text{Early Exercise Premium}
+\]</div>
 <p>The premium is always non-negative and reflects the value of the exercise option.</p>
 <hr />
 <h2 id="numerical-methods-projection">Numerical Methods: Projection<a class="headerlink" href="#numerical-methods-projection" title="Permanent link">&para;</a></h2>
 <h3 id="simple-projection-method">Simple Projection Method<a class="headerlink" href="#simple-projection-method" title="Permanent link">&para;</a></h3>
 <p>After each time step, <strong>project</strong> onto the constraint:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="algorithm-implicit-projection">Algorithm (Implicit + Projection)<a class="headerlink" href="#algorithm-implicit-projection" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>1. Solve (I - Δτ A)ũ^{n+1} = u^n  (unconstrained)
 2. Project: u_j^{n+1} = max(ũ_j^{n+1}, Φ_j) for all j
@@ -47078,15 +47078,15 @@ u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)
 <h2 id="linear-complementarity-problem-lcp">Linear Complementarity Problem (LCP)<a class="headerlink" href="#linear-complementarity-problem-lcp" title="Permanent link">&para;</a></h2>
 <h3 id="formulation">Formulation<a class="headerlink" href="#formulation" title="Permanent link">&para;</a></h3>
 <p>The discrete problem at each time step is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-&amp; L\mathbf{u} \geq \mathbf{f} \
-&amp; \mathbf{u} \geq \boldsymbol{\Phi} \
+&amp; L\mathbf{u} \geq \mathbf{f} \\
+&amp; \mathbf{u} \geq \boldsymbol{\Phi} \\
 &amp; (L\mathbf{u} - \mathbf{f})^T(\mathbf{u} - \boldsymbol{\Phi}) = 0
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(L = I - \Delta\tau A\)</span> and <span class="arithmatex">\(\mathbf{f} = \mathbf{u}^n\)</span>.</p>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47098,12 +47098,12 @@ u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)
 <p>The <strong>Projected Successive Over-Relaxation (PSOR)</strong> method solves the LCP efficiently.</p>
 <h3 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h3>
 <p>For iteration <span class="arithmatex">\(k+1\)</span>:</p>
-<p>$$</p>
-<p>\tilde{u}<em jj="jj">j^{(k+1)} = (1-\omega)u_j^{(k)} + \frac{\omega}{l</em>\right)}}\left(f_j - \sum_{i<j} l_{ji}u_i^{(k+1)} - \sum_{i>j} l_{ji}u_i^{(k)</p>
-<p>$$</p>
-<p>$$</p>
-<p>u_j^{(k+1)} = \max(\tilde{u}_j^{(k+1)}, \Phi_j)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{u}_j^{(k+1)} = (1-\omega)u_j^{(k)} + \frac{\omega}{l_{jj}}\left(f_j - \sum_{i&lt;j} l_{ji}u_i^{(k+1)} - \sum_{i&gt;j} l_{ji}u_i^{(k)}\right)
+\]</div>
+<div class="arithmatex">\[
+u_j^{(k+1)} = \max(\tilde{u}_j^{(k+1)}, \Phi_j)
+\]</div>
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(\omega \in (1, 2)\)</span>: over-relaxation parameter (typically <span class="arithmatex">\(\omega \approx 1.2\)</span>)</li>
@@ -47119,14 +47119,14 @@ u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)
 <h2 id="penalty-method">Penalty Method<a class="headerlink" href="#penalty-method" title="Permanent link">&para;</a></h2>
 <h3 id="idea">Idea<a class="headerlink" href="#idea" title="Permanent link">&para;</a></h3>
 <p>Replace the hard constraint with a soft penalty:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathcal{L}V - rV + \rho(V - \Phi)^- = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathcal{L}V - rV + \rho(V - \Phi)^- = 0
+\]</div>
 <p>where <span class="arithmatex">\((x)^- = \min(x, 0)\)</span> and <span class="arithmatex">\(\rho \gg 1\)</span> is the penalty parameter.</p>
 <h3 id="discrete-form">Discrete Form<a class="headerlink" href="#discrete-form" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>(I - \Delta\tau A + \Delta\tau \rho P)\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \rho P\boldsymbol{\Phi}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(I - \Delta\tau A + \Delta\tau \rho P)\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \rho P\boldsymbol{\Phi}
+\]</div>
 <p>where <span class="arithmatex">\(P\)</span> is a diagonal matrix with <span class="arithmatex">\(P_{jj} = 1\)</span> if <span class="arithmatex">\(u_j &lt; \Phi_j\)</span>, else <span class="arithmatex">\(0\)</span>.</p>
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47239,11 +47239,11 @@ u_j^{n+1} \leftarrow \max(u_j^{n+1}, \Phi_j)
 </table>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

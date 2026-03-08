@@ -46984,9 +46984,9 @@
 <p>A robust calibration satisfies several criteria simultaneously:</p>
 <h3 id="1-stability-under-data-perturbations">1. Stability under data perturbations<a class="headerlink" href="#1-stability-under-data-perturbations" title="Permanent link">&para;</a></h3>
 <p>Small changes in input data (within bid-ask spreads, across data vendors) should not produce large changes in parameters:</p>
-<p>$$</p>
-<p>|\theta(\text{data} + \epsilon) - \theta(\text{data})| \le C |\epsilon|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|\theta(\text{data} + \epsilon) - \theta(\text{data})\| \le C \|\epsilon\|
+\]</div>
 <p>for some reasonable constant <span class="arithmatex">\(C\)</span>.</p>
 <h3 id="2-avoidance-of-extreme-parameters">2. Avoidance of extreme parameters<a class="headerlink" href="#2-avoidance-of-extreme-parameters" title="Permanent link">&para;</a></h3>
 <p>Parameters should lie well within economically plausible bounds:</p>
@@ -47017,9 +47017,9 @@
 <h2 id="robust-objective-functions">Robust objective functions<a class="headerlink" href="#robust-objective-functions" title="Permanent link">&para;</a></h2>
 <h3 id="regularized-objectives">Regularized objectives<a class="headerlink" href="#regularized-objectives" title="Permanent link">&para;</a></h3>
 <p>Add penalties to discourage extreme or unstable parameters:</p>
-<p>$$</p>
-<p>\mathcal{L}<em _text_fit="\text{fit">{\text{robust}}(\theta) = \mathcal{L}</em>(\theta),}}(\theta) + \lambda \mathcal{R</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}_{\text{robust}}(\theta) = \mathcal{L}_{\text{fit}}(\theta) + \lambda \mathcal{R}(\theta)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{R}\)</span> penalizes:</p>
 <ul>
 <li>Distance from prior or yesterday's parameters.</li>
@@ -47029,19 +47029,19 @@
 <h3 id="robust-loss-functions">Robust loss functions<a class="headerlink" href="#robust-loss-functions" title="Permanent link">&para;</a></h3>
 <p>Replace squared loss with losses less sensitive to outliers:</p>
 <p><strong>Huber loss:</strong></p>
-<p>$$</p>
-<p>\ell_H(r) = \begin{cases} \frac{1}{2} r^2 &amp; |r| \le \delta \ \delta |r| - \frac{1}{2}\delta^2 &amp; |r| &gt; \delta \end{cases}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ell_H(r) = \begin{cases} \frac{1}{2} r^2 &amp; |r| \le \delta \\ \delta |r| - \frac{1}{2}\delta^2 &amp; |r| &gt; \delta \end{cases}
+\]</div>
 <p><strong><span class="arithmatex">\(\ell_1\)</span> loss:</strong></p>
-<p>$$</p>
-<p>\ell_1(r) = |r|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ell_1(r) = |r|
+\]</div>
 <p>These reduce the influence of stale quotes or outliers.</p>
 <h3 id="worst-case-objectives">Worst-case objectives<a class="headerlink" href="#worst-case-objectives" title="Permanent link">&para;</a></h3>
 <p>Minimize the maximum error across scenarios:</p>
-<p>$$</p>
-<p>\min_\theta \max_{y \in \mathcal{Y}} \mathcal{L}(\theta, y),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_\theta \max_{y \in \mathcal{Y}} \mathcal{L}(\theta, y)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{Y}\)</span> is a set of plausible market data realizations (e.g., within bid-ask).</p>
 <p>This produces parameters that are uniformly acceptable rather than optimal for one scenario.</p>
 <h3 id="ensemble-calibration">Ensemble calibration<a class="headerlink" href="#ensemble-calibration" title="Permanent link">&para;</a></h3>
@@ -47095,9 +47095,9 @@
 <h2 id="economic-versus-statistical-criteria">Economic versus statistical criteria<a class="headerlink" href="#economic-versus-statistical-criteria" title="Permanent link">&para;</a></h2>
 <h3 id="statistical-fit">Statistical fit<a class="headerlink" href="#statistical-fit" title="Permanent link">&para;</a></h3>
 <p>Minimizing residual sum of squares (RSS) or maximizing likelihood measures statistical fit:</p>
-<p>$$</p>
-<p>\text{RSS} = \sum_j w_j (P_j^{\text{model}} - P_j^{\text{mkt}})^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RSS} = \sum_j w_j (P_j^{\text{model}} - P_j^{\text{mkt}})^2
+\]</div>
 <p>Lower RSS is better statistically.</p>
 <h3 id="economic-plausibility">Economic plausibility<a class="headerlink" href="#economic-plausibility" title="Permanent link">&para;</a></h3>
 <p>Parameters should make economic sense:</p>
@@ -47125,9 +47125,9 @@
 </ul>
 <h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
 <p>Regularize toward yesterday's parameters:</p>
-<p>$$</p>
-<p>\mathcal{L}(\theta) = \mathcal{L}<em t-1="t-1">{\text{fit}}(\theta) + \lambda |\theta - \hat{\theta}</em>|^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(\theta) = \mathcal{L}_{\text{fit}}(\theta) + \lambda \|\theta - \hat{\theta}_{t-1}\|^2
+\]</div>
 <p>This penalizes large parameter changes, promoting continuity.</p>
 <h3 id="choosing">Choosing λ<a class="headerlink" href="#choosing" title="Permanent link">&para;</a></h3>
 <ul>

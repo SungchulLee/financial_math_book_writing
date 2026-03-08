@@ -46763,9 +46763,9 @@
 </ol>
 <h3 id="2-the-continuous-time-limit">2. <strong>The Continuous-Time Limit</strong><a class="headerlink" href="#2-the-continuous-time-limit" title="Permanent link">&para;</a></h3>
 <p>The Black-Scholes model emerges as the <strong>continuous-time limit</strong> of the binomial framework:</p>
-<p>$$</p>
-<p>\lim_{n \to \infty, \Delta t \to 0} \text{Binomial Model} = \text{Black-Scholes Model}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty, \Delta t \to 0} \text{Binomial Model} = \text{Black-Scholes Model}
+\]</div>
 <p>where <span class="arithmatex">\(n\)</span> is the number of time steps and <span class="arithmatex">\(\Delta t = T/n\)</span>.</p>
 <p><strong>Mathematical convergence</strong>:</p>
 <ul>
@@ -46795,9 +46795,9 @@
 <p>The Black-Scholes model consists of three interrelated elements:</p>
 <p><strong>1. Asset Price Dynamics</strong></p>
 <p>The stock price <span class="arithmatex">\(S_t\)</span> follows <strong>geometric Brownian motion</strong>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t dt + \sigma S_t dW_t
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(\mu\)</span> = drift (expected return)</li>
@@ -46806,18 +46806,18 @@
 </ul>
 <p><strong>2. Derivative Valuation</strong></p>
 <p>The option value <span class="arithmatex">\(V(S,t)\)</span> satisfies the <strong>Black-Scholes PDE</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+\]</div>
 <p>with terminal condition (for European call):</p>
-<p>$$</p>
-<p>V(S,T) = \max(S-K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,T) = \max(S-K, 0)
+\]</div>
 <p><strong>3. Hedging Strategy</strong></p>
 <p>The replicating portfolio:</p>
-<p>$$</p>
-<p>\Pi = V - \Delta S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi = V - \Delta S
+\]</div>
 <p>where <span class="arithmatex">\(\Delta = \frac{\partial V}{\partial S}\)</span> is the <strong>delta</strong> (hedge ratio).</p>
 <p>By constructing this portfolio to be <strong>locally risk-free</strong>, we eliminate uncertainty and derive the PDE.</p>
 <hr />
@@ -46833,13 +46833,13 @@
 <p><strong>Implication</strong>: Investors with different return expectations still agree on option prices.</p>
 <h3 id="2-risk-neutral-valuation">2. <strong>Risk-Neutral Valuation</strong><a class="headerlink" href="#2-risk-neutral-valuation" title="Permanent link">&para;</a></h3>
 <p>Under the <strong>risk-neutral measure</strong> <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
+\]</div>
 <p>The asset grows at the risk-free rate <span class="arithmatex">\(r\)</span> (not the actual expected return <span class="arithmatex">\(\mu\)</span>):</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
+\]</div>
 <p><strong>Why this works</strong>:</p>
 <ul>
 <li>The hedging portfolio earns the risk-free rate</li>
@@ -46858,44 +46858,44 @@
 <h2 id="the-black-scholes-pde">The Black-Scholes PDE<a class="headerlink" href="#the-black-scholes-pde" title="Permanent link">&para;</a></h2>
 <h3 id="1-derivation-idea-details-in-section-54">1. <strong>Derivation Idea</strong> (Details in Section 5.4)<a class="headerlink" href="#1-derivation-idea-details-in-section-54" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong>: Construct a hedged portfolio</p>
-<p>$$</p>
-<p>\Pi = V - \Delta S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi = V - \Delta S
+\]</div>
 <p><strong>Step 2</strong>: Choose <span class="arithmatex">\(\Delta\)</span> to eliminate randomness</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial V}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial V}{\partial S}
+\]</div>
 <p><strong>Step 3</strong>: Apply Itô's lemma to <span class="arithmatex">\(V(S,t)\)</span></p>
-<p>$$</p>
-<p>dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}dt
+\]</div>
 <p><strong>Step 4</strong>: Show portfolio is risk-free</p>
-<p>$$</p>
-<p>d\Pi = \left[\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\Pi = \left[\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt
+\]</div>
 <p><strong>Step 5</strong>: No-arbitrage requires risk-free return</p>
-<p>$$</p>
-<p>d\Pi = r\Pi dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\Pi = r\Pi dt
+\]</div>
 <p><strong>Result</strong>: The Black-Scholes PDE.</p>
 <h3 id="2-trivial-solutions">2. <strong>Trivial Solutions</strong><a class="headerlink" href="#2-trivial-solutions" title="Permanent link">&para;</a></h3>
 <p>Before solving for option prices, observe that simple portfolios satisfy the PDE:</p>
 <p><strong>1. The stock itself</strong>: <span class="arithmatex">\(V = S\)</span></p>
 <p>Verify:</p>
-<p>$$</p>
-<p>\frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0
+\]</div>
+<div class="arithmatex">\[
+0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark
+\]</div>
 <p><strong>2. The risk-free bond</strong>: <span class="arithmatex">\(V = e^{rt}\)</span></p>
 <p>Verify:</p>
-<p>$$</p>
-<p>\frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0
+\]</div>
+<div class="arithmatex">\[
+re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark
+\]</div>
 <p><strong>Interpretation</strong>: The PDE correctly describes basic traded assets. Any <strong>linear combination</strong> of stock and bond also satisfies the PDE, forming the basis of replication.</p>
 <p><strong>Non-trivial solutions</strong>: Options with payoffs <span class="arithmatex">\((S-K)^+\)</span> or <span class="arithmatex">\((K-S)^+\)</span> require solving the full PDE.</p>
 <hr />

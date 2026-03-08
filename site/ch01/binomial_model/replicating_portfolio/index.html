@@ -47002,17 +47002,17 @@
 <li><strong>Down state</strong>: Stock price is <span class="arithmatex">\(dS_0\)</span></li>
 </ul>
 <p>Any derivative has a payoff that depends on which state occurs:</p>
-<p>$$</p>
-<p>H = 
+<div class="arithmatex">\[
+H = 
 \begin{cases}
-H_u &amp; \text{(up state)} \[4pt]
+H_u &amp; \text{(up state)} \\[4pt]
 H_d &amp; \text{(down state)}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>We can represent this as a vector in <span class="arithmatex">\(\mathbb{R}^2\)</span>:</p>
-<p>$$</p>
-<p>H = (H_u, H_d)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H = (H_u, H_d)
+\]</div>
 <h3 id="the-payoff-space-is-two-dimensional">The Payoff Space Is Two-Dimensional<a class="headerlink" href="#the-payoff-space-is-two-dimensional" title="Permanent link">&para;</a></h3>
 <p>The set of all possible payoffs forms a <strong>two-dimensional vector space</strong>. Any payoff is just a pair of numbers—what you receive in the up state and what you receive in the down state.</p>
 <p>To replicate arbitrary payoffs, we need <strong>two linearly independent assets</strong>. The binomial model provides exactly this:</p>
@@ -47041,34 +47041,34 @@ H_d &amp; \text{(down state)}
 <p>such that the portfolio replicates the derivative in both states.</p>
 <h3 id="the-replication-equations">The Replication Equations<a class="headerlink" href="#the-replication-equations" title="Permanent link">&para;</a></h3>
 <p><strong>Up state</strong>: Portfolio payoff must equal <span class="arithmatex">\(H_u\)</span></p>
-<p>$$</p>
-<p>\Delta \cdot uS_0 + B \cdot e^{r\Delta t} = H_u</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \cdot uS_0 + B \cdot e^{r\Delta t} = H_u
+\]</div>
 <p><strong>Down state</strong>: Portfolio payoff must equal <span class="arithmatex">\(H_d\)</span></p>
-<p>$$</p>
-<p>\Delta \cdot dS_0 + B \cdot e^{r\Delta t} = H_d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \cdot dS_0 + B \cdot e^{r\Delta t} = H_d
+\]</div>
 <p>This is a system of 2 linear equations in 2 unknowns.</p>
 <h3 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h3>
 <p><strong>Solving for <span class="arithmatex">\(\Delta\)</span></strong> (subtract down equation from up equation):</p>
-<p>$$</p>
-<p>\Delta \cdot S_0(u - d) = H_u - H_d</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{\Delta = \frac{H_u - H_d}{(u - d)S_0}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \cdot S_0(u - d) = H_u - H_d
+\]</div>
+<div class="arithmatex">\[
+\boxed{\Delta = \frac{H_u - H_d}{(u - d)S_0}}
+\]</div>
 <p><strong>Solving for <span class="arithmatex">\(B\)</span></strong> (substitute <span class="arithmatex">\(\Delta\)</span> into up equation):</p>
-<p>$$</p>
-<p>B = e^{-r\Delta t}(H_u - \Delta \cdot uS_0)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{B = e^{-r\Delta t}\left(H_u - \frac{(H_u - H_d)u}{u - d}\right) = e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u - d}\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B = e^{-r\Delta t}(H_u - \Delta \cdot uS_0)
+\]</div>
+<div class="arithmatex">\[
+\boxed{B = e^{-r\Delta t}\left(H_u - \frac{(H_u - H_d)u}{u - d}\right) = e^{-r\Delta t}\left(\frac{uH_d - dH_u}{u - d}\right)}
+\]</div>
 <h3 id="the-replication-price">The Replication Price<a class="headerlink" href="#the-replication-price" title="Permanent link">&para;</a></h3>
 <p>The cost of the replicating portfolio at time <span class="arithmatex">\(0\)</span> is:</p>
-<p>$$</p>
-<p>\boxed{V_0 = \Delta \cdot S_0 + B}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_0 = \Delta \cdot S_0 + B}
+\]</div>
 <p>By the <strong>law of one price</strong>, this must equal the derivative price. If the derivative traded at any other price, arbitrage would be possible.</p>
 <hr />
 <h2 id="examples-stock-bond-replication">Examples: Stock-Bond Replication<a class="headerlink" href="#examples-stock-bond-replication" title="Permanent link">&para;</a></h2>
@@ -47109,51 +47109,51 @@ H_d &amp; \text{(down state)}
 </table>
 <h3 id="example-1-european-call-strike-k-105">Example 1: European Call (Strike K = 105)<a class="headerlink" href="#example-1-european-call-strike-k-105" title="Permanent link">&para;</a></h3>
 <p><strong>Payoffs:</strong></p>
-<p>$$</p>
-<p>H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0
+\]</div>
 <p><strong>Replicating portfolio:</strong></p>
-<p>$$</p>
-<p>\Delta = \frac{15 - 0}{(1.2 - 0.9) \times 100} = \frac{15}{30} = 0.5</p>
-<p>$$</p>
-<p>$$</p>
-<p>B = e^{-0.05}\left(\frac{1.2 \times 0 - 0.9 \times 15}{1.2 - 0.9}\right) = 0.9512 \times (-45) = -42.80</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{15 - 0}{(1.2 - 0.9) \times 100} = \frac{15}{30} = 0.5
+\]</div>
+<div class="arithmatex">\[
+B = e^{-0.05}\left(\frac{1.2 \times 0 - 0.9 \times 15}{1.2 - 0.9}\right) = 0.9512 \times (-45) = -42.80
+\]</div>
 <p><strong>Price:</strong></p>
-<p>$$</p>
-<p>C_0 = 0.5 \times 100 + (-42.80) = 7.20</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = 0.5 \times 100 + (-42.80) = 7.20
+\]</div>
 <p><strong>Interpretation</strong>: Buy 0.5 shares, borrow $42.80.</p>
 <h3 id="example-2-european-put-strike-k-105">Example 2: European Put (Strike K = 105)<a class="headerlink" href="#example-2-european-put-strike-k-105" title="Permanent link">&para;</a></h3>
 <p><strong>Payoffs:</strong></p>
-<p>$$</p>
-<p>H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_u = (105 - 120)^+ = 0, \qquad H_d = (105 - 90)^+ = 15
+\]</div>
 <p><strong>Replicating portfolio:</strong></p>
-<p>$$</p>
-<p>\Delta = \frac{0 - 15}{30} = -0.5, \qquad B = 0.9512 \times \frac{1.2 \times 15 - 0.9 \times 0}{0.3} = 57.07</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{0 - 15}{30} = -0.5, \qquad B = 0.9512 \times \frac{1.2 \times 15 - 0.9 \times 0}{0.3} = 57.07
+\]</div>
 <p><strong>Price:</strong></p>
-<p>$$</p>
-<p>P_0 = -0.5 \times 100 + 57.07 = 7.07</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_0 = -0.5 \times 100 + 57.07 = 7.07
+\]</div>
 <p><strong>Interpretation</strong>: Short 0.5 shares, lend $57.07.</p>
 <h3 id="example-3-forward-contract-forward-price-f">Example 3: Forward Contract (Forward Price F)<a class="headerlink" href="#example-3-forward-contract-forward-price-f" title="Permanent link">&para;</a></h3>
 <p><strong>Payoffs:</strong></p>
-<p>$$</p>
-<p>H_u = uS_0 - F = 120 - F, \qquad H_d = dS_0 - F = 90 - F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_u = uS_0 - F = 120 - F, \qquad H_d = dS_0 - F = 90 - F
+\]</div>
 <p><strong>Replicating portfolio:</strong></p>
-<p>$$</p>
-<p>\Delta = \frac{(120 - F) - (90 - F)}{30} = \frac{30}{30} = 1</p>
-<p>$$</p>
-<p>$$</p>
-<p>B = e^{-0.05}(120 - F - 1 \times 120) = -Fe^{-0.05}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{(120 - F) - (90 - F)}{30} = \frac{30}{30} = 1
+\]</div>
+<div class="arithmatex">\[
+B = e^{-0.05}(120 - F - 1 \times 120) = -Fe^{-0.05}
+\]</div>
 <p><strong>Price:</strong></p>
-<p>$$</p>
-<p>V_0 = 1 \times 100 - Fe^{-0.05} = S_0 - Fe^{-r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = 1 \times 100 - Fe^{-0.05} = S_0 - Fe^{-r\Delta t}
+\]</div>
 <p>Setting <span class="arithmatex">\(V_0 = 0\)</span> (forward has zero initial cost): <span class="arithmatex">\(F = S_0 e^{r\Delta t} = 105.13\)</span></p>
 <hr />
 <h2 id="method-2-arrow-debreu-securities-and-state-prices">Method 2: Arrow-Debreu Securities and State Prices<a class="headerlink" href="#method-2-arrow-debreu-securities-and-state-prices" title="Permanent link">&para;</a></h2>
@@ -47161,28 +47161,28 @@ H_d &amp; \text{(down state)}
 <p>An <strong>Arrow-Debreu security</strong> (or <strong>state-contingent claim</strong>) pays $1 in exactly one state and $0 in all other states.</p>
 <p>In the binomial model, there are two Arrow-Debreu securities:</p>
 <p><strong>Up-state digital</strong> <span class="arithmatex">\((\mathbf{1}_u)\)</span>:</p>
-<p>$$</p>
-<p>\mathbf{1}_u = 
+<div class="arithmatex">\[
+\mathbf{1}_u = 
 \begin{cases}
-1 &amp; \text{(up state)} \
+1 &amp; \text{(up state)} \\
 0 &amp; \text{(down state)}
 \end{cases}
-= (1, 0)</p>
-<p>$$</p>
+= (1, 0)
+\]</div>
 <p><strong>Down-state digital</strong> <span class="arithmatex">\((\mathbf{1}_d)\)</span>:</p>
-<p>$$</p>
-<p>\mathbf{1}_d = 
+<div class="arithmatex">\[
+\mathbf{1}_d = 
 \begin{cases}
-0 &amp; \text{(up state)} \
+0 &amp; \text{(up state)} \\
 1 &amp; \text{(down state)}
 \end{cases}
-= (0, 1)</p>
-<p>$$</p>
+= (0, 1)
+\]</div>
 <h3 id="the-state-price-basis">The State Price Basis<a class="headerlink" href="#the-state-price-basis" title="Permanent link">&para;</a></h3>
 <p>The Arrow-Debreu securities form a <strong>basis</strong> for the payoff space. Any payoff <span class="arithmatex">\((H_u, H_d)\)</span> can be written as:</p>
-<p>$$</p>
-<p>\boxed{H = H_u \cdot \mathbf{1}_u + H_d \cdot \mathbf{1}_d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{H = H_u \cdot \mathbf{1}_u + H_d \cdot \mathbf{1}_d}
+\]</div>
 <p>This is trivially true—you just hold <span class="arithmatex">\(H_u\)</span> units of the up-state digital and <span class="arithmatex">\(H_d\)</span> units of the down-state digital.</p>
 <h3 id="state-prices">State Prices<a class="headerlink" href="#state-prices" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\psi_u\)</span> and <span class="arithmatex">\(\psi_d\)</span> denote the <strong>prices</strong> of the Arrow-Debreu securities:</p>
@@ -47193,46 +47193,46 @@ H_d &amp; \text{(down state)}
 <p>These are called <strong>state prices</strong> (or <strong>Arrow-Debreu prices</strong>).</p>
 <h3 id="universal-pricing-formula">Universal Pricing Formula<a class="headerlink" href="#universal-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>Since any payoff is a linear combination of Arrow-Debreu securities:</p>
-<p>$$</p>
-<p>\boxed{V_0 = \psi_u H_u + \psi_d H_d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_0 = \psi_u H_u + \psi_d H_d}
+\]</div>
 <p><strong>This is the fundamental pricing formula.</strong> Once you know the state prices, you can price any derivative by simple multiplication.</p>
 <hr />
 <h2 id="deriving-state-prices">Deriving State Prices<a class="headerlink" href="#deriving-state-prices" title="Permanent link">&para;</a></h2>
 <p>The state prices must be consistent with the traded asset prices (stock and bond). We derive them by replicating the Arrow-Debreu securities.</p>
 <h3 id="replicating-the-up-state-digital">Replicating the Up-State Digital<a class="headerlink" href="#replicating-the-up-state-digital" title="Permanent link">&para;</a></h3>
 <p>The up-state digital has payoff <span class="arithmatex">\((1, 0)\)</span>. Using the stock-bond replication formulas:</p>
-<p>$$</p>
-<p>\Delta_u = \frac{1 - 0}{(u-d)S_0} = \frac{1}{(u-d)S_0}</p>
-<p>$$</p>
-<p>$$</p>
-<p>B_u = e^{-r\Delta t}\left(\frac{u \cdot 0 - d \cdot 1}{u-d}\right) = e^{-r\Delta t}\left(\frac{-d}{u-d}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_u = \frac{1 - 0}{(u-d)S_0} = \frac{1}{(u-d)S_0}
+\]</div>
+<div class="arithmatex">\[
+B_u = e^{-r\Delta t}\left(\frac{u \cdot 0 - d \cdot 1}{u-d}\right) = e^{-r\Delta t}\left(\frac{-d}{u-d}\right)
+\]</div>
 <p><strong>Price of up-state digital:</strong></p>
-<p>$$</p>
-<p>\psi_u = \Delta_u S_0 + B_u = \frac{1}{u-d} + e^{-r\Delta t}\left(\frac{-d}{u-d}\right) = \frac{1 - de^{-r\Delta t}}{u-d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\psi_u = \Delta_u S_0 + B_u = \frac{1}{u-d} + e^{-r\Delta t}\left(\frac{-d}{u-d}\right) = \frac{1 - de^{-r\Delta t}}{u-d}
+\]</div>
 <p>Simplifying:</p>
-<p>$$</p>
-<p>\boxed{\psi_u = e^{-r\Delta t} \cdot \frac{e^{r\Delta t} - d}{u - d} = e^{-r\Delta t} q}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\psi_u = e^{-r\Delta t} \cdot \frac{e^{r\Delta t} - d}{u - d} = e^{-r\Delta t} q}
+\]</div>
 <p>where <span class="arithmatex">\(q = \frac{e^{r\Delta t} - d}{u-d}\)</span> is the risk-neutral probability.</p>
 <h3 id="replicating-the-down-state-digital">Replicating the Down-State Digital<a class="headerlink" href="#replicating-the-down-state-digital" title="Permanent link">&para;</a></h3>
 <p>The down-state digital has payoff <span class="arithmatex">\((0, 1)\)</span>:</p>
-<p>$$</p>
-<p>\Delta_d = \frac{0 - 1}{(u-d)S_0} = \frac{-1}{(u-d)S_0}</p>
-<p>$$</p>
-<p>$$</p>
-<p>B_d = e^{-r\Delta t}\left(\frac{u \cdot 1 - d \cdot 0}{u-d}\right) = e^{-r\Delta t}\left(\frac{u}{u-d}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_d = \frac{0 - 1}{(u-d)S_0} = \frac{-1}{(u-d)S_0}
+\]</div>
+<div class="arithmatex">\[
+B_d = e^{-r\Delta t}\left(\frac{u \cdot 1 - d \cdot 0}{u-d}\right) = e^{-r\Delta t}\left(\frac{u}{u-d}\right)
+\]</div>
 <p><strong>Price of down-state digital:</strong></p>
-<p>$$</p>
-<p>\psi_d = \Delta_d S_0 + B_d = \frac{-1}{u-d} + e^{-r\Delta t}\left(\frac{u}{u-d}\right) = \frac{ue^{-r\Delta t} - 1}{u-d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\psi_d = \Delta_d S_0 + B_d = \frac{-1}{u-d} + e^{-r\Delta t}\left(\frac{u}{u-d}\right) = \frac{ue^{-r\Delta t} - 1}{u-d}
+\]</div>
 <p>Simplifying:</p>
-<p>$$</p>
-<p>\boxed{\psi_d = e^{-r\Delta t} \cdot \frac{u - e^{r\Delta t}}{u - d} = e^{-r\Delta t}(1-q)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\psi_d = e^{-r\Delta t} \cdot \frac{u - e^{r\Delta t}}{u - d} = e^{-r\Delta t}(1-q)}
+\]</div>
 <h3 id="state-prices-summary">State Prices Summary<a class="headerlink" href="#state-prices-summary" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47256,85 +47256,85 @@ H_d &amp; \text{(down state)}
 </tbody>
 </table>
 <p>With our parameters (<span class="arithmatex">\(q = 0.5043\)</span>):</p>
-<p>$$</p>
-<p>\psi_u = 0.9512 \times 0.5043 = 0.4797</p>
-<p>$$</p>
-<p>$$</p>
-<p>\psi_d = 0.9512 \times 0.4957 = 0.4716</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\psi_u = 0.9512 \times 0.5043 = 0.4797
+\]</div>
+<div class="arithmatex">\[
+\psi_d = 0.9512 \times 0.4957 = 0.4716
+\]</div>
 <hr />
 <h2 id="replicating-stock-and-bond-with-arrow-debreu-securities">Replicating Stock and Bond with Arrow-Debreu Securities<a class="headerlink" href="#replicating-stock-and-bond-with-arrow-debreu-securities" title="Permanent link">&para;</a></h2>
 <p>The Arrow-Debreu basis allows us to express the traded assets as linear combinations:</p>
 <h3 id="stock-replication">Stock Replication<a class="headerlink" href="#stock-replication" title="Permanent link">&para;</a></h3>
 <p>The stock payoff is <span class="arithmatex">\((uS_0, dS_0)\)</span>:</p>
-<p>$$</p>
-<p>S_{\Delta t} = uS_0 \cdot \mathbf{1}_u + dS_0 \cdot \mathbf{1}_d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{\Delta t} = uS_0 \cdot \mathbf{1}_u + dS_0 \cdot \mathbf{1}_d
+\]</div>
 <p><strong>Stock price using state prices:</strong></p>
-<p>$$</p>
-<p>S_0 = \psi_u \cdot uS_0 + \psi_d \cdot dS_0 = S_0(\psi_u u + \psi_d d)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0 = \psi_u \cdot uS_0 + \psi_d \cdot dS_0 = S_0(\psi_u u + \psi_d d)
+\]</div>
 <p>This implies:</p>
-<p>$$</p>
-<p>\boxed{\psi_u u + \psi_d d = 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\psi_u u + \psi_d d = 1}
+\]</div>
 <h3 id="bond-replication">Bond Replication<a class="headerlink" href="#bond-replication" title="Permanent link">&para;</a></h3>
 <p>The bond payoff is <span class="arithmatex">\((e^{r\Delta t}, e^{r\Delta t})\)</span>:</p>
-<p>$$</p>
-<p>B_{\Delta t} = e^{r\Delta t} \cdot \mathbf{1}_u + e^{r\Delta t} \cdot \mathbf{1}_d = e^{r\Delta t}(\mathbf{1}_u + \mathbf{1}_d)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_{\Delta t} = e^{r\Delta t} \cdot \mathbf{1}_u + e^{r\Delta t} \cdot \mathbf{1}_d = e^{r\Delta t}(\mathbf{1}_u + \mathbf{1}_d)
+\]</div>
 <p><strong>Bond price using state prices:</strong></p>
-<p>$$</p>
-<p>B_0 = 1 = \psi_u \cdot e^{r\Delta t} + \psi_d \cdot e^{r\Delta t} = e^{r\Delta t}(\psi_u + \psi_d)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_0 = 1 = \psi_u \cdot e^{r\Delta t} + \psi_d \cdot e^{r\Delta t} = e^{r\Delta t}(\psi_u + \psi_d)
+\]</div>
 <p>This implies:</p>
-<p>$$</p>
-<p>\boxed{\psi_u + \psi_d = e^{-r\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\psi_u + \psi_d = e^{-r\Delta t}}
+\]</div>
 <p><strong>Interpretation</strong>: The sum of state prices equals the discount factor. Receiving $1 in every state is equivalent to holding a zero-coupon bond.</p>
 <hr />
 <h2 id="connection-to-risk-neutral-probability">Connection to Risk-Neutral Probability<a class="headerlink" href="#connection-to-risk-neutral-probability" title="Permanent link">&para;</a></h2>
 <h3 id="state-prices-and-probability">State Prices and Probability<a class="headerlink" href="#state-prices-and-probability" title="Permanent link">&para;</a></h3>
 <p>The state prices can be written as:</p>
-<p>$$</p>
-<p>\psi_u = e^{-r\Delta t} q, \qquad \psi_d = e^{-r\Delta t}(1-q)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\psi_u = e^{-r\Delta t} q, \qquad \psi_d = e^{-r\Delta t}(1-q)
+\]</div>
 <p>where <span class="arithmatex">\(q = \frac{e^{r\Delta t} - d}{u-d} \in (0,1)\)</span>.</p>
 <p>The pricing formula becomes:</p>
-<p>$$</p>
-<p>V_0 = \psi_u H_u + \psi_d H_d = e^{-r\Delta t}(qH_u + (1-q)H_d) = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \psi_u H_u + \psi_d H_d = e^{-r\Delta t}(qH_u + (1-q)H_d) = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[H]
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">State Prices and Risk-Neutral Measure</p>
-<p>$$</p>
-<p>\psi_u = e^{-r\Delta t} q, \qquad \psi_d = e^{-r\Delta t}(1-q)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\psi_u = e^{-r\Delta t} q, \qquad \psi_d = e^{-r\Delta t}(1-q)
+\]</div>
 <p>State prices are <strong>discounted risk-neutral probabilities</strong>. The risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span> encodes the state prices in probability form.</p>
 </div>
 <h3 id="why-q-is-called-risk-neutral">Why q Is Called "Risk-Neutral"<a class="headerlink" href="#why-q-is-called-risk-neutral" title="Permanent link">&para;</a></h3>
 <p>Under the measure <span class="arithmatex">\(\mathbb{Q}\)</span> with <span class="arithmatex">\(\mathbb{Q}(up) = q\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = q \cdot uS_0 + (1-q) \cdot dS_0 = S_0 e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_{\Delta t}] = q \cdot uS_0 + (1-q) \cdot dS_0 = S_0 e^{r\Delta t}
+\]</div>
 <p>The stock's expected return equals the risk-free rate—as if investors were neutral to risk.</p>
 <hr />
 <h2 id="examples-state-price-method">Examples: State Price Method<a class="headerlink" href="#examples-state-price-method" title="Permanent link">&para;</a></h2>
 <p>Using state prices <span class="arithmatex">\(\psi_u = 0.4797\)</span> and <span class="arithmatex">\(\psi_d = 0.4716\)</span>:</p>
 <h3 id="european-call-strike-k-105">European Call (Strike K = 105)<a class="headerlink" href="#european-call-strike-k-105" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_0 = \psi_u \cdot 15 + \psi_d \cdot 0 = 0.4797 \times 15 = 7.20 \text{ ✓}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = \psi_u \cdot 15 + \psi_d \cdot 0 = 0.4797 \times 15 = 7.20 \text{ ✓}
+\]</div>
 <h3 id="european-put-strike-k-105">European Put (Strike K = 105)<a class="headerlink" href="#european-put-strike-k-105" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P_0 = \psi_u \cdot 0 + \psi_d \cdot 15 = 0.4716 \times 15 = 7.07 \text{ ✓}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_0 = \psi_u \cdot 0 + \psi_d \cdot 15 = 0.4716 \times 15 = 7.07 \text{ ✓}
+\]</div>
 <h3 id="forward-contract">Forward Contract<a class="headerlink" href="#forward-contract" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_0 = \psi_u(120 - F) + \psi_d(90 - F) = 0.4797 \times 120 + 0.4716 \times 90 - F(\psi_u + \psi_d)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 57.56 + 42.44 - F \times 0.9512 = 100 - 0.9512F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \psi_u(120 - F) + \psi_d(90 - F) = 0.4797 \times 120 + 0.4716 \times 90 - F(\psi_u + \psi_d)
+\]</div>
+<div class="arithmatex">\[
+= 57.56 + 42.44 - F \times 0.9512 = 100 - 0.9512F
+\]</div>
 <p>Setting <span class="arithmatex">\(V_0 = 0\)</span>: <span class="arithmatex">\(F = 100/0.9512 = 105.13\)</span> ✓</p>
 <hr />
 <h2 id="comparison-of-methods">Comparison of Methods<a class="headerlink" href="#comparison-of-methods" title="Permanent link">&para;</a></h2>

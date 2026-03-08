@@ -46428,13 +46428,13 @@
 <hr />
 <h2 id="discount-factors">Discount Factors<a class="headerlink" href="#discount-factors" title="Permanent link">&para;</a></h2>
 <p>A <strong>discount factor</strong> <span class="arithmatex">\(P(0,T)\)</span> is the time-0 price of a zero-coupon bond paying 1 unit of currency at maturity <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>P(0,T) = \text{Price at }0\text{ of a claim paying }1\text{ at }T.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0,T) = \text{Price at }0\text{ of a claim paying }1\text{ at }T
+\]</div>
 <p>More generally, for any valuation time <span class="arithmatex">\(t \leq T\)</span>:</p>
-<p>$$</p>
-<p>P(t,T) = \text{Price at }t\text{ of a claim paying }1\text{ at }T.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = \text{Price at }t\text{ of a claim paying }1\text{ at }T
+\]</div>
 <h3 id="fundamental-properties">Fundamental Properties<a class="headerlink" href="#fundamental-properties" title="Permanent link">&para;</a></h3>
 <p>In standard, positive-rate environments, discount factors satisfy:</p>
 <ol>
@@ -46454,41 +46454,41 @@
 <h2 id="zero-spot-rates">Zero (Spot) Rates<a class="headerlink" href="#zero-spot-rates" title="Permanent link">&para;</a></h2>
 <h3 id="continuously-compounded-zero-rate">Continuously Compounded Zero Rate<a class="headerlink" href="#continuously-compounded-zero-rate" title="Permanent link">&para;</a></h3>
 <p>The <strong>continuously compounded zero rate</strong> <span class="arithmatex">\(z(t,T)\)</span> is defined implicitly by:</p>
-<p>$$</p>
-<p>P(t,T) = e^{-z(t,T)(T-t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = e^{-z(t,T)(T-t)}
+\]</div>
 <p>Solving for the zero rate:</p>
-<p>$$</p>
-<p>z(t,T) = -\frac{\log P(t,T)}{T-t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(t,T) = -\frac{\log P(t,T)}{T-t}
+\]</div>
 <p>For the initial curve at <span class="arithmatex">\(t=0\)</span>:</p>
-<p>$$</p>
-<p>z(0,T) = -\frac{\log P(0,T)}{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(0,T) = -\frac{\log P(0,T)}{T}
+\]</div>
 <p>The zero rate <span class="arithmatex">\(z(0,T)\)</span> represents the constant continuously compounded rate that, if applied over <span class="arithmatex">\([0,T]\)</span>, produces the observed discount factor.</p>
 <h3 id="alternative-compounding-conventions">Alternative Compounding Conventions<a class="headerlink" href="#alternative-compounding-conventions" title="Permanent link">&para;</a></h3>
 <p>Different markets use different compounding conventions:</p>
 <p><strong>Simple (Money Market) Compounding:</strong></p>
-<p>$$</p>
-<p>P(0,T) = \frac{1}{1 + R_s(0,T) \cdot T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0,T) = \frac{1}{1 + R_s(0,T) \cdot T}
+\]</div>
 <p>Inverting:</p>
-<p>$$</p>
-<p>R_s(0,T) = \frac{1 - P(0,T)}{P(0,T) \cdot T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_s(0,T) = \frac{1 - P(0,T)}{P(0,T) \cdot T}
+\]</div>
 <p>This convention is standard for maturities under one year.</p>
 <p><strong>Annual Compounding:</strong></p>
-<p>$$</p>
-<p>P(0,T) = \frac{1}{(1 + R_a(0,T))^T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0,T) = \frac{1}{(1 + R_a(0,T))^T}
+\]</div>
 <p>Inverting:</p>
-<p>$$</p>
-<p>R_a(0,T) = P(0,T)^{-1/T} - 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_a(0,T) = P(0,T)^{-1/T} - 1
+\]</div>
 <p><strong>Semi-Annual Compounding:</strong></p>
-<p>$$</p>
-<p>P(0,T) = \frac{1}{\left(1 + \frac{R_{sa}(0,T)}{2}\right)^{2T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0,T) = \frac{1}{\left(1 + \frac{R_{sa}(0,T)}{2}\right)^{2T}}
+\]</div>
 <p>This is the standard convention for US Treasury bonds.</p>
 <h3 id="conversion-between-conventions">Conversion Between Conventions<a class="headerlink" href="#conversion-between-conventions" title="Permanent link">&para;</a></h3>
 <p>Given a continuously compounded rate <span class="arithmatex">\(z\)</span>, equivalent rates under other conventions are:</p>
@@ -46560,9 +46560,9 @@
 <p><strong>Pricing coupon bonds:</strong> A bond paying coupons <span class="arithmatex">\(c_i\)</span> at times <span class="arithmatex">\(T_i\)</span> and principal <span class="arithmatex">\(F\)</span> at <span class="arithmatex">\(T_n\)</span>:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>B_0 = \sum_{i=1}^n c_i P(0,T_i) + F \cdot P(0,T_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_0 = \sum_{i=1}^n c_i P(0,T_i) + F \cdot P(0,T_n)
+\]</div>
 <ol>
 <li>
 <p><strong>Building forward rates:</strong> Forward rates are derived from ratios of discount factors (next section)</p>
@@ -46574,9 +46574,9 @@
 <hr />
 <h2 id="short-rate-connection">Short Rate Connection<a class="headerlink" href="#short-rate-connection" title="Permanent link">&para;</a></h2>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, if <span class="arithmatex">\(r_t\)</span> denotes the instantaneous short rate, then:</p>
-<p>$$</p>
-<p>P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s \, ds} \,\bigg|\, \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s \, ds} \,\bigg|\, \mathcal{F}_t\right]
+\]</div>
 <p>This fundamental relationship:
 - Links observable bond prices to the stochastic short rate
 - Forms the basis of short-rate modeling (Section 10.2)
@@ -46616,9 +46616,9 @@
 </tbody>
 </table>
 <p>For a period from date <span class="arithmatex">\(d_1\)</span> to <span class="arithmatex">\(d_2\)</span>:</p>
-<p>$$</p>
-<p>\tau = \frac{\text{Day count}(d_1, d_2)}{\text{Year basis}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \frac{\text{Day count}(d_1, d_2)}{\text{Year basis}}
+\]</div>
 <p>Consistency in day count conventions is essential when comparing rates or building curves.</p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

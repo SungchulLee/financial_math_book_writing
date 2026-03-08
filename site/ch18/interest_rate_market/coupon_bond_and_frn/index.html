@@ -46147,43 +46147,43 @@
 
 <h1 id="coupon-bearing-bond-and-floating-rate-note">Coupon-Bearing Bond and Floating-Rate Note<a class="headerlink" href="#coupon-bearing-bond-and-floating-rate-note" title="Permanent link">&para;</a></h1>
 <h2 id="coupon-bearing-bond">Coupon-Bearing Bond<a class="headerlink" href="#coupon-bearing-bond" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{ccccccccccccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccccccccccccc}
+\displaystyle
 {\bf\text{CB}}(t,{\cal T},N,{\cal C})
 =
-N\sum_{k=m+1}^n c_iP(t,T_i)\</p>
-<p>\end{array}$$</p>
+N\sum_{k=m+1}^n c_iP(t,T_i)\\
+\end{array}\]</div>
 <h2 id="floating-rate-note">Floating-Rate Note<a class="headerlink" href="#floating-rate-note" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{ccccccccccccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccccccccccccc}
+\displaystyle
 {\bf\text{FRN}}(t,{\cal T},N)
 =
-NP(t,T_m)\</p>
-<p>\end{array}$$</p>
+NP(t,T_m)\\
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
 <p>A floating-rate note is a Payer IRS with <span class="arithmatex">\(K=0\)</span> plus the principle <span class="arithmatex">\(N\)</span> available at <span class="arithmatex">\(T_n\)</span>. So the value of this floating-rate note is</p>
-<p>$$\begin{array}{lll}</p>
-<p>{\bf\text{FRN}}(t,{\cal T},N)
+<div class="arithmatex">\[\begin{array}{lll}
+{\bf\text{FRN}}(t,{\cal T},N)
 &amp;=&amp;
-{\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K=0)+NP(t,T_n)\
+{\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K=0)+NP(t,T_n)\\
 &amp;=&amp;
-N(P(t,T_m)-P(t,T_n))+NP(t,T_n)\
+N(P(t,T_m)-P(t,T_n))+NP(t,T_n)\\
 &amp;=&amp;
-NP(t,T_m)</p>
-<p>\end{array}$$</p>
+NP(t,T_m)
+\end{array}\]</div>
 </details>
 <h2 id="interest-rate-swap-valuation-in-terms-of-frn-and-cb">Interest Rate Swap Valuation in Terms of FRN and CB<a class="headerlink" href="#interest-rate-swap-valuation-in-terms-of-frn-and-cb" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllllllll}
+\displaystyle
 {\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)
 &amp;=&amp;
-N\sum_{k=m+1}^n\left(l_k(t)-K\right)\tau_kP(t,T_k)\
+N\sum_{k=m+1}^n\left(l_k(t)-K\right)\tau_kP(t,T_k)\\
 &amp;=&amp;
-NP(t,T_m)-N\left(P(t,T_n)+\sum_{k=m+1}^n K\tau_k P(t,T_k)\right)\
+NP(t,T_m)-N\left(P(t,T_n)+\sum_{k=m+1}^n K\tau_k P(t,T_k)\right)\\
 &amp;=&amp;
-{\bf\text{FRN}}(t,{\cal T},N)-{\bf\text{CB}}(t,{\cal T},N,{\cal C}=(K\tau_k))\</p>
-<p>\end{array}$$</p>
+{\bf\text{FRN}}(t,{\cal T},N)-{\bf\text{CB}}(t,{\cal T},N,{\cal C}=(K\tau_k))\\
+\end{array}\]</div>
 <p>The two legs of an IRS are two fundamental interest rate contracts. The fixed leg is a coupon-bearing bond (minus the principle at the end), and the floating leg is a floating-rate note (minus the principle at the end). Thus, an IRS is a swap contract exchanging the coupon-bearing bond for the floating-rate note.</p>
 <p><em>Adopted from Page 14 of Interest Rate Models - Theory and Practice by Damiano Brigo &amp; Fabio Mercurio</em></p>
 

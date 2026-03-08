@@ -47394,22 +47394,22 @@
 - Riskless asset (numéraire): <span class="arithmatex">\(S_t^0 = e^{rt}\)</span>
 - <span class="arithmatex">\(d\)</span> risky assets: <span class="arithmatex">\(S_t = (S_t^1, \ldots, S_t^d)\)</span></p>
 <p><strong>Price Process</strong>: The discounted price process is:</p>
-<p>$$</p>
-<p>\tilde{S}_t = e^{-rt} S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{S}_t = e^{-rt} S_t
+\]</div>
 <p><strong>Trading Strategy</strong>: A predictable process <span class="arithmatex">\(\theta_t = (\theta_t^0, \theta_t^1, \ldots, \theta_t^d)\)</span> representing portfolio holdings.</p>
 <p><strong>Value Process</strong>: The portfolio value is:</p>
-<p>$$</p>
-<p>V_t^{\theta} = \theta_t^0 S_t^0 + \sum_{i=1}^d \theta_t^i S_t^i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t^{\theta} = \theta_t^0 S_t^0 + \sum_{i=1}^d \theta_t^i S_t^i
+\]</div>
 <p><strong>Self-Financing</strong>: The strategy <span class="arithmatex">\(\theta\)</span> is self-financing if:</p>
-<p>$$</p>
-<p>dV_t^{\theta} = \theta_t^0 dS_t^0 + \sum_{i=1}^d \theta_t^i dS_t^i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t^{\theta} = \theta_t^0 dS_t^0 + \sum_{i=1}^d \theta_t^i dS_t^i
+\]</div>
 <p>or equivalently:</p>
-<p>$$</p>
-<p>d\tilde{V}<em i="1">t^{\theta} = \sum</em>_t^i}^d \theta_t^i d\tilde{S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{V}_t^{\theta} = \sum_{i=1}^d \theta_t^i d\tilde{S}_t^i
+\]</div>
 <h3 id="2-admissible-strategies">2. Admissible Strategies<a class="headerlink" href="#2-admissible-strategies" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: A trading strategy <span class="arithmatex">\(\theta\)</span> is <strong>admissible</strong> if:
 1. It is self-financing
@@ -47421,34 +47421,34 @@
 <h3 id="1-definition">1. Definition<a class="headerlink" href="#1-definition" title="Permanent link">&para;</a></h3>
 <p><strong>Contingent Claim</strong>: A random variable <span class="arithmatex">\(\xi\)</span> measurable with respect to <span class="arithmatex">\(\mathcal{F}_T\)</span> representing the derivative's payoff at maturity.</p>
 <p><strong>Superhedging Strategy</strong>: A strategy <span class="arithmatex">\(\theta \in \mathcal{A}\)</span> <strong>superhedges</strong> <span class="arithmatex">\(\xi\)</span> if:</p>
-<p>$$</p>
-<p>V_T^{\theta} \geq \xi \quad \mathbb{P}\text{-almost surely}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_T^{\theta} \geq \xi \quad \mathbb{P}\text{-almost surely}
+\]</div>
 <p><strong>Superhedging Price</strong> (Seller's Price): The minimum initial capital needed to superhedge:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \inf \left{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \geq \xi \, \mathbb{P}\text{-a.s.} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi) = \inf \left\{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \geq \xi \, \mathbb{P}\text{-a.s.} \right\}
+\]</div>
 <p><strong>Interpretation</strong>: 
 - <span class="arithmatex">\(\pi^{\text{sup}}(\xi)\)</span> is the minimum amount a seller needs to hedge the obligation to deliver <span class="arithmatex">\(\xi\)</span> at time <span class="arithmatex">\(T\)</span>
 - Any price above <span class="arithmatex">\(\pi^{\text{sup}}(\xi)\)</span> allows the seller to lock in arbitrage profit
 - Any price below <span class="arithmatex">\(\pi^{\text{sup}}(\xi)\)</span> exposes the seller to unbounded loss</p>
 <h3 id="2-sub-replication">2. Sub-Replication<a class="headerlink" href="#2-sub-replication" title="Permanent link">&para;</a></h3>
 <p><strong>Sub-Replicating Strategy</strong>: A strategy <span class="arithmatex">\(\theta\)</span> <strong>sub-replicates</strong> <span class="arithmatex">\(\xi\)</span> if:</p>
-<p>$$</p>
-<p>V_T^{\theta} \leq \xi \quad \mathbb{P}\text{-almost surely}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_T^{\theta} \leq \xi \quad \mathbb{P}\text{-almost surely}
+\]</div>
 <p><strong>Sub-Replication Price</strong> (Buyer's Price):</p>
-<p>$$</p>
-<p>\pi^{\text{sub}}(\xi) = \sup \left{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \leq \xi \, \mathbb{P}\text{-a.s.} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}}(\xi) = \sup \left\{ v \in \mathbb{R}: \exists \theta \in \mathcal{A} \text{ with } V_0^{\theta} = v \text{ and } V_T^{\theta} \leq \xi \, \mathbb{P}\text{-a.s.} \right\}
+\]</div>
 <p><strong>Interpretation</strong>:
 - <span class="arithmatex">\(\pi^{\text{sub}}(\xi)\)</span> is the maximum amount a buyer can guarantee from selling a portfolio that is dominated by <span class="arithmatex">\(\xi\)</span>
 - Any price below <span class="arithmatex">\(\pi^{\text{sub}}(\xi)\)</span> allows the buyer to lock in arbitrage profit</p>
 <h3 id="3-no-arbitrage-and-price-bounds">3. No-Arbitrage and Price Bounds<a class="headerlink" href="#3-no-arbitrage-and-price-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition</strong>: Under no-arbitrage:</p>
-<p>$$</p>
-<p>\pi^{\text{sub}}(\xi) \leq \pi^{\text{sup}}(\xi)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}}(\xi) \leq \pi^{\text{sup}}(\xi)
+\]</div>
 <p><strong>Proof</strong>: Suppose <span class="arithmatex">\(\pi^{\text{sub}}(\xi) &gt; \pi^{\text{sup}}(\xi)\)</span>. Then:
 - Sell the sub-replicating portfolio for <span class="arithmatex">\(\pi^{\text{sub}}(\xi)\)</span>
 - Buy the superhedging portfolio for <span class="arithmatex">\(\pi^{\text{sup}}(\xi)\)</span>
@@ -47456,9 +47456,9 @@
 - At time <span class="arithmatex">\(T\)</span>: receive at most <span class="arithmatex">\(\xi\)</span> from sub-replication, deliver at least <span class="arithmatex">\(\xi\)</span> from superhedging
 - Net payoff <span class="arithmatex">\(\geq 0\)</span>, yielding arbitrage</p>
 <p><strong>Complete Markets</strong>: When the market is complete:</p>
-<p>$$</p>
-<p>\pi^{\text{sub}}(\xi) = \pi^{\text{sup}}(\xi)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}}(\xi) = \pi^{\text{sup}}(\xi)
+\]</div>
 <p>and this common value is the unique arbitrage-free price.</p>
 <p><strong>Incomplete Markets</strong>: The interval <span class="arithmatex">\([\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)]\)</span> represents the range of arbitrage-free prices, reflecting model uncertainty.</p>
 <h2 id="equivalent-martingale-measures">Equivalent Martingale Measures<a class="headerlink" href="#equivalent-martingale-measures" title="Permanent link">&para;</a></h2>
@@ -47466,13 +47466,13 @@
 <p><strong>Equivalent Martingale Measure</strong> (EMM): A probability measure <span class="arithmatex">\(\mathbb{Q}\)</span> on <span class="arithmatex">\((\Omega, \mathcal{F}_T)\)</span> is an EMM if:
 1. <span class="arithmatex">\(\mathbb{Q} \sim \mathbb{P}\)</span> (equivalent to the physical measure)
 2. The discounted price process <span class="arithmatex">\(\tilde{S}_t\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale:</p>
-<p>$$</p>
-<p>\tilde{S}<em _mathbb_Q="\mathbb{Q">t = \mathbb{E}</em>_t]}}[\tilde{S}_T | \mathcal{F</p>
-<p>$$</p>
+<p>$$
+   \tilde{S}<em _mathbb_Q="\mathbb{Q">t = \mathbb{E}</em>_t]
+   $$}}[\tilde{S}_T | \mathcal{F</p>
 <p><strong>Set of EMMs</strong>: Denote:</p>
-<p>$$</p>
-<p>\mathcal{M} = { \mathbb{Q}: \mathbb{Q} \text{ is an EMM} }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{M} = \{ \mathbb{Q}: \mathbb{Q} \text{ is an EMM} \}
+\]</div>
 <h3 id="2-fundamental-theorem-of-asset-pricing">2. Fundamental Theorem of Asset Pricing<a class="headerlink" href="#2-fundamental-theorem-of-asset-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>First Fundamental Theorem</strong>: The market admits no arbitrage if and only if <span class="arithmatex">\(\mathcal{M} \neq \emptyset\)</span>.</p>
 <p><strong>Second Fundamental Theorem</strong>: The market is complete if and only if <span class="arithmatex">\(\mathcal{M}\)</span> is a singleton (unique EMM).</p>
@@ -47482,9 +47482,9 @@
 <h2 id="dual-representation-of-superhedging-price">Dual Representation of Superhedging Price<a class="headerlink" href="#dual-representation-of-superhedging-price" title="Permanent link">&para;</a></h2>
 <h3 id="1-main-duality-theorem">1. Main Duality Theorem<a class="headerlink" href="#1-main-duality-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Superhedging Duality): Under appropriate technical conditions:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+\]</div>
 <p><strong>Interpretation</strong>: 
 - The minimum cost to superhedge equals the maximum expected discounted payoff over all martingale measures
 - This transforms a dynamic programming problem (finding optimal trading strategy) into a static optimization problem (maximizing over measures)</p>
@@ -47493,13 +47493,13 @@
 <li><strong>Lower Bound</strong> (<span class="arithmatex">\(\pi^{\text{sup}}(\xi) \geq \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]\)</span>):</li>
 </ol>
 <p>For any superhedging strategy <span class="arithmatex">\(\theta\)</span> with <span class="arithmatex">\(V_0^{\theta} = v\)</span> and <span class="arithmatex">\(V_T^{\theta} \geq \xi\)</span>:</p>
-<p>$$</p>
-<p>e^{-rT} V_T^{\theta} = \tilde{V}_T^{\theta} \geq e^{-rT} \xi</p>
-<p>$$</p>
+<p>$$
+   e^{-rT} V_T^{\theta} = \tilde{V}_T^{\theta} \geq e^{-rT} \xi
+   $$</p>
 <p>For any <span class="arithmatex">\(\mathbb{Q} \in \mathcal{M}\)</span>, since <span class="arithmatex">\(\tilde{V}_t^{\theta}\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-supermartingale (under self-financing):</p>
-<p>$$</p>
-<p>v = V_0^{\theta} = \tilde{V}<em _mathbb_Q="\mathbb{Q">0^{\theta} \geq \mathbb{E}</em>}}[\tilde{V<em _mathbb_Q="\mathbb{Q">T^{\theta}] \geq \mathbb{E}</em> \xi]}}[e^{-rT</p>
-<p>$$</p>
+<p>$$
+   v = V_0^{\theta} = \tilde{V}<em _mathbb_Q="\mathbb{Q">0^{\theta} \geq \mathbb{E}</em>}}[\tilde{V<em _mathbb_Q="\mathbb{Q">T^{\theta}] \geq \mathbb{E}</em> \xi]
+   $$}}[e^{-rT</p>
 <p>Taking infimum over all superhedging strategies yields the result.</p>
 <ol>
 <li><strong>Upper Bound</strong> (<span class="arithmatex">\(\pi^{\text{sup}}(\xi) \leq \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]\)</span>):</li>
@@ -47525,19 +47525,19 @@
 <h2 id="sub-replication-duality">Sub-Replication Duality<a class="headerlink" href="#sub-replication-duality" title="Permanent link">&para;</a></h2>
 <h3 id="1-dual-representation">1. Dual Representation<a class="headerlink" href="#1-dual-representation" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: Under similar conditions:</p>
-<p>$$</p>
-<p>\pi^{\text{sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+\]</div>
 <p><strong>Proof</strong>: Similar to superhedging case, with inequalities reversed.</p>
 <h3 id="2-bid-ask-spread">2. Bid-Ask Spread<a class="headerlink" href="#2-bid-ask-spread" title="Permanent link">&para;</a></h3>
 <p><strong>Arbitrage-Free Price Interval</strong>:</p>
-<p>$$</p>
-<p>[\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}<em _mathbb_Q="\mathbb{Q">{\mathbb{Q}}[e^{-rT} \xi], \, \sup</em> \xi] \right]} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi], \, \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \right]
+\]</div>
 <p><strong>Width of Spread</strong>: The spread reflects model uncertainty:</p>
-<p>$$</p>
-<p>\text{Spread}(\xi) = \pi^{\text{sup}}(\xi) - \pi^{\text{sub}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}<em _mathbb_Q="\mathbb{Q">{\mathbb{Q}}[e^{-rT} \xi] - \inf</em> \xi]} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Spread}(\xi) = \pi^{\text{sup}}(\xi) - \pi^{\text{sub}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] - \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+\]</div>
 <p><strong>Complete Markets</strong>: Spread = 0 (unique price)</p>
 <p><strong>Incomplete Markets</strong>: Spread &gt; 0 reflects uncertainty in hedging</p>
 <h2 id="applications-and-examples">Applications and Examples<a class="headerlink" href="#applications-and-examples" title="Permanent link">&para;</a></h2>
@@ -47548,89 +47548,89 @@
 - <span class="arithmatex">\(r = 0\)</span></p>
 <p><strong>Claim</strong>: Digital call paying <span class="arithmatex">\(1\)</span> if <span class="arithmatex">\(S_1 &gt; 110\)</span>.</p>
 <p><strong>EMM Characterization</strong>: For <span class="arithmatex">\(\mathbb{Q}\)</span> to be a martingale measure:</p>
-<p>$$</p>
-<p>S_0 = \mathbb{E}_{\mathbb{Q}}[S_1] = 120 q + 90(1-q) = 100</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_0 = \mathbb{E}_{\mathbb{Q}}[S_1] = 120 q + 90(1-q) = 100
+\]</div>
 <p>Solving: <span class="arithmatex">\(q = 1/3\)</span>.</p>
 <p>Since the EMM is unique, the market is complete:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \mathbb{E}_{\mathbb{Q}}[\xi] = \frac{1}{3} \cdot 1 + \frac{2}{3} \cdot 0 = \frac{1}{3}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \mathbb{E}_{\mathbb{Q}}[\xi] = \frac{1}{3} \cdot 1 + \frac{2}{3} \cdot 0 = \frac{1}{3}
+\]</div>
 <h3 id="2-example-2-incomplete-market-with-volatility-uncertainty">2. Example 2: Incomplete Market with Volatility Uncertainty<a class="headerlink" href="#2-example-2-incomplete-market-with-volatility-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Model</strong>: Stock follows:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_t \in [\sigma_{\min}, \sigma_{\max}]\)</span> is uncertain.</p>
 <p><strong>EMM Set</strong>: For each choice of <span class="arithmatex">\((\sigma_t)_{t \in [0,T]}\)</span>, there is a corresponding EMM <span class="arithmatex">\(\mathbb{Q}^{\sigma}\)</span>.</p>
 <p><strong>Digital Call</strong>: Payoff <span class="arithmatex">\(\mathbb{1}_{\{S_T &gt; K\}}\)</span>.</p>
 <p><strong>Superhedging Price</strong>: </p>
-<p>$$</p>
-<p>\pi^{\text{sup}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS-Digital}(S_0, K, \sigma, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}} = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \text{BS-Digital}(S_0, K, \sigma, T)
+\]</div>
 <p>where BS-Digital is the Black-Scholes digital call price.</p>
 <p><strong>Maximizing Volatility</strong>: Since digital option value typically increases with volatility:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}} = \text{BS-Digital}(S_0, K, \sigma_{\max}, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}} = \text{BS-Digital}(S_0, K, \sigma_{\max}, T)
+\]</div>
 <p><strong>Sub-Replication Price</strong>:</p>
-<p>$$</p>
-<p>\pi^{\text{sub}} = \text{BS-Digital}(S_0, K, \sigma_{\min}, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sub}} = \text{BS-Digital}(S_0, K, \sigma_{\min}, T)
+\]</div>
 <h3 id="3-example-3-barrier-option">3. Example 3: Barrier Option<a class="headerlink" href="#3-example-3-barrier-option" title="Permanent link">&para;</a></h3>
 <p><strong>Claim</strong>: Up-and-out call with barrier <span class="arithmatex">\(H &gt; S_0\)</span> and strike <span class="arithmatex">\(K &lt; H\)</span>:</p>
-<p>$$</p>
-<p>\xi = (S_T - K)^+ \mathbb{1}<em 0="0" T="T" _leq="\leq" t="t">{{\max</em>} S_t &lt; H}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\xi = (S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t &lt; H\}}
+\]</div>
 <p><strong>Challenge</strong>: Barrier options are strongly path-dependent; hedging requires continuous monitoring.</p>
 <p><strong>Superhedging Strategy</strong>: 
 - Hold a replicating portfolio for a vanilla call
 - At time <span class="arithmatex">\(\tau = \inf\{t: S_t \geq H\}\)</span>, liquidate and invest in bonds</p>
 <p><strong>Superhedging Price</strong>: Can be computed using PDE methods:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+\]</div>
 <p>In Black-Scholes model, this reduces to the standard barrier option formula.</p>
 <p><strong>Model Uncertainty</strong>: With volatility uncertainty <span class="arithmatex">\(\sigma \in [\sigma_{\min}, \sigma_{\max}]\)</span>:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} C^{\text{UO}}(S_0, K, H, \sigma, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi) = \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} C^{\text{UO}}(S_0, K, H, \sigma, T)
+\]</div>
 <p>where <span class="arithmatex">\(C^{\text{UO}}\)</span> is the up-and-out call price under constant volatility <span class="arithmatex">\(\sigma\)</span>.</p>
 <h2 id="computational-methods">Computational Methods<a class="headerlink" href="#computational-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-linear-programming-formulation">1. Linear Programming Formulation<a class="headerlink" href="#1-linear-programming-formulation" title="Permanent link">&para;</a></h3>
 <p><strong>Discrete State Space</strong>: Approximate <span class="arithmatex">\(\Omega\)</span> by a finite set <span class="arithmatex">\(\{\omega_1, \ldots, \omega_N\}\)</span>.</p>
 <p><strong>Martingale Constraints</strong>: For each time step and state:</p>
-<p>$$</p>
-<p>\tilde{S}<em _omega="\omega" _omega_j="\omega_j" _succ="\succ" j:="j:">t(\omega) = \sum</em>(\omega_j)} \mathbb{Q}(\omega_j | \omega) \tilde{S}_{t+1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{S}_t(\omega) = \sum_{j: \omega_j \succ \omega} \mathbb{Q}(\omega_j | \omega) \tilde{S}_{t+1}(\omega_j)
+\]</div>
 <p><strong>LP Formulation</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \text{maximize} \quad &amp; \sum_{i=1}^N e^{-rT} \xi(\omega_i) \mathbb{Q}(\omega_i) \\
 \text{subject to} \quad &amp; \text{Martingale constraints} \\
 &amp; \sum_{i=1}^N \mathbb{Q}(\omega_i) = 1 \\
 &amp; \mathbb{Q}(\omega_i) \geq 0, \quad i = 1, \ldots, N
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Dual Problem</strong>: Corresponds to finding the superhedging strategy (portfolio weights).</p>
 <h3 id="2-monte-carlo-with-linear-programming">2. Monte Carlo with Linear Programming<a class="headerlink" href="#2-monte-carlo-with-linear-programming" title="Permanent link">&para;</a></h3>
 <p><strong>Scenario Generation</strong>: Generate <span class="arithmatex">\(N\)</span> paths <span class="arithmatex">\(\{S^{(i)}(t_j)\}_{j=0}^M\)</span> for <span class="arithmatex">\(i = 1, \ldots, N\)</span>.</p>
 <p><strong>Martingale Constraints</strong>: For each path <span class="arithmatex">\(i\)</span> and time <span class="arithmatex">\(t_j\)</span>:</p>
-<p>$$</p>
-<p>S^{(i)}(t_j) = \sum_{k=1}^N p_{ik}(j) S^{(k)}(t_{j+1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S^{(i)}(t_j) = \sum_{k=1}^N p_{ik}(j) S^{(k)}(t_{j+1})
+\]</div>
 <p>where <span class="arithmatex">\(p_{ik}(j)\)</span> represents transition probabilities.</p>
 <p><strong>Optimization</strong>: Solve LP to find probabilities that maximize expected payoff while satisfying martingale constraints.</p>
 <h3 id="3-dynamic-programming">3. Dynamic Programming<a class="headerlink" href="#3-dynamic-programming" title="Permanent link">&para;</a></h3>
 <p><strong>Bellman Equation</strong>: For Markovian models, the superhedging price satisfies:</p>
-<p>$$</p>
-<p>V(t, S) = \sup_{\theta} \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \left[ V(t+dt, S+dS) \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) = \sup_{\theta} \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \left[ V(t+dt, S+dS) \right]
+\]</div>
 <p>where the supremum is over trading strategies and infimum over model parameters.</p>
 <p><strong>HJB Equation</strong>: In continuous time:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \sup_{\theta} \left{ \theta \sigma S \frac{\partial^2 V}{\partial S^2} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \sup_{\theta} \left\{ \theta \sigma S \frac{\partial^2 V}{\partial S^2} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right\} = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V(T, S) = \xi(S)\)</span>.</p>
 <p><strong>Numerical Solution</strong>: Use finite difference methods or policy iteration.</p>
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
@@ -47640,16 +47640,16 @@
 <p><strong>Theorem</strong> (Uniqueness): Under appropriate conditions, the viscosity solution to the HJB equation is unique and equals the superhedging price.</p>
 <h3 id="2-quadratic-hedging">2. Quadratic Hedging<a class="headerlink" href="#2-quadratic-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Alternative Objective</strong>: Instead of perfect replication, minimize expected squared hedging error:</p>
-<p>$$</p>
-<p>\min_{\theta} \mathbb{E}_{\mathbb{P}}\left[ (V_T^{\theta} - \xi)^2 \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta} \mathbb{E}_{\mathbb{P}}\left[ (V_T^{\theta} - \xi)^2 \right]
+\]</div>
 <p><strong>Solution</strong>: Involves projecting <span class="arithmatex">\(\xi\)</span> onto the space of attainable claims, leading to the <strong>variance-optimal</strong> hedging strategy.</p>
 <p><strong>Relationship to Superhedging</strong>: Quadratic hedging provides an approximation when perfect hedging is too expensive.</p>
 <h3 id="3-convex-duality">3. Convex Duality<a class="headerlink" href="#3-convex-duality" title="Permanent link">&para;</a></h3>
 <p><strong>Fenchel-Rockafellar Duality</strong>: The superhedging problem can be formulated as:</p>
-<p>$$</p>
-<p>\inf { c: (c, -\xi) \in \mathcal{C} }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf \{ c: (c, -\xi) \in \mathcal{C} \}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{C}\)</span> is the cone of claims attainable with non-negative cost.</p>
 <p><strong>Dual Problem</strong>: Maximize over dual variables (equivalent to EMMs).</p>
 <p><strong>Duality Gap</strong>: In general settings, there may be a duality gap. Conditions ensuring zero duality gap are studied in convex analysis.</p>
@@ -47657,81 +47657,81 @@
 <h3 id="1-black-scholes-pricing">1. Black-Scholes Pricing<a class="headerlink" href="#1-black-scholes-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Assumption</strong>: Unique EMM under geometric Brownian motion with constant volatility.</p>
 <p><strong>Price</strong>: </p>
-<p>$$</p>
-<p>\pi^{\text{BS}}(\xi) = \mathbb{E}_{\mathbb{Q}^{\text{BS}}}[e^{-rT} \xi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{BS}}(\xi) = \mathbb{E}_{\mathbb{Q}^{\text{BS}}}[e^{-rT} \xi]
+\]</div>
 <p><strong>Relationship to Superhedging</strong>: When <span class="arithmatex">\(\mathcal{M} = \{\mathbb{Q}^{\text{BS}}\}\)</span>:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \pi^{\text{BS}}(\xi)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi) = \pi^{\text{sub}}(\xi) = \pi^{\text{BS}}(\xi)
+\]</div>
 <p><strong>Model Uncertainty</strong>: With volatility uncertainty:</p>
-<p>$$</p>
-<p>\pi^{\text{BS}}(\xi; \sigma) \in [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{BS}}(\xi; \sigma) \in [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)]
+\]</div>
 <p>for <span class="arithmatex">\(\sigma \in [\sigma_{\min}, \sigma_{\max}]\)</span>.</p>
 <h3 id="2-utility-based-pricing">2. Utility-Based Pricing<a class="headerlink" href="#2-utility-based-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Indifference Price</strong>: The price <span class="arithmatex">\(p\)</span> at which an agent is indifferent between trading and not trading:</p>
-<p>$$</p>
-<p>U(W) = \mathbb{E}[u(W_T^{p, \theta})]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+U(W) = \mathbb{E}[u(W_T^{p, \theta})]
+\]</div>
 <p><strong>Comparison</strong>: 
 - Superhedging: Model-free, robust, but often conservative
 - Utility-based: Incorporates preferences, but model-dependent</p>
 <p><strong>Asymptotic Equivalence</strong>: For small claims, utility indifference prices converge to martingale prices, which lie in <span class="arithmatex">\([\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)]\)</span>.</p>
 <h3 id="3-good-deal-bounds">3. Good-Deal Bounds<a class="headerlink" href="#3-good-deal-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Restrict EMMs to those satisfying additional constraints, e.g., Sharpe ratio bounds:</p>
-<p>$$</p>
-<p>\mathcal{M}_{\text{GD}} = \left{ \mathbb{Q} \in \mathcal{M}: \left| \frac{d\mathbb{Q}}{d\mathbb{P}} \right| \leq K \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{M}_{\text{GD}} = \left\{ \mathbb{Q} \in \mathcal{M}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}} \right\| \leq K \right\}
+\]</div>
 <p><strong>Good-Deal Bounds</strong>:</p>
-<p>$$</p>
-<p>\pi^{\text{GD, sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}<em _mathbb_Q="\mathbb{Q">{\text{GD}}} \mathbb{E}</em>(\xi)}}[e^{-rT} \xi] \geq \pi^{\text{sub}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\pi^{\text{GD, sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}<em _mathbb_Q="\mathbb{Q">{\text{GD}}} \mathbb{E}</em>(\xi)}}[e^{-rT} \xi] \leq \pi^{\text{sup}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{GD, sub}}(\xi) = \inf_{\mathbb{Q} \in \mathcal{M}_{\text{GD}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \geq \pi^{\text{sub}}(\xi)
+\]</div>
+<div class="arithmatex">\[
+\pi^{\text{GD, sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}_{\text{GD}}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi] \leq \pi^{\text{sup}}(\xi)
+\]</div>
 <p><strong>Interpretation</strong>: Good-deal bounds tighten arbitrage-free bounds by excluding measures corresponding to "too good" investment opportunities.</p>
 <h2 id="extensions-and-generalizations">Extensions and Generalizations<a class="headerlink" href="#extensions-and-generalizations" title="Permanent link">&para;</a></h2>
 <h3 id="1-transaction-costs">1. Transaction Costs<a class="headerlink" href="#1-transaction-costs" title="Permanent link">&para;</a></h3>
 <p><strong>Proportional Transaction Costs</strong>: Buying costs <span class="arithmatex">\((1+\lambda)S\)</span>, selling receives <span class="arithmatex">\((1-\mu)S\)</span>.</p>
 <p><strong>Shadow Price</strong>: The superhedging price becomes:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi; \lambda, \mu) \geq \pi^{\text{sup}}(\xi; 0, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi; \lambda, \mu) \geq \pi^{\text{sup}}(\xi; 0, 0)
+\]</div>
 <p>with strict inequality reflecting the cost of trading.</p>
 <p><strong>Asymptotics</strong>: As <span class="arithmatex">\(\lambda, \mu \to 0\)</span>:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi; \lambda, \mu) \approx \pi^{\text{sup}}(\xi; 0, 0) + O(\sqrt{\lambda + \mu})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi; \lambda, \mu) \approx \pi^{\text{sup}}(\xi; 0, 0) + O(\sqrt{\lambda + \mu})
+\]</div>
 <p>under regular conditions.</p>
 <h3 id="2-discrete-time-models">2. Discrete-Time Models<a class="headerlink" href="#2-discrete-time-models" title="Permanent link">&para;</a></h3>
 <p><strong>Discrete Trading</strong>: Trade only at times <span class="arithmatex">\(0 = t_0 &lt; t_1 &lt; \cdots &lt; t_N = T\)</span>.</p>
 <p><strong>Superhedging Price</strong>: </p>
-<p>$$</p>
-<p>\pi^{\text{sup}}<em _text_continuous="\text{continuous">{t_0, \ldots, t_N}(\xi) \geq \pi^{\text{sup}}</em>(\xi)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}_{t_0, \ldots, t_N}(\xi) \geq \pi^{\text{sup}}_{\text{continuous}}(\xi)
+\]</div>
 <p><strong>Convergence</strong>: As the mesh size <span class="arithmatex">\(\max_i (t_{i+1} - t_i) \to 0\)</span>:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}}<em _text_continuous="\text{continuous">{t_0, \ldots, t_N}(\xi) \to \pi^{\text{sup}}</em>(\xi)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}_{t_0, \ldots, t_N}(\xi) \to \pi^{\text{sup}}_{\text{continuous}}(\xi)
+\]</div>
 <h3 id="3-multiple-assets">3. Multiple Assets<a class="headerlink" href="#3-multiple-assets" title="Permanent link">&para;</a></h3>
 <p><strong>Multi-Dimensional Model</strong>: <span class="arithmatex">\(S_t = (S_t^1, \ldots, S_t^d) \in \mathbb{R}^d\)</span>.</p>
 <p><strong>Superhedging Price</strong>: </p>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+\]</div>
 <p>remains valid.</p>
 <p><strong>Correlation Uncertainty</strong>: When correlation structure is uncertain, <span class="arithmatex">\(\mathcal{M}\)</span> contains measures with different correlation matrices, widening the bid-ask spread.</p>
 <h3 id="4-path-dependent-claims">4. Path-Dependent Claims<a class="headerlink" href="#4-path-dependent-claims" title="Permanent link">&para;</a></h3>
 <p><strong>General Path-Dependent Payoff</strong>: </p>
-<p>$$</p>
-<p>\xi = g((S_t)_{0 \leq t \leq T})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\xi = g((S_t)_{0 \leq t \leq T})
+\]</div>
 <p><strong>Superhedging</strong>: Requires strategies adapted to the entire path, not just terminal value.</p>
 <p><strong>Example</strong>: Lookback option:</p>
-<p>$$</p>
-<p>\xi = \max_{0 \leq t \leq T} S_t - K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\xi = \max_{0 \leq t \leq T} S_t - K
+\]</div>
 <p><strong>Superhedging PDE</strong>: For Markovian path functionals, solve HJB equation in augmented state space <span class="arithmatex">\((t, S, M)\)</span> where <span class="arithmatex">\(M = \max_{0 \leq s \leq t} S_s\)</span>.</p>
 <h2 id="case-studies">Case Studies<a class="headerlink" href="#case-studies" title="Permanent link">&para;</a></h2>
 <h3 id="1-case-study-1-vix-options">1. Case Study 1: VIX Options<a class="headerlink" href="#1-case-study-1-vix-options" title="Permanent link">&para;</a></h3>
@@ -47741,17 +47741,17 @@
 <p><strong>Superhedging</strong>: Use traded VIX futures to construct super-replicating portfolio.</p>
 <p><strong>Model Uncertainty</strong>: Multiple models for VIX dynamics (mean-reverting, Heston, etc.) lead to a set <span class="arithmatex">\(\mathcal{M}\)</span> of martingale measures.</p>
 <p><strong>Robust Price</strong>:</p>
-<p>$$</p>
-<p>[\pi^{\text{sub}}, \pi^{\text{sup}}] = \text{arbitrage-free price range}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[\pi^{\text{sub}}, \pi^{\text{sup}}] = \text{arbitrage-free price range}
+\]</div>
 <h3 id="2-case-study-2-credit-default-swaps-cds">2. Case Study 2: Credit Default Swaps (CDS)<a class="headerlink" href="#2-case-study-2-credit-default-swaps-cds" title="Permanent link">&para;</a></h3>
 <p><strong>CDS Payoff</strong>: Pays <span class="arithmatex">\(1-R\)</span> if default occurs before <span class="arithmatex">\(T\)</span>, where <span class="arithmatex">\(R\)</span> is the recovery rate.</p>
 <p><strong>Superhedging</strong>: Use corporate bonds or other CDS contracts.</p>
 <p><strong>Default Intensity Uncertainty</strong>: Intensity <span class="arithmatex">\(\lambda_t\)</span> is uncertain, leading to multiple martingale measures.</p>
 <p><strong>Robust Pricing</strong>:</p>
-<p>$$</p>
-<p>\pi^{\text{sup}} = \sup_{\lambda \in \Lambda} \mathbb{E}<em T_125_="T}" _="&lt;" _123_tau="{\tau">{\mathbb{Q}^{\lambda}}\left[ e^{-rT} (1-R) \mathbb{1}</em> \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^{\text{sup}} = \sup_{\lambda \in \Lambda} \mathbb{E}_{\mathbb{Q}^{\lambda}}\left[ e^{-rT} (1-R) \mathbb{1}_{\{\tau &lt; T\}} \right]
+\]</div>
 <p>where <span class="arithmatex">\(\tau\)</span> is the default time.</p>
 <h3 id="3-case-study-3-energy-derivatives">3. Case Study 3: Energy Derivatives<a class="headerlink" href="#3-case-study-3-energy-derivatives" title="Permanent link">&para;</a></h3>
 <p><strong>Power Swing Options</strong>: Allow buyer to exercise multiple times, subject to constraints.</p>
@@ -47791,15 +47791,15 @@
 <ol>
 <li><strong>Duality Principle</strong>: Dynamic superhedging price equals static optimization over martingale measures:</li>
 </ol>
-<p>$$</p>
-<p>\pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]</p>
-<p>$$</p>
+<p>$$
+   \pi^{\text{sup}}(\xi) = \sup_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT} \xi]
+   $$</p>
 <ol>
 <li><strong>No-Arbitrage Bounds</strong>: The arbitrage-free price range is:</li>
 </ol>
-<p>$$</p>
-<p>[\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}<em _mathbb_Q="\mathbb{Q">{\mathbb{Q}}[e^{-rT} \xi], \, \sup</em> \xi] \right]} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT</p>
-<p>$$</p>
+<p>$$
+   [\pi^{\text{sub}}(\xi), \pi^{\text{sup}}(\xi)] = \left[ \inf_{\mathbb{Q} \in \mathcal{M}} \mathbb{E}<em _mathbb_Q="\mathbb{Q">{\mathbb{Q}}[e^{-rT} \xi], \, \sup</em> \xi] \right]
+   $$} \in \mathcal{M}} \mathbb{E}_{\mathbb{Q}}[e^{-rT</p>
 <ol>
 <li>
 <p><strong>Completeness</strong>: Market completeness <span class="arithmatex">\(\Leftrightarrow\)</span> Unique EMM <span class="arithmatex">\(\Leftrightarrow\)</span> Zero bid-ask spread</p>

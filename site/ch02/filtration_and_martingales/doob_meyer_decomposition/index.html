@@ -46738,9 +46738,9 @@
 <hr />
 <h2 id="motivation-the-ito-process-perspective">Motivation: The Itô Process Perspective<a class="headerlink" href="#motivation-the-ito-process-perspective" title="Permanent link">&para;</a></h2>
 <p>Consider an Itô process:</p>
-<p>$$</p>
-<p>X_t = X_0 + \int_0^t b_s \, ds + \int_0^t \sigma_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 + \int_0^t b_s \, ds + \int_0^t \sigma_s \, dW_s
+\]</div>
 <p>This already exhibits a decomposition:</p>
 <ul>
 <li><strong>Drift term</strong>: <span class="arithmatex">\(A_t = \int_0^t b_s \, ds\)</span> — predictable, finite variation</li>
@@ -46756,18 +46756,18 @@
 <li><span class="arithmatex">\((A_n)\)</span> — a predictable process with <span class="arithmatex">\(A_0 = 0\)</span></li>
 </ul>
 <p>such that:</p>
-<p>$$</p>
-<p>\boxed{X_n = X_0 + M_n + A_n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{X_n = X_0 + M_n + A_n}
+\]</div>
 <p><strong>Proof</strong>: Define <span class="arithmatex">\(A_n\)</span> recursively by:</p>
-<p>$$</p>
-<p>A_0 = 0, \quad A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A_0 = 0, \quad A_n - A_{n-1} = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}]
+\]</div>
 <p>Then <span class="arithmatex">\(A_n\)</span> is predictable (since <span class="arithmatex">\(A_n - A_{n-1}\)</span> is <span class="arithmatex">\(\mathcal{F}_{n-1}\)</span>-measurable).</p>
 <p>Define <span class="arithmatex">\(M_n = X_n - X_0 - A_n\)</span>. Then:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_n - M_{n-1} \mid \mathcal{F}<em n-1="n-1">{n-1}] = \mathbb{E}[X_n - X</em>} \mid \mathcal{F<em n-1="n-1">{n-1}] - (A_n - A</em>) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_n - M_{n-1} \mid \mathcal{F}_{n-1}] = \mathbb{E}[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] - (A_n - A_{n-1}) = 0
+\]</div>
 <p>So <span class="arithmatex">\(M_n\)</span> is a martingale.</p>
 <p><strong>Uniqueness</strong>: If <span class="arithmatex">\(X_n = X_0 + M_n + A_n = X_0 + \widetilde{M}_n + \widetilde{A}_n\)</span>, then <span class="arithmatex">\(M_n - \widetilde{M}_n = \widetilde{A}_n - A_n\)</span> is both a martingale and predictable. A predictable martingale starting at 0 must be 0 (exercise). <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Submartingale case</strong>: <span class="arithmatex">\(X_n\)</span> is a submartingale iff <span class="arithmatex">\(A_n\)</span> is increasing (i.e., <span class="arithmatex">\(A_n - A_{n-1} \ge 0\)</span>).</p>
@@ -46783,9 +46783,9 @@
 <hr />
 <h2 id="class-d-processes">Class (D) Processes<a class="headerlink" href="#class-d-processes" title="Permanent link">&para;</a></h2>
 <p><strong>Definition</strong>: A càdlàg adapted process <span class="arithmatex">\((X_t)_{t \ge 0}\)</span> is of <strong>class (D)</strong> if the family:</p>
-<p>$$</p>
-<p>{X_\tau : \tau \text{ is a bounded stopping time}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{X_\tau : \tau \text{ is a bounded stopping time}\}
+\]</div>
 <p>is uniformly integrable.</p>
 <p><strong>Interpretation</strong>: Class (D) processes don't blow up too badly, even when stopped at arbitrary (bounded) random times.</p>
 <p><strong>Examples</strong>:</p>
@@ -46802,13 +46802,13 @@
 <li><span class="arithmatex">\((A_t)\)</span> — a predictable càdlàg increasing process with <span class="arithmatex">\(A_0 = 0\)</span></li>
 </ul>
 <p>such that:</p>
-<p>$$</p>
-<p>\boxed{X_t = X_0 + M_t + A_t, \quad t \ge 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{X_t = X_0 + M_t + A_t, \quad t \ge 0}
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>\boxed{M_t = X_t - X_0 - A_t \text{ is a martingale}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{M_t = X_t - X_0 - A_t \text{ is a martingale}}
+\]</div>
 <p><strong>Remarks</strong>:</p>
 <ol>
 <li>"Increasing" means <span class="arithmatex">\(A_s \le A_t\)</span> for <span class="arithmatex">\(s \le t\)</span> almost surely.</li>
@@ -46826,13 +46826,13 @@
 <hr />
 <h2 id="uniqueness">Uniqueness<a class="headerlink" href="#uniqueness" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: The decomposition is unique: if</p>
-<p>$$</p>
-<p>X_t = X_0 + M_t + A_t = X_0 + \widetilde{M}_t + \widetilde{A}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 + M_t + A_t = X_0 + \widetilde{M}_t + \widetilde{A}_t
+\]</div>
 <p>with both <span class="arithmatex">\((A_t)\)</span> and <span class="arithmatex">\((\widetilde{A}_t)\)</span> predictable increasing, then:</p>
-<p>$$</p>
-<p>A_t = \widetilde{A}_t \quad \text{for all } t, \text{ a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A_t = \widetilde{A}_t \quad \text{for all } t, \text{ a.s.}
+\]</div>
 <p>Hence <span class="arithmatex">\(M_t = \widetilde{M}_t\)</span> as well.</p>
 <p><strong>Proof</strong>: The difference <span class="arithmatex">\(A_t - \widetilde{A}_t = \widetilde{M}_t - M_t\)</span> is both:</p>
 <ul>
@@ -46849,51 +46849,51 @@
 <h2 id="key-examples">Key Examples<a class="headerlink" href="#key-examples" title="Permanent link">&para;</a></h2>
 <h3 id="example-1-squared-brownian-motion">Example 1: Squared Brownian Motion<a class="headerlink" href="#example-1-squared-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(X_t = W_t^2\)</span>, Itô's formula gives:</p>
-<p>$$</p>
-<p>W_t^2 = 2\int_0^t W_s \, dW_s + t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^2 = 2\int_0^t W_s \, dW_s + t
+\]</div>
 <p>Thus:</p>
 <ul>
 <li><span class="arithmatex">\(M_t = 2\int_0^t W_s \, dW_s\)</span> (martingale)</li>
 <li><span class="arithmatex">\(A_t = t\)</span> (predictable increasing)</li>
 </ul>
 <p>The compensator is deterministic: <span class="arithmatex">\(A_t = t = [W]_t\)</span> (the quadratic variation).</p>
-<p>$$</p>
-<p>\boxed{W_t^2 = M_t + t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{W_t^2 = M_t + t}
+\]</div>
 <h3 id="example-2-submartingale-from-convex-transform">Example 2: Submartingale from Convex Transform<a class="headerlink" href="#example-2-submartingale-from-convex-transform" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(M_t\)</span> is a martingale and <span class="arithmatex">\(\varphi\)</span> is convex with <span class="arithmatex">\(\varphi(M_t) \in L^1\)</span>, then <span class="arithmatex">\(X_t = \varphi(M_t)\)</span> is a submartingale.</p>
 <p>For <span class="arithmatex">\(\varphi(x) = x^2\)</span> and <span class="arithmatex">\(M_t = W_t\)</span>:</p>
-<p>$$</p>
-<p>W_t^2 - t = M_t \quad \text{(the martingale part)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^2 - t = M_t \quad \text{(the martingale part)}
+\]</div>
 <h3 id="example-3-absolute-value">Example 3: Absolute Value<a class="headerlink" href="#example-3-absolute-value" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(|W_t|\)</span> is a submartingale. Its Doob–Meyer decomposition involves the <strong>local time</strong> <span class="arithmatex">\(L_t^0\)</span>:</p>
-<p>$$</p>
-<p>|W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|W_t| = \int_0^t \text{sgn}(W_s) \, dW_s + L_t^0
+\]</div>
 <p>where <span class="arithmatex">\(L_t^0\)</span> is the local time at 0 (a continuous increasing process measuring time spent near 0).</p>
 <h3 id="example-4-maximum-process">Example 4: Maximum Process<a class="headerlink" href="#example-4-maximum-process" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(M_t^* = \sup_{s \le t} W_s\)</span> is a submartingale. Its compensator involves reflected Brownian motion and is related to the running maximum's rate of increase.</p>
 <hr />
 <h2 id="connection-to-quadratic-variation">Connection to Quadratic Variation<a class="headerlink" href="#connection-to-quadratic-variation" title="Permanent link">&para;</a></h2>
 <p>For a continuous local martingale <span class="arithmatex">\(M_t\)</span>, the <strong>quadratic variation</strong> <span class="arithmatex">\([M]_t\)</span> is the unique continuous increasing process such that:</p>
-<p>$$</p>
-<p>M_t^2 - [M]_t \text{ is a local martingale}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t^2 - [M]_t \text{ is a local martingale}
+\]</div>
 <p>Comparing with Doob–Meyer: <span class="arithmatex">\(M_t^2\)</span> is a submartingale (when <span class="arithmatex">\(M_t\)</span> is a true martingale), and <span class="arithmatex">\([M]_t\)</span> is its compensator.</p>
 <p><strong>For Brownian motion</strong>: <span class="arithmatex">\([W]_t = t\)</span>, recovering <span class="arithmatex">\(W_t^2 - t\)</span> is a martingale.</p>
 <p><strong>Key relationship</strong>:</p>
-<p>$$</p>
-<p>\text{Quadratic variation} = \text{Compensator of the square}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Quadratic variation} = \text{Compensator of the square}
+\]</div>
 <hr />
 <h2 id="semimartingales">Semimartingales<a class="headerlink" href="#semimartingales" title="Permanent link">&para;</a></h2>
 <p>The Doob–Meyer decomposition naturally leads to the class of <strong>semimartingales</strong>.</p>
 <p><strong>Definition</strong>: A process <span class="arithmatex">\(X_t\)</span> is a <strong>semimartingale</strong> if it can be written as:</p>
-<p>$$</p>
-<p>X_t = X_0 + M_t + A_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 + M_t + A_t
+\]</div>
 <p>where <span class="arithmatex">\(M_t\)</span> is a local martingale and <span class="arithmatex">\(A_t\)</span> is an adapted càdlàg finite variation process (not necessarily increasing or predictable).</p>
 <p><strong>Key facts</strong>:</p>
 <ol>
@@ -46923,9 +46923,9 @@
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The Doob–Meyer Decomposition:</p>
-<p>$$</p>
-<p>\boxed{X_t = X_0 + M_t + A_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{X_t = X_0 + M_t + A_t}
+\]</div>
 <table>
 <thead>
 <tr>

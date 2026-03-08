@@ -46537,9 +46537,9 @@
 
 <h1 id="ito-integration-an-intuitive-introduction">Itô Integration: An Intuitive Introduction<a class="headerlink" href="#ito-integration-an-intuitive-introduction" title="Permanent link">&para;</a></h1>
 <p>Having explored ordinary (Lebesgue) integrals <span class="arithmatex">\(\int_0^t f(s, B_s) ds\)</span>, we now turn to the centerpiece of stochastic calculus: the <strong>Itô integral</strong></p>
-<p>$$</p>
-<p>\int_0^t f(s, B_s) \, dB_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f(s, B_s) \, dB_s
+\]</div>
 <p>The key difference is that we integrate with respect to <strong>Brownian increments <span class="arithmatex">\(dB_s\)</span></strong> rather than time increments <span class="arithmatex">\(ds\)</span>. This seemingly small change has profound consequences.</p>
 <hr />
 <h2 id="financial-interpretation-stock-portfolio">Financial interpretation: Stock portfolio<a class="headerlink" href="#financial-interpretation-stock-portfolio" title="Permanent link">&para;</a></h2>
@@ -46554,15 +46554,15 @@
 </ul>
 <p><strong>Key insight</strong>: The increment <span class="arithmatex">\(dB_s\)</span> is <strong>random</strong>—the stock price fluctuates unpredictably. Your P&amp;L depends on both your position <span class="arithmatex">\(f(s, B_s)\)</span> and the random price movements.</p>
 <h3 id="1-summary-table">1. Summary table<a class="headerlink" href="#1-summary-table" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \text{Stock price at beginning of day } s &amp; &amp; B_s \\
 \text{Stock position at beginning of day } s &amp; &amp; f(s, B_s) \\
 \text{P\&amp;L of 1 stock at end of day } s &amp; &amp; dB_s = B_{s+ds} - B_s \\
 \text{P\&amp;L of stock position at end of day } s &amp; &amp; f(s, B_s) \, dB_s \\
 \text{Cumulative P&amp;L up to end of day } t &amp; &amp; \displaystyle\int_0^t f(s, B_s) \, dB_s
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <hr />
 <h2 id="example-1-computing-int_01-b_s-db_s-by-hand">Example 1: Computing <span class="arithmatex">\(\int_0^1 B_s \, dB_s\)</span> by hand<a class="headerlink" href="#example-1-computing-int_01-b_s-db_s-by-hand" title="Permanent link">&para;</a></h2>
 <p>We use the same 10 coin flips from the Lebesgue integration section.</p>
@@ -46570,8 +46570,8 @@
 <p><strong>Coin flips</strong>: <span class="arithmatex">\(H H T H T T H H H T\)</span></p>
 <p><strong>Strategy</strong>: Hold <span class="arithmatex">\(B_{s}\)</span> shares of stock at time <span class="arithmatex">\(s\)</span> (the "follow the price" strategy)</p>
 <h3 id="2-computation-table">2. Computation table<a class="headerlink" href="#2-computation-table" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 0/10 &amp; 1/10 &amp; 2/10 &amp; 3/10 &amp; 4/10 &amp; 5/10 \\
 \hline
 \text{Coin flip} &amp; - &amp; H &amp; H &amp; T &amp; H &amp; T \\
@@ -46582,10 +46582,10 @@ dB_t = B_t - B_{t-dt} &amp; - &amp; \frac{1}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}
 f(t, B_t) = B_{t-dt} &amp; - &amp; 0 &amp; \frac{1}{\sqrt{10}} &amp; \frac{2}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \frac{2}{\sqrt{10}} \\
 f(t, B_t) \, dB_t &amp; - &amp; 0 &amp; \frac{1}{10} &amp; \frac{-2}{10} &amp; \frac{1}{10} &amp; \frac{-2}{10} \\
 \int_0^t f(s, B_s) \, dB_s &amp; - &amp; 0 &amp; \frac{1}{10} &amp; \frac{-1}{10} &amp; \frac{0}{10} &amp; \frac{-2}{10}
-\end{array}\]</div>
-<p>$$</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 6/10 &amp; 7/10 &amp; 8/10 &amp; 9/10 &amp; 10/10 \\
 \hline
 \text{Coin flip} &amp; T &amp; H &amp; H &amp; H &amp; T \\
@@ -46596,12 +46596,12 @@ dB_t = B_t - B_{t-dt} &amp; \frac{-1}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp;
 f(t, B_t) = B_{t-dt} &amp; \frac{1}{\sqrt{10}} &amp; \frac{0}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \frac{2}{\sqrt{10}} &amp; \frac{3}{\sqrt{10}} \\
 f(t, B_t) \, dB_t &amp; \frac{-1}{10} &amp; \frac{0}{10} &amp; \frac{1}{10} &amp; \frac{2}{10} &amp; \frac{-3}{10} \\
 \int_0^t f(s, B_s) \, dB_s &amp; \frac{-3}{10} &amp; \frac{-3}{10} &amp; \frac{-2}{10} &amp; \frac{0}{10} &amp; \frac{-3}{10}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Result</strong>:</p>
-<p>$$</p>
-<p>\int_0^1 B_s \, dB_s = \frac{-3}{10} = -0.3</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 B_s \, dB_s = \frac{-3}{10} = -0.3
+\]</div>
 <h3 id="3-key-observations">3. Key observations<a class="headerlink" href="#3-key-observations" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -46617,28 +46617,28 @@ f(t, B_t) \, dB_t &amp; \frac{-1}{10} &amp; \frac{0}{10} &amp; \frac{1}{10} &amp
 <p><strong>Connection to <span class="arithmatex">\(B_t^2\)</span></strong>: There's a surprising relationship:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>\int_0^1 B_s \, dB_s = \frac{B_1^2 - 1}{2} = \frac{(2/\sqrt{10})^2 - 1}{2} = \frac{4/10 - 1}{2} = -0.3</p>
-<p>$$</p>
+<p>$$
+   \int_0^1 B_s \, dB_s = \frac{B_1^2 - 1}{2} = \frac{(2/\sqrt{10})^2 - 1}{2} = \frac{4/10 - 1}{2} = -0.3
+   $$</p>
 <p>This exact equality is <strong>Itô's formula</strong> for <span class="arithmatex">\(f(x) = x^2/2\)</span>!</p>
 <hr />
 <h2 id="example-2-computing-int_01-s-db_s-by-hand">Example 2: Computing <span class="arithmatex">\(\int_0^1 s \, dB_s\)</span> by hand<a class="headerlink" href="#example-2-computing-int_01-s-db_s-by-hand" title="Permanent link">&para;</a></h2>
 <p>Now we hold <span class="arithmatex">\(s\)</span> shares at time <span class="arithmatex">\(s\)</span> (a time-dependent strategy).</p>
 <h3 id="1-computation-table-abbreviated">1. Computation table (abbreviated)<a class="headerlink" href="#1-computation-table-abbreviated" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 0/10 &amp; 1/10 &amp; 2/10 &amp; \cdots &amp; 9/10 &amp; 10/10 \\
 \hline
 dB_t &amp; - &amp; \frac{1}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \cdots &amp; \frac{1}{\sqrt{10}} &amp; \frac{-1}{\sqrt{10}} \\
 f(t, B_t) = t - dt &amp; - &amp; 0 &amp; \frac{1}{10} &amp; \cdots &amp; \frac{8}{10} &amp; \frac{9}{10} \\
 f(t, B_t) \, dB_t &amp; - &amp; 0 &amp; \frac{1}{10^{3/2}} &amp; \cdots &amp; \frac{8}{10^{3/2}} &amp; \frac{-9}{10^{3/2}} \\
 \int_0^t s \, dB_s &amp; - &amp; 0 &amp; \frac{1}{10^{3/2}} &amp; \cdots &amp; \frac{14}{10^{3/2}} &amp; \frac{5}{10^{3/2}}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Result</strong>:</p>
-<p>$$</p>
-<p>\int_0^1 s \, dB_s = \frac{5}{10^{3/2}} \approx 0.158</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 s \, dB_s = \frac{5}{10^{3/2}} \approx 0.158
+\]</div>
 <p><strong>Contrast with Lebesgue integral</strong>:</p>
 <ul>
 <li>Lebesgue: <span class="arithmatex">\(\int_0^1 s \, ds = 0.5\)</span> (deterministic, same for all paths)</li>
@@ -46648,8 +46648,8 @@ f(t, B_t) \, dB_t &amp; - &amp; 0 &amp; \frac{1}{10^{3/2}} &amp; \cdots &amp; \f
 <h2 id="example-3-computing-int_01-s-b_s-db_s-by-hand">Example 3: Computing <span class="arithmatex">\(\int_0^1 s B_s \, dB_s\)</span> by hand<a class="headerlink" href="#example-3-computing-int_01-s-b_s-db_s-by-hand" title="Permanent link">&para;</a></h2>
 <p>Combining time and price dependence: hold <span class="arithmatex">\(s B_s\)</span> shares at time <span class="arithmatex">\(s\)</span>.</p>
 <h3 id="1-computation-table-final-rows-only">1. Computation table (final rows only)<a class="headerlink" href="#1-computation-table-final-rows-only" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 6/10 &amp; 7/10 &amp; 8/10 &amp; 9/10 &amp; 10/10 \\
 \hline
 h(t, B_t) = t - dt &amp; \frac{5}{10} &amp; \frac{6}{10} &amp; \frac{7}{10} &amp; \frac{8}{10} &amp; \frac{9}{10} \\
@@ -46658,12 +46658,12 @@ f(t, B_t) = h \cdot g &amp; \frac{5}{10^{3/2}} &amp; \frac{0}{10^{3/2}} &amp; \f
 dB_t &amp; \frac{-1}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \frac{-1}{\sqrt{10}} \\
 f(t, B_t) \, dB_t &amp; \frac{-5}{100} &amp; \frac{0}{100} &amp; \frac{7}{100} &amp; \frac{16}{100} &amp; \frac{-27}{100} \\
 \int_0^t s B_s \, dB_s &amp; \frac{-13}{100} &amp; \frac{-13}{100} &amp; \frac{-6}{100} &amp; \frac{10}{100} &amp; \frac{-17}{100}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Result</strong>:</p>
-<p>$$</p>
-<p>\int_0^1 s B_s \, dB_s = \frac{-17}{100} = -0.17</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 s B_s \, dB_s = \frac{-17}{100} = -0.17
+\]</div>
 <hr />
 <h2 id="python-simulation-monte-carlo-verification">Python simulation: Monte Carlo verification<a class="headerlink" href="#python-simulation-monte-carlo-verification" title="Permanent link">&para;</a></h2>
 <p>We verify these integrals with 10,000 simulated Brownian paths.</p>
@@ -46744,9 +46744,9 @@ f(t, B_t) \, dB_t &amp; \frac{-5}{100} &amp; \frac{0}{100} &amp; \frac{7}{100} &
 <ol>
 <li><strong>Martingale property</strong>: The mean of <span class="arithmatex">\(\int_0^T f(s, B_s) dB_s\)</span> is approximately zero across all paths:</li>
 </ol>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^T f(s, B_s) dB_s\right] \approx 0</p>
-<p>$$</p>
+<p>$$
+   \mathbb{E}\left[\int_0^T f(s, B_s) dB_s\right] \approx 0
+   $$</p>
 <ol>
 <li>
 <p><strong>Normally distributed</strong>: The terminal values are approximately normally distributed (but <strong>not</strong> always—depends on <span class="arithmatex">\(f\)</span>)</p>
@@ -46804,9 +46804,9 @@ f(t, B_t) \, dB_t &amp; \frac{-5}{100} &amp; \frac{0}{100} &amp; \frac{7}{100} &
 <hr />
 <h2 id="the-martingale-property-why-zero-mean">The martingale property: Why zero mean?<a class="headerlink" href="#the-martingale-property-why-zero-mean" title="Permanent link">&para;</a></h2>
 <p>For any adapted process <span class="arithmatex">\(f(s, B_s)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\int_0^t f(s, B_s) dB_s\right] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\int_0^t f(s, B_s) dB_s\right] = 0
+\]</div>
 <p><strong>Intuition</strong>: </p>
 <ul>
 <li>At each time <span class="arithmatex">\(s\)</span>, you decide your position <span class="arithmatex">\(f(s, B_s)\)</span> based on past information</li>
@@ -46828,18 +46828,18 @@ E[∫ s B_s dB] = 0.000456
 <hr />
 <h2 id="the-ito-isometry-variance-formula">The Itô isometry: Variance formula<a class="headerlink" href="#the-ito-isometry-variance-formula" title="Permanent link">&para;</a></h2>
 <p>A remarkable property of the Itô integral is the <strong>Itô isometry</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}\left[\left(\int_0^t f(s, B_s) dB_s\right)^2\right]
 = \mathbb{E}\left[\int_0^t f(s, B_s)^2 ds\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Interpretation</strong>: The variance of the stochastic integral equals the expected value of the ordinary integral of <span class="arithmatex">\(f^2\)</span>.</p>
 <p><strong>Example</strong>: For <span class="arithmatex">\(f(s, B_s) = B_s\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\left(\int_0^1 B_s dB_s\right)^2\right]
-= \mathbb{E}\left[\int_0^1 B_s^2 ds\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\left(\int_0^1 B_s dB_s\right)^2\right]
+= \mathbb{E}\left[\int_0^1 B_s^2 ds\right]
+\]</div>
 <p>The left side is the variance of the cumulative P&amp;L. The right side is the expected accumulated "volatility" <span class="arithmatex">\(B_s^2\)</span>.</p>
 <p><strong>Verification from simulation</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Variance = E[(∫ f dB)^2]</span>
@@ -46855,33 +46855,33 @@ E[∫ s B_s dB] = 0.000456
 <hr />
 <h2 id="why-left-endpoint-evaluation-matters">Why left-endpoint evaluation matters<a class="headerlink" href="#why-left-endpoint-evaluation-matters" title="Permanent link">&para;</a></h2>
 <p>In Itô integration, we <strong>must</strong> evaluate the integrand at the <strong>left endpoint</strong> (beginning of the interval):</p>
-<p>$$</p>
-<p>\int_0^t f(s, B_s) dB_s
-= \lim \sum_{i} f(t_i, B_{t_i}) \cdot (B_{t_{i+1}} - B_{t_i})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f(s, B_s) dB_s
+= \lim \sum_{i} f(t_i, B_{t_i}) \cdot (B_{t_{i+1}} - B_{t_i})
+\]</div>
 <p><strong>Why?</strong> Because at time <span class="arithmatex">\(t_i\)</span>, you can only know information up to <span class="arithmatex">\(t_i\)</span>, not the future. This is the <strong>adaptedness</strong> condition—you cannot "peek into the future" when deciding your trading position.</p>
 <p><strong>Stratonovich integral</strong>: If we use the midpoint <span class="arithmatex">\((f(t_i) + f(t_{i+1}))/2\)</span>, we get a different integral called the <strong>Stratonovich integral</strong>, which has different properties and is used in physics.</p>
 <hr />
 <h2 id="connection-to-itos-formula">Connection to Itô's formula<a class="headerlink" href="#connection-to-itos-formula" title="Permanent link">&para;</a></h2>
 <p>The surprising result from Example 1:</p>
-<p>$$</p>
-<p>\int_0^1 B_s dB_s = \frac{B_1^2 - 1}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 B_s dB_s = \frac{B_1^2 - 1}{2}
+\]</div>
 <p>is a special case of <strong>Itô's formula</strong>. For <span class="arithmatex">\(f(x) = x^2\)</span>:</p>
-<p>$$</p>
-<p>f(B_t) - f(B_0)
-= \int_0^t f'(B_s) dB_s + \frac{1}{2} \int_0^t f''(B_s) ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(B_t) - f(B_0)
+= \int_0^t f'(B_s) dB_s + \frac{1}{2} \int_0^t f''(B_s) ds
+\]</div>
 <p>With <span class="arithmatex">\(f'(x) = 2x\)</span> and <span class="arithmatex">\(f''(x) = 2\)</span>:</p>
-<p>$$</p>
-<p>B_t^2 - 0
+<div class="arithmatex">\[
+B_t^2 - 0
 = \int_0^t 2B_s dB_s + \frac{1}{2} \int_0^t 2 \, ds
-= 2 \int_0^t B_s dB_s + t</p>
-<p>$$</p>
+= 2 \int_0^t B_s dB_s + t
+\]</div>
 <p>Solving for the Itô integral:</p>
-<p>$$</p>
-<p>\int_0^t B_s dB_s = \frac{B_t^2 - t}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t B_s dB_s = \frac{B_t^2 - t}{2}
+\]</div>
 <p>The <span class="arithmatex">\(-t\)</span> term comes from the <strong>second-order correction</strong> due to the quadratic variation of Brownian motion. This is the essence of stochastic calculus.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>

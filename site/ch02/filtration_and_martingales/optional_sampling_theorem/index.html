@@ -46647,67 +46647,67 @@
 <h2 id="the-central-question">The Central Question<a class="headerlink" href="#the-central-question" title="Permanent link">&para;</a></h2>
 <p>The martingale property states that <span class="arithmatex">\(\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s\)</span> for deterministic times <span class="arithmatex">\(s \le t\)</span>. But what happens when we evaluate a martingale at <strong>random times</strong>?</p>
 <p>If <span class="arithmatex">\(\sigma \le \tau\)</span> are stopping times, does the martingale property extend to:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_\tau \mid \mathcal{F}<em>\sigma] = M</em>\sigma \quad ?</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma \quad ?
+\]</div>
 <p>The answer is: <strong>yes, but with conditions</strong>. The Optional Sampling Theorem (also called the Optional Stopping Theorem) provides the precise circumstances under which this holds.</p>
 <hr />
 <h2 id="the-bounded-case">The Bounded Case<a class="headerlink" href="#the-bounded-case" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Optional Sampling — Bounded Version)</strong>: Let <span class="arithmatex">\(\{M_t\}_{t \ge 0}\)</span> be a right-continuous martingale with respect to <span class="arithmatex">\((\mathcal{F}_t)\)</span>. Let <span class="arithmatex">\(\sigma\)</span> and <span class="arithmatex">\(\tau\)</span> be stopping times with:</p>
-<p>$$</p>
-<p>0 \le \sigma \le \tau \le T \quad \text{almost surely}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 \le \sigma \le \tau \le T \quad \text{almost surely}
+\]</div>
 <p>for some constant <span class="arithmatex">\(T &lt; \infty\)</span>. Then:</p>
-<p>$$</p>
-<p>\boxed{\mathbb{E}[M_\tau \mid \mathcal{F}<em>\sigma] = M</em>\sigma \quad \text{a.s.}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma \quad \text{a.s.}}
+\]</div>
 <p>In particular:</p>
-<p>$$</p>
-<p>\boxed{\mathbb{E}[M_\tau] = \mathbb{E}[M_\sigma] = \mathbb{E}[M_0]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}[M_\tau] = \mathbb{E}[M_\sigma] = \mathbb{E}[M_0]}
+\]</div>
 <p><strong>Interpretation</strong>: For bounded stopping times, the "fair game" property persists. On average, stopping at a random time gives the same expected value as the starting value.</p>
 <hr />
 <h2 id="proof-of-the-bounded-case">Proof of the Bounded Case<a class="headerlink" href="#proof-of-the-bounded-case" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong>: Show that the stopped process <span class="arithmatex">\(M_t^\tau = M_{t \wedge \tau}\)</span> is a martingale.</p>
 <p>For <span class="arithmatex">\(s \le t\)</span>, we need <span class="arithmatex">\(\mathbb{E}[M_{t \wedge \tau} \mid \mathcal{F}_s] = M_{s \wedge \tau}\)</span>.</p>
 <p>Decompose based on whether <span class="arithmatex">\(\tau \le s\)</span>:</p>
-<p>$$</p>
-<p>M_{t \wedge \tau} = M_\tau \mathbf{1}<em _tau="\tau" _wedge="\wedge" t="t">{{\tau \le s}} + M</em>} \mathbf{1}_{{\tau &gt; s}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_{t \wedge \tau} = M_\tau \mathbf{1}_{\{\tau \le s\}} + M_{t \wedge \tau} \mathbf{1}_{\{\tau &gt; s\}}
+\]</div>
 <p>On <span class="arithmatex">\(\{\tau \le s\}\)</span>: <span class="arithmatex">\(M_{t \wedge \tau} = M_\tau = M_{s \wedge \tau}\)</span>, so conditioning gives <span class="arithmatex">\(M_{s \wedge \tau}\)</span>.</p>
 <p>On <span class="arithmatex">\(\{\tau &gt; s\}\)</span>: <span class="arithmatex">\(s \wedge \tau = s\)</span>, and we use the martingale property carefully. The technical details involve approximating by discrete stopping times.</p>
 <p><strong>Step 2</strong>: Apply to bounded stopping times.</p>
 <p>Since <span class="arithmatex">\(\tau \le T\)</span>, evaluate the stopped martingale at time <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_\tau \mid \mathcal{F}<em T="T" _tau="\tau" _wedge="\wedge">\sigma] = \mathbb{E}[M</em>} \mid \mathcal{F<em _sigma="\sigma" _tau="\tau" _wedge="\wedge">\sigma] = M</em> = M_\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = \mathbb{E}[M_{T \wedge \tau} \mid \mathcal{F}_\sigma] = M_{\sigma \wedge \tau} = M_\sigma
+\]</div>
 <p>where the last equality uses <span class="arithmatex">\(\sigma \le \tau\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="why-boundedness-matters-counterexamples">Why Boundedness Matters: Counterexamples<a class="headerlink" href="#why-boundedness-matters-counterexamples" title="Permanent link">&para;</a></h2>
 <p>Without boundedness or other integrability conditions, optional sampling can fail spectacularly.</p>
 <p><strong>Example 1 (Symmetric Random Walk)</strong>: Let <span class="arithmatex">\(S_n = \sum_{i=1}^n \xi_i\)</span> where <span class="arithmatex">\(\mathbb{P}(\xi_i = \pm 1) = 1/2\)</span>. Define:</p>
-<p>$$</p>
-<p>\tau = \inf{n : S_n = 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \inf\{n : S_n = 1\}
+\]</div>
 <p>Then <span class="arithmatex">\(S_n\)</span> is a martingale with <span class="arithmatex">\(S_0 = 0\)</span>, and <span class="arithmatex">\(\mathbb{P}(\tau &lt; \infty) = 1\)</span>. But:</p>
-<p>$$</p>
-<p>\mathbb{E}[S_\tau] = \mathbb{E}[1] = 1 \neq 0 = \mathbb{E}[S_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_\tau] = \mathbb{E}[1] = 1 \neq 0 = \mathbb{E}[S_0]
+\]</div>
 <p>The problem: <span class="arithmatex">\(\mathbb{E}[\tau] = \infty\)</span>, so the stopping time is unbounded.</p>
 <p><strong>Example 2 (Doubling Strategy)</strong>: Consider a gambler who doubles their bet after each loss until winning. The expected gain is positive, seemingly contradicting the fair game property. The resolution: this strategy requires unbounded capital and unbounded time—it's the unboundedness that breaks optional sampling.</p>
 <p><strong>Example 3 (Brownian Motion)</strong>: Let <span class="arithmatex">\(\tau_a = \inf\{t : W_t = a\}\)</span> for <span class="arithmatex">\(a &gt; 0\)</span>. Then <span class="arithmatex">\(W_\tau = a\)</span> almost surely, but:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_{\tau_a}] = a \neq 0 = \mathbb{E}[W_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_{\tau_a}] = a \neq 0 = \mathbb{E}[W_0]
+\]</div>
 <p>Again, <span class="arithmatex">\(\mathbb{E}[\tau_a] = \infty\)</span> (the inverse Gaussian distribution has infinite mean).</p>
 <hr />
 <h2 id="general-sufficient-conditions">General Sufficient Conditions<a class="headerlink" href="#general-sufficient-conditions" title="Permanent link">&para;</a></h2>
 <p>Several conditions ensure optional sampling holds for unbounded stopping times:</p>
 <h3 id="condition-1-uniform-integrability">Condition 1: Uniform Integrability<a class="headerlink" href="#condition-1-uniform-integrability" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\(M\)</span> be a UI martingale. Then for any stopping times <span class="arithmatex">\(\sigma \le \tau\)</span> (possibly unbounded):</p>
-<p>$$</p>
-<p>\mathbb{E}[M_\tau \mid \mathcal{F}<em>\sigma] = M</em>\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma
+\]</div>
 <p><strong>Proof</strong>: UI implies <span class="arithmatex">\(M_t \to M_\infty\)</span> in <span class="arithmatex">\(L^1\)</span>. Apply bounded optional sampling to <span class="arithmatex">\(\tau \wedge T\)</span> and let <span class="arithmatex">\(T \to \infty\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <h3 id="condition-2-dominated-by-integrable-variable">Condition 2: Dominated by Integrable Variable<a class="headerlink" href="#condition-2-dominated-by-integrable-variable" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(|M_{t \wedge \tau}| \le Y\)</span> for all <span class="arithmatex">\(t\)</span> where <span class="arithmatex">\(\mathbb{E}[Y] &lt; \infty\)</span>, then <span class="arithmatex">\(\mathbb{E}[M_\tau] = \mathbb{E}[M_0]\)</span>.</p>
@@ -46734,9 +46734,9 @@
 <li>First passage time with specific conditions</li>
 </ul>
 <p><strong>Step 3</strong>: Apply optional sampling with truncation:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_{\tau \wedge T}] = \mathbb{E}[M_0]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_{\tau \wedge T}] = \mathbb{E}[M_0]
+\]</div>
 <p><strong>Step 4</strong>: Justify passage to the limit <span class="arithmatex">\(T \to \infty\)</span>.</p>
 <p>Use dominated convergence, monotone convergence, or Fatou's lemma as appropriate.</p>
 <p><strong>Step 5</strong>: Extract the desired quantity.</p>
@@ -46746,86 +46746,86 @@
 <h3 id="application-1-hitting-probabilities">Application 1: Hitting Probabilities<a class="headerlink" href="#application-1-hitting-probabilities" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: For Brownian motion starting at <span class="arithmatex">\(x \in (a, b)\)</span>, find <span class="arithmatex">\(\mathbb{P}(W_{\tau} = b)\)</span> where <span class="arithmatex">\(\tau = \inf\{t : W_t \notin (a, b)\}\)</span>.</p>
 <p><strong>Solution</strong>: <span class="arithmatex">\(W_t\)</span> is a bounded martingale on <span class="arithmatex">\([0, \tau]\)</span> (since <span class="arithmatex">\(W_t \in [a, b]\)</span> for <span class="arithmatex">\(t &lt; \tau\)</span>). By optional sampling:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_\tau] = x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_\tau] = x
+\]</div>
 <p>Let <span class="arithmatex">\(p = \mathbb{P}(W_\tau = b)\)</span>. Then:</p>
-<p>$$</p>
-<p>b \cdot p + a \cdot (1-p) = x \implies p = \frac{x - a}{b - a}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{\mathbb{P}(\text{hit } b \text{ before } a \mid W_0 = x) = \frac{x - a}{b - a}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+b \cdot p + a \cdot (1-p) = x \implies p = \frac{x - a}{b - a}
+\]</div>
+<div class="arithmatex">\[
+\boxed{\mathbb{P}(\text{hit } b \text{ before } a \mid W_0 = x) = \frac{x - a}{b - a}}
+\]</div>
 <h3 id="application-2-expected-exit-time">Application 2: Expected Exit Time<a class="headerlink" href="#application-2-expected-exit-time" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Find <span class="arithmatex">\(\mathbb{E}[\tau]\)</span> where <span class="arithmatex">\(\tau = \inf\{t : W_t \notin (-a, a)\}\)</span>.</p>
 <p><strong>Solution</strong>: Use the martingale <span class="arithmatex">\(M_t = W_t^2 - t\)</span>.</p>
 <p>Since <span class="arithmatex">\(|W_t| \le a\)</span> for <span class="arithmatex">\(t &lt; \tau\)</span>, we have <span class="arithmatex">\(|M_t| \le a^2 + t\)</span>. With care:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_{\tau \wedge T}] = \mathbb{E}[M_0] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_{\tau \wedge T}] = \mathbb{E}[M_0] = 0
+\]</div>
 <p>As <span class="arithmatex">\(T \to \infty\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_\tau^2] - \mathbb{E}[\tau] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_\tau^2] - \mathbb{E}[\tau] = 0
+\]</div>
 <p>Since <span class="arithmatex">\(|W_\tau| = a\)</span> (the process exits at the boundary):</p>
-<p>$$</p>
-<p>\mathbb{E}[\tau] = \mathbb{E}[W_\tau^2] = a^2</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{\mathbb{E}[\tau_{(-a,a)}] = a^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\tau] = \mathbb{E}[W_\tau^2] = a^2
+\]</div>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}[\tau_{(-a,a)}] = a^2}
+\]</div>
 <h3 id="application-3-laplace-transform-of-hitting-time">Application 3: Laplace Transform of Hitting Time<a class="headerlink" href="#application-3-laplace-transform-of-hitting-time" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Find <span class="arithmatex">\(\mathbb{E}[e^{-\lambda \tau_a}]\)</span> for <span class="arithmatex">\(\tau_a = \inf\{t : W_t = a\}\)</span>, <span class="arithmatex">\(a &gt; 0\)</span>.</p>
 <p><strong>Solution</strong>: Use the exponential martingale with <span class="arithmatex">\(\theta = \sqrt{2\lambda}\)</span>:</p>
-<p>$$</p>
-<p>Z_t = \exp\left(\sqrt{2\lambda} W_t - \lambda t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \exp\left(\sqrt{2\lambda} W_t - \lambda t\right)
+\]</div>
 <p>Apply optional sampling to <span class="arithmatex">\(\tau_a \wedge T\)</span>. At <span class="arithmatex">\(\tau_a\)</span>, <span class="arithmatex">\(W_{\tau_a} = a\)</span>, so:</p>
-<p>$$</p>
-<p>Z_{\tau_a} = \exp\left(\sqrt{2\lambda} \cdot a - \lambda \tau_a\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_{\tau_a} = \exp\left(\sqrt{2\lambda} \cdot a - \lambda \tau_a\right)
+\]</div>
 <p>With justification for <span class="arithmatex">\(T \to \infty\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[Z_{\tau_a}] = \mathbb{E}[Z_0] = 1</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp(-\lambda \tau_a)\right] = \exp\left(-a\sqrt{2\lambda}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{\mathbb{E}[e^{-\lambda \tau_a}] = e^{-a\sqrt{2\lambda}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Z_{\tau_a}] = \mathbb{E}[Z_0] = 1
+\]</div>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp(-\lambda \tau_a)\right] = \exp\left(-a\sqrt{2\lambda}\right)
+\]</div>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}[e^{-\lambda \tau_a}] = e^{-a\sqrt{2\lambda}}}
+\]</div>
 <p>This is the Laplace transform of the inverse Gaussian distribution.</p>
 <hr />
 <h2 id="optional-sampling-for-subsupermartingales">Optional Sampling for Sub/Supermartingales<a class="headerlink" href="#optional-sampling-for-subsupermartingales" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(X\)</span> is a supermartingale and <span class="arithmatex">\(\sigma \le \tau \le T\)</span> are bounded stopping times:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_\tau \mid \mathcal{F}<em>\sigma] \le X</em>\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_\tau \mid \mathcal{F}_\sigma] \le X_\sigma
+\]</div>
 <p>For submartingales, the inequality reverses.</p>
 <p><strong>Application</strong>: If <span class="arithmatex">\(|M_t|\)</span> is a submartingale (true for any martingale <span class="arithmatex">\(M_t\)</span>):</p>
-<p>$$</p>
-<p>\mathbb{E}[|M_\tau|] \ge \mathbb{E}[|M_\sigma|]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|M_\tau|] \ge \mathbb{E}[|M_\sigma|]
+\]</div>
 <p>The expected absolute value can only increase at stopping times.</p>
 <hr />
 <h2 id="connection-to-pdes">Connection to PDEs<a class="headerlink" href="#connection-to-pdes" title="Permanent link">&para;</a></h2>
 <p>Optional sampling connects stochastic processes to partial differential equations.</p>
 <p><strong>Theorem (Dynkin's Formula)</strong>: If <span class="arithmatex">\(u\)</span> is <span class="arithmatex">\(C^2\)</span> and <span class="arithmatex">\(X_t\)</span> is a diffusion with generator <span class="arithmatex">\(\mathcal{L}\)</span>, then:</p>
-<p>$$</p>
-<p>u(X_t) - u(X_0) - \int_0^t \mathcal{L}u(X_s) \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(X_t) - u(X_0) - \int_0^t \mathcal{L}u(X_s) \, ds
+\]</div>
 <p>is a local martingale. If <span class="arithmatex">\(\mathcal{L}u = 0\)</span> (i.e., <span class="arithmatex">\(u\)</span> is harmonic), then <span class="arithmatex">\(u(X_t)\)</span> is a local martingale.</p>
 <p><strong>Consequence</strong>: For Brownian motion (<span class="arithmatex">\(\mathcal{L} = \frac{1}{2}\Delta\)</span>), if <span class="arithmatex">\(u\)</span> is harmonic on domain <span class="arithmatex">\(D\)</span>:</p>
-<p>$$</p>
-<p>u(x) = \mathbb{E}^x[u(W_\tau)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x) = \mathbb{E}^x[u(W_\tau)]
+\]</div>
 <p>where <span class="arithmatex">\(\tau\)</span> is the exit time from <span class="arithmatex">\(D\)</span>. This is the <strong>probabilistic solution to the Dirichlet problem</strong>.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The Optional Sampling Theorem:</p>
-<p>$$</p>
-<p>\boxed{\mathbb{E}[M_\tau \mid \mathcal{F}<em>\sigma] = M</em>\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}[M_\tau \mid \mathcal{F}_\sigma] = M_\sigma}
+\]</div>
 <p>holds when:</p>
 <table>
 <thead>

@@ -46449,9 +46449,9 @@
 
 <h1 id="lebesgue-integration-an-intuitive-introduction">Lebesgue Integration: An Intuitive Introduction<a class="headerlink" href="#lebesgue-integration-an-intuitive-introduction" title="Permanent link">&para;</a></h1>
 <p>Before diving into the rigorous construction of stochastic integrals, we begin with a familiar type of integration—the ordinary (Lebesgue/Riemann) integral of the form:</p>
-<p>$$</p>
-<p>\int_0^t f(s, B_s) \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f(s, B_s) \, ds
+\]</div>
 <p>where <span class="arithmatex">\(f(s, B_s)\)</span> is a function that may depend on both time <span class="arithmatex">\(s\)</span> and the Brownian motion path <span class="arithmatex">\(B_s\)</span>.</p>
 <p>This section builds intuition through:
 1. A <strong>financial interpretation</strong> (bond portfolio profit/loss)
@@ -46470,15 +46470,15 @@
 </ul>
 <p><strong>Key insight</strong>: This is an ordinary integral—the randomness comes from <span class="arithmatex">\(B_s\)</span> affecting the bond position <span class="arithmatex">\(f(s, B_s)\)</span>, but the increment <span class="arithmatex">\(ds\)</span> is deterministic.</p>
 <h3 id="1-summary-table">1. Summary table<a class="headerlink" href="#1-summary-table" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \text{Stock price at beginning of day } s &amp; &amp; B_s \\
 \text{Bond position at beginning of day } s &amp; &amp; f(s, B_s) \\
 \text{P\&amp;L of 1 bond at end of day } s &amp; &amp; ds \\
 \text{P\&amp;L of bond position at end of day } s &amp; &amp; f(s, B_s) \, ds \\
 \text{Cumulative P\&amp;L up to end of day } t &amp; &amp; \displaystyle\int_0^t f(s, B_s) \, ds
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <hr />
 <h2 id="example-1-computing-int_01-b_s-ds-by-hand">Example 1: Computing <span class="arithmatex">\(\int_0^1 B_s \, ds\)</span> by hand<a class="headerlink" href="#example-1-computing-int_01-b_s-ds-by-hand" title="Permanent link">&para;</a></h2>
 <p>We simulate Brownian motion using 10 coin flips, then compute the integral manually.</p>
@@ -46487,8 +46487,8 @@
 <p><strong>Conversion</strong>: <span class="arithmatex">\(H \to +1\)</span>, <span class="arithmatex">\(T \to -1\)</span></p>
 <p><strong>Brownian path</strong>: Cumulative sum scaled by <span class="arithmatex">\(1/\sqrt{10}\)</span></p>
 <h3 id="2-computation-table">2. Computation table<a class="headerlink" href="#2-computation-table" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 0/10 &amp; 1/10 &amp; 2/10 &amp; 3/10 &amp; 4/10 &amp; 5/10 \\
 \hline
 \text{Coin flip} &amp; - &amp; H &amp; H &amp; T &amp; H &amp; T \\
@@ -46499,10 +46499,10 @@ dt &amp; - &amp; \frac{1}{10} &amp; \frac{1}{10} &amp; \frac{1}{10} &amp; \frac{
 f(t, B_t) = B_{t-dt} &amp; - &amp; 0 &amp; \frac{1}{\sqrt{10}} &amp; \frac{2}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \frac{2}{\sqrt{10}} \\
 f(t, B_t) \, dt &amp; - &amp; 0 &amp; \frac{1}{10^{3/2}} &amp; \frac{2}{10^{3/2}} &amp; \frac{1}{10^{3/2}} &amp; \frac{2}{10^{3/2}} \\
 \int_0^t f(s, B_s) \, ds &amp; - &amp; 0 &amp; \frac{1}{10^{3/2}} &amp; \frac{3}{10^{3/2}} &amp; \frac{4}{10^{3/2}} &amp; \frac{6}{10^{3/2}}
-\end{array}\]</div>
-<p>$$</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 6/10 &amp; 7/10 &amp; 8/10 &amp; 9/10 &amp; 10/10 \\
 \hline
 \text{Coin flip} &amp; T &amp; H &amp; H &amp; H &amp; T \\
@@ -46513,41 +46513,41 @@ dt &amp; \frac{1}{10} &amp; \frac{1}{10} &amp; \frac{1}{10} &amp; \frac{1}{10} &
 f(t, B_t) = B_{t-dt} &amp; \frac{1}{\sqrt{10}} &amp; \frac{0}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &amp; \frac{2}{\sqrt{10}} &amp; \frac{3}{\sqrt{10}} \\
 f(t, B_t) \, dt &amp; \frac{1}{10^{3/2}} &amp; \frac{0}{10^{3/2}} &amp; \frac{1}{10^{3/2}} &amp; \frac{2}{10^{3/2}} &amp; \frac{3}{10^{3/2}} \\
 \int_0^t f(s, B_s) \, ds &amp; \frac{7}{10^{3/2}} &amp; \frac{7}{10^{3/2}} &amp; \frac{8}{10^{3/2}} &amp; \frac{10}{10^{3/2}} &amp; \frac{13}{10^{3/2}}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Result</strong>:</p>
-<p>$$</p>
-<p>\int_0^1 B_s \, ds = \frac{13}{10^{3/2}} \approx 0.411</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 B_s \, ds = \frac{13}{10^{3/2}} \approx 0.411
+\]</div>
 <p><strong>Note</strong>: This value depends on the specific Brownian path. Different coin flip sequences yield different integrals.</p>
 <hr />
 <h2 id="example-2-computing-int_01-s-ds-by-hand">Example 2: Computing <span class="arithmatex">\(\int_0^1 s \, ds\)</span> by hand<a class="headerlink" href="#example-2-computing-int_01-s-ds-by-hand" title="Permanent link">&para;</a></h2>
 <p>Using the same coin flips, we compute the deterministic integral.</p>
 <h3 id="1-computation-table-abbreviated">1. Computation table (abbreviated)<a class="headerlink" href="#1-computation-table-abbreviated" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 0/10 &amp; 1/10 &amp; 2/10 &amp; \cdots &amp; 9/10 &amp; 10/10 \\
 \hline
 f(t, B_t) = t - dt &amp; - &amp; 0 &amp; \frac{1}{10} &amp; \cdots &amp; \frac{8}{10} &amp; \frac{9}{10} \\
 f(t, B_t) \, dt &amp; - &amp; 0 &amp; \frac{1}{100} &amp; \cdots &amp; \frac{8}{100} &amp; \frac{9}{100} \\
 \int_0^t s \, ds &amp; - &amp; 0 &amp; \frac{1}{100} &amp; \cdots &amp; \frac{36}{100} &amp; \frac{45}{100}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Result</strong>:</p>
-<p>$$</p>
-<p>\int_0^1 s \, ds = \frac{45}{100} = 0.45</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 s \, ds = \frac{45}{100} = 0.45
+\]</div>
 <p><strong>Comparison with calculus</strong>:</p>
-<p>$$</p>
-<p>\int_0^1 s \, ds = \left[\frac{s^2}{2}\right]_0^1 = 0.5</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 s \, ds = \left[\frac{s^2}{2}\right]_0^1 = 0.5
+\]</div>
 <p>With only 10 time steps, we get <span class="arithmatex">\(0.45\)</span>. As we refine the partition (more coin flips), the approximation converges to the exact value <span class="arithmatex">\(0.5\)</span>.</p>
 <hr />
 <h2 id="example-3-computing-int_01-s-b_s-ds-by-hand">Example 3: Computing <span class="arithmatex">\(\int_0^1 s B_s \, ds\)</span> by hand<a class="headerlink" href="#example-3-computing-int_01-s-b_s-ds-by-hand" title="Permanent link">&para;</a></h2>
 <p>Now we integrate a function depending on both time and the Brownian path.</p>
 <h3 id="1-computation-table-abbreviated_1">1. Computation table (abbreviated)<a class="headerlink" href="#1-computation-table-abbreviated_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrr}
+<div class="arithmatex">\[
+\begin{array}{lrrrrrr}
 \text{Time} &amp; 0/10 &amp; 1/10 &amp; 2/10 &amp; \cdots &amp; 9/10 &amp; 10/10 \\
 \hline
 h(t, B_t) = t - dt &amp; - &amp; 0 &amp; \frac{1}{10} &amp; \cdots &amp; \frac{8}{10} &amp; \frac{9}{10} \\
@@ -46555,12 +46555,12 @@ g(t, B_t) = B_{t-dt} &amp; - &amp; 0 &amp; \frac{1}{\sqrt{10}} &amp; \cdots &amp
 f(t, B_t) = h \cdot g &amp; - &amp; 0 &amp; \frac{1}{10^{3/2}} &amp; \cdots &amp; \frac{16}{10^{3/2}} &amp; \frac{27}{10^{3/2}} \\
 f(t, B_t) \, dt &amp; - &amp; 0 &amp; \frac{1}{10^{5/2}} &amp; \cdots &amp; \frac{16}{10^{5/2}} &amp; \frac{27}{10^{5/2}} \\
 \int_0^t s B_s \, ds &amp; - &amp; 0 &amp; \frac{1}{10^{5/2}} &amp; \cdots &amp; \frac{44}{10^{5/2}} &amp; \frac{71}{10^{5/2}}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Result</strong>:</p>
-<p>$$</p>
-<p>\int_0^1 s B_s \, ds = \frac{71}{10^{5/2}} \approx 0.224</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^1 s B_s \, ds = \frac{71}{10^{5/2}} \approx 0.224
+\]</div>
 <hr />
 <h2 id="python-simulation-monte-carlo-verification">Python simulation: Monte Carlo verification<a class="headerlink" href="#python-simulation-monte-carlo-verification" title="Permanent link">&para;</a></h2>
 <p>We now verify these integrals using Monte Carlo simulation with many Brownian paths.</p>
@@ -46644,9 +46644,9 @@ f(t, B_t) \, dt &amp; - &amp; 0 &amp; \frac{1}{10^{5/2}} &amp; \cdots &amp; \fra
 <p><strong>Deterministic integrands</strong>: When <span class="arithmatex">\(f(s, B_s) = h(s)\)</span> depends only on time (not on <span class="arithmatex">\(B_s\)</span>), all paths give the same integral:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>\int_0^1 s \, ds = 0.5 \quad \text{(exact)}</p>
-<p>$$</p>
+<p>$$
+   \int_0^1 s \, ds = 0.5 \quad \text{(exact)}
+   $$</p>
 <ol>
 <li><strong>Random integrands</strong>: When <span class="arithmatex">\(f(s, B_s)\)</span> depends on <span class="arithmatex">\(B_s\)</span>, the integral is a random variable</li>
 </ol>

@@ -46991,9 +46991,9 @@
 <p>where <span class="arithmatex">\(\delta\)</span> is the day count fraction (typically ACT/360).</p>
 <h3 id="bootstrapping-formula">Bootstrapping Formula<a class="headerlink" href="#bootstrapping-formula" title="Permanent link">&para;</a></h3>
 <p>The deposit rate directly implies the discount factor:</p>
-<p>$$</p>
-<p>P(0, T) = \frac{1}{1 + R_d \cdot \delta}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T) = \frac{1}{1 + R_d \cdot \delta}
+\]</div>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47029,30 +47029,30 @@
 <h2 id="stage-2-futures-eurodollarsofr-futures">Stage 2: Futures (Eurodollar/SOFR Futures)<a class="headerlink" href="#stage-2-futures-eurodollarsofr-futures" title="Permanent link">&para;</a></h2>
 <h3 id="instrument-description_1">Instrument Description<a class="headerlink" href="#instrument-description_1" title="Permanent link">&para;</a></h3>
 <p>A <strong>3-month interest rate future</strong> with price <span class="arithmatex">\(F\)</span> implies a forward rate:</p>
-<p>$$</p>
-<p>R_{\text{fut}} = \frac{100 - F}{100}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_{\text{fut}} = \frac{100 - F}{100}
+\]</div>
 <p>for the period from the futures expiry <span class="arithmatex">\(T_1\)</span> to <span class="arithmatex">\(T_2 = T_1 + 0.25\)</span>.</p>
 <h3 id="convexity-adjustment">Convexity Adjustment<a class="headerlink" href="#convexity-adjustment" title="Permanent link">&para;</a></h3>
 <p>Futures rates differ from forward rates due to daily margining. The <strong>convexity adjustment</strong> is:</p>
-<p>$$</p>
-<p>F(0; T_1, T_2) \approx R_{\text{fut}} - \text{CA}(T_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(0; T_1, T_2) \approx R_{\text{fut}} - \text{CA}(T_1)
+\]</div>
 <p>A common approximation:</p>
-<p>$$</p>
-<p>\text{CA}(T_1) \approx \frac{1}{2} \sigma^2 T_1 (T_2 - T_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CA}(T_1) \approx \frac{1}{2} \sigma^2 T_1 (T_2 - T_1)
+\]</div>
 <p>where <span class="arithmatex">\(\sigma\)</span> is the rate volatility (typically 0.5-1.5%).</p>
 <h3 id="bootstrapping-formula_1">Bootstrapping Formula<a class="headerlink" href="#bootstrapping-formula_1" title="Permanent link">&para;</a></h3>
 <p>Given <span class="arithmatex">\(P(0, T_1)\)</span> from previous stage and forward rate <span class="arithmatex">\(F(0; T_1, T_2)\)</span>:</p>
-<p>$$</p>
-<p>P(0, T_2) = \frac{P(0, T_1)}{1 + F(0; T_1, T_2) \cdot (T_2 - T_1)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T_2) = \frac{P(0, T_1)}{1 + F(0; T_1, T_2) \cdot (T_2 - T_1)}
+\]</div>
 <h3 id="sequential-application">Sequential Application<a class="headerlink" href="#sequential-application" title="Permanent link">&para;</a></h3>
 <p>Futures strip provides a chain:</p>
-<p>$$</p>
-<p>P(0, T_1) \to P(0, T_2) \to P(0, T_3) \to \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T_1) \to P(0, T_2) \to P(0, T_3) \to \cdots
+\]</div>
 <p>Each step uses the forward rate from the corresponding future.</p>
 <hr />
 <h2 id="stage-3-interest-rate-swaps">Stage 3: Interest Rate Swaps<a class="headerlink" href="#stage-3-interest-rate-swaps" title="Permanent link">&para;</a></h2>
@@ -47063,25 +47063,25 @@
 <p>The swap rate <span class="arithmatex">\(S_n\)</span> for an <span class="arithmatex">\(n\)</span>-year swap is the rate that makes the swap have zero initial value.</p>
 <h3 id="swap-valuation">Swap Valuation<a class="headerlink" href="#swap-valuation" title="Permanent link">&para;</a></h3>
 <p>The present value of a swap is:</p>
-<p>$$</p>
-<p>V_{\text{swap}} = \underbrace{\sum_{i=1}^{n} \delta_i P(0, T_i) \cdot (F_i - S)}_{\text{floating - fixed}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{swap}} = \underbrace{\sum_{i=1}^{n} \delta_i P(0, T_i) \cdot (F_i - S)}_{\text{floating - fixed}}
+\]</div>
 <p>where <span class="arithmatex">\(F_i\)</span> is the forward rate for period <span class="arithmatex">\(i\)</span>.</p>
 <p>At inception, <span class="arithmatex">\(V_{\text{swap}} = 0\)</span> when <span class="arithmatex">\(S = S_n\)</span> (the par swap rate).</p>
 <h3 id="par-swap-rate-formula">Par Swap Rate Formula<a class="headerlink" href="#par-swap-rate-formula" title="Permanent link">&para;</a></h3>
 <p>The par swap rate satisfies:</p>
-<p>$$</p>
-<p>S_n = \frac{P(0, T_0) - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_n = \frac{P(0, T_0) - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
+\]</div>
 <p>For a spot-starting swap with <span class="arithmatex">\(T_0 = 0\)</span> (so <span class="arithmatex">\(P(0, T_0) = 1\)</span>):</p>
-<p>$$</p>
-<p>S_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
+\]</div>
 <h3 id="bootstrapping-formula_2">Bootstrapping Formula<a class="headerlink" href="#bootstrapping-formula_2" title="Permanent link">&para;</a></h3>
 <p>Rearranging to solve for the unknown <span class="arithmatex">\(P(0, T_n)\)</span>:</p>
-<p>$$</p>
-<p>P(0, T_n) = \frac{1 - S_n \sum_{i=1}^{n-1} \delta_i P(0, T_i)}{1 + S_n \delta_n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T_n) = \frac{1 - S_n \sum_{i=1}^{n-1} \delta_i P(0, T_i)}{1 + S_n \delta_n}
+\]</div>
 <p>This requires all previous discount factors <span class="arithmatex">\(P(0, T_1), \ldots, P(0, T_{n-1})\)</span>.</p>
 <h3 id="sequential-application_1">Sequential Application<a class="headerlink" href="#sequential-application_1" title="Permanent link">&para;</a></h3>
 <p>Given swap rates for maturities 1Y, 2Y, 3Y, ..., 30Y:</p>
@@ -47119,9 +47119,9 @@ Output: Discount curve {P(0, T)}
 <p>Bootstrapping produces discount factors at <strong>discrete</strong> maturities. Pricing arbitrary instruments requires values at <strong>any</strong> maturity.</p>
 <h3 id="common-interpolation-methods">Common Interpolation Methods<a class="headerlink" href="#common-interpolation-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Linear on Log-Discounts:</strong></p>
-<p>$$</p>
-<p>\log P(0, T) = \frac{T_2 - T}{T_2 - T_1} \log P(0, T_1) + \frac{T - T_1}{T_2 - T_1} \log P(0, T_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log P(0, T) = \frac{T_2 - T}{T_2 - T_1} \log P(0, T_1) + \frac{T - T_1}{T_2 - T_1} \log P(0, T_2)
+\]</div>
 <ul>
 <li>Equivalent to linear interpolation on continuously compounded zero rates</li>
 <li>Simple, but produces discontinuous forward rates</li>
@@ -47173,16 +47173,16 @@ Output: Discount curve {P(0, T)}
 - <strong>Forwarding curves:</strong> Tenor-specific (1M, 3M, 6M LIBOR/SOFR)</p>
 <h3 id="dual-curve-bootstrap">Dual-Curve Bootstrap<a class="headerlink" href="#dual-curve-bootstrap" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1:</strong> Bootstrap the OIS curve for discounting</p>
-<p>$$</p>
-<p>P^{\text{OIS}}(0, T_n) = \frac{1 - S_n^{\text{OIS}} \sum_{i=1}^{n-1} \delta_i P^{\text{OIS}}(0, T_i)}{1 + S_n^{\text{OIS}} \delta_n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^{\text{OIS}}(0, T_n) = \frac{1 - S_n^{\text{OIS}} \sum_{i=1}^{n-1} \delta_i P^{\text{OIS}}(0, T_i)}{1 + S_n^{\text{OIS}} \delta_n}
+\]</div>
 <p><strong>Step 2:</strong> Bootstrap each tenor curve using OIS for discounting</p>
 <p>For a 3M tenor curve, use basis swaps or directly bootstrap from instruments referencing 3M rates, discounting cashflows with <span class="arithmatex">\(P^{\text{OIS}}\)</span>.</p>
 <h3 id="tenor-basis-spreads">Tenor Basis Spreads<a class="headerlink" href="#tenor-basis-spreads" title="Permanent link">&para;</a></h3>
 <p>The spread between curves of different tenors reflects credit and liquidity risk:</p>
-<p>$$</p>
-<p>\text{Basis}<em 3M="3M">{3M/6M} = S</em>} - S_{6M</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Basis}_{3M/6M} = S_{3M} - S_{6M}
+\]</div>
 <p>This spread was negligible pre-crisis but became significant afterward.</p>
 <hr />
 <h2 id="numerical-considerations">Numerical Considerations<a class="headerlink" href="#numerical-considerations" title="Permanent link">&para;</a></h2>
@@ -47227,9 +47227,9 @@ Output: Discount curve {P(0, T)}
 </table>
 <h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
 <p>After bootstrapping, verify by <strong>repricing</strong> all input instruments:</p>
-<p>$$</p>
-<p>\max_i |V_i^{\text{model}} - V_i^{\text{market}}| &lt; \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_i |V_i^{\text{model}} - V_i^{\text{market}}| &lt; \epsilon
+\]</div>
 <p>A well-constructed curve should reprice inputs to within bid-ask tolerance.</p>
 <hr />
 <h2 id="example-usd-curve-bootstrap">Example: USD Curve Bootstrap<a class="headerlink" href="#example-usd-curve-bootstrap" title="Permanent link">&para;</a></h2>

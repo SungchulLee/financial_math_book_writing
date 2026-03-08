@@ -46905,113 +46905,113 @@
 <h2 id="example-1-black-scholes-model-single-stock">Example 1: Black-Scholes Model (Single Stock)<a class="headerlink" href="#example-1-black-scholes-model-single-stock" title="Permanent link">&para;</a></h2>
 <h3 id="physical-dynamics">Physical Dynamics<a class="headerlink" href="#physical-dynamics" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>, the stock price follows:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
+\]</div>
 <p>with constant parameters <span class="arithmatex">\(\mu\)</span> (expected return) and <span class="arithmatex">\(\sigma\)</span> (volatility).</p>
 <h3 id="step-1-identify-the-market-price-of-risk">Step 1: Identify the Market Price of Risk<a class="headerlink" href="#step-1-identify-the-market-price-of-risk" title="Permanent link">&para;</a></h3>
 <p>The market price of risk is:</p>
-<p>$$</p>
-<p>\theta = \frac{\mu - r}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta = \frac{\mu - r}{\sigma}
+\]</div>
 <p><strong>Example</strong>: If <span class="arithmatex">\(\mu = 0.12\)</span>, <span class="arithmatex">\(r = 0.05\)</span>, <span class="arithmatex">\(\sigma = 0.20\)</span>:</p>
-<p>$$</p>
-<p>\theta = \frac{0.12 - 0.05}{0.20} = 0.35</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta = \frac{0.12 - 0.05}{0.20} = 0.35
+\]</div>
 <h3 id="step-2-define-the-radon-nikodym-derivative">Step 2: Define the Radon-Nikodym Derivative<a class="headerlink" href="#step-2-define-the-radon-nikodym-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>Z_T = \exp\left(-\theta W_T^{\mathbb{P}} - \frac{1}{2}\theta^2 T\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}} = Z_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_T = \exp\left(-\theta W_T^{\mathbb{P}} - \frac{1}{2}\theta^2 T\right)
+\]</div>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}} = Z_T
+\]</div>
 <h3 id="step-3-apply-girsanov">Step 3: Apply Girsanov<a class="headerlink" href="#step-3-apply-girsanov" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t
+\]</div>
 <p>is a Brownian motion.</p>
 <h3 id="step-4-risk-neutral-dynamics">Step 4: Risk-Neutral Dynamics<a class="headerlink" href="#step-4-risk-neutral-dynamics" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \mu S_t\,dt + \sigma S_t\,(dW_t^{\mathbb{Q}} - \theta\,dt)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= (\mu - \sigma\theta)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
+\]</div>
+<div class="arithmatex">\[
+= \mu S_t\,dt + \sigma S_t\,(dW_t^{\mathbb{Q}} - \theta\,dt)
+\]</div>
+<div class="arithmatex">\[
+= (\mu - \sigma\theta)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
+<div class="arithmatex">\[
+= rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
 <p>The discounted price <span class="arithmatex">\(\tilde{S}_t = e^{-rt}S_t\)</span> satisfies:</p>
-<p>$$</p>
-<p>d\tilde{S}_t = \sigma\tilde{S}_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{S}_t = \sigma\tilde{S}_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>No drift term—<span class="arithmatex">\(\tilde{S}_t\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale. ✓</p>
 <hr />
 <h2 id="example-2-stock-with-dividends">Example 2: Stock with Dividends<a class="headerlink" href="#example-2-stock-with-dividends" title="Permanent link">&para;</a></h2>
 <h3 id="physical-dynamics_1">Physical Dynamics<a class="headerlink" href="#physical-dynamics_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dS_t = (\mu - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (\mu - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
+\]</div>
 <p>where <span class="arithmatex">\(q\)</span> is the continuous dividend yield.</p>
 <h3 id="market-price-of-risk">Market Price of Risk<a class="headerlink" href="#market-price-of-risk" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\theta = \frac{(\mu - q) - (r - q)}{\sigma} = \frac{\mu - r}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta = \frac{(\mu - q) - (r - q)}{\sigma} = \frac{\mu - r}{\sigma}
+\]</div>
 <p>Same as before—dividends don't affect <span class="arithmatex">\(\theta\)</span>.</p>
 <h3 id="risk-neutral-dynamics">Risk-Neutral Dynamics<a class="headerlink" href="#risk-neutral-dynamics" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <h3 id="discounted-process">Discounted Process<a class="headerlink" href="#discounted-process" title="Permanent link">&para;</a></h3>
 <p>The appropriate discounted process is <span class="arithmatex">\(e^{-rt}S_t e^{qt} = e^{-(r-q)t}S_t\)</span>:</p>
-<p>$$</p>
-<p>d(e^{-(r-q)t}S_t) = \sigma e^{-(r-q)t}S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{-(r-q)t}S_t) = \sigma e^{-(r-q)t}S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>This is a martingale. ✓</p>
 <hr />
 <h2 id="example-3-two-correlated-stocks">Example 3: Two Correlated Stocks<a class="headerlink" href="#example-3-two-correlated-stocks" title="Permanent link">&para;</a></h2>
 <h3 id="physical-dynamics_2">Physical Dynamics<a class="headerlink" href="#physical-dynamics_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 dS_t^1 = \mu_1 S_t^1\,dt + \sigma_1 S_t^1\,dW_t^{1,\mathbb{P}} \\
 dS_t^2 = \mu_2 S_t^2\,dt + \sigma_2 S_t^2\,(\rho\,dW_t^{1,\mathbb{P}} + \sqrt{1-\rho^2}\,dW_t^{2,\mathbb{P}})
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>where <span class="arithmatex">\(W^1, W^2\)</span> are independent and <span class="arithmatex">\(\rho\)</span> is the correlation.</p>
 <h3 id="market-price-of-risk-vector">Market Price of Risk Vector<a class="headerlink" href="#market-price-of-risk-vector" title="Permanent link">&para;</a></h3>
 <p>We need <span class="arithmatex">\(\boldsymbol{\theta} = (\theta_1, \theta_2)\)</span> such that:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{pmatrix} \mu_1 - r \\ \mu_2 - r \end{pmatrix} = \begin{pmatrix} \sigma_1 &amp; 0 \\ \sigma_2\rho &amp; \sigma_2\sqrt{1-\rho^2} \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}\]</div>
-<p>$$</p>
+<div class="arithmatex">\[
+\begin{pmatrix} \mu_1 - r \\ \mu_2 - r \end{pmatrix} = \begin{pmatrix} \sigma_1 &amp; 0 \\ \sigma_2\rho &amp; \sigma_2\sqrt{1-\rho^2} \end{pmatrix} \begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}
+\]</div>
 <h3 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\theta_1 = \frac{\mu_1 - r}{\sigma_1}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\theta_2 = \frac{(\mu_2 - r) - \sigma_2\rho\theta_1}{\sigma_2\sqrt{1-\rho^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_1 = \frac{\mu_1 - r}{\sigma_1}
+\]</div>
+<div class="arithmatex">\[
+\theta_2 = \frac{(\mu_2 - r) - \sigma_2\rho\theta_1}{\sigma_2\sqrt{1-\rho^2}}
+\]</div>
 <h3 id="uniqueness">Uniqueness<a class="headerlink" href="#uniqueness" title="Permanent link">&para;</a></h3>
 <p>If the volatility matrix has full rank (2 assets, 2 Brownian motions), <span class="arithmatex">\(\boldsymbol{\theta}\)</span> is <strong>unique</strong> and the market is <strong>complete</strong>.</p>
 <hr />
 <h2 id="example-4-incomplete-market-stochastic-volatility">Example 4: Incomplete Market (Stochastic Volatility)<a class="headerlink" href="#example-4-incomplete-market-stochastic-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="heston-model-dynamics">Heston Model Dynamics<a class="headerlink" href="#heston-model-dynamics" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 dS_t = \mu S_t\,dt + \sqrt{V_t}S_t\,dW_t^{1,\mathbb{P}} \\
 dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{P}}
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>with <span class="arithmatex">\(\text{Corr}(dW^1, dW^2) = \rho\)</span>.</p>
 <h3 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h3>
 <p>Two sources of randomness (<span class="arithmatex">\(W^1, W^2\)</span>) but only one traded asset (<span class="arithmatex">\(S\)</span>).</p>
 <p>The market price of risk for <span class="arithmatex">\(W^1\)</span> is determined:</p>
-<p>$$</p>
-<p>\theta_1 = \frac{\mu - r}{\sqrt{V_t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_1 = \frac{\mu - r}{\sqrt{V_t}}
+\]</div>
 <p>But <span class="arithmatex">\(\theta_2\)</span> (the <strong>volatility risk premium</strong>) is <strong>not determined</strong> by no-arbitrage alone.</p>
 <h3 id="multiple-risk-neutral-measures">Multiple Risk-Neutral Measures<a class="headerlink" href="#multiple-risk-neutral-measures" title="Permanent link">&para;</a></h3>
 <p>Any choice of <span class="arithmatex">\(\theta_2(t, V_t)\)</span> satisfying integrability conditions gives a valid risk-neutral measure.</p>
@@ -47024,60 +47024,60 @@ dV_t = \kappa(\bar{V} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{2,\mathbb{P}}
 <h2 id="example-5-foreign-exchange">Example 5: Foreign Exchange<a class="headerlink" href="#example-5-foreign-exchange" title="Permanent link">&para;</a></h2>
 <h3 id="domestic-perspective">Domestic Perspective<a class="headerlink" href="#domestic-perspective" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>dX_t = (\mu_X)X_t\,dt + \sigma_X X_t\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = (\mu_X)X_t\,dt + \sigma_X X_t\,dW_t^{\mathbb{P}}
+\]</div>
 <p>where <span class="arithmatex">\(X_t\)</span> is the exchange rate (domestic per foreign).</p>
 <h3 id="no-arbitrage-condition">No-Arbitrage Condition<a class="headerlink" href="#no-arbitrage-condition" title="Permanent link">&para;</a></h3>
 <p>To prevent FX arbitrage:</p>
-<p>$$</p>
-<p>\mu_X = r_d - r_f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu_X = r_d - r_f
+\]</div>
 <p>where <span class="arithmatex">\(r_d\)</span> is domestic rate, <span class="arithmatex">\(r_f\)</span> is foreign rate.</p>
 <h3 id="market-price-of-risk_1">Market Price of Risk<a class="headerlink" href="#market-price-of-risk_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\theta = \frac{\mu_X - (r_d - r_f)}{\sigma_X} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta = \frac{\mu_X - (r_d - r_f)}{\sigma_X} = 0
+\]</div>
 <p>No measure change needed! The FX market is already "risk-neutral" with respect to interest rate differentials.</p>
 <h3 id="risk-neutral-dynamics_1">Risk-Neutral Dynamics<a class="headerlink" href="#risk-neutral-dynamics_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dX_t = (r_d - r_f)X_t\,dt + \sigma_X X_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = (r_d - r_f)X_t\,dt + \sigma_X X_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <hr />
 <h2 id="example-6-vasicek-interest-rate-model">Example 6: Vasicek Interest Rate Model<a class="headerlink" href="#example-6-vasicek-interest-rate-model" title="Permanent link">&para;</a></h2>
 <h3 id="physical-dynamics_3">Physical Dynamics<a class="headerlink" href="#physical-dynamics_3" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma\,dW_t^{\mathbb{P}}
+\]</div>
 <h3 id="market-price-of-risk_2">Market Price of Risk<a class="headerlink" href="#market-price-of-risk_2" title="Permanent link">&para;</a></h3>
 <p>For interest rate models, <span class="arithmatex">\(\theta\)</span> is typically specified exogenously:</p>
-<p>$$</p>
-<p>\theta_t = \lambda \quad \text{(constant)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = \lambda \quad \text{(constant)}
+\]</div>
 <p>or</p>
-<p>$$</p>
-<p>\theta_t = \frac{\lambda}{\sigma}r_t \quad \text{(proportional to rate)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = \frac{\lambda}{\sigma}r_t \quad \text{(proportional to rate)}
+\]</div>
 <h3 id="risk-neutral-dynamics_2">Risk-Neutral Dynamics<a class="headerlink" href="#risk-neutral-dynamics_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma(dW_t^{\mathbb{Q}} - \theta\,dt)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= [\kappa(\bar{r} - r_t) - \sigma\theta]\,dt + \sigma\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \kappa^<em>(\bar{r}^</em> - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma(dW_t^{\mathbb{Q}} - \theta\,dt)
+\]</div>
+<div class="arithmatex">\[
+= [\kappa(\bar{r} - r_t) - \sigma\theta]\,dt + \sigma\,dW_t^{\mathbb{Q}}
+\]</div>
+<div class="arithmatex">\[
+= \kappa^*(\bar{r}^* - r_t)\,dt + \sigma\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>where <span class="arithmatex">\(\kappa^* = \kappa\)</span> and <span class="arithmatex">\(\bar{r}^* = \bar{r} - \sigma\theta/\kappa\)</span>.</p>
 <h3 id="bond-pricing">Bond Pricing<a class="headerlink" href="#bond-pricing" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds} \;\middle|\; r_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds} \;\middle|\; r_t\right]
+\]</div>
 <p>For Vasicek, this has closed form:</p>
-<p>$$</p>
-<p>P(t,T) = A(t,T)e^{-B(t,T)r_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = A(t,T)e^{-B(t,T)r_t}
+\]</div>
 <hr />
 <h2 id="summary-table">Summary Table<a class="headerlink" href="#summary-table" title="Permanent link">&para;</a></h2>
 <table>

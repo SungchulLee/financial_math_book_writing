@@ -47077,11 +47077,11 @@
 <hr />
 <h2 id="mertons-jump-diffusion-model">Merton's Jump-Diffusion Model<a class="headerlink" href="#mertons-jump-diffusion-model" title="Permanent link">&para;</a></h2>
 <h3 id="dynamics">Dynamics<a class="headerlink" href="#dynamics" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{dS_t}{S_{t^-}} = (r - \lambda\kappa)\,dt + \sigma\,dW_t + dJ_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(W_t\)</span>: Brownian motion (continuous part)
 - <span class="arithmatex">\(J_t\)</span>: Compound Poisson process (jump part)
@@ -47089,31 +47089,31 @@
 - <span class="arithmatex">\(\kappa = \mathbb{E}[Y - 1]\)</span>: Expected relative jump size</p>
 <h3 id="jump-structure">Jump Structure<a class="headerlink" href="#jump-structure" title="Permanent link">&para;</a></h3>
 <p>Jumps arrive at Poisson times with intensity <span class="arithmatex">\(\lambda\)</span>. At each jump:</p>
-<p>$$</p>
-<p>S_t = S_{t^-} \cdot Y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_{t^-} \cdot Y
+\]</div>
 <p>where <span class="arithmatex">\(Y\)</span> is the random jump multiplier.</p>
 <p><strong>Merton's choice</strong>: <span class="arithmatex">\(\log Y \sim N(\mu_J, \sigma_J^2)\)</span></p>
 <p>Then: <span class="arithmatex">\(\kappa = \mathbb{E}[Y - 1] = e^{\mu_J + \sigma_J^2/2} - 1\)</span></p>
 <h3 id="drift-adjustment">Drift Adjustment<a class="headerlink" href="#drift-adjustment" title="Permanent link">&para;</a></h3>
 <p>The term <span class="arithmatex">\(-\lambda\kappa\)</span> ensures the discounted price is a martingale:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[dS_t/S_{t^-}] = r\,dt
+\]</div>
 <hr />
 <h2 id="the-pide-partial-integro-differential-equation">The PIDE (Partial Integro-Differential Equation)<a class="headerlink" href="#the-pide-partial-integro-differential-equation" title="Permanent link">&para;</a></h2>
 <h3 id="pricing-equation">Pricing Equation<a class="headerlink" href="#pricing-equation" title="Permanent link">&para;</a></h3>
 <p>The option price <span class="arithmatex">\(V(t, S)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + (r - \lambda\kappa)S\frac{\partial V}{\partial S} - rV + \lambda\int_0^\infty [V(t, Sy) - V(t, S)]\nu(dy) = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\nu(dy)\)</span> is the jump size distribution (for Merton: log-normal).</p>
 <h3 id="the-integral-term">The Integral Term<a class="headerlink" href="#the-integral-term" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\lambda\int_0^\infty [V(t, Sy) - V(t, S)]\nu(dy)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda\int_0^\infty [V(t, Sy) - V(t, S)]\nu(dy)
+\]</div>
 <p>represents the expected change in option value due to jumps.</p>
 <h3 id="comparison-with-black-scholes">Comparison with Black-Scholes<a class="headerlink" href="#comparison-with-black-scholes" title="Permanent link">&para;</a></h3>
 <table>
@@ -47151,11 +47151,11 @@
 <h2 id="mertons-formula">Merton's Formula<a class="headerlink" href="#mertons-formula" title="Permanent link">&para;</a></h2>
 <h3 id="closed-form-solution">Closed-Form Solution<a class="headerlink" href="#closed-form-solution" title="Permanent link">&para;</a></h3>
 <p>For European options, Merton derived a semi-analytical formula:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\lambda' = \lambda(1 + \kappa)\)</span>
 - <span class="arithmatex">\(r_n = r - \lambda\kappa + n(\mu_J + \sigma_J^2/2)/T\)</span>
@@ -47167,9 +47167,9 @@ C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{
 <h3 id="motivation_1">Motivation<a class="headerlink" href="#motivation_1" title="Permanent link">&para;</a></h3>
 <p>Log-normal jumps in Merton don't produce enough skew. Asymmetric jumps work better.</p>
 <h3 id="jump-distribution">Jump Distribution<a class="headerlink" href="#jump-distribution" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>f_Y(y) = p \cdot \eta_1 e^{-\eta_1 y}\mathbf{1}<em y_0="y&lt;0">{y&gt;0} + (1-p) \cdot \eta_2 e^{\eta_2 y}\mathbf{1}</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_Y(y) = p \cdot \eta_1 e^{-\eta_1 y}\mathbf{1}_{y&gt;0} + (1-p) \cdot \eta_2 e^{\eta_2 y}\mathbf{1}_{y&lt;0}
+\]</div>
 <ul>
 <li><span class="arithmatex">\(p\)</span>: Probability of upward jump</li>
 <li><span class="arithmatex">\(\eta_1 &gt; 1\)</span>: Rate of upward jump decay</li>
@@ -47238,16 +47238,16 @@ C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{
 <h2 id="numerical-methods">Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permanent link">&para;</a></h2>
 <h3 id="fourierfft-methods">Fourier/FFT Methods<a class="headerlink" href="#fourierfft-methods" title="Permanent link">&para;</a></h3>
 <p>The characteristic function for Merton is known:</p>
-<p>$$</p>
-<p>\phi(u) = \exp\left[iuX_0 + (iu\omega - \frac{1}{2}u^2\sigma^2 + \lambda(\phi_Y(u) - 1))T\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi(u) = \exp\left[iuX_0 + (iu\omega - \frac{1}{2}u^2\sigma^2 + \lambda(\phi_Y(u) - 1))T\right]
+\]</div>
 <p>where <span class="arithmatex">\(\phi_Y\)</span> is the characteristic function of <span class="arithmatex">\(\log Y\)</span>.</p>
 <p><strong>FFT pricing</strong>: Fast and accurate for European options.</p>
 <h3 id="pide-methods">PIDE Methods<a class="headerlink" href="#pide-methods" title="Permanent link">&para;</a></h3>
 <p>Discretize the integral term:</p>
-<p>$$</p>
-<p>\int V(Sy)\nu(dy) \approx \sum_k w_k V(Sy_k)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int V(Sy)\nu(dy) \approx \sum_k w_k V(Sy_k)
+\]</div>
 <p>Use implicit schemes for the differential part, explicit for the integral.</p>
 <h3 id="monte-carlo">Monte Carlo<a class="headerlink" href="#monte-carlo" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
@@ -47268,37 +47268,37 @@ C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{
 <h2 id="impact-on-greeks">Impact on Greeks<a class="headerlink" href="#impact-on-greeks" title="Permanent link">&para;</a></h2>
 <h3 id="delta">Delta<a class="headerlink" href="#delta" title="Permanent link">&para;</a></h3>
 <p>Jumps reduce delta near the money (smile effect):</p>
-<p>$$</p>
-<p>\Delta_{\text{Merton}} &lt; \Delta_{\text{BS}} \quad \text{(for ATM calls)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{Merton}} &lt; \Delta_{\text{BS}} \quad \text{(for ATM calls)}
+\]</div>
 <h3 id="gamma">Gamma<a class="headerlink" href="#gamma" title="Permanent link">&para;</a></h3>
 <p>Concentrated near barriers and strikes due to jump risk.</p>
 <h3 id="vega">Vega<a class="headerlink" href="#vega" title="Permanent link">&para;</a></h3>
 <p>Decomposes into diffusion vega and jump vega:</p>
-<p>$$</p>
-<p>\mathcal{V}<em _sigma="\sigma">{\text{total}} = \mathcal{V}</em>} + \mathcal{V<em _mu_J="\mu_J">{\lambda} + \mathcal{V}</em>} + \mathcal{V}_{\sigma_J</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{total}} = \mathcal{V}_{\sigma} + \mathcal{V}_{\lambda} + \mathcal{V}_{\mu_J} + \mathcal{V}_{\sigma_J}
+\]</div>
 <hr />
 <h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h2>
 <h3 id="stochastic-volatility-jumps-svj">Stochastic Volatility + Jumps (SVJ)<a class="headerlink" href="#stochastic-volatility-jumps-svj" title="Permanent link">&para;</a></h3>
 <p>Combine Heston with Merton:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r - \lambda\kappa)S_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} + S_t\,dJ_t \\
 dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <h3 id="jumps-in-volatility">Jumps in Volatility<a class="headerlink" href="#jumps-in-volatility" title="Permanent link">&para;</a></h3>
 <p>Some models include jumps in the variance process as well (SVJJ models).</p>
 <h3 id="levy-processes">Lévy Processes<a class="headerlink" href="#levy-processes" title="Permanent link">&para;</a></h3>
 <p>Generalize to infinite-activity jump processes (Variance Gamma, CGMY, NIG).</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{dS_t}{S_{t^-}} = (r - \lambda\kappa)\,dt + \sigma\,dW_t + dJ_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47329,11 +47329,11 @@ dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 C_{\text{Merton}} = \sum_{n=0}^\infty \frac{e^{-\lambda'T}(\lambda'T)^n}{n!} C_{\text{BS}}(S, K, T, r_n, \sigma_n)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Jump-diffusion models capture sudden large moves and short-maturity smiles that pure diffusion models cannot, at the cost of market incompleteness and more complex pricing equations.</strong></p>
 
 

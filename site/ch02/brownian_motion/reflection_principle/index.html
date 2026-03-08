@@ -46938,9 +46938,9 @@
 <div class="arithmatex">\[M_t := \sup_{0 \le s \le t} W_s\]</div>
 <p><strong>Theorem 1.6.1</strong> (Reflection Principle for Maximum)</p>
 <p>For any <span class="arithmatex">\(t &gt; 0\)</span> and <span class="arithmatex">\(a &gt; 0\)</span>:</p>
-<p>$$\boxed{</p>
-<p>\mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a)</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a)
+}\]</div>
 <p><strong>Geometric Idea:</strong></p>
 <p>The proof constructs a <strong>pathwise bijection</strong> between two sets of paths:</p>
 <ol>
@@ -46959,10 +46959,10 @@
 <div class="arithmatex">\[\mathbb{P}(M_t \ge a, W_t \ge a) = \mathbb{P}(W_t \ge a)\]</div>
 <p><strong>Step 2: Event where path ends below <span class="arithmatex">\(a\)</span>.</strong></p>
 <p>For paths that hit <span class="arithmatex">\(a\)</span> at time <span class="arithmatex">\(\tau_a &lt; t\)</span> but end at <span class="arithmatex">\(W_t &lt; a\)</span>, we construct the <strong>reflected path</strong>:</p>
-<p>$$\tilde{W}_s = \begin{cases}</p>
-<p>W_s &amp; \text{if } s \le \tau_a \
-2a - W_s &amp; \text{if } s &gt; \tau_a</p>
-<p>\end{cases}$$</p>
+<div class="arithmatex">\[\tilde{W}_s = \begin{cases}
+W_s &amp; \text{if } s \le \tau_a \\
+2a - W_s &amp; \text{if } s &gt; \tau_a
+\end{cases}\]</div>
 <p><strong>Key observation:</strong> By the <strong>strong Markov property</strong>, after hitting <span class="arithmatex">\(a\)</span>, the process <span class="arithmatex">\(W_{\tau_a + s} - a\)</span> is a Brownian motion independent of <span class="arithmatex">\(\mathcal{F}_{\tau_a}\)</span>. The reflection <span class="arithmatex">\(2a - W_s\)</span> has the same distribution as <span class="arithmatex">\(W_s\)</span> for <span class="arithmatex">\(s &gt; \tau_a\)</span>.</p>
 <p>Therefore, the <strong>reflected endpoint</strong> is:</p>
 <div class="arithmatex">\[\tilde{W}_t = 2a - W_t\]</div>
@@ -46973,11 +46973,11 @@
 <div class="arithmatex">\[\mathbb{P}(M_t \ge a, W_t &lt; a) = \mathbb{P}(M_t \ge a, W_t &gt; a) = \mathbb{P}(W_t &gt; a)\]</div>
 <p>(The second equality uses the fact that if the reflected path ends above <span class="arithmatex">\(a\)</span>, the original path must have hit <span class="arithmatex">\(a\)</span>.)</p>
 <p>Therefore:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\mathbb{P}(M_t \ge a) 
-&amp;=&amp; \mathbb{P}(M_t \ge a, W_t \ge a) + \mathbb{P}(M_t \ge a, W_t &lt; a)\
-&amp;=&amp; \mathbb{P}(W_t \ge a) + \mathbb{P}(W_t &gt; a)\</p>
-<p>&amp;=&amp; 2\mathbb{P}(W_t \ge a) \quad \square\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\mathbb{P}(M_t \ge a) 
+&amp;=&amp; \mathbb{P}(M_t \ge a, W_t \ge a) + \mathbb{P}(M_t \ge a, W_t &lt; a)\\
+&amp;=&amp; \mathbb{P}(W_t \ge a) + \mathbb{P}(W_t &gt; a)\\
+&amp;=&amp; 2\mathbb{P}(W_t \ge a) \quad \square\end{array}\]</div>
 <h3 id="3-explicit-formula">3. Explicit Formula<a class="headerlink" href="#3-explicit-formula" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(W_t \sim \mathcal{N}(0, t)\)</span>:</p>
 <div class="arithmatex">\[\mathbb{P}(M_t \ge a) = 2\mathbb{P}(W_t \ge a) = 2\left[1 - \Phi\left(\frac{a}{\sqrt{t}}\right)\right] = 2\Phi\left(-\frac{a}{\sqrt{t}}\right)\]</div>
@@ -47065,9 +47065,9 @@ Sum: 4.0000 (should equal 4)
 <h3 id="1-statement">1. Statement<a class="headerlink" href="#1-statement" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 1.6.2</strong> (Reflection Principle for Joint Events)</p>
 <p>For <span class="arithmatex">\(a &gt; 0\)</span> and <span class="arithmatex">\(b &lt; a\)</span>:</p>
-<p>$$\boxed{</p>
-<p>\mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b)</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b)
+}\]</div>
 <p><strong>Proof:</strong></p>
 <p>The same reflection argument applies. For paths that hit level <span class="arithmatex">\(a\)</span> at time <span class="arithmatex">\(\tau_a\)</span> and end at <span class="arithmatex">\(W_t \le b &lt; a\)</span>, reflect the portion after <span class="arithmatex">\(\tau_a\)</span>:</p>
 <div class="arithmatex">\[\tilde{W}_t = 2a - W_t \ge 2a - b &gt; a\]</div>
@@ -47077,9 +47077,9 @@ Sum: 4.0000 (should equal 4)
 <div class="arithmatex">\[\mathbb{P}(M_t \ge a, W_t \le b) = \mathbb{P}(W_t \ge 2a - b) \quad \square\]</div>
 <h3 id="2-explicit-formula">2. Explicit Formula<a class="headerlink" href="#2-explicit-formula" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(W_t \sim \mathcal{N}(0, t)\)</span>:</p>
-<p>$$\boxed{</p>
-<p>\mathbb{P}(M_t \ge a, W_t \le b) = 1 - \Phi\left(\frac{2a - b}{\sqrt{t}}\right) = \Phi\left(\frac{b - 2a}{\sqrt{t}}\right)</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\mathbb{P}(M_t \ge a, W_t \le b) = 1 - \Phi\left(\frac{2a - b}{\sqrt{t}}\right) = \Phi\left(\frac{b - 2a}{\sqrt{t}}\right)
+}\]</div>
 <h3 id="3-python-visualization">3. Python Visualization<a class="headerlink" href="#3-python-visualization" title="Permanent link">&para;</a></h3>
 <p>This code shows a path that hits <span class="arithmatex">\(a\)</span> and ends below <span class="arithmatex">\(b &lt; a\)</span>, along with its reflection.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -47175,9 +47175,9 @@ Reflected path ends at: 5.9391 (above 5.5)
 <h3 id="2-probability-density-function">2. Probability Density Function<a class="headerlink" href="#2-probability-density-function" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 1.6.4</strong> (PDF of First Passage Time - Lévy Distribution)</p>
 <p>The probability density function of <span class="arithmatex">\(\tau_a\)</span> is:</p>
-<p>$$\boxed{</p>
-<p>f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), \quad t &gt; 0</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), \quad t &gt; 0
+}\]</div>
 <p>This is called the <strong>Lévy distribution</strong> (or inverse Gaussian with zero drift).</p>
 <p><strong>Proof:</strong></p>
 <p>Differentiate the CDF with respect to <span class="arithmatex">\(t\)</span>:</p>
@@ -47206,9 +47206,9 @@ Reflected path ends at: 5.9391 (above 5.5)
 <p>We now derive the distribution of <span class="arithmatex">\(\tau_a\)</span> using <strong>exponential martingales</strong> and optional stopping.</p>
 <p><strong>Theorem 1.6.6</strong> (Laplace Transform of <span class="arithmatex">\(\tau_a\)</span>)</p>
 <p>For <span class="arithmatex">\(\alpha &gt; 0\)</span>:</p>
-<p>$$\boxed{</p>
-<p>\mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}}</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\mathbb{E}[e^{-\alpha \tau_a}] = e^{-a\sqrt{2\alpha}}
+}\]</div>
 <p><strong>Proof:</strong></p>
 <p><strong>Step 1: Exponential martingale.</strong></p>
 <p>For any <span class="arithmatex">\(\lambda \in \mathbb{R}\)</span>, the process:</p>
@@ -47248,34 +47248,34 @@ Reflected path ends at: 5.9391 (above 5.5)
 <h3 id="1-main-result">1. Main Result<a class="headerlink" href="#1-main-result" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 1.6.8</strong> (Joint PDF of Maximum and Endpoint)</p>
 <p>For <span class="arithmatex">\(m &gt; 0\)</span> and <span class="arithmatex">\(w \le m\)</span>:</p>
-<p>$$\boxed{</p>
-<p>f_{M_t, W_t}(m, w) = \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^2}{2t}\right)</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+f_{M_t, W_t}(m, w) = \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^2}{2t}\right)
+}\]</div>
 <h3 id="2-derivation">2. Derivation<a class="headerlink" href="#2-derivation" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1: CDF via reflection.</strong></p>
 <p>From Theorem 1.6.2, for <span class="arithmatex">\(w &lt; m\)</span>:</p>
 <div class="arithmatex">\[\mathbb{P}(M_t \ge m, W_t \le w) = \mathbb{P}(W_t \ge 2m - w)\]</div>
 <p>Therefore:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\mathbb{P}(M_t \le m, W_t \le w) 
-&amp;=&amp;\displaystyle \mathbb{P}(W_t \le w) - \mathbb{P}(W_t \ge 2m - w)\
-&amp;=&amp;\displaystyle \Phi\left(\frac{w}{\sqrt{t}}\right) - \left[1 - \Phi\left(\frac{2m - w}{\sqrt{t}}\right)\right]\
-&amp;=&amp;\displaystyle \Phi\left(\frac{w}{\sqrt{t}}\right) + \Phi\left(\frac{2m - w}{\sqrt{t}}\right) - 1</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\mathbb{P}(M_t \le m, W_t \le w) 
+&amp;=&amp;\displaystyle \mathbb{P}(W_t \le w) - \mathbb{P}(W_t \ge 2m - w)\\
+&amp;=&amp;\displaystyle \Phi\left(\frac{w}{\sqrt{t}}\right) - \left[1 - \Phi\left(\frac{2m - w}{\sqrt{t}}\right)\right]\\
+&amp;=&amp;\displaystyle \Phi\left(\frac{w}{\sqrt{t}}\right) + \Phi\left(\frac{2m - w}{\sqrt{t}}\right) - 1
+\end{array}\]</div>
 <p><strong>Step 2: Differentiate to get the joint PDF.</strong></p>
 <div class="arithmatex">\[f_{M_t, W_t}(m, w) = \frac{\partial^2}{\partial m \partial w} \mathbb{P}(M_t \le m, W_t \le w)\]</div>
 <p>First, differentiate with respect to <span class="arithmatex">\(w\)</span>:</p>
-<p>$$\frac{\partial}{\partial w}\left[\Phi\left(\frac{w}{\sqrt{t}}\right) + \Phi\left(\frac{2m - w}{\sqrt{t}}\right) - 1\right]</p>
-<p>= \phi\left(\frac{w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}} - \phi\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}}$$</p>
+<div class="arithmatex">\[\frac{\partial}{\partial w}\left[\Phi\left(\frac{w}{\sqrt{t}}\right) + \Phi\left(\frac{2m - w}{\sqrt{t}}\right) - 1\right]
+= \phi\left(\frac{w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}} - \phi\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}}\]</div>
 <p>where <span class="arithmatex">\(\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}\)</span>.</p>
 <p>Now differentiate with respect to <span class="arithmatex">\(m\)</span>:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\frac{\partial}{\partial m}\left[-\phi\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}}\right]
-&amp;=&amp;\displaystyle -\frac{1}{\sqrt{t}} \cdot \phi'\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{2}{\sqrt{t}}\quad (\because\phi'(x) = -x\phi(x))\
-&amp;=&amp;\displaystyle -\frac{2}{t} \cdot \left(-\frac{2m - w}{\sqrt{t}}\right) \phi\left(\frac{2m - w}{\sqrt{t}}\right)\
-&amp;=&amp;\displaystyle \frac{2(2m - w)}{t\sqrt{t}} \cdot \frac{1}{\sqrt{2\pi}} e^{-(2m-w)^2/(2t)}\
-&amp;=&amp;\displaystyle \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^2}{2t}\right) \quad \square</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\frac{\partial}{\partial m}\left[-\phi\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{1}{\sqrt{t}}\right]
+&amp;=&amp;\displaystyle -\frac{1}{\sqrt{t}} \cdot \phi'\left(\frac{2m - w}{\sqrt{t}}\right) \cdot \frac{2}{\sqrt{t}}\quad (\because\phi'(x) = -x\phi(x))\\
+&amp;=&amp;\displaystyle -\frac{2}{t} \cdot \left(-\frac{2m - w}{\sqrt{t}}\right) \phi\left(\frac{2m - w}{\sqrt{t}}\right)\\
+&amp;=&amp;\displaystyle \frac{2(2m - w)}{t\sqrt{t}} \cdot \frac{1}{\sqrt{2\pi}} e^{-(2m-w)^2/(2t)}\\
+&amp;=&amp;\displaystyle \frac{2(2m - w)}{t\sqrt{2\pi t}} \exp\left(-\frac{(2m - w)^2}{2t}\right) \quad \square
+\end{array}\]</div>
 <h3 id="3-conditional-distribution">3. Conditional Distribution<a class="headerlink" href="#3-conditional-distribution" title="Permanent link">&para;</a></h3>
 <p><strong>Corollary 1.6.9</strong> (Conditional PDF of Maximum Given Endpoint)</p>
 <p>Given <span class="arithmatex">\(W_t = w\)</span>, the conditional density of <span class="arithmatex">\(M_t\)</span> is:</p>

@@ -47074,13 +47074,13 @@
 <h3 id="state-space-formulation">State-space formulation<a class="headerlink" href="#state-space-formulation" title="Permanent link">&para;</a></h3>
 <p>Consider a model where parameters <span class="arithmatex">\(\theta_t\)</span> evolve over time:</p>
 <p><strong>State equation:</strong></p>
-<p>$$</p>
-<p>\theta_{t+1} = f(\theta_t) + \eta_t, \qquad \eta_t \sim \mathcal{N}(0, Q),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_{t+1} = f(\theta_t) + \eta_t, \qquad \eta_t \sim \mathcal{N}(0, Q)
+\]</div>
 <p><strong>Observation equation:</strong></p>
-<p>$$</p>
-<p>y_t = h(\theta_t) + \varepsilon_t, \qquad \varepsilon_t \sim \mathcal{N}(0, R),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y_t = h(\theta_t) + \varepsilon_t, \qquad \varepsilon_t \sim \mathcal{N}(0, R)
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(\theta_t \in \mathbb{R}^d\)</span> is the (unobserved) parameter state.</li>
@@ -47092,9 +47092,9 @@
 </ul>
 <h3 id="the-filtering-problem">The filtering problem<a class="headerlink" href="#the-filtering-problem" title="Permanent link">&para;</a></h3>
 <p>Given observations <span class="arithmatex">\(y_1, \ldots, y_t\)</span>, estimate the posterior:</p>
-<p>$$</p>
-<p>p(\theta_t \mid y_{1:t}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(\theta_t \mid y_{1:t})
+\]</div>
 <p>This provides:</p>
 <ul>
 <li>A point estimate: <span class="arithmatex">\(\hat{\theta}_t = \mathbb{E}[\theta_t \mid y_{1:t}]\)</span>.</li>
@@ -47105,24 +47105,24 @@
 <h2 id="the-kalman-filter">The Kalman filter<a class="headerlink" href="#the-kalman-filter" title="Permanent link">&para;</a></h2>
 <p>When both <span class="arithmatex">\(f\)</span> and <span class="arithmatex">\(h\)</span> are linear and noise is Gaussian, the Kalman filter provides exact, closed-form updates.</p>
 <h3 id="linear-state-space-model">Linear state-space model<a class="headerlink" href="#linear-state-space-model" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\theta_{t+1} = A \theta_t + \eta_t, \qquad y_t = H \theta_t + \varepsilon_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_{t+1} = A \theta_t + \eta_t, \qquad y_t = H \theta_t + \varepsilon_t
+\]</div>
 <h3 id="kalman-filter-recursion">Kalman filter recursion<a class="headerlink" href="#kalman-filter-recursion" title="Permanent link">&para;</a></h3>
 <p><strong>Predict:</strong></p>
-<p>$$</p>
-<p>\hat{\theta}<em t-1_t-1="t-1|t-1">{t|t-1} = A \hat{\theta}</em> A^\top + Q.}, \qquad P_{t|t-1} = A P_{t-1|t-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_{t|t-1} = A \hat{\theta}_{t-1|t-1}, \qquad P_{t|t-1} = A P_{t-1|t-1} A^\top + Q
+\]</div>
 <p><strong>Update:</strong></p>
-<p>$$</p>
-<p>K_t = P_{t|t-1} H^\top (H P_{t|t-1} H^\top + R)^{-1},</p>
-<p>$$</p>
-<p>$$</p>
-<p>\hat{\theta}<em t_t-1="t|t-1">{t|t} = \hat{\theta}</em>),} + K_t (y_t - H \hat{\theta}_{t|t-1</p>
-<p>$$</p>
-<p>$$</p>
-<p>P_{t|t} = (I - K_t H) P_{t|t-1}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_t = P_{t|t-1} H^\top (H P_{t|t-1} H^\top + R)^{-1}
+\]</div>
+<div class="arithmatex">\[
+\hat{\theta}_{t|t} = \hat{\theta}_{t|t-1} + K_t (y_t - H \hat{\theta}_{t|t-1})
+\]</div>
+<div class="arithmatex">\[
+P_{t|t} = (I - K_t H) P_{t|t-1}
+\]</div>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(K_t\)</span> is the <strong>Kalman gain</strong>: balances trust in prediction vs. observation.</li>
@@ -47142,27 +47142,27 @@
 <p>The EKF handles nonlinearity by linearizing around the current estimate.</p>
 <h3 id="linearization">Linearization<a class="headerlink" href="#linearization" title="Permanent link">&para;</a></h3>
 <p>At each step, approximate:</p>
-<p>$$</p>
-<p>h(\theta) \approx h(\hat{\theta}<em t_t-1="t|t-1">{t|t-1}) + H_t (\theta - \hat{\theta}</em>),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+h(\theta) \approx h(\hat{\theta}_{t|t-1}) + H_t (\theta - \hat{\theta}_{t|t-1})
+\]</div>
 <p>where <span class="arithmatex">\(H_t = \nabla_\theta h(\hat{\theta}_{t|t-1})\)</span> is the Jacobian (sensitivity of prices to parameters).</p>
 <h3 id="ekf-recursion">EKF recursion<a class="headerlink" href="#ekf-recursion" title="Permanent link">&para;</a></h3>
 <p>Same structure as Kalman filter, but with <span class="arithmatex">\(H_t\)</span> evaluated at the current estimate:</p>
 <p><strong>Predict:</strong></p>
-<p>$$</p>
-<p>\hat{\theta}<em t-1_t-1="t-1|t-1">{t|t-1} = f(\hat{\theta}</em> F_t^\top + Q,}), \qquad P_{t|t-1} = F_t P_{t-1|t-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_{t|t-1} = f(\hat{\theta}_{t-1|t-1}), \qquad P_{t|t-1} = F_t P_{t-1|t-1} F_t^\top + Q
+\]</div>
 <p>where <span class="arithmatex">\(F_t = \nabla_\theta f(\hat{\theta}_{t-1|t-1})\)</span>.</p>
 <p><strong>Update:</strong></p>
-<p>$$</p>
-<p>K_t = P_{t|t-1} H_t^\top (H_t P_{t|t-1} H_t^\top + R)^{-1},</p>
-<p>$$</p>
-<p>$$</p>
-<p>\hat{\theta}<em t_t-1="t|t-1">{t|t} = \hat{\theta}</em>)),} + K_t (y_t - h(\hat{\theta}_{t|t-1</p>
-<p>$$</p>
-<p>$$</p>
-<p>P_{t|t} = (I - K_t H_t) P_{t|t-1}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_t = P_{t|t-1} H_t^\top (H_t P_{t|t-1} H_t^\top + R)^{-1}
+\]</div>
+<div class="arithmatex">\[
+\hat{\theta}_{t|t} = \hat{\theta}_{t|t-1} + K_t (y_t - h(\hat{\theta}_{t|t-1}))
+\]</div>
+<div class="arithmatex">\[
+P_{t|t} = (I - K_t H_t) P_{t|t-1}
+\]</div>
 <h3 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Computationally efficient (comparable to optimization-based calibration).</li>
@@ -47180,15 +47180,15 @@
 <p>The UKF avoids explicit linearization by propagating carefully chosen "sigma points" through the nonlinear functions.</p>
 <h3 id="sigma-points">Sigma points<a class="headerlink" href="#sigma-points" title="Permanent link">&para;</a></h3>
 <p>For state dimension <span class="arithmatex">\(d\)</span>, choose <span class="arithmatex">\(2d + 1\)</span> sigma points:</p>
-<p>$$</p>
-<p>\chi_0 = \hat{\theta}, \quad \chi_i = \hat{\theta} + \sqrt{(d + \lambda) P} \big|<em i_d="i+d">i, \quad \chi</em> \big|_i,} = \hat{\theta} - \sqrt{(d + \lambda) P</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\chi_0 = \hat{\theta}, \quad \chi_i = \hat{\theta} + \sqrt{(d + \lambda) P} \big|_i, \quad \chi_{i+d} = \hat{\theta} - \sqrt{(d + \lambda) P} \big|_i
+\]</div>
 <p>where <span class="arithmatex">\(\sqrt{(d + \lambda) P}|_i\)</span> denotes the <span class="arithmatex">\(i\)</span>-th column of the matrix square root, and <span class="arithmatex">\(\lambda\)</span> is a scaling parameter.</p>
 <h3 id="propagation">Propagation<a class="headerlink" href="#propagation" title="Permanent link">&para;</a></h3>
 <p>Transform sigma points through <span class="arithmatex">\(f\)</span> and <span class="arithmatex">\(h\)</span>:</p>
-<p>$$</p>
-<p>\chi_i^{-} = f(\chi_i), \qquad \gamma_i = h(\chi_i^{-}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\chi_i^{-} = f(\chi_i), \qquad \gamma_i = h(\chi_i^{-})
+\]</div>
 <p>Compute weighted means and covariances from the transformed points.</p>
 <h3 id="advantages-over-ekf">Advantages over EKF<a class="headerlink" href="#advantages-over-ekf" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47213,15 +47213,15 @@
 <p><strong>Predict:</strong> Propagate each particle through state dynamics:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>\tilde{\theta}<em t-1="t-1">t^{(i)} = f(\theta</em>.}^{(i)}) + \eta_t^{(i)</p>
-<p>$$</p>
+<p>$$
+   \tilde{\theta}<em t-1="t-1">t^{(i)} = f(\theta</em>
+   $$}^{(i)}) + \eta_t^{(i)</p>
 <ol>
 <li><strong>Update:</strong> Compute importance weights based on likelihood:</li>
 </ol>
-<p>$$</p>
-<p>w_t^{(i)} \propto p(y_t \mid \tilde{\theta}_t^{(i)}).</p>
-<p>$$</p>
+<p>$$
+   w_t^{(i)} \propto p(y_t \mid \tilde{\theta}_t^{(i)})
+   $$</p>
 <ol>
 <li>
 <p><strong>Resample:</strong> Draw <span class="arithmatex">\(N\)</span> particles from <span class="arithmatex">\(\{\tilde{\theta}_t^{(i)}\}\)</span> with probabilities <span class="arithmatex">\(\{w_t^{(i)}\}\)</span>.</p>
@@ -47253,21 +47253,21 @@
 <h2 id="application-to-heston-model">Application to Heston model<a class="headerlink" href="#application-to-heston-model" title="Permanent link">&para;</a></h2>
 <h3 id="state-vector">State vector<a class="headerlink" href="#state-vector" title="Permanent link">&para;</a></h3>
 <p>For Heston with time-varying parameters:</p>
-<p>$$</p>
-<p>\theta_t = (v_t, \kappa_t, \bar{v}<em v_t="v,t">t, \sigma</em>, \rho_t)^\top.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = (v_t, \kappa_t, \bar{v}_t, \sigma_{v,t}, \rho_t)^\top
+\]</div>
 <p>Often, only <span class="arithmatex">\(v_t\)</span> (spot variance) is treated as rapidly varying; others are slowly varying or fixed.</p>
 <h3 id="observation-model">Observation model<a class="headerlink" href="#observation-model" title="Permanent link">&para;</a></h3>
 <p>Observe implied volatilities at strikes <span class="arithmatex">\(K_j\)</span> and maturities <span class="arithmatex">\(T_j\)</span>:</p>
-<p>$$</p>
-<p>y_t = (\sigma_{\text{impl}}(K_1, T_1; \theta_t), \ldots, \sigma_{\text{impl}}(K_m, T_m; \theta_t))^\top + \varepsilon_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y_t = (\sigma_{\text{impl}}(K_1, T_1; \theta_t), \ldots, \sigma_{\text{impl}}(K_m, T_m; \theta_t))^\top + \varepsilon_t
+\]</div>
 <p>The function <span class="arithmatex">\(h(\theta) = (\sigma_{\text{impl}}(K_j, T_j; \theta))_j\)</span> requires Heston pricing and implied vol inversion.</p>
 <h3 id="state-dynamics">State dynamics<a class="headerlink" href="#state-dynamics" title="Permanent link">&para;</a></h3>
 <p>A simple random walk model:</p>
-<p>$$</p>
-<p>\theta_{t+1} = \theta_t + \eta_t, \qquad \eta_t \sim \mathcal{N}(0, Q).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_{t+1} = \theta_t + \eta_t, \qquad \eta_t \sim \mathcal{N}(0, Q)
+\]</div>
 <p>The covariance <span class="arithmatex">\(Q\)</span> encodes beliefs about parameter stability:</p>
 <ul>
 <li>Small diagonal entries for stable parameters (<span class="arithmatex">\(\kappa\)</span>, <span class="arithmatex">\(\bar{v}\)</span>).</li>
@@ -47366,9 +47366,9 @@
 <p>In models like Heston, the variance <span class="arithmatex">\(v_t\)</span> is a latent state with known dynamics, while <span class="arithmatex">\((\kappa, \bar{v}, \sigma_v, \rho)\)</span> are parameters.</p>
 <h3 id="augmented-state-approach">Augmented state approach<a class="headerlink" href="#augmented-state-approach" title="Permanent link">&para;</a></h3>
 <p>Augment the state vector:</p>
-<p>$$</p>
-<p>x_t = (v_t, \kappa, \bar{v}, \sigma_v, \rho)^\top.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x_t = (v_t, \kappa, \bar{v}, \sigma_v, \rho)^\top
+\]</div>
 <p>Apply filtering to <span class="arithmatex">\(x_t\)</span>, treating parameters as slowly evolving states.</p>
 <h3 id="raoblackwellization">Rao–Blackwellization<a class="headerlink" href="#raoblackwellization" title="Permanent link">&para;</a></h3>
 <p>If some components are linear-Gaussian given others, exploit this structure:</p>

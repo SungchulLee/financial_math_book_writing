@@ -46698,153 +46698,153 @@
 <h2 id="limits-in-stock-price">Limits in Stock Price<a class="headerlink" href="#limits-in-stock-price" title="Permanent link">&para;</a></h2>
 <h3 id="1-as-s-deep-in-the-money-call">1. <strong>As S → ∞ (Deep In-the-Money Call)</strong><a class="headerlink" href="#1-as-s-deep-in-the-money-call" title="Permanent link">&para;</a></h3>
 <p><strong>Behavior of <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span></strong>:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} \to +\infty</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T} \to +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} \to +\infty
+\]</div>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T} \to +\infty
+\]</div>
 <p><strong>Cumulative probabilities</strong>:</p>
-<p>$$</p>
-<p>\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(d_1), \mathcal{N}(d_2) \to 1
+\]</div>
 <p><strong>Call price</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 C &amp;= S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \\
 &amp;\to S \cdot 1 - Ke^{-rT} \cdot 1 \\
 &amp;= S - Ke^{-rT}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Interpretation</strong>: Deep ITM call behaves like <strong>forward contract</strong> with guaranteed exercise. The option value equals the stock price minus the present value of the strike.</p>
 <p><strong>Put price</strong> (via put-call parity):</p>
-<p>$$</p>
-<p>P = C - S + Ke^{-rT} \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = C - S + Ke^{-rT} \to 0
+\]</div>
 <p>Deep OTM put becomes worthless.</p>
 <hr />
 <h3 id="2-as-s-0-deep-out-of-the-money-call">2. <strong>As S → 0 (Deep Out-of-the-Money Call)</strong><a class="headerlink" href="#2-as-s-0-deep-out-of-the-money-call" title="Permanent link">&para;</a></h3>
 <p><strong>Behavior of <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span></strong>:</p>
-<p>$$</p>
-<p>d_1, d_2 \to -\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1, d_2 \to -\infty
+\]</div>
 <p><strong>Cumulative probabilities</strong>:</p>
-<p>$$</p>
-<p>\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(d_1), \mathcal{N}(d_2) \to 0
+\]</div>
 <p><strong>Call price</strong>:</p>
-<p>$$</p>
-<p>C \to S \cdot 0 - Ke^{-rT} \cdot 0 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to S \cdot 0 - Ke^{-rT} \cdot 0 = 0
+\]</div>
 <p><strong>Put price</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 P &amp;= Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1) \\
 &amp;\to Ke^{-rT} \cdot 1 - 0 \cdot 0 \\
 &amp;= Ke^{-rT}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Interpretation</strong>: Deep ITM put approaches the present value of the strike minus essentially zero stock value.</p>
 <hr />
 <h2 id="limits-in-time-to-maturity">Limits in Time to Maturity<a class="headerlink" href="#limits-in-time-to-maturity" title="Permanent link">&para;</a></h2>
 <h3 id="1-as-t-0-approaching-expiration">1. <strong>As T → 0 (Approaching Expiration)</strong><a class="headerlink" href="#1-as-t-0-approaching-expiration" title="Permanent link">&para;</a></h3>
 <p><strong>Case 1: <span class="arithmatex">\(S &gt; K\)</span> (ITM call)</strong></p>
 <p>As <span class="arithmatex">\(T \to 0\)</span>:</p>
-<p>$$</p>
-<p>\ln(S/K) &gt; 0 \text{ dominates}, \quad d_1, d_2 \to +\infty</p>
-<p>$$</p>
-<p>$$</p>
-<p>C \to S - K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(S/K) &gt; 0 \text{ dominates}, \quad d_1, d_2 \to +\infty
+\]</div>
+<div class="arithmatex">\[
+C \to S - K
+\]</div>
 <p><strong>Case 2: <span class="arithmatex">\(S &lt; K\)</span> (OTM call)</strong></p>
 <p>As <span class="arithmatex">\(T \to 0\)</span>:</p>
-<p>$$</p>
-<p>\ln(S/K) &lt; 0 \text{ dominates}, \quad d_1, d_2 \to -\infty</p>
-<p>$$</p>
-<p>$$</p>
-<p>C \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(S/K) &lt; 0 \text{ dominates}, \quad d_1, d_2 \to -\infty
+\]</div>
+<div class="arithmatex">\[
+C \to 0
+\]</div>
 <p><strong>Case 3: <span class="arithmatex">\(S = K\)</span> (ATM call)</strong></p>
 <p>This requires careful analysis. As <span class="arithmatex">\(T \to 0\)</span> with <span class="arithmatex">\(S = K\)</span>:</p>
-<p>$$</p>
-<p>d_1 = \frac{(r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = \frac{(r - \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mathcal{N}(d_1), \mathcal{N}(d_2) \to \mathcal{N}(0) = 0.5</p>
-<p>$$</p>
-<p>$$</p>
-<p>C \to K \cdot 0.5 - K \cdot 1 \cdot 0.5 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{(r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to 0
+\]</div>
+<div class="arithmatex">\[
+d_2 = \frac{(r - \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to 0
+\]</div>
+<div class="arithmatex">\[
+\mathcal{N}(d_1), \mathcal{N}(d_2) \to \mathcal{N}(0) = 0.5
+\]</div>
+<div class="arithmatex">\[
+C \to K \cdot 0.5 - K \cdot 1 \cdot 0.5 = 0
+\]</div>
 <p><strong>Summary</strong>: As expiration approaches:</p>
-<p>$$</p>
-<p>\boxed{\lim_{T \to 0} C(S,T) = \max(S - K, 0) = (S-K)^+}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\lim_{T \to 0} C(S,T) = \max(S - K, 0) = (S-K)^+}
+\]</div>
 <p>This recovers the <strong>terminal payoff condition</strong>.</p>
 <hr />
 <h3 id="2-as-t-very-long-maturity">2. <strong>As T → ∞ (Very Long Maturity)</strong><a class="headerlink" href="#2-as-t-very-long-maturity" title="Permanent link">&para;</a></h3>
 <p><strong>Behavior of <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span></strong>:</p>
 <p>For fixed <span class="arithmatex">\(S, K, r, \sigma\)</span>:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}
+\]</div>
 <p>The second term dominates:</p>
-<p>$$</p>
-<p>d_1 \sim \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 \sim \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma} \to +\infty
+\]</div>
 <p>Similarly <span class="arithmatex">\(d_2 \to +\infty\)</span>.</p>
 <p><strong>Call price</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 C &amp;= S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \\
 &amp;\to S \cdot 1 - K \cdot 0 \cdot 1 \\
 &amp;= S
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Interpretation</strong>: With infinite time, the call becomes equivalent to owning the stock (since there's certainty of finishing ITM and the strike payment becomes negligible after discounting).</p>
 <p><strong>Put price</strong>:</p>
-<p>$$</p>
-<p>P \to Ke^{-rT} - S \cdot 0 \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P \to Ke^{-rT} - S \cdot 0 \to 0
+\]</div>
 <p>Long-dated puts become worthless (stock will almost certainly be above strike eventually).</p>
 <hr />
 <h2 id="limits-in-volatility">Limits in Volatility<a class="headerlink" href="#limits-in-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="1-as-0-zero-volatility">1. <strong>As σ → 0 (Zero Volatility)</strong><a class="headerlink" href="#1-as-0-zero-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Deterministic evolution</strong>: Stock grows at risk-free rate:</p>
-<p>$$</p>
-<p>S_T = S_0 e^{rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 e^{rT}
+\]</div>
 <p><strong>Case 1: <span class="arithmatex">\(S_0 &gt; Ke^{-rT}\)</span></strong> (Forward price above strike)</p>
 <p>Stock will certainly finish above <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>C \to S_0 - Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to S_0 - Ke^{-rT}
+\]</div>
 <p><strong>Case 2: <span class="arithmatex">\(S_0 &lt; Ke^{-rT}\)</span></strong> (Forward price below strike)</p>
 <p>Stock will certainly finish below <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>C \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to 0
+\]</div>
 <p><strong>Case 3: <span class="arithmatex">\(S_0 = Ke^{-rT}\)</span></strong> (Exactly ATM forward)</p>
-<p>$$</p>
-<p>C \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to 0
+\]</div>
 <p><strong>Summary</strong>:</p>
-<p>$$</p>
-<p>\boxed{\lim_{\sigma \to 0} C = \max(S_0 - Ke^{-rT}, 0)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\lim_{\sigma \to 0} C = \max(S_0 - Ke^{-rT}, 0)}
+\]</div>
 <p>This is the <strong>forward value</strong> with no volatility premium.</p>
 <p><strong>Put limit</strong>:</p>
-<p>$$</p>
-<p>\lim_{\sigma \to 0} P = \max(Ke^{-rT} - S_0, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\sigma \to 0} P = \max(Ke^{-rT} - S_0, 0)
+\]</div>
 <hr />
 <h3 id="2-as-infinite-volatility">2. <strong>As σ → ∞ (Infinite Volatility)</strong><a class="headerlink" href="#2-as-infinite-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Behavior of <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span></strong>:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{(r + \frac{1}{2}\sigma^2)\sqrt{T}}{\sigma}
+\]</div>
 <p>As <span class="arithmatex">\(\sigma \to \infty\)</span>:</p>
 <ul>
 <li>First term: <span class="arithmatex">\(\frac{\ln(S/K)}{\sigma\sqrt{T}} \to 0\)</span></li>
@@ -46852,115 +46852,115 @@ C &amp;= S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2) \\
 </ul>
 <p>Therefore <span class="arithmatex">\(d_1 \to +\infty\)</span> and <span class="arithmatex">\(\mathcal{N}(d_1) \to 1\)</span>.</p>
 <p>For <span class="arithmatex">\(d_2\)</span>:</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T} \to +\infty - \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T} \to +\infty - \infty
+\]</div>
 <p>This is indeterminate. More carefully:</p>
-<p>$$</p>
-<p>d_2 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{r\sqrt{T}}{\sigma} - \frac{\sigma\sqrt{T}}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = \frac{\ln(S/K)}{\sigma\sqrt{T}} + \frac{r\sqrt{T}}{\sigma} - \frac{\sigma\sqrt{T}}{2}
+\]</div>
 <p>As <span class="arithmatex">\(\sigma \to \infty\)</span>, the last term dominates:</p>
-<p>$$</p>
-<p>d_2 \to -\infty, \quad \mathcal{N}(d_2) \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 \to -\infty, \quad \mathcal{N}(d_2) \to 0
+\]</div>
 <p><strong>Call price</strong>:</p>
-<p>$$</p>
-<p>C \to S \cdot 1 - Ke^{-rT} \cdot 0 = S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to S \cdot 1 - Ke^{-rT} \cdot 0 = S
+\]</div>
 <p><strong>Interpretation</strong>: With infinite volatility, the call is worth the full stock price (no chance of finishing OTM since variance dominates everything).</p>
 <p><strong>Put price</strong>: From put-call parity:</p>
-<p>$$</p>
-<p>P = C - S + Ke^{-rT} \to S - S + Ke^{-rT} = Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = C - S + Ke^{-rT} \to S - S + Ke^{-rT} = Ke^{-rT}
+\]</div>
 <p>Infinite volatility gives the put its maximum possible value (present value of strike).</p>
 <hr />
 <h2 id="limits-in-interest-rate">Limits in Interest Rate<a class="headerlink" href="#limits-in-interest-rate" title="Permanent link">&para;</a></h2>
 <h3 id="1-as-r-0-zero-interest-rate">1. <strong>As r → 0 (Zero Interest Rate)</strong><a class="headerlink" href="#1-as-r-0-zero-interest-rate" title="Permanent link">&para;</a></h3>
 <p><strong>Call formula</strong>:</p>
-<p>$$</p>
-<p>C \to S\mathcal{N}(d_1) - K\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to S\mathcal{N}(d_1) - K\mathcal{N}(d_2)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+\]</div>
 <p><strong>Put-call parity</strong> becomes:</p>
-<p>$$</p>
-<p>C - P = S - K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C - P = S - K
+\]</div>
 <p>(no discounting since <span class="arithmatex">\(e^{-r \cdot 0} = 1\)</span>)</p>
 <p><strong>Interpretation</strong>: Options behave as if cash flows are not discounted.</p>
 <hr />
 <h3 id="2-as-r-infinite-interest-rate">2. <strong>As r → ∞ (Infinite Interest Rate)</strong><a class="headerlink" href="#2-as-r-infinite-interest-rate" title="Permanent link">&para;</a></h3>
 <p><strong>Discounting</strong>: <span class="arithmatex">\(e^{-rT} \to 0\)</span></p>
 <p><strong>Behavior</strong>: </p>
-<p>$$</p>
-<p>d_1 \sim \frac{r\sqrt{T}}{\sigma} \to +\infty</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T} \to +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 \sim \frac{r\sqrt{T}}{\sigma} \to +\infty
+\]</div>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T} \to +\infty
+\]</div>
 <p><strong>Call price</strong>:</p>
-<p>$$</p>
-<p>C \to S \cdot 1 - 0 \cdot 1 = S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to S \cdot 1 - 0 \cdot 1 = S
+\]</div>
 <p><strong>Interpretation</strong>: With infinite interest rate, the discounted strike becomes zero, so the call is worth the full stock price.</p>
 <p><strong>Put price</strong>:</p>
-<p>$$</p>
-<p>P \to 0 \cdot 1 - S \cdot 0 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P \to 0 \cdot 1 - S \cdot 0 = 0
+\]</div>
 <hr />
 <h2 id="limits-in-strike-price">Limits in Strike Price<a class="headerlink" href="#limits-in-strike-price" title="Permanent link">&para;</a></h2>
 <h3 id="1-as-k-0-zero-strike">1. <strong>As K → 0 (Zero Strike)</strong><a class="headerlink" href="#1-as-k-0-zero-strike" title="Permanent link">&para;</a></h3>
 <p><strong>Call</strong>:</p>
-<p>$$</p>
-<p>\ln(S/K) \to +\infty, \quad d_1, d_2 \to +\infty</p>
-<p>$$</p>
-<p>$$</p>
-<p>C \to S - 0 \cdot e^{-rT} = S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(S/K) \to +\infty, \quad d_1, d_2 \to +\infty
+\]</div>
+<div class="arithmatex">\[
+C \to S - 0 \cdot e^{-rT} = S
+\]</div>
 <p><strong>Interpretation</strong>: Call with zero strike is equivalent to owning the stock (certain to exercise for nothing).</p>
 <p><strong>Put</strong>:</p>
-<p>$$</p>
-<p>P \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P \to 0
+\]</div>
 <p>(no value in selling stock for zero)</p>
 <hr />
 <h3 id="2-as-k-infinite-strike">2. <strong>As K → ∞ (Infinite Strike)</strong><a class="headerlink" href="#2-as-k-infinite-strike" title="Permanent link">&para;</a></h3>
 <p><strong>Call</strong>:</p>
-<p>$$</p>
-<p>\ln(S/K) \to -\infty, \quad d_1, d_2 \to -\infty</p>
-<p>$$</p>
-<p>$$</p>
-<p>C \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(S/K) \to -\infty, \quad d_1, d_2 \to -\infty
+\]</div>
+<div class="arithmatex">\[
+C \to 0
+\]</div>
 <p>(no chance of stock exceeding infinite strike)</p>
 <p><strong>Put</strong>:</p>
-<p>$$</p>
-<p>P \to Ke^{-rT} - S \to +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P \to Ke^{-rT} - S \to +\infty
+\]</div>
 <p>But in practice, <span class="arithmatex">\(P &lt; Ke^{-rT}\)</span> (never exceeds max theoretical payoff).</p>
 <hr />
 <h2 id="atm-approximation-for-small-time">ATM Approximation for Small Time<a class="headerlink" href="#atm-approximation-for-small-time" title="Permanent link">&para;</a></h2>
 <p>For at-the-money options (<span class="arithmatex">\(S \approx K\)</span>) with small <span class="arithmatex">\(T\)</span>, there's a useful approximation.</p>
 <h3 id="1-atm-call-formula">1. <strong>ATM Call Formula</strong><a class="headerlink" href="#1-atm-call-formula" title="Permanent link">&para;</a></h3>
 <p>When <span class="arithmatex">\(S = K\)</span> and <span class="arithmatex">\(T\)</span> is small:</p>
-<p>$$</p>
-<p>d_1 \approx \frac{\sigma\sqrt{T}}{2}, \quad d_2 \approx -\frac{\sigma\sqrt{T}}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 \approx \frac{\sigma\sqrt{T}}{2}, \quad d_2 \approx -\frac{\sigma\sqrt{T}}{2}
+\]</div>
 <p>Using Taylor expansion of <span class="arithmatex">\(\mathcal{N}(x)\)</span> near <span class="arithmatex">\(x = 0\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{N}(x) \approx \frac{1}{2} + \frac{1}{\sqrt{2\pi}}x + O(x^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(x) \approx \frac{1}{2} + \frac{1}{\sqrt{2\pi}}x + O(x^3)
+\]</div>
 <p>After substitution and simplification:</p>
-<p>$$</p>
-<p>\boxed{C_{\text{ATM}} \approx S \cdot \frac{\sigma\sqrt{T}}{\sqrt{2\pi}} \approx 0.4 S \sigma \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C_{\text{ATM}} \approx S \cdot \frac{\sigma\sqrt{T}}{\sqrt{2\pi}} \approx 0.4 S \sigma \sqrt{T}}
+\]</div>
 <p>This is the <strong>ATM volatility rule of thumb</strong>: ATM option value is roughly 40% of <span class="arithmatex">\(S\sigma\sqrt{T}\)</span>.</p>
 <p><strong>Example</strong>: <span class="arithmatex">\(S = 100\)</span>, <span class="arithmatex">\(\sigma = 20\%\)</span>, <span class="arithmatex">\(T = 0.25\)</span> (3 months):</p>
-<p>$$</p>
-<p>C \approx 0.4 \times 100 \times 0.2 \times 0.5 = 4</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \approx 0.4 \times 100 \times 0.2 \times 0.5 = 4
+\]</div>
 <hr />
 <h2 id="summary-table">Summary Table<a class="headerlink" href="#summary-table" title="Permanent link">&para;</a></h2>
 <table>

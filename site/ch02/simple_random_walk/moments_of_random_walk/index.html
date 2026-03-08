@@ -46372,11 +46372,11 @@
 <hr />
 <h2 id="step-distribution">Step Distribution<a class="headerlink" href="#step-distribution" title="Permanent link">&para;</a></h2>
 <p>Each increment <span class="arithmatex">\(X_i\)</span> takes values in <span class="arithmatex">\(\{-1, +1\}\)</span> with</p>
-<div class="arithmatex">\[\mathbb{P}(X_i = +1) = p, \qquad \mathbb{P}(X_i = -1) = 1-p.\]</div>
+<div class="arithmatex">\[\mathbb{P}(X_i = +1) = p, \qquad \mathbb{P}(X_i = -1) = 1-p\]</div>
 <p>We record the moments of a single step first; everything for <span class="arithmatex">\(S_n\)</span> follows by independence and summation.</p>
 <h3 id="mean-of-a-single-step">Mean of a Single Step<a class="headerlink" href="#mean-of-a-single-step" title="Permanent link">&para;</a></h3>
 <p>Applying the definition of expectation directly:</p>
-<div class="arithmatex">\[\mathbb{E}[X_i] = (+1) \cdot p + (-1) \cdot (1-p) = p - 1 + p = 2p - 1.\]</div>
+<div class="arithmatex">\[\mathbb{E}[X_i] = (+1) \cdot p + (-1) \cdot (1-p) = p - 1 + p = 2p - 1\]</div>
 <p>We denote this drift per step by <span class="arithmatex">\(\mu := 2p - 1\)</span>. Observe:</p>
 <ul>
 <li><span class="arithmatex">\(p &gt; 1/2 \Rightarrow \mu &gt; 0\)</span> (upward bias).</li>
@@ -46389,72 +46389,71 @@
 <p>Therefore <span class="arithmatex">\(\mathbb{E}[X_i^2] = 1\)</span>.</p>
 <h3 id="variance-of-a-single-step">Variance of a Single Step<a class="headerlink" href="#variance-of-a-single-step" title="Permanent link">&para;</a></h3>
 <p>Using the identity <span class="arithmatex">\(\text{Var}(X_i) = \mathbb{E}[X_i^2] - (\mathbb{E}[X_i])^2\)</span>:</p>
-<div class="arithmatex">\[\text{Var}(X_i) = 1 - (2p-1)^2.\]</div>
+<div class="arithmatex">\[\text{Var}(X_i) = 1 - (2p-1)^2\]</div>
 <p>Expanding <span class="arithmatex">\((2p-1)^2 = 4p^2 - 4p + 1\)</span>:</p>
-<div class="arithmatex">\[\text{Var}(X_i) = 1 - (4p^2 - 4p + 1) = 4p - 4p^2 = 4p(1-p).\]</div>
+<div class="arithmatex">\[\text{Var}(X_i) = 1 - (4p^2 - 4p + 1) = 4p - 4p^2 = 4p(1-p)\]</div>
 <p>This expression is maximised at <span class="arithmatex">\(p = 1/2\)</span>, where <span class="arithmatex">\(\text{Var}(X_i) = 1\)</span>, and tends to <span class="arithmatex">\(0\)</span> as <span class="arithmatex">\(p \to 0\)</span> or <span class="arithmatex">\(p \to 1\)</span> (degenerate cases with no randomness).</p>
 <hr />
 <h2 id="mean-of-s_n">Mean of S_n<a class="headerlink" href="#mean-of-s_n" title="Permanent link">&para;</a></h2>
 <p>Since <span class="arithmatex">\(S_n = \sum_{i=1}^n X_i\)</span> and each <span class="arithmatex">\(X_i\)</span> has the same distribution, linearity of expectation gives:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n] = \mathbb{E}\!\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n (2p-1) = n(2p-1).\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n] = \mathbb{E}\!\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n (2p-1) = n(2p-1)\]</div>
 <div class="admonition note">
 <p class="admonition-title">Linearity of expectation requires no independence</p>
 <p>The step <span class="arithmatex">\(\mathbb{E}[\sum_{i=1}^n X_i] = \sum_{i=1}^n \mathbb{E}[X_i]\)</span> holds for <em>any</em> integrable random variables, dependent or not. Independence is not needed for the mean.</p>
 </div>
 <p><strong>Symmetric case (<span class="arithmatex">\(p = 1/2\)</span>).</strong> The drift vanishes:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n] = n(2 \cdot \tfrac{1}{2} - 1) = n \cdot 0 = 0 \quad \text{for all } n \geq 0.\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n] = n(2 \cdot \tfrac{1}{2} - 1) = n \cdot 0 = 0 \quad \text{for all } n \geq 0\]</div>
 <p>The walk is centred at the origin at every time step. This is not a coincidence — it is equivalent to the martingale property proved in <a href="../martingale_property/">Martingale Property</a>: <span class="arithmatex">\(\mathbb{E}[S_n \mid \mathcal{F}_{n-1}] = S_{n-1}\)</span> implies <span class="arithmatex">\(\mathbb{E}[S_n] = \mathbb{E}[S_0] = 0\)</span>.</p>
 <hr />
 <h2 id="variance-of-s_n">Variance of S_n<a class="headerlink" href="#variance-of-s_n" title="Permanent link">&para;</a></h2>
 <h3 id="method-1-additivity-of-variance">Method 1: Additivity of Variance<a class="headerlink" href="#method-1-additivity-of-variance" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(X_1, X_2, \ldots, X_n\)</span> are <strong>independent</strong>, the variance of their sum equals the sum of their variances:</p>
-<div class="arithmatex">\[\text{Var}(S_n) = \text{Var}\!\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n 4p(1-p) = 4np(1-p).\]</div>
+<div class="arithmatex">\[\text{Var}(S_n) = \text{Var}\!\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n 4p(1-p) = 4np(1-p)\]</div>
 <div class="admonition warning">
 <p class="admonition-title">Independence is essential here</p>
 <p>Unlike linearity of expectation, the identity <span class="arithmatex">\(\text{Var}(\sum X_i) = \sum \text{Var}(X_i)\)</span> requires that the <span class="arithmatex">\(X_i\)</span> be <strong>uncorrelated</strong> (pairwise independence suffices). For the random walk the <span class="arithmatex">\(X_i\)</span> are fully independent, so this holds without qualification.</p>
 </div>
 <p><strong>Symmetric case (<span class="arithmatex">\(p = 1/2\)</span>):</strong></p>
-<div class="arithmatex">\[\text{Var}(S_n) = 4n \cdot \tfrac{1}{2} \cdot \tfrac{1}{2} = n.\]</div>
+<div class="arithmatex">\[\text{Var}(S_n) = 4n \cdot \tfrac{1}{2} \cdot \tfrac{1}{2} = n\]</div>
 <p>The standard deviation is <span class="arithmatex">\(\text{SD}(S_n) = \sqrt{n}\)</span>. After <span class="arithmatex">\(n\)</span> steps, a typical excursion from the origin is of order <span class="arithmatex">\(\sqrt{n}\)</span>, not <span class="arithmatex">\(n\)</span>. This <strong>diffusive scaling</strong> (<span class="arithmatex">\(\sim\sqrt{n}\)</span>) is the signature of randomness without drift and persists in the Brownian motion limit.</p>
 <hr />
 <h3 id="method-2-direct-expansion-of-es_n2">Method 2: Direct Expansion of E[S_n^2]<a class="headerlink" href="#method-2-direct-expansion-of-es_n2" title="Permanent link">&para;</a></h3>
 <p>This second derivation is longer but makes the role of the cross terms explicit, which is important for higher-moment calculations.</p>
 <p><strong>Expand the square:</strong></p>
-<div class="arithmatex">\[S_n^2 = \left(\sum_{i=1}^n X_i\right)^2 = \sum_{i=1}^n X_i^2 + 2\sum_{1 \leq i &lt; j \leq n} X_i X_j.\]</div>
+<div class="arithmatex">\[S_n^2 = \left(\sum_{i=1}^n X_i\right)^2 = \sum_{i=1}^n X_i^2 + 2\sum_{1 \leq i &lt; j \leq n} X_i X_j\]</div>
 <p><strong>Take expectations.</strong> For the diagonal terms, <span class="arithmatex">\(\mathbb{E}[X_i^2] = 1\)</span>. For cross terms with <span class="arithmatex">\(i \neq j\)</span>, independence gives:</p>
-<div class="arithmatex">\[\mathbb{E}[X_i X_j] = \mathbb{E}[X_i]\,\mathbb{E}[X_j] = (2p-1)^2.\]</div>
+<div class="arithmatex">\[\mathbb{E}[X_i X_j] = \mathbb{E}[X_i]\,\mathbb{E}[X_j] = (2p-1)^2\]</div>
 <p>The number of pairs <span class="arithmatex">\((i,j)\)</span> with <span class="arithmatex">\(i &lt; j\)</span> is <span class="arithmatex">\(\binom{n}{2} = n(n-1)/2\)</span>, so:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n^2] = n \cdot 1 + 2 \cdot \frac{n(n-1)}{2} \cdot (2p-1)^2 = n + n(n-1)(2p-1)^2.\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n^2] = n \cdot 1 + 2 \cdot \frac{n(n-1)}{2} \cdot (2p-1)^2 = n + n(n-1)(2p-1)^2\]</div>
 <p><strong>Subtract the squared mean:</strong></p>
-<p>$$\text{Var}(S_n) = \mathbb{E}[S_n^2] - (\mathbb{E}[S_n])^2</p>
-<p>= n + n(n-1)(2p-1)^2 - n^2(2p-1)^2.$$</p>
+<div class="arithmatex">\[\text{Var}(S_n) = \mathbb{E}[S_n^2] - (\mathbb{E}[S_n])^2
+= n + n(n-1)(2p-1)^2 - n^2(2p-1)^2\]</div>
 <p>Factor out <span class="arithmatex">\((2p-1)^2\)</span>:</p>
-<p>$$= n + (2p-1)^2\bigl[n(n-1) - n^2\bigr]</p>
-<p>= n + (2p-1)^2 \cdot (-n)
-= n\bigl[1-(2p-1)^2\bigr]</p>
-<p>= 4np(1-p). \quad\square$$</p>
+<div class="arithmatex">\[= n + (2p-1)^2\bigl[n(n-1) - n^2\bigr]
+= n + (2p-1)^2 \cdot (-n)
+= n\bigl[1-(2p-1)^2\bigr]
+= 4np(1-p). \quad\square\]</div>
 <p>Both methods agree, as required.</p>
 <hr />
 <h3 id="method-3-covariance-expansion-symmetric-case">Method 3: Covariance Expansion (Symmetric Case)<a class="headerlink" href="#method-3-covariance-expansion-symmetric-case" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(p = 1/2\)</span> there is a third, particularly transparent route that shows <em>why</em> the cross terms vanish.</p>
-<p>$$\mathbb{E}[S_n^2] = \mathbb{E}!\left[\left(\sum_{i=1}^n \xi_i\right)^2\right]</p>
-<p>= \sum_{i=1}^n \mathbb{E}[\xi_i^2] + 2\sum_{i &lt; j} \mathbb{E}[\xi_i \xi_j].$$</p>
+<div class="arithmatex">\[\mathbb{E}[S_n^2] = \mathbb{E}\!\left[\left(\sum_{i=1}^n \xi_i\right)^2\right] = \sum_{i=1}^n \mathbb{E}[\xi_i^2] + 2\sum_{i &lt; j} \mathbb{E}[\xi_i \xi_j]\]</div>
 <ul>
 <li><strong>Diagonal:</strong> <span class="arithmatex">\(\mathbb{E}[\xi_i^2] = 1\)</span> for all <span class="arithmatex">\(i\)</span>.</li>
 <li><strong>Off-diagonal:</strong> By independence, <span class="arithmatex">\(\mathbb{E}[\xi_i \xi_j] = \mathbb{E}[\xi_i]\,\mathbb{E}[\xi_j] = 0 \cdot 0 = 0\)</span> for <span class="arithmatex">\(i \neq j\)</span>.</li>
 </ul>
 <p>Therefore every cross term vanishes and:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n^2] = n + 0 = n \implies \text{Var}(S_n) = n.\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n^2] = n + 0 = n \implies \text{Var}(S_n) = n\]</div>
 <p>The vanishing of <span class="arithmatex">\(\mathbb{E}[\xi_i \xi_j]\)</span> reflects the absence of any correlation between non-overlapping steps: the walk has no memory (Markov property, <a href="../martingale_property/">Martingale Property</a>).</p>
 <hr />
 <h2 id="fourth-moment-symmetric-case">Fourth Moment (Symmetric Case)<a class="headerlink" href="#fourth-moment-symmetric-case" title="Permanent link">&para;</a></h2>
 <p><strong>Proposition 1.1.1</strong> (Moments of the Random Walk)</p>
 <p>For the general walk with parameter <span class="arithmatex">\(p\)</span>:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n] = n(2p-1), \qquad \text{Var}(S_n) = 4np(1-p).\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n] = n(2p-1), \qquad \text{Var}(S_n) = 4np(1-p)\]</div>
 <p>For the symmetric walk (<span class="arithmatex">\(p = 1/2\)</span>):</p>
-<div class="arithmatex">\[\mathbb{E}[S_n] = 0, \qquad \text{Var}(S_n) = n, \qquad \mathbb{E}[S_n^4] = 3n^2 - 2n.\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n] = 0, \qquad \text{Var}(S_n) = n, \qquad \mathbb{E}[S_n^4] = 3n^2 - 2n\]</div>
 <p><strong>Proof of the fourth moment.</strong> Expand:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n^4] = \sum_{i,j,k,l=1}^{n} \mathbb{E}[\xi_i \xi_j \xi_k \xi_l].\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n^4] = \sum_{i,j,k,l=1}^{n} \mathbb{E}[\xi_i \xi_j \xi_k \xi_l]\]</div>
 <p>Since <span class="arithmatex">\(\mathbb{E}[\xi_i] = 0\)</span> and the <span class="arithmatex">\(\xi_i\)</span> are independent, a term <span class="arithmatex">\(\mathbb{E}[\xi_i \xi_j \xi_k \xi_l]\)</span> is nonzero only when every index appears an even number of times. The distinct cases are:</p>
 <ul>
 <li><strong><span class="arithmatex">\(i=j=k=l\)</span>:</strong> gives <span class="arithmatex">\(\mathbb{E}[\xi_i^4] = 1\)</span>; there are <span class="arithmatex">\(n\)</span> such terms. Total: <span class="arithmatex">\(n\)</span>.</li>

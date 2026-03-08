@@ -46907,9 +46907,9 @@
 <h2 id="definition-and-properties">Definition and Properties<a class="headerlink" href="#definition-and-properties" title="Permanent link">&para;</a></h2>
 <h3 id="the-characteristic-function">The Characteristic Function<a class="headerlink" href="#the-characteristic-function" title="Permanent link">&para;</a></h3>
 <p>For a random variable <span class="arithmatex">\(X\)</span> with distribution <span class="arithmatex">\(F\)</span>, the <strong>characteristic function</strong> is:</p>
-<p>$$</p>
-<p>\varphi_X(u) = \mathbb{E}[e^{iuX}] = \int_{-\infty}^{\infty} e^{iux}\,dF(x), \quad u \in \mathbb{R}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi_X(u) = \mathbb{E}[e^{iuX}] = \int_{-\infty}^{\infty} e^{iux}\,dF(x), \quad u \in \mathbb{R}
+\]</div>
 <p><strong>Key properties:</strong></p>
 <ol>
 <li><strong>Uniqueness:</strong> <span class="arithmatex">\(\varphi_X\)</span> uniquely determines the distribution of <span class="arithmatex">\(X\)</span></li>
@@ -46919,26 +46919,26 @@
 </ol>
 <h3 id="conditional-characteristic-function">Conditional Characteristic Function<a class="headerlink" href="#conditional-characteristic-function" title="Permanent link">&para;</a></h3>
 <p>For option pricing, we use the <strong>conditional</strong> characteristic function:</p>
-<p>$$</p>
-<p>\varphi(t, x, v; T, u) = \mathbb{E}^{\mathbb{Q}}\left[e^{iuX_T} \mid X_t = x, V_t = v\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(t, x, v; T, u) = \mathbb{E}^{\mathbb{Q}}\left[e^{iuX_T} \mid X_t = x, V_t = v\right]
+\]</div>
 <p>where <span class="arithmatex">\(X_t = \log S_t\)</span> is the log-price.</p>
 <hr />
 <h2 id="why-characteristic-functions-are-useful">Why Characteristic Functions Are Useful<a class="headerlink" href="#why-characteristic-functions-are-useful" title="Permanent link">&para;</a></h2>
 <h3 id="inversion-formulas">Inversion Formulas<a class="headerlink" href="#inversion-formulas" title="Permanent link">&para;</a></h3>
 <p>The density can be recovered via Fourier inversion:</p>
-<p>$$</p>
-<p>f_X(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\varphi_X(u)\,du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_X(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-iux}\varphi_X(u)\,du
+\]</div>
 <p>The distribution function via Gil-Pelaez:</p>
-<p>$$</p>
-<p>F_X(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty} \text{Re}\left[\frac{e^{-iux}\varphi_X(u)}{iu}\right]du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F_X(x) = \frac{1}{2} - \frac{1}{\pi}\int_0^{\infty} \text{Re}\left[\frac{e^{-iux}\varphi_X(u)}{iu}\right]du
+\]</div>
 <h3 id="option-pricing">Option Pricing<a class="headerlink" href="#option-pricing" title="Permanent link">&para;</a></h3>
 <p>European option prices can be written as integrals involving <span class="arithmatex">\(\varphi\)</span>:</p>
-<p>$$</p>
-<p>C(K) = e^{-rT}\mathbb{E}[(S_T - K)^+] = e^{-rT}\int_{\log K}^{\infty}(e^x - K)f(x)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = e^{-rT}\mathbb{E}[(S_T - K)^+] = e^{-rT}\int_{\log K}^{\infty}(e^x - K)f(x)\,dx
+\]</div>
 <p>Substituting the Fourier representation of <span class="arithmatex">\(f\)</span> yields pricing formulas.</p>
 <h3 id="computational-advantages">Computational Advantages<a class="headerlink" href="#computational-advantages" title="Permanent link">&para;</a></h3>
 <table>
@@ -46972,45 +46972,45 @@
 <h2 id="affine-exponential-form">Affine Exponential Form<a class="headerlink" href="#affine-exponential-form" title="Permanent link">&para;</a></h2>
 <h3 id="general-affine-models">General Affine Models<a class="headerlink" href="#general-affine-models" title="Permanent link">&para;</a></h3>
 <p>For affine stochastic volatility models, the characteristic function has the form:</p>
-<p>$$</p>
-<p>\varphi(\tau, u) = \exp\left(A(\tau, u) + B(\tau, u)V_t + iuX_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(\tau, u) = \exp\left(A(\tau, u) + B(\tau, u)V_t + iuX_t\right)
+\]</div>
 <p>where <span class="arithmatex">\(\tau = T - t\)</span> and <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span> solve <strong>Riccati ODEs</strong>.</p>
 <h3 id="heston-characteristic-function">Heston Characteristic Function<a class="headerlink" href="#heston-characteristic-function" title="Permanent link">&para;</a></h3>
 <p>For the Heston model (derived in Section 9.3):</p>
-<p>$$</p>
-<p>\varphi(\tau, u) = \exp\left(C(\tau, u) + D(\tau, u)V_0 + iu\log S_0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(\tau, u) = \exp\left(C(\tau, u) + D(\tau, u)V_0 + iu\log S_0\right)
+\]</div>
 <p>with:</p>
-<p>$$</p>
-<p>C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>D(\tau, u) = \frac{\kappa - \rho\xi iu - d}{\xi^2} \cdot \frac{1 - e^{d\tau}}{1 - ge^{d\tau}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(\tau, u) = (r-q)iu\tau + \frac{\kappa\theta}{\xi^2}\left[(\kappa - \rho\xi iu - d)\tau - 2\ln\left(\frac{1 - ge^{d\tau}}{1-g}\right)\right]
+\]</div>
+<div class="arithmatex">\[
+D(\tau, u) = \frac{\kappa - \rho\xi iu - d}{\xi^2} \cdot \frac{1 - e^{d\tau}}{1 - ge^{d\tau}}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d = \sqrt{(\kappa - \rho\xi iu)^2 + \xi^2(iu + u^2)}
+\]</div>
+<div class="arithmatex">\[
+g = \frac{\kappa - \rho\xi iu - d}{\kappa - \rho\xi iu + d}
+\]</div>
 <hr />
 <h2 id="characteristic-functions-of-other-models">Characteristic Functions of Other Models<a class="headerlink" href="#characteristic-functions-of-other-models" title="Permanent link">&para;</a></h2>
 <h3 id="blackscholes">Black–Scholes<a class="headerlink" href="#blackscholes" title="Permanent link">&para;</a></h3>
 <p>For GBM with constant volatility <span class="arithmatex">\(\sigma\)</span>:</p>
-<p>$$</p>
-<p>\varphi_{\text{BS}}(\tau, u) = \exp\left(iu\left[\log S_0 + (r-q-\tfrac{\sigma^2}{2})\tau\right] - \frac{\sigma^2 u^2 \tau}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi_{\text{BS}}(\tau, u) = \exp\left(iu\left[\log S_0 + (r-q-\tfrac{\sigma^2}{2})\tau\right] - \frac{\sigma^2 u^2 \tau}{2}\right)
+\]</div>
 <p>This is Gaussian in <span class="arithmatex">\(u\)</span>.</p>
 <h3 id="variance-gamma">Variance Gamma<a class="headerlink" href="#variance-gamma" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\varphi_{\text{VG}}(\tau, u) = \exp(iu\omega\tau)\left(\frac{1}{1 - iu\theta\nu + \frac{\sigma^2\nu u^2}{2}}\right)^{\tau/\nu}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi_{\text{VG}}(\tau, u) = \exp(iu\omega\tau)\left(\frac{1}{1 - iu\theta\nu + \frac{\sigma^2\nu u^2}{2}}\right)^{\tau/\nu}
+\]</div>
 <h3 id="cgmy">CGMY<a class="headerlink" href="#cgmy" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\varphi_{\text{CGMY}}(\tau, u) = \exp\left(\tau C\Gamma(-Y)\left[(M-iu)^Y - M^Y + (G+iu)^Y - G^Y\right]\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi_{\text{CGMY}}(\tau, u) = \exp\left(\tau C\Gamma(-Y)\left[(M-iu)^Y - M^Y + (G+iu)^Y - G^Y\right]\right)
+\]</div>
 <h3 id="32-model">3/2 Model<a class="headerlink" href="#32-model" title="Permanent link">&para;</a></h3>
 <p>Semi-closed form involving confluent hypergeometric functions.</p>
 <h3 id="sabr">SABR<a class="headerlink" href="#sabr" title="Permanent link">&para;</a></h3>
@@ -47019,32 +47019,32 @@
 <h2 id="risk-neutral-drift-and-martingale-condition">Risk-Neutral Drift and Martingale Condition<a class="headerlink" href="#risk-neutral-drift-and-martingale-condition" title="Permanent link">&para;</a></h2>
 <h3 id="no-arbitrage-constraint">No-Arbitrage Constraint<a class="headerlink" href="#no-arbitrage-constraint" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the discounted stock price must be a martingale:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}S_T \mid \mathcal{F}_t] = e^{-q(T-t)}S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}S_T \mid \mathcal{F}_t] = e^{-q(T-t)}S_t
+\]</div>
 <p>This implies:</p>
-<p>$$</p>
-<p>\varphi(\tau, -i) = e^{(r-q)\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(\tau, -i) = e^{(r-q)\tau}
+\]</div>
 <h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
 <p>For Heston, substituting <span class="arithmatex">\(u = -i\)</span> into the characteristic function should yield:</p>
-<p>$$</p>
-<p>\varphi(\tau, -i) = \exp\left((r-q)\tau + 0 \cdot V_0 + \log S_0\right) \cdot e^{-\log S_0} = e^{(r-q)\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(\tau, -i) = \exp\left((r-q)\tau + 0 \cdot V_0 + \log S_0\right) \cdot e^{-\log S_0} = e^{(r-q)\tau}
+\]</div>
 <p>This is the <strong>martingale condition</strong> and should be verified numerically.</p>
 <hr />
 <h2 id="complex-valued-extensions">Complex-Valued Extensions<a class="headerlink" href="#complex-valued-extensions" title="Permanent link">&para;</a></h2>
 <h3 id="analytic-continuation">Analytic Continuation<a class="headerlink" href="#analytic-continuation" title="Permanent link">&para;</a></h3>
 <p>The characteristic function <span class="arithmatex">\(\varphi(u)\)</span> for real <span class="arithmatex">\(u\)</span> can often be extended to complex <span class="arithmatex">\(u\)</span>:</p>
-<p>$$</p>
-<p>\varphi(u + iv) = \mathbb{E}[e^{i(u+iv)X}] = \mathbb{E}[e^{iuX - vX}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\varphi(u + iv) = \mathbb{E}[e^{i(u+iv)X}] = \mathbb{E}[e^{iuX - vX}]
+\]</div>
 <p>This requires <span class="arithmatex">\(\mathbb{E}[e^{-vX}] &lt; \infty\)</span>, i.e., moments must exist.</p>
 <h3 id="strip-of-regularity">Strip of Regularity<a class="headerlink" href="#strip-of-regularity" title="Permanent link">&para;</a></h3>
 <p>For Heston, <span class="arithmatex">\(\varphi(u)\)</span> is analytic in the strip:</p>
-<p>$$</p>
-<p>{u \in \mathbb{C} : \text{Im}(u) \in (-u^-, u^+)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{u \in \mathbb{C} : \text{Im}(u) \in (-u^-, u^+)\}
+\]</div>
 <p>where <span class="arithmatex">\(u^-\)</span> and <span class="arithmatex">\(u^+\)</span> depend on model parameters (related to moment explosion).</p>
 <h3 id="importance-for-pricing">Importance for Pricing<a class="headerlink" href="#importance-for-pricing" title="Permanent link">&para;</a></h3>
 <p>Fourier pricing methods often evaluate <span class="arithmatex">\(\varphi\)</span> at complex <span class="arithmatex">\(u\)</span>:
@@ -47056,9 +47056,9 @@
 <h3 id="critical-moment">Critical Moment<a class="headerlink" href="#critical-moment" title="Permanent link">&para;</a></h3>
 <p>For Heston, the <span class="arithmatex">\(n\)</span>-th moment <span class="arithmatex">\(\mathbb{E}[S_T^n]\)</span> exists if and only if <span class="arithmatex">\(n &lt; n^*(T)\)</span>, where <span class="arithmatex">\(n^*\)</span> depends on <span class="arithmatex">\((\kappa, \theta, \xi, \rho, T)\)</span>.</p>
 <p><strong>Andersen–Piterbarg condition:</strong> The critical moment <span class="arithmatex">\(n^*\)</span> solves:</p>
-<p>$$</p>
-<p>D(\tau, -in^*) = \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D(\tau, -in^*) = \infty
+\]</div>
 <h3 id="implications">Implications<a class="headerlink" href="#implications" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Short maturities:</strong> Higher moments exist</li>
@@ -47068,9 +47068,9 @@
 </ol>
 <h3 id="lees-moment-formula">Lee's Moment Formula<a class="headerlink" href="#lees-moment-formula" title="Permanent link">&para;</a></h3>
 <p>For implied volatility wings, the moment explosion determines asymptotic behavior:</p>
-<p>$$</p>
-<p>\sigma_{\text{impl}}^2(k, T) \sim \frac{2|k|}{T}\left(1 - \frac{1}{n^*(T)}\text{sgn}(k)\right) \quad \text{as } |k| \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{impl}}^2(k, T) \sim \frac{2|k|}{T}\left(1 - \frac{1}{n^*(T)}\text{sgn}(k)\right) \quad \text{as } |k| \to \infty
+\]</div>
 <hr />
 <h2 id="practical-implementation-notes">Practical Implementation Notes<a class="headerlink" href="#practical-implementation-notes" title="Permanent link">&para;</a></h2>
 <h3 id="numerical-evaluation">Numerical Evaluation<a class="headerlink" href="#numerical-evaluation" title="Permanent link">&para;</a></h3>

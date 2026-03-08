@@ -46416,9 +46416,9 @@
 <hr />
 <h2 id="1-model-setup">1 Model Setup<a class="headerlink" href="#1-model-setup" title="Permanent link">&para;</a></h2>
 <p>Let the stock price <span class="arithmatex">\(S_t\)</span> evolve under the real-world measure <span class="arithmatex">\(\mathbb{P}\)</span> as:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\, dt + \sigma S_t\, dW_t, \quad S_0 &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\, dt + \sigma S_t\, dW_t, \quad S_0 &gt; 0
+\]</div>
 <p>Let:</p>
 <ul>
 <li><span class="arithmatex">\(K &gt; 0\)</span> be the strike price,</li>
@@ -46428,53 +46428,53 @@
 <li><span class="arithmatex">\(\mu\)</span> the drift (real-world expected return).</li>
 </ul>
 <p>The <strong>European call option payoff</strong> at time <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>\max(S_T - K, 0) = (S_T - K)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S_T - K, 0) = (S_T - K)^+
+\]</div>
 <p>Our goal is to compute:</p>
-<p>$$</p>
-<p>C_0 := \mathbb{E}^{\mathbb{Q}} \left[ e^{-rT} (S_T - K)^+ \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 := \mathbb{E}^{\mathbb{Q}} \left[ e^{-rT} (S_T - K)^+ \right]
+\]</div>
 <hr />
 <h2 id="2-step-1-change-of-measure-using-girsanov">2 Step 1: Change of Measure Using Girsanov<a class="headerlink" href="#2-step-1-change-of-measure-using-girsanov" title="Permanent link">&para;</a></h2>
 <p>We define the <strong>market price of risk</strong>:</p>
-<p>$$</p>
-<p>\theta := \frac{\mu - r}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta := \frac{\mu - r}{\sigma}
+\]</div>
 <p>Girsanov's theorem tells us that under the new measure <span class="arithmatex">\(\mathbb{Q}\)</span> defined by:</p>
-<p>$$</p>
-<p>\left. \frac{d\mathbb{Q}}{d\mathbb{P}} \right|_{\mathcal{F}_T} = Z_T = \exp\left( -\theta W_T - \frac{1}{2} \theta^2 T \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left. \frac{d\mathbb{Q}}{d\mathbb{P}} \right|_{\mathcal{F}_T} = Z_T = \exp\left( -\theta W_T - \frac{1}{2} \theta^2 T \right)
+\]</div>
 <p>the process:</p>
-<p>$$</p>
-<p>\tilde{W}_t := W_t + \theta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{W}_t := W_t + \theta t
+\]</div>
 <p>is a <strong>Brownian motion under <span class="arithmatex">\(\mathbb{Q}\)</span></strong>, and under <span class="arithmatex">\(\mathbb{Q}\)</span> the stock price satisfies:</p>
-<p>$$</p>
-<p>dS_t = r S_t\, dt + \sigma S_t\, d\tilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = r S_t\, dt + \sigma S_t\, d\tilde{W}_t
+\]</div>
 <p>This is the <strong>risk-neutral dynamic</strong>. The drift has been shifted from <span class="arithmatex">\(\mu\)</span> to <span class="arithmatex">\(r\)</span>, while the volatility <span class="arithmatex">\(\sigma\)</span> remains unchanged.</p>
 <hr />
 <h2 id="3-step-2-explicit-distribution-of-s_t-under-q">3 Step 2: Explicit Distribution of S_T under Q<a class="headerlink" href="#3-step-2-explicit-distribution-of-s_t-under-q" title="Permanent link">&para;</a></h2>
 <p>Solving the SDE under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>S_T = S_0 \exp\left( \left(r - \tfrac{1}{2} \sigma^2\right) T + \sigma \tilde{W}_T \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 \exp\left( \left(r - \tfrac{1}{2} \sigma^2\right) T + \sigma \tilde{W}_T \right)
+\]</div>
 <p>Since <span class="arithmatex">\(\tilde{W}_T \sim N(0, T)\)</span> under <span class="arithmatex">\(\mathbb{Q}\)</span>, we have:</p>
-<p>$$</p>
-<p>\log S_T \sim N\left( \log S_0 + \left(r - \tfrac{1}{2} \sigma^2\right)T,\; \sigma^2 T \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_T \sim N\left( \log S_0 + \left(r - \tfrac{1}{2} \sigma^2\right)T,\; \sigma^2 T \right)
+\]</div>
 <hr />
 <h2 id="4-step-3-compute-the-call-option-price">4 Step 3: Compute the Call Option Price<a class="headerlink" href="#4-step-3-compute-the-call-option-price" title="Permanent link">&para;</a></h2>
 <p>Define:</p>
-<p>$$</p>
-<p>d_1 := \frac{\log(S_0/K) + (r + \frac{1}{2} \sigma^2)T}{\sigma \sqrt{T}}, \quad
-d_2 := d_1 - \sigma \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 := \frac{\log(S_0/K) + (r + \frac{1}{2} \sigma^2)T}{\sigma \sqrt{T}}, \quad
+d_2 := d_1 - \sigma \sqrt{T}
+\]</div>
 <p>Then the <strong>Black–Scholes formula</strong> gives:</p>
-<p>$$</p>
-<p>C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
+\]</div>
 <p>where <span class="arithmatex">\(\Phi(\cdot)\)</span> is the standard normal cumulative distribution function.</p>
 <h3 id="interpretation-of-the-terms">Interpretation of the Terms<a class="headerlink" href="#interpretation-of-the-terms" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46483,27 +46483,27 @@ d_2 := d_1 - \sigma \sqrt{T}</p>
 </ul>
 <h3 id="derivation-sketch">Derivation Sketch<a class="headerlink" href="#derivation-sketch" title="Permanent link">&para;</a></h3>
 <p>From risk-neutral pricing:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 C_0 &amp;= e^{-rT} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] \\
 &amp;= e^{-rT} \int_K^\infty (s - K)\, f_{S_T}^{\mathbb{Q}}(s)\, ds \\
 &amp;= S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>The integral is evaluated by substituting <span class="arithmatex">\(S_T = S_0 e^{(r - \sigma^2/2)T + \sigma\sqrt{T}\, Z}\)</span> with <span class="arithmatex">\(Z \sim N(0,1)\)</span>, completing the square, and recognizing the resulting expressions as normal CDF evaluations.</p>
 <hr />
 <h2 id="5-final-result">5 Final Result<a class="headerlink" href="#5-final-result" title="Permanent link">&para;</a></h2>
 <p>The <strong>European call price</strong> under Girsanov (risk-neutral pricing) is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 C_0 = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\log(S_0/K) + (r + \frac{1}{2} \sigma^2)T}{\sigma \sqrt{T}}, \quad
-d_2 = d_1 - \sigma \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\log(S_0/K) + (r + \frac{1}{2} \sigma^2)T}{\sigma \sqrt{T}}, \quad
+d_2 = d_1 - \sigma \sqrt{T}
+\]</div>
 <hr />
 <h2 id="6-summary-of-the-logic">6 Summary of the Logic<a class="headerlink" href="#6-summary-of-the-logic" title="Permanent link">&para;</a></h2>
 <ol>
@@ -46514,9 +46514,9 @@ d_2 = d_1 - \sigma \sqrt{T}</p>
 <p><strong>Use Girsanov</strong> to define <span class="arithmatex">\(\mathbb{Q}\)</span> via the exponential martingale:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>Z_T = \exp\left( -\theta W_T - \frac{1}{2} \theta^2 T \right), \quad \theta = \frac{\mu - r}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_T = \exp\left( -\theta W_T - \frac{1}{2} \theta^2 T \right), \quad \theta = \frac{\mu - r}{\sigma}
+\]</div>
 <ol>
 <li>
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}\)</span></strong>: the drift becomes <span class="arithmatex">\(r\)</span> instead of <span class="arithmatex">\(\mu\)</span>, giving the risk-neutral SDE.</p>
@@ -46536,8 +46536,8 @@ d_2 = d_1 - \sigma \sqrt{T}</p>
 <h2 id="quantpie-derivation-via-feynman-kac">QuantPie Derivation via Feynman-Kac<a class="headerlink" href="#quantpie-derivation-via-feynman-kac" title="Permanent link">&para;</a></h2>
 <h3 id="connection-to-the-black-scholes-pde">Connection to the Black-Scholes PDE<a class="headerlink" href="#connection-to-the-black-scholes-pde" title="Permanent link">&para;</a></h3>
 <p>The <strong>Black-Scholes PDE</strong> and risk-neutral pricing are connected through the Feynman-Kac formula. For a European option with payoff <span class="arithmatex">\(\Phi(S_T)\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lcc}
+<div class="arithmatex">\[
+\begin{array}{lcc}
 \text{Black-Scholes Equation} &amp; &amp; \displaystyle \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0\\
 \\
 \text{Terminal Condition} &amp; &amp; \displaystyle V(T, S_T) = \Phi(S_T)\\
@@ -46545,67 +46545,67 @@ d_2 = d_1 - \sigma \sqrt{T}</p>
 \text{Risk-Neutral SDE} &amp; &amp; \displaystyle dS = rS\,dt + \sigma S\,dB^{\mathbb{Q}}\\
 \\
 \text{Feynman-Kac Result} &amp; &amp; \displaystyle V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | S_t = S]
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="verification-via-itos-lemma">Verification via Itô's Lemma<a class="headerlink" href="#verification-via-itos-lemma" title="Permanent link">&para;</a></h3>
 <p><strong>Starting from the PDE</strong>, assume <span class="arithmatex">\(V\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+\]</div>
 <p><strong>Apply Itô's Lemma</strong> to <span class="arithmatex">\(V(t, S_t)\)</span> under the risk-neutral dynamics:</p>
-<p>$$</p>
-<p>dV = V_t dt + V_S dS + \frac{1}{2}V_{SS}(dS)^2</p>
-<p>$$</p>
-<p>$$</p>
-<p>= V_t dt + V_S(rS\,dt + \sigma S\,dB^{\mathbb{Q}}) + \frac{1}{2}V_{SS}\sigma^2 S^2 dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \left(V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS}\right)dt + \sigma SV_S dB^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV = V_t dt + V_S dS + \frac{1}{2}V_{SS}(dS)^2
+\]</div>
+<div class="arithmatex">\[
+= V_t dt + V_S(rS\,dt + \sigma S\,dB^{\mathbb{Q}}) + \frac{1}{2}V_{SS}\sigma^2 S^2 dt
+\]</div>
+<div class="arithmatex">\[
+= \left(V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS}\right)dt + \sigma SV_S dB^{\mathbb{Q}}
+\]</div>
 <p><strong>Substituting the PDE constraint</strong> (<span class="arithmatex">\(V_t + rSV_S + \frac{1}{2}\sigma^2S^2V_{SS} = rV\)</span>):</p>
-<p>$$</p>
-<p>dV = rV\,dt + \sigma SV_S dB^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV = rV\,dt + \sigma SV_S dB^{\mathbb{Q}}
+\]</div>
 <h3 id="discounted-value-is-a-martingale">Discounted Value is a Martingale<a class="headerlink" href="#discounted-value-is-a-martingale" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>discounted option value:</strong></p>
-<p>$$</p>
-<p>\tilde{V}(t) = \frac{V(t, S_t)}{e^{rt}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{V}(t) = \frac{V(t, S_t)}{e^{rt}}
+\]</div>
 <p><strong>Computing the differential:</strong></p>
-<p>$$</p>
-<p>d\tilde{V} = \frac{dV}{e^{rt}} - r\frac{V}{e^{rt}}dt = \frac{rV\,dt + \sigma SV_S dB^{\mathbb{Q}}}{e^{rt}} - r\frac{V}{e^{rt}}dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{\sigma SV_S}{e^{rt}}dB^{\mathbb{Q}} = \sigma S\left(\frac{V_S}{e^{rt}}\right)dB^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{V} = \frac{dV}{e^{rt}} - r\frac{V}{e^{rt}}dt = \frac{rV\,dt + \sigma SV_S dB^{\mathbb{Q}}}{e^{rt}} - r\frac{V}{e^{rt}}dt
+\]</div>
+<div class="arithmatex">\[
+= \frac{\sigma SV_S}{e^{rt}}dB^{\mathbb{Q}} = \sigma S\left(\frac{V_S}{e^{rt}}\right)dB^{\mathbb{Q}}
+\]</div>
 <p><strong>The drift term vanishes!</strong> Therefore <span class="arithmatex">\(\tilde{V}(t)\)</span> is a <strong>martingale under</strong> <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <h3 id="martingale-property-implies-risk-neutral-pricing">Martingale Property Implies Risk-Neutral Pricing<a class="headerlink" href="#martingale-property-implies-risk-neutral-pricing" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(\tilde{V}(t)\)</span> is a martingale:</p>
-<p>$$</p>
-<p>\tilde{V}(t) = \mathbb{E}^{\mathbb{Q}}[\tilde{V}(T) | \mathcal{F}_t]</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{V(t, S_t)}{e^{rt}} = \mathbb{E}^{\mathbb{Q}}\left[\frac{V(T, S_T)}{e^{rT}} \,\Big|\, \mathcal{F}_t\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{V(t, S_t)}{e^{rt}} = \mathbb{E}^{\mathbb{Q}}\left[\frac{\Phi(S_T)}{e^{rT}} \,\Big|\, S_t = S\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | S_t = S]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{V}(t) = \mathbb{E}^{\mathbb{Q}}[\tilde{V}(T) | \mathcal{F}_t]
+\]</div>
+<div class="arithmatex">\[
+\frac{V(t, S_t)}{e^{rt}} = \mathbb{E}^{\mathbb{Q}}\left[\frac{V(T, S_T)}{e^{rT}} \,\Big|\, \mathcal{F}_t\right]
+\]</div>
+<div class="arithmatex">\[
+\frac{V(t, S_t)}{e^{rt}} = \mathbb{E}^{\mathbb{Q}}\left[\frac{\Phi(S_T)}{e^{rT}} \,\Big|\, S_t = S\right]
+\]</div>
+<div class="arithmatex">\[
+\boxed{V(t, S) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(S_T) | S_t = S]}
+\]</div>
 <h3 id="why-the-real-world-drift-doesnt-matter">Why the Real-World Drift Doesn't Matter<a class="headerlink" href="#why-the-real-world-drift-doesnt-matter" title="Permanent link">&para;</a></h3>
 <p>Under the real-world measure <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>dS = \mu S\,dt + \sigma S\,dW</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS = \mu S\,dt + \sigma S\,dW
+\]</div>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span> defined by Girsanov:</p>
-<p>$$</p>
-<p>dS = rS\,dt + \sigma S\,d\tilde{W}^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS = rS\,dt + \sigma S\,d\tilde{W}^{\mathbb{Q}}
+\]</div>
 <p><strong>The change of measure</strong> via the Radon-Nikodym derivative:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = \exp\left(-\frac{\mu - r}{\sigma}W_T - \frac{1}{2}\left(\frac{\mu-r}{\sigma}\right)^2 T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = \exp\left(-\frac{\mu - r}{\sigma}W_T - \frac{1}{2}\left(\frac{\mu-r}{\sigma}\right)^2 T\right)
+\]</div>
 <p><strong>Key observation:</strong> The martingale property of <span class="arithmatex">\(\tilde{V}(t)\)</span> holds under <span class="arithmatex">\(\mathbb{Q}\)</span>, not <span class="arithmatex">\(\mathbb{P}\)</span>. The drift <span class="arithmatex">\(\mu\)</span> appears in the Radon-Nikodym derivative but not in the final formula because we compute the expectation under <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <p>This is why option prices are <strong>drift-neutral</strong>: they depend only on the volatility <span class="arithmatex">\(\sigma\)</span>, the risk-free rate <span class="arithmatex">\(r\)</span>, and the option structure, not on traders' expectations (<span class="arithmatex">\(\mu\)</span>) about future stock returns.</p>
 

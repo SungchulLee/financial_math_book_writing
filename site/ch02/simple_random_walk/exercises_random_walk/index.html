@@ -46196,12 +46196,12 @@
 <div class="arithmatex">\[\Pi = \{0 = t_0 &lt; t_1 &lt; \cdots &lt; t_m = T\}\]</div>
 <p>be a partition of <span class="arithmatex">\([0,T]\)</span> with each <span class="arithmatex">\(t_i\)</span> a multiple of <span class="arithmatex">\(1/n\)</span>, so that each subinterval <span class="arithmatex">\([t_i, t_{i+1}]\)</span> contains exactly one increment <span class="arithmatex">\(\xi_j\)</span>.</p>
 <p><strong>(a)</strong> Show that</p>
-<div class="arithmatex">\[\mathbb{E}\!\left[\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2\right] = T.\]</div>
+<div class="arithmatex">\[\mathbb{E}\!\left[\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2\right] = T\]</div>
 <p><strong>(b)</strong> Show that</p>
 <div class="arithmatex">\[\sum_{i=0}^{m-1} (W^{(n)}(t_{i+1}) - W^{(n)}(t_i))^2 = T \quad \text{almost surely}\]</div>
 <p>(not merely in expectation). <em>Hint:</em> Each squared increment equals <span class="arithmatex">\(1/n\)</span> deterministically.</p>
 <p><strong>(c)</strong> For a differentiable function <span class="arithmatex">\(f: [0,T] \to \mathbb{R}\)</span> with bounded derivative, show that</p>
-<div class="arithmatex">\[\sum_{i=0}^{m-1} (f(t_{i+1}) - f(t_i))^2 \to 0 \quad \text{as } |\Pi| \to 0.\]</div>
+<div class="arithmatex">\[\sum_{i=0}^{m-1} (f(t_{i+1}) - f(t_i))^2 \to 0 \quad \text{as } |\Pi| \to 0\]</div>
 <p>Explain why this distinguishes random walk paths from smooth paths.</p>
 <hr />
 <h2 id="exercise-2-higher-moments">Exercise 2 — Higher Moments<a class="headerlink" href="#exercise-2-higher-moments" title="Permanent link">&para;</a></h2>
@@ -46210,27 +46210,27 @@
 <p><strong>(b)</strong> Using the pairing argument from <a href="../moments_of_random_walk/">Moments</a> (Proposition 1.1.1), compute <span class="arithmatex">\(\mathbb{E}[S_n^6]\)</span>.</p>
 <p><em>Hint:</em> Count the number of ways to partition six indices <span class="arithmatex">\(\{i_1,\ldots,i_6\}\)</span> into groups where each distinct index appears an even number of times. The cases are: one group of 6 all equal; three pairs; one group of 4 and one pair.</p>
 <p><strong>(c)</strong> Show that as <span class="arithmatex">\(n \to \infty\)</span>:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n^{2k}] = (2k-1)!!\, n^k + O(n^{k-1}),\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n^{2k}] = (2k-1)!!\, n^k + O(n^{k-1})\]</div>
 <p>where <span class="arithmatex">\((2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)\)</span>. Compare with the Brownian motion moments <span class="arithmatex">\(\mathbb{E}[W_1^{2k}] = (2k-1)!!\)</span> and explain the connection.</p>
 <hr />
 <h2 id="exercise-3-gamblers-ruin">Exercise 3 — Gambler's Ruin<a class="headerlink" href="#exercise-3-gamblers-ruin" title="Permanent link">&para;</a></h2>
 <p>A gambler starts with <span class="arithmatex">\(\$a\)</span> and bets <span class="arithmatex">\(\$1\)</span> per round on a fair coin flip. Let</p>
-<div class="arithmatex">\[\tau_0 = \inf\{n : S_n = 0\}, \qquad \tau_b = \inf\{n : S_n = b\}, \qquad b &gt; a.\]</div>
+<div class="arithmatex">\[\tau_0 = \inf\{n : S_n = 0\}, \qquad \tau_b = \inf\{n : S_n = b\}, \qquad b &gt; a\]</div>
 <p><strong>(a)</strong> Using the martingale <span class="arithmatex">\(\{S_n\}\)</span> (Proposition 1.1.3) and the Optional Stopping Theorem applied to the bounded stopping time <span class="arithmatex">\(\tau = \tau_0 \wedge \tau_b\)</span>, show that</p>
-<div class="arithmatex">\[\mathbb{P}(\tau_b &lt; \tau_0) = \frac{a}{b}.\]</div>
+<div class="arithmatex">\[\mathbb{P}(\tau_b &lt; \tau_0) = \frac{a}{b}\]</div>
 <p><strong>(b)</strong> Let <span class="arithmatex">\(b \to \infty\)</span>. Show that <span class="arithmatex">\(\mathbb{P}(\tau_0 &lt; \infty) = 1\)</span>: the gambler is ruined with probability 1 in an unbounded game.</p>
 <p>Reconcile this with Theorem 1.1.6 (recurrence): how can the walk be recurrent — visiting every integer infinitely often — yet the gambler always go broke?</p>
 <p><strong>(c)</strong> Using the martingale <span class="arithmatex">\(\{S_n^2 - n\}\)</span> (Proposition 1.1.4) and the Optional Stopping Theorem, show that</p>
-<div class="arithmatex">\[\mathbb{E}[\tau_0 \wedge \tau_b] = a(b - a).\]</div>
+<div class="arithmatex">\[\mathbb{E}[\tau_0 \wedge \tau_b] = a(b - a)\]</div>
 <p>What does this give for <span class="arithmatex">\(\mathbb{E}[\tau_0]\)</span> as <span class="arithmatex">\(b \to \infty\)</span>? Interpret the result.</p>
 <hr />
 <h2 id="exercise-4-reflection-principle-preview">Exercise 4 — Reflection Principle (Preview)<a class="headerlink" href="#exercise-4-reflection-principle-preview" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(M_n = \max_{0 \leq k \leq n} S_k\)</span> be the running maximum of the symmetric random walk.</p>
 <p><strong>(a)</strong> By a symmetry argument, show that for <span class="arithmatex">\(m &gt; 0\)</span>:</p>
-<div class="arithmatex">\[\mathbb{P}(M_n \geq m) = 2\,\mathbb{P}(S_n \geq m) - \mathbb{P}(S_n = m).\]</div>
+<div class="arithmatex">\[\mathbb{P}(M_n \geq m) = 2\,\mathbb{P}(S_n \geq m) - \mathbb{P}(S_n = m)\]</div>
 <p><em>Hint:</em> Consider the "reflected" path obtained by flipping all steps after the first time the walk hits <span class="arithmatex">\(m\)</span>.</p>
 <p><strong>(b)</strong> Use part (a) and the normal approximation to show that for large <span class="arithmatex">\(n\)</span>:</p>
-<div class="arithmatex">\[\mathbb{P}\!\left(\frac{M_n}{\sqrt{n}} \geq x\right) \approx 2\,\mathbb{P}\!\left(\mathcal{N}(0,1) \geq x\right) = 2\bigl(1-\Phi(x)\bigr), \qquad x &gt; 0,\]</div>
+<div class="arithmatex">\[\mathbb{P}\!\left(\frac{M_n}{\sqrt{n}} \geq x\right) \approx 2\,\mathbb{P}\!\left(\mathcal{N}(0,1) \geq x\right) = 2\bigl(1-\Phi(x)\bigr), \qquad x &gt; 0\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> is the standard normal CDF. This is the distribution of <span class="arithmatex">\(\max_{0 \leq t \leq 1} W_t\)</span> for Brownian motion.</p>
 <hr />
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>

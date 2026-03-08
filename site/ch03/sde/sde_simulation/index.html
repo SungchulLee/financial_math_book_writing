@@ -47218,40 +47218,40 @@
 <h3 id="1-discrete-random-walk">1. Discrete Random Walk<a class="headerlink" href="#1-discrete-random-walk" title="Permanent link">&para;</a></h3>
 <p>Before simulating continuous SDEs, we build intuition through a <strong>discrete random walk</strong> that approximates Brownian motion.</p>
 <p><strong>Setup:</strong> Divide time interval <span class="arithmatex">\([0, T]\)</span> into <span class="arithmatex">\(n\)</span> equal steps of size <span class="arithmatex">\(\Delta t = T/n\)</span>.</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{ccccccccccc}
+<div class="arithmatex">\[
+\begin{array}{ccccccccccc}
 S_0 &amp;&amp; S_1 &amp;&amp; S_2 &amp;&amp; \cdots &amp;&amp; S_n \\
 t_0 &amp; &lt; &amp; t_1 &amp; &lt; &amp; t_2 &amp; &lt; &amp; \cdots &amp; &lt; &amp; t_n
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="2-discretizing-gbm">2. Discretizing GBM<a class="headerlink" href="#2-discretizing-gbm" title="Permanent link">&para;</a></h3>
 <p>For the geometric Brownian motion SDE:</p>
-<p>$$</p>
-<p>\frac{dS}{S} = \mu\,dt + \sigma\,dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS}{S} = \mu\,dt + \sigma\,dB_t
+\]</div>
 <p>we discretize at times <span class="arithmatex">\(t_0 &lt; t_1 &lt; t_2 &lt; \cdots &lt; t_n &lt; t_{n+1}\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{ccccccccccccc}
+<div class="arithmatex">\[
+\begin{array}{ccccccccccccc}
 \frac{dS}{S} &amp; = &amp; \mu &amp; dt &amp; + &amp; \sigma &amp; dB_t \\
 \downarrow &amp;&amp; \downarrow &amp; \downarrow &amp;&amp; \downarrow &amp; \downarrow \\
 \frac{S_{n+1} - S_n}{S_n} &amp;&amp; \mu &amp; \Delta t &amp;&amp; \sigma &amp; \Delta B_n
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p>where <span class="arithmatex">\(\Delta B_n = B_{t_{n+1}} - B_{t_n} \sim \mathcal{N}(0, \Delta t)\)</span>.</p>
 <p><strong>Key insight:</strong> <span class="arithmatex">\(\Delta B_n \approx \pm\sqrt{\Delta t}\)</span> with equal probability (coin flip).</p>
 <h3 id="3-paper-and-pencil-simulation">3. Paper-and-Pencil Simulation<a class="headerlink" href="#3-paper-and-pencil-simulation" title="Permanent link">&para;</a></h3>
 <p><strong>Example:</strong> Simulate GBM with <span class="arithmatex">\(S_0 = 100\)</span>, <span class="arithmatex">\(\mu = 0.10\)</span>, <span class="arithmatex">\(\sigma = 0.30\)</span>, <span class="arithmatex">\(T = 1\)</span>, <span class="arithmatex">\(n = 10\)</span> (so <span class="arithmatex">\(\Delta t = 1/10\)</span>).</p>
 <p><strong>Updating rule:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{ccccccccccccc}
+<div class="arithmatex">\[
+\begin{array}{ccccccccccccc}
 \frac{dS}{S} &amp; = &amp; \mu &amp; dt &amp; + &amp; \sigma &amp; dB_t \\
 \uparrow &amp;&amp; \uparrow &amp; \uparrow &amp;&amp; \uparrow &amp; \uparrow \\
 \frac{S_{n+1} - S_n}{S_n} &amp;&amp; 0.10 &amp; \frac{1}{10} &amp;&amp; 0.30 &amp; \pm\sqrt{\frac{1}{10}}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Simulation table:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lrrrrrrrrrrrrrr}
+<div class="arithmatex">\[
+\begin{array}{lrrrrrrrrrrrrrr}
 \text{Time} &amp; 0/10 &amp; 1/10 &amp; 2/10 &amp; 3/10 \\
 \text{Coin flip} &amp; - &amp; H &amp; H &amp; T \\
 \text{Conversion} &amp; - &amp; 1 &amp; 1 &amp; -1 \\
@@ -47284,8 +47284,8 @@ dB_t = B_t - B_{t-dt} &amp;&amp; \frac{1}{\sqrt{10}} &amp; \frac{1}{\sqrt{10}} &
 \mu \cdot dt + \sigma \cdot dB_t &amp;&amp; \frac{0.1}{10} + \frac{0.3}{\sqrt{10}} &amp; \frac{0.1}{10} + \frac{0.3}{\sqrt{10}} &amp; \frac{0.1}{10} - \frac{0.3}{\sqrt{10}} \\
 S_{t-dt} \cdot (\mu \cdot dt + \sigma \cdot dB_t) &amp;&amp; 11.9767 &amp; 13.2327 &amp; -11.8320 \\
 S_t = S_{t-dt} + S_{t-dt} \cdot (\mu \cdot dt + \sigma \cdot dB_t) &amp;&amp; 126.1837 &amp; 139.4164 &amp; 127.5844
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Result:</strong> Starting from <span class="arithmatex">\(S_0 = 100\)</span>, we end at <span class="arithmatex">\(S_T \approx 127.58\)</span> after 10 coin flips.</p>
 <h3 id="4-from-discrete-to-continuous">4. From Discrete to Continuous<a class="headerlink" href="#4-from-discrete-to-continuous" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(n \to \infty\)</span> (i.e., <span class="arithmatex">\(\Delta t \to 0\)</span>):</p>
@@ -47299,24 +47299,24 @@ S_t = S_{t-dt} + S_{t-dt} \cdot (\mu \cdot dt + \sigma \cdot dB_t) &amp;&amp; 12
 <h2 id="euler-maruyama-scheme">Euler-Maruyama Scheme<a class="headerlink" href="#euler-maruyama-scheme" title="Permanent link">&para;</a></h2>
 <h3 id="1-derivation">1. Derivation<a class="headerlink" href="#1-derivation" title="Permanent link">&para;</a></h3>
 <p>For a general SDE:</p>
-<p>$$</p>
-<p>dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \quad X_0 = x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \quad X_0 = x
+\]</div>
 <p>Integrate from <span class="arithmatex">\(t_n\)</span> to <span class="arithmatex">\(t_{n+1}\)</span>:</p>
-<p>$$</p>
-<p>X_{t_{n+1}} = X_{t_n} + \int_{t_n}^{t_{n+1}} b(s, X_s)\,ds + \int_{t_n}^{t_{n+1}} \sigma(s, X_s)\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_{t_{n+1}} = X_{t_n} + \int_{t_n}^{t_{n+1}} b(s, X_s)\,ds + \int_{t_n}^{t_{n+1}} \sigma(s, X_s)\,dW_s
+\]</div>
 <p><strong>Euler approximation:</strong> Replace <span class="arithmatex">\(X_s\)</span> with <span class="arithmatex">\(X_{t_n}\)</span> (constant on <span class="arithmatex">\([t_n, t_{n+1}]\)</span>):</p>
-<p>$$</p>
-<p>X_{t_{n+1}} \approx X_{t_n} + b(t_n, X_{t_n})\Delta t + \sigma(t_n, X_{t_n})\Delta W_n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_{t_{n+1}} \approx X_{t_n} + b(t_n, X_{t_n})\Delta t + \sigma(t_n, X_{t_n})\Delta W_n
+\]</div>
 <p>where <span class="arithmatex">\(\Delta t = t_{n+1} - t_n\)</span> and <span class="arithmatex">\(\Delta W_n = W_{t_{n+1}} - W_{t_n} \sim \mathcal{N}(0, \Delta t)\)</span>.</p>
 <p><strong>Euler-Maruyama scheme:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_{n+1} = X_n + b(t_n, X_n)\Delta t + \sigma(t_n, X_n)\Delta W_n
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="2-implementation">2. Implementation<a class="headerlink" href="#2-implementation" title="Permanent link">&para;</a></h3>
 <p><strong>Algorithm:</strong></p>
 <ol>
@@ -47432,24 +47432,24 @@ X_{n+1} = X_n + b(t_n, X_n)\Delta t + \sigma(t_n, X_n)\Delta W_n
 <h2 id="convergence-analysis">Convergence Analysis<a class="headerlink" href="#convergence-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="1-strong-convergence">1. Strong Convergence<a class="headerlink" href="#1-strong-convergence" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> A numerical scheme has <strong>strong convergence of order <span class="arithmatex">\(\gamma\)</span></strong> if:</p>
-<p>$$</p>
-<p>\mathbb{E}[|X_T - X_T^{\Delta t}|] = O(\Delta t^\gamma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|X_T - X_T^{\Delta t}|] = O(\Delta t^\gamma)
+\]</div>
 <p>where <span class="arithmatex">\(X_T\)</span> is the true solution and <span class="arithmatex">\(X_T^{\Delta t}\)</span> is the numerical approximation.</p>
 <p><strong>Theorem:</strong> Under Lipschitz and growth conditions on <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(\sigma\)</span>, the Euler-Maruyama scheme has <strong>strong order <span class="arithmatex">\(\gamma = 0.5\)</span></strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}[|X_T - X_T^{\Delta t}|] \leq C\sqrt{\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|X_T - X_T^{\Delta t}|] \leq C\sqrt{\Delta t}
+\]</div>
 <p><strong>Interpretation:</strong> To reduce error by factor of 10, we need <span class="arithmatex">\(\Delta t \to \Delta t / 100\)</span> (100× more steps).</p>
 <h3 id="2-weak-convergence">2. Weak Convergence<a class="headerlink" href="#2-weak-convergence" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> A scheme has <strong>weak convergence of order <span class="arithmatex">\(\beta\)</span></strong> if for all sufficiently smooth functions <span class="arithmatex">\(g\)</span>:</p>
-<p>$$</p>
-<p>|\mathbb{E}[g(X_T)] - \mathbb{E}[g(X_T^{\Delta t})]| = O(\Delta t^\beta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\mathbb{E}[g(X_T)] - \mathbb{E}[g(X_T^{\Delta t})]| = O(\Delta t^\beta)
+\]</div>
 <p><strong>Theorem:</strong> Euler-Maruyama has <strong>weak order <span class="arithmatex">\(\beta = 1.0\)</span></strong>:</p>
-<p>$$</p>
-<p>|\mathbb{E}[g(X_T)] - \mathbb{E}[g(X_T^{\Delta t})]| \leq C\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\mathbb{E}[g(X_T)] - \mathbb{E}[g(X_T^{\Delta t})]| \leq C\Delta t
+\]</div>
 <p><strong>Practical implication:</strong> For computing expectations (e.g., option prices), Euler-Maruyama converges faster than for pathwise accuracy.</p>
 <h3 id="3-numerical-verification-of-convergence">3. Numerical Verification of Convergence<a class="headerlink" href="#3-numerical-verification-of-convergence" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">convergence_test_GBM</span><span class="p">():</span>
@@ -47504,23 +47504,23 @@ X_{n+1} = X_n + b(t_n, X_n)\Delta t + \sigma(t_n, X_n)\Delta W_n
 <p><strong>Idea:</strong> Include more terms from the <strong>Itô-Taylor expansion</strong>.</p>
 <h3 id="2-ito-taylor-expansion">2. Itô-Taylor Expansion<a class="headerlink" href="#2-ito-taylor-expansion" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(Y_t = X_{t+\Delta t}\)</span>, expand using Itô's lemma:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dX_t &amp;= b(X_t)\,dt + \sigma(X_t)\,dW_t \\
 d\sigma(X_t) &amp;= \sigma'(X_t)\,dX_t + \frac{1}{2}\sigma''(X_t)(dX_t)^2 \\
 &amp;= \sigma'(X_t)[b(X_t)\,dt + \sigma(X_t)\,dW_t] + \frac{1}{2}\sigma''(X_t)\sigma^2(X_t)\,dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>Keeping terms up to order <span class="arithmatex">\(\Delta t\)</span>:</p>
-<p>$$</p>
-<p>X_{t+\Delta t} = X_t + b(X_t)\Delta t + \sigma(X_t)\Delta W + \frac{1}{2}\sigma(X_t)\sigma'(X_t)[(\Delta W)^2 - \Delta t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_{t+\Delta t} = X_t + b(X_t)\Delta t + \sigma(X_t)\Delta W + \frac{1}{2}\sigma(X_t)\sigma'(X_t)[(\Delta W)^2 - \Delta t]
+\]</div>
 <h3 id="3-milstein-scheme">3. Milstein Scheme<a class="headerlink" href="#3-milstein-scheme" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_{n+1} = X_n + b(X_n)\Delta t + \sigma(X_n)\Delta W_n + \frac{1}{2}\sigma(X_n)\sigma'(X_n)[(\Delta W_n)^2 - \Delta t]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Key term:</strong> <span class="arithmatex">\((\Delta W_n)^2 - \Delta t\)</span> captures the <strong>quadratic variation</strong> correction.</p>
 <h3 id="4-convergence">4. Convergence<a class="headerlink" href="#4-convergence" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem:</strong> The Milstein scheme has:
@@ -47610,9 +47610,9 @@ X_{n+1} = X_n + b(X_n)\Delta t + \sigma(X_n)\Delta W_n + \frac{1}{2}\sigma(X_n)\
 <h2 id="exact-simulation-when-possible">Exact Simulation (When Possible)<a class="headerlink" href="#exact-simulation-when-possible" title="Permanent link">&para;</a></h2>
 <h3 id="1-geometric-brownian-motion">1. Geometric Brownian Motion<a class="headerlink" href="#1-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For GBM, we have the <strong>exact solution</strong>:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+\]</div>
 <p><strong>Exact simulation:</strong> Generate <span class="arithmatex">\(W_t\)</span> directly and compute <span class="arithmatex">\(S_t\)</span>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">exact_GBM</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">num_paths</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Exact simulation of GBM.&quot;&quot;&quot;</span>
@@ -47631,14 +47631,14 @@ X_{n+1} = X_n + b(X_n)\Delta t + \sigma(X_n)\Delta W_n + \frac{1}{2}\sigma(X_n)\
 <p><strong>Advantage:</strong> No discretization error; only Monte Carlo error remains.</p>
 <h3 id="2-ornstein-uhlenbeck-process">2. Ornstein-Uhlenbeck Process<a class="headerlink" href="#2-ornstein-uhlenbeck-process" title="Permanent link">&para;</a></h3>
 <p>The OU process also has an exact solution:</p>
-<p>$$</p>
-<p>X_t = X_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma \int_0^t e^{-\kappa(t-s)}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma \int_0^t e^{-\kappa(t-s)}\,dW_s
+\]</div>
 <p>The stochastic integral is Gaussian with known mean and variance.</p>
 <p><strong>Exact simulation (conditional distribution):</strong></p>
-<p>$$</p>
-<p>X_{t+\Delta t} | X_t \sim \mathcal{N}\left(X_t e^{-\kappa\Delta t} + \theta(1 - e^{-\kappa\Delta t}), \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_{t+\Delta t} | X_t \sim \mathcal{N}\left(X_t e^{-\kappa\Delta t} + \theta(1 - e^{-\kappa\Delta t}), \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)
+\]</div>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">exact_OU</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">num_paths</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Exact simulation of OU process.&quot;&quot;&quot;</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N</span>
@@ -47691,13 +47691,13 @@ X_{n+1} = X_n + b(X_n)\Delta t + \sigma(X_n)\Delta W_n + \frac{1}{2}\sigma(X_n)\
 <h3 id="1-stochastic-runge-kutta-methods">1. Stochastic Runge-Kutta Methods<a class="headerlink" href="#1-stochastic-runge-kutta-methods" title="Permanent link">&para;</a></h3>
 <p>Higher-order schemes based on Runge-Kutta ideas.</p>
 <p><strong>Example (Order 1.5 strong scheme):</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 K_1 &amp;= b(X_n)\Delta t + \sigma(X_n)\Delta W_n \\
 \bar{X} &amp;= X_n + K_1 \\
 X_{n+1} &amp;= X_n + \frac{1}{2}[b(X_n) + b(\bar{X})]\Delta t + \sigma(X_n)\Delta W_n
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <h3 id="2-predictor-corrector-methods">2. Predictor-Corrector Methods<a class="headerlink" href="#2-predictor-corrector-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Idea:</strong> Use Euler to predict, then correct using midpoint rule.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predictor_corrector</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">num_paths</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -47727,9 +47727,9 @@ X_{n+1} &amp;= X_n + \frac{1}{2}[b(X_n) + b(\bar{X})]\Delta t + \sigma(X_n)\Delt
 <h2 id="multidimensional-sdes">Multidimensional SDEs<a class="headerlink" href="#multidimensional-sdes" title="Permanent link">&para;</a></h2>
 <h3 id="1-system-of-sdes">1. System of SDEs<a class="headerlink" href="#1-system-of-sdes" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(X_t = (X_t^1, \ldots, X_t^d)\)</span> driven by <span class="arithmatex">\(W_t = (W_t^1, \ldots, W_t^m)\)</span>:</p>
-<p>$$</p>
-<p>dX_t^i = b^i(t, X_t)\,dt + \sum_{j=1}^m \sigma^{ij}(t, X_t)\,dW_t^j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t^i = b^i(t, X_t)\,dt + \sum_{j=1}^m \sigma^{ij}(t, X_t)\,dW_t^j
+\]</div>
 <h3 id="2-correlated-brownian-motions">2. Correlated Brownian Motions<a class="headerlink" href="#2-correlated-brownian-motions" title="Permanent link">&para;</a></h3>
 <p><strong>Correlation structure:</strong> <span class="arithmatex">\(d\langle W^i, W^j \rangle_t = \rho_{ij}\,dt\)</span></p>
 <p><strong>Cholesky decomposition:</strong> Write <span class="arithmatex">\(W_t = L Z_t\)</span> where:
@@ -47777,12 +47777,12 @@ X_{n+1} &amp;= X_n + \frac{1}{2}[b(X_n) + b(\bar{X})]\Delta t + \sigma(X_n)\Delt
     <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">W</span>
 </code></pre></div>
 <h3 id="3-example-heston-model">3. Example: Heston Model<a class="headerlink" href="#3-example-heston-model" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 dS_t = \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^1 \\
 dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^2
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>with <span class="arithmatex">\(d\langle W^1, W^2 \rangle_t = \rho\,dt\)</span>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">heston_euler</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">V0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">num_paths</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Euler-Maruyama for Heston model with full truncation.&quot;&quot;&quot;</span>
@@ -47821,18 +47821,18 @@ dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^2
 <h2 id="error-sources-and-mitigation">Error Sources and Mitigation<a class="headerlink" href="#error-sources-and-mitigation" title="Permanent link">&para;</a></h2>
 <h3 id="1-two-types-of-error">1. Two Types of Error<a class="headerlink" href="#1-two-types-of-error" title="Permanent link">&para;</a></h3>
 <p><strong>Total error = Discretization error + Monte Carlo error</strong></p>
-<p>$$</p>
-<p>\text{Error} \approx C_1 \Delta t^\gamma + \frac{C_2}{\sqrt{M}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Error} \approx C_1 \Delta t^\gamma + \frac{C_2}{\sqrt{M}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\gamma\)</span> = strong convergence order
 - <span class="arithmatex">\(M\)</span> = number of Monte Carlo paths</p>
 <h3 id="2-optimal-allocation">2. Optimal Allocation<a class="headerlink" href="#2-optimal-allocation" title="Permanent link">&para;</a></h3>
 <p>To minimize computational cost for fixed error <span class="arithmatex">\(\varepsilon\)</span>:</p>
 <p><strong>Balance the errors:</strong></p>
-<p>$$</p>
-<p>\Delta t^\gamma \approx \frac{1}{\sqrt{M}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta t^\gamma \approx \frac{1}{\sqrt{M}}
+\]</div>
 <p><strong>Optimal:</strong> <span class="arithmatex">\(\Delta t \sim \varepsilon^{2/(2\gamma+1)}\)</span>, <span class="arithmatex">\(M \sim \varepsilon^{-4\gamma/(2\gamma+1)}\)</span></p>
 <p><strong>For Euler-Maruyama</strong> (<span class="arithmatex">\(\gamma = 0.5\)</span>):
 - <span class="arithmatex">\(\Delta t \sim \varepsilon^{2/3}\)</span>

@@ -47283,9 +47283,9 @@
 <h2 id="static-vs-dynamic-smiles">Static vs. Dynamic Smiles<a class="headerlink" href="#static-vs-dynamic-smiles" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-static-smile-assumption">1. The Static Smile Assumption<a class="headerlink" href="#1-the-static-smile-assumption" title="Permanent link">&para;</a></h3>
 <p>A <strong>static smile</strong> assumes the implied volatility surface is fixed in time except for deterministic decay:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T; t) = \sigma_{\text{IV}}(K, T-t; 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T; t) = \sigma_{\text{IV}}(K, T-t; 0)
+\]</div>
 <p>Under this assumption:
 - The smile shape remains constant
 - Only maturity decreases as time passes
@@ -47342,75 +47342,75 @@
 <h2 id="mathematical-framework-for-smile-dynamics">Mathematical Framework for Smile Dynamics<a class="headerlink" href="#mathematical-framework-for-smile-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-smile-as-a-function-of-state-variables">1. The Smile as a Function of State Variables<a class="headerlink" href="#1-the-smile-as-a-function-of-state-variables" title="Permanent link">&para;</a></h3>
 <p>Model the implied volatility surface as a function of state variables:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T; S_t, v_t, \ldots) = f(K, T, S_t, v_t, \ldots)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T; S_t, v_t, \ldots) = f(K, T, S_t, v_t, \ldots)
+\]</div>
 <p>where <span class="arithmatex">\(v_t\)</span> may represent instantaneous variance, a volatility factor, or other state variables.</p>
 <p><strong>Taylor expansion:</strong></p>
-<p>$$</p>
-<p>d\sigma_{\text{IV}} = \frac{\partial \sigma}{\partial S} dS + \frac{\partial \sigma}{\partial v} dv + \frac{\partial \sigma}{\partial t} dt + \frac{1}{2}\frac{\partial^2 \sigma}{\partial S^2}(dS)^2 + \ldots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\sigma_{\text{IV}} = \frac{\partial \sigma}{\partial S} dS + \frac{\partial \sigma}{\partial v} dv + \frac{\partial \sigma}{\partial t} dt + \frac{1}{2}\frac{\partial^2 \sigma}{\partial S^2}(dS)^2 + \ldots
+\]</div>
 <h3 id="2-smile-sensitivities">2. Smile Sensitivities<a class="headerlink" href="#2-smile-sensitivities" title="Permanent link">&para;</a></h3>
 <p>Define the following smile sensitivities:</p>
 <p><strong>Spot sensitivity (at fixed strike):</strong></p>
-<p>$$</p>
-<p>\Sigma_S := \frac{\partial \sigma_{\text{IV}}(K)}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma_S := \frac{\partial \sigma_{\text{IV}}(K)}{\partial S}
+\]</div>
 <p><strong>Variance sensitivity:</strong></p>
-<p>$$</p>
-<p>\Sigma_v := \frac{\partial \sigma_{\text{IV}}(K)}{\partial v}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma_v := \frac{\partial \sigma_{\text{IV}}(K)}{\partial v}
+\]</div>
 <p><strong>Time decay of smile:</strong></p>
-<p>$$</p>
-<p>\Sigma_t := \frac{\partial \sigma_{\text{IV}}(K)}{\partial t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma_t := \frac{\partial \sigma_{\text{IV}}(K)}{\partial t}
+\]</div>
 <h3 id="3-stochastic-volatility-perspective">3. Stochastic Volatility Perspective<a class="headerlink" href="#3-stochastic-volatility-perspective" title="Permanent link">&para;</a></h3>
 <p>In a stochastic volatility model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= (r-q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 d\langle W^S, W^v \rangle_t &amp;= \rho dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>The implied volatility depends on both <span class="arithmatex">\(S_t\)</span> and <span class="arithmatex">\(v_t\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T; S_t, v_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T; S_t, v_t)
+\]</div>
 <p>The dynamics are:</p>
-<p>$$</p>
-<p>d\sigma_{\text{IV}} = \Sigma_S dS + \Sigma_v dv + \Sigma_t dt + \text{higher order}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\sigma_{\text{IV}} = \Sigma_S dS + \Sigma_v dv + \Sigma_t dt + \text{higher order}
+\]</div>
 <h2 id="smile-dynamics-and-pl-attribution">Smile Dynamics and P&amp;L Attribution<a class="headerlink" href="#smile-dynamics-and-pl-attribution" title="Permanent link">&para;</a></h2>
 <h3 id="1-option-pl-decomposition">1. Option P&amp;L Decomposition<a class="headerlink" href="#1-option-pl-decomposition" title="Permanent link">&para;</a></h3>
 <p>The total P&amp;L of a delta-hedged option position can be decomposed:</p>
-<p>$$</p>
-<p>\text{P\&amp;L} = \underbrace{\Theta \cdot dt}<em P_L="P\&amp;L" _text_gamma="\text{gamma">{\text{time decay}} + \underbrace{\frac{1}{2}\Gamma (dS)^2}</em>}} + \underbrace{\mathcal{V} \cdot d\sigma_{\text{ATM}}<em _text_residual="\text{residual">{\text{parallel vol}} + \underbrace{\text{Smile effects}}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} = \underbrace{\Theta \cdot dt}_{\text{time decay}} + \underbrace{\frac{1}{2}\Gamma (dS)^2}_{\text{gamma P\&amp;L}} + \underbrace{\mathcal{V} \cdot d\sigma_{\text{ATM}}}_{\text{parallel vol}} + \underbrace{\text{Smile effects}}_{\text{residual}}
+\]</div>
 <p>The "smile effects" capture:
 - Changes in skew
 - Changes in curvature
 - Non-parallel volatility moves</p>
 <h3 id="2-detailed-pl-attribution">2. Detailed P&amp;L Attribution<a class="headerlink" href="#2-detailed-pl-attribution" title="Permanent link">&para;</a></h3>
 <p>Expanding the vega term:</p>
-<p>$$</p>
-<p>\mathcal{V} \cdot d\sigma = \mathcal{V} \cdot \left(\Sigma_S dS + \Sigma_v dv + \Sigma_t dt\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} \cdot d\sigma = \mathcal{V} \cdot \left(\Sigma_S dS + \Sigma_v dv + \Sigma_t dt\right)
+\]</div>
 <p><strong>Cross-gamma (Vanna P&amp;L):</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{vanna}} = \mathcal{V} \cdot \Sigma_S \cdot dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{vanna}} = \mathcal{V} \cdot \Sigma_S \cdot dS
+\]</div>
 <p>This captures the interaction between spot moves and volatility changes.</p>
 <p><strong>Pure volatility P&amp;L:</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{vol}} = \mathcal{V} \cdot \Sigma_v \cdot dv</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{vol}} = \mathcal{V} \cdot \Sigma_v \cdot dv
+\]</div>
 <p>This captures changes in the underlying volatility state.</p>
 <h3 id="3-second-order-attribution">3. Second-Order Attribution<a class="headerlink" href="#3-second-order-attribution" title="Permanent link">&para;</a></h3>
 <p>Including second-order terms:</p>
-<p>$$</p>
-<p>\text{P\&amp;L} = \Delta \cdot dS + \Theta \cdot dt + \frac{1}{2}\Gamma (dS)^2 + \mathcal{V} \cdot d\sigma + \text{Vanna} \cdot dS \cdot d\sigma + \frac{1}{2}\text{Volga} \cdot (d\sigma)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} = \Delta \cdot dS + \Theta \cdot dt + \frac{1}{2}\Gamma (dS)^2 + \mathcal{V} \cdot d\sigma + \text{Vanna} \cdot dS \cdot d\sigma + \frac{1}{2}\text{Volga} \cdot (d\sigma)^2
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47455,29 +47455,29 @@ d\langle W^S, W^v \rangle_t &amp;= \rho dt
 <h2 id="model-based-smile-dynamics">Model-Based Smile Dynamics<a class="headerlink" href="#model-based-smile-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="1-local-volatility-dynamics">1. Local Volatility Dynamics<a class="headerlink" href="#1-local-volatility-dynamics" title="Permanent link">&para;</a></h3>
 <p>In local volatility models, the smile dynamics are fully determined by the local volatility surface:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}(S, t) = \sigma_{\text{loc}}(S, t) \quad \text{(fixed)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}(S, t) = \sigma_{\text{loc}}(S, t) \quad \text{(fixed)}
+\]</div>
 <p><strong>Key property:</strong> The local vol model produces <strong>sticky strike</strong> behavior:
 - IV at each strike is fixed
 - When spot moves, the option "visits" different parts of the local vol surface
 - No smile-related P&amp;L at fixed strike</p>
 <p><strong>Forward smile:</strong> The local vol model implies a specific forward smile that typically <strong>flattens</strong> over time:</p>
-<p>$$</p>
-<p>\sigma_{\text{fwd}}(K, T_1, T_2) \to \text{flat as } T_1 \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd}}(K, T_1, T_2) \to \text{flat as } T_1 \to \infty
+\]</div>
 <p>This is inconsistent with persistent empirical skew, a major shortcoming of local vol.</p>
 <h3 id="2-stochastic-volatility-dynamics-heston">2. Stochastic Volatility Dynamics (Heston)<a class="headerlink" href="#2-stochastic-volatility-dynamics-heston" title="Permanent link">&para;</a></h3>
 <p>The Heston model produces richer smile dynamics:</p>
 <p><strong>ATM volatility:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2 \approx v_t + \text{corrections}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2 \approx v_t + \text{corrections}
+\]</div>
 <p>So ATM volatility moves with the variance process <span class="arithmatex">\(v_t\)</span>.</p>
 <p><strong>Skew:</strong></p>
-<p>$$</p>
-<p>\text{Skew} \propto \rho \cdot \xi</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew} \propto \rho \cdot \xi
+\]</div>
 <p>The spot-vol correlation <span class="arithmatex">\(\rho\)</span> generates skew, and vol-of-vol <span class="arithmatex">\(\xi\)</span> affects its magnitude.</p>
 <p><strong>Smile dynamics:</strong>
 - When <span class="arithmatex">\(v_t\)</span> increases, the entire smile shifts up
@@ -47485,13 +47485,13 @@ d\langle W^S, W^v \rangle_t &amp;= \rho dt
 - This creates <strong>leverage-like dynamics</strong></p>
 <h3 id="3-sabr-dynamics">3. SABR Dynamics<a class="headerlink" href="#3-sabr-dynamics" title="Permanent link">&para;</a></h3>
 <p>The SABR model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dF_t &amp;= \alpha_t F_t^\beta dW_t^F \\
 d\alpha_t &amp;= \nu \alpha_t dW_t^\alpha \\
 d\langle W^F, W^\alpha \rangle &amp;= \rho dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>Backbone parameter <span class="arithmatex">\(\beta\)</span>:</strong>
 - <span class="arithmatex">\(\beta = 1\)</span>: Lognormal dynamics, sticky strike behavior
 - <span class="arithmatex">\(\beta = 0\)</span>: Normal dynamics, sticky delta behavior
@@ -47502,13 +47502,13 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 - The model can match both smile shape and basic dynamics</p>
 <h3 id="4-bergomis-framework">4. Bergomi's Framework<a class="headerlink" href="#4-bergomis-framework" title="Permanent link">&para;</a></h3>
 <p>Bergomi models the forward variance curve directly:</p>
-<p>$$</p>
-<p>\xi_t^T = \mathbb{E}_t[\sigma_T^2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\xi_t^T = \mathbb{E}_t[\sigma_T^2]
+\]</div>
 <p>The dynamics:</p>
-<p>$$</p>
-<p>d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t
+\]</div>
 <p><strong>Key insight:</strong> By specifying how forward variances evolve, Bergomi's model can match:
 - Realistic smile dynamics
 - Forward smile behavior
@@ -47517,9 +47517,9 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 <h2 id="hedging-implications">Hedging Implications<a class="headerlink" href="#hedging-implications" title="Permanent link">&para;</a></h2>
 <h3 id="1-delta-hedging-under-smile-dynamics">1. Delta Hedging Under Smile Dynamics<a class="headerlink" href="#1-delta-hedging-under-smile-dynamics" title="Permanent link">&para;</a></h3>
 <p>The "true" delta depends on smile dynamics:</p>
-<p>$$</p>
-<p>\Delta_{\text{true}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \Sigma_S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{true}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \Sigma_S
+\]</div>
 <p>where <span class="arithmatex">\(\Sigma_S = \frac{\partial \sigma_{\text{IV}}(K)}{\partial S}\)</span> is the smile sensitivity to spot.</p>
 <p><strong>Sticky strike:</strong> <span class="arithmatex">\(\Sigma_S = 0\)</span>, so <span class="arithmatex">\(\Delta_{\text{true}} = \Delta_{\text{BS}}\)</span></p>
 <p><strong>Sticky delta:</strong> <span class="arithmatex">\(\Sigma_S \neq 0\)</span>, requiring adjustment</p>
@@ -47527,33 +47527,33 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 <h3 id="2-vega-hedging-across-strikes">2. Vega Hedging Across Strikes<a class="headerlink" href="#2-vega-hedging-across-strikes" title="Permanent link">&para;</a></h3>
 <p>A single ATM option hedge provides <strong>parallel vega</strong> protection but not <strong>skew protection</strong>.</p>
 <p><strong>Skew risk:</strong> If the portfolio has different vega exposures at different strikes, a change in skew creates P&amp;L:</p>
-<p>$$</p>
-<p>\text{P\&amp;L}<em _text_hedge="\text{hedge">{\text{skew}} = \sum_i \mathcal{V}_i \cdot \Delta\sigma(K_i) - \mathcal{V}</em>}} \cdot \Delta\sigma_{\text{ATM}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{skew}} = \sum_i \mathcal{V}_i \cdot \Delta\sigma(K_i) - \mathcal{V}_{\text{hedge}} \cdot \Delta\sigma_{\text{ATM}}
+\]</div>
 <p><strong>Skew hedge:</strong> Use risk reversals (long OTM put, short OTM call) to hedge skew exposure.</p>
 <h3 id="3-vega-hedging-across-maturities">3. Vega Hedging Across Maturities<a class="headerlink" href="#3-vega-hedging-across-maturities" title="Permanent link">&para;</a></h3>
 <p>Different maturities respond differently to volatility shocks:</p>
 <p><strong>Term structure risk:</strong> The term structure may steepen or flatten:</p>
-<p>$$</p>
-<p>\Delta\sigma(T_{\text{long}}) \neq \Delta\sigma(T_{\text{short}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta\sigma(T_{\text{long}}) \neq \Delta\sigma(T_{\text{short}})
+\]</div>
 <p><strong>Calendar vega:</strong> Use calendar spreads to hedge term structure exposure.</p>
 <p><strong>Vega bucketing:</strong> Decompose vega by maturity bucket and hedge each bucket separately.</p>
 <h3 id="4-vanna-hedging">4. Vanna Hedging<a class="headerlink" href="#4-vanna-hedging" title="Permanent link">&para;</a></h3>
 <p>Vanna exposure creates P&amp;L when spot and volatility move together:</p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{vanna}} \approx \text{Vanna} \cdot \Delta S \cdot \Delta\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{vanna}} \approx \text{Vanna} \cdot \Delta S \cdot \Delta\sigma
+\]</div>
 <p><strong>Empirical correlation:</strong> For equities, spot and volatility are negatively correlated:</p>
-<p>$$</p>
-<p>\mathbb{E}[\Delta S \cdot \Delta\sigma] &lt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\Delta S \cdot \Delta\sigma] &lt; 0
+\]</div>
 <p><strong>Vanna hedge:</strong> Position in options or variance swaps to neutralize vanna.</p>
 <h3 id="5-volga-hedging">5. Volga Hedging<a class="headerlink" href="#5-volga-hedging" title="Permanent link">&para;</a></h3>
 <p>Volga exposure creates P&amp;L from volatility convexity:</p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{volga}} \approx \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{volga}} \approx \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2
+\]</div>
 <p><strong>Large OTM options:</strong> Have significant positive volga, benefiting from vol-of-vol.</p>
 <p><strong>Volga hedge:</strong> Trade options at different strikes to neutralize volga exposure.</p>
 <h2 id="multi-factor-hedging">Multi-Factor Hedging<a class="headerlink" href="#multi-factor-hedging" title="Permanent link">&para;</a></h2>
@@ -47568,9 +47568,9 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 <p><strong>Objective:</strong> Find hedge ratios <span class="arithmatex">\(h_1, h_2, \ldots\)</span> for available instruments such that total exposure is minimized.</p>
 <h3 id="2-linear-hedging">2. Linear Hedging<a class="headerlink" href="#2-linear-hedging" title="Permanent link">&para;</a></h3>
 <p>For first-order exposures, solve:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{pmatrix} \Delta_{\text{port}} \\ \mathcal{V}_{\text{ATM,port}} \\ \mathcal{V}_{\text{skew,port}} \end{pmatrix} + \begin{pmatrix} \Delta_1 &amp; \Delta_2 &amp; \Delta_3 \\ \mathcal{V}_{\text{ATM},1} &amp; \mathcal{V}_{\text{ATM},2} &amp; \mathcal{V}_{\text{ATM},3} \\ \mathcal{V}_{\text{skew},1} &amp; \mathcal{V}_{\text{skew},2} &amp; \mathcal{V}_{\text{skew},3} \end{pmatrix} \begin{pmatrix} h_1 \\ h_2 \\ h_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}\]</div>
-<p>$$</p>
+<div class="arithmatex">\[
+\begin{pmatrix} \Delta_{\text{port}} \\ \mathcal{V}_{\text{ATM,port}} \\ \mathcal{V}_{\text{skew,port}} \end{pmatrix} + \begin{pmatrix} \Delta_1 &amp; \Delta_2 &amp; \Delta_3 \\ \mathcal{V}_{\text{ATM},1} &amp; \mathcal{V}_{\text{ATM},2} &amp; \mathcal{V}_{\text{ATM},3} \\ \mathcal{V}_{\text{skew},1} &amp; \mathcal{V}_{\text{skew},2} &amp; \mathcal{V}_{\text{skew},3} \end{pmatrix} \begin{pmatrix} h_1 \\ h_2 \\ h_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+\]</div>
 <p>This requires at least as many hedging instruments as exposures.</p>
 <h3 id="3-practical-instrument-selection">3. Practical Instrument Selection<a class="headerlink" href="#3-practical-instrument-selection" title="Permanent link">&para;</a></h3>
 <p><strong>Liquid instruments for hedging:</strong></p>
@@ -47615,9 +47615,9 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 <h3 id="4-hedge-ratio-estimation">4. Hedge Ratio Estimation<a class="headerlink" href="#4-hedge-ratio-estimation" title="Permanent link">&para;</a></h3>
 <p><strong>Model-based:</strong> Use a calibrated model to compute Greeks and solve for hedge ratios.</p>
 <p><strong>Empirical:</strong> Estimate sensitivities from historical data:</p>
-<p>$$</p>
-<p>\Delta\sigma_{\text{port}} = \beta_1 \Delta\sigma_{\text{ATM}} + \beta_2 \Delta\text{skew} + \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta\sigma_{\text{port}} = \beta_1 \Delta\sigma_{\text{ATM}} + \beta_2 \Delta\text{skew} + \epsilon
+\]</div>
 <p><strong>Hybrid:</strong> Combine model guidance with empirical adjustments.</p>
 <h2 id="numerical-example-smile-hedging">Numerical Example: Smile Hedging<a class="headerlink" href="#numerical-example-smile-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="1-setup">1. Setup<a class="headerlink" href="#1-setup" title="Permanent link">&para;</a></h3>
@@ -47660,23 +47660,23 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 </table>
 <h3 id="2-scenario-analysis">2. Scenario Analysis<a class="headerlink" href="#2-scenario-analysis" title="Permanent link">&para;</a></h3>
 <p><strong>Scenario A: Parallel vol up 2%</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L} \approx 25.5 \times 0.02 - 12.3 \times 0.02 = 0.51 - 0.25 = +$0.26</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} \approx 25.5 \times 0.02 - 12.3 \times 0.02 = 0.51 - 0.25 = +\$0.26
+\]</div>
 <p><strong>Scenario B: Skew steepens (25D put vol up 3%, ATM unchanged)</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L} \approx 0 - 12.3 \times 0.03 = -$0.37</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} \approx 0 - 12.3 \times 0.03 = -\$0.37
+\]</div>
 <p><strong>Scenario C: Spot down 5%, vol up 2%</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\Delta} = 0.72 \times (-5) = -$3.60</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{vol}} \approx +$0.26 \text{ (as in A)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Total} \approx -$3.34</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\Delta} = 0.72 \times (-5) = -\$3.60
+\]</div>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{vol}} \approx +\$0.26 \text{ (as in A)}
+\]</div>
+<div class="arithmatex">\[
+\text{Total} \approx -\$3.34
+\]</div>
 <h3 id="3-hedge-construction">3. Hedge Construction<a class="headerlink" href="#3-hedge-construction" title="Permanent link">&para;</a></h3>
 <p><strong>Objective:</strong> Neutralize delta, ATM vega, and skew exposure.</p>
 <p><strong>Instruments:</strong>
@@ -47708,9 +47708,9 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 - Frequent recalibration and hedge adjustment</p>
 <h3 id="3-forward-smile-as-a-diagnostic">3. Forward Smile as a Diagnostic<a class="headerlink" href="#3-forward-smile-as-a-diagnostic" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward smile</strong> reveals model dynamics:</p>
-<p>$$</p>
-<p>\sigma_{\text{fwd}}(K, T_1, T_2) = \text{IV of forward-start option}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd}}(K, T_1, T_2) = \text{IV of forward-start option}
+\]</div>
 <p><strong>Local vol:</strong> Forward smile flattens quickly
 <strong>Stochastic vol:</strong> Forward smile persists but may steepen/flatten
 <strong>Empirical:</strong> Forward smile should reflect expected future dynamics</p>
@@ -47732,17 +47732,17 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 - Jump risk dominates</p>
 <h3 id="2-quantitative-measures">2. Quantitative Measures<a class="headerlink" href="#2-quantitative-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Skew-spot beta:</strong></p>
-<p>$$</p>
-<p>\frac{d(\text{skew})}{d(\text{log spot})} \approx -0.3 \text{ to } -0.5 \text{ for SPX}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d(\text{skew})}{d(\text{log spot})} \approx -0.3 \text{ to } -0.5 \text{ for SPX}
+\]</div>
 <p><strong>Vol-spot beta:</strong></p>
-<p>$$</p>
-<p>\frac{d(\sigma_{\text{ATM}})}{d(\text{log spot})} \approx -1.5 \text{ to } -2.5 \text{ for SPX}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d(\sigma_{\text{ATM}})}{d(\text{log spot})} \approx -1.5 \text{ to } -2.5 \text{ for SPX}
+\]</div>
 <p><strong>Vol-of-vol:</strong></p>
-<p>$$</p>
-<p>\text{Realized vol of ATM IV} \approx 3\% \text{ to } 5\% \text{ annualized}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Realized vol of ATM IV} \approx 3\% \text{ to } 5\% \text{ annualized}
+\]</div>
 <h3 id="3-time-scales">3. Time Scales<a class="headerlink" href="#3-time-scales" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47818,9 +47818,9 @@ d\langle W^F, W^\alpha \rangle &amp;= \rho dt
 <li><strong>Volga:</strong> Hedge vol convexity</li>
 </ul>
 <h3 id="4-pl-attribution">4. P&amp;L Attribution<a class="headerlink" href="#4-pl-attribution" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{P\&amp;L} = \Delta \cdot dS + \Theta \cdot dt + \frac{1}{2}\Gamma (dS)^2 + \mathcal{V} \cdot d\sigma + \text{Vanna} \cdot dS \cdot d\sigma + \frac{1}{2}\text{Volga} \cdot (d\sigma)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} = \Delta \cdot dS + \Theta \cdot dt + \frac{1}{2}\Gamma (dS)^2 + \mathcal{V} \cdot d\sigma + \text{Vanna} \cdot dS \cdot d\sigma + \frac{1}{2}\text{Volga} \cdot (d\sigma)^2
+\]</div>
 <h3 id="5-dynamic-consistency">5. Dynamic Consistency<a class="headerlink" href="#5-dynamic-consistency" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Most models are dynamically inconsistent</li>

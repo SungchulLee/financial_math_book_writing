@@ -47095,30 +47095,30 @@
 <h2 id="definition-and-notation">Definition and Notation<a class="headerlink" href="#definition-and-notation" title="Permanent link">&para;</a></h2>
 <h3 id="1-atm-term-structure">1. ATM Term Structure<a class="headerlink" href="#1-atm-term-structure" title="Permanent link">&para;</a></h3>
 <p>The most commonly analyzed term structure is at-the-money (ATM):</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}(T) := \sigma_{\text{IV}}(K_{\text{ATM}}(T), T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}(T) := \sigma_{\text{IV}}(K_{\text{ATM}}(T), T)
+\]</div>
 <p>where <span class="arithmatex">\(K_{\text{ATM}}(T) = F(T) = S_0 e^{(r-q)T}\)</span> is the forward price at maturity <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>Interpretation:</strong> <span class="arithmatex">\(\sigma_{\text{ATM}}(T)\)</span> represents the market's implied volatility for an option that is currently at-the-money with maturity <span class="arithmatex">\(T\)</span>.</p>
 <h3 id="2-constant-moneyness-term-structure">2. Constant-Moneyness Term Structure<a class="headerlink" href="#2-constant-moneyness-term-structure" title="Permanent link">&para;</a></h3>
 <p>For fixed moneyness <span class="arithmatex">\(m = K/F\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(m, T) \quad \text{with } K = m \cdot S_0 e^{(r-q)T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(m, T) \quad \text{with } K = m \cdot S_0 e^{(r-q)T}
+\]</div>
 <p>This controls for the fact that "at-the-money" means different strike levels for different maturities.</p>
 <h3 id="3-fixed-strike-term-structure">3. Fixed-Strike Term Structure<a class="headerlink" href="#3-fixed-strike-term-structure" title="Permanent link">&para;</a></h3>
 <p>For a fixed strike <span class="arithmatex">\(K_0\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K_0, T) \quad \text{as } T \text{ varies}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K_0, T) \quad \text{as } T \text{ varies}
+\]</div>
 <p><strong>Note:</strong> As <span class="arithmatex">\(T\)</span> increases, <span class="arithmatex">\(K_0\)</span> moves through different moneyness levels relative to <span class="arithmatex">\(F(T)\)</span>, mixing term structure and smile effects.</p>
 <p><strong>Recommendation:</strong> Use constant-moneyness term structure to isolate pure maturity effects.</p>
 <h2 id="typical-term-structure-shapes">Typical Term Structure Shapes<a class="headerlink" href="#typical-term-structure-shapes" title="Permanent link">&para;</a></h2>
 <h3 id="1-upward-sloping-normal">1. Upward Sloping (Normal)<a class="headerlink" href="#1-upward-sloping-normal" title="Permanent link">&para;</a></h3>
 <p><strong>Characteristics:</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{ATM}}}{\partial T} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{ATM}}}{\partial T} &gt; 0
+\]</div>
 <p>Short-dated options have lower implied volatility than long-dated options.</p>
 <p><strong>Interpretation:</strong>
 - <strong>Low current volatility:</strong> Market expects volatility to increase over time (mean reversion to long-run average)
@@ -47126,15 +47126,15 @@
 - <strong>Uncertainty accumulation:</strong> Longer horizons have more uncertain outcomes</p>
 <p><strong>Typical markets:</strong> Stable equity markets, low-volatility regimes</p>
 <p><strong>Mathematical model:</strong> In Heston model with <span class="arithmatex">\(v_0 &lt; \theta\)</span> (current variance below mean):</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[v_t] = v_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) \to \theta \quad \text{as } t \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[v_t] = v_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) \to \theta \quad \text{as } t \to \infty
+\]</div>
 <p>The ATM IV for small <span class="arithmatex">\(T\)</span> reflects <span class="arithmatex">\(v_0\)</span>, while large <span class="arithmatex">\(T\)</span> reflects <span class="arithmatex">\(\theta\)</span>.</p>
 <h3 id="2-downward-sloping-inverted">2. Downward Sloping (Inverted)<a class="headerlink" href="#2-downward-sloping-inverted" title="Permanent link">&para;</a></h3>
 <p><strong>Characteristics:</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{ATM}}}{\partial T} &lt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{ATM}}}{\partial T} &lt; 0
+\]</div>
 <p>Short-dated options have higher implied volatility than long-dated options.</p>
 <p><strong>Interpretation:</strong>
 - <strong>High current volatility:</strong> Market expects volatility to decrease over time
@@ -47144,14 +47144,12 @@
 <p><strong>Example:</strong> After the 2008 financial crisis, 1-month IV was 60%+ while 1-year IV was 30-40%, reflecting expected calm-down.</p>
 <h3 id="3-humped-non-monotonic">3. Humped (Non-Monotonic)<a class="headerlink" href="#3-humped-non-monotonic" title="Permanent link">&para;</a></h3>
 <p><strong>Characteristics:</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{ATM}}}{\partial T} \begin{cases}</p>
-<blockquote>
-<p>0 &amp; \text{for small } T \
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{ATM}}}{\partial T} \begin{cases}
+&gt; 0 &amp; \text{for small } T \\
 &lt; 0 &amp; \text{for large } T
-\end{cases}</p>
-</blockquote>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>Implied volatility peaks at intermediate maturities (e.g., 3-6 months).</p>
 <p><strong>Interpretation:</strong>
 - <strong>Event risk at specific horizon:</strong> Earnings announcement, election, Brexit vote, etc.
@@ -47161,9 +47159,9 @@
 <p><strong>Example:</strong> Options expiring just after an earnings release have elevated IV compared to shorter and longer maturities.</p>
 <h3 id="4-flat-rare">4. Flat (Rare)<a class="headerlink" href="#4-flat-rare" title="Permanent link">&para;</a></h3>
 <p><strong>Characteristics:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}(T) \approx \text{constant}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}(T) \approx \text{constant}
+\]</div>
 <p><strong>Interpretation:</strong>
 - No expected change in volatility regime
 - Market sees current volatility as persistent
@@ -47171,59 +47169,59 @@
 <h2 id="mathematical-analysis-of-term-structure">Mathematical Analysis of Term Structure<a class="headerlink" href="#mathematical-analysis-of-term-structure" title="Permanent link">&para;</a></h2>
 <h3 id="1-relationship-to-variance-curve">1. Relationship to Variance Curve<a class="headerlink" href="#1-relationship-to-variance-curve" title="Permanent link">&para;</a></h3>
 <p>Define <strong>total variance</strong>:</p>
-<p>$$</p>
-<p>w(T) := \sigma_{\text{ATM}}^2(T) \cdot T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(T) := \sigma_{\text{ATM}}^2(T) \cdot T
+\]</div>
 <p>The term structure is equivalently characterized by how <span class="arithmatex">\(w(T)\)</span> grows with <span class="arithmatex">\(T\)</span>:</p>
 <p><strong>Upward sloping IV:</strong></p>
-<p>$$</p>
-<p>\frac{d w}{d T} = \sigma_{\text{ATM}}^2 + 2T \sigma_{\text{ATM}} \frac{d\sigma_{\text{ATM}}}{dT} &gt; \sigma_{\text{ATM}}^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d w}{d T} = \sigma_{\text{ATM}}^2 + 2T \sigma_{\text{ATM}} \frac{d\sigma_{\text{ATM}}}{dT} &gt; \sigma_{\text{ATM}}^2
+\]</div>
 <p>If <span class="arithmatex">\(\frac{d\sigma_{\text{ATM}}}{dT} &gt; 0\)</span>, total variance grows <strong>faster than linearly</strong>.</p>
 <p><strong>Downward sloping IV:</strong></p>
-<p>$$</p>
-<p>\frac{d w}{d T} &lt; \sigma_{\text{ATM}}^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d w}{d T} &lt; \sigma_{\text{ATM}}^2
+\]</div>
 <p>Total variance still increases (by no-arbitrage) but <strong>slower than linearly</strong>.</p>
 <p><strong>Constraint:</strong> No-arbitrage requires:</p>
-<p>$$</p>
-<p>\frac{d w}{d T} \geq 0 \quad \Rightarrow \quad w(T) \text{ is non-decreasing}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d w}{d T} \geq 0 \quad \Rightarrow \quad w(T) \text{ is non-decreasing}
+\]</div>
 <h3 id="2-calendar-spread-constraint">2. Calendar Spread Constraint<a class="headerlink" href="#2-calendar-spread-constraint" title="Permanent link">&para;</a></h3>
 <p>The no-arbitrage condition for calendar spreads:</p>
-<p>$$</p>
-<p>C(K, T_2) \geq C(K, T_1) \quad \text{for } T_2 &gt; T_1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T_2) \geq C(K, T_1) \quad \text{for } T_2 &gt; T_1
+\]</div>
 <p>(assuming no dividends). This implies:</p>
-<p>$$</p>
-<p>w(T_2) \geq w(T_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(T_2) \geq w(T_1)
+\]</div>
 <p>but does <strong>not</strong> directly constrain <span class="arithmatex">\(\sigma_{\text{ATM}}(T)\)</span>.</p>
 <p><strong>Example:</strong> Both scenarios are arbitrage-free:
 1. <span class="arithmatex">\(\sigma_{\text{ATM}}(T_1) = 20\%\)</span>, <span class="arithmatex">\(\sigma_{\text{ATM}}(T_2) = 25\%\)</span> (upward)
 2. <span class="arithmatex">\(\sigma_{\text{ATM}}(T_1) = 30\%\)</span>, <span class="arithmatex">\(\sigma_{\text{ATM}}(T_2) = 22\%\)</span> (downward, but <span class="arithmatex">\(w(T_2) = 0.22^2 \cdot T_2 &gt; w(T_1) = 0.30^2 \cdot T_1\)</span> if <span class="arithmatex">\(T_2\)</span> is large enough)</p>
 <h3 id="3-forward-volatility">3. Forward Volatility<a class="headerlink" href="#3-forward-volatility" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward implied volatility</strong> between <span class="arithmatex">\(T_1\)</span> and <span class="arithmatex">\(T_2\)</span> is defined by:</p>
-<p>$$</p>
-<p>\sigma_{\text{fwd}}^2(T_1, T_2) := \frac{w(T_2) - w(T_1)}{T_2 - T_1} = \frac{\sigma_{\text{ATM}}^2(T_2) T_2 - \sigma_{\text{ATM}}^2(T_1) T_1}{T_2 - T_1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd}}^2(T_1, T_2) := \frac{w(T_2) - w(T_1)}{T_2 - T_1} = \frac{\sigma_{\text{ATM}}^2(T_2) T_2 - \sigma_{\text{ATM}}^2(T_1) T_1}{T_2 - T_1}
+\]</div>
 <p><strong>Interpretation:</strong> The implied volatility for the period <span class="arithmatex">\([T_1, T_2]\)</span> assuming the model:</p>
-<p>$$</p>
-<p>\int_0^{T_1} \sigma^2(t) dt = w(T_1), \quad \int_0^{T_2} \sigma^2(t) dt = w(T_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^{T_1} \sigma^2(t) dt = w(T_1), \quad \int_0^{T_2} \sigma^2(t) dt = w(T_2)
+\]</div>
 <p>Thus:</p>
-<p>$$</p>
-<p>\int_{T_1}^{T_2} \sigma^2(t) dt = w(T_2) - w(T_1) \quad \Rightarrow \quad \sigma_{\text{fwd}}^2(T_1, T_2) \approx \text{average } \sigma^2(t) \text{ over } [T_1, T_2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{T_1}^{T_2} \sigma^2(t) dt = w(T_2) - w(T_1) \quad \Rightarrow \quad \sigma_{\text{fwd}}^2(T_1, T_2) \approx \text{average } \sigma^2(t) \text{ over } [T_1, T_2]
+\]</div>
 <h3 id="4-instantaneous-forward-volatility">4. Instantaneous Forward Volatility<a class="headerlink" href="#4-instantaneous-forward-volatility" title="Permanent link">&para;</a></h3>
 <p>Taking <span class="arithmatex">\(T_2 \to T_1\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{inst}}^2(T) := \lim_{T_2 \to T_1} \sigma_{\text{fwd}}^2(T_1, T_2) = \frac{d w}{d T}\bigg|_{T=T_1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{inst}}^2(T) := \lim_{T_2 \to T_1} \sigma_{\text{fwd}}^2(T_1, T_2) = \frac{d w}{d T}\bigg|_{T=T_1}
+\]</div>
 <p>Explicitly:</p>
-<p>$$</p>
-<p>\sigma_{\text{inst}}^2(T) = \sigma_{\text{ATM}}^2(T) + 2T \sigma_{\text{ATM}}(T) \frac{d\sigma_{\text{ATM}}}{dT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{inst}}^2(T) = \sigma_{\text{ATM}}^2(T) + 2T \sigma_{\text{ATM}}(T) \frac{d\sigma_{\text{ATM}}}{dT}
+\]</div>
 <p><strong>Interpretation:</strong> The instantaneous volatility the market expects at time <span class="arithmatex">\(T\)</span> given current information.</p>
 <p><strong>Relationship to term structure slope:</strong>
 - Upward sloping: <span class="arithmatex">\(\frac{d\sigma_{\text{ATM}}}{dT} &gt; 0 \Rightarrow \sigma_{\text{inst}}^2 &gt; \sigma_{\text{ATM}}^2\)</span> (forward vol exceeds spot IV)
@@ -47231,61 +47229,61 @@
 <h2 id="connection-to-volatility-models">Connection to Volatility Models<a class="headerlink" href="#connection-to-volatility-models" title="Permanent link">&para;</a></h2>
 <h3 id="1-constant-volatility-black-scholes">1. Constant Volatility (Black-Scholes)<a class="headerlink" href="#1-constant-volatility-black-scholes" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\sigma(t) = \sigma_0\)</span> (constant), then:</p>
-<p>$$</p>
-<p>w(T) = \sigma_0^2 T \quad \Rightarrow \quad \sigma_{\text{ATM}}(T) = \sigma_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(T) = \sigma_0^2 T \quad \Rightarrow \quad \sigma_{\text{ATM}}(T) = \sigma_0
+\]</div>
 <p><strong>Flat term structure:</strong> <span class="arithmatex">\(\sigma_{\text{ATM}}(T)\)</span> is independent of <span class="arithmatex">\(T\)</span>.</p>
 <h3 id="2-deterministic-local-volatility">2. Deterministic Local Volatility<a class="headerlink" href="#2-deterministic-local-volatility" title="Permanent link">&para;</a></h3>
 <p>For a time-dependent local volatility <span class="arithmatex">\(\sigma_{\text{loc}}(t)\)</span>:</p>
-<p>$$</p>
-<p>w(T) = \int_0^T \sigma_{\text{loc}}^2(t) dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}(T) = \sqrt{\frac{1}{T} \int_0^T \sigma_{\text{loc}}^2(t) dt}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(T) = \int_0^T \sigma_{\text{loc}}^2(t) dt
+\]</div>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}(T) = \sqrt{\frac{1}{T} \int_0^T \sigma_{\text{loc}}^2(t) dt}
+\]</div>
 <p>The term structure reflects the <strong>time-averaged</strong> volatility up to maturity <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>Example:</strong> If <span class="arithmatex">\(\sigma_{\text{loc}}(t) = \sigma_0 + \alpha t\)</span> (linear ramp):</p>
-<p>$$</p>
-<p>w(T) = \sigma_0^2 T + \sigma_0 \alpha T^2 + \frac{\alpha^2 T^3}{3}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}(T) = \sqrt{\sigma_0^2 + \sigma_0 \alpha T + \frac{\alpha^2 T^2}{3}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(T) = \sigma_0^2 T + \sigma_0 \alpha T^2 + \frac{\alpha^2 T^3}{3}
+\]</div>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}(T) = \sqrt{\sigma_0^2 + \sigma_0 \alpha T + \frac{\alpha^2 T^2}{3}}
+\]</div>
 <p>For <span class="arithmatex">\(\alpha &gt; 0\)</span>, term structure is upward sloping.</p>
 <h3 id="3-stochastic-volatility-heston">3. Stochastic Volatility (Heston)<a class="headerlink" href="#3-stochastic-volatility-heston" title="Permanent link">&para;</a></h3>
 <p>The Heston model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= (r - q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 d\langle W^S, W^v \rangle_t &amp;= \rho dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>ATM term structure for small <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2(T) \approx v_0 + (\theta - v_0)(1 - e^{-\kappa T}) + \frac{\xi^2}{4\kappa}(1 - e^{-2\kappa T})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2(T) \approx v_0 + (\theta - v_0)(1 - e^{-\kappa T}) + \frac{\xi^2}{4\kappa}(1 - e^{-2\kappa T})
+\]</div>
 <p><strong>Limits:</strong>
 - Short maturity: <span class="arithmatex">\(\sigma_{\text{ATM}}^2(T) \approx v_0\)</span> (spot variance)
 - Long maturity: <span class="arithmatex">\(\sigma_{\text{ATM}}^2(T) \to \theta + \frac{\xi^2}{4\kappa}\)</span> (long-run level + vol-of-vol effect)</p>
 <p><strong>Slope:</strong></p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{ATM}}^2}{dT}\bigg|_{T=0} = \kappa(\theta - v_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{ATM}}^2}{dT}\bigg|_{T=0} = \kappa(\theta - v_0)
+\]</div>
 <ul>
 <li>If <span class="arithmatex">\(v_0 &lt; \theta\)</span>: Upward sloping (mean reversion from below)</li>
 <li>If <span class="arithmatex">\(v_0 &gt; \theta\)</span>: Downward sloping (mean reversion from above)</li>
 </ul>
 <h3 id="4-jump-diffusion-models">4. Jump-Diffusion Models<a class="headerlink" href="#4-jump-diffusion-models" title="Permanent link">&para;</a></h3>
 <p>With jumps in the underlying:</p>
-<p>$$</p>
-<p>dS_t = (r - q - \lambda m_J) S_t dt + \sigma S_t dW_t + S_t dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q - \lambda m_J) S_t dt + \sigma S_t dW_t + S_t dJ_t
+\]</div>
 <p>where <span class="arithmatex">\(J_t\)</span> is a compound Poisson process with intensity <span class="arithmatex">\(\lambda\)</span> and jump size mean <span class="arithmatex">\(m_J\)</span>.</p>
 <p><strong>Effect on term structure:</strong> Jumps contribute a constant to the total variance:</p>
-<p>$$</p>
-<p>w(T) = \sigma^2 T + \lambda \mathbb{E}[J^2] T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(T) = \sigma^2 T + \lambda \mathbb{E}[J^2] T
+\]</div>
 <p>The term structure remains flat (both components scale linearly with <span class="arithmatex">\(T\)</span>), but the <strong>smile</strong> exhibits curvature.</p>
 <p><strong>Implication:</strong> Jumps affect strike dimension (smile shape) more than maturity dimension (term structure).</p>
 <h2 id="empirical-stylized-facts">Empirical Stylized Facts<a class="headerlink" href="#empirical-stylized-facts" title="Permanent link">&para;</a></h2>
@@ -47322,81 +47320,81 @@ d\langle W^S, W^v \rangle_t &amp;= \rho dt
 <h2 id="variance-swaps-and-term-structure">Variance Swaps and Term Structure<a class="headerlink" href="#variance-swaps-and-term-structure" title="Permanent link">&para;</a></h2>
 <h3 id="1-variance-swap-basics">1. Variance Swap Basics<a class="headerlink" href="#1-variance-swap-basics" title="Permanent link">&para;</a></h3>
 <p>A <strong>variance swap</strong> pays the difference between realized variance and a fixed strike <span class="arithmatex">\(K_{\text{var}}\)</span>:</p>
-<p>$$</p>
-<p>\text{Payoff} = N_{\text{var}} \left( \frac{1}{T} \sum_{i=1}^n \log^2\frac{S_{t_i}}{S_{t_{i-1}}} - K_{\text{var}} \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = N_{\text{var}} \left( \frac{1}{T} \sum_{i=1}^n \log^2\frac{S_{t_i}}{S_{t_{i-1}}} - K_{\text{var}} \right)
+\]</div>
 <p>where <span class="arithmatex">\(N_{\text{var}}\)</span> is the variance notional.</p>
 <p>The fair strike is:</p>
-<p>$$</p>
-<p>K_{\text{var}} = \frac{2 e^{rT}}{T} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_{\text{var}} = \frac{2 e^{rT}}{T} \left( \int_0^F \frac{P(K)}{K^2} dK + \int_F^\infty \frac{C(K)}{K^2} dK \right)
+\]</div>
 <p>This integral of option prices across strikes gives a <strong>model-free implied variance</strong>.</p>
 <h3 id="2-variance-term-structure">2. Variance Term Structure<a class="headerlink" href="#2-variance-term-structure" title="Permanent link">&para;</a></h3>
 <p>Define the variance swap rate for maturity <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{var}}^2(T) := K_{\text{var}}(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{var}}^2(T) := K_{\text{var}}(T)
+\]</div>
 <p>The <strong>variance term structure</strong> <span class="arithmatex">\(\sigma_{\text{var}}(T)\)</span> is often smoother than the ATM IV term structure because it integrates over the entire smile.</p>
 <p><strong>Relationship:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{var}}^2(T) \approx \frac{1}{T} \int_0^T \mathbb{E}[\sigma^2(t)] dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{var}}^2(T) \approx \frac{1}{T} \int_0^T \mathbb{E}[\sigma^2(t)] dt
+\]</div>
 <p>In practice:</p>
-<p>$$</p>
-<p>\sigma_{\text{var}}(T) \gtrsim \sigma_{\text{ATM}}(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{var}}(T) \gtrsim \sigma_{\text{ATM}}(T)
+\]</div>
 <p>due to the smile (variance swaps weight OTM options more heavily).</p>
 <h3 id="3-forward-variance">3. Forward Variance<a class="headerlink" href="#3-forward-variance" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward variance</strong> between <span class="arithmatex">\(T_1\)</span> and <span class="arithmatex">\(T_2\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{fwd-var}}^2(T_1, T_2) = \frac{\sigma_{\text{var}}^2(T_2) T_2 - \sigma_{\text{var}}^2(T_1) T_1}{T_2 - T_1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd-var}}^2(T_1, T_2) = \frac{\sigma_{\text{var}}^2(T_2) T_2 - \sigma_{\text{var}}^2(T_1) T_1}{T_2 - T_1}
+\]</div>
 <p>This can be traded via <strong>forward-starting variance swaps</strong>, providing a direct measure of market expectations for future volatility.</p>
 <p><strong>Arbitrage-free condition:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{fwd-var}}^2(T_1, T_2) \geq 0 \quad \text{for all } T_2 &gt; T_1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd-var}}^2(T_1, T_2) \geq 0 \quad \text{for all } T_2 &gt; T_1
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>\frac{d}{dT}\left(\sigma_{\text{var}}^2(T) \cdot T\right) \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dT}\left(\sigma_{\text{var}}^2(T) \cdot T\right) \geq 0
+\]</div>
 <h2 id="asymptotic-analysis">Asymptotic Analysis<a class="headerlink" href="#asymptotic-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="1-short-maturity-limit-t-0">1. Short-Maturity Limit (T → 0)<a class="headerlink" href="#1-short-maturity-limit-t-0" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(T \to 0\)</span>, the ATM implied volatility converges to the <strong>spot instantaneous volatility</strong>:</p>
-<p>$$</p>
-<p>\lim_{T \to 0} \sigma_{\text{ATM}}(T) = \sigma_{\text{spot}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to 0} \sigma_{\text{ATM}}(T) = \sigma_{\text{spot}}
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_{\text{spot}}\)</span> is the volatility coefficient in the SDE at the current time.</p>
 <p><strong>In local volatility:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{spot}} = \sigma_{\text{loc}}(S_0, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{spot}} = \sigma_{\text{loc}}(S_0, 0)
+\]</div>
 <p><strong>In stochastic volatility:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{spot}} = \sqrt{v_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{spot}} = \sqrt{v_0}
+\]</div>
 <p><strong>Expansion:</strong> For small <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2(T) = v_0 + a_1 T + a_2 T^2 + O(T^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2(T) = v_0 + a_1 T + a_2 T^2 + O(T^3)
+\]</div>
 <p>The coefficient <span class="arithmatex">\(a_1\)</span> is related to the drift of volatility:</p>
-<p>$$</p>
-<p>a_1 = \kappa(\theta - v_0) \quad \text{(Heston)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a_1 = \kappa(\theta - v_0) \quad \text{(Heston)}
+\]</div>
 <h3 id="2-large-maturity-limit-t">2. Large-Maturity Limit (T → ∞)<a class="headerlink" href="#2-large-maturity-limit-t" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(T \to \infty\)</span>, the ATM implied volatility converges to the <strong>long-run average volatility</strong>:</p>
-<p>$$</p>
-<p>\lim_{T \to \infty} \sigma_{\text{ATM}}(T) = \sigma_\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to \infty} \sigma_{\text{ATM}}(T) = \sigma_\infty
+\]</div>
 <p><strong>In mean-reverting models:</strong></p>
-<p>$$</p>
-<p>\sigma_\infty = \sqrt{\theta + \frac{\xi^2}{4\kappa}} \quad \text{(Heston)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_\infty = \sqrt{\theta + \frac{\xi^2}{4\kappa}} \quad \text{(Heston)}
+\]</div>
 <p><strong>Ergodic interpretation:</strong> For large <span class="arithmatex">\(T\)</span>, the option "sees" the stationary distribution of the volatility process.</p>
 <p><strong>Convergence rate:</strong> Typically exponential:</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2(T) - \sigma_\infty^2 \sim e^{-\lambda T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2(T) - \sigma_\infty^2 \sim e^{-\lambda T}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda\)</span> is the mean-reversion speed (e.g., <span class="arithmatex">\(\lambda = \kappa\)</span> in Heston).</p>
 <h2 id="practical-implications">Practical Implications<a class="headerlink" href="#practical-implications" title="Permanent link">&para;</a></h2>
 <h3 id="1-hedging-and-risk-management">1. Hedging and Risk Management<a class="headerlink" href="#1-hedging-and-risk-management" title="Permanent link">&para;</a></h3>
@@ -47427,26 +47425,26 @@ A portfolio with options across maturities has <strong>term structure risk</stro
 <li>Humped: Event risk at intermediate maturity</li>
 </ul>
 <h3 id="2-mathematical-relationships">2. <strong>Mathematical relationships:</strong><a class="headerlink" href="#2-mathematical-relationships" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>w(T) = \sigma_{\text{ATM}}^2(T) \cdot T \quad \text{(total variance)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_{\text{fwd}}^2(T_1, T_2) = \frac{w(T_2) - w(T_1)}{T_2 - T_1} \quad \text{(forward volatility)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_{\text{inst}}^2(T) = \frac{dw}{dT} \quad \text{(instantaneous forward vol)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(T) = \sigma_{\text{ATM}}^2(T) \cdot T \quad \text{(total variance)}
+\]</div>
+<div class="arithmatex">\[
+\sigma_{\text{fwd}}^2(T_1, T_2) = \frac{w(T_2) - w(T_1)}{T_2 - T_1} \quad \text{(forward volatility)}
+\]</div>
+<div class="arithmatex">\[
+\sigma_{\text{inst}}^2(T) = \frac{dw}{dT} \quad \text{(instantaneous forward vol)}
+\]</div>
 <h3 id="3-no-arbitrage-constraints">3. <strong>No-arbitrage constraints:</strong><a class="headerlink" href="#3-no-arbitrage-constraints" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{dw}{dT} \geq 0 \quad \text{(calendar spreads)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dw}{dT} \geq 0 \quad \text{(calendar spreads)}
+\]</div>
 <h3 id="4-limits">4. <strong>Limits:</strong><a class="headerlink" href="#4-limits" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\lim_{T \to 0} \sigma_{\text{ATM}}(T) = \sigma_{\text{spot}} \quad (\text{spot vol})</p>
-<p>$$</p>
-<p>$$</p>
-<p>\lim_{T \to \infty} \sigma_{\text{ATM}}(T) = \sigma_\infty \quad (\text{long-run vol})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to 0} \sigma_{\text{ATM}}(T) = \sigma_{\text{spot}} \quad (\text{spot vol})
+\]</div>
+<div class="arithmatex">\[
+\lim_{T \to \infty} \sigma_{\text{ATM}}(T) = \sigma_\infty \quad (\text{long-run vol})
+\]</div>
 <h3 id="5-connections">5. <strong>Connections:</strong><a class="headerlink" href="#5-connections" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Variance swaps:</strong> Provide model-free measure of variance term structure</li>

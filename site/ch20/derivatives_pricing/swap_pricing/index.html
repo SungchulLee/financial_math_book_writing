@@ -46147,12 +46147,12 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 <p>The payer swap value is:</p>
-<p>$$\begin{array}{lllllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllllllll}
+\displaystyle
 {\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)
 &amp;=&amp;
-N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)</p>
-<p>\end{array}$$</p>
+N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)
+\end{array}\]</div>
 <p>The Hull-White model computes each <span class="arithmatex">\(P(t,T_k)=e^{A(t,T_k)+B(t,T_k)r(t)}\)</span> using the calibrated functions <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>, which by construction match the market ZCB curve. Therefore, the Hull-White swap price agrees with the market swap price.</p>
 
 

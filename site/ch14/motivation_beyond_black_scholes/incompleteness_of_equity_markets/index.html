@@ -46695,9 +46695,9 @@
 <h2 id="market-completeness-in-blackscholes">Market Completeness in Black–Scholes<a class="headerlink" href="#market-completeness-in-blackscholes" title="Permanent link">&para;</a></h2>
 <p>In the Black–Scholes framework, a market is <strong>complete</strong> if every contingent claim can be replicated by a self-financing trading strategy in the underlying assets.</p>
 <p><strong>Formal definition:</strong> A market is complete if the replicating portfolio <span class="arithmatex">\(\Pi_t\)</span> satisfies:</p>
-<p>$$</p>
-<p>\Pi_T = \Phi(S_T) \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_T = \Phi(S_T) \quad \text{a.s.}
+\]</div>
 <p>for any payoff <span class="arithmatex">\(\Phi\)</span>, where <span class="arithmatex">\(\Pi_t\)</span> is constructed from holdings in <span class="arithmatex">\(S_t\)</span> and the risk-free bond.</p>
 <p><strong>Black–Scholes completeness requires:</strong></p>
 <ol>
@@ -46707,21 +46707,21 @@
 <li><strong>Constant parameters:</strong> <span class="arithmatex">\(\sigma\)</span>, <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(q\)</span> are known constants</li>
 </ol>
 <p>Under these conditions, the delta-hedging strategy:</p>
-<p>$$</p>
-<p>\Delta_t = \frac{\partial C}{\partial S}(t, S_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_t = \frac{\partial C}{\partial S}(t, S_t)
+\]</div>
 <p>replicates any European payoff exactly.</p>
 <hr />
 <h2 id="sources-of-incompleteness">Sources of Incompleteness<a class="headerlink" href="#sources-of-incompleteness" title="Permanent link">&para;</a></h2>
 <p>Real markets violate the completeness conditions in multiple ways:</p>
 <h3 id="1-stochastic-volatility">1. Stochastic Volatility<a class="headerlink" href="#1-stochastic-volatility" title="Permanent link">&para;</a></h3>
 <p>When volatility is random:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^S \\
 dV_t &amp;= a(V_t)\,dt + b(V_t)\,dW_t^V
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>there are <strong>two sources of randomness</strong> (<span class="arithmatex">\(W^S\)</span>, <span class="arithmatex">\(W^V\)</span>) but only <strong>one traded asset</strong> (<span class="arithmatex">\(S\)</span>). The volatility shock <span class="arithmatex">\(dW_t^V\)</span> cannot be hedged by trading <span class="arithmatex">\(S\)</span> alone.</p>
 <p><strong>Dimension count:</strong>
 - Risk factors: 2 (price, volatility)
@@ -46729,9 +46729,9 @@ dV_t &amp;= a(V_t)\,dt + b(V_t)\,dW_t^V
 - But bond provides no volatility exposure → effective instruments for volatility: 0</p>
 <h3 id="2-jumps-and-discontinuities">2. Jumps and Discontinuities<a class="headerlink" href="#2-jumps-and-discontinuities" title="Permanent link">&para;</a></h3>
 <p>If prices can jump:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t + S_{t^-}(e^{J_t} - 1)\,dN_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t + S_{t^-}(e^{J_t} - 1)\,dN_t
+\]</div>
 <p>where <span class="arithmatex">\(N_t\)</span> is a Poisson process, then:
 - Jump timing is unpredictable
 - Jump size may be random
@@ -46739,18 +46739,18 @@ dV_t &amp;= a(V_t)\,dt + b(V_t)\,dW_t^V
 <p>Even with deterministic jump sizes, the number of jump states can exceed the number of traded instruments.</p>
 <h3 id="3-discrete-trading">3. Discrete Trading<a class="headerlink" href="#3-discrete-trading" title="Permanent link">&para;</a></h3>
 <p>In practice, portfolios are rebalanced at discrete times <span class="arithmatex">\(t_0 &lt; t_1 &lt; \cdots &lt; t_n\)</span>. Between rebalancing:</p>
-<p>$$</p>
-<p>d\Pi_t = \Delta_{t_i}\,dS_t + (r\,dt)\times\text{(cash)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\Pi_t = \Delta_{t_i}\,dS_t + (r\,dt)\times\text{(cash)}
+\]</div>
 <p>but <span class="arithmatex">\(\Delta_{t_i}\)</span> is stale. The <strong>hedging error</strong> accumulates:</p>
-<p>$$</p>
-<p>\text{Hedging error} = \int_0^T (\Delta_t^{\text{true}} - \Delta_t^{\text{used}})\,dS_t \neq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Hedging error} = \int_0^T (\Delta_t^{\text{true}} - \Delta_t^{\text{used}})\,dS_t \neq 0
+\]</div>
 <h3 id="4-transaction-costs">4. Transaction Costs<a class="headerlink" href="#4-transaction-costs" title="Permanent link">&para;</a></h3>
 <p>With proportional transaction costs <span class="arithmatex">\(\epsilon\)</span>, frequent rebalancing incurs costs:</p>
-<p>$$</p>
-<p>\text{Cost} = \epsilon \sum_{i} |S_{t_i}||\Delta_{t_i} - \Delta_{t_{i-1}}|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost} = \epsilon \sum_{i} |S_{t_i}||\Delta_{t_i} - \Delta_{t_{i-1}}|
+\]</div>
 <p>The trade-off between hedging error and transaction costs introduces irreducible uncertainty.</p>
 <h3 id="5-trading-constraints">5. Trading Constraints<a class="headerlink" href="#5-trading-constraints" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46766,22 +46766,22 @@ dV_t &amp;= a(V_t)\,dt + b(V_t)\,dW_t^V
 <h3 id="non-uniqueness-of-prices">Non-Uniqueness of Prices<a class="headerlink" href="#non-uniqueness-of-prices" title="Permanent link">&para;</a></h3>
 <p><strong>Complete market:</strong> Unique no-arbitrage price = replication cost</p>
 <p><strong>Incomplete market:</strong> A range of no-arbitrage prices exists:</p>
-<p>$$</p>
-<p>\underline{C} \leq C \leq \overline{C}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{C} \leq C \leq \overline{C}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\underline{C}\)</span> = subhedging price (price of cheapest super-replicating portfolio)
 - <span class="arithmatex">\(\overline{C}\)</span> = superhedging price</p>
 <p>Any price in <span class="arithmatex">\([\underline{C}, \overline{C}]\)</span> is consistent with no-arbitrage.</p>
 <h3 id="multiple-equivalent-martingale-measures">Multiple Equivalent Martingale Measures<a class="headerlink" href="#multiple-equivalent-martingale-measures" title="Permanent link">&para;</a></h3>
 <p>By the Second Fundamental Theorem of Asset Pricing:</p>
-<p>$$</p>
-<p>\text{Market complete} \iff \text{Unique EMM } \mathbb{Q}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Market complete} \iff \text{Unique EMM } \mathbb{Q}
+\]</div>
 <p>In incomplete markets, there exists a <strong>family</strong> of equivalent martingale measures <span class="arithmatex">\(\{\mathbb{Q}_\lambda\}\)</span>. Each measure gives a different price:</p>
-<p>$$</p>
-<p>C_\lambda = e^{-rT}\mathbb{E}^{\mathbb{Q}_\lambda}[\Phi(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_\lambda = e^{-rT}\mathbb{E}^{\mathbb{Q}_\lambda}[\Phi(S_T)]
+\]</div>
 <p>The selection of <span class="arithmatex">\(\mathbb{Q}\)</span> requires additional criteria (utility, equilibrium, market price of risk).</p>
 <h3 id="risk-preferences-matter">Risk Preferences Matter<a class="headerlink" href="#risk-preferences-matter" title="Permanent link">&para;</a></h3>
 <p>In complete markets, prices are preference-free (determined by replication). In incomplete markets:</p>
@@ -46800,17 +46800,17 @@ dV_t &amp;= a(V_t)\,dt + b(V_t)\,dW_t^V
 - Vega exposure remains after delta hedging</p>
 <h3 id="market-price-of-volatility-risk">Market Price of Volatility Risk<a class="headerlink" href="#market-price-of-volatility-risk" title="Permanent link">&para;</a></h3>
 <p>The change from physical to risk-neutral measure involves a <strong>market price of volatility risk</strong> <span class="arithmatex">\(\lambda_V\)</span>:</p>
-<p>$$</p>
-<p>dW_t^{V,\mathbb{Q}} = dW_t^{V,\mathbb{P}} - \lambda_V(t, S_t, V_t)\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^{V,\mathbb{Q}} = dW_t^{V,\mathbb{P}} - \lambda_V(t, S_t, V_t)\,dt
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>: volatility dynamics reflect actual evolution
 Under <span class="arithmatex">\(\mathbb{Q}\)</span>: volatility dynamics are risk-adjusted for pricing</p>
 <p>The difference <span class="arithmatex">\(\lambda_V\)</span> is not uniquely determined by no-arbitrage—it reflects market equilibrium and risk preferences.</p>
 <h3 id="volatility-risk-premium">Volatility Risk Premium<a class="headerlink" href="#volatility-risk-premium" title="Permanent link">&para;</a></h3>
 <p>Empirically, volatility risk carries a <strong>negative premium</strong>: sellers of volatility (e.g., variance swap receivers) earn positive expected returns.</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}[\text{RV}^2] &lt; \mathbb{E}^{\mathbb{Q}}[\text{RV}^2] = \text{Variance swap rate}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}[\text{RV}^2] &lt; \mathbb{E}^{\mathbb{Q}}[\text{RV}^2] = \text{Variance swap rate}
+\]</div>
 <p>This premium compensates for:
 - Jump risk
 - Volatility-of-volatility risk
@@ -46819,25 +46819,25 @@ Under <span class="arithmatex">\(\mathbb{Q}\)</span>: volatility dynamics are ri
 <h2 id="quantifying-incompleteness">Quantifying Incompleteness<a class="headerlink" href="#quantifying-incompleteness" title="Permanent link">&para;</a></h2>
 <h3 id="variance-optimal-hedge">Variance Optimal Hedge<a class="headerlink" href="#variance-optimal-hedge" title="Permanent link">&para;</a></h3>
 <p>The mean-variance optimal hedge minimizes:</p>
-<p>$$</p>
-<p>\min_{\Delta} \mathbb{E}\left[(H - V_T^{\Delta})^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\Delta} \mathbb{E}\left[(H - V_T^{\Delta})^2\right]
+\]</div>
 <p>where <span class="arithmatex">\(H\)</span> is the claim payoff and <span class="arithmatex">\(V_T^{\Delta}\)</span> the hedged portfolio value.</p>
 <p>The <strong>residual variance</strong> measures incompleteness:</p>
-<p>$$</p>
-<p>\text{Residual var} = \min_{\Delta} \text{Var}[H - V_T^{\Delta}] &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Residual var} = \min_{\Delta} \text{Var}[H - V_T^{\Delta}] &gt; 0
+\]</div>
 <h3 id="minimal-entropy-martingale-measure">Minimal Entropy Martingale Measure<a class="headerlink" href="#minimal-entropy-martingale-measure" title="Permanent link">&para;</a></h3>
 <p>Among all EMMs, the <strong>minimal entropy</strong> measure <span class="arithmatex">\(\mathbb{Q}^*\)</span> minimizes:</p>
-<p>$$</p>
-<p>\mathbb{Q}^* = \arg\min_{\mathbb{Q}} H(\mathbb{Q} | \mathbb{P}) = \arg\min_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}\left[\log\frac{d\mathbb{Q}}{d\mathbb{P}}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}^* = \arg\min_{\mathbb{Q}} H(\mathbb{Q} | \mathbb{P}) = \arg\min_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}\left[\log\frac{d\mathbb{Q}}{d\mathbb{P}}\right]
+\]</div>
 <p>This provides a principled way to select among EMMs.</p>
 <h3 id="utility-indifference-pricing">Utility Indifference Pricing<a class="headerlink" href="#utility-indifference-pricing" title="Permanent link">&para;</a></h3>
 <p>An agent with utility <span class="arithmatex">\(U\)</span> values a claim at the <strong>indifference price</strong> <span class="arithmatex">\(p\)</span>:</p>
-<p>$$</p>
-<p>\sup_{\pi} \mathbb{E}[U(X_T^{\pi})] = \sup_{\pi} \mathbb{E}[U(X_T^{\pi} + H - p)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{\pi} \mathbb{E}[U(X_T^{\pi})] = \sup_{\pi} \mathbb{E}[U(X_T^{\pi} + H - p)]
+\]</div>
 <p>where <span class="arithmatex">\(\pi\)</span> ranges over admissible trading strategies.</p>
 <hr />
 <h2 id="practical-implications">Practical Implications<a class="headerlink" href="#practical-implications" title="Permanent link">&para;</a></h2>
@@ -46858,9 +46858,9 @@ Under <span class="arithmatex">\(\mathbb{Q}\)</span>: volatility dynamics are ri
 <p>Model selection is a form of specifying risk preferences.</p>
 <h3 id="pl-attribution">P&amp;L Attribution<a class="headerlink" href="#pl-attribution" title="Permanent link">&para;</a></h3>
 <p>In incomplete markets, hedging P&amp;L decomposes as:</p>
-<p>$$</p>
-<p>\text{P\&amp;L} = \underbrace{\text{Gamma P\&amp;L}}<em _text_partially="\text{partially" hedgeable="hedgeable">{\text{hedgeable}} + \underbrace{\text{Vega P\&amp;L}}</em>}} + \underbrace{\text{Volga/Vanna P\&amp;L}<em _text_model="\text{model" error="error">{\text{higher-order}} + \underbrace{\text{Unexplained}}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} = \underbrace{\text{Gamma P\&amp;L}}_{\text{hedgeable}} + \underbrace{\text{Vega P\&amp;L}}_{\text{partially hedgeable}} + \underbrace{\text{Volga/Vanna P\&amp;L}}_{\text{higher-order}} + \underbrace{\text{Unexplained}}_{\text{model error}}
+\]</div>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
 <ul>

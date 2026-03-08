@@ -46147,61 +46147,61 @@
 
 <h1 id="hull-white-short-rate">Hull-White Short Rate<a class="headerlink" href="#hull-white-short-rate" title="Permanent link">&para;</a></h1>
 <h2 id="hull-white-model">Hull-White Model<a class="headerlink" href="#hull-white-model" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-dr(t)=\lambda\left(\theta^\mathbb{Q}(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+dr(t)=\lambda\left(\theta^\mathbb{Q}(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)
+\end{array}\]</div>
 <p>where</p>
-<p>$$</p>
-<p>\displaystyle
+<div class="arithmatex">\[
+\displaystyle
 \theta^\mathbb{Q}(t)
 =
 f^M(0,t)
 +\frac{1}{\lambda}\frac{\partial f^M(0,t)}{\partial t}
-+\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)</p>
-<p>$$</p>
++\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)
+\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-\sigma(t)=\sigma(t,t)=\sigma</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+\sigma(t)=\sigma(t,t)=\sigma
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mu(t)
 &amp;=&amp;\displaystyle
 \mu(t,t)+
 \frac{\partial f(0,t)}{\partial t}
 +\int_0^t\frac{\partial \mu(t',t)}{\partial t}dt'
-+\int_0^t\frac{\partial \sigma(t',t)}{\partial t}dW^{\mathbb{Q}}(t')\
++\int_0^t\frac{\partial \sigma(t',t)}{\partial t}dW^{\mathbb{Q}}(t')\\
 &amp;=&amp;\displaystyle
 \frac{\partial f(0,t)}{\partial t}
 +\int_0^t\left[2\sigma^2e^{-2\lambda(t-t')}
 -\sigma^2e^{-\lambda(t-t')}\right]dt'
--\lambda \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')\
+-\lambda \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')\\
 &amp;=&amp;\displaystyle
 \frac{\partial f(0,t)}{\partial t}
-+\frac{\sigma^2}{\lambda}e^{-2\lambda t}\left(e^{\lambda t}-1\right)-\lambda \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')\</p>
-<p>\end{array}$$</p>
++\frac{\sigma^2}{\lambda}e^{-2\lambda t}\left(e^{\lambda t}-1\right)-\lambda \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')\\
+\end{array}\]</div>
 <p><strong>Handling the stochastic integral term:</strong></p>
-<p>$$\begin{array}{l}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{l}
+\displaystyle
 r(t)
 =
 f(t,t)
 =
-f(0,t)+\int_0^t\mu(t',t)dt'+\int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')</p>
-<p>\end{array}$$</p>
+f(0,t)+\int_0^t\mu(t',t)dt'+\int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')
+\end{array}\]</div>
 <p>implies</p>
-<p>$$\begin{array}{llllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llllllll}
+\displaystyle
 \int_0^t\sigma(t',t)dW^{\mathbb{Q}}(t')
 &amp;=&amp;\displaystyle
-r(t)-f(0,t)-\frac{\sigma^2}{2\lambda^2}e^{-2\lambda t}\left(e^{\lambda t}-1\right)^2</p>
-<p>\end{array}$$</p>
+r(t)-f(0,t)-\frac{\sigma^2}{2\lambda^2}e^{-2\lambda t}\left(e^{\lambda t}-1\right)^2
+\end{array}\]</div>
 <p>Substituting back:</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mu(t)
 &amp;=&amp;\displaystyle
 \lambda\left(
@@ -46209,76 +46209,76 @@ f(0,t)
 +\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
 +\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)
 -r(t)
-\right)\
+\right)\\
 &amp;:=&amp;\displaystyle
 \lambda\left(
 \theta(t)
 -r(t)
-\right)\</p>
-<p>\end{array}$$</p>
+\right)\\
+\end{array}\]</div>
 </details>
 <h2 id="hull-white-model-solution">Hull-White Model Solution<a class="headerlink" href="#hull-white-model-solution" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 r(t)
 &amp;=&amp;\displaystyle
-r(s)e^{-\lambda (t-s)}+ \lambda\int_{s}^t\theta^\mathbb{Q}(t')e^{-\lambda (t-t')} dt'+\sigma \int_{s}^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')\
+r(s)e^{-\lambda (t-s)}+ \lambda\int_{s}^t\theta^\mathbb{Q}(t')e^{-\lambda (t-t')} dt'+\sigma \int_{s}^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')\\
 &amp;=&amp;\displaystyle
-r(s)e^{-\lambda (t-s)}+ \alpha(t)-\alpha(s)e^{-\lambda(t-s)}+\sigma \int_{s}^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')\</p>
-<p>\end{array}$$</p>
+r(s)e^{-\lambda (t-s)}+ \alpha(t)-\alpha(s)e^{-\lambda(t-s)}+\sigma \int_{s}^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$</p>
-<p>\displaystyle
-\alpha(t)=f^M(0,t)+\frac{\sigma^2}{2\lambda^2}\left(1-e^{-\lambda t}\right)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+\alpha(t)=f^M(0,t)+\frac{\sigma^2}{2\lambda^2}\left(1-e^{-\lambda t}\right)^2
+\]</div>
 <p>Therefore, <span class="arithmatex">\(r(t)\)</span> conditional on <span class="arithmatex">\({\cal F}(s)\)</span> is normally distributed with mean and variance:</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mathbb{E}\left(r(t)|{\cal F}(s)\right)
 &amp;=&amp;\displaystyle
-r(s)e^{-\lambda (t-s)}+ \alpha(t)-\alpha(s)e^{-\lambda(t-s)}\
+r(s)e^{-\lambda (t-s)}+ \alpha(t)-\alpha(s)e^{-\lambda(t-s)}\\
 \mathbb{Var}\left(r(t)|{\cal F}(s)\right)
 &amp;=&amp;\displaystyle
-\frac{\sigma^2}{2\lambda}\left(1-e^{-2\lambda(t-s)}\right)</p>
-<p>\end{array}$$</p>
+\frac{\sigma^2}{2\lambda}\left(1-e^{-2\lambda(t-s)}\right)
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-&amp;&amp;dr(t)=\lambda\left(\theta(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)\
-\
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+&amp;&amp;dr(t)=\lambda\left(\theta(t)-r(t)\right) dt+\sigma dW^{\mathbb{Q}}(t)\\
+\\
 &amp;\Rightarrow&amp;
 \displaystyle
-e^{\lambda t}dr(t) + \lambda r(t)e^{\lambda t}  dt=\lambda\theta(t)e^{\lambda t}  dt+\sigma e^{\lambda t} dW^{\mathbb{Q}}(t)\quad(y(t)=r(t)e^{\lambda t})\
-\
+e^{\lambda t}dr(t) + \lambda r(t)e^{\lambda t}  dt=\lambda\theta(t)e^{\lambda t}  dt+\sigma e^{\lambda t} dW^{\mathbb{Q}}(t)\quad(y(t)=r(t)e^{\lambda t})\\
+\\
 &amp;\Rightarrow&amp;
 \displaystyle
-dy(t)=\lambda\theta(t)e^{\lambda t} dt+\sigma e^{\lambda t} dW^{\mathbb{Q}}(t)\
-\
+dy(t)=\lambda\theta(t)e^{\lambda t} dt+\sigma e^{\lambda t} dW^{\mathbb{Q}}(t)\\
+\\
 &amp;\Rightarrow&amp;
 \displaystyle
 r(t)
 =
-r(0)e^{-\lambda t}+ \lambda\int_0^t\theta(t')e^{-\lambda (t-t')} dt'+\sigma \int_0^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')\</p>
-<p>\end{array}$$</p>
+r(0)e^{-\lambda t}+ \lambda\int_0^t\theta(t')e^{-\lambda (t-t')} dt'+\sigma \int_0^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')\\
+\end{array}\]</div>
 <p>Therefore,</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mathbb{E}^\mathbb{Q}\left(r(t)\big|{\cal F}(0)\right)
 =
 r(0)e^{-\lambda t}+ \lambda\int_0^t\theta(t')e^{-\lambda (t-t')} dt'
 =
-\psi(t)\</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+\psi(t)\\
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mathbb{Var}^\mathbb{Q}\left(r(t)\big|{\cal F}(0)\right)
 =
 \sigma^2 \int_0^t e^{-2\lambda (t-t')} dt'
 =
 \frac{\sigma^2}{2\lambda} \left(1-e^{-2\lambda t}\right)
-=-\frac{1}{2}\sigma^2 B(2t)</p>
-<p>\end{array}$$</p>
+=-\frac{1}{2}\sigma^2 B(2t)
+\end{array}\]</div>
 </details>
 <h2 id="hull-white-short-rate-sample-path">Hull-White Short Rate Sample Path<a class="headerlink" href="#hull-white-short-rate-sample-path" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>

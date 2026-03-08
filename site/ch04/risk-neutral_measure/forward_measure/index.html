@@ -46769,35 +46769,35 @@
 </ul>
 <h3 id="the-t-forward-measure">The T-Forward Measure<a class="headerlink" href="#the-t-forward-measure" title="Permanent link">&para;</a></h3>
 <p>The <span class="arithmatex">\(T\)</span>-forward measure <span class="arithmatex">\(\mathbb{Q}^T\)</span> is defined by the Radon-Nikodym derivative:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_t} = \frac{P(t,T)}{P(0,T)B_t}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(B_t = e^{\int_0^t r_s\,ds}\)</span> is the money market account and <span class="arithmatex">\(\mathbb{Q}\)</span> is the standard risk-neutral measure.</p>
 <hr />
 <h2 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h2>
 <h3 id="1-bond-deflated-prices-are-martingales">1. Bond-Deflated Prices are Martingales<a class="headerlink" href="#1-bond-deflated-prices-are-martingales" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^T\)</span>, for any traded asset <span class="arithmatex">\(S_t\)</span>:</p>
-<p>$$</p>
-<p>\frac{S_t}{P(t,T)} \text{ is a } \mathbb{Q}^T\text{-martingale}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S_t}{P(t,T)} \text{ is a } \mathbb{Q}^T\text{-martingale}
+\]</div>
 <h3 id="2-forward-prices-are-martingales">2. Forward Prices are Martingales<a class="headerlink" href="#2-forward-prices-are-martingales" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward price</strong> of <span class="arithmatex">\(S\)</span> for delivery at <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>F(t,T) = \frac{S_t}{P(t,T)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(t,T) = \frac{S_t}{P(t,T)}
+\]</div>
 <p>is a <span class="arithmatex">\(\mathbb{Q}^T\)</span>-martingale:</p>
-<p>$$</p>
-<p>F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]
+\]</div>
 <h3 id="3-pricing-formula">3. Pricing Formula<a class="headerlink" href="#3-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>For a claim with payoff <span class="arithmatex">\(\Phi_T\)</span> at time <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>No explicit discounting required</strong>—the bond price handles it.</p>
 <hr />
 <h2 id="comparison-risk-neutral-vs-forward-measure">Comparison: Risk-Neutral vs Forward Measure<a class="headerlink" href="#comparison-risk-neutral-vs-forward-measure" title="Permanent link">&para;</a></h2>
@@ -46837,46 +46837,46 @@ V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
 <h3 id="brownian-motion-change">Brownian Motion Change<a class="headerlink" href="#brownian-motion-change" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>: <span class="arithmatex">\(W_t^{\mathbb{Q}}\)</span> is Brownian motion.</p>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^T\)</span>:</p>
-<p>$$</p>
-<p>W_t^{\mathbb{Q}^T} = W_t^{\mathbb{Q}} - \int_0^t \sigma_P(s,T)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^{\mathbb{Q}^T} = W_t^{\mathbb{Q}} - \int_0^t \sigma_P(s,T)\,ds
+\]</div>
 <p>is Brownian motion, where <span class="arithmatex">\(\sigma_P(t,T)\)</span> is the volatility of the bond:</p>
-<p>$$</p>
-<p>\frac{dP(t,T)}{P(t,T)} = r_t\,dt + \sigma_P(t,T)\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP(t,T)}{P(t,T)} = r_t\,dt + \sigma_P(t,T)\,dW_t^{\mathbb{Q}}
+\]</div>
 <h3 id="asset-dynamics">Asset Dynamics<a class="headerlink" href="#asset-dynamics" title="Permanent link">&para;</a></h3>
 <p>If under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\frac{dS_t}{S_t} = r_t\,dt + \sigma_S\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS_t}{S_t} = r_t\,dt + \sigma_S\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>then under <span class="arithmatex">\(\mathbb{Q}^T\)</span>:</p>
-<p>$$</p>
-<p>\frac{dS_t}{S_t} = (r_t + \sigma_S\sigma_P(t,T))\,dt + \sigma_S\,dW_t^{\mathbb{Q}^T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS_t}{S_t} = (r_t + \sigma_S\sigma_P(t,T))\,dt + \sigma_S\,dW_t^{\mathbb{Q}^T}
+\]</div>
 <p>The drift changes by the covariance between <span class="arithmatex">\(S\)</span> and <span class="arithmatex">\(P\)</span>.</p>
 <hr />
 <h2 id="example-libor-forward-rate">Example: LIBOR Forward Rate<a class="headerlink" href="#example-libor-forward-rate" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward LIBOR rate</strong> <span class="arithmatex">\(L(t;T,T+\delta)\)</span> for period <span class="arithmatex">\([T, T+\delta]\)</span> is defined by:</p>
-<p>$$</p>
-<p>1 + \delta L(t;T,T+\delta) = \frac{P(t,T)}{P(t,T+\delta)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+1 + \delta L(t;T,T+\delta) = \frac{P(t,T)}{P(t,T+\delta)}
+\]</div>
 <h3 id="under-the-t-forward-measure">Under the (T+δ)-Forward Measure<a class="headerlink" href="#under-the-t-forward-measure" title="Permanent link">&para;</a></h3>
 <p>The forward LIBOR rate is a <span class="arithmatex">\(\mathbb{Q}^{T+\delta}\)</span>-martingale:</p>
-<p>$$</p>
-<p>L(t;T,T+\delta) = \mathbb{E}^{\mathbb{Q}^{T+\delta}}[L(T;T,T+\delta) \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L(t;T,T+\delta) = \mathbb{E}^{\mathbb{Q}^{T+\delta}}[L(T;T,T+\delta) \mid \mathcal{F}_t]
+\]</div>
 <p>At time <span class="arithmatex">\(T\)</span>, the spot LIBOR fixes: <span class="arithmatex">\(L(T;T,T+\delta) = L_T\)</span>.</p>
 <h3 id="caplet-pricing">Caplet Pricing<a class="headerlink" href="#caplet-pricing" title="Permanent link">&para;</a></h3>
 <p>A caplet with strike <span class="arithmatex">\(K\)</span> pays <span class="arithmatex">\(\delta(L_T - K)^+\)</span> at time <span class="arithmatex">\(T+\delta\)</span>.</p>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^{T+\delta}\)</span>:</p>
-<p>$$</p>
-<p>V_t = P(t,T+\delta) \cdot \delta \cdot \mathbb{E}^{\mathbb{Q}^{T+\delta}}[(L_T - K)^+ \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = P(t,T+\delta) \cdot \delta \cdot \mathbb{E}^{\mathbb{Q}^{T+\delta}}[(L_T - K)^+ \mid \mathcal{F}_t]
+\]</div>
 <p>If <span class="arithmatex">\(L(t;T,T+\delta)\)</span> is log-normal under <span class="arithmatex">\(\mathbb{Q}^{T+\delta}\)</span> with volatility <span class="arithmatex">\(\sigma_L\)</span>:</p>
-<p>$$</p>
-<p>V_t = P(t,T+\delta) \cdot \delta \cdot [L_t\Phi(d_1) - K\Phi(d_2)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = P(t,T+\delta) \cdot \delta \cdot [L_t\Phi(d_1) - K\Phi(d_2)]
+\]</div>
 <p>This is <strong>Black's formula for caplets</strong>.</p>
 <hr />
 <h2 id="example-forward-contract">Example: Forward Contract<a class="headerlink" href="#example-forward-contract" title="Permanent link">&para;</a></h2>
@@ -46884,48 +46884,48 @@ V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
 <p>Forward contract to buy asset <span class="arithmatex">\(S\)</span> at time <span class="arithmatex">\(T\)</span> for price <span class="arithmatex">\(K\)</span>.</p>
 <p>Payoff at <span class="arithmatex">\(T\)</span>: <span class="arithmatex">\(\Phi_T = S_T - K\)</span>.</p>
 <h3 id="under-risk-neutral-measure">Under Risk-Neutral Measure<a class="headerlink" href="#under-risk-neutral-measure" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}(S_T - K) \mid \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}(S_T - K) \mid \mathcal{F}_t\right]
+\]</div>
 <p>Requires knowing the joint distribution of <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(S\)</span>.</p>
 <h3 id="under-forward-measure">Under Forward Measure<a class="headerlink" href="#under-forward-measure" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_t = P(t,T)\mathbb{E}^{\mathbb{Q}^T}[S_T - K \mid \mathcal{F}_t] = P(t,T)(F(t,T) - K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = P(t,T)\mathbb{E}^{\mathbb{Q}^T}[S_T - K \mid \mathcal{F}_t] = P(t,T)(F(t,T) - K)
+\]</div>
 <p>Since <span class="arithmatex">\(F(t,T)\)</span> is a <span class="arithmatex">\(\mathbb{Q}^T\)</span>-martingale: <span class="arithmatex">\(\mathbb{E}^{\mathbb{Q}^T}[S_T] = F(t,T)\)</span>.</p>
 <p><strong>Much simpler!</strong> No need to model <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(S\)</span> jointly.</p>
 <hr />
 <h2 id="the-forward-measure-in-vasicek-model">The Forward Measure in Vasicek Model<a class="headerlink" href="#the-forward-measure-in-vasicek-model" title="Permanent link">&para;</a></h2>
 <h3 id="bond-price-dynamics">Bond Price Dynamics<a class="headerlink" href="#bond-price-dynamics" title="Permanent link">&para;</a></h3>
 <p>In Vasicek:</p>
-<p>$$</p>
-<p>dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\bar{r} - r_t)\,dt + \sigma_r\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>The bond price is:</p>
-<p>$$</p>
-<p>P(t,T) = A(t,T)e^{-B(t,T)r_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = A(t,T)e^{-B(t,T)r_t}
+\]</div>
 <p>with <span class="arithmatex">\(B(t,T) = \frac{1-e^{-\kappa(T-t)}}{\kappa}\)</span>.</p>
 <h3 id="bond-volatility">Bond Volatility<a class="headerlink" href="#bond-volatility" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_P(t,T) = -B(t,T)\sigma_r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P(t,T) = -B(t,T)\sigma_r
+\]</div>
 <h3 id="interest-rate-under-qt">Interest Rate Under Q^T<a class="headerlink" href="#interest-rate-under-qt" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dr_t = [\kappa(\bar{r} - r_t) - \sigma_r^2 B(t,T)]\,dt + \sigma_r\,dW_t^{\mathbb{Q}^T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = [\kappa(\bar{r} - r_t) - \sigma_r^2 B(t,T)]\,dt + \sigma_r\,dW_t^{\mathbb{Q}^T}
+\]</div>
 <p>The drift is modified by the "volatility of the drift" adjustment.</p>
 <hr />
 <h2 id="multiple-forward-measures">Multiple Forward Measures<a class="headerlink" href="#multiple-forward-measures" title="Permanent link">&para;</a></h2>
 <p>For different maturities <span class="arithmatex">\(T_1 &lt; T_2\)</span>:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^{T_2}}{d\mathbb{Q}^{T_1}}\bigg|_{\mathcal{F}_t} = \frac{P(t,T_2)/P(0,T_2)}{P(t,T_1)/P(0,T_1)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^{T_2}}{d\mathbb{Q}^{T_1}}\bigg|_{\mathcal{F}_t} = \frac{P(t,T_2)/P(0,T_2)}{P(t,T_1)/P(0,T_1)}
+\]</div>
 <p>Each maturity has its own forward measure.</p>
 <h3 id="the-tower-of-measures">The Tower of Measures<a class="headerlink" href="#the-tower-of-measures" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathbb{Q} \longleftrightarrow \mathbb{Q}^{T_1} \longleftrightarrow \mathbb{Q}^{T_2} \longleftrightarrow \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q} \longleftrightarrow \mathbb{Q}^{T_1} \longleftrightarrow \mathbb{Q}^{T_2} \longleftrightarrow \cdots
+\]</div>
 <p>All are equivalent measures connected by Radon-Nikodym derivatives.</p>
 <hr />
 <h2 id="when-to-use-the-forward-measure">When to Use the Forward Measure<a class="headerlink" href="#when-to-use-the-forward-measure" title="Permanent link">&para;</a></h2>
@@ -46961,11 +46961,11 @@ V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
 - Options with multiple payment dates (use swap measure)</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi_T \mid \mathcal{F}_t]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

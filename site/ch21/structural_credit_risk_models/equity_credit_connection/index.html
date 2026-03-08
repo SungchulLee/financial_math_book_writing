@@ -47004,13 +47004,13 @@
 <p>Since both securities derive their value from <span class="arithmatex">\(V_t\)</span>, their prices must move together in predictable ways.</p>
 <h3 id="equity-as-a-leveraged-position">Equity as a Leveraged Position<a class="headerlink" href="#equity-as-a-leveraged-position" title="Permanent link">&para;</a></h3>
 <p>From Merton's model, equity value is:</p>
-<p>$$</p>
-<p>E = V N(d_1) - D e^{-rT} N(d_2),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E = V N(d_1) - D e^{-rT} N(d_2)
+\]</div>
 <p>with delta (sensitivity to firm value):</p>
-<p>$$</p>
-<p>\Delta_E = \frac{\partial E}{\partial V} = N(d_1) &gt; 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_E = \frac{\partial E}{\partial V} = N(d_1) &gt; 0
+\]</div>
 <p>Equity is a <strong>leveraged long position</strong> in firm value. When <span class="arithmatex">\(V\)</span> increases:
 - Equity value rises
 - Default probability falls
@@ -47019,17 +47019,17 @@
 <h2 id="equity-volatility-and-credit-spreads">Equity Volatility and Credit Spreads<a class="headerlink" href="#equity-volatility-and-credit-spreads" title="Permanent link">&para;</a></h2>
 <h3 id="leverage-effect-on-volatility">Leverage Effect on Volatility<a class="headerlink" href="#leverage-effect-on-volatility" title="Permanent link">&para;</a></h3>
 <p>Applying Itô's lemma to <span class="arithmatex">\(E(V_t, t)\)</span>:</p>
-<p>$$</p>
-<p>dE = \frac{\partial E}{\partial V} dV + \frac{\partial E}{\partial t} dt + \frac{1}{2}\frac{\partial^2 E}{\partial V^2} (dV)^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dE = \frac{\partial E}{\partial V} dV + \frac{\partial E}{\partial t} dt + \frac{1}{2}\frac{\partial^2 E}{\partial V^2} (dV)^2
+\]</div>
 <p>The instantaneous equity volatility is:</p>
-<p>$$</p>
-<p>\sigma_E = \frac{\partial E}{\partial V} \cdot \frac{V}{E} \cdot \sigma_V = \frac{V N(d_1)}{E} \cdot \sigma_V.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_E = \frac{\partial E}{\partial V} \cdot \frac{V}{E} \cdot \sigma_V = \frac{V N(d_1)}{E} \cdot \sigma_V
+\]</div>
 <p>Define <strong>leverage ratio</strong> <span class="arithmatex">\(L = V/E\)</span>:</p>
-<p>$$</p>
-<p>\sigma_E = L \cdot N(d_1) \cdot \sigma_V.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_E = L \cdot N(d_1) \cdot \sigma_V
+\]</div>
 <h3 id="implications">Implications<a class="headerlink" href="#implications" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Equity volatility exceeds asset volatility:</strong> Since <span class="arithmatex">\(L &gt; 1\)</span> for levered firms, <span class="arithmatex">\(\sigma_E &gt; \sigma_V\)</span></li>
@@ -47041,9 +47041,9 @@
 <h2 id="credit-spread-dynamics">Credit Spread Dynamics<a class="headerlink" href="#credit-spread-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="spread-equity-relationship">Spread-Equity Relationship<a class="headerlink" href="#spread-equity-relationship" title="Permanent link">&para;</a></h3>
 <p>The credit spread depends on:</p>
-<p>$$</p>
-<p>s = f(V_0/D, \sigma_V, T) = g(E, \sigma_E, D, T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s = f(V_0/D, \sigma_V, T) = g(E, \sigma_E, D, T)
+\]</div>
 <p>Since equity prices embed information about <span class="arithmatex">\(V\)</span> and <span class="arithmatex">\(\sigma_V\)</span>, spreads can be inferred from equity markets.</p>
 <h3 id="directional-relationship">Directional Relationship<a class="headerlink" href="#directional-relationship" title="Permanent link">&para;</a></h3>
 <p><strong>When equity prices fall:</strong>
@@ -47062,23 +47062,23 @@
 <h2 id="quantitative-relationships">Quantitative Relationships<a class="headerlink" href="#quantitative-relationships" title="Permanent link">&para;</a></h2>
 <h3 id="distance-to-default">Distance to Default<a class="headerlink" href="#distance-to-default" title="Permanent link">&para;</a></h3>
 <p>The <strong>distance to default</strong> (DD) provides a normalized measure:</p>
-<p>$$</p>
-<p>DD = \frac{\ln(V/D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+DD = \frac{\ln(V/D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}
+\]</div>
 <p>where <span class="arithmatex">\(\mu\)</span> is the physical drift of asset value.</p>
 <p>In terms of observables:</p>
-<p>$$</p>
-<p>DD \approx \frac{\ln(E + D) - \ln(D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+DD \approx \frac{\ln(E + D) - \ln(D) + (\mu - \sigma_V^2/2)T}{\sigma_V\sqrt{T}}
+\]</div>
 <p><strong>KMV/Moody's Analytics approach:</strong>
 1. Estimate <span class="arithmatex">\(V\)</span> and <span class="arithmatex">\(\sigma_V\)</span> from equity data
 2. Compute DD
 3. Map DD to expected default frequency (EDF) using historical data</p>
 <h3 id="spread-approximation">Spread Approximation<a class="headerlink" href="#spread-approximation" title="Permanent link">&para;</a></h3>
 <p>For small spreads and near-the-money situations:</p>
-<p>$$</p>
-<p>s \approx (1 - R) \cdot \lambda \approx (1 - R) \cdot \frac{N(-DD)}{T},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s \approx (1 - R) \cdot \lambda \approx (1 - R) \cdot \frac{N(-DD)}{T}
+\]</div>
 <p>where <span class="arithmatex">\(R\)</span> is recovery rate and <span class="arithmatex">\(\lambda\)</span> is an implied intensity.</p>
 <hr />
 <h2 id="empirical-evidence">Empirical Evidence<a class="headerlink" href="#empirical-evidence" title="Permanent link">&para;</a></h2>
@@ -47137,14 +47137,14 @@
 <h2 id="model-based-spread-decomposition">Model-Based Spread Decomposition<a class="headerlink" href="#model-based-spread-decomposition" title="Permanent link">&para;</a></h2>
 <h3 id="components-of-observed-spreads">Components of Observed Spreads<a class="headerlink" href="#components-of-observed-spreads" title="Permanent link">&para;</a></h3>
 <p>Observed spread = Default risk + Liquidity premium + Tax effect + Risk premium</p>
-<p>$$</p>
-<p>s^{\text{observed}} = s^{\text{Merton}} + s^{\text{liquidity}} + s^{\text{tax}} + s^{\text{risk premium}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s^{\text{observed}} = s^{\text{Merton}} + s^{\text{liquidity}} + s^{\text{tax}} + s^{\text{risk premium}}
+\]</div>
 <h3 id="structural-model-contribution">Structural Model Contribution<a class="headerlink" href="#structural-model-contribution" title="Permanent link">&para;</a></h3>
 <p>The Merton model captures the <strong>expected loss</strong> component:</p>
-<p>$$</p>
-<p>s^{\text{Merton}} \approx (1-R) \cdot \text{Default Probability}/T.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s^{\text{Merton}} \approx (1-R) \cdot \text{Default Probability}/T
+\]</div>
 <p>This is typically 20-50% of observed spreads.</p>
 <h3 id="residual-spread">Residual Spread<a class="headerlink" href="#residual-spread" title="Permanent link">&para;</a></h3>
 <p>The residual (observed minus model-implied) reflects:
@@ -47219,9 +47219,9 @@
 - <strong>Structural intuition:</strong> Equity-credit link, economic drivers
 - <strong>Reduced-form tractability:</strong> Intensity-based pricing, easy calibration</p>
 <p><strong>Example:</strong> Set intensity as function of equity price:</p>
-<p>$$</p>
-<p>\lambda_t = f(S_t, \sigma_t) = a + b \cdot (S^*/S_t)^c</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_t = f(S_t, \sigma_t) = a + b \cdot (S^*/S_t)^c
+\]</div>
 <p>This captures structural intuition in reduced-form framework.</p>
 <h3 id="credit-equity-hybrid-derivatives">Credit-Equity Hybrid Derivatives<a class="headerlink" href="#credit-equity-hybrid-derivatives" title="Permanent link">&para;</a></h3>
 <p>Products like:

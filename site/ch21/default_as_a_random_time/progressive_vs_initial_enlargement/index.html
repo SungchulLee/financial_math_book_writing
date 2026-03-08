@@ -46764,14 +46764,14 @@
 <p>In <strong>progressive enlargement</strong>, information about default is revealed only when it occurs. The market learns of default at the moment it happens—not before.</p>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>The progressively enlarged filtration is</p>
-<p>$$</p>
-<p>\mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau \wedge t) = \mathcal{F}_t \vee \sigma(H_s : s \le t),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau \wedge t) = \mathcal{F}_t \vee \sigma(H_s : s \le t)
+\]</div>
 <p>where <span class="arithmatex">\(H_s = \mathbf{1}_{\{\tau \le s\}}\)</span> is the default indicator.</p>
 <p>Equivalently, with right-continuous regularization:</p>
-<p>$$</p>
-<p>\mathcal{G}<em _="&gt;" s="s" t="t">t = \bigcap</em>_s \vee \sigma(\tau \wedge s) \right).} \left( \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{G}_t = \bigcap_{s &gt; t} \left( \mathcal{F}_s \vee \sigma(\tau \wedge s) \right)
+\]</div>
 <h3 id="information-content">Information Content<a class="headerlink" href="#information-content" title="Permanent link">&para;</a></h3>
 <p>At time <span class="arithmatex">\(t\)</span>, a market participant observing <span class="arithmatex">\(\mathcal{G}_t\)</span> knows:
 - All market information up to time <span class="arithmatex">\(t\)</span> (contained in <span class="arithmatex">\(\mathcal{F}_t\)</span>)
@@ -46787,9 +46787,9 @@
 </ol>
 <h3 id="characterization-of-g_t-measurability">Characterization of G_t-Measurability<a class="headerlink" href="#characterization-of-g_t-measurability" title="Permanent link">&para;</a></h3>
 <p>A random variable <span class="arithmatex">\(X\)</span> is <span class="arithmatex">\(\mathcal{G}_t\)</span>-measurable if and only if it has the form</p>
-<p>$$</p>
-<p>X = Y \mathbf{1}<em _123_tau="{\tau" _le="\le" t_125_="t}">{{\tau &gt; t}} + Z(\tau) \mathbf{1}</em>,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X = Y \mathbf{1}_{\{\tau &gt; t\}} + Z(\tau) \mathbf{1}_{\{\tau \le t\}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(Y\)</span> is <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable
 - <span class="arithmatex">\(Z: [0,t] \times \Omega \to \mathbb{R}\)</span> is <span class="arithmatex">\(\mathcal{B}([0,t]) \otimes \mathcal{F}_t\)</span>-measurable</p>
@@ -46799,9 +46799,9 @@
 <p>In <strong>initial enlargement</strong>, the default time is known from the very beginning (time 0). This models a situation where an agent has complete foreknowledge of when default will occur.</p>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>The initially enlarged filtration is</p>
-<p>$$</p>
-<p>\mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{G}_t := \mathcal{F}_t \vee \sigma(\tau)
+\]</div>
 <p>Here, <span class="arithmatex">\(\sigma(\tau)\)</span> represents complete knowledge of the default time, available at all times.</p>
 <h3 id="information-content_1">Information Content<a class="headerlink" href="#information-content_1" title="Permanent link">&para;</a></h3>
 <p>At any time <span class="arithmatex">\(t\)</span>, an observer of <span class="arithmatex">\(\mathcal{G}_t\)</span> knows:
@@ -46820,9 +46820,9 @@
 <h2 id="mathematical-comparison">Mathematical Comparison<a class="headerlink" href="#mathematical-comparison" title="Permanent link">&para;</a></h2>
 <h3 id="filtration-inclusion">Filtration Inclusion<a class="headerlink" href="#filtration-inclusion" title="Permanent link">&para;</a></h3>
 <p>The filtrations satisfy a strict inclusion:</p>
-<p>$$</p>
-<p>\mathcal{F}_t \subsetneq \mathcal{G}_t^{\text{prog}} \subsetneq \mathcal{G}_t^{\text{init}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{F}_t \subsetneq \mathcal{G}_t^{\text{prog}} \subsetneq \mathcal{G}_t^{\text{init}}
+\]</div>
 <p>Progressive enlargement adds "just enough" information to observe default, while initial enlargement adds "complete" information about <span class="arithmatex">\(\tau\)</span>.</p>
 <h3 id="conditional-expectations">Conditional Expectations<a class="headerlink" href="#conditional-expectations" title="Permanent link">&para;</a></h3>
 <p>For a random variable <span class="arithmatex">\(X\)</span>:</p>
@@ -46831,23 +46831,23 @@
 <h3 id="example-survival-probability">Example: Survival Probability<a class="headerlink" href="#example-survival-probability" title="Permanent link">&para;</a></h3>
 <p>Consider computing <span class="arithmatex">\(\mathbb{P}(\tau &gt; T \mid \mathcal{G}_t)\)</span> for <span class="arithmatex">\(T &gt; t\)</span>:</p>
 <p><strong>Progressive enlargement (<span class="arithmatex">\(\tau &gt; t\)</span>):</strong></p>
-<p>$$</p>
-<p>\mathbb{P}(\tau &gt; T \mid \mathcal{G}_t^{\text{prog}}) = \frac{\mathbb{P}(\tau &gt; T \mid \mathcal{F}_t)}{\mathbb{P}(\tau &gt; t \mid \mathcal{F}_t)} = \frac{G_T^{\mathcal{F}}}{G_t^{\mathcal{F}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\tau &gt; T \mid \mathcal{G}_t^{\text{prog}}) = \frac{\mathbb{P}(\tau &gt; T \mid \mathcal{F}_t)}{\mathbb{P}(\tau &gt; t \mid \mathcal{F}_t)} = \frac{G_T^{\mathcal{F}}}{G_t^{\mathcal{F}}}
+\]</div>
 <p>where <span class="arithmatex">\(G_s^{\mathcal{F}} = \mathbb{P}(\tau &gt; s \mid \mathcal{F}_t)\)</span>.</p>
 <p><strong>Initial enlargement:</strong></p>
-<p>$$</p>
-<p>\mathbb{P}(\tau &gt; T \mid \mathcal{G}<em T_125_="T}" _="&gt;" _123_tau="{\tau">t^{\text{init}}) = \mathbf{1}</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\tau &gt; T \mid \mathcal{G}_t^{\text{init}}) = \mathbf{1}_{\{\tau &gt; T\}}
+\]</div>
 <p>since <span class="arithmatex">\(\tau\)</span> is known exactly.</p>
 <hr />
 <h2 id="semimartingale-preservation">Semimartingale Preservation<a class="headerlink" href="#semimartingale-preservation" title="Permanent link">&para;</a></h2>
 <p>A critical question is whether <span class="arithmatex">\(\mathcal{F}\)</span>-semimartingales remain semimartingales in the enlarged filtration.</p>
 <h3 id="progressive-enlargement_1">Progressive Enlargement<a class="headerlink" href="#progressive-enlargement_1" title="Permanent link">&para;</a></h3>
 <p>Under mild conditions (the <strong>density hypothesis</strong> or <strong>intensity hypothesis</strong>), every <span class="arithmatex">\((\mathcal{F}, \mathbb{P})\)</span>-semimartingale remains a <span class="arithmatex">\((\mathcal{G}^{\text{prog}}, \mathbb{P})\)</span>-semimartingale. The decomposition involves:</p>
-<p>$$</p>
-<p>X_t = \tilde{X}<em s-="s-">t + \int_0^{t \wedge \tau} \frac{d\langle X, G \rangle_s}{G</em>,}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = \tilde{X}_t + \int_0^{t \wedge \tau} \frac{d\langle X, G \rangle_s}{G_{s-}}
+\]</div>
 <p>where <span class="arithmatex">\(\tilde{X}\)</span> is a <span class="arithmatex">\(\mathcal{G}\)</span>-martingale and <span class="arithmatex">\(G_t = \mathbb{P}(\tau &gt; t \mid \mathcal{F}_t)\)</span>.</p>
 <h3 id="initial-enlargement-jacods-criterion">Initial Enlargement (Jacod's Criterion)<a class="headerlink" href="#initial-enlargement-jacods-criterion" title="Permanent link">&para;</a></h3>
 <p>For initial enlargement, the situation is more delicate. Jacod's theorem states that <span class="arithmatex">\(\mathcal{F}\)</span>-semimartingales remain <span class="arithmatex">\(\mathcal{G}^{\text{init}}\)</span>-semimartingales if and only if the conditional law of <span class="arithmatex">\(\tau\)</span> given <span class="arithmatex">\(\mathcal{F}_\infty\)</span> is absolutely continuous with respect to some <span class="arithmatex">\(\sigma\)</span>-finite measure.</p>
@@ -46873,9 +46873,9 @@
 <p>A key technical condition ensuring tractability under progressive enlargement is the <strong>density hypothesis</strong>.</p>
 <h3 id="statement">Statement<a class="headerlink" href="#statement" title="Permanent link">&para;</a></h3>
 <p>There exists a family of non-negative <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable random variables <span class="arithmatex">\((\alpha_t^u)_{u \ge 0}\)</span> such that for all <span class="arithmatex">\(t \ge 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}(\tau &gt; u \mid \mathcal{F}_t) = \int_u^\infty \alpha_t^s \, ds \quad \text{for } u \ge 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\tau &gt; u \mid \mathcal{F}_t) = \int_u^\infty \alpha_t^s \, ds \quad \text{for } u \ge 0
+\]</div>
 <p>The function <span class="arithmatex">\(u \mapsto \alpha_t^u\)</span> is the conditional density of <span class="arithmatex">\(\tau\)</span> given <span class="arithmatex">\(\mathcal{F}_t\)</span>.</p>
 <h3 id="implications">Implications<a class="headerlink" href="#implications" title="Permanent link">&para;</a></h3>
 <p>Under the density hypothesis:
@@ -46889,15 +46889,15 @@
 <h3 id="progressive-enlargement_2">Progressive Enlargement<a class="headerlink" href="#progressive-enlargement_2" title="Permanent link">&para;</a></h3>
 <p>The survival probability is <span class="arithmatex">\(G_t = e^{-\lambda t}\)</span> (deterministic since <span class="arithmatex">\(\tau\)</span> is independent of <span class="arithmatex">\(\mathcal{F}\)</span>).</p>
 <p>On <span class="arithmatex">\(\{\tau &gt; t\}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}(\tau &gt; T \mid \mathcal{G}_t) = \mathbb{P}(\tau &gt; T \mid \tau &gt; t) = e^{-\lambda(T-t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\tau &gt; T \mid \mathcal{G}_t) = \mathbb{P}(\tau &gt; T \mid \tau &gt; t) = e^{-\lambda(T-t)}
+\]</div>
 <p>This follows from the memoryless property of the exponential distribution.</p>
 <h3 id="initial-enlargement_1">Initial Enlargement<a class="headerlink" href="#initial-enlargement_1" title="Permanent link">&para;</a></h3>
 <p>Given <span class="arithmatex">\(\mathcal{G}_t^{\text{init}} = \mathcal{F}_t \vee \sigma(\tau)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}(\tau &gt; T \mid \mathcal{G}<em T_125_="T}" _="&gt;" _123_tau="{\tau">t^{\text{init}}) = \mathbf{1}</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\tau &gt; T \mid \mathcal{G}_t^{\text{init}}) = \mathbf{1}_{\{\tau &gt; T\}}
+\]</div>
 <p>The uncertainty is completely resolved by knowing <span class="arithmatex">\(\tau\)</span>.</p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

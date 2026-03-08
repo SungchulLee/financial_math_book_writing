@@ -46840,81 +46840,81 @@
 <hr />
 <h2 id="the-differentiation-problem">The differentiation problem<a class="headerlink" href="#the-differentiation-problem" title="Permanent link">&para;</a></h2>
 <p>Dupire's formula involves:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(T, K) = \frac{2 \left( \partial_T C + (r - q) K \partial_K C - q C \right)}{K^2 \partial_{KK} C}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(T, K) = \frac{2 \left( \partial_T C + (r - q) K \partial_K C - q C \right)}{K^2 \partial_{KK} C}
+\]</div>
 <p>All three derivatives (<span class="arithmatex">\(\partial_T C\)</span>, <span class="arithmatex">\(\partial_K C\)</span>, <span class="arithmatex">\(\partial_{KK} C\)</span>) must be estimated from discrete, noisy data.</p>
 <h3 id="why-differentiation-amplifies-noise">Why differentiation amplifies noise<a class="headerlink" href="#why-differentiation-amplifies-noise" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(C^{\text{obs}}(K) = C^{\star}(K) + \varepsilon(K)\)</span> where <span class="arithmatex">\(\varepsilon\)</span> is observation noise with standard deviation <span class="arithmatex">\(\sigma_\varepsilon\)</span>, then a central difference approximation</p>
-<p>$$</p>
-<p>\partial_K C \approx \frac{C(K + h) - C(K - h)}{2h}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_K C \approx \frac{C(K + h) - C(K - h)}{2h}
+\]</div>
 <p>has error</p>
-<p>$$</p>
-<p>\text{Error} \approx \frac{\sigma_\varepsilon}{h} + O(h^2).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Error} \approx \frac{\sigma_\varepsilon}{h} + O(h^2)
+\]</div>
 <p>The first term (noise amplification) grows as <span class="arithmatex">\(h \to 0\)</span>, while the second term (truncation error) shrinks. There is an optimal <span class="arithmatex">\(h\)</span> balancing these effects.</p>
 <p>For second derivatives:</p>
-<p>$$</p>
-<p>\partial_{KK} C \approx \frac{C(K + h) - 2C(K) + C(K - h)}{h^2},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_{KK} C \approx \frac{C(K + h) - 2C(K) + C(K - h)}{h^2}
+\]</div>
 <p>with error scaling as <span class="arithmatex">\(\sigma_\varepsilon / h^2\)</span>—much worse.</p>
 <hr />
 <h2 id="finite-difference-schemes">Finite difference schemes<a class="headerlink" href="#finite-difference-schemes" title="Permanent link">&para;</a></h2>
 <h3 id="first-derivatives">First derivatives<a class="headerlink" href="#first-derivatives" title="Permanent link">&para;</a></h3>
 <p><strong>Forward difference:</strong></p>
-<p>$$</p>
-<p>\partial_K C \approx \frac{C(K + h) - C(K)}{h}, \quad \text{Error} = O(h).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_K C \approx \frac{C(K + h) - C(K)}{h}, \quad \text{Error} = O(h)
+\]</div>
 <p><strong>Backward difference:</strong></p>
-<p>$$</p>
-<p>\partial_K C \approx \frac{C(K) - C(K - h)}{h}, \quad \text{Error} = O(h).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_K C \approx \frac{C(K) - C(K - h)}{h}, \quad \text{Error} = O(h)
+\]</div>
 <p><strong>Central difference (preferred):</strong></p>
-<p>$$</p>
-<p>\partial_K C \approx \frac{C(K + h) - C(K - h)}{2h}, \quad \text{Error} = O(h^2).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_K C \approx \frac{C(K + h) - C(K - h)}{2h}, \quad \text{Error} = O(h^2)
+\]</div>
 <h3 id="second-derivatives">Second derivatives<a class="headerlink" href="#second-derivatives" title="Permanent link">&para;</a></h3>
 <p><strong>Standard central difference:</strong></p>
-<p>$$</p>
-<p>\partial_{KK} C \approx \frac{C(K + h) - 2C(K) + C(K - h)}{h^2}, \quad \text{Error} = O(h^2).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_{KK} C \approx \frac{C(K + h) - 2C(K) + C(K - h)}{h^2}, \quad \text{Error} = O(h^2)
+\]</div>
 <p><strong>Five-point stencil (higher accuracy):</strong></p>
-<p>$$</p>
-<p>\partial_{KK} C \approx \frac{-C(K + 2h) + 16C(K + h) - 30C(K) + 16C(K - h) - C(K - 2h)}{12h^2}, \quad \text{Error} = O(h^4).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_{KK} C \approx \frac{-C(K + 2h) + 16C(K + h) - 30C(K) + 16C(K - h) - C(K - 2h)}{12h^2}, \quad \text{Error} = O(h^4)
+\]</div>
 <h3 id="time-derivatives">Time derivatives<a class="headerlink" href="#time-derivatives" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(\partial_T C\)</span>, data are typically available at discrete maturities <span class="arithmatex">\(T_1 &lt; T_2 &lt; \cdots\)</span>. Options include:</p>
 <p><strong>Forward difference:</strong></p>
-<p>$$</p>
-<p>\partial_T C \approx \frac{C(K, T_{i+1}) - C(K, T_i)}{T_{i+1} - T_i}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_T C \approx \frac{C(K, T_{i+1}) - C(K, T_i)}{T_{i+1} - T_i}
+\]</div>
 <p><strong>Central difference (if three maturities available):</strong></p>
-<p>$$</p>
-<p>\partial_T C \approx \frac{C(K, T_{i+1}) - C(K, T_{i-1})}{T_{i+1} - T_{i-1}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_T C \approx \frac{C(K, T_{i+1}) - C(K, T_{i-1})}{T_{i+1} - T_{i-1}}
+\]</div>
 <p>In total variance coordinates <span class="arithmatex">\(w(k, T) = T \sigma_{\text{impl}}^2(k, T)\)</span>:</p>
-<p>$$</p>
-<p>\partial_T w \approx \frac{w(k, T_{i+1}) - w(k, T_i)}{T_{i+1} - T_i}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_T w \approx \frac{w(k, T_{i+1}) - w(k, T_i)}{T_{i+1} - T_i}
+\]</div>
 <hr />
 <h2 id="richardson-extrapolation">Richardson extrapolation<a class="headerlink" href="#richardson-extrapolation" title="Permanent link">&para;</a></h2>
 <p>Richardson extrapolation improves accuracy by combining estimates at different step sizes.</p>
 <h3 id="principle">Principle<a class="headerlink" href="#principle" title="Permanent link">&para;</a></h3>
 <p>If an approximation <span class="arithmatex">\(A(h)\)</span> has error expansion</p>
-<p>$$</p>
-<p>A(h) = A^{\star} + c_1 h^p + c_2 h^{p+1} + \cdots,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A(h) = A^{\star} + c_1 h^p + c_2 h^{p+1} + \cdots
+\]</div>
 <p>then</p>
-<p>$$</p>
-<p>A_{\text{extrap}} = \frac{2^p A(h/2) - A(h)}{2^p - 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A_{\text{extrap}} = \frac{2^p A(h/2) - A(h)}{2^p - 1}
+\]</div>
 <p>has error <span class="arithmatex">\(O(h^{p+1})\)</span>.</p>
 <h3 id="application-to-second-derivatives">Application to second derivatives<a class="headerlink" href="#application-to-second-derivatives" title="Permanent link">&para;</a></h3>
 <p>With central differences (<span class="arithmatex">\(p = 2\)</span>):</p>
-<p>$$</p>
-<p>\partial_{KK} C \approx \frac{4 D(h/2) - D(h)}{3}, \quad \text{where } D(h) = \frac{C(K+h) - 2C(K) + C(K-h)}{h^2}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_{KK} C \approx \frac{4 D(h/2) - D(h)}{3}, \quad \text{where } D(h) = \frac{C(K+h) - 2C(K) + C(K-h)}{h^2}
+\]</div>
 <p>This yields <span class="arithmatex">\(O(h^4)\)</span> accuracy from <span class="arithmatex">\(O(h^2)\)</span> building blocks.</p>
 <h3 id="practical-limitations">Practical limitations<a class="headerlink" href="#practical-limitations" title="Permanent link">&para;</a></h3>
 <p>Richardson extrapolation assumes smooth underlying functions. With noisy data, it can amplify errors rather than reduce them. It works best when applied to smoothed data or analytic interpolants.</p>
@@ -46929,9 +46929,9 @@
 <li>Boundary conditions (natural, clamped, or not-a-knot).</li>
 </ul>
 <p>Then compute:</p>
-<p>$$</p>
-<p>\partial_K C(K) = S'(K), \qquad \partial_{KK} C(K) = S''(K).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_K C(K) = S'(K), \qquad \partial_{KK} C(K) = S''(K)
+\]</div>
 <h3 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Derivatives are smooth and well-defined everywhere.</li>
@@ -46945,18 +46945,18 @@
 </ul>
 <h3 id="smoothing-splines">Smoothing splines<a class="headerlink" href="#smoothing-splines" title="Permanent link">&para;</a></h3>
 <p>To handle noise, use smoothing splines that minimize</p>
-<p>$$</p>
-<p>\sum_i (S(K_i) - C_i)^2 + \lambda \int (S''(K))^2 \, dK,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_i (S(K_i) - C_i)^2 + \lambda \int (S''(K))^2 \, dK
+\]</div>
 <p>where <span class="arithmatex">\(\lambda &gt; 0\)</span> controls the smoothness-fit trade-off.</p>
 <hr />
 <h2 id="differentiation-in-implied-volatility-coordinates">Differentiation in implied volatility coordinates<a class="headerlink" href="#differentiation-in-implied-volatility-coordinates" title="Permanent link">&para;</a></h2>
 <p>Market data are often given as implied volatilities. Dupire's formula can be rewritten in terms of <span class="arithmatex">\(\sigma_{\text{impl}}(K, T)\)</span> or total variance <span class="arithmatex">\(w(k, T)\)</span>.</p>
 <h3 id="dupire-in-total-variance-coordinates">Dupire in total variance coordinates<a class="headerlink" href="#dupire-in-total-variance-coordinates" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(k = \log(K/F_T)\)</span> and <span class="arithmatex">\(w(k, T) = T \sigma_{\text{impl}}^2(k, T)\)</span>. Then:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2 = \frac{\partial_T w}{1 - \frac{k}{w} \partial_k w + \frac{1}{4} \left( -\frac{1}{4} - \frac{1}{w} + \frac{k^2}{w^2} \right) (\partial_k w)^2 + \frac{1}{2} \partial_{kk} w}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2 = \frac{\partial_T w}{1 - \frac{k}{w} \partial_k w + \frac{1}{4} \left( -\frac{1}{4} - \frac{1}{w} + \frac{k^2}{w^2} \right) (\partial_k w)^2 + \frac{1}{2} \partial_{kk} w}
+\]</div>
 <h3 id="advantages-of-total-variance">Advantages of total variance<a class="headerlink" href="#advantages-of-total-variance" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(w\)</span> is more linear in <span class="arithmatex">\(T\)</span> than prices, reducing interpolation error.</li>
@@ -46975,13 +46975,13 @@
 <h3 id="theoretical-optimum">Theoretical optimum<a class="headerlink" href="#theoretical-optimum" title="Permanent link">&para;</a></h3>
 <p>For central differences with noise level <span class="arithmatex">\(\sigma_\varepsilon\)</span> and smooth function <span class="arithmatex">\(C\)</span>:</p>
 <p><strong>First derivative:</strong></p>
-<p>$$</p>
-<p>h^{\star} \sim \left( \frac{\sigma_\varepsilon}{|C'''|} \right)^{1/3}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+h^{\star} \sim \left( \frac{\sigma_\varepsilon}{|C'''|} \right)^{1/3}
+\]</div>
 <p><strong>Second derivative:</strong></p>
-<p>$$</p>
-<p>h^{\star} \sim \left( \frac{\sigma_\varepsilon}{|C^{(4)}|} \right)^{1/4}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+h^{\star} \sim \left( \frac{\sigma_\varepsilon}{|C^{(4)}|} \right)^{1/4}
+\]</div>
 <h3 id="practical-estimation">Practical estimation<a class="headerlink" href="#practical-estimation" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(C'''\)</span> and <span class="arithmatex">\(C^{(4)}\)</span> are unknown:</p>
 <ol>
@@ -46992,9 +46992,9 @@
 <hr />
 <h2 id="ensuring-positivity-of-local-variance">Ensuring positivity of local variance<a class="headerlink" href="#ensuring-positivity-of-local-variance" title="Permanent link">&para;</a></h2>
 <p>The denominator in Dupire's formula must be positive for local variance to be real and positive:</p>
-<p>$$</p>
-<p>K^2 \partial_{KK} C &gt; 0 \quad \Leftrightarrow \quad \partial_{KK} C &gt; 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K^2 \partial_{KK} C &gt; 0 \quad \Leftrightarrow \quad \partial_{KK} C &gt; 0
+\]</div>
 <p>This is the butterfly arbitrage condition.</p>
 <h3 id="what-to-do-if-_kk-c-0">What to do if ∂_KK C ≤ 0<a class="headerlink" href="#what-to-do-if-_kk-c-0" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47003,9 +47003,9 @@
 <li><strong>Post-adjustment:</strong> Clip or smooth local vol where denominator is small.</li>
 </ol>
 <p>A small positive floor is often applied:</p>
-<p>$$</p>
-<p>\partial_{KK} C \leftarrow \max(\partial_{KK} C, \epsilon),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_{KK} C \leftarrow \max(\partial_{KK} C, \epsilon)
+\]</div>
 <p>but this is a band-aid, not a solution. Proper arbitrage-free surface construction (e.g., SVI/SSVI) is preferred.</p>
 <hr />
 <h2 id="differentiation-near-boundaries">Differentiation near boundaries<a class="headerlink" href="#differentiation-near-boundaries" title="Permanent link">&para;</a></h2>

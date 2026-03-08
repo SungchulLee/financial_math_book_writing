@@ -47284,90 +47284,90 @@
 <h2 id="definition-of-vega">Definition of Vega<a class="headerlink" href="#definition-of-vega" title="Permanent link">&para;</a></h2>
 <h3 id="1-basic-definition">1. Basic Definition<a class="headerlink" href="#1-basic-definition" title="Permanent link">&para;</a></h3>
 <p>For an option with price <span class="arithmatex">\(P\)</span> and implied volatility <span class="arithmatex">\(\sigma_{\text{IV}}\)</span>, <strong>vega</strong> is defined as:</p>
-<p>$$</p>
-<p>\mathcal{V} := \frac{\partial P}{\partial \sigma_{\text{IV}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} := \frac{\partial P}{\partial \sigma_{\text{IV}}}
+\]</div>
 <p>This measures the first-order sensitivity of the option price to changes in implied volatility.</p>
 <p><strong>Convention:</strong> Vega is typically quoted per 1% (100 basis points) change in implied volatility:</p>
-<p>$$</p>
-<p>\mathcal{V}<em _text_IV="\text{IV">{1\%} = \frac{\partial P}{\partial \sigma</em> \times 0.01}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{1\%} = \frac{\partial P}{\partial \sigma_{\text{IV}}} \times 0.01
+\]</div>
 <h3 id="2-black-scholes-vega">2. Black-Scholes Vega<a class="headerlink" href="#2-black-scholes-vega" title="Permanent link">&para;</a></h3>
 <p>In the Black-Scholes model, vega has a closed-form expression:</p>
-<p>$$</p>
-<p>\mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}
+\]</div>
 <p>where <span class="arithmatex">\(\phi(\cdot)\)</span> is the standard normal density and:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S_0/K) + (r - q + \sigma^2/2)T}{\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S_0/K) + (r - q + \sigma^2/2)T}{\sigma\sqrt{T}}
+\]</div>
 <p><strong>Key properties:</strong>
 - <strong>Positive for all options:</strong> Both calls and puts have <span class="arithmatex">\(\mathcal{V} &gt; 0\)</span>
 - <strong>Symmetric in <span class="arithmatex">\(d_1\)</span>:</strong> Since <span class="arithmatex">\(\phi(-x) = \phi(x)\)</span>, vega depends on <span class="arithmatex">\(|d_1|\)</span>
 - <strong>Maximum at ATM:</strong> Vega is largest when <span class="arithmatex">\(d_1 \approx 0\)</span> (at-the-money forward)</p>
 <p><strong>Equivalently:</strong></p>
-<p>$$</p>
-<p>\mathcal{V}_{\text{BS}} = K e^{-rT} \phi(d_2) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{BS}} = K e^{-rT} \phi(d_2) \sqrt{T}
+\]</div>
 <p>where <span class="arithmatex">\(d_2 = d_1 - \sigma\sqrt{T}\)</span>.</p>
 <h3 id="3-vega-as-dual-delta">3. Vega as Dual Delta<a class="headerlink" href="#3-vega-as-dual-delta" title="Permanent link">&para;</a></h3>
 <p>There is a remarkable duality between vega and delta:</p>
-<p>$$</p>
-<p>\mathcal{V} = S_0 \sqrt{T} \cdot \frac{\partial C}{\partial d_1} \cdot \frac{\partial d_1}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} = S_0 \sqrt{T} \cdot \frac{\partial C}{\partial d_1} \cdot \frac{\partial d_1}{\partial \sigma}
+\]</div>
 <p>Using the Black-Scholes formula:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial d_1} = S_0 e^{-qT} \phi(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial d_1} = S_0 e^{-qT} \phi(d_1)
+\]</div>
 <p>This shows that vega can be interpreted as the "delta with respect to <span class="arithmatex">\(d_1\)</span>" scaled appropriately.</p>
 <h2 id="dependence-on-strike-and-maturity">Dependence on Strike and Maturity<a class="headerlink" href="#dependence-on-strike-and-maturity" title="Permanent link">&para;</a></h2>
 <h3 id="1-strike-dependence">1. Strike Dependence<a class="headerlink" href="#1-strike-dependence" title="Permanent link">&para;</a></h3>
 <p>The dependence of vega on strike (or moneyness) follows directly from the <span class="arithmatex">\(\phi(d_1)\)</span> term:</p>
-<p>$$</p>
-<p>\mathcal{V}(K) = S_0 e^{-qT} \sqrt{T} \cdot \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{d_1^2}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}(K) = S_0 e^{-qT} \sqrt{T} \cdot \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{d_1^2}{2}\right)
+\]</div>
 <p><strong>At-the-money forward (<span class="arithmatex">\(K = F = S_0 e^{(r-q)T}\)</span>):</strong></p>
-<p>$$</p>
-<p>d_1 = \frac{\sigma\sqrt{T}}{2}, \quad \mathcal{V}_{\text{ATM}} = S_0 e^{-qT} \sqrt{T} \cdot \phi\left(\frac{\sigma\sqrt{T}}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\sigma\sqrt{T}}{2}, \quad \mathcal{V}_{\text{ATM}} = S_0 e^{-qT} \sqrt{T} \cdot \phi\left(\frac{\sigma\sqrt{T}}{2}\right)
+\]</div>
 <p>For small <span class="arithmatex">\(\sigma\sqrt{T}\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{V}_{\text{ATM}} \approx \frac{S_0 e^{-qT} \sqrt{T}}{\sqrt{2\pi}} \left(1 - \frac{\sigma^2 T}{8}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{ATM}} \approx \frac{S_0 e^{-qT} \sqrt{T}}{\sqrt{2\pi}} \left(1 - \frac{\sigma^2 T}{8}\right)
+\]</div>
 <p><strong>Deep in-the-money (<span class="arithmatex">\(K \ll S_0\)</span>):</strong></p>
-<p>$$</p>
-<p>d_1 \to +\infty, \quad \phi(d_1) \to 0, \quad \mathcal{V} \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 \to +\infty, \quad \phi(d_1) \to 0, \quad \mathcal{V} \to 0
+\]</div>
 <p><strong>Deep out-of-the-money (<span class="arithmatex">\(K \gg S_0\)</span>):</strong></p>
-<p>$$</p>
-<p>d_1 \to -\infty, \quad \phi(d_1) \to 0, \quad \mathcal{V} \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 \to -\infty, \quad \phi(d_1) \to 0, \quad \mathcal{V} \to 0
+\]</div>
 <p><strong>Interpretation:</strong> Vega is maximized at ATM because the option price is most sensitive to volatility when the payoff is uncertain (near the strike).</p>
 <h3 id="2-maturity-dependence">2. Maturity Dependence<a class="headerlink" href="#2-maturity-dependence" title="Permanent link">&para;</a></h3>
 <p>The <span class="arithmatex">\(\sqrt{T}\)</span> factor in vega produces characteristic maturity behavior:</p>
-<p>$$</p>
-<p>\mathcal{V}(T) = S_0 e^{-qT} \phi(d_1(T)) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}(T) = S_0 e^{-qT} \phi(d_1(T)) \sqrt{T}
+\]</div>
 <p><strong>Short maturity (<span class="arithmatex">\(T \to 0\)</span>):</strong></p>
-<p>$$</p>
-<p>\sqrt{T} \to 0 \quad \Rightarrow \quad \mathcal{V} \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sqrt{T} \to 0 \quad \Rightarrow \quad \mathcal{V} \to 0
+\]</div>
 <p>Short-dated options have small vega because:
 - Little time for volatility to affect the outcome
 - Price is dominated by intrinsic value (deep ITM/OTM)</p>
 <p><strong>Long maturity (<span class="arithmatex">\(T \to \infty\)</span>):</strong></p>
 <p>For ATM options:</p>
-<p>$$</p>
-<p>d_1 \to \frac{\sigma\sqrt{T}}{2} \to \infty \quad \Rightarrow \quad \phi(d_1) \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 \to \frac{\sigma\sqrt{T}}{2} \to \infty \quad \Rightarrow \quad \phi(d_1) \to 0
+\]</div>
 <p>The product <span class="arithmatex">\(\sqrt{T} \cdot \phi(d_1)\)</span> eventually decreases:</p>
-<p>$$</p>
-<p>\lim_{T \to \infty} \sqrt{T} \cdot \phi\left(\frac{\sigma\sqrt{T}}{2}\right) = \lim_{T \to \infty} \frac{\sqrt{T}}{\sqrt{2\pi}} e^{-\sigma^2 T/8} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to \infty} \sqrt{T} \cdot \phi\left(\frac{\sigma\sqrt{T}}{2}\right) = \lim_{T \to \infty} \frac{\sqrt{T}}{\sqrt{2\pi}} e^{-\sigma^2 T/8} = 0
+\]</div>
 <p><strong>Peak vega maturity:</strong> For ATM options, vega peaks at an intermediate maturity:</p>
-<p>$$</p>
-<p>T^* = \frac{4}{\sigma^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+T^* = \frac{4}{\sigma^2}
+\]</div>
 <p>For <span class="arithmatex">\(\sigma = 20\%\)</span>, <span class="arithmatex">\(T^* = 100\)</span> years, effectively outside typical option maturities. In practice, ATM vega increases with <span class="arithmatex">\(T\)</span> for most quoted maturities.</p>
 <p><strong>For OTM options:</strong> Vega may peak at shorter maturities because <span class="arithmatex">\(d_1\)</span> moves away from zero faster as <span class="arithmatex">\(T\)</span> increases.</p>
 <h3 id="3-vega-surface">3. Vega Surface<a class="headerlink" href="#3-vega-surface" title="Permanent link">&para;</a></h3>
@@ -47405,17 +47405,17 @@
 <h2 id="higher-order-volatility-sensitivities">Higher-Order Volatility Sensitivities<a class="headerlink" href="#higher-order-volatility-sensitivities" title="Permanent link">&para;</a></h2>
 <h3 id="1-vanna-cross-sensitivity-to-spot-and-volatility">1. Vanna: Cross-Sensitivity to Spot and Volatility<a class="headerlink" href="#1-vanna-cross-sensitivity-to-spot-and-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>\text{Vanna} := \frac{\partial^2 P}{\partial S \partial \sigma} = \frac{\partial \mathcal{V}}{\partial S} = \frac{\partial \Delta}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vanna} := \frac{\partial^2 P}{\partial S \partial \sigma} = \frac{\partial \mathcal{V}}{\partial S} = \frac{\partial \Delta}{\partial \sigma}
+\]</div>
 <p><strong>Black-Scholes formula:</strong></p>
-<p>$$</p>
-<p>\text{Vanna}_{\text{BS}} = -e^{-qT} \phi(d_1) \frac{d_2}{\sigma} = \frac{\mathcal{V}}{S} \left(1 - \frac{d_1}{\sigma\sqrt{T}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vanna}_{\text{BS}} = -e^{-qT} \phi(d_1) \frac{d_2}{\sigma} = \frac{\mathcal{V}}{S} \left(1 - \frac{d_1}{\sigma\sqrt{T}}\right)
+\]</div>
 <p><strong>Equivalently:</strong></p>
-<p>$$</p>
-<p>\text{Vanna}_{\text{BS}} = -\frac{\mathcal{V} \cdot d_2}{S \sigma \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vanna}_{\text{BS}} = -\frac{\mathcal{V} \cdot d_2}{S \sigma \sqrt{T}}
+\]</div>
 <p><strong>Sign and interpretation:</strong>
 - <strong>ATM (<span class="arithmatex">\(d_2 \approx -\sigma\sqrt{T}/2 &lt; 0\)</span>):</strong> Vanna &gt; 0 for calls
 - <strong>OTM call (<span class="arithmatex">\(d_2 &lt; 0\)</span>):</strong> Vanna &gt; 0
@@ -47423,30 +47423,30 @@
 <p><strong>Interpretation:</strong> Vanna measures how delta changes with volatility, or equivalently, how vega changes with spot. It is crucial for understanding P&amp;L when both spot and volatility move together (correlation effects).</p>
 <h3 id="2-volga-vomma-second-order-volatility-sensitivity">2. Volga (Vomma): Second-Order Volatility Sensitivity<a class="headerlink" href="#2-volga-vomma-second-order-volatility-sensitivity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>\text{Volga} := \frac{\partial^2 P}{\partial \sigma^2} = \frac{\partial \mathcal{V}}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Volga} := \frac{\partial^2 P}{\partial \sigma^2} = \frac{\partial \mathcal{V}}{\partial \sigma}
+\]</div>
 <p><strong>Black-Scholes formula:</strong></p>
-<p>$$</p>
-<p>\text{Volga}_{\text{BS}} = \mathcal{V} \cdot \frac{d_1 d_2}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Volga}_{\text{BS}} = \mathcal{V} \cdot \frac{d_1 d_2}{\sigma}
+\]</div>
 <p><strong>Equivalently:</strong></p>
-<p>$$</p>
-<p>\text{Volga}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T} \cdot \frac{d_1 d_2}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Volga}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T} \cdot \frac{d_1 d_2}{\sigma}
+\]</div>
 <p><strong>Sign and interpretation:</strong>
 - <strong>ATM (<span class="arithmatex">\(d_1 \approx \sigma\sqrt{T}/2\)</span>, <span class="arithmatex">\(d_2 \approx -\sigma\sqrt{T}/2\)</span>):</strong> <span class="arithmatex">\(d_1 d_2 &lt; 0\)</span>, so Volga &lt; 0
 - <strong>OTM/ITM (large <span class="arithmatex">\(|d_1|\)</span>):</strong> Volga &gt; 0 (both <span class="arithmatex">\(d_1, d_2\)</span> same sign)</p>
 <p><strong>Interpretation:</strong> Volga measures the convexity of the option price with respect to volatility. Positive volga means the option benefits from volatility of volatility (vol-of-vol).</p>
 <h3 id="3-ultima-third-order-volatility-sensitivity">3. Ultima: Third-Order Volatility Sensitivity<a class="headerlink" href="#3-ultima-third-order-volatility-sensitivity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>\text{Ultima} := \frac{\partial^3 P}{\partial \sigma^3} = \frac{\partial \text{Volga}}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Ultima} := \frac{\partial^3 P}{\partial \sigma^3} = \frac{\partial \text{Volga}}{\partial \sigma}
+\]</div>
 <p><strong>Black-Scholes formula:</strong></p>
-<p>$$</p>
-<p>\text{Ultima}_{\text{BS}} = -\frac{\mathcal{V}}{\sigma^2} \left[ d_1 d_2 (1 - d_1 d_2) + d_1^2 + d_2^2 \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Ultima}_{\text{BS}} = -\frac{\mathcal{V}}{\sigma^2} \left[ d_1 d_2 (1 - d_1 d_2) + d_1^2 + d_2^2 \right]
+\]</div>
 <p>Ultima is rarely used in practice but becomes relevant for portfolios with large volga exposure.</p>
 <h3 id="4-summary-table-of-volatility-greeks">4. Summary Table of Volatility Greeks<a class="headerlink" href="#4-summary-table-of-volatility-greeks" title="Permanent link">&para;</a></h3>
 <table>
@@ -47488,57 +47488,57 @@
 <h2 id="vega-as-sensitivity-to-market-quotes">Vega as Sensitivity to Market Quotes<a class="headerlink" href="#vega-as-sensitivity-to-market-quotes" title="Permanent link">&para;</a></h2>
 <h3 id="1-implied-volatility-as-the-market-variable">1. Implied Volatility as the Market Variable<a class="headerlink" href="#1-implied-volatility-as-the-market-variable" title="Permanent link">&para;</a></h3>
 <p>Because traders quote options in terms of implied volatility rather than price, vega measures sensitivity to <strong>observable market moves</strong>:</p>
-<p>$$</p>
-<p>\Delta P \approx \mathcal{V} \cdot \Delta \sigma_{\text{IV}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P \approx \mathcal{V} \cdot \Delta \sigma_{\text{IV}}
+\]</div>
 <p>This first-order approximation underlies most day-to-day volatility risk management.</p>
 <p><strong>Example:</strong> An option with <span class="arithmatex">\(\mathcal{V} = \$0.50\)</span> per 1 vol point will change by approximately <span class="arithmatex">\(\$0.50\)</span> if implied volatility moves from 20% to 21%.</p>
 <h3 id="2-dollar-vega-and-percentage-vega">2. Dollar Vega and Percentage Vega<a class="headerlink" href="#2-dollar-vega-and-percentage-vega" title="Permanent link">&para;</a></h3>
 <p><strong>Dollar vega:</strong> The absolute change in position value for a 1% move in implied volatility:</p>
-<p>$$</p>
-<p>\mathcal{V}_{$} = \mathcal{V} \times \text{Position Size}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\$} = \mathcal{V} \times \text{Position Size}
+\]</div>
 <p><strong>Percentage vega:</strong> The percentage change in option price per 1% move in IV:</p>
-<p>$$</p>
-<p>\mathcal{V}_{\%} = \frac{\mathcal{V}}{P} \times 100</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\%} = \frac{\mathcal{V}}{P} \times 100
+\]</div>
 <p><strong>Out-of-the-money options</strong> have high percentage vega but low dollar vega.</p>
 <h3 id="3-model-free-interpretation">3. Model-Free Interpretation<a class="headerlink" href="#3-model-free-interpretation" title="Permanent link">&para;</a></h3>
 <p>Importantly, when using market-implied volatility, vega has a model-free interpretation:</p>
-<p>$$</p>
-<p>\Delta P_{\text{market}} \approx \mathcal{V}<em _text_IV="\text{IV">{\text{BS}}(\sigma</em>}}) \cdot \Delta \sigma_{\text{IV}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P_{\text{market}} \approx \mathcal{V}_{\text{BS}}(\sigma_{\text{IV}}) \cdot \Delta \sigma_{\text{IV}}
+\]</div>
 <p>The Black-Scholes vega evaluated at the implied volatility approximates the market price change, regardless of the true underlying dynamics.</p>
 <h2 id="vega-beyond-black-scholes">Vega Beyond Black-Scholes<a class="headerlink" href="#vega-beyond-black-scholes" title="Permanent link">&para;</a></h2>
 <h3 id="1-model-consistent-vega">1. Model-Consistent Vega<a class="headerlink" href="#1-model-consistent-vega" title="Permanent link">&para;</a></h3>
 <p>In models beyond Black-Scholes (local volatility, stochastic volatility), the concept of vega becomes more nuanced:</p>
 <p><strong>Definition:</strong> Model-consistent vega is the derivative of the model price with respect to a parallel shift in the implied volatility surface:</p>
-<p>$$</p>
-<p>\mathcal{V}<em _text_model="\text{model">{\text{model}} = \frac{\partial P</em>}}}{\partial \sigma_{\text{IV}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{model}} = \frac{\partial P_{\text{model}}}{\partial \sigma_{\text{IV}}}
+\]</div>
 <p>This differs from the Black-Scholes vega because model prices depend on the entire volatility surface, not just a single <span class="arithmatex">\(\sigma\)</span>.</p>
 <h3 id="2-local-volatility-vega">2. Local Volatility Vega<a class="headerlink" href="#2-local-volatility-vega" title="Permanent link">&para;</a></h3>
 <p>In local volatility models:</p>
-<p>$$</p>
-<p>dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+\]</div>
 <p>The vega with respect to a bump in the local volatility surface is:</p>
-<p>$$</p>
-<p>\mathcal{V}<em _text_loc="\text{loc">{\text{loc}} = \int_0^T \int_0^\infty \frac{\partial P}{\partial \sigma</em>(S, t) \, dS \, dt}}(S, t)} \cdot \delta\sigma_{\text{loc}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{loc}} = \int_0^T \int_0^\infty \frac{\partial P}{\partial \sigma_{\text{loc}}(S, t)} \cdot \delta\sigma_{\text{loc}}(S, t) \, dS \, dt
+\]</div>
 <p>For a parallel bump <span class="arithmatex">\(\delta\sigma_{\text{loc}} = \epsilon\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{V}<em _text_BS="\text{BS">{\text{loc}} \neq \mathcal{V}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{loc}} \neq \mathcal{V}_{\text{BS}}
+\]</div>
 <p>because the local volatility surface and implied volatility surface are related nonlinearly.</p>
 <h3 id="3-stochastic-volatility-vega">3. Stochastic Volatility Vega<a class="headerlink" href="#3-stochastic-volatility-vega" title="Permanent link">&para;</a></h3>
 <p>In stochastic volatility models (e.g., Heston):</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= (r - q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>Multiple "vegas" exist:
 - <strong>Spot vol vega:</strong> <span class="arithmatex">\(\partial P / \partial v_0\)</span> (sensitivity to initial variance)
 - <strong>Long-run vol vega:</strong> <span class="arithmatex">\(\partial P / \partial \theta\)</span> (sensitivity to mean variance)
@@ -47560,16 +47560,16 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 - <strong>Combined:</strong> A grid of (strike, maturity) buckets</p>
 <h3 id="2-parallel-vega">2. Parallel Vega<a class="headerlink" href="#2-parallel-vega" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> Parallel vega is the sensitivity to a uniform shift across all implied volatilities:</p>
-<p>$$</p>
-<p>\mathcal{V}<em i="i">{\parallel} = \sum</em>_i} \mathcal{V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\parallel} = \sum_{i} \mathcal{V}_i
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{V}_i\)</span> is the vega of the <span class="arithmatex">\(i\)</span>-th option.</p>
 <p><strong>Limitation:</strong> Market volatility rarely moves in parallel; short-dated and long-dated vols often move differently.</p>
 <h3 id="3-term-structure-vega">3. Term Structure Vega<a class="headerlink" href="#3-term-structure-vega" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> Term structure vega decomposes sensitivity by maturity:</p>
-<p>$$</p>
-<p>\mathcal{V}(T_j) = \sum_{i: T_i \in \text{bucket } j} \mathcal{V}_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}(T_j) = \sum_{i: T_i \in \text{bucket } j} \mathcal{V}_i
+\]</div>
 <p><strong>Hedging implications:</strong>
 - To hedge <span class="arithmatex">\(\mathcal{V}(T_1)\)</span> exposure, trade options expiring around <span class="arithmatex">\(T_1\)</span>
 - Different maturities hedge different parts of the term structure</p>
@@ -47582,9 +47582,9 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 - A term structure steepening (short up, long down) produces mixed P&amp;L</p>
 <h3 id="4-smile-vega">4. Smile Vega<a class="headerlink" href="#4-smile-vega" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> Smile vega decomposes sensitivity by strike:</p>
-<p>$$</p>
-<p>\mathcal{V}(K_j) = \sum_{i: K_i \in \text{bucket } j} \mathcal{V}_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}(K_j) = \sum_{i: K_i \in \text{bucket } j} \mathcal{V}_i
+\]</div>
 <p><strong>Typical buckets:</strong>
 - 25-delta puts
 - ATM
@@ -47598,15 +47598,15 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 - <span class="arithmatex">\(S_0 = 100\)</span>, <span class="arithmatex">\(K = 100\)</span>, <span class="arithmatex">\(r = 5\%\)</span>, <span class="arithmatex">\(q = 0\)</span>
 - <span class="arithmatex">\(\sigma = 20\%\)</span>, <span class="arithmatex">\(T = 0.25\)</span> years</p>
 <p><strong>Calculation:</strong></p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(100/100) + (0.05 + 0.04/2) \times 0.25}{0.20 \times 0.5} = \frac{0 + 0.0175}{0.10} = 0.175</p>
-<p>$$</p>
-<p>$$</p>
-<p>\phi(0.175) = \frac{1}{\sqrt{2\pi}} e^{-0.175^2/2} = 0.3945</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mathcal{V} = 100 \times 0.3945 \times 0.5 = 19.73</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(100/100) + (0.05 + 0.04/2) \times 0.25}{0.20 \times 0.5} = \frac{0 + 0.0175}{0.10} = 0.175
+\]</div>
+<div class="arithmatex">\[
+\phi(0.175) = \frac{1}{\sqrt{2\pi}} e^{-0.175^2/2} = 0.3945
+\]</div>
+<div class="arithmatex">\[
+\mathcal{V} = 100 \times 0.3945 \times 0.5 = 19.73
+\]</div>
 <p><strong>Interpretation:</strong> A 1% increase in implied volatility (20% → 21%) increases the option price by approximately <span class="arithmatex">\(\$0.20\)</span>.</p>
 <h3 id="2-example-vega-across-strikes">2. Example: Vega Across Strikes<a class="headerlink" href="#2-example-vega-across-strikes" title="Permanent link">&para;</a></h3>
 <p>For the same parameters, vary <span class="arithmatex">\(K\)</span>:</p>
@@ -47655,17 +47655,17 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <p><strong>Observation:</strong> Vega peaks near ATM and declines for both ITM and OTM options.</p>
 <h3 id="3-example-vanna-calculation">3. Example: Vanna Calculation<a class="headerlink" href="#3-example-vanna-calculation" title="Permanent link">&para;</a></h3>
 <p>Using the same ATM parameters:</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T} = 0.175 - 0.10 = 0.075</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Vanna} = -\frac{\mathcal{V} \cdot d_2}{S \cdot \sigma \cdot \sqrt{T}} = -\frac{19.73 \times 0.075}{100 \times 0.20 \times 0.5} = -0.148</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T} = 0.175 - 0.10 = 0.075
+\]</div>
+<div class="arithmatex">\[
+\text{Vanna} = -\frac{\mathcal{V} \cdot d_2}{S \cdot \sigma \cdot \sqrt{T}} = -\frac{19.73 \times 0.075}{100 \times 0.20 \times 0.5} = -0.148
+\]</div>
 <p><strong>Interpretation:</strong> If spot increases by <span class="arithmatex">\(\$1\)</span> and volatility increases by 1%, the combined effect on delta is approximately <span class="arithmatex">\(-0.148 \times 0.01 = -0.00148\)</span>.</p>
 <h3 id="4-example-volga-calculation">4. Example: Volga Calculation<a class="headerlink" href="#4-example-volga-calculation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Volga} = \mathcal{V} \cdot \frac{d_1 d_2}{\sigma} = 19.73 \times \frac{0.175 \times 0.075}{0.20} = 1.30</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Volga} = \mathcal{V} \cdot \frac{d_1 d_2}{\sigma} = 19.73 \times \frac{0.175 \times 0.075}{0.20} = 1.30
+\]</div>
 <p><strong>Interpretation:</strong> The ATM option has positive volga (convex in volatility), but this is small. Deep OTM options have much larger volga.</p>
 <h2 id="vega-hedging-in-practice">Vega Hedging in Practice<a class="headerlink" href="#vega-hedging-in-practice" title="Permanent link">&para;</a></h2>
 <h3 id="1-single-instrument-vega-hedges">1. Single-Instrument Vega Hedges<a class="headerlink" href="#1-single-instrument-vega-hedges" title="Permanent link">&para;</a></h3>
@@ -47677,23 +47677,23 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <p><strong>Limitation:</strong> Hedge ratio assumes parallel volatility moves. If the portfolio and hedge have different strike/maturity profiles, the hedge is imperfect.</p>
 <h3 id="2-vega-weighted-hedging">2. Vega-Weighted Hedging<a class="headerlink" href="#2-vega-weighted-hedging" title="Permanent link">&para;</a></h3>
 <p>When hedging across different maturities, use <strong>time-weighted vega</strong>:</p>
-<p>$$</p>
-<p>\mathcal{V}_{\sqrt{T}} = \mathcal{V} / \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\sqrt{T}} = \mathcal{V} / \sqrt{T}
+\]</div>
 <p>This normalizes for the <span class="arithmatex">\(\sqrt{T}\)</span> dependence:</p>
-<p>$$</p>
-<p>\text{Hedge ratio} = -\frac{\mathcal{V}<em _text_portfolio="\text{portfolio">{\text{portfolio}} / \sqrt{T</em>}}}}{\mathcal{V<em _text_hedge="\text{hedge">{\text{hedge}} / \sqrt{T</em>}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Hedge ratio} = -\frac{\mathcal{V}_{\text{portfolio}} / \sqrt{T_{\text{portfolio}}}}{\mathcal{V}_{\text{hedge}} / \sqrt{T_{\text{hedge}}}}
+\]</div>
 <h3 id="3-multi-instrument-hedging">3. Multi-Instrument Hedging<a class="headerlink" href="#3-multi-instrument-hedging" title="Permanent link">&para;</a></h3>
 <p>For complex portfolios, hedge using multiple instruments:</p>
 <p><strong>Objective:</strong> Find hedge ratios <span class="arithmatex">\(n_1, n_2, \ldots\)</span> such that:</p>
-<p>$$</p>
-<p>\mathcal{V}_{\text{portfolio}} + \sum_j n_j \mathcal{V}_j^{(\text{hedge})} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{portfolio}} + \sum_j n_j \mathcal{V}_j^{(\text{hedge})} = 0
+\]</div>
 <p><strong>Extended objective (term structure):</strong></p>
-<p>$$</p>
-<p>\mathcal{V}_{\text{portfolio}}(T_k) + \sum_j n_j \mathcal{V}_j^{(\text{hedge})}(T_k) = 0 \quad \text{for each bucket } k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{portfolio}}(T_k) + \sum_j n_j \mathcal{V}_j^{(\text{hedge})}(T_k) = 0 \quad \text{for each bucket } k
+\]</div>
 <p>This requires at least as many hedging instruments as buckets.</p>
 <h3 id="4-practical-considerations">4. Practical Considerations<a class="headerlink" href="#4-practical-considerations" title="Permanent link">&para;</a></h3>
 <p><strong>Liquidity:</strong> Not all strikes/maturities are equally liquid. Concentrate hedges in liquid options.</p>
@@ -47703,41 +47703,41 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <h2 id="pl-attribution">P&amp;L Attribution<a class="headerlink" href="#pl-attribution" title="Permanent link">&para;</a></h2>
 <h3 id="1-volatility-pl">1. Volatility P&amp;L<a class="headerlink" href="#1-volatility-pl" title="Permanent link">&para;</a></h3>
 <p>The P&amp;L from volatility moves is:</p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\sigma} = \mathcal{V} \cdot \Delta\sigma + \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2 + \text{higher order}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\sigma} = \mathcal{V} \cdot \Delta\sigma + \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2 + \text{higher order}
+\]</div>
 <p><strong>First-order approximation:</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\sigma} \approx \mathcal{V} \cdot \Delta\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\sigma} \approx \mathcal{V} \cdot \Delta\sigma
+\]</div>
 <p><strong>Second-order refinement (important for large moves):</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\sigma} \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\sigma} \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2} \text{Volga} \cdot (\Delta\sigma)^2
+\]</div>
 <h3 id="2-cross-effects-vanna-pl">2. Cross-Effects: Vanna P&amp;L<a class="headerlink" href="#2-cross-effects-vanna-pl" title="Permanent link">&para;</a></h3>
 <p>When spot and volatility move together:</p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{cross}} = \text{Vanna} \cdot \Delta S \cdot \Delta\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{cross}} = \text{Vanna} \cdot \Delta S \cdot \Delta\sigma
+\]</div>
 <p><strong>Empirical regularity:</strong> For equity indices, spot and volatility are negatively correlated:</p>
-<p>$$</p>
-<p>\Delta\sigma \approx -\beta \cdot \frac{\Delta S}{S}, \quad \beta &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta\sigma \approx -\beta \cdot \frac{\Delta S}{S}, \quad \beta &gt; 0
+\]</div>
 <p>This <strong>leverage effect</strong> means:
 - Vanna &gt; 0 portfolios benefit when spot falls and vol rises
 - Vanna &lt; 0 portfolios suffer in this scenario</p>
 <h3 id="3-full-second-order-pl">3. Full Second-Order P&amp;L<a class="headerlink" href="#3-full-second-order-pl" title="Permanent link">&para;</a></h3>
 <p>Combining all effects:</p>
-<p>$$</p>
-<p>\text{P\&amp;L} = \Delta \cdot \Delta S + \frac{1}{2}\Gamma \cdot (\Delta S)^2 + \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2 + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma + \Theta \cdot \Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} = \Delta \cdot \Delta S + \frac{1}{2}\Gamma \cdot (\Delta S)^2 + \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2 + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma + \Theta \cdot \Delta t
+\]</div>
 <p>This decomposition is fundamental for trading desk P&amp;L attribution.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Vega and implied volatility sensitivities form the foundation of volatility risk management:</p>
 <h3 id="1-basic-properties">1. Basic Properties<a class="headerlink" href="#1-basic-properties" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{BS}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}
+\]</div>
 <ul>
 <li>Positive for all options</li>
 <li>Maximum at ATM</li>
@@ -47779,9 +47779,9 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <li>Balance accuracy against transaction costs</li>
 </ul>
 <h3 id="5-pl-attribution">5. P&amp;L Attribution<a class="headerlink" href="#5-pl-attribution" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{vol}} \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2 + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{vol}} \approx \mathcal{V} \cdot \Delta\sigma + \frac{1}{2}\text{Volga} \cdot (\Delta\sigma)^2 + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma
+\]</div>
 <p>Understanding these sensitivities enables effective volatility trading and risk management.</p>
 <hr />
 <h2 id="further-reading">Further Reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>

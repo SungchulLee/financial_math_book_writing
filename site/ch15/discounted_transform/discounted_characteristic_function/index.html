@@ -46248,90 +46248,90 @@
 <h1 id="discounted-characteristic-function">Discounted Characteristic Function<a class="headerlink" href="#discounted-characteristic-function" title="Permanent link">&para;</a></h1>
 <h4 id="theorem-duffie-pann-singleton">Theorem (Duffie-Pann-Singleton)<a class="headerlink" href="#theorem-duffie-pann-singleton" title="Permanent link">&para;</a></h4>
 <p>If <span class="arithmatex">\({\bf X}_t\)</span> is affine, the discounted characteristic function (ChF) has the following affine form:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle
 \varphi({\bf X}_t,t,T,{\bf u})
 :=
 \mathbb{E^Q}\left[e^{-\int_t^Tr\left({\bf X}_{t'}\right)dt'}e^{i{\bf u}^T{\bf X}_T}\Big{|}F(t)\right]
 =
 e^{A({\bf u},\tau)+{\bf B}({\bf u},\tau)^T{\bf X}_t}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p>where <span class="arithmatex">\(\tau=T−t\)</span>. Furthermore,
 The coefficients <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\({\bf B}\)</span> satisfy the following Riccati Equation:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \frac{dA}{d\tau}
 &amp;=&amp;\displaystyle
--r_0+{\bf B}^Ta_0+\frac{1}{2}{\bf B}^Tc_0{\bf B}\
+-r_0+{\bf B}^Ta_0+\frac{1}{2}{\bf B}^Tc_0{\bf B}\\
 \displaystyle
 \frac{d{\bf B}}{d\tau}
 &amp;=&amp;\displaystyle
--r_1+a_1^T{\bf B}+\frac{1}{2}{\bf B}^Tc_1{\bf B}\</p>
-<p>\end{array}$$</p>
+-r_1+a_1^T{\bf B}+\frac{1}{2}{\bf B}^Tc_1{\bf B}\\
+\end{array}\]</div>
 <p>with the initial condition</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 A({\bf u},0)
 &amp;=&amp;\displaystyle
-0\
+0\\
 \displaystyle
 {\bf B}({\bf u},0)
 &amp;=&amp;\displaystyle
-i{\bf u}^T\</p>
-<p>\end{array}$$</p>
+i{\bf u}^T\\
+\end{array}\]</div>
 <h4 id="example-bs-model">Example - BS Model<a class="headerlink" href="#example-bs-model" title="Permanent link">&para;</a></h4>
 <h5 id="discounted-characteristic-function_1">Discounted Characteristic Function<a class="headerlink" href="#discounted-characteristic-function_1" title="Permanent link">&para;</a></h5>
 <p>With the fixed <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(T\)</span>,</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle
 U(X,t)
 :=\varphi(X,t,u,T)
 :=e^{-r(T-t)}\mathbb{E^Q}\left[e^{iuX_T}\Big{|}F(t)\right]
 =e^{-r(T-t)}\int e^{iuX_T} p(X,t,X_T,T)dX_T
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h5 id="uxt-satisfies-black-scholes-pde">U(X,t) Satisfies Black-Scholes PDE<a class="headerlink" href="#uxt-satisfies-black-scholes-pde" title="Permanent link">&para;</a></h5>
 <p>Since <span class="arithmatex">\(e^{-r(T-t)}\int \text{Payoff}(X_T)p(X,t,X_T,T)dX_T\)</span>
 satisfies the Black-Scholes PDE,
 <span class="arithmatex">\(U(X,t)\)</span> also satisfies the Black-Scholes PDE.
 With change of variable <span class="arithmatex">\(X=\log S\)</span> and <span class="arithmatex">\(\tau=T-t\)</span>,
 the Black-Scholes PDE for <span class="arithmatex">\(U(X,t)\)</span> becomes  </p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle
 -\frac{\partial U}{\partial \tau}
 +\left(r-\frac{1}{2}\sigma^2\right)\frac{\partial U}{\partial X}
 +
 \frac{1}{2}\sigma^2\frac{\partial^2 U}{\partial X^2}
 -rU=0
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h5 id="affine-solution">Affine Solution<a class="headerlink" href="#affine-solution" title="Permanent link">&para;</a></h5>
 <p>By Duffie-Pan-Singleton, <span class="arithmatex">\(U(X,t)\)</span> has the following form:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle
 U(X,t)
 =e^{A(\tau)+B(\tau)X}
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h5 id="riccati-equation">Riccati Equation<a class="headerlink" href="#riccati-equation" title="Permanent link">&para;</a></h5>
 <p>Plugging this to the Black-Scholes PDE, we have</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle
 \left(-\frac{\partial A}{\partial \tau}
 +\left(r-\frac{1}{2}\sigma^2\right)B
 +\frac{1}{2}\sigma^2B^2
 -r\right) -\left(\frac{\partial B}{\partial \tau}\right)X=0
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p>or</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lllll}
+<div class="arithmatex">\[
+\begin{array}{lllll}
 \text{Collect Rest}&amp;&amp;
 \displaystyle
 \frac{dA}{d\tau}
@@ -46345,11 +46345,11 @@ A=\left[-r+\left(r-\frac{1}{2}\sigma^2\right)iu-\frac{1}{2}\sigma^2u^2\right]\ta
 =0&amp;\Rightarrow&amp;
 \displaystyle
 B=iu\quad(\text{This is from the terminal condition})\\
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h5 id="discounted-characteristic-function-from-bs-pde">Discounted Characteristic Function From BS PDE<a class="headerlink" href="#discounted-characteristic-function-from-bs-pde" title="Permanent link">&para;</a></h5>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \displaystyle
 \varphi(X_t,t,u,T)
 &amp;:=&amp;\displaystyle
@@ -46361,8 +46361,8 @@ exp\left(
 \left[-r+\left(r-\frac{1}{2}\sigma^2\right)iu-\frac{1}{2}\sigma^2u^2\right]\tau
 +
 iuX_t\right)
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 
 
 

@@ -46629,9 +46629,9 @@
 <h2 id="the-cir-variance-process">The CIR Variance Process<a class="headerlink" href="#the-cir-variance-process" title="Permanent link">&para;</a></h2>
 <h3 id="dynamics">Dynamics<a class="headerlink" href="#dynamics" title="Permanent link">&para;</a></h3>
 <p>The variance in the Heston model follows a Cox–Ingersoll–Ross (CIR) process:</p>
-<p>$$</p>
-<p>dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
+\]</div>
 <p>with parameters <span class="arithmatex">\(\kappa &gt; 0\)</span> (mean reversion), <span class="arithmatex">\(\theta &gt; 0\)</span> (long-run level), and <span class="arithmatex">\(\xi &gt; 0\)</span> (volatility of volatility).</p>
 <h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
 <ol>
@@ -46644,13 +46644,13 @@
 <h2 id="the-feller-condition">The Feller Condition<a class="headerlink" href="#the-feller-condition" title="Permanent link">&para;</a></h2>
 <h3 id="statement">Statement<a class="headerlink" href="#statement" title="Permanent link">&para;</a></h3>
 <p>The <strong>Feller condition</strong> is:</p>
-<p>$$</p>
-<p>2\kappa\theta \geq \xi^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+2\kappa\theta \geq \xi^2
+\]</div>
 <p>Equivalently, defining <span class="arithmatex">\(\nu = \frac{2\kappa\theta}{\xi^2}\)</span>:</p>
-<p>$$</p>
-<p>\nu \geq 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nu \geq 1
+\]</div>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <p><strong>If Feller holds (<span class="arithmatex">\(\nu \geq 1\)</span>):</strong>
 - The boundary <span class="arithmatex">\(V = 0\)</span> is <strong>unattainable</strong>
@@ -46671,13 +46671,13 @@
 <h3 id="fellers-boundary-classification">Feller's Boundary Classification<a class="headerlink" href="#fellers-boundary-classification" title="Permanent link">&para;</a></h3>
 <p>For a diffusion <span class="arithmatex">\(dX = \mu(X)dt + \sigma(X)dW\)</span> on <span class="arithmatex">\((0, \infty)\)</span>, boundaries are classified using:</p>
 <p><strong>Scale function:</strong></p>
-<p>$$</p>
-<p>s(x) = \int_c^x \exp\left(-\int_c^y \frac{2\mu(z)}{\sigma(z)^2}dz\right)dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s(x) = \int_c^x \exp\left(-\int_c^y \frac{2\mu(z)}{\sigma(z)^2}dz\right)dy
+\]</div>
 <p><strong>Speed measure:</strong></p>
-<p>$$</p>
-<p>m(x) = \frac{1}{\sigma(x)^2 s'(x)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m(x) = \frac{1}{\sigma(x)^2 s'(x)}
+\]</div>
 <h3 id="classification-of-zero-for-cir">Classification of Zero for CIR<a class="headerlink" href="#classification-of-zero-for-cir" title="Permanent link">&para;</a></h3>
 <p>For the CIR process, the boundary <span class="arithmatex">\(V = 0\)</span> is classified as:</p>
 <table>
@@ -46758,9 +46758,9 @@
 <h2 id="simulation-schemes-under-feller-violation">Simulation Schemes Under Feller Violation<a class="headerlink" href="#simulation-schemes-under-feller-violation" title="Permanent link">&para;</a></h2>
 <h3 id="full-truncation">Full Truncation<a class="headerlink" href="#full-truncation" title="Permanent link">&para;</a></h3>
 <p>Replace <span class="arithmatex">\(V_t^+ = \max(V_t, 0)\)</span> in both drift and diffusion:</p>
-<p>$$</p>
-<p>V_{t+\Delta} = V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{t+\Delta} = V_t + \kappa(\theta - V_t^+)\Delta + \xi\sqrt{V_t^+}\sqrt{\Delta}\,Z
+\]</div>
 <p><strong>Properties:</strong>
 - Simple to implement
 - Introduces positive bias (variance is inflated)
@@ -46775,14 +46775,14 @@
 <p>Andersen's QE scheme matches moments of the exact transition density:</p>
 <p><strong>Step 1:</strong> Compute <span class="arithmatex">\(m = \theta + (V_t - \theta)e^{-\kappa\Delta}\)</span> and <span class="arithmatex">\(s^2 = \frac{V_t\xi^2 e^{-\kappa\Delta}}{\kappa}(1-e^{-\kappa\Delta}) + \frac{\theta\xi^2}{2\kappa}(1-e^{-\kappa\Delta})^2\)</span></p>
 <p><strong>Step 2:</strong> If <span class="arithmatex">\(\psi = s^2/m^2 &lt; \psi_c\)</span> (typically <span class="arithmatex">\(\psi_c = 1.5\)</span>), use quadratic:</p>
-<p>$$</p>
-<p>V_{t+\Delta} = a(b + Z)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{t+\Delta} = a(b + Z)^2
+\]</div>
 <p>where <span class="arithmatex">\(a, b\)</span> are moment-matched.</p>
 <p><strong>Step 3:</strong> If <span class="arithmatex">\(\psi \geq \psi_c\)</span>, use exponential:</p>
-<p>$$</p>
-<p>V_{t+\Delta} = \Psi^{-1}(U; p, \beta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{t+\Delta} = \Psi^{-1}(U; p, \beta)
+\]</div>
 <p>where <span class="arithmatex">\(\Psi\)</span> is a mixture of point mass at 0 and exponential.</p>
 <p><strong>Properties:</strong>
 - Near-exact distribution matching
@@ -46790,9 +46790,9 @@
 - Industry standard</p>
 <h3 id="exact-simulation">Exact Simulation<a class="headerlink" href="#exact-simulation" title="Permanent link">&para;</a></h3>
 <p>The transition <span class="arithmatex">\(V_{t+\Delta} | V_t\)</span> is a scaled non-central chi-squared:</p>
-<p>$$</p>
-<p>V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2_{d,\lambda}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{t+\Delta} = \frac{\xi^2(1-e^{-\kappa\Delta})}{4\kappa}\chi'^2_{d,\lambda}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(d = \frac{4\kappa\theta}{\xi^2}\)</span> (degrees of freedom)
 - <span class="arithmatex">\(\lambda = \frac{4\kappa e^{-\kappa\Delta}}{\xi^2(1-e^{-\kappa\Delta})}V_t\)</span> (non-centrality)</p>

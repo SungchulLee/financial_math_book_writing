@@ -47335,19 +47335,19 @@
 <p><strong>Probability Measure</strong>: A function <span class="arithmatex">\(P: \mathcal{F} \to [0,1]\)</span> satisfying:
 1. <span class="arithmatex">\(P(\emptyset) = 0\)</span>, <span class="arithmatex">\(P(\Omega) = 1\)</span>
 2. Countable additivity: For disjoint <span class="arithmatex">\(\{A_i\}_{i=1}^{\infty}\)</span>,</p>
-<p>$$</p>
-<p>P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)</p>
-<p>$$</p>
+<p>$$
+   P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
+   $$</p>
 <p><strong>Space of Probability Measures</strong>: Denote:</p>
-<p>$$</p>
-<p>\mathcal{M}_1(\Omega) = { P: P \text{ is a probability measure on } (\Omega, \mathcal{F}) }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{M}_1(\Omega) = \{ P: P \text{ is a probability measure on } (\Omega, \mathcal{F}) \}
+\]</div>
 <h3 id="2-weak-topology">2. Weak Topology<a class="headerlink" href="#2-weak-topology" title="Permanent link">&para;</a></h3>
 <p>The space <span class="arithmatex">\(\mathcal{M}_1(\Omega)\)</span> is endowed with the <strong>weak topology</strong> (or weak-* topology).</p>
 <p><strong>Definition</strong> (Weak Convergence): A sequence <span class="arithmatex">\(\{P_n\}\)</span> converges weakly to <span class="arithmatex">\(P\)</span> (written <span class="arithmatex">\(P_n \xrightarrow{w} P\)</span>) if:</p>
-<p>$$</p>
-<p>\int_{\Omega} f \, dP_n \to \int_{\Omega} f \, dP</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\Omega} f \, dP_n \to \int_{\Omega} f \, dP
+\]</div>
 <p>for all bounded continuous functions <span class="arithmatex">\(f: \Omega \to \mathbb{R}\)</span>.</p>
 <p><strong>Portmanteau Theorem</strong>: The following are equivalent for <span class="arithmatex">\(P_n \xrightarrow{w} P\)</span>:</p>
 <ol>
@@ -47361,85 +47361,85 @@
 - A subset <span class="arithmatex">\(\mathcal{P} \subseteq \mathcal{M}_1(\Omega)\)</span> is relatively compact iff it is tight</p>
 <h3 id="3-total-variation-distance">3. Total Variation Distance<a class="headerlink" href="#3-total-variation-distance" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong> (Total Variation): The total variation distance between probability measures <span class="arithmatex">\(P\)</span> and <span class="arithmatex">\(Q\)</span> is:</p>
-<p>$$</p>
-<p>|P - Q|<em A="A" _in="\in" _mathcal_F="\mathcal{F">{\text{TV}} = \sup</em> \right| d\mu}} |P(A) - Q(A)| = \frac{1}{2} \int_{\Omega} \left| \frac{dP}{d\mu} - \frac{dQ}{d\mu</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|P - Q\|_{\text{TV}} = \sup_{A \in \mathcal{F}} |P(A) - Q(A)| = \frac{1}{2} \int_{\Omega} \left| \frac{dP}{d\mu} - \frac{dQ}{d\mu} \right| d\mu
+\]</div>
 <p>where <span class="arithmatex">\(\mu = P + Q\)</span>.</p>
 <p><strong>Properties</strong>:
 1. Metric: <span class="arithmatex">\(\|P - Q\|_{\text{TV}}\)</span> defines a metric on <span class="arithmatex">\(\mathcal{M}_1(\Omega)\)</span>
 2. Range: <span class="arithmatex">\(\|P - Q\|_{\text{TV}} \in [0, 1]\)</span>
 3. Triangle inequality: <span class="arithmatex">\(\|P - R\|_{\text{TV}} \leq \|P - Q\|_{\text{TV}} + \|Q - R\|_{\text{TV}}\)</span></p>
 <p><strong>Relationship to Weak Topology</strong>: Total variation is stronger than weak convergence:</p>
-<p>$$</p>
-<p>|P_n - P|_{\text{TV}} \to 0 \implies P_n \xrightarrow{w} P</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|P_n - P\|_{\text{TV}} \to 0 \implies P_n \xrightarrow{w} P
+\]</div>
 <p>but the converse is generally false.</p>
 <h2 id="specification-of-sets-of-probability-measures">Specification of Sets of Probability Measures<a class="headerlink" href="#specification-of-sets-of-probability-measures" title="Permanent link">&para;</a></h2>
 <h3 id="1-parametric-uncertainty-sets">1. Parametric Uncertainty Sets<a class="headerlink" href="#1-parametric-uncertainty-sets" title="Permanent link">&para;</a></h3>
 <p><strong><span class="arithmatex">\(\varepsilon\)</span>-Contamination</strong>: Given a reference measure <span class="arithmatex">\(P_0\)</span> and contamination level <span class="arithmatex">\(\varepsilon \in [0,1]\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{P}_{\varepsilon} = { (1-\varepsilon) P_0 + \varepsilon Q: Q \in \mathcal{M}_1(\Omega) }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_{\varepsilon} = \{ (1-\varepsilon) P_0 + \varepsilon Q: Q \in \mathcal{M}_1(\Omega) \}
+\]</div>
 <p><strong>Interpretation</strong>: At most <span class="arithmatex">\(\varepsilon\)</span> fraction of the probability mass can come from an arbitrary measure <span class="arithmatex">\(Q\)</span>.</p>
 <p><strong>Total Variation Ball</strong>:</p>
-<p>$$</p>
-<p>\mathcal{P}<em _text_TV="\text{TV">{\text{TV}}(\delta) = { P: |P - P_0|</em> \leq \delta }}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_{\text{TV}}(\delta) = \{ P: \|P - P_0\|_{\text{TV}} \leq \delta \}
+\]</div>
 <p><strong>KL Divergence Ball</strong> (Relative Entropy Ball):</p>
-<p>$$</p>
-<p>\mathcal{P}<em _text_KL="\text{KL">{\text{KL}}(\theta) = \left{ P \ll P_0: D</em>(P | P_0) \leq \theta \right}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_{\text{KL}}(\theta) = \left\{ P \ll P_0: D_{\text{KL}}(P \| P_0) \leq \theta \right\}
+\]</div>
 <p>where the KL divergence is:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(P | P_0) = \begin{cases}
-\displaystyle\int_{\Omega} \log\left(\frac{dP}{dP_0}\right) dP &amp; \text{if } P \ll P_0 \
+<div class="arithmatex">\[
+D_{\text{KL}}(P \| P_0) = \begin{cases}
+\displaystyle\int_{\Omega} \log\left(\frac{dP}{dP_0}\right) dP &amp; \text{if } P \ll P_0 \\
 +\infty &amp; \text{otherwise}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <h3 id="2-density-based-sets">2. Density-Based Sets<a class="headerlink" href="#2-density-based-sets" title="Permanent link">&para;</a></h3>
 <p><strong>Density Ratio Bounds</strong>: For a reference measure <span class="arithmatex">\(P_0\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{P}_{\text{density}} = \left{ P: \frac{dP}{dP_0}(\omega) \in [\ell(\omega), u(\omega)] \text{ for } P_0\text{-a.e. } \omega \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_{\text{density}} = \left\{ P: \frac{dP}{dP_0}(\omega) \in [\ell(\omega), u(\omega)] \text{ for } P_0\text{-a.e. } \omega \right\}
+\]</div>
 <p>where <span class="arithmatex">\(0 \leq \ell(\omega) \leq u(\omega)\)</span> are given density bounds.</p>
 <p><strong>Example</strong>: In continuous time, specify bounds on the market price of risk:</p>
-<p>$$</p>
-<p>\mathcal{Q} = \left{ \mathbb{Q}: \left| \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|<em L_infty="L^{\infty">{\mathcal{F}_t} \right|</em> \leq K \right}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{Q} = \left\{ \mathbb{Q}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} \right\|_{L^{\infty}} \leq K \right\}
+\]</div>
 <h3 id="3-moment-based-sets">3. Moment-Based Sets<a class="headerlink" href="#3-moment-based-sets" title="Permanent link">&para;</a></h3>
 <p><strong>Mean-Variance Uncertainty</strong>: For a random vector <span class="arithmatex">\(X\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{P}_{\text{moment}} = \left{ P: \mathbb{E}_P[X] \in \mathcal{M}, \, \text{Cov}_P(X) \in \Sigma \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_{\text{moment}} = \left\{ P: \mathbb{E}_P[X] \in \mathcal{M}, \, \text{Cov}_P(X) \in \Sigma \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{M} \subseteq \mathbb{R}^n\)</span> and <span class="arithmatex">\(\Sigma\)</span> is a set of positive semidefinite matrices.</p>
 <p><strong>General Moment Constraints</strong>:</p>
-<p>$$</p>
-<p>\mathcal{P} = \left{ P: \mathbb{E}_P[g_i(X)] \in \mathcal{C}_i, \, i = 1, \ldots, k \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \left\{ P: \mathbb{E}_P[g_i(X)] \in \mathcal{C}_i, \, i = 1, \ldots, k \right\}
+\]</div>
 <p>for constraint sets <span class="arithmatex">\(\mathcal{C}_i \subseteq \mathbb{R}\)</span>.</p>
 <h3 id="4-rectangularity">4. Rectangularity<a class="headerlink" href="#4-rectangularity" title="Permanent link">&para;</a></h3>
 <p>A fundamental concept for dynamic consistency in multi-period models.</p>
 <p><strong>Definition</strong> (Rectangular Set): A set <span class="arithmatex">\(\mathcal{P}\)</span> of probability measures on <span class="arithmatex">\((\Omega, \mathcal{F}_T)\)</span> is <strong>rectangular</strong> with respect to a filtration <span class="arithmatex">\(\{\mathcal{F}_t\}_{t \leq T}\)</span> if for any <span class="arithmatex">\(P, Q \in \mathcal{P}\)</span>, the "pasted" measure:</p>
-<p>$$</p>
-<p>R(A) = \mathbb{E}<em B_c="B^c">P[\mathbb{1}_A \cdot \mathbb{1}_B + \mathbb{1}_A \cdot \mathbb{1}</em>_t)]} \cdot P(A|\mathcal{F}_t) / Q(B|\mathcal{F}_t) \cdot Q(A|\mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R(A) = \mathbb{E}_P[\mathbb{1}_A \cdot \mathbb{1}_B + \mathbb{1}_A \cdot \mathbb{1}_{B^c} \cdot P(A|\mathcal{F}_t) / Q(B|\mathcal{F}_t) \cdot Q(A|\mathcal{F}_t)]
+\]</div>
 <p>also belongs to <span class="arithmatex">\(\mathcal{P}\)</span> for all <span class="arithmatex">\(B \in \mathcal{F}_t\)</span> and <span class="arithmatex">\(A \in \mathcal{F}_T\)</span>.</p>
 <p><strong>Intuitive Characterization</strong>: <span class="arithmatex">\(\mathcal{P}\)</span> is rectangular if:</p>
-<p>$$</p>
-<p>\mathcal{P} = \left{ P: P(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t \leq T \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \left\{ P: P(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t \leq T \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{P}_t\)</span> are measurable families of conditional distributions.</p>
 <p><strong>Importance</strong>: Rectangularity ensures that optimal decisions under maxmin preferences remain optimal when reconsidered at intermediate times (dynamic consistency).</p>
 <h2 id="convexity-and-compactness-properties">Convexity and Compactness Properties<a class="headerlink" href="#convexity-and-compactness-properties" title="Permanent link">&para;</a></h2>
 <h3 id="1-convex-sets-of-measures">1. Convex Sets of Measures<a class="headerlink" href="#1-convex-sets-of-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Convex Combination</strong>: For <span class="arithmatex">\(P, Q \in \mathcal{M}_1(\Omega)\)</span> and <span class="arithmatex">\(\lambda \in [0,1]\)</span>:</p>
-<p>$$</p>
-<p>\lambda P + (1-\lambda) Q \in \mathcal{M}_1(\Omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda P + (1-\lambda) Q \in \mathcal{M}_1(\Omega)
+\]</div>
 <p><strong>Convex Hull</strong>: For a family <span class="arithmatex">\(\{\mathcal{P}_i\}_{i \in I}\)</span>:</p>
-<p>$$</p>
-<p>\text{conv}(\mathcal{P}) = \left{ \sum_{i=1}^n \lambda_i P_i: P_i \in \mathcal{P}, \sum_{i=1}^n \lambda_i = 1, \lambda_i \geq 0 \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{conv}(\mathcal{P}) = \left\{ \sum_{i=1}^n \lambda_i P_i: P_i \in \mathcal{P}, \sum_{i=1}^n \lambda_i = 1, \lambda_i \geq 0 \right\}
+\]</div>
 <p><strong>Theorem</strong>: Many natural uncertainty sets are convex:
 1. KL balls: <span class="arithmatex">\(\mathcal{P}_{\text{KL}}(\theta)\)</span> is convex
 2. Total variation balls: <span class="arithmatex">\(\mathcal{P}_{\text{TV}}(\delta)\)</span> is convex
@@ -47449,202 +47449,202 @@
 1. <span class="arithmatex">\(\mathcal{P}\)</span> is closed
 2. <span class="arithmatex">\(\mathcal{P}\)</span> is tight (for Polish spaces)</p>
 <p><strong>Tightness</strong>: A family <span class="arithmatex">\(\mathcal{P}\)</span> is <strong>tight</strong> if for every <span class="arithmatex">\(\varepsilon &gt; 0\)</span>, there exists a compact set <span class="arithmatex">\(K \subseteq \Omega\)</span> such that:</p>
-<p>$$</p>
-<p>P(K) &gt; 1 - \varepsilon \quad \text{for all } P \in \mathcal{P}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(K) &gt; 1 - \varepsilon \quad \text{for all } P \in \mathcal{P}
+\]</div>
 <p><strong>Implications</strong>: Compactness ensures that:
 - <span class="arithmatex">\(\min_{P \in \mathcal{P}} \mathbb{E}_P[f]\)</span> is attained for continuous <span class="arithmatex">\(f\)</span>
 - Sequential minimizing procedures converge</p>
 <h3 id="3-extreme-points-and-choquets-theorem">3. Extreme Points and Choquet's Theorem<a class="headerlink" href="#3-extreme-points-and-choquets-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Extreme Point</strong>: <span class="arithmatex">\(P \in \mathcal{P}\)</span> is an <strong>extreme point</strong> if it cannot be written as a strict convex combination:</p>
-<p>$$</p>
-<p>P = \lambda P_1 + (1-\lambda) P_2 \quad \text{with } P_1, P_2 \in \mathcal{P}, P_1 \neq P_2, \lambda \in (0,1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = \lambda P_1 + (1-\lambda) P_2 \quad \text{with } P_1, P_2 \in \mathcal{P}, P_1 \neq P_2, \lambda \in (0,1)
+\]</div>
 <p>implies <span class="arithmatex">\(P = P_1 = P_2\)</span>.</p>
 <p><strong>Choquet's Theorem</strong>: If <span class="arithmatex">\(\mathcal{P}\)</span> is a compact convex set in a locally convex topological vector space, then every <span class="arithmatex">\(P \in \mathcal{P}\)</span> can be represented as:</p>
-<p>$$</p>
-<p>P = \int_{\text{ext}(\mathcal{P})} Q \, d\mu(Q)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = \int_{\text{ext}(\mathcal{P})} Q \, d\mu(Q)
+\]</div>
 <p>for some probability measure <span class="arithmatex">\(\mu\)</span> on the set of extreme points <span class="arithmatex">\(\text{ext}(\mathcal{P})\)</span>.</p>
 <p><strong>Application</strong>: For maxmin expected utility:</p>
-<p>$$</p>
-<p>\min_{P \in \mathcal{P}} \mathbb{E}<em P="P" _in="\in" _text_ext="\text{ext">P[u(X)] = \min</em>_P[u(X)]}(\mathcal{P})} \mathbb{E</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{P \in \mathcal{P}} \mathbb{E}_P[u(X)] = \min_{P \in \text{ext}(\mathcal{P})} \mathbb{E}_P[u(X)]
+\]</div>
 <p>reducing the optimization to extreme points.</p>
 <h2 id="robust-optimization-framework">Robust Optimization Framework<a class="headerlink" href="#robust-optimization-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-general-robust-problem">1. General Robust Problem<a class="headerlink" href="#1-general-robust-problem" title="Permanent link">&para;</a></h3>
 <p>Consider the robust optimization problem:</p>
-<p>$$</p>
-<p>\inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \omega)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \omega)]
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\mathcal{X}\)</span> is the decision space
 - <span class="arithmatex">\(\mathcal{P}\)</span> is the uncertainty set of probability measures
 - <span class="arithmatex">\(f(x, \omega)\)</span> is the loss function</p>
 <p><strong>Minimax Theorem</strong>: Under appropriate conditions (compactness, convexity, continuity):</p>
-<p>$$</p>
-<p>\inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} \mathbb{E}<em P="P" _in="\in" _mathcal_P="\mathcal{P">P[f(x, \omega)] = \sup</em>_P[f(x, \omega)]}} \inf_{x \in \mathcal{X}} \mathbb{E</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \omega)] = \sup_{P \in \mathcal{P}} \inf_{x \in \mathcal{X}} \mathbb{E}_P[f(x, \omega)]
+\]</div>
 <h3 id="2-duality-and-conjugate-functions">2. Duality and Conjugate Functions<a class="headerlink" href="#2-duality-and-conjugate-functions" title="Permanent link">&para;</a></h3>
 <p><strong>Conjugate Function</strong>: For a convex function <span class="arithmatex">\(\phi: \mathbb{R}^n \to \mathbb{R}\)</span>:</p>
-<p>$$</p>
-<p>\phi^*(y) = \sup_{x \in \mathbb{R}^n} \left{ x^\top y - \phi(x) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi^*(y) = \sup_{x \in \mathbb{R}^n} \left\{ x^\top y - \phi(x) \right\}
+\]</div>
 <p><strong>Fenchel-Rockafellar Duality</strong>: For convex <span class="arithmatex">\(f, g\)</span>:</p>
-<p>$$</p>
-<p>\inf_x { f(x) + g(x) } = \sup_{y} { -f^<em>(y) - g^</em>(-y) }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_x \{ f(x) + g(x) \} = \sup_{y} \{ -f^*(y) - g^*(-y) \}
+\]</div>
 <p><strong>Application to Robust Optimization</strong>: The robust problem:</p>
-<p>$$</p>
-<p>\min_{x} \max_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \cdot)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{x} \max_{P \in \mathcal{P}} \mathbb{E}_P[f(x, \cdot)]
+\]</div>
 <p>can be reformulated using the conjugate of the indicator function of <span class="arithmatex">\(\mathcal{P}\)</span>.</p>
 <h3 id="3-specific-examples">3. Specific Examples<a class="headerlink" href="#3-specific-examples" title="Permanent link">&para;</a></h3>
 <h3 id="4-robust-mean-variance-portfolio">4. Robust Mean-Variance Portfolio<a class="headerlink" href="#4-robust-mean-variance-portfolio" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: </p>
-<p>$$</p>
-<p>\max_{w} \min_{P \in \mathcal{P}} \left{ w^\top \mathbb{E}_P[R] - \frac{\lambda}{2} w^\top \text{Cov}_P(R) w \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{w} \min_{P \in \mathcal{P}} \left\{ w^\top \mathbb{E}_P[R] - \frac{\lambda}{2} w^\top \text{Cov}_P(R) w \right\}
+\]</div>
 <p><strong>KL Uncertainty</strong>: For <span class="arithmatex">\(\mathcal{P} = \mathcal{P}_{\text{KL}}(\theta)\)</span>:</p>
-<p>$$</p>
-<p>\min_{P \in \mathcal{P}} \mathbb{E}<em P_0="P_0">P[w^\top R] = \mathbb{E}</em>}[w^\top R] - \sqrt{2\theta \cdot w^\top \Sigma_0 w</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{P \in \mathcal{P}} \mathbb{E}_P[w^\top R] = \mathbb{E}_{P_0}[w^\top R] - \sqrt{2\theta \cdot w^\top \Sigma_0 w}
+\]</div>
 <p>where <span class="arithmatex">\(\Sigma_0 = \text{Cov}_{P_0}(R)\)</span>.</p>
 <p><strong>Robust Portfolio</strong>:</p>
-<p>$$</p>
-<p>w^* = \frac{1}{\lambda + \sqrt{2\theta/\mu^\top \Sigma_0^{-1} \mu}} \Sigma_0^{-1} \mu_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w^* = \frac{1}{\lambda + \sqrt{2\theta/\mu^\top \Sigma_0^{-1} \mu}} \Sigma_0^{-1} \mu_0
+\]</div>
 <p>where <span class="arithmatex">\(\mu_0 = \mathbb{E}_{P_0}[R]\)</span>.</p>
 <h3 id="5-robust-option-pricing">5. Robust Option Pricing<a class="headerlink" href="#5-robust-option-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Price a European option with payoff <span class="arithmatex">\(\Phi(S_T)\)</span> under model uncertainty.</p>
 <p><strong>Setup</strong>: Consider equivalent martingale measures <span class="arithmatex">\(\mathbb{Q}\)</span> with bounded market price of risk:</p>
-<p>$$</p>
-<p>\mathcal{Q} = \left{ \mathbb{Q}: \left| \frac{d\mathbb{Q}}{d\mathbb{P}} \right|_{\infty} \leq K \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{Q} = \left\{ \mathbb{Q}: \left\| \frac{d\mathbb{Q}}{d\mathbb{P}} \right\|_{\infty} \leq K \right\}
+\]</div>
 <p><strong>Robust Price</strong>:</p>
-<p>$$</p>
-<p>V_0 = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-rT} \Phi(S_T) \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}_{\mathbb{Q}}\left[ e^{-rT} \Phi(S_T) \right]
+\]</div>
 <p><strong>PDE Formulation</strong>: The value function <span class="arithmatex">\(V(t, S)\)</span> satisfies the Hamilton-Jacobi-Bellman equation:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathcal{L}^{\sigma} V = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \sup_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathcal{L}^{\sigma} V = 0
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}^{\sigma}\)</span> is the Black-Scholes operator with volatility <span class="arithmatex">\(\sigma\)</span>.</p>
 <h2 id="contraction-and-expansion-of-uncertainty-sets">Contraction and Expansion of Uncertainty Sets<a class="headerlink" href="#contraction-and-expansion-of-uncertainty-sets" title="Permanent link">&para;</a></h2>
 <h3 id="1-conditional-updating">1. Conditional Updating<a class="headerlink" href="#1-conditional-updating" title="Permanent link">&para;</a></h3>
 <p><strong>Question</strong>: How should <span class="arithmatex">\(\mathcal{P}\)</span> be updated upon observing information <span class="arithmatex">\(\mathcal{F}_t\)</span>?</p>
 <p><strong>Naive Update</strong> (Full Bayesian):</p>
-<p>$$</p>
-<p>\mathcal{P}_t = { P(\cdot | \mathcal{F}_t): P \in \mathcal{P} }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_t = \{ P(\cdot | \mathcal{F}_t): P \in \mathcal{P} \}
+\]</div>
 <p><strong>Problem</strong>: This may not preserve rectangularity or lead to time-consistent preferences.</p>
 <p><strong>Maximum Likelihood Update</strong>: Choose the measure in <span class="arithmatex">\(\mathcal{P}\)</span> most consistent with observed data:</p>
-<p>$$</p>
-<p>P_t = \arg\max_{P \in \mathcal{P}} \text{likelihood}(P | \text{data up to } t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_t = \arg\max_{P \in \mathcal{P}} \text{likelihood}(P | \text{data up to } t)
+\]</div>
 <p><strong>Robust Bayesian Update</strong>: Update using worst-case likelihood:</p>
-<p>$$</p>
-<p>\mathcal{P}<em _mathcal_F="\mathcal{F">t = \left{ P \in \mathcal{P}: \frac{dP}{dP_0}\bigg|</em> \geq \ell_t \right}}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_t = \left\{ P \in \mathcal{P}: \frac{dP}{dP_0}\bigg|_{\mathcal{F}_t} \geq \ell_t \right\}
+\]</div>
 <p>for appropriately chosen threshold <span class="arithmatex">\(\ell_t\)</span>.</p>
 <h3 id="2-learning-and-contraction">2. Learning and Contraction<a class="headerlink" href="#2-learning-and-contraction" title="Permanent link">&para;</a></h3>
 <p>As more data is observed, uncertainty should decrease.</p>
 <p><strong>Frequentist Consistency</strong>: If the true measure <span class="arithmatex">\(P^* \in \mathcal{P}\)</span>, then with probability one:</p>
-<p>$$</p>
-<p>\mathcal{P}_n \to {P^*} \quad \text{as } n \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_n \to \{P^*\} \quad \text{as } n \to \infty
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{P}_n\)</span> is the posterior uncertainty set after <span class="arithmatex">\(n\)</span> observations.</p>
 <p><strong>Theorem</strong> (Contraction Rate): Under regularity conditions, the diameter of <span class="arithmatex">\(\mathcal{P}_n\)</span> contracts at rate:</p>
-<p>$$</p>
-<p>\text{diam}(\mathcal{P}_n) = O_P(n^{-1/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{diam}(\mathcal{P}_n) = O_P(n^{-1/2})
+\]</div>
 <p>in appropriate metrics.</p>
 <h2 id="entropic-penalty-and-relative-entropy">Entropic Penalty and Relative Entropy<a class="headerlink" href="#entropic-penalty-and-relative-entropy" title="Permanent link">&para;</a></h2>
 <h3 id="1-relative-entropy">1. Relative Entropy<a class="headerlink" href="#1-relative-entropy" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: For <span class="arithmatex">\(P \ll Q\)</span>:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(P | Q) = \int_{\Omega} \log\left(\frac{dP}{dQ}\right) dP</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(P \| Q) = \int_{\Omega} \log\left(\frac{dP}{dQ}\right) dP
+\]</div>
 <p><strong>Properties</strong>:
 1. <strong>Non-negativity</strong>: <span class="arithmatex">\(D_{\text{KL}}(P \| Q) \geq 0\)</span> with equality iff <span class="arithmatex">\(P = Q\)</span> (Gibbs' inequality)
 2. <strong>Joint convexity</strong>: <span class="arithmatex">\(D_{\text{KL}}(\cdot \| \cdot)\)</span> is jointly convex
 3. <strong>Data processing inequality</strong>: For measurable <span class="arithmatex">\(f\)</span>:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(P \circ f^{-1} | Q \circ f^{-1}) \leq D_{\text{KL}}(P | Q)</p>
-<p>$$</p>
+<p>$$
+   D_{\text{KL}}(P \circ f^{-1} | Q \circ f^{-1}) \leq D_{\text{KL}}(P | Q)
+   $$</p>
 <h3 id="2-entropic-constraint">2. Entropic Constraint<a class="headerlink" href="#2-entropic-constraint" title="Permanent link">&para;</a></h3>
 <p>The KL divergence naturally penalizes deviation from a reference measure.</p>
 <p><strong>Optimization Problem</strong>:</p>
-<p>$$</p>
-<p>\min_{P} \mathbb{E}<em _text_KL="\text{KL">P[X] \quad \text{subject to} \quad D</em>(P | P_0) \leq \theta}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{P} \mathbb{E}_P[X] \quad \text{subject to} \quad D_{\text{KL}}(P \| P_0) \leq \theta
+\]</div>
 <p><strong>Solution</strong> (Exponential Tilting):</p>
-<p>$$</p>
-<p>\frac{dP^<em>}{dP_0} = \frac{e^{-\lambda^</em> X}}{Z(\lambda^*)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP^*}{dP_0} = \frac{e^{-\lambda^* X}}{Z(\lambda^*)}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\lambda^*\)</span> is chosen so that <span class="arithmatex">\(D_{\text{KL}}(P^* \| P_0) = \theta\)</span>
 - <span class="arithmatex">\(Z(\lambda) = \mathbb{E}_{P_0}[e^{-\lambda X}]\)</span> is the moment generating function</p>
 <h3 id="3-connection-to-exponential-utility">3. Connection to Exponential Utility<a class="headerlink" href="#3-connection-to-exponential-utility" title="Permanent link">&para;</a></h3>
 <p><strong>Entropic Risk Measure</strong>:</p>
-<p>$$</p>
-<p>\rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}_{P_0}\left[ e^{\beta X} \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{\beta}(X) = \frac{1}{\beta} \log \mathbb{E}_{P_0}\left[ e^{\beta X} \right]
+\]</div>
 <p><strong>Dual Representation</strong>:</p>
-<p>$$</p>
-<p>\rho_{\beta}(X) = \sup_{P \ll P_0} \left{ \mathbb{E}<em _text_KL="\text{KL">P[X] - \frac{1}{\beta} D</em>(P | P_0) \right}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{\beta}(X) = \sup_{P \ll P_0} \left\{ \mathbb{E}_P[X] - \frac{1}{\beta} D_{\text{KL}}(P \| P_0) \right\}
+\]</div>
 <p><strong>Interpretation</strong>: The supremum is over all measures <span class="arithmatex">\(P\)</span> in the entropic ball, trading off expected value against model distance.</p>
 <p><strong>Exponential Utility</strong>: For utility <span class="arithmatex">\(u(x) = -e^{-\beta x}\)</span>:</p>
-<p>$$</p>
-<p>-\frac{1}{\beta} \log(-\mathbb{E}[u(X)]) = \rho_{\beta}(X)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\frac{1}{\beta} \log(-\mathbb{E}[u(X)]) = \rho_{\beta}(X)
+\]</div>
 <p>linking risk-sensitive preferences to model uncertainty.</p>
 <h2 id="applications-in-continuous-time">Applications in Continuous Time<a class="headerlink" href="#applications-in-continuous-time" title="Permanent link">&para;</a></h2>
 <h3 id="1-drift-uncertainty-in-brownian-motion">1. Drift Uncertainty in Brownian Motion<a class="headerlink" href="#1-drift-uncertainty-in-brownian-motion" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Observed process:</p>
-<p>$$</p>
-<p>dX_t = \mu_t \, dt + \sigma \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu_t \, dt + \sigma \, dW_t
+\]</div>
 <p>with uncertain drift <span class="arithmatex">\(\mu_t \in \mathcal{M}\)</span>.</p>
 <p><strong>Set of Measures</strong>: Define:</p>
-<p>$$</p>
-<p>\mathcal{P} = \left{ P^{\mu}: \mu \in \mathcal{M} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \left\{ P^{\mu}: \mu \in \mathcal{M} \right\}
+\]</div>
 <p>where under <span class="arithmatex">\(P^{\mu}\)</span>, <span class="arithmatex">\(X\)</span> has drift <span class="arithmatex">\(\mu\)</span>.</p>
 <p><strong>Girsanov Theorem</strong>: Measures <span class="arithmatex">\(P^{\mu}\)</span> are related by:</p>
-<p>$$</p>
-<p>\frac{dP^{\mu}}{dP^0}\bigg|_{\mathcal{F}_t} = \exp\left( \int_0^t \frac{\mu_s}{\sigma} dW_s - \frac{1}{2} \int_0^t \left(\frac{\mu_s}{\sigma}\right)^2 ds \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP^{\mu}}{dP^0}\bigg|_{\mathcal{F}_t} = \exp\left( \int_0^t \frac{\mu_s}{\sigma} dW_s - \frac{1}{2} \int_0^t \left(\frac{\mu_s}{\sigma}\right)^2 ds \right)
+\]</div>
 <h3 id="2-volatility-uncertainty">2. Volatility Uncertainty<a class="headerlink" href="#2-volatility-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Stock price:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+\]</div>
 <p>with <span class="arithmatex">\(\sigma_t \in [\sigma_{\min}, \sigma_{\max}]\)</span>.</p>
 <p><strong>Set of Equivalent Martingale Measures</strong>: For each admissible <span class="arithmatex">\(\sigma_t\)</span>:</p>
-<p>$$</p>
-<p>d\mathbb{Q}^{\sigma} = \exp\left( -\int_0^T \theta_s \, dW_s - \frac{1}{2} \int_0^T \theta_s^2 \, ds \right) d\mathbb{P}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\mathbb{Q}^{\sigma} = \exp\left( -\int_0^T \theta_s \, dW_s - \frac{1}{2} \int_0^T \theta_s^2 \, ds \right) d\mathbb{P}
+\]</div>
 <p>where <span class="arithmatex">\(\theta_t = (\mu - r)/\sigma_t\)</span> is the market price of risk.</p>
 <p><strong>Robust Derivative Pricing</strong>:</p>
-<p>$$</p>
-<p>V_t = \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathbb{E}_{\mathbb{Q}^{\sigma}}\left[ e^{-r(T-t)} \Phi(S_T) \, \big| \, \mathcal{F}_t \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathbb{E}_{\mathbb{Q}^{\sigma}}\left[ e^{-r(T-t)} \Phi(S_T) \, \big| \, \mathcal{F}_t \right]
+\]</div>
 <h3 id="3-stochastic-control-with-model-uncertainty">3. Stochastic Control with Model Uncertainty<a class="headerlink" href="#3-stochastic-control-with-model-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Controlled SDE</strong>:</p>
-<p>$$</p>
-<p>dX_t = b(X_t, u_t) \, dt + \sigma(X_t) \, dW_t + \gamma(X_t) \, dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t, u_t) \, dt + \sigma(X_t) \, dW_t + \gamma(X_t) \, dB_t
+\]</div>
 <p>where <span class="arithmatex">\(B_t\)</span> represents model misspecification.</p>
 <p><strong>Robust Control Problem</strong>:</p>
-<p>$$</p>
-<p>\inf_{u} \sup_{B} \mathbb{E}\left[ \int_0^T e^{-\rho t} \left( c(X_t, u_t) + \frac{\theta}{2} \left(\frac{dB_t}{dt}\right)^2 \right) dt \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{u} \sup_{B} \mathbb{E}\left[ \int_0^T e^{-\rho t} \left( c(X_t, u_t) + \frac{\theta}{2} \left(\frac{dB_t}{dt}\right)^2 \right) dt \right]
+\]</div>
 <p><strong>Worst-Case Process</strong>: The optimal misspecification <span class="arithmatex">\(B^*\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{dB_t^*}{dt} = \frac{1}{\theta} \gamma(X_t)^\top \nabla V(t, X_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dB_t^*}{dt} = \frac{1}{\theta} \gamma(X_t)^\top \nabla V(t, X_t)
+\]</div>
 <p>where <span class="arithmatex">\(V\)</span> is the value function.</p>
 <h2 id="comparison-of-uncertainty-specifications">Comparison of Uncertainty Specifications<a class="headerlink" href="#comparison-of-uncertainty-specifications" title="Permanent link">&para;</a></h2>
 <h3 id="1-trade-offs-between-uncertainty-sets">1. Trade-offs Between Uncertainty Sets<a class="headerlink" href="#1-trade-offs-between-uncertainty-sets" title="Permanent link">&para;</a></h3>
@@ -47692,80 +47692,80 @@
 <h2 id="extreme-scenarios-and-stress-testing">Extreme Scenarios and Stress Testing<a class="headerlink" href="#extreme-scenarios-and-stress-testing" title="Permanent link">&para;</a></h2>
 <h3 id="1-worst-case-measure">1. Worst-Case Measure<a class="headerlink" href="#1-worst-case-measure" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: The <strong>worst-case measure</strong> for a loss function <span class="arithmatex">\(\ell\)</span> is:</p>
-<p>$$</p>
-<p>P^* = \arg\max_{P \in \mathcal{P}} \mathbb{E}_P[\ell]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^* = \arg\max_{P \in \mathcal{P}} \mathbb{E}_P[\ell]
+\]</div>
 <p><strong>Characterization</strong>: For convex <span class="arithmatex">\(\mathcal{P}\)</span> and convex <span class="arithmatex">\(\ell\)</span>, <span class="arithmatex">\(P^*\)</span> often lies on the boundary of <span class="arithmatex">\(\mathcal{P}\)</span>.</p>
 <h3 id="2-stress-testing-framework">2. Stress Testing Framework<a class="headerlink" href="#2-stress-testing-framework" title="Permanent link">&para;</a></h3>
 <p><strong>Objective</strong>: Identify extreme but plausible scenarios.</p>
 <p><strong>Reverse Stress Test</strong>: Find the smallest perturbation <span class="arithmatex">\(P^*\)</span> such that:</p>
-<p>$$</p>
-<p>\mathbb{E}<em _text_threshold="\text{threshold">{P^*}[\ell] \geq \ell</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_{P^*}[\ell] \geq \ell_{\text{threshold}}
+\]</div>
 <p>subject to:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(P^* | P_0) \text{ is minimized}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(P^* \| P_0) \text{ is minimized}
+\]</div>
 <p><strong>Solution</strong>: Use Lagrangian:</p>
-<p>$$</p>
-<p>\mathcal{L}(P, \lambda) = \mathbb{E}<em _text_KL="\text{KL">P[\ell] + \lambda D</em>(P | P_0)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(P, \lambda) = \mathbb{E}_P[\ell] + \lambda D_{\text{KL}}(P \| P_0)
+\]</div>
 <p>yielding:</p>
-<p>$$</p>
-<p>\frac{dP^<em>}{dP_0} \propto e^{-\lambda^</em> \ell}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP^*}{dP_0} \propto e^{-\lambda^* \ell}
+\]</div>
 <h3 id="3-scenario-generation">3. Scenario Generation<a class="headerlink" href="#3-scenario-generation" title="Permanent link">&para;</a></h3>
 <p><strong>Monte Carlo from Worst-Case Measure</strong>: Sample paths from <span class="arithmatex">\(P^*\)</span> to generate stress scenarios.</p>
 <p><strong>Importance Sampling</strong>: Use <span class="arithmatex">\(P^*\)</span> as the importance distribution:</p>
-<p>$$</p>
-<p>\mathbb{E}<em>P[\ell] = \mathbb{E}</em>{P^<em>}\left[ \ell \cdot \frac{dP}{dP^</em>} \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_P[\ell] = \mathbb{E}_{P^*}\left[ \ell \cdot \frac{dP}{dP^*} \right]
+\]</div>
 <p>with reduced variance for rare events.</p>
 <h2 id="connections-to-information-theory">Connections to Information Theory<a class="headerlink" href="#connections-to-information-theory" title="Permanent link">&para;</a></h2>
 <h3 id="1-mutual-information-under-uncertainty">1. Mutual Information Under Uncertainty<a class="headerlink" href="#1-mutual-information-under-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Mutual Information</strong>: For joint measure <span class="arithmatex">\(P_{XY}\)</span>:</p>
-<p>$$</p>
-<p>I(X; Y) = D_{\text{KL}}(P_{XY} | P_X \otimes P_Y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I(X; Y) = D_{\text{KL}}(P_{XY} \| P_X \otimes P_Y)
+\]</div>
 <p><strong>Under Model Uncertainty</strong>: Consider:</p>
-<p>$$</p>
-<p>I_{\min}(X; Y) = \inf_{P \in \mathcal{P}} I_P(X; Y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_{\min}(X; Y) = \inf_{P \in \mathcal{P}} I_P(X; Y)
+\]</div>
 <p>and:</p>
-<p>$$</p>
-<p>I_{\max}(X; Y) = \sup_{P \in \mathcal{P}} I_P(X; Y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_{\max}(X; Y) = \sup_{P \in \mathcal{P}} I_P(X; Y)
+\]</div>
 <p><strong>Application</strong>: Robust portfolio diversification seeks to minimize <span class="arithmatex">\(I_{\max}\)</span> between asset returns.</p>
 <h3 id="2-channel-capacity">2. Channel Capacity<a class="headerlink" href="#2-channel-capacity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Maximum information transmission rate:</p>
-<p>$$</p>
-<p>C = \sup_{P_X} \inf_{P_{Y|X}} I(X; Y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = \sup_{P_X} \inf_{P_{Y|X}} I(X; Y)
+\]</div>
 <p><strong>Financial Interpretation</strong>: Limits on information extraction from noisy market data under model uncertainty.</p>
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
 <h3 id="1-wasserstein-distance-and-optimal-transport">1. Wasserstein Distance and Optimal Transport<a class="headerlink" href="#1-wasserstein-distance-and-optimal-transport" title="Permanent link">&para;</a></h3>
 <p><strong>Wasserstein Distance</strong>: For <span class="arithmatex">\(p \geq 1\)</span>:</p>
-<p>$$</p>
-<p>W_p(P, Q) = \left( \inf_{\pi \in \Pi(P, Q)} \int_{\Omega \times \Omega} d(x, y)^p \, d\pi(x, y) \right)^{1/p}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_p(P, Q) = \left( \inf_{\pi \in \Pi(P, Q)} \int_{\Omega \times \Omega} d(x, y)^p \, d\pi(x, y) \right)^{1/p}
+\]</div>
 <p>where <span class="arithmatex">\(\Pi(P, Q)\)</span> is the set of couplings with marginals <span class="arithmatex">\(P\)</span> and <span class="arithmatex">\(Q\)</span>.</p>
 <p><strong>Wasserstein Ball</strong>:</p>
-<p>$$</p>
-<p>\mathcal{P}_W(\delta) = { P: W_p(P, P_0) \leq \delta }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P}_W(\delta) = \{ P: W_p(P, P_0) \leq \delta \}
+\]</div>
 <p><strong>Advantages</strong>: 
 - Metrizes weak convergence
 - Respects the geometry of <span class="arithmatex">\(\Omega\)</span>
 - Leads to smooth optimization problems</p>
 <p><strong>Robust Optimization with Wasserstein</strong>:</p>
-<p>$$</p>
-<p>\inf_x \sup_{P \in \mathcal{P}_W(\delta)} \mathbb{E}_P[f(x, \cdot)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_x \sup_{P \in \mathcal{P}_W(\delta)} \mathbb{E}_P[f(x, \cdot)]
+\]</div>
 <h3 id="2-divergences">2. φ-Divergences<a class="headerlink" href="#2-divergences" title="Permanent link">&para;</a></h3>
 <p><strong>General Family</strong>: For convex <span class="arithmatex">\(\phi: [0, \infty) \to \mathbb{R}\)</span> with <span class="arithmatex">\(\phi(1) = 0\)</span>:</p>
-<p>$$</p>
-<p>D_{\phi}(P | Q) = \int_{\Omega} \phi\left(\frac{dP}{dQ}\right) dQ</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\phi}(P \| Q) = \int_{\Omega} \phi\left(\frac{dP}{dQ}\right) dQ
+\]</div>
 <p><strong>Examples</strong>:
 1. <strong>KL Divergence</strong>: <span class="arithmatex">\(\phi(t) = t \log t\)</span>
 2. <strong>Total Variation</strong>: <span class="arithmatex">\(\phi(t) = |t - 1|\)</span>
@@ -47780,22 +47780,22 @@
 - Convex-continuous in <span class="arithmatex">\(x\)</span> for fixed <span class="arithmatex">\(P\)</span>
 - Concave-continuous in <span class="arithmatex">\(P\)</span> for fixed <span class="arithmatex">\(x\)</span></p>
 <p>then:</p>
-<p>$$</p>
-<p>\inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} f(x, P) = \sup_{P \in \mathcal{P}} \inf_{x \in \mathcal{X}} f(x, P)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{x \in \mathcal{X}} \sup_{P \in \mathcal{P}} f(x, P) = \sup_{P \in \mathcal{P}} \inf_{x \in \mathcal{X}} f(x, P)
+\]</div>
 <p><strong>Application</strong>: Ensures existence of saddle points in robust optimization.</p>
 <h3 id="4-capacities-and-non-additive-measures">4. Capacities and Non-Additive Measures<a class="headerlink" href="#4-capacities-and-non-additive-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Capacity</strong> (Non-additive measure): <span class="arithmatex">\(\nu: \mathcal{F} \to [0,1]\)</span> satisfying:
 1. <span class="arithmatex">\(\nu(\emptyset) = 0\)</span>, <span class="arithmatex">\(\nu(\Omega) = 1\)</span>
 2. Monotonicity: <span class="arithmatex">\(A \subseteq B \implies \nu(A) \leq \nu(B)\)</span></p>
 <p><strong>Core of Capacity</strong>:</p>
-<p>$$</p>
-<p>\text{core}(\nu) = { P \in \mathcal{M}_1(\Omega): P(A) \geq \nu(A) \text{ for all } A \in \mathcal{F} }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{core}(\nu) = \{ P \in \mathcal{M}_1(\Omega): P(A) \geq \nu(A) \text{ for all } A \in \mathcal{F} \}
+\]</div>
 <p><strong>Theorem</strong>: For convex capacities:</p>
-<p>$$</p>
-<p>\int f \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[f]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int f \, d\nu = \min_{P \in \text{core}(\nu)} \mathbb{E}_P[f]
+\]</div>
 <p>establishing connection between non-additive integration and maxmin preferences.</p>
 <h2 id="summary-and-practical-guidelines">Summary and Practical Guidelines<a class="headerlink" href="#summary-and-practical-guidelines" title="Permanent link">&para;</a></h2>
 <h3 id="1-key-theoretical-results">1. Key Theoretical Results<a class="headerlink" href="#1-key-theoretical-results" title="Permanent link">&para;</a></h3>

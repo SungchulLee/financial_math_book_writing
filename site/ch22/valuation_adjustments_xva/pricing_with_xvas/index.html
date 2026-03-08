@@ -47131,9 +47131,9 @@
 <h2 id="the-classical-framework">The Classical Framework<a class="headerlink" href="#the-classical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="risk-neutral-pricing-pre-xva">Risk-Neutral Pricing (Pre-XVA)<a class="headerlink" href="#risk-neutral-pricing-pre-xva" title="Permanent link">&para;</a></h3>
 <p>Classical derivative pricing assumes:</p>
-<p>$$</p>
-<p>V_0 = \mathbb{E}^{\mathbb{Q}}\left[D(0,T) \cdot \text{Payoff}_T\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \mathbb{E}^{\mathbb{Q}}\left[D(0,T) \cdot \text{Payoff}_T\right]
+\]</div>
 <p>with key assumptions:
 - Borrowing/lending at risk-free rate
 - No default risk
@@ -47146,9 +47146,9 @@
 <hr />
 <h2 id="xva-inclusive-pricing">XVA-Inclusive Pricing<a class="headerlink" href="#xva-inclusive-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="the-adjusted-value">The Adjusted Value<a class="headerlink" href="#the-adjusted-value" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V^{\text{total}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} - \text{FVA} - \text{KVA} - \text{MVA}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{total}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} - \text{FVA} - \text{KVA} - \text{MVA}
+\]</div>
 <p>This breaks the classical framework:
 - <strong>Nonlinear:</strong> <span class="arithmatex">\(V^{\text{total}}(A+B) \ne V^{\text{total}}(A) + V^{\text{total}}(B)\)</span>
 - <strong>Multiple prices:</strong> Different banks compute different XVAs
@@ -47157,9 +47157,9 @@
 <h2 id="nonlinearity-of-xva-pricing">Nonlinearity of XVA Pricing<a class="headerlink" href="#nonlinearity-of-xva-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="sources-of-nonlinearity">Sources of Nonlinearity<a class="headerlink" href="#sources-of-nonlinearity" title="Permanent link">&para;</a></h3>
 <p><strong>1. Netting:</strong></p>
-<p>$$</p>
-<p>\text{CVA}(\text{Netted Portfolio}) \ne \sum_i \text{CVA}(\text{Trade}_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}(\text{Netted Portfolio}) \ne \sum_i \text{CVA}(\text{Trade}_i)
+\]</div>
 <p><strong>2. Collateral:</strong>
 Collateral threshold effects create discontinuities.</p>
 <p><strong>3. Capital:</strong>
@@ -47175,17 +47175,17 @@ Asymmetric borrowing/lending rates.</p>
 <hr />
 <h2 id="bsde-formulation">BSDE Formulation<a class="headerlink" href="#bsde-formulation" title="Permanent link">&para;</a></h2>
 <p>XVA pricing naturally fits the <strong>backward stochastic differential equation</strong> framework:</p>
-<p>$$</p>
-<p>V_t = \xi + \int_t^T f(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \xi + \int_t^T f(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\xi\)</span> = terminal payoff
 - <span class="arithmatex">\(f\)</span> = driver incorporating XVA effects
 - <span class="arithmatex">\(Z\)</span> = hedging process</p>
 <h3 id="generic-xva-driver">Generic XVA Driver<a class="headerlink" href="#generic-xva-driver" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>f(t, V, Z) = -rV + \underbrace{\lambda_C \cdot \text{LGD}<em _text_CVA="\text{CVA">C \cdot V^+}</em>}} - \underbrace{\lambda_B \cdot \text{LGD<em _text_DVA="\text{DVA">B \cdot V^-}</em> + \cdots}} + \underbrace{s_F \cdot (V - C)^+}_{\text{FVA}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t, V, Z) = -rV + \underbrace{\lambda_C \cdot \text{LGD}_C \cdot V^+}_{\text{CVA}} - \underbrace{\lambda_B \cdot \text{LGD}_B \cdot V^-}_{\text{DVA}} + \underbrace{s_F \cdot (V - C)^+}_{\text{FVA}} + \cdots
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\lambda_C, \lambda_B\)</span> = default intensities
 - <span class="arithmatex">\(C\)</span> = collateral
@@ -47198,14 +47198,14 @@ Asymmetric borrowing/lending rates.</p>
 <hr />
 <h2 id="pde-formulation">PDE Formulation<a class="headerlink" href="#pde-formulation" title="Permanent link">&para;</a></h2>
 <p>For Markovian models, XVA pricing satisfies a <strong>nonlinear PDE</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathcal{L}V + f(t, x, V, \sigma^\top \nabla V) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathcal{L}V + f(t, x, V, \sigma^\top \nabla V) = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V(T, x) = \text{Payoff}(x)\)</span>.</p>
 <p><strong>Example (simplified CVA):</strong></p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q)S\frac{\partial V}{\partial S} - rV + \lambda \cdot \text{LGD} \cdot V^+ = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q)S\frac{\partial V}{\partial S} - rV + \lambda \cdot \text{LGD} \cdot V^+ = 0
+\]</div>
 <h3 id="numerical-methods">Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Finite difference schemes (explicit, implicit, Crank-Nicolson)</li>
@@ -47216,23 +47216,23 @@ Asymmetric borrowing/lending rates.</p>
 <h2 id="marginal-vs-standalone-xva">Marginal vs Standalone XVA<a class="headerlink" href="#marginal-vs-standalone-xva" title="Permanent link">&para;</a></h2>
 <h3 id="standalone-xva">Standalone XVA<a class="headerlink" href="#standalone-xva" title="Permanent link">&para;</a></h3>
 <p>XVA of a trade considered in isolation:</p>
-<p>$$</p>
-<p>\text{XVA}^{\text{standalone}}(\text{Trade})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{XVA}^{\text{standalone}}(\text{Trade})
+\]</div>
 <h3 id="incremental-marginal-xva">Incremental (Marginal) XVA<a class="headerlink" href="#incremental-marginal-xva" title="Permanent link">&para;</a></h3>
 <p>XVA impact of adding a trade to an existing portfolio:</p>
-<p>$$</p>
-<p>\text{XVA}^{\text{incremental}} = \text{XVA}(\text{Portfolio} + \text{Trade}) - \text{XVA}(\text{Portfolio})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{XVA}^{\text{incremental}} = \text{XVA}(\text{Portfolio} + \text{Trade}) - \text{XVA}(\text{Portfolio})
+\]</div>
 <h3 id="allocated-xva">Allocated XVA<a class="headerlink" href="#allocated-xva" title="Permanent link">&para;</a></h3>
 <p>Distribute portfolio XVA to individual trades:</p>
-<p>$$</p>
-<p>\sum_i \text{XVA}^{\text{allocated}}_i = \text{XVA}(\text{Portfolio})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_i \text{XVA}^{\text{allocated}}_i = \text{XVA}(\text{Portfolio})
+\]</div>
 <p><strong>Euler allocation:</strong> For homogeneous risk measures:</p>
-<p>$$</p>
-<p>\text{XVA}^{\text{allocated}}_i = \frac{\partial \text{XVA}}{\partial w_i} \cdot w_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{XVA}^{\text{allocated}}_i = \frac{\partial \text{XVA}}{\partial w_i} \cdot w_i
+\]</div>
 <hr />
 <h2 id="pricing-asymmetry">Pricing Asymmetry<a class="headerlink" href="#pricing-asymmetry" title="Permanent link">&para;</a></h2>
 <h3 id="two-prices-for-one-trade">Two Prices for One Trade<a class="headerlink" href="#two-prices-for-one-trade" title="Permanent link">&para;</a></h3>
@@ -47242,33 +47242,33 @@ Asymmetric borrowing/lending rates.</p>
 <p><strong>The "price" is no longer unique!</strong></p>
 <h3 id="bid-ask-from-xva">Bid-Ask from XVA<a class="headerlink" href="#bid-ask-from-xva" title="Permanent link">&para;</a></h3>
 <p>This asymmetry creates natural bid-ask spreads:</p>
-<p>$$</p>
-<p>\text{Bid} = V^{\text{clean}} - \text{XVA}^{\text{bid}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Ask} = V^{\text{clean}} - \text{XVA}^{\text{ask}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bid} = V^{\text{clean}} - \text{XVA}^{\text{bid}}
+\]</div>
+<div class="arithmatex">\[
+\text{Ask} = V^{\text{clean}} - \text{XVA}^{\text{ask}}
+\]</div>
 <p>where XVA^{bid} and XVA^{ask} reflect different counterparties or directions.</p>
 <hr />
 <h2 id="impact-on-hedging">Impact on Hedging<a class="headerlink" href="#impact-on-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="xva-adjusted-hedging">XVA-Adjusted Hedging<a class="headerlink" href="#xva-adjusted-hedging" title="Permanent link">&para;</a></h3>
 <p>Classical delta hedge:</p>
-<p>$$</p>
-<p>\Delta^{\text{clean}} = \frac{\partial V^{\text{clean}}}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^{\text{clean}} = \frac{\partial V^{\text{clean}}}{\partial S}
+\]</div>
 <p>XVA-adjusted delta:</p>
-<p>$$</p>
-<p>\Delta^{\text{total}} = \frac{\partial V^{\text{total}}}{\partial S} = \Delta^{\text{clean}} + \Delta^{\text{XVA}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^{\text{total}} = \frac{\partial V^{\text{total}}}{\partial S} = \Delta^{\text{clean}} + \Delta^{\text{XVA}}
+\]</div>
 <h3 id="xva-greeks">XVA Greeks<a class="headerlink" href="#xva-greeks" title="Permanent link">&para;</a></h3>
 <p><strong>CVA delta:</strong></p>
-<p>$$</p>
-<p>\Delta^{\text{CVA}} = \text{LGD} \int_0^T \frac{\partial \text{EE}(t)}{\partial S} \cdot dPD(t) \cdot D(0,t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^{\text{CVA}} = \text{LGD} \int_0^T \frac{\partial \text{EE}(t)}{\partial S} \cdot dPD(t) \cdot D(0,t)
+\]</div>
 <p><strong>FVA delta:</strong></p>
-<p>$$</p>
-<p>\Delta^{\text{FVA}} = s_F \int_0^T \frac{\partial \mathbb{E}[V_t]}{\partial S} \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^{\text{FVA}} = s_F \int_0^T \frac{\partial \mathbb{E}[V_t]}{\partial S} \cdot D(0,t) \, dt
+\]</div>
 <h3 id="hedging-challenges">Hedging Challenges<a class="headerlink" href="#hedging-challenges" title="Permanent link">&para;</a></h3>
 <ul>
 <li>XVA Greeks can be large and volatile</li>
@@ -47286,9 +47286,9 @@ Asymmetric borrowing/lending rates.</p>
 - XVA P&amp;L reporting</p>
 <h3 id="transfer-pricing">Transfer Pricing<a class="headerlink" href="#transfer-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>At trade inception:</strong></p>
-<p>$$</p>
-<p>\text{Desk P&amp;L} = \text{Trade Price} - V^{\text{clean}} + \text{XVA Charge}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Desk P&amp;L} = \text{Trade Price} - V^{\text{clean}} + \text{XVA Charge}
+\]</div>
 <p>Trading desks see XVA as a cost; XVA desk manages the risk.</p>
 <h3 id="pl-attribution">P&amp;L Attribution<a class="headerlink" href="#pl-attribution" title="Permanent link">&para;</a></h3>
 <p>XVA P&amp;L decomposes into:
@@ -47301,14 +47301,14 @@ Asymmetric borrowing/lending rates.</p>
 <h2 id="deal-acceptability">Deal Acceptability<a class="headerlink" href="#deal-acceptability" title="Permanent link">&para;</a></h2>
 <h3 id="xva-threshold">XVA Threshold<a class="headerlink" href="#xva-threshold" title="Permanent link">&para;</a></h3>
 <p>A trade may be rejected if XVA is too large:</p>
-<p>$$</p>
-<p>\text{Accept if } \text{Expected Profit} &gt; \text{XVA Charge}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Accept if } \text{Expected Profit} &gt; \text{XVA Charge}
+\]</div>
 <h3 id="hurdle-rates">Hurdle Rates<a class="headerlink" href="#hurdle-rates" title="Permanent link">&para;</a></h3>
 <p>Include return on capital:</p>
-<p>$$</p>
-<p>\text{Accept if } \text{Spread} &gt; \frac{\text{XVA} + \text{KVA}}{\text{Notional} \times \text{Duration}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Accept if } \text{Spread} &gt; \frac{\text{XVA} + \text{KVA}}{\text{Notional} \times \text{Duration}}
+\]</div>
 <h3 id="competitive-implications">Competitive Implications<a class="headerlink" href="#competitive-implications" title="Permanent link">&para;</a></h3>
 <p>Banks with better credit (lower CVA) or funding (lower FVA) have pricing advantages.</p>
 <hr />

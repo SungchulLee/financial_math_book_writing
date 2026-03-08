@@ -46391,16 +46391,16 @@
 
 <h1 id="hull-white-caplet-and-floor-formula">Hull-White Caplet and Floor Formula<a class="headerlink" href="#hull-white-caplet-and-floor-formula" title="Permanent link">&para;</a></h1>
 <h2 id="capletfloorlet-payoff">Caplet/Floorlet Payoff<a class="headerlink" href="#capletfloorlet-payoff" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lll}</p>
-<p>\text{Time}&amp;\text{Action}\
-T_{k-1}&amp;\text{Forward Rate Determined <span class="arithmatex">\(l_k(T_{k−1})=l(T_{k−1}; T_{k−1}, T_k)\)</span> }\
-T_k&amp;\text{Caplet Paid <span class="arithmatex">\(N\tau_k \max(l_k(T_{k−1})-K,0))\)</span>}\
-&amp;\text{Floorlet Paid <span class="arithmatex">\(N\tau_k \max(K-l_k(T_{k−1}),0))\)</span>}</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\text{Time}&amp;\text{Action}\\
+T_{k-1}&amp;\text{Forward Rate Determined $l_k(T_{k−1})=l(T_{k−1}; T_{k−1}, T_k)$ }\\
+T_k&amp;\text{Caplet Paid $N\tau_k \max(l_k(T_{k−1})-K,0))$}\\
+&amp;\text{Floorlet Paid $N\tau_k \max(K-l_k(T_{k−1}),0))$}
+\end{array}\]</div>
 <p>where <span class="arithmatex">\(\tau_k=T_k-T_{k-1}\)</span>.</p>
 <h2 id="change-of-numeraire">Change of Numeraire<a class="headerlink" href="#change-of-numeraire" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{llllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llllllll}
+\displaystyle
 V^\text{CL}(t_0)
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[
@@ -46409,78 +46409,78 @@ M(t_0)\mathbb{E^Q}\left[
 &amp;=&amp;\displaystyle
 N\tau_kP(t_0,T_k)\mathbb{E}^{\mathbb{T_k}}\left[
 \text{max}(l_k(T_{k-1})-K,0)\Big{|}{\cal F}(t_0)
-\right]</p>
-<p>\end{array}$$</p>
+\right]
+\end{array}\]</div>
 <h2 id="forward-rate-l_k-is-a-t_k-martingale">Forward Rate l_k is a T_k-Martingale<a class="headerlink" href="#forward-rate-l_k-is-a-t_k-martingale" title="Permanent link">&para;</a></h2>
 <p>Since <span class="arithmatex">\(l_k(t)=\frac{1}{\tau_k}\frac{P(t,T_{k-1})-P(t,T_k)}{P(t,T_k)}\)</span> and since <span class="arithmatex">\(P(t,T_{k-1})\)</span> and <span class="arithmatex">\(P(t,T_{k})\)</span> are prices of tradable assets,</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \mathbb{E}^{\mathbb{T_k}}\left[l_k(t)\Big{|}{\cal F}(s)\right]
-=l_k(s)</p>
-<p>\end{array}$$</p>
+=l_k(s)
+\end{array}\]</div>
 <h2 id="blacks-formula">Black's Formula<a class="headerlink" href="#blacks-formula" title="Permanent link">&para;</a></h2>
 <p>Assume that the libor rate follows a lognormal distribution:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 dl_k(t)
 =
-\sigma_kl_k(t)dW^{\mathbb{T_k}}(t)</p>
-<p>\end{array}$$</p>
+\sigma_kl_k(t)dW^{\mathbb{T_k}}(t)
+\end{array}\]</div>
 <p>Then, we can use the Black–Scholes computation with interest rate 0:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 {\bf\text{Caplet}}^{\text{Black}}(t,T_{k-1},T_k,N,K,\sigma_k)
 &amp;=&amp;\displaystyle
 N\tau_kP(t,T_k)\left[
 l_k(t)N(d_1)-KN(d_2)
-\right]\
+\right]\\
 \displaystyle
 {\bf\text{Floorlet}}^{\text{Black}}(t,T_{k-1},T_k,N,K,\sigma_k)
 &amp;=&amp;\displaystyle
 N\tau_kP(t,T_k)\left[
 -l_k(t)N(-d_1)+KN(-d_2)
-\right]\</p>
-<p>\end{array}$$</p>
+\right]\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 d_1
 &amp;=&amp;\displaystyle
-\frac{1}{v_k}\log\left(\frac{l_k(t)}{K}\right)+\frac{1}{2}v_k\
+\frac{1}{v_k}\log\left(\frac{l_k(t)}{K}\right)+\frac{1}{2}v_k\\
 \displaystyle
 d_2&amp;=&amp;\displaystyle
-\frac{1}{v_k}\log\left(\frac{l_k(t)}{K}\right)-\frac{1}{2}v_k\
-v_k&amp;=&amp;\sigma_k\sqrt{T_{k-1}-t}\</p>
-<p>\end{array}$$</p>
+\frac{1}{v_k}\log\left(\frac{l_k(t)}{K}\right)-\frac{1}{2}v_k\\
+v_k&amp;=&amp;\sigma_k\sqrt{T_{k-1}-t}\\
+\end{array}\]</div>
 <h2 id="hull-white-caplet-formula-using-t_k-measure">Hull-White Caplet Formula (Using T_k Measure)<a class="headerlink" href="#hull-white-caplet-formula-using-t_k-measure" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(t_0\)</span>, <span class="arithmatex">\(T_{k-1}\)</span>, <span class="arithmatex">\(T_k\)</span> be current, reset date, maturity, respectively.</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V^\text{CPL}(t_0,T)
 =
-N P(t_0,T_k)e^{-A(\tau_k)}\left[e^{\frac{1}{2}B^2(\tau_k)\sigma_r^2(t_0,T_{k-1})-B(\tau_k)\mu^{\mathbb{T_k}}<em k-1="k-1">r(t_0,T</em>N(d_2)\right]})}N(d_1)-K_{\text{hat}</p>
-<p>\end{array}$$</p>
+N P(t_0,T_k)e^{-A(\tau_k)}\left[e^{\frac{1}{2}B^2(\tau_k)\sigma_r^2(t_0,T_{k-1})-B(\tau_k)\mu^{\mathbb{T_k}}_r(t_0,T_{k-1})}N(d_1)-K_{\text{hat}}N(d_2)\right]
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{CPL}(t_0)
 &amp;=&amp;\displaystyle
 N\tau_kP(t_0,T_k)\mathbb{E}^{\mathbb{T_{k}}}\left[
 \text{max}(l_k(T_{k-1})-K,0)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N(1+\tau_k K)P(t_0,T_k)\mathbb{E}^{\mathbb{T_{k}}}\left[
 \text{max}\left(\frac{1}{1+\tau_k K}-P(T_{k-1},T_k),0\right)\Big{|}{\cal F}(t_0)
-\right]</p>
-<p>\end{array}$$</p>
+\right]
+\end{array}\]</div>
 <p>This is a put option on the ZCB <span class="arithmatex">\(P(T_{k-1},T_k)\)</span> with strike <span class="arithmatex">\(\frac{1}{1+\tau_k K}\)</span>, which can be priced using the Hull-White ZCB option formula.</p>
 </details>
 <h2 id="cap-and-floor">Cap and Floor<a class="headerlink" href="#cap-and-floor" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle\text{Cap}&amp;=&amp;\displaystyle\sum\text{Caplet}\
-\displaystyle\text{Floor}&amp;=&amp;\displaystyle\sum\text{Floorlet}\</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle\text{Cap}&amp;=&amp;\displaystyle\sum\text{Caplet}\\
+\displaystyle\text{Floor}&amp;=&amp;\displaystyle\sum\text{Floorlet}\\
+\end{array}\]</div>
 <h2 id="effect-of-hull-white-model-parameters-on-implied-volatilities">Effect of Hull-White Model Parameters on Implied Volatilities<a class="headerlink" href="#effect-of-hull-white-model-parameters-on-implied-volatilities" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="c1"># Vary sigma and lambda to see effect on implied vol</span>
@@ -46501,94 +46501,94 @@ N(1+\tau_k K)P(t_0,T_k)\mathbb{E}^{\mathbb{T_{k}}}\left[
 </code></pre></div>
 <h2 id="quantpie-derivation-caplet-as-zcb-put">QuantPie Derivation: Caplet as ZCB Put<a class="headerlink" href="#quantpie-derivation-caplet-as-zcb-put" title="Permanent link">&para;</a></h2>
 <h3 id="caplet-is-zcb-put-using-t_k-1-measure">Caplet is ZCB Put (Using T_k-1 Measure)<a class="headerlink" href="#caplet-is-zcb-put-using-t_k-1-measure" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{CPL}(t_0)
 =
 \hat{N}P(t_0,T_{k-1})\mathbb{E}^{T_{k-1}}\left[
 \text{max}\left(\hat{K}-P(T_{k-1},T_k),0\right)\Big{|}{\cal F}(t_0)
-\right]\</p>
-<p>\end{array}$$</p>
+\right]\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \hat{N}
 &amp;:=&amp;\displaystyle
-N(1+\tau_k K)\
+N(1+\tau_k K)\\
 \displaystyle
 \hat{K}&amp;:=&amp;\displaystyle
-\frac{1}{1+\tau_k K}\</p>
-<p>\end{array}$$</p>
+\frac{1}{1+\tau_k K}\\
+\end{array}\]</div>
 <h3 id="proof">Proof<a class="headerlink" href="#proof" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{CPL}(t_0)
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[
 \frac{N\tau_k\text{max}(l_k(T_{k-1})-K,0)}{M(T_k)}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[\mathbb{E^Q}\left[
 \frac{N\tau_k\text{max}(l_k(T_{k-1})-K,0)}{M(T_k)}\Big{|}{\cal F}(T_{k-1})
 \right]\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[N\tau_k\text{max}(l_k(T_{k-1})-K,0)\mathbb{E^Q}\left[
 \frac{1}{M(T_k)}\Big{|}{\cal F}(T_{k-1})
 \right]\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[N\tau_k\text{max}(l_k(T_{k-1})-K,0)
 \frac{P(T_{k-1},T_k)}{M(T_{k-1})}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[N\tau_k\text{max}\left(\frac{1}{\tau_k}\left(\frac{1}{P(T_{k-1},T_k)}-1\right)-K,0\right)
 \frac{P(T_{k-1},T_k)}{M(T_{k-1})}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[N\text{max}\left(\frac{1}{P(T_{k-1},T_k)}-(1+\tau_k K),0\right)
 \frac{P(T_{k-1},T_k)}{M(T_{k-1})}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[N\text{max}\left(1-(1+\tau_k K)P(T_{k-1},T_k),0\right)
 \frac{1}{M(T_{k-1})}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[
 N(1+\tau_k K)\text{max}\left(\frac{1}{(1+\tau_k K)}-P(T_{k-1},T_k),0\right)\frac{1}{M(T_{k-1})}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E}^{T_{k-1}}\left[
 N(1+\tau_k K)\text{max}\left(\frac{1}{(1+\tau_k K)}-P(T_{k-1},T_k),0\right)\frac{1}{M(T_{k-1})}\frac{M(T_{k-1})/M(t_0)}{1/P(t_0,T_{k-1})}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N(1+\tau_k K)P(t_0,T_{k-1})\mathbb{E}^{T_{k-1}}\left[
 \text{max}\left(\frac{1}{(1+\tau_k K)}-P(T_{k-1},T_k),0\right)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;:=&amp;\displaystyle
 \hat{N}P(t_0,T_{k-1})\mathbb{E}^{T_{k-1}}\left[
 \text{max}\left(\hat{K}-P(T_{k-1},T_k),0\right)\Big{|}{\cal F}(t_0)
-\right]</p>
-<p>\end{array}$$</p>
+\right]
+\end{array}\]</div>
 <h2 id="quantpie-derivation-hull-white-caplet-formula-using-t_k-measure">QuantPie Derivation: Hull-White Caplet Formula (Using T_k Measure)<a class="headerlink" href="#quantpie-derivation-hull-white-caplet-formula-using-t_k-measure" title="Permanent link">&para;</a></h2>
 <h3 id="hull-white-caplet-formula-using-t_k-measure_1">Hull-White Caplet Formula (Using T_k Measure)<a class="headerlink" href="#hull-white-caplet-formula-using-t_k-measure_1" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(t_0\)</span>, <span class="arithmatex">\(T_{k-1}\)</span>, <span class="arithmatex">\(T_k\)</span> be current, reset date, maturity, respectively.</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V^\text{CPL}(t_0,T)
 =
-N P(t_0,T_k)e^{-A(\tau_k)}\left[e^{\frac{1}{2}B^2(\tau_k)v_r^2(t_0,T_{k-1})-B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k})}N(d_1)-\hat{K}N(d_2)\right]\</p>
-<p>\end{array}$$</p>
+N P(t_0,T_k)e^{-A(\tau_k)}\left[e^{\frac{1}{2}B^2(\tau_k)v_r^2(t_0,T_{k-1})-B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k})}N(d_1)-\hat{K}N(d_2)\right]\\
+\end{array}\]</div>
 <p>where <span class="arithmatex">\(A(\tau_k)\)</span> and <span class="arithmatex">\(B(\tau_k)\)</span> are related with
 the underlying ZCB price <span class="arithmatex">\(P(T_{k-1},T_k)\)</span> at option maturity <span class="arithmatex">\(T_{k-1}\)</span>,
 <span class="arithmatex">\(\tau_k=T_k-T_{k-1}\)</span>, by</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \theta(t)
 &amp;=&amp;\displaystyle
 f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
 -
-\frac{\sigma^2}{2\lambda^2}\left(e^{-2\lambda t}-1\right)\
+\frac{\sigma^2}{2\lambda^2}\left(e^{-2\lambda t}-1\right)\\
 \displaystyle
 A(\tau_k)
 &amp;=&amp;\displaystyle
@@ -46596,114 +46596,114 @@ A(\tau_k)
 \left(3-2\lambda\tau_k-4e^{-\lambda\tau_k}+e^{-2\lambda\tau_k}\right)
 +
 \lambda\int_0^{\tau_k}\theta(T_k-\tau')B(\tau')d\tau'
-\
+\\
 \displaystyle
 B(\tau_k)
 &amp;=&amp;\displaystyle
 \frac{e^{-\lambda\tau_k}-1}{\lambda}
-\
+\\
 \displaystyle
 P(T_{k-1},T_k)
-&amp;=&amp;\displaystyle e^{A(\tau_k)+B(\tau_k)r(T_{k-1})}\</p>
-<p>\end{array}$$</p>
+&amp;=&amp;\displaystyle e^{A(\tau_k)+B(\tau_k)r(T_{k-1})}\\
+\end{array}\]</div>
 <p>where <span class="arithmatex">\(\mu_r(t_0,T_{k-1},\color{red}{T_k})\)</span> and <span class="arithmatex">\(v_r^2(t_0,T_{k-1})\)</span> are related with
 the short rate <span class="arithmatex">\(r(T_{k-1})\)</span> at option maturity <span class="arithmatex">\(T_{k-1}\)</span>
 under <span class="arithmatex">\(\mathbb{Q}^{\color{red}{T_{k}}}\)</span>, not <span class="arithmatex">\(\mathbb{Q}^{\color{black}{T_{k-1}}}\)</span> measure by</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \theta^{\color{red}{T_{k}}}(t)
-&amp;=&amp;\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(\color{red}{T_{k}}-t)\
+&amp;=&amp;\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(\color{red}{T_{k}}-t)\\
 dr(t)&amp;=&amp;\displaystyle
-\lambda\left(\theta^{\color{red}{T_{k}}}(t)-r(t)\right) dt+\sigma dW^{\color{red}{T_{k}}}(t)\
+\lambda\left(\theta^{\color{red}{T_{k}}}(t)-r(t)\right) dt+\sigma dW^{\color{red}{T_{k}}}(t)\\
 \displaystyle
 r(T_{k-1})|r(t_0)&amp;\sim&amp;\displaystyle
-N\left(\mu_r(t_0,T_{k-1},\color{red}{T_k}),v_r^2(t_0,T_{k-1})\right)\
+N\left(\mu_r(t_0,T_{k-1},\color{red}{T_k}),v_r^2(t_0,T_{k-1})\right)\\
 \mu_r(t_0,T_{k-1},\color{red}{T_k})&amp;=&amp;\displaystyle
 r(t_0)e^{-\lambda(T_{k-1}-t_0)}
-+\lambda\int_{t_0}^{T_{k-1}}\theta^{\color{red}{T_{k}}}(t')e^{-\lambda(T_{k-1}-t')}dt'\
++\lambda\int_{t_0}^{T_{k-1}}\theta^{\color{red}{T_{k}}}(t')e^{-\lambda(T_{k-1}-t')}dt'\\
 v_r^2(t_0,T_{k-1})&amp;=&amp;\displaystyle
--\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T_{k-1}-t_0)}-1\right)\</p>
-<p>\end{array}$$</p>
+-\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T_{k-1}-t_0)}-1\right)\\
+\end{array}\]</div>
 <p>and where <span class="arithmatex">\(\hat{K}\)</span>, <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span> are constants from Black Scholes type integration computation:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\hat{K}&amp;=&amp;(1+\tau_k K)e^{A(\tau_k)}\
+<div class="arithmatex">\[\begin{array}{lll}
+\hat{K}&amp;=&amp;(1+\tau_k K)e^{A(\tau_k)}\\
 d_2&amp;=&amp;\displaystyle
-\frac{\log\hat{K}+B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k})}{B(\tau_k)v_r(t_0,T_{k-1})}\
+\frac{\log\hat{K}+B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k})}{B(\tau_k)v_r(t_0,T_{k-1})}\\
 d_1&amp;=&amp;\displaystyle
-d_2-B(\tau_k)v_r(t_0,T_{k-1})</p>
-<p>\end{array}$$</p>
+d_2-B(\tau_k)v_r(t_0,T_{k-1})
+\end{array}\]</div>
 <h3 id="proof_1">Proof<a class="headerlink" href="#proof_1" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{CPL}(t_0)
 &amp;=&amp;\displaystyle
 M(t_0)\mathbb{E^Q}\left[
 \frac{N\tau_k\text{max}(l_k(T_{k-1})-K,0)}{M(T_k)}\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N\tau_kP(t_0,T_k)\mathbb{E}^{T_k}\left[
 \text{max}(l_k(T_{k-1})-K,0)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N\tau_kP(t_0,T_k)\mathbb{E}^{T_k}\left[
 \text{max}\left(\frac{1}{\tau_k}\left(\frac{1}{P(T_{k-1},T_k)}-1\right)-K,0\right)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N P(t_0,T_k)\mathbb{E}^{T_k}\left[
 \text{max}\left(\frac{1}{P(T_{k-1},T_k)}-1-\tau_k K,0\right)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N P(t_0,T_k)\mathbb{E}^{T_k}\left[
 \text{max}\left(e^{-A(\tau_k)-B(\tau_k)r(T_{k-1})}-1-\tau_k K,0\right)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N P(t_0,T_k)e^{-A(\tau_k)}\mathbb{E}^{T_k}\left[
 \text{max}\left(e^{-B(\tau_k)r(T_{k-1})}-(1+\tau_k K)e^{A(\tau_k)},0\right)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;:=&amp;\displaystyle
 N P(t_0,T_k)e^{-A(\tau_k)}\mathbb{E}^{T_k}\left[
 \text{max}\left(e^{-B(\tau_k)r(T_{k-1})}-\hat{K},0\right)\Big{|}{\cal F}(t_0)
-\right]\</p>
-<p>\end{array}$$</p>
+\right]\\
+\end{array}\]</div>
 <p>Now, by solving <span class="arithmatex">\(dr(t)=\lambda\left(\theta^{\color{red}{T_k}}(t)-r(t)\right) dt+\sigma dW^{\color{red}{T_k}}(t)\)</span></p>
-<p>$$</p>
-<p>\displaystyle
-r(T_{k-1})|r(t_0)\sim N\left(\mu_r(t_0,T_{k-1},\color{red}{T_k}),v_r^2(t_0,T_{k-1})\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+r(T_{k-1})|r(t_0)\sim N\left(\mu_r(t_0,T_{k-1},\color{red}{T_k}),v_r^2(t_0,T_{k-1})\right)
+\]</div>
 <p>With <span class="arithmatex">\(B(\tau_k)=(e^{-\lambda\tau_k}-1)/\lambda\)</span></p>
-<p>$$</p>
-<p>\displaystyle
--B(\tau_k)r(T_{k-1})\sim N\left(-B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k}),B^2(\tau_k)v_r^2(t_0,T_{k-1})\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+-B(\tau_k)r(T_{k-1})\sim N\left(-B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k}),B^2(\tau_k)v_r^2(t_0,T_{k-1})\right)
+\]</div>
 <p>Following Black Scholes computation, we have for the call
 (remember <span class="arithmatex">\(B(\tau)=(e^{-\lambda\tau}-1)/\lambda&lt;0\)</span>)</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{CPL}(t_0)
 &amp;=&amp;\displaystyle
 N P(t_0,T_k)e^{-A(\tau_k)}\mathbb{E}^{T_k}\left[
 \text{max}\left(e^{-B(\tau_k)r(T_{k-1})}-\hat{K},0\right)\Big{|}{\cal F}(t_0)
-\right]\
+\right]\\
 &amp;=&amp;\displaystyle
 N P(t_0,T_k)e^{-A(\tau_k)}
 \int_{e^{-B(\tau_k)\mu_r(t_0,T_{k-1})+B(\tau_k)v_r(t_0,T_{k-1})z}&gt;\hat{K}}
-\left(e^{-B(\tau_k)\mu_r(t_0,T_{k-1})+B(\tau_k)v_r(t_0,T_{k-1})z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\
+\left(e^{-B(\tau_k)\mu_r(t_0,T_{k-1})+B(\tau_k)v_r(t_0,T_{k-1})z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\\
 &amp;=&amp;\displaystyle
 N P(t_0,T_k)e^{-A(\tau_k)}
 \int^a_{-\infty}
-\left(e^{-B(\tau_k)\mu_r(t_0,T_{k-1})+B(\tau_k)v_r(t_0,T_{k-1})z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\
+\left(e^{-B(\tau_k)\mu_r(t_0,T_{k-1})+B(\tau_k)v_r(t_0,T_{k-1})z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\\
 &amp;=&amp;\displaystyle
-N P(t_0,T_k)e^{-A(\tau_k)}\left[e^{\frac{1}{2}B^2(\tau_k)v_r^2(t_0,T_{k-1})-B(\tau_k)\mu_r(t_0,T_{k-1})}N(d_1)-\hat{K}N(d_2)\right]\</p>
-<p>\end{array}$$</p>
+N P(t_0,T_k)e^{-A(\tau_k)}\left[e^{\frac{1}{2}B^2(\tau_k)v_r^2(t_0,T_{k-1})-B(\tau_k)\mu_r(t_0,T_{k-1})}N(d_1)-\hat{K}N(d_2)\right]\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>\hat{K}&amp;=&amp;(1+\tau_k K)e^{A(\tau_k)}\
+<div class="arithmatex">\[\begin{array}{lll}
+\hat{K}&amp;=&amp;(1+\tau_k K)e^{A(\tau_k)}\\
 a&amp;=&amp;\displaystyle
-\frac{\log\hat{K}+B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k})}{B(\tau_k)v_r(t_0,T_{k-1})}\
+\frac{\log\hat{K}+B(\tau_k)\mu_r(t_0,T_{k-1},\color{red}{T_k})}{B(\tau_k)v_r(t_0,T_{k-1})}\\
 d_1&amp;=&amp;\displaystyle
-a-B(\tau_k)v_r(t_0,T_{k-1})\
-d_2&amp;=&amp;a</p>
-<p>\end{array}$$</p>
+a-B(\tau_k)v_r(t_0,T_{k-1})\\
+d_2&amp;=&amp;a
+\end{array}\]</div>
 
 
 

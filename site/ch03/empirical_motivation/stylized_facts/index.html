@@ -47096,14 +47096,14 @@
 <p><strong>Interpretation:</strong> Deviation from 45-degree line in Q-Q plot indicates fat tails.</p>
 <h3 id="3-mathematical-characterization">3. Mathematical Characterization<a class="headerlink" href="#3-mathematical-characterization" title="Permanent link">&para;</a></h3>
 <p><strong>Power-law tails:</strong> Empirical evidence suggests:</p>
-<p>$$</p>
-<p>P(|r| &gt; x) \sim x^{-\alpha} \quad \text{for large } x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(|r| &gt; x) \sim x^{-\alpha} \quad \text{for large } x
+\]</div>
 <p>with <strong>tail index</strong> <span class="arithmatex">\(\alpha \approx 3-5\)</span> (compared to Gaussian's exponential decay).</p>
 <p><strong>Student's t-distribution:</strong> A common alternative to Gaussian:</p>
-<p>$$</p>
-<p>f(x; \nu) \propto \left(1 + \frac{x^2}{\nu}\right)^{-(\nu+1)/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(x; \nu) \propto \left(1 + \frac{x^2}{\nu}\right)^{-(\nu+1)/2}
+\]</div>
 <p>with degrees of freedom <span class="arithmatex">\(\nu \approx 4-6\)</span> for S&amp;P 500.</p>
 <h3 id="4-implications">4. Implications<a class="headerlink" href="#4-implications" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47275,9 +47275,9 @@
 <p><strong>Efficient Market Hypothesis (EMH):</strong> Asset prices reflect all available information.</p>
 <p><strong>Implication:</strong> Returns should be <strong>unpredictable</strong> from past returns.</p>
 <p><strong>Empirical evidence:</strong></p>
-<p>$$</p>
-<p>\text{Corr}(r_t, r_{t-k}) \approx 0 \quad \text{for } k \geq 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(r_t, r_{t-k}) \approx 0 \quad \text{for } k \geq 1
+\]</div>
 <p>(with minor exceptions at very short horizons due to microstructure effects)</p>
 <h3 id="2-testing">2. Testing<a class="headerlink" href="#2-testing" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.diagnostic</span><span class="w"> </span><span class="kn">import</span> <span class="n">acorr_ljungbox</span>
@@ -47365,9 +47365,9 @@
 <h2 id="stylized-fact-6-slow-decay-of-autocorrelation-in-absolute-returns">Stylized Fact 6: Slow Decay of Autocorrelation in Absolute Returns<a class="headerlink" href="#stylized-fact-6-slow-decay-of-autocorrelation-in-absolute-returns" title="Permanent link">&para;</a></h2>
 <h3 id="1-observation_5">1. Observation<a class="headerlink" href="#1-observation_5" title="Permanent link">&para;</a></h3>
 <p><strong>Long memory in volatility:</strong> The autocorrelation function of <span class="arithmatex">\(|r_t|\)</span> decays <strong>slowly</strong> (power-law rather than exponential).</p>
-<p>$$</p>
-<p>\text{Corr}(|r_t|, |r_{t+k}|) \sim k^{-\beta} \quad \text{with } \beta \approx 0.2-0.4</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(|r_t|, |r_{t+k}|) \sim k^{-\beta} \quad \text{with } \beta \approx 0.2-0.4
+\]</div>
 <p>This is <strong>slower</strong> than exponential decay <span class="arithmatex">\(e^{-\lambda k}\)</span>.</p>
 <h3 id="2-implications">2. Implications<a class="headerlink" href="#2-implications" title="Permanent link">&para;</a></h3>
 <ol>

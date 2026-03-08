@@ -46695,12 +46695,12 @@
 <h2 id="general-structure">General Structure<a class="headerlink" href="#general-structure" title="Permanent link">&para;</a></h2>
 <h3 id="the-canonical-two-factor-sde-system">The Canonical Two-Factor SDE System<a class="headerlink" href="#the-canonical-two-factor-sde-system" title="Permanent link">&para;</a></h3>
 <p>A generic two-factor stochastic volatility model takes the form:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= \mu(t, S_t, V_t)\,S_t\,dt + \sigma(t, S_t, V_t)\,S_t\,dW_t^S \\
 dV_t &amp;= a(t, V_t)\,dt + b(t, V_t)\,dW_t^V
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(S_t\)</span> is the asset price
 - <span class="arithmatex">\(V_t\)</span> is the <strong>variance</strong> or <strong>volatility factor</strong> (interpretation varies by model)
@@ -46735,14 +46735,14 @@ dV_t &amp;= a(t, V_t)\,dt + b(t, V_t)\,dW_t^V
 </table>
 <h3 id="correlated-brownian-motions">Correlated Brownian Motions<a class="headerlink" href="#correlated-brownian-motions" title="Permanent link">&para;</a></h3>
 <p>The correlation can be introduced via:</p>
-<p>$$</p>
-<p>W_t^V = \rho W_t^S + \sqrt{1-\rho^2} W_t^{\perp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^V = \rho W_t^S + \sqrt{1-\rho^2} W_t^{\perp}
+\]</div>
 <p>where <span class="arithmatex">\(W^S\)</span> and <span class="arithmatex">\(W^{\perp}\)</span> are independent. This decomposition is useful for simulation and analysis.</p>
 <p>Alternatively, use the covariance matrix formulation:</p>
-<p>$$</p>
-<p>\begin{pmatrix} dW_t^S \ dW_t^V \end{pmatrix} \sim \mathcal{N}\left(\mathbf{0}, \begin{pmatrix} 1 &amp; \rho \ \rho &amp; 1 \end{pmatrix} dt\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\begin{pmatrix} dW_t^S \\ dW_t^V \end{pmatrix} \sim \mathcal{N}\left(\mathbf{0}, \begin{pmatrix} 1 &amp; \rho \\ \rho &amp; 1 \end{pmatrix} dt\right)
+\]</div>
 <hr />
 <h2 id="mathematical-properties">Mathematical Properties<a class="headerlink" href="#mathematical-properties" title="Permanent link">&para;</a></h2>
 <h3 id="markov-property">Markov Property<a class="headerlink" href="#markov-property" title="Permanent link">&para;</a></h3>
@@ -46753,34 +46753,34 @@ dV_t &amp;= a(t, V_t)\,dt + b(t, V_t)\,dW_t^V
 - Characteristic function computation</p>
 <h3 id="infinitesimal-generator">Infinitesimal Generator<a class="headerlink" href="#infinitesimal-generator" title="Permanent link">&para;</a></h3>
 <p>The generator of the two-factor diffusion is:</p>
-<p>$$</p>
-<p>\mathcal{L} = \frac{1}{2}\sigma^2 S^2 \frac{\partial^2}{\partial S^2} + \rho \sigma b S \frac{\partial^2}{\partial S \partial V} + \frac{1}{2}b^2 \frac{\partial^2}{\partial V^2} + \mu S \frac{\partial}{\partial S} + a \frac{\partial}{\partial V}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = \frac{1}{2}\sigma^2 S^2 \frac{\partial^2}{\partial S^2} + \rho \sigma b S \frac{\partial^2}{\partial S \partial V} + \frac{1}{2}b^2 \frac{\partial^2}{\partial V^2} + \mu S \frac{\partial}{\partial S} + a \frac{\partial}{\partial V}
+\]</div>
 <p>For a function <span class="arithmatex">\(f(t, S, V)\)</span>, Itô's lemma gives:</p>
-<p>$$</p>
-<p>df = \left(\frac{\partial f}{\partial t} + \mathcal{L}f\right)dt + \frac{\partial f}{\partial S}\sigma S\,dW^S + \frac{\partial f}{\partial V}b\,dW^V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df = \left(\frac{\partial f}{\partial t} + \mathcal{L}f\right)dt + \frac{\partial f}{\partial S}\sigma S\,dW^S + \frac{\partial f}{\partial V}b\,dW^V
+\]</div>
 <h3 id="risk-neutral-dynamics">Risk-Neutral Dynamics<a class="headerlink" href="#risk-neutral-dynamics" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the drift of <span class="arithmatex">\(S\)</span> is constrained by no-arbitrage:</p>
-<p>$$</p>
-<p>dS_t = (r - q)S_t\,dt + \sigma(t, S_t, V_t)\,S_t\,dW_t^{S,\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q)S_t\,dt + \sigma(t, S_t, V_t)\,S_t\,dW_t^{S,\mathbb{Q}}
+\]</div>
 <p>The volatility process drift changes via Girsanov:</p>
-<p>$$</p>
-<p>dV_t = a^{\mathbb{Q}}(t, V_t)\,dt + b(t, V_t)\,dW_t^{V,\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = a^{\mathbb{Q}}(t, V_t)\,dt + b(t, V_t)\,dW_t^{V,\mathbb{Q}}
+\]</div>
 <p>where <span class="arithmatex">\(a^{\mathbb{Q}} = a - \lambda_V b\)</span> and <span class="arithmatex">\(\lambda_V\)</span> is the market price of volatility risk.</p>
 <p><strong>Key insight:</strong> The diffusion coefficient <span class="arithmatex">\(b\)</span> is unchanged by measure change; only the drift <span class="arithmatex">\(a\)</span> is modified.</p>
 <hr />
 <h2 id="prominent-two-factor-models">Prominent Two-Factor Models<a class="headerlink" href="#prominent-two-factor-models" title="Permanent link">&para;</a></h2>
 <h3 id="heston-model-1993">Heston Model (1993)<a class="headerlink" href="#heston-model-1993" title="Permanent link">&para;</a></h3>
 <p>The most widely used stochastic volatility model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r-q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
 dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Characteristics:</strong>
 - <span class="arithmatex">\(V_t\)</span> is instantaneous variance (non-negative)
 - Square-root (CIR) volatility dynamics
@@ -46788,12 +46788,12 @@ dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V
 - Affine structure enables semi-closed-form pricing</p>
 <h3 id="hullwhite-model-1987">Hull–White Model (1987)<a class="headerlink" href="#hullwhite-model-1987" title="Permanent link">&para;</a></h3>
 <p>Lognormal volatility dynamics:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r-q)S_t\,dt + V_t S_t\,dW_t^S \\
 dV_t &amp;= \mu_V V_t\,dt + \xi V_t\,dW_t^V
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Characteristics:</strong>
 - <span class="arithmatex">\(V_t\)</span> is instantaneous volatility
 - Geometric Brownian motion for volatility
@@ -46801,12 +46801,12 @@ dV_t &amp;= \mu_V V_t\,dt + \xi V_t\,dW_t^V
 - No closed-form characteristic function</p>
 <h3 id="steinstein-model-1991">Stein–Stein Model (1991)<a class="headerlink" href="#steinstein-model-1991" title="Permanent link">&para;</a></h3>
 <p>Ornstein–Uhlenbeck volatility:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r-q)S_t\,dt + V_t S_t\,dW_t^S \\
 dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\,dW_t^V
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Characteristics:</strong>
 - Mean-reverting Gaussian volatility
 - Can become negative (problematic)
@@ -46814,12 +46814,12 @@ dV_t &amp;= \kappa(\theta - V_t)\,dt + \xi\,dW_t^V
 - Affine in <span class="arithmatex">\((S, V)\)</span></p>
 <h3 id="32-model">3/2 Model<a class="headerlink" href="#32-model" title="Permanent link">&para;</a></h3>
 <p>Power-law volatility dynamics:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r-q)S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^S \\
 dV_t &amp;= \kappa V_t(\theta - V_t)\,dt + \xi V_t^{3/2}\,dW_t^V
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Characteristics:</strong>
 - Higher volatility of volatility at high <span class="arithmatex">\(V\)</span>
 - Heavier tails than Heston
@@ -46827,12 +46827,12 @@ dV_t &amp;= \kappa V_t(\theta - V_t)\,dt + \xi V_t^{3/2}\,dW_t^V
 - Semi-closed-form characteristic function</p>
 <h3 id="sabr-model-hagan-et-al-2002">SABR Model (Hagan et al., 2002)<a class="headerlink" href="#sabr-model-hagan-et-al-2002" title="Permanent link">&para;</a></h3>
 <p>Stochastic alpha-beta-rho model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dF_t &amp;= \sigma_t F_t^{\beta}\,dW_t^F \\
 d\sigma_t &amp;= \nu \sigma_t\,dW_t^{\sigma}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Characteristics:</strong>
 - Forward price dynamics (driftless under forward measure)
 - <span class="arithmatex">\(\beta\)</span> controls backbone (normal vs. lognormal)
@@ -46867,17 +46867,17 @@ d\sigma_t &amp;= \nu \sigma_t\,dW_t^{\sigma}
 <p>Two-factor diffusions imply:</p>
 <h3 id="non-gaussian-returns">Non-Gaussian Returns<a class="headerlink" href="#non-gaussian-returns" title="Permanent link">&para;</a></h3>
 <p>The unconditional distribution of <span class="arithmatex">\(\log(S_T/S_0)\)</span> is a <strong>mixture of normals</strong>:</p>
-<p>$$</p>
-<p>\log(S_T/S_0) \big| \int_0^T V_s\,ds \sim \mathcal{N}\left(\mu T - \frac{1}{2}\int_0^T V_s\,ds, \int_0^T V_s\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log(S_T/S_0) \big| \int_0^T V_s\,ds \sim \mathcal{N}\left(\mu T - \frac{1}{2}\int_0^T V_s\,ds, \int_0^T V_s\,ds\right)
+\]</div>
 <p>Integrating over the distribution of integrated variance yields:
 - Heavy tails (excess kurtosis)
 - Skewness (if <span class="arithmatex">\(\rho \neq 0\)</span>)</p>
 <h3 id="volatility-clustering">Volatility Clustering<a class="headerlink" href="#volatility-clustering" title="Permanent link">&para;</a></h3>
 <p>Mean-reverting <span class="arithmatex">\(V_t\)</span> produces autocorrelated squared returns:</p>
-<p>$$</p>
-<p>\text{Corr}(r_t^2, r_{t+\tau}^2) \propto e^{-\kappa \tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(r_t^2, r_{t+\tau}^2) \propto e^{-\kappa \tau}
+\]</div>
 <h3 id="implied-volatility-smile">Implied Volatility Smile<a class="headerlink" href="#implied-volatility-smile" title="Permanent link">&para;</a></h3>
 <p>The smile arises because:
 - <span class="arithmatex">\(\rho &lt; 0\)</span> → negative skew
@@ -46885,9 +46885,9 @@ d\sigma_t &amp;= \nu \sigma_t\,dW_t^{\sigma}
 - Mean reversion → term structure effects</p>
 <h3 id="path-dependent-pricing">Path-Dependent Pricing<a class="headerlink" href="#path-dependent-pricing" title="Permanent link">&para;</a></h3>
 <p>Option prices depend on the <strong>joint law</strong> of <span class="arithmatex">\((S_T, V_T)\)</span> and the path of <span class="arithmatex">\(V\)</span>. For European options:</p>
-<p>$$</p>
-<p>C(K, T) = e^{-rT}\mathbb{E}^{\mathbb{Q}}\left[(S_T - K)^+\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) = e^{-rT}\mathbb{E}^{\mathbb{Q}}\left[(S_T - K)^+\right]
+\]</div>
 <p>where the expectation is over the full two-dimensional process.</p>
 <hr />
 <h2 id="comparison-of-models">Comparison of Models<a class="headerlink" href="#comparison-of-models" title="Permanent link">&para;</a></h2>

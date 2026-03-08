@@ -46939,13 +46939,13 @@
 3. Order losses: <span class="arithmatex">\(L_{(1)} \le L_{(2)} \le \cdots \le L_{(n)}\)</span>
 4. Estimate VaR and ES from empirical distribution</p>
 <p><strong>VaR estimator:</strong></p>
-<p>$$</p>
-<p>\widehat{\text{VaR}}<em _lceil="(\lceil" _rceil_="\rceil)" n_alpha="n\alpha">\alpha = L</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widehat{\text{VaR}}_\alpha = L_{(\lceil n\alpha \rceil)}
+\]</div>
 <p><strong>ES estimator:</strong></p>
-<p>$$</p>
-<p>\widehat{\text{ES}}<em _rceil="\rceil" i="\lceil" n_alpha="n\alpha">\alpha = \frac{1}{n(1-\alpha)} \sum</em>}^n L_{(i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widehat{\text{ES}}_\alpha = \frac{1}{n(1-\alpha)} \sum_{i=\lceil n\alpha \rceil}^n L_{(i)}
+\]</div>
 <h3 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Model-free:</strong> No parametric distributional assumptions</li>
@@ -47030,23 +47030,23 @@ Work backward from failure threshold (see <a href="../reverse_stress_testing/">R
 <h2 id="mathematical-framework-for-stress-testing">Mathematical Framework for Stress Testing<a class="headerlink" href="#mathematical-framework-for-stress-testing" title="Permanent link">&para;</a></h2>
 <h3 id="scenario-definition">Scenario Definition<a class="headerlink" href="#scenario-definition" title="Permanent link">&para;</a></h3>
 <p>A stress scenario <span class="arithmatex">\(\mathcal{S}\)</span> specifies values or distributions for risk factors:</p>
-<p>$$</p>
-<p>\mathcal{S}: \mathbf{X} \mapsto \mathbf{x}^{\text{stress}} \quad \text{or} \quad \mathbf{X} \sim F^{\text{stress}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{S}: \mathbf{X} \mapsto \mathbf{x}^{\text{stress}} \quad \text{or} \quad \mathbf{X} \sim F^{\text{stress}}
+\]</div>
 <h3 id="portfolio-loss-under-stress">Portfolio Loss Under Stress<a class="headerlink" href="#portfolio-loss-under-stress" title="Permanent link">&para;</a></h3>
 <p>For scenario <span class="arithmatex">\(\mathcal{S}\)</span>:</p>
-<p>$$</p>
-<p>L^{\mathcal{S}} = P_0 - P(\mathbf{x}^{\text{stress}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L^{\mathcal{S}} = P_0 - P(\mathbf{x}^{\text{stress}})
+\]</div>
 <p>where <span class="arithmatex">\(P(\mathbf{x})\)</span> is the portfolio value function.</p>
 <h3 id="stressed-risk-measures">Stressed Risk Measures<a class="headerlink" href="#stressed-risk-measures" title="Permanent link">&para;</a></h3>
 <p>Regulatory frameworks often require "stressed" versions of risk measures:</p>
-<p>$$</p>
-<p>\text{Stressed VaR} = \text{VaR}_\alpha \text{ using a stressed historical period}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Stressed ES} = \text{ES}_\alpha \text{ calibrated to stress conditions}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Stressed VaR} = \text{VaR}_\alpha \text{ using a stressed historical period}
+\]</div>
+<div class="arithmatex">\[
+\text{Stressed ES} = \text{ES}_\alpha \text{ calibrated to stress conditions}
+\]</div>
 <hr />
 <h2 id="correlation-under-stress">Correlation Under Stress<a class="headerlink" href="#correlation-under-stress" title="Permanent link">&para;</a></h2>
 <p>A critical consideration is that <strong>correlations change under stress</strong>:</p>
@@ -47125,9 +47125,9 @@ Work backward from failure threshold (see <a href="../reverse_stress_testing/">R
 <li>Recovery and resolution planning</li>
 </ul>
 <h3 id="best-practice">Best Practice<a class="headerlink" href="#best-practice" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Total Risk Picture} = \text{Statistical Measures (VaR/ES)} + \text{Stress Test Results}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Risk Picture} = \text{Statistical Measures (VaR/ES)} + \text{Stress Test Results}
+\]</div>
 <p>Neither alone is sufficient.</p>
 <hr />
 <h2 id="regulatory-requirements">Regulatory Requirements<a class="headerlink" href="#regulatory-requirements" title="Permanent link">&para;</a></h2>

@@ -46272,10 +46272,10 @@
 <p>where</p>
 <div class="arithmatex">\[d_{1,2} = \frac{\ln(S_0/K) + (r \pm \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\]</div>
 <p>The term <span class="arithmatex">\(\mathcal{N}(d_2)\)</span> is the risk-neutral probability of exercise, while <span class="arithmatex">\(\mathcal{N}(d_1)\)</span> is the exercise probability under the stock-numeraire measure <span class="arithmatex">\(\mathbb{Q}^S\)</span>. </p>
-<p>$$\begin{array}{lll}</p>
-<p>\mathcal{N}(d_1) &amp;=&amp; \mathbb{Q}^S(S_T &gt; K)\
-\mathcal{N}(d_2) &amp;=&amp; \mathbb{Q}(S_T &gt; K)</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\mathcal{N}(d_1) &amp;=&amp; \mathbb{Q}^S(S_T &gt; K)\\
+\mathcal{N}(d_2) &amp;=&amp; \mathbb{Q}(S_T &gt; K)
+\end{array}\]</div>
 <p>The formula can be derived via direct integration of the log-normal density, via Girsanov's theorem and measure change, or as the solution to the heat equation. Put-call parity</p>
 <div class="arithmatex">\[C - P = S - Ke^{-r(T-t)}\]</div>
 <p>relates call and put prices as a model-independent no-arbitrage condition derived from replicating portfolios. Option prices satisfy fundamental bounds, e.g., </p>

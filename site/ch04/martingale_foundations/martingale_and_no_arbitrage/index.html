@@ -47153,25 +47153,25 @@
 <ul>
 <li>A <strong>money market account</strong> (risk-free asset) with dynamics:</li>
 </ul>
-<p>$$</p>
-<p>dB_t = r_t B_t\,dt, \quad B_0 = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dB_t = r_t B_t\,dt, \quad B_0 = 1
+\]</div>
 <p>For constant <span class="arithmatex">\(r\)</span>: <span class="arithmatex">\(B_t = e^{rt}\)</span>.</p>
 <ul>
 <li>A <strong>risky asset</strong> with price process <span class="arithmatex">\(S_t\)</span> following:</li>
 </ul>
-<p>$$</p>
-<p>dS_t = \mu_t S_t\,dt + \sigma_t S_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu_t S_t\,dt + \sigma_t S_t\,dW_t
+\]</div>
 <p>under the physical (real-world) probability measure <span class="arithmatex">\(\mathbb{P}\)</span>.</p>
 <p>The <strong>discounted price process</strong> is:</p>
-<p>$$</p>
-<p>\tilde{S}_t = \frac{S_t}{B_t} = e^{-\int_0^t r_s\,ds} S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{S}_t = \frac{S_t}{B_t} = e^{-\int_0^t r_s\,ds} S_t
+\]</div>
 <p>Using Itô's formula:</p>
-<p>$$</p>
-<p>d\tilde{S}_t = (\mu_t - r_t)\tilde{S}_t\,dt + \sigma_t \tilde{S}_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{S}_t = (\mu_t - r_t)\tilde{S}_t\,dt + \sigma_t \tilde{S}_t\,dW_t
+\]</div>
 <p>The drift term <span class="arithmatex">\((\mu_t - r_t)\)</span> is called the <strong>excess return</strong> or <strong>risk premium</strong>.</p>
 <hr />
 <h2 id="what-is-arbitrage">What is Arbitrage?<a class="headerlink" href="#what-is-arbitrage" title="Permanent link">&para;</a></h2>
@@ -47185,34 +47185,34 @@
 <h3 id="trading-strategies-and-portfolios">Trading Strategies and Portfolios<a class="headerlink" href="#trading-strategies-and-portfolios" title="Permanent link">&para;</a></h3>
 <p>A <strong>trading strategy</strong> is a pair of adapted processes <span class="arithmatex">\((\phi_t, \psi_t)\)</span> representing holdings in the risky asset and money market account.</p>
 <p>The <strong>portfolio value</strong> at time <span class="arithmatex">\(t\)</span> is:</p>
-<p>$$</p>
-<p>V_t = \phi_t S_t + \psi_t B_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \phi_t S_t + \psi_t B_t
+\]</div>
 <div class="admonition definition">
 <p class="admonition-title">Self-Financing Strategy</p>
 <p>A strategy <span class="arithmatex">\((\phi, \psi)\)</span> is <strong>self-financing</strong> if the portfolio value changes only due to asset price movements, not from injecting or withdrawing cash:</p>
-<p>$$</p>
-<p>dV_t = \phi_t\,dS_t + \psi_t\,dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \phi_t\,dS_t + \psi_t\,dB_t
+\]</div>
 <p>Equivalently, in discounted terms:</p>
-<p>$$</p>
-<p>d\tilde{V}_t = \phi_t\,d\tilde{S}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{V}_t = \phi_t\,d\tilde{S}_t
+\]</div>
 <p>where <span class="arithmatex">\(\tilde{V}_t = V_t/B_t\)</span> is the discounted portfolio value.</p>
 </div>
 <p>The self-financing condition means all gains come from trading, not from external funding.</p>
 <h3 id="the-gains-process">The Gains Process<a class="headerlink" href="#the-gains-process" title="Permanent link">&para;</a></h3>
 <p>For a self-financing strategy, the <strong>gains process</strong> is:</p>
-<p>$$</p>
-<p>G_t(\phi) = \int_0^t \phi_s\,d\tilde{S}_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_t(\phi) = \int_0^t \phi_s\,d\tilde{S}_s
+\]</div>
 <p>This is the cumulative profit (in discounted terms) from holding <span class="arithmatex">\(\phi_s\)</span> shares.</p>
 <div class="admonition definition">
 <p class="admonition-title">Admissible Strategy</p>
 <p>A self-financing strategy <span class="arithmatex">\(\phi\)</span> is <strong>admissible</strong> if the gains process is bounded below:</p>
-<p>$$</p>
-<p>G_t(\phi) \geq -M \quad \text{for some } M &gt; 0 \text{ and all } t \in [0,T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_t(\phi) \geq -M \quad \text{for some } M &gt; 0 \text{ and all } t \in [0,T]
+\]</div>
 <p>This rules out "doubling strategies" that require unlimited borrowing.</p>
 </div>
 <h3 id="formal-definition-of-arbitrage">Formal Definition of Arbitrage<a class="headerlink" href="#formal-definition-of-arbitrage" title="Permanent link">&para;</a></h3>
@@ -47241,14 +47241,14 @@
 <hr />
 <h2 id="the-connection-between-drift-and-arbitrage">The Connection Between Drift and Arbitrage<a class="headerlink" href="#the-connection-between-drift-and-arbitrage" title="Permanent link">&para;</a></h2>
 <p>Under the physical measure <span class="arithmatex">\(\mathbb{P}\)</span>, the discounted price has drift:</p>
-<p>$$</p>
-<p>d\tilde{S}<em _text_systematic="\text{systematic" drift="drift">t = \underbrace{(\mu - r)\tilde{S}_t\,dt}</em>_t\,dW_t}} + \sigma \tilde{S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{S}_t = \underbrace{(\mu - r)\tilde{S}_t\,dt}_{\text{systematic drift}} + \sigma \tilde{S}_t\,dW_t
+\]</div>
 <h3 id="why-drift-matters">Why Drift Matters<a class="headerlink" href="#why-drift-matters" title="Permanent link">&para;</a></h3>
 <p>Drift in the discounted price process violates the martingale property:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}[\tilde{S}_T \mid \mathcal{F}_t] \neq \tilde{S}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}[\tilde{S}_T \mid \mathcal{F}_t] \neq \tilde{S}_t
+\]</div>
 <p>For <span class="arithmatex">\(\mu &gt; r\)</span>, the discounted price drifts upward on average. This creates <strong>expected profit</strong> from holding the stock (financed by borrowing), which is the essence of a risk premium.</p>
 <h3 id="from-expected-profit-to-arbitrage">From Expected Profit to Arbitrage<a class="headerlink" href="#from-expected-profit-to-arbitrage" title="Permanent link">&para;</a></h3>
 <p>Expected profit is not the same as arbitrage (which requires riskless profit). However, drift enables arbitrage through limiting arguments:</p>
@@ -47260,19 +47260,19 @@
 </ul>
 <p>This is precisely what NFLVR rules out.</p>
 <h3 id="the-key-insight">The Key Insight<a class="headerlink" href="#the-key-insight" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Drift in discounted prices} \iff \text{Violation of martingale property} \iff \text{Potential for arbitrage}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>To eliminate arbitrage, we need discounted prices to have <strong>no drift</strong>—i.e., to be martingales under some equivalent measure.</p>
 <hr />
 <h2 id="the-martingale-approach-to-no-arbitrage">The Martingale Approach to No-Arbitrage<a class="headerlink" href="#the-martingale-approach-to-no-arbitrage" title="Permanent link">&para;</a></h2>
 <h3 id="core-observation">Core Observation<a class="headerlink" href="#core-observation" title="Permanent link">&para;</a></h3>
 <p>If the discounted price <span class="arithmatex">\(\tilde{S}_t\)</span> is a martingale under some measure <span class="arithmatex">\(\mathbb{Q}\)</span>, then for any admissible strategy <span class="arithmatex">\(\phi\)</span>:</p>
-<p>$$</p>
-<p>G_t(\phi) = \int_0^t \phi_s\,d\tilde{S}_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_t(\phi) = \int_0^t \phi_s\,d\tilde{S}_s
+\]</div>
 <p>is a <strong>local martingale</strong> under <span class="arithmatex">\(\mathbb{Q}\)</span> (as an Itô integral with adapted integrand).</p>
 <h3 id="the-supermartingale-argument">The Supermartingale Argument<a class="headerlink" href="#the-supermartingale-argument" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(G_t(\phi)\)</span> is bounded below by <span class="arithmatex">\(-M\)</span> (admissibility), we can show it's a supermartingale:</p>
@@ -47280,9 +47280,9 @@
 <p><strong>Step 2</strong>: Since <span class="arithmatex">\(G_t\)</span> is a local martingale, so is <span class="arithmatex">\(H_t = G_t + M\)</span> (adding a constant preserves the local martingale property).</p>
 <p><strong>Step 3</strong>: A <strong>non-negative local martingale is a supermartingale</strong> (see <a href="../local_martingale/">Local Martingales</a>).</p>
 <p><strong>Step 4</strong>: Therefore <span class="arithmatex">\(H_t\)</span> is a supermartingale, which means:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[H_T] \leq H_0 = M</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[H_T] \leq H_0 = M
+\]</div>
 <p><strong>Step 5</strong>: Thus <span class="arithmatex">\(\mathbb{E}^{\mathbb{Q}}[G_T(\phi)] = \mathbb{E}^{\mathbb{Q}}[H_T] - M \leq 0\)</span>.</p>
 <h3 id="why-this-rules-out-arbitrage">Why This Rules Out Arbitrage<a class="headerlink" href="#why-this-rules-out-arbitrage" title="Permanent link">&para;</a></h3>
 <p>For an arbitrage, we need:
@@ -47301,9 +47301,9 @@
 <div class="admonition note">
 <p class="admonition-title">Equivalent Measures</p>
 <p>Two measures <span class="arithmatex">\(\mathbb{P}\)</span> and <span class="arithmatex">\(\mathbb{Q}\)</span> are <strong>equivalent</strong> (<span class="arithmatex">\(\mathbb{Q} \sim \mathbb{P}\)</span>) if they have the same null sets:</p>
-<p>$$</p>
-<p>\mathbb{P}(A) = 0 \iff \mathbb{Q}(A) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(A) = 0 \iff \mathbb{Q}(A) = 0
+\]</div>
 </div>
 <p><strong>Why equivalence matters</strong>:</p>
 <ol>
@@ -47322,17 +47322,17 @@
 <p>In continuous time, discounted prices are typically <strong>local martingales</strong>, not necessarily true martingales.</p>
 <h3 id="the-issue">The Issue<a class="headerlink" href="#the-issue" title="Permanent link">&para;</a></h3>
 <p>Even under the risk-neutral measure, the gains process:</p>
-<p>$$</p>
-<p>G_t(\phi) = \int_0^t \phi_s\,d\tilde{S}_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_t(\phi) = \int_0^t \phi_s\,d\tilde{S}_s
+\]</div>
 <p>is only guaranteed to be a local martingale (as an Itô integral with adapted integrand).</p>
 <h3 id="when-does-local-suffice">When Does Local Suffice?<a class="headerlink" href="#when-does-local-suffice" title="Permanent link">&para;</a></h3>
 <p>For <strong>admissible</strong> strategies (gains bounded below), local martingales that are bounded below are supermartingales. This is enough to rule out arbitrage, as shown above.</p>
 <h3 id="when-local-fails-bubbles">When Local Fails: Bubbles<a class="headerlink" href="#when-local-fails-bubbles" title="Permanent link">&para;</a></h3>
 <p>If the discounted price is a <strong>strict local martingale</strong> (local but not true martingale), then:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[\tilde{S}_T] &lt; \tilde{S}_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[\tilde{S}_T] &lt; \tilde{S}_0
+\]</div>
 <p>This corresponds to a <strong>financial bubble</strong>—the current price exceeds the expected discounted payoff. See <a href="../local_martingale/">Local Martingales</a> for detailed examples and implications.</p>
 <hr />
 <h2 id="the-fundamental-theorem-of-asset-pricing">The Fundamental Theorem of Asset Pricing<a class="headerlink" href="#the-fundamental-theorem-of-asset-pricing" title="Permanent link">&para;</a></h2>
@@ -47364,54 +47364,54 @@
 </ul>
 <h3 id="the-mechanism">The Mechanism<a class="headerlink" href="#the-mechanism" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>d\tilde{S}_t = (\mu - r)\tilde{S}_t\,dt + \sigma \tilde{S}_t\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{S}_t = (\mu - r)\tilde{S}_t\,dt + \sigma \tilde{S}_t\,dW_t^{\mathbb{P}}
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span> (via Girsanov):</p>
-<p>$$</p>
-<p>d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>where <span class="arithmatex">\(W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \int_0^t \theta_s\,ds\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-Brownian motion, with <span class="arithmatex">\(\theta_t = (\mu_t - r_t)/\sigma_t\)</span>.</p>
 <p>The drift has been <strong>absorbed</strong> into the change of Brownian motion!</p>
 <h3 id="the-market-price-of-risk">The Market Price of Risk<a class="headerlink" href="#the-market-price-of-risk" title="Permanent link">&para;</a></h3>
 <p>The quantity:</p>
-<p>$$</p>
-<p>\theta_t = \frac{\mu_t - r_t}{\sigma_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = \frac{\mu_t - r_t}{\sigma_t}
+\]</div>
 <p>is called the <strong>market price of risk</strong> or <strong>Sharpe ratio</strong>. It measures the excess return per unit of volatility.</p>
 <p>Girsanov's theorem says: shifting Brownian motion by <span class="arithmatex">\(\int \theta\,dt\)</span> removes the drift from discounted prices.</p>
 <hr />
 <h2 id="example-blackscholes-model">Example: Black–Scholes Model<a class="headerlink" href="#example-blackscholes-model" title="Permanent link">&para;</a></h2>
 <h3 id="under-the-physical-measure-p">Under the Physical Measure P<a class="headerlink" href="#under-the-physical-measure-p" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t^{\mathbb{P}}
+\]</div>
 <p>Discounted:</p>
-<p>$$</p>
-<p>d\tilde{S}_t = (\mu - r)\tilde{S}_t\,dt + \sigma \tilde{S}_t\,dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{S}_t = (\mu - r)\tilde{S}_t\,dt + \sigma \tilde{S}_t\,dW_t^{\mathbb{P}}
+\]</div>
 <p>This has drift <span class="arithmatex">\(\mu - r \neq 0\)</span> (typically), so the martingale property fails under <span class="arithmatex">\(\mathbb{P}\)</span>.</p>
 <h3 id="under-the-risk-neutral-measure-q">Under the Risk-Neutral Measure Q<a class="headerlink" href="#under-the-risk-neutral-measure-q" title="Permanent link">&para;</a></h3>
 <p>The market price of risk is constant: <span class="arithmatex">\(\theta = (\mu - r)/\sigma\)</span>.</p>
 <p>Define the Radon–Nikodym derivative:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\left(-\theta W_T^{\mathbb{P}} - \frac{\theta^2 T}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = \exp\left(-\theta W_T^{\mathbb{P}} - \frac{\theta^2 T}{2}\right)
+\]</div>
 <p>This is the stochastic exponential <span class="arithmatex">\(\mathcal{E}(-\theta W^{\mathbb{P}})_T\)</span>.</p>
 <p>Then <span class="arithmatex">\(W_t^{\mathbb{Q}} = W_t^{\mathbb{P}} + \theta t\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-Brownian motion, and:</p>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>Discounted:</p>
-<p>$$</p>
-<p>d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{S}_t = \sigma \tilde{S}_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p><strong>No drift!</strong> The discounted price is a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale.</p>
 <h3 id="verification-via-novikov">Verification via Novikov<a class="headerlink" href="#verification-via-novikov" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(\theta\)</span> is constant:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta^2\,ds\right)\right] = e^{\theta^2 T/2} &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \theta^2\,ds\right)\right] = e^{\theta^2 T/2} &lt; \infty
+\]</div>
 <p>Novikov's condition is satisfied, so the stochastic exponential is a true martingale, and <span class="arithmatex">\(\mathbb{Q}\)</span> is a valid probability measure equivalent to <span class="arithmatex">\(\mathbb{P}\)</span>.</p>
 <p>See <a href="../novikov_kazamaki_conditions/">Novikov and Kazamaki Conditions</a> for general criteria.</p>
 <hr />
@@ -47479,11 +47479,11 @@
 <p>See <a href="../martingale_representation_theorem/">Martingale Representation Theorem</a> for the mathematical details.</p>
 <hr />
 <h2 id="summary-the-no-arbitrage-martingale-connection">Summary: The No-Arbitrage ⟺ Martingale Connection<a class="headerlink" href="#summary-the-no-arbitrage-martingale-connection" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{No Arbitrage (NFLVR)} \iff \exists\, \mathbb{Q} \sim \mathbb{P} : \tilde{S}_t \text{ is a } \mathbb{Q}\text{-local martingale}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47534,15 +47534,15 @@
 <h3 id="exercise-1-self-financing-condition">Exercise 1: Self-Financing Condition<a class="headerlink" href="#exercise-1-self-financing-condition" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(V_t = \phi_t S_t + \psi_t B_t\)</span> be a portfolio value.</p>
 <p>(a) Apply the product rule to <span class="arithmatex">\(d(\phi_t S_t)\)</span> and <span class="arithmatex">\(d(\psi_t B_t)\)</span>, then use the self-financing condition <span class="arithmatex">\(dV_t = \phi_t\,dS_t + \psi_t\,dB_t\)</span> to show:</p>
-<p>$$</p>
-<p>S_t\,d\phi_t + B_t\,d\psi_t = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t\,d\phi_t + B_t\,d\psi_t = 0
+\]</div>
 <p>(b) Interpret this condition economically: what does it say about rebalancing the portfolio?</p>
 <h3 id="exercise-2-discounted-gains-process">Exercise 2: Discounted Gains Process<a class="headerlink" href="#exercise-2-discounted-gains-process" title="Permanent link">&para;</a></h3>
 <p>Show that for a self-financing strategy, the discounted portfolio value satisfies:</p>
-<p>$$</p>
-<p>\tilde{V}_t = \tilde{V}_0 + \int_0^t \phi_s\,d\tilde{S}_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{V}_t = \tilde{V}_0 + \int_0^t \phi_s\,d\tilde{S}_s
+\]</div>
 <p><em>Hint</em>: Use Itô's product rule on <span class="arithmatex">\(\tilde{V}_t = V_t/B_t = V_t \cdot B_t^{-1}\)</span>.</p>
 <h3 id="exercise-3-supermartingale-argument">Exercise 3: Supermartingale Argument<a class="headerlink" href="#exercise-3-supermartingale-argument" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(G_t\)</span> be a local martingale with <span class="arithmatex">\(G_t \geq -M\)</span> for some <span class="arithmatex">\(M &gt; 0\)</span>.</p>

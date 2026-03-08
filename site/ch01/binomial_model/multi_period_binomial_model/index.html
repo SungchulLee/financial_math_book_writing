@@ -47077,9 +47077,9 @@
 <h2 id="the-multi-period-tree">The Multi-Period Tree<a class="headerlink" href="#the-multi-period-tree" title="Permanent link">&para;</a></h2>
 <h3 id="time-structure">Time Structure<a class="headerlink" href="#time-structure" title="Permanent link">&para;</a></h3>
 <p>Fix a maturity <span class="arithmatex">\(T\)</span> and divide it into <span class="arithmatex">\(N\)</span> equal periods:</p>
-<p>$$</p>
-<p>\Delta t = \frac{T}{N}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta t = \frac{T}{N}
+\]</div>
 <p>Time points: <span class="arithmatex">\(t_n = n \cdot \Delta t\)</span> for <span class="arithmatex">\(n = 0, 1, \ldots, N\)</span>.</p>
 <h3 id="node-indexing">Node Indexing<a class="headerlink" href="#node-indexing" title="Permanent link">&para;</a></h3>
 <p>Each node is indexed by <span class="arithmatex">\((n, j)\)</span> where:</p>
@@ -47089,14 +47089,14 @@
 </ul>
 <h3 id="stock-prices">Stock Prices<a class="headerlink" href="#stock-prices" title="Permanent link">&para;</a></h3>
 <p>At node <span class="arithmatex">\((n, j)\)</span>, the stock price is:</p>
-<p>$$</p>
-<p>\boxed{S_{n,j} = S_0 \cdot u^j \cdot d^{n-j}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{S_{n,j} = S_0 \cdot u^j \cdot d^{n-j}}
+\]</div>
 <h3 id="the-recombining-property">The Recombining Property<a class="headerlink" href="#the-recombining-property" title="Permanent link">&para;</a></h3>
 <p>With <span class="arithmatex">\(u = e^{\sigma\sqrt{\Delta t}}\)</span> and <span class="arithmatex">\(d = e^{-\sigma\sqrt{\Delta t}} = 1/u\)</span>:</p>
-<p>$$</p>
-<p>ud = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+ud = 1
+\]</div>
 <p>An up-then-down path reaches the same price as a down-then-up path. The tree <strong>recombines</strong>, giving only <span class="arithmatex">\(n+1\)</span> nodes at time <span class="arithmatex">\(n\)</span> (not <span class="arithmatex">\(2^n\)</span>).</p>
 <h3 id="tree-visualization-n-3">Tree Visualization (N = 3)<a class="headerlink" href="#tree-visualization-n-3" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>Time:     0           1           2           3
@@ -47135,14 +47135,14 @@
 <h3 id="the-algorithm">The Algorithm<a class="headerlink" href="#the-algorithm" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1: Terminal condition</strong> (<span class="arithmatex">\(n = N\)</span>)</p>
 <p>Set option values equal to payoffs:</p>
-<p>$$</p>
-<p>V_{N,j} = H(S_{N,j})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{N,j} = H(S_{N,j})
+\]</div>
 <p><strong>Step 2: Backward recursion</strong> (<span class="arithmatex">\(n = N-1, N-2, \ldots, 0\)</span>)</p>
 <p>At each node <span class="arithmatex">\((n, j)\)</span>, the option value is the discounted risk-neutral expectation:</p>
-<p>$$</p>
-<p>\boxed{V_{n,j} = e^{-r\Delta t}\left[qV_{n+1,j+1} + (1-q)V_{n+1,j}\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_{n,j} = e^{-r\Delta t}\left[qV_{n+1,j+1} + (1-q)V_{n+1,j}\right]}
+\]</div>
 <p>where <span class="arithmatex">\(q = \frac{e^{r\Delta t} - d}{u - d}\)</span>.</p>
 <p><strong>Step 3: Output</strong></p>
 <p>The option price is <span class="arithmatex">\(V_{0,0}\)</span>.</p>
@@ -47151,9 +47151,9 @@
 - Up-state payoff: <span class="arithmatex">\(V_{n+1,j+1}\)</span>
 - Down-state payoff: <span class="arithmatex">\(V_{n+1,j}\)</span></p>
 <p>By risk-neutral pricing:</p>
-<p>$$</p>
-<p>V_{n,j} = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[V_{n+1} | \text{at node } (n,j)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{n,j} = e^{-r\Delta t}\mathbb{E}^{\mathbb{Q}}[V_{n+1} | \text{at node } (n,j)]
+\]</div>
 <hr />
 <h2 id="dynamic-delta-hedging">Dynamic Delta Hedging<a class="headerlink" href="#dynamic-delta-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="the-hedging-strategy">The Hedging Strategy<a class="headerlink" href="#the-hedging-strategy" title="Permanent link">&para;</a></h3>
@@ -47165,18 +47165,18 @@
 <p>The portfolio replicates the option over the next period.</p>
 <h3 id="computing-delta-at-each-node">Computing Delta at Each Node<a class="headerlink" href="#computing-delta-at-each-node" title="Permanent link">&para;</a></h3>
 <p>From the one-period hedging formula:</p>
-<p>$$</p>
-<p>\boxed{\Delta_{n,j} = \frac{V_{n+1,j+1} - V_{n+1,j}}{S_{n,j}(u - d)}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\Delta_{n,j} = \frac{V_{n+1,j+1} - V_{n+1,j}}{S_{n,j}(u - d)}}
+\]</div>
 <p>This is the <strong>local hedge ratio</strong>—the number of shares to hold at node <span class="arithmatex">\((n,j)\)</span>.</p>
 <h3 id="computing-the-cash-position">Computing the Cash Position<a class="headerlink" href="#computing-the-cash-position" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{B_{n,j} = e^{-r\Delta t}\left(V_{n+1,j+1} - \Delta_{n,j} \cdot uS_{n,j}\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{B_{n,j} = e^{-r\Delta t}\left(V_{n+1,j+1} - \Delta_{n,j} \cdot uS_{n,j}\right)}
+\]</div>
 <p>Or equivalently:</p>
-<p>$$</p>
-<p>B_{n,j} = V_{n,j} - \Delta_{n,j} \cdot S_{n,j}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_{n,j} = V_{n,j} - \Delta_{n,j} \cdot S_{n,j}
+\]</div>
 <h3 id="the-rebalancing-process">The Rebalancing Process<a class="headerlink" href="#the-rebalancing-process" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>At <span class="arithmatex">\(t = 0\)</span></strong>: Enter position <span class="arithmatex">\((\Delta_{0,0}, B_{0,0})\)</span></li>
@@ -47188,9 +47188,9 @@
 </ol>
 <h3 id="self-financing-property">Self-Financing Property<a class="headerlink" href="#self-financing-property" title="Permanent link">&para;</a></h3>
 <p>The rebalancing requires <strong>no external cash</strong>. The value of the old portfolio exactly equals the cost of the new portfolio:</p>
-<p>$$</p>
-<p>\Delta_{n-1,k} \cdot S_{n,j} + B_{n-1,k} \cdot e^{r\Delta t} = V_{n,j} = \Delta_{n,j} \cdot S_{n,j} + B_{n,j}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{n-1,k} \cdot S_{n,j} + B_{n-1,k} \cdot e^{r\Delta t} = V_{n,j} = \Delta_{n,j} \cdot S_{n,j} + B_{n,j}
+\]</div>
 <p>This is the <strong>self-financing property</strong>—the hedging strategy is implementable without adding or withdrawing funds.</p>
 <hr />
 <h2 id="complete-numerical-example">Complete Numerical Example<a class="headerlink" href="#complete-numerical-example" title="Permanent link">&para;</a></h2>
@@ -47230,12 +47230,12 @@
 </tbody>
 </table>
 <h3 id="computed-values">Computed Values<a class="headerlink" href="#computed-values" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Delta t = \frac{1}{3}, \quad u = e^{0.2\sqrt{1/3}} = 1.1224, \quad d = \frac{1}{u} = 0.8909</p>
-<p>$$</p>
-<p>$$</p>
-<p>e^{r\Delta t} = e^{0.05/3} = 1.0168, \quad q = \frac{1.0168 - 0.8909}{1.1224 - 0.8909} = 0.5439</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta t = \frac{1}{3}, \quad u = e^{0.2\sqrt{1/3}} = 1.1224, \quad d = \frac{1}{u} = 0.8909
+\]</div>
+<div class="arithmatex">\[
+e^{r\Delta t} = e^{0.05/3} = 1.0168, \quad q = \frac{1.0168 - 0.8909}{1.1224 - 0.8909} = 0.5439
+\]</div>
 <h3 id="stock-price-tree">Stock Price Tree<a class="headerlink" href="#stock-price-tree" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47289,53 +47289,53 @@
 </table>
 <h3 id="option-values-european-call-k-100">Option Values (European Call, K = 100)<a class="headerlink" href="#option-values-european-call-k-100" title="Permanent link">&para;</a></h3>
 <p><strong>Terminal payoffs</strong> (<span class="arithmatex">\(n = 3\)</span>):</p>
-<p>$$</p>
-<p>V_{3,3} = 41.40, \quad V_{3,2} = 12.24, \quad V_{3,1} = 0, \quad V_{3,0} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{3,3} = 41.40, \quad V_{3,2} = 12.24, \quad V_{3,1} = 0, \quad V_{3,0} = 0
+\]</div>
 <p><strong>At <span class="arithmatex">\(n = 2\)</span></strong>:</p>
-<p>$$</p>
-<p>V_{2,2} = e^{-0.0167}[0.5439 \times 41.40 + 0.4561 \times 12.24] = 0.9835 \times 28.10 = 27.63</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_{2,1} = e^{-0.0167}[0.5439 \times 12.24 + 0.4561 \times 0] = 0.9835 \times 6.66 = 6.55</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_{2,0} = e^{-0.0167}[0.5439 \times 0 + 0.4561 \times 0] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{2,2} = e^{-0.0167}[0.5439 \times 41.40 + 0.4561 \times 12.24] = 0.9835 \times 28.10 = 27.63
+\]</div>
+<div class="arithmatex">\[
+V_{2,1} = e^{-0.0167}[0.5439 \times 12.24 + 0.4561 \times 0] = 0.9835 \times 6.66 = 6.55
+\]</div>
+<div class="arithmatex">\[
+V_{2,0} = e^{-0.0167}[0.5439 \times 0 + 0.4561 \times 0] = 0
+\]</div>
 <p><strong>At <span class="arithmatex">\(n = 1\)</span></strong>:</p>
-<p>$$</p>
-<p>V_{1,1} = e^{-0.0167}[0.5439 \times 27.63 + 0.4561 \times 6.55] = 0.9835 \times 18.02 = 17.72</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_{1,0} = e^{-0.0167}[0.5439 \times 6.55 + 0.4561 \times 0] = 0.9835 \times 3.56 = 3.50</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{1,1} = e^{-0.0167}[0.5439 \times 27.63 + 0.4561 \times 6.55] = 0.9835 \times 18.02 = 17.72
+\]</div>
+<div class="arithmatex">\[
+V_{1,0} = e^{-0.0167}[0.5439 \times 6.55 + 0.4561 \times 0] = 0.9835 \times 3.56 = 3.50
+\]</div>
 <p><strong>At <span class="arithmatex">\(n = 0\)</span></strong>:</p>
-<p>$$</p>
-<p>V_{0,0} = e^{-0.0167}[0.5439 \times 17.72 + 0.4561 \times 3.50] = 0.9835 \times 11.23 = 11.04</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{0,0} = e^{-0.0167}[0.5439 \times 17.72 + 0.4561 \times 3.50] = 0.9835 \times 11.23 = 11.04
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">European Call Price</p>
 <div class="arithmatex">\[C_0 = 11.04\]</div>
 </div>
 <h3 id="delta-at-each-node">Delta at Each Node<a class="headerlink" href="#delta-at-each-node" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Delta_{2,2} = \frac{41.40 - 12.24}{125.98 \times 0.2315} = \frac{29.16}{29.16} = 1.00</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta_{2,1} = \frac{12.24 - 0}{100 \times 0.2315} = \frac{12.24}{23.15} = 0.529</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta_{2,0} = \frac{0 - 0}{79.37 \times 0.2315} = 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta_{1,1} = \frac{27.63 - 6.55}{112.24 \times 0.2315} = \frac{21.08}{25.98} = 0.812</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta_{1,0} = \frac{6.55 - 0}{89.09 \times 0.2315} = \frac{6.55}{20.62} = 0.318</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta_{0,0} = \frac{17.72 - 3.50}{100 \times 0.2315} = \frac{14.22}{23.15} = 0.614</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{2,2} = \frac{41.40 - 12.24}{125.98 \times 0.2315} = \frac{29.16}{29.16} = 1.00
+\]</div>
+<div class="arithmatex">\[
+\Delta_{2,1} = \frac{12.24 - 0}{100 \times 0.2315} = \frac{12.24}{23.15} = 0.529
+\]</div>
+<div class="arithmatex">\[
+\Delta_{2,0} = \frac{0 - 0}{79.37 \times 0.2315} = 0
+\]</div>
+<div class="arithmatex">\[
+\Delta_{1,1} = \frac{27.63 - 6.55}{112.24 \times 0.2315} = \frac{21.08}{25.98} = 0.812
+\]</div>
+<div class="arithmatex">\[
+\Delta_{1,0} = \frac{6.55 - 0}{89.09 \times 0.2315} = \frac{6.55}{20.62} = 0.318
+\]</div>
+<div class="arithmatex">\[
+\Delta_{0,0} = \frac{17.72 - 3.50}{100 \times 0.2315} = \frac{14.22}{23.15} = 0.614
+\]</div>
 <h3 id="delta-hedging-through-the-tree">Delta Hedging Through the Tree<a class="headerlink" href="#delta-hedging-through-the-tree" title="Permanent link">&para;</a></h3>
 <p><strong>Initial position</strong> (<span class="arithmatex">\(t = 0\)</span>):
 - Hold <span class="arithmatex">\(\Delta_{0,0} = 0.614\)</span> shares: cost <span class="arithmatex">\(61.40\)</span>
@@ -47362,35 +47362,35 @@
 <li><strong>Continuation value</strong>: value of holding the option</li>
 </ol>
 <h3 id="backward-induction-for-american-options">Backward Induction for American Options<a class="headerlink" href="#backward-induction-for-american-options" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{V_{n,j}^{Am} = \max\left(\text{Intrinsic}<em n_1_j_1="n+1,j+1">{n,j}, \, e^{-r\Delta t}[qV</em>}^{Am} + (1-q)V_{n+1,j}^{Am}]\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_{n,j}^{Am} = \max\left(\text{Intrinsic}_{n,j}, \, e^{-r\Delta t}[qV_{n+1,j+1}^{Am} + (1-q)V_{n+1,j}^{Am}]\right)}
+\]</div>
 <p><strong>American call</strong>: <span class="arithmatex">\(\text{Intrinsic}_{n,j} = (S_{n,j} - K)^+\)</span></p>
 <p><strong>American put</strong>: <span class="arithmatex">\(\text{Intrinsic}_{n,j} = (K - S_{n,j})^+\)</span></p>
 <h3 id="american-put-example">American Put Example<a class="headerlink" href="#american-put-example" title="Permanent link">&para;</a></h3>
 <p>Using the same parameters, price an American put with <span class="arithmatex">\(K = 100\)</span>.</p>
 <p><strong>Terminal payoffs</strong> (<span class="arithmatex">\(n = 3\)</span>):</p>
-<p>$$</p>
-<p>V_{3,3}^{Am} = 0, \quad V_{3,2}^{Am} = 0, \quad V_{3,1}^{Am} = 10.91, \quad V_{3,0}^{Am} = 29.28</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{3,3}^{Am} = 0, \quad V_{3,2}^{Am} = 0, \quad V_{3,1}^{Am} = 10.91, \quad V_{3,0}^{Am} = 29.28
+\]</div>
 <p><strong>At <span class="arithmatex">\(n = 2\)</span></strong>:</p>
 <p><span class="arithmatex">\(V_{2,2}\)</span>: Intrinsic <span class="arithmatex">\(= (100 - 125.98)^+ = 0\)</span>, Continuation <span class="arithmatex">\(= 0\)</span> → <span class="arithmatex">\(V_{2,2}^{Am} = 0\)</span></p>
 <p><span class="arithmatex">\(V_{2,1}\)</span>: Intrinsic <span class="arithmatex">\(= (100 - 100)^+ = 0\)</span>, Continuation <span class="arithmatex">\(= 0.9835[0.5439 \times 0 + 0.4561 \times 10.91] = 4.89\)</span> → <span class="arithmatex">\(V_{2,1}^{Am} = 4.89\)</span></p>
 <p><span class="arithmatex">\(V_{2,0}\)</span>: Intrinsic <span class="arithmatex">\(= (100 - 79.37)^+ = 20.63\)</span>, Continuation <span class="arithmatex">\(= 0.9835[0.5439 \times 10.91 + 0.4561 \times 29.28] = 18.96\)</span></p>
-<p>$$</p>
-<p>V_{2,0}^{Am} = \max(20.63, 18.96) = 20.63 \quad \textbf{(Early exercise optimal!)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{2,0}^{Am} = \max(20.63, 18.96) = 20.63 \quad \textbf{(Early exercise optimal!)}
+\]</div>
 <p><strong>At <span class="arithmatex">\(n = 1\)</span></strong>:</p>
 <p><span class="arithmatex">\(V_{1,1}\)</span>: Intrinsic <span class="arithmatex">\(= 0\)</span>, Continuation <span class="arithmatex">\(= 0.9835[0.5439 \times 0 + 0.4561 \times 4.89] = 2.19\)</span> → <span class="arithmatex">\(V_{1,1}^{Am} = 2.19\)</span></p>
 <p><span class="arithmatex">\(V_{1,0}\)</span>: Intrinsic <span class="arithmatex">\(= (100 - 89.09)^+ = 10.91\)</span>, Continuation <span class="arithmatex">\(= 0.9835[0.5439 \times 4.89 + 0.4561 \times 20.63] = 11.87\)</span></p>
-<p>$$</p>
-<p>V_{1,0}^{Am} = \max(10.91, 11.87) = 11.87 \quad \text{(Hold)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{1,0}^{Am} = \max(10.91, 11.87) = 11.87 \quad \text{(Hold)}
+\]</div>
 <p><strong>At <span class="arithmatex">\(n = 0\)</span></strong>:</p>
 <p><span class="arithmatex">\(V_{0,0}\)</span>: Intrinsic <span class="arithmatex">\(= 0\)</span>, Continuation <span class="arithmatex">\(= 0.9835[0.5439 \times 2.19 + 0.4561 \times 11.87] = 6.50\)</span></p>
-<p>$$</p>
-<p>V_{0,0}^{Am} = 6.50</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{0,0}^{Am} = 6.50
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">American Put Price</p>
 <div class="arithmatex">\[P_0^{Am} = 6.50\]</div>
@@ -47419,20 +47419,20 @@
 </ul>
 <h3 id="gamma-rate-of-change-of-delta">Gamma: Rate of Change of Delta<a class="headerlink" href="#gamma-rate-of-change-of-delta" title="Permanent link">&para;</a></h3>
 <p>The <strong>gamma</strong> measures how fast delta changes:</p>
-<p>$$</p>
-<p>\Gamma_{n,j} \approx \frac{\Delta_{n+1,j+1} - \Delta_{n+1,j}}{S_{n+1,j+1} - S_{n+1,j}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_{n,j} \approx \frac{\Delta_{n+1,j+1} - \Delta_{n+1,j}}{S_{n+1,j+1} - S_{n+1,j}}
+\]</div>
 <p>High gamma means more frequent rebalancing is needed.</p>
 <h3 id="delta-at-maturity">Delta at Maturity<a class="headerlink" href="#delta-at-maturity" title="Permanent link">&para;</a></h3>
 <p>At expiration:</p>
-<p>$$</p>
-<p>\Delta_{N-1,j} = \frac{V_{N,j+1} - V_{N,j}}{S_{N-1,j}(u-d)} = 
+<div class="arithmatex">\[
+\Delta_{N-1,j} = \frac{V_{N,j+1} - V_{N,j}}{S_{N-1,j}(u-d)} = 
 \begin{cases}
-1 &amp; \text{if both nodes in-the-money} \
-\frac{\text{payoff spread}}{\text{price spread}} &amp; \text{if one node ITM} \
+1 &amp; \text{if both nodes in-the-money} \\
+\frac{\text{payoff spread}}{\text{price spread}} &amp; \text{if one node ITM} \\
 0 &amp; \text{if both nodes out-of-the-money}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <hr />
 <h2 id="algorithm-summary">Algorithm Summary<a class="headerlink" href="#algorithm-summary" title="Permanent link">&para;</a></h2>
 <h3 id="european-option-pricing">European Option Pricing<a class="headerlink" href="#european-option-pricing" title="Permanent link">&para;</a></h3>

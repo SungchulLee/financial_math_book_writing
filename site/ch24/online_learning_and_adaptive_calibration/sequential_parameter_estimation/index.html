@@ -47171,49 +47171,49 @@
 - <strong>Stability:</strong> Avoid erratic updates from noisy observations</p>
 <h3 id="contrast-with-batch-estimation">Contrast with Batch Estimation<a class="headerlink" href="#contrast-with-batch-estimation" title="Permanent link">&para;</a></h3>
 <p><strong>Batch estimation:</strong> Given all data <span class="arithmatex">\(\{(X_i, Y_i)\}_{i=1}^T\)</span>:</p>
-<p>$$</p>
-<p>\hat{\theta}<em>T = \arg\min</em>\theta \sum_{i=1}^T L(Y_i, f(X_i; \theta)).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_T = \arg\min_\theta \sum_{i=1}^T L(Y_i, f(X_i; \theta))
+\]</div>
 <p>Computational cost: <span class="arithmatex">\(O(T)\)</span> per re-estimation.</p>
 <p><strong>Sequential estimation:</strong> Update rule <span class="arithmatex">\(\theta_t = \mathcal{U}(\theta_{t-1}, X_t, Y_t)\)</span> with <span class="arithmatex">\(O(1)\)</span> complexity.</p>
 <hr />
 <h2 id="recursive-least-squares-rls">Recursive Least Squares (RLS)<a class="headerlink" href="#recursive-least-squares-rls" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>Consider the linear model:</p>
-<p>$$</p>
-<p>Y_t = X_t^\top \theta^* + \varepsilon_t, \quad \varepsilon_t \sim (0, \sigma^2).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = X_t^\top \theta^* + \varepsilon_t, \quad \varepsilon_t \sim (0, \sigma^2)
+\]</div>
 <p>The batch least squares estimator is:</p>
-<p>$$</p>
-<p>\hat{\theta}<em i="1">t = \left(\sum</em> b_t,}^t X_i X_i^\top\right)^{-1} \sum_{i=1}^t X_i Y_i = P_t^{-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_t = \left(\sum_{i=1}^t X_i X_i^\top\right)^{-1} \sum_{i=1}^t X_i Y_i = P_t^{-1} b_t
+\]</div>
 <p>where <span class="arithmatex">\(P_t = \sum_{i=1}^t X_i X_i^\top\)</span> and <span class="arithmatex">\(b_t = \sum_{i=1}^t X_i Y_i\)</span>.</p>
 <h3 id="recursive-update">Recursive Update<a class="headerlink" href="#recursive-update" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem (Recursive Least Squares).</strong> The OLS estimator can be computed recursively:</p>
-<p>$$</p>
-<p>\hat{\theta}<em t-1="t-1">t = \hat{\theta}</em>),} + K_t (Y_t - X_t^\top \hat{\theta}_{t-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_t = \hat{\theta}_{t-1} + K_t (Y_t - X_t^\top \hat{\theta}_{t-1})
+\]</div>
 <p>where the <strong>gain</strong> <span class="arithmatex">\(K_t\)</span> is:</p>
-<p>$$</p>
-<p>K_t = \frac{P_{t-1}^{-1} X_t}{1 + X_t^\top P_{t-1}^{-1} X_t},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_t = \frac{P_{t-1}^{-1} X_t}{1 + X_t^\top P_{t-1}^{-1} X_t}
+\]</div>
 <p>and the inverse covariance matrix updates as:</p>
-<p>$$</p>
-<p>P_t^{-1} = P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{1 + X_t^\top P_{t-1}^{-1} X_t}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_t^{-1} = P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{1 + X_t^\top P_{t-1}^{-1} X_t}
+\]</div>
 <h3 id="proof">Proof<a class="headerlink" href="#proof" title="Permanent link">&para;</a></h3>
 <p>Using the matrix inversion lemma (Sherman-Morrison-Woodbury):</p>
-<p>$$</p>
-<p>(A + uv^\top)^{-1} = A^{-1} - \frac{A^{-1} u v^\top A^{-1}}{1 + v^\top A^{-1} u}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(A + uv^\top)^{-1} = A^{-1} - \frac{A^{-1} u v^\top A^{-1}}{1 + v^\top A^{-1} u}
+\]</div>
 <p>Since <span class="arithmatex">\(P_t = P_{t-1} + X_t X_t^\top\)</span>:</p>
-<p>$$</p>
-<p>P_t^{-1} = P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{1 + X_t^\top P_{t-1}^{-1} X_t}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_t^{-1} = P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{1 + X_t^\top P_{t-1}^{-1} X_t}
+\]</div>
 <p>For the parameter update:</p>
-<p>$$</p>
-<p>\hat{\theta}<em t-1="t-1">t = P_t^{-1} b_t = P_t^{-1} (b</em> + X_t Y_t).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_t = P_t^{-1} b_t = P_t^{-1} (b_{t-1} + X_t Y_t)
+\]</div>
 <p>Substituting and simplifying yields the stated form. <span class="arithmatex">\(\square\)</span></p>
 <h3 id="computational-complexity">Computational Complexity<a class="headerlink" href="#computational-complexity" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47232,61 +47232,61 @@
 <p>Standard RLS treats all observations equally. In non-stationary environments, older observations may be less relevant.</p>
 <h3 id="forgetting-factor">Forgetting Factor<a class="headerlink" href="#forgetting-factor" title="Permanent link">&para;</a></h3>
 <p>Introduce <strong>forgetting factor</strong> <span class="arithmatex">\(\lambda \in (0, 1]\)</span>:</p>
-<p>$$</p>
-<p>\hat{\theta}<em>t = \arg\min</em>\theta \sum_{i=1}^t \lambda^{t-i} (Y_i - X_i^\top \theta)^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_t = \arg\min_\theta \sum_{i=1}^t \lambda^{t-i} (Y_i - X_i^\top \theta)^2
+\]</div>
 <p>Recent observations receive weight <span class="arithmatex">\(\approx 1\)</span>; observations <span class="arithmatex">\(k\)</span> periods ago receive weight <span class="arithmatex">\(\lambda^k\)</span>.</p>
 <p><strong>Effective window length:</strong></p>
-<p>$$</p>
-<p>T_{\text{eff}} = \sum_{k=0}^\infty \lambda^k = \frac{1}{1 - \lambda}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+T_{\text{eff}} = \sum_{k=0}^\infty \lambda^k = \frac{1}{1 - \lambda}
+\]</div>
 <p>For <span class="arithmatex">\(\lambda = 0.99\)</span>: <span class="arithmatex">\(T_{\text{eff}} = 100\)</span>; for <span class="arithmatex">\(\lambda = 0.95\)</span>: <span class="arithmatex">\(T_{\text{eff}} = 20\)</span>.</p>
 <h3 id="recursive-update_1">Recursive Update<a class="headerlink" href="#recursive-update_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\hat{\theta}<em t-1="t-1">t = \hat{\theta}</em>),} + K_t (Y_t - X_t^\top \hat{\theta}_{t-1</p>
-<p>$$</p>
-<p>$$</p>
-<p>K_t = \frac{P_{t-1}^{-1} X_t}{\lambda + X_t^\top P_{t-1}^{-1} X_t},</p>
-<p>$$</p>
-<p>$$</p>
-<p>P_t^{-1} = \frac{1}{\lambda}\left(P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{\lambda + X_t^\top P_{t-1}^{-1} X_t}\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_t = \hat{\theta}_{t-1} + K_t (Y_t - X_t^\top \hat{\theta}_{t-1})
+\]</div>
+<div class="arithmatex">\[
+K_t = \frac{P_{t-1}^{-1} X_t}{\lambda + X_t^\top P_{t-1}^{-1} X_t}
+\]</div>
+<div class="arithmatex">\[
+P_t^{-1} = \frac{1}{\lambda}\left(P_{t-1}^{-1} - \frac{P_{t-1}^{-1} X_t X_t^\top P_{t-1}^{-1}}{\lambda + X_t^\top P_{t-1}^{-1} X_t}\right)
+\]</div>
 <h3 id="choosing-the-forgetting-factor">Choosing the Forgetting Factor<a class="headerlink" href="#choosing-the-forgetting-factor" title="Permanent link">&para;</a></h3>
 <p><strong>Bias-variance trade-off:</strong>
 - <span class="arithmatex">\(\lambda \to 1\)</span>: Low variance (uses all data), high bias if parameters change
 - <span class="arithmatex">\(\lambda \to 0\)</span>: Low bias (adapts quickly), high variance (few effective observations)</p>
 <p><strong>Adaptive forgetting:</strong> Adjust <span class="arithmatex">\(\lambda_t\)</span> based on prediction error magnitude:</p>
-<p>$$</p>
-<p>\lambda_t = \lambda_{\min} + (1 - \lambda_{\min}) \cdot \exp(-\gamma e_t^2),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_t = \lambda_{\min} + (1 - \lambda_{\min}) \cdot \exp(-\gamma e_t^2)
+\]</div>
 <p>where <span class="arithmatex">\(e_t = Y_t - X_t^\top \hat{\theta}_{t-1}\)</span> is the prediction error.</p>
 <p>Large errors trigger faster adaptation (smaller <span class="arithmatex">\(\lambda_t\)</span>).</p>
 <hr />
 <h2 id="stochastic-gradient-descent-sgd">Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permanent link">&para;</a></h2>
 <h3 id="basic-sgd">Basic SGD<a class="headerlink" href="#basic-sgd" title="Permanent link">&para;</a></h3>
 <p>For loss function <span class="arithmatex">\(L(\theta) = \mathbb{E}[\ell(Y, f(X; \theta))]\)</span>, gradient descent updates:</p>
-<p>$$</p>
-<p>\theta_{t+1} = \theta_t - \eta_t \nabla_\theta \ell(Y_t, f(X_t; \theta_t)),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_{t+1} = \theta_t - \eta_t \nabla_\theta \ell(Y_t, f(X_t; \theta_t))
+\]</div>
 <p>where <span class="arithmatex">\(\eta_t &gt; 0\)</span> is the <strong>learning rate</strong> (step size).</p>
 <h3 id="convergence-conditions-robbins-monro">Convergence Conditions (Robbins-Monro)<a class="headerlink" href="#convergence-conditions-robbins-monro" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem.</strong> For convex <span class="arithmatex">\(L(\theta)\)</span> with minimizer <span class="arithmatex">\(\theta^*\)</span>, SGD converges in mean square if:</p>
-<p>$$</p>
-<p>\sum_{t=1}^\infty \eta_t = \infty, \quad \sum_{t=1}^\infty \eta_t^2 &lt; \infty.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{t=1}^\infty \eta_t = \infty, \quad \sum_{t=1}^\infty \eta_t^2 &lt; \infty
+\]</div>
 <p>Common choices:
 - <span class="arithmatex">\(\eta_t = c/t\)</span> (polynomial decay)
 - <span class="arithmatex">\(\eta_t = c/\sqrt{t}\)</span> (slower decay, often better in practice)</p>
 <h3 id="convergence-rate">Convergence Rate<a class="headerlink" href="#convergence-rate" title="Permanent link">&para;</a></h3>
 <p>For strongly convex <span class="arithmatex">\(L\)</span> with condition number <span class="arithmatex">\(\kappa\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[|\theta_t - \theta^*|^2] = O\left(\frac{\sigma^2}{t}\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\|\theta_t - \theta^*\|^2] = O\left(\frac{\sigma^2}{t}\right)
+\]</div>
 <p>where <span class="arithmatex">\(\sigma^2\)</span> is the variance of gradient estimates.</p>
 <p>For convex (not strongly convex) <span class="arithmatex">\(L\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[L(\bar{\theta}_t) - L(\theta^*)] = O\left(\frac{1}{\sqrt{t}}\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[L(\bar{\theta}_t) - L(\theta^*)] = O\left(\frac{1}{\sqrt{t}}\right)
+\]</div>
 <p>where <span class="arithmatex">\(\bar{\theta}_t = \frac{1}{t}\sum_{i=1}^t \theta_i\)</span> (averaged iterate).</p>
 <h3 id="comparison-with-rls">Comparison with RLS<a class="headerlink" href="#comparison-with-rls" title="Permanent link">&para;</a></h3>
 <table>
@@ -47329,46 +47329,46 @@
 <h2 id="momentum-and-adaptive-methods">Momentum and Adaptive Methods<a class="headerlink" href="#momentum-and-adaptive-methods" title="Permanent link">&para;</a></h2>
 <h3 id="sgd-with-momentum">SGD with Momentum<a class="headerlink" href="#sgd-with-momentum" title="Permanent link">&para;</a></h3>
 <p>Add momentum to accelerate convergence:</p>
-<p>$$</p>
-<p>v_t = \beta v_{t-1} + \nabla_\theta \ell(Y_t, f(X_t; \theta_t)),</p>
-<p>$$</p>
-<p>$$</p>
-<p>\theta_{t+1} = \theta_t - \eta_t v_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+v_t = \beta v_{t-1} + \nabla_\theta \ell(Y_t, f(X_t; \theta_t))
+\]</div>
+<div class="arithmatex">\[
+\theta_{t+1} = \theta_t - \eta_t v_t
+\]</div>
 <p>Momentum <span class="arithmatex">\(\beta \in [0.9, 0.99]\)</span> accumulates gradient direction, reducing oscillation.</p>
 <h3 id="adagrad">AdaGrad<a class="headerlink" href="#adagrad" title="Permanent link">&para;</a></h3>
 <p>Adapt learning rate per parameter based on historical gradients:</p>
-<p>$$</p>
-<p>G_t = G_{t-1} + g_t \odot g_t, \quad g_t = \nabla_\theta \ell_t,</p>
-<p>$$</p>
-<p>$$</p>
-<p>\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \odot g_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_t = G_{t-1} + g_t \odot g_t, \quad g_t = \nabla_\theta \ell_t
+\]</div>
+<div class="arithmatex">\[
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \odot g_t
+\]</div>
 <p>where <span class="arithmatex">\(\odot\)</span> is element-wise product and <span class="arithmatex">\(\epsilon &gt; 0\)</span> prevents division by zero.</p>
 <p>Parameters with large historical gradients get smaller updates (implicit regularization).</p>
 <h3 id="rmsprop">RMSprop<a class="headerlink" href="#rmsprop" title="Permanent link">&para;</a></h3>
 <p>Use exponential moving average of squared gradients:</p>
-<p>$$</p>
-<p>v_t = \gamma v_{t-1} + (1-\gamma) g_t^2,</p>
-<p>$$</p>
-<p>$$</p>
-<p>\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{v_t + \epsilon}} g_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+v_t = \gamma v_{t-1} + (1-\gamma) g_t^2
+\]</div>
+<div class="arithmatex">\[
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{v_t + \epsilon}} g_t
+\]</div>
 <p>Typical <span class="arithmatex">\(\gamma = 0.9\)</span>.</p>
 <h3 id="adam-adaptive-moment-estimation">Adam (Adaptive Moment Estimation)<a class="headerlink" href="#adam-adaptive-moment-estimation" title="Permanent link">&para;</a></h3>
 <p>Combines momentum and adaptive learning rates:</p>
-<p>$$</p>
-<p>m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \quad \text{(first moment)},</p>
-<p>$$</p>
-<p>$$</p>
-<p>v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 \quad \text{(second moment)},</p>
-<p>$$</p>
-<p>$$</p>
-<p>\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t} \quad \text{(bias correction)},</p>
-<p>$$</p>
-<p>$$</p>
-<p>\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \quad \text{(first moment)}
+\]</div>
+<div class="arithmatex">\[
+v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 \quad \text{(second moment)}
+\]</div>
+<div class="arithmatex">\[
+\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t} \quad \text{(bias correction)}
+\]</div>
+<div class="arithmatex">\[
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
+\]</div>
 <p>Default hyperparameters: <span class="arithmatex">\(\beta_1 = 0.9\)</span>, <span class="arithmatex">\(\beta_2 = 0.999\)</span>, <span class="arithmatex">\(\epsilon = 10^{-8}\)</span>.</p>
 <hr />
 <h2 id="online-em-algorithm">Online EM Algorithm<a class="headerlink" href="#online-em-algorithm" title="Permanent link">&para;</a></h2>
@@ -47379,88 +47379,88 @@
 <p>Batch EM requires all data for each E-step.</p>
 <h3 id="online-em">Online EM<a class="headerlink" href="#online-em" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem (Cappé &amp; Moulines, 2009).</strong> For exponential family models:</p>
-<p>$$</p>
-<p>p(Y, Z | \theta) = h(Y, Z) \exp{\langle \theta, S(Y, Z) \rangle - A(\theta)},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(Y, Z | \theta) = h(Y, Z) \exp\{\langle \theta, S(Y, Z) \rangle - A(\theta)\}
+\]</div>
 <p>online EM updates sufficient statistics recursively:</p>
-<p>$$</p>
-<p>\bar{S}<em t-1="t-1">t = (1 - \gamma_t) \bar{S}</em>} + \gamma_t \mathbb{E<em t-1="t-1">{Z|Y_t, \theta</em>[S(Y_t, Z)],}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\theta_t = \arg\max_\theta {\langle \theta, \bar{S}_t \rangle - A(\theta)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{S}_t = (1 - \gamma_t) \bar{S}_{t-1} + \gamma_t \mathbb{E}_{Z|Y_t, \theta_{t-1}}[S(Y_t, Z)]
+\]</div>
+<div class="arithmatex">\[
+\theta_t = \arg\max_\theta \{\langle \theta, \bar{S}_t \rangle - A(\theta)\}
+\]</div>
 <h3 id="convergence">Convergence<a class="headerlink" href="#convergence" title="Permanent link">&para;</a></h3>
 <p>Under suitable conditions on <span class="arithmatex">\(\gamma_t\)</span> (satisfying Robbins-Monro):</p>
-<p>$$</p>
-<p>\theta_t \xrightarrow{a.s.} \theta^*,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t \xrightarrow{a.s.} \theta^*
+\]</div>
 <p>a stationary point of the expected log-likelihood.</p>
 <h3 id="application-online-mixture-model">Application: Online Mixture Model<a class="headerlink" href="#application-online-mixture-model" title="Permanent link">&para;</a></h3>
 <p>For Gaussian mixture <span class="arithmatex">\(p(Y) = \sum_{k=1}^K \pi_k \mathcal{N}(Y; \mu_k, \Sigma_k)\)</span>:</p>
 <p><strong>Online E-step:</strong> Compute responsibilities:</p>
-<p>$$</p>
-<p>r_{tk} = \frac{\pi_k^{(t-1)} \mathcal{N}(Y_t; \mu_k^{(t-1)}, \Sigma_k^{(t-1)})}{\sum_j \pi_j^{(t-1)} \mathcal{N}(Y_t; \mu_j^{(t-1)}, \Sigma_j^{(t-1)})}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_{tk} = \frac{\pi_k^{(t-1)} \mathcal{N}(Y_t; \mu_k^{(t-1)}, \Sigma_k^{(t-1)})}{\sum_j \pi_j^{(t-1)} \mathcal{N}(Y_t; \mu_j^{(t-1)}, \Sigma_j^{(t-1)})}
+\]</div>
 <p><strong>Online M-step:</strong> Update sufficient statistics and parameters:</p>
-<p>$$</p>
-<p>\bar{n}<em tk="tk">k^{(t)} = (1 - \gamma_t) \bar{n}_k^{(t-1)} + \gamma_t r</em>,</p>
-<p>$$</p>
-<p>$$</p>
-<p>\bar{s}<em tk="tk">k^{(t)} = (1 - \gamma_t) \bar{s}_k^{(t-1)} + \gamma_t r</em> Y_t,</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mu_k^{(t)} = \bar{s}_k^{(t)} / \bar{n}_k^{(t)}, \quad \pi_k^{(t)} = \bar{n}_k^{(t)} / \sum_j \bar{n}_j^{(t)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{n}_k^{(t)} = (1 - \gamma_t) \bar{n}_k^{(t-1)} + \gamma_t r_{tk}
+\]</div>
+<div class="arithmatex">\[
+\bar{s}_k^{(t)} = (1 - \gamma_t) \bar{s}_k^{(t-1)} + \gamma_t r_{tk} Y_t
+\]</div>
+<div class="arithmatex">\[
+\mu_k^{(t)} = \bar{s}_k^{(t)} / \bar{n}_k^{(t)}, \quad \pi_k^{(t)} = \bar{n}_k^{(t)} / \sum_j \bar{n}_j^{(t)}
+\]</div>
 <hr />
 <h2 id="financial-applications">Financial Applications<a class="headerlink" href="#financial-applications" title="Permanent link">&para;</a></h2>
 <h3 id="online-volatility-estimation">Online Volatility Estimation<a class="headerlink" href="#online-volatility-estimation" title="Permanent link">&para;</a></h3>
 <p><strong>GARCH updating.</strong> For GARCH(1,1):</p>
-<p>$$</p>
-<p>\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_t^2 = \omega + \alpha r_{t-1}^2 + \beta \sigma_{t-1}^2
+\]</div>
 <p>Parameters <span class="arithmatex">\((\omega, \alpha, \beta)\)</span> can be estimated online via recursive maximum likelihood.</p>
 <p><strong>Realized volatility.</strong> Update estimate using high-frequency returns:</p>
-<p>$$</p>
-<p>\hat{\sigma}<em t-1="t-1">t^2 = \lambda \hat{\sigma}</em>^2 + (1-\lambda) r_t^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\sigma}_t^2 = \lambda \hat{\sigma}_{t-1}^2 + (1-\lambda) r_t^2
+\]</div>
 <p>This is exponentially weighted moving average (EWMA) variance, the basis of RiskMetrics.</p>
 <h3 id="adaptive-factor-model-calibration">Adaptive Factor Model Calibration<a class="headerlink" href="#adaptive-factor-model-calibration" title="Permanent link">&para;</a></h3>
 <p>For time-varying factor loadings <span class="arithmatex">\(B_t\)</span>:</p>
-<p>$$</p>
-<p>R_t = \alpha + B_t F_t + \varepsilon_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_t = \alpha + B_t F_t + \varepsilon_t
+\]</div>
 <p>Use RLS with forgetting factor to track <span class="arithmatex">\(B_t\)</span>:</p>
-<p>$$</p>
-<p>\hat{B}<em t-1="t-1">t = \hat{B}</em> F_t) F_t^\top.} + K_t (R_t - \hat{B}_{t-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{B}_t = \hat{B}_{t-1} + K_t (R_t - \hat{B}_{t-1} F_t) F_t^\top
+\]</div>
 <h3 id="online-portfolio-optimization">Online Portfolio Optimization<a class="headerlink" href="#online-portfolio-optimization" title="Permanent link">&para;</a></h3>
 <p><strong>Online gradient descent for mean-variance:</strong></p>
-<p>$$</p>
-<p>w_{t+1} = \Pi_{\mathcal{W}}\left(w_t - \eta_t \nabla_w L(w_t, R_t)\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w_{t+1} = \Pi_{\mathcal{W}}\left(w_t - \eta_t \nabla_w L(w_t, R_t)\right)
+\]</div>
 <p>where <span class="arithmatex">\(\Pi_{\mathcal{W}}\)</span> projects onto the constraint set (e.g., simplex for long-only).</p>
 <p><strong>Regret bound:</strong> For convex losses, OGD achieves:</p>
-<p>$$</p>
-<p>\sum_{t=1}^T L(w_t, R_t) - \min_w \sum_{t=1}^T L(w, R_t) = O(\sqrt{T}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{t=1}^T L(w_t, R_t) - \min_w \sum_{t=1}^T L(w, R_t) = O(\sqrt{T})
+\]</div>
 <h3 id="real-time-risk-metrics">Real-Time Risk Metrics<a class="headerlink" href="#real-time-risk-metrics" title="Permanent link">&para;</a></h3>
 <p><strong>Streaming VaR/ES estimation:</strong></p>
-<p>$$</p>
-<p>\hat{q}<em t-1="t-1">t^{(\alpha)} = \hat{q}</em>}),}^{(\alpha)} + \gamma_t (\alpha - \mathbf{1}{R_t \leq \hat{q}_{t-1}^{(\alpha)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{q}_t^{(\alpha)} = \hat{q}_{t-1}^{(\alpha)} + \gamma_t (\alpha - \mathbf{1}\{R_t \leq \hat{q}_{t-1}^{(\alpha)}\})
+\]</div>
 <p>updating the <span class="arithmatex">\(\alpha\)</span>-quantile estimate using stochastic gradient on the pinball loss.</p>
 <hr />
 <h2 id="stabilityadaptivity-trade-off">Stability–Adaptivity Trade-Off<a class="headerlink" href="#stabilityadaptivity-trade-off" title="Permanent link">&para;</a></h2>
 <h3 id="formal-characterization">Formal Characterization<a class="headerlink" href="#formal-characterization" title="Permanent link">&para;</a></h3>
 <p>Consider tracking a time-varying parameter <span class="arithmatex">\(\theta_t^*\)</span> with dynamics:</p>
-<p>$$</p>
-<p>\theta_t^<em> = \theta_{t-1}^</em> + \xi_t, \quad \xi_t \sim (0, Q).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t^* = \theta_{t-1}^* + \xi_t, \quad \xi_t \sim (0, Q)
+\]</div>
 <p>For an estimator <span class="arithmatex">\(\hat{\theta}_t\)</span> with gain <span class="arithmatex">\(K_t\)</span>:</p>
 <p><strong>Tracking error variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}(\hat{\theta}<em k="0">t - \theta_t^*) \approx \text{Var}(\text{noise}) \cdot \sum</em>)^2.}^\infty K_{t-k}^2 + \text{Var}(\text{drift}) \cdot \sum_{k=0}^\infty (1 - K_{t-k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(\hat{\theta}_t - \theta_t^*) \approx \text{Var}(\text{noise}) \cdot \sum_{k=0}^\infty K_{t-k}^2 + \text{Var}(\text{drift}) \cdot \sum_{k=0}^\infty (1 - K_{t-k})^2
+\]</div>
 <ul>
 <li>Large <span class="arithmatex">\(K\)</span>: Tracks drift well, amplifies noise (high variance)</li>
 <li>Small <span class="arithmatex">\(K\)</span>: Filters noise well, lags behind drift (high bias)</li>
@@ -47468,27 +47468,27 @@
 <h3 id="optimal-constant-gain">Optimal Constant Gain<a class="headerlink" href="#optimal-constant-gain" title="Permanent link">&para;</a></h3>
 <p>For constant gain <span class="arithmatex">\(K\)</span> and i.i.d. noise <span class="arithmatex">\(\varepsilon_t\)</span> with variance <span class="arithmatex">\(R\)</span>, drift <span class="arithmatex">\(\xi_t\)</span> with variance <span class="arithmatex">\(Q\)</span>:</p>
 <p><strong>Tracking MSE:</strong></p>
-<p>$$</p>
-<p>\text{MSE} = \frac{K R}{2 - K} + \frac{Q}{K(2 - K)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MSE} = \frac{K R}{2 - K} + \frac{Q}{K(2 - K)}
+\]</div>
 <p><strong>Optimal gain:</strong></p>
-<p>$$</p>
-<p>K^* = \sqrt{\frac{Q}{R + Q/2}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K^* = \sqrt{\frac{Q}{R + Q/2}}
+\]</div>
 <p>More drift (<span class="arithmatex">\(Q\)</span> large) → larger gain; more noise (<span class="arithmatex">\(R\)</span> large) → smaller gain.</p>
 <hr />
 <h2 id="connection-to-kalman-filtering">Connection to Kalman Filtering<a class="headerlink" href="#connection-to-kalman-filtering" title="Permanent link">&para;</a></h2>
 <p>RLS is equivalent to Kalman filtering for the static state-space model:</p>
-<p>$$</p>
-<p>\theta_t = \theta_{t-1} \quad \text{(state equation: no dynamics)},</p>
-<p>$$</p>
-<p>$$</p>
-<p>Y_t = X_t^\top \theta_t + \varepsilon_t \quad \text{(observation equation)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = \theta_{t-1} \quad \text{(state equation: no dynamics)}
+\]</div>
+<div class="arithmatex">\[
+Y_t = X_t^\top \theta_t + \varepsilon_t \quad \text{(observation equation)}
+\]</div>
 <p>With forgetting factor <span class="arithmatex">\(\lambda\)</span>, RLS corresponds to:</p>
-<p>$$</p>
-<p>\theta_t = \theta_{t-1} + \eta_t, \quad \eta_t \sim \mathcal{N}(0, Q_t),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = \theta_{t-1} + \eta_t, \quad \eta_t \sim \mathcal{N}(0, Q_t)
+\]</div>
 <p>where <span class="arithmatex">\(Q_t\)</span> is chosen to match the effect of <span class="arithmatex">\(\lambda\)</span>.</p>
 <p>The Kalman filter (Section 14.2.2) generalizes to arbitrary state dynamics.</p>
 <hr />
@@ -47506,14 +47506,14 @@
 <h3 id="detecting-structural-breaks">Detecting Structural Breaks<a class="headerlink" href="#detecting-structural-breaks" title="Permanent link">&para;</a></h3>
 <p>Monitor prediction errors for signs of regime change:</p>
 <p><strong>CUSUM test:</strong> Cumulative sum of standardized errors:</p>
-<p>$$</p>
-<p>S_t = \sum_{i=1}^t \frac{e_i}{\hat{\sigma}_e}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = \sum_{i=1}^t \frac{e_i}{\hat{\sigma}_e}
+\]</div>
 <p>Large <span class="arithmatex">\(|S_t|\)</span> signals potential break.</p>
 <p><strong>EWMA control chart:</strong> Smooth prediction errors:</p>
-<p>$$</p>
-<p>Z_t = \lambda e_t + (1 - \lambda) Z_{t-1}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \lambda e_t + (1 - \lambda) Z_{t-1}
+\]</div>
 <p>Trigger alert if <span class="arithmatex">\(|Z_t| &gt; h \cdot \text{se}\)</span> for threshold <span class="arithmatex">\(h\)</span>.</p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

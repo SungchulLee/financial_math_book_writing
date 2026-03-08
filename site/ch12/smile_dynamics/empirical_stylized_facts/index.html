@@ -46953,18 +46953,18 @@
 <h3 id="1-leverage-effect">1. Leverage Effect<a class="headerlink" href="#1-leverage-effect" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> The tendency for implied volatility to increase when spot prices decrease.</p>
 <p><strong>Quantitative relationship:</strong></p>
-<p>$$</p>
-<p>\Delta \sigma_{\text{ATM}} \approx \beta \cdot \frac{\Delta S}{S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \sigma_{\text{ATM}} \approx \beta \cdot \frac{\Delta S}{S}
+\]</div>
 <p>where <span class="arithmatex">\(\beta &lt; 0\)</span> (typically <span class="arithmatex">\(\beta \approx -1.5\)</span> to <span class="arithmatex">\(-2.5\)</span> for equity indices).</p>
 <p><strong>Empirical evidence:</strong>
 - S&amp;P 500: <span class="arithmatex">\(\beta \approx -2.0\)</span> (1990-2020 average)
 - EURO STOXX 50: <span class="arithmatex">\(\beta \approx -1.8\)</span>
 - Individual stocks: More variable, <span class="arithmatex">\(\beta \approx -1.0\)</span> to <span class="arithmatex">\(-2.5\)</span></p>
 <p><strong>Asymmetry:</strong></p>
-<p>$$</p>
-<p>|\beta_{\text{down}}| &gt; |\beta_{\text{up}}|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\beta_{\text{down}}| &gt; |\beta_{\text{up}}|
+\]</div>
 <p>The vol response is stronger for down moves than up moves.</p>
 <h3 id="2-skew-steepening-after-crashes">2. Skew Steepening After Crashes<a class="headerlink" href="#2-skew-steepening-after-crashes" title="Permanent link">&para;</a></h3>
 <p><strong>Observation:</strong> After large negative returns, the implied volatility skew steepens significantly.</p>
@@ -46973,9 +46973,9 @@
 - Risk-neutral left tail becomes fatter
 - Market prices higher crash probability</p>
 <p><strong>Quantitative measure:</strong></p>
-<p>$$</p>
-<p>\text{Skew}<em _text_25DP="\text{25DP">{25\Delta} = \sigma</em>}} - \sigma_{\text{ATM}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew}_{25\Delta} = \sigma_{\text{25DP}} - \sigma_{\text{ATM}}
+\]</div>
 <p><strong>Post-crash behavior:</strong>
 - Normal regime: Skew <span class="arithmatex">\(\approx\)</span> 5-8 vol points
 - Post-crash: Skew <span class="arithmatex">\(\approx\)</span> 15-25 vol points
@@ -46991,9 +46991,9 @@
 <h3 id="1-short-term-vol-response">1. Short-Term Vol Response<a class="headerlink" href="#1-short-term-vol-response" title="Permanent link">&para;</a></h3>
 <p><strong>Observation:</strong> Short-dated implied volatility responds more strongly to spot moves than long-dated vol.</p>
 <p><strong>Quantitative relationship:</strong></p>
-<p>$$</p>
-<p>|\beta(T_{\text{short}})| &gt; |\beta(T_{\text{long}})|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\beta(T_{\text{short}})| &gt; |\beta(T_{\text{long}})|
+\]</div>
 <p><strong>Example (SPX):</strong>
 - 1-month vol: <span class="arithmatex">\(\beta \approx -2.5\)</span>
 - 1-year vol: <span class="arithmatex">\(\beta \approx -1.5\)</span></p>
@@ -47017,9 +47017,9 @@
 <h3 id="1-volatility-persistence">1. Volatility Persistence<a class="headerlink" href="#1-volatility-persistence" title="Permanent link">&para;</a></h3>
 <p><strong>Observation:</strong> Implied volatility exhibits strong persistence (high autocorrelation).</p>
 <p><strong>Quantitative measure:</strong></p>
-<p>$$</p>
-<p>\text{ACF}(\sigma_{\text{ATM}}, \text{lag } k) = \rho^k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ACF}(\sigma_{\text{ATM}}, \text{lag } k) = \rho^k
+\]</div>
 <p>where <span class="arithmatex">\(\rho \approx 0.95\)</span> for daily data.</p>
 <p><strong>Half-life:</strong> Approximately 2-4 weeks for ATM vol.</p>
 <h3 id="2-mean-reversion">2. Mean Reversion<a class="headerlink" href="#2-mean-reversion" title="Permanent link">&para;</a></h3>
@@ -47057,9 +47057,9 @@
 <h3 id="3-volatility-clustering">3. Volatility Clustering<a class="headerlink" href="#3-volatility-clustering" title="Permanent link">&para;</a></h3>
 <p><strong>Observation:</strong> High volatility tends to follow high volatility, low follows low.</p>
 <p><strong>GARCH-like behavior:</strong></p>
-<p>$$</p>
-<p>\sigma_{t+1}^2 \approx \omega + \alpha \epsilon_t^2 + \beta \sigma_t^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{t+1}^2 \approx \omega + \alpha \epsilon_t^2 + \beta \sigma_t^2
+\]</div>
 <p><strong>Empirical fit:</strong> <span class="arithmatex">\(\alpha + \beta \approx 0.99\)</span> for equity indices.</p>
 <p><strong>Implication:</strong> Stochastic volatility models needed, not constant vol.</p>
 <h2 id="cross-asset-patterns">Cross-Asset Patterns<a class="headerlink" href="#cross-asset-patterns" title="Permanent link">&para;</a></h2>
@@ -47126,9 +47126,9 @@
 <h2 id="quantitative-measures">Quantitative Measures<a class="headerlink" href="#quantitative-measures" title="Permanent link">&para;</a></h2>
 <h3 id="1-skew-stickiness-ratio-ssr">1. Skew Stickiness Ratio (SSR)<a class="headerlink" href="#1-skew-stickiness-ratio-ssr" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>\text{SSR} = \frac{\Delta \sigma_{\text{ATM}}}{\Delta \sigma_{\text{ATM}}^{\text{sticky-strike}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{SSR} = \frac{\Delta \sigma_{\text{ATM}}}{\Delta \sigma_{\text{ATM}}^{\text{sticky-strike}}}
+\]</div>
 <p>where the denominator is the ATM vol change predicted by sticky strike.</p>
 <p><strong>Interpretation:</strong>
 - SSR = 0: Pure sticky strike
@@ -47136,9 +47136,9 @@
 - SSR = 0.3-0.6: Typical empirical range</p>
 <h3 id="2-spot-vol-correlation">2. Spot-Vol Correlation<a class="headerlink" href="#2-spot-vol-correlation" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>\rho_{S,\sigma} = \text{Corr}(\Delta \log S, \Delta \sigma_{\text{ATM}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{S,\sigma} = \text{Corr}(\Delta \log S, \Delta \sigma_{\text{ATM}})
+\]</div>
 <p><strong>Empirical values:</strong></p>
 <table>
 <thead>
@@ -47168,17 +47168,17 @@
 </table>
 <h3 id="3-vol-of-vol">3. Vol-of-Vol<a class="headerlink" href="#3-vol-of-vol" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> The volatility of ATM implied volatility.</p>
-<p>$$</p>
-<p>\text{Vol-of-Vol} = \text{Std}(\Delta \sigma_{\text{ATM}}) \cdot \sqrt{252}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vol-of-Vol} = \text{Std}(\Delta \sigma_{\text{ATM}}) \cdot \sqrt{252}
+\]</div>
 <p><strong>Empirical values:</strong>
 - SPX: 3-5% (annualized)
 - Higher during stress periods</p>
 <h3 id="4-skew-spot-beta">4. Skew-Spot Beta<a class="headerlink" href="#4-skew-spot-beta" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong></p>
-<p>$$</p>
-<p>\beta_{\text{skew}} = \frac{d(\text{Skew})}{d(\log S)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\beta_{\text{skew}} = \frac{d(\text{Skew})}{d(\log S)}
+\]</div>
 <p><strong>Empirical values:</strong>
 - SPX: -0.3 to -0.5
 - Skew steepens approximately 0.3-0.5 vol points per 1% spot decline</p>

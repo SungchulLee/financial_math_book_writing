@@ -47247,32 +47247,32 @@
 3. The relationship between strike-space and delta-space</p>
 <h3 id="2-coordinate-systems-for-the-smile">2. Coordinate Systems for the Smile<a class="headerlink" href="#2-coordinate-systems-for-the-smile" title="Permanent link">&para;</a></h3>
 <p><strong>Strike space:</strong> Implied volatility as a function of absolute strike <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} = \sigma(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} = \sigma(K, T)
+\]</div>
 <p><strong>Moneyness space:</strong> Implied volatility as a function of moneyness <span class="arithmatex">\(m = K/F\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} = \sigma(m, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} = \sigma(m, T)
+\]</div>
 <p><strong>Log-moneyness space:</strong> Implied volatility as a function of <span class="arithmatex">\(k = \ln(K/F)\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} = \sigma(k, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} = \sigma(k, T)
+\]</div>
 <p><strong>Delta space:</strong> Implied volatility as a function of option delta <span class="arithmatex">\(\Delta\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} = \sigma(\Delta, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} = \sigma(\Delta, T)
+\]</div>
 <p>The choice of coordinate system determines how we parametrize the smile and affects the interpretation of smile dynamics.</p>
 <h2 id="sticky-strike-assumption">Sticky Strike Assumption<a class="headerlink" href="#sticky-strike-assumption" title="Permanent link">&para;</a></h2>
 <h3 id="1-definition">1. Definition<a class="headerlink" href="#1-definition" title="Permanent link">&para;</a></h3>
 <p>Under the <strong>sticky strike</strong> assumption, implied volatility is a function of absolute strike only, independent of spot:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T; S) = \sigma(K, T) \quad \text{(independent of } S \text{)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T; S) = \sigma(K, T) \quad \text{(independent of } S \text{)}
+\]</div>
 <p><strong>Consequence:</strong> When spot moves, the implied volatility at a fixed strike <span class="arithmatex">\(K\)</span> remains unchanged:</p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{IV}}(K)}{\partial S} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{IV}}(K)}{\partial S} = 0
+\]</div>
 <h3 id="2-graphical-interpretation">2. Graphical Interpretation<a class="headerlink" href="#2-graphical-interpretation" title="Permanent link">&para;</a></h3>
 <p>Under sticky strike:
 - The smile "stays in place" in <span class="arithmatex">\((K, \sigma)\)</span> space
@@ -47283,34 +47283,34 @@
 - The new ATM forward (<span class="arithmatex">\(K \approx 102\)</span>) picks up the IV from the old OTM call region</p>
 <h3 id="3-mathematical-formulation">3. Mathematical Formulation<a class="headerlink" href="#3-mathematical-formulation" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\sigma(K)\)</span> be the smile function. Under sticky strike:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K; S_t) = \sigma(K) \quad \forall S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K; S_t) = \sigma(K) \quad \forall S_t
+\]</div>
 <p>The <strong>total derivative</strong> of IV with respect to spot is:</p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{IV}}}{dS} = \frac{\partial \sigma}{\partial K} \cdot \underbrace{\frac{\partial K}{\partial S}}_{=0} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{IV}}}{dS} = \frac{\partial \sigma}{\partial K} \cdot \underbrace{\frac{\partial K}{\partial S}}_{=0} = 0
+\]</div>
 <p>since strike is held constant.</p>
 <h3 id="4-implications-for-delta">4. Implications for Delta<a class="headerlink" href="#4-implications-for-delta" title="Permanent link">&para;</a></h3>
 <p>The Black-Scholes delta is:</p>
-<p>$$</p>
-<p>\Delta_{\text{BS}} = e^{-qT} \Phi(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{BS}} = e^{-qT} \Phi(d_1)
+\]</div>
 <p>Under sticky strike, the <strong>total delta</strong> includes the smile effect:</p>
-<p>$$</p>
-<p>\Delta_{\text{total}} = \frac{\partial C}{\partial S} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{total}} = \frac{\partial C}{\partial S} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}
+\]</div>
 <p>Since <span class="arithmatex">\(\frac{\partial \sigma_{\text{IV}}}{\partial S} = 0\)</span> under sticky strike:</p>
-<p>$$</p>
-<p>\Delta_{\text{sticky-strike}} = \Delta_{\text{BS}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{sticky-strike}} = \Delta_{\text{BS}}
+\]</div>
 <p><strong>Result:</strong> Under sticky strike, the Black-Scholes delta (computed at the current implied volatility) is the correct hedge ratio.</p>
 <h3 id="5-local-volatility-connection">5. Local Volatility Connection<a class="headerlink" href="#5-local-volatility-connection" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem:</strong> The sticky strike assumption is consistent with <strong>local volatility models</strong>.</p>
 <p>In a local volatility model:</p>
-<p>$$</p>
-<p>dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+\]</div>
 <p>The implied volatility surface is determined by the local volatility function via the Dupire equation. When spot moves:
 - The local volatility function <span class="arithmatex">\(\sigma_{\text{loc}}(S, t)\)</span> is fixed
 - The implied volatility at each strike remains unchanged
@@ -47319,13 +47319,13 @@
 <h2 id="sticky-delta-assumption">Sticky Delta Assumption<a class="headerlink" href="#sticky-delta-assumption" title="Permanent link">&para;</a></h2>
 <h3 id="1-definition_1">1. Definition<a class="headerlink" href="#1-definition_1" title="Permanent link">&para;</a></h3>
 <p>Under the <strong>sticky delta</strong> assumption, implied volatility is a function of option delta only, independent of spot:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(\Delta, T; S) = \sigma(\Delta, T) \quad \text{(independent of } S \text{)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(\Delta, T; S) = \sigma(\Delta, T) \quad \text{(independent of } S \text{)}
+\]</div>
 <p><strong>Consequence:</strong> When spot moves, the implied volatility at a fixed delta level remains unchanged:</p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{IV}}(\Delta)}{\partial S} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{IV}}(\Delta)}{\partial S} = 0
+\]</div>
 <h3 id="2-graphical-interpretation_1">2. Graphical Interpretation<a class="headerlink" href="#2-graphical-interpretation_1" title="Permanent link">&para;</a></h3>
 <p>Under sticky delta:
 - The smile "shifts" with spot in <span class="arithmatex">\((K, \sigma)\)</span> space
@@ -47337,28 +47337,28 @@
 - In strike space, the entire smile has "shifted right"</p>
 <h3 id="3-mathematical-formulation_1">3. Mathematical Formulation<a class="headerlink" href="#3-mathematical-formulation_1" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\sigma(\Delta)\)</span> be the smile function in delta space. The strike corresponding to delta <span class="arithmatex">\(\Delta\)</span> depends on spot:</p>
-<p>$$</p>
-<p>K(\Delta, S) = S \cdot f(\Delta, \sigma, T, r, q)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K(\Delta, S) = S \cdot f(\Delta, \sigma, T, r, q)
+\]</div>
 <p>where <span class="arithmatex">\(f\)</span> is the inverse delta function.</p>
 <p>Under sticky delta, the IV at a fixed strike <span class="arithmatex">\(K_0\)</span> changes as spot moves because the delta at <span class="arithmatex">\(K_0\)</span> changes:</p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{IV}}(K_0)}{dS} = \frac{\partial \sigma}{\partial \Delta} \cdot \frac{\partial \Delta(K_0)}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{IV}}(K_0)}{dS} = \frac{\partial \sigma}{\partial \Delta} \cdot \frac{\partial \Delta(K_0)}{\partial S}
+\]</div>
 <p>Since <span class="arithmatex">\(\frac{\partial \Delta}{\partial S} &gt; 0\)</span> (delta increases with spot for calls), and <span class="arithmatex">\(\frac{\partial \sigma}{\partial \Delta}\)</span> is typically negative (OTM puts have higher IV), we have:</p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{IV}}(K_0)}{dS} &lt; 0 \quad \text{(for typical equity skew)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{IV}}(K_0)}{dS} &lt; 0 \quad \text{(for typical equity skew)}
+\]</div>
 <p><strong>Result:</strong> Under sticky delta, implied volatility at a fixed strike <strong>decreases</strong> when spot increases (for negatively skewed markets).</p>
 <h3 id="4-implications-for-delta_1">4. Implications for Delta<a class="headerlink" href="#4-implications-for-delta_1" title="Permanent link">&para;</a></h3>
 <p>The total delta under sticky delta includes the smile effect:</p>
-<p>$$</p>
-<p>\Delta_{\text{total}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{total}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}
+\]</div>
 <p>Since <span class="arithmatex">\(\frac{\partial \sigma_{\text{IV}}}{\partial S} &lt; 0\)</span> for typical equity skew:</p>
-<p>$$</p>
-<p>\Delta_{\text{sticky-delta}} = \Delta_{\text{BS}} + \underbrace{\mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}}_{&lt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{sticky-delta}} = \Delta_{\text{BS}} + \underbrace{\mathcal{V} \cdot \frac{\partial \sigma_{\text{IV}}}{\partial S}}_{&lt; 0}
+\]</div>
 <p><strong>Result:</strong> Under sticky delta, the total delta is <strong>smaller</strong> than the Black-Scholes delta.</p>
 <p><strong>Intuition:</strong> When spot rises, IV falls, which partially offsets the direct price increase. The hedge ratio should account for this.</p>
 <h3 id="5-fx-market-convention">5. FX Market Convention<a class="headerlink" href="#5-fx-market-convention" title="Permanent link">&para;</a></h3>
@@ -47372,59 +47372,59 @@
 <h2 id="quantitative-comparison">Quantitative Comparison<a class="headerlink" href="#quantitative-comparison" title="Permanent link">&para;</a></h2>
 <h3 id="1-smile-parametrization">1. Smile Parametrization<a class="headerlink" href="#1-smile-parametrization" title="Permanent link">&para;</a></h3>
 <p>Consider a simple linear skew model:</p>
-<p>$$</p>
-<p>\sigma(k) = \sigma_0 + \beta k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(k) = \sigma_0 + \beta k
+\]</div>
 <p>where <span class="arithmatex">\(k = \ln(K/F)\)</span> is log-moneyness and <span class="arithmatex">\(\beta &lt; 0\)</span> (downward skew).</p>
 <p><strong>Under sticky strike:</strong> <span class="arithmatex">\(\sigma(K)\)</span> is fixed. When <span class="arithmatex">\(F\)</span> changes (spot moves), log-moneyness <span class="arithmatex">\(k\)</span> changes, so the IV at ATM changes.</p>
 <p><strong>Under sticky delta:</strong> The smile in <span class="arithmatex">\((k, \sigma)\)</span> space shifts so that the delta-equivalent points have constant IV.</p>
 <h3 id="2-delta-comparison">2. Delta Comparison<a class="headerlink" href="#2-delta-comparison" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition:</strong> For a call option with negative skew (<span class="arithmatex">\(\beta &lt; 0\)</span>):</p>
-<p>$$</p>
-<p>\Delta_{\text{sticky-delta}} &lt; \Delta_{\text{BS}} &lt; \Delta_{\text{sticky-strike}} \cdot \text{(adjusted)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{sticky-delta}} &lt; \Delta_{\text{BS}} &lt; \Delta_{\text{sticky-strike}} \cdot \text{(adjusted)}
+\]</div>
 <p>Actually, under sticky strike:</p>
-<p>$$</p>
-<p>\Delta_{\text{sticky-strike}} = \Delta_{\text{BS}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{sticky-strike}} = \Delta_{\text{BS}}
+\]</div>
 <p>And under sticky delta:</p>
-<p>$$</p>
-<p>\Delta_{\text{sticky-delta}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{sticky-delta}} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma}{\partial S}
+\]</div>
 <p>For equity skew with <span class="arithmatex">\(\frac{\partial \sigma}{\partial S} &lt; 0\)</span>:</p>
-<p>$$</p>
-<p>\Delta_{\text{sticky-delta}} &lt; \Delta_{\text{sticky-strike}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{sticky-delta}} &lt; \Delta_{\text{sticky-strike}}
+\]</div>
 <h3 id="3-numerical-example">3. Numerical Example<a class="headerlink" href="#3-numerical-example" title="Permanent link">&para;</a></h3>
 <p><strong>Parameters:</strong>
 - <span class="arithmatex">\(S_0 = 100\)</span>, <span class="arithmatex">\(K = 100\)</span> (ATM), <span class="arithmatex">\(T = 0.25\)</span>, <span class="arithmatex">\(r = 5\%\)</span>, <span class="arithmatex">\(q = 0\)</span>
 - <span class="arithmatex">\(\sigma_{\text{ATM}} = 20\%\)</span>
 - Skew: <span class="arithmatex">\(\frac{\partial \sigma}{\partial k} = -20\%\)</span> per unit log-moneyness</p>
 <p><strong>Black-Scholes delta:</strong></p>
-<p>$$</p>
-<p>\Delta_{\text{BS}} = \Phi(d_1) = \Phi(0.175) \approx 0.569</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{BS}} = \Phi(d_1) = \Phi(0.175) \approx 0.569
+\]</div>
 <p><strong>Smile adjustment:</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = -0.20 \times \left(-\frac{1}{S}\right) = \frac{0.20}{100} = 0.002</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = -0.20 \times \left(-\frac{1}{S}\right) = \frac{0.20}{100} = 0.002
+\]</div>
 <p><strong>Vega:</strong></p>
-<p>$$</p>
-<p>\mathcal{V} \approx 19.73</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} \approx 19.73
+\]</div>
 <p><strong>Sticky delta adjustment:</strong></p>
-<p>$$</p>
-<p>\Delta_{\text{sticky-delta}} = 0.569 + 19.73 \times 0.002 = 0.569 + 0.039 = 0.608</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{sticky-delta}} = 0.569 + 19.73 \times 0.002 = 0.569 + 0.039 = 0.608
+\]</div>
 <p>Wait, this is <strong>larger</strong>, not smaller. Let me recalculate.</p>
 <p>The sign depends on the direction of the skew effect. With <span class="arithmatex">\(\frac{\partial \sigma}{\partial k} &lt; 0\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial \sigma}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{-1}{S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \frac{-1}{S}
+\]</div>
 <p>So if <span class="arithmatex">\(\frac{\partial \sigma}{\partial k} = -0.20\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial \sigma}{\partial S} = (-0.20) \times \left(\frac{-1}{100}\right) = +0.002</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma}{\partial S} = (-0.20) \times \left(\frac{-1}{100}\right) = +0.002
+\]</div>
 <p>This gives a <strong>positive</strong> adjustment, making <span class="arithmatex">\(\Delta_{\text{sticky-delta}} &gt; \Delta_{\text{BS}}\)</span>.</p>
 <p><strong>Correction:</strong> The relationship depends on how skew is defined and whether we're looking at OTM puts or calls. For a negatively skewed smile where OTM puts have higher IV:
 - Spot up → fixed strike becomes more OTM put-like → IV increases
@@ -47432,26 +47432,26 @@
 <p>Let me reformulate more carefully.</p>
 <h3 id="4-correct-formulation">4. Correct Formulation<a class="headerlink" href="#4-correct-formulation" title="Permanent link">&para;</a></h3>
 <p>Under <strong>sticky moneyness</strong> (log-moneyness constant):</p>
-<p>$$</p>
-<p>\sigma(k, T) \text{ fixed}, \quad k = \ln(K/F)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(k, T) \text{ fixed}, \quad k = \ln(K/F)
+\]</div>
 <p>When <span class="arithmatex">\(S\)</span> increases, <span class="arithmatex">\(F\)</span> increases, so <span class="arithmatex">\(k = \ln(K/F)\)</span> decreases for fixed <span class="arithmatex">\(K\)</span>.</p>
-<p>$$</p>
-<p>\frac{\partial \sigma}{\partial S}\bigg|_{K \text{ fixed}} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \left(-\frac{1}{S}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma}{\partial S}\bigg|_{K \text{ fixed}} = \frac{\partial \sigma}{\partial k} \cdot \frac{\partial k}{\partial S} = \frac{\partial \sigma}{\partial k} \cdot \left(-\frac{1}{S}\right)
+\]</div>
 <p>For downward skew (<span class="arithmatex">\(\frac{\partial \sigma}{\partial k} &lt; 0\)</span>):</p>
-<p>$$</p>
-<p>\frac{\partial \sigma}{\partial S}\bigg|_{K \text{ fixed}} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma}{\partial S}\bigg|_{K \text{ fixed}} &gt; 0
+\]</div>
 <p><strong>Interpretation:</strong> Under sticky moneyness, when spot rises, the IV at a fixed strike <strong>increases</strong> because that strike becomes relatively more OTM (lower moneyness), moving into higher-IV territory.</p>
 <p>Under <strong>sticky strike</strong>: <span class="arithmatex">\(\frac{\partial \sigma}{\partial S}\big|_{K \text{ fixed}} = 0\)</span>.</p>
 <p>Under <strong>sticky delta</strong>: The IV at a fixed delta stays constant, meaning the smile in strike space shifts.</p>
 <h2 id="impact-on-greeks">Impact on Greeks<a class="headerlink" href="#impact-on-greeks" title="Permanent link">&para;</a></h2>
 <h3 id="1-adjusted-delta">1. Adjusted Delta<a class="headerlink" href="#1-adjusted-delta" title="Permanent link">&para;</a></h3>
 <p>The general formula for total delta is:</p>
-<p>$$</p>
-<p>\Delta_{\text{total}} = \frac{\partial C}{\partial S} = \Delta_{\text{BS}} + \frac{\partial C}{\partial \sigma} \cdot \frac{\partial \sigma}{\partial S} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{total}} = \frac{\partial C}{\partial S} = \Delta_{\text{BS}} + \frac{\partial C}{\partial \sigma} \cdot \frac{\partial \sigma}{\partial S} = \Delta_{\text{BS}} + \mathcal{V} \cdot \frac{\partial \sigma}{\partial S}
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47480,43 +47480,43 @@
 </table>
 <h3 id="2-vanna-and-smile-dynamics">2. Vanna and Smile Dynamics<a class="headerlink" href="#2-vanna-and-smile-dynamics" title="Permanent link">&para;</a></h3>
 <p><strong>Vanna</strong> measures the sensitivity of delta to volatility, or equivalently, of vega to spot:</p>
-<p>$$</p>
-<p>\text{Vanna} = \frac{\partial \Delta}{\partial \sigma} = \frac{\partial \mathcal{V}}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vanna} = \frac{\partial \Delta}{\partial \sigma} = \frac{\partial \mathcal{V}}{\partial S}
+\]</div>
 <p>Under different smile dynamics:</p>
 <p><strong>Sticky strike:</strong></p>
-<p>$$</p>
-<p>\text{Total Vanna} = \text{Vanna}_{\text{BS}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Vanna} = \text{Vanna}_{\text{BS}}
+\]</div>
 <p><strong>Sticky delta:</strong></p>
-<p>$$</p>
-<p>\text{Total Vanna} = \text{Vanna}_{\text{BS}} + \text{Volga} \cdot \frac{\partial \sigma}{\partial S} + \mathcal{V} \cdot \frac{\partial^2 \sigma}{\partial S \partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Vanna} = \text{Vanna}_{\text{BS}} + \text{Volga} \cdot \frac{\partial \sigma}{\partial S} + \mathcal{V} \cdot \frac{\partial^2 \sigma}{\partial S \partial S}
+\]</div>
 <p>The smile dynamics introduce additional vanna-like effects.</p>
 <h3 id="3-gamma-adjustment">3. Gamma Adjustment<a class="headerlink" href="#3-gamma-adjustment" title="Permanent link">&para;</a></h3>
 <p>Similarly, the total gamma depends on smile dynamics:</p>
-<p>$$</p>
-<p>\Gamma_{\text{total}} = \Gamma_{\text{BS}} + 2 \cdot \text{Vanna} \cdot \frac{\partial \sigma}{\partial S} + \mathcal{V} \cdot \frac{\partial^2 \sigma}{\partial S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_{\text{total}} = \Gamma_{\text{BS}} + 2 \cdot \text{Vanna} \cdot \frac{\partial \sigma}{\partial S} + \mathcal{V} \cdot \frac{\partial^2 \sigma}{\partial S^2}
+\]</div>
 <p>Under sticky strike, the correction terms vanish.</p>
 <h2 id="pl-attribution-under-different-dynamics">P&amp;L Attribution Under Different Dynamics<a class="headerlink" href="#pl-attribution-under-different-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="1-delta-hedged-pl">1. Delta-Hedged P&amp;L<a class="headerlink" href="#1-delta-hedged-pl" title="Permanent link">&para;</a></h3>
 <p>For a delta-hedged option position:</p>
-<p>$$</p>
-<p>\text{P\&amp;L} = \frac{1}{2} \Gamma (\Delta S)^2 + \mathcal{V} \Delta\sigma + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma + \Theta \Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} = \frac{1}{2} \Gamma (\Delta S)^2 + \mathcal{V} \Delta\sigma + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma + \Theta \Delta t
+\]</div>
 <p>The vanna term captures the cross-effect between spot and volatility moves.</p>
 <h3 id="2-sticky-strike-pl">2. Sticky Strike P&amp;L<a class="headerlink" href="#2-sticky-strike-pl" title="Permanent link">&para;</a></h3>
 <p>Under sticky strike, <span class="arithmatex">\(\Delta\sigma|_{K \text{ fixed}} = 0\)</span>, so:</p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{sticky-strike}} = \frac{1}{2} \Gamma (\Delta S)^2 + \Theta \Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{sticky-strike}} = \frac{1}{2} \Gamma (\Delta S)^2 + \Theta \Delta t
+\]</div>
 <p>No volatility P&amp;L (at fixed strike).</p>
 <h3 id="3-sticky-delta-pl">3. Sticky Delta P&amp;L<a class="headerlink" href="#3-sticky-delta-pl" title="Permanent link">&para;</a></h3>
 <p>Under sticky delta, <span class="arithmatex">\(\Delta\sigma|_{\Delta \text{ fixed}} = 0\)</span>, but <span class="arithmatex">\(\Delta\sigma|_{K \text{ fixed}} \neq 0\)</span>:</p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{sticky-delta}} = \frac{1}{2} \Gamma (\Delta S)^2 + \mathcal{V} \Delta\sigma_K + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma_K + \Theta \Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{sticky-delta}} = \frac{1}{2} \Gamma (\Delta S)^2 + \mathcal{V} \Delta\sigma_K + \text{Vanna} \cdot \Delta S \cdot \Delta\sigma_K + \Theta \Delta t
+\]</div>
 <p>where <span class="arithmatex">\(\Delta\sigma_K\)</span> is the change in IV at the fixed strike <span class="arithmatex">\(K\)</span>.</p>
 <h2 id="empirical-evidence">Empirical Evidence<a class="headerlink" href="#empirical-evidence" title="Permanent link">&para;</a></h2>
 <h3 id="1-equity-markets">1. Equity Markets<a class="headerlink" href="#1-equity-markets" title="Permanent link">&para;</a></h3>
@@ -47530,9 +47530,9 @@
 - Spot-vol correlation (leverage effect) dominates
 - Smile dynamics are asymmetric: faster reaction to down moves</p>
 <p><strong>Quantitative finding:</strong> The "skew stickiness ratio" (SSR):</p>
-<p>$$</p>
-<p>\text{SSR} = \frac{\text{ATM IV change}}{\text{Predicted change under sticky strike}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{SSR} = \frac{\text{ATM IV change}}{\text{Predicted change under sticky strike}}
+\]</div>
 <p>Empirical SSR for SPX is typically 0.3-0.6, indicating behavior between sticky strike and sticky moneyness.</p>
 <h3 id="2-fx-markets">2. FX Markets<a class="headerlink" href="#2-fx-markets" title="Permanent link">&para;</a></h3>
 <p><strong>Short-term:</strong> Closer to sticky delta
@@ -47563,9 +47563,9 @@
 - <span class="arithmatex">\(\beta = 0\)</span>: Lognormal SABR, sticky delta-like</p>
 <h3 id="3-bergomis-variance-curve-models">3. Bergomi's Variance Curve Models<a class="headerlink" href="#3-bergomis-variance-curve-models" title="Permanent link">&para;</a></h3>
 <p>Bergomi's framework models the forward variance curve directly:</p>
-<p>$$</p>
-<p>d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\xi_t^T = \xi_t^T \cdot \omega(T-t) \cdot dZ_t
+\]</div>
 <p>The resulting smile dynamics are:
 - More realistic than local vol
 - Capture term structure of skew
@@ -47600,9 +47600,9 @@
 </table>
 <h3 id="2-estimating-smile-dynamics">2. Estimating Smile Dynamics<a class="headerlink" href="#2-estimating-smile-dynamics" title="Permanent link">&para;</a></h3>
 <p><strong>Regression approach:</strong></p>
-<p>$$</p>
-<p>\Delta\sigma_{\text{ATM}} = \alpha + \beta \cdot \frac{\Delta S}{S} + \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta\sigma_{\text{ATM}} = \alpha + \beta \cdot \frac{\Delta S}{S} + \epsilon
+\]</div>
 <p>The coefficient <span class="arithmatex">\(\beta\)</span> estimates the spot-vol sensitivity:
 - <span class="arithmatex">\(\beta = 0\)</span>: Sticky strike
 - <span class="arithmatex">\(\beta = -\text{skew}\)</span>: Sticky moneyness
@@ -47617,18 +47617,18 @@
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Sticky strike and sticky delta represent idealized extremes of smile dynamics:</p>
 <h3 id="1-sticky-strike">1. Sticky Strike<a class="headerlink" href="#1-sticky-strike" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{IV}}(K)}{\partial S} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{IV}}(K)}{\partial S} = 0
+\]</div>
 <ul>
 <li>IV at fixed strike unchanged when spot moves</li>
 <li>Consistent with local volatility models</li>
 <li>Delta = Black-Scholes delta</li>
 </ul>
 <h3 id="2-sticky-delta">2. Sticky Delta<a class="headerlink" href="#2-sticky-delta" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{IV}}(\Delta)}{\partial S} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{IV}}(\Delta)}{\partial S} = 0
+\]</div>
 <ul>
 <li>IV at fixed delta unchanged when spot moves</li>
 <li>Smile shifts in strike space</li>

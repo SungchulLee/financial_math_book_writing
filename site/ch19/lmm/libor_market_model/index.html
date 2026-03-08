@@ -47481,40 +47481,40 @@
 <h2 id="model-setup">Model Setup<a class="headerlink" href="#model-setup" title="Permanent link">&para;</a></h2>
 <h3 id="tenor-structure">Tenor Structure<a class="headerlink" href="#tenor-structure" title="Permanent link">&para;</a></h3>
 <p>Fix a tenor structure:</p>
-<p>$$</p>
-<p>0 = T_0 &lt; T_1 &lt; T_2 &lt; \cdots &lt; T_n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 = T_0 &lt; T_1 &lt; T_2 &lt; \cdots &lt; T_n
+\]</div>
 <p>with accrual periods <span class="arithmatex">\(\delta_i = T_{i+1} - T_i\)</span> (typically 3 months or 6 months).</p>
 <h3 id="forward-libor-rates">Forward LIBOR Rates<a class="headerlink" href="#forward-libor-rates" title="Permanent link">&para;</a></h3>
 <p>The <strong>forward LIBOR rate</strong> <span class="arithmatex">\(L_i(t)\)</span> is the simply-compounded forward rate at time <span class="arithmatex">\(t\)</span> for the period <span class="arithmatex">\([T_i, T_{i+1}]\)</span>:</p>
-<p>$$</p>
-<p>L_i(t) = \frac{1}{\delta_i}\left(\frac{P(t, T_i)}{P(t, T_{i+1})} - 1\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L_i(t) = \frac{1}{\delta_i}\left(\frac{P(t, T_i)}{P(t, T_{i+1})} - 1\right)
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>P(t, T_{i+1}) = \frac{P(t, T_i)}{1 + \delta_i L_i(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T_{i+1}) = \frac{P(t, T_i)}{1 + \delta_i L_i(t)}
+\]</div>
 <p>At reset date <span class="arithmatex">\(T_i\)</span>, the rate <span class="arithmatex">\(L_i(T_i)\)</span> is the spot LIBOR rate observed and used for payment at <span class="arithmatex">\(T_{i+1}\)</span>.</p>
 <h3 id="key-relationship">Key Relationship<a class="headerlink" href="#key-relationship" title="Permanent link">&para;</a></h3>
 <p>Bond prices can be expressed in terms of forward rates:</p>
-<p>$$</p>
-<p>P(t, T_n) = P(t, T_0) \prod_{i=0}^{n-1} \frac{1}{1 + \delta_i L_i(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T_n) = P(t, T_0) \prod_{i=0}^{n-1} \frac{1}{1 + \delta_i L_i(t)}
+\]</div>
 <hr />
 <h2 id="dynamics-under-the-terminal-measure">Dynamics Under the Terminal Measure<a class="headerlink" href="#dynamics-under-the-terminal-measure" title="Permanent link">&para;</a></h2>
 <h3 id="terminal-measure-qt_n">Terminal Measure Q^T_n<a class="headerlink" href="#terminal-measure-qt_n" title="Permanent link">&para;</a></h3>
 <p>Under the <strong>terminal forward measure</strong> <span class="arithmatex">\(\mathbb{Q}^{T_n}\)</span> (with numéraire <span class="arithmatex">\(P(t, T_n)\)</span>), the forward rates have lognormal dynamics:</p>
-<p>$$</p>
-<p>\boxed{\frac{dL_i(t)}{L_i(t)} = \sigma_i(t) \, dW_i^{T_n}(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{dL_i(t)}{L_i(t)} = \sigma_i(t) \, dW_i^{T_n}(t)}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\sigma_i(t)\)</span> is the <strong>instantaneous volatility</strong> of forward rate <span class="arithmatex">\(L_i\)</span>
 - <span class="arithmatex">\(W_i^{T_n}\)</span> are correlated Brownian motions under <span class="arithmatex">\(\mathbb{Q}^{T_n}\)</span></p>
 <h3 id="correlation-structure">Correlation Structure<a class="headerlink" href="#correlation-structure" title="Permanent link">&para;</a></h3>
 <p>The driving Brownian motions are correlated:</p>
-<p>$$</p>
-<p>dW_i^{T_n} \cdot dW_j^{T_n} = \rho_{ij} \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_i^{T_n} \cdot dW_j^{T_n} = \rho_{ij} \, dt
+\]</div>
 <p>where <span class="arithmatex">\(\rho_{ij}\)</span> is the instantaneous correlation between forward rates <span class="arithmatex">\(L_i\)</span> and <span class="arithmatex">\(L_j\)</span>.</p>
 <h3 id="why-lognormal">Why Lognormal?<a class="headerlink" href="#why-lognormal" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^{T_n}\)</span>, the forward rate <span class="arithmatex">\(L_i(t)\)</span> is a <strong>martingale</strong> for <span class="arithmatex">\(i = n-1\)</span> (the rate for period <span class="arithmatex">\([T_{n-1}, T_n]\)</span>). For other rates, there is a drift term that depends on the measure.</p>
@@ -47523,13 +47523,13 @@
 <h3 id="the-spot-measure-qb">The Spot Measure Q^B<a class="headerlink" href="#the-spot-measure-qb" title="Permanent link">&para;</a></h3>
 <p>A practically useful measure is the <strong>spot (rolling) measure</strong> <span class="arithmatex">\(\mathbb{Q}^B\)</span>, which uses the continuously-rolled money market account as numéraire.</p>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^B\)</span>, the forward rate <span class="arithmatex">\(L_i(t)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{dL_i(t)}{L_i(t)} = \mu_i(t) \, dt + \sigma_i(t) \, dW_i^B(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dL_i(t)}{L_i(t)} = \mu_i(t) \, dt + \sigma_i(t) \, dW_i^B(t)
+\]</div>
 <p>where the drift is:</p>
-<p>$$</p>
-<p>\mu_i(t) = \sum_{j=\eta(t)}^{i} \frac{\delta_j \rho_{ij} \sigma_i(t) \sigma_j(t) L_j(t)}{1 + \delta_j L_j(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu_i(t) = \sum_{j=\eta(t)}^{i} \frac{\delta_j \rho_{ij} \sigma_i(t) \sigma_j(t) L_j(t)}{1 + \delta_j L_j(t)}
+\]</div>
 <p>and <span class="arithmatex">\(\eta(t) = \min\{k : T_k &gt; t\}\)</span> is the index of the next reset date.</p>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47541,15 +47541,15 @@
 <h2 id="dynamics-under-individual-forward-measures">Dynamics Under Individual Forward Measures<a class="headerlink" href="#dynamics-under-individual-forward-measures" title="Permanent link">&para;</a></h2>
 <h3 id="t_i1-forward-measure">T_i+1-Forward Measure<a class="headerlink" href="#t_i1-forward-measure" title="Permanent link">&para;</a></h3>
 <p>Under the measure <span class="arithmatex">\(\mathbb{Q}^{T_{i+1}}\)</span> (with numéraire <span class="arithmatex">\(P(t, T_{i+1})\)</span>), the forward rate <span class="arithmatex">\(L_i(t)\)</span> is a <strong>martingale</strong>:</p>
-<p>$$</p>
-<p>\boxed{\frac{dL_i(t)}{L_i(t)} = \sigma_i(t) \, dW_i^{T_{i+1}}(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{dL_i(t)}{L_i(t)} = \sigma_i(t) \, dW_i^{T_{i+1}}(t)}
+\]</div>
 <p>This is the <strong>natural measure</strong> for pricing caplets on <span class="arithmatex">\(L_i\)</span>.</p>
 <h3 id="measure-change">Measure Change<a class="headerlink" href="#measure-change" title="Permanent link">&para;</a></h3>
 <p>Moving between forward measures involves Girsanov transformations. From <span class="arithmatex">\(\mathbb{Q}^{T_{j+1}}\)</span> to <span class="arithmatex">\(\mathbb{Q}^{T_{i+1}}\)</span> (for <span class="arithmatex">\(j &gt; i\)</span>):</p>
-<p>$$</p>
-<p>dW_i^{T_{i+1}}(t) = dW_i^{T_{j+1}}(t) - \sum_{k=i+1}^{j} \frac{\delta_k \rho_{ik} \sigma_k(t) L_k(t)}{1 + \delta_k L_k(t)} \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_i^{T_{i+1}}(t) = dW_i^{T_{j+1}}(t) - \sum_{k=i+1}^{j} \frac{\delta_k \rho_{ik} \sigma_k(t) L_k(t)}{1 + \delta_k L_k(t)} \, dt
+\]</div>
 <hr />
 <h2 id="connection-to-hjm">Connection to HJM<a class="headerlink" href="#connection-to-hjm" title="Permanent link">&para;</a></h2>
 <h3 id="lmm-as-a-special-case-of-hjm">LMM as a Special Case of HJM<a class="headerlink" href="#lmm-as-a-special-case-of-hjm" title="Permanent link">&para;</a></h3>
@@ -47560,59 +47560,59 @@
 </ol>
 <h3 id="volatility-specification">Volatility Specification<a class="headerlink" href="#volatility-specification" title="Permanent link">&para;</a></h3>
 <p>If HJM volatility is chosen as:</p>
-<p>$$</p>
-<p>\sigma_{\text{HJM}}(t, T) = \sum_{i} \sigma_i(t) \cdot \mathbf{1}<em i_1="i+1">{T_i &lt; T \leq T</em>}} \cdot \frac{\delta_i L_i(t)}{1 + \delta_i L_i(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{HJM}}(t, T) = \sum_{i} \sigma_i(t) \cdot \mathbf{1}_{T_i &lt; T \leq T_{i+1}} \cdot \frac{\delta_i L_i(t)}{1 + \delta_i L_i(t)}
+\]</div>
 <p>then the discrete forward rates follow lognormal LMM dynamics.</p>
 <hr />
 <h2 id="caplet-pricing">Caplet Pricing<a class="headerlink" href="#caplet-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="blacks-formula-in-lmm">Black's Formula in LMM<a class="headerlink" href="#blacks-formula-in-lmm" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^{T_{i+1}}\)</span>, <span class="arithmatex">\(L_i\)</span> is lognormal with terminal distribution:</p>
-<p>$$</p>
-<p>L_i(T_i) \sim L_i(0) \exp\left(-\frac{1}{2}v_i^2 + v_i Z\right), \quad Z \sim N(0,1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L_i(T_i) \sim L_i(0) \exp\left(-\frac{1}{2}v_i^2 + v_i Z\right), \quad Z \sim N(0,1)
+\]</div>
 <p>where the <strong>integrated variance</strong> is:</p>
-<p>$$</p>
-<p>v_i^2 = \int_0^{T_i} \sigma_i(t)^2 \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+v_i^2 = \int_0^{T_i} \sigma_i(t)^2 \, dt
+\]</div>
 <h3 id="caplet-formula">Caplet Formula<a class="headerlink" href="#caplet-formula" title="Permanent link">&para;</a></h3>
 <p>The caplet paying <span class="arithmatex">\(\delta_i \max(L_i(T_i) - K, 0)\)</span> at <span class="arithmatex">\(T_{i+1}\)</span> has price:</p>
-<p>$$</p>
-<p>\boxed{\text{Caplet}<em i_1="i+1">i = \delta_i P(0, T</em>}) \left[L_i(0) N(d_1) - K N(d_2)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\text{Caplet}_i = \delta_i P(0, T_{i+1}) \left[L_i(0) N(d_1) - K N(d_2)\right]}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(L_i(0)/K) + \frac{1}{2}v_i^2}{v_i}, \quad d_2 = d_1 - v_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(L_i(0)/K) + \frac{1}{2}v_i^2}{v_i}, \quad d_2 = d_1 - v_i
+\]</div>
 <h3 id="implied-volatility">Implied Volatility<a class="headerlink" href="#implied-volatility" title="Permanent link">&para;</a></h3>
 <p>The <strong>Black implied volatility</strong> <span class="arithmatex">\(\sigma_i^{\text{Black}}\)</span> satisfies:</p>
-<p>$$</p>
-<p>v_i = \sigma_i^{\text{Black}} \sqrt{T_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+v_i = \sigma_i^{\text{Black}} \sqrt{T_i}
+\]</div>
 <p>For constant instantaneous volatility <span class="arithmatex">\(\sigma_i(t) = \sigma_i\)</span>:</p>
-<p>$$</p>
-<p>\sigma_i^{\text{Black}} = \sigma_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_i^{\text{Black}} = \sigma_i
+\]</div>
 <hr />
 <h2 id="swaption-pricing">Swaption Pricing<a class="headerlink" href="#swaption-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="the-challenge">The Challenge<a class="headerlink" href="#the-challenge" title="Permanent link">&para;</a></h3>
 <p>Unlike caplets, swaptions depend on <strong>multiple forward rates</strong> and their <strong>correlations</strong>. The swap rate:</p>
-<p>$$</p>
-<p>S(t) = \frac{P(t, T_0) - P(t, T_n)}{\sum_{j=1}^{n} \delta_j P(t, T_j)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t) = \frac{P(t, T_0) - P(t, T_n)}{\sum_{j=1}^{n} \delta_j P(t, T_j)}
+\]</div>
 <p>is <strong>not lognormal</strong> under any standard measure in the LMM.</p>
 <h3 id="approximation-methods">Approximation Methods<a class="headerlink" href="#approximation-methods" title="Permanent link">&para;</a></h3>
 <p>Several approaches exist:</p>
 <p><strong>1. Frozen Drift Approximation:</strong></p>
 <p>Approximate the swap rate volatility by "freezing" forward rates at their initial values:</p>
-<p>$$</p>
-<p>\sigma_S \approx \sqrt{\sum_{i,j} w_i w_j \rho_{ij} \sigma_i \sigma_j}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_S \approx \sqrt{\sum_{i,j} w_i w_j \rho_{ij} \sigma_i \sigma_j}
+\]</div>
 <p>where <span class="arithmatex">\(w_i\)</span> are weights derived from the swap rate's dependence on each forward rate.</p>
 <p><strong>2. Rebonato's Formula:</strong></p>
-<p>$$</p>
-<p>\sigma_S^2 T_0 \approx \sum_{i,j=\alpha}^{\beta-1} \frac{w_i(0) w_j(0) L_i(0) L_j(0)}{S(0)^2} \rho_{ij} \int_0^{T_0} \sigma_i(t) \sigma_j(t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_S^2 T_0 \approx \sum_{i,j=\alpha}^{\beta-1} \frac{w_i(0) w_j(0) L_i(0) L_j(0)}{S(0)^2} \rho_{ij} \int_0^{T_0} \sigma_i(t) \sigma_j(t) \, dt
+\]</div>
 <p>where <span class="arithmatex">\(\alpha, \beta\)</span> index the swap period.</p>
 <p><strong>3. Monte Carlo Simulation:</strong></p>
 <p>Simulate the full dynamics of all forward rates and compute swaption payoffs numerically.</p>
@@ -47630,35 +47630,35 @@
 - Individual forward rate volatilities <span class="arithmatex">\(\sigma_i\)</span>
 - Correlation structure <span class="arithmatex">\(\rho_{ij}\)</span></p>
 <p><strong>Optimization problem:</strong></p>
-<p>$$</p>
-<p>\min_{\sigma, \rho} \sum_{\text{caps}} w_c (C^{\text{LMM}} - C^{\text{mkt}})^2 + \sum_{\text{swaptions}} w_s (S^{\text{LMM}} - S^{\text{mkt}})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\sigma, \rho} \sum_{\text{caps}} w_c (C^{\text{LMM}} - C^{\text{mkt}})^2 + \sum_{\text{swaptions}} w_s (S^{\text{LMM}} - S^{\text{mkt}})^2
+\]</div>
 <h3 id="correlation-parametrization">Correlation Parametrization<a class="headerlink" href="#correlation-parametrization" title="Permanent link">&para;</a></h3>
 <p>Common parametrizations include:</p>
 <p><strong>Exponential decay:</strong></p>
-<p>$$</p>
-<p>\rho_{ij} = \exp(-\beta |T_i - T_j|)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{ij} = \exp(-\beta |T_i - T_j|)
+\]</div>
 <p><strong>Two-factor:</strong></p>
-<p>$$</p>
-<p>\rho_{ij} = \rho_\infty + (1 - \rho_\infty) \exp(-\beta |T_i - T_j|)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{ij} = \rho_\infty + (1 - \rho_\infty) \exp(-\beta |T_i - T_j|)
+\]</div>
 <hr />
 <h2 id="volatility-specifications">Volatility Specifications<a class="headerlink" href="#volatility-specifications" title="Permanent link">&para;</a></h2>
 <h3 id="time-homogeneous-volatility">Time-Homogeneous Volatility<a class="headerlink" href="#time-homogeneous-volatility" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_i(t) = \sigma(T_i - t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_i(t) = \sigma(T_i - t)
+\]</div>
 <p>The volatility depends only on time-to-maturity. This produces a <strong>stationary</strong> volatility structure.</p>
 <h3 id="separable-volatility">Separable Volatility<a class="headerlink" href="#separable-volatility" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_i(t) = g(t) \cdot h(T_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_i(t) = g(t) \cdot h(T_i)
+\]</div>
 <p>Factors into time and maturity components.</p>
 <h3 id="piecewise-constant">Piecewise Constant<a class="headerlink" href="#piecewise-constant" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_i(t) = \sigma_{i,k} \quad \text{for } T_{k-1} \leq t &lt; T_k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_i(t) = \sigma_{i,k} \quad \text{for } T_{k-1} \leq t &lt; T_k
+\]</div>
 <p>Most flexible for calibration but introduces many parameters.</p>
 <h3 id="volatility-term-structure">Volatility Term Structure<a class="headerlink" href="#volatility-term-structure" title="Permanent link">&para;</a></h3>
 <p>Typical features observed in markets:
@@ -47669,45 +47669,45 @@
 <h2 id="simulation">Simulation<a class="headerlink" href="#simulation" title="Permanent link">&para;</a></h2>
 <h3 id="euler-discretization">Euler Discretization<a class="headerlink" href="#euler-discretization" title="Permanent link">&para;</a></h3>
 <p>For Monte Carlo pricing, discretize the SDE:</p>
-<p>$$</p>
-<p>L_i(t + \Delta t) = L_i(t) \exp\left[\left(\mu_i(t) - \frac{1}{2}\sigma_i(t)^2\right)\Delta t + \sigma_i(t) \sqrt{\Delta t} \, Z_i\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L_i(t + \Delta t) = L_i(t) \exp\left[\left(\mu_i(t) - \frac{1}{2}\sigma_i(t)^2\right)\Delta t + \sigma_i(t) \sqrt{\Delta t} \, Z_i\right]
+\]</div>
 <p>where <span class="arithmatex">\(Z_i\)</span> are correlated normal random variables satisfying <span class="arithmatex">\(\text{Corr}(Z_i, Z_j) = \rho_{ij}\)</span>.</p>
 <h3 id="correlation-via-cholesky">Correlation via Cholesky<a class="headerlink" href="#correlation-via-cholesky" title="Permanent link">&para;</a></h3>
 <p>Generate correlated normals via Cholesky decomposition:</p>
-<p>$$</p>
-<p>\mathbf{Z} = L \mathbf{\xi}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{Z} = L \mathbf{\xi}
+\]</div>
 <p>where <span class="arithmatex">\(LL^T = \rho\)</span> and <span class="arithmatex">\(\xi_i \sim N(0,1)\)</span> are independent.</p>
 <h3 id="drift-calculation">Drift Calculation<a class="headerlink" href="#drift-calculation" title="Permanent link">&para;</a></h3>
 <p>At each time step, compute the drift using current forward rate values:</p>
-<p>$$</p>
-<p>\mu_i(t) = \sum_{j=\eta(t)}^{i} \frac{\delta_j \rho_{ij} \sigma_i(t) \sigma_j(t) L_j(t)}{1 + \delta_j L_j(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu_i(t) = \sum_{j=\eta(t)}^{i} \frac{\delta_j \rho_{ij} \sigma_i(t) \sigma_j(t) L_j(t)}{1 + \delta_j L_j(t)}
+\]</div>
 <p>This requires simulating all forward rates together.</p>
 <hr />
 <h2 id="extensions-and-variants">Extensions and Variants<a class="headerlink" href="#extensions-and-variants" title="Permanent link">&para;</a></h2>
 <h3 id="stochastic-volatility-lmm">Stochastic Volatility LMM<a class="headerlink" href="#stochastic-volatility-lmm" title="Permanent link">&para;</a></h3>
 <p>Add dynamics for volatility:</p>
-<p>$$</p>
-<p>\frac{dL_i(t)}{L_i(t)} = \mu_i(t) \, dt + \sigma_i(t) V(t) \, dW_i(t)</p>
-<p>$$</p>
-<p>$$</p>
-<p>dV(t) = \kappa(\theta - V(t)) \, dt + \xi V(t)^\gamma \, dW_V(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dL_i(t)}{L_i(t)} = \mu_i(t) \, dt + \sigma_i(t) V(t) \, dW_i(t)
+\]</div>
+<div class="arithmatex">\[
+dV(t) = \kappa(\theta - V(t)) \, dt + \xi V(t)^\gamma \, dW_V(t)
+\]</div>
 <p>This captures:
 - Volatility smile/skew
 - Time-varying implied volatility</p>
 <h3 id="sabr-lmm">SABR-LMM<a class="headerlink" href="#sabr-lmm" title="Permanent link">&para;</a></h3>
 <p>Each forward rate follows SABR dynamics:</p>
-<p>$$</p>
-<p>dL_i = \alpha_i L_i^\beta \, dW_i, \quad d\alpha_i = \nu \alpha_i \, dZ_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dL_i = \alpha_i L_i^\beta \, dW_i, \quad d\alpha_i = \nu \alpha_i \, dZ_i
+\]</div>
 <p>Provides analytical approximations for the smile.</p>
 <h3 id="displaced-diffusion-lmm">Displaced Diffusion LMM<a class="headerlink" href="#displaced-diffusion-lmm" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d(L_i + s) = \sigma_i (L_i + s) \, dW_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(L_i + s) = \sigma_i (L_i + s) \, dW_i
+\]</div>
 <p>The shift parameter <span class="arithmatex">\(s\)</span> allows negative rates and generates skew.</p>
 <hr />
 <h2 id="transition-from-libor-to-rfr">Transition from LIBOR to RFR<a class="headerlink" href="#transition-from-libor-to-rfr" title="Permanent link">&para;</a></h2>
@@ -47717,9 +47717,9 @@
 - Other currencies: Earlier transitions</p>
 <h3 id="risk-free-rate-rfr-models">Risk-Free Rate (RFR) Models<a class="headerlink" href="#risk-free-rate-rfr-models" title="Permanent link">&para;</a></h3>
 <p>The LMM framework adapts to backward-looking rates like SOFR:</p>
-<p>$$</p>
-<p>\bar{R}<em T__i_1="T_{i+1" _T_i_="[T_i," _in="\in" k="k">i = \frac{1}{\delta_i}\left[\prod</em> (1 + r_k \delta_k) - 1\right]}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{R}_i = \frac{1}{\delta_i}\left[\prod_{k \in [T_i, T_{i+1}]} (1 + r_k \delta_k) - 1\right]
+\]</div>
 <p>where <span class="arithmatex">\(r_k\)</span> are daily compounded rates.</p>
 <h3 id="forward-looking-vs-backward-looking">Forward-Looking vs. Backward-Looking<a class="headerlink" href="#forward-looking-vs-backward-looking" title="Permanent link">&para;</a></h3>
 <ul>

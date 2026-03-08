@@ -46239,9 +46239,9 @@
 <h2 id="the-central-limit-theorem">The Central Limit Theorem<a class="headerlink" href="#the-central-limit-theorem" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem 1.1.8</strong> (Classical CLT)</p>
 <p>Let <span class="arithmatex">\(\{\xi_i\}_{i \geq 1}\)</span> be i.i.d. with <span class="arithmatex">\(\mathbb{E}[\xi_i] = 0\)</span> and <span class="arithmatex">\(\mathbb{E}[\xi_i^2] = \sigma^2 \in (0,\infty)\)</span>. Then:</p>
-<div class="arithmatex">\[\frac{1}{\sqrt{n}}\sum_{i=1}^n \xi_i \xrightarrow{d} \mathcal{N}(0,\sigma^2) \quad \text{as } n \to \infty.\]</div>
+<div class="arithmatex">\[\frac{1}{\sqrt{n}}\sum_{i=1}^n \xi_i \xrightarrow{d} \mathcal{N}(0,\sigma^2) \quad \text{as } n \to \infty\]</div>
 <p>For the symmetric random walk (<span class="arithmatex">\(\sigma^2 = 1\)</span>), this gives <span class="arithmatex">\(S_n/\sqrt{n} \xrightarrow{d} \mathcal{N}(0,1)\)</span>. Since <span class="arithmatex">\(S^{(n)}(t) = S_{\lfloor nt \rfloor}/\sqrt{n}\)</span>, for each fixed <span class="arithmatex">\(t\)</span>:</p>
-<div class="arithmatex">\[S^{(n)}(t) \xrightarrow{d} \mathcal{N}(0,t).\]</div>
+<div class="arithmatex">\[S^{(n)}(t) \xrightarrow{d} \mathcal{N}(0,t)\]</div>
 <p>The MGF proof from <a href="../mgf_of_random_walk/">Moment Generating Function</a> gives this in one computation.</p>
 <hr />
 <h2 id="why-the-clt-is-not-enough">Why the CLT is Not Enough<a class="headerlink" href="#why-the-clt-is-not-enough" title="Permanent link">&para;</a></h2>
@@ -46264,7 +46264,7 @@
 <h2 id="donskers-invariance-principle">Donsker's Invariance Principle<a class="headerlink" href="#donskers-invariance-principle" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong> (Donsker, 1951)</p>
 <p>Let <span class="arithmatex">\(\{\xi_i\}\)</span> be i.i.d. with <span class="arithmatex">\(\mathbb{E}[\xi_i] = 0\)</span> and <span class="arithmatex">\(\mathbb{E}[\xi_i^2] = 1\)</span>. Let <span class="arithmatex">\(W^{(n)}\)</span> be the piecewise-linear scaled random walk:</p>
-<div class="arithmatex">\[W^{(n)}(t) := \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor} + \frac{nt - \lfloor nt \rfloor}{\sqrt{n}}\,\xi_{\lfloor nt \rfloor+1}, \qquad t \in [0,T].\]</div>
+<div class="arithmatex">\[W^{(n)}(t) := \frac{1}{\sqrt{n}} S_{\lfloor nt \rfloor} + \frac{nt - \lfloor nt \rfloor}{\sqrt{n}}\,\xi_{\lfloor nt \rfloor+1}, \qquad t \in [0,T]\]</div>
 <p>Then</p>
 <div class="arithmatex">\[W^{(n)} \Rightarrow W \quad \text{in } C[0,T] \text{ with the uniform topology,}\]</div>
 <p>where <span class="arithmatex">\(\Rightarrow\)</span> denotes weak convergence of probability measures and <span class="arithmatex">\(W\)</span> is standard Brownian motion on <span class="arithmatex">\([0,T]\)</span>.</p>
@@ -46272,7 +46272,7 @@
 <ol>
 <li><strong>Finite-dimensional convergence.</strong> For any <span class="arithmatex">\(0 \leq t_1 &lt; \cdots &lt; t_k \leq T\)</span>, the increments <span class="arithmatex">\(W^{(n)}(t_{i+1}) - W^{(n)}(t_i)\)</span> are sums of independent <span class="arithmatex">\(\xi_j\)</span>'s over disjoint blocks. The CLT applied to each block gives joint convergence:</li>
 </ol>
-<div class="arithmatex">\[\bigl(W^{(n)}(t_1),\ldots,W^{(n)}(t_k)\bigr) \xrightarrow{d} \bigl(W_{t_1},\ldots,W_{t_k}\bigr).\]</div>
+<div class="arithmatex">\[\bigl(W^{(n)}(t_1),\ldots,W^{(n)}(t_k)\bigr) \xrightarrow{d} \bigl(W_{t_1},\ldots,W_{t_k}\bigr)\]</div>
 <ol>
 <li>
 <p><strong>Tightness.</strong> The fourth-moment estimate above implies tightness via the Kolmogorov–Chentsov criterion.</p>

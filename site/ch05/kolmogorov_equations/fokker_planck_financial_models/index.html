@@ -46235,52 +46235,52 @@ The Fokker-Planck equation determines:
 <h2 id="quantpie-derivation">QuantPie Derivation<a class="headerlink" href="#quantpie-derivation" title="Permanent link">&para;</a></h2>
 <h3 id="fokker-planck-equation-for-brownian-motion">Fokker-Planck Equation for Brownian Motion<a class="headerlink" href="#fokker-planck-equation-for-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For Brownian motion <span class="arithmatex">\(dX_t = dB_t\)</span>, the probability density <span class="arithmatex">\(p(x, t)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}
+\]</div>
 <p><strong>Derivation using Itô's Lemma:</strong></p>
 <p>For any test function <span class="arithmatex">\(f\)</span> in <span class="arithmatex">\(C_c^2\)</span> (twice continuously differentiable with compact support):</p>
-<p>$$</p>
-<p>df(B_t) = f'(B_t)dB_t + \frac{1}{2}f''(B_t)dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(B_t) = f'(B_t)dB_t + \frac{1}{2}f''(B_t)dt
+\]</div>
 <p>Taking expectations:</p>
-<p>$$</p>
-<p>\frac{d}{dt}\mathbb{E}[f(B_t)] = \frac{1}{2}\mathbb{E}[f''(B_t)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\mathbb{E}[f(B_t)] = \frac{1}{2}\mathbb{E}[f''(B_t)]
+\]</div>
 <p>Using the transition density function <span class="arithmatex">\(p(x, t)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[f] = \int_{-\infty}^{\infty} f(x)p(x, t)dx</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{d}{dt}\mathbb{E}[f] = \int_{-\infty}^{\infty} f(x)\frac{\partial p}{\partial t}dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[f] = \int_{-\infty}^{\infty} f(x)p(x, t)dx
+\]</div>
+<div class="arithmatex">\[
+\frac{d}{dt}\mathbb{E}[f] = \int_{-\infty}^{\infty} f(x)\frac{\partial p}{\partial t}dx
+\]</div>
 <p><strong>Integration by parts</strong> (assuming boundary terms vanish):</p>
-<p>$$</p>
-<p>\mathbb{E}[f''(x)] = \int_{-\infty}^{\infty} f''(x)p(x, t)dx = \int_{-\infty}^{\infty} f(x)p_{xx}(x, t)dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[f''(x)] = \int_{-\infty}^{\infty} f''(x)p(x, t)dx = \int_{-\infty}^{\infty} f(x)p_{xx}(x, t)dx
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\int_{-\infty}^{\infty} f(x)\left[\frac{\partial p}{\partial t} - \frac{1}{2}p_{xx}\right]dx = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{\infty} f(x)\left[\frac{\partial p}{\partial t} - \frac{1}{2}p_{xx}\right]dx = 0
+\]</div>
 <p>Since this holds for all test functions:</p>
-<p>$$</p>
-<p>\boxed{\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}}
+\]</div>
 <h3 id="fokker-planck-for-general-diffusions">Fokker-Planck for General Diffusions<a class="headerlink" href="#fokker-planck-for-general-diffusions" title="Permanent link">&para;</a></h3>
 <p>For a general SDE:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t)dt + \sigma(X_t, t)dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t)dt + \sigma(X_t, t)dB_t
+\]</div>
 <p>Applying Itô's Lemma:</p>
-<p>$$</p>
-<p>df = \left(\mu f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma f_x dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df = \left(\mu f_x + \frac{1}{2}\sigma^2 f_{xx}\right)dt + \sigma f_x dB_t
+\]</div>
 <p>Taking expectations and using integration by parts:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial p}{\partial t} = -\frac{\partial(\mu p)}{\partial x} + \frac{1}{2}\frac{\partial^2(\sigma^2 p)}{\partial x^2}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Key examples:</strong></p>
 <table>
 <thead>

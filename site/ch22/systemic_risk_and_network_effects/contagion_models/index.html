@@ -46956,12 +46956,12 @@
 <h2 id="default-cascade-models">Default Cascade Models<a class="headerlink" href="#default-cascade-models" title="Permanent link">&para;</a></h2>
 <h3 id="threshold-model">Threshold Model<a class="headerlink" href="#threshold-model" title="Permanent link">&para;</a></h3>
 <p>Institution <span class="arithmatex">\(i\)</span> defaults if:</p>
-<p>$$</p>
-<p>\text{Losses} &gt; \text{Capital Buffer}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sum_j \mathbf{1}<em ij="ij">{{j \text{ defaults}}} \cdot \text{Exposure}</em> &gt; E_i} \cdot \text{LGD</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Losses} &gt; \text{Capital Buffer}
+\]</div>
+<div class="arithmatex">\[
+\sum_j \mathbf{1}_{\{j \text{ defaults}\}} \cdot \text{Exposure}_{ij} \cdot \text{LGD} &gt; E_i
+\]</div>
 <h3 id="cascade-algorithm">Cascade Algorithm<a class="headerlink" href="#cascade-algorithm" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Initial shock:</strong> Some institutions fail exogenously</li>
@@ -46978,23 +46978,23 @@
 <h3 id="greenwood-landier-thesmar-model">Greenwood-Landier-Thesmar Model<a class="headerlink" href="#greenwood-landier-thesmar-model" title="Permanent link">&para;</a></h3>
 <p><strong>Setup:</strong> <span class="arithmatex">\(n\)</span> institutions hold overlapping portfolios</p>
 <p><strong>Fire sale impact:</strong> When institution <span class="arithmatex">\(i\)</span> deleverages:</p>
-<p>$$</p>
-<p>\Delta P_a = -\lambda_a \cdot \frac{\text{Sales}_{ia}}{D_a}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P_a = -\lambda_a \cdot \frac{\text{Sales}_{ia}}{D_a}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda_a\)</span> is illiquidity of asset <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(D_a\)</span> is market depth.</p>
 <p><strong>Indirect exposure:</strong> Institution <span class="arithmatex">\(j\)</span>'s loss from <span class="arithmatex">\(i\)</span>'s deleveraging:</p>
-<p>$$</p>
-<p>\text{Loss}<em ja="ja">j = \sum_a w</em> \cdot |\Delta P_a|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Loss}_j = \sum_a w_{ja} \cdot |\Delta P_a|
+\]</div>
 <p><strong>Vulnerability index:</strong></p>
-<p>$$</p>
-<p>v_i = \sum_j \text{Impact}_{ij} \cdot \text{Leverage}_j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+v_i = \sum_j \text{Impact}_{ij} \cdot \text{Leverage}_j
+\]</div>
 <h3 id="systemic-feedback">Systemic Feedback<a class="headerlink" href="#systemic-feedback" title="Permanent link">&para;</a></h3>
 <p>Total system losses exceed sum of individual losses:</p>
-<p>$$</p>
-<p>\text{System Loss} &gt; \sum_i \text{Direct Loss}_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{System Loss} &gt; \sum_i \text{Direct Loss}_i
+\]</div>
 <p>The multiplier captures fire sale externalities.</p>
 <hr />
 <h2 id="network-contagion-models">Network Contagion Models<a class="headerlink" href="#network-contagion-models" title="Permanent link">&para;</a></h2>
@@ -47008,9 +47008,9 @@
 <p><strong>Robust-yet-fragile:</strong> Normal shocks absorbed; rare large shocks cascade.</p>
 <h3 id="contagion-threshold">Contagion Threshold<a class="headerlink" href="#contagion-threshold" title="Permanent link">&para;</a></h3>
 <p>Contagion spreads if the <strong>basic reproduction number</strong> <span class="arithmatex">\(R_0 &gt; 1\)</span>:</p>
-<p>$$</p>
-<p>R_0 = \bar{d} \cdot p_{\text{default}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_0 = \bar{d} \cdot p_{\text{default}}
+\]</div>
 <p>where <span class="arithmatex">\(\bar{d}\)</span> = average degree and <span class="arithmatex">\(p_{\text{default}}\)</span> = probability a connection causes default.</p>
 <h3 id="phase-transitions">Phase Transitions<a class="headerlink" href="#phase-transitions" title="Permanent link">&para;</a></h3>
 <p>As connectivity increases:
@@ -47042,9 +47042,9 @@
 - Intervention opportunities
 - Recovery processes</p>
 <p><strong>Differential equation models:</strong></p>
-<p>$$</p>
-<p>\frac{dI(t)}{dt} = \beta S(t) I(t) - \gamma I(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dI(t)}{dt} = \beta S(t) I(t) - \gamma I(t)
+\]</div>
 <p>where <span class="arithmatex">\(I\)</span> = infected (distressed), <span class="arithmatex">\(S\)</span> = susceptible, <span class="arithmatex">\(\beta\)</span> = transmission rate, <span class="arithmatex">\(\gamma\)</span> = recovery rate.</p>
 <h3 id="tipping-points">Tipping Points<a class="headerlink" href="#tipping-points" title="Permanent link">&para;</a></h3>
 <p>System may have:
@@ -47061,9 +47061,9 @@
 4. Residual = contagion</p>
 <h3 id="granger-causality">Granger Causality<a class="headerlink" href="#granger-causality" title="Permanent link">&para;</a></h3>
 <p>Test whether institution <span class="arithmatex">\(A\)</span>'s distress predicts <span class="arithmatex">\(B\)</span>'s:</p>
-<p>$$</p>
-<p>R_B(t) = \alpha + \beta R_A(t-1) + \gamma R_M(t-1) + \epsilon_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_B(t) = \alpha + \beta R_A(t-1) + \gamma R_M(t-1) + \epsilon_t
+\]</div>
 <p>Significant <span class="arithmatex">\(\beta\)</span> suggests contagion channel.</p>
 <h3 id="network-inference">Network Inference<a class="headerlink" href="#network-inference" title="Permanent link">&para;</a></h3>
 <p>Infer network from:

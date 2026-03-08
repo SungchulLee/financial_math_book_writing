@@ -46808,17 +46808,17 @@
 <h2 id="model-setup-and-assumptions">Model Setup and Assumptions<a class="headerlink" href="#model-setup-and-assumptions" title="Permanent link">&para;</a></h2>
 <h3 id="1-asset-price-dynamics">1. <strong>Asset Price Dynamics</strong><a class="headerlink" href="#1-asset-price-dynamics" title="Permanent link">&para;</a></h3>
 <p>The underlying asset price <span class="arithmatex">\(S_t\)</span> follows <strong>geometric Brownian motion</strong> under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(r\)</span> = risk-free interest rate (continuously compounded, constant)
 - <span class="arithmatex">\(\sigma\)</span> = volatility (constant)
 - <span class="arithmatex">\(W_t\)</span> = standard Brownian motion under <span class="arithmatex">\(\mathbb{Q}\)</span></p>
 <p><strong>Equivalent representation</strong>:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right)
+\]</div>
 <h3 id="2-fundamental-assumptions">2. <strong>Fundamental Assumptions</strong><a class="headerlink" href="#2-fundamental-assumptions" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -46854,36 +46854,36 @@
 <h2 id="the-black-scholes-formulas">The Black-Scholes Formulas<a class="headerlink" href="#the-black-scholes-formulas" title="Permanent link">&para;</a></h2>
 <h3 id="1-european-call-option">1. <strong>European Call Option</strong><a class="headerlink" href="#1-european-call-option" title="Permanent link">&para;</a></h3>
 <p>The price of a European call option at time <span class="arithmatex">\(t\)</span> is:</p>
-<p>$$</p>
-<p>\boxed{C(S,t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C(S,t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{d_2 = d_1 - \sigma\sqrt{T-t} = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}
+\]</div>
+<div class="arithmatex">\[
+\boxed{d_2 = d_1 - \sigma\sqrt{T-t} = \frac{\ln(S/K) + (r - \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}}
+\]</div>
 <p><strong>Notation</strong>: <span class="arithmatex">\(\mathcal{N}(x)\)</span> denotes the <strong>cumulative distribution function</strong> of the standard normal distribution:</p>
-<p>$$</p>
-<p>\mathcal{N}(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{z^2}{2}} dz = \mathbb{P}(Z \leq x) \quad \text{where } Z \sim \mathcal{N}(0,1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{z^2}{2}} dz = \mathbb{P}(Z \leq x) \quad \text{where } Z \sim \mathcal{N}(0,1)
+\]</div>
 <h3 id="2-european-put-option">2. <strong>European Put Option</strong><a class="headerlink" href="#2-european-put-option" title="Permanent link">&para;</a></h3>
 <p>The price of a European put option at time <span class="arithmatex">\(t\)</span> is:</p>
-<p>$$</p>
-<p>\boxed{P(S,t) = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{P(S,t) = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)}
+\]</div>
 <p>where <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span> are defined identically as for the call.</p>
 <p><strong>Alternative form</strong> using <span class="arithmatex">\(\mathcal{N}(-x) = 1 - \mathcal{N}(x)\)</span>:</p>
-<p>$$</p>
-<p>P(S,t) = Ke^{-r(T-t)}[1 - \mathcal{N}(d_2)] - S[1 - \mathcal{N}(d_1)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(S,t) = Ke^{-r(T-t)}[1 - \mathcal{N}(d_2)] - S[1 - \mathcal{N}(d_1)]
+\]</div>
 <hr />
 <h2 id="component-analysis">Component Analysis<a class="headerlink" href="#component-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-d_1-parameter">1. <strong>The d_1 Parameter</strong><a class="headerlink" href="#1-the-d_1-parameter" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}
+\]</div>
 <p><strong>Structure</strong>:
 - <strong>Numerator</strong>: Log-moneyness <span class="arithmatex">\(\ln(S/K)\)</span> plus drift-adjusted growth <span class="arithmatex">\((r + \frac{1}{2}\sigma^2)(T-t)\)</span>
 - <strong>Denominator</strong>: Volatility-adjusted time <span class="arithmatex">\(\sigma\sqrt{T-t}\)</span></p>
@@ -46904,9 +46904,9 @@
 </li>
 </ol>
 <h3 id="2-the-d_2-parameter">2. <strong>The d_2 Parameter</strong><a class="headerlink" href="#2-the-d_2-parameter" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T-t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T-t}
+\]</div>
 <p><strong>Relationship to <span class="arithmatex">\(d_1\)</span></strong>: 
 - <span class="arithmatex">\(d_2\)</span> is always less than <span class="arithmatex">\(d_1\)</span> by exactly the "volatility-time product"
 - As volatility or time increases, the gap <span class="arithmatex">\(d_1 - d_2\)</span> widens</p>
@@ -46931,17 +46931,17 @@
 <hr />
 <h2 id="formula-structure">Formula Structure<a class="headerlink" href="#formula-structure" title="Permanent link">&para;</a></h2>
 <h3 id="1-call-option-decomposition">1. <strong>Call Option Decomposition</strong><a class="headerlink" href="#1-call-option-decomposition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C = \underbrace{S\mathcal{N}(d_1)}<em _text_Strike="\text{Strike" term="term">{\text{Stock term}} - \underbrace{Ke^{-r(T-t)}\mathcal{N}(d_2)}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = \underbrace{S\mathcal{N}(d_1)}_{\text{Stock term}} - \underbrace{Ke^{-r(T-t)}\mathcal{N}(d_2)}_{\text{Strike term}}
+\]</div>
 <p><strong>Interpretation</strong>:
 - <strong>Stock term</strong> <span class="arithmatex">\(S\mathcal{N}(d_1)\)</span>: Expected present value of receiving the stock if exercised
 - <strong>Strike term</strong> <span class="arithmatex">\(Ke^{-r(T-t)}\mathcal{N}(d_2)\)</span>: Expected present value of paying the strike if exercised</p>
 <p>The call value is the difference: value received minus value paid.</p>
 <h3 id="2-put-option-decomposition">2. <strong>Put Option Decomposition</strong><a class="headerlink" href="#2-put-option-decomposition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P = \underbrace{Ke^{-r(T-t)}\mathcal{N}(-d_2)}<em _text_Stock="\text{Stock" term="term">{\text{Strike term}} - \underbrace{S\mathcal{N}(-d_1)}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = \underbrace{Ke^{-r(T-t)}\mathcal{N}(-d_2)}_{\text{Strike term}} - \underbrace{S\mathcal{N}(-d_1)}_{\text{Stock term}}
+\]</div>
 <p><strong>Interpretation</strong>:
 - <strong>Strike term</strong> <span class="arithmatex">\(Ke^{-r(T-t)}\mathcal{N}(-d_2)\)</span>: Expected present value of receiving the strike if exercised
 - <strong>Stock term</strong> <span class="arithmatex">\(S\mathcal{N}(-d_1)\)</span>: Expected present value of giving up the stock if exercised</p>
@@ -47023,12 +47023,12 @@
 <h2 id="special-cases">Special Cases<a class="headerlink" href="#special-cases" title="Permanent link">&para;</a></h2>
 <h3 id="1-at-the-money-forward-atmf">1. <strong>At-the-Money Forward (ATMF)</strong><a class="headerlink" href="#1-at-the-money-forward-atmf" title="Permanent link">&para;</a></h3>
 <p>When <span class="arithmatex">\(S = Ke^{-r(T-t)}\)</span> (current price equals discounted strike):</p>
-<p>$$</p>
-<p>d_1 = \frac{\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}} = \frac{\sigma\sqrt{T-t}}{2}</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = -\frac{\sigma\sqrt{T-t}}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}} = \frac{\sigma\sqrt{T-t}}{2}
+\]</div>
+<div class="arithmatex">\[
+d_2 = -\frac{\sigma\sqrt{T-t}}{2}
+\]</div>
 <p>The call and put have <strong>symmetric probabilities</strong> around <span class="arithmatex">\(\mathcal{N}(0) = 0.5\)</span>.</p>
 <h3 id="2-at-maturity-t-t-0">2. <strong>At Maturity</strong> (T - t = 0)<a class="headerlink" href="#2-at-maturity-t-t-0" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(t \to T\)</span>:
@@ -47038,12 +47038,12 @@
 <p>This recovers the <strong>terminal payoff</strong>: <span class="arithmatex">\(C(S,T) = (S-K)^+\)</span>, <span class="arithmatex">\(P(S,T) = (K-S)^+\)</span>.</p>
 <h3 id="3-zero-volatility-0">3. <strong>Zero Volatility</strong> (σ → 0)<a class="headerlink" href="#3-zero-volatility-0" title="Permanent link">&para;</a></h3>
 <p>The formulas reduce to the <strong>intrinsic value discounted at the risk-free rate</strong>:</p>
-<p>$$</p>
-<p>C = \max(S - Ke^{-r(T-t)}, 0)</p>
-<p>$$</p>
-<p>$$</p>
-<p>P = \max(Ke^{-r(T-t)} - S, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = \max(S - Ke^{-r(T-t)}, 0)
+\]</div>
+<div class="arithmatex">\[
+P = \max(Ke^{-r(T-t)} - S, 0)
+\]</div>
 <p>This is the <strong>forward value</strong> with no uncertainty premium.</p>
 <hr />
 <h2 id="comparison-with-binomial-model">Comparison with Binomial Model<a class="headerlink" href="#comparison-with-binomial-model" title="Permanent link">&para;</a></h2>
@@ -47079,42 +47079,42 @@
 </tbody>
 </table>
 <p>As the number of time steps <span class="arithmatex">\(n \to \infty\)</span> in the binomial model with appropriate parameter scaling:</p>
-<p>$$</p>
-<p>\text{Binomial price} \to \text{Black-Scholes price}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Binomial price} \to \text{Black-Scholes price}
+\]</div>
 <hr />
 <h2 id="the-black-scholes-pde">The Black-Scholes PDE<a class="headerlink" href="#the-black-scholes-pde" title="Permanent link">&para;</a></h2>
 <h3 id="1-pde-formulation">1. <strong>PDE Formulation</strong><a class="headerlink" href="#1-pde-formulation" title="Permanent link">&para;</a></h3>
 <p>The Black-Scholes formula is the solution to a <strong>partial differential equation</strong>:</p>
-<p>$$</p>
-<p>\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+\]</div>
 <p>with <strong>terminal condition</strong>:</p>
-<p>$$</p>
-<p>V(S,T) = \text{Payoff}(S) = \begin{cases}
-(S-K)^+ &amp; \text{for call} \
+<div class="arithmatex">\[
+V(S,T) = \text{Payoff}(S) = \begin{cases}
+(S-K)^+ &amp; \text{for call} \\
 (K-S)^+ &amp; \text{for put}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Interpretation</strong>: Any replicable derivative whose value is <span class="arithmatex">\(V(S,t)\)</span> must satisfy this PDE. The equation describes how the option value evolves over time given the stock price dynamics.</p>
 <h3 id="2-trivial-solutions">2. <strong>Trivial Solutions</strong><a class="headerlink" href="#2-trivial-solutions" title="Permanent link">&para;</a></h3>
 <p>Before solving for option prices, observe that simple portfolios satisfy the PDE:</p>
 <p><strong>1. The stock itself</strong>: <span class="arithmatex">\(V = S\)</span></p>
 <p>Verify:</p>
-<p>$$</p>
-<p>\frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial S}{\partial t} = 0, \quad \frac{\partial S}{\partial S} = 1, \quad \frac{\partial^2 S}{\partial S^2} = 0
+\]</div>
+<div class="arithmatex">\[
+0 + \frac{1}{2}\sigma^2 S^2 \cdot 0 + rS \cdot 1 - rS = 0 \quad \checkmark
+\]</div>
 <p><strong>2. The risk-free bond</strong>: <span class="arithmatex">\(V = e^{rt}\)</span></p>
 <p>Verify:</p>
-<p>$$</p>
-<p>\frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial e^{rt}}{\partial t} = re^{rt}, \quad \frac{\partial e^{rt}}{\partial S} = 0, \quad \frac{\partial^2 e^{rt}}{\partial S^2} = 0
+\]</div>
+<div class="arithmatex">\[
+re^{rt} + 0 + 0 - re^{rt} = 0 \quad \checkmark
+\]</div>
 <p>These trivial solutions confirm that the PDE correctly describes basic traded assets. Any <strong>linear combination</strong> of stock and bond also satisfies the PDE, which forms the basis of the <strong>replication argument</strong>.</p>
 <h3 id="3-connection-to-option-pricing">3. <strong>Connection to Option Pricing</strong><a class="headerlink" href="#3-connection-to-option-pricing" title="Permanent link">&para;</a></h3>
 <p>The Black-Scholes call and put formulas are <strong>non-trivial solutions</strong> to this PDE with the appropriate terminal conditions. Section 2.4 will derive the formula by solving this PDE using various analytical techniques.</p>
@@ -47142,9 +47142,9 @@
 <p><strong>Call</strong>: <span class="arithmatex">\(C = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)\)</span></p>
 <p><strong>Put</strong>: <span class="arithmatex">\(P = Ke^{-r(T-t)}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)\)</span></p>
 <p>where</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r + \frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+\]</div>
 <p><strong>Key features</strong>:
 - Closed-form solution (no numerical iteration needed)
 - Depends on five observable inputs: <span class="arithmatex">\(S\)</span>, <span class="arithmatex">\(K\)</span>, <span class="arithmatex">\(T-t\)</span>, <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(\sigma\)</span>

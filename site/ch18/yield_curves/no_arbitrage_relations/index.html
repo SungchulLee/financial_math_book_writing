@@ -46810,21 +46810,21 @@
 </ul>
 <h3 id="no-arbitrage-condition">No-Arbitrage Condition<a class="headerlink" href="#no-arbitrage-condition" title="Permanent link">&para;</a></h3>
 <p>For no arbitrage, both strategies must cost the same:</p>
-<p>$$</p>
-<p>P(0, T_2) \cdot [1 + F(0; T_1, T_2)(T_2 - T_1)] = P(0, T_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T_2) \cdot [1 + F(0; T_1, T_2)(T_2 - T_1)] = P(0, T_1)
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>\frac{P(0, T_1)}{P(0, T_2)} = 1 + F(0; T_1, T_2)(T_2 - T_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{P(0, T_1)}{P(0, T_2)} = 1 + F(0; T_1, T_2)(T_2 - T_1)
+\]</div>
 <p>This is precisely the forward rate definition, showing it arises from no-arbitrage.</p>
 <hr />
 <h2 id="discount-factor-constraints">Discount Factor Constraints<a class="headerlink" href="#discount-factor-constraints" title="Permanent link">&para;</a></h2>
 <h3 id="monotonicity">Monotonicity<a class="headerlink" href="#monotonicity" title="Permanent link">&para;</a></h3>
 <p>Under absence of arbitrage with non-negative rates:</p>
-<p>$$</p>
-<p>T_1 &lt; T_2 \implies P(0, T_1) \geq P(0, T_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+T_1 &lt; T_2 \implies P(0, T_1) \geq P(0, T_2)
+\]</div>
 <p><strong>Proof:</strong> If <span class="arithmatex">\(P(0, T_1) &lt; P(0, T_2)\)</span>:
 - Buy the <span class="arithmatex">\(T_1\)</span> bond (cost <span class="arithmatex">\(P(0, T_1)\)</span>)
 - Sell the <span class="arithmatex">\(T_2\)</span> bond (receive <span class="arithmatex">\(P(0, T_2)\)</span>)
@@ -46834,75 +46834,75 @@
 - This is arbitrage</p>
 <h3 id="positivity">Positivity<a class="headerlink" href="#positivity" title="Permanent link">&para;</a></h3>
 <p>Discount factors must be strictly positive:</p>
-<p>$$</p>
-<p>P(0, T) &gt; 0 \quad \text{for all } T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T) &gt; 0 \quad \text{for all } T
+\]</div>
 <p>A non-positive discount factor would imply:
 - Receiving money today for a future obligation (if <span class="arithmatex">\(P &lt; 0\)</span>)
 - Getting a free bond (if <span class="arithmatex">\(P = 0\)</span>)</p>
 <p>Both are arbitrage.</p>
 <h3 id="convexity-jensens-inequality-effect">Convexity (Jensen's Inequality Effect)<a class="headerlink" href="#convexity-jensens-inequality-effect" title="Permanent link">&para;</a></h3>
 <p>For stochastic rates, discount factors exhibit convexity:</p>
-<p>$$</p>
-<p>P(0, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s ds}\right] \geq e^{-\mathbb{E}^{\mathbb{Q}}\left[\int_0^T r_s ds\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s ds}\right] \geq e^{-\mathbb{E}^{\mathbb{Q}}\left[\int_0^T r_s ds\right]}
+\]</div>
 <p>by Jensen's inequality (since <span class="arithmatex">\(e^{-x}\)</span> is convex).</p>
 <hr />
 <h2 id="no-arbitrage-in-continuous-time">No-Arbitrage in Continuous Time<a class="headerlink" href="#no-arbitrage-in-continuous-time" title="Permanent link">&para;</a></h2>
 <h3 id="instantaneous-forward-rates">Instantaneous Forward Rates<a class="headerlink" href="#instantaneous-forward-rates" title="Permanent link">&para;</a></h3>
 <p>The continuous-time analog of the replication argument yields:</p>
-<p>$$</p>
-<p>P(0, T) = P(0, t) \cdot e^{-\int_t^T f(0,u) du}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T) = P(0, t) \cdot e^{-\int_t^T f(0,u) du}
+\]</div>
 <p>for any <span class="arithmatex">\(0 \leq t \leq T\)</span>. Differentiating:</p>
-<p>$$</p>
-<p>f(0, T) = -\frac{\partial}{\partial T} \log P(0, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(0, T) = -\frac{\partial}{\partial T} \log P(0, T)
+\]</div>
 <h3 id="chain-rule-for-discount-factors">Chain Rule for Discount Factors<a class="headerlink" href="#chain-rule-for-discount-factors" title="Permanent link">&para;</a></h3>
 <p>For any partition <span class="arithmatex">\(0 = T_0 &lt; T_1 &lt; \cdots &lt; T_n = T\)</span>:</p>
-<p>$$</p>
-<p>P(0, T) = \prod_{i=1}^{n} \frac{P(0, T_i)}{P(0, T_{i-1})} \cdot P(0, T_0)
-= \prod_{i=1}^{n} \frac{P(0, T_i)}{P(0, T_{i-1})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T) = \prod_{i=1}^{n} \frac{P(0, T_i)}{P(0, T_{i-1})} \cdot P(0, T_0)
+= \prod_{i=1}^{n} \frac{P(0, T_i)}{P(0, T_{i-1})}
+\]</div>
 <p>This <strong>multiplicative decomposition</strong> underlies bootstrapping algorithms.</p>
 <hr />
 <h2 id="coupon-bond-pricing">Coupon Bond Pricing<a class="headerlink" href="#coupon-bond-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="linearity-of-pricing">Linearity of Pricing<a class="headerlink" href="#linearity-of-pricing" title="Permanent link">&para;</a></h3>
 <p>A coupon bond with cashflows <span class="arithmatex">\(c_i\)</span> at times <span class="arithmatex">\(T_i\)</span> (for <span class="arithmatex">\(i = 1, \ldots, n\)</span>) has price:</p>
-<p>$$</p>
-<p>B_0 = \sum_{i=1}^n c_i \cdot P(0, T_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_0 = \sum_{i=1}^n c_i \cdot P(0, T_i)
+\]</div>
 <p>This is a direct consequence of:
 1. <strong>Value additivity:</strong> Portfolio value = sum of component values
 2. <strong>No arbitrage:</strong> Each cashflow is discounted at its appropriate rate</p>
 <h3 id="par-yield">Par Yield<a class="headerlink" href="#par-yield" title="Permanent link">&para;</a></h3>
 <p>The <strong>par yield</strong> <span class="arithmatex">\(y_n\)</span> for maturity <span class="arithmatex">\(T_n\)</span> is the coupon rate that makes a bond trade at par:</p>
-<p>$$</p>
-<p>1 = \sum_{i=1}^n y_n \cdot \delta_i \cdot P(0, T_i) + P(0, T_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+1 = \sum_{i=1}^n y_n \cdot \delta_i \cdot P(0, T_i) + P(0, T_n)
+\]</div>
 <p>where <span class="arithmatex">\(\delta_i = T_i - T_{i-1}\)</span> is the accrual fraction.</p>
 <p>Solving:</p>
-<p>$$</p>
-<p>y_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i \cdot P(0, T_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y_n = \frac{1 - P(0, T_n)}{\sum_{i=1}^n \delta_i \cdot P(0, T_i)}
+\]</div>
 <p>Par yields are observable in swap markets.</p>
 <hr />
 <h2 id="static-arbitrage-conditions">Static Arbitrage Conditions<a class="headerlink" href="#static-arbitrage-conditions" title="Permanent link">&para;</a></h2>
 <h3 id="calendar-spread-arbitrage">Calendar Spread Arbitrage<a class="headerlink" href="#calendar-spread-arbitrage" title="Permanent link">&para;</a></h3>
 <p>A curve violates no-arbitrage if:</p>
-<p>$$</p>
-<p>\frac{P(0, T_1)}{P(0, T_2)} &lt; 1 \quad \text{for some } T_1 &lt; T_2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{P(0, T_1)}{P(0, T_2)} &lt; 1 \quad \text{for some } T_1 &lt; T_2
+\]</div>
 <p>This would imply a negative forward rate:</p>
-<p>$$</p>
-<p>F(0; T_1, T_2) = \frac{1}{T_2 - T_1}\left(\frac{P(0, T_1)}{P(0, T_2)} - 1\right) &lt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(0; T_1, T_2) = \frac{1}{T_2 - T_1}\left(\frac{P(0, T_1)}{P(0, T_2)} - 1\right) &lt; 0
+\]</div>
 <p>While negative forwards can occur (with negative rates), <strong>implied negative rates must be consistent with market reality</strong>.</p>
 <h3 id="butterfly-arbitrage">Butterfly Arbitrage<a class="headerlink" href="#butterfly-arbitrage" title="Permanent link">&para;</a></h3>
 <p>For three maturities <span class="arithmatex">\(T_1 &lt; T_2 &lt; T_3\)</span>, convexity requires:</p>
-<p>$$</p>
-<p>P(0, T_2) \leq \lambda P(0, T_1) + (1-\lambda) P(0, T_3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T_2) \leq \lambda P(0, T_1) + (1-\lambda) P(0, T_3)
+\]</div>
 <p>where <span class="arithmatex">\(\lambda = (T_3 - T_2)/(T_3 - T_1)\)</span>.</p>
 <p>Violation implies arbitrage via a butterfly trade:
 - Long <span class="arithmatex">\(\lambda\)</span> units of <span class="arithmatex">\(T_1\)</span> bond
@@ -46912,15 +46912,15 @@
 <h2 id="forward-starting-instruments">Forward-Starting Instruments<a class="headerlink" href="#forward-starting-instruments" title="Permanent link">&para;</a></h2>
 <h3 id="forward-bond">Forward Bond<a class="headerlink" href="#forward-bond" title="Permanent link">&para;</a></h3>
 <p>A <strong>forward contract</strong> to buy a <span class="arithmatex">\(T_2\)</span>-bond at time <span class="arithmatex">\(T_1\)</span> has forward price:</p>
-<p>$$</p>
-<p>F_B(0; T_1, T_2) = \frac{P(0, T_2)}{P(0, T_1)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F_B(0; T_1, T_2) = \frac{P(0, T_2)}{P(0, T_1)}
+\]</div>
 <p>This is the ratio of discount factors, reflecting no-arbitrage.</p>
 <h3 id="forward-swap">Forward Swap<a class="headerlink" href="#forward-swap" title="Permanent link">&para;</a></h3>
 <p>A <strong>forward-starting swap</strong> beginning at <span class="arithmatex">\(T_0\)</span> with payments at <span class="arithmatex">\(T_1, \ldots, T_n\)</span> has forward swap rate:</p>
-<p>$$</p>
-<p>S(0; T_0, T_n) = \frac{P(0, T_0) - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0; T_0, T_n) = \frac{P(0, T_0) - P(0, T_n)}{\sum_{i=1}^n \delta_i P(0, T_i)}
+\]</div>
 <p>This rate makes the swap have zero initial value.</p>
 <hr />
 <h2 id="arbitrage-checks-for-curve-construction">Arbitrage Checks for Curve Construction<a class="headerlink" href="#arbitrage-checks-for-curve-construction" title="Permanent link">&para;</a></h2>

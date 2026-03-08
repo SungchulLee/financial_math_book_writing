@@ -46526,67 +46526,67 @@
 <h1 id="barrier-option-pricing-via-girsanov-and-reflection-principle">Barrier Option Pricing via Girsanov and Reflection Principle<a class="headerlink" href="#barrier-option-pricing-via-girsanov-and-reflection-principle" title="Permanent link">&para;</a></h1>
 <h2 id="payoff-structure">Payoff Structure<a class="headerlink" href="#payoff-structure" title="Permanent link">&para;</a></h2>
 <p>An <strong>up-and-out barrier call option</strong> knocks out (expires worthless) if the underlying asset price hits or exceeds a barrier level <span class="arithmatex">\(H &gt; S_0\)</span> at any time before maturity:</p>
-<p>$$</p>
-<p>\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}<em 0="0" T="T" _le="\le" t="t">{\left{\sup</em>} S_t &lt; H\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{\sup_{0 \le t \le T} S_t &lt; H\right\}}
+\]</div>
 <p>This is a <strong>path-dependent</strong> payoff: the option value depends not only on the terminal price <span class="arithmatex">\(S_T\)</span>, but on the entire path trajectory.</p>
 <hr />
 <h2 id="log-price-representation-under-q">Log-Price Representation under Q<a class="headerlink" href="#log-price-representation-under-q" title="Permanent link">&para;</a></h2>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span> (obtained via Girsanov's theorem), the stock price satisfies:</p>
-<p>$$</p>
-<p>dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t
+\]</div>
 <p>Taking <span class="arithmatex">\(X_t := \log S_t\)</span>:</p>
-<p>$$</p>
-<p>X_t = x + \left(r - \tfrac{1}{2}\sigma^2\right)t + \sigma \tilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = x + \left(r - \tfrac{1}{2}\sigma^2\right)t + \sigma \tilde{W}_t
+\]</div>
 <p>where <span class="arithmatex">\(x := \log S_0\)</span>. Define the key quantities:</p>
-<p>$$</p>
-<p>b := \log H, \quad k := \log K, \quad \mu := r - \tfrac{1}{2}\sigma^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+b := \log H, \quad k := \log K, \quad \mu := r - \tfrac{1}{2}\sigma^2
+\]</div>
 <p>The pricing problem becomes:</p>
-<p>$$</p>
-<p>C_{\text{UO}} = \mathbb{E}^{\mathbb{Q}}\left[e^{-rT}(e^{X_T} - K)^+ \cdot \mathbf{1}<em T="T" _le="\le" t="t">{\left{\sup</em>\right]} X_t &lt; b\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}} = \mathbb{E}^{\mathbb{Q}}\left[e^{-rT}(e^{X_T} - K)^+ \cdot \mathbf{1}_{\left\{\sup_{t \le T} X_t &lt; b\right\}}\right]
+\]</div>
 <hr />
 <h2 id="the-reflection-principle">The Reflection Principle<a class="headerlink" href="#the-reflection-principle" title="Permanent link">&para;</a></h2>
 <p>The key tool for evaluating the barrier condition is the <strong>reflection principle</strong> for Brownian motion with drift.</p>
 <h3 id="joint-distribution-of-maximum-and-terminal-value">Joint Distribution of Maximum and Terminal Value<a class="headerlink" href="#joint-distribution-of-maximum-and-terminal-value" title="Permanent link">&para;</a></h3>
 <p>For a drifted Brownian motion <span class="arithmatex">\(X_t = x + \mu t + \sigma \tilde{W}_t\)</span>, the joint density of the maximum <span class="arithmatex">\(M_T := \sup_{0 \le t \le T} X_t\)</span> and terminal value <span class="arithmatex">\(X_T\)</span> involves reflecting paths that cross the barrier.</p>
 <p>The reflection principle states that the probability of a Brownian path reaching level <span class="arithmatex">\(b\)</span> and ending at <span class="arithmatex">\(y &lt; b\)</span> can be related to paths starting from the <strong>reflected point</strong> <span class="arithmatex">\(2b - x\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}\left(\sup_{t \le T} X_t \ge b, \; X_T \in dy\right) = e^{2\mu(b-x)/\sigma^2} \cdot \mathbb{Q}_{2b-x}(X_T \in dy)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}\left(\sup_{t \le T} X_t \ge b, \; X_T \in dy\right) = e^{2\mu(b-x)/\sigma^2} \cdot \mathbb{Q}_{2b-x}(X_T \in dy)
+\]</div>
 <p>This is the <strong>image method</strong>: for each path that crosses the barrier and ends at <span class="arithmatex">\(y\)</span>, there exists a corresponding "image" path starting from <span class="arithmatex">\(2b - x\)</span>.</p>
 <hr />
 <h2 id="derivation-of-the-pricing-formula">Derivation of the Pricing Formula<a class="headerlink" href="#derivation-of-the-pricing-formula" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-decomposition">Step 1: Decomposition<a class="headerlink" href="#step-1-decomposition" title="Permanent link">&para;</a></h3>
 <p>The up-and-out call price can be decomposed as:</p>
-<p>$$</p>
-<p>C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - C_{\text{cross}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - C_{\text{cross}}
+\]</div>
 <p>where <span class="arithmatex">\(C_{\text{BS}}\)</span> is the standard Black–Scholes call price and <span class="arithmatex">\(C_{\text{cross}}\)</span> accounts for paths that cross the barrier.</p>
 <h3 id="step-2-image-pricing">Step 2: Image Pricing<a class="headerlink" href="#step-2-image-pricing" title="Permanent link">&para;</a></h3>
 <p>Using the reflection principle, the contribution from barrier-crossing paths is:</p>
-<p>$$</p>
-<p>C_{\text{cross}} = \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{cross}} = \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\lambda = \frac{r}{\sigma^2} + \frac{1}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda = \frac{r}{\sigma^2} + \frac{1}{2}
+\]</div>
 <p>The factor <span class="arithmatex">\(\left(\frac{S_0}{H}\right)^{2\lambda - 2}\)</span> arises from the Girsanov-type change of measure needed to account for the drift when applying the reflection principle to drifted Brownian motion.</p>
 <h3 id="step-3-the-reflected-spot-price">Step 3: The Reflected Spot Price<a class="headerlink" href="#step-3-the-reflected-spot-price" title="Permanent link">&para;</a></h3>
 <p>The argument <span class="arithmatex">\(H^2 / S_0\)</span> in the second Black–Scholes term is the <strong>reflected spot price</strong>. Under the log transformation:</p>
-<p>$$</p>
-<p>\log\left(\frac{H^2}{S_0}\right) = 2\log H - \log S_0 = 2b - x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log\left(\frac{H^2}{S_0}\right) = 2\log H - \log S_0 = 2b - x
+\]</div>
 <p>This is precisely the image point of <span class="arithmatex">\(x = \log S_0\)</span> reflected about the barrier <span class="arithmatex">\(b = \log H\)</span>.</p>
 <hr />
 <h2 id="final-result">Final Result<a class="headerlink" href="#final-result" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C_{\text{UO}} = C_{\text{BS}}(S_0, K, T) - \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(C_{\text{BS}}(S, K, T) = S\,\Phi(d_1) - Ke^{-rT}\,\Phi(d_2)\)</span> is the standard Black–Scholes call price</li>
@@ -46596,30 +46596,30 @@
 <hr />
 <h2 id="properties-and-limiting-cases">Properties and Limiting Cases<a class="headerlink" href="#properties-and-limiting-cases" title="Permanent link">&para;</a></h2>
 <h3 id="as-h">As H → ∞<a class="headerlink" href="#as-h" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_{\text{UO}} \to C_{\text{BS}}(S_0, K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}} \to C_{\text{BS}}(S_0, K, T)
+\]</div>
 <p>The barrier becomes unreachable and the option reduces to a standard European call.</p>
 <h3 id="as-h-s_0">As H → S_0^+<a class="headerlink" href="#as-h-s_0" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_{\text{UO}} \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UO}} \to 0
+\]</div>
 <p>The barrier is immediately hit, so the option is worth nothing.</p>
 <h3 id="in-out-parity">In-Out Parity<a class="headerlink" href="#in-out-parity" title="Permanent link">&para;</a></h3>
 <p>For barrier options with the same strike and barrier:</p>
-<p>$$</p>
-<p>C_{\text{up-and-in}} + C_{\text{up-and-out}} = C_{\text{BS}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{up-and-in}} + C_{\text{up-and-out}} = C_{\text{BS}}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>C_{\text{UI}} = \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{UI}} = \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)
+\]</div>
 <hr />
 <h2 id="down-and-out-call-option">Down-and-Out Call Option<a class="headerlink" href="#down-and-out-call-option" title="Permanent link">&para;</a></h2>
 <p>For a <strong>down-and-out call</strong> with barrier <span class="arithmatex">\(H &lt; S_0\)</span> (and <span class="arithmatex">\(H &lt; K\)</span>):</p>
-<p>$$</p>
-<p>C_{\text{DO}} = C_{\text{BS}}(S_0, K, T) - \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{DO}} = C_{\text{BS}}(S_0, K, T) - \left(\frac{S_0}{H}\right)^{2\lambda - 2} C_{\text{BS}}\left(\frac{H^2}{S_0}, K, T\right)
+\]</div>
 <p>The formula has the same structure, but the reflection is about a lower barrier.</p>
 <hr />
 <h2 id="the-role-of-girsanovs-theorem">The Role of Girsanov's Theorem<a class="headerlink" href="#the-role-of-girsanovs-theorem" title="Permanent link">&para;</a></h2>
@@ -46631,18 +46631,18 @@
 <li>Transform back to <span class="arithmatex">\(\mathbb{Q}\)</span>, picking up the Radon–Nikodým factor</li>
 </ol>
 <p>The exponent <span class="arithmatex">\(2\lambda - 2\)</span> in the pricing formula encodes exactly this measure change. The factor:</p>
-<p>$$</p>
-<p>\left(\frac{S_0}{H}\right)^{2\lambda - 2} = \exp\left[(2\lambda - 2)(\log S_0 - \log H)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left(\frac{S_0}{H}\right)^{2\lambda - 2} = \exp\left[(2\lambda - 2)(\log S_0 - \log H)\right]
+\]</div>
 <p>is the Radon–Nikodým derivative evaluated at the reflected starting point.</p>
 <hr />
 <h2 id="practical-considerations">Practical Considerations<a class="headerlink" href="#practical-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="continuous-vs-discrete-monitoring">Continuous vs. Discrete Monitoring<a class="headerlink" href="#continuous-vs-discrete-monitoring" title="Permanent link">&para;</a></h3>
 <p>The formula above assumes <strong>continuous barrier monitoring</strong>. In practice, barriers are often checked at discrete intervals (daily close), which makes the option more valuable since the asset can briefly cross the barrier undetected.</p>
 <p><strong>Broadie–Glasserman correction</strong> adjusts for discrete monitoring:</p>
-<p>$$</p>
-<p>H_{\text{adjusted}} = H \cdot e^{\pm \beta \sigma \sqrt{\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_{\text{adjusted}} = H \cdot e^{\pm \beta \sigma \sqrt{\Delta t}}
+\]</div>
 <p>where <span class="arithmatex">\(\beta \approx 0.5826\)</span> and <span class="arithmatex">\(\Delta t\)</span> is the monitoring interval.</p>
 <h3 id="near-barrier-behavior">Near-Barrier Behavior<a class="headerlink" href="#near-barrier-behavior" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(S_t\)</span> approaches the barrier <span class="arithmatex">\(H\)</span>, the option's delta and gamma exhibit extreme behavior, making hedging challenging near the knockout level.</p>

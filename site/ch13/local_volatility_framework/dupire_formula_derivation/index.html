@@ -46311,49 +46311,49 @@
 <hr />
 <h2 id="fokker-planck-and-dupire-connection">Fokker-Planck and Dupire Connection<a class="headerlink" href="#fokker-planck-and-dupire-connection" title="Permanent link">&para;</a></h2>
 <p>The Dupire formula can be understood through a deep connection with the Fokker-Planck equation. Under the risk-neutral measure, the stock price evolves as:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma(t, S_t) S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma(t, S_t) S_t dW_t
+\]</div>
 <p>This leads to two equivalent formulations of the local volatility surface:</p>
-<p>$$\begin{array}{ccc}</p>
-<p>\text{Fokker-Planck} &amp; &amp; \text{Dupire} \
-p(x,t|x_0,t_0) &amp; &amp; C(K,T|S_t,t) \
-\displaystyle dX_t = \sigma dW_t &amp; &amp; \
-\displaystyle \frac{\partial p(x,t)}{\partial t} - \frac{1}{2}\sigma^2\frac{\partial^2 p(x,t)}{\partial x^2} = 0 &amp; &amp; \displaystyle \frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K} - \frac{1}{2}\sigma^2(K,T)K^2\frac{\partial^2 C(K,T)}{\partial K^2} = 0 \
-\displaystyle \sigma^2 = \frac{\frac{\partial p(x,t)}{\partial t}}{\frac{1}{2}\frac{\partial^2 p(x,t)}{\partial x^2}} &amp; &amp; \displaystyle \sigma^2(K,T) = \frac{\frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C(K,T)}{\partial K^2}}</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{ccc}
+\text{Fokker-Planck} &amp; &amp; \text{Dupire} \\
+p(x,t|x_0,t_0) &amp; &amp; C(K,T|S_t,t) \\
+\displaystyle dX_t = \sigma dW_t &amp; &amp; \\
+\displaystyle \frac{\partial p(x,t)}{\partial t} - \frac{1}{2}\sigma^2\frac{\partial^2 p(x,t)}{\partial x^2} = 0 &amp; &amp; \displaystyle \frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K} - \frac{1}{2}\sigma^2(K,T)K^2\frac{\partial^2 C(K,T)}{\partial K^2} = 0 \\
+\displaystyle \sigma^2 = \frac{\frac{\partial p(x,t)}{\partial t}}{\frac{1}{2}\frac{\partial^2 p(x,t)}{\partial x^2}} &amp; &amp; \displaystyle \sigma^2(K,T) = \frac{\frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K}}{\frac{1}{2}K^2\frac{\partial^2 C(K,T)}{\partial K^2}}
+\end{array}\]</div>
 <hr />
 <h2 id="alternative-derivation-via-integration-by-parts-quantpie">Alternative Derivation via Integration by Parts (QuantPie)<a class="headerlink" href="#alternative-derivation-via-integration-by-parts-quantpie" title="Permanent link">&para;</a></h2>
 <p>This section presents an alternative derivation of the Dupire formula using the integration by parts method, which provides additional intuition about the structure of the PDE.</p>
 <h3 id="foundational-setup">Foundational Setup<a class="headerlink" href="#foundational-setup" title="Permanent link">&para;</a></h3>
 <p>Using the Feynman-Kac formula, the call option price is:</p>
-<p>$$</p>
-<p>C = e^{-rT}\mathbb{E}^{Q}[(S_{T}-K)^{+}] = e^{-rT}\int_{K}^{\infty}(s-K)p \, ds = e^{-rT}\int_{K}^{\infty}s \, p \, ds - Ke^{-rT}\int_{K}^{\infty}p \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = e^{-rT}\mathbb{E}^{Q}[(S_{T}-K)^{+}] = e^{-rT}\int_{K}^{\infty}(s-K)p \, ds = e^{-rT}\int_{K}^{\infty}s \, p \, ds - Ke^{-rT}\int_{K}^{\infty}p \, ds
+\]</div>
 <p>where <span class="arithmatex">\(p = p(s, T)\)</span> is the transition density of the stock price at maturity <span class="arithmatex">\(T\)</span> and strike <span class="arithmatex">\(K\)</span>.</p>
 <h3 id="key-partial-derivatives">Key Partial Derivatives<a class="headerlink" href="#key-partial-derivatives" title="Permanent link">&para;</a></h3>
 <p>From the expression above, we can compute the following partial derivatives:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
-C_K &amp;=&amp; -e^{-rT}\int_{K}^{\infty }p \, ds \
+<div class="arithmatex">\[\begin{array}{lll}
 \displaystyle
-C_{KK} &amp;=&amp; e^{-rT}p(K,T)</p>
-<p>\end{array}$$</p>
+C_K &amp;=&amp; -e^{-rT}\int_{K}^{\infty }p \, ds \\
+\displaystyle
+C_{KK} &amp;=&amp; e^{-rT}p(K,T)
+\end{array}\]</div>
 <p>Also, we have the important relation:</p>
-<p>$$</p>
-<p>e^{-rT}\int_{K}^{\infty}s \, p \, ds = C - KC_K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{-rT}\int_{K}^{\infty}s \, p \, ds = C - KC_K
+\]</div>
 <h3 id="dupire-pde-derivation">Dupire PDE Derivation<a class="headerlink" href="#dupire-pde-derivation" title="Permanent link">&para;</a></h3>
 <p>The time derivative of the call option price is obtained by differentiating with respect to maturity time <span class="arithmatex">\(T\)</span>:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
-C_T &amp;=&amp; \displaystyle -rC + e^{-rT}\int_{K}^{\infty}(s-K)p_T \, ds \
-&amp;=&amp; \displaystyle -rC - e^{-rT}\int_{K}^{\infty}(s-K)\left[rs p\right]<em K="K">s \, ds + e^{-rT}\int</em> \, ds}^{\infty}(s-K)\frac{1}{2}\left[\left(\sigma s\right)^2 p\right]_{ss</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
+C_T &amp;=&amp; \displaystyle -rC + e^{-rT}\int_{K}^{\infty}(s-K)p_T \, ds \\
+&amp;=&amp; \displaystyle -rC - e^{-rT}\int_{K}^{\infty}(s-K)\left[rs p\right]_s \, ds + e^{-rT}\int_{K}^{\infty}(s-K)\frac{1}{2}\left[\left(\sigma s\right)^2 p\right]_{ss} \, ds
+\end{array}\]</div>
 <p>where we have used the Fokker-Planck equation:</p>
-<p>$$</p>
-<p>p_t = -\left[\left(rs\right) p\right]<em ss="ss">s + \frac{1}{2}\left[\left(\sigma s\right)^2 p\right]</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_t = -\left[\left(rs\right) p\right]_s + \frac{1}{2}\left[\left(\sigma s\right)^2 p\right]_{ss}
+\]</div>
 <h3 id="integration-by-parts-steps">Integration by Parts Steps<a class="headerlink" href="#integration-by-parts-steps" title="Permanent link">&para;</a></h3>
 <p>Applying integration by parts to the drift and diffusion terms:</p>
 <ol>
@@ -46368,16 +46368,16 @@ C_T &amp;=&amp; \displaystyle -rC + e^{-rT}\int_{K}^{\infty}(s-K)p_T \, ds \
 <div class="arithmatex">\[\int_{K}^{\infty}\left[\left(\sigma s\right)^2 p\right]_s \, ds = -\sigma^2(K,T) K^2 p(K,T)\]</div>
 <h3 id="final-result">Final Result<a class="headerlink" href="#final-result" title="Permanent link">&para;</a></h3>
 <p>Combining all terms and using the relationships for <span class="arithmatex">\(C_K\)</span>, <span class="arithmatex">\(C_{KK}\)</span>, and <span class="arithmatex">\(e^{-rT}\int_{K}^{\infty}s \, p \, ds\)</span>:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
-C_T &amp;=&amp; \displaystyle -rC + re^{-rT}\int_{K}^{\infty}s \, p \, ds + \frac{1}{2}e^{-rT}\sigma^2(K,T) K^2 p(K,T) \
-&amp;=&amp; \displaystyle -rC + r\left(C - KC_K\right) + \frac{1}{2}\sigma^2(K,T) K^2 C_{KK} \
-&amp;=&amp; \displaystyle -rKC_K + \frac{1}{2}\sigma^2(K,T) K^2 C_{KK}</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
+C_T &amp;=&amp; \displaystyle -rC + re^{-rT}\int_{K}^{\infty}s \, p \, ds + \frac{1}{2}e^{-rT}\sigma^2(K,T) K^2 p(K,T) \\
+&amp;=&amp; \displaystyle -rC + r\left(C - KC_K\right) + \frac{1}{2}\sigma^2(K,T) K^2 C_{KK} \\
+&amp;=&amp; \displaystyle -rKC_K + \frac{1}{2}\sigma^2(K,T) K^2 C_{KK}
+\end{array}\]</div>
 <p>Therefore, the <strong>Dupire Formula</strong> is:</p>
-<p>$$</p>
-<p>\displaystyle \sigma^2(K,T) = \frac{\displaystyle \frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K}}{\displaystyle \frac{1}{2}K^2\frac{\partial^2 C(K,T)}{\partial K^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle \sigma^2(K,T) = \frac{\displaystyle \frac{\partial C(K,T)}{\partial T} + rK\frac{\partial C(K,T)}{\partial K}}{\displaystyle \frac{1}{2}K^2\frac{\partial^2 C(K,T)}{\partial K^2}}
+\]</div>
 <p>This formula expresses the local volatility surface as a function of observable market option prices and their derivatives with respect to strike and maturity.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>

@@ -46357,147 +46357,147 @@
 
 <h1 id="hull-white-swaption-formula">Hull-White Swaption Formula<a class="headerlink" href="#hull-white-swaption-formula" title="Permanent link">&para;</a></h1>
 <h2 id="swaption-payoff-and-change-of-numeraire">Swaption Payoff and Change of Numeraire<a class="headerlink" href="#swaption-payoff-and-change-of-numeraire" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \text{PAYOFF}^\text{Swaption}(T_m)
 &amp;=&amp;\displaystyle
-N\max\left(A_{mn}(T_m)\left(S_{mn}(T_m)-K\right),0\right)</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+N\max\left(A_{mn}(T_m)\left(S_{mn}(T_m)-K\right),0\right)
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 &amp;=&amp;\displaystyle
-\mathbb{E}^\mathbb{Q}\left[\frac{M(t_0)}{M(T_m)}N\max\left(A_{mn}(T_m)(S_{mn}(T_m)-K),0\right)\Big{|}{\cal F}(t_0)\right]</p>
-<p>\end{array}$$</p>
+\mathbb{E}^\mathbb{Q}\left[\frac{M(t_0)}{M(T_m)}N\max\left(A_{mn}(T_m)(S_{mn}(T_m)-K),0\right)\Big{|}{\cal F}(t_0)\right]
+\end{array}\]</div>
 <h2 id="swap-rate-s_mn-is-a-qmn-martingale">Swap Rate S_mn is a Q^mn-Martingale<a class="headerlink" href="#swap-rate-s_mn-is-a-qmn-martingale" title="Permanent link">&para;</a></h2>
 <p>Since <span class="arithmatex">\(S_{mn}(t)=\sum_{k=m+1}^n \omega_k(t)l_k(t)=\frac{P(t,T_{m})-P(t,T_n)}{A_{mn}(t)}\)</span> and since <span class="arithmatex">\(P(t,T_{m})\)</span> and <span class="arithmatex">\(P(t,T_{n})\)</span> are prices of tradable assets,</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \mathbb{E}^{mn}\left[S_{mn}(t)\Big{|}{\cal F}(s)\right]
-=S_{mn}(s)</p>
-<p>\end{array}$$</p>
+=S_{mn}(s)
+\end{array}\]</div>
 <h2 id="black-type-formula">Black Type Formula<a class="headerlink" href="#black-type-formula" title="Permanent link">&para;</a></h2>
 <p>Assume that the swap rate follows a lognormal distribution:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 dS_{mn}(t)
 =
-\sigma_{mn}S_{mn}(t)dW^{mn}(t)</p>
-<p>\end{array}$$</p>
+\sigma_{mn}S_{mn}(t)dW^{mn}(t)
+\end{array}\]</div>
 <p>Then, we can use the Black–Scholes computation with interest rate 0:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption,Payer}(t_0)
 &amp;=&amp;\displaystyle
-NA_{mn}(t_0)\left[S_{mn}(t_0)N(d_1)-KN(d_2)\right]\
+NA_{mn}(t_0)\left[S_{mn}(t_0)N(d_1)-KN(d_2)\right]\\
 \displaystyle
 V^\text{Swaption,Receiver}(t_0)
 &amp;=&amp;\displaystyle
-NA_{mn}(t_0)\left[-S_{mn}(t_0)N(-d_1)+KN(-d_2)\right]\</p>
-<p>\end{array}$$</p>
+NA_{mn}(t_0)\left[-S_{mn}(t_0)N(-d_1)+KN(-d_2)\right]\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>d_1&amp;=&amp;\displaystyle
-\frac{1}{v}\log\frac{S_{mn}(t_0)}{K}+\frac{1}{2}v\
+<div class="arithmatex">\[\begin{array}{lll}
+d_1&amp;=&amp;\displaystyle
+\frac{1}{v}\log\frac{S_{mn}(t_0)}{K}+\frac{1}{2}v\\
 d_2&amp;=&amp;\displaystyle
-\frac{1}{v}\log\frac{S_{mn}(t_0)}{K}-\frac{1}{2}v\
-v&amp;=&amp;\sigma_{mn}\sqrt{T_m-t_0}</p>
-<p>\end{array}$$</p>
+\frac{1}{v}\log\frac{S_{mn}(t_0)}{K}-\frac{1}{2}v\\
+v&amp;=&amp;\sigma_{mn}\sqrt{T_m-t_0}
+\end{array}\]</div>
 <h2 id="hull-white-swaption-formula_1">Hull-White Swaption Formula<a class="headerlink" href="#hull-white-swaption-formula_1" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 =
-N\sum_{k=m+1}^n c_k V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)\</p>
-<p>\end{array}$$</p>
+N\sum_{k=m+1}^n c_k V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>c_k&amp;=&amp;
-\left{\begin{array}{lll}
-K\tau_k&amp;&amp;\text{for <span class="arithmatex">\(k\neq n\)</span>}\
-K\tau_k+1&amp;&amp;\text{for <span class="arithmatex">\(k= n\)</span>}\
-\end{array}\right.\
-K_k&amp;=&amp;A(T_m,T_k)e^{-B(T_m,T_k)r^*}</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+c_k&amp;=&amp;
+\left\{\begin{array}{lll}
+K\tau_k&amp;&amp;\text{for $k\neq n$}\\
+K\tau_k+1&amp;&amp;\text{for $k= n$}\\
+\end{array}\right.\\
+K_k&amp;=&amp;A(T_m,T_k)e^{-B(T_m,T_k)r^*}
+\end{array}\]</div>
 <h2 id="crucial-expression">Crucial Expression<a class="headerlink" href="#crucial-expression" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \sum_{k=m+1}^n
 \tau_k P(T_m,T_k)
 \left(l_k(T_m)-K\right)
 &amp;=&amp;\displaystyle
 \sum_{k=m+1}^n
 \left(P(T_m,T_{k-1})-P(T_m,T_k)\right)
--\sum_{k=m+1}^n K\tau_k P(T_m,T_k)\
+-\sum_{k=m+1}^n K\tau_k P(T_m,T_k)\\
 &amp;=&amp;\displaystyle
-1-\sum_{k=m+1}^n c_k P(T_m,T_k)</p>
-<p>\end{array}$$</p>
+1-\sum_{k=m+1}^n c_k P(T_m,T_k)
+\end{array}\]</div>
 <h2 id="jamshidian-trick">Jamshidian Trick<a class="headerlink" href="#jamshidian-trick" title="Permanent link">&para;</a></h2>
 <p>The ZCB price <span class="arithmatex">\(P(T_m,T_k)=e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\)</span> at the swaption maturity <span class="arithmatex">\(T_m\)</span> is a function of the short rate <span class="arithmatex">\(r(T_m)\)</span> at <span class="arithmatex">\(T_m\)</span>. Actually, the functions <span class="arithmatex">\(r(T_m)\rightarrow P(T_m,T_k)\)</span> are strictly decreasing. So, there exists a unique <span class="arithmatex">\(r^*\)</span> such that</p>
-<p>$$</p>
-<p>\displaystyle
-\sum_{k=m+1}^nc_kP(T_m,T_k,r^*)=1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+\sum_{k=m+1}^nc_kP(T_m,T_k,r^*)=1
+\]</div>
 <p>Using this, the swaption payoff can be decomposed into a sum of ZCB put options:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
 1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big{|}{\cal F}(t_0)\right]\
+\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \sum_{k=m+1}^n c_k\left(K_k-P(T_m,T_k)\right)^+
-\Big{|}{\cal F}(t_0)\right]\
+\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-N\sum_{k=m+1}^n c_k\cdot{\bf\text{ZBP}}(t_0,T_m,T_k;K_k)</p>
-<p>\end{array}$$</p>
+N\sum_{k=m+1}^n c_k\cdot{\bf\text{ZBP}}(t_0,T_m,T_k;K_k)
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
 1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big{|}{\cal F}(t_0)\right]\
+\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
 \sum_{k=m+1}^n c_k K_k
 -\sum_{k=m+1}^n c_k P(T_m,T_k),0\right)
-\Big{|}{\cal F}(t_0)\right]\</p>
-<p>\end{array}$$</p>
+\Big{|}{\cal F}(t_0)\right]\\
+\end{array}\]</div>
 <p>Since all <span class="arithmatex">\(P(T_m,T_k)\)</span> are decreasing functions of <span class="arithmatex">\(r(T_m)\)</span>, the sign of each term <span class="arithmatex">\(K_k - P(T_m,T_k)\)</span> changes at the same <span class="arithmatex">\(r^*\)</span>. Therefore the max of the sum equals the sum of the maxes:</p>
-<p>$$\begin{array}{lll}</p>
-<p>&amp;=&amp;\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+&amp;=&amp;\displaystyle
 NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
 \left[\left(K_k-P(T_m,T_k)\right)^+
-\Big{|}{\cal F}(t_0)\right]\
+\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-N\sum_{k=m+1}^n c_k\cdot{\bf\text{ZBP}}(t_0,T_m,T_k;K_k)</p>
-<p>\end{array}$$</p>
+N\sum_{k=m+1}^n c_k\cdot{\bf\text{ZBP}}(t_0,T_m,T_k;K_k)
+\end{array}\]</div>
 </details>
 <h2 id="quantpie-derivation-hull-white-swaption-formula">QuantPie Derivation: Hull-White Swaption Formula<a class="headerlink" href="#quantpie-derivation-hull-white-swaption-formula" title="Permanent link">&para;</a></h2>
 <h3 id="change-of-numeraire">Change of Numeraire<a class="headerlink" href="#change-of-numeraire" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \text{PAYOFF}^\text{Swaption}(T_m)
 &amp;=&amp;\displaystyle
 N\max\left(
 \sum_{k=m+1}^n
 \tau_k P(T_m,T_k)
-\left(l_k(T_m)-K\right),0\right)</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+\left(l_k(T_m)-K\right),0\right)
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 &amp;=&amp;\displaystyle
 \mathbb{E}^\mathbb{Q}
@@ -46506,7 +46506,7 @@ V^\text{Swaption}(t_0)
 \sum_{k=m+1}^n
 \tau_k P(T_m,T_k)
 \left(l_k(T_m)-K\right),0\right)
-\Big|{\cal F}(t_0)\right]\
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
@@ -46514,42 +46514,42 @@ NP(t_0,T_m)\mathbb{E}^{T_m}
 \sum_{k=m+1}^n
 \tau_k P(T_m,T_k)
 \left(l_k(T_m)-K\right),0\right)
-\Big|{\cal F}(t_0)\right]\</p>
-<p>\end{array}$$</p>
+\Big|{\cal F}(t_0)\right]\\
+\end{array}\]</div>
 <h3 id="crucial-expression_1">Crucial Expression<a class="headerlink" href="#crucial-expression_1" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \sum_{k=m+1}^n
 \tau_k P(T_m,T_k)
 \left(l_k(T_m)-K\right)
 &amp;=&amp;\displaystyle
 \sum_{k=m+1}^n
 \tau_k P(T_m,T_k)
-\left(\frac{1}{\tau_k}\left(\frac{P(T_m,T_{k-1})}{P(T_m,T_{k}))}-1\right)-K\right)\
+\left(\frac{1}{\tau_k}\left(\frac{P(T_m,T_{k-1})}{P(T_m,T_{k}))}-1\right)-K\right)\\
 &amp;=&amp;\displaystyle
 \sum_{k=m+1}^n
 P(T_m,T_k)
-\left(\left(\frac{P(T_m,T_{k-1})}{P(T_m,T_{k}))}-1\right)-K\tau_k\right)\
+\left(\left(\frac{P(T_m,T_{k-1})}{P(T_m,T_{k}))}-1\right)-K\tau_k\right)\\
 &amp;=&amp;\displaystyle
 \sum_{k=m+1}^n
-\left(\left(P(T_m,T_{k-1})-P(T_m,T_k)\right)-K\tau_k P(T_m,T_k)\right)\
+\left(\left(P(T_m,T_{k-1})-P(T_m,T_k)\right)-K\tau_k P(T_m,T_k)\right)\\
 &amp;=&amp;\displaystyle
 1-P(T_m,T_n)
--K\sum_{k=m+1}^n \tau_k P(T_m,T_k)\
+-K\sum_{k=m+1}^n \tau_k P(T_m,T_k)\\
 &amp;=&amp;\displaystyle
-1-\sum_{k=m+1}^n c_k P(T_m,T_k)\</p>
-<p>\end{array}$$</p>
+1-\sum_{k=m+1}^n c_k P(T_m,T_k)\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>c_k&amp;=&amp;
-\left{\begin{array}{lll}
-K\tau_k&amp;&amp;\text{for <span class="arithmatex">\(k\neq n\)</span>}\
-K\tau_k+1&amp;&amp;\text{for <span class="arithmatex">\(k= n\)</span>}\
-\end{array}\right.</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+c_k&amp;=&amp;
+\left\{\begin{array}{lll}
+K\tau_k&amp;&amp;\text{for $k\neq n$}\\
+K\tau_k+1&amp;&amp;\text{for $k= n$}\\
+\end{array}\right.
+\end{array}\]</div>
 <h3 id="hull-white-zcb-price">Hull-White ZCB Price<a class="headerlink" href="#hull-white-zcb-price" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
@@ -46558,120 +46558,120 @@ NP(t_0,T_m)\mathbb{E}^{T_m}
 \sum_{k=m+1}^n
 \tau_k P(T_m,T_k)
 \left(l_k(T_m)-K\right),0\right)
-\Big|{\cal F}(t_0)\right]\
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
 1-\sum_{k=m+1}^n c_k P(T_m,T_k),0\right)
-\Big|{\cal F}(t_0)\right]\
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
 1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\</p>
-<p>\end{array}$$</p>
+\Big|{\cal F}(t_0)\right]\\
+\end{array}\]</div>
 <h3 id="jamshidian-trick_1">Jamshidian Trick<a class="headerlink" href="#jamshidian-trick_1" title="Permanent link">&para;</a></h3>
 <p>The ZCB price <span class="arithmatex">\(P(T_m,T_k)=e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\)</span> at the swaption maturity <span class="arithmatex">\(T_m\)</span> is a function of the short rate <span class="arithmatex">\(r(T_m)\)</span> at <span class="arithmatex">\(T_m\)</span>. Actually, the functions <span class="arithmatex">\(r(T_m)\rightarrow P(T_m,T_k)\)</span> are strictly decreasing. So, there is an <span class="arithmatex">\(r^*\)</span> such that</p>
-<p>$$</p>
-<p>\displaystyle
-1=\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+1=\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}
+\]</div>
 <p>Then</p>
-<p>$$\begin{array}{lll}</p>
-<p>&amp;&amp;\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+&amp;&amp;\displaystyle
 \max\left(
-1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)\
+1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)\\
 &amp;=&amp;\displaystyle
 \max\left(
-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^<em>}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)\
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)\\
 &amp;=&amp;\displaystyle
 \left(
-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^</em>}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
-1\left(r(T_m)&gt;r^<em>\right)\
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)&gt;r^*\right)\\
 &amp;=&amp;\displaystyle
 \sum_{k=m+1}^n
-c_k\left(e^{A(T_k-T_m)+B(T_k-T_m)r^</em>}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
-1\left(r(T_m)&gt;r^*\right)\</p>
-<p>\end{array}$$</p>
+c_k\left(e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)&gt;r^*\right)\\
+\end{array}\]</div>
 <h3 id="proof">Proof<a class="headerlink" href="#proof" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
 1-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^<em>}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^</em>}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\
+\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r^*}-\sum_{k=m+1}^n c_k e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \sum_{k=m+1}^n
-c_k\left(e^{A(T_k-T_m)+B(T_k-T_m)r^<em>}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
-1\left(r(T_m)&gt;r^</em>\right)
-\Big|{\cal F}(t_0)\right]\
+c_k\left(e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)&gt;r^*\right)
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
 \left[
-\left(e^{A(T_k-T_m)+B(T_k-T_m)r^<em>}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
-1\left(r(T_m)&gt;r^</em>\right)
-\Big|{\cal F}(t_0)\right]\
+\left(e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)}\right)
+1\left(r(T_m)&gt;r^*\right)
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
 \left[
 \max\left(
 e^{A(T_k-T_m)+B(T_k-T_m)r^*}-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
 \left[
 \max\left(
 K_k-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\</p>
-<p>\end{array}$$</p>
+\Big|{\cal F}(t_0)\right]\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$</p>
-<p>\displaystyle
-K_k=e^{A(T_k-T_m)+B(T_k-T_m)r^*}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+K_k=e^{A(T_k-T_m)+B(T_k-T_m)r^*}
+\]</div>
 <p>Note that</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)=P(t_0,T_m)\mathbb{E}^{T_m}
 \left[
 \max\left(
 K_k-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\</p>
-<p>\end{array}$$</p>
+\Big|{\cal F}(t_0)\right]\\
+\end{array}\]</div>
 <p>is a European put option price on a zero-coupon bond with
 option maturity <span class="arithmatex">\(T_m\)</span>, bond maturity <span class="arithmatex">\(T_k\)</span>, and strike <span class="arithmatex">\(K_k\)</span>.
 So,</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 V^\text{Swaption}(t_0)
 &amp;=&amp;\displaystyle
 NP(t_0,T_m)\sum_{k=m+1}^n c_k\mathbb{E}^{T_m}
 \left[
 \max\left(
 K_k-e^{A(T_k-T_m)+B(T_k-T_m)r(T_m)},0\right)
-\Big|{\cal F}(t_0)\right]\
+\Big|{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-N\sum_{k=m+1}^n c_k V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)\</p>
-<p>\end{array}$$</p>
+N\sum_{k=m+1}^n c_k V^{\text{ZCB}}_{p}(t_0,T_m,T_k;K_k)\\
+\end{array}\]</div>
 
 
 

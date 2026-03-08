@@ -47060,9 +47060,9 @@
 <h2 id="protection-leg">Protection Leg<a class="headerlink" href="#protection-leg" title="Permanent link">&para;</a></h2>
 <h3 id="payoff-at-default">Payoff at Default<a class="headerlink" href="#payoff-at-default" title="Permanent link">&para;</a></h3>
 <p>If default occurs at time <span class="arithmatex">\(\tau \le T\)</span>, the protection seller pays:</p>
-<p>$$</p>
-<p>\text{Protection Payment} = (1 - R) \times N,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Protection Payment} = (1 - R) \times N
+\]</div>
 <p>where:
 - <span class="arithmatex">\(1 - R\)</span> is the <strong>loss given default</strong> (LGD)
 - <span class="arithmatex">\(N\)</span> is the notional amount</p>
@@ -47080,101 +47080,101 @@
 <h2 id="premium-leg">Premium Leg<a class="headerlink" href="#premium-leg" title="Permanent link">&para;</a></h2>
 <h3 id="periodic-payments">Periodic Payments<a class="headerlink" href="#periodic-payments" title="Permanent link">&para;</a></h3>
 <p>The protection buyer pays the CDS spread <span class="arithmatex">\(s\)</span> on scheduled dates <span class="arithmatex">\(t_1, t_2, \ldots, t_n = T\)</span>:</p>
-<p>$$</p>
-<p>\text{Premium Payment at } t_i = s \times \Delta_i \times N \times \mathbf{1}_{{\tau &gt; t_i}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Premium Payment at } t_i = s \times \Delta_i \times N \times \mathbf{1}_{\{\tau &gt; t_i\}}
+\]</div>
 <p>where <span class="arithmatex">\(\Delta_i = t_i - t_{i-1}\)</span> is the accrual fraction (typically act/360).</p>
 <p>Payments continue until:
 - Maturity <span class="arithmatex">\(T\)</span> (if no default), or
 - Default time <span class="arithmatex">\(\tau\)</span> (if default occurs)</p>
 <h3 id="accrued-premium">Accrued Premium<a class="headerlink" href="#accrued-premium" title="Permanent link">&para;</a></h3>
 <p>If default occurs between payment dates at time <span class="arithmatex">\(\tau \in (t_{i-1}, t_i]\)</span>:</p>
-<p>$$</p>
-<p>\text{Accrued Premium} = s \times (\tau - t_{i-1}) \times N.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Accrued Premium} = s \times (\tau - t_{i-1}) \times N
+\]</div>
 <p>The accrued premium is typically paid at default (standard convention).</p>
 <hr />
 <h2 id="pricing-principle">Pricing Principle<a class="headerlink" href="#pricing-principle" title="Permanent link">&para;</a></h2>
 <h3 id="fair-value-condition">Fair Value Condition<a class="headerlink" href="#fair-value-condition" title="Permanent link">&para;</a></h3>
 <p>At inception, the CDS spread <span class="arithmatex">\(s\)</span> is set so that the contract has zero initial value:</p>
-<p>$$</p>
-<p>\text{PV(Protection Leg)} = \text{PV(Premium Leg)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV(Protection Leg)} = \text{PV(Premium Leg)}
+\]</div>
 <p>This no-arbitrage condition determines the <strong>par CDS spread</strong>.</p>
 <h3 id="present-value-of-protection-leg">Present Value of Protection Leg<a class="headerlink" href="#present-value-of-protection-leg" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{PV}<em T_125_="T}" _123_tau="{\tau" _le="\le">{\text{prot}} = (1-R) \times N \times \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^{\tau} r_u du} \mathbf{1}</em>\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prot}} = (1-R) \times N \times \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^{\tau} r_u du} \mathbf{1}_{\{\tau \le T\}}\right]
+\]</div>
 <p>Using the intensity framework:</p>
-<p>$$</p>
-<p>\text{PV}_{\text{prot}} = (1-R) \times N \times \int_0^T D(0,t) \lambda_t S(0,t) \, dt,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prot}} = (1-R) \times N \times \int_0^T D(0,t) \lambda_t S(0,t) \, dt
+\]</div>
 <p>where:
 - <span class="arithmatex">\(D(0,t) = \mathbb{E}[e^{-\int_0^t r_u du}]\)</span> is the risk-free discount factor
 - <span class="arithmatex">\(S(0,t) = e^{-\int_0^t \lambda_u du}\)</span> is the survival probability
 - <span class="arithmatex">\(\lambda_t\)</span> is the default intensity</p>
 <h3 id="present-value-of-premium-leg">Present Value of Premium Leg<a class="headerlink" href="#present-value-of-premium-leg" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{PV}<em i="1">{\text{prem}} = s \times N \times \left[\sum</em>) \lambda_t S(0,t) \, dt\right],}^n \Delta_i D(0, t_i) S(0, t_i) + \int_0^T D(0,t) (t - t_{i(t)-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prem}} = s \times N \times \left[\sum_{i=1}^n \Delta_i D(0, t_i) S(0, t_i) + \int_0^T D(0,t) (t - t_{i(t)-1}) \lambda_t S(0,t) \, dt\right]
+\]</div>
 <p>where the first sum is scheduled payments and the integral is expected accrued premium.</p>
 <p><strong>Simplified (ignoring accrued):</strong></p>
-<p>$$</p>
-<p>\text{PV}<em i="1">{\text{prem}} \approx s \times N \times \sum</em>,}^n \Delta_i D(0, t_i) S(0, t_i) =: s \times N \times \text{RPV01</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prem}} \approx s \times N \times \sum_{i=1}^n \Delta_i D(0, t_i) S(0, t_i) =: s \times N \times \text{RPV01}
+\]</div>
 <p>where <strong>RPV01</strong> (risky PV01) is the present value of 1 basis point of premium payments.</p>
 <hr />
 <h2 id="par-cds-spread-formula">Par CDS Spread Formula<a class="headerlink" href="#par-cds-spread-formula" title="Permanent link">&para;</a></h2>
 <h3 id="derivation">Derivation<a class="headerlink" href="#derivation" title="Permanent link">&para;</a></h3>
 <p>Setting <span class="arithmatex">\(\text{PV}_{\text{prot}} = \text{PV}_{\text{prem}}\)</span>:</p>
-<p>$$</p>
-<p>s_{\text{par}} = \frac{(1-R) \int_0^T D(0,t) \lambda_t S(0,t) \, dt}{\sum_{i=1}^n \Delta_i D(0, t_i) S(0, t_i) + \text{Accrued Adjustment}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_{\text{par}} = \frac{(1-R) \int_0^T D(0,t) \lambda_t S(0,t) \, dt}{\sum_{i=1}^n \Delta_i D(0, t_i) S(0, t_i) + \text{Accrued Adjustment}}
+\]</div>
 <h3 id="simplified-formula">Simplified Formula<a class="headerlink" href="#simplified-formula" title="Permanent link">&para;</a></h3>
 <p>Ignoring accrued premium and assuming continuous premium payments:</p>
-<p>$$</p>
-<p>s_{\text{par}} = \frac{(1-R) \int_0^T D(0,t) \lambda_t S(0,t) \, dt}{\int_0^T D(0,t) S(0,t) \, dt}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_{\text{par}} = \frac{(1-R) \int_0^T D(0,t) \lambda_t S(0,t) \, dt}{\int_0^T D(0,t) S(0,t) \, dt}
+\]</div>
 <h3 id="constant-intensity-approximation">Constant Intensity Approximation<a class="headerlink" href="#constant-intensity-approximation" title="Permanent link">&para;</a></h3>
 <p>With constant <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(\lambda\)</span>, and continuous payments:</p>
-<p>$$</p>
-<p>s_{\text{par}} = (1-R) \lambda.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_{\text{par}} = (1-R) \lambda
+\]</div>
 <p>This fundamental relationship shows that the <strong>spread is proportional to intensity</strong>, scaled by loss given default.</p>
 <hr />
 <h2 id="cds-pricing-with-piecewise-constant-intensity">CDS Pricing with Piecewise-Constant Intensity<a class="headerlink" href="#cds-pricing-with-piecewise-constant-intensity" title="Permanent link">&para;</a></h2>
 <h3 id="standard-market-approach">Standard Market Approach<a class="headerlink" href="#standard-market-approach" title="Permanent link">&para;</a></h3>
 <p>Assume intensity is piecewise constant:</p>
-<p>$$</p>
-<p>\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i]
+\]</div>
 <h3 id="protection-leg-value">Protection Leg Value<a class="headerlink" href="#protection-leg-value" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{PV}<em i="1">{\text{prot}} = (1-R) N \sum</em> D(0,t) \lambda_i S(0,t) \, dt.}^n \int_{T_{i-1}}^{T_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prot}} = (1-R) N \sum_{i=1}^n \int_{T_{i-1}}^{T_i} D(0,t) \lambda_i S(0,t) \, dt
+\]</div>
 <p>With further simplification (constant rates within periods):</p>
-<p>$$</p>
-<p>\text{PV}<em i="1">{\text{prot}} = (1-R) N \sum</em> \, dt,}^n \lambda_i \int_{T_{i-1}}^{T_i} e^{-(r+\Lambda_i)t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prot}} = (1-R) N \sum_{i=1}^n \lambda_i \int_{T_{i-1}}^{T_i} e^{-(r+\Lambda_i)t} \, dt
+\]</div>
 <p>where <span class="arithmatex">\(\Lambda_i = \sum_{j \le i} \lambda_j (T_j - T_{j-1}) / T_i\)</span> is the average intensity.</p>
 <h3 id="premium-leg-value-risky-annuity">Premium Leg Value (Risky Annuity)<a class="headerlink" href="#premium-leg-value-risky-annuity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{RPV01} = \sum_{i=1}^n \Delta_i D(0, t_i) S(0, t_i).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RPV01} = \sum_{i=1}^n \Delta_i D(0, t_i) S(0, t_i)
+\]</div>
 <hr />
 <h2 id="cds-mark-to-market">CDS Mark-to-Market<a class="headerlink" href="#cds-mark-to-market" title="Permanent link">&para;</a></h2>
 <h3 id="after-inception">After Inception<a class="headerlink" href="#after-inception" title="Permanent link">&para;</a></h3>
 <p>Once a CDS is traded, spreads move and the contract gains or loses value.</p>
 <p><strong>Current value to protection buyer:</strong></p>
-<p>$$</p>
-<p>\text{MTM} = \text{PV}<em _text_contract="\text{contract">{\text{prot}} - s</em>,}} \times N \times \text{RPV01</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MTM} = \text{PV}_{\text{prot}} - s_{\text{contract}} \times N \times \text{RPV01}
+\]</div>
 <p>where <span class="arithmatex">\(s_{\text{contract}}\)</span> is the contractual spread (fixed at trade).</p>
 <h3 id="spread-change-approximation">Spread Change Approximation<a class="headerlink" href="#spread-change-approximation" title="Permanent link">&para;</a></h3>
 <p>For small spread changes:</p>
-<p>$$</p>
-<p>\Delta \text{MTM} \approx -(s_{\text{new}} - s_{\text{old}}) \times N \times \text{RPV01}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \text{MTM} \approx -(s_{\text{new}} - s_{\text{old}}) \times N \times \text{RPV01}
+\]</div>
 <p>If spreads widen:
 - Protection buyer gains (insurance is more valuable)
 - Protection seller loses</p>
@@ -47189,9 +47189,9 @@
 <li><strong>Standard recovery:</strong> 40% for senior, 20% for subordinated</li>
 </ol>
 <h3 id="upfront-payment">Upfront Payment<a class="headerlink" href="#upfront-payment" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Upfront} = (s_{\text{par}} - s_{\text{fixed}}) \times \text{RPV01} \times N.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Upfront} = (s_{\text{par}} - s_{\text{fixed}}) \times \text{RPV01} \times N
+\]</div>
 <p>If <span class="arithmatex">\(s_{\text{par}} &gt; s_{\text{fixed}}\)</span>: protection buyer pays upfront
 If <span class="arithmatex">\(s_{\text{par}} &lt; s_{\text{fixed}}\)</span>: protection buyer receives upfront</p>
 <hr />
@@ -47220,40 +47220,40 @@ If <span class="arithmatex">\(s_{\text{par}} &lt; s_{\text{fixed}}\)</span>: pro
 - Intensity: <span class="arithmatex">\(\lambda = 150\)</span> bp = 1.5%
 - Premium frequency: Quarterly</p>
 <p><strong>Step 1: Survival probabilities</strong></p>
-<p>$$</p>
-<p>S(0, t) = e^{-0.015 t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0, t) = e^{-0.015 t}
+\]</div>
 <p>At <span class="arithmatex">\(T = 5\)</span>: <span class="arithmatex">\(S(0,5) = e^{-0.075} = 0.9277\)</span></p>
 <p><strong>Step 2: Risky PV01</strong></p>
-<p>$$</p>
-<p>\text{RPV01} = \sum_{i=1}^{20} 0.25 \times e^{-0.03 \times t_i} \times e^{-0.015 \times t_i} = \sum_{i=1}^{20} 0.25 \times e^{-0.045 \times 0.25i}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{RPV01} = 0.25 \times \frac{1 - e^{-0.045 \times 5}}{1 - e^{-0.045 \times 0.25}} \approx 4.45 \text{ years}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RPV01} = \sum_{i=1}^{20} 0.25 \times e^{-0.03 \times t_i} \times e^{-0.015 \times t_i} = \sum_{i=1}^{20} 0.25 \times e^{-0.045 \times 0.25i}
+\]</div>
+<div class="arithmatex">\[
+\text{RPV01} = 0.25 \times \frac{1 - e^{-0.045 \times 5}}{1 - e^{-0.045 \times 0.25}} \approx 4.45 \text{ years}
+\]</div>
 <p><strong>Step 3: Protection leg PV</strong></p>
-<p>$$</p>
-<p>\text{PV}_{\text{prot}} = 0.6 \times 10\text{M} \times \int_0^5 e^{-0.03t} \times 0.015 \times e^{-0.015t} \, dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 6\text{M} \times 0.015 \times \frac{1 - e^{-0.225}}{0.045} = 90,000 \times 4.47 = 402,300</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prot}} = 0.6 \times 10\text{M} \times \int_0^5 e^{-0.03t} \times 0.015 \times e^{-0.015t} \, dt
+\]</div>
+<div class="arithmatex">\[
+= 6\text{M} \times 0.015 \times \frac{1 - e^{-0.225}}{0.045} = 90,000 \times 4.47 = 402,300
+\]</div>
 <p><strong>Step 4: Par spread</strong></p>
-<p>$$</p>
-<p>s_{\text{par}} = \frac{402,300}{10\text{M} \times 4.45} = \frac{402,300}{44,500,000} = 0.00904 = 90.4 \text{ bp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_{\text{par}} = \frac{402,300}{10\text{M} \times 4.45} = \frac{402,300}{44,500,000} = 0.00904 = 90.4 \text{ bp}
+\]</div>
 <p><strong>Check:</strong> Approximate formula: <span class="arithmatex">\(s \approx (1-R)\lambda = 0.6 \times 150 = 90\)</span> bp ✓</p>
 <hr />
 <h2 id="cds-vs-bond-spread-basis">CDS vs. Bond Spread Basis<a class="headerlink" href="#cds-vs-bond-spread-basis" title="Permanent link">&para;</a></h2>
 <h3 id="theoretical-relationship">Theoretical Relationship<a class="headerlink" href="#theoretical-relationship" title="Permanent link">&para;</a></h3>
 <p>In theory, the CDS spread should equal the bond spread (over risk-free):</p>
-<p>$$</p>
-<p>s_{\text{CDS}} \approx s_{\text{bond}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_{\text{CDS}} \approx s_{\text{bond}}
+\]</div>
 <h3 id="basis-cds-spread-bond-spread">Basis = CDS Spread − Bond Spread<a class="headerlink" href="#basis-cds-spread-bond-spread" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Basis} = s_{\text{CDS}} - s_{\text{bond}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Basis} = s_{\text{CDS}} - s_{\text{bond}}
+\]</div>
 <p><strong>Positive basis:</strong> CDS more expensive (protection costly relative to bonds)
 <strong>Negative basis:</strong> CDS cheaper (protection cheap relative to bonds)</p>
 <h3 id="causes-of-basis">Causes of Basis<a class="headerlink" href="#causes-of-basis" title="Permanent link">&para;</a></h3>

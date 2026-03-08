@@ -47057,91 +47057,91 @@
 <h2 id="sources-of-model-uncertainty">Sources of Model Uncertainty<a class="headerlink" href="#sources-of-model-uncertainty" title="Permanent link">&para;</a></h2>
 <h3 id="1-factor-model-specification">1. Factor Model Specification<a class="headerlink" href="#1-factor-model-specification" title="Permanent link">&para;</a></h3>
 <p><strong>CAPM vs. Multi-Factor</strong>: Should returns be modeled by:</p>
-<p>$$</p>
-<p>R_i - r_f = \alpha_i + \beta_i (R_m - r_f) + \epsilon_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_i - r_f = \alpha_i + \beta_i (R_m - r_f) + \epsilon_i
+\]</div>
 <p>or by Fama-French factors:</p>
-<p>$$</p>
-<p>R_i - r_f = \alpha_i + \beta_{i,m} (R_m - r_f) + \beta_{i,s} SMB + \beta_{i,v} HML + \epsilon_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_i - r_f = \alpha_i + \beta_{i,m} (R_m - r_f) + \beta_{i,s} SMB + \beta_{i,v} HML + \epsilon_i
+\]</div>
 <p>or by alternative factors (momentum, quality, low volatility)?</p>
 <p><strong>Implications</strong>: Different factor models imply different expected returns and covariances, leading to different optimal portfolios.</p>
 <h3 id="2-return-predictability">2. Return Predictability<a class="headerlink" href="#2-return-predictability" title="Permanent link">&para;</a></h3>
 <p><strong>Unpredictable Returns</strong>:</p>
-<p>$$</p>
-<p>R_{t+1} = \mu + \epsilon_{t+1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_{t+1} = \mu + \epsilon_{t+1}
+\]</div>
 <p><strong>Predictable Returns</strong> (with predictor <span class="arithmatex">\(x_t\)</span>):</p>
-<p>$$</p>
-<p>R_{t+1} = \alpha + \beta x_t + \epsilon_{t+1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_{t+1} = \alpha + \beta x_t + \epsilon_{t+1}
+\]</div>
 <p><strong>Model Uncertainty</strong>: Is the predictive coefficient <span class="arithmatex">\(\beta\)</span> zero or significantly different from zero?</p>
 <h3 id="3-distributional-assumptions">3. Distributional Assumptions<a class="headerlink" href="#3-distributional-assumptions" title="Permanent link">&para;</a></h3>
 <p><strong>Gaussian</strong>:</p>
-<p>$$</p>
-<p>R \sim N(\mu, \Sigma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R \sim N(\mu, \Sigma)
+\]</div>
 <p><strong>Student-t</strong> (fat tails):</p>
-<p>$$</p>
-<p>R \sim t_{\nu}(\mu, \Sigma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R \sim t_{\nu}(\mu, \Sigma)
+\]</div>
 <p><strong>Mixture of Normals</strong> (regimes):</p>
-<p>$$</p>
-<p>R \sim \sum_{k=1}^K \pi_k N(\mu_k, \Sigma_k)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R \sim \sum_{k=1}^K \pi_k N(\mu_k, \Sigma_k)
+\]</div>
 <h3 id="4-parameter-stability">4. Parameter Stability<a class="headerlink" href="#4-parameter-stability" title="Permanent link">&para;</a></h3>
 <p><strong>Constant Parameters</strong>:</p>
-<p>$$</p>
-<p>\mu_t = \mu, \quad \Sigma_t = \Sigma \quad \text{for all } t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu_t = \mu, \quad \Sigma_t = \Sigma \quad \text{for all } t
+\]</div>
 <p><strong>Time-Varying Parameters</strong>:</p>
-<p>$$</p>
-<p>\mu_t = f(z_t), \quad \Sigma_t = g(z_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu_t = f(z_t), \quad \Sigma_t = g(z_t)
+\]</div>
 <p>where <span class="arithmatex">\(z_t\)</span> are state variables.</p>
 <h2 id="bayesian-model-averaging">Bayesian Model Averaging<a class="headerlink" href="#bayesian-model-averaging" title="Permanent link">&para;</a></h2>
 <h3 id="1-framework">1. Framework<a class="headerlink" href="#1-framework" title="Permanent link">&para;</a></h3>
 <p><strong>Model Space</strong>: Consider models <span class="arithmatex">\(\mathcal{M} = \{M_1, M_2, \ldots, M_K\}\)</span>.</p>
 <p><strong>Prior Model Probabilities</strong>: <span class="arithmatex">\(P(M_k)\)</span> for <span class="arithmatex">\(k = 1, \ldots, K\)</span>.</p>
 <p><strong>Posterior Model Probabilities</strong>:</p>
-<p>$$</p>
-<p>P(M_k | D) = \frac{P(D | M_k) P(M_k)}{\sum_{j=1}^K P(D | M_j) P(M_j)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(M_k | D) = \frac{P(D | M_k) P(M_k)}{\sum_{j=1}^K P(D | M_j) P(M_j)}
+\]</div>
 <p>where <span class="arithmatex">\(P(D | M_k)\)</span> is the marginal likelihood under model <span class="arithmatex">\(k\)</span>.</p>
 <h3 id="2-marginal-likelihood">2. Marginal Likelihood<a class="headerlink" href="#2-marginal-likelihood" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>:</p>
-<p>$$</p>
-<p>P(D | M_k) = \int P(D | \theta_k, M_k) P(\theta_k | M_k) d\theta_k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(D | M_k) = \int P(D | \theta_k, M_k) P(\theta_k | M_k) d\theta_k
+\]</div>
 <p><strong>Computation</strong>: Often requires numerical integration (MCMC, importance sampling).</p>
 <p><strong>BIC Approximation</strong>:</p>
-<p>$$</p>
-<p>\log P(D | M_k) \approx \log P(D | \hat{\theta}_k, M_k) - \frac{d_k}{2} \log T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log P(D | M_k) \approx \log P(D | \hat{\theta}_k, M_k) - \frac{d_k}{2} \log T
+\]</div>
 <p>where <span class="arithmatex">\(d_k\)</span> is the number of parameters in model <span class="arithmatex">\(k\)</span> and <span class="arithmatex">\(T\)</span> is the sample size.</p>
 <h3 id="3-posterior-predictive-distribution">3. Posterior Predictive Distribution<a class="headerlink" href="#3-posterior-predictive-distribution" title="Permanent link">&para;</a></h3>
 <p><strong>BMA Predictive</strong>:</p>
-<p>$$</p>
-<p>P(R_{T+1} | D) = \sum_{k=1}^K P(R_{T+1} | D, M_k) P(M_k | D)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(R_{T+1} | D) = \sum_{k=1}^K P(R_{T+1} | D, M_k) P(M_k | D)
+\]</div>
 <p><strong>Implication</strong>: The predictive distribution is a mixture across models, weighted by posterior model probabilities.</p>
 <h3 id="4-asset-allocation-under-bma">4. Asset Allocation Under BMA<a class="headerlink" href="#4-asset-allocation-under-bma" title="Permanent link">&para;</a></h3>
 <p><strong>Expected Utility</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}[U(W_{T+1}) | D] = \sum_{k=1}^K P(M_k | D) \mathbb{E}[U(W_{T+1}) | D, M_k]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[U(W_{T+1}) | D] = \sum_{k=1}^K P(M_k | D) \mathbb{E}[U(W_{T+1}) | D, M_k]
+\]</div>
 <p><strong>Optimal Portfolio</strong>: Maximize expected utility under the BMA predictive distribution.</p>
 <p><strong>Key Insight</strong>: BMA naturally incorporates model uncertainty into portfolio choice.</p>
 <h2 id="model-uncertainty-and-estimation-risk">Model Uncertainty and Estimation Risk<a class="headerlink" href="#model-uncertainty-and-estimation-risk" title="Permanent link">&para;</a></h2>
 <h3 id="1-parameter-uncertainty-within-models">1. Parameter Uncertainty Within Models<a class="headerlink" href="#1-parameter-uncertainty-within-models" title="Permanent link">&para;</a></h3>
 <p>For each model <span class="arithmatex">\(M_k\)</span>, the posterior distribution of parameters is:</p>
-<p>$$</p>
-<p>P(\theta_k | D, M_k) \propto P(D | \theta_k, M_k) P(\theta_k | M_k)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(\theta_k | D, M_k) \propto P(D | \theta_k, M_k) P(\theta_k | M_k)
+\]</div>
 <p><strong>Total Uncertainty</strong>: Combines within-model parameter uncertainty and across-model uncertainty:</p>
-<p>$$</p>
-<p>\text{Var}(R_{T+1} | D) = \underbrace{\sum_k P(M_k | D) \text{Var}(R_{T+1} | D, M_k)}<em T_1="T+1">{\text{within-model}} + \underbrace{\text{Var}_k[\mathbb{E}(R</em>} | D, M_k)]}_{\text{across-model}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(R_{T+1} | D) = \underbrace{\sum_k P(M_k | D) \text{Var}(R_{T+1} | D, M_k)}_{\text{within-model}} + \underbrace{\text{Var}_k[\mathbb{E}(R_{T+1} | D, M_k)]}_{\text{across-model}}
+\]</div>
 <h3 id="2-effect-on-portfolio-choice">2. Effect on Portfolio Choice<a class="headerlink" href="#2-effect-on-portfolio-choice" title="Permanent link">&para;</a></h3>
 <p><strong>Conservative Allocation</strong>: Model uncertainty typically:
 - Increases perceived uncertainty about returns
@@ -47150,34 +47150,34 @@
 <p><strong>Example</strong>: If model <span class="arithmatex">\(M_1\)</span> predicts high equity returns and <span class="arithmatex">\(M_2\)</span> predicts low returns, BMA produces intermediate expectations with higher variance than either model alone.</p>
 <h3 id="3-learning-and-model-selection">3. Learning and Model Selection<a class="headerlink" href="#3-learning-and-model-selection" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamic Updating</strong>: As data accumulates:</p>
-<p>$$</p>
-<p>P(M_k | D_1, \ldots, D_t) \propto P(D_t | D_1, \ldots, D_{t-1}, M_k) P(M_k | D_1, \ldots, D_{t-1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(M_k | D_1, \ldots, D_t) \propto P(D_t | D_1, \ldots, D_{t-1}, M_k) P(M_k | D_1, \ldots, D_{t-1})
+\]</div>
 <p><strong>Convergence</strong>: Under regularity conditions, posterior concentrates on the "best" model (or model(s) closest to truth).</p>
 <h2 id="robust-approaches-to-model-uncertainty">Robust Approaches to Model Uncertainty<a class="headerlink" href="#robust-approaches-to-model-uncertainty" title="Permanent link">&para;</a></h2>
 <h3 id="1-minimax-regret">1. Minimax Regret<a class="headerlink" href="#1-minimax-regret" title="Permanent link">&para;</a></h3>
 <p><strong>Regret Definition</strong>: For portfolio <span class="arithmatex">\(w\)</span> and true model <span class="arithmatex">\(M\)</span>:</p>
-<p>$$</p>
-<p>\text{Regret}(w, M) = U(w^*(M)) - U(w)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Regret}(w, M) = U(w^*(M)) - U(w)
+\]</div>
 <p>where <span class="arithmatex">\(w^*(M)\)</span> is optimal under model <span class="arithmatex">\(M\)</span>.</p>
 <p><strong>Minimax Regret</strong>:</p>
-<p>$$</p>
-<p>w^{\text{MR}} = \arg\min_w \max_{M \in \mathcal{M}} \text{Regret}(w, M)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w^{\text{MR}} = \arg\min_w \max_{M \in \mathcal{M}} \text{Regret}(w, M)
+\]</div>
 <p><strong>Properties</strong>: Minimax regret is less conservative than maximin utility.</p>
 <h3 id="2-multiple-priors-ambiguity">2. Multiple Priors (Ambiguity)<a class="headerlink" href="#2-multiple-priors-ambiguity" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: The investor has a set of possible priors <span class="arithmatex">\(\mathcal{P}\)</span> over models.</p>
 <p><strong>Max-Min Expected Utility</strong>:</p>
-<p>$$</p>
-<p>\max_w \min_{P \in \mathcal{P}} \sum_k P(M_k) \mathbb{E}[U(W) | M_k]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \min_{P \in \mathcal{P}} \sum_k P(M_k) \mathbb{E}[U(W) | M_k]
+\]</div>
 <p><strong>Interpretation</strong>: Robust to misspecification of model weights.</p>
 <h3 id="3-smooth-ambiguity">3. Smooth Ambiguity<a class="headerlink" href="#3-smooth-ambiguity" title="Permanent link">&para;</a></h3>
 <p><strong>KMM Approach</strong>:</p>
-<p>$$</p>
-<p>V(w) = \phi^{-1}\left(\sum_k \mu(M_k) \phi(\mathbb{E}[U(W) | M_k])\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(w) = \phi^{-1}\left(\sum_k \mu(M_k) \phi(\mathbb{E}[U(W) | M_k])\right)
+\]</div>
 <p>where <span class="arithmatex">\(\phi\)</span> is a concave ambiguity transformation and <span class="arithmatex">\(\mu\)</span> is a second-order probability.</p>
 <p><strong>Advantage</strong>: Separates ambiguity attitude (<span class="arithmatex">\(\phi\)</span>) from model likelihood beliefs (<span class="arithmatex">\(\mu\)</span>).</p>
 <h2 id="practical-applications">Practical Applications<a class="headerlink" href="#practical-applications" title="Permanent link">&para;</a></h2>
@@ -47203,21 +47203,21 @@
 - Effect is larger than parameter uncertainty within models</p>
 <h3 id="3-factor-investing">3. Factor Investing<a class="headerlink" href="#3-factor-investing" title="Permanent link">&para;</a></h3>
 <p><strong>Model Selection</strong>: Which factors to use?</p>
-<p>$$</p>
-<p>M_{\text{CAPM}}: \quad R = \alpha + \beta R_m + \epsilon</p>
-<p>$$</p>
-<p>$$</p>
-<p>M_{\text{FF3}}: \quad R = \alpha + \beta_1 R_m + \beta_2 SMB + \beta_3 HML + \epsilon</p>
-<p>$$</p>
-<p>$$</p>
-<p>M_{\text{FF5}}: \quad \text{adds RMW and CMA factors}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_{\text{CAPM}}: \quad R = \alpha + \beta R_m + \epsilon
+\]</div>
+<div class="arithmatex">\[
+M_{\text{FF3}}: \quad R = \alpha + \beta_1 R_m + \beta_2 SMB + \beta_3 HML + \epsilon
+\]</div>
+<div class="arithmatex">\[
+M_{\text{FF5}}: \quad \text{adds RMW and CMA factors}
+\]</div>
 <p><strong>BMA Factor Model</strong>: Weights factors by posterior model probabilities, naturally selecting relevant factors.</p>
 <h3 id="4-regime-switching-models">4. Regime-Switching Models<a class="headerlink" href="#4-regime-switching-models" title="Permanent link">&para;</a></h3>
 <p><strong>Two-Regime Model</strong>:</p>
-<p>$$</p>
-<p>R_t | S_t = k \sim N(\mu_k, \Sigma_k)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_t | S_t = k \sim N(\mu_k, \Sigma_k)
+\]</div>
 <p>with Markov switching for <span class="arithmatex">\(S_t\)</span>.</p>
 <p><strong>Model Uncertainty</strong>: Uncertainty about:
 - Number of regimes
@@ -47227,9 +47227,9 @@
 <h2 id="decision-theoretic-foundations">Decision-Theoretic Foundations<a class="headerlink" href="#decision-theoretic-foundations" title="Permanent link">&para;</a></h2>
 <h3 id="1-savages-framework-extension">1. Savage's Framework Extension<a class="headerlink" href="#1-savages-framework-extension" title="Permanent link">&para;</a></h3>
 <p><strong>State Space</strong>: Extend to include model uncertainty:</p>
-<p>$$</p>
-<p>\Omega = \bigcup_{k=1}^K \Omega_k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Omega = \bigcup_{k=1}^K \Omega_k
+\]</div>
 <p>where <span class="arithmatex">\(\Omega_k\)</span> is the state space under model <span class="arithmatex">\(M_k\)</span>.</p>
 <p><strong>Acts</strong>: A portfolio <span class="arithmatex">\(w\)</span> maps states to wealth outcomes.</p>
 <p><strong>Preferences</strong>: Complete ordering over acts incorporating model uncertainty.</p>
@@ -47259,15 +47259,15 @@
 1. Generate scenarios under each model
 2. Assign probabilities based on posterior model weights
 3. Solve:</p>
-<p>$$</p>
-<p>\max_w \sum_{k=1}^K P(M_k | D) \sum_{s=1}^{S_k} \frac{1}{S_k} U(w^\top R_s^{(k)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \sum_{k=1}^K P(M_k | D) \sum_{s=1}^{S_k} \frac{1}{S_k} U(w^\top R_s^{(k)})
+\]</div>
 <h3 id="3-numerical-integration">3. Numerical Integration<a class="headerlink" href="#3-numerical-integration" title="Permanent link">&para;</a></h3>
 <p><strong>Quadrature</strong>: For low-dimensional problems, use numerical integration over parameter space within each model.</p>
 <p><strong>Importance Sampling</strong>: For high-dimensional problems:</p>
-<p>$$</p>
-<p>\mathbb{E}[g(R)] \approx \frac{1}{N} \sum_{i=1}^N w_i g(R^{(i)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[g(R)] \approx \frac{1}{N} \sum_{i=1}^N w_i g(R^{(i)})
+\]</div>
 <p>with appropriate importance weights.</p>
 <h2 id="empirical-evidence">Empirical Evidence<a class="headerlink" href="#empirical-evidence" title="Permanent link">&para;</a></h2>
 <h3 id="1-out-of-sample-performance">1. Out-of-Sample Performance<a class="headerlink" href="#1-out-of-sample-performance" title="Permanent link">&para;</a></h3>

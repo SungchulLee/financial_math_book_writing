@@ -46583,17 +46583,17 @@
 <p>A <strong>chooser option</strong> (also called an "as-you-like-it" option) gives the holder the right to decide at a future date <span class="arithmatex">\(t_c &lt; T\)</span> whether the option is a <strong>call</strong> or a <strong>put</strong> with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span>.</p>
 <h3 id="payoff">Payoff<a class="headerlink" href="#payoff" title="Permanent link">&para;</a></h3>
 <p>At the choice date <span class="arithmatex">\(t_c\)</span>, the holder selects whichever is more valuable:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_{\text{chooser}}(t_c) = \max\left(C(t_c, S_{t_c}; K, T),\; P(t_c, S_{t_c}; K, T)\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(C\)</span> and <span class="arithmatex">\(P\)</span> are Black–Scholes call and put values at time <span class="arithmatex">\(t_c\)</span>.</p>
 <h3 id="pricing-via-putcall-parity">Pricing via Put–Call Parity<a class="headerlink" href="#pricing-via-putcall-parity" title="Permanent link">&para;</a></h3>
 <p>Using put–call parity <span class="arithmatex">\(P = C - S_{t_c} e^{-q(T-t_c)} + K e^{-r(T-t_c)}\)</span>, the chooser payoff becomes:</p>
-<p>$$</p>
-<p>V_{\text{chooser}}(t_c) = C(t_c, S_{t_c}; K, T) + \max\left(0,\; K e^{-r(T-t_c)} - S_{t_c} e^{-q(T-t_c)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{chooser}}(t_c) = C(t_c, S_{t_c}; K, T) + \max\left(0,\; K e^{-r(T-t_c)} - S_{t_c} e^{-q(T-t_c)}\right)
+\]</div>
 <p>This decomposes the chooser into a <strong>call with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span></strong> plus a <strong>put with strike <span class="arithmatex">\(K e^{-r(T-t_c)}\)</span> and maturity <span class="arithmatex">\(t_c\)</span></strong>. Both components can be priced with Black–Scholes.</p>
 <div class="admonition note">
 <p class="admonition-title">Chooser vs. Straddle</p>
@@ -46604,17 +46604,17 @@ V_{\text{chooser}}(t_c) = \max\left(C(t_c, S_{t_c}; K, T),\; P(t_c, S_{t_c}; K, 
 <p><strong>Rainbow options</strong> have payoffs that depend on <strong>multiple underlying assets</strong> <span class="arithmatex">\(S^{(1)}, S^{(2)}, \ldots, S^{(n)}\)</span>. The name derives from the idea of each asset being a different "color."</p>
 <h3 id="common-types">Common Types<a class="headerlink" href="#common-types" title="Permanent link">&para;</a></h3>
 <p><strong>Best-of option (call on max)</strong>:</p>
-<p>$$</p>
-<p>\text{Payoff} = \left(\max(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)}) - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = \left(\max(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)}) - K\right)^+
+\]</div>
 <p><strong>Worst-of option (call on min)</strong>:</p>
-<p>$$</p>
-<p>\text{Payoff} = \left(\min(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)}) - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = \left(\min(S_T^{(1)}, S_T^{(2)}, \ldots, S_T^{(n)}) - K\right)^+
+\]</div>
 <p><strong>Spread option</strong> (two assets):</p>
-<p>$$</p>
-<p>\text{Payoff} = \left(S_T^{(1)} - S_T^{(2)} - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = \left(S_T^{(1)} - S_T^{(2)} - K\right)^+
+\]</div>
 <h3 id="role-of-correlation">Role of Correlation<a class="headerlink" href="#role-of-correlation" title="Permanent link">&para;</a></h3>
 <p>The correlation <span class="arithmatex">\(\rho\)</span> between underlying assets is a critical pricing parameter:</p>
 <table>
@@ -46647,11 +46647,11 @@ V_{\text{chooser}}(t_c) = \max\left(C(t_c, S_{t_c}; K, T),\; P(t_c, S_{t_c}; K, 
 <p>A <strong>cliquet option</strong> resets its strike at predetermined dates and accumulates payoffs over multiple periods. This "ratcheting" mechanism locks in gains periodically.</p>
 <h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h3>
 <p>For reset dates <span class="arithmatex">\(t_0 &lt; t_1 &lt; \cdots &lt; t_n = T\)</span>, the cliquet payoff is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Payoff} = \sum_{i=1}^{n} \max\left(\frac{S_{t_i} - S_{t_{i-1}}}{S_{t_{i-1}}} - K_{\text{local}},\; 0\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Each period's return is capped and floored independently, and the total payoff is the sum of individual period payoffs.</p>
 <h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46704,28 +46704,28 @@ V_{\text{chooser}}(t_c) = \max\left(C(t_c, S_{t_c}; K, T),\; P(t_c, S_{t_c}; K, 
 <h2 id="digital-binary-options">Digital (Binary) Options<a class="headerlink" href="#digital-binary-options" title="Permanent link">&para;</a></h2>
 <p><strong>Digital options</strong> pay a fixed amount if a condition is met at expiry, regardless of the magnitude by which the condition is satisfied.</p>
 <h3 id="cash-or-nothing">Cash-or-Nothing<a class="headerlink" href="#cash-or-nothing" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
-\text{Payoff}<em K_125_="K}" _="&gt;" _123_S_T="{S_T">{\text{digital call}} = Q \cdot \mathbf{1}</em>
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\text{Payoff}_{\text{digital call}} = Q \cdot \mathbf{1}_{\{S_T &gt; K\}}
+}
+\]</div>
 <p>where <span class="arithmatex">\(Q\)</span> is the fixed cash payment. Under Black–Scholes:</p>
-<p>$$</p>
-<p>V_{\text{digital call}} = Q\, e^{-rT}\, N(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{digital call}} = Q\, e^{-rT}\, N(d_2)
+\]</div>
 <h3 id="asset-or-nothing">Asset-or-Nothing<a class="headerlink" href="#asset-or-nothing" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Payoff}<em K_125_="K}" _="&gt;" _123_S_T="{S_T">{\text{asset-or-nothing call}} = S_T \cdot \mathbf{1}</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff}_{\text{asset-or-nothing call}} = S_T \cdot \mathbf{1}_{\{S_T &gt; K\}}
+\]</div>
 <p>Under Black–Scholes:</p>
-<p>$$</p>
-<p>V_{\text{asset-or-nothing call}} = S_0\, N(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{asset-or-nothing call}} = S_0\, N(d_1)
+\]</div>
 <h3 id="relationship-to-vanilla-options">Relationship to Vanilla Options<a class="headerlink" href="#relationship-to-vanilla-options" title="Permanent link">&para;</a></h3>
 <p>A vanilla call is the difference between an asset-or-nothing call and <span class="arithmatex">\(K\)</span> units of a cash-or-nothing call:</p>
-<p>$$</p>
-<p>C_{\text{vanilla}} = S_0\, N(d_1) - K\, e^{-rT}\, N(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{vanilla}} = S_0\, N(d_1) - K\, e^{-rT}\, N(d_2)
+\]</div>
 <p>This decomposition clarifies the probabilistic structure of the Black–Scholes formula.</p>
 <div class="admonition warning">
 <p class="admonition-title">Hedging Difficulty</p>

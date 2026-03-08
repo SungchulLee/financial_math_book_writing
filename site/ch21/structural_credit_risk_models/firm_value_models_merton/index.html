@@ -46811,14 +46811,14 @@
 - <strong>Liabilities:</strong> A single zero-coupon debt with face value <span class="arithmatex">\(D\)</span> maturing at time <span class="arithmatex">\(T\)</span>
 - <strong>Equity:</strong> Residual claim after debt repayment</p>
 <p>The fundamental accounting identity is:</p>
-<p>$$</p>
-<p>\text{Assets} = \text{Debt} + \text{Equity}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Assets} = \text{Debt} + \text{Equity}
+\]</div>
 <h3 id="default-mechanism">Default Mechanism<a class="headerlink" href="#default-mechanism" title="Permanent link">&para;</a></h3>
 <p>Default occurs at maturity <span class="arithmatex">\(T\)</span> if the firm cannot repay its debt:</p>
-<p>$$</p>
-<p>\text{Default} \iff V_T &lt; D.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Default} \iff V_T &lt; D
+\]</div>
 <p>At maturity:
 - If <span class="arithmatex">\(V_T \ge D\)</span>: Debt holders receive <span class="arithmatex">\(D\)</span>, equity holders receive <span class="arithmatex">\(V_T - D\)</span>
 - If <span class="arithmatex">\(V_T &lt; D\)</span>: Debt holders receive <span class="arithmatex">\(V_T\)</span>, equity holders receive <span class="arithmatex">\(0\)</span></p>
@@ -46826,9 +46826,9 @@
 <h2 id="asset-value-dynamics">Asset Value Dynamics<a class="headerlink" href="#asset-value-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="risk-neutral-dynamics">Risk-Neutral Dynamics<a class="headerlink" href="#risk-neutral-dynamics" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the firm's asset value follows geometric Brownian motion:</p>
-<p>$$</p>
-<p>dV_t = (r - q)V_t \, dt + \sigma_V V_t \, dW_t^{\mathbb{Q}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = (r - q)V_t \, dt + \sigma_V V_t \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(r\)</span>: risk-free interest rate
 - <span class="arithmatex">\(q\)</span>: continuous dividend (payout) rate to equity holders
@@ -46836,82 +46836,82 @@
 - <span class="arithmatex">\(W_t^{\mathbb{Q}}\)</span>: standard Brownian motion under <span class="arithmatex">\(\mathbb{Q}\)</span></p>
 <h3 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h3>
 <p>The asset value at maturity is:</p>
-<p>$$</p>
-<p>V_T = V_0 \exp\left[\left(r - q - \frac{\sigma_V^2}{2}\right)T + \sigma_V W_T^{\mathbb{Q}}\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_T = V_0 \exp\left[\left(r - q - \frac{\sigma_V^2}{2}\right)T + \sigma_V W_T^{\mathbb{Q}}\right]
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, <span class="arithmatex">\(\ln(V_T/V_0)\)</span> is normally distributed:</p>
-<p>$$</p>
-<p>\ln\left(\frac{V_T}{V_0}\right) \sim \mathcal{N}\left(\left(r - q - \frac{\sigma_V^2}{2}\right)T, \sigma_V^2 T\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln\left(\frac{V_T}{V_0}\right) \sim \mathcal{N}\left(\left(r - q - \frac{\sigma_V^2}{2}\right)T, \sigma_V^2 T\right)
+\]</div>
 <hr />
 <h2 id="payoff-structure">Payoff Structure<a class="headerlink" href="#payoff-structure" title="Permanent link">&para;</a></h2>
 <h3 id="equity-as-a-call-option">Equity as a Call Option<a class="headerlink" href="#equity-as-a-call-option" title="Permanent link">&para;</a></h3>
 <p>Equity holders have a residual claim:</p>
-<p>$$</p>
-<p>E_T = (V_T - D)^+ = \max(V_T - D, 0).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_T = (V_T - D)^+ = \max(V_T - D, 0)
+\]</div>
 <p>This is precisely the payoff of a <strong>European call option</strong> on firm value <span class="arithmatex">\(V\)</span> with strike <span class="arithmatex">\(D\)</span>.</p>
 <h3 id="debt-as-a-portfolio">Debt as a Portfolio<a class="headerlink" href="#debt-as-a-portfolio" title="Permanent link">&para;</a></h3>
 <p>Debt holders receive:</p>
-<p>$$</p>
-<p>B_T = \min(V_T, D) = D - (D - V_T)^+.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_T = \min(V_T, D) = D - (D - V_T)^+
+\]</div>
 <p>This can be written as:</p>
-<p>$$</p>
-<p>B_T = D - \text{Put}(V_T, D),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_T = D - \text{Put}(V_T, D)
+\]</div>
 <p>where the put option represents the loss given default. Equivalently:</p>
-<p>$$</p>
-<p>B_T = V_T - (V_T - D)^+ = V_T - E_T.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_T = V_T - (V_T - D)^+ = V_T - E_T
+\]</div>
 <p>Debt is <strong>risk-free debt minus a put option</strong> on firm value.</p>
 <hr />
 <h2 id="pricing-formulas">Pricing Formulas<a class="headerlink" href="#pricing-formulas" title="Permanent link">&para;</a></h2>
 <h3 id="equity-value-black-scholes-call">Equity Value (Black-Scholes Call)<a class="headerlink" href="#equity-value-black-scholes-call" title="Permanent link">&para;</a></h3>
 <p>Applying the Black-Scholes formula for a call option on <span class="arithmatex">\(V\)</span>:</p>
-<p>$$</p>
-<p>E_0 = V_0 e^{-qT} N(d_1) - D e^{-rT} N(d_2),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_0 = V_0 e^{-qT} N(d_1) - D e^{-rT} N(d_2)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(V_0/D) + (r - q + \sigma_V^2/2)T}{\sigma_V \sqrt{T}}, \quad d_2 = d_1 - \sigma_V \sqrt{T}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(V_0/D) + (r - q + \sigma_V^2/2)T}{\sigma_V \sqrt{T}}, \quad d_2 = d_1 - \sigma_V \sqrt{T}
+\]</div>
 <h3 id="debt-value">Debt Value<a class="headerlink" href="#debt-value" title="Permanent link">&para;</a></h3>
 <p>The value of risky debt is:</p>
-<p>$$</p>
-<p>B_0 = V_0 - E_0 = V_0\left[1 - e^{-qT} N(d_1)\right] + D e^{-rT} N(d_2).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_0 = V_0 - E_0 = V_0\left[1 - e^{-qT} N(d_1)\right] + D e^{-rT} N(d_2)
+\]</div>
 <p>Alternatively, using the put-call parity interpretation:</p>
-<p>$$</p>
-<p>B_0 = D e^{-rT} - P_0 = D e^{-rT} - \left[D e^{-rT} N(-d_2) - V_0 e^{-qT} N(-d_1)\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_0 = D e^{-rT} - P_0 = D e^{-rT} - \left[D e^{-rT} N(-d_2) - V_0 e^{-qT} N(-d_1)\right]
+\]</div>
 <p>Simplifying:</p>
-<p>$$</p>
-<p>B_0 = V_0 e^{-qT} N(-d_1) + D e^{-rT} N(d_2).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_0 = V_0 e^{-qT} N(-d_1) + D e^{-rT} N(d_2)
+\]</div>
 <h3 id="risk-neutral-default-probability">Risk-Neutral Default Probability<a class="headerlink" href="#risk-neutral-default-probability" title="Permanent link">&para;</a></h3>
 <p>The probability of default under <span class="arithmatex">\(\mathbb{Q}\)</span> is:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\tau \le T) = \mathbb{Q}(V_T &lt; D) = N(-d_2).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau \le T) = \mathbb{Q}(V_T &lt; D) = N(-d_2)
+\]</div>
 <p>This is the probability that the asset value ends below the debt threshold.</p>
 <hr />
 <h2 id="credit-spreads">Credit Spreads<a class="headerlink" href="#credit-spreads" title="Permanent link">&para;</a></h2>
 <h3 id="yield-on-risky-debt">Yield on Risky Debt<a class="headerlink" href="#yield-on-risky-debt" title="Permanent link">&para;</a></h3>
 <p>The yield on the risky zero-coupon bond is:</p>
-<p>$$</p>
-<p>y = -\frac{1}{T} \ln\left(\frac{B_0}{D}\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y = -\frac{1}{T} \ln\left(\frac{B_0}{D}\right)
+\]</div>
 <h3 id="credit-spread">Credit Spread<a class="headerlink" href="#credit-spread" title="Permanent link">&para;</a></h3>
 <p>The <strong>credit spread</strong> is the excess yield over the risk-free rate:</p>
-<p>$$</p>
-<p>s = y - r = -\frac{1}{T} \ln\left(\frac{B_0}{D e^{-rT}}\right) = -\frac{1}{T} \ln\left(\frac{B_0}{P(0,T) \cdot D}\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s = y - r = -\frac{1}{T} \ln\left(\frac{B_0}{D e^{-rT}}\right) = -\frac{1}{T} \ln\left(\frac{B_0}{P(0,T) \cdot D}\right)
+\]</div>
 <h3 id="spread-as-function-of-leverage-and-volatility">Spread as Function of Leverage and Volatility<a class="headerlink" href="#spread-as-function-of-leverage-and-volatility" title="Permanent link">&para;</a></h3>
 <p>Defining <strong>leverage</strong> <span class="arithmatex">\(L = D e^{-rT}/V_0\)</span> (present value of debt relative to assets), the spread can be expressed as:</p>
-<p>$$</p>
-<p>s(L, \sigma_V, T) = -\frac{1}{T} \ln\left[N(d_2) + \frac{1}{L} N(-d_1)\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s(L, \sigma_V, T) = -\frac{1}{T} \ln\left[N(d_2) + \frac{1}{L} N(-d_1)\right]
+\]</div>
 <p>Key properties:
 - <span class="arithmatex">\(s \to 0\)</span> as <span class="arithmatex">\(L \to 0\)</span> (low leverage)
 - <span class="arithmatex">\(s \to \infty\)</span> as <span class="arithmatex">\(L \to 1\)</span> from below (high leverage approaching default)
@@ -46920,9 +46920,9 @@
 <hr />
 <h2 id="distance-to-default">Distance to Default<a class="headerlink" href="#distance-to-default" title="Permanent link">&para;</a></h2>
 <p>A key metric from the Merton model is the <strong>distance to default</strong> (DD):</p>
-<p>$$</p>
-<p>DD = \frac{\ln(V_0/D) + (\mu - \sigma_V^2/2)T}{\sigma_V \sqrt{T}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+DD = \frac{\ln(V_0/D) + (\mu - \sigma_V^2/2)T}{\sigma_V \sqrt{T}}
+\]</div>
 <p>where <span class="arithmatex">\(\mu\)</span> is the physical (real-world) drift of asset value.</p>
 <p><strong>Interpretation:</strong> DD measures how many standard deviations the asset value is from the default threshold, normalized by the diffusion over the time horizon.</p>
 <ul>
@@ -46935,9 +46935,9 @@
 <h2 id="model-limitations">Model Limitations<a class="headerlink" href="#model-limitations" title="Permanent link">&para;</a></h2>
 <h3 id="underestimation-of-short-term-spreads">Underestimation of Short-Term Spreads<a class="headerlink" href="#underestimation-of-short-term-spreads" title="Permanent link">&para;</a></h3>
 <p>The Merton model significantly underestimates credit spreads for short maturities. As <span class="arithmatex">\(T \to 0\)</span>:</p>
-<p>$$</p>
-<p>s \sim \frac{\sigma_V^2}{2} \cdot \mathbf{1}_{{V_0 &lt; D}} + O(T^{1/2}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s \sim \frac{\sigma_V^2}{2} \cdot \mathbf{1}_{\{V_0 &lt; D\}} + O(T^{1/2})
+\]</div>
 <p>For <span class="arithmatex">\(V_0 &gt; D\)</span>, spreads vanish too quickly. Empirically, even high-quality bonds have non-trivial short-term spreads.</p>
 <h3 id="default-only-at-maturity">Default Only at Maturity<a class="headerlink" href="#default-only-at-maturity" title="Permanent link">&para;</a></h3>
 <p>Default can only occur at time <span class="arithmatex">\(T\)</span>, not before. This ignores:
@@ -46960,13 +46960,13 @@
 <h3 id="two-equation-system">Two-Equation System<a class="headerlink" href="#two-equation-system" title="Permanent link">&para;</a></h3>
 <p>Given observable equity value <span class="arithmatex">\(E_0\)</span> and equity volatility <span class="arithmatex">\(\sigma_E\)</span>, solve for <span class="arithmatex">\((V_0, \sigma_V)\)</span>:</p>
 <p><strong>Equation 1 (Price):</strong></p>
-<p>$$</p>
-<p>E_0 = V_0 e^{-qT} N(d_1) - D e^{-rT} N(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_0 = V_0 e^{-qT} N(d_1) - D e^{-rT} N(d_2)
+\]</div>
 <p><strong>Equation 2 (Volatility via Itô's Lemma):</strong></p>
-<p>$$</p>
-<p>\sigma_E = \frac{\partial E}{\partial V} \cdot \frac{V_0}{E_0} \cdot \sigma_V = \frac{V_0 e^{-qT} N(d_1)}{E_0} \cdot \sigma_V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_E = \frac{\partial E}{\partial V} \cdot \frac{V_0}{E_0} \cdot \sigma_V = \frac{V_0 e^{-qT} N(d_1)}{E_0} \cdot \sigma_V
+\]</div>
 <p>This is a system of two nonlinear equations in two unknowns <span class="arithmatex">\((V_0, \sigma_V)\)</span>.</p>
 <h3 id="iterative-solution">Iterative Solution<a class="headerlink" href="#iterative-solution" title="Permanent link">&para;</a></h3>
 <ol>
@@ -46985,34 +46985,34 @@
 - Time to maturity: <span class="arithmatex">\(T = 1\)</span> year
 - Dividend rate: <span class="arithmatex">\(q = 0\)</span></p>
 <p><strong>Calculations:</strong></p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(100/80) + (0.05 + 0.04/2) \cdot 1}{0.20 \cdot 1} = \frac{0.2231 + 0.07}{0.20} = 1.466</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = 1.466 - 0.20 = 1.266</p>
-<p>$$</p>
-<p>$$</p>
-<p>N(d_1) = N(1.466) = 0.9286, \quad N(d_2) = N(1.266) = 0.8972</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(100/80) + (0.05 + 0.04/2) \cdot 1}{0.20 \cdot 1} = \frac{0.2231 + 0.07}{0.20} = 1.466
+\]</div>
+<div class="arithmatex">\[
+d_2 = 1.466 - 0.20 = 1.266
+\]</div>
+<div class="arithmatex">\[
+N(d_1) = N(1.466) = 0.9286, \quad N(d_2) = N(1.266) = 0.8972
+\]</div>
 <p><strong>Equity value:</strong></p>
-<p>$$</p>
-<p>E_0 = 100 \times 0.9286 - 80 \times e^{-0.05} \times 0.8972 = 92.86 - 68.28 = 24.58</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_0 = 100 \times 0.9286 - 80 \times e^{-0.05} \times 0.8972 = 92.86 - 68.28 = 24.58
+\]</div>
 <p><strong>Debt value:</strong></p>
-<p>$$</p>
-<p>B_0 = V_0 - E_0 = 100 - 24.58 = 75.42</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_0 = V_0 - E_0 = 100 - 24.58 = 75.42
+\]</div>
 <p><strong>Risk-neutral default probability:</strong></p>
-<p>$$</p>
-<p>\mathbb{Q}(\text{default}) = N(-d_2) = N(-1.266) = 0.1028 \approx 10.3\%</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\text{default}) = N(-d_2) = N(-1.266) = 0.1028 \approx 10.3\%
+\]</div>
 <p><strong>Credit spread:</strong></p>
-<p>$$</p>
-<p>y = -\frac{1}{1} \ln\left(\frac{75.42}{80}\right) = 0.0590 = 5.90\%</p>
-<p>$$</p>
-<p>$$</p>
-<p>s = y - r = 5.90\% - 5.00\% = 0.90\% = 90 \text{ bp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y = -\frac{1}{1} \ln\left(\frac{75.42}{80}\right) = 0.0590 = 5.90\%
+\]</div>
+<div class="arithmatex">\[
+s = y - r = 5.90\% - 5.00\% = 0.90\% = 90 \text{ bp}
+\]</div>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
 <ul>

@@ -47195,26 +47195,26 @@
 <h2 id="definitions-and-terminology">Definitions and Terminology<a class="headerlink" href="#definitions-and-terminology" title="Permanent link">&para;</a></h2>
 <h3 id="1-volatility-smile">1. Volatility Smile<a class="headerlink" href="#1-volatility-smile" title="Permanent link">&para;</a></h3>
 <p>A <strong>volatility smile</strong> refers to the U-shaped pattern where:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K) &gt; \sigma_{\text{IV}}(K_{\text{ATM}}) \quad \text{for } K \text{ far from } K_{\text{ATM}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K) &gt; \sigma_{\text{IV}}(K_{\text{ATM}}) \quad \text{for } K \text{ far from } K_{\text{ATM}}
+\]</div>
 <p>Both deep in-the-money (ITM) and out-of-the-money (OTM) options have higher implied volatility than at-the-money (ATM) options.</p>
 <p><strong>Graphically:</strong> Plotting <span class="arithmatex">\(\sigma_{\text{IV}}\)</span> vs <span class="arithmatex">\(K\)</span> produces a smile-like curve with minimum at ATM.</p>
 <p><strong>Markets:</strong> Foreign exchange (FX), commodities, interest rates</p>
 <h3 id="2-volatility-skew">2. Volatility Skew<a class="headerlink" href="#2-volatility-skew" title="Permanent link">&para;</a></h3>
 <p>A <strong>volatility skew</strong> refers to a monotonic pattern where:</p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{IV}}}{\partial K} \neq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{IV}}}{\partial K} \neq 0
+\]</div>
 <p><strong>Downward skew (negative skew):</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{IV}}}{\partial K} &lt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{IV}}}{\partial K} &lt; 0
+\]</div>
 <p>OTM puts (low strikes) have higher IV than OTM calls (high strikes).</p>
 <p><strong>Upward skew (positive skew):</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{IV}}}{\partial K} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{IV}}}{\partial K} &gt; 0
+\]</div>
 <p>Less common; sometimes seen in commodity markets.</p>
 <p><strong>Markets:</strong> Equity indices exhibit strong downward skew</p>
 <h3 id="3-smirk">3. Smirk<a class="headerlink" href="#3-smirk" title="Permanent link">&para;</a></h3>
@@ -47228,43 +47228,43 @@
 <h3 id="1-moneyness-coordinates">1. Moneyness Coordinates<a class="headerlink" href="#1-moneyness-coordinates" title="Permanent link">&para;</a></h3>
 <p>To compare across different spot levels and maturities, use <strong>moneyness</strong>:</p>
 <p><strong>Log-moneyness:</strong></p>
-<p>$$</p>
-<p>y = \ln\left(\frac{K}{F}\right) = \ln K - \ln S_0 - (r - q)T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y = \ln\left(\frac{K}{F}\right) = \ln K - \ln S_0 - (r - q)T
+\]</div>
 <p><strong>Standardized moneyness:</strong></p>
-<p>$$</p>
-<p>m = \frac{K - F}{\sigma_{\text{ATM}} F \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m = \frac{K - F}{\sigma_{\text{ATM}} F \sqrt{T}}
+\]</div>
 <p><strong>Delta-moneyness:</strong> Using Black-Scholes delta:</p>
-<p>$$</p>
-<p>\Delta_{\text{call}} = e^{-qT} \Phi(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{call}} = e^{-qT} \Phi(d_1)
+\]</div>
 <p>Common conventions: 25-delta, 10-delta for wings.</p>
 <h3 id="2-smile-parametrization">2. Smile Parametrization<a class="headerlink" href="#2-smile-parametrization" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>smile function</strong>:</p>
-<p>$$</p>
-<p>\sigma(y, T) := \sigma_{\text{IV}}(K = F e^y, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y, T) := \sigma_{\text{IV}}(K = F e^y, T)
+\]</div>
 <p>where <span class="arithmatex">\(y\)</span> is log-moneyness and <span class="arithmatex">\(F = S_0 e^{(r-q)T}\)</span> is the forward.</p>
 <p><strong>Symmetry:</strong> A symmetric smile satisfies:</p>
-<p>$$</p>
-<p>\sigma(y, T) = \sigma(-y, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y, T) = \sigma(-y, T)
+\]</div>
 <p><strong>Skew:</strong> Measured by the first derivative:</p>
-<p>$$</p>
-<p>\mathcal{S}(T) := \frac{\partial \sigma}{\partial y}\bigg|_{y=0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{S}(T) := \frac{\partial \sigma}{\partial y}\bigg|_{y=0}
+\]</div>
 <p>Negative <span class="arithmatex">\(\mathcal{S}\)</span> indicates downward skew.</p>
 <p><strong>Curvature:</strong> Measured by the second derivative:</p>
-<p>$$</p>
-<p>\mathcal{C}(T) := \frac{\partial^2 \sigma}{\partial y^2}\bigg|_{y=0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}(T) := \frac{\partial^2 \sigma}{\partial y^2}\bigg|_{y=0}
+\]</div>
 <p>Positive <span class="arithmatex">\(\mathcal{C}\)</span> indicates convexity (smile).</p>
 <h3 id="3-taylor-expansion-around-atm">3. Taylor Expansion Around ATM<a class="headerlink" href="#3-taylor-expansion-around-atm" title="Permanent link">&para;</a></h3>
 <p>For small <span class="arithmatex">\(y\)</span> (near ATM):</p>
-<p>$$</p>
-<p>\sigma(y, T) = \sigma_{\text{ATM}}(T) + \mathcal{S}(T) y + \frac{1}{2} \mathcal{C}(T) y^2 + O(y^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y, T) = \sigma_{\text{ATM}}(T) + \mathcal{S}(T) y + \frac{1}{2} \mathcal{C}(T) y^2 + O(y^3)
+\]</div>
 <p><strong>Interpretation:</strong>
 - <span class="arithmatex">\(\sigma_{\text{ATM}}\)</span>: Volatility level
 - <span class="arithmatex">\(\mathcal{S}\)</span>: Linear skew (asymmetry)
@@ -47273,18 +47273,18 @@
 <h3 id="1-moments-and-smile-shape">1. Moments and Smile Shape<a class="headerlink" href="#1-moments-and-smile-shape" title="Permanent link">&para;</a></h3>
 <p>From the Breeden-Litzenberger relationship, the smile encodes distributional properties:</p>
 <p><strong>Variance (second moment):</strong></p>
-<p>$$</p>
-<p>\text{Var}(S_T) \leftrightarrow \sigma_{\text{ATM}}^2 T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(S_T) \leftrightarrow \sigma_{\text{ATM}}^2 T
+\]</div>
 <p><strong>Skewness (third moment):</strong></p>
-<p>$$</p>
-<p>\text{Skew}(S_T) \propto -\mathcal{S}(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew}(S_T) \propto -\mathcal{S}(T)
+\]</div>
 <p>Negative skew parameter <span class="arithmatex">\(\mathcal{S} &lt; 0\)</span> → negative distributional skewness.</p>
 <p><strong>Kurtosis (fourth moment):</strong></p>
-<p>$$</p>
-<p>\text{Kurt}(S_T) - 3 \propto \mathcal{C}(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Kurt}(S_T) - 3 \propto \mathcal{C}(T)
+\]</div>
 <p>Positive curvature <span class="arithmatex">\(\mathcal{C} &gt; 0\)</span> → excess kurtosis (fat tails).</p>
 <h3 id="2-tail-behavior">2. Tail Behavior<a class="headerlink" href="#2-tail-behavior" title="Permanent link">&para;</a></h3>
 <p><strong>Left tail (low strikes, <span class="arithmatex">\(K \ll F\)</span>):</strong><br />
@@ -47349,9 +47349,9 @@ High implied volatility indicates higher probability of large upward moves.</p>
 As stock price <span class="arithmatex">\(S\)</span> falls, debt-to-equity ratio <span class="arithmatex">\(D/E\)</span> increases, making equity riskier. Volatility <span class="arithmatex">\(\sigma\)</span> increases.</p>
 <p><strong>Mathematical formulation:</strong><br />
 If <span class="arithmatex">\(\sigma = \sigma(S)\)</span> with <span class="arithmatex">\(\frac{\partial \sigma}{\partial S} &lt; 0\)</span>, then:</p>
-<p>$$</p>
-<p>dS = \mu S dt + \sigma(S) S dW</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS = \mu S dt + \sigma(S) S dW
+\]</div>
 <p>generates negative correlation between returns and volatility.</p>
 <p><strong>Smile implication:</strong><br />
 Local volatility <span class="arithmatex">\(\sigma_{\text{loc}}(K, T)\)</span> is decreasing in <span class="arithmatex">\(K\)</span>, producing downward skew in implied volatility.</p>
@@ -47366,9 +47366,9 @@ Higher prices for OTM puts → higher implied volatility at low strikes.</p>
 <p><strong>Mechanism:</strong><br />
 Discontinuous price movements (earnings, geopolitical shocks) add kurtosis to the return distribution.</p>
 <p><strong>Mathematical model:</strong> Jump-diffusion:</p>
-<p>$$</p>
-<p>dS = \mu S dt + \sigma S dW + S dJ</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS = \mu S dt + \sigma S dW + S dJ
+\]</div>
 <p>where <span class="arithmatex">\(J\)</span> is a compound Poisson process.</p>
 <p><strong>Smile implication:</strong><br />
 Jumps contribute to smile curvature <span class="arithmatex">\(\mathcal{C} &gt; 0\)</span> (fat tails).</p>
@@ -47379,18 +47379,18 @@ Jumps contribute to smile curvature <span class="arithmatex">\(\mathcal{C} &gt; 
 Investors demand compensation for bearing volatility risk, leading to a wedge between risk-neutral and physical probabilities.</p>
 <p><strong>Mathematical formulation:</strong><br />
 Risk-neutral density <span class="arithmatex">\(q(S)\)</span> differs from physical density <span class="arithmatex">\(p(S)\)</span> by:</p>
-<p>$$</p>
-<p>q(S) = \frac{p(S) \cdot \xi(S)}{\int p(S') \xi(S') dS'}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(S) = \frac{p(S) \cdot \xi(S)}{\int p(S') \xi(S') dS'}
+\]</div>
 <p>where <span class="arithmatex">\(\xi(S)\)</span> is the pricing kernel (marginal utility).</p>
 <p><strong>Smile implication:</strong><br />
 If <span class="arithmatex">\(\xi(S)\)</span> is decreasing and convex, generates both skew and smile.</p>
 <h2 id="parametric-smile-models">Parametric Smile Models<a class="headerlink" href="#parametric-smile-models" title="Permanent link">&para;</a></h2>
 <h3 id="1-svi-stochastic-volatility-inspired">1. SVI (Stochastic Volatility Inspired)<a class="headerlink" href="#1-svi-stochastic-volatility-inspired" title="Permanent link">&para;</a></h3>
 <p>The <strong>SVI parametrization</strong> (Gatheral, 2004) models total variance:</p>
-<p>$$</p>
-<p>w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(y\)</span>: Log-moneyness
 - <span class="arithmatex">\(a\)</span>: Overall level
@@ -47399,9 +47399,9 @@ If <span class="arithmatex">\(\xi(S)\)</span> is decreasing and convex, generate
 - <span class="arithmatex">\(m\)</span>: ATM location
 - <span class="arithmatex">\(\sigma\)</span>: Smile width</p>
 <p><strong>Implied volatility:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y, T) = \sqrt{\frac{w(y)}{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y, T) = \sqrt{\frac{w(y)}{T}}
+\]</div>
 <p><strong>Advantages:</strong>
 - Explicit formula
 - No-arbitrage constraints easily enforced (<span class="arithmatex">\(b(1 + |\rho|) &lt; 4a\)</span>, etc.)
@@ -47410,9 +47410,9 @@ If <span class="arithmatex">\(\xi(S)\)</span> is decreasing and convex, generate
 - Single-maturity parametrization (doesn't enforce calendar arbitrage across maturities)</p>
 <h3 id="2-ssvi-surface-svi">2. SSVI (Surface SVI)<a class="headerlink" href="#2-ssvi-surface-svi" title="Permanent link">&para;</a></h3>
 <p>The <strong>SSVI parametrization</strong> (Gatheral-Jacquier, 2014) extends SVI to the entire surface:</p>
-<p>$$</p>
-<p>w(y, T) = \frac{T}{2} \left{ 1 + \rho \varphi(T) y + \sqrt{(\varphi(T) y + \rho)^2 + (1 - \rho^2)} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(y, T) = \frac{T}{2} \left\{ 1 + \rho \varphi(T) y + \sqrt{(\varphi(T) y + \rho)^2 + (1 - \rho^2)} \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\varphi(T)\)</span> controls the ATM curvature as a function of maturity.</p>
 <p><strong>Properties:</strong>
 - Arbitrage-free by construction (no butterfly or calendar arbitrage)
@@ -47420,17 +47420,17 @@ If <span class="arithmatex">\(\xi(S)\)</span> is decreasing and convex, generate
 - Fits market data well with few parameters</p>
 <h3 id="3-sabr-model">3. SABR Model<a class="headerlink" href="#3-sabr-model" title="Permanent link">&para;</a></h3>
 <p>The <strong>SABR (Stochastic Alpha Beta Rho)</strong> model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dF_t &amp;= \sigma_t F_t^\beta dW_t^1 \\
 d\sigma_t &amp;= \nu \sigma_t dW_t^2 \\
 d\langle W^1, W^2 \rangle_t &amp;= \rho dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>generates an approximate implied volatility formula:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K) \approx \frac{\alpha}{(FK)^{(1-\beta)/2}} \frac{z}{x(z)} \left{ 1 + \left[ \frac{(1-\beta)^2}{24} \frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho \beta \nu \alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24} \nu^2 \right] T \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K) \approx \frac{\alpha}{(FK)^{(1-\beta)/2}} \frac{z}{x(z)} \left\{ 1 + \left[ \frac{(1-\beta)^2}{24} \frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho \beta \nu \alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24} \nu^2 \right] T \right\}
+\]</div>
 <p>where <span class="arithmatex">\(z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K)\)</span> and <span class="arithmatex">\(x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)\)</span>.</p>
 <p><strong>Parameters:</strong>
 - <span class="arithmatex">\(\alpha\)</span>: ATM volatility
@@ -47445,9 +47445,9 @@ d\langle W^1, W^2 \rangle_t &amp;= \rho dt
 <p><strong>25-delta put:</strong> Strike <span class="arithmatex">\(K\)</span> such that <span class="arithmatex">\(|\Delta_{\text{put}}(K)| = 0.25\)</span></p>
 <h3 id="2-risk-reversal">2. Risk Reversal<a class="headerlink" href="#2-risk-reversal" title="Permanent link">&para;</a></h3>
 <p>The <strong>risk reversal (RR)</strong> measures the skew:</p>
-<p>$$</p>
-<p>\text{RR}<em _text_IV="\text{IV">{25} = \sigma</em>)}}(\text{25-delta call}) - \sigma_{\text{IV}}(\text{25-delta put</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RR}_{25} = \sigma_{\text{IV}}(\text{25-delta call}) - \sigma_{\text{IV}}(\text{25-delta put})
+\]</div>
 <p><strong>Interpretation:</strong>
 - <span class="arithmatex">\(\text{RR} &lt; 0\)</span>: Downward skew (put IV &gt; call IV)
 - <span class="arithmatex">\(\text{RR} &gt; 0\)</span>: Upward skew (call IV &gt; put IV)
@@ -47457,9 +47457,9 @@ d\langle W^1, W^2 \rangle_t &amp;= \rho dt
 - FX: RR <span class="arithmatex">\(\approx 0\%\)</span> (near symmetric)</p>
 <h3 id="3-butterfly-spread">3. Butterfly Spread<a class="headerlink" href="#3-butterfly-spread" title="Permanent link">&para;</a></h3>
 <p>The <strong>butterfly (BF)</strong> measures the curvature:</p>
-<p>$$</p>
-<p>\text{BF}<em _text_IV="\text{IV">{25} = \frac{\sigma</em>)}}(\text{25-delta call}) + \sigma_{\text{IV}}(\text{25-delta put})}{2} - \sigma_{\text{IV}}(\text{ATM</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{BF}_{25} = \frac{\sigma_{\text{IV}}(\text{25-delta call}) + \sigma_{\text{IV}}(\text{25-delta put})}{2} - \sigma_{\text{IV}}(\text{ATM})
+\]</div>
 <p><strong>Interpretation:</strong>
 - <span class="arithmatex">\(\text{BF} &gt; 0\)</span>: Smile (wings elevated relative to ATM)
 - <span class="arithmatex">\(\text{BF} &lt; 0\)</span>: Frown (wings depressed, rare)</p>
@@ -47476,55 +47476,55 @@ d\langle W^1, W^2 \rangle_t &amp;= \rho dt
 <h2 id="smile-dynamics">Smile Dynamics<a class="headerlink" href="#smile-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="1-sticky-strike">1. Sticky Strike<a class="headerlink" href="#1-sticky-strike" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> Implied volatility remains constant for each fixed strike as spot moves:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, t) = \sigma_{\text{IV}}(K, 0) \quad \text{independent of } S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, t) = \sigma_{\text{IV}}(K, 0) \quad \text{independent of } S_t
+\]</div>
 <p><strong>Consequence:</strong> As spot moves, the smile shifts in moneyness space.</p>
 <p><strong>Generated by:</strong> Local volatility models (Dupire)</p>
 <p><strong>Implication for hedging:</strong> Vega hedge depends only on the fixed strike structure.</p>
 <h3 id="2-sticky-delta">2. Sticky Delta<a class="headerlink" href="#2-sticky-delta" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> Implied volatility remains constant for each fixed delta as spot moves:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(\Delta, t) = \sigma_{\text{IV}}(\Delta, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(\Delta, t) = \sigma_{\text{IV}}(\Delta, 0)
+\]</div>
 <p><strong>Consequence:</strong> The smile moves with the spot in strike space, maintaining constant shape in delta coordinates.</p>
 <p><strong>Generated by:</strong> Stochastic volatility models (Heston)</p>
 <p><strong>Implication for hedging:</strong> Vega hedge adjusts dynamically as spot moves.</p>
 <h3 id="3-sticky-moneyness">3. Sticky Moneyness<a class="headerlink" href="#3-sticky-moneyness" title="Permanent link">&para;</a></h3>
 <p><strong>Definition:</strong> Implied volatility depends only on moneyness <span class="arithmatex">\(K/S\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K/S, t) = \sigma_{\text{IV}}(K/S, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K/S, t) = \sigma_{\text{IV}}(K/S, 0)
+\]</div>
 <p><strong>Intermediate case:</strong> Smile shifts partially with spot.</p>
 <p><strong>Empirical observation:</strong> Real markets exhibit behavior between sticky-strike and sticky-delta, closer to sticky-delta.</p>
 <h2 id="asymptotic-analysis">Asymptotic Analysis<a class="headerlink" href="#asymptotic-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="1-small-maturity-asymptotics">1. Small-Maturity Asymptotics<a class="headerlink" href="#1-small-maturity-asymptotics" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(T \to 0\)</span>, the smile is determined by the local volatility at the initial spot:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \sim \sigma_{\text{loc}}(K, 0) \quad \text{as } T \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \sim \sigma_{\text{loc}}(K, 0) \quad \text{as } T \to 0
+\]</div>
 <p><strong>Sharp smile:</strong> If <span class="arithmatex">\(\sigma_{\text{loc}}(K, 0)\)</span> varies steeply with <span class="arithmatex">\(K\)</span>, the short-dated smile is pronounced.</p>
 <h3 id="2-large-strike-asymptotics-wings">2. Large-Strike Asymptotics (Wings)<a class="headerlink" href="#2-large-strike-asymptotics-wings" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(|y| = |\ln(K/F)| \to \infty\)</span>, <strong>Lee's moment formula</strong> gives:</p>
-<p>$$</p>
-<p>\lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 p_-</p>
-<p>$$</p>
-<p>$$</p>
-<p>\lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 p_+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 p_-
+\]</div>
+<div class="arithmatex">\[
+\lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 p_+
+\]</div>
 <p>where <span class="arithmatex">\(p_\pm\)</span> are related to the moments of the risk-neutral density.</p>
 <p><strong>Implication:</strong> The wings cannot be too flat; IV must grow at least as <span class="arithmatex">\(\sqrt{|y|/T}\)</span>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The volatility smile and skew reveal:</p>
 <h3 id="1-empirical-patterns">1. <strong>Empirical patterns:</strong><a class="headerlink" href="#1-empirical-patterns" title="Permanent link">&para;</a></h3>
 <p><strong>Equity:</strong> Downward skew (crashophobia, leverage effect)</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K) \text{ decreasing in } K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K) \text{ decreasing in } K
+\]</div>
 <p><strong>FX:</strong> Symmetric smile (two-sided jump risk)</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y) = \sigma_{\text{IV}}(-y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y) = \sigma_{\text{IV}}(-y)
+\]</div>
 <p><strong>Commodities:</strong> Variable (supply/demand asymmetries)</p>
 <h3 id="2-distributional-interpretation">2. <strong>Distributional interpretation:</strong><a class="headerlink" href="#2-distributional-interpretation" title="Permanent link">&para;</a></h3>
 <p><strong>Skew</strong> <span class="arithmatex">\(\mathcal{S} = \frac{\partial \sigma_{\text{IV}}}{\partial y}\big|_{\text{ATM}}\)</span> ↔ <strong>Third moment (skewness)</strong></p>

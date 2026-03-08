@@ -47327,11 +47327,11 @@
 <h2 id="geometric-brownian-motion-gbm">Geometric Brownian Motion (GBM)<a class="headerlink" href="#geometric-brownian-motion-gbm" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model">1. The Model<a class="headerlink" href="#1-the-model" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(S_t\)</span> = asset price at time <span class="arithmatex">\(t\)</span>
 - <span class="arithmatex">\(\mu\)</span> = drift (expected return)
@@ -47339,65 +47339,65 @@ dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
 - <span class="arithmatex">\(W_t\)</span> = standard Brownian motion</p>
 <h3 id="2-derivation-of-the-solution">2. Derivation of the Solution<a class="headerlink" href="#2-derivation-of-the-solution" title="Permanent link">&para;</a></h3>
 <p>Apply Itô's lemma to <span class="arithmatex">\(f(S) = \log S\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 d(\log S_t) &amp;= \frac{1}{S_t}dS_t + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)(dS_t)^2 \\
 &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2S_t^2} \cdot \sigma^2 S_t^2\,dt \\
 &amp;= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt \\
 &amp;= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>Integrating from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>\log S_t - \log S_0 = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_t - \log S_0 = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
+\]</div>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="3-properties">3. Properties<a class="headerlink" href="#3-properties" title="Permanent link">&para;</a></h3>
 <p><strong>Distribution:</strong> <span class="arithmatex">\(\log S_t\)</span> is normally distributed:</p>
-<p>$$</p>
-<p>\log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)
+\]</div>
 <p>Therefore, <span class="arithmatex">\(S_t\)</span> has a <strong>log-normal distribution</strong>.</p>
 <p><strong>Moments:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[S_t] = S_0 e^{\mu t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_t] = S_0 e^{\mu t}
+\]</div>
 <p><strong>Derivation:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 \mathbb{E}[S_t] &amp;= S_0 \mathbb{E}\left[\exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right)\right] \\
 &amp;= S_0 e^{(\mu - \sigma^2/2)t} \mathbb{E}\left[e^{\sigma W_t}\right] \\
 &amp;= S_0 e^{(\mu - \sigma^2/2)t} \cdot e^{\sigma^2 t/2} \\
 &amp;= S_0 e^{\mu t}
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>where we used <span class="arithmatex">\(\mathbb{E}[e^{aX}] = e^{a^2/2}\)</span> for <span class="arithmatex">\(X \sim \mathcal{N}(0,1)\)</span> and <span class="arithmatex">\(W_t \sim \mathcal{N}(0,t)\)</span>.</p>
 <p><strong>Variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}[S_t] = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[S_t] = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
+\]</div>
 <p><strong>Derivation:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 \mathbb{E}[S_t^2] &amp;= S_0^2 \mathbb{E}\left[\exp\left(2\left(\mu - \frac{\sigma^2}{2}\right)t + 2\sigma W_t\right)\right] \\
 &amp;= S_0^2 e^{(2\mu - \sigma^2)t} \mathbb{E}[e^{2\sigma W_t}] \\
 &amp;= S_0^2 e^{(2\mu - \sigma^2)t} \cdot e^{2\sigma^2 t} \\
 &amp;= S_0^2 e^{2\mu t + \sigma^2 t}
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\text{Var}[S_t] = \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[S_t] = \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
+\]</div>
 <h3 id="4-financial-interpretation">4. Financial Interpretation<a class="headerlink" href="#4-financial-interpretation" title="Permanent link">&para;</a></h3>
 <ul>
 <li>GBM is the foundation of the <strong>Black-Scholes model</strong></li>
@@ -47415,11 +47415,11 @@ S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 <h2 id="ornstein-uhlenbeck-ou-process">Ornstein-Uhlenbeck (OU) Process<a class="headerlink" href="#ornstein-uhlenbeck-ou-process" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_1">1. The Model<a class="headerlink" href="#1-the-model_1" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\kappa &gt; 0\)</span> = mean reversion speed
 - <span class="arithmatex">\(\theta\)</span> = long-term mean (equilibrium level)
@@ -47427,71 +47427,71 @@ dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t
 <h3 id="2-derivation-of-the-solution_1">2. Derivation of the Solution<a class="headerlink" href="#2-derivation-of-the-solution_1" title="Permanent link">&para;</a></h3>
 <p>This is a <strong>linear SDE</strong> that can be solved using an <strong>integrating factor</strong>.</p>
 <p>Rewrite as:</p>
-<p>$$</p>
-<p>dX_t + \kappa X_t\,dt = \kappa\theta\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t + \kappa X_t\,dt = \kappa\theta\,dt + \sigma\,dW_t
+\]</div>
 <p>Multiply both sides by the integrating factor <span class="arithmatex">\(e^{\kappa t}\)</span>:</p>
-<p>$$</p>
-<p>e^{\kappa t}dX_t + \kappa e^{\kappa t} X_t\,dt = d(e^{\kappa t} X_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{\kappa t}dX_t + \kappa e^{\kappa t} X_t\,dt = d(e^{\kappa t} X_t)
+\]</div>
 <p>Using Itô's lemma on <span class="arithmatex">\(Y_t = e^{\kappa t} X_t\)</span>:</p>
-<p>$$</p>
-<p>dY_t = \kappa e^{\kappa t} X_t\,dt + e^{\kappa t}dX_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = \kappa e^{\kappa t} X_t\,dt + e^{\kappa t}dX_t
+\]</div>
 <p>Substituting the SDE:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dY_t &amp;= \kappa e^{\kappa t} X_t\,dt + e^{\kappa t}[\kappa(\theta - X_t)\,dt + \sigma\,dW_t] \\
 &amp;= \kappa e^{\kappa t}\theta\,dt + \sigma e^{\kappa t}\,dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>Integrating from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>Y_t - Y_0 = \kappa\theta \int_0^t e^{\kappa s}\,ds + \sigma \int_0^t e^{\kappa s}\,dW_s</p>
-<p>$$</p>
-<p>$$</p>
-<p>e^{\kappa t}X_t - X_0 = \theta(e^{\kappa t} - 1) + \sigma \int_0^t e^{\kappa s}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t - Y_0 = \kappa\theta \int_0^t e^{\kappa s}\,ds + \sigma \int_0^t e^{\kappa s}\,dW_s
+\]</div>
+<div class="arithmatex">\[
+e^{\kappa t}X_t - X_0 = \theta(e^{\kappa t} - 1) + \sigma \int_0^t e^{\kappa s}\,dW_s
+\]</div>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t = X_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma \int_0^t e^{-\kappa(t-s)}\,dW_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Alternatively:</p>
-<p>$$</p>
-<p>X_t = e^{-\kappa t}X_0 + \theta(1 - e^{-\kappa t}) + \sigma e^{-\kappa t}\int_0^t e^{\kappa s}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = e^{-\kappa t}X_0 + \theta(1 - e^{-\kappa t}) + \sigma e^{-\kappa t}\int_0^t e^{\kappa s}\,dW_s
+\]</div>
 <h3 id="3-properties_1">3. Properties<a class="headerlink" href="#3-properties_1" title="Permanent link">&para;</a></h3>
 <p><strong>Conditional Mean:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[X_t | X_0] = X_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t | X_0] = X_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})
+\]</div>
 <p>As <span class="arithmatex">\(t \to \infty\)</span>: <span class="arithmatex">\(\mathbb{E}[X_t | X_0] \to \theta\)</span> (mean reversion).</p>
 <p><strong>Conditional Variance:</strong></p>
 <p>The stochastic integral has variance:</p>
-<p>$$</p>
-<p>\text{Var}\left[\int_0^t e^{-\kappa(t-s)}\,dW_s\right] = \int_0^t e^{-2\kappa(t-s)}\,ds = \frac{1 - e^{-2\kappa t}}{2\kappa}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}\left[\int_0^t e^{-\kappa(t-s)}\,dW_s\right] = \int_0^t e^{-2\kappa(t-s)}\,ds = \frac{1 - e^{-2\kappa t}}{2\kappa}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\text{Var}[X_t | X_0] = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[X_t | X_0] = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})
+\]</div>
 <p>As <span class="arithmatex">\(t \to \infty\)</span>: <span class="arithmatex">\(\text{Var}[X_t | X_0] \to \frac{\sigma^2}{2\kappa}\)</span> (stationary variance).</p>
 <p><strong>Stationary Distribution:</strong></p>
 <p>When <span class="arithmatex">\(t \to \infty\)</span>, <span class="arithmatex">\(X_t\)</span> converges in distribution to:</p>
-<p>$$</p>
-<p>X_\infty \sim \mathcal{N}\left(\theta, \frac{\sigma^2}{2\kappa}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_\infty \sim \mathcal{N}\left(\theta, \frac{\sigma^2}{2\kappa}\right)
+\]</div>
 <p><strong>Covariance Function:</strong></p>
 <p>For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\text{Cov}[X_s, X_t] = \frac{\sigma^2}{2\kappa}e^{-\kappa(t-s)}(1 - e^{-2\kappa s})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cov}[X_s, X_t] = \frac{\sigma^2}{2\kappa}e^{-\kappa(t-s)}(1 - e^{-2\kappa s})
+\]</div>
 <p>In the stationary regime (<span class="arithmatex">\(s, t\)</span> large):</p>
-<p>$$</p>
-<p>\text{Cov}[X_s, X_t] \approx \frac{\sigma^2}{2\kappa}e^{-\kappa|t-s|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cov}[X_s, X_t] \approx \frac{\sigma^2}{2\kappa}e^{-\kappa|t-s|}
+\]</div>
 <p>This is an <strong>exponentially decaying autocorrelation</strong>.</p>
 <h3 id="4-financial-applications">4. Financial Applications<a class="headerlink" href="#4-financial-applications" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47504,32 +47504,32 @@ X_t = X_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t}) + \sigma \int_0^t e^{-\kappa
 <h2 id="vasicek-model-interest-rates">Vasicek Model (Interest Rates)<a class="headerlink" href="#vasicek-model-interest-rates" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_2">1. The Model<a class="headerlink" href="#1-the-model_2" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dr_t = a(b - r_t)\,dt + \sigma\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is structurally identical to the OU process with <span class="arithmatex">\(\kappa = a\)</span> and <span class="arithmatex">\(\theta = b\)</span>.</p>
 <h3 id="2-solution">2. Solution<a class="headerlink" href="#2-solution" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma \int_0^t e^{-a(t-s)}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma \int_0^t e^{-a(t-s)}\,dW_s
+\]</div>
 <h3 id="3-bond-pricing">3. Bond Pricing<a class="headerlink" href="#3-bond-pricing" title="Permanent link">&para;</a></h3>
 <p>The price at time <span class="arithmatex">\(t\)</span> of a zero-coupon bond maturing at <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r_s\,ds\right) \Big| \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r_s\,ds\right) \Big| \mathcal{F}_t\right]
+\]</div>
 <p>For the Vasicek model, this can be computed explicitly:</p>
-<p>$$</p>
-<p>P(t, T) = A(t, T)e^{-B(t, T)r_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = A(t, T)e^{-B(t, T)r_t}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>B(t, T) = \frac{1 - e^{-a(T-t)}}{a}</p>
-<p>$$</p>
-<p>$$</p>
-<p>A(t, T) = \exp\left[\left(b - \frac{\sigma^2}{2a^2}\right)(B(t, T) - (T-t)) - \frac{\sigma^2}{4a}B(t, T)^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B(t, T) = \frac{1 - e^{-a(T-t)}}{a}
+\]</div>
+<div class="arithmatex">\[
+A(t, T) = \exp\left[\left(b - \frac{\sigma^2}{2a^2}\right)(B(t, T) - (T-t)) - \frac{\sigma^2}{4a}B(t, T)^2\right]
+\]</div>
 <h3 id="4-advantages-and-disadvantages">4. Advantages and Disadvantages<a class="headerlink" href="#4-advantages-and-disadvantages" title="Permanent link">&para;</a></h3>
 <p><strong>Advantages:</strong>
 - Analytically tractable
@@ -47542,11 +47542,11 @@ dr_t = a(b - r_t)\,dt + \sigma\,dW_t
 <h2 id="cox-ingersoll-ross-cir-model">Cox-Ingersoll-Ross (CIR) Model<a class="headerlink" href="#cox-ingersoll-ross-cir-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_3">1. The Model<a class="headerlink" href="#1-the-model_3" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\kappa &gt; 0\)</span> = speed of mean reversion
 - <span class="arithmatex">\(\theta &gt; 0\)</span> = long-term mean
@@ -47557,48 +47557,48 @@ dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
 <p>If <span class="arithmatex">\(2\kappa\theta &lt; \sigma^2\)</span>, <span class="arithmatex">\(r_t\)</span> can reach <span class="arithmatex">\(0\)</span>, but it is a reflecting boundary.</p>
 <h3 id="3-transformation-to-bessel-process">3. Transformation to Bessel Process<a class="headerlink" href="#3-transformation-to-bessel-process" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(X_t = \sqrt{r_t}\)</span>. Apply Itô's lemma:</p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial r} = \frac{1}{2\sqrt{r}}, \quad \frac{\partial^2 f}{\partial r^2} = -\frac{1}{4r^{3/2}}</p>
-<p>$$</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\frac{\partial f}{\partial r} = \frac{1}{2\sqrt{r}}, \quad \frac{\partial^2 f}{\partial r^2} = -\frac{1}{4r^{3/2}}
+\]</div>
+<div class="arithmatex">\[
+\begin{align}
 dX_t &amp;= \frac{1}{2\sqrt{r_t}}dr_t - \frac{1}{4r_t^{3/2}} \cdot \sigma^2 r_t\,dt \\
 &amp;= \frac{1}{2\sqrt{r_t}}[\kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t] - \frac{\sigma^2}{4\sqrt{r_t}}\,dt \\
 &amp;= \left[\frac{\kappa(\theta - r_t)}{2\sqrt{r_t}} - \frac{\sigma^2}{4\sqrt{r_t}}\right]dt + \frac{\sigma}{2}\,dW_t \\
 &amp;= \left[\frac{\kappa\theta - \sigma^2/4}{2X_t} - \frac{\kappa}{2}X_t\right]dt + \frac{\sigma}{2}\,dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>This is related to the <strong>squared Bessel process</strong>.</p>
 <h3 id="4-distribution">4. Distribution<a class="headerlink" href="#4-distribution" title="Permanent link">&para;</a></h3>
 <p>The CIR process does not have a simple closed-form solution like GBM or Vasicek. However, the <strong>conditional distribution</strong> is known:</p>
-<p>$$</p>
-<p>r_t | r_0 \sim \frac{\sigma^2(1 - e^{-\kappa t})}{4\kappa} \chi_{\nu}^2\left(\frac{4\kappa e^{-\kappa t}}{\sigma^2(1 - e^{-\kappa t})}r_0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t | r_0 \sim \frac{\sigma^2(1 - e^{-\kappa t})}{4\kappa} \chi_{\nu}^2\left(\frac{4\kappa e^{-\kappa t}}{\sigma^2(1 - e^{-\kappa t})}r_0\right)
+\]</div>
 <p>where <span class="arithmatex">\(\chi_{\nu}^2(\lambda)\)</span> is a <strong>non-central chi-squared distribution</strong> with:
 - Degrees of freedom: <span class="arithmatex">\(\nu = \frac{4\kappa\theta}{\sigma^2}\)</span>
 - Non-centrality parameter: <span class="arithmatex">\(\lambda = \frac{4\kappa e^{-\kappa t}}{\sigma^2(1 - e^{-\kappa t})}r_0\)</span></p>
 <h3 id="5-moments">5. Moments<a class="headerlink" href="#5-moments" title="Permanent link">&para;</a></h3>
 <p><strong>Conditional Mean:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[r_t | r_0] = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_t | r_0] = r_0 e^{-\kappa t} + \theta(1 - e^{-\kappa t})
+\]</div>
 <p>(same as Vasicek)</p>
 <p><strong>Conditional Variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}[r_t | r_0] = r_0 \frac{\sigma^2}{\kappa}(e^{-\kappa t} - e^{-2\kappa t}) + \theta\frac{\sigma^2}{2\kappa}(1 - e^{-\kappa t})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[r_t | r_0] = r_0 \frac{\sigma^2}{\kappa}(e^{-\kappa t} - e^{-2\kappa t}) + \theta\frac{\sigma^2}{2\kappa}(1 - e^{-\kappa t})^2
+\]</div>
 <h3 id="6-bond-pricing">6. Bond Pricing<a class="headerlink" href="#6-bond-pricing" title="Permanent link">&para;</a></h3>
 <p>Zero-coupon bond price:</p>
-<p>$$</p>
-<p>P(t, T) = A(t, T)e^{-B(t, T)r_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = A(t, T)e^{-B(t, T)r_t}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>B(t, T) = \frac{2(e^{\gamma(T-t)} - 1)}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}</p>
-<p>$$</p>
-<p>$$</p>
-<p>A(t, T) = \left[\frac{2\gamma e^{(\kappa + \gamma)(T-t)/2}}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B(t, T) = \frac{2(e^{\gamma(T-t)} - 1)}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}
+\]</div>
+<div class="arithmatex">\[
+A(t, T) = \left[\frac{2\gamma e^{(\kappa + \gamma)(T-t)/2}}{(\gamma + \kappa)(e^{\gamma(T-t)} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}
+\]</div>
 <p>with <span class="arithmatex">\(\gamma = \sqrt{\kappa^2 + 2\sigma^2}\)</span>.</p>
 <h3 id="7-advantages-over-vasicek">7. Advantages over Vasicek<a class="headerlink" href="#7-advantages-over-vasicek" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47610,11 +47610,11 @@ dX_t &amp;= \frac{1}{2\sqrt{r_t}}dr_t - \frac{1}{4r_t^{3/2}} \cdot \sigma^2 r_t\
 <h2 id="constant-elasticity-of-variance-cev-model">Constant Elasticity of Variance (CEV) Model<a class="headerlink" href="#constant-elasticity-of-variance-cev-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_4">1. The Model<a class="headerlink" href="#1-the-model_4" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dS_t = \mu S_t\,dt + \sigma S_t^\beta\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\beta \in \mathbb{R}\)</span> is the <strong>elasticity parameter</strong>.</p>
 <h3 id="2-special-cases">2. Special Cases<a class="headerlink" href="#2-special-cases" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47625,9 +47625,9 @@ dS_t = \mu S_t\,dt + \sigma S_t^\beta\,dW_t
 <h3 id="3-properties_2">3. Properties<a class="headerlink" href="#3-properties_2" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(\beta &lt; 1\)</span>, the model exhibits <strong>leverage effect</strong>: volatility increases as price decreases.</p>
 <p>For <span class="arithmatex">\(\beta = 1/2\)</span>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma \sqrt{S_t}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma \sqrt{S_t}\,dW_t
+\]</div>
 <p>This is similar to the CIR process and can reach zero but is reflecting.</p>
 <h3 id="4-implied-volatility-smile">4. Implied Volatility Smile<a class="headerlink" href="#4-implied-volatility-smile" title="Permanent link">&para;</a></h3>
 <p>The CEV model can produce an <strong>implied volatility skew</strong>, making it more realistic than GBM for equity options.</p>
@@ -47635,18 +47635,18 @@ dS_t = \mu S_t\,dt + \sigma S_t^\beta\,dW_t
 <h2 id="heston-stochastic-volatility-model">Heston Stochastic Volatility Model<a class="headerlink" href="#heston-stochastic-volatility-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_5">1. The Model<a class="headerlink" href="#1-the-model_5" title="Permanent link">&para;</a></h3>
 <p><strong>System of SDEs:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{cases}
-dS_t = \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^1 \
+dS_t = \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^1 \\
 dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^2
 \end{cases}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>with correlation:</p>
-<p>$$</p>
-<p>d\langle W^1, W^2 \rangle_t = \rho\,dt, \quad \rho \in [-1, 1]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\langle W^1, W^2 \rangle_t = \rho\,dt, \quad \rho \in [-1, 1]
+\]</div>
 <p>where:
 - <span class="arithmatex">\(S_t\)</span> = asset price
 - <span class="arithmatex">\(V_t\)</span> = instantaneous variance
@@ -47656,22 +47656,22 @@ dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^2
 - <span class="arithmatex">\(\rho\)</span> = correlation between price and volatility shocks</p>
 <h3 id="2-implementation-of-correlation">2. Implementation of Correlation<a class="headerlink" href="#2-implementation-of-correlation" title="Permanent link">&para;</a></h3>
 <p>In practice, we write:</p>
-<p>$$</p>
-<p>dW_t^2 = \rho\,dW_t^1 + \sqrt{1 - \rho^2}\,dZ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^2 = \rho\,dW_t^1 + \sqrt{1 - \rho^2}\,dZ_t
+\]</div>
 <p>where <span class="arithmatex">\(Z_t\)</span> is a Brownian motion independent of <span class="arithmatex">\(W_t^1\)</span>.</p>
 <p>The system becomes:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 dS_t = \mu S_t\,dt + \sqrt{V_t} S_t\,dW_t^1 \\
 dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,dZ_t)
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <h3 id="3-feller-condition">3. Feller Condition<a class="headerlink" href="#3-feller-condition" title="Permanent link">&para;</a></h3>
 <p>To ensure <span class="arithmatex">\(V_t &gt; 0\)</span> for all <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>2\kappa\theta \geq \xi^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+2\kappa\theta \geq \xi^2
+\]</div>
 <h3 id="4-advantages">4. Advantages<a class="headerlink" href="#4-advantages" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Stochastic volatility</strong> captures volatility clustering</li>
@@ -47682,23 +47682,23 @@ dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,
 <h3 id="5-characteristic-function">5. Characteristic Function<a class="headerlink" href="#5-characteristic-function" title="Permanent link">&para;</a></h3>
 <p>The Heston model has a <strong>semi-closed-form characteristic function</strong>, which enables efficient option pricing via Fourier inversion.</p>
 <p>For <span class="arithmatex">\(u \in \mathbb{C}\)</span>:</p>
-<p>$$</p>
-<p>\phi(u; t, S_t, V_t) = \mathbb{E}\left[e^{iu \log S_T} \Big| S_t, V_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi(u; t, S_t, V_t) = \mathbb{E}\left[e^{iu \log S_T} \Big| S_t, V_t\right]
+\]</div>
 <p>This can be computed in closed form using the solution to a system of Riccati ODEs.</p>
 <hr />
 <h2 id="merton-jump-diffusion-model">Merton Jump-Diffusion Model<a class="headerlink" href="#merton-jump-diffusion-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_6">1. The Model<a class="headerlink" href="#1-the-model_6" title="Permanent link">&para;</a></h3>
 <p><strong>SDE with jumps:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{dS_t}{S_{t-}} = \mu\,dt + \sigma\,dW_t + dJ_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(J_t\)</span> is a <strong>compound Poisson process</strong>:</p>
-<p>$$</p>
-<p>J_t = \sum_{i=1}^{N_t} (Y_i - 1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+J_t = \sum_{i=1}^{N_t} (Y_i - 1)
+\]</div>
 <p>with:
 - <span class="arithmatex">\(N_t\)</span> = Poisson process with intensity <span class="arithmatex">\(\lambda\)</span>
 - <span class="arithmatex">\(Y_i\)</span> = i.i.d. jump sizes with <span class="arithmatex">\(\log Y_i \sim \mathcal{N}(\mu_J, \sigma_J^2)\)</span></p>
@@ -47710,22 +47710,22 @@ dV_t = \kappa(\theta - V_t)\,dt + \xi\sqrt{V_t}(\rho\,dW_t^1 + \sqrt{1-\rho^2}\,
 </ul>
 <h3 id="3-compensated-jump-process">3. Compensated Jump Process<a class="headerlink" href="#3-compensated-jump-process" title="Permanent link">&para;</a></h3>
 <p>To make <span class="arithmatex">\(S_t\)</span> a martingale under <span class="arithmatex">\(\mathbb{Q}\)</span>, we use:</p>
-<p>$$</p>
-<p>dS_t = (r - \lambda k)\,S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}} + S_{t-}\,dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - \lambda k)\,S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}} + S_{t-}\,dJ_t
+\]</div>
 <p>where <span class="arithmatex">\(k = \mathbb{E}[Y - 1]\)</span> is the expected jump size.</p>
 <hr />
 <h2 id="sabr-model">SABR Model<a class="headerlink" href="#sabr-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_7">1. The Model<a class="headerlink" href="#1-the-model_7" title="Permanent link">&para;</a></h3>
 <p>Used extensively for <strong>interest rate derivatives</strong> and <strong>FX options</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{cases}
-dF_t = \sigma_t F_t^\beta\,dW_t^1 \
+dF_t = \sigma_t F_t^\beta\,dW_t^1 \\
 d\sigma_t = \alpha \sigma_t\,dW_t^2
 \end{cases}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>with <span class="arithmatex">\(d\langle W^1, W^2 \rangle_t = \rho\,dt\)</span>.</p>
 <p>where:
 - <span class="arithmatex">\(F_t\)</span> = forward rate
@@ -47739,25 +47739,25 @@ d\sigma_t = \alpha \sigma_t\,dW_t^2
 <h2 id="hull-white-model-extended-vasicek">Hull-White Model (Extended Vasicek)<a class="headerlink" href="#hull-white-model-extended-vasicek" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_8">1. The Model<a class="headerlink" href="#1-the-model_8" title="Permanent link">&para;</a></h3>
 <p><strong>Time-dependent parameters:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dr_t = [\theta(t) - a(t)r_t]\,dt + \sigma(t)\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This extends Vasicek to allow <strong>calibration to the current yield curve</strong>.</p>
 <h3 id="2-solution_1">2. Solution<a class="headerlink" href="#2-solution_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>r_t = r_0 e^{-\int_0^t a(s)\,ds} + \int_0^t \theta(s) e^{-\int_s^t a(u)\,du}\,ds + \int_0^t \sigma(s) e^{-\int_s^t a(u)\,du}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = r_0 e^{-\int_0^t a(s)\,ds} + \int_0^t \theta(s) e^{-\int_s^t a(u)\,du}\,ds + \int_0^t \sigma(s) e^{-\int_s^t a(u)\,du}\,dW_s
+\]</div>
 <h3 id="3-calibration">3. Calibration<a class="headerlink" href="#3-calibration" title="Permanent link">&para;</a></h3>
 <p>By choosing <span class="arithmatex">\(\theta(t)\)</span> appropriately, the model can <strong>perfectly fit the initial term structure</strong>.</p>
 <hr />
 <h2 id="black-karasinski-model">Black-Karasinski Model<a class="headerlink" href="#black-karasinski-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-model_9">1. The Model<a class="headerlink" href="#1-the-model_9" title="Permanent link">&para;</a></h3>
 <p><strong>Log-normal short rate:</strong></p>
-<p>$$</p>
-<p>d\log r_t = [\theta(t) - a(t)\log r_t]\,dt + \sigma(t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\log r_t = [\theta(t) - a(t)\log r_t]\,dt + \sigma(t)\,dW_t
+\]</div>
 <p>This ensures <span class="arithmatex">\(r_t &gt; 0\)</span> for all <span class="arithmatex">\(t\)</span>.</p>
 <h3 id="2-properties">2. Properties<a class="headerlink" href="#2-properties" title="Permanent link">&para;</a></h3>
 <ul>

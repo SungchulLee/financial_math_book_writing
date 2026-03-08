@@ -46804,106 +46804,106 @@
 <hr />
 <h2 id="the-learning-problem">The Learning Problem<a class="headerlink" href="#the-learning-problem" title="Permanent link">&para;</a></h2>
 <p>Consider the general supervised learning setup. We observe data <span class="arithmatex">\((X_1, Y_1), \ldots, (X_n, Y_n)\)</span> drawn from some unknown joint distribution <span class="arithmatex">\(\mathbb{P}_{X,Y}\)</span> and seek to estimate a function <span class="arithmatex">\(f^*\)</span> that minimizes expected loss:</p>
-<p>$$</p>
-<p>f^* = \arg\min_{f \in \mathcal{F}} \mathbb{E}_{(X,Y) \sim \mathbb{P}}[L(Y, f(X))],</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f^* = \arg\min_{f \in \mathcal{F}} \mathbb{E}_{(X,Y) \sim \mathbb{P}}[L(Y, f(X))]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{F}\)</span> is the hypothesis class and <span class="arithmatex">\(L\)</span> is a loss function (e.g., squared error <span class="arithmatex">\(L(y, \hat{y}) = (y - \hat{y})^2\)</span>).</p>
 <p>The choice of <span class="arithmatex">\(\mathcal{F}\)</span> determines whether our approach is parametric or nonparametric.</p>
 <hr />
 <h2 id="parametric-learning">Parametric Learning<a class="headerlink" href="#parametric-learning" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>A <strong>parametric model</strong> assumes that the true function <span class="arithmatex">\(f^*\)</span> belongs to a family indexed by a finite-dimensional parameter:</p>
-<p>$$</p>
-<p>\mathcal{F}_{\text{param}} = {f(\cdot; \theta) : \theta \in \Theta \subseteq \mathbb{R}^d}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{F}_{\text{param}} = \{f(\cdot; \theta) : \theta \in \Theta \subseteq \mathbb{R}^d\}
+\]</div>
 <p>The learning problem reduces to estimating <span class="arithmatex">\(\theta\)</span> from data.</p>
 <h3 id="examples-in-finance">Examples in Finance<a class="headerlink" href="#examples-in-finance" title="Permanent link">&para;</a></h3>
 <p><strong>Linear factor models.</strong> Asset returns are modeled as:</p>
-<p>$$</p>
-<p>R_i = \alpha_i + \sum_{j=1}^k \beta_{ij} F_j + \varepsilon_i,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_i = \alpha_i + \sum_{j=1}^k \beta_{ij} F_j + \varepsilon_i
+\]</div>
 <p>where <span class="arithmatex">\(\theta = (\alpha_i, \beta_{i1}, \ldots, \beta_{ik})\)</span> has dimension <span class="arithmatex">\(k+1\)</span>.</p>
 <p><strong>GARCH volatility models.</strong> The conditional variance follows:</p>
-<p>$$</p>
-<p>\sigma_t^2 = \omega + \sum_{i=1}^p \alpha_i r_{t-i}^2 + \sum_{j=1}^q \beta_j \sigma_{t-j}^2,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_t^2 = \omega + \sum_{i=1}^p \alpha_i r_{t-i}^2 + \sum_{j=1}^q \beta_j \sigma_{t-j}^2
+\]</div>
 <p>with parameter vector <span class="arithmatex">\(\theta = (\omega, \alpha_1, \ldots, \alpha_p, \beta_1, \ldots, \beta_q) \in \mathbb{R}^{p+q+1}\)</span>.</p>
 <p><strong>Parametric option pricing.</strong> Under Black–Scholes, the single parameter <span class="arithmatex">\(\sigma\)</span> (volatility) determines all option prices. Under Heston, we have <span class="arithmatex">\(\theta = (v_0, \kappa, \bar{v}, \sigma_v, \rho) \in \mathbb{R}^5\)</span>.</p>
 <h3 id="maximum-likelihood-estimation">Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permanent link">&para;</a></h3>
 <p>For parametric models with density <span class="arithmatex">\(p(y|x; \theta)\)</span>, the maximum likelihood estimator is:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _Theta="\Theta" _in="\in" _theta="\theta">{\text{MLE}} = \arg\max</em>^n \log p(Y_i | X_i; \theta).} \sum_{i=1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_{\text{MLE}} = \arg\max_{\theta \in \Theta} \sum_{i=1}^n \log p(Y_i | X_i; \theta)
+\]</div>
 <p>Under regularity conditions, MLE achieves asymptotic efficiency:</p>
-<p>$$</p>
-<p>\sqrt{n}(\hat{\theta}_{\text{MLE}} - \theta^<em>) \xrightarrow{d} \mathcal{N}(0, \mathcal{I}(\theta^</em>)^{-1}),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sqrt{n}(\hat{\theta}_{\text{MLE}} - \theta^*) \xrightarrow{d} \mathcal{N}(0, \mathcal{I}(\theta^*)^{-1})
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{I}(\theta)\)</span> is the Fisher information matrix:</p>
-<p>$$</p>
-<p>\mathcal{I}(\theta) = -\mathbb{E}\left[\frac{\partial^2 \log p(Y|X;\theta)}{\partial \theta \partial \theta^\top}\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{I}(\theta) = -\mathbb{E}\left[\frac{\partial^2 \log p(Y|X;\theta)}{\partial \theta \partial \theta^\top}\right]
+\]</div>
 <h3 id="convergence-rates">Convergence Rates<a class="headerlink" href="#convergence-rates" title="Permanent link">&para;</a></h3>
 <p>Parametric estimators typically achieve the <strong>parametric rate</strong> of convergence:</p>
-<p>$$</p>
-<p>|\hat{\theta} - \theta^*| = O_p(n^{-1/2}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|\hat{\theta} - \theta^*\| = O_p(n^{-1/2})
+\]</div>
 <p>This rate is independent of the input dimension, making parametric methods highly data-efficient when the model is correctly specified.</p>
 <h3 id="model-misspecification">Model Misspecification<a class="headerlink" href="#model-misspecification" title="Permanent link">&para;</a></h3>
 <p>The critical vulnerability of parametric methods is <strong>misspecification</strong>. If <span class="arithmatex">\(f^* \notin \mathcal{F}_{\text{param}}\)</span>, then even with infinite data, the best we can achieve is the pseudo-true parameter:</p>
-<p>$$</p>
-<p>\theta^\dagger = \arg\min_{\theta \in \Theta} D_{\text{KL}}(\mathbb{P}<em Y_X="Y|X">{Y|X}^* | \mathbb{P}</em>^\theta),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta^\dagger = \arg\min_{\theta \in \Theta} D_{\text{KL}}(\mathbb{P}_{Y|X}^* \| \mathbb{P}_{Y|X}^\theta)
+\]</div>
 <p>where <span class="arithmatex">\(D_{\text{KL}}\)</span> denotes Kullback–Leibler divergence. The approximation error <span class="arithmatex">\(\|f(\cdot; \theta^\dagger) - f^*\|\)</span> does not vanish with more data.</p>
 <hr />
 <h2 id="nonparametric-learning">Nonparametric Learning<a class="headerlink" href="#nonparametric-learning" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p><strong>Nonparametric models</strong> do not assume a fixed functional form. Instead, the hypothesis class grows with sample size:</p>
-<p>$$</p>
-<p>\mathcal{F}_{\text{nonparam}} = {f : \mathcal{X} \to \mathbb{R} \mid f \text{ satisfies smoothness conditions}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{F}_{\text{nonparam}} = \{f : \mathcal{X} \to \mathbb{R} \mid f \text{ satisfies smoothness conditions}\}
+\]</div>
 <p>Common smoothness assumptions include Hölder continuity, bounded derivatives, or membership in a Sobolev space.</p>
 <h3 id="kernel-regression-nadarayawatson-estimator">Kernel Regression (Nadaraya–Watson Estimator)<a class="headerlink" href="#kernel-regression-nadarayawatson-estimator" title="Permanent link">&para;</a></h3>
 <p>Given observations <span class="arithmatex">\((X_i, Y_i)_{i=1}^n\)</span>, the kernel regression estimator is:</p>
-<p>$$</p>
-<p>\hat{f}<em i="1">h(x) = \frac{\sum</em>,}^n K_h(x - X_i) Y_i}{\sum_{i=1}^n K_h(x - X_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f}_h(x) = \frac{\sum_{i=1}^n K_h(x - X_i) Y_i}{\sum_{i=1}^n K_h(x - X_i)}
+\]</div>
 <p>where <span class="arithmatex">\(K_h(\cdot) = h^{-d} K(\cdot/h)\)</span> is a scaled kernel (e.g., Gaussian) and <span class="arithmatex">\(h &gt; 0\)</span> is the bandwidth.</p>
 <p><strong>Bias-variance decomposition.</strong> For the Nadaraya–Watson estimator:</p>
-<p>$$</p>
-<p>\text{Bias}[\hat{f}_h(x)] = \frac{h^2}{2} \mu_2(K) \text{tr}(\nabla^2 f(x)) + o(h^2),</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}[\hat{f}_h(x)] = \frac{R(K)}{nh^d p(x)} \sigma^2(x) + o((nh^d)^{-1}),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bias}[\hat{f}_h(x)] = \frac{h^2}{2} \mu_2(K) \text{tr}(\nabla^2 f(x)) + o(h^2)
+\]</div>
+<div class="arithmatex">\[
+\text{Var}[\hat{f}_h(x)] = \frac{R(K)}{nh^d p(x)} \sigma^2(x) + o((nh^d)^{-1})
+\]</div>
 <p>where <span class="arithmatex">\(\mu_2(K) = \int u^2 K(u) du\)</span>, <span class="arithmatex">\(R(K) = \int K(u)^2 du\)</span>, <span class="arithmatex">\(p(x)\)</span> is the density of <span class="arithmatex">\(X\)</span>, and <span class="arithmatex">\(\sigma^2(x) = \text{Var}(Y|X=x)\)</span>.</p>
 <h3 id="local-polynomial-regression">Local Polynomial Regression<a class="headerlink" href="#local-polynomial-regression" title="Permanent link">&para;</a></h3>
 <p>Local polynomial regression fits a polynomial of degree <span class="arithmatex">\(p\)</span> locally around each point <span class="arithmatex">\(x\)</span>:</p>
-<p>$$</p>
-<p>\hat{\beta}(x) = \arg\min_{\beta} \sum_{i=1}^n K_h(x - X_i) \left(Y_i - \sum_{j=0}^p \beta_j (X_i - x)^j\right)^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\beta}(x) = \arg\min_{\beta} \sum_{i=1}^n K_h(x - X_i) \left(Y_i - \sum_{j=0}^p \beta_j (X_i - x)^j\right)^2
+\]</div>
 <p>The estimator is <span class="arithmatex">\(\hat{f}(x) = \hat{\beta}_0(x)\)</span>. Local linear regression (<span class="arithmatex">\(p=1\)</span>) has superior boundary behavior compared to Nadaraya–Watson.</p>
 <h3 id="regression-splines">Regression Splines<a class="headerlink" href="#regression-splines" title="Permanent link">&para;</a></h3>
 <p><strong>Cubic splines</strong> approximate <span class="arithmatex">\(f\)</span> using piecewise polynomials with continuity constraints at knots <span class="arithmatex">\(\xi_1 &lt; \cdots &lt; \xi_K\)</span>:</p>
-<p>$$</p>
-<p>\hat{f}(x) = \sum_{j=0}^3 \beta_j x^j + \sum_{k=1}^K \gamma_k (x - \xi_k)_+^3,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f}(x) = \sum_{j=0}^3 \beta_j x^j + \sum_{k=1}^K \gamma_k (x - \xi_k)_+^3
+\]</div>
 <p>where <span class="arithmatex">\((u)_+ = \max(u, 0)\)</span>.</p>
 <p><strong>Smoothing splines</strong> solve:</p>
-<p>$$</p>
-<p>\hat{f} = \arg\min_{f} \left{ \sum_{i=1}^n (Y_i - f(X_i))^2 + \lambda \int (f''(x))^2 dx \right},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f} = \arg\min_{f} \left\{ \sum_{i=1}^n (Y_i - f(X_i))^2 + \lambda \int (f''(x))^2 dx \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda &gt; 0\)</span> controls the smoothness penalty.</p>
 <h3 id="k-nearest-neighbors">k-Nearest Neighbors<a class="headerlink" href="#k-nearest-neighbors" title="Permanent link">&para;</a></h3>
 <p>The k-NN estimator averages responses from the <span class="arithmatex">\(k\)</span> closest training points:</p>
-<p>$$</p>
-<p>\hat{f}<em N_k_x_="N_k(x)" _in="\in" i="i">k(x) = \frac{1}{k} \sum</em> Y_i,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f}_k(x) = \frac{1}{k} \sum_{i \in N_k(x)} Y_i
+\]</div>
 <p>where <span class="arithmatex">\(N_k(x)\)</span> denotes the indices of the <span class="arithmatex">\(k\)</span> nearest neighbors of <span class="arithmatex">\(x\)</span>.</p>
 <h3 id="convergence-rates-and-stones-theorem">Convergence Rates and Stone's Theorem<a class="headerlink" href="#convergence-rates-and-stones-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem (Stone, 1982).</strong> Let <span class="arithmatex">\(f^*\)</span> belong to the Hölder class <span class="arithmatex">\(\mathcal{H}(\beta, L)\)</span> of functions with bounded derivatives up to order <span class="arithmatex">\(\lfloor \beta \rfloor\)</span> and <span class="arithmatex">\(\beta\)</span>-Hölder continuous highest derivative. Then for any nonparametric regression estimator:</p>
-<p>$$</p>
-<p>\inf_{\hat{f}} \sup_{f^<em> \in \mathcal{H}(\beta, L)} \mathbb{E}|\hat{f} - f^</em>|_2^2 \asymp n^{-\frac{2\beta}{2\beta + d}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\hat{f}} \sup_{f^* \in \mathcal{H}(\beta, L)} \mathbb{E}\|\hat{f} - f^*\|_2^2 \asymp n^{-\frac{2\beta}{2\beta + d}}
+\]</div>
 <p>This <strong>minimax optimal rate</strong> reveals the curse of dimensionality: as dimension <span class="arithmatex">\(d\)</span> increases, convergence slows dramatically.</p>
 <p><strong>Example.</strong> For twice-differentiable functions (<span class="arithmatex">\(\beta = 2\)</span>):
 - <span class="arithmatex">\(d = 1\)</span>: Rate is <span class="arithmatex">\(n^{-4/5}\)</span>
@@ -46915,15 +46915,15 @@
 <h2 id="semi-parametric-models">Semi-Parametric Models<a class="headerlink" href="#semi-parametric-models" title="Permanent link">&para;</a></h2>
 <h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
 <p><strong>Semi-parametric models</strong> combine parametric components for primary structure with nonparametric components for nuisance functions:</p>
-<p>$$</p>
-<p>\mathbb{E}[Y|X,Z] = g(X^\top \beta) + f(Z),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y|X,Z] = g(X^\top \beta) + f(Z)
+\]</div>
 <p>where <span class="arithmatex">\(\beta \in \mathbb{R}^p\)</span> is finite-dimensional and <span class="arithmatex">\(f\)</span> is nonparametric.</p>
 <h3 id="partially-linear-models">Partially Linear Models<a class="headerlink" href="#partially-linear-models" title="Permanent link">&para;</a></h3>
 <p>The partially linear model:</p>
-<p>$$</p>
-<p>Y = X^\top \beta + f(Z) + \varepsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y = X^\top \beta + f(Z) + \varepsilon
+\]</div>
 <p>is estimated via <strong>Robinson's differencing</strong>:</p>
 <ol>
 <li>Estimate <span class="arithmatex">\(\mathbb{E}[Y|Z]\)</span> and <span class="arithmatex">\(\mathbb{E}[X|Z]\)</span> nonparametrically</li>
@@ -46933,20 +46933,20 @@
 <p>Under regularity conditions, <span class="arithmatex">\(\hat{\beta}\)</span> achieves the parametric rate <span class="arithmatex">\(\sqrt{n}\)</span>-consistency despite the nonparametric component.</p>
 <h3 id="single-index-models">Single-Index Models<a class="headerlink" href="#single-index-models" title="Permanent link">&para;</a></h3>
 <p>The single-index model:</p>
-<p>$$</p>
-<p>\mathbb{E}[Y|X] = g(X^\top \beta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y|X] = g(X^\top \beta)
+\]</div>
 <p>reduces a high-dimensional regression to estimating a direction <span class="arithmatex">\(\beta\)</span> and a univariate link function <span class="arithmatex">\(g\)</span>.</p>
 <p><strong>Average derivative estimation.</strong> Under suitable conditions:</p>
-<p>$$</p>
-<p>\mathbb{E}[\nabla \mathbb{E}[Y|X]] \propto \beta,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\nabla \mathbb{E}[Y|X]] \propto \beta
+\]</div>
 <p>allowing consistent estimation of <span class="arithmatex">\(\beta\)</span> (up to scale) using kernel density estimates.</p>
 <h3 id="additive-models">Additive Models<a class="headerlink" href="#additive-models" title="Permanent link">&para;</a></h3>
 <p>Additive models assume:</p>
-<p>$$</p>
-<p>\mathbb{E}[Y|X_1, \ldots, X_d] = \alpha + \sum_{j=1}^d f_j(X_j).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y|X_1, \ldots, X_d] = \alpha + \sum_{j=1}^d f_j(X_j)
+\]</div>
 <p>The <strong>backfitting algorithm</strong> iteratively estimates each <span class="arithmatex">\(f_j\)</span>:</p>
 <ol>
 <li>Initialize <span class="arithmatex">\(\hat{f}_j^{(0)} = 0\)</span> for all <span class="arithmatex">\(j\)</span></li>
@@ -46963,14 +46963,14 @@
 <h2 id="financial-applications-and-considerations">Financial Applications and Considerations<a class="headerlink" href="#financial-applications-and-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="option-pricing-parametric-vs-nonparametric">Option Pricing: Parametric vs Nonparametric<a class="headerlink" href="#option-pricing-parametric-vs-nonparametric" title="Permanent link">&para;</a></h3>
 <p><strong>Parametric approach (risk-neutral).</strong> Assume dynamics under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = r S_t dt + \sigma(S_t, t) S_t dW_t^{\mathbb{Q}},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = r S_t dt + \sigma(S_t, t) S_t dW_t^{\mathbb{Q}}
+\]</div>
 <p>with parametric volatility <span class="arithmatex">\(\sigma(S, t; \theta)\)</span>. Option prices are computed via PDE or Monte Carlo.</p>
 <p><strong>Nonparametric approach.</strong> Directly estimate the option pricing function:</p>
-<p>$$</p>
-<p>C(S, K, T) = \hat{f}(S, K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S, K, T) = \hat{f}(S, K, T)
+\]</div>
 <p>from observed prices, without specifying dynamics.</p>
 <p><strong>Trade-offs:</strong>
 - Parametric: Ensures no-arbitrage (if model is arbitrage-free), extrapolates consistently, but may misspecify dynamics
@@ -46978,30 +46978,30 @@
 <h3 id="volatility-surface-estimation">Volatility Surface Estimation<a class="headerlink" href="#volatility-surface-estimation" title="Permanent link">&para;</a></h3>
 <p>The implied volatility surface <span class="arithmatex">\(\sigma_{\text{imp}}(K, T)\)</span> can be estimated:</p>
 <p><strong>Parametrically:</strong> SVI parameterization (see Chapter 8):</p>
-<p>$$</p>
-<p>\sigma^2(k) = a + b\left(\rho(k-m) + \sqrt{(k-m)^2 + \sigma^2}\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^2(k) = a + b\left(\rho(k-m) + \sqrt{(k-m)^2 + \sigma^2}\right)
+\]</div>
 <p>where <span class="arithmatex">\(k = \log(K/F)\)</span> is log-moneyness.</p>
 <p><strong>Nonparametrically:</strong> Kernel smoothing of observed implied volatilities:</p>
-<p>$$</p>
-<p>\hat{\sigma}<em i="i">{\text{imp}}(K, T) = \frac{\sum</em>.} K_h(K - K_i, T - T_i) \sigma_i^{\text{obs}}}{\sum_{i} K_h(K - K_i, T - T_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\sigma}_{\text{imp}}(K, T) = \frac{\sum_{i} K_h(K - K_i, T - T_i) \sigma_i^{\text{obs}}}{\sum_{i} K_h(K - K_i, T - T_i)}
+\]</div>
 <p><strong>Semi-parametrically:</strong> Parametric term structure with nonparametric smile:</p>
-<p>$$</p>
-<p>\sigma_{\text{imp}}(K, T) = \sigma_{\text{ATM}}(T) \cdot g(K/S; T),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{imp}}(K, T) = \sigma_{\text{ATM}}(T) \cdot g(K/S; T)
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_{\text{ATM}}(T)\)</span> is parametric and <span class="arithmatex">\(g\)</span> is estimated nonparametrically.</p>
 <h3 id="return-prediction">Return Prediction<a class="headerlink" href="#return-prediction" title="Permanent link">&para;</a></h3>
 <p>For predicting returns <span class="arithmatex">\(R_{t+1}\)</span> from predictors <span class="arithmatex">\(X_t\)</span>:</p>
 <p><strong>Parametric (linear predictability):</strong></p>
-<p>$$</p>
-<p>R_{t+1} = \alpha + \beta^\top X_t + \varepsilon_{t+1}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_{t+1} = \alpha + \beta^\top X_t + \varepsilon_{t+1}
+\]</div>
 <p>Campbell and Shiller's dividend-price ratio regression is a classic example.</p>
 <p><strong>Nonparametric:</strong></p>
-<p>$$</p>
-<p>R_{t+1} = f(X_t) + \varepsilon_{t+1},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_{t+1} = f(X_t) + \varepsilon_{t+1}
+\]</div>
 <p>estimated via kernel methods or trees.</p>
 <p><strong>Empirical finding:</strong> Due to low signal-to-noise ratios in returns (often <span class="arithmatex">\(R^2 &lt; 0.05\)</span>), nonparametric methods frequently underperform simple linear models out-of-sample. The flexibility that allows fitting complex patterns also fits noise.</p>
 <hr />
@@ -47009,26 +47009,26 @@
 <h3 id="information-criteria">Information Criteria<a class="headerlink" href="#information-criteria" title="Permanent link">&para;</a></h3>
 <p>For parametric models with <span class="arithmatex">\(d\)</span> parameters and maximized log-likelihood <span class="arithmatex">\(\ell_n(\hat{\theta})\)</span>:</p>
 <p><strong>Akaike Information Criterion:</strong></p>
-<p>$$</p>
-<p>\text{AIC} = -2\ell_n(\hat{\theta}) + 2d.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AIC} = -2\ell_n(\hat{\theta}) + 2d
+\]</div>
 <p><strong>Bayesian Information Criterion:</strong></p>
-<p>$$</p>
-<p>\text{BIC} = -2\ell_n(\hat{\theta}) + d \log n.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{BIC} = -2\ell_n(\hat{\theta}) + d \log n
+\]</div>
 <p>BIC penalizes complexity more heavily and is consistent (selects true model as <span class="arithmatex">\(n \to \infty\)</span> if it's in the candidate set).</p>
 <h3 id="cross-validation">Cross-Validation<a class="headerlink" href="#cross-validation" title="Permanent link">&para;</a></h3>
 <p>For nonparametric methods, cross-validation estimates out-of-sample error:</p>
-<p>$$</p>
-<p>\text{CV}(\lambda) = \frac{1}{n} \sum_{i=1}^n L(Y_i, \hat{f}_{-i}^\lambda(X_i)),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CV}(\lambda) = \frac{1}{n} \sum_{i=1}^n L(Y_i, \hat{f}_{-i}^\lambda(X_i))
+\]</div>
 <p>where <span class="arithmatex">\(\hat{f}_{-i}^\lambda\)</span> is fitted without observation <span class="arithmatex">\(i\)</span> using tuning parameter <span class="arithmatex">\(\lambda\)</span>.</p>
 <p><strong>Leave-one-out CV</strong> is computationally expensive but has low variance. <strong>K-fold CV</strong> (typically <span class="arithmatex">\(K = 5\)</span> or <span class="arithmatex">\(10\)</span>) balances bias and variance.</p>
 <h3 id="time-series-cross-validation">Time Series Cross-Validation<a class="headerlink" href="#time-series-cross-validation" title="Permanent link">&para;</a></h3>
 <p>Standard CV assumes i.i.d. data. For time series, use <strong>rolling-window</strong> or <strong>expanding-window</strong> validation:</p>
-<p>$$</p>
-<p>\text{CV}<em t="w">{\text{rolling}} = \frac{1}{T-w-h+1} \sum</em>(X_t)),}^{T-h} L(Y_{t+h}, \hat{f}_{t-w+1:t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CV}_{\text{rolling}} = \frac{1}{T-w-h+1} \sum_{t=w}^{T-h} L(Y_{t+h}, \hat{f}_{t-w+1:t}(X_t))
+\]</div>
 <p>where <span class="arithmatex">\(w\)</span> is window size and <span class="arithmatex">\(h\)</span> is forecast horizon.</p>
 <hr />
 <h2 id="statistical-properties-summary">Statistical Properties Summary<a class="headerlink" href="#statistical-properties-summary" title="Permanent link">&para;</a></h2>

@@ -47173,81 +47173,81 @@
 - <span class="arithmatex">\(\mu = \mathbb{E}[R]\)</span>: Expected returns
 - <span class="arithmatex">\(\Sigma = \text{Cov}(R)\)</span>: Covariance matrix</p>
 <p><strong>Mean-Variance Problem</strong>:</p>
-<p>$$</p>
-<p>\max_w \left{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w\right\}
+\]</div>
 <p>subject to <span class="arithmatex">\(\mathbf{1}^\top w = 1\)</span> (full investment).</p>
 <p><strong>Solution</strong>: The optimal portfolio is:</p>
-<p>$$</p>
-<p>w^* = \frac{1}{\lambda} \Sigma^{-1}(\mu - \nu \mathbf{1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w^* = \frac{1}{\lambda} \Sigma^{-1}(\mu - \nu \mathbf{1})
+\]</div>
 <p>where <span class="arithmatex">\(\nu\)</span> is the Lagrange multiplier for the budget constraint.</p>
 <h3 id="2-estimation-error-problem">2. Estimation Error Problem<a class="headerlink" href="#2-estimation-error-problem" title="Permanent link">&para;</a></h3>
 <p><strong>Sensitivity Analysis</strong>: The optimal weights depend on <span class="arithmatex">\(\Sigma^{-1} \mu\)</span>. Estimation errors in <span class="arithmatex">\(\mu\)</span> are amplified by <span class="arithmatex">\(\Sigma^{-1}\)</span>.</p>
 <p><strong>Empirical Finding</strong> (Michaud, 1989): Mean-variance optimization is an "error maximizer" — it overweights assets with overestimated returns and underweights those with underestimated returns.</p>
 <p><strong>Estimation Error Magnitudes</strong>: With <span class="arithmatex">\(T\)</span> observations:</p>
-<p>$$</p>
-<p>\text{SE}(\hat{\mu}<em ij="ij">i) \approx \frac{\sigma_i}{\sqrt{T}}, \quad \text{SE}(\hat{\sigma}</em>}) \approx \frac{\sigma_{ij}}{\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{SE}(\hat{\mu}_i) \approx \frac{\sigma_i}{\sqrt{T}}, \quad \text{SE}(\hat{\sigma}_{ij}) \approx \frac{\sigma_{ij}}{\sqrt{T}}
+\]</div>
 <p>For typical parameters (<span class="arithmatex">\(\sigma \approx 20\%\)</span>, <span class="arithmatex">\(T = 60\)</span> months), the standard error of expected return is <span class="arithmatex">\(\approx 2.5\%\)</span> annually — larger than reasonable expected return differences.</p>
 <h2 id="robust-optimization-framework">Robust Optimization Framework<a class="headerlink" href="#robust-optimization-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-uncertainty-sets">1. Uncertainty Sets<a class="headerlink" href="#1-uncertainty-sets" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: An uncertainty set <span class="arithmatex">\(\mathcal{U}\)</span> contains all parameter values considered plausible:</p>
-<p>$$</p>
-<p>(\mu, \Sigma) \in \mathcal{U}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(\mu, \Sigma) \in \mathcal{U}
+\]</div>
 <p><strong>Robust Problem</strong>:</p>
-<p>$$</p>
-<p>\max_w \min_{(\mu, \Sigma) \in \mathcal{U}} \left{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \min_{(\mu, \Sigma) \in \mathcal{U}} \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w\right\}
+\]</div>
 <p><strong>Interpretation</strong>: Maximize the worst-case risk-adjusted return over all plausible parameters.</p>
 <h3 id="2-types-of-uncertainty-sets">2. Types of Uncertainty Sets<a class="headerlink" href="#2-types-of-uncertainty-sets" title="Permanent link">&para;</a></h3>
 <p><strong>Box Uncertainty</strong> (Mean):</p>
-<p>$$</p>
-<p>\mathcal{U}_{\text{box}} = {\mu: |\mu_i - \hat{\mu}_i| \leq \delta_i, \, i = 1, \ldots, n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{U}_{\text{box}} = \{\mu: |\mu_i - \hat{\mu}_i| \leq \delta_i, \, i = 1, \ldots, n\}
+\]</div>
 <p><strong>Ellipsoidal Uncertainty</strong> (Mean):</p>
-<p>$$</p>
-<p>\mathcal{U}_{\text{ellip}} = {\mu: (\mu - \hat{\mu})^\top \Omega^{-1} (\mu - \hat{\mu}) \leq \kappa^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{U}_{\text{ellip}} = \{\mu: (\mu - \hat{\mu})^\top \Omega^{-1} (\mu - \hat{\mu}) \leq \kappa^2\}
+\]</div>
 <p>where <span class="arithmatex">\(\Omega\)</span> is the estimation error covariance and <span class="arithmatex">\(\kappa\)</span> controls the confidence level.</p>
 <p><strong>Factor Model Uncertainty</strong>:</p>
-<p>$$</p>
-<p>\mu = B f + \epsilon, \quad f \in \mathcal{U}_f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu = B f + \epsilon, \quad f \in \mathcal{U}_f
+\]</div>
 <p>with uncertainty in factor returns <span class="arithmatex">\(f\)</span>.</p>
 <h3 id="3-worst-case-analysis">3. Worst-Case Analysis<a class="headerlink" href="#3-worst-case-analysis" title="Permanent link">&para;</a></h3>
 <p><strong>Lemma</strong> (Worst-Case Mean): For ellipsoidal uncertainty <span class="arithmatex">\(\mathcal{U}_{\text{ellip}}\)</span>:</p>
-<p>$$</p>
-<p>\min_{\mu \in \mathcal{U}_{\text{ellip}}} w^\top \mu = w^\top \hat{\mu} - \kappa \sqrt{w^\top \Omega w}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\mu \in \mathcal{U}_{\text{ellip}}} w^\top \mu = w^\top \hat{\mu} - \kappa \sqrt{w^\top \Omega w}
+\]</div>
 <p><strong>Proof</strong>: By Cauchy-Schwarz, the minimum is achieved at:</p>
-<p>$$</p>
-<p>\mu^* = \hat{\mu} - \kappa \frac{\Omega w}{\sqrt{w^\top \Omega w}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu^* = \hat{\mu} - \kappa \frac{\Omega w}{\sqrt{w^\top \Omega w}}
+\]</div>
 <h2 id="goldfarb-iyengar-formulation">Goldfarb-Iyengar Formulation<a class="headerlink" href="#goldfarb-iyengar-formulation" title="Permanent link">&para;</a></h2>
 <h3 id="1-joint-uncertainty-in-mean-and-covariance">1. Joint Uncertainty in Mean and Covariance<a class="headerlink" href="#1-joint-uncertainty-in-mean-and-covariance" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Consider separate uncertainty sets:</p>
-<p>$$</p>
-<p>\mu \in \mathcal{U}<em _mu="\mu">{\mu} = {\mu: |\Sigma</em>)|_2 \leq \delta_1}}^{-1/2}(\mu - \hat{\mu</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Sigma \in \mathcal{U}<em _Sigma="\Sigma">{\Sigma} = {\Sigma: |\Sigma</em>))|_2 \leq \delta_2}}^{-1/2}(\text{vec}(\Sigma) - \text{vec}(\hat{\Sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu \in \mathcal{U}_{\mu} = \{\mu: \|\Sigma_{\mu}^{-1/2}(\mu - \hat{\mu})\|_2 \leq \delta_1\}
+\]</div>
+<div class="arithmatex">\[
+\Sigma \in \mathcal{U}_{\Sigma} = \{\Sigma: \|\Sigma_{\Sigma}^{-1/2}(\text{vec}(\Sigma) - \text{vec}(\hat{\Sigma}))\|_2 \leq \delta_2\}
+\]</div>
 <h3 id="2-socp-reformulation">2. SOCP Reformulation<a class="headerlink" href="#2-socp-reformulation" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Goldfarb-Iyengar, 2003): The robust mean-variance problem:</p>
-<p>$$</p>
-<p>\max_w \min_{\mu \in \mathcal{U}<em _Sigma="\Sigma" _in="\in" _mathcal_U="\mathcal{U">{\mu}} w^\top \mu - \frac{\lambda}{2} \max</em> w^\top \Sigma w}_{\Sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \min_{\mu \in \mathcal{U}_{\mu}} w^\top \mu - \frac{\lambda}{2} \max_{\Sigma \in \mathcal{U}_{\Sigma}} w^\top \Sigma w
+\]</div>
 <p>subject to <span class="arithmatex">\(\mathbf{1}^\top w = 1\)</span>, is equivalent to the SOCP:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \max_{w, t, s} \quad &amp; t - \frac{\lambda}{2} s \\
 \text{s.t.} \quad &amp; w^\top \hat{\mu} - \delta_1 \|\Sigma_{\mu}^{1/2} w\|_2 \geq t \\
 &amp; w^\top \hat{\Sigma} w + \delta_2 \|\Sigma_{\Sigma}^{1/2} (w \otimes w)\|_2 \leq s \\
 &amp; \mathbf{1}^\top w = 1
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <h3 id="3-efficient-computation">3. Efficient Computation<a class="headerlink" href="#3-efficient-computation" title="Permanent link">&para;</a></h3>
 <p><strong>Complexity</strong>: The SOCP can be solved in polynomial time using interior-point methods.</p>
 <p><strong>Software</strong>: CVXPY, MOSEK, Gurobi support SOCP.</p>
@@ -47279,95 +47279,95 @@
 <h2 id="distributional-robustness">Distributional Robustness<a class="headerlink" href="#distributional-robustness" title="Permanent link">&para;</a></h2>
 <h3 id="1-ambiguity-sets">1. Ambiguity Sets<a class="headerlink" href="#1-ambiguity-sets" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Instead of parameter uncertainty, consider uncertainty over the entire distribution:</p>
-<p>$$</p>
-<p>\max_w \min_{P \in \mathcal{P}} \mathbb{E}_P[u(w^\top R)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \min_{P \in \mathcal{P}} \mathbb{E}_P[u(w^\top R)]
+\]</div>
 <p><strong>Common Ambiguity Sets</strong>:</p>
 <ol>
 <li><strong>Moment Constraints</strong>:</li>
 </ol>
-<p>$$</p>
-<p>\mathcal{P} = {P: \mathbb{E}<em _mu="\mu">P[R] \in \mathcal{U}</em>}, \, \mathbb{E<em _Sigma="\Sigma">P[RR^\top] \in \mathcal{U}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \{P: \mathbb{E}_P[R] \in \mathcal{U}_{\mu}, \, \mathbb{E}_P[RR^\top] \in \mathcal{U}_{\Sigma}\}
+\]</div>
 <ol>
 <li><strong>Wasserstein Ball</strong>:</li>
 </ol>
-<p>$$</p>
-<p>\mathcal{P} = {P: W_p(P, \hat{P}) \leq \epsilon}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \{P: W_p(P, \hat{P}) \leq \epsilon\}
+\]</div>
 <ol>
 <li><strong>Relative Entropy Ball</strong>:</li>
 </ol>
-<p>$$</p>
-<p>\mathcal{P} = {P: D_{\text{KL}}(P | \hat{P}) \leq \eta}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \{P: D_{\text{KL}}(P \| \hat{P}) \leq \eta\}
+\]</div>
 <h3 id="2-worst-case-cvar">2. Worst-Case CVaR<a class="headerlink" href="#2-worst-case-cvar" title="Permanent link">&para;</a></h3>
 <p><strong>Distributionally Robust CVaR</strong>:</p>
-<p>$$</p>
-<p>\max_w \min_{P \in \mathcal{P}} \text{CVaR}_{\alpha}^P(w^\top R)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \min_{P \in \mathcal{P}} \text{CVaR}_{\alpha}^P(w^\top R)
+\]</div>
 <p><strong>Theorem</strong> (Zhu-Fukushima, 2009): For Wasserstein ambiguity:</p>
-<p>$$</p>
-<p>\sup_{P: W_1(P, \hat{P}) \leq \epsilon} \text{CVaR}<em _alpha="\alpha">{\alpha}^P(X) = \text{CVaR}</em>}^{\hat{P}}(X) + \frac{\epsilon}{\alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{P: W_1(P, \hat{P}) \leq \epsilon} \text{CVaR}_{\alpha}^P(X) = \text{CVaR}_{\alpha}^{\hat{P}}(X) + \frac{\epsilon}{\alpha}
+\]</div>
 <p><strong>Implication</strong>: Wasserstein robustness adds a penalty proportional to the Lipschitz constant of the loss function.</p>
 <h3 id="3-tractable-reformulations">3. Tractable Reformulations<a class="headerlink" href="#3-tractable-reformulations" title="Permanent link">&para;</a></h3>
 <p><strong>Moment-Based Ambiguity</strong>: With mean <span class="arithmatex">\(\mu \in \mathcal{U}_{\mu}\)</span> and covariance <span class="arithmatex">\(\Sigma \in \mathcal{U}_{\Sigma}\)</span>:</p>
-<p>$$</p>
-<p>\min_{P \in \mathcal{P}} \mathbb{E}_P[-w^\top R] = -w^\top \mu^<em> + \sqrt{w^\top \Sigma^</em> w}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{P \in \mathcal{P}} \mathbb{E}_P[-w^\top R] = -w^\top \mu^* + \sqrt{w^\top \Sigma^* w}
+\]</div>
 <p>where <span class="arithmatex">\((\mu^*, \Sigma^*)\)</span> are worst-case parameters (not necessarily from the same distribution).</p>
 <h2 id="regularization-interpretation">Regularization Interpretation<a class="headerlink" href="#regularization-interpretation" title="Permanent link">&para;</a></h2>
 <h3 id="1-shrinkage-estimators">1. Shrinkage Estimators<a class="headerlink" href="#1-shrinkage-estimators" title="Permanent link">&para;</a></h3>
 <p><strong>James-Stein Shrinkage</strong>: Shrink <span class="arithmatex">\(\hat{\mu}\)</span> toward a target <span class="arithmatex">\(\mu_0\)</span>:</p>
-<p>$$</p>
-<p>\tilde{\mu} = (1-\alpha) \hat{\mu} + \alpha \mu_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{\mu} = (1-\alpha) \hat{\mu} + \alpha \mu_0
+\]</div>
 <p><strong>Optimal Shrinkage</strong> (Ledoit-Wolf):</p>
-<p>$$</p>
-<p>\alpha^* = \frac{\sum_{i=1}^n \text{Var}(\hat{\mu}<em i="1">i)}{|\hat{\mu} - \mu_0|^2 + \sum</em>}^n \text{Var}(\hat{\mu}_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha^* = \frac{\sum_{i=1}^n \text{Var}(\hat{\mu}_i)}{|\hat{\mu} - \mu_0|^2 + \sum_{i=1}^n \text{Var}(\hat{\mu}_i)}
+\]</div>
 <h3 id="2-equivalence-to-robust-optimization">2. Equivalence to Robust Optimization<a class="headerlink" href="#2-equivalence-to-robust-optimization" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The robust portfolio problem with ellipsoidal uncertainty:</p>
-<p>$$</p>
-<p>\max_w \left{w^\top \hat{\mu} - \kappa \sqrt{w^\top \Omega w} - \frac{\lambda}{2} w^\top \Sigma w\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{w^\top \hat{\mu} - \kappa \sqrt{w^\top \Omega w} - \frac{\lambda}{2} w^\top \Sigma w\right\}
+\]</div>
 <p>is equivalent to mean-variance optimization with shrinkage:</p>
-<p>$$</p>
-<p>\max_w \left{w^\top \tilde{\mu} - \frac{\tilde{\lambda}}{2} w^\top \Sigma w\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{w^\top \tilde{\mu} - \frac{\tilde{\lambda}}{2} w^\top \Sigma w\right\}
+\]</div>
 <p>for appropriate <span class="arithmatex">\(\tilde{\mu}\)</span> and <span class="arithmatex">\(\tilde{\lambda}\)</span>.</p>
 <h3 id="3-norm-constraints">3. Norm Constraints<a class="headerlink" href="#3-norm-constraints" title="Permanent link">&para;</a></h3>
 <p><strong>L1 Penalty</strong> (Sparse Portfolios):</p>
-<p>$$</p>
-<p>\max_w \left{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w - \gamma |w|_1\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w - \gamma \|w\|_1\right\}
+\]</div>
 <p><strong>L2 Penalty</strong> (Ridge):</p>
-<p>$$</p>
-<p>\max_w \left{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w - \gamma |w|_2^2\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \left\{w^\top \mu - \frac{\lambda}{2} w^\top \Sigma w - \gamma \|w\|_2^2\right\}
+\]</div>
 <p><strong>Equivalence</strong>: L2 penalty is equivalent to shrinkage toward zero; L1 promotes sparsity.</p>
 <h2 id="black-litterman-model">Black-Litterman Model<a class="headerlink" href="#black-litterman-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-bayesian-framework">1. Bayesian Framework<a class="headerlink" href="#1-bayesian-framework" title="Permanent link">&para;</a></h3>
 <p><strong>Prior</strong>: Market equilibrium returns are the prior:</p>
-<p>$$</p>
-<p>\pi = \lambda \Sigma w_{\text{mkt}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi = \lambda \Sigma w_{\text{mkt}}
+\]</div>
 <p>where <span class="arithmatex">\(w_{\text{mkt}}\)</span> is the market capitalization weighted portfolio.</p>
 <p><strong>Views</strong>: Investor views are expressed as:</p>
-<p>$$</p>
-<p>P \mu = q + \epsilon, \quad \epsilon \sim N(0, \Omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P \mu = q + \epsilon, \quad \epsilon \sim N(0, \Omega)
+\]</div>
 <p>where <span class="arithmatex">\(P\)</span> is the pick matrix and <span class="arithmatex">\(q\)</span> is the view vector.</p>
 <h3 id="2-posterior-returns">2. Posterior Returns<a class="headerlink" href="#2-posterior-returns" title="Permanent link">&para;</a></h3>
 <p><strong>Bayesian Update</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1} [(\tau \Sigma)^{-1} \pi + P^\top \Omega^{-1} q]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1} [(\tau \Sigma)^{-1} \pi + P^\top \Omega^{-1} q]
+\]</div>
 <p><strong>Posterior Covariance</strong>:</p>
-<p>$$</p>
-<p>\text{Cov}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cov}[\mu | \text{views}] = [(\tau \Sigma)^{-1} + P^\top \Omega^{-1} P]^{-1}
+\]</div>
 <h3 id="3-robust-interpretation">3. Robust Interpretation<a class="headerlink" href="#3-robust-interpretation" title="Permanent link">&para;</a></h3>
 <p><strong>Connection</strong>: Black-Litterman shrinks extreme views toward market equilibrium:
 - High confidence views (<span class="arithmatex">\(\Omega\)</span> small): Posterior close to views
@@ -47386,31 +47386,31 @@
 <p><strong>Critique</strong>: Lacks axiomatic foundation; may be suboptimal in certain senses.</p>
 <h3 id="3-bayesian-interpretation">3. Bayesian Interpretation<a class="headerlink" href="#3-bayesian-interpretation" title="Permanent link">&para;</a></h3>
 <p><strong>Connection</strong>: Resampling approximates the Bayesian posterior mean portfolio:</p>
-<p>$$</p>
-<p>\bar{w} \approx \mathbb{E}[w^*(\mu, \Sigma) | \text{data}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{w} \approx \mathbb{E}[w^*(\mu, \Sigma) | \text{data}]
+\]</div>
 <p>where the expectation is over posterior parameter uncertainty.</p>
 <h2 id="factor-model-robustness">Factor Model Robustness<a class="headerlink" href="#factor-model-robustness" title="Permanent link">&para;</a></h2>
 <h3 id="1-factor-structure">1. Factor Structure<a class="headerlink" href="#1-factor-structure" title="Permanent link">&para;</a></h3>
 <p><strong>Model</strong>: Returns follow:</p>
-<p>$$</p>
-<p>R = \alpha + B f + \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R = \alpha + B f + \epsilon
+\]</div>
 <p>where <span class="arithmatex">\(f\)</span> are factor returns, <span class="arithmatex">\(B\)</span> is the loading matrix, and <span class="arithmatex">\(\epsilon\)</span> is idiosyncratic risk.</p>
 <p><strong>Covariance Decomposition</strong>:</p>
-<p>$$</p>
-<p>\Sigma = B \Sigma_f B^\top + D</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma = B \Sigma_f B^\top + D
+\]</div>
 <p>where <span class="arithmatex">\(\Sigma_f\)</span> is factor covariance and <span class="arithmatex">\(D\)</span> is diagonal idiosyncratic covariance.</p>
 <h3 id="2-robust-factor-investing">2. Robust Factor Investing<a class="headerlink" href="#2-robust-factor-investing" title="Permanent link">&para;</a></h3>
 <p><strong>Uncertainty in Loadings</strong>: Consider:</p>
-<p>$$</p>
-<p>\mathcal{U}_B = {B: |B - \hat{B}|_F \leq \delta_B}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{U}_B = \{B: \|B - \hat{B}\|_F \leq \delta_B\}
+\]</div>
 <p><strong>Robust Factor Tilt</strong>:</p>
-<p>$$</p>
-<p>\max_w \min_{B \in \mathcal{U}_B} w^\top B \mathbb{E}[f] - \frac{\lambda}{2} w^\top (B \Sigma_f B^\top + D) w</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_w \min_{B \in \mathcal{U}_B} w^\top B \mathbb{E}[f] - \frac{\lambda}{2} w^\top (B \Sigma_f B^\top + D) w
+\]</div>
 <h3 id="3-estimation-with-few-factors">3. Estimation with Few Factors<a class="headerlink" href="#3-estimation-with-few-factors" title="Permanent link">&para;</a></h3>
 <p><strong>Dimensionality Reduction</strong>: With <span class="arithmatex">\(k \ll n\)</span> factors:
 - <span class="arithmatex">\(n(n+1)/2\)</span> covariance parameters reduced to <span class="arithmatex">\(nk + k(k+1)/2 + n\)</span>
@@ -47419,22 +47419,22 @@
 <h2 id="dynamic-robust-portfolio">Dynamic Robust Portfolio<a class="headerlink" href="#dynamic-robust-portfolio" title="Permanent link">&para;</a></h2>
 <h3 id="1-multi-period-setup">1. Multi-Period Setup<a class="headerlink" href="#1-multi-period-setup" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamics</strong>: Wealth evolves as:</p>
-<p>$$</p>
-<p>W_{t+1} = W_t (1 + r_f + w_t^\top (R_t - r_f \mathbf{1}))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_{t+1} = W_t (1 + r_f + w_t^\top (R_t - r_f \mathbf{1}))
+\]</div>
 <p><strong>Robust Objective</strong>:</p>
-<p>$$</p>
-<p>\max_{w_0, \ldots, w_{T-1}} \min_{P \in \mathcal{P}} \mathbb{E}_P[U(W_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{w_0, \ldots, w_{T-1}} \min_{P \in \mathcal{P}} \mathbb{E}_P[U(W_T)]
+\]</div>
 <h3 id="2-rectangularity">2. Rectangularity<a class="headerlink" href="#2-rectangularity" title="Permanent link">&para;</a></h3>
 <p><strong>Time Consistency</strong>: For dynamic consistency, require <strong>rectangular</strong> ambiguity sets:</p>
-<p>$$</p>
-<p>\mathcal{P} = {P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t\}
+\]</div>
 <p><strong>Bellman Equation</strong>:</p>
-<p>$$</p>
-<p>V_t(w) = \max_{w_t} \min_{P_t \in \mathcal{P}<em P_t="P_t">t} \mathbb{E}</em>_t]}[V_{t+1}(W_{t+1}) | \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t(w) = \max_{w_t} \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[V_{t+1}(W_{t+1}) | \mathcal{F}_t]
+\]</div>
 <h3 id="3-model-predictive-control">3. Model Predictive Control<a class="headerlink" href="#3-model-predictive-control" title="Permanent link">&para;</a></h3>
 <p><strong>Rolling Horizon</strong>: At each <span class="arithmatex">\(t\)</span>:
 1. Solve robust problem over horizon <span class="arithmatex">\([t, t+H]\)</span>

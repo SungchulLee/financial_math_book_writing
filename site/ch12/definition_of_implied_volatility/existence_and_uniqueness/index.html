@@ -46785,15 +46785,15 @@
 <h2 id="general-framework-for-existence-and-uniqueness">General Framework for Existence and Uniqueness<a class="headerlink" href="#general-framework-for-existence-and-uniqueness" title="Permanent link">&para;</a></h2>
 <h3 id="1-abstract-formulation">1. Abstract Formulation<a class="headerlink" href="#1-abstract-formulation" title="Permanent link">&para;</a></h3>
 <p>Consider a pricing functional:</p>
-<p>$$</p>
-<p>F: \mathcal{D} \subset \mathbb{R}<em>+ \to \mathbb{R}</em>+, \quad \sigma \mapsto F(\sigma; \theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F: \mathcal{D} \subset \mathbb{R}_+ \to \mathbb{R}_+, \quad \sigma \mapsto F(\sigma; \theta)
+\]</div>
 <p>where <span class="arithmatex">\(\theta = (S, K, T, r, q)\)</span> represents market parameters (including dividend yield <span class="arithmatex">\(q\)</span> for generality).</p>
 <p><strong>Definition 4.2.1</strong> (Implied Parameter)<br />
 For a given market price <span class="arithmatex">\(P_{\text{market}}\)</span>, the implied parameter <span class="arithmatex">\(\sigma_*\)</span> is the solution to:</p>
-<p>$$</p>
-<p>F(\sigma_*; \theta) = P_{\text{market}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(\sigma_*; \theta) = P_{\text{market}}
+\]</div>
 <h3 id="2-conditions-for-well-posedness">2. Conditions for Well-Posedness<a class="headerlink" href="#2-conditions-for-well-posedness" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.1</strong> (Existence and Uniqueness via Monotonicity)<br />
 Let <span class="arithmatex">\(F: (a, b) \to \mathbb{R}\)</span> be continuous and strictly monotone. Then for any <span class="arithmatex">\(P \in (\inf_{\sigma \in (a,b)} F(\sigma), \sup_{\sigma \in (a,b)} F(\sigma))\)</span>, there exists a unique <span class="arithmatex">\(\sigma_* \in (a, b)\)</span> such that <span class="arithmatex">\(F(\sigma_*) = P\)</span>.</p>
@@ -46802,9 +46802,9 @@ Let <span class="arithmatex">\(F: (a, b) \to \mathbb{R}\)</span> be continuous a
 - <strong>Uniqueness:</strong> Strict monotonicity prevents multiple solutions □</p>
 <h3 id="3-application-to-black-scholes">3. Application to Black-Scholes<a class="headerlink" href="#3-application-to-black-scholes" title="Permanent link">&para;</a></h3>
 <p>For the Black-Scholes call pricing function:</p>
-<p>$$</p>
-<p>C_{\text{BS}}: (0, \infty) \to \mathbb{R}_+, \quad \sigma \mapsto S e^{-qT} \Phi(d_1) - K e^{-rT} \Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{BS}}: (0, \infty) \to \mathbb{R}_+, \quad \sigma \mapsto S e^{-qT} \Phi(d_1) - K e^{-rT} \Phi(d_2)
+\]</div>
 <p>We establish:</p>
 <ol>
 <li><strong>Domain:</strong> <span class="arithmatex">\((0, \infty)\)</span></li>
@@ -46816,17 +46816,17 @@ Let <span class="arithmatex">\(F: (a, b) \to \mathbb{R}\)</span> be continuous a
 <h2 id="detailed-analysis-of-range-and-limits">Detailed Analysis of Range and Limits<a class="headerlink" href="#detailed-analysis-of-range-and-limits" title="Permanent link">&para;</a></h2>
 <h3 id="1-lower-bound-intrinsic-value-limit">1. Lower Bound: Intrinsic Value Limit<a class="headerlink" href="#1-lower-bound-intrinsic-value-limit" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.2</strong> (Zero Volatility Limit)</p>
-<p>$$</p>
-<p>\lim_{\sigma \to 0^+} C_{\text{BS}}(S, K, T, r, q, \sigma) = \max(S e^{-qT} - K e^{-rT}, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\sigma \to 0^+} C_{\text{BS}}(S, K, T, r, q, \sigma) = \max(S e^{-qT} - K e^{-rT}, 0)
+\]</div>
 <p><em>Proof.</em> Consider the forward moneyness <span class="arithmatex">\(m = \frac{S e^{-qT}}{K e^{-rT}} = \frac{S}{K} e^{(r-q)T}\)</span>.</p>
 <p>As <span class="arithmatex">\(\sigma \to 0^+\)</span>:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln m + \sigma^2 T/2}{\sigma \sqrt{T}} \sim \frac{\ln m}{\sigma \sqrt{T}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T} \sim \frac{\ln m}{\sigma \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln m + \sigma^2 T/2}{\sigma \sqrt{T}} \sim \frac{\ln m}{\sigma \sqrt{T}}
+\]</div>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T} \sim \frac{\ln m}{\sigma \sqrt{T}}
+\]</div>
 <p><strong>Case 1:</strong> <span class="arithmatex">\(m &gt; 1\)</span> (in-the-money forward)
 - <span class="arithmatex">\(\ln m &gt; 0 \Rightarrow d_1, d_2 \to +\infty\)</span>
 - <span class="arithmatex">\(\Phi(d_1), \Phi(d_2) \to 1\)</span>
@@ -46840,17 +46840,17 @@ Let <span class="arithmatex">\(F: (a, b) \to \mathbb{R}\)</span> be continuous a
 - Limit gives <span class="arithmatex">\(0\)</span> (zero time value at zero volatility) □</p>
 <h3 id="2-upper-bound-infinite-volatility-limit">2. Upper Bound: Infinite Volatility Limit<a class="headerlink" href="#2-upper-bound-infinite-volatility-limit" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.3</strong> (Infinite Volatility Limit)</p>
-<p>$$</p>
-<p>\lim_{\sigma \to \infty} C_{\text{BS}}(S, K, T, r, q, \sigma) = S e^{-qT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\sigma \to \infty} C_{\text{BS}}(S, K, T, r, q, \sigma) = S e^{-qT}
+\]</div>
 <p><em>Proof.</em> As <span class="arithmatex">\(\sigma \to \infty\)</span>:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r - q)T}{\sigma\sqrt{T}} + \frac{\sigma\sqrt{T}}{2} \to +\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r - q)T}{\sigma\sqrt{T}} + \frac{\sigma\sqrt{T}}{2} \to +\infty
+\]</div>
 <p>(dominated by the <span class="arithmatex">\(+\sigma\sqrt{T}/2\)</span> term)</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + (r - q)T}{\sigma\sqrt{T}} - \frac{\sigma\sqrt{T}}{2} \to -\infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma\sqrt{T} = \frac{\ln(S/K) + (r - q)T}{\sigma\sqrt{T}} - \frac{\sigma\sqrt{T}}{2} \to -\infty
+\]</div>
 <p>Therefore:
 - <span class="arithmatex">\(\Phi(d_1) \to 1\)</span>
 - <span class="arithmatex">\(\Phi(d_2) \to 0\)</span>
@@ -46859,23 +46859,23 @@ Let <span class="arithmatex">\(F: (a, b) \to \mathbb{R}\)</span> be continuous a
 <h3 id="3-characterization-of-admissible-prices">3. Characterization of Admissible Prices<a class="headerlink" href="#3-characterization-of-admissible-prices" title="Permanent link">&para;</a></h3>
 <p><strong>Corollary 4.2.1</strong> (Necessary and Sufficient Conditions for Existence)<br />
 Implied volatility exists for a market price <span class="arithmatex">\(C_{\text{market}}\)</span> if and only if:</p>
-<p>$$</p>
-<p>\max(S e^{-qT} - K e^{-rT}, 0) &lt; C_{\text{market}} &lt; S e^{-qT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S e^{-qT} - K e^{-rT}, 0) &lt; C_{\text{market}} &lt; S e^{-qT}
+\]</div>
 <p>These are precisely the <strong>static no-arbitrage bounds</strong> on European call prices.</p>
 <h2 id="strict-monotonicity-vega-analysis">Strict Monotonicity: Vega Analysis<a class="headerlink" href="#strict-monotonicity-vega-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="1-vega-formula">1. Vega Formula<a class="headerlink" href="#1-vega-formula" title="Permanent link">&para;</a></h3>
 <p>The derivative of the Black-Scholes price with respect to volatility:</p>
-<p>$$</p>
-<p>\mathcal{V} := \frac{\partial C_{\text{BS}}}{\partial \sigma} = S e^{-qT} \phi(d_1) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} := \frac{\partial C_{\text{BS}}}{\partial \sigma} = S e^{-qT} \phi(d_1) \sqrt{T}
+\]</div>
 <p>where <span class="arithmatex">\(\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\)</span> is the standard normal density.</p>
 <h3 id="2-positivity-and-implications">2. Positivity and Implications<a class="headerlink" href="#2-positivity-and-implications" title="Permanent link">&para;</a></h3>
 <p><strong>Proposition 4.2.1</strong> (Strict Positivity of Vega)<br />
 For all <span class="arithmatex">\((S, K, T, r, q, \sigma)\)</span> with <span class="arithmatex">\(S &gt; 0\)</span>, <span class="arithmatex">\(T &gt; 0\)</span>, <span class="arithmatex">\(\sigma &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{V}(\sigma) &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}(\sigma) &gt; 0
+\]</div>
 <p><em>Proof.</em> Each factor is strictly positive:
 - <span class="arithmatex">\(S e^{-qT} &gt; 0\)</span> (discounted spot)
 - <span class="arithmatex">\(\phi(d_1) &gt; 0\)</span> (Gaussian density is positive everywhere)
@@ -46886,87 +46886,87 @@ The map <span class="arithmatex">\(\sigma \mapsto C_{\text{BS}}(\sigma)\)</span>
 <p>While vega is always positive, its magnitude varies with moneyness and maturity. </p>
 <p><strong>Proposition 4.2.2</strong> (Vega Bounds)<br />
 For <span class="arithmatex">\(\sigma \in [\sigma_{\min}, \sigma_{\max}]\)</span> and fixed <span class="arithmatex">\((S, K, T)\)</span>:</p>
-<p>$$</p>
-<p>\inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathcal{V}(\sigma) &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\sigma \in [\sigma_{\min}, \sigma_{\max}]} \mathcal{V}(\sigma) &gt; 0
+\]</div>
 <p><em>Proof.</em> On any compact interval <span class="arithmatex">\([\sigma_{\min}, \sigma_{\max}]\)</span>, the continuous positive function <span class="arithmatex">\(\mathcal{V}\)</span> attains its infimum, which is strictly positive by Proposition 4.2.1. □</p>
 <p>This ensures that the inverse map <span class="arithmatex">\(C \mapsto \sigma_{\text{IV}}\)</span> has bounded derivative:</p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\mathcal{V}(\sigma_{\text{IV}})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\mathcal{V}(\sigma_{\text{IV}})}
+\]</div>
 <h2 id="continuity-and-differentiability-of-the-inverse-map">Continuity and Differentiability of the Inverse Map<a class="headerlink" href="#continuity-and-differentiability-of-the-inverse-map" title="Permanent link">&para;</a></h2>
 <h3 id="1-continuous-dependence-on-price">1. Continuous Dependence on Price<a class="headerlink" href="#1-continuous-dependence-on-price" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.4</strong> (Continuity of Implied Volatility)<br />
 The implied volatility map:</p>
-<p>$$</p>
-<p>\mathcal{I}: (C_{\text{intrinsic}}, S e^{-qT}) \to (0, \infty), \quad C \mapsto \sigma_{\text{IV}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{I}: (C_{\text{intrinsic}}, S e^{-qT}) \to (0, \infty), \quad C \mapsto \sigma_{\text{IV}}
+\]</div>
 <p>is continuous.</p>
 <p><em>Proof.</em> Let <span class="arithmatex">\(C_n \to C\)</span> with <span class="arithmatex">\(C_n, C \in (C_{\text{intrinsic}}, S e^{-qT})\)</span>. Let <span class="arithmatex">\(\sigma_n = \mathcal{I}(C_n)\)</span>.</p>
 <p>By definition: <span class="arithmatex">\(C_{\text{BS}}(\sigma_n) = C_n\)</span></p>
 <p>Since <span class="arithmatex">\(\{\sigma_n\}\)</span> is bounded (contained in preimage of bounded set under continuous <span class="arithmatex">\(C_{\text{BS}}\)</span>), extract convergent subsequence <span class="arithmatex">\(\sigma_{n_k} \to \sigma_*\)</span>.</p>
 <p>By continuity of <span class="arithmatex">\(C_{\text{BS}}\)</span>:</p>
-<p>$$</p>
-<p>C_{\text{BS}}(\sigma_*) = \lim_{k \to \infty} C_{\text{BS}}(\sigma_{n_k}) = \lim_{k \to \infty} C_{n_k} = C</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{BS}}(\sigma_*) = \lim_{k \to \infty} C_{\text{BS}}(\sigma_{n_k}) = \lim_{k \to \infty} C_{n_k} = C
+\]</div>
 <p>By uniqueness, <span class="arithmatex">\(\sigma_* = \mathcal{I}(C)\)</span>. Full sequence converges by uniqueness of limit. □</p>
 <h3 id="2-smoothness-via-implicit-function-theorem">2. Smoothness via Implicit Function Theorem<a class="headerlink" href="#2-smoothness-via-implicit-function-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.5</strong> (Differentiability of Implied Volatility)<br />
 The implied volatility is <span class="arithmatex">\(C^\infty\)</span> smooth with:</p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\mathcal{V}(\sigma_{\text{IV}})} = \frac{1}{S e^{-qT} \phi(d_1(\sigma_{\text{IV}})) \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{IV}}}{dC} = \frac{1}{\mathcal{V}(\sigma_{\text{IV}})} = \frac{1}{S e^{-qT} \phi(d_1(\sigma_{\text{IV}})) \sqrt{T}}
+\]</div>
 <p><em>Proof.</em> Apply the Implicit Function Theorem to:</p>
-<p>$$</p>
-<p>G(C, \sigma) = C_{\text{BS}}(\sigma) - C = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(C, \sigma) = C_{\text{BS}}(\sigma) - C = 0
+\]</div>
 <p>We have:
 - <span class="arithmatex">\(\frac{\partial G}{\partial \sigma} = \mathcal{V}(\sigma) \neq 0\)</span> (non-degeneracy condition satisfied)
 - <span class="arithmatex">\(C_{\text{BS}}\)</span> is <span class="arithmatex">\(C^\infty\)</span> in <span class="arithmatex">\(\sigma\)</span></p>
 <p>Therefore, the implicit function <span class="arithmatex">\(\sigma_{\text{IV}}(C)\)</span> is <span class="arithmatex">\(C^\infty\)</span> with:</p>
-<p>$$</p>
-<p>\frac{d\sigma_{\text{IV}}}{dC} = -\frac{\partial G/\partial C}{\partial G/\partial \sigma} = -\frac{-1}{\mathcal{V}} = \frac{1}{\mathcal{V}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_{\text{IV}}}{dC} = -\frac{\partial G/\partial C}{\partial G/\partial \sigma} = -\frac{-1}{\mathcal{V}} = \frac{1}{\mathcal{V}}
+\]</div>
 <p>Higher derivatives follow by differentiation. □</p>
 <h3 id="3-second-derivative-curvature-of-inverse-map">3. Second Derivative: Curvature of Inverse Map<a class="headerlink" href="#3-second-derivative-curvature-of-inverse-map" title="Permanent link">&para;</a></h3>
 <p>Differentiating the relation <span class="arithmatex">\(C_{\text{BS}}(\sigma_{\text{IV}}(C)) = C\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{V}(\sigma_{\text{IV}}) \frac{d\sigma_{\text{IV}}}{dC} = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}(\sigma_{\text{IV}}) \frac{d\sigma_{\text{IV}}}{dC} = 1
+\]</div>
 <p>Differentiate again:</p>
-<p>$$</p>
-<p>\frac{d\mathcal{V}}{d\sigma}\bigg|<em _text_IV="\text{IV">{\sigma=\sigma</em> = 0}}} \left(\frac{d\sigma_{\text{IV}}}{dC}\right)^2 + \mathcal{V} \frac{d^2\sigma_{\text{IV}}}{dC^2</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{d^2\sigma_{\text{IV}}}{dC^2} = -\frac{d\mathcal{V}/d\sigma}{\mathcal{V}^3}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathcal{V}}{d\sigma}\bigg|_{\sigma=\sigma_{\text{IV}}} \left(\frac{d\sigma_{\text{IV}}}{dC}\right)^2 + \mathcal{V} \frac{d^2\sigma_{\text{IV}}}{dC^2} = 0
+\]</div>
+<div class="arithmatex">\[
+\frac{d^2\sigma_{\text{IV}}}{dC^2} = -\frac{d\mathcal{V}/d\sigma}{\mathcal{V}^3}
+\]</div>
 <p>where <span class="arithmatex">\(d\mathcal{V}/d\sigma\)</span> is the <strong>vomma</strong> (or volga):</p>
-<p>$$</p>
-<p>\frac{d\mathcal{V}}{d\sigma} = S e^{-qT} \phi(d_1) \sqrt{T} \cdot \frac{d_1 d_2}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathcal{V}}{d\sigma} = S e^{-qT} \phi(d_1) \sqrt{T} \cdot \frac{d_1 d_2}{\sigma}
+\]</div>
 <h2 id="boundary-behavior-and-non-existence-cases">Boundary Behavior and Non-Existence Cases<a class="headerlink" href="#boundary-behavior-and-non-existence-cases" title="Permanent link">&para;</a></h2>
 <h3 id="1-behavior-near-intrinsic-value">1. Behavior Near Intrinsic Value<a class="headerlink" href="#1-behavior-near-intrinsic-value" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(C \to C_{\text{intrinsic}}^+\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(C) \to 0^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(C) \to 0^+
+\]</div>
 <p>The rate of convergence depends on moneyness:</p>
 <p><strong>Proposition 4.2.3</strong> (Rate of Convergence to Zero)<br />
 For deep ITM options with <span class="arithmatex">\(m = S e^{-qT}/(K e^{-rT}) \gg 1\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} \sim \sqrt{\frac{2|\ln(C/C_{\text{intrinsic}})|}{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} \sim \sqrt{\frac{2|\ln(C/C_{\text{intrinsic}})|}{T}}
+\]</div>
 <p>as <span class="arithmatex">\(C \to C_{\text{intrinsic}}^+\)</span>.</p>
 <h3 id="2-behavior-near-upper-bound">2. Behavior Near Upper Bound<a class="headerlink" href="#2-behavior-near-upper-bound" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(C \to (S e^{-qT})^-\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(C) \to \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(C) \to \infty
+\]</div>
 <p><strong>Proposition 4.2.4</strong> (Divergence Rate)<br />
 As <span class="arithmatex">\(C \to S e^{-qT}\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} \sim \sqrt{\frac{2 \ln(1/(1 - C/(S e^{-qT})))}{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} \sim \sqrt{\frac{2 \ln(1/(1 - C/(S e^{-qT})))}{T}}
+\]</div>
 <h3 id="3-non-existence-arbitrage-violations">3. Non-Existence: Arbitrage Violations<a class="headerlink" href="#3-non-existence-arbitrage-violations" title="Permanent link">&para;</a></h3>
 <p>Implied volatility fails to exist when:</p>
 <p><strong>Case 1:</strong> <span class="arithmatex">\(C \leq C_{\text{intrinsic}}\)</span><br />
@@ -46986,23 +46986,23 @@ Price at or above discounted spot (short option, buy stock, guaranteed profit)</
 <h3 id="1-lipschitz-continuity">1. Lipschitz Continuity<a class="headerlink" href="#1-lipschitz-continuity" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.6</strong> (Local Lipschitz Continuity)<br />
 On any compact interval <span class="arithmatex">\([C_1, C_2] \subset (C_{\text{intrinsic}}, S e^{-qT})\)</span>, the implied volatility map is Lipschitz continuous:</p>
-<p>$$</p>
-<p>|\sigma_{\text{IV}}(C') - \sigma_{\text{IV}}(C)| \leq L |C' - C|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\sigma_{\text{IV}}(C') - \sigma_{\text{IV}}(C)| \leq L |C' - C|
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>L = \sup_{C \in [C_1, C_2]} \frac{1}{\mathcal{V}(\sigma_{\text{IV}}(C))}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L = \sup_{C \in [C_1, C_2]} \frac{1}{\mathcal{V}(\sigma_{\text{IV}}(C))}
+\]</div>
 <p><em>Proof.</em> By Mean Value Theorem:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(C') - \sigma_{\text{IV}}(C) = \frac{d\sigma_{\text{IV}}}{dC}\bigg|_{C=\xi} (C' - C)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(C') - \sigma_{\text{IV}}(C) = \frac{d\sigma_{\text{IV}}}{dC}\bigg|_{C=\xi} (C' - C)
+\]</div>
 <p>for some <span class="arithmatex">\(\xi \in (C, C')\)</span>. The Lipschitz constant is the supremum of the derivative. □</p>
 <h3 id="2-condition-number-analysis">2. Condition Number Analysis<a class="headerlink" href="#2-condition-number-analysis" title="Permanent link">&para;</a></h3>
 <p>The <strong>condition number</strong> for the inversion problem:</p>
-<p>$$</p>
-<p>\kappa = \left| \frac{C}{\sigma_{\text{IV}}} \frac{d\sigma_{\text{IV}}}{dC} \right| = \frac{C}{\sigma_{\text{IV}} \mathcal{V}(\sigma_{\text{IV}})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\kappa = \left| \frac{C}{\sigma_{\text{IV}}} \frac{d\sigma_{\text{IV}}}{dC} \right| = \frac{C}{\sigma_{\text{IV}} \mathcal{V}(\sigma_{\text{IV}})}
+\]</div>
 <p>measures sensitivity of implied volatility to relative errors in price.</p>
 <p><strong>Proposition 4.2.5</strong> (Ill-Conditioning Regimes)<br />
 The condition number <span class="arithmatex">\(\kappa \to \infty\)</span> as:
@@ -47012,23 +47012,23 @@ The condition number <span class="arithmatex">\(\kappa \to \infty\)</span> as:
 <h2 id="extension-to-other-instruments">Extension to Other Instruments<a class="headerlink" href="#extension-to-other-instruments" title="Permanent link">&para;</a></h2>
 <h3 id="1-put-options">1. Put Options<a class="headerlink" href="#1-put-options" title="Permanent link">&para;</a></h3>
 <p>For European puts, by put-call parity:</p>
-<p>$$</p>
-<p>P_{\text{BS}}(S, K, T, r, q, \sigma) = C_{\text{BS}}(S, K, T, r, q, \sigma) - S e^{-qT} + K e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{BS}}(S, K, T, r, q, \sigma) = C_{\text{BS}}(S, K, T, r, q, \sigma) - S e^{-qT} + K e^{-rT}
+\]</div>
 <p>Since put-call parity is model-independent:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^{\text{put}} = \sigma_{\text{IV}}^{\text{call}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^{\text{put}} = \sigma_{\text{IV}}^{\text{call}}
+\]</div>
 <p>for the same <span class="arithmatex">\((K, T)\)</span>. The existence and uniqueness analysis is identical, with modified intrinsic value bounds.</p>
 <h3 id="2-binary-options">2. Binary Options<a class="headerlink" href="#2-binary-options" title="Permanent link">&para;</a></h3>
 <p>For digital (binary) calls with payoff <span class="arithmatex">\(\mathbb{1}_{S_T &gt; K}\)</span>:</p>
-<p>$$</p>
-<p>D_{\text{BS}}(\sigma) = e^{-rT} \Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{BS}}(\sigma) = e^{-rT} \Phi(d_2)
+\]</div>
 <p><strong>Monotonicity fails</strong> for binary options:</p>
-<p>$$</p>
-<p>\frac{\partial D_{\text{BS}}}{\partial \sigma} = -e^{-rT} \phi(d_2) \frac{d_2}{\sigma} = -e^{-rT} \phi(d_2) \frac{\ln(S/K) + (r - q - \sigma^2/2)T}{\sigma^2 \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial D_{\text{BS}}}{\partial \sigma} = -e^{-rT} \phi(d_2) \frac{d_2}{\sigma} = -e^{-rT} \phi(d_2) \frac{\ln(S/K) + (r - q - \sigma^2/2)T}{\sigma^2 \sqrt{T}}
+\]</div>
 <p>This can be positive or negative depending on moneyness, destroying uniqueness of implied volatility for digitals.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The existence and uniqueness of implied volatility rests on:</p>

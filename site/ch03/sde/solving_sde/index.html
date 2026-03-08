@@ -47552,9 +47552,9 @@
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <h3 id="1-general-form-of-an-sde">1. General Form of an SDE<a class="headerlink" href="#1-general-form-of-an-sde" title="Permanent link">&para;</a></h3>
 <p>An Itô stochastic differential equation takes the form:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(X_t\)</span> is the stochastic process (unknown function)
 - <span class="arithmatex">\(\mu(X_t, t)\)</span> is the <strong>drift term</strong> (deterministic trend)
@@ -47562,9 +47562,9 @@
 - <span class="arithmatex">\(W_t\)</span> is standard <strong>Brownian motion</strong></p>
 <h3 id="2-what-does-solving-mean">2. What Does "Solving" Mean?<a class="headerlink" href="#2-what-does-solving-mean" title="Permanent link">&para;</a></h3>
 <p>We seek an <strong>explicit formula</strong> for <span class="arithmatex">\(X_t\)</span> as a function of <span class="arithmatex">\(W_t\)</span> and <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>X_t = f(W_t, t, X_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = f(W_t, t, X_0)
+\]</div>
 <p>This allows us to:
 - Compute exact distributions
 - Calculate moments analytically
@@ -47582,27 +47582,27 @@
 <p>We begin with three fundamental SDEs that motivate our solution methods. Understanding these deeply provides the foundation for all subsequent techniques.</p>
 <h3 id="1-example-1-brownian-motion-with-drift">1. Example 1: Brownian Motion with Drift<a class="headerlink" href="#1-example-1-brownian-motion-with-drift" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}
+\]</div>
 <p><strong>Physical interpretation:</strong>
 - Particle subject to constant force (<span class="arithmatex">\(\mu\)</span>)
 - Plus random thermal fluctuations (<span class="arithmatex">\(\sigma dW_t\)</span>)</p>
 <p><strong>Solution:</strong></p>
 <p>This is the simplest non-trivial SDE. Direct integration yields:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 X_t &amp;= X_0 + \int_0^t \mu\,ds + \int_0^t \sigma\,dW_s \\
 &amp;= X_0 + \mu t + \sigma B_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>where <span class="arithmatex">\(B_t = \int_0^t dW_s\)</span> is Brownian motion.</p>
 <p><strong>Distribution:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Properties:</strong>
 - <strong>Gaussian process</strong> with linear mean growth
 - Stationary and independent increments
@@ -47611,81 +47611,81 @@ X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)
 <p><strong>Why this matters:</strong> This example motivates <strong>Method 1: Direct Integration</strong>.</p>
 <h3 id="2-example-2-geometric-brownian-motion">2. Example 2: Geometric Brownian Motion<a class="headerlink" href="#2-example-2-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 &gt; 0
+\]</div>
 <p><strong>Financial interpretation:</strong>
 - Stock price with expected return <span class="arithmatex">\(\mu\)</span>
 - Volatility proportional to price level (<span class="arithmatex">\(\sigma S_t\)</span>)
 - Foundation of Black-Scholes-Merton theory</p>
 <p><strong>Motivation: Comparison with Deterministic Case</strong></p>
 <p>If there were <strong>no random term</strong>, we would solve via separation of variables:</p>
-<p>$$</p>
-<p>\frac{dS_t}{S_t} = \mu\,dt \quad \Rightarrow \quad \int_0^T \frac{dS_t}{S_t} = \mu T \quad \Rightarrow \quad \log S_T - \log S_0 = \mu T</p>
-<p>$$</p>
-<p>$$</p>
-<p>S_T = S_0 e^{\mu T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS_t}{S_t} = \mu\,dt \quad \Rightarrow \quad \int_0^T \frac{dS_t}{S_t} = \mu T \quad \Rightarrow \quad \log S_T - \log S_0 = \mu T
+\]</div>
+<div class="arithmatex">\[
+S_T = S_0 e^{\mu T}
+\]</div>
 <p><strong>Attempt 1: Direct integration?</strong></p>
-<p>$$</p>
-<p>S_t \stackrel{?}{=} S_0 + \int_0^t \mu S_s\,ds + \int_0^t \sigma S_s\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t \stackrel{?}{=} S_0 + \int_0^t \mu S_s\,ds + \int_0^t \sigma S_s\,dW_s
+\]</div>
 <p>This doesn't help because <span class="arithmatex">\(S_s\)</span> appears inside the integrals!</p>
 <p><strong>Key insight:</strong> The <strong>multiplicative</strong> structure suggests a <strong>logarithmic transformation</strong>.</p>
 <p><strong>Solution via Itô's Lemma:</strong></p>
 <p>Define <span class="arithmatex">\(Y_t = \log S_t\)</span>. Compute partial derivatives:</p>
-<p>$$</p>
-<p>\frac{\partial}{\partial S}(\log S) = \frac{1}{S}, \quad \frac{\partial^2}{\partial S^2}(\log S) = -\frac{1}{S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial S}(\log S) = \frac{1}{S}, \quad \frac{\partial^2}{\partial S^2}(\log S) = -\frac{1}{S^2}
+\]</div>
 <p>Apply Itô's lemma:</p>
-<p>$$</p>
-<p>d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\log S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
+\]</div>
 <p>Substitute <span class="arithmatex">\(dS_t = \mu S_t\,dt + \sigma S_t\,dW_t\)</span>:</p>
-<p>$$</p>
-<p>d(\log S_t) = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2S_t^2} \cdot (\sigma S_t)^2\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\log S_t) = \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) - \frac{1}{2S_t^2} \cdot (\sigma S_t)^2\,dt
+\]</div>
+<div class="arithmatex">\[
+= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt
+\]</div>
+<div class="arithmatex">\[
+= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
+\]</div>
 <p>This is now <strong>linear</strong> like Example 1! Use <strong>Method 1: Direct Integration</strong>:</p>
-<p>$$</p>
-<p>\log S_t - \log S_0 = \int_0^t \left(\mu - \frac{\sigma^2}{2}\right)ds + \int_0^t \sigma\,dW_s</p>
-<p>$$</p>
-<p>$$</p>
-<p>\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_t - \log S_0 = \int_0^t \left(\mu - \frac{\sigma^2}{2}\right)ds + \int_0^t \sigma\,dW_s
+\]</div>
+<div class="arithmatex">\[
+\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
+\]</div>
 <p>Exponentiate to solve for <span class="arithmatex">\(S_t\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Distribution Analysis:</strong></p>
 <p>Since <span class="arithmatex">\(W_t \sim \mathcal{N}(0, t)\)</span>, we have:</p>
-<p>$$</p>
-<p>\sigma W_t \sim \mathcal{N}(0, \sigma^2 t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma W_t \sim \mathcal{N}(0, \sigma^2 t)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_t \sim \mathcal{N}\left(\log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)
+\]</div>
 <p>So <span class="arithmatex">\(S_t\)</span> is <strong>log-normally distributed</strong> with PDF:</p>
-<p>$$</p>
-<p>f_{S_t}(x) = \frac{1}{x\sqrt{2\pi\sigma^2 t}}\exp\left(-\frac{(\log x - \log S_0 - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_{S_t}(x) = \frac{1}{x\sqrt{2\pi\sigma^2 t}}\exp\left(-\frac{(\log x - \log S_0 - (\mu - \sigma^2/2)t)^2}{2\sigma^2 t}\right)
+\]</div>
 <p><strong>The Itô Correction Term:</strong></p>
 <p>The crucial term <span class="arithmatex">\(-\frac{\sigma^2}{2}\)</span> is not a typo—it emerges from the quadratic variation:</p>
-<p>$$</p>
-<p>(dS_t)^2 = (\sigma S_t\,dW_t)^2 = \sigma^2 S_t^2\,(dW_t)^2 = \sigma^2 S_t^2\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dS_t)^2 = (\sigma S_t\,dW_t)^2 = \sigma^2 S_t^2\,(dW_t)^2 = \sigma^2 S_t^2\,dt
+\]</div>
 <p>By Itô's lemma, this contributes:</p>
-<p>$$</p>
-<p>-\frac{1}{2}\frac{1}{S_t^2} \cdot \sigma^2 S_t^2\,dt = -\frac{\sigma^2}{2}\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\frac{1}{2}\frac{1}{S_t^2} \cdot \sigma^2 S_t^2\,dt = -\frac{\sigma^2}{2}\,dt
+\]</div>
 <p>This is <strong>unique to stochastic calculus</strong> and does not appear in ordinary deterministic calculus.</p>
 <p><strong>Properties of the Solution:</strong></p>
 <ul>
@@ -47697,53 +47697,53 @@ S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
 <p><strong>Why this matters:</strong> This example motivates <strong>Method 2: Itô's Lemma (Change of Variables)</strong>. It shows how transformations can convert multiplicative SDEs into additive ones, enabling analytical solutions.</p>
 <h3 id="3-example-3-vasicek-model-mean-reverting-process">3. Example 3: Vasicek Model (Mean-Reverting Process)<a class="headerlink" href="#3-example-3-vasicek-model-mean-reverting-process" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad a &gt; 0, \quad b \in \mathbb{R}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad a &gt; 0, \quad b \in \mathbb{R}
+\]</div>
 <p><strong>Financial interpretation:</strong>
 - Interest rate <span class="arithmatex">\(r_t\)</span> pulled toward long-run level <span class="arithmatex">\(b\)</span>
 - Speed of mean reversion: <span class="arithmatex">\(a\)</span>
 - Constant volatility: <span class="arithmatex">\(\sigma\)</span></p>
 <p><strong>Rewrite:</strong></p>
-<p>$$</p>
-<p>dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
+\]</div>
 <p>This looks like an ODE plus noise! Recall from ODEs: for <span class="arithmatex">\(\frac{dy}{dt} + ay = f(t)\)</span>, we use integrating factor <span class="arithmatex">\(e^{at}\)</span>.</p>
 <p><strong>Solution via integrating factor:</strong></p>
 <p>Multiply both sides by <span class="arithmatex">\(e^{at}\)</span>:</p>
-<p>$$</p>
-<p>e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t
+\]</div>
 <p>The left side is exactly <span class="arithmatex">\(d(e^{at}r_t)\)</span> because:</p>
-<p>$$</p>
-<p>d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt
+\]</div>
 <p>(No Itô correction: <span class="arithmatex">\(e^{at}\)</span> is non-random!)</p>
 <p>Therefore:</p>
-<p>$$</p>
-<p>d(e^{at}r_t) = abe^{at}\,dt + \sigma e^{at}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{at}r_t) = abe^{at}\,dt + \sigma e^{at}\,dW_t
+\]</div>
 <p>Integrate from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>e^{at}r_t - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s</p>
-<p>$$</p>
-<p>$$</p>
-<p>e^{at}r_t = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{at}r_t - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s
+\]</div>
+<div class="arithmatex">\[
+e^{at}r_t = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s
+\]</div>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Alternative form:</strong></p>
-<p>$$</p>
-<p>r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma\int_0^t e^{-a(t-s)}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma\int_0^t e^{-a(t-s)}\,dW_s
+\]</div>
 <p><strong>Long-term behavior:</strong></p>
-<p>$$</p>
-<p>\lim_{t \to \infty} \mathbb{E}[r_t] = b, \quad \lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{t \to \infty} \mathbb{E}[r_t] = b, \quad \lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}
+\]</div>
 <p>The process is <strong>Gaussian</strong> and <strong>mean-reverting</strong>.</p>
 <p><strong>Limitation:</strong> May become negative (problematic for interest rates).</p>
 <p><strong>Why this matters:</strong> This example motivates <strong>Method 3: Integrating Factor</strong>.</p>
@@ -47751,43 +47751,43 @@ r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
 <h2 id="method-1-direct-integration">Method 1: Direct Integration<a class="headerlink" href="#method-1-direct-integration" title="Permanent link">&para;</a></h2>
 <h3 id="1-when-it-works">1. When It Works<a class="headerlink" href="#1-when-it-works" title="Permanent link">&para;</a></h3>
 <p><strong>Class of SDEs:</strong> Additive noise with simple drift.</p>
-<p>$$</p>
-<p>dX_t = b(t)\,dt + \sigma(t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(t)\,dt + \sigma(t)\,dW_t
+\]</div>
 <p>where <span class="arithmatex">\(b(t)\)</span> and <span class="arithmatex">\(\sigma(t)\)</span> are known functions of time only (not of <span class="arithmatex">\(X_t\)</span>).</p>
 <h3 id="2-general-solution">2. General Solution<a class="headerlink" href="#2-general-solution" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <ul>
 <li>First integral: ordinary Riemann integral</li>
 <li>Second integral: Itô stochastic integral</li>
 </ul>
 <h3 id="3-special-cases">3. Special Cases<a class="headerlink" href="#3-special-cases" title="Permanent link">&para;</a></h3>
 <p><strong>Constant coefficients</strong> (Example 1):</p>
-<p>$$</p>
-<p>dX_t = \mu\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + \mu t + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + \mu t + \sigma W_t
+\]</div>
 <p><strong>Time-dependent drift:</strong></p>
-<p>$$</p>
-<p>dX_t = \sin(t)\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + (1 - \cos(t)) + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \sin(t)\,dt + \sigma\,dW_t \quad \Rightarrow \quad X_t = X_0 + (1 - \cos(t)) + \sigma W_t
+\]</div>
 <p><strong>Time-dependent volatility:</strong></p>
-<p>$$</p>
-<p>dX_t = 0\,dt + e^{-t}\,dW_t \quad \Rightarrow \quad X_t = X_0 + \int_0^t e^{-s}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = 0\,dt + e^{-t}\,dW_t \quad \Rightarrow \quad X_t = X_0 + \int_0^t e^{-s}\,dW_s
+\]</div>
 <h3 id="4-computing-moments">4. Computing Moments<a class="headerlink" href="#4-computing-moments" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s\)</span>:</p>
 <p><strong>Mean:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[X_t] = X_0 + \int_0^t b(s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t] = X_0 + \int_0^t b(s)\,ds
+\]</div>
 <p><strong>Variance (using Itô isometry):</strong></p>
-<p>$$</p>
-<p>\text{Var}(X_t) = \mathbb{E}\left[\left(\int_0^t \sigma(s)\,dW_s\right)^2\right] = \int_0^t \sigma^2(s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(X_t) = \mathbb{E}\left[\left(\int_0^t \sigma(s)\,dW_s\right)^2\right] = \int_0^t \sigma^2(s)\,ds
+\]</div>
 <h3 id="5-limitations">5. Limitations<a class="headerlink" href="#5-limitations" title="Permanent link">&para;</a></h3>
 <p><strong>Does NOT work for:</strong>
 - Multiplicative noise: <span class="arithmatex">\(dS_t = \mu S_t\,dt + \sigma S_t\,dW_t\)</span>
@@ -47797,59 +47797,59 @@ X_t = X_0 + \int_0^t b(s)\,ds + \int_0^t \sigma(s)\,dW_s
 <h2 id="method-2-itos-lemma-change-of-variables">Method 2: Itô's Lemma (Change of Variables)<a class="headerlink" href="#method-2-itos-lemma-change-of-variables" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-fundamental-tool">1. The Fundamental Tool<a class="headerlink" href="#1-the-fundamental-tool" title="Permanent link">&para;</a></h3>
 <p><strong>Itô's Lemma</strong> is the chain rule for stochastic calculus. For <span class="arithmatex">\(Y_t = f(X_t)\)</span> where <span class="arithmatex">\(X_t\)</span> satisfies:</p>
-<p>$$</p>
-<p>dX_t = b(X_t, t)\,dt + \sigma(X_t, t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
+\]</div>
 <p>we have:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dY_t = \left(\frac{\partial f}{\partial t} + b\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\right)dt + \sigma\frac{\partial f}{\partial x}\,dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Key difference from ordinary calculus:</strong> The second derivative term <span class="arithmatex">\(\frac{1}{2}\sigma^2 f_{xx}\)</span>.</p>
 <h3 id="2-strategy-for-solving-sdes">2. Strategy for Solving SDEs<a class="headerlink" href="#2-strategy-for-solving-sdes" title="Permanent link">&para;</a></h3>
 <p><strong>Goal:</strong> Find transformation <span class="arithmatex">\(Y_t = f(X_t)\)</span> such that:</p>
-<p>$$</p>
-<p>dY_t = \text{simple SDE (e.g., constant coefficients)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = \text{simple SDE (e.g., constant coefficients)}
+\]</div>
 <p>Then:
 1. Solve for <span class="arithmatex">\(Y_t\)</span> using direct integration
 2. Invert: <span class="arithmatex">\(X_t = f^{-1}(Y_t)\)</span></p>
 <h3 id="3-the-gbm-example-revisited-example-2">3. The GBM Example Revisited (Example 2)<a class="headerlink" href="#3-the-gbm-example-revisited-example-2" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
+\]</div>
 <p><strong>Transformation:</strong> <span class="arithmatex">\(Y_t = \log S_t\)</span></p>
-<p>$$</p>
-<p>\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}
+\]</div>
 <p><strong>Apply Itô's lemma:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)(\sigma S_t)^2\,dt \\
 &amp;= \mu\,dt + \sigma\,dW_t - \frac{\sigma^2}{2}\,dt \\
 &amp;= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma\,dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>Now use Method 1 (direct integration):</p>
-<p>$$</p>
-<p>\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t
+\]</div>
 <p>Invert:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+\]</div>
 <h3 id="4-general-power-transformations">4. General Power Transformations<a class="headerlink" href="#4-general-power-transformations" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dX_t = bX_t\,dt + \sigma X_t^\beta\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = bX_t\,dt + \sigma X_t^\beta\,dW_t
+\]</div>
 <p><strong>Try transformation:</strong> <span class="arithmatex">\(Y_t = X_t^{1-\beta}\)</span> for <span class="arithmatex">\(\beta \neq 1\)</span>.</p>
 <p>After applying Itô's lemma, we get:</p>
-<p>$$</p>
-<p>dY_t = (1-\beta)bY_t\,dt - \frac{(1-\beta)\beta\sigma^2}{2}Y_t^{(2\beta-1)/(1-\beta)}\,dt + (1-\beta)\sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = (1-\beta)bY_t\,dt - \frac{(1-\beta)\beta\sigma^2}{2}Y_t^{(2\beta-1)/(1-\beta)}\,dt + (1-\beta)\sigma\,dW_t
+\]</div>
 <p>This is simpler only for special <span class="arithmatex">\(\beta\)</span> values.</p>
 <p><strong>Special case:</strong> <span class="arithmatex">\(\beta = 1/2\)</span> gives a nearly linear SDE.</p>
 <h3 id="5-choosing-the-right-transformation">5. Choosing the Right Transformation<a class="headerlink" href="#5-choosing-the-right-transformation" title="Permanent link">&para;</a></h3>
@@ -47884,60 +47884,60 @@ d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\l
 <h2 id="method-3-integrating-factor-linear-sdes">Method 3: Integrating Factor (Linear SDEs)<a class="headerlink" href="#method-3-integrating-factor-linear-sdes" title="Permanent link">&para;</a></h2>
 <h3 id="1-when-it-works_1">1. When It Works<a class="headerlink" href="#1-when-it-works_1" title="Permanent link">&para;</a></h3>
 <p><strong>Class of SDEs:</strong> Linear in <span class="arithmatex">\(X_t\)</span> with deterministic coefficients.</p>
-<p>$$</p>
-<p>dX_t = [a(t) + b(t)X_t]\,dt + [c(t) + d(t)X_t]\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = [a(t) + b(t)X_t]\,dt + [c(t) + d(t)X_t]\,dW_t
+\]</div>
 <h3 id="2-the-vasicek-example-revisited-example-3">2. The Vasicek Example Revisited (Example 3)<a class="headerlink" href="#2-the-vasicek-example-revisited-example-3" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dr_t = a(b - r_t)\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = a(b - r_t)\,dt + \sigma\,dW_t
+\]</div>
 <p><strong>Rewrite in standard form:</strong></p>
-<p>$$</p>
-<p>dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
+\]</div>
 <p><strong>Integrating factor:</strong> <span class="arithmatex">\(\mu(t) = e^{at}\)</span></p>
 <p><strong>Key insight:</strong> Multiplying by <span class="arithmatex">\(e^{at}\)</span> makes the left side a perfect differential:</p>
-<p>$$</p>
-<p>d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{at}r_t) = e^{at}dr_t + ae^{at}r_t\,dt
+\]</div>
 <p><strong>Why no Itô correction?</strong> Because <span class="arithmatex">\(e^{at}\)</span> is deterministic (no <span class="arithmatex">\(dW\)</span> term).</p>
 <p><strong>General solution:</strong></p>
-<p>$$</p>
-<p>r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
+\]</div>
 <h3 id="3-general-linear-sde-solution">3. General Linear SDE Solution<a class="headerlink" href="#3-general-linear-sde-solution" title="Permanent link">&para;</a></h3>
 <p>For:</p>
-<p>$$</p>
-<p>dX_t = [a(t) + b(t)X_t]\,dt + c(t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = [a(t) + b(t)X_t]\,dt + c(t)\,dW_t
+\]</div>
 <p><strong>Integrating factor:</strong> <span class="arithmatex">\(\mu(t) = \exp\left(\int_0^t b(s)\,ds\right)\)</span></p>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<p>X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)a(s)\,ds + \int_0^t \mu(s)c(s)\,dW_s\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)a(s)\,ds + \int_0^t \mu(s)c(s)\,dW_s\right]
+\]</div>
 <h3 id="4-when-theres-diffusion-in-x_t">4. When There's Diffusion in X_t<a class="headerlink" href="#4-when-theres-diffusion-in-x_t" title="Permanent link">&para;</a></h3>
 <p>For:</p>
-<p>$$</p>
-<p>dX_t = b(t)X_t\,dt + d(t)X_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(t)X_t\,dt + d(t)X_t\,dW_t
+\]</div>
 <p>The integrating factor must account for <strong>both</strong> drift and diffusion:</p>
-<p>$$</p>
-<p>Y_t = X_t \exp\left(-\int_0^t b(s)\,ds + \frac{1}{2}\int_0^t d^2(s)\,ds - \int_0^t d(s)\,dW_s\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = X_t \exp\left(-\int_0^t b(s)\,ds + \frac{1}{2}\int_0^t d^2(s)\,ds - \int_0^t d(s)\,dW_s\right)
+\]</div>
 <p>Then <span class="arithmatex">\(Y_t\)</span> is a <strong>martingale</strong>.</p>
 <hr />
 <h2 id="more-core-examples">More Core Examples<a class="headerlink" href="#more-core-examples" title="Permanent link">&para;</a></h2>
 <h3 id="1-standard-brownian-motion">1. Standard Brownian Motion<a class="headerlink" href="#1-standard-brownian-motion" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dB_t = dW_t, \quad B_0 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dB_t = dW_t, \quad B_0 = 0
+\]</div>
 <p><strong>Solution:</strong></p>
 <p>This <strong>defines</strong> Brownian motion itself:</p>
-<p>$$</p>
-<p>B_t = \int_0^t dW_s = B_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = \int_0^t dW_s = B_t
+\]</div>
 <p><strong>Properties:</strong>
 - <span class="arithmatex">\(B_t \sim \mathcal{N}(0, t)\)</span>
 - Continuous paths
@@ -47947,9 +47947,9 @@ d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\l
 <p><strong>Why this matters:</strong> Brownian motion is the building block of all Itô processes.</p>
 <h3 id="2-cox-ingersoll-ross-cir-model">2. Cox-Ingersoll-Ross (CIR) Model<a class="headerlink" href="#2-cox-ingersoll-ross-cir-model" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
+\]</div>
 <p><strong>Why it's different:</strong></p>
 <ul>
 <li><strong>State-dependent diffusion</strong> <span class="arithmatex">\(\sigma\sqrt{r_t}\)</span> (unlike Vasicek)</li>
@@ -47960,16 +47960,16 @@ d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\l
 <ol>
 <li><strong>Distribution:</strong> Scaled non-central chi-squared</li>
 </ol>
-<p>$$</p>
-<p>r_t \sim \frac{\sigma^2(1-e^{-at})}{4a}\chi_{\nu}^2\left(\frac{4ae^{-at}}{\sigma^2(1-e^{-at})}r_0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t \sim \frac{\sigma^2(1-e^{-at})}{4a}\chi_{\nu}^2\left(\frac{4ae^{-at}}{\sigma^2(1-e^{-at})}r_0\right)
+\]</div>
 <p>where <span class="arithmatex">\(\nu = \frac{4ab}{\sigma^2}\)</span>.</p>
 <ol>
 <li><strong>Moments:</strong> (see Moment Analysis section)</li>
 </ol>
-<p>$$</p>
-<p>\mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
+\]</div>
 <ol>
 <li><strong>Characteristic function:</strong> Satisfies Riccati ODE</li>
 </ol>
@@ -47984,21 +47984,21 @@ d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\l
 <h2 id="method-4-martingale-representation">Method 4: Martingale Representation<a class="headerlink" href="#method-4-martingale-representation" title="Permanent link">&para;</a></h2>
 <h3 id="1-principle">1. Principle<a class="headerlink" href="#1-principle" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(M_t = g(X_t, t)\)</span> is a <strong>martingale</strong>, then:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t | \mathcal{F}_s] = M_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t | \mathcal{F}_s] = M_s
+\]</div>
 <p>This constrains the distribution of <span class="arithmatex">\(X_t\)</span>.</p>
 <h3 id="2-finding-martingales-via-itos-lemma">2. Finding Martingales via Itô's Lemma<a class="headerlink" href="#2-finding-martingales-via-itos-lemma" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(M_t\)</span> to be a martingale, its drift must vanish:</p>
-<p>$$</p>
-<p>\frac{\partial g}{\partial t} + b(x)\frac{\partial g}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 g}{\partial x^2} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial g}{\partial t} + b(x)\frac{\partial g}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 g}{\partial x^2} = 0
+\]</div>
 <p>This is the <strong>backward Kolmogorov equation</strong>.</p>
 <h3 id="3-example-exponential-martingale">3. Example: Exponential Martingale<a class="headerlink" href="#3-example-exponential-martingale" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dX_t = \mu\,dt + \sigma\,dW_t\)</span>, consider:</p>
-<p>$$</p>
-<p>M_t = \exp\left[\lambda X_t - \left(\lambda\mu + \frac{\lambda^2\sigma^2}{2}\right)t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t = \exp\left[\lambda X_t - \left(\lambda\mu + \frac{\lambda^2\sigma^2}{2}\right)t\right]
+\]</div>
 <p><strong>Verification:</strong> Apply Itô's lemma to check <span class="arithmatex">\(dM_t\)</span> has no <span class="arithmatex">\(dt\)</span> term.</p>
 <p><strong>Applications:</strong>
 - Change of measure (Girsanov)
@@ -48008,41 +48008,41 @@ d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\l
 <h2 id="method-5-separation-of-variables-lamperti-transform">Method 5: Separation of Variables (Lamperti Transform)<a class="headerlink" href="#method-5-separation-of-variables-lamperti-transform" title="Permanent link">&para;</a></h2>
 <h3 id="1-goal">1. Goal<a class="headerlink" href="#1-goal" title="Permanent link">&para;</a></h3>
 <p>Transform SDE with state-dependent diffusion to <strong>unit diffusion</strong>:</p>
-<p>$$</p>
-<p>dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t \quad \Rightarrow \quad dY_t = \tilde{b}(Y_t)\,dt + dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t \quad \Rightarrow \quad dY_t = \tilde{b}(Y_t)\,dt + dW_t
+\]</div>
 <h3 id="2-lamperti-transform">2. Lamperti Transform<a class="headerlink" href="#2-lamperti-transform" title="Permanent link">&para;</a></h3>
 <p><strong>Transformation:</strong></p>
-<p>$$</p>
-<p>Y_t = h(X_t) = \int_{X_0}^{X_t} \frac{du}{\sigma(u)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = h(X_t) = \int_{X_0}^{X_t} \frac{du}{\sigma(u)}
+\]</div>
 <p><strong>Result:</strong> The transformed SDE has unit diffusion coefficient.</p>
 <h3 id="3-example-cir-model">3. Example: CIR Model<a class="headerlink" href="#3-example-cir-model" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t
+\]</div>
 <p><strong>Lamperti transform:</strong></p>
-<p>$$</p>
-<p>Y_t = \int_{r_0}^{r_t} \frac{du}{\sigma\sqrt{u}} = \frac{2}{\sigma}(\sqrt{r_t} - \sqrt{r_0})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = \int_{r_0}^{r_t} \frac{du}{\sigma\sqrt{u}} = \frac{2}{\sigma}(\sqrt{r_t} - \sqrt{r_0})
+\]</div>
 <p><strong>Inverted:</strong> <span class="arithmatex">\(r_t = \left(\frac{\sigma}{2}Y_t + \sqrt{r_0}\right)^2\)</span></p>
 <p>The transformed SDE relates to <strong>squared Bessel processes</strong>.</p>
 <hr />
 <h2 id="method-6-variation-of-constants">Method 6: Variation of Constants<a class="headerlink" href="#method-6-variation-of-constants" title="Permanent link">&para;</a></h2>
 <h3 id="1-for-non-homogeneous-linear-sdes">1. For Non-Homogeneous Linear SDEs<a class="headerlink" href="#1-for-non-homogeneous-linear-sdes" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dX_t = [\alpha(t) - \beta(t)X_t]\,dt + \sigma(t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = [\alpha(t) - \beta(t)X_t]\,dt + \sigma(t)\,dW_t
+\]</div>
 <p><strong>Strategy:</strong>
 1. Solve homogeneous part: <span class="arithmatex">\(dY_t = -\beta(t)Y_t\,dt\)</span>
 2. Use solution as integrating factor
 3. Add particular solution</p>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<p>X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)\alpha(s)\,ds + \int_0^t \mu(s)\sigma(s)\,dW_s\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = \frac{1}{\mu(t)}\left[X_0 + \int_0^t \mu(s)\alpha(s)\,ds + \int_0^t \mu(s)\sigma(s)\,dW_s\right]
+\]</div>
 <p>where <span class="arithmatex">\(\mu(t) = \exp\left(\int_0^t \beta(s)\,ds\right)\)</span>.</p>
 <h3 id="2-application-time-dependent-mean-reversion">2. Application: Time-Dependent Mean Reversion<a class="headerlink" href="#2-application-time-dependent-mean-reversion" title="Permanent link">&para;</a></h3>
 <p>Generalizes Vasicek to time-dependent parameters (useful for fitting yield curves).</p>
@@ -48050,56 +48050,56 @@ d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\l
 <h2 id="method-7-feynman-kac-sde-pde-connection">Method 7: Feynman-Kac (SDE ↔ PDE Connection)<a class="headerlink" href="#method-7-feynman-kac-sde-pde-connection" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-bridge">1. The Bridge<a class="headerlink" href="#1-the-bridge" title="Permanent link">&para;</a></h3>
 <p>Given SDE:</p>
-<p>$$</p>
-<p>dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
+\]</div>
 <p>Define:</p>
-<p>$$</p>
-<p>u(t, x) = \mathbb{E}[\phi(X_T) | X_t = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t, x) = \mathbb{E}[\phi(X_T) | X_t = x]
+\]</div>
 <p>Then <span class="arithmatex">\(u\)</span> satisfies the <strong>backward Kolmogorov PDE</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + b(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + b(x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 u}{\partial x^2} = 0
+\]</div>
 <h3 id="2-black-scholes-as-feynman-kac">2. Black-Scholes as Feynman-Kac<a class="headerlink" href="#2-black-scholes-as-feynman-kac" title="Permanent link">&para;</a></h3>
 <p>For GBM under risk-neutral measure:</p>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>The call option price:</p>
-<p>$$</p>
-<p>C(t, S_t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | S_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(t, S_t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | S_t]
+\]</div>
 <p>satisfies the Black-Scholes PDE.</p>
 <hr />
 <h2 id="method-8-girsanovs-theorem-change-of-measure">Method 8: Girsanov's Theorem (Change of Measure)<a class="headerlink" href="#method-8-girsanovs-theorem-change-of-measure" title="Permanent link">&para;</a></h2>
 <h3 id="1-changing-the-drift">1. Changing the Drift<a class="headerlink" href="#1-changing-the-drift" title="Permanent link">&para;</a></h3>
 <p><strong>Girsanov's Theorem:</strong> We can change the drift by changing probability measure.</p>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span> (with market price of risk <span class="arithmatex">\(\theta = \frac{\mu - r}{\sigma}\)</span>):</p>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>where <span class="arithmatex">\(W_t^{\mathbb{Q}} = W_t + \theta t\)</span>.</p>
 <h3 id="2-application-risk-neutral-pricing">2. Application: Risk-Neutral Pricing<a class="headerlink" href="#2-application-risk-neutral-pricing" title="Permanent link">&para;</a></h3>
 <p>Now <span class="arithmatex">\(e^{-rt}S_t\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale, enabling:</p>
-<p>$$</p>
-<p>\text{Option Price} = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\text{Payoff} | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Option Price} = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\text{Payoff} | \mathcal{F}_t]
+\]</div>
 <hr />
 <h2 id="method-9-similarity-solutions">Method 9: Similarity Solutions<a class="headerlink" href="#method-9-similarity-solutions" title="Permanent link">&para;</a></h2>
 <h3 id="1-scale-invariant-sdes">1. Scale-Invariant SDEs<a class="headerlink" href="#1-scale-invariant-sdes" title="Permanent link">&para;</a></h3>
 <p>For SDEs with homogeneity properties, seek solutions:</p>
-<p>$$</p>
-<p>X_t = t^\alpha f(W_t/t^\beta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = t^\alpha f(W_t/t^\beta)
+\]</div>
 <h3 id="2-example-quadratic-sde">2. Example: Quadratic SDE<a class="headerlink" href="#2-example-quadratic-sde" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dX_t = X_t^2\,dt + dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = X_t^2\,dt + dW_t
+\]</div>
 <p>May exhibit <strong>finite-time explosion</strong>. Similarity methods help characterize blow-up behavior.</p>
 <hr />
 <h2 id="summary-matching-methods-to-sdes">Summary: Matching Methods to SDEs<a class="headerlink" href="#summary-matching-methods-to-sdes" title="Permanent link">&para;</a></h2>
@@ -48196,25 +48196,25 @@ d(\log S_t) &amp;= \frac{1}{S_t}(\mu S_t\,dt + \sigma S_t\,dW_t) + \frac{1}{2}\l
 <hr />
 <h2 id="worked-example-custom-sde">Worked Example: Custom SDE<a class="headerlink" href="#worked-example-custom-sde" title="Permanent link">&para;</a></h2>
 <p><strong>Problem:</strong> Solve</p>
-<p>$$</p>
-<p>dX_t = (1 - X_t)\,dt + \sqrt{X_t}\,dW_t, \quad X_0 = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = (1 - X_t)\,dt + \sqrt{X_t}\,dW_t, \quad X_0 = 1
+\]</div>
 <p><strong>Step 1: Recognize structure</strong></p>
 <p>This is CIR-type with <span class="arithmatex">\(\kappa = 1\)</span>, <span class="arithmatex">\(\theta = 1\)</span>, <span class="arithmatex">\(\sigma = 1\)</span>.</p>
 <p><strong>Step 2: Check Feller condition</strong></p>
-<p>$$</p>
-<p>2\kappa\theta = 2(1)(1) = 2 \geq \sigma^2 = 1 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+2\kappa\theta = 2(1)(1) = 2 \geq \sigma^2 = 1 \quad \checkmark
+\]</div>
 <p>Therefore <span class="arithmatex">\(X_t &gt; 0\)</span> for all <span class="arithmatex">\(t &gt; 0\)</span>.</p>
 <p><strong>Step 3: No closed-form path solution</strong></p>
 <p>But we can find:</p>
 <p><strong>Moments:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[X_t] = 1 \quad \text{(constant!)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}[X_t] = e^{-t}(1 - e^{-t}) + \frac{1}{2}(1 - e^{-t})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t] = 1 \quad \text{(constant!)}
+\]</div>
+<div class="arithmatex">\[
+\text{Var}[X_t] = e^{-t}(1 - e^{-t}) + \frac{1}{2}(1 - e^{-t})^2
+\]</div>
 <p><strong>Distribution:</strong> Scaled non-central <span class="arithmatex">\(\chi^2\)</span> with <span class="arithmatex">\(\nu = 4\)</span>.</p>
 <p><strong>Simulation:</strong> Use exact CIR simulation or Euler-Maruyama with positivity preservation.</p>
 <hr />

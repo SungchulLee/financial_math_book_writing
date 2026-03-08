@@ -46804,56 +46804,56 @@
 <hr />
 <h2 id="the-calibration-optimization-problem">The calibration optimization problem<a class="headerlink" href="#the-calibration-optimization-problem" title="Permanent link">&para;</a></h2>
 <p>Recall that calibration seeks</p>
-<p>$$</p>
-<p>\hat\theta \in \arg\min_{\theta \in \Theta} \; \mathcal{L}(\theta),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat\theta \in \arg\min_{\theta \in \Theta} \; \mathcal{L}(\theta)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}(\theta)\)</span> measures misfit between model prices and market data. In the weighted least-squares case,</p>
-<p>$$</p>
-<p>\mathcal{L}(\theta) = \frac{1}{2} \sum_{j=1}^m w_j \left( f_j(\theta) - y_j \right)^2 = \frac{1}{2} |r(\theta)|_W^2,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(\theta) = \frac{1}{2} \sum_{j=1}^m w_j \left( f_j(\theta) - y_j \right)^2 = \frac{1}{2} \|r(\theta)\|_W^2
+\]</div>
 <p>with residual vector <span class="arithmatex">\(r(\theta) = (f_1(\theta) - y_1, \ldots, f_m(\theta) - y_m)^\top\)</span>.</p>
 <p>The problem may include constraints:</p>
-<p>$$</p>
-<p>\min_{\theta} \; \mathcal{L}(\theta) \quad \text{subject to} \quad g_i(\theta) \le 0, \; h_j(\theta) = 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta} \; \mathcal{L}(\theta) \quad \text{subject to} \quad g_i(\theta) \le 0, \; h_j(\theta) = 0
+\]</div>
 <p>Typical constraints in finance include positivity (variances, intensities), the Feller condition, and bounds on correlation.</p>
 <hr />
 <h2 id="local-optimization-methods">Local optimization methods<a class="headerlink" href="#local-optimization-methods" title="Permanent link">&para;</a></h2>
 <p>Local methods find a minimum near a given starting point. They are fast but may converge to local minima.</p>
 <h3 id="gradient-descent">Gradient descent<a class="headerlink" href="#gradient-descent" title="Permanent link">&para;</a></h3>
 <p>The simplest approach updates parameters along the negative gradient:</p>
-<p>$$</p>
-<p>\theta^{(k+1)} = \theta^{(k)} - \alpha_k \nabla \mathcal{L}(\theta^{(k)}),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta^{(k+1)} = \theta^{(k)} - \alpha_k \nabla \mathcal{L}(\theta^{(k)})
+\]</div>
 <p>where <span class="arithmatex">\(\alpha_k &gt; 0\)</span> is the step size (learning rate).</p>
 <p><strong>Advantages:</strong> Simple, low memory.</p>
 <p><strong>Disadvantages:</strong> Slow convergence, sensitive to step size, poor performance on ill-conditioned problems.</p>
 <p>In calibration, pure gradient descent is rarely used due to the ill-conditioning inherent in inverse problems.</p>
 <h3 id="newtons-method">Newton's method<a class="headerlink" href="#newtons-method" title="Permanent link">&para;</a></h3>
 <p>Newton's method uses second-order information:</p>
-<p>$$</p>
-<p>\theta^{(k+1)} = \theta^{(k)} - H^{-1}(\theta^{(k)}) \nabla \mathcal{L}(\theta^{(k)}),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta^{(k+1)} = \theta^{(k)} - H^{-1}(\theta^{(k)}) \nabla \mathcal{L}(\theta^{(k)})
+\]</div>
 <p>where <span class="arithmatex">\(H = \nabla^2 \mathcal{L}\)</span> is the Hessian.</p>
 <p><strong>Advantages:</strong> Quadratic convergence near a minimum.</p>
 <p><strong>Disadvantages:</strong> Requires Hessian computation and inversion; Hessian may be indefinite far from the solution.</p>
 <h3 id="gaussnewton-method">Gauss–Newton method<a class="headerlink" href="#gaussnewton-method" title="Permanent link">&para;</a></h3>
 <p>For least-squares problems, the Hessian can be approximated. Let <span class="arithmatex">\(J(\theta) = \nabla_\theta r(\theta) \in \mathbb{R}^{m \times d}\)</span> be the Jacobian of the residual. Then</p>
-<p>$$</p>
-<p>\nabla \mathcal{L} = J^\top W r, \qquad H \approx J^\top W J,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nabla \mathcal{L} = J^\top W r, \qquad H \approx J^\top W J
+\]</div>
 <p>ignoring second-order terms in <span class="arithmatex">\(r\)</span>. The Gauss–Newton update solves</p>
-<p>$$</p>
-<p>(J^\top W J) \Delta\theta = -J^\top W r,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(J^\top W J) \Delta\theta = -J^\top W r
+\]</div>
 <p>and sets <span class="arithmatex">\(\theta^{(k+1)} = \theta^{(k)} + \Delta\theta\)</span>.</p>
 <p><strong>Advantages:</strong> No Hessian computation; often effective for mildly nonlinear problems.</p>
 <p><strong>Disadvantages:</strong> May fail when <span class="arithmatex">\(J^\top W J\)</span> is singular or when the problem is highly nonlinear.</p>
 <h3 id="levenbergmarquardt-algorithm">Levenberg–Marquardt algorithm<a class="headerlink" href="#levenbergmarquardt-algorithm" title="Permanent link">&para;</a></h3>
 <p>The Levenberg–Marquardt (LM) algorithm interpolates between Gauss–Newton and gradient descent:</p>
-<p>$$</p>
-<p>(J^\top W J + \lambda I) \Delta\theta = -J^\top W r.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(J^\top W J + \lambda I) \Delta\theta = -J^\top W r
+\]</div>
 <p>The damping parameter <span class="arithmatex">\(\lambda \ge 0\)</span> is adjusted adaptively:</p>
 <ul>
 <li>Large <span class="arithmatex">\(\lambda\)</span>: behaves like gradient descent (safe but slow).</li>
@@ -46870,14 +46870,14 @@
 <p>Levenberg–Marquardt is the <strong>standard workhorse</strong> for calibration in quantitative finance.</p>
 <h3 id="trust-region-methods">Trust-region methods<a class="headerlink" href="#trust-region-methods" title="Permanent link">&para;</a></h3>
 <p>Trust-region methods constrain the step size rather than the direction. At each iteration, solve</p>
-<p>$$</p>
-<p>\min_{|\Delta\theta| \le \Delta_k} \; q(\Delta\theta),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\|\Delta\theta\| \le \Delta_k} \; q(\Delta\theta)
+\]</div>
 <p>where <span class="arithmatex">\(q\)</span> is a local quadratic model of <span class="arithmatex">\(\mathcal{L}\)</span> and <span class="arithmatex">\(\Delta_k\)</span> is the trust-region radius.</p>
 <p>The radius is adjusted based on the ratio of actual to predicted reduction:</p>
-<p>$$</p>
-<p>\rho_k = \frac{\mathcal{L}(\theta^{(k)}) - \mathcal{L}(\theta^{(k)} + \Delta\theta)}{q(0) - q(\Delta\theta)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_k = \frac{\mathcal{L}(\theta^{(k)}) - \mathcal{L}(\theta^{(k)} + \Delta\theta)}{q(0) - q(\Delta\theta)}
+\]</div>
 <ul>
 <li><span class="arithmatex">\(\rho_k \approx 1\)</span>: good model, expand trust region.</li>
 <li><span class="arithmatex">\(\rho_k\)</span> small or negative: poor model, shrink trust region.</li>
@@ -46902,9 +46902,9 @@
 <li>Initialize a population of <span class="arithmatex">\(N_p\)</span> candidate solutions.</li>
 <li>For each candidate <span class="arithmatex">\(\theta_i\)</span>, create a mutant:</li>
 </ol>
-<p>$$</p>
-<p>v_i = \theta_{r_1} + F(\theta_{r_2} - \theta_{r_3}),</p>
-<p>$$</p>
+<p>$$
+   v_i = \theta_{r_1} + F(\theta_{r_2} - \theta_{r_3})
+   $$</p>
 <p>where <span class="arithmatex">\(r_1, r_2, r_3\)</span> are distinct random indices and <span class="arithmatex">\(F \in (0, 2]\)</span> is the mutation factor.
 3. Crossover: mix components of <span class="arithmatex">\(v_i\)</span> and <span class="arithmatex">\(\theta_i\)</span> to form trial vector <span class="arithmatex">\(u_i\)</span>.
 4. Selection: replace <span class="arithmatex">\(\theta_i\)</span> with <span class="arithmatex">\(u_i\)</span> if <span class="arithmatex">\(\mathcal{L}(u_i) &lt; \mathcal{L}(\theta_i)\)</span>.
@@ -46913,20 +46913,20 @@
 <p><strong>Disadvantages:</strong> Many function evaluations; tuning required (<span class="arithmatex">\(F\)</span>, crossover rate, population size).</p>
 <h3 id="particle-swarm-optimization">Particle swarm optimization<a class="headerlink" href="#particle-swarm-optimization" title="Permanent link">&para;</a></h3>
 <p>Particle swarm optimization (PSO) maintains a swarm of particles, each with position <span class="arithmatex">\(\theta_i\)</span> and velocity <span class="arithmatex">\(v_i\)</span>:</p>
-<p>$$</p>
-<p>v_i \leftarrow \omega v_i + c_1 r_1 (p_i - \theta_i) + c_2 r_2 (g - \theta_i),</p>
-<p>$$</p>
-<p>$$</p>
-<p>\theta_i \leftarrow \theta_i + v_i,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+v_i \leftarrow \omega v_i + c_1 r_1 (p_i - \theta_i) + c_2 r_2 (g - \theta_i)
+\]</div>
+<div class="arithmatex">\[
+\theta_i \leftarrow \theta_i + v_i
+\]</div>
 <p>where <span class="arithmatex">\(p_i\)</span> is the particle's best position, <span class="arithmatex">\(g\)</span> is the global best, <span class="arithmatex">\(\omega\)</span> is inertia, and <span class="arithmatex">\(c_1, c_2\)</span> are cognitive/social parameters.</p>
 <p><strong>Advantages:</strong> Simple, parallelizable, derivative-free.</p>
 <p><strong>Disadvantages:</strong> Can be slow to converge; parameter tuning needed.</p>
 <h3 id="simulated-annealing">Simulated annealing<a class="headerlink" href="#simulated-annealing" title="Permanent link">&para;</a></h3>
 <p>Simulated annealing accepts worse solutions with probability</p>
-<p>$$</p>
-<p>P(\text{accept}) = \exp\left( -\frac{\Delta \mathcal{L}}{T} \right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(\text{accept}) = \exp\left( -\frac{\Delta \mathcal{L}}{T} \right)
+\]</div>
 <p>where <span class="arithmatex">\(T\)</span> is the temperature, which decreases over time (cooling schedule).</p>
 <p><strong>Advantages:</strong> Can escape local minima; simple to implement.</p>
 <p><strong>Disadvantages:</strong> Slow; cooling schedule is problem-dependent.</p>
@@ -46977,17 +46977,17 @@
 <h2 id="convergence-diagnostics">Convergence diagnostics<a class="headerlink" href="#convergence-diagnostics" title="Permanent link">&para;</a></h2>
 <p>Reliable stopping criteria are essential:</p>
 <h3 id="gradient-norm">Gradient norm<a class="headerlink" href="#gradient-norm" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>|\nabla \mathcal{L}(\theta^{(k)})| &lt; \epsilon_g.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|\nabla \mathcal{L}(\theta^{(k)})\| &lt; \epsilon_g
+\]</div>
 <h3 id="relative-parameter-change">Relative parameter change<a class="headerlink" href="#relative-parameter-change" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{|\theta^{(k+1)} - \theta^{(k)}|}{|\theta^{(k)}| + 1} &lt; \epsilon_\theta.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\|\theta^{(k+1)} - \theta^{(k)}\|}{\|\theta^{(k)}\| + 1} &lt; \epsilon_\theta
+\]</div>
 <h3 id="relative-objective-change">Relative objective change<a class="headerlink" href="#relative-objective-change" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{|\mathcal{L}(\theta^{(k+1)}) - \mathcal{L}(\theta^{(k)})|}{|\mathcal{L}(\theta^{(k)})| + 1} &lt; \epsilon_{\mathcal{L}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{|\mathcal{L}(\theta^{(k+1)}) - \mathcal{L}(\theta^{(k)})|}{|\mathcal{L}(\theta^{(k)})| + 1} &lt; \epsilon_{\mathcal{L}}
+\]</div>
 <h3 id="maximum-iterations">Maximum iterations<a class="headerlink" href="#maximum-iterations" title="Permanent link">&para;</a></h3>
 <p>A hard cap prevents infinite loops but should not be the primary criterion.</p>
 <h3 id="practical-recommendations">Practical recommendations<a class="headerlink" href="#practical-recommendations" title="Permanent link">&para;</a></h3>

@@ -46921,9 +46921,9 @@
 <p>since <span class="arithmatex">\(W_{ct}-W_{cs}\sim \mathcal{N}(0,c(t-s)I_d)\)</span>.</p>
 <p>The increments are independent (by independent increments of <span class="arithmatex">\(W\)</span>), and paths are continuous. Thus <span class="arithmatex">\(\widetilde{W}\)</span> satisfies all four conditions for Brownian motion. <span class="arithmatex">\(\square\)</span></p>
 <p>Hence we write the <strong>self-similarity (scaling) property</strong>:</p>
-<p>$$\boxed{</p>
-<p>{W_{ct}}<em 0="0" t_ge="t\ge">{t\ge 0}\;\overset{d}{=}\;{\sqrt{c}\,W_t}</em></p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\{W_{ct}\}_{t\ge 0}\;\overset{d}{=}\;\{\sqrt{c}\,W_t\}_{t\ge 0}
+}\]</div>
 <p><strong>Remark:</strong> This is a restatement of Theorem 1.3.8 from Brownian Motion Foundations. We now explore its deeper implications.</p>
 <h3 id="2-consequence-1-typical-increment-size">2. Consequence 1: Typical Increment Size<a class="headerlink" href="#2-consequence-1-typical-increment-size" title="Permanent link">&para;</a></h3>
 <p>For small <span class="arithmatex">\(\Delta t&gt;0\)</span>,</p>
@@ -47046,9 +47046,9 @@
 <p>The fundamental result connecting continuous martingales to Brownian motion is:</p>
 <p><strong>Theorem 1.4.4</strong> (Dambis-Dubins-Schwarz)</p>
 <p>Let <span class="arithmatex">\(M = \{M_t\}_{t \ge 0}\)</span> be a continuous local martingale with <span class="arithmatex">\(M_0 = 0\)</span> and <span class="arithmatex">\(\langle M \rangle_\infty = \infty\)</span>. Then there exists a Brownian motion <span class="arithmatex">\(\{B_u\}_{u\ge 0}\)</span> such that:</p>
-<p>$$\boxed{</p>
-<p>M_t = B_{\langle M\rangle_t}, \quad t\ge 0</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+M_t = B_{\langle M\rangle_t}, \quad t\ge 0
+}\]</div>
 <p>More precisely, if we define <span class="arithmatex">\(\tau(u) = \inf\{t : \langle M \rangle_t &gt; u\}\)</span>, then:</p>
 <div class="arithmatex">\[B_u := M_{\tau(u)}\]</div>
 <p>is a standard Brownian motion.</p>
@@ -47087,9 +47087,9 @@
 <p>where <span class="arithmatex">\(H_s\)</span> is a predictable process, the quadratic variation is:</p>
 <div class="arithmatex">\[\langle M\rangle_t = \int_0^t H_s^2\,ds\]</div>
 <p>By the Dambis-Dubins-Schwarz theorem, there exists a Brownian motion <span class="arithmatex">\(\{B_u\}\)</span> such that:</p>
-<p>$$\boxed{</p>
-<p>\int_0^t H_s dW_s = B_{\int_0^t H_s^2 ds}</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\int_0^t H_s dW_s = B_{\int_0^t H_s^2 ds}
+}\]</div>
 <p><strong>Interpretation:</strong></p>
 <ul>
 <li>The stochastic integral <span class="arithmatex">\(\int_0^t H_s dW_s\)</span> evolves like Brownian motion</li>

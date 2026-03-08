@@ -46282,20 +46282,20 @@
 <hr />
 <h2 id="the-idea">The Idea<a class="headerlink" href="#the-idea" title="Permanent link">&para;</a></h2>
 <p>The Crank-Nicolson method uses the <strong>average of the explicit and implicit finite difference approximations</strong>:</p>
-<p>$$</p>
-<p>\frac{V_i^{n+1} - V_i^n}{\Delta t} = \frac{1}{2} \left( L V_i^n + L V_i^{n+1} \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{V_i^{n+1} - V_i^n}{\Delta t} = \frac{1}{2} \left( L V_i^n + L V_i^{n+1} \right)
+\]</div>
 <p>where <span class="arithmatex">\(L\)</span> is the spatial differential operator in the Black-Scholes PDE. This leads to a <strong>tridiagonal linear system</strong> at each time step with improved accuracy.</p>
 <hr />
 <h2 id="finite-difference-formulation">Finite Difference Formulation<a class="headerlink" href="#finite-difference-formulation" title="Permanent link">&para;</a></h2>
 <p>Writing the Black-Scholes PDE as:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} = -\frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - r S \frac{\partial V}{\partial S} + r V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} = -\frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - r S \frac{\partial V}{\partial S} + r V
+\]</div>
 <p>and applying the Crank-Nicolson approach, we derive a linear system:</p>
-<p>$$</p>
-<p>A \mathbf{V}^{n+1} = B \mathbf{V}^n + \mathbf{b}_{\text{boundary}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A \mathbf{V}^{n+1} = B \mathbf{V}^n + \mathbf{b}_{\text{boundary}}
+\]</div>
 <p>where <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are tridiagonal matrices and <span class="arithmatex">\(\mathbf{b}_{\text{boundary}}\)</span> incorporates boundary adjustments.</p>
 <hr />
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>

@@ -46943,19 +46943,19 @@
 <h2 id="default-intensity-definition">Default Intensity: Definition<a class="headerlink" href="#default-intensity-definition" title="Permanent link">&para;</a></h2>
 <h3 id="heuristic-definition">Heuristic Definition<a class="headerlink" href="#heuristic-definition" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\tau\)</span> denote the random default time. The <strong>default intensity</strong> (or <strong>hazard rate</strong>) <span class="arithmatex">\(\lambda_t\)</span> is an <span class="arithmatex">\(\mathcal{F}_t\)</span>-adapted, non-negative process such that:</p>
-<p>$$</p>
-<p>\mathbb{Q}(t &lt; \tau \le t + dt \mid \mathcal{F}_t, \tau &gt; t) \approx \lambda_t \, dt.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(t &lt; \tau \le t + dt \mid \mathcal{F}_t, \tau &gt; t) \approx \lambda_t \, dt
+\]</div>
 <p><strong>Interpretation:</strong> Given survival to time <span class="arithmatex">\(t\)</span> and current market information, the probability of defaulting in the next instant <span class="arithmatex">\(dt\)</span> is approximately <span class="arithmatex">\(\lambda_t \, dt\)</span>.</p>
 <h3 id="rigorous-definition">Rigorous Definition<a class="headerlink" href="#rigorous-definition" title="Permanent link">&para;</a></h3>
 <p>More precisely, the intensity is defined through the <strong>compensator</strong> of the default indicator process <span class="arithmatex">\(H_t = \mathbf{1}_{\{\tau \le t\}}\)</span>:</p>
-<p>$$</p>
-<p>A_t = \int_0^{t \wedge \tau} \lambda_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A_t = \int_0^{t \wedge \tau} \lambda_s \, ds
+\]</div>
 <p>is the <span class="arithmatex">\((\mathcal{G}_t, \mathbb{Q})\)</span>-compensator of <span class="arithmatex">\(H_t\)</span>, meaning:</p>
-<p>$$</p>
-<p>M_t := H_t - A_t = \mathbf{1}_{{\tau \le t}} - \int_0^{t \wedge \tau} \lambda_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t := H_t - A_t = \mathbf{1}_{\{\tau \le t\}} - \int_0^{t \wedge \tau} \lambda_s \, ds
+\]</div>
 <p>is a <span class="arithmatex">\((\mathcal{G}_t, \mathbb{Q})\)</span>-martingale.</p>
 <hr />
 <h2 id="the-doubly-stochastic-cox-process-construction">The Doubly-Stochastic (Cox Process) Construction<a class="headerlink" href="#the-doubly-stochastic-cox-process-construction" title="Permanent link">&para;</a></h2>
@@ -46967,9 +46967,9 @@
 <li>Let <span class="arithmatex">\(E \sim \text{Exp}(1)\)</span> be independent of <span class="arithmatex">\(\mathcal{F}_\infty\)</span></li>
 <li>Define the default time:</li>
 </ol>
-<p>$$</p>
-<p>\tau = \inf{t \ge 0 : \Lambda_t \ge E} = \Lambda^{-1}(E).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E)
+\]</div>
 <h3 id="properties-of-cox-construction">Properties of Cox Construction<a class="headerlink" href="#properties-of-cox-construction" title="Permanent link">&para;</a></h3>
 <p>Under this construction:
 - <span class="arithmatex">\(\tau\)</span> is a totally inaccessible <span class="arithmatex">\((\mathcal{G}_t)\)</span>-stopping time (surprise default)
@@ -46978,35 +46978,35 @@
 - Default is conditionally independent of <span class="arithmatex">\(\mathcal{F}_\infty\)</span> given <span class="arithmatex">\(\Lambda_\tau\)</span></p>
 <h3 id="survival-probability">Survival Probability<a class="headerlink" href="#survival-probability" title="Permanent link">&para;</a></h3>
 <p>The conditional survival probability given <span class="arithmatex">\(\mathcal{F}_t\)</span> is:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\tau &gt; T \mid \mathcal{F}_t) = \mathbb{Q}(E &gt; \Lambda_T \mid \mathcal{F}_t) = \mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau &gt; T \mid \mathcal{F}_t) = \mathbb{Q}(E &gt; \Lambda_T \mid \mathcal{F}_t) = \mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]
+\]</div>
 <p>On the pre-default event <span class="arithmatex">\(\{\tau &gt; t\}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\tau &gt; T \mid \mathcal{G}_t) = \frac{\mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]}{e^{-\Lambda_t}} = \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau &gt; T \mid \mathcal{G}_t) = \frac{\mathbb{E}\left[e^{-\Lambda_T} \mid \mathcal{F}_t\right]}{e^{-\Lambda_t}} = \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right]
+\]</div>
 <hr />
 <h2 id="hazard-rate-interpretation">Hazard Rate Interpretation<a class="headerlink" href="#hazard-rate-interpretation" title="Permanent link">&para;</a></h2>
 <h3 id="analogy-with-actuarial-science">Analogy with Actuarial Science<a class="headerlink" href="#analogy-with-actuarial-science" title="Permanent link">&para;</a></h3>
 <p>The hazard rate in credit modeling is analogous to the <strong>force of mortality</strong> in actuarial science:</p>
-<p>$$</p>
-<p>\lambda(t) = \lim_{h \to 0} \frac{\mathbb{P}(t &lt; \tau \le t+h \mid \tau &gt; t)}{h}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda(t) = \lim_{h \to 0} \frac{\mathbb{P}(t &lt; \tau \le t+h \mid \tau &gt; t)}{h}
+\]</div>
 <p>This is the instantaneous conditional default rate.</p>
 <h3 id="relation-to-survival-function">Relation to Survival Function<a class="headerlink" href="#relation-to-survival-function" title="Permanent link">&para;</a></h3>
 <p>For deterministic intensity <span class="arithmatex">\(\lambda(t)\)</span>, the survival function is:</p>
-<p>$$</p>
-<p>S(t) = \mathbb{Q}(\tau &gt; t) = \exp\left(-\int_0^t \lambda(s) \, ds\right) = e^{-\Lambda(t)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t) = \mathbb{Q}(\tau &gt; t) = \exp\left(-\int_0^t \lambda(s) \, ds\right) = e^{-\Lambda(t)}
+\]</div>
 <p>The density of default time is:</p>
-<p>$$</p>
-<p>f(t) = -\frac{dS}{dt} = \lambda(t) S(t) = \lambda(t) e^{-\Lambda(t)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t) = -\frac{dS}{dt} = \lambda(t) S(t) = \lambda(t) e^{-\Lambda(t)}
+\]</div>
 <h3 id="cumulative-hazard">Cumulative Hazard<a class="headerlink" href="#cumulative-hazard" title="Permanent link">&para;</a></h3>
 <p>The cumulative hazard function is:</p>
-<p>$$</p>
-<p>\Lambda(t) = -\ln S(t) = \int_0^t \lambda(s) \, ds.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Lambda(t) = -\ln S(t) = \int_0^t \lambda(s) \, ds
+\]</div>
 <p>This relationship allows estimation of intensity from survival data.</p>
 <hr />
 <h2 id="stochastic-intensity-models">Stochastic Intensity Models<a class="headerlink" href="#stochastic-intensity-models" title="Permanent link">&para;</a></h2>
@@ -47017,44 +47017,44 @@
 - Spread volatility requires stochastic intensity</p>
 <h3 id="general-framework">General Framework<a class="headerlink" href="#general-framework" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\lambda_t\)</span> be driven by state variables <span class="arithmatex">\(X_t\)</span>:</p>
-<p>$$</p>
-<p>\lambda_t = g(X_t, t),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_t = g(X_t, t)
+\]</div>
 <p>where <span class="arithmatex">\(X_t\)</span> follows an SDE:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t
+\]</div>
 <p>The intensity inherits randomness from the state variables.</p>
 <h3 id="common-specifications">Common Specifications<a class="headerlink" href="#common-specifications" title="Permanent link">&para;</a></h3>
 <p><strong>1. Vasicek-type (Ornstein-Uhlenbeck):</strong></p>
-<p>$$</p>
-<p>d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma \, dW_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma \, dW_t
+\]</div>
 <p>Properties:
 - Mean-reverting to long-run level <span class="arithmatex">\(\theta\)</span>
 - Gaussian—can become negative (problematic)
 - Analytically tractable</p>
 <p><strong>2. CIR-type (Cox-Ingersoll-Ross):</strong></p>
-<p>$$</p>
-<p>d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t
+\]</div>
 <p>Properties:
 - Mean-reverting
 - Non-negative if <span class="arithmatex">\(2\kappa\theta \ge \sigma^2\)</span> (Feller condition)
 - Affine structure enables closed-form bond prices
 - Industry standard for credit modeling</p>
 <p><strong>3. Log-normal:</strong></p>
-<p>$$</p>
-<p>d\ln\lambda_t = \kappa(\theta - \ln\lambda_t) \, dt + \sigma \, dW_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\ln\lambda_t = \kappa(\theta - \ln\lambda_t) \, dt + \sigma \, dW_t
+\]</div>
 <p>Properties:
 - Strictly positive intensity
 - Mean-reverting in log-space
 - Heavier tails than CIR</p>
 <p><strong>4. Jump-diffusion:</strong></p>
-<p>$$</p>
-<p>d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t + J \, dN_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\lambda_t = \kappa(\theta - \lambda_t) \, dt + \sigma\sqrt{\lambda_t} \, dW_t + J \, dN_t
+\]</div>
 <p>where <span class="arithmatex">\(N_t\)</span> is a Poisson process and <span class="arithmatex">\(J\)</span> is jump size.</p>
 <p>Properties:
 - Captures sudden credit deterioration
@@ -47064,15 +47064,15 @@
 <h2 id="piecewise-constant-intensity">Piecewise-Constant Intensity<a class="headerlink" href="#piecewise-constant-intensity" title="Permanent link">&para;</a></h2>
 <h3 id="practical-calibration-standard">Practical Calibration Standard<a class="headerlink" href="#practical-calibration-standard" title="Permanent link">&para;</a></h3>
 <p>For calibration to CDS term structures, piecewise-constant intensity is ubiquitous:</p>
-<p>$$</p>
-<p>\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n
+\]</div>
 <p>The intervals typically correspond to CDS maturities: 1Y, 2Y, 3Y, 5Y, 7Y, 10Y.</p>
 <h3 id="survival-probability_1">Survival Probability<a class="headerlink" href="#survival-probability_1" title="Permanent link">&para;</a></h3>
 <p>With piecewise-constant intensity:</p>
-<p>$$</p>
-<p>S(0, T) = \exp\left(-\sum_{i: T_i \le T} \lambda_i (T_i - T_{i-1}) - \lambda_{k}(T - T_{k-1})\right),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0, T) = \exp\left(-\sum_{i: T_i \le T} \lambda_i (T_i - T_{i-1}) - \lambda_{k}(T - T_{k-1})\right)
+\]</div>
 <p>where <span class="arithmatex">\(T_{k-1} &lt; T \le T_k\)</span>.</p>
 <h3 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47111,18 +47111,18 @@
 <hr />
 <h2 id="intensity-and-default-probability">Intensity and Default Probability<a class="headerlink" href="#intensity-and-default-probability" title="Permanent link">&para;</a></h2>
 <h3 id="instantaneous-default-probability">Instantaneous Default Probability<a class="headerlink" href="#instantaneous-default-probability" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathbb{Q}(\tau \in (t, t+dt] \mid \mathcal{F}_t, \tau &gt; t) = \lambda_t \, dt + o(dt).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau \in (t, t+dt] \mid \mathcal{F}_t, \tau &gt; t) = \lambda_t \, dt + o(dt)
+\]</div>
 <h3 id="cumulative-default-probability">Cumulative Default Probability<a class="headerlink" href="#cumulative-default-probability" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathbb{Q}(\tau \le T \mid \mathcal{F}_t, \tau &gt; t) = 1 - \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau \le T \mid \mathcal{F}_t, \tau &gt; t) = 1 - \mathbb{E}\left[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t\right]
+\]</div>
 <h3 id="forward-default-probability">Forward Default Probability<a class="headerlink" href="#forward-default-probability" title="Permanent link">&para;</a></h3>
 <p>The forward default probability for period <span class="arithmatex">\((T_1, T_2]\)</span> conditional on survival to <span class="arithmatex">\(T_1\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}(\tau \le T_2 \mid \tau &gt; T_1) = 1 - \frac{S(T_2)}{S(T_1)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(\tau \le T_2 \mid \tau &gt; T_1) = 1 - \frac{S(T_2)}{S(T_1)}
+\]</div>
 <hr />
 <h2 id="numerical-example">Numerical Example<a class="headerlink" href="#numerical-example" title="Permanent link">&para;</a></h2>
 <p><strong>Setup:</strong>
@@ -47130,17 +47130,17 @@
 - Compute survival probabilities</p>
 <p><strong>Calculations:</strong></p>
 <p>1-year survival:</p>
-<p>$$</p>
-<p>S(0,1) = e^{-0.01 \times 1} = e^{-0.01} = 0.9900</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,1) = e^{-0.01 \times 1} = e^{-0.01} = 0.9900
+\]</div>
 <p>2-year survival:</p>
-<p>$$</p>
-<p>S(0,2) = e^{-0.01 \times 1 - 0.015 \times 1} = e^{-0.025} = 0.9753</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,2) = e^{-0.01 \times 1 - 0.015 \times 1} = e^{-0.025} = 0.9753
+\]</div>
 <p>3-year survival:</p>
-<p>$$</p>
-<p>S(0,3) = e^{-0.01 \times 1 - 0.015 \times 2} = e^{-0.04} = 0.9608</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0,3) = e^{-0.01 \times 1 - 0.015 \times 2} = e^{-0.04} = 0.9608
+\]</div>
 <p><strong>Default probabilities:</strong>
 - 1-year: <span class="arithmatex">\(1.00\%\)</span>
 - 2-year: <span class="arithmatex">\(2.47\%\)</span>

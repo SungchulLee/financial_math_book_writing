@@ -46536,28 +46536,28 @@
 <hr />
 <h2 id="the-variational-inequality">The Variational Inequality<a class="headerlink" href="#the-variational-inequality" title="Permanent link">&para;</a></h2>
 <p>The American option price satisfies:</p>
-<p>$$</p>
-<p>\max\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV, \; \Phi(S) - V\right) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max\left(\frac{\partial V}{\partial t} + \mathcal{L}V - rV, \; \Phi(S) - V\right) = 0
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}V = \frac{1}{2}\sigma^2 S^2 V_{SS} + rSV_S\)</span> and <span class="arithmatex">\(\Phi\)</span> is the payoff function.</p>
 <p>Equivalently, at each time step the discrete solution must satisfy:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 L\mathbf{u} &amp;\geq \mathbf{f} \\
 \mathbf{u} &amp;\geq \boldsymbol{\Phi} \\
 (L\mathbf{u} - \mathbf{f})^T (\mathbf{u} - \boldsymbol{\Phi}) &amp;= 0
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>This is the <strong>linear complementarity problem (LCP)</strong>.</p>
 <hr />
 <h2 id="penalty-methods">Penalty Methods<a class="headerlink" href="#penalty-methods" title="Permanent link">&para;</a></h2>
 <h3 id="core-idea">Core Idea<a class="headerlink" href="#core-idea" title="Permanent link">&para;</a></h3>
 <p>Instead of enforcing the constraint <span class="arithmatex">\(V \geq \Phi\)</span> exactly, add a <strong>penalty term</strong> that becomes large when the constraint is violated:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV + \lambda \max(\Phi(S) - V, 0) = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda \gg 1\)</span> is the <strong>penalty parameter</strong>.</p>
 <h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46567,16 +46567,16 @@ L\mathbf{u} &amp;\geq \mathbf{f} \\
 </ul>
 <h3 id="discrete-formulation">Discrete Formulation<a class="headerlink" href="#discrete-formulation" title="Permanent link">&para;</a></h3>
 <p>After discretization with an implicit or Crank–Nicolson scheme, the system at each time step becomes:</p>
-<p>$$</p>
-<p>(L + \lambda P)\mathbf{u}^{n+1} = \mathbf{f} + \lambda P\boldsymbol{\Phi}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(L + \lambda P)\mathbf{u}^{n+1} = \mathbf{f} + \lambda P\boldsymbol{\Phi}
+\]</div>
 <p>where <span class="arithmatex">\(P = \operatorname{diag}(p_1, \ldots, p_M)\)</span> with:</p>
-<p>$$</p>
-<p>p_j = \begin{cases}
-1 &amp; \text{if } u_j^{n+1} &lt; \Phi_j \
+<div class="arithmatex">\[
+p_j = \begin{cases}
+1 &amp; \text{if } u_j^{n+1} &lt; \Phi_j \\
 0 &amp; \text{otherwise}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>Since <span class="arithmatex">\(P\)</span> depends on the solution, the system is <strong>nonlinear</strong> and requires iteration.</p>
 <h3 id="iterative-solution">Iterative Solution<a class="headerlink" href="#iterative-solution" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>Initialize: u⁰ = previous time step solution
@@ -46619,14 +46619,14 @@ For k = 0, 1, 2, ... until convergence:
 <h3 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h3>
 <p>At each time step, solve the LCP: <span class="arithmatex">\(L\mathbf{u} \geq \mathbf{f}\)</span>, <span class="arithmatex">\(\mathbf{u} \geq \boldsymbol{\Phi}\)</span>, complementarity.</p>
 <p>For iteration <span class="arithmatex">\(k+1\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-\tilde{u}<em jj="jj">j^{(k+1)} &amp;= (1 - \omega) u_j^{(k)} + \frac{\omega}{l</em>\right) \[6pt]
+\tilde{u}_j^{(k+1)} &amp;= (1 - \omega) u_j^{(k)} + \frac{\omega}{l_{jj}} \left(f_j - \sum_{i &lt; j} l_{ji} u_i^{(k+1)} - \sum_{i &gt; j} l_{ji} u_i^{(k)}\right) \\[6pt]
 u_j^{(k+1)} &amp;= \max\left(\tilde{u}_j^{(k+1)}, \; \Phi_j\right)
 \end{aligned}
-}}} \left(f_j - \sum_{i &lt; j} l_{ji} u_i^{(k+1)} - \sum_{i &gt; j} l_{ji} u_i^{(k)</p>
-<p>$$</p>
+}
+\]</div>
 <p>The first line is the standard SOR update; the second is the <strong>projection</strong> onto the constraint.</p>
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46768,21 +46768,21 @@ u_j^{(k+1)} &amp;= \max\left(\tilde{u}_j^{(k+1)}, \; \Phi_j\right)
 <hr />
 <h2 id="advanced-penalty-method-convergence-theory">Advanced: Penalty Method Convergence Theory<a class="headerlink" href="#advanced-penalty-method-convergence-theory" title="Permanent link">&para;</a></h2>
 <p>The penalized solution <span class="arithmatex">\(V^\lambda\)</span> satisfies:</p>
-<p>$$</p>
-<p>|V^\lambda - V|_\infty \leq \frac{C}{\lambda}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|V^\lambda - V\|_\infty \leq \frac{C}{\lambda}
+\]</div>
 <p>where <span class="arithmatex">\(C\)</span> depends on the PDE coefficients and the payoff. Combined with the finite difference discretization error:</p>
-<p>$$</p>
-<p>|V^\lambda_{h,\Delta t} - V|_\infty \leq C_1 h^2 + C_2 \Delta t^p + \frac{C_3}{\lambda}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|V^\lambda_{h,\Delta t} - V\|_\infty \leq C_1 h^2 + C_2 \Delta t^p + \frac{C_3}{\lambda}
+\]</div>
 <p>where <span class="arithmatex">\(p = 1\)</span> for implicit and <span class="arithmatex">\(p = 2\)</span> for Crank–Nicolson. The penalty parameter should be chosen so that <span class="arithmatex">\(1/\lambda\)</span> is smaller than the discretization error.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV + \lambda(\Phi - V)^+ = 0 \quad \xrightarrow{\lambda \to \infty} \quad \text{American price}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

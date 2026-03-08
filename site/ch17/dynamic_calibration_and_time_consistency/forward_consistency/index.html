@@ -46704,9 +46704,9 @@
 <h3 id="formal-definition">Formal definition<a class="headerlink" href="#formal-definition" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\theta_t\)</span> denote calibrated parameters at time <span class="arithmatex">\(t\)</span>, and let <span class="arithmatex">\(\Phi_{t \to t+\Delta t}(\theta_t, \omega)\)</span> denote the model-implied parameter evolution (possibly stochastic, depending on path <span class="arithmatex">\(\omega\)</span>).</p>
 <p>A model is <strong>forward consistent</strong> if, for typical market realizations:</p>
-<p>$$</p>
-<p>\hat{\theta}<em _to="\to" t="t" t_Delta="t+\Delta">{t+\Delta t}^{\text{calib}} \approx \Phi</em>_t, \omega),}(\hat{\theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_{t+\Delta t}^{\text{calib}} \approx \Phi_{t \to t+\Delta t}(\hat{\theta}_t, \omega)
+\]</div>
 <p>where <span class="arithmatex">\(\hat{\theta}_{t+\Delta t}^{\text{calib}}\)</span> is the result of fresh calibration at <span class="arithmatex">\(t + \Delta t\)</span>.</p>
 <h3 id="why-this-matters">Why this matters<a class="headerlink" href="#why-this-matters" title="Permanent link">&para;</a></h3>
 <p>If forward consistency fails:</p>
@@ -46721,13 +46721,13 @@
 <p>The Heath–Jarrow–Morton (HJM) framework provides the canonical example of forward consistency.</p>
 <h3 id="the-hjm-approach">The HJM approach<a class="headerlink" href="#the-hjm-approach" title="Permanent link">&para;</a></h3>
 <p>In HJM, the entire forward rate curve <span class="arithmatex">\(f(t, T)\)</span> for <span class="arithmatex">\(T \ge t\)</span> is modeled as the state variable:</p>
-<p>$$</p>
-<p>df(t, T) = \alpha(t, T) \, dt + \sigma(t, T) \, dW_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t, T) = \alpha(t, T) \, dt + \sigma(t, T) \, dW_t
+\]</div>
 <p>The no-arbitrage drift condition determines <span class="arithmatex">\(\alpha\)</span> in terms of <span class="arithmatex">\(\sigma\)</span>:</p>
-<p>$$</p>
-<p>\alpha(t, T) = \sigma(t, T) \int_t^T \sigma(t, u) \, du.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha(t, T) = \sigma(t, T) \int_t^T \sigma(t, u) \, du
+\]</div>
 <h3 id="why-hjm-is-forward-consistent">Why HJM is forward consistent<a class="headerlink" href="#why-hjm-is-forward-consistent" title="Permanent link">&para;</a></h3>
 <p>At time <span class="arithmatex">\(t\)</span>, the model is "calibrated" by observing the current forward curve <span class="arithmatex">\(f(t, \cdot)\)</span>. The model then specifies exactly how this curve evolves. At time <span class="arithmatex">\(t + \Delta t\)</span>:</p>
 <ul>
@@ -46754,9 +46754,9 @@
 </ul>
 <h3 id="the-calibration-dynamics-gap">The calibration-dynamics gap<a class="headerlink" href="#the-calibration-dynamics-gap" title="Permanent link">&para;</a></h3>
 <p>In Heston, the variance process follows:</p>
-<p>$$</p>
-<p>dv_t = \kappa(\bar{v} - v_t) \, dt + \sigma_v \sqrt{v_t} \, dW_t^v.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dv_t = \kappa(\bar{v} - v_t) \, dt + \sigma_v \sqrt{v_t} \, dW_t^v
+\]</div>
 <p>The model specifies how <span class="arithmatex">\(v_t\)</span> evolves, but not how <span class="arithmatex">\((\kappa, \bar{v}, \sigma_v, \rho)\)</span> evolve. When we recalibrate:</p>
 <ul>
 <li><span class="arithmatex">\(\hat{v}_0^{\text{new}}\)</span> from calibration may differ from <span class="arithmatex">\(v_{\Delta t}\)</span> evolved under the model.</li>
@@ -46772,17 +46772,17 @@
 <p>Enlarge the state space to include variables that can track surface dynamics.</p>
 <p><strong>Example: Bergomi's variance curve model</strong></p>
 <p>Model the entire forward variance curve <span class="arithmatex">\(\xi_t(T) = \mathbb{E}_t[v_T]\)</span> as the state:</p>
-<p>$$</p>
-<p>d\xi_t(T) = \text{(drift)} \, dt + \eta(T - t) \xi_t(T) \, dW_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\xi_t(T) = \text{(drift)} \, dt + \eta(T - t) \xi_t(T) \, dW_t
+\]</div>
 <p>The forward variance curve is now a state variable, analogous to forward rates in HJM. Calibration becomes observing <span class="arithmatex">\(\xi_t(\cdot)\)</span> from option prices.</p>
 <p><strong>Advantages:</strong> Forward consistent by construction.</p>
 <p><strong>Disadvantages:</strong> Infinite-dimensional; requires choosing <span class="arithmatex">\(\eta(\cdot)\)</span>; computational complexity.</p>
 <h3 id="2-stochastic-parameter-models">2. Stochastic parameter models<a class="headerlink" href="#2-stochastic-parameter-models" title="Permanent link">&para;</a></h3>
 <p>Allow parameters to follow their own stochastic processes:</p>
-<p>$$</p>
-<p>d\theta_t = \mu_\theta(\theta_t) \, dt + \Sigma_\theta(\theta_t) \, dZ_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\theta_t = \mu_\theta(\theta_t) \, dt + \Sigma_\theta(\theta_t) \, dZ_t
+\]</div>
 <p>The parameter process <span class="arithmatex">\(\theta_t\)</span> is now part of the model. Calibration estimates the current state <span class="arithmatex">\(\theta_t\)</span>, and the model specifies future evolution.</p>
 <p><strong>Challenges:</strong></p>
 <ul>
@@ -46803,15 +46803,15 @@
 <p><strong>The calibration map and model dynamics must be consistent.</strong></p>
 </blockquote>
 <p>Let <span class="arithmatex">\(\mathcal{C}: \text{(market data)} \to \theta\)</span> be the calibration map. Let <span class="arithmatex">\(\Phi: \theta_t \to \theta_{t+\Delta t}\)</span> be model-implied evolution. CRC requires:</p>
-<p>$$</p>
-<p>\mathcal{C}(\text{prices at } t + \Delta t) = \Phi(\mathcal{C}(\text{prices at } t), \omega).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}(\text{prices at } t + \Delta t) = \Phi(\mathcal{C}(\text{prices at } t), \omega)
+\]</div>
 <p>This is a strong constraint that typically cannot be satisfied by standard models. The CRC framework characterizes <em>which</em> models and calibration procedures are mutually consistent.</p>
 <h3 id="5-market-models-for-volatility">5. Market models for volatility<a class="headerlink" href="#5-market-models-for-volatility" title="Permanent link">&para;</a></h3>
 <p>By analogy with LIBOR market models for rates, one can model tradeable volatility instruments (e.g., variance swaps, VIX futures) directly:</p>
-<p>$$</p>
-<p>d\text{VS}<em _text_VS="\text{VS">t(T) = \text{VS}_t(T) \sigma</em>(t, T) \, dW_t.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\text{VS}_t(T) = \text{VS}_t(T) \sigma_{\text{VS}}(t, T) \, dW_t
+\]</div>
 <p>This ensures that calibration to variance swap prices is consistent with modeled dynamics.</p>
 <hr />
 <h2 id="practical-implications">Practical implications<a class="headerlink" href="#practical-implications" title="Permanent link">&para;</a></h2>

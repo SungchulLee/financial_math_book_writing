@@ -46417,99 +46417,99 @@
 <hr />
 <h2 id="introduction-non-smooth-payoffs">Introduction: Non-Smooth Payoffs<a class="headerlink" href="#introduction-non-smooth-payoffs" title="Permanent link">&para;</a></h2>
 <p>Standard calculus breaks down when applied to non-smooth functions like the call option payoff:</p>
-<p>$$</p>
-<p>(S_T - K)^+ = \max(S_T - K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(S_T - K)^+ = \max(S_T - K, 0)
+\]</div>
 <p>At the strike price <span class="arithmatex">\(K\)</span>, this function has a kink (corner), making classical derivatives ill-defined. The Tanaka formula extends Itô's lemma to handle such non-smooth functions by introducing distributional derivatives.</p>
 <hr />
 <h2 id="the-tanaka-formula">The Tanaka Formula<a class="headerlink" href="#the-tanaka-formula" title="Permanent link">&para;</a></h2>
 <p>The Tanaka formula is a generalization of Itô's lemma that applies to non-smooth, convex functions. For a convex function <span class="arithmatex">\(f(x)\)</span>, the Tanaka formula states:</p>
-<p>$$</p>
-<p>df(X_t) = f'(X_t) dX_t + \frac{1}{2}f''(X_t) d\langle X \rangle_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(X_t) = f'(X_t) dX_t + \frac{1}{2}f''(X_t) d\langle X \rangle_t
+\]</div>
 <p>where <span class="arithmatex">\(f'\)</span> and <span class="arithmatex">\(f''\)</span> are understood in the distributional sense.</p>
 <h3 id="application-to-call-payoff">Application to Call Payoff<a class="headerlink" href="#application-to-call-payoff" title="Permanent link">&para;</a></h3>
 <p>For the call payoff function <span class="arithmatex">\(f(s) = (s - K)^+\)</span>, we need to compute the derivatives in the distributional sense.</p>
 <h4 id="first-derivative">First Derivative<a class="headerlink" href="#first-derivative" title="Permanent link">&para;</a></h4>
 <p>The first derivative of <span class="arithmatex">\((S_T - K)^+\)</span> with respect to <span class="arithmatex">\(S_T\)</span> is the Heaviside step function:</p>
-<p>$$</p>
-<p>\frac{\partial (S_T - K)^+}{\partial S_T} = 1(S_T &gt; K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial (S_T - K)^+}{\partial S_T} = 1(S_T &gt; K)
+\]</div>
 <p>where <span class="arithmatex">\(1(S_T &gt; K)\)</span> is the indicator function that equals 1 when <span class="arithmatex">\(S_T &gt; K\)</span> and 0 otherwise.</p>
 <p>With respect to the strike <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial (S_T - K)^+}{\partial K} = -1(S_T &gt; K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial (S_T - K)^+}{\partial K} = -1(S_T &gt; K)
+\]</div>
 <h4 id="second-derivative-the-dirac-delta-function">Second Derivative: The Dirac Delta Function<a class="headerlink" href="#second-derivative-the-dirac-delta-function" title="Permanent link">&para;</a></h4>
 <p>The second derivative of the call payoff is the <strong>Dirac delta function</strong> <span class="arithmatex">\(\delta(S_T - K)\)</span>:</p>
-<p>$$</p>
-<p>\begin{array}{llllll}
+<div class="arithmatex">\[
+\begin{array}{llllll}
 \displaystyle
-\frac{\partial^2 (S_T - K)^+}{\partial S_T^2} &amp;=&amp; \displaystyle \delta(S_T - K) \
+\frac{\partial^2 (S_T - K)^+}{\partial S_T^2} &amp;=&amp; \displaystyle \delta(S_T - K) \\
 \displaystyle
-\frac{\partial^2 (S_T - K)^+}{\partial K^2} &amp;=&amp; \displaystyle \delta(S_T - K)</p>
-<p>\end{array}$$</p>
+\frac{\partial^2 (S_T - K)^+}{\partial K^2} &amp;=&amp; \displaystyle \delta(S_T - K)
+\end{array}\]</div>
 <p>The Dirac delta function has the key property:</p>
-<p>$$</p>
-<p>\int_{-\infty}^{\infty} \delta(x - a) f(x) \, dx = f(a)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{\infty} \delta(x - a) f(x) \, dx = f(a)
+\]</div>
 <p>It can be understood as the limit of increasingly narrow, increasingly tall distributions centered at <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>\delta(x - K) = \lim_{\epsilon \to 0} \frac{1}{\epsilon\sqrt{\pi}} e^{-(x-K)^2/\epsilon^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\delta(x - K) = \lim_{\epsilon \to 0} \frac{1}{\epsilon\sqrt{\pi}} e^{-(x-K)^2/\epsilon^2}
+\]</div>
 <hr />
 <h2 id="computing-option-greeks-via-distributions">Computing Option Greeks via Distributions<a class="headerlink" href="#computing-option-greeks-via-distributions" title="Permanent link">&para;</a></h2>
 <p>Using the Tanaka formula, we can rigorously compute the Greeks (sensitivities) of options:</p>
 <h3 id="delta-and-gamma">Delta and Gamma<a class="headerlink" href="#delta-and-gamma" title="Permanent link">&para;</a></h3>
 <p>The delta (first derivative with respect to spot) is:</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial C}{\partial S_T} = e^{-rT}\mathbb{E}^Q\left[\frac{\partial (S_T - K)^+}{\partial S_T}\right] = e^{-rT}\mathbb{E}^Q[1(S_T &gt; K)] = e^{-rT}\int_{K}^{\infty} p(s, T) \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial C}{\partial S_T} = e^{-rT}\mathbb{E}^Q\left[\frac{\partial (S_T - K)^+}{\partial S_T}\right] = e^{-rT}\mathbb{E}^Q[1(S_T &gt; K)] = e^{-rT}\int_{K}^{\infty} p(s, T) \, ds
+\]</div>
 <p>The gamma (second derivative with respect to spot) is:</p>
-<p>$$</p>
-<p>\Gamma = \frac{\partial^2 C}{\partial S_T^2} = e^{-rT}\mathbb{E}^Q\left[\frac{\partial^2 (S_T - K)^+}{\partial S_T^2}\right] = e^{-rT}\mathbb{E}^Q[\delta(S_T - K)] = e^{-rT}p(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma = \frac{\partial^2 C}{\partial S_T^2} = e^{-rT}\mathbb{E}^Q\left[\frac{\partial^2 (S_T - K)^+}{\partial S_T^2}\right] = e^{-rT}\mathbb{E}^Q[\delta(S_T - K)] = e^{-rT}p(K, T)
+\]</div>
 <p>This shows that the gamma is proportional to the risk-neutral probability density at the strike price. This is a profound result: gamma measures how likely the stock is to end up exactly at the strike price.</p>
 <h3 id="the-strike-derivative">The Strike Derivative<a class="headerlink" href="#the-strike-derivative" title="Permanent link">&para;</a></h3>
 <p>Similarly, with respect to the strike <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} = e^{-rT}\mathbb{E}^Q\left[-1(S_T &gt; K)\right] = -e^{-rT}\int_{K}^{\infty} p(s, T) \, ds</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} = e^{-rT}\mathbb{E}^Q[\delta(S_T - K)] = e^{-rT}p(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} = e^{-rT}\mathbb{E}^Q\left[-1(S_T &gt; K)\right] = -e^{-rT}\int_{K}^{\infty} p(s, T) \, ds
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} = e^{-rT}\mathbb{E}^Q[\delta(S_T - K)] = e^{-rT}p(K, T)
+\]</div>
 <hr />
 <h2 id="itos-lemma-for-non-smooth-functions">Itô's Lemma for Non-Smooth Functions<a class="headerlink" href="#itos-lemma-for-non-smooth-functions" title="Permanent link">&para;</a></h2>
 <p>Using the Tanaka formula, we can apply an extended version of Itô's lemma to the call payoff. Under the risk-neutral measure:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma(t, S_t)S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma(t, S_t)S_t dW_t
+\]</div>
 <p>The change in the call payoff is:</p>
-<p>$$</p>
-<p>\begin{array}{lll}
-d(S_T - K)^+ &amp;=&amp; \displaystyle \frac{\partial (S_T - K)^+}{\partial S_T}dS_T + \frac{1}{2}\frac{\partial^2 (S_T - K)^+}{\partial S_T^2}dS^2_T \
-&amp;=&amp; \displaystyle 1(S_T &gt; K)dS_T + \frac{1}{2}\delta(S_T - K)dS^2_T \
-&amp;=&amp; \displaystyle 1(S_T &gt; K)\left(rS_T dt + \sigma(S_T, T)S_T dW_T\right) + \frac{1}{2}\delta(S_T - K)\sigma^2(S_T, T)S_T^2 dt \
-&amp;=&amp; \displaystyle \left[1(S_T &gt; K)rS_T + \frac{1}{2}\delta(S_T - K)\sigma^2(S_T, T)S_T^2\right] dt + 1(S_T &gt; K)\sigma(S_T, T)S_T dW_T</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[
+\begin{array}{lll}
+d(S_T - K)^+ &amp;=&amp; \displaystyle \frac{\partial (S_T - K)^+}{\partial S_T}dS_T + \frac{1}{2}\frac{\partial^2 (S_T - K)^+}{\partial S_T^2}dS^2_T \\
+&amp;=&amp; \displaystyle 1(S_T &gt; K)dS_T + \frac{1}{2}\delta(S_T - K)dS^2_T \\
+&amp;=&amp; \displaystyle 1(S_T &gt; K)\left(rS_T dt + \sigma(S_T, T)S_T dW_T\right) + \frac{1}{2}\delta(S_T - K)\sigma^2(S_T, T)S_T^2 dt \\
+&amp;=&amp; \displaystyle \left[1(S_T &gt; K)rS_T + \frac{1}{2}\delta(S_T - K)\sigma^2(S_T, T)S_T^2\right] dt + 1(S_T &gt; K)\sigma(S_T, T)S_T dW_T
+\end{array}\]</div>
 <hr />
 <h2 id="the-distributional-dupire-pde">The Distributional Dupire PDE<a class="headerlink" href="#the-distributional-dupire-pde" title="Permanent link">&para;</a></h2>
 <p>Taking expectations and differentiating with respect to maturity time <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial}{\partial T}\mathbb{E}^Q(S_T - K)^+ = \mathbb{E}^Q\left[1(S_T &gt; K)rS_T + \frac{1}{2}\delta(S_T - K)\sigma^2(S_T, T)S_T^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial T}\mathbb{E}^Q(S_T - K)^+ = \mathbb{E}^Q\left[1(S_T &gt; K)rS_T + \frac{1}{2}\delta(S_T - K)\sigma^2(S_T, T)S_T^2\right]
+\]</div>
 <p>Using the identity <span class="arithmatex">\(\mathbb{E}^Q[1(S_T &gt; K)S_T] = e^{rT}C - e^{rT}K\frac{\partial C}{\partial K}\)</span>, and the fact that the delta function selects values at <span class="arithmatex">\(S_T = K\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^Q[\delta(S_T - K)\sigma^2(S_T, T)S_T^2] = \sigma^2(K, T)K^2 \mathbb{E}^Q[\delta(S_T - K)] = \sigma^2(K, T)K^2 e^{-rT}\frac{\partial^2 C}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^Q[\delta(S_T - K)\sigma^2(S_T, T)S_T^2] = \sigma^2(K, T)K^2 \mathbb{E}^Q[\delta(S_T - K)] = \sigma^2(K, T)K^2 e^{-rT}\frac{\partial^2 C}{\partial K^2}
+\]</div>
 <p>This leads to the <strong>Dupire PDE</strong>:</p>
-<p>$$</p>
-<p>C_T = -rC + r\left(C - KC_K\right) + \frac{1}{2}\sigma^2(K, T)K^2 C_{KK}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_T = -rC + r\left(C - KC_K\right) + \frac{1}{2}\sigma^2(K, T)K^2 C_{KK}
+\]</div>
 <p>which simplifies to:</p>
-<p>$$</p>
-<p>\boxed{\displaystyle C_T + rK C_K + \frac{1}{2}\sigma^2(K, T)K^2 C_{KK} = rC}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\displaystyle C_T + rK C_K + \frac{1}{2}\sigma^2(K, T)K^2 C_{KK} = rC}
+\]</div>
 <hr />
 <h2 id="physical-interpretation">Physical Interpretation<a class="headerlink" href="#physical-interpretation" title="Permanent link">&para;</a></h2>
 <p>The Tanaka formula reveals that:</p>
@@ -46527,9 +46527,9 @@ d(S_T - K)^+ &amp;=&amp; \displaystyle \frac{\partial (S_T - K)^+}{\partial S_T}
 <p><strong>Risk-Neutral Density</strong>: The Dupire formula shows that the local volatility can be extracted from the risk-neutral density and option prices:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>\sigma^2(K, T) = \frac{C_T + rKC_K}{\frac{1}{2}K^2 C_{KK}}</p>
-<p>$$</p>
+<p>$$
+   \sigma^2(K, T) = \frac{C_T + rKC_K}{\frac{1}{2}K^2 C_{KK}}
+   $$</p>
 <hr />
 <h2 id="key-insights">Key Insights<a class="headerlink" href="#key-insights" title="Permanent link">&para;</a></h2>
 <p>The distributional approach reveals deep connections in option pricing theory:</p>

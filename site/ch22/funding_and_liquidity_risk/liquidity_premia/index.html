@@ -46646,29 +46646,29 @@
 <p><strong>4. Tightness:</strong> How narrow is the bid-ask spread?</p>
 <h3 id="illiquidity-measures">Illiquidity Measures<a class="headerlink" href="#illiquidity-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Bid-ask spread:</strong></p>
-<p>$$</p>
-<p>\text{Spread} = P^{\text{ask}} - P^{\text{bid}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Spread} = P^{\text{ask}} - P^{\text{bid}}
+\]</div>
 <p><strong>Relative spread:</strong></p>
-<p>$$</p>
-<p>\text{Relative Spread} = \frac{P^{\text{ask}} - P^{\text{bid}}}{P^{\text{mid}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Relative Spread} = \frac{P^{\text{ask}} - P^{\text{bid}}}{P^{\text{mid}}}
+\]</div>
 <p><strong>Amihud illiquidity measure:</strong></p>
-<p>$$</p>
-<p>\text{ILLIQ} = \frac{1}{D} \sum_{d=1}^D \frac{|r_d|}{V_d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ILLIQ} = \frac{1}{D} \sum_{d=1}^D \frac{|r_d|}{V_d}
+\]</div>
 <p>where <span class="arithmatex">\(r_d\)</span> is the return and <span class="arithmatex">\(V_d\)</span> is dollar volume on day <span class="arithmatex">\(d\)</span>.</p>
 <hr />
 <h2 id="liquidity-premium-in-prices">Liquidity Premium in Prices<a class="headerlink" href="#liquidity-premium-in-prices" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>liquidity premium</strong> is the additional expected return required to hold illiquid assets:</p>
-<p>$$</p>
-<p>\mathbb{E}[R_{\text{illiquid}}] = \mathbb{E}[R_{\text{liquid}}] + \text{Liquidity Premium}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[R_{\text{illiquid}}] = \mathbb{E}[R_{\text{liquid}}] + \text{Liquidity Premium}
+\]</div>
 <p>Equivalently, illiquid assets trade at a <strong>discount</strong>:</p>
-<p>$$</p>
-<p>P_{\text{illiquid}} = P_{\text{liquid}} - \text{Liquidity Discount}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{illiquid}} = P_{\text{liquid}} - \text{Liquidity Discount}
+\]</div>
 <h3 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Transaction costs:</strong> Direct trading costs reduce net returns</li>
@@ -46681,9 +46681,9 @@
 <h2 id="liquidity-adjusted-capm">Liquidity-Adjusted CAPM<a class="headerlink" href="#liquidity-adjusted-capm" title="Permanent link">&para;</a></h2>
 <h3 id="acharya-pedersen-model">Acharya-Pedersen Model<a class="headerlink" href="#acharya-pedersen-model" title="Permanent link">&para;</a></h3>
 <p>Extends CAPM to include liquidity:</p>
-<p>$$</p>
-<p>\mathbb{E}[R_i] - R_f = \beta_1 \cdot \lambda_{\text{mkt}} + \beta_2 \cdot \lambda_{\text{liq}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[R_i] - R_f = \beta_1 \cdot \lambda_{\text{mkt}} + \beta_2 \cdot \lambda_{\text{liq}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\beta_1\)</span> = market beta
 - <span class="arithmatex">\(\beta_2\)</span> = liquidity beta
@@ -46723,20 +46723,20 @@
 - On-the-run: Most liquid
 - Off-the-run: 5-30 bps yield premium</p>
 <h3 id="cds-bond-basis">CDS-Bond Basis<a class="headerlink" href="#cds-bond-basis" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Basis} = \text{CDS Spread} - \text{Bond Spread}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Basis} = \text{CDS Spread} - \text{Bond Spread}
+\]</div>
 <p>Negative basis often reflects bond illiquidity premium.</p>
 <hr />
 <h2 id="valuation-implications">Valuation Implications<a class="headerlink" href="#valuation-implications" title="Permanent link">&para;</a></h2>
 <h3 id="liquidity-discount">Liquidity Discount<a class="headerlink" href="#liquidity-discount" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_{\text{adjusted}} = V_{\text{liquid}} \times (1 - \text{Liquidity Discount})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{adjusted}} = V_{\text{liquid}} \times (1 - \text{Liquidity Discount})
+\]</div>
 <h3 id="stress-liquidity-adjustment">Stress Liquidity Adjustment<a class="headerlink" href="#stress-liquidity-adjustment" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_{\text{stressed}} = V_{\text{normal}} - \text{Liquidity Adjustment}_{\text{stress}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{stressed}} = V_{\text{normal}} - \text{Liquidity Adjustment}_{\text{stress}}
+\]</div>
 <h3 id="regulatory-treatment">Regulatory Treatment<a class="headerlink" href="#regulatory-treatment" title="Permanent link">&para;</a></h3>
 <p>IFRS 13 and ASC 820 require fair value hierarchy accounting for liquidity.</p>
 <hr />

@@ -46326,9 +46326,9 @@
 <hr />
 <h2 id="discretizing-the-black-scholes-pde">Discretizing the Black-Scholes PDE<a class="headerlink" href="#discretizing-the-black-scholes-pde" title="Permanent link">&para;</a></h2>
 <p>Recall the Black-Scholes PDE:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0
+\]</div>
 <p>Replace derivatives using finite difference approximations:</p>
 <ul>
 <li>
@@ -46347,17 +46347,17 @@
 <hr />
 <h2 id="the-explicit-formula">The Explicit Formula<a class="headerlink" href="#the-explicit-formula" title="Permanent link">&para;</a></h2>
 <p>Substituting and rearranging:</p>
-<p>$$</p>
-<p>V_i^{n+1} = a_i V_{i-1}^n + b_i V_i^n + c_i V_{i+1}^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_i^{n+1} = a_i V_{i-1}^n + b_i V_i^n + c_i V_{i+1}^n
+\]</div>
 <p>where the coefficients are:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 a_i &amp;= \frac{\Delta t}{2} \left[ \sigma^2 i^2 - r i \right] \\
 b_i &amp;= 1 - \Delta t \left[ \sigma^2 i^2 + r \right] \\
 c_i &amp;= \frac{\Delta t}{2} \left[ \sigma^2 i^2 + r i \right]
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Here <span class="arithmatex">\(i\)</span> is the spatial grid index and <span class="arithmatex">\(S_i = i \Delta S\)</span>.</p>
 <hr />
 <h2 id="boundary-and-initial-conditions">Boundary and Initial Conditions<a class="headerlink" href="#boundary-and-initial-conditions" title="Permanent link">&para;</a></h2>
@@ -46378,17 +46378,17 @@ c_i &amp;= \frac{\Delta t}{2} \left[ \sigma^2 i^2 + r i \right]
 <hr />
 <h2 id="stability-condition">Stability Condition<a class="headerlink" href="#stability-condition" title="Permanent link">&para;</a></h2>
 <p>The explicit scheme is only <strong>conditionally stable</strong>. A conservative stability condition is:</p>
-<p>$$</p>
-<p>\Delta t \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta t \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
+\]</div>
 <p>If violated, the solution may exhibit oscillations or grow without bound.</p>
 <hr />
 <h2 id="python-implementation-european-call">Python Implementation: European Call<a class="headerlink" href="#python-implementation-european-call" title="Permanent link">&para;</a></h2>
 <p>We compare results of the explicit finite difference scheme in both original and log-price space against the analytical Black-Scholes formula.</p>
 <p><strong>Black-Scholes Formula for a European Call:</strong></p>
-<p>$$</p>
-<p>C(S, t) = S \Phi(d_1) - K e^{-r(T - t)} \Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S, t) = S \Phi(d_1) - K e^{-r(T - t)} \Phi(d_2)
+\]</div>
 <p>where <span class="arithmatex">\(d_1 = \frac{\ln(S / K) + (r + \frac{1}{2} \sigma^2)(T - t)}{\sigma \sqrt{T - t}}\)</span> and <span class="arithmatex">\(d_2 = d_1 - \sigma \sqrt{T - t}\)</span>.</p>
 <p><strong><code>run_explicit_scheme_for_european_call.py</code></strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>

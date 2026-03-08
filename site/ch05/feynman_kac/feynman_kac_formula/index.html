@@ -46777,9 +46777,9 @@
 <li><strong>Analytical (PDE)</strong>: Deterministic equations for expected values</li>
 </ol>
 <p>The Feynman–Kac formula bridges these perspectives:</p>
-<p>$$</p>
-<p>\text{PDE solution} \longleftrightarrow \text{Expected value along SDE paths}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PDE solution} \longleftrightarrow \text{Expected value along SDE paths}
+\]</div>
 <p><strong>Why this matters:</strong></p>
 <ul>
 <li><strong>Numerical methods</strong>: Monte Carlo (SDE) vs finite differences (PDE)</li>
@@ -46791,94 +46791,94 @@
 <h2 id="the-classical-feynmankac-formula">The Classical Feynman–Kac Formula<a class="headerlink" href="#the-classical-feynmankac-formula" title="Permanent link">&para;</a></h2>
 <h3 id="setting">Setting<a class="headerlink" href="#setting" title="Permanent link">&para;</a></h3>
 <p>Consider the SDE:</p>
-<p>$$</p>
-<p>dX_s = \mu(s, X_s)\,ds + \sigma(s, X_s)\,dW_s, \quad X_t = x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_s = \mu(s, X_s)\,ds + \sigma(s, X_s)\,dW_s, \quad X_t = x
+\]</div>
 <p>on the interval <span class="arithmatex">\([t, T]\)</span>, where <span class="arithmatex">\(X_t = x\)</span> is the initial condition at time <span class="arithmatex">\(t\)</span>.</p>
 <h3 id="theorem-feynmankac">Theorem (Feynman–Kac)<a class="headerlink" href="#theorem-feynmankac" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(u(t, x)\)</span> be a solution to the <strong>parabolic PDE</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial u}{\partial t} + \mu(t,x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} - r(t,x)u + f(t,x) = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>with <strong>terminal condition</strong>:</p>
-<p>$$</p>
-<p>u(T, x) = g(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(T, x) = g(x)
+\]</div>
 <p>Under suitable regularity conditions, <span class="arithmatex">\(u\)</span> has the <strong>probabilistic representation</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) + \int_t^T e^{-\int_t^s r(\tau, X_\tau)\,d\tau} f(s, X_s)\,ds \,\Big|\, X_t = x \right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="special-cases">Special Cases<a class="headerlink" href="#special-cases" title="Permanent link">&para;</a></h3>
 <p><strong>Case 1: No discounting, no source (<span class="arithmatex">\(r = 0\)</span>, <span class="arithmatex">\(f = 0\)</span>)</strong></p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mu \frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 u}{\partial x^2} = 0</p>
-<p>$$</p>
-<p>$$</p>
-<p>u(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mu \frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 u}{\partial x^2} = 0
+\]</div>
+<div class="arithmatex">\[
+u(t, x) = \mathbb{E}[g(X_T) \mid X_t = x]
+\]</div>
 <p><strong>Case 2: Constant discounting ($r = $ const, <span class="arithmatex">\(f = 0\)</span>)</strong></p>
-<p>$$</p>
-<p>u(t, x) = e^{-r(T-t)} \mathbb{E}[g(X_T) \mid X_t = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t, x) = e^{-r(T-t)} \mathbb{E}[g(X_T) \mid X_t = x]
+\]</div>
 <p><strong>Case 3: Killing/discounting only (<span class="arithmatex">\(f = 0\)</span>)</strong></p>
-<p>$$</p>
-<p>u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) \,\Big|\, X_t = x \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) \,\Big|\, X_t = x \right]
+\]</div>
 <hr />
 <h2 id="proof-sketch">Proof Sketch<a class="headerlink" href="#proof-sketch" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong>: Define the process</p>
-<p>$$</p>
-<p>Y_s = e^{-\int_t^s r(\tau, X_\tau)\,d\tau} u(s, X_s) + \int_t^s e^{-\int_t^\tau r(\xi, X_\xi)\,d\xi} f(\tau, X_\tau)\,d\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_s = e^{-\int_t^s r(\tau, X_\tau)\,d\tau} u(s, X_s) + \int_t^s e^{-\int_t^\tau r(\xi, X_\xi)\,d\xi} f(\tau, X_\tau)\,d\tau
+\]</div>
 <p><strong>Step 2</strong>: Apply Itô's lemma to <span class="arithmatex">\(e^{-\int_t^s r\,d\tau} u(s, X_s)\)</span>:</p>
-<p>$$</p>
-<p>d\left(e^{-\int_t^s r\,d\tau} u\right) = e^{-\int_t^s r\,d\tau} \left[ -r\,u\,ds + du \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\left(e^{-\int_t^s r\,d\tau} u\right) = e^{-\int_t^s r\,d\tau} \left[ -r\,u\,ds + du \right]
+\]</div>
 <p>where by Itô's lemma:</p>
-<p>$$</p>
-<p>du = \left( \frac{\partial u}{\partial s} + \mu \frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 u}{\partial x^2} \right) ds + \sigma \frac{\partial u}{\partial x} dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+du = \left( \frac{\partial u}{\partial s} + \mu \frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2 \frac{\partial^2 u}{\partial x^2} \right) ds + \sigma \frac{\partial u}{\partial x} dW_s
+\]</div>
 <p><strong>Step 3</strong>: Substitute the PDE (which says the bracketed term equals <span class="arithmatex">\(ru - f\)</span>):</p>
-<p>$$</p>
-<p>d\left(e^{-\int_t^s r\,d\tau} u\right) = e^{-\int_t^s r\,d\tau} \left[ -ru + ru - f \right] ds + (\text{martingale term})</p>
-<p>$$</p>
-<p>$$</p>
-<p>= -e^{-\int_t^s r\,d\tau} f\,ds + (\text{martingale term})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\left(e^{-\int_t^s r\,d\tau} u\right) = e^{-\int_t^s r\,d\tau} \left[ -ru + ru - f \right] ds + (\text{martingale term})
+\]</div>
+<div class="arithmatex">\[
+= -e^{-\int_t^s r\,d\tau} f\,ds + (\text{martingale term})
+\]</div>
 <p><strong>Step 4</strong>: Therefore <span class="arithmatex">\(Y_s\)</span> is a martingale (the <span class="arithmatex">\(-f\)</span> term cancels with the integral term).</p>
 <p><strong>Step 5</strong>: By the martingale property:</p>
-<p>$$</p>
-<p>Y_t = \mathbb{E}[Y_T \mid \mathcal{F}_t]</p>
-<p>$$</p>
-<p>$$</p>
-<p>u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r\,d\tau} g(X_T) + \int_t^T e^{-\int_t^s r\,d\tau} f(s, X_s)\,ds \,\Big|\, X_t = x \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = \mathbb{E}[Y_T \mid \mathcal{F}_t]
+\]</div>
+<div class="arithmatex">\[
+u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r\,d\tau} g(X_T) + \int_t^T e^{-\int_t^s r\,d\tau} f(s, X_s)\,ds \,\Big|\, X_t = x \right]
+\]</div>
 <p><span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="the-converse-from-expectation-to-pde">The Converse: From Expectation to PDE<a class="headerlink" href="#the-converse-from-expectation-to-pde" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Converse Feynman–Kac)</strong>: Define</p>
-<p>$$</p>
-<p>u(t, x) := \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) \,\Big|\, X_t = x \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t, x) := \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) \,\Big|\, X_t = x \right]
+\]</div>
 <p>Under suitable regularity (e.g., <span class="arithmatex">\(g\)</span> bounded continuous, coefficients Lipschitz), <span class="arithmatex">\(u\)</span> is a viscosity solution (and under stronger conditions, a classical solution) to:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mathcal{L}u - ru = 0, \quad u(T, x) = g(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mathcal{L}u - ru = 0, \quad u(T, x) = g(x)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}\)</span> is the generator of <span class="arithmatex">\(X_t\)</span>.</p>
 <hr />
 <h2 id="connection-to-the-infinitesimal-generator">Connection to the Infinitesimal Generator<a class="headerlink" href="#connection-to-the-infinitesimal-generator" title="Permanent link">&para;</a></h2>
 <p>The PDE in Feynman–Kac can be written compactly as:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mathcal{L}u - ru + f = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mathcal{L}u - ru + f = 0
+\]</div>
 <p>where the <strong>infinitesimal generator</strong> is:</p>
-<p>$$</p>
-<p>\mathcal{L} = \mu(t,x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = \mu(t,x)\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2}{\partial x^2}
+\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ul>
 <li><span class="arithmatex">\(\frac{\partial u}{\partial t}\)</span>: Time evolution</li>
@@ -46890,83 +46890,83 @@ u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) + \int_t^T e^{-\in
 <h2 id="application-1-blackscholes-option-pricing">Application 1: Black–Scholes Option Pricing<a class="headerlink" href="#application-1-blackscholes-option-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the stock price follows:</p>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>where <span class="arithmatex">\(r\)</span> is the risk-free rate.</p>
 <h3 id="european-call-option">European Call Option<a class="headerlink" href="#european-call-option" title="Permanent link">&para;</a></h3>
 <p>The call option with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span> has payoff <span class="arithmatex">\(g(S) = (S - K)^+\)</span>.</p>
 <p><strong>By Feynman–Kac</strong>, the price <span class="arithmatex">\(V(t, S)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p>with <span class="arithmatex">\(V(T, S) = (S - K)^+\)</span>.</p>
 <p><strong>Probabilistic representation</strong>:</p>
-<p>$$</p>
-<p>V(t, S) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t = S]
+\]</div>
 <p><strong>Explicit solution (Black–Scholes formula)</strong>:</p>
-<p>$$</p>
-<p>V(t, S) = S\,\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S) = S\,\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+\]</div>
 <hr />
 <h2 id="application-2-bond-pricing-with-stochastic-interest-rates">Application 2: Bond Pricing with Stochastic Interest Rates<a class="headerlink" href="#application-2-bond-pricing-with-stochastic-interest-rates" title="Permanent link">&para;</a></h2>
 <h3 id="vasicek-model">Vasicek Model<a class="headerlink" href="#vasicek-model" title="Permanent link">&para;</a></h3>
 <p>The short rate follows:</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t
+\]</div>
 <h3 id="zero-coupon-bond">Zero-Coupon Bond<a class="headerlink" href="#zero-coupon-bond" title="Permanent link">&para;</a></h3>
 <p>The price of a zero-coupon bond paying <span class="arithmatex">\(1\)</span> at maturity <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>P(t, r) = \mathbb{E}\left[ e^{-\int_t^T r_s\,ds} \,\Big|\, r_t = r \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, r) = \mathbb{E}\left[ e^{-\int_t^T r_s\,ds} \,\Big|\, r_t = r \right]
+\]</div>
 <p><strong>By Feynman–Kac</strong>, <span class="arithmatex">\(P\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial P}{\partial t} + \kappa(\theta - r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 P}{\partial r^2} - rP = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial P}{\partial t} + \kappa(\theta - r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 P}{\partial r^2} - rP = 0
+\]</div>
 <p>with <span class="arithmatex">\(P(T, r) = 1\)</span>.</p>
 <p><strong>Explicit solution</strong>:</p>
-<p>$$</p>
-<p>P(t, r) = A(t, T) e^{-B(t, T) r}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, r) = A(t, T) e^{-B(t, T) r}
+\]</div>
 <p>where <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are deterministic functions (affine term structure).</p>
 <hr />
 <h2 id="application-3-expected-exit-time-boundary-value-problem">Application 3: Expected Exit Time (Boundary Value Problem)<a class="headerlink" href="#application-3-expected-exit-time-boundary-value-problem" title="Permanent link">&para;</a></h2>
 <h3 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h3>
 <p>For Brownian motion <span class="arithmatex">\(X_t = W_t\)</span> starting at <span class="arithmatex">\(x \in (a, b)\)</span>, find the expected exit time:</p>
-<p>$$</p>
-<p>u(x) = \mathbb{E}_x[\tau], \quad \tau = \inf{t \geq 0 : X_t \notin (a, b)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x) = \mathbb{E}_x[\tau], \quad \tau = \inf\{t \geq 0 : X_t \notin (a, b)\}
+\]</div>
 <h3 id="feynmankac-formulation">Feynman–Kac Formulation<a class="headerlink" href="#feynmankac-formulation" title="Permanent link">&para;</a></h3>
 <p>The function <span class="arithmatex">\(u(x)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\mathcal{L}u = -1, \quad u(a) = u(b) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}u = -1, \quad u(a) = u(b) = 0
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L} = \frac{1}{2}\frac{d^2}{dx^2}\)</span> for Brownian motion.</p>
 <p><strong>PDE</strong>:</p>
-<p>$$</p>
-<p>\frac{1}{2}u''(x) = -1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{1}{2}u''(x) = -1
+\]</div>
 <p><strong>Solution</strong>:</p>
-<p>$$</p>
-<p>u(x) = (x - a)(b - x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x) = (x - a)(b - x)
+\]</div>
 <p><strong>Interpretation</strong>: Maximum expected exit time at the midpoint <span class="arithmatex">\((a+b)/2\)</span>.</p>
 <hr />
 <h2 id="multidimensional-feynmankac">Multidimensional Feynman–Kac<a class="headerlink" href="#multidimensional-feynmankac" title="Permanent link">&para;</a></h2>
 <p>For an <span class="arithmatex">\(\mathbb{R}^d\)</span>-valued diffusion:</p>
-<p>$$</p>
-<p>dX_t^i = \mu^i(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^\alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t^i = \mu^i(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^\alpha
+\]</div>
 <p>The Feynman–Kac PDE becomes:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mu^i \frac{\partial u}{\partial x^i} + \frac{1}{2}a^{ij}\frac{\partial^2 u}{\partial x^i \partial x^j} - ru + f = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mu^i \frac{\partial u}{\partial x^i} + \frac{1}{2}a^{ij}\frac{\partial^2 u}{\partial x^i \partial x^j} - ru + f = 0
+\]</div>
 <p>where <span class="arithmatex">\(a^{ij} = \sigma^{i\alpha}\sigma^{j\alpha}\)</span> is the diffusion matrix.</p>
 <hr />
 <h2 id="numerical-methods-monte-carlo-vs-pde">Numerical Methods: Monte Carlo vs PDE<a class="headerlink" href="#numerical-methods-monte-carlo-vs-pde" title="Permanent link">&para;</a></h2>
@@ -47007,11 +47007,11 @@ u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) + \int_t^T e^{-\in
 <p>Feynman's insight: Quantum mechanical propagators can be represented as integrals over all possible paths. Kac made this rigorous using Brownian motion and showed the connection to parabolic PDEs.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{PDE: } \frac{\partial u}{\partial t} + \mathcal{L}u - ru + f = 0 \quad \Longleftrightarrow \quad u(t,x) = \mathbb{E}\left[ e^{-\int_t^T r\,ds} g(X_T) + \int_t^T e^{-\int_t^s r\,d\tau} f\,ds \,\Big|\, X_t = x \right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47048,71 +47048,71 @@ u(t, x) = \mathbb{E}\left[ e^{-\int_t^T r(s, X_s)\,ds} g(X_T) + \int_t^T e^{-\in
 <h2 id="quantpie-derivation">QuantPie Derivation<a class="headerlink" href="#quantpie-derivation" title="Permanent link">&para;</a></h2>
 <h3 id="proof-via-martingale-methods">Proof via Martingale Methods<a class="headerlink" href="#proof-via-martingale-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Define the process:</strong></p>
-<p>$$</p>
-<p>Y(s) = e^{-\int_t^s V(X_\tau, \tau)d\tau} u(X_s, s) + \int_t^s e^{-\int_t^r V(X_\tau, \tau)d\tau} f(X_r, r)dr</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y(s) = e^{-\int_t^s V(X_\tau, \tau)d\tau} u(X_s, s) + \int_t^s e^{-\int_t^r V(X_\tau, \tau)d\tau} f(X_r, r)dr
+\]</div>
 <p>where <span class="arithmatex">\(u\)</span> solves the PDE:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \mu(t,x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} - V(t,x)u + f(t,x) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \mu(t,x)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(t,x)\frac{\partial^2 u}{\partial x^2} - V(t,x)u + f(t,x) = 0
+\]</div>
 <p><strong>Applying Itô's Lemma</strong> to the first term:</p>
-<p>$$</p>
-<p>d\left(e^{-\int_t^s V d\tau}\right) = -V(X_s, s)e^{-\int_t^s V d\tau}ds</p>
-<p>$$</p>
-<p>$$</p>
-<p>du(X_s, s) = \left(\frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right)ds + \sigma\frac{\partial u}{\partial x}dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\left(e^{-\int_t^s V d\tau}\right) = -V(X_s, s)e^{-\int_t^s V d\tau}ds
+\]</div>
+<div class="arithmatex">\[
+du(X_s, s) = \left(\frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2}\right)ds + \sigma\frac{\partial u}{\partial x}dW_s
+\]</div>
 <p><strong>Computing <span class="arithmatex">\(dY\)</span>:</strong></p>
-<p>$$</p>
-<p>dY = e^{-\int_t^s V d\tau}\left[-Vu + du\right] + e^{-\int_t^s V d\tau}f ds + (\text{higher order})</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-\int_t^s V d\tau}\left[-Vu + \frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + f\right]ds + (\text{martingale})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY = e^{-\int_t^s V d\tau}\left[-Vu + du\right] + e^{-\int_t^s V d\tau}f ds + (\text{higher order})
+\]</div>
+<div class="arithmatex">\[
+= e^{-\int_t^s V d\tau}\left[-Vu + \frac{\partial u}{\partial s} + \mu\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + f\right]ds + (\text{martingale})
+\]</div>
 <p><strong>The bracketed term equals zero by the PDE</strong>, leaving only the martingale part:</p>
-<p>$$</p>
-<p>dY = e^{-\int_t^s V d\tau}\sigma\frac{\partial u}{\partial x}dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY = e^{-\int_t^s V d\tau}\sigma\frac{\partial u}{\partial x}dW_s
+\]</div>
 <p><strong>Therefore <span class="arithmatex">\(Y(s)\)</span> is a martingale:</strong></p>
-<p>$$</p>
-<p>Y(t) = \mathbb{E}[Y(T) | \mathcal{F}_t]</p>
-<p>$$</p>
-<p>$$</p>
-<p>u(t, x) = \mathbb{E}\left[e^{-\int_t^T V d\tau}u(X_T, T) + \int_t^T e^{-\int_t^s V d\tau}f(X_s, s)ds \,\Big|\, X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y(t) = \mathbb{E}[Y(T) | \mathcal{F}_t]
+\]</div>
+<div class="arithmatex">\[
+u(t, x) = \mathbb{E}\left[e^{-\int_t^T V d\tau}u(X_T, T) + \int_t^T e^{-\int_t^s V d\tau}f(X_s, s)ds \,\Big|\, X_t = x\right]
+\]</div>
 <h3 id="examples-diffusion-equations">Examples: Diffusion Equations<a class="headerlink" href="#examples-diffusion-equations" title="Permanent link">&para;</a></h3>
 <p><strong>Example 1: Pure Diffusion (No Drift, No Discounting)</strong></p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} = 0, \quad u(T, x) = x^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} = 0, \quad u(T, x) = x^2
+\]</div>
 <p><strong>Stochastic process:</strong> <span class="arithmatex">\(dX = \sigma dB_t\)</span></p>
-<p>$$</p>
-<p>X_T = X_t + \sigma(B_T - B_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_T = X_t + \sigma(B_T - B_t)
+\]</div>
 <p><strong>Solution by Feynman-Kac:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 u(t, X_t) &amp;= \mathbb{E}[X_T^2 | X_t] \\
 &amp;= \mathbb{E}[(X_t + \sigma(B_T - B_t))^2] \\
 &amp;= X_t^2 + \sigma^2(T - t)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Example 2: Diffusion with Drift</strong></p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + \mu\frac{\partial u}{\partial x} = 0, \quad u(T, x) = x^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2\frac{\partial^2 u}{\partial x^2} + \mu\frac{\partial u}{\partial x} = 0, \quad u(T, x) = x^2
+\]</div>
 <p><strong>Stochastic process:</strong> <span class="arithmatex">\(dX = \mu dt + \sigma dB_t\)</span></p>
-<p>$$</p>
-<p>X_T = X_t + \mu(T - t) + \sigma(B_T - B_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_T = X_t + \mu(T - t) + \sigma(B_T - B_t)
+\]</div>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 u(t, X_t) &amp;= \mathbb{E}[X_T^2] \\
 &amp;= \mathbb{E}[(X_t + \mu(T-t) + \sigma(B_T - B_t))^2] \\
 &amp;= (X_t + \mu(T-t))^2 + \sigma^2(T-t)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <h3 id="key-insight">Key Insight<a class="headerlink" href="#key-insight" title="Permanent link">&para;</a></h3>
 <p>The Feynman-Kac formula shows that <strong>solving the PDE is equivalent to computing an expectation</strong>. This opens two computational paths:</p>
 <ol>

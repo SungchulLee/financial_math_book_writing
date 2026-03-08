@@ -46431,59 +46431,59 @@
 <hr />
 <h2 id="black-scholes-framework">Black-Scholes Framework<a class="headerlink" href="#black-scholes-framework" title="Permanent link">&para;</a></h2>
 <p>The Black-Scholes formula provides a fundamental tool for connecting market prices to implied volatility. The call option price is:</p>
-<p>$$</p>
-<p>C = S_{0}N(d_{1}) - Ke^{-rT}N(d_{2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = S_{0}N(d_{1}) - Ke^{-rT}N(d_{2})
+\]</div>
 <p>where the log-moneyness and variance parameters are defined as:</p>
 <div class="arithmatex">\[y = \log\frac{K}{S_0e^{rT}}, \quad w = \sigma_{\text{imp}}^2 T\]</div>
 <p>and</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 d_{1} &amp;= -\frac{y}{\sqrt{w}} + \sqrt{w} \\
 d_{2} &amp;= -\frac{y}{\sqrt{w}} - \sqrt{w}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <hr />
 <h2 id="change-of-variables-from-k-t-to-y-w">Change of Variables: From (K, T) to (y, w)<a class="headerlink" href="#change-of-variables-from-k-t-to-y-w" title="Permanent link">&para;</a></h2>
 <p>To bridge implied and local volatility, we perform a change of variables from strike-maturity coordinates to log-moneyness and variance coordinates. The partial derivatives transform as follows:</p>
 <h3 id="time-derivative">Time Derivative<a class="headerlink" href="#time-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_T = C_y y_T + C_w w_T = -rC_y + \sigma_{\text{imp}}^2 C_w</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_T = C_y y_T + C_w w_T = -rC_y + \sigma_{\text{imp}}^2 C_w
+\]</div>
 <h3 id="strike-derivative">Strike Derivative<a class="headerlink" href="#strike-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_K = C_y y_K + C_w w_K = K^{-1}C_y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_K = C_y y_K + C_w w_K = K^{-1}C_y
+\]</div>
 <h3 id="second-strike-derivative">Second Strike Derivative<a class="headerlink" href="#second-strike-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_{KK} = (K^{-1}C_y)<em yy="yy">K = K^{-2}(C</em> - C_y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{KK} = (K^{-1}C_y)_K = K^{-2}(C_{yy} - C_y)
+\]</div>
 <hr />
 <h2 id="dupire-formula-from-implied-volatility-quantpie">Dupire Formula from Implied Volatility (QuantPie)<a class="headerlink" href="#dupire-formula-from-implied-volatility-quantpie" title="Permanent link">&para;</a></h2>
 <p>Using the change of variables, we can express the Dupire formula directly in terms of derivatives with respect to log-moneyness <span class="arithmatex">\(y\)</span> and variance <span class="arithmatex">\(w\)</span>:</p>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>The Dupire formula is:</p>
-<p>$$</p>
-<p>\sigma^2(K,T) = \frac{C_T + rKC_K}{\frac{1}{2} K^2 C_{KK}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^2(K,T) = \frac{C_T + rKC_K}{\frac{1}{2} K^2 C_{KK}}
+\]</div>
 <h3 id="application-to-black-scholes-parameters">Application to Black-Scholes Parameters<a class="headerlink" href="#application-to-black-scholes-parameters" title="Permanent link">&para;</a></h3>
 <p>Substituting the transformed derivatives:</p>
-<p>$$</p>
-<p>\sigma^2 = \frac{(C_y y_T + C_w w_T) + rK(C_y y_K + C_w w_K)}{\frac{1}{2} K^2 [C_{yy} y_K^2 + 2C_{yw} y_K w_K + C_{ww} w_K^2 + C_y y_{KK} + C_w w_{KK}]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^2 = \frac{(C_y y_T + C_w w_T) + rK(C_y y_K + C_w w_K)}{\frac{1}{2} K^2 [C_{yy} y_K^2 + 2C_{yw} y_K w_K + C_{ww} w_K^2 + C_y y_{KK} + C_w w_{KK}]}
+\]</div>
 <h3 id="simplified-form">Simplified Form<a class="headerlink" href="#simplified-form" title="Permanent link">&para;</a></h3>
 <p>Using the relationships:
 - <span class="arithmatex">\(y_T = -r\)</span>, <span class="arithmatex">\(w_T = \sigma_{\text{imp}}^2\)</span>
 - <span class="arithmatex">\(y_K = K^{-1}\)</span>, <span class="arithmatex">\(w_K = 0\)</span>
 - <span class="arithmatex">\(y_{KK} = -K^{-2}\)</span>, <span class="arithmatex">\(w_{KK} = 0\)</span></p>
 <p>We obtain:</p>
-<p>$$</p>
-<p>\sigma^2 = \frac{-rC_y + \sigma_{\text{imp}}^2 C_w + rK \cdot K^{-1}C_y}{\frac{1}{2} K^2 \cdot K^{-2}(C_{yy} - C_y)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^2 = \frac{-rC_y + \sigma_{\text{imp}}^2 C_w + rK \cdot K^{-1}C_y}{\frac{1}{2} K^2 \cdot K^{-2}(C_{yy} - C_y)}
+\]</div>
 <p>This simplifies to:</p>
-<p>$$</p>
-<p>\sigma^2 = \frac{\sigma_{\text{imp}}^2 C_w}{\frac{1}{2}(C_{yy} - C_y)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^2 = \frac{\sigma_{\text{imp}}^2 C_w}{\frac{1}{2}(C_{yy} - C_y)}
+\]</div>
 <hr />
 <h2 id="practical-interpretation">Practical Interpretation<a class="headerlink" href="#practical-interpretation" title="Permanent link">&para;</a></h2>
 <p>The transformation from implied to local volatility reveals several important points:</p>

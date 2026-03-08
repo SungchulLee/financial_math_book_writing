@@ -46776,9 +46776,9 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>A <strong>conditional risk measure</strong> at time <span class="arithmatex">\(t \in [0, T]\)</span> is a mapping:</p>
-<p>$$</p>
-<p>\rho_t: L^\infty(\mathcal{F}_T) \to L^\infty(\mathcal{F}_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t: L^\infty(\mathcal{F}_T) \to L^\infty(\mathcal{F}_t)
+\]</div>
 <p>such that <span class="arithmatex">\(\rho_t(X)\)</span> is <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable for each <span class="arithmatex">\(X\)</span>.</p>
 <p><strong>Interpretation:</strong> 
 - <span class="arithmatex">\(\rho_t(X)(\omega)\)</span> is the risk of terminal loss <span class="arithmatex">\(X\)</span> as assessed at time <span class="arithmatex">\(t\)</span> in state <span class="arithmatex">\(\omega\)</span>
@@ -46790,84 +46790,84 @@
 <p>If <span class="arithmatex">\(X \le Y\)</span> a.s., then <span class="arithmatex">\(\rho_t(X) \le \rho_t(Y)\)</span> a.s.</p>
 <h3 id="conditional-translation-invariance">Conditional Translation Invariance<a class="headerlink" href="#conditional-translation-invariance" title="Permanent link">&para;</a></h3>
 <p>For any <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable <span class="arithmatex">\(m\)</span>:</p>
-<p>$$</p>
-<p>\rho_t(X + m) = \rho_t(X) + m \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X + m) = \rho_t(X) + m \quad \text{a.s.}
+\]</div>
 <p><strong>Note:</strong> The constant <span class="arithmatex">\(m\)</span> must be <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable (known at time <span class="arithmatex">\(t\)</span>).</p>
 <h3 id="conditional-positive-homogeneity">Conditional Positive Homogeneity<a class="headerlink" href="#conditional-positive-homogeneity" title="Permanent link">&para;</a></h3>
 <p>For any <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable <span class="arithmatex">\(\lambda &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\rho_t(\lambda X) = \lambda \rho_t(X) \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(\lambda X) = \lambda \rho_t(X) \quad \text{a.s.}
+\]</div>
 <h3 id="conditional-subadditivity">Conditional Subadditivity<a class="headerlink" href="#conditional-subadditivity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\rho_t(X + Y) \le \rho_t(X) + \rho_t(Y) \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X + Y) \le \rho_t(X) + \rho_t(Y) \quad \text{a.s.}
+\]</div>
 <hr />
 <h2 id="conditional-convex-risk-measures">Conditional Convex Risk Measures<a class="headerlink" href="#conditional-convex-risk-measures" title="Permanent link">&para;</a></h2>
 <p>Relaxing positive homogeneity, a conditional risk measure is <strong>conditionally convex</strong> if:</p>
 <p>For any <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable <span class="arithmatex">\(\lambda \in [0,1]\)</span>:</p>
-<p>$$</p>
-<p>\rho_t(\lambda X + (1-\lambda)Y) \le \lambda \rho_t(X) + (1-\lambda) \rho_t(Y) \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(\lambda X + (1-\lambda)Y) \le \lambda \rho_t(X) + (1-\lambda) \rho_t(Y) \quad \text{a.s.}
+\]</div>
 <p>This generalizes conditional coherence.</p>
 <hr />
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h3 id="conditional-expectation">Conditional Expectation<a class="headerlink" href="#conditional-expectation" title="Permanent link">&para;</a></h3>
 <p>The simplest conditional risk measure:</p>
-<p>$$</p>
-<p>\rho_t(X) = \mathbb{E}[X | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \mathbb{E}[X | \mathcal{F}_t]
+\]</div>
 <p>This is conditionally coherent but <strong>risk-neutral</strong> (no risk aversion).</p>
 <h3 id="conditional-var">Conditional VaR<a class="headerlink" href="#conditional-var" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{VaR}_\alpha^t(X) = \inf{m \in L^\infty(\mathcal{F}_t) : \mathbb{P}(X \le m | \mathcal{F}_t) \ge \alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_\alpha^t(X) = \inf\{m \in L^\infty(\mathcal{F}_t) : \mathbb{P}(X \le m | \mathcal{F}_t) \ge \alpha\}
+\]</div>
 <p>The conditional <span class="arithmatex">\(\alpha\)</span>-quantile of <span class="arithmatex">\(X\)</span> given <span class="arithmatex">\(\mathcal{F}_t\)</span>.</p>
 <p><strong>Warning:</strong> Conditional VaR is NOT conditionally subadditive in general.</p>
 <h3 id="conditional-es">Conditional ES<a class="headerlink" href="#conditional-es" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{ES}<em>\alpha^t(X) = \mathbb{E}[X | X \ge \text{VaR}</em>\alpha^t(X), \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha^t(X) = \mathbb{E}[X | X \ge \text{VaR}_\alpha^t(X), \mathcal{F}_t]
+\]</div>
 <p>Or using the integral representation:</p>
-<p>$$</p>
-<p>\text{ES}<em>\alpha^t(X) = \frac{1}{1-\alpha} \int</em>\alpha^1 \text{VaR}_u^t(X) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha^t(X) = \frac{1}{1-\alpha} \int_\alpha^1 \text{VaR}_u^t(X) \, du
+\]</div>
 <p>Conditional ES is conditionally coherent.</p>
 <h3 id="conditional-entropic-risk">Conditional Entropic Risk<a class="headerlink" href="#conditional-entropic-risk" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\rho_t^\gamma(X) = \frac{1}{\gamma} \log \mathbb{E}[e^{\gamma X} | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t^\gamma(X) = \frac{1}{\gamma} \log \mathbb{E}[e^{\gamma X} | \mathcal{F}_t]
+\]</div>
 <p>This is conditionally convex but not positively homogeneous.</p>
 <hr />
 <h2 id="dual-representation">Dual Representation<a class="headerlink" href="#dual-representation" title="Permanent link">&para;</a></h2>
 <p>Conditionally coherent risk measures admit a dual representation:</p>
-<p>$$</p>
-<p>\rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q} \in \mathcal{Q}_t} \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q} \in \mathcal{Q}_t} \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{Q}_t\)</span> is a set of probability measures equivalent to <span class="arithmatex">\(\mathbb{P}\)</span> on <span class="arithmatex">\(\mathcal{F}_T\)</span>.</p>
 <p><strong>Interpretation:</strong> Risk is the worst-case conditional expectation over a set of "stress" measures.</p>
 <p>For conditionally convex measures:</p>
-<p>$$</p>
-<p>\rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q}} \left{ \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t] - \alpha_t(\mathbb{Q}) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \operatorname{ess\,sup}_{\mathbb{Q}} \left\{ \mathbb{E}^\mathbb{Q}[X | \mathcal{F}_t] - \alpha_t(\mathbb{Q}) \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\alpha_t(\mathbb{Q})\)</span> is a conditional penalty function.</p>
 <hr />
 <h2 id="normalization-properties">Normalization Properties<a class="headerlink" href="#normalization-properties" title="Permanent link">&para;</a></h2>
 <p>A conditional risk measure is <strong>normalized</strong> if:</p>
-<p>$$</p>
-<p>\rho_t(0) = 0 \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(0) = 0 \quad \text{a.s.}
+\]</div>
 <p>Combined with translation invariance, this implies:</p>
-<p>$$</p>
-<p>\rho_t(c) = c \quad \text{for any } \mathcal{F}_t\text{-measurable } c</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(c) = c \quad \text{for any } \mathcal{F}_t\text{-measurable } c
+\]</div>
 <hr />
 <h2 id="relation-to-static-measures">Relation to Static Measures<a class="headerlink" href="#relation-to-static-measures" title="Permanent link">&para;</a></h2>
 <p>Static risk measures are special cases with <strong>trivial information</strong>:</p>
-<p>$$</p>
-<p>\rho = \rho_0 \quad \text{where } \mathcal{F}_0 = {\emptyset, \Omega}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho = \rho_0 \quad \text{where } \mathcal{F}_0 = \{\emptyset, \Omega\}
+\]</div>
 <p>When <span class="arithmatex">\(\mathcal{F}_0\)</span> is trivial, <span class="arithmatex">\(\rho_0(X)\)</span> is a constant (a real number), recovering the static case.</p>
 <hr />
 <h2 id="dynamic-risk-measures">Dynamic Risk Measures<a class="headerlink" href="#dynamic-risk-measures" title="Permanent link">&para;</a></h2>
@@ -46876,53 +46876,53 @@
 1. Each <span class="arithmatex">\(\rho_t\)</span> should be conditionally coherent (or convex)
 2. The family should satisfy <strong>time-consistency</strong> (see <a href="../time_consistency/">Time-Consistency</a>)</p>
 <p><strong>Composition:</strong></p>
-<p>$$</p>
-<p>\rho_{s,t}(X) := \rho_s(-\rho_t(X))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{s,t}(X) := \rho_s(-\rho_t(X))
+\]</div>
 <p>represents the risk at time <span class="arithmatex">\(s\)</span> of a position evaluated at time <span class="arithmatex">\(t\)</span>.</p>
 <hr />
 <h2 id="updating-risk-assessments">Updating Risk Assessments<a class="headerlink" href="#updating-risk-assessments" title="Permanent link">&para;</a></h2>
 <p>As information arrives, risk is updated:</p>
 <p><strong>Before event:</strong> <span class="arithmatex">\(\rho_0(X) = 50\)</span></p>
 <p><strong>After observing <span class="arithmatex">\(A \in \mathcal{F}_1\)</span>:</strong></p>
-<p>$$</p>
-<p>\rho_1(X)(\omega) = \begin{cases}
-30 &amp; \omega \in A \
+<div class="arithmatex">\[
+\rho_1(X)(\omega) = \begin{cases}
+30 &amp; \omega \in A \\
 70 &amp; \omega \in A^c
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>The conditional risk measure adapts to the realized state.</p>
 <hr />
 <h2 id="conditional-acceptance-sets">Conditional Acceptance Sets<a class="headerlink" href="#conditional-acceptance-sets" title="Permanent link">&para;</a></h2>
 <p>Define the <strong>conditional acceptance set</strong>:</p>
-<p>$$</p>
-<p>\mathcal{A}_t = {X \in L^\infty(\mathcal{F}_T) : \rho_t(X) \le 0 \text{ a.s.}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{A}_t = \{X \in L^\infty(\mathcal{F}_T) : \rho_t(X) \le 0 \text{ a.s.}\}
+\]</div>
 <p>Properties:
 - If <span class="arithmatex">\(\rho_t\)</span> is monotone: <span class="arithmatex">\(X \le 0 \Rightarrow X \in \mathcal{A}_t\)</span>
 - If <span class="arithmatex">\(\rho_t\)</span> is convex: <span class="arithmatex">\(\mathcal{A}_t\)</span> is convex
 - If <span class="arithmatex">\(\rho_t\)</span> is coherent: <span class="arithmatex">\(\mathcal{A}_t\)</span> is a convex cone</p>
 <p><strong>Reconstruction:</strong> </p>
-<p>$$</p>
-<p>\rho_t(X) = \operatorname{ess\,inf}{m \in L^\infty(\mathcal{F}_t) : X - m \in \mathcal{A}_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \operatorname{ess\,inf}\{m \in L^\infty(\mathcal{F}_t) : X - m \in \mathcal{A}_t\}
+\]</div>
 <hr />
 <h2 id="relevance-property">Relevance Property<a class="headerlink" href="#relevance-property" title="Permanent link">&para;</a></h2>
 <p>A conditional risk measure is <strong>relevant</strong> if:</p>
-<p>$$</p>
-<p>X &lt; 0 \text{ on } A \text{ (with } \mathbb{P}(A) &gt; 0) \quad \Rightarrow \quad \rho_t(X) &lt; 0 \text{ on } A</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X &lt; 0 \text{ on } A \text{ (with } \mathbb{P}(A) &gt; 0) \quad \Rightarrow \quad \rho_t(X) &lt; 0 \text{ on } A
+\]</div>
 <p>Relevance ensures that strict improvements are recognized.</p>
 <hr />
 <h2 id="capital-allocation-under-conditional-risk">Capital Allocation Under Conditional Risk<a class="headerlink" href="#capital-allocation-under-conditional-risk" title="Permanent link">&para;</a></h2>
 <p>For a portfolio <span class="arithmatex">\(X = \sum_i X_i\)</span>, the conditional capital allocation to unit <span class="arithmatex">\(i\)</span> is:</p>
-<p>$$</p>
-<p>\text{AC}<em>i^t = \mathbb{E}[X_i | X \ge \text{VaR}</em>\alpha^t(X), \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AC}_i^t = \mathbb{E}[X_i | X \ge \text{VaR}_\alpha^t(X), \mathcal{F}_t]
+\]</div>
 <p>for conditional ES, satisfying:</p>
-<p>$$</p>
-<p>\sum_i \text{AC}_i^t = \rho_t(X) \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_i \text{AC}_i^t = \rho_t(X) \quad \text{a.s.}
+\]</div>
 <p>This enables <strong>state-dependent capital allocation</strong>.</p>
 <hr />
 <h2 id="practical-applications">Practical Applications<a class="headerlink" href="#practical-applications" title="Permanent link">&para;</a></h2>

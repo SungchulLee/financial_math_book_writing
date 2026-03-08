@@ -47197,9 +47197,9 @@
 <h2 id="heuristic-intuition">Heuristic Intuition<a class="headerlink" href="#heuristic-intuition" title="Permanent link">&para;</a></h2>
 <h3 id="1-time-value-decay">1. Time Value Decay<a class="headerlink" href="#1-time-value-decay" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(T \to 0\)</span>, an option's value approaches its intrinsic value:</p>
-<p>$$</p>
-<p>\lim_{T \to 0} C(K, T) = \max(S_0 - K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to 0} C(K, T) = \max(S_0 - K, 0)
+\]</div>
 <p>However, the <strong>rate of approach</strong> depends on how close <span class="arithmatex">\(K\)</span> is to the current spot <span class="arithmatex">\(S_0\)</span>:</p>
 <ul>
 <li><strong>Deep ITM/OTM:</strong> Option has essentially determined payoff → IV reflects little uncertainty</li>
@@ -47207,107 +47207,107 @@
 </ul>
 <h3 id="2-path-probability-concentration">2. Path Probability Concentration<a class="headerlink" href="#2-path-probability-concentration" title="Permanent link">&para;</a></h3>
 <p>For small <span class="arithmatex">\(T\)</span>, the distribution of <span class="arithmatex">\(S_T\)</span> concentrates around <span class="arithmatex">\(S_0\)</span>:</p>
-<p>$$</p>
-<p>S_T \approx S_0 + \int_0^T \sigma(S_t, t) S_t dW_t \approx S_0 + \sigma(S_0, 0) S_0 \int_0^T dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T \approx S_0 + \int_0^T \sigma(S_t, t) S_t dW_t \approx S_0 + \sigma(S_0, 0) S_0 \int_0^T dW_t
+\]</div>
 <p>The limiting distribution as <span class="arithmatex">\(T \to 0\)</span> is determined by the <strong>local volatility</strong> at the initial spot.</p>
 <h2 id="mathematical-framework">Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-general-diffusion-setting">1. General Diffusion Setting<a class="headerlink" href="#1-general-diffusion-setting" title="Permanent link">&para;</a></h3>
 <p>Consider the underlying asset following:</p>
-<p>$$</p>
-<p>dS_t = \mu(S_t, t) S_t dt + \sigma(S_t, t) S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu(S_t, t) S_t dt + \sigma(S_t, t) S_t dW_t
+\]</div>
 <p>under the physical measure. Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = (r - q) S_t dt + \sigma(S_t, t) S_t dW_t^\mathbb{Q}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q) S_t dt + \sigma(S_t, t) S_t dW_t^\mathbb{Q}
+\]</div>
 <p>The implied volatility <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span> is defined through the Black-Scholes formula.</p>
 <h3 id="2-small-time-asymptotic-expansion">2. Small-Time Asymptotic Expansion<a class="headerlink" href="#2-small-time-asymptotic-expansion" title="Permanent link">&para;</a></h3>
 <p>We seek an expansion of the form:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) = \sigma_0(K) + \sigma_1(K) T + \sigma_2(K) T^2 + O(T^3) \quad \text{as } T \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) = \sigma_0(K) + \sigma_1(K) T + \sigma_2(K) T^2 + O(T^3) \quad \text{as } T \to 0
+\]</div>
 <p>The coefficients <span class="arithmatex">\(\sigma_0, \sigma_1, \sigma_2\)</span> depend on the local dynamics at the spot.</p>
 <h2 id="leading-order-asymptotics-local-volatility">Leading-Order Asymptotics: Local Volatility<a class="headerlink" href="#leading-order-asymptotics-local-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="1-main-result-berestycki-busca-florent">1. Main Result (Berestycki-Busca-Florent)<a class="headerlink" href="#1-main-result-berestycki-busca-florent" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.1</strong> (Leading-Order Asymptotics)<br />
 For a local volatility model with smooth <span class="arithmatex">\(\sigma(S, t)\)</span>, as <span class="arithmatex">\(T \to 0\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) = \sigma(K, 0) + O(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) = \sigma(K, 0) + O(T)
+\]</div>
 <p><strong>Interpretation:</strong> The short-maturity implied volatility at strike <span class="arithmatex">\(K\)</span> converges to the local volatility evaluated at that strike at the initial time.</p>
 <h3 id="2-proof-sketch">2. Proof Sketch<a class="headerlink" href="#2-proof-sketch" title="Permanent link">&para;</a></h3>
 <p>The call option price can be written as:</p>
-<p>$$</p>
-<p>C(K, T) = e^{-rT} \mathbb{E}^\mathbb{Q}[\max(S_T - K, 0)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) = e^{-rT} \mathbb{E}^\mathbb{Q}[\max(S_T - K, 0)]
+\]</div>
 <p>For small <span class="arithmatex">\(T\)</span>, the density <span class="arithmatex">\(p(S_T | S_0)\)</span> concentrates around <span class="arithmatex">\(S_0\)</span>. Near <span class="arithmatex">\(K \approx S_0\)</span>:</p>
-<p>$$</p>
-<p>p(S_T | S_0) \approx \frac{1}{\sigma(K, 0) K \sqrt{2\pi T}} \exp\left(-\frac{(S_T - K)^2}{2\sigma^2(K, 0) K^2 T}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(S_T | S_0) \approx \frac{1}{\sigma(K, 0) K \sqrt{2\pi T}} \exp\left(-\frac{(S_T - K)^2}{2\sigma^2(K, 0) K^2 T}\right)
+\]</div>
 <p>Computing the option price with this Gaussian approximation and matching to Black-Scholes gives <span class="arithmatex">\(\sigma_{\text{IV}} \sim \sigma(K, 0)\)</span>. □</p>
 <h3 id="3-at-the-money-limit">3. At-the-Money Limit<a class="headerlink" href="#3-at-the-money-limit" title="Permanent link">&para;</a></h3>
 <p><strong>Corollary 4.4.1</strong><br />
 At-the-money (<span class="arithmatex">\(K = S_0\)</span>):</p>
-<p>$$</p>
-<p>\lim_{T \to 0} \sigma_{\text{IV}}(S_0, T) = \sigma(S_0, 0) = \sigma_{\text{spot}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to 0} \sigma_{\text{IV}}(S_0, T) = \sigma(S_0, 0) = \sigma_{\text{spot}}
+\]</div>
 <p>The ATM implied volatility converges to the <strong>spot volatility</strong>.</p>
 <h3 id="4-away-from-the-money">4. Away from the Money<a class="headerlink" href="#4-away-from-the-money" title="Permanent link">&para;</a></h3>
 <p>For strikes <span class="arithmatex">\(K \neq S_0\)</span>, the leading-order term still gives:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)
+\]</div>
 <p><strong>Implication:</strong> The short-dated smile directly reveals the local volatility function <span class="arithmatex">\(\sigma(K, 0)\)</span> across strikes.</p>
 <h2 id="next-order-correction-drift-effects">Next-Order Correction: Drift Effects<a class="headerlink" href="#next-order-correction-drift-effects" title="Permanent link">&para;</a></h2>
 <h3 id="1-first-order-correction">1. First-Order Correction<a class="headerlink" href="#1-first-order-correction" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.2</strong> (First-Order Expansion)<br />
 For smooth local volatility <span class="arithmatex">\(\sigma(S, t)\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) = \sigma(K, 0) + T \cdot \frac{\partial \sigma}{\partial t}(K, 0) + O(T^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) = \sigma(K, 0) + T \cdot \frac{\partial \sigma}{\partial t}(K, 0) + O(T^2)
+\]</div>
 <p><strong>Proof sketch:</strong> Expanding the SDE for <span class="arithmatex">\(S_t\)</span> to order <span class="arithmatex">\(T\)</span> and matching moments gives the time derivative correction. □</p>
 <p><strong>Interpretation:</strong> If local volatility is time-dependent, the first-order correction captures the instantaneous rate of change at <span class="arithmatex">\(t = 0\)</span>.</p>
 <h3 id="2-spatial-derivatives">2. Spatial Derivatives<a class="headerlink" href="#2-spatial-derivatives" title="Permanent link">&para;</a></h3>
 <p>For non-constant local volatility in the spot direction, higher-order terms involve:</p>
-<p>$$</p>
-<p>\sigma_1(K) \sim \frac{\partial \sigma}{\partial S}(K, 0), \quad \frac{\partial^2 \sigma}{\partial S^2}(K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_1(K) \sim \frac{\partial \sigma}{\partial S}(K, 0), \quad \frac{\partial^2 \sigma}{\partial S^2}(K, 0)
+\]</div>
 <p><strong>Full expansion (Hagan et al., 2002):</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \approx \sigma(K, 0) \left{1 + \frac{T}{24}\left[\frac{\sigma''(K, 0)}{\sigma(K, 0)} - \frac{(\sigma'(K, 0))^2}{4\sigma^2(K, 0)}\right] + \cdots \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \approx \sigma(K, 0) \left\{1 + \frac{T}{24}\left[\frac{\sigma''(K, 0)}{\sigma(K, 0)} - \frac{(\sigma'(K, 0))^2}{4\sigma^2(K, 0)}\right] + \cdots \right\}
+\]</div>
 <h2 id="stochastic-volatility-models">Stochastic Volatility Models<a class="headerlink" href="#stochastic-volatility-models" title="Permanent link">&para;</a></h2>
 <h3 id="1-heston-model">1. Heston Model<a class="headerlink" href="#1-heston-model" title="Permanent link">&para;</a></h3>
 <p>The Heston model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= (r - q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 d\langle W^S, W^v \rangle_t &amp;= \rho dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <h3 id="2-small-time-atm-asymptotics-heston">2. Small-Time ATM Asymptotics (Heston)<a class="headerlink" href="#2-small-time-atm-asymptotics-heston" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.3</strong> (Heston ATM Asymptotics)<br />
 For the Heston model, as <span class="arithmatex">\(T \to 0\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(S_0, T) = \sqrt{v_0} + \frac{T}{8\sqrt{v_0}} \left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] + O(T^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(S_0, T) = \sqrt{v_0} + \frac{T}{8\sqrt{v_0}} \left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] + O(T^2)
+\]</div>
 <p><strong>Interpretation:</strong>
 - Leading term: <span class="arithmatex">\(\sqrt{v_0}\)</span> (current spot variance)
 - First-order correction: Depends on mean reversion and vol-of-vol</p>
 <p><strong>Derivation outline:</strong></p>
 <p>Using the moment-generating function for Heston:</p>
-<p>$$</p>
-<p>\mathbb{E}^\mathbb{Q}[e^{i\omega \ln S_T}] = \exp\left{i\omega \ln S_0 + A(T; \omega) + B(T; \omega) v_0\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^\mathbb{Q}[e^{i\omega \ln S_T}] = \exp\left\{i\omega \ln S_0 + A(T; \omega) + B(T; \omega) v_0\right\}
+\]</div>
 <p>where <span class="arithmatex">\(A(T; \omega)\)</span> and <span class="arithmatex">\(B(T; \omega)\)</span> satisfy Riccati ODEs. Expanding in powers of <span class="arithmatex">\(T\)</span> and inverting gives the IV expansion.</p>
 <h3 id="3-small-time-smile-heston">3. Small-Time Smile (Heston)<a class="headerlink" href="#3-small-time-smile-heston" title="Permanent link">&para;</a></h3>
 <p>Away from ATM, for log-moneyness <span class="arithmatex">\(y = \ln(K/S_0)\)</span>:</p>
 <p><strong>Theorem 4.4.4</strong> (Heston Smile Expansion)</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho \xi}{4} y + \frac{1}{24\sqrt{v_0}}\left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] T + \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho \xi}{4} y + \frac{1}{24\sqrt{v_0}}\left[\kappa(\theta - v_0) - \frac{\xi^2}{2}\right] T + \cdots
+\]</div>
 <p><strong>Key features:</strong>
 - Linear skew in <span class="arithmatex">\(y\)</span>: coefficient is <span class="arithmatex">\(\frac{\rho \xi}{4}\)</span>
 - Skew is <strong>instantaneous</strong> (order <span class="arithmatex">\(T^0\)</span>)
@@ -47316,24 +47316,24 @@ For the Heston model, as <span class="arithmatex">\(T \to 0\)</span>:</p>
 <h2 id="sabr-model">SABR Model<a class="headerlink" href="#sabr-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-model-specification">1. Model Specification<a class="headerlink" href="#1-model-specification" title="Permanent link">&para;</a></h3>
 <p>The SABR model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dF_t &amp;= \sigma_t F_t^\beta dW_t^1 \\
 d\sigma_t &amp;= \nu \sigma_t dW_t^2 \\
 d\langle W^1, W^2 \rangle_t &amp;= \rho dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>commonly used for interest rate options.</p>
 <h3 id="2-hagans-asymptotic-formula">2. Hagan's Asymptotic Formula<a class="headerlink" href="#2-hagans-asymptotic-formula" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.5</strong> (Hagan et al., 2002)<br />
 For SABR, the implied volatility admits the expansion:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K) = \frac{\alpha}{(FK)^{(1-\beta)/2}} \frac{z}{x(z)} \left[1 + \left(\frac{(1-\beta)^2}{24} \frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho\beta\nu\alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T + O(T^2)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K) = \frac{\alpha}{(FK)^{(1-\beta)/2}} \frac{z}{x(z)} \left[1 + \left(\frac{(1-\beta)^2}{24} \frac{\alpha^2}{(FK)^{1-\beta}} + \frac{\rho\beta\nu\alpha}{4(FK)^{(1-\beta)/2}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T + O(T^2)\right]
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K), \quad x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z = \frac{\nu}{\alpha}(FK)^{(1-\beta)/2} \ln(F/K), \quad x(z) = \ln\left(\frac{\sqrt{1 - 2\rho z + z^2} + z - \rho}{1 - \rho}\right)
+\]</div>
 <p><strong>Leading behavior:</strong> The "backbone" <span class="arithmatex">\((FK)^{-\frac{1-\beta}{2}}\)</span> controls the base smile shape.</p>
 <p><strong>First-order correction:</strong> The bracket <span class="arithmatex">\([\cdots]T\)</span> includes:
 - Volatility convexity term
@@ -47344,51 +47344,51 @@ For SABR, the implied volatility admits the expansion:</p>
 <h3 id="1-large-deviations-for-itmotm-options">1. Large Deviations for ITM/OTM Options<a class="headerlink" href="#1-large-deviations-for-itmotm-options" title="Permanent link">&para;</a></h3>
 <p>For deep ITM or OTM options (large <span class="arithmatex">\(|K - S_0|\)</span>) with small <span class="arithmatex">\(T\)</span>:</p>
 <p><strong>Theorem 4.4.6</strong> (Varadhan's Lemma Application)</p>
-<p>$$</p>
-<p>-\lim_{T \to 0} T \ln C(K, T) = \inf_{x: x &gt; K} I(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\lim_{T \to 0} T \ln C(K, T) = \inf_{x: x &gt; K} I(x)
+\]</div>
 <p>where <span class="arithmatex">\(I(x)\)</span> is the <strong>rate function</strong> from large deviation theory:</p>
-<p>$$</p>
-<p>I(x) = \inf_{\text{paths } {S_t}: S_T = x} \int_0^T \frac{(\dot{S}_t - \mu(S_t))^2}{2\sigma^2(S_t) S_t^2} dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I(x) = \inf_{\text{paths } \{S_t\}: S_T = x} \int_0^T \frac{(\dot{S}_t - \mu(S_t))^2}{2\sigma^2(S_t) S_t^2} dt
+\]</div>
 <p><strong>Interpretation:</strong> The option price decays exponentially in <span class="arithmatex">\(T\)</span> at a rate determined by the "most likely path" from <span class="arithmatex">\(S_0\)</span> to the payoff region.</p>
 <h3 id="2-connection-to-implied-volatility">2. Connection to Implied Volatility<a class="headerlink" href="#2-connection-to-implied-volatility" title="Permanent link">&para;</a></h3>
 <p>Taking logarithms and using <span class="arithmatex">\(C \approx S_0 \Phi(d_1) \approx S_0 e^{-d_1^2/2}\)</span> for deep OTM:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(K, T) T \sim 2 I(K) \quad \text{as } T \to 0, \, K \text{ far from } S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(K, T) T \sim 2 I(K) \quad \text{as } T \to 0, \, K \text{ far from } S_0
+\]</div>
 <p><strong>Result:</strong> The implied variance <span class="arithmatex">\(\sigma_{\text{IV}}^2 T\)</span> grows with <span class="arithmatex">\(|K - S_0|\)</span> to overcome the exponential decay of the option price.</p>
 <h2 id="small-time-vs-small-moneyness-regimes">Small-Time vs Small Moneyness Regimes<a class="headerlink" href="#small-time-vs-small-moneyness-regimes" title="Permanent link">&para;</a></h2>
 <h3 id="1-three-asymptotic-regimes">1. Three Asymptotic Regimes<a class="headerlink" href="#1-three-asymptotic-regimes" title="Permanent link">&para;</a></h3>
 <p><strong>Regime 1: ATM (<span class="arithmatex">\(K \approx S_0\)</span>, <span class="arithmatex">\(T \to 0\)</span>)</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \sim \sigma(S_0, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \sim \sigma(S_0, 0)
+\]</div>
 <p>Local volatility at the spot.</p>
 <p><strong>Regime 2: Finite moneyness (<span class="arithmatex">\(K - S_0 = O(1)\)</span>, <span class="arithmatex">\(T \to 0\)</span>)</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \sim \sigma(K, 0)
+\]</div>
 <p>Local volatility at the strike.</p>
 <p><strong>Regime 3: Scaling limit (<span class="arithmatex">\(K - S_0 = O(\sqrt{T})\)</span>, <span class="arithmatex">\(T \to 0\)</span>)</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}\left(S_0 + y\sqrt{T}, T\right) \sim \sigma(S_0, 0) \left[1 + \frac{y^2}{2} \frac{\sigma'(S_0, 0)}{\sigma(S_0, 0)} + \cdots\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}\left(S_0 + y\sqrt{T}, T\right) \sim \sigma(S_0, 0) \left[1 + \frac{y^2}{2} \frac{\sigma'(S_0, 0)}{\sigma(S_0, 0)} + \cdots\right]
+\]</div>
 <p>This regime captures the transition from ATM to OTM, showing the parabolic smile shape.</p>
 <h3 id="2-matched-asymptotics">2. Matched Asymptotics<a class="headerlink" href="#2-matched-asymptotics" title="Permanent link">&para;</a></h3>
 <p>The complete small-time picture requires <strong>matching</strong> these regimes:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) = \begin{cases}
-\sigma(K, 0) + O(T) &amp; |K - S_0| = O(1) \
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) = \begin{cases}
+\sigma(K, 0) + O(T) &amp; |K - S_0| = O(1) \\
 \sigma(S_0, 0) \left[1 + \frac{(K - S_0)^2}{2T\sigma^2(S_0, 0) S_0^2}\right] + O(T) &amp; |K - S_0| = O(\sqrt{T})
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <h2 id="practical-implications">Practical Implications<a class="headerlink" href="#practical-implications" title="Permanent link">&para;</a></h2>
 <h3 id="1-extracting-local-volatility-from-short-dated-options">1. Extracting Local Volatility from Short-Dated Options<a class="headerlink" href="#1-extracting-local-volatility-from-short-dated-options" title="Permanent link">&para;</a></h3>
 <p><strong>Method 1: Direct approximation</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}(K, 0) \approx \sigma_{\text{IV}}(K, T_{\text{short}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}(K, 0) \approx \sigma_{\text{IV}}(K, T_{\text{short}})
+\]</div>
 <p>for small <span class="arithmatex">\(T_{\text{short}}\)</span> (e.g., 1 week).</p>
 <p><strong>Accuracy:</strong> Order <span class="arithmatex">\(O(T)\)</span> error.</p>
 <p><strong>Advantage:</strong> Simple, model-free.</p>
@@ -47501,51 +47501,51 @@ For SABR, the implied volatility admits the expansion:</p>
 <h3 id="1-when-small-time-asymptotics-fail">1. When Small-Time Asymptotics Fail<a class="headerlink" href="#1-when-small-time-asymptotics-fail" title="Permanent link">&para;</a></h3>
 <p><strong>Jumps:</strong><br />
 If the model includes jumps:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t
+\]</div>
 <p>the leading-order behavior is <strong>discontinuous</strong> rather than diffusive. Small-time asymptotics give:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \sim \infty \quad \text{as } T \to 0 \text{ for } K \neq S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \sim \infty \quad \text{as } T \to 0 \text{ for } K \neq S_0
+\]</div>
 <p>(Infinite IV to compensate for jump probability in arbitrarily short time.)</p>
 <p><strong>Fix:</strong> Use separate asymptotic theory for jump-diffusions (Tankov, Figueroa-López).</p>
 <h3 id="2-rough-volatility">2. Rough Volatility<a class="headerlink" href="#2-rough-volatility" title="Permanent link">&para;</a></h3>
 <p>For <strong>rough volatility models</strong> (fractional Brownian motion):</p>
-<p>$$</p>
-<p>dv_t = -\lambda v_t dt + \xi v_t dB_t^H</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dv_t = -\lambda v_t dt + \xi v_t dB_t^H
+\]</div>
 <p>where <span class="arithmatex">\(B_t^H\)</span> is fractional Brownian motion with Hurst exponent <span class="arithmatex">\(H &lt; 1/2\)</span>.</p>
 <p><strong>Consequence:</strong> Small-time smile exhibits <strong>explosive behavior</strong>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y, T) \sim T^{H - 1/2} |y|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y, T) \sim T^{H - 1/2} |y|
+\]</div>
 <p>for <span class="arithmatex">\(H &lt; 1/2\)</span>, the smile becomes increasingly steep as <span class="arithmatex">\(T \to 0\)</span>.</p>
 <p><strong>Empirical evidence:</strong> Real short-dated smiles suggest <span class="arithmatex">\(H \approx 0.1\)</span> (very rough).</p>
 <h3 id="3-very-large-strikes">3. Very Large Strikes<a class="headerlink" href="#3-very-large-strikes" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(|K - S_0| \gg \sigma S_0 \sqrt{T}\)</span>, the option is so deep ITM/OTM that:</p>
-<p>$$</p>
-<p>C(K, T) \approx \max(S_0 - K e^{-rT}, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T) \approx \max(S_0 - K e^{-rT}, 0)
+\]</div>
 <p>Implied volatility becomes <strong>ill-defined</strong> (numerically unstable) as the price approaches intrinsic value.</p>
 <p><strong>Solution:</strong> Focus asymptotics on the region <span class="arithmatex">\(|K - S_0| = O(\sqrt{T})\)</span> or smaller.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Short-maturity asymptotics reveal:</p>
 <h3 id="1-leading-order-behavior">1. <strong>Leading-order behavior:</strong><a class="headerlink" href="#1-leading-order-behavior" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\lim_{T \to 0} \sigma_{\text{IV}}(K, T) = \sigma_{\text{loc}}(K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{T \to 0} \sigma_{\text{IV}}(K, T) = \sigma_{\text{loc}}(K, 0)
+\]</div>
 <p>Implied volatility converges to local volatility.</p>
 <h3 id="2-stochastic-volatility-corrections">2. <strong>Stochastic volatility corrections:</strong><a class="headerlink" href="#2-stochastic-volatility-corrections" title="Permanent link">&para;</a></h3>
 <p><strong>Heston:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho\xi}{4}y + O(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y, T) = \sqrt{v_0} + \frac{\rho\xi}{4}y + O(T)
+\]</div>
 <p>Instantaneous linear skew.</p>
 <p><strong>SABR:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}} \sim \frac{\alpha}{(FK)^{(1-\beta)/2}} [1 + O(T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}} \sim \frac{\alpha}{(FK)^{(1-\beta)/2}} [1 + O(T)]
+\]</div>
 <p>Backbone plus time-dependent corrections.</p>
 <h3 id="3-applications">3. <strong>Applications:</strong><a class="headerlink" href="#3-applications" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47554,13 +47554,13 @@ If the model includes jumps:</p>
 <li><strong>Fast pricing:</strong> Asymptotic formulas for short-dated options</li>
 </ul>
 <h3 id="4-asymptotic-regimes">4. <strong>Asymptotic regimes:</strong><a class="headerlink" href="#4-asymptotic-regimes" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K, T) \sim \begin{cases}
-\sigma(S_0, 0) &amp; K = S_0 \
-\sigma(K, 0) &amp; K \neq S_0, \, T \to 0 \
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K, T) \sim \begin{cases}
+\sigma(S_0, 0) &amp; K = S_0 \\
+\sigma(K, 0) &amp; K \neq S_0, \, T \to 0 \\
 \sqrt{\frac{2I(K)}{T}} &amp; K \text{ far from } S_0
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>The small-time limit provides a powerful lens for understanding the instantaneous structure of volatility and the geometry of the price process.</p>
 
 

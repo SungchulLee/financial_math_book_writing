@@ -46858,13 +46858,13 @@
 </ol>
 <p><strong>Mathematical formulation:</strong></p>
 <p>Let <span class="arithmatex">\(\Theta_0\)</span> be the model parameters calibrated at <span class="arithmatex">\(t=0\)</span>. Evolve the model to <span class="arithmatex">\(t\)</span> to get state <span class="arithmatex">\(X_t\)</span>. The forward-implied surface is:</p>
-<p>$$</p>
-<p>\sigma_{\text{fwd}}(K, T; X_t, \Theta_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd}}(K, T; X_t, \Theta_0)
+\]</div>
 <p>Dynamic consistency requires:</p>
-<p>$$</p>
-<p>\sigma_{\text{fwd}}(K, T; X_t, \Theta_0) \stackrel{d}{=} \sigma_{\text{IV}}(K, T; \text{recalibrated at } t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd}}(K, T; X_t, \Theta_0) \stackrel{d}{=} \sigma_{\text{IV}}(K, T; \text{recalibrated at } t)
+\]</div>
 <h3 id="2-why-dynamic-consistency-matters">2. Why Dynamic Consistency Matters<a class="headerlink" href="#2-why-dynamic-consistency-matters" title="Permanent link">&para;</a></h3>
 <p><strong>Pricing:</strong> Exotic options depend on future smile dynamics. Inconsistent models misprice path-dependent products.</p>
 <p><strong>Hedging:</strong> Hedge ratios assume the model's dynamics. Inconsistency leads to hedging errors.</p>
@@ -46881,16 +46881,16 @@
 <p><strong>Status:</strong> Dynamically inconsistent.</p>
 <p><strong>Calibration:</strong> Local vol is calibrated to match today's smile exactly.</p>
 <p><strong>Evolution:</strong> Under local vol dynamics:</p>
-<p>$$</p>
-<p>dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+\]</div>
 <p>The forward smile <strong>flattens</strong> over time.</p>
 <p><strong>Recalibration:</strong> Tomorrow's market will likely show persistent skew, requiring a new local vol surface.</p>
 <p><strong>Inconsistency:</strong> The model predicts flat forward smiles, but recalibration shows persistent skew.</p>
 <p><strong>Quantitative measure:</strong></p>
-<p>$$</p>
-<p>\text{Inconsistency} = |\sigma_{\text{fwd}}^{\text{model}} - \sigma_{\text{IV}}^{\text{recalibrated}}|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Inconsistency} = \|\sigma_{\text{fwd}}^{\text{model}} - \sigma_{\text{IV}}^{\text{recalibrated}}\|
+\]</div>
 <p>For local vol, this can be several vol points for long-dated options.</p>
 <h3 id="3-stochastic-volatility-models">3. Stochastic Volatility Models<a class="headerlink" href="#3-stochastic-volatility-models" title="Permanent link">&para;</a></h3>
 <p><strong>Status:</strong> Better but still imperfect.</p>
@@ -46916,9 +46916,9 @@
 <h2 id="consequences-for-pricing-and-hedging">Consequences for Pricing and Hedging<a class="headerlink" href="#consequences-for-pricing-and-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="1-mispricing-of-forward-start-products">1. Mispricing of Forward-Start Products<a class="headerlink" href="#1-mispricing-of-forward-start-products" title="Permanent link">&para;</a></h3>
 <p><strong>Cliquets:</strong></p>
-<p>$$</p>
-<p>\text{Cliquet Price} = \mathbb{E}\left[\sum_i f\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cliquet Price} = \mathbb{E}\left[\sum_i f\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)\right]
+\]</div>
 <p>Depends critically on forward smile. Dynamically inconsistent models give:
 - Local vol: Underprices cliquets (forward smile too flat)
 - Wrong volatility for future periods</p>
@@ -46938,13 +46938,13 @@
 <h3 id="3-recalibration-induced-pl">3. Recalibration-Induced P&amp;L<a class="headerlink" href="#3-recalibration-induced-pl" title="Permanent link">&para;</a></h3>
 <p><strong>Daily recalibration:</strong></p>
 <p>Recalibrating each day changes model parameters:</p>
-<p>$$</p>
-<p>\Theta_0 \to \Theta_1 \to \Theta_2 \to \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_0 \to \Theta_1 \to \Theta_2 \to \cdots
+\]</div>
 <p><strong>P&amp;L impact:</strong></p>
-<p>$$</p>
-<p>\text{P\&amp;L}_{\text{recalib}} = P(\Theta_1) - P(\Theta_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L}_{\text{recalib}} = P(\Theta_1) - P(\Theta_0)
+\]</div>
 <p>This is "model P&amp;L" unrelated to market moves.</p>
 <p><strong>Example:</strong> A long-dated exotic may show:
 - Market unchanged
@@ -46968,15 +46968,15 @@
 <p><strong>Cost:</strong> More parameters, harder calibration.</p>
 <p><strong>Time-dependent parameters:</strong></p>
 <p>Allow parameters to vary with time:</p>
-<p>$$</p>
-<p>\kappa(t), \theta(t), \xi(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\kappa(t), \theta(t), \xi(t)
+\]</div>
 <p><strong>Cost:</strong> Loses predictive power for future dynamics.</p>
 <p><strong>Bergomi framework:</strong></p>
 <p>Model forward variance curve directly:</p>
-<p>$$</p>
-<p>d\xi_t^T = \xi_t^T \omega(T-t) dZ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\xi_t^T = \xi_t^T \omega(T-t) dZ_t
+\]</div>
 <p><strong>Advantage:</strong> Direct control over forward smile dynamics.</p>
 <h3 id="3-practical-recommendations">3. Practical Recommendations<a class="headerlink" href="#3-practical-recommendations" title="Permanent link">&para;</a></h3>
 <table>
@@ -47015,9 +47015,9 @@
 <li>Compare to recalibrated surface from market data at <span class="arithmatex">\(t\)</span></li>
 </ol>
 <p><strong>Metric:</strong></p>
-<p>$$</p>
-<p>\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^N \left(\sigma_{\text{fwd},i}^{\text{model}} - \sigma_{\text{IV},i}^{\text{market}}\right)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^N \left(\sigma_{\text{fwd},i}^{\text{model}} - \sigma_{\text{IV},i}^{\text{market}}\right)^2}
+\]</div>
 <h3 id="2-cliquet-price-stability">2. Cliquet Price Stability<a class="headerlink" href="#2-cliquet-price-stability" title="Permanent link">&para;</a></h3>
 <p><strong>Test procedure:</strong></p>
 <ol>
@@ -47043,9 +47043,9 @@
 <h3 id="1-market-models-for-forward-smile">1. Market Models for Forward Smile<a class="headerlink" href="#1-market-models-for-forward-smile" title="Permanent link">&para;</a></h3>
 <p><strong>Forward smile market model:</strong></p>
 <p>Model the forward smile surface directly:</p>
-<p>$$</p>
-<p>d\sigma_{\text{fwd}}(m, T_1, T_2; t) = \mu(\cdot) dt + \nu(\cdot) dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\sigma_{\text{fwd}}(m, T_1, T_2; t) = \mu(\cdot) dt + \nu(\cdot) dW_t
+\]</div>
 <p><strong>Advantage:</strong> Dynamics specified directly.
 <strong>Challenge:</strong> Ensuring no-arbitrage constraints.</p>
 <h3 id="2-arbitrage-constraints-on-forward-smile">2. Arbitrage Constraints on Forward Smile<a class="headerlink" href="#2-arbitrage-constraints-on-forward-smile" title="Permanent link">&para;</a></h3>
@@ -47054,14 +47054,14 @@
 - Butterfly constraint: forward density &gt; 0
 - Consistency with spot smile</p>
 <p><strong>No-arbitrage condition:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{fwd}}^2(T_1, T_2) &gt; 0 \quad \text{for all } T_2 &gt; T_1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{fwd}}^2(T_1, T_2) &gt; 0 \quad \text{for all } T_2 &gt; T_1
+\]</div>
 <h3 id="3-connection-to-variance-swaps">3. Connection to Variance Swaps<a class="headerlink" href="#3-connection-to-variance-swaps" title="Permanent link">&para;</a></h3>
 <p>Forward variance swaps provide model-free information about forward volatility:</p>
-<p>$$</p>
-<p>K_{\text{var}}^{\text{fwd}}(T_1, T_2) = \frac{K_{\text{var}}(T_2) T_2 - K_{\text{var}}(T_1) T_1}{T_2 - T_1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_{\text{var}}^{\text{fwd}}(T_1, T_2) = \frac{K_{\text{var}}(T_2) T_2 - K_{\text{var}}(T_1) T_1}{T_2 - T_1}
+\]</div>
 <p>Dynamically consistent models should match these observables.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <h3 id="key-concepts">Key Concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h3>

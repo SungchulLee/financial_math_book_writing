@@ -47272,16 +47272,16 @@
 <h2 id="funding-spreads">Funding Spreads<a class="headerlink" href="#funding-spreads" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>funding spread</strong> is the cost of borrowing above the risk-free rate:</p>
-<p>$$</p>
-<p>s_F(t) = r_B(t) - r(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_F(t) = r_B(t) - r(t)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(r_B(t)\)</span> = bank's borrowing rate
 - <span class="arithmatex">\(r(t)\)</span> = risk-free rate (OIS)</p>
 <h3 id="decomposition">Decomposition<a class="headerlink" href="#decomposition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>s_F = s_{\text{credit}} + s_{\text{liquidity}} + s_{\text{term premium}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_F = s_{\text{credit}} + s_{\text{liquidity}} + s_{\text{term premium}}
+\]</div>
 <ul>
 <li><strong>Credit spread:</strong> Compensation for default risk</li>
 <li><strong>Liquidity spread:</strong> Cost of less liquid funding</li>
@@ -47289,29 +47289,29 @@
 </ul>
 <h3 id="asymmetric-rates">Asymmetric Rates<a class="headerlink" href="#asymmetric-rates" title="Permanent link">&para;</a></h3>
 <p>In practice, borrowing and lending rates differ:</p>
-<p>$$</p>
-<p>r^{\text{borrow}} &gt; r^{\text{OIS}} &gt; r^{\text{lend}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r^{\text{borrow}} &gt; r^{\text{OIS}} &gt; r^{\text{lend}}
+\]</div>
 <p>This asymmetry creates nonlinearities in pricing.</p>
 <hr />
 <h2 id="impact-on-derivative-pricing">Impact on Derivative Pricing<a class="headerlink" href="#impact-on-derivative-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="classical-assumption">Classical Assumption<a class="headerlink" href="#classical-assumption" title="Permanent link">&para;</a></h3>
 <p>Risk-neutral pricing assumes borrowing/lending at the risk-free rate:</p>
-<p>$$</p>
-<p>V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT} \cdot \text{Payoff}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT} \cdot \text{Payoff}]
+\]</div>
 <h3 id="with-funding-constraints">With Funding Constraints<a class="headerlink" href="#with-funding-constraints" title="Permanent link">&para;</a></h3>
 <p>When funding at rate <span class="arithmatex">\(r + s_F\)</span>:</p>
-<p>$$</p>
-<p>V_0 = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T (r + s_F \cdot \mathbf{1}_{V_t &gt; 0}) dt} \cdot \text{Payoff}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T (r + s_F \cdot \mathbf{1}_{V_t &gt; 0}) dt} \cdot \text{Payoff}\right]
+\]</div>
 <p>This creates path-dependence and nonlinearity.</p>
 <hr />
 <h2 id="funding-valuation-adjustment-fva">Funding Valuation Adjustment (FVA)<a class="headerlink" href="#funding-valuation-adjustment-fva" title="Permanent link">&para;</a></h2>
 <h3 id="basic-formula">Basic Formula<a class="headerlink" href="#basic-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[(V_t - C_t)^+] \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[(V_t - C_t)^+] \cdot D(0,t) \, dt
+\]</div>
 <p>where <span class="arithmatex">\(C_t\)</span> is collateral held.</p>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47323,9 +47323,9 @@
 <h2 id="impact-on-trading-strategies">Impact on Trading Strategies<a class="headerlink" href="#impact-on-trading-strategies" title="Permanent link">&para;</a></h2>
 <h3 id="leveraged-positions">Leveraged Positions<a class="headerlink" href="#leveraged-positions" title="Permanent link">&para;</a></h3>
 <p>When funding is constrained:</p>
-<p>$$</p>
-<p>\text{Cost of Position} = \text{Financing Cost} + \text{Expected Return}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost of Position} = \text{Financing Cost} + \text{Expected Return}
+\]</div>
 <p>High funding costs make leveraged strategies expensive:
 - Basis trades
 - Carry trades
@@ -47333,26 +47333,26 @@
 <h3 id="arbitrage-persistence">Arbitrage Persistence<a class="headerlink" href="#arbitrage-persistence" title="Permanent link">&para;</a></h3>
 <p>Classical theory: Arbitrage opportunities are eliminated instantly.</p>
 <p><strong>With funding constraints:</strong> Arbitrage can persist if:</p>
-<p>$$</p>
-<p>\text{Arbitrage Profit} &lt; \text{Funding Cost} + \text{Capital Cost}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Arbitrage Profit} &lt; \text{Funding Cost} + \text{Capital Cost}
+\]</div>
 <p><strong>Example:</strong> Corporate bond basis (CDS vs bond) persisted during 2008 crisis due to funding constraints.</p>
 <hr />
 <h2 id="collateral-and-margin">Collateral and Margin<a class="headerlink" href="#collateral-and-margin" title="Permanent link">&para;</a></h2>
 <h3 id="variation-margin-vm">Variation Margin (VM)<a class="headerlink" href="#variation-margin-vm" title="Permanent link">&para;</a></h3>
 <p>Daily exchange of collateral based on mark-to-market:</p>
-<p>$$</p>
-<p>\text{VM}<em t-1="t-1">t = V_t - V</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VM}_t = V_t - V_{t-1}
+\]</div>
 <p><strong>Effect on funding:</strong>
 - Reduces counterparty credit risk
 - Increases funding/liquidity needs
 - Procyclical: Margin calls increase during stress</p>
 <h3 id="initial-margin-im">Initial Margin (IM)<a class="headerlink" href="#initial-margin-im" title="Permanent link">&para;</a></h3>
 <p>Upfront collateral posted against potential future exposure:</p>
-<p>$$</p>
-<p>\text{IM} \approx \text{SIMM}(\text{Portfolio Sensitivities})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{IM} \approx \text{SIMM}(\text{Portfolio Sensitivities})
+\]</div>
 <p><strong>Effect:</strong>
 - Significant funding drag on trades
 - Creates MVA (Margin Valuation Adjustment)
@@ -47364,9 +47364,9 @@
 <hr />
 <h2 id="liquidity-coverage-ratio-lcr">Liquidity Coverage Ratio (LCR)<a class="headerlink" href="#liquidity-coverage-ratio-lcr" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{LCR} = \frac{\text{High Quality Liquid Assets (HQLA)}}{\text{Net Cash Outflows over 30 days}} \ge 100\%</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{LCR} = \frac{\text{High Quality Liquid Assets (HQLA)}}{\text{Net Cash Outflows over 30 days}} \ge 100\%
+\]</div>
 <h3 id="impact-on-derivatives">Impact on Derivatives<a class="headerlink" href="#impact-on-derivatives" title="Permanent link">&para;</a></h3>
 <p>Derivatives affect LCR through:
 - Collateral outflows (margin calls under stress)
@@ -47377,9 +47377,9 @@
 <hr />
 <h2 id="net-stable-funding-ratio-nsfr">Net Stable Funding Ratio (NSFR)<a class="headerlink" href="#net-stable-funding-ratio-nsfr" title="Permanent link">&para;</a></h2>
 <h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{NSFR} = \frac{\text{Available Stable Funding (ASF)}}{\text{Required Stable Funding (RSF)}} \ge 100\%</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{NSFR} = \frac{\text{Available Stable Funding (ASF)}}{\text{Required Stable Funding (RSF)}} \ge 100\%
+\]</div>
 <h3 id="impact-on-derivatives_1">Impact on Derivatives<a class="headerlink" href="#impact-on-derivatives_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Derivatives require stable funding based on maturity and type</li>
@@ -47389,18 +47389,18 @@
 <hr />
 <h2 id="balance-sheet-constraints">Balance Sheet Constraints<a class="headerlink" href="#balance-sheet-constraints" title="Permanent link">&para;</a></h2>
 <h3 id="leverage-ratio">Leverage Ratio<a class="headerlink" href="#leverage-ratio" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Leverage Ratio} = \frac{\text{Tier 1 Capital}}{\text{Exposure Measure}} \ge 3\%</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Leverage Ratio} = \frac{\text{Tier 1 Capital}}{\text{Exposure Measure}} \ge 3\%
+\]</div>
 <p>Derivatives contribute to exposure via:
 - Current exposure
 - Potential future exposure (PFE add-on)
 - Cash collateral</p>
 <h3 id="rwa-constraints">RWA Constraints<a class="headerlink" href="#rwa-constraints" title="Permanent link">&para;</a></h3>
 <p>Risk-weighted assets limit total derivative exposure:</p>
-<p>$$</p>
-<p>\text{Capital} \ge 8\% \times \text{RWA}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Capital} \ge 8\% \times \text{RWA}
+\]</div>
 <p>Derivative RWA depends on counterparty credit quality and exposure.</p>
 <hr />
 <h2 id="procyclicality">Procyclicality<a class="headerlink" href="#procyclicality" title="Permanent link">&para;</a></h2>
@@ -47421,27 +47421,27 @@
 <h2 id="funding-cost-models">Funding Cost Models<a class="headerlink" href="#funding-cost-models" title="Permanent link">&para;</a></h2>
 <h3 id="single-funding-rate">Single Funding Rate<a class="headerlink" href="#single-funding-rate" title="Permanent link">&para;</a></h3>
 <p>Assume uniform funding cost <span class="arithmatex">\(s_F\)</span>:</p>
-<p>$$</p>
-<p>\text{Funding Cost} = s_F \cdot \int_0^T \mathbb{E}[V_t^+] \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Funding Cost} = s_F \cdot \int_0^T \mathbb{E}[V_t^+] \, dt
+\]</div>
 <h3 id="term-structure-of-funding">Term Structure of Funding<a class="headerlink" href="#term-structure-of-funding" title="Permanent link">&para;</a></h3>
 <p>Funding cost varies by tenor <span class="arithmatex">\(\tau\)</span>:</p>
-<p>$$</p>
-<p>\text{Funding Cost} = \int_0^T s_F(t, T-t) \cdot \mathbb{E}[V_t^+] \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Funding Cost} = \int_0^T s_F(t, T-t) \cdot \mathbb{E}[V_t^+] \, dt
+\]</div>
 <h3 id="stochastic-funding-spread">Stochastic Funding Spread<a class="headerlink" href="#stochastic-funding-spread" title="Permanent link">&para;</a></h3>
 <p>Model <span class="arithmatex">\(s_F(t)\)</span> as a stochastic process:</p>
-<p>$$</p>
-<p>ds_F = \kappa(\theta - s_F) dt + \eta dZ</p>
-<p>$$</p>
+<div class="arithmatex">\[
+ds_F = \kappa(\theta - s_F) dt + \eta dZ
+\]</div>
 <p>Captures funding spread volatility during stress.</p>
 <hr />
 <h2 id="optimal-funding-strategy">Optimal Funding Strategy<a class="headerlink" href="#optimal-funding-strategy" title="Permanent link">&para;</a></h2>
 <h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
 <p>Minimize total funding cost subject to liquidity constraints:</p>
-<p>$$</p>
-<p>\min \int_0^T c(t, \mathbf{F}_t) \, dt \quad \text{s.t. } \text{LCR}_t \ge 100\%, \text{NSFR}_t \ge 100\%</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min \int_0^T c(t, \mathbf{F}_t) \, dt \quad \text{s.t. } \text{LCR}_t \ge 100\%, \text{NSFR}_t \ge 100\%
+\]</div>
 <p>where <span class="arithmatex">\(\mathbf{F}_t\)</span> is the funding mix.</p>
 <h3 id="instruments">Instruments<a class="headerlink" href="#instruments" title="Permanent link">&para;</a></h3>
 <ul>

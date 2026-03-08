@@ -47029,20 +47029,20 @@
 <h2 id="the-bootstrapping-framework">The Bootstrapping Framework<a class="headerlink" href="#the-bootstrapping-framework" title="Permanent link">&para;</a></h2>
 <h3 id="piecewise-constant-intensity">Piecewise-Constant Intensity<a class="headerlink" href="#piecewise-constant-intensity" title="Permanent link">&para;</a></h3>
 <p>Assume:</p>
-<p>$$</p>
-<p>\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda(t) = \lambda_i \quad \text{for } t \in (T_{i-1}, T_i], \quad i = 1, \ldots, n
+\]</div>
 <p>where <span class="arithmatex">\(T_0 = 0\)</span>.</p>
 <h3 id="survival-probability">Survival Probability<a class="headerlink" href="#survival-probability" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>S(0, T_i) = \exp\left(-\sum_{j=1}^{i} \lambda_j (T_j - T_{j-1})\right) = \prod_{j=1}^{i} e^{-\lambda_j \Delta T_j},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0, T_i) = \exp\left(-\sum_{j=1}^{i} \lambda_j (T_j - T_{j-1})\right) = \prod_{j=1}^{i} e^{-\lambda_j \Delta T_j}
+\]</div>
 <p>where <span class="arithmatex">\(\Delta T_j = T_j - T_{j-1}\)</span>.</p>
 <h3 id="recursive-structure">Recursive Structure<a class="headerlink" href="#recursive-structure" title="Permanent link">&para;</a></h3>
 <p>Given <span class="arithmatex">\(\lambda_1, \ldots, \lambda_{i-1}\)</span>:</p>
-<p>$$</p>
-<p>S(0, T_i) = S(0, T_{i-1}) \cdot e^{-\lambda_i \Delta T_i}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(0, T_i) = S(0, T_{i-1}) \cdot e^{-\lambda_i \Delta T_i}
+\]</div>
 <p>This recursive structure enables sequential bootstrapping.</p>
 <hr />
 <h2 id="the-bootstrapping-algorithm">The Bootstrapping Algorithm<a class="headerlink" href="#the-bootstrapping-algorithm" title="Permanent link">&para;</a></h2>
@@ -47058,50 +47058,50 @@
 - Solve for <span class="arithmatex">\(\lambda_i\)</span> such that CDS with spread <span class="arithmatex">\(s_i\)</span> and maturity <span class="arithmatex">\(T_i\)</span> prices to zero</p>
 <h3 id="mathematical-formulation">Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Permanent link">&para;</a></h3>
 <p>For each CDS, the par spread condition is:</p>
-<p>$$</p>
-<p>s_i \times \text{RPV01}<em _text_prot="\text{prot">i = (1-R) \times \text{PV}</em>,}, i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_i \times \text{RPV01}_i = (1-R) \times \text{PV}_{\text{prot}, i}
+\]</div>
 <p>where both sides depend on survival probabilities up to <span class="arithmatex">\(T_i\)</span>.</p>
 <hr />
 <h2 id="detailed-formulas">Detailed Formulas<a class="headerlink" href="#detailed-formulas" title="Permanent link">&para;</a></h2>
 <h3 id="protection-leg-present-value">Protection Leg Present Value<a class="headerlink" href="#protection-leg-present-value" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{PV}<em j="1">{\text{prot}}(T_i) = (1-R) \sum</em> D(0,t) \lambda_j S(0,t) \, dt.}^{i} \int_{T_{j-1}}^{T_j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \int_{T_{j-1}}^{T_j} D(0,t) \lambda_j S(0,t) \, dt
+\]</div>
 <p>With piecewise-constant intensity and assuming continuous compounding:</p>
-<p>$$</p>
-<p>\text{PV}<em j="1">{\text{prot}}(T_i) = (1-R) \sum</em> \, dt.}^{i} \lambda_j \int_{T_{j-1}}^{T_j} D(0,t) S(0, T_{j-1}) e^{-\lambda_j (t - T_{j-1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PV}_{\text{prot}}(T_i) = (1-R) \sum_{j=1}^{i} \lambda_j \int_{T_{j-1}}^{T_j} D(0,t) S(0, T_{j-1}) e^{-\lambda_j (t - T_{j-1})} \, dt
+\]</div>
 <h3 id="premium-leg-present-value-risky-annuity">Premium Leg Present Value (Risky Annuity)<a class="headerlink" href="#premium-leg-present-value-risky-annuity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{RPV01}(T_i) = \sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RPV01}(T_i) = \sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k)
+\]</div>
 <p>where <span class="arithmatex">\(t_1, \ldots, t_{m_i}\)</span> are premium payment dates up to <span class="arithmatex">\(T_i\)</span>.</p>
 <h3 id="par-spread-equation">Par Spread Equation<a class="headerlink" href="#par-spread-equation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>s_i = \frac{(1-R) \sum_{j=1}^{i} \lambda_j \cdot I_j}{\sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k)},</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s_i = \frac{(1-R) \sum_{j=1}^{i} \lambda_j \cdot I_j}{\sum_{k=1}^{m_i} \Delta_k D(0, t_k) S(0, t_k)}
+\]</div>
 <p>where <span class="arithmatex">\(I_j\)</span> is the integral contribution from period <span class="arithmatex">\(j\)</span>.</p>
 <hr />
 <h2 id="numerical-solution">Numerical Solution<a class="headerlink" href="#numerical-solution" title="Permanent link">&para;</a></h2>
 <h3 id="root-finding">Root Finding<a class="headerlink" href="#root-finding" title="Permanent link">&para;</a></h3>
 <p>For each step <span class="arithmatex">\(i\)</span>, solve for <span class="arithmatex">\(\lambda_i\)</span> in the nonlinear equation:</p>
-<p>$$</p>
-<p>f(\lambda_i) = s_i \times \text{RPV01}(T_i; \lambda_1, \ldots, \lambda_i) - (1-R) \times \text{PV}_{\text{prot}}(T_i; \lambda_1, \ldots, \lambda_i) = 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(\lambda_i) = s_i \times \text{RPV01}(T_i; \lambda_1, \ldots, \lambda_i) - (1-R) \times \text{PV}_{\text{prot}}(T_i; \lambda_1, \ldots, \lambda_i) = 0
+\]</div>
 <p>Methods:
 - <strong>Bisection:</strong> Robust but slow
 - <strong>Newton-Raphson:</strong> Fast with good initial guess
 - <strong>Brent's method:</strong> Combines reliability and speed</p>
 <h3 id="initial-guess">Initial Guess<a class="headerlink" href="#initial-guess" title="Permanent link">&para;</a></h3>
 <p>Use the constant-intensity approximation:</p>
-<p>$$</p>
-<p>\lambda_i^{(0)} \approx \frac{s_i}{1 - R}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_i^{(0)} \approx \frac{s_i}{1 - R}
+\]</div>
 <h3 id="convergence-criteria">Convergence Criteria<a class="headerlink" href="#convergence-criteria" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>|f(\lambda_i)| &lt; \epsilon, \quad \text{with } \epsilon \sim 10^{-8}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|f(\lambda_i)| &lt; \epsilon, \quad \text{with } \epsilon \sim 10^{-8}
+\]</div>
 <hr />
 <h2 id="pseudocode">Pseudocode<a class="headerlink" href="#pseudocode" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>function BootstrapHazardRates(spreads[], maturities[], R, discountCurve):
@@ -47159,9 +47159,9 @@
 <p>RPV01(1Y) <span class="arithmatex">\(\approx 1 \times e^{-0.03} \times e^{-\lambda_1 \times 0.5} \approx 0.97 \times e^{-0.5\lambda_1}\)</span></p>
 <p>PV_prot(1Y) <span class="arithmatex">\(\approx 0.6 \times \lambda_1 \times \int_0^1 e^{-(0.03 + \lambda_1)t} dt = 0.6 \lambda_1 \times \frac{1 - e^{-(0.03 + \lambda_1)}}{0.03 + \lambda_1}\)</span></p>
 <p>Solving <span class="arithmatex">\(0.008 \times \text{RPV01} = 0.6 \times \text{PV\_prot}\)</span> numerically:</p>
-<p>$$</p>
-<p>\lambda_1 \approx 1.35\% = 135 \text{ bp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_1 \approx 1.35\% = 135 \text{ bp}
+\]</div>
 <p><span class="arithmatex">\(S(0,1) = e^{-0.0135} = 0.9866\)</span></p>
 <h3 id="step-2-bootstrap-_2-3y-cds">Step 2: Bootstrap λ_2 (3Y CDS)<a class="headerlink" href="#step-2-bootstrap-_2-3y-cds" title="Permanent link">&para;</a></h3>
 <p>Given <span class="arithmatex">\(\lambda_1 = 135\)</span> bp and <span class="arithmatex">\(S(0,1) = 0.9866\)</span>:</p>
@@ -47170,16 +47170,16 @@
 <li>Spread <span class="arithmatex">\(s_2 = 120\)</span> bp applies to full 3Y CDS</li>
 </ul>
 <p>Solving (details omitted):</p>
-<p>$$</p>
-<p>\lambda_2 \approx 1.15\% = 115 \text{ bp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_2 \approx 1.15\% = 115 \text{ bp}
+\]</div>
 <p><span class="arithmatex">\(S(0,3) = 0.9866 \times e^{-0.0115 \times 2} = 0.9866 \times 0.9772 = 0.9641\)</span></p>
 <h3 id="step-3-bootstrap-_3-5y-cds">Step 3: Bootstrap λ_3 (5Y CDS)<a class="headerlink" href="#step-3-bootstrap-_3-5y-cds" title="Permanent link">&para;</a></h3>
 <p>Given <span class="arithmatex">\(\lambda_1, \lambda_2\)</span> and <span class="arithmatex">\(S(0,3) = 0.9641\)</span>:</p>
 <p>Solving for <span class="arithmatex">\(\lambda_3\)</span>:</p>
-<p>$$</p>
-<p>\lambda_3 \approx 2.05\% = 205 \text{ bp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_3 \approx 2.05\% = 205 \text{ bp}
+\]</div>
 <p><span class="arithmatex">\(S(0,5) = 0.9641 \times e^{-0.0205 \times 2} = 0.9641 \times 0.9599 = 0.9254\)</span></p>
 <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <table>
@@ -47216,9 +47216,9 @@
 <p>For illiquid maturities, interpolation or extrapolation is needed.</p>
 <h3 id="recovery-rate-sensitivity">Recovery Rate Sensitivity<a class="headerlink" href="#recovery-rate-sensitivity" title="Permanent link">&para;</a></h3>
 <p>Bootstrapped hazard rates depend heavily on assumed recovery:</p>
-<p>$$</p>
-<p>\lambda \propto \frac{s}{1-R}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda \propto \frac{s}{1-R}
+\]</div>
 <p>A change from <span class="arithmatex">\(R = 40\%\)</span> to <span class="arithmatex">\(R = 30\%\)</span> increases implied hazard rates by <span class="arithmatex">\(\frac{0.60}{0.70} \approx 14\%\)</span>.</p>
 <h3 id="negative-hazard-rates">Negative Hazard Rates<a class="headerlink" href="#negative-hazard-rates" title="Permanent link">&para;</a></h3>
 <p>If spreads are inverted (short-term &gt; long-term) significantly, bootstrapping may produce negative <span class="arithmatex">\(\lambda_i\)</span>, which is economically impossible.</p>
@@ -47268,9 +47268,9 @@
 <h2 id="alternative-approaches">Alternative Approaches<a class="headerlink" href="#alternative-approaches" title="Permanent link">&para;</a></h2>
 <h3 id="global-fitting">Global Fitting<a class="headerlink" href="#global-fitting" title="Permanent link">&para;</a></h3>
 <p>Instead of sequential bootstrapping, fit all hazard rates simultaneously by minimizing:</p>
-<p>$$</p>
-<p>\sum_{i=1}^n \left(s_i^{\text{model}}(\lambda_1, \ldots, \lambda_n) - s_i^{\text{market}}\right)^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i=1}^n \left(s_i^{\text{model}}(\lambda_1, \ldots, \lambda_n) - s_i^{\text{market}}\right)^2
+\]</div>
 <p><strong>Advantages:</strong> More stable, can impose smoothness
 <strong>Disadvantages:</strong> Non-unique solution, slower</p>
 <h3 id="parametric-models">Parametric Models<a class="headerlink" href="#parametric-models" title="Permanent link">&para;</a></h3>

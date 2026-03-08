@@ -46747,11 +46747,11 @@
 <hr />
 <h2 id="the-fundamental-pricing-formula">The Fundamental Pricing Formula<a class="headerlink" href="#the-fundamental-pricing-formula" title="Permanent link">&para;</a></h2>
 <p>In an arbitrage-free market, the time-<span class="arithmatex">\(t\)</span> price of a contingent claim with payoff <span class="arithmatex">\(\Phi(X_T)\)</span> at maturity <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(\mathbb{Q}\)</span> is the <strong>risk-neutral</strong> (equivalent martingale) measure</li>
@@ -46759,9 +46759,9 @@ V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \
 <li><span class="arithmatex">\(\mathcal{F}_t\)</span> is the information available at time <span class="arithmatex">\(t\)</span></li>
 </ul>
 <p>For constant interest rate <span class="arithmatex">\(r\)</span>:</p>
-<p>$$</p>
-<p>V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(X_T) \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\Phi(X_T) \mid \mathcal{F}_t]
+\]</div>
 <hr />
 <h2 id="foundation-the-fundamental-theorem-of-asset-pricing">Foundation: The Fundamental Theorem of Asset Pricing<a class="headerlink" href="#foundation-the-fundamental-theorem-of-asset-pricing" title="Permanent link">&para;</a></h2>
 <p>The risk-neutral valuation principle rests on the <strong>Fundamental Theorem of Asset Pricing (FTAP)</strong>:</p>
@@ -46800,32 +46800,32 @@ V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \
 <h3 id="step-1-ftap-gives-the-martingale-property">Step 1: FTAP Gives the Martingale Property<a class="headerlink" href="#step-1-ftap-gives-the-martingale-property" title="Permanent link">&para;</a></h3>
 <p>By the First Fundamental Theorem, no-arbitrage implies existence of <span class="arithmatex">\(\mathbb{Q}\)</span> such that discounted prices of <strong>traded assets</strong> are <span class="arithmatex">\(\mathbb{Q}\)</span>-martingales.</p>
 <p>For the money market account <span class="arithmatex">\(B_t = e^{\int_0^t r_s\,ds}\)</span> as numeraire, the discounted stock price:</p>
-<p>$$</p>
-<p>\tilde{S}_t = \frac{S_t}{B_t} = e^{-\int_0^t r_s\,ds}S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{S}_t = \frac{S_t}{B_t} = e^{-\int_0^t r_s\,ds}S_t
+\]</div>
 <p>is a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale.</p>
 <h3 id="step-2-derivative-prices-must-also-be-martingales">Step 2: Derivative Prices Must Also Be Martingales<a class="headerlink" href="#step-2-derivative-prices-must-also-be-martingales" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(V_t\)</span> be the price of a derivative with payoff <span class="arithmatex">\(\Phi(X_T)\)</span> at time <span class="arithmatex">\(T\)</span>. If the derivative can be replicated by trading in the underlying assets, its discounted price must also be a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale (otherwise an arbitrage exists between the derivative and its replicating portfolio).</p>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\tilde{V}_t = e^{-\int_0^t r_s\,ds}V_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{V}_t = e^{-\int_0^t r_s\,ds}V_t
+\]</div>
 <p>is a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale.</p>
 <h3 id="step-3-apply-the-martingale-property">Step 3: Apply the Martingale Property<a class="headerlink" href="#step-3-apply-the-martingale-property" title="Permanent link">&para;</a></h3>
 <p>By the martingale property:</p>
-<p>$$</p>
-<p>\tilde{V}_t = \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{V}_t = \mathbb{E}^{\mathbb{Q}}[\tilde{V}_T \mid \mathcal{F}_t]
+\]</div>
 <h3 id="step-4-use-the-terminal-condition">Step 4: Use the Terminal Condition<a class="headerlink" href="#step-4-use-the-terminal-condition" title="Permanent link">&para;</a></h3>
 <p>At maturity, <span class="arithmatex">\(V_T = \Phi(X_T)\)</span>, so:</p>
-<p>$$</p>
-<p>e^{-\int_0^t r_s\,ds}V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{-\int_0^t r_s\,ds}V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]
+\]</div>
 <h3 id="step-5-rearrange">Step 5: Rearrange<a class="headerlink" href="#step-5-rearrange" title="Permanent link">&para;</a></h3>
 <p>Multiplying both sides by <span class="arithmatex">\(e^{\int_0^t r_s\,ds}\)</span>:</p>
-<p>$$</p>
-<p>V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \mathcal{F}_t\right]
+\]</div>
 <hr />
 <h2 id="the-meaning-of-risk-neutrality">The Meaning of Risk Neutrality<a class="headerlink" href="#the-meaning-of-risk-neutrality" title="Permanent link">&para;</a></h2>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, investors behave <strong>as if</strong> they are indifferent to risk:</p>
@@ -46861,27 +46861,27 @@ V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \
 <p>Risk-neutral valuation is equivalent to solving the pricing PDE via the <strong>Feynman–Kac theorem</strong>.</p>
 <h3 id="the-pricing-pde">The Pricing PDE<a class="headerlink" href="#the-pricing-pde" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(V(t,x)\)</span> is the price as a function of time <span class="arithmatex">\(t\)</span> and underlying value <span class="arithmatex">\(x\)</span>, it satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathcal{L}^{\mathbb{Q}}V - rV = 0, \quad V(T,x) = \Phi(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathcal{L}^{\mathbb{Q}}V - rV = 0, \quad V(T,x) = \Phi(x)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}^{\mathbb{Q}}\)</span> is the <strong>infinitesimal generator under <span class="arithmatex">\(\mathbb{Q}\)</span></strong>.</p>
 <h3 id="generator-for-geometric-brownian-motion">Generator for Geometric Brownian Motion<a class="headerlink" href="#generator-for-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For a stock following <span class="arithmatex">\(dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}\)</span> under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{L}^{\mathbb{Q}} = rx\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}^{\mathbb{Q}} = rx\frac{\partial}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2}{\partial x^2}
+\]</div>
 <p>Note that the drift is <span class="arithmatex">\(r\)</span>, not <span class="arithmatex">\(\mu\)</span>—this is the risk-neutral drift.</p>
 <h3 id="the-blackscholes-pde">The Black–Scholes PDE<a class="headerlink" href="#the-blackscholes-pde" title="Permanent link">&para;</a></h3>
 <p>Substituting into the pricing PDE:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rx\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 V}{\partial x^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rx\frac{\partial V}{\partial x} + \frac{1}{2}\sigma^2 x^2\frac{\partial^2 V}{\partial x^2} - rV = 0
+\]</div>
 <p>This is the <strong>Black–Scholes PDE</strong>.</p>
 <h3 id="feynmankac-connection">Feynman–Kac Connection<a class="headerlink" href="#feynmankac-connection" title="Permanent link">&para;</a></h3>
 <p>The Feynman–Kac theorem states that the solution to the PDE equals the risk-neutral expectation:</p>
-<p>$$</p>
-<p>V(t,x) = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}\Phi(X_T) \mid X_t = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t,x) = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}\Phi(X_T) \mid X_t = x]
+\]</div>
 <p><strong>Two equivalent computational approaches</strong>:</p>
 <ol>
 <li><strong>Solve the PDE</strong> (analytical methods, finite differences)</li>
@@ -46892,41 +46892,41 @@ V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h3 id="example-1-european-call-option">Example 1: European Call Option<a class="headerlink" href="#example-1-european-call-option" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the stock follows:</p>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <p>The call price is:</p>
-<p>$$</p>
-<p>C_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ \mid S_t]
+\]</div>
 <p><strong>Evaluating the expectation</strong>: Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the terminal stock price is:</p>
-<p>$$</p>
-<p>S_T = S_t \exp\left(\left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma\sqrt{T-t}\,Z\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_t \exp\left(\left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma\sqrt{T-t}\,Z\right)
+\]</div>
 <p>where <span class="arithmatex">\(Z \sim N(0,1)\)</span> under <span class="arithmatex">\(\mathbb{Q}\)</span>. The expectation of <span class="arithmatex">\((S_T - K)^+\)</span> for lognormal <span class="arithmatex">\(S_T\)</span> can be evaluated explicitly (see <a href="../../../ch06/black_scholes_formula/bs_formula_statement/">Black–Scholes Formula</a>), yielding:</p>
-<p>$$</p>
-<p>C_t = S_t\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_t = S_t\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S_t/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S_t/K) + (r + \sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+\]</div>
 <h3 id="example-2-zero-coupon-bond">Example 2: Zero-Coupon Bond<a class="headerlink" href="#example-2-zero-coupon-bond" title="Permanent link">&para;</a></h3>
 <p>A bond paying <span class="arithmatex">\(1\)</span> at time <span class="arithmatex">\(T\)</span> has price:</p>
-<p>$$</p>
-<p>P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds} \;\middle|\; \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds} \;\middle|\; \mathcal{F}_t\right]
+\]</div>
 <p>For constant <span class="arithmatex">\(r\)</span>: <span class="arithmatex">\(P(t,T) = e^{-r(T-t)}\)</span>.</p>
 <p>For stochastic <span class="arithmatex">\(r_t\)</span>, the expectation depends on the short-rate model (Vasicek, CIR, etc.).</p>
 <h3 id="example-3-digital-binary-option">Example 3: Digital (Binary) Option<a class="headerlink" href="#example-3-digital-binary-option" title="Permanent link">&para;</a></h3>
 <p>A digital call paying <span class="arithmatex">\(1\)</span> if <span class="arithmatex">\(S_T &gt; K\)</span> has price:</p>
-<p>$$</p>
-<p>V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\mathbf{1}_{S_T &gt; K} \mid \mathcal{F}_t] = e^{-r(T-t)}\mathbb{Q}(S_T &gt; K \mid S_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[\mathbf{1}_{S_T &gt; K} \mid \mathcal{F}_t] = e^{-r(T-t)}\mathbb{Q}(S_T &gt; K \mid S_t)
+\]</div>
 <p>Under the Black–Scholes model:</p>
-<p>$$</p>
-<p>V_t = e^{-r(T-t)}\Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = e^{-r(T-t)}\Phi(d_2)
+\]</div>
 <p>where <span class="arithmatex">\(d_2\)</span> is as defined above, and <span class="arithmatex">\(\Phi\)</span> is the standard normal CDF.</p>
 <hr />
 <h2 id="what-changes-under-q">What Changes Under Q?<a class="headerlink" href="#what-changes-under-q" title="Permanent link">&para;</a></h2>
@@ -46967,9 +46967,9 @@ V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \
 <hr />
 <h2 id="generalization-change-of-numeraire">Generalization: Change of Numéraire<a class="headerlink" href="#generalization-change-of-numeraire" title="Permanent link">&para;</a></h2>
 <p>The risk-neutral measure uses the money market account <span class="arithmatex">\(B_t = e^{\int_0^t r_s\,ds}\)</span> as numéraire. More generally, for any positive tradeable asset <span class="arithmatex">\(N_t\)</span> as numéraire:</p>
-<p>$$</p>
-<p>V_t = N_t \cdot \mathbb{E}^{\mathbb{Q}^N}\left[\frac{\Phi(X_T)}{N_T} \;\middle|\; \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = N_t \cdot \mathbb{E}^{\mathbb{Q}^N}\left[\frac{\Phi(X_T)}{N_T} \;\middle|\; \mathcal{F}_t\right]
+\]</div>
 <p>where <span class="arithmatex">\(\mathbb{Q}^N\)</span> is the measure under which prices divided by <span class="arithmatex">\(N_t\)</span> are martingales.</p>
 <p><strong>Common choices</strong>:</p>
 <ul>
@@ -47004,9 +47004,9 @@ V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \
 <p>Model risk is the risk that the model is misspecified.</p>
 <h3 id="path-dependent-options">Path-Dependent Options<a class="headerlink" href="#path-dependent-options" title="Permanent link">&para;</a></h3>
 <p>For options whose payoff depends on the entire path <span class="arithmatex">\(\{X_s\}_{t \leq s \leq T}\)</span>:</p>
-<p>$$</p>
-<p>V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi({X_s}_{t \leq s \leq T}) \;\middle|\; \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(\{X_s\}_{t \leq s \leq T}) \;\middle|\; \mathcal{F}_t\right]
+\]</div>
 <p>Examples include:</p>
 <ul>
 <li><strong>Asian options</strong>: payoff depends on average price</li>
@@ -47016,11 +47016,11 @@ V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}\Phi(X_T) \;\middle|\; \
 <p>These expectations typically require Monte Carlo simulation or specialized PDE methods.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-r(T-t)}\Phi(X_T) \mid \mathcal{F}_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

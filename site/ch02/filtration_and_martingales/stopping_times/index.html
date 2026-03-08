@@ -46578,9 +46578,9 @@
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\((\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})\)</span> be a filtered probability space.</p>
 <p>A random variable <span class="arithmatex">\(\tau: \Omega \to [0, \infty]\)</span> is a <strong>stopping time</strong> (or <strong>optional time</strong>) with respect to <span class="arithmatex">\((\mathcal{F}_t)\)</span> if:</p>
-<p>$$</p>
-<p>\boxed{{\tau \le t} \in \mathcal{F}_t \quad \text{for all } t \ge 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\{\tau \le t\} \in \mathcal{F}_t \quad \text{for all } t \ge 0}
+\]</div>
 <p><strong>Interpretation</strong>: By time <span class="arithmatex">\(t\)</span>, you can determine whether <span class="arithmatex">\(\tau\)</span> has already occurred. You don't need to peek into the future.</p>
 <p><strong>Equivalent formulations</strong> (under the usual conditions):</p>
 <ul>
@@ -46595,14 +46595,14 @@
 <p>For any fixed <span class="arithmatex">\(t_0 \ge 0\)</span>, the constant <span class="arithmatex">\(\tau(\omega) = t_0\)</span> is a stopping time, since <span class="arithmatex">\(\{\tau \le t\} = \Omega\)</span> for <span class="arithmatex">\(t \ge t_0\)</span> and <span class="arithmatex">\(\emptyset\)</span> for <span class="arithmatex">\(t &lt; t_0\)</span>.</p>
 <h3 id="2-first-hitting-times">2. First Hitting Times<a class="headerlink" href="#2-first-hitting-times" title="Permanent link">&para;</a></h3>
 <p>For an adapted process <span class="arithmatex">\(X\)</span> with continuous paths and a Borel set <span class="arithmatex">\(A \subset \mathbb{R}\)</span>:</p>
-<p>$$</p>
-<p>\tau_A := \inf{t \ge 0 : X_t \in A}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau_A := \inf\{t \ge 0 : X_t \in A\}
+\]</div>
 <p>is a stopping time. (Convention: <span class="arithmatex">\(\inf \emptyset = \infty\)</span>.)</p>
 <p><strong>Proof sketch</strong>: The set <span class="arithmatex">\(\{\tau_A \le t\} = \{\omega : X_s(\omega) \in A \text{ for some } s \le t\}\)</span> can be written as:</p>
-<p>$$</p>
-<p>{\tau_A \le t} = \bigcup_{s \le t, s \in \mathbb{Q}} {X_s \in A}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{\tau_A \le t\} = \bigcup_{s \le t, s \in \mathbb{Q}} \{X_s \in A\}
+\]</div>
 <p>using path continuity. Each <span class="arithmatex">\(\{X_s \in A\} \in \mathcal{F}_s \subseteq \mathcal{F}_t\)</span>, so the union is in <span class="arithmatex">\(\mathcal{F}_t\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Important special cases</strong>:</p>
 <ul>
@@ -46612,9 +46612,9 @@
 </ul>
 <h3 id="3-last-exit-times-non-example">3. Last Exit Times (Non-Example)<a class="headerlink" href="#3-last-exit-times-non-example" title="Permanent link">&para;</a></h3>
 <p>The <strong>last exit time</strong> from a set:</p>
-<p>$$</p>
-<p>\sigma_A := \sup{t \ge 0 : X_t \in A}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_A := \sup\{t \ge 0 : X_t \in A\}
+\]</div>
 <p>is generally <strong>not</strong> a stopping time. To know when you last visited <span class="arithmatex">\(A\)</span>, you need to know the entire future path.</p>
 <p><strong>Exception</strong>: If <span class="arithmatex">\(X\)</span> never returns to <span class="arithmatex">\(A\)</span> after some deterministic time <span class="arithmatex">\(T\)</span>, and this is known, then <span class="arithmatex">\(\sigma_A \wedge T\)</span> might be a stopping time.</p>
 <h3 id="4-discrete-time-examples">4. Discrete-Time Examples<a class="headerlink" href="#4-discrete-time-examples" title="Permanent link">&para;</a></h3>
@@ -46642,9 +46642,9 @@
 <hr />
 <h2 id="the-algebra-f_">The σ-Algebra F_τ<a class="headerlink" href="#the-algebra-f_" title="Permanent link">&para;</a></h2>
 <p>For a stopping time <span class="arithmatex">\(\tau\)</span>, the <strong><span class="arithmatex">\(\sigma\)</span>-algebra at time <span class="arithmatex">\(\tau\)</span></strong> captures information available at the random time <span class="arithmatex">\(\tau\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{F}_\tau := {A \in \mathcal{F} : A \cap {\tau \le t} \in \mathcal{F}_t \text{ for all } t \ge 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{F}_\tau := \{A \in \mathcal{F} : A \cap \{\tau \le t\} \in \mathcal{F}_t \text{ for all } t \ge 0\}
+\]</div>
 <p><strong>Interpretation</strong>: <span class="arithmatex">\(A \in \mathcal{F}_\tau\)</span> if knowing whether <span class="arithmatex">\(\tau\)</span> has occurred by time <span class="arithmatex">\(t\)</span> allows you to determine whether <span class="arithmatex">\(A\)</span> has occurred.</p>
 <p><strong>Key properties</strong>:</p>
 <ol>
@@ -46654,46 +46654,46 @@
 <li>If <span class="arithmatex">\(\sigma \le \tau\)</span> are stopping times, then <span class="arithmatex">\(\mathcal{F}_\sigma \subseteq \mathcal{F}_\tau\)</span>.</li>
 </ol>
 <p><strong>Example</strong>: For the first hitting time <span class="arithmatex">\(\tau_a = \inf\{t : W_t = a\}\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{F}<em _tau_a="\tau_a" _wedge="\wedge" t="t">{\tau_a} = \sigma\left(W</em> : t \ge 0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{F}_{\tau_a} = \sigma\left(W_{t \wedge \tau_a} : t \ge 0\right)
+\]</div>
 <p>This contains information about the path up to hitting <span class="arithmatex">\(a\)</span>, but nothing beyond.</p>
 <hr />
 <h2 id="stopped-processes">Stopped Processes<a class="headerlink" href="#stopped-processes" title="Permanent link">&para;</a></h2>
 <p>Given a process <span class="arithmatex">\(X = \{X_t\}\)</span> and a stopping time <span class="arithmatex">\(\tau\)</span>, the <strong>stopped process</strong> is:</p>
-<p>$$</p>
-<p>X_t^\tau := X_{t \wedge \tau} = X_{\min(t, \tau)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t^\tau := X_{t \wedge \tau} = X_{\min(t, \tau)}
+\]</div>
 <p>The process is "frozen" at time <span class="arithmatex">\(\tau\)</span>.</p>
 <p><strong>Key theorem</strong>: If <span class="arithmatex">\(X\)</span> is a martingale (resp. submartingale, supermartingale) and <span class="arithmatex">\(\tau\)</span> is a stopping time, then <span class="arithmatex">\(X^\tau\)</span> is also a martingale (resp. submartingale, supermartingale).</p>
 <p><strong>Proof</strong>: For <span class="arithmatex">\(s \le t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_{t \wedge \tau} \mid \mathcal{F}<em _tau="\tau" _wedge="\wedge" t="t">s] = \mathbb{E}[X</em>} \mid \mathcal{F<em _tau="\tau" _wedge="\wedge" s="s">{s \wedge \tau}] = X</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_{t \wedge \tau} \mid \mathcal{F}_s] = \mathbb{E}[X_{t \wedge \tau} \mid \mathcal{F}_{s \wedge \tau}] = X_{s \wedge \tau}
+\]</div>
 <p>where the second equality uses the martingale property applied carefully to the stopped times. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Implication</strong>: Stopping a martingale preserves the martingale property. This is the foundation of the optional sampling theorem.</p>
 <hr />
 <h2 id="the-strong-markov-property">The Strong Markov Property<a class="headerlink" href="#the-strong-markov-property" title="Permanent link">&para;</a></h2>
 <p>Stopping times interact beautifully with Markov processes. The <strong>strong Markov property</strong> states that the process "restarts" at a stopping time.</p>
 <p><strong>Theorem (Strong Markov Property for Brownian Motion)</strong>: Let <span class="arithmatex">\(W\)</span> be a Brownian motion and <span class="arithmatex">\(\tau\)</span> a stopping time with <span class="arithmatex">\(\tau &lt; \infty\)</span> a.s. Then:</p>
-<p>$$</p>
-<p>\boxed{\widetilde{W}<em _="+" _tau="\tau" t="t">t := W</em>} - W_\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\widetilde{W}_t := W_{\tau + t} - W_\tau}
+\]</div>
 <p>is a Brownian motion independent of <span class="arithmatex">\(\mathcal{F}_\tau\)</span>.</p>
 <p><strong>Interpretation</strong>: After the random time <span class="arithmatex">\(\tau\)</span>, Brownian motion "starts fresh"—the future evolution is independent of everything that happened before <span class="arithmatex">\(\tau\)</span>, including how long it took to reach <span class="arithmatex">\(\tau\)</span>.</p>
 <p><strong>Contrast with ordinary Markov property</strong>: The ordinary Markov property says this for deterministic times. The strong Markov property extends it to stopping times—a much stronger statement.</p>
 <p><strong>Application (Reflection Principle)</strong>: Let <span class="arithmatex">\(\tau_a = \inf\{t : W_t = a\}\)</span> for <span class="arithmatex">\(a &gt; 0\)</span>. By the strong Markov property:</p>
-<p>$$</p>
-<p>\mathbb{P}\left(\max_{0 \le s \le t} W_s \ge a\right) = 2\mathbb{P}(W_t \ge a)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\left(\max_{0 \le s \le t} W_s \ge a\right) = 2\mathbb{P}(W_t \ge a)
+\]</div>
 <p>The idea: paths that hit <span class="arithmatex">\(a\)</span> and end below <span class="arithmatex">\(a\)</span> are in bijection (via reflection) with paths that hit <span class="arithmatex">\(a\)</span> and end above <span class="arithmatex">\(a\)</span>.</p>
 <hr />
 <h2 id="first-passage-time-distributions">First Passage Time Distributions<a class="headerlink" href="#first-passage-time-distributions" title="Permanent link">&para;</a></h2>
 <p>The strong Markov property enables computation of hitting time distributions.</p>
 <p><strong>Theorem</strong>: For <span class="arithmatex">\(a &gt; 0\)</span>, the first passage time <span class="arithmatex">\(\tau_a = \inf\{t : W_t = a\}\)</span> has density:</p>
-<p>$$</p>
-<p>\boxed{f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), \quad t &gt; 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{f_{\tau_a}(t) = \frac{a}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right), \quad t &gt; 0}
+\]</div>
 <p>This is the <strong>inverse Gaussian</strong> (or Wald) distribution.</p>
 <p><strong>Key properties</strong>:</p>
 <ul>
@@ -46702,9 +46702,9 @@
 <li>Mode at <span class="arithmatex">\(t = a^2/3\)</span></li>
 </ul>
 <p><strong>Derivation using exponential martingale</strong>: Apply optional sampling to <span class="arithmatex">\(Z_t^\theta = \exp(\theta W_t - \frac{\theta^2 t}{2})\)</span> at <span class="arithmatex">\(\tau_a \wedge T\)</span>, then let <span class="arithmatex">\(T \to \infty\)</span> with careful justification:</p>
-<p>$$</p>
-<p>\mathbb{E}[\exp(-\lambda \tau_a)] = \exp(-a\sqrt{2\lambda}), \quad \lambda &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\exp(-\lambda \tau_a)] = \exp(-a\sqrt{2\lambda}), \quad \lambda &gt; 0
+\]</div>
 <p>Inverting this Laplace transform yields the density.</p>
 <hr />
 <h2 id="localization-and-local-martingales">Localization and Local Martingales<a class="headerlink" href="#localization-and-local-martingales" title="Permanent link">&para;</a></h2>
@@ -46726,9 +46726,9 @@
 <hr />
 <h2 id="stopping-times-in-discrete-time">Stopping Times in Discrete Time<a class="headerlink" href="#stopping-times-in-discrete-time" title="Permanent link">&para;</a></h2>
 <p>For discrete-time filtrations <span class="arithmatex">\((\mathcal{F}_n)_{n \ge 0}\)</span>, a stopping time satisfies:</p>
-<p>$$</p>
-<p>{\tau = n} \in \mathcal{F}_n \quad \text{for all } n \ge 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{\tau = n\} \in \mathcal{F}_n \quad \text{for all } n \ge 0
+\]</div>
 <p>This is equivalent to <span class="arithmatex">\(\{\tau \le n\} \in \mathcal{F}_n\)</span>.</p>
 <p><strong>The gambling interpretation</strong>: A stopping time is a rule for when to stop playing that depends only on what you've seen so far. "Stop when I'm $100 ahead" is a stopping time; "stop just before I would have lost" is not.</p>
 <hr />

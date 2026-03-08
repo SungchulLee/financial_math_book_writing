@@ -46674,22 +46674,22 @@
 <h2 id="numeraire-and-pricing-measures">Numeraire and Pricing Measures<a class="headerlink" href="#numeraire-and-pricing-measures" title="Permanent link">&para;</a></h2>
 <h3 id="1-definition-of-numeraire">1. <strong>Definition of Numeraire</strong><a class="headerlink" href="#1-definition-of-numeraire" title="Permanent link">&para;</a></h3>
 <p>A <strong>numeraire</strong> <span class="arithmatex">\(N_t\)</span> is a strictly positive traded asset used as a unit of account. All asset prices are expressed <strong>relative to the numeraire</strong>:</p>
-<p>$$</p>
-<p>\text{Relative price} = \frac{S_t}{N_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Relative price} = \frac{S_t}{N_t}
+\]</div>
 <p><strong>Key property</strong>: In an arbitrage-free market, there exists a probability measure (called the <strong>numeraire measure</strong> or <strong><span class="arithmatex">\(N\)</span>-measure</strong>) under which all asset prices relative to <span class="arithmatex">\(N_t\)</span> are martingales.</p>
 <h3 id="2-standard-risk-neutral-measure">2. <strong>Standard Risk-Neutral Measure</strong><a class="headerlink" href="#2-standard-risk-neutral-measure" title="Permanent link">&para;</a></h3>
 <p>In the Black-Scholes framework, the standard numeraire is the <strong>money market account</strong>:</p>
-<p>$$</p>
-<p>B_t = e^{rt}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = e^{rt}
+\]</div>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:
 - The relative price <span class="arithmatex">\(S_t/B_t = e^{-rt}S_t\)</span> is a martingale
 - This gives the standard BS dynamics: <span class="arithmatex">\(dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)</span></p>
 <p><strong>Option pricing formula</strong>:</p>
-<p>$$</p>
-<p>V_0 = \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T}\right] = e^{-rT}\mathbb{E}^{\mathbb{Q}}[V_T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \mathbb{E}^{\mathbb{Q}}\left[\frac{V_T}{B_T}\right] = e^{-rT}\mathbb{E}^{\mathbb{Q}}[V_T]
+\]</div>
 <hr />
 <h2 id="general-numeraire-change">General Numeraire Change<a class="headerlink" href="#general-numeraire-change" title="Permanent link">&para;</a></h2>
 <h3 id="1-fundamental-theorem">1. <strong>Fundamental Theorem</strong><a class="headerlink" href="#1-fundamental-theorem" title="Permanent link">&para;</a></h3>
@@ -46697,24 +46697,24 @@
 <p><strong>Numeraire Change Theorem</strong>: Let <span class="arithmatex">\(N_t\)</span> be any numeraire (strictly positive traded asset). There exists a unique equivalent probability measure <span class="arithmatex">\(\mathbb{Q}^N\)</span> under which <strong>all asset prices relative to <span class="arithmatex">\(N_t\)</span> are martingales</strong>.</p>
 </blockquote>
 <p>Specifically, for any traded asset <span class="arithmatex">\(S_t\)</span>:</p>
-<p>$$</p>
-<p>\frac{S_t}{N_t} = \mathbb{E}^{\mathbb{Q}^N}\left[\frac{S_T}{N_T} \Big| \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S_t}{N_t} = \mathbb{E}^{\mathbb{Q}^N}\left[\frac{S_T}{N_T} \Big| \mathcal{F}_t\right]
+\]</div>
 <h3 id="2-radon-nikodym-derivative">2. <strong>Radon-Nikodym Derivative</strong><a class="headerlink" href="#2-radon-nikodym-derivative" title="Permanent link">&para;</a></h3>
 <p>The measure <span class="arithmatex">\(\mathbb{Q}^N\)</span> is related to the standard risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span> via:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^N}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{N_T/B_T}{\mathbb{E}^{\mathbb{Q}}[N_T/B_T]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^N}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{N_T/B_T}{\mathbb{E}^{\mathbb{Q}}[N_T/B_T]}
+\]</div>
 <p><strong>Intuition</strong>: We reweight paths according to the terminal value of the numeraire (discounted).</p>
 <h3 id="3-girsanov-connection">3. <strong>Girsanov Connection</strong><a class="headerlink" href="#3-girsanov-connection" title="Permanent link">&para;</a></h3>
 <p>The change of numeraire induces a <strong>change of Brownian motion</strong> via Girsanov's theorem. If under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dN_t = \mu_N N_t dt + \sigma_N N_t dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dN_t = \mu_N N_t dt + \sigma_N N_t dW_t^{\mathbb{Q}}
+\]</div>
 <p>then under <span class="arithmatex">\(\mathbb{Q}^N\)</span>:</p>
-<p>$$</p>
-<p>dW_t^{\mathbb{Q}^N} = dW_t^{\mathbb{Q}} + \sigma_N dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^{\mathbb{Q}^N} = dW_t^{\mathbb{Q}} + \sigma_N dt
+\]</div>
 <p>The drift of the Brownian motion changes to reflect the numeraire's volatility.</p>
 <hr />
 <h2 id="stock-numeraire-and-forward-measure">Stock Numeraire and Forward Measure<a class="headerlink" href="#stock-numeraire-and-forward-measure" title="Permanent link">&para;</a></h2>
@@ -46724,27 +46724,27 @@
 <h3 id="2-relative-prices-under-qs">2. <strong>Relative Prices Under Q^S</strong><a class="headerlink" href="#2-relative-prices-under-qs" title="Permanent link">&para;</a></h3>
 <p>Under the stock measure, all assets relative to <span class="arithmatex">\(S_t\)</span> are martingales.</p>
 <p><strong>Money market account relative to stock</strong>:</p>
-<p>$$</p>
-<p>\frac{B_t}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{B_T}{S_T} \Big| \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{B_t}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{B_T}{S_T} \Big| \mathcal{F}_t\right]
+\]</div>
 <p><strong>Strike relative to stock</strong>:</p>
-<p>$$</p>
-<p>\frac{K}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{K}{S_T} \Big| \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{K}{S_t} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{K}{S_T} \Big| \mathcal{F}_t\right]
+\]</div>
 <h3 id="3-radon-nikodym-derivative">3. <strong>Radon-Nikodym Derivative</strong><a class="headerlink" href="#3-radon-nikodym-derivative" title="Permanent link">&para;</a></h3>
 <p>The stock measure is related to <span class="arithmatex">\(\mathbb{Q}\)</span> by:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{S_T e^{-rT}}{S_0}
+\]</div>
 <h3 id="4-brownian-motion-under-qs">4. <strong>Brownian Motion Under Q^S</strong><a class="headerlink" href="#4-brownian-motion-under-qs" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)</span> under <span class="arithmatex">\(\mathbb{Q}\)</span>, then by Girsanov:</p>
-<p>$$</p>
-<p>dW_t^{\mathbb{Q}^S} = dW_t^{\mathbb{Q}} + \sigma dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^{\mathbb{Q}^S} = dW_t^{\mathbb{Q}} + \sigma dt
+\]</div>
 <p>Substituting into the stock dynamics:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t(dW_t^{\mathbb{Q}^S} - \sigma dt) = (r - \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t(dW_t^{\mathbb{Q}^S} - \sigma dt) = (r - \sigma^2)S_t dt + \sigma S_t dW_t^{\mathbb{Q}^S}
+\]</div>
 <p><strong>Key simplification</strong>: The ratio <span class="arithmatex">\(K/S_t\)</span> has no drift under <span class="arithmatex">\(\mathbb{Q}^S\)</span>.</p>
 <hr />
 <h2 id="black-scholes-via-stock-numeraire">Black-Scholes via Stock Numeraire<a class="headerlink" href="#black-scholes-via-stock-numeraire" title="Permanent link">&para;</a></h2>
@@ -46752,69 +46752,69 @@
 <p>We want to price a European call with payoff <span class="arithmatex">\((S_T - K)^+\)</span>.</p>
 <p><strong>Step 1: Express payoff in numeraire units</strong></p>
 <p>Divide by <span class="arithmatex">\(S_T\)</span>:</p>
-<p>$$</p>
-<p>\frac{(S_T - K)^+}{S_T} = \left(1 - \frac{K}{S_T}\right)^+ = \left(1 - \frac{K}{S_T}\right)\mathbf{1}_{{S_T &gt; K}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{(S_T - K)^+}{S_T} = \left(1 - \frac{K}{S_T}\right)^+ = \left(1 - \frac{K}{S_T}\right)\mathbf{1}_{\{S_T &gt; K\}}
+\]</div>
 <p><strong>Step 2: Change to stock measure</strong></p>
 <p>By the numeraire change theorem:</p>
-<p>$$</p>
-<p>\frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{C_T}{S_T}\right] = \mathbb{E}^{\mathbb{Q}^S}\left[\left(1 - \frac{K}{S_T}\right)\mathbf{1}_{{S_T &gt; K}}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}\left[\frac{C_T}{S_T}\right] = \mathbb{E}^{\mathbb{Q}^S}\left[\left(1 - \frac{K}{S_T}\right)\mathbf{1}_{\{S_T &gt; K\}}\right]
+\]</div>
 <p><strong>Step 3: Decompose expectation</strong></p>
-<p>$$</p>
-<p>\frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}[\mathbf{1}<em K_125_="K}" _="&gt;" _123_S_T="{S_T">{{S_T &gt; K}}] - K\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}</em>\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{C_0}{S_0} = \mathbb{E}^{\mathbb{Q}^S}[\mathbf{1}_{\{S_T &gt; K\}}] - K\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T &gt; K\}}\right]
+\]</div>
 <h3 id="2-first-term-qss_t-k">2. <strong>First Term: Q^S(S_T &gt; K)</strong><a class="headerlink" href="#2-first-term-qss_t-k" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^S\)</span>, from Girsanov:</p>
-<p>$$</p>
-<p>S_T = S_0 \exp\left(\left(r - \sigma^2 + \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right) = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 \exp\left(\left(r - \sigma^2 + \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right) = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)
+\]</div>
 <p>Wait, let me recalculate. Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}}\right)
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^S\)</span>, using <span class="arithmatex">\(W_T^{\mathbb{Q}} = W_T^{\mathbb{Q}^S} - \sigma T\)</span>:</p>
-<p>$$</p>
-<p>S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma(W_T^{\mathbb{Q}^S} - \sigma T)\right) = S_0 \exp\left(\left(r - \frac{3}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma(W_T^{\mathbb{Q}^S} - \sigma T)\right) = S_0 \exp\left(\left(r - \frac{3}{2}\sigma^2\right)T + \sigma W_T^{\mathbb{Q}^S}\right)
+\]</div>
 <p>Hmm, this doesn't look right. Let me reconsider.</p>
 <p>Actually, under <span class="arithmatex">\(\mathbb{Q}^S\)</span>, the key is that <span class="arithmatex">\(K/S_t\)</span> is a martingale. We have:</p>
-<p>$$</p>
-<p>\frac{K}{S_T} = \frac{K}{S_0}\exp\left(-\left(r + \frac{1}{2}\sigma^2\right)T - \sigma W_T^{\mathbb{Q}^S}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{K}{S_T} = \frac{K}{S_0}\exp\left(-\left(r + \frac{1}{2}\sigma^2\right)T - \sigma W_T^{\mathbb{Q}^S}\right)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>S_T &gt; K \iff W_T^{\mathbb{Q}^S} &gt; -\frac{1}{\sigma}\left[\ln(S_0/K) + \left(r + \frac{1}{2}\sigma^2\right)T\right] = -d_1\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T &gt; K \iff W_T^{\mathbb{Q}^S} &gt; -\frac{1}{\sigma}\left[\ln(S_0/K) + \left(r + \frac{1}{2}\sigma^2\right)T\right] = -d_1\sqrt{T}
+\]</div>
 <p>where</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+\]</div>
 <p>Hence:</p>
-<p>$$</p>
-<p>\mathbb{Q}^S(S_T &gt; K) = \mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}^S(S_T &gt; K) = \mathcal{N}(d_1)
+\]</div>
 <h3 id="3-second-term-change-to-q">3. <strong>Second Term: Change to Q</strong><a class="headerlink" href="#3-second-term-change-to-q" title="Permanent link">&para;</a></h3>
 <p>For the second term, we use:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}<em K_125_="K}" _="&gt;" _123_S_T="{S_T">{{S_T &gt; K}}\right] = \mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}} \cdot \frac{1}{S_T}\mathbf{1}</em>\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0} \cdot \frac{1}{S_T}\mathbf{1}_{{S_T &gt; K}}\right] = \frac{e^{-rT}}{S_0}\mathbb{Q}(S_T &gt; K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}^S}\left[\frac{1}{S_T}\mathbf{1}_{\{S_T &gt; K\}}\right] = \mathbb{E}^{\mathbb{Q}}\left[\frac{d\mathbb{Q}^S}{d\mathbb{Q}} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T &gt; K\}}\right]
+\]</div>
+<div class="arithmatex">\[
+= \mathbb{E}^{\mathbb{Q}}\left[\frac{S_T e^{-rT}}{S_0} \cdot \frac{1}{S_T}\mathbf{1}_{\{S_T &gt; K\}}\right] = \frac{e^{-rT}}{S_0}\mathbb{Q}(S_T &gt; K)
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}(S_T &gt; K) = \mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(S_T &gt; K) = \mathcal{N}(d_2)
+\]</div>
 <p>where <span class="arithmatex">\(d_2 = d_1 - \sigma\sqrt{T}\)</span>.</p>
 <h3 id="4-final-result">4. <strong>Final Result</strong><a class="headerlink" href="#4-final-result" title="Permanent link">&para;</a></h3>
 <p>Combining:</p>
-<p>$$</p>
-<p>\frac{C_0}{S_0} = \mathcal{N}(d_1) - K \cdot \frac{e^{-rT}}{S_0}\mathcal{N}(d_2)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{C_0}{S_0} = \mathcal{N}(d_1) - K \cdot \frac{e^{-rT}}{S_0}\mathcal{N}(d_2)
+\]</div>
+<div class="arithmatex">\[
+\boxed{C_0 = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)}
+\]</div>
 <p>This is the <strong>Black-Scholes formula</strong>, derived via stock numeraire.</p>
 <p><strong>Key insight</strong>: The term <span class="arithmatex">\(\mathcal{N}(d_1)\)</span> arises naturally as the probability under the <strong>stock measure</strong>, not the risk-neutral measure.</p>
 <hr />
@@ -46825,32 +46825,32 @@
 - Domestic money market: <span class="arithmatex">\(B_t^d = e^{r_d t}\)</span>
 - Foreign money market: <span class="arithmatex">\(B_t^f = e^{r_f t}\)</span></p>
 <p><strong>Exchange rate dynamics</strong> under domestic risk-neutral measure <span class="arithmatex">\(\mathbb{Q}^d\)</span>:</p>
-<p>$$</p>
-<p>dX_t = (r_d - r_f)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = (r_d - r_f)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^d}
+\]</div>
 <h3 id="2-foreign-numeraire-measure">2. <strong>Foreign Numeraire Measure</strong><a class="headerlink" href="#2-foreign-numeraire-measure" title="Permanent link">&para;</a></h3>
 <p>Choose numeraire <span class="arithmatex">\(N_t = X_t B_t^f = X_t e^{r_f t}\)</span> (foreign money market converted to domestic).</p>
 <p>The Radon-Nikodym derivative:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{r_f T - r_d T}}{X_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^f}{d\mathbb{Q}^d}\Big|_{\mathcal{F}_T} = \frac{X_T e^{r_f T - r_d T}}{X_0}
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^f\)</span>:</p>
-<p>$$</p>
-<p>dW_t^{\mathbb{Q}^f} = dW_t^{\mathbb{Q}^d} + \sigma dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^{\mathbb{Q}^f} = dW_t^{\mathbb{Q}^d} + \sigma dt
+\]</div>
 <p>Exchange rate becomes:</p>
-<p>$$</p>
-<p>dX_t = (r_d - r_f - \sigma^2)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^f}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = (r_d - r_f - \sigma^2)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^f}
+\]</div>
 <h3 id="3-call-on-fx-rate">3. <strong>Call on FX Rate</strong><a class="headerlink" href="#3-call-on-fx-rate" title="Permanent link">&para;</a></h3>
 <p>Using the foreign measure:</p>
-<p>$$</p>
-<p>C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - K e^{-r_d T}\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = X_0 e^{-r_f T}\mathcal{N}(d_1) - K e^{-r_d T}\mathcal{N}(d_2)
+\]</div>
 <p>where</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(X_0/K) + (r_d - r_f + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+\]</div>
 <p>This is the <strong>Garman-Kohlhagen formula</strong> for FX options.</p>
 <hr />
 <h2 id="summary-when-to-use-each-numeraire">Summary: When to Use Each Numeraire<a class="headerlink" href="#summary-when-to-use-each-numeraire" title="Permanent link">&para;</a></h2>

@@ -46682,9 +46682,9 @@
 <hr />
 <h2 id="definition-of-exposure">Definition of Exposure<a class="headerlink" href="#definition-of-exposure" title="Permanent link">&para;</a></h2>
 <p>For a derivative portfolio with value process <span class="arithmatex">\(V_t\)</span>, the <strong>exposure</strong> at time <span class="arithmatex">\(t\)</span> is:</p>
-<p>$$</p>
-<p>E_t = \max(V_t, 0) = V_t^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_t = \max(V_t, 0) = V_t^+
+\]</div>
 <p><strong>Interpretation:</strong> 
 - If <span class="arithmatex">\(V_t &gt; 0\)</span>: We are owed money; default causes loss
 - If <span class="arithmatex">\(V_t &lt; 0\)</span>: We owe money; default causes no direct loss (ignoring replacement cost)</p>
@@ -46692,9 +46692,9 @@
 <hr />
 <h2 id="expected-exposure-ee">Expected Exposure (EE)<a class="headerlink" href="#expected-exposure-ee" title="Permanent link">&para;</a></h2>
 <p>The <strong>Expected Exposure</strong> at time <span class="arithmatex">\(t\)</span> is:</p>
-<p>$$</p>
-<p>\text{EE}(t) = \mathbb{E}^{\mathbb{Q}}[E_t] = \mathbb{E}^{\mathbb{Q}}[V_t^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EE}(t) = \mathbb{E}^{\mathbb{Q}}[E_t] = \mathbb{E}^{\mathbb{Q}}[V_t^+]
+\]</div>
 <p>where the expectation is typically under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <p><strong>Properties:</strong>
 - EE is deterministic (a function of time only)
@@ -46703,32 +46703,32 @@
 <hr />
 <h2 id="expected-positive-exposure-epe">Expected Positive Exposure (EPE)<a class="headerlink" href="#expected-positive-exposure-epe" title="Permanent link">&para;</a></h2>
 <p>The <strong>Expected Positive Exposure</strong> is the time-averaged EE:</p>
-<p>$$</p>
-<p>\text{EPE} = \frac{1}{T} \int_0^T \text{EE}(t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EPE} = \frac{1}{T} \int_0^T \text{EE}(t) \, dt
+\]</div>
 <p><strong>Discrete approximation:</strong></p>
-<p>$$</p>
-<p>\text{EPE} \approx \frac{1}{n} \sum_{i=1}^n \text{EE}(t_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EPE} \approx \frac{1}{n} \sum_{i=1}^n \text{EE}(t_i)
+\]</div>
 <p>EPE is a single number summarizing average exposure over the portfolio's life.</p>
 <hr />
 <h2 id="effective-epe-and-effective-ee">Effective EPE and Effective EE<a class="headerlink" href="#effective-epe-and-effective-ee" title="Permanent link">&para;</a></h2>
 <p>Regulatory capital calculations use <strong>non-decreasing</strong> versions:</p>
 <p><strong>Effective EE:</strong></p>
-<p>$$</p>
-<p>\text{Effective EE}(t) = \max_{s \le t} \text{EE}(s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Effective EE}(t) = \max_{s \le t} \text{EE}(s)
+\]</div>
 <p><strong>Effective EPE:</strong></p>
-<p>$$</p>
-<p>\text{Effective EPE} = \frac{1}{\min(1\text{ year}, T)} \int_0^{\min(1\text{ year}, T)} \text{Effective EE}(t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Effective EPE} = \frac{1}{\min(1\text{ year}, T)} \int_0^{\min(1\text{ year}, T)} \text{Effective EE}(t) \, dt
+\]</div>
 <p><strong>Rationale:</strong> Prevents gaming by structuring trades to have low EE at measurement dates but high EE in between.</p>
 <hr />
 <h2 id="potential-future-exposure-pfe">Potential Future Exposure (PFE)<a class="headerlink" href="#potential-future-exposure-pfe" title="Permanent link">&para;</a></h2>
 <p><strong>PFE</strong> is a high-quantile measure of future exposure:</p>
-<p>$$</p>
-<p>\text{PFE}_\alpha(t) = \inf{x : \mathbb{P}(E_t \le x) \ge \alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(t) = \inf\{x : \mathbb{P}(E_t \le x) \ge \alpha\}
+\]</div>
 <p>Typically <span class="arithmatex">\(\alpha = 0.95\)</span> or <span class="arithmatex">\(0.99\)</span>.</p>
 <p><strong>Interpretation:</strong> With probability <span class="arithmatex">\(\alpha\)</span>, exposure at time <span class="arithmatex">\(t\)</span> will not exceed <span class="arithmatex">\(\text{PFE}_\alpha(t)\)</span>.</p>
 <p><strong>Relation to EE:</strong>
@@ -46743,9 +46743,9 @@
 - Exposure peaks mid-life
 - "Hump-shaped" profile
 - Pull-to-par effect near maturity</p>
-<p>$$</p>
-<p>\text{EE}(t) \text{ peaks at } t \approx T/2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EE}(t) \text{ peaks at } t \approx T/2
+\]</div>
 <h3 id="fx-forward">FX Forward<a class="headerlink" href="#fx-forward" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Exposure grows approximately linearly with time</li>
@@ -46792,13 +46792,13 @@
 <hr />
 <h2 id="netting-and-exposure">Netting and Exposure<a class="headerlink" href="#netting-and-exposure" title="Permanent link">&para;</a></h2>
 <p>Under a <strong>netting agreement</strong>, exposure is calculated at the portfolio level:</p>
-<p>$$</p>
-<p>E_t^{\text{netted}} = \left(\sum_{i=1}^n V_{i,t}\right)^+ \le \sum_{i=1}^n V_{i,t}^+ = \sum_{i=1}^n E_{i,t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_t^{\text{netted}} = \left(\sum_{i=1}^n V_{i,t}\right)^+ \le \sum_{i=1}^n V_{i,t}^+ = \sum_{i=1}^n E_{i,t}
+\]</div>
 <p><strong>Netting benefit:</strong></p>
-<p>$$</p>
-<p>\text{Netting Benefit} = \frac{\sum_i \text{EE}<em _text_netted="\text{netted">i - \text{EE}</em>}}}{\sum_i \text{EE}_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Netting Benefit} = \frac{\sum_i \text{EE}_i - \text{EE}_{\text{netted}}}{\sum_i \text{EE}_i}
+\]</div>
 <p>Netting is most valuable when trades have:
 - Opposite signs (long and short)
 - Different maturities
@@ -46806,9 +46806,9 @@
 <hr />
 <h2 id="collateralization-and-exposure">Collateralization and Exposure<a class="headerlink" href="#collateralization-and-exposure" title="Permanent link">&para;</a></h2>
 <p><strong>Collateral (margin)</strong> reduces exposure:</p>
-<p>$$</p>
-<p>E_t^{\text{collateralized}} = \max(V_t - C_t, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_t^{\text{collateralized}} = \max(V_t - C_t, 0)
+\]</div>
 <p>where <span class="arithmatex">\(C_t\)</span> is the collateral held.</p>
 <h3 id="margin-period-of-risk-mpor">Margin Period of Risk (MPOR)<a class="headerlink" href="#margin-period-of-risk-mpor" title="Permanent link">&para;</a></h3>
 <p>Collateral is not instantaneously available. The <strong>MPOR</strong> is the time to:
@@ -46817,23 +46817,23 @@
 - Close out the position if counterparty defaults</p>
 <p>Typical MPOR: 10 business days (bilateral), 5 days (CCP).</p>
 <p><strong>Effective exposure under collateral:</strong></p>
-<p>$$</p>
-<p>\text{EE}^{\text{coll}}(t) = \mathbb{E}[\max(V_t - C_{t-\text{MPOR}}, 0)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EE}^{\text{coll}}(t) = \mathbb{E}[\max(V_t - C_{t-\text{MPOR}}, 0)]
+\]</div>
 <hr />
 <h2 id="cva-and-exposure">CVA and Exposure<a class="headerlink" href="#cva-and-exposure" title="Permanent link">&para;</a></h2>
 <p><strong>Credit Valuation Adjustment (CVA)</strong> depends directly on exposure profiles:</p>
-<p>$$</p>
-<p>\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot e^{-\int_0^t (r(s) + \lambda(s)) ds} \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot \lambda(t) \cdot e^{-\int_0^t (r(s) + \lambda(s)) ds} \, dt
+\]</div>
 <p>where:
 - LGD = Loss Given Default (typically 60%)
 - <span class="arithmatex">\(\lambda(t)\)</span> = default intensity (hazard rate)
 - <span class="arithmatex">\(r(t)\)</span> = risk-free rate</p>
 <p><strong>Discrete approximation:</strong></p>
-<p>$$</p>
-<p>\text{CVA} \approx \text{LGD} \sum_{i=1}^n \text{EE}(t_i) \cdot [\mathbb{Q}(\tau \le t_i) - \mathbb{Q}(\tau \le t_{i-1})] \cdot D(t_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} \approx \text{LGD} \sum_{i=1}^n \text{EE}(t_i) \cdot [\mathbb{Q}(\tau \le t_i) - \mathbb{Q}(\tau \le t_{i-1})] \cdot D(t_i)
+\]</div>
 <p>where <span class="arithmatex">\(D(t)\)</span> is the discount factor and <span class="arithmatex">\(\mathbb{Q}(\tau \le t)\)</span> is the default probability.</p>
 <hr />
 <h2 id="monte-carlo-simulation-of-exposure">Monte Carlo Simulation of Exposure<a class="headerlink" href="#monte-carlo-simulation-of-exposure" title="Permanent link">&para;</a></h2>
@@ -46856,12 +46856,12 @@
 <hr />
 <h2 id="peak-exposure">Peak Exposure<a class="headerlink" href="#peak-exposure" title="Permanent link">&para;</a></h2>
 <p><strong>Peak Exposure</strong> is the maximum exposure over the portfolio's life:</p>
-<p>$$</p>
-<p>\text{Peak EE} = \max_{t \in [0,T]} \text{EE}(t)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Peak PFE}<em _0_T_="[0,T]" _in="\in" t="t">\alpha = \max</em>_\alpha(t)} \text{PFE</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Peak EE} = \max_{t \in [0,T]} \text{EE}(t)
+\]</div>
+<div class="arithmatex">\[
+\text{Peak PFE}_\alpha = \max_{t \in [0,T]} \text{PFE}_\alpha(t)
+\]</div>
 <p>Peak exposure is used for:
 - Credit limit setting
 - Counterparty approval

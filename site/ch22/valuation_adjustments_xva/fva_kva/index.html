@@ -46935,37 +46935,37 @@
 <p><strong>Reality:</strong> Banks fund uncollateralized positions at rates above risk-free, creating funding costs that must be priced.</p>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>FVA reflects the cost (or benefit) of funding uncollateralized derivative positions:</p>
-<p>$$</p>
-<p>\text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[\text{Funding Exposure}(t)] \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[\text{Funding Exposure}(t)] \cdot D(0,t) \, dt
+\]</div>
 <p>where <span class="arithmatex">\(s_F(t)\)</span> is the funding spread (bank's borrowing rate minus risk-free rate).</p>
 <h3 id="funding-exposure">Funding Exposure<a class="headerlink" href="#funding-exposure" title="Permanent link">&para;</a></h3>
 <p><strong>Positive derivative value:</strong> Bank must fund the asset</p>
-<p>$$</p>
-<p>\text{Funding Cost} = s_F \cdot V^+ \cdot dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Funding Cost} = s_F \cdot V^+ \cdot dt
+\]</div>
 <p><strong>Negative derivative value:</strong> Bank receives funding benefit</p>
-<p>$$</p>
-<p>\text{Funding Benefit} = s_F \cdot V^- \cdot dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Funding Benefit} = s_F \cdot V^- \cdot dt
+\]</div>
 <h3 id="symmetric-vs-asymmetric-fva">Symmetric vs Asymmetric FVA<a class="headerlink" href="#symmetric-vs-asymmetric-fva" title="Permanent link">&para;</a></h3>
 <p><strong>Symmetric FVA:</strong></p>
-<p>$$</p>
-<p>\text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[V_t] \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{FVA} = \int_0^T s_F(t) \cdot \mathbb{E}[V_t] \cdot D(0,t) \, dt
+\]</div>
 <p><strong>Asymmetric FVA:</strong> Different rates for borrowing (<span class="arithmatex">\(s_F^+\)</span>) and lending (<span class="arithmatex">\(s_F^-\)</span>):</p>
-<p>$$</p>
-<p>\text{FVA} = \int_0^T \left[s_F^+(t) \cdot \mathbb{E}[V_t^+] - s_F^-(t) \cdot \mathbb{E}[V_t^-]\right] D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{FVA} = \int_0^T \left[s_F^+(t) \cdot \mathbb{E}[V_t^+] - s_F^-(t) \cdot \mathbb{E}[V_t^-]\right] D(0,t) \, dt
+\]</div>
 <hr />
 <h2 id="capital-valuation-adjustment-kva">Capital Valuation Adjustment (KVA)<a class="headerlink" href="#capital-valuation-adjustment-kva" title="Permanent link">&para;</a></h2>
 <h3 id="motivation_1">Motivation<a class="headerlink" href="#motivation_1" title="Permanent link">&para;</a></h3>
 <p>Banks must hold regulatory capital against derivative positions. This capital has an opportunity cost—it could be deployed elsewhere for return.</p>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>KVA reflects the cost of holding regulatory capital over the life of the trade:</p>
-<p>$$</p>
-<p>\text{KVA} = \int_0^T h \cdot K(t) \cdot S_B(t) \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{KVA} = \int_0^T h \cdot K(t) \cdot S_B(t) \cdot D(0,t) \, dt
+\]</div>
 <p>where:
 - <span class="arithmatex">\(h\)</span> = hurdle rate (cost of capital, typically 8-15%)
 - <span class="arithmatex">\(K(t)\)</span> = regulatory capital requirement at time <span class="arithmatex">\(t\)</span>
@@ -46976,18 +46976,18 @@
 - <strong>Default risk capital:</strong> Based on EAD and counterparty credit quality
 - <strong>CVA capital:</strong> Capital for CVA variability
 - <strong>Market risk capital:</strong> If derivatives are in trading book</p>
-<p>$$</p>
-<p>K(t) = K^{\text{default}}(t) + K^{\text{CVA}}(t) + K^{\text{market}}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K(t) = K^{\text{default}}(t) + K^{\text{CVA}}(t) + K^{\text{market}}(t)
+\]</div>
 <h3 id="kva-formula">KVA Formula<a class="headerlink" href="#kva-formula" title="Permanent link">&para;</a></h3>
 <p>With constant hurdle rate <span class="arithmatex">\(h\)</span>:</p>
-<p>$$</p>
-<p>\text{KVA} \approx h \cdot \int_0^T K(t) \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{KVA} \approx h \cdot \int_0^T K(t) \cdot D(0,t) \, dt
+\]</div>
 <p><strong>Example:</strong> If average capital is $10M over 5 years and <span class="arithmatex">\(h = 10\%\)</span>:</p>
-<p>$$</p>
-<p>\text{KVA} \approx 0.10 \times 10\text{M} \times 5 \approx $5\text{M}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{KVA} \approx 0.10 \times 10\text{M} \times 5 \approx \$5\text{M}
+\]</div>
 <p>(simplified; actual calculation accounts for time profile)</p>
 <hr />
 <h2 id="margin-valuation-adjustment-mva">Margin Valuation Adjustment (MVA)<a class="headerlink" href="#margin-valuation-adjustment-mva" title="Permanent link">&para;</a></h2>
@@ -46995,9 +46995,9 @@
 <p>Post-crisis regulations require initial margin (IM) for both cleared and uncleared derivatives. This margin must be funded, creating costs.</p>
 <h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
 <p>MVA is the cost of funding initial margin over the life of the trade:</p>
-<p>$$</p>
-<p>\text{MVA} = \int_0^T s_F(t) \cdot \mathbb{E}[\text{IM}(t)] \cdot D(0,t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MVA} = \int_0^T s_F(t) \cdot \mathbb{E}[\text{IM}(t)] \cdot D(0,t) \, dt
+\]</div>
 <p>where <span class="arithmatex">\(\text{IM}(t)\)</span> is the initial margin requirement at time <span class="arithmatex">\(t\)</span>.</p>
 <h3 id="initial-margin-calculation">Initial Margin Calculation<a class="headerlink" href="#initial-margin-calculation" title="Permanent link">&para;</a></h3>
 <p><strong>ISDA SIMM (Standard Initial Margin Model):</strong>
@@ -47028,36 +47028,36 @@
 4. <strong>KVA:</strong> Often smaller but can be material</p>
 <h3 id="non-additivity">Non-Additivity<a class="headerlink" href="#non-additivity" title="Permanent link">&para;</a></h3>
 <p>XVAs are <strong>not additive</strong> across trades:</p>
-<p>$$</p>
-<p>\text{XVA}(A + B) \ne \text{XVA}(A) + \text{XVA}(B)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{XVA}(A + B) \ne \text{XVA}(A) + \text{XVA}(B)
+\]</div>
 <p>due to netting, collateral, and capital effects.</p>
 <hr />
 <h2 id="total-valuation-adjustment">Total Valuation Adjustment<a class="headerlink" href="#total-valuation-adjustment" title="Permanent link">&para;</a></h2>
 <h3 id="xva-inclusive-price">XVA-Inclusive Price<a class="headerlink" href="#xva-inclusive-price" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V^{\text{total}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} - \text{FVA} - \text{KVA} - \text{MVA}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{total}} = V^{\text{risk-free}} - \text{CVA} + \text{DVA} - \text{FVA} - \text{KVA} - \text{MVA}
+\]</div>
 <p><strong>Note:</strong> Signs may vary by convention; FVA and MVA are typically costs (negative adjustments).</p>
 <h3 id="simplified-notation">Simplified Notation<a class="headerlink" href="#simplified-notation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V^{\text{total}} = V^{\text{clean}} - \text{XVA}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{total}} = V^{\text{clean}} - \text{XVA}
+\]</div>
 <p>where XVA is the total adjustment.</p>
 <hr />
 <h2 id="bsde-framework-for-xva">BSDE Framework for XVA<a class="headerlink" href="#bsde-framework-for-xva" title="Permanent link">&para;</a></h2>
 <p>XVA pricing can be formulated as a <strong>backward stochastic differential equation</strong>:</p>
-<p>$$</p>
-<p>V_t = \text{Payoff}_T + \int_t^T g(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \text{Payoff}_T + \int_t^T g(s, V_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+\]</div>
 <p>where the driver <span class="arithmatex">\(g\)</span> incorporates:
 - Credit risk (CVA/DVA)
 - Funding costs (FVA)
 - Collateral effects</p>
 <p><strong>Example driver:</strong></p>
-<p>$$</p>
-<p>g(t, V, Z) = -r V + s_F V^+ - s_L V^- + \lambda_C (V^+ - \text{collateral}) + \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, V, Z) = -r V + s_F V^+ - s_L V^- + \lambda_C (V^+ - \text{collateral}) + \cdots
+\]</div>
 <h3 id="advantages-of-bsde-approach">Advantages of BSDE Approach<a class="headerlink" href="#advantages-of-bsde-approach" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Unified framework for all XVAs</li>
@@ -47074,9 +47074,9 @@
 - Reports XVA P&amp;L</p>
 <h3 id="transfer-pricing">Transfer Pricing<a class="headerlink" href="#transfer-pricing" title="Permanent link">&para;</a></h3>
 <p>Business units charged for XVA at trade inception:</p>
-<p>$$</p>
-<p>\text{Trade Price} = V^{\text{clean}} - \text{XVA charge}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Trade Price} = V^{\text{clean}} - \text{XVA charge}
+\]</div>
 <p>XVA desk then owns and manages the XVA risk.</p>
 <hr />
 <h2 id="practical-considerations">Practical Considerations<a class="headerlink" href="#practical-considerations" title="Permanent link">&para;</a></h2>
@@ -47174,9 +47174,9 @@
 </tbody>
 </table>
 <p><strong>Total adjustment:</strong></p>
-<p>$$</p>
-<p>\text{XVA} = 2.1 - 1.2 + 0.4 + 1.8 = $3.1\text{M}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{XVA} = 2.1 - 1.2 + 0.4 + 1.8 = \$3.1\text{M}
+\]</div>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
 <ul>

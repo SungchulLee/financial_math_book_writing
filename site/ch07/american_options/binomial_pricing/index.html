@@ -46404,22 +46404,22 @@
 <hr />
 <h2 id="european-pricing-recap">European Pricing: Recap<a class="headerlink" href="#european-pricing-recap" title="Permanent link">&para;</a></h2>
 <p>In the CRR binomial model with <span class="arithmatex">\(N\)</span> time steps:</p>
-<p>$$</p>
-<p>\Delta t = \frac{T}{N}, \quad u = e^{\sigma\sqrt{\Delta t}}, \quad d = \frac{1}{u}, \quad q = \frac{e^{r\Delta t} - d}{u - d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta t = \frac{T}{N}, \quad u = e^{\sigma\sqrt{\Delta t}}, \quad d = \frac{1}{u}, \quad q = \frac{e^{r\Delta t} - d}{u - d}
+\]</div>
 <p>For a <strong>European</strong> option, backward induction gives:</p>
-<p>$$</p>
-<p>V_{n,j} = e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1 - q) \, V_{n+1,j}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{n,j} = e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1 - q) \, V_{n+1,j}\right]
+\]</div>
 <p>starting from terminal payoffs <span class="arithmatex">\(V_{N,j} = \Phi(S_{N,j})\)</span>.</p>
 <hr />
 <h2 id="american-pricing-the-maximum-condition">American Pricing: The Maximum Condition<a class="headerlink" href="#american-pricing-the-maximum-condition" title="Permanent link">&para;</a></h2>
 <p>For an <strong>American</strong> option, at each node <span class="arithmatex">\((n, j)\)</span> we compare the <strong>continuation value</strong> with the <strong>immediate exercise value</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_{n,j} = \max\left(\Phi(S_{n,j}), \; e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1 - q) \, V_{n+1,j}\right]\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(\Phi(S_{n,j})\)</span> is the intrinsic value (e.g., <span class="arithmatex">\(K - S_{n,j}\)</span> for a put)</li>
@@ -46432,13 +46432,13 @@ V_{n,j} = \max\left(\Phi(S_{n,j}), \; e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1 
 <p><strong>Step 1.</strong> Build the stock price tree: <span class="arithmatex">\(S_{n,j} = S_0 \cdot u^j \cdot d^{n-j}\)</span></p>
 <p><strong>Step 2.</strong> Set terminal values: <span class="arithmatex">\(V_{N,j} = \Phi(S_{N,j})\)</span> for <span class="arithmatex">\(j = 0, 1, \ldots, N\)</span></p>
 <p><strong>Step 3.</strong> For <span class="arithmatex">\(n = N-1\)</span> down to <span class="arithmatex">\(0\)</span>, for <span class="arithmatex">\(j = 0, 1, \ldots, n\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \text{Continuation} &amp;= e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1-q) \, V_{n+1,j}\right] \\
 \text{Exercise} &amp;= \Phi(S_{n,j}) \\
 V_{n,j} &amp;= \max(\text{Exercise}, \text{Continuation})
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Step 4.</strong> The American option price is <span class="arithmatex">\(V_{0,0}\)</span>.</p>
 </div>
 <hr />
@@ -46596,14 +46596,14 @@ The price converges to approximately <span class="arithmatex">\(6.08\)</span> as
 <hr />
 <h2 id="convergence-analysis">Convergence Analysis<a class="headerlink" href="#convergence-analysis" title="Permanent link">&para;</a></h2>
 <p>The CRR binomial tree converges to the continuous-time American option price, but with <strong>oscillatory behavior</strong> due to the discrete grid:</p>
-<p>$$</p>
-<p>V_{\text{binomial}}(N) = V_{\text{American}} + O\left(\frac{1}{\sqrt{N}}\right) + \text{oscillatory terms}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{binomial}}(N) = V_{\text{American}} + O\left(\frac{1}{\sqrt{N}}\right) + \text{oscillatory terms}
+\]</div>
 <h3 id="richardson-extrapolation">Richardson Extrapolation<a class="headerlink" href="#richardson-extrapolation" title="Permanent link">&para;</a></h3>
 <p>To accelerate convergence, use prices from two step sizes:</p>
-<p>$$</p>
-<p>V_{\text{extrapolated}} = 2 \, V(2N) - V(N)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{\text{extrapolated}} = 2 \, V(2N) - V(N)
+\]</div>
 <p>This eliminates the leading error term and often yields fourth-decimal accuracy with moderate <span class="arithmatex">\(N\)</span>.</p>
 <h3 id="convergence-behavior">Convergence Behavior<a class="headerlink" href="#convergence-behavior" title="Permanent link">&para;</a></h3>
 <table>
@@ -46644,11 +46644,11 @@ The price converges to approximately <span class="arithmatex">\(6.08\)</span> as
 </table>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_{n,j} = \max\left(\Phi(S_{n,j}), \; e^{-r\Delta t}\left[q \, V_{n+1,j+1} + (1-q) \, V_{n+1,j}\right]\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

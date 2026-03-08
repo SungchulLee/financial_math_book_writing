@@ -47430,25 +47430,25 @@
 <h3 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h3>
 <p>How does a bond price change when interest rates move?</p>
 <p>For a zero-coupon bond:</p>
-<p>$$</p>
-<p>P = e^{-yT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = e^{-yT}
+\]</div>
 <p>Taking differentials:</p>
-<p>$$</p>
-<p>dP = -T e^{-yT} dy = -T \cdot P \cdot dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dP = -T e^{-yT} dy = -T \cdot P \cdot dy
+\]</div>
 <p>So:</p>
-<p>$$</p>
-<p>\frac{dP}{P} = -T \cdot dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP}{P} = -T \cdot dy
+\]</div>
 <p>The <strong>time to maturity</strong> <span class="arithmatex">\(T\)</span> measures sensitivity. For coupon bonds, this generalizes to <strong>duration</strong>.</p>
 <hr />
 <h2 id="macaulay-duration">Macaulay Duration<a class="headerlink" href="#macaulay-duration" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p><strong>Macaulay duration</strong> is the weighted average time to receive cashflows:</p>
-<p>$$</p>
-<p>D_{\text{Mac}} = \frac{\sum_{i=1}^{n} t_i \cdot PV(c_i)}{\sum_{i=1}^{n} PV(c_i)} = \frac{\sum_{i=1}^{n} t_i \cdot c_i \cdot e^{-y t_i}}{P}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{Mac}} = \frac{\sum_{i=1}^{n} t_i \cdot PV(c_i)}{\sum_{i=1}^{n} PV(c_i)} = \frac{\sum_{i=1}^{n} t_i \cdot c_i \cdot e^{-y t_i}}{P}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(c_i\)</span>: cashflow at time <span class="arithmatex">\(t_i\)</span>
 - <span class="arithmatex">\(y\)</span>: continuously compounded yield
@@ -47504,42 +47504,42 @@
 <h2 id="modified-duration">Modified Duration<a class="headerlink" href="#modified-duration" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p><strong>Modified duration</strong> directly measures price sensitivity:</p>
-<p>$$</p>
-<p>D_{\text{mod}} = -\frac{1}{P} \frac{dP}{dy}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{mod}} = -\frac{1}{P} \frac{dP}{dy}
+\]</div>
 <p>For continuously compounded yields:</p>
-<p>$$</p>
-<p>D_{\text{mod}} = D_{\text{Mac}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{mod}} = D_{\text{Mac}}
+\]</div>
 <p>For annually compounded yields (<span class="arithmatex">\(y_a\)</span>):</p>
-<p>$$</p>
-<p>D_{\text{mod}} = \frac{D_{\text{Mac}}}{1 + y_a}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{mod}} = \frac{D_{\text{Mac}}}{1 + y_a}
+\]</div>
 <h3 id="price-sensitivity-formula">Price Sensitivity Formula<a class="headerlink" href="#price-sensitivity-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\Delta P}{P} \approx -D_{\text{mod}} \cdot \Delta y}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\Delta P}{P} \approx -D_{\text{mod}} \cdot \Delta y}
+\]</div>
 <p>This linear approximation works well for small yield changes.</p>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(D_{\text{mod}} = 5\)</span> and yields increase by 50 bps (0.5%):</p>
-<p>$$</p>
-<p>\frac{\Delta P}{P} \approx -5 \times 0.005 = -2.5\%</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\Delta P}{P} \approx -5 \times 0.005 = -2.5\%
+\]</div>
 <p>A $1M bond portfolio loses approximately $25,000.</p>
 <hr />
 <h2 id="dollar-duration-dv01">Dollar Duration (DV01)<a class="headerlink" href="#dollar-duration-dv01" title="Permanent link">&para;</a></h2>
 <h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
 <p><strong>Dollar duration</strong> (or <strong>DV01</strong>, <strong>PV01</strong>) is the absolute price change per 1 basis point yield change:</p>
-<p>$$</p>
-<p>\text{DV01} = -\frac{dP}{dy} \times 0.0001 = D_{\text{mod}} \times P \times 0.0001</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{DV01} = -\frac{dP}{dy} \times 0.0001 = D_{\text{mod}} \times P \times 0.0001
+\]</div>
 <h3 id="interpretation_1">Interpretation<a class="headerlink" href="#interpretation_1" title="Permanent link">&para;</a></h3>
 <p>DV01 answers: "How many dollars do I gain/lose per basis point?"</p>
 <h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
 <p>A $10M position with <span class="arithmatex">\(D_{\text{mod}} = 7\)</span>:</p>
-<p>$$</p>
-<p>\text{DV01} = 7 \times 10,000,000 \times 0.0001 = $7,000</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{DV01} = 7 \times 10,000,000 \times 0.0001 = \$7,000
+\]</div>
 <p>A 10 bp rate increase costs $70,000.</p>
 <hr />
 <h2 id="convexity">Convexity<a class="headerlink" href="#convexity" title="Permanent link">&para;</a></h2>
@@ -47547,18 +47547,18 @@
 <p>Duration provides a linear approximation. For large yield changes, the <strong>curvature</strong> of the price-yield relationship matters.</p>
 <h3 id="definition_3">Definition<a class="headerlink" href="#definition_3" title="Permanent link">&para;</a></h3>
 <p><strong>Convexity</strong> is the second derivative of price with respect to yield:</p>
-<p>$$</p>
-<p>C = \frac{1}{P} \frac{d^2 P}{dy^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = \frac{1}{P} \frac{d^2 P}{dy^2}
+\]</div>
 <p>For a bond with cashflows <span class="arithmatex">\(c_i\)</span> at times <span class="arithmatex">\(t_i\)</span>:</p>
-<p>$$</p>
-<p>C = \frac{\sum_{i=1}^{n} t_i^2 \cdot c_i \cdot e^{-y t_i}}{P}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = \frac{\sum_{i=1}^{n} t_i^2 \cdot c_i \cdot e^{-y t_i}}{P}
+\]</div>
 <h3 id="second-order-approximation">Second-Order Approximation<a class="headerlink" href="#second-order-approximation" title="Permanent link">&para;</a></h3>
 <p>Including convexity:</p>
-<p>$$</p>
-<p>\boxed{\frac{\Delta P}{P} \approx -D_{\text{mod}} \cdot \Delta y + \frac{1}{2} C \cdot (\Delta y)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\Delta P}{P} \approx -D_{\text{mod}} \cdot \Delta y + \frac{1}{2} C \cdot (\Delta y)^2}
+\]</div>
 <h3 id="convexity-effect">Convexity Effect<a class="headerlink" href="#convexity-effect" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(C &gt; 0\)</span> for standard bonds:
 - When yields rise, price falls <strong>less</strong> than duration predicts
@@ -47568,85 +47568,85 @@
 <h2 id="duration-of-a-portfolio">Duration of a Portfolio<a class="headerlink" href="#duration-of-a-portfolio" title="Permanent link">&para;</a></h2>
 <h3 id="linearity">Linearity<a class="headerlink" href="#linearity" title="Permanent link">&para;</a></h3>
 <p>Portfolio duration is the weighted average of component durations:</p>
-<p>$$</p>
-<p>D_{\text{portfolio}} = \sum_i w_i D_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{portfolio}} = \sum_i w_i D_i
+\]</div>
 <p>where <span class="arithmatex">\(w_i = \frac{P_i}{\sum_j P_j}\)</span> is the weight of bond <span class="arithmatex">\(i\)</span>.</p>
 <h3 id="dollar-duration-additivity">Dollar Duration Additivity<a class="headerlink" href="#dollar-duration-additivity" title="Permanent link">&para;</a></h3>
 <p>Total DV01 is the sum of component DV01s:</p>
-<p>$$</p>
-<p>\text{DV01}_{\text{portfolio}} = \sum_i \text{DV01}_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{DV01}_{\text{portfolio}} = \sum_i \text{DV01}_i
+\]</div>
 <hr />
 <h2 id="key-rate-duration">Key Rate Duration<a class="headerlink" href="#key-rate-duration" title="Permanent link">&para;</a></h2>
 <h3 id="motivation_2">Motivation<a class="headerlink" href="#motivation_2" title="Permanent link">&para;</a></h3>
 <p>Duration assumes <strong>parallel shifts</strong> in the yield curve. In reality, curves steepen, flatten, or twist.</p>
 <h3 id="definition_4">Definition<a class="headerlink" href="#definition_4" title="Permanent link">&para;</a></h3>
 <p><strong>Key rate duration</strong> (KRD) measures sensitivity to a shift at a specific maturity:</p>
-<p>$$</p>
-<p>\text{KRD}_k = -\frac{1}{P} \frac{\partial P}{\partial y_k}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{KRD}_k = -\frac{1}{P} \frac{\partial P}{\partial y_k}
+\]</div>
 <p>where <span class="arithmatex">\(y_k\)</span> is the yield at key rate <span class="arithmatex">\(k\)</span>.</p>
 <h3 id="example-key-rates">Example Key Rates<a class="headerlink" href="#example-key-rates" title="Permanent link">&para;</a></h3>
 <p>Typical key rates: 6M, 1Y, 2Y, 3Y, 5Y, 7Y, 10Y, 20Y, 30Y</p>
 <h3 id="decomposition">Decomposition<a class="headerlink" href="#decomposition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sum_{k} \text{KRD}<em _text_mod="\text{mod">k = D</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{k} \text{KRD}_k = D_{\text{mod}}
+\]</div>
 <p>The sum of key rate durations equals modified duration (for parallel shift).</p>
 <hr />
 <h2 id="duration-of-interest-rate-derivatives">Duration of Interest Rate Derivatives<a class="headerlink" href="#duration-of-interest-rate-derivatives" title="Permanent link">&para;</a></h2>
 <h3 id="zero-coupon-bond">Zero-Coupon Bond<a class="headerlink" href="#zero-coupon-bond" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>D = T \quad \text{(maturity)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D = T \quad \text{(maturity)}
+\]</div>
 <h3 id="floating-rate-note">Floating Rate Note<a class="headerlink" href="#floating-rate-note" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>D \approx \text{time to next reset}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D \approx \text{time to next reset}
+\]</div>
 <p>A floater reprices at par at each reset, so effective duration is short.</p>
 <h3 id="interest-rate-swap">Interest Rate Swap<a class="headerlink" href="#interest-rate-swap" title="Permanent link">&para;</a></h3>
 <p><strong>Payer swap</strong> (pay fixed, receive floating):</p>
-<p>$$</p>
-<p>D_{\text{swap}} \approx D_{\text{fixed leg}} - D_{\text{floating leg}} \approx D_{\text{fixed leg}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{swap}} \approx D_{\text{fixed leg}} - D_{\text{floating leg}} \approx D_{\text{fixed leg}}
+\]</div>
 <p>The floating leg has near-zero duration.</p>
 <h3 id="caps-and-floors">Caps and Floors<a class="headerlink" href="#caps-and-floors" title="Permanent link">&para;</a></h3>
 <p>Duration depends on delta:</p>
-<p>$$</p>
-<p>D_{\text{cap}} = \Delta \times D_{\text{underlying}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{cap}} = \Delta \times D_{\text{underlying}}
+\]</div>
 <p>For deep ITM caps, duration approaches that of a floater.</p>
 <hr />
 <h2 id="duration-hedging">Duration Hedging<a class="headerlink" href="#duration-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="immunization">Immunization<a class="headerlink" href="#immunization" title="Permanent link">&para;</a></h3>
 <p>To protect against parallel yield shifts:</p>
-<p>$$</p>
-<p>D_{\text{portfolio}} = D_{\text{target}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{portfolio}} = D_{\text{target}}
+\]</div>
 <p>Setting <span class="arithmatex">\(D_{\text{target}} = 0\)</span> creates a <strong>duration-neutral</strong> position.</p>
 <h3 id="hedge-ratio">Hedge Ratio<a class="headerlink" href="#hedge-ratio" title="Permanent link">&para;</a></h3>
 <p>To hedge a position with duration <span class="arithmatex">\(D_A\)</span> using an instrument with duration <span class="arithmatex">\(D_B\)</span>:</p>
-<p>$$</p>
-<p>\text{Hedge ratio} = -\frac{D_A \cdot P_A}{D_B \cdot P_B}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Hedge ratio} = -\frac{D_A \cdot P_A}{D_B \cdot P_B}
+\]</div>
 <h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
 <p>Hedge a $10M bond portfolio (<span class="arithmatex">\(D = 6\)</span>) with 10-year Treasury futures (<span class="arithmatex">\(D = 8\)</span>, price $100K per contract):</p>
-<p>$$</p>
-<p>\text{Contracts} = -\frac{6 \times 10,000,000}{8 \times 100,000} = -75 \text{ contracts (short)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Contracts} = -\frac{6 \times 10,000,000}{8 \times 100,000} = -75 \text{ contracts (short)}
+\]</div>
 <hr />
 <h2 id="convexity-hedging">Convexity Hedging<a class="headerlink" href="#convexity-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="why-hedge-convexity">Why Hedge Convexity?<a class="headerlink" href="#why-hedge-convexity" title="Permanent link">&para;</a></h3>
 <p>Duration hedging leaves residual risk from large rate moves. Convexity mismatch creates P&amp;L.</p>
 <h3 id="convexity-matching">Convexity Matching<a class="headerlink" href="#convexity-matching" title="Permanent link">&para;</a></h3>
 <p>For full immunization:</p>
-<p>$$</p>
-<p>D_{\text{portfolio}} = D_{\text{target}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>C_{\text{portfolio}} = C_{\text{target}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{portfolio}} = D_{\text{target}}
+\]</div>
+<div class="arithmatex">\[
+C_{\text{portfolio}} = C_{\text{target}}
+\]</div>
 <p>Requires at least two hedging instruments.</p>
 <h3 id="convexity-trading">Convexity Trading<a class="headerlink" href="#convexity-trading" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47658,13 +47658,13 @@
 <h2 id="effective-duration-for-non-linear-instruments">Effective Duration for Non-Linear Instruments<a class="headerlink" href="#effective-duration-for-non-linear-instruments" title="Permanent link">&para;</a></h2>
 <h3 id="definition_5">Definition<a class="headerlink" href="#definition_5" title="Permanent link">&para;</a></h3>
 <p>For instruments without analytical duration, use <strong>numerical effective duration</strong>:</p>
-<p>$$</p>
-<p>D_{\text{eff}} = -\frac{P(y + \Delta y) - P(y - \Delta y)}{2 \cdot P(y) \cdot \Delta y}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{eff}} = -\frac{P(y + \Delta y) - P(y - \Delta y)}{2 \cdot P(y) \cdot \Delta y}
+\]</div>
 <h3 id="effective-convexity">Effective Convexity<a class="headerlink" href="#effective-convexity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_{\text{eff}} = \frac{P(y + \Delta y) + P(y - \Delta y) - 2P(y)}{P(y) \cdot (\Delta y)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{eff}} = \frac{P(y + \Delta y) + P(y - \Delta y) - 2P(y)}{P(y) \cdot (\Delta y)^2}
+\]</div>
 <h3 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h3>
 <p>Effective duration is essential for:
 - Mortgage-backed securities (prepayment optionality)
@@ -47674,9 +47674,9 @@
 <h2 id="duration-and-bond-portfolio-management">Duration and Bond Portfolio Management<a class="headerlink" href="#duration-and-bond-portfolio-management" title="Permanent link">&para;</a></h2>
 <h3 id="tracking-error">Tracking Error<a class="headerlink" href="#tracking-error" title="Permanent link">&para;</a></h3>
 <p>The difference between portfolio and benchmark duration creates tracking error:</p>
-<p>$$</p>
-<p>\text{TE} \approx |D_{\text{portfolio}} - D_{\text{benchmark}}| \times \sigma_y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{TE} \approx |D_{\text{portfolio}} - D_{\text{benchmark}}| \times \sigma_y
+\]</div>
 <h3 id="duration-targeting">Duration Targeting<a class="headerlink" href="#duration-targeting" title="Permanent link">&para;</a></h3>
 <p>Active managers express views via duration:
 - <strong>Long duration:</strong> Expect rates to fall

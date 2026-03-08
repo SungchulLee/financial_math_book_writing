@@ -46594,45 +46594,45 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>For confidence level <span class="arithmatex">\(\alpha \in (0,1)\)</span>, the Expected Shortfall of loss <span class="arithmatex">\(L\)</span> is defined as:</p>
-<p>$$</p>
-<p>\text{ES}<em>\alpha(L) = \mathbb{E}[L \mid L \ge \text{VaR}</em>\alpha(L)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha(L) = \mathbb{E}[L \mid L \ge \text{VaR}_\alpha(L)]
+\]</div>
 <p>This is the <strong>conditional expectation of losses given that they exceed VaR</strong>.</p>
 <hr />
 <h2 id="integral-representation">Integral Representation<a class="headerlink" href="#integral-representation" title="Permanent link">&para;</a></h2>
 <p>An equivalent and often more useful representation expresses ES as an average of VaRs:</p>
-<p>$$</p>
-<p>\text{ES}<em>\alpha(L) = \frac{1}{1-\alpha} \int</em>\alpha^1 \text{VaR}_u(L) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha(L) = \frac{1}{1-\alpha} \int_\alpha^1 \text{VaR}_u(L) \, du
+\]</div>
 <p><strong>Interpretation:</strong> ES is the average of all VaR levels from <span class="arithmatex">\(\alpha\)</span> to 1. This shows that ES incorporates information about the entire tail, not just a single quantile.</p>
 <p><strong>Proof sketch:</strong> For continuous <span class="arithmatex">\(F_L\)</span>:</p>
-<p>$$</p>
-<p>\text{ES}<em>\alpha = \frac{1}{1-\alpha} \int</em>\alpha^1 F_L^{-1}(u) \, du = \frac{1}{1-\alpha} \int_{\text{VaR}<em>\alpha}^\infty x \, dF_L(x) = \mathbb{E}[L \mid L \ge \text{VaR}</em>\alpha]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha = \frac{1}{1-\alpha} \int_\alpha^1 F_L^{-1}(u) \, du = \frac{1}{1-\alpha} \int_{\text{VaR}_\alpha}^\infty x \, dF_L(x) = \mathbb{E}[L \mid L \ge \text{VaR}_\alpha]
+\]</div>
 <hr />
 <h2 id="alternative-formulations">Alternative Formulations<a class="headerlink" href="#alternative-formulations" title="Permanent link">&para;</a></h2>
 <h3 id="tail-expectation">Tail Expectation<a class="headerlink" href="#tail-expectation" title="Permanent link">&para;</a></h3>
 <p>For continuous distributions:</p>
-<p>$$</p>
-<p>\text{ES}<em L="L" _ge="\ge" _text_VaR="\text{VaR">\alpha(L) = \frac{1}{1-\alpha} \mathbb{E}[L \cdot \mathbf{1}</em>]}_\alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha(L) = \frac{1}{1-\alpha} \mathbb{E}[L \cdot \mathbf{1}_{L \ge \text{VaR}_\alpha}]
+\]</div>
 <h3 id="optimization-formulation-rockafellar-uryasev">Optimization Formulation (Rockafellar-Uryasev)<a class="headerlink" href="#optimization-formulation-rockafellar-uryasev" title="Permanent link">&para;</a></h3>
 <p>ES admits a convex optimization representation:</p>
-<p>$$</p>
-<p>\text{ES}<em _in="\in" _mathbb_R="\mathbb{R" v="v">\alpha(L) = \min</em>[(L-v)^+] \right}}} \left{ v + \frac{1}{1-\alpha} \mathbb{E</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha(L) = \min_{v \in \mathbb{R}} \left\{ v + \frac{1}{1-\alpha} \mathbb{E}[(L-v)^+] \right\}
+\]</div>
 <p>The minimizer is <span class="arithmatex">\(v^* = \text{VaR}_\alpha(L)\)</span>. This formulation is valuable for portfolio optimization.</p>
 <hr />
 <h2 id="es-under-normality">ES Under Normality<a class="headerlink" href="#es-under-normality" title="Permanent link">&para;</a></h2>
 <p>If <span class="arithmatex">\(L \sim N(\mu, \sigma^2)\)</span>, then:</p>
-<p>$$</p>
-<p>\text{ES}_\alpha = \mu + \sigma \cdot \frac{\phi(\Phi^{-1}(\alpha))}{1-\alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha = \mu + \sigma \cdot \frac{\phi(\Phi^{-1}(\alpha))}{1-\alpha}
+\]</div>
 <p>where <span class="arithmatex">\(\phi\)</span> is the standard normal PDF and <span class="arithmatex">\(\Phi\)</span> is the CDF.</p>
 <p><strong>Example:</strong> For <span class="arithmatex">\(\alpha = 0.99\)</span> and <span class="arithmatex">\(L \sim N(0, \sigma^2)\)</span>:</p>
-<p>$$</p>
-<p>\text{ES}_{0.99} = \sigma \cdot \frac{\phi(2.326)}{0.01} \approx 2.665\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_{0.99} = \sigma \cdot \frac{\phi(2.326)}{0.01} \approx 2.665\sigma
+\]</div>
 <p>Compare to <span class="arithmatex">\(\text{VaR}_{0.99} \approx 2.326\sigma\)</span>. ES exceeds VaR by about 15%.</p>
 <hr />
 <h2 id="comparison-with-var">Comparison with VaR<a class="headerlink" href="#comparison-with-var" title="Permanent link">&para;</a></h2>
@@ -46695,16 +46695,16 @@
 </li>
 </ol>
 <p><strong>Subadditivity proof sketch:</strong> Using the integral representation:</p>
-<p>$$</p>
-<p>\text{ES}<em>\alpha(L_1+L_2) = \frac{1}{1-\alpha}\int</em>\alpha^1 \text{VaR}<em>u(L_1+L_2)\,du \le \frac{1}{1-\alpha}\int</em>\alpha^1 [\text{VaR}_u(L_1)+\text{VaR}_u(L_2)]\,du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha(L_1+L_2) = \frac{1}{1-\alpha}\int_\alpha^1 \text{VaR}_u(L_1+L_2)\,du \le \frac{1}{1-\alpha}\int_\alpha^1 [\text{VaR}_u(L_1)+\text{VaR}_u(L_2)]\,du
+\]</div>
 <p>The inequality follows because quantiles of sums are bounded by sums of quantiles (for comonotonic variables, equality holds).</p>
 <hr />
 <h2 id="elicitability-and-backtesting-challenges">Elicitability and Backtesting Challenges<a class="headerlink" href="#elicitability-and-backtesting-challenges" title="Permanent link">&para;</a></h2>
 <p>Unlike VaR, <strong>ES is not directly elicitable</strong>. There is no scoring function <span class="arithmatex">\(S\)</span> such that:</p>
-<p>$$</p>
-<p>\text{ES}_\alpha(L) = \arg\min_x \mathbb{E}[S(x, L)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha(L) = \arg\min_x \mathbb{E}[S(x, L)]
+\]</div>
 <p><strong>Implications:</strong>
 - Cannot directly compare ES forecasts using scoring rules
 - Backtesting ES requires different approaches</p>
@@ -46716,21 +46716,21 @@
 </ul>
 <h3 id="es-backtesting-methods">ES Backtesting Methods<a class="headerlink" href="#es-backtesting-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Acerbi-Szekely Tests:</strong> Based on the identity:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\frac{L \cdot \mathbf{1}<em>{L \ge \text{VaR}</em>\alpha}}{\text{ES}_\alpha(L)}\right] = 1 - \alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\frac{L \cdot \mathbf{1}_{L \ge \text{VaR}_\alpha}}{\text{ES}_\alpha(L)}\right] = 1 - \alpha
+\]</div>
 <p>The test statistic compares:</p>
-<p>$$</p>
-<p>Z = \frac{1}{n(1-\alpha)} \sum_{t=1}^n \frac{L_t \cdot \mathbf{1}<em>{L_t \ge \widehat{\text{VaR}}</em>\alpha}}{\widehat{\text{ES}}_\alpha}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z = \frac{1}{n(1-\alpha)} \sum_{t=1}^n \frac{L_t \cdot \mathbf{1}_{L_t \ge \widehat{\text{VaR}}_\alpha}}{\widehat{\text{ES}}_\alpha}
+\]</div>
 <p>to the expected value of 1.</p>
 <p><strong>McNeil-Frey Residual Test:</strong> Transform exceedances to check for standard exponential distribution under correct model.</p>
 <hr />
 <h2 id="estimation-methods">Estimation Methods<a class="headerlink" href="#estimation-methods" title="Permanent link">&para;</a></h2>
 <h3 id="historical-simulation">Historical Simulation<a class="headerlink" href="#historical-simulation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\widehat{\text{ES}}<em _rceil="\rceil" i="\lceil" n_alpha="n\alpha">\alpha = \frac{1}{n(1-\alpha)} \sum</em>}^{n} L_{(i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widehat{\text{ES}}_\alpha = \frac{1}{n(1-\alpha)} \sum_{i=\lceil n\alpha \rceil}^{n} L_{(i)}
+\]</div>
 <p>where <span class="arithmatex">\(L_{(1)} \le \cdots \le L_{(n)}\)</span> are ordered losses.</p>
 <h3 id="parametric-estimation">Parametric Estimation<a class="headerlink" href="#parametric-estimation" title="Permanent link">&para;</a></h3>
 <ol>
@@ -46756,16 +46756,16 @@
 </ul>
 <h3 id="capital-formula">Capital Formula<a class="headerlink" href="#capital-formula" title="Permanent link">&para;</a></h3>
 <p>Under FRTB internal models approach:</p>
-<p>$$</p>
-<p>\text{Capital} = \max\left(\text{ES}_{t-1}, m_c \cdot \overline{\text{ES}}\right) + \text{SES}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Capital} = \max\left(\text{ES}_{t-1}, m_c \cdot \overline{\text{ES}}\right) + \text{SES}
+\]</div>
 <p>where <span class="arithmatex">\(m_c\)</span> is a multiplier (minimum 1.5) and SES is the stressed ES.</p>
 <hr />
 <h2 id="es-in-portfolio-optimization">ES in Portfolio Optimization<a class="headerlink" href="#es-in-portfolio-optimization" title="Permanent link">&para;</a></h2>
 <p>The Rockafellar-Uryasev formulation enables ES-constrained portfolio optimization:</p>
-<p>$$</p>
-<p>\min_{\mathbf{w}} \quad -\mathbb{E}[R_P] \quad \text{s.t.} \quad \text{ES}_\alpha(L_P) \le \text{ES}^{\max}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\mathbf{w}} \quad -\mathbb{E}[R_P] \quad \text{s.t.} \quad \text{ES}_\alpha(L_P) \le \text{ES}^{\max}
+\]</div>
 <p>This is a <strong>convex optimization problem</strong> (unlike VaR constraints), making it tractable for large portfolios.</p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

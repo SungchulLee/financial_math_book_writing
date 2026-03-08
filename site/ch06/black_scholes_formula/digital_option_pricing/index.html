@@ -46270,57 +46270,57 @@
 <h1 id="digital-option-pricing-via-girsanovs-theorem">Digital Option Pricing via Girsanov's Theorem<a class="headerlink" href="#digital-option-pricing-via-girsanovs-theorem" title="Permanent link">&para;</a></h1>
 <h2 id="payoff-structure">Payoff Structure<a class="headerlink" href="#payoff-structure" title="Permanent link">&para;</a></h2>
 <p>A <strong>digital (cash-or-nothing) call option</strong> pays a fixed amount <span class="arithmatex">\(1\)</span> if the underlying asset exceeds the strike price <span class="arithmatex">\(K\)</span> at maturity <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\text{Payoff at } T: \quad \mathbf{1}_{{S_T &gt; K}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff at } T: \quad \mathbf{1}_{\{S_T &gt; K\}}
+\]</div>
 <p>Unlike a standard European call, which pays the excess <span class="arithmatex">\((S_T - K)^+\)</span>, the digital call pays a <strong>flat amount</strong> regardless of how far in the money it finishes.</p>
 <hr />
 <h2 id="risk-neutral-pricing">Risk-Neutral Pricing<a class="headerlink" href="#risk-neutral-pricing" title="Permanent link">&para;</a></h2>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the price of any derivative is the discounted expected payoff:</p>
-<p>$$</p>
-<p>D_0 := \mathbb{E}^{\mathbb{Q}}\left[ e^{-rT} \mathbf{1}_{{S_T &gt; K}} \right]
-= e^{-rT} \mathbb{Q}(S_T &gt; K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_0 := \mathbb{E}^{\mathbb{Q}}\left[ e^{-rT} \mathbf{1}_{\{S_T &gt; K\}} \right]
+= e^{-rT} \mathbb{Q}(S_T &gt; K)
+\]</div>
 <h3 id="distribution-of-s_t-under-q">Distribution of S_T under Q<a class="headerlink" href="#distribution-of-s_t-under-q" title="Permanent link">&para;</a></h3>
 <p>By Girsanov's theorem, the stock price dynamics under <span class="arithmatex">\(\mathbb{Q}\)</span> are:</p>
-<p>$$</p>
-<p>dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = r S_t \, dt + \sigma S_t \, d\tilde{W}_t
+\]</div>
 <p>where <span class="arithmatex">\(\tilde{W}_t\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-Brownian motion. Solving this SDE via Itô's lemma:</p>
-<p>$$</p>
-<p>S_T = S_0 \exp\left[\left(r - \tfrac{1}{2}\sigma^2\right)T + \sigma \tilde{W}_T\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 \exp\left[\left(r - \tfrac{1}{2}\sigma^2\right)T + \sigma \tilde{W}_T\right]
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \tfrac{1}{2}\sigma^2\right)T, \; \sigma^2 T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \tfrac{1}{2}\sigma^2\right)T, \; \sigma^2 T\right)
+\]</div>
 <h3 id="computing-qs_t-k">Computing Q(S_T &gt; K)<a class="headerlink" href="#computing-qs_t-k" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathbb{Q}(S_T &gt; K) = \mathbb{Q}(\log S_T &gt; \log K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(S_T &gt; K) = \mathbb{Q}(\log S_T &gt; \log K)
+\]</div>
 <p>Standardizing:</p>
-<p>$$</p>
-<p>\mathbb{Q}\left(\frac{\log S_T - \left[\log S_0 + (r - \frac{1}{2}\sigma^2)T\right]}{\sigma\sqrt{T}} &gt; \frac{\log K - \left[\log S_0 + (r - \frac{1}{2}\sigma^2)T\right]}{\sigma\sqrt{T}}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \mathbb{Q}\left(Z &gt; -d_2\right) = \Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}\left(\frac{\log S_T - \left[\log S_0 + (r - \frac{1}{2}\sigma^2)T\right]}{\sigma\sqrt{T}} &gt; \frac{\log K - \left[\log S_0 + (r - \frac{1}{2}\sigma^2)T\right]}{\sigma\sqrt{T}}\right)
+\]</div>
+<div class="arithmatex">\[
+= \mathbb{Q}\left(Z &gt; -d_2\right) = \Phi(d_2)
+\]</div>
 <p>where <span class="arithmatex">\(Z \sim \mathcal{N}(0,1)\)</span> and:</p>
-<p>$$</p>
-<p>d_2 = \frac{\log(S_0 / K) + \left(r - \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = \frac{\log(S_0 / K) + \left(r - \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}
+\]</div>
 <hr />
 <h2 id="final-result">Final Result<a class="headerlink" href="#final-result" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{D_0 = e^{-rT}\,\Phi(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{D_0 = e^{-rT}\,\Phi(d_2)}
+\]</div>
 <p>This is the fair price of a digital call option paying <span class="arithmatex">\(1\)</span> at maturity <span class="arithmatex">\(T\)</span> if <span class="arithmatex">\(S_T &gt; K\)</span>.</p>
 <hr />
 <h2 id="connection-to-blackscholes-formula">Connection to Black–Scholes Formula<a class="headerlink" href="#connection-to-blackscholes-formula" title="Permanent link">&para;</a></h2>
 <p>The Black–Scholes formula for a European call can be written as:</p>
-<p>$$</p>
-<p>C_0 = S_0\,\Phi(d_1) - K e^{-rT}\,\Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = S_0\,\Phi(d_1) - K e^{-rT}\,\Phi(d_2)
+\]</div>
 <p>The second term <span class="arithmatex">\(K e^{-rT}\,\Phi(d_2)\)</span> is exactly <span class="arithmatex">\(K\)</span> times the digital call price. This reveals an important decomposition:</p>
 <ul>
 <li><span class="arithmatex">\(\Phi(d_2) = \mathbb{Q}(S_T &gt; K)\)</span>: the <strong>risk-neutral probability</strong> that the call finishes in the money.</li>
@@ -46330,19 +46330,19 @@
 <hr />
 <h2 id="digital-put-option">Digital Put Option<a class="headerlink" href="#digital-put-option" title="Permanent link">&para;</a></h2>
 <p>By symmetry, a digital put paying <span class="arithmatex">\(1\)</span> if <span class="arithmatex">\(S_T &lt; K\)</span> has price:</p>
-<p>$$</p>
-<p>D_0^{\text{put}} = e^{-rT}\,\Phi(-d_2) = e^{-rT}\left[1 - \Phi(d_2)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_0^{\text{put}} = e^{-rT}\,\Phi(-d_2) = e^{-rT}\left[1 - \Phi(d_2)\right]
+\]</div>
 <p>The sum of digital call and digital put prices equals the price of a zero-coupon bond:</p>
-<p>$$</p>
-<p>D_0^{\text{call}} + D_0^{\text{put}} = e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_0^{\text{call}} + D_0^{\text{put}} = e^{-rT}
+\]</div>
 <hr />
 <h2 id="hedging-considerations">Hedging Considerations<a class="headerlink" href="#hedging-considerations" title="Permanent link">&para;</a></h2>
 <p>The delta of a digital call is:</p>
-<p>$$</p>
-<p>\Delta_{\text{digital}} = \frac{\partial D_0}{\partial S_0} = e^{-rT} \frac{\phi(d_2)}{S_0 \sigma \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{digital}} = \frac{\partial D_0}{\partial S_0} = e^{-rT} \frac{\phi(d_2)}{S_0 \sigma \sqrt{T}}
+\]</div>
 <p>where <span class="arithmatex">\(\phi\)</span> is the standard normal density. Near expiry (<span class="arithmatex">\(T \to 0\)</span>) and near the strike (<span class="arithmatex">\(S_0 \approx K\)</span>), this delta becomes extremely large, making digital options <strong>notoriously difficult to hedge</strong> in practice. This discontinuity in the payoff creates significant gamma risk near maturity.</p>
 
 

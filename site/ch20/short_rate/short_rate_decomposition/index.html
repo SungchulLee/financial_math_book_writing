@@ -46170,105 +46170,105 @@
 <h1 id="hull-white-short-rate-decomposition">Hull-White Short Rate Decomposition<a class="headerlink" href="#hull-white-short-rate-decomposition" title="Permanent link">&para;</a></h1>
 <h2 id="decomposition-of-short-rate">Decomposition of Short Rate<a class="headerlink" href="#decomposition-of-short-rate" title="Permanent link">&para;</a></h2>
 <p>Decompose the short rate <span class="arithmatex">\(r(t)\)</span> as</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 r(t)
 =
-\tilde{r}(t)+\psi(t)</p>
-<p>\end{array}$$</p>
+\tilde{r}(t)+\psi(t)
+\end{array}\]</div>
 <p>Then,</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 d\tilde{r}(t)
 =
 -\lambda\tilde{r}(t) dt+\sigma dW^{\mathbb{Q}}(t),\quad
-\tilde{r}(0)=0</p>
-<p>\end{array}$$</p>
+\tilde{r}(0)=0
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 d\psi(t)
 &amp;=&amp;\displaystyle
 -\lambda r_0e^{-\lambda t}dt
 -\lambda^2\left[\int_0^t\theta(t')e^{-\lambda(t-t')}dt'\right]dt
 +\lambda \theta(t)dt
-\
+\\
 &amp;=&amp;\displaystyle
 -\lambda \psi(t)dt
-+\lambda \theta(t)dt</p>
-<p>\end{array}$$</p>
++\lambda \theta(t)dt
+\end{array}\]</div>
 <p>Therefore,</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-dr(t)=d\tilde{r}(t)+d\psi(t)</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+dr(t)=d\tilde{r}(t)+d\psi(t)
+\end{array}\]</div>
 <p>gives</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 d\tilde{r}(t)
 &amp;=&amp;\displaystyle
-dr(t)-d\psi(t)\
+dr(t)-d\psi(t)\\
 &amp;=&amp;\displaystyle
-\lambda(\theta(t)-r(t))dt+\sigma dW^{\mathbb{Q}}(t)-(-\lambda\psi(t)+\lambda\theta(t))dt\
+\lambda(\theta(t)-r(t))dt+\sigma dW^{\mathbb{Q}}(t)-(-\lambda\psi(t)+\lambda\theta(t))dt\\
 &amp;=&amp;\displaystyle
--\lambda(r(t)-\psi(t))dt+\sigma dW^{\mathbb{Q}}(t)\
+-\lambda(r(t)-\psi(t))dt+\sigma dW^{\mathbb{Q}}(t)\\
 &amp;=&amp;\displaystyle
--\lambda\tilde{r}(t)dt+\sigma dW^{\mathbb{Q}}(t)</p>
-<p>\end{array}$$</p>
+-\lambda\tilde{r}(t)dt+\sigma dW^{\mathbb{Q}}(t)
+\end{array}\]</div>
 </details>
 <h2 id="discounted-characteristic-function-via-decomposition">Discounted Characteristic Function via Decomposition<a class="headerlink" href="#discounted-characteristic-function-via-decomposition" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \phi(u;t,T)
 =
 \mathbb{E}^\mathbb{Q}\left[e^{-\int_t^Tr(t')dt'+iur(T)}\Big{|}{\cal F}(t)\right]
 =
 e^{-\int_t^T\psi(t')dt'+iu\psi(T)}
-\text{exp}\left(\tilde{A}(u,\tau)+\tilde{B}(u,\tau)\tilde{r}(t)\right)</p>
-<p>\end{array}$$</p>
+\text{exp}\left(\tilde{A}(u,\tau)+\tilde{B}(u,\tau)\tilde{r}(t)\right)
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \phi(u;t,T)
 &amp;=&amp;\displaystyle
-\mathbb{E}^\mathbb{Q}\left[e^{-\int_t^Tr(t')dt'+iur(T)}\Big{|}{\cal F}(t)\right]\
+\mathbb{E}^\mathbb{Q}\left[e^{-\int_t^Tr(t')dt'+iur(T)}\Big{|}{\cal F}(t)\right]\\
 &amp;=&amp;\displaystyle
-\mathbb{E}^\mathbb{Q}\left[e^{-\int_t^T\left(\tilde{r}(t')+\psi(t')\right)dt'+iu\left(\tilde{r}(T)+\psi(T)\right)}\Big{|}{\cal F}(t)\right]\
+\mathbb{E}^\mathbb{Q}\left[e^{-\int_t^T\left(\tilde{r}(t')+\psi(t')\right)dt'+iu\left(\tilde{r}(T)+\psi(T)\right)}\Big{|}{\cal F}(t)\right]\\
 &amp;=&amp;\displaystyle
 e^{-\int_t^T\psi(t')dt'+iu\psi(T)}
-\mathbb{E}^\mathbb{Q}\left[e^{-\int_t^T\tilde{r}(t')dt'+iu\tilde{r}(T)}\Big{|}{\cal F}(t)\right]\</p>
-<p>\end{array}$$</p>
+\mathbb{E}^\mathbb{Q}\left[e^{-\int_t^T\tilde{r}(t')dt'+iu\tilde{r}(T)}\Big{|}{\cal F}(t)\right]\\
+\end{array}\]</div>
 <p>The remaining expectation involves only <span class="arithmatex">\(\tilde{r}\)</span>, which follows a simple Ornstein–Uhlenbeck process without the time-dependent <span class="arithmatex">\(\theta\)</span>, making the computation tractable.</p>
 </details>
 <h2 id="zcb-price-via-decomposition">ZCB Price via Decomposition<a class="headerlink" href="#zcb-price-via-decomposition" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\displaystyle
-P(t,T)=e^{A(\tau)+B(\tau)r(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+P(t,T)=e^{A(\tau)+B(\tau)r(t)}
+\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
 <p>Setting <span class="arithmatex">\(u=0\)</span>:</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 P(0,T)
 &amp;=&amp;\displaystyle
-\phi(u=0;t=0,T=T)\
+\phi(u=0;t=0,T=T)\\
 &amp;=&amp;\displaystyle
-\text{exp}\left(-\int_0^T\psi(z)dz+\tilde{A}(0,\tau)+\tilde{B}(0,\tau)\tilde r(0)\right)\
+\text{exp}\left(-\int_0^T\psi(z)dz+\tilde{A}(0,\tau)+\tilde{B}(0,\tau)\tilde r(0)\right)\\
 &amp;=&amp;\displaystyle
 \text{exp}\left(
--\int_0^T\left[r_0e^{-\lambda z}+\lambda\int_0^z\theta(z')e^{-\lambda(z-z')}dz'\right]dz+\tilde{A}(0,\tau)\right)</p>
-<p>\end{array}$$</p>
+-\int_0^T\left[r_0e^{-\lambda z}+\lambda\int_0^z\theta(z')e^{-\lambda(z-z')}dz'\right]dz+\tilde{A}(0,\tau)\right)
+\end{array}\]</div>
 </details>
 <h2 id="final-form-of">Final Form of ψ<a class="headerlink" href="#final-form-of" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \psi(T)
 =
-f(0,T)+\frac{\sigma^2}{2\lambda}\left(e^{-\lambda T}-1\right)^2\</p>
-<p>\end{array}$$</p>
+f(0,T)+\frac{\sigma^2}{2\lambda}\left(e^{-\lambda T}-1\right)^2\\
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
 <p>By matching the analytic ZCB price <span class="arithmatex">\(P(0,T)\)</span> from the characteristic function with the market ZCB price, and noting that the decomposition separates the deterministic <span class="arithmatex">\(\psi\)</span> component from the stochastic <span class="arithmatex">\(\tilde{r}\)</span> component, we obtain the closed-form expression for <span class="arithmatex">\(\psi(T)\)</span>.</p>

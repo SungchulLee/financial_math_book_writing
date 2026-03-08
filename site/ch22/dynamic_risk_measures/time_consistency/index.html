@@ -46682,32 +46682,32 @@
 <h2 id="setup-conditional-risk-measures">Setup: Conditional Risk Measures<a class="headerlink" href="#setup-conditional-risk-measures" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\((\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \ge 0}, \mathbb{P})\)</span> be a filtered probability space.</p>
 <p>A <strong>conditional risk measure</strong> at time <span class="arithmatex">\(t\)</span> is a mapping:</p>
-<p>$$</p>
-<p>\rho_t: L^\infty(\mathcal{F}_T) \to L^\infty(\mathcal{F}_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t: L^\infty(\mathcal{F}_T) \to L^\infty(\mathcal{F}_t)
+\]</div>
 <p>that assigns to each terminal loss <span class="arithmatex">\(X\)</span> an <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable random variable <span class="arithmatex">\(\rho_t(X)\)</span>.</p>
 <p><strong>Interpretation:</strong> <span class="arithmatex">\(\rho_t(X)\)</span> is the risk of <span class="arithmatex">\(X\)</span> as assessed at time <span class="arithmatex">\(t\)</span>, given information <span class="arithmatex">\(\mathcal{F}_t\)</span>.</p>
 <hr />
 <h2 id="definition-of-time-consistency">Definition of Time-Consistency<a class="headerlink" href="#definition-of-time-consistency" title="Permanent link">&para;</a></h2>
 <p>A family of conditional risk measures <span class="arithmatex">\((\rho_t)_{t \in [0,T]}\)</span> is <strong>time-consistent</strong> if for all <span class="arithmatex">\(s &lt; t\)</span> and all <span class="arithmatex">\(X, Y \in L^\infty(\mathcal{F}_T)\)</span>:</p>
-<p>$$</p>
-<p>\rho_t(X) \le \rho_t(Y) \quad \text{a.s.} \quad \Rightarrow \quad \rho_s(X) \le \rho_s(Y) \quad \text{a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) \le \rho_t(Y) \quad \text{a.s.} \quad \Rightarrow \quad \rho_s(X) \le \rho_s(Y) \quad \text{a.s.}
+\]</div>
 <p><strong>Interpretation:</strong> If <span class="arithmatex">\(X\)</span> is considered less risky than <span class="arithmatex">\(Y\)</span> at time <span class="arithmatex">\(t\)</span>, then this ranking must already hold at any earlier time <span class="arithmatex">\(s\)</span>.</p>
 <hr />
 <h2 id="the-recursive-formulation">The Recursive Formulation<a class="headerlink" href="#the-recursive-formulation" title="Permanent link">&para;</a></h2>
 <p>Time-consistency is equivalent to a <strong>recursive structure</strong>:</p>
-<p>$$</p>
-<p>\rho_s(X) = \rho_s(-\rho_t(X)) \quad \text{for all } s &lt; t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_s(X) = \rho_s(-\rho_t(X)) \quad \text{for all } s &lt; t
+\]</div>
 <p><strong>Interpretation:</strong> The risk at time <span class="arithmatex">\(s\)</span> of a position <span class="arithmatex">\(X\)</span> equals the risk at time <span class="arithmatex">\(s\)</span> of the certain amount <span class="arithmatex">\(-\rho_t(X)\)</span> that would be needed at time <span class="arithmatex">\(t\)</span> to offset the risk.</p>
 <p>This is the <strong>tower property</strong> for risk measures, analogous to the tower property of conditional expectation.</p>
 <hr />
 <h2 id="cocycle-property">Cocycle Property<a class="headerlink" href="#cocycle-property" title="Permanent link">&para;</a></h2>
 <p>For three times <span class="arithmatex">\(r &lt; s &lt; t\)</span>, time-consistency implies the <strong>cocycle condition</strong>:</p>
-<p>$$</p>
-<p>\rho_r(X) = \rho_r(-\rho_s(-\rho_t(X)))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_r(X) = \rho_r(-\rho_s(-\rho_t(X)))
+\]</div>
 <p>More generally, risk assessments can be computed by backward induction through any sequence of intermediate times.</p>
 <p><strong>Computational implication:</strong> Multi-period risk can be computed by:
 1. Start at terminal time <span class="arithmatex">\(T\)</span>
@@ -46715,9 +46715,9 @@
 <hr />
 <h2 id="time-consistency-of-conditional-expectation">Time-Consistency of Conditional Expectation<a class="headerlink" href="#time-consistency-of-conditional-expectation" title="Permanent link">&para;</a></h2>
 <p>The conditional expectation <span class="arithmatex">\(\mathbb{E}_t[X] := \mathbb{E}[X | \mathcal{F}_t]\)</span> is time-consistent by the <strong>tower property</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}_s[X] = \mathbb{E}_s[\mathbb{E}_t[X]]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_s[X] = \mathbb{E}_s[\mathbb{E}_t[X]]
+\]</div>
 <p>This serves as the prototype for time-consistent dynamic risk measures.</p>
 <hr />
 <h2 id="time-consistency-of-var-and-es">Time-Consistency of VaR and ES<a class="headerlink" href="#time-consistency-of-var-and-es" title="Permanent link">&para;</a></h2>
@@ -46728,13 +46728,13 @@
 <h3 id="dynamic-es">Dynamic ES<a class="headerlink" href="#dynamic-es" title="Permanent link">&para;</a></h3>
 <p><strong>ES can be made time-consistent</strong> under suitable constructions.</p>
 <p>Define recursively:</p>
-<p>$$</p>
-<p>\rho_t(X) = \text{ES}_\alpha(X | \mathcal{F}_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \text{ES}_\alpha(X | \mathcal{F}_t)
+\]</div>
 <p>with the recursive relationship:</p>
-<p>$$</p>
-<p>\rho_s(X) = \text{ES}_\alpha(-\rho_t(X) | \mathcal{F}_s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_s(X) = \text{ES}_\alpha(-\rho_t(X) | \mathcal{F}_s)
+\]</div>
 <p>This construction, sometimes called <strong>iterated ES</strong> or <strong>recursively defined ES</strong>, is time-consistent.</p>
 <p><strong>Caveat:</strong> This is NOT the same as simply computing conditional ES at each time. The recursive definition alters the measure.</p>
 <hr />
@@ -46744,9 +46744,9 @@
 <p>An optimal strategy from time <span class="arithmatex">\(s\)</span> remains optimal when reconsidered at time <span class="arithmatex">\(t &gt; s\)</span>.</p>
 </blockquote>
 <p>For risk-averse dynamic optimization:</p>
-<p>$$</p>
-<p>\inf_{\pi} \rho_s\left[\int_s^T c_u \, du + X_T\right] = \inf_{\pi_s} \left{ c_s + \rho_s\left[\inf_{\pi_{s+}} \rho_{s+}[\cdots]\right] \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\pi} \rho_s\left[\int_s^T c_u \, du + X_T\right] = \inf_{\pi_s} \left\{ c_s + \rho_s\left[\inf_{\pi_{s+}} \rho_{s+}[\cdots]\right] \right\}
+\]</div>
 <p>Time-consistency ensures that solving the problem recursively (dynamic programming) yields the same solution as solving it globally.</p>
 <hr />
 <h2 id="economic-interpretation">Economic Interpretation<a class="headerlink" href="#economic-interpretation" title="Permanent link">&para;</a></h2>
@@ -46762,21 +46762,21 @@
 <hr />
 <h2 id="acceptance-sets-and-time-consistency">Acceptance Sets and Time-Consistency<a class="headerlink" href="#acceptance-sets-and-time-consistency" title="Permanent link">&para;</a></h2>
 <p>Define the <strong>conditional acceptance set</strong> at time <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{A}_t = {X \in L^\infty(\mathcal{F}_T) : \rho_t(X) \le 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{A}_t = \{X \in L^\infty(\mathcal{F}_T) : \rho_t(X) \le 0\}
+\]</div>
 <p>Time-consistency is equivalent to the <strong>stability condition</strong>:</p>
-<p>$$</p>
-<p>\mathcal{A}_t \cap L^\infty(\mathcal{F}_s) = \mathcal{A}_s \cap L^\infty(\mathcal{F}_s) \quad \text{for } s &lt; t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{A}_t \cap L^\infty(\mathcal{F}_s) = \mathcal{A}_s \cap L^\infty(\mathcal{F}_s) \quad \text{for } s &lt; t
+\]</div>
 <p>If a position is acceptable at time <span class="arithmatex">\(t\)</span>, it was already acceptable at time <span class="arithmatex">\(s\)</span>.</p>
 <hr />
 <h2 id="representation-via-bsdes">Representation via BSDEs<a class="headerlink" href="#representation-via-bsdes" title="Permanent link">&para;</a></h2>
 <p>Time-consistent risk measures admit representation via <strong>backward stochastic differential equations</strong> (BSDEs).</p>
 <p>A BSDE of the form:</p>
-<p>$$</p>
-<p>Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = X + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+\]</div>
 <p>defines a time-consistent risk measure <span class="arithmatex">\(\rho_t(X) = Y_t\)</span> provided the driver <span class="arithmatex">\(g\)</span> satisfies appropriate conditions.</p>
 <p><strong>Key insight:</strong> The recursive structure of BSDEs naturally encodes time-consistency.</p>
 <p>See the <a href="../bsde_based_risk_measures/">BSDE-Based Risk Measures</a> section for details.</p>
@@ -46784,9 +46784,9 @@
 <h2 id="weak-vs-strong-time-consistency">Weak vs Strong Time-Consistency<a class="headerlink" href="#weak-vs-strong-time-consistency" title="Permanent link">&para;</a></h2>
 <p><strong>Strong time-consistency</strong> (as defined above) requires the recursive property to hold for all pairs of times.</p>
 <p><strong>Weak time-consistency</strong> only requires:</p>
-<p>$$</p>
-<p>\rho_0(X) \le \rho_0(Y) \quad \Rightarrow \quad \rho_t(X) \le \rho_t(Y) \text{ for all } t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_0(X) \le \rho_0(Y) \quad \Rightarrow \quad \rho_t(X) \le \rho_t(Y) \text{ for all } t
+\]</div>
 <p>This is a weaker condition that may be more practical but provides fewer guarantees.</p>
 <hr />
 <h2 id="practical-implications">Practical Implications<a class="headerlink" href="#practical-implications" title="Permanent link">&para;</a></h2>

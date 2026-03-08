@@ -46366,8 +46366,8 @@ Alternative: swap measure uses annuity as numeraire</p>
 <h2 id="quantpie-derivation-libor-market-model-spot-measure">QuantPie Derivation: LIBOR Market Model Spot Measure<a class="headerlink" href="#quantpie-derivation-libor-market-model-spot-measure" title="Permanent link">&para;</a></h2>
 <h3 id="definition-of-libor-and-spot-measure">Definition of LIBOR and Spot Measure<a class="headerlink" href="#definition-of-libor-and-spot-measure" title="Permanent link">&para;</a></h3>
 <p><strong>LIBOR Definition</strong></p>
-<p>$$\begin{array}{ccccccc}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{ccccccc}
+\displaystyle
 L_n\left(t\right)P\left(t,T_{n}\right)
 =
 \frac{1}{\delta}
@@ -46380,123 +46380,123 @@ L_n\left(t\right)
 \frac{1}{\delta}
 \left(
 \frac{P\left(t,T_{n-1}\right)-P\left(t,T_{n}\right)}{P\left(t,T_{n}\right)}
-\right)\</p>
-<p>\end{array}$$</p>
+\right)\\
+\end{array}\]</div>
 <p>is tradable, where <span class="arithmatex">\(L_n\left(t\right)P\left(t,T_{n}\right)\)</span> is the value of tradable assets.</p>
 <h3 id="bank-account-spot-measure-numeraire">Bank Account (Spot Measure Numeraire)<a class="headerlink" href="#bank-account-spot-measure-numeraire" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{llllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llllllll}
+\displaystyle
 M(t)
 &amp;:=&amp;
 \displaystyle
-\frac{P(t,T_{\bar{m}(t)})}{\prod_{k=1}^{\bar{m}(t)}P(T_{k-1},T_k)}\</p>
-<p>\end{array}$$</p>
+\frac{P(t,T_{\bar{m}(t)})}{\prod_{k=1}^{\bar{m}(t)}P(T_{k-1},T_k)}\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$</p>
-<p>\bar{m}(t)=\text{min}\left(i:t\le T_i\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{m}(t)=\text{min}\left(i:t\le T_i\right)
+\]</div>
 <h3 id="bond-price-and-accrual">Bond Price and Accrual<a class="headerlink" href="#bond-price-and-accrual" title="Permanent link">&para;</a></h3>
 <p>When current time <span class="arithmatex">\(t\)</span> is <span class="arithmatex">\(T_0\)</span> or <span class="arithmatex">\(T_k\)</span>:</p>
-<p>$$\begin{array}</p>
-<p>\displaystyle
-B(T_n)=\prod_{i=0}^{n-1}\left(1+\delta L(T_i,T_i)\right)\
+<div class="arithmatex">\[\begin{array}
 \displaystyle
-P(T_0,T_n)=\prod_{i=0}^{n-1}\frac{1}{1+\delta L(T_0,T_i)}\
+B(T_n)=\prod_{i=0}^{n-1}\left(1+\delta L(T_i,T_i)\right)\\
 \displaystyle
-P(T_k,T_n)=\prod_{i=k}^{n-1}\frac{1}{1+\delta L(T_k,T_i)}\</p>
-<p>\end{array}$$</p>
+P(T_0,T_n)=\prod_{i=0}^{n-1}\frac{1}{1+\delta L(T_0,T_i)}\\
+\displaystyle
+P(T_k,T_n)=\prod_{i=k}^{n-1}\frac{1}{1+\delta L(T_k,T_i)}\\
+\end{array}\]</div>
 <p>When current time <span class="arithmatex">\(t\)</span> is <span class="arithmatex">\(T_{q(t)-1}-\delta&lt;t&lt;T_{q(t)}\)</span>:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
-B(t)=P\left(t,T_{q(t)}\right)\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i)\right)\
+<div class="arithmatex">\[\begin{array}{lll}
 \displaystyle
-P(t,T_n)=P\left(t,T_{q(t)}\right)\prod_{i=q(t)}^{n-1}\frac{1}{1+\delta L\left(T_{q(t)},T_i\right)}\</p>
-<p>\end{array}$$</p>
+B(t)=P\left(t,T_{q(t)}\right)\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i)\right)\\
+\displaystyle
+P(t,T_n)=P\left(t,T_{q(t)}\right)\prod_{i=q(t)}^{n-1}\frac{1}{1+\delta L\left(T_{q(t)},T_i\right)}\\
+\end{array}\]</div>
 <h3 id="radon-nikodym-derivative-for-spot-measure">Radon-Nikodym Derivative for Spot Measure<a class="headerlink" href="#radon-nikodym-derivative-for-spot-measure" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{llllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llllllll}
+\displaystyle
 \lambda_M^{\bar{n}(t)}(t)
 &amp;=&amp;\displaystyle
-\left.\frac{d\mathbb{Q}^{M}}{d\mathbb{Q}^{\bar{n}(t)}}\Big{|}{\cal F}(t)\right)\
+\left.\frac{d\mathbb{Q}^{M}}{d\mathbb{Q}^{\bar{n}(t)}}\Big{|}{\cal F}(t)\right)\\
 &amp;=&amp;\displaystyle
-\frac{M(t)/M(t_0)}{P(t,T_{\bar{n}(t)})/P(t_0,T_{\bar{n}(t)})}\
+\frac{M(t)/M(t_0)}{P(t,T_{\bar{n}(t)})/P(t_0,T_{\bar{n}(t)})}\\
 &amp;=&amp;\displaystyle
 \frac{P(t,T_{\bar{m}(t)})}{P(t,T_{\bar{n}(t)})}
 \frac{P(t_0,T_{\bar{n}(t)})}{M(t_0)}
-\prod_{k=1}^{\bar{m}(t)}\frac{1}{P(T_{k-1},T_k)}\
+\prod_{k=1}^{\bar{m}(t)}\frac{1}{P(T_{k-1},T_k)}\\
 &amp;:=&amp;\displaystyle
 \frac{P(t,T_{\bar{m}(t)})}{P(t,T_{\bar{n}(t)})}
-\bar{P}\</p>
-<p>\end{array}$$</p>
+\bar{P}\\
+\end{array}\]</div>
 <h3 id="girsanov-transformation-to-spot-measure">Girsanov Transformation to Spot Measure<a class="headerlink" href="#girsanov-transformation-to-spot-measure" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 dW_{\bar{n}(t)}^{M}(t)
 &amp;=&amp;\displaystyle
--\frac{\tau_{\bar{n}(t)}\bar{\sigma}<em _bar_n="\bar{n">{\bar{n}(t)}(t)}{\tau</em>dt
-+dW_{\bar{n}(t)}^{\bar{n}(t)}(t)\}(t)}l_{\bar{n}(t)}(t)+1</p>
-<p>\end{array}$$</p>
+-\frac{\tau_{\bar{n}(t)}\bar{\sigma}_{\bar{n}(t)}(t)}{\tau_{\bar{n}(t)}l_{\bar{n}(t)}(t)+1}dt
++dW_{\bar{n}(t)}^{\bar{n}(t)}(t)\\
+\end{array}\]</div>
 <h3 id="libor-drift-in-spot-measure">LIBOR Drift in Spot Measure<a class="headerlink" href="#libor-drift-in-spot-measure" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 dl_i(t)
 &amp;=&amp;\displaystyle
-\bar{\sigma}<em k="\bar{m">i(t)\sum</em>}(t)+1}^{i}\frac{\tau_{k}\bar{\sigma<em k="k">{k}(t)}{\tau</em>dt
-+\bar{\sigma}_i(t)dW_i^{M}(t)\}l_{k}(t)+1</p>
-<p>\end{array}$$</p>
+\bar{\sigma}_i(t)\sum_{k=\bar{m}(t)+1}^{i}\frac{\tau_{k}\bar{\sigma}_{k}(t)}{\tau_{k}l_{k}(t)+1}dt
++\bar{\sigma}_i(t)dW_i^{M}(t)\\
+\end{array}\]</div>
 <h3 id="special-case-spot-measure-equals-forward-measure">Special Case: Spot Measure Equals Forward Measure<a class="headerlink" href="#special-case-spot-measure-equals-forward-measure" title="Permanent link">&para;</a></h3>
 <p><strong>Spot Measure Radon-Nikodym Derivative</strong></p>
-<p>$$\begin{array}{llllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llllll}
+\displaystyle
 Z_t
 :=
-\mathbb{E}^{q(t)}\left[\frac{d\mathbb{P}<em q_t_="q(t)">{S}}{d\mathbb{P}</em>}}\Big{|}{\cal F<em q_t_="q(t)">t\right]
+\mathbb{E}^{q(t)}\left[\frac{d\mathbb{P}_{S}}{d\mathbb{P}_{q(t)}}\Big{|}{\cal F}_t\right]
 =
-\frac{B(t)/B(0)}{P\left(t,T</em>\}\right)/P\left(0,T_{q(t)}\right)</p>
-<p>\end{array}$$</p>
+\frac{B(t)/B(0)}{P\left(t,T_{q(t)}\right)/P\left(0,T_{q(t)}\right)}\\
+\end{array}\]</div>
 <p>Since <span class="arithmatex">\(\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i,T_{i+1})\right)\)</span> is known at time <span class="arithmatex">\(t\)</span>, let's call this constant <span class="arithmatex">\(C_1\)</span>.</p>
-<p>$$\begin{array}{llll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llll}
+\displaystyle
 \frac{B(t)}{B(0)}
 =
 P(t,T_{q(t)})\prod_{i=0}^{q(t)-1}\left(1+\delta L(T_i,T_i,T_{i+1})\right)
 =
-C_1P(t,T_{q(t)})</p>
-<p>\end{array}$$</p>
+C_1P(t,T_{q(t)})
+\end{array}\]</div>
 <p>Since <span class="arithmatex">\(\prod_{i=0}^{q(t)-1}\left(1+\delta L(0,T_i,T_{i+1})\right)\)</span> is known at time <span class="arithmatex">\(t\)</span>,
 let's call this constant <span class="arithmatex">\(C_2\)</span>.</p>
-<p>$$\begin{array}{llll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llll}
+\displaystyle
 \frac{P(t,T_{q(t)})}{P(0,T_{q(t)})}
 =
 P(t,T_{q(t)})\prod_{i=0}^{q(t)-1}\left(1+\delta L(0,T_i,T_{i+1})\right)
 =
 C_2P(t,T_{q(t)})
-\</p>
-<p>\end{array}$$</p>
+\\
+\end{array}\]</div>
 <p>Since <span class="arithmatex">\(Z_t\)</span> is a Radon-Nykodym derivative, in particular we have <span class="arithmatex">\(\mathbb{E}^{q(t)}[Z_t]=1\)</span>. Therefore,</p>
-<p>$$\begin{array}{llllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{llllll}
+\displaystyle
 Z_t
 =
-\mathbb{E}^{q(t)}\left[\frac{d\mathbb{P}<em q_t_="q(t)">{S}}{d\mathbb{P}</em>}}\Big{|}{\cal F<em q_t_="q(t)">t\right]
+\mathbb{E}^{q(t)}\left[\frac{d\mathbb{P}_{S}}{d\mathbb{P}_{q(t)}}\Big{|}{\cal F}_t\right]
 =
-\frac{B(t)/B(0)}{P\left(t,T</em>=1\}\right)/P\left(0,T_{q(t)}\right)}=\frac{C_1}{C_2</p>
-<p>\end{array}$$</p>
+\frac{B(t)/B(0)}{P\left(t,T_{q(t)}\right)/P\left(0,T_{q(t)}\right)}=\frac{C_1}{C_2}=1\\
+\end{array}\]</div>
 <p>This means</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 dW_t^{S}
 =
-dW_t^{q(t)}</p>
-<p>\end{array}$$</p>
+dW_t^{q(t)}
+\end{array}\]</div>
 <h3 id="equivalence-of-spot-and-forward-measures">Equivalence of Spot and Forward Measures<a class="headerlink" href="#equivalence-of-spot-and-forward-measures" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
-\mathbb{P}<em q_t_="q(t)">{S}
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
+\mathbb{P}_{S}
 =
-\mathbb{P}</em></p>
-<p>\end{array}$$</p>
+\mathbb{P}_{q(t)}
+\end{array}\]</div>
 
 
 

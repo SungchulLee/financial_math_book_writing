@@ -46844,9 +46844,9 @@
 <li>hedge positions over <span class="arithmatex">\([t, t + \Delta t]\)</span>.</li>
 </ul>
 <p>If the model is recalibrated at <span class="arithmatex">\(t + \Delta t\)</span> to new data, the parameter shift</p>
-<p>$$</p>
-<p>\theta_t \longrightarrow \theta_{t+\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t \longrightarrow \theta_{t+\Delta t}
+\]</div>
 <p>can introduce artificial P&amp;L unrelated to actual market moves.</p>
 <h3 id="the-fundamental-tension">The fundamental tension<a class="headerlink" href="#the-fundamental-tension" title="Permanent link">&para;</a></h3>
 <p>Consider a stochastic volatility model with parameters <span class="arithmatex">\(\theta = (\kappa, \bar{v}, \sigma_v, \rho, v_0)\)</span>. The model specifies dynamics for the variance process, yet:</p>
@@ -46872,9 +46872,9 @@
 <h2 id="quantifying-recalibration-instability">Quantifying recalibration instability<a class="headerlink" href="#quantifying-recalibration-instability" title="Permanent link">&para;</a></h2>
 <h3 id="day-over-day-parameter-changes">Day-over-day parameter changes<a class="headerlink" href="#day-over-day-parameter-changes" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\hat{\theta}_t\)</span> denote calibrated parameters on day <span class="arithmatex">\(t\)</span>. Define:</p>
-<p>$$</p>
-<p>\Delta\theta_t = \hat{\theta}<em t-1="t-1">t - \hat{\theta}</em>.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta\theta_t = \hat{\theta}_t - \hat{\theta}_{t-1}
+\]</div>
 <p>Unstable calibration exhibits:</p>
 <ul>
 <li>Large <span class="arithmatex">\(\|\Delta\theta_t\|\)</span> on quiet market days.</li>
@@ -46883,29 +46883,29 @@
 </ul>
 <h3 id="parameter-volatility">Parameter volatility<a class="headerlink" href="#parameter-volatility" title="Permanent link">&para;</a></h3>
 <p>Compute rolling standard deviation of each parameter:</p>
-<p>$$</p>
-<p>\text{Vol}<em t="1">T(\theta_i) = \sqrt{\frac{1}{T} \sum</em>.}^{T} (\theta_{i,t} - \bar{\theta}_i)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vol}_T(\theta_i) = \sqrt{\frac{1}{T} \sum_{t=1}^{T} (\theta_{i,t} - \bar{\theta}_i)^2}
+\]</div>
 <p>Compare to economically plausible variation. If <span class="arithmatex">\(\text{Vol}(\rho)\)</span> implies correlation swinging from <span class="arithmatex">\(-0.9\)</span> to <span class="arithmatex">\(-0.5\)</span> weekly, something is wrong.</p>
 <h3 id="explained-versus-unexplained-pl">Explained versus unexplained P&amp;L<a class="headerlink" href="#explained-versus-unexplained-pl" title="Permanent link">&para;</a></h3>
 <p>Decompose daily P&amp;L:</p>
-<p>$$</p>
-<p>\text{P\&amp;L} = \underbrace{\Delta \cdot \Delta S + \frac{1}{2}\Gamma \cdot (\Delta S)^2 + \text{Vega} \cdot \Delta\sigma + \Theta \cdot \Delta t}<em _text_unexplained="\text{unexplained">{\text{explained}} + \underbrace{\text{residual}}</em>.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{P\&amp;L} = \underbrace{\Delta \cdot \Delta S + \frac{1}{2}\Gamma \cdot (\Delta S)^2 + \text{Vega} \cdot \Delta\sigma + \Theta \cdot \Delta t}_{\text{explained}} + \underbrace{\text{residual}}_{\text{unexplained}}
+\]</div>
 <p>Recalibration-induced P&amp;L shows up as unexplained residual even when market moves are modest.</p>
 <hr />
 <h2 id="impact-on-hedging-and-pl">Impact on hedging and P&amp;L<a class="headerlink" href="#impact-on-hedging-and-pl" title="Permanent link">&para;</a></h2>
 <h3 id="self-financing-failure">Self-financing failure<a class="headerlink" href="#self-financing-failure" title="Permanent link">&para;</a></h3>
 <p>In continuous-time theory, a delta-hedged portfolio is self-financing. But if parameters jump:</p>
-<p>$$</p>
-<p>\Delta_t \ne \Delta_{t-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_t \ne \Delta_{t-}
+\]</div>
 <p>discontinuously, the rebalancing cost is non-zero and unhedged.</p>
 <h3 id="greeks-instability">Greeks instability<a class="headerlink" href="#greeks-instability" title="Permanent link">&para;</a></h3>
 <p>Greeks depend on calibrated parameters:</p>
-<p>$$</p>
-<p>\text{Vega}(\hat{\theta}<em t-1="t-1">t) \ne \text{Vega}(\hat{\theta}</em>).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vega}(\hat{\theta}_t) \ne \text{Vega}(\hat{\theta}_{t-1})
+\]</div>
 <p>If <span class="arithmatex">\(\hat{\theta}\)</span> jumps, hedges based on yesterday's Greeks are stale.</p>
 <h3 id="exotic-pricing-inconsistency">Exotic pricing inconsistency<a class="headerlink" href="#exotic-pricing-inconsistency" title="Permanent link">&para;</a></h3>
 <p>A barrier option priced on day <span class="arithmatex">\(t\)</span> with <span class="arithmatex">\(\hat{\theta}_t\)</span> may have a materially different value than the same option repriced on day <span class="arithmatex">\(t+1\)</span> with <span class="arithmatex">\(\hat{\theta}_{t+1}\)</span>, even if the spot price is unchanged.</p>
@@ -46920,9 +46920,9 @@
 <h2 id="common-practitioner-responses">Common practitioner responses<a class="headerlink" href="#common-practitioner-responses" title="Permanent link">&para;</a></h2>
 <h3 id="1-parameter-smoothing">1. Parameter smoothing<a class="headerlink" href="#1-parameter-smoothing" title="Permanent link">&para;</a></h3>
 <p>Apply exponential smoothing:</p>
-<p>$$</p>
-<p>\theta_t^{\text{smooth}} = \lambda \hat{\theta}<em t-1="t-1">t + (1 - \lambda) \theta</em>.}^{\text{smooth}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t^{\text{smooth}} = \lambda \hat{\theta}_t + (1 - \lambda) \theta_{t-1}^{\text{smooth}}
+\]</div>
 <p><strong>Pros:</strong> Reduces day-to-day noise.</p>
 <p><strong>Cons:</strong> Introduces lag; may miss genuine regime changes; no theoretical justification.</p>
 <h3 id="2-freezing-parameters">2. Freezing parameters<a class="headerlink" href="#2-freezing-parameters" title="Permanent link">&para;</a></h3>
@@ -46935,9 +46935,9 @@
 <p><strong>Cons:</strong> Requires judgment on time scales; still ad-hoc.</p>
 <h3 id="4-regularization-toward-prior">4. Regularization toward prior<a class="headerlink" href="#4-regularization-toward-prior" title="Permanent link">&para;</a></h3>
 <p>Use Tikhonov regularization pulling toward yesterday's parameters:</p>
-<p>$$</p>
-<p>\min_\theta \; \mathcal{L}(\theta) + \lambda |\theta - \hat{\theta}_{t-1}|^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_\theta \; \mathcal{L}(\theta) + \lambda \|\theta - \hat{\theta}_{t-1}\|^2
+\]</div>
 <p><strong>Pros:</strong> Principled; controls jump magnitude.</p>
 <p><strong>Cons:</strong> Choice of <span class="arithmatex">\(\lambda\)</span>; may under-react to genuine changes.</p>
 <h3 id="5-regime-switching-models">5. Regime-switching models<a class="headerlink" href="#5-regime-switching-models" title="Permanent link">&para;</a></h3>

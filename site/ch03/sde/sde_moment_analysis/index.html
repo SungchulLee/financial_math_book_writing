@@ -47488,319 +47488,319 @@
 <h2 id="standard-brownian-motion">Standard Brownian Motion<a class="headerlink" href="#standard-brownian-motion" title="Permanent link">&para;</a></h2>
 <h3 id="1-definition">1. Definition<a class="headerlink" href="#1-definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>standard Brownian motion</strong> (Wiener process) <span class="arithmatex">\(B_t\)</span> satisfies:</p>
-<p>$$</p>
-<p>dB_t = dW_t, \quad B_0 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dB_t = dW_t, \quad B_0 = 0
+\]</div>
 <h3 id="2-basic-moments">2. Basic Moments<a class="headerlink" href="#2-basic-moments" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(B_t \sim \mathcal{N}(0, t)\)</span> by construction:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[B_t] = 0, \quad \text{Var}(B_t) = t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="3-higher-moments">3. Higher Moments<a class="headerlink" href="#3-higher-moments" title="Permanent link">&para;</a></h3>
 <p>For a Gaussian random variable <span class="arithmatex">\(X \sim \mathcal{N}(0, \sigma^2)\)</span>:</p>
 <p><strong>Odd moments:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[X^{2k+1}] = 0 \quad \text{for all } k \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X^{2k+1}] = 0 \quad \text{for all } k \geq 0
+\]</div>
 <p><strong>Even moments:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[X^{2k}] = \sigma^{2k} \cdot (2k-1)!! = \sigma^{2k} \cdot \frac{(2k)!}{2^k k!}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X^{2k}] = \sigma^{2k} \cdot (2k-1)!! = \sigma^{2k} \cdot \frac{(2k)!}{2^k k!}
+\]</div>
 <p>where <span class="arithmatex">\((2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)\)</span>.</p>
 <p><strong>For Brownian motion:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[B_t^{2k}] = t^k \cdot (2k-1)!!
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Examples:</strong>
 - <span class="arithmatex">\(\mathbb{E}[B_t^2] = t\)</span>
 - <span class="arithmatex">\(\mathbb{E}[B_t^4] = 3t^2\)</span>
 - <span class="arithmatex">\(\mathbb{E}[B_t^6] = 15t^3\)</span>
 - <span class="arithmatex">\(\mathbb{E}[B_t^8] = 105t^4\)</span></p>
 <h3 id="4-moment-generating-function">4. Moment Generating Function<a class="headerlink" href="#4-moment-generating-function" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>M_B(u, t) = \mathbb{E}[e^{uB_t}] = e^{u^2 t/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_B(u, t) = \mathbb{E}[e^{uB_t}] = e^{u^2 t/2}
+\]</div>
 <p><strong>Derivation:</strong> Since <span class="arithmatex">\(B_t \sim \mathcal{N}(0, t)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[e^{uB_t}] = \int_{-\infty}^\infty e^{ux} \frac{1}{\sqrt{2\pi t}} e^{-x^2/(2t)} dx = e^{u^2 t/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[e^{uB_t}] = \int_{-\infty}^\infty e^{ux} \frac{1}{\sqrt{2\pi t}} e^{-x^2/(2t)} dx = e^{u^2 t/2}
+\]</div>
 <hr />
 <h2 id="brownian-motion-with-drift-and-volatility">Brownian Motion with Drift and Volatility<a class="headerlink" href="#brownian-motion-with-drift-and-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="1-sde">1. SDE<a class="headerlink" href="#1-sde" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(X_t\)</span> satisfy:</p>
-<p>$$</p>
-<p>dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 \in \mathbb{R}
+\]</div>
 <h3 id="2-solution">2. Solution<a class="headerlink" href="#2-solution" title="Permanent link">&para;</a></h3>
 <p>This is a linear SDE. Integrating:</p>
-<p>$$</p>
-<p>X_t = X_0 + \mu t + \sigma B_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 + \mu t + \sigma B_t
+\]</div>
 <h3 id="3-first-two-moments">3. First Two Moments<a class="headerlink" href="#3-first-two-moments" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(B_t \sim \mathcal{N}(0, t)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[X_t] = X_0 + \mu t, \quad \text{Var}(X_t) = \sigma^2 t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Distribution:</strong> <span class="arithmatex">\(X_t \sim \mathcal{N}(X_0 + \mu t, \sigma^2 t)\)</span></p>
 <h3 id="4-higher-moments">4. Higher Moments<a class="headerlink" href="#4-higher-moments" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(X_t\)</span> is Gaussian:</p>
-<p>$$</p>
-<p>\mathbb{E}[(X_t - \mathbb{E}[X_t])^n] = \begin{cases}
-0 &amp; \text{if } n \text{ odd} \
+<div class="arithmatex">\[
+\mathbb{E}[(X_t - \mathbb{E}[X_t])^n] = \begin{cases}
+0 &amp; \text{if } n \text{ odd} \\
 \sigma^n t^{n/2} (n-1)!! &amp; \text{if } n \text{ even}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <h3 id="5-moment-generating-function">5. Moment Generating Function<a class="headerlink" href="#5-moment-generating-function" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>M_X(u, t) = \mathbb{E}[e^{uX_t}] = \exp\left[u(X_0 + \mu t) + \frac{u^2 \sigma^2 t}{2}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_X(u, t) = \mathbb{E}[e^{uX_t}] = \exp\left[u(X_0 + \mu t) + \frac{u^2 \sigma^2 t}{2}\right]
+\]</div>
 <h3 id="6-conditional-moments">6. Conditional Moments<a class="headerlink" href="#6-conditional-moments" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_t | X_s] = X_s + \mu(t - s)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}(X_t | X_s) = \sigma^2(t - s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t | X_s] = X_s + \mu(t - s)
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(X_t | X_s) = \sigma^2(t - s)
+\]</div>
 <hr />
 <h2 id="geometric-brownian-motion">Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permanent link">&para;</a></h2>
 <h3 id="1-sde_1">1. SDE<a class="headerlink" href="#1-sde_1" title="Permanent link">&para;</a></h3>
 <p>The GBM process satisfies:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t, \quad S_0 &gt; 0
+\]</div>
 <h3 id="2-solution_1">2. Solution<a class="headerlink" href="#2-solution_1" title="Permanent link">&para;</a></h3>
 <p>Define <span class="arithmatex">\(Y_t = \log S_t\)</span> and apply <strong>Itô's lemma</strong>:</p>
-<p>$$</p>
-<p>f(S) = \log S, \quad f'(S) = \frac{1}{S}, \quad f''(S) = -\frac{1}{S^2}</p>
-<p>$$</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+f(S) = \log S, \quad f'(S) = \frac{1}{S}, \quad f''(S) = -\frac{1}{S^2}
+\]</div>
+<div class="arithmatex">\[
+\begin{align}
 dY_t &amp;= \frac{1}{S_t}dS_t + \frac{1}{2}\left(-\frac{1}{S_t^2}\right)(dS_t)^2 \\
 &amp;= \frac{1}{S_t}(\mu S_t dt + \sigma S_t dW_t) - \frac{1}{2S_t^2} \cdot \sigma^2 S_t^2 dt \\
 &amp;= \left(\mu - \frac{\sigma^2}{2}\right)dt + \sigma dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>Integrating:</p>
-<p>$$</p>
-<p>\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\log S_t = \log S_0 + \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t
+\]</div>
+<div class="arithmatex">\[
+\boxed{
 S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="3-first-two-moments_1">3. First Two Moments<a class="headerlink" href="#3-first-two-moments_1" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(Z = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B_t \sim \mathcal{N}\left(\left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)\)</span>.</p>
 <p>For a Gaussian <span class="arithmatex">\(Z \sim \mathcal{N}(m, v^2)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[e^Z] = e^{m + v^2/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[e^Z] = e^{m + v^2/2}
+\]</div>
 <p><strong>Expectation:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 \mathbb{E}[S_t] &amp;= S_0 \mathbb{E}[e^Z] \\
 &amp;= S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \frac{\sigma^2 t}{2}\right] \\
 &amp;= S_0 e^{\mu t}
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>Second moment:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[S_t^2] = S_0^2 \mathbb{E}[e^{2Z}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_t^2] = S_0^2 \mathbb{E}[e^{2Z}]
+\]</div>
 <p>For <span class="arithmatex">\(2Z \sim \mathcal{N}(2(\mu - \sigma^2/2)t, 4\sigma^2 t)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[e^{2Z}] = \exp\left[2\left(\mu - \frac{\sigma^2}{2}\right)t + \frac{4\sigma^2 t}{2}\right] = e^{2\mu t + \sigma^2 t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[e^{2Z}] = \exp\left[2\left(\mu - \frac{\sigma^2}{2}\right)t + \frac{4\sigma^2 t}{2}\right] = e^{2\mu t + \sigma^2 t}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}
+\]</div>
 <p><strong>Variance:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 \text{Var}(S_t) &amp;= \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 \\
 &amp;= S_0^2 e^{2\mu t + \sigma^2 t} - S_0^2 e^{2\mu t} \\
 &amp;= S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
-\end{align}\]</div>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{
+\end{align}
+\]</div>
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[S_t] = S_0 e^{\mu t}, \quad \text{Var}(S_t) = S_0^2 e^{2\mu t}(e^{\sigma^2 t} - 1)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="4-higher-moments_1">4. Higher Moments<a class="headerlink" href="#4-higher-moments_1" title="Permanent link">&para;</a></h3>
 <p><strong>General <span class="arithmatex">\(n\)</span>-th moment:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[S_t^n] = S_0^n \mathbb{E}[e^{nZ}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_t^n] = S_0^n \mathbb{E}[e^{nZ}]
+\]</div>
 <p>For <span class="arithmatex">\(nZ \sim \mathcal{N}(n(\mu - \sigma^2/2)t, n^2\sigma^2 t)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[S_t^n] = S_0^n \exp\left[n\mu t + \frac{n(n-1)}{2}\sigma^2 t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Verification for <span class="arithmatex">\(n=1, 2\)</span>:</strong>
 - <span class="arithmatex">\(n=1\)</span>: <span class="arithmatex">\(\mathbb{E}[S_t] = S_0 e^{\mu t}\)</span> ✓
 - <span class="arithmatex">\(n=2\)</span>: <span class="arithmatex">\(\mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}\)</span> ✓</p>
 <h3 id="5-moment-generating-function_1">5. Moment Generating Function<a class="headerlink" href="#5-moment-generating-function_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 M_S(u, t) = \mathbb{E}[e^{uS_t}] = \begin{cases}
-\text{No closed form} &amp; \text{(log-normal distribution)} \
+\text{No closed form} &amp; \text{(log-normal distribution)} \\
 \text{Use } \mathbb{E}[S_t^n] \text{ instead} &amp; 
 \end{cases}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Alternative: Log moment generating function</strong></p>
 <p>For <span class="arithmatex">\(\log S_t \sim \mathcal{N}(m, v^2)\)</span> with <span class="arithmatex">\(m = \log S_0 + (\mu - \sigma^2/2)t\)</span> and <span class="arithmatex">\(v^2 = \sigma^2 t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[e^{u \log S_t}] = \mathbb{E}[S_t^u] = S_0^u e^{u\mu t + u(u-1)\sigma^2 t/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[e^{u \log S_t}] = \mathbb{E}[S_t^u] = S_0^u e^{u\mu t + u(u-1)\sigma^2 t/2}
+\]</div>
 <h3 id="6-conditional-moments_1">6. Conditional Moments<a class="headerlink" href="#6-conditional-moments_1" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[S_t | S_s] = S_s e^{\mu(t-s)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}(S_t | S_s) = S_s^2 e^{2\mu(t-s)}(e^{\sigma^2(t-s)} - 1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_t | S_s] = S_s e^{\mu(t-s)}
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(S_t | S_s) = S_s^2 e^{2\mu(t-s)}(e^{\sigma^2(t-s)} - 1)
+\]</div>
 <p><strong>Derivation:</strong> Since <span class="arithmatex">\(S_t = S_s \exp[(drifts) + \sigma(B_t - B_s)]\)</span>, conditioning on <span class="arithmatex">\(S_s\)</span> gives independent increments.</p>
 <h3 id="7-skewness-and-kurtosis">7. Skewness and Kurtosis<a class="headerlink" href="#7-skewness-and-kurtosis" title="Permanent link">&para;</a></h3>
 <p>The log-normal distribution is <strong>right-skewed</strong> and <strong>heavy-tailed</strong>.</p>
 <p><strong>Skewness:</strong></p>
-<p>$$</p>
-<p>\text{Skew}(S_t) = (e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew}(S_t) = (e^{\sigma^2 t} + 2)\sqrt{e^{\sigma^2 t} - 1}
+\]</div>
 <p><strong>Excess kurtosis:</strong></p>
-<p>$$</p>
-<p>\text{Kurt}(S_t) = e^{4\sigma^2 t} + 2e^{3\sigma^2 t} + 3e^{2\sigma^2 t} - 6</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Kurt}(S_t) = e^{4\sigma^2 t} + 2e^{3\sigma^2 t} + 3e^{2\sigma^2 t} - 6
+\]</div>
 <p>Both increase with <span class="arithmatex">\(\sigma^2 t\)</span>, showing heavier tails for higher volatility or longer time.</p>
 <hr />
 <h2 id="vasicek-model">Vasicek Model<a class="headerlink" href="#vasicek-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-sde_2">1. SDE<a class="headerlink" href="#1-sde_2" title="Permanent link">&para;</a></h3>
 <p>The Vasicek model is defined by:</p>
-<p>$$</p>
-<p>dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad r_0 = r(0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = a(b - r_t)\,dt + \sigma\,dW_t, \quad r_0 = r(0)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(a &gt; 0\)</span> is the mean reversion speed
 - <span class="arithmatex">\(b\)</span> is the long-term mean
 - <span class="arithmatex">\(\sigma\)</span> is the volatility</p>
 <h3 id="2-solution-via-integrating-factor">2. Solution via Integrating Factor<a class="headerlink" href="#2-solution-via-integrating-factor" title="Permanent link">&para;</a></h3>
 <p>Rewrite as:</p>
-<p>$$</p>
-<p>dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t + ar_t\,dt = ab\,dt + \sigma\,dW_t
+\]</div>
 <p>Multiply both sides by the integrating factor <span class="arithmatex">\(e^{at}\)</span>:</p>
-<p>$$</p>
-<p>e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{at}dr_t + ae^{at}r_t\,dt = abe^{at}\,dt + \sigma e^{at}\,dW_t
+\]</div>
 <p>The left side is <span class="arithmatex">\(d(r_t e^{at})\)</span>:</p>
-<p>$$</p>
-<p>d(r_t e^{at}) = abe^{at}\,dt + \sigma e^{at}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(r_t e^{at}) = abe^{at}\,dt + \sigma e^{at}\,dW_t
+\]</div>
 <p>Integrate from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>r_t e^{at} - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s</p>
-<p>$$</p>
-<p>$$</p>
-<p>r_t e^{at} = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+r_t e^{at} - r_0 = ab\int_0^t e^{as}\,ds + \sigma\int_0^t e^{as}\,dW_s
+\]</div>
+<div class="arithmatex">\[
+r_t e^{at} = r_0 + ab\frac{e^{at} - 1}{a} + \sigma\int_0^t e^{as}\,dW_s
+\]</div>
+<div class="arithmatex">\[
+\boxed{
 r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="3-expectation">3. Expectation<a class="headerlink" href="#3-expectation" title="Permanent link">&para;</a></h3>
 <p>Using linearity of expectation and <span class="arithmatex">\(\mathbb{E}[\int e^{as}\,dW_s] = 0\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Long-term behavior:</strong></p>
-<p>$$</p>
-<p>\lim_{t \to \infty} \mathbb{E}[r_t] = b</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{t \to \infty} \mathbb{E}[r_t] = b
+\]</div>
 <p>The process <strong>mean-reverts</strong> to <span class="arithmatex">\(b\)</span> with speed <span class="arithmatex">\(a\)</span>.</p>
 <h3 id="4-variance">4. Variance<a class="headerlink" href="#4-variance" title="Permanent link">&para;</a></h3>
 <p>The only stochastic term is:</p>
-<p>$$</p>
-<p>I_t = \sigma e^{-at}\int_0^t e^{as}\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t = \sigma e^{-at}\int_0^t e^{as}\,dW_s
+\]</div>
 <p>Use <strong>Itô isometry</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}[I_t^2] = \sigma^2 e^{-2at} \mathbb{E}\left[\left(\int_0^t e^{as}\,dW_s\right)^2\right] = \sigma^2 e^{-2at} \int_0^t e^{2as}\,ds</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \sigma^2 e^{-2at} \cdot \frac{e^{2at} - 1}{2a} = \frac{\sigma^2}{2a}(1 - e^{-2at})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[I_t^2] = \sigma^2 e^{-2at} \mathbb{E}\left[\left(\int_0^t e^{as}\,dW_s\right)^2\right] = \sigma^2 e^{-2at} \int_0^t e^{2as}\,ds
+\]</div>
+<div class="arithmatex">\[
+= \sigma^2 e^{-2at} \cdot \frac{e^{2at} - 1}{2a} = \frac{\sigma^2}{2a}(1 - e^{-2at})
+\]</div>
 <p>Since <span class="arithmatex">\(\mathbb{E}[I_t] = 0\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Var}(r_t) = \frac{\sigma^2}{2a}(1 - e^{-2at})
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Long-term variance:</strong></p>
-<p>$$</p>
-<p>\lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{t \to \infty} \text{Var}(r_t) = \frac{\sigma^2}{2a}
+\]</div>
 <p><strong>Stationary distribution:</strong> <span class="arithmatex">\(r_\infty \sim \mathcal{N}\left(b, \frac{\sigma^2}{2a}\right)\)</span></p>
 <h3 id="5-complete-moment-summary">5. Complete Moment Summary<a class="headerlink" href="#5-complete-moment-summary" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{align}
-\mathbb{E}[r_t] &amp;= r_0 e^{-at} + b(1 - e^{-at}) \
+\mathbb{E}[r_t] &amp;= r_0 e^{-at} + b(1 - e^{-at}) \\
 \text{Var}(r_t) &amp;= \frac{\sigma^2}{2a}(1 - e^{-2at})
 \end{align}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="6-conditional-moments_2">6. Conditional Moments<a class="headerlink" href="#6-conditional-moments_2" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(s &lt; t\)</span>, the increment <span class="arithmatex">\(r_t - r_s\)</span> depends on <span class="arithmatex">\(r_s\)</span>.</p>
 <p>From the solution form:</p>
-<p>$$</p>
-<p>r_t = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)}) + \sigma e^{-a(t-s)}\int_s^t e^{a u}\,dW_u</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)}) + \sigma e^{-a(t-s)}\int_s^t e^{a u}\,dW_u
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}(r_t | r_s) = \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(r_t | r_s) = \frac{\sigma^2}{2a}(1 - e^{-2a(t-s)})
+\]</div>
 <h3 id="7-covariance-function">7. Covariance Function<a class="headerlink" href="#7-covariance-function" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\text{Cov}(r_s, r_t) = \text{Var}(r_s) \cdot e^{-a(t-s)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cov}(r_s, r_t) = \text{Var}(r_s) \cdot e^{-a(t-s)}
+\]</div>
 <p><strong>Proof:</strong> Use tower property:</p>
-<p>$$</p>
-<p>\text{Cov}(r_s, r_t) = \mathbb{E}[r_s r_t] - \mathbb{E}[r_s]\mathbb{E}[r_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cov}(r_s, r_t) = \mathbb{E}[r_s r_t] - \mathbb{E}[r_s]\mathbb{E}[r_t]
+\]</div>
 <p>After algebra (using <span class="arithmatex">\(\mathbb{E}[r_t | r_s] = \alpha + \beta r_s\)</span>):</p>
-<p>$$</p>
-<p>\text{Cov}(r_s, r_t) = \frac{\sigma^2}{2a}(1 - e^{-2as}) \cdot e^{-a(t-s)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cov}(r_s, r_t) = \frac{\sigma^2}{2a}(1 - e^{-2as}) \cdot e^{-a(t-s)}
+\]</div>
 <p><strong>Correlation:</strong></p>
-<p>$$</p>
-<p>\rho(s, t) = e^{-a|t-s|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(s, t) = e^{-a|t-s|}
+\]</div>
 <p>This is an <strong>exponentially decaying autocorrelation</strong>, characteristic of OU processes.</p>
 <hr />
 <h2 id="cox-ingersoll-ross-cir-model">Cox-Ingersoll-Ross (CIR) Model<a class="headerlink" href="#cox-ingersoll-ross-cir-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-sde_3">1. SDE<a class="headerlink" href="#1-sde_3" title="Permanent link">&para;</a></h3>
 <p>The CIR model is defined by:</p>
-<p>$$</p>
-<p>dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t, \quad r_0 &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t, \quad r_0 &gt; 0
+\]</div>
 <p>where:
 - <span class="arithmatex">\(a &gt; 0\)</span> is the mean reversion speed
 - <span class="arithmatex">\(b &gt; 0\)</span> is the long-term mean
@@ -47808,113 +47808,113 @@ r_t = r_0 e^{-at} + b(1 - e^{-at}) + \sigma e^{-at}\int_0^t e^{as}\,dW_s
 - <strong>Feller condition:</strong> <span class="arithmatex">\(2ab \geq \sigma^2\)</span> ensures <span class="arithmatex">\(r_t &gt; 0\)</span> for all <span class="arithmatex">\(t\)</span></p>
 <h3 id="2-expectation">2. Expectation<a class="headerlink" href="#2-expectation" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(m(t) = \mathbb{E}[r_t]\)</span>. Taking expectations of both sides:</p>
-<p>$$</p>
-<p>\mathbb{E}[dr_t] = a(b - \mathbb{E}[r_t])\,dt + \sigma \mathbb{E}[\sqrt{r_t}]\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[dr_t] = a(b - \mathbb{E}[r_t])\,dt + \sigma \mathbb{E}[\sqrt{r_t}]\,dW_t
+\]</div>
 <p>The stochastic integral has zero expectation, giving:</p>
-<p>$$</p>
-<p>\frac{dm}{dt} = a(b - m(t))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dm}{dt} = a(b - m(t))
+\]</div>
 <p>This is a linear ODE with solution:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[r_t] = r_0 e^{-at} + b(1 - e^{-at})
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Note:</strong> Same as Vasicek! The state-dependent volatility doesn't affect the mean.</p>
 <h3 id="3-variance-via-second-moment">3. Variance via Second Moment<a class="headerlink" href="#3-variance-via-second-moment" title="Permanent link">&para;</a></h3>
 <p>To find variance, we need <span class="arithmatex">\(\mathbb{E}[r_t^2]\)</span>.</p>
 <p><strong>Apply Itô's lemma</strong> to <span class="arithmatex">\(f(r) = r^2\)</span>:</p>
-<p>$$</p>
-<p>f'(r) = 2r, \quad f''(r) = 2</p>
-<p>$$</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+f'(r) = 2r, \quad f''(r) = 2
+\]</div>
+<div class="arithmatex">\[
+\begin{align}
 d(r_t^2) &amp;= 2r_t\,dr_t + \frac{1}{2} \cdot 2 \cdot (dr_t)^2 \\
 &amp;= 2r_t[a(b - r_t)\,dt + \sigma\sqrt{r_t}\,dW_t] + \sigma^2 r_t\,dt \\
 &amp;= [2ab r_t - 2ar_t^2 + \sigma^2 r_t]\,dt + 2\sigma r_t^{3/2}\,dW_t \\
 &amp;= [(2ab + \sigma^2)r_t - 2ar_t^2]\,dt + 2\sigma r_t^{3/2}\,dW_t
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>Take expectation:</strong></p>
-<p>$$</p>
-<p>\frac{d}{dt}\mathbb{E}[r_t^2] = (2ab + \sigma^2)\mathbb{E}[r_t] - 2a\mathbb{E}[r_t^2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\mathbb{E}[r_t^2] = (2ab + \sigma^2)\mathbb{E}[r_t] - 2a\mathbb{E}[r_t^2]
+\]</div>
 <p>Let <span class="arithmatex">\(m_2(t) = \mathbb{E}[r_t^2]\)</span> and <span class="arithmatex">\(m(t) = \mathbb{E}[r_t]\)</span>. This is a <strong>linear first-order ODE</strong>:</p>
-<p>$$</p>
-<p>\frac{dm_2}{dt} + 2am_2 = (2ab + \sigma^2)m(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dm_2}{dt} + 2am_2 = (2ab + \sigma^2)m(t)
+\]</div>
 <h3 id="4-solving-the-second-moment-ode">4. Solving the Second Moment ODE<a class="headerlink" href="#4-solving-the-second-moment-ode" title="Permanent link">&para;</a></h3>
 <p><strong>Integrating factor:</strong> <span class="arithmatex">\(\mu(t) = e^{2at}\)</span></p>
 <p>Multiply both sides:</p>
-<p>$$</p>
-<p>e^{2at}\frac{dm_2}{dt} + 2ae^{2at}m_2 = (2ab + \sigma^2)e^{2at}m(t)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{d}{dt}[e^{2at}m_2] = (2ab + \sigma^2)e^{2at}m(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{2at}\frac{dm_2}{dt} + 2ae^{2at}m_2 = (2ab + \sigma^2)e^{2at}m(t)
+\]</div>
+<div class="arithmatex">\[
+\frac{d}{dt}[e^{2at}m_2] = (2ab + \sigma^2)e^{2at}m(t)
+\]</div>
 <p>Integrate from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>e^{2at}m_2(t) - m_2(0) = (2ab + \sigma^2)\int_0^t e^{2as}m(s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{2at}m_2(t) - m_2(0) = (2ab + \sigma^2)\int_0^t e^{2as}m(s)\,ds
+\]</div>
 <p>Substitute <span class="arithmatex">\(m(s) = r_0 e^{-as} + b(1 - e^{-as})\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 \int_0^t e^{2as}m(s)\,ds &amp;= \int_0^t e^{2as}[r_0 e^{-as} + b(1 - e^{-as})]\,ds \\
 &amp;= r_0 \int_0^t e^{as}\,ds + b\int_0^t [e^{2as} - e^{as}]\,ds \\
 &amp;= r_0 \frac{e^{at} - 1}{a} + b\left[\frac{e^{2at} - 1}{2a} - \frac{e^{at} - 1}{a}\right]
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>After substitution and simplification:</p>
-<p>$$</p>
-<p>m_2(t) = r_0^2 e^{-2at} + \frac{\sigma^2}{a}r_0 e^{-at}(1 - e^{-at}) + b^2(1 - e^{-at})^2 + \frac{\sigma^2 b}{2a}(1 - e^{-at})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+m_2(t) = r_0^2 e^{-2at} + \frac{\sigma^2}{a}r_0 e^{-at}(1 - e^{-at}) + b^2(1 - e^{-at})^2 + \frac{\sigma^2 b}{2a}(1 - e^{-at})^2
+\]</div>
 <h3 id="5-variance-formula">5. Variance Formula<a class="headerlink" href="#5-variance-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Var}(r_t) = m_2(t) - m(t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(r_t) = m_2(t) - m(t)^2
+\]</div>
 <p>After considerable algebra:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Var}(r_t) = \frac{\sigma^2}{a}\left[r_0 e^{-at}(1 - e^{-at}) + \frac{b}{2}(1 - e^{-at})^2\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Alternative form:</strong></p>
-<p>$$</p>
-<p>\text{Var}(r_t) = r_0\frac{\sigma^2}{a}(e^{-at} - e^{-2at}) + \frac{b\sigma^2}{2a}(1 - e^{-at})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(r_t) = r_0\frac{\sigma^2}{a}(e^{-at} - e^{-2at}) + \frac{b\sigma^2}{2a}(1 - e^{-at})^2
+\]</div>
 <h3 id="6-long-term-variance">6. Long-Term Variance<a class="headerlink" href="#6-long-term-variance" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\lim_{t \to \infty} \text{Var}(r_t) = \frac{b\sigma^2}{2a}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{t \to \infty} \text{Var}(r_t) = \frac{b\sigma^2}{2a}
+\]</div>
 <p><strong>Stationary distribution:</strong> <span class="arithmatex">\(r_\infty\)</span> follows a scaled non-central chi-squared distribution with mean <span class="arithmatex">\(b\)</span> and variance <span class="arithmatex">\(\frac{b\sigma^2}{2a}\)</span>.</p>
 <h3 id="7-conditional-moments">7. Conditional Moments<a class="headerlink" href="#7-conditional-moments" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(s &lt; t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}(r_t | r_s) = r_s \frac{\sigma^2}{a}(e^{-a(t-s)} - e^{-2a(t-s)}) + \frac{b\sigma^2}{2a}(1 - e^{-a(t-s)})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_t | r_s] = r_s e^{-a(t-s)} + b(1 - e^{-a(t-s)})
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(r_t | r_s) = r_s \frac{\sigma^2}{a}(e^{-a(t-s)} - e^{-2a(t-s)}) + \frac{b\sigma^2}{2a}(1 - e^{-a(t-s)})^2
+\]</div>
 <hr />
 <h2 id="ornstein-uhlenbeck-process-general-form">Ornstein-Uhlenbeck Process (General Form)<a class="headerlink" href="#ornstein-uhlenbeck-process-general-form" title="Permanent link">&para;</a></h2>
 <h3 id="1-sde_4">1. SDE<a class="headerlink" href="#1-sde_4" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dX_t = -\gamma X_t\,dt + \sigma\,dW_t, \quad X_0 = x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = -\gamma X_t\,dt + \sigma\,dW_t, \quad X_0 = x
+\]</div>
 <p>This is a <strong>centered</strong> version of Vasicek with <span class="arithmatex">\(b = 0\)</span>.</p>
 <h3 id="2-moments">2. Moments<a class="headerlink" href="#2-moments" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathbb{E}[X_t] = x e^{-\gamma t}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}(X_t) = \frac{\sigma^2}{2\gamma}(1 - e^{-2\gamma t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t] = x e^{-\gamma t}
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(X_t) = \frac{\sigma^2}{2\gamma}(1 - e^{-2\gamma t})
+\]</div>
 <h3 id="3-stationary-distribution">3. Stationary Distribution<a class="headerlink" href="#3-stationary-distribution" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(t \to \infty\)</span> starting from the stationary distribution:</p>
-<p>$$</p>
-<p>X_t \sim \mathcal{N}\left(0, \frac{\sigma^2}{2\gamma}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t \sim \mathcal{N}\left(0, \frac{\sigma^2}{2\gamma}\right)
+\]</div>
 <hr />
 <h2 id="general-techniques-for-moment-computation">General Techniques for Moment Computation<a class="headerlink" href="#general-techniques-for-moment-computation" title="Permanent link">&para;</a></h2>
 <h3 id="1-method-1-direct-from-solution">1. Method 1: Direct from Solution<a class="headerlink" href="#1-method-1-direct-from-solution" title="Permanent link">&para;</a></h3>
@@ -47922,34 +47922,34 @@ d(r_t^2) &amp;= 2r_t\,dr_t + \frac{1}{2} \cdot 2 \cdot (dr_t)^2 \\
 <p><strong>Example:</strong> GBM, Vasicek, OU</p>
 <h3 id="2-method-2-itos-lemma-for-powers">2. Method 2: Itô's Lemma for Powers<a class="headerlink" href="#2-method-2-itos-lemma-for-powers" title="Permanent link">&para;</a></h3>
 <p>To find <span class="arithmatex">\(\mathbb{E}[X_t^n]\)</span>, apply Itô's lemma to <span class="arithmatex">\(f(x) = x^n\)</span>:</p>
-<p>$$</p>
-<p>d(X_t^n) = nx^{n-1}\,dX_t + \frac{n(n-1)}{2}X_t^{n-2}(dX_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(X_t^n) = nx^{n-1}\,dX_t + \frac{n(n-1)}{2}X_t^{n-2}(dX_t)^2
+\]</div>
 <p>Take expectations to get an ODE for <span class="arithmatex">\(m_n(t) = \mathbb{E}[X_t^n]\)</span>.</p>
 <p><strong>Example:</strong> CIR second moment</p>
 <h3 id="3-method-3-moment-odes-from-generator">3. Method 3: Moment ODEs from Generator<a class="headerlink" href="#3-method-3-moment-odes-from-generator" title="Permanent link">&para;</a></h3>
 <p>For SDE <span class="arithmatex">\(dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t\)</span>, the generator is:</p>
-<p>$$</p>
-<p>\mathcal{L} = b(x)\frac{\partial}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L} = b(x)\frac{\partial}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2}{\partial x^2}
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>\frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}[\mathcal{L}f(X_t)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\mathbb{E}[f(X_t)] = \mathbb{E}[\mathcal{L}f(X_t)]
+\]</div>
 <p>For <span class="arithmatex">\(f(x) = x^n\)</span>:</p>
-<p>$$</p>
-<p>\frac{dm_n}{dt} = \mathbb{E}[b(X_t) \cdot nx^{n-1}] + \mathbb{E}[\frac{\sigma^2(X_t)}{2} \cdot n(n-1)x^{n-2}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dm_n}{dt} = \mathbb{E}[b(X_t) \cdot nx^{n-1}] + \mathbb{E}[\frac{\sigma^2(X_t)}{2} \cdot n(n-1)x^{n-2}]
+\]</div>
 <p>This gives a <strong>hierarchy of moment ODEs</strong>.</p>
 <h3 id="4-method-4-characteristic-functions">4. Method 4: Characteristic Functions<a class="headerlink" href="#4-method-4-characteristic-functions" title="Permanent link">&para;</a></h3>
 <p>The <strong>characteristic function</strong> is:</p>
-<p>$$</p>
-<p>\phi(u, t) = \mathbb{E}[e^{iuX_t}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi(u, t) = \mathbb{E}[e^{iuX_t}]
+\]</div>
 <p>Moments can be recovered via:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_t^n] = \frac{1}{i^n}\frac{\partial^n \phi}{\partial u^n}\Big|_{u=0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t^n] = \frac{1}{i^n}\frac{\partial^n \phi}{\partial u^n}\Big|_{u=0}
+\]</div>
 <p>For affine processes (Vasicek, CIR, Heston), <span class="arithmatex">\(\phi\)</span> satisfies a Riccati ODE.</p>
 <hr />
 <h2 id="comparison-table">Comparison Table<a class="headerlink" href="#comparison-table" title="Permanent link">&para;</a></h2>
@@ -48102,9 +48102,9 @@ d(r_t^2) &amp;= 2r_t\,dr_t + \frac{1}{2} \cdot 2 \cdot (dr_t)^2 \\
 <h3 id="4-parameter-estimation">4. Parameter Estimation<a class="headerlink" href="#4-parameter-estimation" title="Permanent link">&para;</a></h3>
 <p><strong>Method of moments:</strong> Equate sample moments to theoretical moments and solve for parameters.</p>
 <p><strong>Example for OU process:</strong></p>
-<p>$$</p>
-<p>\hat{\gamma} = -\frac{1}{\Delta t}\log\left(\frac{\text{Cov}(X_{t+\Delta t}, X_t)}{\text{Var}(X_t)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\gamma} = -\frac{1}{\Delta t}\log\left(\frac{\text{Cov}(X_{t+\Delta t}, X_t)}{\text{Var}(X_t)}\right)
+\]</div>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <h3 id="1-key-takeaways">1. Key Takeaways<a class="headerlink" href="#1-key-takeaways" title="Permanent link">&para;</a></h3>

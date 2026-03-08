@@ -46590,24 +46590,24 @@
 <hr />
 <h2 id="the-maximal-process">The Maximal Process<a class="headerlink" href="#the-maximal-process" title="Permanent link">&para;</a></h2>
 <p>For a stochastic process <span class="arithmatex">\(X = \{X_t\}_{t \ge 0}\)</span>, define:</p>
-<p>$$</p>
-<p>X_t^* := \sup_{0 \le s \le t} X_s \quad \text{(running maximum)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>|X|<em 0="0" _le="\le" s="s" t="t">t^* := \sup</em>} |X_s| \quad \text{(running absolute maximum)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t^* := \sup_{0 \le s \le t} X_s \quad \text{(running maximum)}
+\]</div>
+<div class="arithmatex">\[
+|X|_t^* := \sup_{0 \le s \le t} |X_s| \quad \text{(running absolute maximum)}
+\]</div>
 <p>These are increasing processes. The key question: how do we relate <span class="arithmatex">\(\mathbb{E}[(X_t^*)^p]\)</span> to <span class="arithmatex">\(\mathbb{E}[|X_t|^p]\)</span>?</p>
 <p>For general processes, there is no control: the maximum could be arbitrarily larger than any single value. But martingales are special.</p>
 <hr />
 <h2 id="doobs-lp-maximal-inequality">Doob's L^p Maximal Inequality<a class="headerlink" href="#doobs-lp-maximal-inequality" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Doob's <span class="arithmatex">\(L^p\)</span> Maximal Inequality)</strong>: Let <span class="arithmatex">\(\{M_t\}_{0 \le t \le T}\)</span> be a right-continuous martingale (or nonnegative submartingale). Then for <span class="arithmatex">\(p &gt; 1\)</span>:</p>
-<p>$$</p>
-<p>\boxed{\left| M_T^* \right|<em L_p="L^p">{L^p} \le \frac{p}{p-1} |M_T|</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\left\| M_T^* \right\|_{L^p} \le \frac{p}{p-1} \|M_T\|_{L^p}}
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{0 \le t \le T} |M_t|^p\right] \le \left(\frac{p}{p-1}\right)^p \mathbb{E}[|M_T|^p]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{0 \le t \le T} |M_t|^p\right] \le \left(\frac{p}{p-1}\right)^p \mathbb{E}[|M_T|^p]
+\]</div>
 <p><strong>The constant</strong>: The factor <span class="arithmatex">\(\frac{p}{p-1}\)</span> is sharp—it cannot be improved in general. As <span class="arithmatex">\(p \to 1^+\)</span>, the constant blows up, reflecting that the <span class="arithmatex">\(L^1\)</span> case requires different treatment.</p>
 <table>
 <thead>
@@ -46645,113 +46645,113 @@
 <p>The proof proceeds in two steps:</p>
 <h3 id="step-1-doobs-l1-maximal-inequality-weak-form">Step 1: Doob's L¹ Maximal Inequality (Weak Form)<a class="headerlink" href="#step-1-doobs-l1-maximal-inequality-weak-form" title="Permanent link">&para;</a></h3>
 <p><strong>Lemma</strong>: For a nonnegative submartingale <span class="arithmatex">\(\{X_t\}\)</span> and any <span class="arithmatex">\(\lambda &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\boxed{\lambda \cdot \mathbb{P}(X_T^<em> \ge \lambda) \le \mathbb{E}[X_T \mathbf{1}_{{X_T^</em> \ge \lambda}}]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\lambda \cdot \mathbb{P}(X_T^* \ge \lambda) \le \mathbb{E}[X_T \mathbf{1}_{\{X_T^* \ge \lambda\}}]}
+\]</div>
 <p><strong>Proof</strong>: Define the stopping time <span class="arithmatex">\(\tau = \inf\{t \ge 0 : X_t \ge \lambda\} \wedge T\)</span>. On the event <span class="arithmatex">\(\{X_T^* \ge \lambda\}\)</span>, we have <span class="arithmatex">\(X_\tau \ge \lambda\)</span>.</p>
 <p>By the optional sampling theorem for submartingales (with bounded stopping times):</p>
-<p>$$</p>
-<p>\mathbb{E}[X_T \mid \mathcal{F}<em>\tau] \ge X</em>\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_T \mid \mathcal{F}_\tau] \ge X_\tau
+\]</div>
 <p>Taking expectations and using <span class="arithmatex">\(X_\tau \ge \lambda\)</span> on <span class="arithmatex">\(\{X_T^* \ge \lambda\}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_T \mathbf{1}_{{X_T^<em> \ge \lambda}}] \ge \mathbb{E}[X_\tau \mathbf{1}_{{X_T^</em> \ge \lambda}}] \ge \lambda \cdot \mathbb{P}(X_T^* \ge \lambda) \quad \square</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_T \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \mathbb{E}[X_\tau \mathbf{1}_{\{X_T^* \ge \lambda\}}] \ge \lambda \cdot \mathbb{P}(X_T^* \ge \lambda) \quad \square
+\]</div>
 <h3 id="step-2-from-weak-l1-to-strong-lp">Step 2: From Weak L¹ to Strong L^p<a class="headerlink" href="#step-2-from-weak-l1-to-strong-lp" title="Permanent link">&para;</a></h3>
 <p>Using the layer cake formula and the weak inequality:</p>
-<p>$$</p>
-<p>\mathbb{E}[(X_T^<em>)^p] = p \int_0^\infty \lambda^{p-1} \mathbb{P}(X_T^</em> \ge \lambda) \, d\lambda \le p \int_0^\infty \lambda^{p-2} \mathbb{E}[X_T \mathbf{1}_{{X_T^* \ge \lambda}}] \, d\lambda</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(X_T^*)^p] = p \int_0^\infty \lambda^{p-1} \mathbb{P}(X_T^* \ge \lambda) \, d\lambda \le p \int_0^\infty \lambda^{p-2} \mathbb{E}[X_T \mathbf{1}_{\{X_T^* \ge \lambda\}}] \, d\lambda
+\]</div>
 <p>Applying Fubini's theorem and integrating:</p>
-<p>$$</p>
-<p>= p \mathbb{E}\left[X_T \int_0^{X_T^<em>} \lambda^{p-2} \, d\lambda\right] = \frac{p}{p-1} \mathbb{E}[X_T (X_T^</em>)^{p-1}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+= p \mathbb{E}\left[X_T \int_0^{X_T^*} \lambda^{p-2} \, d\lambda\right] = \frac{p}{p-1} \mathbb{E}[X_T (X_T^*)^{p-1}]
+\]</div>
 <p>By Hölder's inequality with exponents <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(\frac{p}{p-1}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[X_T (X_T^<em>)^{p-1}] \le |X_T|_{L^p} \cdot |(X_T^</em>)^{p-1}|<em L_p="L^p">{L^{p/(p-1)}} = |X_T|</em>} \cdot |X_T^*|_{L^p}^{p-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_T (X_T^*)^{p-1}] \le \|X_T\|_{L^p} \cdot \|(X_T^*)^{p-1}\|_{L^{p/(p-1)}} = \|X_T\|_{L^p} \cdot \|X_T^*\|_{L^p}^{p-1}
+\]</div>
 <p>Combining:</p>
-<p>$$</p>
-<p>|X_T^<em>|<em L_p="L^p">{L^p}^p \le \frac{p}{p-1} |X_T|</em> \cdot |X_T^</em>|_{L^p}^{p-1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|X_T^*\|_{L^p}^p \le \frac{p}{p-1} \|X_T\|_{L^p} \cdot \|X_T^*\|_{L^p}^{p-1}
+\]</div>
 <p>Dividing by <span class="arithmatex">\(\|X_T^*\|_{L^p}^{p-1}\)</span> (assuming it's positive):</p>
-<p>$$</p>
-<p>|X_T^*|<em L_p="L^p">{L^p} \le \frac{p}{p-1} |X_T|</em> \quad \square</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|X_T^*\|_{L^p} \le \frac{p}{p-1} \|X_T\|_{L^p} \quad \square
+\]</div>
 <hr />
 <h2 id="doobs-l1-inequality">Doob's L¹ Inequality<a class="headerlink" href="#doobs-l1-inequality" title="Permanent link">&para;</a></h2>
 <p>The case <span class="arithmatex">\(p = 1\)</span> requires separate treatment since <span class="arithmatex">\(\frac{p}{p-1} \to \infty\)</span> as <span class="arithmatex">\(p \to 1\)</span>.</p>
 <p><strong>Theorem (Doob's <span class="arithmatex">\(L^1\)</span> Maximal Inequality)</strong>: For a martingale <span class="arithmatex">\(\{M_t\}\)</span>:</p>
-<p>$$</p>
-<p>\boxed{\mathbb{E}[M_T^*] \le \frac{e}{e-1} \mathbb{E}[|M_T| \log^+ |M_T|] + \frac{e}{e-1}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}[M_T^*] \le \frac{e}{e-1} \mathbb{E}[|M_T| \log^+ |M_T|] + \frac{e}{e-1}}
+\]</div>
 <p>where <span class="arithmatex">\(\log^+ x = \max(\log x, 0)\)</span>.</p>
 <p>Alternatively, a simpler but weaker bound:</p>
-<p>$$</p>
-<p>\mathbb{P}(M_T^* \ge \lambda) \le \frac{\mathbb{E}[|M_T|]}{\lambda}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(M_T^* \ge \lambda) \le \frac{\mathbb{E}[|M_T|]}{\lambda}
+\]</div>
 <p>This is just Markov's inequality applied via the <span class="arithmatex">\(L^1\)</span> weak inequality.</p>
 <hr />
 <h2 id="application-brownian-motion">Application: Brownian Motion<a class="headerlink" href="#application-brownian-motion" title="Permanent link">&para;</a></h2>
 <p><strong>Example</strong>: For Brownian motion <span class="arithmatex">\(W_t\)</span> on <span class="arithmatex">\([0, T]\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{0 \le t \le T} |W_t|^2\right] \le 4 \mathbb{E}[W_T^2] = 4T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{0 \le t \le T} |W_t|^2\right] \le 4 \mathbb{E}[W_T^2] = 4T
+\]</div>
 <p>More precisely, using <span class="arithmatex">\(p = 2\)</span> in Doob's inequality:</p>
-<p>$$</p>
-<p>\left|\sup_{0 \le t \le T} |W_t|\right|<em L_2="L^2">{L^2} \le 2 |W_T|</em>} = 2\sqrt{T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left\|\sup_{0 \le t \le T} |W_t|\right\|_{L^2} \le 2 \|W_T\|_{L^2} = 2\sqrt{T}
+\]</div>
 <p><strong>Tail bound</strong>: For any <span class="arithmatex">\(a &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}\left(\sup_{0 \le t \le T} W_t \ge a\right) \le \frac{\mathbb{E}[W_T^+ \mathbf{1}_{{W_T^* \ge a}}]}{a}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\left(\sup_{0 \le t \le T} W_t \ge a\right) \le \frac{\mathbb{E}[W_T^+ \mathbf{1}_{\{W_T^* \ge a\}}]}{a}
+\]</div>
 <p>Using the reflection principle (which gives the exact distribution), one can show:</p>
-<p>$$</p>
-<p>\mathbb{P}\left(\sup_{0 \le t \le T} W_t \ge a\right) = 2\mathbb{P}(W_T \ge a) = 2\Phi\left(-\frac{a}{\sqrt{T}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\left(\sup_{0 \le t \le T} W_t \ge a\right) = 2\mathbb{P}(W_T \ge a) = 2\Phi\left(-\frac{a}{\sqrt{T}}\right)
+\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> is the standard normal CDF. Doob's inequality provides a general upper bound; the reflection principle gives the exact answer for Brownian motion.</p>
 <hr />
 <h2 id="the-burkholder-davis-gundy-inequality">The Burkholder-Davis-Gundy Inequality<a class="headerlink" href="#the-burkholder-davis-gundy-inequality" title="Permanent link">&para;</a></h2>
 <p>Doob's inequality bounds the maximum in terms of the terminal value. The <strong>Burkholder-Davis-Gundy (BDG) inequality</strong> bounds it in terms of the <strong>quadratic variation</strong>.</p>
 <p><strong>Theorem (BDG)</strong>: For any continuous local martingale <span class="arithmatex">\(M\)</span> with <span class="arithmatex">\(M_0 = 0\)</span> and <span class="arithmatex">\(p &gt; 0\)</span>, there exist universal constants <span class="arithmatex">\(c_p, C_p\)</span> such that:</p>
-<p>$$</p>
-<p>\boxed{c_p \mathbb{E}[[M]_T^{p/2}] \le \mathbb{E}[(M_T^*)^p] \le C_p \mathbb{E}[[M]_T^{p/2}]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{c_p \mathbb{E}[[M]_T^{p/2}] \le \mathbb{E}[(M_T^*)^p] \le C_p \mathbb{E}[[M]_T^{p/2}]}
+\]</div>
 <p>where <span class="arithmatex">\([M]_T\)</span> is the quadratic variation.</p>
 <p>For <span class="arithmatex">\(p = 2\)</span>, the constants are <span class="arithmatex">\(c_2 = 1\)</span> and <span class="arithmatex">\(C_2 = 4\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[[M]_T] \le \mathbb{E}[(M_T^*)^2] \le 4\mathbb{E}[[M]_T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[[M]_T] \le \mathbb{E}[(M_T^*)^2] \le 4\mathbb{E}[[M]_T]
+\]</div>
 <p><strong>Application to Itô integrals</strong>: If <span class="arithmatex">\(I_t = \int_0^t H_s \, dW_s\)</span>, then <span class="arithmatex">\([I]_t = \int_0^t H_s^2 \, ds\)</span>, giving:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{0 \le t \le T} \left|\int_0^t H_s \, dW_s\right|^2\right] \le 4\mathbb{E}\left[\int_0^T H_s^2 \, ds\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{0 \le t \le T} \left|\int_0^t H_s \, dW_s\right|^2\right] \le 4\mathbb{E}\left[\int_0^T H_s^2 \, ds\right]
+\]</div>
 <hr />
 <h2 id="applications-in-stochastic-analysis">Applications in Stochastic Analysis<a class="headerlink" href="#applications-in-stochastic-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="1-existence-and-uniqueness-of-sdes">1. Existence and Uniqueness of SDEs<a class="headerlink" href="#1-existence-and-uniqueness-of-sdes" title="Permanent link">&para;</a></h3>
 <p>In proving existence of solutions to stochastic differential equations, one uses Doob's inequality to control the maximum of Picard iterations:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{0 \le t \le T} |X_t^{(n+1)} - X_t^{(n)}|^2\right] \le C \cdot \mathbb{E}\left[\int_0^T |X_s^{(n)} - X_s^{(n-1)}|^2 \, ds\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{0 \le t \le T} |X_t^{(n+1)} - X_t^{(n)}|^2\right] \le C \cdot \mathbb{E}\left[\int_0^T |X_s^{(n)} - X_s^{(n-1)}|^2 \, ds\right]
+\]</div>
 <p>This leads to Gronwall-type arguments establishing convergence.</p>
 <h3 id="2-convergence-of-martingales">2. Convergence of Martingales<a class="headerlink" href="#2-convergence-of-martingales" title="Permanent link">&para;</a></h3>
 <p>Doob's inequality implies that <span class="arithmatex">\(L^p\)</span>-bounded martingales with <span class="arithmatex">\(p &gt; 1\)</span> converge almost surely. If <span class="arithmatex">\(\sup_n \mathbb{E}[|M_n|^p] &lt; \infty\)</span>, then:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}[|M_n|^p] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}[|M_n|^p] &lt; \infty
+\]</div>
 <p>By the monotone convergence theorem for the supremum, <span class="arithmatex">\(M_n\)</span> converges a.s.</p>
 <h3 id="3-concentration-inequalities">3. Concentration Inequalities<a class="headerlink" href="#3-concentration-inequalities" title="Permanent link">&para;</a></h3>
 <p>Doob's inequality underpins many concentration results. Combined with the exponential martingale:</p>
-<p>$$</p>
-<p>Z_t = \exp\left(\theta M_t - \frac{\theta^2}{2}[M]_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \exp\left(\theta M_t - \frac{\theta^2}{2}[M]_t\right)
+\]</div>
 <p>one obtains exponential tail bounds for martingales.</p>
 <hr />
 <h2 id="discrete-time-version">Discrete-Time Version<a class="headerlink" href="#discrete-time-version" title="Permanent link">&para;</a></h2>
 <p>For discrete-time martingales <span class="arithmatex">\((M_n)_{n=0}^N\)</span>, Doob's inequality takes the form:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\max_{0 \le n \le N} |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \mathbb{E}[|M_N|^p]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\max_{0 \le n \le N} |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \mathbb{E}[|M_N|^p]
+\]</div>
 <p>The proof is essentially identical, using the optional sampling theorem for bounded stopping times.</p>
 <hr />
 <h2 id="comparison-with-other-inequalities">Comparison with Other Inequalities<a class="headerlink" href="#comparison-with-other-inequalities" title="Permanent link">&para;</a></h2>
@@ -46794,9 +46794,9 @@
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Doob's maximal inequality is one of the most powerful tools in martingale theory:</p>
-<p>$$</p>
-<p>\boxed{\left|\sup_{0 \le t \le T} |M_t|\right|<em L_p="L^p">{L^p} \le \frac{p}{p-1} |M_T|</em>}, \quad p &gt; 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\left\|\sup_{0 \le t \le T} |M_t|\right\|_{L^p} \le \frac{p}{p-1} \|M_T\|_{L^p}, \quad p &gt; 1}
+\]</div>
 <p><strong>Key insights</strong>:</p>
 <ol>
 <li>The maximum of a martingale is controlled by its terminal value—with explicit constants.</li>

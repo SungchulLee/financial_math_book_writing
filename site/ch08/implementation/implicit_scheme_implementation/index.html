@@ -46300,17 +46300,17 @@
 <hr />
 <h2 id="the-discretized-equation">The Discretized Equation<a class="headerlink" href="#the-discretized-equation" title="Permanent link">&para;</a></h2>
 <p>Substituting into the Black-Scholes PDE and rearranging:</p>
-<p>$$</p>
-<p>a_i V_{i-1}^{n+1} + b_i V_i^{n+1} + c_i V_{i+1}^{n+1} = V_i^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a_i V_{i-1}^{n+1} + b_i V_i^{n+1} + c_i V_{i+1}^{n+1} = V_i^n
+\]</div>
 <p>with coefficients:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 a_i &amp;= -\frac{\Delta t}{2} \left( \sigma^2 i^2 - r i \right) \\
 b_i &amp;= 1 + \Delta t \left( \sigma^2 i^2 + r \right) \\
 c_i &amp;= -\frac{\Delta t}{2} \left( \sigma^2 i^2 + r i \right)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>This forms a <strong>tridiagonal linear system</strong> solved at each time step.</p>
 <hr />
 <h2 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h2>

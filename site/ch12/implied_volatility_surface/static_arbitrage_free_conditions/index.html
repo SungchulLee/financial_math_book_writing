@@ -47294,23 +47294,23 @@
 - Long 1 call at strike <span class="arithmatex">\(K_1\)</span>
 - Short 1 call at strike <span class="arithmatex">\(K_2 &gt; K_1\)</span></p>
 <p><strong>Payoff at maturity:</strong></p>
-<p>$$</p>
-<p>V_T(S_T) = \max(S_T - K_1, 0) - \max(S_T - K_2, 0) = \begin{cases}
-0 &amp; S_T \leq K_1 \
-S_T - K_1 &amp; K_1 &lt; S_T \leq K_2 \
+<div class="arithmatex">\[
+V_T(S_T) = \max(S_T - K_1, 0) - \max(S_T - K_2, 0) = \begin{cases}
+0 &amp; S_T \leq K_1 \\
+S_T - K_1 &amp; K_1 &lt; S_T \leq K_2 \\
 K_2 - K_1 &amp; S_T &gt; K_2
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>This is non-negative for all <span class="arithmatex">\(S_T\)</span> and strictly positive when <span class="arithmatex">\(K_1 &lt; S_T \leq K_2\)</span>.</p>
 <p><strong>No-arbitrage condition:</strong></p>
-<p>$$</p>
-<p>C(K_1) - C(K_2) \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_1) - C(K_2) \geq 0
+\]</div>
 <p>with strict inequality unless <span class="arithmatex">\(K_1 = K_2\)</span>.</p>
 <p><strong>Consequence:</strong> Call prices are <strong>monotonically decreasing</strong> in strike:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} \leq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} \leq 0
+\]</div>
 <h3 id="3-butterfly-spread-arbitrage">3. Butterfly Spread Arbitrage<a class="headerlink" href="#3-butterfly-spread-arbitrage" title="Permanent link">&para;</a></h3>
 <p>Consider a <strong>butterfly spread</strong>:
 - Long 1 call at strike <span class="arithmatex">\(K_1\)</span>
@@ -47318,23 +47318,23 @@ K_2 - K_1 &amp; S_T &gt; K_2
 - Long 1 call at strike <span class="arithmatex">\(K_3\)</span></p>
 <p>For equal spacing <span class="arithmatex">\(\Delta K = K_2 - K_1 = K_3 - K_2\)</span>:</p>
 <p><strong>Payoff at maturity:</strong> Piecewise linear, tent-shaped:</p>
-<p>$$</p>
-<p>V_T(S_T) = \begin{cases}
-0 &amp; S_T \leq K_1 \
-S_T - K_1 &amp; K_1 &lt; S_T \leq K_2 \
-K_3 - S_T &amp; K_2 &lt; S_T \leq K_3 \
+<div class="arithmatex">\[
+V_T(S_T) = \begin{cases}
+0 &amp; S_T \leq K_1 \\
+S_T - K_1 &amp; K_1 &lt; S_T \leq K_2 \\
+K_3 - S_T &amp; K_2 &lt; S_T \leq K_3 \\
 0 &amp; S_T &gt; K_3
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>Non-negative everywhere.</p>
 <p><strong>No-arbitrage condition:</strong></p>
-<p>$$</p>
-<p>C(K_1) - 2C(K_2) + C(K_3) \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_1) - 2C(K_2) + C(K_3) \geq 0
+\]</div>
 <p><strong>Consequence:</strong> Call prices are <strong>convex</strong> in strike:</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} \geq 0
+\]</div>
 <h3 id="4-calendar-spread-arbitrage">4. Calendar Spread Arbitrage<a class="headerlink" href="#4-calendar-spread-arbitrage" title="Permanent link">&para;</a></h3>
 <p>Consider a <strong>calendar spread</strong>:
 - Short 1 call at strike <span class="arithmatex">\(K\)</span> maturing at <span class="arithmatex">\(T_1\)</span>
@@ -47342,67 +47342,67 @@ K_3 - S_T &amp; K_2 &lt; S_T \leq K_3 \
 <p><strong>Payoff structure:</strong> At <span class="arithmatex">\(T_1\)</span>, close short position; at <span class="arithmatex">\(T_2\)</span>, receive long position payoff.</p>
 <p>For non-dividend-paying stock:</p>
 <p><strong>No-arbitrage condition:</strong></p>
-<p>$$</p>
-<p>C(K, T_2) \geq C(K, T_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K, T_2) \geq C(K, T_1)
+\]</div>
 <p><strong>Consequence:</strong> Call prices are <strong>monotonically increasing</strong> in maturity:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial T} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial T} \geq 0
+\]</div>
 <h2 id="mathematical-formulation">Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Permanent link">&para;</a></h2>
 <h3 id="1-breeden-litzenberger-density-constraint">1. Breeden-Litzenberger Density Constraint<a class="headerlink" href="#1-breeden-litzenberger-density-constraint" title="Permanent link">&para;</a></h3>
 <p>From the Breeden-Litzenberger formula:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}
+\]</div>
 <p>where <span class="arithmatex">\(q(K)\)</span> is the risk-neutral probability density.</p>
 <p><strong>No-arbitrage requirement:</strong> <span class="arithmatex">\(q(K) \geq 0\)</span> for all <span class="arithmatex">\(K &gt; 0\)</span></p>
 <p><strong>Equivalent constraint:</strong></p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{for all } K
+\]</div>
 <p>This is the <strong>butterfly arbitrage-free condition</strong>.</p>
 <h3 id="2-normalization-probability-sums-to-one">2. Normalization: Probability Sums to One<a class="headerlink" href="#2-normalization-probability-sums-to-one" title="Permanent link">&para;</a></h3>
 <p>The density must integrate to unity:</p>
-<p>$$</p>
-<p>\int_0^\infty q(K) dK = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^\infty q(K) dK = 1
+\]</div>
 <p><strong>Verification:</strong> Using integration by parts:</p>
-<p>$$</p>
-<p>e^{rT} \int_0^\infty \frac{\partial^2 C}{\partial K^2} dK = e^{rT} \left[ \frac{\partial C}{\partial K}\bigg|_0^\infty \right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{rT} \int_0^\infty \frac{\partial^2 C}{\partial K^2} dK = e^{rT} \left[ \frac{\partial C}{\partial K}\bigg|_0^\infty \right]
+\]</div>
 <p>Boundary conditions:
 - As <span class="arithmatex">\(K \to 0\)</span>: <span class="arithmatex">\(C(K) \to S_0 e^{-qT}\)</span>, so <span class="arithmatex">\(\frac{\partial C}{\partial K} \to 0\)</span>
 - As <span class="arithmatex">\(K \to \infty\)</span>: <span class="arithmatex">\(C(K) \to 0\)</span>, so <span class="arithmatex">\(\frac{\partial C}{\partial K} \to -e^{-rT}\)</span></p>
 <p>Thus:</p>
-<p>$$</p>
-<p>e^{rT}(0 - (-e^{-rT})) = 1 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{rT}(0 - (-e^{-rT})) = 1 \quad \checkmark
+\]</div>
 <h2 id="constraints-in-total-variance-space">Constraints in Total Variance Space<a class="headerlink" href="#constraints-in-total-variance-space" title="Permanent link">&para;</a></h2>
 <h3 id="1-total-variance-definition">1. Total Variance Definition<a class="headerlink" href="#1-total-variance-definition" title="Permanent link">&para;</a></h3>
 <p>Define <strong>total variance</strong>:</p>
-<p>$$</p>
-<p>w(K, T) := \sigma_{\text{IV}}^2(K, T) \cdot T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(K, T) := \sigma_{\text{IV}}^2(K, T) \cdot T
+\]</div>
 <p>Using log-moneyness <span class="arithmatex">\(y = \ln(K/F)\)</span> where <span class="arithmatex">\(F = S_0 e^{(r-q)T}\)</span> is the forward:</p>
-<p>$$</p>
-<p>w(y, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(y, T)
+\]</div>
 <h3 id="2-durrlemans-complete-characterization">2. Durrleman's Complete Characterization<a class="headerlink" href="#2-durrlemans-complete-characterization" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.3.1</strong> (Durrleman, 2010)<br />
 An implied volatility surface <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span> is arbitrage-free if and only if:</p>
 <ol>
 <li><strong>Butterfly condition:</strong> For each <span class="arithmatex">\(T\)</span>,</li>
 </ol>
-<p>$$</p>
-<p>g(y, T) := \left(1 - \frac{y w_y(y, T)}{2w(y, T)}\right)^2 - \frac{w_y(y, T)^2}{4}\left(\frac{1}{w(y, T)} + \frac{1}{4}\right) + \frac{w_{yy}(y, T)}{2} \geq 0</p>
-<p>$$</p>
+<p>$$
+   g(y, T) := \left(1 - \frac{y w_y(y, T)}{2w(y, T)}\right)^2 - \frac{w_y(y, T)^2}{4}\left(\frac{1}{w(y, T)} + \frac{1}{4}\right) + \frac{w_{yy}(y, T)}{2} \geq 0
+   $$</p>
 <ol>
 <li><strong>Calendar condition:</strong> For each <span class="arithmatex">\(K\)</span> (or <span class="arithmatex">\(y\)</span>),</li>
 </ol>
-<p>$$</p>
-<p>w_T(y, T) \geq 0</p>
-<p>$$</p>
+<p>$$
+   w_T(y, T) \geq 0
+   $$</p>
 <p>where subscripts denote partial derivatives: <span class="arithmatex">\(w_y = \frac{\partial w}{\partial y}\)</span>, etc.</p>
 <p><strong>Proof sketch:</strong> 
 - Butterfly condition ensures <span class="arithmatex">\(\frac{\partial^2 C}{\partial K^2} \geq 0\)</span>
@@ -47410,63 +47410,63 @@ An implied volatility surface <span class="arithmatex">\(\sigma_{\text{IV}}(K, T
 - Together, these guarantee a valid probability measure exists</p>
 <h3 id="3-gatherals-simplified-condition">3. Gatheral's Simplified Condition<a class="headerlink" href="#3-gatherals-simplified-condition" title="Permanent link">&para;</a></h3>
 <p>For <strong>fixed maturity</strong> <span class="arithmatex">\(T\)</span>, a sufficient (but not necessary) condition:</p>
-<p>$$</p>
-<p>\frac{\partial^2 w}{\partial y^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 w}{\partial y^2} \geq 0
+\]</div>
 <p>i.e., total variance is convex in log-moneyness.</p>
 <p><strong>Advantage:</strong> Simpler to check than Durrleman's condition</p>
 <p><strong>Disadvantage:</strong> Overly restrictive (many arbitrage-free surfaces violate this)</p>
 <h2 id="constraints-on-implied-volatility-derivatives">Constraints on Implied Volatility Derivatives<a class="headerlink" href="#constraints-on-implied-volatility-derivatives" title="Permanent link">&para;</a></h2>
 <h3 id="1-bounds-on-skew">1. Bounds on Skew<a class="headerlink" href="#1-bounds-on-skew" title="Permanent link">&para;</a></h3>
 <p>The <strong>slope of implied volatility</strong> in log-moneyness coordinates:</p>
-<p>$$</p>
-<p>\mathcal{S}(y, T) := \frac{\partial \sigma_{\text{IV}}}{\partial y}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{S}(y, T) := \frac{\partial \sigma_{\text{IV}}}{\partial y}
+\]</div>
 <p>For the surface to be arbitrage-free:</p>
 <p><strong>Proposition 4.3.1</strong> (Skew Bound)<br />
 There exists a finite bound:</p>
-<p>$$</p>
-<p>\left| \frac{\partial \sigma_{\text{IV}}}{\partial y} \right| \leq C(T, \sigma_{\text{IV}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left| \frac{\partial \sigma_{\text{IV}}}{\partial y} \right| \leq C(T, \sigma_{\text{IV}})
+\]</div>
 <p>where the bound depends on maturity and the level of IV.</p>
 <p><strong>Heuristic:</strong> Extremely steep skew (e.g., <span class="arithmatex">\(\frac{\partial \sigma_{\text{IV}}}{\partial y} = -100\)</span>) would imply unrealistic densities with most probability concentrated at a single point.</p>
 <h3 id="2-bounds-on-curvature">2. Bounds on Curvature<a class="headerlink" href="#2-bounds-on-curvature" title="Permanent link">&para;</a></h3>
 <p>The <strong>curvature of implied volatility</strong>:</p>
-<p>$$</p>
-<p>\mathcal{C}(y, T) := \frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}(y, T) := \frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2}
+\]</div>
 <p><strong>Proposition 4.3.2</strong> (Curvature Constraint)<br />
 For the Breeden-Litzenberger density to be non-negative:</p>
-<p>$$</p>
-<p>\frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2} \geq -\frac{f(y, \sigma_{\text{IV}}, T)}{\sigma_{\text{IV}} T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 \sigma_{\text{IV}}}{\partial y^2} \geq -\frac{f(y, \sigma_{\text{IV}}, T)}{\sigma_{\text{IV}} T}
+\]</div>
 <p>where <span class="arithmatex">\(f\)</span> is a function of the current smile level.</p>
 <p><strong>Interpretation:</strong> Negative curvature (downward-bending smile) is permitted but cannot be arbitrarily large in magnitude.</p>
 <h2 id="lees-moment-formula">Lee's Moment Formula<a class="headerlink" href="#lees-moment-formula" title="Permanent link">&para;</a></h2>
 <h3 id="1-wing-behavior-constraint">1. Wing Behavior Constraint<a class="headerlink" href="#1-wing-behavior-constraint" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.3.2</strong> (Lee, 2004)<br />
 For the risk-neutral distribution to have finite variance:</p>
-<p>$$</p>
-<p>\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) \cdot T \cdot \frac{1}{|y|} = 2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{|y| \to \infty} \sigma_{\text{IV}}^2(y, T) \cdot T \cdot \frac{1}{|y|} = 2
+\]</div>
 <p>More generally, for finite <span class="arithmatex">\(p\)</span>-th moment (<span class="arithmatex">\(p \geq 2\)</span>):</p>
-<p>$$</p>
-<p>\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} \geq \frac{2}{p}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} \geq \frac{2}{p}
+\]</div>
 <p><strong>Interpretation:</strong> The wings of the implied volatility smile cannot be too flat. As strike moves away from ATM, IV must grow approximately as <span class="arithmatex">\(\sqrt{|y|/T}\)</span> to prevent infinite variance.</p>
 <h3 id="2-left-and-right-wing-slopes">2. Left and Right Wing Slopes<a class="headerlink" href="#2-left-and-right-wing-slopes" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>left wing slope</strong>:</p>
-<p>$$</p>
-<p>p_- = \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_- = \lim_{y \to -\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
+\]</div>
 <p>and <strong>right wing slope</strong>:</p>
-<p>$$</p>
-<p>p_+ = \lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_+ = \lim_{y \to +\infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|}
+\]</div>
 <p><strong>Constraints:</strong></p>
-<p>$$</p>
-<p>0 &lt; p_- \leq 2, \quad 0 &lt; p_+ \leq 2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 &lt; p_- \leq 2, \quad 0 &lt; p_+ \leq 2
+\]</div>
 <p><strong>Symmetry:</strong> For a symmetric density, <span class="arithmatex">\(p_- = p_+ = 2\)</span>.</p>
 <p><strong>Asymmetry:</strong> Equity markets often have <span class="arithmatex">\(p_- &lt; p_+\)</span> (left tail flatter than theory predicts due to put overpricing).</p>
 <h2 id="practical-arbitrage-detection">Practical Arbitrage Detection<a class="headerlink" href="#practical-arbitrage-detection" title="Permanent link">&para;</a></h2>
@@ -47474,22 +47474,22 @@ For the risk-neutral distribution to have finite variance:</p>
 <p>Given option prices on a discrete grid <span class="arithmatex">\((K_i, T_j)\)</span>:</p>
 <p><strong>Test 1: Butterfly condition</strong></p>
 <p>For each maturity <span class="arithmatex">\(T_j\)</span> and strikes <span class="arithmatex">\(K_{i-1} &lt; K_i &lt; K_{i+1}\)</span>:</p>
-<p>$$</p>
-<p>B_i := C(K_{i-1}) - 2C(K_i) + C(K_{i+1}) \geq -\epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_i := C(K_{i-1}) - 2C(K_i) + C(K_{i+1}) \geq -\epsilon
+\]</div>
 <p>where <span class="arithmatex">\(\epsilon &gt; 0\)</span> is a small tolerance for numerical error/bid-ask spread.</p>
 <p>If <span class="arithmatex">\(B_i &lt; -\epsilon\)</span>, there is <strong>butterfly arbitrage</strong>.</p>
 <p><strong>Test 2: Calendar condition</strong></p>
 <p>For each strike <span class="arithmatex">\(K_i\)</span> and maturities <span class="arithmatex">\(T_j &lt; T_{j+1}\)</span>:</p>
-<p>$$</p>
-<p>C(K_i, T_{j+1}) - C(K_i, T_j) \geq -\epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K_i, T_{j+1}) - C(K_i, T_j) \geq -\epsilon
+\]</div>
 <p>If violated, there is <strong>calendar arbitrage</strong>.</p>
 <p><strong>Test 3: Wing behavior</strong></p>
 <p>Check that for large <span class="arithmatex">\(|y|\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T \gtrsim 2|y|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T \gtrsim 2|y|
+\]</div>
 <p>If IV is too flat in the wings, the distribution has infinite variance (pathological).</p>
 <h3 id="2-visualization-tools">2. Visualization Tools<a class="headerlink" href="#2-visualization-tools" title="Permanent link">&para;</a></h3>
 <p><strong>Density plot:</strong> Compute <span class="arithmatex">\(q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}\)</span> and verify <span class="arithmatex">\(q(K) \geq 0\)</span> everywhere.</p>
@@ -47510,39 +47510,39 @@ For the risk-neutral distribution to have finite variance:</p>
 <p><strong>Implementation:</strong> Quadratic programming with inequality constraints.</p>
 <h3 id="3-arbitrage-free-parametrizations">3. Arbitrage-Free Parametrizations<a class="headerlink" href="#3-arbitrage-free-parametrizations" title="Permanent link">&para;</a></h3>
 <p><strong>SVI (Stochastic Volatility Inspired):</strong></p>
-<p>$$</p>
-<p>w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+w(y) = a + b\left(\rho(y - m) + \sqrt{(y - m)^2 + \sigma^2}\right)
+\]</div>
 <p><strong>Arbitrage-free conditions:</strong></p>
-<p>$$</p>
-<p>b \geq 0, \quad |b\rho| &lt; 4a, \quad b(1 + |\rho|) &lt; 4a, \quad a + b\sigma\sqrt{1 - \rho^2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+b \geq 0, \quad |b\rho| &lt; 4a, \quad b(1 + |\rho|) &lt; 4a, \quad a + b\sigma\sqrt{1 - \rho^2} \geq 0
+\]</div>
 <p>Fit parameters <span class="arithmatex">\((a, b, \rho, m, \sigma)\)</span> to market data with these constraints.</p>
 <p><strong>SSVI (Surface SVI):</strong> Extends SVI across maturities with joint no-arbitrage constraints.</p>
 <h3 id="4-extrapolation-to-wings">4. Extrapolation to Wings<a class="headerlink" href="#4-extrapolation-to-wings" title="Permanent link">&para;</a></h3>
 <p><strong>Problem:</strong> Options trade only in a limited strike range; need to extrapolate to <span class="arithmatex">\(K \to 0\)</span> and <span class="arithmatex">\(K \to \infty\)</span> for density integration.</p>
 <p><strong>Power law tails:</strong></p>
 <p>For large <span class="arithmatex">\(|y|\)</span>, use:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(y, T) T \sim 2|y| + c</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(y, T) T \sim 2|y| + c
+\]</div>
 <p>where <span class="arithmatex">\(c\)</span> is calibrated to the outermost observed strikes.</p>
 <p><strong>Exponential decay (alternative):</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y) \sim \sigma_\infty + A e^{-\lambda |y|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y) \sim \sigma_\infty + A e^{-\lambda |y|}
+\]</div>
 <p><strong>Recommendation:</strong> Use power law (Lee's formula) for consistency with finite variance.</p>
 <h2 id="higher-order-constraints">Higher-Order Constraints<a class="headerlink" href="#higher-order-constraints" title="Permanent link">&para;</a></h2>
 <h3 id="1-smoothness-of-density">1. Smoothness of Density<a class="headerlink" href="#1-smoothness-of-density" title="Permanent link">&para;</a></h3>
 <p>While <span class="arithmatex">\(q(K) \geq 0\)</span> is necessary, real densities are smooth (continuous derivatives). </p>
 <p><strong>Heuristic constraint:</strong></p>
-<p>$$</p>
-<p>\frac{\partial q}{\partial K} \text{ bounded}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial q}{\partial K} \text{ bounded}
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>\frac{\partial^3 C}{\partial K^3} \text{ bounded}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^3 C}{\partial K^3} \text{ bounded}
+\]</div>
 <p><strong>Implication:</strong> The call price surface should be <span class="arithmatex">\(C^3\)</span> smooth, not just <span class="arithmatex">\(C^2\)</span>.</p>
 <h3 id="2-higher-butterflies">2. Higher Butterflies<a class="headerlink" href="#2-higher-butterflies" title="Permanent link">&para;</a></h3>
 <p>Consider a <strong>condor spread</strong> (4 strikes):
@@ -47600,29 +47600,29 @@ For the risk-neutral distribution to have finite variance:</p>
 <h2 id="summary-of-arbitrage-free-conditions">Summary of Arbitrage-Free Conditions<a class="headerlink" href="#summary-of-arbitrage-free-conditions" title="Permanent link">&para;</a></h2>
 <p>An implied volatility surface is arbitrage-free if and only if:</p>
 <h3 id="1-pointwise-bounds">1. <strong>Pointwise bounds:</strong><a class="headerlink" href="#1-pointwise-bounds" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\max(S e^{-qT} - K e^{-rT}, 0) &lt; C(K, T) &lt; S e^{-qT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max(S e^{-qT} - K e^{-rT}, 0) &lt; C(K, T) &lt; S e^{-qT}
+\]</div>
 <h3 id="2-monotonicity-in-strike">2. <strong>Monotonicity in strike:</strong><a class="headerlink" href="#2-monotonicity-in-strike" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial C}{\partial K} \leq 0 \quad \text{(call spreads)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial K} \leq 0 \quad \text{(call spreads)}
+\]</div>
 <h3 id="3-convexity-in-strike">3. <strong>Convexity in strike:</strong><a class="headerlink" href="#3-convexity-in-strike" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{(butterflies, Breeden-Litzenberger)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2} \geq 0 \quad \text{(butterflies, Breeden-Litzenberger)}
+\]</div>
 <h3 id="4-monotonicity-in-maturity">4. <strong>Monotonicity in maturity:</strong><a class="headerlink" href="#4-monotonicity-in-maturity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial C}{\partial T} \geq 0 \quad \text{(calendar spreads)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial T} \geq 0 \quad \text{(calendar spreads)}
+\]</div>
 <h3 id="5-durrlemans-joint-condition">5. <strong>Durrleman's joint condition:</strong><a class="headerlink" href="#5-durrlemans-joint-condition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>g(y, T) = \left(1 - \frac{y w_y}{2w}\right)^2 - \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) + \frac{w_{yy}}{2} \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(y, T) = \left(1 - \frac{y w_y}{2w}\right)^2 - \frac{w_y^2}{4}\left(\frac{1}{w} + \frac{1}{4}\right) + \frac{w_{yy}}{2} \geq 0
+\]</div>
 <h3 id="6-wing-behavior-lee">6. <strong>Wing behavior (Lee):</strong><a class="headerlink" href="#6-wing-behavior-lee" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 \quad \text{(finite variance)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{|y| \to \infty} \frac{\sigma_{\text{IV}}^2(y, T) T}{|y|} = 2 \quad \text{(finite variance)}
+\]</div>
 <h3 id="7-practical-workflow">7. <strong>Practical workflow:</strong><a class="headerlink" href="#7-practical-workflow" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Collect market data:</strong> Option prices or implied volatilities</li>

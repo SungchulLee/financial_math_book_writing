@@ -47264,13 +47264,13 @@
 <h2 id="the-black-scholes-pde">The Black-Scholes PDE<a class="headerlink" href="#the-black-scholes-pde" title="Permanent link">&para;</a></h2>
 <h3 id="1-standard-form">1. <strong>Standard Form</strong><a class="headerlink" href="#1-standard-form" title="Permanent link">&para;</a></h3>
 <p>For a European option value <span class="arithmatex">\(V(S,t)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+\]</div>
 <p><strong>Terminal condition</strong> (European call):</p>
-<p>$$</p>
-<p>V(S,T) = \max(S-K, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,T) = \max(S-K, 0)
+\]</div>
 <p><strong>Challenge</strong>: The PDE has:
 - Variable coefficients (<span class="arithmatex">\(S^2\)</span> and <span class="arithmatex">\(S\)</span> terms)
 - A zero-order term (<span class="arithmatex">\(-rV\)</span>)
@@ -47280,108 +47280,108 @@
 <h2 id="change-of-variables">Change of Variables<a class="headerlink" href="#change-of-variables" title="Permanent link">&para;</a></h2>
 <p>We apply three transformations to reduce the BS PDE to canonical heat equation form.</p>
 <h3 id="1-transformation-1-time-to-maturity">1. <strong>Transformation 1: Time to Maturity</strong><a class="headerlink" href="#1-transformation-1-time-to-maturity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\tau = T - t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\tau = T - t}
+\]</div>
 <p><strong>Meaning</strong>: Time remaining until option expiration.</p>
 <p><strong>Example</strong>: If current time is <span class="arithmatex">\(t = 0.5\)</span> years and expiration is <span class="arithmatex">\(T = 1\)</span> year:</p>
-<p>$$</p>
-<p>\tau = 1 - 0.5 = 0.5 \text{ years (6 months remaining)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = 1 - 0.5 = 0.5 \text{ years (6 months remaining)}
+\]</div>
 <p><strong>Effect</strong>: Converts terminal condition into initial condition and reverses time direction:</p>
-<p>$$</p>
-<p>\frac{\partial}{\partial t} = -\frac{\partial}{\partial \tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial t} = -\frac{\partial}{\partial \tau}
+\]</div>
 <h3 id="2-transformation-2-expected-log-price">2. <strong>Transformation 2: Expected Log-Price</strong><a class="headerlink" href="#2-transformation-2-expected-log-price" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{x = \log S + \left(r - \frac{1}{2}\sigma^2\right)\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{x = \log S + \left(r - \frac{1}{2}\sigma^2\right)\tau}
+\]</div>
 <p><strong>Meaning</strong>: This is the <strong>expected log-price</strong> at maturity under the risk-neutral measure.</p>
 <p><strong>Derivation</strong>: Under geometric Brownian motion:</p>
-<p>$$</p>
-<p>S_T = S_t \exp\left(\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma W_\tau\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_t \exp\left(\left(r - \frac{1}{2}\sigma^2\right)(T-t) + \sigma W_\tau\right)
+\]</div>
 <p>Taking logarithm and expectation:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[\log S_T | S_t] = \log S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau = x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[\log S_T | S_t] = \log S_t + \left(r - \frac{1}{2}\sigma^2\right)\tau = x
+\]</div>
 <p><strong>Example</strong>: For <span class="arithmatex">\(S = 100\)</span>, <span class="arithmatex">\(r = 5\%\)</span>, <span class="arithmatex">\(\sigma = 20\%\)</span>, <span class="arithmatex">\(\tau = 0.5\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 x &amp;= \log 100 + \left(0.05 - \frac{1}{2}(0.2)^2\right) \cdot 0.5 \\
 &amp;= 4.605 + (0.05 - 0.02) \cdot 0.5 \\
 &amp;= 4.605 + 0.015 = 4.620
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Effect</strong>: Centers the process by removing drift, converting first-order terms to second-order.</p>
 <h3 id="3-transformation-3-forward-option-value">3. <strong>Transformation 3: Forward Option Value</strong><a class="headerlink" href="#3-transformation-3-forward-option-value" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{F(x,\tau) = V(S,t) e^{r\tau}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{F(x,\tau) = V(S,t) e^{r\tau}}
+\]</div>
 <p><strong>Meaning</strong>: Option value <strong>compounded forward</strong> to expiration at the risk-free rate.</p>
 <p><strong>Intuition</strong>: Under risk-neutral pricing:</p>
-<p>$$</p>
-<p>V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S,t) = e^{-r\tau}\mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
+\]</div>
 <p>so</p>
-<p>$$</p>
-<p>F(x,\tau) = \mathbb{E}^{\mathbb{Q}}[\text{Payoff}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = \mathbb{E}^{\mathbb{Q}}[\text{Payoff}]
+\]</div>
 <p>is the <strong>undiscounted expected payoff</strong>.</p>
 <p><strong>Example</strong>: If current option value is <span class="arithmatex">\(V = 10\)</span>, <span class="arithmatex">\(r = 5\%\)</span>, <span class="arithmatex">\(\tau = 0.5\)</span>:</p>
-<p>$$</p>
-<p>F = 10 \cdot e^{0.05 \times 0.5} = 10 \cdot e^{0.025} \approx 10.25</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F = 10 \cdot e^{0.05 \times 0.5} = 10 \cdot e^{0.025} \approx 10.25
+\]</div>
 <p><strong>Effect</strong>: Eliminates the <span class="arithmatex">\(-rV\)</span> term from the PDE.</p>
 <hr />
 <h2 id="transformation-of-derivatives">Transformation of Derivatives<a class="headerlink" href="#transformation-of-derivatives" title="Permanent link">&para;</a></h2>
 <h3 id="1-time-derivative">1. <strong>Time Derivative</strong><a class="headerlink" href="#1-time-derivative" title="Permanent link">&para;</a></h3>
 <p>Using chain rule:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial V}{\partial \tau}\frac{\partial \tau}{\partial t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial V}{\partial \tau}\frac{\partial \tau}{\partial t}
+\]</div>
 <p>Since:
 - <span class="arithmatex">\(\frac{\partial x}{\partial t} = -\left(r - \frac{1}{2}\sigma^2\right)\)</span> (from definition of <span class="arithmatex">\(x\)</span>)
 - <span class="arithmatex">\(\frac{\partial \tau}{\partial t} = -1\)</span></p>
 <p>We get:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} = -\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{\partial V}{\partial \tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} = -\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{\partial V}{\partial \tau}
+\]</div>
 <h3 id="2-first-spatial-derivative">2. <strong>First Spatial Derivative</strong><a class="headerlink" href="#2-first-spatial-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial V}{\partial S} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial S} = \frac{\partial V}{\partial x} \cdot \frac{1}{S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial S} = \frac{\partial V}{\partial x}\frac{\partial x}{\partial S} = \frac{\partial V}{\partial x} \cdot \frac{1}{S}
+\]</div>
 <h3 id="3-second-spatial-derivative">3. <strong>Second Spatial Derivative</strong><a class="headerlink" href="#3-second-spatial-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \frac{\partial^2 V}{\partial S^2} &amp;= \frac{\partial}{\partial S}\left(\frac{1}{S}\frac{\partial V}{\partial x}\right) \\
 &amp;= \frac{\partial}{\partial x}\left(\frac{1}{S}\frac{\partial V}{\partial x}\right)\frac{\partial x}{\partial S} \\
 &amp;= \frac{1}{S}\left[\frac{\partial^2 V}{\partial x^2}\frac{1}{S} + \frac{\partial V}{\partial x}\frac{\partial}{\partial x}\left(\frac{1}{S}\right)\right]
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Key observation</strong>: Since <span class="arithmatex">\(S = e^{x - (r-\frac{1}{2}\sigma^2)\tau}\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial}{\partial x}\left(\frac{1}{S}\right) = -\frac{1}{S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial x}\left(\frac{1}{S}\right) = -\frac{1}{S}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\frac{\partial^2 V}{\partial S^2} = \frac{1}{S^2}\left[\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial^2 V}{\partial S^2} = \frac{1}{S^2}\left[\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right]
+\]</div>
 <hr />
 <h2 id="derivation-of-the-heat-equation">Derivation of the Heat Equation<a class="headerlink" href="#derivation-of-the-heat-equation" title="Permanent link">&para;</a></h2>
 <h3 id="1-step-1-substitute-into-bs-pde">1. <strong>Step 1: Substitute into BS PDE</strong><a class="headerlink" href="#1-step-1-substitute-into-bs-pde" title="Permanent link">&para;</a></h3>
 <p>Starting with:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+\]</div>
 <p>Substitute transformed derivatives:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 &amp;-\left(r - \frac{1}{2}\sigma^2\right)\frac{\partial V}{\partial x} - \frac{\partial V}{\partial \tau} \\
 &amp;\quad + \frac{1}{2}\sigma^2\left[\frac{\partial^2 V}{\partial x^2} - \frac{\partial V}{\partial x}\right] \\
 &amp;\quad + r\frac{\partial V}{\partial x} - rV = 0
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <h3 id="2-step-2-collect-terms">2. <strong>Step 2: Collect Terms</strong><a class="headerlink" href="#2-step-2-collect-terms" title="Permanent link">&para;</a></h3>
 <p>Grouping by derivative order:</p>
 <ul>
@@ -47390,29 +47390,29 @@ x &amp;= \log 100 + \left(0.05 - \frac{1}{2}(0.2)^2\right) \cdot 0.5 \\
 <li><strong>Zero-order</strong>: <span class="arithmatex">\(-\frac{\partial V}{\partial \tau} - rV = 0\)</span></li>
 </ul>
 <p>Result:</p>
-<p>$$</p>
-<p>-\frac{\partial V}{\partial \tau} + \frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\frac{\partial V}{\partial \tau} + \frac{1}{2}\sigma^2\frac{\partial^2 V}{\partial x^2} - rV = 0
+\]</div>
 <h3 id="3-step-3-eliminate-rv-term">3. <strong>Step 3: Eliminate -rV Term</strong><a class="headerlink" href="#3-step-3-eliminate-rv-term" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(V = Fe^{-r\tau}\)</span>, compute derivatives:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial \tau} = \frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 V}{\partial x^2} = \frac{\partial^2 F}{\partial x^2}e^{-r\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial \tau} = \frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 V}{\partial x^2} = \frac{\partial^2 F}{\partial x^2}e^{-r\tau}
+\]</div>
 <p>Substitute into the PDE:</p>
-<p>$$</p>
-<p>-\left[\frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}\right] + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}e^{-r\tau} - rFe^{-r\tau} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\left[\frac{\partial F}{\partial \tau}e^{-r\tau} - rFe^{-r\tau}\right] + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}e^{-r\tau} - rFe^{-r\tau} = 0
+\]</div>
 <p>Divide by <span class="arithmatex">\(e^{-r\tau}\)</span>:</p>
-<p>$$</p>
-<p>-\frac{\partial F}{\partial \tau} + rF + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2} - rF = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\frac{\partial F}{\partial \tau} + rF + \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2} - rF = 0
+\]</div>
 <p>Simplify:</p>
-<p>$$</p>
-<p>\boxed{\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 F}{\partial x^2}}
+\]</div>
 <p>This is the <strong>heat equation</strong> with thermal diffusivity <span class="arithmatex">\(\kappa = \frac{1}{2}\sigma^2\)</span>.</p>
 <hr />
 <h2 id="initial-condition">Initial Condition<a class="headerlink" href="#initial-condition" title="Permanent link">&para;</a></h2>
@@ -47421,35 +47421,35 @@ x &amp;= \log 100 + \left(0.05 - \frac{1}{2}(0.2)^2\right) \cdot 0.5 \\
 - <span class="arithmatex">\(x = \log S\)</span> (since <span class="arithmatex">\(\tau = 0\)</span> in the definition of <span class="arithmatex">\(x\)</span>)
 - <span class="arithmatex">\(F(x,0) = V(S,T)e^{r \cdot 0} = V(S,T)\)</span></p>
 <p>For a European call:</p>
-<p>$$</p>
-<p>\boxed{F(x,0) = \psi(x) = \max(e^x - K, 0) = (e^x - K)^+}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{F(x,0) = \psi(x) = \max(e^x - K, 0) = (e^x - K)^+}
+\]</div>
 <p>This is a piecewise function:</p>
-<p>$$</p>
-<p>\psi(x) = \begin{cases}
-e^x - K &amp; \text{if } x &gt; \log K \
+<div class="arithmatex">\[
+\psi(x) = \begin{cases}
+e^x - K &amp; \text{if } x &gt; \log K \\
 0 &amp; \text{if } x \leq \log K
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Summary</strong>: We've transformed the <strong>terminal-value problem</strong> (BS PDE backward in time) into an <strong>initial-value problem</strong> (heat equation forward in time).</p>
 <hr />
 <h2 id="greens-function-fundamental-solution">Green's Function (Fundamental Solution)<a class="headerlink" href="#greens-function-fundamental-solution" title="Permanent link">&para;</a></h2>
 <h3 id="1-definition">1. <strong>Definition</strong><a class="headerlink" href="#1-definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>fundamental solution</strong> or <strong>Green's function</strong> of the heat equation is the solution to:</p>
-<p>$$</p>
-<p>\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}
+\]</div>
 <p>with initial condition:</p>
-<p>$$</p>
-<p>G(x,0; z) = \delta(x-z)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G(x,0; z) = \delta(x-z)
+\]</div>
 <p>where <span class="arithmatex">\(\delta\)</span> is the Dirac delta function (unit point source at <span class="arithmatex">\(z\)</span>).</p>
 <p><strong>Physical interpretation</strong>: <span class="arithmatex">\(G(x,\tau; z)\)</span> represents the temperature distribution at position <span class="arithmatex">\(x\)</span> and time <span class="arithmatex">\(\tau\)</span> resulting from an instantaneous unit heat source placed at position <span class="arithmatex">\(z\)</span> at time <span class="arithmatex">\(0\)</span>.</p>
 <h3 id="2-explicit-form">2. <strong>Explicit Form</strong><a class="headerlink" href="#2-explicit-form" title="Permanent link">&para;</a></h3>
 <p>The fundamental solution is:</p>
-<p>$$</p>
-<p>\boxed{G(x,\tau; z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{G(x,\tau; z) = \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right)}
+\]</div>
 <p>This is a <strong>Gaussian kernel</strong> with:
 - Mean: <span class="arithmatex">\(z\)</span> (centered at source location)
 - Variance: <span class="arithmatex">\(\sigma^2\tau\)</span> (spreads with time)
@@ -47457,19 +47457,19 @@ e^x - K &amp; \text{if } x &gt; \log K \
 <h3 id="3-verification">3. <strong>Verification</strong><a class="headerlink" href="#3-verification" title="Permanent link">&para;</a></h3>
 <p><strong>Property 1</strong> (Satisfies heat equation):</p>
 <p>Direct calculation shows:</p>
-<p>$$</p>
-<p>\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial G}{\partial \tau} = \frac{1}{2}\sigma^2\frac{\partial^2 G}{\partial x^2}
+\]</div>
 <p>using standard Gaussian differentiation formulas.</p>
 <p><strong>Property 2</strong> (Initial condition):</p>
-<p>$$</p>
-<p>\lim_{\tau \to 0^+} G(x,\tau; z) = \delta(x-z)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\tau \to 0^+} G(x,\tau; z) = \delta(x-z)
+\]</div>
 <p>As <span class="arithmatex">\(\tau \to 0\)</span>, the Gaussian concentrates at <span class="arithmatex">\(z\)</span>.</p>
 <p><strong>Property 3</strong> (Probability conservation):</p>
-<p>$$</p>
-<p>\int_{-\infty}^\infty G(x,\tau; z) dx = 1 \quad \text{for all } \tau &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{-\infty}^\infty G(x,\tau; z) dx = 1 \quad \text{for all } \tau &gt; 0
+\]</div>
 <h3 id="4-intuition">4. <strong>Intuition</strong><a class="headerlink" href="#4-intuition" title="Permanent link">&para;</a></h3>
 <ul>
 <li>At <span class="arithmatex">\(\tau = 0\)</span>: All heat concentrated at point <span class="arithmatex">\(z\)</span></li>
@@ -47480,153 +47480,153 @@ e^x - K &amp; \text{if } x &gt; \log K \
 <h2 id="solution-via-superposition">Solution via Superposition<a class="headerlink" href="#solution-via-superposition" title="Permanent link">&para;</a></h2>
 <h3 id="1-duhamels-principle">1. <strong>Duhamel's Principle</strong><a class="headerlink" href="#1-duhamels-principle" title="Permanent link">&para;</a></h3>
 <p>For any initial condition <span class="arithmatex">\(\psi(x)\)</span>, the solution to the heat equation is obtained by <strong>superposition</strong> of fundamental solutions:</p>
-<p>$$</p>
-<p>\boxed{F(x,\tau) = \int_{-\infty}^\infty \psi(z) G(x,\tau; z) dz}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{F(x,\tau) = \int_{-\infty}^\infty \psi(z) G(x,\tau; z) dz}
+\]</div>
 <p>Explicitly:</p>
-<p>$$</p>
-<p>F(x,\tau) = \int_{-\infty}^\infty \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = \int_{-\infty}^\infty \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+\]</div>
 <p><strong>Interpretation</strong>:
 - Decompose initial condition <span class="arithmatex">\(\psi(x)\)</span> into point sources: <span class="arithmatex">\(\psi(z)\delta(z)\)</span>
 - Each point source at <span class="arithmatex">\(z\)</span> evolves according to <span class="arithmatex">\(G(x,\tau; z)\)</span>
 - The total solution is the <strong>integral</strong> (continuous sum) of all contributions</p>
 <p><strong>Probabilistic view</strong>: If <span class="arithmatex">\(X \sim \mathcal{N}(x, \sigma^2\tau)\)</span>, then:</p>
-<p>$$</p>
-<p>F(x,\tau) = \mathbb{E}[\psi(X)] = \int_{-\infty}^\infty \psi(z) \cdot \text{pdf}(z; x, \sigma^2\tau) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = \mathbb{E}[\psi(X)] = \int_{-\infty}^\infty \psi(z) \cdot \text{pdf}(z; x, \sigma^2\tau) dz
+\]</div>
 <p>This connects the PDE solution to <strong>expectation under Brownian motion</strong>.</p>
 <hr />
 <h2 id="application-to-european-call">Application to European Call<a class="headerlink" href="#application-to-european-call" title="Permanent link">&para;</a></h2>
 <h3 id="1-setup">1. <strong>Setup</strong><a class="headerlink" href="#1-setup" title="Permanent link">&para;</a></h3>
 <p>For a call option with <span class="arithmatex">\(\psi(x) = (e^x - K)^+\)</span>:</p>
-<p>$$</p>
-<p>F(x,\tau) = \int_{-\infty}^\infty (e^z - K)^+ \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = \int_{-\infty}^\infty (e^z - K)^+ \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+\]</div>
 <p>Since <span class="arithmatex">\((e^z - K)^+ = 0\)</span> for <span class="arithmatex">\(z \leq \log K\)</span>:</p>
-<p>$$</p>
-<p>F(x,\tau) = \int_{\log K}^\infty (e^z - K) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = \int_{\log K}^\infty (e^z - K) \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+\]</div>
 <h3 id="2-split-into-two-integrals">2. <strong>Split into Two Integrals</strong><a class="headerlink" href="#2-split-into-two-integrals" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>F(x,\tau) = \underbrace{\int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}<em K="K" _log="\log">{I_1} - K\underbrace{\int</em>}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}_{I_2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = \underbrace{\int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}_{I_1} - K\underbrace{\int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz}_{I_2}
+\]</div>
 <p>We evaluate each integral separately.</p>
 <hr />
 <h2 id="evaluation-of-i_2-strike-term">Evaluation of I_2 (Strike Term)<a class="headerlink" href="#evaluation-of-i_2-strike-term" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>I_2 = \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_2 = \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+\]</div>
 <p>This is a <strong>Gaussian tail probability</strong>. Define standard normal variable:</p>
-<p>$$</p>
-<p>Z = \frac{z - x}{\sigma\sqrt{\tau}} \sim \mathcal{N}(0,1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z = \frac{z - x}{\sigma\sqrt{\tau}} \sim \mathcal{N}(0,1)
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 I_2 &amp;= \mathbb{P}(z \geq \log K) \\
 &amp;= \mathbb{P}\left(\frac{z-x}{\sigma\sqrt{\tau}} \geq \frac{\log K - x}{\sigma\sqrt{\tau}}\right) \\
 &amp;= \mathbb{P}\left(Z \geq \frac{\log K - x}{\sigma\sqrt{\tau}}\right) \\
 &amp;= \mathbb{P}\left(Z \leq \frac{x - \log K}{\sigma\sqrt{\tau}}\right) \\
 &amp;= \mathcal{N}\left(\frac{x - \log K}{\sigma\sqrt{\tau}}\right)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Define:</p>
-<p>$$</p>
-<p>\boxed{d_2 = \frac{x - \log K}{\sigma\sqrt{\tau}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d_2 = \frac{x - \log K}{\sigma\sqrt{\tau}}}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>I_2 = \mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_2 = \mathcal{N}(d_2)
+\]</div>
 <hr />
 <h2 id="evaluation-of-i_1-stock-term">Evaluation of I_1 (Stock Term)<a class="headerlink" href="#evaluation-of-i_1-stock-term" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>I_1 = \int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = \int_{\log K}^\infty e^z \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+\]</div>
 <p><strong>Key technique</strong>: Complete the square in the exponent.</p>
 <h3 id="1-step-1-combine-exponents">1. <strong>Step 1: Combine Exponents</strong><a class="headerlink" href="#1-step-1-combine-exponents" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{1}{2\sigma^2\tau}\left[(x-z)^2 - 2\sigma^2\tau z\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{1}{2\sigma^2\tau}\left[(x-z)^2 - 2\sigma^2\tau z\right]
+\]</div>
 <p>Expand:</p>
-<p>$$</p>
-<p>(x-z)^2 - 2\sigma^2\tau z = z^2 - 2zx + x^2 - 2\sigma^2\tau z = z^2 - 2z(x + \sigma^2\tau) + x^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(x-z)^2 - 2\sigma^2\tau z = z^2 - 2zx + x^2 - 2\sigma^2\tau z = z^2 - 2z(x + \sigma^2\tau) + x^2
+\]</div>
 <p>Complete the square:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 &amp;= [z - (x + \sigma^2\tau)]^2 - (x + \sigma^2\tau)^2 + x^2 \\
 &amp;= [z - (x + \sigma^2\tau)]^2 - 2x\sigma^2\tau - \sigma^4\tau^2
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau} + x + \frac{\sigma^2\tau}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z - \frac{(x-z)^2}{2\sigma^2\tau} = -\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau} + x + \frac{\sigma^2\tau}{2}
+\]</div>
 <h3 id="2-step-2-factor-out-constant">2. <strong>Step 2: Factor Out Constant</strong><a class="headerlink" href="#2-step-2-factor-out-constant" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>I_1 = e^{x + \frac{\sigma^2\tau}{2}} \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = e^{x + \frac{\sigma^2\tau}{2}} \int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz
+\]</div>
 <p>The integral is a Gaussian tail probability with <strong>shifted mean</strong> <span class="arithmatex">\(x + \sigma^2\tau\)</span>:</p>
-<p>$$</p>
-<p>\int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz = \mathbb{P}(W \geq \log K)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\log K}^\infty \frac{1}{\sqrt{2\pi\sigma^2\tau}}\exp\left(-\frac{[z - (x+\sigma^2\tau)]^2}{2\sigma^2\tau}\right) dz = \mathbb{P}(W \geq \log K)
+\]</div>
 <p>where <span class="arithmatex">\(W \sim \mathcal{N}(x+\sigma^2\tau, \sigma^2\tau)\)</span>.</p>
 <h3 id="3-step-3-standardize">3. <strong>Step 3: Standardize</strong><a class="headerlink" href="#3-step-3-standardize" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \mathbb{P}(W \geq \log K) &amp;= \mathbb{P}\left(\frac{W - (x+\sigma^2\tau)}{\sigma\sqrt{\tau}} \geq \frac{\log K - (x+\sigma^2\tau)}{\sigma\sqrt{\tau}}\right) \\
 &amp;= \mathbb{P}\left(Z \geq \frac{\log K - x - \sigma^2\tau}{\sigma\sqrt{\tau}}\right) \\
 &amp;= \mathcal{N}\left(\frac{x + \sigma^2\tau - \log K}{\sigma\sqrt{\tau}}\right)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Define:</p>
-<p>$$</p>
-<p>\boxed{d_1 = \frac{x + \sigma^2\tau - \log K}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d_1 = \frac{x + \sigma^2\tau - \log K}{\sigma\sqrt{\tau}} = d_2 + \sigma\sqrt{\tau}}
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>I_1 = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_1 = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1)
+\]</div>
 <hr />
 <h2 id="synthesis-black-scholes-formula">Synthesis: Black-Scholes Formula<a class="headerlink" href="#synthesis-black-scholes-formula" title="Permanent link">&para;</a></h2>
 <h3 id="1-forward-value">1. <strong>Forward Value</strong><a class="headerlink" href="#1-forward-value" title="Permanent link">&para;</a></h3>
 <p>Combining <span class="arithmatex">\(I_1\)</span> and <span class="arithmatex">\(I_2\)</span>:</p>
-<p>$$</p>
-<p>F(x,\tau) = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1) - K\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = e^{x + \frac{\sigma^2\tau}{2}}\mathcal{N}(d_1) - K\mathcal{N}(d_2)
+\]</div>
 <h3 id="2-transform-back-to-original-variables">2. <strong>Transform Back to Original Variables</strong><a class="headerlink" href="#2-transform-back-to-original-variables" title="Permanent link">&para;</a></h3>
 <p>Recall:
 - <span class="arithmatex">\(x = \log S + (r - \frac{1}{2}\sigma^2)\tau\)</span>
 - <span class="arithmatex">\(e^x = Se^{(r - \frac{1}{2}\sigma^2)\tau}\)</span></p>
 <p>Therefore:</p>
-<p>$$</p>
-<p>e^{x + \frac{\sigma^2\tau}{2}} = Se^{(r - \frac{1}{2}\sigma^2)\tau + \frac{\sigma^2\tau}{2}} = Se^{r\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{x + \frac{\sigma^2\tau}{2}} = Se^{(r - \frac{1}{2}\sigma^2)\tau + \frac{\sigma^2\tau}{2}} = Se^{r\tau}
+\]</div>
 <p>Substituting:</p>
-<p>$$</p>
-<p>F(x,\tau) = Se^{r\tau}\mathcal{N}(d_1) - K\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x,\tau) = Se^{r\tau}\mathcal{N}(d_1) - K\mathcal{N}(d_2)
+\]</div>
 <h3 id="3-discount-back">3. <strong>Discount Back</strong><a class="headerlink" href="#3-discount-back" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(V = Fe^{-r\tau}\)</span>:</p>
-<p>$$</p>
-<p>\boxed{V(S,t) = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V(S,t) = S\mathcal{N}(d_1) - Ke^{-r\tau}\mathcal{N}(d_2)}
+\]</div>
 <p>where <span class="arithmatex">\(\tau = T - t\)</span> and:</p>
-<p>$$</p>
-<p>\boxed{d_1 = \frac{\log(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{d_2 = d_1 - \sigma\sqrt{\tau} = \frac{\log(S/K) + (r - \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{d_1 = \frac{\log(S/K) + (r + \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}
+\]</div>
+<div class="arithmatex">\[
+\boxed{d_2 = d_1 - \sigma\sqrt{\tau} = \frac{\log(S/K) + (r - \frac{1}{2}\sigma^2)\tau}{\sigma\sqrt{\tau}}}
+\]</div>
 <p>This is the <strong>Black-Scholes formula</strong> for a European call option.</p>
 <hr />
 <h2 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h2>
 <h3 id="1-probabilistic-meaning">1. <strong>Probabilistic Meaning</strong><a class="headerlink" href="#1-probabilistic-meaning" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = S_0\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+\]</div>
 <p><strong>Term 1</strong>: <span class="arithmatex">\(S_0\mathcal{N}(d_1)\)</span>
 - Expected stock value <strong>conditional on exercise</strong> under the stock measure
 - <span class="arithmatex">\(\mathcal{N}(d_1)\)</span> is the probability of exercise under a measure where the stock is the numeraire</p>
@@ -47686,46 +47686,46 @@ I_2 &amp;= \mathbb{P}(z \geq \log K) \\
 <h2 id="quantpie-derivation-summary">QuantPie Derivation Summary<a class="headerlink" href="#quantpie-derivation-summary" title="Permanent link">&para;</a></h2>
 <h3 id="three-key-transformations">Three Key Transformations<a class="headerlink" href="#three-key-transformations" title="Permanent link">&para;</a></h3>
 <p>The Black-Scholes PDE is converted to the heat equation through three clever changes of variables:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{ccc}
+<div class="arithmatex">\[
+\begin{array}{ccc}
 \text{Original Variables} &amp; \text{Transformed Variables} &amp; \text{Purpose} \\
 \hline
 \tau = T - t &amp; \text{Time to maturity} &amp; \text{Convert backward problem to forward} \\
 x = \log S + (r - \frac{\sigma^2}{2})\tau &amp; \text{Expected log-price} &amp; \text{Remove drift, eliminate } S \text{ factors} \\
 F = Ve^{r\tau} &amp; \text{Forward option value} &amp; \text{Remove discounting term } -rV
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <h3 id="transformation-details">Transformation Details<a class="headerlink" href="#transformation-details" title="Permanent link">&para;</a></h3>
 <p><strong>Original BS PDE:</strong></p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
+\]</div>
 <p><strong>After all transformations, the heat equation emerges:</strong></p>
-<p>$$</p>
-<p>\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial F}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 F}{\partial x^2}
+\]</div>
 <p>The remarkable cancellation occurs because:
 1. The drift term <span class="arithmatex">\(rS\frac{\partial V}{\partial S}\)</span> exactly cancels the drift implicit in the <span class="arithmatex">\(x\)</span> transformation
 2. The discounting <span class="arithmatex">\(-rV\)</span> is eliminated by the forward value transformation <span class="arithmatex">\(F = Ve^{r\tau}\)</span></p>
 <p>This leaves only the diffusion term, which is the pure heat equation.</p>
 <h3 id="solution-method-greens-function-and-superposition">Solution Method: Green's Function and Superposition<a class="headerlink" href="#solution-method-greens-function-and-superposition" title="Permanent link">&para;</a></h3>
 <p><strong>For call option payoff</strong> <span class="arithmatex">\(\psi(x) = (e^x - K)^+\)</span>:</p>
-<p>$$</p>
-<p>F(x, \tau) = \int_{-\infty}^{\infty} \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}} \exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x, \tau) = \int_{-\infty}^{\infty} \psi(z) \frac{1}{\sqrt{2\pi\sigma^2\tau}} \exp\left(-\frac{(x-z)^2}{2\sigma^2\tau}\right) dz
+\]</div>
 <p>Split into two Gaussian integrals (one with <span class="arithmatex">\(e^z\)</span> in the integrand):</p>
-<p>$$</p>
-<p>F(x, \tau) = e^{x + \frac{\sigma^2\tau}{2}} \mathcal{N}(d_1) - K\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(x, \tau) = e^{x + \frac{\sigma^2\tau}{2}} \mathcal{N}(d_1) - K\mathcal{N}(d_2)
+\]</div>
 <p><strong>Transform back to original variables:</strong>
 - Since <span class="arithmatex">\(e^{x + \frac{\sigma^2\tau}{2}} = Se^{r\tau}\)</span> and <span class="arithmatex">\(V = Fe^{-r\tau}\)</span>:</p>
-<p>$$</p>
-<p>\boxed{V(S, t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V(S, t) = S\mathcal{N}(d_1) - Ke^{-r(T-t)}\mathcal{N}(d_2)}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\log(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\log(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}, \quad d_2 = d_1 - \sigma\sqrt{T-t}
+\]</div>
 <h3 id="advantages-of-the-heat-equation-approach">Advantages of the Heat Equation Approach<a class="headerlink" href="#advantages-of-the-heat-equation-approach" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Reduces complexity:</strong> Variable coefficients become constant; terminal condition becomes initial condition</li>

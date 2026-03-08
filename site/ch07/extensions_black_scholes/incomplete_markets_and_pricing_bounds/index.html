@@ -46928,11 +46928,11 @@
 <h2 id="pricing-bounds">Pricing Bounds<a class="headerlink" href="#pricing-bounds" title="Permanent link">&para;</a></h2>
 <h3 id="the-no-arbitrage-interval">The No-Arbitrage Interval<a class="headerlink" href="#the-no-arbitrage-interval" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\mathcal{Q}\)</span> be the set of all equivalent martingale measures. For a claim with payoff <span class="arithmatex">\(H\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \underline{\pi}(H) = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] \leq \pi(H) \leq \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] = \overline{\pi}(H)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Any price in <span class="arithmatex">\([\underline{\pi}(H), \overline{\pi}(H)]\)</span> is <strong>arbitrage-free</strong>.</p>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <ul>
@@ -46944,25 +46944,25 @@
 <h2 id="superhedging-and-subhedging">Superhedging and Subhedging<a class="headerlink" href="#superhedging-and-subhedging" title="Permanent link">&para;</a></h2>
 <h3 id="superhedging-price">Superhedging Price<a class="headerlink" href="#superhedging-price" title="Permanent link">&para;</a></h3>
 <p>The <strong>superhedging price</strong> is the minimum initial capital needed to dominate the payoff:</p>
-<p>$$</p>
-<p>\boxed{
-\overline{\pi}(H) = \inf\left{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \geq H \text{ a.s.}\right}
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\overline{\pi}(H) = \inf\left\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \geq H \text{ a.s.}\right\}
+}
+\]</div>
 <p><strong>Duality theorem</strong>: Under technical conditions, the superhedging price equals the upper bound.</p>
 <h3 id="subhedging-price">Subhedging Price<a class="headerlink" href="#subhedging-price" title="Permanent link">&para;</a></h3>
 <p>The <strong>subhedging price</strong> is the maximum initial capital that can be extracted while covering the payoff:</p>
-<p>$$</p>
-<p>\underline{\pi}(H) = \sup\left{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \leq H \text{ a.s.}\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{\pi}(H) = \sup\left\{x : \exists \theta \text{ s.t. } x + \int_0^T \theta_t\,dS_t \leq H \text{ a.s.}\right\}
+\]</div>
 <hr />
 <h2 id="selecting-a-price">Selecting a Price<a class="headerlink" href="#selecting-a-price" title="Permanent link">&para;</a></h2>
 <p>When prices are not unique, additional criteria select a specific price.</p>
 <h3 id="1-minimal-martingale-measure">1. Minimal Martingale Measure<a class="headerlink" href="#1-minimal-martingale-measure" title="Permanent link">&para;</a></h3>
 <p>Choose <span class="arithmatex">\(\mathbb{Q}^{\min}\)</span> that preserves the structure of the orthogonal martingale component:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^{\min}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \theta^{(1)}_t\,dW_t^{(1)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^{\min}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \theta^{(1)}_t\,dW_t^{(1)}\right)
+\]</div>
 <p>where only the traded risk is adjusted.</p>
 <p><strong>Properties</strong>:
 - Minimal entropy distance from <span class="arithmatex">\(\mathbb{P}\)</span>
@@ -46970,32 +46970,32 @@
 - Popular in stochastic volatility models</p>
 <h3 id="2-variance-optimal-measure">2. Variance-Optimal Measure<a class="headerlink" href="#2-variance-optimal-measure" title="Permanent link">&para;</a></h3>
 <p>Choose <span class="arithmatex">\(\mathbb{Q}\)</span> to minimize the variance of the pricing error:</p>
-<p>$$</p>
-<p>\mathbb{Q}^{\text{var}} = \arg\min_{\mathbb{Q} \in \mathcal{Q}} \text{Var}^{\mathbb{P}}\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}^{\text{var}} = \arg\min_{\mathbb{Q} \in \mathcal{Q}} \text{Var}^{\mathbb{P}}\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\right]
+\]</div>
 <h3 id="3-utility-indifference-pricing">3. Utility Indifference Pricing<a class="headerlink" href="#3-utility-indifference-pricing" title="Permanent link">&para;</a></h3>
 <p>Price based on an investor's utility function <span class="arithmatex">\(U\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \pi^U(H) = x \text{ such that } \sup_\theta \mathbb{E}[U(X_T^x)] = \sup_\theta \mathbb{E}[U(X_T^0 + H)]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The price makes the investor indifferent between buying the claim or not.</p>
 <p><strong>Popular choices</strong>: Exponential utility <span class="arithmatex">\(U(x) = -e^{-\gamma x}\)</span></p>
 <h3 id="4-entropy-minimization">4. Entropy Minimization<a class="headerlink" href="#4-entropy-minimization" title="Permanent link">&para;</a></h3>
 <p>Choose <span class="arithmatex">\(\mathbb{Q}\)</span> closest to <span class="arithmatex">\(\mathbb{P}\)</span> in relative entropy:</p>
-<p>$$</p>
-<p>\mathbb{Q}^{\text{ent}} = \arg\min_{\mathbb{Q} \in \mathcal{Q}} H(\mathbb{Q} | \mathbb{P}) = \arg\min_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}\left[\log\frac{d\mathbb{Q}}{d\mathbb{P}}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}^{\text{ent}} = \arg\min_{\mathbb{Q} \in \mathcal{Q}} H(\mathbb{Q} | \mathbb{P}) = \arg\min_{\mathbb{Q}} \mathbb{E}^{\mathbb{Q}}\left[\log\frac{d\mathbb{Q}}{d\mathbb{P}}\right]
+\]</div>
 <hr />
 <h2 id="example-stochastic-volatility">Example: Stochastic Volatility<a class="headerlink" href="#example-stochastic-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
 dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>with <span class="arithmatex">\(\text{Corr}(dW^{(1)}, dW^{(2)}) = \rho\)</span>.</p>
 <h3 id="incompleteness">Incompleteness<a class="headerlink" href="#incompleteness" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47005,9 +47005,9 @@ dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 </ul>
 <h3 id="market-price-of-volatility-risk">Market Price of Volatility Risk<a class="headerlink" href="#market-price-of-volatility-risk" title="Permanent link">&para;</a></h3>
 <p>The measure change involves:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \theta_t^{(1)}\,dW_t^{(1)} - \int_0^T \theta_t^{(2)}\,dW_t^{(2)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}} = \mathcal{E}\left(-\int_0^T \theta_t^{(1)}\,dW_t^{(1)} - \int_0^T \theta_t^{(2)}\,dW_t^{(2)}\right)
+\]</div>
 <ul>
 <li><span class="arithmatex">\(\theta_t^{(1)} = (\mu - r)/\sqrt{v_t}\)</span> is determined by no-arbitrage</li>
 <li><span class="arithmatex">\(\theta_t^{(2)} = \lambda(t, v_t)\)</span> is <strong>free</strong> (volatility risk premium)</li>
@@ -47063,9 +47063,9 @@ dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 <h2 id="mathematical-framework">Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="the-set-of-martingale-measures">The Set of Martingale Measures<a class="headerlink" href="#the-set-of-martingale-measures" title="Permanent link">&para;</a></h3>
 <p>For a market with price process <span class="arithmatex">\(S\)</span> under <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{Q} = {\mathbb{Q} \sim \mathbb{P} : S/B \text{ is a } \mathbb{Q}\text{-local martingale}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{Q} = \{\mathbb{Q} \sim \mathbb{P} : S/B \text{ is a } \mathbb{Q}\text{-local martingale}\}
+\]</div>
 <h3 id="characterization-for-diffusions">Characterization (for diffusions)<a class="headerlink" href="#characterization-for-diffusions" title="Permanent link">&para;</a></h3>
 <p>Each <span class="arithmatex">\(\mathbb{Q} \in \mathcal{Q}\)</span> corresponds to a market price of risk <span class="arithmatex">\(\theta\)</span> satisfying:</p>
 <ol>
@@ -47109,11 +47109,11 @@ dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 <p>In stochastic volatility, variance swap prices span a wide interval because variance is directly exposed to the unhedgeable volatility risk.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \underline{\pi}(H) = \inf_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] \leq \pi(H) \leq \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^{\mathbb{Q}}[e^{-rT}H] = \overline{\pi}(H)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

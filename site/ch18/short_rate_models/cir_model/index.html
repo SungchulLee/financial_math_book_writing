@@ -46785,9 +46785,9 @@
 <h2 id="model-specification">Model Specification<a class="headerlink" href="#model-specification" title="Permanent link">&para;</a></h2>
 <h3 id="risk-neutral-dynamics">Risk-Neutral Dynamics<a class="headerlink" href="#risk-neutral-dynamics" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the short rate follows:</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t) \, dt + \sigma \sqrt{r_t} \, dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t) \, dt + \sigma \sqrt{r_t} \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\kappa &gt; 0\)</span>: mean-reversion speed
 - <span class="arithmatex">\(\theta &gt; 0\)</span>: long-run mean level
@@ -46824,9 +46824,9 @@
 <h2 id="the-feller-condition">The Feller Condition<a class="headerlink" href="#the-feller-condition" title="Permanent link">&para;</a></h2>
 <h3 id="statement">Statement<a class="headerlink" href="#statement" title="Permanent link">&para;</a></h3>
 <p>The <strong>Feller condition</strong> is:</p>
-<p>$$</p>
-<p>\boxed{2\kappa\theta \geq \sigma^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{2\kappa\theta \geq \sigma^2}
+\]</div>
 <h3 id="boundary-behavior">Boundary Behavior<a class="headerlink" href="#boundary-behavior" title="Permanent link">&para;</a></h3>
 <p>The behavior at <span class="arithmatex">\(r = 0\)</span> depends on the Feller condition:</p>
 <table>
@@ -46858,9 +46858,9 @@
 <h2 id="distribution-of-r_t">Distribution of r_t<a class="headerlink" href="#distribution-of-r_t" title="Permanent link">&para;</a></h2>
 <h3 id="transition-density">Transition Density<a class="headerlink" href="#transition-density" title="Permanent link">&para;</a></h3>
 <p>Given <span class="arithmatex">\(r_s\)</span> at time <span class="arithmatex">\(s &lt; t\)</span>, the distribution of <span class="arithmatex">\(r_t\)</span> is:</p>
-<p>$$</p>
-<p>r_t \mid r_s \sim \frac{c}{2} \chi^2\left(\nu, \lambda\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t \mid r_s \sim \frac{c}{2} \chi^2\left(\nu, \lambda\right)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(c = \frac{4\kappa}{\sigma^2(1 - e^{-\kappa(t-s)})}\)</span>
 - <span class="arithmatex">\(\nu = \frac{4\kappa\theta}{\sigma^2}\)</span> (degrees of freedom)
@@ -46868,68 +46868,68 @@
 - <span class="arithmatex">\(\chi^2(\nu, \lambda)\)</span> is the <strong>non-central chi-squared</strong> distribution</p>
 <h3 id="moments">Moments<a class="headerlink" href="#moments" title="Permanent link">&para;</a></h3>
 <p><strong>Mean:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[r_t \mid r_s] = r_s e^{-\kappa(t-s)} + \theta(1 - e^{-\kappa(t-s)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r_t \mid r_s] = r_s e^{-\kappa(t-s)} + \theta(1 - e^{-\kappa(t-s)})
+\]</div>
 <p>This is identical to Vasicek!</p>
 <p><strong>Variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}(r_t \mid r_s) = r_s \frac{\sigma^2}{\kappa}(e^{-\kappa(t-s)} - e^{-2\kappa(t-s)}) + \frac{\theta\sigma^2}{2\kappa}(1 - e^{-\kappa(t-s)})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(r_t \mid r_s) = r_s \frac{\sigma^2}{\kappa}(e^{-\kappa(t-s)} - e^{-2\kappa(t-s)}) + \frac{\theta\sigma^2}{2\kappa}(1 - e^{-\kappa(t-s)})^2
+\]</div>
 <p>Unlike Vasicek, variance depends on the current rate <span class="arithmatex">\(r_s\)</span>.</p>
 <h3 id="stationary-distribution">Stationary Distribution<a class="headerlink" href="#stationary-distribution" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(t \to \infty\)</span>:</p>
-<p>$$</p>
-<p>r_\infty \sim \text{Gamma}\left(\frac{2\kappa\theta}{\sigma^2}, \frac{2\kappa}{\sigma^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_\infty \sim \text{Gamma}\left(\frac{2\kappa\theta}{\sigma^2}, \frac{2\kappa}{\sigma^2}\right)
+\]</div>
 <p>with mean <span class="arithmatex">\(\theta\)</span> and variance <span class="arithmatex">\(\frac{\theta\sigma^2}{2\kappa}\)</span>.</p>
 <hr />
 <h2 id="zero-coupon-bond-pricing">Zero-Coupon Bond Pricing<a class="headerlink" href="#zero-coupon-bond-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="affine-structure">Affine Structure<a class="headerlink" href="#affine-structure" title="Permanent link">&para;</a></h3>
 <p>Like Vasicek, CIR yields <strong>exponential-affine</strong> bond prices:</p>
-<p>$$</p>
-<p>\boxed{P(t, T) = A(\tau) \exp(-B(\tau) \cdot r_t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{P(t, T) = A(\tau) \exp(-B(\tau) \cdot r_t)}
+\]</div>
 <p>where <span class="arithmatex">\(\tau = T - t\)</span>.</p>
 <h3 id="key-parameter">Key Parameter<a class="headerlink" href="#key-parameter" title="Permanent link">&para;</a></h3>
 <p>Define:</p>
-<p>$$</p>
-<p>\gamma = \sqrt{\kappa^2 + 2\sigma^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\gamma = \sqrt{\kappa^2 + 2\sigma^2}
+\]</div>
 <h3 id="solution-for-b">Solution for B(τ)<a class="headerlink" href="#solution-for-b" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{B(\tau) = \frac{2(e^{\gamma\tau} - 1)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}}
+\]</div>
 <h3 id="solution-for-a">Solution for A(τ)<a class="headerlink" href="#solution-for-a" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{A(\tau) = \left[\frac{2\gamma \exp\left(\frac{(\kappa + \gamma)\tau}{2}\right)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{A(\tau) = \left[\frac{2\gamma \exp\left(\frac{(\kappa + \gamma)\tau}{2}\right)}{(\gamma + \kappa)(e^{\gamma\tau} - 1) + 2\gamma}\right]^{2\kappa\theta/\sigma^2}}
+\]</div>
 <h3 id="derivation-outline">Derivation Outline<a class="headerlink" href="#derivation-outline" title="Permanent link">&para;</a></h3>
 <p>The bond pricing PDE is:</p>
-<p>$$</p>
-<p>\frac{\partial P}{\partial t} + \kappa(\theta - r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 r \frac{\partial^2 P}{\partial r^2} = rP</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial P}{\partial t} + \kappa(\theta - r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 r \frac{\partial^2 P}{\partial r^2} = rP
+\]</div>
 <p>Using ansatz <span class="arithmatex">\(P = A(\tau) e^{-B(\tau)r}\)</span> leads to:
 - Riccati ODE for <span class="arithmatex">\(B(\tau)\)</span>: <span class="arithmatex">\(B' = 1 - \kappa B - \frac{1}{2}\sigma^2 B^2\)</span>
 - Linear ODE for <span class="arithmatex">\(\log A\)</span>: <span class="arithmatex">\((\log A)' = \kappa\theta B\)</span></p>
 <hr />
 <h2 id="yield-curve-analysis">Yield Curve Analysis<a class="headerlink" href="#yield-curve-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="zero-rate">Zero Rate<a class="headerlink" href="#zero-rate" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>z(t, T) = -\frac{\log P(t, T)}{\tau} = \frac{B(\tau)}{\tau} r_t - \frac{\log A(\tau)}{\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(t, T) = -\frac{\log P(t, T)}{\tau} = \frac{B(\tau)}{\tau} r_t - \frac{\log A(\tau)}{\tau}
+\]</div>
 <h3 id="long-term-yield">Long-Term Yield<a class="headerlink" href="#long-term-yield" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(\tau \to \infty\)</span>:</p>
-<p>$$</p>
-<p>z_\infty = \frac{2\kappa\theta}{\gamma + \kappa}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z_\infty = \frac{2\kappa\theta}{\gamma + \kappa}
+\]</div>
 <hr />
 <h2 id="option-pricing">Option Pricing<a class="headerlink" href="#option-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="bond-options">Bond Options<a class="headerlink" href="#bond-options" title="Permanent link">&para;</a></h3>
 <p>A European call on a <span class="arithmatex">\(T_2\)</span>-bond with strike <span class="arithmatex">\(K\)</span>, expiring at <span class="arithmatex">\(T_1\)</span>, has price involving the non-central chi-squared distribution:</p>
-<p>$$</p>
-<p>C = P(0, T_2) \cdot \chi^2_{2r^<em>(\phi + \psi + B)}(\nu, \lambda_1) - K P(0, T_1) \cdot \chi^2_{2r^</em>(\phi + \psi)}(\nu, \lambda_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = P(0, T_2) \cdot \chi^2_{2r^*(\phi + \psi + B)}(\nu, \lambda_1) - K P(0, T_1) \cdot \chi^2_{2r^*(\phi + \psi)}(\nu, \lambda_2)
+\]</div>
 <p>where the parameters are functions of model inputs and <span class="arithmatex">\(r^*\)</span> solves <span class="arithmatex">\(P(T_1, T_2, r^*) = K\)</span>.</p>
 <hr />
 <h2 id="comparison-cir-vs-vasicek">Comparison: CIR vs. Vasicek<a class="headerlink" href="#comparison-cir-vs-vasicek" title="Permanent link">&para;</a></h2>

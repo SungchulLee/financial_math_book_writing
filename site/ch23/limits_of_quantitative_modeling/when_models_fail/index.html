@@ -47106,17 +47106,17 @@
 <h3 id="4-quantitative-analysis">4. Quantitative Analysis<a class="headerlink" href="#4-quantitative-analysis" title="Permanent link">&para;</a></h3>
 <p><strong>VaR Failure</strong>: 10-day 99% VaR substantially underestimated actual losses.</p>
 <p><strong>Correlation Assumption</strong>: Pre-crisis correlation matrix:</p>
-<p>$$</p>
-<p>\rho_{ij}^{\text{normal}} \approx 0.2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{ij}^{\text{normal}} \approx 0.2
+\]</div>
 <p>Crisis correlation:</p>
-<p>$$</p>
-<p>\rho_{ij}^{\text{crisis}} \approx 0.8</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{ij}^{\text{crisis}} \approx 0.8
+\]</div>
 <p><strong>Loss Magnification</strong>: With leverage <span class="arithmatex">\(L\)</span> and correlation increase <span class="arithmatex">\(\Delta \rho\)</span>:</p>
-<p>$$</p>
-<p>\text{Loss Factor} \approx L \cdot \sqrt{1 + (n-1)\Delta \rho}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Loss Factor} \approx L \cdot \sqrt{1 + (n-1)\Delta \rho}
+\]</div>
 <h3 id="5-lessons">5. Lessons<a class="headerlink" href="#5-lessons" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Tail Risk</strong>: Extreme events are more frequent and severe than Gaussian models predict</li>
@@ -47128,9 +47128,9 @@
 <h3 id="1-background_1">1. Background<a class="headerlink" href="#1-background_1" title="Permanent link">&para;</a></h3>
 <p><strong>CDO Pricing</strong>: Collateralized Debt Obligations required modeling joint default probabilities.</p>
 <p><strong>Gaussian Copula</strong> (Li, 2000): Elegant framework linking marginal default probabilities through correlation:</p>
-<p>$$</p>
-<p>\Phi_2^{-1}(P(D_1 \leq t_1, D_2 \leq t_2)) = N_2(\Phi^{-1}(P(D_1 \leq t_1)), \Phi^{-1}(P(D_2 \leq t_2)); \rho)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi_2^{-1}(P(D_1 \leq t_1, D_2 \leq t_2)) = N_2(\Phi^{-1}(P(D_1 \leq t_1)), \Phi^{-1}(P(D_2 \leq t_2)); \rho)
+\]</div>
 <h3 id="2-model-assumptions_1">2. Model Assumptions<a class="headerlink" href="#2-model-assumptions_1" title="Permanent link">&para;</a></h3>
 <p><strong>Constant Correlation</strong>: Single parameter <span class="arithmatex">\(\rho\)</span> governs all pairwise default dependence.</p>
 <p><strong>Normal Dependence</strong>: Tail behavior follows bivariate normal copula.</p>
@@ -47138,20 +47138,20 @@
 <p><strong>No Systemic Risk</strong>: Model did not capture economy-wide factors.</p>
 <h3 id="3-what-went-wrong_1">3. What Went Wrong<a class="headerlink" href="#3-what-went-wrong_1" title="Permanent link">&para;</a></h3>
 <p><strong>Underestimation of Joint Defaults</strong>: Gaussian copula has <strong>weak tail dependence</strong>:</p>
-<p>$$</p>
-<p>\lambda_U = \lim_{u \to 1^-} P(U_2 &gt; u | U_1 &gt; u) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_U = \lim_{u \to 1^-} P(U_2 &gt; u | U_1 &gt; u) = 0
+\]</div>
 <p><strong>Correlation Smile</strong>: Market-implied correlations varied with tranche (base vs. senior), inconsistent with single-<span class="arithmatex">\(\rho\)</span> model.</p>
 <p><strong>Systemic Exposure</strong>: House prices correlated nationally; defaults clustered.</p>
 <h3 id="4-quantitative-analysis_1">4. Quantitative Analysis<a class="headerlink" href="#4-quantitative-analysis_1" title="Permanent link">&para;</a></h3>
 <p><strong>Tranche Sensitivity</strong>: For equity tranche, small <span class="arithmatex">\(\Delta \rho\)</span> causes large price change:</p>
-<p>$$</p>
-<p>\frac{\partial V_{\text{equity}}}{\partial \rho} \gg \frac{\partial V_{\text{senior}}}{\partial \rho}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V_{\text{equity}}}{\partial \rho} \gg \frac{\partial V_{\text{senior}}}{\partial \rho}
+\]</div>
 <p><strong>Implied Correlation Skew</strong>: Market prices implied:</p>
-<p>$$</p>
-<p>\rho_{\text{equity}} &lt; \rho_{\text{mezzanine}} &lt; \rho_{\text{senior}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_{\text{equity}} &lt; \rho_{\text{mezzanine}} &lt; \rho_{\text{senior}}
+\]</div>
 <p>Inconsistent with single-factor Gaussian copula.</p>
 <h3 id="5-lessons_1">5. Lessons<a class="headerlink" href="#5-lessons_1" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47210,17 +47210,17 @@
 <h2 id="early-warning-indicators">Early Warning Indicators<a class="headerlink" href="#early-warning-indicators" title="Permanent link">&para;</a></h2>
 <h3 id="1-statistical-signals">1. Statistical Signals<a class="headerlink" href="#1-statistical-signals" title="Permanent link">&para;</a></h3>
 <p><strong>Residual Analysis</strong>:</p>
-<p>$$</p>
-<p>\hat{\epsilon}_t = Y_t - \hat{Y}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\epsilon}_t = Y_t - \hat{Y}_t
+\]</div>
 <p>Warning signs:
 - Autocorrelation in residuals
 - Heteroskedasticity
 - Non-normality</p>
 <p><strong>Forecast Error Tracking</strong>:</p>
-<p>$$</p>
-<p>\text{MAE}<em s="t-n+1">t = \frac{1}{n} \sum</em>|}^{t} |Y_s - \hat{Y}_{s|s-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MAE}_t = \frac{1}{n} \sum_{s=t-n+1}^{t} |Y_s - \hat{Y}_{s|s-1}|
+\]</div>
 <p>Warning: Increasing MAE trend.</p>
 <h3 id="2-market-signals">2. Market Signals<a class="headerlink" href="#2-market-signals" title="Permanent link">&para;</a></h3>
 <p><strong>Implied vs. Realized</strong>: Large divergence between implied and realized volatility.</p>
@@ -47246,9 +47246,9 @@
 <h3 id="3-model-reserves">3. Model Reserves<a class="headerlink" href="#3-model-reserves" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Additional capital held for model uncertainty.</p>
 <p><strong>Calculation</strong>:</p>
-<p>$$</p>
-<p>\text{Reserve} = V^{\text{worst-case}} - V^{\text{point estimate}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Reserve} = V^{\text{worst-case}} - V^{\text{point estimate}}
+\]</div>
 <h3 id="4-model-governance">4. Model Governance<a class="headerlink" href="#4-model-governance" title="Permanent link">&para;</a></h3>
 <p><strong>Inventory</strong>: Maintain catalog of all models in use.</p>
 <p><strong>Tiering</strong>: Classify models by materiality and complexity.</p>

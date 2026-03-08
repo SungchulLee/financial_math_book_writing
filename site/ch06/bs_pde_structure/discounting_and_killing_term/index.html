@@ -46430,53 +46430,53 @@
 - Inflation erodes purchasing power
 - There is uncertainty about future payments</p>
 <p><strong>Continuous discounting</strong>: A cash flow <span class="arithmatex">\(X\)</span> at time <span class="arithmatex">\(T\)</span> has present value:</p>
-<p>$$</p>
-<p>PV = e^{-r(T-t)}X</p>
-<p>$$</p>
+<div class="arithmatex">\[
+PV = e^{-r(T-t)}X
+\]</div>
 <p>at time <span class="arithmatex">\(t &lt; T\)</span>.</p>
 <hr />
 <h2 id="the-pricing-pde-with-discounting">The Pricing PDE with Discounting<a class="headerlink" href="#the-pricing-pde-with-discounting" title="Permanent link">&para;</a></h2>
 <p>For a diffusion <span class="arithmatex">\(X_t\)</span> with generator <span class="arithmatex">\(\mathcal{L}\)</span>, the pricing PDE is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The term <span class="arithmatex">\(-rV\)</span> is called the <strong>killing term</strong> or <strong>discount term</strong>.</p>
 <hr />
 <h2 id="probabilistic-interpretation">Probabilistic Interpretation<a class="headerlink" href="#probabilistic-interpretation" title="Permanent link">&para;</a></h2>
 <h3 id="feynman-kac-representation">Feynman-Kac Representation<a class="headerlink" href="#feynman-kac-representation" title="Permanent link">&para;</a></h3>
 <p>The solution is:</p>
-<p>$$</p>
-<p>V(t,x) = \mathbb{E}\left[e^{-r(T-t)}\Phi(X_T) \mid X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t,x) = \mathbb{E}\left[e^{-r(T-t)}\Phi(X_T) \mid X_t = x\right]
+\]</div>
 <p>The exponential discount factor appears naturally from the killing term.</p>
 <h3 id="martingale-formulation">Martingale Formulation<a class="headerlink" href="#martingale-formulation" title="Permanent link">&para;</a></h3>
 <p>Consider the <strong>discounted value process</strong>:</p>
-<p>$$</p>
-<p>M_s = e^{-r(s-t)}V(s, X_s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_s = e^{-r(s-t)}V(s, X_s)
+\]</div>
 <p><strong>Claim</strong>: If <span class="arithmatex">\(V\)</span> solves the pricing PDE, then <span class="arithmatex">\(M_s\)</span> is a martingale.</p>
 <p><strong>Proof</strong>: Apply Itô's lemma:</p>
-<p>$$</p>
-<p>dM_s = e^{-r(s-t)}\left[\left(\frac{\partial V}{\partial s} + \mathcal{L}V - rV\right)ds + \sigma\frac{\partial V}{\partial x}dW_s\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_s = e^{-r(s-t)}\left[\left(\frac{\partial V}{\partial s} + \mathcal{L}V - rV\right)ds + \sigma\frac{\partial V}{\partial x}dW_s\right]
+\]</div>
 <p>Since <span class="arithmatex">\(V\)</span> solves the PDE, the <span class="arithmatex">\(ds\)</span> term vanishes:</p>
-<p>$$</p>
-<p>dM_s = e^{-r(s-t)}\sigma\frac{\partial V}{\partial x}dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_s = e^{-r(s-t)}\sigma\frac{\partial V}{\partial x}dW_s
+\]</div>
 <p>This is a local martingale. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="the-killed-process-interpretation">The Killed Process Interpretation<a class="headerlink" href="#the-killed-process-interpretation" title="Permanent link">&para;</a></h2>
 <p>The killing term has an alternative interpretation via <strong>killed processes</strong>.</p>
 <p><strong>Definition</strong>: A process is <strong>killed at rate <span class="arithmatex">\(r\)</span></strong> if it is terminated at a random time <span class="arithmatex">\(\zeta\)</span> with:</p>
-<p>$$</p>
-<p>\mathbb{P}(\zeta &gt; t \mid \mathcal{F}_t) = e^{-rt}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\zeta &gt; t \mid \mathcal{F}_t) = e^{-rt}
+\]</div>
 <p><strong>Theorem</strong>: The solution to the pricing PDE equals:</p>
-<p>$$</p>
-<p>V(t,x) = \mathbb{E}[\Phi(X_T)\mathbf{1}_{\zeta &gt; T} \mid X_t = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t,x) = \mathbb{E}[\Phi(X_T)\mathbf{1}_{\zeta &gt; T} \mid X_t = x]
+\]</div>
 <p>where <span class="arithmatex">\(\zeta\)</span> is independent of <span class="arithmatex">\(X\)</span> with exponential distribution of rate <span class="arithmatex">\(r\)</span>.</p>
 <p><strong>Interpretation</strong>: Discounting is equivalent to a random termination of the contract.</p>
 <hr />
@@ -46511,13 +46511,13 @@
 <hr />
 <h2 id="state-dependent-discounting">State-Dependent Discounting<a class="headerlink" href="#state-dependent-discounting" title="Permanent link">&para;</a></h2>
 <p>More generally, the discount rate can depend on the state:</p>
-<p>$$</p>
-<p>V(t,x) = \mathbb{E}\left[\exp\left(-\int_t^T r(X_s)\,ds\right)\Phi(X_T) \mid X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t,x) = \mathbb{E}\left[\exp\left(-\int_t^T r(X_s)\,ds\right)\Phi(X_T) \mid X_t = x\right]
+\]</div>
 <p>The PDE becomes:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathcal{L}V - r(x)V = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathcal{L}V - r(x)V = 0
+\]</div>
 <p><strong>Applications</strong>:
 - Credit risk: Higher rates for riskier states
 - Stochastic interest rates: <span class="arithmatex">\(r = r(X_t)\)</span>
@@ -46525,13 +46525,13 @@
 <hr />
 <h2 id="the-discount-factor-process">The Discount Factor Process<a class="headerlink" href="#the-discount-factor-process" title="Permanent link">&para;</a></h2>
 <p>Define the <strong>discount factor</strong>:</p>
-<p>$$</p>
-<p>D(t,T) = \exp\left(-\int_t^T r(s)\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D(t,T) = \exp\left(-\int_t^T r(s)\,ds\right)
+\]</div>
 <p>or for state-dependent rates:</p>
-<p>$$</p>
-<p>D_t^T = \exp\left(-\int_t^T r(X_s)\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_t^T = \exp\left(-\int_t^T r(X_s)\,ds\right)
+\]</div>
 <p><strong>Properties</strong>:
 - <span class="arithmatex">\(D(t,t) = 1\)</span>
 - <span class="arithmatex">\(D(t,T) \cdot D(T,S) = D(t,S)\)</span> (multiplicative)
@@ -46539,28 +46539,28 @@
 <hr />
 <h2 id="zero-coupon-bond-pricing">Zero-Coupon Bond Pricing<a class="headerlink" href="#zero-coupon-bond-pricing" title="Permanent link">&para;</a></h2>
 <p>A zero-coupon bond paying <span class="arithmatex">\(1\)</span> at maturity <span class="arithmatex">\(T\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial P}{\partial t} + \mathcal{L}P - rP = 0, \quad P(T,x) = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial P}{\partial t} + \mathcal{L}P - rP = 0, \quad P(T,x) = 1
+\]</div>
 <p><strong>Solution</strong>:</p>
-<p>$$</p>
-<p>P(t,x) = \mathbb{E}\left[e^{-\int_t^T r(X_s)\,ds} \mid X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t,x) = \mathbb{E}\left[e^{-\int_t^T r(X_s)\,ds} \mid X_t = x\right]
+\]</div>
 <p>For constant <span class="arithmatex">\(r\)</span>: <span class="arithmatex">\(P(t) = e^{-r(T-t)}\)</span>.</p>
 <hr />
 <h2 id="credit-risk-and-default">Credit Risk and Default<a class="headerlink" href="#credit-risk-and-default" title="Permanent link">&para;</a></h2>
 <p>In credit risk models, the killing rate represents <strong>default intensity</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mathcal{L}V - (r + \lambda)V = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mathcal{L}V - (r + \lambda)V = 0
+\]</div>
 <p>where <span class="arithmatex">\(\lambda\)</span> is the default intensity.</p>
 <p><strong>Interpretation</strong>:
 - Total discount rate = risk-free rate + credit spread
 - <span class="arithmatex">\(\lambda\)</span> represents probability of default per unit time</p>
 <p><strong>Probabilistic representation</strong>:</p>
-<p>$$</p>
-<p>V(t,x) = \mathbb{E}\left[e^{-\int_t^T (r+\lambda)\,ds}\Phi(X_T) \mid X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t,x) = \mathbb{E}\left[e^{-\int_t^T (r+\lambda)\,ds}\Phi(X_T) \mid X_t = x\right]
+\]</div>
 <hr />
 <h2 id="comparison-of-terms">Comparison of Terms<a class="headerlink" href="#comparison-of-terms" title="Permanent link">&para;</a></h2>
 <table>
@@ -46610,17 +46610,17 @@
 <hr />
 <h2 id="numerical-implications">Numerical Implications<a class="headerlink" href="#numerical-implications" title="Permanent link">&para;</a></h2>
 <p>For finite difference methods, the killing term adds a diagonal contribution to the discretization matrix:</p>
-<p>$$</p>
-<p>\frac{V_j^{n+1} - V_j^n}{\Delta t} = (\mathcal{L}_h V)_j^n - rV_j^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{V_j^{n+1} - V_j^n}{\Delta t} = (\mathcal{L}_h V)_j^n - rV_j^n
+\]</div>
 <p>This typically <strong>improves stability</strong> (makes the system more diagonally dominant).</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0 \quad \Longleftrightarrow \quad V = \mathbb{E}[e^{-r(T-t)}\Phi(X_T)]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

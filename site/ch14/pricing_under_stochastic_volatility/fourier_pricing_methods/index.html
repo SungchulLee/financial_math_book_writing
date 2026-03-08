@@ -46995,9 +46995,9 @@
 <h2 id="overview-of-fourier-pricing">Overview of Fourier Pricing<a class="headerlink" href="#overview-of-fourier-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="the-basic-idea">The Basic Idea<a class="headerlink" href="#the-basic-idea" title="Permanent link">&para;</a></h3>
 <p>European option prices involve expectations of the form:</p>
-<p>$$</p>
-<p>C(K) = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]
+\]</div>
 <p>The density of <span class="arithmatex">\(S_T\)</span> (or <span class="arithmatex">\(X_T = \log S_T\)</span>) is typically unavailable in closed form for stochastic volatility models, but the <strong>characteristic function</strong> <span class="arithmatex">\(\varphi(u) = \mathbb{E}[e^{iuX_T}]\)</span> often is.</p>
 <p><strong>Key insight:</strong> Use Fourier inversion to express prices as integrals of <span class="arithmatex">\(\varphi\)</span>, then evaluate numerically.</p>
 <h3 id="pricing-formula-types">Pricing Formula Types<a class="headerlink" href="#pricing-formula-types" title="Permanent link">&para;</a></h3>
@@ -47041,32 +47041,32 @@
 <h2 id="carrmadan-method">Carr–Madan Method<a class="headerlink" href="#carrmadan-method" title="Permanent link">&para;</a></h2>
 <h3 id="the-problem-with-direct-integration">The Problem with Direct Integration<a class="headerlink" href="#the-problem-with-direct-integration" title="Permanent link">&para;</a></h3>
 <p>A European call price is:</p>
-<p>$$</p>
-<p>C(K) = e^{-rT}\int_{\log K}^{\infty}(e^x - K)f(x)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = e^{-rT}\int_{\log K}^{\infty}(e^x - K)f(x)\,dx
+\]</div>
 <p>where <span class="arithmatex">\(f(x)\)</span> is the density of <span class="arithmatex">\(X_T = \log S_T\)</span>.</p>
 <p><strong>Issue:</strong> The call price <span class="arithmatex">\(C(K)\)</span> as a function of <span class="arithmatex">\(K\)</span> is not square-integrable (it grows as <span class="arithmatex">\(K \to 0\)</span>), preventing direct Fourier analysis.</p>
 <h3 id="damping-the-payoff">Damping the Payoff<a class="headerlink" href="#damping-the-payoff" title="Permanent link">&para;</a></h3>
 <p>Introduce a <strong>damping factor</strong> <span class="arithmatex">\(e^{\alpha k}\)</span> where <span class="arithmatex">\(k = \log K\)</span>:</p>
-<p>$$</p>
-<p>c(k) = e^{\alpha k}C(e^k)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+c(k) = e^{\alpha k}C(e^k)
+\]</div>
 <p>For <span class="arithmatex">\(\alpha &gt; 0\)</span>, the modified price <span class="arithmatex">\(c(k) \to 0\)</span> as <span class="arithmatex">\(k \to -\infty\)</span>, making it integrable.</p>
 <h3 id="the-carrmadan-formula">The Carr–Madan Formula<a class="headerlink" href="#the-carrmadan-formula" title="Permanent link">&para;</a></h3>
 <p>The Fourier transform of <span class="arithmatex">\(c(k)\)</span> is:</p>
-<p>$$</p>
-<p>\hat{c}(u) = \int_{-\infty}^{\infty} e^{iuk}c(k)\,dk = \frac{e^{-rT}\varphi(u - i(\alpha+1))}{\alpha^2 + \alpha - u^2 + i(2\alpha+1)u}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{c}(u) = \int_{-\infty}^{\infty} e^{iuk}c(k)\,dk = \frac{e^{-rT}\varphi(u - i(\alpha+1))}{\alpha^2 + \alpha - u^2 + i(2\alpha+1)u}
+\]</div>
 <p><strong>Derivation:</strong> Substitute the call payoff, interchange integrals, and evaluate.</p>
 <h3 id="inversion-formula">Inversion Formula<a class="headerlink" href="#inversion-formula" title="Permanent link">&para;</a></h3>
 <p>The call price is recovered by:</p>
-<p>$$</p>
-<p>C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty} e^{-iuk}\hat{c}(u)\,du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty} e^{-iuk}\hat{c}(u)\,du
+\]</div>
 <p>or equivalently:</p>
-<p>$$</p>
-<p>C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty} \text{Re}\left[e^{-iuk}\hat{c}(u)\right]du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = \frac{e^{-\alpha k}}{\pi}\int_0^{\infty} \text{Re}\left[e^{-iuk}\hat{c}(u)\right]du
+\]</div>
 <h3 id="choosing">Choosing α<a class="headerlink" href="#choosing" title="Permanent link">&para;</a></h3>
 <p>The damping parameter <span class="arithmatex">\(\alpha\)</span> must satisfy:</p>
 <ol>
@@ -47080,25 +47080,25 @@
 <h2 id="fft-implementation">FFT Implementation<a class="headerlink" href="#fft-implementation" title="Permanent link">&para;</a></h2>
 <h3 id="discretization">Discretization<a class="headerlink" href="#discretization" title="Permanent link">&para;</a></h3>
 <p>Discretize the integration with step <span class="arithmatex">\(\Delta u\)</span> and truncate at <span class="arithmatex">\(N\)</span> points:</p>
-<p>$$</p>
-<p>C(k_j) \approx \frac{e^{-\alpha k_j}}{\pi}\sum_{n=0}^{N-1} e^{-i u_n k_j}\hat{c}(u_n)\Delta u</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(k_j) \approx \frac{e^{-\alpha k_j}}{\pi}\sum_{n=0}^{N-1} e^{-i u_n k_j}\hat{c}(u_n)\Delta u
+\]</div>
 <p>where <span class="arithmatex">\(u_n = n\Delta u\)</span> and <span class="arithmatex">\(k_j\)</span> is the log-strike grid.</p>
 <h3 id="fft-structure">FFT Structure<a class="headerlink" href="#fft-structure" title="Permanent link">&para;</a></h3>
 <p>For the FFT to apply, we need:</p>
-<p>$$</p>
-<p>k_j = -b + j\Delta k, \quad j = 0, \ldots, N-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+k_j = -b + j\Delta k, \quad j = 0, \ldots, N-1
+\]</div>
 <p>with the relationship:</p>
-<p>$$</p>
-<p>\Delta u \cdot \Delta k = \frac{2\pi}{N}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta u \cdot \Delta k = \frac{2\pi}{N}
+\]</div>
 <p><strong>Trade-off:</strong> Fine <span class="arithmatex">\(\Delta u\)</span> (accurate integration) implies coarse <span class="arithmatex">\(\Delta k\)</span> (sparse strike grid), and vice versa.</p>
 <h3 id="simpsons-rule-enhancement">Simpson's Rule Enhancement<a class="headerlink" href="#simpsons-rule-enhancement" title="Permanent link">&para;</a></h3>
 <p>Apply Simpson's weights for improved accuracy:</p>
-<p>$$</p>
-<p>C(k_j) \approx \frac{e^{-\alpha k_j}}{\pi}\sum_{n=0}^{N-1} e^{-i u_n k_j}\hat{c}(u_n)\cdot w_n \cdot \Delta u</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(k_j) \approx \frac{e^{-\alpha k_j}}{\pi}\sum_{n=0}^{N-1} e^{-i u_n k_j}\hat{c}(u_n)\cdot w_n \cdot \Delta u
+\]</div>
 <p>where <span class="arithmatex">\(w_n = \frac{1}{3}(3 + (-1)^n - \delta_{n,0})\)</span>.</p>
 <h3 id="implementation-summary">Implementation Summary<a class="headerlink" href="#implementation-summary" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">carr_madan_fft</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">K_array</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">cf_func</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4096</span><span class="p">):</span>
@@ -47145,9 +47145,9 @@
 <h2 id="lewis-formula">Lewis Formula<a class="headerlink" href="#lewis-formula" title="Permanent link">&para;</a></h2>
 <h3 id="alternative-representation">Alternative Representation<a class="headerlink" href="#alternative-representation" title="Permanent link">&para;</a></h3>
 <p>Lewis (2001) provides a symmetric formula:</p>
-<p>$$</p>
-<p>C(K) = S_0 e^{-qT} - \frac{\sqrt{S_0 K}e^{-(r+q)T/2}}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{iuk}\varphi(u - i/2)}{u^2 + 1/4}\right]du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = S_0 e^{-qT} - \frac{\sqrt{S_0 K}e^{-(r+q)T/2}}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{iuk}\varphi(u - i/2)}{u^2 + 1/4}\right]du
+\]</div>
 <p>where <span class="arithmatex">\(k = \log(K/S_0)\)</span>.</p>
 <h3 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47163,24 +47163,24 @@
 <h2 id="cos-method">COS Method<a class="headerlink" href="#cos-method" title="Permanent link">&para;</a></h2>
 <h3 id="cosine-series-expansion">Cosine Series Expansion<a class="headerlink" href="#cosine-series-expansion" title="Permanent link">&para;</a></h3>
 <p>The <strong>COS method</strong> (Fang &amp; Oosterlee, 2008) expands the density in cosine series:</p>
-<p>$$</p>
-<p>f(x) \approx \sum_{k=0}^{N-1} A_k \cos\left(k\pi\frac{x-a}{b-a}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(x) \approx \sum_{k=0}^{N-1} A_k \cos\left(k\pi\frac{x-a}{b-a}\right)
+\]</div>
 <p>on a truncated domain <span class="arithmatex">\([a, b]\)</span>.</p>
 <h3 id="fourier-cosine-coefficients">Fourier-Cosine Coefficients<a class="headerlink" href="#fourier-cosine-coefficients" title="Permanent link">&para;</a></h3>
 <p>The coefficients are related to the characteristic function:</p>
-<p>$$</p>
-<p>A_k = \frac{2}{b-a}\text{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A_k = \frac{2}{b-a}\text{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right]
+\]</div>
 <h3 id="option-pricing">Option Pricing<a class="headerlink" href="#option-pricing" title="Permanent link">&para;</a></h3>
 <p>The call price becomes:</p>
-<p>$$</p>
-<p>C(K) = e^{-rT}\sum_{k=0}^{N-1} \text{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right] \cdot V_k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = e^{-rT}\sum_{k=0}^{N-1} \text{Re}\left[\varphi\left(\frac{k\pi}{b-a}\right)e^{-ik\pi\frac{a}{b-a}}\right] \cdot V_k
+\]</div>
 <p>where <span class="arithmatex">\(V_k\)</span> are precomputed payoff coefficients:</p>
-<p>$$</p>
-<p>V_k = \frac{2}{b-a}\int_{\log K}^b (e^x - K)\cos\left(k\pi\frac{x-a}{b-a}\right)dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_k = \frac{2}{b-a}\int_{\log K}^b (e^x - K)\cos\left(k\pi\frac{x-a}{b-a}\right)dx
+\]</div>
 <p>These have closed-form expressions.</p>
 <h3 id="advantages-of-cos">Advantages of COS<a class="headerlink" href="#advantages-of-cos" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47191,9 +47191,9 @@
 </ol>
 <h3 id="domain-selection">Domain Selection<a class="headerlink" href="#domain-selection" title="Permanent link">&para;</a></h3>
 <p>Choose <span class="arithmatex">\([a, b]\)</span> based on cumulants:</p>
-<p>$$</p>
-<p>a = c_1 - L\sqrt{c_2 + \sqrt{c_4}}, \quad b = c_1 + L\sqrt{c_2 + \sqrt{c_4}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a = c_1 - L\sqrt{c_2 + \sqrt{c_4}}, \quad b = c_1 + L\sqrt{c_2 + \sqrt{c_4}}
+\]</div>
 <p>where <span class="arithmatex">\(c_j\)</span> are cumulants of <span class="arithmatex">\(X_T\)</span> and <span class="arithmatex">\(L \approx 10\)</span>–<span class="arithmatex">\(12\)</span>.</p>
 <p>For Heston, cumulants can be computed from CF derivatives.</p>
 <hr />
@@ -47298,20 +47298,20 @@
 <h2 id="extension-to-puts-and-other-payoffs">Extension to Puts and Other Payoffs<a class="headerlink" href="#extension-to-puts-and-other-payoffs" title="Permanent link">&para;</a></h2>
 <h3 id="put-options">Put Options<a class="headerlink" href="#put-options" title="Permanent link">&para;</a></h3>
 <p>Use put-call parity:</p>
-<p>$$</p>
-<p>P(K) = C(K) - S_0 e^{-qT} + K e^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(K) = C(K) - S_0 e^{-qT} + K e^{-rT}
+\]</div>
 <p>Or modify the Fourier transform for put payoffs directly.</p>
 <h3 id="digital-options">Digital Options<a class="headerlink" href="#digital-options" title="Permanent link">&para;</a></h3>
 <p>Digital call: <span class="arithmatex">\(\mathbf{1}_{S_T &gt; K}\)</span></p>
-<p>$$</p>
-<p>D_C(K) = e^{-rT}\left[\frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-iuk}\varphi(u)}{iu}\right]du\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_C(K) = e^{-rT}\left[\frac{1}{2} + \frac{1}{\pi}\int_0^{\infty}\text{Re}\left[\frac{e^{-iuk}\varphi(u)}{iu}\right]du\right]
+\]</div>
 <h3 id="power-payoffs">Power Payoffs<a class="headerlink" href="#power-payoffs" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\((S_T)^p\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[(S_T)^p] = e^{rT}\varphi(-ip)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(S_T)^p] = e^{rT}\varphi(-ip)
+\]</div>
 <p>(if the moment exists).</p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

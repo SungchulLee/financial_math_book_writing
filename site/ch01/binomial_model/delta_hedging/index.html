@@ -47007,41 +47007,41 @@
 </div>
 <h3 id="portfolio-values">Portfolio Values<a class="headerlink" href="#portfolio-values" title="Permanent link">&para;</a></h3>
 <p><strong>At time <span class="arithmatex">\(0\)</span>:</strong></p>
-<p>$$</p>
-<p>\Pi_0 = \Delta \cdot S_0 - V_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_0 = \Delta \cdot S_0 - V_0
+\]</div>
 <p><strong>At time <span class="arithmatex">\(\Delta t\)</span> (up state):</strong></p>
-<p>$$</p>
-<p>\Pi_{\Delta t}^{up} = \Delta \cdot uS_0 - H_u</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t}^{up} = \Delta \cdot uS_0 - H_u
+\]</div>
 <p><strong>At time <span class="arithmatex">\(\Delta t\)</span> (down state):</strong></p>
-<p>$$</p>
-<p>\Pi_{\Delta t}^{down} = \Delta \cdot dS_0 - H_d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t}^{down} = \Delta \cdot dS_0 - H_d
+\]</div>
 <p>where <span class="arithmatex">\(H_u\)</span> and <span class="arithmatex">\(H_d\)</span> are the option payoffs in the up and down states.</p>
 <hr />
 <h2 id="finding-the-hedge-ratio">Finding the Hedge Ratio<a class="headerlink" href="#finding-the-hedge-ratio" title="Permanent link">&para;</a></h2>
 <h3 id="the-risk-elimination-condition">The Risk-Elimination Condition<a class="headerlink" href="#the-risk-elimination-condition" title="Permanent link">&para;</a></h3>
 <p>For the portfolio to be risk-free, its terminal value must be <strong>the same in both states</strong>:</p>
-<p>$$</p>
-<p>\Pi_{\Delta t}^{up} = \Pi_{\Delta t}^{down}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta \cdot uS_0 - H_u = \Delta \cdot dS_0 - H_d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t}^{up} = \Pi_{\Delta t}^{down}
+\]</div>
+<div class="arithmatex">\[
+\Delta \cdot uS_0 - H_u = \Delta \cdot dS_0 - H_d
+\]</div>
 <h3 id="solving-for-delta">Solving for Delta<a class="headerlink" href="#solving-for-delta" title="Permanent link">&para;</a></h3>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>\Delta \cdot uS_0 - \Delta \cdot dS_0 = H_u - H_d</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta \cdot S_0(u - d) = H_u - H_d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \cdot uS_0 - \Delta \cdot dS_0 = H_u - H_d
+\]</div>
+<div class="arithmatex">\[
+\Delta \cdot S_0(u - d) = H_u - H_d
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">The Hedge Ratio (Delta)</p>
-<p>$$</p>
-<p>\boxed{\Delta = \frac{H_u - H_d}{(u - d)S_0}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\Delta = \frac{H_u - H_d}{(u - d)S_0}}
+\]</div>
 <p>Delta is the <strong>ratio of the option's payoff spread to the stock's price spread</strong>.</p>
 </div>
 <h3 id="interpretation-of-delta">Interpretation of Delta<a class="headerlink" href="#interpretation-of-delta" title="Permanent link">&para;</a></h3>
@@ -47055,24 +47055,24 @@
 <p>With <span class="arithmatex">\(\Delta = \frac{H_u - H_d}{(u-d)S_0}\)</span>, the portfolio has the same terminal value in both states.</p>
 <h3 id="computing-the-terminal-value">Computing the Terminal Value<a class="headerlink" href="#computing-the-terminal-value" title="Permanent link">&para;</a></h3>
 <p>Substituting into the up-state value:</p>
-<p>$$</p>
-<p>\Pi_{\Delta t} = \Delta \cdot uS_0 - H_u = \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0 - H_u</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{u(H_u - H_d)}{u - d} - H_u = \frac{uH_u - uH_d - (u-d)H_u}{u - d}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{uH_u - uH_d - uH_u + dH_u}{u - d} = \frac{dH_u - uH_d}{u - d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t} = \Delta \cdot uS_0 - H_u = \frac{H_u - H_d}{(u-d)S_0} \cdot uS_0 - H_u
+\]</div>
+<div class="arithmatex">\[
+= \frac{u(H_u - H_d)}{u - d} - H_u = \frac{uH_u - uH_d - (u-d)H_u}{u - d}
+\]</div>
+<div class="arithmatex">\[
+= \frac{uH_u - uH_d - uH_u + dH_u}{u - d} = \frac{dH_u - uH_d}{u - d}
+\]</div>
 <p><strong>Verification</strong> (down state):</p>
-<p>$$</p>
-<p>\Pi_{\Delta t} = \Delta \cdot dS_0 - H_d = \frac{d(H_u - H_d)}{u - d} - H_d = \frac{dH_u - uH_d}{u - d} \text{ ✓}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t} = \Delta \cdot dS_0 - H_d = \frac{d(H_u - H_d)}{u - d} - H_d = \frac{dH_u - uH_d}{u - d} \text{ ✓}
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Risk-Free Terminal Value</p>
-<p>$$</p>
-<p>\boxed{\Pi_{\Delta t} = \frac{dH_u - uH_d}{u - d}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\Pi_{\Delta t} = \frac{dH_u - uH_d}{u - d}}
+\]</div>
 <p>This value is <strong>deterministic</strong>—it doesn't depend on which state occurs.</p>
 </div>
 <hr />
@@ -47093,47 +47093,47 @@
 <p>Since arbitrage cannot exist in equilibrium, all risk-free portfolios must earn rate <span class="arithmatex">\(r\)</span>.</p>
 <h3 id="applying-the-principle">Applying the Principle<a class="headerlink" href="#applying-the-principle" title="Permanent link">&para;</a></h3>
 <p>The hedged portfolio is risk-free, so:</p>
-<p>$$</p>
-<p>\Pi_{\Delta t} = \Pi_0 \cdot e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t} = \Pi_0 \cdot e^{r\Delta t}
+\]</div>
 <p>Substituting:</p>
-<p>$$</p>
-<p>\frac{dH_u - uH_d}{u - d} = (\Delta S_0 - V_0) \cdot e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dH_u - uH_d}{u - d} = (\Delta S_0 - V_0) \cdot e^{r\Delta t}
+\]</div>
 <hr />
 <h2 id="deriving-the-option-price">Deriving the Option Price<a class="headerlink" href="#deriving-the-option-price" title="Permanent link">&para;</a></h2>
 <p>Solving for <span class="arithmatex">\(V_0\)</span>:</p>
-<p>$$</p>
-<p>\Delta S_0 - V_0 = e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_0 = \Delta S_0 - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta S_0 - V_0 = e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}
+\]</div>
+<div class="arithmatex">\[
+V_0 = \Delta S_0 - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}
+\]</div>
 <p>Substituting <span class="arithmatex">\(\Delta = \frac{H_u - H_d}{(u-d)S_0}\)</span>:</p>
-<p>$$</p>
-<p>V_0 = \frac{H_u - H_d}{u - d} - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_0 = \frac{1}{u-d}\left[(H_u - H_d) - e^{-r\Delta t}(dH_u - uH_d)\right]</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_0 = \frac{1}{u-d}\left[H_u(1 - de^{-r\Delta t}) + H_d(ue^{-r\Delta t} - 1)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \frac{H_u - H_d}{u - d} - e^{-r\Delta t} \cdot \frac{dH_u - uH_d}{u - d}
+\]</div>
+<div class="arithmatex">\[
+V_0 = \frac{1}{u-d}\left[(H_u - H_d) - e^{-r\Delta t}(dH_u - uH_d)\right]
+\]</div>
+<div class="arithmatex">\[
+V_0 = \frac{1}{u-d}\left[H_u(1 - de^{-r\Delta t}) + H_d(ue^{-r\Delta t} - 1)\right]
+\]</div>
 <p>Multiplying by <span class="arithmatex">\(\frac{e^{r\Delta t}}{e^{r\Delta t}}\)</span>:</p>
-<p>$$</p>
-<p>V_0 = e^{-r\Delta t} \cdot \frac{1}{u-d}\left[H_u(e^{r\Delta t} - d) + H_d(u - e^{r\Delta t})\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-r\Delta t} \cdot \frac{1}{u-d}\left[H_u(e^{r\Delta t} - d) + H_d(u - e^{r\Delta t})\right]
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Option Pricing Formula (via Hedging)</p>
-<p>$$</p>
-<p>\boxed{V_0 = e^{-r\Delta t}\left[\frac{e^{r\Delta t} - d}{u - d} H_u + \frac{u - e^{r\Delta t}}{u - d} H_d\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_0 = e^{-r\Delta t}\left[\frac{e^{r\Delta t} - d}{u - d} H_u + \frac{u - e^{r\Delta t}}{u - d} H_d\right]}
+\]</div>
 </div>
 <h3 id="risk-neutral-probability-emerges">Risk-Neutral Probability Emerges<a class="headerlink" href="#risk-neutral-probability-emerges" title="Permanent link">&para;</a></h3>
 <p>Define <span class="arithmatex">\(q := \frac{e^{r\Delta t} - d}{u - d}\)</span>. Then:</p>
-<p>$$</p>
-<p>\boxed{V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{V_0 = e^{-r\Delta t}(qH_u + (1-q)H_d)}
+\]</div>
 <p>The risk-neutral probability <strong>emerges from hedging</strong>—it was not assumed!</p>
 <hr />
 <h2 id="numerical-example">Numerical Example<a class="headerlink" href="#numerical-example" title="Permanent link">&para;</a></h2>
@@ -47177,25 +47177,25 @@
 - Down: <span class="arithmatex">\(S_{\Delta t}^{down} = 90\)</span></p>
 <h3 id="european-call-option">European Call Option<a class="headerlink" href="#european-call-option" title="Permanent link">&para;</a></h3>
 <p><strong>Payoffs:</strong></p>
-<p>$$</p>
-<p>H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_u = (120 - 105)^+ = 15, \qquad H_d = (90 - 105)^+ = 0
+\]</div>
 <p><strong>Delta:</strong></p>
-<p>$$</p>
-<p>\Delta = \frac{15 - 0}{(1.2 - 0.9) \times 100} = \frac{15}{30} = 0.5</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{15 - 0}{(1.2 - 0.9) \times 100} = \frac{15}{30} = 0.5
+\]</div>
 <p><strong>Risk-free portfolio terminal value:</strong></p>
-<p>$$</p>
-<p>\Pi_{\Delta t} = \frac{0.9 \times 15 - 1.2 \times 0}{0.3} = \frac{13.5}{0.3} = 45</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t} = \frac{0.9 \times 15 - 1.2 \times 0}{0.3} = \frac{13.5}{0.3} = 45
+\]</div>
 <p><strong>Initial portfolio value</strong> (via no-arbitrage):</p>
-<p>$$</p>
-<p>\Pi_0 = e^{-0.05} \times 45 = 0.9512 \times 45 = 42.80</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_0 = e^{-0.05} \times 45 = 0.9512 \times 45 = 42.80
+\]</div>
 <p><strong>Option price:</strong></p>
-<p>$$</p>
-<p>V_0 = \Delta S_0 - \Pi_0 = 0.5 \times 100 - 42.80 = 7.20</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \Delta S_0 - \Pi_0 = 0.5 \times 100 - 42.80 = 7.20
+\]</div>
 <h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
 <p><strong>Up state:</strong>
 - Portfolio: <span class="arithmatex">\(0.5 \times 120 - 15 = 60 - 15 = 45\)</span> ✓
@@ -47209,17 +47209,17 @@
 </div>
 <h3 id="european-put-option">European Put Option<a class="headerlink" href="#european-put-option" title="Permanent link">&para;</a></h3>
 <p><strong>Payoffs:</strong></p>
-<p>$$</p>
-<p>H_u = 0, \qquad H_d = 15</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_u = 0, \qquad H_d = 15
+\]</div>
 <p><strong>Delta:</strong></p>
-<p>$$</p>
-<p>\Delta = \frac{0 - 15}{30} = -0.5</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{0 - 15}{30} = -0.5
+\]</div>
 <p><strong>Risk-free portfolio terminal value:</strong></p>
-<p>$$</p>
-<p>\Pi_{\Delta t} = \frac{0.9 \times 0 - 1.2 \times 15}{0.3} = \frac{-18}{0.3} = -60</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_{\Delta t} = \frac{0.9 \times 0 - 1.2 \times 15}{0.3} = \frac{-18}{0.3} = -60
+\]</div>
 <p>Note: Negative terminal value means we <strong>owe</strong> money. This is because with <span class="arithmatex">\(\Delta &lt; 0\)</span>, we're short stock + short put.</p>
 <p>Let's redo with long put + short stock (holder's perspective):</p>
 <p><strong>Portfolio</strong>: Long 1 put + short <span class="arithmatex">\(|\Delta| = 0.5\)</span> shares</p>
@@ -47229,41 +47229,41 @@
 <p>These aren't equal! The issue is we need to hedge from the <strong>writer's</strong> perspective for a put.</p>
 <p><strong>Correct portfolio</strong>: Short 1 put + long <span class="arithmatex">\(\Delta = -0.5\)</span> shares (i.e., short 0.5 shares)</p>
 <p><strong>Initial value:</strong></p>
-<p>$$</p>
-<p>\Pi_0 = -0.5 \times 100 - (-V_0) = -50 + V_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_0 = -0.5 \times 100 - (-V_0) = -50 + V_0
+\]</div>
 <p><strong>Terminal values:</strong>
 - Up: <span class="arithmatex">\(-0.5 \times 120 - 0 = -60\)</span>
 - Down: <span class="arithmatex">\(-0.5 \times 90 - 15 = -45 - 15 = -60\)</span> ✓</p>
 <p>Both give <span class="arithmatex">\(-60\)</span>, so the portfolio is risk-free (with negative value—a liability).</p>
 <p><strong>No-arbitrage:</strong></p>
-<p>$$</p>
-<p>-60 = (V_0 - 50) \times e^{0.05}</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_0 - 50 = -60 \times e^{-0.05} = -57.07</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_0 = 50 - 57.07 = -7.07</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-60 = (V_0 - 50) \times e^{0.05}
+\]</div>
+<div class="arithmatex">\[
+V_0 - 50 = -60 \times e^{-0.05} = -57.07
+\]</div>
+<div class="arithmatex">\[
+V_0 = 50 - 57.07 = -7.07
+\]</div>
 <p>Wait, this is negative! Let me reconsider the sign convention.</p>
 <p><strong>Corrected analysis</strong>: For a put with <span class="arithmatex">\(\Delta &lt; 0\)</span>, the hedged portfolio (short put, long <span class="arithmatex">\(\Delta\)</span> shares) means we're actually <strong>short</strong> <span class="arithmatex">\(|\Delta|\)</span> shares:</p>
-<p>$$</p>
-<p>\Pi_0 = \Delta S_0 - V_0 = -0.5 \times 100 - V_0 = -50 - V_0</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Pi_{\Delta t} = -0.5 \times uS_0 - H_u = -60 - 0 = -60 \text{ (up)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Pi_{\Delta t} = -0.5 \times dS_0 - H_d = -45 - 15 = -60 \text{ (down)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_0 = \Delta S_0 - V_0 = -0.5 \times 100 - V_0 = -50 - V_0
+\]</div>
+<div class="arithmatex">\[
+\Pi_{\Delta t} = -0.5 \times uS_0 - H_u = -60 - 0 = -60 \text{ (up)}
+\]</div>
+<div class="arithmatex">\[
+\Pi_{\Delta t} = -0.5 \times dS_0 - H_d = -45 - 15 = -60 \text{ (down)}
+\]</div>
 <p>No-arbitrage: <span class="arithmatex">\(-60 = (-50 - V_0) \times e^{0.05}\)</span></p>
-<p>$$</p>
-<p>-50 - V_0 = -60 \times e^{-0.05} = -57.07</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_0 = -50 + 57.07 = 7.07</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-50 - V_0 = -60 \times e^{-0.05} = -57.07
+\]</div>
+<div class="arithmatex">\[
+V_0 = -50 + 57.07 = 7.07
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">European Put Price</p>
 <div class="arithmatex">\[P_0 = 7.07\]</div>
@@ -47272,13 +47272,13 @@
 <h2 id="delta-as-sensitivity">Delta as Sensitivity<a class="headerlink" href="#delta-as-sensitivity" title="Permanent link">&para;</a></h2>
 <h3 id="the-meaning-of-delta">The Meaning of Delta<a class="headerlink" href="#the-meaning-of-delta" title="Permanent link">&para;</a></h3>
 <p>Delta measures how much the option value changes when the stock price changes:</p>
-<p>$$</p>
-<p>\Delta = \frac{H_u - H_d}{(u-d)S_0} = \frac{\text{Option payoff change}}{\text{Stock price change}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{H_u - H_d}{(u-d)S_0} = \frac{\text{Option payoff change}}{\text{Stock price change}}
+\]</div>
 <p>In continuous time, this becomes:</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial V}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial V}{\partial S}
+\]</div>
 <h3 id="delta-for-different-options">Delta for Different Options<a class="headerlink" href="#delta-for-different-options" title="Permanent link">&para;</a></h3>
 <table>
 <thead>

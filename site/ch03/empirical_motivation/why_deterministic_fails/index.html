@@ -46730,33 +46730,33 @@
 <h2 id="the-deterministic-growth-model">The Deterministic Growth Model<a class="headerlink" href="#the-deterministic-growth-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-exponential-growth-ode">1. Exponential Growth ODE<a class="headerlink" href="#1-exponential-growth-ode" title="Permanent link">&para;</a></h3>
 <p>The simplest model for asset prices is exponential growth:</p>
-<p>$$</p>
-<p>\frac{dS}{dt} = \mu S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS}{dt} = \mu S
+\]</div>
 <p>where:
 - <span class="arithmatex">\(S(t)\)</span> is the asset price at time <span class="arithmatex">\(t\)</span>
 - <span class="arithmatex">\(\mu\)</span> is the constant growth rate (expected return)</p>
 <p><strong>Solution:</strong></p>
-<p>$$</p>
-<p>S(t) = S_0 e^{\mu t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t) = S_0 e^{\mu t}
+\]</div>
 <p>This is a <strong>smooth, deterministic trajectory</strong> with no randomness.</p>
 <h3 id="2-properties-of-the-deterministic-model">2. Properties of the Deterministic Model<a class="headerlink" href="#2-properties-of-the-deterministic-model" title="Permanent link">&para;</a></h3>
 <p><strong>1. Perfect predictability:</strong></p>
 <p>Given <span class="arithmatex">\(S_0\)</span> and <span class="arithmatex">\(\mu\)</span>, the price at any future time is <strong>exactly known</strong>:</p>
-<p>$$</p>
-<p>S(t) = S_0 e^{\mu t} \quad \text{for all } t \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t) = S_0 e^{\mu t} \quad \text{for all } t \geq 0
+\]</div>
 <p><strong>2. Smoothness:</strong></p>
 <p>The path <span class="arithmatex">\(t \mapsto S(t)\)</span> is <strong>infinitely differentiable</strong>:</p>
-<p>$$</p>
-<p>S'(t) = \mu S(t), \quad S''(t) = \mu^2 S(t), \quad \text{etc.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S'(t) = \mu S(t), \quad S''(t) = \mu^2 S(t), \quad \text{etc.}
+\]</div>
 <p><strong>3. No volatility:</strong></p>
 <p>The instantaneous return is <strong>constant</strong>:</p>
-<p>$$</p>
-<p>\frac{dS/dt}{S} = \mu \quad \text{(deterministic)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS/dt}{S} = \mu \quad \text{(deterministic)}
+\]</div>
 <p><strong>4. Monotonicity:</strong></p>
 <ul>
 <li>If <span class="arithmatex">\(\mu &gt; 0\)</span>: <span class="arithmatex">\(S(t)\)</span> strictly increases</li>
@@ -46825,25 +46825,25 @@
 <h3 id="1-failure-1-no-randomness">1. Failure 1: No Randomness<a class="headerlink" href="#1-failure-1-no-randomness" title="Permanent link">&para;</a></h3>
 <p><strong>Stylized Fact:</strong> Returns exhibit unpredictable fluctuations.</p>
 <p><strong>Deterministic Model:</strong></p>
-<p>$$</p>
-<p>r_t = \frac{S(t+\Delta t) - S(t)}{S(t)} = e^{\mu \Delta t} - 1 \approx \mu \Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = \frac{S(t+\Delta t) - S(t)}{S(t)} = e^{\mu \Delta t} - 1 \approx \mu \Delta t
+\]</div>
 <p>This is <strong>constant</strong> and <strong>perfectly predictable</strong>!</p>
 <p><strong>Reality:</strong></p>
-<p>$$</p>
-<p>r_t = \text{random variable with } \mathbb{E}[r_t] \approx \mu \Delta t, \quad \text{Var}(r_t) &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = \text{random variable with } \mathbb{E}[r_t] \approx \mu \Delta t, \quad \text{Var}(r_t) &gt; 0
+\]</div>
 <p><strong>Conclusion:</strong> Deterministic models have <strong>zero variance</strong> → Cannot match observed volatility.</p>
 <h3 id="2-failure-2-too-smooth">2. Failure 2: Too Smooth<a class="headerlink" href="#2-failure-2-too-smooth" title="Permanent link">&para;</a></h3>
 <p><strong>Stylized Fact:</strong> Stock prices have <strong>nowhere-differentiable paths</strong> (like Brownian motion).</p>
 <p><strong>Deterministic ODE:</strong> Requires <span class="arithmatex">\(S(t)\)</span> to be <strong>continuously differentiable</strong>:</p>
-<p>$$</p>
-<p>\frac{dS}{dt} = \text{well-defined at all times}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dS}{dt} = \text{well-defined at all times}
+\]</div>
 <p><strong>Reality:</strong> Price paths are continuous but <strong>not differentiable</strong>:</p>
-<p>$$</p>
-<p>\lim_{\Delta t \to 0} \frac{S(t + \Delta t) - S(t)}{\Delta t} = \text{does not exist}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\Delta t \to 0} \frac{S(t + \Delta t) - S(t)}{\Delta t} = \text{does not exist}
+\]</div>
 <p>This is a rigorous result from the theory of Brownian motion.</p>
 <p><strong>Demonstration:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">demonstrate_nondifferentiability</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -46891,21 +46891,21 @@
 <h3 id="3-failure-3-cannot-capture-volatility-clustering">3. Failure 3: Cannot Capture Volatility Clustering<a class="headerlink" href="#3-failure-3-cannot-capture-volatility-clustering" title="Permanent link">&para;</a></h3>
 <p><strong>Stylized Fact:</strong> Volatility clusters (GARCH effects).</p>
 <p><strong>Deterministic Model:</strong> Volatility is <strong>zero</strong> everywhere!</p>
-<p>$$</p>
-<p>\text{Var}\left(\frac{dS}{dt}\Big|_t\right) = 0 \quad \text{for all } t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}\left(\frac{dS}{dt}\Big|_t\right) = 0 \quad \text{for all } t
+\]</div>
 <p><strong>Reality:</strong> Volatility is time-varying:</p>
-<p>$$</p>
-<p>\sigma_t = \sigma(t, \text{information}) \quad \text{(changes over time)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_t = \sigma(t, \text{information}) \quad \text{(changes over time)}
+\]</div>
 <p>Periods of high volatility followed by high volatility, etc.</p>
 <p><strong>Fundamental impossibility:</strong> A deterministic ODE <strong>cannot</strong> generate time-varying volatility because it has <strong>no volatility</strong> to begin with.</p>
 <h3 id="4-failure-4-no-heavy-tails">4. Failure 4: No Heavy Tails<a class="headerlink" href="#4-failure-4-no-heavy-tails" title="Permanent link">&para;</a></h3>
 <p><strong>Stylized Fact:</strong> Returns have fat-tailed distributions (excess kurtosis).</p>
 <p><strong>Deterministic Model:</strong> Return distribution is a <strong>Dirac delta function</strong>:</p>
-<p>$$</p>
-<p>P(r_t = \mu \Delta t) = 1, \quad P(r_t \neq \mu \Delta t) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(r_t = \mu \Delta t) = 1, \quad P(r_t \neq \mu \Delta t) = 0
+\]</div>
 <p>This is <strong>infinitely peaked</strong> at one point with <strong>no tails</strong> whatsoever.</p>
 <p><strong>Reality:</strong> Returns have continuous distribution with heavy tails.</p>
 <h3 id="5-failure-5-no-leverage-effect">5. Failure 5: No Leverage Effect<a class="headerlink" href="#5-failure-5-no-leverage-effect" title="Permanent link">&para;</a></h3>
@@ -46918,38 +46918,38 @@
 <h2 id="adding-noise-the-naive-approach">Adding Noise: The Naive Approach<a class="headerlink" href="#adding-noise-the-naive-approach" title="Permanent link">&para;</a></h2>
 <h3 id="1-attempt-add-random-shocks">1. Attempt: Add Random Shocks<a class="headerlink" href="#1-attempt-add-random-shocks" title="Permanent link">&para;</a></h3>
 <p><strong>Idea:</strong> Modify the deterministic model by adding random "shocks":</p>
-<p>$$</p>
-<p>S(t + \Delta t) = S(t) e^{\mu \Delta t} + \epsilon_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t + \Delta t) = S(t) e^{\mu \Delta t} + \epsilon_t
+\]</div>
 <p>where <span class="arithmatex">\(\epsilon_t \sim \mathcal{N}(0, \sigma^2 \Delta t)\)</span> is random noise.</p>
 <h3 id="2-problems-with-this-approach">2. Problems with This Approach<a class="headerlink" href="#2-problems-with-this-approach" title="Permanent link">&para;</a></h3>
 <p><strong>Problem 1: Non-positive prices</strong></p>
 <p>With additive noise, <span class="arithmatex">\(S(t)\)</span> can become <strong>negative</strong>:</p>
-<p>$$</p>
-<p>S(t + \Delta t) = S(t) e^{\mu \Delta t} + \epsilon_t &lt; 0 \quad \text{if } \epsilon_t &lt; -S(t)e^{\mu \Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t + \Delta t) = S(t) e^{\mu \Delta t} + \epsilon_t &lt; 0 \quad \text{if } \epsilon_t &lt; -S(t)e^{\mu \Delta t}
+\]</div>
 <p>This is economically nonsensical (prices must be positive).</p>
 <p><strong>Problem 2: Incorrect scaling</strong></p>
 <p>The noise <span class="arithmatex">\(\epsilon_t\)</span> has <strong>constant variance</strong> <span class="arithmatex">\(\sigma^2 \Delta t\)</span> regardless of price level.</p>
 <p><strong>Reality:</strong> Volatility scales with price (volatility of $100 stock ≠ volatility of $10 stock).</p>
 <p><strong>Problem 3: No continuous-time limit</strong></p>
 <p>As <span class="arithmatex">\(\Delta t \to 0\)</span>, what happens?</p>
-<p>$$</p>
-<p>S(t + \Delta t) - S(t) = S(t)(\mu \Delta t + o(\Delta t)) + \epsilon_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t + \Delta t) - S(t) = S(t)(\mu \Delta t + o(\Delta t)) + \epsilon_t
+\]</div>
 <p>Dividing by <span class="arithmatex">\(\Delta t\)</span>:</p>
-<p>$$</p>
-<p>\frac{S(t + \Delta t) - S(t)}{\Delta t} = S(t)\mu + \frac{\epsilon_t}{\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S(t + \Delta t) - S(t)}{\Delta t} = S(t)\mu + \frac{\epsilon_t}{\Delta t}
+\]</div>
 <p>But <span class="arithmatex">\(\frac{\epsilon_t}{\Delta t} \to \infty\)</span> as <span class="arithmatex">\(\Delta t \to 0\)</span> (noise grows without bound!).</p>
 <p><strong>Conclusion:</strong> Simple additive noise doesn't work.</p>
 <hr />
 <h2 id="better-attempt-multiplicative-noise">Better Attempt: Multiplicative Noise<a class="headerlink" href="#better-attempt-multiplicative-noise" title="Permanent link">&para;</a></h2>
 <h3 id="1-discrete-time-model">1. Discrete-Time Model<a class="headerlink" href="#1-discrete-time-model" title="Permanent link">&para;</a></h3>
 <p><strong>Improved idea:</strong> Make noise proportional to price:</p>
-<p>$$</p>
-<p>S(t + \Delta t) = S(t) \cdot e^{\mu \Delta t + \sigma \epsilon_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t + \Delta t) = S(t) \cdot e^{\mu \Delta t + \sigma \epsilon_t}
+\]</div>
 <p>where <span class="arithmatex">\(\epsilon_t \sim \mathcal{N}(0, \Delta t)\)</span>.</p>
 <p><strong>Advantages:</strong>
 - ✅ Prices remain <strong>positive</strong> (exponential is always positive)
@@ -46958,60 +46958,60 @@
 <h3 id="2-taking-the-continuous-time-limit">2. Taking the Continuous-Time Limit<a class="headerlink" href="#2-taking-the-continuous-time-limit" title="Permanent link">&para;</a></h3>
 <p><strong>Question:</strong> What happens as <span class="arithmatex">\(\Delta t \to 0\)</span>?</p>
 <p>For small <span class="arithmatex">\(\Delta t\)</span>:</p>
-<p>$$</p>
-<p>S(t + \Delta t) = S(t) \exp\left(\mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t + \Delta t) = S(t) \exp\left(\mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z\right)
+\]</div>
 <p>where <span class="arithmatex">\(Z \sim \mathcal{N}(0, 1)\)</span>.</p>
 <p>Taking logarithms:</p>
-<p>$$</p>
-<p>\log S(t + \Delta t) - \log S(t) = \mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S(t + \Delta t) - \log S(t) = \mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z
+\]</div>
 <p>Dividing by <span class="arithmatex">\(\Delta t\)</span>:</p>
-<p>$$</p>
-<p>\frac{\log S(t + \Delta t) - \log S(t)}{\Delta t} = \mu + \sigma \frac{Z}{\sqrt{\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\log S(t + \Delta t) - \log S(t)}{\Delta t} = \mu + \sigma \frac{Z}{\sqrt{\Delta t}}
+\]</div>
 <p>As <span class="arithmatex">\(\Delta t \to 0\)</span>, the term <span class="arithmatex">\(\frac{Z}{\sqrt{\Delta t}} \to \infty\)</span> but in a <strong>controlled way</strong>!</p>
 <p><strong>This is precisely a Brownian motion increment:</strong></p>
-<p>$$</p>
-<p>\frac{W(t + \Delta t) - W(t)}{\sqrt{\Delta t}} \sim \mathcal{N}(0, 1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{W(t + \Delta t) - W(t)}{\sqrt{\Delta t}} \sim \mathcal{N}(0, 1)
+\]</div>
 <h3 id="3-heuristic-continuous-time-limit">3. Heuristic Continuous-Time Limit<a class="headerlink" href="#3-heuristic-continuous-time-limit" title="Permanent link">&para;</a></h3>
 <p>Formally (heuristically):</p>
-<p>$$</p>
-<p>d(\log S) = \mu \, dt + \sigma \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\log S) = \mu \, dt + \sigma \, dW_t
+\]</div>
 <p>where <span class="arithmatex">\(W_t\)</span> is <strong>Brownian motion</strong>.</p>
 <p><strong>But wait!</strong> We want an equation for <span class="arithmatex">\(S\)</span>, not <span class="arithmatex">\(\log S\)</span>.</p>
 <p>Using the "chain rule" (actually <strong>Itô's lemma</strong>, which we'll study later):</p>
-<p>$$</p>
-<p>dS = \mu S \, dt + \sigma S \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS = \mu S \, dt + \sigma S \, dW_t
+\]</div>
 <p><strong>This is a stochastic differential equation (SDE)</strong>, not an ODE!</p>
 <hr />
 <h2 id="why-we-need-stochastic-calculus">Why We Need Stochastic Calculus<a class="headerlink" href="#why-we-need-stochastic-calculus" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-problem-with-ordinary-calculus">1. The Problem with Ordinary Calculus<a class="headerlink" href="#1-the-problem-with-ordinary-calculus" title="Permanent link">&para;</a></h3>
 <p><strong>Ordinary calculus assumes:</strong></p>
-<p>$$</p>
-<p>df = f'(x) \, dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df = f'(x) \, dx
+\]</div>
 <p><strong>But for stochastic processes:</strong></p>
-<p>$$</p>
-<p>d(\log S) \neq \frac{1}{S} dS \quad \text{(WRONG!)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\log S) \neq \frac{1}{S} dS \quad \text{(WRONG!)}
+\]</div>
 <p><strong>The correct formula (Itô's lemma) includes a correction term:</strong></p>
-<p>$$</p>
-<p>d(\log S) = \frac{1}{S} dS - \frac{1}{2S^2} (dS)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\log S) = \frac{1}{S} dS - \frac{1}{2S^2} (dS)^2
+\]</div>
 <p>The term <span class="arithmatex">\((dS)^2 = \sigma^2 S^2 dt\)</span> is <strong>not zero</strong> in stochastic calculus!</p>
 <h3 id="2-fundamental-difference-dw_t2-dt">2. Fundamental Difference: (dW_t)² = dt<a class="headerlink" href="#2-fundamental-difference-dw_t2-dt" title="Permanent link">&para;</a></h3>
 <p><strong>In ordinary calculus:</strong></p>
-<p>$$</p>
-<p>(dx)^2 = 0 \quad \text{(infinitesimal squared is zero)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dx)^2 = 0 \quad \text{(infinitesimal squared is zero)}
+\]</div>
 <p><strong>In stochastic calculus:</strong></p>
-<p>$$</p>
-<p>(dW_t)^2 = dt \quad \text{(NOT zero!)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dW_t)^2 = dt \quad \text{(NOT zero!)}
+\]</div>
 <p>This is the <strong>quadratic variation</strong> of Brownian motion, a fundamental result.</p>
 <p><strong>Consequence:</strong> We need a completely new calculus framework.</p>
 <hr />
@@ -47073,11 +47073,11 @@ NEED: Stochastic Calculus (Itô)
 </ol>
 <h3 id="3-the-geometric-brownian-motion-model">3. The Geometric Brownian Motion Model<a class="headerlink" href="#3-the-geometric-brownian-motion-model" title="Permanent link">&para;</a></h3>
 <p>The correct continuous-time model is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Properties:</strong>
 - ✅ <strong>Random</strong>: Contains Brownian motion <span class="arithmatex">\(W_t\)</span>
 - ✅ <strong>Positive</strong>: Solution is <span class="arithmatex">\(S_t = S_0 \exp\left[(\mu - \frac{\sigma^2}{2})t + \sigma W_t\right] &gt; 0\)</span>

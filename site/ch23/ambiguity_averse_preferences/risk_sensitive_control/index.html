@@ -46924,164 +46924,164 @@
 <h2 id="mathematical-framework">Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-standard-stochastic-control">1. Standard Stochastic Control<a class="headerlink" href="#1-standard-stochastic-control" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Consider a controlled Markov process <span class="arithmatex">\(\{X_t\}\)</span> with dynamics:</p>
-<p>$$</p>
-<p>X_{t+1} = f(X_t, u_t, W_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_{t+1} = f(X_t, u_t, W_t)
+\]</div>
 <p>where <span class="arithmatex">\(X_t \in \mathbb{R}^n\)</span> is the state, <span class="arithmatex">\(u_t \in \mathcal{U}\)</span> is the control action, and <span class="arithmatex">\(W_t\)</span> is i.i.d. noise.</p>
 <p><strong>Standard Objective</strong> (Risk-Neutral):</p>
-<p>$$</p>
-<p>J^{\text{neutral}}(x, \pi) = \mathbb{E}\left[\sum_{t=0}^{T-1} c(X_t, u_t) + c_T(X_T) \,\bigg|\, X_0 = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+J^{\text{neutral}}(x, \pi) = \mathbb{E}\left[\sum_{t=0}^{T-1} c(X_t, u_t) + c_T(X_T) \,\bigg|\, X_0 = x\right]
+\]</div>
 <h3 id="2-risk-sensitive-objective">2. Risk-Sensitive Objective<a class="headerlink" href="#2-risk-sensitive-objective" title="Permanent link">&para;</a></h3>
 <p><strong>Exponential Criterion</strong>: The risk-sensitive objective is:</p>
-<p>$$</p>
-<p>J^{\text{RS}}(x, \pi; \gamma) = \frac{1}{\gamma} \log \mathbb{E}\left[\exp\left(\gamma \sum_{t=0}^{T-1} c(X_t, u_t) + \gamma c_T(X_T)\right) \,\bigg|\, X_0 = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+J^{\text{RS}}(x, \pi; \gamma) = \frac{1}{\gamma} \log \mathbb{E}\left[\exp\left(\gamma \sum_{t=0}^{T-1} c(X_t, u_t) + \gamma c_T(X_T)\right) \,\bigg|\, X_0 = x\right]
+\]</div>
 <p>where <span class="arithmatex">\(\gamma \neq 0\)</span> is the <strong>risk-sensitivity parameter</strong>.</p>
 <p><strong>Interpretation</strong>:
 - <span class="arithmatex">\(\gamma &gt; 0\)</span>: Risk-averse (penalizes variability)
 - <span class="arithmatex">\(\gamma &lt; 0\)</span>: Risk-seeking (rewards variability)
 - <span class="arithmatex">\(\gamma \to 0\)</span>: Recovers risk-neutral case</p>
 <p><strong>Taylor Expansion</strong>: For small <span class="arithmatex">\(\gamma\)</span>:</p>
-<p>$$</p>
-<p>J^{\text{RS}} \approx \mathbb{E}[C] + \frac{\gamma}{2} \text{Var}(C) + O(\gamma^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+J^{\text{RS}} \approx \mathbb{E}[C] + \frac{\gamma}{2} \text{Var}(C) + O(\gamma^2)
+\]</div>
 <h3 id="3-risk-sensitive-bellman-equation">3. Risk-Sensitive Bellman Equation<a class="headerlink" href="#3-risk-sensitive-bellman-equation" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: Define value function <span class="arithmatex">\(V_t^{\gamma}(x)\)</span>. Then:</p>
-<p>$$</p>
-<p>V_t^{\gamma}(x) = \min_u \left{c(x, u) + \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma V_{t+1}^{\gamma}(f(x, u, W))}\right]\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t^{\gamma}(x) = \min_u \left\{c(x, u) + \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma V_{t+1}^{\gamma}(f(x, u, W))}\right]\right\}
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V_T^{\gamma}(x) = c_T(x)\)</span>.</p>
 <h2 id="linear-quadratic-gaussian-case">Linear-Quadratic-Gaussian Case<a class="headerlink" href="#linear-quadratic-gaussian-case" title="Permanent link">&para;</a></h2>
 <h3 id="1-setup">1. Setup<a class="headerlink" href="#1-setup" title="Permanent link">&para;</a></h3>
 <p><strong>Linear Dynamics</strong>:</p>
-<p>$$</p>
-<p>X_{t+1} = A X_t + B u_t + C W_t, \quad W_t \sim N(0, I)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_{t+1} = A X_t + B u_t + C W_t, \quad W_t \sim N(0, I)
+\]</div>
 <p><strong>Quadratic Cost</strong>:</p>
-<p>$$</p>
-<p>c(x, u) = \frac{1}{2}(x^\top Q x + u^\top R u), \quad c_T(x) = \frac{1}{2} x^\top Q_T x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+c(x, u) = \frac{1}{2}(x^\top Q x + u^\top R u), \quad c_T(x) = \frac{1}{2} x^\top Q_T x
+\]</div>
 <h3 id="2-risk-sensitive-lqg-solution">2. Risk-Sensitive LQG Solution<a class="headerlink" href="#2-risk-sensitive-lqg-solution" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Jacobson, 1973): The value function is:</p>
-<p>$$</p>
-<p>V_t^{\gamma}(x) = \frac{1}{2} x^\top P_t x + \frac{1}{2} \sum_{s=t}^{T-1} \rho_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t^{\gamma}(x) = \frac{1}{2} x^\top P_t x + \frac{1}{2} \sum_{s=t}^{T-1} \rho_s
+\]</div>
 <p>where <span class="arithmatex">\(P_t\)</span> satisfies the <strong>risk-sensitive Riccati equation</strong>:</p>
-<p>$$</p>
-<p>P_t = Q + A^\top \left(P_{t+1}^{-1} - \gamma C C^\top\right)^{-1} A - A^\top P_{t+1} B (R + B^\top P_{t+1} B)^{-1} B^\top P_{t+1} A</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_t = Q + A^\top \left(P_{t+1}^{-1} - \gamma C C^\top\right)^{-1} A - A^\top P_{t+1} B (R + B^\top P_{t+1} B)^{-1} B^\top P_{t+1} A
+\]</div>
 <p><strong>Existence Condition</strong>: Requires <span class="arithmatex">\(P_{t+1}^{-1} - \gamma C C^\top \succ 0\)</span>.</p>
 <p><strong>Optimal Control</strong>:</p>
-<p>$$</p>
-<p>u_t^* = -K_t X_t, \quad K_t = (R + B^\top P_{t+1} B)^{-1} B^\top P_{t+1} A</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u_t^* = -K_t X_t, \quad K_t = (R + B^\top P_{t+1} B)^{-1} B^\top P_{t+1} A
+\]</div>
 <p><strong>Remarkable Property</strong>: The optimal control formula is identical to risk-neutral LQG.</p>
 <h2 id="connection-to-robust-control">Connection to Robust Control<a class="headerlink" href="#connection-to-robust-control" title="Permanent link">&para;</a></h2>
 <h3 id="1-hansen-sargent-duality">1. Hansen-Sargent Duality<a class="headerlink" href="#1-hansen-sargent-duality" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: Risk-sensitive control is equivalent to:</p>
-<p>$$</p>
-<p>V^{\gamma}(x) = \max_{h} \min_u \left{c(x, u) + \mathbb{E}[V^{\gamma}(f(x, u, W + h))] - \frac{|h|^2}{2\gamma}\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\gamma}(x) = \max_{h} \min_u \left\{c(x, u) + \mathbb{E}[V^{\gamma}(f(x, u, W + h))] - \frac{\|h\|^2}{2\gamma}\right\}
+\]</div>
 <p><strong>Interpretation</strong>: Controller minimizes cost while nature maximizes via disturbance <span class="arithmatex">\(h\)</span>, penalized by <span class="arithmatex">\(\|h\|^2/(2\gamma)\)</span>.</p>
 <h3 id="2-worst-case-distribution">2. Worst-Case Distribution<a class="headerlink" href="#2-worst-case-distribution" title="Permanent link">&para;</a></h3>
 <p>The worst-case distribution tilts the noise toward adverse outcomes:</p>
-<p>$$</p>
-<p>\frac{dP^*}{dP_0} \propto \exp\left(\gamma V^{\gamma}(f(x, u, W))\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP^*}{dP_0} \propto \exp\left(\gamma V^{\gamma}(f(x, u, W))\right)
+\]</div>
 <h2 id="whittles-risk-sensitive-control">Whittle's Risk-Sensitive Control<a class="headerlink" href="#whittles-risk-sensitive-control" title="Permanent link">&para;</a></h2>
 <h3 id="1-average-cost-criterion">1. Average Cost Criterion<a class="headerlink" href="#1-average-cost-criterion" title="Permanent link">&para;</a></h3>
 <p><strong>Infinite Horizon</strong>: For ergodic systems, consider:</p>
-<p>$$</p>
-<p>\Lambda(\gamma) = \lim_{T \to \infty} \frac{1}{\gamma T} \log \mathbb{E}\left[\exp\left(\gamma \sum_{t=0}^{T-1} c(X_t, u_t)\right)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Lambda(\gamma) = \lim_{T \to \infty} \frac{1}{\gamma T} \log \mathbb{E}\left[\exp\left(\gamma \sum_{t=0}^{T-1} c(X_t, u_t)\right)\right]
+\]</div>
 <p><strong>Whittle's Formula</strong>: Under ergodicity, there exists a function <span class="arithmatex">\(h(x)\)</span> such that:</p>
-<p>$$</p>
-<p>\Lambda(\gamma) + h(x) = \min_u \left{c(x, u) + \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma h(f(x, u, W))}\right]\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Lambda(\gamma) + h(x) = \min_u \left\{c(x, u) + \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma h(f(x, u, W))}\right]\right\}
+\]</div>
 <h3 id="2-large-deviations-connection">2. Large Deviations Connection<a class="headerlink" href="#2-large-deviations-connection" title="Permanent link">&para;</a></h3>
 <p><strong>Legendre Transform</strong>: The risk-sensitive cost relates to rare events:</p>
-<p>$$</p>
-<p>\Lambda(\gamma) = \sup_{\lambda} {\gamma \lambda - I(\lambda)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Lambda(\gamma) = \sup_{\lambda} \{\gamma \lambda - I(\lambda)\}
+\]</div>
 <p>where <span class="arithmatex">\(I(\lambda)\)</span> is the rate function for the empirical average cost.</p>
 <h2 id="financial-applications">Financial Applications<a class="headerlink" href="#financial-applications" title="Permanent link">&para;</a></h2>
 <h3 id="1-portfolio-optimization">1. Portfolio Optimization<a class="headerlink" href="#1-portfolio-optimization" title="Permanent link">&para;</a></h3>
 <p><strong>Risk-Sensitive Portfolio</strong>: With wealth dynamics <span class="arithmatex">\(W_{t+1} = W_t(1 + r_t^\top \pi_t)\)</span>:</p>
-<p>$$</p>
-<p>\max_\pi \frac{1}{\gamma T} \log \mathbb{E}\left[\exp\left(\gamma \sum_{t=0}^{T-1} \log(1 + r_t^\top \pi_t)\right)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_\pi \frac{1}{\gamma T} \log \mathbb{E}\left[\exp\left(\gamma \sum_{t=0}^{T-1} \log(1 + r_t^\top \pi_t)\right)\right]
+\]</div>
 <p><strong>Solution</strong>: For i.i.d. returns with <span class="arithmatex">\(r \sim N(\mu, \Sigma)\)</span>:</p>
-<p>$$</p>
-<p>\pi^* = \frac{1}{1 - \gamma \sigma_p^2} \Sigma^{-1} \mu</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi^* = \frac{1}{1 - \gamma \sigma_p^2} \Sigma^{-1} \mu
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_p^2 = \mu^\top \Sigma^{-1} \mu\)</span> is squared Sharpe ratio.</p>
 <p><strong>Effect</strong>: Risk-sensitivity (<span class="arithmatex">\(\gamma &gt; 0\)</span>) reduces position size.</p>
 <h3 id="2-asset-liability-management">2. Asset-Liability Management<a class="headerlink" href="#2-asset-liability-management" title="Permanent link">&para;</a></h3>
 <p><strong>ALM Objective</strong>: Minimize risk-sensitive tracking error:</p>
-<p>$$</p>
-<p>\min_u \frac{1}{\gamma} \log \mathbb{E}\left[\exp\left(\gamma (A_T - L_T)^2\right)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_u \frac{1}{\gamma} \log \mathbb{E}\left[\exp\left(\gamma (A_T - L_T)^2\right)\right]
+\]</div>
 <p>where <span class="arithmatex">\(A_T\)</span> is asset value and <span class="arithmatex">\(L_T\)</span> is liability.</p>
 <h3 id="3-option-pricing">3. Option Pricing<a class="headerlink" href="#3-option-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Risk-Sensitive Pricing</strong>: Indifference price <span class="arithmatex">\(p\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma U(W_T - \Phi)}\right] = \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma U(W_T + p)}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma U(W_T - \Phi)}\right] = \frac{1}{\gamma} \log \mathbb{E}\left[e^{\gamma U(W_T + p)}\right]
+\]</div>
 <p>This yields prices between sub/super-replication bounds.</p>
 <h2 id="continuous-time-formulation">Continuous-Time Formulation<a class="headerlink" href="#continuous-time-formulation" title="Permanent link">&para;</a></h2>
 <h3 id="1-diffusion-dynamics">1. Diffusion Dynamics<a class="headerlink" href="#1-diffusion-dynamics" title="Permanent link">&para;</a></h3>
 <p><strong>State Equation</strong>:</p>
-<p>$$</p>
-<p>dX_t = b(X_t, u_t) dt + \sigma(X_t, u_t) dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t, u_t) dt + \sigma(X_t, u_t) dW_t
+\]</div>
 <p><strong>Risk-Sensitive Value</strong>: Define:</p>
-<p>$$</p>
-<p>V(t, x) = \sup_u \frac{1}{\gamma} \log \mathbb{E}\left[\exp\left(\gamma \int_t^T c(X_s, u_s) ds + \gamma g(X_T)\right) \bigg| X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, x) = \sup_u \frac{1}{\gamma} \log \mathbb{E}\left[\exp\left(\gamma \int_t^T c(X_s, u_s) ds + \gamma g(X_T)\right) \bigg| X_t = x\right]
+\]</div>
 <h3 id="2-risk-sensitive-hjb">2. Risk-Sensitive HJB<a class="headerlink" href="#2-risk-sensitive-hjb" title="Permanent link">&para;</a></h3>
 <p><strong>PDE</strong>: The value function satisfies:</p>
-<p>$$</p>
-<p>V_t + \sup_u \left{b \cdot \nabla V + \frac{1}{2}\text{tr}(\sigma \sigma^\top D^2 V) + \frac{\gamma}{2}|\sigma^\top \nabla V|^2 + c\right} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t + \sup_u \left\{b \cdot \nabla V + \frac{1}{2}\text{tr}(\sigma \sigma^\top D^2 V) + \frac{\gamma}{2}|\sigma^\top \nabla V|^2 + c\right\} = 0
+\]</div>
 <p><strong>Key Feature</strong>: The term <span class="arithmatex">\(\frac{\gamma}{2}|\sigma^\top \nabla V|^2\)</span> couples value gradient with diffusion.</p>
 <h3 id="3-connection-to-nonlinear-expectations">3. Connection to Nonlinear Expectations<a class="headerlink" href="#3-connection-to-nonlinear-expectations" title="Permanent link">&para;</a></h3>
 <p><strong>g-Expectation</strong>: Risk-sensitive control relates to BSDEs with driver:</p>
-<p>$$</p>
-<p>g(z) = c + \frac{\gamma}{2}|z|^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(z) = c + \frac{\gamma}{2}|z|^2
+\]</div>
 <p>The quadratic driver corresponds to exponential utility.</p>
 <h2 id="computational-methods">Computational Methods<a class="headerlink" href="#computational-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-value-iteration">1. Value Iteration<a class="headerlink" href="#1-value-iteration" title="Permanent link">&para;</a></h3>
 <p><strong>Algorithm</strong>: For discrete state/action:</p>
-<p>$$</p>
-<p>V^{(k+1)}(x) = \min_u \left{c(x, u) + \frac{1}{\gamma} \log \sum_{x'} P(x'|x, u) e^{\gamma V^{(k)}(x')}\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{(k+1)}(x) = \min_u \left\{c(x, u) + \frac{1}{\gamma} \log \sum_{x'} P(x'|x, u) e^{\gamma V^{(k)}(x')}\right\}
+\]</div>
 <p><strong>Convergence</strong>: Contracts under appropriate conditions.</p>
 <h3 id="2-policy-gradient">2. Policy Gradient<a class="headerlink" href="#2-policy-gradient" title="Permanent link">&para;</a></h3>
 <p><strong>Gradient</strong>: For parameterized policy <span class="arithmatex">\(\pi_\theta\)</span>:</p>
-<p>$$</p>
-<p>\nabla_\theta J^{\text{RS}} = \frac{\mathbb{E}\left[e^{\gamma C} \nabla_\theta \log \pi_\theta\right]}{\mathbb{E}\left[e^{\gamma C}\right]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nabla_\theta J^{\text{RS}} = \frac{\mathbb{E}\left[e^{\gamma C} \nabla_\theta \log \pi_\theta\right]}{\mathbb{E}\left[e^{\gamma C}\right]}
+\]</div>
 <p><strong>Challenge</strong>: High variance due to exponential weighting.</p>
 <h3 id="3-monte-carlo">3. Monte Carlo<a class="headerlink" href="#3-monte-carlo" title="Permanent link">&para;</a></h3>
 <p><strong>Importance Sampling</strong>: Use twisted distribution:</p>
-<p>$$</p>
-<p>\hat{J}^{\text{RS}} = \frac{1}{\gamma} \log \frac{1}{N} \sum_{i=1}^N w_i e^{\gamma C_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{J}^{\text{RS}} = \frac{1}{\gamma} \log \frac{1}{N} \sum_{i=1}^N w_i e^{\gamma C_i}
+\]</div>
 <p>with appropriate weights <span class="arithmatex">\(w_i\)</span>.</p>
 <h2 id="relationship-to-other-frameworks">Relationship to Other Frameworks<a class="headerlink" href="#relationship-to-other-frameworks" title="Permanent link">&para;</a></h2>
 <h3 id="1-entropy-penalized-control">1. Entropy-Penalized Control<a class="headerlink" href="#1-entropy-penalized-control" title="Permanent link">&para;</a></h3>
 <p><strong>Equivalence</strong>: Risk-sensitive control with parameter <span class="arithmatex">\(\gamma\)</span> is equivalent to:</p>
-<p>$$</p>
-<p>\min_P \left{\mathbb{E}<em _text_KL="\text{KL">P[C] + \frac{1}{\gamma} D</em>(P | P_0)\right}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_P \left\{\mathbb{E}_P[C] + \frac{1}{\gamma} D_{\text{KL}}(P \| P_0)\right\}
+\]</div>
 <p>where <span class="arithmatex">\(P\)</span> is an alternative probability measure.</p>
 <h3 id="2-exponential-utility">2. Exponential Utility<a class="headerlink" href="#2-exponential-utility" title="Permanent link">&para;</a></h3>
 <p><strong>Connection</strong>: For terminal wealth <span class="arithmatex">\(W_T\)</span>:</p>
-<p>$$</p>
-<p>\max_u \mathbb{E}[-e^{-\gamma W_T}] \iff \max_u \left{-\frac{1}{\gamma} \log \mathbb{E}[e^{-\gamma W_T}]\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_u \mathbb{E}[-e^{-\gamma W_T}] \iff \max_u \left\{-\frac{1}{\gamma} \log \mathbb{E}[e^{-\gamma W_T}]\right\}
+\]</div>
 <p>Risk-sensitive control generalizes exponential utility to multi-period settings.</p>
 <h3 id="3-cvar-optimization">3. CVaR Optimization<a class="headerlink" href="#3-cvar-optimization" title="Permanent link">&para;</a></h3>
 <p><strong>Comparison</strong>:

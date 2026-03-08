@@ -47007,9 +47007,9 @@
 <h2 id="the-local-volatility-model">The Local Volatility Model<a class="headerlink" href="#the-local-volatility-model" title="Permanent link">&para;</a></h2>
 <h3 id="1-model-specification">1. Model Specification<a class="headerlink" href="#1-model-specification" title="Permanent link">&para;</a></h3>
 <p>The <strong>local volatility model</strong> assumes the underlying asset follows:</p>
-<p>$$</p>
-<p>dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\sigma_{\text{loc}}(S, t)\)</span> is a deterministic function of spot and time
 - <span class="arithmatex">\(r\)</span> is the risk-free rate
@@ -47018,103 +47018,103 @@
 <p><strong>Key distinction from Black-Scholes:</strong> Volatility depends on both <span class="arithmatex">\((S, t)\)</span> rather than being constant.</p>
 <h3 id="2-forward-kolmogorov-equation">2. Forward Kolmogorov Equation<a class="headerlink" href="#2-forward-kolmogorov-equation" title="Permanent link">&para;</a></h3>
 <p>The probability density <span class="arithmatex">\(p(S, t; S_0, 0)\)</span> of <span class="arithmatex">\(S_t\)</span> given <span class="arithmatex">\(S_0\)</span> at time 0 satisfies the <strong>forward Kolmogorov equation</strong> (Fokker-Planck equation):</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}\left[(r - q) S p\right] + \frac{1}{2} \frac{\partial^2}{\partial S^2}\left[\sigma_{\text{loc}}^2(S, t) S^2 p\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}\left[(r - q) S p\right] + \frac{1}{2} \frac{\partial^2}{\partial S^2}\left[\sigma_{\text{loc}}^2(S, t) S^2 p\right]
+\]</div>
 <p>This describes the evolution of the probability distribution forward in time.</p>
 <h3 id="3-connection-to-option-pricing">3. Connection to Option Pricing<a class="headerlink" href="#3-connection-to-option-pricing" title="Permanent link">&para;</a></h3>
 <p>The call option price is:</p>
-<p>$$</p>
-<p>C(S_0, K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) p(S, T; S_0, 0) dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S_0, K, T) = e^{-rT} \int_0^\infty \max(S - K, 0) p(S, T; S_0, 0) dS
+\]</div>
 <p>The key insight: if we know <span class="arithmatex">\(C(K, T)\)</span> for all strikes and maturities, we can invert this relationship to find <span class="arithmatex">\(\sigma_{\text{loc}}(S, t)\)</span>.</p>
 <h2 id="dupires-formula-main-result">Dupire's Formula: Main Result<a class="headerlink" href="#dupires-formula-main-result" title="Permanent link">&para;</a></h2>
 <h3 id="1-theorem-statement">1. Theorem Statement<a class="headerlink" href="#1-theorem-statement" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.2</strong> (Dupire's Formula)<br />
 The local volatility function can be extracted from the call price surface via:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+\]</div>
 <p>Equivalently, using forward price <span class="arithmatex">\(F = S_0 e^{(r-q)T}\)</span> and eliminating drift terms:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+\]</div>
 <p>when expressed in forward coordinates.</p>
 <p><strong>Interpretation:</strong> Local volatility at strike <span class="arithmatex">\(K\)</span> and time <span class="arithmatex">\(T\)</span> is determined entirely by:
 - Time derivative of call price (theta)
 - Second strike derivative (gamma via Breeden-Litzenberger)</p>
 <h3 id="2-alternative-forms">2. Alternative Forms<a class="headerlink" href="#2-alternative-forms" title="Permanent link">&para;</a></h3>
 <p><strong>Form 1</strong> (Spot-based):</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(S, t) = \frac{C_T + (r - q) S C_S + q C}{\frac{1}{2} S^2 C_{SS}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(S, t) = \frac{C_T + (r - q) S C_S + q C}{\frac{1}{2} S^2 C_{SS}}
+\]</div>
 <p>where subscripts denote partial derivatives.</p>
 <p><strong>Form 2</strong> (Forward-based, most common):</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}
+\]</div>
 <p><strong>Form 3</strong> (In terms of implied volatility):</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \frac{\partial \sigma_{\text{IV}}}{\partial T} + 2(r - q) K T \sigma_{\text{IV}} \frac{\partial \sigma_{\text{IV}}}{\partial K}}{\left(1 + K d_1 \sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2 + \sigma_{\text{IV}} K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \frac{\partial \sigma_{\text{IV}}}{\partial T} + 2(r - q) K T \sigma_{\text{IV}} \frac{\partial \sigma_{\text{IV}}}{\partial K}}{\left(1 + K d_1 \sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2 + \sigma_{\text{IV}} K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
+\]</div>
 <p>where <span class="arithmatex">\(d_1 = \frac{\ln(S_0/K) + (r - q + \sigma_{\text{IV}}^2/2)T}{\sigma_{\text{IV}}\sqrt{T}}\)</span>.</p>
 <h2 id="derivation-via-forward-kolmogorov-equation">Derivation via Forward Kolmogorov Equation<a class="headerlink" href="#derivation-via-forward-kolmogorov-equation" title="Permanent link">&para;</a></h2>
 <h3 id="1-step-1-call-price-pde">1. Step 1: Call Price PDE<a class="headerlink" href="#1-step-1-call-price-pde" title="Permanent link">&para;</a></h3>
 <p>The call option price satisfies the backward Kolmogorov equation:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial t} + (r - q) S \frac{\partial C}{\partial S} + \frac{1}{2} \sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 C}{\partial S^2} - r C = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial t} + (r - q) S \frac{\partial C}{\partial S} + \frac{1}{2} \sigma_{\text{loc}}^2(S, t) S^2 \frac{\partial^2 C}{\partial S^2} - r C = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(C(S, T, T) = \max(S - K, 0)\)</span>.</p>
 <h3 id="2-step-2-differentiate-with-respect-to-maturity">2. Step 2: Differentiate with Respect to Maturity<a class="headerlink" href="#2-step-2-differentiate-with-respect-to-maturity" title="Permanent link">&para;</a></h3>
 <p>Fix strike <span class="arithmatex">\(K\)</span> and differentiate the PDE with respect to <span class="arithmatex">\(T\)</span> (treating <span class="arithmatex">\(T\)</span> as a parameter):</p>
-<p>$$</p>
-<p>\frac{\partial}{\partial T}\left(\frac{\partial C}{\partial t}\right) + (r - q) S \frac{\partial}{\partial T}\left(\frac{\partial C}{\partial S}\right) + \frac{1}{2} \sigma_{\text{loc}}^2(S, T) S^2 \frac{\partial}{\partial T}\left(\frac{\partial^2 C}{\partial S^2}\right) - r \frac{\partial C}{\partial T} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial T}\left(\frac{\partial C}{\partial t}\right) + (r - q) S \frac{\partial}{\partial T}\left(\frac{\partial C}{\partial S}\right) + \frac{1}{2} \sigma_{\text{loc}}^2(S, T) S^2 \frac{\partial}{\partial T}\left(\frac{\partial^2 C}{\partial S^2}\right) - r \frac{\partial C}{\partial T} = 0
+\]</div>
 <h3 id="3-step-3-evaluate-at-s-k-t-t">3. Step 3: Evaluate at S = K, t = T<a class="headerlink" href="#3-step-3-evaluate-at-s-k-t-t" title="Permanent link">&para;</a></h3>
 <p>At expiry, the call payoff creates a kink at <span class="arithmatex">\(S = K\)</span>:
 - <span class="arithmatex">\(C(S, T, T) = \max(S - K, 0)\)</span>
 - <span class="arithmatex">\(\frac{\partial C}{\partial S}\big|_{S=K, t=T} = 1\)</span> (jump in derivative)
 - <span class="arithmatex">\(\frac{\partial^2 C}{\partial S^2}\big|_{S=K, t=T}\)</span> contains Dirac delta</p>
 <p>Using the <strong>Dupire argument</strong>: differentiate the option price with respect to maturity and evaluate at the money (<span class="arithmatex">\(S = K\)</span>), giving:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial T}\bigg|<em _text_loc="\text{loc">{S=K} = \frac{1}{2} \sigma</em>}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}\bigg|_{S=K, t=T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial T}\bigg|_{S=K} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}\bigg|_{S=K, t=T}
+\]</div>
 <p>Solving for <span class="arithmatex">\(\sigma_{\text{loc}}^2\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = 2 \frac{\frac{\partial C}{\partial T}}{\frac{\partial^2 C}{\partial K^2}} \cdot \frac{1}{K^2}
+\]</div>
 <h3 id="4-step-4-include-drift-terms-full-formula">4. Step 4: Include Drift Terms (Full Formula)<a class="headerlink" href="#4-step-4-include-drift-terms-full-formula" title="Permanent link">&para;</a></h3>
 <p>For general <span class="arithmatex">\((S, t)\)</span>, the complete derivation includes drift corrections:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + q C + (r - q) K \frac{\partial C}{\partial K}}{\frac{1}{2} K^2 \frac{\partial^2 C}{\partial K^2}}
+\]</div>
 <p>The numerator adjusts for the fact that the underlying drifts at rate <span class="arithmatex">\(r - q\)</span> under the risk-neutral measure. □</p>
 <h2 id="alternative-derivation-tanakas-formula">Alternative Derivation: Tanaka's Formula<a class="headerlink" href="#alternative-derivation-tanakas-formula" title="Permanent link">&para;</a></h2>
 <h3 id="1-occupation-density-approach">1. Occupation Density Approach<a class="headerlink" href="#1-occupation-density-approach" title="Permanent link">&para;</a></h3>
 <p>Consider the <strong>local time</strong> <span class="arithmatex">\(L_t^K\)</span> of the process <span class="arithmatex">\(S_t\)</span> at level <span class="arithmatex">\(K\)</span>. Tanaka's formula gives:</p>
-<p>$$</p>
-<p>(S_T - K)^+ = (S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t &gt; K} dS_t + \frac{1}{2} L_T^K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(S_T - K)^+ = (S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t &gt; K} dS_t + \frac{1}{2} L_T^K
+\]</div>
 <p>Taking expectations:</p>
-<p>$$</p>
-<p>C(S_0, K, T) = e^{-rT} \mathbb{E}\left[(S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t &gt; K} (r - q) S_t dt + \frac{1}{2} L_T^K\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(S_0, K, T) = e^{-rT} \mathbb{E}\left[(S_0 - K)^+ + \int_0^T \mathbb{1}_{S_t &gt; K} (r - q) S_t dt + \frac{1}{2} L_T^K\right]
+\]</div>
 <p>The local time satisfies:</p>
-<p>$$</p>
-<p>\mathbb{E}[L_T^K] = \int_0^T \sigma_{\text{loc}}^2(K, t) K^2 p(K, t; S_0, 0) dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[L_T^K] = \int_0^T \sigma_{\text{loc}}^2(K, t) K^2 p(K, t; S_0, 0) dt
+\]</div>
 <p>Differentiating with respect to <span class="arithmatex">\(T\)</span> and using Breeden-Litzenberger:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial T} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \cdot e^{-rT} p(K, T) = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial T} = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \cdot e^{-rT} p(K, T) = \frac{1}{2} \sigma_{\text{loc}}^2(K, T) K^2 \frac{\partial^2 C}{\partial K^2}
+\]</div>
 <p>This recovers Dupire's formula. □</p>
 <h2 id="properties-of-the-local-volatility-surface">Properties of the Local Volatility Surface<a class="headerlink" href="#properties-of-the-local-volatility-surface" title="Permanent link">&para;</a></h2>
 <h3 id="1-uniqueness">1. Uniqueness<a class="headerlink" href="#1-uniqueness" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.3</strong> (Uniqueness of Local Volatility)<br />
 Given a complete arbitrage-free European call price surface <span class="arithmatex">\(C(K, T)\)</span> for all <span class="arithmatex">\(K &gt; 0\)</span>, <span class="arithmatex">\(T &gt; 0\)</span>, there exists a unique local volatility function <span class="arithmatex">\(\sigma_{\text{loc}}(S, t)\)</span> such that the diffusion:</p>
-<p>$$</p>
-<p>dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t
+\]</div>
 <p>reproduces the entire call price surface.</p>
 <p><em>Proof sketch.</em> The forward Kolmogorov equation is a parabolic PDE with unique solution given smooth initial and boundary conditions. The call prices determine the terminal distribution uniquely via Breeden-Litzenberger. Dupire's formula inverts this relationship. □</p>
 <h3 id="2-calibration-to-market-prices">2. Calibration to Market Prices<a class="headerlink" href="#2-calibration-to-market-prices" title="Permanent link">&para;</a></h3>
@@ -47125,9 +47125,9 @@ Given a complete arbitrage-free European call price surface <span class="arithma
 <p>This is in stark contrast to parametric models (e.g., Heston) which minimize pricing errors but rarely achieve exact fit.</p>
 <h3 id="3-relationship-to-implied-volatility">3. Relationship to Implied Volatility<a class="headerlink" href="#3-relationship-to-implied-volatility" title="Permanent link">&para;</a></h3>
 <p>The local volatility at strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span> is <strong>not</strong> equal to the implied volatility <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}(K, T) \neq \sigma_{\text{IV}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}(K, T) \neq \sigma_{\text{IV}}(K, T)
+\]</div>
 <p><strong>Intuition:</strong> 
 - <strong>Implied volatility</strong> is the constant volatility that, when plugged into Black-Scholes, matches the market price
 - <strong>Local volatility</strong> is the instantaneous volatility the process will have if it reaches level <span class="arithmatex">\(K\)</span> at time <span class="arithmatex">\(T\)</span></p>
@@ -47140,16 +47140,16 @@ Given a complete arbitrage-free European call price surface <span class="arithma
 <h2 id="numerical-implementation">Numerical Implementation<a class="headerlink" href="#numerical-implementation" title="Permanent link">&para;</a></h2>
 <h3 id="1-finite-difference-formula">1. Finite Difference Formula<a class="headerlink" href="#1-finite-difference-formula" title="Permanent link">&para;</a></h3>
 <p>On a discrete grid <span class="arithmatex">\((K_i, T_j)\)</span>, approximate derivatives using centered differences:</p>
-<p>$$</p>
-<p>\frac{\partial C}{\partial T}\bigg|<em j_1="j+1">{K_i, T_j} \approx \frac{C(K_i, T</em>}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 C}{\partial K^2}\bigg|<em i_1="i+1">{K_i, T_j} \approx \frac{C(K</em>}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial C}{\partial T}\bigg|_{K_i, T_j} \approx \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}}
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 C}{\partial K^2}\bigg|_{K_i, T_j} \approx \frac{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}{(\Delta K)^2}
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K_i, T_j) = \frac{2}{ K_i^2} \cdot \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}} \cdot \frac{(\Delta K)^2}{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K_i, T_j) = \frac{2}{ K_i^2} \cdot \frac{C(K_i, T_{j+1}) - C(K_i, T_{j-1})}{T_{j+1} - T_{j-1}} \cdot \frac{(\Delta K)^2}{C(K_{i+1}, T_j) - 2C(K_i, T_j) + C(K_{i-1}, T_j)}
+\]</div>
 <h3 id="2-stability-issues">2. Stability Issues<a class="headerlink" href="#2-stability-issues" title="Permanent link">&para;</a></h3>
 <p><strong>Problem 1: Noise amplification</strong><br />
 Taking derivatives of noisy data amplifies errors. Small errors in <span class="arithmatex">\(C\)</span> lead to large errors in <span class="arithmatex">\(\sigma_{\text{loc}}\)</span>.</p>
@@ -47188,33 +47188,33 @@ Near the wings, <span class="arithmatex">\(\frac{\partial^2 C}{\partial K^2} \ap
 <p>Given the implied volatility surface <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span>, compute local volatility via:</p>
 <p><strong>Step 1:</strong> Convert <span class="arithmatex">\(\sigma_{\text{IV}}(K, T)\)</span> to call prices using Black-Scholes formula</p>
 <p><strong>Step 2:</strong> Compute derivatives:</p>
-<p>$$</p>
-<p>C_T, \quad C_K, \quad C_{KK}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_T, \quad C_K, \quad C_{KK}
+\]</div>
 <p><strong>Step 3:</strong> Apply Dupire's formula</p>
 <h3 id="2-explicit-formula-in-iv-space">2. Explicit Formula in IV Space<a class="headerlink" href="#2-explicit-formula-in-iv-space" title="Permanent link">&para;</a></h3>
 <p>Gyöngy's formula provides a direct relationship:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \left(\frac{\partial \sigma_{\text{IV}}}{\partial T} + (r - q) K \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)}{1 + 2 d_1 K\sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K} + K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1^2 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = \frac{\sigma_{\text{IV}}^2 + 2\sigma_{\text{IV}} T \left(\frac{\partial \sigma_{\text{IV}}}{\partial T} + (r - q) K \frac{\partial \sigma_{\text{IV}}}{\partial K}\right)}{1 + 2 d_1 K\sqrt{T} \frac{\partial \sigma_{\text{IV}}}{\partial K} + K^2 T \left(\frac{\partial^2 \sigma_{\text{IV}}}{\partial K^2} - d_1^2 \sqrt{T} \left(\frac{\partial \sigma_{\text{IV}}}{\partial K}\right)^2\right)}
+\]</div>
 <p>This is computationally convenient when starting from implied volatility data.</p>
 <h3 id="3-atm-approximation">3. ATM Approximation<a class="headerlink" href="#3-atm-approximation" title="Permanent link">&para;</a></h3>
 <p>At-the-money (<span class="arithmatex">\(K = F = S_0 e^{(r-q)T}\)</span>), a useful approximation:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(F, T) \approx \sigma_{\text{IV}}^2(F, T) + 2 T \sigma_{\text{IV}}(F, T) \frac{\partial \sigma_{\text{IV}}}{\partial T}\bigg|_{K=F}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(F, T) \approx \sigma_{\text{IV}}^2(F, T) + 2 T \sigma_{\text{IV}}(F, T) \frac{\partial \sigma_{\text{IV}}}{\partial T}\bigg|_{K=F}
+\]</div>
 <p><strong>Interpretation:</strong> Local volatility at the forward is approximately the implied volatility plus a correction for the term structure slope.</p>
 <h2 id="forward-equation-perspective">Forward Equation Perspective<a class="headerlink" href="#forward-equation-perspective" title="Permanent link">&para;</a></h2>
 <h3 id="1-forward-kolmogorov-pde">1. Forward Kolmogorov PDE<a class="headerlink" href="#1-forward-kolmogorov-pde" title="Permanent link">&para;</a></h3>
 <p>The density <span class="arithmatex">\(p(K, T)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial T} = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 p(K, T)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial T} = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 p(K, T)\right]
+\]</div>
 <p>(assuming drift-free coordinates with <span class="arithmatex">\(F = S_0 e^{(r-q)T}\)</span>).</p>
 <p>Using Breeden-Litzenberger <span class="arithmatex">\(p(K, T) = e^{rT} \frac{\partial^2 C}{\partial K^2}\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial}{\partial T}\left(e^{rT} \frac{\partial^2 C}{\partial K^2}\right) = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 e^{rT} \frac{\partial^2 C}{\partial K^2}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial T}\left(e^{rT} \frac{\partial^2 C}{\partial K^2}\right) = \frac{1}{2} \frac{\partial^2}{\partial K^2}\left[\sigma_{\text{loc}}^2(K, T) K^2 e^{rT} \frac{\partial^2 C}{\partial K^2}\right]
+\]</div>
 <p>This is a PDE for <span class="arithmatex">\(C\)</span> in terms of <span class="arithmatex">\(\sigma_{\text{loc}}\)</span>. Dupire's formula inverts this PDE to solve for <span class="arithmatex">\(\sigma_{\text{loc}}\)</span> given <span class="arithmatex">\(C\)</span>.</p>
 <h3 id="2-existence-of-solution">2. Existence of Solution<a class="headerlink" href="#2-existence-of-solution" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.2.4</strong> (Well-Posedness)<br />
@@ -47303,9 +47303,9 @@ If <span class="arithmatex">\(C(K, T)\)</span> is:
 </table>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Dupire's formula:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = \frac{2 \frac{\partial C}{\partial T}}{K^2 \frac{\partial^2 C}{\partial K^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = \frac{2 \frac{\partial C}{\partial T}}{K^2 \frac{\partial^2 C}{\partial K^2}}
+\]</div>
 <p>establishes a <strong>model-free, one-to-one relationship</strong> between:
 - Observable European call prices <span class="arithmatex">\(C(K, T)\)</span>
 - Local volatility function <span class="arithmatex">\(\sigma_{\text{loc}}(S, t)\)</span></p>
@@ -47317,9 +47317,9 @@ If <span class="arithmatex">\(C(K, T)\)</span> is:
 <li><strong>Complementarity with B-L:</strong> Breeden-Litzenberger extracts density, Dupire extracts dynamics</li>
 </ol>
 <p><strong>Practical workflow:</strong></p>
-<p>$$</p>
-<p>\text{Market Prices} \xrightarrow{\text{B-L}} \text{Risk-Neutral Density} \xrightarrow{\text{Dupire}} \text{Local Volatility Surface}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Market Prices} \xrightarrow{\text{B-L}} \text{Risk-Neutral Density} \xrightarrow{\text{Dupire}} \text{Local Volatility Surface}
+\]</div>
 <p>Together, these model-free results allow complete characterization of the arbitrage-free price surface and the underlying dynamics without assuming a specific parametric model.</p>
 
 

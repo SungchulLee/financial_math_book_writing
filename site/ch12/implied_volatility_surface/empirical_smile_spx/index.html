@@ -47150,9 +47150,9 @@
 <h2 id="characteristic-features">Characteristic Features<a class="headerlink" href="#characteristic-features" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-volatility-skew">1. The Volatility Skew<a class="headerlink" href="#1-the-volatility-skew" title="Permanent link">&para;</a></h3>
 <p>The SPX exhibits a pronounced <strong>negative skew</strong>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(K_{\text{OTM put}}) &gt; \sigma_{\text{IV}}(K_{\text{ATM}}) &gt; \sigma_{\text{IV}}(K_{\text{OTM call}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(K_{\text{OTM put}}) &gt; \sigma_{\text{IV}}(K_{\text{ATM}}) &gt; \sigma_{\text{IV}}(K_{\text{OTM call}})
+\]</div>
 <p><strong>Quantitative measures:</strong></p>
 <table>
 <thead>
@@ -47182,9 +47182,9 @@
 </table>
 <h3 id="2-put-call-parity-check">2. Put-Call Parity Check<a class="headerlink" href="#2-put-call-parity-check" title="Permanent link">&para;</a></h3>
 <p>Implied volatilities from puts and calls at the same strike should be equal (absent arbitrage):</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^{\text{call}}(K, T) = \sigma_{\text{IV}}^{\text{put}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^{\text{call}}(K, T) = \sigma_{\text{IV}}^{\text{put}}(K, T)
+\]</div>
 <p>Small deviations occur due to:
 - Bid-ask spreads
 - American exercise premium (for SPY options)
@@ -47192,9 +47192,9 @@
 - Interest rate assumptions</p>
 <h3 id="3-smile-curvature-butterfly">3. Smile Curvature (Butterfly)<a class="headerlink" href="#3-smile-curvature-butterfly" title="Permanent link">&para;</a></h3>
 <p>The <strong>butterfly spread</strong> measures smile curvature:</p>
-<p>$$</p>
-<p>\text{Butterfly} = \frac{1}{2}(\sigma_{25\Delta C} + \sigma_{25\Delta P}) - \sigma_{\text{ATM}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Butterfly} = \frac{1}{2}(\sigma_{25\Delta C} + \sigma_{25\Delta P}) - \sigma_{\text{ATM}}
+\]</div>
 <p>Typical SPX values: 0.5-2.0 vol points</p>
 <p><strong>Interpretation:</strong> Positive butterfly indicates:
 - Fat tails in risk-neutral distribution

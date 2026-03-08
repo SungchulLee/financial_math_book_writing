@@ -46557,9 +46557,9 @@
 <h2 id="conditional-expectation-the-foundation">Conditional Expectation: The Foundation<a class="headerlink" href="#conditional-expectation-the-foundation" title="Permanent link">&para;</a></h2>
 <p>Before defining martingales, we must understand conditional expectation, the fundamental tool for "averaging out the future."</p>
 <p>Let <span class="arithmatex">\((\Omega, \mathcal{F}, \mathbb{P})\)</span> be a probability space, <span class="arithmatex">\(\mathcal{G} \subseteq \mathcal{F}\)</span> a sub-<span class="arithmatex">\(\sigma\)</span>-algebra, and <span class="arithmatex">\(X \in L^1(\Omega)\)</span> an integrable random variable. The <strong>conditional expectation</strong> <span class="arithmatex">\(\mathbb{E}[X \mid \mathcal{G}]\)</span> is the unique (a.s.) <span class="arithmatex">\(\mathcal{G}\)</span>-measurable random variable satisfying</p>
-<p>$$</p>
-<p>\int_G \mathbb{E}[X \mid \mathcal{G}] \, d\mathbb{P} = \int_G X \, d\mathbb{P} \quad \text{for all } G \in \mathcal{G}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_G \mathbb{E}[X \mid \mathcal{G}] \, d\mathbb{P} = \int_G X \, d\mathbb{P} \quad \text{for all } G \in \mathcal{G}
+\]</div>
 <p><strong>Key properties</strong>:</p>
 <ol>
 <li>
@@ -46590,25 +46590,25 @@
 <p><strong>Martingale property</strong>: For all <span class="arithmatex">\(0 \le s \le t\)</span>,</p>
 </li>
 </ol>
-<p>$$</p>
-<p>\boxed{\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s \quad \text{a.s.}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s \quad \text{a.s.}}
+\]</div>
 <p><strong>Interpretation</strong>: Given all information up to time <span class="arithmatex">\(s\)</span>, the best prediction of the future value <span class="arithmatex">\(M_t\)</span> is the current value <span class="arithmatex">\(M_s\)</span>. The process has "no drift" on average.</p>
 <p><strong>Equivalent formulation</strong>: The martingale property is equivalent to</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t - M_s \mid \mathcal{F}_s] = 0 \quad \text{for all } 0 \le s \le t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t - M_s \mid \mathcal{F}_s] = 0 \quad \text{for all } 0 \le s \le t
+\]</div>
 <p>The increments are <strong>uncorrelated</strong> with the past (though not necessarily independent).</p>
 <hr />
 <h2 id="sub-and-supermartingales">Sub- and Supermartingales<a class="headerlink" href="#sub-and-supermartingales" title="Permanent link">&para;</a></h2>
 <p>A process <span class="arithmatex">\(X\)</span> is a <strong>submartingale</strong> if</p>
-<p>$$</p>
-<p>\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s \quad \text{for all } 0 \le s \le t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s \quad \text{for all } 0 \le s \le t
+\]</div>
 <p>A process <span class="arithmatex">\(X\)</span> is a <strong>supermartingale</strong> if</p>
-<p>$$</p>
-<p>\mathbb{E}[X_t \mid \mathcal{F}_s] \le X_s \quad \text{for all } 0 \le s \le t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X_t \mid \mathcal{F}_s] \le X_s \quad \text{for all } 0 \le s \le t
+\]</div>
 <p><strong>Mnemonic</strong>: "Sub" suggests the process is below its expected value (tends to rise), "super" suggests it exceeds its expected value (tends to fall). This naming convention is counterintuitive but standard.</p>
 <p><strong>Financial interpretation</strong>:</p>
 <ul>
@@ -46622,55 +46622,55 @@
 <p>Let <span class="arithmatex">\(W_t\)</span> be standard Brownian motion with natural filtration <span class="arithmatex">\(\mathcal{F}_t = \sigma(W_s : s \le t)\)</span>.</p>
 <p><strong>Claim</strong>: <span class="arithmatex">\(W_t\)</span> is a martingale.</p>
 <p><strong>Proof</strong>: For <span class="arithmatex">\(0 \le s &lt; t\)</span>,</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s + (W_t - W_s) \mid \mathcal{F}_s] = W_s + \mathbb{E}[W_t - W_s] = W_s + 0 = W_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s + (W_t - W_s) \mid \mathcal{F}_s] = W_s + \mathbb{E}[W_t - W_s] = W_s + 0 = W_s
+\]</div>
 <p>using that <span class="arithmatex">\(W_s\)</span> is <span class="arithmatex">\(\mathcal{F}_s\)</span>-measurable and <span class="arithmatex">\(W_t - W_s\)</span> is independent of <span class="arithmatex">\(\mathcal{F}_s\)</span> with mean zero. <span class="arithmatex">\(\square\)</span></p>
 <h3 id="example-2-compensated-squared-brownian-motion">Example 2: Compensated Squared Brownian Motion<a class="headerlink" href="#example-2-compensated-squared-brownian-motion" title="Permanent link">&para;</a></h3>
 <p><strong>Claim</strong>: <span class="arithmatex">\(M_t = W_t^2 - t\)</span> is a martingale.</p>
 <p><strong>Proof</strong>: We compute <span class="arithmatex">\(\mathbb{E}[W_t^2 \mid \mathcal{F}_s]\)</span>. Writing <span class="arithmatex">\(W_t = W_s + (W_t - W_s)\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \mathbb{E}[W_t^2 \mid \mathcal{F}_s] &amp;= \mathbb{E}[(W_s + (W_t - W_s))^2 \mid \mathcal{F}_s] \\
 &amp;= \mathbb{E}[W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2 \mid \mathcal{F}_s] \\
 &amp;= W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s \mid \mathcal{F}_s] + \mathbb{E}[(W_t - W_s)^2 \mid \mathcal{F}_s]
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Now, <span class="arithmatex">\(W_t - W_s\)</span> is independent of <span class="arithmatex">\(\mathcal{F}_s\)</span>, so:</p>
 <ul>
 <li><span class="arithmatex">\(\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] = \mathbb{E}[W_t - W_s] = 0\)</span></li>
 <li><span class="arithmatex">\(\mathbb{E}[(W_t - W_s)^2 \mid \mathcal{F}_s] = \mathbb{E}[(W_t - W_s)^2] = \text{Var}(W_t - W_s) = t - s\)</span></li>
 </ul>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 0 + (t-s) = W_s^2 + (t-s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 0 + (t-s) = W_s^2 + (t-s)
+\]</div>
 <p>Hence <span class="arithmatex">\(\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Insight</strong>: <span class="arithmatex">\(W_t^2\)</span> grows on average at rate 1 (since <span class="arithmatex">\(\mathbb{E}[W_t^2] = t\)</span>). Subtracting this deterministic drift <span class="arithmatex">\(t\)</span> yields a martingale.</p>
 <h3 id="example-3-doob-martingale">Example 3: Doob Martingale<a class="headerlink" href="#example-3-doob-martingale" title="Permanent link">&para;</a></h3>
 <p>For any <span class="arithmatex">\(X \in L^1(\mathcal{F})\)</span>, the process</p>
-<p>$$</p>
-<p>M_t := \mathbb{E}[X \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t := \mathbb{E}[X \mid \mathcal{F}_t]
+\]</div>
 <p>is a martingale. This is the canonical construction: we reveal information about <span class="arithmatex">\(X\)</span> over time.</p>
 <p><strong>Proof</strong>: For <span class="arithmatex">\(s \le t\)</span>, by the tower property:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}[\mathbb{E}[X \mid \mathcal{F}_t] \mid \mathcal{F}_s] = \mathbb{E}[X \mid \mathcal{F}_s] = M_s \quad \square</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_t \mid \mathcal{F}_s] = \mathbb{E}[\mathbb{E}[X \mid \mathcal{F}_t] \mid \mathcal{F}_s] = \mathbb{E}[X \mid \mathcal{F}_s] = M_s \quad \square
+\]</div>
 <h3 id="example-4-simple-random-walk">Example 4: Simple Random Walk<a class="headerlink" href="#example-4-simple-random-walk" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\xi_1, \xi_2, \ldots\)</span> be i.i.d. with <span class="arithmatex">\(\mathbb{P}(\xi_i = +1) = \mathbb{P}(\xi_i = -1) = 1/2\)</span>. Define</p>
-<p>$$</p>
-<p>S_n = \sum_{k=1}^n \xi_k, \quad \mathcal{F}_n = \sigma(\xi_1, \ldots, \xi_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_n = \sum_{k=1}^n \xi_k, \quad \mathcal{F}_n = \sigma(\xi_1, \ldots, \xi_n)
+\]</div>
 <p>Then <span class="arithmatex">\(S_n\)</span> is a martingale, modeling a fair coin-tossing game.</p>
 <hr />
 <h2 id="transforms-and-creating-submartingales">Transforms and Creating Submartingales<a class="headerlink" href="#transforms-and-creating-submartingales" title="Permanent link">&para;</a></h2>
 <p>Convex functions applied to martingales yield submartingales:</p>
 <p><strong>Proposition (Jensen for Martingales)</strong>: If <span class="arithmatex">\(M_t\)</span> is a martingale and <span class="arithmatex">\(\varphi: \mathbb{R} \to \mathbb{R}\)</span> is convex with <span class="arithmatex">\(\mathbb{E}|\varphi(M_t)| &lt; \infty\)</span> for all <span class="arithmatex">\(t\)</span>, then <span class="arithmatex">\(\varphi(M_t)\)</span> is a submartingale.</p>
 <p><strong>Proof</strong>: By Jensen's inequality,</p>
-<p>$$</p>
-<p>\mathbb{E}[\varphi(M_t) \mid \mathcal{F}_s] \ge \varphi(\mathbb{E}[M_t \mid \mathcal{F}_s]) = \varphi(M_s) \quad \square</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\varphi(M_t) \mid \mathcal{F}_s] \ge \varphi(\mathbb{E}[M_t \mid \mathcal{F}_s]) = \varphi(M_s) \quad \square
+\]</div>
 <p><strong>Corollary</strong>: If <span class="arithmatex">\(M_t\)</span> is a martingale, then:</p>
 <ul>
 <li><span class="arithmatex">\(|M_t|\)</span> is a submartingale (using <span class="arithmatex">\(\varphi(x) = |x|\)</span>).</li>
@@ -46681,9 +46681,9 @@
 <h2 id="lp-martingales-and-uniform-integrability">L^p Martingales and Uniform Integrability<a class="headerlink" href="#lp-martingales-and-uniform-integrability" title="Permanent link">&para;</a></h2>
 <p>A martingale <span class="arithmatex">\(M\)</span> is called an <strong><span class="arithmatex">\(L^p\)</span>-martingale</strong> if <span class="arithmatex">\(\sup_t \mathbb{E}|M_t|^p &lt; \infty\)</span>.</p>
 <p>A family of random variables <span class="arithmatex">\(\{X_\alpha\}\)</span> is <strong>uniformly integrable</strong> if</p>
-<p>$$</p>
-<p>\lim_{K \to \infty} \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}<em>{{|X</em>\alpha| &gt; K}}] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{K \to \infty} \sup_\alpha \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| &gt; K\}}] = 0
+\]</div>
 <p><strong>Key facts</strong>:</p>
 <ol>
 <li>Every <span class="arithmatex">\(L^p\)</span>-bounded martingale with <span class="arithmatex">\(p &gt; 1\)</span> is uniformly integrable.</li>
@@ -46693,9 +46693,9 @@
 <hr />
 <h2 id="the-martingale-property-and-ito-integrals">The Martingale Property and Itô Integrals<a class="headerlink" href="#the-martingale-property-and-ito-integrals" title="Permanent link">&para;</a></h2>
 <p>A deep connection links martingales to stochastic integration. If <span class="arithmatex">\(H_t\)</span> is a predictable process with <span class="arithmatex">\(\mathbb{E}\int_0^T H_s^2 \, ds &lt; \infty\)</span>, then the Itô integral</p>
-<p>$$</p>
-<p>I_t = \int_0^t H_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t = \int_0^t H_s \, dW_s
+\]</div>
 <p>is a martingale. This is fundamental: Itô integrals are "pure noise" with no drift.</p>
 <p>Conversely, the <strong>martingale representation theorem</strong> states that (under the Brownian filtration) every square-integrable martingale can be written as an Itô integral. This links the algebraic structure of martingales to the analytic structure of stochastic integration.</p>
 <hr />

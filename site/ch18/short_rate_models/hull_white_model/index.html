@@ -46320,9 +46320,9 @@
 <hr />
 <h2 id="model-specification">Model Specification<a class="headerlink" href="#model-specification" title="Permanent link">&para;</a></h2>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>dr_t = [\theta(t) - \kappa r_t] \, dt + \sigma \, dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = [\theta(t) - \kappa r_t] \, dt + \sigma \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>or equivalently <span class="arithmatex">\(dr_t = \kappa[\bar{\theta}(t) - r_t] \, dt + \sigma \, dW_t^{\mathbb{Q}}\)</span> where <span class="arithmatex">\(\bar{\theta}(t) = \theta(t)/\kappa\)</span>.</p>
 <p><strong>Key difference from Vasicek:</strong> The function <span class="arithmatex">\(\theta(t)\)</span> is time-dependent, chosen to match market data.</p>
 <p><strong>Parameters:</strong></p>
@@ -46334,18 +46334,18 @@
 <hr />
 <h2 id="exact-fit-to-the-initial-yield-curve">Exact Fit to the Initial Yield Curve<a class="headerlink" href="#exact-fit-to-the-initial-yield-curve" title="Permanent link">&para;</a></h2>
 <p>The model reprices all observed discount bonds exactly: <span class="arithmatex">\(P^{\text{model}}(0, T) = P^{\text{market}}(0, T)\)</span> for all <span class="arithmatex">\(T\)</span>. This determines <span class="arithmatex">\(\theta(t)\)</span> uniquely:</p>
-<p>$$</p>
-<p>\boxed{\theta(t) = \frac{\partial f(0, t)}{\partial t} + \kappa f(0, t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\theta(t) = \frac{\partial f(0, t)}{\partial t} + \kappa f(0, t) + \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa t})}
+\]</div>
 <p>where <span class="arithmatex">\(f(0, t) = -\frac{\partial}{\partial t} \log P(0, t)\)</span> is the market instantaneous forward rate. See <a href="../../../ch20/short_rate/short_rate_solution/">§20 Short Rate</a> for the full HJM-based derivation.</p>
 <hr />
 <h2 id="key-results">Key Results<a class="headerlink" href="#key-results" title="Permanent link">&para;</a></h2>
 <h3 id="gaussian-distribution">Gaussian Distribution<a class="headerlink" href="#gaussian-distribution" title="Permanent link">&para;</a></h3>
 <p>The short rate <span class="arithmatex">\(r_t\)</span> conditional on <span class="arithmatex">\(r_s\)</span> is Gaussian with variance <span class="arithmatex">\(v(s,t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa(t-s)})\)</span>, identical to Vasicek.</p>
 <h3 id="affine-bond-prices">Affine Bond Prices<a class="headerlink" href="#affine-bond-prices" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P(t, T) = A(t, T) \exp(-B(t, T) \cdot r_t), \qquad B(t, T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = A(t, T) \exp(-B(t, T) \cdot r_t), \qquad B(t, T) = \frac{1 - e^{-\kappa(T-t)}}{\kappa}
+\]</div>
 <p>where <span class="arithmatex">\(B(t,T)\)</span> is identical to Vasicek. The function <span class="arithmatex">\(A(t,T)\)</span> incorporates market bond prices to ensure exact calibration. See <a href="../../../ch20/bond_pricing/bond_price_formula/">§20 Zero Bond Pricing</a> for explicit formulas and proofs.</p>
 <h3 id="closed-form-derivative-prices">Closed-Form Derivative Prices<a class="headerlink" href="#closed-form-derivative-prices" title="Permanent link">&para;</a></h3>
 <p>The Hull-White model provides analytical formulas for European bond options, caplets/floorlets, and swaptions (via Jamshidian's trick). See:</p>
@@ -46358,9 +46358,9 @@
 <h2 id="calibration">Calibration<a class="headerlink" href="#calibration" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1 — Fit the initial curve:</strong> Given market discount factors, compute <span class="arithmatex">\(f(0,t)\)</span> and <span class="arithmatex">\(\theta(t)\)</span>. This is automatic once <span class="arithmatex">\(\kappa\)</span> and <span class="arithmatex">\(\sigma\)</span> are fixed.</p>
 <p><strong>Step 2 — Calibrate to volatility instruments:</strong> Fit <span class="arithmatex">\(\kappa\)</span> and <span class="arithmatex">\(\sigma\)</span> to cap and swaption implied volatilities:</p>
-<p>$$</p>
-<p>\min_{\kappa, \sigma} \sum_{i} w_i \left(\sigma^{\text{model}}_i(\kappa, \sigma) - \sigma^{\text{market}}_i\right)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\kappa, \sigma} \sum_{i} w_i \left(\sigma^{\text{model}}_i(\kappa, \sigma) - \sigma^{\text{market}}_i\right)^2
+\]</div>
 <hr />
 <h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h2>
 <p><strong>Time-dependent volatility:</strong> Allow <span class="arithmatex">\(\sigma(t)\)</span> to vary for additional flexibility in fitting the volatility term structure.</p>

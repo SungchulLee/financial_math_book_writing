@@ -46594,11 +46594,11 @@
 <hr />
 <h2 id="the-dynkin-martingale">The Dynkin Martingale<a class="headerlink" href="#the-dynkin-martingale" title="Permanent link">&para;</a></h2>
 <p>For a diffusion <span class="arithmatex">\(dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t\)</span> with generator <span class="arithmatex">\(\mathcal{L}\)</span>, define:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 M_t := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds
-}</p>
-<p>$$</p>
+}
+\]</div>
 <div class="admonition abstract">
 <p class="admonition-title">Theorem</p>
 <p>For <span class="arithmatex">\(f \in C^2\)</span>, the process <span class="arithmatex">\(M_t\)</span> is a <strong>local martingale</strong>.</p>
@@ -46713,11 +46713,11 @@ M_t := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds
 <p>If <span class="arithmatex">\(\mathcal{L}f = 0\)</span>, then:</p>
 <div class="arithmatex">\[M_t = f(X_t) - f(X_0) - \int_0^t 0\,ds = f(X_t) - f(X_0)\]</div>
 <p>So <span class="arithmatex">\(f(X_t) - f(X_0)\)</span> is a martingale, i.e., <strong><span class="arithmatex">\(f(X_t)\)</span> is a martingale</strong>.</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{L}f = 0 \quad \Longrightarrow \quad f(X_t) \text{ is a martingale}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h2 id="converse-martingale-harmonic">Converse: Martingale ⟹ Harmonic?<a class="headerlink" href="#converse-martingale-harmonic" title="Permanent link">&para;</a></h2>
 <p>The converse requires care.</p>
@@ -46763,11 +46763,11 @@ M_t := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds
 <hr />
 <h2 id="correct-characterization">Correct Characterization<a class="headerlink" href="#correct-characterization" title="Permanent link">&para;</a></h2>
 <p>Under suitable regularity (e.g., <span class="arithmatex">\(f \in C^2\)</span>, diffusion is non-degenerate):</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{L}f(x) = 0 \;\forall x \quad \Longleftrightarrow \quad f(X_t) \text{ is a local martingale}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <div class="admonition note">
 <p class="admonition-title">Why Local Martingale?</p>
 <p>The equivalence uses <strong>local martingale</strong> (not true martingale) because:</p>
@@ -46900,11 +46900,11 @@ M_t := f(X_t) - f(X_0) - \int_0^t (\mathcal{L}f)(X_s)\,ds
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 M_t = \int_0^t f'(X_s)\sigma(X_s)\,dW_s
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The Dynkin martingale <strong>is</strong> the Itô integral — the noise that remains after subtracting the systematic drift.</p>
 <hr />
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>

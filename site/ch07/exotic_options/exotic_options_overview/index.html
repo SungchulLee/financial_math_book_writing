@@ -46336,9 +46336,9 @@
 <hr />
 <h2 id="what-makes-an-option-exotic">What Makes an Option "Exotic"?<a class="headerlink" href="#what-makes-an-option-exotic" title="Permanent link">&para;</a></h2>
 <p>A vanilla option has a payoff determined entirely by the <strong>terminal value</strong> of a single underlying asset:</p>
-<p>$$</p>
-<p>\text{Call payoff} = (S_T - K)^+, \quad \text{Put payoff} = (K - S_T)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Call payoff} = (S_T - K)^+, \quad \text{Put payoff} = (K - S_T)^+
+\]</div>
 <p>An exotic option departs from this structure in one or more ways:</p>
 <table>
 <thead>
@@ -46473,11 +46473,11 @@
 </tbody>
 </table>
 <p>The general principle is:</p>
-<p>$$</p>
-<p>\boxed{
-\text{Option Price} = e^{-rT}\, \mathbb{E}^{\mathbb{Q}}!\left[\text{Payoff}({S_t}_{0 \leq t \leq T})\right]
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\text{Option Price} = e^{-rT}\, \mathbb{E}^{\mathbb{Q}}\!\left[\text{Payoff}(\{S_t\}_{0 \leq t \leq T})\right]
+}
+\]</div>
 <p>where the expectation must account for path-dependent features—this is what makes exotic pricing fundamentally harder than vanilla pricing.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>

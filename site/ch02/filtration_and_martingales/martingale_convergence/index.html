@@ -46602,9 +46602,9 @@
 <p>Let <span class="arithmatex">\(U_N^{[a,b]}\)</span> denote the number of upcrossings of <span class="arithmatex">\([a, b]\)</span> by <span class="arithmatex">\((X_0, X_1, \ldots, X_N)\)</span>.</p>
 <h3 id="doobs-upcrossing-inequality">Doob's Upcrossing Inequality<a class="headerlink" href="#doobs-upcrossing-inequality" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(\{X_n\}_{n=0}^N\)</span> is a submartingale, then:</p>
-<p>$$</p>
-<p>\boxed{(b - a) \mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^+]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{(b - a) \mathbb{E}[U_N^{[a,b]}] \le \mathbb{E}[(X_N - a)^+]}
+\]</div>
 <p>where <span class="arithmatex">\((x)^+ = \max(x, 0)\)</span>.</p>
 <p><strong>Proof</strong>: Define the <strong>betting strategy</strong> process <span class="arithmatex">\(H_n\)</span> as follows: <span class="arithmatex">\(H_n = 1\)</span> if we are currently "in an upcrossing" (i.e., below <span class="arithmatex">\(a\)</span> and waiting to cross above <span class="arithmatex">\(b\)</span>), and <span class="arithmatex">\(H_n = 0\)</span> otherwise. Formally:</p>
 <ul>
@@ -46614,60 +46614,60 @@
 </ul>
 <p>Set <span class="arithmatex">\(H_n = 1\)</span> if <span class="arithmatex">\(\sigma_k \leq n - 1 &lt; \tau_k\)</span> for some <span class="arithmatex">\(k\)</span>, and <span class="arithmatex">\(H_n = 0\)</span> otherwise. This is a <strong>predictable</strong> process (it depends only on <span class="arithmatex">\(X_0, \ldots, X_{n-1}\)</span>).</p>
 <p>The total gain from this strategy is:</p>
-<p>$$</p>
-<p>G_N = \sum_{n=1}^N H_n (X_n - X_{n-1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_N = \sum_{n=1}^N H_n (X_n - X_{n-1})
+\]</div>
 <p>Each completed upcrossing contributes at least <span class="arithmatex">\(b - a\)</span> to the gain, so:</p>
-<p>$$</p>
-<p>G_N \geq (b - a) U_N^{[a,b]} - (X_N - a)^-</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_N \geq (b - a) U_N^{[a,b]} - (X_N - a)^-
+\]</div>
 <p>For submartingales, predictable strategies with non-negative bounded coefficients preserve the submartingale property, so <span class="arithmatex">\(\mathbb{E}[G_N] \geq 0\)</span>. This gives:</p>
-<p>$$</p>
-<p>(b - a) \mathbb{E}[U_N^{[a,b]}] \leq \mathbb{E}[(X_N - a)^-] + \mathbb{E}[G_N] \leq \mathbb{E}[(X_N - a)^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(b - a) \mathbb{E}[U_N^{[a,b]}] \leq \mathbb{E}[(X_N - a)^-] + \mathbb{E}[G_N] \leq \mathbb{E}[(X_N - a)^+]
+\]</div>
 <p>where the last step uses <span class="arithmatex">\(\mathbb{E}[G_N] \geq 0\)</span> and <span class="arithmatex">\((X_N - a)^- \leq (X_N - a)^+\)</span> when <span class="arithmatex">\(X_N \geq a\)</span>, or direct accounting otherwise. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Interpretation</strong>: If the expected final value is bounded, the process cannot oscillate too much. Each upcrossing "costs" at least <span class="arithmatex">\(b - a\)</span> on average.</p>
 <hr />
 <h2 id="the-martingale-convergence-theorem">The Martingale Convergence Theorem<a class="headerlink" href="#the-martingale-convergence-theorem" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Doob's Martingale Convergence Theorem)</strong>: Let <span class="arithmatex">\(\{M_n\}_{n \ge 0}\)</span> be a martingale (or submartingale) satisfying:</p>
-<p>$$</p>
-<p>\sup_n \mathbb{E}[|M_n|] &lt; \infty \quad \text{(<span class="arithmatex">\(L^1\)</span>-bounded)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_n \mathbb{E}[|M_n|] &lt; \infty \quad \text{($L^1$-bounded)}
+\]</div>
 <p>Then there exists a random variable <span class="arithmatex">\(M_\infty\)</span> with <span class="arithmatex">\(\mathbb{E}|M_\infty| &lt; \infty\)</span> such that:</p>
-<p>$$</p>
-<p>\boxed{M_n \to M_\infty \quad \text{almost surely as } n \to \infty}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{M_n \to M_\infty \quad \text{almost surely as } n \to \infty}
+\]</div>
 <p><strong>Proof</strong>:</p>
 <p><em>Step 1</em>: For any rational <span class="arithmatex">\(a &lt; b\)</span>, the upcrossing inequality gives:</p>
-<p>$$</p>
-<p>\mathbb{E}[U_\infty^{[a,b]}] = \lim_N \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a} &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[U_\infty^{[a,b]}] = \lim_N \mathbb{E}[U_N^{[a,b]}] \le \frac{\sup_n \mathbb{E}[(M_n - a)^+]}{b - a} &lt; \infty
+\]</div>
 <p>Therefore <span class="arithmatex">\(U_\infty^{[a,b]} &lt; \infty\)</span> almost surely.</p>
 <p><em>Step 2</em>: The event "<span class="arithmatex">\((M_n)\)</span> oscillates infinitely often" equals:</p>
-<p>$$</p>
-<p>\bigcup_{a &lt; b, \, a,b \in \mathbb{Q}} {U_\infty^{[a,b]} = \infty}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bigcup_{a &lt; b, \, a,b \in \mathbb{Q}} \{U_\infty^{[a,b]} = \infty\}
+\]</div>
 <p>This is a countable union of null sets, hence null.</p>
 <p><em>Step 3</em>: Therefore, <span class="arithmatex">\(\liminf_n M_n = \limsup_n M_n\)</span> almost surely, so the limit exists (possibly <span class="arithmatex">\(\pm \infty\)</span>).</p>
 <p><em>Step 4</em>: To show <span class="arithmatex">\(M_\infty\)</span> is finite a.s., note that <span class="arithmatex">\((|M_n|)\)</span> is a submartingale and:</p>
-<p>$$</p>
-<p>\mathbb{P}(|M_\infty| = \infty) \le \lim_K \mathbb{P}\left(\sup_n |M_n| \ge K\right) \le \lim_K \frac{\sup_n \mathbb{E}|M_n|}{K} = 0 \quad \square</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(|M_\infty| = \infty) \le \lim_K \mathbb{P}\left(\sup_n |M_n| \ge K\right) \le \lim_K \frac{\sup_n \mathbb{E}|M_n|}{K} = 0 \quad \square
+\]</div>
 <hr />
 <h2 id="l1-convergence-and-uniform-integrability">L¹ Convergence and Uniform Integrability<a class="headerlink" href="#l1-convergence-and-uniform-integrability" title="Permanent link">&para;</a></h2>
 <p>Almost sure convergence does <strong>not</strong> imply <span class="arithmatex">\(L^1\)</span> convergence. The canonical counterexample:</p>
 <p><strong>Example</strong>: Let <span class="arithmatex">\(\xi_1, \xi_2, \ldots\)</span> be i.i.d. with <span class="arithmatex">\(\mathbb{P}(\xi_i = 2) = \mathbb{P}(\xi_i = 0) = 1/2\)</span>. Define:</p>
-<p>$$</p>
-<p>M_n = \prod_{i=1}^n \xi_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_n = \prod_{i=1}^n \xi_i
+\]</div>
 <p>Then <span class="arithmatex">\(M_n\)</span> is a martingale with <span class="arithmatex">\(\mathbb{E}[M_n] = 1\)</span> for all <span class="arithmatex">\(n\)</span>. However, <span class="arithmatex">\(M_n \to 0\)</span> almost surely (since <span class="arithmatex">\(\mathbb{P}(\text{at least one } \xi_i = 0) = 1\)</span>), but <span class="arithmatex">\(\mathbb{E}[M_n] = 1 \not\to 0 = \mathbb{E}[M_\infty]\)</span>.</p>
 <p><strong>Why does this happen?</strong> The expected value is preserved by increasingly rare but large realizations. With probability <span class="arithmatex">\((1/2)^n\)</span>, all <span class="arithmatex">\(\xi_i = 2\)</span>, giving <span class="arithmatex">\(M_n = 2^n\)</span>. This contributes <span class="arithmatex">\((1/2)^n \cdot 2^n = 1\)</span> to the expectation—the entire expected value comes from an exponentially unlikely event.</p>
 <p>The gap is filled by <strong>uniform integrability</strong>.</p>
 <h3 id="uniform-integrability">Uniform Integrability<a class="headerlink" href="#uniform-integrability" title="Permanent link">&para;</a></h3>
 <p>A family of random variables <span class="arithmatex">\(\{X_\alpha\}_{\alpha \in A}\)</span> is <strong>uniformly integrable (UI)</strong> if:</p>
-<p>$$</p>
-<p>\lim_{K \to \infty} \sup_{\alpha \in A} \mathbb{E}[|X_\alpha| \mathbf{1}<em>{{|X</em>\alpha| &gt; K}}] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{K \to \infty} \sup_{\alpha \in A} \mathbb{E}[|X_\alpha| \mathbf{1}_{\{|X_\alpha| &gt; K\}}] = 0
+\]</div>
 <p><strong>Equivalent conditions</strong>:</p>
 <ol>
 <li>
@@ -46707,33 +46707,33 @@
 <p><span class="arithmatex">\((4) \Rightarrow (1)\)</span>: Conditional expectations of an integrable random variable form a UI family.</p>
 <p><span class="arithmatex">\((1) \Rightarrow (3)\)</span>: By the basic convergence theorem, <span class="arithmatex">\(M_n \to M_\infty\)</span> a.s. UI plus a.s. convergence implies <span class="arithmatex">\(L^1\)</span> convergence (Vitali).</p>
 <p><span class="arithmatex">\((3) \Rightarrow (4)\)</span>: For any <span class="arithmatex">\(A \in \mathcal{F}_n\)</span>, by dominated convergence:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_\infty \mathbf{1}_A] = \lim_m \mathbb{E}[M_m \mathbf{1}_A] = \mathbb{E}[M_n \mathbf{1}_A]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_\infty \mathbf{1}_A] = \lim_m \mathbb{E}[M_m \mathbf{1}_A] = \mathbb{E}[M_n \mathbf{1}_A]
+\]</div>
 <p>showing <span class="arithmatex">\(M_n = \mathbb{E}[M_\infty \mid \mathcal{F}_n]\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="lp-convergence">L^p Convergence<a class="headerlink" href="#lp-convergence" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\(p &gt; 1\)</span> and let <span class="arithmatex">\((M_n)\)</span> be a martingale with <span class="arithmatex">\(\sup_n \mathbb{E}|M_n|^p &lt; \infty\)</span>. Then:</p>
-<p>$$</p>
-<p>\boxed{M_n \to M_\infty \quad \text{in } L^p \text{ and a.s.}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{M_n \to M_\infty \quad \text{in } L^p \text{ and a.s.}}
+\]</div>
 <p><strong>Proof</strong>: <span class="arithmatex">\(L^p\)</span>-boundedness with <span class="arithmatex">\(p &gt; 1\)</span> implies UI, so <span class="arithmatex">\(L^1\)</span> (hence a.s.) convergence follows. For <span class="arithmatex">\(L^p\)</span> convergence, Doob's maximal inequality gives:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}|M_n|^p &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_n |M_n|^p\right] \le \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}|M_n|^p &lt; \infty
+\]</div>
 <p>Since <span class="arithmatex">\(|M_n - M_\infty|^p \le 2^p \sup_n |M_n|^p\)</span> which is integrable, dominated convergence yields <span class="arithmatex">\(L^p\)</span> convergence. <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Remark</strong>: The case <span class="arithmatex">\(p = 1\)</span> fails: <span class="arithmatex">\(L^1\)</span>-boundedness gives a.s. convergence but not <span class="arithmatex">\(L^1\)</span> convergence without UI.</p>
 <hr />
 <h2 id="backward-martingales">Backward Martingales<a class="headerlink" href="#backward-martingales" title="Permanent link">&para;</a></h2>
 <p>A <strong>backward martingale</strong> (or reverse martingale) is a sequence <span class="arithmatex">\((M_n, \mathcal{F}_n)_{n \geq 1}\)</span> with <span class="arithmatex">\(\mathcal{F}_n \supseteq \mathcal{F}_{n+1}\)</span> (decreasing filtration) and:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_n \mid \mathcal{F}<em n_1="n+1">{n+1}] = M</em> n \geq 1} \quad \text{for all </p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_n \mid \mathcal{F}_{n+1}] = M_{n+1} \quad \text{for all } n \geq 1
+\]</div>
 <p>Equivalently, as we move forward in the index <span class="arithmatex">\(n\)</span>, we have <em>less</em> information (the filtration shrinks), and conditioning on this smaller <span class="arithmatex">\(\sigma\)</span>-algebra still gives the martingale relation.</p>
 <p><strong>Theorem (Backward Martingale Convergence)</strong>: If <span class="arithmatex">\((M_n, \mathcal{F}_n)_{n \geq 1}\)</span> is a backward martingale with <span class="arithmatex">\(\sup_n \mathbb{E}|M_n| &lt; \infty\)</span>, then:</p>
-<p>$$</p>
-<p>M_n \to M_\infty \quad \text{a.s. and in } L^1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_n \to M_\infty \quad \text{a.s. and in } L^1
+\]</div>
 <p>where <span class="arithmatex">\(M_\infty = \mathbb{E}[M_1 \mid \mathcal{F}_\infty]\)</span> and <span class="arithmatex">\(\mathcal{F}_\infty = \bigcap_n \mathcal{F}_n\)</span> is the tail <span class="arithmatex">\(\sigma\)</span>-algebra.</p>
 <p><strong>Key difference</strong>: Backward martingales <strong>always</strong> converge in <span class="arithmatex">\(L^1\)</span>—uniform integrability is automatic since <span class="arithmatex">\((M_n)\)</span> is a sequence of conditional expectations of <span class="arithmatex">\(M_1\)</span>.</p>
 <p><strong>Application (Strong Law of Large Numbers)</strong>: Let <span class="arithmatex">\(X_1, X_2, \ldots\)</span> be i.i.d. with <span class="arithmatex">\(\mathbb{E}|X_1| &lt; \infty\)</span> and mean <span class="arithmatex">\(\mu\)</span>. Define:</p>
@@ -46743,21 +46743,21 @@
 </ul>
 <p>The key observation is that <span class="arithmatex">\(\mathcal{F}_n \supseteq \mathcal{F}_{n+1}\)</span> (knowing <span class="arithmatex">\((S_n, S_{n+1}, \ldots)\)</span> gives more information than knowing only <span class="arithmatex">\((S_{n+1}, S_{n+2}, \ldots)\)</span>).</p>
 <p>Let <span class="arithmatex">\(\bar{X}_n = S_n/n\)</span>. Then <span class="arithmatex">\((\bar{X}_n, \mathcal{F}_n)\)</span> is a backward martingale. By the backward convergence theorem:</p>
-<p>$$</p>
-<p>\frac{S_n}{n} = \bar{X}<em>n \to \mathbb{E}[X_1 \mid \mathcal{F}</em>\infty] \quad \text{a.s. and in } L^1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S_n}{n} = \bar{X}_n \to \mathbb{E}[X_1 \mid \mathcal{F}_\infty] \quad \text{a.s. and in } L^1
+\]</div>
 <p>By Kolmogorov's 0-1 law, <span class="arithmatex">\(\mathcal{F}_\infty\)</span> is trivial (all events have probability 0 or 1), so:</p>
-<p>$$</p>
-<p>\frac{S_n}{n} \to \mathbb{E}[X_1] = \mu \quad \text{a.s. and in } L^1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S_n}{n} \to \mathbb{E}[X_1] = \mu \quad \text{a.s. and in } L^1
+\]</div>
 <p>This elegant proof of the SLLN avoids truncation arguments.</p>
 <hr />
 <h2 id="continuous-time-convergence">Continuous-Time Convergence<a class="headerlink" href="#continuous-time-convergence" title="Permanent link">&para;</a></h2>
 <p>The convergence theorems extend to continuous time with appropriate modifications.</p>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\((M_t)_{t \ge 0}\)</span> be a right-continuous martingale with:</p>
-<p>$$</p>
-<p>\sup_t \mathbb{E}|M_t| &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_t \mathbb{E}|M_t| &lt; \infty
+\]</div>
 <p>Then <span class="arithmatex">\(M_\infty := \lim_{t \to \infty} M_t\)</span> exists almost surely and is finite a.s.</p>
 <p>If additionally <span class="arithmatex">\((M_t)\)</span> is UI, then <span class="arithmatex">\(M_t \to M_\infty\)</span> in <span class="arithmatex">\(L^1\)</span> and <span class="arithmatex">\(M_t = \mathbb{E}[M_\infty \mid \mathcal{F}_t]\)</span>.</p>
 <p><strong>Regularity</strong>: In continuous time, one typically assumes càdlàg paths (right-continuous with left limits). The Doob regularization theorem guarantees that any <span class="arithmatex">\(L^1\)</span>-bounded martingale has a càdlàg modification.</p>
@@ -46780,9 +46780,9 @@
 <h2 id="the-optional-stopping-connection">The Optional Stopping Connection<a class="headerlink" href="#the-optional-stopping-connection" title="Permanent link">&para;</a></h2>
 <p>Martingale convergence and optional sampling are deeply connected:</p>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\((M_n)\)</span> be a UI martingale with limit <span class="arithmatex">\(M_\infty\)</span>. For any stopping time <span class="arithmatex">\(\tau\)</span> (possibly infinite):</p>
-<p>$$</p>
-<p>\mathbb{E}[M_\tau] = \mathbb{E}[M_0] \quad \text{and} \quad M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_\tau] = \mathbb{E}[M_0] \quad \text{and} \quad M_\tau = \mathbb{E}[M_\infty \mid \mathcal{F}_\tau]
+\]</div>
 <p>This extends the optional sampling theorem to unbounded stopping times, using convergence to handle the limit.</p>
 <hr />
 <h2 id="summary-the-convergence-hierarchy">Summary: The Convergence Hierarchy<a class="headerlink" href="#summary-the-convergence-hierarchy" title="Permanent link">&para;</a></h2>

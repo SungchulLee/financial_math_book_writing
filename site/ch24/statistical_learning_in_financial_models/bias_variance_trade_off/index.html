@@ -46972,55 +46972,55 @@
 <hr />
 <h2 id="the-prediction-problem">The Prediction Problem<a class="headerlink" href="#the-prediction-problem" title="Permanent link">&para;</a></h2>
 <p>Consider predicting a response <span class="arithmatex">\(Y\)</span> from features <span class="arithmatex">\(X\)</span> using an estimator <span class="arithmatex">\(\hat{f}\)</span> trained on data <span class="arithmatex">\(\mathcal{D}_n = \{(X_i, Y_i)\}_{i=1}^n\)</span>. Assume the true data-generating process is:</p>
-<p>$$</p>
-<p>Y = f^*(X) + \varepsilon, \quad \mathbb{E}[\varepsilon | X] = 0, \quad \text{Var}(\varepsilon | X) = \sigma^2(X).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y = f^*(X) + \varepsilon, \quad \mathbb{E}[\varepsilon | X] = 0, \quad \text{Var}(\varepsilon | X) = \sigma^2(X)
+\]</div>
 <p>The goal is to minimize the <strong>expected prediction error</strong> (EPE) at a new point <span class="arithmatex">\(x_0\)</span>:</p>
-<p>$$</p>
-<p>\text{EPE}(x_0) = \mathbb{E}_{Y_0, \mathcal{D}_n}\left[(Y_0 - \hat{f}(x_0))^2\right],</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EPE}(x_0) = \mathbb{E}_{Y_0, \mathcal{D}_n}\left[(Y_0 - \hat{f}(x_0))^2\right]
+\]</div>
 <p>where the expectation is over both the new observation <span class="arithmatex">\(Y_0\)</span> and the training data <span class="arithmatex">\(\mathcal{D}_n\)</span>.</p>
 <hr />
 <h2 id="biasvariance-decomposition">Bias–Variance Decomposition<a class="headerlink" href="#biasvariance-decomposition" title="Permanent link">&para;</a></h2>
 <h3 id="theorem-biasvariance-decomposition">Theorem (Bias–Variance Decomposition)<a class="headerlink" href="#theorem-biasvariance-decomposition" title="Permanent link">&para;</a></h3>
 <p>For squared error loss, the expected prediction error decomposes as:</p>
-<p>$$</p>
-<p>\text{EPE}(x_0) = \underbrace{\sigma^2(x_0)}<em _mathcal_D="\mathcal{D">{\text{Irreducible Error}} + \underbrace{\left(\mathbb{E}</em><em _text_Bias="\text{Bias">n}[\hat{f}(x_0)] - f^*(x_0)\right)^2}</em>}^2} + \underbrace{\mathbb{E<em _mathcal_D="\mathcal{D">{\mathcal{D}_n}\left[\left(\hat{f}(x_0) - \mathbb{E}</em><em _text_Variance="\text{Variance">n}[\hat{f}(x_0)]\right)^2\right]}</em>.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EPE}(x_0) = \underbrace{\sigma^2(x_0)}_{\text{Irreducible Error}} + \underbrace{\left(\mathbb{E}_{\mathcal{D}_n}[\hat{f}(x_0)] - f^*(x_0)\right)^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}_{\mathcal{D}_n}\left[\left(\hat{f}(x_0) - \mathbb{E}_{\mathcal{D}_n}[\hat{f}(x_0)]\right)^2\right]}_{\text{Variance}}
+\]</div>
 <p>More compactly:</p>
-<p>$$</p>
-<p>\text{EPE}(x_0) = \sigma^2(x_0) + \text{Bias}^2[\hat{f}(x_0)] + \text{Var}[\hat{f}(x_0)].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EPE}(x_0) = \sigma^2(x_0) + \text{Bias}^2[\hat{f}(x_0)] + \text{Var}[\hat{f}(x_0)]
+\]</div>
 <h3 id="proof">Proof<a class="headerlink" href="#proof" title="Permanent link">&para;</a></h3>
 <p>Begin by expanding the squared error:</p>
-<p>$$</p>
-<p>\mathbb{E}[(Y_0 - \hat{f}(x_0))^2] = \mathbb{E}[(Y_0 - f^<em>(x_0) + f^</em>(x_0) - \hat{f}(x_0))^2].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(Y_0 - \hat{f}(x_0))^2] = \mathbb{E}[(Y_0 - f^*(x_0) + f^*(x_0) - \hat{f}(x_0))^2]
+\]</div>
 <p>Expanding the square:</p>
-<p>$$</p>
-<p>= \mathbb{E}[(Y_0 - f^<em>(x_0))^2] + \mathbb{E}[(f^</em>(x_0) - \hat{f}(x_0))^2] + 2\mathbb{E}[(Y_0 - f^<em>(x_0))(f^</em>(x_0) - \hat{f}(x_0))].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+= \mathbb{E}[(Y_0 - f^*(x_0))^2] + \mathbb{E}[(f^*(x_0) - \hat{f}(x_0))^2] + 2\mathbb{E}[(Y_0 - f^*(x_0))(f^*(x_0) - \hat{f}(x_0))]
+\]</div>
 <p><strong>First term:</strong> Since <span class="arithmatex">\(Y_0 = f^*(x_0) + \varepsilon_0\)</span> with <span class="arithmatex">\(\mathbb{E}[\varepsilon_0] = 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[(Y_0 - f^*(x_0))^2] = \mathbb{E}[\varepsilon_0^2] = \sigma^2(x_0).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(Y_0 - f^*(x_0))^2] = \mathbb{E}[\varepsilon_0^2] = \sigma^2(x_0)
+\]</div>
 <p><strong>Cross term:</strong> Note that <span class="arithmatex">\(Y_0 - f^*(x_0) = \varepsilon_0\)</span> is independent of <span class="arithmatex">\(\mathcal{D}_n\)</span> (and hence of <span class="arithmatex">\(\hat{f}\)</span>):</p>
-<p>$$</p>
-<p>\mathbb{E}[(Y_0 - f^<em>(x_0))(f^</em>(x_0) - \hat{f}(x_0))] = \mathbb{E}[\varepsilon_0] \cdot \mathbb{E}[f^*(x_0) - \hat{f}(x_0)] = 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(Y_0 - f^*(x_0))(f^*(x_0) - \hat{f}(x_0))] = \mathbb{E}[\varepsilon_0] \cdot \mathbb{E}[f^*(x_0) - \hat{f}(x_0)] = 0
+\]</div>
 <p><strong>Second term:</strong> Let <span class="arithmatex">\(\bar{f}(x_0) = \mathbb{E}_{\mathcal{D}_n}[\hat{f}(x_0)]\)</span>. Then:</p>
-<p>$$</p>
-<p>\mathbb{E}[(f^<em>(x_0) - \hat{f}(x_0))^2] = \mathbb{E}[(f^</em>(x_0) - \bar{f}(x_0) + \bar{f}(x_0) - \hat{f}(x_0))^2].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(f^*(x_0) - \hat{f}(x_0))^2] = \mathbb{E}[(f^*(x_0) - \bar{f}(x_0) + \bar{f}(x_0) - \hat{f}(x_0))^2]
+\]</div>
 <p>Expanding:</p>
-<p>$$</p>
-<p>= (f^<em>(x_0) - \bar{f}(x_0))^2 + \mathbb{E}[(\hat{f}(x_0) - \bar{f}(x_0))^2] + 2(f^</em>(x_0) - \bar{f}(x_0))\mathbb{E}[\bar{f}(x_0) - \hat{f}(x_0)].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+= (f^*(x_0) - \bar{f}(x_0))^2 + \mathbb{E}[(\hat{f}(x_0) - \bar{f}(x_0))^2] + 2(f^*(x_0) - \bar{f}(x_0))\mathbb{E}[\bar{f}(x_0) - \hat{f}(x_0)]
+\]</div>
 <p>The cross term vanishes since <span class="arithmatex">\(\mathbb{E}[\hat{f}(x_0) - \bar{f}(x_0)] = 0\)</span> by definition of <span class="arithmatex">\(\bar{f}\)</span>.</p>
 <p>Thus:</p>
-<p>$$</p>
-<p>\mathbb{E}[(f^<em>(x_0) - \hat{f}(x_0))^2] = (f^</em>(x_0) - \bar{f}(x_0))^2 + \mathbb{E}[(\hat{f}(x_0) - \bar{f}(x_0))^2] = \text{Bias}^2 + \text{Var}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(f^*(x_0) - \hat{f}(x_0))^2] = (f^*(x_0) - \bar{f}(x_0))^2 + \mathbb{E}[(\hat{f}(x_0) - \bar{f}(x_0))^2] = \text{Bias}^2 + \text{Var}
+\]</div>
 <p><span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="interpretation-of-components">Interpretation of Components<a class="headerlink" href="#interpretation-of-components" title="Permanent link">&para;</a></h2>
@@ -47032,9 +47032,9 @@
 <p>This low SNR means that even optimal predictors explain only a tiny fraction of variance.</p>
 <h3 id="bias">Bias<a class="headerlink" href="#bias" title="Permanent link">&para;</a></h3>
 <p><strong>Bias</strong> measures systematic error due to model misspecification:</p>
-<p>$$</p>
-<p>\text{Bias}[\hat{f}(x_0)] = \mathbb{E}_{\mathcal{D}_n}[\hat{f}(x_0)] - f^*(x_0).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bias}[\hat{f}(x_0)] = \mathbb{E}_{\mathcal{D}_n}[\hat{f}(x_0)] - f^*(x_0)
+\]</div>
 <p>Bias arises when:
 - The model class is too restrictive (e.g., fitting a line to a quadratic relationship)
 - Regularization shrinks estimates toward a fixed target
@@ -47042,9 +47042,9 @@
 <p><strong>High bias</strong> indicates <strong>underfitting</strong>: the model fails to capture systematic patterns in the data.</p>
 <h3 id="variance">Variance<a class="headerlink" href="#variance" title="Permanent link">&para;</a></h3>
 <p><strong>Variance</strong> measures sensitivity to training data fluctuations:</p>
-<p>$$</p>
-<p>\text{Var}[\hat{f}(x_0)] = \mathbb{E}_{\mathcal{D}_n}\left[(\hat{f}(x_0) - \bar{f}(x_0))^2\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[\hat{f}(x_0)] = \mathbb{E}_{\mathcal{D}_n}\left[(\hat{f}(x_0) - \bar{f}(x_0))^2\right]
+\]</div>
 <p>Variance is high when:
 - The model is overly flexible
 - Sample size is small
@@ -47065,23 +47065,23 @@
 - <span class="arithmatex">\(p &lt; q\)</span>: <span class="arithmatex">\(\text{Bias} \neq 0\)</span> (underfitting)
 - <span class="arithmatex">\(p \geq q\)</span>: <span class="arithmatex">\(\text{Bias} = 0\)</span> (correctly or overspecified)</p>
 <p><strong>Variance:</strong> For OLS estimator with design matrix <span class="arithmatex">\(\mathbf{X}\)</span>:</p>
-<p>$$</p>
-<p>\text{Var}[\hat{f}_p(x_0)] = \sigma^2 \mathbf{x}_0^\top (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{x}_0,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[\hat{f}_p(x_0)] = \sigma^2 \mathbf{x}_0^\top (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{x}_0
+\]</div>
 <p>where <span class="arithmatex">\(\mathbf{x}_0 = (1, x_0, x_0^2, \ldots, x_0^p)^\top\)</span>.</p>
 <p>As <span class="arithmatex">\(p\)</span> increases, <span class="arithmatex">\((\mathbf{X}^\top \mathbf{X})^{-1}\)</span> becomes more ill-conditioned, and variance grows.</p>
 <h3 id="regularization-and-biasvariance">Regularization and Bias–Variance<a class="headerlink" href="#regularization-and-biasvariance" title="Permanent link">&para;</a></h3>
 <p><strong>Ridge regression</strong> adds an <span class="arithmatex">\(\ell_2\)</span> penalty:</p>
-<p>$$</p>
-<p>\hat{\beta}<em>{\text{ridge}} = \arg\min</em>\beta \left{ \sum_{i=1}^n (Y_i - X_i^\top \beta)^2 + \lambda |\beta|_2^2 \right} = (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^\top \mathbf{Y}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\beta}_{\text{ridge}} = \arg\min_\beta \left\{ \sum_{i=1}^n (Y_i - X_i^\top \beta)^2 + \lambda \|\beta\|_2^2 \right\} = (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^\top \mathbf{Y}
+\]</div>
 <p><strong>Effect on bias and variance:</strong></p>
-<p>$$</p>
-<p>\text{Bias}[\hat{\beta}_{\text{ridge}}] = -\lambda (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \beta^*,</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}[\hat{\beta}_{\text{ridge}}] = \sigma^2 (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^\top \mathbf{X} (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bias}[\hat{\beta}_{\text{ridge}}] = -\lambda (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \beta^*
+\]</div>
+<div class="arithmatex">\[
+\text{Var}[\hat{\beta}_{\text{ridge}}] = \sigma^2 (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^\top \mathbf{X} (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1}
+\]</div>
 <p>As <span class="arithmatex">\(\lambda\)</span> increases:
 - Bias increases (shrinkage toward zero)
 - Variance decreases (regularization stabilizes estimates)</p>
@@ -47090,18 +47090,18 @@
 <h2 id="biasvariance-for-different-estimators">Bias–Variance for Different Estimators<a class="headerlink" href="#biasvariance-for-different-estimators" title="Permanent link">&para;</a></h2>
 <h3 id="k-nearest-neighbors">k-Nearest Neighbors<a class="headerlink" href="#k-nearest-neighbors" title="Permanent link">&para;</a></h3>
 <p>For k-NN regression:</p>
-<p>$$</p>
-<p>\hat{f}<em N_k_x_="N_k(x)" _in="\in" i="i">k(x) = \frac{1}{k} \sum</em> Y_i.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f}_k(x) = \frac{1}{k} \sum_{i \in N_k(x)} Y_i
+\]</div>
 <p><strong>Bias:</strong> As <span class="arithmatex">\(k\)</span> increases, we average over a larger neighborhood:</p>
-<p>$$</p>
-<p>\text{Bias}[\hat{f}_k(x)] \approx \frac{1}{2} \Delta f(x) \cdot r_k^2(x),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bias}[\hat{f}_k(x)] \approx \frac{1}{2} \Delta f(x) \cdot r_k^2(x)
+\]</div>
 <p>where <span class="arithmatex">\(r_k(x)\)</span> is the distance to the <span class="arithmatex">\(k\)</span>-th nearest neighbor and <span class="arithmatex">\(\Delta f\)</span> is the Laplacian.</p>
 <p><strong>Variance:</strong></p>
-<p>$$</p>
-<p>\text{Var}[\hat{f}_k(x)] = \frac{\sigma^2}{k}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[\hat{f}_k(x)] = \frac{\sigma^2}{k}
+\]</div>
 <ul>
 <li>Small <span class="arithmatex">\(k\)</span>: Low bias, high variance (overfit)</li>
 <li>Large <span class="arithmatex">\(k\)</span>: High bias, low variance (underfit)</li>
@@ -47109,13 +47109,13 @@
 <p>Optimal <span class="arithmatex">\(k\)</span> balances these effects, typically <span class="arithmatex">\(k \propto n^{4/(4+d)}\)</span> for smooth functions.</p>
 <h3 id="kernel-regression">Kernel Regression<a class="headerlink" href="#kernel-regression" title="Permanent link">&para;</a></h3>
 <p>For Nadaraya–Watson with bandwidth <span class="arithmatex">\(h\)</span>:</p>
-<p>$$</p>
-<p>\text{Bias}[\hat{f}_h(x)] = O(h^2), \quad \text{Var}[\hat{f}_h(x)] = O((nh^d)^{-1}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bias}[\hat{f}_h(x)] = O(h^2), \quad \text{Var}[\hat{f}_h(x)] = O((nh^d)^{-1})
+\]</div>
 <p>Mean squared error:</p>
-<p>$$</p>
-<p>\text{MSE} = O(h^4) + O((nh^d)^{-1}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MSE} = O(h^4) + O((nh^d)^{-1})
+\]</div>
 <p>Optimal bandwidth: <span class="arithmatex">\(h^* \propto n^{-1/(4+d)}\)</span>, giving <span class="arithmatex">\(\text{MSE}^* = O(n^{-4/(4+d)})\)</span>.</p>
 <h3 id="neural-networks">Neural Networks<a class="headerlink" href="#neural-networks" title="Permanent link">&para;</a></h3>
 <p>For neural networks with <span class="arithmatex">\(M\)</span> hidden units:</p>
@@ -47127,24 +47127,24 @@
 <hr />
 <h2 id="integrated-mean-squared-error">Integrated Mean Squared Error<a class="headerlink" href="#integrated-mean-squared-error" title="Permanent link">&para;</a></h2>
 <p>For global assessment, we integrate over the input distribution:</p>
-<p>$$</p>
-<p>\text{IMSE} = \int \text{MSE}(x) \, p(x) \, dx = \int \left[\text{Bias}^2(x) + \text{Var}(x)\right] p(x) \, dx.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{IMSE} = \int \text{MSE}(x) \, p(x) \, dx = \int \left[\text{Bias}^2(x) + \text{Var}(x)\right] p(x) \, dx
+\]</div>
 <p>This is often estimated via cross-validation:</p>
-<p>$$</p>
-<p>\widehat{\text{IMSE}} \approx \frac{1}{n} \sum_{i=1}^n (Y_i - \hat{f}_{-i}(X_i))^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widehat{\text{IMSE}} \approx \frac{1}{n} \sum_{i=1}^n (Y_i - \hat{f}_{-i}(X_i))^2
+\]</div>
 <hr />
 <h2 id="financial-data-characteristics">Financial Data Characteristics<a class="headerlink" href="#financial-data-characteristics" title="Permanent link">&para;</a></h2>
 <h3 id="low-signal-to-noise-ratio">Low Signal-to-Noise Ratio<a class="headerlink" href="#low-signal-to-noise-ratio" title="Permanent link">&para;</a></h3>
 <p>In financial prediction:</p>
-<p>$$</p>
-<p>R_{t+1} = \underbrace{\mu(X_t)}<em t_1="t+1">{\text{small}} + \underbrace{\varepsilon</em>.}}_{\text{large}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_{t+1} = \underbrace{\mu(X_t)}_{\text{small}} + \underbrace{\varepsilon_{t+1}}_{\text{large}}
+\]</div>
 <p>With <span class="arithmatex">\(|\mu| \approx 0.05\%\)</span> daily and <span class="arithmatex">\(\sigma \approx 1\%\)</span>, the irreducible error dominates:</p>
-<p>$$</p>
-<p>R^2 = \frac{\text{Var}(\mu(X))}{\text{Var}(R)} \approx \frac{(0.0005)^2}{(0.01)^2} = 0.0025 = 0.25\%.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R^2 = \frac{\text{Var}(\mu(X))}{\text{Var}(R)} \approx \frac{(0.0005)^2}{(0.01)^2} = 0.0025 = 0.25\%
+\]</div>
 <p>Even a perfect model explains only <span class="arithmatex">\(\sim 0.25\%\)</span> of daily return variance!</p>
 <p><strong>Implication:</strong> Variance reduction is paramount. Simple models with low variance often outperform complex models with lower bias but higher variance.</p>
 <h3 id="effective-sample-size">Effective Sample Size<a class="headerlink" href="#effective-sample-size" title="Permanent link">&para;</a></h3>
@@ -47153,15 +47153,15 @@
 - <strong>Heteroskedasticity:</strong> Some observations more informative than others
 - <strong>Structural breaks:</strong> Historical data may not represent future dynamics</p>
 <p>Effective sample size:</p>
-<p>$$</p>
-<p>n_{\text{eff}} = \frac{n}{1 + 2\sum_{k=1}^{\infty} \rho_k} \ll n,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+n_{\text{eff}} = \frac{n}{1 + 2\sum_{k=1}^{\infty} \rho_k} \ll n
+\]</div>
 <p>where <span class="arithmatex">\(\rho_k\)</span> is autocorrelation at lag <span class="arithmatex">\(k\)</span>. For highly persistent series, <span class="arithmatex">\(n_{\text{eff}}\)</span> can be orders of magnitude smaller than <span class="arithmatex">\(n\)</span>.</p>
 <h3 id="non-stationarity">Non-Stationarity<a class="headerlink" href="#non-stationarity" title="Permanent link">&para;</a></h3>
 <p>If the true function <span class="arithmatex">\(f^*_t\)</span> changes over time, using all historical data introduces bias:</p>
-<p>$$</p>
-<p>\text{Bias} = \mathbb{E}[\hat{f}] - f^*_T \neq 0,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bias} = \mathbb{E}[\hat{f}] - f^*_T \neq 0
+\]</div>
 <p>even if <span class="arithmatex">\(\mathbb{E}[\hat{f}] = \bar{f}^*\)</span> (average over time).</p>
 <p>Rolling windows trade bias against variance:
 - <strong>Short windows:</strong> Low bias (recent data), high variance (few observations)
@@ -47191,32 +47191,32 @@
 <h2 id="practical-strategies-for-variance-reduction">Practical Strategies for Variance Reduction<a class="headerlink" href="#practical-strategies-for-variance-reduction" title="Permanent link">&para;</a></h2>
 <h3 id="regularization">Regularization<a class="headerlink" href="#regularization" title="Permanent link">&para;</a></h3>
 <p><strong><span class="arithmatex">\(\ell_2\)</span> regularization (Ridge):</strong> Shrinks all coefficients proportionally:</p>
-<p>$$</p>
-<p>\hat{\beta}<em>{\text{ridge}} = \arg\min</em>\beta \left{ |\mathbf{y} - \mathbf{X}\beta|_2^2 + \lambda |\beta|_2^2 \right}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\beta}_{\text{ridge}} = \arg\min_\beta \left\{ \|\mathbf{y} - \mathbf{X}\beta\|_2^2 + \lambda \|\beta\|_2^2 \right\}
+\]</div>
 <p><strong><span class="arithmatex">\(\ell_1\)</span> regularization (LASSO):</strong> Induces sparsity:</p>
-<p>$$</p>
-<p>\hat{\beta}<em>{\text{lasso}} = \arg\min</em>\beta \left{ |\mathbf{y} - \mathbf{X}\beta|_2^2 + \lambda |\beta|_1 \right}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\beta}_{\text{lasso}} = \arg\min_\beta \left\{ \|\mathbf{y} - \mathbf{X}\beta\|_2^2 + \lambda \|\beta\|_1 \right\}
+\]</div>
 <p><strong>Elastic net:</strong> Combines both:</p>
-<p>$$</p>
-<p>\hat{\beta}<em>{\text{EN}} = \arg\min</em>\beta \left{ |\mathbf{y} - \mathbf{X}\beta|_2^2 + \lambda_1 |\beta|_1 + \lambda_2 |\beta|_2^2 \right}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\beta}_{\text{EN}} = \arg\min_\beta \left\{ \|\mathbf{y} - \mathbf{X}\beta\|_2^2 + \lambda_1 \|\beta\|_1 + \lambda_2 \|\beta\|_2^2 \right\}
+\]</div>
 <h3 id="bagging-bootstrap-aggregating">Bagging (Bootstrap Aggregating)<a class="headerlink" href="#bagging-bootstrap-aggregating" title="Permanent link">&para;</a></h3>
 <p>Generate <span class="arithmatex">\(B\)</span> bootstrap samples, fit model on each, average predictions:</p>
-<p>$$</p>
-<p>\hat{f}<em b="1">{\text{bag}}(x) = \frac{1}{B} \sum</em>(x).}^B \hat{f}^{(b)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f}_{\text{bag}}(x) = \frac{1}{B} \sum_{b=1}^B \hat{f}^{(b)}(x)
+\]</div>
 <p><strong>Variance reduction:</strong></p>
-<p>$$</p>
-<p>\text{Var}[\hat{f}_{\text{bag}}] = \frac{1}{B}\text{Var}[\hat{f}] + \frac{B-1}{B}\text{Cov}[\hat{f}^{(1)}, \hat{f}^{(2)}].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}[\hat{f}_{\text{bag}}] = \frac{1}{B}\text{Var}[\hat{f}] + \frac{B-1}{B}\text{Cov}[\hat{f}^{(1)}, \hat{f}^{(2)}]
+\]</div>
 <p>For uncorrelated estimators, variance reduces by factor <span class="arithmatex">\(B\)</span>. In practice, correlation limits reduction.</p>
 <h3 id="model-averaging">Model Averaging<a class="headerlink" href="#model-averaging" title="Permanent link">&para;</a></h3>
 <p>Bayesian model averaging or frequentist combination:</p>
-<p>$$</p>
-<p>\hat{f}<em m="1">{\text{avg}}(x) = \sum</em>_m(x),}^M w_m \hat{f</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{f}_{\text{avg}}(x) = \sum_{m=1}^M w_m \hat{f}_m(x)
+\]</div>
 <p>where weights <span class="arithmatex">\(w_m\)</span> reflect model quality (e.g., inverse variance weighting).</p>
 <h3 id="early-stopping">Early Stopping<a class="headerlink" href="#early-stopping" title="Permanent link">&para;</a></h3>
 <p>For iterative algorithms (gradient descent, boosting), stop before convergence:</p>
@@ -47229,23 +47229,23 @@
 <h2 id="connection-to-information-theoretic-quantities">Connection to Information-Theoretic Quantities<a class="headerlink" href="#connection-to-information-theoretic-quantities" title="Permanent link">&para;</a></h2>
 <h3 id="biasvariance-and-kl-divergence">Bias–Variance and KL Divergence<a class="headerlink" href="#biasvariance-and-kl-divergence" title="Permanent link">&para;</a></h3>
 <p>For probabilistic models, the expected log-likelihood decomposes similarly:</p>
-<p>$$</p>
-<p>\mathbb{E}<em _text_KL="\text{KL">{\mathcal{D}_n}[D</em>(p^}<em> | \hat{p})] = D_{\text{KL}}(p^</em> | \bar{p}) + \mathbb{E}<em _text_KL="\text{KL">{\mathcal{D}_n}[D</em>)],}}(\bar{p} | \hat{p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\mathcal{D}_n}[D_{\text{KL}}(p^* \| \hat{p})] = D_{\text{KL}}(p^* \| \bar{p}) + \mathbb{E}_{\mathcal{D}_n}[D_{\text{KL}}(\bar{p} \| \hat{p})]
+\]</div>
 <p>where <span class="arithmatex">\(\bar{p} = \mathbb{E}[\hat{p}]\)</span>.</p>
 <p>The first term is "bias" (systematic divergence from truth), the second is "variance" (variability of the estimate).</p>
 <h3 id="aic-and-bias-correction">AIC and Bias Correction<a class="headerlink" href="#aic-and-bias-correction" title="Permanent link">&para;</a></h3>
 <p>Akaike's Information Criterion corrects for optimistic in-sample error:</p>
-<p>$$</p>
-<p>\text{AIC} = -2\ell_n(\hat{\theta}) + 2d,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AIC} = -2\ell_n(\hat{\theta}) + 2d
+\]</div>
 <p>where the penalty <span class="arithmatex">\(2d\)</span> approximates the expected optimism due to variance.</p>
 <hr />
 <h2 id="example-factor-model-selection">Example: Factor Model Selection<a class="headerlink" href="#example-factor-model-selection" title="Permanent link">&para;</a></h2>
 <p>Consider selecting among factor models for expected returns:</p>
-<p>$$</p>
-<p>\mathbb{E}[R_i] = \alpha_i + \sum_{j=1}^k \beta_{ij} \lambda_j.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[R_i] = \alpha_i + \sum_{j=1}^k \beta_{ij} \lambda_j
+\]</div>
 <p>With <span class="arithmatex">\(k\)</span> factors, we have <span class="arithmatex">\(k\)</span> factor risk premia <span class="arithmatex">\(\lambda_j\)</span> to estimate.</p>
 <p><strong>Bias:</strong> More factors can capture cross-sectional patterns
 <strong>Variance:</strong> More parameters to estimate from limited assets and time periods</p>

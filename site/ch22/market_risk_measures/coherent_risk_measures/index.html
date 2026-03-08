@@ -46701,9 +46701,9 @@
 <hr />
 <h2 id="dual-representation-theorem">Dual Representation Theorem<a class="headerlink" href="#dual-representation-theorem" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Artzner et al., 1999):</strong> A risk measure <span class="arithmatex">\(\rho\)</span> is coherent if and only if there exists a set <span class="arithmatex">\(\mathcal{Q}\)</span> of probability measures such that:</p>
-<p>$$</p>
-<p>\rho(L) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^\mathbb{Q}[L]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(L) = \sup_{\mathbb{Q} \in \mathcal{Q}} \mathbb{E}^\mathbb{Q}[L]
+\]</div>
 <p><strong>Interpretation:</strong> Coherent risk is the worst-case expected loss over a set of "stress" probability measures. This connects coherent risk measures to:</p>
 <ul>
 <li>Robust statistics (worst-case expectations)</li>
@@ -46711,9 +46711,9 @@
 <li>Stress testing (adverse scenarios)</li>
 </ul>
 <p><strong>ES dual representation:</strong></p>
-<p>$$</p>
-<p>\text{ES}_\alpha(L) = \sup\left{ \mathbb{E}^\mathbb{Q}[L] : \frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{ES}_\alpha(L) = \sup\left\{ \mathbb{E}^\mathbb{Q}[L] : \frac{d\mathbb{Q}}{d\mathbb{P}} \le \frac{1}{1-\alpha} \right\}
+\]</div>
 <hr />
 <h2 id="convex-risk-measures">Convex Risk Measures<a class="headerlink" href="#convex-risk-measures" title="Permanent link">&para;</a></h2>
 <p><strong>Convex risk measures</strong> generalize coherent measures by relaxing positive homogeneity.</p>
@@ -46725,15 +46725,15 @@
 </ol>
 <p><strong>Note:</strong> Positive homogeneity + subadditivity <span class="arithmatex">\(\Rightarrow\)</span> convexity, so coherent <span class="arithmatex">\(\Rightarrow\)</span> convex.</p>
 <h3 id="dual-representation-of-convex-risk-measures">Dual Representation of Convex Risk Measures<a class="headerlink" href="#dual-representation-of-convex-risk-measures" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\rho(L) = \sup_{\mathbb{Q}} \left{ \mathbb{E}^\mathbb{Q}[L] - \alpha(\mathbb{Q}) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(L) = \sup_{\mathbb{Q}} \left\{ \mathbb{E}^\mathbb{Q}[L] - \alpha(\mathbb{Q}) \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\alpha(\mathbb{Q})\)</span> is a <strong>penalty function</strong> measuring the plausibility of <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <h3 id="entropic-risk-measure">Entropic Risk Measure<a class="headerlink" href="#entropic-risk-measure" title="Permanent link">&para;</a></h3>
 <p>A key example of a convex (but not coherent) risk measure:</p>
-<p>$$</p>
-<p>\rho_\gamma(L) = \frac{1}{\gamma} \log \mathbb{E}[e^{\gamma L}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_\gamma(L) = \frac{1}{\gamma} \log \mathbb{E}[e^{\gamma L}]
+\]</div>
 <p>where <span class="arithmatex">\(\gamma &gt; 0\)</span> is the risk aversion parameter.</p>
 <p><strong>Properties:</strong>
 - Convex but not positively homogeneous
@@ -46743,9 +46743,9 @@
 <h2 id="spectral-risk-measures">Spectral Risk Measures<a class="headerlink" href="#spectral-risk-measures" title="Permanent link">&para;</a></h2>
 <p><strong>Spectral risk measures</strong> form a subclass of coherent measures with explicit tail weighting.</p>
 <p><strong>Definition:</strong> A spectral risk measure has the form:</p>
-<p>$$</p>
-<p>\rho_\phi(L) = \int_0^1 \phi(u) \, \text{VaR}_u(L) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_\phi(L) = \int_0^1 \phi(u) \, \text{VaR}_u(L) \, du
+\]</div>
 <p>where <span class="arithmatex">\(\phi: [0,1] \to \mathbb{R}_+\)</span> is a <strong>spectrum</strong> (weight function) satisfying:</p>
 <ol>
 <li><span class="arithmatex">\(\phi(u) \ge 0\)</span> (non-negativity)</li>
@@ -46755,56 +46755,56 @@
 <p><strong>Interpretation:</strong> Spectral measures weight quantiles by <span class="arithmatex">\(\phi(u)\)</span>, putting more weight on worse outcomes.</p>
 <h3 id="expected-shortfall-as-a-spectral-measure">Expected Shortfall as a Spectral Measure<a class="headerlink" href="#expected-shortfall-as-a-spectral-measure" title="Permanent link">&para;</a></h3>
 <p>ES is spectral with:</p>
-<p>$$</p>
-<p>\phi_\alpha(u) = \begin{cases}
-0 &amp; u &lt; \alpha \
+<div class="arithmatex">\[
+\phi_\alpha(u) = \begin{cases}
+0 &amp; u &lt; \alpha \\
 \frac{1}{1-\alpha} &amp; u \ge \alpha
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>This assigns zero weight below the <span class="arithmatex">\(\alpha\)</span>-quantile and uniform weight to the tail.</p>
 <h3 id="exponential-spectral-measure">Exponential Spectral Measure<a class="headerlink" href="#exponential-spectral-measure" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\phi(u) = \frac{\gamma e^{\gamma u}}{e^\gamma - 1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi(u) = \frac{\gamma e^{\gamma u}}{e^\gamma - 1}
+\]</div>
 <p>gives increasing weight to worse outcomes, with <span class="arithmatex">\(\gamma\)</span> controlling the degree of risk aversion.</p>
 <hr />
 <h2 id="law-invariance">Law Invariance<a class="headerlink" href="#law-invariance" title="Permanent link">&para;</a></h2>
 <p>A risk measure is <strong>law invariant</strong> if <span class="arithmatex">\(\rho(L_1) = \rho(L_2)\)</span> whenever <span class="arithmatex">\(L_1\)</span> and <span class="arithmatex">\(L_2\)</span> have the same distribution.</p>
 <p><strong>Theorem (Kusuoka, 2001):</strong> Every law-invariant coherent risk measure on <span class="arithmatex">\(L^\infty\)</span> can be represented as:</p>
-<p>$$</p>
-<p>\rho(L) = \sup_{\mu \in \mathcal{M}} \int_0^1 \text{ES}_u(L) \, d\mu(u)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(L) = \sup_{\mu \in \mathcal{M}} \int_0^1 \text{ES}_u(L) \, d\mu(u)
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{M}\)</span> is a set of probability measures on <span class="arithmatex">\([0,1]\)</span>.</p>
 <p>This shows that <strong>ES is the building block</strong> of all law-invariant coherent risk measures.</p>
 <hr />
 <h2 id="acceptance-sets">Acceptance Sets<a class="headerlink" href="#acceptance-sets" title="Permanent link">&para;</a></h2>
 <p>An alternative characterization uses <strong>acceptance sets</strong>:</p>
-<p>$$</p>
-<p>\mathcal{A} = {L : \rho(L) \le 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{A} = \{L : \rho(L) \le 0\}
+\]</div>
 <p>The set of positions requiring no additional capital.</p>
 <p><strong>Properties:</strong>
 - Coherent <span class="arithmatex">\(\rho\)</span> <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(\mathcal{A}\)</span> is a convex cone containing constants <span class="arithmatex">\(\le 0\)</span>
 - Convex <span class="arithmatex">\(\rho\)</span> <span class="arithmatex">\(\Leftrightarrow\)</span> <span class="arithmatex">\(\mathcal{A}\)</span> is convex</p>
 <p><strong>Reconstruction:</strong> Given an acceptance set, the risk measure is:</p>
-<p>$$</p>
-<p>\rho(L) = \inf{c : L - c \in \mathcal{A}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(L) = \inf\{c : L - c \in \mathcal{A}\}
+\]</div>
 <hr />
 <h2 id="capital-allocation-with-coherent-measures">Capital Allocation with Coherent Measures<a class="headerlink" href="#capital-allocation-with-coherent-measures" title="Permanent link">&para;</a></h2>
 <p>Coherent risk measures enable consistent capital allocation via the <strong>Euler principle</strong>:</p>
 <p>If <span class="arithmatex">\(\rho\)</span> is positively homogeneous and differentiable, capital allocated to position <span class="arithmatex">\(i\)</span> is:</p>
-<p>$$</p>
-<p>\text{AC}_i = \frac{\partial \rho}{\partial w_i} \cdot w_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AC}_i = \frac{\partial \rho}{\partial w_i} \cdot w_i
+\]</div>
 <p>and by Euler's theorem:</p>
-<p>$$</p>
-<p>\sum_i \text{AC}_i = \rho(L)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_i \text{AC}_i = \rho(L)
+\]</div>
 <p><strong>For ES:</strong></p>
-<p>$$</p>
-<p>\text{AC}<em>i = \mathbb{E}[L_i \mid L \ge \text{VaR}</em>\alpha(L)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AC}_i = \mathbb{E}[L_i \mid L \ge \text{VaR}_\alpha(L)]
+\]</div>
 <p>This is the <strong>ES contribution</strong> of position <span class="arithmatex">\(i\)</span>.</p>
 <hr />
 <h2 id="practical-considerations">Practical Considerations<a class="headerlink" href="#practical-considerations" title="Permanent link">&para;</a></h2>

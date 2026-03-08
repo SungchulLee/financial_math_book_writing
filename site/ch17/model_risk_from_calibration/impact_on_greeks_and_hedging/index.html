@@ -47007,37 +47007,37 @@
 <h2 id="greeks-as-model-dependent-objects">Greeks as model-dependent objects<a class="headerlink" href="#greeks-as-model-dependent-objects" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>Greeks are partial derivatives of the option price with respect to market variables:</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial P}{\partial S}, \quad \Gamma = \frac{\partial^2 P}{\partial S^2}, \quad \text{Vega} = \frac{\partial P}{\partial \sigma}, \quad \Theta = \frac{\partial P}{\partial t}, \quad \text{etc.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial P}{\partial S}, \quad \Gamma = \frac{\partial^2 P}{\partial S^2}, \quad \text{Vega} = \frac{\partial P}{\partial \sigma}, \quad \Theta = \frac{\partial P}{\partial t}, \quad \text{etc.}
+\]</div>
 <p>These derivatives are computed <strong>under the calibrated model</strong> with parameters <span class="arithmatex">\(\hat{\theta}\)</span>:</p>
-<p>$$</p>
-<p>\Delta(\hat{\theta}) = \frac{\partial P}{\partial S}\bigg|_{\theta = \hat{\theta}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta(\hat{\theta}) = \frac{\partial P}{\partial S}\bigg|_{\theta = \hat{\theta}}
+\]</div>
 <h3 id="the-problem">The problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\hat{\theta} \ne \theta^{\star}\)</span>, the computed Greeks are wrong:</p>
-<p>$$</p>
-<p>\Delta(\hat{\theta}) \ne \Delta(\theta^{\star}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta(\hat{\theta}) \ne \Delta(\theta^{\star})
+\]</div>
 <p>Hedging based on <span class="arithmatex">\(\Delta(\hat{\theta})\)</span> leaves residual exposure to the true <span class="arithmatex">\(\Delta(\theta^{\star})\)</span>.</p>
 <hr />
 <h2 id="sensitivity-of-greeks-to-parameters">Sensitivity of Greeks to parameters<a class="headerlink" href="#sensitivity-of-greeks-to-parameters" title="Permanent link">&para;</a></h2>
 <h3 id="first-order-analysis">First-order analysis<a class="headerlink" href="#first-order-analysis" title="Permanent link">&para;</a></h3>
 <p>Expand Greeks around the true parameter:</p>
-<p>$$</p>
-<p>\Delta(\hat{\theta}) - \Delta(\theta^{\star}) \approx \nabla_\theta \Delta(\theta^{\star})^\top (\hat{\theta} - \theta^{\star}).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta(\hat{\theta}) - \Delta(\theta^{\star}) \approx \nabla_\theta \Delta(\theta^{\star})^\top (\hat{\theta} - \theta^{\star})
+\]</div>
 <p>The term <span class="arithmatex">\(\nabla_\theta \Delta\)</span> is the <strong>sensitivity of delta to parameters</strong>, a second-order derivative of the price:</p>
-<p>$$</p>
-<p>\nabla_\theta \Delta = \nabla_\theta \left( \frac{\partial P}{\partial S} \right) = \frac{\partial^2 P}{\partial S \partial \theta}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nabla_\theta \Delta = \nabla_\theta \left( \frac{\partial P}{\partial S} \right) = \frac{\partial^2 P}{\partial S \partial \theta}
+\]</div>
 <h3 id="implication">Implication<a class="headerlink" href="#implication" title="Permanent link">&para;</a></h3>
 <p>Even small parameter errors can materially distort hedge ratios when <span class="arithmatex">\(\nabla_\theta \Delta\)</span> is large.</p>
 <h3 id="higher-order-greeks">Higher-order Greeks<a class="headerlink" href="#higher-order-greeks" title="Permanent link">&para;</a></h3>
 <p>For Gamma, Vega, etc., the analysis is similar:</p>
-<p>$$</p>
-<p>\Gamma(\hat{\theta}) - \Gamma(\theta^{\star}) \approx \nabla_\theta \Gamma^\top \Delta\theta.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma(\hat{\theta}) - \Gamma(\theta^{\star}) \approx \nabla_\theta \Gamma^\top \Delta\theta
+\]</div>
 <p>Higher-order Greeks (Gamma, Vanna, Volga) are often more sensitive to parameters than Delta itself.</p>
 <hr />
 <h2 id="hedging-breakdown-mechanisms">Hedging breakdown mechanisms<a class="headerlink" href="#hedging-breakdown-mechanisms" title="Permanent link">&para;</a></h2>
@@ -47073,13 +47073,13 @@
 <h2 id="quantifying-greek-sensitivity">Quantifying Greek sensitivity<a class="headerlink" href="#quantifying-greek-sensitivity" title="Permanent link">&para;</a></h2>
 <h3 id="parameter-delta-covariance">Parameter-delta covariance<a class="headerlink" href="#parameter-delta-covariance" title="Permanent link">&para;</a></h3>
 <p>The variance of delta due to parameter uncertainty:</p>
-<p>$$</p>
-<p>\text{Var}(\Delta) \approx \nabla_\theta \Delta^\top \Sigma_\theta \nabla_\theta \Delta.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(\Delta) \approx \nabla_\theta \Delta^\top \Sigma_\theta \nabla_\theta \Delta
+\]</div>
 <p>This gives a confidence interval for the hedge ratio:</p>
-<p>$$</p>
-<p>\Delta \in \left[ \hat{\Delta} - z_\alpha \sigma_\Delta, \; \hat{\Delta} + z_\alpha \sigma_\Delta \right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \in \left[ \hat{\Delta} - z_\alpha \sigma_\Delta, \; \hat{\Delta} + z_\alpha \sigma_\Delta \right]
+\]</div>
 <h3 id="bump-and-reprice-for-greeks">Bump-and-reprice for Greeks<a class="headerlink" href="#bump-and-reprice-for-greeks" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Compute <span class="arithmatex">\(\Delta(\hat{\theta})\)</span>.</li>
@@ -47098,36 +47098,36 @@
 <h2 id="hedging-error-analysis">Hedging error analysis<a class="headerlink" href="#hedging-error-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="single-period-hedging-error">Single-period hedging error<a class="headerlink" href="#single-period-hedging-error" title="Permanent link">&para;</a></h3>
 <p>Consider delta-hedging a call option over <span class="arithmatex">\([t, t + \Delta t]\)</span>. The hedging error is:</p>
-<p>$$</p>
-<p>\epsilon = \Delta C - \Delta(\hat{\theta}) \cdot \Delta S,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\epsilon = \Delta C - \Delta(\hat{\theta}) \cdot \Delta S
+\]</div>
 <p>where <span class="arithmatex">\(\Delta C\)</span> is the actual change in option value.</p>
 <p>Under the true model:</p>
-<p>$$</p>
-<p>\epsilon = \frac{1}{2} \Gamma(\theta^{\star}) (\Delta S)^2 + \text{higher-order terms}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\epsilon = \frac{1}{2} \Gamma(\theta^{\star}) (\Delta S)^2 + \text{higher-order terms}
+\]</div>
 <p>Under the calibrated model:</p>
-<p>$$</p>
-<p>\epsilon_{\text{model}} = \frac{1}{2} \Gamma(\hat{\theta}) (\Delta S)^2 + \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\epsilon_{\text{model}} = \frac{1}{2} \Gamma(\hat{\theta}) (\Delta S)^2 + \cdots
+\]</div>
 <p>The discrepancy:</p>
-<p>$$</p>
-<p>\epsilon - \epsilon_{\text{model}} \approx \frac{1}{2} (\Gamma(\theta^{\star}) - \Gamma(\hat{\theta})) (\Delta S)^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\epsilon - \epsilon_{\text{model}} \approx \frac{1}{2} (\Gamma(\theta^{\star}) - \Gamma(\hat{\theta})) (\Delta S)^2
+\]</div>
 <h3 id="cumulative-effect">Cumulative effect<a class="headerlink" href="#cumulative-effect" title="Permanent link">&para;</a></h3>
 <p>Over <span class="arithmatex">\(N\)</span> hedging periods:</p>
-<p>$$</p>
-<p>\text{Total error} \approx \sum_{i=1}^N \epsilon_i.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total error} \approx \sum_{i=1}^N \epsilon_i
+\]</div>
 <p>If errors are biased (systematic), they accumulate linearly. If unbiased but noisy, they accumulate as <span class="arithmatex">\(\sqrt{N}\)</span>.</p>
 <p>Calibration-induced errors are often <strong>systematic</strong> (same direction each day), leading to P&amp;L drift.</p>
 <hr />
 <h2 id="example-heston-delta-sensitivity">Example: Heston delta sensitivity<a class="headerlink" href="#example-heston-delta-sensitivity" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>In Heston, delta depends on all parameters:</p>
-<p>$$</p>
-<p>\Delta = \Delta(S, v_0, \kappa, \bar{v}, \sigma_v, \rho, K, T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \Delta(S, v_0, \kappa, \bar{v}, \sigma_v, \rho, K, T)
+\]</div>
 <h3 id="sensitivity-to-correlation">Sensitivity to correlation<a class="headerlink" href="#sensitivity-to-correlation" title="Permanent link">&para;</a></h3>
 <p>The correlation <span class="arithmatex">\(\rho\)</span> affects skew. For OTM puts:</p>
 <ul>
@@ -47154,9 +47154,9 @@
 <h2 id="robust-hedging-practices">Robust hedging practices<a class="headerlink" href="#robust-hedging-practices" title="Permanent link">&para;</a></h2>
 <h3 id="1-hedge-with-greek-ranges">1. Hedge with Greek ranges<a class="headerlink" href="#1-hedge-with-greek-ranges" title="Permanent link">&para;</a></h3>
 <p>Rather than using point estimates, compute:</p>
-<p>$$</p>
-<p>\Delta_{\min} = \inf_{\theta \in C_\alpha} \Delta(\theta), \qquad \Delta_{\max} = \sup_{\theta \in C_\alpha} \Delta(\theta),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\min} = \inf_{\theta \in C_\alpha} \Delta(\theta), \qquad \Delta_{\max} = \sup_{\theta \in C_\alpha} \Delta(\theta)
+\]</div>
 <p>where <span class="arithmatex">\(C_\alpha\)</span> is a confidence region for parameters.</p>
 <p>Hedge to the midpoint but reserve for the range.</p>
 <h3 id="2-model-invariant-hedging">2. Model-invariant hedging<a class="headerlink" href="#2-model-invariant-hedging" title="Permanent link">&para;</a></h3>
@@ -47181,9 +47181,9 @@
 </ul>
 <h3 id="5-regularization-for-stable-greeks">5. Regularization for stable Greeks<a class="headerlink" href="#5-regularization-for-stable-greeks" title="Permanent link">&para;</a></h3>
 <p>Regularization that stabilizes parameters also stabilizes Greeks:</p>
-<p>$$</p>
-<p>\min_\theta \mathcal{L}(\theta) + \lambda |\theta - \theta_{\text{prior}}|^2.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_\theta \mathcal{L}(\theta) + \lambda \|\theta - \theta_{\text{prior}}\|^2
+\]</div>
 <p>Smaller parameter jumps → smaller Greek jumps.</p>
 <hr />
 <h2 id="greeks-and-recalibration">Greeks and recalibration<a class="headerlink" href="#greeks-and-recalibration" title="Permanent link">&para;</a></h2>

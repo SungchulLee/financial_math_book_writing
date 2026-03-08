@@ -47616,16 +47616,16 @@
 </li>
 </ol>
 <p><strong>Portfolio Value</strong>:</p>
-<p>$$</p>
-<p>V_t = \theta_t S_t + \sum_{i=1}^{N_C} n_i^C C_i(S_t, K_i, T_i-t) + \sum_{j=1}^{N_P} n_j^P P_j(S_t, K_j, T_j-t) + B_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \theta_t S_t + \sum_{i=1}^{N_C} n_i^C C_i(S_t, K_i, T_i-t) + \sum_{j=1}^{N_P} n_j^P P_j(S_t, K_j, T_j-t) + B_t
+\]</div>
 <p>where <span class="arithmatex">\(n_i^C, n_j^P\)</span> are (typically) fixed quantities of options.</p>
 <h3 id="2-target-payoff">2. Target Payoff<a class="headerlink" href="#2-target-payoff" title="Permanent link">&para;</a></h3>
 <p><strong>Exotic Derivative</strong>: Consider payoff <span class="arithmatex">\(\Phi(S_T)\)</span> or more generally <span class="arithmatex">\(\Phi((S_t)_{0 \leq t \leq T})\)</span>.</p>
 <p><strong>Replication Goal</strong>: Construct portfolio such that:</p>
-<p>$$</p>
-<p>V_T \approx \Phi \quad \text{or} \quad V_T \geq \Phi \text{ (super-replication)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_T \approx \Phi \quad \text{or} \quad V_T \geq \Phi \text{ (super-replication)}
+\]</div>
 <p>with minimal adjustments to <span class="arithmatex">\(\theta_t\)</span>.</p>
 <h3 id="3-trading-times">3. Trading Times<a class="headerlink" href="#3-trading-times" title="Permanent link">&para;</a></h3>
 <p><strong>Scheduled Times</strong>: Predetermined rebalancing dates <span class="arithmatex">\(\{t_1, \ldots, t_M\}\)</span>.</p>
@@ -47637,9 +47637,9 @@
 <h2 id="static-replication-techniques">Static Replication Techniques<a class="headerlink" href="#static-replication-techniques" title="Permanent link">&para;</a></h2>
 <h3 id="1-carr-madan-decomposition">1. Carr-Madan Decomposition<a class="headerlink" href="#1-carr-madan-decomposition" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Carr-Madan): Any twice-differentiable payoff <span class="arithmatex">\(g(S_T)\)</span> can be decomposed as:</p>
-<p>$$</p>
-<p>g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K) (K - S_T)^+ dK + \int_F^{\infty} g''(K) (S_T - K)^+ dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(S_T) = g(F) + g'(F)(S_T - F) + \int_0^F g''(K) (K - S_T)^+ dK + \int_F^{\infty} g''(K) (S_T - K)^+ dK
+\]</div>
 <p>where <span class="arithmatex">\(F = S_0 e^{rT}\)</span> is the forward price.</p>
 <p><strong>Static Portfolio</strong>: 
 - Linear position: <span class="arithmatex">\(g'(F)\)</span> units of forward
@@ -47653,24 +47653,24 @@
 - Sensitive to bid-ask spreads for far-out-of-money options</p>
 <h3 id="2-breeden-litzenberger-construction">2. Breeden-Litzenberger Construction<a class="headerlink" href="#2-breeden-litzenberger-construction" title="Permanent link">&para;</a></h3>
 <p><strong>Risk-Neutral Density</strong>: From call prices:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K, T)
+\]</div>
 <p><strong>Static Replication</strong>: To replicate any European payoff <span class="arithmatex">\(g(S_T)\)</span>:</p>
-<p>$$</p>
-<p>V_0 = e^{-rT} \int_0^{\infty} g(K) q(K) dK = \int_0^{\infty} g(K) \frac{\partial^2 C}{\partial K^2}(K, T) dK</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-rT} \int_0^{\infty} g(K) q(K) dK = \int_0^{\infty} g(K) \frac{\partial^2 C}{\partial K^2}(K, T) dK
+\]</div>
 <p><strong>Implementation</strong>: Discretize with available strikes:</p>
-<p>$$</p>
-<p>V_0 \approx \sum_{i=1}^n g(K_i) \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 \approx \sum_{i=1}^n g(K_i) \frac{C(K_{i-1}) - 2C(K_i) + C(K_{i+1})}{(K_{i+1} - K_i)(K_i - K_{i-1})}
+\]</div>
 <h2 id="barrier-options">Barrier Options<a class="headerlink" href="#barrier-options" title="Permanent link">&para;</a></h2>
 <h3 id="1-static-replication-black-scholes-world">1. Static Replication (Black-Scholes World)<a class="headerlink" href="#1-static-replication-black-scholes-world" title="Permanent link">&para;</a></h3>
 <p><strong>Up-and-Out Call</strong>: Payoff <span class="arithmatex">\((S_T - K)^+ \mathbb{1}_{\{M_T &lt; H\}}\)</span> where <span class="arithmatex">\(M_T = \max_{0 \leq t \leq T} S_t\)</span>.</p>
 <p><strong>Put-Call Symmetry</strong>: Under Black-Scholes with constant volatility, there exists a static replication using:</p>
-<p>$$</p>
-<p>C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \left(\frac{H}{S_0}\right)^{2\mu} C\left(\frac{H^2}{S_0}, K\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \left(\frac{H}{S_0}\right)^{2\mu} C\left(\frac{H^2}{S_0}, K\right)
+\]</div>
 <p>where <span class="arithmatex">\(\mu = \frac{r - \frac{1}{2}\sigma^2}{\sigma^2}\)</span>.</p>
 <p><strong>Static Portfolio</strong>:
 - Long 1 standard call with strike <span class="arithmatex">\(K\)</span>
@@ -47691,9 +47691,9 @@
 <p><strong>Frequency</strong>: Typically 1-5 adjustments over the life of the option, triggered by proximity to barrier.</p>
 <h3 id="3-carr-lee-semi-static-formula">3. Carr-Lee Semi-Static Formula<a class="headerlink" href="#3-carr-lee-semi-static-formula" title="Permanent link">&para;</a></h3>
 <p><strong>General Framework</strong> (Carr-Lee 2010): For barrier options under local volatility:</p>
-<p>$$</p>
-<p>C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \int_0^T \mathbb{E}\left[ \mathbb{1}_{{S_t = H}} \cdot \text{Correction}(t, S_t) \right] dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C^{\text{UO}}(S_0, K, H) = C(S_0, K) - \int_0^T \mathbb{E}\left[ \mathbb{1}_{\{S_t = H\}} \cdot \text{Correction}(t, S_t) \right] dt
+\]</div>
 <p><strong>Semi-Static Implementation</strong>:
 1. Hold static portfolio: Long call at <span class="arithmatex">\(K\)</span>, short options as per formula
 2. Monitor time spent near barrier: <span class="arithmatex">\(L_T(H) = \lim_{\epsilon \to 0} \frac{1}{2\epsilon} \int_0^T \mathbb{1}_{\{|S_t - H| &lt; \epsilon\}} dt\)</span> (local time)
@@ -47706,9 +47706,9 @@
 - Plus: <span class="arithmatex">\((M_T - S_T)^+\)</span> (gain from maximum exceeding terminal value)</p>
 <h3 id="2-goldman-sosin-gatto-static-replication">2. Goldman-Sosin-Gatto Static Replication<a class="headerlink" href="#2-goldman-sosin-gatto-static-replication" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (GSG 1979): Under geometric Brownian motion, the lookback can be replicated using:</p>
-<p>$$</p>
-<p>\text{Lookback}(S_0, K) = \int_{K}^{\infty} \frac{C(S_0, L)}{L} \frac{\partial C}{\partial L}(S_0, L) dL + \text{additional terms}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Lookback}(S_0, K) = \int_{K}^{\infty} \frac{C(S_0, L)}{L} \frac{\partial C}{\partial L}(S_0, L) dL + \text{additional terms}
+\]</div>
 <p>involving a continuum of vanilla calls.</p>
 <p><strong>Semi-Static Approximation</strong>: 
 1. Discretize the integral over strikes
@@ -47727,15 +47727,15 @@
 <h2 id="asian-options">Asian Options<a class="headerlink" href="#asian-options" title="Permanent link">&para;</a></h2>
 <h3 id="1-arithmetic-average">1. Arithmetic Average<a class="headerlink" href="#1-arithmetic-average" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: </p>
-<p>$$</p>
-<p>\Phi = \left(\frac{1}{n} \sum_{i=1}^n S_{t_i} - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = \left(\frac{1}{n} \sum_{i=1}^n S_{t_i} - K\right)^+
+\]</div>
 <p>for discrete monitoring dates <span class="arithmatex">\(\{t_1, \ldots, t_n\}\)</span>.</p>
 <h3 id="2-static-lower-bound">2. Static Lower Bound<a class="headerlink" href="#2-static-lower-bound" title="Permanent link">&para;</a></h3>
 <p><strong>Convexity</strong>: By Jensen's inequality:</p>
-<p>$$</p>
-<p>\left(\frac{1}{n} \sum_{i=1}^n S_{t_i}\right)^+ \geq \frac{1}{n} \sum_{i=1}^n (S_{t_i} - nK)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left(\frac{1}{n} \sum_{i=1}^n S_{t_i}\right)^+ \geq \frac{1}{n} \sum_{i=1}^n (S_{t_i} - nK)^+
+\]</div>
 <p><strong>Static Portfolio</strong>: 
 - Long <span class="arithmatex">\(1/n\)</span> calls at each averaging date with strike <span class="arithmatex">\(nK\)</span>
 - This portfolio sub-replicates the Asian option</p>
@@ -47748,9 +47748,9 @@
 <p><strong>Frequency</strong>: Rebalance at each averaging date (typically 12-252 times per year for monthly/daily averaging).</p>
 <h3 id="4-rogers-shi-static-bounds">4. Rogers-Shi Static Bounds<a class="headerlink" href="#4-rogers-shi-static-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Rogers-Shi 1995): For arithmetic Asian options, tight static bounds can be constructed using:</p>
-<p>$$</p>
-<p>\underline{V} \leq V^{\text{Asian}} \leq \overline{V}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{V} \leq V^{\text{Asian}} \leq \overline{V}
+\]</div>
 <p>where bounds involve portfolios of standard calls.</p>
 <p><strong>Semi-Static Enhancement</strong>: Use static bounds as initial portfolio, with adjustments when:
 - Realized average deviates significantly from expected
@@ -47760,9 +47760,9 @@
 <p><strong>Structure</strong>: Option exercisable at discrete times <span class="arithmatex">\(\{t_1, \ldots, t_n\}\)</span> with payoff <span class="arithmatex">\(g(S_{t_i})\)</span> if exercised at <span class="arithmatex">\(t_i\)</span>.</p>
 <p><strong>Static Component</strong>: Portfolio of European options maturing at each exercise date.</p>
 <p><strong>Dynamic Component</strong>: Recursive hedging starting from final exercise date:</p>
-<p>$$</p>
-<p>V_{t_{i}} = \max{g(S_{t_i}), \mathbb{E}[V_{t_{i+1}} | \mathcal{F}_{t_i}]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{t_{i}} = \max\{g(S_{t_i}), \mathbb{E}[V_{t_{i+1}} | \mathcal{F}_{t_i}]\}
+\]</div>
 <p><strong>Semi-Static Implementation</strong>:
 1. <strong>Static Setup</strong>: Hold options maturing at <span class="arithmatex">\(\{t_1, \ldots, t_n\}\)</span> approximating continuation values
 2. <strong>Adjustment at <span class="arithmatex">\(t_i\)</span></strong>: 
@@ -47785,26 +47785,26 @@
 <h2 id="volatility-derivatives">Volatility Derivatives<a class="headerlink" href="#volatility-derivatives" title="Permanent link">&para;</a></h2>
 <h3 id="1-variance-swaps">1. Variance Swaps<a class="headerlink" href="#1-variance-swaps" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: </p>
-<p>$$</p>
-<p>\text{Payoff} = \text{Realized Variance} - K_{\text{var}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = \text{Realized Variance} - K_{\text{var}}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\text{RV} = \frac{252}{n} \sum_{i=1}^n \log^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RV} = \frac{252}{n} \sum_{i=1}^n \log^2\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)
+\]</div>
 <p><strong>Static Replication</strong> (Carr-Madan): Using log-contract:</p>
-<p>$$</p>
-<p>\text{RV} \approx \frac{2}{T} \left[\int_0^{S_0} \frac{P(K)}{K^2} dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} dK\right] - \frac{1}{T}\log^2\left(\frac{S_T}{S_0}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RV} \approx \frac{2}{T} \left[\int_0^{S_0} \frac{P(K)}{K^2} dK + \int_{S_0}^{\infty} \frac{C(K)}{K^2} dK\right] - \frac{1}{T}\log^2\left(\frac{S_T}{S_0}\right)
+\]</div>
 <p><strong>Purely Static</strong>: Hold portfolio of puts and calls with weights <span class="arithmatex">\(1/K^2\)</span> across all strikes.</p>
 <p><strong>Implementation</strong>: 
 - Discretize integral using available strikes
 - Hold portfolio until maturity
 - No rebalancing required</p>
 <p><strong>Jump Correction</strong>: If jumps occur, the replication error is:</p>
-<p>$$</p>
-<p>\text{Error} = \sum_{\text{jumps}} \left[\log\left(\frac{S_t}{S_{t-}}\right)\right]^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Error} = \sum_{\text{jumps}} \left[\log\left(\frac{S_t}{S_{t-}}\right)\right]^2
+\]</div>
 <p>which is typically small.</p>
 <h3 id="2-vix-options">2. VIX Options<a class="headerlink" href="#2-vix-options" title="Permanent link">&para;</a></h3>
 <p><strong>VIX Definition</strong>: Model-free implied volatility from S&amp;P 500 options.</p>
@@ -47817,17 +47817,17 @@
 <p><strong>Frequency</strong>: Typically weekly or when VIX moves by threshold amount.</p>
 <h3 id="3-volatility-swaps">3. Volatility Swaps<a class="headerlink" href="#3-volatility-swaps" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: </p>
-<p>$$</p>
-<p>\text{Payoff} = \text{Realized Vol} - K_{\text{vol}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = \text{Realized Vol} - K_{\text{vol}}
+\]</div>
 <p>where <span class="arithmatex">\(\text{Realized Vol} = \sqrt{\text{RV}}\)</span>.</p>
 <p><strong>Challenge</strong>: Square root makes static replication impossible with standard options.</p>
 <p><strong>Semi-Static Approximation</strong>:
 1. <strong>Static Component</strong>: Variance swap (which can be replicated)
 2. <strong>Adjustment</strong>: Use convexity correction:</p>
-<p>$$</p>
-<p>\text{Vol} \approx \sqrt{\text{Var}} - \frac{1}{8} \frac{\text{Var}^{3/2}}{\sqrt{\mathbb{E}[\text{Var}]}} + \ldots</p>
-<p>$$</p>
+<p>$$
+   \text{Vol} \approx \sqrt{\text{Var}} - \frac{1}{8} \frac{\text{Var}^{3/2}}{\sqrt{\mathbb{E}[\text{Var}]}} + \ldots
+   $$</p>
 <ol>
 <li><strong>Rebalancing</strong>: Adjust based on realized variance to date</li>
 </ol>
@@ -47835,26 +47835,26 @@
 <h3 id="1-cost-model">1. Cost Model<a class="headerlink" href="#1-cost-model" title="Permanent link">&para;</a></h3>
 <p><strong>Proportional Costs</strong>: Each trade incurs cost <span class="arithmatex">\(\lambda |\)</span>quantity<span class="arithmatex">\(| \times\)</span> price.</p>
 <p><strong>Objective</strong>: Minimize total cost:</p>
-<p>$$</p>
-<p>\min_{\theta, {t_i}} \left{ \mathbb{E}[(V_T - \Phi)^2] + \lambda \sum_{i=1}^M |\theta_{t_i} - \theta_{t_{i-1}}| S_{t_i} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta, \{t_i\}} \left\{ \mathbb{E}[(V_T - \Phi)^2] + \lambda \sum_{i=1}^M |\theta_{t_i} - \theta_{t_{i-1}}| S_{t_i} \right\}
+\]</div>
 <p><strong>Trade-off</strong>: Hedging accuracy vs. transaction costs.</p>
 <h3 id="2-optimal-rebalancing-times">2. Optimal Rebalancing Times<a class="headerlink" href="#2-optimal-rebalancing-times" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Choose trading times <span class="arithmatex">\(\{t_1, \ldots, t_M\}\)</span> optimally.</p>
 <p><strong>Dynamic Programming</strong>: Value function:</p>
-<p>$$</p>
-<p>J(t, S, V) = \inf_{\tau &gt; t} \mathbb{E}\left[\text{Cost}(\tau, S_{\tau}, V_{\tau}) + J(\tau, S_{\tau}, V_{\tau})\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+J(t, S, V) = \inf_{\tau &gt; t} \mathbb{E}\left[\text{Cost}(\tau, S_{\tau}, V_{\tau}) + J(\tau, S_{\tau}, V_{\tau})\right]
+\]</div>
 <p>where <span class="arithmatex">\(\tau\)</span> is the next trading time.</p>
 <p><strong>Threshold Policy</strong>: Rebalance when:</p>
-<p>$$</p>
-<p>|\theta_{\text{optimal}}(S_t) - \theta_t| &gt; \Delta^*</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\theta_{\text{optimal}}(S_t) - \theta_t| &gt; \Delta^*
+\]</div>
 <p>for optimal threshold <span class="arithmatex">\(\Delta^*\)</span> balancing cost and risk.</p>
 <p><strong>Volatility Dependence</strong>: Threshold typically increases with volatility:</p>
-<p>$$</p>
-<p>\Delta^*(t) = c \cdot \sigma(t) \cdot \sqrt{T - t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^*(t) = c \cdot \sigma(t) \cdot \sqrt{T - t}
+\]</div>
 <h3 id="3-option-rebalancing">3. Option Rebalancing<a class="headerlink" href="#3-option-rebalancing" title="Permanent link">&para;</a></h3>
 <p><strong>Question</strong>: When to adjust the static option portfolio?</p>
 <p><strong>Criteria</strong>:
@@ -47863,16 +47863,16 @@
 3. <strong>Greeks-based</strong>: When delta, gamma, or vega deviate from targets
 4. <strong>Volatility-based</strong>: When implied volatility shifts significantly</p>
 <p><strong>Optimal Policy</strong>: Typically combines multiple criteria:</p>
-<p>$$</p>
-<p>\text{Rebalance if } \max{|\Delta_t - \Delta^<em>|, |\Gamma_t - \Gamma^</em>|, |\mathcal{V}_t - \mathcal{V}^*|} &gt; \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Rebalance if } \max\{|\Delta_t - \Delta^*|, |\Gamma_t - \Gamma^*|, |\mathcal{V}_t - \mathcal{V}^*|\} &gt; \epsilon
+\]</div>
 <h2 id="robust-semi-static-strategies">Robust Semi-Static Strategies<a class="headerlink" href="#robust-semi-static-strategies" title="Permanent link">&para;</a></h2>
 <h3 id="1-model-uncertainty">1. Model Uncertainty<a class="headerlink" href="#1-model-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Uncertain about true dynamics; consider set of models <span class="arithmatex">\(\mathcal{M}\)</span>.</p>
 <p><strong>Robust Objective</strong>: Maximize worst-case performance:</p>
-<p>$$</p>
-<p>\max_{{\theta_t, n_i, n_j}} \min_{P \in \mathcal{M}} \mathbb{E}_P[V_T - \Phi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{\{\theta_t, n_i, n_j\}} \min_{P \in \mathcal{M}} \mathbb{E}_P[V_T - \Phi]
+\]</div>
 <p>subject to transaction cost constraints.</p>
 <h3 id="2-volatility-bounds">2. Volatility Bounds<a class="headerlink" href="#2-volatility-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Assumption</strong>: Volatility lies in range <span class="arithmatex">\([\underline{\sigma}, \overline{\sigma}]\)</span>.</p>
@@ -47973,9 +47973,9 @@
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
 <h3 id="1-multi-asset-semi-static-hedging">1. Multi-Asset Semi-Static Hedging<a class="headerlink" href="#1-multi-asset-semi-static-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Basket Options</strong>: Payoff depends on multiple underlyings:</p>
-<p>$$</p>
-<p>\Phi = \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
+\]</div>
 <p><strong>Challenge</strong>: Correlation uncertainty.</p>
 <p><strong>Semi-Static Strategy</strong>:
 1. <strong>Static Component</strong>: Vanilla options on each underlying
@@ -47991,9 +47991,9 @@
 <p><strong>Challenge</strong>: Exercise boundary is model-dependent; semi-static hedge must be robust to boundary misspecification.</p>
 <h3 id="3-stochastic-volatility">3. Stochastic Volatility<a class="headerlink" href="#3-stochastic-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Model</strong>: Volatility follows its own stochastic process:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t dt + \sqrt{V_t} S_t dW_t^S, \quad dV_t = \kappa(\theta - V_t) dt + \xi \sqrt{V_t} dW_t^V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t dt + \sqrt{V_t} S_t dW_t^S, \quad dV_t = \kappa(\theta - V_t) dt + \xi \sqrt{V_t} dW_t^V
+\]</div>
 <p><strong>Semi-Static Approach</strong>:
 1. <strong>Vega Hedging</strong>: Hold options at multiple strikes to hedge volatility risk
 2. <strong>Adjustment</strong>: When implied volatility changes significantly, rebalance option portfolio
@@ -48063,9 +48063,9 @@
 <p><strong>Output</strong>: Probability of rebalancing or optimal adjustment size.</p>
 <h3 id="2-robust-optimization">2. Robust Optimization<a class="headerlink" href="#2-robust-optimization" title="Permanent link">&para;</a></h3>
 <p><strong>Formulation</strong>: </p>
-<p>$$</p>
-<p>\min_{\theta, {t_i}} \max_{P \in \mathcal{P}} \mathbb{E}<em i="1">P\left[(V_T - \Phi)^2 + \lambda \sum</em>^M |\Delta \theta_i|\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta, \{t_i\}} \max_{P \in \mathcal{P}} \mathbb{E}_P\left[(V_T - \Phi)^2 + \lambda \sum_{i=1}^M |\Delta \theta_i|\right]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{P}\)</span> is a set of probability measures.</p>
 <p><strong>Solution Methods</strong>:
 - Duality theory

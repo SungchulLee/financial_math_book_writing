@@ -47156,68 +47156,68 @@
 <h2 id="mathematical-framework">Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-standard-calibration">1. Standard Calibration<a class="headerlink" href="#1-standard-calibration" title="Permanent link">&para;</a></h3>
 <p><strong>Objective</strong>: Find parameters <span class="arithmatex">\(\theta\)</span> minimizing calibration error:</p>
-<p>$$</p>
-<p>\hat{\theta} = \arg\min_{\theta \in \Theta} \sum_{i=1}^m w_i [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta} = \arg\min_{\theta \in \Theta} \sum_{i=1}^m w_i [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2
+\]</div>
 <p><strong>Problem</strong>: Point estimate ignores parameter uncertainty.</p>
 <h3 id="2-worst-case-formulation">2. Worst-Case Formulation<a class="headerlink" href="#2-worst-case-formulation" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Define acceptable parameter set:</p>
-<p>$$</p>
-<p>\Theta_{\epsilon} = {\theta: \text{CalibrationError}(\theta) \leq \epsilon}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_{\epsilon} = \{\theta: \text{CalibrationError}(\theta) \leq \epsilon\}
+\]</div>
 <p><strong>Worst-Case Price</strong>:</p>
-<p>$$</p>
-<p>V^{\text{worst}} = \min_{\theta \in \Theta_{\epsilon}} V(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{worst}} = \min_{\theta \in \Theta_{\epsilon}} V(\theta)
+\]</div>
 <p>or</p>
-<p>$$</p>
-<p>V^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} V(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} V(\theta)
+\]</div>
 <p>depending on whether buyer or seller perspective.</p>
 <h3 id="3-saddle-point-problem">3. Saddle Point Problem<a class="headerlink" href="#3-saddle-point-problem" title="Permanent link">&para;</a></h3>
 <p><strong>Min-Max Hedging</strong>: For hedging strategy <span class="arithmatex">\(\Delta\)</span>:</p>
-<p>$$</p>
-<p>\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{HedgingError}(\Delta, \theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{HedgingError}(\Delta, \theta)
+\]</div>
 <p><strong>Interpretation</strong>: Find hedge that minimizes worst-case error over all acceptable models.</p>
 <h2 id="uncertainty-set-construction">Uncertainty Set Construction<a class="headerlink" href="#uncertainty-set-construction" title="Permanent link">&para;</a></h2>
 <h3 id="1-calibration-error-based">1. Calibration-Error Based<a class="headerlink" href="#1-calibration-error-based" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>:</p>
-<p>$$</p>
-<p>\Theta_{\epsilon} = \left{\theta: \sum_{i=1}^m w_i [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2 \leq \epsilon\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_{\epsilon} = \left\{\theta: \sum_{i=1}^m w_i [C_i^{\text{market}} - C_i^{\text{model}}(\theta)]^2 \leq \epsilon\right\}
+\]</div>
 <p><strong>Choosing <span class="arithmatex">\(\epsilon\)</span></strong>: 
 - Statistical: Based on confidence level for calibration error
 - Practical: Based on bid-ask spreads of calibration instruments</p>
 <h3 id="2-likelihood-based">2. Likelihood-Based<a class="headerlink" href="#2-likelihood-based" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>:</p>
-<p>$$</p>
-<p>\Theta_{\alpha} = \left{\theta: \ell(\hat{\theta}) - \ell(\theta) \leq \frac{1}{2}\chi^2_{p, 1-\alpha}\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_{\alpha} = \left\{\theta: \ell(\hat{\theta}) - \ell(\theta) \leq \frac{1}{2}\chi^2_{p, 1-\alpha}\right\}
+\]</div>
 <p><strong>Interpretation</strong>: Parameters within <span class="arithmatex">\((1-\alpha)\)</span> confidence region.</p>
 <h3 id="3-moment-matching">3. Moment Matching<a class="headerlink" href="#3-moment-matching" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: For implied moments <span class="arithmatex">\(m_1(\theta), \ldots, m_k(\theta)\)</span>:</p>
-<p>$$</p>
-<p>\Theta_{\text{moment}} = {\theta: |m_j(\theta) - m_j^{\text{market}}| \leq \delta_j, \, j = 1, \ldots, k}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_{\text{moment}} = \{\theta: |m_j(\theta) - m_j^{\text{market}}| \leq \delta_j, \, j = 1, \ldots, k\}
+\]</div>
 <p><strong>Examples</strong>: Match ATM implied volatility, skew, kurtosis.</p>
 <h2 id="worst-case-greeks">Worst-Case Greeks<a class="headerlink" href="#worst-case-greeks" title="Permanent link">&para;</a></h2>
 <h3 id="1-worst-case-delta">1. Worst-Case Delta<a class="headerlink" href="#1-worst-case-delta" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>:</p>
-<p>$$</p>
-<p>\Delta^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \Delta(\theta) \quad \text{or} \quad \min_{\theta \in \Theta_{\epsilon}} \Delta(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \Delta(\theta) \quad \text{or} \quad \min_{\theta \in \Theta_{\epsilon}} \Delta(\theta)
+\]</div>
 <p><strong>Application</strong>: Upper and lower bounds for hedging position.</p>
 <h3 id="2-worst-case-gamma">2. Worst-Case Gamma<a class="headerlink" href="#2-worst-case-gamma" title="Permanent link">&para;</a></h3>
 <p><strong>Risk Consideration</strong>: Large gamma implies high rebalancing costs.</p>
-<p>$$</p>
-<p>\Gamma^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} |\Gamma(\theta)|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} |\Gamma(\theta)|
+\]</div>
 <h3 id="3-worst-case-vega">3. Worst-Case Vega<a class="headerlink" href="#3-worst-case-vega" title="Permanent link">&para;</a></h3>
 <p><strong>Volatility Sensitivity Bounds</strong>:</p>
-<p>$$</p>
-<p>\mathcal{V}^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \mathcal{V}(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \mathcal{V}(\theta)
+\]</div>
 <p><strong>Stress Testing</strong>: Used for volatility stress scenarios.</p>
 <h3 id="4-computation">4. Computation<a class="headerlink" href="#4-computation" title="Permanent link">&para;</a></h3>
 <p><strong>Grid Search</strong>: Evaluate Greeks on grid over <span class="arithmatex">\(\Theta_{\epsilon}\)</span>.</p>
@@ -47227,45 +47227,45 @@
 <h3 id="1-worst-case-hedging-error">1. Worst-Case Hedging Error<a class="headerlink" href="#1-worst-case-hedging-error" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Position in derivative with payoff <span class="arithmatex">\(\Phi(S_T)\)</span>, hedged with delta <span class="arithmatex">\(\Delta\)</span>.</p>
 <p><strong>P&amp;L</strong>: </p>
-<p>$$</p>
-<p>\Pi(\theta) = \Phi(S_T) - \Delta (S_T - S_0) - V_0(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi(\theta) = \Phi(S_T) - \Delta (S_T - S_0) - V_0(\theta)
+\]</div>
 <p><strong>Worst-Case P&amp;L</strong>:</p>
-<p>$$</p>
-<p>\Pi^{\text{worst}} = \min_{\theta \in \Theta_{\epsilon}} \mathbb{E}_{\theta}[\Pi(\theta)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi^{\text{worst}} = \min_{\theta \in \Theta_{\epsilon}} \mathbb{E}_{\theta}[\Pi(\theta)]
+\]</div>
 <h3 id="2-minimax-hedge">2. Minimax Hedge<a class="headerlink" href="#2-minimax-hedge" title="Permanent link">&para;</a></h3>
 <p><strong>Objective</strong>:</p>
-<p>$$</p>
-<p>\Delta^* = \arg\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{RiskMeasure}(\Pi(\Delta, \theta))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^* = \arg\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{RiskMeasure}(\Pi(\Delta, \theta))
+\]</div>
 <p><strong>Example with Variance</strong>:</p>
-<p>$$</p>
-<p>\Delta^* = \arg\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{Var}_{\theta}(\Pi)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^* = \arg\min_{\Delta} \max_{\theta \in \Theta_{\epsilon}} \text{Var}_{\theta}(\Pi)
+\]</div>
 <h3 id="3-robust-delta-gamma-hedging">3. Robust Delta-Gamma Hedging<a class="headerlink" href="#3-robust-delta-gamma-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Extension</strong>: Include gamma hedging instrument:</p>
-<p>$$</p>
-<p>\min_{\Delta, \phi} \max_{\theta \in \Theta_{\epsilon}} \mathbb{E}<em _text_option="\text{option">{\theta}[(\Pi - \Delta \Delta S - \phi \Delta</em>)^2]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\Delta, \phi} \max_{\theta \in \Theta_{\epsilon}} \mathbb{E}_{\theta}[(\Pi - \Delta \Delta S - \phi \Delta_{\text{option}})^2]
+\]</div>
 <p>where <span class="arithmatex">\(\phi\)</span> is position in hedging option.</p>
 <h2 id="stochastic-volatility-calibration">Stochastic Volatility Calibration<a class="headerlink" href="#stochastic-volatility-calibration" title="Permanent link">&para;</a></h2>
 <h3 id="1-heston-model">1. Heston Model<a class="headerlink" href="#1-heston-model" title="Permanent link">&para;</a></h3>
 <p><strong>Parameters</strong>: <span class="arithmatex">\(\theta = (\kappa, \bar{v}, \sigma_v, \rho, v_0)\)</span></p>
 <p><strong>Calibration Instruments</strong>: Vanilla options across strikes and maturities.</p>
 <p><strong>Uncertainty Set</strong>:</p>
-<p>$$</p>
-<p>\Theta_{\epsilon} = \left{\theta: \sum_{i,j} w_{ij} [\sigma_{ij}^{\text{market}} - \sigma_{ij}^{\text{Heston}}(\theta)]^2 \leq \epsilon\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_{\epsilon} = \left\{\theta: \sum_{i,j} w_{ij} [\sigma_{ij}^{\text{market}} - \sigma_{ij}^{\text{Heston}}(\theta)]^2 \leq \epsilon\right\}
+\]</div>
 <h3 id="2-worst-case-exotic-pricing">2. Worst-Case Exotic Pricing<a class="headerlink" href="#2-worst-case-exotic-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Price exotic derivative <span class="arithmatex">\(V_{\text{exotic}}(\theta)\)</span> robustly.</p>
 <p><strong>Bounds</strong>:</p>
-<p>$$</p>
-<p>V^{\text{low}} = \min_{\theta \in \Theta_{\epsilon}} V_{\text{exotic}}(\theta)</p>
-<p>$$</p>
-<p>$$</p>
-<p>V^{\text{high}} = \max_{\theta \in \Theta_{\epsilon}} V_{\text{exotic}}(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{low}} = \min_{\theta \in \Theta_{\epsilon}} V_{\text{exotic}}(\theta)
+\]</div>
+<div class="arithmatex">\[
+V^{\text{high}} = \max_{\theta \in \Theta_{\epsilon}} V_{\text{exotic}}(\theta)
+\]</div>
 <p><strong>Interpretation</strong>: Range of prices consistent with vanilla calibration.</p>
 <h3 id="3-parameter-sensitivity">3. Parameter Sensitivity<a class="headerlink" href="#3-parameter-sensitivity" title="Permanent link">&para;</a></h3>
 <p><strong>Identify Critical Parameters</strong>: Often <span class="arithmatex">\(\rho\)</span> (correlation) and <span class="arithmatex">\(\sigma_v\)</span> (vol-of-vol) drive exotic prices most.</p>
@@ -47273,40 +47273,40 @@
 <h2 id="local-volatility-worst-case">Local Volatility Worst-Case<a class="headerlink" href="#local-volatility-worst-case" title="Permanent link">&para;</a></h2>
 <h3 id="1-local-volatility-function">1. Local Volatility Function<a class="headerlink" href="#1-local-volatility-function" title="Permanent link">&para;</a></h3>
 <p><strong>Dupire Formula</strong>:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK \frac{\partial C}{\partial K} + qC}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK \frac{\partial C}{\partial K} + qC}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}
+\]</div>
 <p><strong>Uncertainty</strong>: Estimation error in market derivatives <span class="arithmatex">\(\frac{\partial C}{\partial T}\)</span>, <span class="arithmatex">\(\frac{\partial^2 C}{\partial K^2}\)</span>.</p>
 <h3 id="2-uncertainty-band">2. Uncertainty Band<a class="headerlink" href="#2-uncertainty-band" title="Permanent link">&para;</a></h3>
 <p><strong>Construction</strong>: Given confidence intervals for call prices:</p>
-<p>$$</p>
-<p>C^{\text{low}}(K, T) \leq C(K, T) \leq C^{\text{high}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C^{\text{low}}(K, T) \leq C(K, T) \leq C^{\text{high}}(K, T)
+\]</div>
 <p>derive bounds on local volatility:</p>
-<p>$$</p>
-<p>\sigma_{\text{loc}}^{\text{low}}(K, T) \leq \sigma_{\text{loc}}(K, T) \leq \sigma_{\text{loc}}^{\text{high}}(K, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{loc}}^{\text{low}}(K, T) \leq \sigma_{\text{loc}}(K, T) \leq \sigma_{\text{loc}}^{\text{high}}(K, T)
+\]</div>
 <h3 id="3-worst-case-path-dependent-pricing">3. Worst-Case Path-Dependent Pricing<a class="headerlink" href="#3-worst-case-path-dependent-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Barrier Options</strong>: Sensitive to local volatility near barrier.</p>
 <p><strong>Worst-Case</strong>: </p>
-<p>$$</p>
-<p>V^{\text{worst}} = \min/\max_{\sigma_{\text{loc}} \in \text{Band}} V_{\text{barrier}}(\sigma_{\text{loc}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{worst}} = \min/\max_{\sigma_{\text{loc}} \in \text{Band}} V_{\text{barrier}}(\sigma_{\text{loc}})
+\]</div>
 <h2 id="computational-methods">Computational Methods<a class="headerlink" href="#computational-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-bilevel-optimization">1. Bilevel Optimization<a class="headerlink" href="#1-bilevel-optimization" title="Permanent link">&para;</a></h3>
 <p><strong>Structure</strong>:</p>
-<p>$$</p>
-<p>\min_{\Delta} \left{\max_{\theta \in \Theta_{\epsilon}} f(\Delta, \theta)\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\Delta} \left\{\max_{\theta \in \Theta_{\epsilon}} f(\Delta, \theta)\right\}
+\]</div>
 <p><strong>Algorithm</strong>: Alternating optimization
 1. Fix <span class="arithmatex">\(\Delta\)</span>, solve inner max over <span class="arithmatex">\(\theta\)</span>
 2. Fix <span class="arithmatex">\(\theta\)</span>, solve outer min over <span class="arithmatex">\(\Delta\)</span>
 3. Iterate until convergence</p>
 <h3 id="2-semidefinite-relaxation">2. Semidefinite Relaxation<a class="headerlink" href="#2-semidefinite-relaxation" title="Permanent link">&para;</a></h3>
 <p>For polynomial objectives, relaxation to SDP:</p>
-<p>$$</p>
-<p>\max_{\theta \in \Theta_{\epsilon}} p(\theta) \leq \min_{\lambda} {q(\lambda): q(\theta) - p(\theta) \geq 0 \text{ on } \Theta_{\epsilon}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{\theta \in \Theta_{\epsilon}} p(\theta) \leq \min_{\lambda} \{q(\lambda): q(\theta) - p(\theta) \geq 0 \text{ on } \Theta_{\epsilon}\}
+\]</div>
 <p>where <span class="arithmatex">\(q\)</span> is a polynomial bound verified by SOS (sum-of-squares) decomposition.</p>
 <h3 id="3-scenario-generation">3. Scenario Generation<a class="headerlink" href="#3-scenario-generation" title="Permanent link">&para;</a></h3>
 <p><strong>Approach</strong>:
@@ -47316,13 +47316,13 @@
 <p><strong>Guarantee</strong>: Provides lower bound on true worst-case (for max).</p>
 <h3 id="4-dual-approach">4. Dual Approach<a class="headerlink" href="#4-dual-approach" title="Permanent link">&para;</a></h3>
 <p><strong>Lagrangian</strong>:</p>
-<p>$$</p>
-<p>\max_{\theta} \min_{\lambda \geq 0} V(\theta) + \lambda (\text{CalibrationError}(\theta) - \epsilon)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{\theta} \min_{\lambda \geq 0} V(\theta) + \lambda (\text{CalibrationError}(\theta) - \epsilon)
+\]</div>
 <p><strong>Dual Problem</strong>:</p>
-<p>$$</p>
-<p>\min_{\lambda \geq 0} \max_{\theta} {V(\theta) - \lambda \cdot \text{CalibrationError}(\theta)} + \lambda \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\lambda \geq 0} \max_{\theta} \{V(\theta) - \lambda \cdot \text{CalibrationError}(\theta)\} + \lambda \epsilon
+\]</div>
 <h2 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h2>
 <h3 id="1-regulatory-capital">1. Regulatory Capital<a class="headerlink" href="#1-regulatory-capital" title="Permanent link">&para;</a></h3>
 <p><strong>Basel Requirements</strong>: Use conservative model parameters for capital calculation.</p>
@@ -47332,18 +47332,18 @@
 3. Compute worst-case VaR or ES over <span class="arithmatex">\(\Theta_{\epsilon}\)</span></p>
 <h3 id="2-counterparty-credit-risk">2. Counterparty Credit Risk<a class="headerlink" href="#2-counterparty-credit-risk" title="Permanent link">&para;</a></h3>
 <p><strong>CVA Calculation</strong>:</p>
-<p>$$</p>
-<p>\text{CVA}(\theta) = (1 - R) \int_0^T \mathbb{E}^{\theta}[\text{EE}(t)] dP_{\text{default}}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}(\theta) = (1 - R) \int_0^T \mathbb{E}^{\theta}[\text{EE}(t)] dP_{\text{default}}(t)
+\]</div>
 <p><strong>Worst-Case CVA</strong>:</p>
-<p>$$</p>
-<p>\text{CVA}^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \text{CVA}(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}^{\text{worst}} = \max_{\theta \in \Theta_{\epsilon}} \text{CVA}(\theta)
+\]</div>
 <h3 id="3-model-reserve">3. Model Reserve<a class="headerlink" href="#3-model-reserve" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Additional reserve for model uncertainty:</p>
-<p>$$</p>
-<p>\text{Model Reserve} = V^{\text{worst}} - V(\hat{\theta})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Model Reserve} = V^{\text{worst}} - V(\hat{\theta})
+\]</div>
 <p><strong>Purpose</strong>: Cover potential losses from model misspecification.</p>
 <h3 id="4-stress-testing">4. Stress Testing<a class="headerlink" href="#4-stress-testing" title="Permanent link">&para;</a></h3>
 <p><strong>Scenario Selection</strong>: Worst-case calibration identifies stressed but plausible parameters.</p>
@@ -47351,9 +47351,9 @@
 <h2 id="comparison-with-alternative-approaches">Comparison with Alternative Approaches<a class="headerlink" href="#comparison-with-alternative-approaches" title="Permanent link">&para;</a></h2>
 <h3 id="1-bayesian-averaging">1. Bayesian Averaging<a class="headerlink" href="#1-bayesian-averaging" title="Permanent link">&para;</a></h3>
 <p><strong>Approach</strong>: Average over parameter posterior:</p>
-<p>$$</p>
-<p>V^{\text{Bayes}} = \mathbb{E}_{\theta | \text{data}}[V(\theta)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V^{\text{Bayes}} = \mathbb{E}_{\theta | \text{data}}[V(\theta)]
+\]</div>
 <p><strong>Difference</strong>: Worst-case uses extreme values; Bayesian uses weighted average.</p>
 <h3 id="2-superhedging">2. Superhedging<a class="headerlink" href="#2-superhedging" title="Permanent link">&para;</a></h3>
 <p><strong>Approach</strong>: Price by worst-case over all martingale measures.</p>

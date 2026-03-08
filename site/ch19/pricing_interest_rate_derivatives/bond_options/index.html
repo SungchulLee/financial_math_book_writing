@@ -47133,15 +47133,15 @@
 - <strong>Strike:</strong> <span class="arithmatex">\(K\)</span>
 - <strong>Expiry:</strong> <span class="arithmatex">\(T &lt; T_B\)</span></p>
 <p><strong>Payoff at expiry:</strong></p>
-<p>$$</p>
-<p>(P(T, T_B) - K)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(P(T, T_B) - K)^+
+\]</div>
 <p>A <strong>European put option</strong> has payoff <span class="arithmatex">\((K - P(T, T_B))^+\)</span>.</p>
 <h3 id="pricing-framework">Pricing Framework<a class="headerlink" href="#pricing-framework" title="Permanent link">&para;</a></h3>
 <p>Under the <span class="arithmatex">\(T\)</span>-forward measure <span class="arithmatex">\(\mathbb{Q}^T\)</span>:</p>
-<p>$$</p>
-<p>C(0) = P(0, T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(P(T, T_B) - K)^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(0) = P(0, T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(P(T, T_B) - K)^+]
+\]</div>
 <p>The forward bond price <span class="arithmatex">\(P(T, T_B)\)</span> is a martingale under <span class="arithmatex">\(\mathbb{Q}^T\)</span>.</p>
 <hr />
 <h2 id="pricing-in-the-vasicek-model">Pricing in the Vasicek Model<a class="headerlink" href="#pricing-in-the-vasicek-model" title="Permanent link">&para;</a></h2>
@@ -47151,60 +47151,60 @@
 - <span class="arithmatex">\(r_T\)</span> is Gaussian given <span class="arithmatex">\(r_0\)</span></p>
 <h3 id="bond-price-distribution">Bond Price Distribution<a class="headerlink" href="#bond-price-distribution" title="Permanent link">&para;</a></h3>
 <p>At the option expiry <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\log P(T, T_B) = \log A(\tau_B) - B(\tau_B) r_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log P(T, T_B) = \log A(\tau_B) - B(\tau_B) r_T
+\]</div>
 <p>where <span class="arithmatex">\(\tau_B = T_B - T\)</span>.</p>
 <p>Since <span class="arithmatex">\(r_T\)</span> is Gaussian, <span class="arithmatex">\(\log P(T, T_B)\)</span> is also Gaussian (shifted and scaled).</p>
 <h3 id="the-jamshidian-formula">The Jamshidian Formula<a class="headerlink" href="#the-jamshidian-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{C(0) = P(0, T_B) N(d_1) - K P(0, T) N(d_2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C(0) = P(0, T_B) N(d_1) - K P(0, T) N(d_2)}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{1}{\sigma_P} \ln \frac{P(0, T_B)}{K P(0, T)} + \frac{\sigma_P}{2}</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = d_1 - \sigma_P</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{1}{\sigma_P} \ln \frac{P(0, T_B)}{K P(0, T)} + \frac{\sigma_P}{2}
+\]</div>
+<div class="arithmatex">\[
+d_2 = d_1 - \sigma_P
+\]</div>
 <h3 id="bond-price-volatility">Bond Price Volatility<a class="headerlink" href="#bond-price-volatility" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_P = \sigma \cdot B(T_B - T) \cdot \sqrt{\frac{1 - e^{-2\kappa T}}{2\kappa}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P = \sigma \cdot B(T_B - T) \cdot \sqrt{\frac{1 - e^{-2\kappa T}}{2\kappa}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\sigma\)</span> is the short-rate volatility
 - <span class="arithmatex">\(B(\tau) = (1 - e^{-\kappa \tau})/\kappa\)</span>
 - <span class="arithmatex">\(\kappa\)</span> is the mean-reversion speed</p>
 <h3 id="put-option">Put Option<a class="headerlink" href="#put-option" title="Permanent link">&para;</a></h3>
 <p>By put-call parity for bond options:</p>
-<p>$$</p>
-<p>P_{\text{put}}(0) = K P(0, T) N(-d_2) - P(0, T_B) N(-d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{put}}(0) = K P(0, T) N(-d_2) - P(0, T_B) N(-d_1)
+\]</div>
 <hr />
 <h2 id="pricing-in-the-hull-white-model">Pricing in the Hull-White Model<a class="headerlink" href="#pricing-in-the-hull-white-model" title="Permanent link">&para;</a></h2>
 <h3 id="the-formula">The Formula<a class="headerlink" href="#the-formula" title="Permanent link">&para;</a></h3>
 <p>The Hull-White bond option formula is structurally identical to Vasicek:</p>
-<p>$$</p>
-<p>C(0) = P(0, T_B) N(d_1) - K P(0, T) N(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(0) = P(0, T_B) N(d_1) - K P(0, T) N(d_2)
+\]</div>
 <p>The only difference is in the discount factors <span class="arithmatex">\(P(0, T)\)</span> and <span class="arithmatex">\(P(0, T_B)\)</span>, which now match the market curve exactly.</p>
 <h3 id="bond-price-volatility-hull-white">Bond Price Volatility (Hull-White)<a class="headerlink" href="#bond-price-volatility-hull-white" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_P = \sigma \cdot \frac{1 - e^{-\kappa(T_B - T)}}{\kappa} \cdot \sqrt{\frac{1 - e^{-2\kappa T}}{2\kappa}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P = \sigma \cdot \frac{1 - e^{-\kappa(T_B - T)}}{\kappa} \cdot \sqrt{\frac{1 - e^{-2\kappa T}}{2\kappa}}
+\]</div>
 <hr />
 <h2 id="pricing-in-the-cir-model">Pricing in the CIR Model<a class="headerlink" href="#pricing-in-the-cir-model" title="Permanent link">&para;</a></h2>
 <h3 id="non-central-chi-squared-approach">Non-Central Chi-Squared Approach<a class="headerlink" href="#non-central-chi-squared-approach" title="Permanent link">&para;</a></h3>
 <p>In CIR, bond prices follow:</p>
-<p>$$</p>
-<p>P(T, T_B) = A(\tau_B) e^{-B(\tau_B) r_T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(T, T_B) = A(\tau_B) e^{-B(\tau_B) r_T}
+\]</div>
 <p>where <span class="arithmatex">\(r_T\)</span> has a non-central chi-squared distribution.</p>
 <h3 id="option-pricing-formula">Option Pricing Formula<a class="headerlink" href="#option-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>The CIR bond option price involves the non-central chi-squared CDF:</p>
-<p>$$</p>
-<p>C(0) = P(0, T_B) \chi^2(x^<em>; \nu + 2, \lambda_1) - K P(0, T) \chi^2(x^</em>; \nu, \lambda_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(0) = P(0, T_B) \chi^2(x^*; \nu + 2, \lambda_1) - K P(0, T) \chi^2(x^*; \nu, \lambda_2)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\nu = 4\kappa\theta/\sigma^2\)</span> (degrees of freedom)
 - <span class="arithmatex">\(\lambda_1, \lambda_2\)</span> are non-centrality parameters depending on model parameters
@@ -47220,18 +47220,18 @@
 <p>Consider a European call on a coupon bond with cashflows <span class="arithmatex">\(c_i\)</span> at times <span class="arithmatex">\(T_i\)</span> (for <span class="arithmatex">\(i = 1, \ldots, n\)</span>), with option expiry <span class="arithmatex">\(T &lt; T_1\)</span>.</p>
 <p><strong>Key insight:</strong> In one-factor models, all bond prices are monotonic in <span class="arithmatex">\(r_T\)</span>.</p>
 <p>Define <span class="arithmatex">\(r^*\)</span> as the short rate at which the coupon bond price equals the strike:</p>
-<p>$$</p>
-<p>\sum_{i=1}^{n} c_i P(T, T_i, r^*) = K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{i=1}^{n} c_i P(T, T_i, r^*) = K
+\]</div>
 <h3 id="decomposition">Decomposition<a class="headerlink" href="#decomposition" title="Permanent link">&para;</a></h3>
 <p>The coupon bond option decomposes into a portfolio of zero-coupon bond options:</p>
-<p>$$</p>
-<p>\text{Call on coupon bond} = \sum_{i=1}^{n} c_i \cdot \text{Call}(P(T, T_i), K_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Call on coupon bond} = \sum_{i=1}^{n} c_i \cdot \text{Call}(P(T, T_i), K_i)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>K_i = P(T, T_i, r^*)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_i = P(T, T_i, r^*)
+\]</div>
 <h3 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Find <span class="arithmatex">\(r^*\)</span>:</strong> Solve <span class="arithmatex">\(\sum_i c_i P(T, T_i, r^*) = K\)</span> (root-finding)</li>
@@ -47248,27 +47248,27 @@
 <hr />
 <h2 id="put-call-parity-for-bond-options">Put-Call Parity for Bond Options<a class="headerlink" href="#put-call-parity-for-bond-options" title="Permanent link">&para;</a></h2>
 <h3 id="zero-coupon-bonds">Zero-Coupon Bonds<a class="headerlink" href="#zero-coupon-bonds" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C(0) - P_{\text{put}}(0) = P(0, T_B) - K P(0, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(0) - P_{\text{put}}(0) = P(0, T_B) - K P(0, T)
+\]</div>
 <p>This is the forward price of the bond minus the discounted strike.</p>
 <h3 id="coupon-bonds">Coupon Bonds<a class="headerlink" href="#coupon-bonds" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C(0) - P_{\text{put}}(0) = B(0) - K P(0, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(0) - P_{\text{put}}(0) = B(0) - K P(0, T)
+\]</div>
 <p>where <span class="arithmatex">\(B(0) = \sum_i c_i P(0, T_i)\)</span> is the current bond price.</p>
 <hr />
 <h2 id="greeks-for-bond-options">Greeks for Bond Options<a class="headerlink" href="#greeks-for-bond-options" title="Permanent link">&para;</a></h2>
 <h3 id="delta">Delta<a class="headerlink" href="#delta" title="Permanent link">&para;</a></h3>
 <p>Sensitivity to the underlying bond price:</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial C}{\partial P(0, T_B)} = N(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial C}{\partial P(0, T_B)} = N(d_1)
+\]</div>
 <h3 id="vega-interest-rate">Vega (Interest Rate)<a class="headerlink" href="#vega-interest-rate" title="Permanent link">&para;</a></h3>
 <p>Sensitivity to short-rate volatility:</p>
-<p>$$</p>
-<p>\mathcal{V} = \frac{\partial C}{\partial \sigma} = P(0, T_B) \phi(d_1) \frac{\partial \sigma_P}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} = \frac{\partial C}{\partial \sigma} = P(0, T_B) \phi(d_1) \frac{\partial \sigma_P}{\partial \sigma}
+\]</div>
 <p>where <span class="arithmatex">\(\phi(\cdot)\)</span> is the standard normal PDF.</p>
 <h3 id="theta">Theta<a class="headerlink" href="#theta" title="Permanent link">&para;</a></h3>
 <p>Time decay (computed numerically or via the pricing PDE).</p>
@@ -47283,24 +47283,24 @@
 - Non-affine models</p>
 <h3 id="finite-differences">Finite Differences<a class="headerlink" href="#finite-differences" title="Permanent link">&para;</a></h3>
 <p>Solve the bond option PDE:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2} - rV = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V(T, r) = (P(T, T_B, r) - K)^+\)</span>.</p>
 <h3 id="trees">Trees<a class="headerlink" href="#trees" title="Permanent link">&para;</a></h3>
 <p>Binomial or trinomial trees discretize the short rate and compute option values by backward induction.</p>
 <h3 id="monte-carlo">Monte Carlo<a class="headerlink" href="#monte-carlo" title="Permanent link">&para;</a></h3>
 <p>Simulate paths of <span class="arithmatex">\(r_t\)</span>, compute bond prices at expiry, and average discounted payoffs:</p>
-<p>$$</p>
-<p>C(0) \approx \frac{1}{N} \sum_{i=1}^{N} e^{-\int_0^T r_t^{(i)} dt} (P(T, T_B, r_T^{(i)}) - K)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(0) \approx \frac{1}{N} \sum_{i=1}^{N} e^{-\int_0^T r_t^{(i)} dt} (P(T, T_B, r_T^{(i)}) - K)^+
+\]</div>
 <hr />
 <h2 id="connection-to-caps-and-floors">Connection to Caps and Floors<a class="headerlink" href="#connection-to-caps-and-floors" title="Permanent link">&para;</a></h2>
 <h3 id="caplet-as-bond-put">Caplet as Bond Put<a class="headerlink" href="#caplet-as-bond-put" title="Permanent link">&para;</a></h3>
 <p>A caplet paying <span class="arithmatex">\(\delta(L(T_1, T_2) - K)^+\)</span> at <span class="arithmatex">\(T_2\)</span> can be rewritten as a put on a bond:</p>
-<p>$$</p>
-<p>\text{Caplet} = (1 + K\delta) \cdot \text{Put}(P(T_1, T_2), K_{\text{bond}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Caplet} = (1 + K\delta) \cdot \text{Put}(P(T_1, T_2), K_{\text{bond}})
+\]</div>
 <p>where <span class="arithmatex">\(K_{\text{bond}} = 1/(1 + K\delta)\)</span>.</p>
 <p>This connection allows caplet pricing using bond option formulas.</p>
 <hr />

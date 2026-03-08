@@ -47027,41 +47027,41 @@
 <p><strong>How do we go from discrete-time observations to continuous-time models?</strong></p>
 <h3 id="1-the-discrete-time-random-walk">1. The Discrete-Time Random Walk<a class="headerlink" href="#1-the-discrete-time-random-walk" title="Permanent link">&para;</a></h3>
 <p>Suppose stock prices evolve via a <strong>discrete-time random walk</strong>:</p>
-<p>$$</p>
-<p>S_{n+1} = S_n + \mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z_n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{n+1} = S_n + \mu \Delta t + \sigma \sqrt{\Delta t} \cdot Z_n
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\Delta t\)</span> is the time step (e.g., 1 day = 1/252 years)
 - <span class="arithmatex">\(Z_n \sim \mathcal{N}(0, 1)\)</span> are i.i.d. standard normal
 - <span class="arithmatex">\(\mu\)</span> is drift (expected return per unit time)
 - <span class="arithmatex">\(\sigma\)</span> is diffusion (volatility per unit time)</p>
 <p><strong>In multiplicative form:</strong></p>
-<p>$$</p>
-<p>S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)
+\]</div>
 <h3 id="2-taking-the-limit-t-0">2. Taking the Limit Δ t → 0<a class="headerlink" href="#2-taking-the-limit-t-0" title="Permanent link">&para;</a></h3>
 <p><strong>Question:</strong> What happens as we make the time step infinitesimally small?</p>
 <p><strong>Heuristic argument:</strong></p>
-<p>$$</p>
-<p>S(t + \Delta t) - S(t) = \mu S(t) \Delta t + \sigma S(t) \sqrt{\Delta t} \cdot Z</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t + \Delta t) - S(t) = \mu S(t) \Delta t + \sigma S(t) \sqrt{\Delta t} \cdot Z
+\]</div>
 <p>Dividing by <span class="arithmatex">\(\Delta t\)</span>:</p>
-<p>$$</p>
-<p>\frac{S(t + \Delta t) - S(t)}{\Delta t} = \mu S(t) + \sigma S(t) \frac{Z}{\sqrt{\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S(t + \Delta t) - S(t)}{\Delta t} = \mu S(t) + \sigma S(t) \frac{Z}{\sqrt{\Delta t}}
+\]</div>
 <p>As <span class="arithmatex">\(\Delta t \to 0\)</span>:
 - First term: <span class="arithmatex">\(\mu S(t)\)</span> → well-defined
 - Second term: <span class="arithmatex">\(\frac{Z}{\sqrt{\Delta t}} \to\)</span> ???</p>
 <p><strong>The key insight:</strong> The term <span class="arithmatex">\(\frac{Z}{\sqrt{\Delta t}}\)</span> does <strong>not</strong> go to zero or infinity in a pathological way. Instead, it converges to the <strong>derivative of Brownian motion</strong>:</p>
-<p>$$</p>
-<p>\frac{Z}{\sqrt{\Delta t}} \rightsquigarrow \frac{dW_t}{dt} \quad \text{(formal notation)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{Z}{\sqrt{\Delta t}} \rightsquigarrow \frac{dW_t}{dt} \quad \text{(formal notation)}
+\]</div>
 <p><strong>Heuristic SDE:</strong></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is <strong>Geometric Brownian Motion (GBM)</strong>, the foundation of the Black-Scholes model.</p>
 <hr />
 <h2 id="what-is-dw_t">What is dW_t?<a class="headerlink" href="#what-is-dw_t" title="Permanent link">&para;</a></h2>
@@ -47074,71 +47074,71 @@ dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 <li><strong>Continuous paths:</strong> <span class="arithmatex">\(t \mapsto W_t\)</span> is continuous</li>
 </ol>
 <p><strong>Infinitesimal increment:</strong></p>
-<p>$$</p>
-<p>dW_t = W_{t+dt} - W_t \sim \mathcal{N}(0, dt)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t = W_{t+dt} - W_t \sim \mathcal{N}(0, dt)
+\]</div>
 <p><strong>Key property:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[dW_t] = 0, \quad \mathbb{E}[(dW_t)^2] = dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[dW_t] = 0, \quad \mathbb{E}[(dW_t)^2] = dt
+\]</div>
 <p>This means:</p>
-<p>$$</p>
-<p>(dW_t)^2 = dt \quad \text{(in mean-square sense)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dW_t)^2 = dt \quad \text{(in mean-square sense)}
+\]</div>
 <p><strong>This is the fundamental difference from ordinary calculus!</strong></p>
 <h3 id="2-why-dw_t2-dt-matters">2. Why (dW_t)² = dt Matters<a class="headerlink" href="#2-why-dw_t2-dt-matters" title="Permanent link">&para;</a></h3>
 <p>In ordinary calculus, <span class="arithmatex">\((dx)^2 = 0\)</span> for infinitesimals. But for Brownian motion:</p>
-<p>$$</p>
-<p>(dW_t)^2 = dt \neq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dW_t)^2 = dt \neq 0
+\]</div>
 <p><strong>Consequence:</strong> The chain rule changes!</p>
 <p><strong>Ordinary calculus:</strong></p>
-<p>$$</p>
-<p>d f(x) = f'(x) \, dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d f(x) = f'(x) \, dx
+\]</div>
 <p><strong>Stochastic calculus (Itô's lemma):</strong></p>
-<p>$$</p>
-<p>d f(X_t) = f'(X_t) \, dX_t + \frac{1}{2} f''(X_t) (dX_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d f(X_t) = f'(X_t) \, dX_t + \frac{1}{2} f''(X_t) (dX_t)^2
+\]</div>
 <p>The second-order term survives because <span class="arithmatex">\((dX_t)^2\)</span> is not negligible!</p>
 <hr />
 <h2 id="from-discrete-to-continuous-rigorous-approach">From Discrete to Continuous: Rigorous Approach<a class="headerlink" href="#from-discrete-to-continuous-rigorous-approach" title="Permanent link">&para;</a></h2>
 <h3 id="1-donskers-theorem-functional-clt">1. Donsker's Theorem (Functional CLT)<a class="headerlink" href="#1-donskers-theorem-functional-clt" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem:</strong> Consider the discrete random walk:</p>
-<p>$$</p>
-<p>S_n^{(\Delta t)} = \sum_{i=1}^n \sqrt{\Delta t} \cdot Z_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_n^{(\Delta t)} = \sum_{i=1}^n \sqrt{\Delta t} \cdot Z_i
+\]</div>
 <p>where <span class="arithmatex">\(Z_i \sim \mathcal{N}(0, 1)\)</span> i.i.d.</p>
 <p><strong>Interpolated process:</strong></p>
-<p>$$</p>
-<p>S^{(\Delta t)}(t) = S_{\lfloor t/\Delta t \rfloor}^{(\Delta t)} + (t - \lfloor t/\Delta t \rfloor \Delta t) \frac{S_{\lfloor t/\Delta t \rfloor + 1}^{(\Delta t)} - S_{\lfloor t/\Delta t \rfloor}^{(\Delta t)}}{\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S^{(\Delta t)}(t) = S_{\lfloor t/\Delta t \rfloor}^{(\Delta t)} + (t - \lfloor t/\Delta t \rfloor \Delta t) \frac{S_{\lfloor t/\Delta t \rfloor + 1}^{(\Delta t)} - S_{\lfloor t/\Delta t \rfloor}^{(\Delta t)}}{\Delta t}
+\]</div>
 <p><strong>Donsker (1951):</strong> As <span class="arithmatex">\(\Delta t \to 0\)</span>:</p>
-<p>$$</p>
-<p>S^{(\Delta t)}(t) \xrightarrow{d} W_t \quad \text{(in distribution)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S^{(\Delta t)}(t) \xrightarrow{d} W_t \quad \text{(in distribution)}
+\]</div>
 <p>where <span class="arithmatex">\(W_t\)</span> is standard Brownian motion.</p>
 <p><strong>Significance:</strong> This rigorously justifies using Brownian motion as the continuous-time limit of discrete random walks.</p>
 <h3 id="2-implications-for-sdes">2. Implications for SDEs<a class="headerlink" href="#2-implications-for-sdes" title="Permanent link">&para;</a></h3>
 <p><strong>Discrete-time GBM:</strong></p>
-<p>$$</p>
-<p>S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_{n+1} = S_n \exp\left(\mu \Delta t - \frac{\sigma^2}{2}\Delta t + \sigma \sqrt{\Delta t} \cdot Z_n\right)
+\]</div>
 <p><strong>Continuous-time limit:</strong></p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
+\]</div>
 <p>with solution:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right]
+\]</div>
 <hr />
 <h2 id="the-anatomy-of-an-sde">The Anatomy of an SDE<a class="headerlink" href="#the-anatomy-of-an-sde" title="Permanent link">&para;</a></h2>
 <h3 id="1-general-form">1. General Form<a class="headerlink" href="#1-general-form" title="Permanent link">&para;</a></h3>
 <p>A <strong>stochastic differential equation</strong> has the form:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(X_t\)</span> is the <strong>state variable</strong> (e.g., stock price, interest rate)
 - <span class="arithmatex">\(\mu(X_t, t)\)</span> is the <strong>drift function</strong> (deterministic trend)
@@ -47161,13 +47161,13 @@ dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 </ul>
 <h3 id="3-integral-form">3. Integral Form<a class="headerlink" href="#3-integral-form" title="Permanent link">&para;</a></h3>
 <p>The SDE:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t) \, dt + \sigma(X_t, t) \, dW_t
+\]</div>
 <p>is shorthand for the <strong>integral equation</strong>:</p>
-<p>$$</p>
-<p>X_t = X_0 + \int_0^t \mu(X_s, s) \, ds + \int_0^t \sigma(X_s, s) \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_0 + \int_0^t \mu(X_s, s) \, ds + \int_0^t \sigma(X_s, s) \, dW_s
+\]</div>
 <p>where:
 - First integral: ordinary Riemann/Lebesgue integral
 - Second integral: <strong>Itô stochastic integral</strong> (needs special definition)</p>
@@ -47175,22 +47175,22 @@ dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 <h2 id="why-we-need-ito-calculus">Why We Need Itô Calculus<a class="headerlink" href="#why-we-need-ito-calculus" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-problem">1. The Problem<a class="headerlink" href="#1-the-problem" title="Permanent link">&para;</a></h3>
 <p><strong>Question:</strong> How do we make sense of:</p>
-<p>$$</p>
-<p>\int_0^t \sigma(X_s, s) \, dW_s \quad ?</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t \sigma(X_s, s) \, dW_s \quad ?
+\]</div>
 <p>This is <strong>not</strong> a standard Riemann or Lebesgue integral because:
 - <span class="arithmatex">\(W_t\)</span> is <strong>nowhere differentiable</strong>
 - <span class="arithmatex">\(dW_t/dt\)</span> does not exist
 - Cannot use <span class="arithmatex">\(\int f(t) g'(t) dt\)</span> formula</p>
 <h3 id="2-the-solution-ito-integral">2. The Solution: Itô Integral<a class="headerlink" href="#2-the-solution-ito-integral" title="Permanent link">&para;</a></h3>
 <p><strong>Section 2.1</strong> will rigorously define:</p>
-<p>$$</p>
-<p>\int_0^t f(s) \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f(s) \, dW_s
+\]</div>
 <p>as the limit of approximating sums:</p>
-<p>$$</p>
-<p>\lim_{n \to \infty} \sum_{i=0}^{n-1} f(t_i) [W_{t_{i+1}} - W_{t_i}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} \sum_{i=0}^{n-1} f(t_i) [W_{t_{i+1}} - W_{t_i}]
+\]</div>
 <p>where the partition <span class="arithmatex">\(0 = t_0 &lt; t_1 &lt; \cdots &lt; t_n = t\)</span> gets finer.</p>
 <p><strong>Key properties:</strong></p>
 <ol>
@@ -47208,9 +47208,9 @@ dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 <h2 id="examples-of-sdes-in-finance">Examples of SDEs in Finance<a class="headerlink" href="#examples-of-sdes-in-finance" title="Permanent link">&para;</a></h2>
 <h3 id="1-geometric-brownian-motion-gbm">1. Geometric Brownian Motion (GBM)<a class="headerlink" href="#1-geometric-brownian-motion-gbm" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
+\]</div>
 <p><strong>Application:</strong> Stock prices (Black-Scholes model)</p>
 <p><strong>Properties:</strong>
 - Always positive: <span class="arithmatex">\(S_t &gt; 0\)</span> for all <span class="arithmatex">\(t\)</span> if <span class="arithmatex">\(S_0 &gt; 0\)</span>
@@ -47218,9 +47218,9 @@ dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 - Constant relative volatility <span class="arithmatex">\(\sigma\)</span></p>
 <h3 id="2-ornstein-uhlenbeck-ou-process">2. Ornstein-Uhlenbeck (OU) Process<a class="headerlink" href="#2-ornstein-uhlenbeck-ou-process" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dX_t = \kappa(\theta - X_t) \, dt + \sigma \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \kappa(\theta - X_t) \, dt + \sigma \, dW_t
+\]</div>
 <p><strong>Application:</strong> Interest rates (Vasicek model), mean-reverting spreads</p>
 <p><strong>Properties:</strong>
 - Mean-reverting to level <span class="arithmatex">\(\theta\)</span> at rate <span class="arithmatex">\(\kappa\)</span>
@@ -47228,9 +47228,9 @@ dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 - Stationary in long run</p>
 <h3 id="3-cox-ingersoll-ross-cir-model">3. Cox-Ingersoll-Ross (CIR) Model<a class="headerlink" href="#3-cox-ingersoll-ross-cir-model" title="Permanent link">&para;</a></h3>
 <p><strong>SDE:</strong></p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t) \, dt + \sigma \sqrt{r_t} \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t) \, dt + \sigma \sqrt{r_t} \, dW_t
+\]</div>
 <p><strong>Application:</strong> Short-term interest rates</p>
 <p><strong>Properties:</strong>
 - Mean-reverting
@@ -47238,12 +47238,12 @@ dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
 - State-dependent volatility</p>
 <h3 id="4-heston-stochastic-volatility">4. Heston Stochastic Volatility<a class="headerlink" href="#4-heston-stochastic-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>System of SDEs:</strong></p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S \\
 dV_t &amp;= \kappa(\theta - V_t) \, dt + \sigma \sqrt{V_t} \, dW_t^V
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p>with <span class="arithmatex">\(\text{Corr}(dW_t^S, dW_t^V) = \rho dt\)</span>.</p>
 <p><strong>Application:</strong> Option pricing with stochastic volatility</p>
 <p><strong>Properties:</strong>
@@ -47297,9 +47297,9 @@ dV_t &amp;= \kappa(\theta - V_t) \, dt + \sigma \sqrt{V_t} \, dW_t^V
 <h2 id="from-intuition-to-rigor">From Intuition to Rigor<a class="headerlink" href="#from-intuition-to-rigor" title="Permanent link">&para;</a></h2>
 <h3 id="1-what-weve-established-intuitively">1. What We've Established Intuitively<a class="headerlink" href="#1-what-weve-established-intuitively" title="Permanent link">&para;</a></h3>
 <p><strong>Heuristic understanding:</strong></p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
+\]</div>
 <p>means:</p>
 <ul>
 <li>Stock price has drift <span class="arithmatex">\(\mu S_t\)</span></li>
@@ -47368,9 +47368,9 @@ Quantitative Finance Models
 ✓ We recognize the need for continuous-time randomness</p>
 <p><strong>Next stop: Section 2.1 - Itô Integration</strong></p>
 <p>The adventure begins with defining:</p>
-<p>$$</p>
-<p>\int_0^t f(s) \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^t f(s) \, dW_s
+\]</div>
 <p>Everything else follows from this fundamental construct.</p>
 <p><strong>Let's build the mathematics.</strong></p>
 

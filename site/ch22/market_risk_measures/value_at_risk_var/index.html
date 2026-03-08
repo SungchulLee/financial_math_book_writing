@@ -46404,9 +46404,9 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(L\)</span> denote the (random) loss of a portfolio over a given horizon. For a confidence level <span class="arithmatex">\(\alpha \in (0,1)\)</span>, the Value-at-Risk is defined as the <strong><span class="arithmatex">\(\alpha\)</span>-quantile</strong> of the loss distribution:</p>
-<p>$$</p>
-<p>\text{VaR}_{\alpha}(L) = \inf{x \in \mathbb{R} : F_L(x) \ge \alpha} = F_L^{-1}(\alpha)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_{\alpha}(L) = \inf\{x \in \mathbb{R} : F_L(x) \ge \alpha\} = F_L^{-1}(\alpha)
+\]</div>
 <p>where <span class="arithmatex">\(F_L(x) = \mathbb{P}(L \le x)\)</span> is the cumulative distribution function of <span class="arithmatex">\(L\)</span>.</p>
 <p><strong>Sign convention:</strong> We adopt the loss convention where <span class="arithmatex">\(L &gt; 0\)</span> represents a loss. Some texts use the profit convention where <span class="arithmatex">\(L &lt; 0\)</span> represents a loss, leading to <span class="arithmatex">\(\text{VaR}_\alpha = -F_L^{-1}(1-\alpha)\)</span>.</p>
 <hr />
@@ -46424,33 +46424,33 @@
 <hr />
 <h2 id="parametric-var-under-normality">Parametric VaR Under Normality<a class="headerlink" href="#parametric-var-under-normality" title="Permanent link">&para;</a></h2>
 <p>If portfolio returns <span class="arithmatex">\(R \sim N(\mu, \sigma^2)\)</span> over horizon <span class="arithmatex">\(\Delta t\)</span>, the loss <span class="arithmatex">\(L = -R\)</span> satisfies:</p>
-<p>$$</p>
-<p>\text{VaR}_\alpha = -\mu + \sigma \Phi^{-1}(\alpha)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_\alpha = -\mu + \sigma \Phi^{-1}(\alpha)
+\]</div>
 <p>where <span class="arithmatex">\(\Phi^{-1}\)</span> is the standard normal quantile function.</p>
 <p><strong>Example:</strong> For <span class="arithmatex">\(\alpha = 0.99\)</span>, we have <span class="arithmatex">\(\Phi^{-1}(0.99) \approx 2.326\)</span>, so:</p>
-<p>$$</p>
-<p>\text{VaR}_{0.99} \approx -\mu + 2.326\sigma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_{0.99} \approx -\mu + 2.326\sigma
+\]</div>
 <p>For daily returns with <span class="arithmatex">\(\mu \approx 0\)</span>, this simplifies to <span class="arithmatex">\(\text{VaR}_{0.99} \approx 2.326\sigma\)</span>.</p>
 <hr />
 <h2 id="var-estimation-methods">VaR Estimation Methods<a class="headerlink" href="#var-estimation-methods" title="Permanent link">&para;</a></h2>
 <h3 id="historical-simulation">Historical Simulation<a class="headerlink" href="#historical-simulation" title="Permanent link">&para;</a></h3>
 <p>Order historical losses <span class="arithmatex">\(L_{(1)} \le L_{(2)} \le \cdots \le L_{(n)}\)</span> and estimate:</p>
-<p>$$</p>
-<p>\widehat{\text{VaR}}<em _lceil="(\lceil" _rceil_="\rceil)" n_alpha="n\alpha">\alpha = L</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widehat{\text{VaR}}_\alpha = L_{(\lceil n\alpha \rceil)}
+\]</div>
 <p><strong>Advantages:</strong> Model-free, captures fat tails if present in data.</p>
 <p><strong>Disadvantages:</strong> Requires sufficient historical data, assumes stationarity.</p>
 <h3 id="variance-covariance-parametric-method">Variance-Covariance (Parametric) Method<a class="headerlink" href="#variance-covariance-parametric-method" title="Permanent link">&para;</a></h3>
 <p>Assume returns follow a multivariate normal distribution:</p>
-<p>$$</p>
-<p>\mathbf{R} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{R} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})
+\]</div>
 <p>For portfolio weights <span class="arithmatex">\(\mathbf{w}\)</span>, the portfolio variance is <span class="arithmatex">\(\sigma_P^2 = \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}\)</span>, giving:</p>
-<p>$$</p>
-<p>\text{VaR}_\alpha = -\mathbf{w}^\top \boldsymbol{\mu} + \sqrt{\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}} \cdot \Phi^{-1}(\alpha)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_\alpha = -\mathbf{w}^\top \boldsymbol{\mu} + \sqrt{\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}} \cdot \Phi^{-1}(\alpha)
+\]</div>
 <p><strong>Advantages:</strong> Computationally efficient, analytically tractable.</p>
 <p><strong>Disadvantages:</strong> Normality assumption often violated, underestimates tail risk.</p>
 <h3 id="monte-carlo-simulation">Monte Carlo Simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permanent link">&para;</a></h3>
@@ -46464,16 +46464,16 @@
 <hr />
 <h2 id="scaling-var-across-horizons">Scaling VaR Across Horizons<a class="headerlink" href="#scaling-var-across-horizons" title="Permanent link">&para;</a></h2>
 <p>Under the assumption of i.i.d. returns, VaR scales with the square root of time:</p>
-<p>$$</p>
-<p>\text{VaR}<em>\alpha(h \text{ days}) \approx \sqrt{h} \cdot \text{VaR}</em>\alpha(1 \text{ day})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_\alpha(h \text{ days}) \approx \sqrt{h} \cdot \text{VaR}_\alpha(1 \text{ day})
+\]</div>
 <p>This <strong>square-root-of-time rule</strong> is exact for normally distributed returns but only approximate otherwise. It tends to underestimate multi-day VaR when returns exhibit volatility clustering or fat tails.</p>
 <hr />
 <h2 id="var-is-not-subadditive-a-counterexample">VaR Is Not Subadditive: A Counterexample<a class="headerlink" href="#var-is-not-subadditive-a-counterexample" title="Permanent link">&para;</a></h2>
 <p>A critical limitation of VaR is that it can violate <strong>subadditivity</strong>:</p>
-<p>$$</p>
-<p>\text{VaR}<em>\alpha(L_1 + L_2) \le \text{VaR}</em>\alpha(L_1) + \text{VaR}_\alpha(L_2) \quad \text{(may fail)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_\alpha(L_1 + L_2) \le \text{VaR}_\alpha(L_1) + \text{VaR}_\alpha(L_2) \quad \text{(may fail)}
+\]</div>
 <p><strong>Counterexample:</strong> Consider two bonds, each defaulting independently with probability 4%. At the 95% confidence level:</p>
 <ul>
 <li><strong>Bond 1 alone:</strong> <span class="arithmatex">\(\text{VaR}_{0.95}(L_1) = 0\)</span> (95th percentile is no default)</li>
@@ -46485,13 +46485,13 @@
 <hr />
 <h2 id="elicitability-of-var">Elicitability of VaR<a class="headerlink" href="#elicitability-of-var" title="Permanent link">&para;</a></h2>
 <p>A risk measure <span class="arithmatex">\(\rho\)</span> is <strong>elicitable</strong> if there exists a scoring function <span class="arithmatex">\(S(x, y)\)</span> such that:</p>
-<p>$$</p>
-<p>\rho(L) = \arg\min_x \mathbb{E}[S(x, L)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(L) = \arg\min_x \mathbb{E}[S(x, L)]
+\]</div>
 <p><strong>VaR is elicitable.</strong> The scoring function for the <span class="arithmatex">\(\alpha\)</span>-quantile is:</p>
-<p>$$</p>
-<p>S(x, L) = (\mathbf{1}_{L \le x} - \alpha)(x - L)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(x, L) = (\mathbf{1}_{L \le x} - \alpha)(x - L)
+\]</div>
 <p>This is the <strong>pinball loss</strong> (or quantile loss) function, which is asymmetric around the quantile.</p>
 <p><strong>Implications for backtesting:</strong>
 - Elicitability enables comparative backtesting via scoring rules

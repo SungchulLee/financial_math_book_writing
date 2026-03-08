@@ -46994,37 +46994,37 @@
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <h3 id="sde-definition">SDE Definition<a class="headerlink" href="#sde-definition" title="Permanent link">&para;</a></h3>
 <p>Given a continuous semimartingale <span class="arithmatex">\(X_t\)</span>, the <strong>stochastic exponential</strong> <span class="arithmatex">\(\mathcal{E}(X)_t\)</span> is defined as the unique solution to:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t, \quad \mathcal{E}(X)_0 = 1
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Note that the initial condition is always <span class="arithmatex">\(\mathcal{E}(X)_0 = 1\)</span>, regardless of the value of <span class="arithmatex">\(X_0\)</span>.</p>
 <h3 id="explicit-formula">Explicit Formula<a class="headerlink" href="#explicit-formula" title="Permanent link">&para;</a></h3>
 <p>For continuous semimartingales:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{E}(X)_t = \exp\left(X_t - X_0 - \frac{1}{2}\langle X \rangle_t\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\langle X \rangle_t\)</span> is the <strong>quadratic variation</strong> of <span class="arithmatex">\(X\)</span>.</p>
 <p>When <span class="arithmatex">\(X_0 = 0\)</span> (the most common case in applications), this simplifies to:</p>
-<p>$$</p>
-<p>\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}\langle X \rangle_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}\langle X \rangle_t\right)
+\]</div>
 <hr />
 <h2 id="why-stochastic-exponential">Why "Stochastic Exponential"?<a class="headerlink" href="#why-stochastic-exponential" title="Permanent link">&para;</a></h2>
 <h3 id="analogy-with-ordinary-exponential">Analogy with Ordinary Exponential<a class="headerlink" href="#analogy-with-ordinary-exponential" title="Permanent link">&para;</a></h3>
 <p>For a deterministic function <span class="arithmatex">\(x(t)\)</span>, the ordinary exponential <span class="arithmatex">\(e^{x(t)}\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{d}{dt}e^{x(t)} = e^{x(t)} \cdot \frac{dx(t)}{dt}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}e^{x(t)} = e^{x(t)} \cdot \frac{dx(t)}{dt}
+\]</div>
 <p>In differential form: <span class="arithmatex">\(d(e^{x}) = e^x\,dx\)</span>.</p>
 <h3 id="the-stochastic-version">The Stochastic Version<a class="headerlink" href="#the-stochastic-version" title="Permanent link">&para;</a></h3>
 <p>The stochastic exponential satisfies the same multiplicative structure:</p>
-<p>$$</p>
-<p>d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t
+\]</div>
 <h3 id="the-crucial-difference">The Crucial Difference<a class="headerlink" href="#the-crucial-difference" title="Permanent link">&para;</a></h3>
 <p>In ordinary calculus: <span class="arithmatex">\(e^{x(t)} = \exp\left(\int_0^t dx(s)\right) = \exp(x(t) - x(0))\)</span></p>
 <p>In stochastic calculus: <span class="arithmatex">\(\mathcal{E}(X)_t = \exp\left(X_t - X_0 - \frac{1}{2}\langle X \rangle_t\right)\)</span></p>
@@ -47037,117 +47037,117 @@ d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t, \quad \mathcal{E}(X)_0 = 1
 <p>Define <span class="arithmatex">\(Z_t = \exp(X_t - X_0 - \frac{1}{2}\langle X \rangle_t)\)</span>.</p>
 <h3 id="apply-itos-lemma">Apply Itô's Lemma<a class="headerlink" href="#apply-itos-lemma" title="Permanent link">&para;</a></h3>
 <p>Using the Itô formula with <span class="arithmatex">\(f(x) = e^x\)</span> and the process <span class="arithmatex">\(Y_t = X_t - X_0 - \frac{1}{2}\langle X \rangle_t\)</span>:</p>
-<p>$$</p>
-<p>dZ_t = Z_t\,dY_t + \frac{1}{2}Z_t\,(dY_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ_t = Z_t\,dY_t + \frac{1}{2}Z_t\,(dY_t)^2
+\]</div>
 <p>Now compute <span class="arithmatex">\(dY_t\)</span> and <span class="arithmatex">\((dY_t)^2\)</span>:</p>
-<p>$$</p>
-<p>dY_t = dX_t - \frac{1}{2}d\langle X \rangle_t = \sigma_t\,dW_t - \frac{1}{2}\sigma_t^2\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>(dY_t)^2 = (\sigma_t\,dW_t)^2 = \sigma_t^2\,dt = d\langle X \rangle_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = dX_t - \frac{1}{2}d\langle X \rangle_t = \sigma_t\,dW_t - \frac{1}{2}\sigma_t^2\,dt
+\]</div>
+<div class="arithmatex">\[
+(dY_t)^2 = (\sigma_t\,dW_t)^2 = \sigma_t^2\,dt = d\langle X \rangle_t
+\]</div>
 <p>(using the Itô multiplication rules: <span class="arithmatex">\((dW_t)^2 = dt\)</span>, <span class="arithmatex">\(dt \cdot dW_t = 0\)</span>, <span class="arithmatex">\((dt)^2 = 0\)</span>)</p>
 <h3 id="substitute">Substitute<a class="headerlink" href="#substitute" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dZ_t = Z_t\left(\sigma_t\,dW_t - \frac{1}{2}\sigma_t^2\,dt\right) + \frac{1}{2}Z_t \cdot \sigma_t^2\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= Z_t\,\sigma_t\,dW_t - \frac{1}{2}Z_t\,\sigma_t^2\,dt + \frac{1}{2}Z_t\,\sigma_t^2\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= Z_t\,\sigma_t\,dW_t = Z_t\,dX_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ_t = Z_t\left(\sigma_t\,dW_t - \frac{1}{2}\sigma_t^2\,dt\right) + \frac{1}{2}Z_t \cdot \sigma_t^2\,dt
+\]</div>
+<div class="arithmatex">\[
+= Z_t\,\sigma_t\,dW_t - \frac{1}{2}Z_t\,\sigma_t^2\,dt + \frac{1}{2}Z_t\,\sigma_t^2\,dt
+\]</div>
+<div class="arithmatex">\[
+= Z_t\,\sigma_t\,dW_t = Z_t\,dX_t
+\]</div>
 <p>The correction terms <strong>cancel exactly</strong>, leaving no drift. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h2>
 <h3 id="property-1-positivity">Property 1: Positivity<a class="headerlink" href="#property-1-positivity" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{E}(X)_t &gt; 0 \quad \text{for all } t \geq 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(X)_t &gt; 0 \quad \text{for all } t \geq 0
+\]</div>
 <p>The stochastic exponential is always strictly positive (exponential of a real number).</p>
 <h3 id="property-2-local-martingale-property">Property 2: Local Martingale Property<a class="headerlink" href="#property-2-local-martingale-property" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(X_t\)</span> is a continuous local martingale, then <span class="arithmatex">\(\mathcal{E}(X)_t\)</span> is also a <strong>local martingale</strong>.</p>
 <p><strong>Proof</strong>: From <span class="arithmatex">\(d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t\)</span>, we see there is no <span class="arithmatex">\(dt\)</span> term—the SDE has zero drift. <span class="arithmatex">\(\square\)</span></p>
 <h3 id="property-3-multiplication-rule">Property 3: Multiplication Rule<a class="headerlink" href="#property-3-multiplication-rule" title="Permanent link">&para;</a></h3>
 <p>For two continuous semimartingales <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>:</p>
-<p>$$</p>
-<p>\boxed{\mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \rangle)_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathcal{E}(X)_t \cdot \mathcal{E}(Y)_t = \mathcal{E}(X + Y + \langle X, Y \rangle)_t}
+\]</div>
 <p>Compare to the ordinary rule: <span class="arithmatex">\(e^x \cdot e^y = e^{x+y}\)</span>. The stochastic version has an extra covariation term.</p>
 <p><strong>Proof</strong>: Let <span class="arithmatex">\(Z_t = \mathcal{E}(X)_t\)</span> and <span class="arithmatex">\(W_t = \mathcal{E}(Y)_t\)</span>. By the Itô product rule:</p>
-<p>$$</p>
-<p>d(ZW) = Z\,dW + W\,dZ + d\langle Z, W \rangle</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(ZW) = Z\,dW + W\,dZ + d\langle Z, W \rangle
+\]</div>
 <p>Since <span class="arithmatex">\(dZ = Z\,dX\)</span> and <span class="arithmatex">\(dW = W\,dY\)</span>:</p>
-<p>$$</p>
-<p>d(ZW) = ZW\,dY + ZW\,dX + ZW\,d\langle X, Y \rangle = ZW\,(dX + dY + d\langle X, Y \rangle)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(ZW) = ZW\,dY + ZW\,dX + ZW\,d\langle X, Y \rangle = ZW\,(dX + dY + d\langle X, Y \rangle)
+\]</div>
 <p>This shows <span class="arithmatex">\(ZW = \mathcal{E}(X)\mathcal{E}(Y)\)</span> satisfies the SDE for <span class="arithmatex">\(\mathcal{E}(X + Y + \langle X, Y \rangle)\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <h3 id="property-4-reciprocal">Property 4: Reciprocal<a class="headerlink" href="#property-4-reciprocal" title="Permanent link">&para;</a></h3>
 <p>The reciprocal of a stochastic exponential is:</p>
-<p>$$</p>
-<p>\boxed{\frac{1}{\mathcal{E}(X)_t} = \exp\left(-X_t + X_0 + \frac{1}{2}\langle X \rangle_t\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{1}{\mathcal{E}(X)_t} = \exp\left(-X_t + X_0 + \frac{1}{2}\langle X \rangle_t\right)}
+\]</div>
 <p><strong>Important</strong>: The reciprocal is generally <strong>not</strong> a stochastic exponential itself. We have:</p>
-<p>$$</p>
-<p>\frac{1}{\mathcal{E}(X)_t} = \mathcal{E}(-X)_t \cdot \exp(\langle X \rangle_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{1}{\mathcal{E}(X)_t} = \mathcal{E}(-X)_t \cdot \exp(\langle X \rangle_t)
+\]</div>
 <p>This follows from direct computation:</p>
-<p>$$</p>
-<p>\mathcal{E}(-X)_t = \exp\left(-X_t + X_0 - \frac{1}{2}\langle X \rangle_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(-X)_t = \exp\left(-X_t + X_0 - \frac{1}{2}\langle X \rangle_t\right)
+\]</div>
 <p>so</p>
-<p>$$</p>
-<p>\mathcal{E}(-X)_t \cdot \exp(\langle X \rangle_t) = \exp\left(-X_t + X_0 + \frac{1}{2}\langle X \rangle_t\right) = \frac{1}{\mathcal{E}(X)_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(-X)_t \cdot \exp(\langle X \rangle_t) = \exp\left(-X_t + X_0 + \frac{1}{2}\langle X \rangle_t\right) = \frac{1}{\mathcal{E}(X)_t}
+\]</div>
 <h3 id="property-5-unit-expectation-under-conditions">Property 5: Unit Expectation (Under Conditions)<a class="headerlink" href="#property-5-unit-expectation-under-conditions" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(\mathcal{E}(X)\)</span> is a <strong>true martingale</strong> (not just a local martingale):</p>
-<p>$$</p>
-<p>\mathbb{E}[\mathcal{E}(X)_t] = \mathcal{E}(X)_0 = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\mathcal{E}(X)_t] = \mathcal{E}(X)_0 = 1
+\]</div>
 <p>This property is essential for measure changes but requires verification via Novikov or Kazamaki conditions.</p>
 <hr />
 <h2 id="special-cases">Special Cases<a class="headerlink" href="#special-cases" title="Permanent link">&para;</a></h2>
 <h3 id="case-1-x_t-w_t-constant-volatility">Case 1: X_t = σ W_t (Constant Volatility)<a class="headerlink" href="#case-1-x_t-w_t-constant-volatility" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(\sigma \in \mathbb{R}\)</span> constant:</p>
-<p>$$</p>
-<p>\mathcal{E}(\sigma W)_t = \exp\left(\sigma W_t - \frac{\sigma^2 t}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(\sigma W)_t = \exp\left(\sigma W_t - \frac{\sigma^2 t}{2}\right)
+\]</div>
 <p>This is the fundamental <strong>exponential martingale</strong>. It satisfies <span class="arithmatex">\(\mathbb{E}[\mathcal{E}(\sigma W)_t] = 1\)</span> for all <span class="arithmatex">\(t\)</span> (Novikov is trivially satisfied since <span class="arithmatex">\(\sigma\)</span> is constant).</p>
 <h3 id="case-2-x_t-_0t-_s-dw_s-stochastic-integrand">Case 2: X_t = ∫_0^t σ_s dW_s (Stochastic Integrand)<a class="headerlink" href="#case-2-x_t-_0t-_s-dw_s-stochastic-integrand" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{E}(X)_t = \exp\left(\int_0^t \sigma_s\,dW_s - \frac{1}{2}\int_0^t \sigma_s^2\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(X)_t = \exp\left(\int_0^t \sigma_s\,dW_s - \frac{1}{2}\int_0^t \sigma_s^2\,ds\right)
+\]</div>
 <p>This is the general form used in Girsanov's theorem. Whether it's a true martingale depends on <span class="arithmatex">\(\sigma\)</span>—see <a href="../novikov_kazamaki_conditions/">Novikov and Kazamaki Conditions</a>.</p>
 <h3 id="case-3-geometric-brownian-motion">Case 3: Geometric Brownian Motion<a class="headerlink" href="#case-3-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>The solution to <span class="arithmatex">\(dS_t = \mu S_t\,dt + \sigma S_t\,dW_t\)</span> with <span class="arithmatex">\(S_0 &gt; 0\)</span> is:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t\right)
+\]</div>
 <p>This can be written as:</p>
-<p>$$</p>
-<p>S_t = S_0\, e^{\mu t} \cdot \mathcal{E}(\sigma W)_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0\, e^{\mu t} \cdot \mathcal{E}(\sigma W)_t
+\]</div>
 <p>The term <span class="arithmatex">\(\mu - \frac{\sigma^2}{2}\)</span> is the <strong>drift-adjusted growth rate</strong>—the Itô correction <span class="arithmatex">\(-\frac{\sigma^2}{2}\)</span> appears naturally.</p>
 <hr />
 <h2 id="connection-to-girsanovs-theorem">Connection to Girsanov's Theorem<a class="headerlink" href="#connection-to-girsanovs-theorem" title="Permanent link">&para;</a></h2>
 <p>The stochastic exponential is the <strong>Radon–Nikodym derivative</strong> for measure change.</p>
 <h3 id="measure-change-setup">Measure Change Setup<a class="headerlink" href="#measure-change-setup" title="Permanent link">&para;</a></h3>
 <p>To change from measure <span class="arithmatex">\(\mathbb{P}\)</span> to measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T
+\]</div>
 <p>where the <strong>density process</strong> is:</p>
-<p>$$</p>
-<p>Z_t = \mathcal{E}\left(\int_0^\cdot \theta_s\,dW_s\right)_t = \exp\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \mathcal{E}\left(\int_0^\cdot \theta_s\,dW_s\right)_t = \exp\left(\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)
+\]</div>
 <p>Here <span class="arithmatex">\(\theta_t\)</span> is the <strong>Girsanov kernel</strong> (market price of risk in finance).</p>
 <h3 id="girsanovs-result">Girsanov's Result<a class="headerlink" href="#girsanovs-result" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the process:</p>
-<p>$$</p>
-<p>\tilde{W}_t = W_t - \int_0^t \theta_s\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{W}_t = W_t - \int_0^t \theta_s\,ds
+\]</div>
 <p>is a standard Brownian motion.</p>
 <p><strong>Validity</strong>: For this measure change to be valid (i.e., <span class="arithmatex">\(\mathbb{Q}\)</span> is a probability measure equivalent to <span class="arithmatex">\(\mathbb{P}\)</span>), we need <span class="arithmatex">\(Z_t\)</span> to be a <strong>true martingale</strong> with <span class="arithmatex">\(\mathbb{E}^{\mathbb{P}}[Z_T] = 1\)</span>. This is guaranteed by Novikov's or Kazamaki's condition.</p>
 <p>See <a href="../../girsanov/girsanov_theorem/">Girsanov's Theorem</a> for the complete treatment.</p>
@@ -47155,21 +47155,21 @@ d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t, \quad \mathcal{E}(X)_0 = 1
 <h2 id="why-the-correction-term-matters">Why the Correction Term Matters<a class="headerlink" href="#why-the-correction-term-matters" title="Permanent link">&para;</a></h2>
 <h3 id="without-correction-ew_t-has-drift">Without Correction: e^W_t Has Drift<a class="headerlink" href="#without-correction-ew_t-has-drift" title="Permanent link">&para;</a></h3>
 <p>If we naively define <span class="arithmatex">\(Z_t = e^{W_t}\)</span>, then by Itô's lemma:</p>
-<p>$$</p>
-<p>dZ_t = e^{W_t}dW_t + \frac{1}{2}e^{W_t}dt = Z_t\,dW_t + \frac{1}{2}Z_t\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ_t = e^{W_t}dW_t + \frac{1}{2}e^{W_t}dt = Z_t\,dW_t + \frac{1}{2}Z_t\,dt
+\]</div>
 <p>This has a <strong>positive drift term</strong> <span class="arithmatex">\(\frac{1}{2}Z_t\,dt\)</span>. The process <span class="arithmatex">\(e^{W_t}\)</span> is a <strong>submartingale</strong>, not a martingale:</p>
-<p>$$</p>
-<p>\mathbb{E}[e^{W_t}] = e^{t/2} &gt; 1 = e^{W_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[e^{W_t}] = e^{t/2} &gt; 1 = e^{W_0}
+\]</div>
 <h3 id="with-correction-ew_t-is-a-martingale">With Correction: E(W)_t Is a Martingale<a class="headerlink" href="#with-correction-ew_t-is-a-martingale" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{E}(W)_t = e^{W_t - t/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(W)_t = e^{W_t - t/2}
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>d\mathcal{E}(W)_t = \mathcal{E}(W)_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\mathcal{E}(W)_t = \mathcal{E}(W)_t\,dW_t
+\]</div>
 <p><strong>No drift term</strong>—this is a true martingale with <span class="arithmatex">\(\mathbb{E}[\mathcal{E}(W)_t] = 1\)</span>.</p>
 <p>The correction <span class="arithmatex">\(-\frac{1}{2}\langle X \rangle_t\)</span> precisely removes the drift introduced by Itô's lemma.</p>
 <hr />
@@ -47177,9 +47177,9 @@ d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t, \quad \mathcal{E}(X)_0 = 1
 <p>The stochastic exponential of a local martingale is always a local martingale, but may be a <strong>strict local martingale</strong> (local martingale that is not a true martingale).</p>
 <h3 id="sufficient-conditions">Sufficient Conditions<a class="headerlink" href="#sufficient-conditions" title="Permanent link">&para;</a></h3>
 <p><strong>Novikov's Condition</strong>: If</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\frac{1}{2}\langle X \rangle_T\right)\right] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\frac{1}{2}\langle X \rangle_T\right)\right] &lt; \infty
+\]</div>
 <p>then <span class="arithmatex">\(\mathcal{E}(X)\)</span> is a true martingale on <span class="arithmatex">\([0,T]\)</span>.</p>
 <p><strong>Kazamaki's Condition</strong> (weaker): If <span class="arithmatex">\(\mathcal{E}(X/2)\)</span> is a submartingale, then <span class="arithmatex">\(\mathcal{E}(X)\)</span> is a true martingale.</p>
 <p>For details and proofs, see <a href="../novikov_kazamaki_conditions/">Novikov and Kazamaki Conditions</a>.</p>
@@ -47188,9 +47188,9 @@ d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t, \quad \mathcal{E}(X)_0 = 1
 <hr />
 <h2 id="extension-to-discontinuous-processes">Extension to Discontinuous Processes<a class="headerlink" href="#extension-to-discontinuous-processes" title="Permanent link">&para;</a></h2>
 <p>For a general semimartingale <span class="arithmatex">\(X\)</span> with jumps, the <strong>Doléans-Dade exponential</strong> has the more complex form:</p>
-<p>$$</p>
-<p>\mathcal{E}(X)<em 0="0" _="&lt;" _leq="\leq" s="s" t="t">t = \exp\left(X_t^c - X_0 - \frac{1}{2}\langle X^c \rangle_t\right) \prod</em>}(1 + \Delta X_s)\,e^{-\Delta X_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(X)_t = \exp\left(X_t^c - X_0 - \frac{1}{2}\langle X^c \rangle_t\right) \prod_{0 &lt; s \leq t}(1 + \Delta X_s)\,e^{-\Delta X_s}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(X^c\)</span> is the continuous martingale part of <span class="arithmatex">\(X\)</span></li>
@@ -47201,26 +47201,26 @@ d\mathcal{E}(X)_t = \mathcal{E}(X)_t\,dX_t, \quad \mathcal{E}(X)_0 = 1
 <h2 id="applications-in-finance">Applications in Finance<a class="headerlink" href="#applications-in-finance" title="Permanent link">&para;</a></h2>
 <h3 id="1-risk-neutral-measure-construction">1. Risk-Neutral Measure Construction<a class="headerlink" href="#1-risk-neutral-measure-construction" title="Permanent link">&para;</a></h3>
 <p>The density process for the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>Z_t = \mathcal{E}\left(-\int_0^\cdot \frac{\mu - r}{\sigma}\,dW_s\right)_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \mathcal{E}\left(-\int_0^\cdot \frac{\mu - r}{\sigma}\,dW_s\right)_t
+\]</div>
 <p>where <span class="arithmatex">\((\mu - r)/\sigma\)</span> is the <strong>market price of risk</strong> (Sharpe ratio).</p>
 <h3 id="2-change-of-numeraire">2. Change of Numéraire<a class="headerlink" href="#2-change-of-numeraire" title="Permanent link">&para;</a></h3>
 <p>When changing from numéraire <span class="arithmatex">\(M\)</span> to numéraire <span class="arithmatex">\(N\)</span>:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^N}{d\mathbb{Q}^M}\bigg|_{\mathcal{F}_T} = \frac{N_T/N_0}{M_T/M_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^N}{d\mathbb{Q}^M}\bigg|_{\mathcal{F}_T} = \frac{N_T/N_0}{M_T/M_0}
+\]</div>
 <p>This ratio involves stochastic exponentials of the volatility difference between the two numéraires.</p>
 <h3 id="3-forward-measure">3. Forward Measure<a class="headerlink" href="#3-forward-measure" title="Permanent link">&para;</a></h3>
 <p>The <span class="arithmatex">\(T\)</span>-forward measure uses the zero-coupon bond <span class="arithmatex">\(P(t,T)\)</span> as numéraire. The density involves stochastic exponentials of bond volatilities.</p>
 <p>See <a href="../../risk-neutral_measure/forward_measure/">Forward Measure</a> for details.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{E}(X)_t = \exp\left(X_t - X_0 - \frac{1}{2}\langle X \rangle_t\right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

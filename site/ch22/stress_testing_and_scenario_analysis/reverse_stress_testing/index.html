@@ -47172,14 +47172,14 @@
 <hr />
 <h2 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h2>
 <h3 id="traditional-stress-testing-forward">Traditional Stress Testing (Forward)<a class="headerlink" href="#traditional-stress-testing-forward" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Scenario } \mathcal{S} \xrightarrow{\text{Impact Analysis}} \text{Loss } L^\mathcal{S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Scenario } \mathcal{S} \xrightarrow{\text{Impact Analysis}} \text{Loss } L^\mathcal{S}
+\]</div>
 <p>Ask: "Given scenario <span class="arithmatex">\(\mathcal{S}\)</span>, what is the loss?"</p>
 <h3 id="reverse-stress-testing-backward">Reverse Stress Testing (Backward)<a class="headerlink" href="#reverse-stress-testing-backward" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Failure Threshold } L^<em> \xrightarrow{\text{Scenario Search}} \text{Scenarios } {\mathcal{S}: L^\mathcal{S} \ge L^</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Failure Threshold } L^* \xrightarrow{\text{Scenario Search}} \text{Scenarios } \{\mathcal{S}: L^\mathcal{S} \ge L^*\}
+\]</div>
 <p>Ask: "What scenarios would cause losses exceeding threshold <span class="arithmatex">\(L^*\)</span>?"</p>
 <hr />
 <h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
@@ -47205,17 +47205,17 @@ Required under Basel III, UK PRA, and other frameworks.</p>
 <p><strong>Example:</strong> $L^* = $ CET1 capital buffer (losses that would breach minimum capital ratios).</p>
 <h3 id="step-2-identify-portfolio-losses-required">Step 2: Identify Portfolio Losses Required<a class="headerlink" href="#step-2-identify-portfolio-losses-required" title="Permanent link">&para;</a></h3>
 <p>Given current portfolio, calculate the loss required to reach failure:</p>
-<p>$$</p>
-<p>L^{\text{required}} = L^* - \text{Current Buffer}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L^{\text{required}} = L^* - \text{Current Buffer}
+\]</div>
 <p>For a bank with $10B capital buffer:
 - Failure threshold: Capital &lt; 0
 - Required loss: $10B</p>
 <h3 id="step-3-construct-scenarios">Step 3: Construct Scenarios<a class="headerlink" href="#step-3-construct-scenarios" title="Permanent link">&para;</a></h3>
 <p>Find risk factor configurations <span class="arithmatex">\(\mathbf{x}\)</span> such that:</p>
-<p>$$</p>
-<p>L(\mathbf{x}) \ge L^{\text{required}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L(\mathbf{x}) \ge L^{\text{required}}
+\]</div>
 <p>This is typically a large set—characterize its structure.</p>
 <h3 id="step-4-assess-plausibility">Step 4: Assess Plausibility<a class="headerlink" href="#step-4-assess-plausibility" title="Permanent link">&para;</a></h3>
 <p>For identified scenarios, evaluate:
@@ -47228,44 +47228,44 @@ Required under Basel III, UK PRA, and other frameworks.</p>
 <h2 id="mathematical-formulation">Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Permanent link">&para;</a></h2>
 <h3 id="optimization-approach">Optimization Approach<a class="headerlink" href="#optimization-approach" title="Permanent link">&para;</a></h3>
 <p>Find the "most plausible" scenario causing failure:</p>
-<p>$$</p>
-<p>\mathbf{x}^<em> = \arg\min_{\mathbf{x}} \text{Implausibility}(\mathbf{x}) \quad \text{s.t.} \quad L(\mathbf{x}) \ge L^</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{x}^* = \arg\min_{\mathbf{x}} \text{Implausibility}(\mathbf{x}) \quad \text{s.t.} \quad L(\mathbf{x}) \ge L^*
+\]</div>
 <p>where <span class="arithmatex">\(\text{Implausibility}(\mathbf{x})\)</span> could be:</p>
 <p><strong>Mahalanobis distance:</strong></p>
-<p>$$</p>
-<p>D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
+\]</div>
 <p><strong>Kullback-Leibler divergence:</strong> From historical distribution to scenario.</p>
 <p><strong>Entropic distance:</strong> Related to large deviations theory.</p>
 <h3 id="lagrangian-formulation">Lagrangian Formulation<a class="headerlink" href="#lagrangian-formulation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{L}(\mathbf{x}, \lambda) = D(\mathbf{x}) - \lambda(L(\mathbf{x}) - L^*)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(\mathbf{x}, \lambda) = D(\mathbf{x}) - \lambda(L(\mathbf{x}) - L^*)
+\]</div>
 <p>First-order conditions:</p>
-<p>$$</p>
-<p>\nabla D(\mathbf{x}) = \lambda \nabla L(\mathbf{x})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\nabla D(\mathbf{x}) = \lambda \nabla L(\mathbf{x})
+\]</div>
 <p>The gradient of plausibility aligns with the gradient of loss—the most dangerous direction with given plausibility.</p>
 <hr />
 <h2 id="sensitivity-based-reverse-stress-testing">Sensitivity-Based Reverse Stress Testing<a class="headerlink" href="#sensitivity-based-reverse-stress-testing" title="Permanent link">&para;</a></h2>
 <p>For linear portfolios, the loss function is:</p>
-<p>$$</p>
-<p>L(\mathbf{x}) = -\boldsymbol{\delta}^\top (\mathbf{x} - \mathbf{x}_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L(\mathbf{x}) = -\boldsymbol{\delta}^\top (\mathbf{x} - \mathbf{x}_0)
+\]</div>
 <p>where <span class="arithmatex">\(\boldsymbol{\delta}\)</span> is the vector of delta sensitivities.</p>
 <p><strong>Minimum plausibility failure:</strong></p>
-<p>$$</p>
-<p>\mathbf{x}^<em> = \mathbf{x}_0 + \frac{L^</em>}{\boldsymbol{\delta}^\top \boldsymbol{\Sigma} \boldsymbol{\delta}} \boldsymbol{\Sigma} \boldsymbol{\delta}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{x}^* = \mathbf{x}_0 + \frac{L^*}{\boldsymbol{\delta}^\top \boldsymbol{\Sigma} \boldsymbol{\delta}} \boldsymbol{\Sigma} \boldsymbol{\delta}
+\]</div>
 <p>The most plausible failure scenario moves factors in the direction <span class="arithmatex">\(\boldsymbol{\Sigma} \boldsymbol{\delta}\)</span>—the covariance-weighted sensitivity direction.</p>
 <hr />
 <h2 id="multiple-failure-scenarios">Multiple Failure Scenarios<a class="headerlink" href="#multiple-failure-scenarios" title="Permanent link">&para;</a></h2>
 <p>There are typically <strong>many</strong> scenarios causing failure. Characterize the failure set:</p>
 <h3 id="failure-region">Failure Region<a class="headerlink" href="#failure-region" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{F} = {\mathbf{x} : L(\mathbf{x}) \ge L^*}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{F} = \{\mathbf{x} : L(\mathbf{x}) \ge L^*\}
+\]</div>
 <h3 id="boundary-scenarios">Boundary Scenarios<a class="headerlink" href="#boundary-scenarios" title="Permanent link">&para;</a></h3>
 <p>The boundary <span class="arithmatex">\(\partial \mathcal{F}\)</span> represents <strong>minimal failure scenarios</strong>—the smallest moves that just trigger failure.</p>
 <h3 id="diverse-scenarios">Diverse Scenarios<a class="headerlink" href="#diverse-scenarios" title="Permanent link">&para;</a></h3>

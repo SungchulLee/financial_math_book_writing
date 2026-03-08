@@ -47295,9 +47295,9 @@
 <h2 id="assumption-1-geometric-brownian-motion-with-constant-parameters">Assumption 1: Geometric Brownian Motion with Constant Parameters<a class="headerlink" href="#assumption-1-geometric-brownian-motion-with-constant-parameters" title="Permanent link">&para;</a></h2>
 <h3 id="1-statement">1. <strong>Statement</strong><a class="headerlink" href="#1-statement" title="Permanent link">&para;</a></h3>
 <p>The underlying asset price <span class="arithmatex">\(S_t\)</span> follows <strong>geometric Brownian motion</strong> with constant drift <span class="arithmatex">\(\mu\)</span> and constant volatility <span class="arithmatex">\(\sigma\)</span>:</p>
-<p>$$</p>
-<p>\boxed{dS_t = \mu S_t dt + \sigma S_t dW_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{dS_t = \mu S_t dt + \sigma S_t dW_t}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(S_t\)</span> = asset price at time <span class="arithmatex">\(t\)</span></li>
@@ -47307,26 +47307,26 @@
 </ul>
 <h3 id="2-equivalent-representation">2. <strong>Equivalent Representation</strong><a class="headerlink" href="#2-equivalent-representation" title="Permanent link">&para;</a></h3>
 <p>By Itô's lemma, this implies:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left(\left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left(\left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t\right)
+\]</div>
 <p>Taking logarithms:</p>
-<p>$$</p>
-<p>\ln(S_t) = \ln(S_0) + \left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(S_t) = \ln(S_0) + \left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma W_t
+\]</div>
 <h3 id="3-implications">3. <strong>Implications</strong><a class="headerlink" href="#3-implications" title="Permanent link">&para;</a></h3>
 <p><strong>1. Log-normal distribution</strong>: Stock prices are log-normally distributed</p>
-<p>$$</p>
-<p>\ln(S_t) \sim \mathcal{N}\left(\ln(S_0) + \left(\mu - \frac{1}{2}\sigma^2\right)t, \sigma^2 t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln(S_t) \sim \mathcal{N}\left(\ln(S_0) + \left(\mu - \frac{1}{2}\sigma^2\right)t, \sigma^2 t\right)
+\]</div>
 <p><strong>2. Normal returns</strong>: Continuously compounded returns are normally distributed</p>
-<p>$$</p>
-<p>\ln\left(\frac{S_t}{S_0}\right) \sim \mathcal{N}\left(\left(\mu - \frac{1}{2}\sigma^2\right)t, \sigma^2 t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln\left(\frac{S_t}{S_0}\right) \sim \mathcal{N}\left(\left(\mu - \frac{1}{2}\sigma^2\right)t, \sigma^2 t\right)
+\]</div>
 <p><strong>3. Continuity</strong>: Price paths are continuous (no jumps)</p>
-<p>$$</p>
-<p>\mathbb{P}(\text{jump at any instant}) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(\text{jump at any instant}) = 0
+\]</div>
 <p><strong>4. Constant parameters</strong>: <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\sigma\)</span> do not change over time or with price level</p>
 <h3 id="4-why-this-assumption">4. <strong>Why This Assumption?</strong><a class="headerlink" href="#4-why-this-assumption" title="Permanent link">&para;</a></h3>
 <p><strong>Mathematical convenience</strong>:</p>
@@ -47437,9 +47437,9 @@
 <h3 id="2-implications_2">2. <strong>Implications</strong><a class="headerlink" href="#2-implications_2" title="Permanent link">&para;</a></h3>
 <p><strong>1. Deterministic discounting</strong>: Future cash flows are discounted by <span class="arithmatex">\(e^{-rT}\)</span></p>
 <p><strong>2. Risk-neutral drift</strong>: Under risk-neutral measure, stock grows at rate <span class="arithmatex">\(r\)</span>:</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}
+\]</div>
 <p><strong>3. Simplified PDE</strong>: The <span class="arithmatex">\(-rV\)</span> term in the Black-Scholes PDE is constant</p>
 <h3 id="3-why-this-assumption_2">3. <strong>Why This Assumption?</strong><a class="headerlink" href="#3-why-this-assumption_2" title="Permanent link">&para;</a></h3>
 <p><strong>Mathematical simplification</strong>:</p>
@@ -47627,9 +47627,9 @@
 </ul>
 <h3 id="12-dividend-adjusted-rates">12. <strong>Dividend-Adjusted Rates</strong><a class="headerlink" href="#12-dividend-adjusted-rates" title="Permanent link">&para;</a></h3>
 <p>For equity options on dividend-paying stocks, use:</p>
-<p>$$</p>
-<p>r_{\text{effective}} = r - q</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_{\text{effective}} = r - q
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(r\)</span> = risk-free rate (from above)</li>
@@ -47786,9 +47786,9 @@
 </ul>
 <p><strong>Modified price dynamics</strong>:</p>
 <p>When dividends are incorporated as a continuous yield <span class="arithmatex">\(q\)</span>, the underlying price process becomes:</p>
-<p>$$</p>
-<p>\boxed{dS_t = (\mu - q) S_t dt + \sigma S_t dW_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{dS_t = (\mu - q) S_t dt + \sigma S_t dW_t}
+\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ul>
 <li>The dividend yield acts as a <strong>negative drift term</strong></li>
@@ -47797,9 +47797,9 @@
 </ul>
 <p><strong>Modified Black-Scholes PDE</strong>:</p>
 <p>From the hedging perspective, an option holder is exposed to the dividend-adjusted growth rate <span class="arithmatex">\((\mu - q)\)</span> rather than <span class="arithmatex">\(\mu\)</span>. Under the risk-neutral measure, the Black-Scholes PDE becomes:</p>
-<p>$$</p>
-<p>\boxed{\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q) S \frac{\partial V}{\partial S} - rV = 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + (r - q) S \frac{\partial V}{\partial S} - rV = 0}
+\]</div>
 <p><strong>Key change</strong>: The drift term <span class="arithmatex">\(rS\frac{\partial V}{\partial S}\)</span> becomes <span class="arithmatex">\((r-q)S\frac{\partial V}{\partial S}\)</span>.</p>
 <h3 id="6-why-continuous-dividends-may-not-hold">6. <strong>Why Continuous Dividends May Not Hold</strong><a class="headerlink" href="#6-why-continuous-dividends-may-not-hold" title="Permanent link">&para;</a></h3>
 <p>Although including dividends enhances model realism, it introduces complications and limitations:</p>
@@ -47905,22 +47905,22 @@
 <h3 id="10-extensions-to-include-dividends">10. <strong>Extensions to Include Dividends</strong><a class="headerlink" href="#10-extensions-to-include-dividends" title="Permanent link">&para;</a></h3>
 <p><strong>1. Continuous dividend yield <span class="arithmatex">\(q\)</span></strong>:</p>
 <p>Replace <span class="arithmatex">\(r\)</span> with <span class="arithmatex">\(r - q\)</span> in the drift:</p>
-<p>$$</p>
-<p>dS_t = (r - q)S_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q)S_t dt + \sigma S_t dW_t
+\]</div>
 <p>Black-Scholes formula becomes:</p>
-<p>$$</p>
-<p>C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+\]</div>
 <p>with modified <span class="arithmatex">\(d_1\)</span>:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+\]</div>
 <p><strong>2. Discrete dividends <span class="arithmatex">\(D_i\)</span> at times <span class="arithmatex">\(t_i\)</span></strong>:</p>
 <p>Replace <span class="arithmatex">\(S\)</span> with <span class="arithmatex">\(S - \text{PV(dividends)}\)</span>:</p>
-<p>$$</p>
-<p>S' = S - \sum_{i: t_i &lt; T} D_i e^{-r(t_i - t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S' = S - \sum_{i: t_i &lt; T} D_i e^{-r(t_i - t)}
+\]</div>
 <p>Use <span class="arithmatex">\(S'\)</span> in the Black-Scholes formula.</p>
 <p><strong>3. Proportional dividends</strong>: If dividend is <span class="arithmatex">\(\delta \cdot S\)</span> at <span class="arithmatex">\(t_d\)</span>, model the percentage drop directly.</p>
 <hr />

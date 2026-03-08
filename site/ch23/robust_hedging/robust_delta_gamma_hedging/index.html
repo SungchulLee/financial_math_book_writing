@@ -47548,123 +47548,123 @@
 <h2 id="mathematical-framework">Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-greeks">1. Greeks<a class="headerlink" href="#1-greeks" title="Permanent link">&para;</a></h3>
 <p><strong>Delta</strong>: First-order price sensitivity:</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial V}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial V}{\partial S}
+\]</div>
 <p><strong>Gamma</strong>: Second-order price sensitivity (curvature):</p>
-<p>$$</p>
-<p>\Gamma = \frac{\partial^2 V}{\partial S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma = \frac{\partial^2 V}{\partial S^2}
+\]</div>
 <p><strong>Vega</strong>: Sensitivity to volatility:</p>
-<p>$$</p>
-<p>\mathcal{V} = \frac{\partial V}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} = \frac{\partial V}{\partial \sigma}
+\]</div>
 <p><strong>Relationship</strong>: Under Black-Scholes:</p>
-<p>$$</p>
-<p>\mathcal{V} = S^2 \Gamma \sqrt{T - t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} = S^2 \Gamma \sqrt{T - t}
+\]</div>
 <p>connecting gamma and vega.</p>
 <h3 id="2-portfolio-dynamics">2. Portfolio Dynamics<a class="headerlink" href="#2-portfolio-dynamics" title="Permanent link">&para;</a></h3>
 <p><strong>Position</strong>: Hold <span class="arithmatex">\(\theta_t\)</span> shares of stock and <span class="arithmatex">\(\phi_t\)</span> options (for gamma hedging).</p>
 <p><strong>Portfolio Value</strong>:</p>
-<p>$$</p>
-<p>V_t = V(S_t, t) + \theta_t S_t + \phi_t O(S_t, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = V(S_t, t) + \theta_t S_t + \phi_t O(S_t, t)
+\]</div>
 <p>where <span class="arithmatex">\(O(S_t, t)\)</span> is the option value.</p>
 <p><strong>Delta-Gamma Neutral</strong>: </p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial S} + \theta_t + \phi_t \frac{\partial O}{\partial S} = 0 \quad \text{(delta neutral)}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 V}{\partial S^2} + \phi_t \frac{\partial^2 O}{\partial S^2} = 0 \quad \text{(gamma neutral)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial S} + \theta_t + \phi_t \frac{\partial O}{\partial S} = 0 \quad \text{(delta neutral)}
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 V}{\partial S^2} + \phi_t \frac{\partial^2 O}{\partial S^2} = 0 \quad \text{(gamma neutral)}
+\]</div>
 <p><strong>Solution</strong>: </p>
-<p>$$</p>
-<p>\phi_t = -\frac{\Gamma_V}{\Gamma_O}, \quad \theta_t = -\Delta_V + \phi_t \Delta_O</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi_t = -\frac{\Gamma_V}{\Gamma_O}, \quad \theta_t = -\Delta_V + \phi_t \Delta_O
+\]</div>
 <p>where subscripts denote the derivative or hedging instrument.</p>
 <h2 id="classical-delta-gamma-hedging">Classical Delta-Gamma Hedging<a class="headerlink" href="#classical-delta-gamma-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="1-black-scholes-framework">1. Black-Scholes Framework<a class="headerlink" href="#1-black-scholes-framework" title="Permanent link">&para;</a></h3>
 <p><strong>Option PDE</strong>: Under Black-Scholes with constant volatility <span class="arithmatex">\(\sigma\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
 <p><strong>Perfect Hedge</strong>: With continuous delta-gamma hedging:</p>
-<p>$$</p>
-<p>dV - \Delta \, dS - \Theta \, dt = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV - \Delta \, dS - \Theta \, dt = 0
+\]</div>
 <p>where <span class="arithmatex">\(\Theta = \frac{\partial V}{\partial t}\)</span> is theta.</p>
 <p><strong>Replication</strong>: Portfolio value exactly replicates option value at all times.</p>
 <h3 id="2-discrete-hedging">2. Discrete Hedging<a class="headerlink" href="#2-discrete-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Time Grid</strong>: Rebalance at times <span class="arithmatex">\(\{t_0, t_1, \ldots, t_N\}\)</span> with spacing <span class="arithmatex">\(\Delta t = t_{i+1} - t_i\)</span>.</p>
 <p><strong>Portfolio Dynamics</strong>: Between rebalancing:</p>
-<p>$$</p>
-<p>dV_t = \theta_{t_i} \, dS_t + \phi_{t_i} \, dO_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \theta_{t_i} \, dS_t + \phi_{t_i} \, dO_t
+\]</div>
 <p>for <span class="arithmatex">\(t \in [t_i, t_{i+1})\)</span>.</p>
 <p><strong>Taylor Expansion</strong>: Option value change:</p>
-<p>$$</p>
-<p>\Delta V \approx \Delta \cdot \Delta S + \frac{1}{2} \Gamma \cdot (\Delta S)^2 + \Theta \cdot \Delta t + \frac{1}{2} \mathcal{V} \cdot (\Delta \sigma)^2 + \ldots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta V \approx \Delta \cdot \Delta S + \frac{1}{2} \Gamma \cdot (\Delta S)^2 + \Theta \cdot \Delta t + \frac{1}{2} \mathcal{V} \cdot (\Delta \sigma)^2 + \ldots
+\]</div>
 <p><strong>Hedging Error</strong>: With delta-gamma hedging:</p>
-<p>$$</p>
-<p>\text{Error} \approx \frac{1}{6} \frac{\partial^3 V}{\partial S^3} (\Delta S)^3 + \frac{1}{2} \frac{\partial^2 V}{\partial S \partial t} \Delta S \, \Delta t + \ldots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Error} \approx \frac{1}{6} \frac{\partial^3 V}{\partial S^3} (\Delta S)^3 + \frac{1}{2} \frac{\partial^2 V}{\partial S \partial t} \Delta S \, \Delta t + \ldots
+\]</div>
 <p>Third and higher-order terms, which vanish as <span class="arithmatex">\(\Delta t \to 0\)</span>.</p>
 <h2 id="robust-hedging-under-volatility-uncertainty">Robust Hedging Under Volatility Uncertainty<a class="headerlink" href="#robust-hedging-under-volatility-uncertainty" title="Permanent link">&para;</a></h2>
 <h3 id="1-uncertain-volatility-model">1. Uncertain Volatility Model<a class="headerlink" href="#1-uncertain-volatility-model" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: True volatility <span class="arithmatex">\(\sigma_t\)</span> is unknown but bounded:</p>
-<p>$$</p>
-<p>\underline{\sigma} \leq \sigma_t \leq \overline{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{\sigma} \leq \sigma_t \leq \overline{\sigma}
+\]</div>
 <p><strong>Stock Dynamics</strong>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma_t S_t \, dW_t
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_t \in [\underline{\sigma}, \overline{\sigma}]\)</span> is adversarially chosen.</p>
 <p><strong>Objective</strong>: Find hedging strategy that minimizes worst-case loss.</p>
 <h3 id="2-hamilton-jacobi-bellman-equation">2. Hamilton-Jacobi-Bellman Equation<a class="headerlink" href="#2-hamilton-jacobi-bellman-equation" title="Permanent link">&para;</a></h3>
 <p><strong>Value Function</strong>: The minimal super-replication cost <span class="arithmatex">\(V(S, t)\)</span> satisfies:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right} + rS \frac{\partial V}{\partial S} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right\} + rS \frac{\partial V}{\partial S} - rV = 0
+\]</div>
 <p><strong>Supremum</strong>: Nature chooses volatility to maximize instantaneous risk.</p>
 <p><strong>Solution</strong>: </p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2} \bar{\sigma}^2(S, t) S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2} \bar{\sigma}^2(S, t) S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\bar{\sigma}^2(S, t) = \begin{cases}
-\overline{\sigma}^2 &amp; \text{if } \frac{\partial^2 V}{\partial S^2} &gt; 0 \
+<div class="arithmatex">\[
+\bar{\sigma}^2(S, t) = \begin{cases}
+\overline{\sigma}^2 &amp; \text{if } \frac{\partial^2 V}{\partial S^2} &gt; 0 \\
 \underline{\sigma}^2 &amp; \text{if } \frac{\partial^2 V}{\partial S^2} &lt; 0
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Interpretation</strong>: 
 - Positive gamma → Use maximum volatility (worst case)
 - Negative gamma → Use minimum volatility (worst case)</p>
 <h3 id="3-hedging-strategy">3. Hedging Strategy<a class="headerlink" href="#3-hedging-strategy" title="Permanent link">&para;</a></h3>
 <p><strong>Delta Position</strong>: </p>
-<p>$$</p>
-<p>\theta_t = -\frac{\partial V}{\partial S}(S_t, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_t = -\frac{\partial V}{\partial S}(S_t, t)
+\]</div>
 <p><strong>Gamma Position</strong>: Adjust using options to target gamma:</p>
-<p>$$</p>
-<p>\Gamma_{\text{target}}(S, t) = \begin{cases}
-0 &amp; \text{if gamma is costly to hedge} \
+<div class="arithmatex">\[
+\Gamma_{\text{target}}(S, t) = \begin{cases}
+0 &amp; \text{if gamma is costly to hedge} \\
 -\Gamma_V(S, t) &amp; \text{if neutralizing gamma is beneficial}
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Adaptive</strong>: Strategy adapts to whether position is long or short gamma.</p>
 <h2 id="multi-factor-robust-hedging">Multi-Factor Robust Hedging<a class="headerlink" href="#multi-factor-robust-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="1-stochastic-volatility">1. Stochastic Volatility<a class="headerlink" href="#1-stochastic-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Model</strong>: Volatility follows its own process:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S</p>
-<p>$$</p>
-<p>$$</p>
-<p>dV_t = \kappa(\theta - V_t) \, dt + \xi \sqrt{V_t} \, dW_t^V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sqrt{V_t} S_t \, dW_t^S
+\]</div>
+<div class="arithmatex">\[
+dV_t = \kappa(\theta - V_t) \, dt + \xi \sqrt{V_t} \, dW_t^V
+\]</div>
 <p>with correlation <span class="arithmatex">\(\rho = \mathbb{E}[dW_t^S dW_t^V]\)</span>.</p>
 <p><strong>Greeks</strong>:
 - <span class="arithmatex">\(\Delta = \frac{\partial V}{\partial S}\)</span>
@@ -47676,19 +47676,19 @@
 - Options at strike <span class="arithmatex">\(K_1\)</span> (for gamma)
 - Options at strike <span class="arithmatex">\(K_2\)</span> (for vega)</p>
 <p><strong>Portfolio</strong>:</p>
-<p>$$</p>
-<p>\Pi_t = V_t + \theta_t^S S_t + \theta_t^{O_1} O_1(S_t, v_t; K_1) + \theta_t^{O_2} O_2(S_t, v_t; K_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_t = V_t + \theta_t^S S_t + \theta_t^{O_1} O_1(S_t, v_t; K_1) + \theta_t^{O_2} O_2(S_t, v_t; K_2)
+\]</div>
 <p><strong>Neutral Conditions</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial \Pi}{\partial S} = 0, \quad \frac{\partial^2 \Pi}{\partial S^2} = 0, \quad \frac{\partial \Pi}{\partial v} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \Pi}{\partial S} = 0, \quad \frac{\partial^2 \Pi}{\partial S^2} = 0, \quad \frac{\partial \Pi}{\partial v} = 0
+\]</div>
 <p>This is a <strong>system of 3 equations</strong> in 3 unknowns: <span class="arithmatex">\((\theta^S, \theta^{O_1}, \theta^{O_2})\)</span>.</p>
 <h3 id="2-cross-gamma">2. Cross-Gamma<a class="headerlink" href="#2-cross-gamma" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: </p>
-<p>$$</p>
-<p>\Gamma_{Sv} = \frac{\partial^2 V}{\partial S \partial v}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_{Sv} = \frac{\partial^2 V}{\partial S \partial v}
+\]</div>
 <p>measures interaction between price and volatility changes.</p>
 <p><strong>Hedging</strong>: Cannot fully hedge cross-gamma with stock and single-maturity options alone. Requires:
 - Multiple option maturities
@@ -47697,9 +47697,9 @@
 <h2 id="robust-optimization-framework">Robust Optimization Framework<a class="headerlink" href="#robust-optimization-framework" title="Permanent link">&para;</a></h2>
 <h3 id="1-worst-case-hedging">1. Worst-Case Hedging<a class="headerlink" href="#1-worst-case-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Objective</strong>: Minimize maximum loss over uncertainty set:</p>
-<p>$$</p>
-<p>\min_{\theta, \phi} \max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \mathbb{E}_{\sigma}\left[(V_T - \Pi_T)^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\theta, \phi} \max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \mathbb{E}_{\sigma}\left[(V_T - \Pi_T)^2\right]
+\]</div>
 <p>where <span class="arithmatex">\(\Pi_T\)</span> is the hedged portfolio value.</p>
 <p><strong>Solution Approach</strong>:
 1. Discretize uncertainty set: <span class="arithmatex">\(\{\sigma_1, \ldots, \sigma_n\}\)</span>
@@ -47707,9 +47707,9 @@
 3. Choose strategy that performs best in worst scenario</p>
 <h3 id="2-robust-pde">2. Robust PDE<a class="headerlink" href="#2-robust-pde" title="Permanent link">&para;</a></h3>
 <p><strong>General Form</strong>: For uncertainty in drift <span class="arithmatex">\(\mu\)</span> and volatility <span class="arithmatex">\(\sigma\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \sup_{(\mu, \sigma) \in \mathcal{U}} \left{ \mu S \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \sup_{(\mu, \sigma) \in \mathcal{U}} \left\{ \mu S \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right\} = 0
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{U}\)</span> is the uncertainty set.</p>
 <p><strong>Viscosity Solution</strong>: The value function is characterized as the unique viscosity solution to this PDE.</p>
 <p><strong>Numerical Methods</strong>: 
@@ -47718,81 +47718,81 @@
 - Policy iteration</p>
 <h3 id="3-penalty-function-approach">3. Penalty Function Approach<a class="headerlink" href="#3-penalty-function-approach" title="Permanent link">&para;</a></h3>
 <p><strong>Regularization</strong>: Instead of hard constraints on <span class="arithmatex">\(\sigma\)</span>, penalize deviations from reference:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2} \sigma_0^2 S^2 \frac{\partial^2 V}{\partial S^2} + \sup_{\sigma} \left{ \frac{1}{2}(\sigma^2 - \sigma_0^2) S^2 \frac{\partial^2 V}{\partial S^2} - \theta \cdot \frac{(\sigma - \sigma_0)^2}{2} \right} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2} \sigma_0^2 S^2 \frac{\partial^2 V}{\partial S^2} + \sup_{\sigma} \left\{ \frac{1}{2}(\sigma^2 - \sigma_0^2) S^2 \frac{\partial^2 V}{\partial S^2} - \theta \cdot \frac{(\sigma - \sigma_0)^2}{2} \right\} = 0
+\]</div>
 <p><strong>Solution</strong>: </p>
-<p>$$</p>
-<p>\sigma^* = \sigma_0 + \frac{1}{\theta} S^2 \frac{\partial^2 V}{\partial S^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^* = \sigma_0 + \frac{1}{\theta} S^2 \frac{\partial^2 V}{\partial S^2}
+\]</div>
 <p>clamped to <span class="arithmatex">\([\underline{\sigma}, \overline{\sigma}]\)</span>.</p>
 <p><strong>Interpretation</strong>: <span class="arithmatex">\(\theta\)</span> measures aversion to model deviation; large <span class="arithmatex">\(\theta\)</span> keeps <span class="arithmatex">\(\sigma^*\)</span> close to <span class="arithmatex">\(\sigma_0\)</span>.</p>
 <h2 id="transaction-costs">Transaction Costs<a class="headerlink" href="#transaction-costs" title="Permanent link">&para;</a></h2>
 <h3 id="1-discrete-rebalancing">1. Discrete Rebalancing<a class="headerlink" href="#1-discrete-rebalancing" title="Permanent link">&para;</a></h3>
 <p><strong>Cost Model</strong>: Proportional costs <span class="arithmatex">\(\lambda\)</span> per unit traded:</p>
-<p>$$</p>
-<p>\text{Cost} = \lambda |\Delta \theta| S + \lambda |\Delta \phi| O</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost} = \lambda |\Delta \theta| S + \lambda |\Delta \phi| O
+\]</div>
 <p><strong>Optimal Rebalancing</strong>: Trade-off between hedging error and transaction costs:</p>
-<p>$$</p>
-<p>\min_{{\Delta \theta_i, \Delta \phi_i}} \mathbb{E}\left[(V_T - \Pi_T)^2 + \sum_{i=1}^N \lambda_i (|\Delta \theta_i| S_i + |\Delta \phi_i| O_i)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{\{\Delta \theta_i, \Delta \phi_i\}} \mathbb{E}\left[(V_T - \Pi_T)^2 + \sum_{i=1}^N \lambda_i (|\Delta \theta_i| S_i + |\Delta \phi_i| O_i)\right]
+\]</div>
 <p><strong>No-Transaction Region</strong>: Optimal to rebalance only when Greeks drift outside a band:</p>
-<p>$$</p>
-<p>|\Delta(S_t) - \Delta_{\text{portfolio}}| &gt; \epsilon_{\Delta}, \quad |\Gamma(S_t) - \Gamma_{\text{portfolio}}| &gt; \epsilon_{\Gamma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\Delta(S_t) - \Delta_{\text{portfolio}}| &gt; \epsilon_{\Delta}, \quad |\Gamma(S_t) - \Gamma_{\text{portfolio}}| &gt; \epsilon_{\Gamma}
+\]</div>
 <p>where <span class="arithmatex">\(\epsilon_{\Delta}, \epsilon_{\Gamma}\)</span> depend on <span class="arithmatex">\(\lambda\)</span> and <span class="arithmatex">\(\sigma\)</span>.</p>
 <h3 id="2-asymptotic-analysis">2. Asymptotic Analysis<a class="headerlink" href="#2-asymptotic-analysis" title="Permanent link">&para;</a></h3>
 <p><strong>Small Transaction Costs</strong>: As <span class="arithmatex">\(\lambda \to 0\)</span>:</p>
-<p>$$</p>
-<p>\epsilon_{\Delta} \sim \lambda^{1/3}, \quad \epsilon_{\Gamma} \sim \lambda^{1/3}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\epsilon_{\Delta} \sim \lambda^{1/3}, \quad \epsilon_{\Gamma} \sim \lambda^{1/3}
+\]</div>
 <p><strong>Hedging Error</strong>: Expected squared error:</p>
-<p>$$</p>
-<p>\mathbb{E}[(V_T - \Pi_T)^2] \sim \lambda^{2/3}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[(V_T - \Pi_T)^2] \sim \lambda^{2/3}
+\]</div>
 <p><strong>Implication</strong>: Even small transaction costs significantly impact optimal hedging strategy.</p>
 <h3 id="3-lelands-approach">3. Leland's Approach<a class="headerlink" href="#3-lelands-approach" title="Permanent link">&para;</a></h3>
 <p><strong>Modified Volatility</strong>: To account for transaction costs in delta-hedging, use:</p>
-<p>$$</p>
-<p>\tilde{\sigma}^2 = \sigma^2 + \sqrt{\frac{2}{\pi}} \lambda \frac{\sigma}{\sqrt{\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{\sigma}^2 = \sigma^2 + \sqrt{\frac{2}{\pi}} \lambda \frac{\sigma}{\sqrt{\Delta t}}
+\]</div>
 <p><strong>Interpretation</strong>: Transaction costs effectively increase volatility used in Black-Scholes formula.</p>
 <p><strong>Gamma Adjustment</strong>: With gamma hedging, modification is more complex, involving both delta and gamma adjustments.</p>
 <h2 id="correlation-risk">Correlation Risk<a class="headerlink" href="#correlation-risk" title="Permanent link">&para;</a></h2>
 <h3 id="1-multi-asset-portfolios">1. Multi-Asset Portfolios<a class="headerlink" href="#1-multi-asset-portfolios" title="Permanent link">&para;</a></h3>
 <p><strong>Assets</strong>: <span class="arithmatex">\(\mathbf{S}_t = (S_t^{(1)}, \ldots, S_t^{(n)})\)</span> with correlation matrix <span class="arithmatex">\(\rho\)</span>.</p>
 <p><strong>Greeks Matrix</strong>:</p>
-<p>$$</p>
-<p>\boldsymbol{\Gamma} = \begin{pmatrix}
-\Gamma_{11} &amp; \Gamma_{12} &amp; \cdots &amp; \Gamma_{1n} \
-\Gamma_{21} &amp; \Gamma_{22} &amp; \cdots &amp; \Gamma_{2n} \
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+<div class="arithmatex">\[
+\boldsymbol{\Gamma} = \begin{pmatrix}
+\Gamma_{11} &amp; \Gamma_{12} &amp; \cdots &amp; \Gamma_{1n} \\
+\Gamma_{21} &amp; \Gamma_{22} &amp; \cdots &amp; \Gamma_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 \Gamma_{n1} &amp; \Gamma_{n2} &amp; \cdots &amp; \Gamma_{nn}
-\end{pmatrix}</p>
-<p>$$</p>
+\end{pmatrix}
+\]</div>
 <p>where <span class="arithmatex">\(\Gamma_{ij} = \frac{\partial^2 V}{\partial S_i \partial S_j}\)</span>.</p>
 <p><strong>Hedging</strong>: Requires <span class="arithmatex">\(\frac{n(n+1)}{2}\)</span> instruments to neutralize all second-order sensitivities.</p>
 <p><strong>Robust Correlation</strong>: Assume correlation <span class="arithmatex">\(\rho_{ij} \in [\underline{\rho}_{ij}, \overline{\rho}_{ij}]\)</span>.</p>
 <p><strong>Worst-Case Scenario</strong>:</p>
-<p>$$</p>
-<p>\max_{\rho \in \mathcal{R}} \sum_{i,j} \Gamma_{ij} \rho_{ij}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_{\rho \in \mathcal{R}} \sum_{i,j} \Gamma_{ij} \rho_{ij}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{R}\)</span> is the set of valid correlation matrices in the uncertainty range.</p>
 <h3 id="2-basket-options">2. Basket Options<a class="headerlink" href="#2-basket-options" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: </p>
-<p>$$</p>
-<p>\Phi = \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi = \left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
+\]</div>
 <p><strong>Challenge</strong>: Cross-gammas <span class="arithmatex">\(\Gamma_{ij}\)</span> for <span class="arithmatex">\(i \neq j\)</span> are sensitive to correlation.</p>
 <p><strong>Hedging Strategy</strong>:
 1. Delta-hedge each component
 2. Gamma-hedge using options on individual assets
 3. Accept residual cross-gamma risk or hedge using basket options if available</p>
 <p><strong>Robust Approach</strong>: Compute worst-case correlation matrix:</p>
-<p>$$</p>
-<p>\rho^* = \arg\max_{\rho \in \mathcal{R}} \text{Hedging Error}(\rho)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho^* = \arg\max_{\rho \in \mathcal{R}} \text{Hedging Error}(\rho)
+\]</div>
 <p>and hedge for this scenario.</p>
 <h2 id="numerical-methods">Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-finite-difference-schemes">1. Finite Difference Schemes<a class="headerlink" href="#1-finite-difference-schemes" title="Permanent link">&para;</a></h3>
@@ -47800,16 +47800,16 @@
 - Space: <span class="arithmatex">\(S \in \{S_{\min}, S_{\min} + \Delta S, \ldots, S_{\max}\}\)</span>
 - Time: <span class="arithmatex">\(t \in \{0, \Delta t, 2\Delta t, \ldots, T\}\)</span></p>
 <p><strong>Approximation</strong>: </p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} \approx \frac{V_i^{n+1} - V_i^n}{\Delta t}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{\partial^2 V}{\partial S^2} \approx \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} \approx \frac{V_i^{n+1} - V_i^n}{\Delta t}
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 V}{\partial S^2} \approx \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2}
+\]</div>
 <p><strong>Robust PDE Discretization</strong>:</p>
-<p>$$</p>
-<p>\frac{V_i^{n+1} - V_i^n}{\Delta t} + \max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left{ \frac{1}{2} \sigma^2 S_i^2 \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2} \right} + \ldots = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{V_i^{n+1} - V_i^n}{\Delta t} + \max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S_i^2 \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2} \right\} + \ldots = 0
+\]</div>
 <p><strong>Algorithm</strong>:
 1. For each grid point <span class="arithmatex">\((S_i, t_n)\)</span>
 2. Compute <span class="arithmatex">\(\Gamma_i^n = \frac{V_{i+1}^n - 2V_i^n + V_{i-1}^n}{(\Delta S)^2}\)</span>
@@ -47818,25 +47818,25 @@
 <h3 id="2-monte-carlo-with-stochastic-control">2. Monte Carlo with Stochastic Control<a class="headerlink" href="#2-monte-carlo-with-stochastic-control" title="Permanent link">&para;</a></h3>
 <p><strong>Scenario Generation</strong>: Simulate paths under various volatility scenarios.</p>
 <p><strong>Regression</strong>: At each rebalancing time <span class="arithmatex">\(t_i\)</span>, estimate conditional expectations:</p>
-<p>$$</p>
-<p>\mathbb{E}[V_{t_{i+1}} | S_{t_i}] \approx \sum_j \beta_j \phi_j(S_{t_i})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[V_{t_{i+1}} | S_{t_i}] \approx \sum_j \beta_j \phi_j(S_{t_i})
+\]</div>
 <p>using basis functions <span class="arithmatex">\(\{\phi_j\}\)</span> (polynomials, radial basis functions, etc.).</p>
 <p><strong>Optimal Hedge</strong>: Choose <span class="arithmatex">\(\theta_{t_i}, \phi_{t_i}\)</span> to minimize:</p>
-<p>$$</p>
-<p>\text{Var}(V_{t_{i+1}} - \theta_{t_i} S_{t_{i+1}} - \phi_{t_i} O_{t_{i+1}} | S_{t_i})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(V_{t_{i+1}} - \theta_{t_i} S_{t_{i+1}} - \phi_{t_i} O_{t_{i+1}} | S_{t_i})
+\]</div>
 <p><strong>Iteration</strong>: Work backwards from maturity to initial time.</p>
 <h3 id="3-policy-iteration">3. Policy Iteration<a class="headerlink" href="#3-policy-iteration" title="Permanent link">&para;</a></h3>
 <p><strong>Value Function</strong>: Guess initial <span class="arithmatex">\(V^{(0)}(S, t)\)</span>.</p>
 <p><strong>Policy Update</strong>: Given <span class="arithmatex">\(V^{(k)}\)</span>, compute optimal control:</p>
-<p>$$</p>
-<p>\sigma^{(k+1)}(S, t) = \arg\max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V^{(k)}}{\partial S^2} \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^{(k+1)}(S, t) = \arg\max_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V^{(k)}}{\partial S^2} \right\}
+\]</div>
 <p><strong>Value Update</strong>: Solve:</p>
-<p>$$</p>
-<p>\frac{\partial V^{(k+1)}}{\partial t} + \frac{1}{2} (\sigma^{(k+1)})^2 S^2 \frac{\partial^2 V^{(k+1)}}{\partial S^2} + \ldots = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V^{(k+1)}}{\partial t} + \frac{1}{2} (\sigma^{(k+1)})^2 S^2 \frac{\partial^2 V^{(k+1)}}{\partial S^2} + \ldots = 0
+\]</div>
 <p><strong>Convergence</strong>: Iterate until <span class="arithmatex">\(\|V^{(k+1)} - V^{(k)}\| &lt; \epsilon\)</span>.</p>
 <h2 id="greeks-monitoring-and-adjustment">Greeks Monitoring and Adjustment<a class="headerlink" href="#greeks-monitoring-and-adjustment" title="Permanent link">&para;</a></h2>
 <h3 id="1-delta-gamma-dashboard">1. Delta-Gamma Dashboard<a class="headerlink" href="#1-delta-gamma-dashboard" title="Permanent link">&para;</a></h3>
@@ -47853,16 +47853,16 @@
 <h3 id="2-adjustment-algorithm">2. Adjustment Algorithm<a class="headerlink" href="#2-adjustment-algorithm" title="Permanent link">&para;</a></h3>
 <p><strong>Trigger</strong>: If <span class="arithmatex">\(|\Delta_{\text{portfolio}} - \Delta_{\text{target}}| &gt; \epsilon_{\Delta}\)</span> or <span class="arithmatex">\(|\Gamma_{\text{portfolio}} - \Gamma_{\text{target}}| &gt; \epsilon_{\Gamma}\)</span>:</p>
 <p><strong>Step 1</strong>: Compute required adjustments:</p>
-<p>$$</p>
-<p>\Delta \phi = -\frac{\Gamma_{\text{portfolio}} - \Gamma_{\text{target}}}{\Gamma_O}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Delta \theta = -(\Delta_{\text{portfolio}} - \Delta_{\text{target}}) + \Delta \phi \cdot \Delta_O</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \phi = -\frac{\Gamma_{\text{portfolio}} - \Gamma_{\text{target}}}{\Gamma_O}
+\]</div>
+<div class="arithmatex">\[
+\Delta \theta = -(\Delta_{\text{portfolio}} - \Delta_{\text{target}}) + \Delta \phi \cdot \Delta_O
+\]</div>
 <p><strong>Step 2</strong>: Estimate transaction costs:</p>
-<p>$$</p>
-<p>\text{Cost} = \lambda (|\Delta \theta| S_t + |\Delta \phi| O_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost} = \lambda (|\Delta \theta| S_t + |\Delta \phi| O_t)
+\]</div>
 <p><strong>Step 3</strong>: If Cost &lt; Expected benefit, execute trades. Otherwise, wait.</p>
 <p><strong>Step 4</strong>: Update portfolio records and reset targets.</p>
 <h3 id="3-stress-testing">3. Stress Testing<a class="headerlink" href="#3-stress-testing" title="Permanent link">&para;</a></h3>
@@ -47938,21 +47938,21 @@
 <p><strong>Robust Approach</strong>: Assume worst-case smile dynamics among plausible models.</p>
 <h3 id="2-rough-volatility">2. Rough Volatility<a class="headerlink" href="#2-rough-volatility" title="Permanent link">&para;</a></h3>
 <p><strong>Model</strong>: Volatility has Hölder regularity <span class="arithmatex">\(H &lt; 1/2\)</span>:</p>
-<p>$$</p>
-<p>\sigma_t = f\left(\int_0^t (t-s)^{H-1/2} dW_s\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_t = f\left(\int_0^t (t-s)^{H-1/2} dW_s\right)
+\]</div>
 <p><strong>Gamma Hedging</strong>: Classical quadratic variation arguments don't apply directly.</p>
 <p><strong>Rough Path Hedging</strong>: Use rough path theory to define gamma properly:</p>
-<p>$$</p>
-<p>\text{Gamma Cost} = \int_0^T \Gamma_t \, d[S]_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Gamma Cost} = \int_0^T \Gamma_t \, d[S]_t
+\]</div>
 <p>where <span class="arithmatex">\([S]_t\)</span> is understood in rough path sense.</p>
 <p><strong>Practical Impact</strong>: Need finer rebalancing frequency for rough volatility than smooth models suggest.</p>
 <h3 id="3-jump-diffusion">3. Jump Diffusion<a class="headerlink" href="#3-jump-diffusion" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamics</strong>: </p>
-<p>$$</p>
-<p>dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_{t-} dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t \, dt + \sigma S_t \, dW_t + S_{t-} dJ_t
+\]</div>
 <p>where <span class="arithmatex">\(J_t\)</span> is a jump process.</p>
 <p><strong>Gamma Hedging Failure</strong>: Gamma hedging protects against continuous moves, not jumps.</p>
 <p><strong>Jump Protection</strong>: 
@@ -47974,52 +47974,52 @@
 <h2 id="performance-metrics">Performance Metrics<a class="headerlink" href="#performance-metrics" title="Permanent link">&para;</a></h2>
 <h3 id="1-hedging-error">1. Hedging Error<a class="headerlink" href="#1-hedging-error" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: </p>
-<p>$$</p>
-<p>\text{Error} = V_T - \Pi_T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Error} = V_T - \Pi_T
+\]</div>
 <p>where <span class="arithmatex">\(\Pi_T\)</span> is hedged portfolio value.</p>
 <p><strong>Mean Squared Error</strong>:</p>
-<p>$$</p>
-<p>\text{MSE} = \mathbb{E}[(\text{Error})^2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MSE} = \mathbb{E}[(\text{Error})^2]
+\]</div>
 <p><strong>Root Mean Squared Error</strong>:</p>
-<p>$$</p>
-<p>\text{RMSE} = \sqrt{\text{MSE}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RMSE} = \sqrt{\text{MSE}}
+\]</div>
 <h3 id="2-sharpe-ratio-of-hedged-portfolio">2. Sharpe Ratio of Hedged Portfolio<a class="headerlink" href="#2-sharpe-ratio-of-hedged-portfolio" title="Permanent link">&para;</a></h3>
 <p><strong>Return</strong>: </p>
-<p>$$</p>
-<p>R = \frac{\Pi_T - \Pi_0}{\Pi_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R = \frac{\Pi_T - \Pi_0}{\Pi_0}
+\]</div>
 <p><strong>Sharpe Ratio</strong>:</p>
-<p>$$</p>
-<p>\text{SR} = \frac{\mathbb{E}[R] - r_f}{\text{Std}(R)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{SR} = \frac{\mathbb{E}[R] - r_f}{\text{Std}(R)}
+\]</div>
 <p>where <span class="arithmatex">\(r_f\)</span> is the risk-free rate.</p>
 <p><strong>Interpretation</strong>: Higher SR indicates better risk-adjusted performance.</p>
 <h3 id="3-maximum-drawdown">3. Maximum Drawdown<a class="headerlink" href="#3-maximum-drawdown" title="Permanent link">&para;</a></h3>
 <p><strong>Drawdown</strong>: Largest peak-to-trough decline:</p>
-<p>$$</p>
-<p>\text{DD}<em 0="0" _leq="\leq" s="s" t="t">t = \max</em> \Pi_s - \Pi_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{DD}_t = \max_{0 \leq s \leq t} \Pi_s - \Pi_t
+\]</div>
 <p><strong>Maximum Drawdown</strong>:</p>
-<p>$$</p>
-<p>\text{MDD} = \max_{0 \leq t \leq T} \text{DD}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{MDD} = \max_{0 \leq t \leq T} \text{DD}_t
+\]</div>
 <p><strong>Risk Management</strong>: Set limits on MDD to control tail risk.</p>
 <h3 id="4-cost-benefit-analysis">4. Cost-Benefit Analysis<a class="headerlink" href="#4-cost-benefit-analysis" title="Permanent link">&para;</a></h3>
 <p><strong>Total Cost</strong>: Transaction costs + option premiums:</p>
-<p>$$</p>
-<p>\text{Total Cost} = \sum_{i=1}^N \lambda |\Delta \theta_i| S_i + \sum_{j=1}^M \text{Premium}_j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Cost} = \sum_{i=1}^N \lambda |\Delta \theta_i| S_i + \sum_{j=1}^M \text{Premium}_j
+\]</div>
 <p><strong>Benefit</strong>: Reduction in hedging error variance:</p>
-<p>$$</p>
-<p>\text{Benefit} = \text{Var}(\text{Error}<em _text_hedged="\text{hedged">{\text{unhedged}}) - \text{Var}(\text{Error}</em>)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Benefit} = \text{Var}(\text{Error}_{\text{unhedged}}) - \text{Var}(\text{Error}_{\text{hedged}})
+\]</div>
 <p><strong>Ratio</strong>:</p>
-<p>$$</p>
-<p>\text{Cost-Benefit Ratio} = \frac{\text{Total Cost}}{\text{Benefit}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cost-Benefit Ratio} = \frac{\text{Total Cost}}{\text{Benefit}}
+\]</div>
 <p>Aim for CBR &lt; 1 (benefits exceed costs).</p>
 <h2 id="case-studies">Case Studies<a class="headerlink" href="#case-studies" title="Permanent link">&para;</a></h2>
 <h3 id="1-case-1-market-maker-in-equity-options">1. Case 1: Market Maker in Equity Options<a class="headerlink" href="#1-case-1-market-maker-in-equity-options" title="Permanent link">&para;</a></h3>

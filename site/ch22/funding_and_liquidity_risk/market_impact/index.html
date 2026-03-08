@@ -47182,16 +47182,16 @@
 - Price adjusts to incorporate new information
 - Persists indefinitely</p>
 <h3 id="total-impact">Total Impact<a class="headerlink" href="#total-impact" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{Total Impact} = \text{Temporary Impact} + \text{Permanent Impact}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Impact} = \text{Temporary Impact} + \text{Permanent Impact}
+\]</div>
 <hr />
 <h2 id="the-square-root-law">The Square-Root Law<a class="headerlink" href="#the-square-root-law" title="Permanent link">&para;</a></h2>
 <h3 id="empirical-observation">Empirical Observation<a class="headerlink" href="#empirical-observation" title="Permanent link">&para;</a></h3>
 <p>Market impact scales approximately as the square root of trade size:</p>
-<p>$$</p>
-<p>\Delta P \approx \sigma \cdot \sqrt{\frac{Q}{V}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P \approx \sigma \cdot \sqrt{\frac{Q}{V}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\Delta P\)</span> = price impact (as return)
 - <span class="arithmatex">\(\sigma\)</span> = daily volatility
@@ -47203,21 +47203,21 @@
 <p><strong>Volatility scaling:</strong> More volatile assets have larger impact.</p>
 <h3 id="refined-formula">Refined Formula<a class="headerlink" href="#refined-formula" title="Permanent link">&para;</a></h3>
 <p>Including a constant term:</p>
-<p>$$</p>
-<p>\Delta P = \eta \cdot \text{sign}(Q) + \gamma \cdot \sigma \cdot \sqrt{\frac{|Q|}{V}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P = \eta \cdot \text{sign}(Q) + \gamma \cdot \sigma \cdot \sqrt{\frac{|Q|}{V}}
+\]</div>
 <p>where <span class="arithmatex">\(\eta\)</span> captures fixed costs (bid-ask spread) and <span class="arithmatex">\(\gamma\)</span> is a market-specific constant.</p>
 <hr />
 <h2 id="almgren-chriss-model">Almgren-Chriss Model<a class="headerlink" href="#almgren-chriss-model" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>Liquidate <span class="arithmatex">\(X\)</span> shares over time horizon <span class="arithmatex">\(T\)</span> with strategy <span class="arithmatex">\(x(t)\)</span>:</p>
-<p>$$</p>
-<p>\int_0^T \dot{x}(t) \, dt = X, \quad x(0) = X, \quad x(T) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_0^T \dot{x}(t) \, dt = X, \quad x(0) = X, \quad x(T) = 0
+\]</div>
 <h3 id="price-dynamics">Price Dynamics<a class="headerlink" href="#price-dynamics" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>S_t = S_0 - g(v_t) - h(v_t) + \sigma W_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 - g(v_t) - h(v_t) + \sigma W_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(v_t = -\dot{x}(t)\)</span> is the trading rate
 - <span class="arithmatex">\(g(v)\)</span> = permanent impact function
@@ -47225,71 +47225,71 @@
 - <span class="arithmatex">\(\sigma W_t\)</span> = price volatility</p>
 <h3 id="linear-impact-model">Linear Impact Model<a class="headerlink" href="#linear-impact-model" title="Permanent link">&para;</a></h3>
 <p>Common specification:</p>
-<p>$$</p>
-<p>g(v) = \gamma v, \quad h(v) = \eta v</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(v) = \gamma v, \quad h(v) = \eta v
+\]</div>
 <p>where <span class="arithmatex">\(\gamma\)</span> is permanent impact coefficient and <span class="arithmatex">\(\eta\)</span> is temporary impact coefficient.</p>
 <h3 id="cost-functional">Cost Functional<a class="headerlink" href="#cost-functional" title="Permanent link">&para;</a></h3>
 <p>Total cost of execution:</p>
-<p>$$</p>
-<p>C[x(\cdot)] = \gamma X^2 + \int_0^T \eta v_t^2 \, dt + \text{Risk Cost}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C[x(\cdot)] = \gamma X^2 + \int_0^T \eta v_t^2 \, dt + \text{Risk Cost}
+\]</div>
 <p>The first term is permanent impact (unavoidable), the second is temporary impact (depends on speed).</p>
 <hr />
 <h2 id="optimal-execution">Optimal Execution<a class="headerlink" href="#optimal-execution" title="Permanent link">&para;</a></h2>
 <h3 id="mean-variance-objective">Mean-Variance Objective<a class="headerlink" href="#mean-variance-objective" title="Permanent link">&para;</a></h3>
 <p>Minimize expected cost plus risk penalty:</p>
-<p>$$</p>
-<p>\min_{x(\cdot)} \mathbb{E}[C] + \lambda \cdot \text{Var}[C]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{x(\cdot)} \mathbb{E}[C] + \lambda \cdot \text{Var}[C]
+\]</div>
 <p>where <span class="arithmatex">\(\lambda\)</span> is risk aversion.</p>
 <h3 id="optimal-strategy-linear-impact">Optimal Strategy (Linear Impact)<a class="headerlink" href="#optimal-strategy-linear-impact" title="Permanent link">&para;</a></h3>
 <p>The optimal trading trajectory is:</p>
-<p>$$</p>
-<p>x(t) = X \cdot \frac{\sinh(\kappa(T-t))}{\sinh(\kappa T)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x(t) = X \cdot \frac{\sinh(\kappa(T-t))}{\sinh(\kappa T)}
+\]</div>
 <p>where <span class="arithmatex">\(\kappa = \sqrt{\lambda \sigma^2 / \eta}\)</span> depends on risk aversion and market parameters.</p>
 <h3 id="limiting-cases">Limiting Cases<a class="headerlink" href="#limiting-cases" title="Permanent link">&para;</a></h3>
 <p><strong>Risk-neutral (<span class="arithmatex">\(\lambda = 0\)</span>):</strong> Trade at constant rate (TWAP)</p>
-<p>$$</p>
-<p>x(t) = X \cdot \left(1 - \frac{t}{T}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x(t) = X \cdot \left(1 - \frac{t}{T}\right)
+\]</div>
 <p><strong>Highly risk-averse (<span class="arithmatex">\(\lambda \to \infty\)</span>):</strong> Trade immediately</p>
-<p>$$</p>
-<p>x(t) = 0 \text{ for } t &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x(t) = 0 \text{ for } t &gt; 0
+\]</div>
 <h3 id="implementation-shortfall">Implementation Shortfall<a class="headerlink" href="#implementation-shortfall" title="Permanent link">&para;</a></h3>
 <p>Expected cost of the optimal strategy:</p>
-<p>$$</p>
-<p>\mathbb{E}[C^*] = \gamma X^2 + \eta X^2 \cdot \frac{\kappa}{\tanh(\kappa T)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[C^*] = \gamma X^2 + \eta X^2 \cdot \frac{\kappa}{\tanh(\kappa T)}
+\]</div>
 <p>Decomposed into permanent impact and temporary impact terms.</p>
 <hr />
 <h2 id="market-impact-models">Market Impact Models<a class="headerlink" href="#market-impact-models" title="Permanent link">&para;</a></h2>
 <h3 id="linear-models">Linear Models<a class="headerlink" href="#linear-models" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Delta P = \lambda \cdot Q</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P = \lambda \cdot Q
+\]</div>
 <p>Simple but unrealistic for large trades.</p>
 <h3 id="square-root-models">Square-Root Models<a class="headerlink" href="#square-root-models" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Delta P = \lambda \cdot \text{sign}(Q) \cdot \sqrt{|Q|}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P = \lambda \cdot \text{sign}(Q) \cdot \sqrt{|Q|}
+\]</div>
 <p>Empirically supported; widely used.</p>
 <h3 id="power-law-models">Power-Law Models<a class="headerlink" href="#power-law-models" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Delta P = \lambda \cdot \text{sign}(Q) \cdot |Q|^\delta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P = \lambda \cdot \text{sign}(Q) \cdot |Q|^\delta
+\]</div>
 <p>where <span class="arithmatex">\(\delta \approx 0.5\)</span> empirically.</p>
 <h3 id="kyle-lambda">Kyle Lambda<a class="headerlink" href="#kyle-lambda" title="Permanent link">&para;</a></h3>
 <p>From Kyle (1985) model:</p>
-<p>$$</p>
-<p>\Delta P = \lambda \cdot Q</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta P = \lambda \cdot Q
+\]</div>
 <p>where <span class="arithmatex">\(\lambda\)</span> is the market depth parameter, related to:</p>
-<p>$$</p>
-<p>\lambda = \frac{\sigma_v}{\sigma_u}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda = \frac{\sigma_v}{\sigma_u}
+\]</div>
 <p>(ratio of informed trading volatility to noise trading volatility).</p>
 <hr />
 <h2 id="determinants-of-market-impact">Determinants of Market Impact<a class="headerlink" href="#determinants-of-market-impact" title="Permanent link">&para;</a></h2>
@@ -47353,9 +47353,9 @@
 <h2 id="measuring-market-impact">Measuring Market Impact<a class="headerlink" href="#measuring-market-impact" title="Permanent link">&para;</a></h2>
 <h3 id="event-study-approach">Event Study Approach<a class="headerlink" href="#event-study-approach" title="Permanent link">&para;</a></h3>
 <p>Compare execution price to benchmark:</p>
-<p>$$</p>
-<p>\text{Impact} = P_{\text{exec}} - P_{\text{benchmark}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Impact} = P_{\text{exec}} - P_{\text{benchmark}}
+\]</div>
 <p><strong>Benchmarks:</strong>
 - Arrival price (decision time)
 - VWAP (volume-weighted average)
@@ -47363,9 +47363,9 @@
 - Close price</p>
 <h3 id="regression-approach">Regression Approach<a class="headerlink" href="#regression-approach" title="Permanent link">&para;</a></h3>
 <p>Estimate impact function from execution data:</p>
-<p>$$</p>
-<p>r_t = \alpha + \beta \cdot \text{OrderFlow}_t + \epsilon_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = \alpha + \beta \cdot \text{OrderFlow}_t + \epsilon_t
+\]</div>
 <p>where <span class="arithmatex">\(\beta\)</span> estimates price sensitivity to order flow.</p>
 <h3 id="transaction-cost-analysis-tca">Transaction Cost Analysis (TCA)<a class="headerlink" href="#transaction-cost-analysis-tca" title="Permanent link">&para;</a></h3>
 <p>Comprehensive analysis decomposing costs:
@@ -47377,13 +47377,13 @@
 <h2 id="risk-management-implications">Risk Management Implications<a class="headerlink" href="#risk-management-implications" title="Permanent link">&para;</a></h2>
 <h3 id="liquidation-risk">Liquidation Risk<a class="headerlink" href="#liquidation-risk" title="Permanent link">&para;</a></h3>
 <p>Ignoring market impact <strong>understates liquidation losses</strong>:</p>
-<p>$$</p>
-<p>\text{True Liquidation Loss} = \text{Mark-to-Market Loss} + \text{Market Impact}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{True Liquidation Loss} = \text{Mark-to-Market Loss} + \text{Market Impact}
+\]</div>
 <h3 id="liquidity-adjusted-var-lvar">Liquidity-Adjusted VaR (LVaR)<a class="headerlink" href="#liquidity-adjusted-var-lvar" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{LVaR} = \text{VaR} + \text{Liquidation Cost}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{LVaR} = \text{VaR} + \text{Liquidation Cost}
+\]</div>
 <p>where liquidation cost depends on position size and impact model.</p>
 <h3 id="stressed-impact">Stressed Impact<a class="headerlink" href="#stressed-impact" title="Permanent link">&para;</a></h3>
 <p>During crises, impact increases:
@@ -47396,9 +47396,9 @@
 <h2 id="hedging-with-market-impact">Hedging with Market Impact<a class="headerlink" href="#hedging-with-market-impact" title="Permanent link">&para;</a></h2>
 <h3 id="impact-adjusted-delta">Impact-Adjusted Delta<a class="headerlink" href="#impact-adjusted-delta" title="Permanent link">&para;</a></h3>
 <p>Optimal hedge with impact costs:</p>
-<p>$$</p>
-<p>\Delta^* = \Delta^{\text{BS}} \cdot \frac{1}{1 + \text{Impact Cost Factor}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^* = \Delta^{\text{BS}} \cdot \frac{1}{1 + \text{Impact Cost Factor}}
+\]</div>
 <p>Under-hedge when impact is costly.</p>
 <h3 id="rebalancing-frequency">Rebalancing Frequency<a class="headerlink" href="#rebalancing-frequency" title="Permanent link">&para;</a></h3>
 <p>Trade-off between:

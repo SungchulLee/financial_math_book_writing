@@ -46597,17 +46597,17 @@
 <p><strong>Martingale property</strong>: For <span class="arithmatex">\(0 \le s &lt; t\)</span>, decompose <span class="arithmatex">\(W_t = W_s + (W_t - W_s)\)</span>. Then:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>\mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s \mid \mathcal{F}_s] + \mathbb{E}[W_t - W_s \mid \mathcal{F}_s]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t \mid \mathcal{F}_s] = \mathbb{E}[W_s \mid \mathcal{F}_s] + \mathbb{E}[W_t - W_s \mid \mathcal{F}_s]
+\]</div>
 <p>Since <span class="arithmatex">\(W_s\)</span> is <span class="arithmatex">\(\mathcal{F}_s\)</span>-measurable, <span class="arithmatex">\(\mathbb{E}[W_s \mid \mathcal{F}_s] = W_s\)</span>. Since <span class="arithmatex">\(W_t - W_s\)</span> is independent of <span class="arithmatex">\(\mathcal{F}_s\)</span> (by the independent increments property) and <span class="arithmatex">\(\mathbb{E}[W_t - W_s] = 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] = \mathbb{E}[W_t - W_s] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t - W_s \mid \mathcal{F}_s] = \mathbb{E}[W_t - W_s] = 0
+\]</div>
 <p>Therefore, <span class="arithmatex">\(\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s\)</span>. <span class="arithmatex">\(\square\)</span></p>
-<p>$$</p>
-<p>\boxed{W_t \text{ is a martingale}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{W_t \text{ is a martingale}}
+\]</div>
 <p><strong>Remark</strong>: The martingale property encodes that Brownian motion has "no drift." The best prediction of where the particle will be in the future is its current position. This is the mathematical formalization of "pure noise."</p>
 <hr />
 <h2 id="polynomial-martingales-first-examples">Polynomial Martingales: First Examples<a class="headerlink" href="#polynomial-martingales-first-examples" title="Permanent link">&para;</a></h2>
@@ -46615,63 +46615,63 @@
 <h3 id="the-quadratic-martingale-w_t2-t">The Quadratic Martingale: W_t² - t<a class="headerlink" href="#the-quadratic-martingale-w_t2-t" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The process <span class="arithmatex">\(M_t = W_t^2 - t\)</span> is a martingale.</p>
 <p><strong>Proof</strong>: For <span class="arithmatex">\(0 \le s &lt; t\)</span>, we compute <span class="arithmatex">\(\mathbb{E}[W_t^2 \mid \mathcal{F}_s]\)</span>. Writing <span class="arithmatex">\(W_t = W_s + (W_t - W_s)\)</span>:</p>
-<p>$$</p>
-<p>W_t^2 = W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^2 = W_s^2 + 2W_s(W_t - W_s) + (W_t - W_s)^2
+\]</div>
 <p>Taking conditional expectations:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s] + \mathbb{E}[(W_t - W_s)^2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + 2W_s \cdot \mathbb{E}[W_t - W_s] + \mathbb{E}[(W_t - W_s)^2]
+\]</div>
 <p>Using <span class="arithmatex">\(\mathbb{E}[W_t - W_s] = 0\)</span> and <span class="arithmatex">\(\mathbb{E}[(W_t - W_s)^2] = \text{Var}(W_t - W_s) = t - s\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t - s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t^2 \mid \mathcal{F}_s] = W_s^2 + (t - s)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{W_t^2 - t \text{ is a martingale}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t^2 - t \mid \mathcal{F}_s] = W_s^2 + (t-s) - t = W_s^2 - s
+\]</div>
+<div class="arithmatex">\[
+\boxed{W_t^2 - t \text{ is a martingale}}
+\]</div>
 <p><strong>Interpretation</strong>: While <span class="arithmatex">\(\mathbb{E}[W_t^2] = t\)</span> grows linearly, the martingale <span class="arithmatex">\(W_t^2 - t\)</span> oscillates around zero with no expected drift. The compensation term <span class="arithmatex">\(t\)</span> exactly cancels the deterministic growth in the second moment.</p>
 <p><strong>Connection to quadratic variation</strong>: This martingale foreshadows the quadratic variation <span class="arithmatex">\([W]_t = t\)</span>. The process <span class="arithmatex">\(W_t^2 - [W]_t\)</span> being a martingale is a general fact for continuous local martingales.</p>
 <h3 id="the-cubic-martingale-w_t3-3tw_t">The Cubic Martingale: W_t³ - 3tW_t<a class="headerlink" href="#the-cubic-martingale-w_t3-3tw_t" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The process <span class="arithmatex">\(M_t = W_t^3 - 3tW_t\)</span> is a martingale.</p>
 <p><strong>Proof</strong>: We need the third moment of a Gaussian: if <span class="arithmatex">\(Z \sim N(0, \sigma^2)\)</span>, then <span class="arithmatex">\(\mathbb{E}[Z^3] = 0\)</span> by symmetry.</p>
 <p>Expanding <span class="arithmatex">\((W_s + (W_t - W_s))^3\)</span> and using the binomial theorem:</p>
-<p>$$</p>
-<p>W_t^3 = W_s^3 + 3W_s^2(W_t - W_s) + 3W_s(W_t - W_s)^2 + (W_t - W_s)^3</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^3 = W_s^3 + 3W_s^2(W_t - W_s) + 3W_s(W_t - W_s)^2 + (W_t - W_s)^3
+\]</div>
 <p>Taking conditional expectations:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s^2 \cdot 0 + 3W_s \cdot (t-s) + 0 = W_s^3 + 3W_s(t-s)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t^3 \mid \mathcal{F}_s] = W_s^3 + 3W_s^2 \cdot 0 + 3W_s \cdot (t-s) + 0 = W_s^3 + 3W_s(t-s)
+\]</div>
 <p>Also, <span class="arithmatex">\(\mathbb{E}[tW_t \mid \mathcal{F}_s] = t \cdot W_s\)</span>. Therefore:</p>
-<p>$$</p>
-<p>\mathbb{E}[W_t^3 - 3tW_t \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s) - 3tW_s = W_s^3 - 3sW_s</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{W_t^3 - 3tW_t \text{ is a martingale}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[W_t^3 - 3tW_t \mid \mathcal{F}_s] = W_s^3 + 3W_s(t-s) - 3tW_s = W_s^3 - 3sW_s
+\]</div>
+<div class="arithmatex">\[
+\boxed{W_t^3 - 3tW_t \text{ is a martingale}}
+\]</div>
 <hr />
 <h2 id="the-pattern-hermite-polynomials">The Pattern: Hermite Polynomials<a class="headerlink" href="#the-pattern-hermite-polynomials" title="Permanent link">&para;</a></h2>
 <p>The polynomial martingales are not arbitrary—they follow a beautiful pattern connected to <strong>Hermite polynomials</strong>.</p>
 <p>Define the probabilist's Hermite polynomials <span class="arithmatex">\(H_n(x)\)</span> by the generating function:</p>
-<p>$$</p>
-<p>\exp\left(tx - \frac{t^2}{2}\right) = \sum_{n=0}^\infty \frac{t^n}{n!} H_n(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\exp\left(tx - \frac{t^2}{2}\right) = \sum_{n=0}^\infty \frac{t^n}{n!} H_n(x)
+\]</div>
 <p>The first few are:</p>
-<p>$$</p>
-<p>H_0(x) = 1, \quad H_1(x) = x, \quad H_2(x) = x^2 - 1, \quad H_3(x) = x^3 - 3x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_0(x) = 1, \quad H_1(x) = x, \quad H_2(x) = x^2 - 1, \quad H_3(x) = x^3 - 3x
+\]</div>
 <p><strong>Theorem</strong>: For each <span class="arithmatex">\(n \ge 0\)</span>, the process</p>
-<p>$$</p>
-<p>M_t^{(n)} = t^{n/2} H_n\left(\frac{W_t}{\sqrt{t}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t^{(n)} = t^{n/2} H_n\left(\frac{W_t}{\sqrt{t}}\right)
+\]</div>
 <p>is a martingale. Equivalently, if we write <span class="arithmatex">\(H_n(W_t, t)\)</span> for the process obtained by replacing <span class="arithmatex">\(x^k\)</span> with <span class="arithmatex">\(W_t^k\)</span> and multiplying by appropriate powers of <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>H_n(W_t, t) = \sum_{k=0}^{\lfloor n/2 \rfloor} \frac{(-1)^k n!}{k!(n-2k)!} W_t^{n-2k} t^k</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_n(W_t, t) = \sum_{k=0}^{\lfloor n/2 \rfloor} \frac{(-1)^k n!}{k!(n-2k)!} W_t^{n-2k} t^k
+\]</div>
 <p>is a martingale.</p>
 <p><strong>Examples</strong>:</p>
 <ul>
@@ -46684,47 +46684,47 @@
 <hr />
 <h2 id="the-exponential-martingale">The Exponential Martingale<a class="headerlink" href="#the-exponential-martingale" title="Permanent link">&para;</a></h2>
 <p>The most important Brownian martingale is the <strong>exponential martingale</strong>:</p>
-<p>$$</p>
-<p>\boxed{Z_t^\theta = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{Z_t^\theta = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right)}
+\]</div>
 <p><strong>Theorem</strong>: For any <span class="arithmatex">\(\theta \in \mathbb{R}\)</span>, the process <span class="arithmatex">\(Z_t^\theta\)</span> is a strictly positive martingale with <span class="arithmatex">\(\mathbb{E}[Z_t^\theta] = 1\)</span>.</p>
 <p><strong>Proof</strong>: For <span class="arithmatex">\(0 \le s &lt; t\)</span>, write:</p>
-<p>$$</p>
-<p>Z_t^\theta = \exp\left(\theta W_s - \frac{\theta^2 s}{2}\right) \cdot \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right) = Z_s^\theta \cdot Y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t^\theta = \exp\left(\theta W_s - \frac{\theta^2 s}{2}\right) \cdot \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right) = Z_s^\theta \cdot Y
+\]</div>
 <p>where <span class="arithmatex">\(Y = \exp\left(\theta(W_t - W_s) - \frac{\theta^2(t-s)}{2}\right)\)</span>.</p>
 <p>Since <span class="arithmatex">\(W_t - W_s \sim N(0, t-s)\)</span> is independent of <span class="arithmatex">\(\mathcal{F}_s\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[Y] = \mathbb{E}\left[\exp(\theta \cdot N(0, t-s))\right] \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y] = \mathbb{E}\left[\exp(\theta \cdot N(0, t-s))\right] \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right)
+\]</div>
 <p>Using the moment generating function <span class="arithmatex">\(\mathbb{E}[e^{\theta Z}] = e^{\theta^2 \sigma^2/2}\)</span> for <span class="arithmatex">\(Z \sim N(0, \sigma^2)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[Y] = \exp\left(\frac{\theta^2(t-s)}{2}\right) \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right) = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y] = \exp\left(\frac{\theta^2(t-s)}{2}\right) \cdot \exp\left(-\frac{\theta^2(t-s)}{2}\right) = 1
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta \cdot \mathbb{E}[Y] = Z_s^\theta</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{Z_t^\theta = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) \text{ is a martingale}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[Z_t^\theta \mid \mathcal{F}_s] = Z_s^\theta \cdot \mathbb{E}[Y] = Z_s^\theta
+\]</div>
+<div class="arithmatex">\[
+\boxed{Z_t^\theta = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) \text{ is a martingale}}
+\]</div>
 <p><strong>Remark on the compensator</strong>: The term <span class="arithmatex">\(-\frac{\theta^2 t}{2}\)</span> is exactly what is needed to cancel the exponential growth. This is an instance of a general principle: <span class="arithmatex">\(\exp(M_t - \frac{1}{2}[M]_t)\)</span> is a local martingale for any continuous local martingale <span class="arithmatex">\(M_t\)</span>.</p>
 <hr />
 <h2 id="the-generating-function-principle">The Generating Function Principle<a class="headerlink" href="#the-generating-function-principle" title="Permanent link">&para;</a></h2>
 <p>The exponential martingale is not just another example—it <strong>generates all polynomial martingales</strong>.</p>
 <p><strong>Theorem</strong>: Expanding <span class="arithmatex">\(Z_t^\theta\)</span> as a power series in <span class="arithmatex">\(\theta\)</span>:</p>
-<p>$$</p>
-<p>\exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\exp\left(\theta W_t - \frac{\theta^2 t}{2}\right) = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t)
+\]</div>
 <p>each coefficient <span class="arithmatex">\(H_n(W_t, t)\)</span> is a martingale.</p>
 <p><strong>Proof</strong>: Since <span class="arithmatex">\(Z_t^\theta\)</span> is a martingale for each <span class="arithmatex">\(\theta\)</span>, and conditional expectation is linear:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t) \,\Big|\, \mathcal{F}<em n="0">s\right] = \sum</em>_s]}^\infty \frac{\theta^n}{n!} \mathbb{E}[H_n(W_t, t) \mid \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_t, t) \,\Big|\, \mathcal{F}_s\right] = \sum_{n=0}^\infty \frac{\theta^n}{n!} \mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s]
+\]</div>
 <p>For this to equal <span class="arithmatex">\(Z_s^\theta = \sum_{n=0}^\infty \frac{\theta^n}{n!} H_n(W_s, s)\)</span> for all <span class="arithmatex">\(\theta\)</span>, we need:</p>
-<p>$$</p>
-<p>\mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s] = H_n(W_s, s) \quad \text{for each } n \quad \square</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[H_n(W_t, t) \mid \mathcal{F}_s] = H_n(W_s, s) \quad \text{for each } n \quad \square
+\]</div>
 <p><strong>Consequences</strong>:</p>
 <table>
 <thead>
@@ -46762,38 +46762,38 @@
 <h2 id="applications-of-the-exponential-martingale">Applications of the Exponential Martingale<a class="headerlink" href="#applications-of-the-exponential-martingale" title="Permanent link">&para;</a></h2>
 <h3 id="1-girsanovs-theorem">1. Girsanov's Theorem<a class="headerlink" href="#1-girsanovs-theorem" title="Permanent link">&para;</a></h3>
 <p>The exponential martingale is the <strong>Radon–Nikodym derivative</strong> for changing probability measures. Under the measure <span class="arithmatex">\(\mathbb{Q}\)</span> defined by</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_t} = Z_t^\theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_t} = Z_t^\theta
+\]</div>
 <p>the process <span class="arithmatex">\(\widetilde{W}_t = W_t - \theta t\)</span> is a <span class="arithmatex">\(\mathbb{Q}\)</span>-Brownian motion. This is the heart of Girsanov's theorem.</p>
 <p><strong>Financial interpretation</strong>: Girsanov allows us to transform a real-world measure (with drift) to a risk-neutral measure (without drift), enabling derivative pricing.</p>
 <h3 id="2-moment-generating-functions">2. Moment Generating Functions<a class="headerlink" href="#2-moment-generating-functions" title="Permanent link">&para;</a></h3>
 <p>For any stopping time <span class="arithmatex">\(\tau\)</span>, the optional sampling theorem (when applicable) gives:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\exp\left(\theta W_\tau - \frac{\theta^2 \tau}{2}\right)\right] = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\exp\left(\theta W_\tau - \frac{\theta^2 \tau}{2}\right)\right] = 1
+\]</div>
 <p>This yields the joint Laplace transform of <span class="arithmatex">\((W_\tau, \tau)\)</span> and is the key to computing hitting time distributions.</p>
 <h3 id="3-large-deviations">3. Large Deviations<a class="headerlink" href="#3-large-deviations" title="Permanent link">&para;</a></h3>
 <p>The exponential martingale structure underlies <strong>Cramér's theorem</strong> and large deviation estimates for Brownian motion:</p>
-<p>$$</p>
-<p>\mathbb{P}(W_t \ge a) \le \exp\left(-\frac{a^2}{2t}\right) \quad \text{for } a &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(W_t \ge a) \le \exp\left(-\frac{a^2}{2t}\right) \quad \text{for } a &gt; 0
+\]</div>
 <p>This follows by applying Markov's inequality to the exponential martingale.</p>
 <hr />
 <h2 id="the-stochastic-exponential">The Stochastic Exponential<a class="headerlink" href="#the-stochastic-exponential" title="Permanent link">&para;</a></h2>
 <p>The exponential martingale is a special case of the <strong>stochastic exponential</strong> (or Doléans-Dade exponential). For any continuous local martingale <span class="arithmatex">\(M_t\)</span> with <span class="arithmatex">\(M_0 = 0\)</span>, define:</p>
-<p>$$</p>
-<p>\mathcal{E}(M)_t := \exp\left(M_t - \frac{1}{2}[M]_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(M)_t := \exp\left(M_t - \frac{1}{2}[M]_t\right)
+\]</div>
 <p>where <span class="arithmatex">\([M]_t\)</span> is the quadratic variation.</p>
 <p><strong>Theorem</strong>: <span class="arithmatex">\(\mathcal{E}(M)_t\)</span> is a local martingale. It is the unique solution to:</p>
-<p>$$</p>
-<p>dZ_t = Z_t \, dM_t, \quad Z_0 = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ_t = Z_t \, dM_t, \quad Z_0 = 1
+\]</div>
 <p>For Brownian motion, <span class="arithmatex">\([W]_t = t\)</span>, recovering our exponential martingale:</p>
-<p>$$</p>
-<p>\mathcal{E}(\theta W)_t = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}(\theta W)_t = \exp\left(\theta W_t - \frac{\theta^2 t}{2}\right)
+\]</div>
 <hr />
 <h2 id="summary-table">Summary Table<a class="headerlink" href="#summary-table" title="Permanent link">&para;</a></h2>
 <table>

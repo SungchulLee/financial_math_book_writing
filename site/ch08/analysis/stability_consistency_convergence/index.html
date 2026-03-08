@@ -46828,20 +46828,20 @@
 <hr />
 <h2 id="the-fundamental-principle">The Fundamental Principle<a class="headerlink" href="#the-fundamental-principle" title="Permanent link">&para;</a></h2>
 <p>For linear, well-posed problems:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Consistency} + \text{Stability} \Longrightarrow \text{Convergence}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is the <strong>Lax Equivalence Theorem</strong>: a consistent scheme converges if and only if it is stable.</p>
 <hr />
 <h2 id="consistency">Consistency<a class="headerlink" href="#consistency" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>A scheme is <strong>consistent</strong> if the local truncation error vanishes as the mesh is refined.</p>
 <p>For a PDE <span class="arithmatex">\(\mathcal{L}u = 0\)</span> and discrete approximation <span class="arithmatex">\(\mathcal{L}_{\Delta}u_{\Delta} = 0\)</span>:</p>
-<p>$$</p>
-<p>\text{Local truncation error} = \mathcal{L}_{\Delta}u - \mathcal{L}u</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Local truncation error} = \mathcal{L}_{\Delta}u - \mathcal{L}u
+\]</div>
 <p>where <span class="arithmatex">\(u\)</span> is the exact solution.</p>
 <p><strong>Consistency</strong>: LTE <span class="arithmatex">\(\to 0\)</span> as <span class="arithmatex">\(\Delta\tau, \Delta S \to 0\)</span>.</p>
 <h3 id="order-of-consistency">Order of Consistency<a class="headerlink" href="#order-of-consistency" title="Permanent link">&para;</a></h3>
@@ -46850,66 +46850,66 @@
 - <span class="arithmatex">\(q\)</span>-th order in space</p>
 <h3 id="example-crank-nicolson">Example: Crank-Nicolson<a class="headerlink" href="#example-crank-nicolson" title="Permanent link">&para;</a></h3>
 <p>For smooth solutions:</p>
-<p>$$</p>
-<p>\text{LTE} = O((\Delta\tau)^2 + (\Delta S)^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{LTE} = O((\Delta\tau)^2 + (\Delta S)^2)
+\]</div>
 <p>Crank-Nicolson is <strong>second-order consistent</strong> in both time and space.</p>
 <hr />
 <h2 id="stability">Stability<a class="headerlink" href="#stability" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>A scheme is <strong>stable</strong> if errors remain bounded as the computation proceeds.</p>
 <p>For a linear scheme <span class="arithmatex">\(\mathbf{u}^{n+1} = B\mathbf{u}^n\)</span>, stability requires:</p>
-<p>$$</p>
-<p>\boxed{
-|B^n| \leq C \quad \text{for all } n\Delta\tau \leq T
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\|B^n\| \leq C \quad \text{for all } n\Delta\tau \leq T
+}
+\]</div>
 <p>for some constant <span class="arithmatex">\(C\)</span> independent of the mesh.</p>
 <h3 id="von-neumann-fourier-analysis">Von Neumann (Fourier) Analysis<a class="headerlink" href="#von-neumann-fourier-analysis" title="Permanent link">&para;</a></h3>
 <p>The standard method for analyzing stability of constant-coefficient schemes.</p>
 <p><strong>Idea</strong>: Decompose errors into Fourier modes <span class="arithmatex">\(e^{ik\xi}\)</span> and analyze their growth.</p>
 <p><strong>Amplification factor</strong>: For mode <span class="arithmatex">\(k\)</span>, let <span class="arithmatex">\(G(k)\)</span> be the ratio of amplitudes at successive time steps.</p>
 <p><strong>Stability criterion</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 |G(k)| \leq 1 \quad \text{for all } k
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="example-explicit-scheme-for-heat-equation">Example: Explicit Scheme for Heat Equation<a class="headerlink" href="#example-explicit-scheme-for-heat-equation" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(u_\tau = \frac{1}{2}u_{xx}\)</span> with explicit discretization:</p>
-<p>$$</p>
-<p>G = 1 - 2\lambda(1 - \cos(k\Delta x))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G = 1 - 2\lambda(1 - \cos(k\Delta x))
+\]</div>
 <p>where <span class="arithmatex">\(\lambda = \frac{\Delta\tau}{(\Delta x)^2}\)</span>.</p>
 <p><strong>Stability requires</strong>: <span class="arithmatex">\(|G| \leq 1 \Rightarrow \lambda \leq \frac{1}{2}\)</span></p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \Delta\tau \leq \frac{(\Delta x)^2}{2} \quad \text{(CFL condition)}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="example-implicit-scheme">Example: Implicit Scheme<a class="headerlink" href="#example-implicit-scheme" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>G = \frac{1}{1 + 2\lambda(1 - \cos(k\Delta x))}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G = \frac{1}{1 + 2\lambda(1 - \cos(k\Delta x))}
+\]</div>
 <p>Since the denominator <span class="arithmatex">\(&gt; 1\)</span>, we have <span class="arithmatex">\(|G| &lt; 1\)</span> for all <span class="arithmatex">\(\lambda &gt; 0\)</span>.</p>
 <p><strong>Unconditionally stable</strong>: No restriction on <span class="arithmatex">\(\Delta\tau\)</span>.</p>
 <h3 id="example-crank-nicolson_1">Example: Crank-Nicolson<a class="headerlink" href="#example-crank-nicolson_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>G = \frac{1 - \lambda(1 - \cos(k\Delta x))}{1 + \lambda(1 - \cos(k\Delta x))}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G = \frac{1 - \lambda(1 - \cos(k\Delta x))}{1 + \lambda(1 - \cos(k\Delta x))}
+\]</div>
 <p><strong>Unconditionally stable</strong>: <span class="arithmatex">\(|G| \leq 1\)</span> for all <span class="arithmatex">\(\lambda\)</span>.</p>
 <hr />
 <h2 id="convergence">Convergence<a class="headerlink" href="#convergence" title="Permanent link">&para;</a></h2>
 <h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
 <p>A scheme <strong>converges</strong> if the numerical solution approaches the exact solution as the mesh is refined:</p>
-<p>$$</p>
-<p>\lim_{\Delta\tau, \Delta S \to 0} \max_{n,j} |u_j^n - u(\tau_n, S_j)| = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lim_{\Delta\tau, \Delta S \to 0} \max_{n,j} |u_j^n - u(\tau_n, S_j)| = 0
+\]</div>
 <h3 id="convergence-rate">Convergence Rate<a class="headerlink" href="#convergence-rate" title="Permanent link">&para;</a></h3>
 <p>If the error satisfies:</p>
-<p>$$</p>
-<p>|u_{\Delta} - u| = O((\Delta\tau)^p + (\Delta S)^q)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|u_{\Delta} - u\| = O((\Delta\tau)^p + (\Delta S)^q)
+\]</div>
 <p>the scheme has convergence rate <span class="arithmatex">\((p, q)\)</span>.</p>
 <h3 id="the-lax-equivalence-theorem">The Lax Equivalence Theorem<a class="headerlink" href="#the-lax-equivalence-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: For a well-posed linear initial value problem and a consistent finite difference scheme, <strong>stability is equivalent to convergence</strong>.</p>
@@ -46923,21 +46923,21 @@
 <h2 id="practical-stability-analysis">Practical Stability Analysis<a class="headerlink" href="#practical-stability-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="matrix-criterion">Matrix Criterion<a class="headerlink" href="#matrix-criterion" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(\mathbf{u}^{n+1} = B\mathbf{u}^n\)</span>, stability requires:</p>
-<p>$$</p>
-<p>\rho(B) \leq 1 + O(\Delta\tau)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(B) \leq 1 + O(\Delta\tau)
+\]</div>
 <p>where <span class="arithmatex">\(\rho(B)\)</span> is the spectral radius (largest eigenvalue magnitude).</p>
 <h3 id="energy-methods">Energy Methods<a class="headerlink" href="#energy-methods" title="Permanent link">&para;</a></h3>
 <p>For some problems, multiply by <span class="arithmatex">\(u\)</span> and sum to get energy estimates:</p>
-<p>$$</p>
-<p>|u^{n+1}|^2 \leq |u^n|^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\|u^{n+1}\|^2 \leq \|u^n\|^2
+\]</div>
 <p>This directly proves stability.</p>
 <h3 id="comparison-principles">Comparison Principles<a class="headerlink" href="#comparison-principles" title="Permanent link">&para;</a></h3>
 <p><strong>Monotone schemes</strong> preserve the discrete maximum principle:</p>
-<p>$$</p>
-<p>\min_j u_j^n \leq u_j^{n+1} \leq \max_j u_j^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_j u_j^n \leq u_j^{n+1} \leq \max_j u_j^n
+\]</div>
 <p>This implies <span class="arithmatex">\(L^\infty\)</span> stability.</p>
 <hr />
 <h2 id="issues-with-non-smooth-data">Issues with Non-Smooth Data<a class="headerlink" href="#issues-with-non-smooth-data" title="Permanent link">&para;</a></h2>
@@ -46985,23 +46985,23 @@
 <h2 id="the-cfl-condition">The CFL Condition<a class="headerlink" href="#the-cfl-condition" title="Permanent link">&para;</a></h2>
 <p>The <strong>Courant-Friedrichs-Lewy (CFL) condition</strong> is a necessary condition for stability of explicit schemes.</p>
 <h3 id="for-advection-equation-u_t-cu_x-0">For Advection Equation u_t + cu_x = 0<a class="headerlink" href="#for-advection-equation-u_t-cu_x-0" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 |c|\frac{\Delta t}{\Delta x} \leq 1
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Interpretation</strong>: The numerical domain of dependence must contain the physical domain of dependence.</p>
 <h3 id="for-diffusion-equation-u_t-du_xx">For Diffusion Equation u_t = Du_xx<a class="headerlink" href="#for-diffusion-equation-u_t-du_xx" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 D\frac{\Delta t}{(\Delta x)^2} \leq \frac{1}{2}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="for-black-scholes-variable-coefficients">For Black-Scholes (Variable Coefficients)<a class="headerlink" href="#for-black-scholes-variable-coefficients" title="Permanent link">&para;</a></h3>
 <p>The CFL condition involves the local diffusion coefficient <span class="arithmatex">\(\frac{1}{2}\sigma^2 S^2\)</span>:</p>
-<p>$$</p>
-<p>\frac{\sigma^2 S_{\max}^2 \Delta\tau}{2(\Delta S)^2} \leq \frac{1}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\sigma^2 S_{\max}^2 \Delta\tau}{2(\Delta S)^2} \leq \frac{1}{2}
+\]</div>
 <hr />
 <h2 id="convergence-study-practical">Convergence Study (Practical)<a class="headerlink" href="#convergence-study-practical" title="Permanent link">&para;</a></h2>
 <p>To verify implementation, perform a <strong>convergence study</strong>:</p>
@@ -47041,11 +47041,11 @@ D\frac{\Delta t}{(\Delta x)^2} \leq \frac{1}{2}
 <p>Ratio <span class="arithmatex">\(\approx 4\)</span> confirms second-order convergence (error <span class="arithmatex">\(\sim M^{-2}\)</span>).</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Consistency} + \text{Stability} \Longleftrightarrow \text{Convergence}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

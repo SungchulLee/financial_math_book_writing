@@ -46928,9 +46928,9 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>Wrong-way risk arises when:</p>
-<p>$$</p>
-<p>\text{Corr}(E_\tau, \mathbf{1}_{\tau \le T}) &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(E_\tau, \mathbf{1}_{\tau \le T}) &gt; 0
+\]</div>
 <p>where <span class="arithmatex">\(E_\tau\)</span> is exposure at default time <span class="arithmatex">\(\tau\)</span>.</p>
 <p><strong>In words:</strong> High exposure tends to coincide with default—the worst possible timing.</p>
 <p><strong>Opposite:</strong> <strong>Right-way risk</strong> occurs when exposure decreases as default becomes more likely (beneficial correlation).</p>
@@ -46954,38 +46954,38 @@
 <h2 id="mathematical-framework">Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permanent link">&para;</a></h2>
 <h3 id="standard-ccr-model-independence-assumption">Standard CCR Model (Independence Assumption)<a class="headerlink" href="#standard-ccr-model-independence-assumption" title="Permanent link">&para;</a></h3>
 <p>The standard CVA formula assumes independence:</p>
-<p>$$</p>
-<p>\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot dPD(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = \text{LGD} \int_0^T \text{EE}(t) \cdot dPD(t)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\text{EE}(t) = \mathbb{E}[E_t]\)</span> is computed independently of default
 - <span class="arithmatex">\(PD(t) = \mathbb{Q}(\tau \le t)\)</span> is the cumulative default probability</p>
 <p><strong>This understates CVA when WWR is present.</strong></p>
 <h3 id="wwr-adjusted-cva">WWR-Adjusted CVA<a class="headerlink" href="#wwr-adjusted-cva" title="Permanent link">&para;</a></h3>
 <p>With wrong-way risk:</p>
-<p>$$</p>
-<p>\text{CVA}^{\text{WWR}} = \text{LGD} \int_0^T \mathbb{E}[E_t | \tau = t] \cdot dPD(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}^{\text{WWR}} = \text{LGD} \int_0^T \mathbb{E}[E_t | \tau = t] \cdot dPD(t)
+\]</div>
 <p>The key difference: <strong>conditional expectation</strong> <span class="arithmatex">\(\mathbb{E}[E_t | \tau = t]\)</span> replaces the unconditional <span class="arithmatex">\(\text{EE}(t)\)</span>.</p>
 <p><strong>Relation:</strong></p>
-<p>$$</p>
-<p>\text{CVA}^{\text{WWR}} &gt; \text{CVA} \quad \text{under positive correlation}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}^{\text{WWR}} &gt; \text{CVA} \quad \text{under positive correlation}
+\]</div>
 <hr />
 <h2 id="modeling-approaches">Modeling Approaches<a class="headerlink" href="#modeling-approaches" title="Permanent link">&para;</a></h2>
 <h3 id="1-stressed-exposure-approach">1. Stressed Exposure Approach<a class="headerlink" href="#1-stressed-exposure-approach" title="Permanent link">&para;</a></h3>
 <p>Simple but conservative:</p>
-<p>$$</p>
-<p>\text{CVA}^{\text{WWR}} = \text{LGD} \int_0^T \text{EE}^{\text{stressed}}(t) \cdot dPD(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}^{\text{WWR}} = \text{LGD} \int_0^T \text{EE}^{\text{stressed}}(t) \cdot dPD(t)
+\]</div>
 <p>where <span class="arithmatex">\(\text{EE}^{\text{stressed}}(t)\)</span> is computed under a stressed scenario consistent with default.</p>
 <p><strong>Advantage:</strong> Simple to implement
 <strong>Disadvantage:</strong> May be overly conservative; no probability calibration</p>
 <h3 id="2-correlation-approach">2. Correlation Approach<a class="headerlink" href="#2-correlation-approach" title="Permanent link">&para;</a></h3>
 <p>Model joint distribution of exposure and default:</p>
-<p>$$</p>
-<p>(V_t, \tau) \sim F(v, t; \rho)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(V_t, \tau) \sim F(v, t; \rho)
+\]</div>
 <p>where <span class="arithmatex">\(\rho\)</span> captures the correlation structure.</p>
 <p><strong>Implementation:</strong>
 - Copula models for dependence
@@ -46993,22 +46993,22 @@
 - Structural models linking asset value to default</p>
 <h3 id="3-intensity-based-models">3. Intensity-Based Models<a class="headerlink" href="#3-intensity-based-models" title="Permanent link">&para;</a></h3>
 <p>Let default intensity <span class="arithmatex">\(\lambda_t\)</span> depend on market factors <span class="arithmatex">\(X_t\)</span>:</p>
-<p>$$</p>
-<p>\lambda_t = \lambda_0 \cdot e^{\beta \cdot X_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_t = \lambda_0 \cdot e^{\beta \cdot X_t}
+\]</div>
 <p>If <span class="arithmatex">\(X_t\)</span> also drives exposure:
 - Positive <span class="arithmatex">\(\beta\)</span> with positive exposure sensitivity → WWR
 - Negative <span class="arithmatex">\(\beta\)</span> with positive exposure sensitivity → RWR</p>
 <p><strong>Example:</strong> For FX exposure with EM counterparty:</p>
-<p>$$</p>
-<p>\lambda_t = \lambda_0 \cdot e^{\beta \cdot (S_t - S_0)/S_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda_t = \lambda_0 \cdot e^{\beta \cdot (S_t - S_0)/S_0}
+\]</div>
 <p>where <span class="arithmatex">\(S_t\)</span> is the FX rate (domestic per foreign). Depreciation (<span class="arithmatex">\(S_t\)</span> increases) raises default intensity.</p>
 <h3 id="4-hull-white-wwr-model">4. Hull-White WWR Model<a class="headerlink" href="#4-hull-white-wwr-model" title="Permanent link">&para;</a></h3>
 <p>Assume exposure at default follows:</p>
-<p>$$</p>
-<p>\mathbb{E}[E_\tau | \tau = t] = \text{EE}(t) \cdot (1 + w)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[E_\tau | \tau = t] = \text{EE}(t) \cdot (1 + w)
+\]</div>
 <p>where <span class="arithmatex">\(w\)</span> is the WWR multiplier.</p>
 <p><strong>Calibration:</strong> Estimate <span class="arithmatex">\(w\)</span> from:
 - Historical data on exposure-default correlation
@@ -47028,9 +47028,9 @@
 - Capital add-ons may apply</p>
 <h3 id="supervisory-formula">Supervisory Formula<a class="headerlink" href="#supervisory-formula" title="Permanent link">&para;</a></h3>
 <p>Some regulators prescribe:</p>
-<p>$$</p>
-<p>\text{EAD}^{\text{WWR}} = \text{EAD} \times (1 + \alpha_{\text{WWR}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EAD}^{\text{WWR}} = \text{EAD} \times (1 + \alpha_{\text{WWR}})
+\]</div>
 <p>where <span class="arithmatex">\(\alpha_{\text{WWR}}\)</span> is a supervisory add-on (e.g., 40%).</p>
 <hr />
 <h2 id="examples-in-detail">Examples in Detail<a class="headerlink" href="#examples-in-detail" title="Permanent link">&para;</a></h2>
@@ -47040,9 +47040,9 @@
 - If Bank B's stock falls, put becomes ITM
 - Bank B's default probability increases when stock falls</p>
 <p><strong>Analysis:</strong></p>
-<p>$$</p>
-<p>E_t = \max(K - S_t^B, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_t = \max(K - S_t^B, 0)
+\]</div>
 <p>As <span class="arithmatex">\(S_t^B \downarrow\)</span>:
 - Exposure <span class="arithmatex">\(E_t \uparrow\)</span>
 - Default probability <span class="arithmatex">\(PD_t \uparrow\)</span></p>
@@ -47053,9 +47053,9 @@
 - Counterparty: Brazilian corporate
 - Risk: BRL depreciation</p>
 <p><strong>Analysis:</strong></p>
-<p>$$</p>
-<p>V_t = N \cdot (F_t - K) \cdot D(t,T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = N \cdot (F_t - K) \cdot D(t,T)
+\]</div>
 <p>If BRL depreciates (USD/BRL increases):
 - Forward value increases (exposure rises)
 - Brazilian corporate likely under stress (credit deteriorates)</p>
@@ -47072,18 +47072,18 @@
 <h2 id="quantifying-wwr-impact">Quantifying WWR Impact<a class="headerlink" href="#quantifying-wwr-impact" title="Permanent link">&para;</a></h2>
 <h3 id="cva-multiplier">CVA Multiplier<a class="headerlink" href="#cva-multiplier" title="Permanent link">&para;</a></h3>
 <p>Define the WWR multiplier:</p>
-<p>$$</p>
-<p>\text{WWR Multiplier} = \frac{\text{CVA}^{\text{WWR}}}{\text{CVA}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{WWR Multiplier} = \frac{\text{CVA}^{\text{WWR}}}{\text{CVA}}
+\]</div>
 <p><strong>Typical ranges:</strong>
 - Low WWR: 1.0-1.2×
 - Moderate WWR: 1.2-1.5×
 - High WWR (SWWR): 1.5-3.0× or higher</p>
 <h3 id="sensitivity-analysis">Sensitivity Analysis<a class="headerlink" href="#sensitivity-analysis" title="Permanent link">&para;</a></h3>
 <p>Compute CVA under varying correlation assumptions:</p>
-<p>$$</p>
-<p>\text{CVA}(\rho) \text{ for } \rho \in [-1, 1]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA}(\rho) \text{ for } \rho \in [-1, 1]
+\]</div>
 <p>Plot to understand WWR sensitivity.</p>
 <hr />
 <h2 id="mitigation-strategies">Mitigation Strategies<a class="headerlink" href="#mitigation-strategies" title="Permanent link">&para;</a></h2>

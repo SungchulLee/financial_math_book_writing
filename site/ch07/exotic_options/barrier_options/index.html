@@ -46491,38 +46491,38 @@
 <h2 id="payoff-formulas">Payoff Formulas<a class="headerlink" href="#payoff-formulas" title="Permanent link">&para;</a></h2>
 <h3 id="knock-out-options">Knock-Out Options<a class="headerlink" href="#knock-out-options" title="Permanent link">&para;</a></h3>
 <p>A <strong>knock-out</strong> option pays like a vanilla option provided the barrier is never breached:</p>
-<p>$$</p>
-<p>\boxed{
-\text{Payoff}<em _123_text_barrier="{\text{barrier" breached="breached" not="not">{\text{KO}} = (S_T - K)^+ \cdot \mathbf{1}</em>
-}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\text{Payoff}_{\text{KO}} = (S_T - K)^+ \cdot \mathbf{1}_{\{\text{barrier not breached}\}}
+}
+\]</div>
 <p>For a <strong>down-and-out call</strong> with barrier <span class="arithmatex">\(H &lt; S_0\)</span>:</p>
-<p>$$</p>
-<p>\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}<em 0="0" T="T" _leq="\leq" t="t">{\left{\min</em>} S_t &gt; H\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{\min_{0 \leq t \leq T} S_t &gt; H\right\}}
+\]</div>
 <p>For an <strong>up-and-out call</strong> with barrier <span class="arithmatex">\(H &gt; S_0\)</span>:</p>
-<p>$$</p>
-<p>\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}<em 0="0" T="T" _leq="\leq" t="t">{\left{\max</em>} S_t &lt; H\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{\max_{0 \leq t \leq T} S_t &lt; H\right\}}
+\]</div>
 <h3 id="knock-in-options">Knock-In Options<a class="headerlink" href="#knock-in-options" title="Permanent link">&para;</a></h3>
 <p>A <strong>knock-in</strong> option pays only if the barrier has been breached:</p>
-<p>$$</p>
-<p>\boxed{
-\text{Payoff}<em _123_text_barrier="{\text{barrier" breached="breached">{\text{KI}} = (S_T - K)^+ \cdot \mathbf{1}</em>
-}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\text{Payoff}_{\text{KI}} = (S_T - K)^+ \cdot \mathbf{1}_{\{\text{barrier breached}\}}
+}
+\]</div>
 <p>For a <strong>down-and-in call</strong> with barrier <span class="arithmatex">\(H &lt; S_0\)</span>:</p>
-<p>$$</p>
-<p>\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}<em 0="0" T="T" _leq="\leq" t="t">{\left{\min</em>} S_t \leq H\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff} = (S_T - K)^+ \cdot \mathbf{1}_{\left\{\min_{0 \leq t \leq T} S_t \leq H\right\}}
+\]</div>
 <hr />
 <h2 id="inout-parity">In–Out Parity<a class="headerlink" href="#inout-parity" title="Permanent link">&para;</a></h2>
 <p>A fundamental relationship connects knock-in and knock-out options of the same type:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Proof sketch.</strong> The barrier is either breached or not breached during <span class="arithmatex">\([0, T]\)</span>. If breached, the knock-in option pays the vanilla payoff and the knock-out option pays zero. If not breached, the knock-out option pays the vanilla payoff and the knock-in option pays zero. In either case, the combined payoff equals the vanilla payoff exactly.</p>
 <div class="admonition example">
 <p class="admonition-title">Numerical Example</p>
@@ -46559,24 +46559,24 @@ V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
 <p>Under geometric Brownian motion with continuous barrier monitoring, closed-form solutions exist. The key mathematical tool is the <strong>reflection principle</strong> for Brownian motion, which provides the joint distribution of <span class="arithmatex">\((S_T, \min_{t} S_t)\)</span> or <span class="arithmatex">\((S_T, \max_{t} S_t)\)</span>.</p>
 <h3 id="down-and-out-call-h-k-h-s_0">Down-and-Out Call (H &lt; K, H &lt; S_0)<a class="headerlink" href="#down-and-out-call-h-k-h-s_0" title="Permanent link">&para;</a></h3>
 <p>The Rubinstein–Reiner (1991) formula gives:</p>
-<p>$$</p>
-<p>C_{\text{do}} = S_0\, N(x_1) - K e^{-rT} N(x_1 - \sigma\sqrt{T}) - S_0 \left(\frac{H}{S_0}\right)^{2\lambda} N(y_1) + K e^{-rT} \left(\frac{H}{S_0}\right)^{2\lambda - 2} N(y_1 - \sigma\sqrt{T})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{do}} = S_0\, N(x_1) - K e^{-rT} N(x_1 - \sigma\sqrt{T}) - S_0 \left(\frac{H}{S_0}\right)^{2\lambda} N(y_1) + K e^{-rT} \left(\frac{H}{S_0}\right)^{2\lambda - 2} N(y_1 - \sigma\sqrt{T})
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\lambda = \frac{r + \frac{1}{2}\sigma^2}{\sigma^2}, \quad x_1 = \frac{\ln(S_0/K)}{\sigma\sqrt{T}} + \lambda \sigma\sqrt{T}, \quad y_1 = \frac{\ln(H^2/(S_0 K))}{\sigma\sqrt{T}} + \lambda \sigma\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda = \frac{r + \frac{1}{2}\sigma^2}{\sigma^2}, \quad x_1 = \frac{\ln(S_0/K)}{\sigma\sqrt{T}} + \lambda \sigma\sqrt{T}, \quad y_1 = \frac{\ln(H^2/(S_0 K))}{\sigma\sqrt{T}} + \lambda \sigma\sqrt{T}
+\]</div>
 <p>The terms involving <span class="arithmatex">\((H/S_0)^{2\lambda}\)</span> arise from the reflection principle and encode the probability of the barrier being hit.</p>
 <hr />
 <h2 id="discrete-vs-continuous-monitoring">Discrete vs. Continuous Monitoring<a class="headerlink" href="#discrete-vs-continuous-monitoring" title="Permanent link">&para;</a></h2>
 <p>In practice, barriers are typically monitored at <strong>discrete intervals</strong> (daily closes, for example) rather than continuously. This distinction matters significantly for pricing:</p>
 <h3 id="broadieglassermankou-correction">Broadie–Glasserman–Kou Correction<a class="headerlink" href="#broadieglassermankou-correction" title="Permanent link">&para;</a></h3>
 <p>For a discrete barrier monitored at <span class="arithmatex">\(m\)</span> equally-spaced times, the effective continuous barrier is approximately:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 H_{\text{eff}} = H \cdot e^{\pm \beta \sigma \sqrt{T/m}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\beta = -\zeta(1/2)/\sqrt{2\pi} \approx 0.5826\)</span>, <span class="arithmatex">\(\zeta\)</span> is the Riemann zeta function, and the sign depends on whether the barrier is above (<span class="arithmatex">\(+\)</span>) or below (<span class="arithmatex">\(-\)</span>) the current price.</p>
 <p>This correction shifts the barrier <strong>outward</strong>, reflecting the fact that discrete monitoring makes it harder for the barrier to be breached between observation times.</p>
 <h3 id="pricing-implications">Pricing Implications<a class="headerlink" href="#pricing-implications" title="Permanent link">&para;</a></h3>
@@ -46609,17 +46609,17 @@ H_{\text{eff}} = H \cdot e^{\pm \beta \sigma \sqrt{T/m}}
 <hr />
 <h2 id="rebate-features">Rebate Features<a class="headerlink" href="#rebate-features" title="Permanent link">&para;</a></h2>
 <p>Many barrier options include a <strong>rebate</strong> <span class="arithmatex">\(R\)</span> paid when the barrier is hit (for knock-out options) or at maturity if the barrier is never hit (for knock-in options):</p>
-<p>$$</p>
-<p>\text{Payoff}<em _123_text_not="{\text{not" breached="breached">{\text{KO with rebate}} = (S_T - K)^+ \cdot \mathbf{1}</em>}}} + R \cdot e^{-r(\tau_H - t)} \cdot \mathbf{1}_{{\text{breached at } \tau_H}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Payoff}_{\text{KO with rebate}} = (S_T - K)^+ \cdot \mathbf{1}_{\{\text{not breached}\}} + R \cdot e^{-r(\tau_H - t)} \cdot \mathbf{1}_{\{\text{breached at } \tau_H\}}
+\]</div>
 <p>where <span class="arithmatex">\(\tau_H\)</span> is the first hitting time of the barrier. The rebate compensates the holder for the loss of optionality when the barrier is triggered.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_{\text{knock-in}} + V_{\text{knock-out}} = V_{\text{vanilla}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

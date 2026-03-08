@@ -47084,12 +47084,12 @@
 <p>🔧 <strong>Extension 1: Stochastic Volatility Models</strong></p>
 <p>Allow volatility itself to be random:</p>
 <p><strong>Heston model</strong> (1993):</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= rS_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(v_t\)</span> = instantaneous variance (stochastic)
 - <span class="arithmatex">\(\kappa\)</span> = mean-reversion speed
@@ -47108,13 +47108,13 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <p>🔧 <strong>Extension 2: Local Volatility Models</strong></p>
 <p>Make volatility a <strong>deterministic function</strong> of price and time:</p>
 <p><strong>Dupire model</strong> (1994):</p>
-<p>$$</p>
-<p>\sigma = \sigma(S, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma = \sigma(S, t)
+\]</div>
 <p><strong>Key equation (Dupire's formula)</strong>:</p>
-<p>$$</p>
-<p>\sigma^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma^2(K, T) = \frac{\frac{\partial C}{\partial T} + rK\frac{\partial C}{\partial K}}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}
+\]</div>
 <p>where <span class="arithmatex">\(C(K,T)\)</span> is the market price of call option with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>Features</strong>:
 - Calibrates exactly to observed volatility surface
@@ -47152,22 +47152,22 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <p>🔧 <strong>Extension: Jump-Diffusion Models</strong></p>
 <p>Add a jump component to the price process:</p>
 <p><strong>Merton model</strong> (1976):</p>
-<p>$$</p>
-<p>dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(J_t\)</span> = compound Poisson process (jump process)
 - <span class="arithmatex">\(\lambda\)</span> = jump intensity (average number of jumps per year)
 - Jump size <span class="arithmatex">\(Y \sim \mathcal{N}(\mu_J, \sigma_J^2)\)</span> (log-normal)</p>
 <p><strong>Full dynamics</strong>:</p>
-<p>$$</p>
-<p>S_t = S_0 \exp\left((\mu - \frac{1}{2}\sigma^2)t + \sigma W_t + \sum_{i=1}^{N_t} Y_i\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_t = S_0 \exp\left((\mu - \frac{1}{2}\sigma^2)t + \sigma W_t + \sum_{i=1}^{N_t} Y_i\right)
+\]</div>
 <p>where <span class="arithmatex">\(N_t \sim \text{Poisson}(\lambda t)\)</span>.</p>
 <p><strong>Option pricing</strong>:</p>
-<p>$$</p>
-<p>C = \sum_{n=0}^\infty \frac{e^{-\lambda' T}(\lambda' T)^n}{n!} C_{BS}(S, K, T, r, \sigma_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = \sum_{n=0}^\infty \frac{e^{-\lambda' T}(\lambda' T)^n}{n!} C_{BS}(S, K, T, r, \sigma_n)
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\lambda' = \lambda(1 + \mu_J e^{\sigma_J^2/2})\)</span> (risk-neutral jump intensity)
 - <span class="arithmatex">\(\sigma_n^2 = \sigma^2 + n\sigma_J^2/T\)</span> (conditional volatility given <span class="arithmatex">\(n\)</span> jumps)</p>
@@ -47202,9 +47202,9 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <p>🔧 <strong>Extension 1: Transaction Cost Models</strong></p>
 <p><strong>Leland model</strong> (1985):</p>
 <p>Adjust volatility to account for discrete hedging with proportional transaction cost <span class="arithmatex">\(k\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{adj} = \sigma\sqrt{1 + \sqrt{\frac{2}{\pi}} \frac{k}{\sigma\sqrt{\Delta t}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{adj} = \sigma\sqrt{1 + \sqrt{\frac{2}{\pi}} \frac{k}{\sigma\sqrt{\Delta t}}}
+\]</div>
 <p>where <span class="arithmatex">\(\Delta t\)</span> = rehedging interval.</p>
 <p><strong>Effect</strong>: Higher effective volatility → higher option value (seller compensation for hedging costs)</p>
 <p><strong>Hoggard-Whalley-Wilmott model</strong>:
@@ -47213,9 +47213,9 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 - Option value includes expected hedging costs</p>
 <p>🔧 <strong>Extension 2: Utility-Based Pricing</strong></p>
 <p>In incomplete markets (with frictions), derive prices from investor preferences:</p>
-<p>$$</p>
-<p>V = \arg\min_{V} \mathbb{E}[U(\text{Wealth})]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V = \arg\min_{V} \mathbb{E}[U(\text{Wealth})]
+\]</div>
 <p>where <span class="arithmatex">\(U\)</span> is utility function.</p>
 <p><strong>Features</strong>:
 - No unique price (depends on risk aversion)
@@ -47246,21 +47246,21 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v
 <h3 id="4-modeling-extensions_2">4. <strong>Modeling Extensions</strong><a class="headerlink" href="#4-modeling-extensions_2" title="Permanent link">&para;</a></h3>
 <p>🔧 <strong>Extension 1: Deterministic <span class="arithmatex">\(r(t)\)</span></strong></p>
 <p>Use time-dependent but deterministic risk-free rate:</p>
-<p>$$</p>
-<p>r = r(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r = r(t)
+\]</div>
 <p><strong>Implementation</strong>: Replace <span class="arithmatex">\(e^{-rT}\)</span> with <span class="arithmatex">\(\exp\left(-\int_0^T r(s)ds\right)\)</span> in formulas.</p>
 <p><strong>Data source</strong>: Bootstrapped from market yield curve.</p>
 <p>🔧 <strong>Extension 2: Stochastic Interest Rate Models</strong></p>
 <p>Model interest rates as random:</p>
 <p><strong>Vasicek model</strong> (1977):</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t)dt + \sigma_r dW_t^r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t)dt + \sigma_r dW_t^r
+\]</div>
 <p><strong>Cox-Ingersoll-Ross (CIR) model</strong> (1985):</p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t)dt + \sigma_r\sqrt{r_t} dW_t^r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t)dt + \sigma_r\sqrt{r_t} dW_t^r
+\]</div>
 <p><strong>Features</strong>:
 - Mean-reverting (rates pulled toward <span class="arithmatex">\(\theta\)</span>)
 - CIR ensures <span class="arithmatex">\(r_t \geq 0\)</span> (unlike Vasicek)
@@ -47283,24 +47283,24 @@ Combine stock price dynamics with stochastic rates for long-dated equity options
 <h3 id="3-modeling-extensions_1">3. <strong>Modeling Extensions</strong><a class="headerlink" href="#3-modeling-extensions_1" title="Permanent link">&para;</a></h3>
 <p>🔧 <strong>Extension 1: Continuous Dividend Yield</strong></p>
 <p>Replace drift <span class="arithmatex">\(r\)</span> with <span class="arithmatex">\(r - q\)</span> where <span class="arithmatex">\(q\)</span> = dividend yield:</p>
-<p>$$</p>
-<p>dS_t = (r - q)S_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r - q)S_t dt + \sigma S_t dW_t
+\]</div>
 <p><strong>Black-Scholes formula adjustment</strong>:</p>
-<p>$$</p>
-<p>C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = Se^{-qT}\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+\]</div>
 <p>with:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S/K) + (r - q + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+\]</div>
 <p><strong>Application</strong>: Foreign exchange (treat foreign interest rate as dividend yield).</p>
 <p>🔧 <strong>Extension 2: Discrete Dividends</strong></p>
 <p><strong>Known dividends</strong> <span class="arithmatex">\(D_1, D_2, \ldots\)</span> at times <span class="arithmatex">\(t_1, t_2, \ldots\)</span>:</p>
 <p><strong>Method 1</strong>: Subtract PV of dividends from stock price:</p>
-<p>$$</p>
-<p>S' = S - \sum_{i:t_i &lt; T} D_i e^{-r(t_i - t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S' = S - \sum_{i:t_i &lt; T} D_i e^{-r(t_i - t)}
+\]</div>
 <p>Use <span class="arithmatex">\(S'\)</span> in Black-Scholes formula.</p>
 <p><strong>Method 2</strong>: Escrowed dividend model (binomial tree with dividend nodes).</p>
 <p><strong>Method 3</strong>: Roll-Geske-Whaley formula (closed form for one dividend).</p>
@@ -47323,9 +47323,9 @@ Combine stock price dynamics with stochastic rates for long-dated equity options
 <p>🔧 <strong>Extension: Incomplete Markets</strong></p>
 <p>When perfect replication is impossible:</p>
 <p><strong>Pricing bounds</strong>:</p>
-<p>$$</p>
-<p>C_{lower} \leq C \leq C_{upper}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{lower} \leq C \leq C_{upper}
+\]</div>
 <p>Instead of unique price, derive <strong>bid-ask bounds</strong>.</p>
 <p><strong>Super-replication</strong>:
 - Upper bound: cheapest super-hedging portfolio (always covers payoff)

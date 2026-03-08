@@ -46291,85 +46291,85 @@
 
 <h1 id="hull-white-zero-bond-options">Hull-White Zero Bond Options<a class="headerlink" href="#hull-white-zero-bond-options" title="Permanent link">&para;</a></h1>
 <h2 id="xt-under-q">x(t) under Q<a class="headerlink" href="#xt-under-q" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 dx(t)=-\lambda x(t)dt+\sigma dW^{\mathbb{Q}}(t),
-\quad x(0)=0</p>
-<p>\end{array}$$</p>
+\quad x(0)=0
+\end{array}\]</div>
 <p>can be solved as</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 x(t)
 =
-x(s)e^{-\lambda (t-s)}+\sigma \int_{s}^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')</p>
-<p>\end{array}$$</p>
+x(s)e^{-\lambda (t-s)}+\sigma \int_{s}^t e^{-\lambda (t-t')} dW^{\mathbb{Q}}(t')
+\end{array}\]</div>
 <h2 id="xt-under-t">x(t) under T<a class="headerlink" href="#xt-under-t" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 dx(t)=\left(-B(t,T)\sigma^2-\lambda x(t)\right)dt+\sigma dW^{\mathbb{T}}(t),
-\quad x(0)=0</p>
-<p>\end{array}$$</p>
+\quad x(0)=0
+\end{array}\]</div>
 <p>where</p>
-<p>$$</p>
-<p>\displaystyle
+<div class="arithmatex">\[
+\displaystyle
 dW^{\mathbb{T}}(t)
 =
 \sigma B(t,T)dt+
-dW^{\mathbb{Q}}(t)</p>
-<p>$$</p>
+dW^{\mathbb{Q}}(t)
+\]</div>
 <h2 id="rt-under-t">r(t) under T<a class="headerlink" href="#rt-under-t" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
-r(t)=x(t)+\alpha(t)</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
+r(t)=x(t)+\alpha(t)
+\end{array}\]</div>
 <p>Therefore, <span class="arithmatex">\(r(t)\)</span> conditional on <span class="arithmatex">\({\cal F}(s)\)</span> is normally distributed with mean and variance:</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mathbb{E}\left(r(t)|{\cal F}(s)\right)
 &amp;=&amp;\displaystyle
-\mu^\mathbb{T}_r(s,t)\
+\mu^\mathbb{T}_r(s,t)\\
 \mathbb{Var}\left(r(t)|{\cal F}(s)\right)
 &amp;=&amp;\displaystyle
-\sigma_r^2(s,t)</p>
-<p>\end{array}$$</p>
+\sigma_r^2(s,t)
+\end{array}\]</div>
 <h2 id="zcb-call-1-and-put-1">ZCB Call (α=1) and Put (α=-1)<a class="headerlink" href="#zcb-call-1-and-put-1" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(t_0\)</span>, <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(T_S\)</span> be current, ZCB option maturity, ZCB maturity, respectively.
 For the call:</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V^\text{ZCB}(t_0,T)
 =
-P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)\sigma_r^2(t_0,T)+B(\tau)\mu^\mathbb{T}<em _text_hat="\text{hat">r(t_0,T)}N(d_1)-K</em>N(d_2)\right]}</p>
-<p>\end{array}$$</p>
+P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)\sigma_r^2(t_0,T)+B(\tau)\mu^\mathbb{T}_r(t_0,T)}N(d_1)-K_{\text{hat}}N(d_2)\right]
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>K_{\text{hat}}&amp;=&amp;Ke^{-A(\tau)}\
-a&amp;=&amp;\frac{\log(K_{\text{hat}})-B(\tau)\mu^\mathbb{T}_r(t_0,T)}{B(\tau)\sigma_r(t_0,T)}\
-d_1&amp;=&amp;a-B(\tau)\sigma_r(t_0,T)\
-d_2&amp;=&amp;d_1+B(\tau)\sigma_r(t_0,T)</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+K_{\text{hat}}&amp;=&amp;Ke^{-A(\tau)}\\
+a&amp;=&amp;\frac{\log(K_{\text{hat}})-B(\tau)\mu^\mathbb{T}_r(t_0,T)}{B(\tau)\sigma_r(t_0,T)}\\
+d_1&amp;=&amp;a-B(\tau)\sigma_r(t_0,T)\\
+d_2&amp;=&amp;d_1+B(\tau)\sigma_r(t_0,T)
+\end{array}\]</div>
 <p>with <span class="arithmatex">\(\tau = T_S - T\)</span>.</p>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V^\text{ZCB}(t_0,T)
 &amp;=&amp;\displaystyle
-\mathbb{E^Q}\left[\frac{M(t_0)}{M(T)}\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\
+\mathbb{E^Q}\left[\frac{M(t_0)}{M(T)}\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\</p>
-<p>\end{array}$$</p>
+P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
+\end{array}\]</div>
 <p>Since <span class="arithmatex">\(P(T,T_S)=e^{A(\tau)+B(\tau)r(T)}\)</span> and <span class="arithmatex">\(r(T)\sim N(\mu^\mathbb{T}_r(t_0,T), \sigma_r^2(t_0,T))\)</span> under <span class="arithmatex">\(\mathbb{T}\)</span>, the expectation reduces to a standard lognormal integral, yielding a Black-Scholes-type formula.</p>
 </details>
 <h2 id="discounted-characteristic-function-of-rt">Discounted Characteristic Function of r(T)<a class="headerlink" href="#discounted-characteristic-function-of-rt" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \phi(u;t,T)
 =
 \mathbb{E}^\mathbb{Q}\left[e^{-\int_t^Tr(t')dt'+iur(T)}\Big{|}{\cal F}(t)\right]
 =
-e^{A(u,\tau)+B(u,\tau)r(t)}</p>
-<p>\end{array}$$</p>
+e^{A(u,\tau)+B(u,\tau)r(t)}
+\end{array}\]</div>
 <h2 id="hull-white-mc-agrees-with-hull-white-zcb-option-formula">Hull-White MC Agrees with Hull-White ZCB Option Formula<a class="headerlink" href="#hull-white-mc-agrees-with-hull-white-zcb-option-formula" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">hw</span> <span class="o">=</span> <span class="n">HullWhite</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">lambd</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="n">P_market</span><span class="p">)</span>
@@ -46394,21 +46394,21 @@ e^{A(u,\tau)+B(u,\tau)r(t)}</p>
 <h3 id="zcb-call-1-and-put-1_1">ZCB Call (α=1) and Put (α=-1)<a class="headerlink" href="#zcb-call-1-and-put-1_1" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(t_0\)</span>, <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(T_S\)</span> be current, option maturity, ZCB maturity, respectively.
 For the call</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V^\text{ZCB}(t_0,T)
 =
-P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)v_r^2(t_0,T)+B(\tau)\mu_r(t_0,T)}N(d_1)-\hat{K}N(d_2)\right]\</p>
-<p>\end{array}$$</p>
+P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)v_r^2(t_0,T)+B(\tau)\mu_r(t_0,T)}N(d_1)-\hat{K}N(d_2)\right]\\
+\end{array}\]</div>
 <p>where <span class="arithmatex">\(A(\tau)\)</span> and <span class="arithmatex">\(B(\tau)\)</span> are related with
 the underlying ZCB price <span class="arithmatex">\(P(T,T_s)\)</span> at option maturity <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(\tau=T_S-T\)</span>, by</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \theta(t)
 &amp;=&amp;\displaystyle
 f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
 -
-\frac{\sigma^2}{2\lambda^2}\left(e^{-2\lambda t}-1\right)\
+\frac{\sigma^2}{2\lambda^2}\left(e^{-2\lambda t}-1\right)\\
 \displaystyle
 A(\tau)
 &amp;=&amp;\displaystyle
@@ -46416,98 +46416,98 @@ A(\tau)
 \left(3-2\lambda\tau-4e^{-\lambda\tau}+e^{-2\lambda\tau}\right)
 +
 \lambda\int_0^\tau\theta(T_S-\tau')B(\tau')d\tau'
-\
+\\
 \displaystyle
 B(\tau)
 &amp;=&amp;\displaystyle
 \frac{e^{-\lambda\tau}-1}{\lambda}
-\
+\\
 \displaystyle
 P(T,T_s)
-&amp;=&amp;\displaystyle e^{A(\tau)+B(\tau)r(T)}\</p>
-<p>\end{array}$$</p>
+&amp;=&amp;\displaystyle e^{A(\tau)+B(\tau)r(T)}\\
+\end{array}\]</div>
 <p>where <span class="arithmatex">\(\mu_r(t_0,T)\)</span> and <span class="arithmatex">\(v_r^2(t_0,T)\)</span> are related with
 the short rate <span class="arithmatex">\(r(T)\)</span> at option maturity <span class="arithmatex">\(T\)</span> under <span class="arithmatex">\(\mathbb{Q}^T\)</span> measure by</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \theta^T(t)
-&amp;=&amp;\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\
+&amp;=&amp;\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\\
 dr(t)&amp;=&amp;\displaystyle
-\lambda\left(\theta^T(t)-r(t)\right) dt+\sigma dW^T(t)\
+\lambda\left(\theta^T(t)-r(t)\right) dt+\sigma dW^T(t)\\
 \displaystyle
 r(T)|r(t_0)&amp;\sim&amp;\displaystyle
-N\left(\mu_r(t_0,T),v_r^2(t_0,T)\right)\
+N\left(\mu_r(t_0,T),v_r^2(t_0,T)\right)\\
 \mu_r(t_0,T)&amp;=&amp;\displaystyle
 r(t_0)e^{-\lambda(T-t_0)}
-+\lambda\int_{t_0}^{T}\theta^T(t')e^{-\lambda(T-t')}dt'\
++\lambda\int_{t_0}^{T}\theta^T(t')e^{-\lambda(T-t')}dt'\\
 v_r^2(t_0,T)&amp;=&amp;\displaystyle
--\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T-t_0)}-1\right)\</p>
-<p>\end{array}$$</p>
+-\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T-t_0)}-1\right)\\
+\end{array}\]</div>
 <p>and where <span class="arithmatex">\(\hat{K}\)</span>, <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span> are constants from Black Scholes type integration computation:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\hat{K}&amp;=&amp;Ke^{-A(\tau)}\
+<div class="arithmatex">\[\begin{array}{lll}
+\hat{K}&amp;=&amp;Ke^{-A(\tau)}\\
 d_2&amp;=&amp;\displaystyle
-\frac{\log\hat{K}-B(\tau)\mu_r(t_0,T)}{B(\tau)v_r(t_0,T)}\
+\frac{\log\hat{K}-B(\tau)\mu_r(t_0,T)}{B(\tau)v_r(t_0,T)}\\
 d_1&amp;=&amp;\displaystyle
-d_2-B(\tau)v_r(t_0,T)\</p>
-<p>\end{array}$$</p>
+d_2-B(\tau)v_r(t_0,T)\\
+\end{array}\]</div>
 <h3 id="proof">Proof<a class="headerlink" href="#proof" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V^\text{ZCB}(t_0,T)
 &amp;=&amp;\displaystyle
-\mathbb{E^Q}\left[\frac{M(t_0)}{M(T)}\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\
+\mathbb{E^Q}\left[\frac{M(t_0)}{M(T)}\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\
+P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(P(T,T_S)-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(e^{A(\tau)+B(\tau)r(T)}-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\
+P(t_0,T)\mathbb{E}^T\left[\text{max}\left(\alpha\left(e^{A(\tau)+B(\tau)r(T)}-K\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-P(t_0,T)e^{A(\tau)}\mathbb{E}^T\left[\text{max}\left(\alpha\left(e^{B(\tau)r(T)}-\hat{K}\right),0\right)\Big{|}{\cal F}(t_0)\right]\</p>
-<p>\end{array}$$</p>
+P(t_0,T)e^{A(\tau)}\mathbb{E}^T\left[\text{max}\left(\alpha\left(e^{B(\tau)r(T)}-\hat{K}\right),0\right)\Big{|}{\cal F}(t_0)\right]\\
+\end{array}\]</div>
 <p>Now, by solving <span class="arithmatex">\(dr(t)=\lambda\left(\theta^T(t)-r(t)\right) dt+\sigma dW^T(t)\)</span></p>
-<p>$$</p>
-<p>\displaystyle
-r(T)|r(t_0)\sim N\left(\mu_r(t_0,T),v_r^2(t_0,T)\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+r(T)|r(t_0)\sim N\left(\mu_r(t_0,T),v_r^2(t_0,T)\right)
+\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 \mu_r(t_0,T)&amp;=&amp;\displaystyle
 r(t_0)e^{-\lambda(T-t_0)}
-+\lambda\int_{t_0}^{T}\theta^T(t')e^{-\lambda(T-t')}dt'\
++\lambda\int_{t_0}^{T}\theta^T(t')e^{-\lambda(T-t')}dt'\\
 \displaystyle
 v_r^2(t_0,T)&amp;=&amp;\displaystyle
--\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T-t_0)}-1\right)\</p>
-<p>\end{array}$$</p>
+-\frac{\sigma^2}{2\lambda}\left(e^{-2\lambda(T-t_0)}-1\right)\\
+\end{array}\]</div>
 <p>With <span class="arithmatex">\(B(\tau)=(e^{-\lambda\tau}-1)/\lambda\)</span></p>
-<p>$$</p>
-<p>\displaystyle
-B(\tau)r(T)|r(t_0)\sim N\left(B(\tau)\mu_r(t_0,T),B^2(\tau)v_r^2(t_0,T)\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\displaystyle
+B(\tau)r(T)|r(t_0)\sim N\left(B(\tau)\mu_r(t_0,T),B^2(\tau)v_r^2(t_0,T)\right)
+\]</div>
 <p>Following Black Scholes computation, we have for the call
 (remember <span class="arithmatex">\(B(\tau)=(e^{-\lambda\tau}-1)/\lambda&lt;0\)</span>)</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 V^\text{ZCB}(t_0,T)
 &amp;=&amp;\displaystyle
-P(t_0,T)e^{A(\tau)}\mathbb{E}^T\left[\text{max}\left(e^{B(\tau)r(T)}-\hat{K},0\right)\Big{|}{\cal F}(t_0)\right]\
+P(t_0,T)e^{A(\tau)}\mathbb{E}^T\left[\text{max}\left(e^{B(\tau)r(T)}-\hat{K},0\right)\Big{|}{\cal F}(t_0)\right]\\
 &amp;=&amp;\displaystyle
-P(t_0,T)e^{A(\tau)}\int_{e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}&gt;\hat{K}}\left(e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\
+P(t_0,T)e^{A(\tau)}\int_{e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}&gt;\hat{K}}\left(e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\\
 &amp;=&amp;\displaystyle
 P(t_0,T)e^{A(\tau)}\int^a_{-\infty}
-\left(e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\
+\left(e^{B(\tau)\mu_r(t_0,T)+B(\tau)v_r(t_0,T)z}-\hat{K}\right)\frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz\\
 &amp;=&amp;\displaystyle
-P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)v_r^2(t_0,T)+B(\tau)\mu_r(t_0,T)}N(d_1)-\hat{K}N(d_2)\right]\</p>
-<p>\end{array}$$</p>
+P(t_0,T)e^{A(\tau)}\left[e^{\frac{1}{2}B^2(\tau)v_r^2(t_0,T)+B(\tau)\mu_r(t_0,T)}N(d_1)-\hat{K}N(d_2)\right]\\
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{lll}</p>
-<p>a&amp;=&amp;\displaystyle
-\frac{\log\hat{K}-B(\tau)\mu_r(t_0,T)}{B(\tau)v_r(t_0,T)}\
+<div class="arithmatex">\[\begin{array}{lll}
+a&amp;=&amp;\displaystyle
+\frac{\log\hat{K}-B(\tau)\mu_r(t_0,T)}{B(\tau)v_r(t_0,T)}\\
 d_1&amp;=&amp;\displaystyle
-a-B(\tau)v_r(t_0,T)\
+a-B(\tau)v_r(t_0,T)\\
 d_2&amp;=&amp;\displaystyle
-a\</p>
-<p>\end{array}$$</p>
+a\\
+\end{array}\]</div>
 
 
 

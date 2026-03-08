@@ -46760,9 +46760,9 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>For confidence level <span class="arithmatex">\(\alpha \in (0,1)\)</span>, the Potential Future Exposure at time <span class="arithmatex">\(t\)</span> is:</p>
-<p>$$</p>
-<p>\text{PFE}<em E_t="E_t">\alpha(t) = \inf{x : \mathbb{P}(E_t \le x) \ge \alpha} = F</em>(\alpha)}^{-1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(t) = \inf\{x : \mathbb{P}(E_t \le x) \ge \alpha\} = F_{E_t}^{-1}(\alpha)
+\]</div>
 <p>where <span class="arithmatex">\(E_t = V_t^+\)</span> is the exposure and <span class="arithmatex">\(F_{E_t}\)</span> is its cumulative distribution function.</p>
 <p><strong>Interpretation:</strong> With probability <span class="arithmatex">\(\alpha\)</span>, exposure at time <span class="arithmatex">\(t\)</span> will not exceed <span class="arithmatex">\(\text{PFE}_\alpha(t)\)</span>.</p>
 <hr />
@@ -46793,9 +46793,9 @@
 <hr />
 <h2 id="pfe-profile">PFE Profile<a class="headerlink" href="#pfe-profile" title="Permanent link">&para;</a></h2>
 <p>The <strong>PFE profile</strong> plots <span class="arithmatex">\(\text{PFE}_\alpha(t)\)</span> as a function of time:</p>
-<p>$$</p>
-<p>t \mapsto \text{PFE}_\alpha(t), \quad t \in [0, T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+t \mapsto \text{PFE}_\alpha(t), \quad t \in [0, T]
+\]</div>
 <p><strong>Characteristics:</strong>
 - Always non-negative
 - Typically exceeds EE profile
@@ -46803,38 +46803,38 @@
 <hr />
 <h2 id="relation-to-expected-exposure">Relation to Expected Exposure<a class="headerlink" href="#relation-to-expected-exposure" title="Permanent link">&para;</a></h2>
 <p><strong>Hierarchy:</strong></p>
-<p>$$</p>
-<p>\text{EE}(t) \le \text{PFE}_\alpha(t) \quad \text{for } \alpha &gt; 0.5</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EE}(t) \le \text{PFE}_\alpha(t) \quad \text{for } \alpha &gt; 0.5
+\]</div>
 <p>The gap between PFE and EE reflects the <strong>skewness and tail thickness</strong> of the exposure distribution.</p>
 <p><strong>Ratio:</strong></p>
-<p>$$</p>
-<p>\frac{\text{PFE}_\alpha(t)}{\text{EE}(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\text{PFE}_\alpha(t)}{\text{EE}(t)}
+\]</div>
 <p>This ratio is often 2-4× for typical derivatives portfolios.</p>
 <hr />
 <h2 id="pfe-under-normality">PFE Under Normality<a class="headerlink" href="#pfe-under-normality" title="Permanent link">&para;</a></h2>
 <p>If the portfolio value <span class="arithmatex">\(V_t\)</span> is normally distributed:</p>
-<p>$$</p>
-<p>V_t \sim N(\mu_t, \sigma_t^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t \sim N(\mu_t, \sigma_t^2)
+\]</div>
 <p>Then exposure <span class="arithmatex">\(E_t = V_t^+\)</span> has:</p>
-<p>$$</p>
-<p>\text{EE}(t) = \mu_t \Phi\left(\frac{\mu_t}{\sigma_t}\right) + \sigma_t \phi\left(\frac{\mu_t}{\sigma_t}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{PFE}_\alpha(t) = \max\left(\mu_t + \sigma_t \Phi^{-1}\left(\frac{\alpha - \Phi(-\mu_t/\sigma_t)}{1 - \Phi(-\mu_t/\sigma_t)}\right), 0\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EE}(t) = \mu_t \Phi\left(\frac{\mu_t}{\sigma_t}\right) + \sigma_t \phi\left(\frac{\mu_t}{\sigma_t}\right)
+\]</div>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(t) = \max\left(\mu_t + \sigma_t \Phi^{-1}\left(\frac{\alpha - \Phi(-\mu_t/\sigma_t)}{1 - \Phi(-\mu_t/\sigma_t)}\right), 0\right)
+\]</div>
 <p><strong>Approximation for small <span class="arithmatex">\(\mu_t\)</span>:</strong></p>
-<p>$$</p>
-<p>\text{PFE}_\alpha(t) \approx \sigma_t \Phi^{-1}(\alpha)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(t) \approx \sigma_t \Phi^{-1}(\alpha)
+\]</div>
 <hr />
 <h2 id="peak-pfe">Peak PFE<a class="headerlink" href="#peak-pfe" title="Permanent link">&para;</a></h2>
 <p>The <strong>Peak PFE</strong> is the maximum PFE over the portfolio's lifetime:</p>
-<p>$$</p>
-<p>\text{Peak PFE}<em _0_T_="[0,T]" _in="\in" t="t">\alpha = \max</em>_\alpha(t)} \text{PFE</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Peak PFE}_\alpha = \max_{t \in [0,T]} \text{PFE}_\alpha(t)
+\]</div>
 <p><strong>Uses:</strong>
 - Credit limit approval
 - Counterparty exposure limits
@@ -46857,9 +46857,9 @@
 <li>Linear growth approximately</li>
 </ul>
 <p><strong>Scaling:</strong></p>
-<p>$$</p>
-<p>\text{PFE}<em _text_FX="\text{FX">\alpha(t) \propto \sigma</em>}} \sqrt{t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(t) \propto \sigma_{\text{FX}} \sqrt{t}
+\]</div>
 <h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Buyer: PFE follows option value dynamics</li>
@@ -46874,26 +46874,26 @@
 <li>For each time <span class="arithmatex">\(t\)</span>, sort exposures: <span class="arithmatex">\(E_t^{(1)} \le E_t^{(2)} \le \cdots \le E_t^{(N)}\)</span></li>
 <li>Estimate PFE as the empirical quantile:</li>
 </ol>
-<p>$$</p>
-<p>\widehat{\text{PFE}}_\alpha(t) = E_t^{(\lceil N\alpha \rceil)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widehat{\text{PFE}}_\alpha(t) = E_t^{(\lceil N\alpha \rceil)}
+\]</div>
 <h3 id="confidence-interval">Confidence Interval<a class="headerlink" href="#confidence-interval" title="Permanent link">&para;</a></h3>
 <p>The standard error of the PFE estimate is approximately:</p>
-<p>$$</p>
-<p>\text{SE}(\widehat{\text{PFE}}<em E_t="E_t">\alpha) \approx \frac{\sqrt{\alpha(1-\alpha)}}{f</em>}(\text{PFE}_\alpha) \sqrt{N}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{SE}(\widehat{\text{PFE}}_\alpha) \approx \frac{\sqrt{\alpha(1-\alpha)}}{f_{E_t}(\text{PFE}_\alpha) \sqrt{N}}
+\]</div>
 <p>where <span class="arithmatex">\(f_{E_t}\)</span> is the density of exposure.</p>
 <p><strong>Implication:</strong> PFE estimates have higher variance than EE estimates because they depend on tail observations.</p>
 <hr />
 <h2 id="non-additivity-of-pfe">Non-Additivity of PFE<a class="headerlink" href="#non-additivity-of-pfe" title="Permanent link">&para;</a></h2>
 <p><strong>Critical property:</strong> PFE is <strong>not additive</strong> across portfolios:</p>
-<p>$$</p>
-<p>\text{PFE}<em>\alpha(A + B) \ne \text{PFE}</em>\alpha(A) + \text{PFE}_\alpha(B)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(A + B) \ne \text{PFE}_\alpha(A) + \text{PFE}_\alpha(B)
+\]</div>
 <p>In general:</p>
-<p>$$</p>
-<p>\text{PFE}<em>\alpha(A + B) \le \text{PFE}</em>\alpha(A) + \text{PFE}_\alpha(B)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(A + B) \le \text{PFE}_\alpha(A) + \text{PFE}_\alpha(B)
+\]</div>
 <p>with equality only for perfectly correlated exposures.</p>
 <p><strong>Implication:</strong> 
 - Cannot simply sum PFEs across counterparties
@@ -46902,9 +46902,9 @@
 <hr />
 <h2 id="pfe-and-credit-limits">PFE and Credit Limits<a class="headerlink" href="#pfe-and-credit-limits" title="Permanent link">&para;</a></h2>
 <h3 id="limit-framework">Limit Framework<a class="headerlink" href="#limit-framework" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{PFE}_\alpha(\text{Counterparty}) \le \text{Credit Limit}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha(\text{Counterparty}) \le \text{Credit Limit}
+\]</div>
 <p>Credit limits are set based on:
 - Counterparty creditworthiness
 - Internal risk appetite
@@ -46914,15 +46914,15 @@
 1. Compute incremental PFE
 2. Check against available limit
 3. Approve or reject</p>
-<p>$$</p>
-<p>\text{Available Limit} = \text{Total Limit} - \text{Current PFE}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Available Limit} = \text{Total Limit} - \text{Current PFE}
+\]</div>
 <hr />
 <h2 id="marginal-pfe">Marginal PFE<a class="headerlink" href="#marginal-pfe" title="Permanent link">&para;</a></h2>
 <p>The <strong>marginal PFE</strong> of a new trade measures its incremental impact:</p>
-<p>$$</p>
-<p>\Delta \text{PFE} = \text{PFE}<em>\alpha(\text{Portfolio} + \text{New Trade}) - \text{PFE}</em>\alpha(\text{Portfolio})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \text{PFE} = \text{PFE}_\alpha(\text{Portfolio} + \text{New Trade}) - \text{PFE}_\alpha(\text{Portfolio})
+\]</div>
 <p><strong>Properties:</strong>
 - Can be negative (diversification benefit)
 - Depends on correlation with existing portfolio
@@ -46930,14 +46930,14 @@
 <hr />
 <h2 id="pfe-with-collateral">PFE with Collateral<a class="headerlink" href="#pfe-with-collateral" title="Permanent link">&para;</a></h2>
 <p>Under a collateral agreement with threshold <span class="arithmatex">\(H\)</span>:</p>
-<p>$$</p>
-<p>E_t^{\text{coll}} = \max(V_t - C_{t-\Delta}, 0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E_t^{\text{coll}} = \max(V_t - C_{t-\Delta}, 0)
+\]</div>
 <p>where <span class="arithmatex">\(\Delta\)</span> is the margin period of risk (MPOR).</p>
 <p><strong>Collateralized PFE:</strong></p>
-<p>$$</p>
-<p>\text{PFE}<em>\alpha^{\text{coll}}(t) = \text{Quantile}</em>\alpha(E_t^{\text{coll}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}_\alpha^{\text{coll}}(t) = \text{Quantile}_\alpha(E_t^{\text{coll}})
+\]</div>
 <p><strong>Effect:</strong> Collateral significantly reduces PFE but:
 - MPOR creates residual exposure
 - Threshold <span class="arithmatex">\(H\)</span> creates a floor
@@ -46945,9 +46945,9 @@
 <hr />
 <h2 id="wrong-way-risk-and-pfe">Wrong-Way Risk and PFE<a class="headerlink" href="#wrong-way-risk-and-pfe" title="Permanent link">&para;</a></h2>
 <p>When exposure and default probability are correlated:</p>
-<p>$$</p>
-<p>\text{PFE}^{\text{WWR}}<em>\alpha(t) &gt; \text{PFE}</em>\alpha(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{PFE}^{\text{WWR}}_\alpha(t) &gt; \text{PFE}_\alpha(t)
+\]</div>
 <p><strong>Treatment:</strong>
 - Stressed PFE calculations
 - Explicit correlation modeling
@@ -46957,9 +46957,9 @@
 <h2 id="regulatory-use-of-pfe">Regulatory Use of PFE<a class="headerlink" href="#regulatory-use-of-pfe" title="Permanent link">&para;</a></h2>
 <h3 id="basel-sa-ccr">Basel SA-CCR<a class="headerlink" href="#basel-sa-ccr" title="Permanent link">&para;</a></h3>
 <p>The Standardized Approach for CCR uses PFE concepts:</p>
-<p>$$</p>
-<p>\text{EAD} = \alpha \times (\text{RC} + \text{PFE})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{EAD} = \alpha \times (\text{RC} + \text{PFE})
+\]</div>
 <p>where:
 - EAD = Exposure at Default
 - RC = Replacement Cost
@@ -46983,9 +46983,9 @@
 <h3 id="statistical-test">Statistical Test<a class="headerlink" href="#statistical-test" title="Permanent link">&para;</a></h3>
 <p>Under correct model, exceedances follow Binomial<span class="arithmatex">\((n, 1-\alpha)\)</span>.</p>
 <p>Test statistic:</p>
-<p>$$</p>
-<p>Z = \frac{\hat{p} - (1-\alpha)}{\sqrt{(1-\alpha)\alpha/n}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z = \frac{\hat{p} - (1-\alpha)}{\sqrt{(1-\alpha)\alpha/n}}
+\]</div>
 <p>where <span class="arithmatex">\(\hat{p}\)</span> is the observed exceedance rate.</p>
 <hr />
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>

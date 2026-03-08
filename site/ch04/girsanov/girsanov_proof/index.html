@@ -46284,78 +46284,78 @@
 <p><strong>Goal:</strong> Show that <span class="arithmatex">\(Z_t = \exp\left(-\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\right)\)</span> is a <span class="arithmatex">\(\mathbb{P}\)</span>-martingale.</p>
 <p><strong>Method:</strong> Apply Itô's lemma to <span class="arithmatex">\(Z_t = e^{X_t}\)</span> where <span class="arithmatex">\(X_t = -\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\)</span>.</p>
 <p><strong>Computing the differential:</strong></p>
-<p>$$</p>
-<p>dX_t = -\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = -\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt
+\]</div>
 <p>Apply Itô to <span class="arithmatex">\(f(X) = e^X\)</span>:</p>
-<p>$$</p>
-<p>dZ_t = e^{X_t}\,dX_t + \frac{1}{2}e^{X_t}(dX_t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ_t = e^{X_t}\,dX_t + \frac{1}{2}e^{X_t}(dX_t)^2
+\]</div>
 <p>Compute <span class="arithmatex">\((dX_t)^2\)</span>:</p>
-<p>$$</p>
-<p>(dX_t)^2 = \left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right)^2 = \theta_t^2\,(dW_t)^2 = \theta_t^2\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dX_t)^2 = \left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right)^2 = \theta_t^2\,(dW_t)^2 = \theta_t^2\,dt
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>dZ_t = Z_t\left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right) + \frac{1}{2}Z_t\,\theta_t^2\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= -Z_t\theta_t\,dW_t - \frac{1}{2}Z_t\theta_t^2\,dt + \frac{1}{2}Z_t\theta_t^2\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{dZ_t = -Z_t\theta_t\,dW_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ_t = Z_t\left(-\theta_t\,dW_t - \frac{1}{2}\theta_t^2\,dt\right) + \frac{1}{2}Z_t\,\theta_t^2\,dt
+\]</div>
+<div class="arithmatex">\[
+= -Z_t\theta_t\,dW_t - \frac{1}{2}Z_t\theta_t^2\,dt + \frac{1}{2}Z_t\theta_t^2\,dt
+\]</div>
+<div class="arithmatex">\[
+\boxed{dZ_t = -Z_t\theta_t\,dW_t}
+\]</div>
 <p><strong>Key observation:</strong> There is <strong>no <span class="arithmatex">\(dt\)</span> term</strong>, only the <span class="arithmatex">\(dW_t\)</span> term. This is the defining property of a martingale!</p>
 <p>Since <span class="arithmatex">\(Z_t\)</span> has no drift and is adapted to the filtration, it is a local martingale. The <strong>Novikov condition</strong> ensures it is a <strong>true martingale</strong> with:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}[Z_t] = \mathbb{E}^{\mathbb{P}}[Z_0] = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}[Z_t] = \mathbb{E}^{\mathbb{P}}[Z_0] = 1
+\]</div>
 <hr />
 <h2 id="step-2-unit-expectation-justification">Step 2: Unit Expectation (Justification)<a class="headerlink" href="#step-2-unit-expectation-justification" title="Permanent link">&para;</a></h2>
 <p>For <span class="arithmatex">\(X_t = -\int_0^t \theta_s\,dW_s - \frac{1}{2}\int_0^t \theta_s^2\,ds\)</span>, the random variable <span class="arithmatex">\(X_t\)</span> is Gaussian:</p>
-<p>$$</p>
-<p>X_t \sim \mathcal{N}\left(-\frac{1}{2}\int_0^t \theta_s^2\,ds, \int_0^t \theta_s^2\,ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t \sim \mathcal{N}\left(-\frac{1}{2}\int_0^t \theta_s^2\,ds, \int_0^t \theta_s^2\,ds\right)
+\]</div>
 <p>For any Gaussian random variable <span class="arithmatex">\(Y \sim \mathcal{N}(\mu, \sigma^2)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[e^Y] = \exp\left(\mu + \frac{\sigma^2}{2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[e^Y] = \exp\left(\mu + \frac{\sigma^2}{2}\right)
+\]</div>
 <p>Applying this with <span class="arithmatex">\(\mu = -\frac{1}{2}\int_0^t \theta_s^2\,ds\)</span> and <span class="arithmatex">\(\sigma^2 = \int_0^t \theta_s^2\,ds\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}[Z_t] = \exp\left(-\frac{1}{2}\int_0^t \theta_s^2\,ds + \frac{1}{2}\int_0^t \theta_s^2\,ds\right) = 1 \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}[Z_t] = \exp\left(-\frac{1}{2}\int_0^t \theta_s^2\,ds + \frac{1}{2}\int_0^t \theta_s^2\,ds\right) = 1 \quad \checkmark
+\]</div>
 <hr />
 <h2 id="step-3-the-shifted-process-is-a-q-martingale">Step 3: The Shifted Process is a Q-Martingale<a class="headerlink" href="#step-3-the-shifted-process-is-a-q-martingale" title="Permanent link">&para;</a></h2>
 <p><strong>Goal:</strong> Show that <span class="arithmatex">\(\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds\)</span> is a martingale under <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <p><strong>Method:</strong> Use the change-of-measure formula. For any <span class="arithmatex">\(\mathcal{F}_t\)</span>-adapted process <span class="arithmatex">\(X_t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[X_t | \mathcal{F}_s] = \frac{\mathbb{E}^{\mathbb{P}}[X_t Z_T | \mathcal{F}_s]}{\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s]}
+\]</div>
 <p>For <span class="arithmatex">\(s \leq t\)</span>, by the martingale property of <span class="arithmatex">\(Z\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s] = Z_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}[Z_T | \mathcal{F}_s] = Z_s
+\]</div>
 <p>Therefore, for the shifted Brownian motion:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[\widetilde{W}_t | \mathcal{F}_s\right] = \frac{\mathbb{E}^{\mathbb{P}}\left[\left(W_t + \int_0^t \theta_u\,du\right) Z_T | \mathcal{F}_s\right]}{Z_s}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[\widetilde{W}_t | \mathcal{F}_s\right] = \frac{\mathbb{E}^{\mathbb{P}}\left[\left(W_t + \int_0^t \theta_u\,du\right) Z_T | \mathcal{F}_s\right]}{Z_s}
+\]</div>
 <p>By the martingale property and adapted property of <span class="arithmatex">\(\theta\)</span>:</p>
-<p>$$</p>
-<p>= \frac{\mathbb{E}^{\mathbb{P}}\left[\left(W_t + \int_0^t \theta_u\,du\right) Z_T | \mathcal{F}_s\right]}{Z_s}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+= \frac{\mathbb{E}^{\mathbb{P}}\left[\left(W_t + \int_0^t \theta_u\,du\right) Z_T | \mathcal{F}_s\right]}{Z_s}
+\]</div>
 <p>The key step involves showing that the <span class="arithmatex">\(dW\)</span> term and the measure change <span class="arithmatex">\(Z_T\)</span> cancel exactly, leaving only a martingale in <span class="arithmatex">\(t\)</span>. More precisely, under the conditional expectation, the drift from the integral is exactly compensated by the likelihood reweighting from <span class="arithmatex">\(Z_T\)</span>.</p>
 <p><strong>Result:</strong> <span class="arithmatex">\(\widetilde{W}_t\)</span> is a <strong><span class="arithmatex">\(\mathbb{Q}\)</span>-martingale</strong>.</p>
 <hr />
 <h2 id="step-4-quadratic-variation-is-measure-invariant">Step 4: Quadratic Variation is Measure-Invariant<a class="headerlink" href="#step-4-quadratic-variation-is-measure-invariant" title="Permanent link">&para;</a></h2>
 <p><strong>Key principle:</strong> Quadratic variation is a <strong>pathwise property</strong>—it depends only on the paths of the process, not on the probability measure used.</p>
 <p>Since:</p>
-<p>$$</p>
-<p>\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widetilde{W}_t = W_t + \int_0^t \theta_s\,ds
+\]</div>
 <p>and the integral term has <strong>finite variation</strong> (it's a deterministic or adapted process with finite <span class="arithmatex">\(L^2\)</span> norm):</p>
-<p>$$</p>
-<p>d\langle\widetilde{W}\rangle_t = d\langle W\rangle_t = dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\langle\widetilde{W}\rangle_t = d\langle W\rangle_t = dt
+\]</div>
 <p><strong>Conclusion:</strong> The quadratic variation of <span class="arithmatex">\(\widetilde{W}_t\)</span> equals <span class="arithmatex">\(t\)</span>, the same as for standard Brownian motion.</p>
 <hr />
 <h2 id="step-5-levy-characterization-theorem">Step 5: Lévy Characterization Theorem<a class="headerlink" href="#step-5-levy-characterization-theorem" title="Permanent link">&para;</a></h2>
@@ -46367,17 +46367,17 @@
 <li><span class="arithmatex">\(\langle\widetilde{W}\rangle_t = t\)</span> (Step 4)</li>
 </ol>
 <p>By Lévy's theorem:</p>
-<p>$$</p>
-<p>\boxed{\widetilde{W}_t \text{ is a standard Brownian motion under } \mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\widetilde{W}_t \text{ is a standard Brownian motion under } \mathbb{Q}}
+\]</div>
 <hr />
 <h2 id="step-6-alternative-derivation-using-change-of-variables">Step 6: Alternative Derivation Using Change of Variables<a class="headerlink" href="#step-6-alternative-derivation-using-change-of-variables" title="Permanent link">&para;</a></h2>
 <p>Another approach uses direct computation. Under <span class="arithmatex">\(\mathbb{Q}\)</span>, we want to show <span class="arithmatex">\(\widetilde{W}_t\)</span> is Brownian.</p>
 <p><strong>Key formula:</strong> For a <span class="arithmatex">\(\mathbb{Q}\)</span>-martingale <span class="arithmatex">\(M_t\)</span> with <span class="arithmatex">\(\langle M\rangle_t = t\)</span>, the process must be Brownian.</p>
 <p>We can verify this by computing the characteristic function:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[e^{i\lambda\widetilde{W}_t}] = e^{-\lambda^2 t/2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[e^{i\lambda\widetilde{W}_t}] = e^{-\lambda^2 t/2}
+\]</div>
 <p>This matches the characteristic function of <span class="arithmatex">\(\mathcal{N}(0, t)\)</span>, confirming that <span class="arithmatex">\(\widetilde{W}_t\)</span> is a standard Brownian motion.</p>
 <hr />
 <h2 id="summary-of-the-proof-strategy">Summary of the Proof Strategy<a class="headerlink" href="#summary-of-the-proof-strategy" title="Permanent link">&para;</a></h2>
@@ -46420,9 +46420,9 @@
 <hr />
 <h2 id="key-insight-the-cancellation-mechanism">Key Insight: The Cancellation Mechanism<a class="headerlink" href="#key-insight-the-cancellation-mechanism" title="Permanent link">&para;</a></h2>
 <p>The proof's elegance lies in a remarkable <strong>cancellation</strong>:</p>
-<p>$$</p>
-<p>Z_T \cdot \text{(drift from measure change)} = \text{(drift from } \theta \text{ term)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_T \cdot \text{(drift from measure change)} = \text{(drift from } \theta \text{ term)}
+\]</div>
 <p>These two sources of drift, coming from different places, exactly cancel when we change measures. This is not coincidental—it's built into the definition of <span class="arithmatex">\(Z_t\)</span>.</p>
 <p><strong>Intuition:</strong> The exponential martingale <span class="arithmatex">\(Z_t\)</span> is precisely constructed so that reweighting by <span class="arithmatex">\(Z_T\)</span> removes the drift <span class="arithmatex">\(\theta\)</span> from the Brownian motion. This is why Girsanov's theorem works so elegantly in practice.</p>
 <hr />

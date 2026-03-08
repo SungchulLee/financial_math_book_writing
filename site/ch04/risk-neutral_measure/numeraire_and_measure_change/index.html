@@ -46742,9 +46742,9 @@
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>A <strong>numéraire</strong> is any strictly positive traded asset used as the unit of account for measuring value.</p>
 <p><strong>Key property</strong>: If <span class="arithmatex">\(N_t &gt; 0\)</span> is a numéraire, then any asset price <span class="arithmatex">\(S_t\)</span> can be expressed in "units of <span class="arithmatex">\(N\)</span>" as:</p>
-<p>$$</p>
-<p>\frac{S_t}{N_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{S_t}{N_t}
+\]</div>
 <h3 id="common-numeraires">Common Numéraires<a class="headerlink" href="#common-numeraires" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -46780,111 +46780,111 @@
 <hr />
 <h2 id="the-fundamental-theorem-for-numeraires">The Fundamental Theorem for Numéraires<a class="headerlink" href="#the-fundamental-theorem-for-numeraires" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\(N_t\)</span> be any positive traded asset (numéraire). There exists a probability measure <span class="arithmatex">\(\mathbb{Q}^N\)</span> equivalent to <span class="arithmatex">\(\mathbb{P}\)</span> such that for <strong>any</strong> traded asset <span class="arithmatex">\(S_t\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{S_t}{N_t} \text{ is a } \mathbb{Q}^N\text{-martingale}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="general-pricing-formula">General Pricing Formula<a class="headerlink" href="#general-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>Under measure <span class="arithmatex">\(\mathbb{Q}^N\)</span>, the price of a claim <span class="arithmatex">\(\Phi_T\)</span> at time <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_t = N_t \cdot \mathbb{E}^{\mathbb{Q}^N}\left[\frac{\Phi_T}{N_T} \;\middle|\; \mathcal{F}_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <hr />
 <h2 id="relationship-between-measures">Relationship Between Measures<a class="headerlink" href="#relationship-between-measures" title="Permanent link">&para;</a></h2>
 <h3 id="change-of-numeraire-formula">Change of Numéraire Formula<a class="headerlink" href="#change-of-numeraire-formula" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(M_t\)</span> and <span class="arithmatex">\(N_t\)</span> are two numéraires with associated measures <span class="arithmatex">\(\mathbb{Q}^M\)</span> and <span class="arithmatex">\(\mathbb{Q}^N\)</span>, then:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{d\mathbb{Q}^N}{d\mathbb{Q}^M}\bigg|_{\mathcal{F}_T} = \frac{N_T/N_0}{M_T/M_0}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Interpretation</strong>: The likelihood ratio is the relative performance of the two numéraires.</p>
 <h3 id="special-case-money-market-to-bond">Special Case: Money Market to Bond<a class="headerlink" href="#special-case-money-market-to-bond" title="Permanent link">&para;</a></h3>
 <p>From <span class="arithmatex">\(\mathbb{Q}\)</span> (money market numéraire <span class="arithmatex">\(B_t\)</span>) to <span class="arithmatex">\(\mathbb{Q}^T\)</span> (bond numéraire <span class="arithmatex">\(P(t,T)\)</span>):</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{P(T,T)/P(0,T)}{B_T/B_0} = \frac{1}{P(0,T)B_T} = \frac{e^{-\int_0^T r_s\,ds}}{P(0,T)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^T}{d\mathbb{Q}}\bigg|_{\mathcal{F}_T} = \frac{P(T,T)/P(0,T)}{B_T/B_0} = \frac{1}{P(0,T)B_T} = \frac{e^{-\int_0^T r_s\,ds}}{P(0,T)}
+\]</div>
 <hr />
 <h2 id="the-t-forward-measure">The T-Forward Measure<a class="headerlink" href="#the-t-forward-measure" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>The <strong><span class="arithmatex">\(T\)</span>-forward measure</strong> <span class="arithmatex">\(\mathbb{Q}^T\)</span> uses the zero-coupon bond <span class="arithmatex">\(P(t,T)\)</span> as numéraire.</p>
 <h3 id="key-property">Key Property<a class="headerlink" href="#key-property" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^T\)</span>, the <strong>forward price</strong> <span class="arithmatex">\(F(t,T) = S_t/P(t,T)\)</span> is a martingale:</p>
-<p>$$</p>
-<p>F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+F(t,T) = \mathbb{E}^{\mathbb{Q}^T}[S_T \mid \mathcal{F}_t]
+\]</div>
 <h3 id="forward-pricing-formula">Forward Pricing Formula<a class="headerlink" href="#forward-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>For a European claim with payoff <span class="arithmatex">\(\Phi(S_T)\)</span>:</p>
-<p>$$</p>
-<p>V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi(S_T) \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[\Phi(S_T) \mid \mathcal{F}_t]
+\]</div>
 <p><strong>No explicit discounting needed!</strong> The bond price <span class="arithmatex">\(P(t,T)\)</span> handles it.</p>
 <hr />
 <h2 id="example-blacks-formula">Example: Black's Formula<a class="headerlink" href="#example-blacks-formula" title="Permanent link">&para;</a></h2>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
 <p>Price a European call on a forward contract with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span>.</p>
 <h3 id="under-risk-neutral-measure-q">Under Risk-Neutral Measure Q<a class="headerlink" href="#under-risk-neutral-measure-q" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}(F_T - K)^+ \mid \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s\,ds}(F_T - K)^+ \mid \mathcal{F}_t\right]
+\]</div>
 <p>This requires modeling the joint distribution of <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(F\)</span>.</p>
 <h3 id="under-forward-measure-qt">Under Forward Measure Q^T<a class="headerlink" href="#under-forward-measure-qt" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(F_T - K)^+ \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_t = P(t,T) \cdot \mathbb{E}^{\mathbb{Q}^T}[(F_T - K)^+ \mid \mathcal{F}_t]
+\]</div>
 <p>If <span class="arithmatex">\(F_t\)</span> is log-normal under <span class="arithmatex">\(\mathbb{Q}^T\)</span> with volatility <span class="arithmatex">\(\sigma_F\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 C_t = P(t,T)[F_t\Phi(d_1) - K\Phi(d_2)]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(F_t/K) + \frac{1}{2}\sigma_F^2(T-t)}{\sigma_F\sqrt{T-t}}, \quad d_2 = d_1 - \sigma_F\sqrt{T-t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(F_t/K) + \frac{1}{2}\sigma_F^2(T-t)}{\sigma_F\sqrt{T-t}}, \quad d_2 = d_1 - \sigma_F\sqrt{T-t}
+\]</div>
 <p>This is <strong>Black's formula</strong> (1976).</p>
 <hr />
 <h2 id="example-exchange-option-margrabes-formula">Example: Exchange Option (Margrabe's Formula)<a class="headerlink" href="#example-exchange-option-margrabes-formula" title="Permanent link">&para;</a></h2>
 <h3 id="setup_1">Setup<a class="headerlink" href="#setup_1" title="Permanent link">&para;</a></h3>
 <p>Option to exchange asset <span class="arithmatex">\(S^2\)</span> for asset <span class="arithmatex">\(S^1\)</span> at time <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\Phi_T = (S_T^1 - S_T^2)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi_T = (S_T^1 - S_T^2)^+
+\]</div>
 <h3 id="using-s2-as-numeraire">Using S² as Numéraire<a class="headerlink" href="#using-s2-as-numeraire" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^{S^2}\)</span>, the ratio <span class="arithmatex">\(S_t^1/S_t^2\)</span> is a martingale.</p>
-<p>$$</p>
-<p>V_t = S_t^2 \cdot \mathbb{E}^{\mathbb{Q}^{S^2}}\left[\left(\frac{S_T^1}{S_T^2} - 1\right)^+ \;\middle|\; \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = S_t^2 \cdot \mathbb{E}^{\mathbb{Q}^{S^2}}\left[\left(\frac{S_T^1}{S_T^2} - 1\right)^+ \;\middle|\; \mathcal{F}_t\right]
+\]</div>
 <p>If the ratio is log-normal:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S_t^1/S_t^2) + \frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S_t^1/S_t^2) + \frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}
+\]</div>
 <p>and <span class="arithmatex">\(\sigma^2 = \sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2\)</span>.</p>
 <p><strong>Note</strong>: Interest rate <span class="arithmatex">\(r\)</span> does not appear—the option is self-financing in either asset.</p>
 <hr />
 <h2 id="dynamics-under-different-measures">Dynamics Under Different Measures<a class="headerlink" href="#dynamics-under-different-measures" title="Permanent link">&para;</a></h2>
 <h3 id="under-money-market-numeraire-q">Under Money Market Numéraire (Q)<a class="headerlink" href="#under-money-market-numeraire-q" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}
+\]</div>
 <h3 id="under-forward-measure-qt_1">Under Forward Measure (Q^T)<a class="headerlink" href="#under-forward-measure-qt_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dS_t = (r + \sigma\sigma_P\rho_{SP})S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r + \sigma\sigma_P\rho_{SP})S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^T}
+\]</div>
 <p>where <span class="arithmatex">\(\sigma_P\)</span> is bond volatility and <span class="arithmatex">\(\rho_{SP}\)</span> is stock-bond correlation.</p>
 <h3 id="under-stock-measure-qs">Under Stock Measure (Q^S)<a class="headerlink" href="#under-stock-measure-qs" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r + \sigma^2)S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}^S}
+\]</div>
 <p>The drift increases by <span class="arithmatex">\(\sigma^2\)</span> (the "convexity adjustment").</p>
 <hr />
 <h2 id="when-to-use-which-numeraire">When to Use Which Numéraire<a class="headerlink" href="#when-to-use-which-numeraire" title="Permanent link">&para;</a></h2>
@@ -46927,21 +46927,21 @@ V_t = S_t^1\Phi(d_1) - S_t^2\Phi(d_2)
 <hr />
 <h2 id="the-annuity-numeraire-swap-measure">The Annuity Numéraire (Swap Measure)<a class="headerlink" href="#the-annuity-numeraire-swap-measure" title="Permanent link">&para;</a></h2>
 <p>For interest rate swaps, the natural numéraire is the <strong>annuity</strong>:</p>
-<p>$$</p>
-<p>A(t) = \sum_{i=1}^n \tau_i P(t, T_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+A(t) = \sum_{i=1}^n \tau_i P(t, T_i)
+\]</div>
 <p>Under the <strong>swap measure</strong> <span class="arithmatex">\(\mathbb{Q}^A\)</span>, the <strong>swap rate</strong> is a martingale:</p>
-<p>$$</p>
-<p>S(t) = \frac{P(t, T_0) - P(t, T_n)}{A(t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S(t) = \frac{P(t, T_0) - P(t, T_n)}{A(t)}
+\]</div>
 <p>This leads to Black's model for swaptions.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 V_t = N_t \cdot \mathbb{E}^{\mathbb{Q}^N}\left[\frac{\Phi_T}{N_T} \;\middle|\; \mathcal{F}_t\right]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

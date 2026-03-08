@@ -47030,12 +47030,12 @@
 <div class="arithmatex">\[(\mathcal{L}g)(x) = \lim_{t \downarrow 0} \frac{\mathbb{E}_x[g(X_t)] - g(x)}{t} = \lim_{t \downarrow 0} \frac{u(t,x) - u(0,x)}{t} = \frac{\partial u}{\partial t}(0, x)\]</div>
 <p>This shows <span class="arithmatex">\(\partial_t u = \mathcal{L}u\)</span> at <span class="arithmatex">\(t = 0\)</span>.</p>
 <p>By the <strong>Markov property</strong>, the same argument applies at any time <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t}(t, x) = \lim_{h \downarrow 0} \frac{u(t+h, x) - u(t, x)}{h} = \lim_{h \downarrow 0} \frac{\mathbb{E}<em X_t="X_t">x[\mathbb{E}</em>}[g(X_h)]] - \mathbb{E}_x[g(X_t)]}{h</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \mathbb{E}<em 0="0" _downarrow="\downarrow" h="h">x\left[\lim</em>g)(X_t)]} \frac{\mathbb{E}_{X_t}[g(X_h)] - g(X_t)}{h}\right] = \mathbb{E}_x[(\mathcal{L</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t}(t, x) = \lim_{h \downarrow 0} \frac{u(t+h, x) - u(t, x)}{h} = \lim_{h \downarrow 0} \frac{\mathbb{E}_x[\mathbb{E}_{X_t}[g(X_h)]] - \mathbb{E}_x[g(X_t)]}{h}
+\]</div>
+<div class="arithmatex">\[
+= \mathbb{E}_x\left[\lim_{h \downarrow 0} \frac{\mathbb{E}_{X_t}[g(X_h)] - g(X_t)}{h}\right] = \mathbb{E}_x[(\mathcal{L}g)(X_t)]
+\]</div>
 <p>For the function <span class="arithmatex">\(u(t, \cdot)\)</span>, this gives <span class="arithmatex">\(\frac{\partial u}{\partial t}(t, x) = (\mathcal{L}_x u)(t, x)\)</span>.</p>
 <h3 id="method-2-verification-via-itos-lemma">Method 2: Verification via Itô's Lemma<a class="headerlink" href="#method-2-verification-via-itos-lemma" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">

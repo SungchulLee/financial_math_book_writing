@@ -47320,23 +47320,23 @@
 <h2 id="binomial-model-setup">Binomial Model Setup<a class="headerlink" href="#binomial-model-setup" title="Permanent link">&para;</a></h2>
 <h3 id="discrete-time-structure">Discrete Time Structure<a class="headerlink" href="#discrete-time-structure" title="Permanent link">&para;</a></h3>
 <p>Consider a time interval <span class="arithmatex">\([0, T]\)</span> divided into <span class="arithmatex">\(n\)</span> equal steps:</p>
-<p>$$</p>
-<p>\Delta t = \frac{T}{n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta t = \frac{T}{n}
+\]</div>
 <p>At each time step, the stock price evolves multiplicatively:</p>
-<p>$$</p>
-<p>S_{i+1} = 
+<div class="arithmatex">\[
+S_{i+1} = 
 \begin{cases}
-u S_i &amp; \text{with probability } q \[4pt]
+u S_i &amp; \text{with probability } q \\[4pt]
 d S_i &amp; \text{with probability } 1-q
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>where <span class="arithmatex">\(u &gt; 1\)</span> is the <strong>up factor</strong> and <span class="arithmatex">\(0 &lt; d &lt; 1\)</span> is the <strong>down factor</strong>.</p>
 <h3 id="parameter-specification-coxrossrubinstein">Parameter Specification (Cox–Ross–Rubinstein)<a class="headerlink" href="#parameter-specification-coxrossrubinstein" title="Permanent link">&para;</a></h3>
 <p>To ensure convergence to geometric Brownian motion with volatility <span class="arithmatex">\(\sigma\)</span>, the standard <strong>Cox–Ross–Rubinstein (CRR)</strong> parameterization is:</p>
-<p>$$</p>
-<p>\boxed{u = e^{\sigma\sqrt{\Delta t}}, \quad d = e^{-\sigma\sqrt{\Delta t}} = \frac{1}{u}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{u = e^{\sigma\sqrt{\Delta t}}, \quad d = e^{-\sigma\sqrt{\Delta t}} = \frac{1}{u}}
+\]</div>
 <div class="admonition note">
 <p class="admonition-title">Why These Parameters?</p>
 <p>These choices ensure:</p>
@@ -47349,134 +47349,134 @@ d S_i &amp; \text{with probability } 1-q
 </div>
 <h3 id="risk-neutral-probability">Risk-Neutral Probability<a class="headerlink" href="#risk-neutral-probability" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure, the discounted stock price is a martingale:</p>
-<p>$$</p>
-<p>S_i = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_i = e^{-r\Delta t} \mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i]
+\]</div>
 <p>This requires:</p>
-<p>$$</p>
-<p>S_i = e^{-r\Delta t}(q \cdot u S_i + (1-q) \cdot d S_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_i = e^{-r\Delta t}(q \cdot u S_i + (1-q) \cdot d S_i)
+\]</div>
 <p>Simplifying:</p>
-<p>$$</p>
-<p>e^{r\Delta t} = qu + (1-q)d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{r\Delta t} = qu + (1-q)d
+\]</div>
 <p>Solving for <span class="arithmatex">\(q\)</span>:</p>
-<p>$$</p>
-<p>\boxed{q = \frac{e^{r\Delta t} - d}{u - d}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{q = \frac{e^{r\Delta t} - d}{u - d}}
+\]</div>
 <h3 id="taylor-expansion-of-q">Taylor Expansion of q<a class="headerlink" href="#taylor-expansion-of-q" title="Permanent link">&para;</a></h3>
 <p>For small <span class="arithmatex">\(\Delta t\)</span>, we expand each term:</p>
-<p>$$</p>
-<p>e^{r\Delta t} \approx 1 + r\Delta t + \frac{(r\Delta t)^2}{2} + O(\Delta t^{3/2})</p>
-<p>$$</p>
-<p>$$</p>
-<p>u = e^{\sigma\sqrt{\Delta t}} \approx 1 + \sigma\sqrt{\Delta t} + \frac{\sigma^2 \Delta t}{2} + O(\Delta t^{3/2})</p>
-<p>$$</p>
-<p>$$</p>
-<p>d = e^{-\sigma\sqrt{\Delta t}} \approx 1 - \sigma\sqrt{\Delta t} + \frac{\sigma^2 \Delta t}{2} + O(\Delta t^{3/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e^{r\Delta t} \approx 1 + r\Delta t + \frac{(r\Delta t)^2}{2} + O(\Delta t^{3/2})
+\]</div>
+<div class="arithmatex">\[
+u = e^{\sigma\sqrt{\Delta t}} \approx 1 + \sigma\sqrt{\Delta t} + \frac{\sigma^2 \Delta t}{2} + O(\Delta t^{3/2})
+\]</div>
+<div class="arithmatex">\[
+d = e^{-\sigma\sqrt{\Delta t}} \approx 1 - \sigma\sqrt{\Delta t} + \frac{\sigma^2 \Delta t}{2} + O(\Delta t^{3/2})
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>u - d \approx 2\sigma\sqrt{\Delta t}</p>
-<p>$$</p>
-<p>$$</p>
-<p>e^{r\Delta t} - d \approx (1 + r\Delta t) - (1 - \sigma\sqrt{\Delta t}) = \sigma\sqrt{\Delta t} + r\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u - d \approx 2\sigma\sqrt{\Delta t}
+\]</div>
+<div class="arithmatex">\[
+e^{r\Delta t} - d \approx (1 + r\Delta t) - (1 - \sigma\sqrt{\Delta t}) = \sigma\sqrt{\Delta t} + r\Delta t
+\]</div>
 <p>Thus:</p>
-<p>$$</p>
-<p>q = \frac{\sigma\sqrt{\Delta t} + r\Delta t}{2\sigma\sqrt{\Delta t}} = \frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma} + O(\Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q = \frac{\sigma\sqrt{\Delta t} + r\Delta t}{2\sigma\sqrt{\Delta t}} = \frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma} + O(\Delta t)
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Risk-Neutral Probability Limit</p>
 <p>As <span class="arithmatex">\(\Delta t \to 0\)</span>:</p>
-<p>$$</p>
-<p>q \to \frac{1}{2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q \to \frac{1}{2}
+\]</div>
 <p>The probability approaches <span class="arithmatex">\(\frac{1}{2}\)</span> with a small drift correction of order <span class="arithmatex">\(\sqrt{\Delta t}\)</span>.</p>
 </div>
 <hr />
 <h2 id="convergence-of-stock-price-process">Convergence of Stock Price Process<a class="headerlink" href="#convergence-of-stock-price-process" title="Permanent link">&para;</a></h2>
 <h3 id="log-price-representation">Log-Price Representation<a class="headerlink" href="#log-price-representation" title="Permanent link">&para;</a></h3>
 <p>After <span class="arithmatex">\(n\)</span> steps, starting from <span class="arithmatex">\(S_0\)</span>, the stock price is:</p>
-<p>$$</p>
-<p>S_n = S_0 \cdot u^{N_u} \cdot d^{N_d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_n = S_0 \cdot u^{N_u} \cdot d^{N_d}
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(N_u\)</span> = number of up moves</li>
 <li><span class="arithmatex">\(N_d = n - N_u\)</span> = number of down moves</li>
 </ul>
 <p>Taking logarithms:</p>
-<p>$$</p>
-<p>\ln S_n = \ln S_0 + N_u \ln u + N_d \ln d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln S_n = \ln S_0 + N_u \ln u + N_d \ln d
+\]</div>
 <p>With <span class="arithmatex">\(u = e^{\sigma\sqrt{\Delta t}}\)</span> and <span class="arithmatex">\(d = e^{-\sigma\sqrt{\Delta t}}\)</span>:</p>
-<p>$$</p>
-<p>\ln S_n = \ln S_0 + N_u \cdot \sigma\sqrt{\Delta t} - N_d \cdot \sigma\sqrt{\Delta t}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\ln S_n = \ln S_0 + \sigma\sqrt{\Delta t}(N_u - N_d)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln S_n = \ln S_0 + N_u \cdot \sigma\sqrt{\Delta t} - N_d \cdot \sigma\sqrt{\Delta t}
+\]</div>
+<div class="arithmatex">\[
+\ln S_n = \ln S_0 + \sigma\sqrt{\Delta t}(N_u - N_d)
+\]</div>
 <h3 id="random-walk-representation">Random Walk Representation<a class="headerlink" href="#random-walk-representation" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>step random variables</strong>:</p>
-<p>$$</p>
-<p>X_i = 
+<div class="arithmatex">\[
+X_i = 
 \begin{cases}
-+1 &amp; \text{if up move at step } i \quad (\text{prob } q) \[4pt]
++1 &amp; \text{if up move at step } i \quad (\text{prob } q) \\[4pt]
 -1 &amp; \text{if down move at step } i \quad (\text{prob } 1-q)
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>N_u - N_d = \sum_{i=1}^{n} X_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+N_u - N_d = \sum_{i=1}^{n} X_i
+\]</div>
 <p>and the log-price becomes:</p>
-<p>$$</p>
-<p>\ln S_n = \ln S_0 + \sigma\sqrt{\Delta t} \sum_{i=1}^{n} X_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln S_n = \ln S_0 + \sigma\sqrt{\Delta t} \sum_{i=1}^{n} X_i
+\]</div>
 <h3 id="moments-of-x_i">Moments of X_i<a class="headerlink" href="#moments-of-x_i" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
 <p><strong>Mean:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[X_i] = (+1) \cdot q + (-1) \cdot (1-q) = 2q - 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[X_i] = (+1) \cdot q + (-1) \cdot (1-q) = 2q - 1
+\]</div>
 <p>Using <span class="arithmatex">\(q = \frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma} + O(\Delta t)\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[X_i] = 2\left(\frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma}\right) - 1 + O(\Delta t) = \frac{r\sqrt{\Delta t}}{\sigma} + O(\Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[X_i] = 2\left(\frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma}\right) - 1 + O(\Delta t) = \frac{r\sqrt{\Delta t}}{\sigma} + O(\Delta t)
+\]</div>
 <p><strong>Variance:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[X_i^2] = (+1)^2 \cdot q + (-1)^2 \cdot (1-q) = 1</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(X_i) = \mathbb{E}[X_i^2] - (\mathbb{E}[X_i])^2 = 1 - O(\Delta t) \approx 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[X_i^2] = (+1)^2 \cdot q + (-1)^2 \cdot (1-q) = 1
+\]</div>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(X_i) = \mathbb{E}[X_i^2] - (\mathbb{E}[X_i])^2 = 1 - O(\Delta t) \approx 1
+\]</div>
 <h3 id="central-limit-theorem-application">Central Limit Theorem Application<a class="headerlink" href="#central-limit-theorem-application" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>scaled log-return</strong>:</p>
-<p>$$</p>
-<p>Y_n := \ln S_n - \ln S_0 = \sigma\sqrt{\Delta t} \sum_{i=1}^{n} X_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_n := \ln S_n - \ln S_0 = \sigma\sqrt{\Delta t} \sum_{i=1}^{n} X_i
+\]</div>
 <p><strong>Mean of <span class="arithmatex">\(Y_n\)</span>:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[Y_n] = \sigma\sqrt{\Delta t} \sum_{i=1}^{n} \mathbb{E}^{\mathbb{Q}}[X_i] = \sigma\sqrt{\Delta t} \cdot n \cdot \frac{r\sqrt{\Delta t}}{\sigma} + O(n \Delta t^{3/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[Y_n] = \sigma\sqrt{\Delta t} \sum_{i=1}^{n} \mathbb{E}^{\mathbb{Q}}[X_i] = \sigma\sqrt{\Delta t} \cdot n \cdot \frac{r\sqrt{\Delta t}}{\sigma} + O(n \Delta t^{3/2})
+\]</div>
 <p>Since <span class="arithmatex">\(n \cdot \Delta t = T\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[Y_n] = rT + O(\sqrt{\Delta t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[Y_n] = rT + O(\sqrt{\Delta t})
+\]</div>
 <p><strong>Variance of <span class="arithmatex">\(Y_n\)</span>:</strong></p>
 <p>Since <span class="arithmatex">\(X_i\)</span> are independent:</p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(Y_n) = \sigma^2 \Delta t \sum_{i=1}^{n} \text{Var}^{\mathbb{Q}}(X_i) = \sigma^2 \Delta t \cdot n \cdot (1 + O(\Delta t))</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(Y_n) = \sigma^2 T + O(\Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(Y_n) = \sigma^2 \Delta t \sum_{i=1}^{n} \text{Var}^{\mathbb{Q}}(X_i) = \sigma^2 \Delta t \cdot n \cdot (1 + O(\Delta t))
+\]</div>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(Y_n) = \sigma^2 T + O(\Delta t)
+\]</div>
 <p><strong>CLT Convergence:</strong></p>
 <p>By the <strong>Central Limit Theorem</strong>, as <span class="arithmatex">\(n \to \infty\)</span>:</p>
-<p>$$</p>
-<p>Y_n = \ln(S_n/S_0) \xrightarrow{d} \mathcal{N}(rT, \sigma^2 T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_n = \ln(S_n/S_0) \xrightarrow{d} \mathcal{N}(rT, \sigma^2 T)
+\]</div>
 <div class="admonition warning">
 <p class="admonition-title">This Is Not Quite Right!</p>
 <p>The calculation above gives <span class="arithmatex">\(\mathbb{E}[\ln(S_n/S_0)] \to rT\)</span>, but the correct Black–Scholes result is:</p>
@@ -47488,100 +47488,100 @@ d S_i &amp; \text{with probability } 1-q
 <p>The discrepancy arises from a subtle point: the risk-neutral condition constrains the <strong>arithmetic</strong> return, not the <strong>logarithmic</strong> return.</p>
 <h3 id="the-martingale-condition">The Martingale Condition<a class="headerlink" href="#the-martingale-condition" title="Permanent link">&para;</a></h3>
 <p>The risk-neutral measure is defined so that the <strong>discounted stock price</strong> is a martingale:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i] = S_i \cdot e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_{i+1} | S_i] = S_i \cdot e^{r\Delta t}
+\]</div>
 <p>This says something about <span class="arithmatex">\(S_{i+1}\)</span>, not about <span class="arithmatex">\(\ln S_{i+1}\)</span>.</p>
 <h3 id="jensens-inequality">Jensen's Inequality<a class="headerlink" href="#jensens-inequality" title="Permanent link">&para;</a></h3>
 <p>For a concave function <span class="arithmatex">\(f(x) = \ln x\)</span>, Jensen's inequality states:</p>
-<p>$$</p>
-<p>\mathbb{E}[\ln X] \leq \ln \mathbb{E}[X]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\ln X] \leq \ln \mathbb{E}[X]
+\]</div>
 <p>with equality only if <span class="arithmatex">\(X\)</span> is constant.</p>
 <p>Since <span class="arithmatex">\(S_{i+1}/S_i\)</span> is random (not constant), we have:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}\left[\ln\frac{S_{i+1}}{S_i}\right] &lt; \ln \mathbb{E}^{\mathbb{Q}}\left[\frac{S_{i+1}}{S_i}\right] = \ln(e^{r\Delta t}) = r\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}\left[\ln\frac{S_{i+1}}{S_i}\right] &lt; \ln \mathbb{E}^{\mathbb{Q}}\left[\frac{S_{i+1}}{S_i}\right] = \ln(e^{r\Delta t}) = r\Delta t
+\]</div>
 <p>The gap is the <strong>Itô correction</strong>.</p>
 <h3 id="explicit-calculation">Explicit Calculation<a class="headerlink" href="#explicit-calculation" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(R_i = S_{i+1}/S_i\)</span> be the gross return at step <span class="arithmatex">\(i\)</span>. Then:</p>
-<p>$$</p>
-<p>R_i = 
+<div class="arithmatex">\[
+R_i = 
 \begin{cases}
-u = e^{\sigma\sqrt{\Delta t}} &amp; \text{with prob } q \[4pt]
+u = e^{\sigma\sqrt{\Delta t}} &amp; \text{with prob } q \\[4pt]
 d = e^{-\sigma\sqrt{\Delta t}} &amp; \text{with prob } 1-q
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>The log-return is:</p>
-<p>$$</p>
-<p>\ln R_i = 
+<div class="arithmatex">\[
+\ln R_i = 
 \begin{cases}
-\sigma\sqrt{\Delta t} &amp; \text{with prob } q \[4pt]
+\sigma\sqrt{\Delta t} &amp; \text{with prob } q \\[4pt]
 -\sigma\sqrt{\Delta t} &amp; \text{with prob } 1-q
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p><strong>Expected log-return:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[\ln R_i] = q \cdot \sigma\sqrt{\Delta t} + (1-q) \cdot (-\sigma\sqrt{\Delta t}) = (2q-1)\sigma\sqrt{\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[\ln R_i] = q \cdot \sigma\sqrt{\Delta t} + (1-q) \cdot (-\sigma\sqrt{\Delta t}) = (2q-1)\sigma\sqrt{\Delta t}
+\]</div>
 <p>Using <span class="arithmatex">\(q = \frac{1}{2} + \frac{r\sqrt{\Delta t}}{2\sigma} + O(\Delta t)\)</span>:</p>
-<p>$$</p>
-<p>2q - 1 = \frac{r\sqrt{\Delta t}}{\sigma} + O(\Delta t)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[\ln R_i] = \frac{r\sqrt{\Delta t}}{\sigma} \cdot \sigma\sqrt{\Delta t} + O(\Delta t^{3/2}) = r\Delta t + O(\Delta t^{3/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+2q - 1 = \frac{r\sqrt{\Delta t}}{\sigma} + O(\Delta t)
+\]</div>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[\ln R_i] = \frac{r\sqrt{\Delta t}}{\sigma} \cdot \sigma\sqrt{\Delta t} + O(\Delta t^{3/2}) = r\Delta t + O(\Delta t^{3/2})
+\]</div>
 <p>This gives <span class="arithmatex">\(\mathbb{E}[\ln R_i] \approx r\Delta t\)</span>, which would sum to <span class="arithmatex">\(rT\)</span> over <span class="arithmatex">\(n\)</span> steps.</p>
 <p><strong>But wait—we need a more careful expansion!</strong></p>
 <h3 id="second-order-correction">Second-Order Correction<a class="headerlink" href="#second-order-correction" title="Permanent link">&para;</a></h3>
 <p>The issue is that we need to track the <span class="arithmatex">\(O(\Delta t)\)</span> terms more carefully. Let's use a different approach.</p>
 <p>The martingale condition gives:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[R_i] = e^{r\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[R_i] = e^{r\Delta t}
+\]</div>
 <p>Now, for any random variable <span class="arithmatex">\(R &gt; 0\)</span> with small variance, we have the approximation:</p>
-<p>$$</p>
-<p>\mathbb{E}[\ln R] \approx \ln \mathbb{E}[R] - \frac{\text{Var}(R)}{2(\mathbb{E}[R])^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\ln R] \approx \ln \mathbb{E}[R] - \frac{\text{Var}(R)}{2(\mathbb{E}[R])^2}
+\]</div>
 <p>This is a second-order Taylor expansion of <span class="arithmatex">\(\ln\)</span> around <span class="arithmatex">\(\mathbb{E}[R]\)</span>.</p>
 <p><strong>Variance of <span class="arithmatex">\(R_i\)</span>:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[R_i^2] = q \cdot u^2 + (1-q) \cdot d^2 = q \cdot e^{2\sigma\sqrt{\Delta t}} + (1-q) \cdot e^{-2\sigma\sqrt{\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[R_i^2] = q \cdot u^2 + (1-q) \cdot d^2 = q \cdot e^{2\sigma\sqrt{\Delta t}} + (1-q) \cdot e^{-2\sigma\sqrt{\Delta t}}
+\]</div>
 <p>For small <span class="arithmatex">\(\Delta t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[R_i^2] \approx q(1 + 2\sigma\sqrt{\Delta t} + 2\sigma^2\Delta t) + (1-q)(1 - 2\sigma\sqrt{\Delta t} + 2\sigma^2\Delta t)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 1 + 2\sigma\sqrt{\Delta t}(2q-1) + 2\sigma^2\Delta t</p>
-<p>$$</p>
-<p>$$</p>
-<p>\approx 1 + 2r\Delta t + 2\sigma^2\Delta t + O(\Delta t^{3/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[R_i^2] \approx q(1 + 2\sigma\sqrt{\Delta t} + 2\sigma^2\Delta t) + (1-q)(1 - 2\sigma\sqrt{\Delta t} + 2\sigma^2\Delta t)
+\]</div>
+<div class="arithmatex">\[
+= 1 + 2\sigma\sqrt{\Delta t}(2q-1) + 2\sigma^2\Delta t
+\]</div>
+<div class="arithmatex">\[
+\approx 1 + 2r\Delta t + 2\sigma^2\Delta t + O(\Delta t^{3/2})
+\]</div>
 <p>Since <span class="arithmatex">\(\mathbb{E}[R_i] = e^{r\Delta t} \approx 1 + r\Delta t\)</span>:</p>
-<p>$$</p>
-<p>\text{Var}(R_i) = \mathbb{E}[R_i^2] - (\mathbb{E}[R_i])^2 \approx (1 + 2r\Delta t + 2\sigma^2\Delta t) - (1 + 2r\Delta t) = 2\sigma^2\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(R_i) = \mathbb{E}[R_i^2] - (\mathbb{E}[R_i])^2 \approx (1 + 2r\Delta t + 2\sigma^2\Delta t) - (1 + 2r\Delta t) = 2\sigma^2\Delta t
+\]</div>
 <p>Wait, this gives variance <span class="arithmatex">\(\approx 2\sigma^2\Delta t\)</span>, but the correct variance of <span class="arithmatex">\(R_i - 1\)</span> should be <span class="arithmatex">\(\sigma^2\Delta t\)</span>. Let me redo this more carefully.</p>
 <p><strong>Correct variance calculation:</strong></p>
-<p>$$</p>
-<p>R_i = e^{\pm\sigma\sqrt{\Delta t}} \approx 1 \pm \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{Var}(R_i) \approx \text{Var}(\pm\sigma\sqrt{\Delta t}) = \sigma^2\Delta t \cdot \text{Var}(\pm 1) = \sigma^2\Delta t \cdot 1 = \sigma^2\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+R_i = e^{\pm\sigma\sqrt{\Delta t}} \approx 1 \pm \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2}
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(R_i) \approx \text{Var}(\pm\sigma\sqrt{\Delta t}) = \sigma^2\Delta t \cdot \text{Var}(\pm 1) = \sigma^2\Delta t \cdot 1 = \sigma^2\Delta t
+\]</div>
 <p>(since <span class="arithmatex">\(\text{Var}(\text{sign}) = 1 - (2q-1)^2 \approx 1\)</span>)</p>
 <p><strong>Applying the correction:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}[\ln R_i] \approx \ln \mathbb{E}[R_i] - \frac{\text{Var}(R_i)}{2(\mathbb{E}[R_i])^2}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\approx r\Delta t - \frac{\sigma^2\Delta t}{2 \cdot 1} = \left(r - \frac{\sigma^2}{2}\right)\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\ln R_i] \approx \ln \mathbb{E}[R_i] - \frac{\text{Var}(R_i)}{2(\mathbb{E}[R_i])^2}
+\]</div>
+<div class="arithmatex">\[
+\approx r\Delta t - \frac{\sigma^2\Delta t}{2 \cdot 1} = \left(r - \frac{\sigma^2}{2}\right)\Delta t
+\]</div>
 <p><strong>Summing over <span class="arithmatex">\(n\)</span> steps:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[\ln(S_n/S_0)] = \sum_{i=1}^{n} \mathbb{E}^{\mathbb{Q}}[\ln R_i] \approx n \cdot \left(r - \frac{\sigma^2}{2}\right)\Delta t = \left(r - \frac{\sigma^2}{2}\right)T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[\ln(S_n/S_0)] = \sum_{i=1}^{n} \mathbb{E}^{\mathbb{Q}}[\ln R_i] \approx n \cdot \left(r - \frac{\sigma^2}{2}\right)\Delta t = \left(r - \frac{\sigma^2}{2}\right)T
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Itô Correction Derived</p>
 <p>The <span class="arithmatex">\(-\frac{1}{2}\sigma^2\)</span> term arises from the <strong>convexity of the logarithm</strong> (Jensen's inequality). In continuous time, this is captured by Itô's lemma:</p>
@@ -47592,19 +47592,19 @@ d = e^{-\sigma\sqrt{\Delta t}} &amp; \text{with prob } 1-q
 <h2 id="log-price-distribution-and-geometric-brownian-motion">Log-Price Distribution and Geometric Brownian Motion<a class="headerlink" href="#log-price-distribution-and-geometric-brownian-motion" title="Permanent link">&para;</a></h2>
 <h3 id="final-distribution">Final Distribution<a class="headerlink" href="#final-distribution" title="Permanent link">&para;</a></h3>
 <p>Combining the CLT with the Itô correction, as <span class="arithmatex">\(n \to \infty\)</span>:</p>
-<p>$$</p>
-<p>\ln S_n \xrightarrow{d} \mathcal{N}\left(\ln S_0 + \left(r - \frac{1}{2}\sigma^2\right)T, \, \sigma^2 T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ln S_n \xrightarrow{d} \mathcal{N}\left(\ln S_0 + \left(r - \frac{1}{2}\sigma^2\right)T, \, \sigma^2 T\right)
+\]</div>
 <p>Equivalently, <span class="arithmatex">\(S_n\)</span> converges in distribution to a <strong>log-normal</strong> random variable:</p>
-<p>$$</p>
-<p>S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 \exp\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma W_T\right)
+\]</div>
 <p>where <span class="arithmatex">\(W_T \sim \mathcal{N}(0, T)\)</span>.</p>
 <h3 id="connection-to-geometric-brownian-motion">Connection to Geometric Brownian Motion<a class="headerlink" href="#connection-to-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>This log-normal distribution is exactly the solution to the <strong>risk-neutral SDE</strong>:</p>
-<p>$$</p>
-<p>\boxed{dS_t = rS_t \, dt + \sigma S_t \, dW_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{dS_t = rS_t \, dt + \sigma S_t \, dW_t}
+\]</div>
 <p>where <span class="arithmatex">\(W_t\)</span> is a standard Brownian motion under <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Donsker's Theorem</p>
@@ -47615,30 +47615,30 @@ d = e^{-\sigma\sqrt{\Delta t}} &amp; \text{with prob } 1-q
 <h2 id="matching-variance">Matching Variance<a class="headerlink" href="#matching-variance" title="Permanent link">&para;</a></h2>
 <h3 id="per-step-variance">Per-Step Variance<a class="headerlink" href="#per-step-variance" title="Permanent link">&para;</a></h3>
 <p>In one time step, the log-return is:</p>
-<p>$$</p>
-<p>\ln\frac{S_{i+1}}{S_i} = 
+<div class="arithmatex">\[
+\ln\frac{S_{i+1}}{S_i} = 
 \begin{cases}
-+\sigma\sqrt{\Delta t} &amp; \text{with prob } q \[4pt]
++\sigma\sqrt{\Delta t} &amp; \text{with prob } q \\[4pt]
 -\sigma\sqrt{\Delta t} &amp; \text{with prob } 1-q
-\end{cases}</p>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>The variance:</p>
-<p>$$</p>
-<p>\text{Var}\left(\ln\frac{S_{i+1}}{S_i}\right) = \sigma^2\Delta t \cdot \text{Var}(\pm 1) = \sigma^2\Delta t \cdot (1 - (2q-1)^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}\left(\ln\frac{S_{i+1}}{S_i}\right) = \sigma^2\Delta t \cdot \text{Var}(\pm 1) = \sigma^2\Delta t \cdot (1 - (2q-1)^2)
+\]</div>
 <p>Since <span class="arithmatex">\((2q-1)^2 = O(\Delta t)\)</span>:</p>
-<p>$$</p>
-<p>\text{Var}\left(\ln\frac{S_{i+1}}{S_i}\right) = \sigma^2\Delta t + O(\Delta t^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}\left(\ln\frac{S_{i+1}}{S_i}\right) = \sigma^2\Delta t + O(\Delta t^2)
+\]</div>
 <h3 id="total-variance">Total Variance<a class="headerlink" href="#total-variance" title="Permanent link">&para;</a></h3>
 <p>Over <span class="arithmatex">\(n\)</span> independent steps:</p>
-<p>$$</p>
-<p>\text{Var}(\ln(S_n/S_0)) = n \cdot \sigma^2\Delta t = \sigma^2 T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(\ln(S_n/S_0)) = n \cdot \sigma^2\Delta t = \sigma^2 T
+\]</div>
 <p>This matches the Black–Scholes variance exactly:</p>
-<p>$$</p>
-<p>\text{Var}^{\mathbb{Q}}(\ln(S_T/S_0)) = \sigma^2 T</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}^{\mathbb{Q}}(\ln(S_T/S_0)) = \sigma^2 T
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Variance Matching</p>
 <p>The CRR parameterization <span class="arithmatex">\(u = e^{\sigma\sqrt{\Delta t}}\)</span>, <span class="arithmatex">\(d = e^{-\sigma\sqrt{\Delta t}}\)</span> ensures that the discrete model has the <strong>same volatility structure</strong> as the continuous model for any number of steps <span class="arithmatex">\(n\)</span>.</p>
@@ -47647,136 +47647,136 @@ d = e^{-\sigma\sqrt{\Delta t}} &amp; \text{with prob } 1-q
 <h2 id="convergence-of-option-pricing">Convergence of Option Pricing<a class="headerlink" href="#convergence-of-option-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="binomial-backward-recursion">Binomial Backward Recursion<a class="headerlink" href="#binomial-backward-recursion" title="Permanent link">&para;</a></h3>
 <p>In the binomial model, the option value at node <span class="arithmatex">\(i\)</span> satisfies:</p>
-<p>$$</p>
-<p>V_i = e^{-r\Delta t}\left[q V_{i+1}^{u} + (1-q) V_{i+1}^{d}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_i = e^{-r\Delta t}\left[q V_{i+1}^{u} + (1-q) V_{i+1}^{d}\right]
+\]</div>
 <p>with terminal condition:</p>
-<p>$$</p>
-<p>V_n = \text{Payoff}(S_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_n = \text{Payoff}(S_n)
+\]</div>
 <p>where <span class="arithmatex">\(V_{i+1}^u\)</span> (resp. <span class="arithmatex">\(V_{i+1}^d\)</span>) is the option value at the up (resp. down) successor node.</p>
 <h3 id="taylor-expansion-approach">Taylor Expansion Approach<a class="headerlink" href="#taylor-expansion-approach" title="Permanent link">&para;</a></h3>
 <p>To derive the PDE limit, we expand <span class="arithmatex">\(V\)</span> as a smooth function <span class="arithmatex">\(V(S, t)\)</span> and examine the discrete recursion.</p>
 <p>At node <span class="arithmatex">\(i\)</span>, let <span class="arithmatex">\(S = S_i\)</span> and <span class="arithmatex">\(t = i \cdot \Delta t\)</span>. The successor values are:</p>
-<p>$$</p>
-<p>V_{i+1}^u = V(uS, t + \Delta t), \quad V_{i+1}^d = V(dS, t + \Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_{i+1}^u = V(uS, t + \Delta t), \quad V_{i+1}^d = V(dS, t + \Delta t)
+\]</div>
 <p><strong>Taylor expand in time:</strong></p>
-<p>$$</p>
-<p>V(uS, t + \Delta t) = V(uS, t) + \frac{\partial V}{\partial t}(uS, t)\Delta t + O(\Delta t^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(uS, t + \Delta t) = V(uS, t) + \frac{\partial V}{\partial t}(uS, t)\Delta t + O(\Delta t^2)
+\]</div>
 <p><strong>Taylor expand in space</strong> around <span class="arithmatex">\(S\)</span>:</p>
-<p>$$</p>
-<p>V(uS, t) = V(S, t) + \frac{\partial V}{\partial S}(S, t)(uS - S) + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(S, t)(uS - S)^2 + O((uS-S)^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(uS, t) = V(S, t) + \frac{\partial V}{\partial S}(S, t)(uS - S) + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(S, t)(uS - S)^2 + O((uS-S)^3)
+\]</div>
 <p>Since <span class="arithmatex">\(u = e^{\sigma\sqrt{\Delta t}} \approx 1 + \sigma\sqrt{\Delta t} + \frac{\sigma^2\Delta t}{2}\)</span>:</p>
-<p>$$</p>
-<p>uS - S = S(u - 1) \approx S\sigma\sqrt{\Delta t} + O(\Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+uS - S = S(u - 1) \approx S\sigma\sqrt{\Delta t} + O(\Delta t)
+\]</div>
 <div class="arithmatex">\[(uS - S)^2 \approx S^2\sigma^2\Delta t\]</div>
 <p>Similarly for the down node:</p>
-<p>$$</p>
-<p>dS - S \approx -S\sigma\sqrt{\Delta t} + O(\Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS - S \approx -S\sigma\sqrt{\Delta t} + O(\Delta t)
+\]</div>
 <div class="arithmatex">\[(dS - S)^2 \approx S^2\sigma^2\Delta t\]</div>
 <h3 id="computing-the-expectation">Computing the Expectation<a class="headerlink" href="#computing-the-expectation" title="Permanent link">&para;</a></h3>
 <p>The risk-neutral expected successor value is:</p>
-<p>$$</p>
-<p>q V(uS, t) + (1-q) V(dS, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q V(uS, t) + (1-q) V(dS, t)
+\]</div>
 <p><strong>First-order terms:</strong></p>
-<p>$$</p>
-<p>q(uS - S) + (1-q)(dS - S) = S[q(u-1) + (1-q)(d-1)] = S[qu + (1-q)d - 1]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(uS - S) + (1-q)(dS - S) = S[q(u-1) + (1-q)(d-1)] = S[qu + (1-q)d - 1]
+\]</div>
 <p>Since <span class="arithmatex">\(qu + (1-q)d = e^{r\Delta t} \approx 1 + r\Delta t\)</span>:</p>
-<p>$$</p>
-<p>q(uS - S) + (1-q)(dS - S) \approx rS\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(uS - S) + (1-q)(dS - S) \approx rS\Delta t
+\]</div>
 <p><strong>Second-order terms:</strong></p>
-<p>$$</p>
-<p>q(uS - S)^2 + (1-q)(dS - S)^2 \approx S^2\sigma^2\Delta t \cdot [q + (1-q)] = S^2\sigma^2\Delta t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q(uS - S)^2 + (1-q)(dS - S)^2 \approx S^2\sigma^2\Delta t \cdot [q + (1-q)] = S^2\sigma^2\Delta t
+\]</div>
 <h3 id="assembling-the-pde">Assembling the PDE<a class="headerlink" href="#assembling-the-pde" title="Permanent link">&para;</a></h3>
 <p>The backward recursion becomes:</p>
-<p>$$</p>
-<p>V(S, t) = e^{-r\Delta t}\left[V(S, t) + \frac{\partial V}{\partial S} \cdot rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} \cdot S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t + O(\Delta t^{3/2})\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S, t) = e^{-r\Delta t}\left[V(S, t) + \frac{\partial V}{\partial S} \cdot rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} \cdot S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t + O(\Delta t^{3/2})\right]
+\]</div>
 <p>Using <span class="arithmatex">\(e^{-r\Delta t} \approx 1 - r\Delta t\)</span>:</p>
-<p>$$</p>
-<p>V = (1 - r\Delta t)\left[V + \frac{\partial V}{\partial S} rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t\right] + O(\Delta t^{3/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V = (1 - r\Delta t)\left[V + \frac{\partial V}{\partial S} rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t\right] + O(\Delta t^{3/2})
+\]</div>
 <p>Expanding and keeping terms up to <span class="arithmatex">\(O(\Delta t)\)</span>:</p>
-<p>$$</p>
-<p>V = V - rV\Delta t + \frac{\partial V}{\partial S} rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t + O(\Delta t^{3/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V = V - rV\Delta t + \frac{\partial V}{\partial S} rS\Delta t + \frac{1}{2}\frac{\partial^2 V}{\partial S^2} S^2\sigma^2\Delta t + \frac{\partial V}{\partial t}\Delta t + O(\Delta t^{3/2})
+\]</div>
 <p>Canceling <span class="arithmatex">\(V\)</span> and dividing by <span class="arithmatex">\(\Delta t\)</span>:</p>
-<p>$$</p>
-<p>0 = -rV + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + \frac{\partial V}{\partial t} + O(\sqrt{\Delta t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+0 = -rV + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} + \frac{\partial V}{\partial t} + O(\sqrt{\Delta t})
+\]</div>
 <p>Taking <span class="arithmatex">\(\Delta t \to 0\)</span>:</p>
 <div class="admonition success">
 <p class="admonition-title">Black–Scholes PDE</p>
-<p>$$</p>
-<p>\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0}
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V(S, T) = \text{Payoff}(S)\)</span>.</p>
 </div>
 <hr />
 <h2 id="convergence-of-option-prices">Convergence of Option Prices<a class="headerlink" href="#convergence-of-option-prices" title="Permanent link">&para;</a></h2>
 <h3 id="binomial-formula-for-european-call">Binomial Formula for European Call<a class="headerlink" href="#binomial-formula-for-european-call" title="Permanent link">&para;</a></h3>
 <p>For a European call with strike <span class="arithmatex">\(K\)</span>, the binomial price is:</p>
-<p>$$</p>
-<p>C_n = e^{-rT}\sum_{k=0}^{n} \binom{n}{k} q^k (1-q)^{n-k} (S_0 u^k d^{n-k} - K)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_n = e^{-rT}\sum_{k=0}^{n} \binom{n}{k} q^k (1-q)^{n-k} (S_0 u^k d^{n-k} - K)^+
+\]</div>
 <p>The payoff is positive only when <span class="arithmatex">\(S_0 u^k d^{n-k} &gt; K\)</span>, i.e., when:</p>
-<p>$$</p>
-<p>k &gt; k^* := \frac{\ln(K/S_0) - n\ln d}{\ln(u/d)} = \frac{\ln(K/S_0) + n\sigma\sqrt{\Delta t}}{2\sigma\sqrt{\Delta t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+k &gt; k^* := \frac{\ln(K/S_0) - n\ln d}{\ln(u/d)} = \frac{\ln(K/S_0) + n\sigma\sqrt{\Delta t}}{2\sigma\sqrt{\Delta t}}
+\]</div>
 <p>So the sum effectively runs from <span class="arithmatex">\(k = \lceil k^* \rceil\)</span> to <span class="arithmatex">\(n\)</span>.</p>
 <h3 id="blackscholes-formula">Black–Scholes Formula<a class="headerlink" href="#blackscholes-formula" title="Permanent link">&para;</a></h3>
 <p>The continuous limit is the <strong>Black–Scholes formula</strong>:</p>
-<p>$$</p>
-<p>C_{BS} = S_0 \Phi(d_1) - Ke^{-rT}\Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{BS} = S_0 \Phi(d_1) - Ke^{-rT}\Phi(d_2)
+\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> is the standard normal CDF and:</p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}
+\]</div>
 <h3 id="convergence">Convergence<a class="headerlink" href="#convergence" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(n \to \infty\)</span>:</p>
-<p>$$</p>
-<p>C_n \to C_{BS}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_n \to C_{BS}
+\]</div>
 <p><strong>Proof sketch:</strong> The binomial sum is a Riemann sum approximation to:</p>
-<p>$$</p>
-<p>C_{BS} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = e^{-rT}\int_K^\infty (S - K) f_{S_T}(S) \, dS</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{BS} = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = e^{-rT}\int_K^\infty (S - K) f_{S_T}(S) \, dS
+\]</div>
 <p>where <span class="arithmatex">\(f_{S_T}\)</span> is the log-normal density of <span class="arithmatex">\(S_T\)</span>. By the CLT, the discrete distribution of <span class="arithmatex">\(S_n\)</span> converges to this log-normal, so the expectation converges.</p>
 <hr />
 <h2 id="convergence-of-delta-hedging">Convergence of Delta Hedging<a class="headerlink" href="#convergence-of-delta-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="discrete-delta">Discrete Delta<a class="headerlink" href="#discrete-delta" title="Permanent link">&para;</a></h3>
 <p>In the binomial model, at node <span class="arithmatex">\((i, j)\)</span> with stock price <span class="arithmatex">\(S\)</span>, the replicating portfolio holds:</p>
-<p>$$</p>
-<p>\Delta_i = \frac{V_{i+1}^u - V_{i+1}^d}{S(u - d)} = \frac{V(uS, t+\Delta t) - V(dS, t+\Delta t)}{S(u - d)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_i = \frac{V_{i+1}^u - V_{i+1}^d}{S(u - d)} = \frac{V(uS, t+\Delta t) - V(dS, t+\Delta t)}{S(u - d)}
+\]</div>
 <h3 id="taylor-expansion">Taylor Expansion<a class="headerlink" href="#taylor-expansion" title="Permanent link">&para;</a></h3>
 <p>Expanding around <span class="arithmatex">\((S, t)\)</span>:</p>
-<p>$$</p>
-<p>V(uS, t+\Delta t) - V(dS, t+\Delta t) \approx \frac{\partial V}{\partial S}(S, t) \cdot S(u - d) + O(\Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(uS, t+\Delta t) - V(dS, t+\Delta t) \approx \frac{\partial V}{\partial S}(S, t) \cdot S(u - d) + O(\Delta t)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\Delta_i \approx \frac{\partial V}{\partial S}(S, t) + O(\sqrt{\Delta t})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_i \approx \frac{\partial V}{\partial S}(S, t) + O(\sqrt{\Delta t})
+\]</div>
 <h3 id="continuous-limit">Continuous Limit<a class="headerlink" href="#continuous-limit" title="Permanent link">&para;</a></h3>
 <p>As <span class="arithmatex">\(\Delta t \to 0\)</span>:</p>
-<p>$$</p>
-<p>\Delta_i \to \frac{\partial V}{\partial S}(S, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_i \to \frac{\partial V}{\partial S}(S, t)
+\]</div>
 <p>For a European call, this is the <strong>Black–Scholes delta</strong>:</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial C}{\partial S} = \Phi(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial C}{\partial S} = \Phi(d_1)
+\]</div>
 <div class="admonition success">
 <p class="admonition-title">Hedging Convergence</p>
 <p>The discrete binomial hedging strategy converges to continuous <strong>delta hedging</strong>. The replicating portfolio remains self-financing in the limit.</p>
@@ -47785,9 +47785,9 @@ d = e^{-\sigma\sqrt{\Delta t}} &amp; \text{with prob } 1-q
 <h2 id="convergence-rate">Convergence Rate<a class="headerlink" href="#convergence-rate" title="Permanent link">&para;</a></h2>
 <h3 id="error-behavior">Error Behavior<a class="headerlink" href="#error-behavior" title="Permanent link">&para;</a></h3>
 <p>For the CRR binomial model pricing European options:</p>
-<p>$$</p>
-<p>|C_n - C_{BS}| = O\left(\frac{1}{n}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|C_n - C_{BS}| = O\left(\frac{1}{n}\right)
+\]</div>
 <p>with <strong>oscillations</strong> between odd and even <span class="arithmatex">\(n\)</span>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Common Misconception</p>
@@ -47830,15 +47830,15 @@ d = e^{-\sigma\sqrt{\Delta t}} &amp; \text{with prob } 1-q
 <h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h2>
 <h3 id="american-options">American Options<a class="headerlink" href="#american-options" title="Permanent link">&para;</a></h3>
 <p>The binomial method handles American options naturally:</p>
-<p>$$</p>
-<p>V_i^{American} = \max\left(\text{Payoff}(S_i), \, e^{-r\Delta t}[qV_{i+1}^u + (1-q)V_{i+1}^d]\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_i^{American} = \max\left(\text{Payoff}(S_i), \, e^{-r\Delta t}[qV_{i+1}^u + (1-q)V_{i+1}^d]\right)
+\]</div>
 <p>The early exercise boundary emerges from the recursion. There is <strong>no closed-form</strong> Black–Scholes formula for American options.</p>
 <h3 id="dividends">Dividends<a class="headerlink" href="#dividends" title="Permanent link">&para;</a></h3>
 <p><strong>Continuous dividend yield <span class="arithmatex">\(\delta\)</span>:</strong> Replace <span class="arithmatex">\(r\)</span> with <span class="arithmatex">\(r - \delta\)</span> in the drift:</p>
-<p>$$</p>
-<p>q = \frac{e^{(r-\delta)\Delta t} - d}{u - d}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+q = \frac{e^{(r-\delta)\Delta t} - d}{u - d}
+\]</div>
 <p><strong>Discrete dividends:</strong> At ex-dividend dates, reduce <span class="arithmatex">\(S\)</span> by the dividend amount.</p>
 <h3 id="alternative-parameterizations">Alternative Parameterizations<a class="headerlink" href="#alternative-parameterizations" title="Permanent link">&para;</a></h3>
 <table>

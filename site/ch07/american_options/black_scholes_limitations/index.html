@@ -46337,13 +46337,13 @@
 <hr />
 <h2 id="the-european-case-fixed-boundary">The European Case: Fixed Boundary<a class="headerlink" href="#the-european-case-fixed-boundary" title="Permanent link">&para;</a></h2>
 <p>For a European option, the Black–Scholes PDE:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0
+\]</div>
 <p>is solved on the domain <span class="arithmatex">\((S, t) \in (0, \infty) \times [0, T)\)</span> with a <strong>fixed terminal condition</strong>:</p>
-<p>$$</p>
-<p>V(S, T) = \Phi(S)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S, T) = \Phi(S)
+\]</div>
 <p>and boundary conditions at <span class="arithmatex">\(S = 0\)</span> and <span class="arithmatex">\(S \to \infty\)</span>. The domain is fully specified, and the problem admits a unique closed-form solution via the Feynman–Kac representation.</p>
 <hr />
 <h2 id="the-american-case-free-boundary">The American Case: Free Boundary<a class="headerlink" href="#the-american-case-free-boundary" title="Permanent link">&para;</a></h2>
@@ -46367,27 +46367,27 @@
 </ol>
 <h3 id="the-free-boundary-st">The Free Boundary S^*(t)<a class="headerlink" href="#the-free-boundary-st" title="Permanent link">&para;</a></h3>
 <p>The boundary between <span class="arithmatex">\(\mathcal{C}\)</span> and <span class="arithmatex">\(\mathcal{E}\)</span> is an <strong>unknown curve</strong> <span class="arithmatex">\(S^*(t)\)</span> that must be determined as part of the solution:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0 &amp;\quad \text{for } S &gt; S^<em>(t) \text{ (put)} \
-V(S, t) = K - S &amp;\quad \text{for } S \leq S^</em>(t) \text{ (put)}
+\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0 &amp;\quad \text{for } S &gt; S^*(t) \text{ (put)} \\
+V(S, t) = K - S &amp;\quad \text{for } S \leq S^*(t) \text{ (put)}
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is fundamentally different from the European case: the <strong>domain of the PDE itself depends on the solution</strong>.</p>
 <hr />
 <h2 id="smooth-pasting-conditions">Smooth-Pasting Conditions<a class="headerlink" href="#smooth-pasting-conditions" title="Permanent link">&para;</a></h2>
 <p>At the free boundary, the solution satisfies two conditions that together determine <span class="arithmatex">\(S^*(t)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
-V(t, S^<em>(t)) = \Phi(S^</em>(t)), \qquad \frac{\partial V}{\partial S}(t, S^<em>(t)) = \Phi'(S^</em>(t))
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+V(t, S^*(t)) = \Phi(S^*(t)), \qquad \frac{\partial V}{\partial S}(t, S^*(t)) = \Phi'(S^*(t))
+}
+\]</div>
 <p>For an American put with <span class="arithmatex">\(\Phi(S) = (K - S)^+\)</span>:</p>
-<p>$$</p>
-<p>V(t, S^<em>) = K - S^</em>, \qquad V_S(t, S^*) = -1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, S^*) = K - S^*, \qquad V_S(t, S^*) = -1
+\]</div>
 <p>The <strong>value-matching</strong> condition (first equation) requires continuity. The <strong>smooth-pasting</strong> condition (second equation) requires differentiability at the boundary. Together, they provide the extra equation needed to determine the unknown <span class="arithmatex">\(S^*(t)\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Why Smooth Pasting?</p>
@@ -46396,24 +46396,24 @@ V(t, S^<em>(t)) = \Phi(S^</em>(t)), \qquad \frac{\partial V}{\partial S}(t, S^<e
 <hr />
 <h2 id="the-complementarity-formulation">The Complementarity Formulation<a class="headerlink" href="#the-complementarity-formulation" title="Permanent link">&para;</a></h2>
 <p>The free-boundary problem can be restated compactly as a <strong>linear complementarity problem (LCP)</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-V(S, t) &amp;\geq \Phi(S) \
--\frac{\partial V}{\partial t} - \mathcal{L}V + rV &amp;\geq 0 \
+V(S, t) &amp;\geq \Phi(S) \\
+-\frac{\partial V}{\partial t} - \mathcal{L}V + rV &amp;\geq 0 \\
 \left(V - \Phi\right) \cdot \left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV\right) &amp;= 0
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The third equation is the <strong>complementarity condition</strong>: at every point, <strong>at least one</strong> of the two inequalities holds as an equality.</p>
 <ul>
 <li>In <span class="arithmatex">\(\mathcal{C}\)</span>: <span class="arithmatex">\(V &gt; \Phi\)</span> and the PDE holds (<span class="arithmatex">\(= 0\)</span>)</li>
 <li>In <span class="arithmatex">\(\mathcal{E}\)</span>: <span class="arithmatex">\(V = \Phi\)</span> and the PDE residual is <span class="arithmatex">\(\geq 0\)</span></li>
 </ul>
 <p>This is equivalent to the variational inequality:</p>
-<p>$$</p>
-<p>\min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min\left(-\frac{\partial V}{\partial t} - \mathcal{L}V + rV, \; V - \Phi\right) = 0
+\]</div>
 <hr />
 <h2 id="why-no-closed-form-solution-exists">Why No Closed-Form Solution Exists<a class="headerlink" href="#why-no-closed-form-solution-exists" title="Permanent link">&para;</a></h2>
 <p>The Black–Scholes formula relies on:</p>
@@ -46462,9 +46462,9 @@ V(S, t) &amp;\geq \Phi(S) \
 <div class="admonition warning">
 <p class="admonition-title">The Perpetual Exception</p>
 <p>For a <strong>perpetual American put</strong> (<span class="arithmatex">\(T = \infty\)</span>), the problem becomes time-independent. The exercise boundary is a <strong>constant</strong> <span class="arithmatex">\(S^*\)</span>, and a closed-form solution exists:</p>
-<p>$$</p>
-<p>V(S) = \left(\frac{S^<em>}{S}\right)^\lambda (K - S^</em>), \quad S^* = \frac{\lambda}{\lambda + 1} K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(S) = \left(\frac{S^*}{S}\right)^\lambda (K - S^*), \quad S^* = \frac{\lambda}{\lambda + 1} K
+\]</div>
 <p>where <span class="arithmatex">\(\lambda = \frac{2r}{\sigma^2}\)</span>. This is the only analytically tractable case.</p>
 </div>
 <hr />
@@ -46503,11 +46503,11 @@ V(S, t) &amp;\geq \Phi(S) \
 </table>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{European: standard PDE} \quad \longrightarrow \quad \text{American: free-boundary PDE}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

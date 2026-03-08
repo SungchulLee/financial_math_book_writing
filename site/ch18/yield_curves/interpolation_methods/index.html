@@ -47029,9 +47029,9 @@
 <h2 id="the-interpolation-problem">The Interpolation Problem<a class="headerlink" href="#the-interpolation-problem" title="Permanent link">&para;</a></h2>
 <h3 id="given">Given<a class="headerlink" href="#given" title="Permanent link">&para;</a></h3>
 <p>A set of bootstrapped points:</p>
-<p>$$</p>
-<p>{(T_1, P_1), (T_2, P_2), \ldots, (T_n, P_n)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{(T_1, P_1), (T_2, P_2), \ldots, (T_n, P_n)\}
+\]</div>
 <p>where <span class="arithmatex">\(P_i = P(0, T_i)\)</span> are discount factors at maturities <span class="arithmatex">\(T_i\)</span>.</p>
 <h3 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h3>
 <p>A continuous function <span class="arithmatex">\(P(0, T)\)</span> for all <span class="arithmatex">\(T \in [0, T_n]\)</span> that:
@@ -47043,34 +47043,34 @@
 <h2 id="interpolation-on-different-variables">Interpolation on Different Variables<a class="headerlink" href="#interpolation-on-different-variables" title="Permanent link">&para;</a></h2>
 <p>The choice of <strong>what to interpolate</strong> matters as much as <strong>how to interpolate</strong>.</p>
 <h3 id="option-1-interpolate-discount-factors">Option 1: Interpolate Discount Factors<a class="headerlink" href="#option-1-interpolate-discount-factors" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P(0, T) = \text{Interp}{(T_i, P_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(0, T) = \text{Interp}\{(T_i, P_i)\}
+\]</div>
 <ul>
 <li>Direct but can violate positivity</li>
 <li>Forward rates derived via differentiation</li>
 </ul>
 <h3 id="option-2-interpolate-log-discount-factors">Option 2: Interpolate Log-Discount Factors<a class="headerlink" href="#option-2-interpolate-log-discount-factors" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\log P(0, T) = \text{Interp}{(T_i, \log P_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log P(0, T) = \text{Interp}\{(T_i, \log P_i)\}
+\]</div>
 <ul>
 <li>Ensures positivity: <span class="arithmatex">\(P(0, T) = e^{\text{Interp}(\cdot)} &gt; 0\)</span></li>
 <li>Linear interpolation here = linear on zero rates</li>
 </ul>
 <h3 id="option-3-interpolate-zero-rates">Option 3: Interpolate Zero Rates<a class="headerlink" href="#option-3-interpolate-zero-rates" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>z(0, T) = \text{Interp}{(T_i, z_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(0, T) = \text{Interp}\{(T_i, z_i)\}
+\]</div>
 <p>where <span class="arithmatex">\(z_i = -\log(P_i)/T_i\)</span></p>
 <ul>
 <li>Intuitive for yield curve analysis</li>
 <li>Recover discount factors: <span class="arithmatex">\(P(0, T) = e^{-z(0,T) \cdot T}\)</span></li>
 </ul>
 <h3 id="option-4-interpolate-forward-rates">Option 4: Interpolate Forward Rates<a class="headerlink" href="#option-4-interpolate-forward-rates" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>f(0, T) = \text{Interp}{(T_i, f_i)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(0, T) = \text{Interp}\{(T_i, f_i)\}
+\]</div>
 <ul>
 <li>Direct control over forward curve shape</li>
 <li>Recover discount factors: <span class="arithmatex">\(P(0, T) = e^{-\int_0^T f(0,u) du}\)</span></li>
@@ -47079,27 +47079,27 @@
 <h2 id="linear-interpolation">Linear Interpolation<a class="headerlink" href="#linear-interpolation" title="Permanent link">&para;</a></h2>
 <h3 id="on-zero-rates">On Zero Rates<a class="headerlink" href="#on-zero-rates" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(T \in [T_i, T_{i+1}]\)</span>:</p>
-<p>$$</p>
-<p>z(0, T) = z_i + \frac{T - T_i}{T_{i+1} - T_i}(z_{i+1} - z_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(0, T) = z_i + \frac{T - T_i}{T_{i+1} - T_i}(z_{i+1} - z_i)
+\]</div>
 <p><strong>Forward rate:</strong></p>
-<p>$$</p>
-<p>f(0, T) = z(0, T) + T \frac{\partial z}{\partial T} = z_i + \frac{T - T_i}{T_{i+1} - T_i}(z_{i+1} - z_i) + T \cdot \frac{z_{i+1} - z_i}{T_{i+1} - T_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(0, T) = z(0, T) + T \frac{\partial z}{\partial T} = z_i + \frac{T - T_i}{T_{i+1} - T_i}(z_{i+1} - z_i) + T \cdot \frac{z_{i+1} - z_i}{T_{i+1} - T_i}
+\]</div>
 <p>Simplifying:</p>
-<p>$$</p>
-<p>f(0, T) = z_{i+1} + \frac{T_i(z_{i+1} - z_i)}{T_{i+1} - T_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(0, T) = z_{i+1} + \frac{T_i(z_{i+1} - z_i)}{T_{i+1} - T_i}
+\]</div>
 <p>The forward rate is <strong>constant</strong> within each interval (piecewise flat forwards).</p>
 <h3 id="on-log-discounts">On Log-Discounts<a class="headerlink" href="#on-log-discounts" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(T \in [T_i, T_{i+1}]\)</span>:</p>
-<p>$$</p>
-<p>\log P(0, T) = \log P_i + \frac{T - T_i}{T_{i+1} - T_i}(\log P_{i+1} - \log P_i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log P(0, T) = \log P_i + \frac{T - T_i}{T_{i+1} - T_i}(\log P_{i+1} - \log P_i)
+\]</div>
 <p><strong>Forward rate:</strong></p>
-<p>$$</p>
-<p>f(0, T) = -\frac{\partial}{\partial T} \log P(0, T) = \frac{\log P_i - \log P_{i+1}}{T_{i+1} - T_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(0, T) = -\frac{\partial}{\partial T} \log P(0, T) = \frac{\log P_i - \log P_{i+1}}{T_{i+1} - T_i}
+\]</div>
 <p>This is <strong>piecewise constant</strong>, with jumps at the nodes <span class="arithmatex">\(T_i\)</span>.</p>
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <table>
@@ -47138,17 +47138,17 @@
 <h3 id="natural-cubic-spline">Natural Cubic Spline<a class="headerlink" href="#natural-cubic-spline" title="Permanent link">&para;</a></h3>
 <p>A <strong>cubic spline</strong> fits a piecewise cubic polynomial with continuous first and second derivatives.</p>
 <p>For <span class="arithmatex">\(T \in [T_i, T_{i+1}]\)</span>:</p>
-<p>$$</p>
-<p>z(0, T) = a_i + b_i(T - T_i) + c_i(T - T_i)^2 + d_i(T - T_i)^3</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(0, T) = a_i + b_i(T - T_i) + c_i(T - T_i)^2 + d_i(T - T_i)^3
+\]</div>
 <p>subject to:
 - Interpolation: <span class="arithmatex">\(z(0, T_i) = z_i\)</span>
 - Continuity of <span class="arithmatex">\(z, z', z''\)</span> at interior nodes
 - Natural boundary: <span class="arithmatex">\(z''(T_1) = z''(T_n) = 0\)</span></p>
 <h3 id="forward-rate-from-cubic-spline">Forward Rate from Cubic Spline<a class="headerlink" href="#forward-rate-from-cubic-spline" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>f(0, T) = z(0, T) + T \cdot z'(0, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(0, T) = z(0, T) + T \cdot z'(0, T)
+\]</div>
 <p>The forward rate is a <strong>quadratic</strong> function within each interval, ensuring smoothness.</p>
 <h3 id="potential-issues">Potential Issues<a class="headerlink" href="#potential-issues" title="Permanent link">&para;</a></h3>
 <p><strong>Oscillation:</strong> Cubic splines can overshoot between nodes, potentially producing:
@@ -47173,9 +47173,9 @@
 </ol>
 <h3 id="algorithm-overview">Algorithm Overview<a class="headerlink" href="#algorithm-overview" title="Permanent link">&para;</a></h3>
 <p>The method interpolates the <strong>integral of the forward rate</strong>:</p>
-<p>$$</p>
-<p>g(T) = \int_0^T f(0, u) du = -\log P(0, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(T) = \int_0^T f(0, u) du = -\log P(0, T)
+\]</div>
 <p>such that:
 1. <span class="arithmatex">\(g(T_i) = -\log P_i\)</span> (matches data)
 2. <span class="arithmatex">\(g'(T) = f(0, T) &gt; 0\)</span> (positive forwards)
@@ -47185,9 +47185,9 @@
 <ol>
 <li>Compute discrete forward rate:</li>
 </ol>
-<p>$$</p>
-<p>f_i^{\text{disc}} = \frac{g(T_{i+1}) - g(T_i)}{T_{i+1} - T_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f_i^{\text{disc}} = \frac{g(T_{i+1}) - g(T_i)}{T_{i+1} - T_i}
+\]</div>
 <ol>
 <li>
 <p>Choose instantaneous forwards <span class="arithmatex">\(f(T_i^+)\)</span> and <span class="arithmatex">\(f(T_{i+1}^-)\)</span> to ensure monotonicity</p>
@@ -47257,9 +47257,9 @@ Monotone convex:     ---*---*---*---           (smooth, positive, controlled)
 <h2 id="impact-on-hedging">Impact on Hedging<a class="headerlink" href="#impact-on-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="bucket-sensitivities">Bucket Sensitivities<a class="headerlink" href="#bucket-sensitivities" title="Permanent link">&para;</a></h3>
 <p>The sensitivity of a portfolio to a parallel shift in rate <span class="arithmatex">\(i\)</span> depends on the interpolation:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial z_i} = \sum_j \frac{\partial V}{\partial P(0, T_j)} \cdot \frac{\partial P(0, T_j)}{\partial z_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial z_i} = \sum_j \frac{\partial V}{\partial P(0, T_j)} \cdot \frac{\partial P(0, T_j)}{\partial z_i}
+\]</div>
 <p>The term <span class="arithmatex">\(\frac{\partial P(0, T_j)}{\partial z_i}\)</span> depends on interpolation.</p>
 <h3 id="local-vs-global-methods">Local vs. Global Methods<a class="headerlink" href="#local-vs-global-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Local methods</strong> (linear, monotone convex):
@@ -47320,15 +47320,15 @@ Monotone convex:     ---*---*---*---           (smooth, positive, controlled)
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
 <h3 id="tension-splines">Tension Splines<a class="headerlink" href="#tension-splines" title="Permanent link">&para;</a></h3>
 <p>Add a "tension" parameter <span class="arithmatex">\(\tau\)</span> to control smoothness vs. fidelity:</p>
-<p>$$</p>
-<p>z''(T) - \tau^2 z(T) = 0 \quad \text{(within intervals)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z''(T) - \tau^2 z(T) = 0 \quad \text{(within intervals)}
+\]</div>
 <p>Higher tension → closer to linear; lower tension → closer to natural spline.</p>
 <h3 id="rational-interpolation">Rational Interpolation<a class="headerlink" href="#rational-interpolation" title="Permanent link">&para;</a></h3>
 <p>Use ratios of polynomials:</p>
-<p>$$</p>
-<p>z(0, T) = \frac{a_0 + a_1 T + a_2 T^2}{1 + b_1 T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(0, T) = \frac{a_0 + a_1 T + a_2 T^2}{1 + b_1 T}
+\]</div>
 <p>Can better capture certain curve shapes.</p>
 <h3 id="machine-learning-approaches">Machine Learning Approaches<a class="headerlink" href="#machine-learning-approaches" title="Permanent link">&para;</a></h3>
 <p>Recent work uses neural networks to:

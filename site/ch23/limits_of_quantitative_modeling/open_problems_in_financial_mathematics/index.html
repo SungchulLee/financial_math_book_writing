@@ -47197,9 +47197,9 @@
 - Term structure
 - <strong>Dynamics</strong> of the surface over time</p>
 <p><strong>Stochastic Volatility Models</strong>: Heston, SABR capture static smile but struggle with:</p>
-<p>$$</p>
-<p>\frac{\partial \sigma_{\text{impl}}}{\partial S} \neq \text{observed}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma_{\text{impl}}}{\partial S} \neq \text{observed}
+\]</div>
 <h3 id="2-joint-calibration-problem">2. Joint Calibration Problem<a class="headerlink" href="#2-joint-calibration-problem" title="Permanent link">&para;</a></h3>
 <p><strong>Challenge</strong>: Calibrate model simultaneously to:
 - Vanilla options (all strikes, maturities)
@@ -47216,15 +47216,15 @@
 <h2 id="rough-volatility">Rough Volatility<a class="headerlink" href="#rough-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="1-empirical-evidence">1. Empirical Evidence<a class="headerlink" href="#1-empirical-evidence" title="Permanent link">&para;</a></h3>
 <p><strong>Finding</strong> (Gatheral et al., 2018): Log-volatility behaves like fractional Brownian motion with Hurst parameter <span class="arithmatex">\(H \approx 0.1\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[|\log \sigma_{t+\Delta} - \log \sigma_t|^2] \sim \Delta^{2H}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|\log \sigma_{t+\Delta} - \log \sigma_t|^2] \sim \Delta^{2H}
+\]</div>
 <p><strong>Implication</strong>: Volatility is <strong>rougher</strong> than standard diffusion (<span class="arithmatex">\(H = 0.5\)</span>).</p>
 <h3 id="2-rough-heston-model">2. Rough Heston Model<a class="headerlink" href="#2-rough-heston-model" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamics</strong>:</p>
-<p>$$</p>
-<p>dV_t = \kappa (\bar{V} - V_t) dt + \nu \sqrt{V_t} dW_t^H</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \kappa (\bar{V} - V_t) dt + \nu \sqrt{V_t} dW_t^H
+\]</div>
 <p>where <span class="arithmatex">\(W_t^H\)</span> is fractional Brownian motion with <span class="arithmatex">\(H &lt; 0.5\)</span>.</p>
 <p><strong>Advantage</strong>: Better fits short-term smile and ATM skew.</p>
 <p><strong>Challenge</strong>: 
@@ -47265,9 +47265,9 @@
 <h2 id="deep-hedging-and-machine-learning">Deep Hedging and Machine Learning<a class="headerlink" href="#deep-hedging-and-machine-learning" title="Permanent link">&para;</a></h2>
 <h3 id="1-deep-hedging-framework">1. Deep Hedging Framework<a class="headerlink" href="#1-deep-hedging-framework" title="Permanent link">&para;</a></h3>
 <p><strong>Idea</strong> (Buehler et al., 2019): Learn hedging strategy directly via neural networks:</p>
-<p>$$</p>
-<p>\Delta_t = \text{NN}(S_t, V_t, t; \theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_t = \text{NN}(S_t, V_t, t; \theta)
+\]</div>
 <p>trained to minimize hedging loss.</p>
 <p><strong>Advantages</strong>:
 - Model-free
@@ -47312,9 +47312,9 @@
 <h2 id="systemic-risk-and-contagion">Systemic Risk and Contagion<a class="headerlink" href="#systemic-risk-and-contagion" title="Permanent link">&para;</a></h2>
 <h3 id="1-network-models">1. Network Models<a class="headerlink" href="#1-network-models" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Financial institutions connected through obligations:</p>
-<p>$$</p>
-<p>\bar{p}<em ij="ij">i = \min\left(d_i + \sum_j \pi</em>_j, c_i\right)} \bar{p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{p}_i = \min\left(d_i + \sum_j \pi_{ij} \bar{p}_j, c_i\right)
+\]</div>
 <p>where <span class="arithmatex">\(\bar{p}_i\)</span> is clearing payment, <span class="arithmatex">\(\pi_{ij}\)</span> is liability fraction.</p>
 <p><strong>Eisenberg-Noe</strong>: Existence and uniqueness of clearing vector.</p>
 <p><strong>Open Problems</strong>:

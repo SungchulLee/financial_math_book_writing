@@ -46694,83 +46694,83 @@
 <hr />
 <h2 id="the-sde-setting">The SDE Setting<a class="headerlink" href="#the-sde-setting" title="Permanent link">&para;</a></h2>
 <p>Consider the <span class="arithmatex">\(d\)</span>-dimensional SDE driven by <span class="arithmatex">\(m\)</span>-dimensional Brownian motion:</p>
-<p>$$</p>
-<p>dX_t^i = b^i(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^\alpha, \quad X_0 = x \in \mathbb{R}^d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t^i = b^i(t, X_t)\,dt + \sigma^{i\alpha}(t, X_t)\,dW_t^\alpha, \quad X_0 = x \in \mathbb{R}^d
+\]</div>
 <p>In integral form:</p>
-<p>$$</p>
-<p>X_t = x + \int_0^t b(s, X_s)\,ds + \int_0^t \sigma(s, X_s)\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = x + \int_0^t b(s, X_s)\,ds + \int_0^t \sigma(s, X_s)\,dW_s
+\]</div>
 <p><strong>Goal</strong>: Under what conditions on <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(\sigma\)</span> does a unique solution exist?</p>
 <hr />
 <h2 id="the-lipschitz-condition">The Lipschitz Condition<a class="headerlink" href="#the-lipschitz-condition" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>The coefficients <span class="arithmatex">\(b: [0,T] \times \mathbb{R}^d \to \mathbb{R}^d\)</span> and <span class="arithmatex">\(\sigma: [0,T] \times \mathbb{R}^d \to \mathbb{R}^{d \times m}\)</span> satisfy the <strong>(global) Lipschitz condition</strong> if there exists a constant <span class="arithmatex">\(K &gt; 0\)</span> such that for all <span class="arithmatex">\(t \in [0,T]\)</span> and <span class="arithmatex">\(x, y \in \mathbb{R}^d\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 |b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K|x - y|
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Here <span class="arithmatex">\(|\cdot|\)</span> denotes the Euclidean norm for vectors and the Frobenius norm for matrices:</p>
-<p>$$</p>
-<p>|\sigma|^2 = \sum_{i,\alpha} (\sigma^{i\alpha})^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\sigma|^2 = \sum_{i,\alpha} (\sigma^{i\alpha})^2
+\]</div>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <p><strong>Lipschitz continuity</strong> means the coefficients cannot change too rapidly as a function of the state variable <span class="arithmatex">\(x\)</span>. Small changes in position lead to small changes in drift and diffusion.</p>
 <p><strong>Geometric meaning</strong>: The "vector field" <span class="arithmatex">\((b, \sigma)\)</span> has bounded "slope" in the spatial direction.</p>
 <h3 id="why-lipschitz-implies-uniqueness">Why Lipschitz Implies Uniqueness<a class="headerlink" href="#why-lipschitz-implies-uniqueness" title="Permanent link">&para;</a></h3>
 <p><strong>Intuition</strong>: If two solutions <span class="arithmatex">\(X_t\)</span> and <span class="arithmatex">\(Y_t\)</span> start close together, Lipschitz continuity ensures they cannot diverge too quickly.</p>
 <p><strong>Formal argument</strong> (Gronwall): Let <span class="arithmatex">\(X_t\)</span> and <span class="arithmatex">\(Y_t\)</span> be two solutions. Define <span class="arithmatex">\(Z_t = X_t - Y_t\)</span>. Then:</p>
-<p>$$</p>
-<p>Z_t = \int_0^t [b(s, X_s) - b(s, Y_s)]\,ds + \int_0^t [\sigma(s, X_s) - \sigma(s, Y_s)]\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \int_0^t [b(s, X_s) - b(s, Y_s)]\,ds + \int_0^t [\sigma(s, X_s) - \sigma(s, Y_s)]\,dW_s
+\]</div>
 <p>Taking expectations of <span class="arithmatex">\(|Z_t|^2\)</span> and using the Lipschitz condition:</p>
-<p>$$</p>
-<p>\mathbb{E}[|Z_t|^2] \leq C \int_0^t \mathbb{E}[|Z_s|^2]\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[|Z_t|^2] \leq C \int_0^t \mathbb{E}[|Z_s|^2]\,ds
+\]</div>
 <p>By Gronwall's inequality with <span class="arithmatex">\(Z_0 = 0\)</span>: <span class="arithmatex">\(\mathbb{E}[|Z_t|^2] = 0\)</span> for all <span class="arithmatex">\(t\)</span>.</p>
 <h3 id="examples-of-lipschitz-coefficients">Examples of Lipschitz Coefficients<a class="headerlink" href="#examples-of-lipschitz-coefficients" title="Permanent link">&para;</a></h3>
 <p><strong>Example 1: Linear SDE</strong></p>
-<p>$$</p>
-<p>dX_t = (a + bX_t)\,dt + (c + dX_t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = (a + bX_t)\,dt + (c + dX_t)\,dW_t
+\]</div>
 <p>Lipschitz constant: <span class="arithmatex">\(K = |b| + |d|\)</span>.</p>
 <p><strong>Example 2: Ornstein-Uhlenbeck</strong></p>
-<p>$$</p>
-<p>dX_t = -\kappa X_t\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = -\kappa X_t\,dt + \sigma\,dW_t
+\]</div>
 <p>Lipschitz constant: <span class="arithmatex">\(K = \kappa\)</span>.</p>
 <p><strong>Example 3: Bounded derivatives</strong></p>
 <p>If <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(\sigma\)</span> are <span class="arithmatex">\(C^1\)</span> in <span class="arithmatex">\(x\)</span> with bounded derivatives, they are globally Lipschitz.</p>
 <h3 id="non-lipschitz-examples">Non-Lipschitz Examples<a class="headerlink" href="#non-lipschitz-examples" title="Permanent link">&para;</a></h3>
 <p><strong>Example 4: Square root (CIR model)</strong></p>
-<p>$$</p>
-<p>dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \kappa(\theta - X_t)\,dt + \sigma\sqrt{X_t}\,dW_t
+\]</div>
 <p>The diffusion coefficient <span class="arithmatex">\(\sigma\sqrt{x}\)</span> is <strong>not Lipschitz</strong> at <span class="arithmatex">\(x = 0\)</span> since <span class="arithmatex">\(|\sqrt{x} - \sqrt{y}|/|x-y| \to \infty\)</span> as <span class="arithmatex">\(x, y \to 0\)</span>.</p>
 <p><strong>However</strong>, this SDE still has a unique solution! (Yamada-Watanabe theory applies.)</p>
 <p><strong>Example 5: Power growth</strong></p>
-<p>$$</p>
-<p>dX_t = X_t^2\,dt + dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = X_t^2\,dt + dW_t
+\]</div>
 <p>The drift <span class="arithmatex">\(b(x) = x^2\)</span> is not globally Lipschitz (grows too fast). This can lead to explosion in finite time.</p>
 <hr />
 <h2 id="the-linear-growth-condition">The Linear Growth Condition<a class="headerlink" href="#the-linear-growth-condition" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>The coefficients satisfy the <strong>linear growth condition</strong> if there exists <span class="arithmatex">\(K &gt; 0\)</span> such that for all <span class="arithmatex">\(t \in [0,T]\)</span> and <span class="arithmatex">\(x \in \mathbb{R}^d\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 |b(t,x)|^2 + |\sigma(t,x)|^2 \leq K^2(1 + |x|^2)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Equivalently: <span class="arithmatex">\(|b(t,x)| + |\sigma(t,x)| \leq K(1 + |x|)\)</span>.</p>
 <h3 id="interpretation_1">Interpretation<a class="headerlink" href="#interpretation_1" title="Permanent link">&para;</a></h3>
 <p>The coefficients grow <strong>at most linearly</strong> in <span class="arithmatex">\(|x|\)</span>. This prevents the solution from "exploding to infinity" in finite time.</p>
 <h3 id="why-linear-growth-prevents-explosion">Why Linear Growth Prevents Explosion<a class="headerlink" href="#why-linear-growth-prevents-explosion" title="Permanent link">&para;</a></h3>
 <p><strong>Heuristic</strong>: If <span class="arithmatex">\(|b(x)| \sim |x|^p\)</span> with <span class="arithmatex">\(p &gt; 1\)</span>, the ODE <span class="arithmatex">\(\dot{x} = x^p\)</span> explodes in finite time:</p>
-<p>$$</p>
-<p>x(t) = \frac{x_0}{(1 - (p-1)x_0^{p-1}t)^{1/(p-1)}} \to \infty \quad \text{as } t \to t^* = \frac{1}{(p-1)x_0^{p-1}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x(t) = \frac{x_0}{(1 - (p-1)x_0^{p-1}t)^{1/(p-1)}} \to \infty \quad \text{as } t \to t^* = \frac{1}{(p-1)x_0^{p-1}}
+\]</div>
 <p>Linear growth (<span class="arithmatex">\(p = 1\)</span>) gives exponential growth, which is finite for all finite times.</p>
 <p><strong>Formal</strong>: Linear growth ensures <span class="arithmatex">\(\mathbb{E}[\sup_{0 \leq t \leq T} |X_t|^2] &lt; \infty\)</span>.</p>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
@@ -46797,31 +46797,31 @@
 </li>
 </ol>
 <p>Then for any initial condition <span class="arithmatex">\(X_0 = x_0 \in \mathbb{R}^d\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{There exists a unique strong solution } X_t \text{ on } [0, T]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>Moreover, the solution satisfies:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{0 \leq t \leq T} |X_t|^2\right] \leq C(1 + |x_0|^2)e^{CT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{0 \leq t \leq T} |X_t|^2\right] \leq C(1 + |x_0|^2)e^{CT}
+\]</div>
 <hr />
 <h2 id="proof-strategy-picard-iteration">Proof Strategy: Picard Iteration<a class="headerlink" href="#proof-strategy-picard-iteration" title="Permanent link">&para;</a></h2>
 <p>The proof uses <strong>Picard iteration</strong> (successive approximations), analogous to the ODE case.</p>
 <h3 id="step-1-define-the-iteration">Step 1: Define the Iteration<a class="headerlink" href="#step-1-define-the-iteration" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>X_t^{(0)} = x_0</p>
-<p>$$</p>
-<p>$$</p>
-<p>X_t^{(n+1)} = x_0 + \int_0^t b(s, X_s^{(n)})\,ds + \int_0^t \sigma(s, X_s^{(n)})\,dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t^{(0)} = x_0
+\]</div>
+<div class="arithmatex">\[
+X_t^{(n+1)} = x_0 + \int_0^t b(s, X_s^{(n)})\,ds + \int_0^t \sigma(s, X_s^{(n)})\,dW_s
+\]</div>
 <h3 id="step-2-show-convergence">Step 2: Show Convergence<a class="headerlink" href="#step-2-show-convergence" title="Permanent link">&para;</a></h3>
 <p>Define <span class="arithmatex">\(e_n(t) = \mathbb{E}[\sup_{0 \leq s \leq t} |X_s^{(n+1)} - X_s^{(n)}|^2]\)</span>.</p>
 <p>Using Lipschitz + Itô isometry + Doob's inequality:</p>
-<p>$$</p>
-<p>e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_n(t) \leq C \int_0^t e_{n-1}(s)\,ds
+\]</div>
 <p>By induction: <span class="arithmatex">\(e_n(t) \leq \frac{(Ct)^n}{n!} e_0(T)\)</span>.</p>
 <p>Since <span class="arithmatex">\(\sum_n \sqrt{e_n(T)} &lt; \infty\)</span>, the sequence converges uniformly in <span class="arithmatex">\(L^2\)</span>.</p>
 <h3 id="step-3-verify-the-limit-solves-the-sde">Step 3: Verify the Limit Solves the SDE<a class="headerlink" href="#step-3-verify-the-limit-solves-the-sde" title="Permanent link">&para;</a></h3>
@@ -46832,14 +46832,14 @@
 <h2 id="local-lipschitz-conditions">Local Lipschitz Conditions<a class="headerlink" href="#local-lipschitz-conditions" title="Permanent link">&para;</a></h2>
 <h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
 <p>The coefficients are <strong>locally Lipschitz</strong> if for every <span class="arithmatex">\(R &gt; 0\)</span>, there exists <span class="arithmatex">\(K_R &gt; 0\)</span> such that:</p>
-<p>$$</p>
-<p>|b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K_R|x - y| \quad \text{for } |x|, |y| \leq R</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K_R|x - y| \quad \text{for } |x|, |y| \leq R
+\]</div>
 <h3 id="theorem-local-existence">Theorem (Local Existence)<a class="headerlink" href="#theorem-local-existence" title="Permanent link">&para;</a></h3>
 <p>Under local Lipschitz + linear growth: there exists a unique solution up to a possible <strong>explosion time</strong>:</p>
-<p>$$</p>
-<p>\tau_\infty = \lim_{n \to \infty} \tau_n, \quad \tau_n = \inf{t : |X_t| \geq n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau_\infty = \lim_{n \to \infty} \tau_n, \quad \tau_n = \inf\{t : |X_t| \geq n\}
+\]</div>
 <p>If <span class="arithmatex">\(\mathbb{P}(\tau_\infty = \infty) = 1\)</span>, the solution is global.</p>
 <p><strong>Linear growth ensures</strong> <span class="arithmatex">\(\tau_\infty = \infty\)</span> a.s.</p>
 <hr />
@@ -46847,9 +46847,9 @@
 <p>For some SDEs with non-Lipschitz coefficients, weaker conditions suffice.</p>
 <h3 id="yamada-watanabe-theorem">Yamada-Watanabe Theorem<a class="headerlink" href="#yamada-watanabe-theorem" title="Permanent link">&para;</a></h3>
 <p>Consider the one-dimensional SDE:</p>
-<p>$$</p>
-<p>dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
+\]</div>
 <p><strong>Pathwise uniqueness</strong> holds if:</p>
 <ol>
 <li>
@@ -46917,11 +46917,11 @@
 <li>CIR: Non-Lipschitz but Yamada-Watanabe ✓</li>
 <li><span class="arithmatex">\(dX = X^2\,dt + dW\)</span>: May explode ✗</li>
 </ol>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Lipschitz} + \text{Linear Growth} \Longrightarrow \text{Unique Global Solution}
-}</p>
-<p>$$</p>
+}
+\]</div>
 
 
 

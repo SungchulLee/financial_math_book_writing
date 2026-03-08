@@ -47467,40 +47467,40 @@
 <h2 id="mathematical-foundations">Mathematical Foundations<a class="headerlink" href="#mathematical-foundations" title="Permanent link">&para;</a></h2>
 <h3 id="1-classical-optimal-transport">1. Classical Optimal Transport<a class="headerlink" href="#1-classical-optimal-transport" title="Permanent link">&para;</a></h3>
 <p><strong>Monge Problem</strong> (1781): Given probability measures <span class="arithmatex">\(\mu\)</span> on <span class="arithmatex">\(\mathbb{R}^d\)</span> and <span class="arithmatex">\(\nu\)</span> on <span class="arithmatex">\(\mathbb{R}^d\)</span>, find a transport map <span class="arithmatex">\(T: \mathbb{R}^d \to \mathbb{R}^d\)</span> such that <span class="arithmatex">\(T_{\#}\mu = \nu\)</span> (meaning <span class="arithmatex">\(\nu(B) = \mu(T^{-1}(B))\)</span> for all Borel sets <span class="arithmatex">\(B\)</span>) that minimizes:</p>
-<p>$$</p>
-<p>\inf_{T: T_{#}\mu = \nu} \int_{\mathbb{R}^d} c(x, T(x)) \, d\mu(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{T: T_{\#}\mu = \nu} \int_{\mathbb{R}^d} c(x, T(x)) \, d\mu(x)
+\]</div>
 <p>where <span class="arithmatex">\(c(x, y)\)</span> is the cost of transporting mass from <span class="arithmatex">\(x\)</span> to <span class="arithmatex">\(y\)</span>.</p>
 <p><strong>Kantorovich Relaxation</strong> (1942): Instead of deterministic transport maps, optimize over couplings (joint distributions):</p>
-<p>$$</p>
-<p>\mathcal{W}<em _Pi_mu_="\Pi(\mu," _in="\in" _nu_="\nu)" _pi="\pi">c(\mu, \nu) = \inf</em> c(x, y) \, d\pi(x, y)} \int_{\mathbb{R}^d \times \mathbb{R}^d</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{W}_c(\mu, \nu) = \inf_{\pi \in \Pi(\mu, \nu)} \int_{\mathbb{R}^d \times \mathbb{R}^d} c(x, y) \, d\pi(x, y)
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\Pi(\mu, \nu) = { \pi \in \mathcal{P}(\mathbb{R}^d \times \mathbb{R}^d): \pi_1 = \mu, \, \pi_2 = \nu }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi(\mu, \nu) = \{ \pi \in \mathcal{P}(\mathbb{R}^d \times \mathbb{R}^d): \pi_1 = \mu, \, \pi_2 = \nu \}
+\]</div>
 <p>is the set of couplings with marginals <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\nu\)</span>.</p>
 <p><strong>Wasserstein Distance</strong>: For <span class="arithmatex">\(c(x, y) = |x - y|^p\)</span>, the optimal transport cost defines the <span class="arithmatex">\(p\)</span>-Wasserstein distance:</p>
-<p>$$</p>
-<p>W_p(\mu, \nu) = \left( \mathcal{W}_{|\cdot|^p}(\mu, \nu) \right)^{1/p}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_p(\mu, \nu) = \left( \mathcal{W}_{|\cdot|^p}(\mu, \nu) \right)^{1/p}
+\]</div>
 <h3 id="2-kantorovich-duality">2. Kantorovich Duality<a class="headerlink" href="#2-kantorovich-duality" title="Permanent link">&para;</a></h3>
 <p><strong>Dual Problem</strong>: </p>
-<p>$$</p>
-<p>\mathcal{W}<em _Phi_c="\Phi_c" _in="\in" _phi_="(\phi," _psi_="\psi)">c(\mu, \nu) = \sup</em> \left{ \int \phi \, d\mu + \int \psi \, d\nu \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{W}_c(\mu, \nu) = \sup_{(\phi, \psi) \in \Phi_c} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\Phi_c = { (\phi, \psi): \phi(x) + \psi(y) \leq c(x, y) \text{ for all } x, y }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Phi_c = \{ (\phi, \psi): \phi(x) + \psi(y) \leq c(x, y) \text{ for all } x, y \}
+\]</div>
 <p><strong>Interpretation</strong>: 
 - <span class="arithmatex">\(\phi(x)\)</span>: "Potential" at source location <span class="arithmatex">\(x\)</span>
 - <span class="arithmatex">\(\psi(y)\)</span>: "Potential" at target location <span class="arithmatex">\(y\)</span>
 - Constraint ensures no arbitrage in transport economy</p>
 <p><strong>c-Transform</strong>: For optimal dual solutions:</p>
-<p>$$</p>
-<p>\psi(y) = \inf_x { c(x, y) - \phi(x) } = -\phi^c(y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\psi(y) = \inf_x \{ c(x, y) - \phi(x) \} = -\phi^c(y)
+\]</div>
 <p>where <span class="arithmatex">\(\phi^c\)</span> is the <span class="arithmatex">\(c\)</span>-transform of <span class="arithmatex">\(\phi\)</span>.</p>
 <h2 id="martingale-optimal-transport-problem">Martingale Optimal Transport Problem<a class="headerlink" href="#martingale-optimal-transport-problem" title="Permanent link">&para;</a></h2>
 <h3 id="1-problem-formulation">1. Problem Formulation<a class="headerlink" href="#1-problem-formulation" title="Permanent link">&para;</a></h3>
@@ -47508,46 +47508,46 @@
 - Initial distribution <span class="arithmatex">\(\mu\)</span> on <span class="arithmatex">\(\mathbb{R}_+\)</span> (current asset prices)
 - Terminal distribution <span class="arithmatex">\(\nu\)</span> on <span class="arithmatex">\(\mathbb{R}_+\)</span> (implied by option prices at maturity <span class="arithmatex">\(T\)</span>)</p>
 <p><strong>Martingale Constraint</strong>: Seek joint distribution <span class="arithmatex">\(\pi\)</span> of <span class="arithmatex">\((S_0, S_T)\)</span> such that:</p>
-<p>$$</p>
-<p>\mathbb{E}_{\pi}[S_T | S_0] = e^{rT} S_0 \quad \text{(martingale condition under risk-neutral measure)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\pi}[S_T | S_0] = e^{rT} S_0 \quad \text{(martingale condition under risk-neutral measure)}
+\]</div>
 <p>For simplicity, assume <span class="arithmatex">\(r = 0\)</span> (or work with discounted prices):</p>
-<p>$$</p>
-<p>\mathbb{E}_{\pi}[S_T | S_0] = S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\pi}[S_T | S_0] = S_0
+\]</div>
 <p><strong>Martingale Coupling Set</strong>: Define:</p>
-<p>$$</p>
-<p>\mathcal{M}(\mu, \nu) = \left{ \pi \in \Pi(\mu, \nu): \int y \, d\pi(y | x) = x \text{ for } \mu\text{-a.e. } x \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{M}(\mu, \nu) = \left\{ \pi \in \Pi(\mu, \nu): \int y \, d\pi(y | x) = x \text{ for } \mu\text{-a.e. } x \right\}
+\]</div>
 <p><strong>MOT Problem</strong>: Optimize a cost functional over martingale couplings:</p>
-<p>$$</p>
-<p>\inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}<em _in="\in" _mathcal_M="\mathcal{M" _pi="\pi">{\pi}[c(S_0, S_T)] = \inf</em> \int c(x, y) \, d\pi(x, y)}(\mu, \nu)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}[c(S_0, S_T)] = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c(x, y) \, d\pi(x, y)
+\]</div>
 <p><strong>Dual Problem</strong>: </p>
-<p>$$</p>
-<p>\sup_{(\phi, \psi) \in \Phi_c^M} \left{ \int \phi \, d\mu + \int \psi \, d\nu \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{(\phi, \psi) \in \Phi_c^M} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\Phi_c^M\)</span> incorporates both the cost constraint and martingale structure.</p>
 <h3 id="2-martingale-duality">2. Martingale Duality<a class="headerlink" href="#2-martingale-duality" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Martingale Duality): Under appropriate conditions:</p>
-<p>$$</p>
-<p>\inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c(x, y) \, d\pi = \sup_{\phi, \psi} \left{ \int \phi \, d\mu + \int \psi \, d\nu \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c(x, y) \, d\pi = \sup_{\phi, \psi} \left\{ \int \phi \, d\mu + \int \psi \, d\nu \right\}
+\]</div>
 <p>subject to:</p>
-<p>$$</p>
-<p>\phi(x) + \psi(y) \leq c(x, y) \quad \text{and} \quad \psi(y) \geq y \phi'(x) \text{ for all } x, y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi(x) + \psi(y) \leq c(x, y) \quad \text{and} \quad \psi(y) \geq y \phi'(x) \text{ for all } x, y
+\]</div>
 <p>The second constraint reflects the martingale restriction.</p>
 <p><strong>Proof Sketch</strong>: Uses convex analysis and Lagrangian duality. The martingale constraint is incorporated via the subdifferential condition.</p>
 <h3 id="3-beiglbock-henry-penkner-schachermayer-theorem">3. Beiglböck-Henry-Penkner-Schachermayer Theorem<a class="headerlink" href="#3-beiglbock-henry-penkner-schachermayer-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>General Duality</strong> (BHPS 2013): For one-dimensional marginals and martingale constraint:</p>
-<p>$$</p>
-<p>\inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c \, d\pi = \sup_{\phi \in C(\mathbb{R})} \left{ \int \phi \, d\mu + \int \phi^* \, d\nu \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\pi \in \mathcal{M}(\mu, \nu)} \int c \, d\pi = \sup_{\phi \in C(\mathbb{R})} \left\{ \int \phi \, d\mu + \int \phi^* \, d\nu \right\}
+\]</div>
 <p>where <span class="arithmatex">\(\phi^*\)</span> is the <strong>convex minorant</strong> of <span class="arithmatex">\(\phi\)</span> defined by:</p>
-<p>$$</p>
-<p>\phi^*(y) = \sup { a y + b: ax + b \leq \phi(x) \text{ for all } x }</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi^*(y) = \sup \{ a y + b: ax + b \leq \phi(x) \text{ for all } x \}
+\]</div>
 <p><strong>Key Insight</strong>: The <span class="arithmatex">\(c\)</span>-transform is replaced by convex minorant, reflecting the martingale constraint.</p>
 <p><strong>Application to Finance</strong>: This duality allows computing model-free bounds on exotic derivatives using only observed vanilla option prices.</p>
 <h2 id="robust-pricing-via-mot">Robust Pricing via MOT<a class="headerlink" href="#robust-pricing-via-mot" title="Permanent link">&para;</a></h2>
@@ -47557,19 +47557,19 @@
 - Call option prices <span class="arithmatex">\(C(K)\)</span> for strikes <span class="arithmatex">\(K \in \mathcal{K}\)</span>
 - Maturity <span class="arithmatex">\(T\)</span></p>
 <p><strong>Implied Marginals</strong>: Via Breeden-Litzenberger:</p>
-<p>$$</p>
-<p>d\nu(y) = e^{rT} \frac{\partial^2 C}{\partial K^2}(y) \, dy</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\nu(y) = e^{rT} \frac{\partial^2 C}{\partial K^2}(y) \, dy
+\]</div>
 <h3 id="2-model-free-upper-bound">2. Model-Free Upper Bound<a class="headerlink" href="#2-model-free-upper-bound" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Price an exotic derivative with payoff <span class="arithmatex">\(g(S_0, S_T)\)</span> using only marginal information.</p>
 <p><strong>Upper Bound</strong>:</p>
-<p>$$</p>
-<p>\overline{V}(g) = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\overline{V}(g) = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
+\]</div>
 <p><strong>Dual Formulation</strong>: By MOT duality:</p>
-<p>$$</p>
-<p>\overline{V}(g) = \inf_{\phi} \left{ \int \phi(x) \, d\mu(x) + \int \phi^*(y) \, d\nu(y) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\overline{V}(g) = \inf_{\phi} \left\{ \int \phi(x) \, d\mu(x) + \int \phi^*(y) \, d\nu(y) \right\}
+\]</div>
 <p>subject to <span class="arithmatex">\(\phi(x) + \phi^*(y) \geq g(x, y)\)</span> for all <span class="arithmatex">\(x, y\)</span>.</p>
 <p><strong>Interpretation</strong>: 
 - <span class="arithmatex">\(\phi(x)\)</span> is a "potential function" 
@@ -47577,13 +47577,13 @@
 - This provides a super-replication strategy</p>
 <h3 id="3-model-free-lower-bound">3. Model-Free Lower Bound<a class="headerlink" href="#3-model-free-lower-bound" title="Permanent link">&para;</a></h3>
 <p><strong>Lower Bound</strong>:</p>
-<p>$$</p>
-<p>\underline{V}(g) = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{V}(g) = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \int g(x, y) \, d\pi(x, y)
+\]</div>
 <p><strong>Dual</strong>: Replace <span class="arithmatex">\(g\)</span> with <span class="arithmatex">\(-g\)</span> in the upper bound problem:</p>
-<p>$$</p>
-<p>\underline{V}(g) = -\overline{V}(-g)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{V}(g) = -\overline{V}(-g)
+\]</div>
 <h3 id="4-static-replication">4. Static Replication<a class="headerlink" href="#4-static-replication" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Static Replication): The optimal dual potentials <span class="arithmatex">\(\phi^*\)</span> and <span class="arithmatex">\(\psi^*\)</span> correspond to portfolios of vanilla options that super-replicate (for upper bound) or sub-replicate (for lower bound) the exotic payoff.</p>
 <p><strong>Construction</strong>: The superhedging portfolio consists of:
@@ -47591,9 +47591,9 @@
 - Positions in calls: density <span class="arithmatex">\(\theta_C(K) = \partial^2 \phi^*/\partial K^2\)</span>
 - Cash: <span class="arithmatex">\(\theta_0\)</span></p>
 <p>such that:</p>
-<p>$$</p>
-<p>\theta_S S_T + \int_0^{\infty} \theta_C(K) (S_T - K)^+ dK + \theta_0 \geq g(S_0, S_T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta_S S_T + \int_0^{\infty} \theta_C(K) (S_T - K)^+ dK + \theta_0 \geq g(S_0, S_T)
+\]</div>
 <h2 id="multi-period-mot">Multi-Period MOT<a class="headerlink" href="#multi-period-mot" title="Permanent link">&para;</a></h2>
 <h3 id="1-nested-martingales">1. Nested Martingales<a class="headerlink" href="#1-nested-martingales" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Consider times <span class="arithmatex">\(0 &lt; T_1 &lt; T_2 &lt; \cdots &lt; T_n\)</span>.</p>
@@ -47602,14 +47602,14 @@
 1. Marginal constraints: <span class="arithmatex">\(\pi_i = \mu_i\)</span> for each <span class="arithmatex">\(i\)</span>
 2. Martingale property: <span class="arithmatex">\(\mathbb{E}_{\pi}[S_{T_{i+1}} | S_{T_i}] = S_{T_i}\)</span> for all <span class="arithmatex">\(i\)</span></p>
 <p><strong>Optimization</strong>:</p>
-<p>$$</p>
-<p>\inf_{\pi \in \mathcal{M}(\mu_0, \ldots, \mu_n)} \int c(s_0, s_1, \ldots, s_n) \, d\pi(s_0, \ldots, s_n)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\pi \in \mathcal{M}(\mu_0, \ldots, \mu_n)} \int c(s_0, s_1, \ldots, s_n) \, d\pi(s_0, \ldots, s_n)
+\]</div>
 <h3 id="2-weak-vs-strong-duality">2. Weak vs Strong Duality<a class="headerlink" href="#2-weak-vs-strong-duality" title="Permanent link">&para;</a></h3>
 <p><strong>Weak Duality</strong>: Always holds:</p>
-<p>$$</p>
-<p>\text{Primal} \geq \text{Dual}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Primal} \geq \text{Dual}
+\]</div>
 <p><strong>Strong Duality</strong>: Equality holds under regularity conditions.</p>
 <p><strong>Duality Gap</strong>: In multi-period settings, duality gaps can occur due to:
 - Non-compactness
@@ -47623,43 +47623,43 @@
 - <span class="arithmatex">\(S_T \in \{s_1^T, s_2^T, \ldots, s_{N_T}^T\}\)</span></p>
 <p><strong>Coupling Matrix</strong>: Let <span class="arithmatex">\(\pi_{ij} = \pi(s_i^0, s_j^T)\)</span> represent the joint probability.</p>
 <p><strong>Linear Program</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \text{minimize} \quad &amp; \sum_{i=1}^{N_0} \sum_{j=1}^{N_T} c(s_i^0, s_j^T) \pi_{ij} \\
 \text{subject to} \quad &amp; \sum_{j=1}^{N_T} \pi_{ij} = \mu_i, \quad i = 1, \ldots, N_0 \quad \text{(marginal 1)} \\
 &amp; \sum_{i=1}^{N_0} \pi_{ij} = \nu_j, \quad j = 1, \ldots, N_T \quad \text{(marginal 2)} \\
 &amp; \sum_{j=1}^{N_T} s_j^T \pi_{ij} = s_i^0 \sum_{j=1}^{N_T} \pi_{ij}, \quad i = 1, \ldots, N_0 \quad \text{(martingale)} \\
 &amp; \pi_{ij} \geq 0, \quad \forall i, j
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Solver</strong>: Use standard LP solvers (CPLEX, Gurobi) for moderate dimensions.</p>
 <p><strong>Refinement</strong>: Adaptive grid refinement around regions where optimal coupling concentrates.</p>
 <h3 id="2-entropic-regularization">2. Entropic Regularization<a class="headerlink" href="#2-entropic-regularization" title="Permanent link">&para;</a></h3>
 <p><strong>Regularized Problem</strong>: Add entropy term to stabilize and smooth:</p>
-<p>$$</p>
-<p>\inf_{\pi \in \mathcal{M}(\mu, \nu)} \left{ \int c \, d\pi + \varepsilon D_{\text{KL}}(\pi | \mu \otimes \nu) \right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\pi \in \mathcal{M}(\mu, \nu)} \left\{ \int c \, d\pi + \varepsilon D_{\text{KL}}(\pi \| \mu \otimes \nu) \right\}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>D_{\text{KL}}(\pi | \mu \otimes \nu) = \int \log\left(\frac{d\pi}{d(\mu \otimes \nu)}\right) d\pi</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(\pi \| \mu \otimes \nu) = \int \log\left(\frac{d\pi}{d(\mu \otimes \nu)}\right) d\pi
+\]</div>
 <p><strong>Sinkhorn Algorithm</strong>: Iterative algorithm for entropic regularization:</p>
 <ol>
 <li>Initialize <span class="arithmatex">\(u^{(0)} = \mathbf{1}\)</span>, <span class="arithmatex">\(v^{(0)} = \mathbf{1}\)</span></li>
 <li>Iterate:</li>
 </ol>
-<p>$$</p>
-<p>u^{(k+1)}<em ij="ij">i = \frac{\mu_i}{\sum_j K</em>} v^{(k)<em ij="ij">j}, \quad v^{(k+1)}_j = \frac{\nu_j}{\sum_i K</em>} u^{(k+1)}_i</p>
-<p>$$</p>
+<p>$$
+   u^{(k+1)}<em ij="ij">i = \frac{\mu_i}{\sum_j K</em>} v^{(k)<em ij="ij">j}, \quad v^{(k+1)}_j = \frac{\nu_j}{\sum_i K</em>
+   $$} u^{(k+1)}_i</p>
 <p>where <span class="arithmatex">\(K_{ij} = \exp(-c_{ij}/\varepsilon)\)</span> is the kernel matrix.</p>
 <p><strong>Convergence</strong>: Sinkhorn iterations converge exponentially fast to the entropic optimal transport solution.</p>
 <p><strong>Martingale Extension</strong>: Modify Sinkhorn to incorporate martingale constraint by projecting onto martingale subspace at each iteration.</p>
 <h3 id="3-neural-network-approaches">3. Neural Network Approaches<a class="headerlink" href="#3-neural-network-approaches" title="Permanent link">&para;</a></h3>
 <p><strong>Parameterization</strong>: Represent dual potentials <span class="arithmatex">\(\phi\)</span> and <span class="arithmatex">\(\psi\)</span> using neural networks.</p>
 <p><strong>Training</strong>: Minimize:</p>
-<p>$$</p>
-<p>\mathcal{L}(\phi, \psi) = -\left( \mathbb{E}<em _nu="\nu">{\mu}[\phi(X)] + \mathbb{E}</em>(\phi, \psi)}[\psi(Y)] \right) + \lambda \cdot \text{Penalty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(\phi, \psi) = -\left( \mathbb{E}_{\mu}[\phi(X)] + \mathbb{E}_{\nu}[\psi(Y)] \right) + \lambda \cdot \text{Penalty}(\phi, \psi)
+\]</div>
 <p>where Penalty enforces the constraints <span class="arithmatex">\(\phi + \psi \leq c\)</span> and martingale conditions.</p>
 <p><strong>Stochastic Gradient Descent</strong>: Sample from <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\nu\)</span>, compute gradients, and update network parameters.</p>
 <p><strong>Advantages</strong>: 
@@ -47668,36 +47668,36 @@
 - Amortized computation across multiple queries</p>
 <h3 id="4-duality-based-methods">4. Duality-Based Methods<a class="headerlink" href="#4-duality-based-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Dual LP</strong>: Instead of optimizing over couplings, solve the dual problem:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \text{maximize} \quad &amp; \sum_{i=1}^{N_0} \phi_i \mu_i + \sum_{j=1}^{N_T} \psi_j \nu_j \\
 \text{subject to} \quad &amp; \phi_i + \psi_j \leq c_{ij}, \quad \forall i, j \\
 &amp; \psi_j \geq s_j^T \phi_i, \quad \forall i, j \quad \text{(martingale dual constraint)}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Interpretation</strong>: <span class="arithmatex">\(\phi_i\)</span> are "prices" at time 0, <span class="arithmatex">\(\psi_j\)</span> are "prices" at time <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>Solution</strong>: Often has sparse structure; optimal <span class="arithmatex">\(\phi\)</span> and <span class="arithmatex">\(\psi\)</span> are typically piecewise linear.</p>
 <h2 id="applications-in-quantitative-finance">Applications in Quantitative Finance<a class="headerlink" href="#applications-in-quantitative-finance" title="Permanent link">&para;</a></h2>
 <h3 id="1-variance-swap-pricing">1. Variance Swap Pricing<a class="headerlink" href="#1-variance-swap-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Variance Swap Payoff</strong>:</p>
-<p>$$</p>
-<p>g(S_0, S_T) = \log^2(S_T / S_0)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(S_0, S_T) = \log^2(S_T / S_0)
+\]</div>
 <p><strong>MOT Bounds</strong>: Using marginals from call option prices:</p>
-<p>$$</p>
-<p>[\underline{V}, \overline{V}] = \left[ \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}<em _in="\in" _mathcal_M="\mathcal{M" _pi="\pi">{\pi}\left[\log^2(S_T / S_0)\right], \, \sup</em>\left[\log^2(S_T / S_0)\right] \right]}(\mu, \nu)} \mathbb{E}_{\pi</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[\underline{V}, \overline{V}] = \left[ \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[\log^2(S_T / S_0)\right], \, \sup_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[\log^2(S_T / S_0)\right] \right]
+\]</div>
 <p><strong>Tightness</strong>: For variance swaps, bounds are often tight because the payoff is close to "monotone" in a suitable sense.</p>
 <p><strong>Realized Variance</strong>: Can be extended to realized variance:</p>
-<p>$$</p>
-<p>\text{RV} = \sum_{i=1}^n \log^2(S_{t_i} / S_{t_{i-1}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RV} = \sum_{i=1}^n \log^2(S_{t_i} / S_{t_{i-1}})
+\]</div>
 <p>using multi-period MOT.</p>
 <h3 id="2-forward-start-options">2. Forward Start Options<a class="headerlink" href="#2-forward-start-options" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: Option struck at-the-money at future time <span class="arithmatex">\(T_1\)</span>, maturing at <span class="arithmatex">\(T_2\)</span>:</p>
-<p>$$</p>
-<p>g = (S_{T_2} - S_{T_1})^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g = (S_{T_2} - S_{T_1})^+
+\]</div>
 <p><strong>Challenge</strong>: Payoff depends on joint distribution of <span class="arithmatex">\((S_{T_1}, S_{T_2})\)</span>, not just marginals.</p>
 <p><strong>MOT Approach</strong>: 
 - Use marginals at <span class="arithmatex">\(T_1\)</span> and <span class="arithmatex">\(T_2\)</span> from market option prices
@@ -47705,21 +47705,21 @@
 <p><strong>Extremal Measures</strong>: Optimal couplings often correspond to specific scenarios (e.g., maximum correlation, minimum correlation).</p>
 <h3 id="3-barrier-options">3. Barrier Options<a class="headerlink" href="#3-barrier-options" title="Permanent link">&para;</a></h3>
 <p><strong>Up-and-Out Call</strong>: Payoff is:</p>
-<p>$$</p>
-<p>(S_T - K)^+ \mathbb{1}<em 0="0" T="T" _leq="\leq" t="t">{{\max</em>} S_t &lt; H}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(S_T - K)^+ \mathbb{1}_{\{\max_{0 \leq t \leq T} S_t &lt; H\}}
+\]</div>
 <p><strong>MOT Bounds</strong>: Using only marginal distributions:</p>
 <p><strong>Lower Bound</strong>:</p>
-<p>$$</p>
-<p>\underline{V} = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}<em H_125_="H}" _="&lt;" _123_S_T="{S_T">{\pi}\left[(S_T - K)^+ \mathbb{1}</em>\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underline{V} = \inf_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}\left[(S_T - K)^+ \mathbb{1}_{\{S_T &lt; H\}}\right]
+\]</div>
 <p>This can be computed via MOT since the barrier event is approximated by terminal condition.</p>
 <p><strong>Path-Dependent Barrier</strong>: For exact treatment, need continuous monitoring, which requires additional information beyond marginals. MOT provides bounds but may be wide.</p>
 <h3 id="4-robust-vix-derivatives">4. Robust VIX Derivatives<a class="headerlink" href="#4-robust-vix-derivatives" title="Permanent link">&para;</a></h3>
 <p><strong>VIX Definition</strong>: Model-free implied volatility:</p>
-<p>$$</p>
-<p>\text{VIX}^2 = \frac{2e^{rT}}{T} \left( \int_0^{F} \frac{P(K)}{K^2} dK + \int_F^{\infty} \frac{C(K)}{K^2} dK \right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VIX}^2 = \frac{2e^{rT}}{T} \left( \int_0^{F} \frac{P(K)}{K^2} dK + \int_F^{\infty} \frac{C(K)}{K^2} dK \right)
+\]</div>
 <p><strong>VIX Option Payoff</strong>: <span class="arithmatex">\((VIX_T - K)^+\)</span></p>
 <p><strong>Challenge</strong>: VIX is not directly tradable; hedging requires S&amp;P 500 options.</p>
 <p><strong>MOT Approach</strong>: 
@@ -47728,26 +47728,26 @@
 - Construct static hedges using S&amp;P 500 options</p>
 <h3 id="5-basket-option-bounds">5. Basket Option Bounds<a class="headerlink" href="#5-basket-option-bounds" title="Permanent link">&para;</a></h3>
 <p><strong>Basket Call</strong>: Payoff is:</p>
-<p>$$</p>
-<p>\left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+
+\]</div>
 <p><strong>Given</strong>: Marginal option prices for each asset <span class="arithmatex">\(S^{(i)}\)</span>.</p>
 <p><strong>Unknown</strong>: Joint distribution (correlation structure).</p>
 <p><strong>MOT Generalization</strong>: Optimize over multi-dimensional couplings:</p>
-<p>$$</p>
-<p>\sup_{\pi \in \mathcal{M}(\mu_1, \ldots, \mu_n)} \mathbb{E}<em i="1">{\pi}\left[\left(\sum</em> - K\right)^+\right]}^n w_i S_T^{(i)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{\pi \in \mathcal{M}(\mu_1, \ldots, \mu_n)} \mathbb{E}_{\pi}\left[\left(\sum_{i=1}^n w_i S_T^{(i)} - K\right)^+\right]
+\]</div>
 <p><strong>Fréchet-Hoeffding Bounds</strong>: Provide initial bounds based purely on marginals:</p>
-<p>$$</p>
-<p>\max_i {S_T^{(i)}} \leq \sum_{i=1}^n w_i S_T^{(i)} \leq n \max_i {S_T^{(i)}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\max_i \{S_T^{(i)}\} \leq \sum_{i=1}^n w_i S_T^{(i)} \leq n \max_i \{S_T^{(i)}\}
+\]</div>
 <p>MOT tightens these bounds using martingale constraints.</p>
 <h2 id="advanced-theoretical-results">Advanced Theoretical Results<a class="headerlink" href="#advanced-theoretical-results" title="Permanent link">&para;</a></h2>
 <h3 id="1-monge-kantorovich-and-strassen-theorems">1. Monge-Kantorovich and Strassen Theorems<a class="headerlink" href="#1-monge-kantorovich-and-strassen-theorems" title="Permanent link">&para;</a></h3>
 <p><strong>Strassen's Theorem</strong>: A coupling <span class="arithmatex">\(\pi \in \Pi(\mu, \nu)\)</span> is a martingale coupling if and only if:</p>
-<p>$$</p>
-<p>\int f \, d\mu = \int f \, d\nu</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int f \, d\mu = \int f \, d\nu
+\]</div>
 <p>for all convex functions <span class="arithmatex">\(f\)</span> for which both integrals exist.</p>
 <p><strong>Implication</strong>: Martingale constraint is equivalent to preserving expectations of all convex functions.</p>
 <p><strong>MOT Connection</strong>: This characterizes <span class="arithmatex">\(\mathcal{M}(\mu, \nu)\)</span> in terms of moment constraints.</p>
@@ -47761,19 +47761,19 @@
 <p><strong>Application</strong>: Allows closed-form solutions or efficient computation for many financial payoffs.</p>
 <h3 id="3-shadow-measures">3. Shadow Measures<a class="headerlink" href="#3-shadow-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: A measure <span class="arithmatex">\(\lambda\)</span> on <span class="arithmatex">\(\mathbb{R}\)</span> is a <strong>shadow measure</strong> for <span class="arithmatex">\(\mathcal{M}(\mu, \nu)\)</span> if there exist left-monotone and right-monotone couplings <span class="arithmatex">\(\pi_L, \pi_R \in \mathcal{M}(\mu, \nu)\)</span> such that:</p>
-<p>$$</p>
-<p>\pi_L(A \times B) = \lambda(A \cap B), \quad \pi_R(A \times B) = \lambda(A \cup B) - \lambda(A) - \lambda(B) + \lambda(A \cap B)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi_L(A \times B) = \lambda(A \cap B), \quad \pi_R(A \times B) = \lambda(A \cup B) - \lambda(A) - \lambda(B) + \lambda(A \cap B)
+\]</div>
 <p><strong>Martingale Shadow</strong>: When <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\nu\)</span> are in convex order (<span class="arithmatex">\(\mu \preceq_c \nu\)</span>), there exists a unique shadow measure <span class="arithmatex">\(\lambda\)</span> with:</p>
-<p>$$</p>
-<p>\lambda([a, b]) = \text{const} \cdot (b - a)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda([a, b]) = \text{const} \cdot (b - a)
+\]</div>
 <p><strong>Application</strong>: Shadow measures yield extremal martingale couplings, providing explicit constructions for optimal transport plans.</p>
 <h3 id="4-peacock-property">4. Peacock Property<a class="headerlink" href="#4-peacock-property" title="Permanent link">&para;</a></h3>
 <p><strong>Peacock</strong> (PCOC - Processus Croissant pour l'Ordre Convexe): A process <span class="arithmatex">\((X_t)_{t \geq 0}\)</span> is a peacock if:</p>
-<p>$$</p>
-<p>X_s \preceq_c X_t \quad \text{for all } s \leq t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_s \preceq_c X_t \quad \text{for all } s \leq t
+\]</div>
 <p>where <span class="arithmatex">\(\preceq_c\)</span> denotes convex order.</p>
 <p><strong>Theorem</strong> (Kellerer): A family of measures <span class="arithmatex">\((\mu_t)_{t \geq 0}\)</span> on <span class="arithmatex">\(\mathbb{R}\)</span> is the marginals of a martingale if and only if <span class="arithmatex">\(\mu_s \preceq_c \mu_t\)</span> for all <span class="arithmatex">\(s \leq t\)</span>.</p>
 <p><strong>Implication</strong>: Peacock property characterizes when marginal distributions can arise from a martingale.</p>
@@ -47789,21 +47789,21 @@
 <h3 id="1-optimal-stopping">1. Optimal Stopping<a class="headerlink" href="#1-optimal-stopping" title="Permanent link">&para;</a></h3>
 <p><strong>Connection</strong>: MOT problems can be reformulated as optimal stopping problems for suitably defined processes.</p>
 <p><strong>Dual Representation</strong>: The dual potentials in MOT correspond to value functions in optimal stopping:</p>
-<p>$$</p>
-<p>V(x) = \sup_{\tau} \mathbb{E}<em _tau="\tau">x[g(X</em>)]}, Y_{\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(x) = \sup_{\tau} \mathbb{E}_x[g(X_{\tau}, Y_{\tau})]
+\]</div>
 <p>where the supremum is over stopping times.</p>
 <p><strong>Application</strong>: Numerical methods for optimal stopping (e.g., Longstaff-Schwartz) can be adapted to solve MOT problems.</p>
 <h3 id="2-stochastic-control">2. Stochastic Control<a class="headerlink" href="#2-stochastic-control" title="Permanent link">&para;</a></h3>
 <p><strong>Control Problem</strong>: Equivalent formulation as:</p>
-<p>$$</p>
-<p>\inf_{\alpha} \mathbb{E}\left[\int_0^T c(X_t, \alpha_t) dt + h(X_T)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\inf_{\alpha} \mathbb{E}\left[\int_0^T c(X_t, \alpha_t) dt + h(X_T)\right]
+\]</div>
 <p>subject to <span class="arithmatex">\(dX_t = \mu(X_t, \alpha_t) dt + \sigma(X_t) dW_t\)</span>.</p>
 <p><strong>Hamilton-Jacobi-Bellman</strong>: The value function satisfies:</p>
-<p>$$</p>
-<p>V_t + \inf_{\alpha} { c(x, \alpha) + \mu(x, \alpha) V_x + \frac{1}{2} \sigma^2(x) V_{xx} } = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t + \inf_{\alpha} \{ c(x, \alpha) + \mu(x, \alpha) V_x + \frac{1}{2} \sigma^2(x) V_{xx} \} = 0
+\]</div>
 <p><strong>MOT Correspondence</strong>: Under specific cost structures, MOT duals correspond to HJB equations with martingale constraints.</p>
 <h3 id="3-rough-path-theory">3. Rough Path Theory<a class="headerlink" href="#3-rough-path-theory" title="Permanent link">&para;</a></h3>
 <p><strong>Robust Integration</strong>: MOT provides a framework for integrating against rough paths (paths with low regularity).</p>
@@ -47817,9 +47817,9 @@
 - Risk-free rate <span class="arithmatex">\(r\)</span></p>
 <p><strong>Marginal Extraction</strong>:
 - Compute risk-neutral density using Breeden-Litzenberger:</p>
-<p>$$</p>
-<p>q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)</p>
-<p>$$</p>
+<p>$$
+  q(K) = e^{rT} \frac{\partial^2 C}{\partial K^2}(K)
+  $$</p>
 <ul>
 <li>Interpolate/extrapolate to obtain continuous density</li>
 <li>Regularize to ensure no-arbitrage (monotonicity, convexity)</li>
@@ -47858,25 +47858,25 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 - <span class="arithmatex">\(\mu = \delta_{100}\)</span> (point mass at <span class="arithmatex">\(S_0 = 100\)</span>)
 - <span class="arithmatex">\(\nu\)</span> from market call prices with strikes <span class="arithmatex">\(\{90, 95, 100, 105, 110, 115, 120\}\)</span></p>
 <p><strong>MOT Bounds</strong>: Compute via LP:</p>
-<p>$$</p>
-<p>[\underline{V}, \overline{V}] \approx [0.45, 0.55]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+[\underline{V}, \overline{V}] \approx [0.45, 0.55]
+\]</div>
 <p><strong>Interpretation</strong>: Model-free bounds are tight for digital options when sufficient market data available.</p>
 <h3 id="2-example-2-lookback-option">2. Example 2: Lookback Option<a class="headerlink" href="#2-example-2-lookback-option" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: <span class="arithmatex">\(g = \max(S_T - S_0, 0) + \alpha \cdot \text{(excess over initial)}\)</span></p>
 <p><strong>Challenge</strong>: Path-dependent feature makes two-point marginals insufficient.</p>
 <p><strong>MOT Approach</strong>: Use bounds:</p>
-<p>$$</p>
-<p>\overline{V} = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}[(S_T - S_0)^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\overline{V} = \sup_{\pi \in \mathcal{M}(\mu, \nu)} \mathbb{E}_{\pi}[(S_T - S_0)^+]
+\]</div>
 <p><strong>Result</strong>: Bounds may be wide due to limited information, suggesting need for multi-period MOT.</p>
 <h3 id="3-example-3-correlation-bounds-for-spread-options">3. Example 3: Correlation Bounds for Spread Options<a class="headerlink" href="#3-example-3-correlation-bounds-for-spread-options" title="Permanent link">&para;</a></h3>
 <p><strong>Payoff</strong>: <span class="arithmatex">\((S_T^{(1)} - S_T^{(2)} - K)^+\)</span></p>
 <p><strong>Given</strong>: Marginal option prices for each asset.</p>
 <p><strong>MOT Bounds</strong>: Optimize over 2D martingale couplings:</p>
-<p>$$</p>
-<p>\overline{V} = \sup_{\pi \in \mathcal{M}(\mu_1, \mu_2)} \mathbb{E}_{\pi}[(S_T^{(1)} - S_T^{(2)} - K)^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\overline{V} = \sup_{\pi \in \mathcal{M}(\mu_1, \mu_2)} \mathbb{E}_{\pi}[(S_T^{(1)} - S_T^{(2)} - K)^+]
+\]</div>
 <p><strong>Extremal Correlations</strong>: Optimal coupling typically corresponds to perfect positive or negative correlation.</p>
 <h2 id="current-research-directions">Current Research Directions<a class="headerlink" href="#current-research-directions" title="Permanent link">&para;</a></h2>
 <h3 id="1-high-dimensional-mot">1. High-Dimensional MOT<a class="headerlink" href="#1-high-dimensional-mot" title="Permanent link">&para;</a></h3>
@@ -47890,9 +47890,9 @@ subject to  sum_j π[i,j] = μ[i]  for all i
 - Prescribed marginals
 - Martingale property</p>
 <p><strong>Fokker-Planck-MOT</strong>: Combine Fokker-Planck equation with MOT constraints:</p>
-<p>$$</p>
-<p>\partial_t \rho + \nabla \cdot (\rho v) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\partial_t \rho + \nabla \cdot (\rho v) = 0
+\]</div>
 <p>with <span class="arithmatex">\(\int x v \rho dx = 0\)</span> (martingale).</p>
 <h3 id="3-robust-calibration">3. Robust Calibration<a class="headerlink" href="#3-robust-calibration" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Fit volatility surface ensuring:

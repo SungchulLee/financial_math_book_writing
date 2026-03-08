@@ -46794,24 +46794,24 @@
 <hr />
 <h2 id="the-semi-discrete-system">The Semi-Discrete System<a class="headerlink" href="#the-semi-discrete-system" title="Permanent link">&para;</a></h2>
 <p>After spatial discretization:</p>
-<p>$$</p>
-<p>\frac{d\mathbf{u}}{d\tau} = A\mathbf{u}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbf{u}}{d\tau} = A\mathbf{u}
+\]</div>
 <p>where <span class="arithmatex">\(\mathbf{u} = (u_1, \ldots, u_{M-1})^T\)</span> and <span class="arithmatex">\(A\)</span> is the tridiagonal spatial operator matrix.</p>
 <p><strong>Goal</strong>: Advance from <span class="arithmatex">\(\mathbf{u}^n\)</span> at time <span class="arithmatex">\(\tau_n\)</span> to <span class="arithmatex">\(\mathbf{u}^{n+1}\)</span> at time <span class="arithmatex">\(\tau_{n+1} = \tau_n + \Delta\tau\)</span>.</p>
 <hr />
 <h2 id="explicit-scheme-forward-euler">Explicit Scheme (Forward Euler)<a class="headerlink" href="#explicit-scheme-forward-euler" title="Permanent link">&para;</a></h2>
 <h3 id="formulation">Formulation<a class="headerlink" href="#formulation" title="Permanent link">&para;</a></h3>
 <p>Evaluate the right-hand side at the <strong>known</strong> time level <span class="arithmatex">\(n\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \cdot A\mathbf{u}^n = (I + \Delta\tau A)\mathbf{u}^n
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="component-form">Component Form<a class="headerlink" href="#component-form" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>u_j^{n+1} = a_j u_{j-1}^n + (1 + b_j)u_j^n + c_j u_{j+1}^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u_j^{n+1} = a_j u_{j-1}^n + (1 + b_j)u_j^n + c_j u_{j+1}^n
+\]</div>
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -46841,30 +46841,30 @@
 </table>
 <h3 id="stability-condition-cfl">Stability Condition (CFL)<a class="headerlink" href="#stability-condition-cfl" title="Permanent link">&para;</a></h3>
 <p>For the heat equation, stability requires:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \Delta\tau \leq \frac{(\Delta S)^2}{\sigma^2 S_{\max}^2}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This is often <strong>very restrictive</strong>, requiring many time steps.</p>
 <p><strong>Example</strong>: <span class="arithmatex">\(\sigma = 0.3\)</span>, <span class="arithmatex">\(S_{\max} = 300\)</span>, <span class="arithmatex">\(\Delta S = 1\)</span>:</p>
-<p>$$</p>
-<p>\Delta\tau \leq \frac{1}{0.09 \times 90000} \approx 0.000123</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta\tau \leq \frac{1}{0.09 \times 90000} \approx 0.000123
+\]</div>
 <p>For <span class="arithmatex">\(T = 1\)</span> year, this requires <span class="arithmatex">\(N &gt; 8000\)</span> time steps!</p>
 <hr />
 <h2 id="implicit-scheme-backward-euler">Implicit Scheme (Backward Euler)<a class="headerlink" href="#implicit-scheme-backward-euler" title="Permanent link">&para;</a></h2>
 <h3 id="formulation_1">Formulation<a class="headerlink" href="#formulation_1" title="Permanent link">&para;</a></h3>
 <p>Evaluate the right-hand side at the <strong>unknown</strong> time level <span class="arithmatex">\(n+1\)</span>:</p>
-<p>$$</p>
-<p>\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \cdot A\mathbf{u}^{n+1}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{u}^{n+1} = \mathbf{u}^n + \Delta\tau \cdot A\mathbf{u}^{n+1}
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 (I - \Delta\tau A)\mathbf{u}^{n+1} = \mathbf{u}^n
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="properties_1">Properties<a class="headerlink" href="#properties_1" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -46904,15 +46904,15 @@
 <h2 id="crank-nicolson-scheme-trapezoidal-rule">Crank-Nicolson Scheme (Trapezoidal Rule)<a class="headerlink" href="#crank-nicolson-scheme-trapezoidal-rule" title="Permanent link">&para;</a></h2>
 <h3 id="formulation_2">Formulation<a class="headerlink" href="#formulation_2" title="Permanent link">&para;</a></h3>
 <p>Average of explicit and implicit:</p>
-<p>$$</p>
-<p>\mathbf{u}^{n+1} = \mathbf{u}^n + \frac{\Delta\tau}{2}(A\mathbf{u}^n + A\mathbf{u}^{n+1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{u}^{n+1} = \mathbf{u}^n + \frac{\Delta\tau}{2}(A\mathbf{u}^n + A\mathbf{u}^{n+1})
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \left(I - \frac{\Delta\tau}{2}A\right)\mathbf{u}^{n+1} = \left(I + \frac{\Delta\tau}{2}A\right)\mathbf{u}^n
-}</p>
-<p>$$</p>
+}
+\]</div>
 <h3 id="properties_2">Properties<a class="headerlink" href="#properties_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -46945,11 +46945,11 @@
 <hr />
 <h2 id="the-theta-scheme-generalization">The Theta-Scheme (Generalization)<a class="headerlink" href="#the-theta-scheme-generalization" title="Permanent link">&para;</a></h2>
 <p>The <strong>theta-scheme</strong> parameterizes the family:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 (I - \theta\Delta\tau A)\mathbf{u}^{n+1} = (I + (1-\theta)\Delta\tau A)\mathbf{u}^n
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47059,9 +47059,9 @@ For n = 2, 3, ..., N-1:
 <hr />
 <h2 id="implementation-thomas-algorithm">Implementation: Thomas Algorithm<a class="headerlink" href="#implementation-thomas-algorithm" title="Permanent link">&para;</a></h2>
 <p>For the tridiagonal system:</p>
-<p>$$</p>
-<p>\alpha_j u_{j-1} + \beta_j u_j + \gamma_j u_{j+1} = d_j</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha_j u_{j-1} + \beta_j u_j + \gamma_j u_{j+1} = d_j
+\]</div>
 <p><strong>Forward sweep</strong>:
 <div class="highlight"><pre><span></span><code>c&#39;_1 = γ_1 / β_1
 d&#39;_1 = d_1 / β_1
@@ -47095,15 +47095,15 @@ For j = M-2, ..., 1:
 </ol>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-\text{Explicit}: &amp; \quad \mathbf{u}^{n+1} = (I + \Delta\tau A)\mathbf{u}^n \
-\text{Implicit}: &amp; \quad (I - \Delta\tau A)\mathbf{u}^{n+1} = \mathbf{u}^n \
+\text{Explicit}: &amp; \quad \mathbf{u}^{n+1} = (I + \Delta\tau A)\mathbf{u}^n \\
+\text{Implicit}: &amp; \quad (I - \Delta\tau A)\mathbf{u}^{n+1} = \mathbf{u}^n \\
 \text{Crank-Nicolson}: &amp; \quad \left(I - \frac{\Delta\tau}{2}A\right)\mathbf{u}^{n+1} = \left(I + \frac{\Delta\tau}{2}A\right)\mathbf{u}^n
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

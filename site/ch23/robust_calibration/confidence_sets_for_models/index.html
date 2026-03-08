@@ -46834,39 +46834,39 @@
 <h2 id="statistical-foundations">Statistical Foundations<a class="headerlink" href="#statistical-foundations" title="Permanent link">&para;</a></h2>
 <h3 id="1-confidence-regions">1. Confidence Regions<a class="headerlink" href="#1-confidence-regions" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: A <span class="arithmatex">\((1-\alpha)\)</span> confidence region for parameter <span class="arithmatex">\(\theta\)</span> is a random set <span class="arithmatex">\(C_n = C_n(X_1, \ldots, X_n)\)</span> such that:</p>
-<p>$$</p>
-<p>P_{\theta}(\theta \in C_n) \geq 1 - \alpha \quad \text{for all } \theta \in \Theta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\theta}(\theta \in C_n) \geq 1 - \alpha \quad \text{for all } \theta \in \Theta
+\]</div>
 <p><strong>Interpretation</strong>: Under repeated sampling, the confidence region contains the true parameter at least <span class="arithmatex">\((1-\alpha)\)</span> of the time.</p>
 <h3 id="2-likelihood-based-confidence-regions">2. Likelihood-Based Confidence Regions<a class="headerlink" href="#2-likelihood-based-confidence-regions" title="Permanent link">&para;</a></h3>
 <p><strong>Log-Likelihood</strong>: For observations <span class="arithmatex">\(X_1, \ldots, X_n\)</span>:</p>
-<p>$$</p>
-<p>\ell(\theta) = \sum_{i=1}^n \log f(X_i; \theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ell(\theta) = \sum_{i=1}^n \log f(X_i; \theta)
+\]</div>
 <p><strong>Likelihood Ratio Statistic</strong>:</p>
-<p>$$</p>
-<p>\Lambda_n(\theta) = 2[\ell(\hat{\theta}) - \ell(\theta)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Lambda_n(\theta) = 2[\ell(\hat{\theta}) - \ell(\theta)]
+\]</div>
 <p>where <span class="arithmatex">\(\hat{\theta}\)</span> is the MLE.</p>
 <p><strong>Wilks' Theorem</strong>: Under regularity conditions:</p>
-<p>$$</p>
-<p>\Lambda_n(\theta_0) \xrightarrow{d} \chi^2_p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Lambda_n(\theta_0) \xrightarrow{d} \chi^2_p
+\]</div>
 <p>where <span class="arithmatex">\(p = \dim(\theta)\)</span>.</p>
 <p><strong>Confidence Region</strong>:</p>
-<p>$$</p>
-<p>C_n = {\theta: \Lambda_n(\theta) \leq \chi^2_{p, 1-\alpha}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_n = \{\theta: \Lambda_n(\theta) \leq \chi^2_{p, 1-\alpha}\}
+\]</div>
 <h3 id="3-wald-confidence-regions">3. Wald Confidence Regions<a class="headerlink" href="#3-wald-confidence-regions" title="Permanent link">&para;</a></h3>
 <p><strong>Asymptotic Normality</strong>:</p>
-<p>$$</p>
-<p>\sqrt{n}(\hat{\theta} - \theta_0) \xrightarrow{d} N(0, I(\theta_0)^{-1})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sqrt{n}(\hat{\theta} - \theta_0) \xrightarrow{d} N(0, I(\theta_0)^{-1})
+\]</div>
 <p>where <span class="arithmatex">\(I(\theta)\)</span> is the Fisher information.</p>
 <p><strong>Wald Region</strong>:</p>
-<p>$$</p>
-<p>C_n^W = {\theta: n(\hat{\theta} - \theta)^\top \hat{I}(\hat{\theta})(\hat{\theta} - \theta) \leq \chi^2_{p, 1-\alpha}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_n^W = \{\theta: n(\hat{\theta} - \theta)^\top \hat{I}(\hat{\theta})(\hat{\theta} - \theta) \leq \chi^2_{p, 1-\alpha}\}
+\]</div>
 <p>This is an ellipsoid centered at the MLE.</p>
 <h3 id="4-bootstrap-confidence-regions">4. Bootstrap Confidence Regions<a class="headerlink" href="#4-bootstrap-confidence-regions" title="Permanent link">&para;</a></h3>
 <p><strong>Percentile Bootstrap</strong>:
@@ -46880,30 +46880,30 @@
 <p><strong>Setup</strong>: Observe option prices <span class="arithmatex">\(C_1, \ldots, C_m\)</span> with strikes <span class="arithmatex">\(K_1, \ldots, K_m\)</span>.</p>
 <p><strong>Model</strong>: Black-Scholes prices <span class="arithmatex">\(C_i^{BS}(\sigma)\)</span> as function of volatility <span class="arithmatex">\(\sigma\)</span>.</p>
 <p><strong>Calibration Error</strong>:</p>
-<p>$$</p>
-<p>Q(\sigma) = \sum_{i=1}^m w_i [C_i - C_i^{BS}(\sigma)]^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Q(\sigma) = \sum_{i=1}^m w_i [C_i - C_i^{BS}(\sigma)]^2
+\]</div>
 <p><strong>Confidence Set for <span class="arithmatex">\(\sigma\)</span></strong>:</p>
-<p>$$</p>
-<p>\mathcal{C}<em _alpha="\alpha">{\sigma} = {\sigma: Q(\sigma) - Q(\hat{\sigma}) \leq \Delta</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}_{\sigma} = \{\sigma: Q(\sigma) - Q(\hat{\sigma}) \leq \Delta_{\alpha}\}
+\]</div>
 <p>where <span class="arithmatex">\(\Delta_{\alpha}\)</span> depends on the error distribution.</p>
 <h3 id="2-stochastic-volatility-model-calibration">2. Stochastic Volatility Model Calibration<a class="headerlink" href="#2-stochastic-volatility-model-calibration" title="Permanent link">&para;</a></h3>
 <p><strong>Heston Model Parameters</strong>: <span class="arithmatex">\(\theta = (\kappa, \bar{v}, \sigma_v, \rho, v_0)\)</span></p>
 <p><strong>Confidence Region</strong>: </p>
-<p>$$</p>
-<p>\mathcal{C}<em 1-_alpha="1-\alpha" 5_="5,">{\theta} = {\theta: \ell(\theta) \geq \ell(\hat{\theta}) - \frac{1}{2}\chi^2</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}_{\theta} = \{\theta: \ell(\theta) \geq \ell(\hat{\theta}) - \frac{1}{2}\chi^2_{5, 1-\alpha}\}
+\]</div>
 <p><strong>Challenge</strong>: High-dimensional confidence regions are difficult to visualize and interpret.</p>
 <h3 id="3-profile-likelihood">3. Profile Likelihood<a class="headerlink" href="#3-profile-likelihood" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: For parameter of interest <span class="arithmatex">\(\psi = g(\theta)\)</span>:</p>
-<p>$$</p>
-<p>\ell_p(\psi) = \max_{\theta: g(\theta) = \psi} \ell(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\ell_p(\psi) = \max_{\theta: g(\theta) = \psi} \ell(\theta)
+\]</div>
 <p><strong>Profile Confidence Interval</strong>:</p>
-<p>$$</p>
-<p>\mathcal{C}<em 1-_alpha="1-\alpha" 1_="1,">{\psi} = {\psi: 2[\ell(\hat{\theta}) - \ell_p(\psi)] \leq \chi^2</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{C}_{\psi} = \{\psi: 2[\ell(\hat{\theta}) - \ell_p(\psi)] \leq \chi^2_{1, 1-\alpha}\}
+\]</div>
 <p><strong>Application</strong>: Confidence interval for a single Greek while accounting for uncertainty in other parameters.</p>
 <h2 id="model-confidence-sets">Model Confidence Sets<a class="headerlink" href="#model-confidence-sets" title="Permanent link">&para;</a></h2>
 <h3 id="1-hansens-model-confidence-set">1. Hansen's Model Confidence Set<a class="headerlink" href="#1-hansens-model-confidence-set" title="Permanent link">&para;</a></h3>
@@ -46917,13 +46917,13 @@
 <p><strong>Result</strong>: <span class="arithmatex">\(\hat{\mathcal{M}}_{1-\alpha}\)</span> contains <span class="arithmatex">\(\mathcal{M}^*\)</span> with probability <span class="arithmatex">\(\geq 1 - \alpha\)</span>.</p>
 <h3 id="2-test-statistics-for-mcs">2. Test Statistics for MCS<a class="headerlink" href="#2-test-statistics-for-mcs" title="Permanent link">&para;</a></h3>
 <p><strong>Range Statistic</strong>:</p>
-<p>$$</p>
-<p>T_R = \max_{i,j \in \hat{\mathcal{M}}} \frac{|\bar{d}<em ij="ij">{ij}|}{\sqrt{\hat{\text{var}}(\bar{d}</em>})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+T_R = \max_{i,j \in \hat{\mathcal{M}}} \frac{|\bar{d}_{ij}|}{\sqrt{\hat{\text{var}}(\bar{d}_{ij})}}
+\]</div>
 <p><strong>Semi-Quadratic Statistic</strong>:</p>
-<p>$$</p>
-<p>T_{SQ} = \sum_{i \in \hat{\mathcal{M}}} \left(\frac{\bar{d}<em i_cdot="i\cdot">{i\cdot}}{\sqrt{\hat{\text{var}}(\bar{d}</em>})}}\right)^2 \mathbf{1<em i_cdot="i\cdot">{\bar{d}</em>} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+T_{SQ} = \sum_{i \in \hat{\mathcal{M}}} \left(\frac{\bar{d}_{i\cdot}}{\sqrt{\hat{\text{var}}(\bar{d}_{i\cdot})}}\right)^2 \mathbf{1}_{\bar{d}_{i\cdot} &gt; 0}
+\]</div>
 <p>where <span class="arithmatex">\(\bar{d}_{i\cdot} = \frac{1}{|\hat{\mathcal{M}}|} \sum_{j \in \hat{\mathcal{M}}} \bar{d}_{ij}\)</span>.</p>
 <h3 id="3-application-to-volatility-models">3. Application to Volatility Models<a class="headerlink" href="#3-application-to-volatility-models" title="Permanent link">&para;</a></h3>
 <p><strong>Competing Models</strong>: GARCH, EGARCH, GJR-GARCH, Realized Volatility, Implied Volatility</p>
@@ -46932,18 +46932,18 @@
 <h2 id="bayesian-credible-sets">Bayesian Credible Sets<a class="headerlink" href="#bayesian-credible-sets" title="Permanent link">&para;</a></h2>
 <h3 id="1-posterior-distribution">1. Posterior Distribution<a class="headerlink" href="#1-posterior-distribution" title="Permanent link">&para;</a></h3>
 <p><strong>Bayes' Theorem</strong>:</p>
-<p>$$</p>
-<p>p(\theta | X) = \frac{L(X | \theta) \pi(\theta)}{\int L(X | \theta) \pi(\theta) d\theta}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(\theta | X) = \frac{L(X | \theta) \pi(\theta)}{\int L(X | \theta) \pi(\theta) d\theta}
+\]</div>
 <p><strong>Credible Set</strong>: A <span class="arithmatex">\((1-\alpha)\)</span> credible set <span class="arithmatex">\(C\)</span> satisfies:</p>
-<p>$$</p>
-<p>P(\theta \in C | X) = 1 - \alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(\theta \in C | X) = 1 - \alpha
+\]</div>
 <h3 id="2-highest-posterior-density-region">2. Highest Posterior Density Region<a class="headerlink" href="#2-highest-posterior-density-region" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: The HPD region is the smallest set with coverage <span class="arithmatex">\(1-\alpha\)</span>:</p>
-<p>$$</p>
-<p>C_{\text{HPD}} = {\theta: p(\theta | X) \geq c_{\alpha}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{HPD}} = \{\theta: p(\theta | X) \geq c_{\alpha}\}
+\]</div>
 <p>where <span class="arithmatex">\(c_{\alpha}\)</span> is chosen so that <span class="arithmatex">\(P(\theta \in C_{\text{HPD}} | X) = 1 - \alpha\)</span>.</p>
 <p><strong>Property</strong>: Among all <span class="arithmatex">\((1-\alpha)\)</span> credible sets, HPD has minimum volume.</p>
 <h3 id="3-comparison-with-frequentist-sets">3. Comparison with Frequentist Sets<a class="headerlink" href="#3-comparison-with-frequentist-sets" title="Permanent link">&para;</a></h3>
@@ -46980,9 +46980,9 @@
 </table>
 <h3 id="4-bayesian-model-uncertainty">4. Bayesian Model Uncertainty<a class="headerlink" href="#4-bayesian-model-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Posterior Model Probability</strong>:</p>
-<p>$$</p>
-<p>P(M_k | X) = \frac{P(X | M_k) P(M_k)}{\sum_j P(X | M_j) P(M_j)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(M_k | X) = \frac{P(X | M_k) P(M_k)}{\sum_j P(X | M_j) P(M_j)}
+\]</div>
 <p><strong>Credible Model Set</strong>: Include models until cumulative posterior probability exceeds <span class="arithmatex">\(1 - \alpha\)</span>.</p>
 <h2 id="calibration-confidence-sets-in-practice">Calibration Confidence Sets in Practice<a class="headerlink" href="#calibration-confidence-sets-in-practice" title="Permanent link">&para;</a></h2>
 <h3 id="1-interest-rate-models">1. Interest Rate Models<a class="headerlink" href="#1-interest-rate-models" title="Permanent link">&para;</a></h3>
@@ -47007,13 +47007,13 @@
 <h2 id="uncertainty-propagation">Uncertainty Propagation<a class="headerlink" href="#uncertainty-propagation" title="Permanent link">&para;</a></h2>
 <h3 id="1-delta-method">1. Delta Method<a class="headerlink" href="#1-delta-method" title="Permanent link">&para;</a></h3>
 <p><strong>Transformation</strong>: For <span class="arithmatex">\(g(\theta)\)</span> smooth:</p>
-<p>$$</p>
-<p>\sqrt{n}(g(\hat{\theta}) - g(\theta)) \xrightarrow{d} N\left(0, \nabla g(\theta)^\top \Sigma \nabla g(\theta)\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sqrt{n}(g(\hat{\theta}) - g(\theta)) \xrightarrow{d} N\left(0, \nabla g(\theta)^\top \Sigma \nabla g(\theta)\right)
+\]</div>
 <p><strong>Confidence Interval for <span class="arithmatex">\(g(\theta)\)</span></strong>:</p>
-<p>$$</p>
-<p>g(\hat{\theta}) \pm z_{1-\alpha/2} \sqrt{\nabla g(\hat{\theta})^\top \hat{\Sigma} \nabla g(\hat{\theta}) / n}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(\hat{\theta}) \pm z_{1-\alpha/2} \sqrt{\nabla g(\hat{\theta})^\top \hat{\Sigma} \nabla g(\hat{\theta}) / n}
+\]</div>
 <h3 id="2-monte-carlo-propagation">2. Monte Carlo Propagation<a class="headerlink" href="#2-monte-carlo-propagation" title="Permanent link">&para;</a></h3>
 <p><strong>Algorithm</strong>:
 1. Draw <span class="arithmatex">\(\theta^{(1)}, \ldots, \theta^{(B)}\)</span> from confidence region or posterior
@@ -47021,9 +47021,9 @@
 3. Confidence interval from quantiles of <span class="arithmatex">\(\{y^{(b)}\}\)</span></p>
 <h3 id="3-application-to-greek-uncertainty">3. Application to Greek Uncertainty<a class="headerlink" href="#3-application-to-greek-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Example</strong>: Delta uncertainty given parameter uncertainty</p>
-<p>$$</p>
-<p>\Delta(\theta) = \frac{\partial V}{\partial S}(\theta)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta(\theta) = \frac{\partial V}{\partial S}(\theta)
+\]</div>
 <p><strong>Confidence Interval</strong>: Propagate parameter confidence set through <span class="arithmatex">\(\Delta(\cdot)\)</span>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <h3 id="key-methods">Key Methods<a class="headerlink" href="#key-methods" title="Permanent link">&para;</a></h3>

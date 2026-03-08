@@ -46172,93 +46172,93 @@
 <p>An interest rate swap (IRS) is an agreement between two parties to exchange interest rate cash flows, based on a specified notional amount from a fixed rate to a floating rate (or vice versa).</p>
 <h2 id="tenor-structure">Tenor Structure<a class="headerlink" href="#tenor-structure" title="Permanent link">&para;</a></h2>
 <p>The interest rate swap length (<span class="arithmatex">\(T_n-T_m\)</span> in our notation) is called the tenor of the interest rate swap. Sometimes the set of reset and payment dates is called the tenor structure.</p>
-<p>$$\begin{array}{lllllllllllllll}</p>
-<p>&amp;&amp;\text{Time}&amp;&amp;\text{Action}\
-\text{Now}&amp;&amp;t&amp;&amp;\text{Enter the contract}\
-\text{Reset Date}&amp;&amp;T_{k-1} &gt; t&amp;&amp;\text{Observe Float Rate}\ l_k(T_{k-1})\
-\text{Payment Date}&amp;&amp;T_k &gt; T_{k-1} &gt; t&amp;&amp;\text{Exchange Fixed and Float Interest on Principle}\</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lllllllllllllll}
+&amp;&amp;\text{Time}&amp;&amp;\text{Action}\\
+\text{Now}&amp;&amp;t&amp;&amp;\text{Enter the contract}\\
+\text{Reset Date}&amp;&amp;T_{k-1} &gt; t&amp;&amp;\text{Observe Float Rate}\ l_k(T_{k-1})\\
+\text{Payment Date}&amp;&amp;T_k &gt; T_{k-1} &gt; t&amp;&amp;\text{Exchange Fixed and Float Interest on Principle}\\
+\end{array}\]</div>
 <h2 id="interest-rate-swap-valuation">Interest Rate Swap Valuation<a class="headerlink" href="#interest-rate-swap-valuation" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllllllll}
+\displaystyle
 {\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)
 &amp;=&amp;
-\sum_{k=m+1}^n{\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)\
+\sum_{k=m+1}^n{\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)\\
 &amp;=&amp;
-N\sum_{k=m+1}^n\left(l_k(t)-K\right)\tau_kP(t,T_k)\
+N\sum_{k=m+1}^n\left(l_k(t)-K\right)\tau_kP(t,T_k)\\
 &amp;=&amp;
-NA_{m,n}(t)\left(S_{m,n}(t)-K\right)\
+NA_{m,n}(t)\left(S_{m,n}(t)-K\right)\\
 &amp;=&amp;
-N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)\</p>
-<p>\end{array}$$</p>
+N\left(P(t,T_m)-P(t,T_n)\right)-NK\sum_{k=m+1}^n \tau_k P(t,T_k)\\
+\end{array}\]</div>
 <p>and</p>
-<p>$$\begin{array}{lllllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllllllll}
+\displaystyle
 {\bf\text{IRS}}^{\text{Receiver}}(t,{\cal T},N,K)
 &amp;=&amp;
--{\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)</p>
-<p>\end{array}$$</p>
+-{\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)
+\end{array}\]</div>
 <p>where</p>
-<p>$$\begin{array}{llllll}</p>
-<p>A_{m,n}(t)&amp;=&amp;\displaystyle\sum_{k=m+1}^n \tau_k P(t,T_k)\
+<div class="arithmatex">\[\begin{array}{llllll}
+A_{m,n}(t)&amp;=&amp;\displaystyle\sum_{k=m+1}^n \tau_k P(t,T_k)\\
 \omega_k(t)
 &amp;=&amp;\displaystyle\frac{\tau_k P(t,T_k)}{\sum_{k'=m+1}^n\tau_{k'} P(t,T_{k'})}
-&amp;=&amp;\displaystyle\frac{\tau_k P(t,T_k)}{A_{m,n}(t)}\
+&amp;=&amp;\displaystyle\frac{\tau_k P(t,T_k)}{A_{m,n}(t)}\\
 S_{m,n}(t)&amp;=&amp;\displaystyle\sum_{k=m+1}^n \omega_k(t)l_k(t)
-&amp;=&amp;\displaystyle\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}\</p>
-<p>\end{array}$$</p>
+&amp;=&amp;\displaystyle\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}\\
+\end{array}\]</div>
 <p>As a byproduct, we have</p>
-<p>$$\begin{array}{llllll}</p>
-<p>A_{m,n}(t)S_{m,n}(t)
-=P(t,T_{m})-P(t,T_n)</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{llllll}
+A_{m,n}(t)S_{m,n}(t)
+=P(t,T_{m})-P(t,T_n)
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 {\bf\text{IRS}}^{\text{Payer}}(t,{\cal T},N,K)
 &amp;=&amp;\displaystyle
-\sum_{k=m+1}^n {\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)\
+\sum_{k=m+1}^n {\bf\text{FRA}}^{\text{Payer}}(t,T_{k-1},T_k,N,K)\\
 &amp;=&amp;\displaystyle
-N\sum_{k=m+1}^n \left(l_k(t)-K\right)\tau_k P(t,T_k)</p>
-<p>\end{array}$$</p>
+N\sum_{k=m+1}^n \left(l_k(t)-K\right)\tau_k P(t,T_k)
+\end{array}\]</div>
 <p>We simplify further using the annuity factor or present value of a basis point <span class="arithmatex">\(A_{m,n}(t)\)</span>:</p>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 S_{m,n}(t)
 &amp;=&amp;\displaystyle
-\sum_{k=m+1}^n \omega_k(t)l_k(t)\
+\sum_{k=m+1}^n \omega_k(t)l_k(t)\\
 &amp;=&amp;\displaystyle
-\frac{\sum_{k=m+1}^n \tau_k P(t,T_k)l_k(t)}{A_{m,n}(t)}\
+\frac{\sum_{k=m+1}^n \tau_k P(t,T_k)l_k(t)}{A_{m,n}(t)}\\
 &amp;=&amp;\displaystyle
-\frac{\sum_{k=m+1}^n \tau_k P(t,T_k)\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)}-1\right)}{A_{m,n}(t)}\
+\frac{\sum_{k=m+1}^n \tau_k P(t,T_k)\frac{1}{\tau_k}\left(\frac{P(t,T_{k-1})}{P(t,T_k)}-1\right)}{A_{m,n}(t)}\\
 &amp;=&amp;\displaystyle
-\frac{\sum_{k=m+1}^n  \left(P(t,T_{k-1})-P(t,T_k)\right)}{A_{m,n}(t)}\
+\frac{\sum_{k=m+1}^n  \left(P(t,T_{k-1})-P(t,T_k)\right)}{A_{m,n}(t)}\\
 &amp;=&amp;\displaystyle
-\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}\</p>
-<p>\end{array}$$</p>
+\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}\\
+\end{array}\]</div>
 </details>
 <h2 id="swap-rate-in-terms-of-discrete-forward-rates">Swap Rate in Terms of Discrete Forward Rates<a class="headerlink" href="#swap-rate-in-terms-of-discrete-forward-rates" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 S_{m,n}(t)
 &amp;=&amp;\displaystyle
-\frac{1-\prod_{j=m+1}^n\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}{\sum_{k=m+1}^n \tau_k \prod_{j=m+1}^k\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}\</p>
-<p>\end{array}$$</p>
+\frac{1-\prod_{j=m+1}^n\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}{\sum_{k=m+1}^n \tau_k \prod_{j=m+1}^k\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}\\
+\end{array}\]</div>
 <details class="note" open="open">
 <summary>Proof</summary>
-<p>$$\begin{array}{lll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lll}
+\displaystyle
 S_{m,n}(t)
 &amp;=&amp;\displaystyle
-\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}\
+\frac{P(t,T_{m})-P(t,T_n)}{A_{m,n}(t)}\\
 &amp;=&amp;\displaystyle
-\frac{1-\frac{P(t,T_n)}{P(t,T_{m})}}{\sum_{k=m+1}^n \tau_k \frac{P(t,T_k)}{P(t,T_{m})}}\
+\frac{1-\frac{P(t,T_n)}{P(t,T_{m})}}{\sum_{k=m+1}^n \tau_k \frac{P(t,T_k)}{P(t,T_{m})}}\\
 &amp;=&amp;\displaystyle
-\frac{1-\prod_{j=m+1}^n\frac{P(t,T_j)}{P(t,T_{j-1})}}{\sum_{k=m+1}^n \tau_k \prod_{j=m+1}^k\frac{P(t,T_j)}{P(t,T_{j-1})}}\
+\frac{1-\prod_{j=m+1}^n\frac{P(t,T_j)}{P(t,T_{j-1})}}{\sum_{k=m+1}^n \tau_k \prod_{j=m+1}^k\frac{P(t,T_j)}{P(t,T_{j-1})}}\\
 &amp;=&amp;\displaystyle
-\frac{1-\prod_{j=m+1}^n\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}{\sum_{k=m+1}^n \tau_k \prod_{j=m+1}^k\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}\</p>
-<p>\end{array}$$</p>
+\frac{1-\prod_{j=m+1}^n\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}{\sum_{k=m+1}^n \tau_k \prod_{j=m+1}^k\frac{1}{1+\tau_jL(t,T_{j-1},T_j)}}\\
+\end{array}\]</div>
 </details>
 
 

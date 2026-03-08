@@ -47112,9 +47112,9 @@
 <p><strong>Good example:</strong> "Flight to quality with equity crash, credit spread widening, and rate rally in safe-haven bonds."</p>
 <h3 id="internally-consistent">Internally Consistent<a class="headerlink" href="#internally-consistent" title="Permanent link">&para;</a></h3>
 <p>Scenario factors should move together in economically meaningful ways:</p>
-<p>$$</p>
-<p>\text{Scenario Coherence:} \quad \Delta\mathbf{X} \text{ consistent with some } \mathbb{Q}^{\text{stress}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Scenario Coherence:} \quad \Delta\mathbf{X} \text{ consistent with some } \mathbb{Q}^{\text{stress}}
+\]</div>
 <p>Use economic models or historical analogs to ensure consistency.</p>
 <h3 id="tailored-to-portfolio">Tailored to Portfolio<a class="headerlink" href="#tailored-to-portfolio" title="Permanent link">&para;</a></h3>
 <p>Scenarios should target the portfolio's specific vulnerabilities:
@@ -47230,21 +47230,21 @@
 <h2 id="quantitative-scenario-generation">Quantitative Scenario Generation<a class="headerlink" href="#quantitative-scenario-generation" title="Permanent link">&para;</a></h2>
 <h3 id="mahalanobis-distance-approach">Mahalanobis Distance Approach<a class="headerlink" href="#mahalanobis-distance-approach" title="Permanent link">&para;</a></h3>
 <p>Define the "extremity" of a scenario <span class="arithmatex">\(\mathbf{x}\)</span> as:</p>
-<p>$$</p>
-<p>D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+D(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
+\]</div>
 <p>Generate scenarios by targeting a specific Mahalanobis distance while varying the direction.</p>
 <h3 id="maximum-loss-direction">Maximum Loss Direction<a class="headerlink" href="#maximum-loss-direction" title="Permanent link">&para;</a></h3>
 <p>Find the scenario that maximizes portfolio loss for a given extremity:</p>
-<p>$$</p>
-<p>\mathbf{x}^* = \arg\max_{\mathbf{x}} L(\mathbf{x}) \quad \text{s.t.} \quad D(\mathbf{x}) \le D_{\text{target}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{x}^* = \arg\max_{\mathbf{x}} L(\mathbf{x}) \quad \text{s.t.} \quad D(\mathbf{x}) \le D_{\text{target}}
+\]</div>
 <p>This identifies the <strong>most dangerous</strong> direction in risk factor space.</p>
 <h3 id="importance-sampling">Importance Sampling<a class="headerlink" href="#importance-sampling" title="Permanent link">&para;</a></h3>
 <p>Sample from a distribution tilted toward extreme outcomes:</p>
-<p>$$</p>
-<p>\mathbf{X} \sim f^{\text{tilted}}(\mathbf{x}) \propto f(\mathbf{x}) \cdot h(L(\mathbf{x}))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{X} \sim f^{\text{tilted}}(\mathbf{x}) \propto f(\mathbf{x}) \cdot h(L(\mathbf{x}))
+\]</div>
 <p>where <span class="arithmatex">\(h(\cdot)\)</span> is an increasing function that overweights large losses.</p>
 <hr />
 <h2 id="correlation-under-stress">Correlation Under Stress<a class="headerlink" href="#correlation-under-stress" title="Permanent link">&para;</a></h2>
@@ -47257,14 +47257,14 @@
 - Liquidity correlations spike</p>
 <h3 id="stressed-correlation-modeling">Stressed Correlation Modeling<a class="headerlink" href="#stressed-correlation-modeling" title="Permanent link">&para;</a></h3>
 <p><strong>Approach 1: Scaling</strong></p>
-<p>$$</p>
-<p>\boldsymbol{\Sigma}^{\text{stress}} = \mathbf{D} \boldsymbol{\Sigma} \mathbf{D}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boldsymbol{\Sigma}^{\text{stress}} = \mathbf{D} \boldsymbol{\Sigma} \mathbf{D}
+\]</div>
 <p>where <span class="arithmatex">\(\mathbf{D}\)</span> is a diagonal scaling matrix.</p>
 <p><strong>Approach 2: Correlation Adjustment</strong></p>
-<p>$$</p>
-<p>\boldsymbol{\rho}^{\text{stress}} = \alpha \boldsymbol{\rho}^{\text{normal}} + (1-\alpha) \mathbf{1}\mathbf{1}^\top</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boldsymbol{\rho}^{\text{stress}} = \alpha \boldsymbol{\rho}^{\text{normal}} + (1-\alpha) \mathbf{1}\mathbf{1}^\top
+\]</div>
 <p>This blends normal correlations toward perfect correlation.</p>
 <p><strong>Approach 3: Regime-Switching Copulas</strong>
 Use different copulas for normal vs. stressed regimes (e.g., Gaussian normal, <span class="arithmatex">\(t\)</span> or Clayton stressed).</p>
@@ -47272,15 +47272,15 @@ Use different copulas for normal vs. stressed regimes (e.g., Gaussian normal, <s
 <h2 id="portfolio-impact-analysis">Portfolio Impact Analysis<a class="headerlink" href="#portfolio-impact-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="full-revaluation">Full Revaluation<a class="headerlink" href="#full-revaluation" title="Permanent link">&para;</a></h3>
 <p>For complex portfolios (options, structured products):</p>
-<p>$$</p>
-<p>L^{\text{stress}} = P_0 - P(\mathbf{x}^{\text{stress}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L^{\text{stress}} = P_0 - P(\mathbf{x}^{\text{stress}})
+\]</div>
 <p>where <span class="arithmatex">\(P(\mathbf{x})\)</span> is the full pricing function.</p>
 <h3 id="sensitivity-based-approximation">Sensitivity-Based Approximation<a class="headerlink" href="#sensitivity-based-approximation" title="Permanent link">&para;</a></h3>
 <p>For large portfolios, approximate using Greeks:</p>
-<p>$$</p>
-<p>L^{\text{stress}} \approx -\sum_i \Delta_i \cdot \Delta x_i - \frac{1}{2} \sum_{i,j} \Gamma_{ij} \cdot \Delta x_i \cdot \Delta x_j - \sum_i \mathcal{V}_i \cdot \Delta \sigma_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+L^{\text{stress}} \approx -\sum_i \Delta_i \cdot \Delta x_i - \frac{1}{2} \sum_{i,j} \Gamma_{ij} \cdot \Delta x_i \cdot \Delta x_j - \sum_i \mathcal{V}_i \cdot \Delta \sigma_i
+\]</div>
 <p><strong>Warning:</strong> Approximations can fail for large moves; use full revaluation when feasible.</p>
 <hr />
 <h2 id="nonlinear-effects">Nonlinear Effects<a class="headerlink" href="#nonlinear-effects" title="Permanent link">&para;</a></h2>

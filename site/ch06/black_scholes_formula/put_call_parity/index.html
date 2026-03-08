@@ -46896,28 +46896,28 @@
 <h2 id="statement-of-put-call-parity">Statement of Put-Call Parity<a class="headerlink" href="#statement-of-put-call-parity" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-parity-relationship">1. <strong>The Parity Relationship</strong><a class="headerlink" href="#1-the-parity-relationship" title="Permanent link">&para;</a></h3>
 <p>For European options on a non-dividend-paying stock with the same strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\boxed{C - P = S - Ke^{-r(T-t)}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C - P = S - Ke^{-r(T-t)}}
+\]</div>
 <p>or equivalently at time <span class="arithmatex">\(t=0\)</span>:</p>
-<p>$$</p>
-<p>\boxed{C_0 - P_0 = S_0 - Ke^{-rT}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C_0 - P_0 = S_0 - Ke^{-rT}}
+\]</div>
 <p><strong>In words</strong>: The difference between call and put prices equals the difference between the current stock price and the present value of the strike.</p>
 <h3 id="2-alternative-forms">2. <strong>Alternative Forms</strong><a class="headerlink" href="#2-alternative-forms" title="Permanent link">&para;</a></h3>
 <p>Rearranging gives equivalent expressions:</p>
-<p>$$</p>
-<p>C = P + S - Ke^{-rT}</p>
-<p>$$</p>
-<p>$$</p>
-<p>P = C - S + Ke^{-rT}</p>
-<p>$$</p>
-<p>$$</p>
-<p>S = C - P + Ke^{-rT}</p>
-<p>$$</p>
-<p>$$</p>
-<p>Ke^{-rT} = S + P - C</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = P + S - Ke^{-rT}
+\]</div>
+<div class="arithmatex">\[
+P = C - S + Ke^{-rT}
+\]</div>
+<div class="arithmatex">\[
+S = C - P + Ke^{-rT}
+\]</div>
+<div class="arithmatex">\[
+Ke^{-rT} = S + P - C
+\]</div>
 <p>Each form is useful for different applications.</p>
 <hr />
 <h2 id="no-arbitrage-derivation">No-Arbitrage Derivation<a class="headerlink" href="#no-arbitrage-derivation" title="Permanent link">&para;</a></h2>
@@ -46931,12 +46931,12 @@
 - Long 1 put with strike <span class="arithmatex">\(K\)</span>
 - Long 1 share of stock</p>
 <h3 id="2-initial-values">2. <strong>Initial Values</strong><a class="headerlink" href="#2-initial-values" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>V_0^A = C_0 + Ke^{-rT}</p>
-<p>$$</p>
-<p>$$</p>
-<p>V_0^B = P_0 + S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0^A = C_0 + Ke^{-rT}
+\]</div>
+<div class="arithmatex">\[
+V_0^B = P_0 + S_0
+\]</div>
 <h3 id="3-terminal-values">3. <strong>Terminal Values</strong><a class="headerlink" href="#3-terminal-values" title="Permanent link">&para;</a></h3>
 <p>At maturity <span class="arithmatex">\(T\)</span>, consider two cases:</p>
 <p><strong>Case 1: <span class="arithmatex">\(S_T &gt; K\)</span></strong> (stock above strike)</p>
@@ -46980,41 +46980,41 @@
 <p><strong>Observation</strong>: In both cases, <span class="arithmatex">\(V_T^A = V_T^B\)</span>.</p>
 <h3 id="4-no-arbitrage-conclusion">4. <strong>No-Arbitrage Conclusion</strong><a class="headerlink" href="#4-no-arbitrage-conclusion" title="Permanent link">&para;</a></h3>
 <p>Since the two portfolios have <strong>identical terminal payoffs</strong> in all states, they must have <strong>identical initial values</strong> (otherwise arbitrage exists):</p>
-<p>$$</p>
-<p>C_0 + Ke^{-rT} = P_0 + S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 + Ke^{-rT} = P_0 + S_0
+\]</div>
 <p>Rearranging:</p>
-<p>$$</p>
-<p>\boxed{C_0 - P_0 = S_0 - Ke^{-rT}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C_0 - P_0 = S_0 - Ke^{-rT}}
+\]</div>
 <p>This is put-call parity.</p>
 <hr />
 <h2 id="verification-with-black-scholes">Verification with Black-Scholes<a class="headerlink" href="#verification-with-black-scholes" title="Permanent link">&para;</a></h2>
 <h3 id="1-black-scholes-formulas">1. <strong>Black-Scholes Formulas</strong><a class="headerlink" href="#1-black-scholes-formulas" title="Permanent link">&para;</a></h3>
 <p>Recall:</p>
-<p>$$</p>
-<p>C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)</p>
-<p>$$</p>
-<p>$$</p>
-<p>P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C = S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)
+\]</div>
+<div class="arithmatex">\[
+P = Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)
+\]</div>
 <h3 id="2-compute-c-p">2. <strong>Compute C - P</strong><a class="headerlink" href="#2-compute-c-p" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 C - P &amp;= \left[S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)\right] - \left[Ke^{-rT}\mathcal{N}(-d_2) - S\mathcal{N}(-d_1)\right] \\
 &amp;= S\mathcal{N}(d_1) + S\mathcal{N}(-d_1) - Ke^{-rT}\mathcal{N}(d_2) - Ke^{-rT}\mathcal{N}(-d_2) \\
 &amp;= S\left[\mathcal{N}(d_1) + \mathcal{N}(-d_1)\right] - Ke^{-rT}\left[\mathcal{N}(d_2) + \mathcal{N}(-d_2)\right]
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <h3 id="3-use-symmetry-property">3. <strong>Use Symmetry Property</strong><a class="headerlink" href="#3-use-symmetry-property" title="Permanent link">&para;</a></h3>
 <p>For the standard normal CDF:</p>
-<p>$$</p>
-<p>\mathcal{N}(x) + \mathcal{N}(-x) = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(x) + \mathcal{N}(-x) = 1
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>C - P = S \cdot 1 - Ke^{-rT} \cdot 1 = S - Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C - P = S \cdot 1 - Ke^{-rT} \cdot 1 = S - Ke^{-rT}
+\]</div>
 <p><strong>Verified</strong>: Put-call parity holds exactly for the Black-Scholes formula. ✓</p>
 <hr />
 <h2 id="arbitrage-opportunities">Arbitrage Opportunities<a class="headerlink" href="#arbitrage-opportunities" title="Permanent link">&para;</a></h2>
@@ -47028,9 +47028,9 @@ C - P &amp;= \left[S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)\right] - \left[K
 <li><strong>Borrow</strong> <span class="arithmatex">\(Ke^{-rT}\)</span> at rate <span class="arithmatex">\(r\)</span></li>
 </ol>
 <p><strong>Net cash flow at <span class="arithmatex">\(t=0\)</span></strong>:</p>
-<p>$$</p>
-<p>C - P - S + Ke^{-rT} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C - P - S + Ke^{-rT} &gt; 0
+\]</div>
 <p>(positive cash inflow = free money)</p>
 <p><strong>At maturity <span class="arithmatex">\(T\)</span></strong>:</p>
 <ul>
@@ -47047,76 +47047,76 @@ C - P &amp;= \left[S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)\right] - \left[K
 <li><strong>Lend</strong> <span class="arithmatex">\(Ke^{-rT}\)</span> at rate <span class="arithmatex">\(r\)</span></li>
 </ol>
 <p><strong>Net cash flow at <span class="arithmatex">\(t=0\)</span></strong>:</p>
-<p>$$</p>
-<p>-C + P + S - Ke^{-rT} &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-C + P + S - Ke^{-rT} &gt; 0
+\]</div>
 <p><strong>At maturity <span class="arithmatex">\(T\)</span></strong>: All positions close with zero net cash flow.</p>
 <p><strong>Result</strong>: Guaranteed profit at <span class="arithmatex">\(t=0\)</span> → <strong>Arbitrage</strong></p>
 <hr />
 <h2 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h2>
 <h3 id="1-application-1-synthetic-positions">1. <strong>Application 1: Synthetic Positions</strong><a class="headerlink" href="#1-application-1-synthetic-positions" title="Permanent link">&para;</a></h3>
 <p>Put-call parity allows creation of <strong>synthetic</strong> positions:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{array}{lll}
+<div class="arithmatex">\[
+\begin{array}{lll}
 \text{Synthetic Call} &amp;=&amp; P + S - Ke^{-rT} \\
 \text{Synthetic Put} &amp;=&amp; C - S + Ke^{-rT} \\
 \text{Synthetic Stock} &amp;=&amp; C - P + Ke^{-rT} \\
 \text{Synthetic Bond} &amp;=&amp; S + P - C
-\end{array}\]</div>
-<p>$$</p>
+\end{array}
+\]</div>
 <p><strong>Use case</strong>: If an option is illiquid or mispriced, create it synthetically using other instruments.</p>
 <h3 id="2-application-2-pricing-one-option-from-another">2. <strong>Application 2: Pricing One Option from Another</strong><a class="headerlink" href="#2-application-2-pricing-one-option-from-another" title="Permanent link">&para;</a></h3>
 <p>If you know the call price, you can immediately determine the put price:</p>
-<p>$$</p>
-<p>P = C - S + Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P = C - S + Ke^{-rT}
+\]</div>
 <p>This is useful when only one option trades actively.</p>
 <h3 id="3-application-3-early-exercise-of-american-options">3. <strong>Application 3: Early Exercise of American Options</strong><a class="headerlink" href="#3-application-3-early-exercise-of-american-options" title="Permanent link">&para;</a></h3>
 <p>For American options on <strong>non-dividend-paying stocks</strong>, put-call parity implies:</p>
-<p>$$</p>
-<p>C_{\text{Am}} - P_{\text{Am}} \geq S - Ke^{-r(T-t)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{Am}} - P_{\text{Am}} \geq S - Ke^{-r(T-t)}
+\]</div>
 <p>Since <span class="arithmatex">\(C_{\text{Am}} = C_{\text{Eu}}\)</span> (call not exercised early), this shows American puts can trade at a premium to European puts.</p>
 <h3 id="4-application-4-arbitrage-detection">4. <strong>Application 4: Arbitrage Detection</strong><a class="headerlink" href="#4-application-4-arbitrage-detection" title="Permanent link">&para;</a></h3>
 <p>In practice, compare observed market prices to put-call parity:</p>
-<p>$$</p>
-<p>\Delta = (C_{\text{market}} - P_{\text{market}}) - (S_{\text{market}} - Ke^{-rT_{\text{market}}})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = (C_{\text{market}} - P_{\text{market}}) - (S_{\text{market}} - Ke^{-rT_{\text{market}}})
+\]</div>
 <ul>
 <li>If <span class="arithmatex">\(|\Delta| &gt; \text{transaction costs}\)</span>: Potential arbitrage</li>
 <li>If <span class="arithmatex">\(|\Delta| &lt; \text{transaction costs}\)</span>: No arbitrage after costs</li>
 </ul>
 <h3 id="5-application-5-implied-interest-rate">5. <strong>Application 5: Implied Interest Rate</strong><a class="headerlink" href="#5-application-5-implied-interest-rate" title="Permanent link">&para;</a></h3>
 <p>If call, put, and stock prices are known, solve for the <strong>implied risk-free rate</strong>:</p>
-<p>$$</p>
-<p>r = -\frac{1}{T}\log\left(\frac{K}{S + P - C}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r = -\frac{1}{T}\log\left(\frac{K}{S + P - C}\right)
+\]</div>
 <p>This can be used to infer market expectations of interest rates.</p>
 <hr />
 <h2 id="generalizations">Generalizations<a class="headerlink" href="#generalizations" title="Permanent link">&para;</a></h2>
 <h3 id="1-with-continuous-dividends">1. <strong>With Continuous Dividends</strong><a class="headerlink" href="#1-with-continuous-dividends" title="Permanent link">&para;</a></h3>
 <p>If the stock pays dividends at continuous rate <span class="arithmatex">\(q\)</span>:</p>
-<p>$$</p>
-<p>\boxed{C - P = Se^{-q(T-t)} - Ke^{-r(T-t)}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C - P = Se^{-q(T-t)} - Ke^{-r(T-t)}}
+\]</div>
 <p><strong>Derivation</strong>: Replace <span class="arithmatex">\(S\)</span> with <span class="arithmatex">\(Se^{-qT}\)</span> (present value of stock after dividend payments).</p>
 <h3 id="2-with-discrete-dividends">2. <strong>With Discrete Dividends</strong><a class="headerlink" href="#2-with-discrete-dividends" title="Permanent link">&para;</a></h3>
 <p>If the stock pays known dividends <span class="arithmatex">\(D\)</span> at time <span class="arithmatex">\(t_d &lt; T\)</span>:</p>
-<p>$$</p>
-<p>\boxed{C - P = \left(S - De^{-rt_d}\right) - Ke^{-rT}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C - P = \left(S - De^{-rt_d}\right) - Ke^{-rT}}
+\]</div>
 <p><strong>Derivation</strong>: Subtract the present value of dividends from the stock price.</p>
 <h3 id="3-foreign-currency-options-garman-kohlhagen">3. <strong>Foreign Currency Options (Garman-Kohlhagen)</strong><a class="headerlink" href="#3-foreign-currency-options-garman-kohlhagen" title="Permanent link">&para;</a></h3>
 <p>For options on foreign exchange rate <span class="arithmatex">\(X\)</span> (domestic per foreign):</p>
-<p>$$</p>
-<p>\boxed{C - P = Xe^{-r_f T} - Ke^{-r_d T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C - P = Xe^{-r_f T} - Ke^{-r_d T}}
+\]</div>
 <p>where <span class="arithmatex">\(r_d\)</span> = domestic rate, <span class="arithmatex">\(r_f\)</span> = foreign rate.</p>
 <h3 id="4-futures-options">4. <strong>Futures Options</strong><a class="headerlink" href="#4-futures-options" title="Permanent link">&para;</a></h3>
 <p>For options on futures contracts with futures price <span class="arithmatex">\(F\)</span>:</p>
-<p>$$</p>
-<p>\boxed{C - P = e^{-rT}(F - K)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C - P = e^{-rT}(F - K)}
+\]</div>
 <p>Since futures require no initial payment, this simplifies further.</p>
 <hr />
 <h2 id="numerical-example">Numerical Example<a class="headerlink" href="#numerical-example" title="Permanent link">&para;</a></h2>
@@ -47131,21 +47131,21 @@ C - P &amp;= \left[S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)\right] - \left[K
 <p><strong>Question</strong>: What should the put price be?</p>
 <p><strong>Solution</strong>:</p>
 <p>From put-call parity:</p>
-<p>$$</p>
-<p>P_0 = C_0 - S_0 + Ke^{-rT}</p>
-<p>$$</p>
-<p>$$</p>
-<p>P_0 = 4.50 - 50 + 50 \times e^{-0.04 \times 0.5}</p>
-<p>$$</p>
-<p>$$</p>
-<p>P_0 = 4.50 - 50 + 50 \times e^{-0.02}</p>
-<p>$$</p>
-<p>$$</p>
-<p>P_0 = 4.50 - 50 + 50 \times 0.9802</p>
-<p>$$</p>
-<p>$$</p>
-<p>P_0 = 4.50 - 50 + 49.01 = 3.51</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_0 = C_0 - S_0 + Ke^{-rT}
+\]</div>
+<div class="arithmatex">\[
+P_0 = 4.50 - 50 + 50 \times e^{-0.04 \times 0.5}
+\]</div>
+<div class="arithmatex">\[
+P_0 = 4.50 - 50 + 50 \times e^{-0.02}
+\]</div>
+<div class="arithmatex">\[
+P_0 = 4.50 - 50 + 50 \times 0.9802
+\]</div>
+<div class="arithmatex">\[
+P_0 = 4.50 - 50 + 49.01 = 3.51
+\]</div>
 <p><strong>Answer</strong>: The put should be priced at <strong>$3.51</strong>.</p>
 <p><strong>Check</strong>: <span class="arithmatex">\(C - P = 4.50 - 3.51 = 0.99\)</span> and <span class="arithmatex">\(S - Ke^{-rT} = 50 - 49.01 = 0.99\)</span> ✓</p>
 <hr />
@@ -47181,9 +47181,9 @@ C - P &amp;= \left[S\mathcal{N}(d_1) - Ke^{-rT}\mathcal{N}(d_2)\right] - \left[K
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Put-call parity establishes the fundamental relationship:</p>
-<p>$$</p>
-<p>\boxed{C - P = S - Ke^{-r(T-t)}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{C - P = S - Ke^{-r(T-t)}}
+\]</div>
 <p><strong>Key points</strong>:</p>
 <ol>
 <li>

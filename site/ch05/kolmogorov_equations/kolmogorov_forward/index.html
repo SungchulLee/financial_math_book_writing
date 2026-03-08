@@ -46969,13 +46969,13 @@
 <hr />
 <h2 id="setting">Setting<a class="headerlink" href="#setting" title="Permanent link">&para;</a></h2>
 <p>Consider the Itô diffusion:</p>
-<p>$$</p>
-<p>dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(X_t, t)\,dt + \sigma(X_t, t)\,dW_t
+\]</div>
 <p>Let <span class="arithmatex">\(p(x, t \mid x_0, t_0)\)</span> denote the <strong>transition density</strong>:</p>
-<p>$$</p>
-<p>\mathbb{P}(X_t \in dx \mid X_{t_0} = x_0) = p(x, t \mid x_0, t_0)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(X_t \in dx \mid X_{t_0} = x_0) = p(x, t \mid x_0, t_0)\,dx
+\]</div>
 <p><strong>Convention:</strong></p>
 <ul>
 <li><span class="arithmatex">\((x_0, t_0)\)</span>: initial state and time (fixed parameters)</li>
@@ -46996,17 +46996,17 @@
 <div class="admonition abstract">
 <p class="admonition-title">Theorem (Fokker–Planck Equation)</p>
 <p>The transition density satisfies:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial p}{\partial t}(x, t \mid x_0, t_0) = \mathcal{L}_x^* p(x, t \mid x_0, t_0)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}^*\)</span> is the <strong>adjoint</strong> of the infinitesimal generator:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathcal{L}^* p = -\frac{\partial}{\partial x}[\mu(x,t) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t) p]
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Initial condition</strong>: <span class="arithmatex">\(p(x, t_0 \mid x_0, t_0) = \delta(x - x_0)\)</span></p>
 </div>
 <p><strong>Regularity conditions</strong>: The theorem requires:</p>
@@ -47019,91 +47019,91 @@
 <h2 id="two-formulations">Two Formulations<a class="headerlink" href="#two-formulations" title="Permanent link">&para;</a></h2>
 <h3 id="density-form-strong">Density Form (Strong)<a class="headerlink" href="#density-form-strong" title="Permanent link">&para;</a></h3>
 <p>The PDE for the transition density:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = \mathcal{L}^* p = -\frac{\partial}{\partial x}[\mu \cdot p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2 \cdot p]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = \mathcal{L}^* p = -\frac{\partial}{\partial x}[\mu \cdot p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2 \cdot p]
+\]</div>
 <h3 id="expectation-form-weak">Expectation Form (Weak)<a class="headerlink" href="#expectation-form-weak" title="Permanent link">&para;</a></h3>
 <p>For any smooth test function <span class="arithmatex">\(f\)</span> with suitable decay:</p>
-<p>$$</p>
-<p>\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]
+\]</div>
 <p>where the infinitesimal generator is:</p>
-<p>$$</p>
-<p>\mathcal{L}f(x, t) = \mu(x, t)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2 f}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}f(x, t) = \mu(x, t)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x, t)\frac{\partial^2 f}{\partial x^2}
+\]</div>
 <p>Equivalently:</p>
-<p>$$</p>
-<p>\frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x, t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x, t \mid x_0, t_0)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x, t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x, t \mid x_0, t_0)\,dx
+\]</div>
 <p>This formulation is <strong>dual</strong> to the density PDE: the generator <span class="arithmatex">\(\mathcal{L}\)</span> acts on test functions, while its adjoint <span class="arithmatex">\(\mathcal{L}^*\)</span> acts on densities.</p>
 <hr />
 <h2 id="derivation">Derivation<a class="headerlink" href="#derivation" title="Permanent link">&para;</a></h2>
 <details class="abstract">
 <summary>Derivation via Integration by Parts</summary>
 <p><strong>Step 1</strong>: Start with the expectation form. For any smooth test function <span class="arithmatex">\(f\)</span> with compact support:</p>
-<p>$$</p>
-<p>\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\mathbb{E}[f(X_t) \mid X_{t_0} = x_0] = \mathbb{E}[(\mathcal{L}f)(X_t)]
+\]</div>
 <p><strong>Step 2</strong>: Write expectations as integrals against the density:</p>
-<p>$$</p>
-<p>\frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x,t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x,t \mid x_0, t_0)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\int_{-\infty}^{\infty} f(x) p(x,t \mid x_0, t_0)\,dx = \int_{-\infty}^{\infty} (\mathcal{L}f)(x) p(x,t \mid x_0, t_0)\,dx
+\]</div>
 <p><strong>Step 3</strong>: The left side equals:</p>
-<p>$$</p>
-<p>\int_{-\infty}^{\infty} f(x) \frac{\partial p}{\partial t}(x,t \mid x_0, t_0)\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{\infty} f(x) \frac{\partial p}{\partial t}(x,t \mid x_0, t_0)\,dx
+\]</div>
 <p><strong>Step 4</strong>: Integrate by parts on the right side. For the drift term:</p>
-<p>$$</p>
-<p>\int \mu(x) f'(x) p\,dx = -\int f(x) \frac{\partial}{\partial x}[\mu(x) p]\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int \mu(x) f'(x) p\,dx = -\int f(x) \frac{\partial}{\partial x}[\mu(x) p]\,dx
+\]</div>
 <p>For the diffusion term:</p>
-<p>$$</p>
-<p>\int \frac{\sigma^2(x)}{2} f''(x) p\,dx = \int f(x) \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int \frac{\sigma^2(x)}{2} f''(x) p\,dx = \int f(x) \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]\,dx
+\]</div>
 <p><strong>Step 5</strong>: Since this holds for all test functions <span class="arithmatex">\(f\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x) p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p]
+\]</div>
 </details>
 <hr />
 <h2 id="expanded-forms">Expanded Forms<a class="headerlink" href="#expanded-forms" title="Permanent link">&para;</a></h2>
 <h3 id="constant-coefficients">Constant Coefficients<a class="headerlink" href="#constant-coefficients" title="Permanent link">&para;</a></h3>
 <p>For <strong>constant coefficients</strong> (<span class="arithmatex">\(\mu, \sigma = \text{const}\)</span>), the Fokker–Planck equation simplifies to:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
+\]</div>
 <p>This is the <strong>advection–diffusion equation</strong>: probability advects with velocity <span class="arithmatex">\(\mu\)</span> and diffuses with coefficient <span class="arithmatex">\(\sigma^2/2\)</span>.</p>
 <h3 id="variable-coefficients">Variable Coefficients<a class="headerlink" href="#variable-coefficients" title="Permanent link">&para;</a></h3>
 <details class="note">
 <summary>Full Expansion for Variable Coefficients</summary>
 <p>Expanding the derivatives explicitly using the product rule:</p>
 <p><strong>Drift term:</strong></p>
-<p>$$</p>
-<p>-\frac{\partial}{\partial x}[\mu(x) p] = -\mu(x)\frac{\partial p}{\partial x} - \mu'(x)p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\frac{\partial}{\partial x}[\mu(x) p] = -\mu(x)\frac{\partial p}{\partial x} - \mu'(x)p
+\]</div>
 <p><strong>Diffusion term:</strong> Let <span class="arithmatex">\(D(x) = \sigma^2(x)\)</span>. Then:</p>
-<p>$$</p>
-<p>\frac{1}{2}\frac{\partial^2}{\partial x^2}[D(x) p] = \frac{1}{2}D(x)\frac{\partial^2 p}{\partial x^2} + D'(x)\frac{\partial p}{\partial x} + \frac{1}{2}D''(x)p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{1}{2}\frac{\partial^2}{\partial x^2}[D(x) p] = \frac{1}{2}D(x)\frac{\partial^2 p}{\partial x^2} + D'(x)\frac{\partial p}{\partial x} + \frac{1}{2}D''(x)p
+\]</div>
 <p>Since <span class="arithmatex">\(D' = 2\sigma\sigma'\)</span> and <span class="arithmatex">\(D'' = 2(\sigma')^2 + 2\sigma\sigma''\)</span>:</p>
-<p>$$</p>
-<p>\frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p] = \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \sigma(x)\sigma'(x)\frac{\partial p}{\partial x} + \left[(\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x) p] = \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \sigma(x)\sigma'(x)\frac{\partial p}{\partial x} + \left[(\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
+\]</div>
 <p><strong>Combined:</strong></p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = \left[-\mu(x) + \sigma(x)\sigma'(x)\right]\frac{\partial p}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \left[-\mu'(x) + (\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = \left[-\mu(x) + \sigma(x)\sigma'(x)\right]\frac{\partial p}{\partial x} + \frac{\sigma^2(x)}{2}\frac{\partial^2 p}{\partial x^2} + \left[-\mu'(x) + (\sigma'(x))^2 + \sigma(x)\sigma''(x)\right]p
+\]</div>
 </details>
 <hr />
 <h2 id="continuity-form-and-probability-current">Continuity Form and Probability Current<a class="headerlink" href="#continuity-form-and-probability-current" title="Permanent link">&para;</a></h2>
 <p>The Fokker–Planck equation can be written as a <strong>continuity equation</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} + \frac{\partial J}{\partial x} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} + \frac{\partial J}{\partial x} = 0
+\]</div>
 <p>where the <strong>probability current</strong> is:</p>
-<p>$$</p>
-<p>J(x, t) = \mu(x)p - \frac{1}{2}\frac{\partial}{\partial x}[\sigma^2(x)p]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+J(x, t) = \mu(x)p - \frac{1}{2}\frac{\partial}{\partial x}[\sigma^2(x)p]
+\]</div>
 <div class="admonition info">
 <p class="admonition-title">Physical Interpretation</p>
 <p>Probability is conserved—it flows according to current <span class="arithmatex">\(J\)</span>. The current has two components:</p>
@@ -47126,50 +47126,50 @@
 <h2 id="examples-with-analytical-solutions">Examples with Analytical Solutions<a class="headerlink" href="#examples-with-analytical-solutions" title="Permanent link">&para;</a></h2>
 <h3 id="example-1-brownian-motion">Example 1: Brownian Motion<a class="headerlink" href="#example-1-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dX_t = dW_t\)</span> (i.e., <span class="arithmatex">\(\mu = 0\)</span>, <span class="arithmatex">\(\sigma = 1\)</span>):</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^2 p}{\partial x^2}
+\]</div>
 <p>This is the <strong>heat equation</strong>. </p>
 <p><strong>Solution</strong> (heat kernel):</p>
-<p>$$</p>
-<p>p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi (t - t_0)}}\exp\left(-\frac{(x - x_0)^2}{2(t - t_0)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi (t - t_0)}}\exp\left(-\frac{(x - x_0)^2}{2(t - t_0)}\right)
+\]</div>
 <h3 id="example-2-brownian-motion-with-drift">Example 2: Brownian Motion with Drift<a class="headerlink" href="#example-2-brownian-motion-with-drift" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dX_t = \mu\,dt + \sigma\,dW_t\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\mu\frac{\partial p}{\partial x} + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
+\]</div>
 <p><strong>Solution</strong>:</p>
-<p>$$</p>
-<p>p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(x - x_0 - \mu(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(x, t \mid x_0, t_0) = \frac{1}{\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(x - x_0 - \mu(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)
+\]</div>
 <h3 id="example-3-ornsteinuhlenbeck-process">Example 3: Ornstein–Uhlenbeck Process<a class="headerlink" href="#example-3-ornsteinuhlenbeck-process" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dX_t = -\kappa X_t\,dt + \sigma\,dW_t\)</span> (mean-reverting to zero):</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = \kappa\frac{\partial}{\partial x}(x \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = \kappa\frac{\partial}{\partial x}(x \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2 p}{\partial x^2}
+\]</div>
 <p><strong>Transient solution</strong> (starting from <span class="arithmatex">\(X_{t_0} = x_0\)</span>):</p>
-<p>$$</p>
-<p>p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi v(\tau)}}\exp\left(-\frac{(x - m(\tau))^2}{2v(\tau)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(x, t \mid x_0, t_0) = \frac{1}{\sqrt{2\pi v(\tau)}}\exp\left(-\frac{(x - m(\tau))^2}{2v(\tau)}\right)
+\]</div>
 <p>where <span class="arithmatex">\(\tau = t - t_0\)</span> and:</p>
 <ul>
 <li>Mean: <span class="arithmatex">\(m(\tau) = x_0 e^{-\kappa \tau}\)</span></li>
 <li>Variance: <span class="arithmatex">\(v(\tau) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa \tau})\)</span></li>
 </ul>
 <p><strong>Stationary solution</strong> (as <span class="arithmatex">\(\tau \to \infty\)</span>):</p>
-<p>$$</p>
-<p>p_\infty(x) = \sqrt{\frac{\kappa}{\pi\sigma^2}}\exp\left(-\frac{\kappa x^2}{\sigma^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_\infty(x) = \sqrt{\frac{\kappa}{\pi\sigma^2}}\exp\left(-\frac{\kappa x^2}{\sigma^2}\right)
+\]</div>
 <h3 id="example-4-geometric-brownian-motion">Example 4: Geometric Brownian Motion<a class="headerlink" href="#example-4-geometric-brownian-motion" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dS_t = \mu S_t\,dt + \sigma S_t\,dW_t\)</span> on <span class="arithmatex">\(S &gt; 0\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}(\mu S \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2 \cdot p)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\frac{\partial}{\partial S}(\mu S \cdot p) + \frac{\sigma^2}{2}\frac{\partial^2}{\partial S^2}(S^2 \cdot p)
+\]</div>
 <p><strong>Solution</strong> (log-normal density):</p>
-<p>$$</p>
-<p>p(S, t \mid S_0, t_0) = \frac{1}{S\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(\log S - \log S_0 - (\mu - \sigma^2/2)(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(S, t \mid S_0, t_0) = \frac{1}{S\sigma\sqrt{2\pi (t-t_0)}}\exp\left(-\frac{(\log S - \log S_0 - (\mu - \sigma^2/2)(t-t_0))^2}{2\sigma^2 (t-t_0)}\right)
+\]</div>
 <h3 id="summary-table">Summary Table<a class="headerlink" href="#summary-table" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47210,18 +47210,18 @@
 <hr />
 <h2 id="stationary-invariant-distributions">Stationary (Invariant) Distributions<a class="headerlink" href="#stationary-invariant-distributions" title="Permanent link">&para;</a></h2>
 <p>A density <span class="arithmatex">\(p_\infty(x)\)</span> is <strong>stationary</strong> if <span class="arithmatex">\(\mathcal{L}^* p_\infty = 0\)</span>:</p>
-<p>$$</p>
-<p>-\frac{d}{dx}[\mu(x)p_\infty] + \frac{1}{2}\frac{d^2}{dx^2}[\sigma^2(x)p_\infty] = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\frac{d}{dx}[\mu(x)p_\infty] + \frac{1}{2}\frac{d^2}{dx^2}[\sigma^2(x)p_\infty] = 0
+\]</div>
 <h3 id="zero-current-condition">Zero-Current Condition<a class="headerlink" href="#zero-current-condition" title="Permanent link">&para;</a></h3>
 <p>At stationarity with zero probability current (<span class="arithmatex">\(J = 0\)</span>):</p>
-<p>$$</p>
-<p>\mu(x)p_\infty = \frac{1}{2}\frac{d}{dx}[\sigma^2(x)p_\infty]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu(x)p_\infty = \frac{1}{2}\frac{d}{dx}[\sigma^2(x)p_\infty]
+\]</div>
 <h3 id="general-solution-one-dimension">General Solution (One Dimension)<a class="headerlink" href="#general-solution-one-dimension" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>p_\infty(x) \propto \frac{1}{\sigma^2(x)}\exp\left(\int^x \frac{2\mu(z)}{\sigma^2(z)}\,dz\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p_\infty(x) \propto \frac{1}{\sigma^2(x)}\exp\left(\int^x \frac{2\mu(z)}{\sigma^2(z)}\,dz\right)
+\]</div>
 <div class="admonition warning">
 <p class="admonition-title">Existence Conditions</p>
 <p>This formula only yields a valid density if:</p>
@@ -47235,41 +47235,41 @@
 </div>
 <h3 id="physical-interpretation-of-stationarity">Physical Interpretation of Stationarity<a class="headerlink" href="#physical-interpretation-of-stationarity" title="Permanent link">&para;</a></h3>
 <p>At equilibrium, the drift and diffusive currents balance:</p>
-<p>$$</p>
-<p>\underbrace{\mu(x) p_\infty}<em>{\text{drift current}} = \underbrace{\frac{1}{2}\frac{d}{dx}[\sigma^2(x)p</em>\infty]}_{\text{diffusive current}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\underbrace{\mu(x) p_\infty}_{\text{drift current}} = \underbrace{\frac{1}{2}\frac{d}{dx}[\sigma^2(x)p_\infty]}_{\text{diffusive current}}
+\]</div>
 <p>This is analogous to detailed balance in statistical mechanics.</p>
 <hr />
 <h2 id="analytical-solution-methods">Analytical Solution Methods<a class="headerlink" href="#analytical-solution-methods" title="Permanent link">&para;</a></h2>
 <h3 id="fourier-transform-method">Fourier Transform Method<a class="headerlink" href="#fourier-transform-method" title="Permanent link">&para;</a></h3>
 <p>For constant coefficients on <span class="arithmatex">\(\mathbb{R}\)</span>, apply the Fourier transform in <span class="arithmatex">\(x\)</span>:</p>
-<p>$$</p>
-<p>\hat{p}(k, t) = \int_{-\infty}^{\infty} p(x, t) e^{-ikx}\,dx</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{p}(k, t) = \int_{-\infty}^{\infty} p(x, t) e^{-ikx}\,dx
+\]</div>
 <p>The PDE becomes an ODE in <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial \hat{p}}{\partial t} = \left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)\hat{p}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \hat{p}}{\partial t} = \left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)\hat{p}
+\]</div>
 <p><strong>Solution</strong>: </p>
-<p>$$</p>
-<p>\hat{p}(k, t) = \hat{p}(k, t_0) \exp\left[\left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)(t - t_0)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{p}(k, t) = \hat{p}(k, t_0) \exp\left[\left(-ik\mu - \frac{\sigma^2 k^2}{2}\right)(t - t_0)\right]
+\]</div>
 <p>For delta initial condition <span class="arithmatex">\(p(x, t_0) = \delta(x - x_0)\)</span>, we have <span class="arithmatex">\(\hat{p}(k, t_0) = e^{-ikx_0}\)</span>, and the inverse transform yields the Gaussian solution.</p>
 <h3 id="similarity-solutions">Similarity Solutions<a class="headerlink" href="#similarity-solutions" title="Permanent link">&para;</a></h3>
 <p>For the heat equation, exploit scale invariance by seeking solutions of the form:</p>
-<p>$$</p>
-<p>p(x, t) = \frac{1}{\sqrt{t - t_0}} F\left(\frac{x - x_0}{\sqrt{t - t_0}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(x, t) = \frac{1}{\sqrt{t - t_0}} F\left(\frac{x - x_0}{\sqrt{t - t_0}}\right)
+\]</div>
 <p>Substituting into the PDE yields an ODE for <span class="arithmatex">\(F(\eta)\)</span>:</p>
-<p>$$</p>
-<p>\frac{1}{2}F'' + \frac{1}{2}\eta F' + \frac{1}{2}F = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{1}{2}F'' + \frac{1}{2}\eta F' + \frac{1}{2}F = 0
+\]</div>
 <p>whose normalized solution is <span class="arithmatex">\(F(\eta) = \frac{1}{\sqrt{2\pi}}e^{-\eta^2/2}\)</span>.</p>
 <h3 id="separation-of-variables">Separation of Variables<a class="headerlink" href="#separation-of-variables" title="Permanent link">&para;</a></h3>
 <p>On bounded domains <span class="arithmatex">\([a, b]\)</span> with homogeneous boundary conditions, expand in eigenfunctions of <span class="arithmatex">\(\mathcal{L}^*\)</span>:</p>
-<p>$$</p>
-<p>p(x, t) = \sum_n c_n \phi_n(x) e^{-\lambda_n (t - t_0)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(x, t) = \sum_n c_n \phi_n(x) e^{-\lambda_n (t - t_0)}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{L}^* \phi_n = -\lambda_n \phi_n\)</span> with eigenvalues <span class="arithmatex">\(0 = \lambda_0 &lt; \lambda_1 &lt; \lambda_2 &lt; \cdots\)</span>.</p>
 <p>The eigenfunction <span class="arithmatex">\(\phi_0\)</span> with <span class="arithmatex">\(\lambda_0 = 0\)</span> is the stationary distribution (if it exists).</p>
 <hr />
@@ -47366,14 +47366,14 @@
 <hr />
 <h2 id="multidimensional-fokkerplanck">Multidimensional Fokker–Planck<a class="headerlink" href="#multidimensional-fokkerplanck" title="Permanent link">&para;</a></h2>
 <p>For <span class="arithmatex">\(X_t \in \mathbb{R}^d\)</span> with <span class="arithmatex">\(dX_t^i = \mu^i(X_t, t)\,dt + \sigma^{i\alpha}(X_t, t)\,dW_t^\alpha\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\sum_{i=1}^{d}\frac{\partial}{\partial x_i}(\mu^i p) + \frac{1}{2}\sum_{i,j=1}^{d}\frac{\partial^2}{\partial x_i \partial x_j}(a^{ij} p)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\sum_{i=1}^{d}\frac{\partial}{\partial x_i}(\mu^i p) + \frac{1}{2}\sum_{i,j=1}^{d}\frac{\partial^2}{\partial x_i \partial x_j}(a^{ij} p)
+\]</div>
 <p>where the <strong>diffusion matrix</strong> is <span class="arithmatex">\(a^{ij} = \sum_{\alpha}\sigma^{i\alpha}\sigma^{j\alpha} = (\sigma\sigma^\top)^{ij}\)</span>.</p>
 <p>In vector notation:</p>
-<p>$$</p>
-<p>\frac{\partial p}{\partial t} = -\nabla \cdot (\mu p) + \frac{1}{2}\nabla \cdot (a \cdot \nabla p) + \frac{1}{2}p \, \nabla \cdot \nabla \cdot a</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial p}{\partial t} = -\nabla \cdot (\mu p) + \frac{1}{2}\nabla \cdot (a \cdot \nabla p) + \frac{1}{2}p \, \nabla \cdot \nabla \cdot a
+\]</div>
 <div class="admonition note">
 <p class="admonition-title">Ellipticity</p>
 <p>For classical solutions, we require <strong>uniform ellipticity</strong>: there exists <span class="arithmatex">\(c &gt; 0\)</span> such that</p>
@@ -47387,9 +47387,9 @@
 <p>This section connects classical Fokker–Planck theory to modern machine learning. It can be skipped on first reading.</p>
 </div>
 <p>Given a <strong>marginal density</strong> <span class="arithmatex">\(p(x, t)\)</span>, the <strong>score function</strong> is:</p>
-<p>$$</p>
-<p>s(x, t) = \nabla_x \log p(x, t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+s(x, t) = \nabla_x \log p(x, t)
+\]</div>
 <p>This gradient of the log-density is fundamental to:</p>
 <ul>
 <li><strong>Score matching</strong> in machine learning</li>
@@ -47398,15 +47398,15 @@
 </ul>
 <h3 id="forward-process">Forward Process<a class="headerlink" href="#forward-process" title="Permanent link">&para;</a></h3>
 <p>In diffusion models, the forward SDE typically adds noise:</p>
-<p>$$</p>
-<p>dX_t = f(X_t, t)\,dt + g(t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = f(X_t, t)\,dt + g(t)\,dW_t
+\]</div>
 <p>The marginal density <span class="arithmatex">\(p(x, t)\)</span> (starting from data distribution <span class="arithmatex">\(p_0\)</span>) satisfies the Fokker–Planck equation.</p>
 <h3 id="reverse-process">Reverse Process<a class="headerlink" href="#reverse-process" title="Permanent link">&para;</a></h3>
 <p>The remarkable result (Anderson, 1982) is that the <strong>reverse-time SDE</strong>:</p>
-<p>$$</p>
-<p>dX_t = \left[f(X_t, t) - g^2(t) \nabla_x \log p(X_t, t)\right] dt + g(t)\,d\bar{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \left[f(X_t, t) - g^2(t) \nabla_x \log p(X_t, t)\right] dt + g(t)\,d\bar{W}_t
+\]</div>
 <p>generates samples from <span class="arithmatex">\(p(x, t)\)</span> running backward in time, where <span class="arithmatex">\(\bar{W}_t\)</span> is a backward Brownian motion.</p>
 <p>This is the theoretical foundation for:</p>
 <ul>
@@ -47472,11 +47472,11 @@
 <p>The equation is sometimes called the <strong>Smoluchowski equation</strong> in the physics literature, particularly for overdamped systems.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial p}{\partial t}(x, t \mid x_0, t_0) = -\frac{\partial}{\partial x}[\mu(x,t)p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t)p] = \mathcal{L}^* p
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The Fokker–Planck equation describes how probability density evolves <strong>forward</strong> in time, dual to the backward equation which describes how expectations depend on initial conditions.</p>
 <table>
 <thead>

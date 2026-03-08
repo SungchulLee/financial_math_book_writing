@@ -47017,15 +47017,15 @@
 <hr />
 <h2 id="the-theta-gamma-relationship">The Theta-Gamma Relationship<a class="headerlink" href="#the-theta-gamma-relationship" title="Permanent link">&para;</a></h2>
 <p>The Black-Scholes PDE connects the Greeks:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV
+\]</div>
 <p>Rewriting in terms of Greeks:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma = rV
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Interpretation</strong>: Time decay (<span class="arithmatex">\(\Theta\)</span>) is compensated by delta (<span class="arithmatex">\(\Delta\)</span>) and gamma (<span class="arithmatex">\(\Gamma\)</span>) effects.</p>
 <hr />
 <h2 id="at-the-money-analysis">At-the-Money Analysis<a class="headerlink" href="#at-the-money-analysis" title="Permanent link">&para;</a></h2>
@@ -47037,17 +47037,17 @@
 <li><span class="arithmatex">\(\Theta &lt; 0\)</span> (time decay)</li>
 </ul>
 <p>From the PDE:</p>
-<p>$$</p>
-<p>\Theta \approx rV - rS(0.5) - \frac{1}{2}\sigma^2 S^2\Gamma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta \approx rV - rS(0.5) - \frac{1}{2}\sigma^2 S^2\Gamma
+\]</div>
 <p>For small <span class="arithmatex">\(r\)</span>: <span class="arithmatex">\(\Theta \approx -\frac{1}{2}\sigma^2 S^2\Gamma\)</span></p>
 <p><strong>Key insight</strong>: High gamma implies rapid time decay.</p>
 <hr />
 <h2 id="delta-the-hedge-ratio">Delta: The Hedge Ratio<a class="headerlink" href="#delta-the-hedge-ratio" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Delta = \frac{\partial V}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial V}{\partial S}
+\]</div>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Number of shares needed to hedge one option</li>
@@ -47067,9 +47067,9 @@
 <hr />
 <h2 id="gamma-convexity">Gamma: Convexity<a class="headerlink" href="#gamma-convexity" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Gamma = \frac{\partial^2 V}{\partial S^2} = \frac{\partial \Delta}{\partial S}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma = \frac{\partial^2 V}{\partial S^2} = \frac{\partial \Delta}{\partial S}
+\]</div>
 <h3 id="interpretation_1">Interpretation<a class="headerlink" href="#interpretation_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Rate of change of delta</li>
@@ -47077,9 +47077,9 @@
 <li>Hedging error for discrete rebalancing</li>
 </ul>
 <h3 id="black-scholes-formula">Black-Scholes Formula<a class="headerlink" href="#black-scholes-formula" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Gamma = \frac{\phi(d_1)}{S\sigma\sqrt{T-t}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma = \frac{\phi(d_1)}{S\sigma\sqrt{T-t}}
+\]</div>
 <p>where <span class="arithmatex">\(\phi\)</span> is the standard normal PDF.</p>
 <h3 id="properties_1">Properties<a class="headerlink" href="#properties_1" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47094,19 +47094,19 @@
 <hr />
 <h2 id="theta-time-decay">Theta: Time Decay<a class="headerlink" href="#theta-time-decay" title="Permanent link">&para;</a></h2>
 <h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Theta = \frac{\partial V}{\partial t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta = \frac{\partial V}{\partial t}
+\]</div>
 <p><strong>Convention</strong>: Often reported as daily decay (<span class="arithmatex">\(\Theta/365\)</span>).</p>
 <h3 id="black-scholes-formulas_1">Black-Scholes Formulas<a class="headerlink" href="#black-scholes-formulas_1" title="Permanent link">&para;</a></h3>
 <p><strong>Call</strong>:</p>
-<p>$$</p>
-<p>\Theta_C = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\Phi(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_C = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} - rKe^{-r(T-t)}\Phi(d_2)
+\]</div>
 <p><strong>Put</strong>:</p>
-<p>$$</p>
-<p>\Theta_P = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} + rKe^{-r(T-t)}\Phi(-d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta_P = -\frac{S\phi(d_1)\sigma}{2\sqrt{T-t}} + rKe^{-r(T-t)}\Phi(-d_2)
+\]</div>
 <h3 id="properties_2">Properties<a class="headerlink" href="#properties_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Usually negative for long options (time decay)</li>
@@ -47114,21 +47114,21 @@
 <li>Accelerates near expiration</li>
 </ul>
 <h3 id="theta-gamma-tradeoff">Theta-Gamma Tradeoff<a class="headerlink" href="#theta-gamma-tradeoff" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\Theta \approx -\frac{1}{2}\sigma^2 S^2\Gamma</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Theta \approx -\frac{1}{2}\sigma^2 S^2\Gamma
+\]</div>
 <p>Long gamma positions have negative theta (pay for convexity with time decay).</p>
 <hr />
 <h2 id="vega-volatility-sensitivity">Vega: Volatility Sensitivity<a class="headerlink" href="#vega-volatility-sensitivity" title="Permanent link">&para;</a></h2>
 <h3 id="definition_3">Definition<a class="headerlink" href="#definition_3" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{V} = \frac{\partial V}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} = \frac{\partial V}{\partial \sigma}
+\]</div>
 <p><strong>Note</strong>: Vega is not a Greek letter!</p>
 <h3 id="black-scholes-formula_1">Black-Scholes Formula<a class="headerlink" href="#black-scholes-formula_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\mathcal{V} = S\sqrt{T-t}\phi(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V} = S\sqrt{T-t}\phi(d_1)
+\]</div>
 <p>Same for calls and puts (put-call parity).</p>
 <h3 id="properties_3">Properties<a class="headerlink" href="#properties_3" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47144,9 +47144,9 @@
 <hr />
 <h2 id="rho-interest-rate-sensitivity">Rho: Interest Rate Sensitivity<a class="headerlink" href="#rho-interest-rate-sensitivity" title="Permanent link">&para;</a></h2>
 <h3 id="definition_4">Definition<a class="headerlink" href="#definition_4" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\rho = \frac{\partial V}{\partial r}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho = \frac{\partial V}{\partial r}
+\]</div>
 <h3 id="black-scholes-formulas_2">Black-Scholes Formulas<a class="headerlink" href="#black-scholes-formulas_2" title="Permanent link">&para;</a></h3>
 <p><strong>Call</strong>: <span class="arithmatex">\(\rho_C = K(T-t)e^{-r(T-t)}\Phi(d_2)\)</span></p>
 <p><strong>Put</strong>: <span class="arithmatex">\(\rho_P = -K(T-t)e^{-r(T-t)}\Phi(-d_2)\)</span></p>
@@ -47160,27 +47160,27 @@
 <h2 id="computing-greeks-from-the-pde">Computing Greeks from the PDE<a class="headerlink" href="#computing-greeks-from-the-pde" title="Permanent link">&para;</a></h2>
 <h3 id="finite-difference-approximations">Finite Difference Approximations<a class="headerlink" href="#finite-difference-approximations" title="Permanent link">&para;</a></h3>
 <p>Given numerical solution <span class="arithmatex">\(V^n_j\)</span> on a grid:</p>
-<p>$$</p>
-<p>\Delta \approx \frac{V_{j+1} - V_{j-1}}{2\Delta S}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Gamma \approx \frac{V_{j+1} - 2V_j + V_{j-1}}{(\Delta S)^2}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\Theta \approx \frac{V^{n+1}_j - V^n_j}{\Delta t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta \approx \frac{V_{j+1} - V_{j-1}}{2\Delta S}
+\]</div>
+<div class="arithmatex">\[
+\Gamma \approx \frac{V_{j+1} - 2V_j + V_{j-1}}{(\Delta S)^2}
+\]</div>
+<div class="arithmatex">\[
+\Theta \approx \frac{V^{n+1}_j - V^n_j}{\Delta t}
+\]</div>
 <h3 id="pathwise-derivatives-monte-carlo">Pathwise Derivatives (Monte Carlo)<a class="headerlink" href="#pathwise-derivatives-monte-carlo" title="Permanent link">&para;</a></h3>
 <p>For simulation:</p>
-<p>$$</p>
-<p>\Delta = \mathbb{E}\left[e^{-rT}\Phi'(S_T)\frac{\partial S_T}{\partial S_0}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \mathbb{E}\left[e^{-rT}\Phi'(S_T)\frac{\partial S_T}{\partial S_0}\right]
+\]</div>
 <p>Using GBM: <span class="arithmatex">\(\frac{\partial S_T}{\partial S_0} = \frac{S_T}{S_0}\)</span></p>
 <hr />
 <h2 id="greeks-for-portfolios">Greeks for Portfolios<a class="headerlink" href="#greeks-for-portfolios" title="Permanent link">&para;</a></h2>
 <p>For a portfolio <span class="arithmatex">\(\Pi = \sum_i w_i V_i\)</span>:</p>
-<p>$$</p>
-<p>\Delta_\Pi = \sum_i w_i \Delta_i, \quad \Gamma_\Pi = \sum_i w_i \Gamma_i, \quad \text{etc.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_\Pi = \sum_i w_i \Delta_i, \quad \Gamma_\Pi = \sum_i w_i \Gamma_i, \quad \text{etc.}
+\]</div>
 <h3 id="delta-gamma-hedging">Delta-Gamma Hedging<a class="headerlink" href="#delta-gamma-hedging" title="Permanent link">&para;</a></h3>
 <p>To hedge both delta and gamma:
 1. Add a second option to zero gamma
@@ -47220,11 +47220,11 @@
 </table>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \Theta + rS\Delta + \frac{1}{2}\sigma^2 S^2\Gamma = rV
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

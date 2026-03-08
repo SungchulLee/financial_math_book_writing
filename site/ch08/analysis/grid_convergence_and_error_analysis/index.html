@@ -46238,23 +46238,23 @@
 <hr />
 <h2 id="what-is-grid-convergence">What is Grid Convergence?<a class="headerlink" href="#what-is-grid-convergence" title="Permanent link">&para;</a></h2>
 <p><strong>Grid convergence</strong> refers to the behavior of the numerical solution as the mesh becomes finer. As <span class="arithmatex">\(\Delta S \to 0\)</span> and <span class="arithmatex">\(\Delta t \to 0\)</span>, the finite difference solution <span class="arithmatex">\(V_{\text{FD}}(S,t)\)</span> should approach the exact (analytical) solution <span class="arithmatex">\(V_{\text{BS}}(S,t)\)</span>:</p>
-<p>$$</p>
-<p>| V_{\text{FD}} - V_{\text{BS}} | \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\| V_{\text{FD}} - V_{\text{BS}} \| \to 0
+\]</div>
 <p>as <span class="arithmatex">\(M \to \infty\)</span> and <span class="arithmatex">\(N \to \infty\)</span>.</p>
 <hr />
 <h2 id="measuring-error">Measuring Error<a class="headerlink" href="#measuring-error" title="Permanent link">&para;</a></h2>
 <p>The <strong>maximum absolute error</strong> is often used:</p>
-<p>$$</p>
-<p>\text{Max Error} = \max_i |V_{\text{FD}}(S_i, t=0) - V_{\text{BS}}(S_i, t=0)|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Max Error} = \max_i |V_{\text{FD}}(S_i, t=0) - V_{\text{BS}}(S_i, t=0)|
+\]</div>
 <p>Other common norms include the <span class="arithmatex">\(\ell_2\)</span> norm (root mean square error) and relative error (useful for options deep in- or out-of-the-money).</p>
 <hr />
 <h2 id="convergence-rate-order-of-accuracy">Convergence Rate (Order of Accuracy)<a class="headerlink" href="#convergence-rate-order-of-accuracy" title="Permanent link">&para;</a></h2>
 <p>For a second-order method, the error should behave like:</p>
-<p>$$</p>
-<p>\text{Error} \propto (\Delta S)^2 + (\Delta t)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Error} \propto (\Delta S)^2 + (\Delta t)^2
+\]</div>
 <p>A <strong>log-log plot</strong> of error vs. <span class="arithmatex">\(1/M\)</span> should show a <strong>slope of 2</strong> for second-order schemes like Crank-Nicolson.</p>
 <hr />
 <h2 id="python-example-error-vs-time-grid-size">Python Example: Error vs. Time Grid Size<a class="headerlink" href="#python-example-error-vs-time-grid-size" title="Permanent link">&para;</a></h2>

@@ -47023,9 +47023,9 @@
 <h2 id="quantitative-decomposition">Quantitative decomposition<a class="headerlink" href="#quantitative-decomposition" title="Permanent link">&para;</a></h2>
 <h3 id="framework">Framework<a class="headerlink" href="#framework" title="Permanent link">&para;</a></h3>
 <p>Suppose we observe calibrated parameters <span class="arithmatex">\(\hat{\theta}_t\)</span> over time <span class="arithmatex">\(t = 1, \ldots, T\)</span>. Decompose:</p>
-<p>$$</p>
-<p>\hat{\theta}_t = \theta^{\star} + \delta_t + \epsilon_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\theta}_t = \theta^{\star} + \delta_t + \epsilon_t
+\]</div>
 <p>where:</p>
 <ul>
 <li><span class="arithmatex">\(\theta^{\star}\)</span> = true (unknown) average parameter.</li>
@@ -47034,15 +47034,15 @@
 </ul>
 <h3 id="variance-decomposition">Variance decomposition<a class="headerlink" href="#variance-decomposition" title="Permanent link">&para;</a></h3>
 <p>Total variance:</p>
-<p>$$</p>
-<p>\text{Var}(\hat{\theta}_t) = \text{Var}(\delta_t) + \text{Var}(\epsilon_t) + 2\text{Cov}(\delta_t, \epsilon_t).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(\hat{\theta}_t) = \text{Var}(\delta_t) + \text{Var}(\epsilon_t) + 2\text{Cov}(\delta_t, \epsilon_t)
+\]</div>
 <p>If we can estimate <span class="arithmatex">\(\text{Var}(\epsilon_t)\)</span> (e.g., from bootstrap), we can attribute residual variance to drift.</p>
 <h3 id="signal-to-noise-ratio">Signal-to-noise ratio<a class="headerlink" href="#signal-to-noise-ratio" title="Permanent link">&para;</a></h3>
 <p>Define:</p>
-<p>$$</p>
-<p>\text{SNR} = \frac{\text{Var}(\delta_t)}{\text{Var}(\epsilon_t)}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{SNR} = \frac{\text{Var}(\delta_t)}{\text{Var}(\epsilon_t)}
+\]</div>
 <ul>
 <li>High SNR: Parameter changes are mostly genuine drift.</li>
 <li>Low SNR: Parameter changes are mostly noise/model drift.</li>

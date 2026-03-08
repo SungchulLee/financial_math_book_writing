@@ -46929,24 +46929,24 @@
 <h2 id="two-probability-measures">Two Probability Measures<a class="headerlink" href="#two-probability-measures" title="Permanent link">&para;</a></h2>
 <h3 id="physical-measure-p">Physical Measure (P)<a class="headerlink" href="#physical-measure-p" title="Permanent link">&para;</a></h3>
 <p>The <strong>physical</strong> or <strong>real-world</strong> measure governs actual asset evolution:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= \mu^{\mathbb{P}} S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^{S,\mathbb{P}} \\
 dV_t &amp;= a^{\mathbb{P}}(V_t)\,dt + b(V_t)\,dW_t^{V,\mathbb{P}}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>:
 - <span class="arithmatex">\(\mu^{\mathbb{P}}\)</span> reflects the expected return on the asset
 - <span class="arithmatex">\(a^{\mathbb{P}}(V)\)</span> reflects how volatility actually evolves
 - This is the measure relevant for <strong>forecasting</strong> and <strong>risk management</strong></p>
 <h3 id="risk-neutral-measure-q">Risk-Neutral Measure (Q)<a class="headerlink" href="#risk-neutral-measure-q" title="Permanent link">&para;</a></h3>
 <p>The <strong>risk-neutral</strong> or <strong>pricing</strong> measure is constructed for derivative valuation:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dS_t &amp;= (r - q) S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^{S,\mathbb{Q}} \\
 dV_t &amp;= a^{\mathbb{Q}}(V_t)\,dt + b(V_t)\,dW_t^{V,\mathbb{Q}}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:
 - The drift of <span class="arithmatex">\(S\)</span> is the risk-free rate minus dividends (no-arbitrage)
 - Option prices are computed as discounted expectations
@@ -46957,39 +46957,39 @@ dV_t &amp;= a^{\mathbb{Q}}(V_t)\,dt + b(V_t)\,dW_t^{V,\mathbb{Q}}
 <h2 id="measure-change-via-girsanov">Measure Change via Girsanov<a class="headerlink" href="#measure-change-via-girsanov" title="Permanent link">&para;</a></h2>
 <h3 id="the-radonnikodym-derivative">The Radon–Nikodym Derivative<a class="headerlink" href="#the-radonnikodym-derivative" title="Permanent link">&para;</a></h3>
 <p>The change from <span class="arithmatex">\(\mathbb{P}\)</span> to <span class="arithmatex">\(\mathbb{Q}\)</span> is characterized by a <strong>Radon–Nikodym derivative</strong>:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T = \exp\left(-\int_0^T \lambda_t \cdot dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T |\lambda_t|^2\,dt\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_T} = Z_T = \exp\left(-\int_0^T \lambda_t \cdot dW_t^{\mathbb{P}} - \frac{1}{2}\int_0^T |\lambda_t|^2\,dt\right)
+\]</div>
 <p>where <span class="arithmatex">\(\lambda_t = (\lambda_t^S, \lambda_t^V)^{\top}\)</span> is the <strong>market price of risk</strong> vector.</p>
 <h3 id="girsanov-transformation">Girsanov Transformation<a class="headerlink" href="#girsanov-transformation" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the Brownian motions transform as:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dW_t^{S,\mathbb{Q}} &amp;= dW_t^{S,\mathbb{P}} + \lambda_t^S\,dt \\
 dW_t^{V,\mathbb{Q}} &amp;= dW_t^{V,\mathbb{P}} + \lambda_t^V\,dt
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Crucially:</strong> The diffusion coefficients are unchanged. Only drifts are modified.</p>
 <h3 id="drift-modification">Drift Modification<a class="headerlink" href="#drift-modification" title="Permanent link">&para;</a></h3>
 <p>For the asset price:</p>
-<p>$$</p>
-<p>\mu^{\mathbb{Q}} = \mu^{\mathbb{P}} - \lambda^S \sqrt{V} = r - q</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu^{\mathbb{Q}} = \mu^{\mathbb{P}} - \lambda^S \sqrt{V} = r - q
+\]</div>
 <p>This determines the market price of equity risk:</p>
-<p>$$</p>
-<p>\lambda^S = \frac{\mu^{\mathbb{P}} - (r - q)}{\sqrt{V}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda^S = \frac{\mu^{\mathbb{P}} - (r - q)}{\sqrt{V}}
+\]</div>
 <p>For the variance process:</p>
-<p>$$</p>
-<p>a^{\mathbb{Q}}(V) = a^{\mathbb{P}}(V) - \lambda^V b(V)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a^{\mathbb{Q}}(V) = a^{\mathbb{P}}(V) - \lambda^V b(V)
+\]</div>
 <hr />
 <h2 id="market-price-of-volatility-risk">Market Price of Volatility Risk<a class="headerlink" href="#market-price-of-volatility-risk" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>market price of volatility risk</strong> <span class="arithmatex">\(\lambda^V\)</span> captures compensation for bearing volatility uncertainty:</p>
-<p>$$</p>
-<p>\lambda^V = \frac{a^{\mathbb{P}}(V) - a^{\mathbb{Q}}(V)}{b(V)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\lambda^V = \frac{a^{\mathbb{P}}(V) - a^{\mathbb{Q}}(V)}{b(V)}
+\]</div>
 <p>This quantity is:
 - <strong>Not determined by no-arbitrage</strong> (volatility is non-traded)
 - <strong>Estimated from data</strong> or <strong>implied from options</strong>
@@ -47003,25 +47003,25 @@ dW_t^{V,\mathbb{Q}} &amp;= dW_t^{V,\mathbb{P}} + \lambda_t^V\,dt
 <p>More flexible; still tractable.</p>
 <h3 id="heston-model-example">Heston Model Example<a class="headerlink" href="#heston-model-example" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>dV_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{V,\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \kappa^{\mathbb{P}}(\theta^{\mathbb{P}} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{V,\mathbb{P}}
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span> with <span class="arithmatex">\(\lambda^V = \lambda \sqrt{V}\)</span>:</p>
-<p>$$</p>
-<p>dV_t = \kappa^{\mathbb{Q}}(\theta^{\mathbb{Q}} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{V,\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV_t = \kappa^{\mathbb{Q}}(\theta^{\mathbb{Q}} - V_t)\,dt + \xi\sqrt{V_t}\,dW_t^{V,\mathbb{Q}}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda\xi, \qquad \theta^{\mathbb{Q}} = \frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{P}} + \lambda\xi}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\kappa^{\mathbb{Q}} = \kappa^{\mathbb{P}} + \lambda\xi, \qquad \theta^{\mathbb{Q}} = \frac{\kappa^{\mathbb{P}}\theta^{\mathbb{P}}}{\kappa^{\mathbb{P}} + \lambda\xi}
+\]</div>
 <p><strong>Observation:</strong> Different <span class="arithmatex">\((\kappa, \theta)\)</span> values across measures reflect the volatility risk premium.</p>
 <hr />
 <h2 id="the-volatility-risk-premium">The Volatility Risk Premium<a class="headerlink" href="#the-volatility-risk-premium" title="Permanent link">&para;</a></h2>
 <h3 id="definition-and-sign">Definition and Sign<a class="headerlink" href="#definition-and-sign" title="Permanent link">&para;</a></h3>
 <p>The <strong>volatility risk premium (VRP)</strong> is typically defined as:</p>
-<p>$$</p>
-<p>\text{VRP} = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VRP} = \mathbb{E}^{\mathbb{Q}}[\sigma^2] - \mathbb{E}^{\mathbb{P}}[\sigma^2]
+\]</div>
 <p>or equivalently in terms of variance swap rates vs. realized variance.</p>
 <p><strong>Empirical finding:</strong> VRP is typically <strong>positive</strong> for equity indices:
 - Implied variance exceeds realized variance on average
@@ -47145,13 +47145,13 @@ dW_t^{V,\mathbb{Q}} &amp;= dW_t^{V,\mathbb{P}} + \lambda_t^V\,dt
 <p><strong>Interpretation:</strong> Risk-neutral long-run variance may exceed realized long-run variance, reflecting the premium for bearing volatility risk.</p>
 <h3 id="implied-vs-realized-comparison">Implied vs. Realized Comparison<a class="headerlink" href="#implied-vs-realized-comparison" title="Permanent link">&para;</a></h3>
 <p>The <strong>variance swap rate</strong> (traded at zero cost) satisfies:</p>
-<p>$$</p>
-<p>\text{VS Rate} = \mathbb{E}^{\mathbb{Q}}\left[\frac{1}{T}\int_0^T V_s\,ds\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VS Rate} = \mathbb{E}^{\mathbb{Q}}\left[\frac{1}{T}\int_0^T V_s\,ds\right]
+\]</div>
 <p>The <strong>realized variance</strong> satisfies:</p>
-<p>$$</p>
-<p>\text{RV} = \frac{1}{T}\int_0^T V_s\,ds \quad \text{(realized path)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RV} = \frac{1}{T}\int_0^T V_s\,ds \quad \text{(realized path)}
+\]</div>
 <p><strong>VRP = VS Rate <span class="arithmatex">\(-\)</span> <span class="arithmatex">\(\mathbb{E}^{\mathbb{P}}[\text{RV}]\)</span></strong> is persistently positive.</p>
 <hr />
 <h2 id="joint-modeling-approaches">Joint Modeling Approaches<a class="headerlink" href="#joint-modeling-approaches" title="Permanent link">&para;</a></h2>

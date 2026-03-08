@@ -46829,13 +46829,13 @@
 <hr />
 <h2 id="setup-a-discrete-state-economy">Setup: A Discrete-State Economy<a class="headerlink" href="#setup-a-discrete-state-economy" title="Permanent link">&para;</a></h2>
 <p>Consider a single-period economy with time <span class="arithmatex">\(t = 0\)</span> (today) and <span class="arithmatex">\(t = 1\)</span> (future). At <span class="arithmatex">\(t = 1\)</span>, exactly one of <span class="arithmatex">\(S\)</span> possible <strong>states of the world</strong> <span class="arithmatex">\(\omega_1, \omega_2, \ldots, \omega_S\)</span> will occur. Each state <span class="arithmatex">\(\omega_s\)</span> occurs with a known physical (real-world) probability <span class="arithmatex">\(p_s &gt; 0\)</span>, where</p>
-<p>$$</p>
-<p>\sum_{s=1}^{S} p_s = 1.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{s=1}^{S} p_s = 1
+\]</div>
 <p>There are <span class="arithmatex">\(N\)</span> traded assets in this economy. Asset <span class="arithmatex">\(j\)</span> has a known price <span class="arithmatex">\(P_j\)</span> at <span class="arithmatex">\(t = 0\)</span> and delivers a state-contingent payoff <span class="arithmatex">\(X_j(\omega_s) = X_{js}\)</span> at <span class="arithmatex">\(t = 1\)</span>. We can organize these payoffs into a <strong>payoff matrix</strong>:</p>
-<p>$$</p>
-<p>\mathbf{X} = \begin{pmatrix} X_{11} &amp; X_{12} &amp; \cdots &amp; X_{1S} \ X_{21} &amp; X_{22} &amp; \cdots &amp; X_{2S} \ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ X_{N1} &amp; X_{N2} &amp; \cdots &amp; X_{NS} \end{pmatrix}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{X} = \begin{pmatrix} X_{11} &amp; X_{12} &amp; \cdots &amp; X_{1S} \\ X_{21} &amp; X_{22} &amp; \cdots &amp; X_{2S} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ X_{N1} &amp; X_{N2} &amp; \cdots &amp; X_{NS} \end{pmatrix}
+\]</div>
 <p>where row <span class="arithmatex">\(j\)</span> represents the payoffs of asset <span class="arithmatex">\(j\)</span> across all states, and column <span class="arithmatex">\(s\)</span> represents the payoffs of all assets in state <span class="arithmatex">\(s\)</span>.</p>
 <figure>
   <img alt="State Economy Diagram" src="../image/state_economy_diagram.svg" />
@@ -46850,15 +46850,15 @@
 <p>An <strong>Arrow-Debreu security</strong> (also called a <strong>pure state security</strong> or <strong>primitive security</strong>) for state <span class="arithmatex">\(s\)</span> is a financial contract that pays exactly <strong>1 unit of currency</strong> if state <span class="arithmatex">\(\omega_s\)</span> occurs and <strong>0</strong> in all other states.</p>
 </div>
 <p>Formally, the Arrow-Debreu security for state <span class="arithmatex">\(s\)</span> has the payoff vector:</p>
-<p>$$</p>
-<p>\mathbf{e}<em position="position" s_text_-th="s\text{-th">s = (0, \ldots, 0, \underbrace{1}</em>, 0, \ldots, 0)^\top}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{e}_s = (0, \ldots, 0, \underbrace{1}_{s\text{-th position}}, 0, \ldots, 0)^\top
+\]</div>
 <p>If we have <span class="arithmatex">\(S\)</span> states, there are <span class="arithmatex">\(S\)</span> possible Arrow-Debreu securities <span class="arithmatex">\(\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_S\)</span>, which together form the <strong>identity matrix</strong> <span class="arithmatex">\(\mathbf{I}_S\)</span>.</p>
 <h3 id="intuition">Intuition<a class="headerlink" href="#intuition" title="Permanent link">&para;</a></h3>
 <p>Arrow-Debreu securities isolate and "price" individual states of the world. They decompose uncertainty into its most elementary components. Any asset with an arbitrary payoff profile can be viewed as a portfolio of Arrow-Debreu securities:</p>
-<p>$$</p>
-<p>\text{If asset } j \text{ pays } X_{js} \text{ in state } s, \text{ then: } \quad \mathbf{X}<em s="1">j = \sum</em>_s}^{S} X_{js} \, \mathbf{e</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{If asset } j \text{ pays } X_{js} \text{ in state } s, \text{ then: } \quad \mathbf{X}_j = \sum_{s=1}^{S} X_{js} \, \mathbf{e}_s
+\]</div>
 <p>This makes Arrow-Debreu securities the "building blocks" of all financial claims.</p>
 <div class="admonition example">
 <p class="admonition-title">Example: Two-State Economy</p>
@@ -46877,19 +46877,19 @@
 <p>The <strong>state price</strong> <span class="arithmatex">\(\phi_s\)</span> is the price at <span class="arithmatex">\(t = 0\)</span> of the Arrow-Debreu security for state <span class="arithmatex">\(s\)</span>. That is, <span class="arithmatex">\(\phi_s\)</span> is the cost today of receiving $1 if and only if state <span class="arithmatex">\(\omega_s\)</span> occurs at <span class="arithmatex">\(t = 1\)</span>.</p>
 </div>
 <p>The vector of state prices is:</p>
-<p>$$</p>
-<p>\boldsymbol{\phi} = (\phi_1, \phi_2, \ldots, \phi_S)^\top</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boldsymbol{\phi} = (\phi_1, \phi_2, \ldots, \phi_S)^\top
+\]</div>
 <h3 id="pricing-any-asset-with-state-prices">Pricing Any Asset with State Prices<a class="headerlink" href="#pricing-any-asset-with-state-prices" title="Permanent link">&para;</a></h3>
 <p>If state prices exist, the price of <strong>any</strong> asset <span class="arithmatex">\(j\)</span> with payoffs <span class="arithmatex">\((X_{j1}, X_{j2}, \ldots, X_{jS})\)</span> is simply:</p>
-<p>$$</p>
-<p>\boxed{P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \boldsymbol{\phi}^\top \mathbf{X}_j}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \boldsymbol{\phi}^\top \mathbf{X}_j}
+\]</div>
 <p>This is the <strong>fundamental pricing equation</strong>. It says that an asset's price equals the sum of its payoffs in each state, weighted by the state prices.</p>
 <p>In matrix form for all <span class="arithmatex">\(N\)</span> assets:</p>
-<p>$$</p>
-<p>\mathbf{P} = \mathbf{X} \, \boldsymbol{\phi}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{P} = \mathbf{X} \, \boldsymbol{\phi}
+\]</div>
 <p>where <span class="arithmatex">\(\mathbf{P} = (P_1, P_2, \ldots, P_N)^\top\)</span> is the vector of asset prices.</p>
 <h3 id="properties-of-state-prices">Properties of State Prices<a class="headerlink" href="#properties-of-state-prices" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
@@ -46903,9 +46903,9 @@
 <p><strong>Sum relates to the risk-free rate</strong>: If a risk-free bond exists paying $1 in every state, its price is</p>
 </li>
 </ol>
-<p>$$</p>
-<p>P_{\text{rf}} = \sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_{\text{rf}} = \sum_{s=1}^{S} \phi_s = \frac{1}{1 + r_f}
+\]</div>
 <p>where <span class="arithmatex">\(r_f\)</span> is the one-period risk-free interest rate. Thus, <span class="arithmatex">\(\sum_s \phi_s &lt; 1\)</span> when <span class="arithmatex">\(r_f &gt; 0\)</span>.</p>
 <ol>
 <li><strong>Linearity</strong>: Pricing is linear — the price of a portfolio equals the portfolio of prices.</li>
@@ -46915,16 +46915,16 @@
 <h2 id="no-arbitrage-and-the-existence-of-state-prices">No-Arbitrage and the Existence of State Prices<a class="headerlink" href="#no-arbitrage-and-the-existence-of-state-prices" title="Permanent link">&para;</a></h2>
 <h3 id="arbitrage">Arbitrage<a class="headerlink" href="#arbitrage" title="Permanent link">&para;</a></h3>
 <p>An <strong>arbitrage opportunity</strong> is a trading strategy that costs nothing (or less) today and yields a non-negative payoff in all future states with a strictly positive payoff in at least one state. Formally, a portfolio <span class="arithmatex">\(\boldsymbol{\theta} = (\theta_1, \ldots, \theta_N)^\top\)</span> is an arbitrage if:</p>
-<p>$$</p>
-<p>\boldsymbol{\theta}^\top \mathbf{P} \leq 0, \quad \mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}, \quad \text{and} \quad \mathbf{X}^\top \boldsymbol{\theta} \neq \mathbf{0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boldsymbol{\theta}^\top \mathbf{P} \leq 0, \quad \mathbf{X}^\top \boldsymbol{\theta} \geq \mathbf{0}, \quad \text{and} \quad \mathbf{X}^\top \boldsymbol{\theta} \neq \mathbf{0}
+\]</div>
 <h3 id="the-fundamental-theorem-first-version">The Fundamental Theorem (First Version)<a class="headerlink" href="#the-fundamental-theorem-first-version" title="Permanent link">&para;</a></h3>
 <div class="admonition success">
 <p class="admonition-title">Theorem: No-Arbitrage <span class="arithmatex">\(\iff\)</span> Existence of Positive State Prices</p>
 <p>There are <strong>no arbitrage opportunities</strong> in the market if and only if there exists a strictly positive state price vector <span class="arithmatex">\(\boldsymbol{\phi} \gg \mathbf{0}\)</span> such that:</p>
-<p>$$</p>
-<p>\mathbf{P} = \mathbf{X} \, \boldsymbol{\phi}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{P} = \mathbf{X} \, \boldsymbol{\phi}
+\]</div>
 </div>
 <p>This is a form of the <strong>First Fundamental Theorem of Asset Pricing</strong> in finite-state settings. It connects the economic condition (no free lunch) to a mathematical condition (existence of positive pricing functionals).</p>
 <p><strong>Proof sketch</strong>:</p>
@@ -46936,18 +46936,18 @@
 <h2 id="state-prices-and-risk-neutral-pricing">State Prices and Risk-Neutral Pricing<a class="headerlink" href="#state-prices-and-risk-neutral-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="constructing-the-risk-neutral-measure">Constructing the Risk-Neutral Measure<a class="headerlink" href="#constructing-the-risk-neutral-measure" title="Permanent link">&para;</a></h3>
 <p>State prices naturally give rise to <strong>risk-neutral probabilities</strong>. Define:</p>
-<p>$$</p>
-<p>\boxed{q_s = \phi_s \,(1 + r_f) = \frac{\phi_s}{\sum_{k=1}^{S} \phi_k}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{q_s = \phi_s \,(1 + r_f) = \frac{\phi_s}{\sum_{k=1}^{S} \phi_k}}
+\]</div>
 <p>Since <span class="arithmatex">\(\phi_s &gt; 0\)</span> for all <span class="arithmatex">\(s\)</span> and <span class="arithmatex">\(\sum_s q_s = 1\)</span>, the <span class="arithmatex">\(q_s\)</span> form a valid probability measure <span class="arithmatex">\(\mathbb{Q}\)</span>, called the <strong>risk-neutral measure</strong> (or <strong>equivalent martingale measure</strong>).</p>
 <h3 id="risk-neutral-pricing-formula">Risk-Neutral Pricing Formula<a class="headerlink" href="#risk-neutral-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the fundamental pricing equation becomes:</p>
-<p>$$</p>
-<p>P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \frac{1}{1+r_f} \sum_{s=1}^{S} q_s \, X_{js} = \frac{1}{1+r_f} \, \mathbb{E}^{\mathbb{Q}}[X_j]</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{P_j = \frac{\mathbb{E}^{\mathbb{Q}}[X_j]}{1 + r_f}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \frac{1}{1+r_f} \sum_{s=1}^{S} q_s \, X_{js} = \frac{1}{1+r_f} \, \mathbb{E}^{\mathbb{Q}}[X_j]
+\]</div>
+<div class="arithmatex">\[
+\boxed{P_j = \frac{\mathbb{E}^{\mathbb{Q}}[X_j]}{1 + r_f}}
+\]</div>
 <div class="admonition tip">
 <p class="admonition-title">Interpretation</p>
 <p>Under the risk-neutral measure, every asset earns the risk-free rate in expectation. The asset price equals the <strong>discounted expected payoff under <span class="arithmatex">\(\mathbb{Q}\)</span></strong>. This is not because investors are risk-neutral — rather, risk aversion is already embedded in the distortion from <span class="arithmatex">\(p_s\)</span> to <span class="arithmatex">\(q_s\)</span>.</p>
@@ -46981,16 +46981,16 @@
 <hr />
 <h2 id="stochastic-discount-factor-pricing-kernel">Stochastic Discount Factor (Pricing Kernel)<a class="headerlink" href="#stochastic-discount-factor-pricing-kernel" title="Permanent link">&para;</a></h2>
 <p>The <strong>stochastic discount factor</strong> (SDF), also called the <strong>pricing kernel</strong>, connects state prices to physical probabilities:</p>
-<p>$$</p>
-<p>\boxed{m_s = \frac{\phi_s}{p_s}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{m_s = \frac{\phi_s}{p_s}}
+\]</div>
 <p>The SDF allows us to write the pricing equation using physical probabilities:</p>
-<p>$$</p>
-<p>P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \sum_{s=1}^{S} p_s \, m_s \, X_{js} = \mathbb{E}^{\mathbb{P}}[m \cdot X_j]</p>
-<p>$$</p>
-<p>$$</p>
-<p>\boxed{P_j = \mathbb{E}^{\mathbb{P}}[m \cdot X_j]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_j = \sum_{s=1}^{S} \phi_s \, X_{js} = \sum_{s=1}^{S} p_s \, m_s \, X_{js} = \mathbb{E}^{\mathbb{P}}[m \cdot X_j]
+\]</div>
+<div class="arithmatex">\[
+\boxed{P_j = \mathbb{E}^{\mathbb{P}}[m \cdot X_j]}
+\]</div>
 <div class="admonition info">
 <p class="admonition-title">Interpretation of the SDF</p>
 <ul>
@@ -47001,9 +47001,9 @@
 </div>
 <h3 id="relationships-summary">Relationships Summary<a class="headerlink" href="#relationships-summary" title="Permanent link">&para;</a></h3>
 <p>The three representations — state prices, risk-neutral probabilities, and the SDF — are equivalent ways to enforce no-arbitrage:</p>
-<p>$$</p>
-<p>\phi_s = \frac{q_s}{1 + r_f} = p_s \cdot m_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi_s = \frac{q_s}{1 + r_f} = p_s \cdot m_s
+\]</div>
 <table>
 <thead>
 <tr>
@@ -47057,9 +47057,9 @@
 <h2 id="extracting-state-prices-from-market-data">Extracting State Prices from Market Data<a class="headerlink" href="#extracting-state-prices-from-market-data" title="Permanent link">&para;</a></h2>
 <h3 id="from-observed-prices">From Observed Prices<a class="headerlink" href="#from-observed-prices" title="Permanent link">&para;</a></h3>
 <p>Given <span class="arithmatex">\(N\)</span> assets with price vector <span class="arithmatex">\(\mathbf{P}\)</span> and payoff matrix <span class="arithmatex">\(\mathbf{X}\)</span>, state prices solve:</p>
-<p>$$</p>
-<p>\mathbf{X} \, \boldsymbol{\phi} = \mathbf{P}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{X} \, \boldsymbol{\phi} = \mathbf{P}
+\]</div>
 <ul>
 <li>If <span class="arithmatex">\(N = S\)</span> and <span class="arithmatex">\(\mathbf{X}\)</span> has full rank: <span class="arithmatex">\(\boldsymbol{\phi} = \mathbf{X}^{-1} \mathbf{P}\)</span> (unique solution).</li>
 <li>If <span class="arithmatex">\(N &gt; S\)</span>: overdetermined system; use least squares or check consistency.</li>
@@ -47074,20 +47074,20 @@
 <li><strong>Stock</strong>: Price = $50, pays $70 in Boom, $40 in Recession.</li>
 </ul>
 <p>The payoff matrix and price vector are:</p>
-<p>$$</p>
-<p>\mathbf{X} = \begin{pmatrix} 1 &amp; 1 \ 70 &amp; 40 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 0.95 \ 50 \end{pmatrix}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{X} = \begin{pmatrix} 1 &amp; 1 \\ 70 &amp; 40 \end{pmatrix}, \quad \mathbf{P} = \begin{pmatrix} 0.95 \\ 50 \end{pmatrix}
+\]</div>
 <p>Solving <span class="arithmatex">\(\mathbf{X} \boldsymbol{\phi} = \mathbf{P}\)</span>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases} \phi_1 + \phi_2 = 0.95 \\ 70\phi_1 + 40\phi_2 = 50 \end{cases}\]</div>
-<p>$$</p>
+<div class="arithmatex">\[
+\begin{cases} \phi_1 + \phi_2 = 0.95 \\ 70\phi_1 + 40\phi_2 = 50 \end{cases}
+\]</div>
 <p>From the first equation: <span class="arithmatex">\(\phi_2 = 0.95 - \phi_1\)</span>. Substituting:</p>
-<p>$$</p>
-<p>70\phi_1 + 40(0.95 - \phi_1) = 50 \implies 30\phi_1 = 12 \implies \phi_1 = 0.4</p>
-<p>$$</p>
-<p>$$</p>
-<p>\phi_2 = 0.95 - 0.4 = 0.55</p>
-<p>$$</p>
+<div class="arithmatex">\[
+70\phi_1 + 40(0.95 - \phi_1) = 50 \implies 30\phi_1 = 12 \implies \phi_1 = 0.4
+\]</div>
+<div class="arithmatex">\[
+\phi_2 = 0.95 - 0.4 = 0.55
+\]</div>
 <p><strong>Results</strong>:</p>
 <table>
 <thead>
@@ -47115,13 +47115,13 @@
 <hr />
 <h2 id="from-option-prices-the-breeden-litzenberger-result">From Option Prices: The Breeden-Litzenberger Result<a class="headerlink" href="#from-option-prices-the-breeden-litzenberger-result" title="Permanent link">&para;</a></h2>
 <p>In continuous-state settings, state prices can be extracted from <strong>European option prices</strong>. If <span class="arithmatex">\(C(K)\)</span> denotes the price of a European call option with strike <span class="arithmatex">\(K\)</span> on an asset with terminal price <span class="arithmatex">\(S_T\)</span>, and the state price density is <span class="arithmatex">\(\phi(s)\)</span>, then:</p>
-<p>$$</p>
-<p>C(K) = \int_K^{\infty} (s - K) \, \phi(s) \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = \int_K^{\infty} (s - K) \, \phi(s) \, ds
+\]</div>
 <p>Differentiating twice with respect to <span class="arithmatex">\(K\)</span>:</p>
-<p>$$</p>
-<p>\boxed{\phi(K) = e^{r_f T} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\phi(K) = e^{r_f T} \frac{\partial^2 C}{\partial K^2}\bigg|_{K}}
+\]</div>
 <p>This is the <strong>Breeden-Litzenberger formula</strong>. It shows that the curvature of the call price function with respect to the strike price reveals the state price density (and hence the risk-neutral density).</p>
 <div class="admonition tip">
 <p class="admonition-title">Practical Implication</p>
@@ -47132,15 +47132,15 @@
 <p>In a multi-period setting with times <span class="arithmatex">\(t = 0, 1, \ldots, T\)</span>, the state price framework extends naturally via <strong>state-price processes</strong>.</p>
 <h3 id="state-price-deflator">State-Price Deflator<a class="headerlink" href="#state-price-deflator" title="Permanent link">&para;</a></h3>
 <p>A <strong>state-price deflator</strong> (or <strong>numeraire portfolio process</strong>) <span class="arithmatex">\(\{\pi_t\}\)</span> satisfies:</p>
-<p>$$</p>
-<p>P_t^{(j)} = \frac{1}{\pi_t} \mathbb{E}_t^{\mathbb{P}}[\pi_T \cdot X_T^{(j)}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_t^{(j)} = \frac{1}{\pi_t} \mathbb{E}_t^{\mathbb{P}}[\pi_T \cdot X_T^{(j)}]
+\]</div>
 <p>for any asset <span class="arithmatex">\(j\)</span>, where <span class="arithmatex">\(\mathbb{E}_t^{\mathbb{P}}[\cdot]\)</span> denotes the conditional expectation under the physical measure given information at time <span class="arithmatex">\(t\)</span>.</p>
 <h3 id="recursive-pricing">Recursive Pricing<a class="headerlink" href="#recursive-pricing" title="Permanent link">&para;</a></h3>
 <p>Between any two adjacent periods <span class="arithmatex">\(t\)</span> and <span class="arithmatex">\(t+1\)</span>:</p>
-<p>$$</p>
-<p>P_t = \mathbb{E}<em t_1="t+1">t^{\mathbb{P}}[m</em>)]} \cdot (P_{t+1} + D_{t+1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_t = \mathbb{E}_t^{\mathbb{P}}[m_{t+1} \cdot (P_{t+1} + D_{t+1})]
+\]</div>
 <p>where <span class="arithmatex">\(m_{t+1} = \pi_{t+1}/\pi_t\)</span> is the <strong>one-period SDF</strong> and <span class="arithmatex">\(D_{t+1}\)</span> is any intermediate dividend.</p>
 <hr />
 <h2 id="connections-to-other-topics">Connections to Other Topics<a class="headerlink" href="#connections-to-other-topics" title="Permanent link">&para;</a></h2>

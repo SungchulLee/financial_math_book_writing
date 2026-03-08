@@ -47144,49 +47144,49 @@
 <p><strong>Ex-Ante Plan</strong>: At <span class="arithmatex">\(t=0\)</span>, the decision-maker forms optimal strategy <span class="arithmatex">\(\sigma^* = \{a_0^*, a_1^*(\cdot), \ldots\}\)</span>.</p>
 <p><strong>Ex-Post Behavior</strong>: At <span class="arithmatex">\(t=1\)</span>, given realized information <span class="arithmatex">\(\omega \in \mathcal{F}_1\)</span>, the decision-maker may re-optimize.</p>
 <p><strong>Dynamic Consistency</strong>: The plan is dynamically consistent if:</p>
-<p>$$</p>
-<p>a_t^<em>(\omega) = \arg\max_{a_t} V_t(a_t, \sigma^</em>_{t+1:T} | \mathcal{F}_t = \omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a_t^*(\omega) = \arg\max_{a_t} V_t(a_t, \sigma^*_{t+1:T} | \mathcal{F}_t = \omega)
+\]</div>
 <p>for all <span class="arithmatex">\(t\)</span> and <span class="arithmatex">\(\omega\)</span> — the planned action remains optimal at the time of execution.</p>
 <h3 id="3-time-consistency-vs-dynamic-consistency">3. Time Consistency vs. Dynamic Consistency<a class="headerlink" href="#3-time-consistency-vs-dynamic-consistency" title="Permanent link">&para;</a></h3>
 <p><strong>Time Consistency</strong>: Preferences over consumption streams are time-consistent if:</p>
-<p>$$</p>
-<p>(c_0, c_1, \ldots) \succeq_0 (c_0', c_1', \ldots) \implies (c_1, c_2, \ldots) \succeq_1 (c_1', c_2', \ldots)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(c_0, c_1, \ldots) \succeq_0 (c_0', c_1', \ldots) \implies (c_1, c_2, \ldots) \succeq_1 (c_1', c_2', \ldots)
+\]</div>
 <p>when <span class="arithmatex">\(c_0 = c_0'\)</span>.</p>
 <p><strong>Dynamic Consistency</strong>: Broader concept including consistency of conditional preferences over acts.</p>
 <p><strong>Relationship</strong>: Time consistency is necessary but not sufficient for dynamic consistency under uncertainty.</p>
 <h2 id="expected-utility-and-dynamic-consistency">Expected Utility and Dynamic Consistency<a class="headerlink" href="#expected-utility-and-dynamic-consistency" title="Permanent link">&para;</a></h2>
 <h3 id="1-bayesian-updating">1. Bayesian Updating<a class="headerlink" href="#1-bayesian-updating" title="Permanent link">&para;</a></h3>
 <p><strong>Bayes' Rule</strong>: Given prior <span class="arithmatex">\(P\)</span> and event <span class="arithmatex">\(A\)</span>:</p>
-<p>$$</p>
-<p>P(\cdot | A) = \frac{P(\cdot \cap A)}{P(A)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(\cdot | A) = \frac{P(\cdot \cap A)}{P(A)}
+\]</div>
 <p><strong>Sequential Expected Utility</strong>: Value of strategy <span class="arithmatex">\(\sigma\)</span> at time <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>V_t(\sigma) = \mathbb{E}_P[U(\sigma) | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t(\sigma) = \mathbb{E}_P[U(\sigma) | \mathcal{F}_t]
+\]</div>
 <h3 id="2-tower-property">2. Tower Property<a class="headerlink" href="#2-tower-property" title="Permanent link">&para;</a></h3>
 <p><strong>Law of Iterated Expectations</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}_P[\mathbb{E}_P[U | \mathcal{F}_s] | \mathcal{F}_t] = \mathbb{E}_P[U | \mathcal{F}_t] \quad \text{for } t \leq s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}_P[\mathbb{E}_P[U | \mathcal{F}_s] | \mathcal{F}_t] = \mathbb{E}_P[U | \mathcal{F}_t] \quad \text{for } t \leq s
+\]</div>
 <p><strong>Implication</strong>: Sequential optimization is equivalent to backward induction:</p>
-<p>$$</p>
-<p>V_t(\sigma) = \mathbb{E}<em t_1="t+1">P[V</em>_t]}(\sigma) | \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t(\sigma) = \mathbb{E}_P[V_{t+1}(\sigma) | \mathcal{F}_t]
+\]</div>
 <h3 id="3-bellman-principle">3. Bellman Principle<a class="headerlink" href="#3-bellman-principle" title="Permanent link">&para;</a></h3>
 <p><strong>Dynamic Programming</strong>: Under EU with Bayesian updating:</p>
-<p>$$</p>
-<p>V_t(x) = \max_{a_t} \left{u(x, a_t) + \beta \mathbb{E}<em t_1="t+1">P[V</em>_t]\right}}(x') | \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t(x) = \max_{a_t} \left\{u(x, a_t) + \beta \mathbb{E}_P[V_{t+1}(x') | \mathcal{F}_t]\right\}
+\]</div>
 <p><strong>Dynamic Consistency</strong>: The Bellman optimal policy is dynamically consistent by construction.</p>
 <h2 id="dynamic-inconsistency-under-ambiguity">Dynamic Inconsistency Under Ambiguity<a class="headerlink" href="#dynamic-inconsistency-under-ambiguity" title="Permanent link">&para;</a></h2>
 <h3 id="1-max-min-expected-utility">1. Max-Min Expected Utility<a class="headerlink" href="#1-max-min-expected-utility" title="Permanent link">&para;</a></h3>
 <p><strong>MEU Preferences</strong>: </p>
-<p>$$</p>
-<p>V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[U(f)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[U(f)]
+\]</div>
 <p><strong>Problem</strong>: The minimum may be achieved by different measures at different times.</p>
 <h3 id="2-example-of-inconsistency">2. Example of Inconsistency<a class="headerlink" href="#2-example-of-inconsistency" title="Permanent link">&para;</a></h3>
 <p><strong>Two-Period Problem</strong>:
@@ -47198,99 +47198,99 @@
 <p><strong>Result</strong>: Planned action at <span class="arithmatex">\(t=0\)</span> may differ from optimal action at <span class="arithmatex">\(t=1\)</span> — dynamic inconsistency.</p>
 <h3 id="3-source-of-inconsistency">3. Source of Inconsistency<a class="headerlink" href="#3-source-of-inconsistency" title="Permanent link">&para;</a></h3>
 <p><strong>Non-Additive Expectations</strong>: MEU uses:</p>
-<p>$$</p>
-<p>V_0(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[f]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0(f) = \min_{P \in \mathcal{P}} \mathbb{E}_P[f]
+\]</div>
 <p>but this does not satisfy the tower property:</p>
-<p>$$</p>
-<p>\min_{P \in \mathcal{P}} \mathbb{E}<em Q="Q" _in="\in" _mathcal_P="\mathcal{P">P[\min</em>}} \mathbb{E<em P="P" _in="\in" _mathcal_P="\mathcal{P">Q[f | \mathcal{F}_1]] \neq \min</em>_P[f]}} \mathbb{E</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{P \in \mathcal{P}} \mathbb{E}_P[\min_{Q \in \mathcal{P}} \mathbb{E}_Q[f | \mathcal{F}_1]] \neq \min_{P \in \mathcal{P}} \mathbb{E}_P[f]
+\]</div>
 <p>in general.</p>
 <h2 id="rectangularity">Rectangularity<a class="headerlink" href="#rectangularity" title="Permanent link">&para;</a></h2>
 <h3 id="1-definition">1. Definition<a class="headerlink" href="#1-definition" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong> (Epstein-Schneider, 2003): A set of priors <span class="arithmatex">\(\mathcal{P}\)</span> is <strong>rectangular</strong> with respect to filtration <span class="arithmatex">\(\{\mathcal{F}_t\}\)</span> if it can be decomposed as:</p>
-<p>$$</p>
-<p>\mathcal{P} = \left{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t(\omega) \text{ for all } t, \omega\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \left\{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t(\omega) \text{ for all } t, \omega\right\}
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{P}_t(\omega)\)</span> is a family of conditional probability measures.</p>
 <p><strong>Equivalent Characterization</strong>: For any <span class="arithmatex">\(P, Q \in \mathcal{P}\)</span> and stopping time <span class="arithmatex">\(\tau\)</span>, the "pasted" measure:</p>
-<p>$$</p>
-<p>(P \otimes_{\tau} Q)(A) = \mathbb{E}<em T="T" _="&gt;" _tau="\tau">P[\mathbb{1}</em>} \mathbb{1<em T="T" _leq="\leq" _tau="\tau">A] + \mathbb{E}_P[\mathbb{1}</em>)]} Q(A | \mathcal{F}_{\tau</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(P \otimes_{\tau} Q)(A) = \mathbb{E}_P[\mathbb{1}_{\tau &gt; T} \mathbb{1}_A] + \mathbb{E}_P[\mathbb{1}_{\tau \leq T} Q(A | \mathcal{F}_{\tau})]
+\]</div>
 <p>is also in <span class="arithmatex">\(\mathcal{P}\)</span>.</p>
 <h3 id="2-intuition">2. Intuition<a class="headerlink" href="#2-intuition" title="Permanent link">&para;</a></h3>
 <p><strong>Product Structure</strong>: Rectangularity means the set of priors has a "product" structure across time:
 - Period-by-period uncertainty sets are independent
 - No constraints linking uncertainty at different times</p>
 <p><strong>Example</strong> (Rectangular):</p>
-<p>$$</p>
-<p>\mathcal{P} = {P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \{P: P_t(\cdot | \mathcal{F}_t) \in \mathcal{P}_t \text{ for all } t\}
+\]</div>
 <p>where each <span class="arithmatex">\(\mathcal{P}_t\)</span> is specified independently.</p>
 <p><strong>Example</strong> (Non-Rectangular):</p>
-<p>$$</p>
-<p>\mathcal{P} = {P: \mathbb{E}<em t="0">P[\sum</em>^T X_t] \in [a, b]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{P} = \{P: \mathbb{E}_P[\sum_{t=0}^T X_t] \in [a, b]\}
+\]</div>
 <p>Constraints across periods create non-rectangularity.</p>
 <h3 id="3-main-theorem">3. Main Theorem<a class="headerlink" href="#3-main-theorem" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Epstein-Schneider, 2003): Max-min expected utility preferences with prior set <span class="arithmatex">\(\mathcal{P}\)</span> are dynamically consistent if and only if <span class="arithmatex">\(\mathcal{P}\)</span> is rectangular.</p>
 <p><strong>Proof Sketch</strong>:</p>
 <p><em>Necessity</em>: If <span class="arithmatex">\(\mathcal{P}\)</span> is not rectangular, construct a counterexample showing inconsistency.</p>
 <p><em>Sufficiency</em>: Under rectangularity:</p>
-<p>$$</p>
-<p>\min_{P \in \mathcal{P}} \mathbb{E}<em P_0="P_0" _in="\in" _mathcal_P="\mathcal{P">P[U] = \min</em><em P_0="P_0">0} \mathbb{E}</em>}\left[\min_{P_1 \in \mathcal{P<em P_1="P_1">1} \mathbb{E}</em>[\cdots]\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\min_{P \in \mathcal{P}} \mathbb{E}_P[U] = \min_{P_0 \in \mathcal{P}_0} \mathbb{E}_{P_0}\left[\min_{P_1 \in \mathcal{P}_1} \mathbb{E}_{P_1}[\cdots]\right]
+\]</div>
 <p>The tower property holds for the "min" operation, enabling backward induction.</p>
 <h2 id="recursive-preferences-under-ambiguity">Recursive Preferences Under Ambiguity<a class="headerlink" href="#recursive-preferences-under-ambiguity" title="Permanent link">&para;</a></h2>
 <h3 id="1-recursive-max-min">1. Recursive Max-Min<a class="headerlink" href="#1-recursive-max-min" title="Permanent link">&para;</a></h3>
 <p><strong>Formulation</strong>: With rectangular priors, value function satisfies:</p>
-<p>$$</p>
-<p>V_t = \min_{P_t \in \mathcal{P}<em P_t="P_t">t} \mathbb{E}</em>_t]}[u(c_t) + \beta V_{t+1} | \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[u(c_t) + \beta V_{t+1} | \mathcal{F}_t]
+\]</div>
 <p><strong>Properties</strong>:
 - Dynamically consistent by construction
 - Nests EU as special case (<span class="arithmatex">\(\mathcal{P}_t\)</span> singleton)
 - Tractable for computation</p>
 <h3 id="2-epstein-zin-with-ambiguity">2. Epstein-Zin with Ambiguity<a class="headerlink" href="#2-epstein-zin-with-ambiguity" title="Permanent link">&para;</a></h3>
 <p><strong>Standard Epstein-Zin</strong>:</p>
-<p>$$</p>
-<p>V_t = \left[(1-\beta) c_t^{1-1/\psi} + \beta \mu_t(V_{t+1})^{1-1/\psi}\right]^{1/(1-1/\psi)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \left[(1-\beta) c_t^{1-1/\psi} + \beta \mu_t(V_{t+1})^{1-1/\psi}\right]^{1/(1-1/\psi)}
+\]</div>
 <p>where <span class="arithmatex">\(\mu_t(V) = (\mathbb{E}_t[V^{1-\gamma}])^{1/(1-\gamma)}\)</span>.</p>
 <p><strong>With Ambiguity</strong>: Replace <span class="arithmatex">\(\mu_t\)</span> with robust certainty equivalent:</p>
-<p>$$</p>
-<p>\mu_t^R(V) = \min_{P_t \in \mathcal{P}<em P_t="P_t">t} (\mathbb{E}</em>}[V^{1-\gamma}])^{1/(1-\gamma)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu_t^R(V) = \min_{P_t \in \mathcal{P}_t} (\mathbb{E}_{P_t}[V^{1-\gamma}])^{1/(1-\gamma)}
+\]</div>
 <p><strong>Dynamic Consistency</strong>: Preserved under rectangularity.</p>
 <h3 id="3-smooth-ambiguity-recursive">3. Smooth Ambiguity (Recursive)<a class="headerlink" href="#3-smooth-ambiguity-recursive" title="Permanent link">&para;</a></h3>
 <p><strong>KMM Recursive</strong>:</p>
-<p>$$</p>
-<p>V_t = u(c_t) + \beta \phi^{-1}\left(\mathbb{E}<em P_t="P_t">{\mu_t}\left[\phi\left(\mathbb{E}</em>]\right)\right]\right)}[V_{t+1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = u(c_t) + \beta \phi^{-1}\left(\mathbb{E}_{\mu_t}\left[\phi\left(\mathbb{E}_{P_t}[V_{t+1}]\right)\right]\right)
+\]</div>
 <p>where <span class="arithmatex">\(\mu_t\)</span> is a second-order probability over models.</p>
 <p><strong>Dynamic Consistency</strong>: Automatic with proper recursive structure.</p>
 <h2 id="variational-preferences">Variational Preferences<a class="headerlink" href="#variational-preferences" title="Permanent link">&para;</a></h2>
 <h3 id="1-static-formulation">1. Static Formulation<a class="headerlink" href="#1-static-formulation" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong> (Maccheroni-Marinacci-Rustichini, 2006):</p>
-<p>$$</p>
-<p>V(f) = \min_{P} \left{\mathbb{E}_P[U(f)] + c(P)\right}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(f) = \min_{P} \left\{\mathbb{E}_P[U(f)] + c(P)\right\}
+\]</div>
 <p>where <span class="arithmatex">\(c: \mathcal{M}_1 \to [0, \infty]\)</span> is a convex, lower semicontinuous cost function.</p>
 <h3 id="2-dynamic-extension">2. Dynamic Extension<a class="headerlink" href="#2-dynamic-extension" title="Permanent link">&para;</a></h3>
 <p><strong>Conditional Cost Function</strong>: For dynamic consistency, require cost function to factor:</p>
-<p>$$</p>
-<p>c(P) = \sum_{t=0}^{T-1} \mathbb{E}<em t_1="t+1">P[c_t(P</em>_t))]}(\cdot | \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+c(P) = \sum_{t=0}^{T-1} \mathbb{E}_P[c_t(P_{t+1}(\cdot | \mathcal{F}_t))]
+\]</div>
 <p><strong>Recursive Formulation</strong>:</p>
-<p>$$</p>
-<p>V_t = \min_{P_t} \left{\mathbb{E}<em t_1="t+1">{P_t}[u(c_t, a_t) + \beta V</em>_t] + c_t(P_t)\right}} | \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \min_{P_t} \left\{\mathbb{E}_{P_t}[u(c_t, a_t) + \beta V_{t+1} | \mathcal{F}_t] + c_t(P_t)\right\}
+\]</div>
 <h3 id="3-multiplier-preferences-hansen-sargent">3. Multiplier Preferences (Hansen-Sargent)<a class="headerlink" href="#3-multiplier-preferences-hansen-sargent" title="Permanent link">&para;</a></h3>
 <p><strong>Static</strong>: <span class="arithmatex">\(c(P) = \theta D_{\text{KL}}(P \| P_0)\)</span></p>
 <p><strong>Dynamic</strong>:</p>
-<p>$$</p>
-<p>V_t = \min_{P_t} \left{\mathbb{E}<em t_1="t+1">{P_t}[u_t + \beta V</em>} | \mathcal{F<em _text_KL="\text{KL">t] + \theta D</em>)\right}}}(P_t | P_{0,t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \min_{P_t} \left\{\mathbb{E}_{P_t}[u_t + \beta V_{t+1} | \mathcal{F}_t] + \theta D_{\text{KL}}(P_t \| P_{0,t})\right\}
+\]</div>
 <p><strong>Solution</strong>: Exponential tilting preserves dynamic consistency.</p>
 <h2 id="alternative-approaches-to-inconsistency">Alternative Approaches to Inconsistency<a class="headerlink" href="#alternative-approaches-to-inconsistency" title="Permanent link">&para;</a></h2>
 <h3 id="1-sophisticated-agents">1. Sophisticated Agents<a class="headerlink" href="#1-sophisticated-agents" title="Permanent link">&para;</a></h3>
@@ -47308,9 +47308,9 @@
 - Derivative contracts with fixed terms</p>
 <h3 id="4-self-control-preferences">4. Self-Control Preferences<a class="headerlink" href="#4-self-control-preferences" title="Permanent link">&para;</a></h3>
 <p><strong>Gul-Pesendorfer</strong>: Model temptation and self-control explicitly:</p>
-<p>$$</p>
-<p>V(B) = \max_{x \in B} {u(x) + v(x)} - \max_{y \in B} v(y)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(B) = \max_{x \in B} \{u(x) + v(x)\} - \max_{y \in B} v(y)
+\]</div>
 <p>where <span class="arithmatex">\(v\)</span> represents temptation.</p>
 <p><strong>Dynamic Consistency</strong>: Maintained through recursive structure.</p>
 <h2 id="financial-applications">Financial Applications<a class="headerlink" href="#financial-applications" title="Permanent link">&para;</a></h2>
@@ -47318,35 +47318,35 @@
 <p><strong>Problem</strong>: Invest over <span class="arithmatex">\(T\)</span> periods with ambiguity about return distribution.</p>
 <p><strong>Inconsistent MEU</strong>: Without rectangularity, <span class="arithmatex">\(t=0\)</span> plan may be abandoned at <span class="arithmatex">\(t=1\)</span>.</p>
 <p><strong>Rectangular Solution</strong>: </p>
-<p>$$</p>
-<p>V_t(W_t) = \max_{w_t} \min_{P_t \in \mathcal{P}<em P_t="P_t">t} \mathbb{E}</em>_t]}[V_{t+1}(W_{t+1}) | \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t(W_t) = \max_{w_t} \min_{P_t \in \mathcal{P}_t} \mathbb{E}_{P_t}[V_{t+1}(W_{t+1}) | \mathcal{F}_t]
+\]</div>
 <p>with <span class="arithmatex">\(W_{t+1} = W_t(1 + r_f + w_t^\top (R_t - r_f \mathbf{1}))\)</span>.</p>
 <h3 id="2-robust-control-in-finance">2. Robust Control in Finance<a class="headerlink" href="#2-robust-control-in-finance" title="Permanent link">&para;</a></h3>
 <p><strong>Hansen-Sargent Setup</strong>: Continuous-time wealth dynamics under model uncertainty.</p>
 <p><strong>HJB Equation</strong>:</p>
-<p>$$</p>
-<p>\rho V = \max_{c, w} \min_h {u(c) + \mathcal{L}^{w,h} V - \frac{\theta}{2} h^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho V = \max_{c, w} \min_h \{u(c) + \mathcal{L}^{w,h} V - \frac{\theta}{2} h^2\}
+\]</div>
 <p><strong>Dynamic Consistency</strong>: Preserved by quadratic penalty structure.</p>
 <h3 id="3-dynamic-hedging">3. Dynamic Hedging<a class="headerlink" href="#3-dynamic-hedging" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Hedge derivative over multiple periods with model uncertainty.</p>
 <p><strong>Pathwise Hedging</strong>: With rectangularity:</p>
-<p>$$</p>
-<p>\Pi_t = V_t - \Delta_t S_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Pi_t = V_t - \Delta_t S_t
+\]</div>
 <p>is a supermartingale under all <span class="arithmatex">\(P \in \mathcal{P}\)</span>.</p>
 <p><strong>Rebalancing</strong>: Consistent rebalancing strategy exists.</p>
 <h3 id="4-risk-management-over-time">4. Risk Management Over Time<a class="headerlink" href="#4-risk-management-over-time" title="Permanent link">&para;</a></h3>
 <p><strong>Consistent Risk Measures</strong>: For multi-period risk assessment, require:</p>
-<p>$$</p>
-<p>\rho_0(X) = \rho_0(\rho_1(X | \mathcal{F}_1))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_0(X) = \rho_0(\rho_1(X | \mathcal{F}_1))
+\]</div>
 <p><strong>Time Consistency of CVaR</strong>: Standard CVaR is NOT time-consistent.</p>
 <p><strong>Conditional Risk Measures</strong>: Use recursive formulation:</p>
-<p>$$</p>
-<p>\rho_t(X) = \rho_t^{\text{1-period}}(\rho_{t+1}(X))</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \rho_t^{\text{1-period}}(\rho_{t+1}(X))
+\]</div>
 <h2 id="behavioral-implications">Behavioral Implications<a class="headerlink" href="#behavioral-implications" title="Permanent link">&para;</a></h2>
 <h3 id="1-preference-for-flexibility">1. Preference for Flexibility<a class="headerlink" href="#1-preference-for-flexibility" title="Permanent link">&para;</a></h3>
 <p><strong>Observation</strong>: Under ambiguity, agents may prefer to delay decisions.</p>
@@ -47358,9 +47358,9 @@
 <p><strong>Resolution</strong>: Rectangular priors avoid this pathology.</p>
 <h3 id="3-updating-and-learning">3. Updating and Learning<a class="headerlink" href="#3-updating-and-learning" title="Permanent link">&para;</a></h3>
 <p><strong>Bayesian Updating Under MEU</strong>: For each <span class="arithmatex">\(P \in \mathcal{P}\)</span>:</p>
-<p>$$</p>
-<p>P(\cdot | A) = \frac{P(\cdot \cap A)}{P(A)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(\cdot | A) = \frac{P(\cdot \cap A)}{P(A)}
+\]</div>
 <p><strong>Challenge</strong>: Updated set <span class="arithmatex">\(\mathcal{P}_A = \{P(\cdot | A): P \in \mathcal{P}\}\)</span> may not preserve rectangularity.</p>
 <p><strong>Resolution</strong>: Impose rectangularity on the dynamic structure, not just the initial set.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>

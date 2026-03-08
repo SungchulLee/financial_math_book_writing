@@ -46820,17 +46820,17 @@
 <h2 id="var-backtesting">VaR Backtesting<a class="headerlink" href="#var-backtesting" title="Permanent link">&para;</a></h2>
 <h3 id="exceedance-counting">Exceedance Counting<a class="headerlink" href="#exceedance-counting" title="Permanent link">&para;</a></h3>
 <p>For a <span class="arithmatex">\(\alpha\)</span>-level VaR (e.g., 99%), count days when losses exceed VaR:</p>
-<p>$$</p>
-<p>I_t = \mathbf{1}<em _alpha_t="\alpha,t">{{L_t &gt; \text{VaR}</em>}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+I_t = \mathbf{1}_{\{L_t &gt; \text{VaR}_{\alpha,t}\}}
+\]</div>
 <p><strong>Expected exceedances:</strong> <span class="arithmatex">\((1-\alpha) \times n\)</span> days out of <span class="arithmatex">\(n\)</span></p>
 <p><strong>Example:</strong> 99% VaR over 250 days → expect 2.5 exceedances</p>
 <h3 id="kupiec-test-unconditional-coverage">Kupiec Test (Unconditional Coverage)<a class="headerlink" href="#kupiec-test-unconditional-coverage" title="Permanent link">&para;</a></h3>
 <p><strong>Null hypothesis:</strong> <span class="arithmatex">\(\mathbb{E}[I_t] = 1 - \alpha\)</span></p>
 <p><strong>Test statistic (likelihood ratio):</strong></p>
-<p>$$</p>
-<p>LR_{uc} = -2 \ln\left[\frac{(1-\alpha)^{n_0} \alpha^{n_1}}{\hat{p}^{n_1} (1-\hat{p})^{n_0}}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+LR_{uc} = -2 \ln\left[\frac{(1-\alpha)^{n_0} \alpha^{n_1}}{\hat{p}^{n_1} (1-\hat{p})^{n_0}}\right]
+\]</div>
 <p>where:
 - <span class="arithmatex">\(n_1\)</span> = number of exceedances
 - <span class="arithmatex">\(n_0 = n - n_1\)</span> = non-exceedances
@@ -46844,14 +46844,14 @@
 - <span class="arithmatex">\(\pi_{11}\)</span> = P(exceedance today | exceedance yesterday)</p>
 <p><strong>Independence requires:</strong> <span class="arithmatex">\(\pi_{01} = \pi_{11}\)</span></p>
 <p><strong>Test statistic:</strong></p>
-<p>$$</p>
-<p>LR_{ind} = -2 \ln\left[\frac{L(\hat{\pi})}{L(\hat{\pi}<em 11="11">{01}, \hat{\pi}</em>\right] \sim \chi^2(1)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+LR_{ind} = -2 \ln\left[\frac{L(\hat{\pi})}{L(\hat{\pi}_{01}, \hat{\pi}_{11})}\right] \sim \chi^2(1)
+\]</div>
 <h3 id="conditional-coverage-test">Conditional Coverage Test<a class="headerlink" href="#conditional-coverage-test" title="Permanent link">&para;</a></h3>
 <p><strong>Combined test:</strong></p>
-<p>$$</p>
-<p>LR_{cc} = LR_{uc} + LR_{ind} \sim \chi^2(2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+LR_{cc} = LR_{uc} + LR_{ind} \sim \chi^2(2)
+\]</div>
 <p>Tests both correct level AND independence.</p>
 <hr />
 <h2 id="basel-traffic-light-approach">Basel Traffic Light Approach<a class="headerlink" href="#basel-traffic-light-approach" title="Permanent link">&para;</a></h2>
@@ -46890,28 +46890,28 @@
 <h3 id="multiplier-adjustment">Multiplier Adjustment<a class="headerlink" href="#multiplier-adjustment" title="Permanent link">&para;</a></h3>
 <p>Capital = Multiplier × VaR</p>
 <p>Yellow zone multiplier:</p>
-<p>$$</p>
-<p>k = 3.0 + 0.2 \times (\text{exceedances} - 4)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+k = 3.0 + 0.2 \times (\text{exceedances} - 4)
+\]</div>
 <hr />
 <h2 id="es-backtesting">ES Backtesting<a class="headerlink" href="#es-backtesting" title="Permanent link">&para;</a></h2>
 <h3 id="challenge">Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h3>
 <p>ES is not directly elicitable, making backtesting harder than VaR.</p>
 <h3 id="acerbi-szekely-test">Acerbi-Szekely Test<a class="headerlink" href="#acerbi-szekely-test" title="Permanent link">&para;</a></h3>
 <p>Based on the identity:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\frac{L \cdot \mathbf{1}<em>{L &gt; \text{VaR}</em>\alpha}}{\text{ES}_\alpha}\right] = 1 - \alpha</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\frac{L \cdot \mathbf{1}_{L &gt; \text{VaR}_\alpha}}{\text{ES}_\alpha}\right] = 1 - \alpha
+\]</div>
 <p><strong>Test statistic:</strong></p>
-<p>$$</p>
-<p>Z = \frac{1}{n(1-\alpha)} \sum_{t: L_t &gt; \text{VaR}_t} \frac{L_t}{\text{ES}_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z = \frac{1}{n(1-\alpha)} \sum_{t: L_t &gt; \text{VaR}_t} \frac{L_t}{\text{ES}_t}
+\]</div>
 <p>Under correct model: <span class="arithmatex">\(\mathbb{E}[Z] = 1\)</span></p>
 <h3 id="mcneil-frey-test">McNeil-Frey Test<a class="headerlink" href="#mcneil-frey-test" title="Permanent link">&para;</a></h3>
 <p>Transform exceedances:</p>
-<p>$$</p>
-<p>e_t = \frac{L_t - \text{VaR}_t}{\text{ES}_t - \text{VaR}_t} \quad \text{for } L_t &gt; \text{VaR}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+e_t = \frac{L_t - \text{VaR}_t}{\text{ES}_t - \text{VaR}_t} \quad \text{for } L_t &gt; \text{VaR}_t
+\]</div>
 <p>Under correct model: <span class="arithmatex">\(e_t\)</span> should follow standard exponential distribution.</p>
 <p>Test using Kolmogorov-Smirnov or Anderson-Darling.</p>
 <hr />
@@ -46923,30 +46923,30 @@
 - Enable decentralized decision-making</p>
 <h3 id="types-of-limits">Types of Limits<a class="headerlink" href="#types-of-limits" title="Permanent link">&para;</a></h3>
 <p><strong>Position limits:</strong> Maximum notional or delta exposure</p>
-<p>$$</p>
-<p>\text{Position}_i \le \text{Limit}_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Position}_i \le \text{Limit}_i
+\]</div>
 <p><strong>VaR limits:</strong> Maximum VaR at desk/portfolio level</p>
-<p>$$</p>
-<p>\text{VaR}_{\text{desk}} \le \text{VaR Limit}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VaR}_{\text{desk}} \le \text{VaR Limit}
+\]</div>
 <p><strong>Stress limits:</strong> Maximum loss under stress scenarios</p>
-<p>$$</p>
-<p>\text{Stress Loss} \le \text{Stress Limit}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Stress Loss} \le \text{Stress Limit}
+\]</div>
 <p><strong>Sensitivity limits:</strong> Maximum Greeks (delta, gamma, vega)</p>
-<p>$$</p>
-<p>|\Delta| \le \Delta^{\max}, \quad |\Gamma| \le \Gamma^{\max}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|\Delta| \le \Delta^{\max}, \quad |\Gamma| \le \Gamma^{\max}
+\]</div>
 <h3 id="limit-framework">Limit Framework<a class="headerlink" href="#limit-framework" title="Permanent link">&para;</a></h3>
 <p><strong>Hierarchy:</strong>
 1. Firm-wide risk appetite
 2. Business unit limits
 3. Desk limits
 4. Trader limits</p>
-<p>$$</p>
-<p>\sum_{\text{desks}} \text{Limit}_{\text{desk}} \le \text{Business Unit Limit} \le \text{Firm Limit}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sum_{\text{desks}} \text{Limit}_{\text{desk}} \le \text{Business Unit Limit} \le \text{Firm Limit}
+\]</div>
 <p><strong>Note:</strong> Limits are not additive due to diversification; "budget" not "constraint."</p>
 <hr />
 <h2 id="limit-breach-management">Limit Breach Management<a class="headerlink" href="#limit-breach-management" title="Permanent link">&para;</a></h2>

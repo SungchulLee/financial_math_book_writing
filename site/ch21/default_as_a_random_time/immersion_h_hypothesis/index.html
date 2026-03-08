@@ -46823,9 +46823,9 @@
 <p>Every <span class="arithmatex">\((\mathcal{F}_t, \mathbb{Q})\)</span>-martingale is also a <span class="arithmatex">\((\mathcal{G}_t, \mathbb{Q})\)</span>-martingale.</p>
 </blockquote>
 <p>Equivalently, for any <span class="arithmatex">\(\mathcal{F}\)</span>-martingale <span class="arithmatex">\(M\)</span> and any <span class="arithmatex">\(t \ge 0\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_\infty \mid \mathcal{G}<em>t] = \mathbb{E}[M</em>\infty \mid \mathcal{F}_t] = M_t.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_\infty \mid \mathcal{G}_t] = \mathbb{E}[M_\infty \mid \mathcal{F}_t] = M_t
+\]</div>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <p>Immersion means that <strong>default does not reveal information about market factors</strong>. Knowing whether and when default occurred does not help predict future values of market processes. The additional information in <span class="arithmatex">\(\mathcal{G}_t\)</span> beyond <span class="arithmatex">\(\mathcal{F}_t\)</span> is "orthogonal" to the martingale structure of market prices.</p>
 <hr />
@@ -46841,29 +46841,29 @@
 <p>Without immersion, default could signal information about future asset prices, creating potential arbitrage opportunities or requiring measure adjustments.</p>
 <h3 id="tractability-of-pricing">Tractability of Pricing<a class="headerlink" href="#tractability-of-pricing" title="Permanent link">&para;</a></h3>
 <p>Under immersion, pricing defaultable claims simplifies dramatically. For a defaultable claim with payoff <span class="arithmatex">\(X\)</span> at time <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} X \mid \mathcal{G}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} X \mid \mathcal{G}_t\right]
+\]</div>
 <p>decomposes cleanly into pre-default and post-default values without complex cross-terms.</p>
 <hr />
 <h2 id="equivalent-characterizations">Equivalent Characterizations<a class="headerlink" href="#equivalent-characterizations" title="Permanent link">&para;</a></h2>
 <p>The H-hypothesis admits several equivalent formulations:</p>
 <h3 id="conditional-independence-characterization">Conditional Independence Characterization<a class="headerlink" href="#conditional-independence-characterization" title="Permanent link">&para;</a></h3>
 <p>Immersion holds if and only if for all <span class="arithmatex">\(t \ge 0\)</span> and all <span class="arithmatex">\(A \in \mathcal{F}_\infty\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}(A \mid \mathcal{G}_t) = \mathbb{P}(A \mid \mathcal{F}_t).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}(A \mid \mathcal{G}_t) = \mathbb{P}(A \mid \mathcal{F}_t)
+\]</div>
 <p>This says that default information <span class="arithmatex">\(\mathcal{H}_t = \sigma(\tau \wedge t)\)</span> is <strong>conditionally independent</strong> of <span class="arithmatex">\(\mathcal{F}_\infty\)</span> given <span class="arithmatex">\(\mathcal{F}_t\)</span>.</p>
 <h3 id="tower-property-version">Tower Property Version<a class="headerlink" href="#tower-property-version" title="Permanent link">&para;</a></h3>
 <p>For any integrable <span class="arithmatex">\(\mathcal{F}_\infty\)</span>-measurable <span class="arithmatex">\(X\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[X \mid \mathcal{G}_t] = \mathbb{E}[X \mid \mathcal{F}_t].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[X \mid \mathcal{G}_t] = \mathbb{E}[X \mid \mathcal{F}_t]
+\]</div>
 <h3 id="density-hypothesis-formulation">Density Hypothesis Formulation<a class="headerlink" href="#density-hypothesis-formulation" title="Permanent link">&para;</a></h3>
 <p>Under the density hypothesis, immersion is equivalent to: for all <span class="arithmatex">\(s \ge t\)</span>,</p>
-<p>$$</p>
-<p>\alpha_s^u = \mathbb{E}[\alpha_s^u \mid \mathcal{F}_t] \cdot \frac{\alpha_t^u}{G_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha_s^u = \mathbb{E}[\alpha_s^u \mid \mathcal{F}_t] \cdot \frac{\alpha_t^u}{G_t}
+\]</div>
 <p>where <span class="arithmatex">\(\alpha_t^u\)</span> is the conditional density of <span class="arithmatex">\(\tau\)</span> given <span class="arithmatex">\(\mathcal{F}_t\)</span>.</p>
 <hr />
 <h2 id="immersion-and-intensity-models">Immersion and Intensity Models<a class="headerlink" href="#immersion-and-intensity-models" title="Permanent link">&para;</a></h2>
@@ -46876,39 +46876,39 @@
 </ol>
 <h3 id="mathematical-verification">Mathematical Verification<a class="headerlink" href="#mathematical-verification" title="Permanent link">&para;</a></h3>
 <p>Under the Cox construction, for any <span class="arithmatex">\(\mathcal{F}\)</span>-martingale <span class="arithmatex">\(M\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[M_T \mid \mathcal{G}<em _="&gt;" _123_tau="{\tau" t_125_="t}">t] = \mathbb{E}[M_T \mid \mathcal{F}_t, \tau \wedge t, \mathbf{1}</em>]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[M_T \mid \mathcal{G}_t] = \mathbb{E}[M_T \mid \mathcal{F}_t, \tau \wedge t, \mathbf{1}_{\{\tau &gt; t\}}]
+\]</div>
 <p>The key insight is that on <span class="arithmatex">\(\{\tau &gt; t\}\)</span>, the only additional information is that <span class="arithmatex">\(E &gt; \Lambda_t = \int_0^t \lambda_s ds\)</span>. Since <span class="arithmatex">\(E\)</span> is independent of <span class="arithmatex">\(\mathcal{F}_\infty\)</span>, this event carries no information about <span class="arithmatex">\(M_T\)</span> beyond what <span class="arithmatex">\(\mathcal{F}_t\)</span> contains.</p>
 <p>Therefore: <span class="arithmatex">\(\mathbb{E}[M_T \mid \mathcal{G}_t] = \mathbb{E}[M_T \mid \mathcal{F}_t] = M_t\)</span>.</p>
 <hr />
 <h2 id="consequences-for-pricing">Consequences for Pricing<a class="headerlink" href="#consequences-for-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="pre-default-pricing-formula">Pre-Default Pricing Formula<a class="headerlink" href="#pre-default-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>Under immersion, the price of a defaultable claim paying <span class="arithmatex">\(X\)</span> at maturity <span class="arithmatex">\(T\)</span> (if no default) is:</p>
-<p>$$</p>
-<p>V_t = \mathbf{1}_{{\tau &gt; t}} \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} X \mid \mathcal{F}_t\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_t = \mathbf{1}_{\{\tau &gt; t\}} \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T (r_s + \lambda_s) ds} X \mid \mathcal{F}_t\right]
+\]</div>
 <p>The default indicator <span class="arithmatex">\(\mathbf{1}_{\{\tau &gt; t\}}\)</span> factors out cleanly because:
 - The expectation over market factors uses <span class="arithmatex">\(\mathcal{F}_t\)</span>-conditioning (immersion)
 - Default risk enters only through the intensity adjustment <span class="arithmatex">\(\lambda_s\)</span></p>
 <h3 id="separation-of-market-and-credit-risk">Separation of Market and Credit Risk<a class="headerlink" href="#separation-of-market-and-credit-risk" title="Permanent link">&para;</a></h3>
 <p>Immersion enables a clean decomposition:</p>
-<p>$$</p>
-<p>\text{Defaultable Price} = \text{Default-Free Price} \times \text{Survival Adjustment}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Defaultable Price} = \text{Default-Free Price} \times \text{Survival Adjustment}
+\]</div>
 <p>More precisely, for a zero-recovery defaultable bond:</p>
-<p>$$</p>
-<p>P^d(t,T) = P(t,T) \cdot S(t,T),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(t,T) = P(t,T) \cdot S(t,T)
+\]</div>
 <p>where <span class="arithmatex">\(P(t,T)\)</span> is the default-free discount factor and <span class="arithmatex">\(S(t,T) = \mathbb{E}^{\mathbb{Q}}[e^{-\int_t^T \lambda_s ds} \mid \mathcal{F}_t]\)</span> is the survival probability.</p>
 <hr />
 <h2 id="when-immersion-fails">When Immersion Fails<a class="headerlink" href="#when-immersion-fails" title="Permanent link">&para;</a></h2>
 <h3 id="structural-models">Structural Models<a class="headerlink" href="#structural-models" title="Permanent link">&para;</a></h3>
 <p>In structural (Merton-type) models, immersion typically <strong>does not hold</strong>. Default is triggered when firm value <span class="arithmatex">\(V_t\)</span> crosses a barrier, and <span class="arithmatex">\(V_t\)</span> is directly linked to market observables.</p>
 <p><strong>Example:</strong> If <span class="arithmatex">\(V_t\)</span> is correlated with equity prices <span class="arithmatex">\(S_t\)</span>, then observing default (i.e., <span class="arithmatex">\(V_\tau \le B\)</span>) reveals information about the path of <span class="arithmatex">\(S\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{E}[S_T \mid \mathcal{G}_t] \ne \mathbb{E}[S_T \mid \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[S_T \mid \mathcal{G}_t] \ne \mathbb{E}[S_T \mid \mathcal{F}_t]
+\]</div>
 <p>Default signals that firm value was low, which correlates with low equity values.</p>
 <h3 id="information-based-models">Information-Based Models<a class="headerlink" href="#information-based-models" title="Permanent link">&para;</a></h3>
 <p>When default conveys information about underlying economic states:
@@ -46918,9 +46918,9 @@
 <p>In these cases, additional <strong>compensator terms</strong> are needed to maintain martingale properties.</p>
 <h3 id="mathematical-consequences">Mathematical Consequences<a class="headerlink" href="#mathematical-consequences" title="Permanent link">&para;</a></h3>
 <p>When immersion fails, for an <span class="arithmatex">\(\mathcal{F}\)</span>-martingale <span class="arithmatex">\(M\)</span>:</p>
-<p>$$</p>
-<p>M_t = \tilde{M}<em s-="s-">t + \int_0^{t \wedge \tau} \frac{d\langle M, G \rangle_s}{G</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t = \tilde{M}_t + \int_0^{t \wedge \tau} \frac{d\langle M, G \rangle_s}{G_{s-}}
+\]</div>
 <p>where <span class="arithmatex">\(\tilde{M}\)</span> is a <span class="arithmatex">\(\mathcal{G}\)</span>-martingale and the integral term is the <strong>drift correction</strong> due to filtration enlargement. This additional term:
 - Complicates pricing formulas
 - Couples default risk with market dynamics

@@ -47068,39 +47068,39 @@
 <h2 id="atm-definition-and-conventions">ATM Definition and Conventions<a class="headerlink" href="#atm-definition-and-conventions" title="Permanent link">&para;</a></h2>
 <h3 id="1-multiple-atm-definitions">1. Multiple ATM Definitions<a class="headerlink" href="#1-multiple-atm-definitions" title="Permanent link">&para;</a></h3>
 <p><strong>ATM Forward (Delta-Neutral):</strong></p>
-<p>$$</p>
-<p>K_{\text{ATM}} = F = S_0 e^{(r-q)T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_{\text{ATM}} = F = S_0 e^{(r-q)T}
+\]</div>
 <p>This is the strike where the forward delta is zero: <span class="arithmatex">\(\Delta_{\text{fwd}} = 0\)</span>.</p>
 <p><strong>ATM Spot:</strong></p>
-<p>$$</p>
-<p>K_{\text{ATM}} = S_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_{\text{ATM}} = S_0
+\]</div>
 <p>Simply the current spot price.</p>
 <p><strong>ATM Delta:</strong></p>
-<p>$$</p>
-<p>K_{\text{ATM}} = K \quad \text{such that } |\Delta(K)| = 0.5</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_{\text{ATM}} = K \quad \text{such that } |\Delta(K)| = 0.5
+\]</div>
 <p>For Black-Scholes, this gives:</p>
-<p>$$</p>
-<p>K_{\text{ATM}} = S_0 e^{(r - q + \sigma^2/2)T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K_{\text{ATM}} = S_0 e^{(r - q + \sigma^2/2)T}
+\]</div>
 <p><strong>Market convention:</strong> ATM forward is most common for derivatives pricing; ATM delta for quoting.</p>
 <p>Throughout this section, we use <strong>ATM forward</strong> (<span class="arithmatex">\(K = F\)</span>) unless stated otherwise.</p>
 <h2 id="taylor-expansion-around-atm">Taylor Expansion Around ATM<a class="headerlink" href="#taylor-expansion-around-atm" title="Permanent link">&para;</a></h2>
 <h3 id="1-general-expansion-in-log-moneyness">1. General Expansion in Log-Moneyness<a class="headerlink" href="#1-general-expansion-in-log-moneyness" title="Permanent link">&para;</a></h3>
 <p>Define log-moneyness relative to the forward:</p>
-<p>$$</p>
-<p>y = \ln(K/F)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y = \ln(K/F)
+\]</div>
 <p>The implied volatility admits a Taylor expansion:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y, T) = \sigma_{\text{ATM}}(T) + \frac{\partial \sigma}{\partial y}\bigg|<em y="0">{y=0} y + \frac{1}{2} \frac{\partial^2 \sigma}{\partial y^2}\bigg|</em> y^3 + O(y^4)} y^2 + \frac{1}{6} \frac{\partial^3 \sigma}{\partial y^3}\bigg|_{y=0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y, T) = \sigma_{\text{ATM}}(T) + \frac{\partial \sigma}{\partial y}\bigg|_{y=0} y + \frac{1}{2} \frac{\partial^2 \sigma}{\partial y^2}\bigg|_{y=0} y^2 + \frac{1}{6} \frac{\partial^3 \sigma}{\partial y^3}\bigg|_{y=0} y^3 + O(y^4)
+\]</div>
 <p><strong>Notation:</strong></p>
-<p>$$</p>
-<p>\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2 + \frac{\sigma_3}{6} y^3 + \cdots</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2 + \frac{\sigma_3}{6} y^3 + \cdots
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\sigma_0 = \sigma_{\text{ATM}}\)</span>: ATM volatility level
 - <span class="arithmatex">\(\sigma_1 = \frac{\partial \sigma}{\partial y}\big|_{y=0}\)</span>: Skew parameter
@@ -47125,9 +47125,9 @@ Asymmetry in how the smile curves:
 <h2 id="connection-to-risk-neutral-moments">Connection to Risk-Neutral Moments<a class="headerlink" href="#connection-to-risk-neutral-moments" title="Permanent link">&para;</a></h2>
 <h3 id="1-moment-expansion">1. Moment Expansion<a class="headerlink" href="#1-moment-expansion" title="Permanent link">&para;</a></h3>
 <p>The risk-neutral distribution admits a moment expansion around the forward:</p>
-<p>$$</p>
-<p>S_T = F e^X</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = F e^X
+\]</div>
 <p>where <span class="arithmatex">\(X = \ln(S_T/F)\)</span> has:
 - Mean: <span class="arithmatex">\(\mathbb{E}[X] = -\frac{1}{2}\text{Var}(X)\)</span> (to ensure <span class="arithmatex">\(\mathbb{E}[S_T] = F\)</span>)
 - Variance: <span class="arithmatex">\(\text{Var}(X) = \sigma_{\text{eff}}^2 T\)</span>
@@ -47135,37 +47135,37 @@ Asymmetry in how the smile curves:
 - Kurtosis: <span class="arithmatex">\(\text{Kurt}(X) = \gamma_4\)</span></p>
 <h3 id="2-atm-volatility-and-variance">2. ATM Volatility and Variance<a class="headerlink" href="#2-atm-volatility-and-variance" title="Permanent link">&para;</a></h3>
 <p><strong>Leading term:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2 T \approx \text{Var}(X)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2 T \approx \text{Var}(X)
+\]</div>
 <p><strong>Exact relationship (Carr-Madan):</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2 T = \text{Var}(X) + O(T^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2 T = \text{Var}(X) + O(T^2)
+\]</div>
 <p>For short maturities, ATM IV directly measures the variance of log-returns.</p>
 <h3 id="3-skew-and-third-moment">3. Skew and Third Moment<a class="headerlink" href="#3-skew-and-third-moment" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.10</strong> (Skew-Skewness Relationship)<br />
 For small <span class="arithmatex">\(T\)</span>, the smile skew is related to distributional skewness by:</p>
-<p>$$</p>
-<p>\sigma_1 \approx -\frac{\gamma_3}{6 \sigma_{\text{ATM}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_1 \approx -\frac{\gamma_3}{6 \sigma_{\text{ATM}}}
+\]</div>
 <p>where <span class="arithmatex">\(\gamma_3 = \mathbb{E}[(X - \mathbb{E}[X])^3] / (\text{Var}(X))^{3/2}\)</span> is the skewness coefficient.</p>
 <p><strong>Proof sketch:</strong> Expand the Black-Scholes call price in powers of <span class="arithmatex">\(y\)</span> and match to the cumulant-generating function. The cubic term in <span class="arithmatex">\(y\)</span> introduces the third cumulant (skewness). □</p>
 <p><strong>Interpretation:</strong>
 - Negative skewness (<span class="arithmatex">\(\gamma_3 &lt; 0\)</span>) → Positive skew parameter (<span class="arithmatex">\(\sigma_1 &gt; 0\)</span>... wait, this is backwards)</p>
 <p><strong>Correction:</strong> The sign convention depends on definition. Using:</p>
-<p>$$</p>
-<p>\sigma(y) \approx \sigma_0 - \frac{\gamma_3}{6\sigma_0} y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y) \approx \sigma_0 - \frac{\gamma_3}{6\sigma_0} y
+\]</div>
 <p>we have:
 - Negative skewness (<span class="arithmatex">\(\gamma_3 &lt; 0\)</span>) → Negative smile skew (<span class="arithmatex">\(\frac{d\sigma}{dy} &lt; 0\)</span>)</p>
 <p>This matches equity markets: left-skewed distribution → downward-sloping IV.</p>
 <h3 id="4-curvature-and-fourth-moment">4. Curvature and Fourth Moment<a class="headerlink" href="#4-curvature-and-fourth-moment" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 4.4.11</strong> (Curvature-Kurtosis Relationship)<br />
 The smile curvature relates to excess kurtosis:</p>
-<p>$$</p>
-<p>\sigma_2 \approx \frac{\gamma_4 - 3}{24 \sigma_{\text{ATM}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_2 \approx \frac{\gamma_4 - 3}{24 \sigma_{\text{ATM}}}
+\]</div>
 <p>where <span class="arithmatex">\(\gamma_4 = \mathbb{E}[(X - \mathbb{E}[X])^4] / (\text{Var}(X))^2\)</span> is the kurtosis.</p>
 <p><strong>Interpretation:</strong>
 - Excess kurtosis (<span class="arithmatex">\(\gamma_4 &gt; 3\)</span>) → Positive curvature (<span class="arithmatex">\(\sigma_2 &gt; 0\)</span>) → U-shaped smile
@@ -47173,53 +47173,53 @@ The smile curvature relates to excess kurtosis:</p>
 <p><strong>Example (Student-t distribution):</strong><br />
 Student-t with <span class="arithmatex">\(\nu\)</span> degrees of freedom has <span class="arithmatex">\(\gamma_4 = 3 + \frac{6}{\nu - 4}\)</span> for <span class="arithmatex">\(\nu &gt; 4\)</span>.</p>
 <p>For <span class="arithmatex">\(\nu = 5\)</span>: <span class="arithmatex">\(\gamma_4 = 9\)</span>, giving:</p>
-<p>$$</p>
-<p>\sigma_2 \approx \frac{6}{24 \sigma_{\text{ATM}}} = \frac{0.25}{\sigma_{\text{ATM}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_2 \approx \frac{6}{24 \sigma_{\text{ATM}}} = \frac{0.25}{\sigma_{\text{ATM}}}
+\]</div>
 <p>Significant curvature even for moderately fat tails.</p>
 <h2 id="model-specific-atm-expansions">Model-Specific ATM Expansions<a class="headerlink" href="#model-specific-atm-expansions" title="Permanent link">&para;</a></h2>
 <h3 id="1-black-scholes-model">1. Black-Scholes Model<a class="headerlink" href="#1-black-scholes-model" title="Permanent link">&para;</a></h3>
 <p>For constant volatility <span class="arithmatex">\(\sigma\)</span>:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(y, T) = \sigma \quad \text{for all } y</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(y, T) = \sigma \quad \text{for all } y
+\]</div>
 <p><strong>Coefficients:</strong>
 - <span class="arithmatex">\(\sigma_0 = \sigma\)</span>
 - <span class="arithmatex">\(\sigma_1 = \sigma_2 = \sigma_3 = \cdots = 0\)</span> (flat smile)</p>
 <h3 id="2-local-volatility-model">2. Local Volatility Model<a class="headerlink" href="#2-local-volatility-model" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(dS_t = (r-q) S_t dt + \sigma_{\text{loc}}(S_t, t) S_t dW_t\)</span>:</p>
 <p><strong>Small-time expansion:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}(T) = \sigma_{\text{loc}}(F, 0) + O(T)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_1 = \frac{1}{F} \frac{\partial \sigma_{\text{loc}}}{\partial S}(F, 0) + O(T)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_2 = \frac{1}{F^2} \frac{\partial^2 \sigma_{\text{loc}}}{\partial S^2}(F, 0) + O(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}(T) = \sigma_{\text{loc}}(F, 0) + O(T)
+\]</div>
+<div class="arithmatex">\[
+\sigma_1 = \frac{1}{F} \frac{\partial \sigma_{\text{loc}}}{\partial S}(F, 0) + O(T)
+\]</div>
+<div class="arithmatex">\[
+\sigma_2 = \frac{1}{F^2} \frac{\partial^2 \sigma_{\text{loc}}}{\partial S^2}(F, 0) + O(T)
+\]</div>
 <p><strong>Interpretation:</strong> The smile parameters directly reflect the spatial derivatives of local volatility near the forward.</p>
 <h3 id="3-heston-model">3. Heston Model<a class="headerlink" href="#3-heston-model" title="Permanent link">&para;</a></h3>
 <p>For the Heston stochastic volatility model:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{align}
+<div class="arithmatex">\[
+\begin{align}
 dS_t &amp;= (r-q) S_t dt + \sqrt{v_t} S_t dW_t^S \\
 dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 \rho &amp;= d\langle W^S, W^v \rangle_t / dt
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\]</div>
 <p><strong>ATM expansion (Hagan-Woodward):</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}^2 = v_0 + \frac{T}{2} \left[\kappa(\theta - v_0) - \frac{\xi^2}{4}\right] + O(T^2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}^2 = v_0 + \frac{T}{2} \left[\kappa(\theta - v_0) - \frac{\xi^2}{4}\right] + O(T^2)
+\]</div>
 <p><strong>Skew:</strong></p>
-<p>$$</p>
-<p>\sigma_1 = \frac{\rho \xi}{4 \sqrt{v_0}} + O(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_1 = \frac{\rho \xi}{4 \sqrt{v_0}} + O(T)
+\]</div>
 <p><strong>Curvature:</strong></p>
-<p>$$</p>
-<p>\sigma_2 = \frac{1}{24 v_0}\left[\xi^2 - 2\rho^2 \xi^2\right] + O(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_2 = \frac{1}{24 v_0}\left[\xi^2 - 2\rho^2 \xi^2\right] + O(T)
+\]</div>
 <p><strong>Key insights:</strong>
 - ATM level determined by spot variance <span class="arithmatex">\(v_0\)</span>
 - Skew proportional to correlation <span class="arithmatex">\(\rho\)</span> and vol-of-vol <span class="arithmatex">\(\xi\)</span>
@@ -47230,13 +47230,13 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 - Term structure constrains <span class="arithmatex">\(\kappa, \theta\)</span></p>
 <h3 id="4-sabr-model">4. SABR Model<a class="headerlink" href="#4-sabr-model" title="Permanent link">&para;</a></h3>
 <p>For SABR with <span class="arithmatex">\(\beta\)</span> fixed:</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}} \approx \alpha \left[1 + \left(\frac{(1-\beta)^2 \alpha^2}{24 F^{2-2\beta}} + \frac{\rho \beta \nu \alpha}{4 F^{1-\beta}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}} \approx \alpha \left[1 + \left(\frac{(1-\beta)^2 \alpha^2}{24 F^{2-2\beta}} + \frac{\rho \beta \nu \alpha}{4 F^{1-\beta}} + \frac{2 - 3\rho^2}{24}\nu^2\right)T\right]
+\]</div>
 <p><strong>Skew (near ATM):</strong></p>
-<p>$$</p>
-<p>\frac{\partial \sigma}{\partial \ln K}\bigg|_{K=F} \approx \frac{\rho \nu \alpha}{F^{1-\beta}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \sigma}{\partial \ln K}\bigg|_{K=F} \approx \frac{\rho \nu \alpha}{F^{1-\beta}}
+\]</div>
 <p><strong>Parameters:</strong>
 - <span class="arithmatex">\(\alpha\)</span>: ATM volatility level
 - <span class="arithmatex">\(\beta\)</span>: Backbone slope (determines mean-reversion of local vol)
@@ -47245,35 +47245,35 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 <h2 id="small-moneyness-regime">Small-Moneyness Regime<a class="headerlink" href="#small-moneyness-regime" title="Permanent link">&para;</a></h2>
 <h3 id="1-scaling-limit">1. Scaling Limit<a class="headerlink" href="#1-scaling-limit" title="Permanent link">&para;</a></h3>
 <p>Consider strikes in the regime:</p>
-<p>$$</p>
-<p>K = F + x F \sigma_{\text{ATM}} \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+K = F + x F \sigma_{\text{ATM}} \sqrt{T}
+\]</div>
 <p>where <span class="arithmatex">\(x = O(1)\)</span> as <span class="arithmatex">\(T \to 0\)</span> with <span class="arithmatex">\(K\)</span> scaling appropriately.</p>
 <p><strong>Rescaled log-moneyness:</strong></p>
-<p>$$</p>
-<p>\tilde{y} = \frac{\ln(K/F)}{\sigma_{\text{ATM}} \sqrt{T}} \approx \frac{K - F}{F \sigma_{\text{ATM}} \sqrt{T}} = x</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tilde{y} = \frac{\ln(K/F)}{\sigma_{\text{ATM}} \sqrt{T}} \approx \frac{K - F}{F \sigma_{\text{ATM}} \sqrt{T}} = x
+\]</div>
 <p><strong>Expansion in this regime:</strong></p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}(\tilde{y}, T) = \sigma_{\text{ATM}} \left[1 + \frac{\tilde{\sigma}_1}{\sqrt{T}} \tilde{y} + \frac{\tilde{\sigma}_2}{2T} \tilde{y}^2 + O(T^{-3/2})\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}(\tilde{y}, T) = \sigma_{\text{ATM}} \left[1 + \frac{\tilde{\sigma}_1}{\sqrt{T}} \tilde{y} + \frac{\tilde{\sigma}_2}{2T} \tilde{y}^2 + O(T^{-3/2})\right]
+\]</div>
 <p><strong>Result:</strong> The smile is <strong>parabolic</strong> in the scaling variable <span class="arithmatex">\(\tilde{y}\)</span>, with coefficients that blow up as <span class="arithmatex">\(T \to 0\)</span>.</p>
 <h3 id="2-connection-to-heat-kernel">2. Connection to Heat Kernel<a class="headerlink" href="#2-connection-to-heat-kernel" title="Permanent link">&para;</a></h3>
 <p>For local volatility models, the transition density:</p>
-<p>$$</p>
-<p>p(S_T | S_0) \approx \frac{1}{\sigma(S_0, 0) S_0 \sqrt{2\pi T}} \exp\left(-\frac{(S_T - S_0)^2}{2\sigma^2(S_0, 0) S_0^2 T}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p(S_T | S_0) \approx \frac{1}{\sigma(S_0, 0) S_0 \sqrt{2\pi T}} \exp\left(-\frac{(S_T - S_0)^2}{2\sigma^2(S_0, 0) S_0^2 T}\right)
+\]</div>
 <p>is approximately Gaussian (heat kernel) for small <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>Implication:</strong> Near ATM, the smile is determined by the local volatility at the spot, with parabolic shape:</p>
-<p>$$</p>
-<p>\sigma_{\text{IV}}^2(K, T) T \approx \sigma^2(S_0, 0) \left[1 + \frac{(K - S_0)^2}{2\sigma^2 S_0^2 T}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{IV}}^2(K, T) T \approx \sigma^2(S_0, 0) \left[1 + \frac{(K - S_0)^2}{2\sigma^2 S_0^2 T}\right]
+\]</div>
 <h2 id="practical-atm-parametrizations">Practical ATM Parametrizations<a class="headerlink" href="#practical-atm-parametrizations" title="Permanent link">&para;</a></h2>
 <h3 id="1-quadratic-approximation">1. Quadratic Approximation<a class="headerlink" href="#1-quadratic-approximation" title="Permanent link">&para;</a></h3>
 <p>For short-dated options (e.g., weekly), a quadratic fit suffices:</p>
-<p>$$</p>
-<p>\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2
+\]</div>
 <p><strong>Calibration:</strong>
 - Use ATM and two wing points (e.g., 25-delta put/call)
 - Solve linear system for <span class="arithmatex">\((\sigma_0, \sigma_1, \sigma_2)\)</span></p>
@@ -47284,82 +47284,82 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 - <strong>Butterfly (BF):</strong> <span class="arithmatex">\(\text{BF}_{25\Delta} = \frac{\sigma_{25\Delta \text{ call}} + \sigma_{25\Delta \text{ put}}}{2} - \sigma_{\text{ATM}}\)</span></p>
 <p><strong>Relationship to coefficients:</strong></p>
 <p>For small deviations from ATM (<span class="arithmatex">\(y_{25\Delta} \approx \pm \Phi^{-1}(0.25) \sigma_0 \sqrt{T}\)</span>):</p>
-<p>$$</p>
-<p>\text{RR} \approx 2 \sigma_1 y_{25\Delta}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{BF} \approx \frac{\sigma_2}{2} y_{25\Delta}^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RR} \approx 2 \sigma_1 y_{25\Delta}
+\]</div>
+<div class="arithmatex">\[
+\text{BF} \approx \frac{\sigma_2}{2} y_{25\Delta}^2
+\]</div>
 <p><strong>Inversion:</strong></p>
-<p>$$</p>
-<p>\sigma_1 \approx \frac{\text{RR}}{2 y_{25\Delta}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_2 \approx \frac{2 \text{BF}}{y_{25\Delta}^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_1 \approx \frac{\text{RR}}{2 y_{25\Delta}}
+\]</div>
+<div class="arithmatex">\[
+\sigma_2 \approx \frac{2 \text{BF}}{y_{25\Delta}^2}
+\]</div>
 <p><strong>Example:</strong>
 - ATM = 20%
 - RR = <span class="arithmatex">\(-2\%\)</span> (downward skew)
 - BF = <span class="arithmatex">\(1\%\)</span> (positive curvature)
 - <span class="arithmatex">\(T = 1/12\)</span> (1 month)</p>
 <p>Compute:</p>
-<p>$$</p>
-<p>y_{25\Delta} \approx \Phi^{-1}(0.75) \cdot 0.20 \cdot \sqrt{1/12} \approx 0.0387</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_1 \approx \frac{-0.02}{2 \times 0.0387} \approx -0.26</p>
-<p>$$</p>
-<p>$$</p>
-<p>\sigma_2 \approx \frac{2 \times 0.01}{0.0387^2} \approx 13.3</p>
-<p>$$</p>
+<div class="arithmatex">\[
+y_{25\Delta} \approx \Phi^{-1}(0.75) \cdot 0.20 \cdot \sqrt{1/12} \approx 0.0387
+\]</div>
+<div class="arithmatex">\[
+\sigma_1 \approx \frac{-0.02}{2 \times 0.0387} \approx -0.26
+\]</div>
+<div class="arithmatex">\[
+\sigma_2 \approx \frac{2 \times 0.01}{0.0387^2} \approx 13.3
+\]</div>
 <p>Quadratic smile:</p>
-<p>$$</p>
-<p>\sigma(y) \approx 0.20 - 0.26 y + 6.65 y^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y) \approx 0.20 - 0.26 y + 6.65 y^2
+\]</div>
 <h2 id="atm-greeks-and-sensitivities">ATM Greeks and Sensitivities<a class="headerlink" href="#atm-greeks-and-sensitivities" title="Permanent link">&para;</a></h2>
 <h3 id="1-vega-at-atm">1. Vega at ATM<a class="headerlink" href="#1-vega-at-atm" title="Permanent link">&para;</a></h3>
 <p>ATM vega is:</p>
-<p>$$</p>
-<p>\mathcal{V}_{\text{ATM}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{ATM}} = S_0 e^{-qT} \phi(d_1) \sqrt{T}
+\]</div>
 <p>where <span class="arithmatex">\(d_1 = \frac{(r-q)T + \sigma_{\text{ATM}}^2 T/2}{\sigma_{\text{ATM}} \sqrt{T}} \approx \frac{\sigma_{\text{ATM}} \sqrt{T}}{2}\)</span> for small <span class="arithmatex">\((r-q)T\)</span>.</p>
 <p>Thus:</p>
-<p>$$</p>
-<p>\phi(d_1) \approx \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{\sigma_{\text{ATM}}^2 T}{8}\right) \approx \frac{1}{\sqrt{2\pi}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi(d_1) \approx \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{\sigma_{\text{ATM}}^2 T}{8}\right) \approx \frac{1}{\sqrt{2\pi}}
+\]</div>
 <p>for small <span class="arithmatex">\(T\)</span>.</p>
 <p><strong>Approximation:</strong></p>
-<p>$$</p>
-<p>\mathcal{V}_{\text{ATM}} \approx \frac{S_0}{\sqrt{2\pi}} \sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{V}_{\text{ATM}} \approx \frac{S_0}{\sqrt{2\pi}} \sqrt{T}
+\]</div>
 <p>Vega grows as <span class="arithmatex">\(\sqrt{T}\)</span> for short maturities.</p>
 <h3 id="2-gamma-at-atm">2. Gamma at ATM<a class="headerlink" href="#2-gamma-at-atm" title="Permanent link">&para;</a></h3>
 <p>ATM gamma is:</p>
-<p>$$</p>
-<p>\Gamma_{\text{ATM}} = \frac{e^{-qT} \phi(d_1)}{S_0 \sigma_{\text{ATM}} \sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_{\text{ATM}} = \frac{e^{-qT} \phi(d_1)}{S_0 \sigma_{\text{ATM}} \sqrt{T}}
+\]</div>
 <p>Using the approximation above:</p>
-<p>$$</p>
-<p>\Gamma_{\text{ATM}} \approx \frac{1}{S_0 \sigma_{\text{ATM}} \sqrt{2\pi T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Gamma_{\text{ATM}} \approx \frac{1}{S_0 \sigma_{\text{ATM}} \sqrt{2\pi T}}
+\]</div>
 <p>Gamma blows up as <span class="arithmatex">\(T^{-1/2}\)</span> near expiry.</p>
 <h3 id="3-volga-vomma">3. Volga (Vomma)<a class="headerlink" href="#3-volga-vomma" title="Permanent link">&para;</a></h3>
 <p>The sensitivity of vega to volatility:</p>
-<p>$$</p>
-<p>\text{Volga} = \frac{\partial \mathcal{V}}{\partial \sigma} = S_0 e^{-qT} \phi(d_1) \sqrt{T} \frac{d_1 d_2}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Volga} = \frac{\partial \mathcal{V}}{\partial \sigma} = S_0 e^{-qT} \phi(d_1) \sqrt{T} \frac{d_1 d_2}{\sigma}
+\]</div>
 <p>At ATM with small <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>d_1 d_2 \approx \frac{\sigma^2 T}{4} - \frac{\sigma^2 T}{4} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 d_2 \approx \frac{\sigma^2 T}{4} - \frac{\sigma^2 T}{4} = 0
+\]</div>
 <p><strong>Result:</strong> Volga is approximately <strong>zero</strong> at ATM for short maturities.</p>
 <p><strong>Implication:</strong> ATM options have stable vega (insensitive to volatility changes), while wings have higher volga.</p>
 <h2 id="term-structure-of-atm-smile">Term Structure of ATM Smile<a class="headerlink" href="#term-structure-of-atm-smile" title="Permanent link">&para;</a></h2>
 <h3 id="1-atm-volatility-evolution">1. ATM Volatility Evolution<a class="headerlink" href="#1-atm-volatility-evolution" title="Permanent link">&para;</a></h3>
 <p>Define the <strong>ATM term structure</strong>:</p>
-<p>$$</p>
-<p>\sigma_{\text{ATM}}(T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{ATM}}(T)
+\]</div>
 <p><strong>Typical patterns:</strong>
 - Upward sloping: Low current volatility, expected to rise
 - Downward sloping: High current volatility, expected to fall
@@ -47367,9 +47367,9 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 <h3 id="2-skew-term-structure">2. Skew Term Structure<a class="headerlink" href="#2-skew-term-structure" title="Permanent link">&para;</a></h3>
 <p>The skew parameter <span class="arithmatex">\(\sigma_1(T)\)</span> also varies with maturity:</p>
 <p><strong>Empirical observation (equity):</strong></p>
-<p>$$</p>
-<p>\sigma_1(T) \approx \sigma_1^\infty + (\sigma_1^0 - \sigma_1^\infty) e^{-\lambda T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_1(T) \approx \sigma_1^\infty + (\sigma_1^0 - \sigma_1^\infty) e^{-\lambda T}
+\]</div>
 <ul>
 <li><span class="arithmatex">\(\sigma_1^0\)</span>: Short-term skew (often steep)</li>
 <li><span class="arithmatex">\(\sigma_1^\infty\)</span>: Long-term skew (flatter)</li>
@@ -47378,9 +47378,9 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 <p><strong>Interpretation:</strong> Short-dated skew reflects immediate crash risk; long-dated skew is milder as uncertainty dominates.</p>
 <h3 id="3-curvature-term-structure">3. Curvature Term Structure<a class="headerlink" href="#3-curvature-term-structure" title="Permanent link">&para;</a></h3>
 <p>The curvature <span class="arithmatex">\(\sigma_2(T)\)</span> often <strong>increases</strong> with maturity:</p>
-<p>$$</p>
-<p>\sigma_2(T) \propto T^\alpha \quad \text{with } \alpha \approx 0.5</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_2(T) \propto T^\alpha \quad \text{with } \alpha \approx 0.5
+\]</div>
 <p><strong>Reason:</strong> Accumulation of uncertainty over longer horizons increases tail fatness.</p>
 <h2 id="asymptotic-matching">Asymptotic Matching<a class="headerlink" href="#asymptotic-matching" title="Permanent link">&para;</a></h2>
 <h3 id="1-matching-atm-and-wing-asymptotics">1. Matching ATM and Wing Asymptotics<a class="headerlink" href="#1-matching-atm-and-wing-asymptotics" title="Permanent link">&para;</a></h3>
@@ -47398,31 +47398,31 @@ dv_t &amp;= \kappa(\theta - v_t) dt + \xi \sqrt{v_t} dW_t^v \\
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>ATM expansions provide:</p>
 <h3 id="1-taylor-expansion">1. <strong>Taylor expansion:</strong><a class="headerlink" href="#1-taylor-expansion" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2 + O(y^3)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma(y) = \sigma_0 + \sigma_1 y + \frac{\sigma_2}{2} y^2 + O(y^3)
+\]</div>
 <ul>
 <li><span class="arithmatex">\(\sigma_0\)</span>: ATM volatility (level)</li>
 <li><span class="arithmatex">\(\sigma_1\)</span>: Skew (asymmetry)</li>
 <li><span class="arithmatex">\(\sigma_2\)</span>: Curvature (convexity)</li>
 </ul>
 <h3 id="2-moment-relationships">2. <strong>Moment relationships:</strong><a class="headerlink" href="#2-moment-relationships" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\sigma_1 \sim -\frac{\text{Skewness}}{6\sigma_0}, \quad \sigma_2 \sim \frac{\text{Excess Kurtosis}}{24\sigma_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_1 \sim -\frac{\text{Skewness}}{6\sigma_0}, \quad \sigma_2 \sim \frac{\text{Excess Kurtosis}}{24\sigma_0}
+\]</div>
 <h3 id="3-model-specific-formulas">3. <strong>Model-specific formulas:</strong><a class="headerlink" href="#3-model-specific-formulas" title="Permanent link">&para;</a></h3>
 <p><strong>Heston:</strong></p>
-<p>$$</p>
-<p>\sigma_0^2 = v_0, \quad \sigma_1 = \frac{\rho\xi}{4\sqrt{v_0}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_0^2 = v_0, \quad \sigma_1 = \frac{\rho\xi}{4\sqrt{v_0}}
+\]</div>
 <p><strong>SABR:</strong></p>
-<p>$$</p>
-<p>\sigma_0 = \alpha, \quad \frac{\partial \sigma}{\partial \ln K} = \frac{\rho \nu \alpha}{F^{1-\beta}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_0 = \alpha, \quad \frac{\partial \sigma}{\partial \ln K} = \frac{\rho \nu \alpha}{F^{1-\beta}}
+\]</div>
 <h3 id="4-market-quoting-conventions">4. <strong>Market quoting conventions:</strong><a class="headerlink" href="#4-market-quoting-conventions" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\text{RR} \approx 2\sigma_1 y_\Delta, \quad \text{BF} \approx \frac{\sigma_2}{2} y_\Delta^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{RR} \approx 2\sigma_1 y_\Delta, \quad \text{BF} \approx \frac{\sigma_2}{2} y_\Delta^2
+\]</div>
 <h3 id="5-greeks-near-atm">5. <strong>Greeks near ATM:</strong><a class="headerlink" href="#5-greeks-near-atm" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Vega: <span class="arithmatex">\(\mathcal{V} \sim \sqrt{T}\)</span></li>

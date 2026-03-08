@@ -47051,9 +47051,9 @@
 <h2 id="the-short-rate">The Short Rate<a class="headerlink" href="#the-short-rate" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>instantaneous short rate</strong> <span class="arithmatex">\(r_t\)</span> (or simply "short rate") is the continuously compounded interest rate for infinitesimally short borrowing at time <span class="arithmatex">\(t\)</span>:</p>
-<p>$$</p>
-<p>r_t = \lim_{\Delta t \to 0} \frac{1}{\Delta t} \log \frac{B_{t+\Delta t}}{B_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = \lim_{\Delta t \to 0} \frac{1}{\Delta t} \log \frac{B_{t+\Delta t}}{B_t}
+\]</div>
 <p>where <span class="arithmatex">\(B_t\)</span> is the money-market account value.</p>
 <h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
 <p>The short rate represents:
@@ -47069,13 +47069,13 @@
 <h2 id="the-money-market-account">The Money-Market Account<a class="headerlink" href="#the-money-market-account" title="Permanent link">&para;</a></h2>
 <h3 id="dynamics">Dynamics<a class="headerlink" href="#dynamics" title="Permanent link">&para;</a></h3>
 <p>The <strong>money-market account</strong> (or bank account) <span class="arithmatex">\(B_t\)</span> evolves according to:</p>
-<p>$$</p>
-<p>dB_t = r_t B_t \, dt, \quad B_0 = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dB_t = r_t B_t \, dt, \quad B_0 = 1
+\]</div>
 <p>This is a non-stochastic ODE given a path of <span class="arithmatex">\(r_t\)</span>. The solution is:</p>
-<p>$$</p>
-<p>B_t = \exp\left(\int_0^t r_s \, ds\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+B_t = \exp\left(\int_0^t r_s \, ds\right)
+\]</div>
 <h3 id="economic-role">Economic Role<a class="headerlink" href="#economic-role" title="Permanent link">&para;</a></h3>
 <p>The money-market account:
 - Represents risk-free investment by continuous rolling of overnight deposits
@@ -47087,9 +47087,9 @@
 <h2 id="zero-coupon-bond-pricing">Zero-Coupon Bond Pricing<a class="headerlink" href="#zero-coupon-bond-pricing" title="Permanent link">&para;</a></h2>
 <h3 id="fundamental-pricing-equation">Fundamental Pricing Equation<a class="headerlink" href="#fundamental-pricing-equation" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the price at time <span class="arithmatex">\(t\)</span> of a zero-coupon bond maturing at <span class="arithmatex">\(T\)</span> is:</p>
-<p>$$</p>
-<p>P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r_s \, ds\right) \,\bigg|\, \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r_s \, ds\right) \,\bigg|\, \mathcal{F}_t\right]
+\]</div>
 <p>This is the <strong>discounted expectation</strong> of the terminal payoff (which is 1).</p>
 <h3 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h3>
 <ol>
@@ -47100,29 +47100,29 @@
 </ol>
 <h3 id="from-bonds-to-yield-curve">From Bonds to Yield Curve<a class="headerlink" href="#from-bonds-to-yield-curve" title="Permanent link">&para;</a></h3>
 <p>The zero rate implied by <span class="arithmatex">\(P(t, T)\)</span> is:</p>
-<p>$$</p>
-<p>z(t, T) = -\frac{\log P(t, T)}{T - t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+z(t, T) = -\frac{\log P(t, T)}{T - t}
+\]</div>
 <p>The instantaneous forward rate is:</p>
-<p>$$</p>
-<p>f(t, T) = -\frac{\partial}{\partial T} \log P(t, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+f(t, T) = -\frac{\partial}{\partial T} \log P(t, T)
+\]</div>
 <hr />
 <h2 id="markov-short-rate-models">Markov Short-Rate Models<a class="headerlink" href="#markov-short-rate-models" title="Permanent link">&para;</a></h2>
 <h3 id="general-form">General Form<a class="headerlink" href="#general-form" title="Permanent link">&para;</a></h3>
 <p>A <strong>Markov short-rate model</strong> specifies <span class="arithmatex">\(r_t\)</span> as a diffusion:</p>
-<p>$$</p>
-<p>dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\mu^{\mathbb{Q}}(t, r)\)</span>: drift under risk-neutral measure
 - <span class="arithmatex">\(\sigma(t, r)\)</span>: volatility function
 - <span class="arithmatex">\(W_t^{\mathbb{Q}}\)</span>: Brownian motion under <span class="arithmatex">\(\mathbb{Q}\)</span></p>
 <h3 id="bond-price-as-function-of-state">Bond Price as Function of State<a class="headerlink" href="#bond-price-as-function-of-state" title="Permanent link">&para;</a></h3>
 <p>In a Markov model, the bond price depends only on current time and state:</p>
-<p>$$</p>
-<p>P(t, T) = P(t, T, r_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = P(t, T, r_t)
+\]</div>
 <p>This function solves a PDE (derived below) or can be computed via the Feynman-Kac expectation.</p>
 <h3 id="why-markov">Why Markov?<a class="headerlink" href="#why-markov" title="Permanent link">&para;</a></h3>
 <p>The Markov property:
@@ -47134,22 +47134,22 @@
 <h2 id="the-bond-pricing-pde">The Bond Pricing PDE<a class="headerlink" href="#the-bond-pricing-pde" title="Permanent link">&para;</a></h2>
 <h3 id="derivation-via-itos-lemma">Derivation via Itô's Lemma<a class="headerlink" href="#derivation-via-itos-lemma" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(V(t, r) = P(t, T, r)\)</span> be the bond price. By Itô's lemma:</p>
-<p>$$</p>
-<p>dV = \left(\frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2}\right) dt + \sigma \frac{\partial V}{\partial r} dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dV = \left(\frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2}\right) dt + \sigma \frac{\partial V}{\partial r} dW_t^{\mathbb{Q}}
+\]</div>
 <h3 id="no-arbitrage-condition">No-Arbitrage Condition<a class="headerlink" href="#no-arbitrage-condition" title="Permanent link">&para;</a></h3>
 <p>The discounted bond price <span class="arithmatex">\(V/B_t\)</span> must be a martingale under <span class="arithmatex">\(\mathbb{Q}\)</span>. This requires:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2} = r V</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \mu^{\mathbb{Q}} \frac{\partial V}{\partial r} + \frac{1}{2}\sigma^2 \frac{\partial^2 V}{\partial r^2} = r V
+\]</div>
 <h3 id="bond-pricing-pde">Bond Pricing PDE<a class="headerlink" href="#bond-pricing-pde" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\frac{\partial P}{\partial t} + \mu^{\mathbb{Q}}(t, r) \frac{\partial P}{\partial r} + \frac{1}{2}\sigma(t, r)^2 \frac{\partial^2 P}{\partial r^2} - r P = 0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\frac{\partial P}{\partial t} + \mu^{\mathbb{Q}}(t, r) \frac{\partial P}{\partial r} + \frac{1}{2}\sigma(t, r)^2 \frac{\partial^2 P}{\partial r^2} - r P = 0}
+\]</div>
 <p>with terminal condition:</p>
-<p>$$</p>
-<p>P(T, T, r) = 1 \quad \text{for all } r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(T, T, r) = 1 \quad \text{for all } r
+\]</div>
 <h3 id="boundary-conditions">Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permanent link">&para;</a></h3>
 <p>Appropriate boundary conditions depend on the model:</p>
 <table>
@@ -47182,25 +47182,25 @@
 <h2 id="physical-vs-risk-neutral-dynamics">Physical vs. Risk-Neutral Dynamics<a class="headerlink" href="#physical-vs-risk-neutral-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="physical-measure-p">Physical Measure P<a class="headerlink" href="#physical-measure-p" title="Permanent link">&para;</a></h3>
 <p>Under the real-world (physical) measure, the short rate follows:</p>
-<p>$$</p>
-<p>dr_t = \mu^{\mathbb{P}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \mu^{\mathbb{P}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{P}}
+\]</div>
 <p>The drift <span class="arithmatex">\(\mu^{\mathbb{P}}\)</span> reflects actual rate dynamics observed historically.</p>
 <h3 id="risk-neutral-measure-q">Risk-Neutral Measure Q<a class="headerlink" href="#risk-neutral-measure-q" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the dynamics become:</p>
-<p>$$</p>
-<p>dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \mu^{\mathbb{Q}}(t, r_t) \, dt + \sigma(t, r_t) \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>\mu^{\mathbb{Q}}(t, r) = \mu^{\mathbb{P}}(t, r) - \lambda(t, r) \sigma(t, r)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu^{\mathbb{Q}}(t, r) = \mu^{\mathbb{P}}(t, r) - \lambda(t, r) \sigma(t, r)
+\]</div>
 <p>and <span class="arithmatex">\(\lambda(t, r)\)</span> is the <strong>market price of interest rate risk</strong>.</p>
 <h3 id="girsanov-transformation">Girsanov Transformation<a class="headerlink" href="#girsanov-transformation" title="Permanent link">&para;</a></h3>
 <p>The relationship between Brownian motions is:</p>
-<p>$$</p>
-<p>dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \lambda(t, r_t) \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \lambda(t, r_t) \, dt
+\]</div>
 <h3 id="implications">Implications<a class="headerlink" href="#implications" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -47228,14 +47228,14 @@
 <h2 id="relationship-to-hjm">Relationship to HJM<a class="headerlink" href="#relationship-to-hjm" title="Permanent link">&para;</a></h2>
 <h3 id="short-rate-as-limit">Short Rate as Limit<a class="headerlink" href="#short-rate-as-limit" title="Permanent link">&para;</a></h3>
 <p>The short rate is the limit of the forward rate curve:</p>
-<p>$$</p>
-<p>r_t = f(t, t) = \lim_{T \to t^+} f(t, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+r_t = f(t, t) = \lim_{T \to t^+} f(t, T)
+\]</div>
 <h3 id="induced-forward-rates">Induced Forward Rates<a class="headerlink" href="#induced-forward-rates" title="Permanent link">&para;</a></h3>
 <p>A short-rate model <strong>implies</strong> forward rate dynamics. From:</p>
-<p>$$</p>
-<p>P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \,|\, \mathcal{F}_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_t^T r_s ds} \,|\, \mathcal{F}_t\right]
+\]</div>
 <p>one can derive <span class="arithmatex">\(f(t, T)\)</span> and its stochastic evolution.</p>
 <h3 id="markovian-hjm">Markovian HJM<a class="headerlink" href="#markovian-hjm" title="Permanent link">&para;</a></h3>
 <p>Not all HJM models are driven by a finite-dimensional short rate. Short-rate models correspond to <strong>Markovian HJM</strong> models with specific volatility structures.</p>

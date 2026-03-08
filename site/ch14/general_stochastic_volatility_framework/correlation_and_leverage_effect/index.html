@@ -46785,35 +46785,35 @@
 <h2 id="correlated-brownian-motions">Correlated Brownian Motions<a class="headerlink" href="#correlated-brownian-motions" title="Permanent link">&para;</a></h2>
 <h3 id="mathematical-setup">Mathematical Setup<a class="headerlink" href="#mathematical-setup" title="Permanent link">&para;</a></h3>
 <p>In two-factor stochastic volatility models, we allow the driving Brownian motions to be correlated:</p>
-<p>$$</p>
-<p>d\langle W^S, W^V \rangle_t = \rho\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\langle W^S, W^V \rangle_t = \rho\,dt
+\]</div>
 <p>with correlation coefficient <span class="arithmatex">\(\rho \in [-1, 1]\)</span>.</p>
 <p><strong>Decomposition:</strong> The correlated pair can be written as:</p>
-<p>$$</p>
-<p>W_t^V = \rho W_t^S + \sqrt{1-\rho^2}\, W_t^{\perp}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t^V = \rho W_t^S + \sqrt{1-\rho^2}\, W_t^{\perp}
+\]</div>
 <p>where <span class="arithmatex">\(W^S\)</span> and <span class="arithmatex">\(W^{\perp}\)</span> are independent standard Brownian motions.</p>
 <p><strong>Joint increment distribution:</strong></p>
-<p>$$</p>
-<p>\begin{pmatrix} \Delta W^S \ \Delta W^V \end{pmatrix} \sim \mathcal{N}\left(\begin{pmatrix} 0 \ 0 \end{pmatrix}, \begin{pmatrix} \Delta t &amp; \rho\Delta t \ \rho\Delta t &amp; \Delta t \end{pmatrix}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\begin{pmatrix} \Delta W^S \\ \Delta W^V \end{pmatrix} \sim \mathcal{N}\left(\begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{pmatrix} \Delta t &amp; \rho\Delta t \\ \rho\Delta t &amp; \Delta t \end{pmatrix}\right)
+\]</div>
 <h3 id="instantaneous-covariation">Instantaneous Covariation<a class="headerlink" href="#instantaneous-covariation" title="Permanent link">&para;</a></h3>
 <p>For the Heston model with <span class="arithmatex">\(dS_t = (r-q)S_t\,dt + \sqrt{V_t}S_t\,dW_t^S\)</span> and <span class="arithmatex">\(dV_t = \kappa(\theta-V_t)\,dt + \xi\sqrt{V_t}\,dW_t^V\)</span>:</p>
-<p>$$</p>
-<p>d\langle S, V \rangle_t = \rho \xi V_t S_t\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\langle S, V \rangle_t = \rho \xi V_t S_t\,dt
+\]</div>
 <p>The <strong>instantaneous covariance</strong> between log-returns and variance changes is:</p>
-<p>$$</p>
-<p>\text{Cov}\left(\frac{dS_t}{S_t}, dV_t\right) = \rho \xi V_t\,dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Cov}\left(\frac{dS_t}{S_t}, dV_t\right) = \rho \xi V_t\,dt
+\]</div>
 <hr />
 <h2 id="the-leverage-effect-in-equity-markets">The Leverage Effect in Equity Markets<a class="headerlink" href="#the-leverage-effect-in-equity-markets" title="Permanent link">&para;</a></h2>
 <h3 id="empirical-definition">Empirical Definition<a class="headerlink" href="#empirical-definition" title="Permanent link">&para;</a></h3>
 <p>The <strong>leverage effect</strong> refers to the empirically observed negative correlation between equity returns and subsequent volatility changes:</p>
-<p>$$</p>
-<p>\text{Corr}(r_t, \sigma_{t+\Delta}^2 - \sigma_t^2) &lt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Corr}(r_t, \sigma_{t+\Delta}^2 - \sigma_t^2) &lt; 0
+\]</div>
 <p>where <span class="arithmatex">\(r_t\)</span> is the return and <span class="arithmatex">\(\sigma_t\)</span> is volatility.</p>
 <h3 id="quantitative-evidence">Quantitative Evidence<a class="headerlink" href="#quantitative-evidence" title="Permanent link">&para;</a></h3>
 <p><strong>Cross-sectional estimates:</strong></p>
@@ -46860,9 +46860,9 @@
 - Commodities vary by type (energy vs. agricultural)</p>
 <h3 id="time-scale-dependence">Time Scale Dependence<a class="headerlink" href="#time-scale-dependence" title="Permanent link">&para;</a></h3>
 <p>The correlation depends on the measurement horizon:</p>
-<p>$$</p>
-<p>\rho(\Delta) = \text{Corr}\left(r_{[t, t+\Delta]}, \Delta\sigma_{[t+\Delta, t+2\Delta]}^2\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(\Delta) = \text{Corr}\left(r_{[t, t+\Delta]}, \Delta\sigma_{[t+\Delta, t+2\Delta]}^2\right)
+\]</div>
 <p>Empirically:
 - Strongest at daily/weekly frequencies: <span class="arithmatex">\(\rho \approx -0.7\)</span>
 - Weakens at monthly frequencies: <span class="arithmatex">\(\rho \approx -0.4\)</span>
@@ -46873,16 +46873,16 @@
 <h3 id="balance-sheet-leverage">Balance Sheet Leverage<a class="headerlink" href="#balance-sheet-leverage" title="Permanent link">&para;</a></h3>
 <p><strong>Mechanism:</strong> When a firm's equity value falls, its debt-to-equity ratio (leverage) increases, making the firm riskier.</p>
 <p><strong>Formalization:</strong> Let <span class="arithmatex">\(A = E + D\)</span> be assets, with equity <span class="arithmatex">\(E\)</span> and debt <span class="arithmatex">\(D\)</span>. If <span class="arithmatex">\(A\)</span> falls:</p>
-<p>$$</p>
-<p>\text{Leverage} = \frac{D}{E} \uparrow \quad \Rightarrow \quad \text{Equity volatility} \uparrow</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Leverage} = \frac{D}{E} \uparrow \quad \Rightarrow \quad \text{Equity volatility} \uparrow
+\]</div>
 <p><strong>Critique:</strong> This explains firm-level volatility but less clearly applies to indices or portfolios.</p>
 <h3 id="volatility-feedback-effect">Volatility Feedback Effect<a class="headerlink" href="#volatility-feedback-effect" title="Permanent link">&para;</a></h3>
 <p><strong>Mechanism:</strong> An increase in expected volatility raises the required return, causing prices to fall immediately.</p>
 <p><strong>Formalization:</strong> Under CAPM-type reasoning:</p>
-<p>$$</p>
-<p>\mathbb{E}[r] = r_f + \lambda \cdot \sigma \quad \Rightarrow \quad \uparrow \sigma \Rightarrow \uparrow \mathbb{E}[r] \Rightarrow \downarrow P_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[r] = r_f + \lambda \cdot \sigma \quad \Rightarrow \quad \uparrow \sigma \Rightarrow \uparrow \mathbb{E}[r] \Rightarrow \downarrow P_0
+\]</div>
 <p><strong>French, Schwert, Stambaugh (1987):</strong> Found evidence consistent with volatility feedback, but the effect is smaller than pure leverage would predict.</p>
 <h3 id="behavioral-asymmetry">Behavioral Asymmetry<a class="headerlink" href="#behavioral-asymmetry" title="Permanent link">&para;</a></h3>
 <p><strong>Mechanism:</strong> Investors react more strongly to losses than gains, causing panic selling during downturns that amplifies volatility.</p>
@@ -46903,14 +46903,14 @@
 <p>This asymmetry makes downward moves more extreme than upward moves, creating a left-skewed return distribution.</p>
 <h3 id="analytical-approximation">Analytical Approximation<a class="headerlink" href="#analytical-approximation" title="Permanent link">&para;</a></h3>
 <p>For small vol-of-vol and short maturities, the implied volatility skew can be approximated:</p>
-<p>$$</p>
-<p>\sigma_{\text{impl}}(k) \approx \sigma_{\text{ATM}} + \text{Skew} \cdot k + \frac{1}{2}\text{Convexity} \cdot k^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{impl}}(k) \approx \sigma_{\text{ATM}} + \text{Skew} \cdot k + \frac{1}{2}\text{Convexity} \cdot k^2
+\]</div>
 <p>where <span class="arithmatex">\(k = \log(K/F)\)</span> is log-moneyness.</p>
 <p><strong>First-order expansion (Heston):</strong></p>
-<p>$$</p>
-<p>\text{Skew} \approx \frac{\rho \xi}{2\sigma_{\text{ATM}}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Skew} \approx \frac{\rho \xi}{2\sigma_{\text{ATM}}}
+\]</div>
 <p>This shows:
 - <span class="arithmatex">\(\text{Skew} \propto \rho\)</span>: correlation directly controls skew sign and magnitude
 - <span class="arithmatex">\(\text{Skew} \propto \xi\)</span>: higher vol-of-vol amplifies skew
@@ -46958,9 +46958,9 @@
 </ol>
 <h3 id="from-historical-data">From Historical Data<a class="headerlink" href="#from-historical-data" title="Permanent link">&para;</a></h3>
 <p>Direct estimation from returns and realized variance changes:</p>
-<p>$$</p>
-<p>\hat{\rho} = \frac{\sum_t (r_t - \bar{r})(\Delta RV_t - \overline{\Delta RV})}{\sqrt{\sum_t (r_t - \bar{r})^2 \sum_t (\Delta RV_t - \overline{\Delta RV})^2}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\rho} = \frac{\sum_t (r_t - \bar{r})(\Delta RV_t - \overline{\Delta RV})}{\sqrt{\sum_t (r_t - \bar{r})^2 \sum_t (\Delta RV_t - \overline{\Delta RV})^2}}
+\]</div>
 <p><strong>Caveat:</strong> Historical <span class="arithmatex">\(\rho^{\mathbb{P}}\)</span> and risk-neutral <span class="arithmatex">\(\rho^{\mathbb{Q}}\)</span> may differ due to risk premia.</p>
 <h3 id="typical-calibrated-values">Typical Calibrated Values<a class="headerlink" href="#typical-calibrated-values" title="Permanent link">&para;</a></h3>
 <table>
@@ -47004,9 +47004,9 @@
 </ul>
 <h3 id="state-dependence">State Dependence<a class="headerlink" href="#state-dependence" title="Permanent link">&para;</a></h3>
 <p>Some evidence suggests <span class="arithmatex">\(\rho\)</span> varies with market conditions:</p>
-<p>$$</p>
-<p>\rho(t) = \rho_0 + \rho_1 \cdot \mathbf{1}_{\text{crisis}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho(t) = \rho_0 + \rho_1 \cdot \mathbf{1}_{\text{crisis}}
+\]</div>
 <p>During crises:
 - Correlation may become more negative
 - Volatility and returns become more tightly coupled
@@ -47015,15 +47015,15 @@
 <h2 id="implications-for-hedging">Implications for Hedging<a class="headerlink" href="#implications-for-hedging" title="Permanent link">&para;</a></h2>
 <h3 id="delta-under-stochastic-volatility">Delta Under Stochastic Volatility<a class="headerlink" href="#delta-under-stochastic-volatility" title="Permanent link">&para;</a></h3>
 <p>With <span class="arithmatex">\(\rho \neq 0\)</span>, the delta hedge must account for correlation:</p>
-<p>$$</p>
-<p>\Delta^{\text{SV}} = \frac{\partial C}{\partial S} + \rho \frac{\xi}{\sigma} \frac{\partial C}{\partial V}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta^{\text{SV}} = \frac{\partial C}{\partial S} + \rho \frac{\xi}{\sigma} \frac{\partial C}{\partial V}
+\]</div>
 <p>The second term corrects for the correlation between price and volatility moves.</p>
 <h3 id="vanna-exposure">Vanna Exposure<a class="headerlink" href="#vanna-exposure" title="Permanent link">&para;</a></h3>
 <p><strong>Vanna</strong> (cross-gamma) measures sensitivity to joint price-volatility moves:</p>
-<p>$$</p>
-<p>\text{Vanna} = \frac{\partial^2 C}{\partial S \partial \sigma} = \frac{\partial \Delta}{\partial \sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Vanna} = \frac{\partial^2 C}{\partial S \partial \sigma} = \frac{\partial \Delta}{\partial \sigma}
+\]</div>
 <p>When <span class="arithmatex">\(\rho &lt; 0\)</span>:
 - Long OTM puts have positive vanna
 - A price drop increases implied vol, which increases delta magnitude

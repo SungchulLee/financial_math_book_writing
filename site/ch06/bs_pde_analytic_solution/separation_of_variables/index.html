@@ -48757,23 +48757,23 @@ Separation of variables on <strong>infinite domains</strong> → Fourier transfo
 <h2 id="21-the-deep-structure"><strong>21. The Deep Structure</strong><a class="headerlink" href="#21-the-deep-structure" title="Permanent link">&para;</a></h2>
 <h3 id="1-unified-view">1. <strong>Unified View</strong><a class="headerlink" href="#1-unified-view" title="Permanent link">&para;</a></h3>
 <p>All these methods are <strong>related</strong>:</p>
-<p>$$\begin{align}</p>
-<p>&amp;\text{Separation (finite)} \longleftrightarrow \text{Fourier series} \
-&amp;\quad\downarrow \text{(limit } L \to \infty) \
-&amp;\text{Separation (infinite)} \longleftrightarrow \text{Fourier transform} \
-&amp;\quad\downarrow \text{(Green's function)} \
-&amp;\text{Fundamental solution} \longleftrightarrow \text{Heat kernel} \
-&amp;\quad\downarrow \text{(probabilistic)} \
-&amp;\text{Transition density} \longleftrightarrow \text{Feynman-Kac}</p>
-<p>\end{align}$$</p>
+<div class="arithmatex">\[\begin{align}
+&amp;\text{Separation (finite)} \longleftrightarrow \text{Fourier series} \\
+&amp;\quad\downarrow \text{(limit } L \to \infty) \\
+&amp;\text{Separation (infinite)} \longleftrightarrow \text{Fourier transform} \\
+&amp;\quad\downarrow \text{(Green's function)} \\
+&amp;\text{Fundamental solution} \longleftrightarrow \text{Heat kernel} \\
+&amp;\quad\downarrow \text{(probabilistic)} \\
+&amp;\text{Transition density} \longleftrightarrow \text{Feynman-Kac}
+\end{align}\]</div>
 <p>They're all <strong>different manifestations</strong> of the spectral decomposition of the heat operator.</p>
 <h3 id="2-the-fundamental-insight">2. <strong>The Fundamental Insight</strong><a class="headerlink" href="#2-the-fundamental-insight" title="Permanent link">&para;</a></h3>
-<p>$$\boxed{e^{\tau\mathcal{L}}V_0 = \begin{cases}</p>
-<p>\sum_{n}e^{\tau\lambda_n}\langle V_0, \phi_n\rangle\phi_n &amp; \text{(discrete)} \
-\int e^{\tau\lambda}\langle V_0, \phi_\lambda\rangle\phi_\lambda d\lambda &amp; \text{(continuous)} \
-\int G(x,y,\tau)V_0(y)dy &amp; \text{(Green's function)} \
-\mathbb{E}[V_0(X_\tau)] &amp; \text{(probabilistic)}</p>
-<p>\end{cases}}$$</p>
+<div class="arithmatex">\[\boxed{e^{\tau\mathcal{L}}V_0 = \begin{cases}
+\sum_{n}e^{\tau\lambda_n}\langle V_0, \phi_n\rangle\phi_n &amp; \text{(discrete)} \\
+\int e^{\tau\lambda}\langle V_0, \phi_\lambda\rangle\phi_\lambda d\lambda &amp; \text{(continuous)} \\
+\int G(x,y,\tau)V_0(y)dy &amp; \text{(Green's function)} \\
+\mathbb{E}[V_0(X_\tau)] &amp; \text{(probabilistic)}
+\end{cases}}\]</div>
 <p>These are <strong>four representations</strong> of the <strong>same solution operator</strong>!</p>
 <h3 id="3-choosing-the-right-tool">3. <strong>Choosing the Right Tool</strong><a class="headerlink" href="#3-choosing-the-right-tool" title="Permanent link">&para;</a></h3>
 <ul>

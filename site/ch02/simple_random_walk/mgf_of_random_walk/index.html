@@ -46194,22 +46194,22 @@
 <hr />
 <h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
 <p>For <span class="arithmatex">\(\lambda \in \mathbb{R}\)</span>, the MGF of the symmetric random walk <span class="arithmatex">\(S_n = \sum_{i=1}^n \xi_i\)</span> is</p>
-<div class="arithmatex">\[M_{S_n}(\lambda) := \mathbb{E}[e^{\lambda S_n}].\]</div>
+<div class="arithmatex">\[M_{S_n}(\lambda) := \mathbb{E}[e^{\lambda S_n}]\]</div>
 <p><strong>Proposition 1.1.2</strong> (Moment Generating Function)</p>
-<div class="arithmatex">\[\mathbb{E}[e^{\lambda S_n}] = (\cosh \lambda)^n.\]</div>
+<div class="arithmatex">\[\mathbb{E}[e^{\lambda S_n}] = (\cosh \lambda)^n\]</div>
 <p><strong>Proof.</strong> Since <span class="arithmatex">\(\xi_1, \ldots, \xi_n\)</span> are independent, the MGF of their sum factors:</p>
-<div class="arithmatex">\[\mathbb{E}[e^{\lambda S_n}] = \prod_{i=1}^n \mathbb{E}[e^{\lambda \xi_i}].\]</div>
+<div class="arithmatex">\[\mathbb{E}[e^{\lambda S_n}] = \prod_{i=1}^n \mathbb{E}[e^{\lambda \xi_i}]\]</div>
 <p>For a single step:</p>
-<div class="arithmatex">\[\mathbb{E}[e^{\lambda \xi_i}] = e^{+\lambda} \cdot \tfrac{1}{2} + e^{-\lambda} \cdot \tfrac{1}{2} = \frac{e^\lambda + e^{-\lambda}}{2} = \cosh\lambda.\]</div>
+<div class="arithmatex">\[\mathbb{E}[e^{\lambda \xi_i}] = e^{+\lambda} \cdot \tfrac{1}{2} + e^{-\lambda} \cdot \tfrac{1}{2} = \frac{e^\lambda + e^{-\lambda}}{2} = \cosh\lambda\]</div>
 <p>Therefore <span class="arithmatex">\(\mathbb{E}[e^{\lambda S_n}] = (\cosh\lambda)^n\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="recovering-moments">Recovering Moments<a class="headerlink" href="#recovering-moments" title="Permanent link">&para;</a></h2>
 <p>The <span class="arithmatex">\(k\)</span>-th moment of <span class="arithmatex">\(S_n\)</span> can be read off by differentiating the MGF <span class="arithmatex">\(k\)</span> times at <span class="arithmatex">\(\lambda = 0\)</span>:</p>
-<div class="arithmatex">\[\mathbb{E}[S_n^k] = \left.\frac{d^k}{d\lambda^k} (\cosh\lambda)^n \right|_{\lambda=0}.\]</div>
+<div class="arithmatex">\[\mathbb{E}[S_n^k] = \left.\frac{d^k}{d\lambda^k} (\cosh\lambda)^n \right|_{\lambda=0}\]</div>
 <p>Using the Taylor expansion <span class="arithmatex">\(\cosh\lambda = 1 + \frac{\lambda^2}{2} + \frac{\lambda^4}{24} + \cdots\)</span> and thus</p>
 <div class="arithmatex">\[\log\cosh\lambda = \frac{\lambda^2}{2} - \frac{\lambda^4}{12} + \frac{\lambda^6}{45} - \cdots\]</div>
 <p>we obtain:</p>
-<div class="arithmatex">\[\mathbb{E}[e^{\lambda S_n}] = \exp\!\left(n \log\cosh\lambda\right) = \exp\!\left(\frac{n\lambda^2}{2} - \frac{n\lambda^4}{12} + \cdots\right).\]</div>
+<div class="arithmatex">\[\mathbb{E}[e^{\lambda S_n}] = \exp\!\left(n \log\cosh\lambda\right) = \exp\!\left(\frac{n\lambda^2}{2} - \frac{n\lambda^4}{12} + \cdots\right)\]</div>
 <p>Reading off coefficients:</p>
 <ul>
 <li><span class="arithmatex">\(\mathbb{E}[S_n^2] = n\)</span> (coefficient of <span class="arithmatex">\(\lambda^2/2!\)</span>).</li>
@@ -46219,19 +46219,19 @@
 <hr />
 <h2 id="one-line-proof-of-the-clt">One-Line Proof of the CLT<a class="headerlink" href="#one-line-proof-of-the-clt" title="Permanent link">&para;</a></h2>
 <p>Substitute <span class="arithmatex">\(\lambda = \theta / \sqrt{n}\)</span> for fixed <span class="arithmatex">\(\theta \in \mathbb{R}\)</span>:</p>
-<div class="arithmatex">\[\mathbb{E}\!\left[e^{\theta S_n / \sqrt{n}}\right] = \left(\cosh\frac{\theta}{\sqrt{n}}\right)^n.\]</div>
+<div class="arithmatex">\[\mathbb{E}\!\left[e^{\theta S_n / \sqrt{n}}\right] = \left(\cosh\frac{\theta}{\sqrt{n}}\right)^n\]</div>
 <p>Using <span class="arithmatex">\(\cosh x = 1 + \frac{x^2}{2} + O(x^4)\)</span> as <span class="arithmatex">\(x \to 0\)</span>:</p>
-<div class="arithmatex">\[\left(\cosh\frac{\theta}{\sqrt{n}}\right)^n = \left(1 + \frac{\theta^2}{2n} + O(n^{-2})\right)^n \xrightarrow{n\to\infty} e^{\theta^2/2}.\]</div>
+<div class="arithmatex">\[\left(\cosh\frac{\theta}{\sqrt{n}}\right)^n = \left(1 + \frac{\theta^2}{2n} + O(n^{-2})\right)^n \xrightarrow{n\to\infty} e^{\theta^2/2}\]</div>
 <p>Since <span class="arithmatex">\(e^{\theta^2/2}\)</span> is the MGF of <span class="arithmatex">\(\mathcal{N}(0,1)\)</span>, convergence of MGFs implies convergence in distribution:</p>
-<div class="arithmatex">\[\frac{S_n}{\sqrt{n}} \xrightarrow{d} \mathcal{N}(0,1).\]</div>
+<div class="arithmatex">\[\frac{S_n}{\sqrt{n}} \xrightarrow{d} \mathcal{N}(0,1)\]</div>
 <p>This is the Central Limit Theorem for the symmetric random walk — proved in one computation. The full CLT and its role in Donsker's theorem are developed in <a href="../scaling_limit/">Scaling Limit</a> and <a href="../donsker_theorem/">Donsker's Theorem</a>.</p>
 <hr />
 <h2 id="cumulants-and-large-deviations">Cumulants and Large Deviations<a class="headerlink" href="#cumulants-and-large-deviations" title="Permanent link">&para;</a></h2>
 <p>The <strong>cumulant generating function</strong> is</p>
-<div class="arithmatex">\[\Lambda(\lambda) := \log \mathbb{E}[e^{\lambda S_n}] = n \log\cosh\lambda.\]</div>
+<div class="arithmatex">\[\Lambda(\lambda) := \log \mathbb{E}[e^{\lambda S_n}] = n \log\cosh\lambda\]</div>
 <p>The <strong>cumulants</strong> <span class="arithmatex">\(\kappa_k\)</span> of <span class="arithmatex">\(S_n\)</span> are the coefficients in <span class="arithmatex">\(\Lambda(\lambda) = \sum_{k=1}^\infty \kappa_k \frac{\lambda^k}{k!}\)</span>. Since <span class="arithmatex">\(\log\cosh\lambda\)</span> has only even-degree terms, all odd cumulants vanish, consistent with the symmetric distribution.</p>
 <p>For <strong>large deviations</strong>, the rate function governing probabilities of the form <span class="arithmatex">\(\mathbb{P}(S_n/n \geq x)\)</span> is the Legendre–Fenchel transform of <span class="arithmatex">\(\log\cosh\)</span>:</p>
-<div class="arithmatex">\[I(x) = \sup_{\lambda \in \mathbb{R}} \bigl(\lambda x - \log\cosh\lambda\bigr).\]</div>
+<div class="arithmatex">\[I(x) = \sup_{\lambda \in \mathbb{R}} \bigl(\lambda x - \log\cosh\lambda\bigr)\]</div>
 <p>This can be evaluated explicitly: <span class="arithmatex">\(I(x) = \frac{1+x}{2}\log(1+x) + \frac{1-x}{2}\log(1-x)\)</span> for <span class="arithmatex">\(|x| \leq 1\)</span>, giving the large deviation principle <span class="arithmatex">\(\mathbb{P}(S_n/n \approx x) \approx e^{-nI(x)}\)</span>.</p>
 <hr />
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>

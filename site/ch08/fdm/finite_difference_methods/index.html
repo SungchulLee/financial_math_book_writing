@@ -46772,105 +46772,105 @@
 <hr />
 <h2 id="the-black-scholes-pde">The Black-Scholes PDE<a class="headerlink" href="#the-black-scholes-pde" title="Permanent link">&para;</a></h2>
 <p>For an option price <span class="arithmatex">\(V(t,S)\)</span> with no dividends:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS\frac{\partial V}{\partial S} - rV = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(V(T,S) = \Phi(S)\)</span> and appropriate boundary conditions.</p>
 <hr />
 <h2 id="time-to-maturity-formulation">Time-to-Maturity Formulation<a class="headerlink" href="#time-to-maturity-formulation" title="Permanent link">&para;</a></h2>
 <p>Define <span class="arithmatex">\(\tau = T - t\)</span> (time to maturity) and <span class="arithmatex">\(u(\tau, S) = V(T-\tau, S)\)</span>.</p>
 <p>The PDE becomes a <strong>forward</strong> problem:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial u}{\partial \tau} = \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 u}{\partial S^2} + rS\frac{\partial u}{\partial S} - ru
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>with <strong>initial</strong> condition <span class="arithmatex">\(u(0,S) = \Phi(S)\)</span>.</p>
 <p>This is the standard form for numerical solution: march forward from <span class="arithmatex">\(\tau = 0\)</span>.</p>
 <hr />
 <h2 id="grid-construction">Grid Construction<a class="headerlink" href="#grid-construction" title="Permanent link">&para;</a></h2>
 <h3 id="spatial-grid">Spatial Grid<a class="headerlink" href="#spatial-grid" title="Permanent link">&para;</a></h3>
 <p>Truncate the infinite domain <span class="arithmatex">\((0, \infty)\)</span> to <span class="arithmatex">\([0, S_{\max}]\)</span> and discretize:</p>
-<p>$$</p>
-<p>S_j = j \cdot \Delta S, \quad j = 0, 1, \ldots, M</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_j = j \cdot \Delta S, \quad j = 0, 1, \ldots, M
+\]</div>
 <p>where <span class="arithmatex">\(\Delta S = S_{\max}/M\)</span>.</p>
 <h3 id="temporal-grid">Temporal Grid<a class="headerlink" href="#temporal-grid" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\tau_n = n \cdot \Delta\tau, \quad n = 0, 1, \ldots, N</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau_n = n \cdot \Delta\tau, \quad n = 0, 1, \ldots, N
+\]</div>
 <p>where <span class="arithmatex">\(\Delta\tau = T/N\)</span>.</p>
 <h3 id="grid-notation">Grid Notation<a class="headerlink" href="#grid-notation" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(u_j^n \approx u(\tau_n, S_j)\)</span> denote the numerical approximation.</p>
 <hr />
 <h2 id="derivative-approximations">Derivative Approximations<a class="headerlink" href="#derivative-approximations" title="Permanent link">&para;</a></h2>
 <h3 id="first-derivative-central-difference">First Derivative (Central Difference)<a class="headerlink" href="#first-derivative-central-difference" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
-\frac{\partial u}{\partial S}\bigg|<em j_1="j+1">{S_j} \approx \frac{u</em>
-}} - u_{j-1}}{2\Delta S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\frac{\partial u}{\partial S}\bigg|_{S_j} \approx \frac{u_{j+1} - u_{j-1}}{2\Delta S}
+}
+\]</div>
 <p><strong>Accuracy</strong>: <span class="arithmatex">\(O((\Delta S)^2)\)</span></p>
 <h3 id="first-derivative-one-sided">First Derivative (One-Sided)<a class="headerlink" href="#first-derivative-one-sided" title="Permanent link">&para;</a></h3>
 <p>Forward: <span class="arithmatex">\(\frac{u_{j+1} - u_j}{\Delta S}\)</span>, Backward: <span class="arithmatex">\(\frac{u_j - u_{j-1}}{\Delta S}\)</span></p>
 <p><strong>Accuracy</strong>: <span class="arithmatex">\(O(\Delta S)\)</span></p>
 <h3 id="second-derivative">Second Derivative<a class="headerlink" href="#second-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
-\frac{\partial^2 u}{\partial S^2}\bigg|<em j_1="j+1">{S_j} \approx \frac{u</em>
-}} - 2u_j + u_{j-1}}{(\Delta S)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\frac{\partial^2 u}{\partial S^2}\bigg|_{S_j} \approx \frac{u_{j+1} - 2u_j + u_{j-1}}{(\Delta S)^2}
+}
+\]</div>
 <p><strong>Accuracy</strong>: <span class="arithmatex">\(O((\Delta S)^2)\)</span></p>
 <h3 id="time-derivative">Time Derivative<a class="headerlink" href="#time-derivative" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial u}{\partial \tau}\bigg|_{\tau_n} \approx \frac{u^{n+1} - u^n}{\Delta\tau}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial \tau}\bigg|_{\tau_n} \approx \frac{u^{n+1} - u^n}{\Delta\tau}
+\]</div>
 <hr />
 <h2 id="the-semi-discrete-system">The Semi-Discrete System<a class="headerlink" href="#the-semi-discrete-system" title="Permanent link">&para;</a></h2>
 <p>Substituting finite differences into the PDE at node <span class="arithmatex">\((n, j)\)</span>:</p>
-<p>$$</p>
-<p>\frac{u_j^{n+1} - u_j^n}{\Delta\tau} = \frac{1}{2}\sigma^2 S_j^2 \frac{u_{j+1}^n - 2u_j^n + u_{j-1}^n}{(\Delta S)^2} + rS_j\frac{u_{j+1}^n - u_{j-1}^n}{2\Delta S} - ru_j^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{u_j^{n+1} - u_j^n}{\Delta\tau} = \frac{1}{2}\sigma^2 S_j^2 \frac{u_{j+1}^n - 2u_j^n + u_{j-1}^n}{(\Delta S)^2} + rS_j\frac{u_{j+1}^n - u_{j-1}^n}{2\Delta S} - ru_j^n
+\]</div>
 <h3 id="coefficient-form">Coefficient Form<a class="headerlink" href="#coefficient-form" title="Permanent link">&para;</a></h3>
 <p>Define coefficients:</p>
-<p>$$</p>
-<p>a_j = \frac{\Delta\tau}{2}\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} - \frac{rS_j}{\Delta S}\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>b_j = -\Delta\tau\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} + r\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>c_j = \frac{\Delta\tau}{2}\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} + \frac{rS_j}{\Delta S}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+a_j = \frac{\Delta\tau}{2}\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} - \frac{rS_j}{\Delta S}\right)
+\]</div>
+<div class="arithmatex">\[
+b_j = -\Delta\tau\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} + r\right)
+\]</div>
+<div class="arithmatex">\[
+c_j = \frac{\Delta\tau}{2}\left(\frac{\sigma^2 S_j^2}{(\Delta S)^2} + \frac{rS_j}{\Delta S}\right)
+\]</div>
 <p>The explicit scheme becomes:</p>
-<p>$$</p>
-<p>u_j^{n+1} = a_j u_{j-1}^n + (1 + b_j)u_j^n + c_j u_{j+1}^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u_j^{n+1} = a_j u_{j-1}^n + (1 + b_j)u_j^n + c_j u_{j+1}^n
+\]</div>
 <hr />
 <h2 id="matrix-formulation">Matrix Formulation<a class="headerlink" href="#matrix-formulation" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(\mathbf{u}^n = (u_1^n, u_2^n, \ldots, u_{M-1}^n)^T\)</span> (excluding boundary nodes).</p>
 <p>The scheme can be written as:</p>
-<p>$$</p>
-<p>\mathbf{u}^{n+1} = A\mathbf{u}^n + \mathbf{b}^n</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbf{u}^{n+1} = A\mathbf{u}^n + \mathbf{b}^n
+\]</div>
 <p>where <span class="arithmatex">\(A\)</span> is a <strong>tridiagonal matrix</strong> and <span class="arithmatex">\(\mathbf{b}^n\)</span> incorporates boundary conditions.</p>
-<p>$$</p>
-<p>A = \begin{pmatrix}
-1+b_1 &amp; c_1 &amp; 0 &amp; \cdots \
-a_2 &amp; 1+b_2 &amp; c_2 &amp; \cdots \
-0 &amp; a_3 &amp; 1+b_3 &amp; \cdots \
+<div class="arithmatex">\[
+A = \begin{pmatrix}
+1+b_1 &amp; c_1 &amp; 0 &amp; \cdots \\
+a_2 &amp; 1+b_2 &amp; c_2 &amp; \cdots \\
+0 &amp; a_3 &amp; 1+b_3 &amp; \cdots \\
 \vdots &amp; &amp; \ddots &amp; \ddots
-\end{pmatrix}</p>
-<p>$$</p>
+\end{pmatrix}
+\]</div>
 <hr />
 <h2 id="log-price-transformation">Log-Price Transformation<a class="headerlink" href="#log-price-transformation" title="Permanent link">&para;</a></h2>
 <p>Using <span class="arithmatex">\(x = \log S\)</span> often improves numerical behavior.</p>
 <h3 id="transformed-pde">Transformed PDE<a class="headerlink" href="#transformed-pde" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\frac{\partial u}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 u}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial u}{\partial x} - ru</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial \tau} = \frac{\sigma^2}{2}\frac{\partial^2 u}{\partial x^2} + \left(r - \frac{\sigma^2}{2}\right)\frac{\partial u}{\partial x} - ru
+\]</div>
 <h3 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Constant diffusion coefficient</strong>: <span class="arithmatex">\(\frac{\sigma^2}{2}\)</span> instead of <span class="arithmatex">\(\frac{\sigma^2 S^2}{2}\)</span></li>
@@ -46879,9 +46879,9 @@ a_2 &amp; 1+b_2 &amp; c_2 &amp; \cdots \
 <li>Removes one source of spatial variation in coefficients</li>
 </ol>
 <h3 id="grid-in-log-space">Grid in Log-Space<a class="headerlink" href="#grid-in-log-space" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>x_j = x_{\min} + j\Delta x, \quad S_j = e^{x_j}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+x_j = x_{\min} + j\Delta x, \quad S_j = e^{x_j}
+\]</div>
 <hr />
 <h2 id="boundary-conditions">Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permanent link">&para;</a></h2>
 <h3 id="at-s-0-or-x-">At S = 0 (or x → -∞)<a class="headerlink" href="#at-s-0-or-x-" title="Permanent link">&para;</a></h3>
@@ -46892,9 +46892,9 @@ a_2 &amp; 1+b_2 &amp; c_2 &amp; \cdots \
 <p><strong>Put</strong>: <span class="arithmatex">\(V(t, S_{\max}) \approx 0\)</span></p>
 <h3 id="neumann-derivative-conditions">Neumann (Derivative) Conditions<a class="headerlink" href="#neumann-derivative-conditions" title="Permanent link">&para;</a></h3>
 <p>For large <span class="arithmatex">\(S\)</span>, call delta approaches 1:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial S}(t, S_{\max}) = 1</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial S}(t, S_{\max}) = 1
+\]</div>
 <p>Implemented using one-sided differences or ghost points.</p>
 <hr />
 <h2 id="implementation-considerations">Implementation Considerations<a class="headerlink" href="#implementation-considerations" title="Permanent link">&para;</a></h2>
@@ -46911,9 +46911,9 @@ a_2 &amp; 1+b_2 &amp; c_2 &amp; \cdots \
 3. Use Rannacher time-stepping</p>
 <h3 id="coordinate-stretching">Coordinate Stretching<a class="headerlink" href="#coordinate-stretching" title="Permanent link">&para;</a></h3>
 <p>Non-uniform grids concentrate points where needed:</p>
-<p>$$</p>
-<p>S_j = K \sinh\left(\frac{j - M/2}{M/2} \cdot \alpha\right) / \sinh(\alpha) + K</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_j = K \sinh\left(\frac{j - M/2}{M/2} \cdot \alpha\right) / \sinh(\alpha) + K
+\]</div>
 <hr />
 <h2 id="algorithm-summary">Algorithm Summary<a class="headerlink" href="#algorithm-summary" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>1. Set up grid: S_j, τ_n
@@ -46955,11 +46955,11 @@ a_2 &amp; 1+b_2 &amp; c_2 &amp; \cdots \
 </tr>
 </tbody>
 </table>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{u_j^{n+1} - u_j^n}{\Delta\tau} = \frac{\sigma^2 S_j^2}{2}\frac{u_{j+1} - 2u_j + u_{j-1}}{(\Delta S)^2} + rS_j\frac{u_{j+1} - u_{j-1}}{2\Delta S} - ru_j
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Finite differences convert the PDE into a structured linear algebra problem amenable to efficient numerical solution.</strong></p>
 
 

@@ -47380,27 +47380,27 @@
 <h2 id="mathematical-foundations">Mathematical Foundations<a class="headerlink" href="#mathematical-foundations" title="Permanent link">&para;</a></h2>
 <h3 id="1-classical-expectation">1. Classical Expectation<a class="headerlink" href="#1-classical-expectation" title="Permanent link">&para;</a></h3>
 <p><strong>Linear Expectation</strong>: Given a probability space <span class="arithmatex">\((\Omega, \mathcal{F}, P)\)</span> and random variable <span class="arithmatex">\(\xi \in L^2(\Omega, \mathcal{F}, P)\)</span>:</p>
-<p>$$</p>
-<p>E[\xi] = \int_{\Omega} \xi(\omega) \, dP(\omega)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E[\xi] = \int_{\Omega} \xi(\omega) \, dP(\omega)
+\]</div>
 <p><strong>Properties</strong>:
 1. <strong>Linearity</strong>: <span class="arithmatex">\(E[a\xi + b\eta] = aE[\xi] + bE[\eta]\)</span>
 2. <strong>Monotonicity</strong>: <span class="arithmatex">\(\xi \geq \eta \implies E[\xi] \geq E[\eta]\)</span>
 3. <strong>Constant preserving</strong>: <span class="arithmatex">\(E[c] = c\)</span> for constants <span class="arithmatex">\(c\)</span>
 4. <strong>Tower property</strong>: <span class="arithmatex">\(E[E[\xi|\mathcal{G}]] = E[\xi]\)</span></p>
 <p><strong>Conditional Expectation</strong>: For sub-<span class="arithmatex">\(\sigma\)</span>-algebra <span class="arithmatex">\(\mathcal{G} \subseteq \mathcal{F}\)</span>:</p>
-<p>$$</p>
-<p>E[\xi|\mathcal{G}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E[\xi|\mathcal{G}]
+\]</div>
 <p>is the unique <span class="arithmatex">\(\mathcal{G}\)</span>-measurable random variable satisfying:</p>
-<p>$$</p>
-<p>E[\xi \mathbb{1}_A] = E[E[\xi|\mathcal{G}] \mathbb{1}_A] \quad \text{for all } A \in \mathcal{G}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E[\xi \mathbb{1}_A] = E[E[\xi|\mathcal{G}] \mathbb{1}_A] \quad \text{for all } A \in \mathcal{G}
+\]</div>
 <h3 id="2-backward-stochastic-differential-equations">2. Backward Stochastic Differential Equations<a class="headerlink" href="#2-backward-stochastic-differential-equations" title="Permanent link">&para;</a></h3>
 <p><strong>BSDE Definition</strong>: A pair of processes <span class="arithmatex">\((Y_t, Z_t)_{t \in [0,T]}\)</span> satisfying:</p>
-<p>$$</p>
-<p>Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\xi\)</span>: Terminal condition (random variable, <span class="arithmatex">\(\mathcal{F}_T\)</span>-measurable)
 - <span class="arithmatex">\(g: [0,T] \times \mathbb{R} \times \mathbb{R}^d \to \mathbb{R}\)</span>: Generator (driver)
@@ -47408,33 +47408,33 @@
 - <span class="arithmatex">\(Y_t\)</span>: Solution process (value process)
 - <span class="arithmatex">\(Z_t\)</span>: Control process (gradient process)</p>
 <p><strong>Differential Form</strong>:</p>
-<p>$$</p>
-<p>dY_t = -g(t, Y_t, Z_t) \, dt + Z_t \, dW_t, \quad Y_T = \xi</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = -g(t, Y_t, Z_t) \, dt + Z_t \, dW_t, \quad Y_T = \xi
+\]</div>
 <h3 id="3-well-posedness">3. Well-Posedness<a class="headerlink" href="#3-well-posedness" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Pardoux-Peng, 1990): Suppose:
 1. <span class="arithmatex">\(g\)</span> is uniformly Lipschitz in <span class="arithmatex">\((y, z)\)</span>
 2. <span class="arithmatex">\(\mathbb{E}\left[\int_0^T |g(t, 0, 0)|^2 dt\right] &lt; \infty\)</span>
 3. <span class="arithmatex">\(\mathbb{E}[|\xi|^2] &lt; \infty\)</span></p>
 <p>Then there exists a unique adapted solution <span class="arithmatex">\((Y_t, Z_t)\)</span> to the BSDE with:</p>
-<p>$$</p>
-<p>\mathbb{E}\left[\sup_{t \in [0,T]} |Y_t|^2 + \int_0^T |Z_t|^2 dt\right] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\sup_{t \in [0,T]} |Y_t|^2 + \int_0^T |Z_t|^2 dt\right] &lt; \infty
+\]</div>
 <p><strong>Proof Sketch</strong>: Use Picard iteration with contraction mapping in appropriate Banach space of adapted processes.</p>
 <h2 id="g-expectation-definition">g-Expectation Definition<a class="headerlink" href="#g-expectation-definition" title="Permanent link">&para;</a></h2>
 <h3 id="1-conditional-g-expectation">1. Conditional g-Expectation<a class="headerlink" href="#1-conditional-g-expectation" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Given generator <span class="arithmatex">\(g\)</span> and terminal condition <span class="arithmatex">\(\xi\)</span>, the <strong>conditional g-expectation</strong> is:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[\xi|\mathcal{F}_t] := Y_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi|\mathcal{F}_t] := Y_t
+\]</div>
 <p>where <span class="arithmatex">\(Y_t\)</span> is the solution to the BSDE:</p>
-<p>$$</p>
-<p>Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds - \int_t^T Z_s \, dW_s
+\]</div>
 <p><strong>g-Expectation</strong>: The unconditional version is:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[\xi] := \mathcal{E}_g[\xi|\mathcal{F}_0] = Y_0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi] := \mathcal{E}_g[\xi|\mathcal{F}_0] = Y_0
+\]</div>
 <p><strong>Interpretation</strong>: 
 - Generalizes conditional expectation
 - Depends on entire path through generator <span class="arithmatex">\(g\)</span>
@@ -47455,118 +47455,118 @@
 <p><strong>Time Consistency</strong>: </p>
 </li>
 </ol>
-<p>$$</p>
-<p>\mathcal{E}_g[\mathcal{E}_g[\xi|\mathcal{F}_t]|\mathcal{F}_s] = \mathcal{E}_g[\xi|\mathcal{F}_s] \quad \text{for } s \leq t</p>
-<p>$$</p>
+<p>$$
+   \mathcal{E}_g[\mathcal{E}_g[\xi|\mathcal{F}_t]|\mathcal{F}_s] = \mathcal{E}_g[\xi|\mathcal{F}_s] \quad \text{for } s \leq t
+   $$</p>
 <p><strong>Proof</strong> (Time Consistency): Let <span class="arithmatex">\(Y_t = \mathcal{E}_g[\xi|\mathcal{F}_t]\)</span>. Then:</p>
-<p>$$</p>
-<p>Y_s = Y_t + \int_s^t g(r, Y_r, Z_r) \, dr - \int_s^t Z_r \, dW_r</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_s = Y_t + \int_s^t g(r, Y_r, Z_r) \, dr - \int_s^t Z_r \, dW_r
+\]</div>
 <p>This BSDE with terminal condition <span class="arithmatex">\(Y_t\)</span> has solution <span class="arithmatex">\(Y_s\)</span> at time <span class="arithmatex">\(s\)</span>, establishing time consistency.</p>
 <h3 id="3-examples">3. Examples<a class="headerlink" href="#3-examples" title="Permanent link">&para;</a></h3>
 <p><strong>Example 1</strong> (Linear Case): If <span class="arithmatex">\(g(t, y, z) = 0\)</span>, then:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[\xi|\mathcal{F}_t] = E[\xi|\mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi|\mathcal{F}_t] = E[\xi|\mathcal{F}_t]
+\]</div>
 <p>the classical conditional expectation.</p>
 <p><strong>Example 2</strong> (Exponential Utility): If <span class="arithmatex">\(g(t, y, z) = -\frac{\gamma}{2} |z|^2\)</span>, then:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[\xi] = -\frac{1}{\gamma} \log E[e^{-\gamma \xi}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi] = -\frac{1}{\gamma} \log E[e^{-\gamma \xi}]
+\]</div>
 <p>the certainty equivalent under exponential utility with risk aversion <span class="arithmatex">\(\gamma\)</span>.</p>
 <p><strong>Example 3</strong> (Worst-Case Expectation): If <span class="arithmatex">\(g(t, y, z) = \alpha |z|\)</span>, then:</p>
-<p>$$</p>
-<p>\mathcal{E}<em _mathbb_Q="\mathbb{Q">g[\xi] = \sup</em>} \in \mathcal{P<em _mathbb_Q="\mathbb{Q">{\alpha}} E</em>[\xi]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi] = \sup_{\mathbb{Q} \in \mathcal{P}_{\alpha}} E_{\mathbb{Q}}[\xi]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{P}_{\alpha}\)</span> is a set of probability measures with bounded density.</p>
 <h2 id="generators-and-their-properties">Generators and Their Properties<a class="headerlink" href="#generators-and-their-properties" title="Permanent link">&para;</a></h2>
 <h3 id="1-lipschitz-generators">1. Lipschitz Generators<a class="headerlink" href="#1-lipschitz-generators" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Generator <span class="arithmatex">\(g\)</span> is <strong>Lipschitz</strong> if there exists <span class="arithmatex">\(K &gt; 0\)</span> such that:</p>
-<p>$$</p>
-<p>|g(t, y_1, z_1) - g(t, y_2, z_2)| \leq K(|y_1 - y_2| + |z_1 - z_2|)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|g(t, y_1, z_1) - g(t, y_2, z_2)| \leq K(|y_1 - y_2| + |z_1 - z_2|)
+\]</div>
 <p>for all <span class="arithmatex">\((t, y_1, z_1), (t, y_2, z_2)\)</span>.</p>
 <p><strong>Consequence</strong>: Lipschitz generators ensure unique solutions to BSDEs and well-defined g-expectations.</p>
 <h3 id="2-convexity">2. Convexity<a class="headerlink" href="#2-convexity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Generator <span class="arithmatex">\(g(t, y, z)\)</span> is <strong>convex</strong> in <span class="arithmatex">\((y, z)\)</span> if:</p>
-<p>$$</p>
-<p>g(t, \lambda y_1 + (1-\lambda) y_2, \lambda z_1 + (1-\lambda) z_2) \leq \lambda g(t, y_1, z_1) + (1-\lambda) g(t, y_2, z_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, \lambda y_1 + (1-\lambda) y_2, \lambda z_1 + (1-\lambda) z_2) \leq \lambda g(t, y_1, z_1) + (1-\lambda) g(t, y_2, z_2)
+\]</div>
 <p>for all <span class="arithmatex">\(\lambda \in [0, 1]\)</span>.</p>
 <p><strong>Implication</strong>: Convex generators lead to concave g-expectations:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[\lambda \xi_1 + (1-\lambda) \xi_2] \geq \lambda \mathcal{E}_g[\xi_1] + (1-\lambda) \mathcal{E}_g[\xi_2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\lambda \xi_1 + (1-\lambda) \xi_2] \geq \lambda \mathcal{E}_g[\xi_1] + (1-\lambda) \mathcal{E}_g[\xi_2]
+\]</div>
 <p><strong>Risk Aversion</strong>: Convexity in <span class="arithmatex">\(z\)</span> corresponds to risk aversion in the associated valuation.</p>
 <h3 id="3-positive-homogeneity">3. Positive Homogeneity<a class="headerlink" href="#3-positive-homogeneity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Generator <span class="arithmatex">\(g(t, y, z)\)</span> is <strong>positively homogeneous</strong> in <span class="arithmatex">\((y, z)\)</span> if:</p>
-<p>$$</p>
-<p>g(t, \lambda y, \lambda z) = \lambda g(t, y, z)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, \lambda y, \lambda z) = \lambda g(t, y, z)
+\]</div>
 <p>for all <span class="arithmatex">\(\lambda &gt; 0\)</span>.</p>
 <p><strong>Consequence</strong>: The corresponding g-expectation is positively homogeneous:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[\lambda \xi] = \lambda \mathcal{E}_g[\xi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\lambda \xi] = \lambda \mathcal{E}_g[\xi]
+\]</div>
 <p>for <span class="arithmatex">\(\lambda &gt; 0\)</span>.</p>
 <h3 id="4-subadditivity">4. Subadditivity<a class="headerlink" href="#4-subadditivity" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: Generator <span class="arithmatex">\(g\)</span> induces <strong>subadditive</strong> g-expectation if:</p>
-<p>$$</p>
-<p>\mathcal{E}_g[\xi_1 + \xi_2] \leq \mathcal{E}_g[\xi_1] + \mathcal{E}_g[\xi_2]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi_1 + \xi_2] \leq \mathcal{E}_g[\xi_1] + \mathcal{E}_g[\xi_2]
+\]</div>
 <p><strong>Sufficient Condition</strong>: If <span class="arithmatex">\(g(t, y, z)\)</span> is convex and positively homogeneous in <span class="arithmatex">\((y, z)\)</span>, then <span class="arithmatex">\(\mathcal{E}_g\)</span> is subadditive.</p>
 <h2 id="comparison-theorems">Comparison Theorems<a class="headerlink" href="#comparison-theorems" title="Permanent link">&para;</a></h2>
 <h3 id="1-comparison-of-terminal-conditions">1. Comparison of Terminal Conditions<a class="headerlink" href="#1-comparison-of-terminal-conditions" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Comparison): Let <span class="arithmatex">\((Y_t, Z_t)\)</span> and <span class="arithmatex">\((\bar{Y}_t, \bar{Z}_t)\)</span> be solutions to BSDEs with the same generator <span class="arithmatex">\(g\)</span> but terminal conditions <span class="arithmatex">\(\xi\)</span> and <span class="arithmatex">\(\bar{\xi}\)</span> respectively.</p>
 <p>If <span class="arithmatex">\(\xi \leq \bar{\xi}\)</span> a.s., then:</p>
-<p>$$</p>
-<p>Y_t \leq \bar{Y}_t \quad \text{a.s. for all } t \in [0, T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t \leq \bar{Y}_t \quad \text{a.s. for all } t \in [0, T]
+\]</div>
 <p><strong>Proof</strong>: Define <span class="arithmatex">\(\Delta Y_t = \bar{Y}_t - Y_t\)</span> and <span class="arithmatex">\(\Delta Z_t = \bar{Z}_t - Z_t\)</span>. Then:</p>
-<p>$$</p>
-<p>d(\Delta Y_t) = -[g(t, \bar{Y}_t, \bar{Z}_t) - g(t, Y_t, Z_t)] \, dt + \Delta Z_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(\Delta Y_t) = -[g(t, \bar{Y}_t, \bar{Z}_t) - g(t, Y_t, Z_t)] \, dt + \Delta Z_t \, dW_t
+\]</div>
 <p>Apply Itô's formula to <span class="arithmatex">\((\Delta Y_t)^-\)</span> (negative part) and use Lipschitz property to show <span class="arithmatex">\((\Delta Y_t)^- = 0\)</span>.</p>
 <h3 id="2-comparison-of-generators">2. Comparison of Generators<a class="headerlink" href="#2-comparison-of-generators" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\((Y_t, Z_t)\)</span> and <span class="arithmatex">\((\bar{Y}_t, \bar{Z}_t)\)</span> be solutions to BSDEs with generators <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(\bar{g}\)</span> respectively, both with the same terminal condition <span class="arithmatex">\(\xi\)</span>.</p>
 <p>If <span class="arithmatex">\(g(t, y, z) \geq \bar{g}(t, y, z)\)</span> for all <span class="arithmatex">\((t, y, z)\)</span>, then:</p>
-<p>$$</p>
-<p>Y_t \leq \bar{Y}_t \quad \text{a.s. for all } t \in [0, T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t \leq \bar{Y}_t \quad \text{a.s. for all } t \in [0, T]
+\]</div>
 <p><strong>Interpretation</strong>: Larger generator → Larger "running cost" → Smaller value process.</p>
 <p><strong>Application</strong>: If <span class="arithmatex">\(g_1 \leq g_2\)</span>, then:</p>
-<p>$$</p>
-<p>\mathcal{E}<em g_2="g_2">{g_1}[\xi] \geq \mathcal{E}</em>[\xi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_{g_1}[\xi] \geq \mathcal{E}_{g_2}[\xi]
+\]</div>
 <h3 id="3-strict-comparison">3. Strict Comparison<a class="headerlink" href="#3-strict-comparison" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Strict Comparison): Under additional regularity (strict inequality on a set of positive measure), strict inequalities hold:</p>
-<p>$$</p>
-<p>\xi &lt; \bar{\xi} \text{ a.s. on set } A \text{ with } P(A) &gt; 0 \implies Y_t &lt; \bar{Y}_t \text{ a.s.}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\xi &lt; \bar{\xi} \text{ a.s. on set } A \text{ with } P(A) &gt; 0 \implies Y_t &lt; \bar{Y}_t \text{ a.s.}
+\]</div>
 <h2 id="representation-theorems">Representation Theorems<a class="headerlink" href="#representation-theorems" title="Permanent link">&para;</a></h2>
 <h3 id="1-minimal-and-maximal-representations">1. Minimal and Maximal Representations<a class="headerlink" href="#1-minimal-and-maximal-representations" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong> (Peng): For convex and positively homogeneous generator <span class="arithmatex">\(g\)</span>, the g-expectation admits representations:</p>
-<p>$$</p>
-<p>\mathcal{E}<em _mathbb_Q="\mathbb{Q">g[\xi] = \sup</em>[\xi]} \in \mathcal{Q}} E_{\mathbb{Q}}[\xi] = \inf_{\mathbb{Q} \in \mathcal{Q}^c} E_{\mathbb{Q}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi] = \sup_{\mathbb{Q} \in \mathcal{Q}} E_{\mathbb{Q}}[\xi] = \inf_{\mathbb{Q} \in \mathcal{Q}^c} E_{\mathbb{Q}}[\xi]
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\mathcal{Q}\)</span>: Set of "admissible" probability measures
 - <span class="arithmatex">\(\mathcal{Q}^c\)</span>: Complement set</p>
 <p><strong>Construction</strong>: The set <span class="arithmatex">\(\mathcal{Q}\)</span> is characterized through the generator <span class="arithmatex">\(g\)</span> via Girsanov's theorem.</p>
 <h3 id="2-entropic-representation">2. Entropic Representation<a class="headerlink" href="#2-entropic-representation" title="Permanent link">&para;</a></h3>
 <p><strong>Exponential Utility Case</strong>: For <span class="arithmatex">\(g(t, y, z) = -\frac{\gamma}{2} |z|^2\)</span>:</p>
-<p>$$</p>
-<p>\mathcal{E}<em _mathbb_Q="\mathbb{Q">g[\xi] = \sup</em>|P) \right}} \ll P} \left{ E_{\mathbb{Q}}[\xi] - \frac{1}{\gamma} H(\mathbb{Q</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{E}_g[\xi] = \sup_{\mathbb{Q} \ll P} \left\{ E_{\mathbb{Q}}[\xi] - \frac{1}{\gamma} H(\mathbb{Q}|P) \right\}
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>H(\mathbb{Q}|P) = E_{\mathbb{Q}}\left[\log \frac{d\mathbb{Q}}{dP}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H(\mathbb{Q}|P) = E_{\mathbb{Q}}\left[\log \frac{d\mathbb{Q}}{dP}\right]
+\]</div>
 <p>is the relative entropy (Kullback-Leibler divergence).</p>
 <p><strong>Proof</strong>: The optimal measure <span class="arithmatex">\(\mathbb{Q}^*\)</span> has Radon-Nikodym derivative:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^*}{dP}\bigg|_{\mathcal{F}_T} = \exp\left(-\gamma \xi + \frac{\gamma^2}{2} \int_0^T |Z_t|^2 dt - \gamma \int_0^T Z_t \, dW_t\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^*}{dP}\bigg|_{\mathcal{F}_T} = \exp\left(-\gamma \xi + \frac{\gamma^2}{2} \int_0^T |Z_t|^2 dt - \gamma \int_0^T Z_t \, dW_t\right)
+\]</div>
 <p>where <span class="arithmatex">\(Z_t\)</span> comes from the BSDE solution.</p>
 <h3 id="3-choquet-capacity-representation">3. Choquet Capacity Representation<a class="headerlink" href="#3-choquet-capacity-representation" title="Permanent link">&para;</a></h3>
 <p><strong>Non-Additive Measure</strong>: For certain generators, g-expectations correspond to integration with respect to Choquet capacities.</p>
@@ -47574,9 +47574,9 @@
 1. <span class="arithmatex">\(\nu(\emptyset) = 0\)</span>, <span class="arithmatex">\(\nu(\Omega) = 1\)</span>
 2. Monotonicity: <span class="arithmatex">\(A \subseteq B \implies \nu(A) \leq \nu(B)\)</span></p>
 <p><strong>Choquet Integral</strong>:</p>
-<p>$$</p>
-<p>\int_{\Omega} \xi \, d\nu = \int_0^{\infty} \nu({\xi \geq t}) \, dt + \int_{-\infty}^0 [\nu({\xi \geq t}) - 1] \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_{\Omega} \xi \, d\nu = \int_0^{\infty} \nu(\{\xi \geq t\}) \, dt + \int_{-\infty}^0 [\nu(\{\xi \geq t\}) - 1] \, dt
+\]</div>
 <p><strong>Connection</strong>: Certain g-expectations can be written as Choquet integrals with appropriately defined capacity.</p>
 <h2 id="dynamic-risk-measures">Dynamic Risk Measures<a class="headerlink" href="#dynamic-risk-measures" title="Permanent link">&para;</a></h2>
 <h3 id="1-coherent-risk-measures">1. Coherent Risk Measures<a class="headerlink" href="#1-coherent-risk-measures" title="Permanent link">&para;</a></h3>
@@ -47588,116 +47588,116 @@
 <li><strong>Subadditivity</strong>: <span class="arithmatex">\(\rho(X + Y) \leq \rho(X) + \rho(Y)\)</span></li>
 </ol>
 <p><strong>Example</strong>: Average Value-at-Risk (AVaR or CVaR):</p>
-<p>$$</p>
-<p>\text{AVaR}_{\alpha}(X) = \frac{1}{\alpha} \int_0^{\alpha} \text{VaR}_u(X) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{AVaR}_{\alpha}(X) = \frac{1}{\alpha} \int_0^{\alpha} \text{VaR}_u(X) \, du
+\]</div>
 <h3 id="2-dynamic-coherent-risk-measures">2. Dynamic Coherent Risk Measures<a class="headerlink" href="#2-dynamic-coherent-risk-measures" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: A family <span class="arithmatex">\(\{\rho_t\}_{t \in [0,T]}\)</span> is a <strong>dynamic coherent risk measure</strong> if each <span class="arithmatex">\(\rho_t\)</span> is coherent and satisfies <strong>time consistency</strong>:</p>
-<p>$$</p>
-<p>\rho_s(\rho_t(X)) = \rho_s(X) \quad \text{for } s \leq t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_s(\rho_t(X)) = \rho_s(X) \quad \text{for } s \leq t
+\]</div>
 <p><strong>Theorem</strong> (Delbaen et al., 2010): Dynamic coherent risk measures correspond to g-expectations with generators that are convex, positively homogeneous, and Lipschitz.</p>
 <p><strong>Representation</strong>: </p>
-<p>$$</p>
-<p>\rho_t(X) = \mathcal{E}_g[-X|\mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\rho_t(X) = \mathcal{E}_g[-X|\mathcal{F}_t]
+\]</div>
 <p>for appropriate generator <span class="arithmatex">\(g\)</span>.</p>
 <h3 id="3-connection-to-bsdes">3. Connection to BSDEs<a class="headerlink" href="#3-connection-to-bsdes" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(\rho_t\)</span> is a dynamic coherent risk measure, then <span class="arithmatex">\(Y_t = \rho_t(X)\)</span> satisfies a BSDE:</p>
-<p>$$</p>
-<p>dY_t = g(t, Y_t, Z_t) \, dt - Z_t \, dW_t, \quad Y_T = X</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = g(t, Y_t, Z_t) \, dt - Z_t \, dW_t, \quad Y_T = X
+\]</div>
 <p>where <span class="arithmatex">\(g\)</span> is convex and positively homogeneous in <span class="arithmatex">\((y, z)\)</span>.</p>
 <p><strong>Converse</strong>: Given such a generator, the g-expectation defines a dynamic coherent risk measure.</p>
 <h2 id="applications-to-finance">Applications to Finance<a class="headerlink" href="#applications-to-finance" title="Permanent link">&para;</a></h2>
 <h3 id="1-option-pricing-under-model-uncertainty">1. Option Pricing Under Model Uncertainty<a class="headerlink" href="#1-option-pricing-under-model-uncertainty" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Uncertain volatility <span class="arithmatex">\(\sigma \in [\underline{\sigma}, \overline{\sigma}]\)</span>.</p>
 <p><strong>Robust Price</strong>: The seller's (super-replication) price is:</p>
-<p>$$</p>
-<p>V_0 = \mathcal{E}_g[\Phi(S_T)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \mathcal{E}_g[\Phi(S_T)]
+\]</div>
 <p>where:</p>
-<p>$$</p>
-<p>g(t, y, z) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left{ -\frac{1}{2} \sigma^2 |z|^2 \right} = -\frac{1}{2} \underline{\sigma}^2 |z|^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, y, z) = \sup_{\sigma \in [\underline{\sigma}, \overline{\sigma}]} \left\{ -\frac{1}{2} \sigma^2 |z|^2 \right\} = -\frac{1}{2} \underline{\sigma}^2 |z|^2
+\]</div>
 <p>for positive gamma positions.</p>
 <p><strong>BSDE</strong>:</p>
-<p>$$</p>
-<p>dY_t = \frac{1}{2} \underline{\sigma}^2 |Z_t|^2 \, dt + Z_t \, dW_t, \quad Y_T = \Phi(S_T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dY_t = \frac{1}{2} \underline{\sigma}^2 |Z_t|^2 \, dt + Z_t \, dW_t, \quad Y_T = \Phi(S_T)
+\]</div>
 <p><strong>Hedging Strategy</strong>: The optimal hedge is <span class="arithmatex">\(\Delta_t = Z_t\)</span>.</p>
 <h3 id="2-utility-indifference-pricing">2. Utility Indifference Pricing<a class="headerlink" href="#2-utility-indifference-pricing" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Agent with exponential utility <span class="arithmatex">\(u(x) = -e^{-\gamma x}\)</span> and risk aversion <span class="arithmatex">\(\gamma &gt; 0\)</span>.</p>
 <p><strong>Indifference Price</strong>: Price <span class="arithmatex">\(p\)</span> such that:</p>
-<p>$$</p>
-<p>\sup_{\theta} E[-e^{-\gamma(X_T^{\theta, 0})}] = \sup_{\theta} E[-e^{-\gamma(X_T^{\theta, p} + \Phi)}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{\theta} E[-e^{-\gamma(X_T^{\theta, 0})}] = \sup_{\theta} E[-e^{-\gamma(X_T^{\theta, p} + \Phi)}]
+\]</div>
 <p>where <span class="arithmatex">\(X_T^{\theta, v}\)</span> is terminal wealth from initial capital <span class="arithmatex">\(v\)</span> and strategy <span class="arithmatex">\(\theta\)</span>.</p>
 <p><strong>g-Expectation</strong>: The indifference price satisfies:</p>
-<p>$$</p>
-<p>p = \mathcal{E}_g[\Phi]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+p = \mathcal{E}_g[\Phi]
+\]</div>
 <p>with generator:</p>
-<p>$$</p>
-<p>g(t, y, z) = -\frac{\gamma}{2} |z - \sigma S_t|^2 + \frac{\gamma}{2} \sigma^2 S_t^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, y, z) = -\frac{\gamma}{2} |z - \sigma S_t|^2 + \frac{\gamma}{2} \sigma^2 S_t^2
+\]</div>
 <h3 id="3-optimal-investment-with-ambiguity">3. Optimal Investment with Ambiguity<a class="headerlink" href="#3-optimal-investment-with-ambiguity" title="Permanent link">&para;</a></h3>
 <p><strong>Problem</strong>: Maximize worst-case expected utility:</p>
-<p>$$</p>
-<p>\sup_{\pi} \inf_{\mathbb{Q} \in \mathcal{Q}} E_{\mathbb{Q}}[u(X_T^{\pi})]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{\pi} \inf_{\mathbb{Q} \in \mathcal{Q}} E_{\mathbb{Q}}[u(X_T^{\pi})]
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{Q}\)</span> is a set of probability measures representing ambiguity.</p>
 <p><strong>Solution</strong>: The value function satisfies:</p>
-<p>$$</p>
-<p>V(t, x) = \mathcal{E}_g[u(X_T) | X_t = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, x) = \mathcal{E}_g[u(X_T) | X_t = x]
+\]</div>
 <p>with appropriate generator encoding ambiguity aversion.</p>
 <p><strong>Optimal Strategy</strong>: Extracted from the <span class="arithmatex">\(Z\)</span> process in the BSDE solution:</p>
-<p>$$</p>
-<p>\pi_t^* = f(Z_t, X_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\pi_t^* = f(Z_t, X_t)
+\]</div>
 <h3 id="4-credit-risk-and-cva">4. Credit Risk and CVA<a class="headerlink" href="#4-credit-risk-and-cva" title="Permanent link">&para;</a></h3>
 <p><strong>Credit Valuation Adjustment (CVA)</strong>: Adjustment for counterparty default risk.</p>
 <p><strong>g-Expectation Framework</strong>: The CVA can be computed using:</p>
-<p>$$</p>
-<p>\text{CVA} = \mathcal{E}_g[\text{Loss at default}]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{CVA} = \mathcal{E}_g[\text{Loss at default}]
+\]</div>
 <p>with generator reflecting uncertainty about default intensity and recovery rates.</p>
 <p><strong>Advantage</strong>: Captures model uncertainty and ambiguity in credit modeling.</p>
 <h2 id="numerical-methods">Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permanent link">&para;</a></h2>
 <h3 id="1-discrete-time-approximation">1. Discrete-Time Approximation<a class="headerlink" href="#1-discrete-time-approximation" title="Permanent link">&para;</a></h3>
 <p><strong>Euler Scheme</strong>: Partition <span class="arithmatex">\([0, T]\)</span> into <span class="arithmatex">\(N\)</span> intervals with <span class="arithmatex">\(\Delta t = T/N\)</span>.</p>
 <p><strong>Backward Iteration</strong>: Starting from <span class="arithmatex">\(Y_T = \xi\)</span>:</p>
-<p>$$</p>
-<p>Y_{t_i} = Y_{t_{i+1}} + g(t_i, Y_{t_i}, Z_{t_i}) \Delta t - Z_{t_i} \Delta W_{t_i}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_{t_i} = Y_{t_{i+1}} + g(t_i, Y_{t_i}, Z_{t_i}) \Delta t - Z_{t_i} \Delta W_{t_i}
+\]</div>
 <p><strong>Z Estimation</strong>: Use least-squares projection:</p>
-<p>$$</p>
-<p>Z_{t_i} = \arg\min_{z} E\left[\left|Y_{t_{i+1}} - Y_{t_i} - g(t_i, Y_{t_i}, z) \Delta t + z \Delta W_{t_i}\right|^2 | \mathcal{F}_{t_i}\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_{t_i} = \arg\min_{z} E\left[\left|Y_{t_{i+1}} - Y_{t_i} - g(t_i, Y_{t_i}, z) \Delta t + z \Delta W_{t_i}\right|^2 | \mathcal{F}_{t_i}\right]
+\]</div>
 <p><strong>Convergence</strong>: Under Lipschitz conditions:</p>
-<p>$$</p>
-<p>E[|Y_0 - Y_0^N|] = O(\Delta t^{1/2})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E[|Y_0 - Y_0^N|] = O(\Delta t^{1/2})
+\]</div>
 <h3 id="2-monte-carlo-methods">2. Monte Carlo Methods<a class="headerlink" href="#2-monte-carlo-methods" title="Permanent link">&para;</a></h3>
 <p><strong>Algorithm</strong>:
 1. Simulate <span class="arithmatex">\(M\)</span> paths of Brownian motion: <span class="arithmatex">\(\{W^{(m)}_t\}_{m=1}^M\)</span>
 2. At each time <span class="arithmatex">\(t_i\)</span>, estimate conditional expectations using regression
 3. Backward iterate to compute <span class="arithmatex">\(Y_0\)</span></p>
 <p><strong>Regression</strong>: Use basis functions <span class="arithmatex">\(\{\phi_j\}\)</span> to approximate:</p>
-<p>$$</p>
-<p>E[Y_{t_{i+1}} | \mathcal{F}<em j="1">{t_i}] \approx \sum</em>)}^K \alpha_j \phi_j(S_{t_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+E[Y_{t_{i+1}} | \mathcal{F}_{t_i}] \approx \sum_{j=1}^K \alpha_j \phi_j(S_{t_i})
+\]</div>
 <p><strong>Complexity</strong>: <span class="arithmatex">\(O(MNK)\)</span> where <span class="arithmatex">\(M\)</span> is paths, <span class="arithmatex">\(N\)</span> is time steps, <span class="arithmatex">\(K\)</span> is basis functions.</p>
 <h3 id="3-deep-learning-approaches">3. Deep Learning Approaches<a class="headerlink" href="#3-deep-learning-approaches" title="Permanent link">&para;</a></h3>
 <p><strong>Neural Network Parameterization</strong>: Represent <span class="arithmatex">\((Y_t, Z_t)\)</span> using neural networks:</p>
-<p>$$</p>
-<p>Y_t = f_{\theta_Y}(t, S_t), \quad Z_t = f_{\theta_Z}(t, S_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = f_{\theta_Y}(t, S_t), \quad Z_t = f_{\theta_Z}(t, S_t)
+\]</div>
 <p><strong>Training</strong>: Minimize loss function:</p>
-<p>$$</p>
-<p>\mathcal{L}(\theta_Y, \theta_Z) = E\left[\left|Y_T - \xi\right|^2 + \int_0^T \left|dY_t + g(t, Y_t, Z_t) dt - Z_t dW_t\right|^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}(\theta_Y, \theta_Z) = E\left[\left|Y_T - \xi\right|^2 + \int_0^T \left|dY_t + g(t, Y_t, Z_t) dt - Z_t dW_t\right|^2\right]
+\]</div>
 <p><strong>Advantages</strong>: 
 - Handles high-dimensional problems
 - Avoids curse of dimensionality
@@ -47705,9 +47705,9 @@
 <h2 id="advanced-topics">Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permanent link">&para;</a></h2>
 <h3 id="1-reflected-bsdes">1. Reflected BSDEs<a class="headerlink" href="#1-reflected-bsdes" title="Permanent link">&para;</a></h3>
 <p><strong>Definition</strong>: A triple <span class="arithmatex">\((Y_t, Z_t, K_t)\)</span> satisfying:</p>
-<p>$$</p>
-<p>Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds + K_T - K_t - \int_t^T Z_s \, dW_s</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t = \xi + \int_t^T g(s, Y_s, Z_s) \, ds + K_T - K_t - \int_t^T Z_s \, dW_s
+\]</div>
 <p>with:
 1. <span class="arithmatex">\(Y_t \geq S_t\)</span> (obstacle constraint)
 2. <span class="arithmatex">\(K_t\)</span> is increasing, continuous, <span class="arithmatex">\(K_0 = 0\)</span>
@@ -47717,28 +47717,28 @@
 <h3 id="2-mean-field-bsdes">2. Mean-Field BSDEs<a class="headerlink" href="#2-mean-field-bsdes" title="Permanent link">&para;</a></h3>
 <p><strong>Setup</strong>: Large population of agents, each influenced by others.</p>
 <p><strong>Mean-Field BSDE</strong>:</p>
-<p>$$</p>
-<p>Y_t^i = \xi^i + \int_t^T g(s, Y_s^i, Z_s^i, \bar{Y}_s, \bar{Z}_s) \, ds - \int_t^T Z_s^i \, dW_s^i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t^i = \xi^i + \int_t^T g(s, Y_s^i, Z_s^i, \bar{Y}_s, \bar{Z}_s) \, ds - \int_t^T Z_s^i \, dW_s^i
+\]</div>
 <p>where <span class="arithmatex">\(\bar{Y}_t = \frac{1}{N} \sum_{i=1}^N Y_t^i\)</span> is the empirical mean.</p>
 <p><strong>Limit</strong>: As <span class="arithmatex">\(N \to \infty\)</span>, the system converges to a McKean-Vlasov type BSDE.</p>
 <p><strong>Application</strong>: Systemic risk, large portfolio optimization, crowd behavior in markets.</p>
 <h3 id="3-forward-backward-sdes">3. Forward-Backward SDEs<a class="headerlink" href="#3-forward-backward-sdes" title="Permanent link">&para;</a></h3>
 <p><strong>Coupled System</strong>: <span class="arithmatex">\((X_t, Y_t, Z_t)\)</span> satisfying:</p>
-<p>$$</p>
-<p>dX_t = b(t, X_t, Y_t, Z_t) \, dt + \sigma(t, X_t, Y_t, Z_t) \, dW_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>dY_t = -g(t, X_t, Y_t, Z_t) \, dt + Z_t \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = b(t, X_t, Y_t, Z_t) \, dt + \sigma(t, X_t, Y_t, Z_t) \, dW_t
+\]</div>
+<div class="arithmatex">\[
+dY_t = -g(t, X_t, Y_t, Z_t) \, dt + Z_t \, dW_t
+\]</div>
 <p>with <span class="arithmatex">\(X_0 = x\)</span> and <span class="arithmatex">\(Y_T = \Phi(X_T)\)</span>.</p>
 <p><strong>Application</strong>: Stochastic control problems where control affects both forward dynamics and backward valuation.</p>
 <p><strong>Well-Posedness</strong>: Requires careful analysis; solutions exist under monotonicity or small-time conditions.</p>
 <h3 id="4-quadratic-bsdes">4. Quadratic BSDEs<a class="headerlink" href="#4-quadratic-bsdes" title="Permanent link">&para;</a></h3>
 <p><strong>Generator</strong>: Quadratic growth in <span class="arithmatex">\(z\)</span>:</p>
-<p>$$</p>
-<p>g(t, y, z) = f(t, y) + \frac{1}{2} z^\top A(t, y) z</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, y, z) = f(t, y) + \frac{1}{2} z^\top A(t, y) z
+\]</div>
 <p><strong>Challenge</strong>: Standard Lipschitz theory doesn't apply directly.</p>
 <p><strong>Existence</strong>: Proven under specific conditions (Kobylanski, 2000).</p>
 <p><strong>Application</strong>: 
@@ -47748,9 +47748,9 @@
 <h2 id="connections-to-pdes">Connections to PDEs<a class="headerlink" href="#connections-to-pdes" title="Permanent link">&para;</a></h2>
 <h3 id="1-feynman-kac-formula-for-bsdes">1. Feynman-Kac Formula for BSDEs<a class="headerlink" href="#1-feynman-kac-formula-for-bsdes" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(Y_t = v(t, X_t)\)</span> for some function <span class="arithmatex">\(v\)</span> and state process <span class="arithmatex">\(X_t\)</span>, then <span class="arithmatex">\(v\)</span> satisfies the PDE:</p>
-<p>$$</p>
-<p>\frac{\partial v}{\partial t} + \mathcal{L} v + g(t, v, \sigma^\top \nabla v) = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial v}{\partial t} + \mathcal{L} v + g(t, v, \sigma^\top \nabla v) = 0
+\]</div>
 <p>with terminal condition <span class="arithmatex">\(v(T, x) = \Phi(x)\)</span>, where <span class="arithmatex">\(\mathcal{L}\)</span> is the infinitesimal generator of <span class="arithmatex">\(X_t\)</span>.</p>
 <p><strong>Proof</strong>: Apply Itô's formula to <span class="arithmatex">\(v(t, X_t)\)</span> and match terms with the BSDE.</p>
 <p><strong>Interpretation</strong>: BSDEs provide probabilistic representation for nonlinear PDEs.</p>
@@ -47760,39 +47760,39 @@
 <p><strong>Advantage</strong>: Viscosity solutions exist even when classical solutions don't (e.g., non-smooth payoffs).</p>
 <h3 id="3-hamilton-jacobi-bellman-equations">3. Hamilton-Jacobi-Bellman Equations<a class="headerlink" href="#3-hamilton-jacobi-bellman-equations" title="Permanent link">&para;</a></h3>
 <p><strong>Stochastic Control</strong>: Consider:</p>
-<p>$$</p>
-<p>V(t, x) = \sup_{\alpha \in \mathcal{A}} E\left[\int_t^T f(s, X_s^{\alpha}, \alpha_s) \, ds + \Phi(X_T^{\alpha}) \bigg| X_t = x\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V(t, x) = \sup_{\alpha \in \mathcal{A}} E\left[\int_t^T f(s, X_s^{\alpha}, \alpha_s) \, ds + \Phi(X_T^{\alpha}) \bigg| X_t = x\right]
+\]</div>
 <p><strong>HJB Equation</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial V}{\partial t} + \sup_{\alpha} {\mathcal{L}^{\alpha} V + f(t, x, \alpha)} = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial V}{\partial t} + \sup_{\alpha} \{\mathcal{L}^{\alpha} V + f(t, x, \alpha)\} = 0
+\]</div>
 <p><strong>BSDE Connection</strong>: The value function satisfies a BSDE with generator:</p>
-<p>$$</p>
-<p>g(t, y, z) = \sup_{\alpha} {-f(t, x, \alpha) - \mu^{\alpha}(t, x) \cdot \nabla v - \frac{1}{2} \text{tr}[(\sigma^{\alpha})^2 \nabla^2 v]}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+g(t, y, z) = \sup_{\alpha} \{-f(t, x, \alpha) - \mu^{\alpha}(t, x) \cdot \nabla v - \frac{1}{2} \text{tr}[(\sigma^{\alpha})^2 \nabla^2 v]\}
+\]</div>
 <h2 id="convergence-and-stability">Convergence and Stability<a class="headerlink" href="#convergence-and-stability" title="Permanent link">&para;</a></h2>
 <h3 id="1-continuous-dependence">1. Continuous Dependence<a class="headerlink" href="#1-continuous-dependence" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: Let <span class="arithmatex">\((Y_t^n, Z_t^n)\)</span> be solutions to BSDEs with generators <span class="arithmatex">\(g_n\)</span> and terminal conditions <span class="arithmatex">\(\xi_n\)</span>.</p>
 <p>If <span class="arithmatex">\(g_n \to g\)</span> and <span class="arithmatex">\(\xi_n \to \xi\)</span> in appropriate norms, then:</p>
-<p>$$</p>
-<p>Y_t^n \to Y_t, \quad Z_t^n \to Z_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Y_t^n \to Y_t, \quad Z_t^n \to Z_t
+\]</div>
 <p>in <span class="arithmatex">\(L^2\)</span> norm.</p>
 <p><strong>Proof</strong>: Use Lipschitz continuity and Gronwall's inequality.</p>
 <p><strong>Application</strong>: Justifies numerical approximations and perturbation analysis.</p>
 <h3 id="2-convergence-of-discretizations">2. Convergence of Discretizations<a class="headerlink" href="#2-convergence-of-discretizations" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem</strong>: The discrete-time approximation converges to the continuous-time BSDE solution:</p>
-<p>$$</p>
-<p>\sup_{t \in [0,T]} E[|Y_t - Y_t^N|^2] = O(\Delta t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sup_{t \in [0,T]} E[|Y_t - Y_t^N|^2] = O(\Delta t)
+\]</div>
 <p>under appropriate regularity conditions.</p>
 <p><strong>Higher-Order Schemes</strong>: Milstein-type schemes achieve <span class="arithmatex">\(O((\Delta t)^{3/2})\)</span> or better.</p>
 <h3 id="3-robustness-to-model-perturbations">3. Robustness to Model Perturbations<a class="headerlink" href="#3-robustness-to-model-perturbations" title="Permanent link">&para;</a></h3>
 <p><strong>g-Expectations Stability</strong>: Small changes in generator lead to small changes in g-expectation:</p>
-<p>$$</p>
-<p>|g_1 - g_2| \leq \epsilon \implies |\mathcal{E}<em g_2="g_2">{g_1}[\xi] - \mathcal{E}</em>[\xi]| \leq C \epsilon</p>
-<p>$$</p>
+<div class="arithmatex">\[
+|g_1 - g_2| \leq \epsilon \implies |\mathcal{E}_{g_1}[\xi] - \mathcal{E}_{g_2}[\xi]| \leq C \epsilon
+\]</div>
 <p>for some constant <span class="arithmatex">\(C\)</span> depending on <span class="arithmatex">\(T\)</span> and Lipschitz constants.</p>
 <h2 id="summary-and-key-insights">Summary and Key Insights<a class="headerlink" href="#summary-and-key-insights" title="Permanent link">&para;</a></h2>
 <h3 id="1-fundamental-contributions">1. Fundamental Contributions<a class="headerlink" href="#1-fundamental-contributions" title="Permanent link">&para;</a></h3>

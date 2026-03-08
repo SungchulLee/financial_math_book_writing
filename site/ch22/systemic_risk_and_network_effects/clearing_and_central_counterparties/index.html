@@ -46870,30 +46870,30 @@
 - <strong>Seller to every buyer</strong></p>
 <h3 id="risk-mitigation-benefits">Risk Mitigation Benefits<a class="headerlink" href="#risk-mitigation-benefits" title="Permanent link">&para;</a></h3>
 <p><strong>Multilateral netting:</strong> Reduces total exposures</p>
-<p>$$</p>
-<p>\text{Bilateral Exposure} = \sum_{i&lt;j} |E_{ij}|</p>
-<p>$$</p>
-<p>$$</p>
-<p>\text{CCP Exposure} = \sum_i |E_i^{\text{CCP}}| &lt; \sum_{i&lt;j} |E_{ij}|</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Bilateral Exposure} = \sum_{i&lt;j} |E_{ij}|
+\]</div>
+<div class="arithmatex">\[
+\text{CCP Exposure} = \sum_i |E_i^{\text{CCP}}| &lt; \sum_{i&lt;j} |E_{ij}|
+\]</div>
 <p><strong>Standardized margin:</strong> Consistent risk management</p>
 <p><strong>Default management:</strong> Orderly close-out procedures</p>
 <hr />
 <h2 id="ccp-risk-framework">CCP Risk Framework<a class="headerlink" href="#ccp-risk-framework" title="Permanent link">&para;</a></h2>
 <h3 id="margining">Margining<a class="headerlink" href="#margining" title="Permanent link">&para;</a></h3>
 <p><strong>Variation Margin (VM):</strong> Daily mark-to-market settlement</p>
-<p>$$</p>
-<p>\text{VM}<em t-1="t-1">t = V_t - V</em></p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{VM}_t = V_t - V_{t-1}
+\]</div>
 <p><strong>Initial Margin (IM):</strong> Covers potential future exposure during MPOR</p>
-<p>$$</p>
-<p>\text{IM} \approx \text{VaR}_{99\%}(\text{Portfolio change over MPOR})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{IM} \approx \text{VaR}_{99\%}(\text{Portfolio change over MPOR})
+\]</div>
 <h3 id="default-fund-df">Default Fund (DF)<a class="headerlink" href="#default-fund-df" title="Permanent link">&para;</a></h3>
 <p>Pre-funded contributions from all members:</p>
-<p>$$</p>
-<p>\text{DF Total} = \sum_i \text{DF}_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{DF Total} = \sum_i \text{DF}_i
+\]</div>
 <p>Absorbs losses beyond defaulter's IM.</p>
 <h3 id="skin-in-the-game">Skin in the Game<a class="headerlink" href="#skin-in-the-game" title="Permanent link">&para;</a></h3>
 <p>CCP's own capital at risk:
@@ -46910,9 +46910,9 @@
 <li><strong>Assessment powers</strong> → Additional member contributions</li>
 <li><strong>CCP equity</strong> → Final buffer before resolution</li>
 </ol>
-<p>$$</p>
-<p>\text{Loss Absorption Capacity} = \text{IM}<em _text_defaulter="\text{defaulter">{\text{defaulter}} + \text{DF}</em>}} + \text{SITG} + \text{DF}_{\text{others}} + \text{Assessments</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Loss Absorption Capacity} = \text{IM}_{\text{defaulter}} + \text{DF}_{\text{defaulter}} + \text{SITG} + \text{DF}_{\text{others}} + \text{Assessments}
+\]</div>
 <hr />
 <h2 id="risk-concentration">Risk Concentration<a class="headerlink" href="#risk-concentration" title="Permanent link">&para;</a></h2>
 <h3 id="too-big-to-fail">Too Big to Fail<a class="headerlink" href="#too-big-to-fail" title="Permanent link">&para;</a></h3>
@@ -46946,9 +46946,9 @@
 - Lookback periods include stressed periods
 - Caps on IM increases</p>
 <p><strong>Regulatory guidance (EMIR, PFMI):</strong></p>
-<p>$$</p>
-<p>\text{IM}<em _text_normal="\text{normal">{\text{stressed}} \le 1.25 \times \text{IM}</em>}} \quad \text{(indicative cap)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{IM}_{\text{stressed}} \le 1.25 \times \text{IM}_{\text{normal}} \quad \text{(indicative cap)}
+\]</div>
 <hr />
 <h2 id="default-management">Default Management<a class="headerlink" href="#default-management" title="Permanent link">&para;</a></h2>
 <h3 id="close-out-process">Close-Out Process<a class="headerlink" href="#close-out-process" title="Permanent link">&para;</a></h3>
@@ -46971,9 +46971,9 @@
 <h2 id="stress-testing-ccps">Stress Testing CCPs<a class="headerlink" href="#stress-testing-ccps" title="Permanent link">&para;</a></h2>
 <h3 id="cover-2-standard">Cover-2 Standard<a class="headerlink" href="#cover-2-standard" title="Permanent link">&para;</a></h3>
 <p>CCPs must hold resources to cover default of two largest members:</p>
-<p>$$</p>
-<p>\text{Total Resources} \ge \text{Exposure}<em _text_2nd="\text{2nd" largest="largest">{\text{largest}} + \text{Exposure}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Resources} \ge \text{Exposure}_{\text{largest}} + \text{Exposure}_{\text{2nd largest}}
+\]</div>
 <p>under extreme but plausible conditions.</p>
 <h3 id="stress-scenarios">Stress Scenarios<a class="headerlink" href="#stress-scenarios" title="Permanent link">&para;</a></h3>
 <p>Test against:

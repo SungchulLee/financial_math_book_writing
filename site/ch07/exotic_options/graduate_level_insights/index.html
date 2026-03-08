@@ -46549,17 +46549,17 @@
 <h2 id="barrier-smoothing-and-discrete-monitoring">Barrier Smoothing and Discrete Monitoring<a class="headerlink" href="#barrier-smoothing-and-discrete-monitoring" title="Permanent link">&para;</a></h2>
 <h3 id="the-discretization-problem">The Discretization Problem<a class="headerlink" href="#the-discretization-problem" title="Permanent link">&para;</a></h3>
 <p>When simulating barrier options with discrete time steps <span class="arithmatex">\(\Delta t = T/M\)</span>, the underlying price is observed only at times <span class="arithmatex">\(\{0, \Delta t, 2\Delta t, \ldots, T\}\)</span>. Between observation times, the price may cross and re-cross the barrier without detection. This introduces a <strong>systematic bias</strong>:</p>
-<p>$$</p>
-<p>\mathbb{P}!\left(\min_{0 \leq t \leq T} S_t \leq H \;\middle|\; S_{t_k} &gt; H \;\forall k\right) &gt; 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\!\left(\min_{0 \leq t \leq T} S_t \leq H \;\middle|\; S_{t_k} &gt; H \;\forall k\right) &gt; 0
+\]</div>
 <p>The probability of missing a barrier crossing between two consecutive observations is non-negligible, causing discrete-monitoring simulations to <strong>overestimate</strong> knock-out option prices (and <strong>underestimate</strong> knock-in prices).</p>
 <h3 id="broadieglassermankou-correction">Broadie–Glasserman–Kou Correction<a class="headerlink" href="#broadieglassermankou-correction" title="Permanent link">&para;</a></h3>
 <p>Broadie, Glasserman, and Kou (1997) derived an asymptotic correction for this bias. For a down barrier <span class="arithmatex">\(H\)</span> monitored at <span class="arithmatex">\(m\)</span> equally-spaced times:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 H_{\text{eff}} = H \cdot \exp\left(-\beta\, \sigma \sqrt{\Delta t}\right), \quad \beta = \frac{-\zeta(1/2)}{\sqrt{2\pi}} \approx 0.5826
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\zeta\)</span> is the Riemann zeta function. The correction shifts the barrier <strong>downward</strong> (for a down barrier), accounting for the paths that would have crossed <span class="arithmatex">\(H\)</span> between observation times.</p>
 <p><strong>Intuition.</strong> Between consecutive observations, the price process behaves like a Brownian bridge. The probability that a Brownian bridge crosses a level depends on the distance to that level relative to <span class="arithmatex">\(\sigma\sqrt{\Delta t}\)</span>. The correction adjusts the barrier by approximately <span class="arithmatex">\(0.58\sigma\sqrt{\Delta t}\)</span> to account for the "missed" crossings.</p>
 <h3 id="convergence-with-correction">Convergence with Correction<a class="headerlink" href="#convergence-with-correction" title="Permanent link">&para;</a></h3>
@@ -46590,16 +46590,16 @@ H_{\text{eff}} = H \cdot \exp\left(-\beta\, \sigma \sqrt{\Delta t}\right), \quad
 <h3 id="moment-matching">Moment Matching<a class="headerlink" href="#moment-matching" title="Permanent link">&para;</a></h3>
 <p>Since the arithmetic average <span class="arithmatex">\(\bar{S}_{\text{arith}} = \frac{1}{n}\sum_{i=1}^{n} S_{t_i}\)</span> is a sum of correlated lognormals, its distribution is not analytically tractable. The <strong>moment-matching</strong> approach approximates <span class="arithmatex">\(\bar{S}_{\text{arith}}\)</span> by a lognormal distribution with matched first and second moments.</p>
 <p>Under GBM, the first two moments of the arithmetic average are:</p>
-<p>$$</p>
-<p>M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}] = \frac{1}{n}\sum_{i=1}^{n} S_0\, e^{r t_i}</p>
-<p>$$</p>
-<p>$$</p>
-<p>M_2 = \mathbb{E}^{\mathbb{Q}}[\bar{S}^2] = \frac{1}{n^2}\sum_{i=1}^{n}\sum_{j=1}^{n} S_0^2\, e^{(r + \sigma^2 \min(t_i, t_j))(t_i + t_j)/2 + \ldots}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_1 = \mathbb{E}^{\mathbb{Q}}[\bar{S}] = \frac{1}{n}\sum_{i=1}^{n} S_0\, e^{r t_i}
+\]</div>
+<div class="arithmatex">\[
+M_2 = \mathbb{E}^{\mathbb{Q}}[\bar{S}^2] = \frac{1}{n^2}\sum_{i=1}^{n}\sum_{j=1}^{n} S_0^2\, e^{(r + \sigma^2 \min(t_i, t_j))(t_i + t_j)/2 + \ldots}
+\]</div>
 <p>The matched lognormal parameters are:</p>
-<p>$$</p>
-<p>\hat{\sigma}^2 = \ln!\left(\frac{M_2}{M_1^2}\right), \quad \hat{\mu} = \ln M_1 - \frac{1}{2}\hat{\sigma}^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{\sigma}^2 = \ln\!\left(\frac{M_2}{M_1^2}\right), \quad \hat{\mu} = \ln M_1 - \frac{1}{2}\hat{\sigma}^2
+\]</div>
 <p>The Asian call price is then approximated using a Black–Scholes formula with these adjusted parameters.</p>
 <h3 id="laplace-transform-methods">Laplace Transform Methods<a class="headerlink" href="#laplace-transform-methods" title="Permanent link">&para;</a></h3>
 <p>For continuous-time Asian options, Geman and Yor (1993) derived the Laplace transform of the Asian option price in terms of confluent hypergeometric functions. While not directly invertible in closed form, this provides the basis for highly accurate numerical inversion algorithms (e.g., using the Euler algorithm for Laplace inversion).</p>
@@ -46644,15 +46644,15 @@ H_{\text{eff}} = H \cdot \exp\left(-\beta\, \sigma \sqrt{\Delta t}\right), \quad
 <h2 id="lookback-options-and-reflected-brownian-motion">Lookback Options and Reflected Brownian Motion<a class="headerlink" href="#lookback-options-and-reflected-brownian-motion" title="Permanent link">&para;</a></h2>
 <h3 id="the-running-maximum-distribution">The Running Maximum Distribution<a class="headerlink" href="#the-running-maximum-distribution" title="Permanent link">&para;</a></h3>
 <p>The analytical pricing of lookback options rests on the <strong>joint distribution of Brownian motion and its running maximum</strong>. For a standard Brownian motion <span class="arithmatex">\(W_t\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{P}!\left(W_T \leq x,\; \max_{0 \leq t \leq T} W_t \leq y\right) = N!\left(\frac{x}{\sqrt{T}}\right) - e^{-2xy/T}\, N!\left(\frac{x - 2y}{\sqrt{T}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\!\left(W_T \leq x,\; \max_{0 \leq t \leq T} W_t \leq y\right) = N\!\left(\frac{x}{\sqrt{T}}\right) - e^{-2xy/T}\, N\!\left(\frac{x - 2y}{\sqrt{T}}\right)
+\]</div>
 <p>for <span class="arithmatex">\(y \geq 0\)</span> and <span class="arithmatex">\(x \leq y\)</span>. This formula follows from the <strong>reflection principle</strong>: the event <span class="arithmatex">\(\{\max_t W_t \geq y\}\)</span> can be related to <span class="arithmatex">\(\{W_T \geq 2y - x\}\)</span> by reflecting paths that hit level <span class="arithmatex">\(y\)</span>.</p>
 <h3 id="from-brownian-motion-to-gbm">From Brownian Motion to GBM<a class="headerlink" href="#from-brownian-motion-to-gbm" title="Permanent link">&para;</a></h3>
 <p>Under GBM, <span class="arithmatex">\(\ln S_t\)</span> is a Brownian motion with drift. The running maximum of <span class="arithmatex">\(S_t\)</span> corresponds to the running maximum of <span class="arithmatex">\(\ln S_t\)</span>, and the reflection principle extends to drifted Brownian motion via a Girsanov-type calculation:</p>
-<p>$$</p>
-<p>\mathbb{P}^{\mathbb{Q}}!\left(S_T \leq s,\; S_{\max} \leq m \;\middle|\; S_0\right) = N(a) - \left(\frac{m}{S_0}\right)^{2\lambda - 2} N(b)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}^{\mathbb{Q}}\!\left(S_T \leq s,\; S_{\max} \leq m \;\middle|\; S_0\right) = N(a) - \left(\frac{m}{S_0}\right)^{2\lambda - 2} N(b)
+\]</div>
 <p>where <span class="arithmatex">\(\lambda = (r - \frac{1}{2}\sigma^2)/\sigma^2 + 1\)</span> and <span class="arithmatex">\(a, b\)</span> depend on <span class="arithmatex">\(s, m, S_0, r, \sigma, T\)</span>.</p>
 <h3 id="continuous-vs-discrete-monitoring">Continuous vs. Discrete Monitoring<a class="headerlink" href="#continuous-vs-discrete-monitoring" title="Permanent link">&para;</a></h3>
 <p>The analytical formulas assume <strong>continuous monitoring</strong>. For discrete monitoring (which is the practical case), two approaches are available:</p>
@@ -46673,13 +46673,13 @@ H_{\text{eff}} = H \cdot \exp\left(-\beta\, \sigma \sqrt{\Delta t}\right), \quad
 </ol>
 <h3 id="regression-basis-for-path-dependent-exotics">Regression Basis for Path-Dependent Exotics<a class="headerlink" href="#regression-basis-for-path-dependent-exotics" title="Permanent link">&para;</a></h3>
 <p>For an American Asian option, the continuation value at time <span class="arithmatex">\(t_k\)</span> depends on both <span class="arithmatex">\(S_{t_k}\)</span> and the running average <span class="arithmatex">\(\bar{S}_k\)</span>:</p>
-<p>$$</p>
-<p>C(t_k, S_{t_k}, \bar{S}<em t__k_1="t_{k+1">k) = \mathbb{E}^{\mathbb{Q}}!\left[e^{-r\Delta t} V</em>_k\right]}} \;\middle|\; S_{t_k}, \bar{S</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(t_k, S_{t_k}, \bar{S}_k) = \mathbb{E}^{\mathbb{Q}}\!\left[e^{-r\Delta t} V_{t_{k+1}} \;\middle|\; S_{t_k}, \bar{S}_k\right]
+\]</div>
 <p>The LSM regression is performed on basis functions of <strong>both</strong> state variables:</p>
-<p>$$</p>
-<p>C \approx \sum_{p,q} \alpha_{pq}\, \psi_p(S_{t_k})\, \phi_q(\bar{S}_k)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \approx \sum_{p,q} \alpha_{pq}\, \psi_p(S_{t_k})\, \phi_q(\bar{S}_k)
+\]</div>
 <p>where <span class="arithmatex">\(\{\psi_p\}\)</span> and <span class="arithmatex">\(\{\phi_q\}\)</span> are polynomial or other basis functions.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>

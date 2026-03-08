@@ -46347,18 +46347,18 @@
 <hr />
 <h2 id="default-time-as-a-stopping-time">Default Time as a Stopping Time<a class="headerlink" href="#default-time-as-a-stopping-time" title="Permanent link">&para;</a></h2>
 <p>A random time <span class="arithmatex">\(\tau: \Omega \to [0, \infty]\)</span> is a <strong>stopping time</strong> with respect to a filtration <span class="arithmatex">\((\mathcal{G}_t)\)</span> if</p>
-<p>$$</p>
-<p>{\tau \le t} \in \mathcal{G}_t \quad \text{for all } t \ge 0.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\{\tau \le t\} \in \mathcal{G}_t \quad \text{for all } t \ge 0
+\]</div>
 <p>Equivalently, under right-continuous filtrations, <span class="arithmatex">\(\{\tau &lt; t\} \in \mathcal{G}_t\)</span> for all <span class="arithmatex">\(t\)</span>.</p>
 <p><strong>Interpretation:</strong> At any time <span class="arithmatex">\(t\)</span>, we can determine whether default has already occurred. This is the minimal requirement for default to be observable.</p>
 <p>A stronger condition is <strong>predictability</strong>: <span class="arithmatex">\(\tau\)</span> is predictable if there exists an increasing sequence of stopping times <span class="arithmatex">\((\tau_n)\)</span> with <span class="arithmatex">\(\tau_n &lt; \tau\)</span> on <span class="arithmatex">\(\{\tau &gt; 0\}\)</span> and <span class="arithmatex">\(\tau_n \uparrow \tau\)</span>. In structural models, default is often predictable (hitting times of continuous processes). In reduced-form models, default is typically <strong>totally inaccessible</strong>—it cannot be anticipated by any announcing sequence.</p>
 <hr />
 <h2 id="the-default-indicator-process">The Default Indicator Process<a class="headerlink" href="#the-default-indicator-process" title="Permanent link">&para;</a></h2>
 <p>The <strong>default indicator</strong> is the process</p>
-<p>$$</p>
-<p>H_t := \mathbf{1}_{{\tau \le t}}.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+H_t := \mathbf{1}_{\{\tau \le t\}}
+\]</div>
 <p>This is a right-continuous, non-decreasing process that jumps from 0 to 1 at the moment of default. Key properties:</p>
 <ul>
 <li><span class="arithmatex">\(H_t\)</span> is <span class="arithmatex">\(\mathcal{G}_t\)</span>-adapted when <span class="arithmatex">\(\tau\)</span> is a <span class="arithmatex">\((\mathcal{G}_t)\)</span>-stopping time</li>
@@ -46375,25 +46375,25 @@
 <p>This process is known as <strong>enlargement of filtration</strong>. The enlarged filtration contains both market information and default information.</p>
 <h3 id="minimal-enlargement">Minimal Enlargement<a class="headerlink" href="#minimal-enlargement" title="Permanent link">&para;</a></h3>
 <p>The <strong>minimal enlargement</strong> making <span class="arithmatex">\(\tau\)</span> a stopping time is</p>
-<p>$$</p>
-<p>\mathcal{G}_t = \mathcal{F}_t \vee \mathcal{H}_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{G}_t = \mathcal{F}_t \vee \mathcal{H}_t
+\]</div>
 <p>where <span class="arithmatex">\(\mathcal{H}_t = \sigma(H_s : s \le t) = \sigma(\mathbf{1}_{\{\tau \le s\}} : s \le t)\)</span>.</p>
 <p>This can be written more explicitly as</p>
-<p>$$</p>
-<p>\mathcal{G}<em _="&gt;" s="s" t="t">t = \bigcap</em>_s \vee \sigma(\tau \wedge s) \right).} \left( \mathcal{F</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{G}_t = \bigcap_{s &gt; t} \left( \mathcal{F}_s \vee \sigma(\tau \wedge s) \right)
+\]</div>
 <p>Every <span class="arithmatex">\(\mathcal{G}_t\)</span>-measurable random variable <span class="arithmatex">\(X\)</span> admits the representation</p>
-<p>$$</p>
-<p>X = X_0 \mathbf{1}<em _123_tau="{\tau" _le="\le" t_125_="t}">{{\tau &gt; t}} + X_1(\tau) \mathbf{1}</em>,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X = X_0 \mathbf{1}_{\{\tau &gt; t\}} + X_1(\tau) \mathbf{1}_{\{\tau \le t\}}
+\]</div>
 <p>where <span class="arithmatex">\(X_0\)</span> is <span class="arithmatex">\(\mathcal{F}_t\)</span>-measurable and <span class="arithmatex">\(X_1(s)\)</span> is <span class="arithmatex">\(\mathcal{F}_t \otimes \mathcal{B}([0,t])\)</span>-measurable.</p>
 <hr />
 <h2 id="the-azema-supermartingale">The Azéma Supermartingale<a class="headerlink" href="#the-azema-supermartingale" title="Permanent link">&para;</a></h2>
 <p>A fundamental object in the theory is the <strong>Azéma supermartingale</strong>:</p>
-<p>$$</p>
-<p>G_t := \mathbb{P}(\tau &gt; t \mid \mathcal{F}_t).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_t := \mathbb{P}(\tau &gt; t \mid \mathcal{F}_t)
+\]</div>
 <p>This process represents the conditional probability of survival given market information. Key properties:</p>
 <ol>
 <li><span class="arithmatex">\(G_t\)</span> is a <strong>supermartingale</strong> (survival probability cannot increase on average)</li>
@@ -46401,16 +46401,16 @@
 <li><span class="arithmatex">\(G_t \to G_\infty = \mathbb{P}(\tau = \infty \mid \mathcal{F}_\infty)\)</span> as <span class="arithmatex">\(t \to \infty\)</span></li>
 </ol>
 <p>The Azéma supermartingale admits the <strong>Doob-Meyer decomposition</strong>:</p>
-<p>$$</p>
-<p>G_t = M_t - A_t,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+G_t = M_t - A_t
+\]</div>
 <p>where <span class="arithmatex">\(M_t\)</span> is a martingale and <span class="arithmatex">\(A_t\)</span> is a predictable increasing process.</p>
 <hr />
 <h2 id="pre-default-and-post-default-dynamics">Pre-Default and Post-Default Dynamics<a class="headerlink" href="#pre-default-and-post-default-dynamics" title="Permanent link">&para;</a></h2>
 <p>The enlarged filtration naturally separates into pre-default and post-default regimes. For any <span class="arithmatex">\(\mathcal{G}\)</span>-adapted process <span class="arithmatex">\(X_t\)</span>:</p>
-<p>$$</p>
-<p>X_t = X_t^{\text{pre}} \mathbf{1}<em _123_tau="{\tau" _le="\le" t_125_="t}">{{\tau &gt; t}} + X_t^{\text{post}} \mathbf{1}</em>.</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = X_t^{\text{pre}} \mathbf{1}_{\{\tau &gt; t\}} + X_t^{\text{post}} \mathbf{1}_{\{\tau \le t\}}
+\]</div>
 <p><strong>Pre-default:</strong> On <span class="arithmatex">\(\{\tau &gt; t\}\)</span>, the relevant information is <span class="arithmatex">\(\mathcal{F}_t\)</span> (market factors only).</p>
 <p><strong>Post-default:</strong> On <span class="arithmatex">\(\{\tau \le t\}\)</span>, we additionally know the exact default time <span class="arithmatex">\(\tau\)</span>.</p>
 <p>This decomposition is crucial for pricing defaultable claims, where cashflows differ fundamentally before and after default.</p>
@@ -46427,13 +46427,13 @@
 <hr />
 <h2 id="connection-to-cox-process-construction">Connection to Cox Process Construction<a class="headerlink" href="#connection-to-cox-process-construction" title="Permanent link">&para;</a></h2>
 <p>In reduced-form models, default is often constructed via a <strong>doubly-stochastic</strong> (Cox) process. Given an <span class="arithmatex">\(\mathcal{F}\)</span>-adapted intensity process <span class="arithmatex">\(\lambda_t \ge 0\)</span>, define</p>
-<p>$$</p>
-<p>\Lambda_t := \int_0^t \lambda_s \, ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Lambda_t := \int_0^t \lambda_s \, ds
+\]</div>
 <p>and let <span class="arithmatex">\(E \sim \text{Exp}(1)\)</span> be independent of <span class="arithmatex">\(\mathcal{F}_\infty\)</span>. The default time is</p>
-<p>$$</p>
-<p>\tau := \inf{t \ge 0 : \Lambda_t \ge E} = \Lambda^{-1}(E).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau := \inf\{t \ge 0 : \Lambda_t \ge E\} = \Lambda^{-1}(E)
+\]</div>
 <p>Under this construction:
 - <span class="arithmatex">\(\tau\)</span> is a totally inaccessible stopping time in <span class="arithmatex">\((\mathcal{G}_t)\)</span>
 - The conditional survival probability is <span class="arithmatex">\(G_t = \mathbb{P}(\tau &gt; t \mid \mathcal{F}_t) = e^{-\Lambda_t}\)</span>

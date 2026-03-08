@@ -46671,9 +46671,9 @@
 <h3 id="2-mgf-of-normal-distribution">2. MGF of Normal Distribution<a class="headerlink" href="#2-mgf-of-normal-distribution" title="Permanent link">&para;</a></h3>
 <p><strong>Theorem 1.5.1</strong> (MGF of Gaussian)</p>
 <p>If <span class="arithmatex">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>, then:</p>
-<p>$$\boxed{</p>
-<p>\phi_X(t) = \mathbb{E}[e^{tX}] = \exp\left(\mu t + \frac{1}{2} \sigma^2 t^2\right)</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\phi_X(t) = \mathbb{E}[e^{tX}] = \exp\left(\mu t + \frac{1}{2} \sigma^2 t^2\right)
+}\]</div>
 <p><strong>Proof:</strong></p>
 <p>We compute:</p>
 <div class="arithmatex">\[\phi_X(t) = \int_{-\infty}^{\infty} e^{tx} \cdot \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(x - \mu)^2}{2 \sigma^2} \right) dx\]</div>
@@ -46703,15 +46703,15 @@
 <ol>
 <li><strong>Odd moments vanish:</strong></li>
 </ol>
-<p>$$\boxed{</p>
-<p>\mathbb{E}[W_T^{2k+1}] = 0 \quad \text{for all } k \ge 0</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\mathbb{E}[W_T^{2k+1}] = 0 \quad \text{for all } k \ge 0
+}\]</div>
 <ol>
 <li><strong>Even moments:</strong></li>
 </ol>
-<p>$$\boxed{</p>
-<p>\mathbb{E}[W_T^{2k}] = \frac{(2k)!}{k! \, 2^k} T^k = (2k-1)!! \cdot T^k \quad \text{for all } k \ge 0</p>
-<p>}$$</p>
+<div class="arithmatex">\[\boxed{
+\mathbb{E}[W_T^{2k}] = \frac{(2k)!}{k! \, 2^k} T^k = (2k-1)!! \cdot T^k \quad \text{for all } k \ge 0
+}\]</div>
 <p>where <span class="arithmatex">\((2k-1)!! = 1 \cdot 3 \cdot 5 \cdots (2k-1)\)</span> is the <strong>double factorial</strong>.</p>
 <p><strong>Proof:</strong></p>
 <p>Since <span class="arithmatex">\(W_T \sim \mathcal{N}(0, T)\)</span>, by Corollary 1.5.2:</p>

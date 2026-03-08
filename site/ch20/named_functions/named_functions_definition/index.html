@@ -46250,100 +46250,100 @@
 <h2 id="_1">τ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="arithmatex">\[\tau=T-t\]</div>
 <h2 id="_2">θ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllllll}
+\displaystyle
 \theta(t)
 &amp;=&amp;\displaystyle
 f(0,t)+\frac{1}{\lambda}\frac{\partial f(0,t)}{\partial t}
 +
-\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)\
+\frac{\sigma^2}{2\lambda^2}\left(1-e^{-2\lambda t}\right)\\
 \displaystyle
 \theta^\mathbb{T}(t)
-&amp;=&amp;\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\</p>
-<p>\end{array}$$</p>
+&amp;=&amp;\displaystyle\theta(t)+\frac{\sigma^2}{\lambda}B(T-t)\\
+\end{array}\]</div>
 <h2 id="_3">ψ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllllll}</p>
-<p>\psi(t)
+<div class="arithmatex">\[\begin{array}{lllllll}
+\psi(t)
 &amp;=&amp;\displaystyle
 r(0)e^{-\lambda t}+\lambda\int_0^t\theta(t')e^{-\lambda(t-t')}dt'
 &amp;=&amp;\displaystyle
-f(0,t)+\frac{\lambda\sigma^2}{2}B^2(t)\
+f(0,t)+\frac{\lambda\sigma^2}{2}B^2(t)\\
 \psi(t_0,t)
 &amp;=&amp;\displaystyle
 r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta(t')e^{-\lambda(t-t')}dt'
-\
+\\
 \psi^\mathbb{T}(t_0,t)
 &amp;=&amp;\displaystyle
 r(t_0)e^{-\lambda (t-t_0)}+\lambda\int_{t_0}^t\theta^\mathbb{T}(t')e^{-\lambda(t-t')}dt'
-\</p>
-<p>\end{array}$$</p>
+\\
+\end{array}\]</div>
 <h2 id="_r2-_r">σ_r², μ_r<a class="headerlink" href="#_r2-_r" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \sigma_r^2(t)
 &amp;=&amp;\displaystyle
--\frac{1}{2}\sigma^2 B(2t)\
+-\frac{1}{2}\sigma^2 B(2t)\\
 \displaystyle
 \sigma_r^2(t_0,t)
 &amp;=&amp;\displaystyle
--\frac{1}{2}\sigma^2 B(2(t-t_0))</p>
-<p>\end{array}$$</p>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+-\frac{1}{2}\sigma^2 B(2(t-t_0))
+\end{array}\]</div>
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \mu_r(t)
 &amp;=&amp;\displaystyle
-\psi(t)\
+\psi(t)\\
 \displaystyle
 \mu_r(t_0,t)
 &amp;=&amp;\displaystyle
-\psi(t_0,t)\
+\psi(t_0,t)\\
 \displaystyle
 \mu^\mathbb{T}_r(t_0,t)
 &amp;=&amp;\displaystyle
-\psi^\mathbb{T}(t_0,t)\</p>
-<p>\end{array}$$</p>
+\psi^\mathbb{T}(t_0,t)\\
+\end{array}\]</div>
 <h2 id="a-b">A, B<a class="headerlink" href="#a-b" title="Permanent link">&para;</a></h2>
-<p>$$\begin{array}{lllllll}</p>
-<p>A(\tau)&amp;=&amp;A(0,\tau)
+<div class="arithmatex">\[\begin{array}{lllllll}
+A(\tau)&amp;=&amp;A(0,\tau)
 &amp;=&amp;\displaystyle
 -\frac{\sigma^2}{4\lambda^3}
 \left(3-2\lambda\tau-4e^{-\lambda\tau}+e^{-2\lambda\tau}\right)
 +
 \lambda\int_0^\tau\theta(T-\tau')B(\tau')d\tau'
-\
+\\
 B(\tau)&amp;=&amp;B(0,\tau)
 &amp;=&amp;\displaystyle
 -\frac{1-e^{-\lambda\tau}}{\lambda}
-\</p>
-<p>\end{array}$$</p>
+\\
+\end{array}\]</div>
 <h3 id="characteristic-function-version">Characteristic Function Version<a class="headerlink" href="#characteristic-function-version" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 A(u,\tau)
 &amp;=&amp;\displaystyle
 -\frac{\sigma^2}{4\lambda^3}\left[(1+iu\lambda)\left[
     3-4e^{-\lambda \tau}+e^{-2\lambda \tau}
     - iu\lambda\left(1-e^{-2\lambda \tau}\right)
     \right]-2\lambda\tau\right]
-+\lambda\int_0^\tau\theta(T-\tau')B(u,\tau')d\tau'\
++\lambda\int_0^\tau\theta(T-\tau')B(u,\tau')d\tau'\\
 \displaystyle
 B(u,\tau)
 &amp;=&amp;\displaystyle
 -\frac{1-(1+iu\lambda) e^{-\lambda \tau}}{\lambda}
-=iue^{-\lambda\tau}+B(\tau)\</p>
-<p>\end{array}$$</p>
+=iue^{-\lambda\tau}+B(\tau)\\
+\end{array}\]</div>
 <h3 id="decomposition-version">Decomposition Version<a class="headerlink" href="#decomposition-version" title="Permanent link">&para;</a></h3>
-<p>$$\begin{array}{lllll}</p>
-<p>\displaystyle
+<div class="arithmatex">\[\begin{array}{lllll}
+\displaystyle
 \tilde{A}(u,\tau)
 &amp;=&amp;\displaystyle
 -\frac{\sigma^2}{4\lambda^3}\left(3-2\lambda\tau-4e^{-\lambda\tau}+e^{-2\lambda\tau}+2iu\lambda\left(1-e^{-\lambda\tau}\right)^2+u^2\lambda^2\left(1-e^{-2\lambda\tau}\right)\right)
-\
+\\
 \displaystyle
 \tilde{B}(u,\tau)
 &amp;=&amp;\displaystyle
-B(u,\tau)\</p>
-<p>\end{array}$$</p>
+B(u,\tau)\\
+\end{array}\]</div>
 
 
 

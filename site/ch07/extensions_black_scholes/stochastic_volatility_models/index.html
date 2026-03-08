@@ -46875,15 +46875,15 @@
 <h2 id="general-framework">General Framework<a class="headerlink" href="#general-framework" title="Permanent link">&para;</a></h2>
 <h3 id="two-factor-model">Two-Factor Model<a class="headerlink" href="#two-factor-model" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-dS_t &amp;= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \
-dv_t &amp;= \alpha(t, v_t)\,dt + \beta(t, v_t)\,dW_t^{(2)} \
+dS_t &amp;= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
+dv_t &amp;= \alpha(t, v_t)\,dt + \beta(t, v_t)\,dW_t^{(2)} \\
 d\langle W^{(1)}, W^{(2)}\rangle_t &amp;= \rho\,dt
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(v_t\)</span> is the <strong>instantaneous variance</strong> (or volatility squared)
 - <span class="arithmatex">\(\alpha(t, v)\)</span> is the variance drift
@@ -46897,14 +46897,14 @@ d\langle W^{(1)}, W^{(2)}\rangle_t &amp;= \rho\,dt
 <hr />
 <h2 id="the-heston-model">The Heston Model<a class="headerlink" href="#the-heston-model" title="Permanent link">&para;</a></h2>
 <h3 id="model-specification">Model Specification<a class="headerlink" href="#model-specification" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-dS_t &amp;= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \
+dS_t &amp;= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
 dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Parameters</strong>:
 - <span class="arithmatex">\(\kappa &gt; 0\)</span>: Speed of mean reversion
 - <span class="arithmatex">\(\theta &gt; 0\)</span>: Long-term variance level
@@ -46913,11 +46913,11 @@ dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 - <span class="arithmatex">\(v_0\)</span>: Initial variance</p>
 <h3 id="feller-condition">Feller Condition<a class="headerlink" href="#feller-condition" title="Permanent link">&para;</a></h3>
 <p>To ensure <span class="arithmatex">\(v_t &gt; 0\)</span> (variance stays positive):</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 2\kappa\theta \geq \xi^2
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>If violated, variance can hit zero (but is reflected).</p>
 <h3 id="affine-structure">Affine Structure<a class="headerlink" href="#affine-structure" title="Permanent link">&para;</a></h3>
 <p>Heston is an <strong>affine</strong> model: the characteristic function has exponential-affine form, enabling semi-analytical pricing via Fourier methods.</p>
@@ -46925,23 +46925,23 @@ dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 <h2 id="pricing-in-stochastic-volatility">Pricing in Stochastic Volatility<a class="headerlink" href="#pricing-in-stochastic-volatility" title="Permanent link">&para;</a></h2>
 <h3 id="the-2d-pde">The 2D PDE<a class="headerlink" href="#the-2d-pde" title="Permanent link">&para;</a></h3>
 <p>For option price <span class="arithmatex">\(V(t, S, v)\)</span>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{\partial V}{\partial t} + \frac{1}{2}vS^2\frac{\partial^2 V}{\partial S^2} + \rho\xi vS\frac{\partial^2 V}{\partial S\partial v} + \frac{1}{2}\xi^2 v\frac{\partial^2 V}{\partial v^2} + rS\frac{\partial V}{\partial S} + \kappa(\theta - v)\frac{\partial V}{\partial v} - rV = 0
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Note</strong>: The mixed derivative <span class="arithmatex">\(\partial_{Sv}\)</span> term arises from correlation.</p>
 <h3 id="characteristic-function-method">Characteristic Function Method<a class="headerlink" href="#characteristic-function-method" title="Permanent link">&para;</a></h3>
 <p>For Heston, the log-price characteristic function is:</p>
-<p>$$</p>
-<p>\phi(u) = \mathbb{E}^{\mathbb{Q}}[e^{iu\log S_T} | S_t, v_t] = e^{C(T-t, u) + D(T-t, u)v_t + iu\log S_t}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\phi(u) = \mathbb{E}^{\mathbb{Q}}[e^{iu\log S_T} | S_t, v_t] = e^{C(T-t, u) + D(T-t, u)v_t + iu\log S_t}
+\]</div>
 <p>where <span class="arithmatex">\(C\)</span> and <span class="arithmatex">\(D\)</span> satisfy Riccati ODEs with known solutions.</p>
 <h3 id="fourier-pricing">Fourier Pricing<a class="headerlink" href="#fourier-pricing" title="Permanent link">&para;</a></h3>
 <p>European call prices via inverse Fourier transform:</p>
-<p>$$</p>
-<p>C(K) = S_0 - \frac{Ke^{-rT}}{\pi}\int_0^\infty \text{Re}\left[\frac{e^{-iu\log K}\phi(u-i)}{iu}\right]du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(K) = S_0 - \frac{Ke^{-rT}}{\pi}\int_0^\infty \text{Re}\left[\frac{e^{-iu\log K}\phi(u-i)}{iu}\right]du
+\]</div>
 <p><strong>Advantages</strong>: Fast and accurate for vanilla options.</p>
 <hr />
 <h2 id="calibration">Calibration<a class="headerlink" href="#calibration" title="Permanent link">&para;</a></h2>
@@ -47001,33 +47001,33 @@ dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 </ol>
 <h3 id="the-volatility-risk-premium">The Volatility Risk Premium<a class="headerlink" href="#the-volatility-risk-premium" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{P}\)</span>, variance drift may differ:</p>
-<p>$$</p>
-<p>dv_t = [\kappa(\theta - v_t) - \lambda(t, v_t)]\,dt + \xi\sqrt{v_t}\,dW_t^{(2),\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dv_t = [\kappa(\theta - v_t) - \lambda(t, v_t)]\,dt + \xi\sqrt{v_t}\,dW_t^{(2),\mathbb{P}}
+\]</div>
 <p>where <span class="arithmatex">\(\lambda\)</span> is the volatility risk premium (typically negative—investors pay for volatility protection).</p>
 <hr />
 <h2 id="other-stochastic-volatility-models">Other Stochastic Volatility Models<a class="headerlink" href="#other-stochastic-volatility-models" title="Permanent link">&para;</a></h2>
 <h3 id="sabr-model">SABR Model<a class="headerlink" href="#sabr-model" title="Permanent link">&para;</a></h3>
 <p>Popular for interest rate and FX options:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 dF_t &amp;= \sigma_t F_t^\beta\,dW_t^{(1)} \\
 d\sigma_t &amp;= \alpha\sigma_t\,dW_t^{(2)}
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p><strong>Asymptotic formula</strong> for implied volatility (Hagan et al.):</p>
-<p>$$</p>
-<p>\sigma_{\text{imp}}(K) \approx \frac{\alpha}{(FK)^{(1-\beta)/2}}\left[1 + \frac{(1-\beta)^2}{24}\log^2\frac{F}{K} + \cdots\right] \times \frac{z}{x(z)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_{\text{imp}}(K) \approx \frac{\alpha}{(FK)^{(1-\beta)/2}}\left[1 + \frac{(1-\beta)^2}{24}\log^2\frac{F}{K} + \cdots\right] \times \frac{z}{x(z)}
+\]</div>
 <h3 id="hull-white-model">Hull-White Model<a class="headerlink" href="#hull-white-model" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dv_t = \mu v_t\,dt + \xi v_t\,dW_t^{(2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dv_t = \mu v_t\,dt + \xi v_t\,dW_t^{(2)}
+\]</div>
 <p>Log-normal variance process.</p>
 <h3 id="32-model">3/2 Model<a class="headerlink" href="#32-model" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>dv_t = \kappa v_t(\theta - v_t)\,dt + \xi v_t^{3/2}\,dW_t^{(2)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dv_t = \kappa v_t(\theta - v_t)\,dt + \xi v_t^{3/2}\,dW_t^{(2)}
+\]</div>
 <p>Higher vol-of-vol at high variance levels.</p>
 <hr />
 <h2 id="comparison-local-vs-stochastic-volatility">Comparison: Local vs Stochastic Volatility<a class="headerlink" href="#comparison-local-vs-stochastic-volatility" title="Permanent link">&para;</a></h2>
@@ -47097,14 +47097,14 @@ d\sigma_t &amp;= \alpha\sigma_t\,dW_t^{(2)}
 </ul>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{aligned}
-dS_t &amp;= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \
+dS_t &amp;= rS_t\,dt + \sqrt{v_t}S_t\,dW_t^{(1)} \\
 dv_t &amp;= \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^{(2)}
 \end{aligned}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

@@ -46349,43 +46349,43 @@
 <h2 id="the-fundamental-connection">The Fundamental Connection<a class="headerlink" href="#the-fundamental-connection" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\((B_t)_{t \geq 0}\)</span> be a standard Brownian motion starting at <span class="arithmatex">\(0\)</span>.</p>
 <p><strong>Theorem</strong>: The density of <span class="arithmatex">\(B_t\)</span> is the heat kernel:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 p_{B_t}(x) = \frac{1}{\sqrt{2\pi t}} \exp\left(-\frac{x^2}{2t}\right) = G(t,x)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>This density <strong>solves the heat equation</strong> with initial condition <span class="arithmatex">\(\delta_0\)</span>.</p>
 <hr />
 <h2 id="expectation-representation">Expectation Representation<a class="headerlink" href="#expectation-representation" title="Permanent link">&para;</a></h2>
 <p>For any bounded measurable function <span class="arithmatex">\(f\)</span>, define:</p>
-<p>$$</p>
-<p>u(t,x) = \mathbb{E}[f(x + B_t)] = \mathbb{E}[f(B_t) \mid B_0 = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \mathbb{E}[f(x + B_t)] = \mathbb{E}[f(B_t) \mid B_0 = x]
+\]</div>
 <p><strong>Theorem</strong>: The function <span class="arithmatex">\(u\)</span> solves the <strong>initial value problem</strong>:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \begin{cases}
-\displaystyle\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2} &amp; t &gt; 0 \[1em]
+\displaystyle\frac{\partial u}{\partial t} = \frac{1}{2}\frac{\partial^2 u}{\partial x^2} &amp; t &gt; 0 \\[1em]
 u(0,x) = f(x)
 \end{cases}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Proof</strong>: </p>
 <p>Using the convolution formula:</p>
-<p>$$</p>
-<p>u(t,x) = \int_{\mathbb{R}} f(y) G(t, y-x)\,dy = \int_{\mathbb{R}} f(x+z) G(t,z)\,dz</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \int_{\mathbb{R}} f(y) G(t, y-x)\,dy = \int_{\mathbb{R}} f(x+z) G(t,z)\,dz
+\]</div>
 <p>Since <span class="arithmatex">\(G\)</span> solves the heat equation and differentiation commutes with integration:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} = \int f(x+z) \frac{\partial G}{\partial t}(t,z)\,dz = \frac{1}{2}\int f(x+z) \frac{\partial^2 G}{\partial z^2}(t,z)\,dz = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} = \int f(x+z) \frac{\partial G}{\partial t}(t,z)\,dz = \frac{1}{2}\int f(x+z) \frac{\partial^2 G}{\partial z^2}(t,z)\,dz = \frac{1}{2}\frac{\partial^2 u}{\partial x^2}
+\]</div>
 <p>The initial condition follows from <span class="arithmatex">\(G(t,\cdot) \to \delta_0\)</span> as <span class="arithmatex">\(t \to 0\)</span>. <span class="arithmatex">\(\square\)</span></p>
 <hr />
 <h2 id="the-generator-connection">The Generator Connection<a class="headerlink" href="#the-generator-connection" title="Permanent link">&para;</a></h2>
 <p>The <strong>infinitesimal generator</strong> of Brownian motion is:</p>
-<p>$$</p>
-<p>\mathcal{L}f(x) = \lim_{t \to 0} \frac{\mathbb{E}_x[f(B_t)] - f(x)}{t} = \frac{1}{2}f''(x)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{L}f(x) = \lim_{t \to 0} \frac{\mathbb{E}_x[f(B_t)] - f(x)}{t} = \frac{1}{2}f''(x)
+\]</div>
 <p><strong>The heat equation is</strong>: <span class="arithmatex">\(u_t = \mathcal{L}u\)</span></p>
 <p>This generalizes: for any diffusion with generator <span class="arithmatex">\(\mathcal{L}\)</span>, expected values satisfy <span class="arithmatex">\(u_t = \mathcal{L}u\)</span>.</p>
 <hr />
@@ -46427,18 +46427,18 @@ u(0,x) = f(x)
 <hr />
 <h2 id="the-martingale-connection">The Martingale Connection<a class="headerlink" href="#the-martingale-connection" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem</strong>: If <span class="arithmatex">\(u\)</span> solves <span class="arithmatex">\(u_t = \frac{1}{2}u_{xx}\)</span>, then:</p>
-<p>$$</p>
-<p>M_t := u(T-t, B_t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+M_t := u(T-t, B_t)
+\]</div>
 <p>is a <strong>martingale</strong> for <span class="arithmatex">\(0 \leq t \leq T\)</span>.</p>
 <p><strong>Proof</strong>: Apply Itô's lemma to <span class="arithmatex">\(u(T-t, B_t)\)</span>:</p>
-<p>$$</p>
-<p>dM_t = \left(-\frac{\partial u}{\partial t} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\right)dt + \frac{\partial u}{\partial x}dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_t = \left(-\frac{\partial u}{\partial t} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}\right)dt + \frac{\partial u}{\partial x}dB_t
+\]</div>
 <p>Since <span class="arithmatex">\(u\)</span> solves the heat equation (with time running backward), the <span class="arithmatex">\(dt\)</span> term vanishes:</p>
-<p>$$</p>
-<p>dM_t = \frac{\partial u}{\partial x}(T-t, B_t)\,dB_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dM_t = \frac{\partial u}{\partial x}(T-t, B_t)\,dB_t
+\]</div>
 <p>This is a local martingale (and a true martingale under growth conditions). <span class="arithmatex">\(\square\)</span></p>
 <p><strong>Consequence</strong>: <span class="arithmatex">\(u(T,x) = \mathbb{E}[M_T \mid M_0] = \mathbb{E}[u(0, B_T) \mid B_0 = x] = \mathbb{E}[f(B_T) \mid B_0 = x]\)</span></p>
 <hr />
@@ -46457,39 +46457,39 @@ u(0,x) = f(x)
 <hr />
 <h2 id="exit-problems-and-boundary-conditions">Exit Problems and Boundary Conditions<a class="headerlink" href="#exit-problems-and-boundary-conditions" title="Permanent link">&para;</a></h2>
 <p>For Brownian motion in a domain <span class="arithmatex">\(D\)</span>, define the <strong>exit time</strong>:</p>
-<p>$$</p>
-<p>\tau = \inf{t &gt; 0 : B_t \notin D}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\tau = \inf\{t &gt; 0 : B_t \notin D\}
+\]</div>
 <p><strong>Theorem (Kakutani)</strong>: The function:</p>
-<p>$$</p>
-<p>u(x) = \mathbb{E}<em>x[f(B</em>\tau)]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(x) = \mathbb{E}_x[f(B_\tau)]
+\]</div>
 <p>solves the <strong>Dirichlet problem</strong>:</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{cases}
+<div class="arithmatex">\[
+\begin{cases}
 \frac{1}{2}\Delta u = 0 &amp; \text{in } D \\
 u = f &amp; \text{on } \partial D
-\end{cases}\]</div>
-<p>$$</p>
+\end{cases}
+\]</div>
 <p>This connects harmonic functions (solutions to Laplace's equation) to Brownian motion.</p>
 <hr />
 <h2 id="the-reflection-principle">The Reflection Principle<a class="headerlink" href="#the-reflection-principle" title="Permanent link">&para;</a></h2>
 <p>For Brownian motion hitting a boundary, the <strong>reflection principle</strong> provides:</p>
-<p>$$</p>
-<p>\mathbb{P}\left(\max_{0 \leq s \leq t} B_s \geq a\right) = 2\mathbb{P}(B_t \geq a) = 2\Phi\left(-\frac{a}{\sqrt{t}}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{P}\left(\max_{0 \leq s \leq t} B_s \geq a\right) = 2\mathbb{P}(B_t \geq a) = 2\Phi\left(-\frac{a}{\sqrt{t}}\right)
+\]</div>
 <p>for <span class="arithmatex">\(a &gt; 0\)</span>.</p>
 <p><strong>PDE interpretation</strong>: This relates to boundary conditions for the heat equation on a half-line.</p>
 <hr />
 <h2 id="heat-equation-with-drift">Heat Equation with Drift<a class="headerlink" href="#heat-equation-with-drift" title="Permanent link">&para;</a></h2>
 <p>For Brownian motion with drift <span class="arithmatex">\(dX_t = \mu\,dt + dB_t\)</span>:</p>
-<p>$$</p>
-<p>u(t,x) = \mathbb{E}[f(X_t) \mid X_0 = x]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+u(t,x) = \mathbb{E}[f(X_t) \mid X_0 = x]
+\]</div>
 <p>solves the <strong>advection-diffusion equation</strong>:</p>
-<p>$$</p>
-<p>\frac{\partial u}{\partial t} = -\mu\frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial t} = -\mu\frac{\partial u}{\partial x} + \frac{1}{2}\frac{\partial^2 u}{\partial x^2}
+\]</div>
 <p>The generator becomes <span class="arithmatex">\(\mathcal{L} = \mu\partial_x + \frac{1}{2}\partial_{xx}\)</span>.</p>
 <hr />
 <h2 id="from-heat-equation-to-feynman-kac">From Heat Equation to Feynman-Kac<a class="headerlink" href="#from-heat-equation-to-feynman-kac" title="Permanent link">&para;</a></h2>
@@ -46533,11 +46533,11 @@ u = f &amp; \text{on } \partial D
 </ol>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \mathbb{E}[f(B_t) \mid B_0 = x] = \int_{\mathbb{R}} f(y) G(t, y-x)\,dy \quad \text{solves} \quad u_t = \frac{1}{2}u_{xx}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The heat equation-Brownian motion connection establishes:</p>
 <table>
 <thead>

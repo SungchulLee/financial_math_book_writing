@@ -46548,26 +46548,26 @@
 <h2 id="recovery-of-face-value-rfv">Recovery of Face Value (RFV)<a class="headerlink" href="#recovery-of-face-value-rfv" title="Permanent link">&para;</a></h2>
 <h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
 <p>At default time <span class="arithmatex">\(\tau\)</span>, bondholders receive:</p>
-<p>$$</p>
-<p>\text{Recovery Payment} = R \cdot F,</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Recovery Payment} = R \cdot F
+\]</div>
 <p>where <span class="arithmatex">\(R\)</span> is the recovery rate and <span class="arithmatex">\(F\)</span> is the face value (par).</p>
 <h3 id="timing">Timing<a class="headerlink" href="#timing" title="Permanent link">&para;</a></h3>
 <p>Payment occurs at default time <span class="arithmatex">\(\tau\)</span>, not at maturity.</p>
 <h3 id="pricing-formula">Pricing Formula<a class="headerlink" href="#pricing-formula" title="Permanent link">&para;</a></h3>
 <p>For a zero-coupon bond with face value <span class="arithmatex">\(F\)</span> and maturity <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>P^d(0,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s ds} \mathbf{1}<em T_125_="T}" _123_tau="{\tau" _le="\le">{{\tau &gt; T}}\right] + R \cdot F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^{\tau} r_s ds} \mathbf{1}</em>\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(0,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T r_s ds} \mathbf{1}_{\{\tau &gt; T\}}\right] + R \cdot F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^{\tau} r_s ds} \mathbf{1}_{\{\tau \le T\}}\right]
+\]</div>
 <p>Using intensity-based valuation:</p>
-<p>$$</p>
-<p>P^d(0,T) = F \cdot \mathbb{E}\left[e^{-\int_0^T (r_s + \lambda_s) ds}\right] + R \cdot F \cdot \mathbb{E}\left[\int_0^T e^{-\int_0^u (r_s + \lambda_s) ds} \lambda_u \, du\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(0,T) = F \cdot \mathbb{E}\left[e^{-\int_0^T (r_s + \lambda_s) ds}\right] + R \cdot F \cdot \mathbb{E}\left[\int_0^T e^{-\int_0^u (r_s + \lambda_s) ds} \lambda_u \, du\right]
+\]</div>
 <h3 id="deterministic-rates-and-intensity">Deterministic Rates and Intensity<a class="headerlink" href="#deterministic-rates-and-intensity" title="Permanent link">&para;</a></h3>
 <p>With constant <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(\lambda\)</span>:</p>
-<p>$$</p>
-<p>P^d(0,T) = F \cdot e^{-(r+\lambda)T} + R \cdot F \cdot \frac{\lambda}{r+\lambda}\left(1 - e^{-(r+\lambda)T}\right).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(0,T) = F \cdot e^{-(r+\lambda)T} + R \cdot F \cdot \frac{\lambda}{r+\lambda}\left(1 - e^{-(r+\lambda)T}\right)
+\]</div>
 <h3 id="advantages-and-disadvantages">Advantages and Disadvantages<a class="headerlink" href="#advantages-and-disadvantages" title="Permanent link">&para;</a></h3>
 <p><strong>Advantages:</strong>
 - Intuitive: recovery is a fixed fraction of principal
@@ -46580,14 +46580,14 @@
 <h2 id="recovery-of-treasury-rt">Recovery of Treasury (RT)<a class="headerlink" href="#recovery-of-treasury-rt" title="Permanent link">&para;</a></h2>
 <h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
 <p>At default time <span class="arithmatex">\(\tau\)</span>, bondholders receive the equivalent of <span class="arithmatex">\(R \cdot F\)</span> at maturity <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\text{Recovery Payment at } \tau = R \cdot F \cdot P(\tau, T),</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Recovery Payment at } \tau = R \cdot F \cdot P(\tau, T)
+\]</div>
 <p>where <span class="arithmatex">\(P(\tau, T)\)</span> is the risk-free discount factor from <span class="arithmatex">\(\tau\)</span> to <span class="arithmatex">\(T\)</span>.</p>
 <h3 id="pricing-formula_1">Pricing Formula<a class="headerlink" href="#pricing-formula_1" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P^d(0,T) = F \cdot P(0,T) \cdot \left[R + (1-R) S(0,T)\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(0,T) = F \cdot P(0,T) \cdot \left[R + (1-R) S(0,T)\right]
+\]</div>
 <h3 id="advantages-and-disadvantages_1">Advantages and Disadvantages<a class="headerlink" href="#advantages-and-disadvantages_1" title="Permanent link">&para;</a></h3>
 <p><strong>Advantages:</strong>
 - Clean separation of credit and interest rate risk
@@ -46599,14 +46599,14 @@
 <h2 id="recovery-of-market-value-rmv">Recovery of Market Value (RMV)<a class="headerlink" href="#recovery-of-market-value-rmv" title="Permanent link">&para;</a></h2>
 <h3 id="definition-duffie-singleton">Definition (Duffie-Singleton)<a class="headerlink" href="#definition-duffie-singleton" title="Permanent link">&para;</a></h3>
 <p>At default, bondholders recover a fraction <span class="arithmatex">\(R\)</span> of the <strong>pre-default market value</strong>:</p>
-<p>$$</p>
-<p>\text{Recovery Payment} = R \cdot P^d(\tau-, T).</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Recovery Payment} = R \cdot P^d(\tau-, T)
+\]</div>
 <h3 id="key-result">Key Result<a class="headerlink" href="#key-result" title="Permanent link">&para;</a></h3>
 <p>The Duffie-Singleton formula:</p>
-<p>$$</p>
-<p>P^d(0,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T (r_s + (1-R)\lambda_s) ds}\right].</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P^d(0,T) = F \cdot \mathbb{E}^{\mathbb{Q}}\left[e^{-\int_0^T (r_s + (1-R)\lambda_s) ds}\right]
+\]</div>
 <p>Default risk enters through the <strong>loss-adjusted intensity</strong> <span class="arithmatex">\((1-R)\lambda\)</span>.</p>
 <h3 id="advantages-and-disadvantages_2">Advantages and Disadvantages<a class="headerlink" href="#advantages-and-disadvantages_2" title="Permanent link">&para;</a></h3>
 <p><strong>Advantages:</strong>

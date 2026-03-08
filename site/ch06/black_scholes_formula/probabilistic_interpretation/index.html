@@ -46796,55 +46796,55 @@
 <h2 id="risk-neutral-expectation">Risk-Neutral Expectation<a class="headerlink" href="#risk-neutral-expectation" title="Permanent link">&para;</a></h2>
 <h3 id="1-fundamental-pricing-formula">1. <strong>Fundamental Pricing Formula</strong><a class="headerlink" href="#1-fundamental-pricing-formula" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the option price is:</p>
-<p>$$</p>
-<p>V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff at } T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\text{Payoff at } T]
+\]</div>
 <p>For a European call:</p>
-<p>$$</p>
-<p>C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]
+\]</div>
 <h3 id="2-terminal-stock-price-distribution">2. <strong>Terminal Stock Price Distribution</strong><a class="headerlink" href="#2-terminal-stock-price-distribution" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>, the terminal stock price is:</p>
-<p>$$</p>
-<p>S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T}
+\]</div>
 <p>where <span class="arithmatex">\(W_T \sim \mathcal{N}(0, T)\)</span> under <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <p><strong>Log-normal distribution</strong>:</p>
-<p>$$</p>
-<p>\log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \frac{1}{2}\sigma^2\right)T, \sigma^2 T\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\log S_T \sim \mathcal{N}\left(\log S_0 + \left(r - \frac{1}{2}\sigma^2\right)T, \sigma^2 T\right)
+\]</div>
 <h3 id="3-decomposition-of-call-expectation">3. <strong>Decomposition of Call Expectation</strong><a class="headerlink" href="#3-decomposition-of-call-expectation" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] &amp;= \mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T &gt; K\}}] - K\mathbb{E}^{\mathbb{Q}}[\mathbf{1}_{\{S_T &gt; K\}}] \\
 &amp;= \mathbb{E}^{\mathbb{Q}}[S_T | S_T &gt; K] \cdot \mathbb{Q}(S_T &gt; K) - K \cdot \mathbb{Q}(S_T &gt; K)
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <p>This reveals two key probabilities we need to evaluate.</p>
 <hr />
 <h2 id="the-meaning-of-nd_2">The Meaning of N(d_2)<a class="headerlink" href="#the-meaning-of-nd_2" title="Permanent link">&para;</a></h2>
 <h3 id="1-exercise-probability-under-q">1. <strong>Exercise Probability Under Q</strong><a class="headerlink" href="#1-exercise-probability-under-q" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\mathcal{N}(d_2) = \mathbb{Q}(S_T &gt; K)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathcal{N}(d_2) = \mathbb{Q}(S_T &gt; K)}
+\]</div>
 <p><strong>Interpretation</strong>: <span class="arithmatex">\(\mathcal{N}(d_2)\)</span> is the <strong>risk-neutral probability</strong> that the option expires in-the-money.</p>
 <h3 id="2-derivation">2. <strong>Derivation</strong><a class="headerlink" href="#2-derivation" title="Permanent link">&para;</a></h3>
 <p>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$\begin{array}{lll}</p>
-<p>S_T &gt; K 
-&amp;\iff&amp;\displaystyle \log S_T &gt; \log K\
-&amp;\iff&amp;\displaystyle  S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T} &gt; K\
-&amp;\iff&amp;\displaystyle  \sigma W_T &gt; \log(K/S_0) - \left(r - \frac{1}{2}\sigma^2\right)T\
-&amp;\iff&amp;\displaystyle  \frac{W_T}{\sqrt{T}} &gt; \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}</p>
-<p>\end{array}$$</p>
+<div class="arithmatex">\[\begin{array}{lll}
+S_T &gt; K 
+&amp;\iff&amp;\displaystyle \log S_T &gt; \log K\\
+&amp;\iff&amp;\displaystyle  S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma W_T} &gt; K\\
+&amp;\iff&amp;\displaystyle  \sigma W_T &gt; \log(K/S_0) - \left(r - \frac{1}{2}\sigma^2\right)T\\
+&amp;\iff&amp;\displaystyle  \frac{W_T}{\sqrt{T}} &gt; \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+\end{array}\]</div>
 <p>Since <span class="arithmatex">\(\frac{W_T}{\sqrt{T}} \sim \mathcal{N}(0,1)\)</span> under <span class="arithmatex">\(\mathbb{Q}\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}(S_T &gt; K) = \mathbb{Q}\left(Z &gt; \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(S_T &gt; K) = \mathbb{Q}\left(Z &gt; \frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_2)
+\]</div>
 <p>where <span class="arithmatex">\(Z \sim \mathcal{N}(0,1)\)</span> and we used:</p>
-<p>$$</p>
-<p>d_2 = \frac{\log(S_0/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = -\frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_2 = \frac{\log(S_0/K) + (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}} = -\frac{\log(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}
+\]</div>
 <h3 id="3-intuition">3. <strong>Intuition</strong><a class="headerlink" href="#3-intuition" title="Permanent link">&para;</a></h3>
 <ul>
 <li>If <span class="arithmatex">\(d_2 &gt; 0\)</span>: More than 50% probability of finishing ITM</li>
@@ -46863,41 +46863,41 @@
 <h2 id="the-meaning-of-nd_1">The Meaning of N(d_1)<a class="headerlink" href="#the-meaning-of-nd_1" title="Permanent link">&para;</a></h2>
 <h3 id="1-stock-measure-probability">1. <strong>Stock Measure Probability</strong><a class="headerlink" href="#1-stock-measure-probability" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(\mathcal{N}(d_1)\)</span> is the probability of exercise under the <strong>stock measure</strong> <span class="arithmatex">\(\mathbb{Q}^S\)</span> (where the stock is used as numeraire):</p>
-<p>$$</p>
-<p>\boxed{\mathcal{N}(d_1) = \mathbb{Q}^S(S_T &gt; K)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\mathcal{N}(d_1) = \mathbb{Q}^S(S_T &gt; K)}
+\]</div>
 <h3 id="2-derivation-via-measure-change">2. <strong>Derivation via Measure Change</strong><a class="headerlink" href="#2-derivation-via-measure-change" title="Permanent link">&para;</a></h3>
 <p>Under the stock measure, the Radon-Nikodym derivative is:</p>
-<p>$$</p>
-<p>\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\mathbb{Q}^S}{d\mathbb{Q}} = \frac{S_T e^{-rT}}{S_0}
+\]</div>
 <p>Under <span class="arithmatex">\(\mathbb{Q}^S\)</span>, the stock price dynamics shift:</p>
-<p>$$</p>
-<p>S_T = S_0 e^{(r + \frac{1}{2}\sigma^2)T + \sigma \tilde{W}_T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+S_T = S_0 e^{(r + \frac{1}{2}\sigma^2)T + \sigma \tilde{W}_T}
+\]</div>
 <p>where <span class="arithmatex">\(\tilde{W}_T \sim \mathcal{N}(0, T)\)</span> under <span class="arithmatex">\(\mathbb{Q}^S\)</span>.</p>
 <p>Following the same calculation as for <span class="arithmatex">\(d_2\)</span>:</p>
-<p>$$</p>
-<p>\mathbb{Q}^S(S_T &gt; K) = \mathcal{N}\left(\frac{\log(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}^S(S_T &gt; K) = \mathcal{N}\left(\frac{\log(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}\right) = \mathcal{N}(d_1)
+\]</div>
 <h3 id="3-alternative-interpretation-delta">3. <strong>Alternative Interpretation: Delta</strong><a class="headerlink" href="#3-alternative-interpretation-delta" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(\mathcal{N}(d_1)\)</span> also equals the option's <strong>delta</strong> (hedge ratio):</p>
-<p>$$</p>
-<p>\Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
+\]</div>
 <p>This is <strong>not a coincidence</strong>—the delta naturally emerges as the stock-measure probability through the replication argument.</p>
 <h3 id="4-relationship-between-d_1-and-d_2">4. <strong>Relationship Between d_1 and d_2</strong><a class="headerlink" href="#4-relationship-between-d_1-and-d_2" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>d_1 = d_2 + \sigma\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = d_2 + \sigma\sqrt{T}
+\]</div>
 <p>The difference <span class="arithmatex">\(\sigma\sqrt{T}\)</span> represents the <strong>volatility-time effect</strong> that shifts the probability when changing from risk-neutral to stock measure.</p>
 <p><strong>Effect</strong>: Since <span class="arithmatex">\(d_1 &gt; d_2\)</span>, we always have <span class="arithmatex">\(\mathcal{N}(d_1) &gt; \mathcal{N}(d_2)\)</span> (higher probability under stock measure).</p>
 <hr />
 <h2 id="the-two-term-structure">The Two-Term Structure<a class="headerlink" href="#the-two-term-structure" title="Permanent link">&para;</a></h2>
 <h3 id="1-call-option">1. <strong>Call Option</strong><a class="headerlink" href="#1-call-option" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>C_0 = \underbrace{S_0\mathcal{N}(d_1)}<em _text_Expected="\text{Expected" payment="payment" strike="strike">{\text{Expected stock receipt}} - \underbrace{Ke^{-rT}\mathcal{N}(d_2)}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = \underbrace{S_0\mathcal{N}(d_1)}_{\text{Expected stock receipt}} - \underbrace{Ke^{-rT}\mathcal{N}(d_2)}_{\text{Expected strike payment}}
+\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ol>
 <li><strong>Strike term</strong> <span class="arithmatex">\(Ke^{-rT}\mathcal{N}(d_2)\)</span>:</li>
@@ -46917,22 +46917,22 @@
 - <span class="arithmatex">\(p = \mathbb{Q}(S_T &gt; K) = \mathcal{N}(d_2)\)</span>
 - <span class="arithmatex">\(\bar{S} = \mathbb{E}^{\mathbb{Q}}[S_T | S_T &gt; K]\)</span> = conditional expected stock price</p>
 <p>Then:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{{S_T &gt; K}}] = \bar{S} \cdot p</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[S_T \cdot \mathbf{1}_{\{S_T &gt; K\}}] = \bar{S} \cdot p
+\]</div>
 <p>After calculation (completing the square in the Gaussian integral), it turns out:</p>
-<p>$$</p>
-<p>\bar{S} \cdot p = S_0 e^{rT} \mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{S} \cdot p = S_0 e^{rT} \mathcal{N}(d_1)
+\]</div>
 <p>Therefore:</p>
-<p>$$</p>
-<p>C_0 = e^{-rT}[\bar{S} \cdot p - K \cdot p] = e^{-rT}\bar{S} \cdot \mathcal{N}(d_2) - Ke^{-rT}\mathcal{N}(d_2)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_0 = e^{-rT}[\bar{S} \cdot p - K \cdot p] = e^{-rT}\bar{S} \cdot \mathcal{N}(d_2) - Ke^{-rT}\mathcal{N}(d_2)
+\]</div>
 <p>which simplifies to the BS formula.</p>
 <h3 id="3-put-option">3. <strong>Put Option</strong><a class="headerlink" href="#3-put-option" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>P_0 = \underbrace{Ke^{-rT}\mathcal{N}(-d_2)}<em _text_Expected="\text{Expected" stock="stock" surrender="surrender">{\text{Expected strike receipt}} - \underbrace{S_0\mathcal{N}(-d_1)}</em>}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P_0 = \underbrace{Ke^{-rT}\mathcal{N}(-d_2)}_{\text{Expected strike receipt}} - \underbrace{S_0\mathcal{N}(-d_1)}_{\text{Expected stock surrender}}
+\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ol>
 <li><strong>Strike term</strong> <span class="arithmatex">\(Ke^{-rT}\mathcal{N}(-d_2)\)</span>:</li>
@@ -46991,19 +46991,19 @@
 - <span class="arithmatex">\(S_0 = 100\)</span>, <span class="arithmatex">\(K = 100\)</span> (ATM)
 - <span class="arithmatex">\(r = 5\%\)</span>, <span class="arithmatex">\(\sigma = 20\%\)</span>, <span class="arithmatex">\(T = 1\)</span> year</p>
 <p><strong>Step 1</strong>: Compute <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span></p>
-<p>$$</p>
-<p>d_1 = \frac{\ln(100/100) + (0.05 + 0.5 \times 0.04) \times 1}{0.2 \times 1} = \frac{0 + 0.07}{0.2} = 0.35</p>
-<p>$$</p>
-<p>$$</p>
-<p>d_2 = 0.35 - 0.2 = 0.15</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = \frac{\ln(100/100) + (0.05 + 0.5 \times 0.04) \times 1}{0.2 \times 1} = \frac{0 + 0.07}{0.2} = 0.35
+\]</div>
+<div class="arithmatex">\[
+d_2 = 0.35 - 0.2 = 0.15
+\]</div>
 <p><strong>Step 2</strong>: Evaluate probabilities</p>
-<p>$$</p>
-<p>\mathcal{N}(d_1) = \mathcal{N}(0.35) \approx 0.6368</p>
-<p>$$</p>
-<p>$$</p>
-<p>\mathcal{N}(d_2) = \mathcal{N}(0.15) \approx 0.5596</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathcal{N}(d_1) = \mathcal{N}(0.35) \approx 0.6368
+\]</div>
+<div class="arithmatex">\[
+\mathcal{N}(d_2) = \mathcal{N}(0.15) \approx 0.5596
+\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ul>
 <li><strong>Risk-neutral probability</strong> of call finishing ITM: 55.96%</li>
@@ -47011,38 +47011,38 @@
 <li>The 7.72 percentage point difference reflects the measure change</li>
 </ul>
 <p><strong>Step 3</strong>: Call price</p>
-<p>$$</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 C_0 &amp;= 100 \times 0.6368 - 100 \times e^{-0.05} \times 0.5596 \\
 &amp;= 63.68 - 95.12 \times 0.5596 \\
 &amp;= 63.68 - 53.22 \\
 &amp;\approx 10.46
-\end{aligned}\]</div>
-<p>$$</p>
+\end{aligned}
+\]</div>
 <hr />
 <h2 id="why-two-different-probabilities">Why Two Different Probabilities?<a class="headerlink" href="#why-two-different-probabilities" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-measure-change-effect">1. <strong>The Measure Change Effect</strong><a class="headerlink" href="#1-the-measure-change-effect" title="Permanent link">&para;</a></h3>
 <p>The shift from <span class="arithmatex">\(\mathbb{Q}\)</span> to <span class="arithmatex">\(\mathbb{Q}^S\)</span> changes the drift of the stock price:</p>
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}\)</span></strong> (risk-neutral):</p>
-<p>$$</p>
-<p>dS_t = rS_t dt + \sigma S_t dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t dt + \sigma S_t dW_t
+\]</div>
 <p>Expected return = risk-free rate <span class="arithmatex">\(r\)</span></p>
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}^S\)</span></strong> (stock measure):</p>
-<p>$$</p>
-<p>dS_t = (r + \sigma^2)S_t dt + \sigma S_t d\tilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = (r + \sigma^2)S_t dt + \sigma S_t d\tilde{W}_t
+\]</div>
 <p>Expected return = <span class="arithmatex">\(r + \sigma^2\)</span> (higher!)</p>
 <p>The stock measure gives more weight to paths where <span class="arithmatex">\(S_T\)</span> is large, increasing the probability of <span class="arithmatex">\(S_T &gt; K\)</span>.</p>
 <h3 id="2-girsanovs-theorem">2. <strong>Girsanov's Theorem</strong><a class="headerlink" href="#2-girsanovs-theorem" title="Permanent link">&para;</a></h3>
 <p>The Brownian motions under the two measures are related by:</p>
-<p>$$</p>
-<p>d\tilde{W}_t = dW_t + \sigma dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{W}_t = dW_t + \sigma dt
+\]</div>
 <p>This drift adjustment of <span class="arithmatex">\(\sigma dt\)</span> shifts the distribution, causing:</p>
-<p>$$</p>
-<p>d_1 = d_2 + \sigma\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d_1 = d_2 + \sigma\sqrt{T}
+\]</div>
 <h3 id="3-economic-intuition">3. <strong>Economic Intuition</strong><a class="headerlink" href="#3-economic-intuition" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Risk-neutral measure</strong>: Used for pricing—treats all investors as risk-neutral</li>
@@ -47052,14 +47052,14 @@ C_0 &amp;= 100 \times 0.6368 - 100 \times e^{-0.05} \times 0.5596 \\
 <hr />
 <h2 id="connection-to-delta-hedging">Connection to Delta Hedging<a class="headerlink" href="#connection-to-delta-hedging" title="Permanent link">&para;</a></h2>
 <p>The hedge ratio (delta) for a call is:</p>
-<p>$$</p>
-<p>\Delta_{\text{call}} = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Delta_{\text{call}} = \frac{\partial C}{\partial S} = \mathcal{N}(d_1)
+\]</div>
 <p><strong>Interpretation</strong>: To hedge a short call position, hold <span class="arithmatex">\(\mathcal{N}(d_1)\)</span> shares of stock.</p>
 <p><strong>Why this equals the stock-measure probability</strong>: The delta emerges naturally from the replication argument, where we solve:</p>
-<p>$$</p>
-<p>V = \Delta S + \beta</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V = \Delta S + \beta
+\]</div>
 <p>The <span class="arithmatex">\(\Delta\)</span> that replicates the option is exactly the probability under the measure where <span class="arithmatex">\(S\)</span> is the numeraire.</p>
 <hr />
 <h2 id="limiting-cases">Limiting Cases<a class="headerlink" href="#limiting-cases" title="Permanent link">&para;</a></h2>
@@ -47070,9 +47070,9 @@ C_0 &amp;= 100 \times 0.6368 - 100 \times e^{-0.05} \times 0.5596 \\
 <li>Both probabilities approach 100% (certain exercise)</li>
 </ul>
 <p>Call price:</p>
-<p>$$</p>
-<p>C \to S - Ke^{-rT}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to S - Ke^{-rT}
+\]</div>
 <p>(intrinsic value plus cost of carry)</p>
 <h3 id="2-deep-out-of-the-money-s-k">2. <strong>Deep Out-of-the-Money</strong> (S ≪ K)<a class="headerlink" href="#2-deep-out-of-the-money-s-k" title="Permanent link">&para;</a></h3>
 <ul>
@@ -47081,9 +47081,9 @@ C_0 &amp;= 100 \times 0.6368 - 100 \times e^{-0.05} \times 0.5596 \\
 <li>Both probabilities approach 0% (no exercise)</li>
 </ul>
 <p>Call price:</p>
-<p>$$</p>
-<p>C \to 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C \to 0
+\]</div>
 <h3 id="3-at-the-money-forward-s-ke-rt">3. <strong>At-the-Money Forward</strong> (S = Ke^-rT)<a class="headerlink" href="#3-at-the-money-forward-s-ke-rt" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(d_1 = \frac{\sigma\sqrt{T}}{2}\)</span>, <span class="arithmatex">\(d_2 = -\frac{\sigma\sqrt{T}}{2}\)</span></li>

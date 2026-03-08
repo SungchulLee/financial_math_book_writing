@@ -46560,9 +46560,9 @@
 <hr />
 <h2 id="the-optimal-stopping-problem">The Optimal Stopping Problem<a class="headerlink" href="#the-optimal-stopping-problem" title="Permanent link">&para;</a></h2>
 <p>The American option price at time <span class="arithmatex">\(t_0 = 0\)</span> is:</p>
-<p>$$</p>
-<p>V_0 = \sup_{\tau \in \mathcal{T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \Phi(S_\tau)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+V_0 = \sup_{\tau \in \mathcal{T}} \mathbb{E}^{\mathbb{Q}}\left[e^{-r\tau} \Phi(S_\tau)\right]
+\]</div>
 <p>At each exercise date <span class="arithmatex">\(t_k\)</span>, the holder compares:</p>
 <ul>
 <li><strong>Immediate payoff</strong>: <span class="arithmatex">\(\Phi(S_{t_k})\)</span></li>
@@ -46736,23 +46736,23 @@ Compare with the binomial result (<span class="arithmatex">\(\approx 6.08\)</spa
 <li>Suboptimal exercise means <strong>lower payoffs</strong> on average</li>
 </ul>
 <p>Therefore:</p>
-<p>$$</p>
-<p>\boxed{
-\hat{V}<em _text_American="\text{American">{\text{LSM}} \leq V</em>
-}}} \quad \text{(low-biased)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\hat{V}_{\text{LSM}} \leq V_{\text{American}} \quad \text{(low-biased)}
+}
+\]</div>
 <h3 id="high-biased-estimator">High-Biased Estimator<a class="headerlink" href="#high-biased-estimator" title="Permanent link">&para;</a></h3>
 <p>A <strong>high-biased</strong> (dual) estimator can be constructed using the <strong>Andersen–Broadie</strong> approach, which provides an upper bound. The true price lies between the low and high estimates:</p>
-<p>$$</p>
-<p>\hat{V}<em _text_American="\text{American">{\text{low}} \leq V</em>}} \leq \hat{V}_{\text{high}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{V}_{\text{low}} \leq V_{\text{American}} \leq \hat{V}_{\text{high}}
+\]</div>
 <hr />
 <h2 id="convergence">Convergence<a class="headerlink" href="#convergence" title="Permanent link">&para;</a></h2>
 <h3 id="error-decomposition">Error Decomposition<a class="headerlink" href="#error-decomposition" title="Permanent link">&para;</a></h3>
 <p>The total error has three components:</p>
-<p>$$</p>
-<p>\text{Total Error} = \underbrace{O(1/\sqrt{M})}<em _text_time="\text{time" discretization="discretization">{\text{Monte Carlo}} + \underbrace{O(1/N)}</em>}} + \underbrace{O(P^{-\alpha})}_{\text{regression bias}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Total Error} = \underbrace{O(1/\sqrt{M})}_{\text{Monte Carlo}} + \underbrace{O(1/N)}_{\text{time discretization}} + \underbrace{O(P^{-\alpha})}_{\text{regression bias}}
+\]</div>
 <p>where <span class="arithmatex">\(\alpha &gt; 0\)</span> depends on the smoothness of the continuation value function.</p>
 <h3 id="practical-guidance">Practical Guidance<a class="headerlink" href="#practical-guidance" title="Permanent link">&para;</a></h3>
 <table>
@@ -46799,11 +46799,11 @@ Compare with the binomial result (<span class="arithmatex">\(\approx 6.08\)</spa
 </ul>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
-\hat{V}<em m="1">0 = \frac{1}{M} \sum</em> e^{-r\tau^{}^{M<em>(m)}} \Phi(S_{\tau^{</em>(m)}}^{(m)})
-}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{
+\hat{V}_0 = \frac{1}{M} \sum_{m=1}^{M} e^{-r\tau^{*(m)}} \Phi(S_{\tau^{*(m)}}^{(m)})
+}
+\]</div>
 <table>
 <thead>
 <tr>

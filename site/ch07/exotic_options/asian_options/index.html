@@ -46427,27 +46427,27 @@
 <p>Asian options are classified along two dimensions: the <strong>type of average</strong> (arithmetic or geometric) and the <strong>role of the average</strong> in the payoff (average-price or average-strike).</p>
 <h3 id="average-price-vs-average-strike">Average-Price vs. Average-Strike<a class="headerlink" href="#average-price-vs-average-strike" title="Permanent link">&para;</a></h3>
 <p>An <strong>average-price</strong> option replaces the terminal price <span class="arithmatex">\(S_T\)</span> in the payoff with the average:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Average-price call payoff} = \left(\bar{S} - K\right)^+
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>An <strong>average-strike</strong> option uses the average as the strike:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Average-strike call payoff} = \left(S_T - \bar{S}\right)^+
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>where <span class="arithmatex">\(\bar{S}\)</span> denotes the average of the underlying price over the option's life.</p>
 <h3 id="arithmetic-vs-geometric-average">Arithmetic vs. Geometric Average<a class="headerlink" href="#arithmetic-vs-geometric-average" title="Permanent link">&para;</a></h3>
 <p>The <strong>arithmetic average</strong> is:</p>
-<p>$$</p>
-<p>\bar{S}<em i="1">{\text{arith}} = \frac{1}{n}\sum</em>}^{n} S_{t_i} \quad \text{(discrete)}, \qquad \bar{S}_{\text{arith}} = \frac{1}{T}\int_0^T S_t\, dt \quad \text{(continuous)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{S}_{\text{arith}} = \frac{1}{n}\sum_{i=1}^{n} S_{t_i} \quad \text{(discrete)}, \qquad \bar{S}_{\text{arith}} = \frac{1}{T}\int_0^T S_t\, dt \quad \text{(continuous)}
+\]</div>
 <p>The <strong>geometric average</strong> is:</p>
-<p>$$</p>
-<p>\bar{S}<em i="1">{\text{geom}} = \left(\prod</em>}^{n} S_{t_i}\right)^{1/n} \quad \text{(discrete)}, \qquad \bar{S}_{\text{geom}} = \exp\left(\frac{1}{T}\int_0^T \ln S_t\, dt\right) \quad \text{(continuous)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{S}_{\text{geom}} = \left(\prod_{i=1}^{n} S_{t_i}\right)^{1/n} \quad \text{(discrete)}, \qquad \bar{S}_{\text{geom}} = \exp\left(\frac{1}{T}\int_0^T \ln S_t\, dt\right) \quad \text{(continuous)}
+\]</div>
 <table>
 <thead>
 <tr>
@@ -46474,38 +46474,38 @@
 <p>Under geometric Brownian motion, the arithmetic average <span class="arithmatex">\(\bar{S}_{\text{arith}}\)</span> is a <strong>sum of correlated lognormal variables</strong>, which does not have a lognormal distribution. This is why no simple closed-form formula exists for arithmetic Asian options—unlike vanilla options or geometric Asian options.</p>
 <h3 id="geometric-asian-options-closed-form">Geometric Asian Options: Closed Form<a class="headerlink" href="#geometric-asian-options-closed-form" title="Permanent link">&para;</a></h3>
 <p>For a continuous geometric average under GBM, the average <span class="arithmatex">\(\bar{S}_{\text{geom}}\)</span> is itself lognormally distributed. The geometric Asian call price is:</p>
-<p>$$</p>
-<p>C_{\text{geom}} = e^{-rT}\left[\hat{S}_0\, N(\hat{d}_1) - K\, N(\hat{d}_2)\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C_{\text{geom}} = e^{-rT}\left[\hat{S}_0\, N(\hat{d}_1) - K\, N(\hat{d}_2)\right]
+\]</div>
 <p>where the adjusted parameters are:</p>
-<p>$$</p>
-<p>\hat{S}_0 = S_0\, e^{(\hat{r} - r)T}, \quad \hat{r} = \frac{1}{2}\left(r - \frac{\sigma^2}{6}\right), \quad \hat{\sigma} = \frac{\sigma}{\sqrt{3}}</p>
-<p>$$</p>
-<p>$$</p>
-<p>\hat{d}_1 = \frac{\ln(\hat{S}_0/K) + (\hat{r} + \frac{1}{2}\hat{\sigma}^2)T}{\hat{\sigma}\sqrt{T}}, \quad \hat{d}_2 = \hat{d}_1 - \hat{\sigma}\sqrt{T}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\hat{S}_0 = S_0\, e^{(\hat{r} - r)T}, \quad \hat{r} = \frac{1}{2}\left(r - \frac{\sigma^2}{6}\right), \quad \hat{\sigma} = \frac{\sigma}{\sqrt{3}}
+\]</div>
+<div class="arithmatex">\[
+\hat{d}_1 = \frac{\ln(\hat{S}_0/K) + (\hat{r} + \frac{1}{2}\hat{\sigma}^2)T}{\hat{\sigma}\sqrt{T}}, \quad \hat{d}_2 = \hat{d}_1 - \hat{\sigma}\sqrt{T}
+\]</div>
 <p>The volatility reduction factor <span class="arithmatex">\(1/\sqrt{3}\)</span> reflects the averaging effect: the geometric average has lower variance than the terminal price.</p>
 <h3 id="arithmetic-asian-options-approximation-methods">Arithmetic Asian Options: Approximation Methods<a class="headerlink" href="#arithmetic-asian-options-approximation-methods" title="Permanent link">&para;</a></h3>
 <p>Several approaches approximate arithmetic Asian option prices:</p>
 <p><strong>Moment matching.</strong> Match the first two moments of <span class="arithmatex">\(\bar{S}_{\text{arith}}\)</span> to a lognormal distribution:</p>
-<p>$$</p>
-<p>\mathbb{E}[\bar{S}<em _text_arith="\text{arith">{\text{arith}}] = M_1, \quad \mathbb{E}[\bar{S}</em>^2] = M_2}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}[\bar{S}_{\text{arith}}] = M_1, \quad \mathbb{E}[\bar{S}_{\text{arith}}^2] = M_2
+\]</div>
 <p>Then price using a Black–Scholes-like formula with the matched parameters <span class="arithmatex">\(\hat{\mu}\)</span> and <span class="arithmatex">\(\hat{\sigma}^2 = \ln(M_2/M_1^2)\)</span>.</p>
 <p><strong>Control variate using geometric average.</strong> Since <span class="arithmatex">\(\bar{S}_{\text{geom}}\)</span> has a known price, we can use it to reduce variance in Monte Carlo estimation of the arithmetic Asian price (see <a href="../pricing_monte_carlo/">Variance Reduction</a>).</p>
 <hr />
 <h2 id="properties-of-asian-options">Properties of Asian Options<a class="headerlink" href="#properties-of-asian-options" title="Permanent link">&para;</a></h2>
 <h3 id="variance-reduction-through-averaging">Variance Reduction Through Averaging<a class="headerlink" href="#variance-reduction-through-averaging" title="Permanent link">&para;</a></h3>
 <p>The averaging mechanism reduces the variance of the payoff relative to the vanilla option:</p>
-<p>$$</p>
-<p>\text{Var}(\bar{S}) &lt; \text{Var}(S_T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\text{Var}(\bar{S}) &lt; \text{Var}(S_T)
+\]</div>
 <p>This implies that Asian options are <strong>cheaper</strong> than their vanilla counterparts:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 C_{\text{Asian}} \leq C_{\text{vanilla}}
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>The inequality follows from Jensen's inequality applied to the convex payoff function and the lower variance of the averaged price.</p>
 <h3 id="resistance-to-manipulation">Resistance to Manipulation<a class="headerlink" href="#resistance-to-manipulation" title="Permanent link">&para;</a></h3>
 <p>Because the payoff depends on an average over many observation dates, it is difficult for a market participant to manipulate the payoff by trading aggressively near expiry. This makes Asian options particularly suitable for:</p>
@@ -46519,9 +46519,9 @@ C_{\text{Asian}} \leq C_{\text{vanilla}}
 <hr />
 <h2 id="discrete-vs-continuous-averaging">Discrete vs. Continuous Averaging<a class="headerlink" href="#discrete-vs-continuous-averaging" title="Permanent link">&para;</a></h2>
 <p>In practice, Asian options use <strong>discrete</strong> averaging over <span class="arithmatex">\(n\)</span> fixing dates <span class="arithmatex">\(\{t_1, t_2, \ldots, t_n\}\)</span>:</p>
-<p>$$</p>
-<p>\bar{S}<em i="1">{\text{discrete}} = \frac{1}{n}\sum</em>}^{n} S_{t_i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\bar{S}_{\text{discrete}} = \frac{1}{n}\sum_{i=1}^{n} S_{t_i}
+\]</div>
 <p>As <span class="arithmatex">\(n \to \infty\)</span> with uniform spacing, this converges to the continuous average. Typical contracts use <strong>monthly</strong> or <strong>daily</strong> fixings.</p>
 <div class="admonition note">
 <p class="admonition-title">Partially Elapsed Averaging</p>
@@ -46531,11 +46531,11 @@ C_{\text{Asian}} \leq C_{\text{vanilla}}
 </div>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \text{Asian call payoff} = \left(\frac{1}{n}\sum_{i=1}^{n} S_{t_i} - K\right)^+
-}</p>
-<p>$$</p>
+}
+\]</div>
 <table>
 <thead>
 <tr>

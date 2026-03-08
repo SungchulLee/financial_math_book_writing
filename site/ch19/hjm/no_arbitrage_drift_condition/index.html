@@ -47153,9 +47153,9 @@
 <h2 id="setup-and-notation">Setup and Notation<a class="headerlink" href="#setup-and-notation" title="Permanent link">&para;</a></h2>
 <h3 id="forward-rate-dynamics">Forward Rate Dynamics<a class="headerlink" href="#forward-rate-dynamics" title="Permanent link">&para;</a></h3>
 <p>The HJM framework postulates that instantaneous forward rates follow:</p>
-<p>$$</p>
-<p>df(t, T) = \alpha(t, T) \, dt + \sigma(t, T) \, dW_t^{\mathbb{Q}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t, T) = \alpha(t, T) \, dt + \sigma(t, T) \, dW_t^{\mathbb{Q}}
+\]</div>
 <p>where:
 - <span class="arithmatex">\(f(t, T)\)</span>: forward rate at time <span class="arithmatex">\(t\)</span> for maturity <span class="arithmatex">\(T\)</span>
 - <span class="arithmatex">\(\alpha(t, T)\)</span>: drift (to be determined)
@@ -47163,162 +47163,162 @@
 - <span class="arithmatex">\(W_t^{\mathbb{Q}}\)</span>: Brownian motion under risk-neutral measure</p>
 <h3 id="bond-prices-from-forward-rates">Bond Prices from Forward Rates<a class="headerlink" href="#bond-prices-from-forward-rates" title="Permanent link">&para;</a></h3>
 <p>The zero-coupon bond price is:</p>
-<p>$$</p>
-<p>P(t, T) = \exp\left(-\int_t^T f(t, u) \, du\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+P(t, T) = \exp\left(-\int_t^T f(t, u) \, du\right)
+\]</div>
 <h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
 <p>Find the drift <span class="arithmatex">\(\alpha(t, T)\)</span> such that discounted bond prices are martingales under <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <hr />
 <h2 id="the-martingale-condition">The Martingale Condition<a class="headerlink" href="#the-martingale-condition" title="Permanent link">&para;</a></h2>
 <h3 id="risk-neutral-requirement">Risk-Neutral Requirement<a class="headerlink" href="#risk-neutral-requirement" title="Permanent link">&para;</a></h3>
 <p>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the discounted bond price must be a martingale:</p>
-<p>$$</p>
-<p>\frac{P(t, T)}{B_t} \text{ is a } \mathbb{Q}\text{-martingale}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{P(t, T)}{B_t} \text{ is a } \mathbb{Q}\text{-martingale}
+\]</div>
 <p>where <span class="arithmatex">\(B_t = \exp\left(\int_0^t r_s \, ds\right)\)</span> is the money-market account, and <span class="arithmatex">\(r_t = f(t, t)\)</span> is the short rate.</p>
 <h3 id="equivalent-condition">Equivalent Condition<a class="headerlink" href="#equivalent-condition" title="Permanent link">&para;</a></h3>
 <p>Taking logs, define:</p>
-<p>$$</p>
-<p>Z(t, T) := \log P(t, T) = -\int_t^T f(t, u) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z(t, T) := \log P(t, T) = -\int_t^T f(t, u) \, du
+\]</div>
 <p>The martingale condition on <span class="arithmatex">\(P(t, T)/B_t\)</span> translates to conditions on the dynamics of <span class="arithmatex">\(Z(t, T)\)</span>.</p>
 <hr />
 <h2 id="dynamics-of-the-log-bond-price">Dynamics of the Log Bond Price<a class="headerlink" href="#dynamics-of-the-log-bond-price" title="Permanent link">&para;</a></h2>
 <h3 id="computing-dzt-t">Computing dZ(t, T)<a class="headerlink" href="#computing-dzt-t" title="Permanent link">&para;</a></h3>
 <p>We need to find <span class="arithmatex">\(dZ(t, T)\)</span> where:</p>
-<p>$$</p>
-<p>Z(t, T) = -\int_t^T f(t, u) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z(t, T) = -\int_t^T f(t, u) \, du
+\]</div>
 <p><strong>Step 1:</strong> Differentiate with respect to <span class="arithmatex">\(t\)</span></p>
 <p>Using Leibniz's rule for stochastic integrals:</p>
-<p>$$</p>
-<p>dZ(t, T) = f(t, t) \, dt - \int_t^T df(t, u) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ(t, T) = f(t, t) \, dt - \int_t^T df(t, u) \, du
+\]</div>
 <p>The first term comes from the lower limit moving, and the second from the integrand changing.</p>
 <p><strong>Step 2:</strong> Substitute forward rate dynamics</p>
-<p>$$</p>
-<p>df(t, u) = \alpha(t, u) \, dt + \sigma(t, u) \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t, u) = \alpha(t, u) \, dt + \sigma(t, u) \, dW_t
+\]</div>
 <p>So:</p>
-<p>$$</p>
-<p>dZ(t, T) = f(t, t) \, dt - \int_t^T \alpha(t, u) \, du \, dt - \int_t^T \sigma(t, u) \, du \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ(t, T) = f(t, t) \, dt - \int_t^T \alpha(t, u) \, du \, dt - \int_t^T \sigma(t, u) \, du \, dW_t
+\]</div>
 <p><strong>Step 3:</strong> Write compactly</p>
-<p>$$</p>
-<p>dZ(t, T) = \left[r_t - \int_t^T \alpha(t, u) \, du\right] dt - \left[\int_t^T \sigma(t, u) \, du\right] dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ(t, T) = \left[r_t - \int_t^T \alpha(t, u) \, du\right] dt - \left[\int_t^T \sigma(t, u) \, du\right] dW_t
+\]</div>
 <p>Define the <strong>bond volatility</strong>:</p>
-<p>$$</p>
-<p>\Sigma(t, T) := \int_t^T \sigma(t, u) \, du</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\Sigma(t, T) := \int_t^T \sigma(t, u) \, du
+\]</div>
 <p>Then:</p>
-<p>$$</p>
-<p>dZ(t, T) = \left[r_t - \int_t^T \alpha(t, u) \, du\right] dt - \Sigma(t, T) \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dZ(t, T) = \left[r_t - \int_t^T \alpha(t, u) \, du\right] dt - \Sigma(t, T) \, dW_t
+\]</div>
 <hr />
 <h2 id="dynamics-of-the-bond-price">Dynamics of the Bond Price<a class="headerlink" href="#dynamics-of-the-bond-price" title="Permanent link">&para;</a></h2>
 <h3 id="applying-itos-lemma">Applying Itô's Lemma<a class="headerlink" href="#applying-itos-lemma" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(P(t, T) = e^{Z(t, T)}\)</span>, by Itô's lemma:</p>
-<p>$$</p>
-<p>dP(t, T) = P(t, T) \left[dZ + \frac{1}{2}(dZ)^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dP(t, T) = P(t, T) \left[dZ + \frac{1}{2}(dZ)^2\right]
+\]</div>
 <p>The quadratic variation is:</p>
-<p>$$</p>
-<p>(dZ)^2 = \Sigma(t, T)^2 \, dt</p>
-<p>$$</p>
+<div class="arithmatex">\[
+(dZ)^2 = \Sigma(t, T)^2 \, dt
+\]</div>
 <p>So:</p>
-<p>$$</p>
-<p>dP(t, T) = P(t, T) \left[\left(r_t - \int_t^T \alpha(t, u) \, du + \frac{1}{2}\Sigma(t, T)^2\right) dt - \Sigma(t, T) \, dW_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dP(t, T) = P(t, T) \left[\left(r_t - \int_t^T \alpha(t, u) \, du + \frac{1}{2}\Sigma(t, T)^2\right) dt - \Sigma(t, T) \, dW_t\right]
+\]</div>
 <hr />
 <h2 id="the-discounted-bond-price">The Discounted Bond Price<a class="headerlink" href="#the-discounted-bond-price" title="Permanent link">&para;</a></h2>
 <h3 id="dynamics-of-pt-tb_t">Dynamics of P(t, T)/B_t<a class="headerlink" href="#dynamics-of-pt-tb_t" title="Permanent link">&para;</a></h3>
 <p>Let <span class="arithmatex">\(\tilde{P}(t, T) = P(t, T)/B_t\)</span>. Using the product rule:</p>
-<p>$$</p>
-<p>d\tilde{P} = \frac{1}{B_t} dP - \frac{P}{B_t^2} dB = \frac{1}{B_t}\left[dP - r_t P \, dt\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{P} = \frac{1}{B_t} dP - \frac{P}{B_t^2} dB = \frac{1}{B_t}\left[dP - r_t P \, dt\right]
+\]</div>
 <p>Substituting:</p>
-<p>$$</p>
-<p>d\tilde{P} = \tilde{P} \left[\left(-\int_t^T \alpha(t, u) \, du + \frac{1}{2}\Sigma(t, T)^2\right) dt - \Sigma(t, T) \, dW_t\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\tilde{P} = \tilde{P} \left[\left(-\int_t^T \alpha(t, u) \, du + \frac{1}{2}\Sigma(t, T)^2\right) dt - \Sigma(t, T) \, dW_t\right]
+\]</div>
 <h3 id="martingale-condition">Martingale Condition<a class="headerlink" href="#martingale-condition" title="Permanent link">&para;</a></h3>
 <p>For <span class="arithmatex">\(\tilde{P}(t, T)\)</span> to be a martingale, the drift must vanish:</p>
-<p>$$</p>
-<p>-\int_t^T \alpha(t, u) \, du + \frac{1}{2}\Sigma(t, T)^2 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+-\int_t^T \alpha(t, u) \, du + \frac{1}{2}\Sigma(t, T)^2 = 0
+\]</div>
 <hr />
 <h2 id="deriving-the-drift-condition">Deriving the Drift Condition<a class="headerlink" href="#deriving-the-drift-condition" title="Permanent link">&para;</a></h2>
 <h3 id="from-integral-condition-to-pointwise-condition">From Integral Condition to Pointwise Condition<a class="headerlink" href="#from-integral-condition-to-pointwise-condition" title="Permanent link">&para;</a></h3>
 <p>From:</p>
-<p>$$</p>
-<p>\int_t^T \alpha(t, u) \, du = \frac{1}{2}\Sigma(t, T)^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\int_t^T \alpha(t, u) \, du = \frac{1}{2}\Sigma(t, T)^2
+\]</div>
 <p>Differentiate with respect to <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>\alpha(t, T) = \frac{\partial}{\partial T}\left[\frac{1}{2}\Sigma(t, T)^2\right]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha(t, T) = \frac{\partial}{\partial T}\left[\frac{1}{2}\Sigma(t, T)^2\right]
+\]</div>
 <p>Since <span class="arithmatex">\(\Sigma(t, T) = \int_t^T \sigma(t, u) \, du\)</span>:</p>
-<p>$$</p>
-<p>\frac{\partial \Sigma(t, T)}{\partial T} = \sigma(t, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial \Sigma(t, T)}{\partial T} = \sigma(t, T)
+\]</div>
 <p>Using the chain rule:</p>
-<p>$$</p>
-<p>\frac{\partial}{\partial T}\left[\frac{1}{2}\Sigma(t, T)^2\right] = \Sigma(t, T) \cdot \frac{\partial \Sigma(t, T)}{\partial T} = \Sigma(t, T) \cdot \sigma(t, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial T}\left[\frac{1}{2}\Sigma(t, T)^2\right] = \Sigma(t, T) \cdot \frac{\partial \Sigma(t, T)}{\partial T} = \Sigma(t, T) \cdot \sigma(t, T)
+\]</div>
 <h3 id="the-hjm-drift-condition">The HJM Drift Condition<a class="headerlink" href="#the-hjm-drift-condition" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>\boxed{\alpha(t, T) = \sigma(t, T) \int_t^T \sigma(t, u) \, du}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\alpha(t, T) = \sigma(t, T) \int_t^T \sigma(t, u) \, du}
+\]</div>
 <p>Or equivalently:</p>
-<p>$$</p>
-<p>\boxed{\alpha(t, T) = \sigma(t, T) \cdot \Sigma(t, T)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\alpha(t, T) = \sigma(t, T) \cdot \Sigma(t, T)}
+\]</div>
 <p>where <span class="arithmatex">\(\Sigma(t, T) = \int_t^T \sigma(t, u) \, du\)</span>.</p>
 <hr />
 <h2 id="quantpie-alternative-proof-zero-coupon-bond-dynamics">QuantPie Alternative Proof: Zero-Coupon Bond Dynamics<a class="headerlink" href="#quantpie-alternative-proof-zero-coupon-bond-dynamics" title="Permanent link">&para;</a></h2>
 <h3 id="zcb-dynamics">ZCB Dynamics<a class="headerlink" href="#zcb-dynamics" title="Permanent link">&para;</a></h3>
 <p>An alternative derivation uses the dynamics of zero-coupon bonds directly. Since <span class="arithmatex">\(f(t,T) = -\frac{d}{dT}\log P(t,T)\)</span>:</p>
-<p>$$</p>
-<p>df(t,T) = -\frac{d}{dT}d\log P(t,T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t,T) = -\frac{d}{dT}d\log P(t,T)
+\]</div>
 <p>The log bond price satisfies:</p>
-<p>$$</p>
-<p>d\log P(t,T) = \frac{1}{P(t,T)}dP(t,T) - \frac{1}{2}\frac{1}{P(t,T)^2}(dP(t,T))^2</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\log P(t,T) = \frac{1}{P(t,T)}dP(t,T) - \frac{1}{2}\frac{1}{P(t,T)^2}(dP(t,T))^2
+\]</div>
 <h3 id="bond-volatility-structure">Bond Volatility Structure<a class="headerlink" href="#bond-volatility-structure" title="Permanent link">&para;</a></h3>
 <p>Under risk-neutral pricing, the bond price dynamics are:</p>
-<p>$$</p>
-<p>\frac{dP(t,T)}{P(t,T)} = r(t)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP(t,T)}{P(t,T)} = r(t)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)
+\]</div>
 <p>where the bond volatility is:</p>
-<p>$$</p>
-<p>\sigma_P(t,T) = -\int_t^T\sigma(t,T')dT'</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\sigma_P(t,T) = -\int_t^T\sigma(t,T')dT'
+\]</div>
 <h3 id="deriving-forward-rate-dynamics">Deriving Forward Rate Dynamics<a class="headerlink" href="#deriving-forward-rate-dynamics" title="Permanent link">&para;</a></h3>
 <p>Applying Itô's lemma:</p>
-<p>$$</p>
-<p>d\log P(t,T) = \left(r(t) - \frac{1}{2}\sigma_P^2(t,T)\right)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d\log P(t,T) = \left(r(t) - \frac{1}{2}\sigma_P^2(t,T)\right)dt + \sigma_P(t,T)dW^{\mathbb{Q}}(t)
+\]</div>
 <p>Taking the derivative with respect to <span class="arithmatex">\(T\)</span>:</p>
-<p>$$</p>
-<p>df(t,T) = -\frac{d}{dT}d\log P(t,T) = \frac{1}{2}\frac{d\sigma_P^2(t,T)}{dT}dt - \frac{d\sigma_P(t,T)}{dT}dW^{\mathbb{Q}}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t,T) = -\frac{d}{dT}d\log P(t,T) = \frac{1}{2}\frac{d\sigma_P^2(t,T)}{dT}dt - \frac{d\sigma_P(t,T)}{dT}dW^{\mathbb{Q}}(t)
+\]</div>
 <h3 id="computing-derivatives">Computing Derivatives<a class="headerlink" href="#computing-derivatives" title="Permanent link">&para;</a></h3>
 <p>Since <span class="arithmatex">\(\sigma_P(t,T) = -\int_t^T\sigma(t,T')dT'\)</span>:</p>
-<p>$$</p>
-<p>\frac{d\sigma_P(t,T)}{dT} = -\sigma(t,T)</p>
-<p>$$</p>
-<p>$$</p>
-<p>\frac{d\sigma_P^2(t,T)}{dT} = 2\sigma_P(t,T)\frac{d\sigma_P(t,T)}{dT} = -2\sigma_P(t,T)\sigma(t,T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{d\sigma_P(t,T)}{dT} = -\sigma(t,T)
+\]</div>
+<div class="arithmatex">\[
+\frac{d\sigma_P^2(t,T)}{dT} = 2\sigma_P(t,T)\frac{d\sigma_P(t,T)}{dT} = -2\sigma_P(t,T)\sigma(t,T)
+\]</div>
 <h3 id="final-result">Final Result<a class="headerlink" href="#final-result" title="Permanent link">&para;</a></h3>
-<p>$$</p>
-<p>df(t,T) = \sigma(t,T)\left(\int_t^T\sigma(t,T')dT'\right)dt + \sigma(t,T)dW^{\mathbb{Q}}(t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t,T) = \sigma(t,T)\left(\int_t^T\sigma(t,T')dT'\right)dt + \sigma(t,T)dW^{\mathbb{Q}}(t)
+\]</div>
 <p>This gives:</p>
-<p>$$</p>
-<p>\mu^{\mathbb{Q}}(t,T) = \sigma(t,T)\int_t^T\sigma(t,T')dT'</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mu^{\mathbb{Q}}(t,T) = \sigma(t,T)\int_t^T\sigma(t,T')dT'
+\]</div>
 <p>This confirms the HJM no-arbitrage drift condition through an alternative approach based on ZCB dynamics.</p>
 <hr />
 <h2 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h2>
@@ -47340,35 +47340,35 @@
 <h2 id="multi-factor-extension">Multi-Factor Extension<a class="headerlink" href="#multi-factor-extension" title="Permanent link">&para;</a></h2>
 <h3 id="n-factor-hjm">n-Factor HJM<a class="headerlink" href="#n-factor-hjm" title="Permanent link">&para;</a></h3>
 <p>With <span class="arithmatex">\(n\)</span> driving Brownian motions:</p>
-<p>$$</p>
-<p>df(t, T) = \alpha(t, T) \, dt + \sum_{i=1}^n \sigma_i(t, T) \, dW_t^i</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t, T) = \alpha(t, T) \, dt + \sum_{i=1}^n \sigma_i(t, T) \, dW_t^i
+\]</div>
 <p>The drift condition becomes:</p>
-<p>$$</p>
-<p>\boxed{\alpha(t, T) = \sum_{i=1}^n \sigma_i(t, T) \int_t^T \sigma_i(t, u) \, du}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\boxed{\alpha(t, T) = \sum_{i=1}^n \sigma_i(t, T) \int_t^T \sigma_i(t, u) \, du}
+\]</div>
 <p>Each factor contributes independently to the drift.</p>
 <hr />
 <h2 id="verification-recovering-known-models">Verification: Recovering Known Models<a class="headerlink" href="#verification-recovering-known-models" title="Permanent link">&para;</a></h2>
 <h3 id="ho-lee-model">Ho-Lee Model<a class="headerlink" href="#ho-lee-model" title="Permanent link">&para;</a></h3>
 <p><strong>Volatility:</strong> <span class="arithmatex">\(\sigma(t, T) = \sigma\)</span> (constant)</p>
 <p><strong>Drift:</strong></p>
-<p>$$</p>
-<p>\alpha(t, T) = \sigma \int_t^T \sigma \, du = \sigma^2 (T - t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha(t, T) = \sigma \int_t^T \sigma \, du = \sigma^2 (T - t)
+\]</div>
 <p>This matches the Ho-Lee forward rate dynamics.</p>
 <h3 id="hull-white-extended-vasicek">Hull-White (Extended Vasicek)<a class="headerlink" href="#hull-white-extended-vasicek" title="Permanent link">&para;</a></h3>
 <p><strong>Volatility:</strong> <span class="arithmatex">\(\sigma(t, T) = \sigma e^{-\kappa(T-t)}\)</span></p>
 <p><strong>Drift:</strong></p>
-<p>$$</p>
-<p>\alpha(t, T) = \sigma e^{-\kappa(T-t)} \int_t^T \sigma e^{-\kappa(u-t)} \, du</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \sigma e^{-\kappa(T-t)} \cdot \sigma \cdot \frac{1 - e^{-\kappa(T-t)}}{\kappa}</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \frac{\sigma^2}{\kappa} e^{-\kappa(T-t)}(1 - e^{-\kappa(T-t)})</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha(t, T) = \sigma e^{-\kappa(T-t)} \int_t^T \sigma e^{-\kappa(u-t)} \, du
+\]</div>
+<div class="arithmatex">\[
+= \sigma e^{-\kappa(T-t)} \cdot \sigma \cdot \frac{1 - e^{-\kappa(T-t)}}{\kappa}
+\]</div>
+<div class="arithmatex">\[
+= \frac{\sigma^2}{\kappa} e^{-\kappa(T-t)}(1 - e^{-\kappa(T-t)})
+\]</div>
 <p>This recovers the Hull-White forward rate drift.</p>
 <hr />
 <h2 id="consequences-of-the-drift-condition">Consequences of the Drift Condition<a class="headerlink" href="#consequences-of-the-drift-condition" title="Permanent link">&para;</a></h2>
@@ -47380,19 +47380,19 @@
 <p><strong>Exact fit to the initial yield curve is automatic.</strong></p>
 <h3 id="market-price-of-risk-absorbed">Market Price of Risk Absorbed<a class="headerlink" href="#market-price-of-risk-absorbed" title="Permanent link">&para;</a></h3>
 <p>Under the physical measure <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>df(t, T) = \alpha^{\mathbb{P}}(t, T) \, dt + \sigma(t, T) \, dW_t^{\mathbb{P}}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+df(t, T) = \alpha^{\mathbb{P}}(t, T) \, dt + \sigma(t, T) \, dW_t^{\mathbb{P}}
+\]</div>
 <p>The risk-neutral drift differs by the market price of risk:</p>
-<p>$$</p>
-<p>\alpha(t, T) = \alpha^{\mathbb{P}}(t, T) - \lambda(t) \sigma(t, T)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\alpha(t, T) = \alpha^{\mathbb{P}}(t, T) - \lambda(t) \sigma(t, T)
+\]</div>
 <p>The HJM condition pins down the <span class="arithmatex">\(\mathbb{Q}\)</span>-drift; <span class="arithmatex">\(\mathbb{P}\)</span>-drift requires additional specification.</p>
 <h3 id="bond-price-volatility">Bond Price Volatility<a class="headerlink" href="#bond-price-volatility" title="Permanent link">&para;</a></h3>
 <p>The bond price dynamics are:</p>
-<p>$$</p>
-<p>\frac{dP(t, T)}{P(t, T)} = r_t \, dt - \Sigma(t, T) \, dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\frac{dP(t, T)}{P(t, T)} = r_t \, dt - \Sigma(t, T) \, dW_t
+\]</div>
 <p>where <span class="arithmatex">\(\Sigma(t, T) = \int_t^T \sigma(t, u) \, du\)</span> is the bond volatility.</p>
 <hr />
 <h2 id="practical-implications">Practical Implications<a class="headerlink" href="#practical-implications" title="Permanent link">&para;</a></h2>

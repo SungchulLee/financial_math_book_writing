@@ -46327,23 +46327,23 @@
 <h2 id="setting-and-assumptions">Setting and Assumptions<a class="headerlink" href="#setting-and-assumptions" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\((\Omega, \mathcal{F}, \{\mathcal{F}_t\}, \mathbb{P})\)</span> be a filtered probability space supporting a standard Brownian motion <span class="arithmatex">\(W_t\)</span>.</p>
 <p>Let <span class="arithmatex">\(\theta_t\)</span> be an <strong>adapted process</strong> (the <strong>Girsanov kernel</strong>) satisfying the <strong>Novikov condition</strong>:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}!\left[
-\exp!\left(\frac{1}{2} \int_0^T \theta_s^2 \,ds\right)
-\right] &lt; \infty</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}\!\left[
+\exp\!\left(\frac{1}{2} \int_0^T \theta_s^2 \,ds\right)
+\right] &lt; \infty
+\]</div>
 <p>This condition ensures that the exponential martingale does not explode and is a true martingale (not just a local martingale).</p>
 <hr />
 <h2 id="the-exponential-martingale">The Exponential Martingale<a class="headerlink" href="#the-exponential-martingale" title="Permanent link">&para;</a></h2>
 <p>Define the <strong>Radon-Nikodym derivative</strong> (also called the <strong>exponential martingale</strong>):</p>
-<p>$$</p>
-<p>\boxed{
-Z_t = \exp!\left(
+<div class="arithmatex">\[
+\boxed{
+Z_t = \exp\!\left(
 -\int_0^t \theta_s\, dW_s
 -\frac{1}{2} \int_0^t \theta_s^2 \,ds
 \right)
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p><strong>Key properties:</strong></p>
 <ol>
 <li><strong>Strictly positive:</strong> <span class="arithmatex">\(Z_t &gt; 0\)</span> almost surely for all <span class="arithmatex">\(t\)</span></li>
@@ -46354,32 +46354,32 @@ Z_t = \exp!\left(
 <hr />
 <h2 id="the-measure-change">The Measure Change<a class="headerlink" href="#the-measure-change" title="Permanent link">&para;</a></h2>
 <p>Define a new probability measure <span class="arithmatex">\(\mathbb{Q}\)</span> on <span class="arithmatex">\(\mathcal{F}_T\)</span> via:</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \frac{d\mathbb{Q}}{d\mathbb{P}}\Big|_{\mathcal{F}_T} = Z_T
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>For any random variable <span class="arithmatex">\(X\)</span>, the relationship between expectations under the two measures is:</p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{Q}}[X] = \mathbb{E}^{\mathbb{P}}[X \cdot Z_T]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{Q}}[X] = \mathbb{E}^{\mathbb{P}}[X \cdot Z_T]
+\]</div>
 <p>For events in the σ-algebra <span class="arithmatex">\(\mathcal{F}_t\)</span> (where <span class="arithmatex">\(t \leq T\)</span>), since <span class="arithmatex">\(Z_t\)</span> is a martingale:</p>
-<p>$$</p>
-<p>\mathbb{Q}(A) = \mathbb{E}^{\mathbb{P}}[Z_T \cdot \mathbf{1}_A] = \mathbb{E}^{\mathbb{P}}[Z_t \cdot \mathbf{1}_A], \quad A \in \mathcal{F}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{Q}(A) = \mathbb{E}^{\mathbb{P}}[Z_T \cdot \mathbf{1}_A] = \mathbb{E}^{\mathbb{P}}[Z_t \cdot \mathbf{1}_A], \quad A \in \mathcal{F}_t
+\]</div>
 <hr />
 <h2 id="statement-of-girsanovs-theorem">Statement of Girsanov's Theorem<a class="headerlink" href="#statement-of-girsanovs-theorem" title="Permanent link">&para;</a></h2>
 <p><strong>Theorem (Girsanov, 1960):</strong> Under the new measure <span class="arithmatex">\(\mathbb{Q}\)</span>, the process</p>
-<p>$$</p>
-<p>\boxed{
+<div class="arithmatex">\[
+\boxed{
 \widetilde{W}_t := W_t + \int_0^t \theta_s \,ds
-}</p>
-<p>$$</p>
+}
+\]</div>
 <p>is a <strong>standard Brownian motion</strong>.</p>
 <p><strong>Equivalently:</strong> The original Brownian motion <span class="arithmatex">\(W_t\)</span> can be written as</p>
-<p>$$</p>
-<p>W_t = \widetilde{W}_t - \int_0^t \theta_s\,ds</p>
-<p>$$</p>
+<div class="arithmatex">\[
+W_t = \widetilde{W}_t - \int_0^t \theta_s\,ds
+\]</div>
 <p>under <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <hr />
 <h2 id="interpretation-the-drift-removal-mechanism">Interpretation: The Drift Removal Mechanism<a class="headerlink" href="#interpretation-the-drift-removal-mechanism" title="Permanent link">&para;</a></h2>
@@ -46423,34 +46423,34 @@ Z_t = \exp!\left(
 <hr />
 <h2 id="connection-to-sdes-removing-drift">Connection to SDEs: Removing Drift<a class="headerlink" href="#connection-to-sdes-removing-drift" title="Permanent link">&para;</a></h2>
 <p><strong>Original SDE under <span class="arithmatex">\(\mathbb{P}\)</span>:</strong></p>
-<p>$$</p>
-<p>dX_t = \mu(t)\,dt + \sigma(t)\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(t)\,dt + \sigma(t)\,dW_t
+\]</div>
 <p>where <span class="arithmatex">\(\mu(t)\)</span> is the drift.</p>
 <p><strong>Choose Girsanov kernel:</strong> <span class="arithmatex">\(\theta_t = \frac{\mu(t)}{\sigma(t)}\)</span> (assuming <span class="arithmatex">\(\sigma(t) \neq 0\)</span>)</p>
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</strong> Since <span class="arithmatex">\(W_t = \widetilde{W}_t - \int_0^t \theta_s\,ds\)</span>:</p>
-<p>$$</p>
-<p>dX_t = \mu(t)\,dt + \sigma(t)\left(d\widetilde{W}_t - \theta_t\,dt\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \mu(t)\,dt + \sigma(t)\,d\widetilde{W}_t - \sigma(t)\theta_t\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \left(\mu(t) - \sigma(t)\theta_t\right)dt + \sigma(t)\,d\widetilde{W}_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>= 0\,dt + \sigma(t)\,d\widetilde{W}_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \sigma(t)\,d\widetilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu(t)\,dt + \sigma(t)\left(d\widetilde{W}_t - \theta_t\,dt\right)
+\]</div>
+<div class="arithmatex">\[
+= \mu(t)\,dt + \sigma(t)\,d\widetilde{W}_t - \sigma(t)\theta_t\,dt
+\]</div>
+<div class="arithmatex">\[
+= \left(\mu(t) - \sigma(t)\theta_t\right)dt + \sigma(t)\,d\widetilde{W}_t
+\]</div>
+<div class="arithmatex">\[
+= 0\,dt + \sigma(t)\,d\widetilde{W}_t
+\]</div>
+<div class="arithmatex">\[
+= \sigma(t)\,d\widetilde{W}_t
+\]</div>
 <p><strong>Result:</strong> The drift has been completely removed under <span class="arithmatex">\(\mathbb{Q}\)</span>!</p>
 <hr />
 <h2 id="financial-application-risk-neutral-pricing">Financial Application: Risk-Neutral Pricing<a class="headerlink" href="#financial-application-risk-neutral-pricing" title="Permanent link">&para;</a></h2>
 <p><strong>Problem:</strong> Price a derivative given the stock price dynamics under the physical measure <span class="arithmatex">\(\mathbb{P}\)</span>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
+\]</div>
 <p>The risk <span class="arithmatex">\(\mu\)</span> and risk-free rate <span class="arithmatex">\(r\)</span> are different, so this is not a martingale.</p>
 <p><strong>Solution via Girsanov:</strong></p>
 <ol>
@@ -46464,109 +46464,109 @@ Z_t = \exp!\left(
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</strong> The discounted stock price becomes a martingale:</p>
 </li>
 </ol>
-<p>$$</p>
-<p>d(e^{-rt}S_t) = 0\,dt + e^{-rt}\sigma S_t\,d\widetilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{-rt}S_t) = 0\,dt + e^{-rt}\sigma S_t\,d\widetilde{W}_t
+\]</div>
 <ol>
 <li><strong>Option price:</strong> Risk-neutral expectation:</li>
 </ol>
-<p>$$</p>
-<p>C(t, S_t) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(t, S_t) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | \mathcal{F}_t]
+\]</div>
 <p>This is the foundation of the Black-Scholes pricing formula.</p>
 <hr />
 <h2 id="example-1-drifted-brownian-motion">Example 1: Drifted Brownian Motion<a class="headerlink" href="#example-1-drifted-brownian-motion" title="Permanent link">&para;</a></h2>
 <p><strong>Original process under <span class="arithmatex">\(\mathbb{P}\)</span>:</strong></p>
-<p>$$</p>
-<p>dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 = 0</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu\,dt + \sigma\,dW_t, \quad X_0 = 0
+\]</div>
 <p>where <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\sigma\)</span> are constants.</p>
 <p><strong>Choose Girsanov kernel:</strong> <span class="arithmatex">\(\theta = \frac{\mu}{\sigma}\)</span> (constant)</p>
 <p><strong>Check Novikov condition:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \left(\frac{\mu}{\sigma}\right)^2 ds\right)\right] = \exp\left(\frac{\mu^2 T}{2\sigma^2}\right) &lt; \infty \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \left(\frac{\mu}{\sigma}\right)^2 ds\right)\right] = \exp\left(\frac{\mu^2 T}{2\sigma^2}\right) &lt; \infty \quad \checkmark
+\]</div>
 <p><strong>Exponential martingale:</strong></p>
-<p>$$</p>
-<p>Z_t = \exp\left(-\frac{\mu}{\sigma}W_t - \frac{\mu^2 t}{2\sigma^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \exp\left(-\frac{\mu}{\sigma}W_t - \frac{\mu^2 t}{2\sigma^2}\right)
+\]</div>
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}\)</span> with <span class="arithmatex">\(d\mathbb{Q}/d\mathbb{P} = Z_T\)</span>:</strong></p>
-<p>$$</p>
-<p>\widetilde{W}_t := W_t + \frac{\mu}{\sigma}t \text{ is a standard Brownian motion}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widetilde{W}_t := W_t + \frac{\mu}{\sigma}t \text{ is a standard Brownian motion}
+\]</div>
 <p><strong>Therefore:</strong> Substituting back into the original SDE:</p>
-<p>$$</p>
-<p>dX_t = \mu\,dt + \sigma\left(d\widetilde{W}_t - \frac{\mu}{\sigma}dt\right) = 0\,dt + \sigma\,d\widetilde{W}_t = \sigma\,d\widetilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dX_t = \mu\,dt + \sigma\left(d\widetilde{W}_t - \frac{\mu}{\sigma}dt\right) = 0\,dt + \sigma\,d\widetilde{W}_t = \sigma\,d\widetilde{W}_t
+\]</div>
 <p>The drift has been <strong>completely removed</strong> under <span class="arithmatex">\(\mathbb{Q}\)</span>!</p>
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}\)</span>:</strong></p>
-<p>$$</p>
-<p>X_t = \sigma\widetilde{W}_t \sim \mathcal{N}(0, \sigma^2 t)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+X_t = \sigma\widetilde{W}_t \sim \mathcal{N}(0, \sigma^2 t)
+\]</div>
 <hr />
 <h2 id="example-2-geometric-brownian-motion-stock-price">Example 2: Geometric Brownian Motion (Stock Price)<a class="headerlink" href="#example-2-geometric-brownian-motion-stock-price" title="Permanent link">&para;</a></h2>
 <p><strong>Original process under <span class="arithmatex">\(\mathbb{P}\)</span> (physical measure):</strong></p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\mu\)</span> = real-world drift (expected return)
 - <span class="arithmatex">\(\sigma\)</span> = volatility
 - <span class="arithmatex">\(r\)</span> = risk-free rate (assumed constant)</p>
 <p><strong>Key observation:</strong> The discounted stock price <span class="arithmatex">\(e^{-rt}S_t\)</span> is NOT a <span class="arithmatex">\(\mathbb{P}\)</span>-martingale because:</p>
-<p>$$</p>
-<p>d(e^{-rt}S_t) = -re^{-rt}S_t\,dt + e^{-rt}dS_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>= -re^{-rt}S_t\,dt + e^{-rt}(\mu S_t\,dt + \sigma S_t\,dW_t)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-rt}S_t(\mu - r)\,dt + e^{-rt}\sigma S_t\,dW_t$$</p>
+<div class="arithmatex">\[
+d(e^{-rt}S_t) = -re^{-rt}S_t\,dt + e^{-rt}dS_t
+\]</div>
+<div class="arithmatex">\[
+= -re^{-rt}S_t\,dt + e^{-rt}(\mu S_t\,dt + \sigma S_t\,dW_t)
+\]</div>
+<div class="arithmatex">\[
+= e^{-rt}S_t(\mu - r)\,dt + e^{-rt}\sigma S_t\,dW_t\]</div>
 <p>The <span class="arithmatex">\(dt\)</span> coefficient is <span class="arithmatex">\((\mu - r)S_t e^{-rt} \neq 0\)</span> (unless <span class="arithmatex">\(\mu = r\)</span>), so this is not a martingale.</p>
 <p><strong>Choose Girsanov kernel:</strong> The market price of risk</p>
-<p>$$</p>
-<p>\theta = \frac{\mu - r}{\sigma}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta = \frac{\mu - r}{\sigma}
+\]</div>
 <p><strong>Check Novikov condition:</strong></p>
-<p>$$</p>
-<p>\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \left(\frac{\mu-r}{\sigma}\right)^2 ds\right)\right] = \exp\left(\frac{(\mu-r)^2 T}{2\sigma^2}\right) &lt; \infty \quad \checkmark</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\mathbb{E}^{\mathbb{P}}\left[\exp\left(\frac{1}{2}\int_0^T \left(\frac{\mu-r}{\sigma}\right)^2 ds\right)\right] = \exp\left(\frac{(\mu-r)^2 T}{2\sigma^2}\right) &lt; \infty \quad \checkmark
+\]</div>
 <p><strong>Exponential martingale (Radon-Nikodym derivative):</strong></p>
-<p>$$</p>
-<p>Z_t = \exp\left(-\frac{\mu - r}{\sigma}W_t - \frac{(\mu-r)^2 t}{2\sigma^2}\right)</p>
-<p>$$</p>
+<div class="arithmatex">\[
+Z_t = \exp\left(-\frac{\mu - r}{\sigma}W_t - \frac{(\mu-r)^2 t}{2\sigma^2}\right)
+\]</div>
 <p><strong>Under <span class="arithmatex">\(\mathbb{Q}\)</span> with <span class="arithmatex">\(d\mathbb{Q}/d\mathbb{P} = Z_T\)</span>:</strong></p>
-<p>$$</p>
-<p>\widetilde{W}_t := W_t + \frac{\mu - r}{\sigma}t \text{ is a standard Brownian motion}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\widetilde{W}_t := W_t + \frac{\mu - r}{\sigma}t \text{ is a standard Brownian motion}
+\]</div>
 <p><strong>Transform the SDE:</strong> Since <span class="arithmatex">\(W_t = \widetilde{W}_t - \frac{\mu-r}{\sigma}t\)</span>:</p>
-<p>$$</p>
-<p>dS_t = \mu S_t\,dt + \sigma S_t\left(d\widetilde{W}_t - \frac{\mu-r}{\sigma}dt\right)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= \mu S_t\,dt + \sigma S_t\,d\widetilde{W}_t - (\mu - r)S_t\,dt</p>
-<p>$$</p>
-<p>$$</p>
-<p>= rS_t\,dt + \sigma S_t\,d\widetilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = \mu S_t\,dt + \sigma S_t\left(d\widetilde{W}_t - \frac{\mu-r}{\sigma}dt\right)
+\]</div>
+<div class="arithmatex">\[
+= \mu S_t\,dt + \sigma S_t\,d\widetilde{W}_t - (\mu - r)S_t\,dt
+\]</div>
+<div class="arithmatex">\[
+= rS_t\,dt + \sigma S_t\,d\widetilde{W}_t
+\]</div>
 <p><strong>Result under <span class="arithmatex">\(\mathbb{Q}\)</span> (risk-neutral measure):</strong></p>
-<p>$$</p>
-<p>dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dS_t = rS_t\,dt + \sigma S_t\,d\widetilde{W}_t
+\]</div>
 <p>Now the discounted stock price is a martingale:</p>
-<p>$$</p>
-<p>d(e^{-rt}S_t) = -re^{-rt}S_t\,dt + e^{-rt}dS_t</p>
-<p>$$</p>
-<p>$$</p>
-<p>= -re^{-rt}S_t\,dt + e^{-rt}(rS_t\,dt + \sigma S_t\,d\widetilde{W}_t)</p>
-<p>$$</p>
-<p>$$</p>
-<p>= e^{-rt}\sigma S_t\,d\widetilde{W}_t \quad \text{(martingale!)}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+d(e^{-rt}S_t) = -re^{-rt}S_t\,dt + e^{-rt}dS_t
+\]</div>
+<div class="arithmatex">\[
+= -re^{-rt}S_t\,dt + e^{-rt}(rS_t\,dt + \sigma S_t\,d\widetilde{W}_t)
+\]</div>
+<div class="arithmatex">\[
+= e^{-rt}\sigma S_t\,d\widetilde{W}_t \quad \text{(martingale!)}
+\]</div>
 <p><strong>Option pricing:</strong> A European call option with strike <span class="arithmatex">\(K\)</span> and maturity <span class="arithmatex">\(T\)</span> has price:</p>
-<p>$$</p>
-<p>C(t, S_t) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | \mathcal{F}_t]</p>
-<p>$$</p>
+<div class="arithmatex">\[
+C(t, S_t) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}[(S_T - K)^+ | \mathcal{F}_t]
+\]</div>
 <p>where the expectation is under the <strong>risk-neutral measure</strong> <span class="arithmatex">\(\mathbb{Q}\)</span>.</p>
 <p><strong>Key insight:</strong> Under <span class="arithmatex">\(\mathbb{Q}\)</span>:
 - The expected return of the stock is <span class="arithmatex">\(r\)</span> (risk-free rate)
@@ -46575,9 +46575,9 @@ Z_t = \exp!\left(
 <hr />
 <h2 id="example-3-vasicek-model-interest-rates">Example 3: Vasicek Model (Interest Rates)<a class="headerlink" href="#example-3-vasicek-model-interest-rates" title="Permanent link">&para;</a></h2>
 <p><strong>Original process under <span class="arithmatex">\(\mathbb{P}\)</span>:</strong></p>
-<p>$$</p>
-<p>dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t
+\]</div>
 <p>where:
 - <span class="arithmatex">\(\theta\)</span> = long-run mean interest rate
 - <span class="arithmatex">\(\kappa\)</span> = mean reversion speed
@@ -46586,13 +46586,13 @@ Z_t = \exp!\left(
 <p><strong>Choose Girsanov kernel:</strong> <span class="arithmatex">\(\theta = \lambda\)</span></p>
 <p><strong>Under the risk-neutral measure <span class="arithmatex">\(\mathbb{Q}\)</span>:</strong></p>
 <p>Define <span class="arithmatex">\(\widetilde{W}_t = W_t + \lambda t\)</span></p>
-<p>$$</p>
-<p>dr_t = [\kappa(\theta - r_t) - \lambda\sigma]\,dt + \sigma\,d\widetilde{W}_t</p>
-<p>$$</p>
+<div class="arithmatex">\[
+dr_t = [\kappa(\theta - r_t) - \lambda\sigma]\,dt + \sigma\,d\widetilde{W}_t
+\]</div>
 <p>The effective "long-run mean" becomes:</p>
-<p>$$</p>
-<p>\theta^* = \theta - \frac{\lambda}{\kappa}</p>
-<p>$$</p>
+<div class="arithmatex">\[
+\theta^* = \theta - \frac{\lambda}{\kappa}
+\]</div>
 <p><strong>Financial interpretation:</strong> The market price of interest rate risk (<span class="arithmatex">\(\lambda\)</span>) shifts the equilibrium level of rates from <span class="arithmatex">\(\theta\)</span> to <span class="arithmatex">\(\theta^*\)</span>. The real-world view (<span class="arithmatex">\(\mathbb{P}\)</span>) and the pricing view (<span class="arithmatex">\(\mathbb{Q}\)</span>) differ precisely by this market price.</p>
 <hr />
 <h2 id="why-girsanov-matters-in-finance">Why Girsanov Matters in Finance<a class="headerlink" href="#why-girsanov-matters-in-finance" title="Permanent link">&para;</a></h2>
