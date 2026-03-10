@@ -1,5 +1,9 @@
 # Recalibration Problem
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In practice, models are recalibrated repeatedly as new market data arrive. This creates the **recalibration problem**: parameters change over time in ways that may be inconsistent with the model's own dynamics, leading to instability, unexplained P&L, and hedging errors.
 
 ---

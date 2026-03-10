@@ -1,6 +1,10 @@
 # Correlation and Systemic Risk
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Credit risk is inherently correlated across firms and sectors. Ignoring **correlation and systemic risk** is a major source of model error, especially for portfolio credit products.
 
 ---

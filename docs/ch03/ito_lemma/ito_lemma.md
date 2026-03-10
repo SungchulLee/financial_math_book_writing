@@ -1,5 +1,9 @@
 # Itô's Lemma
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Itô's lemma is the **fundamental theorem of stochastic calculus**—the stochastic analogue of the chain rule. It is the single most important computational tool for working with stochastic differential equations and underlies virtually all of mathematical finance, from option pricing to risk management.
 
 ---

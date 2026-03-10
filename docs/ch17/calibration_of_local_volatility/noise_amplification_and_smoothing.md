@@ -1,6 +1,10 @@
 # Noise Amplification and Smoothing
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Local volatility calibration is notoriously sensitive because the Dupire inversion uses **second derivatives in strike** and **first derivatives in maturity**. Differentiation amplifies noise, so smoothing is not optional—it is the core of a stable pipeline.
 
 ---

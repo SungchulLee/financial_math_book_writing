@@ -1,6 +1,10 @@
 # Itô Integration: An Intuitive Introduction
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Having explored ordinary (Lebesgue) integrals \(\int_0^t f(s, B_s) ds\), we now turn to the centerpiece of stochastic calculus: the **Itô integral**
 
 

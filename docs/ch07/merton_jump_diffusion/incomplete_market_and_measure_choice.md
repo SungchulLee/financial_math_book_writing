@@ -1,5 +1,9 @@
 # Incomplete Market and Measure Choice
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers incomplete market and measure choice in the context of Incomplete Market And Measure Choice in Chapter 07.*
 
 !!! abstract "Learning Objectives"

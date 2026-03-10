@@ -1,5 +1,9 @@
 # Moments of the Random Walk
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The first two moments of $S_n$ — its mean and variance — are the most basic quantitative facts about the walk. We derive them in full detail, presenting every algebraic step. Students who are comfortable with these computations should still read the summary table at the end, as the formulas recur throughout the chapter.
 
 ---

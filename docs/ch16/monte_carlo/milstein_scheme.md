@@ -1,5 +1,9 @@
 # Milstein Scheme for Heston
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers milstein scheme for heston in the context of Milstein Scheme in Chapter 16.*
 
 !!! abstract "Learning Objectives"

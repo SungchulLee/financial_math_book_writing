@@ -1,5 +1,9 @@
 # Chapter 6: The Black-Scholes Model
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the Black-Scholes option pricing framework from first principles. Starting from geometric Brownian motion and self-financing portfolios, we derive the Black-Scholes PDE through four independent approaches, analyze its structure and boundary conditions, solve it using a range of analytic techniques, and arrive at the celebrated closed-form formula for European options.
 
 ## Key Concepts

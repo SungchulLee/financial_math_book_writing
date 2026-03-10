@@ -1,5 +1,9 @@
 # Carr–Madan FFT Method
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers carr–madan fft method in the context of Carr Madan Fft in Chapter 09.*
 
 !!! abstract "Learning Objectives"

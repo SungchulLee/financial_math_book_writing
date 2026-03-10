@@ -1,5 +1,9 @@
 # CIR SDE and Square-Root Process
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers cir sde and square-root process in the context of Cir Sde And Square Root Process in Chapter 18.*
 
 !!! abstract "Learning Objectives"

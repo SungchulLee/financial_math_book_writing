@@ -1,5 +1,9 @@
 # Chapter 21: Credit Risk
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the mathematical theory of credit risk from two complementary perspectives---structural models grounded in firm value dynamics and reduced-form models driven by default intensities. Starting from the probabilistic foundations of default as a random time, we build pricing frameworks for defaultable bonds and credit derivatives, develop calibration methods for hazard rate curves, address measure-change issues specific to jump-to-default processes, and analyze the model risk lessons of the credit crisis.
 
 ## Key Concepts

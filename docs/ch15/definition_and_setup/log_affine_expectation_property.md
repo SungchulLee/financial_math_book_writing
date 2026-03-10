@@ -1,5 +1,9 @@
 # Log-Affine Expectation Property
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers log-affine expectation property in the context of Log Affine Expectation Property in Chapter 15.*
 
 !!! abstract "Learning Objectives"

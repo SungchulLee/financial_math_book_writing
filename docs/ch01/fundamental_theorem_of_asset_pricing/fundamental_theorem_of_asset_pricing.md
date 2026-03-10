@@ -1,6 +1,10 @@
 # The Fundamental Theorem of Asset Pricing
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **Fundamental Theorem of Asset Pricing (FTAP)** is the cornerstone of modern mathematical finance. It establishes a deep equivalence between an economic concept—**no-arbitrage**—and a probabilistic structure—the existence of an **equivalent martingale measure**. This chapter presents the precise setup, states both parts of the theorem, gives a complete proof in the finite-state case, and discusses the extensions required for continuous time.
 
 

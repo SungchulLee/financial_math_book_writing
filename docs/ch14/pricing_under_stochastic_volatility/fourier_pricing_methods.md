@@ -1,5 +1,9 @@
 # Fourier Pricing Methods
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Fourier methods convert option pricing into numerical integration problems using characteristic functions. They are widely used for stochastic volatility models because they are fast, accurate, and enable efficient calibration across many strikes simultaneously.
 
 ---

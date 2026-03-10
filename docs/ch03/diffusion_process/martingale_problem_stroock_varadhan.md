@@ -1,6 +1,10 @@
 # Martingale Problem (Stroock–Varadhan)
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The martingale problem defines a diffusion **via its generator** and is fundamental for uniqueness in law and weak convergence.
 
 ---

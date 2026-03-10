@@ -1,5 +1,9 @@
 # Duration and Convexity
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 **Duration** and **convexity** are fundamental measures of interest rate sensitivity for fixed-income portfolios. They quantify how bond prices respond to yield changes, serving as the interest rate analogs of delta and gamma in equity options.
 
 ---

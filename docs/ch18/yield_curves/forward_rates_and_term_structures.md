@@ -1,5 +1,9 @@
 # Forward Rates and Term Structures
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Forward rates describe **future borrowing/lending rates** implied by today's yield curve. They are central to term-structure modeling, pricing FRAs and swaps, and understanding no-arbitrage dynamics of interest rates.
 
 ---

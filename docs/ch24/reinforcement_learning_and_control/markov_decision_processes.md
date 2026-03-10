@@ -1,6 +1,10 @@
 # Markov Decision Processes
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Reinforcement learning is built on the framework of **Markov Decision Processes (MDPs)**, which formalize sequential decision-making under uncertainty.
 
 ---

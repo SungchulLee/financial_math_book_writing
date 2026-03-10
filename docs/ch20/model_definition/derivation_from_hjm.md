@@ -1,5 +1,9 @@
 # Derivation from HJM Framework
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers derivation from hjm framework in the context of Derivation From Hjm in Chapter 20.*
 
 !!! abstract "Learning Objectives"

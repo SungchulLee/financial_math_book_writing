@@ -1,5 +1,9 @@
 # Generalized Riccati ODEs
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers generalized riccati odes in the context of Generalized Riccati Odes in Chapter 15.*
 
 !!! abstract "Learning Objectives"

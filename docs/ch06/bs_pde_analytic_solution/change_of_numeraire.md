@@ -1,6 +1,10 @@
 # Change of Numeraire: Alternative Derivation of Black-Scholes
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **change of numeraire** technique provides an alternative derivation of option pricing formulas by **choosing different reference assets** for valuation. While the standard risk-neutral approach uses the money market account as numeraire, changing to alternative numeraires (e.g., the stock itself) can simplify certain pricing problems and provides deeper insight into measure theory in finance.
 
 This section derives the Black-Scholes formula using numeraire changes and demonstrates applications to forward measures and foreign exchange options.

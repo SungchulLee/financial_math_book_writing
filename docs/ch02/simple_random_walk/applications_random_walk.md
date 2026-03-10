@@ -1,5 +1,9 @@
 # Applications
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The simple random walk is a prototype for a wide class of models across probability, finance, physics, and biology. We describe five applications and explain precisely which property of the random walk each one exploits.
 
 ---

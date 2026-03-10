@@ -1,5 +1,9 @@
 # Chapter 24: AI in Finance
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter examines the intersection of machine learning and financial mathematics, treating learning algorithms not as black boxes but as statistical estimation procedures with precise theoretical properties and fundamental limitations. Starting from the classical bias--variance trade-off and curse of dimensionality, we develop deep learning methods for PDEs and hedging, reinforcement learning for optimal control, online learning for adaptive calibration, and robust learning under model uncertainty---while maintaining throughout a rigorous analysis of what learning can and cannot accomplish in financial markets. The chapter also addresses explainability and no-arbitrage constraints in learned models, market impact and feedback effects from algorithmic agents, and the theoretical impossibility results that counsel humility in financial prediction.
 
 ## Key Concepts

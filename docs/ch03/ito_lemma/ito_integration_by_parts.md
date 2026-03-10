@@ -1,6 +1,10 @@
 # Itô Integration by Parts
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **integration by parts formula** is one of the fundamental computational tools in calculus. In stochastic calculus, integration by parts takes a modified form that includes an additional term arising from the quadratic variation of Brownian motion. This formula is essential for computing products of Itô processes and plays a central role in applications ranging from option pricing to filtering theory.
 
 ---

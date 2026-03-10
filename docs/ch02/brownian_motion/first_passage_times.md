@@ -1,5 +1,9 @@
 # First Passage Times
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 First passage times represent the random time at which a Brownian motion first hits a particular level or set. They are fundamental to understanding the dynamics of stochastic processes and have widespread applications in financial modeling, particularly in option pricing and credit risk.
 
 ## Key Concepts

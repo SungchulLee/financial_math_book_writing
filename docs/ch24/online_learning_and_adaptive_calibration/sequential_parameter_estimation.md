@@ -1,5 +1,9 @@
 # Sequential Parameter Estimation
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 **Sequential parameter estimation** updates model parameters incrementally as new observations arrive, rather than refitting models from scratch using all available data. This approach is essential for real-time financial applications where market conditions evolve continuously.
 
 ---

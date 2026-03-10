@@ -1,5 +1,9 @@
 # Forward Consistency
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 **Forward consistency** aims to ensure that a model calibrated today remains internally consistent when viewed from tomorrow's perspective. It provides a theoretical framework for mitigating the recalibration problem by requiring that model dynamics and calibration be mutually compatible.
 
 ---

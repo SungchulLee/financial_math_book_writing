@@ -1,5 +1,9 @@
 # Chapter 13: Local Volatility
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the local volatility framework, in which the diffusion coefficient $\sigma(t, S)$ is a deterministic function of time and spot price chosen to exactly reproduce all observed European option prices. Starting from the Breeden-Litzenberger connection between implied volatility and risk-neutral density, we derive Dupire's formula via both the forward Kolmogorov (Fokker-Planck) equation and Tanaka's formula, develop the explicit conversion from implied to local volatility surfaces, study the model's structural properties through Gyongy's theorem and asymptotic expansions, analyze its fundamental limitations---particularly its failure to capture realistic smile dynamics and the forward smile problem---and present the numerical methods needed for surface construction, calibration, and pricing.
 
 ## Key Concepts

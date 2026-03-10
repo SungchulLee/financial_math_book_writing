@@ -1,5 +1,9 @@
 # Martingale Representation Theorem
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **Martingale Representation Theorem (MRT)** states that, under a Brownian filtration, every square-integrable martingale can be expressed as a stochastic integral with respect to the driving Brownian motion.
 
 Rather than repeating basic definitions already covered in earlier chapters, this section focuses on:

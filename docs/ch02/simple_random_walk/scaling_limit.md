@@ -1,5 +1,9 @@
 # Scaling Limit
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The discrete random walk and Brownian motion live in different mathematical spaces: one is defined on $\mathbb{Z}_{\geq 0}$, the other on $[0,\infty)$. To connect them, we embed the random walk into continuous time by a space–time rescaling, then study what happens as the mesh size tends to zero.
 
 ---

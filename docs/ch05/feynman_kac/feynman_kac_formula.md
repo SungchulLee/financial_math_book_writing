@@ -1,5 +1,9 @@
 # The Feynman–Kac Formula
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **Feynman–Kac formula** is one of the most profound results connecting stochastic differential equations to partial differential equations. It provides a probabilistic representation of solutions to parabolic PDEs and serves as the mathematical foundation for option pricing, risk-neutral valuation, and countless applications in physics and engineering.
 
 ---

@@ -1,6 +1,10 @@
 # Risk-Neutral Measure
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **risk-neutral measure** is the cornerstone of arbitrage-free pricing. Under this measure, discounted asset prices are martingales, allowing derivative prices to be expressed as discounted expectations.
 
 ---

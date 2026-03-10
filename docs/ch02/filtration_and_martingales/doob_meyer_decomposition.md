@@ -1,5 +1,9 @@
 # Doob–Meyer Decomposition
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Separating Signal from Noise
 
 One of the deepest insights in martingale theory is that every "reasonable" stochastic process can be decomposed into two parts: a **martingale** (pure noise, unpredictable fluctuations) and a **predictable finite variation process** (systematic drift, accumulated trend).

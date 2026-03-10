@@ -1,5 +1,9 @@
 # Hagan et al. Implied Volatility Approximation
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers hagan et al. implied volatility approximation in the context of Hagan Implied Volatility Approximation in Chapter 14.*
 
 !!! abstract "Learning Objectives"

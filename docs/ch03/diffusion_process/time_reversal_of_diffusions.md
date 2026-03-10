@@ -1,6 +1,10 @@
 # Time Reversal of Diffusions
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Time reversal studies the law of a diffusion when observed backward in time.
 
 Let \((X_t)_{0\le t\le T}\) solve

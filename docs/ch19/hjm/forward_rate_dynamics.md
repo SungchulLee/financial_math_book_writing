@@ -1,6 +1,10 @@
 # Forward Rate Dynamics
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The Heath–Jarrow–Morton (HJM) framework models the **entire forward rate curve** directly. Instead of specifying a short rate, HJM postulates dynamics for instantaneous forward rates.
 
 ---

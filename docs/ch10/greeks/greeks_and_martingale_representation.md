@@ -1,6 +1,10 @@
 # Greeks and Martingale Representation
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In complete diffusion models, martingale representation yields a conceptual foundation for delta hedging: delta is the integrand in the stochastic integral representation of the discounted price.
 
 ---

@@ -1,5 +1,9 @@
 # Feller Condition and Boundary Classification
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers feller condition and boundary classification in the context of Feller Condition And Boundary in Chapter 18.*
 
 !!! abstract "Learning Objectives"

@@ -1,6 +1,10 @@
 # Adversarial Environments
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In **adversarial environments**, data-generating processes may react strategically to the learner’s actions, invalidating classical statistical assumptions.
 
 ---

@@ -1,5 +1,9 @@
 # Risk-Neutral Valuation Principle
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **risk-neutral valuation principle** is the central pricing formula of mathematical finance. It states that the price of any derivative equals the discounted expected payoff under the risk-neutral measure, not the physical measure.
 
 !!! info "Prerequisites"

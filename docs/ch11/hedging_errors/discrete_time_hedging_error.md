@@ -1,6 +1,10 @@
 # Discrete-Time Hedging Error
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Continuous-time delta hedging is an idealization. Discrete rebalancing introduces a random hedging error influenced by gamma.
 
 ---

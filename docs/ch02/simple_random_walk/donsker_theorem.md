@@ -1,5 +1,9 @@
 # Donsker's Theorem
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Donsker's Invariance Principle is the functional analogue of the Central Limit Theorem. It upgrades pointwise convergence $S^{(n)}(t) \xrightarrow{d} W_t$ to convergence of the entire process as a random element of the path space $C[0,T]$.
 
 ---

@@ -1,5 +1,9 @@
 # Differential Evolution and Global Optimization
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers differential evolution and global optimization in the context of Differential Evolution in Chapter 16.*
 
 !!! abstract "Learning Objectives"

@@ -1,5 +1,9 @@
 # No-Arbitrage Drift Condition
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 A defining feature of the Heath-Jarrow-Morton (HJM) framework is that **no-arbitrage uniquely determines the drift** of forward rates once their volatility structure is specified. This section provides the complete derivation of this fundamental result.
 
 ---

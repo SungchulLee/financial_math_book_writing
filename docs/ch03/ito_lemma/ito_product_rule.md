@@ -72,6 +72,10 @@ Then
 # (b_t^{\alpha},\mathrm{d}W_t^{\alpha})(d_t^{\beta},\mathrm{d}W_t^{\beta})
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 # b_t^{\alpha}d_t^{\beta}\delta^{\alpha\beta},\mathrm{d}t
 
 

@@ -1,5 +1,9 @@
 # VIX Options Under Heston
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers vix options under heston in the context of Vix Options Under Heston in Chapter 16.*
 
 !!! abstract "Learning Objectives"

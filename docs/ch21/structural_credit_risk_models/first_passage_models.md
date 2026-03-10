@@ -1,5 +1,9 @@
 # First-Passage Models
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 First-passage models extend the Merton framework by allowing default to occur **at any time** before maturity, when the firm's asset value first crosses a default barrier. This addresses a key limitation of the Merton model—that default can only occur at debt maturity—and produces richer credit spread term structures.
 
 ---

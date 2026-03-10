@@ -1,5 +1,9 @@
 # Numerical Stability and Branch Cuts
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers numerical stability and branch cuts in the context of Numerical Stability And Branch Cuts in Chapter 16.*
 
 !!! abstract "Learning Objectives"

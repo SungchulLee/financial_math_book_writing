@@ -1,5 +1,9 @@
 # Characteristic Function Engine
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers characteristic function engine in the context of Characteristic Function Engine in Chapter 16.*
 
 !!! abstract "Learning Objectives"

@@ -1,5 +1,9 @@
 # Convergence of Fourier Series
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers convergence of fourier series in the context of Convergence Of Fourier Series in Chapter 09.*
 
 !!! abstract "Learning Objectives"

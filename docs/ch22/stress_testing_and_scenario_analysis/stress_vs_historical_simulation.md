@@ -1,5 +1,9 @@
 # Stress Testing vs Historical Simulation
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Stress testing and historical simulation are two complementary approaches to assessing portfolio risk. Understanding their differences, strengths, and appropriate use cases is essential for robust risk management.
 
 ---

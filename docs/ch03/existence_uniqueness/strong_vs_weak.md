@@ -1,5 +1,9 @@
 # Strong and Weak Solutions of SDEs
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The theory of stochastic differential equations distinguishes between two fundamentally different notions of solution: **strong solutions** and **weak solutions**. Understanding this distinction is essential for rigorous work with SDEs and has important implications for uniqueness, existence, and applications.
 
 ---

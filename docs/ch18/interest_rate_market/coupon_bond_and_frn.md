@@ -1,5 +1,9 @@
 # Coupon-Bearing Bond and Floating-Rate Note
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Coupon-Bearing Bond
 
 $$\begin{array}{ccccccccccccccccc}

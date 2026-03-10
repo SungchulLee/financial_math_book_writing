@@ -1,5 +1,9 @@
 # Smile and Term Structure Revisited
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 One of the most visible failures of the Black–Scholes model is the presence of a **volatility smile** and a non-flat **term structure of implied volatility**. These phenomena summarize how markets deviate from constant-volatility assumptions and encode rich information about risk-neutral distributions.
 
 > **Cross-reference:** This section builds on the implied volatility concepts developed in Chapter 7. Here we focus on how these phenomena motivate stochastic volatility models.

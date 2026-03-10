@@ -1,6 +1,10 @@
 # Separation of Variables: Complete Mathematical Treatment
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Separation of variables is a **classical technique** for solving PDEs by reducing them to ordinary differential equations. While powerful, its application to Black-Scholes reveals both the **elegance and limitations** of this method.
 
 ---

@@ -1,6 +1,10 @@
 # Breakdown of Continuous-Time Hedging
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Replication assumes continuous trading, no costs, continuous paths, and correct model. Jumps, discrete trading, and model error break replication.
 
 ---

@@ -1,6 +1,10 @@
 # Lebesgue Integration: An Intuitive Introduction
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Before diving into the rigorous construction of stochastic integrals, we begin with a familiar type of integration—the ordinary (Lebesgue/Riemann) integral of the form:
 
 

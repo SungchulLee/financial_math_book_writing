@@ -1,6 +1,10 @@
 # Theoretical Impossibility Results
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Beyond practical challenges, there are **theoretical limits** to what learning algorithms can achieve in financial markets.
 
 ---

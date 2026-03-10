@@ -1,6 +1,10 @@
 # Instability of Higher-Order Greeks
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Higher-order Greeks can be unstable to estimate, especially near maturity and near payoff kinks.
 
 ---

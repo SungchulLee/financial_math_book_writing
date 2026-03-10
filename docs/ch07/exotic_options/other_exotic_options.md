@@ -1,5 +1,9 @@
 # Other Exotic Options
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 Beyond barrier, Asian, and lookback options, a rich variety of exotic structures exists to serve specialized financial needs. This section surveys **chooser options**, **rainbow options**, **cliquet options**, **compound options**, and **digital (binary) options**. Each introduces a distinctive payoff mechanism that addresses specific hedging, speculation, or product design requirements.

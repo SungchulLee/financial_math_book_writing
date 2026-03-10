@@ -1,6 +1,10 @@
 # Properties of the Itô Integral
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Having constructed the Itô integral \(\int_0^t H_s \, dB_s\) for adapted square-integrable processes, we now establish its fundamental properties. These properties—linearity, martingale structure, path continuity, and quadratic variation—form the foundation for stochastic calculus and reveal the deep connection between integration and martingale theory.
 
 ---

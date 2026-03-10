@@ -1,5 +1,9 @@
 # Multidimensional Itô's Lemma
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This section presents Itô's formula for multidimensional diffusions using index notation (Einstein summation convention). This is essential for working with systems of SDEs, multi-asset models, and the rigorous formulation of stochastic calculus in higher dimensions.
 
 ---

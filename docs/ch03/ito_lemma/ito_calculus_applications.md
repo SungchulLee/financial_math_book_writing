@@ -1,6 +1,10 @@
 # Applications and Examples of Itô Calculus
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Having developed the machinery of Itô's lemma, the product rule, integration by parts, and the quotient rule, we now showcase these tools through a comprehensive collection of applications. This section demonstrates the computational power of Itô calculus and connects to the martingale theory developed earlier.
 
 ---

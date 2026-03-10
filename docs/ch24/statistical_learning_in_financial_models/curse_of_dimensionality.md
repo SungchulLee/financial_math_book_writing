@@ -1,5 +1,9 @@
 # Curse of Dimensionality
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **curse of dimensionality** refers to the collection of phenomena that arise when analyzing data in high-dimensional spaces. For statistical learning in finance, where risk factors, predictors, and asset cross-sections can number in the hundreds or thousands, these phenomena impose fundamental limits on what can be learned from data.
 
 ---

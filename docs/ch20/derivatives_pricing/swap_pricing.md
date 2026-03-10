@@ -1,5 +1,9 @@
 # Hull-White Swap Pricing
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Hull-White Recovers Swap Pricing
 
 The Hull-White model can price interest rate swaps by computing ZCB prices at each payment date:

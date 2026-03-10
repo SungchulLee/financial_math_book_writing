@@ -1,5 +1,9 @@
 # SABR Calibration to Swaption Smiles
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers sabr calibration to swaption smiles in the context of Calibration To Swaption Smiles in Chapter 14.*
 
 !!! abstract "Learning Objectives"

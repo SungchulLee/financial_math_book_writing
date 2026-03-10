@@ -1,5 +1,9 @@
 # Implicit Finite Difference Scheme: Implementation
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **implicit finite difference method** is **unconditionally stable**, meaning it remains numerically stable even for relatively large time steps. The trade-off is that it requires solving a **system of linear equations** at each time step.
 
 ---

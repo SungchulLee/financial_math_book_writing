@@ -1,5 +1,9 @@
 # Exact Simulation and Euler Pitfalls
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers exact simulation and euler pitfalls in the context of Exact Simulation And Euler Pitfalls in Chapter 18.*
 
 !!! abstract "Learning Objectives"

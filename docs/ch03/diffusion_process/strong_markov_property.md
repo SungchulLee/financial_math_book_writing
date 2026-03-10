@@ -1,6 +1,10 @@
 # Strong Markov Property
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This section states the **strong Markov property** for Brownian motion and (under standard assumptions) for diffusions. It is conceptually different from the **Optional Sampling Theorem**, which concerns expectations of martingales rather than conditional laws of future paths.
 
 ---

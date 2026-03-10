@@ -1,5 +1,9 @@
 # Wrong-Way Risk
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In counterparty credit risk, **wrong-way risk (WWR)** occurs when exposure to a counterparty increases as the counterparty's credit quality deteriorates. This adverse correlation amplifies potential losses.
 
 ---

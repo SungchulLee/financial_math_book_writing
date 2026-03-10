@@ -1,6 +1,10 @@
 # Itô Isometry
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In stochastic calculus, the **Itô integral** plays the role of a *random sum* of products of a strategy and noise. Unlike deterministic integrals—where Riemann sums converge smoothly under refinement—stochastic integrals already exhibit rich probabilistic structure at the level of the sum itself.
 
 This section explains the **Itô isometry**, first heuristically and then conceptually, highlighting why it is the fundamental identity underlying the construction of the Itô integral.

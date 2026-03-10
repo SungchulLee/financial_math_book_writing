@@ -1,5 +1,9 @@
 # Yield Curve Dynamics from Affine Structure
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers yield curve dynamics from affine structure in the context of Yield Curve Dynamics in Chapter 15.*
 
 !!! abstract "Learning Objectives"

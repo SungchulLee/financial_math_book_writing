@@ -1,5 +1,9 @@
 # Pricing Barrier Options via the Joint Law of (W_t, M_t)
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Barrier Option Overview
 
 A **barrier option** is a path-dependent option whose payoff depends on whether the underlying asset hits a certain barrier level during its life. Unlike vanilla options that depend only on the terminal price $S_T$, barrier options require tracking the entire path of the underlying.

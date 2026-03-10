@@ -1,6 +1,10 @@
 # Black-Scholes Formula via Heat Equation
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The Black-Scholes PDE can be transformed into the **heat equation**, one of the most studied partial differential equations in mathematical physics. This transformation allows us to leverage the well-known fundamental solution (Green's function) to derive the Black-Scholes formula analytically.
 
 This approach reveals the deep connection between option pricing and diffusion processes, demonstrating how financial derivatives can be priced using classical PDE techniques.

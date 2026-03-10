@@ -1,5 +1,9 @@
 # Log-Normal Short Rate SDE
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers log-normal short rate sde in the context of Log Normal Short Rate Sde in Chapter 18.*
 
 !!! abstract "Learning Objectives"

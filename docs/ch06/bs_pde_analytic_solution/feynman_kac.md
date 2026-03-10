@@ -1,6 +1,10 @@
 # Feynman-Kac Formula and the Black-Scholes Solution
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **Feynman-Kac formula** provides a profound connection between **partial differential equations** and **probability theory**. It transforms a parabolic PDE into a probabilistic expectation, enabling the derivation of the Black-Scholes formula through stochastic analysis rather than PDE methods.
 
 This section presents the general Feynman-Kac theorem, applies it rigorously to the Black-Scholes PDE, and derives the closed-form option pricing formulas through detailed probabilistic calculations.

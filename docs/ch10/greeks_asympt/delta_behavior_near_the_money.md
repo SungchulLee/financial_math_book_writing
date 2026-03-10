@@ -1,6 +1,10 @@
 # Delta Behavior Near the Money
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 As \(\tau\downarrow 0\), delta approaches a step function across the strike. This transition from smooth sensitivity to discontinuous payoff creates severe hedging challenges in the final hours before expiry.
 
 ---

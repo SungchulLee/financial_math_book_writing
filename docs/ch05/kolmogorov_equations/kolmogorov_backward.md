@@ -1,5 +1,9 @@
 # Kolmogorov Backward Equation
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **Kolmogorov backward equation** describes how expected values of functions of a diffusion process depend on the initial condition. It is the PDE satisfied by $u(t,x) = \mathbb{E}_x[g(X_t)]$, with the generator acting on the **initial point**.
 
 !!! tip "Related Content"

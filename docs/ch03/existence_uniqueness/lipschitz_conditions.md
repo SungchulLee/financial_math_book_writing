@@ -1,5 +1,9 @@
 # Lipschitz Conditions and Linear Growth
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The existence and uniqueness theory for stochastic differential equations rests on two fundamental analytical conditions: the **Lipschitz condition** (ensuring uniqueness) and the **linear growth condition** (preventing explosions). This section develops these conditions in detail.
 
 ---

@@ -1,5 +1,9 @@
 # Chapter 2: Stochastic Processes
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the probabilistic machinery underlying continuous-time finance. Beginning with the simple random walk, we construct Brownian motion as its scaling limit via Donsker's theorem, study its path properties and moment structure, and then build the theory of filtrations, conditional expectation, martingales, and stopping times that governs information flow and fair pricing in stochastic models.
 
 ## Key Concepts

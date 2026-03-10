@@ -1,5 +1,9 @@
 # Jump-Diffusion SDE
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers jump-diffusion sde in the context of Jump Diffusion Sde in Chapter 07.*
 
 !!! abstract "Learning Objectives"

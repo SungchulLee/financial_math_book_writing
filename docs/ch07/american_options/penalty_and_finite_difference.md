@@ -1,5 +1,9 @@
 # Penalty and Finite Difference Methods
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 When pricing American options via finite difference methods, the early-exercise constraint transforms the Black–Scholes PDE into a **variational inequality**. Two main approaches enforce this constraint numerically: the **projection method** (applied after each time step) and the **penalty method** (which embeds the constraint into the PDE itself).

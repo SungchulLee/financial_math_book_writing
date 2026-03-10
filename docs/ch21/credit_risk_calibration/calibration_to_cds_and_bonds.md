@@ -1,6 +1,10 @@
 # Calibration to CDS and Bonds
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In practice, credit models are calibrated jointly to **CDS spreads** and **bond prices**, requiring consistency across instruments.
 
 ---

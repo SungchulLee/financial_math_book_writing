@@ -1,5 +1,9 @@
 # Chapter 4: Measure Change and Girsanov's Theorem
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory of probability measure changes in continuous time and its central application to derivative pricing. Starting from local martingales and stochastic exponentials, we establish the martingale foundations needed for measure change, then state and prove Girsanov's theorem with full intuition and rigorous detail. The chapter constructs the risk-neutral measure via drift removal, introduces the market price of risk, and extends the framework to numeraire changes and forward measures with worked examples spanning the Black-Scholes, multi-asset, stochastic volatility, foreign exchange, and interest rate settings. The chapter concludes with the financial interpretation of measure change---the distinction between pricing and hedging, between the physical and risk-neutral worlds, the decomposition of risk premia, and the pathologies that arise when measure change fails.
 
 ## Key Concepts

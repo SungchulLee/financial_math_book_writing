@@ -1,5 +1,9 @@
 # Sensitivity of Prices to Calibration Error
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Calibration error translates directly into **model risk**: even small mis-estimation of parameters can lead to non-negligible pricing errors, especially for nonlinear or path-dependent payoffs. This section develops the framework for quantifying this sensitivity.
 
 ---

@@ -1,6 +1,10 @@
 # Feynman Kac Running
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Let \(X_t\) be a diffusion with generator \(L\). Let
 
 - \(f(x)\): terminal payoff

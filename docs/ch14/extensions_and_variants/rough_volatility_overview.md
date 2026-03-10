@@ -1,6 +1,10 @@
 # Rough Volatility (Overview)
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Empirical evidence suggests that volatility exhibits **rough behavior**, with paths much less smooth than classical diffusion models predict. **Rough volatility models** address this by incorporating fractional dynamics.
 
 ---

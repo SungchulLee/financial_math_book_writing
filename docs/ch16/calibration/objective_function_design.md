@@ -1,5 +1,9 @@
 # Objective Function Design
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers objective function design in the context of Objective Function Design in Chapter 16.*
 
 !!! abstract "Learning Objectives"

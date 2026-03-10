@@ -1,5 +1,9 @@
 # Generator and Martingales
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The infinitesimal generator $\mathcal{L}$ and martingales are deeply connected. This page develops the **Dynkin martingale** and the characterization of **harmonic functions**.
 
 ---

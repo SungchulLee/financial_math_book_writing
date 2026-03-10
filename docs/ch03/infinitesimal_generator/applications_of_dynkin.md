@@ -1,5 +1,9 @@
 # Applications of Dynkin's Formula
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Dynkin's formula is a powerful tool for computing expectations involving stopping times. This page covers the main applications: exit times, hitting probabilities, boundary value problems, and financial applications.
 
 !!! warning "Dynkin is a Bridge, Not a Solver"

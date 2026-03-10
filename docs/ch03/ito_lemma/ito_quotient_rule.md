@@ -16,6 +16,10 @@ Z_t := \frac{X_t}{Y_t}.
 # Two Equivalent Forms of the Itô Quotient Rule
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Form A (product rule + inverse rule)
 
 

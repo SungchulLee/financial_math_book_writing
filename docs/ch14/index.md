@@ -1,5 +1,9 @@
 # Chapter 14: Stochastic Volatility
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory of stochastic volatility models, in which the diffusion coefficient is itself a random process driven by its own source of uncertainty. Starting from the empirical failures of constant and local volatility---volatility clustering, mean reversion, the leverage effect, heavy tails, and market incompleteness---we build the general two-factor diffusion framework, study the Heston and SABR models in comprehensive detail (including the SABR SDE, Hagan approximation, CEV backbone, heat kernel density, arbitrage-free extensions, Greeks, calibration to swaption smiles, forward smile management, Monte Carlo simulation, finite difference methods, and end-to-end worked examples), analyze the fundamental consequences of market incompleteness for pricing and hedging, develop calibration methods that jointly fit the implied volatility surface across strikes and maturities, and survey extensions including multi-factor volatility models and rough volatility.
 
 ## Key Concepts

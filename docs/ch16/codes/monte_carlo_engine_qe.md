@@ -1,5 +1,9 @@
 # Monte Carlo Engine (QE Scheme)
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers monte carlo engine (qe scheme) in the context of Monte Carlo Engine Qe in Chapter 16.*
 
 !!! abstract "Learning Objectives"

@@ -1,5 +1,9 @@
 # American and Bermudan Exercise on Tree
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers american and bermudan exercise on tree in the context of American Bermudan Exercise in Chapter 20.*
 
 !!! abstract "Learning Objectives"

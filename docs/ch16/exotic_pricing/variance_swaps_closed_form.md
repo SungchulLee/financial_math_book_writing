@@ -1,5 +1,9 @@
 # Variance Swaps (Closed-Form)
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers variance swaps (closed-form) in the context of Variance Swaps Closed Form in Chapter 16.*
 
 !!! abstract "Learning Objectives"

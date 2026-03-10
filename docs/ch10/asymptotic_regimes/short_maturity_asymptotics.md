@@ -1,6 +1,10 @@
 # Short-Maturity Asymptotics
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Let \(\tau:=T-t\downarrow 0\). Short-maturity asymptotics describe how prices concentrate near the current state.
 
 ---

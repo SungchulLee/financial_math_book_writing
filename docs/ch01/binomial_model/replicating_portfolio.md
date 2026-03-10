@@ -1,5 +1,9 @@
 # Replicating Portfolio
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 In a complete market, every contingent claim can be **replicated**—there exists a portfolio of traded assets that produces exactly the same payoff in every state of the world. The cost of this replicating portfolio is the unique no-arbitrage price of the claim.

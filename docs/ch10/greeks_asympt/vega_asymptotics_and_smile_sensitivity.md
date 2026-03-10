@@ -1,6 +1,10 @@
 # Vega Asymptotics and Smile Sensitivity
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Vega concentrates near the money and vanishes as maturity shrinks. In models with a volatility smile, the concept of vega generalizes from a single scalar to a multi-dimensional surface sensitivity.
 
 ---

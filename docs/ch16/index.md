@@ -1,5 +1,9 @@
 # Chapter 16: The Heston Model in Detail
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter provides a comprehensive, self-contained treatment of the Heston stochastic volatility model---from its mathematical foundations through pricing, hedging, calibration, and numerical implementation. Starting from the bivariate SDE system and its affine structure, we derive the closed-form characteristic function, develop multiple pricing engines (Fourier inversion, COS, FFT, Monte Carlo, finite differences), compute Greeks analytically and numerically, calibrate to the implied volatility surface, price exotic derivatives, and study the model's extensions including jumps (Bates), multiple factors (double Heston), and rough volatility. Throughout, we address the measure-theoretic foundations---risk-neutral pricing, the stock-price numeraire, the volatility risk premium, and the minimal entropy martingale measure---that underpin all Heston model applications.
 
 ## Key Concepts

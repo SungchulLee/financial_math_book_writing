@@ -1,6 +1,10 @@
 # Endogenous Price Dynamics
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In modern financial markets, prices are not purely exogenous processes. **Endogenous price dynamics** arise when trading activity itself influences prices.
 
 ---

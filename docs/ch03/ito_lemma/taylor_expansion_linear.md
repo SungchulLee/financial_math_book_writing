@@ -1,6 +1,10 @@
 # Taylor Expansion I: Linear Approximation
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This section reviews the **first-order Taylor expansion**, i.e., *linear approximation*. The goal is to build the mindset that “differentials” capture how a function changes under small perturbations—an idea we will later reuse in stochastic calculus.
 
 ---

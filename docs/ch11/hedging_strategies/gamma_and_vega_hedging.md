@@ -1,6 +1,10 @@
 # Gamma and Vega Hedging
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Delta hedging removes linear price risk but leaves the portfolio exposed to gamma (convexity) and vega (volatility) risks. Neutralizing these requires trading additional options.
 
 ---

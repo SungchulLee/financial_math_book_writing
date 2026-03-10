@@ -1,5 +1,9 @@
 # Instantaneous Correlation and Leverage Effect
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers instantaneous correlation and leverage effect in the context of Correlation And Leverage Effect in Chapter 16.*
 
 !!! abstract "Learning Objectives"

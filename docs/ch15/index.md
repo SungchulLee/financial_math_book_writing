@@ -1,5 +1,9 @@
 # Chapter 15: Affine Processes
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory of affine processes---Markov processes whose characteristic function is exponential-affine in the state variable---and their central role in mathematical finance. Starting from a review of Markov processes and the formal definition of affine processes with their log-affine expectation property and state space regularity, we derive the generalized Riccati ODE system that governs the characteristic function and establish existence and uniqueness of its solutions with explicit closed-form expressions for common cases. We then study the infinitesimal generator, construct exponential martingales, and prove the crucial closure property under measure change. The affine term structure framework for bond pricing is developed with exponential-affine bond price formulas, yield curve dynamics, and the Dai-Singleton classification. We extend to discounted transforms for option pricing via Fourier inversion with connections to the Feynman-Kac theorem. The multidimensional affine family is presented in canonical form with admissibility conditions and correlation structures, and key examples---geometric Brownian motion, Vasicek, CIR, Heston, and multi-factor affine models---are analyzed in detail. Finally, jump-diffusion extensions, boundary behavior via Feller classification, and the limitations of the affine framework are discussed.
 
 ## Key Concepts

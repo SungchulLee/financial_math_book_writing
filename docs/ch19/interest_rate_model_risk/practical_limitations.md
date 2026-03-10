@@ -1,6 +1,10 @@
 # Practical Limitations
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Even well-designed interest-rate models face **practical limitations** when deployed in real trading and risk environments. Recognizing these limitations is a core aspect of model risk management.
 
 ---

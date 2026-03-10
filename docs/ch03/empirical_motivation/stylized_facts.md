@@ -1,6 +1,10 @@
 # Stylized Facts of Financial Returns
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Having established proper data handling and return computation in the previous section, we now turn to the **empirical regularities** observed across financial markets. These "stylized facts" are robust statistical patterns that appear consistently across different assets, time periods, and markets. Understanding these regularities is essential because they reveal the limitations of simple models and motivate the sophisticated stochastic frameworks developed in subsequent chapters.
 
 ---

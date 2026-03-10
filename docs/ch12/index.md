@@ -1,5 +1,9 @@
 # Chapter 12: Implied Volatility
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory of implied volatility---the market's consensus volatility extracted from observed option prices---as both a practical quoting convention and a window into the risk-neutral distribution. Starting from the definition as the inverse of the Black-Scholes pricing map, we establish existence and uniqueness via monotonicity and the intermediate value theorem, characterize the static and dynamic arbitrage constraints on the implied volatility surface, derive the model-free results connecting it to the risk-neutral density, local volatility, and variance swaps, study the asymptotic behavior in extreme regimes of strike and maturity, and analyze the sensitivities and smile dynamics that govern hedging in the presence of a non-flat smile.
 
 ## Key Concepts

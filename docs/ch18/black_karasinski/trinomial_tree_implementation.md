@@ -1,5 +1,9 @@
 # Trinomial Tree Implementation
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers trinomial tree implementation in the context of Trinomial Tree Implementation in Chapter 18.*
 
 !!! abstract "Learning Objectives"

@@ -1,5 +1,9 @@
 # Case Studies in Model Failure
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Quantitative models drive decision-making in modern finance, but models occasionally fail dramatically. Examining historical failures—Long-Term Capital Management (LTCM), Barings Bank, the London Whale trading loss, and the 2008 financial crisis—reveals recurring patterns: excessive leverage, model over-confidence, organizational breakdowns, and market regime changes.
 
 ## Key Concepts

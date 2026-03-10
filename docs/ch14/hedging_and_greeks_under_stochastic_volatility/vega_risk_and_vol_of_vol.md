@@ -1,6 +1,10 @@
 # Vega Risk and Vol-of-Vol
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Under stochastic volatility, option risk is no longer captured by delta alone. **Vega risk** and, more subtly, **volatility-of-volatility (vol-of-vol) risk** become central drivers of P&L and hedging performance.
 
 ---

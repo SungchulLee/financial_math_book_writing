@@ -1,6 +1,10 @@
 # Bridge to Stochastic Differential Equations
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 We have now established the empirical motivation for stochastic models: **deterministic ODEs fail to capture the essential features of financial returns**. This final section of our empirical foundation builds a bridge from discrete-time observations to the continuous-time stochastic differential equations that form the mathematical core of modern quantitative finance.
 
 ---

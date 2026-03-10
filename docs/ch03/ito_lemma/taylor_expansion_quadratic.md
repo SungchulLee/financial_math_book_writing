@@ -1,6 +1,10 @@
 # Taylor Expansion II: Quadratic Approximation
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Linear approximation captures the first-order change in a function. For many applications (including Itô calculus), we must keep **second-order terms**.
 
 ---

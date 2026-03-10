@@ -1,5 +1,9 @@
 # Chapter 5: Partial Differential Equations in Finance
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the fundamental connection between stochastic differential equations and partial differential equations -- the insight that expected values of diffusion processes satisfy deterministic PDEs. Beginning with the classification of second-order PDEs and the motivation for PDEs in quantitative finance, we study the heat equation as the prototype parabolic PDE, construct Green's functions and transition densities on free and bounded domains, derive the Kolmogorov forward and backward equations as dual descriptions of diffusion processes, and culminate in the Feynman--Kac formula that provides the mathematical foundation for risk-neutral pricing. The infinitesimal generator serves as the bridge throughout: it transforms questions about random processes into deterministic equations.
 
 ## Key Concepts

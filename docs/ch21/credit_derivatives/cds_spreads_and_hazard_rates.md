@@ -1,6 +1,10 @@
 # CDS Spreads and Hazard Rates
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 CDS spreads encode market-implied default risk and can be mapped to **hazard rates** within reduced-form credit models.
 
 ---

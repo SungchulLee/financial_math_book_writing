@@ -1,5 +1,9 @@
 # Smile Dynamics Under Local Volatility
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers smile dynamics under local volatility in the context of Smile Dynamics Under Local Volatility in Chapter 13.*
 
 !!! abstract "Learning Objectives"

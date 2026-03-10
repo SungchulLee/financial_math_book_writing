@@ -1,6 +1,10 @@
 # From Taylor Expansion to Itô’s Formula
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The fastest way to understand Itô’s formula is to view it as a **Taylor expansion where the second-order term does not vanish**. The “magic” is not magic at all—it is quadratic variation.
 
 ---

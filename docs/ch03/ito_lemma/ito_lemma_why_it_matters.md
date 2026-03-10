@@ -1,6 +1,10 @@
 # Why Itô’s Lemma Matters: From Direct Computation to a Fundamental Theorem
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Before the development of **Itô’s lemma**, computing stochastic integrals often meant wrestling directly with the **definition** (Riemann-sum limits), hoping for telescoping tricks, and carefully tracking **quadratic variation**.  
 
 **Analogy**: Just as the Fundamental Theorem of Calculus turns painful Riemann sums into simple antiderivative evaluations, **Itô’s lemma turns painful stochastic integral computations into systematic applications of a chain rule**.

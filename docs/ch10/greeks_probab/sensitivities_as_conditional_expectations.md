@@ -1,6 +1,10 @@
 # Sensitivities as Conditional Expectations
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Many Greeks can be expressed as conditional expectations, clarifying their hedging interpretation and providing a bridge between probabilistic pricing theory and practical risk management.
 
 ---

@@ -1,5 +1,9 @@
 # Filtration
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## The Philosophy of Information Flow
 
 Before diving into formal definitions, it is worth pausing to appreciate the conceptual leap that filtrations represent. In deterministic mathematics, we work with fixed quantities. In probability theory, we work with random variables—quantities whose values are determined by an underlying experiment. But in stochastic processes, we face a subtler challenge: how do we model the **gradual revelation of information over time**?

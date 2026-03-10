@@ -1,5 +1,9 @@
 # Swaptions
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 A **swaption** is an option to enter into an interest rate swap at a future date. Swaptions are among the most liquid interest rate derivatives and serve as primary calibration instruments for term structure models.
 
 ---

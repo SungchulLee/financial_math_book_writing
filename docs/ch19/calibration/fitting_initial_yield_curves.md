@@ -1,6 +1,10 @@
 # Fitting Initial Yield Curves
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 A fundamental requirement of any interest-rate model is the **exact fit of the initial yield curve**. Since discount factors are directly observable from the market, a model must reproduce them to avoid static arbitrage.
 
 ---

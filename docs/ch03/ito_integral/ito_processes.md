@@ -1,6 +1,10 @@
 # Itô Processes
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 An **Itô process** is a stochastic process constructed by combining ordinary (Lebesgue) integration and stochastic (Itô) integration. These processes form the natural class of semimartingales for which Itô's formula applies, and they serve as the foundation for stochastic differential equations in continuous time.
 
 ---

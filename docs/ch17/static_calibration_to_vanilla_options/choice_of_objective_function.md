@@ -1,6 +1,10 @@
 # Choice of Objective Function
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Calibration is typically formulated as an optimization problem:
 
 \[

@@ -1,5 +1,9 @@
 # FDM Engine (ADI)
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers fdm engine (adi) in the context of Fdm Engine Adi in Chapter 16.*
 
 !!! abstract "Learning Objectives"

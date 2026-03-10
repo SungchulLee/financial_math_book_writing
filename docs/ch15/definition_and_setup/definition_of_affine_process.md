@@ -1,5 +1,9 @@
 # Definition of Affine Process
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 An affine process is a class of stochastic processes with particularly tractable properties. Their defining characteristic is that both the drift and diffusion matrix are linear in the state variable, and the short rate is linear in the state.
 
 !!! abstract "Learning Objectives"

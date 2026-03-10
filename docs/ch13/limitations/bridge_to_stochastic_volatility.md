@@ -1,5 +1,9 @@
 # Bridge to Stochastic Volatility
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers bridge to stochastic volatility in the context of Bridge To Stochastic Volatility in Chapter 13.*
 
 !!! abstract "Learning Objectives"

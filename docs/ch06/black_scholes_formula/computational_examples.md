@@ -1,6 +1,10 @@
 # Computational Examples
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This section provides detailed step-by-step calculations for pricing European options using the Black-Scholes formula, along with Python implementations and practical examples. The goal is to bridge the theoretical formulas with numerical computation.
 
 ---

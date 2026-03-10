@@ -1,5 +1,9 @@
 # Graduate-Level Insights for Exotic Options
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 This section collects advanced topics and deeper mathematical insights related to exotic option pricing. These include **barrier smoothing** corrections for discrete simulation, **analytical approximations** for Asian options, **reflected Brownian motion** theory underlying lookback pricing, and the **Longstaff–Schwartz method** for early-exercise exotics. Each topic connects the practical pricing algorithms of previous sections to their theoretical foundations.

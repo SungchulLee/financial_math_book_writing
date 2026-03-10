@@ -1,5 +1,9 @@
 # Extreme Scenarios
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Extreme scenarios represent severe but plausible market conditions designed to test the resilience of portfolios and institutions. They form the core of stress testing frameworks and are essential for identifying hidden vulnerabilities.
 
 ---

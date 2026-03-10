@@ -1,5 +1,9 @@
 # Exponential Martingales
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers exponential martingales in the context of Exponential Martingales in Chapter 15.*
 
 !!! abstract "Learning Objectives"

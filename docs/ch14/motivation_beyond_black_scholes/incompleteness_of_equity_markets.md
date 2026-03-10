@@ -1,5 +1,9 @@
 # Incompleteness of Equity Markets
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The Black–Scholes model assumes a **complete market**, where all risks can be perfectly hedged using traded instruments. Empirically and structurally, equity markets are incomplete, which fundamentally limits the model's applicability and introduces risk premia for unhedgeable factors.
 
 ---

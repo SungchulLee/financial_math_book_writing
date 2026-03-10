@@ -1,5 +1,9 @@
 # Parameter Stability and Identifiability
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers parameter stability and identifiability in the context of Parameter Stability in Chapter 20.*
 
 !!! abstract "Learning Objectives"

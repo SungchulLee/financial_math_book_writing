@@ -1,5 +1,9 @@
 # Chapter 10: Greeks and Asymptotics
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory of option price sensitivities (Greeks) from three complementary perspectives--direct differentiation of the Black-Scholes formula, PDE-based sensitivity analysis, and probabilistic expectation representations--then examines how prices and Greeks behave in asymptotic regimes of short maturity, small volatility, extreme strikes, and large time. The interplay between these viewpoints provides both closed-form computation tools and deep structural insight into how option values respond to changes in market variables and model parameters, forming the analytical backbone of risk measurement and hedging.
 
 ## Key Concepts

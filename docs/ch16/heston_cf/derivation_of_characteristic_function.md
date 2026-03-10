@@ -1,5 +1,9 @@
 # Heston Model Characteristic Function
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The characteristic function (CF) is the Fourier transform of the probability density function. For the Heston stochastic volatility model, the characteristic function has a closed-form expression that makes it invaluable for option pricing via Fourier methods.
 
 !!! abstract "Learning Objectives"

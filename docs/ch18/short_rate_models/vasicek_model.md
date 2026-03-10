@@ -1,5 +1,9 @@
 # The Vasicek Model
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The Vasicek model (1977) is the foundational mean-reverting short-rate model. Its Gaussian structure yields closed-form bond prices and option formulas, making it a benchmark for understanding more complex models.
 
 ---

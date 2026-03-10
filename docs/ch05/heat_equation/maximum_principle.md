@@ -1,5 +1,9 @@
 # Maximum Principle and Uniqueness
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **maximum principle** is a fundamental property of parabolic equations that provides qualitative information about solutions without explicitly solving the equation. It is the key tool for establishing uniqueness and comparison results.
 
 ---

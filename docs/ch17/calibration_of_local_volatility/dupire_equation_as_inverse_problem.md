@@ -1,6 +1,10 @@
 # Dupire Equation as an Inverse Problem
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Local volatility models provide an *exact* fit (in principle) to a continuum of vanilla option prices. This exactness comes at a cost: constructing the local volatility surface is a **highly ill-posed inverse problem** because it requires differentiating noisy market data.
 
 ---

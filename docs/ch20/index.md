@@ -1,5 +1,9 @@
 # Chapter 20: The Hull-White Model in Detail
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter provides a comprehensive treatment of the Hull-White extended Vasicek model for interest rate derivatives, from its mathematical foundations through analytical bond and derivative pricing, tree-based and Monte Carlo implementations, and calibration to market data. Starting from the HJM framework and the connection to Vasicek, we derive the model's affine structure, solve for the short rate and bond prices in closed form, develop the named function apparatus, price bond options, caps, floors, and swaptions analytically, and extend to the two-factor model for richer yield curve dynamics.
 
 ## Key Concepts

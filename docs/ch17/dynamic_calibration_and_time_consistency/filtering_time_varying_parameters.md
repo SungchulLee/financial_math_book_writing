@@ -1,5 +1,9 @@
 # Filtering for Time-Varying Parameters
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 When parameters are treated as time-varying state variables, **filtering** provides a principled framework for sequential estimation. Rather than recalibrating from scratch each day, filtering updates beliefs about parameters as new data arrive, respecting both model dynamics and observation uncertainty.
 
 ---

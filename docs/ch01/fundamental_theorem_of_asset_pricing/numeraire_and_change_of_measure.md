@@ -1,6 +1,10 @@
 # Numéraire and Change of Measure
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The [Fundamental Theorem of Asset Pricing](fundamental_theorem_of_asset_pricing.md) guarantees the existence of an equivalent martingale measure (EMM) relative to a chosen numéraire. This chapter develops the **numéraire framework** in full: we define what a numéraire is, state and prove the **change of numéraire theorem**, and show through worked examples how choosing the right numéraire can dramatically simplify derivative pricing.
 
 The central message is that **prices are invariant under numéraire changes**. Different numéraires give different martingale measures but identical arbitrage-free prices. This is not merely a theoretical curiosity—it is one of the most powerful computational tools in quantitative finance.

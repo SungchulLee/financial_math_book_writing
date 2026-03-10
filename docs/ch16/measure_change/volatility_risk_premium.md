@@ -1,5 +1,9 @@
 # Volatility Risk Premium Interpretation
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers volatility risk premium interpretation in the context of Volatility Risk Premium in Chapter 16.*
 
 !!! abstract "Learning Objectives"

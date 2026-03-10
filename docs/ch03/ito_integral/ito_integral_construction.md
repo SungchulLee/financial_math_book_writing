@@ -1,6 +1,10 @@
 # Construction of the Itô Integral
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The construction of the stochastic integral \(\int_0^t H_s \, dB_s\) is one of the central achievements of modern probability theory. Unlike classical Riemann-Stieltjes integration, the pathwise construction fails for Brownian motion due to its unbounded variation. Instead, the Itô integral is defined via an \(L^2\)-approximation procedure that exploits the martingale structure of Brownian motion.
 
 ---

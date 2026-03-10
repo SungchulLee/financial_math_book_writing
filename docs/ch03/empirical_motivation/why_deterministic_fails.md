@@ -1,6 +1,10 @@
 # Why Deterministic Models Fail
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Having documented the empirical properties of financial returns in the previous sections, we now confront a fundamental question: **Can deterministic models adequately describe asset price dynamics?**
 
 The answer, as we shall demonstrate rigorously, is **no**. Deterministic ordinary differential equations (ODEs), while elegant and mathematically tractable, are fundamentally incompatible with the stylized facts observed in real financial data. This section explains why deterministic approaches fail and motivates the need for stochastic differential equations.

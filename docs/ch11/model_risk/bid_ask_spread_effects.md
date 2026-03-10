@@ -1,5 +1,9 @@
 # Bid-Ask Spread Effects
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Bid-ask spreads represent the cost of immediate liquidity in financial markets. These microstructure features have profound impacts on hedging costs, execution strategies, and the practical feasibility of theoretical pricing models. Understanding spread effects is essential for realistic risk management.
 
 ## Key Concepts

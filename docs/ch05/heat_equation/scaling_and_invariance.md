@@ -1,5 +1,9 @@
 # Scaling and Invariance
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The heat equation possesses a characteristic **scaling symmetry** that reflects the fundamental nature of diffusion. This symmetry connects analytical properties of the PDE to probabilistic properties of Brownian motion.
 
 ---

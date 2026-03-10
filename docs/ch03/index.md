@@ -1,5 +1,9 @@
 # Chapter 3: Stochastic Differential Equations
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory of stochastic differential equations from empirical motivation through rigorous construction. Beginning with the statistical properties of real financial returns and the failure of deterministic models, we build the Ito integral, derive Ito's formula, define and solve SDEs for canonical financial models, establish existence and uniqueness theory, and study the structural properties of diffusion processes and their infinitesimal generators.
 
 ## Key Concepts

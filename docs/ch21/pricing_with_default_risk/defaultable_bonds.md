@@ -1,5 +1,9 @@
 # Defaultable Bonds
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Defaultable bonds are bonds subject to issuer default risk. Their pricing reflects both interest-rate discounting and the possibility of default with partial recovery. Understanding defaultable bond pricing is fundamental to credit markets, as it forms the basis for credit spread analysis and relative value.
 
 ---

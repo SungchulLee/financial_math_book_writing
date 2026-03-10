@@ -1,6 +1,10 @@
 # Stochastic Differential Equations
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Stochastic differential equations (SDEs) are differential equations driven by **Brownian motion**.  
 They provide the canonical way to define **diffusion processes** and connect stochastic calculus to PDE, generators, and change of measure.
 

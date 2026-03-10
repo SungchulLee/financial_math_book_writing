@@ -1,5 +1,9 @@
 # Brownian Motion Martingales
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 Brownian motion occupies a unique position in probability theory: it is simultaneously the simplest continuous-time stochastic process and the most fundamental. Its martingale properties are not merely technical facts but reveal deep structural truths about the nature of randomness.

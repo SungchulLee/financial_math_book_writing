@@ -1,6 +1,10 @@
 # Python: P&L Simulation under Hedging Strategies
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This section implements a comprehensive P&L simulator that compares hedging strategies under realistic conditions including gamma and vega effects.
 
 ---

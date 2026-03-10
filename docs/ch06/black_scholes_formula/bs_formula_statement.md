@@ -1,6 +1,10 @@
 # The Black-Scholes Formula
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **Black-Scholes formula**, derived independently by Fischer Black, Myron Scholes (1973), and Robert Merton (1973), provides a closed-form solution for pricing European options. It remains one of the most influential results in financial economics, earning Scholes and Merton the 1997 Nobel Prize in Economics.
 
 This section presents the formula, its underlying assumptions, and the meaning of its components.

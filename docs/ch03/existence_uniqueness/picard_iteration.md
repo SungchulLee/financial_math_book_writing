@@ -1,5 +1,9 @@
 # Picard Iteration for SDEs
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The **Picard iteration** (or **successive approximations**) method is the constructive proof technique for existence and uniqueness of solutions to stochastic differential equations. It is the stochastic analogue of the classical Picard-Lindelöf theorem for ODEs.
 
 ---

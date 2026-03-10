@@ -1,5 +1,9 @@
 # Non-Affine Structure and Consequences
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers non-affine structure and consequences in the context of Non Affine Structure in Chapter 18.*
 
 !!! abstract "Learning Objectives"

@@ -1,6 +1,10 @@
 # Ill-Posedness and Non-Uniqueness
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Inverse problems are often **ill-posed** in the sense of Hadamard. Calibration inherits this ill-posedness: market data are noisy and incomplete, and multiple parameter sets can fit the same data almost equally well.
 
 ---

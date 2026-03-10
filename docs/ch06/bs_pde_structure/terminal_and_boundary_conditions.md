@@ -1,5 +1,9 @@
 # Terminal and Boundary Conditions
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 A PDE alone does not determine a unique solution. **Terminal conditions** and **boundary conditions** encode the specific features of financial contracts, transforming abstract mathematics into concrete pricing tools.
 
 ---

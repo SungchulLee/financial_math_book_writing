@@ -1,5 +1,9 @@
 # Affine Structure and Characteristic Function
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 A key advantage of the Heston model is its **affine structure**, which enables semi-closed-form pricing of European options via characteristic functions. This section derives the characteristic function explicitly and explains its use in option pricing.
 
 ---

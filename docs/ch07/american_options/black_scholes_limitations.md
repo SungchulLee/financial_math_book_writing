@@ -1,5 +1,9 @@
 # Black–Scholes and the Early Exercise Problem
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 The Black–Scholes formula provides a closed-form solution for European options under specific assumptions. However, the model **cannot directly handle American options** because early exercise introduces a **free boundary** that fundamentally changes the mathematical structure of the problem.

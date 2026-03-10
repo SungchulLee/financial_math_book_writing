@@ -1,6 +1,10 @@
 # Large-Strike and Small-Strike Asymptotics
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Extreme strikes probe the tail behavior of the risk-neutral distribution.
 
 ---

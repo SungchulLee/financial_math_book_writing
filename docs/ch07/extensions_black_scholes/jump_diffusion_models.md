@@ -1,5 +1,9 @@
 # Jump-Diffusion Models
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Jump-diffusion models augment the continuous diffusion of Black-Scholes with **discontinuous jumps**, capturing sudden large moves in asset prices. This produces heavy tails, short-maturity smiles, and more realistic risk profiles for extreme events.
 
 ---

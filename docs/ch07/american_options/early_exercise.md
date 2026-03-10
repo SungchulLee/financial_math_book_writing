@@ -1,5 +1,9 @@
 # Early Exercise: When and Why
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 The holder of an American option must decide **at every moment** whether to exercise immediately or continue holding. Early exercise is optimal only when the **intrinsic value exceeds the continuation value**—that is, when the time value of the option has been exhausted.

@@ -1,5 +1,9 @@
 # Bond Options
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers bond options in the context of Bond Options in Chapter 18.*
 
 !!! abstract "Learning Objectives"

@@ -1,5 +1,9 @@
 # Scaling and Time Change
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 In **Brownian Motion Foundations**, we established the fundamental scaling property of Brownian motion (Theorem 1.3.8):

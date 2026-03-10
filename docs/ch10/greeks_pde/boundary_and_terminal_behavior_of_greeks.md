@@ -1,6 +1,10 @@
 # Boundary and Terminal Behavior of Greeks
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Greeks exhibit characteristic behavior near \(S\to 0\), \(S\to\infty\), and \(t\uparrow T\). This matters for hedging and numerics.
 
 ---

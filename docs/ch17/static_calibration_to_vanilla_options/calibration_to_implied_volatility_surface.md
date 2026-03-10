@@ -1,6 +1,10 @@
 # Calibration to the Implied Volatility Surface
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In practice, *static* calibration to vanilla options is often performed not directly on prices, but on the **implied volatility surface**. The surface representation improves interpretability, makes quotes comparable across strikes/maturities, and helps expose arbitrage issues.
 
 ---

@@ -1,5 +1,9 @@
 # Pricing Exotic Options with Binomial Trees
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 The **binomial tree** method extends naturally to price exotic options by tracking **additional state variables** at each node. For barrier options, we track whether the barrier has been breached; for Asian options, we track the running average; for lookback options, we track the running maximum or minimum. While conceptually straightforward, the state-space expansion introduces computational challenges that limit the method's applicability to low-dimensional exotics.

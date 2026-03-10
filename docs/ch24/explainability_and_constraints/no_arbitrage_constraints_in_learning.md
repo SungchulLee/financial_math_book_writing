@@ -1,6 +1,10 @@
 # No-Arbitrage Constraints in Learning
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Learning-based financial models must respect **no-arbitrage constraints** to ensure economic consistency and prevent pathological behavior.
 
 ---

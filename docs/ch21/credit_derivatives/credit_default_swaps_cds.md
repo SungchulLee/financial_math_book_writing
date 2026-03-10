@@ -1,5 +1,9 @@
 # Credit Default Swaps (CDS)
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 A **Credit Default Swap (CDS)** is the fundamental traded instrument for transferring and pricing credit risk. It provides insurance-like protection against the default of a reference entity, allowing market participants to isolate and trade credit risk separately from interest rate risk.
 
 ---

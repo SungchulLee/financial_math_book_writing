@@ -1,5 +1,9 @@
 # COS Method for Interest Rate Models
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers cos method for interest rate models in the context of Cos For Interest Rate Models in Chapter 09.*
 
 !!! abstract "Learning Objectives"

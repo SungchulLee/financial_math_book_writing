@@ -1,5 +1,9 @@
 # FVA, KVA, and MVA
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Beyond credit risk, derivative valuation must account for **funding costs**, **capital costs**, and **margin costs**. These adjustments—FVA, KVA, and MVA—extend pricing beyond the classical risk-neutral framework.
 
 ---

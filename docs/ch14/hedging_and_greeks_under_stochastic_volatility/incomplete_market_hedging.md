@@ -1,6 +1,10 @@
 # Incomplete Market Hedging
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Stochastic volatility models operate in **incomplete markets**: not all sources of risk can be hedged using traded assets. This fundamentally changes hedging theory and practice.
 
 ---

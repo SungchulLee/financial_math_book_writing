@@ -1,5 +1,9 @@
 # Chapter 11: Hedging
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory and practice of hedging derivative positions, progressing from the idealized continuous-time delta hedge through the reality of discrete rebalancing, transaction costs, and model misspecification, to optimal hedging in incomplete markets. The central tension -- between the theoretical perfection of continuous hedging and the practical constraints of real trading -- motivates a hierarchy of hedging strategies with quantifiable error bounds and explicit trade-offs between cost, risk, and model dependence.
 
 ## Key Concepts

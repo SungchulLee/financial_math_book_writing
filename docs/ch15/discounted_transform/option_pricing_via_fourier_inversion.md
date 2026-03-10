@@ -1,5 +1,9 @@
 # Option Pricing via Fourier Inversion
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers option pricing via fourier inversion in the context of Option Pricing Via Fourier Inversion in Chapter 15.*
 
 !!! abstract "Learning Objectives"

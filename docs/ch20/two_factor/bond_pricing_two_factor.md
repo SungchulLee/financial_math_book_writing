@@ -1,5 +1,9 @@
 # Bond Pricing Under Two-Factor Model
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers bond pricing under two-factor model in the context of Bond Pricing Two Factor in Chapter 20.*
 
 !!! abstract "Learning Objectives"

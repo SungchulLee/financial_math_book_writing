@@ -1,5 +1,9 @@
 # Chapter 1: Discrete Models and the Fundamental Theorem of Asset Pricing
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter builds the theory of arbitrage-free pricing in discrete-time, finite-state markets. Starting from simple one-period models and Arrow-Debreu securities, we develop the binomial option pricing framework through replication, delta hedging, and risk-neutral expectation. The chapter culminates in the Fundamental Theorem of Asset Pricing, which establishes the deep equivalence between no-arbitrage and the existence of an equivalent martingale measure.
 
 ## Key Concepts

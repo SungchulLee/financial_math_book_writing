@@ -1,5 +1,9 @@
 # Non-Central Chi-Squared Distribution
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The non-central chi-squared distribution appears naturally when modeling squared sums of normally distributed variables with non-zero means. This is essential in the Heston model for understanding the variance dynamics of the underlying asset.
 
 !!! abstract "Learning Objectives"

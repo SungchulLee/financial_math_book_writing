@@ -1,5 +1,9 @@
 # Free Boundary Problems and American Options
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 American options can be exercised at any time before expiration, leading to an **optimal stopping problem**. Numerically, this becomes a **free boundary problem** or equivalently a **variational inequality** (obstacle problem).
 
 ---

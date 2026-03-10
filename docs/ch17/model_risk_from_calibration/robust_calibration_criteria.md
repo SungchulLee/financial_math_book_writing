@@ -1,5 +1,9 @@
 # Robust Calibration Criteria
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Given the inevitability of model and calibration uncertainty, one should not aim for a single "best fit" but for **robust calibration**: parameter estimates that perform reasonably well across scenarios, over time, and under perturbations.
 
 ---

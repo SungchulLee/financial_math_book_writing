@@ -1,6 +1,10 @@
 # Black-Scholes Model Assumptions
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The Black-Scholes model, while revolutionary in its implications, relies on a set of **simplifying assumptions** that make the mathematics tractable and enable closed-form solutions. Understanding these assumptions is essential for both appreciating the model's elegance and recognizing its practical limitations.
 
 This section systematically examines each assumption, explains its role, and discusses its realism.

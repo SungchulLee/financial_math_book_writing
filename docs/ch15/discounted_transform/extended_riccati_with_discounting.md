@@ -1,5 +1,9 @@
 # Extended Riccati System with Discounting
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers extended riccati system with discounting in the context of Extended Riccati With Discounting in Chapter 15.*
 
 !!! abstract "Learning Objectives"

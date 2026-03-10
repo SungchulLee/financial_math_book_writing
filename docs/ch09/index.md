@@ -1,5 +1,9 @@
 # Chapter 9: Fourier Pricing Methods
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops Fourier-based techniques for pricing European options, exploiting the fact that many financial models---particularly affine processes---admit closed-form characteristic functions even when the density or option price has no explicit formula. Starting from Fourier series representations of probability densities on finite intervals, we construct the COS method via cosine expansions and characteristic function recovery of coefficients, derive the Carr-Madan FFT approach for simultaneous pricing across strike grids, present the Lewis contour integral formula for single-strike pricing, analyze convergence and error bounds for each method, compare their relative strengths, and extend these methods beyond standard equity models to interest rate derivatives, multi-factor affine models, and Bermudan options.
 
 ## Key Concepts

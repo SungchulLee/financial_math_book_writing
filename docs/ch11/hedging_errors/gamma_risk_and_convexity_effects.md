@@ -1,6 +1,10 @@
 # Gamma Risk and Convexity Effects
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 For a small move \(\delta S\),
 
 \[

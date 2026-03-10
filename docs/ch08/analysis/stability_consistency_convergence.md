@@ -1,5 +1,9 @@
 # Stability, Consistency, and Convergence
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 The reliability of a finite difference scheme depends on three fundamental properties: **consistency** (local accuracy), **stability** (bounded error growth), and **convergence** (approach to the true solution). The Lax Equivalence Theorem connects these concepts.
 
 ---

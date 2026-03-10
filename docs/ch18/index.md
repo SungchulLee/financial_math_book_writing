@@ -1,5 +1,9 @@
 # Chapter 18: Term Structure and Short-Rate Models
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This chapter develops the theory and practice of fixed-income modeling from first principles. Starting from the interest rate market and its instruments, we construct yield curves via bootstrapping and interpolation, then build continuous-time short-rate models---Vasicek, Cox--Ingersoll--Ross, Hull--White, and Black--Karasinski---that price bonds and interest rate derivatives within a unified no-arbitrage framework. The chapter connects market observables to model dynamics, derives closed-form bond pricing formulas through both the market price of risk and risk-neutral measure approaches, and compares tractability, calibration fit, and practical suitability across the model landscape.
 
 ## Key Concepts

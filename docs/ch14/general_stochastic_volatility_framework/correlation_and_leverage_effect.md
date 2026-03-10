@@ -1,5 +1,9 @@
 # Correlation and Leverage Effect
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 A defining feature of equity markets is the **leverage effect**: negative returns are associated with rising volatility. In stochastic volatility models, this is captured by the **correlation** between price and volatility shocks. This single parameter has profound effects on option prices and the shape of implied volatility surfaces.
 
 ---

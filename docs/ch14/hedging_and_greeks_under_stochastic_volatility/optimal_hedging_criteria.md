@@ -1,6 +1,10 @@
 # Optimal Hedging Criteria
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 In incomplete markets, hedging strategies depend on the **optimality criterion** chosen. Different criteria lead to different hedges, reflecting trade-offs between risk, cost, and robustness.
 
 ---

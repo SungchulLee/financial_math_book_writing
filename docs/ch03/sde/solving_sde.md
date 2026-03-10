@@ -1,6 +1,10 @@
 # Solving Stochastic Differential Equations
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 This section develops analytical solution methods through a carefully structured learning path, where each technique is motivated by concrete examples before systematic generalization.
 
 **Reference:** For additional perspectives, see [Korean lecture series](https://www.youtube.com/watch?v=G61MAT5OgTM&list=PLXziV1DL41og-CJN6Q1tLiU4DreSZmi_P&index=9)

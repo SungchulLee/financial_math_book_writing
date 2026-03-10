@@ -1,5 +1,9 @@
 # Exposure Profiles
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Counterparty credit risk (CCR) arises from the possibility that a counterparty defaults while a derivative position has positive value. **Exposure profiles** describe how this potential loss evolves over the life of the trade.
 
 ---

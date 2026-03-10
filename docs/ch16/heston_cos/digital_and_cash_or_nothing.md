@@ -1,5 +1,9 @@
 # Digital and Cash-or-Nothing Options
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers digital and cash-or-nothing options in the context of Digital And Cash Or Nothing in Chapter 16.*
 
 !!! abstract "Learning Objectives"

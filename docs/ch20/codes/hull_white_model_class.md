@@ -1,5 +1,9 @@
 # Hull-White Model Class
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 *This section covers hull-white model class in the context of Hull White Model Class in Chapter 20.*
 
 !!! abstract "Learning Objectives"

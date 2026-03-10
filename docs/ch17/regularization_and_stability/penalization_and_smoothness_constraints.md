@@ -1,6 +1,10 @@
 # Penalization and Smoothness Constraints
 
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 Beyond simple parameter shrinkage, regularization can encode **structural beliefs** about smoothness, monotonicity, or shape. Such penalization is especially important when calibrating *functional* objects like volatility surfaces.
 
 ---

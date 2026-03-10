@@ -1,5 +1,9 @@
 # Martingale Convergence
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## The Convergence Question
 
 One of the most striking features of martingale theory is that martingales "want to converge." Unlike general sequences of random variables, martingales possess an intrinsic structure—the conditional expectation property—that forces limiting behavior under mild conditions.

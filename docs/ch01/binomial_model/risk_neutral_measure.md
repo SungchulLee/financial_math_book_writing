@@ -1,5 +1,9 @@
 # Risk-Neutral Pricing
 
+
+!!! warning "Incomplete page"
+    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
+
 ## Introduction
 
 Risk-neutral pricing is one of the central principles of modern asset pricing:
