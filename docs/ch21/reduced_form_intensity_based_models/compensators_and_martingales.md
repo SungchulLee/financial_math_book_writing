@@ -1,9 +1,5 @@
 # Compensators and Martingales
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The martingale structure of default processes is formalized using **compensators**. This perspective is essential for rigorous pricing in reduced-form credit models, providing the mathematical foundation for arbitrage-free valuation and hedging of defaultable claims.
 
 ---

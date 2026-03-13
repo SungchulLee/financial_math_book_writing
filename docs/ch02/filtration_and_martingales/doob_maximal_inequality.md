@@ -1,9 +1,5 @@
 # Doob's Maximal Inequality
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Why Maximum Control Matters
 
 In probability theory, we often need to control not just the value of a stochastic process at a single time, but its **extremal behavior** over an entire interval. Questions like:

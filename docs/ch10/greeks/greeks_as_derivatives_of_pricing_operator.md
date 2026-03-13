@@ -1,10 +1,6 @@
 # Greeks as Derivatives of the Pricing Operator
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 A mathematically clean viewpoint is: pricing is an **operator** that maps a payoff to a function of \((t,S)\), and Greeks are derivatives of that operator with respect to inputs.
 
 ---

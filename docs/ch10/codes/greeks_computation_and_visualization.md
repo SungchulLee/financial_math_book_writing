@@ -1,10 +1,6 @@
 # Python: Greeks Computation and Visualization
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 This section provides complete Python implementations for computing and visualizing the Black–Scholes Greeks, intended as companion code for the theoretical material in Chapter 6.
 
 ---

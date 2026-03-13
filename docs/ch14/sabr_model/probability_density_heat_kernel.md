@@ -1,9 +1,5 @@
 # Probability Density via Heat Kernel Expansion
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers probability density via heat kernel expansion in the context of Probability Density Heat Kernel in Chapter 14.*
 
 !!! abstract "Learning Objectives"

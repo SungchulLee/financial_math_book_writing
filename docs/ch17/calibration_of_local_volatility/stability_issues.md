@@ -1,10 +1,6 @@
 # Stability Issues
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Even with smoothing, local volatility calibration can be unstable. Instability can appear as jagged \(\sigma_{\text{loc}}\) surfaces, extreme values near wings, or strong sensitivity to small quote changes. This section summarizes where instability comes from and how it is managed.
 
 ---

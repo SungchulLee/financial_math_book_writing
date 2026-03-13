@@ -1,9 +1,5 @@
 # Adapted Processes
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Overview
 
 In the study of stochastic processes, **adaptedness** and related measurability concepts formalize the intuition that a process should not "see into the future." These concepts are essential for defining meaningful operations like stochastic integration and for ensuring that trading strategies and other decision processes use only available information.

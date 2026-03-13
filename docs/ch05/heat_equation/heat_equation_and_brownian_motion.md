@@ -1,9 +1,5 @@
 # Heat Equation and Brownian Motion
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The heat equation provides the **analytical description** of Brownian motion. This connection is one of the most beautiful correspondences in mathematics, linking probability theory to partial differential equations.
 
 ---

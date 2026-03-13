@@ -1,10 +1,6 @@
 # Risk-Neutral vs Physical Intensities
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 In credit risk modeling, default intensities differ under the **risk-neutral measure** \(\mathbb{Q}\) and the **physical measure** \(\mathbb{P}\). Understanding this distinction is essential for interpreting calibrated parameters.
 
 ---

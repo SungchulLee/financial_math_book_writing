@@ -1,9 +1,5 @@
 # Potential Future Exposure (PFE)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Potential Future Exposure (PFE)** measures the worst-case exposure at a given confidence level. It complements Expected Exposure by focusing on tail risk rather than average exposure.
 
 ---

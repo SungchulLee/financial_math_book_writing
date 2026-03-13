@@ -1,9 +1,5 @@
 # Bermudan Swaptions
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers bermudan swaptions in the context of Bermudan Swaptions in Chapter 20.*
 
 !!! abstract "Learning Objectives"

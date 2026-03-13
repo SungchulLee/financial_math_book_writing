@@ -1,9 +1,5 @@
 # Infinitesimal Generator of Affine Processes
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers infinitesimal generator of affine processes in the context of Infinitesimal Generator Affine in Chapter 15.*
 
 !!! abstract "Learning Objectives"

@@ -1,9 +1,5 @@
 # Derivation via Expectation
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers derivation via expectation in the context of Derivation Via Expectation in Chapter 20.*
 
 !!! abstract "Learning Objectives"

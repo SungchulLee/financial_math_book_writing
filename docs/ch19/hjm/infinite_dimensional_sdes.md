@@ -1,10 +1,6 @@
 # Infinite-Dimensional SDEs
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Because HJM models the forward rate curve for all maturities, it naturally leads to **infinite-dimensional stochastic differential equations**.
 
 ---

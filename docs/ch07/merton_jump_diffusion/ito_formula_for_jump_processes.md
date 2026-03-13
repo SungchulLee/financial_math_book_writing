@@ -1,9 +1,5 @@
 # Itô Formula for Jump Processes
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers itô formula for jump processes in the context of Ito Formula For Jump Processes in Chapter 07.*
 
 !!! abstract "Learning Objectives"

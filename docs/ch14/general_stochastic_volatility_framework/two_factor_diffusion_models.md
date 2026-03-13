@@ -1,9 +1,5 @@
 # Two-Factor Diffusion Models
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Stochastic volatility models extend Black–Scholes by introducing **additional sources of randomness**. The most common framework is a **two-factor diffusion**, where asset price and volatility evolve jointly as a bivariate Markov process. This section develops the general mathematical structure underlying all major stochastic volatility models.
 
 ---

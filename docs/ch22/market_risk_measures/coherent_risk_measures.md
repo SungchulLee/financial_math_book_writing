@@ -1,9 +1,5 @@
 # Coherent Risk Measures
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 A **coherent risk measure** satisfies a set of axioms that formalize desirable properties of a risk metric, especially with respect to diversification and capital allocation.
 
 ---

@@ -1,9 +1,5 @@
 # Grid Convergence and Error Analysis
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Numerical methods must not only be stable and accurate on a single grid — they should also **converge** to the correct solution as the grid is refined. This section analyzes how finite difference solutions for the Black-Scholes equation improve as we reduce the time and space step sizes.
 
 ---

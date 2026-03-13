@@ -1,10 +1,6 @@
 # Similarity Solutions: Complete Mathematical Treatment
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Similarity solutions exploit **scale invariance** and **dimensional analysis** to reduce PDEs to ODEs by identifying the "right" combination of variables. This reveals the **deep symmetry structure** underlying option pricing.
 
 ---

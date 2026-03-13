@@ -1,9 +1,5 @@
 # Immersion (H-Hypothesis)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **immersion property**, also known as the **H-hypothesis** or **(H)-hypothesis**, is a fundamental assumption in credit risk models that ensures martingales under the original filtration remain martingales after enlargement. This property dramatically simplifies pricing and hedging in the presence of default.
 
 ---

@@ -1,9 +1,5 @@
 # Pricing with XVAs
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Modern derivative pricing integrates **XVAs** directly into valuation, fundamentally changing the classical risk-neutral pricing paradigm. This section explores the theoretical and practical implications.
 
 ---

@@ -1,9 +1,5 @@
 # European Call and Put Pricing
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers european call and put pricing in the context of European Call Put Pricing in Chapter 16.*
 
 !!! abstract "Learning Objectives"

@@ -1,9 +1,5 @@
 # Bond Pricing in Affine Framework
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers bond pricing in affine framework in the context of Bond Pricing Affine Framework in Chapter 15.*
 
 !!! abstract "Learning Objectives"

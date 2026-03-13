@@ -1,9 +1,5 @@
 # SABR Model
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The SABR model is a widely used **stochastic volatility model** designed to capture smile dynamics with a parsimonious parameterization. It is especially popular in interest-rate and FX markets due to its analytical implied volatility approximation, but its concepts generalize to equity volatility modeling.
 
 ---

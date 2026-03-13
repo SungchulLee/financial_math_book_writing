@@ -1,9 +1,5 @@
 # Local Volatility Models
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Local volatility models replace the constant volatility $\sigma$ of Black-Scholes with a **state-dependent** function $\sigma_{\text{loc}}(t, S)$. This allows exact calibration to the observed implied volatility surface while maintaining a complete market framework.
 
 ---

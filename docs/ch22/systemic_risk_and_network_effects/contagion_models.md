@@ -1,9 +1,5 @@
 # Contagion Models
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Contagion models** study how financial distress spreads across institutions through networks, markets, and behavioral channels. Understanding contagion is essential for systemic risk assessment and macroprudential policy.
 
 ---

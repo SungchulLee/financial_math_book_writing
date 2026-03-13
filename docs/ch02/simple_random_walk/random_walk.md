@@ -1,9 +1,5 @@
 # Random Walk
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Introduction
 
 Before introducing Brownian motion axiomatically, we begin with the discrete-time simple random walk. This serves three purposes:

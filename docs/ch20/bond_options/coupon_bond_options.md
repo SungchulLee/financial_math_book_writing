@@ -1,9 +1,5 @@
 # Coupon Bond Options
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers coupon bond options in the context of Coupon Bond Options in Chapter 20.*
 
 !!! abstract "Learning Objectives"

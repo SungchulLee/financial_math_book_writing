@@ -1,10 +1,6 @@
 # Girsanov for Jump Processes
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Girsanov’s theorem extends beyond diffusions to **jump processes**, providing the mathematical foundation for changing measures in credit risk models.
 
 ---

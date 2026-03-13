@@ -1,10 +1,6 @@
 # Measure Changes with Default
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Changing probability measures in the presence of default requires special care because default introduces **jumps** and filtration enlargement.
 
 ---

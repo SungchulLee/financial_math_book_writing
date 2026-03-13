@@ -1,9 +1,5 @@
 # Optional Sampling Theorem
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## The Central Question
 
 The martingale property states that $\mathbb{E}[M_t \mid \mathcal{F}_s] = M_s$ for deterministic times $s \le t$. But what happens when we evaluate a martingale at **random times**?

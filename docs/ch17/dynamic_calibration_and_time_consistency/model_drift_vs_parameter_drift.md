@@ -1,9 +1,5 @@
 # Model Drift vs Parameter Drift
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Observed parameter changes over time can stem from two fundamentally different sources: **model drift** and **parameter drift**. Distinguishing between them is crucial for interpretation, risk management, and model governance.
 
 ---

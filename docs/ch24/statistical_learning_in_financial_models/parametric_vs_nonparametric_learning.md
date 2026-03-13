@@ -1,9 +1,5 @@
 # Parametric vs Nonparametric Learning
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Statistical learning methods in quantitative finance can be broadly classified into **parametric** and **nonparametric** approaches. This distinction reflects a fundamental trade-off between structural assumptions and flexibility, with profound implications for model stability, data efficiency, and out-of-sample performance.
 
 ---

@@ -1,9 +1,5 @@
 # Transition Density (Non-Central Chi-Squared)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers transition density (non-central chi-squared) in the context of Transition Density in Chapter 18.*
 
 !!! abstract "Learning Objectives"

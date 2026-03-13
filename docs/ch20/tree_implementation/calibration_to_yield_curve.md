@@ -1,9 +1,5 @@
 # Calibration to Yield Curve on Tree
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers calibration to yield curve on tree in the context of Calibration To Yield Curve in Chapter 20.*
 
 !!! abstract "Learning Objectives"

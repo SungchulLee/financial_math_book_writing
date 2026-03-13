@@ -1,9 +1,5 @@
 # Caps and Floors
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Caps** and **floors** are the most liquid interest rate options. A cap protects against rising rates; a floor protects against falling rates. They are portfolios of individual options called **caplets** and **floorlets**.
 
 ---

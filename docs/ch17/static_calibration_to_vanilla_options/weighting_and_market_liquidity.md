@@ -1,10 +1,6 @@
 # Weighting and Market Liquidity
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Calibration is only as good as its treatment of **quote quality**. Two instruments can have the same mid price but very different reliability due to liquidity, bid/ask width, and microstructure effects. Weighting schemes translate market reality into the objective function.
 
 ---

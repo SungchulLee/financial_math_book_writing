@@ -1,9 +1,5 @@
 # Greeks Under Jump-Diffusion
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers greeks under jump-diffusion in the context of Greeks Under Jump Diffusion in Chapter 07.*
 
 !!! abstract "Learning Objectives"

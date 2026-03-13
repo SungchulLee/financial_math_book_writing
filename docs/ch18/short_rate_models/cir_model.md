@@ -1,9 +1,5 @@
 # The Cox-Ingersoll-Ross (CIR) Model
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Cox-Ingersoll-Ross model (1985) is a mean-reverting short-rate model with **square-root volatility**. Unlike Vasicek, the CIR model can ensure non-negative interest rates under appropriate parameter conditions, while retaining analytical tractability.
 
 ---

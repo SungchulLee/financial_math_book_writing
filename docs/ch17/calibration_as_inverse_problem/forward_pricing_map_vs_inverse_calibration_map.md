@@ -1,10 +1,6 @@
 # Forward Pricing Map vs Inverse Calibration Map
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Calibration is best understood as an **inverse problem**: we observe market prices (or implied volatilities) and seek model parameters that reproduce them. This section formalizes the *forward* and *inverse* maps and highlights why the inverse map is delicate.
 
 ---

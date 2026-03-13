@@ -1,9 +1,5 @@
 # Linear Complementarity Formulation
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 This section explores the principles and methods underlying linear complementarity formulation, which form a critical component of modern financial mathematics.
 
 ## Key Concepts

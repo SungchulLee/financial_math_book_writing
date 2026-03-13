@@ -1,9 +1,5 @@
 # Explicit Finite Difference Scheme: Implementation
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **explicit finite difference scheme** computes the option price at the next time step directly using known values from the current time step. It is straightforward to implement but suffers from conditional stability.
 
 ---

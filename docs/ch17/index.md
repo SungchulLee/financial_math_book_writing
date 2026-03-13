@@ -1,9 +1,5 @@
 # Chapter 17: Calibration
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 This chapter treats model calibration as an inverse problem: given observed market prices, recover model parameters that reproduce them. Starting from the forward pricing map and its inversion, we develop the mathematical framework for ill-posedness and regularization, apply it to local and stochastic volatility calibration, address the dynamic consistency of recalibration over time, and quantify the model risk that calibration uncertainty introduces into pricing and hedging. The chapter covers the full calibration pipeline---from objective function design and optimization algorithms through regularization, dynamic recalibration, filtering, and model risk governance---providing a unified treatment of both theoretical foundations and practical implementation.
 
 ## Key Concepts

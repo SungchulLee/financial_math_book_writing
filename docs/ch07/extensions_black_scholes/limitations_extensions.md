@@ -1,10 +1,6 @@
 # Limitations and Extensions of the Black-Scholes Model
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 While the Black-Scholes model provides an elegant framework for option pricing, its simplifying assumptions often **do not fully hold in practice**. Real markets exhibit volatility clustering, jumps, transaction costs, and other phenomena not captured by the standard model.
 
 This section examines the gap between Black-Scholes assumptions and market reality, and surveys extensions that address these limitations.

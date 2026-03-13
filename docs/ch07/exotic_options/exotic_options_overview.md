@@ -1,9 +1,5 @@
 # Exotic Options: Overview
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Introduction
 
 **Exotic options** are derivative contracts whose features go beyond the standard "vanilla" European or American call/put payoffs. While vanilla options depend only on the terminal price $S_T$ relative to a strike $K$, exotics may incorporate **path dependency**, **barrier triggers**, **averaging mechanisms**, or **multi-asset dependencies**. These additional features arise naturally in structured products, corporate hedging programs, and customized over-the-counter (OTC) derivatives.

@@ -1,10 +1,6 @@
 # Black–Scholes PDE via Equilibrium Pricing
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Black–Scholes PDE can be derived as a consequence of **general equilibrium** in a representative-agent economy, without any direct no-arbitrage or hedging argument. In this approach, the pricing equation emerges from the optimal consumption–investment behavior of an agent with CRRA preferences, combined with market clearing. The key equilibrium output is the **stochastic discount factor** (pricing kernel), which determines the relationship between the stock's physical drift $\mu$, the risk-free rate $r$, and the risk aversion parameter $\gamma$—and once this relationship is imposed, the Black–Scholes PDE follows.
 
 This derivation is fundamentally different from the [delta-hedging](delta_hedging.md) and [change-of-numéraire](change_of_numeraire.md) approaches because it **explains** the risk-free rate and the equity risk premium as endogenous quantities, rather than taking them as given.

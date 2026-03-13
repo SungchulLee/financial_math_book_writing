@@ -1,10 +1,6 @@
 # Asymptotic Behavior of the Black-Scholes Formula
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Black-Scholes formula exhibits well-defined **limiting behavior** as parameters approach extreme values. Understanding these limits provides intuition for how options behave in different market conditions and serves as a check for numerical implementations.
 
 This section systematically analyzes the asymptotic behavior of option prices.

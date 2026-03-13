@@ -1,9 +1,5 @@
 # Market Impact
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Market impact** refers to the price movement caused by executing trades. It is a key component of transaction costs and liquidity risk, particularly for large positions.
 
 ---

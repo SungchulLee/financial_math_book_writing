@@ -1,9 +1,5 @@
 # LIBOR Market Model
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **LIBOR Market Model** (LMM), also known as the **Brace–Gatarek–Musiela (BGM) model**, is a market model for interest rates that directly models observable forward LIBOR rates rather than instantaneous forward rates or short rates. It is the most widely used model for pricing and hedging interest rate derivatives, particularly caps and swaptions.
 
 ---

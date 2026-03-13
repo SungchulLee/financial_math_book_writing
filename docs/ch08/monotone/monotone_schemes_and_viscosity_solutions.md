@@ -1,10 +1,6 @@
 # Monotone Schemes and Viscosity Solutions
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 When classical smooth solutions fail (e.g. obstacle problems), **viscosity solutions** give the correct weak notion, and **monotone schemes** are a key route to convergence.
 
 ---

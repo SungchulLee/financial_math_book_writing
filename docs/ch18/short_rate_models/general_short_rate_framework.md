@@ -1,9 +1,5 @@
 # General Short-Rate Framework
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Short-rate models describe interest rates by modeling the **instantaneous short rate** $r_t$. Once $r_t$ is specified under the risk-neutral measure, discount factors, bond prices, and derivative values follow from expectations of discounted cashflows. This section establishes the general framework before examining specific models.
 
 ---

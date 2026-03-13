@@ -1,9 +1,5 @@
 # Fitting θ(t) to Initial Yield Curve
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers fitting θ(t) to initial yield curve in the context of Fitting Theta To Yield Curve in Chapter 20.*
 
 !!! abstract "Learning Objectives"

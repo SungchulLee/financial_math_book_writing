@@ -1,10 +1,6 @@
 # Stress and Crisis Behavior
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Credit models calibrated in normal markets often fail during **stress and crisis periods**. Understanding these breakdowns is central to credit model risk.
 
 ---

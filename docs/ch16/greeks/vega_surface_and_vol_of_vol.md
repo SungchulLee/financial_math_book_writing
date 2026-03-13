@@ -1,9 +1,5 @@
 # Vega Surface and Vol-of-Vol Sensitivity
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers vega surface and vol-of-vol sensitivity in the context of Vega Surface And Vol Of Vol in Chapter 16.*
 
 !!! abstract "Learning Objectives"

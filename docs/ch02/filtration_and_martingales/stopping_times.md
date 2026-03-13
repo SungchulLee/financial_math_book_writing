@@ -1,9 +1,5 @@
 # Stopping Times
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## The Concept of Observable Random Times
 
 In stochastic analysis, we frequently need to consider random times—moments when something happens. But not all random times are created equal. The concept of a **stopping time** captures precisely those random times that can be determined using only information available up to that moment.

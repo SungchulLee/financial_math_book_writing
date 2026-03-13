@@ -1,10 +1,6 @@
 # Joint Calibration Across Strikes and Maturities
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Stochastic volatility parameters influence the **entire implied volatility surface**. Reliable calibration therefore requires fitting **jointly across strikes and maturities**, rather than focusing on individual slices.
 
 ---

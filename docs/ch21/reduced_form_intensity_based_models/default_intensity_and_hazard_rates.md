@@ -1,9 +1,5 @@
 # Default Intensity and Hazard Rates
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Reduced-form (intensity-based) credit models treat default as an exogenous random event governed by a **default intensity** or **hazard rate**. Rather than deriving default from firm value dynamics, these models specify the conditional instantaneous probability of default directly. This approach prioritizes tractability and calibration to market prices.
 
 ---

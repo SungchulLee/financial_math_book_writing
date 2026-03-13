@@ -1,9 +1,5 @@
 # Explicit, Implicit, and Crank-Nicolson Schemes
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 After spatial discretization, the Black-Scholes PDE becomes an ODE system in time. The choice of **time-stepping scheme** determines stability, accuracy, and computational cost.
 
 ---

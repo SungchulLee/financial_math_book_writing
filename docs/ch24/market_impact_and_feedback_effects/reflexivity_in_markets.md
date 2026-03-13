@@ -1,10 +1,6 @@
 # Reflexivity in Markets
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Reflexivity**, a concept popularized by George Soros, describes the circular relationship between market participants’ beliefs and market outcomes.
 
 ---

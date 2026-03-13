@@ -1,9 +1,5 @@
 # Empirical Failures of Constant Volatility
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Black–Scholes model assumes that volatility is constant over time and across states of the market. While this assumption leads to analytical tractability, it is fundamentally inconsistent with observed market behavior. This section documents the empirical evidence against constant volatility and its implications for option pricing.
 
 ---

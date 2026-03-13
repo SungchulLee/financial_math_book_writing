@@ -1,10 +1,6 @@
 # Probabilistic Interpretation of the Black-Scholes Formula
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Black-Scholes formula is not merely a mathematical expression—it has deep **probabilistic meaning**. The terms $\mathcal{N}(d_1)$ and $\mathcal{N}(d_2)$ represent probabilities under different measures, and the formula can be understood as a weighted average of terminal payoffs.
 
 This section reveals the probabilistic structure underlying the option pricing formula.

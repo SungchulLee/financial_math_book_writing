@@ -1,9 +1,5 @@
 # Recovery Schemes
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Recovery assumptions specify what investors receive upon default. They are crucial modeling choices that significantly affect prices, credit spreads, and the interpretation of calibrated parameters. Different conventions lead to different pricing formulas and have distinct economic interpretations.
 
 ---

@@ -1,9 +1,5 @@
 # Risk-Neutral vs Physical Measure
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Stochastic volatility models distinguish between **physical (real-world)** dynamics and **risk-neutral** dynamics used for pricing. Understanding this distinction is essential for calibration, interpretation, and connecting option prices to market expectations. The gap between measures encodes the **volatility risk premium**.
 
 ---

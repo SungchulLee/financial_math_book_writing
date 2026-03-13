@@ -1,9 +1,5 @@
 # Carr-Madan FFT Pricing Method
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Carr-Madan method enables fast computation of European option prices by recovering the probability density from the characteristic function using Fast Fourier Transform (FFT). This is particularly powerful for models like Heston where the characteristic function is known in closed form.
 
 !!! abstract "Learning Objectives"

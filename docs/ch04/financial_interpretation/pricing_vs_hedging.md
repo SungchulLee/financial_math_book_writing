@@ -1,10 +1,6 @@
 # Pricing vs Hedging
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Although pricing and hedging are closely related, they represent **distinct
 economic problems**. Measure change clarifies the difference between them.
 

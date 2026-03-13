@@ -1,9 +1,5 @@
 # Option Pricing (Merton Series Formula)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers option pricing (merton series formula) in the context of Merton Series Formula in Chapter 07.*
 
 !!! abstract "Learning Objectives"

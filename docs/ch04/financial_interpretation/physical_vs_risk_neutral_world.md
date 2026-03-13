@@ -1,10 +1,6 @@
 # Physical vs Risk-Neutral World
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The distinction between the physical and risk-neutral probability measures is
 one of the most common sources of confusion in quantitative finance.
 

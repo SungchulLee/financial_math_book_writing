@@ -1,9 +1,5 @@
 # Firm Value Models (Merton)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Structural credit risk models view default as an economic event driven by the firm's asset value. The **Merton model** (1974) is the foundational framework in this class, interpreting equity and debt as contingent claims on firm value. This approach provides a unified treatment of equity and credit markets with strong economic intuition.
 
 ---

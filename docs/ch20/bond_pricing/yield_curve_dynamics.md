@@ -1,9 +1,5 @@
 # Yield Curve Dynamics Under Hull-White
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers yield curve dynamics under hull-white in the context of Yield Curve Dynamics in Chapter 20.*
 
 !!! abstract "Learning Objectives"

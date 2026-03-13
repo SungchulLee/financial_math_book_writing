@@ -1,9 +1,5 @@
 # Bias–Variance Trade-Off
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **bias–variance trade-off** is a fundamental principle in statistical learning that governs the balance between model complexity and generalization. Understanding this trade-off is essential for building robust financial models that perform well out-of-sample.
 
 ---

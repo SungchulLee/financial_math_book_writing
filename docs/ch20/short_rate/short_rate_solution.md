@@ -1,9 +1,5 @@
 # Hull-White Short Rate
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Hull-White Model
 
 $$\begin{array}{lllll}

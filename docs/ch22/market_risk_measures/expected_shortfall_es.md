@@ -1,9 +1,5 @@
 # Expected Shortfall (ES)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Expected Shortfall (ES)**, also known as **Conditional Value-at-Risk (CVaR)** or **Average Value-at-Risk (AVaR)**, addresses key shortcomings of VaR by measuring the average loss in the tail beyond the VaR threshold.
 
 ---

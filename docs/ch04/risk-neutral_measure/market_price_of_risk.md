@@ -1,10 +1,6 @@
 # Market Price of Risk
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The market price of risk quantifies how much excess return investors demand per unit
 of risk. It plays a central role in the change of measure from the physical to the
 risk-neutral world.

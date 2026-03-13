@@ -1,9 +1,5 @@
 # Heston SDE and Parameters
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers heston sde and parameters in the context of Heston Sde And Parameters in Chapter 16.*
 
 !!! abstract "Learning Objectives"

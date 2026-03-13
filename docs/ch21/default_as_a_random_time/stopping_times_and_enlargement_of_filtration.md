@@ -1,9 +1,5 @@
 # Stopping Times and Enlargement of Filtration
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Credit risk models represent default as a **random time** $\tau$. To incorporate default into a stochastic framework rigorously, one must understand stopping times and the enlargement of filtrations. This foundational machinery enables consistent pricing and hedging in the presence of default events.
 
 ---

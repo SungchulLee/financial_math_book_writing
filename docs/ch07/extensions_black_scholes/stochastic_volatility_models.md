@@ -1,9 +1,5 @@
 # Stochastic Volatility Models
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Stochastic volatility models introduce a **second random factor** to capture the empirical observation that volatility itself fluctuates randomly over time. This creates volatility smile/skew, term structure effects, and volatility clustering.
 
 ---

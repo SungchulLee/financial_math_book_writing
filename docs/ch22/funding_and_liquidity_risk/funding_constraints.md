@@ -1,9 +1,5 @@
 # Funding Constraints
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Funding constraints** arise when institutions face limits or costs in raising capital to finance positions. These constraints materially affect pricing, hedging, and trading strategies, particularly during periods of market stress.
 
 ---

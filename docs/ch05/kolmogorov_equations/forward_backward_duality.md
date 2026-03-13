@@ -1,9 +1,5 @@
 # Forward–Backward Duality
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Kolmogorov forward and backward equations are **adjoint** to each other. This duality is not merely a mathematical curiosity—it reflects two fundamentally different ways of looking at the same diffusion process and has deep implications for computation, interpretation, and applications.
 
 !!! tip "Related Content"

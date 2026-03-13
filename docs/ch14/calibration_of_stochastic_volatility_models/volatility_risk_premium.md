@@ -1,10 +1,6 @@
 # Volatility Risk Premium
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Stochastic volatility models distinguish between **risk-neutral** and **physical** volatility dynamics. The gap between them is captured by the **volatility risk premium (VRP)**, which has direct implications for calibration and interpretation.
 
 ---

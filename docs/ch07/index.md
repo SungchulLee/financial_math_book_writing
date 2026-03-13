@@ -1,9 +1,5 @@
 # Chapter 7: Extensions, American, and Exotic Options
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 This chapter extends the Black-Scholes framework beyond European vanilla options in four directions: relaxing idealized assumptions (constant volatility, frictionless markets, no dividends), incorporating early exercise (American options as free boundary and optimal stopping problems), introducing path-dependent and exotic payoffs (barrier, Asian, lookback, chooser, rainbow, cliquet, compound, and digital options), and modeling discontinuous price dynamics via the Merton jump-diffusion model. Each extension preserves the no-arbitrage principle while requiring new mathematical tools---optimal stopping, reflected processes, partial integro-differential equations, stochastic volatility, incomplete market theory---and numerical methods that go beyond closed-form solutions.
 
 ## Key Concepts

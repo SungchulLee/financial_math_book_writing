@@ -1,10 +1,6 @@
 # Properties and Bounds of Option Prices
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Option prices satisfy fundamental mathematical properties that follow from no-arbitrage principles. These properties—monotonicity, convexity, and bounds—provide constraints that any valid pricing model must respect and enable arbitrage detection in practice.
 
 This section rigorously establishes these properties for European options under the Black-Scholes framework.

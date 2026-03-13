@@ -1,9 +1,5 @@
 # Interpolation Methods for Yield Curves
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Bootstrapping produces discount factors at discrete maturities corresponding to market instruments. **Interpolation** extends the curve to arbitrary maturities, enabling pricing of instruments with non-standard dates. The choice of interpolation method significantly affects forward rates and hedging behavior.
 
 ---

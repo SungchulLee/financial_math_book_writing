@@ -1,9 +1,5 @@
 # Feller Condition and Boundary Behavior
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The variance process in the Heston model is a **square-root diffusion** (CIR process), whose behavior near zero is critical for both mathematical well-posedness and numerical implementation. This section provides a rigorous treatment of boundary classification, the Feller condition, and practical implications.
 
 ---

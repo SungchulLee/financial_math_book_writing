@@ -1,9 +1,5 @@
 # Asian Options
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Introduction
 
 **Asian options** (also called **average-rate options**) are path-dependent derivatives whose payoff depends on the **average price** of the underlying asset over a specified period, rather than the terminal price alone. This averaging mechanism reduces the impact of price manipulation near expiry and stabilizes payoff variability, making Asian options natural hedging instruments for entities with continuous exposure to commodity or currency prices.

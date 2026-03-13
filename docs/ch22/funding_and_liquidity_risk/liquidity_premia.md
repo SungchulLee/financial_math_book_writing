@@ -1,9 +1,5 @@
 # Liquidity Premia
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Liquidity premia** compensate investors for the cost and risk of trading assets that cannot be bought or sold quickly without significant price impact. Understanding liquidity premia is essential for accurate valuation and risk management.
 
 ---

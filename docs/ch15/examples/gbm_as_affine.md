@@ -1,9 +1,5 @@
 # Geometric Brownian Motion as Affine
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section explores geometric brownian motion in the context of affine processes. Specifically, we show that the stock price itself does not satisfy the affine property, but the log stock price does.*
 
 !!! abstract "Learning Objectives"

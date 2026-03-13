@@ -1,10 +1,6 @@
 # Bond Pricing via PDEs
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 In short-rate models, zero-coupon bond prices can be characterized as solutions of **partial differential equations (PDEs)**. The PDE approach provides intuition about boundary conditions and links interest-rate pricing to diffusion theory.
 
 ---

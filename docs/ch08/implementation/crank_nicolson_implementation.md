@@ -1,9 +1,5 @@
 # Crank-Nicolson Scheme: Implementation
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **Crank-Nicolson method** combines the accuracy of the explicit method with the stability of the implicit method. It is **second-order accurate** in both time and space, making it the preferred method in many financial engineering applications.
 
 ---

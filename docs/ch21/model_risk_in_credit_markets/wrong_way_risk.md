@@ -1,10 +1,6 @@
 # Wrong-Way Risk
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Wrong-way risk (WWR)** arises when exposure to a counterparty increases precisely when the counterparty’s credit quality deteriorates. It is a major source of model risk in credit markets.
 
 ---

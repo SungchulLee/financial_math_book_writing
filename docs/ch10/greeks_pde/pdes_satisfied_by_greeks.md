@@ -1,10 +1,6 @@
 # PDEs Satisfied by Greeks
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 A clean way to obtain PDEs for Greeks is to treat Greeks as solutions of **sensitivity PDEs**.
 
 ---

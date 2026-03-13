@@ -1,10 +1,6 @@
 # Theta Management and Time Decay
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Theta measures the rate of decline in an option's value with the passage of time, holding all else constant. Managing theta exposure is central to options portfolio construction and P&L forecasting.
 
 ---

@@ -1,9 +1,5 @@
 # Gaussian Copula and CDO Crisis
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Gaussian copula model, developed by David Li and widely used for pricing collateralized debt obligations (CDOs), played a central role in the 2008 financial crisis. Understanding its assumptions, limitations, and failure modes is crucial for recognizing model risk in credit derivatives.
 
 ## Key Concepts

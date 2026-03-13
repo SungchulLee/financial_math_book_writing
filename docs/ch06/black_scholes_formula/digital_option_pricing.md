@@ -1,9 +1,5 @@
 # Digital Option Pricing via Girsanov's Theorem
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Payoff Structure
 
 A **digital (cash-or-nothing) call option** pays a fixed amount $1$ if the underlying asset exceeds the strike price $K$ at maturity $T$:

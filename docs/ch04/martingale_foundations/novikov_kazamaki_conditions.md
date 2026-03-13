@@ -1,9 +1,5 @@
 # Novikov and Kazamaki Conditions
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 When does a stochastic exponential define a valid probability measure? The **Novikov condition** and **Kazamaki condition** provide sufficient conditions for the stochastic exponential to be a true martingale, ensuring that measure changes are well-defined.
 
 !!! info "Prerequisites"

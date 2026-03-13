@@ -1,9 +1,5 @@
 # Model Definition
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The Heston model is one of the most widely used **stochastic volatility models** in equity, FX, and commodity markets. It extends Black–Scholes by modeling variance as a mean-reverting stochastic process while retaining analytical tractability through its affine structure. This section provides a complete specification of the model and its properties.
 
 ---

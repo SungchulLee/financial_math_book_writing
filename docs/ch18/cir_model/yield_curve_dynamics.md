@@ -1,9 +1,5 @@
 # Yield Curve Dynamics
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers yield curve dynamics in the context of Yield Curve Dynamics in Chapter 18.*
 
 !!! abstract "Learning Objectives"

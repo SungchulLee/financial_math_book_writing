@@ -1,9 +1,5 @@
 # From Implied to Local Volatility
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers from implied to local volatility in the context of From Implied To Local Volatility in Chapter 13.*
 
 !!! abstract "Learning Objectives"

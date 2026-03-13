@@ -1,10 +1,6 @@
 # Boundary and Terminal Conditions
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Numerical PDE pricing requires:
 - a **terminal condition** at \(t=T\),
 - **boundary conditions** in \(S\) after truncating \((0,\infty)\) to \([0,S_{\max}]\).

@@ -1,9 +1,5 @@
 # Two-Factor Hull-White Model
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Model Specification
 
 The two-factor Hull-White model introduces a second stochastic factor to capture richer yield curve dynamics:

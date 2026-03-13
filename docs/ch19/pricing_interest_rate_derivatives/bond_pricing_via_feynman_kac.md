@@ -1,10 +1,6 @@
 # Bond Pricing via Feynman–Kac
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 An alternative and often more intuitive approach to bond pricing uses the **Feynman–Kac formula**, which expresses prices as expectations of discounted cashflows under the risk-neutral measure.
 
 ---

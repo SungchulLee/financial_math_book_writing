@@ -1,9 +1,5 @@
 # Bootstrapping Hazard Rates
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Calibration of reduced-form credit models typically starts by **bootstrapping hazard rates** from market instruments, most commonly CDS spreads. This process is analogous to yield curve bootstrapping in interest rate markets and produces a term structure of default risk.
 
 ---

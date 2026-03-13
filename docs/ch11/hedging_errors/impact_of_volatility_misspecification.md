@@ -1,10 +1,6 @@
 # Impact of Volatility Misspecification
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 If the hedger uses \(\hat{\sigma}\) while true volatility is \(\sigma\), replication fails systematically. Understanding this failure mode is central to practical options trading and motivates implied-vs-realized volatility strategies.
 
 ---

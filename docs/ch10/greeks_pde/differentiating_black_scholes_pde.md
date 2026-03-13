@@ -1,10 +1,6 @@
 # Differentiating the Black–Scholes PDE
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Greeks can be characterized by differentiating the Black–Scholes PDE satisfied by the option price.
 
 ---

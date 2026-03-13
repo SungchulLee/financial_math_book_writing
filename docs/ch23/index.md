@@ -1,9 +1,5 @@
 # Chapter 23: Robust Pricing, Hedging, and Decision-Making Under Model Uncertainty
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 This chapter develops the theory of pricing, hedging, and decision-making when no single probability model can be trusted. Starting from the distinction between risk (known probabilities) and Knightian uncertainty (unknown or ambiguous probabilities), it constructs sets of probability measures as the mathematical representation of model ambiguity, derives model-free pricing bounds via superhedging duality, the Skorokhod embedding problem, and martingale optimal transport, develops robust hedging strategies that perform well across families of models, studies ambiguity-averse preferences and their implications for portfolio choice, builds the nonlinear expectation framework of $g$-expectations and second-order BSDEs for pricing under volatility uncertainty, addresses the practical challenges of robust calibration, and concludes with case studies in model failure and the limits of quantitative modeling.
 
 ## Key Concepts

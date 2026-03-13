@@ -1,9 +1,5 @@
 # BSDE-Based Risk Measures
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Backward Stochastic Differential Equations (BSDEs) provide a powerful mathematical framework for defining **dynamic, time-consistent risk measures**. The recursive structure of BSDEs naturally encodes the time-consistency property.
 
 ---

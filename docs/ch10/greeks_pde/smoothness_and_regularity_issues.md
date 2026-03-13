@@ -1,10 +1,6 @@
 # Smoothness and Regularity Issues
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Regularity of \(V\) and Greeks depends on:
 - regularity of payoff \(\Phi\),
 - ellipticity/smoothness of coefficients,

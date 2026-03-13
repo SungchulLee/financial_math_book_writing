@@ -1,9 +1,5 @@
 # The Greeks from the PDE
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **Greeks** are sensitivities of option prices to various parameters. They are essential for hedging, risk management, and understanding option behavior. The pricing PDE provides a unified framework for computing and relating the Greeks.
 
 ---

@@ -1,10 +1,6 @@
 # Trade-Off Between Fit and Robustness
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Regularization introduces an unavoidable **trade-off**: improving robustness and stability typically worsens in-sample fit. Understanding and managing this trade-off is central to practical calibration.
 
 ---

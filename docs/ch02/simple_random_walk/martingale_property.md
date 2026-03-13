@@ -1,9 +1,5 @@
 # Martingale Property
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The martingale property is one of the most important structural features of the symmetric random walk. It is the foundation for the optional stopping theorem and the exact ruin probability formulas in the exercises.
 
 ---

@@ -1,9 +1,5 @@
 # Explicit Solutions for Common Cases
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers explicit solutions for common cases in the context of Explicit Riccati Solutions in Chapter 15.*
 
 !!! abstract "Learning Objectives"

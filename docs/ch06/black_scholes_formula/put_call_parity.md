@@ -1,10 +1,6 @@
 # Put-Call Parity
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Put-call parity** is a fundamental relationship between European call and put option prices. It is a **no-arbitrage condition** that must hold in frictionless markets, and provides a powerful tool for pricing, hedging, and detecting arbitrage opportunities.
 
 This section derives put-call parity, verifies it for the Black-Scholes formula, and explores its applications.

@@ -1,9 +1,5 @@
 # Time-Consistency
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Dynamic risk measures extend static risk measures to a multi-period setting. **Time-consistency** is a fundamental requirement ensuring that risk assessments remain logically coherent as information evolves over time.
 
 ---

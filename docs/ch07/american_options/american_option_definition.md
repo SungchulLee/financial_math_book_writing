@@ -1,9 +1,5 @@
 # American Options: Definition and Classification
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Introduction
 
 An **American option** is a derivative contract that grants the holder the right, but not the obligation, to exercise the option **at any time up to and including maturity** $T$. This contrasts with the European option, which permits exercise only at $T$, and the Bermudan option, which allows exercise on a discrete set of dates.

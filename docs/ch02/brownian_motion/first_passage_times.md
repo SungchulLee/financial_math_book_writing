@@ -1,75 +1,31 @@
 # First Passage Times
 
-First passage times measure when Brownian motion first reaches a given level, with applications to barrier option pricing, credit default modeling, and optimal stopping.
+First passage times represent the random time at which a Brownian motion first hits a particular level or set. They are fundamental to understanding the dynamics of stochastic processes and have widespread applications in financial modeling, particularly in option pricing and credit risk.
 
-## Definition
+## Key Concepts
 
-The **first passage time** (hitting time) to level $a$ for a standard Brownian motion is
+**Hitting Times Definition**
+The first passage time (or hitting time) $\tau_a$ to a level $a$ is defined as:
 
-$$
-\tau_a = \inf\{t \geq 0 : W_t = a\}
-$$
+$$\tau_a = \inf\{t \geq 0 : B_t = a\}$$
 
-The density of $\tau_a$ is the **inverse Gaussian distribution**:
+where $B_t$ is a standard Brownian motion and $a$ is a target level.
 
-$$
-f_{\tau_a}(t) = \frac{|a|}{\sqrt{2\pi t^3}}\,\exp\!\left(-\frac{a^2}{2t}\right), \quad t > 0
-$$
+**Reflection Principle**
+The reflection principle states that for a Brownian motion starting at 0, the probability of hitting level $a > 0$ before time $T$ and ending at level $b < a$ equals the probability of reaching level $2a - b$. This principle is crucial for computing distributions of first passage times.
 
-The survival probability is $\mathbb{P}(\tau_a > t) = 2\Phi(-|a|/\sqrt{t})$, where $\Phi$ is the standard normal CDF.
+**Distributions of First Passage Times**
+For a standard Brownian motion starting at 0:
+- The density of hitting time $\tau_a$ is: $f_{\tau_a}(t) = \frac{|a|}{\sqrt{2\pi t^3}} \exp\left(-\frac{a^2}{2t}\right)$
+- This follows an inverse Gaussian distribution
+- The survival probability is: $P(\tau_a > t) = 2\Phi\left(-\frac{|a|}{\sqrt{t}}\right)$
 
-## Explanation
+**Barrier Option Applications**
+First passage times directly price knock-out and knock-in barrier options through the relationship between hitting times and barrier crossing probabilities.
 
-The first passage time $\tau_a$ is a stopping time with respect to the natural filtration of Brownian motion. It is almost surely finite ($\mathbb{P}(\tau_a < \infty) = 1$) but has infinite expectation ($\mathbb{E}[\tau_a] = \infty$) for any $a \neq 0$.
-
-The density is derived using the **reflection principle**: $\mathbb{P}(\max_{s \leq t} W_s \geq a) = 2\mathbb{P}(W_t \geq a)$ for $a > 0$. Differentiating with respect to $t$ yields the hitting time density.
-
-For Brownian motion with drift $\mu$ (i.e., $X_t = \mu t + W_t$), the first passage time to level $a > 0$ has density
-
-$$
-f(t) = \frac{a}{\sqrt{2\pi t^3}}\,\exp\!\left(-\frac{(a - \mu t)^2}{2t}\right)
-$$
-
-This generalizes to barrier option pricing in the Black-Scholes model, where the log-price follows Brownian motion with drift.
-
-## Examples
-
-Simulate first passage times and compare with the theoretical distribution.
-
-```python
-import numpy as np
-from scipy.stats import invgauss
-
-a = 2.0  # target level
-n_paths = 50000
-dt = 0.001
-T_max = 20.0
-n_steps = int(T_max / dt)
-
-# Simulate and record first passage times
-np.random.seed(42)
-tau_samples = []
-for _ in range(n_paths):
-    W = 0.0
-    for k in range(1, n_steps + 1):
-        W += np.sqrt(dt) * np.random.randn()
-        if W >= a:
-            tau_samples.append(k * dt)
-            break
-
-tau_samples = np.array(tau_samples)
-print(f"P(tau < {T_max}) = {len(tau_samples)/n_paths:.4f}")
-print(f"Median hitting time: {np.median(tau_samples):.4f}")
-
-# Theoretical survival probability at t=5
-from scipy.stats import norm
-t_check = 5.0
-surv_theory = 2 * norm.cdf(-a / np.sqrt(t_check))
-surv_empirical = np.mean(tau_samples > t_check)
-print(f"P(tau > {t_check}): theory={surv_theory:.4f}, sim={surv_empirical:.4f}")
-
-# Theoretical density evaluation
-t_vals = np.linspace(0.1, 10, 100)
-f_theory = a / np.sqrt(2 * np.pi * t_vals**3) * np.exp(-a**2 / (2 * t_vals))
-print(f"Peak density at t = {t_vals[np.argmax(f_theory)]:.2f}")
-```
+!!! note "Key Applications"
+    First passage times are used extensively in:
+    - Barrier option pricing (knock-out, knock-in barriers)
+    - Credit default swap valuation (first time a credit spread crosses a threshold)
+    - Optimal stopping and exercise decisions
+    - Drawdown and Merton portfolio choice problems

@@ -1,9 +1,5 @@
 # The Hull-White Model
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **Hull-White model** (1990) extends Vasicek by introducing a time-dependent drift that enables **exact calibration to the initial yield curve**. This makes it the workhorse model for interest rate derivatives in practice.
 
 !!! note "Detailed Treatment"

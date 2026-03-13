@@ -1,9 +1,5 @@
 # Bond Options
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Bond options** are European or American options written on zero-coupon or coupon bonds. They are fundamental interest rate derivatives and serve as building blocks for understanding caps, floors, and swaptions.
 
 ---

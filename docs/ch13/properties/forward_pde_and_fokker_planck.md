@@ -1,9 +1,5 @@
 # Forward PDE and Fokker–Planck
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers forward pde and fokker–planck in the context of Forward Pde And Fokker Planck in Chapter 13.*
 
 !!! abstract "Learning Objectives"

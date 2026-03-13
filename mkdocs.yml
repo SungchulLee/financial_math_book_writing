@@ -5,21 +5,19 @@ theme:
 
 markdown_extensions:
     - admonition
-    - pymdownx.details       
-    - attr_list
-    - md_in_html
     - toc:
         permalink: true
-    - pymdownx.superfences
+    - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:mermaid2.fence_mermaid_custom
     - pymdownx.arithmatex:
         generic: true
 
 extra_javascript:
     - javascripts/mathjax.js
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-extra_css:
-  - stylesheets/extra.css
 
 nav:
     - Home: index.md
@@ -1464,3 +1462,4 @@ nav:
 
 plugins:
     - search
+    - mermaid2

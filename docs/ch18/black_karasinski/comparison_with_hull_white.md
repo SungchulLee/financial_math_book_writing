@@ -1,9 +1,5 @@
 # Comparison with Hull-White
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers comparison with hull-white in the context of Comparison With Hull White in Chapter 18.*
 
 !!! abstract "Learning Objectives"

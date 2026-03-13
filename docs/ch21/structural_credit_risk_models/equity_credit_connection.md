@@ -1,9 +1,5 @@
 # Equity–Credit Connection
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Structural models provide a unified framework linking **equity and credit markets** through their common dependence on firm value. This connection has profound implications for relative value trading, risk management, and understanding market dynamics. While theoretically elegant, the equity-credit link also reveals important empirical puzzles.
 
 ---

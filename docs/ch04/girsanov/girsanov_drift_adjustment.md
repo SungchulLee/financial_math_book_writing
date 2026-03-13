@@ -1,10 +1,6 @@
 # Drift Adjustment and Financial Meaning
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Girsanov’s theorem is used in finance to remove risk premia from asset prices,
 making arbitrage-free pricing possible.
 

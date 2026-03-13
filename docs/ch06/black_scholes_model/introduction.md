@@ -1,10 +1,6 @@
 # Introduction to the Black-Scholes Model
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **Black-Scholes model**, developed independently by Fischer Black and Myron Scholes (1973) and Robert Merton (1973), constitutes a cornerstone of modern financial mathematics. It provides a robust framework for pricing European options under the assumption that the underlying asset follows **geometric Brownian motion**—a continuous-time stochastic process.
 
 This section introduces the Black-Scholes model, its historical significance, and its relationship to the discrete-time binomial framework studied in Section 2.1.

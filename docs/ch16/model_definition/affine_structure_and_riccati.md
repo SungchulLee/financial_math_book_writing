@@ -1,9 +1,5 @@
 # Affine Structure and Riccati System
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers affine structure and riccati system in the context of Affine Structure And Riccati in Chapter 16.*
 
 !!! abstract "Learning Objectives"

@@ -1,10 +1,6 @@
 # Pathwise Differentiation
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Pathwise differentiation computes Greeks by differentiating sample paths with respect to parameters or initial data.
 
 ---

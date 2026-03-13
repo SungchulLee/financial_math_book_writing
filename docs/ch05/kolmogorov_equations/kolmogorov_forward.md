@@ -1,9 +1,5 @@
 # Kolmogorov Forward Equation (Fokker–Planck)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The **Kolmogorov forward equation**, also known as the **Fokker–Planck equation**, describes the time evolution of the probability density of a diffusion process. While the backward equation acts on initial conditions $(x_0, t_0)$, the forward equation acts on the current state $(x, t)$—tracking how probability mass spreads over time.
 
 !!! tip "Related Content"

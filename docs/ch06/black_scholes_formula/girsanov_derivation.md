@@ -1,9 +1,5 @@
 # Pricing a European Call Option Using Girsanov's Theorem
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 We price a **European call option** on a stock whose price follows a geometric Brownian motion. We apply **Girsanov's theorem** to change from the real-world measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$ under which the discounted asset price is a martingale.
 
 ---

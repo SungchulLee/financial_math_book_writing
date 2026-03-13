@@ -1,9 +1,5 @@
 # Spectral Risk Measures
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Spectral risk measures generalize Value-at-Risk (VaR) and Expected Shortfall (ES) by applying weights across the quantile distribution. They provide a coherent, theoretically principled framework for risk measurement that captures risk preferences through a spectrum of weights on tail outcomes.
 
 ## Key Concepts

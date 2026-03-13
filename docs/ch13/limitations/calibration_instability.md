@@ -1,9 +1,5 @@
 # Calibration Instability
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Model calibration to market data is essential for practical implementation, but instability in calibration results poses a fundamental challenge. Sensitivity to input data, parameter coupling, and local minima in optimization create risks of model parameter uncertainty that propagate to pricing and hedging errors.
 
 ## Key Concepts

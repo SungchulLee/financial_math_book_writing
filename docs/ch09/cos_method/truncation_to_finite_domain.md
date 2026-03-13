@@ -1,9 +1,5 @@
 # Truncation to Finite Domain
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers truncation to finite domain in the context of Truncation To Finite Domain in Chapter 09.*
 
 !!! abstract "Learning Objectives"

@@ -1,9 +1,5 @@
 # Chapter 8: Numerical Solutions of the Black-Scholes PDE
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 This chapter develops finite difference methods (FDM) for solving the Black-Scholes PDE numerically, covering the complete pipeline from grid discretization and scheme construction through stability analysis, convergence theory, and practical implementation. Starting from the parabolic structure of the pricing PDE, we implement explicit, implicit, and Crank-Nicolson schemes in both original and log-price coordinates, analyze their stability via von Neumann analysis and the CFL condition, establish grid convergence and Richardson extrapolation for error improvement, extract Greeks directly from the solution grid, extend to American options through free boundary formulations with projection, PSOR, and penalty methods, and establish the rigorous convergence framework of viscosity solutions and the Barles-Souganidis theorem.
 
 ## Key Concepts

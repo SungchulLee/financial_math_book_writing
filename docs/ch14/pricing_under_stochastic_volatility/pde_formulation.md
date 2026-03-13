@@ -1,9 +1,5 @@
 # PDE Formulation
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Stochastic volatility models also admit a **partial differential equation (PDE)** formulation for option pricing. The PDE perspective is useful for theoretical analysis, boundary conditions, American options, and products not well-suited to Fourier methods.
 
 ---

@@ -1,10 +1,6 @@
 # Delta Hedging
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Delta hedging is the most fundamental options risk management technique: maintain a portfolio whose net delta is zero to eliminate first-order directional exposure.
 
 ---

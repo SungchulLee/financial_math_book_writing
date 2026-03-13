@@ -1,9 +1,5 @@
 # Numerical Differentiation for Local Volatility
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Local volatility calibration via Dupire's formula requires computing derivatives of option prices or implied volatilities with respect to strike and maturity. Since market data are discrete and noisy, numerical differentiation must be performed carefully to avoid catastrophic error amplification.
 
 ---

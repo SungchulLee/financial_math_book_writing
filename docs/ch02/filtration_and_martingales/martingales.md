@@ -1,9 +1,5 @@
 # Martingales and Submartingales
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## The Fair Game Principle
 
 The martingale concept originated in gambling theory, where it described a betting strategy in which the gambler doubled their stake after each loss. The modern mathematical usage, however, captures a far more general idea: a **fair game** in which, on average, one neither gains nor loses given current information.

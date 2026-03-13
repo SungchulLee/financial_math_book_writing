@@ -1,10 +1,6 @@
 # Greeks in the Black–Scholes Model
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 In the previous sections, Greeks were defined abstractly as partial derivatives of a pricing operator
 \(V(t,S;\sigma,r,\dots)\). We now **specialize these definitions to the Black–Scholes model** and compute the Greeks explicitly from the closed-form European call/put formulas. 
 

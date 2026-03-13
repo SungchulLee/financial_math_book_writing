@@ -1,9 +1,5 @@
 # ADI Schemes (Douglas, Craig-Sneyd, HV)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers adi schemes (douglas, craig-sneyd, hv) in the context of Adi Schemes in Chapter 16.*
 
 !!! abstract "Learning Objectives"

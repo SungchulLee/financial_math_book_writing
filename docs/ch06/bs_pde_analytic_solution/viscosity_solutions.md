@@ -1,10 +1,6 @@
 # Viscosity Solutions: Complete Mathematical Treatment
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Viscosity solutions provide a **rigorous framework** for nonlinear PDEs that handles **non-smooth data**, **degenerate equations**, and **optimal control problems**—all central to modern mathematical finance.
 
 ---

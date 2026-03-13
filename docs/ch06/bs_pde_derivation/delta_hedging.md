@@ -1,10 +1,6 @@
 # Black–Scholes PDE via Delta Hedging
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The delta-hedging derivation obtains the Black–Scholes PDE by constructing a portfolio of the derivative and the underlying stock, choosing the hedge ratio to eliminate stochastic risk, and invoking the no-arbitrage principle. This is the original approach of Black and Scholes (1973), and remains the most direct route from market assumptions to the pricing equation.
 
 

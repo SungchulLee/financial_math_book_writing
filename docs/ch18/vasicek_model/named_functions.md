@@ -1,9 +1,5 @@
 # Named Functions A(t,T) and B(t,T)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers named functions a(t,t) and b(t,t) in the context of Named Functions in Chapter 18.*
 
 !!! abstract "Learning Objectives"

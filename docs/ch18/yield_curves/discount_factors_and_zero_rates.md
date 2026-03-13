@@ -1,9 +1,5 @@
 # Discount Factors and Zero Rates
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Yield curves summarize the time value of money and are foundational for pricing fixed-income instruments and for discounting cashflows in derivatives. This section introduces **discount factors** and **zero (spot) rates**, along with key conventions and their mathematical relationships.
 
 ---

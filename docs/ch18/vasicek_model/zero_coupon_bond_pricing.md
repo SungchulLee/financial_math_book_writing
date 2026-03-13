@@ -1,9 +1,5 @@
 # Zero-Coupon Bond Pricing (Closed-Form)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers zero-coupon bond pricing (closed-form) in the context of Zero Coupon Bond Pricing in Chapter 18.*
 
 !!! abstract "Learning Objectives"

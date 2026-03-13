@@ -1,9 +1,5 @@
 # Vasicek and CIR as Affine
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers vasicek and cir as affine in the context of Vasicek Cir As Affine in Chapter 15.*
 
 !!! abstract "Learning Objectives"

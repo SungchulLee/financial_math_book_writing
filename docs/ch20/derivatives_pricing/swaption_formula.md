@@ -1,9 +1,5 @@
 # Hull-White Swaption Formula
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Swaption Payoff and Change of Numeraire
 
 $$\begin{array}{lll}

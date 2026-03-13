@@ -1,10 +1,6 @@
 # Large-Time Behavior and Ergodicity
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Large-time limits depend on whether the model admits a stationary distribution. The behavior of option prices and Greeks as \(T \to \infty\) differs fundamentally between ergodic and non-ergodic models.
 
 ---

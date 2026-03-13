@@ -1,10 +1,6 @@
 # Black–Scholes PDE via Risk-Neutral Pricing
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The risk-neutral derivation obtains the Black–Scholes PDE by starting from the **fundamental theorem of asset pricing**: in an arbitrage-free, complete market, there exists a unique equivalent martingale measure $\mathbb{Q}$ under which discounted asset prices are martingales. The option price is $V(t,S) = e^{-r(T-t)}\, \mathbb{E}^{\mathbb{Q}}[\Phi(S_T) \mid S_t = S]$, and the PDE emerges as the condition for the discounted price process $e^{-rt}V(t, S_t)$ to be a $\mathbb{Q}$-martingale.
 
 This is the most direct route from the no-arbitrage principle to the pricing equation: there is no portfolio construction (as in [delta hedging](delta_hedging.md)), no choice of numéraire (as in the [stock-measure approach](change_of_numeraire.md)), and no preference specification (as in the [equilibrium approach](equilibrium.md)). The economic content is concentrated in the existence and uniqueness of $\mathbb{Q}$; the rest is Itô calculus.

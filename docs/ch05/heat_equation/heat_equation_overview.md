@@ -1,9 +1,5 @@
 # The Heat Equation
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The heat equation is the canonical partial differential equation describing diffusion. It plays a central role in probability theory, stochastic processes, and mathematical finance, serving as the prototype for all parabolic PDEs.
 
 ---

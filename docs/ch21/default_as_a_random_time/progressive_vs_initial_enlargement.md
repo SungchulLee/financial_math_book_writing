@@ -1,9 +1,5 @@
 # Progressive vs Initial Enlargement
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 There are two fundamentally different ways to enlarge a filtration to include a default time: **progressive enlargement** and **initial enlargement**. They differ in how and when information about default is revealed, with profound implications for pricing, hedging, and the mathematical structure of the model.
 
 ---

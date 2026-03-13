@@ -1,9 +1,5 @@
 # Numéraire and Change of Measure
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Changing the **numéraire** (unit of account) provides a powerful and elegant framework for derivative pricing. Each choice of numéraire corresponds to a different equivalent martingale measure, and selecting the right numéraire often dramatically simplifies pricing formulas.
 
 ---

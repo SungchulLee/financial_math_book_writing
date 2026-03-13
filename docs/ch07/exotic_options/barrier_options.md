@@ -1,9 +1,5 @@
 # Barrier Options
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Introduction
 
 **Barrier options** are path-dependent derivatives that become active (**knock-in**) or expire worthless (**knock-out**) when the underlying asset price crosses a predetermined **barrier level** $H$ during the life of the option. This conditional activation or deactivation makes barrier options cheaper than their vanilla counterparts, since the holder accepts restricted optionality in exchange for a lower premium.

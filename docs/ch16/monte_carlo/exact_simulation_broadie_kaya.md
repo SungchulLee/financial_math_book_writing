@@ -1,9 +1,5 @@
 # Exact Simulation (Broadie-Kaya)
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers exact simulation (broadie-kaya) in the context of Exact Simulation Broadie Kaya in Chapter 16.*
 
 !!! abstract "Learning Objectives"

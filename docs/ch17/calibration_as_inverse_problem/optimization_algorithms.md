@@ -1,9 +1,5 @@
 # Optimization Algorithms for Calibration
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Calibration reduces to solving an optimization problem. The choice of algorithm profoundly affects computational cost, robustness, and the quality of the solution. This section surveys the main algorithmic approaches used in quantitative finance.
 
 ---

@@ -1,10 +1,6 @@
 # Asymptotic Hedging Error Expansions
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 One seeks expansions of hedging error in small parameters.
 
 ---

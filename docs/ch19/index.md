@@ -1,9 +1,5 @@
 # Chapter 19: Interest Rate Derivatives and HJM
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 This chapter develops the modern framework for pricing and hedging interest rate derivatives. Starting from the Heath--Jarrow--Morton approach to forward rate dynamics, we build the theory of forward measures and numeraire techniques, then construct the LIBOR Market Model for direct modeling of observable rates. The chapter covers the full spectrum of interest rate derivatives---bond options, caps, floors, and swaptions---together with convexity adjustments, calibration pipelines, and the model risk challenges of multi-curve environments and negative rates.
 
 ## Key Concepts

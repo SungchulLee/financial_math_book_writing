@@ -1,10 +1,6 @@
 # Filtering and Bayesian Updating
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 **Filtering** and **Bayesian updating** provide principled frameworks for sequential inference when model parameters or states are latent.
 
 ---

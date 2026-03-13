@@ -1,9 +1,5 @@
 # Lookback Options
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 ## Introduction
 
 **Lookback options** are path-dependent derivatives whose payoff depends on the **maximum** or **minimum** price of the underlying asset over the option's life. The holder effectively gets to "look back" over the entire price history and exercise at the most favorable price. This eliminates the timing risk inherent in vanilla options but comes at a significantly higher premium.

@@ -1,9 +1,5 @@
 # OIS-LIBOR Spread Modeling
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 The overnight indexed swap (OIS) rate and LIBOR historically tracked closely but diverged significantly during financial crises, revealing credit risk and market structure effects. The multi-curve framework models these spreads to capture basis risk, funding costs, and counterparty credit risk in interest rate derivatives.
 
 ## Key Concepts

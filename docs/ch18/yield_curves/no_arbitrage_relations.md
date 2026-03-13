@@ -1,9 +1,5 @@
 # No-Arbitrage Relations
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 No-arbitrage principles link discount factors, zero rates, and forward rates. These relations are the foundation of curve construction and fixed-income pricing, ensuring internal consistency of the term structure.
 
 ---

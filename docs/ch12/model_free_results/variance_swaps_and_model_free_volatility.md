@@ -1,9 +1,5 @@
 # Variance Swaps and Model-Free Volatility
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Variance swaps provide direct exposure to realized volatility and enable model-free pricing of volatility. These instruments reveal the market's volatility expectations independent of any specific pricing model and form the foundation for variance curve construction and volatility derivatives trading.
 
 ## Key Concepts

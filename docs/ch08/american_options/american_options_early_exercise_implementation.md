@@ -1,9 +1,5 @@
 # American Options and Early Exercise: Implementation
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 European options can only be exercised at expiration, but **American options** may be exercised **at any time before maturity**. This flexibility introduces the **early exercise premium** and turns the problem into a **free boundary problem**.
 
 ---

@@ -1,9 +1,5 @@
 # Arbitrage-Free SABR
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers arbitrage-free sabr in the context of Arbitrage Free Sabr in Chapter 14.*
 
 !!! abstract "Learning Objectives"

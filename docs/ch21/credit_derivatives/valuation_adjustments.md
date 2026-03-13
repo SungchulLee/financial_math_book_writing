@@ -1,10 +1,6 @@
 # Valuation Adjustments
 
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 Credit derivatives pricing in practice requires **valuation adjustments** that go beyond idealized default models. These adjustments reflect counterparty risk, funding costs, and collateralization.
 
 ---

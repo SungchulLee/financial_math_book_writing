@@ -1,9 +1,5 @@
 # Characteristic Function of Affine Process
 
-
-!!! warning "Incomplete page"
-    This page is missing the required five-section structure (Concept Definition, Explanation, Diagram / Example). Content needs to be reorganized and expanded.
-
 *This section covers characteristic function of affine process in the context of Characteristic Function in Chapter 15.*
 
 !!! abstract "Learning Objectives"
